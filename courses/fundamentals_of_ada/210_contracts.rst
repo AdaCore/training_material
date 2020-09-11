@@ -153,7 +153,7 @@ Pre/Postcondition Semantics
 
 |
 
-.. image:: pre_and_post_insertion_flow.png
+.. image:: ../../images/pre_and_post_insertion_flow.png
    :width: 90%
 
 -----------------------------
@@ -506,14 +506,14 @@ Type Invariant Verifications
 
  .. container:: column
   
-    .. image:: black_box_flow.png
+    .. image:: ../../images/black_box_flow.png
        :width: 50%
     
 ----------------------------------------
 Invariant Over Object Lifetime (Calls)
 ----------------------------------------
 
-.. image:: type_invariant_check_flow.png
+.. image:: ../../images/type_invariant_check_flow.png
 
 .. container:: speakernote
 

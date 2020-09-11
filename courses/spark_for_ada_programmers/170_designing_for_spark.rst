@@ -227,13 +227,13 @@ Abstraction And Refinement
 Example: An Input Interface Package
 -------------------------------------
 
-.. image:: input_interface_package-flat.png
+.. image:: ../../images/input_interface_package-flat.png
 
 -------------------
 A Better Solution
 -------------------
 
-.. image:: input_interface_package-hierarchichal.png
+.. image:: ../../images/input_interface_package-hierarchichal.png
 
 ------------------------------------
 Effective Use Of State Abstraction

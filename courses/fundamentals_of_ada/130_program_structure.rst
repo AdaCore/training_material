@@ -427,7 +427,7 @@ Handling Cyclic Dependencies
 
  .. container:: column
   
-    .. image:: cyclic_dependencies.png
+    .. image:: ../../images/cyclic_dependencies.png
 
 --------------------------------------
 Body-Level Cross Dependencies Are OK
@@ -442,7 +442,7 @@ Body-Level Cross Dependencies Are OK
 
  .. container:: column
   
-    .. image:: mutual_dependencies.png
+    .. image:: ../../images/mutual_dependencies.png
     
 --------------------------
 Resulting Design Problem
@@ -654,7 +654,7 @@ Solution: Hierarchical Library Units
 
  .. container:: column
   
-    .. image:: hierarchical_library_units.png
+    .. image:: ../../images/hierarchical_library_units.png
     
 --------------------------
 Programming By Extension
@@ -781,7 +781,7 @@ Hierarchical Visibility
 
  .. container:: column
   
-    .. image:: hierarchical_visibility.png
+    .. image:: ../../images/hierarchical_visibility.png
     
 ------------------------------------
 Example of Visibility As If Nested

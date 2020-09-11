@@ -488,7 +488,7 @@ Uncontrolled Data Visibility Problem
 
  .. container:: column
   
-    .. image:: subprograms_accessing_global.png
+    .. image:: ../../images/subprograms_accessing_global.png
     
 --------------------------------------------
 Controlling Data Visibility Using Packages
@@ -505,7 +505,7 @@ Controlling Data Visibility Using Packages
 
 |
 
-.. image:: packages_hiding_global_data.png
+.. image:: ../../images/packages_hiding_global_data.png
    :width: 85%
 
 ------------------------

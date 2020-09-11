@@ -1159,7 +1159,7 @@ Exceptions Are Not Always Appropriate
 
  .. container:: column
   
-    .. image:: airbag_exception_handler.png
+    .. image:: ../../images/airbag_exception_handler.png
     
 ----------------------------------
 You Can Suppress Run-Time Checks

@@ -143,7 +143,7 @@ Record Types
      
  .. container:: column
   
-    .. image:: record_packing_examples.png
+    .. image:: ../../images/record_packing_examples.png
        :width: 50%
     
 -------------
@@ -503,7 +503,7 @@ Operands
 
    - `Asm_Input` and `Asm_Output` attributes on types
 
-.. image:: annotated_assembly_statement.png
+.. image:: ../../images/annotated_assembly_statement.png
    :width: 85%
 
 -----------------------------------------

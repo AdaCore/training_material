@@ -91,7 +91,7 @@ BNF for Identifiers
 
  .. container:: column
 
-   .. image:: identifier_flow.png
+   .. image:: ../../images/identifier_flow.png
       :width: 60%
  
 -------------------------
@@ -647,7 +647,7 @@ Scope and "Lifetime"
 
  .. container:: column
   
-    .. image:: block_scope_example.png
+    .. image:: ../../images/block_scope_example.png
     
  .. container:: column
   

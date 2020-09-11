@@ -191,7 +191,7 @@ Type Model Benefit: Saves Money!
 
  .. container:: column
   
-    .. image:: relative_cost_to_fix.png
+    .. image:: ../../images/relative_cost_to_fix.png
        :width: 100%
     
 ---------------------------
@@ -440,7 +440,7 @@ Generic Units
 
  .. container:: column
   
-    .. image:: generic_template_to_instances.png
+    .. image:: ../../images/generic_template_to_instances.png
     
 ------------------------------
 Generic Version of Stack ADT
@@ -665,7 +665,7 @@ So Why Isn't Ada Used Everywhere?
 
  .. container:: column
   
-    .. image:: mark_twain.jpeg
+    .. image:: ../../images/mark_twain.jpeg
     
 =======
 Setup

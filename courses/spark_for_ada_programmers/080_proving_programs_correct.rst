@@ -155,7 +155,7 @@ Modular Verification
 Modular Verification
 ----------------------
 
-.. image:: call_cycle-pre_and_post_condition.png
+.. image:: ../../images/call_cycle-pre_and_post_condition.png
 
 ---------------------------
 Comparison Test and Proof
@@ -196,7 +196,7 @@ Proof and Test - Hybrid Verification
 * Still modular verification
 * Responsibilities!
 
-.. image:: call_cycle-test_pre_prove_post.png
+.. image:: ../../images/call_cycle-test_pre_prove_post.png
 
 --------------------------------------
 Proof and Test - Hybrid Verification
@@ -206,7 +206,7 @@ Proof and Test - Hybrid Verification
 * Still modular verification
 * Responsibilities!
 
-.. image:: call_cycle-prove_pre_test_post.png
+.. image:: ../../images/call_cycle-prove_pre_test_post.png
 
 ------------------------------------------
 Combining Proof and Test - Cost Benefit 
@@ -221,7 +221,7 @@ Combining Proof and Test - Cost Benefit
 
  .. container:: column
   
-    .. image:: 80-20_provable_or_testable.png
+    .. image:: ../../images/80-20_provable_or_testable.png
 
 --------------------------
 Combining Proof and Test
@@ -239,7 +239,7 @@ Combining Proof and Test
 :toolname:`GNATprove` Tool Architecture
 -----------------------------------------
 
-.. image:: gnatprove-actual_tool_flow.png
+.. image:: ../../images/gnatprove-actual_tool_flow.png
 
 ==============
 Summary

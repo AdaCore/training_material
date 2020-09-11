@@ -88,7 +88,7 @@ Ada Uses "Named Typing"
 Categories of Types
 ---------------------
 
-.. image:: types_tree.png
+.. image:: ../../images/types_tree.png
 
 --------------
 Scalar Types
@@ -712,7 +712,7 @@ Why Boolean Isn't Just An Integer?
 
  .. container:: column
   
-    .. image:: hete-2_satellite.jpeg
+    .. image:: ../../images/hete-2_satellite.jpeg
     
 ------------------------------------
 Why Boolean Isn't Just An Integer!

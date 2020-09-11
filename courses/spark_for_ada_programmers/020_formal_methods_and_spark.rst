@@ -67,7 +67,7 @@ Combining Proof and Test - Cost Benefit
 
  .. container:: column
   
-    .. image:: 80-20_provable_or_testable.png
+    .. image:: ../../images/80-20_provable_or_testable.png
 
 -------------------------------------
 Language Facilitates Proof and Test
@@ -143,7 +143,7 @@ Math Hidden Behind the Tools
    - Farther back, booster separation-motor plumes are colored by Mach number.
    - Engineers can visualize issues without knowing how visualization is created
 
-.. image:: rocket_launch_shock_wave.png
+.. image:: ../../images/rocket_launch_shock_wave.png
    :width: 30%
    :align: center
    :alt: https://www.nasa.gov/ames/image-feature/simulation-sls-booster-separation

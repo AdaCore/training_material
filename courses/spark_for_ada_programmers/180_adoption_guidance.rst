@@ -30,14 +30,14 @@ Adoption Guidance Document
 
  .. container:: column
   
-    .. image:: thales_adoption_manual.png
+    .. image:: ../../images/thales_adoption_manual.png
        :width: 100%
 
 -----------------------------------------
 Responding To New Industrial Challenges
 -----------------------------------------
 
-.. image:: when_to_switch_to_spark.png
+.. image:: ../../images/when_to_switch_to_spark.png
 
 .. container:: speakernote
 
