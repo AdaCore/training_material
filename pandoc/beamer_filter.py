@@ -177,8 +177,15 @@ def find_file ( filename ):
          if not sys.platform.startswith ( 'win' ):
             path_list = paths.split(':')
          path_list = ( paths.split(';') )
+         # try combining full specified filename with path
          for path in path_list:
             attempt = os.path.join ( path, filename )
+            if os.path.isfile ( attempt ):
+               return attempt
+         # try combining just filename with path
+         just_filename = os.path.basename ( filename )
+         for path in path_list:
+            attempt = os.path.join ( path, just_filename )
             if os.path.isfile ( attempt ):
                return attempt
       return filename

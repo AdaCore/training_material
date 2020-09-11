@@ -111,14 +111,17 @@ if __name__== "__main__":
 
     parser.add_argument('--title',
                         help='Document title and name of output file. If not specified, output file will be source filename with specified extension.',
+                        default='',
                         required=False)
 
     parser.add_argument('--theme',
                         help='Beamer theme',
+                        default='',
                         required=False)
 
     parser.add_argument('--color',
                         help='Beamer color theme',
+                        default='',
                         required=False)
 
     parser.add_argument('--filter',
@@ -157,8 +160,8 @@ if __name__== "__main__":
                                     filter )
             if not os.path.isfile ( filter ):
                 filter = ""
-            else:
-                filter = " --filter " + filter
+        if os.path.isfile ( filter ):
+           filter = " --filter " + filter
 
         # build list of search directories
         set_texinputs ( args.directories )
