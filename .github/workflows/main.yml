@@ -36,3 +36,9 @@ jobs:
         run: |
           export TEXINPUTS=$GITHUB_WORKSPACE//:
           ./convert.sh courses/fundamentals_of_ada/*.rst
+    
+      - name: Package and upload Ada fundamental slides
+        uses: actions/upload-artifact@v2
+        with:
+          name: Ada fundamentals
+          path: out/*.pdf
