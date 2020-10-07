@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ] 
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      
+      - name: Install required packages
+        run: |
+          sudo apt update
+          sudo apt install texlive-latex-base texlive-extra-utils texlive-formats-extra 
+          sudo apt install pandoc python3-pypandoc
+      
+      - name: Install python dependencies
+        run: pip install pandocfilters
+        
+      - name: Generate slides for Ada fundamentals
+        run: |
+          export TEXINPUTS=$GITHUB_WORKSPACE//:
+          ./convert.sh courses/fundamentals_of_ada/*.rst
