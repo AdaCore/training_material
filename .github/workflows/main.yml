@@ -48,4 +48,13 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Standard course
-          path: courses/fundamentals_of_ada/standard_course.txt.pdf
+          path: standard_course.txt.pdf
+        
+      - name: Generate slides for Spark
+        run: python pandoc/pandoc_fe.py --output-dir out/spark_for_ada_programmers --theme=adacore --color=adacore --hush --strip-extension --extension pdf --source courses/spark_for_ada_programmers/*.rst --directories './/,:'
+    
+      - name: Package and upload Spark slides
+        uses: actions/upload-artifact@v2
+        with:
+          name: Spark for Ada programmers
+          path: out/spark_for_ada_programmers/*.pdf
