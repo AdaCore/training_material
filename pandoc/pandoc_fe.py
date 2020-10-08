@@ -1,6 +1,8 @@
 import argparse
 import os
 import sys
+import subprocess
+from pathlib import Path
 
 def windows ():
     return sys.platform.startswith ( 'win' )
@@ -15,6 +17,13 @@ def fix_file_case ( filename ):
        return filename.lower()
     return filename
 
+def to_texinputs_path( path ):
+   abspath = fix_file_case ( os.path.abspath ( path ) )
+   if path.endswith('//'):
+      # (texlive specific?) recursive path
+      abspath += '//'
+   return abspath
+
 '''
 Set the TEXINPUTS environment variable based on the directories specified
 on the command line. These directories will contain things like images
@@ -23,19 +32,15 @@ and Beamer theme files
 def set_texinputs ( new_directories ):
 
     # initialize list of directories
-    unique = list()
+    unique = set()
 
     # add user-specified directories to front of list
     paths = new_directories.split ( ',' )
     for path in paths:
-       abspath = fix_file_case ( os.path.abspath ( path ) )
-       if not abspath in unique:
-          unique.append ( abspath )
+       unique.add(to_texinputs_path(path))
 
     # add any previously existing directories
-    current = ""
-    if 'TEXINPUTS' in os.environ:
-        current = os.environ['TEXINPUTS']
+    current = os.environ.get('TEXINPUTS', "")
 
     # default separator (works for Windows and linux 'sh')
     separator = ';'
@@ -47,11 +52,12 @@ def set_texinputs ( new_directories ):
 
     paths = current.split ( separator )
     for path in paths:
-       abspath = fix_file_case ( os.path.abspath ( path ) )
-       if not abspath in unique:
-          unique.append ( abspath )
+       unique.add(to_texinputs_path(path))
 
-    os.environ['TEXINPUTS'] = separator.join ( unique )
+    # when TEXINPUTS ends w/ a separator it means to append to standard TeX paths
+    texinputs_append = (len(current) and current[-1] == separator)
+    os.environ['TEXINPUTS'] = separator.join ( unique ) \
+                              + (separator if texinputs_append else '')
 
 '''
 For PDF and TEX, we are producing slides, so use the 'beamer' format
@@ -72,13 +78,14 @@ line DIFFERENTLY than all the source files combined as one!
 (When multiple source files, each source file is its own section)
 '''
 def expand_source ( source_file ):
-    if ".rst" in source_file.lower():
-       return source_file
+    if source_file.lower().endswith(".rst"):
+       return {os.path.abspath(source_file)}
     else:
-       ret_val = ""
        dirname = os.path.dirname ( source_file )
        # Read lines from source file
        with open ( source_file ) as sources:
+          # A set will avoid dups
+          files = set()
           for source in sources:
              # Generate full path
              path = os.path.abspath ( os.path.join ( dirname, source.strip() ) )
@@ -89,14 +96,18 @@ def expand_source ( source_file ):
                 # If there are spaces in the path, enclose path in quotes
                 if ' ' in path:
                    path = '"' + path + '"'
-                ret_val = ret_val + path + ' '
-       return ret_val
+                files.add(path)
+       return files
 
 if __name__== "__main__":
+    PANDOC = Path(sys.argv[0]).resolve().parent
+    ROOT = PANDOC.parent
+
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--source',
                         help='Source RST file OR text file with list of RST files',
+                        nargs="+",
                         required=True)
 
     parser.add_argument('--extension',
@@ -106,11 +117,15 @@ if __name__== "__main__":
 
     parser.add_argument('--directories',
                         help='Comma-separated list of folders to search for things like images and Beamer themes',
-                        default='.',
+                        default=str(ROOT) + ":",
                         required=False)
 
     parser.add_argument('--title',
-                        help='Document title and name of output file. If not specified, output file will be source filename with specified extension.',
+                        help='Document title and name of output file. '
+                             'If not specified, output file will be source filename '
+                             'with specified extension.\n'
+                             'If several sources are specified, each one will have a '
+                             'number appended after its title.',
                         default='',
                         required=False)
 
@@ -126,65 +141,104 @@ if __name__== "__main__":
 
     parser.add_argument('--filter',
                         help='Pandoc filter to do special processing',
-                        default='beamer_filter.py',
+                        default=str(PANDOC / 'beamer_filter.py'),
                         required=False)
+
+    parser.add_argument('--output-dir',
+                        help="Output directory",
+                        required=False)
+
+    parser.add_argument('--strip-extension',
+                        help="Strip the original extension from the title of the output "
+                             "file.\n"
+                             "Eg. 'foo.rst.pdf' will become 'foo.pdf'.",
+                        action="store_true")
+
+    parser.add_argument('--hush',
+                        help="Hide ran commands.",
+                        action="store_true")
 
     args = parser.parse_args()
 
-    if not os.path.isfile ( args.source ):
-        print ( args.source + " does not exist" )
-
-    else:
-
-        theme = args.theme
-        if len(theme) > 0:
-            theme = " -V theme=" + theme
-
-        color = args.color
-        if len(color) > 0:
-            color = " -V colortheme=" + color
-
-        title = args.title
-        if len(title) > 0:
-            title = " -V title=" + title
-
-        output_file = os.path.basename ( args.source )
-        if len(args.title) > 0:
-            output_file = args.title
-        output_file = output_file + '.' + args.extension
-        output_file = os.path.abspath ( output_file )
-
-        filter = args.filter
-        if not os.path.isfile ( filter ):
-            filter = os.path.join ( os.path.dirname(__file__),
-                                    filter )
-            if not os.path.isfile ( filter ):
-                filter = ""
-        if os.path.isfile ( filter ):
-           filter = " --filter " + filter
-
-        # build list of search directories
-        set_texinputs ( args.directories )
-
-        # make paths relative to original source file
-        os.chdir ( os.path.dirname ( args.source ) )
-
-        source = expand_source ( args.source )
-        if len(source) == 0:
-            print ( "No source files found" )
+    for n, source_or_source_list in enumerate(args.source):
+        if not os.path.isfile ( source_or_source_list ):
+            print ( source_or_source_list + " does not exist" )
 
         else:
-            command = ( 'pandoc --standalone' +
-                        filter +
-                        title +
-                        theme +
-                        color +
-                        ' -f rst ' +
-                        ' -t ' + output_format ( args.extension.lower() ) +
-                        ' -o ' + output_file +
-                        ' ' + expand_source ( args.source ) )
 
-            print ( command )
+            theme = args.theme
+            if len(theme) > 0:
+                theme = " -V theme=" + theme
 
-            os.system ( command )
+            color = args.color
+            if len(color) > 0:
+                color = " -V colortheme=" + color
 
+            title = args.title
+            if len(title) > 0:
+                if len(sources) > 1:
+                    title += f" {n}"
+                title = " -V title=" + title
+
+            input_file = title or source_or_source_list
+
+            output_file = os.path.basename ( source_or_source_list )
+
+            if len(args.title) > 0:
+                output_file = args.title
+
+            if args.strip_extension:
+                output_file = str(Path(output_file).with_suffix(f'.{args.extension}'))
+            else:
+                output_file = output_file + '.' + args.extension
+
+            if args.output_dir:
+                output_dir_path = Path(args.output_dir)
+                output_dir_path.mkdir(parents=True, exist_ok=True)
+                output_file = str(Path(args.output_dir).resolve() / output_file)
+            else:
+                output_file = os.path.abspath ( output_file )
+
+            filter = args.filter
+            if not os.path.isfile ( filter ):
+                filter = os.path.join ( os.path.dirname(__file__),
+                                        filter )
+                if not os.path.isfile ( filter ):
+                    filter = ""
+            if os.path.isfile ( filter ):
+               filter = " --filter " + filter
+
+            # build list of search directories
+            set_texinputs ( args.directories )
+            if not args.hush:
+                print(f"TEXINPUTS={os.environ['TEXINPUTS']}")
+
+            source_list = expand_source ( source_or_source_list )
+
+            pcwd = os.getcwd()
+
+            os.chdir( os.path.dirname (source_or_source_list))
+
+            if len(source_list) == 0:
+                print ( "No source files found" )
+
+            else:
+                if len(args.source) > 1:
+                    print (f"{input_file} -> "
+                           f"{output_file}")
+
+                command = ( 'pandoc --standalone' +
+                            filter +
+                            title +
+                            theme +
+                            color +
+                            ' -f rst ' +
+                            ' -t ' + output_format ( args.extension.lower() ) +
+                            ' -o ' + output_file +
+                            f' {" ".join(source_list)}')
+
+                if not args.hush:
+                    print ( command )
+
+                subprocess.check_call ( command, shell=True )
+            os.chdir(pcwd)

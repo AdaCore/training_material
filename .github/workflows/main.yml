@@ -33,12 +33,19 @@ jobs:
         run: pip install pandocfilters
         
       - name: Generate slides for Ada fundamentals
-        run: |
-          export TEXINPUTS=$GITHUB_WORKSPACE//:
-          ./convert.sh courses/fundamentals_of_ada/*.rst
+        run: python pandoc/pandoc_fe.py --output-dir out/fundamentals_of_ada --theme=adacore --color=adacore --hush --strip-extension --extension pdf --source courses/fundamentals_of_ada/*.rst --directories '//,:'
     
       - name: Package and upload Ada fundamental slides
         uses: actions/upload-artifact@v2
         with:
           name: Ada fundamentals
-          path: out/*.pdf
+          path: out/fundamentals_of_ada/*.pdf
+
+      - name: Generate standard course
+        run: python pandoc/pandoc_fe.py --theme=adacore --color=adacore --extension pdf --source courses/fundamentals_of_ada/standard_course.txt --directories '//,:'
+    
+      - name: Package and upload standard course
+        uses: actions/upload-artifact@v2
+        with:
+          name: Standard course
+          path: courses/fundamentals_of_ada/standard_course.txt.pdf
