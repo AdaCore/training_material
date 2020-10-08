@@ -41,10 +41,10 @@ jobs:
           name: Ada fundamentals
           path: out/fundamentals_of_ada/*.pdf
 
-      - name: Generate standard course
+      - name: Generate standard Ada course
         run: python pandoc/pandoc_fe.py --theme=adacore --color=adacore --extension pdf --source courses/fundamentals_of_ada/standard_course.txt --directories './/,:'
     
-      - name: Package and upload standard course
+      - name: Package and upload standard Ada course
         uses: actions/upload-artifact@v2
         with:
           name: Standard course
@@ -58,3 +58,12 @@ jobs:
         with:
           name: Spark for Ada programmers
           path: out/spark_for_ada_programmers/*.pdf
+          
+                - name: Generate standard Spark course
+        run: python pandoc/pandoc_fe.py --theme=adacore --color=adacore --extension pdf --source courses/spark_for_ada_programmers/course.txt --directories './/,:'
+    
+      - name: Package and upload standard Spark course
+        uses: actions/upload-artifact@v2
+        with:
+          name: Standard Spark course
+          path: course.txt.pdf
