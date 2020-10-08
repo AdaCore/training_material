@@ -59,7 +59,7 @@ jobs:
           name: Spark for Ada programmers
           path: out/spark_for_ada_programmers/*.pdf
           
-                - name: Generate standard Spark course
+      - name: Generate standard Spark course
         run: python pandoc/pandoc_fe.py --theme=adacore --color=adacore --extension pdf --source courses/spark_for_ada_programmers/course.txt --directories './/,:'
     
       - name: Package and upload standard Spark course
