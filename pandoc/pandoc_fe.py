@@ -24,6 +24,12 @@ def to_texinputs_path( path ):
       abspath += '//'
    return abspath
 
+def extend_texinputs_path_list(unique, paths):
+    for path in paths:
+        abspath = to_texinputs_path(path)
+        if abspath not in unique:
+            unique.append(abspath)
+
 '''
 Set the TEXINPUTS environment variable based on the directories specified
 on the command line. These directories will contain things like images
@@ -32,12 +38,10 @@ and Beamer theme files
 def set_texinputs ( new_directories ):
 
     # initialize list of directories
-    unique = set()
+    unique = list()
 
     # add user-specified directories to front of list
-    paths = new_directories.split ( ',' )
-    for path in paths:
-       unique.add(to_texinputs_path(path))
+    extend_texinputs_path_list(unique, new_directories.split ( ',' ))
 
     # add any previously existing directories
     current = os.environ.get('TEXINPUTS', "")
@@ -50,9 +54,8 @@ def set_texinputs ( new_directories ):
        if not ';' in current:
           separator = ':'
 
-    paths = current.split ( separator )
-    for path in paths:
-       unique.add(to_texinputs_path(path))
+    # add current TEXINPUTS paths
+    extend_texinputs_path_list(unique, current.split (separator))
 
     # when TEXINPUTS ends w/ a separator it means to append to standard TeX paths
     texinputs_append = (len(current) and current[-1] == separator)
@@ -79,13 +82,12 @@ line DIFFERENTLY than all the source files combined as one!
 '''
 def expand_source ( source_file ):
     if source_file.lower().endswith(".rst"):
-       return {os.path.abspath(source_file)}
+       return [os.path.abspath(source_file)]
     else:
        dirname = os.path.dirname ( source_file )
        # Read lines from source file
        with open ( source_file ) as sources:
-          # A set will avoid dups
-          files = set()
+          files = list()
           for source in sources:
              # Generate full path
              path = os.path.abspath ( os.path.join ( dirname, source.strip() ) )
@@ -96,7 +98,7 @@ def expand_source ( source_file ):
                 # If there are spaces in the path, enclose path in quotes
                 if ' ' in path:
                    path = '"' + path + '"'
-                files.add(path)
+                files.append(path)
        return files
 
 if __name__== "__main__":
