@@ -12,7 +12,7 @@ Multiple Inheritance Is Forbidden In Ada
 ------------------------------------------
 
 * There are potential conflicts with multiple inheritance
-* Some languages allow it:ambiguities have to be resolved when entities are referenced
+* Some languages allow it: ambiguities have to be resolved when entities are referenced
 * Ada forbids it to improve integration
     
 .. code:: Ada
