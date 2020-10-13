@@ -58,7 +58,7 @@ GNAT Tools
 
 * GNAT User's Guide
 
-   - LOTS of into about the main tools - the GNAT compiler, binder, linker etc.
+   - LOTS of info about the main tools: the GNAT compiler, binder, linker etc.
 
 * GNAT Reference Manual
 
