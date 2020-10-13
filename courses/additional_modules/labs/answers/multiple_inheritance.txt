@@ -91,7 +91,6 @@ package body Line_Draw is
    begin
       for Y in Line (1).Y_Coord .. Line (2).Y_Coord
       loop
-
          X             := Integer ((Float (Y) - B) / M);
          Matrix (X, Y) := 'X';
       end loop;
