@@ -235,6 +235,7 @@ package body Printable_Object is
    begin
       Object.Pen_Size := Size;
    end Set_Pen;
+
    function Pen
      (Object : Object_T)
       return Positive is (Object.Pen_Size);
