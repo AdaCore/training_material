@@ -109,6 +109,7 @@ package body Line_Draw is
          Matrix (X, Y) := 'X';
       end loop;
    end Fill_Matrix_Vary_X;
+
    procedure Find_Slope_And_Intercept
      (Line     : in     Base_Types.Line_T;
       M        :    out Float;
