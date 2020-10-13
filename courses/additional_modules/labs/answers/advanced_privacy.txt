@@ -106,6 +106,7 @@ package body Messages.List_Types.Operations is
    function Is_Null
      (List : List_T)
       return Boolean is (List = null);
+
    function Image
      (Message : List_T)
       return String is
