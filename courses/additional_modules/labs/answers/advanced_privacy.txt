@@ -99,6 +99,7 @@ package body Messages.List_Types.Operations is
       end if;
       Id := Id_Type'Succ (Id);
    end Append;
+
    function Next
      (List : List_T)
       return List_T is (List.Next);
