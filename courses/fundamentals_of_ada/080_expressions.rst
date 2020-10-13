@@ -135,10 +135,9 @@ Actual Parameters Respect Constraints
 * Must satisfy any constraints of formal parameters
 * `Constraint_Error` otherwise
 
-* 
-
 .. code:: Ada
 
+   declare
      Q : Integer := ...
      P : Positive := ...
      procedure Foo (This : Positive);

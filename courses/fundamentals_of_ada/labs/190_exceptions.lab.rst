@@ -4,7 +4,7 @@ Exceptions Lab
 
 * Requirements
 
-   - Create a simple math package that performs *square*, *square root*, *multiply, *divide*
+   - Create a simple math package that performs *square*, *square root*, *multiply*, *divide*
 
       + *square* and *square root* should raise a user-defined exception if their input value is out of range
       + *multiply* and *divide* should not do any range checking
@@ -18,9 +18,9 @@ Exceptions Lab
 
    - Define a floating point type with a range that includes negative numbers
 
-      + This allows illegal values for *square*
+      + This allows illegal values for *square root*
 
-   - Use `Ada.Numerics.Generic_Elementary_Functions` for the *square* function
+   - Use `Ada.Numerics.Generic_Elementary_Functions` for the *square root* function
 
 --------------------------------
 Exceptions Lab Solution - Math 

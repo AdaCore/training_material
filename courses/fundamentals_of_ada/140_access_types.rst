@@ -78,30 +78,30 @@ Stack vs Heap
 .. image:: ../../images/stack_pointing_to_heap.png
    :width: 50%
 
-===========================
-Pool-Specific Access Types
-===========================
+==========================
+General Access Types
+==========================
 
----------------------------
-Pool-Specific Access Type
----------------------------
+----------------------
+General Access Types
+----------------------
 
-* An access type is a type
+* Can point to any pool (including stack)
 
    .. code:: Ada
 
       type T is [...]
-      type T_Access is access T;
+      type T_Access is access all T;
       V : T_Access := new T;
  
-* Conversion is needed to move an object pointed by one type to another (pools may differ)
-* You can not do this kind of conversion with a  pool-specific access type
+* Still distinct type
+* Conversions are possible
 
    .. code:: Ada
 
-      type T_Access_2 is access T;
-      V2 : T_Access_2 := T_Access_2 (V); -- illegal
- 
+      type T_Access_2 is access all T;
+      V2 : T_Access_2 := T_Access_2 (V); -- legal
+
 -----------------------
 Referencing The Stack
 -----------------------
@@ -148,15 +148,15 @@ Referencing The Stack
       -- What if P2 is called after P1?
    end P2;
      
-==========================
-General Access Types
-==========================
+===========================
+Pool-Specific Access Types
+===========================
 
-----------------------
-General Access Types
-----------------------
+---------------------------
+Pool-Specific Access Type
+---------------------------
 
-* Can point to any pool (including stack)
+* An access type is a type
 
    .. code:: Ada
 
@@ -164,13 +164,14 @@ General Access Types
       type T_Access is access T;
       V : T_Access := new T;
  
-* Still distinct type
-* Conversions are possible
+* Conversion is needed to move an object pointed by one type to another (pools may differ)
+* You can not do this kind of conversion with a  pool-specific access type
 
    .. code:: Ada
 
       type T_Access_2 is access T;
-      V2 : T_Access_2 := T_Access_2 (V); -- legal
+      V2 : T_Access_2 := T_Access_2 (V); -- illegal
+ 
  
 -------------
 Allocations
@@ -229,6 +230,10 @@ Deallocation Example
       -- V is now null
    end P;
  
+==========================
+Access Types
+==========================
+
 ----------------------
 Declaration Location
 ----------------------
@@ -257,10 +262,6 @@ Declaration Location
 
    - Creates a nested pool with a nested accessibility
    - Don't do that unless you know what you are doing! (see later)
-
-==========================
-Access Types
-==========================
 
 -------------
 Null Values

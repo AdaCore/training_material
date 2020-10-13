@@ -1,4 +1,3 @@
-
 **********
 Overview
 **********
@@ -20,7 +19,7 @@ The Name
 
    - Drafted a plan of how Charles Babbage's Analytical Engine might calculate Bernoulli numbers, now considered the first computer program
 
-* Writing Ada is like writing C++
+* Writing **ADA** is like writing **CPLUSPLUS**
 
    - The cognoscenti will know...
 
@@ -680,18 +679,20 @@ Canonical First Program
    1 with Ada.Text_IO;
    2 -- Everyone's first program
    3 procedure Say_Hello is 
-   4   Ada.Text_IO.Put_Line ("Hello, World!");
-   5 end Say_Hello;
+   4 begin
+   5   Ada.Text_IO.Put_Line ("Hello, World!");
+   6 end Say_Hello;
  
 * Line 1 - *with*  - Notification of dependence on a module
 * Line 2 - *--* - Comment
 * Line 3 - *Say_Hello* - Subprogram name
-* Line 4 - *Ada.Text_IO.Put_Line* - Subprogram call
-* Line 4 - *"Hello, World!"* - String literal (type-checked)
+* Line 4 - *begin* - begin executable code
+* Line 5 - *Ada.Text_IO.Put_Line* - Subprogram call
+* Line 6 - *"Hello, World!"* - String literal (type-checked)
 
--------------------
-"Hello World" Lab
--------------------
+----------------------------------
+"Hello World" Lab - Command Line
+----------------------------------
 
 * Use an editor to enter the program shown on the previous slide
 
@@ -707,3 +708,25 @@ Canonical First Program
 
    - :command:`say_hello` (Windows)
    - :command:`./say_hello` (Linux/Unix)
+
+--------------------------------
+"Hello World" Lab - GNATstudio
+--------------------------------
+
+* Start :toolname:`GNATstudio` from the command-line or Start Menu
+
+* :menu:`Create new project`
+
+   - Select :menu:`Simple Ada Project` and click :menu:`Next`
+   - Fill in a location to to deploy the project
+   - Set **main name** to *say_hello* and click :menu:`Apply`
+
+* Expand the **src** level in the Project View and double-click :filename:`say_hello.adb`
+
+   - Replace the code in the file with the program shown on the previous slide
+
+* Execute the program by selecting :menu:`Build` :math:`\rightarrow` :menu:`Project` :math:`\rightarrow` :menu:`Build & Run` :math:`\rightarrow` :menu:`say_hello.adb`
+
+   - Shortcut is the :math:`\blacktriangleright` in the icons bar
+
+* Result should appear in the bottom in a pane labeled *Run: say_hello.exe*

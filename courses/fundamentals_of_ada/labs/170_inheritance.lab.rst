@@ -7,7 +7,7 @@ Inheritance Lab
    - Create a type structure that could be used in a business
 
       - A **person** has some defining characteristics
-      - An **employee** is a *person* with some employement information
+      - An **employee** is a *person* with some employment information
       - A **staff member** is an *employee* with specific job information
 
    - Create primitive operations to read and print the objects

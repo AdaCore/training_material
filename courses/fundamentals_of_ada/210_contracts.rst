@@ -593,6 +593,31 @@ Example Type Invariant Realization (Body)
      end Consistent_Balance;
    end Bank;
  
+-----------------------------------
+Invariants Don't Apply Internally
+-----------------------------------
+
+* Within the package there is no checking
+
+   - Otherwise there would be no way to implement anything!
+
+* Only matters when clients can observe state
+
+.. code:: Ada
+
+   procedure Open (This : in out Account;
+                   Name : in String;
+                   Initial_Deposit : in Currency) is
+   begin
+     This.Owner := To_Unbounded_String (Name);
+     This.Current_Balance := Initial_Deposit;
+     -- invariant would be false here!
+     This.Withdrawals := Transactions.Empty_List; 
+     This.Deposits := Transactions.Empty_List; 
+     This.Deposits.Append (Initial_Deposit);
+     -- invariant is now true
+   end Open;
+ 
 --------------------------------------------
 Default Type Initialization for Invariants
 --------------------------------------------
@@ -642,31 +667,6 @@ Type Invariant Clause Placement
    That's useful because new, added primitive operations do not inherit the parent's type invariant.
    In other words the invariant isn't really inherited, it just comes for free with those primitives that are inherited (and not overridden).
 
------------------------------------
-Invariants Don't Apply Internally
------------------------------------
-
-* Within the package there is no checking
-
-   - Otherwise there would be no way to implement anything!
-
-* Only matters when clients can observe state
-
-.. code:: Ada
-
-   procedure Open (This : in out Account;
-                   Name : in String;
-                   Initial_Deposit : in Currency) is
-   begin
-     This.Owner := To_Unbounded_String (Name);
-     This.Current_Balance := Initial_Deposit;
-     -- invariant would be false here!
-     This.Withdrawals := Transactions.Empty_List; 
-     This.Deposits := Transactions.Empty_List; 
-     This.Deposits.Append (Initial_Deposit);
-     -- invariant is now true
-   end Open;
- 
 ------------------------------
 Invariants Are Not Foolproof
 ------------------------------

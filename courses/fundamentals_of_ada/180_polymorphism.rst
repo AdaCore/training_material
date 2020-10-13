@@ -98,12 +98,10 @@ Testing the type of an object
    TC2 : T'Class := D_Obj;  -- TC2'Tag = D'Tag
    DC  : D'Class := D(TC2); -- DC'Tag  = D'Tag
 
-.. code:: Ada
-
-   B1 : Boolean := (TC1 in T'Class); -- True
-   B2 : Boolean := (TC1 in D'Class); -- False
-   B3 : Boolean := (DC in T'Class);  -- True
-   B4 : Boolean := (DC in D'Class);  -- True
+   B1 : Boolean := TC1 in T'Class;        -- True
+   B2 : Boolean := TC1'tag = D'Class'tag; -- False
+   B3 : Boolean := DC'tag = T'Class'tag;  -- True
+   B4 : Boolean := DC in D'Class;         -- True
  
 ----------------
 Abstract Types
@@ -221,22 +219,33 @@ Calls on class-wide types (2/3)
 * The *actual* type of the object is not known at compile time
 * The *right* type will be selected at runtime
 
-.. code:: Ada
+.. container:: columns
 
-     V1 : Root'Class :=
-          Root'(others => <>);
-     V2 : Root'Class :=
-          Child'(others => <>);
-   begin
-     V1.P; -- calls P of Root
-     V2.P; -- calls P of Child
+ .. container:: column
+
+   *Ada*
+
+      .. code:: Ada
+
+         declare
+           V1 : Root'Class :=
+                Root'(others => <>);
+           V2 : Root'Class :=
+                Child'(others => <>);
+         begin
+           V1.P; -- calls P of Root
+           V2.P; -- calls P of Child
+
+ .. container:: column
  
-.. code:: Ada
+   *C++*
 
-   Root * V1 = new Root ();
-   Root * V2 = new Child ();
-   V1->P ();
-   V2->P ();
+      .. code:: C++
+
+         Root * V1 = new Root ();
+         Root * V2 = new Child ();
+         V1->P ();
+         V2->P ();
  
 ---------------------------------
 Calls on class-wide types (3/3)
@@ -244,22 +253,33 @@ Calls on class-wide types (3/3)
 
 * It is still possible to force a call to be static using a conversion of view
 
-.. code:: Ada
+.. container:: columns
 
-     V1 : Root'Class :=
-          Root'(others => <>);
-     V2 : Root'Class :=
-          Child'(others => <>);
-   begin
-     Root (V1).P; -- calls P of Root
-     Root (V2).P; -- calls P of Root
+ .. container:: column
+
+   *Ada*
+
+   .. code:: Ada
+
+      declare
+        V1 : Root'Class :=
+             Root'(others => <>);
+        V2 : Root'Class :=
+             Child'(others => <>);
+      begin
+        Root (V1).P; -- calls P of Root
+        Root (V2).P; -- calls P of Root
  
-.. code:: Ada
+ .. container:: column
 
-   Root * V1 = new Root ();
-   Root * V2 = new Child ();
-   ((Root) *V1).P ();
-   ((Root) *V2).P ();
+   *C++*
+
+   .. code:: C++
+
+      Root * V1 = new Root ();
+      Root * V2 = new Child ();
+      ((Root) *V1).P ();
+      ((Root) *V2).P ();
  
 -------------------------------
 Definite and class wide views
@@ -323,7 +343,7 @@ Redispatching Example
       P2 (Root'Class (V)); -- dynamic: (redispatching)
       P2 (V_Class);        -- dynamic: (redispatching)
    
-      -- Ada 2005 "distinguished receivier" syntax
+      -- Ada 2005 "distinguished receiver" syntax
       V.P2;                -- static: uses the definite view
       Root'Class (V).P2;   -- dynamic: (redispatching)
       V_Class.P2;          -- dynamic: (redispatching)

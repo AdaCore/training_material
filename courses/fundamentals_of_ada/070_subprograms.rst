@@ -1272,7 +1272,7 @@ Parameter Aliasing via Global Variable
      end Print;
    begin
      -- if pass by-copy, prints "Hello"
-     -- if pass py-reference, prints "World"
+     -- if pass by-reference, prints "World"
      Print (Formal => Actual); 
  
 -----------------------------------------
@@ -1291,7 +1291,7 @@ Parameter Aliasing via Multiple Actuals
      end Print;
    begin
      -- if pass by-copy, prints "Hello"
-     -- if pass py-reference, prints "World"
+     -- if pass by-reference, prints "World"
      Print (Actual, Actual);
  
 ---------------------------------------

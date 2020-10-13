@@ -353,6 +353,11 @@ Waiting With a Delay
      end loop;
    end T;
      
+.. container:: speakernote
+
+   Task will wait up to 50 seconds for "Receive_Message", print a message, and then enter the loop
+   Without the "exit" it will print the message and wait another 50 seconds, and so on
+
 ------------------------------------------
 Calling an Entry With a Delay Protection
 ------------------------------------------
@@ -377,6 +382,10 @@ Calling an Entry With a Delay Protection
       end select;
    end Main;
      
+.. container:: speakernote
+
+   Procedure will wait up to 50 seconds for "Receive_Message" to be accepted before it gives up
+
 -------------------------------------------
 Avoid Waiting If No Entry Or Accept Ready
 -------------------------------------------

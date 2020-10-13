@@ -552,38 +552,32 @@ Automatically Limited Full View
 
    with Bounded_Stacks; -- Stack is a limited type
    package Foo is
-     type Bar is limited private;
+      type Legal is limited private;
+      type Also_Legal is limited private;
+      type Not_Legal is private;
+      type Also_Not_Legal is private;
      ...
    private
-     -- inside this package,
-     -- Bar is limited because Stack is limited
-     type Bar is record
-       S : Bounded_Stacks.Stack;
-       ...
-     end record;
+      type Legal is record
+         S : Bounded_Stacks.Stack;
+      end record;
+      type Also_Legal is limited record
+         S : Bounded_Stacks.Stack;
+      end record;
+      type Not_Legal is limited record
+         S : Bounded_Stacks.Stack;
+      end record;
+      type Also_Not_Legal is record
+         S : Bounded_Stacks.Stack;
+      end record;
    end Foo;
- 
--------------------------------------------
-Required Limited Partial View for Clients
--------------------------------------------
 
-* When the Full View is `limited`
-* Otherwise would mislead users about availability of assignment and predefined equality
+.. container:: speakernote
 
-.. code:: Ada
+   Also_Legal adds "limited" to the full view
+   Not_Legal puts more limitations on full view than partial view
+   Also_Not_Legal never shows the client that S is limited
 
-   with Bounded_Stacks; -- Stack is a limited type
-   package Foo is
-     -- users must know Bar is limited
-     type Bar is limited private;
-     ...
-   private
-     type Bar is record
-       S : Bounded_Stacks.Stack;
-       ...
-     end record;
-   end Foo;
- 
 ========
 Lab
 ========

@@ -171,7 +171,7 @@ Array Attributes
    :T'Length: number of array components
    :T'First: value of lower index bound
    :T'Last: value of upper index bound
-   :T'Range: another way of saying T'First .. T'Last
+   :T'Range: another way of saying `T'First` .. `T'Last`
 
 * Meaningfully applied to constrained array types
 
@@ -561,6 +561,15 @@ Extra Object-Level Operations
 
 * *Only for 1-dimensional arrays!*
 * Concatenation
+
+   .. code:: Ada
+
+      type String_Type is array ( integer range <> ) of character;
+      A : constant String_Type := "foo";
+      B : constant String_Type := "bar";
+      C : constant String_Type := A & B;
+      -- C now contains "foobar"
+     
 * Relational (for discrete component types)
 * Logical (for Boolean component type)
 * Slicing

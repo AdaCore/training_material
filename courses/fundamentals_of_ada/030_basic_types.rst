@@ -1276,6 +1276,10 @@ Simple Static Type Derivation
  
 * We use it for convenience occasionally
 
+=====
+Lab
+=====
+
 .. include:: labs/030_basic_types.lab.rst
 
 =========

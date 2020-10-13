@@ -426,7 +426,7 @@ Case Statement Rules
      when others => -- weekend
        Stay_Home;
      end case;
-     
+
 ------------------------------------
 Case Statements Range Alternatives
 ------------------------------------
@@ -467,10 +467,6 @@ Why Not Use `Others` Case Alternative?
        ... -- but this will handle growth without complaint
    end case;
    ...
-
-.. container:: speakernote
-
-   Positive and Negative about "others"!
 
 =================
 Loop Statements

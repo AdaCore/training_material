@@ -117,6 +117,10 @@ Package Declarations
      procedure Pop (X : out Float);
    end Float_Stack;
 
+   package Data is
+      Object : integer;
+   end Data;
+
 ---------------------------------
 Compile-Time Visibility Control
 ---------------------------------
