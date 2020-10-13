@@ -53,8 +53,8 @@ Advanced Privacy Lab Solution - Message List Type
 
    package Messages.List_Types is
       type List_T is private;
-   private
 
+   private
       type List_Content_T;
       type List_T is access List_Content_T;
 
