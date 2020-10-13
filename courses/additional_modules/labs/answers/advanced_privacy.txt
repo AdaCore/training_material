@@ -103,6 +103,7 @@ package body Messages.List_Types.Operations is
    function Next
      (List : List_T)
       return List_T is (List.Next);
+
    function Is_Null
      (List : List_T)
       return Boolean is (List = null);
