@@ -77,7 +77,7 @@ AdaCore Support
 ==================
 
 ----------------
-Nee More Help?
+Need More Help?
 ----------------
 
 * If you have an AdaCore subscription:
