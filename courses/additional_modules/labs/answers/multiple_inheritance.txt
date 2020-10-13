@@ -224,6 +224,7 @@ package body Printable_Object is
    begin
       Object.Color := Color;
    end Set_Color;
+
    function Color
      (Object : Object_T)
       return Base_Types.Color_T is (Object.Color);
