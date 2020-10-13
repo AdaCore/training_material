@@ -127,6 +127,7 @@ with Ada.Text_IO;
 with Messages;
 with Messages.List_Types;
 with Messages.List_Types.Operations;
+
 procedure Main is
    package Types renames Messages.List_Types;
    package Operations renames Messages.List_Types.Operations;
