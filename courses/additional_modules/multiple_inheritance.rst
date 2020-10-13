@@ -100,7 +100,7 @@ Interface Derivation
       type I2 is interface and I1;
       Procedure P2 (V : I) is abstract;
  
-* A tagged type can derive from several interfacesand can derive from one interface several times
+* A tagged type can derive from several interfaces and can derive from one interface several times
 
    .. code:: Ada
 
