@@ -52,6 +52,7 @@ def set_texinputs ( new_directories ):
           unique.append ( abspath )
 
     os.environ['TEXINPUTS'] = separator.join ( unique )
+    print ( "set TEXINPUTS=" + os.environ['TEXINPUTS'] )
 
 '''
 For PDF and TEX, we are producing slides, so use the 'beamer' format
@@ -99,6 +100,10 @@ if __name__== "__main__":
                         help='Source RST file OR text file with list of RST files',
                         required=True)
 
+    parser.add_argument('--output',
+                        help='Output file name (without extension)',
+                        required=True)
+
     parser.add_argument('--extension',
                         help='Output file extension. "PDF" => Beamer, "TEX" => LaTeX, "DOCX" => Word, "PPTX" => PowerPoint',
                         default='pdf',
@@ -110,7 +115,7 @@ if __name__== "__main__":
                         required=False)
 
     parser.add_argument('--title',
-                        help='Document title and name of output file. If not specified, output file will be source filename with specified extension.',
+                        help='Document title',
                         default='',
                         required=False)
 
@@ -146,12 +151,9 @@ if __name__== "__main__":
 
         title = args.title
         if len(title) > 0:
-            title = " -V title=" + title
+            title = ' -V title="' + title.replace('_', ' ') + '"'
 
-        output_file = os.path.basename ( args.source )
-        if len(args.title) > 0:
-            output_file = args.title
-        output_file = output_file + '.' + args.extension
+        output_file = args.output + '.' + args.extension
         output_file = os.path.abspath ( output_file )
 
         filter = args.filter
