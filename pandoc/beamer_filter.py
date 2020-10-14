@@ -29,7 +29,12 @@ from pandocfilters import toJSONFilter, Strong, Str, SmallCaps, Emph, Para
 ##
 
 # If debug_file is not an empty string, exceptions will be writte to the file
-debug_file = "c:\\temp\\pandoc\\output.txt"
+if sys.platform.startswith ('win'):
+    debug_file = "c:\\temp\\pandoc\\output.txt"
+else:
+    import tempfile
+    debug_file = tempfile.mktemp (prefix="beamerfilter-")
+    print (f"Using log file {debug_file}")
 
 # Control wether sub-bullets appear one at a time in a 'beamer' presentation
 # (False indicates everything appears at once)
