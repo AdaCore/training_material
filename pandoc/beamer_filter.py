@@ -33,8 +33,7 @@ if sys.platform.startswith ('win'):
     debug_file = "c:\\temp\\pandoc\\output.txt"
 else:
     import tempfile
-    debug_file = tempfile.mktemp (prefix="beamerfilter-")
-    print (f"Using log file {debug_file}")
+    debug_file = tempfile.mkstemp (prefix="beamerfilter-")[1]
 
 # Control wether sub-bullets appear one at a time in a 'beamer' presentation
 # (False indicates everything appears at once)
