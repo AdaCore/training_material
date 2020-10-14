@@ -20,6 +20,17 @@ Packages Lab
       2. User input (ensure value is in range)
       3. List ADT
 
+---------------------------------
+Creating Packages in GNATstudio
+---------------------------------
+
+* Right-click on :filename:`src` node
+
+* :menu:`New` :math:`\rightarrow` :menu:`Ada Package`
+
+   - Fill in name of Ada package
+   - Check the box if you want to create the package body in addition to the package spec
+
 -----------------------------------
 Packages Lab Solution (Constants)
 -----------------------------------

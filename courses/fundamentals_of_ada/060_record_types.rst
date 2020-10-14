@@ -8,20 +8,36 @@ Introduction
 ==============
 
 ---------------------
-Syntax (Simplified)
+Syntax and Examples
 ---------------------
 
-.. code:: Ada
+* Syntax (simplified)
 
-   record_definition ::= record component_list end record |
-                         null record
-   component_list ::= component_declaration
-      {component_declaration }  |
-      {component_declaration } variant_part |
-      null;
-   component_declaration ::=
-      defining_identifier_list : component_definition
-          [:= default_expression];
+   .. code:: Ada
+
+      record_definition ::= record component_list end record |
+                            null record
+      component_list ::= component_declaration
+         {component_declaration }  |
+         {component_declaration } variant_part |
+         null;
+      component_declaration ::=
+         defining_identifier_list : component_definition
+             [:= default_expression];
+
+* Examples
+
+   .. code:: Ada
+
+      type Record1_T is record
+         Field1 : integer;
+         Field2 : boolean;
+      end record;
+
+      type Record2_T ( Size : natural := 0 ) is record
+         Text : string(1..Size);
+      end record;
+      
  
 ==================
 Components Rules
@@ -46,6 +62,7 @@ Characteristics of Components
 
 .. code:: Ada
 
+   declare
       type Months_T is (January, February, ..., December);
       type Date is
          record
@@ -157,6 +174,7 @@ Assignment Examples
 
 .. code:: Ada
 
+   declare
      type Complex is record
          Real : Float;
          Imaginary : Float;

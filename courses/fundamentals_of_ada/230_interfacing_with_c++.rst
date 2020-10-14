@@ -88,14 +88,6 @@ Pragma Import / Export (2/2)
 
          int my_var;
  
-.. code:: Ada
-
-   procedure Ada_Proc;
-   pragma Export (
-      C, -- convention (could be Asm, Ada, Fortran, etc)
-      Ada_Proc, -- To be exported (beware overloading!)
-      "ada_proc"); -- Externally referenced name (optional)
- 
 -----------------------------
 Import / Export in Ada 2012
 -----------------------------

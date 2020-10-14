@@ -46,17 +46,31 @@ Some New or Possibly Different Symbols
 Backus-Naur Form
 ------------------
 
-.. |textbraceleft| replace:: :math:`\{`
-.. |textbraceright| replace:: :math:`\}`
-.. |textpipe| replace:: :math:`\|`
-
 * Called "BNF" for short
 * A notation for defining the syntax of a language
 
-   - ``::=`` means 'is defined as'
-   - ``[item]`` means '0 or 1 items'
-   - ``|textbraceleft|`` item |textbraceright| means '0 or more items'
-   - ``item | item`` means 'alternative items'
+.. list-table::
+   :header-rows: 1
+
+   * - Symbol
+
+     - *Meaning*
+
+   * - ``::=``
+
+     - *is defined as*
+
+   * - ``[item]``
+
+     - *0 or 1 items*
+
+   * - :math:`\{` ``item`` :math:`\}`
+
+     - *0 or more items*
+
+   * - ``item | item``
+
+     - *alternative items*
 
 * Simplified and modified syntax presented here
 
@@ -67,12 +81,15 @@ Backus-Naur Form
 BNF for Identifiers
 ---------------------
 
+* identifier ::=  letter {[underline] letter_or_digit}
+
+.. image:: ../../images/identifier_flow.png
+   :width: 60%
+ 
 .. container:: columns
 
  .. container:: column
 
-   * identifier ::=  letter {[underline] letter_or_digit}
- 
    * Legal identifiers
 
       .. code:: Ada
@@ -81,6 +98,8 @@ BNF for Identifiers
          A
          Space_Person
  
+ .. container:: column
+
    * Not legal identifiers
 
       .. code:: Ada
@@ -89,11 +108,6 @@ BNF for Identifiers
          A_
          _space_person
 
- .. container:: column
-
-   .. image:: ../../images/identifier_flow.png
-      :width: 60%
- 
 -------------------------
 BNF for String Literals
 -------------------------
@@ -112,7 +126,7 @@ BNF for String Literals
 .. code:: Ada
 
    A_Null_String : constant string := "";
-      -- two double quotes with nothing inside*
+      -- two double quotes with nothing inside
    String_Of_Length_One : constant string := "A";
    Embedded_Single_Quotes : constant string :=
                             "Embedded 'single' quotes";
@@ -232,6 +246,11 @@ Pragmas
    - Must cause a warning (in standard mode)
    - Malformed pragmas are illegal (predefined or not)
 
+.. code:: Ada
+
+   pragma Page;
+   pragma Optimize ( Off );
+
 ==================
 Numeric Literals
 ==================
@@ -261,14 +280,12 @@ Decimal Numeric Literals
 Based Numeric Literals
 ------------------------
 
-* Syntax
+.. code:: Ada
 
-   .. code:: Ada
-
-      based_literal ::= base # based_numeral [.based_numeral] # [exponent]
-      base ::= numeral
-      based_numeral ::= extended_digit {[underline] extended_digit}
-      extended_digit ::= digit | A | B | C | D | E | F
+   based_literal ::= base # based_number [.based_number] # [exp]
+   base ::= numeral
+   based_number ::= extended_digit {[underline] extended_digit}
+   extended_digit ::= digit | A | B | C | D | E | F
  
 * Base can be 2 .. 16
 * Exponent is always a decimal number

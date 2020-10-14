@@ -60,21 +60,24 @@ Ada Generic Compared to C++ Template
 
    .. code:: Ada
     
+      -- specification
       generic
         type T is private;
-      procedure Swap (L, R : in out T)
+      procedure Swap (L, R : in out T);
+      -- implementation
       procedure Swap (L, R : in out T) is
         Tmp : T := L
       begin
         L := R;
         R := Tmp;
-     end Swap;
-     procedure Swap_F is new Swap (Float);
-     F1, F2 : Float;
-     procedure Main is
-     begin
-        Swap_F (F1, F2);
-     end Main;
+      end Swap;
+      -- instance
+      procedure Swap_F is new Swap (Float);
+      F1, F2 : Float;
+      procedure Main is
+      begin
+         Swap_F (F1, F2);
+      end Main;
      
 * C++ Template
 
@@ -302,9 +305,9 @@ Generic Subprogram Parameters Defaults
         with procedure Callback1 is <>;
         with procedure Callback2 is null;
       procedure P;
-      procedure Callback_1;
+      procedure Callback1;
       procedure P_I is new P;
-      -- takes Callback_1 and null
+      -- takes Callback1 and null
      
 ----------------------------
 Generic Package Parameters

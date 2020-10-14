@@ -90,20 +90,21 @@ Testing the type of an object
 
 .. code:: Ada
 
-   type T is tagged null record;
-   type D is new T with null record;
-   T_Obj : T; -- T_Obj'Tag = T'Tag
-   D_Obj : D; -- D_Obj'Tag = D'Tag
-   TC1 : T'Class := T_Obj;  -- TC1'Tag = T'Tag
-   TC2 : T'Class := D_Obj;  -- TC2'Tag = D'Tag
-   DC  : D'Class := D(TC2); -- DC'Tag  = D'Tag
+   type Parent is tagged null record;
+   type Child is new Parent with null record;
+   Parent_Obj : Parent; -- Parent_Obj'Tag = Parent_T'Tag
+   Child_Obj  : Child;  -- Child_Obj'Tag = Child'Tag
+   Parent_Class_1 : Parent'Class := Parent_Obj;
+                    -- Parent_Class_1'Tag = Parent'Tag
+   Parent_Class_2 : Parent'Class := Child_Obj;
+                    -- Parent_Class_2'Tag = Child'Tag
+   Child_Class    : Child'Class := Child(Parent_Class_2);
+                    -- Child_Class'Tag  = Child'Tag
 
-.. code:: Ada
-
-   B1 : Boolean := (TC1 in T'Class); -- True
-   B2 : Boolean := (TC1 in D'Class); -- False
-   B3 : Boolean := (DC in T'Class);  -- True
-   B4 : Boolean := (DC in D'Class);  -- True
+   B1 : Boolean := Parent_Class_1 in Parent'Class;       -- True
+   B2 : Boolean := Parent_Class_1'tag = Child'Class'tag; -- False
+   B3 : Boolean := Child_Class'tag = Parent'Class'tag;   -- True
+   B4 : Boolean := Child_Class in Child'Class;           -- True
  
 ----------------
 Abstract Types
@@ -221,22 +222,33 @@ Calls on class-wide types (2/3)
 * The *actual* type of the object is not known at compile time
 * The *right* type will be selected at runtime
 
-.. code:: Ada
+.. container:: columns
 
-     V1 : Root'Class :=
-          Root'(others => <>);
-     V2 : Root'Class :=
-          Child'(others => <>);
-   begin
-     V1.P; -- calls P of Root
-     V2.P; -- calls P of Child
+ .. container:: column
+
+   *Ada*
+
+      .. code:: Ada
+
+         declare
+           V1 : Root'Class :=
+                Root'(others => <>);
+           V2 : Root'Class :=
+                Child'(others => <>);
+         begin
+           V1.P; -- calls P of Root
+           V2.P; -- calls P of Child
+
+ .. container:: column
  
-.. code:: Ada
+   *C++*
 
-   Root * V1 = new Root ();
-   Root * V2 = new Child ();
-   V1->P ();
-   V2->P ();
+      .. code:: C++
+
+         Root * V1 = new Root ();
+         Root * V2 = new Child ();
+         V1->P ();
+         V2->P ();
  
 ---------------------------------
 Calls on class-wide types (3/3)
@@ -244,22 +256,33 @@ Calls on class-wide types (3/3)
 
 * It is still possible to force a call to be static using a conversion of view
 
-.. code:: Ada
+.. container:: columns
 
-     V1 : Root'Class :=
-          Root'(others => <>);
-     V2 : Root'Class :=
-          Child'(others => <>);
-   begin
-     Root (V1).P; -- calls P of Root
-     Root (V2).P; -- calls P of Root
+ .. container:: column
+
+   *Ada*
+
+   .. code:: Ada
+
+      declare
+        V1 : Root'Class :=
+             Root'(others => <>);
+        V2 : Root'Class :=
+             Child'(others => <>);
+      begin
+        Root (V1).P; -- calls P of Root
+        Root (V2).P; -- calls P of Root
  
-.. code:: Ada
+ .. container:: column
 
-   Root * V1 = new Root ();
-   Root * V2 = new Child ();
-   ((Root) *V1).P ();
-   ((Root) *V2).P ();
+   *C++*
+
+   .. code:: C++
+
+      Root * V1 = new Root ();
+      Root * V2 = new Child ();
+      ((Root) *V1).P ();
+      ((Root) *V2).P ();
  
 -------------------------------
 Definite and class wide views
@@ -323,7 +346,7 @@ Redispatching Example
       P2 (Root'Class (V)); -- dynamic: (redispatching)
       P2 (V_Class);        -- dynamic: (redispatching)
    
-      -- Ada 2005 "distinguished receivier" syntax
+      -- Ada 2005 "distinguished receiver" syntax
       V.P2;                -- static: uses the definite view
       Root'Class (V).P2;   -- dynamic: (redispatching)
       V_Class.P2;          -- dynamic: (redispatching)

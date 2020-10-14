@@ -508,7 +508,15 @@ User-Defined Exceptions Example
 
 .. code:: Ada
 
-    procedure Push (Item : in Integer) is
+   package Stack is
+     Underflow, Overflow : exception;
+     procedure Push (Item : in Integer);
+     procedure Pop (Item : out Integer);
+     ...
+   end Stack;
+ 
+   package body Stack is
+     procedure Push (Item : in Integer) is
      begin
        if Top = Index'Last then
          raise Overflow;
@@ -517,19 +525,7 @@ User-Defined Exceptions Example
        Values (Top) := Item;
      end Push;
  
-.. code:: Ada
-
-   package Stack is
-     Underflow : exception;
-     Overflow  : exception;
-     procedure Push (Item : in Integer);
-     procedure Pop (Item : out Integer);
-     ...
-   end Stack;
- 
-.. code:: Ada
-
-    procedure Pop (Item : out Integer) is
+     procedure Pop (Item : out Integer) is
      begin
        if Top = 0 then
          raise Underflow;
@@ -537,6 +533,7 @@ User-Defined Exceptions Example
        Item := Values (Top);
        Top := Top - 1;
      end Pop;
+   end Stack;
  
 =============
 Propagation
