@@ -90,18 +90,21 @@ Testing the type of an object
 
 .. code:: Ada
 
-   type T is tagged null record;
-   type D is new T with null record;
-   T_Obj : T; -- T_Obj'Tag = T'Tag
-   D_Obj : D; -- D_Obj'Tag = D'Tag
-   TC1 : T'Class := T_Obj;  -- TC1'Tag = T'Tag
-   TC2 : T'Class := D_Obj;  -- TC2'Tag = D'Tag
-   DC  : D'Class := D(TC2); -- DC'Tag  = D'Tag
+   type Parent is tagged null record;
+   type Child is new Parent with null record;
+   Parent_Obj : Parent; -- Parent_Obj'Tag = Parent_T'Tag
+   Child_Obj  : Child;  -- Child_Obj'Tag = Child'Tag
+   Parent_Class_1 : Parent'Class := Parent_Obj;
+                    -- Parent_Class_1'Tag = Parent'Tag
+   Parent_Class_2 : Parent'Class := D_Obj;
+                    -- Parent_Class_2'Tag = Child'Tag
+   Child_Class    : Child'Class := Child(Parent_Class_2);
+                    -- Child_Class'Tag  = Child'Tag
 
-   B1 : Boolean := TC1 in T'Class;        -- True
-   B2 : Boolean := TC1'tag = D'Class'tag; -- False
-   B3 : Boolean := DC'tag = T'Class'tag;  -- True
-   B4 : Boolean := DC in D'Class;         -- True
+   B1 : Boolean := Parent_Class_1 in Parent'Class;      -- True
+   B2 : Boolean := Parent_Class_1'tag = D'Class'tag;    -- False
+   B3 : Boolean := Child_Class'tag = Parent'Class'tag;  -- True
+   B4 : Boolean := Child_Class in Child'Class;          -- True
  
 ----------------
 Abstract Types

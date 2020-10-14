@@ -305,7 +305,7 @@ Generic Subprogram Parameters Defaults
         with procedure Callback1 is <>;
         with procedure Callback2 is null;
       procedure P;
-      procedure Callback_1;
+      procedure Callback1;
       procedure P_I is new P;
       -- takes Callback1 and null
      
