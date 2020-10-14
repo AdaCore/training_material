@@ -112,6 +112,10 @@ if __name__== "__main__":
                         nargs="+",
                         required=True)
 
+    parser.add_argument('--output',
+                        help='Output file name (without extension)',
+                        required=True)
+
     parser.add_argument('--extension',
                         help='Output file extension. "PDF" => Beamer, "TEX" => LaTeX, "DOCX" => Word, "PPTX" => PowerPoint',
                         default='pdf',
@@ -175,12 +179,16 @@ if __name__== "__main__":
             color = args.color
             if len(color) > 0:
                 color = " -V colortheme=" + color
-
+                
+                
             title = args.title
             if len(title) > 0:
                 if len(sources) > 1:
                     title += f" {n}"
-                title = " -V title=" + title
+                title = ' -V title="' + title.replace('_', ' ') + '"'
+
+            output_file = args.output + '.' + args.extension
+            output_file = os.path.abspath ( output_file )
 
             input_file = title or source_or_source_list
 

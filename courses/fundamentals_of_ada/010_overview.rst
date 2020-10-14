@@ -20,7 +20,7 @@ The Name
 
    - Drafted a plan of how Charles Babbage's Analytical Engine might calculate Bernoulli numbers, now considered the first computer program
 
-* Writing Ada is like writing C++
+* Writing "ADA" is like writing "CPLUSPLUS"
 
    - The cognoscenti will know...
 
