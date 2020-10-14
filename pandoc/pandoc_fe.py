@@ -63,6 +63,37 @@ def set_texinputs ( new_directories ):
                               + (separator if texinputs_append else '')
 
 '''
+Chose and setup an output file full path based on various arguments received.
+'''
+def output_file_name(input_file, n, extension,
+                     title = None,
+                     output_file = None,
+                     strip_extension = False,
+                     output_dir = None):
+    if output_file:
+        name = output_file
+    elif title:
+        name = title
+    else:
+        name = os.path.basename(input_file)
+    
+    # In case of multiple inputs, add number
+    if n:
+        name += f" {n}"
+
+    if strip_extension:
+        name = str(Path(name).with_suffix(f'.{extension}'))
+    else:
+        name += f'.{extension}'
+        
+    if output_dir:
+        output_dir_path = Path(args.output_dir)
+        output_dir_path.mkdir(parents=True, exist_ok=True)
+        name = str(output_dir_path / name)
+
+    return os.path.abspath(name)
+
+'''
 For PDF and TEX, we are producing slides, so use the 'beamer' format
 For any other extension, assume the extension and the format are the same
 '''
@@ -113,8 +144,7 @@ if __name__== "__main__":
                         required=True)
 
     parser.add_argument('--output',
-                        help='Output file name (without extension)',
-                        required=True)
+                        help='Output file name (without extension)')
 
     parser.add_argument('--extension',
                         help='Output file extension. "PDF" => Beamer, "TEX" => LaTeX, "DOCX" => Word, "PPTX" => PowerPoint',
@@ -180,35 +210,19 @@ if __name__== "__main__":
             if len(color) > 0:
                 color = " -V colortheme=" + color
                 
-                
-            title = args.title
-            if len(title) > 0:
-                if len(sources) > 1:
-                    title += f" {n}"
-                title = ' -V title="' + title.replace('_', ' ') + '"'
+            pandoc_title_arg = args.title
+            if args.title:
+                pandoc_title_arg = ' -V title="' + args.title.replace('_', ' ') + '"'
 
-            output_file = args.output + '.' + args.extension
-            output_file = os.path.abspath ( output_file )
+            input_file = args.title or source_or_source_list
 
-            input_file = title or source_or_source_list
-
-            output_file = os.path.basename ( source_or_source_list )
-
-            if len(args.title) > 0:
-                output_file = args.title
-
-            if args.strip_extension:
-                output_file = str(Path(output_file).with_suffix(f'.{args.extension}'))
-            else:
-                output_file = output_file + '.' + args.extension
-
-            if args.output_dir:
-                output_dir_path = Path(args.output_dir)
-                output_dir_path.mkdir(parents=True, exist_ok=True)
-                output_file = str(Path(args.output_dir).resolve() / output_file)
-            else:
-                output_file = os.path.abspath ( output_file )
-
+            # Output default value is input file name
+            output_file = output_file_name(input_file, n if len(args.source) > 1 else None,
+                                           args.extension,
+                                           title = args.title,
+                                           output_dir = args.output_dir,
+                                           output_file = args.output,
+                                           strip_extension = args.strip_extension)
             filter = args.filter
             if not os.path.isfile ( filter ):
                 filter = os.path.join ( os.path.dirname(__file__),
@@ -239,7 +253,7 @@ if __name__== "__main__":
 
                 command = ( 'pandoc --standalone' +
                             filter +
-                            title +
+                            pandoc_title_arg +
                             theme +
                             color +
                             ' -f rst ' +
