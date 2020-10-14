@@ -30,11 +30,12 @@ jobs:
 
       - name: Install required packages
         run: |
-          sudo apt install texlive-latex-base texlive-extra-utils texlive-formats-extra 
+          sudo apt install texlive-latex-base texlive-extra-utils texlive-formats-extra wget
 
       - name: Manual pandoc install
         run: |
-          sudo dpkg -i https://github.com/jgm/pandoc/releases/download/2.11/pandoc-2.11-1-amd64.deb
+          wget https://github.com/jgm/pandoc/releases/download/2.11/pandoc-2.11-1-amd64.deb
+          sudo dpkg -i pandoc-2.11-1-amd64.deb
           pandoc -v
       
       - name: Install python dependencies
