@@ -7,6 +7,8 @@ Declarations
 Introduction
 ==============
 
+.. include:: examples/020_declarations.example.rst
+
 ----------------------------------------
 Some New or Possibly Different Symbols
 ----------------------------------------
