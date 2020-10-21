@@ -78,6 +78,12 @@ A Little "Preaching" About Names
 Declarations and Bodies
 ========================
 
+----------
+Examples
+----------
+
+.. include:: examples/070_subprograms/declarations_and_bodies.rst
+
 --------------------------
 Subprogram Declarations 
 --------------------------
@@ -323,6 +329,12 @@ Indirect Recursion Needs A Declaration
 ============
 Parameters
 ============
+
+----------
+Examples
+----------
+
+.. include:: examples/070_subprograms/parameters.rst
 
 ----------------------------------
 Subprogram Parameter Terminology
@@ -1024,6 +1036,12 @@ Function Results Are Objects : Slicing
 Expression Functions
 ======================
 
+----------
+Examples
+----------
+
+.. include:: examples/070_subprograms/expression_functions.rst
+
 ----------------------
 Expression Functions
 ----------------------
@@ -1118,6 +1136,12 @@ Typical Uses for Expression Functions
 ====================
 Potential Pitfalls
 ====================
+
+----------
+Examples
+----------
+
+.. include:: examples/070_subprograms/potential_pitfalls.rst
 
 -----------------------------
 Mode `out` Risk for Scalars
