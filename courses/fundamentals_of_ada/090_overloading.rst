@@ -95,6 +95,12 @@ Benefits and Risk of Overloading
 Enumerals and Operators
 =========================
 
+----------
+Examples
+----------
+
+.. include:: examples/090_overloading/enumerals_and_operators.rst
+
 -----------------------
 Overloading Enumerals
 -----------------------
@@ -171,6 +177,12 @@ Parameters for Overloaded Operators
 =================
 Call Resolution
 =================
+
+----------
+Examples
+----------
+
+.. include:: examples/090_overloading/call_resolution.rst
 
 -----------------
 Call Resolution
@@ -277,6 +289,12 @@ Overloading Example
 Visibility Issues
 ===================
 
+----------
+Examples
+----------
+
+.. include:: examples/090_overloading/visibility_issues.rst
+
 -----------------------------------
 Inherently Ambiguous Declarations
 -----------------------------------
@@ -321,6 +339,12 @@ Profile Hiding
 =======================
 User-Defined Equality
 =======================
+
+----------
+Examples
+----------
+
+.. include:: examples/090_overloading/user_defined_equality.rst
 
 -----------------------
 User-Defined Equality
@@ -404,6 +428,12 @@ User-Defined Equality Example
 Composition of Equality
 =========================
 
+----------
+Examples
+----------
+
+.. include:: examples/090_overloading/composition_of_equality.rst
+
 ----------------------------
  "Composition of Equality"
 ----------------------------
@@ -444,27 +474,20 @@ Composition vs Non-Composition
        Field : integer := 0;
      end record;
      type Record_List is array (1..10) of Record_T;
-     type Integer_List is array (1..10) of integer;
        
      -- user-defined hides predefined
      function "=" (L, R : Integer) return Boolean is
        ( False ); -- for illustration...
        
-     function "=" (Left, Right : Integer_List) return Boolean;
-     function "=" (Left, Right : Record_List) return Boolean;
-     
      -- predefined "=" will return True
      I1, I2 : integer := 0; 
      R1, R2 : Record_List;
-     L1, L2 : Integer_List;
        
    begin
     -- uses overloaded "=" => False
      Put_Line (boolean'image(I1=I2));
      -- uses overloaded "=" for components=>False
      Put_Line(boolean'image(R1=R2));
-     -- uses predefined "=" for components=>True
-     Put_Line(boolean'image(L1=L2));
      
 .. container:: speakernote
 

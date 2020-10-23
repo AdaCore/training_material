@@ -1,4 +1,4 @@
-.. code:: ada project=Training_Material.Fundamentals_Of_Ada.Basic_Types.discrete_numeric_types
+.. code:: ada project=Training_Material.Fundamentals_Of_Ada.Basic_Types.real_types
     :class: ada-run
 
    with Ada.Text_IO; use Ada.Text_IO;
