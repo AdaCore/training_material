@@ -556,7 +556,7 @@ Ada Concurrency Mechanisms
 * Protected objects
 
    - Passive
-   - Essentially "monitors" plua high-level condition synchronization
+   - Essentially "monitors" with high-level condition synchronization
    - Synchronize access to values without thread overhead
 
 * Integrated with OOP
@@ -686,9 +686,9 @@ Canonical First Program
 * Line 1 - *with*  - Notification of dependence on a module
 * Line 2 - *--* - Comment
 * Line 3 - *Say_Hello* - Subprogram name
-* Line 4 - *begin* - begin executable code
+* Line 4 - *begin* - Begin executable code
 * Line 5 - *Ada.Text_IO.Put_Line* - Subprogram call
-* Line 6 - *"Hello, World!"* - String literal (type-checked)
+* (cont) - *"Hello, World!"* - String literal (type-checked)
 
 ----------------------------------
 "Hello World" Lab - Command Line
@@ -729,4 +729,4 @@ Canonical First Program
 
    - Shortcut is the :math:`\blacktriangleright` in the icons bar
 
-* Result should appear in the bottom in a pane labeled *Run: say_hello.exe*
+* Result should appear in the bottom pane labeled *Run: say_hello.exe*

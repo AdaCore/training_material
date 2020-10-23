@@ -81,11 +81,13 @@ Backus-Naur Form
 BNF for Identifiers
 ---------------------
 
-* identifier ::=  letter {[underline] letter_or_digit}
+.. code:: Ada
+
+  identifier ::= letter {[underline] letter_or_digit}
 
 .. image:: ../../images/identifier_flow.png
    :width: 60%
- 
+
 .. container:: columns
 
  .. container:: column
@@ -189,24 +191,25 @@ Reserved Words
 
 .. code:: Ada
 
-   abort          do                not                reverse
-   abs            else              null               select
-   abstract (95)  elsif             of                 separate
-   accept         end               or                 some (2012)
-   access         entry             others             subtype
-   aliased (95)   exception         out                synchronized (2005)
-   all            for               overriding (2005)  tagged (95)
-   and            function          package            task
-   array          generic           pragma             terminate
-   at             goto              private            then
-   begin          if                procedure          type
-   body           in                protected (95)     until (95)
-   case           interface (2005)  range              use
-   constant       is                record             when
-   declare        limited           rem                while
-   delay          loop              renames            with
-   delta          mod               requeue (95)       xor
+   abort          else              null               select
+   abs            elsif             of                 separate
+   abstract (95)  end               or                 some (2012)
+   accept         entry             others             subtype
+   access         exception         out                synchronized (2005)
+   aliased (95)   exit              overriding (2005)  tagged (95)
+   all            for               package            task
+   and            function          pragma             terminate
+   array          generic           private            then
+   at             goto              procedure          type
+   begin          if                protected (95)     until (95)
+   body           in                raise              use
+   case           interface (2005)  range              when
+   constant       is                record             while
+   declare        limited           rem                with
+   delay          loop              renames            xor
+   delta          mod               requeue (95)
    digits         new               return
+   do             not               reverse
 
 ----------
 Comments
