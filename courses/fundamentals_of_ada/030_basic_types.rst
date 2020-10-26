@@ -64,7 +64,7 @@ A Little Terminology
 
       .. code:: Ada
 
-         type typemark is digits 12; -- floating point
+         type typemark is digits 12; -- floating-point
          type typemark is range -200 .. 200; -- signed integer
          type typemark is mod 256; -- unsigned integer
 
@@ -203,7 +203,7 @@ Operators for Any Integer Type
 
 * Note on exponentiation
 
-   - Requested power must be a non-negative `Integer` value, otherwise you're asking for a floating point (real) result
+   - Requested power must be a non-negative `Integer` value, otherwise you're asking for a floating-point (real) result
 
 * Division by zero raises `Constraint_Error`
 
@@ -990,7 +990,7 @@ Real Types
    - Ordinary fixed-point types
    - Decimal fixed-point types
 
-* Focus on floating point types here
+* Focus on floating-point types here
 
 ------------------------------------------
 Real Type (Floating and Fixed) Literals 
@@ -1001,7 +1001,7 @@ Real Type (Floating and Fixed) Literals
 
 .. code:: Ada
 
-   type Phase is digits 8; -- floating point
+   type Phase is digits 8; -- floating-point
    OK : Phase := 0.0;
    Bad : Phase := 0 ; -- compile error
  
