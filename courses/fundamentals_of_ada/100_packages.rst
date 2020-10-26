@@ -92,6 +92,12 @@ Basic Syntax and Nomenclature
 Declarations
 ==============
 
+----------
+Examples
+----------
+
+.. include:: examples/100_packages/declarations.rst
+
 ----------------------
 Package Declarations
 ----------------------
@@ -202,6 +208,12 @@ Referencing Exported Items
 Bodies
 ========
 
+----------
+Examples
+----------
+
+.. include:: examples/100_packages/bodies.rst
+
 ----------------
 Package Bodies
 ----------------
@@ -302,6 +314,12 @@ Required Body Example
 ==================
 Executable Parts
 ==================
+
+----------
+Examples
+----------
+
+.. include:: examples/100_packages/executable_parts.rst
 
 --------------------------
 Optional Executable Part
@@ -411,6 +429,12 @@ Forcing A Package Body To be Required
 ========
 Idioms
 ========
+
+----------
+Examples
+----------
+
+.. include:: examples/100_packages/idioms.rst
 
 ----------------------------------
 Named Collection of Declarations
