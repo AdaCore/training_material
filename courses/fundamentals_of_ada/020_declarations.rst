@@ -331,7 +331,7 @@ Declarations
    - Subprograms
    - et cetera
 
-* All names must be declared before used
+* All names must be declared before use
 
    - Most names must be explicitly declared
 
