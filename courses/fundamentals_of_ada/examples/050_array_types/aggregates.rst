@@ -1,4 +1,4 @@
-.. code:: ada project=Training_Material.Fundamentals_Of_Ada.Array_Types.aggregates
+.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Array_Types.aggregates
     :class: ada-run
 
    procedure Aggregates is
@@ -17,7 +17,8 @@
       Week := (8.0, 8.0, 8.0, 8.0, 8.0, 0.0, 0.0);
       Week := (Sat => 0.0, Sun => 0.0, Mon .. Fri => 8.0);
       Week := (Sat | Sun => 0.0, Mon .. Fri => 8.0);
-      Week := (8.0, 8.0, 8.0, 8.0, 8.0, Sat => 0.0, Sun => 0.0); -- not allowed
+      -- Week := (8.0, 8.0, 8.0, 8.0, 8.0, Sat => 0.0, Sun => 0.0); -- compile
+      -- error
    
       if Week = (10.0, 10.0, 10.0, 10.0, 0.0, 0.0, 0.0) then
          null; -- four-day week
@@ -26,8 +27,8 @@
       Week := (8.0, others => 0.0);
       Week := (8.0, others => <>); -- Ada2012: use previously set values
    
-      -- Illegal
-      Week := (Week'First .. Start => 0.0, Start .. Finish => 8.0,
-               Finish .. Week'Last => 0.0);
+      -- Compile error
+      -- Week := (Week'First .. Start => 0.0, Start .. Finish => 8.0,
+      --          Finish .. Week'Last => 0.0);
    
    end Aggregates;

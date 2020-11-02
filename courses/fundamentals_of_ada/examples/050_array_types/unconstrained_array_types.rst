@@ -1,7 +1,7 @@
-.. code:: ada project=Training_Material.Fundamentals_Of_Ada.Array_Types.unconstrained_array_types
+.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Array_Types.unconstrained_array_types
     :class: ada-run
-   
-   procedure Unconstrained_Array_Types is
+
+   package Unconstrained_Array_Types is
    
       type Index_T is range 1 .. 100;
       type List_T is array (Index_T range <>) of Character;
@@ -22,6 +22,4 @@
       type Roman_Number is array (Natural range <>) of Roman_Digit;
       Orwellian : constant Roman_Number := "MCMLXXXIV";
    
-   begin
-      null;
    end Unconstrained_Array_Types;

@@ -1,4 +1,4 @@
-.. code:: ada project=Training_Material.Fundamentals_Of_Ada.Statements.loop_statements
+.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Statements.loop_statements
     :class: ada-run
 
    with Ada.Text_IO; use Ada.Text_IO;

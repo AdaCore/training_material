@@ -1,7 +1,7 @@
-.. code:: ada project=Training_Material.Fundamentals_Of_Ada.Array_Types.constrained_array_types
+.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Array_Types.constrained_array_types
     :class: ada-run
-   
-   procedure Constrained_Array_Types is
+
+   package Constrained_Array_Types is
    
       type Array_Of_Integers_T is array (1 .. 10) of Integer;
       type Array_Of_Bits_T is array (Natural range 0 .. 31) of Boolean;
@@ -14,6 +14,4 @@
       One_Word     : Array_Of_Bits_T;
       Color        : Rgb_T;
    
-   begin
-      null;
    end Constrained_Array_Types;
