@@ -1,8 +1,7 @@
-.. code:: ada project=Training_Material.Fundamentals_Of_Ada.Record_Types.default_values
+.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Record_Types.default_values
     :class: ada-run
-   
-   with Ada.Calendar; use Ada.Calendar;
-   with Ada.Text_IO;  use Ada.Text_IO;
+
+   with Ada.Text_IO; use Ada.Text_IO;
    procedure Default_Values is
    
       type Complex is record

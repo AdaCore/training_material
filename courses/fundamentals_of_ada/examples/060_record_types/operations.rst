@@ -1,13 +1,12 @@
-.. code:: ada project=Training_Material.Fundamentals_Of_Ada.Record_Types.operations
+.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Record_Types.operations
     :class: ada-run
-   
+
+   with Ada.Text_IO; use Ada.Text_IO;
    procedure Operations is
-      type Months_T is
-        (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec);
       type Date_T is record
          Day   : Integer range 1 .. 31;
-         Month : Months_T;
-         Year  : Integer range 0 .. 2_099;
+         Month : Positive range 1 .. 12;
+         Year  : Natural range 0 .. 2_099;
       end record;
       type Personal_Information_T is record
          Name      : String (1 .. 10);
@@ -22,4 +21,5 @@
       Employee.Number                              := 1_234;
       Employee.Personal_Information.Name           := "Fred Smith";
       Employee.Personal_Information.Birthdate.Year := 2_020;
+      Put_Line (Employee.Number'Image);
    end Operations;
