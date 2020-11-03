@@ -14,10 +14,14 @@
       type Miles_T is digits 6;
       type Hour_T is digits 6;
       type Speed_T is digits 6;
-      function "/" (M : Miles_T; H : Hour_T) return Speed_T is
-         (Speed_T (Float (M) / Float (H)));
-      function "*" (Mph : Speed_T; H   : Hour_T) return Miles_T is
-         (Miles_T (Float (Mph) * Float (H)));
+      function "/"
+        (M : Miles_T;
+         H : Hour_T)
+         return Speed_T is (Speed_T (Float (M) / Float (H)));
+      function "*"
+        (Mph : Speed_T;
+         H   : Hour_T)
+         return Miles_T is (Miles_T (Float (Mph) * Float (H)));
    
       M   : Miles_T         := Miles_T (Col);
       H   : constant Hour_T := Hour_T (Line);
@@ -30,8 +34,10 @@
       M   := Mph * H;
       Put_Line (Mph'Image & M'Image);
    
-      Mph := "/" (M => M, H => H);
-      M   := "*" (Mph, H);
+      Mph := "/"
+          (M => M,
+           H => H);
+      M := "*" (Mph, H);
       Put_Line (Mph'Image & M'Image);
    
    end Enumerals_And_Operators;

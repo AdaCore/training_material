@@ -1,4 +1,4 @@
-.. code:: ada project=Training_Material.Fundamentals_Of_Ada.Packages.idioms
+.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Packages.idioms
    :class: ada-run
 
    package Constants is
@@ -7,7 +7,7 @@
       Earth_Diameter    : constant :=
         2.0 * ((Polar_Radius + Equatorial_Radius) / 2.0);
    end Constants;
-   
+
    package Global_Data is
       Longitudinal_Velocity     : Float := 0.0;
       Longitudinal_Acceleration : Float := 0.0;
@@ -16,26 +16,26 @@
       Vertical_Velocity         : Float := 0.0;
       Vertical_Acceleration     : Float := 0.0;
    end Global_Data;
-   
+
    package Related_Units is
       type Vector is array (Positive range <>) of Float;
       function "+" (L, R : Vector) return Vector;
       function "-" (L, R : Vector) return Vector;
    end Related_Units;
-   
+
    package body Related_Units is
       -- nothing is implemented yet!
       function "+" (L, R : Vector) return Vector is (L);
       function "-" (L, R : Vector) return Vector is (L);
    end Related_Units;
-   
+
    package Stack_Abstract_Data_Machine is
       procedure Push (X : in Float);
       procedure Pop (X : out Float);
       function Empty return Boolean;
       function Full return Boolean;
    end Stack_Abstract_Data_Machine;
-   
+
    package body Stack_Abstract_Data_Machine is
       -- nothing is implemented yet!
       procedure Push (X : in Float) is null;
