@@ -38,3 +38,7 @@ format.
 ## Support Files
 
 This folder contains files that may be useful for multiple presentation formats.
+
+## ACL
+
+You should sign the ACL before commiting changes.
