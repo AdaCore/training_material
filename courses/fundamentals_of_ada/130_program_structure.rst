@@ -21,6 +21,12 @@ Introduction
 Library Units
 ===============
 
+----------
+Examples
+----------
+
+.. include:: examples/130_program_structure/library_units.rst
+
 ---------------
 Library Units
 ---------------
@@ -251,6 +257,12 @@ Main Subprograms
 "with" Clauses
 ================
 
+----------
+Examples
+----------
+
+.. include:: examples/130_program_structure/with_clauses.rst
+
 -----------------
  `with` Clauses
 -----------------
@@ -408,6 +420,16 @@ Put Dependencies In Body When Possible
       ...
       end P;
  
+================
+"limited with" Clauses
+================
+
+----------
+Examples
+----------
+
+.. include:: examples/130_program_structure/limited_with_clauses.rst
+
 ------------------------------
 Handling Cyclic Dependencies
 ------------------------------
@@ -420,8 +442,6 @@ Handling Cyclic Dependencies
     * Package declarations cannot depend on each other
 
        - No linear order is possible
-
-       - 
 
     * Which package elaborates first?
 
@@ -613,6 +633,12 @@ Full `with` Clause On the Package Body
 ============================
 Hierarchical Library Units
 ============================
+
+----------
+Examples
+----------
+
+.. include:: examples/130_program_structure/hierarchical_library_units.rst
 
 ----------------------------------
 Problem: Packages Are Not Enough
@@ -807,44 +833,6 @@ Example of Visibility As If Nested
      end Utils;
    end Complex;
  
------------------------------
-Example of child visibility
------------------------------
-
-.. code:: Ada
-    
-   package Maze is
-      ...
-   private
-     ...
-     Start_Point, End_Point : Position;
-     type Game_Board is array( Natural range <>, Natural range <> ) of Boolean;
-     type Board is access Game_Board;
-     Representation : Board;
-     Actual_Rows : Natural := 0;
-     Actual_Columns : Natural := 0;
-   end Maze;
-     
-   package Maze.IO is
-     procedure Init (Start_Position : out Position );
-     procedure Draw;
-     procedure Plot ( Pos : in Position );
-   end Maze.IO;
-       
-   package body Maze.IO is
-     ...
-     procedure Init (Start_Position : out Position) is
-     begin
-      Actual_Rows := Input.Actual_Rows;
-      Actual_Columns := Input.Actual_Columns;
-      Start_Point := Position'(Input.Start_Row, Input.Start_Column );
-      Start_Position := Start_Point;
-      End_Point := Position'( Input.End_Row, Input.End_Column );
-      Representation := new Game_Board (1..Actual_Rows, 1..Actual_Columns );
-     end Init;
-     ...
-   end Maze.IO;
-     
 -------------------------------------------
 `with` Clauses for Ancestors are Implicit
 -------------------------------------------
@@ -894,6 +882,16 @@ Example of child visibility
       X : Foo.Typemark; 
    end A.Bar;
  
+===================
+Visibility Limits
+===================
+
+----------
+Examples
+----------
+
+.. include:: examples/130_program_structure/visibility_limits.rst
+
 ----------------------------
 The "Howard Hughes" Effect
 ----------------------------
@@ -1041,6 +1039,16 @@ Another Misbehaving Child
      end Cheater;
    end Skippy.Evil_Twin;
  
+===================
+Private Children
+===================
+
+----------
+Examples
+----------
+
+.. include:: examples/130_program_structure/private_children.rst
+
 ------------------
 Private Children
 ------------------
@@ -1297,6 +1305,12 @@ Hierarchical Library Units Summary
 "use" Clauses
 ===============
 
+----------
+Examples
+----------
+
+.. include:: examples/130_program_structure/use_clauses.rst
+
 ----------------
  `use` Clauses
 ----------------
@@ -1494,6 +1508,12 @@ No Ambiguity Introduction
 "use type" Clauses
 ====================
 
+----------
+Examples
+----------
+
+.. include:: examples/130_program_structure/use_type_clauses.rst
+
 ---------------------
 `use type` Clauses
 ---------------------
@@ -1595,6 +1615,12 @@ Multiple `use type` Clauses
 ========================
 "use all type" Clauses
 ========================
+
+----------
+Examples
+----------
+
+.. include:: examples/130_program_structure/use_all_type_clauses.rst
 
 -------------------------
 `use all type` Clauses
