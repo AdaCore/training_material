@@ -78,9 +78,103 @@ Stack vs Heap
 .. image:: ../../images/stack_pointing_to_heap.png
    :width: 50%
 
+===========================
+Pool-Specific Access Types
+===========================
+
+----------
+Examples
+----------
+
+.. include:: examples/140_access_types/pool_specific_access_types.rst
+
+---------------------------
+Pool-Specific Access Type
+---------------------------
+
+* An access type is a type
+
+   .. code:: Ada
+
+      type T is [...]
+      type T_Access is access T;
+      V : T_Access := new T;
+ 
+* Conversion is needed to move an object pointed by one type to another (pools may differ)
+* You can not do this kind of conversion with a pool-specific access type
+
+   .. code:: Ada
+
+      type T_Access_2 is access T;
+      V2 : T_Access_2 := T_Access_2 (V); -- illegal
+ 
+ 
+-------------
+Allocations
+-------------
+
+* Objects are created with the `new` reserved word
+* The created object must be constrained
+
+   - The constraint is given during the allocation
+
+      .. code:: Ada
+
+         V : String_Access := new String (1 .. 10);
+ 
+* The object can be created by copying an existing object - using a qualifier
+
+   .. code:: Ada
+
+      V : String_Access := new String'("This is a String");
+ 
+---------------
+Deallocations
+---------------
+
+* Deallocations are unsafe
+
+   - Multiple deallocations problems
+   - Memory corruptions
+   - Access to deallocated objects
+
+* As soon as you use them, you lose the safety of your pointers
+* But sometimes, you have to do what you have to do ...
+
+   - There's no simple way of doing it
+   - Ada provides `Ada.Unchecked_Deallocation`
+   - Has to be instantiated (it's a generic)
+   - Must work on an object, reset to `null` afterwards
+
+----------------------
+Deallocation Example
+----------------------
+
+.. code:: Ada
+
+   -- generic used to deallocate memory
+   with Ada.Unchecked_Deallocation;
+   procedure P is
+      type An_Access is access A_Type;
+      -- create instances of deallocation function
+      -- (object type, access type)
+      procedure Free is new Ada.Unchecked_Deallocation
+        (A_Type, An_Access);
+      V : An_Access := new A_Type;
+   begin
+      Free (V);
+      -- V is now null
+   end P;
+ 
 ==========================
 General Access Types
 ==========================
+
+----------
+Examples
+----------
+
+.. include:: examples/140_access_types/general_access_types.rst
 
 ----------------------
 General Access Types
@@ -148,91 +242,15 @@ Referencing The Stack
       -- What if P2 is called after P1?
    end P2;
      
-===========================
-Pool-Specific Access Types
-===========================
-
----------------------------
-Pool-Specific Access Type
----------------------------
-
-* An access type is a type
-
-   .. code:: Ada
-
-      type T is [...]
-      type T_Access is access T;
-      V : T_Access := new T;
- 
-* Conversion is needed to move an object pointed by one type to another (pools may differ)
-* You can not do this kind of conversion with a  pool-specific access type
-
-   .. code:: Ada
-
-      type T_Access_2 is access T;
-      V2 : T_Access_2 := T_Access_2 (V); -- illegal
- 
- 
--------------
-Allocations
--------------
-
-* Objects are created with the `new` reserved word
-* The created object must be constrained
-
-   - The constraint is given during the allocation
-
-      .. code:: Ada
-
-         V : String_Access := new String (1 .. 10);
- 
-* The object can be created by copying an existing object - using a qualifier
-
-   .. code:: Ada
-
-      V : String_Access := new String'("This is a String");
- 
----------------
-Deallocations
----------------
-
-* Deallocations are unsafe
-
-   - Multiple deallocations problems
-   - Memory corruptions
-   - Access to deallocated objects
-
-* As soon as you use them, you lose the safety of your pointers
-* But sometimes, you have to do what you have to do ...
-
-   - There's no simple way of doing it
-   - Ada provides `Ada.Unchecked_Deallocation`
-   - Has to be instantiated (it's a generic)
-   - Must work on an object, reset to `null` afterwards
-
-----------------------
-Deallocation Example
-----------------------
-
-.. code:: Ada
-
-   -- generic used to deallocate memory
-   with Ada.Unchecked_Deallocation;
-   procedure P is
-      type An_Access is access A_Type;
-      -- create instances of deallocation function
-      -- (object type, access type)
-      procedure Free is new Ada.Unchecked_Deallocation
-        (A_Type, An_Access);
-      V : An_Access := new A_Type;
-   begin
-      Free (V);
-      -- V is now null
-   end P;
- 
 ==========================
 Access Types
 ==========================
+
+----------
+Examples
+----------
+
+.. include:: examples/140_access_types/access_types.rst
 
 ----------------------
 Declaration Location
@@ -302,7 +320,7 @@ Dereference Examples
 .. code:: Ada
 
    type R is record
-     F1, F2 : Integer:
+     F1, F2 : Integer;
    end record;
    type A_Int is access Integer;
    type A_String is access all String;
@@ -322,6 +340,12 @@ Dereference Examples
 ======================
 Accessibility Checks
 ======================
+
+----------
+Examples
+----------
+
+.. include:: examples/140_access_types/accessibility_checks.rst
 
 --------------------------------------------
 Introduction to Accessibility Checks (1/2)
@@ -425,6 +449,12 @@ Using Pointers For Recursive Structures
 Memory Management
 ===================
 
+----------
+Examples
+----------
+
+.. include:: examples/140_access_types/memory_management.rst
+
 ------------------------------
 Common Memory Problems (1/3)
 ------------------------------
@@ -514,6 +544,12 @@ How To Fix Memory Problems?
 ========================
 Anonymous Access Types
 ========================
+
+----------
+Examples
+----------
+
+.. include:: examples/140_access_types/anonymous_access_types.rst
 
 -----------------------------
 Anonymous Access Parameters
