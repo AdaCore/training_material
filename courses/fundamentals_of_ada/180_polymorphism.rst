@@ -25,6 +25,12 @@ Classes of Types
 ==================
 
 ----------
+Examples
+----------
+
+.. include:: examples/180_polymorphism/classes_of_types.rst
+
+----------
 Classes 
 ----------
 
@@ -195,6 +201,12 @@ Relation to Primitives
 Dispatching and Redispatching
 ===============================
 
+----------
+Examples
+----------
+
+.. include:: examples/180_polymorphism/dispatching_and_redispatching.rst
+
 ---------------------------------
 Calls on class-wide types (1/3)
 ---------------------------------
@@ -355,6 +367,12 @@ Redispatching Example
 ===============================
 Exotic Dispatching Operations
 ===============================
+
+----------
+Examples
+----------
+
+.. include:: examples/180_polymorphism/exotic_dispatching_operations.rst
 
 -------------------------------
 Multiple dispatching operands
