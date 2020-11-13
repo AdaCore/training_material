@@ -28,6 +28,12 @@ Introduction
 Data Representation
 =====================
 
+----------
+Examples
+----------
+
+.. include:: examples/220_low_level_programming/data_representation.rst
+
 -------------------------------------
 Data Representation vs Requirements
 -------------------------------------
@@ -297,8 +303,28 @@ Change of Representation
    Size of P will always be 32
 
 ==============================
-Address Clauses and Volatile
+Address Clauses and Overlays
 ==============================
+
+----------
+Examples
+----------
+
+.. include:: examples/220_low_level_programming/address_clauses_and_overlays.rst
+
+---------
+Address
+---------
+
+* Ada distinguishes the notions of 
+
+   - A reference to an object
+   - An abstract notion of address (`System.Address`)
+   - The integer representation of an address
+
+* Safety is preserved by letting the developer manipulate the right level of abstraction
+* Conversion between pointers, integers and addresses are possible
+* The address of an object can be specified through the `Address` aspect
 
 -----------------
 Address Clauses
@@ -379,24 +405,6 @@ Volatile
 
 * Volatile types are passed by-reference.
 
-==========================
-Overlays and Conversions
-==========================
-
----------
-Address
----------
-
-* Ada distinguishes the notions of 
-
-   - A reference to an object
-   - An abstract notion of address (`System.Address`)
-   - The integer representation of an address
-
-* Safety is preserved by letting the developer manipulate the right level of abstraction
-* Conversion between pointers, integers and addresses are possible
-* The address of an object can be specified through the `Address` aspect
-
 ---------------------
 Ada Address Example
 ---------------------
@@ -416,7 +424,7 @@ Ada Address Example
      
    --  This maps directly on to the bits of V
    V3 : aliased Bitfield (1 .. V'Size);
-   For V3'address use V_A'address; -- overlay
+   For V3'address use V_A; -- overlay
       
    V4 : aliased Integer;
    --  Trust me, I know what I'm doing, this is V2
