@@ -38,6 +38,12 @@ A Simple Task
 Tasks
 =======
 
+----------
+Examples
+----------
+
+.. include:: examples/240_tasking/tasks.rst
+
 ------------------------
 Interacting With Tasks
 ------------------------
@@ -91,6 +97,7 @@ Rendezvous Definitions
 .. container:: speakernote
 
    The loop requires Accept and ReceiveMessage to be called one followed by other
+
 ------------------------
 Rendezvous Calls
 ------------------------
@@ -103,8 +110,8 @@ Rendezvous Calls
       T.Start;
       Put_Line ("calling receive 1");
       T.Receive_Message ("1");
-      --  Locks until somebody calls Start
       Put_Line ("calling receive 2");
+      --  Locks until somebody calls Start
       T.Receive_Message ("2");
      
 * Results in an output like:
@@ -140,6 +147,12 @@ Accepting a Rendezvous
 ===================
 Protected Objects
 ===================
+
+----------
+Examples
+----------
+
+.. include:: examples/240_tasking/protected_objects.rst
 
 -------------------
 Protected Objects
@@ -191,9 +204,15 @@ Protected: Functions Vs. Procedures
 
 * No function can be called when a procedure is called
 
-========================
-Task / Protected Types
-========================
+==========================
+Task and Protected Types
+==========================
+
+----------
+Examples
+----------
+
+.. include:: examples/240_tasking/task_and_protected_types.rst
 
 ------------
 Task Types
@@ -291,9 +310,15 @@ Scope Of a Task
           end T;
        end P;
      
-===========================
-Some Advanced Concepts...
-===========================
+========================
+Some Advanced Concepts
+========================
+
+----------
+Examples
+----------
+
+.. include:: examples/240_tasking/some_advanced_concepts.rst
 
 ------------------------------
 Waiting On Different Entries
