@@ -14,26 +14,26 @@
       end record;
       procedure Lock (This : in out Also_Limited_T);
       procedure Unlock (This : in out Also_Limited_T);
-      function Create
-        (Flag : Interfaces.Unsigned_8;
-         Id   : Id_T)
-         return Also_Limited_T;
+      function Create (Flag : Interfaces.Unsigned_8;
+                       Id   : Id_T)
+                       return Also_Limited_T;
    end Multiprocessor_Mutex;
 
    package body Multiprocessor_Mutex is
       procedure Lock (This : in out Also_Limited_T) is null;
       procedure Unlock (This : in out Also_Limited_T) is null;
       Global_Lock : Also_Limited_T := (Lock => (Flag => 0), Id => "GLOB");
-      function Create
-        (Flag : Interfaces.Unsigned_8;
-         Id   : Id_T)
-         return Also_Limited_T is
+      function Create (Flag : Interfaces.Unsigned_8;
+                       Id   : Id_T)
+                       return Also_Limited_T is
          Local_Lock : Also_Limited_T := (Lock => (Flag => 1), Id => "LOCA");
       begin
          Global_Lock.Lock.Flag := Flag;
          Local_Lock.Id         := Id;
-         -- return Local_Lock; -- compile error return Global_Lock; -- compile --
-         -- error
+         -- Compile error
+         -- return Local_Lock;
+         -- Compile error
+         -- return Global_Lock;
          return (Lock => (Flag => Flag), Id => Id);
       end Create;
    end Multiprocessor_Mutex;

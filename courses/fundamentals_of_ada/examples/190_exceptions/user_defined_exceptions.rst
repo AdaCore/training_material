@@ -28,7 +28,6 @@
          Item := Values (Top);
          Top  := Top - 1;
       end Pop;
-   
    end Stack;
 
    with Ada.Text_IO; use Ada.Text_IO;
@@ -53,13 +52,9 @@
       end Pop;
    
    begin
-   
-      Push (1);
-      Pop;
       Pop;
       for I in 1 .. 100 loop
          Push (I);
       end loop;
       Push (2);
-   
    end Test_Stack;

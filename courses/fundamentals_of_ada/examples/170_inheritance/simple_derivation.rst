@@ -2,7 +2,6 @@
    :class: ada-run
 
    package Simple_Derivation is
-   
       type Parent_T is range 1 .. 10;
       function Primitive1 (V : Parent_T) return String is
         ("Primitive1 of Parent_T" & V'Image);
@@ -11,8 +10,7 @@
       function Primitive3 (V : Parent_T) return String is
         ("Primitive3 of Parent_T" & V'Image);
    
-      type Child_T is new Parent_T;
-      -- implicitly gets access to Primitive1
+      type Child_T is new Parent_T; -- implicitly gets access to Primitive1
    
       -- new behavior for Primitive2
       overriding function Primitive2 (V : Child_T) return String is
@@ -24,7 +22,6 @@
       -- add primitive only for Child_T
       not overriding function Primitive4 (V : Child_T) return String is
         ("Primitive4 of Child_T" & V'Image);
-   
    end Simple_Derivation;
 
    with Ada.Text_IO;       use Ada.Text_IO;
@@ -35,7 +32,6 @@
       Parent_V : Parent_T := 1;
       Child_V  : Child_T  := 2;
    begin
-   
       Put_Line ("Parent_V - " & Primitive1 (Parent_V));
       Put_Line ("Parent_V - " & Primitive2 (Parent_V));
       Put_Line ("Parent_V - " & Primitive3 (Parent_V));
@@ -48,5 +44,4 @@
    
       Put_Line (Not_A_Primitive (Parent_V));
       Put_Line (Not_A_Primitive (Parent_T (Child_V)));
-   
    end Test_Simple_Derivation;

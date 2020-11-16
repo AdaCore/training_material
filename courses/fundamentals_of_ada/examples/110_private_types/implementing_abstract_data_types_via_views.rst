@@ -18,20 +18,15 @@
    package body Bounded_Stack is
       procedure Push (This : in out Stack_T; Item : Integer) is
       begin
-         if This.Top < Max_Capacity then
-            This.Top             := This.Top + 1;
-            This.List (This.Top) := Item;
-         end if;
+         This.Top             := This.Top + 1;
+         This.List (This.Top) := Item;
       end Push;
       procedure Pop (This : in out Stack_T; Item : out Integer) is
       begin
-         if This.Top > 0 then
-            Item     := This.List (This.Top);
-            This.Top := This.Top - 1;
-         end if;
+         Item     := This.List (This.Top);
+         This.Top := This.Top - 1;
       end Pop;
       function Is_Empty (This : Stack_T) return Boolean is (This.Top = 0);
-   
    end Bounded_Stack;
 
    with Ada.Text_IO;   use Ada.Text_IO;

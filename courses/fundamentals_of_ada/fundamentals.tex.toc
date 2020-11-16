@@ -1,0 +1,189 @@
+\beamer@sectionintoc {1}{Overview}{1}{0}{1}
+\beamer@subsectionintoc {1}{1}{A Little History}{2}{0}{1}
+\beamer@subsectionintoc {1}{2}{Big Picture}{5}{0}{1}
+\beamer@subsectionintoc {1}{3}{Setup}{34}{0}{1}
+\beamer@sectionintoc {2}{Declarations}{38}{0}{2}
+\beamer@subsectionintoc {2}{1}{Introduction}{39}{0}{2}
+\beamer@subsectionintoc {2}{2}{Identifiers, Comments, and Pragmas}{45}{0}{2}
+\beamer@subsectionintoc {2}{3}{Numeric Literals}{51}{0}{2}
+\beamer@subsectionintoc {2}{4}{Object Declarations}{56}{0}{2}
+\beamer@subsectionintoc {2}{5}{Universal Types}{64}{0}{2}
+\beamer@subsectionintoc {2}{6}{Named Numbers}{68}{0}{2}
+\beamer@subsectionintoc {2}{7}{Scope and Visibility}{73}{0}{2}
+\beamer@subsectionintoc {2}{8}{Aspect Clauses}{80}{0}{2}
+\beamer@subsectionintoc {2}{9}{Summary}{85}{0}{2}
+\beamer@sectionintoc {3}{Basic Types}{87}{0}{3}
+\beamer@subsectionintoc {3}{1}{Introduction}{88}{0}{3}
+\beamer@subsectionintoc {3}{2}{Discrete Numeric Types}{96}{0}{3}
+\beamer@subsectionintoc {3}{3}{Discrete Enumeration Types}{124}{0}{3}
+\beamer@subsectionintoc {3}{4}{Real Types}{140}{0}{3}
+\beamer@subsectionintoc {3}{5}{Miscellaneous}{151}{0}{3}
+\beamer@subsectionintoc {3}{6}{Lab}{157}{0}{3}
+\beamer@subsectionintoc {3}{7}{Summary}{163}{0}{3}
+\beamer@sectionintoc {4}{Statements}{167}{0}{4}
+\beamer@subsectionintoc {4}{1}{Introduction}{168}{0}{4}
+\beamer@subsectionintoc {4}{2}{Assignment Statements}{172}{0}{4}
+\beamer@subsectionintoc {4}{3}{Conditional Statements}{180}{0}{4}
+\beamer@subsectionintoc {4}{4}{Loop Statements}{193}{0}{4}
+\beamer@subsectionintoc {4}{5}{Block Statements}{210}{0}{4}
+\beamer@subsectionintoc {4}{6}{GOTO Statements}{214}{0}{4}
+\beamer@subsectionintoc {4}{7}{Null Statements}{217}{0}{4}
+\beamer@subsectionintoc {4}{8}{Lab}{219}{0}{4}
+\beamer@subsectionintoc {4}{9}{Summary}{223}{0}{4}
+\beamer@sectionintoc {5}{Array Types}{225}{0}{5}
+\beamer@subsectionintoc {5}{1}{Introduction}{226}{0}{5}
+\beamer@subsectionintoc {5}{2}{Constrained Array Types}{232}{0}{5}
+\beamer@subsectionintoc {5}{3}{Unconstrained Array Types}{238}{0}{5}
+\beamer@subsectionintoc {5}{4}{Attributes}{248}{0}{5}
+\beamer@subsectionintoc {5}{5}{Operations}{253}{0}{5}
+\beamer@subsectionintoc {5}{6}{Operations Added for Ada2012}{261}{0}{5}
+\beamer@subsectionintoc {5}{7}{Aggregates}{268}{0}{5}
+\beamer@subsectionintoc {5}{8}{Anonymous Array Types}{281}{0}{5}
+\beamer@subsectionintoc {5}{9}{Lab}{284}{0}{5}
+\beamer@subsectionintoc {5}{10}{Summary}{289}{0}{5}
+\beamer@sectionintoc {6}{Record Types}{292}{0}{6}
+\beamer@subsectionintoc {6}{1}{Introduction}{293}{0}{6}
+\beamer@subsectionintoc {6}{2}{Components Rules}{295}{0}{6}
+\beamer@subsectionintoc {6}{3}{Operations}{302}{0}{6}
+\beamer@subsectionintoc {6}{4}{Aggregates}{307}{0}{6}
+\beamer@subsectionintoc {6}{5}{Default Values}{316}{0}{6}
+\beamer@subsectionintoc {6}{6}{Lab}{322}{0}{6}
+\beamer@subsectionintoc {6}{7}{Summary}{326}{0}{6}
+\beamer@sectionintoc {7}{Subprograms}{328}{0}{7}
+\beamer@subsectionintoc {7}{1}{Introduction}{329}{0}{7}
+\beamer@subsectionintoc {7}{2}{Declarations and Bodies}{333}{0}{7}
+\beamer@subsectionintoc {7}{3}{Parameters}{346}{0}{7}
+\beamer@subsectionintoc {7}{4}{Null Procedures}{368}{0}{7}
+\beamer@subsectionintoc {7}{5}{Procedure Specifics}{373}{0}{7}
+\beamer@subsectionintoc {7}{6}{Function Specifics}{375}{0}{7}
+\beamer@subsectionintoc {7}{7}{Expression Functions}{384}{0}{7}
+\beamer@subsectionintoc {7}{8}{Potential Pitfalls}{389}{0}{7}
+\beamer@subsectionintoc {7}{9}{Extended Examples}{401}{0}{7}
+\beamer@subsectionintoc {7}{10}{Lab}{406}{0}{7}
+\beamer@subsectionintoc {7}{11}{Summary}{411}{0}{7}
+\beamer@sectionintoc {8}{Expressions}{413}{0}{8}
+\beamer@subsectionintoc {8}{1}{Introduction}{414}{0}{8}
+\beamer@subsectionintoc {8}{2}{Subtypes}{416}{0}{8}
+\beamer@subsectionintoc {8}{3}{Membership Tests}{428}{0}{8}
+\beamer@subsectionintoc {8}{4}{Qualified Names}{433}{0}{8}
+\beamer@subsectionintoc {8}{5}{Slices}{437}{0}{8}
+\beamer@subsectionintoc {8}{6}{Conditional Expressions}{443}{0}{8}
+\beamer@subsectionintoc {8}{7}{Quantified Expressions}{457}{0}{8}
+\beamer@subsectionintoc {8}{8}{Lab}{477}{0}{8}
+\beamer@subsectionintoc {8}{9}{Summary}{481}{0}{8}
+\beamer@sectionintoc {9}{Overloading}{485}{0}{9}
+\beamer@subsectionintoc {9}{1}{Introduction}{486}{0}{9}
+\beamer@subsectionintoc {9}{2}{Enumerals and Operators}{491}{0}{9}
+\beamer@subsectionintoc {9}{3}{Call Resolution}{496}{0}{9}
+\beamer@subsectionintoc {9}{4}{Visibility Issues}{502}{0}{9}
+\beamer@subsectionintoc {9}{5}{User-Defined Equality}{506}{0}{9}
+\beamer@subsectionintoc {9}{6}{Composition of Equality}{511}{0}{9}
+\beamer@subsectionintoc {9}{7}{Lab}{518}{0}{9}
+\beamer@subsectionintoc {9}{8}{Summary}{522}{0}{9}
+\beamer@sectionintoc {10}{Packages}{524}{0}{10}
+\beamer@subsectionintoc {10}{1}{Introduction}{525}{0}{10}
+\beamer@subsectionintoc {10}{2}{Declarations}{530}{0}{10}
+\beamer@subsectionintoc {10}{3}{Bodies}{536}{0}{10}
+\beamer@subsectionintoc {10}{4}{Executable Parts}{543}{0}{10}
+\beamer@subsectionintoc {10}{5}{Idioms}{549}{0}{10}
+\beamer@subsectionintoc {10}{6}{Lab}{558}{0}{10}
+\beamer@subsectionintoc {10}{7}{Summary}{566}{0}{10}
+\beamer@sectionintoc {11}{Private Types}{568}{0}{11}
+\beamer@subsectionintoc {11}{1}{Introduction}{569}{0}{11}
+\beamer@subsectionintoc {11}{2}{Implementing Abstract Data Types via Views}{574}{0}{11}
+\beamer@subsectionintoc {11}{3}{Private Part Construction}{588}{0}{11}
+\beamer@subsectionintoc {11}{4}{View Operations}{595}{0}{11}
+\beamer@subsectionintoc {11}{5}{When To Use or Avoid Private Types}{602}{0}{11}
+\beamer@subsectionintoc {11}{6}{Idioms}{605}{0}{11}
+\beamer@subsectionintoc {11}{7}{Lab}{611}{0}{11}
+\beamer@subsectionintoc {11}{8}{Summary}{618}{0}{11}
+\beamer@sectionintoc {12}{Limited Types}{620}{0}{12}
+\beamer@subsectionintoc {12}{1}{Introduction}{621}{0}{12}
+\beamer@subsectionintoc {12}{2}{Declarations}{626}{0}{12}
+\beamer@subsectionintoc {12}{3}{Creating Values}{633}{0}{12}
+\beamer@subsectionintoc {12}{4}{Extended Return Statements}{641}{0}{12}
+\beamer@subsectionintoc {12}{5}{Combining Limited and Private Views}{646}{0}{12}
+\beamer@subsectionintoc {12}{6}{Lab}{656}{0}{12}
+\beamer@subsectionintoc {12}{7}{Summary}{663}{0}{12}
+\beamer@sectionintoc {13}{Program Structure}{665}{0}{13}
+\beamer@subsectionintoc {13}{1}{Introduction}{666}{0}{13}
+\beamer@subsectionintoc {13}{2}{Library Units}{668}{0}{13}
+\beamer@subsectionintoc {13}{3}{"with" Clauses}{680}{0}{13}
+\beamer@subsectionintoc {13}{4}{"limited with" Clauses}{689}{0}{13}
+\beamer@subsectionintoc {13}{5}{Hierarchical Library Units}{699}{0}{13}
+\beamer@subsectionintoc {13}{6}{Visibility Limits}{711}{0}{13}
+\beamer@subsectionintoc {13}{7}{Private Children}{718}{0}{13}
+\beamer@subsectionintoc {13}{8}{"use" Clauses}{731}{0}{13}
+\beamer@subsectionintoc {13}{9}{"use type" Clauses}{740}{0}{13}
+\beamer@subsectionintoc {13}{10}{"use all type" Clauses}{746}{0}{13}
+\beamer@subsectionintoc {13}{11}{Lab}{751}{0}{13}
+\beamer@subsectionintoc {13}{12}{Summary}{757}{0}{13}
+\beamer@sectionintoc {14}{Access Types}{759}{0}{14}
+\beamer@subsectionintoc {14}{1}{Introduction}{760}{0}{14}
+\beamer@subsectionintoc {14}{2}{Pool-Specific Access Types}{764}{0}{14}
+\beamer@subsectionintoc {14}{3}{General Access Types}{770}{0}{14}
+\beamer@subsectionintoc {14}{4}{Access Types}{775}{0}{14}
+\beamer@subsectionintoc {14}{5}{Accessibility Checks}{781}{0}{14}
+\beamer@subsectionintoc {14}{6}{Memory Management}{787}{0}{14}
+\beamer@subsectionintoc {14}{7}{Anonymous Access Types}{793}{0}{14}
+\beamer@subsectionintoc {14}{8}{Lab}{799}{0}{14}
+\beamer@subsectionintoc {14}{9}{Summary}{803}{0}{14}
+\beamer@sectionintoc {15}{Genericity}{805}{0}{15}
+\beamer@subsectionintoc {15}{1}{Introduction}{806}{0}{15}
+\beamer@subsectionintoc {15}{2}{Creating Generics}{810}{0}{15}
+\beamer@subsectionintoc {15}{3}{Generic Data}{813}{0}{15}
+\beamer@subsectionintoc {15}{4}{Generic Formal Data}{819}{0}{15}
+\beamer@subsectionintoc {15}{5}{Generic Completion}{825}{0}{15}
+\beamer@subsectionintoc {15}{6}{Lab}{829}{0}{15}
+\beamer@subsectionintoc {15}{7}{Summary}{835}{0}{15}
+\beamer@sectionintoc {16}{Inheritance}{838}{0}{16}
+\beamer@subsectionintoc {16}{1}{Introduction}{839}{0}{16}
+\beamer@subsectionintoc {16}{2}{Primitives}{842}{0}{16}
+\beamer@subsectionintoc {16}{3}{Simple Derivation}{848}{0}{16}
+\beamer@subsectionintoc {16}{4}{Signed Integer Types}{853}{0}{16}
+\beamer@subsectionintoc {16}{5}{Tagged Derivation}{859}{0}{16}
+\beamer@subsectionintoc {16}{6}{Lab}{868}{0}{16}
+\beamer@subsectionintoc {16}{7}{Summary}{872}{0}{16}
+\beamer@sectionintoc {17}{Polymorphism}{874}{0}{17}
+\beamer@subsectionintoc {17}{1}{Introduction}{875}{0}{17}
+\beamer@subsectionintoc {17}{2}{Classes of Types}{877}{0}{17}
+\beamer@subsectionintoc {17}{3}{Dispatching and Redispatching}{885}{0}{17}
+\beamer@subsectionintoc {17}{4}{Exotic Dispatching Operations}{893}{0}{17}
+\beamer@subsectionintoc {17}{5}{Lab}{899}{0}{17}
+\beamer@subsectionintoc {17}{6}{Summary}{904}{0}{17}
+\beamer@sectionintoc {18}{Exceptions}{906}{0}{18}
+\beamer@subsectionintoc {18}{1}{Introduction}{907}{0}{18}
+\beamer@subsectionintoc {18}{2}{Handlers}{913}{0}{18}
+\beamer@subsectionintoc {18}{3}{Implicitly and Explicitly Raised Exceptions}{923}{0}{18}
+\beamer@subsectionintoc {18}{4}{User-Defined Exceptions}{930}{0}{18}
+\beamer@subsectionintoc {18}{5}{Propagation}{934}{0}{18}
+\beamer@subsectionintoc {18}{6}{Exceptions as Objects}{944}{0}{18}
+\beamer@subsectionintoc {18}{7}{\emph {Raise Expressions}}{956}{0}{18}
+\beamer@subsectionintoc {18}{8}{In Practice}{959}{0}{18}
+\beamer@subsectionintoc {18}{9}{Lab}{966}{0}{18}
+\beamer@subsectionintoc {18}{10}{Summary}{970}{0}{18}
+\beamer@sectionintoc {19}{Contracts}{972}{0}{19}
+\beamer@subsectionintoc {19}{1}{Introduction}{973}{0}{19}
+\beamer@subsectionintoc {19}{2}{Preconditions and Postconditions}{980}{0}{19}
+\beamer@subsectionintoc {19}{3}{Type Invariants}{996}{0}{19}
+\beamer@subsectionintoc {19}{4}{Subtype Predicates}{1008}{0}{19}
+\beamer@subsectionintoc {19}{5}{In Practice}{1034}{0}{19}
+\beamer@subsectionintoc {19}{6}{Lab}{1048}{0}{19}
+\beamer@subsectionintoc {19}{7}{Summary}{1054}{0}{19}
+\beamer@sectionintoc {20}{Interfacing with C++}{1057}{0}{20}
+\beamer@subsectionintoc {20}{1}{Introduction}{1058}{0}{20}
+\beamer@subsectionintoc {20}{2}{Import / Export}{1060}{0}{20}
+\beamer@subsectionintoc {20}{3}{Parameter Passing}{1064}{0}{20}
+\beamer@subsectionintoc {20}{4}{Complex Data Types}{1069}{0}{20}
+\beamer@subsectionintoc {20}{5}{Lab}{1075}{0}{20}
+\beamer@subsectionintoc {20}{6}{Summary}{1080}{0}{20}
+\beamer@sectionintoc {21}{Tasking}{1082}{0}{21}
+\beamer@subsectionintoc {21}{1}{Introduction}{1083}{0}{21}
+\beamer@subsectionintoc {21}{2}{Tasks}{1085}{0}{21}
+\beamer@subsectionintoc {21}{3}{Protected Objects}{1091}{0}{21}
+\beamer@subsectionintoc {21}{4}{Task and Protected Types}{1095}{0}{21}
+\beamer@subsectionintoc {21}{5}{Some Advanced Concepts}{1100}{0}{21}
+\beamer@subsectionintoc {21}{6}{Ravenscar}{1115}{0}{21}
+\beamer@subsectionintoc {21}{7}{Lab}{1133}{0}{21}
+\beamer@subsectionintoc {21}{8}{Summary}{1138}{0}{21}
+\beamer@sectionintoc {22}{Ada Version Comparison}{1140}{0}{22}

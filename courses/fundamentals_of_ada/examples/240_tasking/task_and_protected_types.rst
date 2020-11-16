@@ -65,11 +65,9 @@
             Id := My_Id;
          end Initialize;
          procedure Set (Caller : Character; V : Integer) is
-            Str : constant String :=
-              "Task-" & Caller & " Object-" & Id & " => " & V'Image;
          begin
             Local := V;
-            Put_Line (Str);
+            Put_Line ( "Task-" & Caller & " Object-" & Id & " => " & V'Image );
          end Set;
          function Get return Integer is
          begin

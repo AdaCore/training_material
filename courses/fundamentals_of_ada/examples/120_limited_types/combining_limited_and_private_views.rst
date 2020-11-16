@@ -10,8 +10,7 @@
    private
       type Limited_T is limited -- no internal copying allowed
       record
-         -- users cannot see this field
-         Flag : Interfaces.Unsigned_8;
+         Flag : Interfaces.Unsigned_8; -- users cannot see this
       end record;
    end Multiprocessor_Mutex;
 

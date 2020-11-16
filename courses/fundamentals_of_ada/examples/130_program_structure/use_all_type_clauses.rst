@@ -4,7 +4,6 @@
    package Complex is
       type Number is private;
       function "*" (Left, Right : Number) return Number;
-      function "/" (Left, Right : Number) return Number;
       function "+" (Left, Right : Number) return Number;
       procedure Put (C : Number);
       function Make (Real_Part, Imaginary_Part : Float) return Number;
@@ -22,16 +21,13 @@
       A, B, C : Complex.Number;
    begin
       -- "use all type" makes these available
-      A := Make
-          (Real_Part      => 1.0,
-           Imaginary_Part => 0.0);
-      B := Make
-          (Real_Part      => 1.0,
-           Imaginary_Part => 0.0);
+      A := Make (Real_Part      => 1.0,
+                 Imaginary_Part => 0.0);
+      B := Make (Real_Part      => 1.0,
+                 Imaginary_Part => 0.0);
       C := A + B;
       Put (C);
-      -- but not this one
-      -- Non_Primitive (0);
+      -- Non_Primitive (0); -- but not this one
    end Demo_Use_All_Type;
 
    with Complex;
@@ -42,12 +38,10 @@
       -- "use type" makes this available
       C := A + B;
       -- but not these
-      -- A := Make
-      --     (Real_Part      => 1.0,
-      --      Imaginary_Part => 0.0);
-      -- B := Make
-      --     (Real_Part      => 1.0,
-      --      Imaginary_Part => 0.0);
+      -- A := Make (Real_Part      => 1.0,
+      --            Imaginary_Part => 0.0);
+      -- B := Make (Real_Part      => 1.0,
+      --            Imaginary_Part => 0.0);
       -- Put (C);
       -- Non_Primitive (0);
    end Demo_Use_Type;
@@ -58,19 +52,16 @@
    begin
       -- "use" makes all these available
       C := A + B;
-      A := Make
-          (Real_Part      => 1.0,
-           Imaginary_Part => 0.0);
-      B := Make
-          (Real_Part      => 1.0,
-           Imaginary_Part => 0.0);
+      A := Make (Real_Part      => 1.0,
+                 Imaginary_Part => 0.0);
+      B := Make (Real_Part      => 1.0,
+                 Imaginary_Part => 0.0);
       Put (C);
       Non_Primitive (0);
    end Demo_Use;
 
    package body Complex is
       function "*" (Left, Right : Number) return Number is (Left);
-      function "/" (Left, Right : Number) return Number is (Left);
       function "+" (Left, Right : Number) return Number is (Left);
       procedure Put (C : Number) is null;
       function Make (Real_Part, Imaginary_Part : Float) return Number is

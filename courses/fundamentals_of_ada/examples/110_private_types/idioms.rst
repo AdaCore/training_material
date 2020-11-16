@@ -3,8 +3,7 @@
 
    package Complex is
       type Number_T is private;
-      function Constructor (Real_Part      : Float;
-                            Imaginary_Part : Float)
+      function Constructor (Real_Part, Imaginary_Part : Float )
                             return Number_T;
       procedure Constructor (This           : out Number_T;
                              Real_Part      :     Float;
@@ -15,12 +14,10 @@
    
    private
       type Number_T is record
-         Real_Part      : Float;
-         Imaginary_Part : Float;
+         Real_Part, Imaginary_Part : Float;
       end record;
    
-      function Constructor (Real_Part      : Float;
-                            Imaginary_Part : Float)
+      function Constructor (Real_Part, Imaginary_Part : Float )
                             return Number_T is
          (Real_Part, Imaginary_Part);
    
@@ -28,7 +25,6 @@
         (This.Real_Part);
       function Imaginary_Part (This : Number_T) return Float is
         (This.Imaginary_Part);
-   
    end Complex;
 
    package body Complex is
@@ -44,7 +40,6 @@
          return Float'Image (Real_Part (This)) & " " &
            Float'Image (Imaginary_Part (This)) & "i";
       end Str;
-   
    end Complex;
 
    with Ada.Text_IO; use Ada.Text_IO;

@@ -2,10 +2,8 @@
    :class: ada-run
 
    package Accessibility_Checks is
-   
       procedure Proc_Access;
       procedure Proc_Unchecked_Access;
-   
    end Accessibility_Checks;
 
    with Ada.Text_IO; use Ada.Text_IO;

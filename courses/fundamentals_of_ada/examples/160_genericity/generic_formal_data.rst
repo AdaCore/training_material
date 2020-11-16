@@ -8,7 +8,6 @@
          Increment : Variable_T;
       package Constants_And_Variables is
          procedure Add;
-         procedure Subtract;
          function Value return Variable_T is (Variable);
       end Constants_And_Variables;
    
@@ -47,10 +46,8 @@
         (Integer, Global_Object, 111);
    
       package Print_1 is new Subprogram_Parameters (Integer, Print_One);
-      package Print_2 is new Subprogram_Parameters
-        (Integer, Print_One, Print_Two);
-      package Print_3 is new Subprogram_Parameters
-        (Integer, Print_One, Print_Two, Print_Three_Prime);
+      package Print_2 is new Subprogram_Parameters (Integer, Print_One, Print_Two);
+      package Print_3 is new Subprogram_Parameters (Integer, Print_One, Print_Two, Print_Three_Prime);
    
    begin
       Print_1.Print ("print_1", Global_Data.Value);
@@ -64,16 +61,8 @@
       package body Constants_And_Variables is
          procedure Add is
          begin
-            if (Variable + Increment) in Variable_T'Range then
-               Variable := Variable + Increment;
-            end if;
+            Variable := Variable + Increment;
          end Add;
-         procedure Subtract is
-         begin
-            if (Variable - Increment) in Variable_T'Range then
-               Variable := Variable - Increment;
-            end if;
-         end Subtract;
       end Constants_And_Variables;
    
       package body Subprogram_Parameters is

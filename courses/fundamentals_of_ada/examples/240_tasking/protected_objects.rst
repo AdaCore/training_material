@@ -29,17 +29,14 @@
    end Protected_Objects;
 
    package Tasks is
-   
       task T1 is
          entry Start;
          entry Receive_Message;
       end T1;
-   
       task T2 is
          entry Start;
          entry Receive_Message;
       end T2;
-   
    end Tasks;
 
    with Tasks; use Tasks;
@@ -50,13 +47,11 @@
       T2.Start;
       T2.Receive_Message;
       T2.Receive_Message;
-      T2.Receive_Message;
       T1.Receive_Message;
    end Test_Protected_Objects;
 
    with Protected_Objects; use Protected_Objects;
    package body Tasks is
-   
       task body T1 is
       begin
          accept Start do
@@ -80,5 +75,4 @@
             end Receive_Message;
          end loop;
       end T2;
-   
    end Tasks;

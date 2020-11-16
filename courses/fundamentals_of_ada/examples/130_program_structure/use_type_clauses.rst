@@ -5,14 +5,8 @@
       type Int1 is range 0 .. 1_000;
       type Int2 is range 0 .. 2_000;
       type Int3 is range 0 .. 3_000;
-      function "+"
-        (Left  : Int1;
-         Right : Int3)
-         return Int3;
-      function "+"
-        (Left  : Int2;
-         Right : Int3)
-         return Int3;
+      function "+" (Left  : Int1; Right : Int3) return Int3;
+      function "+" (Left  : Int2; Right : Int3) return Int3;
    end P;
 
    with Ada.Text_IO; use Ada.Text_IO;
@@ -30,17 +24,13 @@
       A := B;
       E := A + E; -- "used" operator visible
       Put_Line (E'Image);
-      -- E := D + E; -- illegal: operator not "used" E := E + A; -- illegal: no
-      -- matching operator
+      -- E := D + E; -- illegal: operator not "used"
+      -- E := E + A; -- illegal: no matching operator
    end Test;
 
    package body P is
-      function "+"
-        (Left  : Int1;
-         Right : Int3)
-         return Int3 is (Int3'Last);
-      function "+"
-        (Left  : Int2;
-         Right : Int3)
-         return Int3 is (Int3'Last);
+      function "+" (Left  : Int1; Right : Int3) return Int3 is
+         (Int3'Last);
+      function "+" (Left  : Int2; Right : Int3) return Int3 is
+         (Int3'Last);
    end P;

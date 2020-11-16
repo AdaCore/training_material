@@ -19,19 +19,15 @@
       begin
          This (Day) := True;
       end Add;
-      procedure Remove (This : in out Set_T; Day : Days_T) is
-      begin
-         This (Day) := False;
-      end Remove;
+      procedure Remove (This : in out Set_T; Day : Days_T) is null;
       function Str (This : Set_T) return String is
          Ret_Val : String (1 .. Length (This) * 4) := (others => ' ');
          Pos     : Natural                         := 1;
       begin
          for D in This'Range loop
             if This (D) then
-               Ret_Val
-                 (Pos .. Pos + 2) := D'Image;
-               Pos                := Pos + 4;
+               Ret_Val (Pos .. Pos + 2) := D'Image;
+               Pos                      := Pos + 4;
             end if;
          end loop;
          return Ret_Val;

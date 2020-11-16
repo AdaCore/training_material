@@ -20,7 +20,6 @@
    end Joy_Ride;
 
    package Automotive is
-   
       Fuel_Exhausted : exception;
    
       type Vehicle_T is record
@@ -32,13 +31,11 @@
       procedure Steer_Aimlessly (Flag : out Boolean);
       procedure Drive_Home;
       procedure Push_Home;
-   
    end Automotive;
 
    with GNAT.Random_Numbers; use GNAT.Random_Numbers;
    package body Automotive is
       Gen : Generator;
-   
       function Current_Consumption is new Random_Float (Float);
       function Random_Number is new Random_Discrete (Integer);
    
@@ -61,9 +58,7 @@
    
       procedure Drive_Home is null;
       procedure Push_Home is null;
-   
+
    begin
-   
       Reset (Gen);
-   
    end Automotive;

@@ -12,7 +12,8 @@
       procedure Primitive_Of_Record_T (P : in out Record_T) is null;
       function Primitive_Of_Record_T (P : Integer) return Record_T is
         ((Field => P));
-      procedure Primitive_Of_Record_T (I : Integer; P : access Record_T) is null;
+      procedure Primitive_Of_Record_T (I : Integer;
+                                       P : access Record_T) is null;
       procedure Not_A_Primitive_Of_Record_T
         (I : Integer; P : Access_To_Record_T) is null;
    

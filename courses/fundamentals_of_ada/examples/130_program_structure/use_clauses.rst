@@ -23,8 +23,7 @@
    package P is
       type Type_1 is range
           Constant_A .. -- visible without dot-notation
-   
-            Pkg_B.Constant_B; -- not visible without dot-notation
+          Pkg_B.Constant_B; -- not visible without dot-notation
    
       use Pkg_B;
       -- Constant_B is now visible without dot-notation
@@ -36,7 +35,6 @@
    
       function Is_Initialized return Boolean is
       -- Need dot-notation to resolve ambiguity
-   
         (Pkg_A.Initialized and Pkg_B.Initialized);
    
       -- we "use" Pkg_B, so Child is directly visible

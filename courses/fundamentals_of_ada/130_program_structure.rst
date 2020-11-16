@@ -420,9 +420,9 @@ Put Dependencies In Body When Possible
       ...
       end P;
  
-================
+=========================
 "limited with" Clauses
-================
+=========================
 
 ----------
 Examples
