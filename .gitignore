@@ -1,2 +1,10 @@
-*.pdf
 out/
+tex2pdf.*
+
+__pycache__
+# Vi swap
+.*.sw?
+
+# Ada build files
+**/obj/*
+!**/.empty
