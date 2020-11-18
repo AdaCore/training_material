@@ -153,7 +153,7 @@ if __name__== "__main__":
 
     parser.add_argument('--directories',
                         help='Comma-separated list of folders to search for things like images and Beamer themes',
-                        default=str(ROOT) + ":",
+                        default=str(ROOT) + "//,:",
                         required=False)
 
     parser.add_argument('--title',
@@ -167,12 +167,12 @@ if __name__== "__main__":
 
     parser.add_argument('--theme',
                         help='Beamer theme',
-                        default='',
+                        default='adacore',
                         required=False)
 
     parser.add_argument('--color',
                         help='Beamer color theme',
-                        default='',
+                        default='adacore',
                         required=False)
 
     parser.add_argument('--filter',
@@ -184,9 +184,9 @@ if __name__== "__main__":
                         help="Output directory",
                         required=False)
 
-    parser.add_argument('--strip-extension',
-                        help="Strip the original extension from the title of the output "
-                             "file.\n"
+    parser.add_argument('--do-not-strip-extension',
+                        help="Do not strip the original extension from the title of "
+                             "the output file.\nLegacy behaviour\n"
                              "Eg. 'foo.rst.pdf' will become 'foo.pdf'.",
                         action="store_true")
 
@@ -222,7 +222,7 @@ if __name__== "__main__":
                                            title = args.title,
                                            output_dir = args.output_dir,
                                            output_file = args.output,
-                                           strip_extension = args.strip_extension)
+                                           strip_extension = not args.do_not_strip_extension)
             filter = args.filter
             if not os.path.isfile ( filter ):
                 filter = os.path.join ( os.path.dirname(__file__),
