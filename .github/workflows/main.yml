@@ -6,15 +6,12 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ] 
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -22,7 +19,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-      
+
       - name: Update base system
         run: |
           sudo apt update
@@ -37,42 +34,53 @@ jobs:
           wget https://github.com/jgm/pandoc/releases/download/2.11/pandoc-2.11-1-amd64.deb
           sudo dpkg -i pandoc-2.11-1-amd64.deb
           pandoc -v
-      
+
       - name: Install python dependencies
         run: pip install pandocfilters
-        
+
+
       - name: Generate slides for Ada fundamentals
-        run: python pandoc/pandoc_fe.py --output-dir out/fundamentals_of_ada --theme=adacore --color=adacore --hush --strip-extension --extension pdf --source courses/fundamentals_of_ada/*.rst --directories './/,:'
-    
+        run: python pandoc/pandoc_fe.py --output-dir out/fundamentals_of_ada --hush --extension pdf --source courses/fundamentals_of_ada/*.rst
+
+      - name: Generate slides for Ada fundamentals labs
+        run: python pandoc/pandoc_fe.py --output-dir out/fundamentals_of_ada/labs --hush --extension pdf --source courses/fundamentals_of_ada/labs/*.rst
+
       - name: Package and upload Ada fundamental slides
         uses: actions/upload-artifact@v2
         with:
           name: Ada fundamentals
           path: out/fundamentals_of_ada/*.pdf
 
+      - name: Package and upload Ada fundamental labs slides
+        uses: actions/upload-artifact@v2
+        with:
+          name: Ada fundamentals Labs
+          path: out/fundamentals_of_ada/labs/*.pdf
+
       - name: Generate standard Ada course
-        run: python pandoc/pandoc_fe.py --theme=adacore --color=adacore --extension pdf --source courses/fundamentals_of_ada/standard_course.txt --directories './/,:'
-    
+        run: python pandoc/pandoc_fe.py --extension pdf --source courses/fundamentals_of_ada/standard_course.txt --output-dir out/fundamentals_of_ada
+
       - name: Package and upload standard Ada course
         uses: actions/upload-artifact@v2
         with:
           name: Standard course
-          path: standard_course.txt.pdf
-        
+          path: out/fundamentals_of_ada/standard_course.pdf
+
+
       - name: Generate slides for Spark
-        run: python pandoc/pandoc_fe.py --output-dir out/spark_for_ada_programmers --theme=adacore --color=adacore --hush --strip-extension --extension pdf --source courses/spark_for_ada_programmers/*.rst --directories './/,:'
-    
+        run: python pandoc/pandoc_fe.py --output-dir out/spark_for_ada_programmers --hush --extension pdf --source courses/spark_for_ada_programmers/*.rst
+
       - name: Package and upload Spark slides
         uses: actions/upload-artifact@v2
         with:
           name: Spark for Ada programmers
           path: out/spark_for_ada_programmers/*.pdf
-          
+
       - name: Generate standard Spark course
-        run: python pandoc/pandoc_fe.py --theme=adacore --color=adacore --extension pdf --source courses/spark_for_ada_programmers/course.txt --directories './/,:'
-    
+        run: python pandoc/pandoc_fe.py --extension pdf --source courses/spark_for_ada_programmers/course.txt --output-dir out/spark_for_ada_programmers
+
       - name: Package and upload standard Spark course
         uses: actions/upload-artifact@v2
         with:
           name: Standard Spark course
-          path: course.txt.pdf
+          path: out/spark_for_ada_programmers/course.pdf
