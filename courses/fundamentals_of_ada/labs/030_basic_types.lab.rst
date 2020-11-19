@@ -9,7 +9,7 @@ Basic Types Lab
     - Once an object is targeted, the fire-safety goes off
     - We give each object around the radar a status:
 
-    .. image:: ../../images/030_basic_types_lab_radar.png
+    .. image:: images/030_basic_types_lab_radar.png
 
 * Create types to handle the following concepts
 

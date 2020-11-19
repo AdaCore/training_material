@@ -15,9 +15,9 @@ For the labs it is recommended to use GNAT Studio as an IDE.
 
 .. container:: columns
 
-    .. image:: ../../images/020_Declaration_Lab_GS_New_Project_1.png
+    .. image:: images/020_Declaration_Lab_GS_New_Project_1.png
 
-    .. image:: ../../images/020_Declaration_Lab_GS_New_Project_2.png
+    .. image:: images/020_Declaration_Lab_GS_New_Project_2.png
 
 ----------------------------
 Labs Setup (GNAT Studio) 2/2
@@ -28,7 +28,7 @@ Labs Setup (GNAT Studio) 2/2
 
     - `null` is the No-op statement
 
-    .. image:: ../../images/020_Declaration_Lab_GS_src_main.png
+    .. image:: images/020_Declaration_Lab_GS_src_main.png
 
 -----------------
 Declarations Labs
