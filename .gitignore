@@ -1,3 +1,6 @@
 *.pdf
 out/
 tex2pdf.*
+
+# Vi swap
+.*.sw?
