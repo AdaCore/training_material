@@ -84,3 +84,21 @@ jobs:
         with:
           name: Standard Spark course
           path: out/spark_for_ada_programmers/course.pdf
+
+  lab-radar-build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+
+      - name: Update base system
+        run: |
+          sudo apt update
+          sudo apt full-upgrade -y
+
+      - name: Install GNAT CE
+        run: sudo apt install gnat
+
+      - name: Solution build for Ada Fundamentals
+        run: python scripts/build_labs_check.py courses/fundamentals_of_ada
