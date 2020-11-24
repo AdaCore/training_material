@@ -11,7 +11,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  RST-build:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -84,3 +84,29 @@ jobs:
         with:
           name: Standard Spark course
           path: out/spark_for_ada_programmers/course.pdf
+
+  labs-build:
+    
+    name: labs # intentionly short
+    strategy:
+      matrix:
+        os: [ubuntu-latest] #windows-latest TODO
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: actions/cache@v2
+        with:
+          path: ./cached_gnat
+          key: ${{ runner.os }}-gnat-ce-2020
+
+      - name: Get GNAT Community 2020 toolchain
+        uses: ada-actions/toolchain@ce2020
+        with:
+          distrib: community
+          install_dir: ./cached_gnat
+
+      - name: Solution build for Ada Fundamentals
+        run: python3 scripts/build_labs_check.py courses/fundamentals_of_ada
