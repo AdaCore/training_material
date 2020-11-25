@@ -20,7 +20,7 @@ if __name__ == "__main__":
     for p in args.search_path.glob("**/*.gpr"):
         run += 1
         try:
-            gprbuild("-v", "-XMode=Solution", "-p", p)
+            gprbuild("-v", "-XMode=Solution", p)
             print("Success")
         except subprocess.CalledProcessError:
             failures += 1
