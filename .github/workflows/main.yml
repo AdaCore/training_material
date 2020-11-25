@@ -109,4 +109,4 @@ jobs:
           install_dir: ./cached_gnat
 
       - name: Solution build for Ada Fundamentals
-        run: python scripts/build_labs_check.py courses/fundamentals_of_ada
+        run: python3 scripts/build_labs_check.py courses/fundamentals_of_ada
