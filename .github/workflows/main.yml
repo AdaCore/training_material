@@ -85,7 +85,7 @@ jobs:
           name: Standard Spark course
           path: out/spark_for_ada_programmers/course.pdf
 
-  labs build Linux:
+  labs-build_Linux:
     runs-on: ubuntu-latest
 
     steps:
