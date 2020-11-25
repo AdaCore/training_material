@@ -1,0 +1,133 @@
+----------------------
+Ada.Finalization Lab
+----------------------
+   
+* Requirements
+   
+   - Create a simplistic secure key tracker system
+
+      * Keys should be unique
+      * Keys cannot be copied
+      * When a key is no longer in use, it is returned back to the system
+
+   - Interface should contain the following methods
+
+      * Generate a new key
+      * Return a generated key
+      * Indicate how many keys are in service
+      * Return a string describing the key
+
+   - Create a main program to generate / destroy / print keys
+      
+* Hints
+
+   - Need to return a key when out-of-scope OR on user request
+   - Global data to track used keys
+ 
+----------------------------------------------
+Ada.Finalization Lab Solution - Specification
+----------------------------------------------
+
+.. code:: Ada
+
+   with Ada.Finalization;
+   package Keys_Pkg is
+
+      type Key_T is limited private;
+      function Generate return Key_T;
+      procedure Destroy (Key : Key_T);
+      function In_Use return Natural;
+      function Image (Key : Key_T) return String;
+
+   private
+      type Key_T is new Ada.Finalization.Limited_Controlled with record
+         Value : Character;
+      end record;
+      procedure Initialize (Key : in out Key_T);
+      procedure Finalize (Key : in out Key_T);
+
+   end Keys_Pkg;
+
+------------------------------------------------
+Ada.Finalization Lab Solution - Implementation
+------------------------------------------------
+
+.. code:: Ada
+
+   package body Keys_Pkg is
+      Global_In_Use : array (Character range 'a' .. 'z') of Boolean :=
+        (others => False);
+
+      function Next_Available return Character is
+      begin
+         for C in Global_In_Use'Range loop
+            if not Global_In_Use (C) then
+               return C;
+            end if;
+         end loop;
+         -- we ran out of keys! exception if we get here
+      end Next_Available;
+
+      function In_Use return Natural is
+         Ret_Val : Natural := 0;
+      begin
+         for Flag of Global_In_Use loop
+            Ret_Val := Ret_Val + (if Flag then 1 else 0);
+         end loop;
+         return Ret_Val;
+      end In_Use;
+
+      function Generate return Key_T is
+      begin
+         return X : Key_T;
+      end Generate;
+
+      procedure Destroy (Key : Key_T) is
+      begin
+         Global_In_Use (Key.Value) := False;
+      end Destroy;
+
+      function Image (Key : Key_T) return String is
+         ( "KEY: " & Key.Value );
+
+      procedure Initialize (Key : in out Key_T) is
+      begin
+         Key.Value                 := Next_Available;
+         Global_In_Use (Key.Value) := True;
+      end Initialize;
+
+      procedure Finalize (Key : in out Key_T) is
+      begin
+         Global_In_Use (Key.Value) := False;
+      end Finalize;
+
+   end Keys_Pkg;
+
+----------------------------------------------
+Ada.Finalization Lab Solution - Main Program
+----------------------------------------------
+
+.. code:: Ada
+
+   with Keys_Pkg;
+   with Ada.Text_IO; use Ada.Text_IO;
+   procedure Main is
+
+      Keys : array (1 .. 3) of Keys_Pkg.Key_T;
+
+      procedure Generate (Count : Natural) is
+         Keys : array (1 .. Count) of Keys_Pkg.Key_T;
+      begin
+         Put_Line ("In use: " & Integer'Image (Keys_Pkg.In_Use));
+         for Key of Keys loop
+            Put_Line ("   " & Keys_Pkg.Image (Key));
+         end loop;
+      end Generate;
+
+   begin
+      Put_Line ("In use: " & Integer'Image (Keys_Pkg.In_Use));
+
+      Generate (4);
+      Put_Line ("In use: " & Integer'Image (Keys_Pkg.In_Use));
+   end Main;
+
