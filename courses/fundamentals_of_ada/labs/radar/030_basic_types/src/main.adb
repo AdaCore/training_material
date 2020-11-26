@@ -79,4 +79,3 @@ end Main;
 -- You can use the 'Scenario' tab on the right to change the Mode from
 -- problem to solution, click the checkmark button, and go to the sol
 -- directory to compare your solution with the correction.
-

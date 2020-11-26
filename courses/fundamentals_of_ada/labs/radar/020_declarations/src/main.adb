@@ -31,6 +31,8 @@ begin
    --
    -- Set Running_Calculation to True
    --
+   -- At this point your code should compile and run properly.
+   --
    -- QUESTION 2 - Part B
    --
    -- Set All_Active_Processors to the sum of
