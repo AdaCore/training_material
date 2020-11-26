@@ -1,11 +1,4 @@
-:title: Ada Fundamentals - Lab 2
-:subtitle: Basic Types
-:author: AdaCore
-:titlepage: true
-:titlepage-text-color: FFFFFF
-:titlepage-rule-color: 360049
-:titlepage-background: "images/titleBackground.pdf"
-:logo: images/logo.png
+:title: Ada Fundamentals - Lab 2 - Basic Types
 
 .. include:: support_files/docs_common.rst
 
