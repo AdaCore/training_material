@@ -18,50 +18,72 @@ procedure Main is
    -- Current running speed
    Running_Speed : Speed_Kph_T;
 
+   -- Number of seconds in an hour
+   Seconds_Per_Hour : constant := 3600.0;
+
+   -- Looping range
+   type Radar_Scanning_Loop_T is range 1 .. 15;
+
+   -----------------------
+   -- Radar spec values --
+   -----------------------
+   -- Working distances
+   Radar_Focus_Distance : constant Object_Distance_Km_T := 2.0;
+   Radar_Scan_Distance : constant Object_Distance_Km_T := 4.0;
+   Radar_Ping_Distance : constant Object_Distance_Km_T := 8.0;
+
+   -- Internal clocks
+   Radar_No_Scan_Delay : Duration := 0.1;
+   Radar_Scan_Delay : Duration := 3.0;
+
 begin
 
    -- QUESTION 1
    --
-   -- Declare a loop from 1 to 15 to get the active object status and
-   -- distance and to perform the appropriate action up to the Time_Step
-   -- subprogram call.
+   -- Declare a loop for-in with Radar_Scanning_Loop_T to get the active
+   -- object status and distance and to perform the appropriate action up to
+   -- the Time_Step subprogram call.
 
-   -- Get the status of the active object
+   -- Get the status of the active object by a call to Get_Active_Object_Status
    Active_Object_Status := Get_Active_Object_Status;
 
-   -- And its distance
+   -- And its distance by a call to Get_Active_Object_Distance
    Active_Object_Distance := Get_Active_Object_Distance;
 
-   -- QUESTION 2 - Part A
+   -- QUESTION 2
    --
    -- We want the action to change depending on the object status
    --
    -- Perform the following actions using a case statement
    -- on Active_Object_Status:
-   -- * Tracked, then Walk_And_Scan
-   -- * Cleared, then Next_Object
-   -- * Selected, then Get_Closer (Run)
-   -- * Out_Of_Range, then Get_Closer (Fast_Walk)
+   -- * Tracked, then call Walk_And_Scan
+   -- * Cleared, then call Next_Object
+   -- * Selected, then call Get_Closer (Run)
+   -- * Out_Of_Range, then call Get_Closer (Fast_Walk)
 
-   -- Get running speed
+   -- Get running speed by a call to Get_Running_Speed
    Running_Speed := Get_Running_Speed;
 
    -- QUESTION 3 - Part A
    --
    -- If Running_Speed is not 0 then update the E.T.A. by calling
-   -- Update_E_T_A. Else, call Update_No_E_T_A
+   -- Update_E_T_A (Active_Object_Distance / Running_Speed * Seconds_Per_Hour)
+   -- Else, call Update_No_E_T_A
 
 
    -- QUESTION 3 - Part B
    -- Using `if` and `elsif`, implement the following:
    --
-   -- If Active_Object_Distance is under 2km
+   -- If Active_Object_Distance is under Radar_Focus_Distance
    -- do not do anything, explicitly, using a null statement.
    --
    -- If Active_Object_Distance is
-   -- between 2 km and 4 km  Rotate_Antenna (Slow)
-   -- between 4 km and 8 km  Rotate_Antenna (Normal)
-   -- over 8 km  Rotate_Antenna (Fast)
+   -- between Radar_Focus_Distance and Radar_Scan_Distance:
+   --         Rotate_Antenna (Slow)
+   -- between Radar_Scan_Distance and Radar_Ping_Distance:
+   --         Rotate_Antenna (Normal)
+   -- over Radar_Ping_Distance:
+   --          Rotate_Antenna (Fast)
 
    -- QUESTION 4 - Part A
    --
@@ -77,15 +99,15 @@ begin
 
    -- QUESTION 5 - Part A
    --
-   -- We want a 3s delay in case of scan (Active_Object_Status = Tracked)
-   -- else a 0.1 seconds delay.
+   -- We want a Radar_Scan_Delay delay in case of scan (Active_Object_Status = Tracked)
+   -- else a Radar_No_Scan_Delay seconds delay.
    -- Implement it using a case-expression
 
    -- QUESTION 5 - Part B
    --
    -- Reimplement it using an if-expression instead
 
-   delay 0.1;
+   delay Radar_No_Scan_Delay;
    Time_Step;
 
 end Main;
@@ -93,4 +115,3 @@ end Main;
 -- You can use the 'Scenario' tab on the right to change the Mode from
 -- problem to solution, click the checkmark button, and go to the sol
 -- directory to compare your solution with the correction.
-
