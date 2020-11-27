@@ -1,8 +1,8 @@
 .. include:: support_files/docs_common.rst
 
--------------------------
-Getting Started (Windows)
--------------------------
+---------------
+Getting Started
+---------------
 
 1. Start GNAT Studio
 2. Select "Open Project"
