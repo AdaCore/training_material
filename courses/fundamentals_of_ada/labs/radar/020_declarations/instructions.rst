@@ -1,10 +1,4 @@
 :title: Ada Fundamentals - Lab 1 - Declarations
-:author: AdaCore
-:titlepage: true
-:titlepage-text-color: FFFFFF
-:titlepage-rule-color: 360049
-:titlepage-background: "images/titleBackground.pdf"
-:logo: images/logo.png
 
 .. include:: support_files/docs_common.rst
 
@@ -21,10 +15,9 @@ Questions
 ---------
 
 * Follow the instruction in the source file
-* The code should compile after question 2
 * Locate and click on the "Compile & Run" button in GNAT Studio.
 
-.. image:: GS_Compile_And_Run_Button.png
+.. image:: GNAT_Studio/UI/Run_Button.png
 
 ---------
 Labs Tips
@@ -40,3 +33,5 @@ Labs Tips
     - Named numbers :ada:`constant` for perfect precision
     - Indexing is mostly used through `Positive`
     - Strict typing is a **pillar** of the language
+
+* More resource on recommended Ada style can be found at https://www.adaic.org/resources/add_content/docs/95style/html/sec_3/3-5.html
