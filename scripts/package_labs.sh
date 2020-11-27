@@ -1,7 +1,10 @@
 set -e
 
-orig=$1
-OUT=$PWD/out
-ar=$OUT/$(basename $orig).zip
+orig=$(realpath $1)
+out=$(realpath $2)
+
+mkdir -p $out
+
+ar=$out/$(basename $orig).zip
 (cd $orig && git archive HEAD -o $ar)
-(cd $OUT && unzip $ar)
+(cd $out && zip $ar *.pdf) || true
