@@ -90,7 +90,7 @@ jobs:
     name: labs # intentionly short
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest] #windows-latest TODO
 
     runs-on: ${{ matrix.os }}
 
