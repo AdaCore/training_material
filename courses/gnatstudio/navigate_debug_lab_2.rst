@@ -43,11 +43,11 @@ Eight new buttons are added to the toolbar, allowing for precise debugging actio
 
 3. Open the main source file, :file:`main.adb`
 4. Click on the second :ada:`Time_Step` call, around line number "50",
-then click on the “Debug Continue” icon in the main toolbar.
-
-The program will stop at the first executable line.
+   then click on the “Debug Continue” icon in the main toolbar.
 
 .. image:: GNAT_Studio/Debug_Project/1.png
+
+The program will stop at the first executable line.
 
 Click “Debug Continue” again and program execution should then stop at the :ada:`Time_Step` call in
 the main file.
@@ -60,11 +60,11 @@ See the program execution going to the next line. Do it again to reach line 62 �
 the next call to :ada:`Time_Step`.
 
 6. Click on the “Debug Step” icon to step into the :ada:`Time_Step` subprogram. The file
-:code:`radar_internals.adb` should then open.
+   :file:`radar_internals.adb` should then open.
 
 7. Click on the “Debug Finish” icon to step out of the subprogram.
-8. Let’s spy the value of a local variable! Right click on the :ada:`John_Connor` identifier, and go into the Debug ->
-Display :ada:`John_Connor` in variables view menu.
+8. Let’s spy the value of a local variable! Right click on the :ada:`John_Connor` identifier, and go 
+   into Debug -> Display :ada:`John_Connor` in variables view menu.
 
 .. image:: GNAT_Studio/Debug_Project/4.png
 

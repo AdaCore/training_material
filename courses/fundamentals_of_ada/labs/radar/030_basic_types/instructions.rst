@@ -5,6 +5,8 @@
 The purpose of this lab is to present basic Ada types and some advanced GNAT Studio
 features.
 
+.. include:: courses/gnatstudio/navigate_debug_lab_2.rst
+
 ---------
 Questions
 ---------
@@ -14,6 +16,3 @@ Questions
 .. image:: 030_basic_types_lab_radar.png
 
 * Follow the instruction in the source file
-* You should be able to navigate and debug the running code
-
-.. include:: courses/gnatstudio/navigate_debug_lab_2.rst
