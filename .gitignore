@@ -1,5 +1,6 @@
 out/
 tex2pdf.*
 
+__pycache__
 # Vi swap
 .*.sw?
