@@ -89,13 +89,13 @@ jobs:
         run: python3 pandoc/lab_docs.py -r courses/fundamentals_of_ada/labs/radar out/radar
 
       - name: Lab Radar package
-        run: bash contrib/ci/package_labs.sh courses/fundamentals_of_ada/labs/radar out/radar
+        run: bash contrib/ci/package_labs.sh courses/fundamentals_of_ada/labs/radar out/radar && unzip out/radar/radar.zip -d out/radar/pkg
 
       - name: Lab Radar upload
         uses: actions/upload-artifact@v2
         with:
           name: Radar lab full
-          path: out/radar/radar.zip
+          path: out/radar/pkg/*
 
   labs-build:
 
