@@ -85,8 +85,20 @@ jobs:
           name: Standard Spark course
           path: out/spark_for_ada_programmers/course.pdf
 
+      - name: Lab Radar PDF
+        run: python3 pandoc/lab_docs.py -r courses/fundamentals_of_ada/labs/radar out/radar
+
+      - name: Lab Radar package
+        run: bash scripts/package_labs.sh courses/fundamentals_of_ada/labs/radar out/radar
+
+      - name: Lab Radar upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: Radar lab full
+          path: out/radar/radar.zip
+
   labs-build:
-    
+
     name: labs # intentionly short
     strategy:
       matrix:
