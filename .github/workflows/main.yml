@@ -89,7 +89,7 @@ jobs:
         run: python3 pandoc/lab_docs.py -r courses/fundamentals_of_ada/labs/radar out/radar
 
       - name: Lab Radar package
-        run: bash scripts/package_labs.sh courses/fundamentals_of_ada/labs/radar out/radar
+        run: bash contrib/ci/package_labs.sh courses/fundamentals_of_ada/labs/radar out/radar
 
       - name: Lab Radar upload
         uses: actions/upload-artifact@v2
@@ -121,4 +121,4 @@ jobs:
           install_dir: ./cached_gnat
 
       - name: Solution build for Ada Fundamentals
-        run: python3 scripts/build_labs_check.py courses/fundamentals_of_ada
+        run: python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada
