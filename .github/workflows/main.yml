@@ -27,7 +27,7 @@ jobs:
 
       - name: Install required packages
         run: |
-          sudo apt install texlive-latex-base texlive-extra-utils texlive-formats-extra wget
+          sudo apt install texlive-latex-base texlive-extra-utils texlive-formats-extra texlive-fonts-extra wget
 
       - name: Manual pandoc install
         run: |
