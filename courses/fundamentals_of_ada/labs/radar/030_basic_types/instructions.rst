@@ -9,12 +9,11 @@ features.
 Questions
 ---------
 
+* We want to implement the following Finite State Machine
+
+.. image:: 030_basic_types_lab_radar.png
+
 * Follow the instruction in the source file
-* The code should compile after question 1
-* Locate and click on the "Compile & Run" button in GNAT Studio.
-
-.. image:: GS_Compile_And_Run_Button.png
-
-* You will also be able to navigate and debug the running code
+* You should be able to navigate and debug the running code
 
 .. include:: courses/gnatstudio/navigate_debug_lab_2.rst

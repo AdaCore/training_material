@@ -54,6 +54,9 @@ begin
    -- Update them to reflect the fact that we stopped calculating
    -- and are now using only one processor.
 
+    -- Null statement to compile even without anything
+    -- You can remove it at the end of the lab.
+    null;
 end Main;
 
 -- You can use the 'Scenario' tab on the right to change the Mode from
