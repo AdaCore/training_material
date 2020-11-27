@@ -28,7 +28,10 @@ if __name__ == "__main__":
     ap.add_argument("args", nargs="*")
     args = ap.parse_args()
 
-    args.output.parent.mkdir(parents=True, exist_ok=True)
+    if args.recursive:
+        args.output.mkdir(parents=True, exist_ok=True)
+    else:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
 
     default_args = parse_pandoc_defaults.parse_defaults(args.defaults)
 
