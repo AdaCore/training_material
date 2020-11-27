@@ -129,15 +129,16 @@ def parse_defaults(f):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=CURRENT_DIR / 'lab_docs.yaml' )
+    ap.add_argument("--config", default=CURRENT_DIR / 'default_lab_docs.yaml' )
     ap.add_argument("input")
     ap.add_argument("output")
     ap.add_argument("args", nargs="*")
     args = ap.parse_args()
 
     default_args = parse_defaults(args.config)
-    subprocess.check_call(" ".join(["pandoc",
-                                    f"--data-dir={(CURRENT_DIR.parent / 'support_files').resolve()}",
-                                    args.input, '-o', args.output,
-                                    default_args] + args.args),
+    subprocess.check_call(f"pandoc " + \
+                          f"--data-dir={(CURRENT_DIR.parent / 'support_files').resolve()} " + \
+                          f"{Path(args.input).resolve()} -o {Path(args.output).resolve()} " + \
+                          f"{default_args} {' '.join(args.args)}",
+                          cwd=CURRENT_DIR.parent,
                           shell=True)
