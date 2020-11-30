@@ -5,6 +5,9 @@ resource-path: images/:
 
 author: AdaCore
 
+# Justification of figure caption: as for figure, center them
+caption-justification: centering
+
 titlepage: True
 titlepage-text-color: FFFFFF
 titlepage-rule-color: E07C00
