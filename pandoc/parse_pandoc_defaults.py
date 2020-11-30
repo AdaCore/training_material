@@ -106,6 +106,10 @@ def parse_defaults(f):
     # https://pandoc.org/MANUAL.html#default-files for format
     for l in data.split('\n'):
         l = l.strip()
+
+        if l.startswith('#'):
+            continue
+
         kv = l.split(': ')
 
         if len(kv) < 2:
