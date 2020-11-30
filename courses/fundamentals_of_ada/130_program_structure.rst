@@ -1683,6 +1683,131 @@ Multiple `use type` Clauses
      Put (C); -- not visible
    end Demo;
 
+===================
+Renaming Entities
+===================
+
+---------------------------------
+Three Positives Make a Negative
+---------------------------------
+
+* Good Coding Practices ...
+
+   - Descriptive names
+   - Modularization
+   - Subsystem hierarchies
+
+* Can result in cumbersome references
+
+   .. code:: Ada
+
+      -- use cosine rule to determine distance between two points,
+      -- given angle and distances between observer and 2 points
+      -- A**2 = B**2 + C**2 - 2*B*C*cos(A)
+      Observation.Sides (Viewpoint_Types.Point1_Point2) :=
+        Math_Utilities.Trigonometry.Square_Root
+          (Observation.Sides (Viewpoint_Types.Observer_Point1)**2 +
+           Observation.Sides (Viewpoint_Types.Observer_Point2)**2 +
+           2.0 * Observation.Sides (Viewpoint_Types.Observer_Point1) *
+             Observation.Sides (Viewpoint_Types.Observer_Point2) *
+             Math_Utilities.Trigonometry.Cosine
+               (Observation.Vertices (Viewpoint_Types.Observer)));
+
+--------------------------------
+Writing Readable Code - Part 1
+--------------------------------
+
+* We could use `use` on package names to remove some dot-notation
+
+   .. code:: Ada
+
+      -- use cosine rule to determine distance between two points, given angle
+      -- and distances between observer and 2 points A**2 = B**2 + C**2 -
+      -- 2*B*C*cos(A)
+      Observation.Sides (Point1_Point2) :=
+        Square_Root
+          (Observation.Sides (Observer_Point1)**2 +
+           Observation.Sides (Observer_Point2)**2 +
+           2.0 * Observation.Sides (Observer_Point1) *
+             Observation.Sides (Observer_Point2) *
+             Cosine (Observation.Vertices (Observer)));
+
+* But that only shortens the problem, not simplifies it
+
+   - If there are multiple "use" clauses in scope:
+
+      + Reviewer may have hard time finding the correct definition
+      + Homographs may cause ambiguous reference errors
+
+* We want the ability to refer to certain entities by another name (like an alias) with full read/write access (unlike temporary variables)
+      
+-----------------------
+The `renames` Keyword
+-----------------------
+
+* Certain entities can be renamed within a declarative region
+
+   - Packages
+
+      .. code:: Ada
+
+         package Math renames Math_Utilities.Trigonometry
+
+   - Objects (or elements of objects)
+
+      .. code:: Ada
+
+         Angles : Viewpoint_Types.Vertices_Array_T
+                  renames Observation.Vertices;
+         Required_Angle : Viewpoint_Types.Vertices_T
+                  renames Viewpoint_Types.Observer;
+
+   - Subprograms
+
+      .. code:: Ada
+
+         function Sqrt (X : Base_Types.Float_T)
+                        return Base_Types.Float_T
+                        renames Math.Square_Root;
+
+--------------------------------
+Writing Readable Code - Part 2
+--------------------------------
+
+* With `renames` our complicated code example is easier to understand
+
+   .. code:: Ada
+
+      begin
+         Side1 : Base_Types.Float_T renames
+           Observation.Sides (Viewpoint_Types.Observer_Point1);
+         Side2 : Base_Types.Float_T renames
+           Observation.Sides (Viewpoint_Types.Observer_Point2);
+         Angles : Viewpoint_Types.Vertices_Array_T renames Observation.Vertices;
+         Required_Angle : Viewpoint_Types.Vertices_T renames
+           Viewpoint_Types.Observer;
+         Desired_Side : Base_Types.Float_T renames
+           Observation.Sides (Viewpoint_Types.Point1_Point2);
+
+         package Math renames Math_Utilities.Trigonometry;
+
+         function Sqrt (X : Base_Types.Float_T) return Base_Types.Float_T
+           renames Math.Square_Root;
+
+      begin
+
+         Side1                   := Sensors.Read;
+         Side2                   := Sensors.Read;
+         Angles (Required_Angle) := Sensors.Read;
+
+         -- use cosine rule to determine distance between two points, given angle
+         -- and distances between observer and 2 points A**2 = B**2 + C**2 -
+         -- 2*B*C*cos(A)
+         Desired_Side := Sqrt (Side1**2 + Side2**2 +
+                               2.0 * Side1 * Side2 * Math.Cosine (Angles (Required_Angle)));
+
+      end;
+
 ========
 Lab
 ========
@@ -1716,3 +1841,7 @@ Summary
 * `use all type` clauses are more likely in practice than `use type` clauses
 
    - Only available in Ada 2012 and later
+
+* `Renames` allow us to alias entities to make code easier to read
+
+   - Subprogram renaming has many other uses, such as adding / removing default parameter values
