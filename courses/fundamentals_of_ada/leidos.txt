@@ -21,6 +21,5 @@
 ..\additional_modules\ada.finalization.rst
 210_contracts.rst
 230_interfacing_with_c++.rst
-..\additional_modules\interfaces.c.rst
 240_tasking.rst
 900_ada_version_comparison.rst

@@ -11,6 +11,9 @@ Interfacing with C++ Lab
       + Create / Write to / Close a file
 
    - Implement I/O package bodies using C functions
+
+      + Use `Interfaces.C` hierarchy for C-style strings
+
    - Main program should ask user for a file name, and then ask for data to be placed into the file
 
       - No use of `Ada.Text_IO` in this lab
@@ -33,18 +36,20 @@ Interfacing with C++ Lab Solution - I/O (Spec)
    with System;
    package Io is
 
-     type File_T is limited private;
+      type File_T is limited private;
 
-     function Read_From_Stdin return String;
-     procedure Write_To_Stdout (Str : String);
+      function Read_From_Stdin return String;
+      procedure Write_To_Stdout (Str     : String;
+                                 With_Lf : Boolean := True);
 
-     function Create_File (Filename : String) return File_T;
-     procedure Write_To_File (File : File_T;
-                              Str  : String);
-     procedure Close_File (File : File_T);
+      function Create_File (Filename : String) return File_T;
+      procedure Write_To_File (File    : File_T;
+                               Str     : String;
+                               With_Lf : Boolean := True);
+      procedure Close_File (File : File_T);
 
    private
-     type File_T is access all Integer;
+      type File_T is access all Integer;
 
    end Io;
 
@@ -55,54 +60,67 @@ Interfacing with C++ Lab Solution - I/O (Body)
 
    with Interfaces.C;
    with Interfaces.C.Strings;
-   with Ada.Text_IO;
    package body Io is
 
-     function C_Gets return Interfaces.C.Strings.chars_ptr
-       with Import,
-            Convention    => C,
-            External_Name => "gets";
-     function Read_From_Stdin return String is (Interfaces.C.Strings.Value (C_Gets));
+      function C_Gets return Interfaces.C.Strings.chars_ptr with Import, Convention => C, External_Name => "gets";
+      function Read_From_Stdin return String is (Interfaces.C.Strings.Value (C_Gets));
 
-     procedure C_Puts (Str : Interfaces.C.char_array)
-       with Import,
-            Convention    => C,
-            External_Name => "puts";
-     procedure Write_To_Stdout (Str : String) is
-     begin
-       C_Puts (Interfaces.C.To_C (Str & ASCII.LF));
-     end Write_To_Stdout;
+      procedure C_Puts (Str : Interfaces.C.Strings.chars_ptr)
+                        with Import, Convention => C, External_Name => "puts";
+      procedure C_Putchar (Str : Interfaces.C.char)
+                           with Import, Convention => C, External_Name => "putchar";
+      procedure Write_To_Stdout (Str     : String;
+                                With_Lf : Boolean := True) is
+      begin
+         -- "puts" always adds a line-feed
+         if With_Lf then
+            declare
+               To_C : Interfaces.C.Strings.chars_ptr :=
+                 Interfaces.C.Strings.New_String (Str);
+            begin
+               C_Puts (To_C);
+               Interfaces.C.Strings.Free (To_C);
+            end;
+         else
+            for C of Str loop
+               C_Putchar (Interfaces.C.To_C (C));
+            end loop;
+         end if;
+      end Write_To_Stdout;
 
-     function C_Fopen (Filename : Interfaces.C.char_array;
-                       Mode     : Interfaces.C.char_array)
-                       return File_T
-       with Import,
-            Convention    => C,
-            External_Name => "fopen";
-     function Create_File (Filename : String) return File_T is
-      (C_Fopen (Interfaces.C.To_C (Filename), Interfaces.C.To_C ("w")));
+      function C_Fopen (Filename : Interfaces.C.char_array;
+                        Mode     : Interfaces.C.char_array)
+                        return File_T
+                        with Import, Convention => C, External_Name => "fopen";
+      function Create_File (Filename : String) return File_T is
+        (C_Fopen (Interfaces.C.To_C (Filename), Interfaces.C.To_C ("w")));
 
-     procedure C_Fputs (Str  : Interfaces.C.char_array;
-                        File : File_T)
-       with Import,
-            Convention    => C,
-            External_Name => "fputs";
-     procedure Write_To_File (File : File_T;
-                              Str  : String) is
-     begin
-       C_Fputs (Interfaces.C.To_C (Str), File);
-     end Write_To_File;
+      procedure C_Fputs (Str  : Interfaces.C.Strings.chars_ptr;
+                         File : File_T)
+                         with Import, Convention => C, External_Name => "fputs";
+      procedure Write_To_File
+        (File    : File_T;
+         Str     : String;
+         With_Lf : Boolean := True) is
+         To_C : Interfaces.C.Strings.chars_ptr;
+      begin
+         if With_Lf then
+            To_C := Interfaces.C.Strings.New_String (Str & ASCII.LF);
+         else
+            To_C := Interfaces.C.Strings.New_String (Str);
+         end if;
+         C_Fputs (To_C, File);
+         Interfaces.C.Strings.Free (To_C);
+      end Write_To_File;
 
-     procedure C_Fclose (File : File_T)
-       with Import,
-            Convention    => C,
-            External_Name => "fclose";
-     procedure Close_File (File : File_T) is
-     begin
-       C_Fclose (File);
-     end Close_File;
+      procedure C_Fclose (File : File_T)
+                          with Import, Convention => C, External_Name => "fclose";
+      procedure Close_File (File : File_T) is
+      begin
+         C_Fclose (File);
+      end Close_File;
 
-   end Io;
+end Io;
 
 ------------------------------------------
 Interfacing with C++ Lab Solution - Main
@@ -113,28 +131,28 @@ Interfacing with C++ Lab Solution - Main
    with Io; use Io;
    procedure Main is
 
-     function Get (Prompt : String) return String is
-     begin
-       Io.Write_To_Stdout (Prompt & ">");
-       return Io.Read_From_Stdin;
-     end Get;
+      function Get (Prompt : String) return String is
+      begin
+         Io.Write_To_Stdout (Prompt & ">", False);
+         return Io.Read_From_Stdin;
+      end Get;
 
    begin
 
-     declare
-       Filename : constant String := Get ("Filename");
-       File_Ptr : Io.File_T       := Io.Create_File (Filename);
-     begin
-       loop
-         declare
-           Str : constant String := Get ("Line");
-         begin
-           exit when Str'Length = 0;
-           Io.Write_To_File (File_Ptr, Str);
-         end;
-       end loop;
-       Io.Close_File (File_Ptr);
-     end;
+      declare
+         Filename : constant String := Get ("Filename");
+         File_Ptr : Io.File_T       := Io.Create_File (Filename);
+      begin
+         loop
+            declare
+               Str : constant String := Get ("Line");
+            begin
+               exit when Str'Length = 0;
+               Io.Write_To_File (File_Ptr, Str, True);
+            end;
+         end loop;
+         Io.Close_File (File_Ptr);
+      end;
 
    end Main;
 
