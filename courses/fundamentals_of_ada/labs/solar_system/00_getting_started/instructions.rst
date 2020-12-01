@@ -34,7 +34,7 @@ Question 2
 During the training, we will use GNAT Studio, AdaCore’s integrated development
 environment. You can run it to open the simple project via:
 
-:code:`gps –Psimple`
+:code:`gnatstudio –Psimple`
 
 After that, you can use the “Build and Run” action, that is accessible via the play
 icon in the main toolbar, to automate what we did in part 1. It will rebuild
