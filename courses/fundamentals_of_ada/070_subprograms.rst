@@ -840,6 +840,61 @@ Null Procedure Summary
    procedure Do_Something ( P : in     integer ) is null;
  
 =====================
+Nested Subprograms
+=====================
+
+--------------------------------
+Subprograms within Subprograms
+--------------------------------
+
+* Subprograms can be placed in any declarative block
+
+   * So they can be nested inside another subprogram
+   * Or even within a `declare` block
+
+* Useful for performing sub-operations without passing parameter data
+
+----------------------------
+Nested Subprogram Example
+----------------------------
+
+.. code:: Ada
+
+   procedure Main is
+
+      function Read (Prompt : String) return Types.Line_T is
+         function Read (Inner_Prompt : String) return Types.Coordinate_T is
+         begin
+            Put (Prompt & " - " & Inner_Prompt & "> ");
+            return Types.Coordinate_T'Value (Get_Line);
+         end Read;
+      begin
+         return (X => Read ("X coordinate"), Y => Read ("Y coordinate"));
+      end Read;
+
+      Count : Natural;
+
+   begin
+      Put ("Number of lines: ");
+      Count := Natural'Value (Get_Line);
+      declare
+         Lines : Types.Lines_T (1 .. Count);
+         procedure Print (I : Natural) is
+         begin
+            Put_Line (I'Image & " => ( " & Lines (I).X'Image & ", " & Lines (I).Y'Image & " )");
+         end Print;
+      begin
+         for I in Lines'Range loop
+            Lines (I) := Read ("Line " & I'Image);
+         end loop;
+         for I in Lines'First .. Lines'Last loop
+            Print (I);
+         end loop;
+      end;
+
+   end Main;
+
+=====================
 Procedure Specifics
 =====================
 

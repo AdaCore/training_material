@@ -62,25 +62,28 @@ Subprograms Lab Solution - Sort
 
 .. code:: Ada
 
-   procedure Swap (I, J : in out Integer) is
-      Temp : Integer := I;
-   begin
-      I := J;
-      J := Temp;
-   end Swap;
-
    procedure Sort (List : in out List_T) is
       Swapped : Boolean;
+      procedure Swap (I, J : in Integer) is
+         Temp : Integer := List (I);
+      begin
+         List (I) := List (J);
+         List (J) := Temp;
+         Swapped  := True;
+      end Swap;
    begin
-      for I in List'First .. List'Last loop
+      for I in List'First .. List'Last
+      loop
          Swapped := False;
-         for J in 1 .. List'Last - I loop
-            if List (J) > List (J + 1) then
-               Swap (List (J), List (J + 1));
-               Swapped := True;
+         for J in 1 .. List'Last - I
+         loop
+            if List (J) > List (J + 1)
+            then
+               Swap (J, J + 1);
             end if;
          end loop;
-         if not Swapped then
+         if not Swapped
+         then
             return;
          end if;
       end loop;

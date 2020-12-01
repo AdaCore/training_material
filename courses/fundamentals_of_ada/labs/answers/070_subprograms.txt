@@ -33,15 +33,15 @@ procedure Main is
       end if;
    end Is_Found;
 
-   procedure Swap (I, J : in out Integer) is
-      Temp : Integer := I;
-   begin
-      I := J;
-      J := Temp;
-   end Swap;
-
    procedure Sort (List : in out List_T) is
       Swapped : Boolean;
+      procedure Swap (I, J : in Integer) is
+         Temp : Integer := List (I);
+      begin
+         List (I) := List (J);
+         List (J) := Temp;
+         Swapped  := True;
+      end Swap;
    begin
       for I in List'First .. List'Last
       loop
@@ -50,8 +50,7 @@ procedure Main is
          loop
             if List (J) > List (J + 1)
             then
-               Swap (List (J), List (J + 1));
-               Swapped := True;
+               Swap (J, J + 1);
             end if;
          end loop;
          if not Swapped

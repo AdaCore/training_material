@@ -1,0 +1,53 @@
+package Types is
+
+   type Length_T is digits 6 range 0.0 .. 1_000_000.0;
+   type Coordinate_T is digits 6;
+   type Line_T is record
+      X, Y : Coordinate_T;
+   end record;
+   type Lines_T is array (Positive range <>) of Line_T;
+
+end Types;
+with Types;
+with Ada.Text_IO; use Ada.Text_IO;
+procedure Main is
+
+   function Read
+     (Prompt : String)
+      return Types.Line_T is
+      function Read
+        (Inner_Prompt : String)
+         return Types.Coordinate_T is
+      begin
+         Put (Prompt & " - " & Inner_Prompt & "> ");
+         return Types.Coordinate_T'Value (Get_Line);
+      end Read;
+   begin
+      return (X => Read ("X coordinate"), Y => Read ("Y coordinate"));
+   end Read;
+
+   Count : Natural;
+
+begin
+   Put ("Number of lines: ");
+   Count := Natural'Value (Get_Line);
+   declare
+      Lines : Types.Lines_T (1 .. Count);
+      procedure Print (I : Natural) is
+      begin
+         Put_Line
+           (I'Image & " => ( " & Lines (I).X'Image & ", " & Lines (I).Y'Image &
+            " )");
+      end Print;
+   begin
+      for I in Lines'Range
+      loop
+         Lines (I) := Read ("Line " & I'Image);
+      end loop;
+      for I in Lines'First .. Lines'Last
+      loop
+         Print (I);
+      end loop;
+   end;
+
+end Main;
