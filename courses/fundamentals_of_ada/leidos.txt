@@ -14,8 +14,8 @@
 190_exceptions.rst
 ..\additional_modules\ada.text_io.rst
 140_access_types.rst
-..\additional_modules\discriminated_record_types.rst
 160_genericity.rst
+..\additional_modules\discriminated_record_types.rst
 170_inheritance.rst
 180_polymorphism.rst
 ..\additional_modules\ada.finalization.rst
