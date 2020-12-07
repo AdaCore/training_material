@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Private_Types.implementing_abstract_data_types_view_views
+.. code:: ada
    :class: ada-run
 
    package Bounded_Stack is

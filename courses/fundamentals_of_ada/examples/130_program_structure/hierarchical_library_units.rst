@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Program_Structure.hierarchical_library_units
+.. code:: ada
    :class: ada-run
 
    package Complex is

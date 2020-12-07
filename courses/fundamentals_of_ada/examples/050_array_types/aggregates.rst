@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Array_Types.aggregates
+.. code:: ada
     :class: ada-run
 
    procedure Aggregates is

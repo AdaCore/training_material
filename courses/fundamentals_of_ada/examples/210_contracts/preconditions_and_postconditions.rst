@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Contracts.preconditions_and_postconditions
+.. code:: ada
    :class: ada-run
 
    package Stack_Pkg is

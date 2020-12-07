@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Program_Structure.limited_with_clauses
+.. code:: ada
    :class: ada-run
 
    limited with Department;

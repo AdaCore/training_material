@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Tasking.tasks
+.. code:: ada
    :class: ada-run
 
    package Tasks is

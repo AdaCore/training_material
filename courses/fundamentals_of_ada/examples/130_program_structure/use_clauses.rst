@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Program_Structure.use_clauses
+.. code:: ada
    :class: ada-run
 
    package Pkg_A is

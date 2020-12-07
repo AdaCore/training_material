@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Anonymous_Access_Types.access_types
+.. code:: ada
    :class: ada-run
 
    package Anonymous_Access_Types is

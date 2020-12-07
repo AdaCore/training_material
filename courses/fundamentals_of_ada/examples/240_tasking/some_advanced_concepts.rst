@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Tasking.some_advanced_concepts
+.. code:: ada
    :class: ada-run
 
    package Some_Advanced_Concepts is

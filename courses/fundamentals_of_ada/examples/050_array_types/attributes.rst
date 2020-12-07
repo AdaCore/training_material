@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Array_Types.attributes
+.. code:: ada
     :class: ada-run
 
    procedure Attributes is

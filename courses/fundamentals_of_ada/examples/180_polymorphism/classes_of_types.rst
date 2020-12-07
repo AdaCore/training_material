@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Polymorphism.classes_of_types
+.. code:: ada
    :class: ada-run
 
    package Class_Types is

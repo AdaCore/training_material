@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Access_Types.accessibility_checks
+.. code:: ada
    :class: ada-run
 
    package Accessibility_Checks is

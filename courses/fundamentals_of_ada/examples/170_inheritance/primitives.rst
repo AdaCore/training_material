@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Inheritance.primitives
+.. code:: ada
    :class: ada-run
 
    package Primitives_Example is

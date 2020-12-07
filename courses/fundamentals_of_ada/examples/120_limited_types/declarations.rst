@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Limited_Types.declarations
+.. code:: ada
    :class: ada-run
 
    with Interfaces;

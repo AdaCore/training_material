@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Exceptions.user_defined_exceptions
+.. code:: ada
    :class: ada-run
 
    package Stack is

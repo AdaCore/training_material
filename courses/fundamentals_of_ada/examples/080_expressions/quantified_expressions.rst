@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Expressions.quantified_expression
+.. code:: ada
     :class: ada-run
 
    with GNAT.Random_Numbers; use GNAT.Random_Numbers;

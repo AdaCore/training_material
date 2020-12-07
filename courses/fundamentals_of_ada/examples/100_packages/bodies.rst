@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Packages.bodies
+.. code:: ada
    :class: ada-run
 
    package Body_Not_Allowed is

@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Subprograms.parameters
+.. code:: ada
     :class: ada-run
 
    procedure Parameters is

@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Limited_Types.creating_values
+.. code:: ada
    :class: ada-run
 
    with Interfaces; use Interfaces;

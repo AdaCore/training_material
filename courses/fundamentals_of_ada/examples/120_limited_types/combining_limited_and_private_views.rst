@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Limited_Types.combining_limited_and_private_views
+.. code:: ada
    :class: ada-run
 
    with Interfaces; use Interfaces;

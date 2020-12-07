@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Contracts.type_invariants
+.. code:: ada
    :class: ada-run
 
    package Bank is

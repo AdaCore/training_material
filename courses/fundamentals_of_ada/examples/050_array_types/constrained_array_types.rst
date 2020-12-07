@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Array_Types.constrained_array_types
+.. code:: ada
     :class: ada-run
 
    package Constrained_Array_Types is

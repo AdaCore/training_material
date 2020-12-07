@@ -1,4 +1,4 @@
-.. code:: ada run_button project=Training_Material.Fundamentals_Of_Ada.Polymorphism.exotic_dispatching_operations
+.. code:: ada
    :class: ada-run
 
    package Types is

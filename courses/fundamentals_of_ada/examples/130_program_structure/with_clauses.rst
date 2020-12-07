@@ -1,4 +1,4 @@
-.. code:: ada compile_button project=Training_Material.Fundamentals_Of_Ada.Program_Structure.with_clauses
+.. code:: ada
    :class: ada-run
 
    with Ada.Text_IO;
