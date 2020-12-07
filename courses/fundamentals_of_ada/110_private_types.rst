@@ -92,6 +92,12 @@ Abstract Data Types
 Implementing Abstract Data Types via Views
 ============================================
 
+----------
+Examples
+----------
+
+.. include:: examples/110_private_types/implementing_abstract_data_types_via_views.rst
+
 ----------------------------------
 Implementing Abstract Data Types
 ----------------------------------
@@ -336,6 +342,16 @@ Benefits of Views
    - If a facility isn't working, you know where to look
 
 * Fixing bugs is less likely to introduce new ones
+
+===========================
+Private Part Construction
+===========================
+
+----------
+Examples
+----------
+
+.. include:: examples/110_private_types/private_part_construction.rst
 
 -----------------------
 Private Part Location
@@ -672,6 +688,12 @@ When To Avoid Private Types
 ========
 Idioms
 ========
+
+----------
+Examples
+----------
+
+.. include:: examples/110_private_types/idioms.rst
 
 ---------------------------------------
 Effects of Hiding Type Representation

@@ -33,6 +33,12 @@ Subtypes
 ==========
 
 ----------
+Examples
+----------
+
+.. include:: examples/080_expressions/subtypes.rst
+
+----------
 Subtypes
 ----------
 
@@ -238,6 +244,12 @@ Subtypes and Default Initialization
 Membership Tests
 ==================
 
+----------
+Examples
+----------
+
+.. include:: examples/080_expressions/membership_tests.rst
+
 -------------------------
  "Membership" Operation
 -------------------------
@@ -271,7 +283,7 @@ Testing Constraints via Membership
    subtype Weekdays is Calendar_Days range Mon .. Fri;
    Day : Calendar_Days := Today;
    ...
-   if Day in Calendar_Days range Mon .. Fri then ...
+   if Day in Mon .. Fri then ...
    if Day in Weekdays then ... - same as above
  
 -----------------------------------
@@ -371,6 +383,12 @@ Index Constraints
 Slices
 ========
 
+----------
+Examples
+----------
+
+.. include:: examples/080_expressions/slices.rst
+
 ---------
 Slicing
 ---------
@@ -462,6 +480,12 @@ Dynamic Subtype Constraint Example
 =========================
 Conditional Expressions
 =========================
+
+----------
+Examples
+----------
+
+.. include:: examples/080_expressions/conditional_expressions.rst
 
 -------------------------
 Conditional Expressions
@@ -741,6 +765,12 @@ Static Named Numbers Example
 ========================
 Quantified Expressions
 ========================
+
+----------
+Examples
+----------
+
+.. include:: examples/080_expressions/quantified_expressions.rst
 
 ------------------------
 Quantified Expressions

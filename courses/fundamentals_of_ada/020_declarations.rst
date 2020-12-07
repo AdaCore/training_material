@@ -157,6 +157,12 @@ BNF Shows Only Syntax
 Identifiers, Comments, and Pragmas
 ====================================
 
+----------
+Examples
+----------
+
+.. include:: examples/020_declarations/identifiers_comments_and_pragmas.rst
+
 -------------
 Identifiers
 -------------
@@ -255,6 +261,12 @@ Pragmas
 Numeric Literals
 ==================
 
+----------
+Examples
+----------
+
+.. include:: examples/020_declarations/numeric_literals.rst
+
 --------------------------
 Decimal Numeric Literals
 --------------------------
@@ -316,6 +328,12 @@ Designed In Reaction To C's Based Literals
 =====================
 Object Declarations
 =====================
+
+----------
+Examples
+----------
+
+.. include:: examples/020_declarations/object_declarations.rst
 
 --------------
 Declarations
@@ -524,6 +542,12 @@ Literals Must Match "Class" of Context
 Named Numbers
 ===============
 
+----------
+Examples
+----------
+
+.. include:: examples/020_declarations/named_numbers.rst
+
 ---------------
 Named Numbers
 ---------------
@@ -606,6 +630,12 @@ Named Number Benefit
 ======================
 Scope and Visibility
 ======================
+
+----------
+Examples
+----------
+
+.. include:: examples/020_declarations/scope_and_visibility.rst
 
 ----------------------
 Scope and Visibility
@@ -728,6 +758,12 @@ Overcoming Hiding
 ================
 Aspect Clauses
 ================
+
+----------
+Examples
+----------
+
+.. include:: examples/020_declarations/aspect_clauses.rst
 
 ----------------
 Aspect Clauses

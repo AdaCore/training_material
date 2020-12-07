@@ -109,6 +109,12 @@ Kinds of Array Types
 Constrained Array Types
 =========================
 
+----------
+Examples
+----------
+
+.. include:: examples/050_array_types/constrained_array_types.rst
+
 -------------------------------------
 Constrained Array Type Declarations
 -------------------------------------
@@ -158,61 +164,131 @@ Constrained Array Type Example
    Order : constant Blinking_Pattern :=
            (Orange, Red, Blue, Green);
 
-============
-Attributes
-============
+----------------------------------
+Multiple-Dimensioned Array Types
+----------------------------------
 
-------------------
-Array Attributes
-------------------
+.. container:: columns
 
-* Return info about array index bounds
+ .. container:: column
 
-   :T'Length: number of array components
-   :T'First: value of lower index bound
-   :T'Last: value of upper index bound
-   :T'Range: another way of saying `T'First` .. `T'Last`
+    * Declared with more than one index definition
 
-* Meaningfully applied to constrained array types
+       - Constrained array types
+       - Unconstrained array types
 
-   - Only constrained array types provide index bounds
-   - Returns index info specified by the type (hence all such objects)
+    * Components accessed by giving value for each index
 
-* Meaningfully applied to array objects
+ .. container:: column
 
-   - Returns index info for the object
-   - Especially useful for objects of unconstrained array types
+    .. code:: Ada
 
-----------------------
-Attributes' Benefits
-----------------------
-
-* Allow code to be more robust
-
-   - Relationships are explicit
-   - Changes are localized
-
-* Optimizer can identify redundant checks
-
-   .. code:: Ada
-
-         type List is array (5 .. 15) of Integer;
-         L : List;
-         List_Index : Integer range List'Range := List'First;
-         Count : Integer range  0 .. List'Length := 0;
-      begin
+       type Three_Dimensioned is
+         array (
+           Boolean,
+           12 .. 50,
+           Character range 'a' .. 'z')
+           of Integer;
+         TD : Three_Dimensioned;
          ...
-         for K in L'Range loop
-            L (K) := K * 2;
-         end loop;
+       begin
+         TD (True, 42, 'b') := 42;
+         TD (Flag, Count, Char) := 42;
 
-.. container:: speakernote
+-----------------------------
+Tic-Tac-Toe Winners Example
+-----------------------------
 
-   K will always be a valid index
+.. container:: columns
+
+ .. container:: column
+
+    .. code:: Ada
+
+       -- 9 positions on a board
+       type Move_Number is range 1 .. 9;
+       -- 8 ways to win
+       type Winning_Combinations is
+          range 1 .. 8;
+       -- need 3 positions to win
+       type Required_Positions is
+          range 1 .. 3;
+       Winning : constant array (
+          Winning_Combinations,
+          Required_Positions)
+          of Move_Number := (1 => (1,2,3),
+                             2 => (1,4,7),
+                             ...
+
+ .. container:: column
+
+    .. list-table::
+       :width: 55%
+
+      * - :superscript:`1` **X**
+
+        - :superscript:`2` **X**
+        - :superscript:`3` **X**
+
+      * - :superscript:`4`
+
+        - :superscript:`5`
+        - :superscript:`6`
+
+      * - :superscript:`7`
+
+        - :superscript:`8`
+        - :superscript:`9`
+
+      * -
+
+        -
+        -
+
+      * - :superscript:`1` **X**
+
+        - :superscript:`2`
+        - :superscript:`3`
+
+      * - :superscript:`4` **X**
+
+        - :superscript:`5`
+        - :superscript:`6`
+
+      * - :superscript:`7` **X**
+
+        - :superscript:`8`
+        - :superscript:`9`
+
+      * -
+
+        -
+        -
+
+      * - :superscript:`1` **X**
+
+        - :superscript:`2`
+        - :superscript:`3`
+
+      * - :superscript:`4`
+
+        - :superscript:`5` **X**
+        - :superscript:`6`
+
+      * - :superscript:`7`
+
+        - :superscript:`8`
+        - :superscript:`9` **X**
 
 ===========================
 Unconstrained Array Types
 ===========================
+
+----------
+Examples
+----------
+
+.. include:: examples/050_array_types/unconstrained_array_types.rst
 
 ---------------------------------------
 Unconstrained Array Type Declarations
@@ -355,121 +431,84 @@ No Unconstrained Component Types
 
    How big is each component for LIST?
 
-----------------------------------
-Multiple-Dimensioned Array Types
-----------------------------------
+------------------
+Arrays of Arrays
+------------------
 
-.. container:: columns
+* Allowed (of course!)
 
- .. container:: column
+   - As long as the "component" array type is constrained
 
-    * Declared with more than one index definition
+* Indexed using multiple parenthesized values
 
-       - Constrained array types
-       - Unconstrained array types
+   - One per array
 
-    * Components accessed by giving value for each index
+.. code:: Ada
 
- .. container:: column
+     type Array_of_10 is array (1..10) of Integer;
+     type Array_of_Array is array (Boolean) of Array_of_10;
+     A : Array_of_Array;
+   begin
+     ...
+     A (True)(3) := 42;
 
-    .. code:: Ada
+============
+Attributes
+============
 
-       type Three_Dimensioned is
-         array (
-           Boolean,
-           12 .. 50,
-           Character range 'a' .. 'z')
-           of Integer;
-         TD : Three_Dimensioned;
+----------
+Examples
+----------
+
+.. include:: examples/050_array_types/attributes.rst
+
+------------------
+Array Attributes
+------------------
+
+* Return info about array index bounds
+
+   :T'Length: number of array components
+   :T'First: value of lower index bound
+   :T'Last: value of upper index bound
+   :T'Range: another way of saying `T'First` .. `T'Last`
+
+* Meaningfully applied to constrained array types
+
+   - Only constrained array types provide index bounds
+   - Returns index info specified by the type (hence all such objects)
+
+* Meaningfully applied to array objects
+
+   - Returns index info for the object
+   - Especially useful for objects of unconstrained array types
+
+----------------------
+Attributes' Benefits
+----------------------
+
+* Allow code to be more robust
+
+   - Relationships are explicit
+   - Changes are localized
+
+* Optimizer can identify redundant checks
+
+   .. code:: Ada
+
+         type List is array (5 .. 15) of Integer;
+         L : List;
+         List_Index : Integer range List'Range := List'First;
+         Count : Integer range  0 .. List'Length := 0;
+      begin
          ...
-       begin
-         TD (True, 42, 'b') := 42;
-         TD (Flag, Count, Char) := 42;
+         for K in L'Range loop
+            L (K) := K * 2;
+         end loop;
 
------------------------------
-Tic-Tac-Toe Winners Example
------------------------------
+.. container:: speakernote
 
-.. container:: columns
-
- .. container:: column
-
-    .. code:: Ada
-
-       -- 9 positions on a board
-       type Move_Number is range 1 .. 9;
-       -- 8 ways to win
-       type Winning_Combinations is
-          range 1 .. 8;
-       -- need 3 positions to win
-       type Required_Positions is
-          range 1 .. 3;
-       Winning : constant array (
-          Winning_Combinations,
-          Required_Positions)
-          of Move_Number := (1 => (1,2,3),
-                             2 => (1,4,7),
-                             ...
-
- .. container:: column
-
-    .. list-table::
-       :width: 55%
-
-      * - :superscript:`1` **X**
-
-        - :superscript:`2` **X**
-        - :superscript:`3` **X**
-
-      * - :superscript:`4`
-
-        - :superscript:`5`
-        - :superscript:`6`
-
-      * - :superscript:`7`
-
-        - :superscript:`8`
-        - :superscript:`9`
-
-      * -
-
-        -
-        -
-
-      * - :superscript:`1` **X**
-
-        - :superscript:`2`
-        - :superscript:`3`
-
-      * - :superscript:`4` **X**
-
-        - :superscript:`5`
-        - :superscript:`6`
-
-      * - :superscript:`7` **X**
-
-        - :superscript:`8`
-        - :superscript:`9`
-
-      * -
-
-        -
-        -
-
-      * - :superscript:`1` **X**
-
-        - :superscript:`2`
-        - :superscript:`3`
-
-      * - :superscript:`4`
-
-        - :superscript:`5` **X**
-        - :superscript:`6`
-
-      * - :superscript:`7`
-
-        - :superscript:`8`
-        - :superscript:`9` **X**
+   K will always be a valid index
 
 --------------------------------
 Nth Dimension Array Attributes
@@ -503,30 +542,15 @@ Nth Dimension Array Attributes
     * `TD'first` is 1 (same as `TD'first(1)`)
     * `TD'last` is 10 (same as `TD'last(1)`)
 
-------------------
-Arrays of Arrays
-------------------
-
-* Allowed (of course!)
-
-   - As long as the "component" array type is constrained
-
-* Indexed using multiple parenthesized values
-
-   - One per array
-
-.. code:: Ada
-
-     type Array_of_10 is array (1..10) of Integer;
-     type Array_of_Array is array (Boolean) of Array_of_10;
-     A : Array_of_Array;
-   begin
-     ...
-     A (True)(3) := 42;
-
 ============
 Operations
 ============
+
+----------
+Examples
+----------
+
+.. include:: examples/050_array_types/operations.rst
 
 -------------------------
 Object-Level Operations
@@ -708,9 +732,156 @@ Sliding
      end loop;
      if Index in People'Range then -- good
 
+==============================
+Operations Added for Ada2012
+==============================
+
+----------
+Examples
+----------
+
+.. include:: examples/050_array_types/operations_added_for_ada2012.rst
+
+----------------------------------------
+Default Initialization for Array Types
+----------------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
+
+* Supports constrained and unconstrained array types
+* Supports arrays of any dimensionality
+
+   - No matter how many dimensions, there is only one component type
+
+* Uses aspect `Default_Component_Value`
+
+.. code:: Ada
+
+   type Vector is array (Positive range <>) of Float
+      with Default_Component_Value => 0.0;
+
+-------------------------------
+Two High-Level For-Loop Kinds
+-------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
+
+* For arrays and containers
+
+   - Arrays of any type and form
+   - Iterable containers
+
+      + Those that define iteration (most do)
+      + Not all containers are iterable (e.g., priority queues)!
+
+* For iterator objects
+
+   - Known as "generalized iterators"
+   - Language-defined, e.g., most container data structures
+
+* User-defined iterators too
+* We focus on the arrays/containers form for now
+
+---------------------------
+Array/Container For-Loops
+---------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
+
+* Work in terms of elements within an object
+* Syntax hides indexing/iterator controls
+
+   .. code:: Ada
+
+      for name of [reverse] array_or_container_object_name loop
+      ...
+      end loop;
+
+* Starts with "first" element unless you reverse it
+* Loop parameter name is a constant if iterating over a constant, a variable otherwise
+
+----------------------------------
+Array Component For-Loop Example
+----------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
+
+.. code:: Ada
+
+     Primes : constant array (1 .. 5) of Integer :=
+        (2, 3, 5, 7, 11);
+   begin
+     ...
+     for P of Primes loop
+       Put_Line (Integer'Image (P));
+     end loop;
+     ...
+     for P of reverse Primes loop
+       Put_Line (Integer'Image (P));
+     end loop;
+     ...
+
+----------------------------------------
+For-Loops with Multidimensional Arrays
+----------------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
+
+.. container:: columns
+
+ .. container:: column
+
+    * Same syntax, regardless of number of dimensions
+    * As if a set of nested loops, one per dimension
+
+       - Last dimension is in innermost loop, so changes fastest
+
+    * In low-level format looks like
+
+       - for each row loop
+       -   for each column loop
+       -     print Identity (row, column)
+       -   end loop
+       - end loop
+
+ .. container:: column
+
+    .. code:: Ada
+
+         subtype Rows is Positive;
+         subtype Columns is Positive;
+         type Matrix is array
+            (Rows range <>,
+             Columns range <>) of Float;
+           Identity : constant Matrix
+              (1..3, 1..3) :=
+                ((1.0, 0.0, 0.0),
+                 (0.0, 1.0, 0.0),
+                 (0.0, 0.0, 1.0));
+       begin
+         for C of Identity loop
+           Put_Line (Float'Image(C));
+         end loop;
+
 ============
 Aggregates
 ============
+
+----------
+Examples
+----------
+
+.. include:: examples/050_array_types/aggregates.rst
 
 ------------
 Aggregates
@@ -1012,197 +1183,6 @@ Table Search Example
      if Index >= People'First and Index <= People'Last
      then
         -- found it
-
-=======================
-Additional Operations
-=======================
-
-----------------------------------------
-Default Initialization for Array Types
-----------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Supports constrained and unconstrained array types
-* Supports arrays of any dimensionality
-
-   - No matter how many dimensions, there is only one component type
-
-* Uses aspect `Default_Component_Value`
-
-.. code:: Ada
-
-   type Vector is array (Positive range <>) of Float
-      with Default_Component_Value => 0.0;
-
--------------------------------
-Two High-Level For-Loop Kinds
--------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* For arrays and containers
-
-   - Arrays of any type and form
-   - Iterable containers
-
-      + Those that define iteration (most do)
-      + Not all containers are iterable (e.g., priority queues)!
-
-* For iterator objects
-
-   - Known as "generalized iterators"
-   - Language-defined, e.g., most container data structures
-
-* User-defined iterators too
-* We focus on the arrays/containers form for now
-
----------------------------
-Array/Container For-Loops
----------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Work in terms of elements within an object
-* Syntax hides indexing/iterator controls
-
-   .. code:: Ada
-
-      for name of [reverse] array_or_container_object_name loop
-      ...
-      end loop;
-
-* Starts with "first" element unless you reverse it
-* Loop parameter name is a constant if iterating over a constant, a variable otherwise
-
-----------------------------------
-Array Component For-Loop Example
-----------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-.. code:: Ada
-
-     Primes : constant array (1 .. 5) of Integer :=
-        (2, 3, 5, 7, 11);
-   begin
-     ...
-     for P of Primes loop
-       Put_Line (Integer'Image (P));
-     end loop;
-     ...
-     for P of reverse Primes loop
-       Put_Line (Integer'Image (P));
-     end loop;
-     ...
-
-----------------------------------------
-For-Loops with Multidimensional Arrays
-----------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-.. container:: columns
-
- .. container:: column
-
-    * Same syntax, regardless of number of dimensions
-    * As if a set of nested loops, one per dimension
-
-       - Last dimension is in innermost loop, so changes fastest
-
-    * In low-level format looks like
-
-       - for each row loop
-       -   for each column loop
-       -     print Identity (row, column)
-       -   end loop
-       - end loop
-
- .. container:: column
-
-    .. code:: Ada
-
-         subtype Rows is Positive;
-         subtype Columns is Positive;
-         type Matrix is array
-            (Rows range <>,
-             Columns range <>) of Float;
-           Identity : constant Matrix
-              (1..3, 1..3) :=
-                ((1.0, 0.0, 0.0),
-                 (0.0, 1.0, 0.0),
-                 (0.0, 0.0, 1.0));
-       begin
-         for C of Identity loop
-           Put_Line (Float'Image(C));
-         end loop;
-
-==========
-Examples
-==========
-
------------------------------
-Substitution Cipher Example
------------------------------
-
-.. code:: Ada
-
-     Scrambled : constant array (Character range 'A'..'Z') of
-        Character := ('Z', 'M', 'W', ..., 'I', 'S', 'O');
-     Char : Character;
-   begin
-     loop
-       Put ("Enter a letter : ");
-       Get (Char);
-       exit when Char in Scrambled'Range;
-       Put_Line ("Must be in range 'A' .. 'Z' !");
-     end loop;
-     Put_Line ("Substitution letter for " & Char &
-               " is " & Scrambled (Char));
-   end;
-
-.. container:: speakernote
-
-  Index is "real" character, component is "switched" character
-
------------------------
-Roman Numbers Example
------------------------
-
-.. code:: Ada
-
-     -- order of digits is critical
-     type Roman_Digit is ('I', 'V', 'X', 'L', 'C', 'D', 'M');
-     type Roman_Number is array (Positive range <>)
-         of Roman_Digits;
-     Roman_Year : constant Roman_Number := "MCMLXXXIV";
-     Decimal_Year : Integer := 0;
-     Value_of : constant array (Roman_Digits) of Integer :=
-         (1, 5, 10, 50, 100, 500, 1000);
-   begin
-     for K in Roman_Year'Range loop
-       if K /= Roman_Year'Last and then
-          Roman_Year(K) < Roman_Year(K+1)
-       then
-         Decimal_Year := Decimal_Year-Value_of(Roman_Year(K));
-       else
-         Decimal_Year := Decimal_Year+Value_of(Roman_Year(K));
-       end if;
-     end loop;
-     IO.Put_Line ("MCMLXXXIV = " &
-                  Integer'Image (Decimal_Year));
-   end;
 
 ========
 Lab

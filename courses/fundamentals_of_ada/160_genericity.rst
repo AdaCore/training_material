@@ -144,6 +144,12 @@ How Do You Use A Generic?
 Generic Data
 ==============
 
+----------
+Examples
+----------
+
+.. include:: examples/160_genericity/generic_data.rst
+
 --------------------------------
 Generic Types Parameters (1/2)
 --------------------------------
@@ -233,6 +239,12 @@ Generic Parameters Can Be Combined
 =====================
 Generic Formal Data
 =====================
+
+----------
+Examples
+----------
+
+.. include:: examples/160_genericity/generic_formal_data.rst
 
 --------------------------------------------
 Generic Constants and Variables Parameters

@@ -83,6 +83,12 @@ Intended Effects of Copying
 Declarations
 ==============
 
+----------
+Examples
+----------
+
+.. include:: examples/120_limited_types/declarations.rst
+
 ---------------------------
 Limited Type Declarations
 ---------------------------
@@ -177,6 +183,12 @@ Enclosing Composites Become Limited
 =================
 Creating Values
 =================
+
+----------
+Examples
+----------
+
+.. include:: examples/120_limited_types/creating_values.rst
 
 -----------------
 Creating Values
@@ -312,6 +324,12 @@ Writing Limited Constructor Functions
 Extended Return Statements
 ============================
 
+----------
+Examples
+----------
+
+.. include:: examples/120_limited_types/extended_return_statements.rst
+
 -------------------------------------
 Function Extended Return Statements
 -------------------------------------
@@ -408,6 +426,12 @@ Function Extended Return Statements
 =====================================
 Combining Limited and Private Views
 =====================================
+
+----------
+Examples
+----------
+
+.. include:: examples/120_limited_types/combining_limited_and_private_views.rst
 
 -----------------------
 Limited Private Types

@@ -125,6 +125,12 @@ High-Level Assertions
 Preconditions and Postconditions 
 ===================================
 
+----------
+Examples
+----------
+
+.. include:: examples/210_contracts/preconditions_and_postconditions.rst
+
 -----------------------------
 Pre/Postcondition Contracts
 -----------------------------
@@ -463,6 +469,12 @@ Using Function Results In Postconditions
 Type Invariants
 =================
 
+----------
+Examples
+----------
+
+.. include:: examples/210_contracts/type_invariants.rst
+
 -----------------
 Type Invariants
 -----------------
@@ -564,7 +576,7 @@ Example Type Invariant Realization (Spec)
        Withdrawals : Transaction_List;
        Deposits : Transaction_List;
      end record;
-     function Total (This : Transactions_List)
+     function Total (This : Transaction_List)
        return Currency;
    end Bank;
  
@@ -576,7 +588,7 @@ Example Type Invariant Realization (Body)
 
    package body Bank is
    ...
-     function Total (This : Transactions_List)
+     function Total (This : Transaction_List)
          return Currency is
        Result : Currency := 0.0;
      begin
@@ -678,6 +690,12 @@ Invariants Are Not Foolproof
 ====================
 Subtype Predicates
 ====================
+
+----------
+Examples
+----------
+
+.. include:: examples/210_contracts/subtype_predicates.rst
 
 ----------------------------
 Subtype Predicates Concept

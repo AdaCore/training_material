@@ -43,6 +43,12 @@ Syntax and Examples
 Components Rules
 ==================
 
+----------
+Examples
+----------
+
+.. include:: examples/060_record_types/components_rules.rst
+
 -------------------------------
 Characteristics of Components
 -------------------------------
@@ -138,6 +144,12 @@ More Component Rules...
 Operations
 ============
 
+----------
+Examples
+----------
+
+.. include:: examples/060_record_types/operations.rst
+
 ----------------------
 Available Operations
 ----------------------
@@ -214,6 +226,12 @@ Referencing Nested Components
 ============
 Aggregates
 ============
+
+----------
+Examples
+----------
+
+.. include:: examples/060_record_types/aggregates.rst
 
 ------------
 Aggregates
@@ -411,6 +429,12 @@ Aggregates with `others`
 Default Values
 ================
 
+----------
+Examples
+----------
+
+.. include:: examples/060_record_types/default_values.rst
+
 --------------------------
 Component Default Values
 --------------------------
@@ -499,93 +523,6 @@ Default Initialization Via Aspect Clause
    C : Controller; -- Override => off, Enable => On
    D : Controller := (On, Off); -- All defaults replaced
  
-==========
-Examples
-==========
-
---------------------
-Game Board Example
---------------------
-
-.. code:: Ada
-
-   type Position is record
-       Row : Natural := 0;
-       Column : Natural := 0;
-     end record;
-   type Offset is record
-       Row : Integer range -1 .. 1;
-       Col : Integer range -1 .. 1;
-     end record;
-   type Deltas is (Left, Right, Up, Down);
-   Offsets : constant array (Deltas)
-     of Offset := ( Left  => (0,-1), 
-                    Right => (0,+1),
-                    Down  => (+1,0),
-                    Up    => (-1,0) );
-
-.. list-table::
-   :header-rows: 1
-   :stub-columns: 1
-
-  * - 
-
-    - *1*
-    - *2*
-    - *3*
-
-  * - *1*
-
-    - 
-    - **-1, 0**
-    - 
-
-  * - *2*
-
-    - **0, -1**
-    - **Current Position**
-    - **0, +1**
-
-  * - *3*
-
-    - 
-    - **+1, 0**
-    - 
-  
-    
---------------
-Date Example
---------------
-
-.. code:: Ada
-
-     End_of_Month : array (Months) of Days :=
-                   (Sep | Apr | Jun | Nov => 30,
-                    Feb => 28,
-                    others => 31);
-   begin
-      if (Today.Year mod 4 = 0 and Today.Year mod 100 /= 0)
-         or else
-         (Today.Year mod 400 = 0)
-      then 
-         End_of_Month (Feb) := 29; -- adjust for leap year
-      end if;
-      if Today.Day /= End_of_Month (Today.Month) then
-         Today.Day := Today.Day + 1;
-      else -- wrap around day of month
-         Today.Day := 1;
-         if Today.Month /= Dec then
-            Today.Month := Months'Succ (Today.Month);
-         else -- wrap around month
-            Today.Month := Jan;
-            Today.Year := Today.Year + 1;
-         end if;
-      end if;
- 
-.. container:: speakernote
-
-   Better way to set EndOfMonth will be discussed elsewhere
-
 ========
 Lab
 ========

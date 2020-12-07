@@ -84,6 +84,12 @@ Parameter Associations In Calls
 Assignment Statements
 =======================
 
+----------
+Examples
+----------
+
+.. include:: examples/040_statements/assignment_statements.rst
+
 -----------------------
 Assignment Statements
 -----------------------
@@ -222,6 +228,12 @@ Not All Assignments Are Checked
 ========================
 Conditional Statements
 ========================
+
+----------
+Examples
+----------
+
+.. include:: examples/040_statements/conditional_statements.rst
 
 --------------------
 If-then Statements
@@ -471,6 +483,12 @@ Why Not Use `Others` Case Alternative?
 =================
 Loop Statements
 =================
+
+----------
+Examples
+----------
+
+.. include:: examples/040_statements/loop_statements.rst
 
 ------------------------
 Basic Loops and Syntax
