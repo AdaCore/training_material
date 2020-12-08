@@ -1,7 +1,7 @@
 set -e
 
 orig=$1
-OUT=$PWD/out
+OUT=$(realpath $2)
 ar=$OUT/$(basename $orig).zip
 (cd $orig && git archive HEAD -o $ar)
 (cd $OUT && unzip $ar)
