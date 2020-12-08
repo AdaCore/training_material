@@ -1,0 +1,51 @@
+with "game_support.gpr";
+
+project Solar_System is
+
+   type Loader_Type is
+     ("RAM", "ROM");
+   Loader : Loader_Type := external ("LOADER", "ROM");
+   type Mode_Type is
+     ("Problem", "Solution");
+
+   Mode : Mode_Type := external ("Mode", "Problem");
+   for Main use ("main");
+   for Object_Dir use "obj";
+   for Languages use ("Ada");
+
+   case Mode is
+   when "Problem" =>
+      for Source_Dirs use ("src");
+      when "Solution" =>
+         for Source_Dirs use ("sol");
+   end case;
+
+   for Target use Game_Support'Target;
+
+   for Runtime ("Ada") use Game_Support'Runtime("Ada");
+
+   package Compiler is
+      for Default_Switches ("ada") use ("-gnat12", "-g", "-gnatQ", "-O0");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-E");
+   end Binder;
+
+
+   package Linker is
+      case Mode is
+
+         when "Problem" =>
+            for Switches ("ada") use ("-Lsrc/compute_library/lib", "-lcompute");
+
+         when "Solution" =>
+            for Switches ("ada") use ("-Lsol/compute_library/lib", "-lcompute");
+
+      end case;
+   end Linker;
+
+   package Ide renames Game_Support.Ide;
+
+
+end Solar_System;
