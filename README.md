@@ -38,3 +38,12 @@ format.
 ## Support Files
 
 This folder contains files that may be useful for multiple presentation formats.
+
+## Contrib
+
+This folder contains scripts that are used for generating the docs or packages.
+
+## Extern
+
+This folder contains sources that are used in support of labs (as frameworks), and are
+standalone.
