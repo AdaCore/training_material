@@ -27,7 +27,7 @@ jobs:
 
       - name: Install required packages
         run: |
-          sudo apt install texlive-latex-base texlive-extra-utils texlive-formats-extra wget
+          sudo apt install texlive-latex-base texlive-extra-utils texlive-formats-extra texlive-fonts-extra wget
 
       - name: Manual pandoc install
         run: |
@@ -85,8 +85,26 @@ jobs:
           name: Standard Spark course
           path: out/spark_for_ada_programmers/course.pdf
 
+      - name: Lab Radar PDF and package
+        run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/radar && unzip out/radar/radar.zip -d out/radar/pkg
+
+      - name: Lab Radar upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: Radar lab full
+          path: out/radar/pkg/*
+
+      - name: Lab Solar System PDF and package
+        run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/solar_system && unzip out/solar_system/solar_system.zip -d out/solar_system/pkg
+
+      - name: Lab Solar System upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: Solar System lab full
+          path: out/solar_system/pkg/*
+
   labs-build:
-    
+
     name: labs # intentionly short
     strategy:
       matrix:
@@ -108,5 +126,15 @@ jobs:
           distrib: community
           install_dir: ./cached_gnat
 
+      - name: Update base system
+        run: |
+          sudo apt-get update
+          sudo apt-get install libsdl2-dev libglu1-mesa-dev freeglut3-dev libsdl2-ttf-dev
+
       - name: Solution build for Ada Fundamentals
-        run: python3 scripts/build_labs_check.py courses/fundamentals_of_ada
+        env:
+            GNAT_SDL: extern/gnat_sdl
+            GAME_SUPPORT: extern/game_support
+        run: |
+            source contrib/ci/lab_env.sh
+            python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada
