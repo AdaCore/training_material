@@ -27,3 +27,9 @@ it is only dealing with a subset of the Pandoc options, the help is
 easier to decipher. When it runs Pandoc, it echoes the command
 being run, so you can use that as a starting point when generating
 your own Pandoc command.
+
+## Lab docs
+
+These files are used to generate Labs PDF from RST files with the proper
+adacore styling and settings. Can probably be adapted for more usage.
+Doc template taken from the Eisvogel template: https://github.com/Wandmalfarbe/pandoc-latex-template
