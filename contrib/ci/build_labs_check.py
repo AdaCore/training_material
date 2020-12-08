@@ -1,7 +1,9 @@
 import sys
+import platform
 from pathlib import Path
 import subprocess
 import argparse
+
 
 def gprbuild(*args):
     called = ["gprbuild"] + [str(a) for a in args]
@@ -14,13 +16,20 @@ if __name__ == "__main__":
     ap.add_argument("search_path", type=Path, default=Path(sys.argv[0]).parent)
     args = ap.parse_args()
 
+    host = platform.system()
+
     run = 0
     failures = 0
 
     for p in args.search_path.glob("**/*.gpr"):
+        print(p)
+        if (p.parent / '.ci_build_skip').exists():
+            print("Skip")
+            continue
+
         run += 1
         try:
-            gprbuild("-v", "-XMode=Solution", p)
+            gprbuild("-v", "-XMode=Solution", f"-XHOST={host}", p)
             print("Success")
         except subprocess.CalledProcessError:
             failures += 1
