@@ -59,8 +59,10 @@ def set_texinputs ( new_directories ):
 
     # when TEXINPUTS ends w/ a separator it means to append to standard TeX paths
     texinputs_append = (len(current) and current[-1] == separator)
-    os.environ['TEXINPUTS'] = separator.join ( unique ) \
+    texinputs_formated = separator.join ( unique ) \
                               + (separator if texinputs_append else '')
+    os.environ['TEXINPUTS'] = texinputs_formated
+    return texinputs_formated
 
 '''
 Chose and setup an output file full path based on various arguments received.
@@ -233,7 +235,7 @@ if __name__== "__main__":
                filter = " --filter " + filter
 
             # build list of search directories
-            set_texinputs ( args.directories )
+            texinputs = set_texinputs ( args.directories )
             if not args.hush:
                 print(f"TEXINPUTS={os.environ['TEXINPUTS']}")
 
@@ -251,18 +253,18 @@ if __name__== "__main__":
                     print (f"{input_file} -> "
                            f"{output_file}")
 
-                command = ( 'pandoc --standalone' +
-                            filter +
-                            pandoc_title_arg +
-                            theme +
-                            color +
-                            ' -f rst ' +
-                            ' -t ' + output_format ( args.extension.lower() ) +
-                            ' -o ' + output_file +
-                            f' {" ".join(source_list)}')
+                command = ( 'pandoc --standalone',
+                            '--resource-path', texinputs,
+                            filter,
+                            pandoc_title_arg,
+                            theme,
+                            color,
+                            '-f rst',
+                            '-t ' + output_format ( args.extension.lower() ),
+                            '-o ' + output_file, *source_list)
 
                 if not args.hush:
-                    print ( command )
+                    print ( " ".join(command) )
 
-                subprocess.check_call ( command, shell=True )
+                subprocess.check_call ( " ".join(command), shell=True )
             os.chdir(pcwd)
