@@ -1,0 +1,12 @@
+from: rst
+
+template: adacore
+resource-path: images/:
+
+author: AdaCore
+
+titlepage: True
+titlepage-text-color: FFFFFF
+titlepage-rule-color: E07C00
+titlepage-background: images/titleBackground.pdf
+logo: images/logo.png
