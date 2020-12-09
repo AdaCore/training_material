@@ -3,7 +3,7 @@
 
 The purpose of this exercise is to use exceptions, for some original bodies physics.
 
-.. figure:: Labs/Solar_System/05_1.png
+.. figure:: labs/solar_system/05_1.png
     :height: 300px
     :name:
 

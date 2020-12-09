@@ -4,7 +4,7 @@
 The purpose of this exercise is to write a driver for the STM32F4
 RNG (Random Number Generator) module
 
-.. figure:: Labs/Solar_System/05_1.png
+.. figure:: labs/solar_system/05_1.png
     :height: 300px
     :name:
 

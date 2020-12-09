@@ -5,7 +5,7 @@ The purpose of this exercise is to animate planets on the screen, one planet tur
 around the other.
 
 
-.. figure:: Labs/Solar_System/04_1.png
+.. figure:: labs/solar_system/04_1.png
     :height: 300px
     :name:
 

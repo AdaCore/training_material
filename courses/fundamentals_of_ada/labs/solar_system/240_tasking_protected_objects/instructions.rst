@@ -4,7 +4,7 @@
 The purpose of this exercise is to use Ravenscar tasks instead of one
 sequential thread.
 
-.. figure:: Labs/Solar_System/05_1.png
+.. figure:: labs/solar_system/05_1.png
     :height: 300px
     :name:
 

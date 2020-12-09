@@ -3,7 +3,7 @@
 
 The purpose of this exercise is to make our solar system generic
 
-.. figure:: Labs/Solar_System/05_1.png
+.. figure:: labs/solar_system/05_1.png
     :height: 300px
     :name:
 
