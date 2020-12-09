@@ -17,7 +17,7 @@ Questions
 * Follow the instruction in the source file
 * Locate and click on the "Compile & Run" button in GNAT Studio.
 
-.. image:: GNAT_Studio/UI/Run_Button.png
+.. image:: gnat_studio/ui/run_button.png
 
 ---------
 Labs Tips

@@ -7,11 +7,11 @@ Navigate the code
 1. Right click on :ada:`Time_Step`
 2. Click "Goto Spec" and "Go Full Spec" to navigate the program source
 
-.. image:: GNAT_Studio/UI/Menu_Goto_Full_Declaration_1.png
+.. image:: gnat_studio/ui/menu_goto_full_declaration_1.png
 
 3. See how it brings you to the procedure
 
-.. image:: GNAT_Studio/UI/Menu_Goto_Full_Declaration_2.png
+.. image:: gnat_studio/ui/menu_goto_full_declaration_2.png
 
 “Goto Declaration” is probably the most useful GNAT Studio feature for navigating and
 understanding large programs.
@@ -30,29 +30,29 @@ Let’s do a quick debugging session on the main program.
 
 1. Click on the Build and Debug icon
 
-.. image:: GNAT_Studio/UI/Debug_Button.png
+.. image:: gnat_studio/ui/debug_button.png
 
 2. GNAT Studio will go into debugging perspective, which you can see because a few
    more views have popped up.
 
-.. image:: GNAT_Studio/UI/Debug_Perspective.png
+.. image:: gnat_studio/ui/debug_perspective.png
 
 Eight new buttons are added to the toolbar, allowing for precise debugging actions.
 
-.. image:: GNAT_Studio/UI/Debug_Buttons_Labels.png
+.. image:: gnat_studio/ui/debug_buttons_labels.png
 
 3. Open the main source file, :file:`main.adb`
 4. Click on the second :ada:`Time_Step` call, around line number "50",
    then click on the “Debug Continue” icon in the main toolbar.
 
-.. image:: GNAT_Studio/Debug_Project/1.png
+.. image:: gnat_studio/debug_project/1.png
 
-The program will stop at the first executable line.
+the program will stop at the first executable line.
 
 Click “Debug Continue” again and program execution should then stop at the :ada:`Time_Step` call in
 the main file.
 
-.. image:: GNAT_Studio/Debug_Project/3.png
+.. image:: gnat_studio/debug_project/3.png
 
 5. Click on the “Debug Next” icon
 
@@ -66,9 +66,9 @@ the next call to :ada:`Time_Step`.
 8. Let’s spy the value of a local variable! Right click on the :ada:`John_Connor` identifier, and go 
    into Debug -> Display :ada:`John_Connor` in variables view menu.
 
-.. image:: GNAT_Studio/Debug_Project/4.png
+.. image:: gnat_studio/debug_project/4.png
 
 :ada:`John_Connor` will be shown in the “Debugger Variables” view.
 
-.. image:: GNAT_Studio/UI/Debug_Variables_View.png
+.. image:: gnat_studio/ui/debug_variables_view.png
     :height: 300px
