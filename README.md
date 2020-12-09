@@ -1,3 +1,5 @@
+![Training Material Build](https://github.com/adacore/training_material/workflows/CI/badge.svg)
+
 # Overview
 
 This repository is a collection of courses for teaching Ada (or SPARK) plus some
