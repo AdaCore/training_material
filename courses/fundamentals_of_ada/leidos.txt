@@ -12,13 +12,13 @@
 120_limited_types.rst
 130_program_structure.rst
 190_exceptions.rst
-..\additional_modules\ada.text_io.rst
+430_ada_text_io.rst
 140_access_types.rst
 160_genericity.rst
-..\additional_modules\discriminated_record_types.rst
+060a_discriminated_record_types.rst
 170_inheritance.rst
 180_polymorphism.rst
-..\additional_modules\ada.finalization.rst
+420_ada_finalization.rst
 210_contracts.rst
 230_interfacing_with_c++.rst
 240_tasking.rst
