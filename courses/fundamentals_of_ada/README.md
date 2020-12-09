@@ -11,16 +11,44 @@ to modify the list of included modules, this is the file you would change
 
 ## Naming Scheme
 
-The naming scheme follows the simplistic rule of ordering the modules by
-number so they appear in file listings the way they should be presented.
-e.g **010_overview** should appear before **020_declarations** etc.
+The naming scheme uses a 3-digit prefix, followed by an optional alphabetic
+character, and then the description of the module (all lower case, words
+separated by "_").
 
-There are some additions to this rule:
+The 3-digit prefix is described below. The optional alphabetic character is used
+to indicate that the module is an advanced version of its "parent" module, to be
+used as the situation requires. For example, *060_record_types* contains the
+basic module for explaining record types, while *060a_discriminated_record_types*
+contains an in-depth view of variant records.
 
-* 9xx modules are simple reference materials. Not necessary in many cases, but
-some customers like these things called out in their course material
+### Prefix Grouping
 
-* Three digit numbers are the ordering scheme. If there is an alphabetic character
-after the number (e.g. *180a*) then that is an **advanced** module that explains
-more in-depth for the module *180*
+The numeric value of the file prefix should be grouped as follows:
 
+#### Prefixes 000 - 399
+
+These are the topics that should (almost) always be included in the Fundamentals of Ada
+course. They should only be excluded when the class has no need for the topic (e.g.
+when coding standards preclude tasks you could remove the Tasking module) or, if
+enough other modules have been added to make time an issue (e.g. removing a slightly
+less important topic like overloading)
+
+These prefixes should ordered as they should be presented, to make generation of the
+training material easier. Individual trainers / classes may require a modified order,
+but the base order makes the most sense for most situations
+
+#### Prefixes 400 - 699
+
+These should be modules that may have interest to a specific customer or situation.
+Numeric order does not matter. For example, a module explaining the behavior of
+`Ada.Finalization` 
+
+#### Prefixes 700 - 899
+
+These should be reserved for future use. In time, the SPARK modules may use these 
+numbers
+
+#### Prefixes 900 - 999
+
+These prefixes should indicate reference materials. Typically, these modules would be a
+way to give students a central location for finding answers to simple Ada questions.
