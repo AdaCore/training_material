@@ -1,7 +1,15 @@
 out/
 tex2pdf.*
 
+# Documents
+*.doc
+*.docx
+*.pdf
+# except for PDF images
+!images/*.pdf 
+
 __pycache__
+
 # Vi swap
 .*.sw?
 
