@@ -1,6 +1,7 @@
 %%
 % Copyright (c) 2017 - 2020, Pascal Wagler;
 % Copyright (c) 2014 - 2020, John MacFarlane
+% Copyright (c) 2020, AdaCore
 %
 % All rights reserved.
 %
@@ -34,9 +35,10 @@
 %%
 
 %%
-% This is the Eisvogel pandoc LaTeX template.
+% This is the AdaCore pandoc LaTeX template.
 %
-% For usage information and examples visit the official GitHub page:
+% It is based on the Eisvogel pandoc LaTeX template.
+% For usage information and examples visit the original template's official GitHub page:
 % https://github.com/Wandmalfarbe/pandoc-latex-template
 %%
 
