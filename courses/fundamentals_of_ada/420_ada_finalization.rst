@@ -209,7 +209,7 @@ Unbounded String Implementation
 Lab
 ========
 
-.. include:: ../additional_modules/labs/ada.finalization.lab.rst
+.. include:: labs/420_ada_finalization.lab.rst
 
 =========
 Summary

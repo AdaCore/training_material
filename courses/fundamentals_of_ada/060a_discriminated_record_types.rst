@@ -400,7 +400,7 @@ Use of Discriminants in Record Definition
 Lab
 ========
 
-.. include:: ../additional_modules/labs/discriminated_record_types.lab.rst
+.. include:: labs/060a_discriminated_record_types.lab.rst
 
 =========
 Summary
