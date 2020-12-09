@@ -106,11 +106,11 @@ Scalar Types
 * Flavors
 
    - Discrete Types
-   - Real Types
 
-================
-Discrete Types
-================
+      - Numeric Types
+      - Enumeration Types
+
+   - Real Types
 
 ----------------
 Discrete Types
@@ -121,14 +121,26 @@ Discrete Types
    - 1,2,3,4 ...
    - Red, Yellow, Green
 
-* Signed integer types
-* Modular integer types
+* Numeric Types
 
-   - Unsigned values with wrap-around semantics
+   - Signed integer types
+   - Modular integer types
+
+      * Unsigned values with wrap-around semantics
 
 * Enumeration types
 
    - An enumerated list of values
+
+========================
+Discrete Numeric Types
+========================
+
+-----------
+Examples
+-----------
+
+.. include:: examples/030_basic_types/discrete_numeric_types.rst
 
 ----------------------
 Signed Integer Types
@@ -515,7 +527,143 @@ Integer Type (Signed and Modular) Literals
    type Event_Counter is range 0 .. 40_000; -- integer type
    OK : Event_Counter := 0; -- legal
    Bad : Event_Counter := 0.0 ; -- compile error
+
+------------
+Attributes
+------------
+
+* Built-in functions associated with types
+
+   - Supply a value
+   - Some take input parameters
+
+* Some are language-defined
+
+   - Summarized in RM K.2 "Language-Defined Attributes"
+
+* May be implementation-defined
+* Syntax for calls
+
+   - Type-Name ' Attribute-Name 
+
+      .. code:: Ada
+
+         I := Integer'Last;
  
+   - Type-Name ' Attribute-Name ( input-value )
+
+      .. code:: Ada
+
+         E1 := Some_Type'Succ ( E2 );
+ 
+-----------------------------------
+String Attributes For All Scalars
+-----------------------------------
+
+* `T'Image( input )`
+
+   - Converts given internal value to a `String` value
+   - Input value must be of type `T`
+
+* `T'Value( input )`
+
+   - Converts given `String` value to an internal value of type `T`
+   - Input must be of type `String`
+
+.. code:: Ada
+
+   Number : Integer := 12345;
+   Input  : String( 1 .. N );
+   ...
+   Put_Line( Integer'Image(Number) );
+   ...
+   Get( Input );
+   Number := Integer'Value( Input );
+ 
+----------------------------------
+Range Attributes For All Scalars
+----------------------------------
+
+* `T'First`
+
+  - Yields the first (least) value of type `T`
+
+* `T'Last`
+
+  - Yields the last (greatest) value of type `T`
+
+* `T'Range`
+
+  - Is a shorthand for ``T'First .. T'Last``
+
+.. code:: Ada
+   
+   type Signed_T is range -100 .. 100;
+   Smallest : Signed_T := Signed_T'First; -- -100
+   Largest  : Signed_T := Signed_T'Last;  -- 100
+ 
+-------------------------------------
+Neighbor Attributes For All Scalars
+-------------------------------------
+
+* `T'Pred( input )`
+
+   - Yields the predecessor of specified value
+   - Input must be of type `T`
+
+* `T'Succ ( input )`
+
+   - Yields the successor of specified value
+   - Input must be of type `T`
+
+.. code:: Ada
+
+   type Signed_T is range -128 .. 127;
+   type Unsigned_T is mod 256;
+   Signed   : Signed_T := 0;
+   Unsigned : Unsigned_T := 0;
+   ...
+   Signed := Signed'Succ( Signed );
+   ...
+   Unsigned := Unsigned'Pred( Unsigned );
+ 
+------------------------------------
+Min/Max Attributes For All Scalars
+------------------------------------
+
+* `T'Min`
+
+  - Yields the lesser of two values of type T`
+
+* `T'Max`
+
+  - Yields the greater of two values of type T`
+
+.. code:: Ada
+   
+   Safe_Lower : constant := 10;
+   Safe_Upper : constant := 30;
+   C : Integer := 15;
+   ...
+   C := Integer'Max (Safe_Lower, C - 1);
+   ...
+   C := Integer'Min (Safe_Upper, C + 1);
+ 
+.. container:: speakernote
+
+   First one says we can't decrement below 10
+   Second one says we can't increment above 30
+
+============================
+Discrete Enumeration Types
+============================
+ 
+-----------
+Examples
+-----------
+
+.. include:: examples/030_basic_types/discrete_enumeration_types.rst
+
 -------------------
 Enumeration Types
 -------------------
@@ -778,162 +926,6 @@ Short-Circuit Control Forms
 
          if Divisor = 0 or else K / Divisor = Max then ...
  
-------------
-Attributes
-------------
-
-* Built-in functions associated with types
-
-   - Supply a value
-   - Some take input parameters
-
-* Some are language-defined
-
-   - Summarized in RM K.2 "Language-Defined Attributes"
-
-* May be implementation-defined
-* Syntax for calls
-
-   - Type-Name ' Attribute-Name 
-
-      .. code:: Ada
-
-         I := Integer'Last;
- 
-   - Type-Name ' Attribute-Name ( input-value )
-
-      .. code:: Ada
-
-         E1 := Some_Type'Succ ( E2 );
- 
------------------------------------
-String Attributes For All Scalars
------------------------------------
-
-* `T'Image( input )`
-
-   - Converts given internal value to a `String` value
-   - Input value must be of type `T`
-
-* `T'Value( input )`
-
-   - Converts given `String` value to an internal value of type `T`
-   - Input must be of type `String`
-
-.. code:: Ada
-
-   type Days is ( Sun, Mon, Tue, Wed, Thu, Fri, Sat );
-   Today : Days := Some_Value;
-   Input : String( 1 .. N );
-   ...
-   Put_Line( Days'Image(Today) );
-   ...
-   Get( Input );
-   Today := Days'Value( Input );
- 
--------------------------------------
-Neighbor Attributes For All Scalars
--------------------------------------
-
-* `T'Pred( input )`
-
-   - Yields the predecessor of specified value
-   - Input must be of type `T`
-
-* `T'Succ ( input )`
-
-   - Yields the successor of specified value
-   - Input must be of type `T`
-
-.. code:: Ada
-
-   type Days is ( Sun, Mon, Tue, Wed, Thu, Fri, Sat );
-   Today     : Days := Some_Value;
-   Tomorrow  : Days;
-   Yesterday : Days;
-   ...
-   Tomorrow := Days'Succ( Today );
-   ...
-   Yesterday := Days'Pred( Today );
- 
-----------------------------------
-Range Attributes For All Scalars
-----------------------------------
-
-* `T'First`
-
-  - Yields the first (least) value of type `T`
-
-* `T'Last`
-
-  - Yields the last (greatest) value of type `T`
-
-* `T'Range`
-
-  - Is a shorthand for ``T'First .. T'Last``
-
-.. code:: Ada
-   
-   type Days is ( Sun, Mon, Tue, Wed, Thu, Fri, Sat );
-   Today : Days := Days'First; -- Sun
-   ...
-   Tomorrow : Days := Days'Last; -- Sat
- 
-------------------------------------
-Min/Max Attributes For All Scalars
-------------------------------------
-
-* `T'Min`
-
-  - Yields the lesser of two values of type T`
-
-* `T'Max`
-
-  - Yields the greater of two values of type T`
-
-.. code:: Ada
-   
-   Safe_Lower : constant := 10;
-   Safe_Upper : constant := 30;
-   C : Integer := 15;
-   ...
-   C := Integer'Max (Safe_Lower, C - 1);
-   ...
-   C := Integer'Min (Safe_Upper, C + 1);
- 
-.. container:: speakernote
-
-   First one says we can't decrement below 10
-   Second one says we can't increment above 30
-
------------------------------------------
-Order Attributes For All Discrete Types
------------------------------------------
-
-* `T'Pos ( input )`
-
-   - Yields the "logical position number" of specified value
-   - Input must be a value of type `T`
-
-* `T'Val ( input )`
-
-   - Converts specified position number to a value of type `T`
-
-.. code:: Ada
-
-   type Days is ( Sun, Mon, Tue, Wed, Thu, Fri, Sat ); -- 0 .. 6
-   Today    : Days := Some_Value;
-   Position : Integer;
-   ...
-   Position := Days'Pos( Today );
-   ...
-   Get( Position );
-   Today := Days'Val( Position );
- 
-.. container:: speakernote
-
-   Val/pos compared to value/image - same number of characters
-
 -----------------------------------
 Enumeration Representation Values
 -----------------------------------
@@ -962,9 +954,46 @@ Enumeration Representation Values
    - Are same as position numbers unless overridden
    - Thus users can rely on consistency when necessary
 
+-----------------------------------------
+Order Attributes For All Discrete Types
+-----------------------------------------
+
+* Valid for all discrete types, but most useful for enumerated types
+
+* `T'Pos ( input )`
+
+   - Yields the "logical position number" of specified value
+   - Input must be a value of type `T`
+
+* `T'Val ( input )`
+
+   - Converts specified position number to a value of type `T`
+
+.. code:: Ada
+
+   type Days is ( Sun, Mon, Tue, Wed, Thu, Fri, Sat ); -- 0 .. 6
+   Today    : Days := Some_Value;
+   Position : Integer;
+   ...
+   Position := Days'Pos( Today );
+   ...
+   Get( Position );
+   Today := Days'Val( Position );
+ 
+.. container:: speakernote
+
+   Val/pos compared to value/image - same number of characters
+
+
 ============
 Real Types
 ============
+
+-----------
+Examples
+-----------
+
+.. include:: examples/030_basic_types/real_types.rst
 
 ------------
 Real Types

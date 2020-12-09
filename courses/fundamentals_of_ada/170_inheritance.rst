@@ -37,6 +37,12 @@ Ada Mechanisms for Type Inheritance
 Primitives
 ============
 
+----------
+Examples
+----------
+
+.. include:: examples/170_inheritance/primitives.rst
+
 ---------------------------
 The Notion of a Primitive
 ---------------------------
@@ -151,6 +157,12 @@ Implicit Primitive Operations
 ===================
 Simple Derivation
 ===================
+
+----------
+Examples
+----------
+
+.. include:: examples/170_inheritance/simple_derivation.rst
 
 ------------------------
 Simple Type Derivation
@@ -356,6 +368,12 @@ Signed Integer Types Guidance (cont)
 ===================
 Tagged Derivation
 ===================
+
+----------
+Examples
+----------
+
+.. include:: examples/170_inheritance/tagged_derivation.rst
 
 -------------------
 Tagged Derivation

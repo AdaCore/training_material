@@ -126,6 +126,12 @@ Handler Part Is Skipped Automatically
 Handlers
 ==========
 
+----------
+Examples
+----------
+
+.. include:: examples/190_exceptions/handlers.rst
+
 ------------------------
 Exception Handler Part
 ------------------------
@@ -356,6 +362,12 @@ Exceptions Raised In Exception Handlers
 Implicitly and Explicitly Raised Exceptions
 =============================================
 
+----------
+Examples
+----------
+
+.. include:: examples/190_exceptions/implicitly_and_explicitly_raised_exceptions.rst
+
 ------------------------------
 Implicitly-Raised Exceptions
 ------------------------------
@@ -477,6 +489,12 @@ Explicitly-Raised Exceptions
 User-Defined Exceptions
 =========================
 
+----------
+Examples
+----------
+
+.. include:: examples/190_exceptions/user_defined_exceptions.rst
+
 -------------------------
 User-Defined Exceptions
 -------------------------
@@ -538,6 +556,12 @@ User-Defined Exceptions Example
 =============
 Propagation
 =============
+
+----------
+Examples
+----------
+
+.. include:: examples/190_exceptions/propagation.rst
 
 -------------
 Propagation
@@ -769,6 +793,12 @@ Handling Elaboration Exceptions
 =======================
 Exceptions as Objects
 =======================
+
+----------
+Examples
+----------
+
+.. include:: examples/190_exceptions/exceptions_as_objects.rst
 
 ----------------------------
 Exceptions Are Not Objects

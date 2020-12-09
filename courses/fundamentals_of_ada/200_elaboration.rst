@@ -48,6 +48,12 @@ Why Elaboration Is Needed
 Elaboration
 =============
 
+----------
+Examples
+----------
+
+.. include:: examples/200_elaboration/elaboration.rst
+
 -------------
 Elaboration
 -------------
@@ -163,6 +169,12 @@ GNAT Static Elaboration Model
 =====================
 Elaboration Control
 =====================
+
+----------
+Examples
+----------
+
+.. include:: examples/200_elaboration/elaboration_control.rst
 
 -----------------------
 `Pragma Preelaborate`
