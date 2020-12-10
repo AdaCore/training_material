@@ -12,7 +12,7 @@ Introduction
 Run-Time Errors
 -----------------
 
-.. image:: ../../images/coffee_pot_runtime_error.jpg
+.. image:: ../../images/coffee_pot_runtime_error.jpeg
 
 ---------------------------
 Run-Time Errors - Example

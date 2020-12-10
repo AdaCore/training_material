@@ -50,7 +50,7 @@ Reference Manual
 
 * Reference Manual(s) available from GNATstudio Help
 
-.. image:: ../../images/gnatstudio-help-gnat.jpg
+.. image:: ../../images/gnatstudio-help-gnat.jpeg
 
 -------------
 GNAT Tools
