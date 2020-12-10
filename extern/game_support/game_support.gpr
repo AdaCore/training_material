@@ -1,0 +1,72 @@
+with "gnat_sdl";
+with "stm32f4/stm32.gpr";
+
+project Game_Support is
+
+   type Backend_Type is ("pure_sdl", "opengl_sdl", "stm32");
+   Backend : Backend_Type := External ("backend", "pure_sdl");
+
+  -- GNAT_SDL.Test_Var := "B";
+
+   for Languages use ("ada");
+   case Backend is
+      when "stm32" =>
+         for Source_Dirs use ("src", "src/backends/" & Backend);
+      when others =>
+         for Source_Dirs use ("src", "src/backends/" & Backend & "_" & GNAT_SDL.SDL_Backend);
+   end case;
+
+   for Object_Dir use "obj";
+
+   case Backend is
+      when "stm32" =>
+        for Target use "arm-eabi";
+       for Runtime ("Ada") use "ravenscar-sfp-stm32f429disco";
+--         for Runtime ("Ada") use "ravenscar-full-stm32f429disco";
+          --for Runtime ("Ada") use "ravenscar-full-stm32f4";
+      when others =>
+         null;
+   end case;
+
+   package Compiler is
+      for Default_Switches ("Ada") use ("-gnat12", "-g", "-gnatQ", "-O0");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("Ada") use ("-E");
+   end Binder;
+
+   package Builder is
+      for Default_Switches ("ada") use ("-g");
+   end Builder;
+
+   package Linker is
+      case Backend is
+      when "stm32" => null;
+      when others =>
+         for Linker_Options use GNAT_SDL.Link_Opts;
+      end case;
+   end Linker;
+
+   package Ide is
+      case Backend is
+         when "stm32" =>
+            for Connection_Tool use "st-util";
+            --for Gnat use "arm-eabi-gnat";
+            -- for Gnatlist use "arm-eabi-gnatls";
+            --for Debugger_Command use "arm-eabi-gdb";
+            for Program_Host use "localhost:4242";
+            for Communication_Protocol use "remote";
+         when others => null;
+      end case;
+   end Ide;
+
+   package Naming is
+      case Backend is
+         when "stm32" =>
+            for Implementation ("last_chance_handler") use "last_chance_handler-stm32f429xx.adb";
+         when others => null;
+      end case;
+   end Naming;
+
+end Game_Support;

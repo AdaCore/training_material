@@ -1,0 +1,15 @@
+from: rst
+
+template: adacore
+resource-path: images/:
+
+author: AdaCore
+
+# Justification of figure caption: as for figure, center them
+caption-justification: centering
+
+titlepage: True
+titlepage-text-color: FFFFFF
+titlepage-rule-color: E07C00
+titlepage-background: images/title_background.pdf
+logo: images/logo.png
