@@ -17,7 +17,7 @@ project Solar_System is
    when "Problem" =>
       for Source_Dirs use ("src");
       when "Solution" =>
-         for Source_Dirs use ("sol");
+         for Source_Dirs use ("answers");
    end case;
 
    for Target use Game_Support'Target;
@@ -40,7 +40,7 @@ project Solar_System is
             for Switches ("ada") use ("-Lsrc/compute_library/lib", "-lcompute");
 
          when "Solution" =>
-            for Switches ("ada") use ("-Lsol/compute_library/lib", "-lcompute");
+            for Switches ("ada") use ("-Lanswers/compute_library/lib", "-lcompute");
 
       end case;
    end Linker;

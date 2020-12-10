@@ -19,7 +19,7 @@ project Solar_System is
          for Source_Dirs use ("src");
 
       when "Solution" =>
-         for Source_Dirs use ("sol");
+         for Source_Dirs use ("answers");
    end case;
 
    for Target use Game_Support'Target;
