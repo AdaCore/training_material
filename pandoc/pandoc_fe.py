@@ -59,8 +59,10 @@ def set_texinputs ( new_directories ):
 
     # when TEXINPUTS ends w/ a separator it means to append to standard TeX paths
     texinputs_append = (len(current) and current[-1] == separator)
-    os.environ['TEXINPUTS'] = separator.join ( unique ) \
+    texinputs_formated = separator.join ( unique ) \
                               + (separator if texinputs_append else '')
+    os.environ['TEXINPUTS'] = texinputs_formated
+    return texinputs_formated
 
 '''
 Chose and setup an output file full path based on various arguments received.
@@ -153,7 +155,7 @@ if __name__== "__main__":
 
     parser.add_argument('--directories',
                         help='Comma-separated list of folders to search for things like images and Beamer themes',
-                        default=str(ROOT) + ":",
+                        default=str(ROOT) + "//,:",
                         required=False)
 
     parser.add_argument('--title',
@@ -167,12 +169,12 @@ if __name__== "__main__":
 
     parser.add_argument('--theme',
                         help='Beamer theme',
-                        default='',
+                        default='adacore',
                         required=False)
 
     parser.add_argument('--color',
                         help='Beamer color theme',
-                        default='',
+                        default='adacore',
                         required=False)
 
     parser.add_argument('--filter',
@@ -184,9 +186,9 @@ if __name__== "__main__":
                         help="Output directory",
                         required=False)
 
-    parser.add_argument('--strip-extension',
-                        help="Strip the original extension from the title of the output "
-                             "file.\n"
+    parser.add_argument('--do-not-strip-extension',
+                        help="Do not strip the original extension from the title of "
+                             "the output file.\nLegacy behaviour\n"
                              "Eg. 'foo.rst.pdf' will become 'foo.pdf'.",
                         action="store_true")
 
@@ -222,7 +224,7 @@ if __name__== "__main__":
                                            title = args.title,
                                            output_dir = args.output_dir,
                                            output_file = args.output,
-                                           strip_extension = args.strip_extension)
+                                           strip_extension = not args.do_not_strip_extension)
             filter = args.filter
             if not os.path.isfile ( filter ):
                 filter = os.path.join ( os.path.dirname(__file__),
@@ -233,7 +235,7 @@ if __name__== "__main__":
                filter = " --filter " + filter
 
             # build list of search directories
-            set_texinputs ( args.directories )
+            texinputs = set_texinputs ( args.directories )
             if not args.hush:
                 print(f"TEXINPUTS={os.environ['TEXINPUTS']}")
 
@@ -251,18 +253,18 @@ if __name__== "__main__":
                     print (f"{input_file} -> "
                            f"{output_file}")
 
-                command = ( 'pandoc --standalone' +
-                            filter +
-                            pandoc_title_arg +
-                            theme +
-                            color +
-                            ' -f rst ' +
-                            ' -t ' + output_format ( args.extension.lower() ) +
-                            ' -o ' + output_file +
-                            f' {" ".join(source_list)}')
+                command = ( 'pandoc --standalone',
+                            '--resource-path', texinputs,
+                            filter,
+                            pandoc_title_arg,
+                            theme,
+                            color,
+                            '-f rst',
+                            '-t ' + output_format ( args.extension.lower() ),
+                            '-o ' + output_file, *source_list)
 
                 if not args.hush:
-                    print ( command )
+                    print ( " ".join(command) )
 
-                subprocess.check_call ( command, shell=True )
+                subprocess.check_call ( " ".join(command), shell=True )
             os.chdir(pcwd)
