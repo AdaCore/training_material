@@ -65,9 +65,6 @@ For manual GPR Build, use the `-Xsdl_backend=SDL2` option
 
 Examples of the use can be found in [`courses/fundamentals_of_ada/labs/solar_system`](https://github.com/AdaCore/training_material/tree/master/courses/fundamentals_of_ada/labs/solar_system).
 
-You can access a properly packaged version of those in the
-[repository Actions page](https://github.com/AdaCore/training_material/actions).
-
 Validate by clicking the checkmark on the side.
 
 In case of further issues, try changing the `backend` option to other values. Keep
