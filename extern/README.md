@@ -67,5 +67,7 @@ Examples of the use can be found in [`courses/fundamentals_of_ada/labs/solar_sys
 
 Validate by clicking the checkmark on the side.
 
-In case of further issues, try changing the `backend` option to other values. Keep
-the `LOADER` to `ROM` and check that `HOST` is set to your current OS.
+# Troubleshooting
+
+In case of issues, try changing the `backend` option to different values.
+The `LOADER` should be `ROM` and check that `HOST` is set to your current OS.
