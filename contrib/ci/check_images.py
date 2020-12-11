@@ -45,6 +45,7 @@ def search_references(f_name, source_files):
 def is_referenced(f, source_dir):
     return any(search_references(f.name,
                                  itertools.chain(source_dir.glob("**/*.rst"),
+                                                 source_dir.glob("**/*.md"),
                                                  source_dir.glob("**/*.yaml"),
                                                  source_dir.glob("**/*.latex"),
                                                  source_dir.glob("**/*.sty"),
