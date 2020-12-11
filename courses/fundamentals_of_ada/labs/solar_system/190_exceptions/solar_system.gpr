@@ -19,7 +19,7 @@ project Solar_System is
          for Source_Dirs use ("src", "common");
 
       when "Solution" =>
-         for Source_Dirs use ("sol", "common");
+         for Source_Dirs use ("answers", "common");
    end case;
 
    -- for Source_Dirs use ("cutsrc");
