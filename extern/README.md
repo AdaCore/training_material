@@ -17,7 +17,7 @@ For Windows users, you must download the DLL for the following libraries
 
 * [SDL2](https://www.libsdl.org/download-2.0.php).
 * [SDL2 ttf, zlib, and libfreetype](https://www.libsdl.org/projects/SDL_ttf/)
-* Extract all the DLL file to a the target directory
+* Extract all the DLL files to a the target directory
 * Add the DLL directory to your [`LIBRARY_PATH` environment variable](https://superuser.com/a/949577/72138):
 
 ## Linux
