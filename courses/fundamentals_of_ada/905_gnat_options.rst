@@ -32,7 +32,7 @@ Targets and Runtimes
    - powerpc-wrs-vxworksae-gcc
    - powerpc-wrs-vxworksae-gnatcheck
 
-* Exceptions: gnatstack, gprbuild, gps
+* Exceptions: gnatstack, gprbuild, gnatstudio
 * The runtime is introduced with the **--RTS=** switch
 
    - powerpc-wrs-vxworksae-gcc --RTS=zfp
@@ -99,7 +99,7 @@ Data representation
 * Code is expanded into simple structures and system calls
 * Useful to understand the complexity of the Ada constructions
 * Useful to identify check locations
-* Integrated into GPS
+* Integrated into GNAT Studio
 
 -----------------------------
 Intermediate representation
