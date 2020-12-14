@@ -20,13 +20,13 @@ Understanding the GNAT Build Steps
 
    - package `Linker` of the gpr file
 
-* **gprbuild** (as well as **gnatmake**) is responsible of calling these tools
+* **gprbuild** is responsible of calling these tools
 
 ----------------------
 Targets and Runtimes
 ----------------------
 
-* Most tools have a "native" name (gcc, gnat, gnatmake, gnatcheck, etc.)
+* Most tools have a "native" name (gcc, gnat, gnatcheck, etc.)
 * The name of the tool for the target is "**target**-**toolname**"
 
    - powerpc-wrs-vxworksae-gcc
