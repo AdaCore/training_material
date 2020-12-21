@@ -984,53 +984,29 @@ Composite Result Types Allowed
    end Identity;
  
 ----------------------------------------
-Function Results Are Objects : Records
+Function Results Are Objects
 ----------------------------------------
 
 .. code:: Ada
 
-   type Coordinate is record
-     X, Y : Real;
+   type Record_T is record
+      Field1 : String (1 .. 10);
+      Field2 : Character;
    end record;
-   ...
-   A, B, C : Coordinate;
-   R : Real;
-   ...
-   function Min (L, R : Coordinate) return Coordinate;
-   ...
+   function Return_Record (C : Character) return Record_T is
    begin
-     A := Min (B, C);
-     R := Min (B, C).X;
-     if  Min (B, C).Y  > 0.0 then ...
-   end Min;
- 
------------------------------------------
-Function Results Are Objects : Indexing
------------------------------------------
-
-.. code:: Ada
-
-   type Move is range 1 .. 9;
-   Location : Move;
-   C : Character;
-   ...
-   C := Move'Image(Location)(2); -- 'image returns a string
- 
-----------------------------------------
-Function Results Are Objects : Slicing
-----------------------------------------
-
-.. code:: Ada
-
-   type Vector is array  (Positive range <>) of Real;
-   Actual : Vector (1 .. 20);
-   X : Vector (1 .. 10);
-   function Inverted (V : Vector) return Vector;
-   ...
+      return (Field1 => (others => C), Field2 => C);
+   end Return_Record;
+   function Return_String (C : Character; L : Natural) return String is
+      R : String (1 .. L) := (others => C);
    begin
-     Actual := Inverted (Actual);
-     X := Inverted (Actual)(1 .. 10);
-   end;
+      return R;
+   end Return_String;
+
+   -- s set to 'field1' in returned record
+   S : String := Return_Record (' ').Field1;
+   -- c set to character at index 3 in returned string
+   C : Character := Return_String ('x', 4) (3);
  
 ======================
 Expression Functions
