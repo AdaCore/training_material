@@ -11,13 +11,15 @@ The Name
 ----------
 
 * First called DoD-1
-* Renamed Ada after the "first programmer"
+* Renamed Ada, the "first programmer"
 
    - Augusta Ada Byron, Countess of Lovelace
 
       + Lord Byron's daughter
 
-   - Drafted a plan of how Charles Babbage's Analytical Engine might calculate Bernoulli numbers, now considered the first computer program
+   - Planned to calculate Bernouilli's numbers with Babbage's Analytical Engine
+
+      + considered the first computer program
 
 * Writing **ADA** is like writing **CPLUSPLUS**
 
