@@ -58,9 +58,8 @@ Array Type Index Constraints
 .. code:: Ada
 
    type Schedule is array (Days range Mon .. Fri) of Real;
-   type List is array (1 .. 10) of Some_Type;
-   -- silly since hard-coded
-   type Nullo is array (1 .. 0) of Some_Type;
+   type Bits32_T is array (0 .. 31) of Bit_T;
+   type Flags_T is array ( -10 .. 10 ) of Boolean;
    -- this may or may not be null range
    type Dynamic is array (1 .. N) of Integer;
 
@@ -141,28 +140,6 @@ Constrained Array Type Declarations
       type Work_Week_T is array (Days range Mon .. Fri) of Real;
       type Weekdays is array (Mon .. Fri) of Real;
       type Workdays is array (Weekdays'Range) of Real;
-
---------------------------------
-Constrained Array Type Example
---------------------------------
-
-.. code:: Ada
-
-   subtype User_LED is GPIO_Pin;
-   Green  : User_LED renames Pin_1;
-   Orange : User_LED renames Pin_13;
-   Red    : User_LED renames Pin_8;
-   Blue   : User_LED renames Pin_15;
-   ...
-   type Index is mod 4;
-   -- The LEDs are not physically laid out "consecutively" in
-   -- such a way that we can simply go in pin value order to
-   -- get circular rotation. Thus we define this mapping,
-   -- using a consecutive index to get the physical LED
-   -- blinking order desired.
-   type Blinking_Pattern is array (Index) of User_LED;
-   Order : constant Blinking_Pattern :=
-           (Orange, Red, Blue, Green);
 
 ----------------------------------
 Multiple-Dimensioned Array Types
@@ -668,22 +645,21 @@ Common Slicing Idiom Example
 
 .. code:: Ada
 
-   type Moves is range 1 .. 4;
-   type Positions is array (Moves range <>) of Position;
-   function Next (Current : Position) return Positions is
-     Result : Positions (Moves);
-     -- upper bound
-     Count : Integer range 0 .. Moves'Last := 0;
+   function Remove_Spaces (Str : String) return String is
+      Ret_Val   : String (1 .. Str'Length);
+      Last_Used : Natural := 0;
    begin
-     for each position adjacent to Current loop
-       if adjacent_position_is_on_the_board_and_not_a_wall
-       then
-         Count := Count + 1;
-         Result (Count) := adjacent position;
-       end if;
-     end loop;
-     return Result (1 .. Count); -- could be empty
-   end Next;
+      for C in Str'First .. Str'Last loop
+         if Str (C) /= ' ' then
+            Last_Used := Last_Used + 1;
+            -- Build return string
+            Ret_Val (Last_Used) := Str (C);
+         end if;
+      end loop;
+      -- Return slices of return string that we need
+      -- (If Last_Used = 0, will return an empty string)
+      return Ret_Val (1 .. Last_Used);
+   end Remove_Spaces;
 
 ---------
 Sliding
@@ -814,20 +790,29 @@ Array Component For-Loop Example
 
    Ada 2012
 
-.. code:: Ada
+* Given an array
 
-     Primes : constant array (1 .. 5) of Integer :=
-        (2, 3, 5, 7, 11);
-   begin
-     ...
-     for P of Primes loop
-       Put_Line (Integer'Image (P));
-     end loop;
-     ...
-     for P of reverse Primes loop
-       Put_Line (Integer'Image (P));
-     end loop;
-     ...
+   .. code:: Ada
+
+        Primes : constant array (1 .. 5) of Integer :=
+           (2, 3, 5, 7, 11);
+
+* Component-based looping would look like
+
+   .. code:: Ada
+
+      for P of Primes loop
+         Put_Line (Integer'Image (P));
+      end loop;
+
+* While index-based looping would look like
+
+   .. code:: Ada
+
+      for P in Primes'range loop
+         Put_Line (Integer'Image (Primes(P)));
+      end loop;
+
 
 ----------------------------------------
 For-Loops with Multidimensional Arrays

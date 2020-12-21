@@ -148,7 +148,7 @@ Signed Integer Types
 
 * Define a range of signed whole numbers
 
-   - Symmetric around zero
+   - Symmetric about zero (-0 = +0)
 
 * Syntax
 
@@ -1045,7 +1045,7 @@ Declaring Floating Point Types
       type <identifier> is
           digits <expression> [range constraint];
  
-   - Decimal digits of precision
+   - Digits is the minimum number of significant decimal digits required
 
 * Automatic representation choice
 
@@ -1300,8 +1300,8 @@ Simple Static Type Derivation
 
    .. code:: Ada
 
-      derived type ::= type identifier is new subtype_indication;
-      subtype_indication ::= type-or-subtype-name [constraint]
+      derived_type ::= type identifier is new subtype_indication;
+      subtype_indication ::= type_or_subtype_name [constraint]
  
 * We use it for convenience occasionally
 
