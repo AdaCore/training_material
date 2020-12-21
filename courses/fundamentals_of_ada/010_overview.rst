@@ -111,20 +111,20 @@ Language Structure (Ada95 and Onward)
 
  .. container:: column
   
-    * Several language-defined types, including string
-    * Extensive support for user-defined types
+    * Language-defined types, including string
+    * User-defined types
     * Overloading procedures and functions
-    * Modules for compile-time visibility control
+    * Compile-time visibility control
     * Abstract Data Types
 
  .. container:: column
   
     * Exceptions
-    * Generic Units
-    * High-level dynamic memory management
-    * Low-level Programming
-    * Object-Oriented Programming
-    * Concurrent Programming
+    * Generic units
+    * Dynamic memory management
+    * Low-level programming
+    * Object-Oriented Programming (OOP)
+    * Concurrent programming
     * Contract-Based Programming
 
 ----------------
