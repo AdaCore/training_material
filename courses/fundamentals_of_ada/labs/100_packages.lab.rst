@@ -20,6 +20,8 @@ Packages Lab
       2. User input (ensure value is in range)
       3. List ADT
 
+   - Use `with package_name;` in your unit to get access to `package_name`
+
 ---------------------------------
 Creating Packages in GNATstudio
 ---------------------------------

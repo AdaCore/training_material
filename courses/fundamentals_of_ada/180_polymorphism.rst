@@ -78,8 +78,8 @@ Indefinite type
       Tc1 : T'Class := Dc;
       Tc2 : T'Class := Obj;
       -- initialization required in class-wide declaration
-      Tc3 : T'Class; 
-      Dc2 : D'Class;
+      Tc3 : T'Class; -- compile error
+      Dc2 : D'Class; -- compile error
    begin
       P (Dc);
       P (Obj);

@@ -7,6 +7,7 @@ Program Structure Lab
    - Create a package to add text objects to a list
 
       + Create primitive operations to manipulate the list
+      + Do not allow the same text object to appear more than once
 
    - Create a child package to print the list
    - Create a main program to enter unique data into the list
