@@ -27,7 +27,7 @@ The Name
 
 * An International Standards Organization standard
 
-   - A new version formally adopted about every 10 years
+   - Updated about every 10 years
 
 --------------------------
 Ada Evolution Highlights
@@ -85,9 +85,9 @@ Language Structure (Ada95 and Onward)
 
  .. container:: column
   
-    * "Core" is required of all implementations
+    * "Core" implementation is required
 
-       - Reference Manual (RM) sections 1 through 13
+       - Reference Manual (RM) sections 1 :math:`\rightarrow` 13
        - Predefined Language Environment (Annex A)
        - Foreign Language Interfaces (Annex B)
 
