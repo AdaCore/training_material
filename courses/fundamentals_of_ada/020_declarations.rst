@@ -697,7 +697,7 @@ Scope and "Lifetime"
 
  .. container:: column
   
-    .. image:: ../../images/block_scope_example.png
+    .. image:: ../../images/block_scope_example.jpg
     
  .. container:: column
   
