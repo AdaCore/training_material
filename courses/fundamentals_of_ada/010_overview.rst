@@ -13,22 +13,24 @@ A Little History
 The Name
 ----------
 
-* First called DoD-1
-* Renamed Ada, the "first programmer"
+.. container:: columns
 
-   - Augusta Ada Byron, Countess of Lovelace
+ .. container:: column
 
-      + Lord Byron's daughter
+    * First called DoD-1
+    * Augusta Ada Byron, "first programmer"
 
-   - Planned to calculate Bernouilli's numbers with Babbage's Analytical Engine
+       - Lord Byron's daughter
+       - Planned to calculate Bernouilli's numbers on Babbage's Analytical Engine
+       - first computer program
 
-      + considered the first computer program
+ .. container:: column
 
-* Writing **ADA** is like writing **CPLUSPLUS**
+  .. image:: images/ada_lovelace.jpeg
 
-   - The cognoscenti will know...
 
-* An International Standards Organization standard
+* Writing **A.D.A.** is like writing **C.P.L.U.S.P.L.U.S.**
+* International Standards Organization standard
 
    - Updated about every 10 years
 
