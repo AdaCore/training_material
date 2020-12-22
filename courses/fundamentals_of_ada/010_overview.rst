@@ -167,7 +167,7 @@ Weakly-Typed Languages
 
    day = heading; // typo?
    heading = tue + 3 * south/sun;// what?
- 
+
 --------------------------
 Strongly-Typed Languages
 --------------------------
@@ -182,39 +182,37 @@ Strongly-Typed Languages
 
    Heading : Directions := North;
    Day : Days := Wed;
-
+   
    ...
 
    Day := Heading; -- Compile Error
 
    Heading := Tue + 3 * South/Sun; -- Compile Error
  
-----------------------------------
-Type Model Benefit: Saves Money!
-----------------------------------
+--------------------------
+The Type Model saves Money
+--------------------------
 
-.. container:: columns
+* Shifts fixes and costs to **early phases**: specification, coding
+* **Cheaper**: What is the cost of an error *during a flight*?
 
- .. container:: column
-  
-    * Shifts costs from later, expensive phases to earlier, cheaper phase
 
- .. container:: column
-  
-    .. image:: ../../images/relative_cost_to_fix.png
-       :width: 100%
-    
 ---------------------------
 Type Model Run-Time Costs
 ---------------------------
 
-* Proper values verified during execution if necessary
-* But performance of semantically identical programs will be the same
+* Values checked **at run-time**
+* **Same performance** for identical programs
 
-   - Includes requirements for value checking
-   - If checking is not required turn it off!
+   - Type checks can be disabled
+   - Compile-time check is *free*
+   - **Unified** error handling
 
-* C
+.. container:: columns
+
+ .. container:: column
+
+   **C**
 
    .. code:: C++
 
@@ -226,7 +224,9 @@ Type Model Run-Time Costs
       else
         // signal a failure
  
-* Ada
+ .. container:: column
+
+   **Ada**
 
    .. code:: Ada
 
@@ -234,7 +234,7 @@ Type Model Run-Time Costs
       Y, Z : Integer range 1 .. 10;
       ...
       Y := X;
-      Z := Y; -- no range check required
+      Z := Y; -- no check required
  
 -------------
 Subprograms
