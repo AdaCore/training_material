@@ -44,12 +44,12 @@ Ada Evolution Highlights
   
     * **Ada 83**
 
+       - Not standardized
        - Abstract Data Types
        - Modules
        - Concurrency
        - Generics
        - Exceptions
-       - etc.
 
     * **Ada 95**
 
