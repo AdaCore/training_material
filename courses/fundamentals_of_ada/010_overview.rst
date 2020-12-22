@@ -104,8 +104,11 @@ Language Structure (Ada95 and Onward)
    - High-Integrity Systems (H)
 
 -------------------------
-"Core" Language Content
+*Core* Language Content
 -------------------------
+
+* Ada is a **compiled**, **multi-paradigm** language
+* With a **static** and **strong** type model
 
 .. container:: columns
 
@@ -115,7 +118,7 @@ Language Structure (Ada95 and Onward)
     * User-defined types
     * Overloading procedures and functions
     * Compile-time visibility control
-    * Abstract Data Types
+    * Abstract Data Types (ADT)
 
  .. container:: column
   
@@ -131,53 +134,59 @@ Language Structure (Ada95 and Onward)
 Ada Type Model
 ----------------
 
-* Statically Typed
+* **Static** Typing
 
-   - Each object is permanently declared to be of one type
-   - Still have run-time polymorphism for OOP...
+   - Object type **cannot change**
+   - ... but run-time polymorphism available (OOP)
 
-* Strongly Typed
+* **Strong** Typing
 
-   - Compiler enforces appropriate manipulation and values
-   - Objects of "closely-related" types may be explicitly converted
-   - Conversions between unrelated types are explicitly unchecked
+   - **Compiler-enforced** operations and values
+   - **Explicit** conversions for "related" types
+   - **Unchecked** conversions possible
 
-* Many types are predefined
-* Users extend the language by defining additional application-specific types
+* Predefined types
+* Application-specific types
 
-   - Optional!
+    - User-defined
+    - Checked at compilation and run-time
 
 ------------------------
 Weakly-Typed Languages
 ------------------------
 
+* Conversions are **unchecked**
+* Type errors are easy
+
 .. code:: C++
 
-   typedef enum { north, south, east, west } directions;
-   typedef enum { mon, tue, wed, thur, fri, sat, sun } days;
-   directions heading;
-   days day;
-   day = wed;
-   day = north;
-   heading = east;
-   heading = south + north;
-   heading = tue + 3 * south/sun;
+   enum { north, south, east, west } direction = north;
+   enum { mon, tue, wed, thur, fri, sat, sun } day = wed;
+
+   ...
+
+   day = heading; // typo?
+   heading = tue + 3 * south/sun;// what?
  
 --------------------------
 Strongly-Typed Languages
 --------------------------
 
+* Conversions are **checked**
+* Type errors are hard
+
 .. code:: Ada
 
    type Directions is ( North, South, East, West );
    type Days is ( Mon, Tue, Wed, Thu, Fri, Sat, Sun );
-   Heading : Directions;
-   Day     : Days;
+
+   Heading : Directions := North;
+   Day : Days := Wed;
+
    ...
-   Day := Mon;
-   Day := North; -- Compile Error
-   Heading := South;
-   Heading := Wed; -- Compile Error
+
+   Day := Heading; -- Compile Error
+
    Heading := Tue + 3 * South/Sun; -- Compile Error
  
 ----------------------------------
