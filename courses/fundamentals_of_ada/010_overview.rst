@@ -235,26 +235,28 @@ Type Model Run-Time Costs
       ...
       Y := X;
       Z := Y; -- no check required
- 
+
 -------------
 Subprograms
 -------------
 
-* Can be either a ``function`` or a ``procedure``
+- Syntax differs between *values* and *actions*
+- :ada:`function` for a *value*
 
-   - Functions represent values
-   - Procedures represent actions
+.. code:: Ada
 
-* Are syntactically distinguished
+  function Is_Leaf (T : Tree) return Boolean
 
-   .. code:: Ada
+- :ada:`procedure` for an *action*
 
-      function Is_Leaf (T : Tree) return Boolean
-      procedure Split (T     : in out Tree;
-                       Left  : out Tree;
-                       Right : out Tree)
- 
-* Provide direct syntactic support for separation of specification from implementation
+.. code:: Ada
+
+  procedure Split (T     : in out Tree;
+                   Left  : out Tree;
+                   Right : out Tree)
+
+
+* Specification :math:`\neq` Implementation
 
    .. code:: Ada
 
@@ -263,109 +265,77 @@ Subprograms
       begin
       ...
       end Is_Leaf;
- 
+
 ---------------------------
 Dynamic Memory Management
 ---------------------------
 
-* Pointers are known to be error-prone
+* Raw pointers are error-prone
+* Ada **access types** abstract facility
 
-   - Easy to misuse
+    - Static memory
+    - Allocated objects
+    - Subprograms
 
-* Ada defines more abstract facility
+* Accesses are **checked**
 
-   - Called "access types" instead of "pointers"
+    - Unless unchecked mode is used
 
-* Can designate "declared" or "allocated" objects
-* Can designate subprograms
-* Values always meaningful unless unchecked programming used
-* Users can define their own storage managers
+* Supports user-defined storage managers
+
+    - Memory **pools**
 
 ----------
 Packages
 ----------
 
-* Modules that group related entities together
-* Support abstraction
+* Grouping of related entities
+* Separation of concerns
 
-   - Separate specification from implementation
+   - Definition :math:`\neq` usage
+   - Single definition by **designer**
+   - Multiple use by **users**
 
-* Support information hiding
+* Information hiding
 
-   - Compiler enforces visibility for references by clients
-
-* Isolate implementation decisions
-
-   - Defined in one place, used everywhere by clients
+   - Compiler-enforced **visibility**
+   - Powerful **privacy** system
 
 -------------------
 Package Structure
 -------------------
 
-* Visible part
+* Declaration view
 
-   - Compiler allows client references
+    - **Can** be referenced by user code
+    - Exported types, variables...
 
-   .. code:: Ada
+* Private view
 
-      package Name is
-        -- exported declarations of
-        --    types, variables, subprograms ...
-      end Name;
-   
-* Implementation part
+    - **Cannot** be referenced by user code
+    - Exported **representations**
 
-   - Compiler prevents client references
+* Implementation view
 
-   .. code:: Ada
+    - Not exported
 
-      package body Name is
-        -- hidden declarations of
-        --    types, variables, subprograms ...
-        -- implementations of exported subprograms etc.
-      end Name;
- 
 ---------------------------
 Abstract Data Types (ADT)
 ---------------------------
 
-* State is encapsulated within variables of the type
-* Classic definition
+* **Variables** of the **type** encapsulate the **state**
+* Classic definition of an ADT
 
-   - Set of applicable values
-   - Set of applicable operations on objects of the type
-   - Compile-time hidden representation
+   - Set of **values**
+   - Set of **operations**
+   - **Hidden** compile-time **representation**
 
-* The compiler enforces your application model
+* Compiler-enforced
 
-   - Allowed values
-   - Allowed operations
+   - Check of values and operation
+   - Easy for a computer
+   - Developer can focus on **earlier** phase: requirements
 
-* Makes the computer work for you
-
-   - Bookkeeping is what it does best!
-   - Allows us to focus on "the hard stuff"
-
--------------------------------
-Package Optional Private Part
--------------------------------
-
-.. code:: Ada
-
-   package Name is
-     -- exported declarations of
-     --    types, variables, subprograms ...
-   private
-     -- hidden declarations of
-     --    types, variables, subprograms ...
-   end Name;
-   
-   package body Name is
-     -- hidden declarations of
-     --    types, variables, subprograms ...
-     -- implementations of exported subprograms etc.
-   end Name;
- 
 ---------------
 Private Types
 ---------------
