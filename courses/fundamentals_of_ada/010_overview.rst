@@ -86,27 +86,22 @@ Big Picture
 Language Structure (Ada95 and Onward)
 ---------------------------------------
 
-.. container:: columns
+* **Required** *Core* implementation
 
- .. container:: column
-  
-    * "Core" implementation is required
+   - Reference Manual (RM) sections 1 :math:`\rightarrow` 13
+   - Predefined Language Environment (Annex A)
+   - Foreign Language Interfaces (Annex B)
 
-       - Reference Manual (RM) sections 1 :math:`\rightarrow` 13
-       - Predefined Language Environment (Annex A)
-       - Foreign Language Interfaces (Annex B)
 
- .. container:: column
-  
-    * "Specialized Needs Annexes" are optional
+* Optional *Specialized Needs Annexes*
 
-       - Provide more functionality but not additional syntax
-       - Systems Programming (C)
-       - Real-Time Systems (D)
-       - Distributed Systems (E)
-       - Information Systems (F)
-       - Numerics (G)
-       - High-Integrity Systems (H)
+   - No additional syntax
+   - Systems Programming (C)
+   - Real-Time Systems (D)
+   - Distributed Systems (E)
+   - Information Systems (F)
+   - Numerics (G)
+   - High-Integrity Systems (H)
 
 -------------------------
 "Core" Language Content
