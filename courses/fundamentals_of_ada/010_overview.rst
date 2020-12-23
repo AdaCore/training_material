@@ -340,20 +340,19 @@ Abstract Data Types (ADT)
 Exceptions
 ------------
 
-* Facilities for dealing with errors or other unexpected situations during execution
-* Common in modern languages
+* Dealing with **errors**, **unexpected** events
+* Separate error-handling code from logic
+* Ada exceptions are **not classes**
+* Some flexibility
 
-   - Represent errors and are raised when necessary
-   - Can be handled to express recovery
+   - Re-raising
+   - Custom messages
 
-* Have different syntax from class-based languages
+* **Performance** cost
 
-   - Exceptions are not classes in Ada
+    - Can be disabled
 
-* Allow flexible manipulation (within limits)
-
-   - Re-raising outside original scope, etc.
-   - Attaching messages to occurrences
+* Do not use for flow-control
 
 ---------------
 Generic Units
