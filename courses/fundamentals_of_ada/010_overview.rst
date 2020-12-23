@@ -485,86 +485,87 @@ Concurrency Mechanisms
 Low Level Programming
 -----------------------
 
-* Facilities designed for embedded systems
+* **Representation** clauses
+* Bit-level layouts
+* Memory pools definition
 
-   - Direct manipulation of hardware
-   - Direct interaction with assembly language
+    - With access safeties
 
-* As effective as any high order language
+* Foreign language integration
 
-   - Expressive
-   - Well-specified
-   - Efficient
+    - C
+    - C++
+    - Assembly
+    - ect...
 
-* Reasonably portable
+* Explicit specifications
 
-   - Not all software can or should be absolutely portable!
-
-* Abstraction largely preserved
-
--------------------------------
-Low Level Programming Support
--------------------------------
-
-* Extensive representation queries
-* Explicit representation specifications
-
-   - Flexible bit-specific type layouts with guaranteed semantics
-   - Size (in bits) for objects
-   - Storage requirements for tasks
-   - Dynamic storage collection ("heap") sizes for access types
-   - Memory locations for individual objects
-   - Others...
-
-* Interfacing with other languages
-
-   - FORTRAN, C, Assembly, etc.
-
-* Inline assembly language code insertions
+    - Expressive
+    - Efficient
+    - Reasonably portable
+    - Abstractions preserved
 
 ---------------------------------
-Predefined Language Environment
+**Standard** Language Environment
 ---------------------------------
+
+* Standardized common API
 
 .. container:: columns
 
  .. container:: column
   
-    * Standard types and operations for them
+    * Types
 
-       - Integer, floating- and fixed-point, unsigned
+       - Integer
+       - Floating-point
+       - Fixed-point
        - Boolean
-       - Characters and Strings of different sizes
-       - etc.
+       - Characters, Strings, Unicode
+       - ect...
 
-    * Character handling and string handling routines
-    * Elementary numeric functions (sine, cosine, etc.)
+    * Math
+        
+        - Trigonometric
+        - Complexes
+
     * Pseudo-random number generators
 
  .. container:: column
   
-    * I/O for text, direct/sequential binary, streams
-    * Exception information manipulation
-    * Command-line argument access
-    * Environment variables access and manipulation
-    * Standard "containers" data structures library
-    * And more...
+    * I/O
+
+        - Text
+        - Binary (direct / sequential)
+        - Files
+        - Streams
+
+    * Exceptions
+
+        - Call-stack
+
+    * **Command-line** arguments
+    * **Environment** variables
+    * **Containers**
+
+        - Vector
+        - Map
 
 ------------------------------
 Language Examination Summary
 ------------------------------
 
-* A uniquely powerful combination of capabilities
-* Designed with three overriding concerns
+* Unique capabilities
+* Three main goals
 
-   - Program reliability and maintenance
-   - Programming as a human activity
+   - **Reliability**, maintenability
+   - Programming as a **human** activity
    - Efficiency
 
-* An easy-to-use language
+* Easy-to-use
 
-   - Once you know it!
-   - Very few pitfalls
+   - ...and hard to misuse
+   - Very **few pitfalls** and exceptions
 
 -----------------------------------
 So Why Isn't Ada Used Everywhere?
