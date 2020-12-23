@@ -600,12 +600,12 @@ Canonical First Program
    5   Ada.Text_IO.Put_Line ("Hello, World!");
    6 end Say_Hello;
  
-* Line 1 - *with*  - Notification of dependence on a module
-* Line 2 - *--* - Comment
-* Line 3 - *Say_Hello* - Subprogram name
-* Line 4 - *begin* - Begin executable code
-* Line 5 - *Ada.Text_IO.Put_Line* - Subprogram call
-* (cont) - *"Hello, World!"* - String literal (type-checked)
+* Line 1 - :ada:`with`  - Package dependency
+* Line 2 - :ada:`--` - Comment
+* Line 3 - :ada:`Say_Hello` - Subprogram name
+* Line 4 - :ada:`begin` - Begin executable code
+* Line 5 - :ada:`Ada.Text_IO.Put_Line ()` - Subprogram call
+* (cont) - :ada:`"Hello, World!"` - String literal (type-checked)
 
 ----------------------------------
 "Hello World" Lab - Command Line
