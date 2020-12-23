@@ -422,15 +422,16 @@ Object-Oriented Programming
 Contract-Based Programming
 ----------------------------
 
-* Pre- and postconditions specify subprogram obligations for caller and implementer
+* Pre- and post-conditions
+* Formalizes specifications
 
    .. code:: Ada
 
-      procedure P (This : in out Integer) with
-          Pre => This < Integer'Last, -- Requirement
-          Post => This = This'Old + 1; -- Guarantee
+      procedure Pop (S : in out Stack) with
+          Pre => not S.Empty, -- Requirement
+          Post => not S.Full; -- Guarantee
  
-* Type Invariants ensure general properties of objects
+* Type invariants
 
    .. code:: Ada
 
