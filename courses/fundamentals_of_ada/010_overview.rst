@@ -405,21 +405,18 @@ Stack with Generics
 Object-Oriented Programming
 -----------------------------
 
-* Next step after "ADT Programming"
 
-   - Abstract Data Types
-   - Builds upon ADT concepts and practices
+* Extension of ADT
 
-* OOP = ADT Programming plus run-time flexibility
-* Directly supported
+    - Sub-types
+    - Run-time flexibility
 
-   - Inheritance
-   - Run-time polymorphism
-   - Dynamic dispatching
-   - Abstract types and subprograms
-   - Interface types for multiple inheritance
-
-      + Thread-safe too
+* Inheritance
+* Run-time polymorphism
+* Dynamic **dispatching**
+* Abstract types and subprograms
+* **Interface** for multiple inheritance
+* **Protected** thread-safe objects
 
 ----------------------------
 Contract-Based Programming
