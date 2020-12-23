@@ -362,22 +362,23 @@ Generic Units
 
  .. container:: column
   
-    * Are templates for program units
+    * Code Templates
 
        - Subprograms
        - Packages
 
-    * Allow parameterization of program units
+    * Parameterization
 
-       - Tailorable components within a strongly typed environment
+       - Strongly typed
+       - **Expressive** syntax
 
  .. container:: column
   
     .. image:: ../../images/generic_template_to_instances.png
     
-------------------------------
-Generic Version of Stack ADT
-------------------------------
+-------------------
+Stack with Generics
+-------------------
 
 .. code:: Ada
 
