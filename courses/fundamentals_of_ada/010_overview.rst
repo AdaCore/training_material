@@ -437,44 +437,49 @@ Contract-Based Programming
 
       type Table is private with Invariant => Sorted (Table);
  
--------------------------------------
-Language-Based Concurrency Approach
--------------------------------------
+--------------------------
+Language-Based Concurrency
+--------------------------
 
-* Compile-time checking
+* **Expressive**
 
-   - Interactions
-   - Parameter types and modes
-   - Interface consistency
+    - Close to problem-space
+    - Specialized constructs
+    - **Explicit** interractions
 
-* Closer mapping of problem space
-* Specific constructs for interactions
-* Explicit interactions within source code
-* Enhanced portability
+* **Run-time** handling
+
+    - Maps to OS primitives
+    - Several support levels (Ravenscar...)
+
+* **Portable**
 
    - Source code
    - People
-   - Much less dependent upon OS and vendor
+   - OS & Vendors
 
-----------------------------
-Ada Concurrency Mechanisms
-----------------------------
+-----------------------
+Concurrency Mechanisms
+-----------------------
 
-* Task objects
+* Task
 
-   - Provide active threads of control
+   - **Active**
+   - **Rich** API
+   - OS threads
 
-* Protected objects
+* Protected object
 
-   - Passive
-   - Essentially "monitors" with high-level condition synchronization
-   - Synchronize access to values without thread overhead
+   - **Passive**
+   - *Monitors* protected data
+   - **Restricted** set of operations
+   - No thread overhead
+   - Very portable
 
-* Integrated with OOP
+* Object-Oriented
 
    - Synchronized interfaces
-   - Dynamic dispatching to entries and protected subprograms
-   - Et cetera
+   - Protected objects inheritance
 
 -----------------------
 Low Level Programming
