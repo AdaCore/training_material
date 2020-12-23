@@ -437,28 +437,6 @@ Contract-Based Programming
 
       type Table is private with Invariant => Sorted (Table);
  
----------------------------------
-Pre- and Postconditions Example
----------------------------------
-
-.. code:: Ada
-
-   package Bounded_Stacks is
-     type Stack is private;
-     function Empty (This : Stack) return Boolean;
-     function Full (This : Stack) return Boolean;
-     procedure Push (This : in out Stack;  Value : Content)
-       with Pre  => not Full (This),
-            Post => not Empty (This) and Top (This) = Value;
-     procedure Pop (This : in out Stack;  Value : out Content)
-       with Pre  => not Empty (This),
-            Post => not Full (This);
-     function Top (This : Stack) return Content
-     with Pre => not Empty (This);
-   private
-     ...
-   end Bounded_Stacks;
- 
 -------------------------------------
 Language-Based Concurrency Approach
 -------------------------------------
