@@ -55,7 +55,7 @@ A Little Terminology
 
    .. code:: Ada
 
-      type name is type-definition;
+      type <name> is <type definition>;
  
 * A type-definition defines the type's structure
 
