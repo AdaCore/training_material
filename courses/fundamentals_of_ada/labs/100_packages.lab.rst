@@ -20,6 +20,8 @@ Packages Lab
       2. User input (ensure value is in range)
       3. List ADT
 
+   - :code:`with package_name;` gives access to :code:`package_name`
+
 ---------------------------------
 Creating Packages in GNATstudio
 ---------------------------------

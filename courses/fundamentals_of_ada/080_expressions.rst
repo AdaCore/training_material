@@ -861,96 +861,6 @@ Simple Examples
    Are_All_Even : constant Boolean :=
       (for all V of Values => V mod 2 = 0);
  
----------------------------------------
-Component- and Index-Based Iterations
----------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Both specify a set of components to examine
-
-   - Those of an array object
-   - Those of a container object
-
-      + Language-defined, i.e., in `Ada.Containers` hierarchy
-      + User-defined
-
-* Component-based form is very convenient
-
-   - But offers less control, visits every component
-
-* Index-based form is lower level but more powerful
-
-   - Can control precisely which components to visit
-   - The index of the specific component is available
-
-* Most appropriate form depends on situation
-
-------------------------------------
-Component-Based Iteration Controls
-------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Same as high-level for-loop iteration controls
-* Work in terms of components within an object
-* Syntax hides indexing/iterator encoding
-
-   .. code:: Ada
-
-      for name of [reverse] array_or_container_object_name loop
-      ...
-      end loop;
- 
-* Starts with "first" element unless you reverse it
-
---------------------------------
-Index-Based Iteration Controls
---------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Same as low-level for-loop iteration controls
-* Declares an object that takes on successive values of a discrete type
-* Starts with first discrete value you specify unless you reverse it
-
-   .. code:: Ada
-
-      for name in [reverse] discrete_subtype_definition loop
-      ...
-      end loop;
- 
-------------------------------
-Iteration Control Examples  
-------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-.. code:: Ada
-
-   Values : constant array (1 .. 10) of Integer := (...);  
-   -- component-based
-   Some_Even1 : constant Boolean :=
-      (for some N of Values => N mod 2 = 0);
-   Some_Even2 : constant Boolean :=
-      (for some N of reverse Values => N mod 2 = 0);
-   -- index-based
-   Some_Even3 : constant Boolean :=
-      (for some K in 1 .. 10 => Values(K) mod 2 = 0);
-   Some_Even4 : constant Boolean :=
-      (for some K in Values'range => Values(K) mod 2 = 0);
-   Some_Even5 : constant Boolean :=
-      (for some K in reverse Values'range =>
-           Values(K) mod 2 = 0);
- 
 ----------------------
 Universal Quantifier
 ----------------------
@@ -1069,32 +979,35 @@ Existential Quantifier Illustration
       (for some K in Answers'range =>
          Answers(K) = Ultimate_Answer);
  
--------------------------------------
-Why Index-Based Iteration Controls?
--------------------------------------
+-----------------------------------------
+Index-Based vs Component-Based Indexing
+-----------------------------------------
 
 .. admonition:: Language Variant
 
    Ada 2012
 
-* As opposed to the high-level syntax in which the indexing is completely hidden?
-* Needed when predicate must refer to the indexes
+* Given an array of integers
 
    .. code:: Ada
 
-      Table : constant array (1 .. 10) of Integer := (...);
-       Ascending_Order : constant Boolean := (
-        for all K in Table'Range =>
-          K = Table'First or else Table (K - 1) <= Table (K));
- 
-* Needed when precise control over range required
+      Values : constant array (1 .. 10) of Integer := (...);  
+
+* Component-based indexing is useful for checking individual values
 
    .. code:: Ada
 
-      Answers : constant array (1 .. 10) of Integer := (...);
-      Any_First_Half_Answer : constant Boolean :=
-         (for some K in 1 .. 5 => Answers(K) = 42);
- 
+      Contains_Negative_Number : constant Boolean :=
+         (for some N of Values => N < 0);
+
+* Index-based indexing is useful for comparing across values
+
+   .. code:: Ada
+
+      Is_Sorted : constant Boolean :=
+         (for all I in Values'Range =>
+            I = Values'first or else Values(I) >= Values(I-1));
+
 ---------------------------------------
 "Pop Quiz" for Quantified Expressions
 ---------------------------------------

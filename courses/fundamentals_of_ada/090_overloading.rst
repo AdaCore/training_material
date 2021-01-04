@@ -439,29 +439,13 @@ Examples
 ----------------------------
 
 * Whether user-defined equality functions are called automatically as part of equality for composite types containing types having such functions
-* Only composes when user-defined equality is defined for record types (in Ada 2012)
+* Only composes when user-defined equality is defined
 
-.. code:: Ada
+   * Assume you defined "=" for a scalar type
+   * If you define "=" for a composite containing the scalar type, your scalar "=" will be used
+   * If you rely on the implicit "=" for the composite, then the scalar's implicit "=" will also be used
 
-   type Foo is ...
-   -- explicit equality operator
-   function "=" (L, R : Foo) return Boolean is ...
-   type Bar is record
-     F : Foo;
-     ...
-   end record;
-   -- implicit declaration of "=" (L, R : Bar) return Boolean;
-   -- "composes" if includes call to user-defined "=" for Foo
-   A, B : Bar;
-   ...
-   C : Boolean := A = B;
- 
-* So composition depends on "foo"
-
-.. container:: speakernote
-
-   In Ada 2012 it composes for all record types, but only those.
-   In Ada 2005 it doesn't compose on record types unless they are tagged.
+      * Not the one you just defined
 
 --------------------------------
 Composition vs Non-Composition
@@ -469,25 +453,31 @@ Composition vs Non-Composition
 
 .. code:: Ada
     
-   procedure Demo_Noncomposition is
-     type Record_T is record
-       Field : integer := 0;
-     end record;
-     type Record_List is array (1..10) of Record_T;
-       
-     -- user-defined hides predefined
-     function "=" (L, R : Integer) return Boolean is
-       ( False ); -- for illustration...
-       
-     -- predefined "=" will return True
-     I1, I2 : integer := 0; 
-     R1, R2 : Record_List;
-       
+   with Ada.Text_IO; use Ada.Text_IO;
+   procedure Main is
+
+      type Array1_T is array (1 .. 3) of Integer;
+      type Array2_T is array (1 .. 3) of Integer;
+
+      X, Y     : Integer  := 123;
+      X_A, Y_A : Array1_T := (others => 123);
+      X_B, Y_B : Array2_T := (others => 123);
+
+      -- When comparing integers directly, this function forces those comparisons
+      -- to be false
+      function "=" (L, R : Integer) return Boolean is (False);
+      -- We define our own array equality operator so it will use our integer operator
+      function "=" (L, R : Array2_T) return Boolean is (for all I in 1 .. 3 => L (I) = R (I));
+
    begin
-    -- uses overloaded "=" => False
-     Put_Line (boolean'image(I1=I2));
-     -- uses overloaded "=" for components=>False
-     Put_Line(boolean'image(R1=R2));
+      -- Use local "=" for integer comparison
+      Put_Line (Boolean'Image (X = Y));
+      Put_Line (Boolean'Image (X_A (2) = Y_A (2)));
+      -- This array comparison uses the predefined operator, so our local "=" is ignored
+      Put_Line (Boolean'Image (X_A = Y_A));
+      -- This array comparison uses our operator, so our local "=" is used as well
+      Put_Line (Boolean'Image (X_B = Y_B));
+   end Main;
      
 .. container:: speakernote
 
