@@ -523,6 +523,85 @@ Default Initialization Via Aspect Clause
    C : Controller; -- Override => off, Enable => On
    D : Controller := (On, Off); -- All defaults replaced
  
+=================
+Variant Records
+=================
+
+----------
+Examples
+----------
+
+.. include:: examples/060_record_types/variant_records.rst
+
+----------------------
+Variant Record Types
+----------------------
+
+* *Variant record type* is a record type where
+
+   + Different objects may have different sets of components (i.e. different variants)
+   + Given object itself may be *unconstrained*
+
+      * Different variants at different times
+
+* Supported in other languages
+
+   + Variant records in Pascal
+   + Unions in C
+
+* Variant record offers a kind of storage overlaying
+
+   + Same storage might be used for one variant at one time, and then for another variant later
+   + Language issue: Ensure this does not provide loophole from type checking
+
+      * Neither Pascal nor C avoids this loophole
+
+-------------------------------------
+Discriminant in Ada Variant Records
+-------------------------------------
+
+* Variant record type contains a special field (*discriminant*) whose value indicates which variant is present
+* When a field in a variant is selected, run-time check ensures that discriminant value is consistent with the selection
+
+   + If you could store into `Pubs` but read `GPA`, type safety would not be guaranteed
+
+* Ada prevents this type of access
+
+   + Discriminant (Tag) established when object of type Person created
+   + Run-time check verifies that field selected from variant is consistent with discriminant value
+
+      * Constraint_Error raised if the check fails
+
+* Can only read discriminant (as any other field), not write
+
+      * Aggregate assignment is allowed
+
+-----------
+Semantics
+-----------
+
+* Variable of type `Person` is constrained by value of discriminant supplied at object declaration
+
+   + Determines minimal storage requirements
+   + Limits object to corresponding variant
+
+   .. code:: Ada
+
+      Pat  : Person(Student); -- May select Pat.GPA, not Pat.Pubs
+      Prof : Person(Faculty); -- May select Prof.Pubs, not Prof.GPA
+      Soph : Person := ( Tag  => Student, 
+                         Name => "John Jones", 
+                         GPA  => 3.2, 
+                         Year => 2);
+      X    : Person;  -- Illegal; discriminant must be initialized
+
+* Assignment between Person objects requires same discriminant values for LHS and RHS 
+
+   .. code:: Ada
+
+      Pat  := Soph; -- OK
+      Soph := Prof; -- Constraint_Error at run time
+
 ========
 Lab
 ========

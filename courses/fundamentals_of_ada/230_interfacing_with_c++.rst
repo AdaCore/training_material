@@ -236,13 +236,22 @@ Complex Data Types
 Unions
 --------
 
+* C/C++ `union`
+    
+   .. code:: C++
+    
+      union Rec {
+         int A;
+         float B;
+      };
+     
 * C unions can be bound using the `Unchecked_Union` aspect
 * These types must have a mutable discriminant for convention purpose, which doesn't exist at run-time
 
    - All checks based on its value are removed - safety loss
    - It cannot be manually accessed
 
-* Ada View
+* Ada implementation of a C `union`
     
    .. code:: Ada
     
@@ -257,15 +266,6 @@ Unions
       end record
       with Unchecked_Union,
            Convention => C;
-     
-* C View
-    
-   .. code:: C++
-    
-      union Rec {
-         int A;
-         float B;
-      };
      
 --------------------
 Arrays Interfacing

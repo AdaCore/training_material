@@ -6,7 +6,7 @@ Array Lab
 
    - Create an array type whose index is days of the week and each element is a number
    - Create two objects of the array type, one of which is constant
-   - Perform the folling operations
+   - Perform the following operations
 
       + Copy the constant object to the non-constant object and 
       + Print the contents of the non-constant object
