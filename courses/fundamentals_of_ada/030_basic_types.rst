@@ -1045,7 +1045,7 @@ Declaring Floating Point Types
       type <identifier> is
           digits <expression> [range constraint];
  
-   - Digits is the minimum number of significant decimal digits required
+   - *digits* |rightarrow| minimum number of significant digits
 
 * Automatic representation choice
 
