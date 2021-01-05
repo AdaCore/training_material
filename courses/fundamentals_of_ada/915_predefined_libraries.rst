@@ -19,7 +19,7 @@ Ada Top-Level Namespace
    - GNAT
 
 * Binding generators and support for inter-language interfacing can make libraries in other languages accessible to Ada and vice versa
-* Full hierarchy (language-defined and GNAT) is browsable from GPS Help menu
+* Full hierarchy (language-defined and GNAT) is browsable from GNAT Studio Help menu
 
 ---------------------
 Ada.* Hierarchy (1)

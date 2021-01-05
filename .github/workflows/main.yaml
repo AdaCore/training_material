@@ -67,22 +67,22 @@ jobs:
           path: out/fundamentals_of_ada/standard_course.pdf
 
 
-      - name: Generate slides for Spark
+      - name: Generate slides for SPARK
         run: python pandoc/pandoc_fe.py --output-dir out/spark_for_ada_programmers --hush --extension pdf --source courses/spark_for_ada_programmers/*.rst
 
-      - name: Package and upload Spark slides
+      - name: Package and upload SPARK slides
         uses: actions/upload-artifact@v2
         with:
-          name: Spark for Ada programmers
+          name: SPARK for Ada programmers
           path: out/spark_for_ada_programmers/*.pdf
 
-      - name: Generate standard Spark course
+      - name: Generate standard SPARK course
         run: python pandoc/pandoc_fe.py --extension pdf --source courses/spark_for_ada_programmers/course.txt --output-dir out/spark_for_ada_programmers
 
-      - name: Package and upload standard Spark course
+      - name: Package and upload standard SPARK course
         uses: actions/upload-artifact@v2
         with:
-          name: Standard Spark course
+          name: Standard SPARK course
           path: out/spark_for_ada_programmers/course.pdf
 
       - name: Lab Radar PDF and package

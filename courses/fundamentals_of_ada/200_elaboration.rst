@@ -160,7 +160,7 @@ GNAT Static Elaboration Model
 
 * Performed by :command:`gnatbind`
 
-   - Automatically called by a builder (:command:`gnatmake` or :command:`gprbuild`)
+   - Automatically called by a builder (:command:`gprbuild`)
    - Reads ALI files from the closure
    - Generates :filename:`b_xxx.ad[sb]` or :filename:`b__xxx.ad[sb]` files
    - Contains elaboration and finalization procedures
