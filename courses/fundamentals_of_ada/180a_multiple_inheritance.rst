@@ -153,7 +153,7 @@ Limited Tagged Types And Interfaces
 Lab
 ========
 
-.. include:: labs/multiple_inheritance.lab.rst
+.. include:: labs/180a_multiple_inheritance.lab.rst
 
 =========
 Summary

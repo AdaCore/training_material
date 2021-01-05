@@ -390,7 +390,7 @@ Children "Inherit" From Private Properties Of Parent
 Lab
 ========
 
-.. include:: labs/advanced_privacy.lab.rst
+.. include:: labs/120a_advanced_privacy.lab.rst
 
 =========
 Summary

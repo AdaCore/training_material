@@ -1,3 +1,5 @@
+.. |rightarrow| replace:: :math:`\rightarrow`
+
 ------------------
 Polymorphism Lab
 ------------------
