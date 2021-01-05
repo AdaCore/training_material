@@ -702,7 +702,7 @@ Canonical First Program
 
    - In a command prompt shell, go to where the new file is located and issue the following command:
 
-      + :command:`gnatmake say_hello`
+      + :command:`gprbuild say_hello`
 
 * In the same shell, invoke the resulting executable:
 

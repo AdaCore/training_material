@@ -259,6 +259,7 @@ if __name__== "__main__":
                             pandoc_title_arg,
                             theme,
                             color,
+                            '--fail-if-warnings',
                             '-f rst',
                             '-t ' + output_format ( args.extension.lower() ),
                             '-o ' + output_file, *source_list)

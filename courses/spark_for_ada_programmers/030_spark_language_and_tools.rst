@@ -988,7 +988,7 @@ Analysis Summary File "gnatprove.out"
 
 |
 
-.. image:: ../../images/gnatprove-output-file.jpg
+.. image:: ../../images/gnatprove-output-file.jpeg
    :width: 60%
 
 -----------------------------------------------
@@ -1232,14 +1232,14 @@ Basic GNAT Studio Look and Feel
 Project Tree Contextual Menu
 ------------------------------
 
-.. image:: ../../images/spark_rightclick-source_tree.jpg
+.. image:: ../../images/spark_rightclick-source_tree.jpeg
    :width: 100%
 
 -----------------------------
 Source Code Contextual Menu
 -----------------------------
 
-.. image:: ../../images/spark_rightclick-code.jpg
+.. image:: ../../images/spark_rightclick-code.jpeg
 
 .. container:: speakernote
 
@@ -1249,7 +1249,7 @@ Source Code Contextual Menu
 "Basic" Profile's Proof Dialog Panel
 ---------------------------------------
 
-.. image:: ../../images/prove_dialog-basic.jpg
+.. image:: ../../images/prove_dialog-basic.jpeg
 
 .. container:: speakernote
 
@@ -1259,7 +1259,7 @@ Source Code Contextual Menu
 Example Analysis Results in GNATstudio
 ----------------------------------------
 
-.. image:: ../../images/gnatprove-output-ide.jpg
+.. image:: ../../images/gnatprove-output-ide.jpeg
 
 ----------------------------------
 Preference for Selecting Profile
@@ -1282,13 +1282,13 @@ Preference for Selecting Profile
 
  .. container:: column
   
-    .. image:: ../../images/gnatstudio-preferences-spark.jpg
+    .. image:: ../../images/gnatstudio-preferences-spark.jpeg
 
 -------------------------------
 "Advanced" Proof Dialog Panel
 -------------------------------
 
-.. image:: ../../images/prove_dialog-advanced.jpg
+.. image:: ../../images/prove_dialog-advanced.jpeg
 
 ========
 Lab

@@ -103,7 +103,7 @@ About Project Files and Makefiles
 
 .. code:: console
 
-   gnatmake -P <project-file> ...
+   gprbuild -P <project-file> ...
  
 ===============================
 Configuring Project Properties
@@ -178,7 +178,7 @@ Typed Versus Untyped Variables
 
 * **Builder**
 
-   - *gnatmake* or *gprbuild*
+   - *gprbuild*
 
 * **Compiler**
 
@@ -455,8 +455,8 @@ External and Conditional References
 
 .. code:: console
 
-   gnatmake -P... -Xname=value  ...
-   gnatmake -P/common/build.gpr -Xtarget=test  /common/main.adb
+   gprbuild -P... -Xname=value  ...
+   gprbuild -P/common/build.gpr -Xtarget=test  /common/main.adb
  
 ----------------------------------------
 External/Conditional Reference Example
