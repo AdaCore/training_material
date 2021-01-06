@@ -1,180 +1,150 @@
----------------
-Contracts Lab
----------------
+--------------------------
+Subprogram Contracts Lab
+--------------------------
 
 * Overview
 
-   - Create a simplistic test grading system
+   - Create a priority-based queue ADT
 
-      + Three types of tests (e.g. quiz, test, final exam)
-      + Multiple courses (e.g. math, gym, history, etc )
-      + Method to get average of all grades
+      + Higher priority items come off the queue first
+      + When priorities are the same, entries should be processed in order received
 
 * Requirements
 
-   - Maximum grade is dependent on type of test
-   - Some (non-contiguous) subset of the tests have a higher maximum
-   - Cannot take an average of an empty list of grades
-   - Average is guaranteed to be between the lowest and highest scores given
+   - Main program should erify pre-condition failure(s)
+
+      - At least one pre-condition should raise something other than assertion error
+
+   - Post-condition should ensure queue is correctly ordered
 
 * Hints
 
-   - *Subtype Predicate* to determine tests with a higher maximum score
-   - *Type Invariant* to ensure record containing course, test type, and score is consistent
-   - *Pre-condition* to ensure non-empty array passed into `Average` method
-   - *Post-condition* to ensure `Average` result is reasonable
+   - This is basically a stack, except insertion doesn't necessarily happen at one end
 
------------------------------------------
-Contracts Lab Solution - Grading (Spec)
------------------------------------------
+--------------------------------------------------
+Subprogram Contracts Lab Solution - Queue (Spec)
+--------------------------------------------------
+
 .. code:: Ada
 
-   package Grading is
-
-     type Test_T is (Quiz, Test, Final);
-     type Course_T is (Arithmetic, Gym, History, Language, Science, Writing);
-     subtype Stem_T is Course_T with Static_Predicate => Stem_T in Arithmetic | Science;
-     type Grade_T is private;
-
-     function Grade (Kind   : Test_T;
-                     Course : Course_T;
-                     Score  : Natural)
-                     return Grade_T
-       with Pre => Score in 0 .. Max_Score (Course, Kind);
-
-     function Scale (Kind  : Course_T; Score : Natural) return Integer is
-       (if Kind in Stem_T then Score + 10 else Score);
-     function Max_Score (Course : Course_T; Kind   : Test_T) return Natural is
-      (case Kind is when Quiz => Scale (Course, 50),
-        when Test => Scale (Course, 100), when Final => Scale (Course, 200));
-
-     type Grades_T is array (Integer range <>) of Grade_T;
-     function Lowest_Score (Grades : Grades_T) return Integer
-       with Pre => Grades'Length > 0;
-     function Highest_Score (Grades : Grades_T) return Integer
-       with Pre => Grades'Length > 0;
-     function Average (Grades : Grades_T) return Integer
-       with Pre  => Grades'Length > 0,
-            Post => Average'Result >= Lowest_Score (Grades)
-                    and then Average'Result <= Highest_Score (Grades);
-
+   with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+   package Priority_Queue is
+      Overflow : exception;
+      type Priority_T is (Low, Medium, High);
+      type Queue_T is tagged private;
+      procedure Push (Queue    : in out Queue_T;
+                      Priority :        Priority_T;
+                      Value    :        String)
+         with Pre => (not Full (Queue) and then Value'Length > 0) or else raise Overflow,
+              Post => Valid (Queue);
+      procedure Pop (Queue : in out Queue_T;
+                     Value :    out Unbounded_String)
+         with Pre  => not Empty (Queue),
+              Post => Valid (Queue);
+      function Full (Queue : Queue_T) return Boolean;
+      function Empty (Queue : Queue_T) return Boolean;
+      function Valid (Queue : Queue_T) return Boolean;
    private
-
-     type Grade_T is record
-       Course : Course_T := Course_T'First;
-       Score  : Natural  := 0;
-       Kind   : Test_T   := Test_T'First;
-     end record with
-       Type_Invariant => Score in 0 .. Max_Score (Grade_T.Course, Grade_T.Kind);
-
-   end Grading;
-
------------------------------------------
-Contracts Lab Solution - Grading (Body)
------------------------------------------
-.. code:: Ada
-
-   package body Grading is
-
-     function Grade (Kind   : Test_T;
-                     Course : Course_T;
-                     Score  : Natural)
-                     return Grade_T is
-     begin
-       return Ret_Val : Grade_T := (Kind => Kind, Score => Score, Course => Course);
-     end Grade;
-
-     function Lowest_Score (Grades : Grades_T) return Integer is
-       Lowest : Integer := Grades (Grades'First).Score;
-     begin
-       for I in Grades'First + 1 .. Grades'Last loop
-         Lowest := Integer'Min (Grades (I).Score, Lowest);
-       end loop;
-       return Lowest;
-     end Lowest_Score;
-
-     function Highest_Score (Grades : Grades_T) return Integer is
-       Highest : Integer :=
-        Scale (Grades (Grades'First).Course, Grades (Grades'First).Score);
-     begin
-       for I in Grades'First + 1 .. Grades'Last loop
-         Highest := Integer'Max (Scale (Grades (I).Course, Grades (I).Score),
-                                 Highest);
-       end loop;
-       return Highest;
-     end Highest_Score;
-
-     function Average (Grades : Grades_T) return Integer is
-       Average : Integer := 0;
-     begin
-       for Grade of Grades loop
-         Average := Average + Scale (Grade.Course, Grade.Score);
-       end loop;
-       return Average / Grades'Length;
-     end Average;
-
-   end Grading;
-
-----------------------------------------------
-Contracts Lab Solution - Main (Declarations)
-----------------------------------------------
+      Max_Queue_Size : constant := 10;
+      type Entries_T is record
+         Priority : Priority_T;
+         Value    : Unbounded_String;
+      end record;
+      type Size_T is range 0 .. Max_Queue_Size;
+      type Queue_Array_T is array (1 .. Size_T'Last) of Entries_T;
+      type Queue_T is tagged record
+         Size    : Size_T := 0;
+         Entries : Queue_Array_T;
+      end record;
+      function Full (Queue : Queue_T) return Boolean is
+         (Queue.Size = Size_T'Last);
+      function Empty (Queue : Queue_T) return Boolean is
+         (Queue.Size = 0);
+      function Valid (Queue : Queue_T) return Boolean is
+        (if Queue.Size <= 1 then True
+         else
+           (for all Index in 2 .. Queue.Size =>
+              Queue.Entries (Index).Priority >=
+              Queue.Entries (Index - 1).Priority));
+   end Priority_Queue;
+   
+--------------------------------------------------
+Subprogram Contracts Lab Solution - Queue (Body)
+--------------------------------------------------
 
 .. code:: Ada
 
-   with Ada.Exceptions;
-   with Ada.Text_IO; use Ada.Text_IO;
-   with Grading;     use Grading;
+   package body Priority_Queue is
+   
+      procedure Push (Queue    : in out Queue_T;
+                      Priority :        Priority_T;
+                      Value    :        String) is
+         Last      : Size_T renames Queue.Size;
+         New_Entry : Entries_T := (Priority, To_Unbounded_String (Value));
+      begin
+         if Queue.Size = 0 then
+            Queue.Entries (Last + 1) := New_Entry;
+         elsif Priority < Queue.Entries (1).Priority then
+            Queue.Entries
+              (2 .. Last + 1) := Queue.Entries (1 .. Last);
+            Queue.Entries (1) := New_Entry;
+         elsif Priority > Queue.Entries (Last).Priority then
+            Queue.Entries (Last + 1) := New_Entry;
+         else
+            for Index in 1 .. Last loop
+               if Priority <= Queue.Entries (Index).Priority then
+                  Queue.Entries
+                    (Index + 1 .. Last + 1) := Queue.Entries (Index .. Last);
+                  Queue.Entries (Index)     := New_Entry;
+                  exit;
+               end if;
+            end loop;
+         end if;
+         Last := Last + 1;
+      end Push;
+   
+      procedure Pop (Queue : in out Queue_T;
+                     Value :    out Unbounded_String) is
+      begin
+         Value      := Queue.Entries (Queue.Size).Value;
+         Queue.Size := Queue.Size - 1;
+      end Pop;
+   
+   end Priority_Queue;
+   
+-------------------------------------------
+Subprograms Contracts Lab Solution - Main
+-------------------------------------------
+
+.. code:: Ada
+
+   with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+   with Ada.Text_IO;           use Ada.Text_IO;
+   with Priority_Queue;
    procedure Main is
-
-     Grades    : Grades_T (1 .. 100);
-     Last_Used : Natural := 0;
-
-     function Score return Integer is
-     begin
-       Put ("  Score: ");
-       return Integer'Value (Get_Line);
-     end Score;
-
-     generic
-       type Ask_T is (<>);
-     function Ask return Ask_T;
-     function Ask return Ask_T is
-     begin
-       Put ("  " & Ask_T'Image (Ask_T'First));
-       for I in Ask_T'Succ (Ask_T'First) .. Ask_T'Last loop
-         Put (" | " & Ask_T'Image (I));
-       end loop;
-       Put (":");
-       return Ask_T'Value (Get_Line);
-     end Ask;
-
-     function Kind is new Ask (Test_T);
-     function Course is new Ask (Course_T);
-
---------------------------------------
-Contracts Lab Solution - Main (Body)
---------------------------------------
-
-.. code:: Ada
-
+      Queue : Priority_Queue.Queue_T;
+      Value : Unbounded_String;
    begin
-     loop
-       Put_Line ("Grade" & Integer'Image (Last_Used + 1));
-       declare
-         Grade : Grade_T;
-       begin
-         Grade := Grading.Grade (Kind   => Kind,
-                                 Course => Course,
-                                 Score  => Score);
-         Last_Used          := Last_Used + 1;
-         Grades (Last_Used) := Grade;
-       exception
-         when The_Err : others =>
-           Put_Line (Ada.Exceptions.Exception_Message (The_Err));
-           exit;
-       end;
-     end loop;
-
-     Put_Line ("average: " & Integer'Image (Average (Grades (1 .. Last_Used))));
-
+   
+      for Count in 1 .. 3 loop
+         for Priority in Priority_Queue.Priority_T'Range
+         loop
+            Queue.Push (Priority, Priority'Image & Count'Image);
+         end loop;
+      end loop;
+   
+      while not Queue.Empty loop
+         Queue.Pop (Value);
+         Put_Line (To_String (Value));
+      end loop;
+   
+      for Count in 1 .. 4 loop
+         for Priority in Priority_Queue.Priority_T'Range
+         loop
+            Queue.Push (Priority, Priority'Image & Count'Image);
+         end loop;
+      end loop;
+   
    end Main;
+   
+
