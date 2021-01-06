@@ -129,7 +129,7 @@ Preconditions and Postconditions
 Examples
 ----------
 
-.. include:: examples/210_contracts/preconditions_and_postconditions.rst
+.. include:: examples/210_subprogram_contracts/preconditions_and_postconditions.rst
 
 -----------------------------
 Pre/Postcondition Contracts
@@ -473,7 +473,7 @@ Type Invariants
 Examples
 ----------
 
-.. include:: examples/210_contracts/type_invariants.rst
+include:: examples/210_contracts/type_invariants.rst
 
 -----------------
 Type Invariants
@@ -695,7 +695,7 @@ Subtype Predicates
 Examples
 ----------
 
-.. include:: examples/210_contracts/subtype_predicates.rst
+include:: examples/210_contracts/subtype_predicates.rst
 
 ----------------------------
 Subtype Predicates Concept
@@ -1559,7 +1559,7 @@ Type Invariants vs Predicates
 Lab
 ========
 
-.. include:: labs/210_contracts.lab.rst
+.. include:: labs/210_subprogram_contracts.lab.rst
 
 =========
 Summary
