@@ -13,23 +13,15 @@ A Little History
 The Name
 ----------
 
-.. container:: columns
+* First called DoD-1
+* Augusta Ada Byron, "first programmer"
 
- .. container:: column
+   - Lord Byron's daughter
+   - Planned to calculate **Bernouilli's numbers**
+   - **First** computer program
+   - On **Babbage's Analytical Engine**
 
-    * First called DoD-1
-    * Augusta Ada Byron, "first programmer"
-
-       - Lord Byron's daughter
-       - Planned to calculate Bernouilli's numbers on Babbage's Analytical Engine
-       - first computer program
-
- .. container:: column
-
-  .. image:: images/ada_lovelace.jpeg
-
-
-* Writing **A.D.A.** is like writing **C.P.L.U.S.P.L.U.S.**
+* Writing **ADA** is like writing **CPLUSPLUS**
 * International Standards Organization standard
 
    - Updated about every 10 years
@@ -44,7 +36,6 @@ Ada Evolution Highlights
   
     * **Ada 83**
 
-       - Not standardized
        - Abstract Data Types
        - Modules
        - Concurrency
@@ -160,8 +151,10 @@ Weakly-Typed Languages
 
 .. code:: C++
 
-   enum { north, south, east, west } direction = north;
-   enum { mon, tue, wed, thur, fri, sat, sun } day = wed;
+   typedef enum { north, south, east, west } direction ;
+   direction heading = north;
+   typedef enum { mon, tue, wed, thur, fri, sat, sun } weekday;
+   weekday day = wed;
 
    ...
 
@@ -190,23 +183,26 @@ Strongly-Typed Languages
    Heading := Tue + 3 * South/Sun; -- Compile Error
  
 --------------------------
-The Type Model saves Money
+The Type Model Saves Money
 --------------------------
 
-* Shifts fixes and costs to **early phases**: specification, coding
-* **Cheaper**: What is the cost of an error *during a flight*?
+* Shifts fixes and costs to **early phases**
+* **Cheaper**
 
+    - Cost of an error *during a flight*?
+
+.. image:: ../../images/relative_cost_to_fix.png
+   :height: 50%
 
 ---------------------------
 Type Model Run-Time Costs
 ---------------------------
 
-* Values checked **at run-time**
+* Checks at compilation **and** run-time
 * **Same performance** for identical programs
 
-   - Type checks can be disabled
+   - Run-time type checks can be disabled
    - Compile-time check is *free*
-   - **Unified** error handling
 
 .. container:: columns
 
@@ -283,7 +279,7 @@ Dynamic Memory Management
 
 * Supports user-defined storage managers
 
-    - Memory **pools**
+    - Storage **pools**
 
 ----------
 Packages
@@ -342,17 +338,10 @@ Exceptions
 
 * Dealing with **errors**, **unexpected** events
 * Separate error-handling code from logic
-* Ada exceptions are **not classes**
 * Some flexibility
 
    - Re-raising
    - Custom messages
-
-* **Performance** cost
-
-    - Can be disabled
-
-* Do not use for flow-control
 
 ---------------
 Generic Units
@@ -416,7 +405,6 @@ Object-Oriented Programming
 * Dynamic **dispatching**
 * Abstract types and subprograms
 * **Interface** for multiple inheritance
-* **Protected** thread-safe objects
 
 ----------------------------
 Contract-Based Programming
@@ -435,7 +423,7 @@ Contract-Based Programming
 
    .. code:: Ada
 
-      type Table is private with Invariant => Sorted (Table);
+      type Table is private with Invariant => Sorted (Table); -- Guarantee
  
 --------------------------
 Language-Based Concurrency
@@ -487,7 +475,7 @@ Low Level Programming
 
 * **Representation** clauses
 * Bit-level layouts
-* Memory pools definition
+* Storage pools definition
 
     - With access safeties
 
