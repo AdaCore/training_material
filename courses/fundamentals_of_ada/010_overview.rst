@@ -1,3 +1,6 @@
+.. role:: ada(code)
+    :language: ada
+
 **********
 Overview
 **********
@@ -11,21 +14,17 @@ The Name
 ----------
 
 * First called DoD-1
-* Renamed Ada after the "first programmer"
+* Augusta Ada Byron, "first programmer"
 
-   - Augusta Ada Byron, Countess of Lovelace
-
-      + Lord Byron's daughter
-
-   - Drafted a plan of how Charles Babbage's Analytical Engine might calculate Bernoulli numbers, now considered the first computer program
+   - Lord Byron's daughter
+   - Planned to calculate **Bernouilli's numbers**
+   - **First** computer program
+   - On **Babbage's Analytical Engine**
 
 * Writing **ADA** is like writing **CPLUSPLUS**
+* International Standards Organization standard
 
-   - The cognoscenti will know...
-
-* An International Standards Organization standard
-
-   - A new version formally adopted about every 10 years
+   - Updated about every 10 years
 
 --------------------------
 Ada Evolution Highlights
@@ -42,7 +41,6 @@ Ada Evolution Highlights
        - Concurrency
        - Generics
        - Exceptions
-       - etc.
 
     * **Ada 95**
 
@@ -79,131 +77,138 @@ Big Picture
 Language Structure (Ada95 and Onward)
 ---------------------------------------
 
+* **Required** *Core* implementation
+
+   - Reference Manual (RM) sections 1 :math:`\rightarrow` 13
+   - Predefined Language Environment (Annex A)
+   - Foreign Language Interfaces (Annex B)
+
+
+* Optional *Specialized Needs Annexes*
+
+   - No additional syntax
+   - Systems Programming (C)
+   - Real-Time Systems (D)
+   - Distributed Systems (E)
+   - Information Systems (F)
+   - Numerics (G)
+   - High-Integrity Systems (H)
+
+-------------------------
+*Core* Language Content
+-------------------------
+
+* Ada is a **compiled**, **multi-paradigm** language
+* With a **static** and **strong** type model
+
 .. container:: columns
 
  .. container:: column
   
-    * "Core" is required of all implementations
-
-       - Reference Manual (RM) sections 1 through 13
-       - Predefined Language Environment (Annex A)
-       - Foreign Language Interfaces (Annex B)
-
- .. container:: column
-  
-    * "Specialized Needs Annexes" are optional
-
-       - Provide more functionality but not additional syntax
-       - Systems Programming (C)
-       - Real-Time Systems (D)
-       - Distributed Systems (E)
-       - Information Systems (F)
-       - Numerics (G)
-       - High-Integrity Systems (H)
-
--------------------------
-"Core" Language Content
--------------------------
-
-.. container:: columns
-
- .. container:: column
-  
-    * Several language-defined types, including string
-    * Extensive support for user-defined types
+    * Language-defined types, including string
+    * User-defined types
     * Overloading procedures and functions
-    * Modules for compile-time visibility control
-    * Abstract Data Types
+    * Compile-time visibility control
+    * Abstract Data Types (ADT)
 
  .. container:: column
   
     * Exceptions
-    * Generic Units
-    * High-level dynamic memory management
-    * Low-level Programming
-    * Object-Oriented Programming
-    * Concurrent Programming
+    * Generic units
+    * Dynamic memory management
+    * Low-level programming
+    * Object-Oriented Programming (OOP)
+    * Concurrent programming
     * Contract-Based Programming
 
 ----------------
 Ada Type Model
 ----------------
 
-* Statically Typed
+* **Static** Typing
 
-   - Each object is permanently declared to be of one type
-   - Still have run-time polymorphism for OOP...
+   - Object type **cannot change**
+   - ... but run-time polymorphism available (OOP)
 
-* Strongly Typed
+* **Strong** Typing
 
-   - Compiler enforces appropriate manipulation and values
-   - Objects of "closely-related" types may be explicitly converted
-   - Conversions between unrelated types are explicitly unchecked
+   - **Compiler-enforced** operations and values
+   - **Explicit** conversions for "related" types
+   - **Unchecked** conversions possible
 
-* Many types are predefined
-* Users extend the language by defining additional application-specific types
+* Predefined types
+* Application-specific types
 
-   - Optional!
+    - User-defined
+    - Checked at compilation and run-time
 
 ------------------------
 Weakly-Typed Languages
 ------------------------
 
+* Conversions are **unchecked**
+* Type errors are easy
+
 .. code:: C++
 
-   typedef enum { north, south, east, west } directions;
-   typedef enum { mon, tue, wed, thur, fri, sat, sun } days;
-   directions heading;
-   days day;
-   day = wed;
-   day = north;
-   heading = east;
-   heading = south + north;
-   heading = tue + 3 * south/sun;
- 
+   typedef enum { north, south, east, west } direction ;
+   direction heading = north;
+   typedef enum { mon, tue, wed, thur, fri, sat, sun } weekday;
+   weekday day = wed;
+
+   ...
+
+   day = heading; // typo?
+   heading = tue + 3 * south/sun;// what?
+
 --------------------------
 Strongly-Typed Languages
 --------------------------
+
+* Conversions are **checked**
+* Type errors are hard
 
 .. code:: Ada
 
    type Directions is ( North, South, East, West );
    type Days is ( Mon, Tue, Wed, Thu, Fri, Sat, Sun );
-   Heading : Directions;
-   Day     : Days;
+
+   Heading : Directions := North;
+   Day : Days := Wed;
+   
    ...
-   Day := Mon;
-   Day := North; -- Compile Error
-   Heading := South;
-   Heading := Wed; -- Compile Error
+
+   Day := Heading; -- Compile Error
+
    Heading := Tue + 3 * South/Sun; -- Compile Error
  
-----------------------------------
-Type Model Benefit: Saves Money!
-----------------------------------
+--------------------------
+The Type Model Saves Money
+--------------------------
 
-.. container:: columns
+* Shifts fixes and costs to **early phases**
+* **Cheaper**
 
- .. container:: column
-  
-    * Shifts costs from later, expensive phases to earlier, cheaper phase
+    - Cost of an error *during a flight*?
 
- .. container:: column
-  
-    .. image:: ../../images/relative_cost_to_fix.png
-       :width: 100%
-    
+.. image:: ../../images/relative_cost_to_fix.png
+   :height: 50%
+
 ---------------------------
 Type Model Run-Time Costs
 ---------------------------
 
-* Proper values verified during execution if necessary
-* But performance of semantically identical programs will be the same
+* Checks at compilation **and** run-time
+* **Same performance** for identical programs
 
-   - Includes requirements for value checking
-   - If checking is not required turn it off!
+   - Run-time type checks can be disabled
+   - Compile-time check is *free*
 
-* C
+.. container:: columns
+
+ .. container:: column
+
+   **C**
 
    .. code:: C++
 
@@ -215,7 +220,9 @@ Type Model Run-Time Costs
       else
         // signal a failure
  
-* Ada
+ .. container:: column
+
+   **Ada**
 
    .. code:: Ada
 
@@ -223,27 +230,29 @@ Type Model Run-Time Costs
       Y, Z : Integer range 1 .. 10;
       ...
       Y := X;
-      Z := Y; -- no range check required
- 
+      Z := Y; -- no check required
+
 -------------
 Subprograms
 -------------
 
-* Can be either a ``function`` or a ``procedure``
+- Syntax differs between *values* and *actions*
+- :ada:`function` for a *value*
 
-   - Functions represent values
-   - Procedures represent actions
+.. code:: Ada
 
-* Are syntactically distinguished
+  function Is_Leaf (T : Tree) return Boolean
 
-   .. code:: Ada
+- :ada:`procedure` for an *action*
 
-      function Is_Leaf (T : Tree) return Boolean
-      procedure Split (T     : in out Tree;
-                       Left  : out Tree;
-                       Right : out Tree)
- 
-* Provide direct syntactic support for separation of specification from implementation
+.. code:: Ada
+
+  procedure Split (T     : in out Tree;
+                   Left  : out Tree;
+                   Right : out Tree)
+
+
+* Specification :math:`\neq` Implementation
 
    .. code:: Ada
 
@@ -252,173 +261,87 @@ Subprograms
       begin
       ...
       end Is_Leaf;
- 
+
 ---------------------------
 Dynamic Memory Management
 ---------------------------
 
-* Pointers are known to be error-prone
+* Raw pointers are error-prone
+* Ada **access types** abstract facility
 
-   - Easy to misuse
+    - Static memory
+    - Allocated objects
+    - Subprograms
 
-* Ada defines more abstract facility
+* Accesses are **checked**
 
-   - Called "access types" instead of "pointers"
+    - Unless unchecked mode is used
 
-* Can designate "declared" or "allocated" objects
-* Can designate subprograms
-* Values always meaningful unless unchecked programming used
-* Users can define their own storage managers
+* Supports user-defined storage managers
+
+    - Storage **pools**
 
 ----------
 Packages
 ----------
 
-* Modules that group related entities together
-* Support abstraction
+* Grouping of related entities
+* Separation of concerns
 
-   - Separate specification from implementation
+   - Definition :math:`\neq` usage
+   - Single definition by **designer**
+   - Multiple use by **users**
 
-* Support information hiding
+* Information hiding
 
-   - Compiler enforces visibility for references by clients
-
-* Isolate implementation decisions
-
-   - Defined in one place, used everywhere by clients
+   - Compiler-enforced **visibility**
+   - Powerful **privacy** system
 
 -------------------
 Package Structure
 -------------------
 
-* Visible part
+* Declaration view
 
-   - Compiler allows client references
+    - **Can** be referenced by user code
+    - Exported types, variables...
 
-   .. code:: Ada
+* Private view
 
-      package Name is
-        -- exported declarations of
-        --    types, variables, subprograms ...
-      end Name;
-   
-* Implementation part
+    - **Cannot** be referenced by user code
+    - Exported **representations**
 
-   - Compiler prevents client references
+* Implementation view
 
-   .. code:: Ada
+    - Not exported
 
-      package body Name is
-        -- hidden declarations of
-        --    types, variables, subprograms ...
-        -- implementations of exported subprograms etc.
-      end Name;
- 
 ---------------------------
 Abstract Data Types (ADT)
 ---------------------------
 
-* State is encapsulated within variables of the type
-* Classic definition
+* **Variables** of the **type** encapsulate the **state**
+* Classic definition of an ADT
 
-   - Set of applicable values
-   - Set of applicable operations on objects of the type
-   - Compile-time hidden representation
+   - Set of **values**
+   - Set of **operations**
+   - **Hidden** compile-time **representation**
 
-* The compiler enforces your application model
+* Compiler-enforced
 
-   - Allowed values
-   - Allowed operations
-
-* Makes the computer work for you
-
-   - Bookkeeping is what it does best!
-   - Allows us to focus on "the hard stuff"
-
--------------------------------
-Package Optional Private Part
--------------------------------
-
-.. code:: Ada
-
-   package Name is
-     -- exported declarations of
-     --    types, variables, subprograms ...
-   private
-     -- hidden declarations of
-     --    types, variables, subprograms ...
-   end Name;
-   
-   package body Name is
-     -- hidden declarations of
-     --    types, variables, subprograms ...
-     -- implementations of exported subprograms etc.
-   end Name;
- 
----------------
-Private Types
----------------
-
-* Directly support Abstract Data Types
-
-   .. code:: Ada
-      
-      package Bounded_Stacks is
-         type Stack is private;
-         procedure Push (This : in out Stack;
-                         Item : in     Integer);
-         procedure Pop (This : in out Stack;
-                        Item : out    Integer);
-         ...
-         Max : constant := 100;
-      private
-         type Contents is array (1 .. Max) of Integer;
-         type Stack is record
-            Values : Contents;
-            Top : Integer range 0 .. Max := 0;
-         end record;
-      end Bounded_Stacks;
- 
----------------------------------
-Corresponding Expression In C++
----------------------------------
-
-.. code:: C++
-
-   #ifndef BOUNDED_STACKS_
-   #define BOUNDED_STACKS_
-   namespace Bounded_Stacks {
-      enum {Max=100};
-      class Stack { 
-      public:
-         Stack();
-         void Push (int X);
-         void Pop (int& X);
-      private:
-         int Values[Max];
-         int Top;
-      }; // Stack
-   } // Bounded_Stacks
-   #endif
+   - Check of values and operation
+   - Easy for a computer
+   - Developer can focus on **earlier** phase: requirements
  
 ------------
 Exceptions
 ------------
 
-* Facilities for dealing with errors or other unexpected situations during execution
-* Common in modern languages
+* Dealing with **errors**, **unexpected** events
+* Separate error-handling code from logic
+* Some flexibility
 
-   - Represent errors and are raised when necessary
-   - Can be handled to express recovery
-
-* Have different syntax from class-based languages
-
-   - Exceptions are not classes in Ada
-
-* Allow flexible manipulation (within limits)
-
-   - Re-raising outside original scope, etc.
-   - Attaching messages to occurrences
+   - Re-raising
+   - Custom messages
 
 ---------------
 Generic Units
@@ -428,22 +351,23 @@ Generic Units
 
  .. container:: column
   
-    * Are templates for program units
+    * Code Templates
 
        - Subprograms
        - Packages
 
-    * Allow parameterization of program units
+    * Parameterization
 
-       - Tailorable components within a strongly typed environment
+       - Strongly typed
+       - **Expressive** syntax
 
  .. container:: column
   
     .. image:: ../../images/generic_template_to_instances.png
     
-------------------------------
-Generic Version of Stack ADT
-------------------------------
+-------------------
+Stack with Generics
+-------------------
 
 .. code:: Ada
 
@@ -470,185 +394,166 @@ Generic Version of Stack ADT
 Object-Oriented Programming
 -----------------------------
 
-* Next step after "ADT Programming"
 
-   - Abstract Data Types
-   - Builds upon ADT concepts and practices
+* Extension of ADT
 
-* OOP = ADT Programming plus run-time flexibility
-* Directly supported
+    - Sub-types
+    - Run-time flexibility
 
-   - Inheritance
-   - Run-time polymorphism
-   - Dynamic dispatching
-   - Abstract types and subprograms
-   - Interface types for multiple inheritance
-
-      + Thread-safe too
+* Inheritance
+* Run-time polymorphism
+* Dynamic **dispatching**
+* Abstract types and subprograms
+* **Interface** for multiple inheritance
 
 ----------------------------
 Contract-Based Programming
 ----------------------------
 
-* Pre- and postconditions specify subprogram obligations for caller and implementer
+* Pre- and post-conditions
+* Formalizes specifications
 
    .. code:: Ada
 
-      procedure P (This : in out Integer) with
-          Pre => This < Integer'Last, -- Requirement
-          Post => This = This'Old + 1; -- Guarantee
+      procedure Pop (S : in out Stack) with
+          Pre => not S.Empty, -- Requirement
+          Post => not S.Full; -- Guarantee
  
-* Type Invariants ensure general properties of objects
+* Type invariants
 
    .. code:: Ada
 
-      type Table is private with Invariant => Sorted (Table);
+      type Table is private with Invariant => Sorted (Table); -- Guarantee
  
----------------------------------
-Pre- and Postconditions Example
----------------------------------
+--------------------------
+Language-Based Concurrency
+--------------------------
 
-.. code:: Ada
+* **Expressive**
 
-   package Bounded_Stacks is
-     type Stack is private;
-     function Empty (This : Stack) return Boolean;
-     function Full (This : Stack) return Boolean;
-     procedure Push (This : in out Stack;  Value : Content)
-       with Pre  => not Full (This),
-            Post => not Empty (This) and Top (This) = Value;
-     procedure Pop (This : in out Stack;  Value : out Content)
-       with Pre  => not Empty (This),
-            Post => not Full (This);
-     function Top (This : Stack) return Content
-     with Pre => not Empty (This);
-   private
-     ...
-   end Bounded_Stacks;
- 
--------------------------------------
-Language-Based Concurrency Approach
--------------------------------------
+    - Close to problem-space
+    - Specialized constructs
+    - **Explicit** interractions
 
-* Compile-time checking
+* **Run-time** handling
 
-   - Interactions
-   - Parameter types and modes
-   - Interface consistency
+    - Maps to OS primitives
+    - Several support levels (Ravenscar...)
 
-* Closer mapping of problem space
-* Specific constructs for interactions
-* Explicit interactions within source code
-* Enhanced portability
+* **Portable**
 
    - Source code
    - People
-   - Much less dependent upon OS and vendor
+   - OS & Vendors
 
-----------------------------
-Ada Concurrency Mechanisms
-----------------------------
+-----------------------
+Concurrency Mechanisms
+-----------------------
 
-* Task objects
+* Task
 
-   - Provide active threads of control
+   - **Active**
+   - **Rich** API
+   - OS threads
 
-* Protected objects
+* Protected object
 
-   - Passive
-   - Essentially "monitors" with high-level condition synchronization
-   - Synchronize access to values without thread overhead
+   - **Passive**
+   - *Monitors* protected data
+   - **Restricted** set of operations
+   - No thread overhead
+   - Very portable
 
-* Integrated with OOP
+* Object-Oriented
 
    - Synchronized interfaces
-   - Dynamic dispatching to entries and protected subprograms
-   - Et cetera
+   - Protected objects inheritance
 
 -----------------------
 Low Level Programming
 -----------------------
 
-* Facilities designed for embedded systems
+* **Representation** clauses
+* Bit-level layouts
+* Storage pools definition
 
-   - Direct manipulation of hardware
-   - Direct interaction with assembly language
+    - With access safeties
 
-* As effective as any high order language
+* Foreign language integration
 
-   - Expressive
-   - Well-specified
-   - Efficient
+    - C
+    - C++
+    - Assembly
+    - ect...
 
-* Reasonably portable
+* Explicit specifications
 
-   - Not all software can or should be absolutely portable!
-
-* Abstraction largely preserved
-
--------------------------------
-Low Level Programming Support
--------------------------------
-
-* Extensive representation queries
-* Explicit representation specifications
-
-   - Flexible bit-specific type layouts with guaranteed semantics
-   - Size (in bits) for objects
-   - Storage requirements for tasks
-   - Dynamic storage collection ("heap") sizes for access types
-   - Memory locations for individual objects
-   - Others...
-
-* Interfacing with other languages
-
-   - FORTRAN, C, Assembly, etc.
-
-* Inline assembly language code insertions
+    - Expressive
+    - Efficient
+    - Reasonably portable
+    - Abstractions preserved
 
 ---------------------------------
-Predefined Language Environment
+**Standard** Language Environment
 ---------------------------------
+
+* Standardized common API
 
 .. container:: columns
 
  .. container:: column
   
-    * Standard types and operations for them
+    * Types
 
-       - Integer, floating- and fixed-point, unsigned
+       - Integer
+       - Floating-point
+       - Fixed-point
        - Boolean
-       - Characters and Strings of different sizes
-       - etc.
+       - Characters, Strings, Unicode
+       - ect...
 
-    * Character handling and string handling routines
-    * Elementary numeric functions (sine, cosine, etc.)
+    * Math
+        
+        - Trigonometric
+        - Complexes
+
     * Pseudo-random number generators
 
  .. container:: column
   
-    * I/O for text, direct/sequential binary, streams
-    * Exception information manipulation
-    * Command-line argument access
-    * Environment variables access and manipulation
-    * Standard "containers" data structures library
-    * And more...
+    * I/O
+
+        - Text
+        - Binary (direct / sequential)
+        - Files
+        - Streams
+
+    * Exceptions
+
+        - Call-stack
+
+    * **Command-line** arguments
+    * **Environment** variables
+    * **Containers**
+
+        - Vector
+        - Map
 
 ------------------------------
 Language Examination Summary
 ------------------------------
 
-* A uniquely powerful combination of capabilities
-* Designed with three overriding concerns
+* Unique capabilities
+* Three main goals
 
-   - Program reliability and maintenance
-   - Programming as a human activity
+   - **Reliability**, maintenability
+   - Programming as a **human** activity
    - Efficiency
 
-* An easy-to-use language
+* Easy-to-use
 
-   - Once you know it!
-   - Very few pitfalls
+   - ...and hard to misuse
+   - Very **few pitfalls** and exceptions
 
 -----------------------------------
 So Why Isn't Ada Used Everywhere?
@@ -683,12 +588,12 @@ Canonical First Program
    5   Ada.Text_IO.Put_Line ("Hello, World!");
    6 end Say_Hello;
  
-* Line 1 - *with*  - Notification of dependence on a module
-* Line 2 - *--* - Comment
-* Line 3 - *Say_Hello* - Subprogram name
-* Line 4 - *begin* - Begin executable code
-* Line 5 - *Ada.Text_IO.Put_Line* - Subprogram call
-* (cont) - *"Hello, World!"* - String literal (type-checked)
+* Line 1 - :ada:`with`  - Package dependency
+* Line 2 - :ada:`--` - Comment
+* Line 3 - :ada:`Say_Hello` - Subprogram name
+* Line 4 - :ada:`begin` - Begin executable code
+* Line 5 - :ada:`Ada.Text_IO.Put_Line ()` - Subprogram call
+* (cont) - :ada:`"Hello, World!"` - String literal (type-checked)
 
 ----------------------------------
 "Hello World" Lab - Command Line
