@@ -11,7 +11,7 @@ Subprogram Contracts Lab
 
 * Requirements
 
-   - Main program should erify pre-condition failure(s)
+   - Main program should verify pre-condition failure(s)
 
       - At least one pre-condition should raise something other than assertion error
 
@@ -56,16 +56,13 @@ Subprogram Contracts Lab Solution - Queue (Spec)
          Size    : Size_T := 0;
          Entries : Queue_Array_T;
       end record;
-      function Full (Queue : Queue_T) return Boolean is
-         (Queue.Size = Size_T'Last);
-      function Empty (Queue : Queue_T) return Boolean is
-         (Queue.Size = 0);
+      function Full (Queue : Queue_T) return Boolean is (Queue.Size = Size_T'Last);
+      function Empty (Queue : Queue_T) return Boolean is (Queue.Size = 0);
       function Valid (Queue : Queue_T) return Boolean is
         (if Queue.Size <= 1 then True
-         else
-           (for all Index in 2 .. Queue.Size =>
-              Queue.Entries (Index).Priority >=
-              Queue.Entries (Index - 1).Priority));
+         else (for all Index in 2 .. Queue.Size =>
+                  Queue.Entries (Index).Priority >=
+                  Queue.Entries (Index - 1).Priority));
    end Priority_Queue;
    
 --------------------------------------------------
@@ -75,7 +72,6 @@ Subprogram Contracts Lab Solution - Queue (Body)
 .. code:: Ada
 
    package body Priority_Queue is
-   
       procedure Push (Queue    : in out Queue_T;
                       Priority :        Priority_T;
                       Value    :        String) is
@@ -109,7 +105,6 @@ Subprogram Contracts Lab Solution - Queue (Body)
          Value      := Queue.Entries (Queue.Size).Value;
          Queue.Size := Queue.Size - 1;
       end Pop;
-   
    end Priority_Queue;
    
 -------------------------------------------

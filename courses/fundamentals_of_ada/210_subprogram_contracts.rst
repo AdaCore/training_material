@@ -46,22 +46,32 @@ Contracts In Ada
 Terminology
 -------------
 
-:Assertion:
-   Boolean expression expected to be True
+.. list-table::
+   :widths: 20 80
 
-   (Said "to hold" when True)
+   * - **Assertion**
 
-:Precondition:
-    Assertion expected to hold prior to client call
+     - Boolean expression expected to be True
 
-:Postcondition:
-    Assertion expected to hold after supplier return
+   * - 
 
-:Predicate:
-    Assertion expected to hold for all objects of given type
+     - (Said "to hold" when True)
 
-:Invariant:
-    Assertion expected to hold for all objects of given ADT when viewed by clients
+   * - **Precondition**
+
+     - Assertion expected to hold prior to client call
+
+   * - **Postcondition**
+
+     - Assertion expected to hold after supplier return
+
+   * - **Predicate**
+
+     - Assertion expected to hold for all objects of given type
+
+   * - **Invariant**
+
+     - Assertion expected to hold for all objects of given ADT when viewed by clients
 
 ---------------------
 Low-Level Assertions 
@@ -86,20 +96,17 @@ Low-Level Assertions
 
       .. code:: Ada
 
-         pragma Assert (any_boolean_expression
-                        [, [Message =>] string_expression]);
+         pragma Assert (any_boolean_expression [, [Message =>] string_expression]);
  
    - Usage
 
       .. code:: Ada
 
-         procedure Push (This  : in out Stack_T;
-                         Value : in     Content_T) is
+         procedure Push ( Value : in     Content_T ) is
          begin
-           pragma Assert (not Full (This));
+           pragma Assert (not Full (Stack));
            -- if we get here, stack is not full
            ... 
-         end Push;
  
 -----------------------
 High-Level Assertions
@@ -340,14 +347,17 @@ Preconditions and Postconditions Example
         Post => (Result * Result) <= Input and
                 (Result + 1) * (Result + 1) > Input;
  
---------------------------------------------
-Referencing Past Values In Postconditions 
---------------------------------------------
+-----------------------------------------------
+Referencing Previous Values In Postconditions 
+-----------------------------------------------
 
 * Values as they were just before the call
 * Uses language-defined attribute `'Old`
 
-   - Can be applied to most any object visible
+   - Can be applied to most any visible object
+
+      * Makes a copy so `limited` types not supported
+
    - Applied to formal parameters, typically
 
    .. code:: Ada
@@ -356,8 +366,7 @@ Referencing Past Values In Postconditions
           Pre  => This < Integer'Last,
           Post => This = This'Old + 1;
  
-* Makes a copy so `limited` types not supported
-* Could be expensive!
+* Copies can be expensive!
 
 -----------------------------
 Example for Attribute 'Old
@@ -488,12 +497,8 @@ Postconditions Are Good Documentation
      with Post =>
        not Enabled (Unit, Stream) and
        Operating_Mode (Unit, Stream) = Normal_Mode and
-       Current_Counter (Unit, Stream) = 0 and
        Selected_Channel (Unit, Stream) = Channel_0 and
        not Double_Buffered (Unit, Stream) and
-       not Circular_Mode (Unit, Stream) and
-       Memory_Data_Width (Unit, Stream) = Bytes and
-       Peripheral_Data_Width (Unit, Stream) = Bytes and
        Priority (Unit, Stream) = Priority_Low and
        (for all Interrupt in DMA_Interrupt =>
            not Interrupt_Enabled (Unit, Stream, Interrupt));
@@ -603,10 +608,7 @@ Preconditions Or Explicit Checks?
       type Stack (Capacity : Positive) is tagged private;
       procedure Push (This : in out Stack;
                       Value : Content) with
-        Pre  => not Full (This),
-        Post => ...
-      ...
-      function Full (This : Stack) return Boolean;
+        Pre  => not Full (This);
  
 * Or do this
     
@@ -619,7 +621,6 @@ Preconditions Or Explicit Checks?
           raise Overflow;
         end if;
         ...
-      end Push;
      
 * But not both
 
@@ -635,7 +636,7 @@ Advantages Over Explicit Checks
 
 * Explicit checks cannot be disabled except by changing the source text
 
-   - Conditional compilation via preprocessor (``ifdef``)
+   - Conditional compilation via preprocessor (``#ifdef``)
    - Conditional compilation via static Boolean constants
 
       .. code:: Ada
@@ -667,9 +668,7 @@ Controlling the Exception Raised
 
          type Stack (Capacity : Positive) is tagged private;
          procedure Push (This : in out Stack;  Value : Content) with
-           Pre  => not Full (This),
-           Post => ...
-         function Full (This : Stack) return Boolean;
+           Pre  => not Full (This);
  
    - Overflow 
 
@@ -681,7 +680,6 @@ Controlling the Exception Raised
              raise Overflow;
            end if;
            ...
-         end Push;
  
 * How to get them raised in preconditions?
 
@@ -698,12 +696,12 @@ Controlling the Exception Raised
      Overflow, Underflow : exception;
      procedure Push (This  : in out Stack;
                      Value : in     Content) with
-       Pre  => not Full (This) or else raise Overflow,
-       Post => not Empty (This) and Top (This) = Value;
+       Pre  => not Full (This)
+               or else raise Overflow; -- raise this exception
      procedure Pop (This  : in out Stack;
                     Value :    out Content) with
-       Pre  => not Empty (This) or else raise Underflow,
-       Post => not Full (This);
+       Pre  => not Empty (This)
+               or else raise Underflow; -- raise this exception
      function Empty (This : Stack) return Boolean;
      function Full (This : Stack) return Boolean;
    ...
@@ -728,7 +726,7 @@ Contract-Based Programming Benefits
 * Facilitates building software with reliability built-in
 
    - Software cannot work well unless "well" is carefully defined
-   - Clarifies the design by defining obligations/benefits
+   - Clarifies design by defining obligations/benefits
 
 * Enhances readability and understandability
 

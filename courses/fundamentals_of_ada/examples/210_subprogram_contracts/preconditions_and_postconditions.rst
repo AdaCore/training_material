@@ -3,20 +3,16 @@
 
    package Stack_Pkg is
       procedure Push (Item : in Integer) with
-         Pre  => not Full,
-         Post => not Empty and then Top = Item;
-   
+            Pre  => not Full,
+            Post => not Empty and then Top = Item;
       procedure Pop (Item : out Integer) with
-         Pre  => not Empty,
-         Post => not Full and Item = Top'Old;
-   
+            Pre  => not Empty,
+            Post => not Full and Item = Top'Old;
       function Pop return Integer with
-         Pre  => not Empty,
-         Post => not Full and Pop'Result = Top'Old;
-   
+            Pre  => not Empty,
+            Post => not Full and Pop'Result = Top'Old;
       function Top return Integer with
-         Pre => not Empty;
-   
+            Pre => not Empty;
       function Empty return Boolean;
       function Full return Boolean;
    end Stack_Pkg;
@@ -25,16 +21,15 @@
       Values  : array (1 .. 100) of Integer;
       Current : Natural := 0;
    
+      -- Push/Pop cannot fail because preconditions prevent it
       procedure Push (Item : in Integer) is
       begin
-         -- precondition enforces validity
          Current          := Current + 1;
          Values (Current) := Item;
       end Push;
    
       procedure Pop (Item : out Integer) is
       begin
-         -- precondition enforces validity
          Item    := Values (Current);
          Current := Current - 1;
       end Pop;
