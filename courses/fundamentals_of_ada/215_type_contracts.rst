@@ -1,126 +1,40 @@
 
-***********
-Contracts
-***********
+****************
+Type Contracts
+****************
 
 ==============
 Introduction
 ==============
 
-----------------------------
-Contract-Based Programming
-----------------------------
+---------------
+Strong Typing
+---------------
 
-* The idea of source code acting in roles of **client** and **supplier** under a binding **contract**
-* **Client** and **supplier** software
-
-   - Suppliers provide software elements that clients utilize
-   - Example: suppliers provide subprograms, clients call them
-
-* **Contract**
-
-   - "A specification of a software element that affects its use by potential clients." (Bertrand Meyer)
-
-* Includes enforcement
-
-   - At compile-time: specific constructs, features, and rules
-   - At run-time: language-defined and user-defined exceptions
-
-------------------
-Contracts In Ada
-------------------
-
-* Exist implicitly in facilities you may already be using
-
-   - Exceptions
-   - Range specifications
-   - Subtypes
-   - Parameter modes
-   - OOP interface types
-   - et cetera
-
-* Are explicitly supported
-
-   - Low-level and high-level **assertions**
-   - Predicates
-   - Including OOP context
-
--------------
-Terminology
--------------
-
-* **Assertion:** a boolean expression expected to be True
-
-   - Said "to hold" when True
-
-* **Precondition:** an assertion expected to hold prior to a call to a given subprogram
-* **Postcondition:** an assertion expected to hold after a given subprogram call returns normally
-* **Predicate:** an assertion expected to hold for all objects of a given subtype
-* **Invariant:** an assertion expected to hold for all objects of a given abstract data type when viewed from outside the defining package
-
---------------------------------
-Low-Level Assertions via Calls
---------------------------------
-
-* Language-defined package with procedures
-
-   - Raise `Assertion_Error` if expression is False
-   - Library Unit
-
-.. code:: Ada
-
-   package Ada.Assertions is
-     Assertion_Error : exception;
-     procedure Assert (Check : in Boolean);
-     procedure Assert (Check : in Boolean;
-                       Message : in String);
-   end Ada.Assertions;
-
-----------------------------------
-Low-Level Assertions via Pragmas
-----------------------------------
-
-* Language-defined pragma
-
-   - Easier to enable/disable
-   - Definition
-
-      .. code:: Ada
-
-         pragma Assert (any_boolean_expression
-                        [, [Message =>] string_expression]);
- 
-.. code:: Ada
-
-   procedure Push (This  : in out Stack;
-                   Value : in     Content) is
-   begin
-     pragma Assert (not Full (This));
-     ... code that only works if the stack is not full ...
-   end Push;
- 
------------------------
-High-Level Assertions
------------------------
-
-* Pre- and postconditions specify obligations on the subprogram caller and implementer
+* We know Ada supports strong typing
 
    .. code:: Ada
 
-      procedure Push (This : in out Stack;  Value : Content)
-        with Pre  => not Full (This),       -- requirement
-             Post => not Empty (This)       -- guarantee
-                     and Top (This) = Value;
- 
-* Type invariants ensure properties of whole objects over their lifetimes
+      type Small_Integer_T is range -1_000 .. 1_000;
+      type Enumerated_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+      type Array_T is array (1 .. 3) of Boolean;
 
-   .. code:: Ada
+* But what if we need stronger enforcement?
 
-      type Table is private with Type_Invariant =>
-        Sorted (Table); -- user-defined boolean expression
-      -- external usage of Table will always be sorted
-      function Sorted (This : Table) return Boolean;
- 
+   * Number must be even
+   * Subet of non-consecutive enumerals
+   * Array should always be sorted
+
+* **Type Invariant**
+
+   * Property of type that is always true on external reference
+   * *Guarantee* to client, similar to subprogram postcondition
+
+* **Subtype Predicate**
+
+   * Add more complicated constraints to a type
+   * Always enforced, just like other constraints
+
 =================
 Type Invariants
 =================
@@ -135,7 +49,7 @@ Examples
 Type Invariants
 -----------------
 
-* There may be conditions that must hold over the entire lifetime of objects
+* There may be conditions that must hold over entire lifetime of objects
 
    - Pre/postconditions apply only to subprogram calls
 
@@ -149,33 +63,29 @@ Type Invariants
       Workday : Weekdays := Mon;
  
 * Type invariants apply across entire lifetime for complex abstract data types
-* Part of ADT concept, hence only for private types
+* Part of ADT concept, so only for private types
 
 ------------------------------
 Type Invariant Verifications
 ------------------------------
 
-.. container:: columns
+* Automatically inserted by compiler
+* Evaluated as postcondition of creation, evaluation, or return object
 
- .. container:: column
-  
-    * Automatically inserted by compiler
-    * Evaluated as postcondition of operation that creates, evaluates or returns the type
+   - When objects first created
+   - Assignment by clients
+   - Type conversions
 
-       - When objects first created
-       - Assignment by clients
-       - Type conversions as that creates new instances
+      * creates new instances
 
-    * Not evaluated on internal state changes
+* Not evaluated on internal state changes
 
-       - Internal routine calls 
-       - Internal assignments
-       - Remember these are abstract data types
+   - Internal routine calls 
+   - Internal assignments
 
- .. container:: column
-  
-    .. image:: ../../images/black_box_flow.png
-       :width: 50%
+* Remember these are abstract data types
+
+.. image:: ../../images/black_box_flow.png
     
 ----------------------------------------
 Invariant Over Object Lifetime (Calls)
@@ -200,7 +110,6 @@ Example Type Invariant
    package Bank is
      type Account is private with
        Type_Invariant => Consistent_Balance (Account);   
-     type Currency is delta 0.01 digits 12;
      ...
      -- Called automatically for all Account objects
      function Consistent_Balance (This : Account)
@@ -211,33 +120,7 @@ Example Type Invariant
    end Bank;
  
 -------------------------------------------
-Example Type Invariant Realization (Spec)
--------------------------------------------
-
-.. code:: Ada
-
-   package Bank is
-     type Account is private with
-       Type_Invariant => Consistent_Balance (Account);   
-     type Currency is delta 0.01 digits 12;
-     ...
-     function Consistent_Balance (This : Account)
-       return Boolean;
-     ...
-   private
-     -- initial state MUST satisfy invariant
-     type Account is record
-       Owner : Unbounded_String;
-       Current_Balance : Currency := 0.0;
-       Withdrawals : Transaction_List;
-       Deposits : Transaction_List;
-     end record;
-     function Total (This : Transaction_List)
-       return Currency;
-   end Bank;
- 
--------------------------------------------
-Example Type Invariant Realization (Body)
+Example Type Invariant Implementation
 -------------------------------------------
 
 .. code:: Ada
@@ -265,7 +148,7 @@ Example Type Invariant Realization (Body)
 Invariants Don't Apply Internally
 -----------------------------------
 
-* Within the package there is no checking
+* No checking within supplier package
 
    - Otherwise there would be no way to implement anything!
 
@@ -290,26 +173,23 @@ Invariants Don't Apply Internally
 Default Type Initialization for Invariants
 --------------------------------------------
 
-* The initial, whole value must support the invariant
-* Some types may need default type initialization to satisfy the requirement
+* Invariant must host for initial value
+* May need default type initialization to satisfy requirement
 
 .. code:: Ada
 
    package P is
+     -- Type is private, so we can't use Default_Value here
      type T is private with Type_Invariant => Zero (T);
      procedure Op (This : in out T);
      function Zero (This : T) return Boolean;
    private
+     -- Type is not a record, so we need to use aspect
+     -- (A record could use default values for its components)
      type T is new Integer with Default_Value => 0; 
      function Zero (This : T) return Boolean is (This = 0);
    end P;
  
-.. container:: speakernote
-
-   We want to place the invariant aspect clause in the visible part for the sake of inheritance (were this a tagged type).
-   The function is required because the full view is the first place we can refer to the fact that T is an integer type.
-   The type derivation is required because we cannot apply DefaultValue to predefined types (because must go on declarations).
-
 ---------------------------------
 Type Invariant Clause Placement
 ---------------------------------
@@ -328,6 +208,8 @@ Type Invariant Clause Placement
       end P;
  
 * It is really an implementation aspect
+
+   * Client shouldn't care!
 
 .. container:: speakernote
 
@@ -363,11 +245,10 @@ Subtype Predicates Concept
    - Index constraints
    - Others...
 
-* The language defines the rules for these constraints
+* Language defines rules for these constraints
 
    - All range constraints are contiguous
-   - Et cetera
-   - Generally this is a matter of efficiency
+   - Matter of efficiency
 
 * **Subtype predicates** generalize possibilities
 
@@ -381,11 +262,10 @@ Subtype Predicates Concept
 
    - When true, said to "hold" 
 
-* Expressed as arbitrary boolean expressions in Ada
+* Expressed as any legal boolean expressions in Ada
 
    - Quantified and conditional expressions
    - Boolean function calls
-   - Et cetera
 
 * Two forms in Ada
 
@@ -414,10 +294,6 @@ Really, ``type`` and ``subtype`` Predicates
          with aspect_mark [ => expression] { ,
                    aspect_mark [ => expression] }
  
-.. container:: speakernote
-
-   Expressions can be either dynamic predicate or static predicate
-
 --------------------------
 Why Two Predicate Forms?
 --------------------------
@@ -444,12 +320,13 @@ Why Two Predicate Forms?
 
 * Static predicates can be used in more contexts
 
-   - Thus restrictions on content to make that possible
+   - More restrictions on content
+   - Can be used in places Dynamic Predicates cannot
 
 * Dynamic predicates have more expressive power
 
    - Fewer restrictions on content
-   - But cannot be used in all possible contexts
+   - Not as widely available
 
 ----------------------------
 Subtype Predicate Examples
@@ -478,23 +355,26 @@ Subtype Predicate Examples
 Predicate Checking
 --------------------
 
-* Calls are inserted automatically by compiler
+* Calls inserted automatically by compiler
 * Violations raise exception `Assertion_Error`
 
-   - When the predicate does not hold (evaluates to False)
+   - When predicate does not hold (evaluates to False)
 
-* Checks are done before value change, like language-defined constraint checks
-* Associated variable is therefore unchanged when a violation is detected
+* Checks are done before value change
+
+   - Same as language-defined constraint checks
+
+* Associated variable is unchanged when violation is detected
 
 ----------------------------
 Predicate Checks Placement
 ----------------------------
 
-* Anywhere a value would be assigned that may violate the constraint of the predicated target
+* Anywhere value assigned that may violate target constraint
 * Assignment statements
 * Explicit initialization as part of object declaration
-* On a subtype conversion
-* As part of parameter passing
+* Subtype conversion
+* Parameter passing
 
    - All modes when passed by copy
    - Modes `in out` and `out` when passed by reference
@@ -510,9 +390,7 @@ References Are Not Checked
     
    with Ada.Text_IO;   use Ada.Text_IO;
    procedure Test is   
-     subtype Even is Integer with
-       Dynamic_Predicate =>
-          Even mod 2 = 0;
+     subtype Even is Integer with Dynamic_Predicate => Even mod 2 = 0;
      J, K : Even;
    begin
      -- predicates are not checked here
@@ -538,7 +416,7 @@ References Are Not Checked
 Predicate Expression Content
 ------------------------------
 
-* A reference to a value of the type itself, i.e., the "current instance"
+* Reference to value of type itself, i.e., "current instance"
 
    .. code:: Ada
 
@@ -546,9 +424,10 @@ Predicate Expression Content
         with Dynamic_Predicate => Even mod 2 = 0;
       J, K : Even := 42;
  
-* Any object or function visible, including entities declared after it in the same declarative part
+* Any visible object or function in scope
 
-   - An exception to the "declared before referenced" rule of linear elaboration
+   - Does not have to be defined before use
+   - Relaxation of "declared before referenced" rule of linear elaboration
    - Intended especially for (expression) functions declared in same package spec
 
 -------------------
@@ -559,8 +438,8 @@ Static Predicates
 
    - Language defines meaning formally
 
-* Allowed in contexts in which the compiler must be able to verify properties
-* Content restrictions on predicate are thus necessary
+* Allowed in contexts in which compiler must be able to verify properties
+* Content restrictions on predicate are necessary
 
 --------------------------------------
 Allowed Static Predicate Content (1)
@@ -591,7 +470,7 @@ Allowed Static Predicate Content (1)
 Allowed Static Predicate Content (2)
 --------------------------------------
 
-* Case expressions in which dependent expressions are static and selected by the current instance
+* Case expressions in which dependent expressions are static and selected by current instance
 
    .. code:: Ada
 
@@ -622,11 +501,9 @@ Allowed Static Predicate Content (3)
    - Only for pre-defined type `Boolean`
    - Only with operands of the above
 
-* Short-circuit controls with operands of the above
+* Short-circuit controls with operands of above
 
-   - (As indicated on the previous slides)
-
-* Any of the above in parentheses
+* Any of above in parentheses
 
 --------------------------------------
 Dynamic Predicate Expression Content
@@ -645,22 +522,18 @@ Dynamic Predicate Expression Content
       subtype Vowel is Character with Dynamic_Predicate =>
         (case Vowel is
          when 'A' | 'E' | 'I' | 'O' | 'U' => True,
-         when others => False);
+         when others => False); -- evaluated at run-time
  
 * Plus calls to functions
 
    - User-defined
    - Language-defined
 
-.. container:: speakernote
-
-   Others has to be evaluated at run-time
-
 -----------------------------
 Types Controlling For-Loops
 -----------------------------
 
-* Those with dynamic predicates cannot be used
+* Types with dynamic predicates cannot be used
 
    - Too expensive to implement
 
@@ -674,22 +547,19 @@ Types Controlling For-Loops
            ...
          end loop;
  
-* Those with static predicates are allowed to do so
+* Types with static predicates can be used
 
    .. code:: Ada
 
       type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);   
       subtype Weekend is Days
         with Static_Predicate => Weekend in Sat | Sun;
-      -- note: first value for K is Sun
+      -- Loop uses "Days", and only enters loop when in Weekend
+      -- So "Sun" is first value for K
       for K in Weekend loop
-        ...
+         ...
       end loop;
  
-.. container:: speakernote
-
-   Enum example - we're still going through the enums (in order), just using the ones that match the predicate
-
 -----------------------------------------
 Why Allow Types with Static Predicates?
 -----------------------------------------
@@ -729,9 +599,9 @@ Why Allow Types with Static Predicates?
 In Some Cases Neither Kind Is Allowed
 ---------------------------------------
 
-* Types with neither kind of predicate can be used in cases where a contiguous layout is required
+* No predicates can be used in cases where contiguous layout required
 
-   - Efficient access and representation would be impossible when discontiguous ranges are specified
+   - Efficient access and representation would be impossible
 
 * Hence no array index or slice specification usage
 
@@ -748,14 +618,13 @@ Special Attributes for Predicated Types
 * Attributes `'First_Valid` and `'Last_Valid`
 
    - Can be used for any static subtype 
-
    - Especially useful with static predicates
    - `'First_Valid` returns smallest valid value, taking any range or predicate into account
    - `'Last_Valid` returns largest valid value, taking any range or predicate into account
 
 * Attributes `'Range`, `'First` and `'Last` are not allowed 
 
-   - They reflect non-predicate constraints so don't make sense
+   - Reflect non-predicate constraints so not valid
    - `'Range` is just a shorthand for `'First` .. `'Last`
 
 * `'Succ` and `'Pred` are allowed since work on underlying type
@@ -804,16 +673,11 @@ Subtype Predicates Aren't Bullet-Proof
      ...
    end Demo;
  
-.. container:: speakernote
-
-   Array should always be sorted.
-   However, when modifying a slice of the array, the sort check is not performed!
-
 ------------------------------------------
 Beware Accidental Recursion In Predicate
 ------------------------------------------
 
-* Necessarily involves functions because predicates are expressions
+* Involves functions because predicates are expressions
 * Caused by checks on function arguments
 * Infinitely recursive example
 
@@ -835,39 +699,21 @@ Beware Accidental Recursion In Predicate
           (for all K in Table'Range =>
             (K = Table'First or else Table(K-1) <= Table(K)));
  
-----------------------------------------
-"Safe" Functions In Subtype Predicates
-----------------------------------------
-
-* That is, those that will not recurse...
-* Are those that don't have a formal parameter of the type to be checked
-
-.. code:: Ada
-
-   type Foo is record
-     A : Integer;
-     B : Float;
-   end record
-   with Dynamic_Predicate => Bar (Foo.A) and Baz (Foo.B);
-   -- These functions do not take "Foo" as a parameter   
-   function Bar (This : Integer) return Boolean is (...);
-   function Baz (This : Float) return Boolean is (...);
- 
 ---------------------------------------
 GNAT-Specific Aspect Name *Predicate*
 ---------------------------------------
 
-* Conflates the two language-defined names
+* Conflates two language-defined names
 * Takes on kind with widest applicability possible
 
    - Static if possible, based on predicate expression content
    - Dynamic if cannot be static
 
-* Remember that static predicates are allowed anywhere that dynamic predicates are allowed
+* Remember: static predicates allowed anywhere that dynamic predicates allowed
 
-   - But not the inverse
+   - But not inverse
 
-* The slight disadvantage is that you don't find out if your static predicate is not actually static
+* Slight disadvantage: you don't find out if your predicate is not actually static
 
    - Until you use it where only static predicates are allowed
 
@@ -899,286 +745,16 @@ Enabling/Disabling Contract Verification
    A switch is likely offered because otherwise one must edit the source code to change settings, like the situation with pragma Inline.
    Pragma Suppress can also be applied.
 
-=============
-In Practice
-=============
+========
+Lab
+========
 
-----------------------------------------
-Pre/Postconditions: To Be or Not To Be
-----------------------------------------
+.. include:: labs/215_type_contracts.lab.rst
 
-* Preconditions are generally not too expensive
+=========
+Summary
+=========
 
-   - Likely a reasonable default for checking
-
-* Postconditions can be comparatively expensive
-
-   - Use of `'Old` and `'Result` involve copying (maybe deep)
-
-* Enabling preconditions alone makes sense when calling trusted library routines
-
-   - That way, you catch your (i.e., client) errors
-
-* Do you enable them all the time?  It depends...
-
-   - How tight is the overall timing in your application?
-   - Is response-time available to respond to violations?
-   - What are the consequences of not catching violations?
-   - How expensive are run-time checks in this implementation?
-
--------------------------------------
-No Secret Precondition Requirements
--------------------------------------
-
-* Should only require what the client can ensure
-
-   - By only referencing entities also available to clients
-
-* Language rules enforce this precept
-
-.. code:: Ada
-
-   package P is
-     type Bar is private;
-     ...
-     function Foo (This : Bar) return Baz
-       with Pre => Hidden; -- illegal reference
-   private
-     function Hidden return Boolean;
-     ...
-   end P;
- 
----------------------------------------
-Postconditions Are Good Documentation
----------------------------------------
-
-.. code:: Ada
-
-   procedure Reset
-       (Unit : in out DMA_Controller;
-        Stream : DMA_Stream_Selector)
-     with Post =>
-       not Enabled (Unit, Stream) and
-       Operating_Mode (Unit, Stream) = Normal_Mode and
-       Current_Counter (Unit, Stream) = 0 and
-       Selected_Channel (Unit, Stream) = Channel_0 and
-       not Double_Buffered (Unit, Stream) and
-       not Circular_Mode (Unit, Stream) and
-       Memory_Data_Width (Unit, Stream) = Bytes and
-       Peripheral_Data_Width (Unit, Stream) = Bytes and
-       Priority (Unit, Stream) = Priority_Low and
-       (for all Interrupt in DMA_Interrupt =>
-           not Interrupt_Enabled (Unit, Stream, Interrupt));
- 
----------------------------
-Postcondition Limitations
----------------------------
-
-* Sometimes they cannot specify all relevant properties without repeating body's computations
-
-   - Unlike preconditions
-
-.. code:: Ada
-
-   function Euclid (A, B : Integer) return Integer with
-     Pre  =>  A > 0 and B > 0,
-     Post =>  Is_GCD (A, B, Euclid'Result);
-   function Is_GCD (A, B, Candidate : Integer)
-       return Boolean is 
-     (A rem Candidate = 0 and
-      B rem Candidate = 0 and
-      (for all K in 1 .. Integer'Min (A,B) =>
-         (if (A rem K = 0 and B rem K = 0)
-          then K <= Candidate)));
- 
--------------------------------------
-Use Functions In Pre/Postconditions
--------------------------------------
-
-* Abstraction increases chances of getting it right
-
-   - Provides higher-level interface to clients too
-
-   .. code:: Ada
-
-      procedure Withdraw (This   : in out Account;
-                          Amount :        Currency) with
-        Pre  => Open (This) and Funds_Available (This, Amount),
-        Post => Balance (This) = Balance (This)'Old - Amount;
-      ...
-      function Funds_Available (This   : Account;
-                                Amount : Currency)
-                                return Boolean is
-          (Amount > 0.0 and then Balance (This) >= Amount)
-        with Pre => Open (This);
- 
-* May be unavoidable
-
-   - Cannot reference hidden components of private types in the package visible part
-
------------------------------------------
-Example Private Part Reference Approach
------------------------------------------
-
-.. code:: Ada
-
-   package P is
-     type T is private;
-     procedure Q (This : T) with
-       Pre => This.Total > 0; -- not legal
-     ...
-     function Current_Total (This : T) return Integer;
-     ...
-     procedure R (This : T) with
-       Pre => Current_Total (This) > 0; -- legal
-     ...
-   private
-     type T is record
-       Total : Natural ;
-       ...
-     end record;
-     function Current_Total (This : T) return Integer is
-         (This.Total);
-   end P;
- 
---------------------------
-Using Pre/Postconditions
---------------------------
-
-* Assertions are not logic control structures
-
-   - Use if-then-else etc. in the routine to handle special cases
-
-* Assertions are not for external input validation
-
-   - Contracts are internal: between parts of the source code
-   - A precondition cannot prevent invalid user data entry
-
-* Precondition violations indicate client bugs
-
-   - Maybe the requirements spec is wrong, but too late to argue at this point...
-
-* Postcondition violations indicate supplier bugs
-
------------------------------------
-Preconditions Or Explicit Checks?
------------------------------------
-
-* Logically part of the spec so should be textually too
-
-   - Otherwise clients must examine the body, breaking abstraction
-
-* Do this
-    
-   .. code:: Ada
-    
-      type Stack (Capacity : Positive) is tagged private;
-      procedure Push (This : in out Stack;
-                      Value : Content) with
-        Pre  => not Full (This),
-        Post => ...
-      ...
-      function Full (This : Stack) return Boolean;
- 
-* Or do this
-    
-   .. code:: Ada
-    
-      procedure Push (This : in out Stack;
-                      Value : Content) is
-      begin
-        if Full (This) then
-          raise Overflow;
-        end if;
-        ...
-      end Push;
-     
-* But not both
-
-   - A subprogram body should never test its own preconditions
-
----------------------------------
-Advantages Over Explicit Checks
----------------------------------
-
-* Pre/postconditions can be turned off
-
-   - Like language-defined checks
-
-* Explicit checks cannot be disabled except by changing the source text
-
-   - Conditional compilation via preprocessor (``ifdef``)
-   - Conditional compilation via static Boolean constants
-
-      .. code:: Ada
-
-         procedure Push (This : in out Stack;  Value : Content) is
-         begin
-           if Debugging then
-             if Full (This) then
-               raise Overflow;
-             end if;
-           end if;
-           ...
-         end Push;
- 
-----------------------------------
-Controlling the Exception Raised
-----------------------------------
-
-* Failing pre/postconditions raise `Assertion_Error`
-* Our abstractions may define dedicated exceptions
-
-   - Assertion Error
-
-      .. code:: Ada
-
-         type Stack (Capacity : Positive) is tagged private;
-         procedure Push (This : in out Stack;  Value : Content) with
-           Pre  => not Full (This),
-           Post => ...
-         function Full (This : Stack) return Boolean;
- 
-   - Overflow 
-
-      .. code:: Ada
-
-         procedure Push (This : in out Stack;  Value : Content) is
-         begin
-           if Full (This) then
-             raise Overflow;
-           end if;
-           ...
-         end Push;
- 
-* How to get them raised in preconditions?
-
-   - Not needed for postconditions (failures are supplier bugs)
-
---------------------------------------
-"Raise Expressions" In Preconditions
---------------------------------------
-
-.. code:: Ada
-
-   package Bounded_Stacks is
-     type Stack (Capacity : Positive) is tagged private;
-     Overflow, Underflow : exception;
-     procedure Push (This  : in out Stack;
-                     Value : in     Content) with
-       Pre  => not Full (This) or else raise Overflow,
-       Post => not Empty (This) and Top (This) = Value;
-     procedure Pop (This  : in out Stack;
-                    Value :    out Content) with
-       Pre  => not Empty (This) or else raise Underflow,
-       Post => not Full (This);
-     function Empty (This : Stack) return Boolean;
-     function Full (This : Stack) return Boolean;
-   ...
-   private
-   ...
-   end Bounded_Stacks;
- 
 ------------------------------
 Working with Type Invariants
 ------------------------------
@@ -1210,67 +786,3 @@ Type Invariants vs Predicates
 .. container:: speakernote
 
    Type invariant - "account" example - we wouldn't be able to maintain the invariant when we update portions of the ADT
-
-========
-Lab
-========
-
-.. include:: labs/215_type_contracts.lab.rst
-
-=========
-Summary
-=========
-
--------------------------------------
-Contract-Based Programming Benefits
--------------------------------------
-
-* Facilitates building software with reliability built-in
-
-   - Software cannot work well unless "well" is carefully defined
-   - Clarifies the design by defining obligations/benefits
-
-* Enhances readability and understandability
-
-   - Specification contains explicitly expressed properties of code
-
-* Improves testability but also likelihood of passing!
-* Aids in debugging
-* Facilitates tool-based analysis
-
-   - Compiler checks conformance to obligations
-
-   - Static analyzers (e.g., SPARK, CodePeer) can verify explicit precondition and postconditions 
-
----------
-Summary
----------
-
-* Based on viewing source code as clients and suppliers with enforced obligations and guarantees
-* No run-time penalties unless enforced
-* OOP introduces the tricky issues
-
-   - Inheritance of preconditions and postconditions, for example
-
-* Note that pre/postconditions can be used on concurrency constructs too
-
- .. list-table::
-   :header-rows: 1
-   :stub-columns: 1
-   :width: 90%
-    
-  * - 
-
-    - Clients
-    - Suppliers
-
-  * - Preconditions
-
-    - Obligation
-    - Guarantee
-
-  * - Postconditions
-
-    - Guarantee
-    - Obligation
-    
