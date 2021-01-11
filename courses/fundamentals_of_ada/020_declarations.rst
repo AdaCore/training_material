@@ -140,19 +140,15 @@ Pragmas
 
    - "action" in Greek
    - Compiler action *not part of* Ada grammar
-   - Only **suggestions**
-   - May be **ignored**
-   - Either predefined
-   - ... or implementation-defined
-
-       + **Bad** portability
+   - Only **suggestions**, may be **ignored**
+   - Either standard or implementation-defined
 
 * Unrecognized pragmas
 
    - **No effect**
    - Cause **warning** (standard mode)
 
-* Malformed pragmas |rightarrow| **illegal**
+* Malformed pragmas are **illegal**
 
 .. code:: Ada
 
