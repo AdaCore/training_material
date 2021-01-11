@@ -615,7 +615,7 @@ Name Hiding
 Overcoming Hiding
 -------------------
 
-* Add a name **qualifier**
+* Add a **prefix**
 
    - Needs named scope
 
@@ -757,7 +757,7 @@ Summary
 
 * Simple **scope** and **visibility** rules
 
-    - **Qualification** solves **hiding** problems
+    - **Prefixing** solves **hiding** problems
 
 * Pragmas, Aspects
 * Detailed syntax definition in Annex P (using BNF)
