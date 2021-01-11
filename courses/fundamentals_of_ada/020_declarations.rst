@@ -86,7 +86,7 @@ Identifiers
  
 * Character set **Unicode** 4.0
 
-   - UTF 8, 16, 32
+   - 8, 16, 32 bit-wide characters
 
 * Case **not significant**
 
