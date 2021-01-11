@@ -632,7 +632,7 @@ Overcoming Hiding
      declare
        M : Float;
      begin
-       Outer.M := Integer(M);
+       Outer.M := Integer(M); -- Prefixed
      end;
      ...
    end Outer;
