@@ -413,25 +413,19 @@ Literals Must Match "Class" of Context
 * `universal_integer` literals |rightarrow| **integer**
 * `universal_real` literals |rightarrow| **fixed** or **floating** point
 
-.. container:: columns
+* Legal
 
- .. container:: column
+  .. code:: Ada
 
-   * Legal
+     X : Integer := 2;
+     Y : Float := 2.0;
 
-     .. code:: Ada
+* Not legal
 
-        X : Integer := 2;
-        Y : Float := 2.0;
- 
- .. container:: column
+  .. code:: Ada
 
-   * Not legal
-
-     .. code:: Ada
-
-        X : Integer := 2.0;
-        Y : Float := 2;
+     X : Integer := 2.0;
+     Y : Float := 2;
 
 ===============
 Named Numbers
