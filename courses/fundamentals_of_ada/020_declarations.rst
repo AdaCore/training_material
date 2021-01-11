@@ -586,6 +586,7 @@ Scope and "Lifetime"
     - C's :c:`static`, :c:`auto` etc...
 
 .. image:: ../../images/block_scope_example.jpeg
+    :height: 50%
 
 -------------
 Name Hiding
