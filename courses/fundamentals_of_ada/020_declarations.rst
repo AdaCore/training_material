@@ -623,21 +623,19 @@ Overcoming Hiding
 
     - May need **refactoring**...
 
- .. container:: column
-  
-    .. code:: Ada
-    
-       Outer : declare
-         M : Integer;
-       begin
-         ...
-         declare
-           M : Float;
-         begin
-           Outer.M := Integer(M);
-         end;
-         ...
-       end Outer;
+.. code:: Ada
+
+   Outer : declare
+     M : Integer;
+   begin
+     ...
+     declare
+       M : Float;
+     begin
+       Outer.M := Integer(M);
+     end;
+     ...
+   end Outer;
      
 ================
 Aspect Clauses
