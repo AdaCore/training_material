@@ -341,17 +341,14 @@ Elaboration
 
 * Effects of the declaration
 
-    - Initial value **calculations**
-
-* *Execution* of the declaration
-
-   - At **run-time**
-   - ... if at all
+    - **Initial value** calculations
+    - *Execution* at **run-time** (if at all)
+    - *Warning*: Can have **side-effects**
 
 * Objects
 
    - Memory **allocation**
-   - Initial values
+   - Initial value
 
 * Linear elaboration
 
