@@ -173,7 +173,8 @@ Decimal Numeric Literals
 
    .. code::
 
-      decimal_literal ::= numeral [.numeral] [E+numeral | E-numeral]
+      decimal_literal ::=
+        numeral [.num] E [+numeral|-numeral]
       numeral ::= digit {[underline] digit}
 
 * Underscore is not significant
@@ -191,7 +192,8 @@ Based Numeric Literals
 
 .. code::
 
-   based_literal ::= base # based_number [.based_number] # [E+numeral | E-numeral]
+   based_literal ::=
+     base # based_number [.based_number] # E [+numeral|-numeral]
    based_number ::= base_digit { '_' base_digit }
  
 * Base can be 2 .. 16
