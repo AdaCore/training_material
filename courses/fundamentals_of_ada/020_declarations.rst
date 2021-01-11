@@ -7,83 +7,9 @@ Declarations
 Introduction
 ==============
 
-----------------------------------------
-Some New or Possibly Different Symbols
-----------------------------------------
-
- .. list-table::
-   :header-rows: 1
-
-  * - This Symbol
-
-    - Means This
-
-  * - `<>`
-
-    - 'box' - not specified here
-
-  * - :=
-
-    - Assignment
-
-  * - `=>`
-
-    - 'arrow' - association
-
-  * - =
-
-    - Equality
-
-  * - /=
-
-    - Inequality
-
-  * - `..`
-
-    - 'through' - range of values (e.g. 1 .. 10)
-
-------------------
-Backus-Naur Form
-------------------
-
-* Called "BNF" for short
-* A notation for defining the syntax of a language
-
-.. list-table::
-   :header-rows: 1
-
-   * - Symbol
-
-     - *Meaning*
-
-   * - ``::=``
-
-     - *is defined as*
-
-   * - ``[item]``
-
-     - *0 or 1 items*
-
-   * - :math:`\{` ``item`` :math:`\}`
-
-     - *0 or more items*
-
-   * - ``item | item``
-
-     - *alternative items*
-
-* Simplified and modified syntax presented here
-
-   - As new facilities are introduced more details are provided
-   - See RM Annex P for full productions
-
 ---------------------
-BNF for Identifiers
+Identifiers
 ---------------------
-
-.. code:: Ada
-
-  identifier ::= letter {[underline] letter_or_digit}
 
 .. image:: ../../images/identifier_flow.png
    :width: 60%
@@ -110,20 +36,14 @@ BNF for Identifiers
          A_
          _space_person
 
--------------------------
-BNF for String Literals
--------------------------
+----------------
+String Literals
+----------------
 .. |rightarrow| replace:: :math:`\rightarrow`
 
-.. code:: Ada
+.. code::
     
-   string_literal ::= "{string_element}"
-   string_element ::=
-      "" | non_quotation_mark_graphic_character
-   graphic_character ::= identifier_letter | 
-                         digit | 
-                         special_character |
-                         space_character
+   string_literal ::= "<string content>"
 
 .. code:: Ada
 
@@ -139,22 +59,6 @@ BNF for String Literals
 
    Note that the last example literal (that has embedded double quotes) is not an example of concatenation!
 
------------------------
-BNF Shows Only Syntax
------------------------
-
-* Not all details and no semantics
-
-.. code:: Ada
-
-  case_statement ::= case expression is
-     case_statement_alternative
-     { case_statement_alternative }
-     end case;
-      
-  case_statement_alternative ::=
-     when choice { | choice  } =>
- 
 ====================================
 Identifiers, Comments, and Pragmas
 ====================================
@@ -171,7 +75,7 @@ Identifiers
 
 * Syntax
 
-   .. code:: Ada
+   .. code::
 
       identifier ::= letter {[underline] letter_or_digit}
  
@@ -221,12 +125,6 @@ Reserved Words
 Comments
 ----------
 
-* Syntax
-
-   .. code:: Ada
-
-      comment ::= --{non_end_of_line_character}
- 
 * Terminate at end of line (i.e., no comment terminator sequence)
 
    .. code:: Ada
@@ -276,11 +174,10 @@ Decimal Numeric Literals
 
 * Syntax
 
-   .. code:: Ada
+   .. code::
 
-      decimal_literal ::= numeral [.numeral] [exponent]
+      decimal_literal ::= numeral [.numeral] [E+numeral | E-numeral]
       numeral ::= digit {[underline] digit}
-      exponent ::= E [+] numeral | E - numeral
  
 * Examples
 
@@ -295,12 +192,10 @@ Decimal Numeric Literals
 Based Numeric Literals
 ------------------------
 
-.. code:: Ada
+.. code::
 
-   based_literal ::= base # based_number [.based_number] # [exp]
-   base ::= numeral
-   based_number ::= extended_digit {[underline] extended_digit}
-   extended_digit ::= digit | A | B | C | D | E | F
+   based_literal ::= base # based_number [.based_number] # [E+numeral | E-numeral]
+   based_number ::= base_digit { '_' base_digit }
  
 * Base can be 2 .. 16
 * Exponent is always a decimal number
@@ -308,7 +203,7 @@ Based Numeric Literals
    .. code:: Ada
 
       16#FFF#           => 4095
-      2#1111_1111_1111# => 4095
+      2#1111_1111_1111# => 4095 -- With underline
       16#F.FF#E+2       => 4095.0
       8#10#E+3          => 4096 (8 * 8**3)
  
@@ -370,11 +265,7 @@ Object Declarations
 
    .. code:: Ada
 
-      object_declaration ::= defining_identifier_list :
-          [constant] subtype_indication [:= expression];
-      defining_identifier_list ::= defining_identifier
-                                   {, defining_identifier}
-      subtype_indication ::= name [constraint]
+      <name> : subtype_indication [:= <initial value>];
  
 * Examples
 
@@ -563,9 +454,7 @@ Named Numbers
 
    .. code:: Ada
 
-      number_declaration ::=
-         defining_identifier_list : constant
-                                  := static_expression;
+     <name> : constant := <static_expression>;
  
 * Expression must be static
 * Are of universal types
@@ -671,10 +560,10 @@ Introducing Block Statements
 
    .. code:: Ada
 
-      [block-name :] declare
-      {declarative part}
+      [<block-name> :] declare
+         <declarative part>
       begin
-      statement-sequence
+         <statements>
       end [block-name];
  
 * Example
@@ -782,8 +671,8 @@ Aspect Clauses
 
    .. code:: Ada
 
-      aspect_specification ::= with aspect_mark [ => expression]
-                               {, aspect_mark [ => expression] }
+      with aspect_mark [ => expression]
+           {, aspect_mark [ => expression] }
  
    - Note this is always part of a larger construct, i.e., never stand-alone
 
@@ -802,11 +691,9 @@ Aspect Clause Example: Objects
 
    .. code:: Ada
 
-      object_declaration ::= defining_identifier_list :
-                             [constant] subtype_indication
-                             [:= expression]
-                             with aspect_mark [ => expression]
-                             {, aspect_mark [ => expression] };
+      <name> : <subtype_indication> [:= <initial value>]
+                     with aspect_mark [ => expression]
+                     {, aspect_mark [ => expression] };
  
 * Usage
 

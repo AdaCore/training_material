@@ -11,18 +11,18 @@ Introduction
 Statement Kinds
 -----------------
 
-.. code:: Ada
+.. code::
 
    simple_statement ::=
-     null_statement | assignment_statement | exit_statement |
-     goto_statement | delay_statement | raise_statement |
-     procedure_call_statement | return_statement |
-     requeue_statement | entry_call_statement |
-     abort_statement | code_statement
+     null | assignment | exit |
+     goto | delay | raise |
+     procedure_call | return |
+     requeue | entry_call |
+     abort | code
    
    compound_statement ::=
-     if_statement | case_statement | loop_statement |
-     block_statement | accept_statement | select_statement
+     if | case | loop |
+     block | accept | select
  
 ----------------------------
 Procedure Calls (Overview)
@@ -98,7 +98,7 @@ Assignment Statements
 
    .. code:: Ada
 
-      assignment_statement ::= variable_name := expression;
+      <variable> := <expression>;
  
 * Value of expression is copied to target variable
 * The type of the RHS must be same as the LHS
@@ -248,8 +248,8 @@ If-then Statements
     
        .. code:: Ada
     
-          if boolean_expression then
-             sequence_of_statements;
+          if <boolean expression> then
+             <statements>;
           end if;
      
        - Note parentheses are not required
@@ -376,14 +376,14 @@ Case Statements
 
    .. code:: Ada
 
-      case expression is
-        case_statement_alternative
-        { case_statement_alternative }
+      case <expression> is
+        when <choice> => <statements>;
+        { when <choice> => <statements>; }
       end case;
-      case_statement_alternative ::= 
-         when discrete_choice { | discrete_choice } =>
-            sequence_of_statements
-      discrete_choice ::= expression | discrete_range | others
+
+   .. code::
+
+      choice ::= <expression> | <discrete_range> | others { "|" <other choice> }
  
 * Expression is of an integer or enumeration type
 
@@ -504,12 +504,13 @@ Basic Loops and Syntax
     
    .. code:: Ada
     
-      loop_statement ::= [loop_simple_name:]   
-        [iteration_scheme] loop
-           sequence_of_statements
-        end loop [loop_simple_name];
+     [<name> :] [iteration_scheme] loop
+           <statements>
+      end loop [<name>];
      
-      iteration_scheme ::= while boolean_expression
+   .. code::
+
+      iteration_scheme ::= while <boolean expression>
                            | for <loop_parameter_specification>
                            | for <loop_iterator_specification>
      
@@ -542,9 +543,7 @@ Exit Statements
     
    .. code:: Ada
     
-      exit_statement ::= exit
-         [loop_name]
-         [when boolean_expression];
+      exit [<loop name>] [when <boolean expression>];
      
    * `when` clause is shorthand for exit within an if-statement
 
@@ -905,11 +904,14 @@ Block Statements
     
        .. code:: Ada
     
-          [block-name :] 
-          [declare <declarative part> ]
+          [<name> :]
+          [
+          declare
+            <declarative part>
+          ]
           begin
              <statements>
-          end [block-name];
+          end [<name>];
      
 --------------------------
 Block Statements Example
