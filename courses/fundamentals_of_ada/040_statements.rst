@@ -901,7 +901,10 @@ Block Statements
        .. code:: Ada
     
           [<name> :]
-          [declare <declarative part> ]
+          [
+          declare
+            <declarative part>
+          ]
           begin
              <statements>
           end [<name>];
