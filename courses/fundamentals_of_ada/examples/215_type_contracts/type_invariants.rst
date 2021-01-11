@@ -17,7 +17,6 @@
          Withdrawals     : Transaction_List_T;
          Deposits        : Transaction_List_T;
       end record;
-      function Total (This : Transaction_List_T) return Currency_T;
    end Bank;
 
    package body Bank is
@@ -30,9 +29,7 @@
          return Result;
       end Total;
       function Consistent_Balance (This : Account_T) return Boolean is
-      begin
-         return Total (This.Deposits) - Total (This.Withdrawals) = This.Current_Balance;
-      end Consistent_Balance;
+         ( Total (This.Deposits) - Total (This.Withdrawals) = This.Current_Balance );
       procedure Open (This : in out Account_T; Initial_Deposit : Currency_T) is
       begin
          This.Current_Balance := Initial_Deposit;

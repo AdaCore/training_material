@@ -4,22 +4,22 @@ Type Contracts Lab
 
 * Overview
 
-   - Create a simplistic class scheduling system
+   - Create simplistic class scheduling system
 
       + Client will specify name, day of week, start time, end time
-      + Supplier will add the class to the schedule
-      + Supplier must also be able to print the schedule
+      + Supplier will add class to schedule
+      + Supplier must also be able to print schedule
 
 * Requirements
 
-   - Classes that meet Monday, Wednesday, and/or Friday can only be 1 hour long
-   - Classes that meet Tuesday and/or Thursday only be 1.5 hours long
-   - Classes that don't have a set day can meet for any length of time
+   - Monday, Wednesday, and/or Friday classes can only be 1 hour long
+   - Tuesday and/or Thursday classes can only be 1.5 hours long
+   - Classes that don't have a set day can meet for any non-negative length of time
 
 * Hints
 
-   - *Subtype Predicate* to create subtypes of day of the week
-   - *Type Invariant* to ensure that every class meets for the correct length of time
+   - *Subtype Predicate* to create subtypes of day of week
+   - *Type Invariant* to ensure that every class meets for correct length of time
 
 ------------------------------------
 Type Contracts Lab Solution (Spec)
@@ -41,10 +41,8 @@ Type Contracts Lab Solution (Spec)
       procedure Print (Classes : Classes_T);
       function Count (Classes : Classes_T) return Natural;
    private
-      subtype Short_Class_T is Days_T with
-           Static_Predicate => Short_Class_T in Mon | Wed | Fri;
-      subtype Long_Class_T is Days_T with
-           Static_Predicate => Long_Class_T in Tue | Thu;
+      subtype Short_Class_T is Days_T with Static_Predicate => Short_Class_T in Mon | Wed | Fri;
+      subtype Long_Class_T is Days_T with Static_Predicate => Long_Class_T in Tue | Thu;
       type Class_T is tagged record
          Name       : Unbounded_String := Null_Unbounded_String;
          Day        : Days_T           := None;

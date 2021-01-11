@@ -59,7 +59,7 @@ Type Invariants
 
       subtype Weekdays is Days range Mon .. Fri;
 
-      -- Guaranteed, absent unchecked conversion
+      -- Guaranteed (absent unchecked conversion)
       Workday : Weekdays := Mon;
  
 * Type invariants apply across entire lifetime for complex abstract data types
@@ -76,14 +76,14 @@ Type Invariant Verifications
    - Assignment by clients
    - Type conversions
 
-      * creates new instances
+      * Creates new instances
 
 * Not evaluated on internal state changes
 
    - Internal routine calls 
    - Internal assignments
 
-* Remember these are abstract data types
+* Remember - these are abstract data types
 
 .. image:: ../../images/black_box_flow.png
     
@@ -173,7 +173,7 @@ Invariants Don't Apply Internally
 Default Type Initialization for Invariants
 --------------------------------------------
 
-* Invariant must host for initial value
+* Invariant must hold for initial value
 * May need default type initialization to satisfy requirement
 
 .. code:: Ada
@@ -221,7 +221,7 @@ Type Invariant Clause Placement
 Invariants Are Not Foolproof
 ------------------------------
 
-* Access to ADT representation via pointer allows back door manipulation
+* Access to ADT representation via pointer could allow back door manipulation
 * These are private types, so access to internals must be granted by the private type's code
 * Granting internal representation access for an ADT is a highly questionable design!
 
@@ -262,7 +262,7 @@ Subtype Predicates Concept
 
    - When true, said to "hold" 
 
-* Expressed as any legal boolean expressions in Ada
+* Expressed as any legal boolean expression in Ada
 
    - Quantified and conditional expressions
    - Boolean function calls
@@ -733,8 +733,8 @@ Enabling/Disabling Contract Verification
             {, assertion_name => policy_name} );
  
 * Vendors may define additional policies (GNAT does)
-* Default, absent the pragma, is implementation-defined
-* Vendors almost certainly offer a compiler switch
+* Default, without pragma, is implementation-defined
+* Vendors almost certainly offer compiler switch
 
    - GNAT uses same switch as for pragma Assert: ``-gnata``
 
@@ -777,12 +777,8 @@ Type Invariants vs Predicates
 
 * Type Invariants are valid at external boundary
 
-   - Useful for complex types, to the type may not be consistent during an operation
+   - Useful for complex types - type may not be consistent during an operation
 
 * Predicates are like other constraint checks
 
    - Checked on declaration, assignment, calls, etc
-
-.. container:: speakernote
-
-   Type invariant - "account" example - we wouldn't be able to maintain the invariant when we update portions of the ADT
