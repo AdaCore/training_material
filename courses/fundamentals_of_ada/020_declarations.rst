@@ -41,7 +41,7 @@ String Literals
 ----------------
 .. |rightarrow| replace:: :math:`\rightarrow`
 
-.. code:: Ada
+.. code::
     
    string_literal ::= "<string content>"
 
@@ -75,7 +75,7 @@ Identifiers
 
 * Syntax
 
-   .. code:: Ada
+   .. code::
 
       identifier ::= letter {[underline] letter_or_digit}
  
@@ -174,7 +174,7 @@ Decimal Numeric Literals
 
 * Syntax
 
-   .. code:: Ada
+   .. code::
 
       decimal_literal ::= numeral [.numeral] [E+numeral | E-numeral]
       numeral ::= digit {[underline] digit}
@@ -192,7 +192,7 @@ Decimal Numeric Literals
 Based Numeric Literals
 ------------------------
 
-.. code:: Ada
+.. code::
 
    based_literal ::= base # based_number [.based_number] # [E+numeral | E-numeral]
    based_number ::= base_digit { '_' base_digit }

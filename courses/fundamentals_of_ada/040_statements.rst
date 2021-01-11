@@ -11,7 +11,7 @@ Introduction
 Statement Kinds
 -----------------
 
-.. code:: Ada
+.. code::
 
    simple_statement ::=
      null | assignment | exit |
@@ -381,6 +381,8 @@ Case Statements
         { when <choice> => <statements>; }
       end case;
 
+   .. code::
+
       choice ::= <expression> | <discrete_range> | others { "|" <other choice> }
  
 * Expression is of an integer or enumeration type
@@ -506,6 +508,8 @@ Basic Loops and Syntax
            <statements>
       end loop [<name>];
      
+   .. code::
+
       iteration_scheme ::= while <boolean expression>
                            | for <loop_parameter_specification>
                            | for <loop_iterator_specification>
