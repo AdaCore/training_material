@@ -194,7 +194,8 @@ Based Numeric Literals
 
 .. code:: Ada
 
-   based_literal ::= base # based_number [.based_number] # [exp]
+   based_literal ::= base # based_number [.based_number] # [E+numeral | E-numeral]
+   based_number ::= base_digit { '_' base_digit }
  
 * Base can be 2 .. 16
 * Exponent is always a decimal number
@@ -202,7 +203,7 @@ Based Numeric Literals
    .. code:: Ada
 
       16#FFF#           => 4095
-      2#1111_1111_1111# => 4095
+      2#1111_1111_1111# => 4095 -- With underline
       16#F.FF#E+2       => 4095.0
       8#10#E+3          => 4096 (8 * 8**3)
  
