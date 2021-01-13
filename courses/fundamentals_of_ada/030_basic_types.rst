@@ -4,6 +4,15 @@ Basic Types
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 
+.. role:: ada(code)
+   :language: ada
+
+.. role:: C(code)
+   :language: C
+
+.. role:: cpp(code)
+   :language: C++
+
 ================
 Introduction
 ================
@@ -12,21 +21,16 @@ Introduction
 Ada Type Model
 ----------------
 
-* Statically Typed
+* **Static** Typing
 
-   - Each object is permanently declared to be of one type
+   - Object type **cannot change**
 
-* Strongly Typed
+* **Strong** Typing
 
-   - Based on types' names
-   - Compiler enforces appropriate manipulation and values
-   - Objects of "closely-related" types may be converted
-   - Conversions between unrelated types are not checked
-
-* Many types are language-defined
-* Users extend the language by defining new types
-
-   - Optional, could make everything a single (numeric) type if you wish...
+   - By **name**
+   - **Compiler-enforced** operations and values
+   - **Explicit** conversion for "related" types
+   - **Unchecked** conversions possible
 
 ---------------
 Strong Typing
@@ -34,46 +38,43 @@ Strong Typing
 
 * Definition of **type**
 
-   - Set of applicable values
-   - Set of applicable operations on objects of the type
+   - Applicable **values**
+   - Applicable **operations**
 
-* The compiler enforces your application model
+* Compiler-enforced
 
-   - Allowed values
-   - Allowed operations
-
-* Making the computer work for you
-
-   - Bookkeeping is what it does best!
-   - Allows us to focus on "the hard stuff"
+   - **Check** of values and operations
+   - Easy for a computer
+   - Developer can focus on **earlier** phase: requirement
 
 ----------------------
 A Little Terminology
 ----------------------
 
-* Type names are introduced by declarations
+* **Declaration** creates a **type name**
 
    .. code:: Ada
 
       type <name> is <type definition>;
  
-* A type-definition defines the type's structure
+* **Type-definition** defines its structure
 
-   - Characteristics and operations
-   - The "kind" of the type itself
+   - Characteristics, and operations
+   - Base "class" of the type
 
-      .. code:: Ada
+   .. code:: Ada
 
-         type typemark is digits 12; -- floating-point
-         type typemark is range -200 .. 200; -- signed integer
-         type typemark is mod 256; -- unsigned integer
+      type Type_1 is digits 12; -- floating-point
+      type Type_2 is range -200 .. 200; -- signed integer
+      type Type_3 is mod 256; -- unsigned integer
 
 -------------------------
-Ada Uses "Named Typing"
+Ada "Named Typing"
 -------------------------
 
-* Types are differentiated by name, not structure
-* Hence identical structures do not convey interoperability
+* **Name** differentiate types
+* Structure does **not**
+* Identical structures may **not** be interoperable
 
    .. code:: Ada
 
@@ -94,43 +95,69 @@ Categories of Types
 Scalar Types
 --------------
 
-* Logically indivisible
-
-   - Have no components
-
+* Indivisible: No components
 * Ordered
 
-   - Relational operators ``<``, ``>``, ``=``, ``/=``, and so on are defined
+   - **Comparison** defined
+   - Operators ``<``, ``>``, ``=``, ``/=``... defined
 
-* Support common "attributes" (language-defined functions applied to types)
-* Flavors
+* Has common **attributes**
+* **Discrete** Types
 
-   - Discrete Types
+  - Integer
+  - Enumeration
 
-      - Numeric Types
-      - Enumeration Types
+* **Real** Types
 
-   - Real Types
+  - Floating-point
+  - Fixed-point
 
 ----------------
 Discrete Types
 ----------------
 
-* Define individual ("discrete") values
+* **Individual** ("discrete") values
 
-   - 1,2,3,4 ...
+   - 1, 2, 3, 4 ...
    - Red, Yellow, Green
 
-* Numeric Types
+* Integer types
 
    - Signed integer types
    - Modular integer types
 
-      * Unsigned values with wrap-around semantics
+      * Unsigned
+      * **Wrap-around** semantics
+      * Bitwise operations
 
 * Enumeration types
 
-   - An enumerated list of values
+   - Ordered list of values
+
+-----------
+Attributes
+-----------
+
+* Functions *associated* with a type
+
+   - May take input parameters
+
+* Some are language-defined
+
+    - *May* be implementation-defined
+    - **Built-in**
+    - Cannot be user-defined
+    - Cannot be modified
+
+* See RM K.2 *Language-Defined Attributes*
+* Syntax
+
+  .. code:: Ada
+
+    Type_Name'Attribute_Name;
+    Type_Name'Attribute_With_Param (Param);
+
+* **'** often named *tick*
 
 ========================
 Discrete Numeric Types
@@ -146,7 +173,7 @@ Examples
 Signed Integer Types
 ----------------------
 
-* Define a range of signed whole numbers
+* Range of signed **whole** numbers
 
    - Symmetric about zero (-0 = +0)
 
@@ -156,7 +183,7 @@ Signed Integer Types
 
       type <identifier> is range  <lower> .. <upper>;
  
-* Numeric operators are automatically defined
+* Implicit numeric operators
 
    .. code:: Ada
 
@@ -174,87 +201,95 @@ Signed Integer Types
 Specifying Integer Type Bounds
 --------------------------------
 
-* Must be static
+* Must be **static**
 
-   - Compiler assigns a hardware-supported integer type
-
-* Insupportable ranges are rejected at compile-time
+   - Compiler selects **base type**
+   - Hardware-supported integer type
+   - Compilation **error** if not possible
 
 --------------------------
 Predefined Integer Types
 --------------------------
 
-* A predefined signed integer type exists
+* A predefined signed integer type
 
-   - Name (confusingly) is `integer`
-   - Range is implementation-defined but at least 16 bits wide
+   - Named :ada:`Integer` (confusingly)
+   - Range is **implementation-defined** but **>= 16 bits** wide
 
-* Other predefined integer types are also likely
+* Other **probably** available
 
-   - `Long_Integer`, `Short_Integer`, etc.
-   - Relationship of sizes to Integer's size is guaranteed
+   - :ada:`Long_Integer`, :ada:`Short_Integer`, etc.
+   - Guaranteed ranges: :ada:`Short_Integer` ``<=`` :ada:`Integer` ``<=`` :ada:`Long_Integer`
 
-      + Size of `Short_Integer` ``<=`` Size of `Integer` ``<=`` Size of `Long_Integer`
+* Bad portability
 
-* Best to avoid predefined types
-
-   - Portability may suffer
-   - Sometimes difficult to avoid
+   - But may be difficult to avoid
 
 --------------------------------
 Operators for Any Integer Type
 --------------------------------
 
-* Ordered by increasing precedence
+* By increasing precedence
 
-   :relational operator: ``= | /= | < | <= | > | >=``
-   :binary adding operator: ``+ | -``
-   :unary adding operator: ``+ | -``
-   :multiplying operator: ``* | / | mod | rem``
-   :highest precedence operator: ``** | abs``
+   :relational operator: :ada:`= | /= | < | <= | > | >=`
+   :binary adding operator: :ada:`+ | -`
+   :unary adding operator: :ada:`+ | -`
+   :multiplying operator: :ada:`* | / | mod | rem`
+   :highest precedence operator: :ada:`** | abs`
 
-* Note on exponentiation
+* *Note*: for exponentiation :ada:`**`
 
-   - Requested power must be a non-negative `Integer` value, otherwise you're asking for a floating-point (real) result
+   - Result will be :ada:`Integer`
+   - So power **must** be :ada:`Integer` ``>= 0``
 
-* Division by zero raises `Constraint_Error`
+* Division by zero |rightarrow| :ada:`Constraint_Error`
 
 -------------
 Base Ranges
 -------------
 
-* The hardware's numeric types actually used
-* Used by predefined operators for signed integers
+* Actual **hardware-supported** numeric type used
+* **Predefined** operators
 
-   - No range checks on inputs or result to affect performance
-   - Implementation can use wider registers for intermediate values
+   - Work on full-range
+        
+        + **No range checks** on inputs or result
+        + Best performance
 
-* You can refer to them too
+   - Implementation may use wider registers
+
+        + Intermediate values
+
+* Can be accessed with :ada:`'Base` attribute
 
    .. code:: Ada
 
       type Foo is range -30_000 .. 30_000;
       function "+" (Left, Right : Foo'Base) return Foo'Base;
  
-* Base range for
+* Base range
 
-   - 8 bits |rightarrow| `-128 .. 127`
-   - 16 bits |rightarrow| `-32_768 .. 32767`
+    - Signed
+    - 8 bits |rightarrow| `-128 .. 127`
+    - 16 bits |rightarrow| `-32_768 .. 32767`
 
----------------------------------------------
-Compile-Time Constraint Violation Detection
----------------------------------------------
+---------------------------------
+Compile-Time Constraint Violation
+---------------------------------
 
-* May generate warnings and produce executable
+* *May* produce **warnings**
+    
+    - And compile successfuly
 
-* Allowed to be treated as errors 
-
-   - Hence program may be rejected at compile-time
+* *May* produce **errors**
+    
+    - And fail at compilation
 
 * Requirements for rejection
 
-   - Value is static
-   - Value exceeds base range of corresponding type
+   - Static value
+   - Value not in range of **base** type
+   - |rightarrow| compilation is **impossible**
 
 .. code:: Ada
 
@@ -262,26 +297,31 @@ Compile-Time Constraint Violation Detection
       type Some_Integer is range -200 .. 200;
       Object : Some_Integer;
    begin
-      Object := 50_000; -- probably rejected by compiler
+      Object := 50_000; -- probable error
    end;
 
--------------------------
-Either Way You Find Out
--------------------------
+-------------------
+Range Check Failure
+-------------------
 
-* Compile-time rejection depends on base range
+* Compile-time rejection
 
+   - Depends on **base** type
    - Selected by the compiler
-   - Depends on underlying hardware
+   - Depends on underlying **hardware**
+   - Early error |rightarrow| "Best" case
 
-* Run-time exception otherwise
-* So assume an exception will be the result and be happy when the compiler catches them beforehand
+* Else run-time **exception**
 
---------------------------------------
-Values of Integer Types Can Overflow
---------------------------------------
+    - Most cases
+    - Be happy when compilation failed instead
 
-* A result of finite binary representation
+-----------------
+Integer Overflows
+-----------------
+
+* Finite binary representation
+* Common source of bugs
 
 .. code:: Ada
 
@@ -298,54 +338,40 @@ Values of Integer Types Can Overflow
 
    ( = -2,147,483,64810 )
  
------------------------------------
-What Happens On Integer Overflow?
------------------------------------
+-------------------------------
+Integer Overflow: Ada vs others
+-------------------------------
 
 * Ada
 
-   - Language-defined exception `Constraint_Error`
-   - Exception means numerical analysis was incorrect
+   - :ada:`Constraint_Error` standard exception
+   - |rightarrow| incorrect numerical analysis
 
 * Java
 
-   - Silently wraps around (that's what the hardware does)
+   - Silently **wraps** around (as the hardware does)
 
 * C/C++
 
-   - Undefined behavior (but silent wrap-around is typical)
-
-------------------------------------
-Overflow Detection At Compile Time
-------------------------------------
-
-* Allowed by Ada
-* Code to raise `Constraint_Error` replaces code that causes `Constraint_Error`
-
-   - Only for language-defined operations since no side-effects
-
-   .. code:: Ada
-
-      procedure Compute is
-         K : Integer := Integer'Last;
-      begin
-         K := K + 1; -- generated code raises Constraint_Error
-         ...
-      end Compute;
+   - **Undefined** behavior (typically silent wrap-around)
  
 ---------------
 Modular Types
 ---------------
 
-* Another form of integer type
-* Support unsigned values and additional operations
+* Integer type
+* **Unsigned** values
+* Adds operations and attributes
+
+    * Typically **bit-wise** manipulation
+
 * Syntax
 
    .. code:: Ada
 
       type <identifier> is mod <modulus>;
  
-* Modulus must be static
+* Modulus must be **static**
 * Resulting range is  0 .. modulus-1
 
    .. code:: Ada
@@ -357,26 +383,25 @@ Modular Types
 Modular Type Semantics
 ------------------------
 
-* Predefined operators as for any integer type
-
-   - Addition, subtraction, et cetera
-
-* But values "wrap-around" from 0 to modulus-1
+* Standard :ada:`Integer` operators
+* **Wraps-around** in overflow
 
    - Like other languages' unsigned types
-   - Mathematical operators
-   - Attributes 'Pred and 'Succ
+   - Attributes :ada:`'Pred` and :ada:`'Succ`
 
 * Additional bit-oriented operations are defined
 
-   - `and`, `or`, `xor`, `not`
-   - Treat values as bit-sequences
+   - :ada:`and`, :ada:`or`, :ada:`xor`, :ada:`not`
+   - **Bit shifts**
+   - Values as **bit-sequences**
 
 ------------------------------------------
 Bit Pattern Values and Range Constraints
 ------------------------------------------
 
-* Bit pattern assignments will not violate constraints if they represent values in the range, even if they represent negative numbers in a signed integer type
+* Binary based assignments possible
+* No :ada:`Constraint_Error` when in range
+* **Even if** they would be ``<= 0`` as a **signed** integer type
 
 .. code:: Ada
 
@@ -410,32 +435,34 @@ Modular Range Must Be Respected
 Safely Converting Signed To Unsigned
 --------------------------------------
 
-* Since conversion may raise `Constraint_Error`
-* Attribute ``T'Mod`` returns argument mod ``T'Modulus``
+* Conversion may raise :ada:`Constraint_Error`
+* Use :ada:`T'Mod` to return :ada:`argument mod T'Modulus`
 
-   - Argument is a `Universal_Integer` so allows any integer type
+   - :ada:`Universal_Integer` argument
+   - So **any** integer type allowed
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Test is
-        type Byte is mod 2**8;  -- 0 .. 255  
-        B : Byte;
-        type Signed_Byte is range -128 .. 127;
-        SB : Signed_Byte;
-      begin
-        SB := -1;
-        B := Byte'Mod (SB);  -- OK (255)
+     procedure Test is
+       type Byte is mod 2**8;  -- 0 .. 255  
+       B : Byte;
+       type Signed_Byte is range -128 .. 127;
+       SB : Signed_Byte;
+     begin
+       SB := -1;
+       B := Byte'Mod (SB);  -- OK (255)
  
 --------------------------
 Predefined Modular Types
 --------------------------
 
-* Declared in package Interfaces
+* In :ada:`Interfaces` package
 
-   - Not automatically available like the language-defined types
+   - Need **explicit** import
 
-* Represent machine numeric types
-* Types' characteristics vary with hardware but have common name format
+* **Fixed-size** numeric types
+* Hardware **dependent**
+* Common name **format**
 
    - `Unsigned_n`
    - `Integer_n`
@@ -452,20 +479,23 @@ Predefined Modular Types
 Shift/Rotate Functions
 ------------------------
 
-* Defined just for the modular types in `Interfaces`
+* In :ada:`Interfaces` package
 
    - `Shift_Left`
    - `Shift_Right`
    - `Shift_Right_Arithmetic`
    - `Rotate_Left`
-   - `Rotate_Right`
-   - others...
+   - etc.
+
+* See B.2 - *The Package Interfaces*
 
 ---------------------------------
 Bit-Oriented Operations Example
 ---------------------------------
 
-* Assume an unsigned 16-bit type is provided
+* Assuming :ada:`Unsigned_16` is used
+    
+    - 16-bits modular
 
 .. code:: Ada
 
@@ -478,83 +508,53 @@ Bit-Oriented Operations Example
           ( Shift_Right(X,8) and 16#00FF# );
    end Swap;
  
---------------------------------------------
-Why Not Shift and Rotate For All Modulars?
---------------------------------------------
+---------------------------------
+Why No Implicit Shift and Rotate?
+---------------------------------
 
-* Designers considered making them available
-
-   - Like arithmetic and logical operators
-
-* Limitation to types in `Interfaces` is for good reason
-
-   - Non-overloadable user-defined declarations (e.g. variables) with the same identifiers would be hidden
-   - If ``Shift`` and ``Rotate`` were made into operators, hiding would not be a problem but then new operators would have had to be defined by the language (a potentially big deal)
-   - ``Shift`` and ``Rotate`` could have been made into reserved words but that would introduce an upward incompatibility
+* Arithmetic, logical operators available **implicitely**
+* **Why not** :ada:`Shift`, :ada:`Rotate`, etc. ?
+* By **excluding** other solutions
+   - As functions in **standard** |rightarrow| May **hide** user-defined declarations
+   - As new **operators** |rightarrow| New operators for a **single type**
+   - As **reserved words** |rightarrow| Not **upward compatible**
 
 -------------------------------------
 Shift/Rotate for User-Defined Types
 -------------------------------------
 
-* Modular types, of course
-* Approach 1: use types in `Interfaces` directly
+* **Must** be modular types
+* Approach 1: use :ada:`Interfaces`'s types
 
-   .. code:: Ada
+    - `Unsigned_8`, `Unsigned_16` ...
 
-      with Interfaces;  use Interfaces;
-      with Ada.Text_IO;
-      with ...
- 
-* Approach 2: derive types from those in `Interfaces`
+* Approach 2: derive from :ada:`Interfaces`'s types
 
-   - All primitive operations are inherited
+   - Operations are **inherited**
+   - More on that later
 
    .. code:: Ada
 
       type Byte is new Interfaces.Unsigned_8;
       type Half_Word is new Interfaces.Unsigned_16;
       type Word is new Interfaces.Unsigned_32;
+
  
 ---------------------------------------------
 Integer Type (Signed and Modular) Literals 
 ---------------------------------------------
 
-* Must not contain a fractional part
-* No silent promotion/demotion done by compiler
+* **Must not** contain a **fractional** part
+* **No promotion** or demotion is done silently
+* **Conversion** can be used
 
 .. code:: Ada
 
    type Event_Counter is range 0 .. 40_000; -- integer type
-   OK : Event_Counter := 0; -- legal
-   Bad : Event_Counter := 0.0 ; -- compile error
+   OK : Event_Counter := 0; -- Right type, legal
+   Bad : Event_Counter := 0.0 ; -- Promotion, compile error
+   Converted : Event_Counter := Event_Counter (0.0); -- Conversion, legal
 
-------------
-Attributes
-------------
-
-* Built-in functions associated with types
-
-   - Supply a value
-   - Some take input parameters
-
-* Some are language-defined
-
-   - Summarized in RM K.2 "Language-Defined Attributes"
-
-* May be implementation-defined
-* Syntax for calls
-
-   - Type-Name ' Attribute-Name 
-
-      .. code:: Ada
-
-         I := Integer'Last;
- 
-   - Type-Name ' Attribute-Name ( input-value )
-
-      .. code:: Ada
-
-         E1 := Some_Type'Succ ( E2 );
  
 -----------------------------------
 String Attributes For All Scalars
@@ -562,13 +562,11 @@ String Attributes For All Scalars
 
 * `T'Image( input )`
 
-   - Converts given internal value to a `String` value
-   - Input value must be of type `T`
+   - Converts :ada:`T` |rightarrow| :ada:`String`
 
 * `T'Value( input )`
 
-   - Converts given `String` value to an internal value of type `T`
-   - Input must be of type `String`
+   - Converts :ada:`String` |rightarrow| :ada:`T`
 
 .. code:: Ada
 
@@ -586,58 +584,58 @@ Range Attributes For All Scalars
 
 * `T'First`
 
-  - Yields the first (least) value of type `T`
+  - First (**smallest**) value of type :ada:`T`
 
 * `T'Last`
 
-  - Yields the last (greatest) value of type `T`
+  - Last (**greatest**) value of type :ada:`T`
 
 * `T'Range`
 
-  - Is a shorthand for ``T'First .. T'Last``
+  - Shorthand for :ada:`T'First .. T'Last`
 
 .. code:: Ada
    
-   type Signed_T is range -100 .. 100;
-   Smallest : Signed_T := Signed_T'First; -- -100
+   type Signed_T is range -99 .. 100;
+   Smallest : Signed_T := Signed_T'First; -- -99
    Largest  : Signed_T := Signed_T'Last;  -- 100
  
 -------------------------------------
 Neighbor Attributes For All Scalars
 -------------------------------------
 
-* `T'Pred( input )`
+* `T'Pred (Input)`
 
-   - Yields the predecessor of specified value
-   - Input must be of type `T`
+   - Predecessor of specified value
+   - :ada:`Input` type must be :ada:`T`
 
-* `T'Succ ( input )`
+* `T'Succ (Input)`
 
-   - Yields the successor of specified value
-   - Input must be of type `T`
+   - Successor of specified value
+   - :ada:`Input` type must be :ada:`T`
 
 .. code:: Ada
 
    type Signed_T is range -128 .. 127;
    type Unsigned_T is mod 256;
-   Signed   : Signed_T := 0;
+   Signed   : Signed_T := -1;
    Unsigned : Unsigned_T := 0;
+   ...a
+   Signed := Signed'Succ( Signed ); -- Signed = -2
    ...
-   Signed := Signed'Succ( Signed );
-   ...
-   Unsigned := Unsigned'Pred( Unsigned );
+   Unsigned := Unsigned'Pred( Unsigned ); -- Signed = 1
  
 ------------------------------------
 Min/Max Attributes For All Scalars
 ------------------------------------
 
-* `T'Min`
+* `T'Min (Value_A, Value_B)`
 
-  - Yields the lesser of two values of type T`
+  - **Lesser** of two :ada:`T`
 
-* `T'Max`
+* `T'Max (Value_A, Value_B)`
 
-  - Yields the greater of two values of type T`
+  - **Greater** of two :ada:`T`
 
 .. code:: Ada
    
@@ -650,7 +648,7 @@ Min/Max Attributes For All Scalars
    C := Integer'Min (Safe_Upper, C + 1);
  
 .. container:: speakernote
-
+   
    First one says we can't decrement below 10
    Second one says we can't increment above 30
 
@@ -668,7 +666,8 @@ Examples
 Enumeration Types
 -------------------
 
-* Represent an enumeration of logical values
+* Enumeration of **logical** values
+* Integer value is an implementation **detail**
 * Syntax
 
    .. code:: Ada
@@ -678,13 +677,14 @@ Enumeration Types
 * Literals
 
    - Distinct, ordered
-   - Can be overloaded between types
+   - Can be in **multiple** enumerations
 
    .. code:: Ada
 
       type Colors is (Red, Orange, Yellow, Green, Blue, Violet);
       type Stop_Light is (Red, Yellow, Green);
       ...
+      -- Red both a member of Colors and Stop_Light
       Shade : Colors := Red;
       Light : Stop_Light := Red;
  
@@ -693,9 +693,10 @@ Enumeration Type Operations
 -----------------------------
 
 * Assignment, relationals
-* Cannot be treated as numeric quantities
+* **Not** numeric quantities
 
-   - Can achieve the effect via attributes
+   - *Possible* with attributes
+   - Not recommended
 
 .. code:: Ada
 
@@ -710,21 +711,24 @@ Enumeration Type Operations
    Heading := East + 1; -- compile error
    if Today < Tomorrow then ...
  
------------------
+---------------
 Character Types
------------------
+---------------
 
 * Literals
 
-   - Enclosed in single quotes
+   - Enclosed in single quotes **'**
    - Case-sensitive
 
-* Declared as enumeration types
+* **Special-case** of enumerated type
 
-   - An enumeration type with at least one character enumeral
+   - At least one character enumeral
 
-* Language defines various character types
-* Users can define their own character types
+* Some already defined
+
+    - ASCII
+
+* Can be user-defined
 
    .. code:: Ada
 
@@ -736,20 +740,20 @@ Character Types
 Language-Defined Character Types
 ----------------------------------
 
-* `Character`
+* :ada:`Character`
 
-   - 8-bit (Latin-1) character set
-   - Used in language-defined type `String`
+   - 8-bit Latin-1
+   - Base element of :ada:`String`
 
-* `Wide_Character`
+* :ada:`Wide_Character`
 
    - 16-bit Unicode
-   - Used in language-defined type `Wide_String`
+   - Base element of :ada:`Wide_Strings`
 
-* `Wide_Wide_Character`
+* :ada:`Wide_Wide_Character`
 
    - 32-bit Unicode
-   - Used in language-defined type `Wide_Wide_String`
+   - Base element of :ada:`Wide_Wide_Strings`
 
 -----------------------------
 Character Oriented Packages
@@ -758,13 +762,14 @@ Character Oriented Packages
 * Language-defined
 * `Ada.Characters.Handling`
 
-   - Classification and conversion functions for `Character` data 
+   - Classification
+   - Conversion
 
 * `Ada.Characters.Latin_1`
 
-   - Declares a set of constants
+   - Characters as constants
 
-* See Annex A for details
+* See RM Annex A for details
 
 -----------------------------------------
 `Ada.Characters.Latin_1` Sample Content
@@ -822,26 +827,27 @@ Ada.Characters.Handling Sample Content
 Language-Defined Type Boolean
 -------------------------------
 
-* An enumeration type
+* Enumeration
 
    .. code:: Ada
 
       type Boolean is ( False, True );
  
-* Supports assignment, relationals, attributes
+* Supports assignment, relational operators
+* Special attributes
 
    .. code:: Ada
 
       A : Boolean;
       Counter : Integer;
       ...
-      A := Counter = 22;  -- is Counter 22?
+      A := Counter = 22;  -- Error
  
-* Includes logical operators: `and`, `or`, `xor`, `not`
+* Logical operators :ada:`and`, :ada:`or`, :ada:`xor`, :ada:`not`
 
    .. code:: Ada
 
-      A := B or ( not C ); -- assuming A, B, C boolean
+      A := B or ( not C ); -- For A, B, C boolean
  
 ------------------------------------
 Why Boolean Isn't Just An Integer?
@@ -851,12 +857,14 @@ Why Boolean Isn't Just An Integer?
 
  .. container:: column
   
-    * Consider a real-life example of an error
+    * Example: Real-life error
 
-       - The HETE-2 satellite attitude control system software (ACS)
-       - Written in C
+       - HETE-2 satellite **attitude control** system software (ACS)
+       - Written in **C**
 
-    * ACS includes control of four "solar paddles" deployed after launch
+    * Controls four "solar paddles"
+
+        - Deployed after launch
 
  .. container:: column
   
@@ -866,20 +874,25 @@ Why Boolean Isn't Just An Integer?
 Why Boolean Isn't Just An Integer!
 ------------------------------------
 
-* HETE-2 ACS Solar Paddle State allowed callers to test whether all paddles were or were not deployed
-* Initial approach was a boolean variable
+* **Initially** variable with paddles' state
 
-   .. code:: C++
+    - Either **all** deployed, or **none** deployed
+
+* Used a :C:`int` as a boolean
+
+   .. code:: C
 
       if (rom->paddles_deployed == 1) 
         use_deployed_inertia_matrix();
       else
         use_stowed_inertia_matrix();
  
-* Later, each paddle became monitored individually, so `paddles_deployed` became a 4-bit value (0 : all stowed, 0xF : all deployed)
-* But not all client code (above) was changed!
+* Later :C:`paddles_deployed` became a **4-bits** value
 
-   - Now `use_deployed_inertia_matrix` is called only when 1 specific paddle is deployed!
+    - One bit per paddle
+    - :C:`0` |rightarrow| none deployed, :C:`0xF` |rightarrow| all deployed
+
+* Then, `use_deployed_inertia_matrix` if only first paddle is deployed!
 
 .. container:: speakernote
 
@@ -889,85 +902,76 @@ Why Boolean Isn't Just An Integer!
 Boolean Operators' Operand Evaluation
 ---------------------------------------
 
-* Order not specified by the language
+* Evaluation order **not specified**
+* May be needed
 
-   - Unlike, for example, C which is always left before right
+  - Checking value **before** operation
+  - Dereferencing null pointers
+  - Division by zero
 
-* Usually does not matter
+  .. code:: Ada
 
-   - Sometimes critical to avoid errors!
-
-      + Dividing by zero
-      + Dereferencing null pointers
-      + Using some inappropriate value in a user-defined operation
-
-      .. code:: Ada
-
-         if Divisor /= 0 and K / Divisor = Max then ... -- Problem!
+     if Divisor /= 0 and K / Divisor = Max then ... -- Problem!
  
 -----------------------------
 Short-Circuit Control Forms
 -----------------------------
 
-* Boolean operators with fixed evaluation order
-* Left operand is always evaluated first
-* Right operand only evaluated if necessary
+* **Short-circuit** |rightarrow| **fixed** evaluation order
+* Left-to-right
+* Right only evaluated **if necessary**
 
-   - Two forms
-   - `and then` if left operand is False, doesn't evaluate right
+   - :ada:`and then`: if left is :ada:`False`, skip right
 
-      .. code:: Ada
+     .. code:: Ada
 
-         if Divisor /= 0 and then K / Divisor = Max then ...
+        Divisor /= 0 and then K / Divisor = Max
  
-   - `or else` if left operand is True, doesn't evaluate right
+   - :ada:`or else`: if left is :ada:`True`, skip right
 
-      .. code:: Ada
+     .. code:: Ada
 
-         if Divisor = 0 or else K / Divisor = Max then ...
+        Divisor = 0 or else K / Divisor = Max
  
 -----------------------------------
 Enumeration Representation Values
 -----------------------------------
 
-.. code:: Ada
+* Numeric **representation** of enumerals
 
-   type Enum_T is (Able, Baker, Charlie, Dog, Easy, Fox);
-   for Enum_T use (1, 2, 4, 8, Easy => 16, Fox => 32);
- 
-* Not provided by `'Pos` and `'Val`
-
-   - They work in terms of logical ordering
-   - Regardless of the actual value used to represent enumerals
-
-* Are accessible, but not by built-in function
-
-   - Unchecked conversion
-   - Implementation-defined facility
+    - Position, unless redefined
+    - Redefinition syntax
 
       .. code:: Ada
 
-         -- GNAT-specific function
-         function T'Enum_Rep (Arg : T'Base)
-             return Universal_Integer;
+         type Enum_T is (Able, Baker, Charlie, Dog, Easy, Fox);
+         for Enum_T use (1, 2, 4, 8, Easy => 16, Fox => 32);
  
-   - Are same as position numbers unless overridden
-   - Thus users can rely on consistency when necessary
+* No manipulation *in language standard*
+
+   - Standard is **logical** ordering
+   - Ignores **representation** value
+
+* Still accessible
+
+   - **Unchecked** conversion
+   - **Implementation**-defined facility
+
+      + GNAT attribute :ada:`T'Enum_Rep`
 
 -----------------------------------------
 Order Attributes For All Discrete Types
 -----------------------------------------
 
-* Valid for all discrete types, but most useful for enumerated types
+* **All discrete** types, mostly useful for enumerated types
 
-* `T'Pos ( input )`
+* `T'Pos (Input)`
 
-   - Yields the "logical position number" of specified value
-   - Input must be a value of type `T`
+   - "Logical position number" of :ada:`Input`
 
-* `T'Val ( input )`
+* `T'Val (Input)`
 
-   - Converts specified position number to a value of type `T`
+   - Converts "logical position number" to :ada:`T`
 
 .. code:: Ada
 
@@ -999,34 +1003,32 @@ Examples
 Real Types
 ------------
 
-* Define approximations to continuous values
+* Approximations to **continuous** values
 
-   - 1.0, 1.1, 1.11, 1.111 ... 2.0, ...
-   - Values are approximations since digital hardware is finite
+  - 1.0, 1.1, 1.11, 1.111 ... 2.0, ...
+  - Finite hardware |rightarrow| approximations
 
-* Come in two flavors
+* Floating-point
 
-   - Floating-point types
+  - **Variable** exponent
+  - **Large** range
+  - Constant **relative** precision
 
-      + Radix-point position depends upon value's magnitude
+* Fixed-point
 
-   - Fixed-point types
+  - **Constant** exponent
+  - **Limited** range
+  - Constant **absolute** precision
+  - Subdivided into Binary and Decimal
 
-      + Radix-point position is not dependent upon the magnitude
-
-* Fixed-point types come in two flavors as well
-
-   - Ordinary fixed-point types
-   - Decimal fixed-point types
-
-* Focus on floating-point types here
+* Class focuses on floating-point
 
 ------------------------------------------
 Real Type (Floating and Fixed) Literals 
 ------------------------------------------
 
-* Must contain a fractional part
-* No silent promotion/demotion done by compiler
+* **Must** contain a fractional part
+* No silent promotion
 
 .. code:: Ada
 
@@ -1040,95 +1042,95 @@ Declaring Floating Point Types
 
 * Syntax
 
-   .. code:: Ada
-          
-      type <identifier> is
-          digits <expression> [range constraint];
+    .. code:: Ada
+
+       type <identifier> is
+           digits <expression> [range constraint];
  
-   - *digits* |rightarrow| minimum number of significant digits
+  - *digits* |rightarrow| **minimum** number of significant digits
+  - **Decimal** digits, not bits
 
-* Automatic representation choice
+* Complier choses representation
 
-   - Compiler chooses closest implementation available
-   - May be more accurate, but not less
-   - If not available, declaration is rejected
+  - From **available** floating point types
+  - May be **more** accurate, but not less
+  - If none available |rightarrow| declaration is **rejected**
 
 ---------------------------------
 Predefined Floating Point Types
 ---------------------------------
 
-* Type `Float`
+* Type :ada:`Float`
 
-   - Number of digits is implementation-defined
-   - At least 6 digits if the hardware can support 6 or more
+   - ``>= 6`` digits
 
-* Additional implementation-defined types may exist
+* Additional implementation-defined types
 
-   - `Long_Float`, if present, will support at least 11 digits (if...)
+   - :ada:`Long_Float` ``>= 11`` digits
 
-* Use when you don't care what you get
+* General-purpose
+* Best to **avoid** predefined types
 
-   - Or when 6/11/etc. digits will always be enough
-
-* Best to avoid predefined types
-
-   - Portability may suffer
-   - Easier to avoid than Integer
-   - Assume type `Real` is user-defined in class examples
+   - Loss of **portability**
+   - Easy to avoid
+   - In next examples, assume :ada:`Real` is user-defined
 
 ------------------------
 Base Decimal Precision
 ------------------------
 
-* That which is actually provided
+* **Actual** hardware implementation precision
 
-   - Based on type declaration
-   - Perhaps beyond requested number of digits
+   - Based on **type declaration**
+   - May be **better** than requested
 
-* Referenced via attribute `'Base`
+* Attribute :ada:`'Base`
+* Example:
 
-   - Example: Compiler supports 6, 12, or 24 digits of precision
-   - User requests 8 bits of precision
+   - Available: 6, 12, or 24 digits of precision
+   - Type with **8 digits** of precision
 
-   .. code:: Ada
+    .. code:: Ada
 
-      type my_type is digits 8;
+       type My_Type is digits 8;
  
-   - Compiler can create objects using 12 **or** 24 digits of precision
+   - :ada:`My_Type` will have 12 **or** 24 digits of precision
 
 -------------------------------
 Floating Point Type Operators
 -------------------------------
 
-* Ordered by increasing precedence
+* By increasing precedence
 
-   :relational operator: ``= | /= | < | >= | > | >=``
-   :binary adding operator: ``+ | -``
-   :unary adding operator: ``+ | -``
-   :multiplying operator: ``* | /``
-   :highest precedence operator: ``** | abs``
+   :relational operator: :ada:`= | /= | < | >= | > | >=`
+   :binary adding operator: :ada:`+ | -`
+   :unary adding operator: :ada:`+ | -`
+   :multiplying operator: :ada:`* | /`
+   :highest precedence operator: :ada:`** | abs`
 
-* Note on exponentiation
+* *Note* on floating-point exponentiation ``**``
 
-   - Requested power must be an integer value (positive or negative), otherwise you're asking for roots
+   - Power can be :ada:`Integer` (``< 0`` or ``>= 0``)
 
+      + Not possible to ask for root
       + `X**0.5` |rightarrow| `sqrt(x)`
+
 
 ---------------------------------
 Floating Point Division By Zero
 ---------------------------------
 
-* Language-defined types do what the machine does
+* Language-defined do as the machine does
 
-   - Raises exception if attribute `T'Machine_Overflows` is True
+   - If :ada:`T'Machine_Overflows` attribute is :ada:`True`
 
-      + For some type `T`, e.g., `Float`
-      + `Constraint_Error`
+      + |rightarrow| :ada:`Constraint_Error`
 
-   - Generates infinities otherwise
-   - Best performance
+   - Else :math:`+\infty` / :math:`-\infty`
 
-* If that's not what you want, define a constrained range:
+      + Better performance
+
+* User-defined types always raise :ada:`Constraint_Error`
 
    .. code:: Ada
 
@@ -1139,54 +1141,44 @@ Floating Point Division By Zero
 Using Equality for Floating Point Types
 -----------------------------------------
 
-* Questionable due to representation issue
+* Bad idea: representation issue
 
-   - As for any programming language
-   - Watch out for holes around zero, etc.
+   - Equality |rightarrow| identical bits
+   - Approximations |rightarrow| hard to **analyze**, and **not portable**
+   - Related to floating-point, not Ada
 
-* To return True, bits must be exactly the same
-* But digital computers approximate real numbers
 * Perhaps define your own function
 
+   - Comparison :math:`+\varepsilon` / :math:`-\varepsilon`
    - Using attributes to determine if values are "close enough"
-
-.. code:: Ada
-
-   Foo : constant Boolean := ( X = 0.01 );
  
 --------------------------------
 Floating Point Type Attributes
 --------------------------------
 
-* Core attributes (for some type named `Real`)
+* *Core* attributes (using `Real` as an example)
 
    .. code:: Ada
 
-      type Real is digits N;    -- for some static value N
+      type Real is digits N;  -- N static
  
    - `Real'Digits`
 
-      + Yields the number of digits requested (N)
+      + Number of digits **requested** (N)
 
    - `Real'Base'Digits`
 
-      + Yields the number of digits actually provided
+      + Number of **actual** digits
 
-   - `Real'Pred` and `Real'Succ`
+   - `Real'Rounding (X)`
 
-      + Provide the previous/next implemented number
+      + Integral value nearest to `X`
+      + *Note* :ada:`Float'Rounding (0.5) = 1`
 
-   - `Real'Rounding( X : Real )`
-
-      + Yields integral value nearest to `X`, rounding away from zero if `X` lies exactly halfway between two integers 
-
-   - Several others
-
-      + See Reference Manual
-
-* Additional model-oriented attributes also exist
-
-   - Provide detailed, more powerful behavior and functionality
+*  Model-oriented attributes
+    
+   - Advanced machine representation of the floating-point type
+   - Mantissa, strict mode
 
 ===============
 Miscellaneous
@@ -1196,31 +1188,37 @@ Miscellaneous
  "Checked" Type Conversions
 -----------------------------
 
-* Allowed only between "closely related" types
+* Between "closely related" types
 
    - Numeric types
-   - Types related by inheritance
+   - Inherited types
    - Array types
 
-* Compiler rejects illegal conversions
+* Illegal conversions **rejected**
+* Functional syntax 
 
-* Uses explicit functional syntax 
-
-   - As if the target type is the name of a function
+   - Function named :ada:`Target_Type`
+   - Implicitely defined
+   - **Must** be explicitely called
 
 .. code:: Ada
 
-   Source_Value : Integer;
-   Target_Value : Float;
-   ...
-   Target_Value := Float (Source_Value);
+   Target_Float := Float (Source_Integer);
  
 ------------------------------
 "Unchecked" Type Conversions
 ------------------------------
 
-* Allowed between any types
-* Some practical restrictions may be applied
+* Between **any** types
+* Practical restrictions apply
+
+  - Scalar |rightarrow| Composite
+
+* Close to machine
+
+  - Equivalent to C casts or C++'s :cpp:`static_cast<>`
+  - Dangerous
+  - **Avoid** if possible
 
 .. code:: Ada
 
@@ -1233,77 +1231,52 @@ Miscellaneous
 
    Sizes should be the same, but not a requirement
 
----------------------------------
-Default Initialization, by Type
----------------------------------
+-------------
+Default Value
+-------------
 
 .. admonition:: Language Variant
 
    Ada 2012
 
-* Not defined by language
+* Not defined by language for **scalars**
+* Can be done with an **aspect clause**
 
-   - Access values ("pointers") are the exception
-
-* Not as essential as in some languages
-
-   - Record types can have component default values
-   - Since most private types are records, this is often sufficient
-
-* Can be defined for user-defined types
-* Applicable for only some kinds of types
-
-   - Scalar types
-   - Array types with scalar component types
-   - All others are either already covered or not meaningful
-
-      + What would a default task value mean?
-
--------------------------------
-Default Initialization Syntax
--------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Uses aspect clauses on type declarations
+  - Only during type declarations
+  - :code:`<value>` must be static
 
    .. code:: Ada
 
-      full_type_declaration ::= type defining_identifier is  
-         type_definition [aspect_specification];
- 
-* Only on type declarations, so only on user-defined
-* Uses aspect `Default_Value` for scalar types
+      type defining_identifier is type_definition with Default_Value => <value>;
 
-   - Specified value must be static
+* Example
 
    .. code:: Ada
 
       type Tertiary_Switch is (Off, On, Neither)
          with Default_Value => Neither;
-      Implicit : Tertiary_Switch;
+      Implicit : Tertiary_Switch; -- Implicit = Neither
       Explicit : Tertiary_Switch := Neither;
  
 -------------------------------
 Simple Static Type Derivation
 -------------------------------
 
-* A way to create a new type from an existing type
+* New type from an existing type
 
-   - A limited form of inheritance: not full OOP!
+  - **Limited** form of inheritance: operations
+  - **Not** OOP
 
-* Syntax specifies new type and existing type names
+* Strong type benefits
 
-   - Remember Ada uses named typing
+  - Only **explicit** conversion possible
+  - eg. :code:`Meters` can't be set from a :code:`Feet` value
+
+* Syntax
 
    .. code:: Ada
 
-      derived_type ::= type identifier is new subtype_indication;
-      subtype_indication ::= type_or_subtype_name [constraint]
- 
-* We use it for convenience occasionally
+      type identifier is new <subtype_indication>;
 
 =====
 Lab
@@ -1319,9 +1292,11 @@ Summary
  Benefits of Strongly Typed Numerics
 --------------------------------------
 
-* Designed to prevent subtle bugs
-* Cannot accidentally delete a fractional part
-* Cannot mix apples and oranges
+* **Prevent** subtle bugs
+* Cannot *mix apples and oranges*
+* Force to clarify **representation** needs
+
+    - eg. constant with or with fractional part
 
    .. code:: Ada
 
@@ -1335,35 +1310,38 @@ Summary
 User-Defined Numeric Type Benefits
 ------------------------------------
 
-* Reflect application requirements
+* Close to **requirements**
 
-   - Source code explicitly indicates algorithm requirements (e.g., range or precision)
+   - Types with **explicit** requirements (range, precision, etc.)
+   - Best case: Incorrect state **not possible**
 
-* Compiler either implements or rejects declaration
+* Either implemented/respected or rejected
 
-   - No surprises or debugging at run-time
+   - No run-time (bad) suprise
 
-* Portability enhanced 
+* **Portability** enhanced 
 
-   - Since hardware dependencies reduced
+   - Reduced hardware dependencies
 
 ---------
 Summary
 ---------
 
-* User-defined types and strong typing make sense
+* User-defined types and strong typing is **good**
 
-   - Programs can be written in application's terms
-   - Book-keeping can be left to the computer
+   - Programs written in application's terms
+   - Computer in charge of checking constraints
+   - Security, reliability requirements have a price
+   - Performance **identical**, given **same requirements**
 
-* No free lunch
+* User definitions from existing types *can* be good
+* Right **trade-off** depends on **use-case**
+   
+   - More types |rightarrow| more precision |rightarrow| less bugs
+   - Storing **both** feet and meters in :ada:`Float` has caused bugs
+   - More types |rightarrow| more complexity |rightarrow| more bugs
+   - A :ada:`Green_Round_Object_Altitude` type is probably **never needed**
 
-   - Security, reliability requirements impose a price
-   - Performance roughly the same, given same requirements
+* Default initialization is **possible**
 
-* Several classes of type are available for user definitions
-* Don't make distinct numeric types for everything
-
-   - Miles, minutes, altitude, velocity, etc...
-
-* Default initialization is possible but use sparingly
+   - Use **sparringly**
