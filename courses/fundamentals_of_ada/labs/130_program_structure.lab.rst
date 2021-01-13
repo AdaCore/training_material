@@ -4,125 +4,137 @@ Program Structure Lab
 
 * Requirements
 
-   - Create a package to add text objects to a list
+   - Create a simplistic messaging subsystem
 
-      + Create primitive operations to manipulate the list
-      + Do not allow the same text object to appear more than once
+      + Top-level should define a (private) message type and constructor/accessor subprograms
+      + Use private child function to calculate message CRC
+      + Use child package to add/remove messages to some kind of list
 
-   - Create a child package to print the list
-   - Create a main program to enter unique data into the list
+   - Use child package for diagnostics
 
-      + Use `Ada.Text_IO` to enter data
+      + Inject bad CRC into a message
+      + Print message contents
 
-* Hints
+   - Main program should
 
-   - Need equality operator(s) to compare data entry to list elements
-   - Try writing code using "distinguished receiver" notation
-
-      + i.e. `My_List.Add ( "foo" )` rather than `Add ( My_List, "foo" )`
+      + Build a list of messages
+      + Inject faults into list
+      + Print messages in list and indicate if any are faulty
 
 ----------------------------------------------
-Program Structure Lab Solution - List (Spec)
+Program Structure Lab Solution - Messages
 ----------------------------------------------
 
 .. code:: Ada
 
-   package List is
+   with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+   package Messages is
+      type Message_T is private;
+      type Kind_T is (Command, Query);
+      subtype Content_T is String;
 
-     type Element_T is private;
-     type List_T is tagged private;
-     type Index_T is range 0 .. 1_000;
+      function Create (Kind    : Kind_T;
+                       Content : Content_T)
+                       return Message_T;
 
-     procedure Add (This : in out List_T;
-                    Text : in     String);
-
-     function Length (This : List_T) return Index_T;
-
-     function At_Index (This  : List_T;
-                        Index : Index_T)
-                        return Element_T;
-
-     function "=" (L : Element_T; R : String) return Boolean;
-     function "=" (L : String; R : Element_T) return Boolean;
-
+      function Kind (Message : Message_T) return Kind_T;
+      function Content (Message : Message_T) return Content_T;
    private
-     type Element_T is record
-       Text   : String (1 .. 20) := (others => ' ');
-       Length : Natural          := 0;
-     end record;
+      type Crc_T is mod Integer'Last;
+      type Message_T is record
+         Kind    : Kind_T;
+         Content : Unbounded_String;
+         Crc     : Crc_T;
+      end record;
+   end Messages;
 
-     type List_Array_T is array (1 .. Index_T'Last) of Element_T;
+.. code:: Ada
 
-     type List_T is tagged record
-       Values : List_Array_T;
-       Length : Index_T := 0;
-     end record;
+   with Messages.Crc;
+   package body Messages is
+      function Create (Kind    : Kind_T;
+                       Content : Content_T)
+                       return Message_T is
+      begin
+         return (Kind      => Kind,
+                 Content   => To_Unbounded_String (Content),
+                 Crc       => Crc (Content));
+      end Create;
 
-   end List;
+      function Kind (Message : Message_T) return Kind_T is (Message.Kind);
+      function Content (Message : Message_T) return Content_T is (To_String (Message.Content));
+
+end Messages;
+
+------------------------------------------------
+Program Structure Lab Solution - Message Queue
+------------------------------------------------
+
+.. code:: Ada
+
+   package Messages.Queue is
+      function Empty return Boolean;
+      function Full return Boolean;
+      procedure Push (Message : Message_T);
+      procedure Pop (Message : out Message_T;
+                     Valid   : out Boolean);
+   private
+      The_Queue : array (1 .. 10) of Message_T;
+      Top       : Integer := 0;
+      function Empty return Boolean is (Top = 0);
+      function Full return Boolean is (Top = The_Queue'Last);
+   end Messages.Queue;
+
+.. code:: Ada
+
+   with Messages.Crc;
+   package body Messages.Queue is
+      procedure Push (Message : Message_T) is
+      begin
+         Top             := Top + 1;
+         The_Queue (Top) := Message;
+      end Push;
+
+      procedure Pop (Message : out Message_T;
+                     Valid   : out Boolean) is
+      begin
+         Message := The_Queue (Top);
+         Top     := Top - 1;
+         Valid   := Message.Crc = Crc (To_String (Message.Content));
+      end Pop;
+
+   end Messages.Queue;
 
 ----------------------------------------------
-Program Structure Lab Solution - List (Body)
+Program Structure Lab Solution - Diagnostics
 ----------------------------------------------
 
 .. code:: Ada
 
-   package body List is
-
-     procedure Add (This : in out List_T;
-                    Text : in     String) is
-     begin
-       This.Length := This.Length + 1;
-       This.Values (This.Length).Text
-        (1 .. Text'Length)              := Text;
-       This.Values (This.Length).Length := Text'Length;
-      end Add;
-   
-     function Length (This : List_T) return Index_T is (This.Length);
-
-     function At_Index (This  : List_T;
-                        Index : Index_T)
-                        return Element_T is
-       (This.Values (Index));
-
-     function "=" (L : Element_T; R : String) return Boolean is
-       (L.Text(1 .. L.Length) = R);
-     function "=" (L : String; R : Element_T) return Boolean is
-       (R.Text(1 .. R.Length) = L);
-
-   end List;
-
-----------------------------------------------
-Program Structure Lab Solution - Print List
-----------------------------------------------
+   package Messages.Queue.Debug is
+      function Queue_Length return Integer;
+      procedure Inject_Crc_Fault (Position : Integer);
+      function Text (Message : Message_T) return String;
+   end Messages.Queue.Debug;
 
 .. code:: Ada
 
-   package List.Print is
+   with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+   package body Messages.Queue.Debug is
 
-     procedure Put (This : List_T);
+      function Queue_Length return Integer is (Top);
 
-   end List.Print;
+      procedure Inject_Crc_Fault (Position : Integer) is
+      begin
+         Top                 := Position;
+         The_Queue (Top).Crc := The_Queue (Top).Crc + 1;
+      end Inject_Crc_Fault;
 
-   with Ada.Text_IO; use Ada.Text_IO;
-   package body List.Print is
+      function Text (Message : Message_T) return String is
+        (Kind_T'Image (Message.Kind) & " => " & To_String (Message.Content) &
+           " (" & Crc_T'Image (Message.Crc) & " )");
 
-     procedure Put (This : List_T) is
-     begin
-       Put_Line ("---");
-       if This.Length = 0 then
-         Put_Line ("<empty>");
-       else
-         for Element of This.Values loop
-           if Element.Length > 0 then
-             Put_Line (Element.Text
-                (1 .. Element.Length));
-           end if;
-         end loop;
-       end if;
-       Put_Line ("---");
-     end Put;
-
-   end List.Print;
+   end Messages.Queue.Debug;
 
 ---------------------------------------
 Program Structure Lab Solution - Main
@@ -131,40 +143,31 @@ Program Structure Lab Solution - Main
 .. code:: Ada
 
    with Ada.Text_IO; use Ada.Text_IO;
-   with List;
-   with List.Print;
-   use type List.Element_T;
-   use all type List.List_T;
+   with Messages;
+   with Messages.Queue;
+   with Messages.Queue.Debug;
    procedure Main is
-
-     My_List : List.List_T;
-   
-     function Find (Str : String) return Boolean is
-     begin
-       for I in 1 .. My_List.Length loop
-         if Str = My_List.At_Index (I) then
-           return True;
-         end if;
-       end loop;
-       return False;
-     end Find;
-
+      Char    : Character := 'A';
+      Content : String (1 .. 10);
+      Message : Messages.Message_T;
+      Valid   : Boolean;
    begin
+      while not Messages.Queue.Full loop
+         Content := (others => Char);
+         Messages.Queue.Push (Messages.Create (Kind    => Messages.Command,
+                                               Content => Content));
+         Char := Character'Succ (Char);
+      end loop;
 
-     loop
-       Put ("Enter string: ");
-       declare
-         Str : constant String := Get_Line;
-       begin
-         exit when Str'Length = 0;
-         if Find (Str) then
-           Put_Line ("Already added");
-         else
-           List.Add (My_List, Str);
-         end if;
-       end;
-     end loop;
+      -- inject some faults
+      Messages.Queue.Debug.Inject_Crc_Fault (3);
+      Messages.Queue.Debug.Inject_Crc_Fault (6);
 
-     List.Print.Put (My_List);
+      while not Messages.Queue.Empty loop
+         Put (Integer'Image (Messages.Queue.Debug.Queue_Length) & ") ");
+         Messages.Queue.Pop (Message, Valid);
+         Put_Line (Boolean'Image (Valid) & " " & Messages.Queue.Debug.Text (Message));
+      end loop;
 
    end Main;
+

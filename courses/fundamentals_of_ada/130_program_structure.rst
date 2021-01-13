@@ -15,23 +15,26 @@ Introduction
 * How to compose programs out of program units
 * How to control object lifetimes
 * How to define subsystems
-* Et cetera
 
-===============
-Library Units
-===============
+===================
+Building A System
+===================
 
-----------
-Examples
-----------
+-------------------
+What is a System?
+-------------------
 
-.. include:: examples/130_program_structure/library_units.rst
+* Also called Application or Program or ...
 
----------------
-Library Units
----------------
+* Collection of library units
 
-* Those not nested within another program unit
+   - Which are a collection of packages, subprograms, objects
+
+----------------------
+Library Units Review
+----------------------
+
+* Those units not nested within another program unit
 * Candidates
 
    - Subprograms
@@ -40,386 +43,10 @@ Library Units
    - Generic Instantiations
    - Renamings
 
-* Restrictions
+* Dependencies between library units via `with` clauses
 
-   - No library level tasks 
+   - What happens when two units need to depend on each other?
 
-      + They are always nested within another unit
-
-   - No overloading at library level
-   - No library level functions named as operators
-
----------------
-Library Units
----------------
-
-.. code:: Ada
-
-   package Operating_System is
-     procedure Foo( ... );
-     procedure Bar( ... );
-     package Process_Manipulation is
-       ...
-     end Process_Manipulation;
-     package File_System is
-       ...
-     end File_System;
-   end Operating_System;
- 
-* `Operating_System` is library unit
-* `Foo`, `Bar`, etc - not library units
-
----------------------------
-No 'Object' Library Items
----------------------------
-
-.. code:: Ada
-
-   package P is
-     ...
-   end P;
-   
-   X : Integer; -- no such thing as "file scope"
-   
-   procedure Bar;
-   
-   procedure Z (Formal : in out Integer) is
-     Local : Integer;
-   begin
-     ...
-   end Z;
-   
-   function Foo (This : Float) return Float;
- 
------------------------------
-Declared Object "Lifetimes"
------------------------------
-
-.. container:: columns
-
- .. container:: column
-  
-    * Same as their enclosing declarative region
-
-       - Objects are always declared within some declarative region
-
-    * No ``static`` etc. directives as in C
-    * Example: declared within any subprogram
-
-       - Exist only while subprogram executes
-
- .. container:: column
-  
-    .. code:: Ada
-    
-       procedure P is
-         X : Integer;
-         Y : Real;
-       begin
-         ...
-       end P;
-     
---------------------
-Program "Lifetime"
---------------------
-
-* Run-time library is initialized
-* All (any) library packages are elaborated
-
-   - Declarations in package declarative part are elaborated
-   - Declarations in package body declarative part are elaborated
-   - Executable part of package body is executed (if present)
-
-* Main program's declarative part is elaborated
-* Main program's sequence of statements executes
-* Program executes until all threads terminate
-* All objects in library packages cease to exist
-* Run-time library shuts down
-
------------------------------
-Objects In Library Packages
------------------------------
-
-* Exist as long as program executes (i.e., "forever")
-
-.. code:: Ada
-
-   package Named_Common is  
-     X : Integer; -- valid object for life of application
-     Y : Real;    -- valid object for life of application
-   end Named_Common;
- 
----------------------------------
-Objects In Non-library Packages
----------------------------------
-
-* Exist as long as region enclosing the package
-
-.. code:: Ada
-
-   procedure P is
-     X : Integer; -- available while in P and Inner
-     package Inner is
-       Z : Boolean; -- available while in Inner
-     end Inner;
-     Y : Real; -- available while in P
-   begin
-     ...
-   end P;
- 
---------------------------
-Library Unit Subprograms
---------------------------
-
-* Recall separate declarations are optional
-
-   - Body can act as declaration if no declaration provided
-
-* Separate declaration provides usual benefits
-
-   - Changes/recompilation to body only require relinking clients
-
-* File 1 (p.ads for GNAT)
-
-   .. code:: Ada
-
-      procedure P (F : in Integer);
- 
-* File 2 (p.adb for GNAT)
-
-   .. code:: Ada
-
-      procedure P (F : in Integer) is
-      begin
-        ...
-      end P;
- 
---------------------------
-Library Unit Subprograms
---------------------------
-
-* Specifications in declaration and body must conform
-
-   - Example
-
-      + Spec for P
-
-      .. code:: Ada
-
-         procedure P (F : in integer);
- 
-      + Body for P
-
-      .. code:: Ada
-
-         procedure P (F : in float) is
-         begin
-         ...
-         end P;
- 
-   - Declaration creates subprogram `P` in library
-   - Declaration exists so body does not act as declaration
-   - Compilation of file "p.adb" must fail
-
-* New declaration with same name replaces old one
-* Thus cannot overload library units
-
-------------------
-Main Subprograms
-------------------
-
-.. container:: columns
-
- .. container:: column
-  
-    * Must be library subprograms
-    * No special program unit name required
-    * Can be many per program library
-
-    * Always can be procedures 
-
-    * Can be functions if implementation allows it
-
-       - Execution environment must know how to handle result
-
- .. container:: column
-  
-    .. code:: Ada
-    
-       with Ada.Text_IO;
-       procedure Hello is
-       begin
-         Ada.Text_IO.Put(
-             "Hello World" );
-       end Hello;
-     
-================
-"with" Clauses
-================
-
-----------
-Examples
-----------
-
-.. include:: examples/130_program_structure/with_clauses.rst
-
------------------
- `with` Clauses
------------------
-
-* Specify the library units that a compilation unit depends upon
-
-   - The "context" in which the unit is compiled
-
-* Syntax (simplified)
-
-   .. code:: Ada
-
-      context_clause ::= { context_item }
-      context_item ::= with_clause | use_clause
-      with_clause ::= with library_unit_name
-                      { , library_unit_name };
- 
-.. code:: Ada
-
-   with Ada.Text_IO; -- dependency
-   procedure Hello is
-   begin
-     Ada.Text_IO.Put ("Hello World");
-   end Hello;
- 
------------------------
-`with` Clauses Syntax
------------------------
-
-* Helps explain restrictions on library units
-
-   - No overloaded library units
-   - If overloading allowed, which `P` would `with P;` refer to?
-   - No library unit functions names as operators
-
-      + Mostly because of no overloading
-
-----------------
-What To Import
-----------------
-
-* Need only name direct dependencies
-
-   - Those actually referenced in the corresponding unit
-
-* Will not cause compilation of referenced units
-
-   - Unlike "include directives" of some languages
-
-.. code:: Ada
-    
-   package A is
-     type Something is ...
-   end A;
-       
-   with A;
-   package B is
-     type Something is record
-       Field : A.Something;
-     end record;
-   end B;
-       
-   with B; -- no "with" of A 
-   procedure Foo is
-     X : B.Something;
-   begin
-     X.Field := ...
- 
---------------------------------
-Imported Interface Consistency
---------------------------------
-
-* Use consistent with imported interface is guaranteed by compiler
-
-   - Compiler rejects incompatible use
-
-      + Wrong subprogram name
-      + Wrong parameters
-      + Et cetera
-
-   - Linker/binder rejects inclusion of obsolete units
-
-* Thus cannot create executable with invalid interfaces
-
-   - Even in the distributed programming case!
-
-* A separate tool in other languages
-
-   - At additional cost
-
--------------------------
-`with` Clause Placement
--------------------------
-
-* May have several clauses per library unit
-
-   .. code:: Ada
-
-      with A;
-      with B;
-      package C is ...
- 
-* Not allowed in inner scopes
-
-   - (Other uses of reserved word `with` do occur inside)
-
-      .. code:: Ada
-
-        package C is ...
-           with B; -- illegal
- 
---------------------------
-`with` Clause Visibility
---------------------------
-
-.. code:: Ada
-
-   with Ada.Text_IO;
-   with Real_IO, Int_IO;
-   with Math_Library;
-   package P is
-   ...
-   end P;
-   
-   package body P is
-     -- no need to add "with Math_Library;" to body
-     Num : Math_Library.Real_Number; 
-     ...
-   end P;
- 
------------------------------------------
-Put Dependencies In Body When Possible 
------------------------------------------
-
-* Change to given unit requires client recompilation
-* Recompilation of client declaration can trigger transitive recompilation in all its clients
-
-   - In some implementations
-
-* If `Math_Library` changes, `P` and anything that depends on `P` might have to recompile
-
-   .. code:: Ada
-
-      with Math_Library;
-      package P is
-        Num : Math_Library.Real_Number;
-      end P;
- 
-* If `Real_IO` changes, only the body of `P` should need to recompile
-
-   .. code:: Ada
-
-      with Real_IO;
-      package body P is
-      ...
-      end P;
- 
 =========================
 "limited with" Clauses
 =========================
@@ -434,35 +61,27 @@ Examples
 Handling Cyclic Dependencies
 ------------------------------
 
-.. container:: columns
+* Elaboration must be linear
+* Package declarations cannot depend on each other
 
- .. container:: column
-  
-    * Elaboration must be linear
-    * Package declarations cannot depend on each other
+   - No linear order is possible
 
-       - No linear order is possible
+* Which package elaborates first?
 
-    * Which package elaborates first?
-
- .. container:: column
-  
-    .. image:: ../../images/cyclic_dependencies.png
+.. image:: ../../images/cyclic_dependencies.png
+   :width: 50%
+   :align: center
 
 --------------------------------------
 Body-Level Cross Dependencies Are OK
 --------------------------------------
 
-.. container:: columns
+* The bodies only depend on other packages' declarations
+* The declarations are already elaborated by the time the bodies are elaborated
 
- .. container:: column
-  
-    * The bodies only depend on other packages' declarations
-    * The declarations are already elaborated by the time the bodies are elaborated
-
- .. container:: column
-  
-    .. image:: ../../images/mutual_dependencies.png
+.. image:: ../../images/mutual_dependencies.png
+   :width: 70%
+   :align: center
     
 --------------------------
 Resulting Design Problem
@@ -471,7 +90,7 @@ Resulting Design Problem
 * Good design dictates that conceptually distinct types appear in distinct package declarations
 
    - Separation of concerns
-   - High level of "cohesion"
+   - High level of *cohesion*
 
 * Not possible if they depend on each other
 * One solution is to combine them in one package, even though conceptually distinct
@@ -514,39 +133,33 @@ Illegal Package Declaration Dependency
 
    Ada 2005
 
-.. container:: columns
+* Solve the cyclic declaration dependency problem
 
- .. container:: column
-  
-    * Solve the cyclic declaration dependency problem
+   - Controlled cycles are now permitted
 
-       - Controlled cycles are now permitted
+* Provide a "limited" view of the specified package
 
-    * Provide a "limited" view of the specified package
+   - Only type names are visible (including in nested packages)
+   - Types are viewed as *incomplete types*
 
-       - Only type names are visible (including in nested packages)
-       - Types are viewed as "incomplete types"
-
- .. container:: column
-  
-    * Normal view
+* Normal view
     
-       .. code:: Ada
+   .. code:: Ada
     
-          package Personnel is
-            type Employee is private;
-            procedure Assign ...
-          private
-            type Employee is ...
-          end Personnel;
+      package Personnel is
+        type Employee is private;
+        procedure Assign ...
+      private
+        type Employee is ...
+      end Personnel;
      
-    * Implied limited view
+* Implied limited view
     
-       .. code:: Ada
+   .. code:: Ada
     
-          package Personnel is
-            type Employee;
-          end Personnel;
+      package Personnel is
+        type Employee;
+      end Personnel;
      
 .. container:: speakernote
 
@@ -676,7 +289,7 @@ Solution: Hierarchical Library Units
 
     * Directly support subsystems
 
-       - Extensions all have the same ancestor "root" name
+       - Extensions all have the same ancestor *root* name
 
  .. container:: column
   
@@ -713,9 +326,11 @@ Programming By Extension
         ...
       end Complex.Utils;
      
-----------------------------------------
-Extensions Can See Type Representation
-----------------------------------------
+-----------------------------------
+Extension Can See Private Section
+-----------------------------------
+
+* With certain limitations
 
 .. code:: Ada
 
@@ -798,7 +413,7 @@ Hierarchical Visibility
        - All the way up to the root library unit
 
     * Siblings have no automatic visibility to each other
-    * Visibility as If Nested
+    * Visibility same as nested
 
        - As if child library units are nested within parents
 
@@ -892,21 +507,27 @@ Examples
 
 .. include:: examples/130_program_structure/visibility_limits.rst
 
-----------------------------
-The "Howard Hughes" Effect
-----------------------------
+-------------------------------------
+Parents Do Not Know Their Children!
+-------------------------------------
 
 * Children grant themselves access to ancestors' private parts
 
    - May be created well after parent
    - Parent doesn't know if/when child packages will exist
-   - Thus the "Howard Hughes" Effect
 
 * Alternative is to grant access when declared
 
    - Like ``friend`` units in C++
    - But would have to be prescient!
+
+      * Or else adding children requires modifying parent
+
    - Hence too restrictive
+
+* Note: Parent body can reference children
+
+   - Typical method of parsing out complex processes
 
 ----------------------------------------------
 Correlation to C++ Class Visibility Controls
@@ -1287,553 +908,6 @@ Child Subprograms
 
    private procedure Parent.Child;
  
-------------------------------------
-Hierarchical Library Units Summary
-------------------------------------
-
-* Parents should document assumptions for children
-
-   - "These must always be in ascending order!"
-
-* Children cannot misbehave unless imported ("with'ed")
-
-* The writer of a child unit must be trusted 
-
-   - As much as if he or she were to modify the parent itself
-
-===============
-"use" Clauses
-===============
-
-----------
-Examples
-----------
-
-.. include:: examples/130_program_structure/use_clauses.rst
-
-----------------
- `use` Clauses
-----------------
-
-* Provide direct visibility into packages' exported items
-* May still use expanded name
-
-.. code:: Ada
-    
-   package Ada.Text_IO is
-     procedure Put_Line( ... );
-     procedure New_Line( ... );
-     ...
-   end Ada.Text_IO;
-       
-   with Ada.Text_IO;
-   procedure Hello is
-     use Ada.Text_IO;
-   begin
-     Put_Line( "Hello World" );
-     New_Line(3);
-     Ada.Text_IO.Put_Line ( "Good bye" );
-   end Hello;
-     
----------------------
-`use` Clause Syntax
----------------------
-
-* May have several, like `with` clauses
-* Must name an imported library unit
-
-   - From same context clause 
-
-* Syntax
-
-   .. code:: Ada
-
-      context_clause ::= {context_item}
-      context_item ::= with_clause | use_clause
-      use_clause ::= use_package_clause | use_type_clause
-      use_package_clause ::= use package_name {, package_name};
-      use_type_clause ::= use [all] type subtype_mark
-                                         {, subtype_mark};
- 
-* Can only `use` a library package
-
-   - Subprograms don't make sense
-
---------------------
-`use` Clause Scope
---------------------
-
-* Applies to end of body, from first occurrence
-
-.. code:: Ada
-
-   with Pkg_A;
-   with Pkg_B;
-   use Pkg_A;
-   package P is
-     -- all of Pkg_A is visible starting here
-     -- references to Pkg_B must use dot-notation
-     X : integer :=
-     use Pkg_B;
-     -- all of Pkg_B is now visible
-     ...
-   end P;
-   
-   package body P is
-     -- all of Pkg_A and Pkg_B is visible here
-   end P;
- 
---------------------
-No Meaning Changes
---------------------
-
-* A new `use` clause won't change a program's meaning!
-* Any directly visible names still refer to the original entities
-
-.. code:: Ada
-    
-   package D is
-     T : Real;
-   end D;
-       
-   with D;
-   procedure P is
-     procedure Q is
-       T, X : Real;
-     begin
-       ...
-       declare
-         use D;
-       begin
-         -- With or without the clause, "T" means Q.T
-         X := T;
-       end;
-       ...
-     end Q;
-     
----------------------------
-No Ambiguity Introduction
----------------------------
-
-.. code:: Ada
-
-   package D is
-     V : Boolean;
-   end D;
-   
-   package E is
-     V : Integer;
-   end E;
-   with D, E;
-   
-   procedure P is
-     procedure Q is
-       use D, E;
-     begin
-       -- to use V here, must specify D.V or E.V
-       ...
-     end Q;
-   begin
-   ...
- 
-.. container:: speakernote
-
-   For declarations in different packages that would not be directly visible in the absence of a "use" clause, none with the same identifier will be directly visible in the presence of such a clause, unless both are overloadable (i.e., enumeration literals and subprogram declarations)
-
-------------------------------
-`use` Clauses and Child Units
-------------------------------
-
-* A clause for a child does not imply one for its parent
-* A clause for a parent makes the child directly visible
-
-   - Since children are 'inside' declarative region of parent
-
-.. code:: Ada
-    
-   package Parent is
-     P1 : Integer;
-     ...
-   end Parent;
-       
-   package Parent.Child is
-     PC1 : Integer;
-     ...
-   end Parent.Child;
-       
-   with Parent.Child;
-   procedure Demo is
-     D1 : Integer := Parent.P1;
-     D2 : Integer := Parent.Child.PC1;
-     use Parent;
-     D3 : Integer := P1;
-     D4 : Integer := Child.PC1; 
-   begin
-     ...
-   end Demo;
-     
-.. container:: speakernote
-
-   D4 has access to CHILD because PARENT is "use"d
-
-----------------------------------------
-`use` Clause and Implicit Declarations
-----------------------------------------
-
-* Visibility rules apply to implicit declarations too
-
-.. code:: Ada
-
-   package P is
-     type Int is range Lower .. Upper;
-     -- implicit declarations
-     -- function "+"( Left, Right : Int ) return Int;
-     -- function "="( Left, Right : Int ) return Boolean;
-   end P;
-   
-   with P;
-   procedure Test is
-     A, B, C : P.Int := some_value;
-   begin
-     C := A + B; -- illegal reference to operator
-     C:= P."+" (A,B);
-     declare
-       use P;
-     begin
-       C := A + B; -- now legal
-     end;
-   end Test;
- 
-====================
-"use type" Clauses
-====================
-
-----------
-Examples
-----------
-
-.. include:: examples/130_program_structure/use_type_clauses.rst
-
----------------------
-`use type` Clauses
----------------------
-
-* Syntax
-
-   .. code:: Ada
-
-      context_clause ::= {context_item}
-      context_item ::= with_clause | use_clause
-      use_clause ::= use_package_clause | use_type_clause
-      use_package_clause ::= use package_name {, package_name};
-      use_type_clause ::= use [all] type subtype_mark
-                                         {, subtype_mark};
- 
-* Makes operators directly visible for specified type
-
-   - Implicit and explicit operator function declarations
-   - Only those that mention the type in the profile
-
-      + Parameters and/or result type
-
-* More specific alternative to `use` clauses
-
-   - Especially useful when multiple `use` clauses introduce ambiguity
-
----------------------------
-`use type` Clause Example
----------------------------
-
-.. code:: Ada
-
-   package P is
-     type Int is range Lower .. Upper;
-     -- implicit declarations
-     -- function "+"( Left, Right : Int ) return Int;
-     -- function "="( Left, Right : Int ) return Boolean;
-   end P;
-   with P;
-   procedure Test is
-     A, B, C : P.Int := some_value;
-     use type P.Int;
-     D : Int; -- not legal
-   begin
-     C := A + B; -- operator is visible
-   end Test;
- 
---------------------------------------
-`use Type` Clauses and Multiple Types
---------------------------------------
-
-* One clause can make ops for several types visible
-
-   - When multiple types are in the profiles
-
-* No need for multiple clauses in that case
-
-.. code:: Ada
-
-   package P is
-     type T1 is range 1 .. 10;
-     type T2 is range 1 .. 10;
-     type T3 is range 1 .. 10;
-     -- "use type" on any of T1, T2, T3
-     -- makes operator visible
-     function "+"( Left : T1; Right : T2 ) return T3;
-   end P;
-
------------------------------
-Multiple `use type` Clauses
------------------------------
-
-* May be necessary
-* Only those that mention the type in their profile are made visible
-
-.. code:: Ada
-
-   package P is
-     type T1 is range 1 .. 10;
-     type T2 is range 1 .. 10;
-     -- implicit
-     -- function "+"( Left : T2; Right : T2 ) return T2;
-     type T3 is range 1 .. 10;
-     -- explicit
-     function "+"( Left : T1; Right : T2 ) return T3;
-   end P;
-   
-   with P;
-   procedure UseType is
-     X1 : P.T1;
-     X2 : P.T2;
-     X3 : P.T3;
-     use type P.T1;
-   begin
-     X3 := X1 + X2; -- operator visible because it uses T1
-     X2 := X2 + X2; -- operator not visible
-   end UseType;
- 
-========================
-"use all type" Clauses
-========================
-
-----------
-Examples
-----------
-
-.. include:: examples/130_program_structure/use_all_type_clauses.rst
-
--------------------------
-`use all type` Clauses
--------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Makes all primitive operations for the type visible
-
-   - Not just operators
-   - Especially, subprograms that are not operators
-
-* **Primitive operation** has a precise meaning
-
-   - Predefined operations such as ``=`` and ``+``  etc.
-   - Subprograms declared in the same package as the type and which operate on the type
-   - Inherited or overridden subprograms
-   - For `tagged` types, class-wide subprograms
-   - Enumeration literals
-
-* Still need a `use` clause for other entities
-
-   - Typically exceptions
-
--------------------------------
-`use all type` Clause Example
--------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-.. code:: Ada
-    
-   package Complex is
-     type Number is private;
-     function "*" (Left, Right : Number) return Number;
-     function "/" (Left, Right : Number) return Number;
-     function "+" (Left, Right : Number) return Number;
-     procedure Put (C : Number);
-     procedure Make ( C : out Number;
-                      From_Real, From_Imag : Float );
-     procedure Non_Primitive ( X : Integer );
-       ... 
-     
-   with Complex;
-   use all type Complex.Number;
-   procedure Demo is 
-     A, B, C : Complex.Number;
-   begin
-     -- "use all type" makes these available
-     Make (A, From_Real => 1.0, From_Imag => 0.0);
-     Make (B, From_Real => 1.0, From_Imag => 0.0);
-     C := A + B;
-     Put (C);
-     -- but not this one
-     Non_Primitive (0);
-   end Demo;
-     
---------------------------------------
-`use all type` v. `use type` Example
---------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-.. code:: Ada
-
-   with Complex;   use type Complex.Number;
-   procedure Demo is 
-     A, B, C : Complex.Number;
-   Begin
-     -- these are always allowed
-     Complex.Make (A, From_Real => 1.0, From_Imag => 0.0);
-     Complex.Make (B, From_Real => 1.0, From_Imag => 0.0);
-     -- "use type" does not give access to these
-     Make (A, 1.0, 0.0); -- not visible
-     Make (B, 1.0, 0.0); -- not visible
-     -- but this is good
-     C := A + B;
-     Complex.Put (C);
-     -- this is not allowed
-     Put (C); -- not visible
-   end Demo;
-
-===================
-Renaming Entities
-===================
-
----------------------------------
-Three Positives Make a Negative
----------------------------------
-
-* Good Coding Practices ...
-
-   - Descriptive names
-   - Modularization
-   - Subsystem hierarchies
-
-* Can result in cumbersome references
-
-   .. code:: Ada
-
-      -- use cosine rule to determine distance between two points,
-      -- given angle and distances between observer and 2 points
-      -- A**2 = B**2 + C**2 - 2*B*C*cos(A)
-      Observation.Sides (Viewpoint_Types.Point1_Point2) :=
-        Math_Utilities.Trigonometry.Square_Root
-          (Observation.Sides (Viewpoint_Types.Observer_Point1)**2 +
-           Observation.Sides (Viewpoint_Types.Observer_Point2)**2 +
-           2.0 * Observation.Sides (Viewpoint_Types.Observer_Point1) *
-             Observation.Sides (Viewpoint_Types.Observer_Point2) *
-             Math_Utilities.Trigonometry.Cosine
-               (Observation.Vertices (Viewpoint_Types.Observer)));
-
---------------------------------
-Writing Readable Code - Part 1
---------------------------------
-
-* We could use `use` on package names to remove some dot-notation
-
-   .. code:: Ada
-
-      -- use cosine rule to determine distance between two points, given angle
-      -- and distances between observer and 2 points A**2 = B**2 + C**2 -
-      -- 2*B*C*cos(A)
-      Observation.Sides (Point1_Point2) :=
-        Square_Root
-          (Observation.Sides (Observer_Point1)**2 +
-           Observation.Sides (Observer_Point2)**2 +
-           2.0 * Observation.Sides (Observer_Point1) *
-             Observation.Sides (Observer_Point2) *
-             Cosine (Observation.Vertices (Observer)));
-
-* But that only shortens the problem, not simplifies it
-
-   - If there are multiple "use" clauses in scope:
-
-      + Reviewer may have hard time finding the correct definition
-      + Homographs may cause ambiguous reference errors
-
-* We want the ability to refer to certain entities by another name (like an alias) with full read/write access (unlike temporary variables)
-      
------------------------
-The `renames` Keyword
------------------------
-
-* Certain entities can be renamed within a declarative region
-
-   - Packages
-
-      .. code:: Ada
-
-         package Math renames Math_Utilities.Trigonometry
-
-   - Objects (or elements of objects)
-
-      .. code:: Ada
-
-         Angles : Viewpoint_Types.Vertices_Array_T
-                  renames Observation.Vertices;
-         Required_Angle : Viewpoint_Types.Vertices_T
-                  renames Viewpoint_Types.Observer;
-
-   - Subprograms
-
-      .. code:: Ada
-
-         function Sqrt (X : Base_Types.Float_T)
-                        return Base_Types.Float_T
-                        renames Math.Square_Root;
-
---------------------------------
-Writing Readable Code - Part 2
---------------------------------
-
-* With `renames` our complicated code example is easier to understand
-
-   .. code:: Ada
-
-      begin
-         Side1 : Base_Types.Float_T renames
-           Observation.Sides (Viewpoint_Types.Observer_Point1);
-         Side2 : Base_Types.Float_T renames
-           Observation.Sides (Viewpoint_Types.Observer_Point2);
-         Angles : Viewpoint_Types.Vertices_Array_T renames Observation.Vertices;
-         Required_Angle : Viewpoint_Types.Vertices_T renames
-           Viewpoint_Types.Observer;
-         Desired_Side : Base_Types.Float_T renames
-           Observation.Sides (Viewpoint_Types.Point1_Point2);
-
-         package Math renames Math_Utilities.Trigonometry;
-
-         function Sqrt (X : Base_Types.Float_T) return Base_Types.Float_T
-           renames Math.Square_Root;
-
-      begin
-
-         Side1                   := Sensors.Read;
-         Side2                   := Sensors.Read;
-         Angles (Required_Angle) := Sensors.Read;
-
-         -- use cosine rule to determine distance between two points, given angle
-         -- and distances between observer and 2 points A**2 = B**2 + C**2 -
-         -- 2*B*C*cos(A)
-         Desired_Side := Sqrt (Side1**2 + Side2**2 +
-                               2.0 * Side1 * Side2 * Math.Cosine (Angles (Required_Angle)));
-
-      end;
-
 ========
 Lab
 ========
@@ -1852,22 +926,18 @@ Summary
 
    Ada 2012
 
-* `with` clauses interconnect library units
-
-   - Express dependencies of the one being compiled
-   - Not textual inclusion!
-
 * Hierarchical library units address important issues
 
    - Direct support for subsystems
    - Extension without recompilation
    - Separation of concerns with controlled sharing of visibility
 
-* `use` clauses are not evil but can be abused
-* `use all type` clauses are more likely in practice than `use type` clauses
+* Parents should document assumptions for children
 
-   - Only available in Ada 2012 and later
+   - "These must always be in ascending order!"
 
-* `Renames` allow us to alias entities to make code easier to read
+* Children cannot misbehave unless imported ("with'ed")
 
-   - Subprogram renaming has many other uses, such as adding / removing default parameter values
+* The writer of a child unit must be trusted 
+
+   - As much as if he or she were to modify the parent itself
