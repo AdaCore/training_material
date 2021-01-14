@@ -92,7 +92,8 @@ Identifiers
 
    - `SpacePerson` |equivalent| `SPACEPERSON`
    - but **different** from `Space_Person`
-   - Reserved words are **forbidden**
+
+* Reserved words are **forbidden**
 
 ----------------
 Reserved Words
@@ -138,7 +139,6 @@ Pragmas
 
 * Compiler directives
 
-   - "action" in Greek
    - Compiler action *not part of* Ada grammar
    - Only **suggestions**, may be **ignored**
    - Either standard or implementation-defined
@@ -220,7 +220,6 @@ Comparison To C's Based Literals
 
    - **Hard** to read
    - **Error-prone**
-   - |rightarrow| unproductive
 
 =====================
 Object Declarations
@@ -343,7 +342,6 @@ Elaboration
 
     - **Initial value** calculations
     - *Execution* at **run-time** (if at all)
-    - *Warning*: Can have **side-effects**
 
 * Objects
 
@@ -511,6 +509,9 @@ Named Number Benefit
        - as a 64 bits Float |rightarrow| 3.333333_43267441E-01
        - as a 128 bits Float |rightarrow| 3.333333_43267440796E-01
 
+..
+    TODO Try using a table
+
 ======================
 Scope and Visibility
 ======================
@@ -525,7 +526,6 @@ Examples
 Scope and Visibility
 ----------------------
 
-* How a **name** references an **entity**
 * **Scope** of a name
 
    - Where the name is **potentially** available
@@ -657,8 +657,8 @@ Aspect Clauses
 
 * Define **additional** properties of an entity
 
-    - Representation (:code:`Packed`)
-    - Operations (:code:`Inline`)
+    - Representation (eg. :code:`Packed`)
+    - Operations (eg. :code:`Inline`)
     - Can be **standard** or **implementation**-defined
 
 * Usage close to pragmas
