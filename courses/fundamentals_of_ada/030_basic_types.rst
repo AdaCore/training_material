@@ -96,10 +96,9 @@ Scalar Types
 --------------
 
 * Indivisible: No components
-* Ordered
+* **Relational** operators defined (``<``,  ``=``, ...)
 
-   - **Comparison** defined
-   - Operators ``<``, ``>``, ``=``, ``/=``... defined
+    - **Ordered**
 
 * Has common **attributes**
 * **Discrete** Types
@@ -132,7 +131,7 @@ Discrete Types
 
 * Enumeration types
 
-   - Ordered list of values
+   - Ordered list of **logical** values
 
 -----------
 Attributes
@@ -211,17 +210,15 @@ Specifying Integer Type Bounds
 Predefined Integer Types
 --------------------------
 
-* A predefined signed integer type
-
-   - Named :ada:`Integer` (confusingly)
-   - Range is **implementation-defined** but **>= 16 bits** wide
+* :ada:`Integer` **>= 16 bits** wide
 
 * Other **probably** available
 
    - :ada:`Long_Integer`, :ada:`Short_Integer`, etc.
    - Guaranteed ranges: :ada:`Short_Integer` ``<=`` :ada:`Integer` ``<=`` :ada:`Long_Integer`
+   - Ranges are all **implementation-defined**
 
-* Bad portability
+* Portability not guaranteed
 
    - But may be difficult to avoid
 
@@ -289,7 +286,7 @@ Compile-Time Constraint Violation
 
    - Static value
    - Value not in range of **base** type
-   - |rightarrow| compilation is **impossible**
+   - Compilation is **impossible**
 
 .. code:: Ada
 
@@ -325,18 +322,16 @@ Integer Overflows
 
 .. code:: Ada
 
-   K : Integer := Integer'Last;
+   K : Short_Integer := Short_Integer'Last;
    ...
    K := K + 1;
       
-    2#01111111111111111111111111111111# - (2**32)-1
+    2#0111_1111_1111_1111#  = (2**16)-1
 
-   +                                 1
+   +                    1
 
-   ===================================
-   2#100000000000000000000000000000000#
-
-   ( = -2,147,483,64810 )
+   =======================
+    2#1000_0000_0000_0000#  = -32,768
  
 -------------------------------
 Integer Overflow: Ada vs others
@@ -345,7 +340,7 @@ Integer Overflow: Ada vs others
 * Ada
 
    - :ada:`Constraint_Error` standard exception
-   - |rightarrow| incorrect numerical analysis
+   - Incorrect numerical analysis
 
 * Java
 
@@ -461,7 +456,6 @@ Predefined Modular Types
    - Need **explicit** import
 
 * **Fixed-size** numeric types
-* Hardware **dependent**
 * Common name **format**
 
    - `Unsigned_n`
@@ -487,7 +481,7 @@ Shift/Rotate Functions
    - `Rotate_Left`
    - etc.
 
-* See B.2 - *The Package Interfaces*
+* See RM B.2 - *The Package Interfaces*
 
 ---------------------------------
 Bit-Oriented Operations Example
@@ -512,7 +506,7 @@ Bit-Oriented Operations Example
 Why No Implicit Shift and Rotate?
 ---------------------------------
 
-* Arithmetic, logical operators available **implicitely**
+* Arithmetic, logical operators available **implicity**
 * **Why not** :ada:`Shift`, :ada:`Rotate`, etc. ?
 * By **excluding** other solutions
    - As functions in **standard** |rightarrow| May **hide** user-defined declarations
@@ -647,11 +641,6 @@ Min/Max Attributes For All Scalars
    ...
    C := Integer'Min (Safe_Upper, C + 1);
  
-.. container:: speakernote
-   
-   First one says we can't decrement below 10
-   Second one says we can't increment above 30
-
 ============================
 Discrete Enumeration Types
 ============================
@@ -667,7 +656,9 @@ Enumeration Types
 -------------------
 
 * Enumeration of **logical** values
-* Integer value is an implementation **detail**
+
+    - Integer value is an implementation detail
+
 * Syntax
 
    .. code:: Ada
@@ -717,16 +708,12 @@ Character Types
 
 * Literals
 
-   - Enclosed in single quotes **'**
+   - Enclosed in single quotes
    - Case-sensitive
 
 * **Special-case** of enumerated type
 
    - At least one character enumeral
-
-* Some already defined
-
-    - ASCII
 
 * Can be user-defined
 
@@ -841,7 +828,7 @@ Language-Defined Type Boolean
       A : Boolean;
       Counter : Integer;
       ...
-      A := Counter = 22;  -- Error
+      A := (Counter = 22);
  
 * Logical operators :ada:`and`, :ada:`or`, :ada:`xor`, :ada:`not`
 
@@ -878,7 +865,7 @@ Why Boolean Isn't Just An Integer!
 
     - Either **all** deployed, or **none** deployed
 
-* Used a :C:`int` as a boolean
+* Used :C:`int` as a boolean
 
    .. code:: C
 
@@ -892,11 +879,10 @@ Why Boolean Isn't Just An Integer!
     - One bit per paddle
     - :C:`0` |rightarrow| none deployed, :C:`0xF` |rightarrow| all deployed
 
-* Then, `use_deployed_inertia_matrix` if only first paddle is deployed!
+* Then, :C:`use_deployed_inertia_matrix()` if only first paddle is deployed!
+* Better: boolean function :C:`paddles_deployed()`
 
-.. container:: speakernote
-
-   Of course, it should have been a boolean function anyway, so that the change to four-bits would only matter in that one place (where the function is implemented).
+    - Single line to modify
 
 ---------------------------------------
 Boolean Operators' Operand Evaluation
@@ -1060,9 +1046,7 @@ Declaring Floating Point Types
 Predefined Floating Point Types
 ---------------------------------
 
-* Type :ada:`Float`
-
-   - ``>= 6`` digits
+* Type :ada:`Float` ``>= 6`` digits
 
 * Additional implementation-defined types
 
@@ -1073,7 +1057,6 @@ Predefined Floating Point Types
 
    - Loss of **portability**
    - Easy to avoid
-   - In next examples, assume :ada:`Real` is user-defined
 
 ------------------------
 Base Decimal Precision
@@ -1110,7 +1093,7 @@ Floating Point Type Operators
 
 * *Note* on floating-point exponentiation ``**``
 
-   - Power can be :ada:`Integer` (``< 0`` or ``>= 0``)
+   - Power must be :ada:`Integer` (``< 0`` or ``>= 0``)
 
       + Not possible to ask for root
       + `X**0.5` |rightarrow| `sqrt(x)`
@@ -1122,10 +1105,7 @@ Floating Point Division By Zero
 
 * Language-defined do as the machine does
 
-   - If :ada:`T'Machine_Overflows` attribute is :ada:`True`
-
-      + |rightarrow| :ada:`Constraint_Error`
-
+   - If :ada:`T'Machine_Overflows` attribute is :ada:`True` raises :ada:`Constraint_Error`
    - Else :math:`+\infty` / :math:`-\infty`
 
       + Better performance
@@ -1141,7 +1121,7 @@ Floating Point Division By Zero
 Using Equality for Floating Point Types
 -----------------------------------------
 
-* Bad idea: representation issue
+* Questionnable: representation issue
 
    - Equality |rightarrow| identical bits
    - Approximations |rightarrow| hard to **analyze**, and **not portable**
@@ -1149,14 +1129,13 @@ Using Equality for Floating Point Types
 
 * Perhaps define your own function
 
-   - Comparison :math:`+\varepsilon` / :math:`-\varepsilon`
-   - Using attributes to determine if values are "close enough"
+   - Comparison within tolerance (:math:`+\varepsilon` / :math:`-\varepsilon`)
  
 --------------------------------
 Floating Point Type Attributes
 --------------------------------
 
-* *Core* attributes (using `Real` as an example)
+* *Core* attributes
 
    .. code:: Ada
 
@@ -1185,7 +1164,7 @@ Miscellaneous
 ===============
 
 -----------------------------
- "Checked" Type Conversions
+ Checked Type Conversions
 -----------------------------
 
 * Between "closely related" types
@@ -1195,6 +1174,9 @@ Miscellaneous
    - Array types
 
 * Illegal conversions **rejected**
+
+   - Unsafe **Unchecked_Conversion** available
+
 * Functional syntax 
 
    - Function named :ada:`Target_Type`
@@ -1204,32 +1186,6 @@ Miscellaneous
 .. code:: Ada
 
    Target_Float := Float (Source_Integer);
- 
-------------------------------
-"Unchecked" Type Conversions
-------------------------------
-
-* Between **any** types
-* Practical restrictions apply
-
-  - Scalar |rightarrow| Composite
-
-* Close to machine
-
-  - Equivalent to C casts or C++'s :cpp:`static_cast<>`
-  - Dangerous
-  - **Avoid** if possible
-
-.. code:: Ada
-
-   function As_Byte is new
-      Ada.Unchecked_Conversion (
-         Source => Byte_Mask,
-         Target => Byte);
-
-.. container:: speakernote
-
-   Sizes should be the same, but not a requirement
 
 -------------
 Default Value
@@ -1258,6 +1214,18 @@ Default Value
       Implicit : Tertiary_Switch; -- Implicit = Neither
       Explicit : Tertiary_Switch := Neither;
  
+-------
+Subtype
+-------
+
+* Same type
+* Add constraints (eg. :ada:`range`)
+* Syntax
+
+   .. code:: Ada
+
+      type identifier is Base_Type <constraints>
+
 -------------------------------
 Simple Static Type Derivation
 -------------------------------
@@ -1265,7 +1233,7 @@ Simple Static Type Derivation
 * New type from an existing type
 
   - **Limited** form of inheritance: operations
-  - **Not** OOP
+  - **Not** fully OOP
 
 * Strong type benefits
 
@@ -1276,7 +1244,8 @@ Simple Static Type Derivation
 
    .. code:: Ada
 
-      type identifier is new <subtype_indication>;
+      type identifier is new Base_Type <constraints>
+
 
 =====
 Lab
@@ -1293,7 +1262,7 @@ Summary
 --------------------------------------
 
 * **Prevent** subtle bugs
-* Cannot *mix apples and oranges*
+* Cannot mix :ada:`Apples` and :ada:`Oranges`
 * Force to clarify **representation** needs
 
     - eg. constant with or with fractional part
