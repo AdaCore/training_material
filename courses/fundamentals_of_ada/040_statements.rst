@@ -47,17 +47,17 @@ Procedure Calls (Overview)
 
     * Traditional call notation
 
-    .. code:: Ada
+      .. code:: Ada
 
-       Activate (Idle, True);
+        Activate (Idle, True);
 
     * "Distinguished Receiver" notation
 
         - For :ada:`tagged` types
 
-    .. code:: Ada
+      .. code:: Ada
 
-       Idle.Activate (True);
+         Idle.Activate (True);
 
 
 ---------------------------------
@@ -392,7 +392,8 @@ Case Statements
 
    .. code::
 
-      choice ::= <expression> | <discrete_range> | others { "|" <other choice> }
+      choice ::= <expression> | <discrete range>
+                | others { "|" <other choice> }
  
 ----------------------
 Simple case Statements
@@ -410,14 +411,14 @@ Simple case Statements
      when Right => Go_Right (1);
    end case;
  
-* NB: There is no fall-through between cases 
+* *Note*: No fall-through between cases 
 
 ----------------------
 Case Statement Rules
 ----------------------
 
 * More constrained than a if-elsif structure
-* All possible values must be covered
+* **All** possible values must be covered
 
    - Explicitly
    - ... or with `others` keyword
@@ -532,9 +533,9 @@ Basic Loops and Syntax
 
     Loop Iterator Specification available in Ada2012 and later
 
------------------
-Exit Statements
------------------
+--------------------
+Loop Exit Statements
+--------------------
 
 * Leaves innermost loop
 
@@ -561,7 +562,7 @@ Exit Statements
 Exit Statement Examples
 -------------------------
 
-* Equivalent to a "do while" loop
+* Equivalent to C's :C:`do while`
 
    .. code:: Ada
 
@@ -749,21 +750,39 @@ For-Loop Parameter Visibility
         For_Loop : for Counter in Integer range A .. B loop
         ...
         end loop;
+      end;
 
-------------------------------------------
-Combining Iterations and Exit Statements
-------------------------------------------
+--------------------------
+Iterations Exit Statements
+--------------------------
 
-    * Early loop exit
-    * Loop exited entirely
-        
-        - Not only current iteration
+* Early loop exit
 
-    .. code:: Ada
+* Syntax
 
-       for K in 1 .. 1000 loop
-          exit when K > F(K);
-       end loop;
+  .. code:: Ada
+  
+        exit [<loop_name>] [when <condition>]
+
+* No name: Loop exited **entirely**
+    
+    - Not only current iteration
+
+  .. code:: ada
+  
+     for K in 1 .. 1000 loop
+        exit when K > F(K);
+     end loop;
+
+* With name: Specified loop exited
+
+  .. code:: ada
+  
+     for J in 1 .. 1000 loop
+         Inner: for K in 1 .. 1000 loop
+            exit Inner when K > F(K);
+         end loop;
+     end loop;
 
 --------------------------------------
 For-Loop with Exit Statement Example
