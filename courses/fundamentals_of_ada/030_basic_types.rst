@@ -615,7 +615,7 @@ Neighbor Attributes For All Scalars
    type Unsigned_T is mod 256;
    Signed   : Signed_T := -1;
    Unsigned : Unsigned_T := 0;
-   ...a
+   ...
    Signed := Signed'Succ( Signed ); -- Signed = -2
    ...
    Unsigned := Unsigned'Pred( Unsigned ); -- Signed = 1
@@ -821,8 +821,7 @@ Language-Defined Type Boolean
 
       type Boolean is ( False, True );
  
-* Supports assignment, relational operators
-* Special attributes
+* Supports assignment, relational operators, attributes
 
    .. code:: Ada
 
@@ -1094,7 +1093,7 @@ Floating Point Type Operators
 
 * *Note* on floating-point exponentiation ``**``
 
-   - Power must be :ada:`Integer` (``< 0`` or ``>= 0``)
+   - Power must be :ada:`Integer`
 
       + Not possible to ask for root
       + `X**0.5` |rightarrow| `sqrt(x)`
@@ -1122,7 +1121,7 @@ Floating Point Division By Zero
 Using Equality for Floating Point Types
 -----------------------------------------
 
-* Questionnable: representation issue
+* Questionable: representation issue
 
    - Equality |rightarrow| identical bits
    - Approximations |rightarrow| hard to **analyze**, and **not portable**
