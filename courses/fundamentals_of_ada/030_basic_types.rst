@@ -509,6 +509,7 @@ Why No Implicit Shift and Rotate?
 * Arithmetic, logical operators available **implicity**
 * **Why not** :ada:`Shift`, :ada:`Rotate`, etc. ?
 * By **excluding** other solutions
+
    - As functions in **standard** |rightarrow| May **hide** user-defined declarations
    - As new **operators** |rightarrow| New operators for a **single type**
    - As **reserved words** |rightarrow| Not **upward compatible**
@@ -895,9 +896,9 @@ Boolean Operators' Operand Evaluation
   - Dereferencing null pointers
   - Division by zero
 
-  .. code:: Ada
+ .. code:: Ada
 
-     if Divisor /= 0 and K / Divisor = Max then ... -- Problem!
+    if Divisor /= 0 and K / Divisor = Max then ... -- Problem!
  
 -----------------------------
 Short-Circuit Control Forms
@@ -1073,9 +1074,9 @@ Base Decimal Precision
    - Available: 6, 12, or 24 digits of precision
    - Type with **8 digits** of precision
 
-    .. code:: Ada
+      .. code:: Ada
 
-       type My_Type is digits 8;
+         type My_Type is digits 8;
  
    - :ada:`My_Type` will have 12 **or** 24 digits of precision
 
@@ -1112,10 +1113,10 @@ Floating Point Division By Zero
 
 * User-defined types always raise :ada:`Constraint_Error`
 
-   .. code:: Ada
+ .. code:: Ada
 
-      subtype MyFloat is Float range Float'First .. Float'Last;
-      type MyFloat is new Float range Float'First .. Float'Last;
+    subtype MyFloat is Float range Float'First .. Float'Last;
+    type MyFloat is new Float range Float'First .. Float'Last;
  
 -----------------------------------------
 Using Equality for Floating Point Types
@@ -1203,7 +1204,8 @@ Default Value
 
    .. code:: Ada
 
-      type defining_identifier is type_definition with Default_Value => <value>;
+      type Type_Name is <type_definition>
+           with Default_Value => <value>;
 
 * Example
 
