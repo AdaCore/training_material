@@ -323,7 +323,7 @@ Examples
 .. include:: examples/040_statements/conditional_statements.rst
 
 --------------------
-If-then Statements
+If-then-else Statements
 --------------------
 
 * Control flow using Boolean expressions
@@ -698,8 +698,8 @@ Low-Level For-loop Parameter Type
 
    .. code:: Ada
 
-      -- Error if Wed is both Days_T and Marital_Status_T
-      for Today in Wed .. Fri loop  
+      -- Error if Red and Green is both Color_T and Stoplight_T
+      for Color in Red .. Green loop  
 
 * Type `Integer` by default
 
