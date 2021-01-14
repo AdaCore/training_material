@@ -100,7 +100,7 @@ Scalar Types
 
     - **Ordered**
 
-* Has common **attributes**
+* Have common **attributes**
 * **Discrete** Types
 
   - Integer
