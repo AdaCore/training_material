@@ -45,13 +45,15 @@ Procedure Calls (Overview)
 
        procedure Activate ( This : in out Foo; Wait : in Boolean);
 
-    * Traditional call notation is supported
+    * Traditional call notation
 
     .. code:: Ada
 
        Activate (Idle, True);
 
-    * "Distinguished Receiver" notation is supported
+    * "Distinguished Receiver" notation
+
+        - For :ada:`tagged` types
 
     .. code:: Ada
 
@@ -98,7 +100,7 @@ Block Statements
 Block Statements
 ------------------
 
-    * "Sort of" inline procedures
+    * Local **scope**
     * Optional declarative part
     * Used for
 
@@ -331,89 +333,48 @@ If-then Statements
 
       if <boolean expression> then -- No parentheses
          <statements>;
+      [else
+         <statements>;]
       end if;
  
-* At least one statement must be supplied (:ada:`null` for explicit no-op)
+* At least one statement must be supplied
 
-    .. code:: Ada
+    - :ada:`null` for explicit no-op
 
-       if Valve(N) /= Closed then
-         Isolate( Valve(N) );
-         Notify( Valve_Failure,
-                 Valve(N) );
-       end if;
+ .. code:: Ada
 
--------------------------
-If-then-else Statements
--------------------------
-
-* Express exclusionary choice
-* Syntax
-
-   .. code:: Ada
-
-      if boolean_expression then
-         sequence_of_statements;
-      else
-         sequence_of_statements;
+    if Valve(N) /= Closed then
+      Isolate (Valve(N));
+      Notify (Valve_Failure, Valve (N));
+    else
+      if System = Off then
+        Notify (Valve_Failure, Valve (N));
       end if;
+    end if;
 
-    .. code:: Ada
-
-         if Today = Days'Last then
-           Next := Days'First;
-         else -- Today is not the last day
-           Next := Days'Succ(Today);
-         end if;
 
 --------------------------
 If-then-elsif Statements
 --------------------------
 
-    * Sequential choice with alternatives
-    * Avoids `if` nesting
-    * `elsif` alternatives, tested in textual order
-    * `else` part still optional
+* Sequential choice with alternatives
+* Avoids `if` nesting
+* `elsif` alternatives, tested in textual order
+* `else` part still optional
+* Applied to previous example
 
-    .. code:: Ada
+ .. code:: Ada
 
-       if A = 0 then
-         Put_Line ("Zero");
-       elsif A < 10 then
-         Put_Line ("Small");
-       elsif A < 100  then
-         Put_Line ("Medium");
-       -- other `elsif` if needed
-       else
-         Put_Line("Large");
-       end if;
+    if Valve(N) /= Closed then
+      Isolate (Valve(N));
+      Notify (Valve_Failure, Valve (N));
+    elsif System = Off then
+      Notify (Valve_Failure, Valve (N));
+    end if;
 
 .. container:: speakernote
 
    Spelled that way on purpose, as was done in Python for example (differently, "elif")
-
-------------------------------
-Nested If-then Version (Ugly!)
-------------------------------
-
-* Doesn't scale well
-* Doesn't read well either
-
-.. code:: Ada
-
-       if A = 0 then
-         Put_Line ("Zero");
-       else
-          if A < 10 then
-             Put_Line ("Small");
-          else
-             if A < 100 then
-                Put_Line ("Medium");
-             else
-                Put_Line("Large");
-             end if;
-          end if;
-       end if;
 
 -----------------
 Case Statements
@@ -463,7 +424,7 @@ Case Statement Rules
 
 * Choice values cannot be given more than once (exclusive)
 
-    - and should be known at compile-time
+    - Must be known at **compile** time
 
 ------------------
  `Others` Choice
@@ -563,8 +524,8 @@ Basic Loops and Syntax
    .. code:: Ada
        
       Wash_Hair : loop
-        Lather;
-        Rinse;
+        Lather (Hair);
+        Rinse (Hair);
       end loop Wash_Hair;
 
 .. container:: speakernote
@@ -656,10 +617,6 @@ While-loop Statements
 For-loop Statements
 ---------------------
 
-.. admonition:: Language Variant
-    
-    Ada 2012
-
 * One low-level form
 
    - General-purpose (looping, array indexing, etc.)
@@ -668,20 +625,17 @@ For-loop Statements
 
 * Two high-level forms
 
+   - Ada 2012
    - Focused on objects
-   - Seen with Arrays
+   - Seen later with Arrays
 
--------------------------------
-Low-Level For-loop Statements
--------------------------------
+-----------------
+For in Statements
+-----------------
 
-.. admonition:: Language Variant
-    
-    Ada 2012
+* Successive values of a **discrete** type
 
-* Take on successive values of a discrete type
-
-   - eg. values of an enum
+   - eg. enumerations values
 
 * Syntax
 
@@ -708,16 +662,12 @@ Low-Level For-loop Statements
 Variable and Sequence of Values
 -----------------------------------
 
-.. admonition:: Language Variant
-    
-    Ada 2012
-
 * Variable declared implicitly by loop statement
 
    - Has a view as constant
    - No assignment or update possible
 
-* Initialized as the `'First`, icremented as the `'Next`
+* Initialized as :ada:`'First`, incremented as :ada:`'Succ`
 
 * Syntaxic sugar: several forms allowed
 
@@ -761,17 +711,14 @@ Null Ranges
     * Null range when lower bound ``>`` upper bound
 
        - `1 .. 0`, `Fri .. Mon`
-       - Litterals and variables can specify null ranges
+       - Literals and variables can specify null ranges
 
-    * Cause no iteration at all (not even one)
-    * Nice shortcut for upper bound validation
+    * No iteration at all (not even one)
+    * Shortcut for upper bound validation
 
     .. code:: Ada
-    
-       -- if Items_To_Get is 0, loop is not entered
-       for K in 1 .. Items_To_Get loop
-           Get (Item);
-       end loop;
+      -- Null range: loop not entered
+      for Today in Fri .. Mon loop  
 
 -----------------------------------------
 Reversing Low-Level Iteration Direction
@@ -780,12 +727,11 @@ Reversing Low-Level Iteration Direction
 * Keyword `reverse` reverses iteration values
 
     - Range must still be ascending
+    - Null range still cause no iteration
 
    .. code:: Ada
 
       for This_Day in reverse Mon .. Fri loop
-
-* `Reverse` on a null range also cause no iteration
 
 ---------------------------------------
 For-Loop Parameter Visibility
@@ -894,7 +840,7 @@ GOTO Statements
 GOTO Use
 --------
 
-* Mostly forbidden
+* Mostly discouraged
 * May simplify control flow
 * For example in-loop `continue` construct
 
