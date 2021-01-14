@@ -1,5 +1,5 @@
 .. code:: ada
-   :class: ada-run
+    :class: ada-syntax-only
 
    package Global_Data is
       Object : Integer := 100;

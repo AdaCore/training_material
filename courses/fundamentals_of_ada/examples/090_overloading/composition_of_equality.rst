@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    with Ada.Text_IO; use Ada.Text_IO;
    procedure Composition_Of_Equality is

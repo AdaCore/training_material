@@ -1,5 +1,5 @@
 .. code:: ada
-   :class: ada-run
+    :class: ada-syntax-only
 
    limited with Department;
    package Personnel is

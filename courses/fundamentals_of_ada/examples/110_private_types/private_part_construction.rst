@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Sets is
       type Set_T is private;

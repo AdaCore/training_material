@@ -1,5 +1,5 @@
 .. code:: ada
-   :class: ada-run
+    :class: ada-syntax-only
 
    package Simple_Derivation is
       type Parent_T is range 1 .. 10;

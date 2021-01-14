@@ -1,4 +1,5 @@
 .. code:: ada
+    :class: ada-syntax-only
 
    package Identifiers_Comments_And_Pragmas is
    

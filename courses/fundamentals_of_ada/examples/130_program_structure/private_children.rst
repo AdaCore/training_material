@@ -1,5 +1,5 @@
 .. code:: ada
-   :class: ada-run
+    :class: ada-syntax-only
 
    package Os is
       type File_T is private;

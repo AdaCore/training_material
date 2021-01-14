@@ -1,5 +1,5 @@
 .. code:: ada
-   :class: ada-run
+    :class: ada-syntax-only
 
    package Complex is
       type Number is private;

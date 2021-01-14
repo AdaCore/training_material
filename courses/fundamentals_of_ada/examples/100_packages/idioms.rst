@@ -1,5 +1,5 @@
 .. code:: ada
-   :class: ada-run
+    :class: ada-syntax-only
 
    package Constants is
       Polar_Radius      : constant := 20_856_010.51;

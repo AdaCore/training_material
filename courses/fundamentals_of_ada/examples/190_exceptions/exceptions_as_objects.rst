@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Exception_Objects_Example is
    

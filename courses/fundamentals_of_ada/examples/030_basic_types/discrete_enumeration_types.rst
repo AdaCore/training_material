@@ -1,5 +1,4 @@
 .. code:: ada
-    :class: ada-run
 
    with Ada.Text_IO; use Ada.Text_IO;
    procedure Discrete_Enumeration_Types is

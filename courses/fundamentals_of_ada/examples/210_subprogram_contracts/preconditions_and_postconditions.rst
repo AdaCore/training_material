@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Stack_Pkg is
       procedure Push (Item : in Integer) with

@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    with Ada.Text_IO;
    package Base_Types is

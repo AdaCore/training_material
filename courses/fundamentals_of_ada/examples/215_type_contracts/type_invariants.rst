@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Bank is
       type Account_T is private with Type_Invariant => Consistent_Balance (Account_T);

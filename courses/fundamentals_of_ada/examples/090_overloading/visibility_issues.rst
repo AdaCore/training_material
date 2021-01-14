@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    procedure Visibility_Issues is
       procedure Foo (I : Integer) is

@@ -1,5 +1,4 @@
 .. code:: ada
-    :class: ada-run
 
    with GNAT.Random_Numbers; use GNAT.Random_Numbers;
    with Ada.Text_IO;         use Ada.Text_IO;

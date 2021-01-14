@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Executable_Part is
       Visible_Seed : Integer;

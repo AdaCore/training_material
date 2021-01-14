@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Tasks is
       task T is
