@@ -309,10 +309,8 @@ Predefined Declarations
 
    - About **half the RM** in size
 
-* **Optional** in *Specialized Needs Annexes*
-
+* "Specialized Needs Annexes" for *optional*
 * Also, implementation specific extensions
-
 
 ------------------------------------
 Implicit vs. Explicit Declarations
@@ -443,7 +441,7 @@ Named Numbers
 
    - Used as **constant**
    - `universal_integer`, or `universal_real`
-   - compatible with integer / real, respectively
+   - compatible with integer / real respectively
    - Expression must be **static**
 
 * Syntax
