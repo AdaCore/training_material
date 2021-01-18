@@ -1225,7 +1225,7 @@ Subtype
 
    .. code:: Ada
 
-      type identifier is Base_Type <constraints>
+      subtype identifier is Base_Type <constraints>
 
 -------------------------------
 Simple Static Type Derivation
@@ -1245,7 +1245,7 @@ Simple Static Type Derivation
 
    .. code:: Ada
 
-      type identifier is new Base_Type <constraints>
+      type identifier is new Base_Type [<constraints>]
 
 
 =====
