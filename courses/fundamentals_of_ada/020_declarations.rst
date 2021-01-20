@@ -1,3 +1,8 @@
+.. |equivalent| replace:: :math:`\iff`
+
+.. role:: c(code)
+    :language: C
+
 
 **************
 Declarations
@@ -79,21 +84,16 @@ Identifiers
 
       identifier ::= letter {[underline] letter_or_digit}
  
-* Character set essentially Unicode 4.0
+* Character set **Unicode** 4.0
 
-   - Has 8-, 16-, and 32-bit characters and strings
+   - 8, 16, 32 bit-wide characters
 
-* Rules
+* Case **not significant**
 
-   - Case is not significant
+   - `SpacePerson` |equivalent| `SPACEPERSON`
+   - but **different** from `Space_Person`
 
-      + `SpacePerson` is the same as `SPACEPERSON`
-
-   - Underline is significant
-
-      + But not the same as `Space_Person`
-
-   - May not be one of the reserved words (see RM 2.9)
+* Reserved words are **forbidden**
 
 ----------------
 Reserved Words
@@ -137,21 +137,18 @@ Comments
 Pragmas
 ---------
 
-* Compiler directives (pragma is "action" in Greek)
+* Compiler directives
 
-   - Tell compiler to do something special
-   - Suggestions only, since compiler may not be able to comply
+   - Compiler action *not part of* Ada grammar
+   - Only **suggestions**, may be **ignored**
+   - Either standard or implementation-defined
 
-* Some are predefined
-* Some are implementation-defined
+* Unrecognized pragmas
 
-   - But portability becomes an issue
-   - But if that is what it takes...
+   - **No effect**
+   - Cause **warning** (standard mode)
 
-* Unrecognized pragmas have no effect on semantics
-
-   - Must cause a warning (in standard mode)
-   - Malformed pragmas are illegal (predefined or not)
+* Malformed pragmas are **illegal**
 
 .. code:: Ada
 
@@ -176,8 +173,11 @@ Decimal Numeric Literals
 
    .. code::
 
-      decimal_literal ::= numeral [.numeral] [E+numeral | E-numeral]
+      decimal_literal ::=
+        numeral [.num] E [+numeral|-numeral]
       numeral ::= digit {[underline] digit}
+
+* Underscore is not significant
  
 * Examples
 
@@ -185,8 +185,6 @@ Decimal Numeric Literals
 
       12      0       1E6      123_456
       12.0    0.0     0.456    3.14159_26
- 
-* Underscore is not significant
 
 ------------------------
 Based Numeric Literals
@@ -194,7 +192,8 @@ Based Numeric Literals
 
 .. code::
 
-   based_literal ::= base # based_number [.based_number] # [E+numeral | E-numeral]
+   based_literal ::=
+     base # based_number [.based_number] # E [+numeral|-numeral]
    based_number ::= base_digit { '_' base_digit }
  
 * Base can be 2 .. 16
@@ -208,20 +207,19 @@ Based Numeric Literals
       8#10#E+3          => 4096 (8 * 8**3)
  
 --------------------------------------------
-Designed In Reaction To C's Based Literals
+Comparison To C's Based Literals
 --------------------------------------------
 
-* C didn't support all the typical bases
+* Design in reaction to C issues
+* C has **limited** bases support
 
-   - Only bases 8, 10, 16 
+   - Bases 8, 10, 16
+   - No base 2 in standard
 
-   - Why not base 2?! (It does now)
+* Zero-prefixed octal :code:`0nnn`
 
-* C's octal literals started with zero
-
-   - Not human friendly |rightarrow| unproductive
-   - Easy to misinterpret
-   - Easy to change without realizing
+   - **Hard** to read
+   - **Error-prone**
 
 =====================
 Object Declarations
@@ -237,24 +235,18 @@ Examples
 Declarations
 --------------
 
-* Most declarations associate a name with an entity
+* Associate a **name** to an **entity**
 
-   - Objects
-   - Types
-   - Subprograms
-   - et cetera
+    - Objects
+    - Types
+    - Subprograms
+    - et cetera
 
-* All names must be declared before use
+* Declaration **must precede** use
+* **Some** implicit declarations
 
-   - Most names must be explicitly declared
-
-      + User-defined objects!
-
-   - Some names are implicitly declared for you
-
-      + Types and operations
-
-* Predefined items are of course already declared
+    - **Standard** types and operations
+    - **Implementation**-defined
 
 ---------------------
 Object Declarations
@@ -288,14 +280,14 @@ Multiple Object Declarations
 
       A, B : Integer := F(X);
  
-* Semantically same as series of single declarations
+* Identical to series of single declarations
 
    .. code:: Ada
 
       A : Integer := F(X);
       B : Integer := F(X);
  
-* Thus they could receive different values!
+* Warning: may get different value
 
    .. code:: Ada
 
@@ -305,36 +297,32 @@ Multiple Object Declarations
 Predefined Declarations
 -------------------------
 
-* Many items are already declared for users
+* **Implicit** declarations
+* Language standard
+* Annex A for *Core*
 
-   - Defined by language standard
-   - Defined by the implementation
+   - Package :code:`Standard`
+   - Standard types and operators
 
-* See Annex A for details of predefined declarations
+        + Numerical
+        + Characters
 
-   - Package named `Standard`
-   - Numeric types and operators
-   - Character types and string types
-   - Input/Output facilities
-   - String handling facilities
-   - Access to command line arguments
-   - Many, many others
+   - About **half the RM** in size
 
-* Half the RM describes the Standard Libraries
-
-   - Some in the optional Specialized Needs Annexes too
+* "Specialized Needs Annexes" for *optional*
+* Also, implementation specific extensions
 
 ------------------------------------
 Implicit vs. Explicit Declarations
 ------------------------------------
 
-* Explicit declarations actually appear in the source
+* Explicit |rightarrow| in the source
 
    .. code:: Ada
 
       type Counter is range 0 .. 1000;
  
-* Implicit declarations are declared automatically by the compiler
+* Implicit |rightarrow| **automatically** by the compiler
 
    .. code:: Ada
 
@@ -348,17 +336,20 @@ Implicit vs. Explicit Declarations
 Elaboration
 -------------
 
-* Means by which declarations achieve their effects
-* Essentially the execution of the declaration
+* Effects of the declaration
 
-   - Happens at run-time, if at all
+    - **Initial value** calculations
+    - *Execution* at **run-time** (if at all)
 
 * Objects
 
-   - Memory logically allocated
-   - Initial values assigned
+   - Memory **allocation**
+   - Initial value
 
-* Elaboration is linear, based on the program text
+* Linear elaboration
+
+   - Follows the program text
+   - Top to bottom
 
    .. code:: Ada
 
@@ -379,59 +370,59 @@ Universal Types
 
 * Implicitly defined 
 
-* Represent entire classes of numeric types
+* Entire *classes* of numeric types
 
    - `universal_integer`
    - `universal_real`
    - `universal_fixed`
 
-* Values match any integer or real type, respectively
+* Match any integer / real type respectively
 
-   - Values are implicitly converted to required type
+   - **Implicit** conversion, as needed
 
-      .. code:: Ada
+  .. code:: Ada
 
-         X : Integer64 := 2;
-         Y : Integer8 := 2;
+     X : Integer64 := 2;
+     Y : Integer8 := 2;
  
 ----------------------------------------
 Numeric Literals Are Universally Typed
 ----------------------------------------
 
-* No need to specify the "size" or "class"
+* No need to type them
 
-   - No need for suffixes indicating unsigned, long, etc
-   - e.g ``0UL`` in C
+   - e.g :code:`0UL` as in C
 
-* Compiler keeps everything straight
+* Compiler handles typing
 
-   - No bugs due to loading insufficient number of bytes
+   - No bugs with precision
 
-      .. code:: Ada
+  .. code:: Ada
 
-         X : Unsigned_Long := 0;
-         Y : Unsigned_Short := 0;
+     X : Unsigned_Long := 0;
+     Y : Unsigned_Short := 0;
  
 ----------------------------------------
 Literals Must Match "Class" of Context
 ----------------------------------------
 
-* `universal_integer` literals match the integer types
-* `universal_real` literals match the fixed and floating point types
+* `universal_integer` literals |rightarrow| **integer**
+* `universal_real` literals |rightarrow| **fixed** or **floating** point
+
 * Legal
 
-   .. code:: Ada
+  .. code:: Ada
 
-      X : Integer := 2;
-      Y : Float := 2.0;
- 
+     X : Integer := 2;
+     Y : Float := 2.0;
+
 * Not legal
 
-   .. code:: Ada
+  .. code:: Ada
 
-      X : Integer := 2.0;
-      Y : Float := 2;
- 
+     X : Integer := 2.0;
+     Y : Float := 2;
+
 ===============
 Named Numbers
 ===============
@@ -446,9 +437,12 @@ Examples
 Named Numbers
 ---------------
 
-* Associate a name with a literal expression
+* Associate a **name** with an **expression**
 
-   - Presumably to be used in place of the expression
+   - Used as **constant**
+   - `universal_integer`, or `universal_real`
+   - compatible with integer / real respectively
+   - Expression must be **static**
 
 * Syntax
 
@@ -456,11 +450,7 @@ Named Numbers
 
      <name> : constant := <static_expression>;
  
-* Expression must be static
-* Are of universal types
-
-   - `universal_integer` and `universal_real`
-   - Thus compatible with any integer or real type, respectively
+* Example
 
    .. code:: Ada
 
@@ -489,35 +479,36 @@ A Sample Collection of Named Numbers
 Named Number Benefit
 ----------------------
 
+* Evaluation at **compile time**
+
+    - As if **used directly** in the code
+    - **Perfect** accuracy
+
+  .. code:: Ada
+
+    Named_Number   : constant :=       1.0 / 3.0;
+    Typed_Constant : constant float := 1.0 / 3.0;
+
 .. container:: columns
 
  .. container:: column
-  
-    * Evaluated exactly at compile time
 
-       - Just as if expression was used directly in the code
+    * :code:`Named_Number` value
 
-    * Thus no loss of accuracy in different type contexts
-    
-    .. code:: Ada
-    
-      NN : constant := 1.0 / 3.0;   
-      C  : constant float :=
-           1.0 / 3.0;
+       - as a 32 bits Float |rightarrow| 3.33333E-01
+       - as a 64 bits Float |rightarrow| 3.33333333333333E-01
+       - as a 128 bits Float |rightarrow| 3.33333333333333333E-01
 
  .. container:: column
-  
-    * NN as ...
 
-       - Float value |rightarrow| 3.33333E-01
-       - Long Float value |rightarrow| 3.33333333333333E-01
-       - Long Long Float value |rightarrow| 3.33333333333333333E-01
+    * :code:`Typed_Constant` value
 
-    * C as ...
+       - as a 32 bits Float |rightarrow| 3.33333E-01
+       - as a 64 bits Float |rightarrow| 3.333333_43267441E-01
+       - as a 128 bits Float |rightarrow| 3.333333_43267440796E-01
 
-       - Float value |rightarrow| 3.33333E-01
-       - Long Float value |rightarrow| 3.33333343267441E-01
-       - Long Long Float value |rightarrow| 3.33333343267440796E-01
+..
+    TODO Try using a table
 
 ======================
 Scope and Visibility
@@ -533,73 +524,76 @@ Examples
 Scope and Visibility
 ----------------------
 
-* Determine those places in which a given name can be used to reference a given entity
-* Scope of a name
+* **Scope** of a name
 
-   - Region of text where potentially available for reference
-   - No longer exists when no longer "in scope"
-   - Scopes can be nested
+   - Where the name is **potentially** available
+   - Determines **lifetime**
+   - Scopes can be **nested**
 
-* Visibility of a name
+* **Visibility** of a name
 
-   - Region of text where actually available for reference
-   - Visibility rules determine which names are visible
-   - When hidden, a name is "in scope" but not visible
+   - Where the name is **actually** available
+   - Defined by **visibility rules**
+   - **Hidden** |rightarrow| *in scope* but **not visible**
 
 ------------------------------
 Introducing Block Statements
 ------------------------------
 
-* Statements with an optional declarative part
+* **Sequence** of statements
 
-   - Must occur within sequence of statements (between begin-end reserved word pairs)
-   - Can be nested since they are themselves statements
+   - Optional *declarative part*
+   - Can be **nested**
+   - Declarations **can hide** outer variables
 
-* Form a semi-complete context for visibility examples
-* Syntax
+.. container:: columns
 
-   .. code:: Ada
+ .. container:: column
 
-      [<block-name> :] declare
-         <declarative part>
-      begin
-         <statements>
-      end [block-name];
- 
-* Example
+    * Syntax
 
-   .. code:: Ada
+       .. code:: Ada
 
-      Swap:  declare
-        Temp : Integer;
-      begin
-        Temp := U;
-        U := V;
-        V := Temp;
-      end Swap;
+          [<block-name> :] declare
+             <declarative part>
+          begin
+             <statements>
+          end [block-name];
+
+ .. container:: column
+
+    * Example
+
+       .. code:: Ada
+
+          Swap: declare
+            Temp : Integer;
+          begin
+            Temp := U;
+            U := V;
+            V := Temp;
+          end Swap;
 
 ----------------------
 Scope and "Lifetime"
 ----------------------
 
-.. container:: columns
+* Object in scope |rightarrow| exists
+* No *scoping* keywords
 
- .. container:: column
-  
-    .. image:: ../../images/block_scope_example.jpeg
-    
- .. container:: column
-  
-    * Declared objects exist as long as they are in scope
-    * Not controlled by keywords such as ``static`` etc.
+    - C's :c:`static`, :c:`auto` etc...
+
+.. image:: ../../images/block_scope_example.jpeg
+    :height: 50%
 
 -------------
 Name Hiding
 -------------
 
-* Results from "homographs"
+* Caused by **homographs**
 
-   - Homographs are indistinguishable names
+    - **Identical** name
+    - **Different** entity
 
    .. code:: Ada
 
@@ -619,33 +613,27 @@ Name Hiding
 Overcoming Hiding
 -------------------
 
-.. container:: columns
+* Add a **prefix**
 
- .. container:: column
-  
-    * Based on providing additional name qualifiers
+   - Needs named scope
 
-       - Works for any named scope
+* Homographs are a *code smell*
 
-    * But should question use of object homographs
+    - May need **refactoring**...
 
-       - These are just example names - not necessarily good ones!
+.. code:: Ada
 
- .. container:: column
-  
-    .. code:: Ada
-    
-       Outer : declare
-         M : Integer;
-       begin
-         ...
-         declare
-           M : Float;
-         begin
-           Outer.M := Integer(M);
-         end;
-         ...
-       end Outer;
+   Outer : declare
+     M : Integer;
+   begin
+     ...
+     declare
+       M : Float;
+     begin
+       Outer.M := Integer(M); -- Prefixed
+     end;
+     ...
+   end Outer;
      
 ================
 Aspect Clauses
@@ -665,19 +653,26 @@ Aspect Clauses
 
    Ada 2012
 
-* Define characteristics of a declared entity
-* Applicable to objects, types, program units, etc.
+* Define **additional** properties of an entity
+
+    - Representation (eg. :code:`Packed`)
+    - Operations (eg. :code:`Inline`)
+    - Can be **standard** or **implementation**-defined
+
+* Usage close to pragmas
+    
+    - More **explicit**, **typed**
+    - **Cannot** be ignored
+    - **Recommended** over pragmas
+
 * Syntax
+
+    - *Note:* always part of a **declaration**
 
    .. code:: Ada
 
       with aspect_mark [ => expression]
            {, aspect_mark [ => expression] }
- 
-   - Note this is always part of a larger construct, i.e., never stand-alone
-
-* Many `aspect_mark`s defined by the language
-* Vendors can define `aspect_mark`s too
 
 --------------------------------
 Aspect Clause Example: Objects
@@ -687,7 +682,7 @@ Aspect Clause Example: Objects
 
    Ada 2012
 
-* Updated object syntax
+* Updated **object syntax**
 
    .. code:: Ada
 
@@ -702,11 +697,12 @@ Aspect Clause Example: Objects
       CR1 : Control_Register with
          Size    => 8,
          Address => To_Address (16#DEAD_BEEF#);
+
       -- Prior to Ada 2012
+      -- using *representation clauses*
       CR2 : Control_Register;
       for CR2'Size use 8;
       for CR2'Address use To_Address (16#DEAD_BEEF#);
-
  
 ------------------------
 Boolean Aspect Clauses
@@ -716,35 +712,26 @@ Boolean Aspect Clauses
 
    Ada 2012
 
-* Support shorthand when "True" is the value to be specified
+* **Boolean** aspects only
+* Longhand
 
-   - Longhand
+  .. code:: Ada
 
-      .. code:: Ada
+     procedure Foo with Inline => True;
 
-         procedure Foo with inline => true;
+* Aspect name only |rightarrow| **True**
+
+  .. code:: Ada
+
+     procedure Foo with Inline; -- Inline is True
  
-   - Shorthand
+* No aspect |rightarrow| **False**
 
-      .. code:: Ada
+  .. code:: Ada
 
-         procedure Foo with inline;
+     procedure Foo; -- Inline is False
  
-* If aspect is omitted entirely, the value is "False"
-
-   - Longhand
-
-      .. code:: Ada
-
-         procedure Foo with inline => false;
- 
-   - Shorthand
-
-      .. code:: Ada
-
-         procedure Foo;
- 
-      + Original form!
+  - Original form!
 
 =========
 Summary
@@ -754,24 +741,22 @@ Summary
 Summary
 ---------
 
-* BNF provides a detailed syntax definition
+* Declarations of a **single** type, permanently
 
-   - See Annex P, including index at end
+   - OOP adds flexibility
 
-* All declarations are permanently of a single type
+* Named-numbers
 
-   - But recall flexibility of OOP from Overview
+    - **Infinite** precision, **implicit** conversion
 
-* Elaboration concept is not really new
+* **Elaboration** concept
 
-   - Applies to other entities as well as objects
+    - Value and memory initialization at **run-time**
 
-* Scope and visibility rules are fairly traditional
+* Simple **scope** and **visibility** rules
 
-   - New language constructs deal with problems
+    - **Prefixing** solves **hiding** problems
 
-* More detail will be introduced as need arises
+* Pragmas, Aspects
+* Detailed syntax definition in Annex P (using BNF)
 
-   - How and when scopes come into existence
-   - Additional declarations
-   - Aspect clauses for other entities
