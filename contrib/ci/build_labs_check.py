@@ -4,6 +4,7 @@ from pathlib import Path
 import subprocess
 import argparse
 import enum
+import re
 
 verbose = False
 
@@ -82,7 +83,7 @@ if __name__ == "__main__":
     skip = 0
     failures = 0
 
-    for p in args.search_path.glob("**/*.gpr"):
+    for p in sorted(args.search_path.glob("**/*.gpr")):
         info(p)
         run += 2
         if (p.parent / '.ci_build_skip').exists():
