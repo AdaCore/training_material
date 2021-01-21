@@ -107,7 +107,7 @@ if __name__ == "__main__":
             error("Failed")
 
     if run:
-        print(f"{run} run, {skip} skipped, {failures} errors")
+        print(f"{run - skip} run, {skip} skipped, {failures} errors")
     else:
         print("Nothing to run", file=sys.stderr)
     sys.exit(0 if run and not failures else 1)
