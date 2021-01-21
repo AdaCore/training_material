@@ -116,7 +116,7 @@ Packages Lab Solution (List Body)
 
        procedure Remove (Value : Integer) is
        begin
-         for I in 1 .. Last loop
+         for I in reverse 1 .. Last loop
            if Content (I) = Value then
              Content(I .. Last - 1) := Content(I + 1 .. Last);
              Last := Last - 1;

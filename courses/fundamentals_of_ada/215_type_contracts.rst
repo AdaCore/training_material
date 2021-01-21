@@ -436,7 +436,7 @@ Static Predicates
 
 * *Static* means known at compile-time, informally
 
-   - Language defines meaning formally
+   - Language defines meaning formally (RM 3.2.4)
 
 * Allowed in contexts in which compiler must be able to verify properties
 * Content restrictions on predicate are necessary
@@ -683,21 +683,29 @@ Beware Accidental Recursion In Predicate
 
    .. code:: Ada
 
-      type Table is array (1 .. N) of Integer
-        with Dynamic_Predicate => Sorted (Table);
+      type Sorted_Table is array (1 .. N) of Integer with
+         Dynamic_Predicate => Sorted (Sorted_Table);
       -- on call, predicate is checked!
-      function Sorted (T : Table) return Boolean is
-        (for all K in T'Range =>
-          (K = T'First or else T(K-1) <= T(K)));
- 
+      function Sorted (T : Sorted_Table) return Boolean;
+
 * Non-recursive example
 
    .. code:: Ada
 
-      type Table is array (1 .. N) of Integer
-        with Dynamic_Predicate => 
-          (for all K in Table'Range =>
-            (K = Table'First or else Table(K-1) <= Table(K)));
+      type Sorted_Table is array (1 .. N) of Integer with
+         Dynamic_Predicate =>
+         (for all K in Sorted_Table'Range =>
+            (K = Sorted_Table'First
+             or else Sorted_Table (K - 1) <= Sorted_Table (K)));
+ 
+* Type-based example
+
+   .. code:: Ada
+
+      type Table is array (1 .. N) of Integer;
+      subtype Sorted_Table is Table with
+           Dynamic_Predicate => Sorted (Sorted_Table);
+      function Sorted (T : Table) return Boolean;
  
 ---------------------------------------
 GNAT-Specific Aspect Name *Predicate*

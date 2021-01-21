@@ -6,8 +6,8 @@ Subprogram Contracts Lab
 
    - Create a priority-based queue ADT
 
-      + Higher priority items come off the queue first
-      + When priorities are the same, entries should be processed in order received
+      + Higher priority items come off queue first
+      + When priorities are same, process entries in order received
 
 * Requirements
 
@@ -19,7 +19,12 @@ Subprogram Contracts Lab
 
 * Hints
 
-   - This is basically a stack, except insertion doesn't necessarily happen at one end
+   - Basically a stack, except insertion doesn't necessarily happen at "top"
+   - To enable assertions in the run-time from :toolname:`GNATstudio`
+
+      * :menu:`Edit` :math:`\rightarrow` :menu:`Project Properties`
+      * **Build** :math:`\rightarrow` **Switches** :math:`\rightarrow` **Ada**
+      * Click on *Enable assertions*
 
 --------------------------------------------------
 Subprogram Contracts Lab Solution - Queue (Spec)
