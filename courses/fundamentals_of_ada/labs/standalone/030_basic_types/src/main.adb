@@ -1,0 +1,40 @@
+with Ada.Text_IO; use Ada.Text_IO;
+procedure Main is
+
+   type Number_Of_Tests_T is range 0 .. 100;
+   type Test_Score_Total_T is digits 6 range 0.0 .. 10_000.0;
+
+   type Degrees_T is mod 360;
+
+   type Cymk_T is (Cyan, Magenta, Yellow, Black);
+
+   Number_Of_Tests  : Number_Of_Tests_T;
+   Test_Score_Total : Test_Score_Total_T;
+
+   Angle : Degrees_T;
+
+   Color : Cymk_T;
+
+begin
+
+   -- assignment
+   Number_Of_Tests  := 15;
+   Test_Score_Total := 1_234.5;
+   Angle            := 180;
+   Color            := Magenta;
+
+   Put_Line (Number_Of_Tests'Image);
+   Put_Line (Test_Score_Total'Image);
+   Put_Line (Angle'Image);
+   Put_Line (Color'Image);
+
+   -- operations / attributes
+   Test_Score_Total := Test_Score_Total / Test_Score_Total_T (Number_Of_Tests);
+   Angle            := Angle + 359;
+   Color            := Cymk_T'Succ (Color);
+
+   Put_Line (Test_Score_Total'Image);
+   Put_Line (Angle'Image);
+   Put_Line (Color'Image);
+
+end Main;
