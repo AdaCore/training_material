@@ -138,7 +138,7 @@ Implement the Wrapper Package
 
       + Remember there are no numeric values attached to Ada `True` and `False`.
 
-   - GNAT Studio can generate a package body framework from a package spec
+   - :toolname:`GNAT Studio` can generate a package body framework from a package spec
 
       + :menu:`Code` |rightarrow| :menu:`Generate Body`
 
