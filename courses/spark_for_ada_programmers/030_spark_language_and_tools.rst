@@ -1256,7 +1256,7 @@ Source Code Contextual Menu
    SPARK Menu - Prove All
 
 ----------------------------------------
-Example Analysis Results in GNATstudio
+Example Analysis Results in GNAT Studio
 ----------------------------------------
 
 .. image:: ../../images/gnatprove-output-ide.jpeg

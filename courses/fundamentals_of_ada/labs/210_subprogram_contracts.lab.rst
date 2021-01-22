@@ -20,7 +20,7 @@ Subprogram Contracts Lab
 * Hints
 
    - Basically a stack, except insertion doesn't necessarily happen at "top"
-   - To enable assertions in the run-time from :toolname:`GNATstudio`
+   - To enable assertions in the run-time from :toolname:`GNAT Studio`
 
       * :menu:`Edit` :math:`\rightarrow` :menu:`Project Properties`
       * **Build** :math:`\rightarrow` **Switches** :math:`\rightarrow` **Ada**

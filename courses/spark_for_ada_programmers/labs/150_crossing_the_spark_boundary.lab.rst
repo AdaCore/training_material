@@ -6,7 +6,7 @@ Crossing the SPARK Boundary Lab
 
    + You can copy it locally, or work with it in-place
 
-- In that directory, open the project :filename:`default.gpr` in :toolname:`GNATstudio`
+- In that directory, open the project :filename:`default.gpr` in :toolname:`GNAT Studio`
 
    + Or, on the command-line, do :command:`gnatstudio -Pdefault.gpr`
 
@@ -138,7 +138,7 @@ Implement the Wrapper Package
 
       + Remember there are no numeric values attached to Ada `True` and `False`.
 
-   - GNATstudio can generate a package body framework from a package spec
+   - GNAT Studio can generate a package body framework from a package spec
 
       + :menu:`Code` |rightarrow| :menu:`Generate Body`
 

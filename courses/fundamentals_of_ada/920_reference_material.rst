@@ -48,7 +48,7 @@ GNAT-Specific Help
 Reference Manual
 ------------------
 
-* Reference Manual(s) available from GNATstudio Help
+* Reference Manual(s) available from GNAT Studio Help
 
 .. image:: ../../images/gnatstudio-help-gnat.jpeg
 
@@ -64,7 +64,7 @@ GNAT Tools
 
    - How GNAT implements Ada, pragmas, aspects, attributes etc. etc.
 
-* GNATstudio (the IDE)
+* GNAT Studio (the IDE)
 
    - Tutorial
    - User's Guide

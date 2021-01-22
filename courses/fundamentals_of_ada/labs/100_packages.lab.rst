@@ -23,7 +23,7 @@ Packages Lab
    - :code:`with package_name;` gives access to :code:`package_name`
 
 ---------------------------------
-Creating Packages in GNATstudio
+Creating Packages in GNAT Studio
 ---------------------------------
 
 * Right-click on :filename:`src` node
