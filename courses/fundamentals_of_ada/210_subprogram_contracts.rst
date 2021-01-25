@@ -372,20 +372,32 @@ Referencing Previous Values In Postconditions
 Example for Attribute 'Old
 -----------------------------
 
-.. code:: Ada
-    
-   -- Verify balance has been decremented
-   -- (uses result of balance call before function call)
-   procedure Withdraw  ( This : in out Account;
-                         Amount : Currency )
-     with Pre  => ...,
-          Post => Balance (This) =
-                  Balance (This)'Old - Amount;
+* Simple code to shift a character in a string
 
-* `Balance(This)'Old` is a call to `Balance` with the incoming original value of `This`
+   .. code:: Ada
 
-   - Even though `This` may have been changed by the call!
-   - `Func_Call(Param)'Old` may not be the same as `Func_Call(Param'Old)`
+      function At_Index (Index : Integer) return Character is
+         (Global (Index));
+      procedure Shift_And_Advance (Index : in out Integer) is
+      begin
+         Global (Index) := Global (Index + 1);
+         Index          := Index + 1;
+      end Shift_And_Advance;   
+
+* Note the different uses of `'Old` in the postcondition
+
+   .. code:: Ada
+
+      procedure Shift_And_Advance (Index : in out Integer) with Post =>
+         -- call At_Index before call
+         At_Index (Index)'Old
+            -- look at Index position in Global before call
+            = Global'Old (Index'Old)
+         and
+         -- call At_Index after call with original Index
+         At_Index (Index'Old)
+            -- look at Index position in Global after call
+            = Global (Index);
    
 -------------------------------------
 What Happens When 'Old Is Evaluated
@@ -424,10 +436,13 @@ Using Function Results In Postconditions
 
    .. code:: Ada
 
-      function Euclid (A, B : Integer) return Integer
-         with Pre  =>  A > 0 and B > 0,
-              -- pass result of Euclid to Is_GCD
-              Post =>  Is_GCD (A, B, Euclid'Result);
+      function Greatest_Common_Denominator (A, B : Integer)
+         return Integer with
+            Pre  =>  A > 0 and B > 0,
+            -- pass result of Greatest_Common_Denominator to Is_GCD
+            Post =>  Is_GCD (A,
+                             B,
+                             Greatest_Common_Denominator'Result);
 
       function Is_GCD (A, B, Candidate : Integer)
           return Boolean is (... );
@@ -513,9 +528,10 @@ Postcondition Limitations
 
 .. code:: Ada
 
-   function Euclid (A, B : Integer) return Integer with
+   function Greatest_Common_Denominator (A, B : Integer)
+     return Integer with
      Pre  =>  A > 0 and B > 0,
-     Post =>  Is_GCD (A, B, Euclid'Result);
+     Post =>  Is_GCD (A, B, Greatest_Common_Denominator'Result);
    function Is_GCD (A, B, Candidate : Integer)
        return Boolean is 
      (A rem Candidate = 0 and
