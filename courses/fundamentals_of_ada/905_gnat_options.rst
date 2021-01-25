@@ -99,7 +99,7 @@ Data representation
 * Code is expanded into simple structures and system calls
 * Useful to understand the complexity of the Ada constructions
 * Useful to identify check locations
-* Integrated into GNAT Studio
+* Integrated into :toolname:`GNAT Studio`
 
 -----------------------------
 Intermediate representation

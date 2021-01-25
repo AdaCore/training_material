@@ -20,7 +20,7 @@ Type Contracts Lab
 
    - *Subtype Predicate* to create subtypes of day of week
    - *Type Invariant* to ensure that every class meets for correct length of time
-   - To enable assertions in the run-time from :toolname:`GNATstudio`
+   - To enable assertions in the run-time from :toolname:`GNAT Studio`
 
       * :menu:`Edit` :math:`\rightarrow` :menu:`Project Properties`
       * **Build** :math:`\rightarrow` **Switches** :math:`\rightarrow` **Ada**

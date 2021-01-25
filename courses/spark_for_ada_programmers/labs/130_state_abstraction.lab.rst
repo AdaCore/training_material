@@ -8,7 +8,7 @@ State Abstraction Lab
 
 - In that directory are three folders, one for each exercise.
 
-   - For a particular exercise, navigate to the appropriate folder and then open the :filename:`default.gpr` using :toolname:`GNATstudio`
+   - For a particular exercise, navigate to the appropriate folder and then open the :filename:`default.gpr` using :toolname:`GNAT Studio`
 
       * Or, on the command-line in the appropriate folder:
 

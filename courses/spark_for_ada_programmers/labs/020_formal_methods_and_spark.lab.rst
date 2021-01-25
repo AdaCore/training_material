@@ -4,9 +4,9 @@ Getting Started Lab
 
 * Requirements
 
-   - Install a *consistent* set of GNAT, GNAT Studio and the SPARK toolset.
-   - Make sure that :toolname:`GNATstudio` and :toolname:`GNATprove` are on your PATH.
-   - Start :toolname:`GNATstudio` and create a *Simple Ada Project*
+   - Install a *consistent* set of GNAT, :toolname:`GNAT Studio` and the SPARK toolset.
+   - Make sure that :toolname:`GNAT Studio` and :toolname:`GNATprove` are on your PATH.
+   - Start :toolname:`GNAT Studio` and create a *Simple Ada Project*
    - Modify `Main` procedure so that it is in SPARK
 
       .. code:: Ada

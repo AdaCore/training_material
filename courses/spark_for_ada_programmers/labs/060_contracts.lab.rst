@@ -6,7 +6,7 @@ Contracts Lab
 
    + You can copy it locally, or work with it in-place
 
-- In that directory, open the project :filename:`default.gpr` in :toolname:`GNATstudio`
+- In that directory, open the project :filename:`default.gpr` in :toolname:`GNAT Studio`
 
    + Or, on the command-line, do :command:`gnatstudio -Pdefault.gpr`
 

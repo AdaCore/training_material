@@ -615,10 +615,10 @@ Canonical First Program
    - :command:`./say_hello` (Linux/Unix)
 
 --------------------------------
-"Hello World" Lab - GNATstudio
+"Hello World" Lab - :toolname:`GNAT Studio`
 --------------------------------
 
-* Start :toolname:`GNATstudio` from the command-line or Start Menu
+* Start :toolname:`GNAT Studio` from the command-line or Start Menu
 
 * :menu:`Create new project`
 
