@@ -395,7 +395,6 @@ Predefined Hierarchies
 
    - `Interfaces.C`
    - `Interfaces.Fortran`
-   - `Interfaces.COBOL`
    - `System.Storage_Pools`
    - `System.Storage_Elements`
    - et cetera
