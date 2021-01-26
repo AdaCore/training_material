@@ -877,22 +877,24 @@ Aggregates
    - Array types
    - Record types
 
+* Two distinct forms
+
+    - Positional
+    - Named
+
 * Syntax (simplified):
 
    .. code:: Ada
 
-      array_aggregate ::= positional_array_aggregate |
-                          named_array_aggregate
+      component_expr ::=
+        expression -- Defined value
+        | <>       -- Default value
 
-      positional_array_aggregate ::=
-            (expression, expression {, expression}) |
-            (expression {, expression}, others => expression)
-
-      named_array_aggregate ::= (array_component_association
-                                {,array_component_association})
-
-      array_component_association ::=
-            discrete_choice_list => expression
+      array_aggregate ::= (
+          {component_expr ,}                         -- Positional
+        | {discrete_choice_list => component_expr,}) -- Named
+        -- Default "others" indices
+        [others => expression]
 
 -----------------------------
 Aggregate "Positional" Form
@@ -1069,11 +1071,7 @@ Defaults Within Array Aggregates
 
    .. code:: Ada
 
-      named_array_aggregate ::= ( array_component_association
-         {, array_component_association} )
-      array_component_association ::=
-         discrete_choice_list => expression
-         |discrete_choice_list => <>
+      discrete_choice_list => <>
 
 * Example
 
