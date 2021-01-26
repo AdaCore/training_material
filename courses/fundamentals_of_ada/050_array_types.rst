@@ -394,7 +394,7 @@ Specifying Constraints via Initial Value
 No Unconstrained Component Types
 ----------------------------------
 
-* Arrays: consecutive elements of the exact **same size**
+* Arrays: consecutive elements of the exact **same type**
 * Component size must be **defined**
 
     - No unconstrained types
