@@ -1,3 +1,4 @@
+--Definitions
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
@@ -15,6 +16,9 @@ procedure Main is
 
    Color : Cymk_T;
 
+--Definitions
+
+--Implementation
 begin
 
    -- assignment
@@ -38,3 +42,4 @@ begin
    Put_Line (Color'Image);
 
 end Main;
+--Implementation

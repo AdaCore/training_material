@@ -44,25 +44,8 @@ Basic Types Lab Hints
 Basic Types Lab Solution (Definitions)
 ----------------------------------------
 
-.. code:: Ada
+.. container:: source_include labs/answers/030_basic_types.txt :start-after:--Definitions :end-before:--Definitions :code:Ada
 
-   with Ada.Text_IO; use Ada.Text_IO;
-   procedure Main is
-
-      type Number_Of_Tests_T is range 0 .. 100;
-      type Score_Total_T is digits 6 range 0.0 .. 10_000.0;
-
-      type Degrees_T is mod 360;
-
-      type Cymk_T is (Cyan, Magenta, Yellow, Black);
-
-      Number_Of_Tests : Number_Of_Tests_T;
-      Score_Total     : Score_Total_T;
-
-      Angle : Degrees_T;
-
-      Color : Cymk_T;
-    
 ------------------------------------------
 Basic Types Lab Solution (Implementation)
 ------------------------------------------
