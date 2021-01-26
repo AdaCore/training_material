@@ -394,15 +394,16 @@ Specifying Constraints via Initial Value
 No Unconstrained Component Types
 ----------------------------------
 
-* Component values are objects
-* Objects of unconstrained types must be constrained
-* Once set, bounds never change
+* Arrays: consecutive elements of the exact **same size**
+* Component size must be **defined**
+
+    - No unconstrained types
+    - Constrained subtypes allowed
 
 .. code:: Ada
 
-   subtype Positive is Integer range 1 .. Integer'Last;
-   type String is array (Positive range <>) of Character;
-   type List is array (1..10) of String; -- illegal
+   type List is array (1 .. 10) of String (1 .. 20); -- OK
+   type List is array (1 .. 10) of String; -- Illegal
 
 .. container:: speakernote
 
