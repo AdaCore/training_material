@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Some_Advanced_Concepts is
       Termination_Flag : Boolean := False;

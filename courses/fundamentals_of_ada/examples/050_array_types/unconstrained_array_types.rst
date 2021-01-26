@@ -1,5 +1,5 @@
 .. code:: ada
-    :class: ada-run
+    :class: ada-syntax-only
 
    package Unconstrained_Array_Types is
    

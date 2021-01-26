@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Pure_P is
       pragma Pure;

@@ -1,5 +1,5 @@
 .. code:: ada
-    :class: ada-run
+    :class: ada-syntax-only
 
    package Numeric_Literals is
    

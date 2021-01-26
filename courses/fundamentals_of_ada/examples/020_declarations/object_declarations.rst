@@ -1,5 +1,5 @@
 .. code:: ada
-    :class: ada-run
+    :class: ada-syntax-only
 
    with Ada.Calendar; use Ada.Calendar;
    package Object_Declarations is

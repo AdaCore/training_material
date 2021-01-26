@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Generic_Formal_Data is
       generic

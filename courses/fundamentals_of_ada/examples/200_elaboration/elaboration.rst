@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    with Initializer; use Initializer;
    package Elab_1 is

@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Pkg_A is
       Constant_A  : constant := 1;

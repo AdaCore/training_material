@@ -1,5 +1,5 @@
 .. code:: ada
-   :class: ada-run
+    :class: ada-syntax-only
 
    with Interfaces; use Interfaces;
    package Multiprocessor_Mutex is

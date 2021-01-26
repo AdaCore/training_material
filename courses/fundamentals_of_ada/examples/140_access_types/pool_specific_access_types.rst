@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Pool_Specific is
       type Pointed_To_T is new Integer;

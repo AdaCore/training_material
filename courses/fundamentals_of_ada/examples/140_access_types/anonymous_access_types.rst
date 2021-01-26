@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Anonymous_Access_Types is
       type Access_T is access all Integer;

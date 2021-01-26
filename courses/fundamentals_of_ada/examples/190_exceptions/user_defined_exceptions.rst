@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Stack is
       Underflow, Overflow : exception;

@@ -1,5 +1,5 @@
 .. code:: ada
-    :class: ada-run
+    :class: ada-syntax-only
 
    package Constrained_Array_Types is
    

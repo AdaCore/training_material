@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package General is
       type Pointed_To_T is new Integer;

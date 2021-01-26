@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    with Ada.Unchecked_Deallocation;
    package Memory_Management_Types is

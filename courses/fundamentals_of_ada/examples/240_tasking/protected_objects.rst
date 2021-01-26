@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Protected_Objects is
       protected Object is

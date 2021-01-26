@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Types is
    

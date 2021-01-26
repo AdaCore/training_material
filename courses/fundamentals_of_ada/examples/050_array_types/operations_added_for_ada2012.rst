@@ -1,5 +1,4 @@
 .. code:: ada
-    :class: ada-run
 
    with Ada.Text_IO; use Ada.Text_IO;
    procedure Operations_Added_For_Ada2012 is

@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package P is
       type Int1 is range 0 .. 1_000;

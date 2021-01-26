@@ -1,5 +1,4 @@
 .. code:: ada
-   :class: ada-run
 
    package Complex is
       type Number_T is private;
