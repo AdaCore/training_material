@@ -16,7 +16,7 @@ procedure Main is
 
    -- Define a subtype Object_Distance_Km_T as a Float with values
    -- between 10cm and 100km
-   subtype Object_Distance_Km_T is Float range 0.01 .. 100.0;
+   subtype Object_Distance_Km_T is Float range 0.000_01 .. 100.0;
 
    -- Define a subtype Speed_Kph_T that is a Float between 0 and 50 km/h
    subtype Speed_Kph_T is Float range 0.0 .. 50.0;
