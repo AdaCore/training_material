@@ -687,10 +687,6 @@ Variable and Sequence of Values
 Low-Level For-loop Parameter Type
 -----------------------------------
 
-.. admonition:: Language Variant
-    
-    Ada 2012
-
 * The type can be implicit 
 
    - As long as it is clear for the compiler
