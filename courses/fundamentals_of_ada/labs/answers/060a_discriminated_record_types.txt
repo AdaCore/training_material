@@ -1,73 +1,47 @@
+--Strings
 package Vstring is
-
    Max_String_Length : constant := 1_000;
-
    type Vstring_T is private;
-
-   function To_Vstring
-     (Str : String)
-      return Vstring_T;
-   function To_String
-     (Vstr : Vstring_T)
-      return String;
-   function "&"
-     (L, R : Vstring_T)
-      return Vstring_T;
-   function "&"
-     (L : String;
-      R : Vstring_T)
-      return Vstring_T;
-   function "&"
-     (L : Vstring_T;
-      R : String)
-      return Vstring_T;
-
+   function To_Vstring (Str : String) return Vstring_T;
+   function To_String (Vstr : Vstring_T) return String;
+   function "&" (L, R : Vstring_T) return Vstring_T;
+   function "&" (L : String; R : Vstring_T) return Vstring_T;
+   function "&" (L : Vstring_T; R : String) return Vstring_T;
 private
-
    subtype Index_T is Integer range 0 .. Max_String_Length;
    type Vstring_T (Length : Index_T := 0) is record
       Text : String (1 .. Length);
    end record;
-
 end Vstring;
 
 package body Vstring is
-
-   function To_Vstring
-     (Str : String)
-      return Vstring_T is ((Length => Str'Length, Text => Str));
-   function To_String
-     (Vstr : Vstring_T)
-      return String is (Vstr.Text);
-   function "&"
-     (L, R : Vstring_T)
-      return Vstring_T is
+   function To_Vstring (Str : String) return Vstring_T is
+      ((Length => Str'Length, Text => Str));
+   function To_String (Vstr : Vstring_T) return String is
+      (Vstr.Text);
+   function "&" (L, R : Vstring_T) return Vstring_T is
       Ret_Val : constant String := L.Text & R.Text;
    begin
       return (Length => Ret_Val'Length, Text => Ret_Val);
    end "&";
 
-   function "&"
-     (L : String;
-      R : Vstring_T)
-      return Vstring_T is
+   function "&" (L : String; R : Vstring_T) return Vstring_T is
       Ret_Val : constant String := L & R.Text;
    begin
       return (Length => Ret_Val'Length, Text => Ret_Val);
    end "&";
 
-   function "&"
-     (L : Vstring_T;
-      R : String)
-      return Vstring_T is
+   function "&" (L : Vstring_T; R : String) return Vstring_T is
       Ret_Val : constant String := L.Text & R;
    begin
       return (Length => Ret_Val'Length, Text => Ret_Val);
    end "&";
-
 end Vstring;
+--Strings
 
-with Vstring;
+--Employee_Spec
+with Ada.Text_IO; use Ada.Text_IO;
+with Vstring;     use Vstring;
 package Employee is
 
    type Category_T is (Staff, Supervisor, Manager);
@@ -93,14 +67,11 @@ package Employee is
    function Get_Manager return Employee_T;
 
 end Employee;
+--Employee_Spec
 
-with Ada.Text_IO; use Ada.Text_IO;
-with Vstring;     use Vstring;
+--Employee_Body
 package body Employee is
-
-   function Read
-     (Prompt : String)
-      return String is
+   function Read (Prompt : String) return String is
    begin
       Put (Prompt & " > ");
       return Get_Line;
@@ -135,15 +106,14 @@ package body Employee is
       Ret_Val.Staff_Count := Integer'Value (Read ("Staff count"));
       return Ret_Val;
    end Get_Manager;
-
 end Employee;
+--Employee_Body
 
+--Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Employee;
-with Vstring;
-use type Vstring.Vstring_T;
+with Vstring; use Vstring;
 procedure Main is
-
    procedure Print (Member : Employee.Employee_T) is
       First_Line : Vstring.Vstring_T :=
         Member.First_Name & " " & Member.Last_Name & " " &
@@ -154,19 +124,15 @@ procedure Main is
          when Employee.Supervisor =>
             Put_Line ("   Project: " & Vstring.To_String (Member.Project));
          when Employee.Manager =>
-            Put_Line
-              ("   Overseeing " & Member.Staff_Count'Image & " in " &
-               Vstring.To_String (Member.Department));
-         when others =>
-            null;
+            Put_Line ("   Overseeing " & Member.Staff_Count'Image & " in " &
+                      Vstring.To_String (Member.Department));
+         when others => null;
       end case;
    end Print;
 
    List  : array (1 .. 1_000) of Employee.Employee_T;
    Count : Natural := 0;
-
 begin
-
    loop
       Put_Line ("E => Employee");
       Put_Line ("S => Supervisor");
@@ -191,9 +157,8 @@ begin
       end;
    end loop;
 
-   for Item of List (1 .. Count)
-   loop
+   for Item of List (1 .. Count) loop
       Print (Item);
    end loop;
-
 end Main;
+--Main

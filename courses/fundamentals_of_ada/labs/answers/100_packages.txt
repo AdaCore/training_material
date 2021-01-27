@@ -1,3 +1,4 @@
+--Constants
 package Constants is
 
    Lowest_Value  : constant := 100;
@@ -5,58 +6,50 @@ package Constants is
    Maximum_Count : constant := 10;
 
 end Constants;
+--Constants
 
+--Input
 package Input is
-
-   function Get_Value
-     (Prompt : String)
-      return Integer;
-
+   function Get_Value (Prompt : String) return Integer;
 end Input;
 
 with Ada.Text_IO; use Ada.Text_IO;
 with Constants;
 package body Input is
 
-   function Get_Value
-     (Prompt : String)
-      return Integer is
+   function Get_Value (Prompt : String) return Integer is
       Ret_Val : Integer;
    begin
       Put (Prompt & "> ");
       loop
-
          Ret_Val := Integer'Value (Get_Line);
          exit when Ret_Val >= Constants.Lowest_Value
            and then Ret_Val <= Constants.Highest_Value;
          Put ("Invalid. Try Again >");
       end loop;
       return Ret_Val;
-
    end Get_Value;
 
 end Input;
+--Input
 
+--List
 package List is
-
    procedure Add (Value : Integer);
    procedure Remove (Value : Integer);
    function Length return Natural;
    procedure Print;
-
 end List;
 
 with Ada.Text_IO; use Ada.Text_IO;
 with Constants;
 package body List is
-
    Content : array (1 .. Constants.Maximum_Count) of Integer;
    Last    : Natural := 0;
 
    procedure Add (Value : Integer) is
    begin
-      if Last < Content'Last
-      then
+      if Last < Content'Last then
          Last           := Last + 1;
          Content (Last) := Value;
       else
@@ -66,13 +59,9 @@ package body List is
 
    procedure Remove (Value : Integer) is
    begin
-      for I in 1 .. Last
-      loop
-         if Content (I) = Value
-         then
-            Content
-              (I .. Last - 1) := Content
-                (I + 1 .. Last);
+      for I in 1 .. Last loop
+         if Content (I) = Value then
+            Content(I .. Last - 1) := Content(I + 1 .. Last);
             Last := Last - 1;
          end if;
       end loop;
@@ -80,19 +69,16 @@ package body List is
 
    procedure Print is
    begin
-      for I in 1 .. Last
-      loop
+      for I in 1 .. Last loop
          Put_Line (Integer'Image (Content (I)));
       end loop;
    end Print;
 
-   function Length return Natural is
-   begin
-      return Last;
-   end Length;
-
+   function Length return Natural is ( Last );
 end List;
+--List
 
+--Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Input;
 with List;
@@ -122,3 +108,4 @@ begin
    end loop;
 
 end Main;
+--Main

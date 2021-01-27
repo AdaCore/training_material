@@ -1,4 +1,4 @@
---Definitions
+--Declarations
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
@@ -15,8 +15,7 @@ procedure Main is
    Angle : Degrees_T;
 
    Color : Cymk_T;
-
---Definitions
+--Declarations
 
 --Implementation
 begin

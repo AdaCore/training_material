@@ -41,40 +41,16 @@ Basic Types Lab Hints
       Object'image
 
 ----------------------------------------
-Basic Types Lab Solution (Definitions)
+Basic Types Lab Solution (Declarations)
 ----------------------------------------
 
-.. container:: source_include labs/answers/030_basic_types.txt :start-after:--Definitions :end-before:--Definitions :code:Ada
+.. container:: source_include labs/answers/030_basic_types.txt :start-after:--Declarations :end-before:--Declarations :code:Ada
 
 ------------------------------------------
 Basic Types Lab Solution (Implementation)
 ------------------------------------------
   
-.. code:: Ada
-
-   begin
-
-      -- assignment
-      Number_Of_Tests := 15;
-      Score_Total     := 1_234.5;
-      Angle           := 180;
-      Color           := Magenta;
-
-      Put_Line (Number_Of_Tests'Image);
-      Put_Line (Score_Total'Image);
-      Put_Line (Angle'Image);
-      Put_Line (Color'Image);
-
-      -- operations / attributes
-      Score_Total := Score_Total / Score_Total_T (Number_Of_Tests);
-      Angle       := Angle + 359;
-      Color       := Cymk_T'Succ (Color);
-
-      Put_Line (Score_Total'Image);
-      Put_Line (Angle'Image);
-      Put_Line (Color'Image);
-
-   end Main;
+.. container:: source_include labs/answers/030_basic_types.txt :start-after:--Implementation :end-before:--Implementation :code:Ada
 
 --------------------------
 Basic Types Extra Credit

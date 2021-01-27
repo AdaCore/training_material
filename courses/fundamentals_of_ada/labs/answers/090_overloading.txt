@@ -1,6 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
+   --Conversion_Functions
    type Digit_T is range 0 .. 9;
    type Digit_Name_T is
      (Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine);
@@ -10,17 +11,10 @@ procedure Main is
    function Convert (Value : Character) return Digit_Name_T;
    function Convert (Value : String) return Digit_T;
 
-   function "=" (L : Digit_T;
-                 R : Digit_Name_T)
-                 return Boolean is
-      (Convert (L) = R);
-   function "=" (L : Digit_Name_T;
-                 R : Digit_T)
-                 return Boolean is
-      (Convert (L) = R);
+   function "=" (L : Digit_T; R : Digit_Name_T) return Boolean is (Convert (L) = R);
+   function "=" (L : Digit_Name_T; R : Digit_T) return Boolean is (Convert (L) = R);
 
-   function Convert (Value : Digit_T)
-                     return Digit_Name_T is
+   function Convert (Value : Digit_T) return Digit_Name_T is
      (case Value is when 0 => Zero,  when 1 => One,
                     when 2 => Two,   when 3 => Three,
                     when 4 => Four,  when 5 => Five,
@@ -44,7 +38,9 @@ procedure Main is
 
    function Convert (Value : String) return Digit_T is
      (Convert (Digit_Name_T'Value (Value)));
+   --Conversion_Functions
 
+   --Main
    Last_Entry : Digit_T := 0;
 
 begin
@@ -60,8 +56,7 @@ begin
                Converted : constant Digit_Name_T := Convert (Str (Str'First));
             begin
                Put (Digit_Name_T'Image (Converted));
-               if Converted = Last_Entry
-               then
+               if Converted = Last_Entry then
                   Put_Line (" - same as previous");
                else
                   Last_Entry := Convert (Converted);
@@ -73,8 +68,7 @@ begin
                Converted : constant Digit_T := Convert (Str);
             begin
                Put (Digit_T'Image (Converted));
-               if Converted = Last_Entry
-               then
+               if Converted = Last_Entry then
                   Put_Line (" - same as previous");
                else
                   Last_Entry := Converted;
@@ -86,3 +80,4 @@ begin
    end loop;
 
 end Main;
+--Main

@@ -267,8 +267,9 @@ def source_file_contents ( filename, keywords ):
             # otherwise add this to the return value
             else:
                retval = retval + line
-
-   return retval
+      return retval
+   else:
+      return filename
       
 def source_include ( classes, contents ):
    # useful for debugging

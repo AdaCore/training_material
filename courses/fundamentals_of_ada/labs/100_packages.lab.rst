@@ -37,15 +37,7 @@ Creating Packages in GNATstudio
 Packages Lab Solution (Constants)
 -----------------------------------
 
-.. code:: Ada
-    
-   package Constants is
-
-      Lowest_Value  : constant := 100;
-      Highest_Value : constant := 999;
-      Maximum_Count : constant := 10;
-
-   end Constants;
+.. container:: source_include labs/answers/100_packages.txt :start-after:--Constants :end-before:--Constants :code:Ada
 
 .. container:: speakernote
 
@@ -55,85 +47,13 @@ Packages Lab Solution (Constants)
 Packages Lab Solution (Input)
 ------------------------------
     
-.. code:: Ada
-    
-   package Input is
-      function Get_Value (Prompt : String) return Integer;
-   end Input;
-
-   with Ada.Text_IO; use Ada.Text_IO;
-   with Constants;
-   package body Input is
-
-      function Get_Value (Prompt : String) return Integer is
-         Ret_Val : Integer;
-      begin
-         Put (Prompt & "> ");
-         loop
-            Ret_Val := Integer'Value (Get_Line);
-            exit when Ret_Val >= Constants.Lowest_Value
-              and then Ret_Val <= Constants.Highest_Value;
-            Put ("Invalid. Try Again >");
-         end loop;
-         return Ret_Val;
-
-      end Get_Value;
-
-   end Input;
+.. container:: source_include labs/answers/100_packages.txt :start-after:--Input :end-before:--Input :code:Ada
 
 -----------------------------------
-Packages Lab Solution (List Spec)
+Packages Lab Solution (List)
 -----------------------------------
-.. code:: Ada
 
-   package List is
-     procedure Add (Value : Integer);
-     procedure Remove (Value : Integer);
-     function Length return Natural;
-     procedure Print;
-   end List;
-
------------------------------------
-Packages Lab Solution (List Body)
------------------------------------
-.. code:: Ada
-
-   with Ada.Text_IO; use Ada.Text_IO;
-   with Constants;
-   package body List is
-       Content : array (1 .. Constants.Maximum_Count) of Integer;
-       Last    : Natural := 0;
-
-       procedure Add (Value : Integer) is
-       begin
-         if Last < Content'Last then
-           Last           := Last + 1;
-           Content (Last) := Value;
-         else
-           Put_Line ("Full");
-         end if;
-       end Add;
-
-       procedure Remove (Value : Integer) is
-       begin
-         for I in 1 .. Last loop
-           if Content (I) = Value then
-             Content(I .. Last - 1) := Content(I + 1 .. Last);
-             Last := Last - 1;
-           end if;
-         end loop;
-       end Remove;
-
-       procedure Print is
-       begin
-         for I in 1 .. Last loop
-           Put_Line (Integer'Image(Content (I)));
-         end loop;
-       end Print;
-
-       function Length return Natural is ( Last );
-
-     end List;
+.. container:: source_include labs/answers/100_packages.txt :start-after:--List :end-before:--List :code:Ada
 
 ------------------------------
 Packages Lab Solution (Main)
