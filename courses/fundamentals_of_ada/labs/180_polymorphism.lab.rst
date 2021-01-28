@@ -31,113 +31,17 @@ Polymorphism Lab
 -------------------------------------------
 Polymorphism Lab Solution - Shapes (Spec)
 -------------------------------------------
-.. code:: Ada
 
-   with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-   package Shapes is
-
-     type Float_T is digits 6;
-     type Vertex_T is record
-       X : Float_T;
-       Y : Float_T;
-     end record;
-     type Vertices_T is array (Positive range <>) of Vertex_T;
-
-     type Shape_T is abstract tagged record
-       Description : Unbounded_String;
-     end record;
-     function Get_Description (Shape : Shape_T'Class) return String;
-     function Number_Of_Sides (Shape : Shape_T) return Natural is abstract;
-     function Perimeter (Shape : Shape_T) return Float_T is abstract;
-
-     type Quadrilateral_T is new Shape_T with record
-       Sides : Vertices_T (1 .. 4);
-     end record;
-     function Number_Of_Sides (Shape : Quadrilateral_T) return Natural;
-     function Perimeter (Shape : Quadrilateral_T) return Float_T;
-
-     type Square_T is new Quadrilateral_T with null record;
-     function Perimeter (Shape : Square_T) return Float_T;
-
-     type Triangle_T is new Shape_T with record
-       Sides : Vertices_T (1 .. 3);
-     end record;
-     function Number_Of_Sides (Shape : Triangle_T) return Natural;
-     function Perimeter (Shape : Triangle_T) return Float_T;
-
-   end Shapes;
+.. container:: source_include labs/answers/180_polymorphism.txt :start-after:--Shapes_Spec :end-before:--Shapes_Spec :code:Ada
 
 -------------------------------------------
 Polymorphism Lab Solution - Shapes (Body)
 -------------------------------------------
-.. code:: Ada
 
-   with Ada.Numerics.Generic_Elementary_Functions;
-   package body Shapes is
-
-     package Math is new Ada.Numerics.Generic_Elementary_Functions (Float_T);
-
-     function Distance (Vertex1 : Vertex_T; Vertex2 : Vertex_T) return Float_T is
-      (Math.Sqrt ((Vertex1.X - Vertex2.X)**2 + (Vertex1.Y - Vertex2.Y)**2));
-
-     function Perimeter (Vertices : Vertices_T) return Float_T is
-       Ret_Val : Float_T := 0.0;
-     begin
-       for I in Vertices'First .. Vertices'Last - 1 loop
-         Ret_Val := Ret_Val + Distance (Vertices (I), Vertices (I + 1));
-       end loop;
-       Ret_Val := Ret_Val + Distance (Vertices (Vertices'Last), Vertices (Vertices'First));
-       return Ret_Val;
-     end Perimeter;
-
-     function Get_Description (Shape : Shape_T'Class) return String is
-      (To_String (Shape.Description));
-
-     function Number_Of_Sides (Shape : Quadrilateral_T) return Natural is (4);
-     function Perimeter (Shape : Quadrilateral_T) return Float_T is
-      (Perimeter (Shape.Sides));
-
-     function Perimeter (Shape : Square_T) return Float_T is
-      (4.0 * Distance (Shape.Sides (1), Shape.Sides (2)));
-
-     function Number_Of_Sides (Shape : Triangle_T) return Natural is (3);
-     function Perimeter (Shape : Triangle_T) return Float_T is
-      (Perimeter (Shape.Sides));
-
-   end Shapes;
+.. container:: source_include labs/answers/180_polymorphism.txt :start-after:--Shapes_Body :end-before:--Shapes_Body :code:Ada
 
 ----------------------------------
 Polymorphism Lab Solution - Main
 ----------------------------------
-.. code:: Ada
 
-   with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-   with Ada.Text_IO;           use Ada.Text_IO;
-   with Shapes;                use Shapes;
-   procedure Main is
-
-     Rectangle : Shapes.Quadrilateral_T :=
-      (Description => To_Unbounded_String ("rectangle"),
-       Sides       => ((0.0, 10.0), (0.0, 20.0), (1.0, 20.0), (1.0, 10.0)));
-     Square : Shapes.Square_T :=
-      (Description => To_Unbounded_String ("square"),
-       Sides       => ((0.0, 1.0), (0.0, 2.0), (1.0, 2.0), (1.0, 1.0)));
-     Triangle : Shapes.Triangle_T :=
-      (Description => To_Unbounded_String ("triangle"),
-       Sides       => ((0.0, 0.0), (0.0, 3.0), (4.0, 0.0)));
-
-     procedure Describe (Shape : Shapes.Shape_T'Class) is
-     begin
-       Put_Line (Shape.Get_Description);
-       if Shape not in Shapes.Shape_T then
-         Put_Line ("  Number of sides:" & Integer'Image (Shape.Number_Of_Sides));
-         Put_Line ("  Perimeter:" & Shapes.Float_T'Image (Shape.Perimeter));
-       end if;
-     end Describe;
-
-   begin
-     Describe (Rectangle);
-     Describe (Triangle);
-     Describe (Square);
-   end Main;
-
+.. container:: source_include labs/answers/180_polymorphism.txt :start-after:--Main :end-before:--Main :code:Ada
