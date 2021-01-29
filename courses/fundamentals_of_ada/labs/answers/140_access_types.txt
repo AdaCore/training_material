@@ -29,7 +29,6 @@ end Datastore;
 with Ada.Text_IO; use Ada.Text_IO;
 with Datastore;   use Datastore;
 procedure Main is
-
   function Get (Prompt : String) return String is
   begin
     Put ("   " & Prompt & "> ");
@@ -49,8 +48,8 @@ procedure Main is
 
   Index  : Integer;
   Object : Datastore.Constant_Reference_T;
-begin
 
+begin
   loop
     Index := Integer'Value (Get ("Enter index"));
     exit when Index not in Datastore.Index_T'Range;
@@ -67,6 +66,5 @@ begin
       end loop;
     end if;
   end loop;
-
 end Main;
 --Main

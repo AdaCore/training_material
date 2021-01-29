@@ -26,31 +26,31 @@ Private Types Lab
    - At a minimum, the **map** and **set** type should be `private`
 
 ---------------------------------------------
-Private Types Lab Solution (Color Set)
+Private Types Lab Solution - Color Set
 ---------------------------------------------
 
 .. container:: source_include labs/answers/110_private_types.txt :start-after:--Colors :end-before:--Colors :code:Ada
 
 ---------------------------------------------
-Private Types Lab Solution (Flag Map Spec)
+Private Types Lab Solution - Flag Map (Spec)
 ---------------------------------------------
 
 .. container:: source_include labs/answers/110_private_types.txt :start-after:--Flags_Spec :end-before:--Flags_Spec :code:Ada
 
----------------------------------------------------
-Private Types Lab Solution (Flag Map Body 1 of 2)
----------------------------------------------------
+-----------------------------------------------------
+Private Types Lab Solution - Flag Map (Body - 1 of 2)
+-----------------------------------------------------
 
 .. container:: source_include labs/answers/110_private_types.txt :start-after:--Flags_Body_1 :end-before:--Flags_Body_1 :code:Ada
 
----------------------------------------------------
-Private Types Lab Solution (Flag Map Body 2 of 2)
----------------------------------------------------
+-----------------------------------------------------
+Private Types Lab Solution - Flag Map (Body - 2 of 2)
+-----------------------------------------------------
 
 .. container:: source_include labs/answers/110_private_types.txt :start-after:--Flags_Body_2 :end-before:--Flags_Body_2 :code:Ada
 
 ---------------------------------------------------
-Private Types Lab Solution (Main)
+Private Types Lab Solution - Main
 ---------------------------------------------------
 
 .. container:: source_include labs/answers/110_private_types.txt :start-after:--Main :end-before:--Main :code:Ada

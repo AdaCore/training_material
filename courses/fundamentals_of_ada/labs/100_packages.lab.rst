@@ -34,7 +34,7 @@ Creating Packages in GNATstudio
    - Check the box if you want to create the package body in addition to the package spec
 
 -----------------------------------
-Packages Lab Solution (Constants)
+Packages Lab Solution - Constants
 -----------------------------------
 
 .. container:: source_include labs/answers/100_packages.txt :start-after:--Constants :end-before:--Constants :code:Ada
@@ -44,19 +44,19 @@ Packages Lab Solution (Constants)
    Could use functions where the value is stored in the body - less recompilation if the value changes (but then they cannot be universal integers)
      
 ------------------------------
-Packages Lab Solution (Input)
+Packages Lab Solution - Input
 ------------------------------
     
 .. container:: source_include labs/answers/100_packages.txt :start-after:--Input :end-before:--Input :code:Ada
 
 -----------------------------------
-Packages Lab Solution (List)
+Packages Lab Solution - List
 -----------------------------------
 
 .. container:: source_include labs/answers/100_packages.txt :start-after:--List :end-before:--List :code:Ada
 
 ------------------------------
-Packages Lab Solution (Main)
+Packages Lab Solution - Main
 ------------------------------
     
 .. code:: Ada

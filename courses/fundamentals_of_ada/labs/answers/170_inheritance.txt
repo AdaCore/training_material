@@ -116,7 +116,6 @@ end Employee;
 with Ada.Text_IO; use Ada.Text_IO;
 with Employee;
 procedure Main is
-
   function Read (Prompt : String) return String is
   begin
     Put (Prompt & "> ");

@@ -44,7 +44,6 @@ procedure Main is
    Last_Entry : Digit_T := 0;
 
 begin
-
    loop
       Put ("Input: ");
       declare
@@ -78,6 +77,5 @@ begin
          end if;
       end;
    end loop;
-
 end Main;
 --Main

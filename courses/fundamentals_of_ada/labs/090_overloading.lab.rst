@@ -30,7 +30,7 @@ Overloading Lab Solution - Conversion Functions
 .. container:: source_include labs/answers/090_overloading.txt :start-after:--Conversion_Functions :end-before:--Conversion_Functions :code:Ada
 
 -------------------------------------------------
-Overloading Lab Solution - Main Program
+Overloading Lab Solution - Main
 -------------------------------------------------
 
 .. container:: source_include labs/answers/090_overloading.txt :start-after:--Main :end-before:--Main :code:Ada

@@ -28,8 +28,8 @@ Exceptions Lab Solution - Math
 
 .. container:: source_include labs/answers/190_exceptions.txt :start-after:--Math :end-before:--Math :code:Ada
 
----------------------------------------------
-Exceptions Lab Solution - Main
----------------------------------------------
+---------------------------------------------------
+Exceptions Lab Solution - Main (Test Subprograms)
+---------------------------------------------------
 
 .. container:: source_include labs/answers/190_exceptions.txt :start-after:--Main :end-before:--Main :code:Ada

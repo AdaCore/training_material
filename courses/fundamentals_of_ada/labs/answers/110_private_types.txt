@@ -34,8 +34,7 @@ package body Colors is
                    First : Color_T;
                    Last  : Color_T)
                    return String is
-      Str : constant String :=
-        (if Set.Values (First) then Color_T'Image (First) else "");
+      Str : constant String := (if Set.Values (First) then Color_T'Image (First) else "");
    begin
       if First = Last then
          return Str;

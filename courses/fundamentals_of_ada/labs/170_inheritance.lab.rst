@@ -17,14 +17,14 @@ Inheritance Lab
 
    - Use `overriding` and `not overriding` as appropriate
 
----------------------------------------
-Inheritance Lab Solution - Types Spec
----------------------------------------
+-----------------------------------------
+Inheritance Lab Solution - Types (Spec)
+-----------------------------------------
 
 .. container:: source_include labs/answers/170_inheritance.txt :start-after:--Types_Spec :end-before:--Types_Spec :code:Ada
 
 ----------------------------------------------------
-Inheritance Lab Solution - Types Body (Incomplete)
+Inheritance Lab Solution - Types (Body - Incomplete)
 ----------------------------------------------------
 
 .. container:: source_include labs/answers/170_inheritance.txt :start-after:--Types_Body_Partial :end-before:--Types_Body_Partial :code:Ada
