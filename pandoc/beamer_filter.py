@@ -52,6 +52,7 @@ slide_decorators = [ 't', 'shrink' ]
 role_format_functions = { 'toolname' : 'SmallCaps',
                           'menu'     : 'format_menu',
                           'command'  : 'format_command',
+                          'answer'   : 'format_answer',
                           'filename' : 'format_filename',
                           'default'  : 'Strong' }
 ##
@@ -104,6 +105,9 @@ def latex_monospace ( text ):
 
 def latex_escape ( text ):
     return text.replace('_', '\\_' ).replace('&', '\\&')
+
+def latex_answer_highlight ( text ):
+    return "\\textit<2>{\\textbf<2>{\\textcolor<2>{green!65!black}{" + text + "}}}"
 
 #############################
 ## PANDOC HELPER FUNCTIONS ##
@@ -309,7 +313,21 @@ def format_command ( literal_text ):
 '''
 def format_filename ( literal_text ):
    # bold and italic
-   return latex_inline ( latex_bold_italic ( latex_escape ( text ) ) )
+   return latex_inline ( latex_bold_italic ( latex_escape ( literal_text ) ) )
+
+'''
+"answer" role
+Items will appear normal at first then highlighted on "page down".
+Useful for quiz answers to appear after a quiz slide is presented.
+This will only happen if the INSTRUCTOR environment variable is set.
+Otherwise, the text is not formatted - this allows handouts to be
+printed without the answer already given.
+'''
+def format_answer ( literal_text ):
+   if "INSTRUCTOR" in os.environ:
+       return latex_inline ( latex_answer_highlight ( latex_escape ( literal_text ) ) )
+   else:
+       return latex_inline ( latex_escape ( literal_text ) )
 
 #####################
 ## MAIN SUBPROGRAM ##
