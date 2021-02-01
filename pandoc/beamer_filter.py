@@ -52,7 +52,8 @@ slide_decorators = [ 't', 'shrink' ]
 role_format_functions = { 'toolname' : 'SmallCaps',
                           'menu'     : 'format_menu',
                           'command'  : 'format_command',
-                          'answer'   : 'format_answer',
+                          'answer' : 'format_answer',
+                          'explanation' : 'format_explanation',
                           'filename' : 'format_filename',
                           'default'  : 'Strong' }
 ##
@@ -108,6 +109,10 @@ def latex_escape ( text ):
 
 def latex_answer_highlight ( text ):
     return "\\textit<2>{\\textbf<2>{\\textcolor<2>{green!65!black}{" + text + "}}}"
+
+def latex_explanation_highlight ( text ):
+    # return "\\onslide<2->{\\textit{\\textcolor{red}{" + text + "}}}"
+    return "\\onslide<2->{\\textit{" + text + "}}"
 
 #############################
 ## PANDOC HELPER FUNCTIONS ##
@@ -328,6 +333,21 @@ def format_answer ( literal_text ):
        return latex_inline ( latex_answer_highlight ( latex_escape ( literal_text ) ) )
    else:
        return latex_inline ( latex_escape ( literal_text ) )
+
+'''
+"explanation" role
+Items will only appear on a slide after "page down".
+Useful for explaining why a quiz answer is incorrect after a
+quiz slide is presented.
+This will only happen if the INSTRUCTOR environment variable is set.
+Otherwise, the text will not appear - this allows handouts to be
+printed without the explanations already given.
+'''
+def format_explanation ( literal_text ):
+   if "INSTRUCTOR" in os.environ:
+       return latex_inline ( latex_explanation_highlight ( latex_escape ( literal_text ) ) )
+   else:
+       return latex_inline ( " " )
 
 #####################
 ## MAIN SUBPROGRAM ##

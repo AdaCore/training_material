@@ -155,6 +155,24 @@ Pragmas
    pragma Page;
    pragma Optimize ( Off );
 
+------
+Quiz
+------
+
+* Which statement is legal?
+
+   | **A.** Function : constant := 1;
+   |    :explanation:`Function is a reserved word`
+   |
+   | **B.** :answer:`Fun_ction : constant := 1;`
+   |
+   |    
+   | **C.** Fun_ction : constant := --initial value-- 1;
+   |    :explanation:`Cannot have inline comments`
+   |
+   | **D.** integer Fun_ction;
+   |    :explanation:`C-style declaration not allowed`
+
 ==================
 Numeric Literals
 ==================
@@ -220,6 +238,25 @@ Comparison To C's Based Literals
 
    - **Hard** to read
    - **Error-prone**
+
+------
+Quiz
+------
+
+* Which statement is legal?
+
+   | **A.** :answer:`I : constant := 0_1_2_3_4;`
+   |    :explanation:`Underscores are not significant - you can place them wherever you want`
+   |
+   | **B.** F : constant := 12.;
+   |    :explanation:`Must have digits on both sides of decimal`
+   |
+   | **C.** I : constant := 8#77#E+1.0;
+   |    :explanation:`Exponents must be integers`
+   |
+   | **D.** F : constant := 2#1111;
+   |    :explanation:`Missing closing \#`
+   |
 
 =====================
 Object Declarations
@@ -360,6 +397,25 @@ Elaboration
       begin
         ...
  
+------
+Quiz
+------
+
+* Which block is illegal?
+
+   | **A.** A, B, C : integer;
+   |    :explanation:`Multiple objects can be created in one statement`
+   |
+   | **B.** Integer : Standard.Integer;
+   |    :explanation:`Integer is predefined so it can be overridden`
+   |
+   | **C.** :answer:`Null : integer := 0;`
+   |    :explanation:`Null is reserved so it can **not** be overridden`
+   |
+   | **D.** A : integer := 123;
+   |    B : integer := A * 3;
+   |    :explanation:`Elaboration happens in order, so B will be 369`
+
 =================
 Universal Types
 =================
@@ -635,6 +691,36 @@ Overcoming Hiding
      ...
    end Outer;
      
+------
+Quiz
+------
+
+* What output does the following code produce? (Assume :code:`Print` prints the current value of it's argument)
+
+   .. code:: Ada
+
+      declare
+         M : Integer := 1;
+      begin
+         M := M + 1;
+         declare
+            M : Integer := 2;
+         begin
+            M := M + 2;
+            Print ( M );
+         end;
+         Print ( M );
+      end;
+
+
+   | **A.** 2, 2
+   |
+   | **B.** 2, 4
+   |
+   | **C.** 4, 4
+   |
+   | **D.** :answer:`4, 2`
+
 ================
 Aspect Clauses
 ================
