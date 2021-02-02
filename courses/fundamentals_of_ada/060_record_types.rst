@@ -261,11 +261,11 @@ Aggregates
 
    .. code:: Ada
 
-      record_expr ::= expression | <>
+      component_init ::= expression | <>
 
       record_aggregate ::=
-         {[component_choice_list =>] record_expr ,}
-         [others => record_expr]
+         {[component_choice_list =>] component_init ,}
+         [others => component_init]
 
 * Example
 
