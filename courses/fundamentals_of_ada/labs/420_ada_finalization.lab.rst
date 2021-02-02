@@ -25,13 +25,13 @@ Ada.Finalization Lab
    - Global data to track used keys
  
 ----------------------------------------------
-Ada.Finalization Lab Solution - Spec
+Ada.Finalization Lab Solution - Keys (Spec)
 ----------------------------------------------
 
 .. container:: source_include labs/answers/420_ada_finalization.txt :start-after:--Spec :end-before:--Spec :code:Ada
 
 ------------------------------------------------
-Ada.Finalization Lab Solution - Implementation
+Ada.Finalization Lab Solution - Keys (Body)
 ------------------------------------------------
 
 .. container:: source_include labs/answers/420_ada_finalization.txt :start-after:--Body :end-before:--Body :code:Ada

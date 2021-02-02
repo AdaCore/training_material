@@ -41,13 +41,13 @@ Basic Types Lab Hints
       Object'image
 
 ----------------------------------------
-Basic Types Lab Solution (Declarations)
+Basic Types Lab Solution - Declarations
 ----------------------------------------
 
 .. container:: source_include labs/answers/030_basic_types.txt :start-after:--Declarations :end-before:--Declarations :code:Ada
 
 ------------------------------------------
-Basic Types Lab Solution (Implementation)
+Basic Types Lab Solution - Implementation
 ------------------------------------------
   
 .. container:: source_include labs/answers/030_basic_types.txt :start-after:--Implementation :end-before:--Implementation :code:Ada

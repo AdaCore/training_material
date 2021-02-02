@@ -32,13 +32,13 @@ Multiple Dimensions
    - Initialize the array and then print it hierarchically
 
 -----------------------------------
-Array Lab Solution (Declarations)
+Array Lab Solution - Declarations
 -----------------------------------
 
 .. container:: source_include labs/answers/050_array_types.txt :start-after:--Declarations :end-before:--Declarations :code:Ada
 
 -------------------------------------
-Array Lab Solution (Implementation)
+Array Lab Solution - Implementation
 -------------------------------------
 
 .. container:: source_include labs/answers/050_array_types.txt :start-after:--Implementation :end-before:--Implementation :code:Ada

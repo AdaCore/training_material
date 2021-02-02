@@ -32,13 +32,13 @@ Discriminated Record Types Lab Solution - Vstring
 .. container:: source_include labs/answers/060a_discriminated_record_types.txt :start-after:--Strings :end-before:--Strings :code:Ada
 
 ----------------------------------------------------------
-Discriminated Record Types Lab Solution - Employee Spec
+Discriminated Record Types Lab Solution - Employee (Spec)
 ----------------------------------------------------------
 
 .. container:: source_include labs/answers/060a_discriminated_record_types.txt :start-after:--Employee_Spec :end-before:--Employee_Spec :code:Ada
 
 ----------------------------------------------------------
-Discriminated Record Types Lab Solution - Employee Body
+Discriminated Record Types Lab Solution - Employee (Body)
 ----------------------------------------------------------
 
 .. container:: source_include labs/answers/060a_discriminated_record_types.txt :start-after:--Employee_Body :end-before:--Employee_Body :code:Ada
