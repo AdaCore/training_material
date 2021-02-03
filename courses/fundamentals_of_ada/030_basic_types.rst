@@ -642,6 +642,36 @@ Min/Max Attributes For All Scalars
    ...
    C := Integer'Min (Safe_Upper, C + 1);
  
+------
+Quiz
+------
+
+* What happens when you try to compile/run this code?
+
+   .. code:: Ada
+
+      C1 : constant := 2 ** 1024;
+      C2 : constant := 2 ** 1024 + 10;
+      C3 : constant := C1 - C2;
+      V  : Integer := C1 - C2;
+
+   A. Compile error
+   B. Run-time error
+   C. :answer:`V is assigned to -10`
+   D. Unknown - depends on the compiler
+
+* :explanation:`Why?`
+
+   - :explanation:`2 ** 1024 too big for most run-times BUT`
+   - :explanation:`C1, C2, and C3 are named numbers, not typed constants`
+
+      - :explanation:`Compiler uses unbounded precision for named numbers`
+      - :explanation:`Large intermediate representation does not get stored in object code`
+
+   - :explanation:`For assignment to V, subtraction is computed by compiler`
+
+      - :explanation:`V is assigned the value -10`
+
 ============================
 Discrete Enumeration Types
 ============================
@@ -974,6 +1004,27 @@ Order Attributes For All Discrete Types
 
    Val/pos compared to value/image - same number of characters
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Enum_T is ( Able, BAKER, charlie );
+
+* Which statement will generate an error?
+
+   A. V1 : Enum_T := Enum_T'Value ( "Able" );
+   B. V2 : Enum_T := Enum_T'Value ( "Baker" );
+   C. V3 : Enum_T := Enum_T'Value ( " Charlie " );
+   D. :answer:`V4 : Enum_T := Enum_T'Value ( "Able Baker Charlie" );`
+
+* :explanation:`Explanations`
+
+   A. :explanation:`Legal`
+   B. :explanation:`Legal - conversion is case-insensitive`
+   C. :explanation:`Legal - leading/trailing blanks are ignored`
+   D. :explanation:`"Value" tries to convert entire string, which will fail`
 
 ============
 Real Types
@@ -1158,6 +1209,34 @@ Floating Point Type Attributes
     
    - Advanced machine representation of the floating-point type
    - Mantissa, strict mode
+
+------
+Quiz
+------
+
+* What is the output of this code?
+
+   .. code:: Ada
+
+      declare
+         F : Float := 7.6;
+         I : Integer := 10;
+      begin
+         F := Float ( Integer(F) / I );
+         Put_Line ( Float'Image ( F ) );
+      end;
+
+   A. 7.6
+   B. Compile Error
+   C. 8.0
+   D. :answer:`0.0`
+
+* :explanation:`Explanations`
+
+   A. :explanation:`Result of F := F / Float(I);`
+   B. :explanation:`Result of F := F / I;`
+   C. :explanation:`Result of F := Float (Integer (F)) / Float (I);`
+   D. :explanation:`Integer value of F is 8. Integer result of dividing that by 10 is 0. Converting to float still gives us 0`
 
 ===============
 Miscellaneous
