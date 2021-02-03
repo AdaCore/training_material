@@ -161,17 +161,17 @@ Quiz
 
 * Which statement is legal?
 
-   | **A.** Function : constant := 1;
-   |    :explanation:`Function is a reserved word`
-   |
-   | **B.** :answer:`Fun_ction : constant := 1;`
-   |
-   |    
-   | **C.** Fun_ction : constant := --initial value-- 1;
-   |    :explanation:`Cannot have inline comments`
-   |
-   | **D.** integer Fun_ction;
-   |    :explanation:`C-style declaration not allowed`
+   A. Function : constant := 1;
+   B. :answer:`Fun_ction : constant := 1;`
+   C. Fun_ction : constant := --initial value-- 1;
+   D. integer Fun_ction;
+
+* :explanation:`Explanations`
+
+   A. :explanation:`Function is a reserved word`
+   B. :explanation:`Correct`
+   C. :explanation:`Cannot have inline comments`
+   D. :explanation:`C-style declaration not allowed`
 
 ==================
 Numeric Literals
@@ -245,18 +245,17 @@ Quiz
 
 * Which statement is legal?
 
-   | **A.** :answer:`I : constant := 0_1_2_3_4;`
-   |    :explanation:`Underscores are not significant - you can place them wherever you want`
-   |
-   | **B.** F : constant := 12.;
-   |    :explanation:`Must have digits on both sides of decimal`
-   |
-   | **C.** I : constant := 8#77#E+1.0;
-   |    :explanation:`Exponents must be integers`
-   |
-   | **D.** F : constant := 2#1111;
-   |    :explanation:`Missing closing \#`
-   |
+   A. :answer:`I : constant := 0_1_2_3_4;`
+   B. F : constant := 12.;
+   C. I : constant := 8#77#E+1.0;
+   D. F : constant := 2#1111;
+
+* :explanation:`Explanations`
+
+   A. :explanation:`Underscores are not significant - you can place them wherever you want`
+   B. :explanation:`Must have digits on both sides of decimal`
+   C. :explanation:explanation:`Exponents must be integers`
+   D. :explanation:`Missing closing \#`
 
 =====================
 Object Declarations
@@ -404,17 +403,17 @@ Quiz
 * Which block is illegal?
 
    | **A.** A, B, C : integer;
-   |    :explanation:`Multiple objects can be created in one statement`
-   |
    | **B.** Integer : Standard.Integer;
-   |    :explanation:`Integer is predefined so it can be overridden`
-   |
    | **C.** :answer:`Null : integer := 0;`
-   |    :explanation:`Null is reserved so it can **not** be overridden`
-   |
-   | **D.** A : integer := 123;
-   |    B : integer := A * 3;
-   |    :explanation:`Elaboration happens in order, so B will be 369`
+   | **D.**  A : integer := 123;
+   |      B : integer := A * 3;
+
+* :explanation:`Explanations`
+
+   A. :explanation:`Multiple objects can be created in one statement`
+   B. :explanation:`Integer is predefined so it can be overridden`
+   C. :explanation:`Null is reserved so it can **not** be overridden`
+   D. :explanation:`Elaboration happens in order, so B will be 369`
 
 =================
 Universal Types
@@ -712,14 +711,14 @@ Quiz
          Print ( M );
       end;
 
+   A. 2, 2
+   B. 2, 4
+   C. 4, 4
+   D. :answer:`4, 2`
 
-   | **A.** 2, 2
-   |
-   | **B.** 2, 4
-   |
-   | **C.** 4, 4
-   |
-   | **D.** :answer:`4, 2`
+* :explanation:`Inner "M" gets printed first. It is initialized to 2 and incremented by 2`
+
+* :explanation:`Outer "M" gets printed second. It is initialized to 1 and incremented by 1`
 
 ================
 Aspect Clauses
