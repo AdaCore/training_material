@@ -312,6 +312,42 @@ Not All Assignments Are Checked
         ...
       end Demo;
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type One_T is range 0 .. 100;
+   type Two_T is range 0 .. 100;
+   A : constant := 100;
+   B : constant One_T := 99;
+   C : constant Two_T := 98;
+   X : One_T := 0;
+   Y : Two_T := 0;
+
+Which block is illegal?
+
+A.
+   | X := A;
+   | Y := A;
+B.
+   | X := B;
+   | Y := C;
+C.
+   | :answer:`X  = One_T(A);`
+   | :answer:`Y  = Two_T(A);`
+D.
+   | X := One_T(Y);
+   | Y := Two_T(X);
+
+:explanation:`Explanations`
+
+   A. :explanation:`Legal - A is an untyped constant`
+   B. :explanation:`Legal - B, C are correctly typed`
+   C. :explanation:`Illegal - C-style assignment`
+   D. :explanation:`Legal - Values are typecast appropriately`
+
 ========================
 Conditional Statements
 ========================
@@ -486,6 +522,67 @@ Dangers of *Others* Case Alternative
      when others =>
         Set_Region (Russia); -- New agencies will be Russian!
    end case;
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   A : integer := 100;
+   B : integer := 200;
+
+Which choice needs to be modified to make a valid :ada:`if` block
+
+A.
+   | :answer:`if A == B and then A != 0 then`
+   |    :answer:`A := Integer'First;`
+   |    :answer:`B := Integer'Last;`
+B.
+   | elsif A < B then
+   |    A := B + 1;
+C.
+   | elsif A > B then
+   |    B := A - 1;
+D.
+   | end if;
+
+:explanation:`Explanations`
+
+   * :explanation:`"A" uses the C-style equality/inequality operators`
+   * :explanation:`"D" is legal because 'else' is not required`
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Enum_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+   A : Enum_T;
+
+Which choice needs to be modified to make a valid :ada:`case` block
+
+.. code:: Ada
+
+   case A is
+
+A.
+   | when Sun =>
+   |    Put_Line ( "Day Off" );
+B.
+   | when Mon | Fri =>
+   |    Put_Line ( "Short Day" );
+C.
+   | when Tue .. Thu =>
+   |    Put_Line ( "Long Day" );
+D.
+   | :answer:`end case;`
+
+:explanation:`Explanations`
+
+   * :explanation:`Ada requires all possibilities to be covered`
+   * :explanation:`Add "when others" or "when Sat"`
 
 =================
 Loop Statements
@@ -687,10 +784,6 @@ Variable and Sequence of Values
 Low-Level For-loop Parameter Type
 -----------------------------------
 
-.. admonition:: Language Variant
-    
-    Ada 2012
-
 * The type can be implicit 
 
    - As long as it is clear for the compiler
@@ -829,6 +922,40 @@ Referencing Hidden Names
       end loop;
       ...
    end Foo;
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   A, B : Integer := 123;
+
+Which loop block is illegal?
+
+A.
+   | :answer:`for A in 1 .. 10 loop`
+   |    :answer:`A := A + 1;`
+   | :answer:`end loop;`
+B.
+   | for B in 1 .. 10 loop
+   |    Put_Line (Integer'Image (B));
+   | end loop;
+C.
+   | for C in reverse 1 .. 10 loop
+   |    Put_Line (Integer'Image (A));
+   | end loop;
+D.
+   | for D in 10 .. 1 loop
+   |    Put_Line (Integer'Image (D));
+   | end loop;
+
+* :explanation:`Explanations`
+
+   A. :explanation:`Cannot assign to a loop parameter`
+   B. :explanation:`Legal - 10 iterations`
+   C. :explanation:`Legal - 10 iterations`
+   D. :explanation:`Legal - 0 iterations`
 
 =================
 GOTO Statements

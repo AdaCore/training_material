@@ -402,11 +402,15 @@ Quiz
 
 * Which block is illegal?
 
-   | **A.** A, B, C : integer;
-   | **B.** Integer : Standard.Integer;
-   | **C.** :answer:`Null : integer := 0;`
-   | **D.**  A : integer := 123;
-   |      B : integer := A * 3;
+   A.
+      | A, B, C : integer;
+   B.
+      | Integer : Standard.Integer;
+   C.
+      | :answer:`Null : integer := 0;`
+   D.
+      | A : integer := 123;
+      | B : integer := A * 3;
 
 * :explanation:`Explanations`
 
