@@ -646,21 +646,21 @@ Min/Max Attributes For All Scalars
 Quiz
 ------
 
-* What happens when you try to compile/run this code?
+What happens when you try to compile/run this code?
 
-   .. code:: Ada
+.. code:: Ada
 
-      C1 : constant := 2 ** 1024;
-      C2 : constant := 2 ** 1024 + 10;
-      C3 : constant := C1 - C2;
-      V  : Integer := C1 - C2;
+   C1 : constant := 2 ** 1024;
+   C2 : constant := 2 ** 1024 + 10;
+   C3 : constant := C1 - C2;
+   V  : Integer := C1 - C2;
 
-   A. Compile error
-   B. Run-time error
-   C. :answer:`V is assigned to -10`
-   D. Unknown - depends on the compiler
+A. Compile error
+B. Run-time error
+C. :answer:`V is assigned to -10`
+D. Unknown - depends on the compiler
 
-* :explanation:`Why?`
+:explanation:`Explanations`
 
    - :explanation:`2 ** 1024 too big for most run-times BUT`
    - :explanation:`C1, C2, and C3 are named numbers, not typed constants`
@@ -1012,19 +1012,19 @@ Quiz
 
    type Enum_T is ( Able, BAKER, charlie );
 
-* Which statement will generate an error?
+Which statement will generate an error?
 
-   A. V1 : Enum_T := Enum_T'Value ( "Able" );
-   B. V2 : Enum_T := Enum_T'Value ( "Baker" );
-   C. V3 : Enum_T := Enum_T'Value ( " Charlie " );
-   D. :answer:`V4 : Enum_T := Enum_T'Value ( "Able Baker Charlie" );`
+A. V1 : Enum_T := Enum_T'Value ( "Able" );
+B. V2 : Enum_T := Enum_T'Value ( "Baker" );
+C. V3 : Enum_T := Enum_T'Value ( " Charlie " );
+D. :answer:`V4 : Enum_T := Enum_T'Value ( "Able Baker Charlie" );`
 
 * :explanation:`Explanations`
 
    A. :explanation:`Legal`
    B. :explanation:`Legal - conversion is case-insensitive`
    C. :explanation:`Legal - leading/trailing blanks are ignored`
-   D. :explanation:`"Value" tries to convert entire string, which will fail`
+   D. :explanation:`"Value" tries to convert entire string, which will fail at run-time`
 
 ============
 Real Types
@@ -1214,24 +1214,24 @@ Floating Point Type Attributes
 Quiz
 ------
 
-* What is the output of this code?
+What is the output of this code?
 
-   .. code:: Ada
+.. code:: Ada
 
-      declare
-         F : Float := 7.6;
-         I : Integer := 10;
-      begin
-         F := Float ( Integer(F) / I );
-         Put_Line ( Float'Image ( F ) );
-      end;
+   declare
+      F : Float := 7.6;
+      I : Integer := 10;
+   begin
+      F := Float ( Integer(F) / I );
+      Put_Line ( Float'Image ( F ) );
+   end;
 
-   A. 7.6
-   B. Compile Error
-   C. 8.0
-   D. :answer:`0.0`
+A. 7.6
+B. Compile Error
+C. 8.0
+D. :answer:`0.0`
 
-* :explanation:`Explanations`
+:explanation:`Explanations`
 
    A. :explanation:`Result of F := F / Float(I);`
    B. :explanation:`Result of F := F / I;`

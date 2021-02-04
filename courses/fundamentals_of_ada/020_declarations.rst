@@ -159,14 +159,14 @@ Pragmas
 Quiz
 ------
 
-* Which statement is legal?
+Which statement is legal?
 
    A. Function : constant := 1;
    B. :answer:`Fun_ction : constant := 1;`
    C. Fun_ction : constant := --initial value-- 1;
    D. integer Fun_ction;
 
-* :explanation:`Explanations`
+:explanation:`Explanations`
 
    A. :explanation:`Function is a reserved word`
    B. :explanation:`Correct`
@@ -243,18 +243,18 @@ Comparison To C's Based Literals
 Quiz
 ------
 
-* Which statement is legal?
+Which statement is legal?
 
    A. :answer:`I : constant := 0_1_2_3_4;`
    B. F : constant := 12.;
    C. I : constant := 8#77#E+1.0;
    D. F : constant := 2#1111;
 
-* :explanation:`Explanations`
+:explanation:`Explanations`
 
    A. :explanation:`Underscores are not significant - you can place them wherever you want`
    B. :explanation:`Must have digits on both sides of decimal`
-   C. :explanation:explanation:`Exponents must be integers`
+   C. :explanation:`Exponents must be integers`
    D. :explanation:`Missing closing \#`
 
 =====================
@@ -400,7 +400,7 @@ Elaboration
 Quiz
 ------
 
-* Which block is illegal?
+Which block is illegal?
 
    A.
       | A, B, C : integer;
@@ -412,7 +412,7 @@ Quiz
       | A : integer := 123;
       | B : integer := A * 3;
 
-* :explanation:`Explanations`
+:explanation:`Explanations`
 
    A. :explanation:`Multiple objects can be created in one statement`
    B. :explanation:`Integer is predefined so it can be overridden`
@@ -698,31 +698,32 @@ Overcoming Hiding
 Quiz
 ------
 
-* What output does the following code produce? (Assume :code:`Print` prints the current value of it's argument)
+What output does the following code produce? (Assume :code:`Print` prints the current value of it's argument)
 
-   .. code:: Ada
+.. code:: Ada
 
+   declare
+      M : Integer := 1;
+   begin
+      M := M + 1;
       declare
-         M : Integer := 1;
+         M : Integer := 2;
       begin
-         M := M + 1;
-         declare
-            M : Integer := 2;
-         begin
-            M := M + 2;
-            Print ( M );
-         end;
+         M := M + 2;
          Print ( M );
       end;
+      Print ( M );
+   end;
 
-   A. 2, 2
-   B. 2, 4
-   C. 4, 4
-   D. :answer:`4, 2`
+A. 2, 2
+B. 2, 4
+C. 4, 4
+D. :answer:`4, 2`
 
-* :explanation:`Inner "M" gets printed first. It is initialized to 2 and incremented by 2`
+:explanation:`Explanations`
 
-* :explanation:`Outer "M" gets printed second. It is initialized to 1 and incremented by 1`
+   * :explanation:`Inner "M" gets printed first. It is initialized to 2 and incremented by 2`
+   * :explanation:`Outer "M" gets printed second. It is initialized to 1 and incremented by 1`
 
 ================
 Aspect Clauses
