@@ -13,7 +13,6 @@ on:
 jobs:
   RST-build:
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -22,6 +21,7 @@ jobs:
 
       - name: Update base system
         run: |
+          sudo apt remove mysql-server msodbcsql17 mssql-tools mysql-client mysql-client-5.7 mysql-client-core-5.7 mysql-server-5.7 mysql-server-core-5.7
           sudo apt update
           sudo apt full-upgrade -y
 
