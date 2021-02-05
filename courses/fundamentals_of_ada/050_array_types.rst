@@ -257,6 +257,31 @@ Tic-Tac-Toe Winners Example
         - :superscript:`8`
         - :superscript:`9` **X**
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Array1_T is array ( 1 .. 8 ) of boolean;
+   type Array2_T is array ( 0 .. 7 ) of boolean;
+   X1, X2 : Array1_T;
+   Y1, Y2 : Array2_T;
+
+Which statement is legal?
+
+   A. X1(1) := X2(1);
+   B. X1 := X2;
+   C. X1(1) := Y1(1);
+   D. :answer:`Y1 := X1;`
+
+:explanation:`Explanations`
+
+   A. :explanation:`Legal - elements are boolean`
+   B. :explanation:`Legal - object types match`
+   C. :explanation:`Legal - elements are boolean`
+   D. :explanation:`Although the sizes are the same and the elements are the same, the type is different`
+
 ===========================
 Unconstrained Array Types
 ===========================
@@ -429,6 +454,33 @@ Arrays of Arrays
      ...
      A (True)(3) := 42;
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Array_T is array (Integer range <>) of Integer;
+   subtype Array1_T is Array_T (1 .. 4);
+   subtype Array2_T is Array_T (0 .. 3);
+   X : Array_T  := (1, 2, 3, 4);
+   Y : Array1_T := (1, 2, 3, 4);
+   Z : Array2_T := (1, 2, 3, 4);
+
+Which statement is illegal?
+
+   A. :answer:`X(1) := Y(1);`
+   B. Y(1) := Z(1);
+   C. Y := X;
+   D. Z := X;
+
+:explanation:`Explanations`
+
+   A. :explanation:`First index of Array_T is first value in Integer - so X(1) is not in range`
+   B. :explanation:`Legal - indices are both in range`
+   C. :explanation:`Legal - arrays are same type and same size`
+   D. :explanation:`Legal - X has been constrained to correct size`
+
 ============
 Attributes
 ============
@@ -518,6 +570,32 @@ Nth Dimension Array Attributes
     * `TD'Length` (2) is 39
     * `TD'first` is 1 (same as `TD'first(1)`)
     * `TD'last` is 10 (same as `TD'last(1)`)
+
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   subtype Index1_T is Integer range 0 .. 7;
+   subtype Index2_T is Integer range 1 .. 8;
+   type Array_T is array (Index2_T, Index1_T, Boolean) of Integer;
+   X : Array_T;
+
+Which description is incorrect?
+
+   A. X'First(2) is 0
+   B. :answer:`X'Range(3) is True .. False;`
+   C. X'Length(1) = X'Length(2)
+   D. X'Last(1) = is 8
+
+:explanation:`Explanations`
+
+   A. :explanation:`Correct (Index names are "backwards")`
+   B. :explanation:`Boolean enumeration is ( False, True )`
+   C. :explanation:`Correct - sizes are the same`
+   D. :explanation:`Correct (Same as "A")`
 
 ============
 Operations
@@ -708,6 +786,32 @@ Sliding
      end loop;
      if Index in People'Range then -- good
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Index_T is range 1 .. 10;
+   type OneD_T is array (Index_T) of Boolean;
+   type ThreeD_T is array (Index_T, Index_T, Index_T) of OneD_T;
+   A : ThreeD_T;
+   B : OneD_T;
+
+Which statement is illegal?
+
+   A. B(1) := A(1,2,3)(1) or A(4,3,2)(1);
+   B. B := A(2,3,4) and A(4,3,2);
+   C. :answer:`A(1,2,3..4) := A(2,3,4..5);`
+   D. B(3..4) := B(4..5)
+
+:explanation:`Explanations`
+
+   A. :explanation:`All three objects are just boolean values`
+   B. :explanation:`An element of A is the same type as B`
+   C. :explanation:`No slicing of multi-dimensional arrays`
+   D. :explanation:`Slicing allowed on single-dimension arrays`
+
 ==============================
 Operations Added for Ada2012
 ==============================
@@ -857,6 +961,40 @@ For-Loops with Multidimensional Arrays
          for C of Identity loop
            Put_Line (Float'Image(C));
          end loop;
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   declare
+      type Array_T is array (1..3, 1..3) of Integer with Default_Component_Value => 1;
+      A : Array_T;
+   begin
+      for I in Index_T range 2 .. 3 loop
+         for J in Index_T range 2 .. 3 loop
+            A (I, J) := I * 10 + J;
+         end loop;
+      end loop;
+      for I of reverse A loop
+         Put (I'Image);
+      end loop;
+   end;
+
+Which output is correct?
+
+   A. 1 1 1 1 22 23 1 32 33
+   B. :answer:`33 32 1 23 22 1 1 1 1`
+   C. 0 0 0 0 22 23 0 32 33
+   D. 33 32 0 23 22 0 0 0 0
+
+:explanation:`Explanations`
+
+   A. :explanation:`This is the result if "reverse" was not specified`
+   B. :explanation:`Start with last element (3,3) and work backwards`
+   C. :explanation:`This might be the result without "Default_Component_Value." (Zeroes may not be correct - could be any uninitialized value.)`
+   D. :explanation:`Result without "Default_Component_Value" and "reverse"`
 
 ============
 Aggregates
@@ -1107,6 +1245,30 @@ Named Format Aggregate Rules
    Not_Static : List (1 .. 10) := (M .. N => X, K .. L => Y);
    -- This is legal
    Values : List (1 .. N) := (1 .. N => X);
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Array_T is array (1 .. 5) of Integer;
+   X : Array_T;
+   J : Integer := X'First;
+
+Which statement is correct?
+
+   A. X := (1, 2, 3, 4 => 4, 5 => 5);
+   B. :answer:`X := (1 .. 3 => 100, 4 .. 5 => -100, others => -1);`
+   C. X := (J => -1, J + 1 .. A'Last => 1);
+   D. X := (1 .. 3 => 100, 3 .. 5 => 200);
+
+:explanation:`Explanations`
+
+   A. :explanation:`Cannot mix positional and named notation`
+   B. :explanation:`Correct - others not needed but is allowed`
+   C. :explanation:`Dynamic values must be the only choice. (This could be fixed by making J a constant.)`
+   D. :explanation:`Overlapping values (3 appears more than once)`
 
 ======================
 Anonymous Array Types
