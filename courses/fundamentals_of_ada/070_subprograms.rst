@@ -326,6 +326,19 @@ Indirect Recursion Needs A Declaration
          F;
        end P;
      
+------
+Quiz
+------
+
+Which profile is semantically different from the others?
+
+   A. procedure P ( A : Integer; B : Integer );
+   B. procedure P ( A, B : Integer );
+   C. :answer:`procedure P ( B : Integer; A : Integer );`
+   D. procedure P ( A : in Integer; B : in Integer );
+
+:explanation:`Parameter names are important in Ada. The other selections have the names in the same order with the same mode and type.`
+
 ============
 Parameters
 ============
@@ -753,6 +766,34 @@ Correct Implementation
      return Result;
    end "-";
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   function F (P1 : in     Integer   := 0;
+               P2 : in out Integer;
+               P3 : in     Character := ' ';
+               P4 :    out Character)
+      return Integer;
+   I1, I2, I3, I4 : Integer;
+   C1, C2, C3, C4 : Character;
+
+Which call is legal?
+
+   A. I4 := F (P1 => 1, P2 => 2, P3 => '3', P4 => 4);
+   B. I4 := F (P1 => 1, P3 => C3, P4 => C4);
+   C. :answer:`I4 := F (I1, I2, C3, C4);`
+   D. F (I1, I2, C3, C4);
+
+:explanation:`Explanations`
+
+   A. :explanation:`P4 can be modified by P, so it must be a variable`
+   B. :explanation:`P2 has no default value so it must be specified`
+   C. :explanation:`Correct`
+   D. :explanation:`F is a function - return value must be stored`
+
 =================
 Null Procedures
 =================
@@ -1164,6 +1205,24 @@ Typical Uses for Expression Functions
         (if (A rem K = 0 and B rem K = 0)
          then K <= Candidate)));
  
+------
+Quiz
+------
+
+Which statement is True?
+
+   A. Expression functions cannot be nested functions.
+   B. Expression functions require a specification and a body.
+   C. Expression functions must have at least one "return" statement.
+   D. :answer:`Expression functions do not allow "out" parameters.`
+
+:explanation:`Explanations`
+
+   A. :explanation:`Expression functions can be declared anywhere a regular function is declared.`
+   B. :explanation:`An expression function body can act as its own specification.`
+   C. :explanation:`Expression functions only contain an expression - no "return" statement allowed.`
+   D. :explanation:`Correct - no way to assign a value to an "out" parameter.`
+
 ====================
 Potential Pitfalls
 ====================
