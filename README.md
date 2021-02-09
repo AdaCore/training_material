@@ -11,6 +11,20 @@ some artifacts that can be used with the tool. (Artifacts for other tools
 may be added in the future). Each of the folders at this level are described
 below.
 
+# Download
+
+You can download the PDF by going to [the actions page](http://github.com/adacore/training_material/actions).
+
+Click on the build you want. You probably want to take one from the **master** branch.
+
+![Click build](images/github/artifacts_1.png)
+
+Scroll at the bottom
+
+![Bottom scroll](images/github/artifacts_2.png)
+
+![Artifact examples](images/github/artifacts_3.png)
+
 ## Courses
 
 Each folder contains a collection of RST files that make up modules within
