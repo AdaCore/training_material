@@ -15,6 +15,12 @@ Remember that privacy is still important!
 Question 1
 ==========
 
+.. figure:: labs/solar_system/180a_class_diagram.png
+    :name:
+
+    Class diagram for Q.1 and Q.2
+
+
 Create a hierarchy of interfaces as follow
 
 * :code:`Orbit_Ref_I` as an interface implementing :code:`Get_X` and
@@ -45,6 +51,11 @@ Create a hierarchy of tagged types as follow
 ==========
 Question 3
 ==========
+
+.. figure:: labs/solar_system/180a_class_diagram_display.png
+    :name:
+
+    Class diagram for Q.3, Q.4 and Q.5
 
 Add constructor primitives in order to create concrete types
 returning a pointer to the newly allocated object

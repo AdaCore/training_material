@@ -59,8 +59,8 @@ begin
       -- on Active_Object_Status:
       -- * Tracked, then call Walk_And_Scan
       -- * Cleared, then call Next_Object
-      -- * Selected, then call Get_Closer (Run)
-      -- * Out_Of_Range, then call Get_Closer (Fast_Walk)
+      -- * Selected, then call Get_Closer (Fast)
+      -- * Out_Of_Range, then call Get_Closer (Normal)
 
       case Active_Object_Status is
       when Tracked =>

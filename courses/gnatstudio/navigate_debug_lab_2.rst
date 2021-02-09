@@ -13,18 +13,18 @@ Navigate the code
 
 .. image:: gnat_studio/ui/menu_goto_full_declaration_2.png
 
-“Goto Declaration” is probably the most useful GNAT Studio feature for navigating and
+“Goto Declaration” is probably the most useful :toolname:`GNAT Studio` feature for navigating and
 understanding large programs.
 
 
-*Extra credit*: How does the GNAT Studio editor know where to find the declaration of an
+*Extra credit*: How does the :toolname:`GNAT Studio` editor know where to find the declaration of an
 entity like :ada:`Tracked`?
 
 --------------
 Debug the code
 --------------
 
-You can use GNAT Studio to debug your program, by clicking the “Build and Debug” action.
+You can use :toolname:`GNAT Studio` to debug your program, by clicking the “Build and Debug” action.
 
 Let’s do a quick debugging session on the main program.
 
@@ -32,7 +32,7 @@ Let’s do a quick debugging session on the main program.
 
 .. image:: gnat_studio/ui/debug_button.png
 
-2. GNAT Studio will go into debugging perspective, which you can see because a few
+2. :toolname:`GNAT Studio` will go into debugging perspective, which you can see because a few
    more views have popped up.
 
 .. image:: gnat_studio/ui/debug_perspective.png

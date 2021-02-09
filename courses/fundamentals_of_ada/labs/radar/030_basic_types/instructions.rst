@@ -2,7 +2,7 @@
 
 .. include:: support_files/docs_common.rst
 
-The purpose of this lab is to present basic Ada types and some advanced GNAT Studio
+The purpose of this lab is to present basic Ada types and some advanced :toolname:`GNAT Studio`
 features.
 
 .. include:: courses/gnatstudio/navigate_debug_lab_2.rst

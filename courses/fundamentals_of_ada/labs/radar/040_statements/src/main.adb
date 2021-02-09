@@ -58,8 +58,8 @@ begin
    -- on Active_Object_Status:
    -- * Tracked, then call Walk_And_Scan
    -- * Cleared, then call Next_Object
-   -- * Selected, then call Get_Closer (Run)
-   -- * Out_Of_Range, then call Get_Closer (Fast_Walk)
+   -- * Selected, then call Get_Closer (Fast)
+   -- * Out_Of_Range, then call Get_Closer (Normal)
 
    -- Get running speed by a call to Get_Running_Speed
    Running_Speed := Get_Running_Speed;

@@ -6,7 +6,7 @@ Data Flow Analysis Lab
 
    + You can copy it locally, or work with it in-place
 
-- In that directory, open the project :filename:`default.gpr` in :toolname:`GNATstudio`
+- In that directory, open the project :filename:`default.gpr` in :toolname:`GNAT Studio`
 
    + Or, on the command-line, do :command:`gnatstudio -Pdefault.gpr`
 
@@ -21,7 +21,7 @@ Data Flow Analysis Lab
 Flow Errors Exercise
 ----------------------
 
-- Find and open the files :filename:`dfa.ads` and :filename:`dfa.adb` in :toolname:`GNATstudio`
+- Find and open the files :filename:`dfa.ads` and :filename:`dfa.adb` in :toolname:`GNAT Studio`
 - Study the code and see if you can predict what's wrong.
 
    + These examples illustrate the basic forms of data-flow analysis in SPARK.

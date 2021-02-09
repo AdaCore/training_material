@@ -1,6 +1,9 @@
 set LOCAL=%~dp0
-set INSTALL=E:\install\GNAT
-set PATH=%INSTALL%\gnat-community-2020-x86-windows\bin;%PATH%
+
+rem vvvv Put the GNAT install path below
+set INSTALL=C:\GNAT\2020
+
+set PATH=%INSTALL%\bin;%PATH%
 set PATH=%LOCAL%\libs;%PATH%
 set ADA_PROJECT_PATH=%LOCAL%\game_support;%LOCAL%\gnat_sdl;
 set LIBRARY_PATH=%LOCAL%\libs;%LIBRARY_PATH%

@@ -509,8 +509,7 @@ Tagged Aggregate
     
       V  : Root := (F1 => 0);
       V2 : Child := (V with F2 => 0);
-      V3 : Child := (Root with F2 => 0);
-      V4 : Empty_Child := (Root with null record);
+      V3 : Empty_Child := (V with null record);
      
 --------------
 Freeze Point
