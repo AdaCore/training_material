@@ -240,6 +240,31 @@ Subtypes and Default Initialization
    Safe : Toggle_Switch := Off;
    Implicit : Toggle_Switch; -- compile error: out of range
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Enum_T is (Sat, Sun, Mon, Tue, Wed, Thu, Fri);
+   subtype Enum_Sub_T is Enum_T range Mon .. Fri;
+   type Array_T is array (Integer range <>) of Integer;
+   subtype Array_Sub_T is Array_T (1 .. 100);
+
+Which subtype definition is valid?
+
+   A. subtype A is Enum_Sub_T range Enum_Sub_T'Pred (Enum_Sub_T'First) .. Enum_Sub_T'Last;
+   B. subtype B is Array_Sub_T (1 .. 10);
+   C. subtype C is String;
+   D. subtype D is digits 6;
+
+:explanation:`Explanations`
+
+   A. :explanation:`This generates a run-time error because the first enumeral specified is not in the range of Enum_Sub_T.`
+   B. :explanation:`Compile error - array type is already constrained`
+   C. :explanation:`Correct - standalone subtype`
+   D. :explanation:`"Digits 6" is used for a type definition, not a subtype`
+
 ==================
 Membership Tests
 ==================
@@ -308,6 +333,30 @@ Testing Non-Contiguous Membership
        Put_Line ("30 days in this month");
      end if;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Days_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+   subtype Weekdays_T is Days_T range Mon .. Fri;
+   Today : Days_T;
+
+Which condition is illegal?
+
+   A. :answer:`if Today = Mon or Wed or Fri then`
+   B. if Today in Days_T then
+   C. if Today not in Weekdays_T then
+   D. if Today in Tue | Thu then
+
+:explanation:`Explanations`
+
+   A. :explanation:`To use "or", both sides of the comparison must be duplicated (e.g. Today = Mon or Today = Wed)`
+   B. :explanation:`Legal - should always return True`
+   C. :explanation:`Legal - returns True if Today is Sat or Sun`
+   D. :explanation:`Legal - returns True if Today is Tue or Thu`
+
 =================
 Qualified Names
 =================
@@ -762,6 +811,30 @@ Static Named Numbers Example
          when others => 31);
    end loop;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   function Sqrt (X : Float) return Float;
+   F : Float;
+   B : Boolean;
+
+Which statement is illegal?
+
+   A. :answer:`F := if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X);`
+   B. F := Sqrt (if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X));
+   C. B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0 else True);
+   D. B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0);
+
+:explanation:`Explanations`
+
+   A. :explanation:`Missing parentheses around expression`
+   B. :explanation:`Legal - Extra parentheses not needed`
+   C. :explanation:`Legal - "else True" not needed but is allowed`
+   D. :explanation:`Legal - B will be True if X >= 0.0`
+
 ========================
 Quantified Expressions
 ========================
@@ -1107,6 +1180,43 @@ Conditional / Quantified Expression Usage
          if At_Least_One_Answered (Answers) then
  
 * Even in pre/postconditions, use functions containing quantified expressions for abstraction
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Array1_T is array (1 .. 3) of Integer;
+   type Array2_T is array (1 .. 3) of Array1_T;
+   A : Array2_T;
+
+The above describes an array A whose elements are arrays of three elements.
+Which expression would I use to determine if at least one of A's elements are sorted?
+
+A.
+  | (for some Element of A =>
+  |    (for some Index in 2 .. 3 =>
+  |       Element (Index) >= Element (Index - 1)));
+B.
+  | (for all Element of A =>
+  |    (for all Index in 2 .. 3 =>
+  |       Element (Index) >= Element (Index - 1)));
+C.
+  | :answer:`(for some Element of A =>`
+  |    :answer:`(for all Index in 2 .. 3 =>`
+  |       :answer:`Element (Index) >= Element (Index - 1)));`
+D.
+  | (for all Element of A =>
+  |    (for some Index in 2 .. 3 =>
+  |       Element (Index) >= Element (Index - 1)));
+
+:explanation:`Explanations`
+
+   A. :explanation:`Will be True if any element has two consecutive increasing values`
+   B. :explanation:`Will be True if every element is sorted`
+   C. :explanation:`Correct`
+   D. :explanation:`Will be True if every element has two consecutive increasing values`
 
 ========
 Lab
