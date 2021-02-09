@@ -285,6 +285,32 @@ Overloading Example
 
    If Count is 0, result is a null range
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Vertical_T is (Top, Middle, Bottom);
+   type Horizontal_T is (Left, Middle, Right);
+   function "*" (H : Horizontal_T; V : Vertical_T) return Positive;
+   function "*" (V : Vertical_T; H : Horizontal_T) return Positive;
+   P : Positive;
+
+Which statement is not legal?
+
+   A. P := Horizontal_T'(Middle) * Middle;
+   B. P := Top * Right;
+   C. P := "*" (Middle, Top);
+   D. :answer:`P := "*" (H => Middle, V => Top);`
+
+:explanation:`Explanations`
+
+   A. :explanation:`Qualifying one parameter resolves ambiguity`
+   B. :explanation:`No overloaded names`
+   C. :explanation:`Use of "Top" resolves ambiguity`
+   D. :explanation:`When overloading subprogram names, best to not just switch the order of parameters`
+
 ===================
 Visibility Issues
 ===================
@@ -530,6 +556,41 @@ User-Defined Equality Composition
 * Not automatic for other user-defined types in any Ada version
 
    - Need explicit equality function for enclosing type
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Range_T is range -1_000 .. 1_000;
+   function "=" (L, R : Range_T) return Boolean is (Integer (abs (L)) = Integer (abs (R)));
+   type Coord_T is record
+      X : Range_T;
+      Y : Range_T;
+   end record;
+   type Record_T is record
+      Xy : Coord_T;
+      Z  : Range_T;
+   end record;
+
+   X : Record_T := (Xy => (1, -1), Z => 2);
+   Y : Record_T := (Xy => (-1, 1), Z => -2);
+
+Which function will return True when comparing X and Y?
+
+A.
+  | Implicit equality operator
+B. 
+  | :answer:`function "=" (L, R : Record_T) return Boolean is`
+  |    :answer:`(L.Z = R.Z and L.Xy.X = R.Xy.X and L.Xy.Y = R.Xy.Y);`
+C.
+  | function "=" (L, R : Record_T) return Boolean is
+  |    (L.Z = R.Z and L.Xy = R.Xy);
+D.
+  | function "=" (L, R : Record_T) return Boolean is (L = R);
+
+:explanation:`We are looking to use our own equality operator (that compares absolute values) so the only time that happens is when we examine each Range_T component individually`
 
 ========
 Lab
