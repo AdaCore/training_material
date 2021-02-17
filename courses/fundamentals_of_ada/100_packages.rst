@@ -310,6 +310,45 @@ Required Body Example
      procedure Cursor_Up (Count : in Positive := 1) is ...
        ...
    end VT100;
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      Object_One : integer;
+      procedure One ( P : out integer );
+   end One;
+
+Which is the correct completion of package P?
+
+   A. No completion needed
+   B. | package P is
+      |   procedure One ( P : out integer ) is null;
+      | end P;
+   C. | package P is
+      |   Object_One : integer;
+      |   procedure One ( P : out integer ) is
+      |   begin
+      |      P := Object_One;
+      |   end One;
+      | end P;
+   D. | :answer:`package P is`
+      |   :answer:`procedure One ( P : out integer ) is`
+      |   :answer:`begin`
+      |      :answer:`P := Object_One;`
+      |   :answer:`end One;`
+      | :answer:`end P;`
+
+:explanation:`Explanations`
+
+   A. :explanation:`Procedure "One" must have a body`
+   B. :explanation:`No assignment of a value to "out" parameter`
+   C. :explanation:`Cannot duplicate "Object_One"`
+   D. :explanation:`Correct`
+
  
 ==================
 Executable Parts
