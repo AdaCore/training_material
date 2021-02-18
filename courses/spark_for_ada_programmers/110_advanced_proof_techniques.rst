@@ -477,7 +477,7 @@ Does your loop terminate?
  
 .. container:: speakernote
 
-   There is an example of this in GNAT Studio we can look at if we want to.
+   There is an example of this in :toolname:`GNAT Studio` we can look at if we want to.
    The sharper students might point out that the 'Increases I' isn't actually needed and you can still prove termination with just 'Decreases R'.
    This is true, and it would be nice to come up with a better example!
    You could do something such as changing the first assignment to:

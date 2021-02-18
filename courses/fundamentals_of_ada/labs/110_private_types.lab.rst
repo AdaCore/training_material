@@ -54,4 +54,3 @@ Private Types Lab Solution - Main
 ---------------------------------------------------
 
 .. container:: source_include labs/answers/110_private_types.txt :start-after:--Main :end-before:--Main :code:Ada
-

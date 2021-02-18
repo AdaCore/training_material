@@ -23,7 +23,7 @@ Packages Lab
    - :code:`with package_name;` gives access to :code:`package_name`
 
 ---------------------------------
-Creating Packages in GNATstudio
+Creating Packages in :toolname:`GNAT Studio`
 ---------------------------------
 
 * Right-click on :filename:`src` node
@@ -42,11 +42,11 @@ Packages Lab Solution - Constants
 .. container:: speakernote
 
    Could use functions where the value is stored in the body - less recompilation if the value changes (but then they cannot be universal integers)
-     
+
 ------------------------------
 Packages Lab Solution - Input
 ------------------------------
-    
+
 .. container:: source_include labs/answers/100_packages.txt :start-after:--Input :end-before:--Input :code:Ada
 
 -----------------------------------
@@ -58,5 +58,5 @@ Packages Lab Solution - List
 ------------------------------
 Packages Lab Solution - Main
 ------------------------------
-    
+
 .. container:: source_include labs/answers/100_packages.txt :start-after:--Main :end-before:--Main :code:Ada

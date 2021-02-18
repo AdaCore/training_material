@@ -420,11 +420,9 @@ Getting Around Accessibility Checks
       begin
          G := V'Unchecked_Access;
          ...
-         Do_Something ( G.all );
+         Do_Something ( G.all ); -- This is "reasonable"
       end P;
  
-   - (but if P dereferences G later, then it would make a little more sense)
-
 .. container:: speakernote
 
    Not the best way to write code
@@ -576,28 +574,6 @@ Anonymous Access Parameters
       P1 (V);
    end P;
  
--------------------------
-Relation with Primitive
--------------------------
-
-* Anonymous access parameters are needed to write primitives using access types
-
-   .. code:: Ada
-
-      type Root is tagged null record;
-      type A_Root is access all Root;
-      procedure P1 (V : access Root);
-      procedure P2 (V : A_Root);
-      type Child is new Root with null record;
-      type A_Child is access all Child;
-      overriding procedure P1 (V : access Child);
-      overriding procedure P2 (V : A_Child); -- illegal
-
-   - `overriding` available starting with Ada 2005
- 
-* Non-access primitives should be preferred when possible (the parameter is passed by reference anyway)
-* Access primitives are needed when there is a reference to store in the primitive
-
 ------------------------
 Anonymous Access Types
 ------------------------

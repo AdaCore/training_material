@@ -138,7 +138,7 @@ How Do You Use A Generic?
        new Integer_Stack.Utilities;
    ...
    Integer_Stack.Push ( 1 );
-   Integer_Stack.Utilities.Print;
+   Integer_Stack_Utils.Print;
 
 ==============
 Generic Data
