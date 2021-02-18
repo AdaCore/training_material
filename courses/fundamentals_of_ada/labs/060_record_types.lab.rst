@@ -25,7 +25,7 @@ Record Types Lab
    Sliding may be easier, but expensive for large arrays
 
 -----------------------------------------
-Record Types Lab Solution = Declarations
+Record Types Lab Solution - Declarations
 -----------------------------------------
 
 .. container:: source_include labs/answers/060_record_types.txt :start-after:--Declarations :end-before:--Declarations :code:Ada
