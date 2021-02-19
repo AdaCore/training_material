@@ -31,7 +31,7 @@ by running:
 Question 2
 ==========
 
-During the training, we will use GNAT Studio, AdaCore’s integrated development
+During the training, we will use :toolname:`GNAT Studio`, AdaCore’s integrated development
 environment. You can run it to open the simple project via:
 
 :code:`gnatstudio –Psimple`
@@ -60,21 +60,21 @@ Question 4
 Right click on other entities in the :code:`Main` program (types, variables,
 subprograms etc.) and use
 “Goto Declaration” and “Goto Body” to navigate the program source.
-“Goto Declaration” is probably the most useful GNAT Studio feature for navigating and
+“Goto Declaration” is probably the most useful :toolname:`GNAT Studio` feature for navigating and
 understanding large programs.
 
-*Extra credit*: How does the GNAT Studio editor know where to find the declaration of
+*Extra credit*: How does the :toolname:`GNAT Studio` editor know where to find the declaration of
 an entity like “Red”?
 
 ==========
 Question 5
 ==========
 
-You can use GNAT Studio to debug your program, by clicking the “Build and Debug”
+You can use :toolname:`GNAT Studio` to debug your program, by clicking the “Build and Debug”
 action. Let’s do a quick debugging session on the main program.
 
 1. Click on the Build and Debug icon
-2. GNAT Studio will go into debugging perspective, which you can see because a few
+2. :toolname:`GNAT Studio` will go into debugging perspective, which you can see because a few
    more views have popped up.
 3. Open the main source file, :file:`main.adb`
 4. Click on the line number “63”, and the click on the “Debug Continue” icon in the

@@ -4,7 +4,7 @@
 Getting Started
 ---------------
 
-1. Start GNAT Studio
+1. Start :toolname:`GNAT Studio`
 2. Select "Open Project"
 
 .. image:: gnat_studio/open_project/windows_1.png
@@ -21,7 +21,7 @@ Getting Started
 .. image:: gnat_studio/open_project/windows_3.png
     :height: 300px
 
-6. Locate and click on the "Compile & Run" button in GNAT Studio.
+6. Locate and click on the "Compile & Run" button in :toolname:`GNAT Studio`.
 
 .. image:: gnat_studio/ui/run_button.png
 

@@ -1,3 +1,4 @@
+--Constants
 package Constants is
   pragma Pure;
 
@@ -6,12 +7,16 @@ package Constants is
   Invalid_Value : constant := Integer'Last;
 
 end Constants;
+--Constants
+
+--Datastore
 package Datastore is
   pragma Elaborate_Body;
 
   Object : array (1 .. 100) of Integer;
 
 end Datastore;
+
 with Constants;
 with Ada.Text_IO; use Ada.Text_IO;
 package body Datastore is
@@ -36,6 +41,9 @@ begin
   end loop;
 
 end Datastore;
+--Datastore
+
+--Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Constants;
 with Datastore;
@@ -43,10 +51,12 @@ procedure Main is
 
 begin
 
-  for I in Datastore.Object'First .. Datastore.Object'Last loop
+  for I in Datastore.Object'First .. Datastore.Object'Last
+  loop
     exit when Datastore.Object (I) = Constants.Invalid_Value;
-    Put_Line
-     (Integer'Image (I) & " =>" & Integer'Image (Datastore.Object (I)));
+    Put_Line (Integer'Image (I) & " =>" &
+              Integer'Image (Datastore.Object (I)));
   end loop;
 
 end Main;
+--Main

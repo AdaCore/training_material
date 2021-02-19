@@ -419,15 +419,16 @@ Specifying Constraints via Initial Value
 No Unconstrained Component Types
 ----------------------------------
 
-* Component values are objects
-* Objects of unconstrained types must be constrained
-* Once set, bounds never change
+* Arrays: consecutive elements of the exact **same type**
+* Component size must be **defined**
+
+    - No unconstrained types
+    - Constrained subtypes allowed
 
 .. code:: Ada
 
-   subtype Positive is Integer range 1 .. Integer'Last;
-   type String is array (Positive range <>) of Character;
-   type List is array (1..10) of String; -- illegal
+   type List is array (1 .. 10) of String (1 .. 20); -- OK
+   type List is array (1 .. 10) of String; -- Illegal
 
 .. container:: speakernote
 
@@ -1015,22 +1016,24 @@ Aggregates
    - Array types
    - Record types
 
+* Two distinct forms
+
+    - Positional
+    - Named
+
 * Syntax (simplified):
 
    .. code:: Ada
 
-      array_aggregate ::= positional_array_aggregate |
-                          named_array_aggregate
+      component_expr ::=
+        expression -- Defined value
+        | <>       -- Default value
 
-      positional_array_aggregate ::=
-            (expression, expression {, expression}) |
-            (expression {, expression}, others => expression)
-
-      named_array_aggregate ::= (array_component_association
-                                {,array_component_association})
-
-      array_component_association ::=
-            discrete_choice_list => expression
+      array_aggregate ::= (
+          {component_expr ,}                         -- Positional
+        | {discrete_choice_list => component_expr,}) -- Named
+        -- Default "others" indices
+        [others => expression]
 
 -----------------------------
 Aggregate "Positional" Form
@@ -1207,11 +1210,7 @@ Defaults Within Array Aggregates
 
    .. code:: Ada
 
-      named_array_aggregate ::= ( array_component_association
-         {, array_component_association} )
-      array_component_association ::=
-         discrete_choice_list => expression
-         |discrete_choice_list => <>
+      discrete_choice_list => <>
 
 * Example
 

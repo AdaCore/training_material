@@ -19,164 +19,28 @@ Limited Types Lab
 Limited Types Lab Solution - Employee Data (Spec)
 ---------------------------------------------------
 
-.. code:: Ada
-
-   with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-   package Employee_Data is
-   
-     type Employee_T is limited private;
-   
-     type Hourly_Rate_T is delta 0.01 digits 6 range 0.0 .. 999.99;
-     type Id_T is range 999 .. 9_999;
-   
-     function Create (Name : String;
-                      Rate : Hourly_Rate_T := 0.0)
-                      return Employee_T;
-     function Id (Employee : Employee_T) return Id_T;
-     function Name (Employee : Employee_T) return String;
-     function Rate (Employee : Employee_T) return Hourly_Rate_T;
-   
-   private
-   
-     type Employee_T is limited record
-       Name : Unbounded_String := Null_Unbounded_String;
-       Rate : Hourly_Rate_T    := 0.0;
-       Id   : Id_T             := Id_T'First;
-     end record;
-   
-   end Employee_Data;
+.. container:: source_include labs/answers/120_limited_types.txt :start-after:--Employee_Data_Spec :end-before:--Employee_Data_Spec :code:Ada
 
 -------------------------------------------------
 Limited Types Lab Solution - Timecards (Spec)
 -------------------------------------------------
 
-.. code:: Ada
-
-   with Employee_Data;
-   package Timecards is
-
-     type Hours_Worked_T is digits 3 range 0.0 .. 24.0;
-     type Pay_T is digits 6;
-     type Timecard_T is limited private;
-
-     function Create (Name  : String;
-                      Rate  : Employee_Data.Hourly_Rate_T;
-                      Hours : Hours_Worked_T)
-                      return Timecard_T;
-
-     function Id (Timecard : Timecard_T) return Employee_Data.Id_T;
-     function Name (Timecard : Timecard_T) return String;
-     function Rate (Timecard : Timecard_T) return Employee_Data.Hourly_Rate_T;
-     function Pay (Timecard : Timecard_T) return Pay_T;
-     function Image (Timecard : Timecard_T) return String;
-
-   private
-
-     type Timecard_T is limited record
-       Employee     : Employee_Data.Employee_T;
-       Hours_Worked : Hours_Worked_T := 0.0;
-       Pay          : Pay_T          := 0.0;
-     end record;
-
-   end Timecards;
+.. container:: source_include labs/answers/120_limited_types.txt :start-after:--Timecards_Spec :end-before:--Timecards_Spec :code:Ada
 
 ---------------------------------------------------
 Limited Types Lab Solution - Employee Data (Body)
 ---------------------------------------------------
 
-.. code:: Ada
-
-   package body Employee_Data is
-   
-     Last_Used_Id : Id_T := Id_T'First;
-   
-     function Create (Name : String;
-                      Rate : Hourly_Rate_T := 0.0)
-                      return Employee_T is
-     begin
-       return Ret_Val : Employee_T do
-         Last_Used_Id := Id_T'Succ (Last_Used_Id);
-         Ret_Val.Name := To_Unbounded_String (Name);
-         Ret_Val.Rate := Rate;
-         Ret_Val.Id   := Last_Used_Id;
-       end return;
-     end Create;
-   
-     function Id (Employee : Employee_T) return Id_T is
-       (Employee.Id);
-     function Name (Employee : Employee_T) return String is
-       (To_String (Employee.Name));
-     function Rate (Employee : Employee_T) return Hourly_Rate_T is
-       (Employee.Rate);
-   
-   end Employee_Data;
+.. container:: source_include labs/answers/120_limited_types.txt :start-after:--Employee_Data_Body :end-before:--Employee_Data_Body :code:Ada
 
 -------------------------------------------------
 Limited Types Lab Solution - Timecards (Body)
 -------------------------------------------------
 
-.. code:: Ada
-
-   with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-   package body Timecards is
-   
-     function Create (Name  : String;
-                      Rate  : Employee_Data.Hourly_Rate_T;
-                      Hours : Hours_Worked_T)
-                      return Timecard_T is
-     begin
-       return (Employee       => Employee_Data.Create (Name, Rate),
-               Hours_Worked   => Hours,
-               Pay            => Pay_T (Hours) * Pay_T (Rate));
-     end Create;
-   
-     function Id (Timecard : Timecard_T) return Employee_Data.Id_T is
-       (Employee_Data.Id (Timecard.Employee));
-     function Name (Timecard : Timecard_T) return String is
-       (Employee_Data.Name (Timecard.Employee));
-     function Rate (Timecard : Timecard_T) return Employee_Data.Hourly_Rate_T is
-       (Employee_Data.Rate (Timecard.Employee));
-     function Pay (Timecard : Timecard_T) return Pay_T is
-       (Timecard.Pay);
-   
-     function Image (Timecard : Timecard_T) return String is
-       Name_S : constant String := Name (Timecard);
-       Id_S   : constant String :=
-        Employee_Data.Id_T'Image (Employee_Data.Id (Timecard.Employee));
-       Rate_S : constant String :=
-        Employee_Data.Hourly_Rate_T'Image
-         (Employee_Data.Rate (Timecard.Employee));
-       Hours_S : constant String := Hours_Worked_T'Image (Timecard.Hours_Worked);
-       Pay_S   : constant String := Pay_T'Image (Timecard.Pay);
-     begin
-       return Name_S & " ( " & Id_S & " ) => " & Hours_S & " hours * " & Rate_S &
-        "/hour = " & Pay_S;
-     end Image;
-   
-   end Timecards;
+.. container:: source_include labs/answers/120_limited_types.txt :start-after:--Timecards_Body :end-before:--Timecards_Body :code:Ada
 
 -------------------------------------------------
 Limited Types Lab Solution - Main
 -------------------------------------------------
 
-.. code:: Ada
-
-   with Ada.Text_IO; use Ada.Text_IO;
-   with Timecards;
-   procedure Main is
-
-     One : Timecards.Timecard_T := Timecards.Create
-       (Name  => "Fred Flintstone",
-        Rate  => 1.1,
-        Hours => 2.2);
-     Two : Timecards.Timecard_T := Timecards.Create
-       (Name  => "Barney Rubble",
-        Rate  => 3.3,
-        Hours => 4.4);
-
-   begin
-
-     Put_Line (Timecards.Image (One));
-     Put_Line (Timecards.Image (Two));
-
-   end Main;
+.. container:: source_include labs/answers/120_limited_types.txt :start-after:--Main :end-before:--Main :code:Ada

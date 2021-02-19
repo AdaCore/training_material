@@ -570,7 +570,6 @@ Propagation
 * Control does not return to point of raising
 
    - Termination Model
-   - Not "resumption" semantics (e.g. PL/1)
 
 * When a handler is not found in a block statement
 
@@ -633,10 +632,6 @@ Termination Model
 
    - Does not resume at point exception was raised
 
-* **Resumption Model** is inefficient in general
-
-   - Requires state restoration from handler execution
-
 .. code:: Ada
     
    procedure Joy_Ride is
@@ -653,36 +648,6 @@ Termination Model
      when Fuel_Exhausted =>
        Push_Home;
        -- Completion of exception handler returns to caller
-   end Joy_Ride;
-     
--------------------------------
-Resumption Semantics (Almost)
--------------------------------
-
-* Must be explicitly programmed
-* Resumption is at beginning of abandoned sequence
-
-   - So not quite the Resumption Model semantics
-
-.. code:: Ada
-    
-   loop
-     begin
-       Joy_Ride;
-     exception
-       when Fuel_Exhausted =>
-         Refill_Tank;
-     end;
-   end loop;
-   ...
-   procedure Joy_Ride is
-     Bored : Boolean := False;
-   begin
-     while not Bored loop
-       Steer_Aimlessly (Bored);
-       Consume_Fuel;
-       Wave_To_Pedestrians;
-     end loop;
    end Joy_Ride;
      
 -------------------------------

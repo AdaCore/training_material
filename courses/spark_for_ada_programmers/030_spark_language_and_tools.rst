@@ -1201,7 +1201,7 @@ To Specify Default `SPARK_Mode` Value
 Two Available IDEs Supporting SPARK
 -------------------------------------
 
-* GNAT Studio
+* :toolname:`GNAT Studio`
 
    - The AdaCore flagship IDE
    - Best overall
@@ -1211,7 +1211,7 @@ Two Available IDEs Supporting SPARK
    - If you are already using Eclipse
 
 ---------------------------------
-Basic GNAT Studio Look and Feel
+Basic :toolname:`GNAT Studio` Look and Feel
 ---------------------------------
 
 .. image:: ../../images/gnatstudio-look_and_feel.png
@@ -1256,7 +1256,7 @@ Source Code Contextual Menu
    SPARK Menu - Prove All
 
 ----------------------------------------
-Example Analysis Results in GNATstudio
+Example Analysis Results in :toolname:`GNAT Studio`
 ----------------------------------------
 
 .. image:: ../../images/gnatprove-output-ide.jpeg

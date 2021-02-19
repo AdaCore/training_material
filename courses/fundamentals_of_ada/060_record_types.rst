@@ -3,6 +3,17 @@
 Record Types
 **************
 
+.. |rightarrow| replace:: :math:`\rightarrow`
+
+.. role:: ada(code)
+   :language: ada
+
+.. role:: C(code)
+   :language: C
+
+.. role:: cpp(code)
+   :language: C++
+
 ==============
 Introduction
 ==============
@@ -266,23 +277,31 @@ Aggregates
 * Literal values for composite types
 
    - As for arrays
+   - Default value / selector: :ada:`<>`, :ada:`others`
+
+* Can use both **named** and **positional**
+
+    - Unambiguous
 
 * Syntax (simplified):
 
    .. code:: Ada
 
-      record_aggregate ::= (record_component_association_list)
-      
-      record_component_association_list ::= 
-         record_component_association
-         { , record_component_association}
-      
-      record_component_association ::= 
-         [component_choice_list =>] expression
-      
-      component_choice_list ::= 
-         component_selector_name { | component_selector_name}
-         | others
+      component_init ::= expression | <>
+
+      record_aggregate ::=
+         {[component_choice_list =>] component_init ,}
+         [others => component_init]
+
+* Example
+
+   .. code:: Ada
+
+        V : Car_T := (
+            Red,
+            Plate_No => "AX672",
+            others => <>
+        );
  
 ---------------------------
 Record Aggregate Examples

@@ -1,3 +1,4 @@
+--Declarations
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
@@ -12,28 +13,25 @@ procedure Main is
    end record;
 
    Queue : Fifo_Queue_T;
-
    Choice : Integer;
+--Declarations
 
+--Implementation
 begin
 
    loop
       Put ("1 = add to queue | 2 = remove from queue | others => done: ");
       Choice := Integer'Value (Get_Line);
-      if Choice = 1
-      then
+      if Choice = 1 then
          Put ("Enter name: ");
          Queue.Queue (Queue.Next_Available) := Name_T (Get_Line);
          Queue.Next_Available               := Queue.Next_Available + 1;
-      elsif Choice = 2
-      then
-         if Queue.Next_Available = 1
-         then
+      elsif Choice = 2 then
+         if Queue.Next_Available = 1 then
             Put_Line ("Nobody in line");
          else
             Queue.Last_Served := Queue.Last_Served + 1;
-            Put_Line
-              ("Now serving: " & String (Queue.Queue (Queue.Last_Served)));
+            Put_Line ("Now serving: " & String (Queue.Queue (Queue.Last_Served)));
          end if;
       else
          exit;
@@ -42,9 +40,9 @@ begin
    end loop;
 
    Put_Line ("Remaining in line: ");
-   for Index in Queue.Last_Served + 1 .. Queue.Next_Available - 1
-   loop
+   for Index in Queue.Last_Served + 1 .. Queue.Next_Available - 1 loop
       Put_Line ("  " & String (Queue.Queue (Index)));
    end loop;
 
 end Main;
+--Implementation
