@@ -180,6 +180,40 @@ Enclosing Composites Become Limited
      ...
    end;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      type T is limited null record;
+      type R is record
+         F1 : Integer;
+         F2 : T;
+      end record;
+   end P;
+
+   with P;
+   procedure Main is
+      T1, T2 : P.T;
+      R1, R2 : P.R;
+   begin
+
+Which assignment is legal?
+
+   A. T1    := T2;
+   B. R1    := R2;
+   C. :answer:`R1.F1 := R2.F1;`
+   D. R2.F2 := R2.T2;
+
+:explanation:`Explanations`
+
+   A. :explanation:`T1 and T2 are limited types`
+   B. :explanation:`R1 and R2 contain limited types so they are also limited`
+   C. :explanation:`Theses components are not limited types`
+   D. :explanation:`These components are of a limited type`
+
 =================
 Creating Values
 =================
@@ -320,6 +354,46 @@ Writing Limited Constructor Functions
      return (Flag => 0);
    end F;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      type T is record
+         F1 : Integer;
+         F2 : Character;
+      end record;
+      Zero : T := (0, ' ');
+      function F return T;
+   end P;
+
+Which is a correct completion of F?
+
+A.
+  |  :answer:`function F return T is ((3, 'c'));`
+
+B.
+  |  function F return T is
+  |     Two : T;
+  |  begin
+  |     Two := (2, 'b');
+  |     return Two;
+  |  end F;
+
+C.
+  |  function F return T is
+  |     One : constant T := (1, 'a');
+  |  begin
+  |     return One;
+  |  end F;
+
+D.
+  |  function F return T is ( Zero );
+
+:explanation:`"A" contains an "in-place" return. The rest all rely on other objects, which would require an (illegal) copy`
+
 ============================
 Extended Return Statements
 ============================
@@ -601,6 +675,42 @@ Automatically Limited Full View
    Also_Legal adds "limited" to the full view
    Not_Legal puts more limitations on full view than partial view
    Also_Not_Legal never shows the client that S is limited
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      type L1_T is limited private;
+      type L2_T is limited private;
+      type P1_T is private;
+      type P2_T is private;
+   private
+      type L1_T is limited record
+         Field : Integer;
+      end record;
+      type L2_T is record
+         Field : Integer;
+      end record;
+      type P1_T is limited record
+         Field : L1_T;
+      end record;
+      type P2_T is record
+         Field : L2_T;
+      end record;
+   end P;
+
+
+What will happen when the above code is compiled?
+
+A. :answer:`Type P1_T will generate a compile error`
+B. Type P2_T will generate a compile error
+C. Both type P1_T and type P2_T will generate compile errors
+D. The code will compile successfully
+
+:explanation:`The full definition of type P1_T adds additional restrictions, which is not allowed. Although P2_T contains a component whose visible view is limited, the internal view is not limited so P2_T is not limited.`
 
 ========
 Lab

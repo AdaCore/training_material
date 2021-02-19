@@ -358,8 +358,8 @@ Which component is legal?
 
    A. Field_A : integer := Private_T'Pos (Private_T'First);
    B. Field_B : Private_T := null;
-   B. Field_C : Private_T := 0;
-   C. :answer:`Field_D : integer := Private_T'size;`
+   C. Field_C : Private_T := 0;
+   D. :answer:`Field_D : integer := Private_T'size;`
 
       .. code:: Ada
 
