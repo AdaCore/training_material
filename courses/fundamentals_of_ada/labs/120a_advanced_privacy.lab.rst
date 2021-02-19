@@ -27,61 +27,24 @@ Advanced Privacy Lab
 ----------------------------------------------
 Advanced Privacy Lab Solution - Message Type
 ----------------------------------------------
-.. code:: Ada
 
-   package Messages is
+.. container:: source_include labs/answers/120a_advanced_privacy.txt :start-after:--Messages :end-before:--Messages :code:Ada
 
-      type Message_T is private;
-
-      procedure Set_Content (Message : in out Message_T;
-                             Value   :        Integer);
-      function Content (Message : Message_T)
-                      return Integer;
-      function Image (Message : Message_T)
-                      return String;
-
-   private
-      type Message_Content_T;
-      type Message_T is access Message_Content_T;
-
-   end Messages; 
- 
 ---------------------------------------------------
 Advanced Privacy Lab Solution - Message List Type
 ---------------------------------------------------
-.. code:: Ada
 
-   package Messages.List_Types is
-      type List_T is private;
-
-   private
-      type List_Content_T;
-      type List_T is access List_Content_T;
-
-      type Id_Type is range 1_000 .. 9_999;
-      type List_Content_T is record
-         Id      : Id_Type;
-         Content : Message_T;
-         Next    : List_T;
-      end record;
-
-   end Messages.List_Types;
+.. container:: source_include labs/answers/120a_advanced_privacy.txt :start-after:--List_Types :end-before:--List_Types :code:Ada
  
 ---------------------------------------------------------
 Advanced Privacy Lab Solution - Message List Operations
 ---------------------------------------------------------
-.. code:: Ada
 
-   with Messages.List_Types;
-   package Messages.List_Types.Operations is
+.. container:: source_include labs/answers/120a_advanced_privacy.txt :start-after:--Operations :end-before:--Operations :code:Ada
 
-      procedure Append (List : in out List_T;
-                        Item :        Message_T);
-      function Next (List : List_T)
-                     return List_T;
-      function Is_Null (List : List_T)
-                        return Boolean;
-      function Image (Message : List_T)
-                      return String;
+--------------------------------------
+Advanced Privacy Lab Solution - Main
+--------------------------------------
 
-   end Messages.List_Types.Operations;
+.. container:: source_include labs/answers/120a_advanced_privacy.txt :start-after:--Main :end-before:--Main :code:Ada
+

@@ -3,26 +3,22 @@ procedure Main is
 
    type List_T is array (Integer range <>) of Integer;
 
-   function Is_Found
-     (List : List_T;
-      Item : Integer)
-      return Boolean is
+   --Search
+   function Is_Found (List : List_T;
+                      Item : Integer)
+                      return Boolean is
    begin
-      if List'Length = 0
-      then
+      if List'Length = 0 then
          return False;
-      elsif List'Length = 1
-      then
+      elsif List'Length = 1 then
          return List (List'First) = Item;
       else
          declare
             Midpoint : constant Integer := (List'First + List'Last) / 2;
          begin
-            if List (Midpoint) = Item
-            then
+            if List (Midpoint) = Item then
                return True;
-            elsif List (Midpoint) > Item
-            then
+            elsif List (Midpoint) > Item then
                return Is_Found (List
                       (List'First .. Midpoint - 1), Item);
             else -- List(Midpoint) < item
@@ -32,7 +28,9 @@ procedure Main is
          end;
       end if;
    end Is_Found;
+   --Search
 
+   --Sort
    procedure Sort (List : in out List_T) is
       Swapped : Boolean;
       procedure Swap (I, J : in Integer) is
@@ -43,23 +41,22 @@ procedure Main is
          Swapped  := True;
       end Swap;
    begin
-      for I in List'First .. List'Last
-      loop
+      for I in List'First .. List'Last loop
          Swapped := False;
-         for J in 1 .. List'Last - I
-         loop
+         for J in 1 .. List'Last - I loop
             if List (J) > List (J + 1)
             then
                Swap (J, J + 1);
             end if;
          end loop;
-         if not Swapped
-         then
+         if not Swapped then
             return;
          end if;
       end loop;
    end Sort;
+   --Sort
 
+--Main
    procedure Fill (List : out List_T) is
    begin
       Put_Line ("Enter values for list: ");
@@ -80,9 +77,7 @@ begin
       List : List_T (1 .. Number);
    begin
       Fill (List);
-
       Sort (List);
-
       loop
          Put ("Enter number to look for: ");
          Number := Integer'Value (Get_Line);
@@ -92,3 +87,4 @@ begin
    end;
 
 end Main;
+--Main

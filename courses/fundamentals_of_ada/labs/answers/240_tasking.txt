@@ -1,112 +1,93 @@
+--Datastore
 package Datastore is
-
   type Register_T is (One, Two, Three);
 
-  function Read
-   (Register : Register_T)
-    return Integer;
-  procedure Write
-   (Register : Register_T;
-    Value    : Integer);
-
+  function Read (Register : Register_T) return Integer;
+  procedure Write (Register : Register_T;
+                   Value    : Integer);
 end Datastore;
-package body Datastore is
 
+package body Datastore is
   type Register_Data_T is array (Register_T) of Integer;
 
   protected Registers is
-    function Read
-     (Register : Register_T)
-      return Integer;
-    procedure Write
-     (Register : Register_T;
-      Value    : Integer);
+    function Read (Register : Register_T) return Integer;
+    procedure Write (Register : Register_T;
+                     Value    : Integer);
   private
     Register_Data : Register_Data_T;
   end Registers;
 
   protected body Registers is
-    function Read
-     (Register : Register_T)
-      return Integer is (Register_Data (Register));
-    procedure Write
-     (Register : Register_T;
-      Value    : Integer) is
+    function Read (Register : Register_T) return Integer is
+       (Register_Data (Register));
+    procedure Write (Register : Register_T;
+                     Value    : Integer) is
     begin
       Register_Data (Register) := Value;
     end Write;
   end Registers;
 
-  function Read
-   (Register : Register_T)
-    return Integer is (Registers.Read (Register));
-  procedure Write
-   (Register : Register_T;
-    Value    : Integer) is
+  function Read (Register : Register_T) return Integer is
+     (Registers.Read (Register));
+  procedure Write (Register : Register_T;
+                   Value    : Integer) is
   begin
     Registers.Write (Register, Value);
   end Write;
-
 end Datastore;
+--Datastore
+--Task
 with Datastore;
 package Counter is
-
   task type Counter_T is
-    entry Initialize
-     (Register   : Datastore.Register_T;
-      Value      : Integer;
-      Increment  : Integer;
-      Delay_Time : Duration);
+    entry Initialize (Register   : Datastore.Register_T;
+                      Value      : Integer;
+                      Increment  : Integer;
+                      Delay_Time : Duration);
   end Counter_T;
-
 end Counter;
-package body Counter is
 
+package body Counter is
   task body Counter_T is
     O_Register  : Datastore.Register_T;
     O_Increment : Integer;
     O_Delay     : Duration;
     Initialized : Boolean := False;
   begin
-
     loop
       select
-        accept Initialize
-         (Register   : Datastore.Register_T;
-          Value      : Integer;
-          Increment  : Integer;
-          Delay_Time : Duration) do
+        accept Initialize (Register   : Datastore.Register_T;
+                           Value      : Integer;
+                           Increment  : Integer;
+                           Delay_Time : Duration) do
           O_Register  := Register;
           O_Increment := Increment;
           O_Delay     := Delay_Time;
-          Datastore.Write
-           (Register => O_Register,
-            Value    => Value);
+          Datastore.Write (Register => O_Register,
+                           Value    => Value);
           Initialized := True;
-
         end Initialize;
       or
         delay O_Delay;
         if Initialized then
-          Datastore.Write
-           (Register => O_Register,
-            Value    => Datastore.Read (O_Register) + O_Increment);
+          Datastore.Write (Register => O_Register,
+                           Value    => Datastore.Read (O_Register) + O_Increment);
         end if;
       end select;
     end loop;
   end Counter_T;
-
 end Counter;
+--Task
+
+--Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Counter;     use Counter;
 with Datastore;   use Datastore;
 procedure Main is
-
   Counters : array (Register_T) of Counter_T;
 
-  function Get
-   (Prompt : String)
-    return Integer is
+  function Get (Prompt : String) return Integer is
   begin
     Put ("  " & Prompt & ">");
     return Integer'Value (Get_Line);
@@ -115,13 +96,11 @@ procedure Main is
   procedure Print is
   begin
     for Register in Register_T loop
-      Put_Line
-       (Register'Image & " =>" & Integer'Image (Datastore.Read (Register)));
+      Put_Line (Register'Image & " =>" & Integer'Image (Datastore.Read (Register)));
     end loop;
   end Print;
 
 begin
-
   for Register in Register_T loop
     Put_Line ("Register " & Register'Image);
     declare
@@ -129,11 +108,10 @@ begin
       I : Integer := Get ("Increment");
       D : Integer := Get ("Delay in tenths");
     begin
-      Counters (Register).Initialize
-       (Register   => Register,
-        Value      => V,
-        Increment  => I,
-        Delay_Time => Duration (D) / 10.0);
+      Counters (Register).Initialize (Register   => Register,
+                                      Value      => V,
+                                      Increment  => I,
+                                      Delay_Time => Duration (D) / 10.0);
     end;
   end loop;
 
@@ -150,5 +128,5 @@ begin
   for Register in Register_T loop
     abort Counters (Register);
   end loop;
-
 end Main;
+--Main

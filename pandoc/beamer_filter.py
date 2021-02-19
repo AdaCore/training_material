@@ -210,6 +210,92 @@ def language_variant_admonition ( contents ):
                    latex_box(text) +
                    '\\hspace{1cm}}}')] )
 
+###################################
+## INCLUDE SOURCE CODE FROM FILE ##
+###################################
+
+'''
+   RST "include" directive allows the inclusion of a snippet of an
+   external file, and can format it as a block of code.
+   (https://docutils.sourceforge.io/docs/ref/rst/directives.html#including-an-external-document-fragment)
+
+   HOWEVER, Pandoc does not support it!
+
+   So these subprograms allow us to simulate it using a "container" directive.
+   The format of the directive is:
+
+      .. container:: source_include <path-to-file> [option [option ...]]
+
+   Options follow the format specified in the above link. As of now, the only options 
+   supported are
+      :start-after:<string>
+         insert code starting at the line after the first occurrence of <string>
+      :end-before:<string>
+         stop inserting code at the line before the first occurrence of <string>
+         (if "start-after" is specified, only look for <string> after starting)
+      :code:<language>
+         Language to format code insertion
+'''
+
+def source_file_contents ( filename, keywords ):
+   retval = ""
+
+   start_after = ""
+   end_before = ""
+   echo_on = False
+
+   # if we're looking for a string before starting, save the string
+   if 'start-after' in keywords.keys():
+      start_after = keywords['start-after']
+   # otherwise, we start by echoing the file
+   else:
+      echo_on = True
+
+   if 'end-before' in keywords.keys():
+      end_before = keywords['end-before']
+
+   if os.path.isfile ( filename ):
+      with open ( filename, 'r' ) as the_file:
+         for line in the_file:
+            # if we're not echoing, then look for the starting text
+            if not echo_on:
+               if len(start_after) > 0 and start_after in line:
+                  echo_on = True
+            # if we are echoing and we find the ending text, we're done
+            elif len(end_before) > 0 and end_before in line:
+               break
+            # otherwise add this to the return value
+            else:
+               retval = retval + line
+      return retval
+   else:
+      return filename
+      
+def source_include ( classes, contents ):
+   # useful for debugging
+   filename = str(classes)
+   keywords = {}
+   keywords['code'] = 'Ada'
+
+   for item in classes:
+      if os.path.isfile ( item ):
+         filename = item
+      else:
+         # keywords are in format ":<keyword>:value"
+         pieces = item.split(':')
+         if len(pieces) == 3:
+            keywords[pieces[1]] = pieces[2]
+
+   value0 = {}
+   value0['t'] = 'CodeBlock'
+   value0['c'] = [ ['', [ keywords['code'] ], [] ], source_file_contents ( filename, keywords ) ]
+   value = [ value0 ]
+
+   return value
+
+def is_source_include ( classes ):
+   return ( "container" in classes ) and ( "source_include" in classes)
+
 #####################
 ## QUERY FUNCTIONS ##
 #####################
@@ -345,6 +431,9 @@ def perform_filter(key, value, format, meta):
 
             if is_speakernote ( classes ):
                 return speaker_note ( contents )
+
+            if is_source_include ( classes ):
+                return source_include ( classes, contents )
 
             # language variant admonition
             elif admonition_type ( classes, contents ) == "language variant":

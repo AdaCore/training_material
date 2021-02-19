@@ -1,6 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
+   --Checks
    subtype Year_T is Positive range 1_900 .. 2_099;
    subtype Month_T is Positive range 1 .. 12;
    subtype Day_T is Positive range 1 .. 31;
@@ -25,10 +26,12 @@ procedure Main is
                       return Boolean is
      (Date.Year in Year_T and then Date.Month in Month_T
       and then Date.Day in 1 .. Days_In_Month (Date.Month, Date.Year));
+   --Checks
 
    List : array (1 .. 5) of Date_T;
    Item : Date_T;
 
+   --Main
    function Number (Prompt : String)
                     return Positive is
    begin
@@ -53,3 +56,4 @@ begin
                    I = List'First or else List (I).Year = List (I - 1).Year));
 
 end Main;
+--Main

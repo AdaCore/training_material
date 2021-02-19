@@ -14,22 +14,13 @@ begin
 
    Create (File, Out_File, "foo.txt");
 
-   for I in 1 .. C
-   loop
-      Count_Io.Put
-        (I,
-         Width => 3);
-      Count_Io.Put
-        (File,
-         I,
-         Width => 3);
+   for I in 1 .. C loop
+      Count_Io.Put (I, Width => 3);
+      Count_Io.Put (File, I, Width => 3);
       Put (" => ");
       begin
          Enum_Io.Get (E);
-         Enum_Io.Put
-           (File,
-            E,
-            Width => 10);
+         Enum_Io.Put (File, E, Width => 10);
       exception
          when Data_Err : others =>
             Put_Line ("Something didn't look right");
@@ -40,9 +31,7 @@ begin
 
    Put_Line ("Echoing file");
    Open (File, In_File, "foo.txt");
-   while not End_Of_File (File)
-   loop
+   while not End_Of_File (File) loop
       Put_Line (Get_Line (File));
    end loop;
-
 end Main;

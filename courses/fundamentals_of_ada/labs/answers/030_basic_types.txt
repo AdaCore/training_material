@@ -1,3 +1,4 @@
+--Declarations
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
@@ -14,7 +15,9 @@ procedure Main is
    Angle : Degrees_T;
 
    Color : Cymk_T;
+--Declarations
 
+--Implementation
 begin
 
    -- assignment
@@ -38,3 +41,4 @@ begin
    Put_Line (Color'Image);
 
 end Main;
+--Implementation
