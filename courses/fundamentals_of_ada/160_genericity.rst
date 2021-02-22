@@ -236,6 +236,29 @@ Generic Parameters Can Be Combined
        Index => Integer,
        Arr   => String_Array);
  
+ 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   generic
+      type T1 is (<>);
+      type T2 (<>) is private;
+   procedure G
+     (A : T1;
+      B : T2);
+
+Which is an illegal instantiation?
+
+   A. :answer:`procedure A is new G (String, Character);`
+   B. procedure B is new G (Character, Integer);
+   C. procedure C is new G (Integer, Boolean);
+   D. procedure D is new G (Boolean, String);
+
+:explanation:`T1 must be discrete - so an integer or an enumeration. T2 can be any type`
+
 =====================
 Generic Formal Data
 =====================
@@ -344,6 +367,43 @@ Generic Package Parameters
    
    package Other_I is new Other (Base_I, 56.7);
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      procedure P1 (X : in out Integer); -- add 100 to X
+      procedure P2 (X : in out Integer); -- add 20 to X
+      procedure P3 (X : in out Integer); -- add 3 to X
+   
+      generic
+         Z : in out Integer;
+         with procedure P1 (X : in out Integer) is <>;
+         with procedure P2 (X : in out Integer) is null;
+      procedure G;
+   end P;
+
+   package body P is
+      -- bodies of P1/P2/P3 skipped for space
+
+      procedure G is begin
+         P1 (Z);
+         P2 (Z);
+      end G;
+   end P;
+
+Given an integer Z initialized to 100, what is the value of Z after calling I for each of the following instantiations?
+
+   procedure I is new G (Z); :explanation:`200 - Calls P1 and null`
+
+   procedure I is new G (Z, P1 => P3); :explanation:`103 - Calls P3 and null`
+
+   procedure I is new G (Z, P2 => P3); :explanation:`203 - Calls P1 and P3`
+
+   procedure I is new G (Z, P1 => P3, P2 => P3); :explanation:`106 - Calls P3 twice`
+
 ====================
 Generic Completion
 ====================
