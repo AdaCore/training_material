@@ -242,6 +242,30 @@ Referencing The Stack
       -- What if P2 is called after P1?
    end P2;
      
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type One_T is access all Integer;
+   type Two_T is access Integer;
+
+   A : Integer;
+   B : aliased Integer;
+
+   One : One_T;
+   Two : Two_T;
+
+Which assignment is legal?
+
+A. One := A'Access;
+B. :answer:`One := B'Access;`
+C. Two := A'Access;
+D. Two := B'Access;
+
+:explanation:`'Access is only allowed for general access types (One_T). To use 'Access on an object, the object must be aliased.`
+
 ==========================
 Access Types
 ==========================
@@ -442,6 +466,38 @@ Using Pointers For Recursive Structures
       Next       : Cell_Access;
       Some_Value : Integer;
    end record;
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Global_Access_T is access all Integer;
+   Global_Pointer : Global_Access_T;
+   Global_Object  : aliased Integer;
+   procedure Proc_Access is
+      type Local_Access_T is access all Integer;
+      Local_Pointer : Local_Access_T;
+      Local_Object  : aliased Integer;
+   begin
+
+Which assignment is illegal?
+
+A. Global_Pointer := Global_Object'Access;
+B. :answer:`Global_Pointer := Local_Object'Access;`
+C. Local_Pointer  := Global_Object'Access;
+D. Local_Pointer  := Local_Object'Access;
+
+:explanation:`Explanations`
+
+:explanation:`A. Pointer type has same depth as object`
+
+:explanation:`B. Pointer type is not allowed to have higher level than pointed-to object`
+
+:explanation:`C. Pointer type has lower depth than pointed-to object`
+
+:explanation:`D. Pointer type has same depth as object`
 
 ===================
 Memory Management
