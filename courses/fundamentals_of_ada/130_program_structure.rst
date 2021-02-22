@@ -495,7 +495,34 @@ Example of Visibility As If Nested
       -- implied nesting rule
       X : Foo.Typemark; 
    end A.Bar;
- 
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package Parent is
+      Parent_Object : Integer;
+   end Parent;
+
+   package Parent.Sibling is
+      Sibling_Object : Integer;
+   end Parent.Sibling;
+
+   package Parent.Child is
+      Child_Object : Integer := ? ;
+   end Parent.Child;
+
+Which is not a legal initialization of Child_Object?
+
+   A. Parent.Parent_Object + Parent.Sibling.Sibling_Object
+   B. Parent_Object + Sibling.Sibling_Object
+   C. Parent_Object + Sibling_Object
+   D. :answer:`All of the above`
+
+:explanation:`A, B, and C are illegal because there is no reference to package Parent.Sibling (the reference to Parent is implied by the hierarchy). If Parent.Child had "with Parent.Sibling", then A and B would be legal, but C would still be incorrect because there is no implied reference to a sibling.`
+
 ===================
 Visibility Limits
 ===================
@@ -659,6 +686,42 @@ Another Misbehaving Child
      end Cheater;
    end Skippy.Evil_Twin;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      procedure Initialize;
+      Object_A : Integer;
+   private
+      Object_B : Integer;
+   end P;
+
+   package body P is
+      Object_C : Integer;
+      procedure Initialize is null;
+   end P;
+
+   package P.Child is
+      function X return Integer;
+   end P.Child;
+
+Which is not a legal completion of P.Child.X?
+
+   A.  function X return Integer is (Object_A);
+   B.  function X return Integer is (Object_B);
+   C.  :answer:`function X return Integer is (Object_C);`
+   D.  None of the above
+
+:explanation:`Explanations`
+
+   A. :explanation:`Object_A is in the public part of P - visible to any unit that "with's" P`
+   B. :explanation:`Object_B is in the private part of P - visible in the private part or body of any descendant of P`
+   C. :explanation:`Object_C is in the body of P, so it is only visible in the body of P`
+   D. :explanation:`A and B are both valid completions`
+
 ===================
 Private Children
 ===================
