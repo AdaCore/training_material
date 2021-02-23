@@ -358,6 +358,50 @@ Exceptions Raised In Exception Handlers
            end;
        end;
      
+------
+Quiz
+------
+
+.. code:: Ada
+ :number-lines: 1
+
+   with Ada.Text_IO; use Ada.Text_IO;
+   procedure Main is
+      A, B, C, D : Natural;
+   begin
+      A := 1; B := 2; C := 3; D := 4;
+      begin
+         D := A - C + B;
+      exception
+         when others => Put_Line ("One");
+                        D := 1;
+      end;
+      D := D + 1;
+      begin
+         D := D / (A - C + B);
+      exception
+         when others => Put_Line ("Two");
+                        D := -1;
+      end;
+   exception
+      when others =>
+         Put_Line ("Three");
+   end Main;
+
+What will get printed?
+
+   A. One, Two, Three
+   B. :answer:`Two, Three`
+   C. Two
+   D. Three
+
+:explanation:`Explanations`
+
+   A. :explanation:`Although A - C is not in the range of "natural", the range is only checked on assignment, which is after the addition of B, so "One" is never printed`
+   B. :explanation:`Correct`
+   C. :explanation:`If we reach "Two", the assignment on line 10 will cause "Three" to be reached`
+   D. :explanation:`Divide by 0 on line 14 causes an exception, so "Two" must be called`
+
 =============================================
 Implicitly and Explicitly Raised Exceptions
 =============================================
@@ -755,6 +799,51 @@ Handling Elaboration Exceptions
        Ada.Text_IO.Put_Line ("Got Constraint_Error in Test");
    end Test;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   with Ada.Text_IO; use Ada.Text_IO;
+   procedure Main is
+      Known_Problem : exception;
+      function F (P : Integer) return Integer is
+      begin
+         if P > 0 then
+            return P * P;
+         end if;
+      exception
+         when others => raise Known_Problem;
+      end F;
+      procedure P (X : Integer) is
+         A : array (1 .. F (X)) of Float;
+      begin
+         A := (others => 0.0);
+      exception
+         when others => raise Known_Problem;
+      end P;
+   begin
+      P ( Input_Value );
+      Put_Line ( "Success" );
+   exception
+      when Known_Problem => Put_Line ("Known problem");
+      when others => Put_Line ("Unknown problem");
+   end Main;
+
+What will get printed for these values of Input_Value?
+
+   A. Integer'Last :explanation:`Known Problem`
+   B. Integer'First :explanation:`Unknown Problem`
+   C. 10000 :explanation:`Unknown Problem`
+   D. 100 :explanation:`Success`
+
+:explanation:`Explanations`
+
+:explanation:`A. When F is called with a large P, its own exception handler captures the exception and raises Constraint_Error (which the Main exception handler processes)`
+
+:explanation:`B/C. When the creation of A fails (due to Program_Error from passing F a negative number or Storage_Error from passing F a large number), then P raises an exception during elaboration, which is propagated to Main`
+
 =======================
 Exceptions as Objects
 =======================
