@@ -278,6 +278,41 @@ Simple Derivation and List of Operations
       type Child is new Root;
       overriding procedure Prim (V : Child) is abstract;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P1 is
+      type T1 is range 1 .. 100;
+      procedure Proc_A (X : in out T1);
+      type T2 is new T1 range 2 .. 99;
+      procedure Proc_B (X : in out T1);
+      procedure Proc_B (X : in out T2);
+   end P1;
+
+   with P1; use P1;
+   package P2 is
+      procedure Proc_C (X : in out T2);
+      type T3 is new T2 range 3 .. 98;
+      procedure Proc_C (X : in out T3);
+   end P2;
+
+Which subprogram(s) is/are a primitive of T1
+
+   A. :answer:`Proc_A`
+   B. Proc_A, Proc_B
+   C. Proc_A, Proc_B, Proc_C
+   D. No primitives of T1
+
+:explanation:`Explanations`
+
+   A. :explanation:`Correct`
+   B. :explanation:`Proc_B is defined "too late" - a new type has been derived from T1`
+   C. :explanation:`Proc_B is defined "too late" and Proc_C is in the wrong scope`
+   D. :explanation:`Incorrect`
+
 ======================
 Signed Integer Types
 ======================
@@ -569,6 +604,43 @@ Prefix Notation
       X2'Access.Prim2 (5);
      
 * No `use` or `use type` clause is needed to have visibility over the primitives in this case
+
+------
+Quiz
+------
+
+Which code block is legal?
+
+| **A.** type A1 is record
+|       Field1 : Integer;
+|    end record;
+|    type A2 is new A1 with null record;
+
+| **B.** :answer:`type B1 is tagged record`
+|       :answer:`Field2 : Integer;`
+|    :answer:`end record;`
+|    :answer:`type B2 is new B1 with record`
+|       :answer:`Field2b : Integer;`
+|     :answer:`end record;`
+
+| **C.** type C1 is tagged record
+|       Field3 : Integer;
+|    end record;
+|    type C2 is new C1 with record
+|       Field3 : Integer;
+|    end record;
+
+| **D.** type D1 is tagged record
+|       Field1 : Integer;
+|    end record;
+|    type D2 is new D1;
+
+:explanation:`Explanations`
+
+   A. :explanation:`Cannot extend a non-tagged type`
+   B. :explanation:`Correct`
+   C. :explanation:`Components must have distinct names`
+   D. :explanation:`Types derived from a tagged type must have an extension`
 
 ========
 Lab
