@@ -347,6 +347,35 @@ Preconditions and Postconditions Example
         Post => (Result * Result) <= Input and
                 (Result + 1) * (Result + 1) > Input;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   function Area (L : Integer; H : Integer) return Integer is
+      (L * H)
+   with Pre => ?
+
+Which expression will guarantee `Area` calculates the correct result for all values `L` and `H`
+
+   A. Pre => L > 0 and H > 0
+   B. Pre => L < Integer'last and H < Integer'last
+   C. Pre => L * H in Integer
+   D. :answer:`None of the above`
+
+:explanation:`Explanations`
+
+   A. :explanation:`Does not handle large numbers`
+   B. :explanation:`Does not handle negative numbers`
+   C. :explanation:`Will generate a constraint error on large numbers`
+
+:explanation:`The correct precondition would be`
+
+         :explanation:`L > 0 and then H > 0 and then Integer'Last / L <= H`
+
+:explanation:`to prevent overflow errors on the range check`
+
 ====================
 Special Attributes
 ====================
@@ -458,6 +487,36 @@ Using Function Results In Postconditions
           return Boolean is (... );
  
 * Only applicable to functions, in postconditions
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Index_T is range 1 .. 100;
+   -- This will be initialized such that the value for element I will be I
+   Database : array (Index_T) of Integer;
+   -- This subprogram will set the value for element Index to Value and
+   -- then increment Index by 1
+   function Set_And_Move (Value :        Integer;
+                          Index : in out Index_T)
+                          return Boolean
+      with Post => ...
+
+What would the following expressions evaluate to in the Postcondition when called with `Value` of -1 and `Index` of 10?
+
+   A. Database'Old(Index) :explanation:`11`
+
+      :explanation:`Use new index in copy of original Database`
+
+   B. Database(Index`Old) :explanation:`-1`
+
+      :explanation:`Use copy of original index in current Database`
+
+   C. Database(Index)'Old :explanation:`10`
+
+      :explanation:`Evaluation of Database(Index) before call`
 
 =============
 In Practice
