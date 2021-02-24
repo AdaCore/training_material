@@ -347,6 +347,16 @@ Preconditions and Postconditions Example
         Post => (Result * Result) <= Input and
                 (Result + 1) * (Result + 1) > Input;
  
+====================
+Special Attributes
+====================
+
+----------
+Examples
+----------
+
+.. include:: examples/210_subprogram_contracts/special_attributes.rst
+
 -----------------------------------------------
 Referencing Previous Values In Postconditions 
 -----------------------------------------------
