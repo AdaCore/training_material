@@ -225,6 +225,44 @@ Invariants Are Not Foolproof
 * These are private types, so access to internals must be granted by the private type's code
 * Granting internal representation access for an ADT is a highly questionable design!
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      type Some_T is private;
+      procedure Do_Something (X : in out Some_T);
+   private
+      function Counter (I : Integer) return Boolean;
+   type Some_T is new Integer with
+      Type_Invariant => Counter (Integer (Some_T));
+   end P;
+
+   package body P is
+      function Local_Do_Something (X : Some_T) return Some_T is
+         Z : Some_T := X + 1;
+      begin
+         return Z;
+      end Local_Do_Something;
+      procedure Do_Something (X : in out Some_T) is
+      begin
+         X := X + 1;
+         X := Local_Do_Something (X);
+      end Do_Something;
+      function Counter (I : Integer) return Boolean is ( True );
+   end P;
+
+If `Do_Something` is called from outside of P, how many times is `Counter` called?
+
+   A. 1
+   B. :answer:`2`
+   C. 3
+   D. 4
+
+:explanation:`Type_Invariants are only evaluated on entry into and exit from externally visible subprograms. So Counter is called when entering and exiting Do_Something - not Local_Do_Something, even though a new instance of Some_T is created`
+
 ====================
 Subtype Predicates
 ====================
@@ -752,6 +790,43 @@ Enabling/Disabling Contract Verification
    Note that the Assert procedures in Ada.Assertions are not controlled by the pragma.  They are procedures like any other.
    A switch is likely offered because otherwise one must edit the source code to change settings, like the situation with pragma Inline.
    Pragma Suppress can also be applied.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Days_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+   function Is_Weekday (D : Days_T) return Boolean is
+      (D /= Sun and then D /= Sat);
+
+Which of the following is a valid subtype predicate?
+
+A.
+  | :answer:`subtype T is Days_T with`
+  |    :answer:`Static_Predicate => T in Sun | Sat;`
+
+B.
+  | subtype T is Days_T with Static_Predicate =>
+  |    (if T = Sun or else T = Sat then True else False);
+
+C.
+  | subtype T is Days_T with
+  |    Static_Predicate => not Is_Weekday (T);
+
+D.
+  | subtype T is Days_T with
+  |    Static_Predicate =>
+  |       case T is when Sat | Sun => True,
+  |                  when others => False;
+
+:explanation:`Explanations`
+
+A. :explanation:`Correct`
+B. :explanation:`"If" statement not allowed in a predicate`
+C. :explanation:`Function call not allowed in Static_Predicate (this would be OK for Dynamic_Predicate)`
+D. :explanation:`Missing parentheses around "case" expression`
 
 ========
 Lab
