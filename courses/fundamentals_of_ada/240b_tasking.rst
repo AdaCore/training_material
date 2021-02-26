@@ -424,7 +424,7 @@ Protected Object Entries
 Select On Protected Objects Entries
 -------------------------------------
 
-* Works the same way as select on task entries
+* Works the same way as :ada:`select` on task entries
 
    - With a `delay` part
 
