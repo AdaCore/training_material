@@ -21,6 +21,7 @@ A Simple Task
 ---------------
 
 * Parallel code execution via **task**
+* Tasks are :ada:`limited` types (No copies allowed)
 
    .. code:: Ada
 
@@ -38,23 +39,16 @@ A Simple Task
             delay 1.0;
             Put_Line ("Main");
          end loop;
-      end;  
- 
-* Tasks start at elaboration
-* Task enclosing scope exits when **all** tasks have finished
+      end;
 
-=======
-Tasks
-=======
-
-----------
-Two Models
-----------
+--------------------------
+Two Synchronization Models
+--------------------------
 
 * Active
 
+   - Rendezvous
    - **Client / Server** model
-   - **Rendezvous**
    - Server **entries**
    - Client **entry calls**
 
@@ -159,6 +153,8 @@ Protected Objects
    - **Multitask-safe** accessors to get and set state
    - **No** direct state manipulation
    - **No** concurrent modifications
+
+* Protected objects are :ada:`limited` types
 
 .. code:: Ada
     
