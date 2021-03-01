@@ -144,6 +144,47 @@ Accepting a Rendezvous
    - Terminate if no clients can possibly call its entries
    - Conditionally accept a rendezvous based on a guard expression
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   with Ada.Text_IO; use Ada.Text_IO;
+   procedure Main is
+      task T is
+         entry Hello;
+         entry Goodbye;
+      end T;
+      task body T is
+      begin
+         loop
+            accept Hello do
+               Put_Line ("Hello");
+            end Hello;
+            accept Goodbye do
+               Put_Line ("Goodbye");
+            end Goodbye;
+         end loop;
+         Put_Line ("Finished");
+      end T;
+   begin
+      T.Hello;
+      T.Goodbye;
+      Put_Line ("Done");
+   end Main;
+
+What is the output of this program?
+
+   A. Hello, Goodbye, Finished, Done
+   B. Hello, Goodbye, Finished
+   C. :answer:`Hello, Goodbye, Done`
+   D. Hello, Goodbye
+
+:explanation:`Entries "Hello" and "Goodbye" are reached (so "Hello and
+"Goodbye" are written. After "Goodbye", task returns to Main (so "Done" is
+written) but the loop in the task never finishes (so "Finished" is never written).`
+ 
 ===================
 Protected Objects
 ===================
@@ -204,6 +245,54 @@ Protected: Functions Vs. Procedures
 
 * No function can be called when a procedure is called
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   protected P is
+      procedure Initialize (V : Integer);
+      procedure Increment;
+      function Decrement return Integer;
+      function Query return Integer;
+   private
+      Object : Integer := 0;
+   end P;
+
+What of the following completions for P's members is illegal?
+
+A.
+ |  procedure Initialize (V : Integer) is
+ |  begin
+ |     Object := V;
+ |  end Initialize;
+
+B.
+ |  procedure Increment is
+ |  begin
+ |     Object := Object + 1;
+ |  end Increment;
+
+C.
+ |  :answer:`function Decrement return Integer is`
+ |  :answer:`begin`
+ |     :answer:`Object := Object - 1;`
+ |     :answer:`return Object;`
+ |  :answer:`end Decrement;`
+
+D.
+ |  function Query return Integer is begin
+ |     return Object;
+ |  end Query;
+
+:explanation:`Explanations`
+
+   A. :explanation:`Legal`
+   B. :explanation:`Legal - subprograms do not need parameters`
+   C. :explanation:`Functions cannot modify global objects`
+   D. :explanation:`Legal`
+ 
 ==========================
 Task and Protected Types
 ==========================
