@@ -305,6 +305,67 @@ def source_include ( classes, contents ):
 def is_source_include ( classes ):
    return ( "container" in classes ) and ( "source_include" in classes)
 
+###############
+## ANIMATION ##
+###############
+
+'''
+   We are going to use a container to "animate" blocks of code.
+   The format of the directive is:
+
+      .. container:: animate [<slide #>[-]]
+      
+   Slide number is the overlay(s) to display the contents.
+   A number will appear on the specific overlay.
+   A number followed by a "-" will appear on the specific overlay an all subsequent.
+   So, in pseudocode:
+      AAA
+      animate 2
+         BBB
+      animate 3-
+         CCC
+      animate 4-
+         DDD
+   will cause the following 4 overlays: AAA, AAA BBB, AAA CCC, AAA CCC DDD
+   If <slide #> is not specified, it will default to 2-.
+   NOTE: "only" does not reserve space, so it is quite possible for text to 
+   jump around between overlays (I.E. - best use is to display slide text top
+   to bottom
+'''
+
+def is_animation ( classes ):
+   return ( "container" in classes ) and ( "animate" in classes)
+
+def animate ( classes, contents ):
+
+   slide_number = 2
+   dash = '-'
+   if len(classes) > 2:
+      try:
+         requested = classes[2]
+         if len(requested) > 0:
+            if requested[-1] == '-':
+               requested = requested[0:-2]
+            else:
+               dash = ''
+            slide_number = int(requested)
+      except Exception as e:
+         slide_number = 2
+         dash = '-'
+   slide_number = str(slide_number) + dash
+      
+   first = {'t': 'RawBlock', 'c': ['latex', '\\begin{onlyenv}<' + slide_number + '>']}
+   last = {'t': 'RawBlock', 'c': ['latex', '\\end{onlyenv}']}
+
+   value0 = {}
+   value = []
+   value.append ( first )
+   for c in contents:
+      value.append ( c )
+   value.append ( last )
+
+   return value
+
 #####################
 ## QUERY FUNCTIONS ##
 #####################
@@ -472,6 +533,9 @@ def perform_filter(key, value, format, meta):
 
             if is_source_include ( classes ):
                 return source_include ( classes, contents )
+
+            if is_animation ( classes ):
+                return animate ( classes, contents )
 
             # language variant admonition
             elif admonition_type ( classes, contents ) == "language variant":
