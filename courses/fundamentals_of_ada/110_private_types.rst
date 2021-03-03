@@ -3,6 +3,9 @@
 Private Types
 ***************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -365,12 +368,14 @@ Which component is legal?
 
          end record;
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Visible part does not know Private_T is discrete`
-   B. :explanation:`Visible part does not know possible values for Private_T`
-   C. :explanation:`Visible part does not know possible values for Private_T`
-   D. :explanation:`Correct - type will have a known size at run-time`
+   Explanations
+
+   A. Visible part does not know :ada:`Private_T` is discrete
+   B. Visible part does not know possible values for :ada:`Private_T`
+   C. Visible part does not know possible values for :ada:`Private_T`
+   D. Correct - type will have a known size at run-time
 
 ===========================
 Private Part Construction
@@ -545,7 +550,11 @@ Which object definition is illegal?
    C. Object_C
    D. None of the above
 
-:explanation:`An object cannot be declared until its type is fully declared. Object_A could be declared constant, but then it would have to be finalized in the "private" section`
+.. container:: animate
+
+   An object cannot be declared until its type is fully declared.
+   :ada:`Object_A` could be declared constant, but then it would
+   have to be finalized in the :ada:`private` section.
 
 =================
 View Operations

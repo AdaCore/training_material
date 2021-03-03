@@ -3,6 +3,9 @@
 Array Types
 *************
 
+.. role:: ada(code)
+   :language: ada
+
 ==============
 Introduction
 ==============
@@ -275,12 +278,14 @@ Which statement is legal?
    C. X1(1) := Y1(1);
    D. :answer:`Y1 := X1;`
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Legal - elements are boolean`
-   B. :explanation:`Legal - object types match`
-   C. :explanation:`Legal - elements are boolean`
-   D. :explanation:`Although the sizes are the same and the elements are the same, the type is different`
+   Explanations
+
+   A. Legal - elements are :ada:`Boolean`
+   B. Legal - object types match
+   C. Legal - elements are :ada:`Boolean`
+   D. Although the sizes are the same and the elements are the same, the type is different
 
 ===========================
 Unconstrained Array Types
@@ -475,12 +480,14 @@ Which statement is illegal?
    C. Y := X;
    D. Z := X;
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`First index of Array_T is first value in Integer - so X(1) is not in range`
-   B. :explanation:`Legal - indices are both in range`
-   C. :explanation:`Legal - arrays are same type and same size`
-   D. :explanation:`Legal - X has been constrained to correct size`
+   Explanations
+
+   A. First index of :ada:`Array_T` is first value in :ada:`Integer` - so :ada:`X(1)` is not in range
+   B. Legal - indices are both in range
+   C. Legal - arrays are same type and same size
+   D. Legal - :ada:`X` has been constrained to correct size
 
 ============
 Attributes
@@ -591,12 +598,14 @@ Which description is incorrect?
    C. X'Length(1) = X'Length(2)
    D. X'Last(1) = is 8
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Correct (Index names are "backwards")`
-   B. :explanation:`Boolean enumeration is ( False, True )`
-   C. :explanation:`Correct - sizes are the same`
-   D. :explanation:`Correct (Same as "A")`
+   Explanations
+
+   A. Correct (Index names are "backwards")
+   B. :ada:`Boolean` enumeration is :ada:`( False, True )`
+   C. Correct - sizes are the same
+   D. Correct (Same as :ada:`A`)
 
 ============
 Operations
@@ -806,12 +815,14 @@ Which statement is illegal?
    C. :answer:`A(1,2,3..4) := A(2,3,4..5);`
    D. B(3..4) := B(4..5)
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`All three objects are just boolean values`
-   B. :explanation:`An element of A is the same type as B`
-   C. :explanation:`No slicing of multi-dimensional arrays`
-   D. :explanation:`Slicing allowed on single-dimension arrays`
+   Explanations
+
+   A. All three objects are just boolean values
+   B. An element of :ada:`A` is the same type as :ada:`B`
+   C. No slicing of multi-dimensional arrays
+   D. Slicing allowed on single-dimension arrays
 
 ==============================
 Operations Added for Ada2012
@@ -990,12 +1001,14 @@ Which output is correct?
    C. 0 0 0 0 22 23 0 32 33
    D. 33 32 0 23 22 0 0 0 0
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`This is the result if "reverse" was not specified`
-   B. :explanation:`Start with last element (3,3) and work backwards`
-   C. :explanation:`This might be the result without "Default_Component_Value." (Zeroes may not be correct - could be any uninitialized value.)`
-   D. :explanation:`Result without "Default_Component_Value" and "reverse"`
+   Explanations
+
+   A. This is the result if :ada:`reverse` was not specified
+   B. Start with last element (3,3) and work backwards
+   C. This might be the result without :ada:`Default_Component_Value.` (Zeroes may not be correct - could be any uninitialized value.)
+   D. Result without :ada:`Default_Component_Value` and :ada:`reverse`
 
 ============
 Aggregates
@@ -1262,12 +1275,14 @@ Which statement is correct?
    C. X := (J => -1, J + 1 .. A'Last => 1);
    D. X := (1 .. 3 => 100, 3 .. 5 => 200);
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Cannot mix positional and named notation`
-   B. :explanation:`Correct - others not needed but is allowed`
-   C. :explanation:`Dynamic values must be the only choice. (This could be fixed by making J a constant.)`
-   D. :explanation:`Overlapping values (3 appears more than once)`
+   Explanations
+
+   A. Cannot mix positional and named notation
+   B. Correct - others not needed but is allowed
+   C. Dynamic values must be the only choice. (This could be fixed by making :ada:`J` a constant.)
+   D. Overlapping values (3 appears more than once)
 
 ======================
 Anonymous Array Types

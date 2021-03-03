@@ -660,17 +660,19 @@ B. Run-time error
 C. :answer:`V is assigned to -10`
 D. Unknown - depends on the compiler
 
-:explanation:`Explanations`
+.. container:: animate
 
-   - :explanation:`2 ** 1024 too big for most run-times BUT`
-   - :explanation:`C1, C2, and C3 are named numbers, not typed constants`
+   Explanations
 
-      - :explanation:`Compiler uses unbounded precision for named numbers`
-      - :explanation:`Large intermediate representation does not get stored in object code`
+   - 2:superscript:`1024` too big for most run-times BUT
+   - :ada:`C1`, :ada:`C2`, and :ada:`C3` are named numbers, not typed constants
 
-   - :explanation:`For assignment to V, subtraction is computed by compiler`
+      - Compiler uses unbounded precision for named numbers
+      - Large intermediate representation does not get stored in object code
 
-      - :explanation:`V is assigned the value -10`
+   - For assignment to :ada:`V`, subtraction is computed by compiler
+
+      - :ada:`V` is assigned the value -10
 
 ============================
 Discrete Enumeration Types
@@ -1019,12 +1021,14 @@ B. V2 : Enum_T := Enum_T'Value ( "Baker" );
 C. V3 : Enum_T := Enum_T'Value ( " Charlie " );
 D. :answer:`V4 : Enum_T := Enum_T'Value ( "Able Baker Charlie" );`
 
-* :explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Legal`
-   B. :explanation:`Legal - conversion is case-insensitive`
-   C. :explanation:`Legal - leading/trailing blanks are ignored`
-   D. :explanation:`"Value" tries to convert entire string, which will fail at run-time`
+   Explanations
+
+   A. Legal
+   B. Legal - conversion is case-insensitive
+   C. Legal - leading/trailing blanks are ignored
+   D. :ada:`Value` tries to convert entire string, which will fail at run-time
 
 ============
 Real Types
@@ -1231,12 +1235,14 @@ B. Compile Error
 C. 8.0
 D. :answer:`0.0`
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Result of F := F / Float(I);`
-   B. :explanation:`Result of F := F / I;`
-   C. :explanation:`Result of F := Float (Integer (F)) / Float (I);`
-   D. :explanation:`Integer value of F is 8. Integer result of dividing that by 10 is 0. Converting to float still gives us 0`
+   Explanations
+
+   A. Result of :ada:`F := F / Float(I);`
+   B. Result of :ada:`F := F / I;`
+   C. Result of :ada:`F := Float (Integer (F)) / Float (I);`
+   D. Integer value of :ada:`F` is 8. Integer result of dividing that by 10 is 0. Converting to float still gives us 0
 
 ===============
 Miscellaneous

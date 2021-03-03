@@ -3,6 +3,9 @@
 Overloading
 *************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -304,12 +307,14 @@ Which statement is not legal?
    C. P := "*" (Middle, Top);
    D. :answer:`P := "*" (H => Middle, V => Top);`
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Qualifying one parameter resolves ambiguity`
-   B. :explanation:`No overloaded names`
-   C. :explanation:`Use of "Top" resolves ambiguity`
-   D. :explanation:`When overloading subprogram names, best to not just switch the order of parameters`
+   Explanations
+
+   A. Qualifying one parameter resolves ambiguity
+   B. No overloaded names
+   C. Use of :ada:`Top` resolves ambiguity
+   D. When overloading subprogram names, best to not just switch the order of parameters
 
 ===================
 Visibility Issues
@@ -570,12 +575,12 @@ Quiz
       Y : Range_T;
    end record;
    type Record_T is record
-      Xy : Coord_T;
+      XY : Coord_T;
       Z  : Range_T;
    end record;
 
-   X : Record_T := (Xy => (1, -1), Z => 2);
-   Y : Record_T := (Xy => (-1, 1), Z => -2);
+   X : Record_T := (XY => (1, -1), Z => 2);
+   Y : Record_T := (XY => (-1, 1), Z => -2);
 
 Which function will return True when comparing X and Y?
 
@@ -583,14 +588,19 @@ A.
   | Implicit equality operator
 B. 
   | :answer:`function "=" (L, R : Record_T) return Boolean is`
-  |    :answer:`(L.Z = R.Z and L.Xy.X = R.Xy.X and L.Xy.Y = R.Xy.Y);`
+  |    :answer:`(L.Z = R.Z and`
+  |     :answer:`L.XY.X = R.XY.X and L.XY.Y = R.XY.Y);`
 C.
   | function "=" (L, R : Record_T) return Boolean is
-  |    (L.Z = R.Z and L.Xy = R.Xy);
+  |    (L.Z = R.Z and L.XY = R.XY);
 D.
   | function "=" (L, R : Record_T) return Boolean is (L = R);
 
-:explanation:`We are looking to use our own equality operator (that compares absolute values) so the only time that happens is when we examine each Range_T component individually`
+.. container:: animate
+
+   We are looking to use our own equality operator (that compares absolute
+   values) so the only time that happens is when we examine each
+   :ada:`Range_T` component individually
 
 ========
 Lab

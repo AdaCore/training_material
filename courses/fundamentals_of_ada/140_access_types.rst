@@ -3,6 +3,9 @@
 Access Types
 **************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -264,7 +267,11 @@ B. :answer:`One := B'Access;`
 C. Two := A'Access;
 D. Two := B'Access;
 
-:explanation:`'Access is only allowed for general access types (One_T). To use 'Access on an object, the object must be aliased.`
+.. container:: animate
+
+   :ada:`'Access` is only allowed for general access types
+   (:ada:`One_T`). To use :ada:`'Access` on an object, the
+   object must be :ada:`aliased`.
 
 ==========================
 Access Types
@@ -489,15 +496,14 @@ B. :answer:`Global_Pointer := Local_Object'Access;`
 C. Local_Pointer  := Global_Object'Access;
 D. Local_Pointer  := Local_Object'Access;
 
-:explanation:`Explanations`
+.. container:: animate
 
-:explanation:`A. Pointer type has same depth as object`
+   Explanations
 
-:explanation:`B. Pointer type is not allowed to have higher level than pointed-to object`
-
-:explanation:`C. Pointer type has lower depth than pointed-to object`
-
-:explanation:`D. Pointer type has same depth as object`
+   A. Pointer type has same depth as object
+   B. Pointer type is not allowed to have higher level than pointed-to object
+   C. Pointer type has lower depth than pointed-to object
+   D. Pointer type has same depth as object
 
 ===================
 Memory Management

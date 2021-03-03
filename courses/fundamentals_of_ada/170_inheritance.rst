@@ -3,6 +3,10 @@
 Inheritance
 *************
 
+
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -306,12 +310,14 @@ Which subprogram(s) is/are a primitive of T1
    C. Proc_A, Proc_B, Proc_C
    D. No primitives of T1
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Correct`
-   B. :explanation:`Proc_B is defined "too late" - a new type has been derived from T1`
-   C. :explanation:`Proc_B is defined "too late" and Proc_C is in the wrong scope`
-   D. :explanation:`Incorrect`
+   Explanations
+
+   A. Correct
+   B. :ada:`Proc_B` is defined *too late* - a new type has been derived from :ada:`T1`
+   C. :ada:`Proc_B` is defined *too late* and :ada:`Proc_C` is in the wrong scope
+   D. Incorrect
 
 ======================
 Signed Integer Types
@@ -635,12 +641,14 @@ Which code block is legal?
 |    end record;
 |    type D2 is new D1;
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Cannot extend a non-tagged type`
-   B. :explanation:`Correct`
-   C. :explanation:`Components must have distinct names`
-   D. :explanation:`Types derived from a tagged type must have an extension`
+   Explanations
+
+   A. Cannot extend a non-tagged type
+   B. Correct
+   C. Components must have distinct names
+   D. Types derived from a tagged type must have an extension
 
 ========
 Lab

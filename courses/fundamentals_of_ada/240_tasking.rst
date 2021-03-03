@@ -3,6 +3,9 @@
 Tasking
 *********
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -181,9 +184,12 @@ What is the output of this program?
    C. :answer:`Hello, Goodbye, Done`
    D. Hello, Goodbye
 
-:explanation:`Entries "Hello" and "Goodbye" are reached (so "Hello and
-"Goodbye" are written. After "Goodbye", task returns to Main (so "Done" is
-written) but the loop in the task never finishes (so "Finished" is never written).`
+.. container:: animate
+
+   Entries :ada:`Hello` and :ada:`Goodbye` are reached (so "Hello" and
+   "Goodbye" are printed). After :ada:`Goodbye`, task returns to :ada:`Main`
+   (so "Done" is printed) but the loop in the task never finishes (so
+   "Finished" is never printed).
  
 ===================
 Protected Objects
@@ -243,7 +249,7 @@ Protected: Functions Vs. Procedures
 
    - Concurrent access to functions can be done
 
-* No function can be called when a procedure is called
+* No function can be called while a procedure is executing
 
 ------
 Quiz
@@ -260,38 +266,31 @@ Quiz
       Object : Integer := 0;
    end P;
 
-What of the following completions for P's members is illegal?
+What of the following completions for :ada:`P`'s members is illegal?
 
-A.
- |  procedure Initialize (V : Integer) is
- |  begin
- |     Object := V;
- |  end Initialize;
+   A. |  procedure Initialize (V : Integer) is
+      |  begin
+      |     Object := V;
+      |  end Initialize;
+   B. |  procedure Increment is
+      |  begin
+      |     Object := Object + 1;
+      |  end Increment;
+   C. |  :answer:`function Decrement return Integer is`
+      |  :answer:`begin`
+      |     :answer:`Object := Object - 1;`
+      |     :answer:`return Object;`
+      |  :answer:`end Decrement;`
+   D. |  function Query return Integer is begin
+      |     return Object;
+      |  end Query;
 
-B.
- |  procedure Increment is
- |  begin
- |     Object := Object + 1;
- |  end Increment;
+.. container:: animate
 
-C.
- |  :answer:`function Decrement return Integer is`
- |  :answer:`begin`
- |     :answer:`Object := Object - 1;`
- |     :answer:`return Object;`
- |  :answer:`end Decrement;`
-
-D.
- |  function Query return Integer is begin
- |     return Object;
- |  end Query;
-
-:explanation:`Explanations`
-
-   A. :explanation:`Legal`
-   B. :explanation:`Legal - subprograms do not need parameters`
-   C. :explanation:`Functions cannot modify global objects`
-   D. :explanation:`Legal`
+   A. Legal
+   B. Legal - subprograms do not need parameters
+   C. Functions in a protected object cannot modify global objects
+   D. Legal
  
 ==========================
 Task and Protected Types

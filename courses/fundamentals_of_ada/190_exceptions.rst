@@ -3,6 +3,11 @@
 Exceptions
 ************
 
+.. role:: ada(code)
+    :language: Ada
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+
 ==============
 Introduction
 ==============
@@ -395,12 +400,14 @@ What will get printed?
    C. Two
    D. Three
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Although A - C is not in the range of "natural", the range is only checked on assignment, which is after the addition of B, so "One" is never printed`
-   B. :explanation:`Correct`
-   C. :explanation:`If we reach "Two", the assignment on line 10 will cause "Three" to be reached`
-   D. :explanation:`Divide by 0 on line 14 causes an exception, so "Two" must be called`
+   Explanations
+
+   A. Although :ada:`(A - C)` is not in the range of :ada:`natural`, the range is only checked on assignment, which is after the addition of :ada:`B`, so :ada:`One` is never printed
+   B. Correct
+   C. If we reach :ada:`Two`, the assignment on line 10 will cause :ada:`Three` to be reached
+   D. Divide by 0 on line 14 causes an exception, so :ada:`Two` must be called
 
 =============================================
 Implicitly and Explicitly Raised Exceptions
@@ -833,16 +840,28 @@ Quiz
 
 What will get printed for these values of Input_Value?
 
-   A. Integer'Last :explanation:`Known Problem`
-   B. Integer'First :explanation:`Unknown Problem`
-   C. 10000 :explanation:`Unknown Problem`
-   D. 100 :explanation:`Success`
+.. list-table::
 
-:explanation:`Explanations`
+   * - **A.**
+     - Integer'Last
+     - :animate:`Known Problem`
+   * - **B.**
+     - Integer'First
+     - :animate:`Unknown Problem`
+   * - **C.**
+     - 10000
+     - :animate:`Unknown Problem`
+   * - **D.**
+     - 100
+     - :animate:`Success`
 
-:explanation:`A. When F is called with a large P, its own exception handler captures the exception and raises Constraint_Error (which the Main exception handler processes)`
+.. container:: animate
 
-:explanation:`B/C. When the creation of A fails (due to Program_Error from passing F a negative number or Storage_Error from passing F a large number), then P raises an exception during elaboration, which is propagated to Main`
+   Explanations
+
+   A |rightarrow| When :ada:`F` is called with a large :ada:`P`, its own exception handler captures the exception and raises :ada:`Constraint_Error` (which the main exception handler processes)
+
+   B/C |rightarrow| When the creation of :ada:`A` fails (due to :ada:`Program_Error` from passing :ada:`F` a negative number or :ada:`Storage_Error` from passing :ada:`F` a large number), then :ada:`P` raises an exception during elaboration, which is propagated to :ada:`Main`
 
 =======================
 Exceptions as Objects

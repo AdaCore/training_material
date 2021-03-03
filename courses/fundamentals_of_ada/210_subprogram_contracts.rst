@@ -2,6 +2,9 @@
 Subprogram Contracts
 **********************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -357,24 +360,26 @@ Quiz
       (L * H)
    with Pre => ?
 
-Which expression will guarantee `Area` calculates the correct result for all values `L` and `H`
+Which expression will guarantee :ada:`Area` calculates the correct result for all values :ada:`L` and :ada:`H`
 
    A. Pre => L > 0 and H > 0
    B. Pre => L < Integer'last and H < Integer'last
    C. Pre => L * H in Integer
    D. :answer:`None of the above`
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Does not handle large numbers`
-   B. :explanation:`Does not handle negative numbers`
-   C. :explanation:`Will generate a constraint error on large numbers`
+   Explanations
 
-:explanation:`The correct precondition would be`
+   A. Does not handle large numbers
+   B. Does not handle negative numbers
+   C. Will generate a constraint error on large numbers
 
-         :explanation:`L > 0 and then H > 0 and then Integer'Last / L <= H`
+   The correct precondition would be
 
-:explanation:`to prevent overflow errors on the range check`
+         :ada:`L > 0 and then H > 0 and then Integer'Last / L <= H`
+
+   to prevent overflow errors on the range check.
 
 ====================
 Special Attributes
@@ -504,19 +509,21 @@ Quiz
                           return Boolean
       with Post => ...
 
-What would the following expressions evaluate to in the Postcondition when called with `Value` of -1 and `Index` of 10?
+What would the following expressions evaluate to in the Postcondition when called with :ada:`Value` of -1 and :ada:`Index` of 10?
 
-   A. Database'Old(Index) :explanation:`11`
+.. list-table::
 
-      :explanation:`Use new index in copy of original Database`
+   * - Database'Old(Index)
+     - :animate:`11`
+     - :animate:`Use new index in copy of original Database`
 
-   B. Database(Index`Old) :explanation:`-1`
+   * - Database(Index`Old)
+     - :animate:`-1`
+     - :animate:`Use copy of original index in current Database`
 
-      :explanation:`Use copy of original index in current Database`
-
-   C. Database(Index)'Old :explanation:`10`
-
-      :explanation:`Evaluation of Database(Index) before call`
+   * - Database(Index)'Old
+     - :animate:`10`
+     - :animate:`Evaluation of Database(Index) before call`
 
 =============
 In Practice

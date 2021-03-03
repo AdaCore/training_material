@@ -3,6 +3,9 @@
 Type Contracts
 ****************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -261,7 +264,12 @@ If `Do_Something` is called from outside of P, how many times is `Counter` calle
    C. 3
    D. 4
 
-:explanation:`Type_Invariants are only evaluated on entry into and exit from externally visible subprograms. So Counter is called when entering and exiting Do_Something - not Local_Do_Something, even though a new instance of Some_T is created`
+.. container:: animate
+
+   Type Invariants are only evaluated on entry into and exit from
+   externally visible subprograms. So :ada:`Counter` is called when
+   entering and exiting :ada:`Do_Something` - not :ada:`Local_Do_Something`,
+   even though a new instance of :ada:`Some_T` is created
 
 ====================
 Subtype Predicates
@@ -803,30 +811,25 @@ Quiz
 
 Which of the following is a valid subtype predicate?
 
-A.
-  | :answer:`subtype T is Days_T with`
-  |    :answer:`Static_Predicate => T in Sun | Sat;`
+A. | :answer:`subtype T is Days_T with`
+   |    :answer:`Static_Predicate => T in Sun | Sat;`
+B. | subtype T is Days_T with Static_Predicate =>
+   |    (if T = Sun or else T = Sat then True else False);
+C. | subtype T is Days_T with
+   |    Static_Predicate => not Is_Weekday (T);
+D. | subtype T is Days_T with
+   |    Static_Predicate =>
+   |       case T is when Sat | Sun => True,
+   |                 when others => False;
 
-B.
-  | subtype T is Days_T with Static_Predicate =>
-  |    (if T = Sun or else T = Sat then True else False);
+.. container:: animate
 
-C.
-  | subtype T is Days_T with
-  |    Static_Predicate => not Is_Weekday (T);
+   Explanations
 
-D.
-  | subtype T is Days_T with
-  |    Static_Predicate =>
-  |       case T is when Sat | Sun => True,
-  |                  when others => False;
-
-:explanation:`Explanations`
-
-A. :explanation:`Correct`
-B. :explanation:`"If" statement not allowed in a predicate`
-C. :explanation:`Function call not allowed in Static_Predicate (this would be OK for Dynamic_Predicate)`
-D. :explanation:`Missing parentheses around "case" expression`
+   A. Correct
+   B. :ada:`If` statement not allowed in a predicate
+   C. Function call not allowed in :ada:`Static_Predicate` (this would be OK for :ada:`Dynamic_Predicate`)
+   D. Missing parentheses around :ada:`case` expression
 
 ========
 Lab

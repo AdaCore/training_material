@@ -3,6 +3,9 @@
 Elaboration
 *************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -217,7 +220,9 @@ What is the output of running this program
    C. 101, 201, 102, 202
    D. :answer:`Cannot be determined`
 
-:explanation:`As there are no dependencies between P1 and P2, the compiler/linker can enforce any elaboration order. Even the order of "with's" in Main may not affect elaboration order`
+.. container:: animate
+
+   As there are no dependencies between :ada:`P1` and :ada:`P2`, the compiler/linker can enforce any elaboration order. Even the order of :ada:`with`'s" in :ada:`Main` may not affect elaboration order
 
 =====================
 Elaboration Control

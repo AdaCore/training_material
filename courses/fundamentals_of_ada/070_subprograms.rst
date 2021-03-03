@@ -3,6 +3,9 @@
 Subprograms
 *************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -337,7 +340,10 @@ Which profile is semantically different from the others?
    C. :answer:`procedure P ( B : Integer; A : Integer );`
    D. procedure P ( A : in Integer; B : in Integer );
 
-:explanation:`Parameter names are important in Ada. The other selections have the names in the same order with the same mode and type.`
+.. container:: animate
+
+   Parameter names are important in Ada.  The other selections have
+   the names in the same order with the same mode and type.
 
 ============
 Parameters
@@ -787,12 +793,14 @@ Which call is legal?
    C. :answer:`I4 := F (I1, I2, C3, C4);`
    D. F (I1, I2, C3, C4);
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`P4 can be modified by P, so it must be a variable`
-   B. :explanation:`P2 has no default value so it must be specified`
-   C. :explanation:`Correct`
-   D. :explanation:`F is a function - return value must be stored`
+   Explanations
+
+   A. :ada:`P4` can be modified by :ada:`P`, so it must be a variable
+   B. :ada:`P2` has no default value so it must be specified
+   C. Correct
+   D. :ada:`F` is a function - return value must be stored
 
 =================
 Null Procedures
@@ -1216,12 +1224,14 @@ Which statement is True?
    C. Expression functions must have at least one "return" statement.
    D. :answer:`Expression functions do not allow "out" parameters.`
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Expression functions can be declared anywhere a regular function is declared.`
-   B. :explanation:`An expression function body can act as its own specification.`
-   C. :explanation:`Expression functions only contain an expression - no "return" statement allowed.`
-   D. :explanation:`Correct - no way to assign a value to an "out" parameter.`
+   Explanations
+
+   A. Expression functions can be declared anywhere a regular function is declared.
+   B. An expression function body can act as its own specification.
+   C. Expression functions only contain an expression - no :ada:`return` statement allowed.
+   D. Correct - no way to assign a value to an :ada:`out` parameter.
 
 ====================
 Potential Pitfalls

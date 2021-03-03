@@ -170,12 +170,14 @@ D. Component5 : constant integer := 123;
 
    end record;
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Anonymous types not allowed`
-   B. :explanation:`Correct`
-   C. :explanation:`No recursive definitions`
-   D. :explanation:`No constant components`
+   Explanations
+
+   A. Anonymous types not allowed
+   B. Correct
+   C. No recursive definitions
+   D. No constant components
 
 ============
 Operations
@@ -496,12 +498,14 @@ B. X := (Two => '2', Three => False, Five => Z, others => 5);
 C. X := Y;
 D. X := (1, '2', True, 4, (others => 5));
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Component Five is a singleton record - aggregate requires named notation (Five => ( Field => 6 ) )`
-   B. :explanation:`Correct - "others" clause covers components One and Four which are both integers`
-   C. :explanation:`Correct - simple assignment. Note that components Two and Three are still not initialized`
-   D. :explanation:`Correct - positional notation for all components`
+   Explanations
+
+   A. Component :ada:`Five` is a singleton record - aggregate requires named notation (:ada:`Five => ( Field => 6 )` )
+   B. Correct - :ada:`others` clause covers components :ada:`One` and :ada:`Four` which are both integers`
+   C. Correct - simple assignment. Note that components :ada:`Two` and :ada:`Three` are still not initialized
+   D. Correct - positional notation for all components
 
 ================
 Default Values
@@ -626,12 +630,14 @@ B. 1 1 2
 C. :answer:`1 2 100`
 D. 100, 101, 102
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Assignment of C to 100 takes precedence over the call to Next`
-   B. :explanation:`Declaration of multiple components is identical to a series of single declarations`
-   C. :explanation:`Correct`
-   D. :explanation:`Assignment of 100 to C has no effect on components A and B`
+   Explanations
+
+   A. Assignment of :ada:`C` to 100 takes precedence over the call to :ada:`Next`
+   B. Declaration of multiple components is identical to a series of single declarations
+   C. Correct
+   D. Assignment of 100 to :ada:`C` has no effect on components :ada:`A` and :ada:`B`
 
 =================
 Variant Records

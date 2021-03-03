@@ -3,6 +3,9 @@
 Packages
 **********
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -342,13 +345,14 @@ Which is the correct completion of package P?
       |   :answer:`end One;`
       | :answer:`end P;`
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Procedure "One" must have a body`
-   B. :explanation:`No assignment of a value to "out" parameter`
-   C. :explanation:`Cannot duplicate "Object_One"`
-   D. :explanation:`Correct`
+   Explanations
 
+   A. Procedure :ada:`One` must have a body
+   B. No assignment of a value to :ada:`out` parameter
+   C. Cannot duplicate :ada:`Object_One`
+   D. Correct
  
 ==================
 Executable Parts

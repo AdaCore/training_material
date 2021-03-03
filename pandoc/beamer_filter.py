@@ -52,8 +52,8 @@ slide_decorators = [ 't', 'shrink' ]
 role_format_functions = { 'toolname' : 'SmallCaps',
                           'menu'     : 'format_menu',
                           'command'  : 'format_command',
-                          'answer' : 'format_answer',
-                          'explanation' : 'format_explanation',
+                          'answer'   : 'format_answer',
+                          'animate'  : 'format_animate',
                           'filename' : 'format_filename',
                           'default'  : 'Strong' }
 ##
@@ -110,9 +110,8 @@ def latex_escape ( text ):
 def latex_answer_highlight ( text ):
     return "\\textit<2>{\\textbf<2>{\\textcolor<2>{green!65!black}{" + text + "}}}"
 
-def latex_explanation_highlight ( text ):
-    # return "\\onslide<2->{\\textit{\\textcolor{red}{" + text + "}}}"
-    return "\\onslide<2->{\\textit{" + text + "}}"
+def latex_animate ( text ):
+    return "\\onslide<2->{" + text + "}"
 
 #############################
 ## PANDOC HELPER FUNCTIONS ##
@@ -328,9 +327,9 @@ def is_source_include ( classes ):
          DDD
    will cause the following 4 overlays: AAA, AAA BBB, AAA CCC, AAA CCC DDD
    If <slide #> is not specified, it will default to 2-.
-   NOTE: "only" does not reserve space, so it is quite possible for text to 
-   jump around between overlays (I.E. - best use is to display slide text top
-   to bottom
+   NOTE: We use "visibleenv" to make text appear, so space is reserved for hidden
+   text. If not, then the slide may resize, causing the animation to not really
+   look like an animation
 '''
 
 def is_animation ( classes ):
@@ -354,8 +353,8 @@ def animate ( classes, contents ):
          dash = '-'
    slide_number = str(slide_number) + dash
       
-   first = {'t': 'RawBlock', 'c': ['latex', '\\begin{onlyenv}<' + slide_number + '>']}
-   last = {'t': 'RawBlock', 'c': ['latex', '\\end{onlyenv}']}
+   first = {'t': 'RawBlock', 'c': ['latex', '\\begin{visibleenv}<' + slide_number + '>']}
+   last = {'t': 'RawBlock', 'c': ['latex', '\\end{visibleenv}']}
 
    value0 = {}
    value = []
@@ -482,7 +481,7 @@ def format_answer ( literal_text ):
        return latex_inline ( latex_escape ( literal_text ) )
 
 '''
-"explanation" role
+"animate" role
 Items will only appear on a slide after "page down".
 Useful for explaining why a quiz answer is incorrect after a
 quiz slide is presented.
@@ -490,9 +489,9 @@ This will only happen if the INSTRUCTOR environment variable is set.
 Otherwise, the text will not appear - this allows handouts to be
 printed without the explanations already given.
 '''
-def format_explanation ( literal_text ):
+def format_animate( literal_text ):
    if "INSTRUCTOR" in os.environ:
-       return latex_inline ( latex_explanation_highlight ( latex_escape ( literal_text ) ) )
+       return latex_inline ( latex_animate ( latex_escape ( literal_text ) ) )
    else:
        return latex_inline ( " " )
 

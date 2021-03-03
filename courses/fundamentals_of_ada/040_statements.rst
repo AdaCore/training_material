@@ -341,12 +341,14 @@ D.
    | X := One_T(Y);
    | Y := Two_T(X);
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Legal - A is an untyped constant`
-   B. :explanation:`Legal - B, C are correctly typed`
-   C. :explanation:`Illegal - C-style assignment`
-   D. :explanation:`Legal - Values are typecast appropriately`
+   Explanations
+
+   A. Legal - :ada:`A` is an untyped constant
+   B. Legal - :ada:`B, C` are correctly typed
+   C. Illegal - C-style assignment
+   D. Legal - Values are typecast appropriately
 
 ========================
 Conditional Statements
@@ -547,10 +549,12 @@ C.
 D.
    | end if;
 
-:explanation:`Explanations`
+.. container:: animate
 
-   * :explanation:`"A" uses the C-style equality/inequality operators`
-   * :explanation:`"D" is legal because 'else' is not required`
+   Explanations
+
+   * :ada:`A` uses the C-style equality/inequality operators
+   * :ada:`D` is legal because :ada:`else` is not required
 
 ------
 Quiz
@@ -579,10 +583,12 @@ C.
 D.
    | :answer:`end case;`
 
-:explanation:`Explanations`
+.. container:: animate
 
-   * :explanation:`Ada requires all possibilities to be covered`
-   * :explanation:`Add "when others" or "when Sat"`
+   Explanations
+
+   * Ada requires all possibilities to be covered
+   * Add :ada:`when others` or :ada:`when Sat`
 
 =================
 Loop Statements
@@ -950,12 +956,14 @@ D.
    |    Put_Line (Integer'Image (D));
    | end loop;
 
-* :explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Cannot assign to a loop parameter`
-   B. :explanation:`Legal - 10 iterations`
-   C. :explanation:`Legal - 10 iterations`
-   D. :explanation:`Legal - 0 iterations`
+   Explanations
+
+   A. Cannot assign to a loop parameter
+   B. Legal - 10 iterations
+   C. Legal - 10 iterations
+   D. Legal - 0 iterations
 
 =================
 GOTO Statements

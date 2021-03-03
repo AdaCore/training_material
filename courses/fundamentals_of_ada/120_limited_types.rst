@@ -3,6 +3,9 @@
 Limited Types
 ***************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -207,12 +210,14 @@ Which assignment is legal?
    C. :answer:`R1.F1 := R2.F1;`
    D. R2.F2 := R2.T2;
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`T1 and T2 are limited types`
-   B. :explanation:`R1 and R2 contain limited types so they are also limited`
-   C. :explanation:`Theses components are not limited types`
-   D. :explanation:`These components are of a limited type`
+   Explanations
+
+   A. :ada:`T1` and :ada:`T2` are :ada:`limited types`
+   B. :ada:`R1` and :ada:`R2` contain :ada:`limited` types so they are also :ada:`limited`
+   C. Theses components are not :ada:`limited` types
+   D. These components are of a :ada:`limited` type
 
 =================
 Creating Values
@@ -371,28 +376,24 @@ Quiz
 
 Which is a correct completion of F?
 
-A.
-  |  :answer:`function F return T is ((3, 'c'));`
+A. :answer:`function F return T is ((3, 'c'));`
+B. | function F return T is
+   |   Two : T;
+   | begin
+   |   Two := (2, 'b');
+   |   return Two;
+   | end F;
+C. | function F return T is
+   |   One : constant T := (1, 'a');
+   | begin
+   |   return One;
+   | end F;
+D. function F return T is ( Zero );
 
-B.
-  |  function F return T is
-  |     Two : T;
-  |  begin
-  |     Two := (2, 'b');
-  |     return Two;
-  |  end F;
+.. container:: animate
 
-C.
-  |  function F return T is
-  |     One : constant T := (1, 'a');
-  |  begin
-  |     return One;
-  |  end F;
-
-D.
-  |  function F return T is ( Zero );
-
-:explanation:`"A" contains an "in-place" return. The rest all rely on other objects, which would require an (illegal) copy`
+   :ada:`A` contains an "in-place" return. The rest all rely on
+   other objects, which would require an (illegal) copy.
 
 ============================
 Extended Return Statements
@@ -710,7 +711,12 @@ B. Type P2_T will generate a compile error
 C. Both type P1_T and type P2_T will generate compile errors
 D. The code will compile successfully
 
-:explanation:`The full definition of type P1_T adds additional restrictions, which is not allowed. Although P2_T contains a component whose visible view is limited, the internal view is not limited so P2_T is not limited.`
+.. container:: animate
+
+   The full definition of type :ada:`P1_T` adds additional
+   restrictions, which is not allowed. Although :ada:`P2_T`
+   contains a component whose visible view is :ada:`limited`,
+   the internal view is not :ada:`limited` so :ada:`P2_T` is not :ada:`limited`.
 
 ========
 Lab

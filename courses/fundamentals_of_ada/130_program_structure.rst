@@ -3,6 +3,9 @@
 Program Structure
 *******************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -521,7 +524,13 @@ Which is not a legal initialization of Child_Object?
    C. Parent_Object + Sibling_Object
    D. :answer:`All of the above`
 
-:explanation:`A, B, and C are illegal because there is no reference to package Parent.Sibling (the reference to Parent is implied by the hierarchy). If Parent.Child had "with Parent.Sibling", then A and B would be legal, but C would still be incorrect because there is no implied reference to a sibling.`
+.. container:: animate
+
+   A, B, and C are illegal because there is no reference to package
+   :ada:`Parent.Sibling` (the reference to :ada:`Parent` is implied by the
+   hierarchy). If :ada:`Parent.Child` had :ada:`with Parent.Sibling;`, then
+   A and B would be legal, but C would still be incorrect because there is
+   no implied reference to a sibling.
 
 ===================
 Visibility Limits
@@ -715,12 +724,14 @@ Which is not a legal completion of P.Child.X?
    C.  :answer:`function X return Integer is (Object_C);`
    D.  None of the above
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Object_A is in the public part of P - visible to any unit that "with's" P`
-   B. :explanation:`Object_B is in the private part of P - visible in the private part or body of any descendant of P`
-   C. :explanation:`Object_C is in the body of P, so it is only visible in the body of P`
-   D. :explanation:`A and B are both valid completions`
+   Explanations
+
+   A. :ada:`Object_A` is in the public part of :ada:`P` - visible to any unit that :ada:`with`'s :ada:`P`
+   B. :ada:`Object_B` is in the private part of :ada:`P` - visible in the private part or body of any descendant of :ada:`P`
+   C. :ada:`Object_C` is in the body of :ada:`P`, so it is only visible in the body of :ada:`P`
+   D. A and B are both valid completions
 
 ===================
 Private Children

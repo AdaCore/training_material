@@ -4,6 +4,9 @@ Polymorphism
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -383,19 +386,21 @@ Quiz
    procedure Main is
       Z : Root'Class := Grandchild'(others => <>);
 
-What is the value returned by `F1 (Child'Class (Z));`?
+What is the value returned by :ada:`F1 (Child'Class (Z));`?
 
    A. :answer:`301`
    B. 201
    C. 101
    D. Compilation error
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Correct`
-   B. :explanation:`Would be correct if the cast was "Child" - "Child'Class" leaves the object as Grandchild`
-   C. :explanation:`Object is initialized to something in Root'class, but it doesn't have to be Root`
-   D. :explanation:`Would be correct if function parameter types were 'Class`
+   Explanations
+
+   A. Correct
+   B. Would be correct if the cast was :ada:`Child` - :ada:`Child'Class` leaves the object as :ada:`Grandchild`
+   C. Object is initialized to something in :ada:`Root'class`, but it doesn't have to be :ada:`Root`
+   D. Would be correct if function parameter types were :ada:`'Class`
    
 ===============================
 Exotic Dispatching Operations

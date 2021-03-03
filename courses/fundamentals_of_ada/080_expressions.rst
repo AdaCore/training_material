@@ -6,6 +6,9 @@ Expressions
 .. |forall| replace:: :math:`\forall`
 .. |exists| replace:: :math:`\exists`
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -255,15 +258,17 @@ Which subtype definition is valid?
 
    A. subtype A is Enum_Sub_T range Enum_Sub_T'Pred (Enum_Sub_T'First) .. Enum_Sub_T'Last;
    B. subtype B is Array_Sub_T (1 .. 10);
-   C. subtype C is String;
+   C. :answer:`subtype C is String;`
    D. subtype D is digits 6;
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`This generates a run-time error because the first enumeral specified is not in the range of Enum_Sub_T.`
-   B. :explanation:`Compile error - array type is already constrained`
-   C. :explanation:`Correct - standalone subtype`
-   D. :explanation:`"Digits 6" is used for a type definition, not a subtype`
+   Explanations
+
+   A. This generates a run-time error because the first enumeral specified is not in the range of :ada:`Enum_Sub_T`
+   B. Compile error - array type is already constrained
+   C. Correct - standalone subtype
+   D. :ada:`Digits 6` is used for a type definition, not a subtype
 
 ==================
 Membership Tests
@@ -350,12 +355,14 @@ Which condition is illegal?
    C. if Today not in Weekdays_T then
    D. if Today in Tue | Thu then
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`To use "or", both sides of the comparison must be duplicated (e.g. Today = Mon or Today = Wed)`
-   B. :explanation:`Legal - should always return True`
-   C. :explanation:`Legal - returns True if Today is Sat or Sun`
-   D. :explanation:`Legal - returns True if Today is Tue or Thu`
+   Explanations
+
+   A. To use :ada:`or`, both sides of the comparison must be duplicated (e.g. :ada:`Today = Mon or Today = Wed`)
+   B. Legal - should always return :ada:`True`
+   C. Legal - returns :ada:`True` if :ada:`Today` is :ada:`Sat` or :ada:`Sun`
+   D. Legal - returns :ada:`True` if :ada:`Today` is :ada:`Tue` or :ada:`Thu`
 
 =================
 Qualified Names
@@ -824,16 +831,18 @@ Quiz
 Which statement is illegal?
 
    A. :answer:`F := if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X);`
-   B. F := Sqrt (if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X));
+   B. F := Sqrt( if X < 0.0 then -1.0 * X else X );
    C. B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0 else True);
    D. B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0);
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Missing parentheses around expression`
-   B. :explanation:`Legal - Extra parentheses not needed`
-   C. :explanation:`Legal - "else True" not needed but is allowed`
-   D. :explanation:`Legal - B will be True if X >= 0.0`
+   Explanations
+
+   A. Missing parentheses around expression
+   B. Legal - Extra parentheses not needed
+   C. Legal - :ada:`else True` not needed but is allowed
+   D. Legal - :ada:`B` will be :ada:`True` if X >= 0.0
 
 ========================
 Quantified Expressions
@@ -1192,7 +1201,7 @@ Quiz
    A : Array2_T;
 
 The above describes an array A whose elements are arrays of three elements.
-Which expression would I use to determine if at least one of A's elements are sorted?
+Which expression would one use to determine if at least one of A's elements are sorted?
 
 A.
   | (for some Element of A =>
@@ -1211,12 +1220,14 @@ D.
   |    (for some Index in 2 .. 3 =>
   |       Element (Index) >= Element (Index - 1)));
 
-:explanation:`Explanations`
+.. container:: animate
 
-   A. :explanation:`Will be True if any element has two consecutive increasing values`
-   B. :explanation:`Will be True if every element is sorted`
-   C. :explanation:`Correct`
-   D. :explanation:`Will be True if every element has two consecutive increasing values`
+   Explanations
+
+   A. Will be :ada:`True` if any element has two consecutive increasing values
+   B. Will be :ada:`True` if every element is sorted
+   C. Correct
+   D. Will be :ada:`True` if every element has two consecutive increasing values
 
 ========
 Lab
