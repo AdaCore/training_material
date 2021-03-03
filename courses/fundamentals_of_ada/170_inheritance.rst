@@ -617,29 +617,26 @@ Quiz
 
 Which code block is legal?
 
-| **A.** type A1 is record
-|       Field1 : Integer;
-|    end record;
-|    type A2 is new A1 with null record;
-
-| **B.** :answer:`type B1 is tagged record`
-|       :answer:`Field2 : Integer;`
-|    :answer:`end record;`
-|    :answer:`type B2 is new B1 with record`
-|       :answer:`Field2b : Integer;`
-|     :answer:`end record;`
-
-| **C.** type C1 is tagged record
-|       Field3 : Integer;
-|    end record;
-|    type C2 is new C1 with record
-|       Field3 : Integer;
-|    end record;
-
-| **D.** type D1 is tagged record
-|       Field1 : Integer;
-|    end record;
-|    type D2 is new D1;
+A. | type A1 is record
+   |       Field1 : Integer;
+   |  end record;
+   |  type A2 is new A1 with null record;
+B. | :answer:`type B1 is tagged record`
+   |    :answer:`Field2 : Integer;`
+   | :answer:`end record;`
+   | :answer:`type B2 is new B1 with record`
+   |    :answer:`Field2b : Integer;`
+   | :answer:`end record;`
+C. | type C1 is tagged record
+   |    Field3 : Integer;
+   | end record;
+   | type C2 is new C1 with record
+   |    Field3 : Integer;
+   | end record;
+D. | type D1 is tagged record
+   |    Field1 : Integer;
+   | end record;
+   | type D2 is new D1;
 
 .. container:: animate
 

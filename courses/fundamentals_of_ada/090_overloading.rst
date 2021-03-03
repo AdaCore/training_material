@@ -584,17 +584,13 @@ Quiz
 
 Which function will return True when comparing X and Y?
 
-A.
-  | Implicit equality operator
-B. 
-  | :answer:`function "=" (L, R : Record_T) return Boolean is`
-  |    :answer:`(L.Z = R.Z and`
-  |     :answer:`L.XY.X = R.XY.X and L.XY.Y = R.XY.Y);`
-C.
-  | function "=" (L, R : Record_T) return Boolean is
-  |    (L.Z = R.Z and L.XY = R.XY);
-D.
-  | function "=" (L, R : Record_T) return Boolean is (L = R);
+A. | Implicit equality operator
+B. | :answer:`function "=" (L, R : Record_T) return Boolean is`
+   |    :answer:`(L.Z = R.Z and`
+   |     :answer:`L.XY.X = R.XY.X and L.XY.Y = R.XY.Y);`
+C. | function "=" (L, R : Record_T) return Boolean is
+   |    (L.Z = R.Z and L.XY = R.XY);
+D. function "=" (L, R : Record_T) return Boolean is (L = R);
 
 .. container:: animate
 

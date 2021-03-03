@@ -328,17 +328,13 @@ Quiz
 
 Which block is illegal?
 
-A.
-   | X := A;
+A. | X := A;
    | Y := A;
-B.
-   | X := B;
+B. | X := B;
    | Y := C;
-C.
-   | :answer:`X  = One_T(A);`
+C. | :answer:`X  = One_T(A);`
    | :answer:`Y  = Two_T(A);`
-D.
-   | X := One_T(Y);
+D. | X := One_T(Y);
    | Y := Two_T(X);
 
 .. container:: animate
@@ -536,18 +532,14 @@ Quiz
 
 Which choice needs to be modified to make a valid :ada:`if` block
 
-A.
-   | :answer:`if A == B and then A != 0 then`
+A. | :answer:`if A == B and then A != 0 then`
    |    :answer:`A := Integer'First;`
    |    :answer:`B := Integer'Last;`
-B.
-   | elsif A < B then
+B. | elsif A < B then
    |    A := B + 1;
-C.
-   | elsif A > B then
+C. | elsif A > B then
    |    B := A - 1;
-D.
-   | end if;
+D. | end if;
 
 .. container:: animate
 
@@ -571,17 +563,13 @@ Which choice needs to be modified to make a valid :ada:`case` block
 
    case A is
 
-A.
-   | when Sun =>
+A. | when Sun =>
    |    Put_Line ( "Day Off" );
-B.
-   | when Mon | Fri =>
+B. | when Mon | Fri =>
    |    Put_Line ( "Short Day" );
-C.
-   | when Tue .. Thu =>
+C. | when Tue .. Thu =>
    |    Put_Line ( "Long Day" );
-D.
-   | :answer:`end case;`
+D. | :answer:`end case;`
 
 .. container:: animate
 
@@ -939,20 +927,16 @@ Quiz
 
 Which loop block is illegal?
 
-A.
-   | :answer:`for A in 1 .. 10 loop`
+A. | :answer:`for A in 1 .. 10 loop`
    |    :answer:`A := A + 1;`
    | :answer:`end loop;`
-B.
-   | for B in 1 .. 10 loop
+B. | for B in 1 .. 10 loop
    |    Put_Line (Integer'Image (B));
    | end loop;
-C.
-   | for C in reverse 1 .. 10 loop
+C. | for C in reverse 1 .. 10 loop
    |    Put_Line (Integer'Image (A));
    | end loop;
-D.
-   | for D in 10 .. 1 loop
+D. | for D in 10 .. 1 loop
    |    Put_Line (Integer'Image (D));
    | end loop;
 

@@ -1203,22 +1203,18 @@ Quiz
 The above describes an array A whose elements are arrays of three elements.
 Which expression would one use to determine if at least one of A's elements are sorted?
 
-A.
-  | (for some Element of A =>
-  |    (for some Index in 2 .. 3 =>
-  |       Element (Index) >= Element (Index - 1)));
-B.
-  | (for all Element of A =>
-  |    (for all Index in 2 .. 3 =>
-  |       Element (Index) >= Element (Index - 1)));
-C.
-  | :answer:`(for some Element of A =>`
-  |    :answer:`(for all Index in 2 .. 3 =>`
-  |       :answer:`Element (Index) >= Element (Index - 1)));`
-D.
-  | (for all Element of A =>
-  |    (for some Index in 2 .. 3 =>
-  |       Element (Index) >= Element (Index - 1)));
+A. | (for some Element of A =>
+   |    (for some Index in 2 .. 3 =>
+   |       Element (Index) >= Element (Index - 1)));
+B. | (for all Element of A =>
+   |    (for all Index in 2 .. 3 =>
+   |       Element (Index) >= Element (Index - 1)));
+C. | :answer:`(for some Element of A =>`
+   |    :answer:`(for all Index in 2 .. 3 =>`
+   |       :answer:`Element (Index) >= Element (Index - 1)));`
+D. | (for all Element of A =>
+   |    (for some Index in 2 .. 3 =>
+   |       Element (Index) >= Element (Index - 1)));
 
 .. container:: animate
 
