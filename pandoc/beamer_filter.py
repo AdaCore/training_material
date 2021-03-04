@@ -332,7 +332,7 @@ def is_source_include ( classes ):
    look like an animation
 '''
 
-def is_animation ( classes ):
+def is_animate ( classes ):
    return ( "container" in classes ) and ( "animate" in classes)
 
 def animate ( classes, contents ):
@@ -356,7 +356,6 @@ def animate ( classes, contents ):
    first = {'t': 'RawBlock', 'c': ['latex', '\\begin{visibleenv}<' + slide_number + '>']}
    last = {'t': 'RawBlock', 'c': ['latex', '\\end{visibleenv}']}
 
-   value0 = {}
    value = []
    value.append ( first )
    for c in contents:
@@ -364,6 +363,45 @@ def animate ( classes, contents ):
    value.append ( last )
 
    return value
+
+########################
+## LATEX ENVIRONMENTS ##
+########################
+
+'''
+   This is a highly flexible way of adding LaTeX capabilities
+   into an RST document. I found it useful for changing text
+   sizes when I knew I needed it.
+
+   The format of the directive is:
+
+      .. container:: latex_environment <environment-name>
+      
+   It will add "\begin{environment-name}" at the beginning of 
+   the container block, and "\end{environment-name}" at the end.
+   No guarantees as to safety - if Pandoc has a same-named begin and/or end
+   inside the container, I have no idea what will happen.
+'''
+
+def is_latex_environment ( classes ):
+   return ( "container" in classes ) and ( "latex_environment" in classes)
+
+def latex_environment ( classes, contents ):
+
+   if len(classes) > 2:
+      environment = classes[2]
+      first = {'t': 'RawBlock', 'c': ['latex', '\\begin{' + environment + '}']}
+      last = {'t': 'RawBlock', 'c': ['latex', '\\end{' + environment + '}']}
+
+      value = []
+      value.append ( first )
+      for c in contents:
+         value.append ( c )
+      value.append ( last )
+      return value
+
+   else:
+      return contents
 
 #####################
 ## QUERY FUNCTIONS ##
@@ -533,8 +571,11 @@ def perform_filter(key, value, format, meta):
             if is_source_include ( classes ):
                 return source_include ( classes, contents )
 
-            if is_animation ( classes ):
+            if is_animate ( classes ):
                 return animate ( classes, contents )
+
+            if is_latex_environment ( classes ):
+                return latex_environment ( classes, contents )
 
             # language variant admonition
             elif admonition_type ( classes, contents ) == "language variant":

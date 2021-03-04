@@ -699,39 +699,47 @@ Another Misbehaving Child
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
 
-   package P is
-      procedure Initialize;
-      Object_A : Integer;
-   private
-      Object_B : Integer;
-   end P;
+ .. container:: columns
 
-   package body P is
-      Object_C : Integer;
-      procedure Initialize is null;
-   end P;
+  .. container:: column
 
-   package P.Child is
-      function X return Integer;
-   end P.Child;
+   .. code:: Ada
 
-Which is not a legal completion of P.Child.X?
+      package P is
+         procedure Initialize;
+         Object_A : Integer;
+      private
+         Object_B : Integer;
+      end P;
 
-   A.  function X return Integer is (Object_A);
-   B.  function X return Integer is (Object_B);
-   C.  :answer:`function X return Integer is (Object_C);`
-   D.  None of the above
+      package body P is
+         Object_C : Integer;
+         procedure Initialize is null;
+      end P;
 
-.. container:: animate
+      package P.Child is
+         function X return Integer;
+      end P.Child;
 
-   Explanations
+  .. container:: column
 
-   A. :ada:`Object_A` is in the public part of :ada:`P` - visible to any unit that :ada:`with`'s :ada:`P`
-   B. :ada:`Object_B` is in the private part of :ada:`P` - visible in the private part or body of any descendant of :ada:`P`
-   C. :ada:`Object_C` is in the body of :ada:`P`, so it is only visible in the body of :ada:`P`
-   D. A and B are both valid completions
+   Which is not a legal completion of P.Child.X?
+
+      A.  function X return Integer is (Object_A);
+      B.  function X return Integer is (Object_B);
+      C.  :answer:`function X return Integer is (Object_C);`
+      D.  None of the above
+
+   .. container:: animate
+
+      Explanations
+
+      A. :ada:`Object_A` is in the public part of :ada:`P` - visible to any unit that :ada:`with`'s :ada:`P`
+      B. :ada:`Object_B` is in the private part of :ada:`P` - visible in the private part or body of any descendant of :ada:`P`
+      C. :ada:`Object_C` is in the body of :ada:`P`, so it is only visible in the body of :ada:`P`
+      D. A and B are both valid completions
 
 ===================
 Private Children

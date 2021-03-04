@@ -703,34 +703,42 @@ Overcoming Hiding
 Quiz
 ------
 
-What output does the following code produce? (Assume :code:`Print` prints the current value of it's argument)
+.. container:: columns
 
-.. code:: Ada
+ .. container:: column
 
-   declare
-      M : Integer := 1;
-   begin
-      M := M + 1;
+  .. container:: latex_environment footnotesize
+
+   What output does the following code produce? (Assume :code:`Print` prints the current value of it's argument)
+
+   .. code:: Ada
+
       declare
-         M : Integer := 2;
+         M : Integer := 1;
       begin
-         M := M + 2;
+         M := M + 1;
+         declare
+            M : Integer := 2;
+         begin
+            M := M + 2;
+            Print ( M );
+         end;
          Print ( M );
       end;
-      Print ( M );
-   end;
 
-A. 2, 2
-B. 2, 4
-C. 4, 4
-D. :answer:`4, 2`
+ .. container:: column
 
-.. container:: animate
+   A. 2, 2
+   B. 2, 4
+   C. 4, 4
+   D. :answer:`4, 2`
 
-   Explanation
+   .. container:: animate
 
-   * Inner :ada:`M` gets printed first. It is initialized to 2 and incremented by 2
-   * Outer :ada:`M` gets printed second. It is initialized to 1 and incremented by 1
+      Explanation
+
+      * Inner :ada:`M` gets printed first. It is initialized to 2 and incremented by 2
+      * Outer :ada:`M` gets printed second. It is initialized to 1 and incremented by 1
 
 ================
 Aspect Clauses

@@ -232,7 +232,9 @@ Invariants Are Not Foolproof
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+ .. code:: Ada
 
    package P is
       type Some_T is private;

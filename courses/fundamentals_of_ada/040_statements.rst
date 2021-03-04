@@ -316,35 +316,43 @@ Not All Assignments Are Checked
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
 
-   type One_T is range 0 .. 100;
-   type Two_T is range 0 .. 100;
-   A : constant := 100;
-   B : constant One_T := 99;
-   C : constant Two_T := 98;
-   X : One_T := 0;
-   Y : Two_T := 0;
+ .. container:: columns
 
-Which block is illegal?
+  .. container:: column
 
-A. | X := A;
-   | Y := A;
-B. | X := B;
-   | Y := C;
-C. | :answer:`X  = One_T(A);`
-   | :answer:`Y  = Two_T(A);`
-D. | X := One_T(Y);
-   | Y := Two_T(X);
+   .. code:: Ada
 
-.. container:: animate
+      type One_T is range 0 .. 100;
+      type Two_T is range 0 .. 100;
+      A : constant := 100;
+      B : constant One_T := 99;
+      C : constant Two_T := 98;
+      X : One_T := 0;
+      Y : Two_T := 0;
 
-   Explanations
+  .. container:: column
 
-   A. Legal - :ada:`A` is an untyped constant
-   B. Legal - :ada:`B, C` are correctly typed
-   C. Illegal - C-style assignment
-   D. Legal - Values are typecast appropriately
+   Which block is illegal?
+
+   A. | X := A;
+      | Y := A;
+   B. | X := B;
+      | Y := C;
+   C. | :answer:`X  = One_T(A);`
+      | :answer:`Y  = Two_T(A);`
+   D. | X := One_T(Y);
+      | Y := Two_T(X);
+
+   .. container:: animate
+
+     Explanations
+
+     A. Legal - :ada:`A` is an untyped constant
+     B. Legal - :ada:`B, C` are correctly typed
+     C. Illegal - C-style assignment
+     D. Legal - Values are typecast appropriately
 
 ========================
 Conditional Statements

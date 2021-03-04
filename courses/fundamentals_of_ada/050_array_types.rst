@@ -981,7 +981,8 @@ Quiz
 .. code:: Ada
 
    declare
-      type Array_T is array (1..3, 1..3) of Integer with Default_Component_Value => 1;
+      type Array_T is array (1..3, 1..3) of Integer
+         with Default_Component_Value => 1;
       A : Array_T;
    begin
       for I in Index_T range 2 .. 3 loop

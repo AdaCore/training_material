@@ -367,47 +367,55 @@ Exceptions Raised In Exception Handlers
 Quiz
 ------
 
-.. code:: Ada
- :number-lines: 1
+.. container:: latex_environment scriptsize
 
-   with Ada.Text_IO; use Ada.Text_IO;
-   procedure Main is
-      A, B, C, D : Natural;
-   begin
-      A := 1; B := 2; C := 3; D := 4;
+ .. container:: columns
+
+  .. container:: column
+
+   .. code:: Ada
+    :number-lines: 1
+
+      with Ada.Text_IO; use Ada.Text_IO;
+      procedure Main is
+         A, B, C, D : Natural;
       begin
-         D := A - C + B;
+         A := 1; B := 2; C := 3; D := 4;
+         begin
+            D := A - C + B;
+         exception
+            when others => Put_Line ("One");
+                           D := 1;
+         end;
+         D := D + 1;
+         begin
+            D := D / (A - C + B);
+         exception
+            when others => Put_Line ("Two");
+                           D := -1;
+         end;
       exception
-         when others => Put_Line ("One");
-                        D := 1;
-      end;
-      D := D + 1;
-      begin
-         D := D / (A - C + B);
-      exception
-         when others => Put_Line ("Two");
-                        D := -1;
-      end;
-   exception
-      when others =>
-         Put_Line ("Three");
-   end Main;
+         when others =>
+            Put_Line ("Three");
+      end Main;
 
-What will get printed?
+  .. container:: column
 
-   A. One, Two, Three
-   B. :answer:`Two, Three`
-   C. Two
-   D. Three
+   What will get printed?
 
-.. container:: animate
+      A. One, Two, Three
+      B. :answer:`Two, Three`
+      C. Two
+      D. Three
 
-   Explanations
+   .. container:: animate
 
-   A. Although :ada:`(A - C)` is not in the range of :ada:`natural`, the range is only checked on assignment, which is after the addition of :ada:`B`, so :ada:`One` is never printed
-   B. Correct
-   C. If we reach :ada:`Two`, the assignment on line 10 will cause :ada:`Three` to be reached
-   D. Divide by 0 on line 14 causes an exception, so :ada:`Two` must be called
+      Explanations
+
+      A. Although :ada:`(A - C)` is not in the range of :ada:`natural`, the range is only checked on assignment, which is after the addition of :ada:`B`, so :ada:`One` is never printed
+      B. Correct
+      C. If we reach :ada:`Two`, the assignment on line 10 will cause :ada:`Three` to be reached
+      D. Divide by 0 on line 14 causes an exception, so :ada:`Two` must be called
 
 =============================================
 Implicitly and Explicitly Raised Exceptions
@@ -810,33 +818,35 @@ Handling Elaboration Exceptions
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
 
-   with Ada.Text_IO; use Ada.Text_IO;
-   procedure Main is
-      Known_Problem : exception;
-      function F (P : Integer) return Integer is
+   .. code:: Ada
+
+      with Ada.Text_IO; use Ada.Text_IO;
+      procedure Main is
+         Known_Problem : exception;
+         function F (P : Integer) return Integer is
+         begin
+            if P > 0 then
+               return P * P;
+            end if;
+         exception
+            when others => raise Known_Problem;
+         end F;
+         procedure P (X : Integer) is
+            A : array (1 .. F (X)) of Float;
+         begin
+            A := (others => 0.0);
+         exception
+            when others => raise Known_Problem;
+         end P;
       begin
-         if P > 0 then
-            return P * P;
-         end if;
+         P ( Input_Value );
+         Put_Line ( "Success" );
       exception
-         when others => raise Known_Problem;
-      end F;
-      procedure P (X : Integer) is
-         A : array (1 .. F (X)) of Float;
-      begin
-         A := (others => 0.0);
-      exception
-         when others => raise Known_Problem;
-      end P;
-   begin
-      P ( Input_Value );
-      Put_Line ( "Success" );
-   exception
-      when Known_Problem => Put_Line ("Known problem");
-      when others => Put_Line ("Unknown problem");
-   end Main;
+         when Known_Problem => Put_Line ("Known problem");
+         when others => Put_Line ("Unknown problem");
+      end Main;
 
 What will get printed for these values of Input_Value?
 
@@ -859,9 +869,11 @@ What will get printed for these values of Input_Value?
 
    Explanations
 
-   A |rightarrow| When :ada:`F` is called with a large :ada:`P`, its own exception handler captures the exception and raises :ada:`Constraint_Error` (which the main exception handler processes)
+   .. container:: latex_environment tiny
 
-   B/C |rightarrow| When the creation of :ada:`A` fails (due to :ada:`Program_Error` from passing :ada:`F` a negative number or :ada:`Storage_Error` from passing :ada:`F` a large number), then :ada:`P` raises an exception during elaboration, which is propagated to :ada:`Main`
+      A |rightarrow| When :ada:`F` is called with a large :ada:`P`, its own exception handler captures the exception and raises :ada:`Constraint_Error` (which the main exception handler processes)
+
+      B/C |rightarrow| When the creation of :ada:`A` fails (due to :ada:`Program_Error` from passing :ada:`F` a negative number or :ada:`Storage_Error` from passing :ada:`F` a large number), then :ada:`P` raises an exception during elaboration, which is propagated to :ada:`Main`
 
 =======================
 Exceptions as Objects

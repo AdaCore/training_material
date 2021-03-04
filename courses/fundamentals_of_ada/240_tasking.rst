@@ -151,45 +151,57 @@ Accepting a Rendezvous
 Quiz
 ------
 
-.. code:: Ada
+.. container:: columns
 
-   with Ada.Text_IO; use Ada.Text_IO;
-   procedure Main is
-      task T is
-         entry Hello;
-         entry Goodbye;
-      end T;
-      task body T is
+ .. container:: column
+
+  .. container:: latex_environment tiny
+
+   .. code:: Ada
+
+      with Ada.Text_IO; use Ada.Text_IO;
+      procedure Main is
+         task T is
+            entry Hello;
+            entry Goodbye;
+         end T;
+         task body T is
+         begin
+            loop
+               accept Hello do
+                  Put_Line ("Hello");
+               end Hello;
+               accept Goodbye do
+                  Put_Line ("Goodbye");
+               end Goodbye;
+            end loop;
+            Put_Line ("Finished");
+         end T;
       begin
-         loop
-            accept Hello do
-               Put_Line ("Hello");
-            end Hello;
-            accept Goodbye do
-               Put_Line ("Goodbye");
-            end Goodbye;
-         end loop;
-         Put_Line ("Finished");
-      end T;
-   begin
-      T.Hello;
-      T.Goodbye;
-      Put_Line ("Done");
-   end Main;
+         T.Hello;
+         T.Goodbye;
+         Put_Line ("Done");
+      end Main;
 
-What is the output of this program?
+ .. container:: column
 
-   A. Hello, Goodbye, Finished, Done
-   B. Hello, Goodbye, Finished
-   C. :answer:`Hello, Goodbye, Done`
-   D. Hello, Goodbye
+   What is the output of this program?
 
-.. container:: animate
+      A. Hello, Goodbye, Finished, Done
+      B. Hello, Goodbye, Finished
+      C. :answer:`Hello, Goodbye, Done`
+      D. Hello, Goodbye
 
-   Entries :ada:`Hello` and :ada:`Goodbye` are reached (so "Hello" and
-   "Goodbye" are printed). After :ada:`Goodbye`, task returns to :ada:`Main`
-   (so "Done" is printed) but the loop in the task never finishes (so
-   "Finished" is never printed).
+   .. container:: animate
+
+      |
+
+      - Entries :ada:`Hello` and :ada:`Goodbye` are reached (so "Hello" and
+      "Goodbye" are printed).
+
+      - After :ada:`Goodbye`, task returns to :ada:`Main`
+      (so "Done" is printed) but the loop in the task never finishes (so
+      "Finished" is never printed).
  
 ===================
 Protected Objects
@@ -255,7 +267,9 @@ Protected: Functions Vs. Procedures
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+ .. code:: Ada
 
    protected P is
       procedure Initialize (V : Integer);
@@ -267,6 +281,8 @@ Quiz
    end P;
 
 What of the following completions for :ada:`P`'s members is illegal?
+
+ .. container:: latex_environment footnotesize
 
    A. |  procedure Initialize (V : Integer) is
       |  begin

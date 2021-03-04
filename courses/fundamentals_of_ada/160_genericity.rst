@@ -382,7 +382,6 @@ Quiz
       procedure P1 (X : in out Integer); -- add 100 to X
       procedure P2 (X : in out Integer); -- add 20 to X
       procedure P3 (X : in out Integer); -- add 3 to X
-   
       generic
          Z : in out Integer;
          with procedure P1 (X : in out Integer) is <>;
@@ -392,7 +391,6 @@ Quiz
 
    package body P is
       -- bodies of P1/P2/P3 skipped for space
-
       procedure G is begin
          P1 (Z);
          P2 (Z);

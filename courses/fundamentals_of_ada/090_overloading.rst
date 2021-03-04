@@ -569,7 +569,8 @@ Quiz
 .. code:: Ada
 
    type Range_T is range -1_000 .. 1_000;
-   function "=" (L, R : Range_T) return Boolean is (Integer (abs (L)) = Integer (abs (R)));
+   function "=" (L, R : Range_T) return Boolean is
+      (Integer (abs (L)) = Integer (abs (R)));
    type Coord_T is record
       X : Range_T;
       Y : Range_T;
@@ -578,7 +579,6 @@ Quiz
       XY : Coord_T;
       Z  : Range_T;
    end record;
-
    X : Record_T := (XY => (1, -1), Z => 2);
    Y : Record_T := (XY => (-1, 1), Z => -2);
 

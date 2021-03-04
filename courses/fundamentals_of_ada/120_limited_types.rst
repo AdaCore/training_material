@@ -681,42 +681,50 @@ Automatically Limited Full View
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
 
-   package P is
-      type L1_T is limited private;
-      type L2_T is limited private;
-      type P1_T is private;
-      type P2_T is private;
-   private
-      type L1_T is limited record
-         Field : Integer;
-      end record;
-      type L2_T is record
-         Field : Integer;
-      end record;
-      type P1_T is limited record
-         Field : L1_T;
-      end record;
-      type P2_T is record
-         Field : L2_T;
-      end record;
-   end P;
+ .. container:: columns
 
+  .. container:: column
 
-What will happen when the above code is compiled?
+   .. code:: Ada
 
-A. :answer:`Type P1_T will generate a compile error`
-B. Type P2_T will generate a compile error
-C. Both type P1_T and type P2_T will generate compile errors
-D. The code will compile successfully
+      package P is
+         type L1_T is limited private;
+         type L2_T is limited private;
+         type P1_T is private;
+         type P2_T is private;
+      private
+         type L1_T is limited record
+            Field : Integer;
+         end record;
+         type L2_T is record
+            Field : Integer;
+         end record;
+         type P1_T is limited record
+            Field : L1_T;
+         end record;
+         type P2_T is record
+            Field : L2_T;
+         end record;
+      end P;
 
-.. container:: animate
+  .. container:: column
 
-   The full definition of type :ada:`P1_T` adds additional
-   restrictions, which is not allowed. Although :ada:`P2_T`
-   contains a component whose visible view is :ada:`limited`,
-   the internal view is not :ada:`limited` so :ada:`P2_T` is not :ada:`limited`.
+   What will happen when the above code is compiled?
+
+   A. :answer:`Type P1_T will generate a compile error`
+   B. Type P2_T will generate a compile error
+   C. Both type P1_T and type P2_T will generate compile errors
+   D. The code will compile successfully
+
+   .. container:: animate
+
+      The full definition of type :ada:`P1_T` adds additional
+      restrictions, which is not allowed. Although :ada:`P2_T`
+      contains a component whose visible view is :ada:`limited`,
+      the internal view is not :ada:`limited` so :ada:`P2_T` is
+      not :ada:`limited`.
 
 ========
 Lab
