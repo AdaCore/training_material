@@ -500,9 +500,9 @@ Quiz
 .. code:: Ada
 
    type Index_T is range 1 .. 100;
-   -- This will be initialized such that the value for element I will be I
+   -- Database initialized such that value for element at I = I
    Database : array (Index_T) of Integer;
-   -- This subprogram will set the value for element Index to Value and
+   -- Set the value for element Index to Value and
    -- then increment Index by 1
    function Set_And_Move (Value :        Integer;
                           Index : in out Index_T)
