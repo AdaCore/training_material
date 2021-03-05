@@ -508,30 +508,18 @@ def format_filename ( literal_text ):
 "answer" role
 Items will appear normal at first then highlighted on "page down".
 Useful for quiz answers to appear after a quiz slide is presented.
-This will only happen if the INSTRUCTOR environment variable is set.
-Otherwise, the text is not formatted - this allows handouts to be
-printed without the answer already given.
 '''
 def format_answer ( literal_text ):
-   if "INSTRUCTOR" in os.environ:
-       return latex_inline ( latex_answer_highlight ( latex_escape ( literal_text ) ) )
-   else:
-       return latex_inline ( latex_escape ( literal_text ) )
+   return latex_inline ( latex_answer_highlight ( latex_escape ( literal_text ) ) )
 
 '''
 "animate" role
 Items will only appear on a slide after "page down".
 Useful for explaining why a quiz answer is incorrect after a
 quiz slide is presented.
-This will only happen if the INSTRUCTOR environment variable is set.
-Otherwise, the text will not appear - this allows handouts to be
-printed without the explanations already given.
 '''
 def format_animate( literal_text ):
-   if "INSTRUCTOR" in os.environ:
-       return latex_inline ( latex_animate ( latex_escape ( literal_text ) ) )
-   else:
-       return latex_inline ( " " )
+   return latex_inline ( latex_animate ( latex_escape ( literal_text ) ) )
 
 #####################
 ## MAIN SUBPROGRAM ##
