@@ -362,7 +362,7 @@ Which component is legal?
    A. ``Field_A : integer := Private_T'Pos (Private_T'First);``
    B. ``Field_B : Private_T := null;``
    C. ``Field_C : Private_T := 0;``
-   D. :answermono:`Field_D : integer := Private_T'size;`
+   D. :answermono:`Field_D : integer := Private_T'Size;`
 
       .. code:: Ada
 

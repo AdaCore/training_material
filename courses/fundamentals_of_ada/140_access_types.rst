@@ -254,18 +254,18 @@ Quiz
    type One_T is access all Integer;
    type Two_T is access Integer;
 
-   A : Integer;
-   B : aliased Integer;
+   A : aliased Integer;
+   B : Integer;
 
    One : One_T;
    Two : Two_T;
 
 Which assignment is legal?
 
-A. ``One := A'Access;``
-B. :answermono:`One := B'Access;`
-C. ``Two := A'Access;``
-D. ``Two := B'Access;``
+A. ``One := B'Access;``
+B. :answermono:`One := A'Access;`
+C. ``Two := B'Access;``
+D. ``Two := A'Access;``
 
 .. container:: animate
 

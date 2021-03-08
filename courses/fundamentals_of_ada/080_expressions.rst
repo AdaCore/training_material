@@ -840,7 +840,7 @@ Which statement is illegal?
    Explanations
 
    A. Missing parentheses around expression
-   B. Legal - Extra parentheses not needed
+   B. Legal - Expression is already enclosed in parentheses so you don't need to add more
    C. Legal - :ada:`else True` not needed but is allowed
    D. Legal - :ada:`B` will be :ada:`True` if X >= 0.0
 

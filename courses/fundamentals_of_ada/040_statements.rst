@@ -340,8 +340,7 @@ Quiz
       | ``Y := A;``
    B. | ``X := B;``
       | ``Y := C;``
-   C. | :answermono:`X  = One_T(A);`
-      | :answermono:`Y  = Two_T(A);`
+   C. | :answermono:`X := One_T(X + C);`
    D. | ``X := One_T(Y);``
       | ``Y := Two_T(X);``
 
@@ -351,7 +350,7 @@ Quiz
 
      A. Legal - :ada:`A` is an untyped constant
      B. Legal - :ada:`B, C` are correctly typed
-     C. Illegal - C-style assignment
+     C. Illegal - C must be cast by itself
      D. Legal - Values are typecast appropriately
 
 ========================

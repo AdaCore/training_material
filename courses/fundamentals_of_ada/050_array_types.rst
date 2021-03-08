@@ -268,15 +268,15 @@ Quiz
 
    type Array1_T is array ( 1 .. 8 ) of boolean;
    type Array2_T is array ( 0 .. 7 ) of boolean;
-   X1, X2 : Array1_T;
-   Y1, Y2 : Array2_T;
+   X1, Y1 : Array1_T;
+   X2, Y2 : Array2_T;
 
-Which statement is legal?
+Which statement is not legal?
 
-   A. ``X1(1) := X2(1);``
-   B. ``X1 := X2;``
-   C. ``X1(1) := Y1(1);``
-   D. :answermono:`Y1 := X1;`
+   A. ``X1(1) := Y1(1);``
+   B. ``X1 := Y1;``
+   C. ``X1(1) := X2(1);``
+   D. :answermono:`X2 := X1;`
 
 .. container:: animate
 
@@ -588,24 +588,19 @@ Quiz
 
    subtype Index1_T is Integer range 0 .. 7;
    subtype Index2_T is Integer range 1 .. 8;
-   type Array_T is array (Index2_T, Index1_T, Boolean) of Integer;
+   type Array_T is array (0..7, 1..8, Boolean) of Integer;
    X : Array_T;
 
 Which description is incorrect?
 
-   A. ``X'First(2) is 0``
+   A. ``X'First(2) is 1``
    B. :answermono:`X'Range(3) is True .. False;`
    C. ``X'Length(1) = X'Length(2)``
-   D. ``X'Last(1) = 8``
+   D. ``X'Last(1) = 7``
 
 .. container:: animate
 
-   Explanations
-
-   A. Correct (Index names are "backwards")
-   B. :ada:`Boolean` enumeration is :ada:`( False, True )`
-   C. Correct - sizes are the same
-   D. Correct (Same as :ada:`A`)
+   :ada:`Boolean` enumeration is :ada:`( False, True )`
 
 ============
 Operations
@@ -1283,7 +1278,7 @@ Which statement is correct?
    A. Cannot mix positional and named notation
    B. Correct - others not needed but is allowed
    C. Dynamic values must be the only choice. (This could be fixed by making :ada:`J` a constant.)
-   D. Overlapping values (3 appears more than once)
+   D. Overlapping index values (3 appears more than once)
 
 ======================
 Anonymous Array Types

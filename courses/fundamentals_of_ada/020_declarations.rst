@@ -259,7 +259,7 @@ Which statement is legal?
 
    Explanations
 
-   A. Underscores are not significant - you can place them wherever you want
+   A. Underscores are not significant - they can be anywhere (except first and last character, or next to another underscore)
    B. Must have digits on both sides of decimal
    C. Exponents must be integers
    D. Missing closing \#
@@ -709,7 +709,7 @@ Quiz
 
   .. container:: latex_environment footnotesize
 
-   What output does the following code produce? (Assume :code:`Print` prints the current value of it's argument)
+   What output does the following code produce? (Assume :code:`Print` prints the current value of its argument)
 
    .. code:: Ada
 

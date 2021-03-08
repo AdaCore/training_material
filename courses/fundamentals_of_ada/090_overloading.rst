@@ -575,22 +575,22 @@ Quiz
       X : Range_T;
       Y : Range_T;
    end record;
-   type Record_T is record
+   type Coord_3D_T is record
       XY : Coord_T;
       Z  : Range_T;
    end record;
-   X : Record_T := (XY => (1, -1), Z => 2);
-   Y : Record_T := (XY => (-1, 1), Z => -2);
+   A : Coord_3D_T := (XY => (1, -1), Z => 2);
+   B : Coord_3D_T := (XY => (-1, 1), Z => -2);
 
-Which function will return True when comparing X and Y?
+Which function will return True when comparing A and B?
 
 A. | Implicit equality operator
-B. | :answermono:`function "=" (L, R : Record_T) return Boolean is`
+B. | :answermono:`function "=" (L, R : Coord_3D_T) return Boolean is`
    |    :answermono:`(L.Z = R.Z and`
    |     :answermono:`L.XY.X = R.XY.X and L.XY.Y = R.XY.Y);`
-C. | ``function "=" (L, R : Record_T) return Boolean is``
+C. | ``function "=" (L, R : Coord_3D_T) return Boolean is``
    |    ``(L.Z = R.Z and L.XY = R.XY);``
-D. ``function "=" (L, R : Record_T) return Boolean is (L = R);``
+D. ``function "=" (L, R : Coord_3D_T) return Boolean is (L = R);``
 
 .. container:: animate
 

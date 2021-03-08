@@ -232,46 +232,55 @@ Invariants Are Not Foolproof
 Quiz
 ------
 
-.. container:: latex_environment footnotesize
+.. container:: columns
 
- .. code:: Ada
+ .. container:: column
 
-   package P is
-      type Some_T is private;
-      procedure Do_Something (X : in out Some_T);
-   private
-      function Counter (I : Integer) return Boolean;
-   type Some_T is new Integer with
-      Type_Invariant => Counter (Integer (Some_T));
-   end P;
+  .. container:: latex_environment tiny
 
-   package body P is
-      function Local_Do_Something (X : Some_T) return Some_T is
-         Z : Some_T := X + 1;
-      begin
-         return Z;
-      end Local_Do_Something;
-      procedure Do_Something (X : in out Some_T) is
-      begin
-         X := X + 1;
-         X := Local_Do_Something (X);
-      end Do_Something;
-      function Counter (I : Integer) return Boolean is ( True );
-   end P;
+   .. code:: Ada
 
-If `Do_Something` is called from outside of P, how many times is `Counter` called?
+      package P is
+         type Some_T is private;
+         procedure Do_Something (X : in out Some_T);
+      private
+         function Counter (I : Integer) return Boolean;
+      type Some_T is new Integer with
+         Type_Invariant => Counter (Integer (Some_T));
+      end P;
 
-   A. 1
-   B. :answer:`2`
-   C. 3
-   D. 4
+      package body P is
+         function Local_Do_Something (X : Some_T)
+                                      return Some_T is
+            Z : Some_T := X + 1;
+         begin
+            return Z;
+         end Local_Do_Something;
+         procedure Do_Something (X : in out Some_T) is
+         begin
+            X := X + 1;
+            X := Local_Do_Something (X);
+         end Do_Something;
+         function Counter (I : Integer)
+                           return Boolean is
+            ( True );
+      end P;
 
-.. container:: animate
+ .. container:: column
 
-   Type Invariants are only evaluated on entry into and exit from
-   externally visible subprograms. So :ada:`Counter` is called when
-   entering and exiting :ada:`Do_Something` - not :ada:`Local_Do_Something`,
-   even though a new instance of :ada:`Some_T` is created
+    If `Do_Something` is called from outside of P, how many times is `Counter` called?
+
+       A. 1
+       B. :answer:`2`
+       C. 3
+       D. 4
+
+    .. container:: animate
+
+       Type Invariants are only evaluated on entry into and exit from
+       externally visible subprograms. So :ada:`Counter` is called when
+       entering and exiting :ada:`Do_Something` - not :ada:`Local_Do_Something`,
+       even though a new instance of :ada:`Some_T` is created
 
 ====================
 Subtype Predicates

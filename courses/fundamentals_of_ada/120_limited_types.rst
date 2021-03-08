@@ -366,7 +366,7 @@ Quiz
 .. code:: Ada
 
    package P is
-      type T is record
+      type T is limited record
          F1 : Integer;
          F2 : Character;
       end record;
