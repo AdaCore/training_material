@@ -262,10 +262,10 @@ Quiz
 
 Which assignment is legal?
 
-A. One := A'Access;
-B. :answer:`One := B'Access;`
-C. Two := A'Access;
-D. Two := B'Access;
+A. ``One := A'Access;``
+B. :answermono:`One := B'Access;`
+C. ``Two := A'Access;``
+D. ``Two := B'Access;``
 
 .. container:: animate
 
@@ -491,10 +491,10 @@ Quiz
 
 Which assignment is illegal?
 
-A. Global_Pointer := Global_Object'Access;
-B. :answer:`Global_Pointer := Local_Object'Access;`
-C. Local_Pointer  := Global_Object'Access;
-D. Local_Pointer  := Local_Object'Access;
+A. ``Global_Pointer := Global_Object'Access;``
+B. :answermono:`Global_Pointer := Local_Object'Access;`
+C. ``Local_Pointer  := Global_Object'Access;``
+D. ``Local_Pointer  := Local_Object'Access;``
 
 .. container:: animate
 

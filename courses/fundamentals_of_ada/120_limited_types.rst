@@ -205,10 +205,10 @@ Quiz
 
 Which assignment is legal?
 
-   A. T1    := T2;
-   B. R1    := R2;
-   C. :answer:`R1.F1 := R2.F1;`
-   D. R2.F2 := R2.T2;
+   A. ``T1    := T2;``
+   B. ``R1    := R2;``
+   C. :answermono:`R1.F1 := R2.F1;`
+   D. ``R2.F2 := R2.T2;``
 
 .. container:: animate
 
@@ -376,19 +376,19 @@ Quiz
 
 Which is a correct completion of F?
 
-A. :answer:`function F return T is ((3, 'c'));`
-B. | function F return T is
-   |   Two : T;
-   | begin
-   |   Two := (2, 'b');
-   |   return Two;
-   | end F;
-C. | function F return T is
-   |   One : constant T := (1, 'a');
-   | begin
-   |   return One;
-   | end F;
-D. function F return T is ( Zero );
+A. :answermono:`function F return T is ((3, 'c'));`
+B. | ``function F return T is``
+   |   ``Two : T;``
+   | ``begin``
+   |   ``Two := (2, 'b');``
+   |   ``return Two;``
+   | ``end F;``
+C. | ``function F return T is``
+   |   ``One : constant T := (1, 'a');``
+   | ``begin``
+   |   ``return One;``
+   | ``end F;``
+D. ``function F return T is ( Zero );``
 
 .. container:: animate
 

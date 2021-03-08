@@ -284,22 +284,22 @@ What of the following completions for :ada:`P`'s members is illegal?
 
  .. container:: latex_environment footnotesize
 
-   A. |  procedure Initialize (V : Integer) is
-      |  begin
-      |     Object := V;
-      |  end Initialize;
-   B. |  procedure Increment is
-      |  begin
-      |     Object := Object + 1;
-      |  end Increment;
-   C. |  :answer:`function Decrement return Integer is`
-      |  :answer:`begin`
-      |     :answer:`Object := Object - 1;`
-      |     :answer:`return Object;`
-      |  :answer:`end Decrement;`
-   D. |  function Query return Integer is begin
-      |     return Object;
-      |  end Query;
+   A. |  ``procedure Initialize (V : Integer) is``
+      |  ``begin``
+      |     ``Object := V;``
+      |  ``end Initialize;``
+   B. |  ``procedure Increment is``
+      |  ``begin``
+      |     ``Object := Object + 1;``
+      |  ``end Increment;``
+   C. |  :answermono:`function Decrement return Integer is`
+      |  :answermono:`begin`
+      |     :answermono:`Object := Object - 1;`
+      |     :answermono:`return Object;`
+      |  :answermono:`end Decrement;`
+   D. |  ``function Query return Integer is begin``
+      |     ``return Object;``
+      |  ``end Query;``
 
 .. container:: animate
 

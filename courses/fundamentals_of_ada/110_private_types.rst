@@ -359,10 +359,10 @@ Quiz
 
 Which component is legal?
 
-   A. Field_A : integer := Private_T'Pos (Private_T'First);
-   B. Field_B : Private_T := null;
-   C. Field_C : Private_T := 0;
-   D. :answer:`Field_D : integer := Private_T'size;`
+   A. ``Field_A : integer := Private_T'Pos (Private_T'First);``
+   B. ``Field_B : Private_T := null;``
+   C. ``Field_C : Private_T := 0;``
+   D. :answermono:`Field_D : integer := Private_T'size;`
 
       .. code:: Ada
 
@@ -545,9 +545,9 @@ Quiz
 
 Which object definition is illegal?
 
-   A. :answer:`Object_A`
-   B. Object_B
-   C. Object_C
+   A. :answermono:`Object_A`
+   B. ``Object_B``
+   C. ``Object_C``
    D. None of the above
 
 .. container:: animate

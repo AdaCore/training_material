@@ -302,10 +302,10 @@ Quiz
 
 Which statement is not legal?
 
-   A. P := Horizontal_T'(Middle) * Middle;
-   B. P := Top * Right;
-   C. P := "*" (Middle, Top);
-   D. :answer:`P := "*" (H => Middle, V => Top);`
+   A. ``P := Horizontal_T'(Middle) * Middle;``
+   B. ``P := Top * Right;``
+   C. ``P := "*" (Middle, Top);``
+   D. :answermono:`P := "*" (H => Middle, V => Top);`
 
 .. container:: animate
 
@@ -585,12 +585,12 @@ Quiz
 Which function will return True when comparing X and Y?
 
 A. | Implicit equality operator
-B. | :answer:`function "=" (L, R : Record_T) return Boolean is`
-   |    :answer:`(L.Z = R.Z and`
-   |     :answer:`L.XY.X = R.XY.X and L.XY.Y = R.XY.Y);`
-C. | function "=" (L, R : Record_T) return Boolean is
-   |    (L.Z = R.Z and L.XY = R.XY);
-D. function "=" (L, R : Record_T) return Boolean is (L = R);
+B. | :answermono:`function "=" (L, R : Record_T) return Boolean is`
+   |    :answermono:`(L.Z = R.Z and`
+   |     :answermono:`L.XY.X = R.XY.X and L.XY.Y = R.XY.Y);`
+C. | ``function "=" (L, R : Record_T) return Boolean is``
+   |    ``(L.Z = R.Z and L.XY = R.XY);``
+D. ``function "=" (L, R : Record_T) return Boolean is (L = R);``
 
 .. container:: animate
 

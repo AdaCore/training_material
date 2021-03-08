@@ -49,13 +49,14 @@ slide_decorators = [ 't', 'shrink' ]
 # If the function name is found in 'pandocfilters', the caller must supply
 # the parameter as an AST string node.
 # Otherwise (for local functions), the parameter will be a literal text string
-role_format_functions = { 'toolname' : 'SmallCaps',
-                          'menu'     : 'format_menu',
-                          'command'  : 'format_command',
-                          'answer'   : 'format_answer',
-                          'animate'  : 'format_animate',
-                          'filename' : 'format_filename',
-                          'default'  : 'Strong' }
+role_format_functions = { 'toolname'   : 'SmallCaps',
+                          'menu'       : 'format_menu',
+                          'command'    : 'format_command',
+                          'answer'     : 'format_answer',
+                          'answermono' : 'format_answermono',
+                          'animate'    : 'format_animate',
+                          'filename'   : 'format_filename',
+                          'default'    : 'Strong' }
 ##
 ## END CONFIGURATION INFORMATION
 #############################################################################
@@ -107,8 +108,11 @@ def latex_monospace ( text ):
 def latex_escape ( text ):
     return text.replace('_', '\\_' ).replace('&', '\\&')
 
-def latex_answer_highlight ( text ):
+def latex_answer ( text ):
     return "\\textit<2>{\\textbf<2>{\\textcolor<2>{green!65!black}{" + text + "}}}"
+
+def latex_answermono ( text ):
+    return latex_monospace ( latex_answer ( text ) )
 
 def latex_animate ( text ):
     return "\\onslide<2->{" + text + "}"
@@ -510,7 +514,10 @@ Items will appear normal at first then highlighted on "page down".
 Useful for quiz answers to appear after a quiz slide is presented.
 '''
 def format_answer ( literal_text ):
-   return latex_inline ( latex_answer_highlight ( latex_escape ( literal_text ) ) )
+   return latex_inline ( latex_answer ( latex_escape ( literal_text ) ) )
+
+def format_answermono ( literal_text ):
+   return latex_inline ( latex_answermono ( latex_escape ( literal_text ) ) )
 
 '''
 "animate" role

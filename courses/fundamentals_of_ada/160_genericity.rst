@@ -255,10 +255,10 @@ Quiz
 
 Which is an illegal instantiation?
 
-   A. :answer:`procedure A is new G (String, Character);`
-   B. procedure B is new G (Character, Integer);
-   C. procedure C is new G (Integer, Boolean);
-   D. procedure D is new G (Boolean, String);
+   A. :answermono:`procedure A is new G (String, Character);`
+   B. ``procedure B is new G (Character, Integer);``
+   C. ``procedure C is new G (Integer, Boolean);``
+   D. ``procedure D is new G (Boolean, String);``
 
 .. container:: animate
 

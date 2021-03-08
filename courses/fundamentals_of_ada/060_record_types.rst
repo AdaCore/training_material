@@ -161,10 +161,10 @@ Which component definition is legal?
 
    type Record_T is record
 
-A. Component1 : array ( 1 .. 3 ) of boolean;
-B. :answer:`Component2, Component3 : integer;`
-C. Component4 : Record_T;
-D. Component5 : constant integer := 123;
+A. ``Component1 : array ( 1 .. 3 ) of boolean;``
+B. :answermono:`Component2, Component3 : integer;`
+C. ``Component4 : Record_T;``
+D. ``Component5 : constant integer := 123;``
 
 .. code:: Ada
 
@@ -493,10 +493,10 @@ Quiz
 
 Which assignment is illegal?
 
-A. :answer:`X := (1, '2', Three => True, Four => 4, Five => (6));`
-B. X := (Two => '2', Three => False, Five => Z, others => 5);
-C. X := Y;
-D. X := (1, '2', True, 4, (others => 5));
+A. :answermono:`X := (1, '2', Three => True, Four => 4, Five => (6));`
+B. ``X := (Two => '2', Three => False, Five => Z, others => 5);``
+C. ``X := Y;``
+D. ``X := (1, '2', True, 4, (others => 5));``
 
 .. container:: animate
 

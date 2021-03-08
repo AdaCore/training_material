@@ -336,14 +336,14 @@ Quiz
 
    Which block is illegal?
 
-   A. | X := A;
-      | Y := A;
-   B. | X := B;
-      | Y := C;
-   C. | :answer:`X  = One_T(A);`
-      | :answer:`Y  = Two_T(A);`
-   D. | X := One_T(Y);
-      | Y := Two_T(X);
+   A. | ``X := A;``
+      | ``Y := A;``
+   B. | ``X := B;``
+      | ``Y := C;``
+   C. | :answermono:`X  = One_T(A);`
+      | :answermono:`Y  = Two_T(A);`
+   D. | ``X := One_T(Y);``
+      | ``Y := Two_T(X);``
 
    .. container:: animate
 
@@ -540,14 +540,14 @@ Quiz
 
 Which choice needs to be modified to make a valid :ada:`if` block
 
-A. | :answer:`if A == B and then A != 0 then`
-   |    :answer:`A := Integer'First;`
-   |    :answer:`B := Integer'Last;`
-B. | elsif A < B then
-   |    A := B + 1;
-C. | elsif A > B then
-   |    B := A - 1;
-D. | end if;
+A. | :answermono:`if A == B and then A != 0 then`
+   |    :answermono:`A := Integer'First;`
+   |    :answermono:`B := Integer'Last;`
+B. | ``elsif A < B then``
+   |    ``A := B + 1;``
+C. | ``elsif A > B then``
+   |    ``B := A - 1;``
+D. | ``end if;``
 
 .. container:: animate
 
@@ -571,13 +571,13 @@ Which choice needs to be modified to make a valid :ada:`case` block
 
    case A is
 
-A. | when Sun =>
-   |    Put_Line ( "Day Off" );
-B. | when Mon | Fri =>
-   |    Put_Line ( "Short Day" );
-C. | when Tue .. Thu =>
-   |    Put_Line ( "Long Day" );
-D. | :answer:`end case;`
+A. | ``when Sun =>``
+   |    ``Put_Line ( "Day Off" );``
+B. | ``when Mon | Fri =>``
+   |    ``Put_Line ( "Short Day" );``
+C. | ``when Tue .. Thu =>``
+   |    ``Put_Line ( "Long Day" );``
+D. | :answermono:`end case;`
 
 .. container:: animate
 
@@ -935,18 +935,18 @@ Quiz
 
 Which loop block is illegal?
 
-A. | :answer:`for A in 1 .. 10 loop`
-   |    :answer:`A := A + 1;`
-   | :answer:`end loop;`
-B. | for B in 1 .. 10 loop
-   |    Put_Line (Integer'Image (B));
-   | end loop;
-C. | for C in reverse 1 .. 10 loop
-   |    Put_Line (Integer'Image (A));
-   | end loop;
-D. | for D in 10 .. 1 loop
-   |    Put_Line (Integer'Image (D));
-   | end loop;
+A. | :answermono:`for A in 1 .. 10 loop`
+   |    :answermono:`A := A + 1;`
+   | :answermono:`end loop;`
+B. | ``for B in 1 .. 10 loop``
+   |    ``Put_Line (Integer'Image (B));``
+   | ``end loop;``
+C. | ``for C in reverse 1 .. 10 loop``
+   |    ``Put_Line (Integer'Image (A));``
+   | ``end loop;``
+D. | ``for D in 10 .. 1 loop``
+   |    ``Put_Line (Integer'Image (D));``
+   | ``end loop;``
 
 .. container:: animate
 

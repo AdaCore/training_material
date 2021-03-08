@@ -519,16 +519,16 @@ Quiz
 
 Which is not a legal initialization of Child_Object?
 
-   A. Parent.Parent_Object + Parent.Sibling.Sibling_Object
-   B. Parent_Object + Sibling.Sibling_Object
-   C. Parent_Object + Sibling_Object
+   A. ``Parent.Parent_Object + Parent.Sibling.Sibling_Object``
+   B. ``Parent_Object + Sibling.Sibling_Object``
+   C. ``Parent_Object + Sibling_Object``
    D. :answer:`All of the above`
 
 .. container:: animate
 
    A, B, and C are illegal because there is no reference to package
    :ada:`Parent.Sibling` (the reference to :ada:`Parent` is implied by the
-   hierarchy). If :ada:`Parent.Child` had :ada:`with Parent.Sibling;`, then
+   hierarchy). If :ada:`Parent.Child` had ":ada:`with Parent.Sibling;`", then
    A and B would be legal, but C would still be incorrect because there is
    no implied reference to a sibling.
 
@@ -727,9 +727,9 @@ Quiz
 
    Which is not a legal completion of P.Child.X?
 
-      A.  function X return Integer is (Object_A);
-      B.  function X return Integer is (Object_B);
-      C.  :answer:`function X return Integer is (Object_C);`
+      A.  ``function X return Integer is (Object_A);``
+      B.  ``function X return Integer is (Object_B);``
+      C.  :answermono:`function X return Integer is (Object_C);`
       D.  None of the above
 
    .. container:: animate

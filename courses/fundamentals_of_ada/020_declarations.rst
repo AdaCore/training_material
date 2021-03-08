@@ -164,10 +164,10 @@ Quiz
 
 Which statement is legal?
 
-   A. Function : constant := 1;
-   B. :answer:`Fun_ction : constant := 1;`
-   C. Fun_ction : constant := --initial value-- 1;
-   D. integer Fun_ction;
+   A. ``Function : constant := 1;``
+   B. :answermono:`Fun_ction : constant := 1;`
+   C. ``Fun_ction : constant := --initial value-- 1;``
+   D. ``integer Fun_ction;``
 
 .. container:: animate
 
@@ -250,10 +250,10 @@ Quiz
 
 Which statement is legal?
 
-   A. :answer:`I : constant := 0_1_2_3_4;`
-   B. F : constant := 12.;
-   C. I : constant := 8#77#E+1.0;
-   D. F : constant := 2#1111;
+   A. :answermono:`I : constant := 0_1_2_3_4;`
+   B. ``F : constant := 12.;``
+   C. ``I : constant := 8#77#E+1.0;``
+   D. ``F : constant := 2#1111;``
 
 .. container:: animate
 
@@ -409,11 +409,11 @@ Quiz
 
 Which block is illegal?
 
-   A. A, B, C : integer;
-   B. Integer : Standard.Integer;
-   C. :answer:`Null : integer := 0;`
-   D. | A : integer := 123;
-      | B : integer := A * 3;
+   A. ``A, B, C : integer;``
+   B. ``Integer : Standard.Integer;``
+   C. :answermono:`Null : integer := 0;`
+   D. | ``A : integer := 123;``
+      | ``B : integer := A * 3;``
 
 .. container:: animate
 

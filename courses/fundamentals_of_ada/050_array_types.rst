@@ -273,10 +273,10 @@ Quiz
 
 Which statement is legal?
 
-   A. X1(1) := X2(1);
-   B. X1 := X2;
-   C. X1(1) := Y1(1);
-   D. :answer:`Y1 := X1;`
+   A. ``X1(1) := X2(1);``
+   B. ``X1 := X2;``
+   C. ``X1(1) := Y1(1);``
+   D. :answermono:`Y1 := X1;`
 
 .. container:: animate
 
@@ -475,10 +475,10 @@ Quiz
 
 Which statement is illegal?
 
-   A. :answer:`X(1) := Y(1);`
-   B. Y(1) := Z(1);
-   C. Y := X;
-   D. Z := X;
+   A. :answermono:`X(1) := Y(1);`
+   B. ``Y(1) := Z(1);``
+   C. ``Y := X;``
+   D. ``Z := X;``
 
 .. container:: animate
 
@@ -593,10 +593,10 @@ Quiz
 
 Which description is incorrect?
 
-   A. X'First(2) is 0
-   B. :answer:`X'Range(3) is True .. False;`
-   C. X'Length(1) = X'Length(2)
-   D. X'Last(1) = is 8
+   A. ``X'First(2) is 0``
+   B. :answermono:`X'Range(3) is True .. False;`
+   C. ``X'Length(1) = X'Length(2)``
+   D. ``X'Last(1) = 8``
 
 .. container:: animate
 
@@ -810,10 +810,10 @@ Quiz
 
 Which statement is illegal?
 
-   A. B(1) := A(1,2,3)(1) or A(4,3,2)(1);
-   B. B := A(2,3,4) and A(4,3,2);
-   C. :answer:`A(1,2,3..4) := A(2,3,4..5);`
-   D. B(3..4) := B(4..5)
+   A. ``B(1) := A(1,2,3)(1) or A(4,3,2)(1);``
+   B. ``B := A(2,3,4) and A(4,3,2);``
+   C. :answermono:`A(1,2,3..4) := A(2,3,4..5);`
+   D. ``B(3..4) := B(4..5)``
 
 .. container:: animate
 
@@ -1271,10 +1271,10 @@ Quiz
 
 Which statement is correct?
 
-   A. X := (1, 2, 3, 4 => 4, 5 => 5);
-   B. :answer:`X := (1 .. 3 => 100, 4 .. 5 => -100, others => -1);`
-   C. X := (J => -1, J + 1 .. A'Last => 1);
-   D. X := (1 .. 3 => 100, 3 .. 5 => 200);
+   A. ``X := (1, 2, 3, 4 => 4, 5 => 5);``
+   B. :answermono:`X := (1..3 => 100, 4..5 => -100, others => -1);`
+   C. ``X := (J => -1, J + 1..A'Last => 1);``
+   D. ``X := (1..3 => 100, 3..5 => 200);``
 
 .. container:: animate
 

@@ -256,10 +256,10 @@ Quiz
 
 Which subtype definition is valid?
 
-   A. subtype A is Enum_Sub_T range Enum_Sub_T'Pred (Enum_Sub_T'First) .. Enum_Sub_T'Last;
-   B. subtype B is Array_Sub_T (1 .. 10);
-   C. :answer:`subtype C is String;`
-   D. subtype D is digits 6;
+   A. ``subtype A is Enum_Sub_T range Enum_Sub_T'Pred (Enum_Sub_T'First) .. Enum_Sub_T'Last;``
+   B. ``subtype B is Array_Sub_T (1 .. 10);``
+   C. :answermono:`subtype C is String;`
+   D. ``subtype D is digits 6;``
 
 .. container:: animate
 
@@ -350,10 +350,10 @@ Quiz
 
 Which condition is illegal?
 
-   A. :answer:`if Today = Mon or Wed or Fri then`
-   B. if Today in Days_T then
-   C. if Today not in Weekdays_T then
-   D. if Today in Tue | Thu then
+   A. :answermono:`if Today = Mon or Wed or Fri then`
+   B. ``if Today in Days_T then``
+   C. ``if Today not in Weekdays_T then``
+   D. ``if Today in Tue | Thu then``
 
 .. container:: animate
 
@@ -830,10 +830,10 @@ Quiz
 
 Which statement is illegal?
 
-   A. :answer:`F := if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X);`
-   B. F := Sqrt( if X < 0.0 then -1.0 * X else X );
-   C. B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0 else True);
-   D. B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0);
+   A. :answermono:`F := if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X);`
+   B. ``F := Sqrt( if X < 0.0 then -1.0 * X else X );``
+   C. ``B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0 else True);``
+   D. ``B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0);``
 
 .. container:: animate
 
@@ -1203,18 +1203,18 @@ Quiz
 The above describes an array A whose elements are arrays of three elements.
 Which expression would one use to determine if at least one of A's elements are sorted?
 
-A. | (for some Element of A =>
-   |    (for some Index in 2 .. 3 =>
-   |       Element (Index) >= Element (Index - 1)));
-B. | (for all Element of A =>
-   |    (for all Index in 2 .. 3 =>
-   |       Element (Index) >= Element (Index - 1)));
-C. | :answer:`(for some Element of A =>`
-   |    :answer:`(for all Index in 2 .. 3 =>`
-   |       :answer:`Element (Index) >= Element (Index - 1)));`
-D. | (for all Element of A =>
-   |    (for some Index in 2 .. 3 =>
-   |       Element (Index) >= Element (Index - 1)));
+A. | ``(for some Element of A =>``
+   |    ``(for some Index in 2 .. 3 =>``
+   |       ``Element (Index) >= Element (Index - 1)));``
+B. | ``(for all Element of A =>``
+   |    ``(for all Index in 2 .. 3 =>``
+   |       ``Element (Index) >= Element (Index - 1)));``
+C. | :answermono:`(for some Element of A =>`
+   |    :answermono:`(for all Index in 2 .. 3 =>`
+   |       :answermono:`Element (Index) >= Element (Index - 1)));`
+D. | ``(for all Element of A =>``
+   |    ``(for some Index in 2 .. 3 =>``
+   |       ``Element (Index) >= Element (Index - 1)));``
 
 .. container:: animate
 
