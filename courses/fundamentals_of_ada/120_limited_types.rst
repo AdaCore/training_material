@@ -3,6 +3,9 @@
 Limited Types
 ***************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -180,6 +183,42 @@ Enclosing Composites Become Limited
      ...
    end;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      type T is limited null record;
+      type R is record
+         F1 : Integer;
+         F2 : T;
+      end record;
+   end P;
+
+   with P;
+   procedure Main is
+      T1, T2 : P.T;
+      R1, R2 : P.R;
+   begin
+
+Which assignment is legal?
+
+   A. ``T1    := T2;``
+   B. ``R1    := R2;``
+   C. :answermono:`R1.F1 := R2.F1;`
+   D. ``R2.F2 := R2.T2;``
+
+.. container:: animate
+
+   Explanations
+
+   A. :ada:`T1` and :ada:`T2` are :ada:`limited types`
+   B. :ada:`R1` and :ada:`R2` contain :ada:`limited` types so they are also :ada:`limited`
+   C. Theses components are not :ada:`limited` types
+   D. These components are of a :ada:`limited` type
+
 =================
 Creating Values
 =================
@@ -320,6 +359,42 @@ Writing Limited Constructor Functions
      return (Flag => 0);
    end F;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      type T is limited record
+         F1 : Integer;
+         F2 : Character;
+      end record;
+      Zero : T := (0, ' ');
+      function F return T;
+   end P;
+
+Which is a correct completion of F?
+
+A. :answermono:`function F return T is ((3, 'c'));`
+B. | ``function F return T is``
+   |   ``Two : T;``
+   | ``begin``
+   |   ``Two := (2, 'b');``
+   |   ``return Two;``
+   | ``end F;``
+C. | ``function F return T is``
+   |   ``One : constant T := (1, 'a');``
+   | ``begin``
+   |   ``return One;``
+   | ``end F;``
+D. ``function F return T is ( Zero );``
+
+.. container:: animate
+
+   :ada:`A` contains an "in-place" return. The rest all rely on
+   other objects, which would require an (illegal) copy.
+
 ============================
 Extended Return Statements
 ============================
@@ -601,6 +676,55 @@ Automatically Limited Full View
    Also_Legal adds "limited" to the full view
    Not_Legal puts more limitations on full view than partial view
    Also_Not_Legal never shows the client that S is limited
+
+------
+Quiz
+------
+
+.. container:: latex_environment footnotesize
+
+ .. container:: columns
+
+  .. container:: column
+
+   .. code:: Ada
+
+      package P is
+         type L1_T is limited private;
+         type L2_T is limited private;
+         type P1_T is private;
+         type P2_T is private;
+      private
+         type L1_T is limited record
+            Field : Integer;
+         end record;
+         type L2_T is record
+            Field : Integer;
+         end record;
+         type P1_T is limited record
+            Field : L1_T;
+         end record;
+         type P2_T is record
+            Field : L2_T;
+         end record;
+      end P;
+
+  .. container:: column
+
+   What will happen when the above code is compiled?
+
+   A. :answer:`Type P1_T will generate a compile error`
+   B. Type P2_T will generate a compile error
+   C. Both type P1_T and type P2_T will generate compile errors
+   D. The code will compile successfully
+
+   .. container:: animate
+
+      The full definition of type :ada:`P1_T` adds additional
+      restrictions, which is not allowed. Although :ada:`P2_T`
+      contains a component whose visible view is :ada:`limited`,
+      the internal view is not :ada:`limited` so :ada:`P2_T` is
+      not :ada:`limited`.
 
 ========
 Lab

@@ -3,6 +3,9 @@
 Access Types
 **************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -242,6 +245,34 @@ Referencing The Stack
       -- What if P2 is called after P1?
    end P2;
      
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type One_T is access all Integer;
+   type Two_T is access Integer;
+
+   A : aliased Integer;
+   B : Integer;
+
+   One : One_T;
+   Two : Two_T;
+
+Which assignment is legal?
+
+A. ``One := B'Access;``
+B. :answermono:`One := A'Access;`
+C. ``Two := B'Access;``
+D. ``Two := A'Access;``
+
+.. container:: animate
+
+   :ada:`'Access` is only allowed for general access types
+   (:ada:`One_T`). To use :ada:`'Access` on an object, the
+   object must be :ada:`aliased`.
+
 ==========================
 Access Types
 ==========================
@@ -442,6 +473,37 @@ Using Pointers For Recursive Structures
       Next       : Cell_Access;
       Some_Value : Integer;
    end record;
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Global_Access_T is access all Integer;
+   Global_Pointer : Global_Access_T;
+   Global_Object  : aliased Integer;
+   procedure Proc_Access is
+      type Local_Access_T is access all Integer;
+      Local_Pointer : Local_Access_T;
+      Local_Object  : aliased Integer;
+   begin
+
+Which assignment is illegal?
+
+A. ``Global_Pointer := Global_Object'Access;``
+B. :answermono:`Global_Pointer := Local_Object'Access;`
+C. ``Local_Pointer  := Global_Object'Access;``
+D. ``Local_Pointer  := Local_Object'Access;``
+
+.. container:: animate
+
+   Explanations
+
+   A. Pointer type has same depth as object
+   B. Pointer type is not allowed to have higher level than pointed-to object
+   C. Pointer type has lower depth than pointed-to object
+   D. Pointer type has same depth as object
 
 ===================
 Memory Management

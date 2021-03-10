@@ -3,6 +3,9 @@
 Elaboration
 *************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -165,6 +168,61 @@ GNAT Static Elaboration Model
    - Generates :filename:`b_xxx.ad[sb]` or :filename:`b__xxx.ad[sb]` files
    - Contains elaboration and finalization procedures
    - Defines the entry point procedure, `main()`.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   with Ada.Text_IO; use Ada.Text_IO;
+   package P is
+      function Call (X : Integer) return Integer;
+   end P;
+   package body P is
+      function Call (X : Integer) return Integer is
+      begin
+         Put_Line ("Call " & X'Image);
+         return X;
+      end Call;
+   end P;
+
+   with P; use P;
+   package P1 is
+      P1_Spec : Integer := P.Call (101);
+      procedure P1_Proc;
+   end P1;
+   package body P1 is
+      P1_Body : Integer := P.Call (102);
+      procedure P1_Proc is null;
+   end P1;
+
+   with P; use P;
+   package P2 is
+      P2_Spec : Integer := P.Call (201);
+      procedure P2_Proc;
+   end P2;
+   package body P2 is
+      P2_Body : Integer := P.Call (202);
+      procedure P2_Proc is null;
+   end P2;
+
+   with P2; with P1;
+   procedure Main is
+   begin
+      null;
+   end Main;
+
+What is the output of running this program
+
+   A. 101, 102, 201, 202
+   B. 201, 202, 101, 102
+   C. 101, 201, 102, 202
+   D. :answer:`Cannot be determined`
+
+.. container:: animate
+
+   As there are no dependencies between :ada:`P1` and :ada:`P2`, the compiler/linker can enforce any elaboration order. Even the order of :ada:`with`'s" in :ada:`Main` may not affect elaboration order
 
 =====================
 Elaboration Control

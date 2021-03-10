@@ -3,6 +3,9 @@
 Subprograms
 *************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -326,6 +329,22 @@ Indirect Recursion Needs A Declaration
          F;
        end P;
      
+------
+Quiz
+------
+
+Which profile is semantically different from the others?
+
+   A. ``procedure P ( A : Integer; B : Integer );``
+   B. ``procedure P ( A, B : Integer );``
+   C. :answermono:`procedure P ( B : Integer; A : Integer );`
+   D. ``procedure P ( A : in Integer; B : in Integer );``
+
+.. container:: animate
+
+   Parameter names are important in Ada.  The other selections have
+   the names in the same order with the same mode and type.
+
 ============
 Parameters
 ============
@@ -753,6 +772,36 @@ Correct Implementation
      return Result;
    end "-";
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   function F (P1 : in     Integer   := 0;
+               P2 : in out Integer;
+               P3 : in     Character := ' ';
+               P4 :    out Character)
+      return Integer;
+   I1, I2, I3, I4 : Integer;
+   C1, C2, C3, C4 : Character;
+
+Which call is legal?
+
+   A. ``I4 := F (P1 => 1, P2 => 2, P3 => '3', P4 => 4);``
+   B. ``I4 := F (P1 => 1, P3 => C3, P4 => C4);``
+   C. :answermono:`I4 := F (I1, I2, C3, C4);`
+   D. ``F (I1, I2, C3, C4);``
+
+.. container:: animate
+
+   Explanations
+
+   A. :ada:`P4` can be modified by :ada:`P`, so it must be a variable
+   B. :ada:`P2` has no default value so it must be specified
+   C. Correct
+   D. :ada:`F` is a function - return value must be stored
+
 =================
 Null Procedures
 =================
@@ -1164,6 +1213,26 @@ Typical Uses for Expression Functions
         (if (A rem K = 0 and B rem K = 0)
          then K <= Candidate)));
  
+------
+Quiz
+------
+
+Which statement is True?
+
+   A. Expression functions cannot be nested functions.
+   B. Expression functions require a specification and a body.
+   C. Expression functions must have at least one "return" statement.
+   D. :answer:`Expression functions can have "out" parameters.`
+
+.. container:: animate
+
+   Explanations
+
+   A. Expression functions can be declared anywhere a regular function is declared.
+   B. An expression function body can act as its own specification.
+   C. Expression functions only contain an expression - no :ada:`return` statement allowed.
+   D. Correct - although the expression function itself cannot modify an :ada:`out` parameter, it could call another function that does.
+
 ====================
 Potential Pitfalls
 ====================

@@ -2,6 +2,9 @@
 Subprogram Contracts
 **********************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -347,6 +350,47 @@ Preconditions and Postconditions Example
         Post => (Result * Result) <= Input and
                 (Result + 1) * (Result + 1) > Input;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   function Area (L : Integer; H : Integer) return Integer is
+      (L * H)
+   with Pre => ?
+
+Which expression will guarantee :ada:`Area` calculates the correct result for all values :ada:`L` and :ada:`H`
+
+   A. ``Pre => L > 0 and H > 0``
+   B. ``Pre => L < Integer'last and H < Integer'last``
+   C. ``Pre => L * H in Integer``
+   D. :answer:`None of the above`
+
+.. container:: animate
+
+   Explanations
+
+   A. Does not handle large numbers
+   B. Does not handle negative numbers
+   C. Will generate a constraint error on large numbers
+
+   The correct precondition would be
+
+         :ada:`L > 0 and then H > 0 and then Integer'Last / L <= H`
+
+   to prevent overflow errors on the range check.
+
+====================
+Special Attributes
+====================
+
+----------
+Examples
+----------
+
+.. include:: examples/210_subprogram_contracts/special_attributes.rst
+
 -----------------------------------------------
 Referencing Previous Values In Postconditions 
 -----------------------------------------------
@@ -448,6 +492,38 @@ Using Function Results In Postconditions
           return Boolean is (... );
  
 * Only applicable to functions, in postconditions
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Index_T is range 1 .. 100;
+   -- Database initialized such that value for element at I = I
+   Database : array (Index_T) of Integer;
+   -- Set the value for element Index to Value and
+   -- then increment Index by 1
+   function Set_And_Move (Value :        Integer;
+                          Index : in out Index_T)
+                          return Boolean
+      with Post => ...
+
+What would the following expressions evaluate to in the Postcondition when called with :ada:`Value` of -1 and :ada:`Index` of 10?
+
+.. list-table::
+
+   * - Database'Old(Index)
+     - :animate:`11`
+     - :animate:`Use new index in copy of original Database`
+
+   * - Database(Index`Old)
+     - :animate:`-1`
+     - :animate:`Use copy of original index in current Database`
+
+   * - Database(Index)'Old
+     - :animate:`10`
+     - :animate:`Evaluation of Database(Index) before call`
 
 =============
 In Practice

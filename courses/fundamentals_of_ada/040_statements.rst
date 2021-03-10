@@ -312,6 +312,47 @@ Not All Assignments Are Checked
         ...
       end Demo;
 
+------
+Quiz
+------
+
+.. container:: latex_environment scriptsize
+
+ .. container:: columns
+
+  .. container:: column
+
+   .. code:: Ada
+
+      type One_T is range 0 .. 100;
+      type Two_T is range 0 .. 100;
+      A : constant := 100;
+      B : constant One_T := 99;
+      C : constant Two_T := 98;
+      X : One_T := 0;
+      Y : Two_T := 0;
+
+  .. container:: column
+
+   Which block is illegal?
+
+   A. | ``X := A;``
+      | ``Y := A;``
+   B. | ``X := B;``
+      | ``Y := C;``
+   C. | :answermono:`X := One_T(X + C);`
+   D. | ``X := One_T(Y);``
+      | ``Y := Two_T(X);``
+
+   .. container:: animate
+
+     Explanations
+
+     A. Legal - :ada:`A` is an untyped constant
+     B. Legal - :ada:`B, C` are correctly typed
+     C. Illegal - C must be cast by itself
+     D. Legal - Values are typecast appropriately
+
 ========================
 Conditional Statements
 ========================
@@ -486,6 +527,63 @@ Dangers of *Others* Case Alternative
      when others =>
         Set_Region (Russia); -- New agencies will be Russian!
    end case;
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   A : integer := 100;
+   B : integer := 200;
+
+Which choice needs to be modified to make a valid :ada:`if` block
+
+A. | :answermono:`if A == B and then A != 0 then`
+   |    :answermono:`A := Integer'First;`
+   |    :answermono:`B := Integer'Last;`
+B. | ``elsif A < B then``
+   |    ``A := B + 1;``
+C. | ``elsif A > B then``
+   |    ``B := A - 1;``
+D. | ``end if;``
+
+.. container:: animate
+
+   Explanations
+
+   * :ada:`A` uses the C-style equality/inequality operators
+   * :ada:`D` is legal because :ada:`else` is not required
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Enum_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+   A : Enum_T;
+
+Which choice needs to be modified to make a valid :ada:`case` block
+
+.. code:: Ada
+
+   case A is
+
+A. | ``when Sun =>``
+   |    ``Put_Line ( "Day Off" );``
+B. | ``when Mon | Fri =>``
+   |    ``Put_Line ( "Short Day" );``
+C. | ``when Tue .. Thu =>``
+   |    ``Put_Line ( "Long Day" );``
+D. | :answermono:`end case;`
+
+.. container:: animate
+
+   Explanations
+
+   * Ada requires all possibilities to be covered
+   * Add :ada:`when others` or :ada:`when Sat`
 
 =================
 Loop Statements
@@ -825,6 +923,38 @@ Referencing Hidden Names
       end loop;
       ...
    end Foo;
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   A, B : Integer := 123;
+
+Which loop block is illegal?
+
+A. | :answermono:`for A in 1 .. 10 loop`
+   |    :answermono:`A := A + 1;`
+   | :answermono:`end loop;`
+B. | ``for B in 1 .. 10 loop``
+   |    ``Put_Line (Integer'Image (B));``
+   | ``end loop;``
+C. | ``for C in reverse 1 .. 10 loop``
+   |    ``Put_Line (Integer'Image (A));``
+   | ``end loop;``
+D. | ``for D in 10 .. 1 loop``
+   |    ``Put_Line (Integer'Image (D));``
+   | ``end loop;``
+
+.. container:: animate
+
+   Explanations
+
+   A. Cannot assign to a loop parameter
+   B. Legal - 10 iterations
+   C. Legal - 10 iterations
+   D. Legal - 0 iterations
 
 =================
 GOTO Statements

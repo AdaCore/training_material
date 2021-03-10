@@ -151,6 +151,34 @@ More Component Rules...
           C : Not_Legal;
         end record;
  
+------
+Quiz
+------
+
+Which component definition is legal?
+
+.. code:: Ada
+
+   type Record_T is record
+
+A. ``Component1 : array ( 1 .. 3 ) of boolean;``
+B. :answermono:`Component2, Component3 : integer;`
+C. ``Component4 : Record_T;``
+D. ``Component5 : constant integer := 123;``
+
+.. code:: Ada
+
+   end record;
+
+.. container:: animate
+
+   Explanations
+
+   A. Anonymous types not allowed
+   B. Correct
+   C. No recursive definitions
+   D. No constant components
+
 ============
 Operations
 ============
@@ -444,6 +472,41 @@ Aggregates with `others`
      end record;
    Q : Homogeneous := (others => 10);
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Nested_T is record
+      Field : Integer := 1_234;
+   end record;
+   type Record_T is record
+      One   : Integer := 1;
+      Two   : Character;
+      Three : Boolean;
+      Four  : Integer := -1;
+      Five  : Nested_T;
+   end record;
+   X, Y : Record_T;
+   Z    : constant Nested_T := (others => -1);
+
+Which assignment is illegal?
+
+A. :answermono:`X := (1, '2', Three => True, Four => 4, Five => (6));`
+B. ``X := (Two => '2', Three => False, Five => Z, others => 5);``
+C. ``X := Y;``
+D. ``X := (1, '2', True, 4, (others => 5));``
+
+.. container:: animate
+
+   Explanations
+
+   A. Component :ada:`Five` is a singleton record - aggregate requires named notation (:ada:`Five => ( Field => 6 )` )
+   B. Correct - :ada:`others` clause covers components :ada:`One` and :ada:`Four` which are both integers`
+   C. Correct - simple assignment. Note that components :ada:`Two` and :ada:`Three` are still not initialized
+   D. Correct - positional notation for all components
+
 ================
 Default Values
 ================
@@ -542,6 +605,40 @@ Default Initialization Via Aspect Clause
    C : Controller; -- Override => off, Enable => On
    D : Controller := (On, Off); -- All defaults replaced
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   function Next return Natural; -- returns next number starting with 1
+
+   declare
+      type Record_T is record
+         A, B : Integer := Next;
+         C    : Integer := Next;
+      end record;
+      R : Record_T := (C => 100, others => <>);
+   begin
+      Put_Line (Integer'Image (R.A) & Integer'Image (R.B) & Integer'Image (R.C));
+   end;
+
+What is the output from this block?
+
+A. 1 2 3
+B. 1 1 2
+C. :answer:`1 2 100`
+D. 100, 101, 102
+
+.. container:: animate
+
+   Explanations
+
+   A. Assignment of :ada:`C` to 100 takes precedence over the call to :ada:`Next`
+   B. Declaration of multiple components is identical to a series of single declarations
+   C. Correct
+   D. Assignment of 100 to :ada:`C` has no effect on components :ada:`A` and :ada:`B`
+
 =================
 Variant Records
 =================

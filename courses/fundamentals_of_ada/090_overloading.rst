@@ -3,6 +3,9 @@
 Overloading
 *************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -285,6 +288,34 @@ Overloading Example
 
    If Count is 0, result is a null range
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Vertical_T is (Top, Middle, Bottom);
+   type Horizontal_T is (Left, Middle, Right);
+   function "*" (H : Horizontal_T; V : Vertical_T) return Positive;
+   function "*" (V : Vertical_T; H : Horizontal_T) return Positive;
+   P : Positive;
+
+Which statement is not legal?
+
+   A. ``P := Horizontal_T'(Middle) * Middle;``
+   B. ``P := Top * Right;``
+   C. ``P := "*" (Middle, Top);``
+   D. :answermono:`P := "*" (H => Middle, V => Top);`
+
+.. container:: animate
+
+   Explanations
+
+   A. Qualifying one parameter resolves ambiguity
+   B. No overloaded names
+   C. Use of :ada:`Top` resolves ambiguity
+   D. When overloading subprogram names, best to not just switch the order of parameters
+
 ===================
 Visibility Issues
 ===================
@@ -530,6 +561,42 @@ User-Defined Equality Composition
 * Not automatic for other user-defined types in any Ada version
 
    - Need explicit equality function for enclosing type
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Range_T is range -1_000 .. 1_000;
+   function "=" (L, R : Range_T) return Boolean is
+      (Integer (abs (L)) = Integer (abs (R)));
+   type Coord_T is record
+      X : Range_T;
+      Y : Range_T;
+   end record;
+   type Coord_3D_T is record
+      XY : Coord_T;
+      Z  : Range_T;
+   end record;
+   A : Coord_3D_T := (XY => (1, -1), Z => 2);
+   B : Coord_3D_T := (XY => (-1, 1), Z => -2);
+
+Which function will return True when comparing A and B?
+
+A. | Implicit equality operator
+B. | :answermono:`function "=" (L, R : Coord_3D_T) return Boolean is`
+   |    :answermono:`(L.Z = R.Z and`
+   |     :answermono:`L.XY.X = R.XY.X and L.XY.Y = R.XY.Y);`
+C. | ``function "=" (L, R : Coord_3D_T) return Boolean is``
+   |    ``(L.Z = R.Z and L.XY = R.XY);``
+D. ``function "=" (L, R : Coord_3D_T) return Boolean is (L = R);``
+
+.. container:: animate
+
+   We are looking to use our own equality operator (that compares absolute
+   values) so the only time that happens is when we examine each
+   :ada:`Range_T` component individually
 
 ========
 Lab

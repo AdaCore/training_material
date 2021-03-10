@@ -6,6 +6,9 @@ Expressions
 .. |forall| replace:: :math:`\forall`
 .. |exists| replace:: :math:`\exists`
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -240,6 +243,33 @@ Subtypes and Default Initialization
    Safe : Toggle_Switch := Off;
    Implicit : Toggle_Switch; -- compile error: out of range
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Enum_T is (Sat, Sun, Mon, Tue, Wed, Thu, Fri);
+   subtype Enum_Sub_T is Enum_T range Mon .. Fri;
+   type Array_T is array (Integer range <>) of Integer;
+   subtype Array_Sub_T is Array_T (1 .. 100);
+
+Which subtype definition is valid?
+
+   A. ``subtype A is Enum_Sub_T range Enum_Sub_T'Pred (Enum_Sub_T'First) .. Enum_Sub_T'Last;``
+   B. ``subtype B is Array_Sub_T (1 .. 10);``
+   C. :answermono:`subtype C is String;`
+   D. ``subtype D is digits 6;``
+
+.. container:: animate
+
+   Explanations
+
+   A. This generates a run-time error because the first enumeral specified is not in the range of :ada:`Enum_Sub_T`
+   B. Compile error - array type is already constrained
+   C. Correct - standalone subtype
+   D. :ada:`Digits 6` is used for a type definition, not a subtype
+
 ==================
 Membership Tests
 ==================
@@ -308,6 +338,32 @@ Testing Non-Contiguous Membership
        Put_Line ("30 days in this month");
      end if;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Days_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+   subtype Weekdays_T is Days_T range Mon .. Fri;
+   Today : Days_T;
+
+Which condition is illegal?
+
+   A. :answermono:`if Today = Mon or Wed or Fri then`
+   B. ``if Today in Days_T then``
+   C. ``if Today not in Weekdays_T then``
+   D. ``if Today in Tue | Thu then``
+
+.. container:: animate
+
+   Explanations
+
+   A. To use :ada:`or`, both sides of the comparison must be duplicated (e.g. :ada:`Today = Mon or Today = Wed`)
+   B. Legal - should always return :ada:`True`
+   C. Legal - returns :ada:`True` if :ada:`Today` is :ada:`Sat` or :ada:`Sun`
+   D. Legal - returns :ada:`True` if :ada:`Today` is :ada:`Tue` or :ada:`Thu`
+
 =================
 Qualified Names
 =================
@@ -762,6 +818,32 @@ Static Named Numbers Example
          when others => 31);
    end loop;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   function Sqrt (X : Float) return Float;
+   F : Float;
+   B : Boolean;
+
+Which statement is illegal?
+
+   A. :answermono:`F := if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X);`
+   B. ``F := Sqrt( if X < 0.0 then -1.0 * X else X );``
+   C. ``B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0 else True);``
+   D. ``B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0);``
+
+.. container:: animate
+
+   Explanations
+
+   A. Missing parentheses around expression
+   B. Legal - Expression is already enclosed in parentheses so you don't need to add more
+   C. Legal - :ada:`else True` not needed but is allowed
+   D. Legal - :ada:`B` will be :ada:`True` if X >= 0.0
+
 ========================
 Quantified Expressions
 ========================
@@ -1107,6 +1189,41 @@ Conditional / Quantified Expression Usage
          if At_Least_One_Answered (Answers) then
  
 * Even in pre/postconditions, use functions containing quantified expressions for abstraction
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Array1_T is array (1 .. 3) of Integer;
+   type Array2_T is array (1 .. 3) of Array1_T;
+   A : Array2_T;
+
+The above describes an array A whose elements are arrays of three elements.
+Which expression would one use to determine if at least one of A's elements are sorted?
+
+A. | ``(for some Element of A =>``
+   |    ``(for some Index in 2 .. 3 =>``
+   |       ``Element (Index) >= Element (Index - 1)));``
+B. | ``(for all Element of A =>``
+   |    ``(for all Index in 2 .. 3 =>``
+   |       ``Element (Index) >= Element (Index - 1)));``
+C. | :answermono:`(for some Element of A =>`
+   |    :answermono:`(for all Index in 2 .. 3 =>`
+   |       :answermono:`Element (Index) >= Element (Index - 1)));`
+D. | ``(for all Element of A =>``
+   |    ``(for some Index in 2 .. 3 =>``
+   |       ``Element (Index) >= Element (Index - 1)));``
+
+.. container:: animate
+
+   Explanations
+
+   A. Will be :ada:`True` if any element has two consecutive increasing values
+   B. Will be :ada:`True` if every element is sorted
+   C. Correct
+   D. Will be :ada:`True` if every element has two consecutive increasing values
 
 ========
 Lab

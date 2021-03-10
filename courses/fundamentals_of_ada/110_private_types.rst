@@ -3,6 +3,9 @@
 Private Types
 ***************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -343,6 +346,37 @@ Benefits of Views
 
 * Fixing bugs is less likely to introduce new ones
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      type Private_T is private;
+
+      type Record_T is record
+
+Which component is legal?
+
+   A. ``Field_A : integer := Private_T'Pos (Private_T'First);``
+   B. ``Field_B : Private_T := null;``
+   C. ``Field_C : Private_T := 0;``
+   D. :answermono:`Field_D : integer := Private_T'Size;`
+
+      .. code:: Ada
+
+         end record;
+
+.. container:: animate
+
+   Explanations
+
+   A. Visible part does not know :ada:`Private_T` is discrete
+   B. Visible part does not know possible values for :ada:`Private_T`
+   C. Visible part does not know possible values for :ada:`Private_T`
+   D. Correct - type will have a known size at run-time
+
 ===========================
 Private Part Construction
 ===========================
@@ -489,6 +523,39 @@ Deferred Constants
         (others => False);
    end P;
  
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      type Private_T is private;
+      Object_A : Private_T;
+      procedure Proc ( Param : in out Private_T );
+   private
+      type Private_T is new integer;
+      Object_B : Private_T;
+   end package P;
+
+   package body P is
+      Object_C : Private_T;
+      procedure Proc ( Param : in out Private_T ) is null;
+   end P;
+
+Which object definition is illegal?
+
+   A. :answermono:`Object_A`
+   B. ``Object_B``
+   C. ``Object_C``
+   D. None of the above
+
+.. container:: animate
+
+   An object cannot be declared until its type is fully declared.
+   :ada:`Object_A` could be declared constant, but then it would
+   have to be finalized in the :ada:`private` section.
+
 =================
 View Operations
 =================

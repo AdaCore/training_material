@@ -3,6 +3,9 @@
 Type Contracts
 ****************
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -224,6 +227,60 @@ Invariants Are Not Foolproof
 * Access to ADT representation via pointer could allow back door manipulation
 * These are private types, so access to internals must be granted by the private type's code
 * Granting internal representation access for an ADT is a highly questionable design!
+
+------
+Quiz
+------
+
+.. container:: columns
+
+ .. container:: column
+
+  .. container:: latex_environment tiny
+
+   .. code:: Ada
+
+      package P is
+         type Some_T is private;
+         procedure Do_Something (X : in out Some_T);
+      private
+         function Counter (I : Integer) return Boolean;
+      type Some_T is new Integer with
+         Type_Invariant => Counter (Integer (Some_T));
+      end P;
+
+      package body P is
+         function Local_Do_Something (X : Some_T)
+                                      return Some_T is
+            Z : Some_T := X + 1;
+         begin
+            return Z;
+         end Local_Do_Something;
+         procedure Do_Something (X : in out Some_T) is
+         begin
+            X := X + 1;
+            X := Local_Do_Something (X);
+         end Do_Something;
+         function Counter (I : Integer)
+                           return Boolean is
+            ( True );
+      end P;
+
+ .. container:: column
+
+    If `Do_Something` is called from outside of P, how many times is `Counter` called?
+
+       A. 1
+       B. :answer:`2`
+       C. 3
+       D. 4
+
+    .. container:: animate
+
+       Type Invariants are only evaluated on entry into and exit from
+       externally visible subprograms. So :ada:`Counter` is called when
+       entering and exiting :ada:`Do_Something` - not :ada:`Local_Do_Something`,
+       even though a new instance of :ada:`Some_T` is created
 
 ====================
 Subtype Predicates
@@ -752,6 +809,38 @@ Enabling/Disabling Contract Verification
    Note that the Assert procedures in Ada.Assertions are not controlled by the pragma.  They are procedures like any other.
    A switch is likely offered because otherwise one must edit the source code to change settings, like the situation with pragma Inline.
    Pragma Suppress can also be applied.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Days_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+   function Is_Weekday (D : Days_T) return Boolean is
+      (D /= Sun and then D /= Sat);
+
+Which of the following is a valid subtype predicate?
+
+A. | :answermono:`subtype T is Days_T with`
+   |    :answermono:`Static_Predicate => T in Sun | Sat;`
+B. | ``subtype T is Days_T with Static_Predicate =>``
+   |    ``(if T = Sun or else T = Sat then True else False);``
+C. | ``subtype T is Days_T with``
+   |    ``Static_Predicate => not Is_Weekday (T);``
+D. | ``subtype T is Days_T with``
+   |    ``Static_Predicate =>``
+   |       ``case T is when Sat | Sun => True,``
+   |                 ``when others => False;``
+
+.. container:: animate
+
+   Explanations
+
+   A. Correct
+   B. :ada:`If` statement not allowed in a predicate
+   C. Function call not allowed in :ada:`Static_Predicate` (this would be OK for :ada:`Dynamic_Predicate`)
+   D. Missing parentheses around :ada:`case` expression
 
 ========
 Lab

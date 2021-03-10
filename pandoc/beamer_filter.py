@@ -49,11 +49,14 @@ slide_decorators = [ 't', 'shrink' ]
 # If the function name is found in 'pandocfilters', the caller must supply
 # the parameter as an AST string node.
 # Otherwise (for local functions), the parameter will be a literal text string
-role_format_functions = { 'toolname' : 'SmallCaps',
-                          'menu'     : 'format_menu',
-                          'command'  : 'format_command',
-                          'filename' : 'format_filename',
-                          'default'  : 'Strong' }
+role_format_functions = { 'toolname'   : 'SmallCaps',
+                          'menu'       : 'format_menu',
+                          'command'    : 'format_command',
+                          'answer'     : 'format_answer',
+                          'answermono' : 'format_answermono',
+                          'animate'    : 'format_animate',
+                          'filename'   : 'format_filename',
+                          'default'    : 'Strong' }
 ##
 ## END CONFIGURATION INFORMATION
 #############################################################################
@@ -104,6 +107,15 @@ def latex_monospace ( text ):
 
 def latex_escape ( text ):
     return text.replace('_', '\\_' ).replace('&', '\\&')
+
+def latex_answer ( text ):
+    return "\\textit<2>{\\textbf<2>{\\textcolor<2>{green!65!black}{" + text + "}}}"
+
+def latex_answermono ( text ):
+    return latex_monospace ( latex_answer ( text ) )
+
+def latex_animate ( text ):
+    return "\\onslide<2->{" + text + "}"
 
 #############################
 ## PANDOC HELPER FUNCTIONS ##
@@ -296,6 +308,105 @@ def source_include ( classes, contents ):
 def is_source_include ( classes ):
    return ( "container" in classes ) and ( "source_include" in classes)
 
+###############
+## ANIMATION ##
+###############
+
+'''
+   We are going to use a container to "animate" blocks of code.
+   The format of the directive is:
+
+      .. container:: animate [<slide #>[-]]
+      
+   Slide number is the overlay(s) to display the contents.
+   A number will appear on the specific overlay.
+   A number followed by a "-" will appear on the specific overlay an all subsequent.
+   So, in pseudocode:
+      AAA
+      animate 2
+         BBB
+      animate 3-
+         CCC
+      animate 4-
+         DDD
+   will cause the following 4 overlays: AAA, AAA BBB, AAA CCC, AAA CCC DDD
+   If <slide #> is not specified, it will default to 2-.
+   NOTE: We use "visibleenv" to make text appear, so space is reserved for hidden
+   text. If not, then the slide may resize, causing the animation to not really
+   look like an animation
+'''
+
+def is_animate ( classes ):
+   return ( "container" in classes ) and ( "animate" in classes)
+
+def animate ( classes, contents ):
+
+   slide_number = 2
+   dash = '-'
+   if len(classes) > 2:
+      try:
+         requested = classes[2]
+         if len(requested) > 0:
+            if requested[-1] == '-':
+               requested = requested[0:-2]
+            else:
+               dash = ''
+            slide_number = int(requested)
+      except Exception as e:
+         slide_number = 2
+         dash = '-'
+   slide_number = str(slide_number) + dash
+      
+   first = {'t': 'RawBlock', 'c': ['latex', '\\begin{visibleenv}<' + slide_number + '>']}
+   last = {'t': 'RawBlock', 'c': ['latex', '\\end{visibleenv}']}
+
+   value = []
+   value.append ( first )
+   for c in contents:
+      value.append ( c )
+   value.append ( last )
+
+   return value
+
+########################
+## LATEX ENVIRONMENTS ##
+########################
+
+'''
+   This is a highly flexible way of adding LaTeX capabilities
+   into an RST document. I found it useful for changing text
+   sizes when I knew I needed it.
+
+   The format of the directive is:
+
+      .. container:: latex_environment <environment-name>
+      
+   It will add "\begin{environment-name}" at the beginning of 
+   the container block, and "\end{environment-name}" at the end.
+   No guarantees as to safety - if Pandoc has a same-named begin and/or end
+   inside the container, I have no idea what will happen.
+'''
+
+def is_latex_environment ( classes ):
+   return ( "container" in classes ) and ( "latex_environment" in classes)
+
+def latex_environment ( classes, contents ):
+
+   if len(classes) > 2:
+      environment = classes[2]
+      first = {'t': 'RawBlock', 'c': ['latex', '\\begin{' + environment + '}']}
+      last = {'t': 'RawBlock', 'c': ['latex', '\\end{' + environment + '}']}
+
+      value = []
+      value.append ( first )
+      for c in contents:
+         value.append ( c )
+      value.append ( last )
+      return value
+
+   else:
+      return contents
+
 #####################
 ## QUERY FUNCTIONS ##
 #####################
@@ -395,7 +506,27 @@ def format_command ( literal_text ):
 '''
 def format_filename ( literal_text ):
    # bold and italic
-   return latex_inline ( latex_bold_italic ( latex_escape ( text ) ) )
+   return latex_inline ( latex_bold_italic ( latex_escape ( literal_text ) ) )
+
+'''
+"answer" role
+Items will appear normal at first then highlighted on "page down".
+Useful for quiz answers to appear after a quiz slide is presented.
+'''
+def format_answer ( literal_text ):
+   return latex_inline ( latex_answer ( latex_escape ( literal_text ) ) )
+
+def format_answermono ( literal_text ):
+   return latex_inline ( latex_answermono ( latex_escape ( literal_text ) ) )
+
+'''
+"animate" role
+Items will only appear on a slide after "page down".
+Useful for explaining why a quiz answer is incorrect after a
+quiz slide is presented.
+'''
+def format_animate( literal_text ):
+   return latex_inline ( latex_animate ( latex_escape ( literal_text ) ) )
 
 #####################
 ## MAIN SUBPROGRAM ##
@@ -434,6 +565,12 @@ def perform_filter(key, value, format, meta):
 
             if is_source_include ( classes ):
                 return source_include ( classes, contents )
+
+            if is_animate ( classes ):
+                return animate ( classes, contents )
+
+            if is_latex_environment ( classes ):
+                return latex_environment ( classes, contents )
 
             # language variant admonition
             elif admonition_type ( classes, contents ) == "language variant":

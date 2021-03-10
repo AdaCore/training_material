@@ -6,10 +6,10 @@
             Post => not Empty and then Top = Item;
       procedure Pop (Item : out Integer) with
             Pre  => not Empty,
-            Post => not Full;
+            Post => not Full and Item = Top'Old;
       function Pop return Integer with
             Pre  => not Empty,
-            Post => not Full;
+            Post => not Full and Pop'Result = Top'Old;
       function Top return Integer with
             Pre => not Empty;
       function Empty return Boolean;

@@ -3,6 +3,9 @@
 Packages
 **********
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -310,6 +313,46 @@ Required Body Example
      procedure Cursor_Up (Count : in Positive := 1) is ...
        ...
    end VT100;
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   package P is
+      Object_One : integer;
+      procedure One ( P : out integer );
+   end One;
+
+Which is the correct completion of package P?
+
+   A. No completion needed
+   B. | ``package P is``
+      |   ``procedure One ( P : out integer ) is null;``
+      | ``end P;``
+   C. | ``package P is``
+      |   ``Object_One : integer;``
+      |   ``procedure One ( P : out integer ) is``
+      |   ``begin``
+      |      ``P := Object_One;``
+      |   ``end One;``
+      | ``end P;``
+   D. | :answermono:`package P is`
+      |   :answermono:`procedure One ( P : out integer ) is`
+      |   :answermono:`begin`
+      |      :answermono:`P := Object_One;`
+      |   :answermono:`end One;`
+      | :answermono:`end P;`
+
+.. container:: animate
+
+   Explanations
+
+   A. Procedure :ada:`One` must have a body
+   B. No assignment of a value to :ada:`out` parameter
+   C. Cannot duplicate :ada:`Object_One`
+   D. Correct
  
 ==================
 Executable Parts

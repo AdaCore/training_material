@@ -3,6 +3,9 @@
 .. role:: c(code)
     :language: C
 
+.. role:: ada(code)
+    :language: Ada
+
 
 **************
 Declarations
@@ -155,6 +158,26 @@ Pragmas
    pragma Page;
    pragma Optimize ( Off );
 
+------
+Quiz
+------
+
+Which statement is legal?
+
+   A. ``Function : constant := 1;``
+   B. :answermono:`Fun_ction : constant := 1;`
+   C. ``Fun_ction : constant := --initial value-- 1;``
+   D. ``integer Fun_ction;``
+
+.. container:: animate
+
+   Explanations
+
+   A. :ada:`function` is a reserved word
+   B. Correct
+   C. Cannot have inline comments
+   D. C-style declaration not allowed
+
 ==================
 Numeric Literals
 ==================
@@ -220,6 +243,26 @@ Comparison To C's Based Literals
 
    - **Hard** to read
    - **Error-prone**
+
+------
+Quiz
+------
+
+Which statement is legal?
+
+   A. :answermono:`I : constant := 0_1_2_3_4;`
+   B. ``F : constant := 12.;``
+   C. ``I : constant := 8#77#E+1.0;``
+   D. ``F : constant := 2#1111;``
+
+.. container:: animate
+
+   Explanations
+
+   A. Underscores are not significant - they can be anywhere (except first and last character, or next to another underscore)
+   B. Must have digits on both sides of decimal
+   C. Exponents must be integers
+   D. Missing closing \#
 
 =====================
 Object Declarations
@@ -360,6 +403,27 @@ Elaboration
       begin
         ...
  
+------
+Quiz
+------
+
+Which block is illegal?
+
+   A. ``A, B, C : integer;``
+   B. ``Integer : Standard.Integer;``
+   C. :answermono:`Null : integer := 0;`
+   D. | ``A : integer := 123;``
+      | ``B : integer := A * 3;``
+
+.. container:: animate
+
+   Explanations
+
+   A. Multiple objects can be created in one statement
+   B. :ada:`integer` is *predefined* so it can be overridden
+   C. :ada:`null` is *reserved* so it can **not** be overridden
+   D. Elaboration happens in order, so :ada:`B` will be 369
+
 =================
 Universal Types
 =================
@@ -635,6 +699,47 @@ Overcoming Hiding
      ...
    end Outer;
      
+------
+Quiz
+------
+
+.. container:: columns
+
+ .. container:: column
+
+  .. container:: latex_environment footnotesize
+
+   What output does the following code produce? (Assume :code:`Print` prints the current value of its argument)
+
+   .. code:: Ada
+
+      declare
+         M : Integer := 1;
+      begin
+         M := M + 1;
+         declare
+            M : Integer := 2;
+         begin
+            M := M + 2;
+            Print ( M );
+         end;
+         Print ( M );
+      end;
+
+ .. container:: column
+
+   A. 2, 2
+   B. 2, 4
+   C. 4, 4
+   D. :answer:`4, 2`
+
+   .. container:: animate
+
+      Explanation
+
+      * Inner :ada:`M` gets printed first. It is initialized to 2 and incremented by 2
+      * Outer :ada:`M` gets printed second. It is initialized to 1 and incremented by 1
+
 ================
 Aspect Clauses
 ================

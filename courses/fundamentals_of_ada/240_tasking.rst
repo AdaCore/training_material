@@ -3,6 +3,9 @@
 Tasking
 *********
 
+.. role:: ada(code)
+    :language: Ada
+
 ==============
 Introduction
 ==============
@@ -144,6 +147,62 @@ Accepting a Rendezvous
    - Terminate if no clients can possibly call its entries
    - Conditionally accept a rendezvous based on a guard expression
 
+------
+Quiz
+------
+
+.. container:: columns
+
+ .. container:: column
+
+  .. container:: latex_environment tiny
+
+   .. code:: Ada
+
+      with Ada.Text_IO; use Ada.Text_IO;
+      procedure Main is
+         task T is
+            entry Hello;
+            entry Goodbye;
+         end T;
+         task body T is
+         begin
+            loop
+               accept Hello do
+                  Put_Line ("Hello");
+               end Hello;
+               accept Goodbye do
+                  Put_Line ("Goodbye");
+               end Goodbye;
+            end loop;
+            Put_Line ("Finished");
+         end T;
+      begin
+         T.Hello;
+         T.Goodbye;
+         Put_Line ("Done");
+      end Main;
+
+ .. container:: column
+
+   What is the output of this program?
+
+      A. Hello, Goodbye, Finished, Done
+      B. Hello, Goodbye, Finished
+      C. :answer:`Hello, Goodbye, Done`
+      D. Hello, Goodbye
+
+   .. container:: animate
+
+      |
+
+      - Entries :ada:`Hello` and :ada:`Goodbye` are reached (so "Hello" and
+      "Goodbye" are printed).
+
+      - After :ada:`Goodbye`, task returns to :ada:`Main`
+      (so "Done" is printed) but the loop in the task never finishes (so
+      "Finished" is never printed).
+ 
 ===================
 Protected Objects
 ===================
@@ -202,8 +261,53 @@ Protected: Functions Vs. Procedures
 
    - Concurrent access to functions can be done
 
-* No function can be called when a procedure is called
+* No function can be called while a procedure is executing
 
+------
+Quiz
+------
+
+.. container:: latex_environment footnotesize
+
+ .. code:: Ada
+
+   protected P is
+      procedure Initialize (V : Integer);
+      procedure Increment;
+      function Decrement return Integer;
+      function Query return Integer;
+   private
+      Object : Integer := 0;
+   end P;
+
+What of the following completions for :ada:`P`'s members is illegal?
+
+ .. container:: latex_environment footnotesize
+
+   A. |  ``procedure Initialize (V : Integer) is``
+      |  ``begin``
+      |     ``Object := V;``
+      |  ``end Initialize;``
+   B. |  ``procedure Increment is``
+      |  ``begin``
+      |     ``Object := Object + 1;``
+      |  ``end Increment;``
+   C. |  :answermono:`function Decrement return Integer is`
+      |  :answermono:`begin`
+      |     :answermono:`Object := Object - 1;`
+      |     :answermono:`return Object;`
+      |  :answermono:`end Decrement;`
+   D. |  ``function Query return Integer is begin``
+      |     ``return Object;``
+      |  ``end Query;``
+
+.. container:: animate
+
+   A. Legal
+   B. Legal - subprograms do not need parameters
+   C. Functions in a protected object cannot modify global objects
+   D. Legal
+ 
 ==========================
 Task and Protected Types
 ==========================
