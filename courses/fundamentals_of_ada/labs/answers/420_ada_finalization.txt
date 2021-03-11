@@ -23,6 +23,7 @@ package body Keys_Pkg is
    Global_In_Use : array (Character range 'a' .. 'z') of Boolean :=
      (others => False);
 
+   pragma Warnings ( Off );
    function Next_Available return Character is
    begin
       for C in Global_In_Use'Range loop
@@ -32,6 +33,7 @@ package body Keys_Pkg is
       end loop;
       -- we ran out of keys! exception if we get here
    end Next_Available;
+   pragma Warnings ( On );
 
    function In_Use return Natural is
       Ret_Val : Natural := 0;
