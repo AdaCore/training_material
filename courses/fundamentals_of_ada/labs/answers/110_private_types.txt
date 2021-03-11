@@ -43,7 +43,7 @@ package body Colors is
       end if;
    end Image;
    function Image (Set : Color_Set_T) return String is
-      ( return Image (Set, Color_T'First, Color_T'Last) );
+      ( Image (Set, Color_T'First, Color_T'Last) );
 end Colors;
 --Colors
 
