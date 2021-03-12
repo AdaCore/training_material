@@ -614,9 +614,9 @@ Canonical First Program
    - :command:`say_hello` (Windows)
    - :command:`./say_hello` (Linux/Unix)
 
---------------------------------
+---------------------------------------------
 "Hello World" Lab - :toolname:`GNAT Studio`
---------------------------------
+---------------------------------------------
 
 * Start :toolname:`GNAT Studio` from the command-line or Start Menu
 

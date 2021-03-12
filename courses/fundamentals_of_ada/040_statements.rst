@@ -363,9 +363,9 @@ Examples
 
 .. include:: examples/040_statements/conditional_statements.rst
 
---------------------
+-------------------------
 If-then-else Statements
---------------------
+-------------------------
 
 * Control flow using Boolean expressions
 * Syntax
