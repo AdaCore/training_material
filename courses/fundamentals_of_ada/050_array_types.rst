@@ -161,6 +161,8 @@ Multiple-Dimensioned Array Types
 
  .. container:: column
 
+   .. container:: latex_environment small
+
     .. code:: Ada
 
        type Three_Dimensioned is

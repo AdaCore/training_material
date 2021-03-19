@@ -16,8 +16,8 @@ Improving Readability
    .. code:: 
 
       Messages.Queue.Diagnostics.Inject_Fault (
-            Fault    => Messages.Queue.Diagnostics.CRC_Failure,
-            Position => Messages.Queue.Front );
+         Fault    => Messages.Queue.Diagnostics.CRC_Failure,
+         Position => Messages.Queue.Front );
 
 * Operators treated as functions defeat the purpose of overloading
 

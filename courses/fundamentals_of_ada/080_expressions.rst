@@ -771,6 +771,8 @@ Static Named Numbers Example
 .. container:: columns
 
  .. container:: column
+
+   .. container:: latex_environment footnotesize
   
     * Syntax similar to `case` statements
 

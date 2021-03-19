@@ -163,9 +163,9 @@ Generic Types Parameters (1/2)
    .. code:: Ada
       
       generic
-         type T1 is private; -- should have the properties
-                             -- of a private type (assignment,
-                             -- comparison, ability to declare
+         type T1 is private; -- should have properties
+                             -- of private type (assignment,
+                             -- comparison, ableto declare
                              -- variables on the stack...)
          type T2 (<>) is private;    -- can be unconstrained
          type T3 is limited private; -- can be limited

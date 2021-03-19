@@ -367,11 +367,12 @@ Exceptions Raised In Exception Handlers
 Quiz
 ------
 
-.. container:: latex_environment scriptsize
 
- .. container:: columns
+.. container:: columns
 
-  .. container:: column
+ .. container:: column
+
+  .. container:: latex_environment tiny
 
    .. code:: Ada
     :number-lines: 1
@@ -399,7 +400,7 @@ Quiz
             Put_Line ("Three");
       end Main;
 
-  .. container:: column
+ .. container:: column
 
    What will get printed?
 
@@ -510,9 +511,11 @@ Implicitly-Raised Exceptions
 Explicitly-Raised Exceptions
 ------------------------------
 
-.. container:: columns
+.. container:: latex_environment scriptsize
 
- .. container:: column
+ .. container:: columns
+
+  .. container:: column
   
     * Raised by application via `raise` statements
 
@@ -530,7 +533,7 @@ Explicitly-Raised Exceptions
      
     * A `raise` by itself is only allowed in handlers (more later)
 
- .. container:: column
+  .. container:: column
   
     .. code:: Ada
     

@@ -119,7 +119,8 @@ High-Level Assertions
 
    .. code:: Ada
 
-      procedure Push (This : in out Stack_T;  Value : Content_T)
+      procedure Push (This : in out Stack_T;
+                      Value : Content_T)
         with Pre  => not Full (This),       -- requirement
              Post => not Empty (This)       -- guarantee
                      and Top (This) = Value;
