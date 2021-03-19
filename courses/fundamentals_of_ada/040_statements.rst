@@ -792,7 +792,7 @@ Low-Level For-loop Parameter Type
 
    .. code:: Ada
 
-      -- Error if Red and Green is both Color_T and Stoplight_T
+      -- Error if Red and Green in Color_T and Stoplight_T
       for Color in Red .. Green loop  
 
 * Type `Integer` by default
@@ -838,7 +838,7 @@ For-Loop Parameter Visibility
    .. code:: Ada
 
       Block: declare
-        Counter : Integer := 0;
+        Counter : Float := 0.0;
       begin
         -- For_Loop.Counter hides Block.Counter
         For_Loop : for Counter in Integer range A .. B loop

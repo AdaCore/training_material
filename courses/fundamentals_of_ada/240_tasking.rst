@@ -363,27 +363,20 @@ Protected Object Types
 
 .. code:: Ada
     
-   protected type Object is
-      entry Push (V : Integer);
-      entry Pop  (V : out Integer);
+   protected type Register_T is
+      function Read return Integer;
+      procedure Write (Value : Integer);
    private
-      Buffer : Integer_Array (1 .. 10);
-      Size : Integer := 0;
-   end Object;
-       
-   protected body Object is
-      entry Push (V : Integer) when Size < Buffer'Length is
+      Register : Integer;
+   end Register_T;
+
+   protected body Register_T is
+      function Read return Integer is (Register);
+      procedure Write (Value : Integer) is
       begin
-         Buffer (Size + 1) := V;
-         Size := Size + 1;
-      end Push;
-          
-      entry Pop  (V : out Integer) when Size > 0 is
-      begin
-         V := Buffer (Size);
-         Size := Size - 1;
-      end Pop;
-   end Object;
+         Register := Value;
+      end Write;
+   end Register_T;
      
 -----------------
 Scope Of a Task

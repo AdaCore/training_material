@@ -164,10 +164,12 @@ Parameter Passing Mechanism
    procedure Unlock (This : in out Spin_Lock);
  
 -------------------------------------
-Enclosing Composites Become Limited
+Composites with Limited Types
 -------------------------------------
 
-* Prevents assignment and equality loop-holes
+* Composite type containing a limited type (record component, array element) becomes limited as well
+
+   * Prevents assignment and equality loop-holes
 
 .. code:: Ada
 
@@ -570,10 +572,10 @@ Limited Private Type Completions
 .. code:: Ada
 
    package P is
-     type Foo is limited private;
+     type Unique_ID_T is limited private;
      ...
    private
-     type Foo is range 1 .. 10;
+     type Unique_ID_T is range 1 .. 10;
    end P;
  
 -----------------------------

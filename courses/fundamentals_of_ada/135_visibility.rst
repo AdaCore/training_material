@@ -263,7 +263,7 @@ Examples
 
    .. code:: Ada
 
-      use_type_clause ::= use [all] type subtype_mark
+      use_type_clause ::= use type subtype_mark
                                          {, subtype_mark};
    - **all** will be described in the next section
  
@@ -312,12 +312,14 @@ Examples
 .. code:: Ada
 
    package P is
-     type T1 is range 1 .. 10;
-     type T2 is range 1 .. 10;
-     type T3 is range 1 .. 10;
+     type Miles_T is digits 6;
+     type Hours_T is digits 6;
+     type Speed_T is digits 6;
      -- "use type" on any of T1, T2, T3
      -- makes operator visible
-     function "+"( Left : T1; Right : T2 ) return T3;
+     function "/"( Left : Miles_T;
+                   Right : Hours_T )
+                   return Speed_T;
    end P;
 
 -----------------------------
@@ -507,7 +509,7 @@ The `renames` Keyword
 
       .. code:: Ada
 
-         package Math renames Math_Utilities.Trigonometry
+         package Trig renames Math.Trigonometry
 
    - Objects (or elements of objects)
 
@@ -542,7 +544,8 @@ Writing Readable Code - Part 2
          Desired_Side   : Base_Types.Float_T renames
            Observation.Sides (Viewpoint_Types.Point1_Point2);
 
-         package Math renames Math_Utilities.Trigonometry;
+         package Math renames Math_Utilities;
+         package Trig renames Math.Trigonometry;
 
          function Sqrt (X : Base_Types.Float_T) return Base_Types.Float_T
            renames Math.Square_Root;

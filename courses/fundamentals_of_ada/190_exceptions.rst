@@ -368,16 +368,15 @@ Quiz
 ------
 
 
-.. container:: columns
+.. container:: latex_environment scriptsize
 
- .. container:: column
+ .. container:: columns
 
-  .. container:: latex_environment tiny
+  .. container:: column
 
    .. code:: Ada
     :number-lines: 1
 
-      with Ada.Text_IO; use Ada.Text_IO;
       procedure Main is
          A, B, C, D : Natural;
       begin
@@ -400,7 +399,7 @@ Quiz
             Put_Line ("Three");
       end Main;
 
- .. container:: column
+  .. container:: column
 
    What will get printed?
 
@@ -706,6 +705,7 @@ Termination Model
        -- Never called if Consume_Fuel raises exception
        Wave_To_Pedestrians;
      end loop;
+     Drive_Home;
    exception
      when Fuel_Exhausted =>
        Push_Home;

@@ -70,7 +70,7 @@ Array Type Index Constraints
 Run-Time Index Checking
 -------------------------
 
-* Array indexes are checked at run-time as needed
+* Array indices are checked at run-time as needed
 * Invalid index values result in `Constraint_Error`
 
 .. code:: Ada
@@ -888,7 +888,7 @@ Array/Container For-Loops
 
    .. code:: Ada
 
-      for name of [reverse] array_or_container_object_name loop
+      for name of [reverse] array_or_container_object loop
       ...
       end loop;
 
@@ -954,8 +954,11 @@ For-Loops with Multidimensional Arrays
 
  .. container:: column
 
+   .. container:: latex_environment small
+
     .. code:: Ada
 
+       declare
          subtype Rows is Positive;
          subtype Columns is Positive;
          type Matrix is array

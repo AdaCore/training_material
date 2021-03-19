@@ -618,7 +618,7 @@ Canonical First Program
 "Hello World" Lab - :toolname:`GNAT Studio`
 ---------------------------------------------
 
-* Start :toolname:`GNAT Studio` from the command-line or Start Menu
+* Start :toolname:`GNAT Studio` from the command-line (:command:`gnatstudio`) or Start Menu
 
 * :menu:`Create new project`
 

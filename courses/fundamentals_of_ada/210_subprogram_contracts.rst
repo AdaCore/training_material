@@ -132,7 +132,7 @@ High-Level Assertions
    .. code:: Ada
 
       type Table_T is private with Type_Invariant =>
-        Sorted (Table); -- user-defined boolean expression
+        Sorted (Table_T); -- user-defined boolean expression
       -- external usage of Table will always be sorted
       function Sorted (This : Table_T) return Boolean;
 
@@ -336,20 +336,21 @@ Preconditions and Postconditions Example
    .. code:: Ada
 
       procedure Compute_Square_Root (Input : Integer;
-                                     Result : out Natural) with
-        Pre  => Input >= 0,
-        Post => (Result * Result) <= Input and
-                (Result + 1) * (Result + 1) > Input;
+                                     Result : out Natural)
+        with Pre  => Input >= 0,
+             Post => (Result * Result) <= Input and
+                     (Result + 1) * (Result + 1) > Input;
  
 * Subtype
 
    .. code:: Ada
 
       procedure Compute_Square_Root (Input  : Natural;
-                                     Result : out Natural) with
-        -- "Pre => Input >= 0" not needed: Input can't be < 0
-        Post => (Result * Result) <= Input and
-                (Result + 1) * (Result + 1) > Input;
+                                     Result : out Natural)
+         with
+             -- "Pre => Input >= 0" not needed: Input can't be < 0
+             Post => (Result * Result) <= Input and
+                     (Result + 1) * (Result + 1) > Input;
  
 ------
 Quiz
@@ -482,12 +483,12 @@ Using Function Results In Postconditions
    .. code:: Ada
 
       function Greatest_Common_Denominator (A, B : Integer)
-         return Integer with
-            Pre  =>  A > 0 and B > 0,
-            -- pass result of Greatest_Common_Denominator to Is_GCD
-            Post =>  Is_GCD (A,
-                             B,
-                             Greatest_Common_Denominator'Result);
+        return Integer with
+          Pre  =>  A > 0 and B > 0,
+          -- pass result of Greatest_Common_Denominator to Is_GCD
+          Post =>  Is_GCD (A,
+                           B,
+                           Greatest_Common_Denominator'Result);
 
       function Is_GCD (A, B, Candidate : Integer)
           return Boolean is (... );

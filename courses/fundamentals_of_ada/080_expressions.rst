@@ -881,36 +881,6 @@ Quantified Expressions
 
    - Indicate whether predicate holds for at least one component
 
------------------------------------------
-Semantics Are As If You Wrote This Code
------------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-.. code:: Ada
-
-   function Universal (Set : Components) return Boolean is
-   begin
-     for C of Set loop
-       if not Predicate (C) then
-         return False;  -- Predicate must be true for all
-       end if;
-     end loop;
-     return True;
-   end Universal;
-   
-   function Existential (Set : Components) return Boolean is
-   begin
-     for C of Set loop
-       if Predicate (C) then
-         return True;  -- Predicate need only be true for one
-       end if;
-     end loop;
-     return False;
-   end Existential;
- 
 -------------------------------
 Quantified Expressions Syntax
 -------------------------------
