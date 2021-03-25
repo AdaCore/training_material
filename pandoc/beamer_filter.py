@@ -379,9 +379,9 @@ def animate ( classes, contents ):
 
    The format of the directive is:
 
-      .. container:: latex_environment <environment-name>
+      .. container:: latex_environment <environment-name> [options]
       
-   It will add "\begin{environment-name}" at the beginning of 
+   It will add "\begin{environment-name}options" at the beginning of 
    the container block, and "\end{environment-name}" at the end.
    No guarantees as to safety - if Pandoc has a same-named begin and/or end
    inside the container, I have no idea what will happen.
@@ -394,7 +394,12 @@ def latex_environment ( classes, contents ):
 
    if len(classes) > 2:
       environment = classes[2]
-      first = {'t': 'RawBlock', 'c': ['latex', '\\begin{' + environment + '}']}
+      begin = '\\begin{' + environment + '}'
+      if len(classes) > 3:
+          for option in classes[3:]:
+              begin = begin + ' ' + option
+
+      first = {'t': 'RawBlock', 'c': ['latex', begin ]}
       last = {'t': 'RawBlock', 'c': ['latex', '\\end{' + environment + '}']}
 
       value = []
