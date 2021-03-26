@@ -52,6 +52,7 @@ slide_decorators = [ 't', 'shrink' ]
 # the parameter as an AST string node.
 # Otherwise (for local functions), the parameter will be a literal text string
 role_format_functions = { 'toolname'   : 'SmallCaps',
+                          'url'        : 'format_url',
                           'menu'       : 'format_menu',
                           'command'    : 'format_command',
                           'answer'     : 'format_answer',
@@ -112,7 +113,7 @@ def latex_monospace ( text ):
     return "\\texttt{" + text + "}"
 
 def latex_escape ( text ):
-    return text.replace('_', '\\_' ).replace('&', '\\&')
+    return text.replace('_', '\\_' ).replace('&', '\\&').replace('#', '\\#')
 
 def latex_answer ( text ):
     return "\\textit<2>{\\textbf<2>{\\textcolor<2>{green!65!black}{" + text + "}}}"
@@ -502,6 +503,28 @@ def perform_role ( role, literal_text, format ):
 def format_menu ( literal_text ):
    # white text on box of color
    return latex_inline ( latex_box ( latex_color ( latex_escape ( literal_text ) ) ) )
+
+'''
+"url" role
+Pretty-print URL
+'''
+def format_url ( literal_text ):
+   # white text on box of color
+   url = latex_escape ( literal_text )
+
+   # shrink based on length of actual (not escaped) text
+   url_text = ''
+   if len(literal_text) <= 60:
+      url_text = '\\normalsize{' + url + '}'
+   elif len(literal_text) <= 67:
+      url_text = '\\small{' + url + '}'
+   elif len(literal_text) <= 71:
+      url_text = '\\footnotesize{' + url + '}'
+   elif len(literal_text) <= 80:
+      url_text = '\\scriptsize{' + url + '}'
+   else:
+      url_text = '\\tiny{' + url + '}'
+   return latex_inline ( "\\href{" + url + "}{" + latex_box ( latex_color ( url_text, "adacore1" ) ) + "}" )
 
 '''
 "command" role
