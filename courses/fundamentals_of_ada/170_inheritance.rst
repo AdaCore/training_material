@@ -47,6 +47,8 @@ Examples
 
 .. include:: examples/170_inheritance/primitives.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#primitives`
+
 ---------------------------
 The Notion of a Primitive
 ---------------------------
@@ -167,6 +169,8 @@ Examples
 ----------
 
 .. include:: examples/170_inheritance/simple_derivation.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#simple-derivation`
 
 ------------------------
 Simple Type Derivation
@@ -415,6 +419,8 @@ Examples
 ----------
 
 .. include:: examples/170_inheritance/tagged_derivation.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#tagged-derivation`
 
 -------------------
 Tagged Derivation

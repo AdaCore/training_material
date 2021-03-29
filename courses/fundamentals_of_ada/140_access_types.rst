@@ -91,6 +91,8 @@ Examples
 
 .. include:: examples/140_access_types/pool_specific_access_types.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#pool-specific-access-types`
+
 ---------------------------
 Pool-Specific Access Type
 ---------------------------
@@ -178,6 +180,8 @@ Examples
 ----------
 
 .. include:: examples/140_access_types/general_access_types.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#general-access-types`
 
 ----------------------
 General Access Types
@@ -283,6 +287,8 @@ Examples
 
 .. include:: examples/140_access_types/access_types.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#access-types`
+
 ----------------------
 Declaration Location
 ----------------------
@@ -377,6 +383,8 @@ Examples
 ----------
 
 .. include:: examples/140_access_types/accessibility_checks.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#accessibility-checks`
 
 --------------------------------------------
 Introduction to Accessibility Checks (1/2)
@@ -515,6 +523,8 @@ Examples
 
 .. include:: examples/140_access_types/memory_management.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#memory-management`
+
 ------------------------------
 Common Memory Problems (1/3)
 ------------------------------
@@ -610,6 +620,8 @@ Examples
 ----------
 
 .. include:: examples/140_access_types/anonymous_access_types.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#anonymous-access-types`
 
 -----------------------------
 Anonymous Access Parameters

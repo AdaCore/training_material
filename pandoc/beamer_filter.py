@@ -524,7 +524,7 @@ def format_url ( literal_text ):
       url_text = '\\scriptsize{' + url + '}'
    else:
       url_text = '\\tiny{' + url + '}'
-   return latex_inline ( "\\href{" + url + "}{" + latex_box ( latex_color ( url_text, "adacore1" ) ) + "}" )
+   return latex_inline ( "{" + latex_box ( latex_color ( url_text, "adacore1" ) ) + "}" )
 
 '''
 "command" role

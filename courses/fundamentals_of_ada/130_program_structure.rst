@@ -60,6 +60,8 @@ Examples
 
 .. include:: examples/130_program_structure/limited_with_clauses.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/130_program_structure.html#limited-with-clauses`
+
 ------------------------------
 Handling Cyclic Dependencies
 ------------------------------
@@ -255,6 +257,8 @@ Examples
 ----------
 
 .. include:: examples/130_program_structure/hierarchical_library_units.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/130_program_structure.html#hierarchical-library-units`
 
 ----------------------------------
 Problem: Packages Are Not Enough
@@ -542,6 +546,8 @@ Examples
 
 .. include:: examples/130_program_structure/visibility_limits.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/130_program_structure.html#visibility-limits`
+
 -------------------------------------
 Parents Do Not Know Their Children!
 -------------------------------------
@@ -750,6 +756,8 @@ Examples
 ----------
 
 .. include:: examples/130_program_structure/private_children.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/130_program_structure.html#private-children`
 
 ------------------
 Private Children

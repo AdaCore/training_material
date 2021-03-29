@@ -101,6 +101,8 @@ Examples
 
 .. include:: examples/110_private_types/implementing_abstract_data_types_via_views.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/110_private_types.html#implementing-abstract-data-types-via-views`
+
 ----------------------------------
 Implementing Abstract Data Types
 ----------------------------------
@@ -386,6 +388,8 @@ Examples
 ----------
 
 .. include:: examples/110_private_types/private_part_construction.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/110_private_types.html#private-part-construction`
 
 -----------------------
 Private Part Location
@@ -761,6 +765,8 @@ Examples
 ----------
 
 .. include:: examples/110_private_types/idioms.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/110_private_types.html#idioms`
 
 ---------------------------------------
 Effects of Hiding Type Representation

@@ -34,6 +34,8 @@ Examples
 
 .. include:: examples/220_low_level_programming/data_representation.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/220_low_level_programming.html#data-representation`
+
 -------------------------------------
 Data Representation vs Requirements
 -------------------------------------
@@ -311,6 +313,8 @@ Examples
 ----------
 
 .. include:: examples/220_low_level_programming/address_clauses_and_overlays.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/220_low_level_programming.html#address-clauses-and-overlays`
 
 ---------
 Address
