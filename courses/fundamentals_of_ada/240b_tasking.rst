@@ -26,14 +26,16 @@ A Simple Task
    .. code:: Ada
 
       procedure Main is
-         task T;
-         task body T is
+         task type Put_T;
+         task body Put_T is
          begin
             loop
                delay 1.0;
                Put_Line ("T");
             end loop;
-         end T;
+         end Put_T;
+
+         T : Put_T;
       begin -- Main task body
          loop
             delay 1.0;
@@ -68,18 +70,18 @@ Rendezvous Definitions
 * **Server** declares several :ada:`entry`
 * Client calls entries
 * Server :ada:`accept` the client calls
-* At each :ada:`accept`, server task **blocks**
+* At each standalone :ada:`accept`, server task **blocks**
 
     - **Until** a client calls the related :ada:`entry`
 
    .. code:: Ada
     
-      task T is
+      task type Msg_Box_T is
          entry Start;
          entry Receive_Message (S : String);
-      end T;
+      end Msg_Box_T;
           
-      task body T is
+      task body Msg_Box_T is
       begin
          loop
             accept Start;
@@ -89,7 +91,7 @@ Rendezvous Definitions
                Put_Line (S);
             end Receive_Message;
          end loop;
-      end T;
+      end Msg_Box_T;
 
 
 ------------------------
@@ -203,7 +205,7 @@ Delay keyword
 
 - :ada:`delay` keyword part of tasking
 - Blocks for a time
-- Relative: Blocks for a :ada:`Duration`
+- Relative: Blocks for at least :ada:`Duration`
 - Absolute: Blocks until a given :ada:`Calendar.Time` or :ada:`Real_Time.Time`
 
 .. code:: Ada
@@ -223,7 +225,7 @@ Task and Protected Types
 Task Activation
 ---------------
 
-* An instanciated task starts running when **activated**
+* An instantiated task starts running when **activated**
 * On the stack
 
     - Activated when **enclosing** declarative part finishes its **elaboration**
@@ -234,21 +236,45 @@ Task Activation
 
 .. code:: Ada
     
-   task type T is [...]
+   task type First_T is [...]
 
-   type T_A is access all T;
+   type First_T_A is access all First_T;
        
-   task body T is
+   task body First_T is
    begin
       accept First;
-   end T;
+   end First_T;
 
    [...]
 
-      V1 : T;
-      V2 : A_T;
+      V1 : First_T;
+      V2 : First_T_A;
    begin -- Task V1 is activated
-      V2 := new T; -- Task V2 is activated
+      V2 := new First_T; -- Task V2 is activated
+
+-----------------------
+Single Task Declaration
+-----------------------
+
+ * Instanciate an **anonymous** task type
+ * Declares an object of that type
+    
+    - Body declaration is then using the **object** name
+
+ .. code:: Ada
+   task Msg_Box is
+       -- Msg_Box task is declared *and* instanciated
+      entry Receive_Message (S : String);
+   end Msg_Box_T;
+       
+   task body Msg_Box is
+   begin
+      loop
+         accept Receive_Message (S : String) do
+            Put_Line (S);
+         end Receive_Message;
+      end loop;
+   end Msg_Box;
      
 ---------------
 Scope Of a Task
@@ -262,19 +288,19 @@ Scope Of a Task
 .. code:: Ada
 
    package P is
-      task T;
+      task type Tick_T;
    end P;
    
    -- Programs using the package may never terminate
    package body P is
-      task body T is
+      task body Tick_T is
          loop
             delay 1.0;
             Put_Line ("tick");
          end loop;
-      end T;
+      end Tick_T;
    end P;
-     
+
 ========================
 Some Advanced Concepts
 ========================
@@ -319,7 +345,7 @@ Waiting With a Delay
 
 .. code:: Ada
 
-   task body T is
+   task body Msg_Box_T is
    begin
      loop
        select
@@ -332,7 +358,7 @@ Waiting With a Delay
          exit;
        end select;
      end loop;
-   end T;
+   end Msg_Box_T;
      
 .. container:: speakernote
 
@@ -350,9 +376,9 @@ Calling an Entry With a Delay Protection
 
 .. code:: Ada
     
-   task T is
+   task type Msg_Box_T is
       entry Receive_Message (V : String);
-   end T;
+   end Msg_Box_T;
        
    procedure Main is
    begin
@@ -402,12 +428,12 @@ Protected Object Entries
 * **Special** kind of protected :ada:`procedure`
 * Several tasks can be waiting on the same :ada:`entry`
 * Only **one** will be re-activated when the barrier is **relieved**
-* May use a **barrier**, allowing call **only** on a boolean condition
-* Barriers are **evaluated** when
+* May use a **barrier**, that is **evaluated** when
 
    - A task calls :ada:`entry`
    - A protected :ada:`entry` or :ada:`procedure` is **exited**
 
+* Barriers **only** allow call on a boolean condition
 * When condition is fulfilled, barrier is **relieved**
 
 .. code:: Ada
