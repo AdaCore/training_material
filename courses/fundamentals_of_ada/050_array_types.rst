@@ -759,25 +759,6 @@ Common Slicing Idiom Example
       return Ret_Val (1 .. Last_Used);
    end Remove_Spaces;
 
----------
-Sliding
----------
-
-* Allows bounds to be different
-* But must be compatible (1:1 correspondence)
-
-   - `Constraint_Error` otherwise
-
-.. code:: Ada
-
-      type Vector is array (Integer range <>) of Real;
-      V : Vector (1 .. 5);
-      Z : Vector (6 .. 10);
-   begin
-      Z := V;  -- five elements each
-      Z (6 .. 8) := V (2 .. 4); -- three elements each
-   end;
-
 --------------------
 "Membership" Tests
 --------------------
