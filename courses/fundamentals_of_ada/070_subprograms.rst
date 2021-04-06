@@ -407,6 +407,23 @@ Parameter Associations In Calls
    Something ( ActualX, Formal2 => ActualY );
    Something (Formal2 => ActualY, Formal1 => ActualX);
 
+---------------------------------------
+Actual Parameters Respect Constraints
+---------------------------------------
+
+* Must satisfy any constraints of formal parameters
+* `Constraint_Error` otherwise
+
+.. code:: Ada
+
+   declare
+     Q : Integer := ...
+     P : Positive := ...
+     procedure Foo (This : Positive);
+   begin
+     Foo (Q); -- runtime error if Q <= 0
+     Foo (P);
+
 --------------------------------------------
 No `subtype_indications` In Specifications
 --------------------------------------------

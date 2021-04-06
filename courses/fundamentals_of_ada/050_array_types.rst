@@ -58,13 +58,18 @@ Array Type Index Constraints
    - Defines an empty array
    - Meaningful when bounds are computed at run-time
 
+* Can be applied on :ada:`type` or :ada:`subtype`
+
 .. code:: Ada
 
    type Schedule is array (Days range Mon .. Fri) of Real;
-   type Bits32_T is array (0 .. 31) of Bit_T;
    type Flags_T is array ( -10 .. 10 ) of Boolean;
    -- this may or may not be null range
    type Dynamic is array (1 .. N) of Integer;
+
+   subtype Line is String (1 .. 80);
+   subtype Translation is Matrix (1..3, 1..3);
+
 
 -------------------------
 Run-Time Index Checking
@@ -1310,6 +1315,106 @@ Anonymous Array Types
          -- legal assignment of values
          A(J) := B(K);
        end;
+
+========
+Slices
+========
+
+----------
+Examples
+----------
+
+.. include:: examples/080_expressions/slices.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#slices`
+
+---------
+Slicing
+---------
+
+.. container:: columns
+
+ .. container:: column
+  
+    * Specifies a contiguous subsection of an array
+    * Allowed on any one-dimensional array type
+
+       - Any component type
+
+ .. container:: column
+  
+    .. code:: Ada
+    
+       procedure Test is
+         S1 : String (1 .. 9)
+            := "Hi Adam!!";
+         S2 : String
+            := "We love    !";
+       begin
+         Put_Line (S1 (4..6));
+         Put_Line (S2);
+         S2 (9..11) := S1 (4..6);
+         Put_Line (S2);
+         S2 (12) := '?';
+         Put_Line (S2);
+     
+-------------------------------
+Slicing With Explicit Indexes
+-------------------------------
+
+* Imagine a requirement to have a name with two parts: first and last
+
+.. code:: Ada
+
+     Full_Name : String (1 .. 20);
+   begin
+     Put_Line (Full_Name);
+     Put_Line (Full_Name (1..10));  -- first half of name
+     Put_Line (Full_Name (11..20)); -- second half of name
+ 
+-----------------------------------------
+Slicing With Named Subtypes for Indexes
+-----------------------------------------
+
+* Subtype name indicates the slice index range
+
+   - Names for constraints, in this case index constraints
+
+* Enhances readability and robustness
+
+.. code:: Ada
+
+   procedure Test is
+     subtype First_Name is Positive range 1 .. 10;
+     subtype Last_Name is Positive range 11 .. 20;
+     Full_Name : String(First_Name'First..Last_Name'Last);
+   begin
+     Put_Line(Full_Name(First_Name)); -- Full_Name(1..10)
+     if Full_Name (Last_Name) = SomeString then ...
+ 
+------------------------------------
+Dynamic Subtype Constraint Example
+------------------------------------
+
+* Useful when constraints not known at compile-time
+* Example: find the matching "raw" file name
+
+   - If the filename begins with CRW, we set the extension to CRW, otherwise we set it to CR2
+
+.. code:: Ada
+    
+   -- actual bounds come from initial value
+   Image_File_Name : String := ...   
+   Matching_Raw_File_Name : String := Image_File_Name;
+   subtype Prefix_Part is Positive range Image_File_Name'First ..
+                                         Image_File_Name'First + 2;
+   subtype Extension_Part is Positive range Image_File_Name'Last - 2 ..
+                                            Image_File_Name'Last;
+   begin
+     if Image_File_Name (Prefix_Part) = "CRW" then
+        Matching_Raw_File_Name(Extension_Part) := "CRW";
+     else
+       Matching_Raw_File_Name(Extension_Part) := "CR2";
 
 ========
 Lab
