@@ -3,6 +3,10 @@
 GNATmetric
 ************
 
+==============
+Introduction
+==============
+
 ------------------------
 Overview of gnatmetric
 ------------------------
@@ -25,96 +29,122 @@ Overview of gnatmetric
 -----------------------
 Invoking the Analyses
 -----------------------
-+ Use contextual menus (Project view, Tools)
++ From the :menu:`Analyze` menu
 
-.. image:: ../../images/gnatmetric_contextual_invocation.png
-
-+ **Tailored for project**
-
-------------------------------------------------
-File-Specific Entry in Project Contextual Menu
-------------------------------------------------
-
-.. image:: ../../images/gnatmetric_contextual_file_specific.png
+.. image:: ../../images/gnatmetric/menu_cascade.jpg
 
 --------------------
-Metrics Dialog Box
+Execute Dialog Box
 --------------------
 
-.. image:: ../../images/gnatmetric_options_dialog.png
+.. image:: ../../images/gnatmetric/execute_dialog.jpg
 
-
------------------------
+=======================
 Exploring the Results
------------------------
+=======================
 
-.. image:: ../../images/gnatmetric_results.png
+-----------------
+Project Results
+-----------------
 
-+ Summary in Messages window
-+ Metrics
-+ view
-+ **Global results**
-+ **Unit-specific results**
+.. image:: ../../images/gnatmetric/project_results.jpg
 
------------------------
-Line Metrics Computed
------------------------
-+ Total number of lines
-+ Total number of comment lines
-+ Percentage comments
-+ Average number of code lines in subprogram bodies, task bodies, entry bodies and statement sequences in package bodies
-+ Others...
-+ Switches can disable individual metrics
+----------------------
+Package Spec Results
+----------------------
 
--------------------------
-Syntax Metrics Computed
--------------------------
-+ Logical source lines of code
-+ Max static nesting level of inner program units
-+ For package specs, the number of subprograms and generic subprograms declared in the visible part
-+ Total number of subprogram bodies in a compilation unit
-+ Others...
-+ Switches can disable individual metrics
+.. image:: ../../images/gnatmetric/spec_results.jpg
 
--------------------------------
-Metrics for Type Declarations
--------------------------------
-+ For package specs and generic package declarations, the total number of visible types
+----------------------
+Package Body Results
+----------------------
 
-  + Only types, not subtypes, are included
+.. image:: ../../images/gnatmetric/body_results.jpg
 
-+ Totals for other types:
+------------------------
+Line Metrics Explained
+------------------------
 
-  + Abstract types
-  + Root tagged types (abstract, non-abstract, private, non-private).
+**Average Lines In Body**
+   Average number of code lines in subprogram bodies, task bodies, entry bodies and package body executable code
 
-    + Type extensions are not counted
+**All Lines**
+   Total number of lines in file(s)
 
-  + Private types (including private extensions)
-  + Task types
-  + Protected types
+**Blank Lines**
+   Total number of blank in file(s)
 
-+ Others...
-+ Switches can disable individual metrics
+**Code Lines**
+   Total lines of code in file(s)
 
------------------------------
-Complexity Metrics Computed
------------------------------
-+ McCabe Cyclomatic complexity
-+ McCabe Essential complexity
-+ Maximal loop nesting level
-+ Computed for any program unit that has executable sequence of statements
+**Comment Lines**
+   Total lines of comments in file(s)
 
-  + Subprogram body (including generic bodies)
-  + Task body
-  + Entry body
-  + Package body containing its own statement sequence
+**Comment Percentage**
+   Comment lines divided by total of code lines and comment lines
 
-+ Switches can disable individual metrics
+**End-Of-Line Comments**
+   Count of code lines that also contain comments
+
+----------------------------------
+Syntax Element Metrics Explained
+----------------------------------
+
+**All Declarations**
+ Total number of objects declared
+
+**All Statements**
+ Total number of statements in file(s)
+
+**All Subprogram Bodies**
+ Total number of subprograms in file(s)
+
+**All Type Definitions**
+ Total number of types in file(s)
+
+**Logical SLOC**
+ Total of declarations plus statements
+
+**Public Subprograms**
+ Count of subprograms declared in visible part of package
+
+**Public Types**
+ Count of types (not subtypes) declared in the visible part of a package plus in the visible part of a generic nested package
+
+**Maximal Construct Nesting**
+ Maximal nesting level of composite syntactic constructs
+
+**Maximum Unit Nesting**
+ Maximal static nesting level of inner program units
+
+------------------------------
+Complexity Metrics Explained
+------------------------------
+
+**Average Complexity**
+    Total Cyclomatic Complexity divided by total number of subprograms
+
+**Cyclomatic Complexity**
+    McCabe cyclomatic complexity
+
+**Essential Complexity**
+    McCabe essential complexity
+
+**Expression Complexity**
+    TBD
+
+**Maximum Loop Nesting**
+    TBD
+
+**Statement Complexity**
+    TBD
 
 ---------------------------------
 Understanding McCabe Complexity
 ---------------------------------
+
+http://www.mccabe.com/pdf/mccabe-nist235r.pdf
+
 + Given a control flow graph of a program
 
   + E - number of edges
@@ -131,41 +161,40 @@ Understanding McCabe Complexity
 ----------------
 McCabe Example
 ----------------
-+ !A
-+ A
-+ B
-+ !B
-+ !C
-+ C
-+ 9 edges - 7 nodes + 2 * 1 exit = complexity 4
-+ if
-+ **A**
-+ then
-+ **Put_Line ("A");**
-+ else
-+ **Put_Line ("!A");**
-+ end
-+ ****
-+ if
-+ **;**
-+ ****
-+ if
-+ **B**
-+ or
-+ ****
-+ else
-+ **C**
-+ then
-+ **Put_Line ("BC");**
-+ end
-+ ****
-+ if
-+ **;**
 
-----------------------------------
-Object-Oriented Metrics Computed
-----------------------------------
-+ Uses Ada's approach to definition of "class"
+.. columns::
+
+  .. column::
+
+   .. code:: Ada
+
+      if A then
+         Put_Line ("A");
+      else
+         Put_Line ("!A");
+      end if;
+
+      if B or else C then
+         Put_Line ("BC");
+      end if;
+
+  .. column::
+
+     .. image:: ../../images/cyclomatic_complexity_edges_and_nodes.jpg
+
+     9 edges - 7 nodes + 2 * 1 exit = complexity 4
+
+------------------------------
+Coupling Metrics Explained
+------------------------------
+
+TBD
+
+------------------------------
+Coupling Metrics
+------------------------------
+
++ Uses Ada's approach to definition of *class*
 
   + Tagged types declared within packages
   + Interface types declared within packages
@@ -175,12 +204,12 @@ Object-Oriented Metrics Computed
   + Number of other classes that a given class depends upon
   + Number of other classes that depend on a given class
 
-+ Package bodies and specs for "classes" are both considered when computing dependencies
-+ Switches can disable individual metrics
++ Package bodies and specs for *classes* are both considered when computing dependencies
 
 -----------------
 Closing Remarks
 -----------------
+
 + See the GNAT User's Guide for the meaning of all the switches
 + For GPS, switches specified via the "Metrics" package in the project's GNAT project file
 + Note requirements on input source files
