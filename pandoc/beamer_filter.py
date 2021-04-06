@@ -35,7 +35,7 @@ else:
     import tempfile
     debug_file = tempfile.mkstemp (prefix="beamerfilter-")[1]
 # First time through open the file for writing
-debug_file_mode = 'w'
+debug_file_mode = 'wt'
 
 # Control wether sub-bullets appear one at a time in a 'beamer' presentation
 # (False indicates everything appears at once)
@@ -75,7 +75,7 @@ def debug ( text ):
       with open(debug_file, debug_file_mode) as myfile:
          myfile.write ( text + "\n" )
       # Future opens will be for appending
-      debug_file_mode = 'a'
+      debug_file_mode = 'at'
 
 '''
 Convert an AST paragraph node to a literal text string
