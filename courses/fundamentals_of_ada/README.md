@@ -13,13 +13,16 @@ to modify the list of included modules, this is the file you would change
 
 The naming scheme uses a 3-digit prefix, followed by an optional alphabetic
 character, and then the description of the module (all lower case, words
-separated by "_").
+separated by "\_").
 
-The 3-digit prefix is described below. The optional alphabetic character is used
-to indicate that the module is an advanced version of its "parent" module, to be
-used as the situation requires. For example, *060_record_types* contains the
+The 3-digit prefix is described below. An optional alphabetic character is used.
+
+* `NNNa` indicates that the module is an advanced version of its
+"parent" module, to be used as the situation requires. For example, *060_record_types* contains the
 basic module for explaining record types, while *060a_discriminated_record_types*
 contains an in-depth view of variant records.
+* `NNNb` indicates that the module is a reduced "basic" version of it "parent"
+module. For example *240b_tasking* is a basic tasking introduction.
 
 ### Prefix Grouping
 
