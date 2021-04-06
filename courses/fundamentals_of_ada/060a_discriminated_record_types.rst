@@ -109,7 +109,7 @@ Variant Part of Record
    * Choice is determined by discriminant value
    * Record can only contain one variant part
 
-      - Variant part must be last part of record definition
+      - Variant must be last part of record definition
 
 ==========================
 Variant Record Semantics

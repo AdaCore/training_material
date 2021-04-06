@@ -315,7 +315,7 @@ Examples
      type Miles_T is digits 6;
      type Hours_T is digits 6;
      type Speed_T is digits 6;
-     -- "use type" on any of T1, T2, T3
+     -- "use type" on any of Miles_T, Hours_T, Speed_T
      -- makes operator visible
      function "/"( Left : Miles_T;
                    Right : Hours_T )

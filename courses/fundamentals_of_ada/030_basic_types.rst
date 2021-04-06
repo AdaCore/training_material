@@ -1015,10 +1015,10 @@ Quiz
 
 Which statement will generate an error?
 
-A. ``V1 : Enum_T := Enum_T'Value("Able");``
-B. ``V2 : Enum_T := Enum_T'Value("BAKER");``
-C. ``V3 : Enum_T := Enum_T'Value(" charlie ");``
-D. :answermono:`V4 : Enum_T := Enum_T'Value("Able Baker Charlie");`
+A. ``V1 :  Enum_T := Enum_T'Value ("Able");``
+B. ``V2 :  Enum_T := Enum_T'Value ("BAKER");``
+C. ``V3 :  Enum_T := Enum_T'Value (" charlie ");``
+D. :answermono:`V4 : Enum_T := Enum_T'Value ("Able Baker Charlie");`
 
 .. container:: animate
 

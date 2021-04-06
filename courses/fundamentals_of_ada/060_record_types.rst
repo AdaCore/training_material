@@ -740,4 +740,4 @@ Summary
 
 * Aggregates express literals for composite types
 
-   * Aggregates can mix named and positional forms
+   - Can mix named and positional forms

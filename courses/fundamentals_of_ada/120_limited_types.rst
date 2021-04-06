@@ -167,7 +167,11 @@ Parameter Passing Mechanism
 Composites with Limited Types
 -------------------------------------
 
-* Composite type containing a limited type (record component, array element) becomes limited as well
+* Composite containing a limited type becomes limited as well
+
+   * Example: Array of limited elements
+
+      - Array becomes a limited type
 
    * Prevents assignment and equality loop-holes
 
