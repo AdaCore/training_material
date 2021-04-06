@@ -1305,18 +1305,6 @@ Default Value
       Implicit : Tertiary_Switch; -- Implicit = Neither
       Explicit : Tertiary_Switch := Neither;
  
--------
-Subtype
--------
-
-* Same type
-* Add constraints (eg. :ada:`range`)
-* Syntax
-
-   .. code:: Ada
-
-      subtype identifier is Base_Type <constraints>
-
 -------------------------------
 Simple Static Type Derivation
 -------------------------------
@@ -1325,6 +1313,7 @@ Simple Static Type Derivation
 
   - **Limited** form of inheritance: operations
   - **Not** fully OOP
+  - More details later
 
 * Strong type benefits
 
@@ -1336,6 +1325,212 @@ Simple Static Type Derivation
    .. code:: Ada
 
       type identifier is new Base_Type [<constraints>]
+
+==========
+Subtypes
+==========
+
+----------
+Examples
+----------
+
+.. include:: examples/080_expressions/subtypes.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#subtypes
+
+----------
+Subtype
+----------
+
+* May **constrain** an existing type
+* Still the **same** type
+* Syntax
+
+   .. code:: Ada
+
+      subtype defining_identifier is type_name [constraints];
+ 
+   - `name` is an existing :ada:`type` or :ada:`subtype`
+
+* If no constraint |rightarrow| type alias
+
+-----------------
+Subtype Example
+-----------------
+
+* Enumeration type with :ada:`range` constraint
+
+   .. code:: Ada
+
+      type Days is (Sun, Mon, Tues, Wed, Thurs, Fri, Sat);
+      subtype Weekdays is Days range Mon .. Fri;
+      Workday : Weekdays; -- type Days limited to Mon .. Fri
+ 
+* Equivalent to **anonymous** subtype
+
+   .. code:: Ada
+
+      Same_As_Workday : Days range Mon .. Fri;
+ 
+----------------------
+Kinds of Constraints
+----------------------
+
+* Range constraints on discrete types
+
+   .. code:: Ada
+
+      subtype Positive is Integer range 1 .. Integer'Last;
+      subtype Natural is Integer range 0 .. Integer'Last;
+      subtype Weekdays is Days range Mon .. Fri;
+      subtype Symmetric_Distribution is
+          Float range -1.0 .. +1.0;
+ 
+* Other kinds, discussed later
+
+------------------------
+Effects of Constraints
+------------------------
+
+* Constraints only on values
+
+   .. code:: Ada
+
+      type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+      subtype Weekdays is Days range Mon .. Fri;
+      subtype Weekend is Days range Sat .. Sun;
+ 
+* Functionalities are **kept**
+
+   .. code:: Ada
+
+      subtype Positive is Integer range 1 .. Integer'Last; 
+      P : Positive;
+      X : Integer := P; -- X and P are the same type
+ 
+---------------------------------
+Assignment Respects Constraints
+---------------------------------
+
+* RHS values must satisfy type constraints
+* :ada:`Constraint_Error` otherwise
+
+.. code:: Ada
+
+   Q : Integer  := some_value;
+   P : Positive := Q; -- runtime error if Q <= 0
+   N : Natural  := Q; -- runtime error if Q < 0
+   J : Integer  := P; -- always legal
+   K : Integer  := N; -- always legal
+ 
+----------------------------------------
+Attributes Reflect the Underlying Type
+----------------------------------------
+
+.. code:: Ada
+
+   type Color is
+       (White, Red, Yellow, Green, Blue, Brown, Black);
+   subtype Rainbow is Color range Red .. Blue;
+ 
+* `T'First` and `T'Last` respect constraints
+
+   - `Rainbow'First` |rightarrow| Red *but* `Color'First` |rightarrow| White
+   - `Rainbow'Last` |rightarrow| Blue *but* `Color'Last` |rightarrow| Black
+
+* Other attributes reflect base type
+
+   - `Color'Succ (Blue)` = Brown = `Rainbow'Succ (Blue)`
+   - `Color'Pos (Blue)` = 4 = `Rainbow'Pos (Blue)`
+   - `Color'Val (0)` = White = `Rainbow'Val (0)`
+
+* Assignment must still satisfy target constraints
+
+   .. code:: Ada
+
+      Shade : Color range Red .. Blue := Brown; -- runtime error
+      Hue : Rainbow := Rainbow'Succ (Blue);     -- runtime error
+ 
+---------------------------
+Range Constraint Examples
+---------------------------
+
+.. code:: Ada
+
+   subtype Proper_Subset is Positive range 1 .. 10;
+   subtype Same_Constraints is Positive
+       range 1 .. Integer'Last;
+   subtype Letter is Character range 'A' .. 'z';
+   subtype Upper_Case is Letter range 'A' .. 'Z';
+   subtype Lower_Case is Letter range 'a' .. 'z';
+   subtype Null_Range is Integer
+       range 1 .. 0;  -- silly when hard-coded...
+   -- evaluated when subtype defined, not when object declared
+   subtype Dynamic is Integer range Lower .. Upper;
+ 
+-----------------------------
+Stand-Alone (Sub)Type Names
+-----------------------------
+
+* Denote all the values of the type or subtype
+
+   - Unless explicitly constrained
+
+* Selected examples
+
+ 
+-------------------------------------
+Subtypes and Default Initialization
+-------------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
+
+* Not allowed: Defaults on new :ada:`type` only
+
+    - :ada:`subtype` is still the same type
+
+* **Note:** Default value may violate subtype constraints
+
+   - Compiler error for static definition
+   - :ada:`Constraint_Error` otherwise
+
+.. code:: Ada
+
+   type Tertiary_Switch is (Off, On, Neither)
+      with Default_Value => Neither;
+   subtype Toggle_Switch is Tertiary_Switch
+       range Off .. On;
+   Safe : Toggle_Switch := Off;
+   Implicit : Toggle_Switch; -- compile error: out of range
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type Enum_T is (Sat, Sun, Mon, Tue, Wed, Thu, Fri);
+   subtype Enum_Sub_T is Enum_T range Mon .. Fri;
+   type Array_T is array (Integer range <>) of Integer;
+   subtype Array_Sub_T is Array_T (1 .. 100);
+
+Which subtype definition is valid?
+
+   A. ``subtype A is Enum_Sub_T range Enum_Sub_T'Pred (Enum_Sub_T'First) .. Enum_Sub_T'Last;``
+   B. ``subtype B is Array_Sub_T (1 .. 10);``
+   C. :answermono:`subtype C is String;`
+   D. ``subtype D is digits 6;``
+
+.. container:: animate
+
+   Explanations
+
+   A. This generates a run-time error because the first enumeral specified is not in the range of :ada:`Enum_Sub_T`
+   B. Compile error - array type is already constrained
+   C. Correct - standalone subtype
+   D. :ada:`Digits 6` is used for a type definition, not a subtype
 
 
 =====
