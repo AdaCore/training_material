@@ -382,3 +382,20 @@ D. | ``(for all Element of A =>``
    C. Correct
    D. Will be :ada:`True` if every element has two consecutive increasing values
 
+========
+Lab
+========
+
+.. include:: labs/080_expressions.lab.rst
+
+=========
+Summary
+=========
+
+---------
+Summary
+---------
+
+* Quantified expressions are general purpose but especially useful with pre/postconditions
+
+   - Consider hiding them behind expressive function names
