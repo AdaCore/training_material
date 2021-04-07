@@ -1,8 +1,14 @@
 
 **********************
-Interfacing with C++
+Interfacing with C
 **********************
 
+.. role:: ada(code)
+   :language: ada
+
+.. role:: C(code)
+   :language: C
+
 ==============
 Introduction
 ==============
@@ -11,13 +17,13 @@ Introduction
 Introduction
 --------------
 
-* Lots of C/C++ code out there already
+* Lots of C code out there already
 
    - Maybe even a lot of reusable code in your own repositories
 
-* Need a way to interface Ada code with existing C/C++ libraries
+* Need a way to interface Ada code with existing C libraries
 
-   - Built-in mechanism to define ability to import objects from C/C++ or export Ada objects
+   - Built-in mechanism to define ability to import objects from C or export Ada objects
 
 * Passing data between languages can cause issues
 
@@ -32,7 +38,7 @@ Import / Export
 Pragma Import / Export (1/2)
 ------------------------------
 
-* `Pragma Import` allows a C implementation to complete an Ada specification
+* :ada:`Pragma Import` allows a C implementation to complete an Ada specification
 
    - Ada view
     
@@ -43,13 +49,13 @@ Pragma Import / Export (1/2)
      
    - C implementation
     
-       .. code:: C++
+       .. code:: C
     
           void c_proc (void) {
              // some code
           }
      
-* `Pragma Export` allows an Ada implementation to complete a C specification
+* :ada:`Pragma Export` allows an Ada implementation to complete a C specification
 
    - Ada implementation
     
@@ -64,7 +70,7 @@ Pragma Import / Export (1/2)
      
    - C view
     
-       .. code:: C++
+       .. code:: C
     
           extern void ada_proc (void);
      
@@ -84,7 +90,7 @@ Pragma Import / Export (2/2)
  
    - C implementation
 
-      .. code:: C++
+      .. code:: C
 
          int my_var;
  
@@ -96,7 +102,7 @@ Import / Export in Ada 2012
 
    Ada 2012
 
-* In Ada 2012, Import and Export can also be done using aspects:
+* In Ada 2012, :ada:`Import` and :ada:`Export` can also be done using aspects:
 
    .. code:: Ada
 
@@ -144,7 +150,7 @@ Passing Scalar Data as Parameters
      
 * C view
     
-   .. code:: C++
+   .. code:: C
     
      int c_proc (int i) {
        /* some code */
@@ -161,7 +167,7 @@ Passing Structures as Parameters
 
 * C View
 
-   .. code:: C++
+   .. code:: C
 
      enum Enum {E1, E2, E3};
      struct Rec {
@@ -195,9 +201,9 @@ Passing Structures as Parameters
 Parameter modes
 -----------------
 
-* `in` scalar parameters passed by copy
-* `out` and `in out` scalars passed using temporary pointer on C side
-* By default, composite types passed by reference on all modes except when the type is marked `C_Pass_By_Copy`
+* :ada:`in` scalar parameters passed by copy
+* :ada:`out` and :ada:`in out` scalars passed using temporary pointer on C side
+* By default, composite types passed by reference on all modes except when the type is marked :ada:`C_Pass_By_Copy`
 
    - Be very careful with records - some C ABI pass small structures by copy!
 
@@ -217,7 +223,7 @@ Parameter modes
      
 * C View
     
-   .. code:: C++
+   .. code:: C
  
       struct R1{
          int V;
@@ -236,22 +242,22 @@ Complex Data Types
 Unions
 --------
 
-* C/C++ `union`
+* C :C:`union`
     
-   .. code:: C++
+   .. code:: C
     
       union Rec {
          int A;
          float B;
       };
      
-* C unions can be bound using the `Unchecked_Union` aspect
+* C unions can be bound using the :ada:`Unchecked_Union` aspect
 * These types must have a mutable discriminant for convention purpose, which doesn't exist at run-time
 
    - All checks based on its value are removed - safety loss
    - It cannot be manually accessed
 
-* Ada implementation of a C `union`
+* Ada implementation of a C :C:`union`
     
    .. code:: Ada
     
@@ -312,7 +318,7 @@ Arrays from Ada to C
      
 * C View
     
-   .. code:: C++
+   .. code:: C
     
       void p (int * v, int size)  {
       }
@@ -343,7 +349,7 @@ Arrays from C to Ada
      
 * C View
     
-   .. code:: C++
+   .. code:: C
     
       extern void p (int * v, int size);
       int x [100];
@@ -353,8 +359,8 @@ Arrays from C to Ada
 Strings
 ---------
 
-* Importing a `String` from C is like importing an array - has to be done through a constrained array
-* `Interfaces.C.Strings` gives a standard way of doing that
+* Importing a :ada:`String` from C is like importing an array - has to be done through a constrained array
+* :ada:`Interfaces.C.Strings` gives a standard way of doing that
 * Unfortunately, C strings have to end by a null character
 * Exporting an Ada string to C needs a copy!
 
@@ -381,11 +387,11 @@ Interfaces.C Hierarchy
 
 * Ada supplies a subsystem to deal with Ada/C interactions
 
-* `Interfaces.C` - contains typical C types and constants, plus some simple Ada string to/from C character array conversion routines
+* :ada:`Interfaces.C` - contains typical C types and constants, plus some simple Ada string to/from C character array conversion routines
 
-   - `Interfaces.C.Extensions` - some additonal C/C++ types
-   - `Interfaces.C.Pointers` - generic package to simulate C pointers (pointer as an unconstrained array, pointer arithmetic, etc)
-   - `Interfaces.C.Strings` - types / functions to deal with C "char *"
+   - :ada:`Interfaces.C.Extensions` - some additonal C/C++ types
+   - :ada:`Interfaces.C.Pointers` - generic package to simulate C pointers (pointer as an unconstrained array, pointer arithmetic, etc)
+   - :ada:`Interfaces.C.Strings` - types / functions to deal with C "char *"
 
 --------------
 Interfaces.C
@@ -566,7 +572,7 @@ Summary
 Summary
 ---------
 
-* Possible to interface with other languages (typically C/C++)
+* Possible to interface with other languages (typically C)
 * Ada provides some built-in support to make interfacing simpler
 * Crossing languages can be made safer
 

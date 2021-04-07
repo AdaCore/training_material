@@ -23,5 +23,5 @@
 240_tasking.rst
 210_subprogram_contracts.rst
 215_type_contracts.rst
-230_interfacing_with_c++.rst
+230_interfacing_with_c.rst
 900_ada_version_comparison.rst
