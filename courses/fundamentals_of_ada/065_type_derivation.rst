@@ -1,7 +1,7 @@
 
-*************
-Inheritance
-*************
+***************
+Type Derivation
+***************
 
 
 .. role:: ada(code)
@@ -121,9 +121,9 @@ Freeze Point
 * Ada doesn't explicitly identify the end of the list of members
 * This end is the implicit **freeze point** occurring whenever:
 
-   - A variable of the type is declared
-   - The type is derived
-   - The end of the scope is reached
+   - A **variable** of the type is **declared**
+   - The type is **derived**
+   - The **end of the scope** is reached
 
 * Subprograms past this point are not primitive
 
@@ -233,16 +233,16 @@ Simple Type Derivation
       package P is
         type Parent is range 1 .. 10;
         type Child is new Parent;
-     end P;
+      end P;
        
-     procedure Main is
-        procedure Not_A_Primitive (V : Parent);
-        V1 : Parent;
-        V2 : Child;
-     begin
-        Not_A_Primitive (V1);
-        Not_A_Primitive (Parent (V2));
-     end Main;
+      procedure Main is
+         procedure Not_A_Primitive (V : Parent);
+         V1 : Parent;
+         V2 : Child;
+      begin
+         Not_A_Primitive (V1);
+         Not_A_Primitive (Parent (V2));
+      end Main;
      
 --------------------------------------
 Simple Derivation and Type Structure
