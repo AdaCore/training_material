@@ -336,35 +336,6 @@ Exception Handler Content
            end;
        end;
 
------------------------------------------
-Exceptions Raised In Exception Handlers
------------------------------------------
-
-.. container:: columns
-
- .. container:: column
-
-    * Go immediately to caller unless also handled
-    * Goes to caller in any case, as usual
-
- .. container:: column
-
-    .. code:: Ada
-
-       begin
-         ...
-       exception
-         when Some_Error =>
-           declare
-             New_Data : Some_Type;
-           begin
-             P( New_Data );
-             ...
-           exception
-             when ...
-           end;
-       end;
-
 ------
 Quiz
 ------
@@ -447,67 +418,23 @@ Implicitly-Raised Exceptions
 
       Doomed : array (Positive) of Big_Type;
 
-* Several checks and exceptions are language-defined
+----------------------------------
+Some Language-Defined Exceptions
+----------------------------------
 
-   - :ada:`Constraint_Error`
-   - :ada:`Storage_Error`
-   - :ada:`Program_Error`
-   - Various others
+* :ada:`Constraint_Error`
 
---------------------
-`Constraint_Error`
---------------------
+    - Violations of constraints on range, index, etc.
 
-* Caused by violations of constraints on range, index, etc.
-* The most common exceptions encountered
+* :ada:`Program_Error`
 
-   .. code:: Ada
+    - Runtime control structure violated (function with no return ...)
 
-      K : Integer range 1 .. 10;
-      ...
-      K := -1;
+* :ada:`Storage_Error`
 
-   .. code:: Ada
+    - Insufficient storage is available
 
-      L : array (1 .. 100) of Some_Type;
-      ...
-      L (400) := SomeValue;
-
------------------
-`Program_Error`
------------------
-
-* When runtime control structure is violated
-
-   - Elaboration order errors and function bodies
-
-* When implementation detects bounded errors
-
-   - Discussed momentarily
-
-.. code:: Ada
-
-   function F return Some_Type is
-   begin
-     if something then
-       return Some_Value;
-     end if; -- program error - no return statement
-   end F;
-
------------------
-`Storage_Error`
------------------
-
-* When insufficient storage is available
-* Potential causes
-
-   - Declarations
-   - Explicit allocations
-   - Implicit allocations
-
-.. code:: Ada
-
-   Data : array (1..1e20) of Big_Type;
+* For a complete list see RM Q-4
 
 ------------------------------
 Explicitly-Raised Exceptions
@@ -533,7 +460,7 @@ Explicitly-Raised Exceptions
 
        - :ada:`with string_expression` only available in Ada 2005 and later
 
-    * A :ada:`raise` by itself is only allowed in handlers (more later)
+    * A :ada:`raise` by itself is only allowed in handlers
 
   .. container:: column
 
@@ -696,133 +623,23 @@ Propagation Demo
 Termination Model
 -------------------
 
-* Control goes to handler (if any) and then to caller
-
-   - Does not resume at point exception was raised
+* When control goes to handler, it continues from here
 
 .. code:: Ada
 
    procedure Joy_Ride is
-     Bored : Boolean := False;
    begin
-     while not Bored loop
-       Steer_Aimlessly (Bored);
-       -- Exception in Consume_Fuel jumps to handler
-       Consume_Fuel;
-       -- Never called if Consume_Fuel raises exception
-       Wave_To_Pedestrians;
-     end loop;
-     Drive_Home;
+      loop
+          Steer_Aimlessly;
+
+          -- If next line raises Fuel_Exhausted, go to handler
+          Consume_Fuel;
+      end loop;
    exception
-     when Fuel_Exhausted =>
+     when Fuel_Exhausted => -- Handler
        Push_Home;
-       -- Completion of exception handler returns to caller
+       -- Resume from here: loop has been exited
    end Joy_Ride;
-
--------------------------------
-Partially Handling Exceptions
--------------------------------
-
-.. container:: columns
-
- .. container:: column
-
-    * Handler eventually re-raises the current exception
-    * Achieved using :ada:`raise` by itself, since re-raising
-
-       - Current active exception is then propagated to caller
-
- .. container:: column
-
-    .. code:: Ada
-
-       procedure Joy_Ride is
-         ...
-       begin
-         while not Bored loop
-           Steer_Aimlessly (Bored);
-           Consume_Fuel (Hot_Rod);
-         end loop;
-       exception
-         when Fuel_Exhausted =>
-           Pull_Over;
-           raise; -- no gas available
-       end Joy_Ride;
-
-----------------------------------
-Typical Partial Handling Example
-----------------------------------
-
-* Log (or display) the error and re-raise to caller
-
-   - Same exception or another one
-
-.. code:: Ada
-
-   procedure Get (Item : out Integer;   From : in File) is
-   begin
-     Ada.Integer_Text_IO.Get (From, Item);
-   exception
-     when Ada.Text_IO.End_Error =>
-       Display_Error ("Attempted read past end of file");
-       raise Error;
-     when Ada.Text_IO.Mode_Error =>
-       Display_Error ("Read from file opened for writing");
-       raise Error;
-     when Ada.Text_IO.Status_Error =>
-       Display_Error ("File must be opened prior to use");
-       raise Error;
-     when others =>
-       Display_Error ( "Error in Get(Integer) from file" );
-       raise;
-   end Get;
-
---------------------------------------
-Exceptions Raised During Elaboration
---------------------------------------
-
-* I.e., those occurring before the :ada:`begin`
-* Go immediately to the caller
-* No handlers in that frame are applicable
-
-   - Could reference declarations that failed to elaborate!
-
-.. code:: Ada
-
-   procedure P (Output : out BigType) is
-     -- storage error handled by caller
-     N : array (Positive) of BigType;
-     ...
-   begin
-     ...
-   exception
-     when Storage_Error =>
-       -- failure to define N not handled here
-       Output := N (1); -- if it was, this wouldn't work
-       ...
-   end P;
-
----------------------------------
-Handling Elaboration Exceptions
----------------------------------
-
-.. code:: Ada
-
-   procedure Test is
-     procedure P is
-       X : Positive := 0;  -- Constraint_Error!
-     begin
-       ...
-     exception
-       when Constraint_Error =>
-         Ada.Text_IO.Put_Line ("Got it in P");
-     end P;
-   begin
-     P;
-   exception
-     when Constraint_Error =>
-       Ada.Text_IO.Put_Line ("Got Constraint_Error in Test");
-   end Test;
 
 ------
 Quiz
@@ -832,31 +649,31 @@ Quiz
 
    .. code:: Ada
 
-      with Ada.Text_IO; use Ada.Text_IO;
-      procedure Main is
-         Known_Problem : exception;
-         function F (P : Integer) return Integer is
-         begin
-            if P > 0 then
-               return P * P;
-            end if;
-         exception
-            when others => raise Known_Problem;
-         end F;
-         procedure P (X : Integer) is
-            A : array (1 .. F (X)) of Float;
-         begin
-            A := (others => 0.0);
-         exception
-            when others => raise Known_Problem;
-         end P;
-      begin
-         P ( Input_Value );
-         Put_Line ( "Success" );
-      exception
-         when Known_Problem => Put_Line ("Known problem");
-         when others => Put_Line ("Unknown problem");
-      end Main;
+    with Ada.Text_IO; use Ada.Text_IO;
+    procedure Main is
+       Main_Problem : exception;
+       function F (P : Integer) return Integer is
+       begin
+          if P > 0 then
+             return P + 1;
+          elsif P = 0 then
+             raise Main_Problem;
+          end if;
+       end F;
+
+       procedure P (X : Integer) is
+          R : Integer;
+       begin
+          R := F (X);
+       end P;
+    begin
+       P ( 0 );
+       Put_Line ( "Success" );
+    exception
+       when Constraint_Error => Put_Line ("Constraint Error");
+       when Program_Error => Put_Line ("Program Error");
+       when others => Put_Line ("Unknown problem");
+    end Main;
 
 What will get printed for these values of Input_Value?
 
@@ -864,13 +681,13 @@ What will get printed for these values of Input_Value?
 
    * - **A.**
      - Integer'Last
-     - :animate:`Known Problem`
+     - :animate:`Constraint Error`
    * - **B.**
-     - Integer'First
-     - :animate:`Unknown Problem`
+     - 0
+     - :animate:`Unknown problem`
    * - **C.**
-     - 10000
-     - :animate:`Unknown Problem`
+     - Integer'First
+     - :animate:`Program Error`
    * - **D.**
      - 100
      - :animate:`Success`
@@ -881,9 +698,10 @@ What will get printed for these values of Input_Value?
 
    .. container:: latex_environment tiny
 
-      A |rightarrow| When :ada:`F` is called with a large :ada:`P`, its own exception handler captures the exception and raises :ada:`Constraint_Error` (which the main exception handler processes)
+      A |rightarrow| When :ada:`F` is called with :ada:`Integer'Last`, it overflows and raises a :ada:`Constraint_Error`
 
-      B/C |rightarrow| When the creation of :ada:`A` fails (due to :ada:`Program_Error` from passing :ada:`F` a negative number or :ada:`Storage_Error` from passing :ada:`F` a large number), then :ada:`P` raises an exception during elaboration, which is propagated to :ada:`Main`
+      B |rightarrow| The :ada:`Main_Problem` exception is raised, and catched in the :ada:`when others`
+      C |rightarrow| :ada:`function F` does not hit return, a :ada:`Program_Error` is raised
 
 =======================
 Exceptions as Objects
@@ -905,54 +723,10 @@ Exceptions Are Not Objects
 
    - May not be components of composite types
    - May not be passed as parameters
-   - etc.
 
 * Some differences for scope and visibility
 
    - May be propagated out of scope
-   - Hidden predefined exceptions are still available
-   - Are not dynamically allocated (unlike variables)
-
-      + A rarely-encountered issue involving recursion
-
-----------------------------------
-Example Propagation Beyond Scope
-----------------------------------
-
-.. container:: columns
-
- .. container:: column
-
-    .. code:: Ada
-
-       package P is
-         procedure Q;
-       end P;
-       package body P is
-         Error : exception;
-         procedure Q is
-         begin
-           ...
-           raise Error;
-         end Q;
-       end P;
-
- .. container:: column
-
-    .. code:: Ada
-
-       with P;
-       procedure Client is
-       begin
-         P.Q;
-       exception
-         -- not visible
-         when P.Error =>
-            ...
-         -- captured here
-         when others =>
-            ...
-       end Client;
 
 -----------------------------------
 But You Can Treat Them As Objects
@@ -982,82 +756,24 @@ But You Can Treat Them As Objects
      ...
    end Ada.Exceptions;
 
------------------------------------
-User Subprogram Parameter Example
------------------------------------
-
-.. code:: Ada
-
-   with Ada.Exceptions; use Ada.Exceptions;
-   procedure Display_Exception
-       (Error : in Exception_Occurrence)
-   is
-     Msg : constant String := Exception_Message (Error);
-     Info : constant String := Exception_Information (Error);
-   begin
-     New_Line;
-     if Info /= "" then
-       Put ("Exception information => ");
-       Put_Line (Info);
-     elsif Msg /= "" then
-       Put ("Exception message => ");
-       Put_Line (Msg);
-     else
-       Put ("Exception name => ");
-       Put_Line (Exception_Name (Error));
-     end if;
-   end Display_Exception;
-
-----------------------------------
-Obtaining `Exception_Id` Objects
-----------------------------------
-
-* Attribute 'Identity converts exceptions to the type
-
-   .. code:: Ada
-
-      package Ada.Exceptions is
-        ...
-        type Exception_Id is private;
-        ...
-        procedure Raise_Exception( E : in Exception_Id;
-                                   Message : in String := "" );
-        ...
-      end Ada.Exceptions;
-
-* Primary use is raising exceptions procedurally
-
-   .. code:: Ada
-
-      Foo : exception;
-      ...
-      Ada.Exceptions.Raise_Exception (Foo'Identity,
-                                      Message => "FUBAR!");
-
-------------------------------------------
-Obtaining `Exception_Occurrence` Objects
-------------------------------------------
+---------------------
+Exception Occurence
+---------------------
 
 * Syntax associates an object with active exception
 
    .. code:: Ada
 
-      exception_handler ::=
-         when [defining_identifier : ]
-              exception_choice { | exception_choice } =>
-            sequence_of_statements
-      exception_choice ::= exception_name | others
+      when defining_identifier : exception_name ... =>
 
 * A constant view representing active exception
 * Used with operations defined for the type
 
    .. code:: Ada
 
-      ...
       exception
-        when Error : others =>
-          Put( "Bombed with " & Exception_Name(Error) );
-      end;
+        when Catched_Exception : others =>
+          Put (Exception_Name (Catched_Exception));
 
 ----------------------------------------
 `Exception_Occurrence` Query Functions
@@ -1084,87 +800,6 @@ Obtaining `Exception_Occurrence` Objects
       + Location where exception occurred
       + Language-defined check that failed (if such)
 
-------------------------------------
-Re-Raising Exceptions Procedurally
-------------------------------------
-
-* Typical :ada:`raise` mechanism
-
-   .. code:: Ada
-
-      begin
-        ...
-      exception
-        when others =>
-          Cleanup;
-          raise;
-      end;
-
-* Procedural :ada:`raise` mechanism
-
-   .. code:: Ada
-
-      begin
-        ...
-      exception
-        when X : others =>
-          Cleanup;
-          Ada.Exceptions.Reraise_Occurrence (X);
-      end;
-
-----------------------------------------
-Copying `Exception_Occurrence` Objects
-----------------------------------------
-
-* Via procedure `Save_Occurrence`
-
-   - No assignment operation since is a :ada:`limited` type
-
-.. code:: Ada
-
-   Error : Exception_Occurrence;
-
-   begin
-     ...
-   exception
-     when X : others =>
-       Cleanup;
-       Ada.Exceptions.Save_Occurrence (X, Target => Error);
-   end;
-
----------------------------------------
-Re-Raising Outside Dynamic Call Chain
----------------------------------------
-
-.. code:: Ada
-
-   procedure Demo is
-     package Exceptions is new
-         Limited_Ended_Lists (Exception_Occurrence,
-                              Save_Occurrence);
-     Errors : Exceptions.List;
-     Iteration : Exceptions.Iterator;
-     procedure Normal_Processing
-         (Troubles : in out Exceptions.List) is ...
-   begin
-     Normal_Processing (Errors);
-     Iteration.Initialize (Errors);
-     while Iteration.More loop
-       declare
-         Next_Error : Exception_Occurrence;
-       begin
-         Iteration.Read (Next_Error);
-         Put_Line (Exception_Information (Next_Error));
-         if Exception_Identity (Next_Error) =
-            Trouble.Fatal_Error'Identity
-         then
-           Reraise_Occurrence (Next_Error);
-         end if;
-       end;
-     end loop;
-     Put_Line ("Done");
-   end Demo;
-
 =======================
 *Raise Expressions*
 =======================
@@ -1177,97 +812,18 @@ Re-Raising Outside Dynamic Call Chain
 
    Ada 2012
 
-* Expressions, of type defined by enclosing context
-* Evaluation at run-time raises specified exception
-* Syntax mimics :ada:`raise` statements
-
-   .. code:: Ada
-
-      raise_expression ::=
-         raise exception_name [with string_expression]
-
----------------------------
-Using *Raise Expressions*
----------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* As parts of conditional expressions, but when an exception is appropriate too
+* **Expression** raising specified exception **at run-time**
 
 .. code:: Ada
 
-   procedure Demo (X : Integer) is
-     Error : exception;
-     M : Integer;
-     Foo : constant Integer := ( case X is
-                                 when 1 => 10,
-                                 when 2 => 20,
-                                 when others => raise Error);
-    begin
-     M := (if Foo = 10 then 100 else
-           raise Error with "Foo is not 10!");
-     ...
-   end Demo;
+    Foo : constant Integer := ( case X is
+                                when 1 => 10,
+                                when 2 => 20,
+                                when others => raise Error);
 
 =============
 In Practice
 =============
-
----------------------------------------
-Fulfill Interface Promises To Clients
----------------------------------------
-
-* If handled and not re-raised, normal processing continues at point of client's call
-* Hence caller expectations must be satisfied
-
-.. code:: Ada
-
-   procedure Get (Reading : out Sensor_Reading) is
-   begin
-     ...
-     Reading := New_Value;
-     ...
-   exceptions
-     when Some_Error =>
-       Reading := Default_Value;
-   end Get;
-
-   function Foo return Some_Type is
-   begin
-     ...
-     return Determined_Value;
-     ...
-   exception
-     when Some_Error =>
-       return Default_Value; -- error if this isn't here
-   end Foo;
-
------------------------------------
-Allow Clients To Avoid Exceptions
------------------------------------
-
-* Callee
-
-   .. code:: Ada
-
-      package Stack is
-        Overflow : exception;
-        Underflow : exception;
-        function Full return Boolean;
-        function Empty return Boolean;
-        procedure Push (Item : in Some_Type);
-        procedure Pop (Item : out Some_Type);
-      end Stack;
-
-* Caller
-
-   .. code:: Ada
-
-      if not Stack.Empty then
-        Stack.Pop( ... );  -- will not raise Underflow
-      ...
 
 ---------------------------------------
 Exceptions Are Not Always Appropriate
@@ -1285,34 +841,12 @@ Exceptions Are Not Always Appropriate
 
     .. image:: ../../images/airbag_exception_handler.png
 
-----------------------------------
-You Can Suppress Run-Time Checks
-----------------------------------
-
-* Syntax (could use a compiler switch instead)
-
-   .. code:: Ada
-
-      pragma Suppress ( check-name [, [On =>] name] );
-
-* Language-defined checks emitted by compiler
-* Compiler may ignore request if unable to comply
-* Behavior will be unpredictable if exceptions occur
-
-   - Raised within the region of suppression
-   - Propagated into region of suppression
-
-.. code:: Ada
-
-   pragma Suppress (Range_Check);
-   pragma Suppress (Index_Check, On => Table);
-
 ---------------------------------------
 Relying On Exception Raising Is Risky
 ---------------------------------------
 
-* They may be suppressed!
-* Risky
+* They may be **suppressed**
+* Not recommended
 
    .. code:: Ada
 
@@ -1324,7 +858,7 @@ Relying On Exception Raising Is Risky
           return Days'First;
       end Tomorrow;
 
-* Better
+* Recommended
 
    .. code:: Ada
 
@@ -1336,40 +870,6 @@ Relying On Exception Raising Is Risky
           return Days'Succ (Today);
         end if;
       end Tomorrow;
-
------------------------
-Error Classifications
------------------------
-
-* Some errors must be detected at run-time
-
-   - Corresponding to the predefined exceptions
-
-* **Bounded Errors**
-
-   - Need not be detected prior to/during execution if too hard
-   - If not detected, range of possible effects is bounded
-
-      + Possible effects are specified per error
-
-   - Example: evaluating an un-initialized scalar variable
-   - It might "work"!
-
-* **Erroneous Execution**
-
-   - Need not be detected prior to/during execution if too hard
-   - If not detected, range of possible effects is not bounded
-   - Example: Occurrence of a suppressed check
-
-.. container:: speakernote
-
-   Evaluation of an uninitialized scalar variable is a bounded error; evaluation of non-scalars is erroneous. See 13.9.1 Data Validity
-
-========
-Lab
-========
-
-.. include:: labs/190_exceptions.lab.rst
 
 =========
 Summary
@@ -1391,7 +891,4 @@ Summary
    - For both raising and special handling
    - Especially useful for debugging
 
-* Suppressing checks is allowed but requires care
-
-   - Testing only proves presence of errors, not absence
-   - Exceptions may occur anyway, with unpredictable effects
+* Checks may be suppressed
