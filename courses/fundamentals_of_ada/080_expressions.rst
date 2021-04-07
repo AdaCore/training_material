@@ -618,7 +618,3 @@ Summary
 
    - Especially useful when a constant is intended
    - Especially useful when a static expression is required
-
-* Quantified expressions are general purpose but especially useful with pre/postconditions
-
-   - Consider hiding them behind expressive function names
