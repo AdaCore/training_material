@@ -1,6 +1,6 @@
-**************
-GNAT options
-**************
+**********************
+Annex - GNAT options
+**********************
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 
