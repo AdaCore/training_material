@@ -57,6 +57,8 @@ Examples
 
 .. include:: examples/200_elaboration/elaboration.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/200_elaboration.html#elaboration`
+
 -------------
 Elaboration
 -------------
@@ -233,6 +235,8 @@ Examples
 ----------
 
 .. include:: examples/200_elaboration/elaboration_control.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/200_elaboration.html#elaboration-control`
 
 -----------------------
 `Pragma Preelaborate`

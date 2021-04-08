@@ -117,6 +117,8 @@ Examples
 
 .. include:: examples/050_array_types/constrained_array_types.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#constrained-array-types`
+
 -------------------------------------
 Constrained Array Type Declarations
 -------------------------------------
@@ -296,6 +298,8 @@ Examples
 ----------
 
 .. include:: examples/050_array_types/unconstrained_array_types.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#unconstrained-array-types`
 
 ---------------------------------------
 Unconstrained Array Type Declarations
@@ -499,6 +503,8 @@ Examples
 
 .. include:: examples/050_array_types/attributes.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#attributes`
+
 ------------------
 Array Attributes
 ------------------
@@ -611,6 +617,8 @@ Examples
 ----------
 
 .. include:: examples/050_array_types/operations.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#operations`
 
 -------------------------
 Object-Level Operations
@@ -829,6 +837,8 @@ Examples
 
 .. include:: examples/050_array_types/operations_added_for_ada2012.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#operations-added-for-ada2012`
+
 ----------------------------------------
 Default Initialization for Array Types
 ----------------------------------------
@@ -1015,6 +1025,8 @@ Examples
 ----------
 
 .. include:: examples/050_array_types/aggregates.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#aggregates`
 
 ------------
 Aggregates

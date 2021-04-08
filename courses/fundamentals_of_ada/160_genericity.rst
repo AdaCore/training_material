@@ -153,6 +153,8 @@ Examples
 
 .. include:: examples/160_genericity/generic_data.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/160_genericity.html#generic-data`
+
 --------------------------------
 Generic Types Parameters (1/2)
 --------------------------------
@@ -273,6 +275,8 @@ Examples
 ----------
 
 .. include:: examples/160_genericity/generic_formal_data.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/160_genericity.html#generic-formal-data`
 
 --------------------------------------------
 Generic Constants and Variables Parameters

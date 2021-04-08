@@ -47,6 +47,8 @@ Examples
 
 .. include:: examples/240_tasking/tasks.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/240_tasking.html#tasks`
+
 ------------------------
 Interacting With Tasks
 ------------------------
@@ -213,6 +215,8 @@ Examples
 
 .. include:: examples/240_tasking/protected_objects.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/240_tasking.html#protected-objects`
+
 -------------------
 Protected Objects
 -------------------
@@ -317,6 +321,8 @@ Examples
 ----------
 
 .. include:: examples/240_tasking/task_and_protected_types.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/240_tasking.html#task-and-protected-types`
 
 ------------
 Task Types
@@ -423,6 +429,8 @@ Examples
 ----------
 
 .. include:: examples/240_tasking/some_advanced_concepts.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/240_tasking.html#some-advanced-concepts`
 
 ------------------------------
 Waiting On Different Entries
