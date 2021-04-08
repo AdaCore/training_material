@@ -158,14 +158,14 @@ Protected Objects
 
 .. code:: Ada
     
-   protected Object is
+   protected type Protected_Value is
       procedure Set (V : Integer);
       function Get return Integer;
    private
       Value : Integer;
-   end Object;
+   end Protected_Value;
        
-   protected body Object is
+   protected body Protected_Value is
       procedure Set (V : Integer) is
       begin
          Value := V;
@@ -175,7 +175,7 @@ Protected Objects
       begin
          return Value;
       end Get;
-   end Object;
+   end Protected_Value;
      
 -------------------------------------
 Protected: Functions and Procedures
@@ -252,16 +252,17 @@ Task Activation
    begin -- Task V1 is activated
       V2 := new First_T; -- Task V2 is activated
 
------------------------
-Single Task Declaration
------------------------
+--------------------
+Single Declaration
+--------------------
 
- * Instanciate an **anonymous** task type
+ * Instanciate an **anonymous** task (or protected) type
  * Declares an object of that type
     
     - Body declaration is then using the **object** name
 
  .. code:: Ada
+
    task Msg_Box is
        -- Msg_Box task is declared *and* instanciated
       entry Receive_Message (S : String);
