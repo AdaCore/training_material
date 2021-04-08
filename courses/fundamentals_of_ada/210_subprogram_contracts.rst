@@ -146,6 +146,8 @@ Examples
 
 .. include:: examples/210_subprogram_contracts/preconditions_and_postconditions.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/210_subprogram_contracts.html#preconditions-and-postconditions`
+
 -----------------------------
 Pre/Postcondition Contracts
 -----------------------------

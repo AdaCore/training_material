@@ -41,6 +41,8 @@ Examples
 
 .. include:: examples/080_expressions/subtypes.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#subtypes`
+
 ----------
 Subtypes
 ----------
@@ -280,6 +282,8 @@ Examples
 
 .. include:: examples/080_expressions/membership_tests.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#membership-tests`
+
 -------------------------
  "Membership" Operation
 -------------------------
@@ -445,6 +449,8 @@ Examples
 
 .. include:: examples/080_expressions/slices.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#slices`
+
 ---------
 Slicing
 ---------
@@ -542,6 +548,8 @@ Examples
 ----------
 
 .. include:: examples/080_expressions/conditional_expressions.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#conditional-expressions`
 
 -------------------------
 Conditional Expressions
@@ -855,6 +863,8 @@ Examples
 ----------
 
 .. include:: examples/080_expressions/quantified_expressions.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#quantified-expressions`
 
 ------------------------
 Quantified Expressions

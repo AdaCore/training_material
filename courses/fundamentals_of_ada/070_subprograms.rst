@@ -87,6 +87,8 @@ Examples
 
 .. include:: examples/070_subprograms/declarations_and_bodies.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#declarations-and-bodies`
+
 --------------------------
 Subprogram Declarations 
 --------------------------
@@ -354,6 +356,8 @@ Examples
 ----------
 
 .. include:: examples/070_subprograms/parameters.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#parameters`
 
 ----------------------------------
 Subprogram Parameter Terminology
@@ -1122,6 +1126,8 @@ Examples
 
 .. include:: examples/070_subprograms/expression_functions.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#expression-functions`
+
 ----------------------
 Expression Functions
 ----------------------
@@ -1244,6 +1250,8 @@ Examples
 ----------
 
 .. include:: examples/070_subprograms/potential_pitfalls.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#potential-pitfalls`
 
 -----------------------------
 Mode `out` Risk for Scalars

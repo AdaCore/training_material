@@ -48,6 +48,8 @@ Examples
 
 .. include:: examples/215_type_contracts/type_invariants.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/215_type_contracts.html#type-invariants`
+
 -----------------
 Type Invariants
 -----------------
@@ -291,6 +293,8 @@ Examples
 ----------
 
 .. include:: examples/215_type_contracts/subtype_predicates.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/215_type_contracts.html#subtype-predicates`
 
 ----------------------------
 Subtype Predicates Concept

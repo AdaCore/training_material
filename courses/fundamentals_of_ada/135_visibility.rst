@@ -54,6 +54,8 @@ Examples
 
 .. include:: examples/135_visibility/use_clauses.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/135_visibility.html#use-clauses`
+
 ----------------
  `use` Clauses
 ----------------
@@ -255,6 +257,8 @@ Examples
 
 .. include:: examples/135_visibility/use_type_clauses.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/135_visibility.html#use-type-clauses`
+
 ---------------------
 `use type` Clauses
 ---------------------
@@ -361,6 +365,8 @@ Examples
 ----------
 
 .. include:: examples/135_visibility/use_all_type_clauses.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/135_visibility.html#use-all-type-clauses`
 
 -------------------------
 `use all type` Clauses

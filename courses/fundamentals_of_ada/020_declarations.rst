@@ -77,6 +77,8 @@ Examples
 
 .. include:: examples/020_declarations/identifiers_comments_and_pragmas.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#identifiers-comments-and-pragmas`
+
 -------------
 Identifiers
 -------------
@@ -188,6 +190,8 @@ Examples
 
 .. include:: examples/020_declarations/numeric_literals.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#numeric-literals`
+
 --------------------------
 Decimal Numeric Literals
 --------------------------
@@ -273,6 +277,8 @@ Examples
 ----------
 
 .. include:: examples/020_declarations/object_declarations.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#object-declarations`
 
 --------------
 Declarations
@@ -497,6 +503,8 @@ Examples
 
 .. include:: examples/020_declarations/named_numbers.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#named-numbers`
+
 ---------------
 Named Numbers
 ---------------
@@ -583,6 +591,8 @@ Examples
 ----------
 
 .. include:: examples/020_declarations/scope_and_visibility.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#scope-and-visibility`
 
 ----------------------
 Scope and Visibility
@@ -749,6 +759,8 @@ Examples
 ----------
 
 .. include:: examples/020_declarations/aspect_clauses.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#aspect-clauses`
 
 ----------------
 Aspect Clauses

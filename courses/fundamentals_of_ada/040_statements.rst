@@ -29,11 +29,11 @@ Statement Kinds
      procedure_call | return |
      requeue | entry_call |
      abort | code
-   
+
    compound_statement ::=
      if | case | loop |
      block | accept | select
- 
+
 ----------------------------
 Procedure Calls (Overview)
 ----------------------------
@@ -177,6 +177,8 @@ Examples
 
 .. include:: examples/040_statements/assignment_statements.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/040_statements.html#assignment-statements`
+
 -----------------------
 Assignment Statements
 -----------------------
@@ -186,7 +188,7 @@ Assignment Statements
    .. code:: Ada
 
       <variable> := <expression>;
- 
+
 * Value of expression is copied to target variable
 * The type of the RHS must be same as the LHS
 
@@ -377,7 +379,7 @@ If-then-else Statements
       [else
          <statements>;]
       end if;
- 
+
 * At least one statement must be supplied
 
     - :ada:`null` for explicit no-op
@@ -435,7 +437,7 @@ Case Statements
 
       choice ::= <expression> | <discrete range>
                 | others { "|" <other choice> }
- 
+
 ----------------------
 Simple case Statements
 ----------------------
@@ -451,8 +453,8 @@ Simple case Statements
      when Left =>  Go_Left (1);
      when Right => Go_Right (1);
    end case;
- 
-* *Note*: No fall-through between cases 
+
+* *Note*: No fall-through between cases
 
 ----------------------
 Case Statement Rules
@@ -473,13 +475,13 @@ Case Statement Rules
 ------------------
 
 * Choice by default
-    
+
     - "everything not specified so far"
 
 * Must be in last position
 
 .. code:: Ada
-    
+
    case Today is   -- work schedule
      when Monday =>
        Go_To (Work, Arrive=>Late, Leave=>Early);
@@ -496,7 +498,7 @@ Case Statements Range Alternatives
 ------------------------------------
 
 .. code:: Ada
-    
+
    case Altitude_Ft is
      when 0 .. 9 =>
        Set_Flight_Indicator (Ground);
@@ -505,17 +507,17 @@ Case Statements Range Alternatives
      when others => -- Large altitude
        Set_Flight_Indicator (Too_High);
    end case;
- 
+
 ------------------------------------
 Dangers of *Others* Case Alternative
 ------------------------------------
 
 * Maintenance issue: new value requiring a new alternative?
-    
+
     - Compiler won't warn: `others` hides it
 
 .. code:: Ada
-      
+
    type Agencies_T is (NASA, ESA, RFSA); -- could easily grow
    Bureau : Agencies_T;
    ...
@@ -595,6 +597,8 @@ Examples
 
 .. include:: examples/040_statements/loop_statements.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/040_statements.html#loop-statements`
+
 ------------------------
 Basic Loops and Syntax
 ------------------------
@@ -605,23 +609,23 @@ Basic Loops and Syntax
   - Optional exit statements
 
 * Syntax
-    
+
    .. code:: Ada
-    
+
      [<name> :] [iteration_scheme] loop
            <statements>
       end loop [<name>];
-     
+
    .. code::
 
       iteration_scheme ::= while <boolean expression>
                            | for <loop_parameter_specification>
                            | for <loop_iterator_specification>
-     
+
 * Example
 
    .. code:: Ada
-       
+
       Wash_Hair : loop
         Lather (Hair);
         Rinse (Hair);
@@ -640,22 +644,22 @@ Loop Exit Statements
    - Unless loop name is specified
 
 * Syntax
-    
+
    .. code:: Ada
-    
+
       exit [<loop name>] [when <boolean expression>];
-     
+
 * `exit when` exits with condition
 
 .. code:: Ada
-       
+
     loop
       ...
       -- If it's time to go then exit
-      exit when Time_to_Go; 
+      exit when Time_to_Go;
       ...
     end loop;
-     
+
 -------------------------
 Exit Statement Examples
 -------------------------
@@ -668,7 +672,7 @@ Exit Statement Examples
         Do_Something;
         exit when Finished;
       end loop;
- 
+
 * Nested named loops and exit
 
    .. code:: Ada
@@ -681,37 +685,37 @@ Exit Statement Examples
           ...
         end loop Inner;
       end loop Outer;
- 
+
 -----------------------
 While-loop Statements
 -----------------------
 
 * Syntax
-    
+
    .. code:: Ada
-    
+
       while boolean_expression loop
          sequence_of_statements
       end loop;
-     
-* Identical to 
-    
+
+* Identical to
+
    .. code:: Ada
-    
+
       loop
          exit when not boolean_expression;
          sequence_of_statements
       end loop;
 
 * Example
-  
+
    .. code:: Ada
-    
+
       while Count < Largest loop
         Count := Count + 2;
         Display (Count);
       end loop;
-     
+
 ---------------------
 For-loop Statements
 ---------------------
@@ -751,12 +755,12 @@ For in Statements
      for Day in Days_T loop
         Refresh_Planning (Day);
      end loop;
- 
+
 .. container:: speakernote
 
    Name - loop parameter object
    Discrete subtype definition - loop parameter type and range of values
- 
+
 -----------------------------------
 Variable and Sequence of Values
 -----------------------------------
@@ -780,12 +784,12 @@ Variable and Sequence of Values
    Today, Tomorrow : Days_T;
    ...
    for Day in Today .. Tomorrow loop
- 
+
 -----------------------------------
 Low-Level For-loop Parameter Type
 -----------------------------------
 
-* The type can be implicit 
+* The type can be implicit
 
    - As long as it is clear for the compiler
    - Warning: same name can belong to several enums
@@ -793,7 +797,7 @@ Low-Level For-loop Parameter Type
    .. code:: Ada
 
       -- Error if Red and Green in Color_T and Stoplight_T
-      for Color in Red .. Green loop  
+      for Color in Red .. Green loop
 
 * Type `Integer` by default
 
@@ -813,7 +817,7 @@ Null Ranges
 
     .. code:: Ada
       -- Null range: loop not entered
-      for Today in Fri .. Mon loop  
+      for Today in Fri .. Mon loop
 
 -----------------------------------------
 Reversing Low-Level Iteration Direction
@@ -855,15 +859,15 @@ Iterations Exit Statements
 * Syntax
 
   .. code:: Ada
-  
+
         exit [<loop_name>] [when <condition>]
 
 * No name: Loop exited **entirely**
-    
+
     - Not only current iteration
 
   .. code:: ada
-  
+
      for K in 1 .. 1000 loop
         exit when K > F(K);
      end loop;
@@ -871,7 +875,7 @@ Iterations Exit Statements
 * With name: Specified loop exited
 
   .. code:: ada
-  
+
      for J in 1 .. 1000 loop
          Inner: for K in 1 .. 1000 loop
             exit Inner when K > F(K);
