@@ -177,6 +177,8 @@ Examples
 
 .. include:: examples/040_statements/assignment_statements.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/040_statements.html#assignment-statements`
+
 -----------------------
 Assignment Statements
 -----------------------
@@ -362,6 +364,8 @@ Examples
 ----------
 
 .. include:: examples/040_statements/conditional_statements.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/040_statements.html#conditional-statements`
 
 --------------------
 If-then-else Statements
@@ -594,6 +598,8 @@ Examples
 ----------
 
 .. include:: examples/040_statements/loop_statements.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/040_statements.html#loop-statements`
 
 ------------------------
 Basic Loops and Syntax

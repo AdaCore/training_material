@@ -101,6 +101,8 @@ Examples
 
 .. include:: examples/100_packages/declarations.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/100_packages.html#declarations`
+
 ----------------------
 Package Declarations
 ----------------------
@@ -216,6 +218,8 @@ Examples
 ----------
 
 .. include:: examples/100_packages/bodies.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/100_packages.html#bodies`
 
 ----------------
 Package Bodies
@@ -364,6 +368,8 @@ Examples
 
 .. include:: examples/100_packages/executable_parts.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/100_packages.html#executable-parts`
+
 --------------------------
 Optional Executable Part
 --------------------------
@@ -478,6 +484,8 @@ Examples
 ----------
 
 .. include:: examples/100_packages/idioms.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/100_packages.html#idioms`
 
 ----------------------------------
 Named Collection of Declarations
