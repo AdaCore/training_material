@@ -19,7 +19,7 @@ GNATcheck Is...
 + Integrated in GPS / GNATbench
 
    .. image:: c:\temp\images\slide2_1.png
-      :height: 50%
+      :height: 20%
 
    + Recommended approach
 
@@ -33,9 +33,11 @@ Required by DO-178B
 Conformance To Standards Requirement
 --------------------------------------
 
-+ **6.3.4 Reviews and Analyses of the Source Code**
-+ [...]
-+ d. Conformance to standards: The objective is to **ensure that the Software Code Standards were followed** during the development of the code, especially complexity restrictions and code constraints that would be consistent with the system safety objectives. Complexity includes the degree of coupling between software components, the nesting levels for control structures, and the complexity of logical or numeric expressions. This analysis also ensures that deviations to the standards are justified.
+.. container:: latex_environment beamercolorbox {blueonorange}
+
+   + **6.3.4 Reviews and Analyses of the Source Code**
+   + [...]
+   + d. Conformance to standards: The objective is to **ensure that the Software Code Standards were followed** during the development of the code, especially complexity restrictions and code constraints that would be consistent with the system safety objectives. Complexity includes the degree of coupling between software components, the nesting levels for control structures, and the complexity of logical or numeric expressions. This analysis also ensures that deviations to the standards are justified.
 
 ---------------------------
 GNATcheck Is An ASIS Tool
