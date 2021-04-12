@@ -453,7 +453,11 @@ Multiple dispatching operands
       overriding procedure P (Left : Child; Right : Child);
      
 * At call time, all actual parameters' tags have to match, either statically or dynamically
-    
+
+-------------------------------------
+Multiple dispatching operands Example
+-------------------------------------
+
    .. code:: Ada
     
       R1, R2 : Root;
