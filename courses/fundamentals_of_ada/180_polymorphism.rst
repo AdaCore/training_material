@@ -39,9 +39,9 @@ Examples
 Classes 
 ----------
 
-* In Ada, a Class denotes an inheritance subtree
-* Class of `T` is the class of `T` and all its children
-* Type `T'Class` can designate any object typed after type of class of `T`
+* In Ada, a Class denotes a tagged inheritance subtree
+* Class of `T` is `T` and all its children
+* Type `T'Class` designates any object derived from `T`
 
    .. code:: Ada
 
