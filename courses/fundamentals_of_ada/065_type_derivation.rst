@@ -54,9 +54,9 @@ Examples
 
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#primitives`
 
----------------------------
-The Notion of a Primitive
----------------------------
+--------------------
+Primitive Operations
+--------------------
 
 * A type is characterized by two elements
 
@@ -137,9 +137,9 @@ Freeze Point
             procedure Proc (V1 : T1; V2 : T2);
          end P;
 
---------------------------
-Beware of Access Types!
---------------------------
+---------------------------
+Access Types and Primitives
+---------------------------
 
 * Subprogram using an access type are primitive of the **access type**
 
@@ -361,9 +361,9 @@ Which subprogram(s) is/are a primitive of T1
 Signed Integer Types
 ======================
 
-----------------------------------
-Signed Integer Types (Revisited)
-----------------------------------
+----------------
+Implicit Subtype
+----------------
 
 * The declaration
 
@@ -377,10 +377,10 @@ Signed Integer Types (Revisited)
 
       type <Anon> is new Predefined_Integer_Type;
       subtype T is <Anon> range L .. R;
- 
-----------------------------------
-Signed Integer Types Explanation
-----------------------------------
+
+----------------------------
+Implicit Subtype Explanation
+----------------------------
 
 .. code:: Ada
 
@@ -397,9 +397,9 @@ Signed Integer Types Explanation
 * `T`, subtype of `Anon` is created with range L .. R
 * `T'Base` will return the type `Anon`
 
-------------------------------
-Signed Integer Types Warning
-------------------------------
+--------------------------
+Integer Types Base Warning
+--------------------------
 
 .. code:: Ada
 
@@ -411,12 +411,12 @@ Signed Integer Types Warning
 * Take extra care when using two compilers
 
     - Multiple hosts (Windows, Linux), or architectures
--------------------------------
-Signed Integer Types Guidance
--------------------------------
 
 * GNAT makes consistent and predictable choices on all major platforms.
 
+-----------------------
+Package **Interfaces**
+-----------------------
 
 * **Standard** package
 * Integer types with **defined bit length**
@@ -428,9 +428,6 @@ Signed Integer Types Guidance
     - Dealing with hardware registers
 
 * Note: Shorter may not be faster for integer maths.
---------------------------------------
-Signed Integer Types Guidance (cont)
---------------------------------------
 
     - Modern 64-bit machines are not efficient at 8-bit maths
 
