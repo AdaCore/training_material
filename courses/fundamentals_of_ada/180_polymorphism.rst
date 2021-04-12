@@ -59,9 +59,9 @@ Classes
    - Fields of `T`
    - Primitives of `T`
 
------------------
-Indefinite type
------------------
+-----------------------
+Class-types Declaration
+-----------------------
 
 * A class wide type is an indefinite type
 
@@ -71,6 +71,10 @@ Indefinite type
 
    - Can be used for parameter declarations
    - Can be used for variable declaration with initialization
+
+-------------------------------
+Class-types Declaration Example
+-------------------------------
 
 .. code:: Ada
     
@@ -90,14 +94,14 @@ Indefinite type
       P (Obj);
    end Main;
      
--------------------------------
-Testing the type of an object
--------------------------------
+-------------
+Tag Attribute
+-------------
 
-* The tag of an object denotes its type
-* It can be accessed through the `'Tag` attribute
-* Applies to both objects and types
-* Membership operator is available to check the type against a hierarchy
+
+---------------------
+Tag Attribute Example
+---------------------
 
 .. code:: Ada
 
