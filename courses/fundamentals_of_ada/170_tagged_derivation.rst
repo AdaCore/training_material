@@ -34,9 +34,9 @@ Ada Mechanisms for Tagged Inheritance
 
 * Large control of visibility
 
-============
-Primitives
-============
+=================
+Tagged Derivation
+=================
 
 ----------
 Examples
@@ -46,9 +46,9 @@ Examples
 
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#tagged-derivation`
 
--------------------
-Tagged Derivation
--------------------
+---------------------------------
+Difference with Simple Derivation
+---------------------------------
 
 * Tagged derivation extends simple derivation
     
