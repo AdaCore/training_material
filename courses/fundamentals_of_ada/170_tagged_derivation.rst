@@ -231,11 +231,14 @@ Prefix Notation
 
    .. code:: Ada
     
-      -- Prim1 visible even without **use Pkg**
+      -- Prim1 visible even without *use Pkg*
       X.Prim1;
 
-      use Pkg;
-      Prim1 (X);
+      declare
+         use Pkg;
+      begin
+         Prim1 (X);
+      end;
 
 ------
 Quiz
