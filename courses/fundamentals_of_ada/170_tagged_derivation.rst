@@ -84,7 +84,8 @@ Tagged Derivation Ada vs C++
        type T2 is new T with record
          Attr_D2 : Integer;
        end record;
-       overriding procedure Attr_F (This : T2);
+       overriding
+        procedure Attr_F (This : T2);
        procedure Attr_F2 (This : T2);
 
  .. container:: column
