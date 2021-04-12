@@ -730,11 +730,11 @@ Quiz
 
   .. container:: column
 
-   Which is not a legal completion of P.Child.X?
+   Which return statement would be illegal in P.Child.X?
 
-      A.  ``function X return Integer is (Object_A);``
-      B.  ``function X return Integer is (Object_B);``
-      C.  :answermono:`function X return Integer is (Object_C);`
+      A.  ``return Object_A;``
+      B.  ``return Object_B;``
+      C.  ``return Object_C;``
       D.  None of the above
 
    .. container:: animate
