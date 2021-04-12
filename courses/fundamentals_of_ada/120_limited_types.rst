@@ -381,24 +381,18 @@ Quiz
          F2 : Character;
       end record;
       Zero : T := (0, ' ');
+      One : constant T := (1, 'a');
+      Two : T;
       function F return T;
    end P;
 
 Which is a correct completion of F?
 
-A. :answermono:`function F return T is ((3, 'c'));`
-B. | ``function F return T is``
-   |   ``Two : T;``
-   | ``begin``
-   |   ``Two := (2, 'b');``
-   |   ``return Two;``
-   | ``end F;``
-C. | ``function F return T is``
-   |   ``One : constant T := (1, 'a');``
-   | ``begin``
-   |   ``return One;``
-   | ``end F;``
-D. ``function F return T is ( Zero );``
+A. :answermono:`return (3, 'c');`
+B. | ``Two := (2, 'b');``
+   | ``return Two;``
+C. ``return One;``
+D. ``return Zero;``
 
 .. container:: animate
 
