@@ -192,7 +192,10 @@ Default Type Initialization for Invariants
      -- Type is not a record, so we need to use aspect
      -- (A record could use default values for its components)
      type T is new Integer with Default_Value => 0; 
-     function Zero (This : T) return Boolean is (This = 0);
+     function Zero (This : T) return Boolean is
+     begin
+        return (This = 0);
+     end Zero;
    end P;
  
 ---------------------------------
