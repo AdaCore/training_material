@@ -15,21 +15,24 @@ Introduction
 Object-Oriented Programming via Types
 ---------------------------------------
 
-* Most object oriented languages allow user to add fields to derived types
-* Objects of a type derived from a base type can be substituted for objects of the base type
-* Subprogram (*method*) attached to object type can **dispatch at runtime** depending on exact type of the object
-* Other modules can derive from your object type and define their own behaviors
+* Child types can add new components (*attributes*)
+* Object of a child type can be **substituted** for base type
+* Primitive (*method*) can **dispatch at runtime** depending on the type at call-site
+* Types can be **extended** by other modules
 
 -------------------------------------
 Ada Mechanisms for Tagged Inheritance
 -------------------------------------
 
-* *Primitive* operations on type
-* Define types from records to add new fields
-* Can be handled through **class type**
-    
-    - Able to **dispatch dynamically**
+* Only applies to :ada:`record` types
+* Can add new components
+* Casting and qualification to base type are allowed
+* Dynamic dispatch
+
+    - Handled through **class type**
     - More on that later
+
+* Large control of visibility
 
 ============
 Primitives
@@ -52,8 +55,8 @@ Tagged Derivation
     - Tagged derivation **can** change the structure of a type
     - Additional **restrictions** apply on primitives
 
-* :ada:`tagged record`
-    - Equivalent of a **class** in terms of OOP
+* Keywords :ada:`tagged record` and :ada:`with record`
+
 
 ------------------------------
 Tagged Derivation Ada vs C++
@@ -97,19 +100,21 @@ Tagged Derivation Ada vs C++
 Forbidden Operations in Tagged Types
 --------------------------------------
 
-* A tagged derivation has to be a type extension
-    
+* A tagged derivation **has** to be a type extension
+
+    - Use :ada:`with null record` if there are no additional components
+
    .. code:: Ada
     
       type Root is tagged record
          F1 : Integer;
       end record;
       type Child is new Root; -- illegal
-     
-* A tagged derivation cannot remove primitives
 
-*  Conversions from child to parent are allowed, but not the other way around (need extra fields to be provided)
-    
+* A tagged derivation **cannot remove** primitives
+* New primitive **are forbidden** below freeze point
+* Conversions is only allowed from **child to parent**
+
    .. code:: Ada
     
       type Root is tagged record
@@ -129,9 +134,11 @@ Forbidden Operations in Tagged Types
 Primitives
 ------------
 
-* As for regular types, primitives are implicitly inherited, and can be overridden
-* A child can add new primitives
-    
+* Still true: implicitly inherited, can be overridden
+* Child **cannot remove** a primitive
+* Child **can add** new primitives
+* Ada 2005 optional :ada:`overriding` and :ada:`not overriding` indicators
+
    .. code:: Ada
     
       type Root is tagged null record;
@@ -142,10 +149,11 @@ Primitives
       not overriding procedure Prim3 (V : Child);
       -- implicitly inherited:
       -- procedure Prim2 (V : Child);
-     
-* The parameter which the subprogram is primitive of is called the controlling parameter
-* All controlling parameters must be of the same type
-    
+
+* **Controlling parameter**: Parameter the subprogram is a primitive of
+
+    - For tagged types, all should have the **same type**
+
    .. code:: Ada
     
       type Root1 is tagged null record;
@@ -159,8 +167,8 @@ Primitives
 Tagged Aggregate
 ------------------
 
-* Regular aggregate works - values must be given to all fields of the type hierarchy
-    
+* All fields of the type hierarchy must have value
+
    .. code:: Ada
     
        type Root is tagged record
@@ -171,18 +179,17 @@ Tagged Aggregate
            F2 : Integer;
          end record;
          V2 : Child := (F1 => 0, F2 => 0);
-     
-* Doesn't work if there are private types involved!
 
-* Aggregate extension allows using a copy of parent instance, or default initialization of the parent
-* `with null record` can be used when there are no additional components
-    
+* Impossible when private types are involved
+* **Aggregate extension**: copy of parent instance, or default initialization of the parent
+* Use :ada:`with null record` if there are no additional components
+
    .. code:: Ada
     
       V  : Root := (F1 => 0);
       V2 : Child := (V with F2 => 0);
       V3 : Empty_Child := (V with null record);
-     
+
 -------------------------------
 Freeze Point For Tagged Types
 -------------------------------
@@ -214,24 +221,12 @@ Prefix Notation
 
    Ada 2012
 
-* Primitives of tagged types can be called like any other
-    
-   .. code:: Ada
-    
-      type Root is tagged record
-         F1 : Integer;
-      end record;
-      procedure Prim1 (V : Root);
-      procedure Prim2 (V : access Root; V2 : Integer);
-      type Root_Access is access all Root;
-      X  : Root_Access := new Root;
-      X2 : aliased Root;
-      ...
-      Prim1 (X.all);
-      Prim2 (X2'Access, 5);
-     
-* When the first parameter is a controlling parameter, the call can be prefixed by the object
-    
+* Tagged types primitives can be called as usual
+* The call can use prefixed notation
+
+    - **If** the first argument is a controlling parameter
+    - No need for :ada:`use` or :ada:`use type` for visibility
+
    .. code:: Ada
     
       X.Prim1;
