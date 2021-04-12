@@ -243,26 +243,33 @@ Quiz
 
 Which code block is legal?
 
-A. | ``type A1 is record``
-   |    ``Field1 : Integer;``
-   | ``end record;``
-   | ``type A2 is new A1 with null record;``
-B. | :answermono:`type B1 is tagged record`
-   |    :answermono:`Field2 : Integer;`
-   | :answermono:`end record;`
-   | :answermono:`type B2 is new B1 with record`
-   |    :answermono:`Field2b : Integer;`
-   | :answermono:`end record;`
-C. | ``type C1 is tagged record``
-   |    ``Field3 : Integer;``
-   | ``end record;``
-   | ``type C2 is new C1 with record``
-   |    ``Field3 : Integer;``
-   | ``end record;``
-D. | ``type D1 is tagged record``
-   |    ``Field1 : Integer;``
-   | ``end record;``
-   | ``type D2 is new D1;``
+.. container:: columns
+
+  .. container:: column
+
+    A. | ``type A1 is record``
+       |    ``Field1 : Integer;``
+       | ``end record;``
+       | ``type A2 is new A1 with null record;``
+    B. | :answermono:`type B1 is tagged record`
+       |    :answermono:`Field2 : Integer;`
+       | :answermono:`end record;`
+       | :answermono:`type B2 is new B1 with record`
+       |    :answermono:`Field2b : Integer;`
+       | :answermono:`end record;`
+
+  .. container:: column
+
+    C. | ``type C1 is tagged record``
+       |    ``Field3 : Integer;``
+       | ``end record;``
+       | ``type C2 is new C1 with record``
+       |    ``Field3 : Integer;``
+       | ``end record;``
+    D. | ``type D1 is tagged record``
+       |    ``Field1 : Integer;``
+       | ``end record;``
+       | ``type D2 is new D1;``
 
 .. container:: animate
 
