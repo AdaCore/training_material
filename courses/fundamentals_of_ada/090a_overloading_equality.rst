@@ -152,9 +152,15 @@ Composition vs Non-Composition
 
       -- When comparing integers directly, this function forces those comparisons
       -- to be false
-      function "=" (L, R : Integer) return Boolean is (False);
+      function "=" (L, R : Integer) return Boolean is
+      begin
+         return False;
+      end "=";
       -- We define our own array equality operator so it will use our integer operator
-      function "=" (L, R : Array2_T) return Boolean is (for all I in 1 .. 3 => L (I) = R (I));
+      function "=" (L, R : Array2_T) return Boolean is
+      begin
+         return (for all I in 1 .. 3 => L (I) = R (I));
+      end "=";
 
    begin
       -- Use local "=" for integer comparison
