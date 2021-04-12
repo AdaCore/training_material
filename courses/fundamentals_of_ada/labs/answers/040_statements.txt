@@ -23,7 +23,7 @@ begin
          end if;
       end loop Input_Loop;
       if Hours_Today > 8.0 then
-         Overtime : Hours_Worked := Hours_Today - 8.0;
+         Overtime := Hours_Today - 8.0;
          Hours_Today := Hours_Today + 1.5 * Overtime;
       end if;
       case Day is

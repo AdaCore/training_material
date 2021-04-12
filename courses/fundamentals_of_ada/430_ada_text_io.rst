@@ -223,7 +223,7 @@ Ada.Text_IO.Enumeration_IO
 .. code:: Ada
 
    declare
-      type Enumeration_T is ( Red, Yellow, Green )
+      type Enumeration_T is ( Red, Yellow, Green );
       package Io is new Ada.Text_IO.Enumeration_IO (Enumeration_T);
       E : Enumeration_T;
    begin

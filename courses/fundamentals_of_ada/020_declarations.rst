@@ -210,8 +210,8 @@ Decimal Numeric Literals
 
    .. code:: Ada
 
-      12      0       1E6      123_456
-      12.0    0.0     0.456    3.14159_26
+      12      0       1E6         123_456 
+      12.0    0.0     3.14159_26  2.3E-4
 
 ------------------------
 Based Numeric Literals

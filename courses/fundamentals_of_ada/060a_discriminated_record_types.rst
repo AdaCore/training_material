@@ -86,6 +86,31 @@ Example Defined in Ada
    + Can only access `GPA` and `Year` when `Tag` is `Student`
    + Can only access `Pubs` when `Tag` is `Faculty`
 
+------------------------
+Variant Part of Record
+------------------------
+
+* Variant part of record specifies alternate list of componenents
+
+   .. code:: Ada
+
+      type Variant_Record_T (Discriminant : Integer) is record
+         Common_Component : String (1 .. 10);
+         case Discriminant is
+            when Integer'First .. -1 =>
+               Negative_Component : Float;
+            when 1 .. Integer'Last =>
+               Positive_Component : Integer;
+            when others =>
+               Zero_Component : Boolean;
+         end case;
+      end record;
+
+   * Choice is determined by discriminant value
+   * Record can only contain one variant part
+
+      - Variant must be last part of record definition
+
 ==========================
 Variant Record Semantics
 ==========================

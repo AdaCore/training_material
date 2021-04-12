@@ -373,8 +373,8 @@ Modular Types
 
    .. code:: Ada
 
-      type Unsigned_Word is mod 2**16; -- 16 bits,  0 .. 65_535
-      type Byte is mod 256;            -- 8 bits, 0 .. 255
+      type Unsigned_Word is mod 2**16; -- 16 bits, 0..65535
+      type Byte is mod 256;            -- 8 bits, 0..255
  
 ------------------------
 Modular Type Semantics
@@ -547,11 +547,10 @@ Integer Type (Signed and Modular) Literals
 
 .. code:: Ada
 
-   type Event_Counter is range 0 .. 40_000; -- integer type
-   OK : Event_Counter := 0; -- Right type, legal
-   Bad : Event_Counter := 0.0 ; -- Promotion, compile error
-   Converted : Event_Counter := Event_Counter (0.0); -- Conversion, legal
-
+   type Counter_T is range 0 .. 40_000; -- integer type
+   OK : Counter_T := 0; -- Right type, legal
+   Bad : Counter_T := 0.0 ; -- Promotion, compile error
+   Legal : Counter_T := Counter_T (0.0); -- Conversion, legal
  
 -----------------------------------
 String Attributes For All Scalars
@@ -1016,14 +1015,14 @@ Quiz
 
 .. code:: Ada
 
-   type Enum_T is ( Able, BAKER, charlie );
+   type Enum_T is ( Able, Baker, Charlie );
 
 Which statement will generate an error?
 
-A. ``V1 : Enum_T := Enum_T'Value( "Able" );``
-B. ``V2 : Enum_T := Enum_T'Value( "Baker" );``
-C. ``V3 : Enum_T := Enum_T'Value( " Charlie " );``
-D. :answermono:`V4 : Enum_T := Enum_T'Value( "Able Baker Charlie" );`
+A. ``V1 :  Enum_T := Enum_T'Value ("Able");``
+B. ``V2 :  Enum_T := Enum_T'Value ("BAKER");``
+C. ``V3 :  Enum_T := Enum_T'Value (" charlie ");``
+D. :answermono:`V4 : Enum_T := Enum_T'Value ("Able Baker Charlie");`
 
 .. container:: animate
 
@@ -1405,4 +1404,4 @@ Summary
 
 * Default initialization is **possible**
 
-   - Use **sparringly**
+   - Use **sparingly**

@@ -1177,7 +1177,8 @@ Expression Functions As Completions
    .. code:: Ada
 
       function Squared (X : Integer) return Integer;
-      function Squared (X : Integer) return Integer is (X ** 2);
+      function Squared (X : Integer) return Integer is
+          (X ** 2);
  
 * A declaration and completion together
 
@@ -1185,7 +1186,8 @@ Expression Functions As Completions
 
       .. code:: Ada
 
-         function Squared (X : Integer) return Integer is (X ** 2);
+         function Squared (X : Integer) return Integer is
+          (X ** 2);
          -- Then this would be a compile error
          function Squared (X : Integer) return Integer is
          begin
