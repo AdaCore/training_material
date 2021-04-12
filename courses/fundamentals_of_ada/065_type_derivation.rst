@@ -55,7 +55,7 @@ Examples
 ---------------------------
 The Notion of a Primitive
 ---------------------------
-  
+
 * A type is characterized by two sets of properties
 
    - Its data structure
@@ -74,7 +74,7 @@ The Notion of a Primitive
              Attrib_Data : Integer;
           end record;
           procedure Attrib_Function(This : T);
-       
+
    * In C++
 
        .. code:: C++
@@ -159,7 +159,7 @@ Beware of Access Types!
          type T is range 1 .. 10;
          procedure Proc (V : access T); -- Primitive of T
       end P;
- 
+
 -------------------------------
 Implicit Primitive Operations
 -------------------------------
@@ -225,9 +225,9 @@ Simple Type Derivation
       begin
         V := 5;
         Prim (V);
-     
+
 * Conversions are possible for non-primitive operations
-    
+
    .. code:: Ada
     
       package P is
@@ -243,7 +243,7 @@ Simple Type Derivation
          Not_A_Primitive (V1);
          Not_A_Primitive (Parent (V2));
       end Main;
-     
+
 --------------------------------------
 Simple Derivation and Type Structure
 --------------------------------------
@@ -267,6 +267,7 @@ Simple Derivation and Type Structure
 
       type Arr is array (Integer range <>) of Integer;
       type Ten_Elem_Arr is new Arr (1 .. 10);
+
       type Rec (Size : Integer) is record
          Elem : Arr (1 .. Size);
       end record;
@@ -312,7 +313,7 @@ Simple Derivation and List of Operations
       procedure Prim (V : Root);
       type Child is new Root;
       overriding procedure Prim (V : Child) is abstract;
- 
+
 ------
 Quiz
 ------
