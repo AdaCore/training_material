@@ -1,7 +1,7 @@
 
-*************
-Inheritance
-*************
+*****************
+Tagged Derivation
+*****************
 
 
 .. role:: ada(code)
@@ -21,7 +21,7 @@ Object-Oriented Programming via Types
 * Types can be **extended** by other modules
 
 -------------------------------------
-Ada Mechanisms for Tagged Inheritance
+Ada Mechanisms for Tagged Derivation
 -------------------------------------
 
 * Only applies to :ada:`record` types
