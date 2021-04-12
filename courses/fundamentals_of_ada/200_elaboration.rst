@@ -347,7 +347,10 @@ Examples
    end P1;
    with P1;
    package body P2 is
-      function Call return Integer is ( P1.Call );
+      function Call return Integer is
+      begin
+         return P1.Call;
+      end Call;
    end P2;
    with P2;
    pragma Elaborate (P2);
@@ -377,7 +380,10 @@ Examples
    end P1;
    with P1;
    package body P2 is
-      function Call return Integer is ( P1.Call );
+      function Call return Integer is
+      begin
+         return P1.Call;
+      end Call;
    end P2;
    with P2;
    pragma Elaborate_All (P2);
