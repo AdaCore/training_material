@@ -98,6 +98,16 @@ Class-types Declaration Example
 Tag Attribute
 -------------
 
+* Tagged types all have a tag
+* Accessed through the `'Tag` attribute
+* Applies to **both objects and types**
+* Membership check against a :ada:`'Tag` or :ada:`'Class`
+
+.. code:: Ada
+
+   Type'Tag = Object'Class'Tag;
+   Type'Tag in Object'Class;
+   Object'Tag = Type'Tag;
 
 ---------------------
 Tag Attribute Example
