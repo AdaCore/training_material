@@ -93,17 +93,7 @@ General Rule For a Primitive
             procedure P2 (V1 : Integer; V2 : T);
             function F return T;
          end P;
- 
-* A subprogram can be a primitive of several types
 
-      .. code:: Ada
-
-         package P is
-            type T1 is range 1 .. 10;
-            type T2 is (A, B, C);
-            procedure Proc (V1 : T1; V2 : T2);
-         end P;
- 
 --------------
 Freeze Point
 --------------
@@ -129,14 +119,6 @@ Freeze Point
 
 * A subprogram can be a primitive of several types
 
-      .. code:: Ada
-
-         package P is
-            type T1 is range 1 .. 10;
-            type T2 is (A, B, C);
-            procedure Proc (V1 : T1; V2 : T2);
-         end P;
-
 ---------------------------
 Access Types and Primitives
 ---------------------------
@@ -147,20 +129,14 @@ Access Types and Primitives
 
    .. code:: Ada
 
-      package P is
-         type T is range 1 .. 10;
          type A_T is access all T;
-         procedure Proc (V : A_T); -- Primitive of A_T
-      end P;
- 
+         procedure Proc (V : A_T); -- Primitive of A_T, not T
+
 * Primitive of the type can be created with the :ada:`access` mode
 
    .. code:: Ada
 
-      package P is
-         type T is range 1 .. 10;
          procedure Proc (V : access T); -- Primitive of T
-      end P;
 
 -------------------------------
 Implicit Primitive Operations
@@ -170,27 +146,15 @@ Implicit Primitive Operations
 
     - Numerical and logical operations
     - Code can overload or remove them
-      .. code:: Ada
 
-         package P is
-            type T1 is range 1 .. 10;
-            -- implicit: function "+" (Left, Right : T1) return T1;
-            -- implicit: function "-" (Left, Right : T1) return T1;
-            -- ...
-            type T2 is null record;
-            -- implicit: function "=" (Left, Right : T2) return T2;
-         end P;
- 
    .. code:: Ada
 
-      .. code:: Ada
+      package P is
+         type T1 is range 1 .. 10;
+         -- implicit: function "+" (Left, Right : T1) return T1;
+         -- implicit: function "-" (Left, Right : T1) return T1;
+      end P;
 
-         procedure Main is
-            V1, V2 : P.T1;
-         begin
-            V1 := P."+" (V1, V2);
-         end Main;
- 
 ===================
 Simple Derivation
 ===================
@@ -262,10 +226,9 @@ Simple Derivation and Type Structure
 
    .. code:: Ada
 
-      type Int is range -100 .. 100;
-      type Nat is new Int range 0 .. 100;
-      type Pos is new Nat range 1 .. 100;
- 
+      type Tiny_Int is range -100 .. 100;
+      type Tiny_Positive is new Tiny_Int range 1 .. 100;
+
 * Unconstrained types can be constrained
 
    .. code:: Ada
@@ -306,18 +269,12 @@ Simple Derivation and List of Operations
 
    .. code:: Ada
 
-      type Root is range 1 .. 100;
-      procedure Prim (V : Root);
-      type Child is new Root;
       not overriding procedure Prim2 (V : Child);
 
 * **Removing** a primitive: :ada:`overriding` indication
 
    .. code:: Ada
 
-      type Root is range 1 .. 100;
-      procedure Prim (V : Root);
-      type Child is new Root;
       overriding procedure Prim (V : Child) is abstract;
 
 ------
@@ -421,10 +378,6 @@ Package **Interfaces**
 * **Standard** package
 * Integer types with **defined bit length**
 
-      type My_Base_Integer is new Integer;
-      pragma Assert (My_Base_Integer'First = -2**31);
-      pragma Assert (My_Base_Integer'Last = 2**31-1);
- 
     - Dealing with hardware registers
 
 * Note: Shorter may not be faster for integer maths.
