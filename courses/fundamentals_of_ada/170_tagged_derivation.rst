@@ -57,6 +57,15 @@ Difference with Simple Derivation
 
 * Keywords :ada:`tagged record` and :ada:`with record`
 
+   .. code:: Ada
+    
+      type Root is tagged record
+         F1 : Integer;
+      end record;
+
+      type Child is new Root with record
+         F2 : Integer;
+      end record;
 
 ------------------------------
 Tagged Derivation Ada vs C++
@@ -75,8 +84,7 @@ Tagged Derivation Ada vs C++
        type T2 is new T with record
          Attr_D2 : Integer;
        end record;
-       overriding
-       procedure Attr_F (This : T2);
+       overriding procedure Attr_F (This : T2);
        procedure Attr_F2 (This : T2);
 
  .. container:: column
@@ -105,10 +113,8 @@ Forbidden Operations in Tagged Types
     - Use :ada:`with null record` if there are no additional components
 
    .. code:: Ada
-    
-      type Root is tagged record
-         F1 : Integer;
-      end record;
+
+      type Child is new Root with null record;
       type Child is new Root; -- illegal
 
 * A tagged derivation **cannot remove** primitives
@@ -116,19 +122,14 @@ Forbidden Operations in Tagged Types
 * Conversions is only allowed from **child to parent**
 
    .. code:: Ada
-    
-      type Root is tagged record
-          F1 : Integer;
-        end record;
-      type Child is new Root with record
-          F2 : Integer;
-        end record;
-      V1 : Root  := (F1 => 0);
-      V2 : Child := (F1 => 0, F2 => 0);
+
+      type Child is new Root with null record;
+
+      V1 : Root;
+      V2 : Child;
       ...
       V1 := Root (V2);
       V2 := Child (V1); -- illegal
-      V2 := (V1 with F2 => 0);
 
 ------------
 Primitives
@@ -158,10 +159,10 @@ Primitives
     
       type Root1 is tagged null record;
       type Root2 is tagged null record;
-      procedure P1 ( V1 : Root1;
-                     V2 : Root1);
-      procedure P2 ( V1 : Root1;
-                     V2 : Root2); -- illegal
+      procedure P1 (V1 : Root1;
+                    V2 : Root1);
+      procedure P2 (V1 : Root1;
+                    V2 : Root2); -- illegal
 
 ------------------
 Tagged Aggregate
@@ -229,12 +230,11 @@ Prefix Notation
 
    .. code:: Ada
     
+      -- Prim1 visible even without **use Pkg**
       X.Prim1;
-      X.all.Prim1;
-      X.Prim2 (5);
-      X2'Access.Prim2 (5);
-     
-* No `use` or `use type` clause is needed to have visibility over the primitives in this case
+
+      use Pkg;
+      Prim1 (X);
 
 ------
 Quiz
