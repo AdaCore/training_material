@@ -51,7 +51,7 @@ Difference with Simple Derivation
 ---------------------------------
 
 * Tagged derivation extends simple derivation
-    
+
     - Tagged derivation **can** change the structure of a type
     - Additional **restrictions** apply on primitives
 
@@ -78,7 +78,7 @@ Tagged Derivation Ada vs C++
        overriding
        procedure Attr_F (This : T2);
        procedure Attr_F2 (This : T2);
-     
+
  .. container:: column
     
     .. code:: C++
@@ -95,7 +95,7 @@ Tagged Derivation Ada vs C++
            virtual void Attr_F(void);
            virtual void Attr_F2(void);
          };
-     
+
 --------------------------------------
 Forbidden Operations in Tagged Types
 --------------------------------------
@@ -129,7 +129,7 @@ Forbidden Operations in Tagged Types
       V1 := Root (V2);
       V2 := Child (V1); -- illegal
       V2 := (V1 with F2 => 0);
-     
+
 ------------
 Primitives
 ------------
@@ -162,7 +162,7 @@ Primitives
                      V2 : Root1);
       procedure P2 ( V1 : Root1;
                      V2 : Root2); -- illegal
- 
+
 ------------------
 Tagged Aggregate
 ------------------
