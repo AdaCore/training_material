@@ -3,6 +3,8 @@
 Type Derivation
 ***************
 
+.. role:: cpp(code)
+    :language: C++
 
 .. role:: ada(code)
     :language: Ada
@@ -56,44 +58,32 @@ Examples
 The Notion of a Primitive
 ---------------------------
 
-* A type is characterized by two sets of properties
+* A type is characterized by two elements
 
    - Its data structure
    - The set of operations that applies to it
 
-* These operations are called **methods** in C++, or **Primitive Operations** in Ada
+* The operations are called **primitive operations** in Ada
 
-   * In Ada
+   .. code:: Ada
 
-      -  the primitive relationship is implicit
-      - The "hidden" parameter **this** is explicit (and can have any name)
-
-      .. code:: Ada
-       
-          type T is record
-             Attrib_Data : Integer;
-          end record;
-          procedure Attrib_Function(This : T);
-
-   * In C++
-
-       .. code:: C++
-       
-          class T {
-            public:
-              int Attrib_Data;
-              void Attrib_Function (void);
-          };
+      type T is new Integer;
+      procedure Attrib_Function(Value : T);
 
 ------------------------------
 General Rule For a Primitive
 ------------------------------
 
-* A subprogram `S` is a primitive of type `T` if
+* Primitives are subprograms
+* `S` is a primitive of type `T` iff
 
    - `S` is declared in the scope of `T`
-   - `S` has at least one parameter of type `T` (of any mode, including access) or returns a value of type `T`
-   * The **freeze-point** has not been reached prior to `S` declaration
+   - `S` "uses" type `T`
+
+        + As a parameter
+        + As its return type (for :ada:`function`)
+
+   - The **freeze-point** is below `S` declaration
 
       .. code:: Ada
 
@@ -118,7 +108,7 @@ General Rule For a Primitive
 Freeze Point
 --------------
 
-* Ada doesn't explicitly identify the end of the list of members
+* Ada doesn't explicitly identify the end of members declaration
 * This end is the implicit **freeze point** occurring whenever:
 
    - A **variable** of the type is **declared**
@@ -137,11 +127,23 @@ Freeze Point
    V : Child; --  freeze child
    procedure Prim3 (V : Child); -- Not a primitive
 
+* A subprogram can be a primitive of several types
+
+      .. code:: Ada
+
+         package P is
+            type T1 is range 1 .. 10;
+            type T2 is (A, B, C);
+            procedure Proc (V1 : T1; V2 : T2);
+         end P;
+
 --------------------------
 Beware of Access Types!
 --------------------------
 
-* Using a named access type in a subprogram creates a primitive of the access type, **not** the type of the accessed object!
+* Subprogram using an access type are primitive of the **access type**
+
+    - **Not** the type of the accessed object
 
    .. code:: Ada
 
@@ -151,7 +153,7 @@ Beware of Access Types!
          procedure Proc (V : A_T); -- Primitive of A_T
       end P;
  
-* In order to create a primitive using an access type, the :ada:`access` mode should be used
+* Primitive of the type can be created with the :ada:`access` mode
 
    .. code:: Ada
 
@@ -164,8 +166,10 @@ Beware of Access Types!
 Implicit Primitive Operations
 -------------------------------
 
-* At type declaration, primitives are implicitly created if not explicitly given by the developer, depending on the kind of the type
+* Type declaration implicitly creates primitives
 
+    - Numerical and logical operations
+    - Code can overload or remove them
       .. code:: Ada
 
          package P is
@@ -177,7 +181,7 @@ Implicit Primitive Operations
             -- implicit: function "=" (Left, Right : T2) return T2;
          end P;
  
-* These primitives can be used just as any others
+   .. code:: Ada
 
       .. code:: Ada
 
@@ -204,16 +208,16 @@ Simple Type Derivation
 ------------------------
 
 * In Ada, any (non-tagged) type can be derived
-    
+
   .. code:: Ada
     
     type Child is new Parent;
-     
-* A child is a distinct type that inherits from:
 
-   - The data representation of the parent
-   - The primitives of the parent
-    
+* Child inherits from:
+
+   - The data **representation** of the parent
+   - The **primitives** of the parent
+
    .. code:: Ada
     
       procedure Test is
@@ -248,11 +252,12 @@ Simple Type Derivation
 Simple Derivation and Type Structure
 --------------------------------------
 
-* The structure of the type has to be kept
+* The type "structure" can not change
 
-   - An array stays an array
-   - A scalar stays a scalar
+   - :ada:`array` cannot become :ada:`record`
+   - Integers cannot become floats
 
+* But can be **constrained** further
 * Scalar ranges can be reduced
 
    .. code:: Ada
@@ -261,7 +266,7 @@ Simple Derivation and Type Structure
       type Nat is new Int range 0 .. 100;
       type Pos is new Nat range 1 .. 100;
  
-* Constraints on unconstrained types can be specified
+* Unconstrained types can be constrained
 
    .. code:: Ada
 
@@ -281,20 +286,23 @@ Simple Derivation and List of Operations
 
    Ada 2005
 
-* Operations can be overridden
 
-   + Overriding can be checked by optional `overriding` reserved word
+* **Optional** indications
+* Checked by compiler
 
    .. code:: Ada
 
       type Root is range 1 .. 100;
       procedure Prim (V : Root);
       type Child is new Root;
-      overriding procedure Prim (V : Child);
- 
-* Operations can be added
 
-   + Addition can be checked by optional `not overriding` reserved word
+* **Replacing** a primitive: :ada:`overriding` indication
+
+   .. code:: Ada
+
+      overriding procedure Prim (V : Child);
+
+* **Adding** a primitive: :ada:`not overriding` indication
 
    .. code:: Ada
 
@@ -302,10 +310,8 @@ Simple Derivation and List of Operations
       procedure Prim (V : Root);
       type Child is new Root;
       not overriding procedure Prim2 (V : Child);
- 
-* Operations can be removed
 
-   + Removal can be checked by optional `overriding` reserved word
+* **Removing** a primitive: :ada:`overriding` indication
 
    .. code:: Ada
 
@@ -359,15 +365,13 @@ Signed Integer Types
 Signed Integer Types (Revisited)
 ----------------------------------
 
-* The *Basic Types* lecture introduced Ada's signed integer types, and the predefined integer types in package `Standard`.
-* But ... we missed one important detail.
-* A declaration like this:
+* The declaration
 
    .. code:: Ada
 
       type T is range L .. R;
- 
-* Is actually a short-hand for:
+
+* Is short-hand for
 
    .. code:: Ada
 
@@ -382,15 +386,16 @@ Signed Integer Types Explanation
 
    type <Anon> is new Predefined-Integer-Type;
    subtype T is <Anon> range L .. R;
- 
-* What's going on?
 
-   - The compiler looks at L and R (which must be static) and chooses a predefined signed integer type from `Standard` (e.g. `Integer`, `Short_Integer`, `Long_Integer`, etc.) which at least includes the range L .. R.
-   - This choice is implementation-defined.
-   - An anonymous type `Anon` is created, derived from that predefined type. `Anon` inherits all of the predefined type's primitive operations, like ``+``, ``-``, ``*`` and so on.
-   - A subtype `T` of `Anon` is created with range L .. R
+* Compiler choses a standard integer type that includes L .. R
 
-      + `Anon` can be referred to as `T'Base` in your program.
+   - :ada:`Integer`, :ada:`Short_Integer`, :ada:`Long_Integer`, etc.
+   - **Implementation-defined** choice, non portable
+
+* New anonymous type `Anon` is derived from the predefined type
+* `Anon` inherits the type's operations (``+``, ``-`` ...)
+* `T`, subtype of `Anon` is created with range L .. R
+* `T'Base` will return the type `Anon`
 
 ------------------------------
 Signed Integer Types Warning
@@ -400,37 +405,34 @@ Signed Integer Types Warning
 
    type <Anon> is new Predefined-Integer-Type;
    subtype T is <Anon> range L .. R;
- 
-* Warning! The choice of `T'Base` affects whether runtime computations will overflow.
 
-   - Example: on one machine, the compiler chooses `Integer`, which is 32-bit, and your code runs fine with no overflows.
-   - On another machine, a compiler might choose `Short_Integer`, which is 16-bit, and your code will fail an *overflow check*
-   - Extra care is needed if you have two compilers - e.g. for Host (like Windows or Linux) and Cross targets...
+* Runtime overflow conditions depend on :ada:`T'Base`
+* Compiler will change base type depending on machine
+* Take extra care when using two compilers
 
-* Good news! GNAT makes consistent and predictable choices on all major platforms.
-
+    - Multiple hosts (Windows, Linux), or architectures
 -------------------------------
 Signed Integer Types Guidance
 -------------------------------
 
-* You can avoid the implementation-defined choice by deriving your own Base Types explicitly, and using `Assert` to enforce the expected range
+* GNAT makes consistent and predictable choices on all major platforms.
 
-   - Something like
 
-   .. code:: Ada
+* **Standard** package
+* Integer types with **defined bit length**
 
       type My_Base_Integer is new Integer;
       pragma Assert (My_Base_Integer'First = -2**31);
       pragma Assert (My_Base_Integer'Last = 2**31-1);
  
-* Then derive further types and subtypes from `My_Base_Integer`
-* Don't assume that "Shorter = Faster" for integer maths. On some machines, 32-bit is more efficient than 8- or 16-bit maths!
+    - Dealing with hardware registers
 
+* Note: Shorter may not be faster for integer maths.
 --------------------------------------
 Signed Integer Types Guidance (cont)
 --------------------------------------
 
-* If you want to derive from a base type that has a well-defined bit length (for example when dealing with hardware registers that must be a particular bit length), then package Interfaces declares types such as:
+    - Modern 64-bit machines are not efficient at 8-bit maths
 
 .. code:: Ada
 
@@ -446,20 +448,15 @@ Summary
 Summary
 ---------
 
-* *Primitive* operations on types
+* *Primitive* of a type
 
-   - An operation is any subprogram that acts on a type
-   - Single subprogram can be a primitive for multiple types
-
-      + Any type referenced in the subprogram
+   - Subprogram above **freeze-point** that takes or return the type
+   - Can be a primitive for **multiple types**
 
 * Freeze point rules can be tricky
-
-    - Primitive of multiple types
-
 * Simple type derivation
 
-   - Types derived from other types can only add limitations
+   - Types derived from other types can only **add limitations**
 
       + Constraints, ranges
       + Cannot change underyling structure
