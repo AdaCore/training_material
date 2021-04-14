@@ -15,7 +15,7 @@ Introduction
 The Notion of a Pattern
 -------------------------
 
-* Sometimes algorithms can be abstracted from types and subprograms
+* Some algorithms can be **abstracted** from **types** and **subprograms**
     
    .. code:: Ada
     
@@ -35,7 +35,15 @@ The Notion of a Pattern
          Right := V;
       end Swap_Bool;
      
-* It would be nice to extract these properties in some common pattern, and then just replace the parts that need to be replaced
+---------
+Generics
+---------
+
+* A generic unit is **declared** but **not** part of the program
+
+    - It needs to be **instanciated**
+
+* Generics use a **pattern**, and replace only parts of it
     
    .. code:: Ada
     
@@ -46,20 +54,14 @@ The Notion of a Pattern
          Left := Right;
          Right := V;
       end Swap;
-     
---------------------
-Solution: Generics
---------------------
 
-* A generic unit is a unit that does not exist
-* It is a pattern based on properties
-* The instantiation applies the pattern to certain parameters
+* An **instantiation** of the generic provides the needed values
 
 --------------------------------------
 Ada Generic Compared to C++ Template
 --------------------------------------
 
-* Ada Generic
+* Ada :ada:`generic`
 
    .. code:: Ada
     
@@ -107,7 +109,7 @@ Creating Generics
 What Can Be Made Generic?
 ---------------------------
 
-* Subprograms and packages can be made generic
+* **Subprograms** and **packages** can be generic
 
    .. code:: Ada
 
@@ -117,10 +119,10 @@ What Can Be Made Generic?
       generic
          type T is private;
       package Stack is
-         procedure Push ( Item : T );
+         procedure Push (Item : T);
          ...
  
-* Children of generic units have to be generic themselves
+* Children of generic package **must be** generic
 
    .. code:: Ada
 
@@ -128,19 +130,20 @@ What Can Be Made Generic?
       package Stack.Utilities is
          procedure Print is 
 
----------------------------
-How Do You Use A Generic?
----------------------------
+-------------
+Instanciation
+-------------
 
-* Generic instantiation is creating new set of data where a generic package contains library-level variables: 
+* A generic is **instanciated** by providing **data** for its parameters
+* Instanciation uses the :ada:`new` keyword
 
 .. code:: Ada
 
-   package Integer_stack is new Stack ( Integer );
+   package Integer_stack is new Stack (Integer);
    package Integer_Stack_Utils is
        new Integer_Stack.Utilities;
    ...
-   Integer_Stack.Push ( 1 );
+   Integer_Stack.Push (1);
    Integer_Stack_Utils.Print;
 
 ==============
@@ -159,8 +162,9 @@ Examples
 Generic Types Parameters (1/2)
 --------------------------------
 
-* A generic parameter is a template
-* It specifies the properties the generic body can rely on
+* A **generic** parameter specifies **properties** and **constraints**
+
+    - **Generic contract** the generic body can rely on
 
    .. code:: Ada
       
@@ -173,13 +177,13 @@ Generic Types Parameters (1/2)
          type T3 is limited private; -- can be limited
       package Parent is [...]
  
-* The actual parameter must provide at least as many properties as the generic contract
+* The **actual** parameter **must** provide the specified properties and constraints
 
 --------------------------------
 Generic Types Parameters (2/2)
 --------------------------------
 
-* The usage in the generic has to follow the contract
+* The **usage** in the generic has to follow the contract
 
 .. code:: Ada
 
@@ -220,7 +224,7 @@ Possible Properties for Generic Types
 Generic Parameters Can Be Combined
 ------------------------------------
 
-* Consistency is checked at compile-time
+* Consistency is **checked** at **compile-time**
 
 .. code:: Ada
 
@@ -315,8 +319,9 @@ Generic Constants and Variables Parameters
 Generic Subprogram Parameters
 -------------------------------
 
-* Subprograms can be defined in the generic contract
-* Must be introduced by `with` to differ from the generic unit
+* Subprograms may be defined as parameters
+    
+    - Using :ada:`with` to differ from the generic unit
     
    .. code:: Ada
           
@@ -338,11 +343,11 @@ Generic Subprogram Parameters Defaults
 
    Ada 2005
 
-* `is <>` - matching subprogram is taken by default
-* `is null` - null subprogram is taken by default
+* Default values can be specified
 
-   - Only available in Ada 2005 and later
-    
+    - :ada:`is <>` - subprogram with **same name** in instanciation scope
+    - :ada:`is null` - null subprogram
+
    .. code:: Ada
           
       generic
@@ -357,8 +362,10 @@ Generic Subprogram Parameters Defaults
 Generic Package Parameters
 ----------------------------
 
-* A generic unit can depend on the instance of another generic unit
-* Parameters of the instantiation can be constrained partially or completely
+* A generic unit can be using a generic package parameter
+
+    - Package parameter can be **constrained** 
+    - Partially or completely
 
 .. code:: Ada
 
@@ -419,11 +426,12 @@ Generic Completion
 ====================
 
 ------------------------------
-Implications at Compile-Time
+Implications for Distribution
 ------------------------------
 
-* The body needs to be visible when compiling the user code
-* Therefore, when distributing a component with generics to be instantiated, the code of the generic must come along
+* The body needs to be **visible** when compiling the user code
+* Remember generics are **not** compiled or part of the program
+* Distribution of a library with generics must include the generics source code
 
 -----------------------------
 Generic and Freezing Points
@@ -433,8 +441,8 @@ Generic and Freezing Points
 
  .. container:: column
   
-    * A generic type "freezes" the type and needs to have access to its full view
-    * This may force separation of the generic type declaration and subsequent generic instantiations (e.g. with containers)
+    * A generic type instanciation "freezes" the type and needs to have access to its full view
+    * May force **separation** between the generic type **declaration** and subsequent **instantiations** (e.g. with containers)
 
  .. container:: column
   
@@ -462,9 +470,12 @@ Generic Incomplete Parameters
 
  .. container:: column
   
-    * A generic type can be incomplete
-    * This allows generic instantiations before full type definition
-    * Usage of the type is then fairly restricted (can only be used through an access)
+    * A generic type can be **incomplete**
+    * Allows instantiations **before** full type definition
+    * Usage of the type is then fairly restricted 
+        
+        - Can only be used through :ada:`access`
+
 
  .. container:: column
   
@@ -483,6 +494,40 @@ Generic Incomplete Parameters
        private
           type X is null record;
        end P;
+
+===================
+Generic Subprograms
+===================
+
+-------------------
+Generic Subprograms
+-------------------
+
+* Subprograms can also be defined as generics
+
+.. code:: Ada
+    
+   package Helper is
+      type Float_T is digits 6;
+      generic
+         type Type_T is digits <>;
+         Min : Type_T;
+         Max : Type_T;
+      function In_Range_Generic (X : Type_T) return Boolean;
+   end Helper;
+     
+   procedure User is
+     type Speed_T is new Float_T range 0.0 .. 100.0;
+     B : Boolean;
+     function Valid_Speed is new In_Range_Generic
+        (Speed_T, Speed_T'First, Speed_T'Last);
+   begin
+     B := Valid_Speed (12.3);
+     
+.. container:: speakernote
+
+   Generics increase code size and readability
+   Common functions reduce size, but increase error possibilities
      
 ========
 Lab
@@ -494,52 +539,19 @@ Lab
 Summary
 =========
 
--------------------------------------
-Generic Routines vs Common Routines
--------------------------------------
-
-.. code:: Ada
-    
-   package Helper is
-      type Float_T is digits 6;
-      generic
-         type Type_T is digits <>;
-         Min : Type_T;
-         Max : Type_T;
-      function In_Range_Generic (X : Type_T) return Boolean;
-      function In_Range_Common (X   : Float_T;
-                                Min : Float_T;
-                                Max : Float_T)
-                                return Boolean;
-   end Helper;
-     
-   procedure User is
-     type Speed_T is new Float_T range 0.0 .. 100.0;
-     B : Boolean;
-     function Valid_Speed is new In_Range_Generic
-        (Speed_T, Speed_T'First, Speed_T'Last);
-   begin
-     B := Valid_Speed (12.3);
-     B := In_Range_Common (12.3, Speed_T'First, Speed_T'Last);
-     
-.. container:: speakernote
-
-   Generics increase code size and readability
-   Common functions reduce size, but increase error possibilities
-
 ---------
 Summary
 ---------
 
-* Generics are useful for copying code that works the same just for different types
+* Generics are useful for copying **code patterns**
 
    - Sorting, containers, etc
 
-* Properly written generics only need to be tested once
+* Properly written generics only need to be tested **once**
 
    - But testing / debugging can be more difficult
 
-* Generic instantiations are best done at compile time
+* Generic instantiations are best done at compile-time
 
    - At the package level
-   - Can be run-time expensive when done in subprogram scope
+   - Can be **run-time expensive** when done in subprogram scope
