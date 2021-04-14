@@ -14,62 +14,51 @@ Introduction
 Access Types Design
 ---------------------
 
-* Java references, or C/C++ pointers are called access type in Ada
-* An object is associated to a pool of memory
-* Different pools may have different allocation / deallocation policies
-* Without doing unchecked deallocations, and by using pool-specific access types, access values are guaranteed to be always meaningful
-* In Ada, access types are typed
+* :ada:`access` types associate an object to a **memory address** and **pool**
+* Pools have specific allocation and deallocation **policies**
+* Equivalent to Java references, C/C++ pointers
+* But unlike C, access are always **meaningful**
 
-   - Ada
+    - Points to an object or is :ada:`null`
+    - Unchecked mode is available
 
-      .. code:: Ada
+    .. code:: Ada
 
-         type Integer_Pool_Access is access Integer;
-         P_A : Integer_Pool_Access := new Integer;
- 
-         type Integer_General_Access is access all Integer;
-         G : aliased Integer
-         G_A : Integer_General_Access := G'access;
- 
-   - Compared to C/C++
+       type Integer_Pool_Access is access Integer;
+       P_A : Integer_Pool_Access := new Integer;
 
-      .. code:: C++
+       type Integer_General_Access is access all Integer;
+       G : aliased Integer
+       G_A : Integer_General_Access := G'access;
 
-         int * P_C = malloc (sizeof (int));
-         int * P_CPP = new int;
-         int * G_C = &Some_Int;
- 
--------------------------------
-Access Types Can Be Dangerous
--------------------------------
+-----------------
+Dangers of Access
+-----------------
 
-* Multiple memory issues
+* More **complex** designs
 
-   - Leaks / corruptions
+    - Debug
+    - Data structures
 
-* Introduces potential random failures complicated to analyze
-* Increase the complexity of the data structures
-* May decrease the performances of the application
+* **Performance** impact
 
-   - Dereferences are slightly more expensive than direct access
-   - Allocations are a lot more expensive than stacking objects
+   - Allocations
+   - Dereferences
 
-* Ada avoids using accesses as much as possible
+* Software **stability**
 
-   - Arrays are not pointers
-   - Parameters are implicitly passed by reference
+    - Memory leaks
+    - Memory corruption
 
-* Only use them when needed
+* By design, need for accesses is **limited**
 
----------------
-Stack vs Heap
----------------
+    - Advanced subject
 
 .. code:: Ada
 
   I : Integer := 0;
   J : String := "Some Long String";
- 
+
 .. image:: ../../images/items_on_stack.png
    :width: 50%
 
@@ -77,79 +66,68 @@ Stack vs Heap
 
   I : Access_Int:= new Integer'(0);
   J : Access_Str := new String ("Some Long String");
- 
+
 .. image:: ../../images/stack_pointing_to_heap.png
    :width: 50%
 
-===========================
+--------------------------
 Pool-Specific Access Types
-===========================
+--------------------------
 
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/pool_specific_access_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#pool-specific-access-types`
-
----------------------------
-Pool-Specific Access Type
----------------------------
-
-* An access type is a type
+* An :ada:`access` type is a **scalar type**
 
    .. code:: Ada
 
       type T is [...]
       type T_Access is access T;
       V : T_Access := new T;
- 
-* Conversion is needed to move an object pointed by one type to another (pools may differ)
-* You can not do this kind of conversion with a pool-specific access type
+
+* Is **pool-specific** by default
+
+    - Can also be **general access** type
+
+* Conversion is **mandatory** between access-types
+
+    - Conversion to pool-specific is **forbidden**
 
    .. code:: Ada
 
       type T_Access_2 is access T;
       V2 : T_Access_2 := T_Access_2 (V); -- illegal
- 
- 
+
 -------------
 Allocations
 -------------
 
-* Objects are created with the `new` reserved word
-* The created object must be constrained
+* Objects are allocated with :ada:`new`
+* Allocated object must be **constrained** at allocation
 
-   - The constraint is given during the allocation
+   .. code:: Ada
 
-      .. code:: Ada
+      V : String_Access := new String (1 .. 10);
 
-         V : String_Access := new String (1 .. 10);
- 
-* The object can be created by copying an existing object - using a qualifier
+* Can use qualifier to **copy** an existing object
 
    .. code:: Ada
 
       V : String_Access := new String'("This is a String");
- 
+
 ---------------
 Deallocations
 ---------------
 
-* Deallocations are unsafe
+* Deallocations are **unsafe**
 
    - Multiple deallocations problems
    - Memory corruptions
    - Access to deallocated objects
 
-* As soon as you use them, you lose the safety of your pointers
-* But sometimes, you have to do what you have to do ...
+* Using them means losing most safety features
+* Still **available**
 
-   - There's no simple way of doing it
-   - Ada provides `Ada.Unchecked_Deallocation`
-   - Has to be instantiated (it's a generic)
-   - Must work on an object, reset to `null` afterwards
+   - **No simple way** of doing it
+   - Instanciate the :ada:`generic procedure` called :ada:`Ada.Unchecked_Deallocation`
+   - Receives an access it deallocates and sets to :ada:`null`
 
 ----------------------
 Deallocation Example
@@ -170,7 +148,7 @@ Deallocation Example
       Free (V);
       -- V is now null
    end P;
- 
+
 ==========================
 General Access Types
 ==========================
@@ -187,16 +165,16 @@ Examples
 General Access Types
 ----------------------
 
-* Can point to any pool (including stack)
+* Use :ada:`access all`
+* Can point to **any pool** (including stack)
 
    .. code:: Ada
 
       type T is [...]
       type T_Access is access all T;
       V : T_Access := new T;
- 
-* Still distinct type
-* Conversions are possible
+
+* Conversion to general access type is **allowed**
 
    .. code:: Ada
 
@@ -207,14 +185,18 @@ General Access Types
 Referencing The Stack
 -----------------------
 
-* By default, stack-allocated objects cannot be referenced - and can even be optimized into a register by the compiler
-* `aliased` declares an object to be referenceable through an access value
+* Stack-allocated objects **cannot** be referenced **by default**
+
+    - Compiler may optimize it into a register
+
+* :ada:`aliased` declares a stack-allocated object that can be referenced
 
    .. code:: Ada
 
       V : aliased Integer;
- 
-*  `'Access` attribute gives a reference to the object
+
+* :ada:`'Access` attribute returns a reference
+* Only :ada:`access all` general access can reference it
 
    .. code:: Ada
 
@@ -225,15 +207,15 @@ Referencing The Stack
 ----------------------------
 
 .. code:: Ada
-    
+
    type Acc is access all Integer;
       V : Acc;
       I : aliased Integer;
    begin
       V := I'Access;
       V.all := 5; -- Same a I := 5
-     
-   ... 
+
+   ...
 
    type Acc is access all Integer;
    G : Acc;
@@ -248,7 +230,7 @@ Referencing The Stack
       G.all := 5;
       -- What if P2 is called after P1?
    end P2;
-     
+
 ------
 Quiz
 ------
@@ -289,66 +271,36 @@ Examples
 
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#access-types`
 
-----------------------
-Declaration Location
-----------------------
-
-* Can be at library level
-
-   .. code:: Ada
-
-      package P is
-        type String_Access is access String;
-      end P;
- 
-* Can be nested in a procedure
-
-   .. code:: Ada
-
-      package body P is
-         procedure Proc is
-            type String_Access is access String;
-         begin
-            ...
-         end Proc;
-      end P;
- 
-* Nesting adds non-trivial issues
-
-   - Creates a nested pool with a nested accessibility
-   - Don't do that unless you know what you are doing! (see later)
-
 -------------
 Null Values
 -------------
 
-* A pointer that does not point to any actual data has a null value
-* Without an initialization, a pointer is `null` by default
-* `null` can be used in assignments and comparisons
+* An unintialized access has the :ada:`null` value
+* :ada:`null` can be used in assignments and comparisons
 
 .. code:: Ada
 
     type Acc is access all Integer;
-      V : Acc;
-   begin
-      if V = null then
-         --  will go here
-      end if
-      V := new Integer'(0);
-      V := null; -- semantically correct, but memory leak
- 
+       V : Acc;
+    begin
+       if V = null then
+          --  will go here
+       end if
+       V := new Integer'(0);
+       V := null; -- semantically correct, but memory leak
+
 ------------------------
-Dereferencing Pointers
+Dereferencing Accesses
 ------------------------
 
-* `.all` does the access dereference
+* :ada:`.all` dereferences an access
 
-   - Lets you access the object pointed to by the pointer
+   - Accesses the referenced object
 
-* `.all` is optional for
+* :ada:`.all` is **optional** for
 
-   - Access on a component of an array
-   - Access on a component of a record
+   - Access on a component of an **array**
+   - Access on a component of a **record**
 
 ----------------------
 Dereference Examples
@@ -386,11 +338,23 @@ Examples
 
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#accessibility-checks`
 
+----------------------
+Declaration Location
+----------------------
+
+* Can be at library level
+* Can be **nested** in any declarative scope
+* Nesting adds non-trivial issues
+
+   - Nested pool
+   - Accessing an object out of its **lifetime**
+   - Safety feature of **accessibility checks**
+
 --------------------------------------------
 Introduction to Accessibility Checks (1/2)
 --------------------------------------------
 
-* The depth of an object depends on its nesting within declarative scopes
+* **Depth**: number of **declarative scopes** enclosing a declaration
 
    .. code:: Ada
 
@@ -399,19 +363,18 @@ Introduction to Accessibility Checks (1/2)
          procedure Proc is
             --  Library level subprogram, depth 1
             procedure Nested is
-               -- Nested subprogram, enclosing + 1, here 2
+               -- Nested subprogram, enclosing + 1 = depth 2
             begin
-                null;
-            end Nested;
-         begin
-            null;
-         end Proc;
-      end P;
- 
-* Access types can access objects at most of the same depth
-* The compiler checks it statically
+            [...]
 
-   - Removing checks is a workaround!
+* Rule: **access** type depth :math:`\ge` **object** depth
+
+    - Checks the access **type**
+    - Access cannot outlive the object
+
+* Compiler checks it **statically**
+
+    - Can be disabled (**not** recommended)
 
 --------------------------------------------
 Introduction to Accessibility Checks (2/2)
@@ -427,7 +390,7 @@ Introduction to Accessibility Checks (2/2)
          type T1 is access all Integer;
          A1 : T1;
          V1 : aliased Integer;
-      Begin
+      begin
          A0 := V0'Access;
          A0 := V1'Access; -- illegal
          A0 := V1'Unchecked_Access;
@@ -439,15 +402,14 @@ Introduction to Accessibility Checks (2/2)
          A0 := T0 (A1); -- illegal
      end Proc;
    end P;
- 
-* To avoid having to face these issues, avoid nested access types
+
+* Using nested access types brings **complex** issues
 
 -------------------------------------
 Getting Around Accessibility Checks
 -------------------------------------
 
-* Sometimes it is OK to use unsafe accesses to data
-*  `'Unchecked_Access` allows access to a variable of an incompatible accessibility level
+* :ada:`'Unchecked_Access` disables the depth check
 * Beware of potential problems!
 
    .. code:: Ada
@@ -461,7 +423,7 @@ Getting Around Accessibility Checks
          ...
          Do_Something ( G.all ); -- This is "reasonable"
       end P;
- 
+
 .. container:: speakernote
 
    Not the best way to write code
@@ -470,8 +432,10 @@ Getting Around Accessibility Checks
 Using Pointers For Recursive Structures
 -----------------------------------------
 
-* It is not possible to declare recursive structure
-* But there can be an access to the enclosing type
+* Recursive structure **cannot** be declared
+* Use :ada:`access` to the enclosing type
+
+    - Need **partial declaration**
 
 .. code:: Ada
 
@@ -533,15 +497,17 @@ Common Memory Problems (1/3)
 
    .. code:: Ada
 
+      is
          type An_Access is access all Integer;
          V : An_Access;
       begin
          V.all := 5; -- constraint error
- 
+
 * Double deallocation
 
    .. code:: Ada
 
+      is
          type An_Access is access all Integer;
          procedure Free is new
             Ada.Unchecked_Deallocation (Integer, An_Access);
@@ -551,11 +517,11 @@ Common Memory Problems (1/3)
          Free (V1);
          ...
          Free (V2);
- 
-   - May raise `Storage_Error` if memory is still protected (unallocated)
-   - May deallocate a different object if memory has been reallocated
 
-      + Putting that object in an inconsistent state
+   - May raise :ada:`Storage_Error` if memory is still protected (unallocated)
+   - May deallocate a **different object** if memory has been reallocated
+
+      + Putting that object in an **inconsistent state**
 
 ------------------------------
 Common Memory Problems (2/3)
@@ -565,6 +531,7 @@ Common Memory Problems (2/3)
 
    .. code:: Ada
 
+      is
          type An_Access is access all Integer;
          procedure Free is new
             Ada.Unchecked_Deallocation (Integer, An_Access);
@@ -574,9 +541,11 @@ Common Memory Problems (2/3)
          Free (V1);
          ...
          V2.all := 5;
-      
-   - May raise `Storage_Error` if memory is still protected (unallocated)
-   - May modify a different object if memory has been reallocated (putting that object in an inconsistent state)
+
+   - May raise :ada:`Storage_Error` if memory is still protected (unallocated)
+   - May modify a **different object** if memory has been reallocated
+
+        + Putting that object in an **inconsistent state**
 
 ------------------------------
 Common Memory Problems (3/3)
@@ -586,30 +555,30 @@ Common Memory Problems (3/3)
 
    .. code:: Ada
 
+      is
          type An_Access is access all Integer;
          procedure Free is new
             Ada.Unchecked_Deallocation (Integer, An_Access);
          V : An_Access := new Integer;
       begin
          V := null;
-      
+
    - Silent problem
 
-      + Might raise `Storage_Error` if too many leaks
-      + Might slow down the program if too many page faults
+      + Might raise :ada:`Storage_Error` if too many leaks
+      + Might **slow down** the program if too many page faults
 
 -----------------------------
 How To Fix Memory Problems?
 -----------------------------
 
-* There is no language-defined solution
-* Use the debugger!
+* **No** language-defined solution
+* Use the **debugger**
 * Use additional tools
 
    - :command:`gnatmem`  monitor memory leaks
    - :command:`valgrind`  monitor all the dynamic memory
-   - `GNAT.Debug_Pools` gives a pool for an access type, raising explicit exception in case of invalid access
-   - Others...
+   - Memory pool :ada:`GNAT.Debug_Pools` checks for invalid access and raises exceptions
 
 ========================
 Anonymous Access Types
@@ -627,15 +596,15 @@ Examples
 Anonymous Access Parameters
 -----------------------------
 
-* Parameter modes are of 4 types: `in`, `out`, `in out`, `access`
-* The access mode is called **anonymous access type**
+* **Four** parameter modes exist: :ada:`in`, :ada:`out`, :ada:`in out`, :ada:`access`
+* The :ada:`access` mode is called **anonymous access type**
 
-   - Anonymous access is implicitly general (no need for `all`)
+   - Anonymous access is implicitly general (implicit :ada:`all`)
 
-* When used: 
+* When used:
 
-   - Any named access can be passed as parameter
-   - Any anonymous access can be passed as parameter
+   - Any **named** access can be passed as parameter
+   - Any **anonymous** access can be passed as parameter
 
 .. code:: Ada
 
@@ -647,12 +616,14 @@ Anonymous Access Parameters
       P1 (G);
       P1 (V);
    end P;
- 
+
 ------------------------
 Anonymous Access Types
 ------------------------
 
 * Other places can declare an anonymous access
+
+    - Return, type declarations...
 
    .. code:: Ada
 
@@ -662,14 +633,14 @@ Anonymous Access Types
         C : access Integer;
       end record;
       type A is array (Integer range <>) of access Integer;
- 
-* Do not use them without a clear understanding of accessibility check rules
+
+* Be careful with **accessibility check** rules
 
 ----------------------------------
 Anonymous Access Constants
 ----------------------------------
 
-* `constant` (instead of `all`) denotes an access type through which the referenced object cannot be modified
+* :ada:`constant` (instead of :ada:`all`) is an access type to a **constant view**
 
    .. code:: Ada
 
@@ -679,17 +650,15 @@ Anonymous Access Constants
       V1 : CAcc := G1'Access;
       V2 : CAcc := G2'Access;
       V1.all := 0; -- illegal
- 
-* `not null` denotes an access type for which null value cannot be accepted
 
-   - Available in Ada 2005 and later
+* Ada 2005: :ada:`not null` is an access type that can not be :ada:`null`
 
    .. code:: Ada
 
       type NAcc is not null access Integer;
       V : NAcc := null; -- illegal
- 
-* Also works for subprogram parameters
+
+* Can be used with anonymous access types
 
    .. code:: Ada
 
@@ -710,12 +679,13 @@ Summary
 Summary
 ---------
 
-* Access types are the same as C/C++ pointers
-* There are usually better ways of memory management
+* Access types are similar to C/C++ pointers
+* There are usually **better ways** to manage memory
 
-   - Language has its own ways with dealing with large objects passed as parameters
-   - Language has libraries dedicated to memory allocation / deallocation
+   - **Large objects** parameters as reference is **automatic**
+   - Memory allocation / deallocation **libraries** are provided
+   - Data structure **libraries** are provided
 
-* At a minimum, create your own generics to do allocation / deallocation
+* At a minimum, declare allocation / deallocation generics
 
-   - Minimize memory leakage and corruption
+   - **Minimize** memory leakage and corruption
