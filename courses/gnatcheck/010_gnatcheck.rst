@@ -25,7 +25,7 @@ GNATcheck Is...
 + A command-line tool
 + Integrated in GPS / GNATbench
 
-   .. image:: c:\temp\images\slide2_1.png
+   .. image:: ../../images/number_one_ribbon.png
       :height: 20%
 
    + Recommended approach
@@ -34,7 +34,7 @@ GNATcheck Is...
 Required by DO-178B
 ---------------------
 
-   .. image:: c:\temp\images\do178_table_a5.jpg
+   .. image:: ../../images/gnatcheck/do178_table_a5.jpg
 
 --------------------------------------
 Conformance To Standards Requirement
@@ -179,7 +179,7 @@ Convenient due to typically large number of rules
 GNATcheck Switches In Project Properties
 ------------------------------------------
 
-.. image:: c:\temp\images\slide11_1.png
+.. image:: ../../images/gnatcheck/properties_dialog.png
 
 As always, direct manual entry is also supported
 
@@ -404,13 +404,13 @@ Accessing the GNATcheck RM
 Accessing GNATcheck RM Within GPS
 -----------------------------------
 
-.. image:: c:\temp\images\slide22_1.png
+.. image:: ../../images/gnatcheck/rm_cascade.png
 
 ----------------------------------
 GNATcheck RM Sections In Browser
 ----------------------------------
 
-.. image:: c:\temp\images\slide23_1.png
+.. image:: ../../images/gnatcheck/rm_browser.png
 
 + One big section, thus searchable
 
@@ -437,7 +437,7 @@ Accessing GNATcheck RM in GPS Lab
 GPS: Check All Sources In Single Project
 ------------------------------------------
 
-.. image:: c:\temp\images\slide26_1.png
+.. image:: ../../images/gnatcheck/perform_check_cascade.png
 
 + TBD: Right-click to display contextual menu
 + TBD: Click to invoke
@@ -446,7 +446,7 @@ GPS: Check All Sources In Single Project
 Results
 ---------
 
-.. image:: c:\temp\images\slide27_1.png
+.. image:: ../../images/gnatcheck/check_results.png
 
 + TBD: File for 1 st entry
 + TBD: Click to focus on source line
@@ -455,7 +455,7 @@ Results
 GPS Source File Contextual Menu
 ---------------------------------
 
-.. image:: c:\temp\images\slide28_1.png
+.. image:: ../../images/gnatcheck/perform_right_click.png
 
 + TBD: Right-click to display contextual menu
 + TBD: Click to invoke
@@ -600,7 +600,7 @@ Rules File
 Graphically Editing Rules Files
 ---------------------------------
 
-.. image:: c:\temp\images\slide35_1.png
+.. image:: ../../images/gnatcheck/edit_rules_cascade.png
 
 + Same as via project contextual menu
 + Invokes dialog
@@ -609,7 +609,7 @@ Graphically Editing Rules Files
 Rules File Editor Dialog
 --------------------------
 
-.. image:: c:\temp\images\slide36_1.png
+.. image:: ../../images/gnatcheck/rules_editor.png
 
 + TBD: Editable; empty if no file specified already
 + TBD: Buttons invoking sub-dialogs
@@ -619,7 +619,7 @@ Rules File Editor Dialog
 When Rules Files Contain Comments
 -----------------------------------
 
-.. image:: c:\temp\images\slide37_1.png
+.. image:: ../../images/gnatcheck/rules_comment_warning.png
 
 + Even if you don't change anything, pressing Save removes the comments
 + TBD: verify and update screenshot if needed
@@ -628,7 +628,7 @@ When Rules Files Contain Comments
 The "Edit Rules File" Dialog Boxes
 ------------------------------------
 
-.. image:: c:\temp\images\slide38_1.png
+.. image:: ../../images/gnatcheck/rules_example_dialog.png
 
 
 ----------------------
@@ -684,7 +684,7 @@ Tasking Style Rule Lab
 Tasking Style Rule Lab
 ------------------------
 
-.. image:: c:\temp\images\slide42_1.png
+.. image:: ../../images/gnatcheck/tasking_rules_dialog.png
 
 --------------------------------------------
 Enforcing Abstraction & Information Hiding
