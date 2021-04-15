@@ -11,61 +11,25 @@ Tagged Derivation
 Introduction
 ==============
 
----------------------------------------
-Object-Oriented Programming via Types
----------------------------------------
+---------------------------------------------
+Object-Oriented Programming With Tagged Types
+---------------------------------------------
+
+* For :ada:`record` types
+
+    .. code:: Ada
+    
+       type T is tagged record
+       ...
 
 * Child types can add new components (*attributes*)
 * Object of a child type can be **substituted** for base type
 * Primitive (*method*) can **dispatch at runtime** depending on the type at call-site
-* Types can be **extended** by other modules
+* Types can be **extended** by other packages
 
--------------------------------------
-Ada Mechanisms for Tagged Derivation
--------------------------------------
+    - Casting and qualification to base type is allowed
 
-* Only applies to :ada:`record` types
-* Can add new components
-* Casting and qualification to base type are allowed
-* Dynamic dispatch
-
-    - Handled through **class type**
-    - More on that later
-
-* Large control of visibility
-
-=================
-Tagged Derivation
-=================
-
-----------
-Examples
-----------
-
-.. include:: examples/170_inheritance/tagged_derivation.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#tagged-derivation`
-
----------------------------------
-Difference with Simple Derivation
----------------------------------
-
-* Tagged derivation extends simple derivation
-
-    - Tagged derivation **can** change the structure of a type
-    - Additional **restrictions** apply on primitives
-
-* Keywords :ada:`tagged record` and :ada:`with record`
-
-   .. code:: Ada
-    
-      type Root is tagged record
-         F1 : Integer;
-      end record;
-
-      type Child is new Root with record
-         F2 : Integer;
-      end record;
+* Private data is encapsulated through **privacy**
 
 ------------------------------
 Tagged Derivation Ada vs C++
@@ -80,12 +44,15 @@ Tagged Derivation Ada vs C++
        type T is tagged record
          Attr_D : Integer;
        end record;
+
        procedure Attr_F (This : T);
+       
        type T2 is new T with record
          Attr_D2 : Integer;
        end record;
-       overriding
-        procedure Attr_F (This : T2);
+
+       overriding procedure Attr_F (
+            This : T2);
        procedure Attr_F2 (This : T2);
 
  .. container:: column
@@ -105,9 +72,39 @@ Tagged Derivation Ada vs C++
            virtual void Attr_F2(void);
          };
 
---------------------------------------
-Forbidden Operations in Tagged Types
---------------------------------------
+=================
+Tagged Derivation
+=================
+
+----------
+Examples
+----------
+
+.. include:: examples/170_inheritance/tagged_derivation.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#tagged-derivation`
+
+---------------------------------
+Difference with Simple Derivation
+---------------------------------
+
+* Tagged derivation **can** change the structure of a type
+
+    -  Keywords :ada:`tagged record` and :ada:`with record`
+
+   .. code:: Ada
+    
+      type Root is tagged record
+         F1 : Integer;
+      end record;
+
+      type Child is new Root with record
+         F2 : Integer;
+      end record;
+
+--------------
+Type Extension
+--------------
 
 * A tagged derivation **has** to be a type extension
 
@@ -118,13 +115,9 @@ Forbidden Operations in Tagged Types
       type Child is new Root with null record;
       type Child is new Root; -- illegal
 
-* A tagged derivation **cannot remove** primitives
-* New primitive **are forbidden** below freeze point
 * Conversions is only allowed from **child to parent**
 
    .. code:: Ada
-
-      type Child is new Root with null record;
 
       V1 : Root;
       V2 : Child;
@@ -136,61 +129,22 @@ Forbidden Operations in Tagged Types
 Primitives
 ------------
 
-* Still true: implicitly inherited, can be overridden
 * Child **cannot remove** a primitive
 * Child **can add** new primitives
-* Ada 2005 optional :ada:`overriding` and :ada:`not overriding` indicators
+* **Controlling parameter**
 
-   .. code:: Ada
-    
-      type Root is tagged null record;
-      procedure Prim1 (V : Root);
-      procedure Prim2 (V : Root);
-      type Child is new Root with null record;
-      overriding procedure Prim1 (V : Child);
-      not overriding procedure Prim3 (V : Child);
-      -- implicitly inherited:
-      -- procedure Prim2 (V : Child);
-
-* **Controlling parameter**: Parameter the subprogram is a primitive of
-
+    - Parameters the subprogram is a primitive of
     - For tagged types, all should have the **same type**
 
    .. code:: Ada
     
       type Root1 is tagged null record;
       type Root2 is tagged null record;
+
       procedure P1 (V1 : Root1;
                     V2 : Root1);
       procedure P2 (V1 : Root1;
                     V2 : Root2); -- illegal
-
-------------------
-Tagged Aggregate
-------------------
-
-* All fields of the type hierarchy must have value
-
-   .. code:: Ada
-    
-       type Root is tagged record
-           F1 : Integer;
-         end record;
-         type Child is new Root with
-           record
-           F2 : Integer;
-         end record;
-         V2 : Child := (F1 => 0, F2 => 0);
-
-* Impossible when private types are involved
-* **Aggregate extension**: copy of parent instance, or default initialization of the parent
-* Use :ada:`with null record` if there are no additional components
-
-   .. code:: Ada
-    
-      V  : Root := (F1 => 0);
-      V2 : Child := (V with F2 => 0);
-      V3 : Empty_Child := (V with null record);
 
 -------------------------------
 Freeze Point For Tagged Types
@@ -207,13 +161,67 @@ Freeze Point For Tagged Types
 .. code:: Ada
     
    type Root is tagged null record;
+
    procedure Prim (V : Root);
-   type Child is new Root
-      with null record; -- freeze root
+
+   type Child is new Root with null record; -- freeze root
+   
    procedure Prim2 (V : Root); -- illegal
 
    V : Child; --  freeze child
+   
    procedure Prim3 (V : Child); -- illegal
+
+------------------
+Tagged Aggregate
+------------------
+
+* At initialization, all fields (including **inherited**) must get a **value**
+
+   .. code:: Ada
+    
+       type Root is tagged record
+           F1 : Integer;
+       end record;
+
+       type Child is new Root with record
+           F2 : Integer;
+       end record;
+
+       V : Child := (F1 => 0, F2 => 0);
+
+* For **private types** use **aggregate extension**
+
+    - Copy of a parent instance
+    - Use :ada:`with null record` absent new fields
+
+   .. code:: Ada
+    
+      V2 : Child := (Parent_Instance with F2 => 0);
+      V3 : Empty_Child := (Parent_Instance with null record);
+
+---------------------
+Overriding Indicators
+---------------------
+
+.. admonition:: Language Variant
+
+   Ada 2005
+
+* Optional :ada:`overriding` and :ada:`not overriding` indicators
+
+   .. code:: Ada
+    
+      type Root is tagged null record;
+      
+      procedure Prim1 (V : Root);
+      procedure Prim2 (V : Root);
+      
+      type Child is new Root with null record;
+
+      overriding procedure Prim1 (V : Child);
+      -- Prim2 (V : Child) is implicitely inherited
+      not overriding procedure Prim3 (V : Child);
 
 -----------------
 Prefix Notation
