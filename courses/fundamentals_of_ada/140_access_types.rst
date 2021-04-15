@@ -1,4 +1,3 @@
-
 **************
 Access Types
 **************
@@ -15,12 +14,11 @@ Access Types Design
 ---------------------
 
 * :ada:`access` types associate an object to a **memory address** and **pool**
-* Pools have specific allocation and deallocation **policies**
 * Equivalent to Java references, C/C++ pointers
 * But unlike C, access are always **meaningful**
-
-    - Points to an object or is :ada:`null`
-    - Unchecked mode is available
+    
+    - When not using general access types
+    - When not using unchecked deallocation
 
     .. code:: Ada
 
@@ -36,9 +34,9 @@ Dangers of Access
 -----------------
 
 * More **complex** designs
-
+    
     - Debug
-    - Data structures
+    - Data structures)
 
 * **Performance** impact
 
@@ -46,29 +44,49 @@ Dangers of Access
    - Dereferences
 
 * Software **stability**
+* By design, there is little need for accesses in Ada
 
-    - Memory leaks
-    - Memory corruption
+-------------
+Storage Pools
+-------------
 
-* By design, need for accesses is **limited**
+* Access reference storage pools containing the **allocated memory**
+* Specific allocation and deallocation **policies**
+* User and library-defined pools possible (advanced)
+* Pre-defined pools
 
-    - Advanced subject
+    - Stack for statically allocated memory
+    - Heap for dynamically allocated memory
 
-.. code:: Ada
+.. container:: columns
 
-  I : Integer := 0;
-  J : String := "Some Long String";
+    .. container:: column
 
-.. image:: ../../images/items_on_stack.png
-   :width: 50%
+     .. code:: Ada
 
-.. code:: Ada
+       I : Integer := 0;
+       J : String := "Str";
+       ...
 
-  I : Access_Int:= new Integer'(0);
-  J : Access_Str := new String ("Some Long String");
+    .. container:: column
 
-.. image:: ../../images/stack_pointing_to_heap.png
-   :width: 50%
+     .. code:: Ada
+
+       I : Int_A := new Integer'(0);
+       J : Str_A := new String'("");
+       ...
+
+.. container:: columns
+
+    .. container:: column
+
+     .. image:: ../../images/items_on_stack.png
+        :width: 75%
+
+    .. container:: column
+
+     .. image:: ../../images/stack_pointing_to_heap.png
+        :width: 75%
 
 --------------------------
 Pool-Specific Access Types
@@ -84,7 +102,7 @@ Pool-Specific Access Types
 
 * Is **pool-specific** by default
 
-    - Can also be **general access** type
+    - Alternative is to be **general access** type
 
 * Conversion is **mandatory** between access-types
 
@@ -99,7 +117,7 @@ Pool-Specific Access Types
 Allocations
 -------------
 
-* Objects are allocated with :ada:`new`
+* Objects are allocated on the **heap** with :ada:`new`
 * Allocated object must be **constrained** at allocation
 
    .. code:: Ada
@@ -127,7 +145,10 @@ Deallocations
 
    - **No simple way** of doing it
    - Instanciate the :ada:`generic procedure` called :ada:`Ada.Unchecked_Deallocation`
-   - Receives an access it deallocates and sets to :ada:`null`
+   - Parameter of access type
+
+      + Deallocates it
+      + Sets it to :ada:`null`
 
 ----------------------
 Deallocation Example
@@ -338,9 +359,9 @@ Examples
 
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#accessibility-checks`
 
-----------------------
-Declaration Location
-----------------------
+---------------------------
+Access Declaration Location
+---------------------------
 
 * Can be at library level
 * Can be **nested** in any declarative scope
@@ -372,9 +393,13 @@ Introduction to Accessibility Checks (1/2)
     - Checks the access **type**
     - Access cannot outlive the object
 
-* Compiler checks it **statically**
-
+* Compiler checks it
+    
+    - **statically**
+    - **dynamically** (at run time) on anonymous access types
     - Can be disabled (**not** recommended)
+
+
 
 --------------------------------------------
 Introduction to Accessibility Checks (2/2)
@@ -628,10 +653,13 @@ Anonymous Access Types
    .. code:: Ada
 
       function F return access Integer;
+
       V : access Integer;
+
       type T (V : access Integer) is record
         C : access Integer;
       end record;
+
       type A is array (Integer range <>) of access Integer;
 
 * Be careful with **accessibility check** rules
@@ -689,3 +717,8 @@ Summary
 * At a minimum, declare allocation / deallocation generics
 
    - **Minimize** memory leakage and corruption
+
+* Accessibility checks and restrictions for safety
+
+    - **Dynamic** accessibility checks may raise exceptions at run time
+    - :ada:`Unchecked_Conversion`, :ada:`Unchecked_Access`, :ada:`Unchecked_Deallocation` as (dangerous) workarounds
