@@ -128,17 +128,19 @@ Accepting a Rendezvous
 
 * :ada:`accept` statement
 
-   - Wait on single entry
-   - If entry call waiting: Server handles it
-   - Else: Server **waits** for an entry call
+   - Wait for a client call on **single** entry
 
 * :ada:`select` statement
 
-   - **Several** entries accepted at the **same time**
+   - Wait for a client call on **several** entries at the **same time**
    - Can **time-out** on the wait
    - Can be **not blocking** if no entry call waiting
    - Can **terminate** if no clients can **possibly** make entry call
    - Can **conditionally** accept a rendezvous based on a **guard expression**
+
+* Clients entry calls may be **blocking**
+
+    - Until an :ada:`accept` or :ada:`select` accepts it
 
 ===================
 Protected Objects
@@ -199,23 +201,34 @@ Protected: Functions and Procedures
 Delays
 ======
 
--------------
-Delay keyword
--------------
+--------------
+Relative Delay 
+--------------
 
-- :ada:`delay` keyword part of tasking
+- Use :ada:`delay`
 - Blocks for a time
 - Relative: Blocks for at least :ada:`Duration`
-- Absolute: Blocks until a given :ada:`Calendar.Time` or :ada:`Real_Time.Time`
 
 .. code:: Ada
 
     Relative : Duration := Seconds(5.0);
     delay Relative;
 
+- May be **restricted** with some runtimes or coding standards
+
+    * Real-time constraints
+
+--------------
+Absolute Delay 
+--------------
+
+- Using :ada:`delay until`
+- Blocks until a given :ada:`Calendar.Time` or :ada:`Real_Time.Time`
+
+.. code:: Ada
+
     Absolute : Time := Time_Of (2030, 10, 30);
     delay until Absolute;
-
 
 ==========================
 Task and Protected Types
@@ -266,7 +279,7 @@ Single Declaration
    task Msg_Box is
        -- Msg_Box task is declared *and* instanciated
       entry Receive_Message (S : String);
-   end Msg_Box_T;
+   end Msg_Box;
        
    task body Msg_Box is
    begin
