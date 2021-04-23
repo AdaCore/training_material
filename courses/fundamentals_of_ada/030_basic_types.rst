@@ -508,7 +508,7 @@ Bit-Oriented Operations Example
 Why No Implicit Shift and Rotate?
 ---------------------------------
 
-* Arithmetic, logical operators available **implicity**
+* Arithmetic, logical operators available **implicitly**
 * **Why not** :ada:`Shift`, :ada:`Rotate`, etc. ?
 * By **excluding** other solutions
 
@@ -1317,6 +1317,13 @@ Subtype
 
       subtype identifier is Base_Type <constraints>
 
+* Examples
+
+   .. code:: Ada
+
+      subtype Natural is Integer range 0 .. Integer'Last;
+      subtype Positive is Natural range 1 .. Natural'Last;
+
 -------------------------------
 Simple Static Type Derivation
 -------------------------------
@@ -1337,6 +1344,13 @@ Simple Static Type Derivation
 
       type identifier is new Base_Type [<constraints>]
 
+* Example
+
+   .. code:: Ada
+
+      type Measurement is digits 6;
+      type Distance is new Measurement
+            range 0.0 .. Measurement'Last;
 
 =====
 Lab

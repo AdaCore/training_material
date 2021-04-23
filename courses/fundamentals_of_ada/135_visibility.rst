@@ -110,20 +110,28 @@ Examples
 
 .. code:: Ada
 
+   package Pkg_A is
+      Constant_A : constant := 123;
+   end Pkg_A;
+
+   package Pkg_B is
+      Constant_B : constant := 987;
+   end Pkg_B;
+
    with Pkg_A;
    with Pkg_B;
-   use Pkg_A;
+   use Pkg_A; -- everything in Pkg_A is now visible
    package P is
-     -- all of Pkg_A is visible starting here
-     -- references to Pkg_B must use dot-notation
-     X : integer :=
-     use Pkg_B;
-     -- all of Pkg_B is now visible
-     ...
+      A  : Integer := Constant_A; -- legal
+      B1 : Integer := Constant_B; -- illegal
+      use Pkg_B; -- everything in Pkg_B is now visible
+      B2 : Integer := Constant_B; -- legal
+      function F return Integer;
    end P;
    
    package body P is
      -- all of Pkg_A and Pkg_B is visible here
+     function F return Integer is ( Constant_A + Constant_B );
    end P;
  
 --------------------
@@ -269,8 +277,6 @@ Examples
 
       use_type_clause ::= use type subtype_mark
                                          {, subtype_mark};
-   - **all** will be described in the next section
- 
 * Makes operators directly visible for specified type
 
    - Implicit and explicit operator function declarations

@@ -300,8 +300,9 @@ Compile-Time Visibility Protection
 
    .. code:: Ada
 
+      with Bounded_Stacks;
       procedure User is 
-        S : Stack;
+        S : Bounded_Stacks.Stack;
       begin
         S.Top := 1;  -- Top is not visible
       end User;
@@ -568,21 +569,23 @@ View Operations
 View Operations
 -----------------
 
-.. container:: columns
+* A matter of inside versus outside the package
 
- .. container:: column
+   - Inside the package the view is that of the designer
+   - Outside the package the view is that of the user
+
+.. container:: latex_environment footnotesize
+
+ .. container:: columns
+
+  .. container:: column
   
-    * A matter of inside versus outside the package
-
-       - Inside the package the view is that of the designer
-       - Outside the package the view is that of the user
-
- .. container:: column
-
     * **User** of package has **Partial** view
 
        - Operations exported by package
        - Basic operations
+
+  .. container:: column
   
     * **Designer** of package has **Full** view
 
@@ -591,7 +594,6 @@ View Operations
        - Selected components for records
        - Attributes per type definition
        - Numeric manipulation for numerics
-
        - et cetera 
 
 -------------------------------------

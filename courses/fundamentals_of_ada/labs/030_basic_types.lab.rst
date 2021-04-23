@@ -4,8 +4,11 @@ Basic Types Lab
 
 * Create types to handle the following concepts
 
-   - Number of tests administered
-   - Total of all test scores
+   - Determining average test score
+
+      - Number of tests taken
+      - Total of all test scores
+
    - Number of degrees in a circle
    - Collection of colors
 
