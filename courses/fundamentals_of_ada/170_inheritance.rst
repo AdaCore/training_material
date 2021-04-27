@@ -188,34 +188,36 @@ Simple Type Derivation
    - The primitives of the parent
     
    .. code:: Ada
-    
-      procedure Test is
+
+      package P is
         type Parent is range 1 .. 10;
         procedure Prim (V : Parent);
         type Child is new Parent;
         --  implicit Prim (V : Child);
+      end P;
+
+      with P; use P;
+      procedure Main1 is
         V : Child;
       begin
         V := 5;
         Prim (V);
+      end Main1;
      
 * Conversions are possible for non-primitive operations
     
    .. code:: Ada
     
-      package P is
-        type Parent is range 1 .. 10;
-        type Child is new Parent;
-     end P;
-       
-     procedure Main is
-        procedure Not_A_Primitive (V : Parent);
+     with P; use P;
+     procedure Main2 is
+        procedure Not_A_Primitive (V : Parent)
+           is null;
         V1 : Parent;
         V2 : Child;
      begin
         Not_A_Primitive (V1);
         Not_A_Primitive (Parent (V2));
-     end Main;
+     end Main2;
      
 --------------------------------------
 Simple Derivation and Type Structure
@@ -440,65 +442,33 @@ Tagged Derivation Ada vs C++
 
     .. code:: Ada
     
-       type T is tagged record
-         Attr_D : Integer;
+       type T1 is tagged record
+         Member1 : Integer;
        end record;
-       procedure Attr_F (This : T);
+       procedure Get_1 (This : T1);
        type T2 is new T with record
-         Attr_D2 : Integer;
+         Member2 : Integer;
        end record;
        overriding
-       procedure Attr_F (This : T2);
-       procedure Attr_F2 (This : T2);
+       procedure Get_1 (This : T2);
+       procedure Get_2 (This : T2);
      
  .. container:: column
     
     .. code:: C++
     
-       class T {
+       class T1 {
          public:
-           int Attr_D;
-           virtual void Attr_F(void);
+           int member1;
+           virtual void get1(void);
          };
        
        class T2 : public T {
          public:
-           int Attr_D2;
-           virtual void Attr_F(void);
-           virtual void Attr_F2(void);
+           int member2;
+           virtual void get1(void);
+           virtual void get2(void);
          };
-     
---------------------------------------
-Forbidden Operations in Tagged Types
---------------------------------------
-
-* A tagged derivation has to be a type extension
-    
-   .. code:: Ada
-    
-      type Root is tagged record
-         F1 : Integer;
-      end record;
-      type Child is new Root; -- illegal
-     
-* A tagged derivation cannot remove primitives
-
-*  Conversions from child to parent are allowed, but not the other way around (need extra fields to be provided)
-    
-   .. code:: Ada
-    
-      type Root is tagged record
-          F1 : Integer;
-        end record;
-      type Child is new Root with record
-          F2 : Integer;
-        end record;
-      V1 : Root  := (F1 => 0);
-      V2 : Child := (F1 => 0, F2 => 0);
-      ...
-      V1 := Root (V2);
-      V2 := Child (V1); -- illegal
-      V2 := (V1 with F2 => 0);
      
 ------------
 Primitives
@@ -598,25 +568,52 @@ Prefix Notation
          F1 : Integer;
       end record;
       procedure Prim1 (V : Root);
-      procedure Prim2 (V : access Root; V2 : Integer);
-      type Root_Access is access all Root;
-      X  : Root_Access := new Root;
-      X2 : aliased Root;
+      procedure Prim2 (V : Root; V2 : Integer);
+      X : Root;
       ...
-      Prim1 (X.all);
-      Prim2 (X2'Access, 5);
+      Prim1 (X);
+      Prim2 (X, 5);
      
 * When the first parameter is a controlling parameter, the call can be prefixed by the object
     
    .. code:: Ada
     
-      X.Prim1;
-      X.all.Prim1;
-      X.Prim2 (5);
-      X2'Access.Prim2 (5);
+ 
      
 * No `use` or `use type` clause is needed to have visibility over the primitives in this case
 
+--------------------------------------
+Forbidden Operations in Tagged Types
+--------------------------------------
+
+* A tagged derivation has to be a type extension
+    
+   .. code:: Ada
+    
+      type Root is tagged record
+         F1 : Integer;
+      end record;
+      type Child is new Root; -- illegal
+     
+* A tagged derivation cannot remove primitives
+
+*  Conversions from child to parent are allowed, but not the other way around (need extra fields to be provided)
+    
+   .. code:: Ada
+    
+      type Root is tagged record
+          F1 : Integer;
+        end record;
+      type Child is new Root with record
+          F2 : Integer;
+        end record;
+      V1 : Root  := (F1 => 0);
+      V2 : Child := (F1 => 0, F2 => 0);
+      ...
+      V1 := Root (V2);
+      V2 := Child (V1); -- illegal
+      V2 := (V1 with F2 => 0);
+     
 ------
 Quiz
 ------
@@ -679,7 +676,7 @@ Summary
    - Types derived from other types can only add limitations
 
       + Constraints, ranges
-      + Cannot change underyling structure
+      + Cannot change underlying structure
 
 * Tagged derivation
 

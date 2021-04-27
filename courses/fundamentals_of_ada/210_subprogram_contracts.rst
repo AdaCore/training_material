@@ -350,7 +350,8 @@ Preconditions and Postconditions Example
       procedure Compute_Square_Root (Input  : Natural;
                                      Result : out Natural)
          with
-             -- "Pre => Input >= 0" not needed: Input can't be < 0
+             -- "Pre => Input >= 0" not needed
+             -- (Input can't be < 0)
              Post => (Result * Result) <= Input and
                      (Result + 1) * (Result + 1) > Input;
  

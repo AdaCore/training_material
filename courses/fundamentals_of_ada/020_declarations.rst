@@ -327,20 +327,20 @@ Multiple Object Declarations
 
    .. code:: Ada
 
-      A, B : Integer := F(X);
+      A, B : Integer := Next_Available(X);
  
 * Identical to series of single declarations
 
    .. code:: Ada
 
-      A : Integer := F(X);
-      B : Integer := F(X);
+      A : Integer := Next_Available(X);
+      B : Integer := Next_Available(X);
  
 * Warning: may get different value
 
    .. code:: Ada
 
-      T1, T2 : Time := Clock;
+      T1, T2 : Time := Current_Time;
  
 -------------------------
 Predefined Declarations

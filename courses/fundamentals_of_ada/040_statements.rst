@@ -365,6 +365,8 @@ Examples
 
 .. include:: examples/040_statements/conditional_statements.rst
 
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/040_statements.html#conditional-statements`
+
 -------------------------
 If-then-else Statements
 -------------------------
@@ -851,6 +853,28 @@ For-Loop Parameter Visibility
       end;
 
 --------------------------
+Referencing Hidden Names
+--------------------------
+
+* Must copy for-loop parameter to some other object if needed after the loop exits
+* Use dot notation with outer scope name when hiding occurs
+
+.. code:: Ada
+
+   Foo:
+   declare
+      Counter : Integer := 0;
+   begin
+      ...
+      for Counter in Integer range 1 .. Number_Read loop
+         -- set declared "Counter" to loop counter
+         Foo.Counter := Counter;
+         ...
+      end loop;
+      ...
+   end Foo;
+
+--------------------------
 Iterations Exit Statements
 --------------------------
 
@@ -905,28 +929,6 @@ For-Loop with Exit Statement Example
 .. container:: speakernote
 
    We use the low-level for-loop form because we want to capture the actual position of the key within the table.
-
---------------------------
-Referencing Hidden Names
---------------------------
-
-* Must copy for-loop parameter to some other object if needed after the loop exits
-* Use dot notation with outer scope name when hiding occurs
-
-.. code:: Ada
-
-   Foo:
-   declare
-      Counter : Integer := 0;
-   begin
-      ...
-      for Counter in Integer range 1 .. Number_Read loop
-         -- set declared "Counter" to loop counter
-         Foo.Counter := Counter;
-         ...
-      end loop;
-      ...
-   end Foo;
 
 ------
 Quiz
@@ -1004,7 +1006,7 @@ GOTO Use
       <<continue>>
    end loop;
 
-* As always maintenability beats hard set rules
+* As always maintainability beats hard set rules
 
 ========
 Lab
