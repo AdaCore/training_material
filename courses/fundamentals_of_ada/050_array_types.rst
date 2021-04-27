@@ -675,10 +675,6 @@ Extra Object-Level Operations
 
    - Portion of array
 
-* Sliding
-
-   - Re-indexing array
-
 ---------
 Slicing
 ---------
