@@ -18,6 +18,7 @@ Introduction
 
 .. code:: Ada
 
+   is
      type Hours is digits 6;
      type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
      type Schedule is array (Days) of Hours;
