@@ -17,12 +17,12 @@ Introduction
 * Why does fixing bugs introduce new ones?
 * Control over visibility is a primary factor
 
-   - Changes to an abstraction's internals shouldn't break clients
+   - Changes to an abstraction's internals shouldn't break users
    - Including type representation
 
 * Need tool-enforced rules to isolate dependencies
 
-   - Between implementations of abstractions and their clients
+   - Between implementations of abstractions and their users
    - In other words, "information hiding"
 
 --------------------
@@ -431,7 +431,7 @@ Private Part and Recompilation
 
    - Compiler needs info from private part for users' code, e.g., storage layouts for private-typed objects
 
-* Thus changes to private part require client recompilation
+* Thus changes to private part require user recompilation
 * Some vendors avoid "unnecessary" recompilation
 
    - Comment additions or changes
@@ -452,14 +452,14 @@ Declarative Regions
       type Private_T is private;
       procedure X ( B : in out Private_T );
    private
-      -- Y and Hidden_T are not visible to clients
+      -- Y and Hidden_T are not visible to users
       procedure Y ( B : in out Private_T );
       type Hidden_T is ...;
       type Private_T is array ( 1 .. 3 ) of Hidden_T;
    end Foo;
        
    package body Foo is
-      -- Z is not visible to clients
+      -- Z is not visible to users
       procedure Z ( B : in out Private_T ) is ...
       procedure Y ( B : in out Private_T ) is ...
       procedure X ( B : in out Private_T ) is ...
