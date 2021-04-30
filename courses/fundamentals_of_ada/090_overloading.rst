@@ -52,19 +52,15 @@ Function Operator Overloading Example
 
 .. code:: Ada
 
-   type Complex is record
-     Real_Part : Float;
-     Imaginary : Float;
-   end record;
-   ...
-   function "+" (L,R : Complex) return Complex is
+   -- User-defined overloading
+   function "+" (L, R : Complex) return Complex is
    begin
      return (L.Real_Part + R.Real_Part,
              L.Imaginary + R.Imaginary);
    end "+";
-   ...
-   A, B, C : Complex;
+
    I, J, K : Integer;
+   A, B, C : Complex;
    ...
    I := J + K; -- overloaded operator (predefined)
    A := B + C; -- overloaded operator (user-defined)
