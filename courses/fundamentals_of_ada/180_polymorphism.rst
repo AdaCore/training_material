@@ -63,7 +63,7 @@ Classes
 Class-types Declaration
 -----------------------
 
-* A class wide type is an indefinite type
+* A class wide type is an **indefinite** type
 
    - Just like an unconstrained array or a record with a discriminant
 
@@ -71,6 +71,8 @@ Class-types Declaration
 
    - Can be used for parameter declarations
    - Can be used for variable declaration with initialization
+
+* Warning: Subprograms with parameter of type `T'Class` are primitives of `T'Class`, not `T`
 
 -------------------------------
 Class-types Declaration Example
@@ -190,19 +192,17 @@ Relation to Primitives
 
    Ada 2012
 
-* Warning: Subprograms with parameter of type `T'Class` are primitives of `T'Class`, not `T`
-
       .. code:: Ada
-
-         type Root is null record;
-         procedure P (V : Root'Class);
-         type Child is new Root with null record;
-         -- This does not override P!
-         overriding procedure P (V : Child'Class);
  
 * Prefix notation rules apply when the first parameter is of a class wide type
 
       .. code:: Ada
+         type Root is null record;
+
+         procedure P (V : Root'Class);
+         type Child is new Root with null record;
+
+         overriding procedure P (V : Child'Class);
 
          V1 : Root;
          V2 : Root'Class := Root'(others => <>);
@@ -321,7 +321,7 @@ Calls on class-wide types (3/3)
 Definite and class wide views
 -------------------------------
 
-* In C++, dispatching occurs only on pointers
+* In C++, dispatching occurs only on virtual methods
 * In Ada, dispatching occurs only on class wide views
 
 .. code:: Ada
