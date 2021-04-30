@@ -14,21 +14,17 @@ Introduction
 Introduction
 --------------
 
-* Overloading is the use of an already existing name to define a new entity
-* Historically, only done within the language
+* Overloading is the use of an **existing** name to define a **new** entity
+* Historically, only done as part of the language **implementation**
 
-   - FORTRAN
+    - Eg. on operators
+    - Float vs integer vs pointers arithmetic
 
-      + Numeric operators for complex, real, integer, ...
+* Several languages allow **user-defined** overloading
 
-   - Pascal
-
-      + `WRITELN( 42 );`
-      + `WRITELN( 'This is a string' );`
-
-   - Many others...
-
-* Most modern languages allow users to do it too
+    - C++
+    - Python (limited to operators)
+    - Haskell
 
 ------------------------------
 Overloadable Entities In Ada
@@ -45,12 +41,10 @@ Overloadable Entities In Ada
 
    procedure Put (Str : in String);
    procedure Put (C : in Complex);
-   function Max (Left, Right : Integer) return Integer;
-   function Max (Left, Right : Float)   return Float;
+   type E1 is (A, B, C);
+   type E2 is (A, B);
    function "+" (Left, Right : Rational) return Rational;
    function "+" (Left, Right : Complex)  return Complex;
-   function "*" (Left : Natural; Right : Character)
-         return String;
 
 ---------------------------------------
 Function Operator Overloading Example
@@ -198,11 +192,13 @@ Call Resolution
 * Compilers must reject ambiguous calls
 * Resolution is based on the calling context
 
-   - Compiler attempts to find a matching specification
+   - Compiler attempts to find a matching **profile**
 
-      + Based on *Parameter and Result Type Profile*
+      + Based on **Parameter** and **Result** Type
 
-   - More than one matching specification is ambiguous
+* Overloading is not re-definition, or hiding
+
+   - More than one matching profile is ambiguous
 
 .. code:: Ada
 
@@ -320,59 +316,6 @@ Which statement is not legal?
    C. Use of :ada:`Top` resolves ambiguity
    D. When overloading subprogram names, best to not just switch the order of parameters
 
-===================
-Visibility Issues
-===================
-
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/visibility_issues.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#visibility-issues`
-
------------------------------------
-Inherently Ambiguous Declarations
------------------------------------
-
-* When a profile appears again within a single scope
-* Are illegal since all calls would be ambiguous
-
-   .. code:: Ada
-
-      procedure Test is
-        procedure P (X : in Natural) is ...
-        procedure P (A : in out Positive) is ... 
-      begin
-        ...
-      end Test;
- 
-* Compile error
-
-   .. code:: Ada
-
-      test.adb:3:04: duplicate body for "P" declared at line 2
- 
-----------------
-Profile Hiding
-----------------
-
-* Subprograms can hide others with same profile
-* Only when scopes differ (same scope would imply illegal declarations)
-
-.. code:: Ada
-
-   Outer : declare
-     procedure P (X : in Natural := 0) is ...
-     begin
-       declare
-         procedure P (A : in out Positive) is ...
-       begin
-         P ( ... );  -- not Outer.P
-       end;
-   end Outer;
- 
 =======================
 User-Defined Equality
 =======================
