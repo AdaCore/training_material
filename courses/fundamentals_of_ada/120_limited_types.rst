@@ -447,10 +447,10 @@ Extended Return Statements Example
            ...
          end return;      
        end F;
-     
---------------------------------------
-`Sequence_of_Statements` Is Optional
---------------------------------------
+
+------------------------------------
+Expression / Statements Are Optional
+------------------------------------
 
 .. admonition:: Language Variant
 
@@ -462,50 +462,36 @@ Extended Return Statements Example
 
       function F return Spin_Lock is      
       begin
-        return Result : Spin_Lock;      
+        return Result : Spin_Lock;
       end F;
  
-* With sequence
-
-   .. code:: Ada
-
-      function F return Spin_Lock is
-        X : Interfaces.Unsigned_8;
-      begin
-        --  compute X ...
-        return Result : Spin_Lock := (Flag => X); 
-      end F;
- 
----------------------------------------
-`Sequence_of_Statements` Restrictions
----------------------------------------
+-----------------------
+Statements Restrictions
+-----------------------
 
 .. admonition:: Language Variant
 
    Ada 2005
 
-* Any statement except another extended return
-* A simple return statement is allowed
+* **No** nested extended return
+* **Simple** return statement **allowed**
 
-   - Without an expression, since object expresses the value
-   - Returns the value of the declared object immediately
+   - **Without** expression
+   - Returns the value of the **declared object** immediately
 
 .. code:: Ada
     
    function F return Spin_Lock is      
-     X : Boolean;
    begin
      return Result : Spin_Lock do
-       Result.Flag := 0;
-       -- compute X ...
-       if X then
+       if Set_Flag then
+         Result.Flag := 1;
          return;  -- returns 'Result'
        end if; 
-       ...
-       Result.Flag := 1;
-     end return;      
+       Result.Flag := 0;
+     end return; -- Implicit return
    end F;
-     
+
 =====================================
 Combining Limited and Private Views
 =====================================
