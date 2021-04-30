@@ -686,7 +686,7 @@ Extra Object-Level Operations
    - Index constraints
    - et cetera
 
-* Uses reserved word `in`
+* Uses reserved word :ada:`in`
 
 .. code:: Ada
 
