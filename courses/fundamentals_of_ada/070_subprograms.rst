@@ -1300,13 +1300,14 @@ Parameter Aliasing via Global Variable
      -- if pass by-copy, prints "Hello"
      -- if pass by-reference, prints "World"
      Print (Formal => Actual); 
- 
+
 -----------------------------------------
 Parameter Aliasing via Multiple Actuals
 -----------------------------------------
 
 .. code:: Ada
 
+   is
      Actual : String := "Hello";
      procedure Print (Formal1 : out String;
                       Formal2 : in String) is

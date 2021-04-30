@@ -246,13 +246,14 @@ Assignment Examples
       Phase1.Real := 2.5;
       Phase1.Real := Phase2.Real;
    end;
- 
+
 -------------------------------
 Referencing Nested Components
 -------------------------------
 
 .. code:: Ada
 
+  is
      type Date is ....  -- as before
      type Personal_Information is record
          Name : String(1..80);

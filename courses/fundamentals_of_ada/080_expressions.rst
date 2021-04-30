@@ -89,6 +89,7 @@ Testing Non-Contiguous Membership
 
 .. code:: Ada
 
+   is
     M : Month_Number := Month (Clock); 
    begin
      if M in 9 | 4 | 6 | 11 then
@@ -266,13 +267,14 @@ Result Must Be Compatible with Context
 
    X : Integer :=
        (if Day_Of_Week (Clock) > Wednesday then 1 else 0);
- 
+
 -------------------------
 *If Expression* Example
 -------------------------
 
 .. code:: Ada
 
+   is
      Remaining : Natural := 5;  -- arbitrary
    begin
      while Remaining > 0 loop

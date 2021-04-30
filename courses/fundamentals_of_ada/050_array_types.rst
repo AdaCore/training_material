@@ -465,6 +465,7 @@ Arrays of Arrays
 
 .. code:: Ada
 
+   is
      type Array_of_10 is array (1..10) of Integer;
      type Array_of_Array is array (Boolean) of Array_of_10;
      A : Array_of_Array;
@@ -547,6 +548,7 @@ Attributes' Benefits
 
    .. code:: Ada
 
+      is
          type List is array (5 .. 15) of Integer;
          L : List;
          List_Index : Integer range List'Range := List'First;
@@ -848,44 +850,46 @@ For-Loops with Multidimensional Arrays
 
    Ada 2012
 
-.. container:: columns
+* Same syntax, regardless of number of dimensions
+* As if a set of nested loops, one per dimension
 
- .. container:: column
+   - Last dimension is in innermost loop, so changes fastest
 
-    * Same syntax, regardless of number of dimensions
-    * As if a set of nested loops, one per dimension
+* In low-level format looks like
 
-       - Last dimension is in innermost loop, so changes fastest
+   .. code:: python
 
-    * In low-level format looks like
+      for each row:
+          for each column:
+               print Identity (row, column)
 
-       - for each row loop
-       -   for each column loop
-       -     print Identity (row, column)
-       -   end loop
-       - end loop
+----------------------------------------------
+For-Loops with Multidimensional Arrays Example
+----------------------------------------------
 
- .. container:: column
+.. admonition:: Language Variant
 
-   .. container:: latex_environment small
+   Ada 2012
 
-    .. code:: Ada
+.. container:: latex_environment small
 
-       declare
-         subtype Rows is Positive;
-         subtype Columns is Positive;
-         type Matrix is array
-            (Rows range <>,
-             Columns range <>) of Float;
-           Identity : constant Matrix
-              (1..3, 1..3) :=
-                ((1.0, 0.0, 0.0),
-                 (0.0, 1.0, 0.0),
-                 (0.0, 0.0, 1.0));
-       begin
-         for C of Identity loop
-           Put_Line (Float'Image(C));
-         end loop;
+ .. code:: Ada
+
+    declare
+      subtype Rows is Positive;
+      subtype Columns is Positive;
+      type Matrix is array
+         (Rows range <>,
+          Columns range <>) of Float;
+        Identity : constant Matrix
+           (1..3, 1..3) :=
+             ((1.0, 0.0, 0.0),
+              (0.0, 1.0, 0.0),
+              (0.0, 0.0, 1.0));
+    begin
+      for C of Identity loop
+        Put_Line (Float'Image(C));
+      end loop;
 
 ------
 Quiz
@@ -1243,6 +1247,7 @@ Table Search Example
 
 .. code:: Ada
 
+   is
      type Age is range 0 .. 200;
      type Humanity is array (1 .. N) of Age;
      ...
@@ -1311,12 +1316,13 @@ Slicing With Explicit Indexes
 
 .. code:: Ada
 
+   is
      Full_Name : String (1 .. 20);
    begin
      Put_Line (Full_Name);
      Put_Line (Full_Name (1..10));  -- first half of name
      Put_Line (Full_Name (11..20)); -- second half of name
- 
+
 -----------------------------------------
 Slicing With Named Subtypes for Indexes
 -----------------------------------------
