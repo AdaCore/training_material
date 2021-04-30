@@ -499,7 +499,7 @@ Bit-Oriented Operations Example
 Why No Implicit Shift and Rotate?
 ---------------------------------
 
-* Arithmetic, logical operators available **implicity**
+* Arithmetic, logical operators available **implicitly**
 * **Why not** :ada:`Shift`, :ada:`Rotate`, etc. ?
 * By **excluding** other solutions
 
@@ -1275,6 +1275,13 @@ Default Value
          with Default_Value => Neither;
       Implicit : Tertiary_Switch; -- Implicit = Neither
       Explicit : Tertiary_Switch := Neither;
+
+* Examples
+
+   .. code:: Ada
+
+      subtype Natural is Integer range 0 .. Integer'Last;
+      subtype Positive is Natural range 1 .. Natural'Last;
 
 -------------------------------
 Simple Static Type Derivation

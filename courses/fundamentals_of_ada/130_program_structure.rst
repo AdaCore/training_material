@@ -371,10 +371,9 @@ Subsystem Approach
      
    package OS.Mem_Mgmt is
      ...
-     function Mmap ( Requested_Location : System.Address; 
-                     Requested_Size  : Interfaces.C.size_t;
-                     Offset_Within_Area : Interfaces.C.int )
-                     return System.Address;
+     procedure Dump ( File               : File_Descriptor;
+                      Requested_Location : System.Address; 
+                      Requested_Size     : Interfaces.C.Size_T );
      ...
    end OS.Mem_Mgmt;
        

@@ -491,10 +491,10 @@ Low Level Programming
     - Abstractions preserved
 
 ---------------------------------
-**Standard** Language Environment
+Standard Language Environment
 ---------------------------------
 
-* Standardized common API
+Standardized common API
 
 .. container:: columns
 

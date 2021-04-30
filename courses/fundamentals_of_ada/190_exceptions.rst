@@ -598,9 +598,9 @@ Propagation Demo
        procedure P is
          Error : exception;
          procedure R is
-           begin
-             Maybe_Raise(1);
-           end R;
+         begin
+           Maybe_Raise(1);
+         end R;
          procedure Q is
          begin
            R;
@@ -619,7 +619,7 @@ Propagation Demo
          Q;
        exception
          when Error =>
-           Print ("Exception from 3"); 
+           Print("Exception from 3"); 
        end P;
      
 -------------------

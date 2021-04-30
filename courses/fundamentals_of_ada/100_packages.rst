@@ -197,6 +197,7 @@ Referencing Exported Items
     
    .. code:: Ada
     
+      with Float_Stack;
       procedure Test is
          X : Float;
       begin

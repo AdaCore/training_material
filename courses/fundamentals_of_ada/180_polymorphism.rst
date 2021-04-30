@@ -119,7 +119,7 @@ Tag Attribute Example
 
    type Parent is tagged null record;
    type Child is new Parent with null record;
-   Parent_Obj : Parent; -- Parent_Obj'Tag = Parent_T'Tag
+   Parent_Obj : Parent; -- Parent_Obj'Tag = Parent'Tag
    Child_Obj  : Child;  -- Child_Obj'Tag = Child'Tag
    Parent_Class_1 : Parent'Class := Parent_Obj;
                     -- Parent_Class_1'Tag = Parent'Tag
