@@ -1342,24 +1342,13 @@ Dynamic Subtype Constraint Example
 ------------------------------------
 
 * Useful when constraints not known at compile-time
-* Example: find the matching "raw" file name
-
-   - If the filename begins with CRW, we set the extension to CRW, otherwise we set it to CR2
+* Example: remove file name extension
 
 .. code:: Ada
-    
-   -- actual bounds come from initial value
-   Image_File_Name : String := ...   
-   Matching_Raw_File_Name : String := Image_File_Name;
-   subtype Prefix_Part is Positive range Image_File_Name'First ..
-                                         Image_File_Name'First + 2;
-   subtype Extension_Part is Positive range Image_File_Name'Last - 2 ..
-                                            Image_File_Name'Last;
-   begin
-     if Image_File_Name (Prefix_Part) = "CRW" then
-        Matching_Raw_File_Name(Extension_Part) := "CRW";
-     else
-       Matching_Raw_File_Name(Extension_Part) := "CR2";
+
+    File_Name (File_Name'First
+               ..
+               Index (File_Name, '.', Direction = Backward));
 
 ========
 Lab
