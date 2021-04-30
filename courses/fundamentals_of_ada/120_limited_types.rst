@@ -216,7 +216,7 @@ Which assignment is legal?
    A. ``T1    := T2;``
    B. ``R1    := R2;``
    C. :answermono:`R1.F1 := R2.F1;`
-   D. ``R2.F2 := R2.T2;``
+   D. ``R2.F2 := R2.F2;``
 
 .. container:: animate
 
