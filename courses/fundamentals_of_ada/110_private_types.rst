@@ -67,29 +67,7 @@ Views
 * Purpose: control usage in accordance with design
 
    - Adherence to interface
-   - Abstract Data Types!
-
----------------------
-Abstract Data Types
----------------------
-
-* Designers define meaningful values and operations
-
-   - Logical values such as *opened*, *closed*, etc...
-   - Proper operations such as **Open**, **Close**, etc...
-
-* Users manipulate objects within designer's intent
-
-   - Representation-dependent manipulations are prohibited
-
-.. code:: Ada
-
-   type Valve is ...
-   procedure Open (V : in out Valve);
-   procedure Close (V : in out Valve);
-   type States is (Fully_Open, Partially_Open,
-                   Closed, Unavailable);
-   function Current_State (V : Valve) return States;
+   - Abstract Data Types
  
 ============================================
 Implementing Abstract Data Types via Views
