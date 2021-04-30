@@ -96,9 +96,9 @@ Interface Derivation
    .. code:: Ada
 
       type I1 is interface;
-      procedure P1 (V : I) is abstract;
+      procedure P1 (V : I1) is abstract;
       type I2 is interface and I1;
-      Procedure P2 (V : I) is abstract;
+      Procedure P2 (V : I1) is abstract;
  
 * A tagged type can derive from several interfaces and can derive from one interface several times
 
