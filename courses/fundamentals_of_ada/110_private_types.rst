@@ -144,11 +144,14 @@ Declaring Private Types for Views
  
 * Private type declaration must occur in visible part
 
+   - **Incomplete** type
    - So users can reference the type name
 
 * Full type declaration must appear in private part
 
-   - Thus representation is not visible outside the package
+   - Type **completion**
+   - **Never** visible to users
+   - **Not** visible to designer until reached
 
 .. code:: Ada
 
@@ -586,6 +589,7 @@ View Operations
   
     * **Designer** of package has **Full** view
 
+       - **Once** completion is reached
        - All operations based upon full definition of type
        - Indexed components for arrays
        - Selected components for records
