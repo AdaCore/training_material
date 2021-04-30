@@ -33,14 +33,6 @@ Advanced Expressions
 Membership Tests
 ==================
 
-----------
-Examples
-----------
-
-.. include:: examples/080_expressions/membership_tests.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#membership-tests`
-
 -------------------------
  "Membership" Operation
 -------------------------
@@ -200,14 +192,6 @@ Index Constraints
 =========================
 Conditional Expressions
 =========================
-
-----------
-Examples
-----------
-
-.. include:: examples/080_expressions/conditional_expressions.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#conditional-expressions`
 
 -------------------------
 Conditional Expressions
@@ -552,14 +536,6 @@ Which statement is illegal?
 Expression Functions
 ======================
 
-----------
-Examples
-----------
-
-.. include:: examples/070_subprograms/expression_functions.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#expression-functions`
-
 ----------------------
 Expression Functions
 ----------------------
@@ -672,12 +648,6 @@ Which statement is True?
    B. An expression function body can act as its own specification.
    C. Expression functions only contain an expression - no :ada:`return` statement allowed.
    D. Correct - although the expression function itself cannot modify an :ada:`out` parameter, it could call another function that does.
-
-========
-Lab
-========
-
-.. include:: labs/080_expressions.lab.rst
 
 =========
 Summary

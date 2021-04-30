@@ -42,14 +42,6 @@ Strong Typing
 Type Invariants
 =================
 
-----------
-Examples
-----------
-
-.. include:: examples/215_type_contracts/type_invariants.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/215_type_contracts.html#type-invariants`
-
 -----------------
 Type Invariants
 -----------------
@@ -290,14 +282,6 @@ Quiz
 ====================
 Subtype Predicates
 ====================
-
-----------
-Examples
-----------
-
-.. include:: examples/215_type_contracts/subtype_predicates.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/215_type_contracts.html#subtype-predicates`
 
 ----------------------------
 Subtype Predicates Concept
@@ -848,12 +832,6 @@ D. | ``subtype T is Days_T with``
    B. :ada:`If` statement not allowed in a predicate
    C. Function call not allowed in :ada:`Static_Predicate` (this would be OK for :ada:`Dynamic_Predicate`)
    D. Missing parentheses around :ada:`case` expression
-
-========
-Lab
-========
-
-.. include:: labs/215_type_contracts.lab.rst
 
 =========
 Summary

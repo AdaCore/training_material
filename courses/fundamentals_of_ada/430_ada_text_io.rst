@@ -261,12 +261,6 @@ Ada.IO_Exceptions
 
    * `Data_Error` :math:`\rightarrow` Failure of `Get` to read valid data
 
-========
-Lab
-========
-
-.. include:: labs/430_ada_text_io.lab.rst
-
 =========
 Summary
 =========

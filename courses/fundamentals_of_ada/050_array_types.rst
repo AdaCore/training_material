@@ -117,14 +117,6 @@ Kinds of Array Types
 Constrained Array Types
 =========================
 
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/constrained_array_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#constrained-array-types`
-
 -------------------------------------
 Constrained Array Type Declarations
 -------------------------------------
@@ -300,14 +292,6 @@ Which statement is not legal?
 ===========================
 Unconstrained Array Types
 ===========================
-
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/unconstrained_array_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#unconstrained-array-types`
 
 ---------------------------------------
 Unconstrained Array Type Declarations
@@ -506,14 +490,6 @@ Which statement is illegal?
 Attributes
 ============
 
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/attributes.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#attributes`
-
 ------------------
 Array Attributes
 ------------------
@@ -622,14 +598,6 @@ Which description is incorrect?
 Operations
 ============
 
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/operations.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#operations`
-
 -------------------------
 Object-Level Operations
 -------------------------
@@ -737,14 +705,6 @@ Which statement is illegal?
 ==============================
 Operations Added for Ada2012
 ==============================
-
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/operations_added_for_ada2012.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#operations-added-for-ada2012`
 
 ----------------------------------------
 Default Initialization for Array Types
@@ -931,14 +891,6 @@ Which output is correct?
 ============
 Aggregates
 ============
-
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/aggregates.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#aggregates`
 
 ------------
 Aggregates
@@ -1270,14 +1222,6 @@ Table Search Example
 Slices
 ========
 
-----------
-Examples
-----------
-
-.. include:: examples/080_expressions/slices.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#slices`
-
 ---------
 Slicing
 ---------
@@ -1355,12 +1299,6 @@ Dynamic Subtype Constraint Example
     File_Name (File_Name'First
                ..
                Index (File_Name, '.', Direction = Backward));
-
-========
-Lab
-========
-
-.. include:: labs/050_array_types.lab.rst
 
 =========
 Summary

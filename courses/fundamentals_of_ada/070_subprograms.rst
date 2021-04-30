@@ -81,14 +81,6 @@ A Little "Preaching" About Names
 Declarations and Bodies
 ========================
 
-----------
-Examples
-----------
-
-.. include:: examples/070_subprograms/declarations_and_bodies.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#declarations-and-bodies`
-
 --------------------------
 Subprogram Declarations 
 --------------------------
@@ -350,14 +342,6 @@ Which profile is semantically different from the others?
 ============
 Parameters
 ============
-
-----------
-Examples
-----------
-
-.. include:: examples/070_subprograms/parameters.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#parameters`
 
 ----------------------------------
 Subprogram Parameter Terminology
@@ -1138,14 +1122,6 @@ Function Results Are Objects
 Potential Pitfalls
 ====================
 
-----------
-Examples
-----------
-
-.. include:: examples/070_subprograms/potential_pitfalls.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#potential-pitfalls`
-
 -----------------------------
 Mode `out` Risk for Scalars
 -----------------------------
@@ -1531,12 +1507,6 @@ Set Example (Implementation)
      return Of_Set(C);
    end Is_Member;
      
-========
-Lab
-========
-
-.. include:: labs/070_subprograms.lab.rst
-
 =========
 Summary
 =========

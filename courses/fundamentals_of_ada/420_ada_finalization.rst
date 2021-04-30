@@ -205,12 +205,6 @@ Unbounded String Implementation
       end Adjust;
    end Unbounded_String_Pkg;
 
-========
-Lab
-========
-
-.. include:: labs/420_ada_finalization.lab.rst
-
 =========
 Summary
 =========

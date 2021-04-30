@@ -62,14 +62,6 @@ Two Synchronization Models
 Tasks
 =======
 
-----------
-Examples
-----------
-
-.. include:: examples/240_tasking/tasks.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/240_tasking.html#tasks`
-
 ------------------------
 Rendezvous Definitions
 ------------------------
@@ -198,14 +190,6 @@ Quiz
 ===================
 Protected Objects
 ===================
-
-----------
-Examples
-----------
-
-.. include:: examples/240_tasking/protected_objects.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/240_tasking.html#protected-objects`
 
 -------------------
 Protected Objects
@@ -340,14 +324,6 @@ Absolute Delay
 Task and Protected Types
 ==========================
 
-----------
-Examples
-----------
-
-.. include:: examples/240_tasking/task_and_protected_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/240_tasking.html#task-and-protected-types`
-
 ---------------
 Task Activation
 ---------------
@@ -430,14 +406,6 @@ Task Scope
 ========================
 Some Advanced Concepts
 ========================
-
-----------
-Examples
-----------
-
-.. include:: examples/240_tasking/some_advanced_concepts.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/240_tasking.html#some-advanced-concepts`
 
 ---------------------------
 Waiting On Multiple Entries
@@ -745,12 +713,6 @@ Abort Statements
       end select;
       -- statements to execute after select
  
-========
-Lab
-========
-
-.. include:: labs/240_tasking.lab.rst
-
 =========
 Summary
 =========

@@ -55,14 +55,6 @@ Syntax and Examples
 Components Rules
 ==================
 
-----------
-Examples
-----------
-
-.. include:: examples/060_record_types/components_rules.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#components-rules`
-
 -------------------------------
 Characteristics of Components
 -------------------------------
@@ -186,14 +178,6 @@ D. ``Component5 : constant integer := 123;``
 Operations
 ============
 
-----------
-Examples
-----------
-
-.. include:: examples/060_record_types/operations.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#operations`
-
 ----------------------
 Available Operations
 ----------------------
@@ -271,14 +255,6 @@ Referencing Nested Components
 ============
 Aggregates
 ============
-
-----------
-Examples
-----------
-
-.. include:: examples/060_record_types/aggregates.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#aggregates`
 
 ------------
 Aggregates
@@ -519,14 +495,6 @@ D. ``X := (1, '2', True, 4, (others => 5));``
 Default Values
 ================
 
-----------
-Examples
-----------
-
-.. include:: examples/060_record_types/default_values.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#default-values`
-
 --------------------------
 Component Default Values
 --------------------------
@@ -653,14 +621,6 @@ D. 100, 101, 102
 Variant Records
 =================
 
-----------
-Examples
-----------
-
-.. include:: examples/060_record_types/variant_records.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#variant-records`
-
 ----------------------
 Variant Record Types
 ----------------------
@@ -743,12 +703,6 @@ Semantics
 
       Pat  := Soph; -- OK
       Soph := Prof; -- Constraint_Error at run time
-
-========
-Lab
-========
-
-.. include:: labs/060_record_types.lab.rst
 
 =========
 Summary

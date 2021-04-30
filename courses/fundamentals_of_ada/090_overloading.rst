@@ -102,14 +102,6 @@ Benefits and Risk of Overloading
 Enumerals and Operators
 =========================
 
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/enumerals_and_operators.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#enumerals-and-operators`
-
 -----------------------
 Overloading Enumerals
 -----------------------
@@ -186,14 +178,6 @@ Parameters for Overloaded Operators
 =================
 Call Resolution
 =================
-
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/call_resolution.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#call-resolution`
 
 -----------------
 Call Resolution
@@ -330,14 +314,6 @@ Which statement is not legal?
 User-Defined Equality
 =======================
 
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/user_defined_equality.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#user-defined-equality`
-
 -----------------------
 User-Defined Equality
 -----------------------
@@ -352,12 +328,6 @@ User-Defined Equality
     - Especially user-defined types
     - "Composition of equality"
 
-========
-Lab
-========
-
-.. include:: labs/090_overloading.lab.rst
- 
 =========
 Summary
 =========

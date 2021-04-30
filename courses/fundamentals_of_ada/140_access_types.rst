@@ -174,14 +174,6 @@ Deallocation Example
 General Access Types
 ==========================
 
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/general_access_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#general-access-types`
-
 ----------------------
 General Access Types
 ----------------------
@@ -284,14 +276,6 @@ D. ``Two := A'Access;``
 Access Types
 ==========================
 
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/access_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#access-types`
-
 -------------
 Null Values
 -------------
@@ -393,14 +377,6 @@ Access Modifiers
 ======================
 Accessibility Checks
 ======================
-
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/accessibility_checks.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#accessibility-checks`
 
 ---------------------------
 Access Declaration Location
@@ -549,14 +525,6 @@ D. ``Local_Pointer  := Local_Object'Access;``
 Memory Management
 ===================
 
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/memory_management.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#memory-management`
-
 ------------------------------
 Common Memory Problems (1/3)
 ------------------------------
@@ -652,14 +620,6 @@ How To Fix Memory Problems?
 Anonymous Access Types
 ========================
 
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/anonymous_access_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#anonymous-access-types`
-
 -----------------------------
 Anonymous Access Parameters
 -----------------------------
@@ -714,12 +674,6 @@ Anonymous Access Types
       procedure Foo ( V1 : not null access constant Integer); -- 2005
 
 * Be careful with **accessibility check** rules
-
-========
-Lab
-========
-
-.. include:: labs/140_access_types.lab.rst
 
 =========
 Summary

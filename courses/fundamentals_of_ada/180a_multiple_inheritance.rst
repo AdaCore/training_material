@@ -149,12 +149,6 @@ Limited Tagged Types And Interfaces
 * `limited` interfaces can be implemented by BOTH limited types and non-limited types
 * Non-limited interfaces have to be implemented by non-limited types
 
-========
-Lab
-========
-
-.. include:: labs/180a_multiple_inheritance.lab.rst
-
 =========
 Summary
 =========

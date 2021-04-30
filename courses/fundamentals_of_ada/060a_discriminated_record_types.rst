@@ -421,12 +421,6 @@ Use of Discriminants in Record Definition
 
 * A discriminant is not allowed as the bound of a range constraint
 
-========
-Lab
-========
-
-.. include:: labs/060a_discriminated_record_types.lab.rst
-
 =========
 Summary
 =========

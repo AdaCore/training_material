@@ -131,14 +131,6 @@ Handler Part Is Skipped Automatically
 Handlers
 ==========
 
-----------
-Examples
-----------
-
-.. include:: examples/190_exceptions/handlers.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/190_exceptions.html#handlers`
-
 ------------------------
 Exception Handler Part
 ------------------------
@@ -394,14 +386,6 @@ Quiz
 Implicitly and Explicitly Raised Exceptions
 =============================================
 
-----------
-Examples
-----------
-
-.. include:: examples/190_exceptions/implicitly_and_explicitly_raised_exceptions.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/190_exceptions.html#implicitly-and-explicitly-raised-exceptions`
-
 ------------------------------
 Implicitly-Raised Exceptions
 ------------------------------
@@ -483,14 +467,6 @@ Explicitly-Raised Exceptions
 User-Defined Exceptions
 =========================
 
-----------
-Examples
-----------
-
-.. include:: examples/190_exceptions/user_defined_exceptions.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/190_exceptions.html#user-defined-exceptions`
-
 -------------------------
 User-Defined Exceptions
 -------------------------
@@ -552,14 +528,6 @@ User-Defined Exceptions Example
 =============
 Propagation
 =============
-
-----------
-Examples
-----------
-
-.. include:: examples/190_exceptions/propagation.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/190_exceptions.html#propagation`
 
 -------------
 Propagation
@@ -709,14 +677,6 @@ What will get printed for these values of Input_Value?
 =======================
 Exceptions as Objects
 =======================
-
-----------
-Examples
-----------
-
-.. include:: examples/190_exceptions/exceptions_as_objects.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/190_exceptions.html#exceptions-as-objects`
 
 ----------------------------
 Exceptions Are Not Objects
