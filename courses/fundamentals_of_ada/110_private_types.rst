@@ -353,7 +353,7 @@ Examples
 Private Part Location
 -----------------------
 
-* Must be in package declaration, not body
+* Must be in package specification, not body
 * Body usually compiled separately after declaration
 * Users can compile their code before the package body is compiled or even written
 
