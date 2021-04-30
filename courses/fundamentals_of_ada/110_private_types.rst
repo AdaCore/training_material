@@ -309,29 +309,6 @@ Compile-Time Visibility Protection
       begin
         S.Top := 1;  -- Top is not visible
       end User;
-
------------------------------------------
-Sample Expression In C++ for Comparison
------------------------------------------
-
-.. code:: C++
-
-   #ifndef BOUNDED_STACKS_
-   #define BOUNDED_STACKS_
-   namespace Bounded_Stacks {
-      // for integers, purely for sake of simplicity
-      enum {Capacity=100};  // arbitrary
-      class Stack { 
-      public:
-         Stack();
-         void Push (int X);
-         void Pop (int& X);
-      private:
-         int Values[Capacity];
-         int Top;
-      }; // Stack
-   } // Bounded_Stacks
-   #endif
  
 -------------------
 Benefits of Views
