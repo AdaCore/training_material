@@ -119,25 +119,6 @@ Freeze Point
 
 * A subprogram can be a primitive of several types
 
----------------------------
-Access Types and Primitives
----------------------------
-
-* Subprogram using an access type are primitive of the **access type**
-
-    - **Not** the type of the accessed object
-
-   .. code:: Ada
-
-         type A_T is access all T;
-         procedure Proc (V : A_T); -- Primitive of A_T, not T
-
-* Primitive of the type can be created with the :ada:`access` mode
-
-   .. code:: Ada
-
-         procedure Proc (V : access T); -- Primitive of T
-
 -------------------------------
 Implicit Primitive Operations
 -------------------------------
