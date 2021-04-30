@@ -6,7 +6,6 @@
 .. role:: ada(code)
     :language: Ada
 
-
 **************
 Declarations
 **************
@@ -33,7 +32,7 @@ Identifiers
          Phase2
          A
          Space_Person
- 
+
  .. container:: column
 
    * Not legal identifiers
@@ -50,7 +49,7 @@ String Literals
 .. |rightarrow| replace:: :math:`\rightarrow`
 
 .. code::
-    
+
    string_literal ::= "<string content>"
 
 .. code:: Ada
@@ -71,14 +70,6 @@ String Literals
 Identifiers, Comments, and Pragmas
 ====================================
 
-----------
-Examples
-----------
-
-.. include:: examples/020_declarations/identifiers_comments_and_pragmas.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#identifiers-comments-and-pragmas`
-
 -------------
 Identifiers
 -------------
@@ -88,7 +79,7 @@ Identifiers
    .. code::
 
       identifier ::= letter {[underline] letter_or_digit}
- 
+
 * Character set **Unicode** 4.0
 
    - 8, 16, 32 bit-wide characters
@@ -137,7 +128,7 @@ Comments
       -- This is a multi-
       -- line comment
       A : B; -- this is an end-of-line comment
- 
+
 ---------
 Pragmas
 ---------
@@ -184,14 +175,6 @@ Which statement is legal?
 Numeric Literals
 ==================
 
-----------
-Examples
-----------
-
-.. include:: examples/020_declarations/numeric_literals.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#numeric-literals`
-
 --------------------------
 Decimal Numeric Literals
 --------------------------
@@ -205,7 +188,6 @@ Decimal Numeric Literals
       numeral ::= digit {[underline] digit}
 
 * Underscore is not significant
- 
 * Examples
 
    .. code:: Ada
@@ -222,7 +204,7 @@ Based Numeric Literals
    based_literal ::=
      base # based_number [.based_number] # E [+numeral|-numeral]
    based_number ::= base_digit { '_' base_digit }
- 
+
 * Base can be 2 .. 16
 * Exponent is always a decimal number
 
@@ -232,7 +214,7 @@ Based Numeric Literals
       2#1111_1111_1111# => 4095 -- With underline
       16#F.FF#E+2       => 4095.0
       8#10#E+3          => 4096 (8 * 8**3)
- 
+
 --------------------------------------------
 Comparison To C's Based Literals
 --------------------------------------------
@@ -272,14 +254,6 @@ Which statement is legal?
 Object Declarations
 =====================
 
-----------
-Examples
-----------
-
-.. include:: examples/020_declarations/object_declarations.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#object-declarations`
-
 --------------
 Declarations
 --------------
@@ -307,7 +281,7 @@ Object Declarations
    .. code:: Ada
 
       <name> : subtype_indication [:= <initial value>];
- 
+
 * Examples
 
    .. code:: Ada
@@ -318,7 +292,7 @@ Object Declarations
       Count : Integer range 0 .. Max := 0;
       -- dynamic initial value via function call
       Root : Tree := F(X);
- 
+
 ------------------------------
 Multiple Object Declarations
 ------------------------------
@@ -328,20 +302,20 @@ Multiple Object Declarations
    .. code:: Ada
 
       A, B : Integer := F(X);
- 
+
 * Identical to series of single declarations
 
    .. code:: Ada
 
       A : Integer := F(X);
       B : Integer := F(X);
- 
+
 * Warning: may get different value
 
    .. code:: Ada
 
       T1, T2 : Time := Clock;
- 
+
 -------------------------
 Predefined Declarations
 -------------------------
@@ -370,7 +344,7 @@ Implicit vs. Explicit Declarations
    .. code:: Ada
 
       type Counter is range 0 .. 1000;
- 
+
 * Implicit |rightarrow| **automatically** by the compiler
 
    .. code:: Ada
@@ -380,7 +354,7 @@ Implicit vs. Explicit Declarations
       function "*" ( Left, Right : Counter ) return Counter;
       function "/" ( Left, Right : Counter ) return Counter;
       ...
- 
+
 -------------
 Elaboration
 -------------
@@ -408,7 +382,7 @@ Elaboration
         Another_One : Integer := Next_One;
       begin
         ...
- 
+
 ------
 Quiz
 ------
@@ -439,7 +413,6 @@ Universal Types
 -----------------
 
 * Implicitly defined 
-
 * Entire *classes* of numeric types
 
    - `universal_integer`
@@ -454,7 +427,7 @@ Universal Types
 
      X : Integer64 := 2;
      Y : Integer8 := 2;
- 
+
 ----------------------------------------
 Numeric Literals Are Universally Typed
 ----------------------------------------
@@ -471,14 +444,13 @@ Numeric Literals Are Universally Typed
 
      X : Unsigned_Long := 0;
      Y : Unsigned_Short := 0;
- 
+
 ----------------------------------------
 Literals Must Match "Class" of Context
 ----------------------------------------
 
 * `universal_integer` literals |rightarrow| **integer**
 * `universal_real` literals |rightarrow| **fixed** or **floating** point
-
 * Legal
 
   .. code:: Ada
@@ -497,14 +469,6 @@ Literals Must Match "Class" of Context
 Named Numbers
 ===============
 
-----------
-Examples
-----------
-
-.. include:: examples/020_declarations/named_numbers.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#named-numbers`
-
 ---------------
 Named Numbers
 ---------------
@@ -521,14 +485,14 @@ Named Numbers
    .. code:: Ada
 
      <name> : constant := <static_expression>;
- 
+
 * Example
 
    .. code:: Ada
 
       Pi : constant := 3.141592654;
       One_Third : constant := 1.0 / 3.0;
- 
+
 --------------------------------------
 A Sample Collection of Named Numbers
 --------------------------------------
@@ -546,7 +510,7 @@ A Sample Collection of Named Numbers
      Altitude_Of_Tropopause : constant := 36089.0;
      Tropopause_Temperature : constant := -56.5;
    end Physical_Constants;
- 
+
 ----------------------
 Named Number Benefit
 ----------------------
@@ -585,14 +549,6 @@ Named Number Benefit
 ======================
 Scope and Visibility
 ======================
-
-----------
-Examples
-----------
-
-.. include:: examples/020_declarations/scope_and_visibility.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#scope-and-visibility`
 
 ----------------------
 Scope and Visibility
@@ -682,7 +638,7 @@ Name Hiding
         end;
         ... -- M here is an INTEGER
       end;
- 
+
 -------------------
 Overcoming Hiding
 -------------------
@@ -708,7 +664,7 @@ Overcoming Hiding
      end;
      ...
    end Outer;
-     
+
 ------
 Quiz
 ------
@@ -754,14 +710,6 @@ Quiz
 Aspect Clauses
 ================
 
-----------
-Examples
-----------
-
-.. include:: examples/020_declarations/aspect_clauses.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/020_declarations.html#aspect-clauses`
-
 ----------------
 Aspect Clauses
 ----------------
@@ -777,7 +725,7 @@ Aspect Clauses
     - Can be **standard** or **implementation**-defined
 
 * Usage close to pragmas
-    
+
     - More **explicit**, **typed**
     - **Cannot** be ignored
     - **Recommended** over pragmas
@@ -806,7 +754,7 @@ Aspect Clause Example: Objects
       <name> : <subtype_indication> [:= <initial value>]
                      with aspect_mark [ => expression]
                      {, aspect_mark [ => expression] };
- 
+
 * Usage
 
    .. code:: Ada
@@ -820,7 +768,7 @@ Aspect Clause Example: Objects
       CR2 : Control_Register;
       for CR2'Size use 8;
       for CR2'Address use To_Address (16#DEAD_BEEF#);
- 
+
 ------------------------
 Boolean Aspect Clauses
 ------------------------
@@ -841,13 +789,13 @@ Boolean Aspect Clauses
   .. code:: Ada
 
      procedure Foo with Inline; -- Inline is True
- 
+
 * No aspect |rightarrow| **False**
 
   .. code:: Ada
 
      procedure Foo; -- Inline is False
- 
+
   - Original form!
 
 =========
