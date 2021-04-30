@@ -425,14 +425,13 @@ Function Extended Return Statements
     
    .. code:: Ada
     
-      extended_return_statement ::= return defining_identifier : [aliased]
-                                    return_subtype_indication 
-                                    [:= expression] 
-                                    [do handled_sequence_of_statements
-                                    end return];
+      return identifier : subtype [:= expression];
+
+      return identifier : subtype
+      [do
+         sequence_of_statements ...
+       end return];
              
-      return_subtype_indication ::= subtype_name [constraint]
-     
 * Example
     
    .. code:: Ada
