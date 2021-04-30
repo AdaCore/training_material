@@ -368,6 +368,28 @@ Dereference Examples
    V_R.all := (0, 0);
    V_R.F1 := 1; -- similar to V_R.all.F1 := 1;
 
+----------------
+Access Modifiers
+----------------
+
+* :ada:`constant` (instead of :ada:`all`) is an access type to a **constant view**
+
+   .. code:: Ada
+
+      type CAcc is access constant Integer;
+      G1 : aliased Integer;
+      G2 : aliased constant Integer;
+      V1 : CAcc := G1'Access;
+      V2 : CAcc := G2'Access;
+      V1.all := 0; -- illegal
+
+* **Ada 2005**: :ada:`not null` is an access type that can not be :ada:`null`
+
+   .. code:: Ada
+
+      type NAcc is not null access Integer;
+      V : NAcc := null; -- illegal
+
 ======================
 Accessibility Checks
 ======================
@@ -683,36 +705,15 @@ Anonymous Access Types
 
       type A is array (Integer range <>) of access Integer;
 
+* Can be used with :ada:`constant` and :ada:`not null` modifiers
+
+   .. code:: Ada
+
+      procedure Bar ( V1 : access constant Integer);
+      procedure Foo ( V1 : not null access Integer); -- 2005
+      procedure Foo ( V1 : not null access constant Integer); -- 2005
+
 * Be careful with **accessibility check** rules
-
-----------------------------------
-Anonymous Access Constants
-----------------------------------
-
-* :ada:`constant` (instead of :ada:`all`) is an access type to a **constant view**
-
-   .. code:: Ada
-
-      type CAcc is access constant Integer;
-      G1 : aliased Integer;
-      G2 : aliased constant Integer;
-      V1 : CAcc := G1'Access;
-      V2 : CAcc := G2'Access;
-      V1.all := 0; -- illegal
-
-* Ada 2005: :ada:`not null` is an access type that can not be :ada:`null`
-
-   .. code:: Ada
-
-      type NAcc is not null access Integer;
-      V : NAcc := null; -- illegal
-
-* Can be used with anonymous access types
-
-   .. code:: Ada
-
-      procedure Bar ( V1 : access constant integer);
-      procedure Foo ( V1 : not null access integer); -- Ada 2005
 
 ========
 Lab
