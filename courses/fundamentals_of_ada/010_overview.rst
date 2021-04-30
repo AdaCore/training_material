@@ -33,7 +33,7 @@ Ada Evolution Highlights
 .. container:: columns
 
  .. container:: column
-  
+
     * **Ada 83**
 
        - Abstract Data Types
@@ -51,7 +51,7 @@ Ada Evolution Highlights
        - Annexes
 
  .. container:: column
-  
+
     * **Ada 2005**
 
        - Multiple Inheritance
@@ -83,7 +83,6 @@ Language Structure (Ada95 and Onward)
    - Predefined Language Environment (Annex A)
    - Foreign Language Interfaces (Annex B)
 
-
 * Optional *Specialized Needs Annexes*
 
    - No additional syntax
@@ -104,7 +103,7 @@ Language Structure (Ada95 and Onward)
 .. container:: columns
 
  .. container:: column
-  
+
     * Language-defined types, including string
     * User-defined types
     * Overloading procedures and functions
@@ -112,7 +111,7 @@ Language Structure (Ada95 and Onward)
     * Abstract Data Types (ADT)
 
  .. container:: column
-  
+
     * Exceptions
     * Generic units
     * Dynamic memory management
@@ -175,13 +174,13 @@ Strongly-Typed Languages
 
    Heading : Directions := North;
    Day : Days := Wed;
-   
+
    ...
 
    Day := Heading; -- Compile Error
 
    Heading := Tue + 3 * South/Sun; -- Compile Error
- 
+
 --------------------------
 The Type Model Saves Money
 --------------------------
@@ -219,7 +218,7 @@ Type Model Run-Time Costs
         Y = X;
       else
         // signal a failure
- 
+
  .. container:: column
 
    **Ada**
@@ -250,7 +249,6 @@ Subprograms
   procedure Split (T     : in out Tree;
                    Left  : out Tree;
                    Right : out Tree)
-
 
 * Specification :math:`\neq` Implementation
 
@@ -331,7 +329,7 @@ Abstract Data Types (ADT)
    - Check of values and operation
    - Easy for a computer
    - Developer can focus on **earlier** phase: requirements
- 
+
 ------------
 Exceptions
 ------------
@@ -350,7 +348,7 @@ Generic Units
 .. container:: columns
 
  .. container:: column
-  
+
     * Code Templates
 
        - Subprograms
@@ -362,9 +360,9 @@ Generic Units
        - **Expressive** syntax
 
  .. container:: column
-  
+
     .. image:: ../../images/generic_template_to_instances.png
-    
+
 -------------------
 Stack with Generics
 -------------------
@@ -389,11 +387,10 @@ Stack with Generics
          Top    : Integer range 0 .. Max := 0;
      end record;
    end Bounded_Stacks;
- 
+
 -----------------------------
 Object-Oriented Programming
 -----------------------------
-
 
 * Extension of ADT
 
@@ -418,13 +415,13 @@ Contract-Based Programming
       procedure Pop (S : in out Stack) with
           Pre => not S.Empty, -- Requirement
           Post => not S.Full; -- Guarantee
- 
+
 * Type invariants
 
    .. code:: Ada
 
       type Table is private with Invariant => Sorted (Table); -- Guarantee
- 
+
 --------------------------
 Language-Based Concurrency
 --------------------------
@@ -502,7 +499,7 @@ Low Level Programming
 .. container:: columns
 
  .. container:: column
-  
+
     * Types
 
        - Integer
@@ -513,14 +510,14 @@ Low Level Programming
        - ect...
 
     * Math
-        
+
         - Trigonometric
         - Complexes
 
     * Pseudo-random number generators
 
  .. container:: column
-  
+
     * I/O
 
         - Text
@@ -562,15 +559,15 @@ So Why Isn't Ada Used Everywhere?
 .. container:: columns
 
  .. container:: column
-  
+
     * "... in all matters of opinion our adversaries are insane"
 
        - *Mark Twain*
 
  .. container:: column
-  
+
     .. image:: ../../images/mark_twain.jpeg
-    
+
 =======
 Setup
 =======
@@ -587,7 +584,7 @@ Canonical First Program
    4 begin
    5   Ada.Text_IO.Put_Line ("Hello, World!");
    6 end Say_Hello;
- 
+
 * Line 1 - :ada:`with`  - Package dependency
 * Line 2 - :ada:`--` - Comment
 * Line 3 - :ada:`Say_Hello` - Subprogram name
@@ -619,7 +616,6 @@ Canonical First Program
 ---------------------------------------------
 
 * Start :toolname:`GNAT Studio` from the command-line (:command:`gnatstudio`) or Start Menu
-
 * :menu:`Create new project`
 
    - Select :menu:`Simple Ada Project` and click :menu:`Next`
