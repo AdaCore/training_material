@@ -26,6 +26,20 @@ Introduction
     - Python (limited to operators)
     - Haskell
 
+--------------------
+Visibility and Scope
+--------------------
+
+* Overloading is **not** re-declaration
+* Both entities **share** the name
+
+    - No hiding
+    - Compiler performs **name resolution**
+
+* Allowed to be declared in **same scope**
+
+    - Remember this is forbidden for "usual" declarations
+
 ------------------------------
 Overloadable Entities In Ada
 ------------------------------
