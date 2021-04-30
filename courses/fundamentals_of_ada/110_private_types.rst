@@ -56,13 +56,12 @@ Views
 
 * Some views are implicit in language
 
-   - Mode `in` parameters have a view disallowing assignment
+   - Mode :ada:`in` parameters have a view disallowing assignment
 
 * Views may be explicitly specified
 
    - Disallowing access to representation
    - Disallowing assignment
-   - Others...
 
 * Purpose: control usage in accordance with design
 
