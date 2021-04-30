@@ -427,6 +427,7 @@ Function Extended Return Statements
 
 * Result is expressed as an object
 * More expressive than aggregates
+* Handling of unconstrained types
 * Syntax (simplified):
     
    .. code:: Ada
@@ -438,16 +439,18 @@ Function Extended Return Statements
          sequence_of_statements ...
        end return];
              
-* Example
+----------------------------------
+Extended Return Statements Example
+----------------------------------
     
    .. code:: Ada
 
-       function F return Spin_Lock is
-         X : Interfaces.Unsigned_8;
+       -- Implicitely limited array
+       type Spin_Lock_Array (Positive range <>) of Spin_Lock;
+       function F return Spin_Lock_Array is
        begin
-         return Result : Spin_Lock do
-           X := Do_Something ( 1 );
-           Result.Flag := X;
+         return Result : Spin_Lock_Array (1 .. 10) do
+           ...
          end return;      
        end F;
      
