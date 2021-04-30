@@ -325,6 +325,8 @@ Access Types and Primitives
 
 * Primitive of the type can be created with the :ada:`access` mode
 
+    - **Anonymous** access type
+
    .. code:: Ada
 
          procedure Proc (V : access T); -- Primitive of T
