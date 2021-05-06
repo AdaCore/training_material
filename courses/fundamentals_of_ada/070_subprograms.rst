@@ -718,13 +718,14 @@ Unconstrained Parameters Surprise
 
    procedure Test is
      type Vector is array (Positive range <>) of Real;
-     function "-" (Left, Right : Vector) return Vector is ...
+     function Subtract (Left, Right : Vector) return Vector is ...
      V1 : Vector (1 .. 10); -- length = 10
      V2 : Vector (15 .. 24); -- length = 10
      R : Vector (1 .. 10); -- length = 10
    begin
      ...
-     R := V2 - V1; -- potential problem depending on "-"
+     -- What are the indices returned by Subtract?
+     R := Subtract (V2, V1);
      ...
    end;
  
@@ -736,18 +737,18 @@ Naive Implementation
 
 .. code:: Ada
 
-   function "-" (Left, Right : Vector) return Vector is
+   function Subtract (Left, Right : Vector) return Vector is
      -- either length will do
      Result : Vector (1 .. Left'Length);
    begin
      if Left'Length /= Right'Length then
        raise Length_Error;
      end if;
-   for K in Result'Range loop
-     Result (K) := Left (K) - Right (K);
+     for K in Result'Range loop
+       Result (K) := Left (K) - Right (K);
      end loop;
      return Result;
-   end "-";
+   end Subtract;
  
 .. container:: speakernote
 
@@ -761,7 +762,7 @@ Correct Implementation
 
 .. code:: Ada
 
-   function "-" (Left, Right : Vector) return Vector is
+   function Subtract (Left, Right : Vector) return Vector is
      Result : Vector (Left'Range);
      Offset : Integer;
    begin
@@ -774,7 +775,7 @@ Correct Implementation
        Result (K) := Left (K) - Right (K + Offset);
      end loop;
      return Result;
-   end "-";
+   end Subtract;
  
 ------
 Quiz
@@ -1177,7 +1178,8 @@ Expression Functions As Completions
    .. code:: Ada
 
       function Squared (X : Integer) return Integer;
-      function Squared (X : Integer) return Integer is (X ** 2);
+      function Squared (X : Integer) return Integer is
+          (X ** 2);
  
 * A declaration and completion together
 
@@ -1185,7 +1187,8 @@ Expression Functions As Completions
 
       .. code:: Ada
 
-         function Squared (X : Integer) return Integer is (X ** 2);
+         function Squared (X : Integer) return Integer is
+          (X ** 2);
          -- Then this would be a compile error
          function Squared (X : Integer) return Integer is
          begin
@@ -1363,7 +1366,7 @@ Order-Dependent Code And Side Effects
    ...
    Gear_Down (Global, F);
      
-* Evaluation of parameters in subprogram call is not specified
+* Order of evaluation of parameters in subprogram call is not specified in language
 * `Gear_Down` could get called with
 
    - X |rightarrow| 0, Y |rightarrow| 1 (if `Global` evaluated first)

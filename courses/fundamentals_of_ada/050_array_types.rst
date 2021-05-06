@@ -70,7 +70,7 @@ Array Type Index Constraints
 Run-Time Index Checking
 -------------------------
 
-* Array indexes are checked at run-time as needed
+* Array indices are checked at run-time as needed
 * Invalid index values result in `Constraint_Error`
 
 .. code:: Ada
@@ -162,6 +162,8 @@ Multiple-Dimensioned Array Types
     * Components accessed by giving value for each index
 
  .. container:: column
+
+   .. container:: latex_environment small
 
     .. code:: Ada
 
@@ -668,10 +670,6 @@ Extra Object-Level Operations
 
    - Portion of array
 
-* Sliding
-
-   - Re-indexing array
-
 ---------
 Slicing
 ---------
@@ -751,25 +749,6 @@ Common Slicing Idiom Example
       -- (If Last_Used = 0, will return an empty string)
       return Ret_Val (1 .. Last_Used);
    end Remove_Spaces;
-
----------
-Sliding
----------
-
-* Allows bounds to be different
-* But must be compatible (1:1 correspondence)
-
-   - `Constraint_Error` otherwise
-
-.. code:: Ada
-
-      type Vector is array (Integer range <>) of Real;
-      V : Vector (1 .. 5);
-      Z : Vector (6 .. 10);
-   begin
-      Z := V;  -- five elements each
-      Z (6 .. 8) := V (2 .. 4); -- three elements each
-   end;
 
 --------------------
 "Membership" Tests
@@ -896,7 +875,7 @@ Array/Container For-Loops
 
    .. code:: Ada
 
-      for name of [reverse] array_or_container_object_name loop
+      for name of [reverse] array_or_container_object loop
       ...
       end loop;
 
@@ -962,8 +941,11 @@ For-Loops with Multidimensional Arrays
 
  .. container:: column
 
+   .. container:: latex_environment small
+
     .. code:: Ada
 
+       declare
          subtype Rows is Positive;
          subtype Columns is Positive;
          type Matrix is array
@@ -1328,30 +1310,6 @@ Anonymous Array Types
          -- legal assignment of values
          A(J) := B(K);
        end;
-
-----------------------
-Table Search Example
-----------------------
-
-.. code:: Ada
-
-     type Age is range 0 .. 200;
-     type Humanity is array (1 .. N) of Age;
-     ...
-     People : Humanity := Some_Initial_Value;
-     Index : Integer range People'First - 1 .. People'Last :=
-        People'First - 1; -- currently not a legal index
-   begin
-     ...
-     for K in People'Range loop
-       if People (K) = Desired_Value then
-         Index := K;
-         exit;
-       end if;
-     end loop;
-     if Index >= People'First and Index <= People'Last
-     then
-        -- found it
 
 ========
 Lab

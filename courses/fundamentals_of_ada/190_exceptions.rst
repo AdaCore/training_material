@@ -369,6 +369,7 @@ Exceptions Raised In Exception Handlers
 Quiz
 ------
 
+
 .. container:: latex_environment scriptsize
 
  .. container:: columns
@@ -378,7 +379,6 @@ Quiz
    .. code:: Ada
     :number-lines: 1
 
-      with Ada.Text_IO; use Ada.Text_IO;
       procedure Main is
          A, B, C, D : Natural;
       begin
@@ -514,9 +514,11 @@ Implicitly-Raised Exceptions
 Explicitly-Raised Exceptions
 ------------------------------
 
-.. container:: columns
+.. container:: latex_environment scriptsize
 
- .. container:: column
+ .. container:: columns
+
+  .. container:: column
   
     * Raised by application via `raise` statements
 
@@ -534,7 +536,7 @@ Explicitly-Raised Exceptions
      
     * A `raise` by itself is only allowed in handlers (more later)
 
- .. container:: column
+  .. container:: column
   
     .. code:: Ada
     
@@ -667,9 +669,9 @@ Propagation Demo
        procedure P is
          Error : exception;
          procedure R is
-           begin
-             Maybe_Raise(1);
-           end R;
+         begin
+           Maybe_Raise(1);
+         end R;
          procedure Q is
          begin
            R;
@@ -688,7 +690,7 @@ Propagation Demo
          Q;
        exception
          when Error =>
-           Print ("Exception from 3"); 
+           Print("Exception from 3"); 
        end P;
      
 -------------------
@@ -711,6 +713,7 @@ Termination Model
        -- Never called if Consume_Fuel raises exception
        Wave_To_Pedestrians;
      end loop;
+     Drive_Home;
    exception
      when Fuel_Exhausted =>
        Push_Home;

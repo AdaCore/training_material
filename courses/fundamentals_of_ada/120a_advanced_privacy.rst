@@ -214,7 +214,7 @@ Incomplete Types
 
 -------------------------------------
 How To Get An Incomplete Type View?
---------------------------------------
+-------------------------------------
 
 * From an explicit declaration
 

@@ -634,7 +634,7 @@ Quiz
 What is the output from this block?
 
 A. 1 2 3
-B. 1 1 2
+B. 1 1 100
 C. :answer:`1 2 100`
 D. 100, 101, 102
 
@@ -685,6 +685,20 @@ Variant Record Types
 -------------------------------------
 Discriminant in Ada Variant Records
 -------------------------------------
+
+.. code:: Ada
+
+  type Person_Tag is (Student, Faculty);
+  type Person (Tag : Person_Tag) is record
+     Name : String (1 .. 10);
+     case Tag is
+        when Student => -- 1st variant
+           Gpa  : Float range 0.0 .. 4.0;
+           Year : Integer range 1 .. 4;
+        when Faculty => -- 2nd variant
+           Pubs : Integer;
+     end case;
+  end record;
 
 * Variant record type contains a special field (*discriminant*) whose value indicates which variant is present
 * When a field in a variant is selected, run-time check ensures that discriminant value is consistent with the selection
@@ -749,4 +763,5 @@ Summary
    - Not evaluated if explicit initial value specified
 
 * Aggregates express literals for composite types
-* Aggregates can mix named and positional forms
+
+   - Can mix named and positional forms

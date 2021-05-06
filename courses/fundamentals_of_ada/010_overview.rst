@@ -494,10 +494,10 @@ Low Level Programming
     - Abstractions preserved
 
 ---------------------------------
-**Standard** Language Environment
+Standard Language Environment
 ---------------------------------
 
-* Standardized common API
+Standardized common API
 
 .. container:: columns
 
@@ -614,11 +614,11 @@ Canonical First Program
    - :command:`say_hello` (Windows)
    - :command:`./say_hello` (Linux/Unix)
 
---------------------------------
+---------------------------------------------
 "Hello World" Lab - :toolname:`GNAT Studio`
---------------------------------
+---------------------------------------------
 
-* Start :toolname:`GNAT Studio` from the command-line or Start Menu
+* Start :toolname:`GNAT Studio` from the command-line (:command:`gnatstudio`) or Start Menu
 
 * :menu:`Create new project`
 
