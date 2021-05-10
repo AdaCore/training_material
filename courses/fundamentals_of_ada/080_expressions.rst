@@ -502,7 +502,7 @@ Quantified Expressions
 
 * "Universal" quantified expressions
 
-   - Predicate is true for :ada:`all` element of the set
+   - Predicate is true for :ada:`all` elements of the set
 
 * "Existential" quantified expressions
 
