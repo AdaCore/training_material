@@ -1324,7 +1324,7 @@ Slices
 Examples
 ----------
 
-.. include:: examples/080_expressions/slices.rst
+.. include:: examples/050_array_types/slices.rst
 
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#slices`
 

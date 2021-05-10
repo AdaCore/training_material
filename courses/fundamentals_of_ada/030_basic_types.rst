@@ -1342,7 +1342,7 @@ Subtypes
 Examples
 ----------
 
-.. include:: examples/080_expressions/subtypes.rst
+.. include:: examples/030_basic_types/subtypes.rst
 
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#subtypes`
 
