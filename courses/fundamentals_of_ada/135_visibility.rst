@@ -277,6 +277,7 @@ Examples
 
       use_type_clause ::= use type subtype_mark
                                          {, subtype_mark};
+
 * Makes operators directly visible for specified type
 
    - Implicit and explicit operator function declarations

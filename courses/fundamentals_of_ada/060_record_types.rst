@@ -252,6 +252,7 @@ Referencing Nested Components
 
 .. code:: Ada
 
+   declare
      type Date is ....  -- as before
      type Personal_Information is record
          Name : String(1..80);

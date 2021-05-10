@@ -128,11 +128,12 @@ Null Values
 
 * A pointer that does not point to any actual data has a null value
 * Without an initialization, a pointer is `null` by default
-* `null` can be used in assignments and comparisons
+* :ada:`null` can be used in assignments and comparisons
 
 .. code:: Ada
 
-    type Acc is access all Integer;
+   declare
+      type Acc is access all Integer;
       V : Acc;
    begin
       if V = null then
@@ -533,6 +534,7 @@ Common Memory Problems (1/3)
 
    .. code:: Ada
 
+      declare
          type An_Access is access all Integer;
          V : An_Access;
       begin
@@ -542,6 +544,7 @@ Common Memory Problems (1/3)
 
    .. code:: Ada
 
+      declare
          type An_Access is access all Integer;
          procedure Free is new
             Ada.Unchecked_Deallocation (Integer, An_Access);
@@ -565,6 +568,7 @@ Common Memory Problems (2/3)
 
    .. code:: Ada
 
+      declare
          type An_Access is access all Integer;
          procedure Free is new
             Ada.Unchecked_Deallocation (Integer, An_Access);
@@ -586,6 +590,7 @@ Common Memory Problems (3/3)
 
    .. code:: Ada
 
+      declare
          type An_Access is access all Integer;
          procedure Free is new
             Ada.Unchecked_Deallocation (Integer, An_Access);

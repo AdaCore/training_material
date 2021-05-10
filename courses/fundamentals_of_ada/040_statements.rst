@@ -818,6 +818,7 @@ Null Ranges
     * Shortcut for upper bound validation
 
     .. code:: Ada
+
       -- Null range: loop not entered
       for Today in Fri .. Mon loop
 

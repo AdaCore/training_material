@@ -18,6 +18,7 @@ Introduction
 
 .. code:: Ada
 
+   declare
      type Hours is digits 6;
      type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
      type Schedule is array (Days) of Hours;
@@ -464,6 +465,7 @@ Arrays of Arrays
 
 .. code:: Ada
 
+   declare
      type Array_of_10 is array (1..10) of Integer;
      type Array_of_Array is array (Boolean) of Array_of_10;
      A : Array_of_Array;
@@ -546,6 +548,7 @@ Attributes' Benefits
 
    .. code:: Ada
 
+      declare
          type List is array (5 .. 15) of Integer;
          L : List;
          List_Index : Integer range List'Range := List'First;
@@ -1366,6 +1369,7 @@ Slicing With Explicit Indexes
 
 .. code:: Ada
 
+   declare
      Full_Name : String (1 .. 20);
    begin
      Put_Line (Full_Name);

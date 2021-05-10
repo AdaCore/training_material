@@ -89,6 +89,7 @@ Testing Non-Contiguous Membership
 
 .. code:: Ada
 
+   declare
     M : Month_Number := Month (Clock); 
    begin
      if M in 9 | 4 | 6 | 11 then
@@ -195,7 +196,7 @@ Index Constraints
       type String is array (Positive range <>) of Character;
       subtype Full_Name is String(1 .. Max); 
       subtype First_Name is Full_Name(1 .. N); -- compile error
- 
+
 =========================
 Conditional Expressions
 =========================
@@ -265,6 +266,7 @@ Result Must Be Compatible with Context
 
 .. code:: Ada
 
+   declare
      Remaining : Natural := 5;  -- arbitrary
    begin
      while Remaining > 0 loop

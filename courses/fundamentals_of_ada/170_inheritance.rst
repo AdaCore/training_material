@@ -596,9 +596,8 @@ Forbidden Operations in Tagged Types
       type Child is new Root; -- illegal
      
 * A tagged derivation cannot remove primitives
+* Conversions from child to parent are allowed, but not the other way around (need extra fields to be provided)
 
-*  Conversions from child to parent are allowed, but not the other way around (need extra fields to be provided)
-    
    .. code:: Ada
     
       type Root is tagged record

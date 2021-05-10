@@ -1415,6 +1415,7 @@ Parameter Aliasing via Global Variable
 
 .. code:: Ada
 
+   declare
      Actual : String := "Hello";
      procedure Print (Formal : in String) is
      begin
@@ -1433,6 +1434,7 @@ Parameter Aliasing via Multiple Actuals
 
 .. code:: Ada
 
+   declare
      Actual : String := "Hello";
      procedure Print (Formal1 : out String;
                       Formal2 : in String) is
@@ -1498,6 +1500,7 @@ Easy Cases Detected and Not Legal (2)
 
 .. code:: Ada
 
+   declare
      X : array (1 .. 10) of Integer := (others => 42);
      function F (This : in out Integer) return Integer is
      begin

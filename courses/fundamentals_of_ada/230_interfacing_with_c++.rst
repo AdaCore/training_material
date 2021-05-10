@@ -185,8 +185,8 @@ Passing Structures as Parameters
 
    .. code:: Ada
 
-     type Enum is (E1, E2, E3) with Convention => C;
-     type Rec is record
+    type Enum is (E1, E2, E3) with Convention => C;
+    type Rec is record
        A, B : int;
        C : Enum;
     end record with Convention => C;
