@@ -137,7 +137,8 @@ begin
    --  update the Next time
    while not Is_Killed loop
 
-      Move_All (Bodies);
+      -- We'll need a access there now
+      -- Move_All ( Bodies ? );
       Draw_All (Bodies, Canvas);
       Display.Basic.Swap_Buffers(Window);
 

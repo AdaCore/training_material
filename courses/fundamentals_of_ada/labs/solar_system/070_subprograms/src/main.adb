@@ -63,16 +63,17 @@ procedure Main is
 
    --  implement a function to compute the X coordinate
    --  x of the reference + distance * cos(angle)
-   function Compute_X(Body_To_Move : Body_T; Turns_Around : Body_T) return Float;
+
+   -- function Compute_X(Body_To_Move : Body_T; Turns_Around : Body_T) return Float;
 
    --  implement a function to compute the Y coordinate
    --  y of the reference + distance * sin(angle)
-   function Compute_Y(Body_To_Move : Body_T; Turns_Around : Body_T) return Float;
 
+   -- function Compute_Y(Body_To_Move : Body_T; Turns_Around : Body_T) return Float;
 
-   procedure Move (Body_To_Move : in out Body_T; Bodies : Bodies_Array_T);
+   -- procedure Move (Body_To_Move : in out Body_T; Bodies : Bodies_Array_T);
 
-   --  procedure Draw_Body( taking 2 parameters of your choice.......
+   -- procedure Draw_Body( taking 2 parameters of your choice.......
 
 begin
 
