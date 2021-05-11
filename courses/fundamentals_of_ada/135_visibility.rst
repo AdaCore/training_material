@@ -13,7 +13,7 @@ Improving Readability
 
 * Descriptive names plus hierarchical packages makes for very long statements
 
-   .. code:: 
+   .. code::
 
       Messages.Queue.Diagnostics.Inject_Fault (
          Fault    => Messages.Queue.Diagnostics.CRC_Failure,
@@ -41,7 +41,7 @@ Operators and Primitives
    - Predefined operations such as ``=`` and ``+``  etc.
    - Subprograms declared in the same package as the type and which operate on the type
    - Inherited or overridden subprograms
-   - For `tagged` types, class-wide subprograms
+   - For :ada:`tagged` types, class-wide subprograms
    - Enumeration literals
 
 ===============
@@ -67,13 +67,13 @@ Examples
 * May still use expanded name
 
 .. code:: Ada
-    
+
    package Ada.Text_IO is
      procedure Put_Line( ... );
      procedure New_Line( ... );
      ...
    end Ada.Text_IO;
-       
+
    with Ada.Text_IO;
    procedure Hello is
      use Ada.Text_IO;
@@ -82,23 +82,23 @@ Examples
      New_Line(3);
      Ada.Text_IO.Put_Line ( "Good bye" );
    end Hello;
-     
+
 ---------------------
 `use` Clause Syntax
 ---------------------
 
-* May have several, like `with` clauses
+* May have several, like :ada:`with` clauses
 * Must name an imported library unit
 
-   - From same context clause 
+   - From same context clause
 
 * Syntax
 
    .. code:: Ada
 
       use_package_clause ::= use package_name {, package_name};
- 
-* Can only `use` a library package
+
+* Can only :ada:`use` a library package
 
    - Subprograms don't make sense
 
@@ -128,25 +128,25 @@ Examples
       B2 : Integer := Constant_B; -- legal
       function F return Integer;
    end P;
-   
+
    package body P is
      -- all of Pkg_A and Pkg_B is visible here
      function F return Integer is ( Constant_A + Constant_B );
    end P;
- 
+
 --------------------
 No Meaning Changes
 --------------------
 
-* A new `use` clause won't change a program's meaning!
+* A new :ada:`use` clause won't change a program's meaning!
 * Any directly visible names still refer to the original entities
 
 .. code:: Ada
-    
+
    package D is
      T : Real;
    end D;
-       
+
    with D;
    procedure P is
      procedure Q is
@@ -161,7 +161,7 @@ No Meaning Changes
        end;
        ...
      end Q;
-     
+
 ---------------------------
 No Ambiguity Introduction
 ---------------------------
@@ -171,12 +171,12 @@ No Ambiguity Introduction
    package D is
      V : Boolean;
    end D;
-   
+
    package E is
      V : Integer;
    end E;
    with D, E;
-   
+
    procedure P is
      procedure Q is
        use D, E;
@@ -186,7 +186,7 @@ No Ambiguity Introduction
      end Q;
    begin
    ...
- 
+
 .. container:: speakernote
 
    For declarations in different packages that would not be directly visible in the absence of a "use" clause, none with the same identifier will be directly visible in the presence of such a clause, unless both are overloadable (i.e., enumeration literals and subprogram declarations)
@@ -201,28 +201,28 @@ No Ambiguity Introduction
    - Since children are 'inside' declarative region of parent
 
 .. code:: Ada
-    
+
    package Parent is
      P1 : Integer;
      ...
    end Parent;
-       
+
    package Parent.Child is
      PC1 : Integer;
      ...
    end Parent.Child;
-       
+
    with Parent.Child;
    procedure Demo is
      D1 : Integer := Parent.P1;
      D2 : Integer := Parent.Child.PC1;
      use Parent;
      D3 : Integer := P1;
-     D4 : Integer := Child.PC1; 
+     D4 : Integer := Child.PC1;
    begin
      ...
    end Demo;
-     
+
 .. container:: speakernote
 
    D4 has access to CHILD because PARENT is "use"d
@@ -241,7 +241,7 @@ No Ambiguity Introduction
      -- function "+"( Left, Right : Int ) return Int;
      -- function "="( Left, Right : Int ) return Boolean;
    end P;
-   
+
    with P;
    procedure Test is
      A, B, C : P.Int := some_value;
@@ -254,7 +254,7 @@ No Ambiguity Introduction
        C := A + B; -- now legal
      end;
    end Test;
- 
+
 ====================
 "use type" Clauses
 ====================
@@ -285,9 +285,9 @@ Examples
 
       + Parameters and/or result type
 
-* More specific alternative to `use` clauses
+* More specific alternative to :ada:`use` clauses
 
-   - Especially useful when multiple `use` clauses introduce ambiguity
+   - Especially useful when multiple :ada:`use` clauses introduce ambiguity
 
 ---------------------------
 `use type` Clause Example
@@ -309,7 +309,7 @@ Examples
    begin
      C := A + B; -- operator is visible
    end Test;
- 
+
 --------------------------------------
 `use Type` Clauses and Multiple Types
 --------------------------------------
@@ -351,7 +351,7 @@ Multiple `use type` Clauses
      -- explicit
      function "+"( Left : T1; Right : T2 ) return T3;
    end P;
-   
+
    with P;
    procedure UseType is
      X1 : P.T1;
@@ -362,7 +362,7 @@ Multiple `use type` Clauses
      X3 := X1 + X2; -- operator visible because it uses T1
      X2 := X2 + X2; -- operator not visible
    end UseType;
- 
+
 ========================
 "use all type" Clauses
 ========================
@@ -388,7 +388,7 @@ Examples
    - Not just operators
    - Especially, subprograms that are not operators
 
-* Still need a `use` clause for other entities
+* Still need a :ada:`use` clause for other entities
 
    - Typically exceptions
 
@@ -401,7 +401,7 @@ Examples
    Ada 2012
 
 .. code:: Ada
-    
+
    package Complex is
      type Number is private;
      function "*" (Left, Right : Number) return Number;
@@ -411,11 +411,11 @@ Examples
      procedure Make ( C : out Number;
                       From_Real, From_Imag : Float );
      procedure Non_Primitive ( X : Integer );
-       ... 
-     
+       ...
+
    with Complex;
    use all type Complex.Number;
-   procedure Demo is 
+   procedure Demo is
      A, B, C : Complex.Number;
    begin
      -- "use all type" makes these available
@@ -426,7 +426,7 @@ Examples
      -- but not this one
      Non_Primitive (0);
    end Demo;
-     
+
 --------------------------------------
 `use all type` v. `use type` Example
 --------------------------------------
@@ -438,7 +438,7 @@ Examples
 .. code:: Ada
 
    with Complex;   use type Complex.Number;
-   procedure Demo is 
+   procedure Demo is
      A, B, C : Complex.Number;
    Begin
      -- these are always allowed
@@ -488,7 +488,7 @@ Three Positives Make a Negative
 Writing Readable Code - Part 1
 --------------------------------
 
-* We could use `use` on package names to remove some dot-notation
+* We could use :ada:`use` on package names to remove some dot-notation
 
    .. code:: Ada
 
@@ -511,7 +511,7 @@ Writing Readable Code - Part 1
       + Homographs may cause ambiguous reference errors
 
 * We want the ability to refer to certain entities by another name (like an alias) with full read/write access (unlike temporary variables)
-      
+
 -----------------------
 The `renames` Keyword
 -----------------------
@@ -545,7 +545,7 @@ The `renames` Keyword
 Writing Readable Code - Part 2
 --------------------------------
 
-* With `renames` our complicated code example is easier to understand
+* With :ada:`renames` our complicated code example is easier to understand
 
    .. code:: Ada
 
@@ -595,14 +595,14 @@ Summary
 
    Ada 2012
 
-* `use` clauses are not evil but can be abused
+* :ada:`use` clauses are not evil but can be abused
 
    - Can make it difficult for others to understand code
 
-* `use all type` clauses are more likely in practice than `use type` clauses
+* :ada:`use all type` clauses are more likely in practice than :ada:`use type` clauses
 
    - Only available in Ada 2012 and later
 
-* `Renames` allow us to alias entities to make code easier to read
+* :ada:`Renames` allow us to alias entities to make code easier to read
 
    - Subprogram renaming has many other uses, such as adding / removing default parameter values

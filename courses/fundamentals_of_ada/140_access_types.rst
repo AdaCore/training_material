@@ -26,11 +26,11 @@ Access Types Design
 
          type Integer_Pool_Access is access Integer;
          P_A : Integer_Pool_Access := new Integer;
- 
+
          type Integer_General_Access is access all Integer;
          G : aliased Integer
          G_A : Integer_General_Access := G'access;
- 
+
    - Compared to C/C++
 
       .. code:: C++
@@ -38,7 +38,7 @@ Access Types Design
          int * P_C = malloc (sizeof (int));
          int * P_CPP = new int;
          int * G_C = &Some_Int;
- 
+
 -------------------------------
 Access Types Can Be Dangerous
 -------------------------------
@@ -69,7 +69,7 @@ Stack vs Heap
 
   I : Integer := 0;
   J : String := "Some Long String";
- 
+
 .. image:: ../../images/items_on_stack.png
    :width: 50%
 
@@ -77,7 +77,7 @@ Stack vs Heap
 
   I : Access_Int:= new Integer'(0);
   J : Access_Str := new String ("Some Long String");
- 
+
 .. image:: ../../images/stack_pointing_to_heap.png
    :width: 50%
 
@@ -104,7 +104,7 @@ Declaration Location
       package P is
         type String_Access is access String;
       end P;
- 
+
 * Can be nested in a procedure
 
    .. code:: Ada
@@ -116,7 +116,7 @@ Declaration Location
             ...
          end Proc;
       end P;
- 
+
 * Nesting adds non-trivial issues
 
    - Creates a nested pool with a nested accessibility
@@ -127,7 +127,7 @@ Null Values
 -------------
 
 * A pointer that does not point to any actual data has a null value
-* Without an initialization, a pointer is `null` by default
+* Without an initialization, a pointer is :ada:`null` by default
 * :ada:`null` can be used in assignments and comparisons
 
 .. code:: Ada
@@ -141,16 +141,16 @@ Null Values
       end if
       V := new Integer'(0);
       V := null; -- semantically correct, but memory leak
- 
+
 ------------------------
 Dereferencing Pointers
 ------------------------
 
-* `.all` does the access dereference
+* :ada:`.all` does the access dereference
 
    - Lets you access the object pointed to by the pointer
 
-* `.all` is optional for
+* :ada:`.all` is optional for
 
    - Access on a component of an array
    - Access on a component of a record
@@ -202,7 +202,7 @@ Pool-Specific Access Type
       type T is [...]
       type T_Access is access T;
       V : T_Access := new T;
- 
+
 * Conversion is needed to move an object pointed by one type to another (pools may differ)
 * You can not do this kind of conversion with a pool-specific access type
 
@@ -210,13 +210,12 @@ Pool-Specific Access Type
 
       type T_Access_2 is access T;
       V2 : T_Access_2 := T_Access_2 (V); -- illegal
- 
- 
+
 -------------
 Allocations
 -------------
 
-* Objects are created with the `new` reserved word
+* Objects are created with the :ada:`new` reserved word
 * The created object must be constrained
 
    - The constraint is given during the allocation
@@ -224,13 +223,13 @@ Allocations
       .. code:: Ada
 
          V : String_Access := new String (1 .. 10);
- 
+
 * The object can be created by copying an existing object - using a qualifier
 
    .. code:: Ada
 
       V : String_Access := new String'("This is a String");
- 
+
 ---------------
 Deallocations
 ---------------
@@ -247,7 +246,7 @@ Deallocations
    - There's no simple way of doing it
    - Ada provides `Ada.Unchecked_Deallocation`
    - Has to be instantiated (it's a generic)
-   - Must work on an object, reset to `null` afterwards
+   - Must work on an object, reset to :ada:`null` afterwards
 
 ----------------------
 Deallocation Example
@@ -268,7 +267,7 @@ Deallocation Example
       Free (V);
       -- V is now null
    end P;
- 
+
 ==========================
 General Access Types
 ==========================
@@ -292,7 +291,7 @@ General Access Types
       type T is [...]
       type T_Access is access all T;
       V : T_Access := new T;
- 
+
 * Still distinct type
 * Conversions are possible
 
@@ -306,13 +305,13 @@ Referencing The Stack
 -----------------------
 
 * By default, stack-allocated objects cannot be referenced - and can even be optimized into a register by the compiler
-* `aliased` declares an object to be referenceable through an access value
+* :ada:`aliased` declares an object to be referenceable through an access value
 
    .. code:: Ada
 
       V : aliased Integer;
- 
-*  `'Access` attribute gives a reference to the object
+
+* :ada:`'Access` attribute gives a reference to the object
 
    .. code:: Ada
 
@@ -323,15 +322,15 @@ Referencing The Stack
 ----------------------------
 
 .. code:: Ada
-    
+
    type Acc is access all Integer;
       V : Acc;
       I : aliased Integer;
    begin
       V := I'Access;
       V.all := 5; -- Same a I := 5
-     
-   ... 
+
+   ...
 
    type Acc is access all Integer;
    G : Acc;
@@ -346,7 +345,7 @@ Referencing The Stack
       G.all := 5;
       -- What if P2 is called after P1?
    end P2;
-     
+
 ------
 Quiz
 ------
@@ -408,7 +407,7 @@ Introduction to Accessibility Checks (1/2)
             null;
          end Proc;
       end P;
- 
+
 * Access types can access objects at most of the same depth
 * The compiler checks it statically
 
@@ -440,7 +439,7 @@ Introduction to Accessibility Checks (2/2)
          A0 := T0 (A1); -- illegal
      end Proc;
    end P;
- 
+
 * To avoid having to face these issues, avoid nested access types
 
 -------------------------------------
@@ -448,7 +447,7 @@ Getting Around Accessibility Checks
 -------------------------------------
 
 * Sometimes it is OK to use unsafe accesses to data
-*  `'Unchecked_Access` allows access to a variable of an incompatible accessibility level
+* `'Unchecked_Access` allows access to a variable of an incompatible accessibility level
 * Beware of potential problems!
 
    .. code:: Ada
@@ -462,7 +461,7 @@ Getting Around Accessibility Checks
          ...
          Do_Something ( G.all ); -- This is "reasonable"
       end P;
- 
+
 .. container:: speakernote
 
    Not the best way to write code
@@ -539,7 +538,7 @@ Common Memory Problems (1/3)
          V : An_Access;
       begin
          V.all := 5; -- constraint error
- 
+
 * Double deallocation
 
    .. code:: Ada
@@ -554,7 +553,7 @@ Common Memory Problems (1/3)
          Free (V1);
          ...
          Free (V2);
- 
+
    - May raise `Storage_Error` if memory is still protected (unallocated)
    - May deallocate a different object if memory has been reallocated
 
@@ -578,7 +577,7 @@ Common Memory Problems (2/3)
          Free (V1);
          ...
          V2.all := 5;
-      
+
    - May raise `Storage_Error` if memory is still protected (unallocated)
    - May modify a different object if memory has been reallocated (putting that object in an inconsistent state)
 
@@ -597,7 +596,7 @@ Common Memory Problems (3/3)
          V : An_Access := new Integer;
       begin
          V := null;
-      
+
    - Silent problem
 
       + Might raise `Storage_Error` if too many leaks
@@ -635,9 +634,9 @@ Anonymous Access Parameters
 * Parameter modes are of 4 types: `in`, `out`, `in out`, `access`
 * The access mode is called **anonymous access type**
 
-   - Anonymous access is implicitly general (no need for `all`)
+   - Anonymous access is implicitly general (no need for :ada:`all`)
 
-* When used: 
+* When used:
 
    - Any named access can be passed as parameter
    - Any anonymous access can be passed as parameter
@@ -652,7 +651,7 @@ Anonymous Access Parameters
       P1 (G);
       P1 (V);
    end P;
- 
+
 ------------------------
 Anonymous Access Types
 ------------------------
@@ -667,14 +666,14 @@ Anonymous Access Types
         C : access Integer;
       end record;
       type A is array (Integer range <>) of access Integer;
- 
+
 * Do not use them without a clear understanding of accessibility check rules
 
 ----------------------------------
 Anonymous Access Constants
 ----------------------------------
 
-* `constant` (instead of `all`) denotes an access type through which the referenced object cannot be modified
+* :ada:`constant` (instead of :ada:`all`) denotes an access type through which the referenced object cannot be modified
 
    .. code:: Ada
 
@@ -684,8 +683,8 @@ Anonymous Access Constants
       V1 : CAcc := G1'Access;
       V2 : CAcc := G2'Access;
       V1.all := 0; -- illegal
- 
-* `not null` denotes an access type for which null value cannot be accepted
+
+* :ada:`not null` denotes an access type for which null value cannot be accepted
 
    - Available in Ada 2005 and later
 
@@ -693,7 +692,7 @@ Anonymous Access Constants
 
       type NAcc is not null access Integer;
       V : NAcc := null; -- illegal
- 
+
 * Also works for subprogram parameters
 
    .. code:: Ada

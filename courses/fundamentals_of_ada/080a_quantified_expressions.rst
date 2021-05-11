@@ -59,7 +59,7 @@ Semantics Are As If You Wrote This Code
      end loop;
      return True;
    end Universal;
-   
+
    function Existential (Set : Components) return Boolean is
    begin
      for C of Set loop
@@ -69,7 +69,7 @@ Semantics Are As If You Wrote This Code
      end loop;
      return False;
    end Existential;
- 
+
 -------------------------------
 Quantified Expressions Syntax
 -------------------------------
@@ -87,7 +87,7 @@ Quantified Expressions Syntax
              predicate)
    predicate ::= boolean_expression
    quantifier ::= all | some
- 
+
 -----------------
 Simple Examples
 -----------------
@@ -98,12 +98,12 @@ Simple Examples
 
 .. code:: Ada
 
-   Values : constant array (1 .. 10) of Integer := (...);  
+   Values : constant array (1 .. 10) of Integer := (...);
    Is_Any_Even : constant Boolean :=
       (for some V of Values => V mod 2 = 0);
    Are_All_Even : constant Boolean :=
       (for all V of Values => V mod 2 = 0);
- 
+
 ----------------------
 Universal Quantifier
 ----------------------
@@ -130,7 +130,7 @@ Universal Quantifier
         end loop;
         return True;
       end Universal;
- 
+
 -----------------------------------
 Universal Quantifier Illustration
 -----------------------------------
@@ -153,7 +153,7 @@ Universal Quantifier Illustration
    All_Correct_2 : constant Boolean :=
       (for all K in Answers'range =>
          Answers(K) = Ultimate_Answer);
- 
+
 -----------------------------------------
 Universal Quantifier Real-World Example
 -----------------------------------------
@@ -171,7 +171,7 @@ Universal Quantifier Real-World Example
    None_Set : constant Boolean := (
      for all Flag in DMA_Status_Flag =>
        not Status_Indicated (Flag));
- 
+
 ------------------------
 Existential Quantifier
 ------------------------
@@ -198,7 +198,7 @@ Existential Quantifier
         end loop;
         return False;
       end Existential;
- 
+
 -------------------------------------
 Existential Quantifier Illustration
 -------------------------------------
@@ -221,7 +221,7 @@ Existential Quantifier Illustration
    Any_Correct_2 : constant Boolean :=
       (for some K in Answers'range =>
          Answers(K) = Ultimate_Answer);
- 
+
 -----------------------------------------
 Index-Based vs Component-Based Indexing
 -----------------------------------------
@@ -234,7 +234,7 @@ Index-Based vs Component-Based Indexing
 
    .. code:: Ada
 
-      Values : constant array (1 .. 10) of Integer := (...);  
+      Values : constant array (1 .. 10) of Integer := (...);
 
 * Component-based indexing is useful for checking individual values
 
@@ -266,9 +266,9 @@ Index-Based vs Component-Based Indexing
       Table : constant array (1 .. 10) of Integer :=
             (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
       Ascending_Order : constant Boolean := (
-        for all K in Table'Range => 
+        for all K in Table'Range =>
           K > Table'First and then Table (K - 1) <= Table (K));
- 
+
    - Answer: **False**. Predicate fails when `K = Table'First`
 
       + First subcondition is False!
@@ -317,7 +317,7 @@ Not Just Arrays: Any "Iterable" Objects
 
    package Characters is new
       Ada.Containers.Vectors (Positive, Character);
-   use Characters;    
+   use Characters;
    Alphabet  : constant Vector := To_Vector('A',1) & 'B' & 'C';
    Any_Zed   : constant Boolean :=
               (for some C of Alphabet => C = 'Z');
@@ -340,7 +340,7 @@ Conditional / Quantified Expression Usage
       if (for some Component of Answers =>
           Component = Ultimate_Answer)
       then
- 
+
 * Function names enhance readability
 
    - So put the quantified expression in a function
@@ -348,7 +348,7 @@ Conditional / Quantified Expression Usage
       .. code:: Ada
 
          if At_Least_One_Answered (Answers) then
- 
+
 * Even in pre/postconditions, use functions containing quantified expressions for abstraction
 
 ------

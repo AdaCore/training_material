@@ -91,6 +91,6 @@ Need More Help?
 
       * Where XXXX is your customer number
 
-* Not just for "bug reports" 
+* Not just for "bug reports"
 
    - Ask questions, make suggestions etc. etc.

@@ -14,19 +14,19 @@ Multiple Inheritance Is Forbidden In Ada
 * There are potential conflicts with multiple inheritance
 * Some languages allow it: ambiguities have to be resolved when entities are referenced
 * Ada forbids it to improve integration
-    
+
 .. code:: Ada
-    
+
     type Graphic is tagged record
        X, Y : Float;
     end record;
     function Get_X (V : Graphic) return Float;
-       
+
     type Shape is tagged record
        X, Y : Float;
     end record;
     function Get_X (V : Shape) return Float;
-       
+
     type Displayable_Shape is new Shape and Graphic with ...
 
 ----------------------------------
@@ -39,26 +39,26 @@ Multiple Inheritance - Safe Case
 
       type Graphic is abstract tagged null record;
       function Get_X (V : Graphic) return Float is abstract;
-   
+
       type Shape is tagged record
          X, Y : Float;
       end record;
       function Get_X (V : Shape) return Float;
-   
+
       type Displayable_Shape is new Shape and Graphic with ...
- 
+
 * This is the definition of an interface (as in Java)
 
    .. code:: Ada
 
       type Graphic is interface;
       function Get_X (V : Graphic) return Float is abstract;
-   
+
       type Shape is tagged record
          X, Y : Float;
       end record;
       function Get_X (V : Shape) return Float;
-   
+
       type Displayable_Shape is new Shape and Graphic with ...
 
 ============
@@ -84,7 +84,7 @@ Interfaces - Rules
       procedure P2 (V : access I) is abstract
       function F return I is abstract;
       procedure P3 (V : I) is null;
- 
+
 * Note: null can be applied to any procedure (not only used for interfaces)
 
 ----------------------
@@ -99,7 +99,7 @@ Interface Derivation
       procedure P1 (V : I) is abstract;
       type I2 is interface and I1;
       Procedure P2 (V : I) is abstract;
- 
+
 * A tagged type can derive from several interfaces and can derive from one interface several times
 
    .. code:: Ada
@@ -107,9 +107,9 @@ Interface Derivation
       type I1 is interface;
       type I2 is interface and I1;
       type I3 is interface;
-      
+
       type R is new I1 and I2 and I3 ...
- 
+
 * A tagged type can derive from a single tagged type and several interfaces
 
    .. code:: Ada
@@ -117,9 +117,9 @@ Interface Derivation
       type I1 is interface;
       type I2 is interface and I1;
       type R1 is tagged null record;
-      
+
       type R2 is new R1 and I1 and I2 ...
- 
+
 ------------------------
 Interfaces And Privacy
 ------------------------
@@ -132,9 +132,9 @@ Interfaces And Privacy
 
          type I1 is interface;
          type R is new I1 with private;
-   
+
       private
-   
+
          type R is new I1 with record ...
 
 -------------------------------------
@@ -146,7 +146,7 @@ Limited Tagged Types And Interfaces
 
    - A view may have more constraints than the actual object
 
-* `limited` interfaces can be implemented by BOTH limited types and non-limited types
+* :ada:`limited` interfaces can be implemented by BOTH limited types and non-limited types
 * Non-limited interfaces have to be implemented by non-limited types
 
 ========
@@ -165,7 +165,7 @@ Summary
 
 * Interfaces must be used for multiple inheritance
 
-   * Usually combined with `tagged` types, but not necessary
+   * Usually combined with :ada:`tagged` types, but not necessary
    * By using only interfaces, only accessors are allowed
 
 * Typically there are other ways to do the same thing

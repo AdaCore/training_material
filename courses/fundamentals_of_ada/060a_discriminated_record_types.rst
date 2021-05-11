@@ -148,13 +148,13 @@ Semantics
 
       Pat  : Person(Student); -- May select Pat.GPA, not Pat.Pubs
       Prof : Person(Faculty); -- May select Prof.Pubs, not Prof.GPA
-      Soph : Person := ( Tag  => Student, 
-                         Name => "John Jones", 
-                         GPA  => 3.2, 
+      Soph : Person := ( Tag  => Student,
+                         Name => "John Jones",
+                         GPA  => 3.2,
                          Year => 2);
       X    : Person;  -- Illegal; discriminant must be initialized
 
-* Assignment between Person objects requires same discriminant values for LHS and RHS 
+* Assignment between Person objects requires same discriminant values for LHS and RHS
 
    .. code:: Ada
 
@@ -187,7 +187,7 @@ Implementation
          -- parameters can be unconstrained (constraint comes from caller)
          procedure Put ( Item : in Person );
          procedure Get ( Item : out Person );
-      end Person_Pkg; 
+      end Person_Pkg;
 
 ----------------
 Primitives
@@ -236,8 +236,8 @@ Usage
    with Person_Pkg; use Person_Pkg;
    with Ada.Text_IO; use Ada.Text_IO;
    procedure Person_Test is
-     Tag   : Person_Tag; 
-     Line  : String(1..80); 
+     Tag   : Person_Tag;
+     Line  : String(1..80);
      Index : Natural;
    begin
      loop
@@ -272,7 +272,7 @@ Adding Flexibility to Variant Records
 
 * Additional flexibility is sometimes desired
 
-   + Allow declaration of unconstrained `Person`, to which either `Person(Faculty)` or `Person(Student)` can be assigned 
+   + Allow declaration of unconstrained `Person`, to which either `Person(Faculty)` or `Person(Student)` can be assigned
    + To do this, *declare discriminant with default initialization*
 
 * Type safety is not compromised
@@ -414,7 +414,7 @@ Use of Discriminants in Record Definition
 
 * Within the record type definition, a discriminant may only be referenced in the following contexts
 
-   - In "case" of variant part 
+   - In "case" of variant part
    - As a bound of a record component that is an unconstrained array
    - As an initialization expression for a component
    - As the value of a discriminant for a component that itself a variant record

@@ -32,42 +32,42 @@ Import / Export
 Pragma Import / Export (1/2)
 ------------------------------
 
-* `Pragma Import` allows a C implementation to complete an Ada specification
+* :ada:`Pragma Import` allows a C implementation to complete an Ada specification
 
    - Ada view
-    
+
       .. code:: Ada
-    
+
          procedure C_Proc;
          pragma Import (C, C_Proc, "c_proc");
-     
+
    - C implementation
-    
+
        .. code:: C++
-    
+
           void c_proc (void) {
              // some code
           }
-     
-* `Pragma Export` allows an Ada implementation to complete a C specification
+
+* :ada:`Pragma Export` allows an Ada implementation to complete a C specification
 
    - Ada implementation
-    
+
        .. code:: Ada
-    
+
           procedure Ada_Proc;
           pragma Export (C, Ada_Proc, "ada_proc");
           procedure Ada_Proc is
           begin
            -- some code
           end Ada_Proc;
-     
+
    - C view
-    
+
        .. code:: C++
-    
+
           extern void ada_proc (void);
-     
+
 ------------------------------
 Pragma Import / Export (2/2)
 ------------------------------
@@ -81,13 +81,13 @@ Pragma Import / Export (2/2)
 
          My_Var : integer_type;
          Pragma Import ( C, My_Var, "my_var" );
- 
+
    - C implementation
 
       .. code:: C++
 
          int my_var;
- 
+
 -----------------------------
 Import / Export in Ada 2012
 -----------------------------
@@ -104,7 +104,7 @@ Import / Export in Ada 2012
         with Import,
              Convention    => C,
              External_Name => "c_proc";
- 
+
 ===================
 Parameter Passing
 ===================
@@ -132,26 +132,25 @@ Passing Scalar Data as Parameters
    - Implementation choice, use carefully.
 
 * At the interface level, scalar types must be either constrained with representation clauses, or coming from Interfaces.C
-  
 * Ada view
-    
+
    .. code:: Ada
-    
+
       with Interfaces.C;
       function C_Proc (I : Interfaces.C.Int)
           return Interfaces.C.Int;
       pragma Import (C, C_Proc, "c_proc");
-     
+
 * C view
-    
+
    .. code:: C++
-    
+
      int c_proc (int i) {
        /* some code */
      }
-     
+
 -----------------------------------
-Passing Structures as Parameters 
+Passing Structures as Parameters
 -----------------------------------
 
 * An Ada record that is mapping on a C struct must:
@@ -168,7 +167,7 @@ Passing Structures as Parameters
         int A, B;
         Enum C;
      };
- 
+
 * Ada View
 
    .. code:: Ada
@@ -180,7 +179,7 @@ Passing Structures as Parameters
        C : Enum;
      end record;
      Pragma Convention ( C, Rec );
- 
+
 * Using Ada 2012 aspects
 
    .. code:: Ada
@@ -190,35 +189,35 @@ Passing Structures as Parameters
        A, B : int;
        C : Enum;
     end record with Convention => C;
- 
+
 -----------------
 Parameter modes
 -----------------
 
-* `in` scalar parameters passed by copy
-* `out` and `in out` scalars passed using temporary pointer on C side
+* :ada:`in` scalar parameters passed by copy
+* :ada:`out` and :ada:`in out` scalars passed using temporary pointer on C side
 * By default, composite types passed by reference on all modes except when the type is marked `C_Pass_By_Copy`
 
    - Be very careful with records - some C ABI pass small structures by copy!
 
 * Ada View
-    
+
    .. code:: Ada
-    
+
       Type R1 is record
          V : int;
       end record
       with Convention => C;
-          
+
       type R2 is record
          V : int;
       end record
       with Convention => C_Pass_By_Copy;
-     
+
 * C View
-    
+
    .. code:: C++
- 
+
       struct R1{
          int V;
       };
@@ -227,7 +226,7 @@ Parameter modes
       };
       void f1 (R1 p);
       void f2 (R2 p);
-     
+
 ====================
 Complex Data Types
 ====================
@@ -237,14 +236,14 @@ Unions
 --------
 
 * C/C++ `union`
-    
+
    .. code:: C++
-    
+
       union Rec {
          int A;
          float B;
       };
-     
+
 * C unions can be bound using the `Unchecked_Union` aspect
 * These types must have a mutable discriminant for convention purpose, which doesn't exist at run-time
 
@@ -252,9 +251,9 @@ Unions
    - It cannot be manually accessed
 
 * Ada implementation of a C `union`
-    
+
    .. code:: Ada
-    
+
       type Rec (Flag : Boolean := False) is
       record
          case Flag is
@@ -266,7 +265,7 @@ Unions
       end record
       with Unchecked_Union,
            Convention => C;
-     
+
 --------------------
 Arrays Interfacing
 --------------------
@@ -301,54 +300,52 @@ Arrays from Ada to C
    - **Fat pointers**
 
 * When arrays can be sent from Ada to C, C will only receive an access to the elements of the array
-
 * Ada View
-    
+
    .. code:: Ada
-    
+
       type Arr is array (Integer range <>) of int;
       procedure P (V : Arr; Size : int);
       pragma Import (C, P, "p");
-     
+
 * C View
-    
+
    .. code:: C++
-    
+
       void p (int * v, int size)  {
       }
-     
+
 ----------------------
 Arrays from C to Ada
 ----------------------
 
 * There are no boundaries to C types, the only Ada arrays that can be bound must have static bounds
 * Additional information will probably need to be passed
-
 * Ada View
-    
+
    .. code:: Ada
-    
+
       -- DO NOT DECLARE OBJECTS OF THIS TYPE
       type Arr is array (0 .. Integer'Last) of int;
-          
+
       procedure P (V : Arr; Size : int);
       pragma Export (C, P, "p");
-          
+
       procedure P (V : Arr; Size : int) is
       begin
          for J in 0 .. Size - 1 loop
             -- code;
          end loop;
       end P;
-     
+
 * C View
-    
+
    .. code:: C++
-    
+
       extern void p (int * v, int size);
       int x [100];
       p (x, 100);
-     
+
 ---------
 Strings
 ---------
@@ -362,13 +359,13 @@ Strings
 
       Ada_Str : String := "Hello World";
       C_Str : chars_ptr := New_String (Ada_Str);
- 
+
 * Alternatively, a knowledgeable Ada programmer can manually create Ada strings with correct ending and manage them directly
 
    .. code:: Ada
 
       Ada_Str : String := "Hello World" & ASCII.NUL;
- 
+
 * Back to the unsafe world - it really has to be worth it speed-wise!
 
 ==============
@@ -380,7 +377,6 @@ Interfaces.C Hierarchy
 ------------------------
 
 * Ada supplies a subsystem to deal with Ada/C interactions
-
 * `Interfaces.C` - contains typical C types and constants, plus some simple Ada string to/from C character array conversion routines
 
    - `Interfaces.C.Extensions` - some additonal C/C++ types
@@ -405,33 +401,33 @@ Interfaces.C
       type short is new Short_Integer;
       type long  is range -(2 ** (System.Parameters.long_bits - Integer'(1)))
         .. +(2 ** (System.Parameters.long_bits - Integer'(1))) - 1;
-   
+
       type signed_char is range SCHAR_MIN .. SCHAR_MAX;
       for signed_char'Size use CHAR_BIT;
-   
+
       type unsigned       is mod 2 ** int'Size;
       type unsigned_short is mod 2 ** short'Size;
       type unsigned_long  is mod 2 ** long'Size;
-   
+
       type unsigned_char is mod (UCHAR_MAX + 1);
       for unsigned_char'Size use CHAR_BIT;
-   
+
       type ptrdiff_t is range -(2 ** (System.Parameters.ptr_bits - Integer'(1))) ..
                               +(2 ** (System.Parameters.ptr_bits - Integer'(1)) - 1);
-   
+
       type size_t is mod 2 ** System.Parameters.ptr_bits;
-   
+
       --  Floating-Point
       type C_float     is new Float;
       type double      is new Standard.Long_Float;
       type long_double is new Standard.Long_Long_Float;
-   
+
       type char is new Character;
       nul : constant char := char'First;
-   
+
       function To_C   (Item : Character) return char;
       function To_Ada (Item : char)      return Character;
-   
+
       type char_array is array (size_t range <>) of aliased char;
       for char_array'Component_Size use CHAR_BIT;
 

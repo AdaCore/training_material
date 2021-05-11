@@ -66,7 +66,7 @@ Type Invariants
 
       -- Guaranteed (absent unchecked conversion)
       Workday : Weekdays := Mon;
- 
+
 * Type invariants apply across entire lifetime for complex abstract data types
 * Part of ADT concept, so only for private types
 
@@ -85,13 +85,13 @@ Type Invariant Verifications
 
 * Not evaluated on internal state changes
 
-   - Internal routine calls 
+   - Internal routine calls
    - Internal assignments
 
 * Remember - these are abstract data types
 
 .. image:: ../../images/black_box_flow.png
-    
+
 ----------------------------------------
 Invariant Over Object Lifetime (Calls)
 ----------------------------------------
@@ -114,7 +114,7 @@ Example Type Invariant
 
    package Bank is
      type Account is private with
-       Type_Invariant => Consistent_Balance (Account);   
+       Type_Invariant => Consistent_Balance (Account);
      ...
      -- Called automatically for all Account objects
      function Consistent_Balance (This : Account)
@@ -123,7 +123,7 @@ Example Type Invariant
    private
      ...
    end Bank;
- 
+
 -------------------------------------------
 Example Type Invariant Implementation
 -------------------------------------------
@@ -148,7 +148,7 @@ Example Type Invariant Implementation
               = This.Current_Balance;
      end Consistent_Balance;
    end Bank;
- 
+
 -----------------------------------
 Invariants Don't Apply Internally
 -----------------------------------
@@ -168,12 +168,12 @@ Invariants Don't Apply Internally
      This.Owner := To_Unbounded_String (Name);
      This.Current_Balance := Initial_Deposit;
      -- invariant would be false here!
-     This.Withdrawals := Transactions.Empty_List; 
-     This.Deposits := Transactions.Empty_List; 
+     This.Withdrawals := Transactions.Empty_List;
+     This.Deposits := Transactions.Empty_List;
      This.Deposits.Append (Initial_Deposit);
      -- invariant is now true
    end Open;
- 
+
 --------------------------------------------
 Default Type Initialization for Invariants
 --------------------------------------------
@@ -191,10 +191,10 @@ Default Type Initialization for Invariants
    private
      -- Type is not a record, so we need to use aspect
      -- (A record could use default values for its components)
-     type T is new Integer with Default_Value => 0; 
+     type T is new Integer with Default_Value => 0;
      function Zero (This : T) return Boolean is (This = 0);
    end P;
- 
+
 ---------------------------------
 Type Invariant Clause Placement
 ---------------------------------
@@ -211,7 +211,7 @@ Type Invariant Clause Placement
           Type_Invariant => T = 0,
           Default_Value => 0;
       end P;
- 
+
 * It is really an implementation aspect
 
    * Client shouldn't care!
@@ -321,7 +321,7 @@ Subtype Predicates Concept
 
 * Something asserted to be true about some subject
 
-   - When true, said to "hold" 
+   - When true, said to "hold"
 
 * Expressed as any legal boolean expression in Ada
 
@@ -354,7 +354,7 @@ Really, ``type`` and ``subtype`` Predicates
       subtype defining_identifier is subtype_indication
          with aspect_mark [ => expression] { ,
                    aspect_mark [ => expression] }
- 
+
 --------------------------
 Why Two Predicate Forms?
 --------------------------
@@ -363,8 +363,8 @@ Why Two Predicate Forms?
    :header-rows: 1
    :stub-columns: 1
    :width: 90%
-    
-   * - 
+
+   * -
 
      - Static
      - Dynamic
@@ -400,7 +400,7 @@ Subtype Predicate Examples
       subtype Even is Integer with Dynamic_Predicate =>
          Even mod 2 = 0; -- Boolean expression
          -- (Even indicates "current instance")
- 
+
 * Static Predicate
 
    .. code:: Ada
@@ -411,7 +411,7 @@ Subtype Predicate Examples
           110  | 300  | 600 | 1200 | 2400 | 4800 |
           9600 | 14400 | 19200 | 28800 | 38400 | 56000 |
           57600 | 115200;
- 
+
 --------------------
 Predicate Checking
 --------------------
@@ -438,7 +438,7 @@ Predicate Checks Placement
 * Parameter passing
 
    - All modes when passed by copy
-   - Modes `in out` and `out` when passed by reference
+   - Modes :ada:`in out` and :ada:`out` when passed by reference
 
 * Implicit default initialization for record components
 * On default type initialization values, when taken
@@ -448,9 +448,9 @@ References Are Not Checked
 ----------------------------
 
 .. code:: Ada
-    
+
    with Ada.Text_IO;   use Ada.Text_IO;
-   procedure Test is   
+   procedure Test is
      subtype Even is Integer with Dynamic_Predicate => Even mod 2 = 0;
      J, K : Even;
    begin
@@ -462,17 +462,17 @@ References Are Not Checked
      Put_Line ("K is" & K'Img);
      Put_Line ("J is" & J'Img);
    end Test;
-     
+
 * Output would look like
-    
+
     .. code:: Ada
-    
+
        K is 1969492223
        J is 4220029
-       
-       raised SYSTEM.ASSERTIONS.ASSERT_FAILURE:  
+
+       raised SYSTEM.ASSERTIONS.ASSERT_FAILURE:
        Dynamic_Predicate failed at test.adb:9
-     
+
 ------------------------------
 Predicate Expression Content
 ------------------------------
@@ -481,10 +481,10 @@ Predicate Expression Content
 
    .. code:: Ada
 
-      subtype Even is Integer 
+      subtype Even is Integer
         with Dynamic_Predicate => Even mod 2 = 0;
       J, K : Even := 42;
- 
+
 * Any visible object or function in scope
 
    - Does not have to be defined before use
@@ -517,7 +517,7 @@ Allowed Static Predicate Content (1)
           -- Non-contiguous range
           110   | 300   | 600   | 1200  | 2400  | 4800  | 9600 |
           14400 | 19200 | 28800 | 38400 | 56000 | 57600 | 115200;
- 
+
 * Example 2
 
    .. code:: Ada
@@ -526,7 +526,7 @@ Allowed Static Predicate Content (1)
        -- only way to create subtype of non-contiguous values
       subtype Weekend is Days
         with Static_Predicate => Weekend in Sat | Sun;
- 
+
 --------------------------------------
 Allowed Static Predicate Content (2)
 --------------------------------------
@@ -540,7 +540,7 @@ Allowed Static Predicate Content (2)
         (case Weekend is
          when Sat | Sun => True,
          when Mon .. Fri => False);
- 
+
 * Note: if-expressions are disallowed, and not needed
 
    .. code:: Ada
@@ -551,19 +551,18 @@ Allowed Static Predicate Content (2)
       -- should be
       subtype Drudge is Days with Static_Predicate =>
         Drudge in Mon .. Fri;
- 
+
 --------------------------------------
 Allowed Static Predicate Content (3)
 --------------------------------------
 
 * A call to `=`, `/=`, `<`, `<=`, `>`, or `>=` where one operand is the current instance (and the other is static)
-* Calls to operators `and`, `or`, `xor`, `not`
+* Calls to operators :ada:`and`, :ada:`or`, :ada:`xor`, :ada:`not`
 
    - Only for pre-defined type `Boolean`
    - Only with operands of the above
 
 * Short-circuit controls with operands of above
-
 * Any of above in parentheses
 
 --------------------------------------
@@ -578,13 +577,13 @@ Dynamic Predicate Expression Content
 
    .. code:: Ada
 
-      subtype Even is Integer 
+      subtype Even is Integer
         with Dynamic_Predicate => Even mod 2 = 0;
       subtype Vowel is Character with Dynamic_Predicate =>
         (case Vowel is
          when 'A' | 'E' | 'I' | 'O' | 'U' => True,
          when others => False); -- evaluated at run-time
- 
+
 * Plus calls to functions
 
    - User-defined
@@ -600,19 +599,19 @@ Types Controlling For-Loops
 
       .. code:: Ada
 
-         subtype Even is Integer 
+         subtype Even is Integer
            with Dynamic_Predicate => Even mod 2 = 0;
          ...
          -- not legal - how many iterations?
          for K in Even loop
            ...
          end loop;
- 
+
 * Types with static predicates can be used
 
    .. code:: Ada
 
-      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);   
+      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
       subtype Weekend is Days
         with Static_Predicate => Weekend in Sat | Sun;
       -- Loop uses "Days", and only enters loop when in Weekend
@@ -620,26 +619,26 @@ Types Controlling For-Loops
       for K in Weekend loop
          ...
       end loop;
- 
+
 -----------------------------------------
 Why Allow Types with Static Predicates?
 -----------------------------------------
 
 * Efficient code can be generated for usage
-    
+
    .. code:: Ada
-    
-      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);   
+
+      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
       subtype Weekend is Days with Static_Predicate => Weekend in Sat | Sun;
       ...
       for W in Weekend loop
         GNAT.IO.Put_Line (W'Img);
       end loop;
-     
-* `for` loop generates code like
-    
+
+* :ada:`for` loop generates code like
+
    .. code:: Ada
-    
+
       declare
         w : weekend := sun;
       begin
@@ -655,7 +654,7 @@ Why Allow Types with Static Predicates?
           end case;
         end loop;
       end;
-     
+
 ---------------------------------------
 In Some Cases Neither Kind Is Allowed
 ---------------------------------------
@@ -671,22 +670,22 @@ In Some Cases Neither Kind Is Allowed
    type Play is array (Weekend) of Integer; -- illegal
    type List is array (Days range <>) of Integer;
    L : List (Weekend); -- not legal
- 
+
 -----------------------------------------
 Special Attributes for Predicated Types
 -----------------------------------------
 
 * Attributes `'First_Valid` and `'Last_Valid`
 
-   - Can be used for any static subtype 
+   - Can be used for any static subtype
    - Especially useful with static predicates
    - `'First_Valid` returns smallest valid value, taking any range or predicate into account
    - `'Last_Valid` returns largest valid value, taking any range or predicate into account
 
-* Attributes `'Range`, `'First` and `'Last` are not allowed 
+* Attributes :ada:`'Range`, `'First` and `'Last` are not allowed
 
    - Reflect non-predicate constraints so not valid
-   - `'Range` is just a shorthand for `'First` .. `'Last`
+   - :ada:`'Range` is just a shorthand for `'First` .. `'Last`
 
 * `'Succ` and `'Pred` are allowed since work on underlying type
 
@@ -702,10 +701,10 @@ Initial Values Can Be Problematic
 
       .. code:: Ada
 
-         subtype Even is Integer 
+         subtype Even is Integer
            with Dynamic_Predicate => Even mod 2 = 0;
          K : Even;  -- unknown (invalid?) initial value
- 
+
 * The predicate is not checked on a declaration when no initial value is given
 * So can reference such junk values before assigned
 
@@ -727,13 +726,13 @@ Subtype Predicates Aren't Bullet-Proof
            (K = Table'First or else Table(K-1) <= Table(K)));
      Values : Table := (1, 3, 5, 7, 9);
    begin
-     ...   
+     ...
      Values (3) := 0; -- does not generate an exception!
      ...
      Values := (1, 3, 0, 7, 9); -- does generate an exception
      ...
    end Demo;
- 
+
 ------------------------------------------
 Beware Accidental Recursion In Predicate
 ------------------------------------------
@@ -758,7 +757,7 @@ Beware Accidental Recursion In Predicate
          (for all K in Sorted_Table'Range =>
             (K = Sorted_Table'First
              or else Sorted_Table (K - 1) <= Sorted_Table (K)));
- 
+
 * Type-based example
 
    .. code:: Ada
@@ -767,7 +766,7 @@ Beware Accidental Recursion In Predicate
       subtype Sorted_Table is Table with
            Dynamic_Predicate => Sorted (Sorted_Table);
       function Sorted (T : Table) return Boolean;
- 
+
 ---------------------------------------
 GNAT-Specific Aspect Name *Predicate*
 ---------------------------------------
@@ -800,7 +799,7 @@ Enabling/Disabling Contract Verification
          pragma Assertion_Policy (
             assertion_name => policy_name
             {, assertion_name => policy_name} );
- 
+
 * Vendors may define additional policies (GNAT does)
 * Default, without pragma, is implementation-defined
 * Vendors almost certainly offer compiler switch
@@ -862,8 +861,7 @@ Working with Type Invariants
 
 * They are not fully foolproof
 
-   - External corruption is possible 
-
+   - External corruption is possible
    - Requires dubious usage
 
 * Violations are intended to be supplier bugs
