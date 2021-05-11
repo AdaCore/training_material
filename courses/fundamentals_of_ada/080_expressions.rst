@@ -212,6 +212,10 @@ Examples
 Conditional Expressions
 -------------------------
 
+.. admonition:: Language Variant
+
+   Ada 2012
+
 * Ultimate value depends on a controlling condition
 * Allowed wherever an expression is allowed
 
@@ -231,6 +235,10 @@ Conditional Expressions
 ------------------
 *If Expressions*
 ------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
 
 * Syntax looks like an if-statement without `end if`
 
@@ -433,6 +441,10 @@ Static Named Numbers Example
  *Case Expressions*
 ---------------------
 
+.. admonition:: Language Variant
+
+   Ada 2012
+
 .. container:: columns
 
  .. container:: column
@@ -606,7 +618,3 @@ Summary
 
    - Especially useful when a constant is intended
    - Especially useful when a static expression is required
-
-* Quantified expressions are general purpose but especially useful with pre/postconditions
-
-   - Consider hiding them behind expressive function names
