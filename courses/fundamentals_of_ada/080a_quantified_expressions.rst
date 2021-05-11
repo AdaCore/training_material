@@ -9,6 +9,10 @@ Quantified Expressions
 Quantified Expressions
 ========================
 
+-------------
+Introduction
+-------------
+
 .. admonition:: Language Variant
 
    Ada 2012
