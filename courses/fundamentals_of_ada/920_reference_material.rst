@@ -21,7 +21,7 @@ Reference Manual
 
 * **LRM** - Language Reference Manual (or just **RM**)
 
-   - Always on-line (including all previous versions) at `www.adaic.org`
+   - Always on-line (including all previous versions) at `www.adaic.org <www.adaic.org>`_
 
 * Finding stuff in the RM
 
@@ -86,7 +86,7 @@ Need More Help?
 
 * Open a "TN" via the GNAT Tracker web interface and/or email.
 
-   - Send to: `support@gnat.com`
+   - Send to: `support@gnat.com <mailto:support@gnat.com>`_
    - Subject should read: #XXXX - (descriptive text)
 
       * Where XXXX is your customer number
