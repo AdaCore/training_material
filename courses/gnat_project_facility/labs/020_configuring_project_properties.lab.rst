@@ -2,7 +2,7 @@
 Configuring Project Properties Lab
 ------------------------------------
 
-* Still in the :filename:`fibonacci` directory (under :filename:`sources`)
+* Still in the :filename:`fibonacci` directory (under :filename:`materials`)
 * Change the project file so that the compiler switch enabling integer overflow checking is changed
 
    * Add the :ada:`Compiler` package

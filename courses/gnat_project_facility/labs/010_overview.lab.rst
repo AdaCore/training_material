@@ -3,7 +3,7 @@ Overview Lab
 --------------
 
    * Open a command shell
-   * Go to :filename:`fibonacci` directory (under :filename:`sources`)
+   * Go to :filename:`fibonacci` directory (under :filename:`materials`)
 
       * Contains a main procedure and a supporting package
 
