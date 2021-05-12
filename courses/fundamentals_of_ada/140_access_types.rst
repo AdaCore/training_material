@@ -554,7 +554,7 @@ Common Memory Problems (1/3)
          ...
          Free (V2);
 
-   - May raise `Storage_Error` if memory is still protected (unallocated)
+   - May raise :ada:`Storage_Error` if memory is still protected (unallocated)
    - May deallocate a different object if memory has been reallocated
 
       + Putting that object in an inconsistent state
@@ -578,7 +578,7 @@ Common Memory Problems (2/3)
          ...
          V2.all := 5;
 
-   - May raise `Storage_Error` if memory is still protected (unallocated)
+   - May raise :ada:`Storage_Error` if memory is still protected (unallocated)
    - May modify a different object if memory has been reallocated (putting that object in an inconsistent state)
 
 ------------------------------
@@ -599,7 +599,7 @@ Common Memory Problems (3/3)
 
    - Silent problem
 
-      + Might raise `Storage_Error` if too many leaks
+      + Might raise :ada:`Storage_Error` if too many leaks
       + Might slow down the program if too many page faults
 
 -----------------------------

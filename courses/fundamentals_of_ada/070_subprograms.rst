@@ -411,7 +411,7 @@ Actual Parameters Respect Constraints
 ---------------------------------------
 
 * Must satisfy any constraints of formal parameters
-* `Constraint_Error` otherwise
+* :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
 
@@ -1036,7 +1036,7 @@ Return Statements In Functions
 No Path Analysis Required By Compiler
 ---------------------------------------
 
-* Running to the end of a function without hitting a :ada:`return` statement raises `Program_Error`
+* Running to the end of a function without hitting a :ada:`return` statement raises :ada:`Program_Error`
 * Compilers can issue warning if they suspect that a :ada:`return` statement will not be hit
 
 .. code:: Ada
@@ -1280,7 +1280,7 @@ Mode `out` Risk for Scalars
     * "By-copy" mechanism will copy something back
 
        - Value copied back may be junk
-       - `Constraint_Error` may be raised later or some other unexpected behavior may occur
+       - :ada:`Constraint_Error` may be raised later or some other unexpected behavior may occur
 
  .. container:: column
 
@@ -1381,7 +1381,7 @@ Order-Dependent Code And Side Effects
    Gear_Down (Global, F);
 
 * Order of evaluation of parameters in subprogram call is not specified in language
-* `Gear_Down` could get called with
+* :ada:`Gear_Down` could get called with
 
    - X |rightarrow| 0, Y |rightarrow| 1 (if `Global` evaluated first)
    - X |rightarrow| 1, Y |rightarrow| 1 (if `F` evaluated first)
@@ -1403,7 +1403,7 @@ Parameter Aliasing
 
 * Ada detects some cases
 
-   - When detected, raises `Program_Error`
+   - When detected, raises :ada:`Program_Error`
    - When not detected, does whatever it does
 
 ----------------------------------------

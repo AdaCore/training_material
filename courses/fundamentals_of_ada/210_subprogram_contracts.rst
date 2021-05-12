@@ -82,7 +82,7 @@ Low-Level Assertions
 
 * Language-defined package with procedures
 
-   - Raise `Assertion_Error` if expression is False
+   - Raise :ada:`Assertion_Error` if expression is False
 
    .. code:: Ada
 
@@ -260,7 +260,7 @@ Preconditions
 
 * Checked prior to call by client
 
-   - `Assertion_Error` raised if false
+   - :ada:`Assertion_Error` raised if false
 
 .. code:: Ada
 
@@ -305,7 +305,7 @@ Postconditions
 * Content as for preconditions, plus some extras
 * Checked after corresponding subprogram call
 
-   - `Assertion_Error` raised if false
+   - :ada:`Assertion_Error` raised if false
 
 .. code:: Ada
 
@@ -756,7 +756,7 @@ Exceptions
 Controlling the Exception Raised
 ----------------------------------
 
-* Failing pre/postconditions raise `Assertion_Error`
+* Failing pre/postconditions raise :ada:`Assertion_Error`
 * Abstractions may define dedicated exceptions
 
    - Assertion Error

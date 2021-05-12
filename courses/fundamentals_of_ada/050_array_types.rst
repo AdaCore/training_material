@@ -76,7 +76,7 @@ Run-Time Index Checking
 -------------------------
 
 * Array indices are checked at run-time as needed
-* Invalid index values result in `Constraint_Error`
+* Invalid index values result in :ada:`Constraint_Error`
 
 .. code:: Ada
 
@@ -357,7 +357,7 @@ Bounds Must Satisfy Type Constraints
 ---------------------------------------
 
 * Must be somewhere in the range of possible values specified by the type declaration
-* `Constraint_Error` otherwise
+* :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
 
@@ -938,11 +938,14 @@ For-Loops with Multidimensional Arrays
 
     * In low-level format looks like
 
-       - for each row loop
-       - for each column loop
-       - print Identity (row, column)
-       - end loop
-       - end loop
+    .. code::
+
+       for each row loop
+          for each column loop
+             print Identity (
+                row, column)
+          end loop
+       end loop
 
  .. container:: column
 

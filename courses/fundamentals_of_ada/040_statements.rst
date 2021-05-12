@@ -254,7 +254,7 @@ Target Variable Constraint Violations
 
 * May compile but will raise error at runtime
 
-   - Predefined exception `Constraint_Error` is raised
+   - Predefined exception :ada:`Constraint_Error` is raised
 
 * May be detected by compiler
 

@@ -449,9 +449,9 @@ Implicitly-Raised Exceptions
 
 * Several checks and exceptions are language-defined
 
-   - `Constraint_Error`
-   - `Storage_Error`
-   - `Program_Error`
+   - :ada:`Constraint_Error`
+   - :ada:`Storage_Error`
+   - :ada:`Program_Error`
    - Various others
 
 --------------------

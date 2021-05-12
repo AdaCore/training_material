@@ -183,8 +183,8 @@ Ada.Text_IO.Integer_IO
    - **123** will set I to 123
    - **45X67** will set I to 45
 
-* `IO` has global objects `Default_Width` and `Default_Base` which can be modified to set default values for like-named parameters
-* `Ada.Text_IO.Modular_IO` behaves the same
+* :ada:`IO` has global objects :ada:`Default_Width` and :ada:`Default_Base` which can be modified to set default values for like-named parameters
+* :ada:`Ada.Text_IO.Modular_IO` behaves the same
 
 ------------------------
 Ada.Text_IO.Float_IO
@@ -210,7 +210,7 @@ Ada.Text_IO.Float_IO
    - **12** will set F to 12.0
    - **23.45.67** will set F to 23.45
 
-* `IO` has global objects `Default_Fore`, `Default_Aft` and `Default_Exp` which can be modified to set default values for like-named parameters
+* :ada:`IO` has global objects :ada:`Default_Fore`, :ada:`Default_Aft` and :ada:`Default_Exp` which can be modified to set default values for like-named parameters
 * `Ada.Text_IO.Fixed_IO` and `Ada.Text_IO.Decimal_IO` behave the same
 
 ----------------------------
@@ -236,7 +236,7 @@ Ada.Text_IO.Enumeration_IO
    - **YelloW** will set `E` to `Yellow`
    - **Red Blue** will set `E` to `Red`
 
-* `IO` has global objects `Default_Width` and `Default_Setting` which can be modified to set default values for like-named parameters
+* :ada:`IO` has global objects :ada:`Default_Width` and :ada:`Default_Setting` which can be modified to set default values for like-named parameters
 
 ============
 Exceptions
@@ -249,10 +249,10 @@ Ada.IO_Exceptions
 * I/O Packages have common exceptions (defined in `Ada.IO_Exceptions` and renamed in `Ada.Text_IO` for easier reference)
 * The most common Text I/O exceptions:
 
-   * `Status_Error` :math:`\rightarrow` Raised on `Open`/`Create` if file being opened/created is already open. For any other operation, raised if file is not open
-   * `Name_Error` :math:`\rightarrow` Raised if filename is invalid for `Open`/`Create`
-   * `Use_Error` :math:`\rightarrow` Raised if unable to `Open`/`Create`
-   * `Data_Error` :math:`\rightarrow` Failure of `Get` to read valid data
+   * :ada:`Status_Error` :math:`\rightarrow` Raised on `Open`/`Create` if file being opened/created is already open. For any other operation, raised if file is not open
+   * :ada:`Name_Error` :math:`\rightarrow` Raised if filename is invalid for `Open`/`Create`
+   * :ada:`Use_Error` :math:`\rightarrow` Raised if unable to `Open`/`Create`
+   * :ada:`Data_Error` :math:`\rightarrow` Failure of `Get` to read valid data
 
 ========
 Lab
@@ -268,7 +268,7 @@ Summary
 Summary
 ---------
 
-* `Ada.Text_IO` is the most common text input/output processing process
+* :ada:`Ada.Text_IO` is the most common text input/output processing process
 * Text_IO has simple mechanisms to read scalar types
 
    - 'Image and 'Value work, but are simplistic

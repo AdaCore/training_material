@@ -687,7 +687,7 @@ Notion Of a Queue
 * Protected entries, protected procedures and task entries can only be activated by one task at a time
 * If several tasks are trying to enter a mutually exclusion section, they are put in a queue
 * By default, tasks are entering the queue in FIFO
-* If several tasks are in a queue when the server task is terminated, `Tasking_Error` is sent to the waiting tasks
+* If several tasks are in a queue when the server task is terminated, :ada:`Tasking_Error` is sent to the waiting tasks
 
 -----------------------
 `requeue` Instruction

@@ -158,7 +158,7 @@ Testing Constraints via Qualification
 
 * Asserts value is compatible with subtype
 
-   - Raises exception `Constraint_Error` if not true
+   - Raises exception :ada:`Constraint_Error` if not true
 
 .. code:: Ada
 

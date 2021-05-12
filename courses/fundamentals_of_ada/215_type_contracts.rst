@@ -417,7 +417,7 @@ Predicate Checking
 --------------------
 
 * Calls inserted automatically by compiler
-* Violations raise exception `Assertion_Error`
+* Violations raise exception :ada:`Assertion_Error`
 
    - When predicate does not hold (evaluates to False)
 
