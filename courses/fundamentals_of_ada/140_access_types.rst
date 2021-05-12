@@ -81,103 +81,6 @@ Stack vs Heap
 .. image:: ../../images/stack_pointing_to_heap.png
    :width: 50%
 
-==========================
-Access Types
-==========================
-
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/access_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#access-types`
-
-----------------------
-Declaration Location
-----------------------
-
-* Can be at library level
-
-   .. code:: Ada
-
-      package P is
-        type String_Access is access String;
-      end P;
- 
-* Can be nested in a procedure
-
-   .. code:: Ada
-
-      package body P is
-         procedure Proc is
-            type String_Access is access String;
-         begin
-            ...
-         end Proc;
-      end P;
- 
-* Nesting adds non-trivial issues
-
-   - Creates a nested pool with a nested accessibility
-   - Don't do that unless you know what you are doing! (see later)
-
--------------
-Null Values
--------------
-
-* A pointer that does not point to any actual data has a null value
-* Without an initialization, a pointer is `null` by default
-* `null` can be used in assignments and comparisons
-
-.. code:: Ada
-
-    type Acc is access all Integer;
-      V : Acc;
-   begin
-      if V = null then
-         --  will go here
-      end if
-      V := new Integer'(0);
-      V := null; -- semantically correct, but memory leak
- 
-------------------------
-Dereferencing Pointers
-------------------------
-
-* `.all` does the access dereference
-
-   - Lets you access the object pointed to by the pointer
-
-* `.all` is optional for
-
-   - Access on a component of an array
-   - Access on a component of a record
-
-----------------------
-Dereference Examples
-----------------------
-
-.. code:: Ada
-
-   type R is record
-     F1, F2 : Integer;
-   end record;
-   type A_Int is access Integer;
-   type A_String is access all String;
-   type A_R is access R;
-   V_Int    : A_Int := new Integer;
-   V_String : A_String := new String'("abc");
-   V_R      : A_R := new R;
-
-.. code:: Ada
-
-   V_Int.all := 0;
-   V_String.all := "cde";
-   V_String (1) := 'z'; -- similar to V_String.all (1) := 'z';
-   V_R.all := (0, 0);
-   V_R.F1 := 1; -- similar to V_R.all.F1 := 1;
-
 ===========================
 Pool-Specific Access Types
 ===========================
@@ -373,6 +276,103 @@ D. ``Two := A'Access;``
    :ada:`'Access` is only allowed for general access types
    (:ada:`One_T`). To use :ada:`'Access` on an object, the
    object must be :ada:`aliased`.
+
+==========================
+Access Types
+==========================
+
+----------
+Examples
+----------
+
+.. include:: examples/140_access_types/access_types.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#access-types`
+
+----------------------
+Declaration Location
+----------------------
+
+* Can be at library level
+
+   .. code:: Ada
+
+      package P is
+        type String_Access is access String;
+      end P;
+ 
+* Can be nested in a procedure
+
+   .. code:: Ada
+
+      package body P is
+         procedure Proc is
+            type String_Access is access String;
+         begin
+            ...
+         end Proc;
+      end P;
+ 
+* Nesting adds non-trivial issues
+
+   - Creates a nested pool with a nested accessibility
+   - Don't do that unless you know what you are doing! (see later)
+
+-------------
+Null Values
+-------------
+
+* A pointer that does not point to any actual data has a null value
+* Without an initialization, a pointer is `null` by default
+* `null` can be used in assignments and comparisons
+
+.. code:: Ada
+
+    type Acc is access all Integer;
+      V : Acc;
+   begin
+      if V = null then
+         --  will go here
+      end if
+      V := new Integer'(0);
+      V := null; -- semantically correct, but memory leak
+ 
+------------------------
+Dereferencing Pointers
+------------------------
+
+* `.all` does the access dereference
+
+   - Lets you access the object pointed to by the pointer
+
+* `.all` is optional for
+
+   - Access on a component of an array
+   - Access on a component of a record
+
+----------------------
+Dereference Examples
+----------------------
+
+.. code:: Ada
+
+   type R is record
+     F1, F2 : Integer;
+   end record;
+   type A_Int is access Integer;
+   type A_String is access all String;
+   type A_R is access R;
+   V_Int    : A_Int := new Integer;
+   V_String : A_String := new String'("abc");
+   V_R      : A_R := new R;
+
+.. code:: Ada
+
+   V_Int.all := 0;
+   V_String.all := "cde";
+   V_String (1) := 'z'; -- similar to V_String.all (1) := 'z';
+   V_R.all := (0, 0);
+   V_R.F1 := 1; -- similar to V_R.all.F1 := 1;
 
 ======================
 Accessibility Checks
