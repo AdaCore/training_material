@@ -1,0 +1,6 @@
+project Configuring_Project_Properties is
+   for Main use ( "main.adb" );
+   package Compiler is
+      for Default_Switches ("Ada") use ("-gnato0");
+   end Compiler;
+end Configuring_Project_Properties;

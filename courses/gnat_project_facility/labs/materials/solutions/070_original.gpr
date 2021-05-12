@@ -1,0 +1,5 @@
+project Original is
+   for Source_Dirs use ( "original" );
+   for Object_Dir use "original";
+   for Main use ( "reader.adb" );
+end Original;

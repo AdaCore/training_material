@@ -1,0 +1,13 @@
+project Naming_Considerations is
+
+   package Naming is
+      for Casing use "lowercase";
+      for Dot_Replacement use ".";
+      for Spec_Suffix ("Ada") use ".1.ada";
+      for Body_Suffix ("Ada") use ".2.ada";
+   end Naming;
+
+   for Main use ( "main.2.ada" );
+   
+end Naming_Considerations;
+

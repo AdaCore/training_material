@@ -2,12 +2,14 @@
 Configuring Project Properties Lab
 ------------------------------------
 
-* Still in the :filename:`gnat` directory (under :filename:`sources`)
+* Still in the :filename:`fibonacci` directory (under :filename:`sources`)
 * Change the project file so that the compiler switch enabling integer overflow checking is changed
 
    * Add the :ada:`Compiler` package
    * Insert :ada:`Default_Switches` attribute for Ada in :ada:`Compiler` package
-   * Set switch :command:`-gnato` in the attribute
+   * Set switch :command:`-gnato0` in the attribute
+
+      * Disable overflow checking
 
 * Build again
 
@@ -20,8 +22,8 @@ Overview Lab Solution
 .. code:: Ada
 
    project Lab is
-      for Main use ("fibonacci");
+      for Main use ("main.adb");
       package Compiler is
-         for Default_Switches ("Ada") use ("-gnato");
+         for Default_Switches ("Ada") use ("-gnato0");
       end Compiler;
    end Lab;

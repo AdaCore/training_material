@@ -1,0 +1,151 @@
+		       G N A T   E X A M P L E S
+		       =========================
+
+
+In order to compile the examples, make sure that the 'gnatmake' command is
+in your path. 
+
+Invocation
+----------
+
+In order to build the executables provided in this example, you need to
+use the "amazing.gpr" project file. On the command-line, do the following:
+
+  $ gnatmake -Pamazing
+
+Alternatively, in GPS, click on "Build", and then "Make", and then you can 
+select which of the two example main programs will be built.  
+
+Features illustrated
+--------------------
+
+  This example illustrates the Ada concurrent programming facilities, i.e., 
+  tasks and protected objects, in the solution of arbitrary two-dimensional 
+  mazes (hence, the "a-mazing" name).  Application of these facilities is 
+  interesting given the increasing availability of multi-core and multi-
+  processor architectures.  In particular, concurrency is applicable to solving
+  mazes when the given maze has multiple solutions instead of only one.  In 
+  that case we can "flood" the maze with tasks, each task looking for a unique
+  solution.  
+
+  The original version of this application was written in Ada 83 and released 
+  in the late 1980's.  It was very portable: it ran on a Vax running VMS, a 
+  Sequent Balance 8000 symmetric multi-processor running Unix, personal 
+  computers running DOS, etc., with no source-code changes whatsoever.  This 
+  new version is written in Ada 95 and is equally portable.  It also has 
+  significant enhancements over the original, in terms of both efficiency (via 
+  the use of protected types) and user-configurability.  
+
+  There are two main programs.  The sequential, single-threaded version is
+  named "mouse".  The concurrent version is named "mice".  Both solve mazes 
+  and, in addition, can generate arbitrary mazes.  The "mouse" application also 
+  allows you to save a newly generated maze.  These saved mazes are stored in 
+  files that either program can take as input.  
+
+  When requesting a new maze to be generated, you specify both the width and 
+  height of the new maze.  The number of solutions in generated mazes is 
+  randomly determined.  However, you can also request generation of so-called 
+  "perfect" mazes that have only one solution.  All locations in all mazes are
+  guaranteed to be reachable.  The maze entrance is always at the upper left; 
+  the exit is always at the lower right.  
+
+  For the multi-threaded "mice" application, users can control the number of 
+  searcher tasks involved.  Each task attempts to find a unique solution to the 
+  maze and then, if one is found, display that solution.  Mutually exclusive 
+  access is required since there is only one display device so displaying a 
+  solution is an expensive operation, over and above the expense of the I/O 
+  itself.  Therefore, users can control whether solutions to a given maze are 
+  displayed.  Maze solution display could be disabled, for example, in order to 
+  make timing analyses.  When solution display is enabled, the total number of 
+  unique solutions found is also indicated.  
+
+  Individual maze solutions are depicted by placing a character at each 
+  row/column location used by that specific solution within the displayed maze.  
+  Solutions are very likely to overlap, in some cases significantly, depending 
+  on the nature of the maze.  In such cases very little difference will be 
+  immediately obvious, but any given solution will vary by at least one 
+  location from all other solutions.  (Circularities in the solutions are 
+  prevented and are not counted.) 
+
+  For example, there are two unique solutions to this maze:
+
+  +---+---+---+---+---+
+    #   #   #   #   # |
+  +---+---+   +---+   +
+  |               | # |
+  +   +   +---+   +   +
+  |   |   |       | # |
+  +---+   +   +---+   +
+  |   |       | #   # |
+  +   +---+---+   +   +
+  |             #   #
+  +---+---+---+---+---+
+  
+
+Displays (platforms) supported
+------------------
+
+  You can build the applications to use either Win32 console capabilities or 
+  ANSI escape sequences to depict mazes and solutions.  The former obviously 
+  requires Windows hosts; the latter are usually supported by Unix-compatible 
+  operating systems.
+  
+  Selection is controlled by the "Display" scenario variable.  The default is 
+  for Windows hosts.  To build for ANSI sequences use the normal techniques, 
+  such as specifying the scenario variable on the command line:
+  
+		gnatmake -P amazing.gpr -XDisplay=ANSI
+
+   Similarly:
+   
+		gnatmake -P amazing.gpr -XDisplay=Win32
+
+
+Running the programs
+--------------------
+
+  Some command-line arguments are required.  These arguments specify either the 
+  dimensions of a new maze to be generated or the filename of an existing, 
+  previously-generated maze.  
+
+  To generate a new maze, specify the width and height as integer values after 
+  the corresponding switch: 
+
+           -w  <positive> 
+           -h  <positive>  
+
+  Both values must be greater than zero and both are required if either is 
+  given.  
+
+  Alternatively, to solve an existing maze, specify the filename: 
+
+           -f  <file-name>  
+
+  These two alternatives are mutually exclusive of one another.
+
+  All other arguments are optional and have default values.
+
+  To specify the number of searcher tasks, use this switch:
+
+           -t  <positive>  
+
+  The value is a positive integer.  The default value is 4 (four).  Naturally, 
+  this switch has no effect on the single-threaded "mouse" application.  
+
+  When specifying the width and height of a new maze, you can also request that 
+  it be a "perfect" maze (i.e., with one solution) using this switch: 
+
+           -p <boolean>   
+  		 
+  The argument value is either "true" or "false", without the quotes.  The 
+  default is "false".  
+
+  You can control whether the individual solutions and the total solution count 
+  are displayed with this switch: 
+
+           -o <boolean>   
+  		 
+  The argument value is either "true" or "false", without the quotes.  The 
+  default is "true".  
+ 
+

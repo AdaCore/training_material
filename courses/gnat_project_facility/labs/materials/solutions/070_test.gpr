@@ -1,0 +1,5 @@
+project Test extends "Original" is
+   for Source_Dirs use ( "test" );
+   for Object_Dir use "test";
+   for Main use ( "test_driver.adb" );
+end Test;

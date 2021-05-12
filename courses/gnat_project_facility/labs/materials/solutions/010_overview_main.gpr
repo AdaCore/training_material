@@ -1,0 +1,3 @@
+project overview_main is
+   for main use ( "main.adb" );
+end overview_main;

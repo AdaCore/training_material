@@ -3,9 +3,9 @@ Overview Lab
 --------------
 
    * Open a command shell
-   * Go to :filename:`gnat` directory (under :filename:`sources`)
+   * Go to :filename:`fibonacci` directory (under :filename:`sources`)
 
-      * Containing file :filename:`fibonacci.adb`
+      * Contains a main procedure and a supporting package
 
    * Use an editor to create minimum project file
 
@@ -19,7 +19,7 @@ Overview Lab
    * Clean the project with gprclean
 
       * Use :command:`-P` argument on the command line to specify project file
-      * Note that the :filename:`fibonacci` executable remains
+      * Note that the :filename:`main` executable remains
 
    * Change project file so that it specifies the main program
 
@@ -29,7 +29,7 @@ Overview Lab
 
    * Clean the project with gprclean again
 
-      * Note the :filename:`fibonacci` executable is now also deleted
+      * Note the :filename:`main` executable is now also deleted
 
 -----------------------
 Overview Lab Solution
@@ -47,5 +47,5 @@ Overview Lab Solution
    .. code:: Ada
 
       project Lab is
-         for Main use ( "fibonacci" );
+         for Main use ( "main.adb" );
       end Lab;
