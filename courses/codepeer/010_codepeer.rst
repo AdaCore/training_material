@@ -353,21 +353,51 @@ Running CodePeer regularly
 + Can compare between two runs
 + Combine :command:`-cutoff` and :command:`-current` switches
 
-===================================
-CodePeer Messages and Annotations
-===================================
+=======================
+LAL Checkers Messages
+=======================
 
---------------
-LAL Checkers
---------------
+-------------------------
+LAL Checkers Categories
+-------------------------
 
+   **contract** **check**
+     A user contract, either an assertion or a pre/postcondition could fail
 
---------------
-LAL Checkers
---------------
+   **discriminant check**
+     A field for the wrong variant/discriminant is accessed
 
-+ procedure Check  is X : Integer :=  0 ; begin  pragma Assert ( X >  0 ) ; end Check ;
-+ check.adb:4:4: medium warning: contract check (LAL checker): assertion failure
+   **access check**
+     Attempt to dereference a null pointer
+
+   **same operands**
+     The two operands of a binary operation are syntactically equivalent
+
+   **code duplicated**
+     Duplicated code has been detected which might point to an unintentional copy/paste
+
+   **test always true**
+     Redundant conditionals, could flag logical errors where the test always evaluates to true
+
+   **test always false**
+     Redundant conditionals, could flag logical errors where the test always evaluates to false
+
+----------------
+Contract Check
+----------------
+
+A user contract, either an assertion or a pre/postcondition could fail
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Check is
+      X : Integer := 0;
+   begin
+      pragma Assert (X > 0);                                      
+   end Check;
+
+``check.adb:4:4: medium warning: contract check (LAL checker): assertion failure``
 
 --------------
 LAL Checkers
