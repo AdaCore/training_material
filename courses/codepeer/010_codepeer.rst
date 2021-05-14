@@ -1340,116 +1340,264 @@ Indicates when an assignment does not modify the value stored in the variable be
 
 ``self_assign.adb:5:6: medium warning: useless self assignment into A``
 
---------------------------
+==========================
 Suspicious Code Warnings
---------------------------
+==========================
 
+----------------------------
+Suspicious Code Categories
+----------------------------
 
-------------------------------
-Suspicious Code Warnings
-------------------------------
+suspicious precondition
+   A precondition requires a non-contiguous set of values for an expression
 
-+ package body Stack  is  procedure Push  ( S :  in  out Stack_Type; V : Value )  is  begin  if S.Last = S.Tab 'Last  then  raise Overflow;  end if; S.Last := S.Last -  1; *--  Should be S.Last + 1* S.Tab ( S.Last )  := V;  end Push;
-+ stack.adb:3:4: medium warning: suspicious precondition for S.Last: not a contiguous range of values
+suspicious input
+   A value for an out parameter may be read before the parameter is assigned
 
-------------------------------
-Suspicious Code Warnings
-------------------------------
+unread parameter
+   Parameter of mode in out is always assigned before being read (could be changed to mode out)
 
-+ procedure In_Out  is  type T is  record I : Integer;  end record;  procedure Take_In_Out  ( R :  in  out T )  is  begin R.I := R.I +  1;  end Take_In_Out;  procedure Take_Out  ( R :  out T; B : Boolean )  is  begin Take_In_Out ( R ); *-- R is 'out' but used as 'in out'*  end Take_Out;
-+ in_out.adb:13:7: medium warning: suspicious input R.I: depends on input value of out-parameter
+unassigned parameter
+   Parameter of mode in out is never assigned (could be changed to mode in)
 
-------------------------------
-Suspicious Code Warnings
-------------------------------
+suspicious constant operation
+   The evaluation of an expression always produces the same value
 
-+ procedure Unread  ( X :  in  out Integer )  is begin X :=  0; *-- X is assigned but never read* end Unread;
-+ unread.adb:1:1: medium warning: unread parameter X: could have mode out
+-------------------------
+Suspicious Precondition
+-------------------------
 
-------------------------------
-Suspicious Code Warnings
-------------------------------
+A precondition requires a non-contiguous set of values for an expression
 
-+ procedure Unassigned  ( X :  in  out Integer; Y :  out Integer )  is begin Y := X; *-- X is read but never assigned* end Unassigned;
-+ unread.adb:1:1: medium warning: unassigned parameter X: could have mode in
+.. code:: Ada
+   :number-lines: 1
 
-------------------------------
-Suspicious Code Warnings
-------------------------------
+   package body Stack is
 
-+ procedure Constant_Op  is  type T is  new Natural range  0  ..  14;  function Incorrect  ( X : T )  return T is  begin  return X /  ( T 'Last  +  1 );  end; begin  null; end Constant_Op;
-+ constant_op.adb:6:16: medium warning: suspicious constant operation X/15 always evaluates to 0
+      procedure Push (S : in out Stack_Type; V : Value) is
+      begin
+         if S.Last = S.Tab'Last then
+            raise Overflow;
+         end if;
 
------------------------------------------
+         S.Last := S.Last - 1;  --  Should be S.Last + 1
+         S.Tab (S.Last) := V;
+      end Push;
+   end Stack;
+
+``stack.adb:3:4: medium warning: suspicious precondition for S.Last: not a contiguous range of values``
+
+------------------
+Suspicious Input
+------------------
+
+A value for an out parameter may be read before the parameter is assigned
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure In_Out is
+      type T is record
+         I : Integer;
+      end record;
+
+      procedure Take_In_Out (R : in out T) is
+      begin
+         R.I := R.I + 1;
+      end Take_In_Out;
+
+      procedure Take_Out (R : out T; B : Boolean) is
+      begin
+         Take_In_Out (R);  -- R is 'out' but used as 'in out'
+      end Take_Out;
+
+``in_out.adb:13:7: medium warning: suspicious input R.I: depends on input value of out-parameter``
+
+------------------
+Unread Parameter
+------------------
+
+Parameter of mode in out is always assigned before being read (could be changed to mode out)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Unread (X : in out Integer) is
+   begin
+      X := 0;  -- X is assigned but never read
+   end Unread;
+
+``unread.adb:1:1: medium warning: unread parameter X: could have mode out``
+
+----------------------
+Unassigned Parameter
+----------------------
+
+Parameter of mode in out is never assigned (could be changed to mode in)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Unassigned (X : in out Integer; Y : out Integer) is
+   begin
+      Y := X;  -- X is read but never assigned
+   end Unassigned;
+
+``unread.adb:1:1: medium warning: unassigned parameter X: could have mode in``
+
+-------------------------------
+Suspicious Constant Operation
+-------------------------------
+The evaluation of an expression always produces the same value
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Constant_Op is
+      type T is new Natural range 0 .. 14;
+
+      function Incorrect (X : T) return T is
+      begin
+         return X / (T'Last + 1);
+      end;
+   begin
+      null;
+   end Constant_Op;
+
+``constant_op.adb:6:16: medium warning: suspicious constant operation X/15 always evaluates to 0``
+
+=====================================
 Automatically Generated Annotations
------------------------------------------
+=====================================
 
+------------------------
+Annotations Categories
+------------------------
 
------------------------------------------
-Automatically Generated Annotations
------------------------------------------
+precondition
+   Requirement imposed by a subprogram on its inputs to avoid a runtime failure
 
-+ External Tools Integration
+presumption
+   Property assumed by a call on an unanalyzed external subprogram
 
--------------------
+postcondition
+   Behavior of a subprogram in terms of its outputs
+
+unanalyzed call
+   External calls to subprograms that could not be analyzed
+
+global inputs/outputs
+   List of all global variables referenced/modified by a subprogram
+
+new objects
+   List of heap-allocated objects created by a subprogram
+
+--------------
+Precondition
+--------------
+
+TBD
+
+-------------
+Presumption
+-------------
+
+TBD
+
+---------------
+Postcondition
+---------------
+
+TBD
+
+-----------------
+Unanalyzed Call
+-----------------
+
+TBD
+
+-----------------------
+Global Inputs/Outputs
+-----------------------
+
+TBD
+
+-------------
+New Objects
+-------------
+
+TBD
+
+============================
+External Tools Integration
+============================
+
+---------------
 GNAT Warnings
--------------------
+---------------
 
-+ GNAT warnings can be generated by :toolname:`CodePeer` (>= 18. x )
++ GNAT warnings can be generated by :toolname:`CodePeer`
 
-  + --gnat-warnings= xxx (uses -gnatw xxx )
+  :command:`--gnat-warnings= xxx` *(uses -gnatwxxx)*
 
 + Messages are stored in the database, displayed and filtered as any other message
 + Manual justification can be stored in the database
-+ Manual justification in the source is achieved via pragma Warnings instead of pragma Annotate
++ Manual justification in the source is achieved via pragma Warnings instead of :ada:`pragma Annotate`
 
 ------------------------
 GNATcheck messages
 ------------------------
 
-+ GNATcheck messages can be generated by :toolname:`CodePeer` (>= 19. x)
++ :toolname:`GNATcheck` messages can be generated by :toolname:`CodePeer`
 
-  + --gnatcheck
+  :command:`--gnatcheck`
 
-+ Uses the GNATcheck rules file as defined in your project file in package Check
++ Uses the :toolname:`GNATcheck` rules file as defined in your project file in package :ada:`Check`
 + Messages are stored in the database, displayed and filtered as any other message
 + Manual justification can be stored in the database
-+ Manual justification in the source is achieved via pragma Annotate (GNATcheck, ...)
++ Manual justification in the source is achieved via :ada:`pragma Annotate (GNATcheck, ...)`
 
-------------------------
-GNATcheck messages
-------------------------
-
-+ Finding the Right Settings
+============================
+Finding the Right Settings
+============================
 
 ---------------------
 System Requirements
 ---------------------
 
 + Fast 64bits machine with multiple cores and memory
-+ Server : 24 to 48 cores with at least 2GB per core (48 to 96GB)
-+ Local desktop : 4 to 8 cores, with at least 8 to 16GB
-+ Avoid slow filesystems : networks drives (NFS, SMB), configuration management filesystems (e.g. ClearCase dynamic views).
++ **Server** :math:`\rightarrow` 24 to 48 cores with at least 2GB per core (48 to 96GB)
++ **Local desktop** :math:`\rightarrow` 4 to 8 cores, with at least 8 to 16GB
++ **Avoid slow filesystems** :math:`\rightarrow` networks drives (NFS, SMB), configuration management filesystems (e.g. ClearCase dynamic views).
 
-  + If not possible, at least generate output file in a local disk via the Output_Directory and Database_Directory project attributes.
+  + If not possible, at least generate output file in a local disk via the *Output_Directory* and *Database_Directory* project attributes.
 
-+ Global analysis ( -level max ): At least 12GB + 1GB per 10K SLOC, e.g. At least 32GB for 200K SLOC.
++ **Global analysis (-level max)** :math:`\rightarrow` At least 12GB + 1GB per 10K SLOC, e.g. At least 32GB for 200K SLOC.
 
---------------------------
-Analyze Messages ( 1/4 )
---------------------------
+------------------------
+Analyze Messages (1/4)
+------------------------
 
 + Start with default (level 0)
 + If the run is mostly clean/contains mostly interesting messages, run at next level (e.g. level 1) and iterate until number of false alarms/timing is too high for your needs
-+ project My_Project is for Source_Dirs use ... package CodePeer is for Switches use ( "-level" , "1" ); end CodePeer; end My_Project;
-+ $ codepeer -Pmy_project -level 1 ...
+
+.. code:: Ada
+
+   project My_Project is
+      for Source_Dirs use ...
+      package CodePeer is
+         for Switches use ( "-level", "1" );
+      end CodePeer;
+   end My_Project;
+
+:command:`codepeer -Pmy_project -level 1 ...`
 
 ------------------------
 Analyze Messages (2/4)
 ------------------------
 
 + If a run contains many messages, analyze some and identify groups of uninteresting messages
-+ Exclude categories of uninteresting messages via e.g. --be-messages (starting with level 1).
++ Exclude categories of uninteresting messages via e.g. :command:`--be-messages` (starting with level 1).
 
 ------------------------
 Analyze Messages (3/4)
@@ -1457,79 +1605,98 @@ Analyze Messages (3/4)
 
 + Filtering of messages
 
-  + -output-msg -hide-low  on the command line
+  + :command:`-output-msg` :command:`-hide-low` on the command line
   + Check boxes to filter on message category / rank in :toolname:`GNAT Studio` and HTML
-  + --be-messages --gnat-warnings --lal-checkers  switches
-  + -messages min/normal/max
-  + Pattern-based automatic filtering ( MessagePatterns.xml )
+  + :command:`--be-messages` :command:`--gnat-warnings` :command:`--lal-checkers` switches
+  + :command:`-messages min/normal/max`
+  + Pattern-based automatic filtering (:filename:`MessagePatterns.xml`)
 
-+ For example to disable messages related to access check:
-+ --be-messages=-access_check
++ For example, to disable messages related to access check:
+
+   :command:`--be-messages=-access_check`
+
 + If many uninteresting messages in the same file, you can exclude this file from analysis (see next slides)
 
 ------------------------
 Analyze Messages (4/4)
 ------------------------
 
-+ C hoose relevant messages based on ranking
++ Choose relevant messages based on ranking
 
   + Rank = severity + certainty
-  + High : certain problem
-  + Medium : possible problem, or certain with low severity
-  + Low : less likely problem (yet useful for exhaustivity)
+  + **High** :math:`\rightarrow` certain problem
+  + **Medium** :math:`\rightarrow` possible problem, or certain with low severity
+  + **Low** :math:`\rightarrow` less likely problem (yet useful for exhaustivity)
 
-+ When analysing existing code, start looking at High messages first, then Medium , and finally if it makes sense, Low messages.
++ When analysing existing code, start looking at *High* messages first, then *Medium*, and finally if it makes sense, *Low* messages.
 + A recommended setting is to consider High and Medium messages (default in :toolname:`GNAT Studio` and HTML interfaces).
 
--------------------------
+---------------------
 Run CodePeer faster
--------------------------
+---------------------
 
 + Use a 64-bit machine with a lot of memory and cores
-+ Lower analysis level ( -level <num> ), use -j0 (default)
-+ Identify files taking too long to analyze and d isable analysis of selected subprograms or files
-+ analyzed main.scil in 0.05 seconds analyzed main__body.scil in 620.31 seconds analyzed pack1__body.scil in 20.02 seconds analyzed pack2__body.scil in 5.13 seconds
++ Lower analysis level (:command:`-level <num>`), use :command:`-j0` (default)
++ Identify files taking too long to analyze and disable analysis of selected subprograms or files
 
-----------------------
-Partial Analysis
-----------------------
+| ``analyzed main.scil in 0.05 seconds``
+| ``analyzed main__body.scil in 620.31 seconds``
+| ``analyzed pack1__body.scil in 20.02 seconds``
+| ``analyzed pack2__body.scil in 5.13 seconds``
+
+-----------------------------
+Code-Based Partial Analysis
+-----------------------------
 
 + Excluding Subprograms or Packages From Analysis
-+ procedure Complex_Subprogram (...) is
-+  pragma Annotate (CodePeer, Skip_Analysis);
-+ begin
-+ ...
-+ end Complex_Subprogram;
-+ package Complex_Package is
-+  pragma Annotate (CodePeer, Skip_Analysis);
-+ ...
-+ end Complex_Package;
-+ pragma Annotate (CodePeer, Skip_Analysis);
 
-----------------------
-Partial Analysis
-----------------------
+.. code:: Ada
+
+   procedure Complex_Subprogram (...) is
+      pragma Annotate (CodePeer, Skip_Analysis);
+   begin
+      ...
+   end Complex_Subprogram;
+
+   package Complex_Package is
+      pragma Annotate (CodePeer, Skip_Analysis);
+      ...
+   end Complex_Package;
+
+--------------------------------
+Project-Based Partial Analysis
+--------------------------------
 
 + Excluding Files From Analysis
+
+   .. code:: Ada
+
+      package CodePeer is
+         for Excluded_Source_Files use ( "xxx.adb" );
+         -- Analysis generates lots of timeouts, skip for now
+      end CodePeer;
+
 + Excluding Directories From Analysis
+
+   .. code:: Ada
+
+      package CodePeer is
+         for Excluded_Source_Dirs use ("directory1",
+                                       "directory2");
+      end CodePeer;
+
 + Excluding Projects From Analysis
-+ package CodePeer is
-+  for Excluded_Source_Files use ( "xxx.adb" );
-+  -- Analysis of xxx.adb generates lots of timeouts, skip it for now
-+ end CodePeer;
-+ package CodePeer is
-+  for Excluded_Source_Dirs use ( "directory1" , "directory2" );
-+ end CodePeer;
-+ for Externally_Built use  "True";
 
-----------------------
-Partial Analysis
-----------------------
+   .. code:: Ada
 
-+ CodePeer Workflows
+      for Externally_Built use "True";
+
+====================
+CodePeer Workflows
+====================
 
 --------------------
-CodePeer Workflows
+CodePeer Use Cases
 --------------------
 
 + Analyzing code locally prior to commit
@@ -1543,172 +1710,204 @@ CodePeer Workflows
 + Multiple teams analyzing multiple subsystems
 + Use :toolname:`CodePeer` to generate a security report
 
-------------------------------------------------
-Analyzing code locally prior to commit ( 1/2 )
-------------------------------------------------
+----------------------------------------------
+Analyzing Code Locally Prior To Commit (1/2)
+----------------------------------------------
 
-+ Fast analysis done at each developer's desk
+Fast analysis done at each developer's desk
+
 + Solution #1
 
-  + Use :toolname:`GNAT Studio` menu CodePeer>Analyze File (or File by File ) after each compilation, before testing.
+  + Use :toolname:`GNAT Studio` menu :menu:`CodePeer` :math:`\rightarrow` :menu:`Analyze File` (or :menu:`Analyze File by File`) after each compilation, before testing.
   + Incremental, fast analysis
 
 + Solution #2
 
-  + run :toolname:`CodePeer` with -level 1/2 -baseline ( CodePeer>Analyze... )
+  + run :toolname:`CodePeer` with :command:`-level 1/2 -baseline`
   + Local :toolname:`CodePeer` database used for comparison
   + Look at Added messages only
 
 ----------------------------------------------
-Analyzing code locally prior to commit (2/2)
+Analyzing Code Locally Prior To Commit (2/2)
 ----------------------------------------------
 
 + For each new message:
 
-  + Fix the code if a real issue is found
-  + Justify false positives via pragma Annotate
-  + Refine the settings to e.g. exclude some message kinds or subprograms/files from analysis
+   Fix the code
+      if a real issue is found
+
+   Justify false positives
+      via :ada:`pragma Annotate`
+
+   Refine the settings
+      e.g. to exclude some message kinds or subprograms/files from analysis
 
 --------------------------
-Nightly runs on a server
+Nightly Runs On A Server
 --------------------------
 
 + :toolname:`CodePeer` run daily on a dedicated server (highest suitable level) allowing users to justify messages manually via :toolname:`CodePeer` web server.
-+ Messages already justified through pragma Annotate do not need to be justified again.
-+ These runs will typically be run nightly to take into account commits of the day, and provide results to users the next morning .
++ Messages already justified through :ada:`pragma Annotate` do not need to be justified again.
++ These runs will typically be run nightly to take into account commits of the day, and *provide results to users the next morning*
 + Developers can analyze the results via the web interface or from :toolname:`GNAT Studio` by accessing the database remotely.
-+ Developers then fix the code, or justify the relevant messages using either pragma Annotate or via :toolname:`GNAT Studio` or the web interface.
-+ *Optionally* : for each release, results are committed under CM for traceability purposes.
++ Developers then *fix the code*, or *justify the relevant messages* using either :ada:`pragma Annotate` or via :toolname:`GNAT Studio` or the web interface.
++ *Optionally* for each release, results are committed under CM for traceability purposes.
 
 -----------------------------------------------
-Continuous runs on a server after each change
+Continuous Runs On A Server After Each Change
 -----------------------------------------------
 
-+ :toolname:`CodePeer` is run on a dedicated server with lots of resources at a level suitable for performing runs rapidly (e.g. level 0 or 1 )
-+ These runs do not need to be exhaustive: focus is on differences from previous run .
-+ Continuous runs trigger on new repository changes (e.g. via Jenkins)
-+ A summary is sent to developers via email or a web interface:
-+ codepeer -Pprj -output-msg -only -show-added | grep "\[added\]"
-+ Developers then fix the code, or justify the relevant messages
++ :toolname:`CodePeer` is run on a dedicated server with lots of resources at a level suitable for performing runs rapidly (e.g. level 0 or 1)
++ These runs do not need to be exhaustive: *focus is on differences from previous run*
++ Continuous runs *trigger on new repository changes* (e.g. via Jenkins)
++ A *summary is sent to developers* via email or a web interface:
 
-  + via pragma Annotate in Source Code or via web interface.
+.. container:: latex_environment tiny
+
+    :command:`codepeer -Pprj -output-msg -only -show-added | grep "[added]"`
+
++ Developers then *fix the code*, or *justify the relevant messages*
+
+  + via :ada:`pragma Annotate` in source code or via web interface.
   + or wait for the next nightly run to post a manual analysis via the HTML Output.
 
 ------------------------------
-Combined desktop/nightly run
+Combined Desktop/Nightly Run
 ------------------------------
 
-+ Fast analysis of code changes done at each developer's desk.
-+ A longer and more complete analysis is performed nightly on a powerful server .
-+ Combination of *Analyzing code locally prior to commit* and *Nightly runs on a server* .
++ *Fast analysis* of code changes done at each *developer's desk*
++ A longer and *more complete analysis* is performed nightly on a *powerful server*
++ Combination of *Analyzing code locally prior to commit* and *Nightly runs on a server*
 
 ---------------------------------
-Combined continuous/nightly run
+Combined Continuous/Nightly Run
 ---------------------------------
 
-+ Fast analysis of code changes done after each commit on a server
-+ A longer and more complete analysis is performed nightly on a  powerful server .
-+ Or alternatively: a baseline run is performed nightly at same level as continuous runs ( -baseline ).
-+ Combination of *Analyzing code locally prior to commit* and *Continuous runs on a server after each change* .
++ *Fast analysis* of code changes done after each commit *on a server*
++ A longer and more *complete analysis* is performed nightly on a *powerful server*
++ Or alternatively: a baseline run is performed nightly at same level as continuous runs (:command:`-baseline`).
++ Combination of *Analyzing code locally prior to commit* and *Continuous runs on a server after each change*
 
 -----------------------------------------
-Combined desktop/continuous/nightly run
+Combined Desktop/Continuous/Nightly Run
 -----------------------------------------
 
-+ Fast analysis of code changes done at each developer's desk.
-+ An analysis (fast but potentially longer than the one performed by developers) is done after each commit on a server
-+ A more exhaustive analysis performed nightly on a powerful server .
-+ Combination of *Analyzing code locally prior to commit* , *Nightly runs on a server* and *Continuous runs on a server after each change* .
++ *Fast analysis* of code changes done at each *developer's desk*
++ An *analysis* (fast but potentially longer than the one performed by developers) is done after each commit *on a server*
++ A *more exhaustive analysis* performed nightly on a *powerful server*
++ Combination of *Analyzing code locally prior to commit*, *Nightly runs on a server* and *Continuous runs on a server after each change* .
 
 --------------------------------------------
-Software customization per project/mission
+Software Customization Per Project/Mission
 --------------------------------------------
 
-+ A core version of your software gets branched out or instantiated and modified on a per-project /mission basis.
-+ *Continuous solution*
++ A *core version* of your software gets branched out or instantiated and *modified on a per-project/mission* basis.
++ **Continuous solution**
 
-  + Share message justifications via pragma Annotate
+  + Share message justifications via :ada:`pragma Annotate`
   + Merge of justifications handled via standard CM
   + Separate :toolname:`CodePeer` runs on all active branches, database used to compare runs on a given branch
 
-+ *One shot solution*
++ **One shot solution**
 
   + Copy the justifications from the DB at branch point
-  + Maintain it separately from there ( *fork* )
+  + Maintain it separately from there (*fork*)
   + Separate :toolname:`CodePeer` runs on all active branches, database used to compare runs on a given branch
 
--------------------------------------------
-Compare local changes with master ( 1/3 )
--------------------------------------------
+-----------------------------------------
+Compare Local Changes With Master (1/3)
+-----------------------------------------
 
 + Analysis running on server with latest source version
-+ The (gold) database gets updated when sources are updated ( -baseline switch)
++ The ("gold") database gets updated when sources are updated
+
+   + :command:`-baseline` switch
+
 + Developers pre-validate changes locally with :toolname:`CodePeer` prior to commit, in a separate sandbox and using the same analysis settings.
-+ Continuous integration : local user creates a separate branch and commit his change on this branch
++ **Continuous integration** :math:`\rightarrow` local user creates a separate branch and commit his change on this branch
 
 -----------------------------------------
 Compare local changes with master (2/3)
 -----------------------------------------
 
-+ A continuous builder (e.g. Jenkins) is monitoring user branches and triggers an analysis that will:
-+ Copy in a separate sandbox the database from the reference (nightly) run.
-+ Perform a run with the same settings as the reference run
-+ Send results to the user either via its web server and the :toolname:`CodePeer` HTML interface, or by generating a textual report (-output-msg).
-+ Can be combined with -show-added so that the user can concentrate on the new messages found:
-+ codepeer -Pprj -output-msg -show-added | grep "\[added\]"
-+ Throw out this separate sandbox
+A continuous builder (e.g. Jenkins) is monitoring user branches and triggers an analysis that will:
+
+   + Copy in a separate sandbox the database from the reference (nightly) run.
+   + Perform a run with the same settings as the reference run
+   + Send results to the user either via its web server and the :toolname:`CodePeer` HTML interface, or by generating a textual report (-output-msg).
+   + Can be combined with -show-added so that the user can concentrate on the new messages found:
+
+      .. container:: latex_environment tiny
+
+         :command:`codepeer -Pprj -output-msg -show-added | grep "[added]"`
+
+   + Throw out this separate sandbox
 
 -----------------------------------------
 Compare local changes with master (3/3)
 -----------------------------------------
 
-+ Once the user receives the report he can address the findings by modifying the code, or using pragma Annotate, or post an analysis on the gold database after his change is merged on the master branch and a new baseline run is available for review.
-+ Another, more manual alternative involves doing a local copy of the gold database to the user space, run :toolname:`CodePeer` there, look at differences then throw out this local environment.
++ Once the user receives the report he can *address the findings* by
+
+   + Modifying the code
+   + Using :ada:`pragma Annotate`
+   + Posting an analysis on the gold database after his change is merged on the master branch and a new baseline run is available for review.
+
++ Another, more *manual alternative* involves
+
+   + Make a local copy of the gold database in the user space
+   + Run :toolname:`CodePeer` there
+   + Look at differences then throw out this local environment.
 
 ----------------------------------------------
 Multiple teams analyzing multiple subsystems
 ----------------------------------------------
 
-+ Large software system composed of multiple subsystems maintained by different teams
-+ Perform a separate analysis for each subsystem , using a separate workspace and database
-+ Create one project file (.gpr) per subsystem
-+ To resolve dependencies between subsystem, use limited with :
++ Large software system composed of *multiple subsystems* maintained by *different teams*
++ Perform a *separate analysis for each subsystem*, using a separate workspace and database
++ Create *one project file (.gpr) per subsystem*
++ To resolve dependencies between subsystems, use :ada:`limited with`
+
+   .. code:: Ada
+
+      limited with "subsystem1";
+      limited with "subsystem2";
+      project Subsystem3 is
+         ...
+      end Subsystem3;
+
 + Run :toolname:`CodePeer` with:
-+ codepeer -Psubsystem1 --no-subprojects
-+ limited with "subsystem1";
-+ limited with "subsystem2";
-+ project  Subsystem3  is
-+ [...] end Subsystem3;
 
---------------------------------------------
-Use CodePeer to generate a security report
---------------------------------------------
+   :command:`codepeer -Psubsystem1 --no-subprojects`
 
-+ Perform a security oriented analysis and generate a separate report, taking advantage :toolname:`CodePeer` support for CWE ( http://cwe.mitre.org )
-+ Achieved via the --security-report switch
-+ Use generated codepeer-security-report.html as is or convert it to PDF
+==============================
+Justifying CodePeer Messages
+==============================
 
---------------------------------------------
-Use CodePeer to generate a security report
---------------------------------------------
-
-+ Justifying :toolname:`CodePeer` Messages
-
-----------------------------------------
+------------------------------------
 Justifying CodePeer messages (1/2)
-----------------------------------------
+------------------------------------
 
 + Add review status in database
 
   + :toolname:`GNAT Studio`: select review icon on message(s)
-  + HTML web server: click on Add Review button above messages
-  + Displayed with -output-msg-only -show-reviews (-only)
+  + HTML web server: click on :menu:`Add Review` button above messages
+  + Displayed with :command:`-output-msg-only -show-reviews (-only)`
 
 + Add message review pragma in code
 
-  + pragma Annotate  added next to code with message
-  + 2 modalities: False_Positive  or Intentional
+  + :ada:`pragma Annotate` added next to code with message
+  + 2 modalities: *False_Positive* or *Intentional*
   + Also added in the database
+
+.. code:: Ada
+
+   ...
+   return (X + Y) / (X - Y); 
+   pragma Annotate (CodePeer, 
+                    False_Positive, 
+                    "Divide By Zero", 
+                    "reviewed by John Smith"); 
 
 ----------------------------------------
 Justifying CodePeer messages (2/2)
@@ -1717,90 +1916,169 @@ Justifying CodePeer messages (2/2)
 + Use spreadsheet tool
 
   + Export messages in CSV format
-  +  codepeer -Pprj -output-msg-only -csv
+
+     :command:`codepeer -Pprj -output-msg-only -csv`
+
   + Review them via the spreadsheet tool (e.g. Excel)
   + Import back reviews into the :toolname:`CodePeer` database
-  +  codepeer_bridge --import-reviews
+
+     :command:`codepeer_bridge --import-reviews`
 
 + Use external justification connected to output
 
   + Textual output: compiler-like messages or CSV format
 
-----------------------------------------
-Justifying CodePeer messages (2/2)
-----------------------------------------
-
-+ CodePeer Customization
+========================
+CodePeer Customization
+========================
 
 ------------------------------------------
-CodePeer specific project attributes
+CodePeer Specific Project Attributes
 ------------------------------------------
 
+.. code:: Ada
+
+  project Prj1 is
+     ...
+
+     package CodePeer is
+        for Excluded_Source_Files use ("file1.ads", "file2.adb");
+        --  similar to project-level attribute for compilation
+
+        for Output_Directory use "project1.output";
+
+        for Database_Directory use "/work/project1.db";
+        --  can be local or on shared drive
+
+        for Switches use ("-level", "1");
+        --  typically -level -jobs
+
+        for Additional_Patterns use "ExtraMessagePatterns.xml";
+        --  also Message_Patterns to replace default one
+
+        for Include_CWE use "true";
+     end CodePeer;
+   end Prj1;
 
 -----------------------------------------
-Project specialization for CodePeer
+Project Specialization For CodePeer
 -----------------------------------------
 
-+ then: compile with gprbuild -P my_project.gpr -XBuild=Production
-+ analyze with :toolname:`CodePeer` -P my_project.gpr -XBuild=CodePeer
+.. code:: Ada
 
-------------------------------------
-Custom API for Race Conditions
-------------------------------------
+   type Build_Type is ("Debug", "Production", "CodePeer");
+   Build : Build_Type := External ("Build", "Debug");
 
-+ pragma Annotate  can identify entry points and locks other than Ada tasks and protected objects
+   package Builder is
+      case Build is
+         when "CodePeer" =>
+            for Global_Compilation_Switches ("Ada") use 
+            ("-gnatI",
+             -- ignore representation clauses confusing analysis
+             "-gnateT=" & My_Project'Project_Dir & "/target.atp",
+             -- specify target platform for integer sizes, alignment, ...
+             "--RTS=kernel");
+             -- specify runtime library
 
------------------
-Report file
------------------
+         when others =>
+            for Global_Compilation_Switches ("Ada") use ("-O", "-g");
+            -- switches only relevant when building
+      end case;
+   end Builder;
 
-+ You can combine some or all of the following switches to generate a report file
-+ Mandatory switches:
++ Compile with :command:`gprbuild -P my_project.gpr -XBuild=Production`
++ Analyze with :command:`codepeer -P my_project.gpr -XBuild=CodePeer`
 
-  + -output-msg
-  + -out <report file>
+--------------------------------
+Custom API For Race Conditions
+--------------------------------
 
-+ Optional switches
++ :ada:`pragma Annotate` can identify entry points and locks other than Ada tasks and protected objects
 
-  + -show-header
-  + -show-info
-  + -show-removed
-  + -show-reviews
-  + -show-added
-+ package CodePeer is
-+  for Switches use
-+ ("-level", "max", "-output-msg",
-+ "-out", "report_file.out",
-+ "-show-header", "-show-info");
-+ end CodePeer;
-+ date : YYYY-MM-DD HH:MM:SS
-+ codepeer version : 18.2 (yyyymmdd)
-+ host : Windows 64 bits
-+ command line : codepeer -P my_project.gpr
-+ codepeer switches : -level max -output-msg -out report_file.out -show-header -show-info
-+ current run number: 4
-+ base run number : 1
-+ excluded file : /path/to/unit3.adb
-+ unit1.ads:1:1: info: module analyzed: unit1
-+ unit1.adb:3:1: info: module analyzed: unit1__body
-+ unit2.adb:12:25: medium: divide by zero might fail: requires X /= 0
-+ [...]
+.. code:: Ada
 
------------------
-Report file
------------------
+   package Pkg is
+      procedure Single;
+      pragma Annotate (CodePeer,
+                       Single_Thread_Entry_Point,
+                       "Pkg.Single");
+      procedure Multiple;
+      pragma Annotate (CodePeer,
+                       Multiple_Thread_Entry_Point,
+                       "Pkg.Multiple");
+   end Pkg;
 
-+ :toolname:`CodePeer` for Certification
+.. code:: Ada
+
+   package Locking is
+      procedure Lock;
+      procedure Unlock;
+      pragma Annotate (CodePeer, Mutex,
+                       "Locking.Lock",
+                       "Locking.Unlock");
+   end Locking;
+
+-------------
+Report File
+-------------
+
+.. columns::
+
+   .. column::
+
+      + You can combine some or all of the following switches to generate a report file
+      + Mandatory switches:
+
+        + :command:`-output-msg`
+        + :command:`-out <report file>`
+
+      + Optional switches
+
+        + :command:`-show-header`
+        + :command:`-show-info`
+        + :command:`-show-removed`
+        + :command:`-show-reviews`
+        + :command:`-show-added`
+
+   .. column::
+
+    .. container:: latex_environment tiny
+
+      .. code:: Ada
+
+         package CodePeer is
+            for Switches use ("-level", "max", "-output-msg",
+                              "-out", "report_file.out",
+                              "-show-header", "-show-info");
+         end CodePeer;
+
+      |
+      | ``date : YYYY-MM-DD HH:MM:SS``
+      | ``codepeer version : 18.2 (yyyymmdd)``
+      | ``host : Windows 64 bits``
+      | ``command line : codepeer -P my_project.gpr``
+      | ``codepeer switches : -level max -output-msg -out report_file.out -show-header -show-info``
+      | ``current run number: 4``
+      | ``base run number : 1``
+      | ``excluded file : /path/to/unit3.adb``
+      | ``unit1.ads:1:1: info: module analyzed: unit1``
+      | ``unit1.adb:3:1: info: module analyzed: unit1__body``
+      | ``unit2.adb:12:25: medium: divide by zero might fail: requires X /= 0``
+      | ``[...]``
+
+============================
+CodePeer for Certification
+============================
 
 ----------------------
 CodePeer and CWE
 ----------------------
 
-+ MITRE's Common Weakness Enumeration is a set of common vulnerabilities in software applications
++ MITRE's Common Weakness Enumeration (CWE) is a set of common vulnerabilities in software applications
 + It is referenced in many government contracts and cyber-security requirements
 + :toolname:`CodePeer` is officially CWE-compatible
 
-  + https://cwe.mitre.org/compatible/questionnaires/43.html
+  https://cwe.mitre.org/compatible/questionnaires/43.html
 
 + Mapping is provided between :toolname:`CodePeer` findings and CWE identifiers
 
@@ -1811,10 +2089,10 @@ CodePeer and DO178B/C
 + :toolname:`CodePeer` supports DO-178B/C Avionics Standard
 + DO-178C Objective A-5.6 (activity 6.3.4.f):
 
-  + Code Accuracy and Consistency: The objective is to determine the correctness and consistency of the Source Code, including stack usage, memory usage, fixed point arithmetic overflow and resolution , floating-point arithmetic , resource contention and limitations, worst-case execution timing, exception handling, use of uninitialized variables , cache management, unused variables , and data corruption due to task or interrupt conflicts . The compiler (including its options), the linker (including its options), and some hardware features may have an impact on the worst-case execution timing and this impact should be assessed.
+  **Code Accuracy and Consistency** The objective is to determine the correctness and consistency of the Source Code, including stack usage, memory usage, *fixed point arithmetic overflow and resolution*, *floating-point arithmetic*, resource contention and limitations, worst-case execution timing, exception handling, *use of uninitialized variables*, cache management, *unused variables*, and *data corruption due to task or interrupt conflicts*. The compiler (including its options), the linker (including its options), and some hardware features may have an impact on the worst-case execution timing and this impact should be assessed.
 
-+ :toolname:`CodePeer` helps reduce the scope of manual review
-+ See Booklet: "AdaCore Technologies for DO-178C/ED-12C"
++ :toolname:`CodePeer` helps *reduce* the scope of manual review
++ See Booklet: *AdaCore Technologies for DO-178C/ED-12C*
 
   + Authored by Frederic Pothon & Quentin Ochem
 
@@ -1834,19 +2112,17 @@ CodePeer and CENELEC - EN50128
   + D.32 Impact Analysis
 
 + :toolname:`CodePeer` is uniquely supportive of Walkthroughs and Design Reviews via its as-built documentation
-+ See Booklet: "AdaCore Technologies for CENELEC EN 50128:2011"
++ See Booklet: *AdaCore Technologies for CENELEC EN 50128:2011*
 
   + Authored by Jean-Louis Boulanger & Quentin Ochem
 
-------------------------------------
-CodePeer and CENELEC - EN50128
-------------------------------------
+=========================
+How Does CodePeer Work?
+=========================
 
-+ How Does CodePeer Work?
-
------------------------------
-How does CodePeer work?
------------------------------
+-------------------------
+How Does CodePeer Work?
+-------------------------
 
 + :toolname:`CodePeer` computes the possible value of every variable and every expression at each program point.
 + It starts with leaf subprograms and propagates information up in the call-graph, iterating to handle recursion.
@@ -1858,33 +2134,35 @@ How does CodePeer work?
   + It uses the generated subprogram contract (precondition + postcondition) to analyze calls.
 
 -----------------------------
-How does CodePeer work?
+How Does CodePeer Work?
 -----------------------------
 
-+ See *CodePeer By Example* for more details
+See *CodePeer By Example* for more details
+
+   From :toolname:`GNAT Studio` go to :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Examples` :math:`\rightarrow` :menu:`Codepeer By Example`
 
 -----------------------------------------
-CodePeer limitations and heuristics
+CodePeer Limitations and Heuristics
 -----------------------------------------
 
-+ Let's explore section 7 .12 of the User's Guide
++ Let's explore section 7.13 of the User's Guide
 + http://docs.adacore.com/codepeer-docs/users_guide/_build/html/appendix.html#codepeer-limitations-and-heuristics
 
 -------------------------
-CodePeer references
+CodePeer References
 -------------------------
 
 + :toolname:`CodePeer` User's Guide and Tutorial
 
-  + online: https://www.adacore.com/documentation#CodePeer
-  + in local install at share/doc/codepeer/users_guide (or tutorial)
-  + from :toolname:`GNAT Studio` in Help=>CodePeer=>CodePeer User's Guide (or Tutorial)
+  + Online: https://www.adacore.com/documentation#CodePeer
+  + In local install at share/doc/codepeer/users_guide (or tutorial)
+  + From :toolname:`GNAT Studio` go to :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Codepeer User's Guide` (or :menu:`Codepeer Tutorial`)
 
 + :toolname:`CodePeer` website
 
   + http://www.adacore.com/codepeer
-  + videos , product pages, articles, challenges
+  + Videos, product pages, articles, challenges
 
 + Book chapter on :toolname:`CodePeer`
 
-  + In Static Analysis of Software: The Abstract Interpretation , published by Wiley (2012)
+  + In Static Analysis of Software: The Abstract Interpretation, published by Wiley (2012)
