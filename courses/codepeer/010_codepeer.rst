@@ -577,12 +577,6 @@ divide by zero
 tag check
    Tag check may fail
 
-discriminant check
-   Component of wrong variant/discriminant is accessed
-
-access check
-   Attempt to dereference a null pointer
-
 range check
    Calculation may generate a value outside the bounds of the Ada type
 
@@ -678,61 +672,6 @@ Tag check may fail
    end Tag;
 
 ``tag.adb:21:4: high: precondition (tag check) failure on call to downward.call: requires X1'Tag in {tag.pkg.t2, tag.t3}``
-
---------------------
-Discriminant Check
---------------------
-
-Component of wrong variant/discriminant is accessed
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Discr is
-      subtype Length is Natural range 0 .. 10;
-      type T (B : Boolean := True; L : Length := 1) is record
-         I : Integer;
-         case B is
-            when True =>
-               S : String (1 .. L);
-               J : Integer;
-            when False =>
-               F : Float := 5.0;
-         end case;
-      end record;
-      X : T (B => True, L => 3);
-      function Create
-        (L : Length;
-         I : Integer;
-         F : Float) return T is
-      begin
-         return (False, L, I, F);
-      end Create;
-   begin
-      X := Create (3, 2, 6.0);  -- discriminant check failure
-   end Discr;
-
-``discr.adb:22:12: high: discriminant check fails here: requires not (Create (3, 2, 6.0).b /= True or else Create (3, 2, 6.0).l /= 3)``
-
---------------
-Access Check
---------------
-
-Attempt to dereference a null pointer
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Null_Deref is
-      type Int_Access is access Integer;
-      X : Int_Access;
-   begin
-      if X = null then
-         X.all := 1;  -- null dereference
-      end if;
-   end Null_Deref;
-
-``null_deref.adb:6:7: high: access check fails here: requires X /= null``
 
 -------------
 Range Check
