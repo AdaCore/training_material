@@ -661,34 +661,31 @@ Checks are reported in 2 possible places:
   + Look at generated preconditions
   + Precondition check: look at associated checks and backtrace (in :toolname:`GNAT Studio` or via *-show-backtraces*)
 
-+ TBD: THIS DOESN'T LOOK RIGHT!
-
 ..
    codepeer example (4.1.1 - precondition)
 
 .. code:: Ada
    :number-lines: 1
 
-   procedure Alias is
-      type Int_Array is array (1 .. 10) of Integer;
-      A, B : Int_Array := (others => 1);
-   
-      -- (generated) precondition (aliasing check): C /= A
-      -- (generated) precondition (aliasing check): C /= B
-      procedure In_Out (A : Int_Array; B : Int_Array; C : out Int_Array) is
-      begin
-         --  Read A multiple times, and write C multiple times:
-         --  if A and C alias and are passed by reference, we are in trouble!
-         C (1) := A (1) + B (1);
-         C (1) := A (1) + B (1);  -- aliasing check
-      end In_Out;
-   
-   begin
-      --  We pass A as both an 'in' and 'out' parameter: danger!
-      In_Out (A, B, A);
-   end Alias;
+   procedure Precondition is
+      X : Integer := 0;
 
-| ``alias.adb:17:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
+      function Call (X : Integer) return Integer is
+      begin
+         if X < 0 then
+            return -1;
+         elsif X > 0 then
+            return 1;
+         end if;
+      end Call;
+
+   begin
+      for I in -5 .. 5 loop
+         X := X + Call (I);
+      end loop;
+   end Precondition;
+
+| ``precondition.adb:15:16: high: precondition (conditional check) failure on call to precondition.call: requires X /= 0``
 
 =============
 User Checks
@@ -1120,13 +1117,13 @@ Indicates redundant assignment. This may be an indication of unintentional loss 
    :number-lines: 1
 
    with Ada.Text_IO; use Ada.Text_IO;
-   procedure Unused_Assignment is
-      S : String := Get_Line;
+   procedure Unused_Assignment (I : out Integer) is
    begin
-      null;  -- S is not used in this subprogram
+      I := Integer'Value (Get_Line);
+      I := Integer'Value (Get_Line);
    end Unused_Assignment;
 
-| ``TBD``
+| ``unused_assignment.adb:4:6: medium warning: unused assignment into I``
 
 -----------------------------
 Unused Assignment To Global
@@ -1139,32 +1136,34 @@ Indicates that a subprogram call modifies a global variable, which is then overw
 .. code:: Ada
    :number-lines: 1
 
-   package Unused_Global is
-      procedure Proc;
+   procedure Unused_Global is
+
+      package P is
+         G : Integer;
+         procedure Proc;
+      end P;
+      package body P is
+         procedure Proc0 is
+         begin
+            G := 123;
+         end Proc0;
+
+         procedure Proc1 is
+         begin
+            Proc0;
+         end Proc1;
+
+         procedure Proc is
+         begin
+            Proc1;
+            G := 456;  -- override effect of calling Proc1
+         end Proc;
+      end P;
+   begin
+      null;
    end Unused_Global;
 
-   package body Unused_Global is
-      G : Integer;
-   
-      procedure Proc0 is
-      begin
-         G := 123;
-      end Proc0;
-   
-      procedure Proc1 is
-      begin
-         Proc0;
-      end Proc1;
-   
-      procedure Proc is
-      begin
-         Proc1;
-         G := 456;  -- override effect of calling Proc1
-      end Proc;
-   
-   end Unused_Global;
-
-| ``TBD``
+| ``unused_global.adb:20:10: low warning: unused assignment to global G in unused_global.p.proc1``
 
 ----------------------
 Unused Out Parameter
@@ -1444,7 +1443,14 @@ Race Condition Examples
    
    end Race;
 
-| ``TBD``
+| ``race.adb:24:10: medium warning: mismatched protected access of shared object Counter via race.increment``
+| ``race.adb:24:10: medium warning: unprotected access of Counter via race.decrement``
+| ``race.adb:25:18: medium warning: mismatched protected access of shared object Counter via race.increment``
+| ``race.adb:25:18: medium warning: unprotected access of Counter via race.decrement``
+| ``race.adb:27:18: medium warning: mismatched protected access of shared object Counter via race.increment``
+| ``race.adb:27:21: medium warning: mismatched protected access of shared object Counter via race.increment``
+| ``race.adb:27:18: medium warning: unprotected access of Counter via race.decrement``
+| ``race.adb:27:21: medium warning: unprotected access of Counter via race.decrement``
 
 =====================================
 Automatically Generated Annotations
