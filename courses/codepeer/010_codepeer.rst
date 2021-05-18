@@ -418,7 +418,6 @@ Index value could be outside the array bounds. This is also known as buffer over
       end loop;
    end Buffer_Overflow;
 
-| ``buffer_overflow.adb:1:1: high warning: subp always fails: buffer_overflow fails for all possible inputs``
 | ``buffer_overflow.adb:10:7: high: array index check fails here: requires (X (I)) in 0..2``
 
 -----------------
@@ -439,14 +438,11 @@ The second operand of a divide, mod or rem operation could be zero
       X : Integer;
    begin
       for I in Int range 0 .. 2 loop
-         X := Integer (A / I);  --  division by zero when I = 0
+         X := Integer (A / I); -- division by zero when I=0
       end loop;
    end Div;
 
-| ``div.adb:1:1: high warning: subp always fails: div fails for all possible inputs``
 | ``div.adb:7:23: high: divide by zero fails here: requires I /= 0``
-| ``div.adb:7:9: medium warning: unused assignment into X``
-| ``div.adb:7:23: medium: range check might fail: requires (A / I) = Integer_32'Last``
 
 --------------
 Access Check
@@ -469,8 +465,6 @@ Attempting to dereference a reference that could be null
       end if;
    end Null_Deref;
 
-| ``null_deref.adb:1:1: high warning: subp always fails: null_deref fails for all possible inputs``
-| ``null_deref.adb:5:9: medium warning: test always true because X = null``
 | ``null_deref.adb:6:7: high: access check fails here``
 
 -------------
@@ -499,7 +493,6 @@ A calculation may generate a value outside the bounds of an Ada type or subtype 
       Proc_1 (I => A);  --  A is out-of-range of parameter I
    end Out_Of_Range;
 
-| ``out_of_range.adb:1:1: high warning: subp always fails: out_of_range fails for all possible inputs``
 | ``out_of_range.adb:12:17: high: range check fails here: requires A in 1..2``
 
 ----------------
@@ -542,9 +535,6 @@ A calculation may overflow the bounds of a numeric type and wrap around. The lik
 
 | ``overflow.adb:17:41: high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
 | ``overflow.adb:17:24: high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
-| ``overflow.adb:17:24: medium warning: dead code because Attempt_Count = Integer_32'Last+1``
-| ``overflow.adb:19:27: medium warning: test always true because Attempt_Count = Integer_32'Last+1``
-| ``overflow.adb:21:13: high: conditional check raises exception here: requires Attempt_Count <= 3``
 
 -----------------
 Aliasing Check
@@ -575,8 +565,6 @@ A parameter that can be passed by reference is aliased with another parameter or
       In_Out (A, B, A);
    end Alias;
 
-| ``alias.adb:1:1: high warning: subp always fails: alias fails for all possible inputs``
-| ``alias.adb:10:22: low: overflow check might fail: requires A.all(1) + B.all(1) in Integer_32'First..Integer_32'Last``
 | ``alias.adb:15:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
 
 -----------
@@ -616,7 +604,6 @@ A tag check (incorrect tag value on a tagged object) may fail
       Call (X3); -- OK
    end Tag;
 
-| ``tag.adb:1:1: high warning: subp always fails: tag fails for all possible inputs``
 | ``tag.adb:21:4: high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2, tag.t3}``
 
 --------------------
@@ -656,7 +643,6 @@ A field for the wrong variant/discriminant is accessed
       X := Create (3, 2, 6.0);  -- discriminant check failure
    end Discr;
 
-| ``discr.adb:1:1: high warning: subp always fails: discr fails for all possible inputs``
 | ``discr.adb:23:9: high: discriminant check fails here: requires not (Create (3, 2, 6.0).b /= True or else Create (3, 2, 6.0).l /= 3)``
 
 --------------
@@ -702,8 +688,6 @@ Checks are reported in 2 possible places:
       In_Out (A, B, A);
    end Alias;
 
-| ``alias.adb:1:1: high warning: subp always fails: alias fails for all possible inputs``
-| ``alias.adb:12:22: low: overflow check might fail: requires A.all(1) + B.all(1) in Integer_32'First..Integer_32'Last``
 | ``alias.adb:17:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
 
 =============
@@ -752,7 +736,6 @@ A user assertion (using e.g. :ada:`pragma Assert`) could fail
       pragma Assert (And_Or (True, True));
    end Assert;
 
-| ``assert.adb:1:1: high warning: subp always fails: assert fails for all possible inputs``
 | ``assert.adb:9:19: high: assertion fails here: requires (and_or'Result) /= false``
 
 -------------------
@@ -793,10 +776,6 @@ An exception could be raised depending on the outcome of a conditional test in u
       end loop;
    end Overflow;
 
-| ``overflow.adb:17:41: high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
-| ``overflow.adb:17:24: high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
-| ``overflow.adb:17:24: medium warning: dead code because Attempt_Count = Integer_32'Last+1``
-| ``overflow.adb:19:27: medium warning: test always true because Attempt_Count = Integer_32'Last+1``
 | ``overflow.adb:21:13: high: conditional check raises exception here: requires Attempt_Count <= 3``
 
 -----------------
@@ -817,8 +796,6 @@ An exception is being raised on a reachable path. This is similar to *conditiona
       null;
    end Raise_Exc;
 
-| ``raise_exc.adb:1:1: high warning: subp always fails: raise_exc fails for all possible inputs``
-| ``raise_exc.adb:2:4: medium warning: unused assignment into X``
 | ``raise_exc.adb:2:19: low: raise exception unconditional raise``
 
 -------------------
@@ -843,9 +820,7 @@ A call might violate a subprogram's specified precondition. This specification m
       A := (A - 1.0)**2.0;
    end Pre;
 
-| ``pre.adb:1:1: high warning: subp always fails: pre fails for all possible inputs``
 | ``pre.adb:8:18: high: precondition (user precondition) failure on call to pre."**": requires Left /= 0.0``
-| ``pre.adb:8:6: medium warning: unused assignment into A``
 
 ---------------
 Postcondition
@@ -880,10 +855,7 @@ The subprogram's body may violate its specified postcondition. This specificatio
       Decrement;
    end Post;
 
-| ``post.adb:13:4: high warning: subp always fails: post.decrement fails for all possible inputs``
-| ``post.adb:15:47: medium: range check might fail: requires (States'Pos (State) + 1) /= 3``
 | ``post.adb:16:8: high: postcondition failure on call to post.decrement: requires State /= Bad_Vibration``
-| ``post.adb:19:4: high: precondition (postcondition, user precondition, range check) failure on call to post.decrement: requires State /= Normal_Condition``
 
 =====================================
 Uninitialized and Invalid Variables
@@ -916,15 +888,14 @@ The code may be reading an uninitialized or invalid value
    end Uninit;
 
 | ``uninit.adb:5:9: high: validity check: B is uninitialized here``
-| ``uninit.adb:5:6: medium warning: unused assignment into A``
 
 ==========
 Warnings
 ==========
 
-------------------
-Warning Messages
-------------------
+------------------------
+Warning Messages (1/2)
+------------------------
 
 dead code
    Also called *unreachable code*. Indicates logical errors as the programmer assumed the unreachable code could be executed 
@@ -952,6 +923,10 @@ unused assignment to global
 
 unused out parameter
    Indicates that an actual parameter of a call is ignored (either never used or overwritten)
+
+------------------------
+Warning Messages (2/2)
+------------------------
 
 useless reassignment
    Indicates when an assignment does not modify the value stored in the variable being assigned
@@ -1000,9 +975,7 @@ Also called *unreachable code*. Indicates logical errors as the programmer assum
       end if;
    end Dead_Code;
 
-| ``dead_code.adb:4:9: low warning: test always false because I = 10``
 | ``dead_code.adb:5:9: medium warning: dead code because I = 10``
-| ``dead_code.adb:6:4: medium warning: test always true because I = 10``
 | ``dead_code.adb:9:9: medium warning: dead code because I = 10``
 
 -------------------
@@ -1029,9 +1002,6 @@ Indicates redundant conditionals, which could flag logical errors where the test
    end Dead_Code;
 
 | ``dead_code.adb:4:9: low warning: test always false because I = 10``
-| ``dead_code.adb:5:9: medium warning: dead code because I = 10``
-| ``dead_code.adb:6:4: medium warning: test always true because I = 10``
-| ``dead_code.adb:9:9: medium warning: dead code because I = 10``
 
 ------------------
 Test Always True
@@ -1056,10 +1026,7 @@ Indicates redundant conditionals, which could flag logical errors where the test
       end if;
    end Dead_Code;
 
-| ``dead_code.adb:4:9: low warning: test always false because I = 10``
-| ``dead_code.adb:5:9: medium warning: dead code because I = 10``
 | ``dead_code.adb:6:4: medium warning: test always true because I = 10``
-| ``dead_code.adb:9:9: medium warning: dead code because I = 10``
 
 --------------------
 Test Predetermined
@@ -1086,9 +1053,6 @@ Indicates redundant conditionals, which could flag logical errors. This is simil
    end Predetermined;
 
 | ``predetermined.adb:4:4: low warning: test predetermined because I = 0``
-| ``predetermined.adb:5:12: medium warning: test always true (Infer): Boolean condition  `(I = 0)` is always true``
-| ``predetermined.adb:8:10: medium warning: dead code because I = 0``
-| ``predetermined.adb:10:10: medium warning: dead code because I = 0``
 
 -------------------------
 Condition Predetermined
@@ -1138,15 +1102,11 @@ Indicates loops that either run forever or fail to terminate normally
    
       while True loop
          Bp := Bp + 1;
-         exit when Buf (Bp - 1) = ASCII.NUL;  -- Condition never reached
+         exit when Buf(Bp-1) = ASCII.NUL; -- Condition never reached
       end loop;
    end Loops;
 
-| ``loops.adb:1:1: medium warning: subp never returns: loops``
 | ``loops.adb:8:10: medium warning: loop does not complete normally``
-| ``loops.adb:10:17: low: array index check might fail: requires (Bp - 1) in 1..4``
-| ``loops.adb:10:7: low warning: test always false because Buf((Bp - 1)) - nul in (84 | 97 | 101 | 104)``
-| ``loops.adb:12:5: medium warning: dead code begins here``
 
 -------------------
 Unused Assignment
@@ -1398,8 +1358,6 @@ The subprogram will never return, presumably because of an infinite loop. There 
    end Infinite_Loop;
 
 | ``infinite_loop.adb:1:1: medium warning: subp never returns: infinite_loop``
-| ``infinite_loop.adb:5:9: medium warning: loop does not complete normally``
-| ``infinite_loop.adb:5:14: low: overflow check might fail: requires X /= Integer_32'Last``
 
 -------------------
 Subp Always Fails
@@ -1419,8 +1377,6 @@ Indicates that a run-time problem is likely to occur on every execution of the s
    end P;
 
 | ``p.adb:1:1: high warning: subp always fails: p fails for all possible inputs``
-| ``p.adb:2:4: medium warning: unused assignment into X``
-| ``p.adb:2:19: low: raise exception unconditional raise``
 
 =================
 Race Conditions
@@ -1450,37 +1406,30 @@ Race Condition Examples
    :number-lines: 1
 
    package Race is
-   
       procedure Increment;
       pragma Annotate (Codepeer, Multiple_Thread_Entry_Point, "Race.Increment");
-   
       procedure Decrement;
       pragma Annotate (Codepeer, Multiple_Thread_Entry_Point, "Race.Decrement");
-   
    end Race;
 
    package body Race is
-   
       Counter : Natural := 0;
-   
+
       procedure Acquire;
       pragma Import (C, Acquire);
-   
+
       procedure Release;
       pragma Import (C, Release);
-   
       pragma Annotate (Codepeer, Mutex, "Race.Acquire", "Race.Release");
-   
+
       procedure Increment is
       begin
          Acquire;
-   
          if Counter = Natural'Last then
             Counter := Natural'First;
          else
             Counter := Counter + 1;
          end if;
-   
          Release;
       end Increment;
    
