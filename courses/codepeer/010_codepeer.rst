@@ -1461,22 +1461,25 @@ Annotations Categories
 ------------------------
 
 precondition
-   Requirement imposed by a subprogram on its inputs to avoid a runtime failure
+   Specify requirements that the subprogram imposes on its inputs. For example, a subprogram might require a certain parameter to be non-null for proper operation of the subprogram. These preconditions are checked at every call site. A message is given for any precondition that a caller might violate. Precondition messages include in parenthesis a list of the checks involved in the requirements.
 
 presumption
-   Property assumed by a call on an unanalyzed external subprogram
+   Display what :toolname:`CodePeer` presumes about the results of an external subprogram whose code is unavailable, or are in a separate partition. There are separate presumptions for each call site, with a string in the form ``@<line-number-of-the-call>`` appended to the name of the subprogram. Presumptions are not generally used to determine preconditions of the calling routine, but they might influence postconditions of the calling routine.
 
 postcondition
-   Behavior of a subprogram in terms of its outputs
+   Characterize the behavior of the subprogram in terms of its outputs and the presumptions made.
 
 unanalyzed call
-   External calls to subprograms that could not be analyzed
+   Display the external calls to subprograms that the :toolname:`CodePeer` has not analyzed, and so participate in the determination of presumptions. Note that these annotations include all directly unanalyzed calls as well as the unanalyzed calls in the call graph subtree that have an influence on the current subprograms.
 
-global inputs/outputs
-   List of all global variables referenced/modified by a subprogram
+global inputs
+   List of all global variables referenced by each subprogram. Note that this only includes enclosing objects and not e.g. specific components. In the case of pointers, only the pointer is listed. Dereference to pointers may be implied by the pointer listed.
+
+global outputs
+   List of all global variables (objects and components) modified by each subprogram
 
 new objects
-   List of heap-allocated objects created by a subprogram
+   list of heap-allocated objects, created by a subprogram, that are not reclaimed during the execution of the subprogram itself; these are new objects that are accessible after return from the subprogram
 
 --------------
 Precondition
