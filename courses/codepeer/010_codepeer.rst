@@ -355,248 +355,52 @@ Running CodePeer regularly
 + Can compare between two runs
 + Combine :command:`-cutoff` and :command:`-current` switches
 
-=======================
-LAL Checkers Messages
-=======================
+=================
+Run-Time Checks
+=================
 
--------------------------
-LAL Checkers Categories
--------------------------
+---------------------------
+Run-Time Check Messages
+---------------------------
 
-contract check
-   A user contract, either an assertion or a pre/postcondition could fail
+array index check	
+   Index value could be outside the array bounds. This is also known as buffer overflow.
+
+divide by zero
+   The second operand of a divide, mod or rem operation could be zero
+
+access check
+   Attempting to dereference a reference that could be null
+
+range check
+   A calculation may generate a value outside the bounds of an Ada type or subtype and generate an invalid value
+
+overflow check
+   A calculation may overflow the bounds of a numeric type and wrap around. The likelihood this will affect operation of the program depends on how narrow is the range of the numeric value
+
+aliasing check
+   A parameter that can be passed by reference is aliased with another parameter or a global object and a subprogram call might violate the associated precondition by writing to one of the aliased objects and reading the other aliased object, possibly resulting in undesired behavior. Aliasing checks are generally expressed as a requirement that a parameter not be the same as some other parameter, or not match the address of some global object and will be flagged as a precondition check in the caller.
+
+tag check
+   A tag check (incorrect tag value on a tagged object) may fail
+
+validity
+    Code may be reading an uninitialized or invalid value
 
 discriminant check
    A field for the wrong variant/discriminant is accessed
 
-access check
-   Attempt to dereference a null pointer
-
-same operands
-   The two operands of a binary operation are syntactically equivalent
-
-code duplicated
-   Duplicated code has been detected which might point to an unintentional copy/paste
-
-test always true
-   Redundant conditionals, could flag logical errors where the test always evaluates to true
-
-test always false
-   Redundant conditionals, could flag logical errors where the test always evaluates to false
-
-----------------
-Contract Check
-----------------
-
-A user contract, either an assertion or a pre/postcondition could fail
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Check is
-      X : Integer := 0;
-   begin
-      pragma Assert (X > 0);                                      
-   end Check;
-
-``check.adb:4:4: medium warning: contract check (LAL checker): assertion failure``
-
---------------------
-Discriminant Check
---------------------
-
-A field for the wrong variant/discriminant is accessed
-
-.. code:: Ada
-   :number-lines: 1
-
-   function Variant return Integer is
-      type RGB is (Red, Green, Blue);
-
-      type Rec (Color : RGB := Red) is record
-         case Color is
-            when Red =>
-               Red_Value : Integer;
-            when Green =>
-               Green_Value : Integer;
-            when Blue =>
-               Blue_Value : Integer;
-         end case;
-      end record;
-
-      Value : Rec with Import;
-
-   begin
-      case Value.Color is
-         when Red =>
-            return Value.Red_Value;
-         when Green =>
-            return Value.Green_Value;
-         when Blue =>
-            return Value.Green_Value;  --  Oops copy/paste error
-      end case;
-   end Variant;
-
-``variant.adb:24:17: medium warning: discriminant check (LAL checker): invalid field 'Green_Value'``
-
---------------
-Access Check
---------------
-
-Attempt to dereference a null pointer
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Null_Deref  is
-      type Int_Access is access Integer;
-      X : Int_Access;
-      Var : Integer;
-   begin
-      if X = null then
-         Var := X.all; -- null dereference
-      end if;
-   end Null_Deref;
-
-``null_deref.adb:7:14: medium warning: access check (LAL checker): null dereference of 'X'``
-
----------------
-Same Operands
----------------
-
-The two operands of a binary operation are syntactically equivalent
-
-.. code:: Ada
-   :number-lines: 1
-
-   function Same_Op ( X : Natural ) return Integer is
-   begin
-      return  (X + 1) / (X + 1); -- Copy/paste error? Always 1
-   end Same_Op;
-
-``same_op.adb:3:11: medium warning: same operands (LAL checker): operands of '/' are identical``
-
------------------
-Code Duplicated
------------------
-
-Duplicated code has been detected which might point to an unintentional copy/paste
-
-.. code:: Ada
-   :number-lines: 1
-
-   function Dup (X : Integer) return Integer is
-   begin
-      if X > 0 then
-         declare
-            A : Integer := X;
-            B : Integer := A + 1;
-            C : Integer := B + 1;
-            D : Integer := C + 1;
-         begin
-            return D;
-         end;
-      else
-         declare
-            A : Integer := X;
-            B : Integer := A + 1;
-            C : Integer := B + 1;
-            D : Integer := C + 1;
-         begin
-            return D;  -- Suspicious duplicated code
-         end;
-      end if;
-   end Dup;
-
-``dup.adb:13:7: medium warning: code duplicated (LAL checker): code duplicated with line 4``
-
-------------------
-Test Always True
-------------------
-
-Redundant conditionals, could flag logical errors where the test always evaluates to true
-
-.. code:: Ada
-   :number-lines: 1
-
-   function Always (X : Integer) return Integer is
-      procedure Compute with Import;
-   begin
-      if X > 0 then
-         Compute;
-
-         if X > 0 then --  Always True
-            return 1;
-         end if;
-      end if;
-
-      return 0;
-   end Always;
-
-``always.adb:7:10: medium warning: test always true (LAL checker): 'X > 0' is always true``
-
--------------------
-Test Always False
--------------------
-
-Redundant conditionals, could flag logical errors where the test always evaluates to false
-
-.. code:: Ada
-   :number-lines: 1
-
-   function Always (X : Integer) return Integer is
-      procedure Compute with Import;
-   begin
-      if X > 0 then
-         Compute;
-
-         if X < 0 then --  Always false
-            return 1;
-         end if;
-      end if;
-
-      return 0;
-   end Always;
-
-``always.adb:7:10: medium warning: test always true (LAL checker): 'X > 0' is always false``
-
-=========================
-Run-Time Check Messages
-=========================
-
----------------------------
-Run-Time Check Categories
----------------------------
-
-array index check
-   Index value could be outside the array bounds (buffer overflow)
-
-divide by zero
-   Second operand of a divide, mod or rem operation could be zero
-
-tag check
-   Tag check may fail
-
-range check
-   Calculation may generate a value outside the bounds of the Ada type
-
-overflow check
-   Calculation may overflow the bounds of a numeric type
-
-aliasing check
-   Parameter is aliased with another parameter or global object
-
 precondition
    Subprogram call may violate the subprogram's generated precondition
-
-validity
-    Code may be reading an uninitialized or invalid value
 
 -------------------
 Array Index Check
 -------------------
 
-Index value could be outside the array bounds (buffer overflow)
+Index value could be outside the array bounds. This is also known as buffer overflow.
+
+..
+   codepeer example (4.1.1 - array index check)
 
 .. code:: Ada
    :number-lines: 1
@@ -608,25 +412,29 @@ Index value could be outside the array bounds (buffer overflow)
       for I in X'Range loop
          X (I) := I + 1;
       end loop;
-
+   
       for I in X'Range loop
          Y (X (I)) := I;  -- Bad when I = 2, since X (I) = 3
       end loop;
    end Buffer_Overflow;
 
-``buffer_overflow.adb:10:7: high: array index check fails here: requires (X (I)) in 0..2``
+|``buffer_overflow.adb:1:1: high warning: subp always fails: buffer_overflow fails for all possible inputs``
+|``buffer_overflow.adb:10:7: high: array index check fails here: requires (X (I)) in 0..2``
 
 -----------------
 Divide By Zero
 -----------------
 
-Second operand of a divide, mod or rem operation could be zero
+The second operand of a divide, mod or rem operation could be zero
+
+..
+   codepeer example (4.1.1 - divide by zero)
 
 .. code:: Ada
    :number-lines: 1
 
    procedure Div is
-      type Int is range 0 .. 2**32-1;
+      type Int is range 0 .. 2**32 - 1;
       A : Int := Int'Last;
       X : Integer;
    begin
@@ -635,33 +443,170 @@ Second operand of a divide, mod or rem operation could be zero
       end loop;
    end Div;
 
-``div.adb:7:23: high: divide by zero fails here: requires I >= 1``
+|``div.adb:1:1: high warning: subp always fails: div fails for all possible inputs``
+|``div.adb:7:23: high: divide by zero fails here: requires I /= 0``
+|``div.adb:7:9: medium warning: unused assignment into X``
+|``div.adb:7:23: medium: range check might fail: requires (A / I) = Integer_32'Last``
+
+--------------
+Access Check
+--------------
+
+Attempting to dereference a reference that could be null
+
+..
+   codepeer example (4.1.1 - access check)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Null_Deref is
+      type Int_Access is access Integer;
+      X : Int_Access;
+   begin
+      if X = null then
+         X.all := 1;  -- null dereference
+      end if;
+   end Null_Deref;
+
+|``null_deref.adb:1:1: high warning: subp always fails: null_deref fails for all possible inputs``
+|``null_deref.adb:5:9: medium warning: test always true because X = null``
+|``null_deref.adb:6:7: high: access check fails here``
+
+-------------
+Range Check
+-------------
+
+A calculation may generate a value outside the bounds of an Ada type or subtype and generate an invalid value
+
+..
+   codepeer example (4.1.1 - range check)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Out_Of_Range is
+      subtype Constrained_Integer is Integer range 1 .. 2;
+      A : Integer;
+   
+      procedure Proc_1 (I : in Constrained_Integer) is
+      begin
+         A := I + 1;
+      end Proc_1;
+   
+   begin
+      A := 0;
+      Proc_1 (I => A);  --  A is out-of-range of parameter I
+   end Out_Of_Range;
+
+|``out_of_range.adb:1:1: high warning: subp always fails: out_of_range fails for all possible inputs``
+|``out_of_range.adb:12:17: high: range check fails here: requires A in 1..2``
+
+----------------
+Overflow Check
+----------------
+
+A calculation may overflow the bounds of a numeric type and wrap around. The likelihood this will affect operation of the program depends on how narrow is the range of the numeric value
+
+..
+   codepeer example (4.1.1 - overflow check)
+
+.. code:: Ada
+   :number-lines: 1
+
+   with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
+   with Ada.Text_IO;         use Ada.Text_IO;
+   
+   procedure Overflow is
+      Attempt_Count : Integer := Integer'Last;
+      --  Gets reset to zero before attempting password read
+      Pw : Natural;
+   begin
+      --  Oops forgot to reset Attempt_Count
+      loop
+         Put ("Enter password to delete system disk");
+         Get (Pw);
+         if Pw = 42 then
+            Put_Line ("system disk deleted");
+            exit;
+         else
+            Attempt_Count := Attempt_Count + 1;
+   
+            if Attempt_Count > 3 then
+               Put_Line ("max password count reached");
+               raise Program_Error;
+            end if;
+         end if;
+      end loop;
+   end Overflow;
+
+|``overflow.adb:17:41: high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
+|``overflow.adb:17:24: high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
+|``overflow.adb:17:24: medium warning: dead code because Attempt_Count = Integer_32'Last+1``
+|``overflow.adb:19:27: medium warning: test always true because Attempt_Count = Integer_32'Last+1``
+|``overflow.adb:21:13: high: conditional check raises exception here: requires Attempt_Count <= 3``
+
+-----------------
+Aliasing Check
+-----------------
+
+A parameter that can be passed by reference is aliased with another parameter or a global object and a subprogram call might violate the associated precondition by writing to one of the aliased objects and reading the other aliased object, possibly resulting in undesired behavior. Aliasing checks are generally expressed as a requirement that a parameter not be the same as some other parameter, or not match the address of some global object and will be flagged as a precondition check in the caller.
+
+..
+   codepeer example (4.1.1 - aliasing check)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Alias is
+      type Int_Array is array (1 .. 10) of Integer;
+      A, B : Int_Array := (others => 1);
+   
+      procedure In_Out (A : Int_Array; B : Int_Array; C : out Int_Array) is
+      begin
+         --  Read A multiple times, and write C multiple times:
+         --  if A and C alias and are passed by reference, we are in trouble!
+         C (1) := A (1) + B (1);
+         C (1) := A (1) + B (1);
+      end In_Out;
+   
+   begin
+      --  We pass A as both an 'in' and 'out' parameter: danger!
+      In_Out (A, B, A);
+   end Alias;
+
+|``alias.adb:1:1: high warning: subp always fails: alias fails for all possible inputs``
+|``alias.adb:10:22: low: overflow check might fail: requires A.all(1) + B.all(1) in Integer_32'First..Integer_32'Last``
+|``alias.adb:15:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
 
 -----------
 Tag Check
 -----------
 
-Tag check may fail
+A tag check (incorrect tag value on a tagged object) may fail
+
+..
+   codepeer example (4.1.1 - tag check)
 
 .. code:: Ada
    :number-lines: 1
 
    procedure Tag is
       type T1 is tagged null record;
-
+   
       package Pkg is
          type T2 is new T1 with null record;
          procedure Op (X : T2) is null;
       end Pkg;
       use Pkg;
-
+   
       type T3 is new T2 with null record;
-
+   
       procedure Call (X1 : T1'Class) is
       begin
          Op (T2'Class (X1));
       end Call;
-
+   
       X1 : T1;
       X2 : T2;
       X3 : T3;
@@ -671,100 +616,48 @@ Tag check may fail
       Call (X3); -- OK
    end Tag;
 
-``tag.adb:21:4: high: precondition (tag check) failure on call to downward.call: requires X1'Tag in {tag.pkg.t2, tag.t3}``
+|``tag.adb:1:1: high warning: subp always fails: tag fails for all possible inputs``
+|``tag.adb:21:4: high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2, tag.t3}``
 
--------------
-Range Check
--------------
+--------------------
+Discriminant Check
+--------------------
 
-Calculation may generate a value outside the bounds of the Ada type
+A field for the wrong variant/discriminant is accessed
+
+..
+   codepeer example (4.1.1 - discriminant check)
 
 .. code:: Ada
    :number-lines: 1
 
-   procedure Out_Of_Range is
-      subtype Constrained_Integer is Integer range 1 .. 2;
-      A : Integer;
-
-      procedure Proc_1 (I : in Constrained_Integer) is
+   procedure Discr is
+   
+      subtype Length is Natural range 0 .. 10;
+      type T (B : Boolean := True; L : Length := 1) is record
+         I : Integer;
+         case B is
+            when True =>
+               S : String (1 .. L);
+               J : Integer;
+            when False =>
+               F : Float := 5.0;
+         end case;
+      end record;
+   
+      X : T (B => True, L => 3);
+   
+      function Create (L : Length; I : Integer; F : Float) return T is
       begin
-         A := I + 1;
-      end Proc_1;
-
+         return (False, L, I, F);
+      end Create;
+   
    begin
-      A := 0;
-      Proc_1 (I => A);  --  A is out-of-range of parameter I
-   end Out_Of_Range;
+      X := Create (3, 2, 6.0);  -- discriminant check failure
+   end Discr;
 
-``out_of_range.adb:12:17: high: range check fails here: requires A in 1..2``
-
-----------------
-Overflow Check
-----------------
-
-Calculation may overflow the bounds of a numeric type
-
-.. code:: Ada
-   :number-lines: 1
-
-   with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
-   with Ada.Text_IO; use Ada.Text_IO;
-
-   procedure Overflow is
-      Attempt_Count : Integer := Integer'Last;
-      --  Gets reset to zero before attempting password read
-      PW            : Natural;
-   begin
-      --  Oops forgot to reset Attempt_Count
-      loop
-         Put ("Enter password to delete system disk");
-         Get (PW);
-         if PW = 42 then
-            Put_Line ("system disk deleted");
-            exit;
-         else
-            Attempt_Count := Attempt_Count + 1;
-
-            if Attempt_Count > 3 then
-               Put_Line ("max password count reached");
-               raise Program_Error;
-            end if;
-         end if;
-      end loop;
-   end Overflow;
-
-``overflow.adb:17:41: high: overflow check fails here: requires Attempt_Count <= Integer_32'Last-1``
-
------------------
-Aliasing Check
------------------
-
-Parameter is aliased with another parameter or global object
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Alias is
-      type Int_Array is array (1 .. 10) of Integer;
-      A, B : Int_Array := (others => 1);
-
-      procedure In_Out
-        (A : Int_Array;
-         B : Int_Array;
-         C : out Int_Array) is
-      begin
-         --  Read A multiple times, and write C multiple times:
-         --  if A and C alias and are passed by reference, we are in trouble!
-         C (1) := A (1) + B (1);
-         C (1) := A (1) + B (1);
-      end In_Out;
-
-   begin
-      --  We pass A as both an 'in' and 'out' parameter: danger!
-      In_Out (A, B, A);
-   end Alias;
-
-``alias.adb:18:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
+|``discr.adb:1:1: high warning: subp always fails: discr fails for all possible inputs``
+|``discr.adb:23:9: high: discriminant check fails here: requires not (Create (3, 2, 6.0).b /= True or else Create (3, 2, 6.0).l /= 3)``
 
 --------------
 Precondition
@@ -784,38 +677,233 @@ Checks are reported in 2 possible places:
 
 + TBD: THIS DOESN'T LOOK RIGHT!
 
+..
+   codepeer example (4.1.1 - precondition)
+
 .. code:: Ada
    :number-lines: 1
 
    procedure Alias is
       type Int_Array is array (1 .. 10) of Integer;
       A, B : Int_Array := (others => 1);
-
+   
       -- (generated) precondition (aliasing check): C /= A
       -- (generated) precondition (aliasing check): C /= B
-      procedure In_Out
-        (A : Int_Array;
-         B : Int_Array;
-         C : out Int_Array) is
+      procedure In_Out (A : Int_Array; B : Int_Array; C : out Int_Array) is
       begin
          --  Read A multiple times, and write C multiple times:
          --  if A and C alias and are passed by reference, we are in trouble!
          C (1) := A (1) + B (1);
          C (1) := A (1) + B (1);  -- aliasing check
       end In_Out;
-
+   
    begin
       --  We pass A as both an 'in' and 'out' parameter: danger!
       In_Out (A, B, A);
    end Alias;
 
-``alias.adb:18:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A; aliasing check at alias.adb:13:16``
+|``alias.adb:1:1: high warning: subp always fails: alias fails for all possible inputs``
+|``alias.adb:12:22: low: overflow check might fail: requires A.all(1) + B.all(1) in Integer_32'First..Integer_32'Last``
+|``alias.adb:17:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
+
+=============
+User Checks
+=============
+
+---------------------
+User Check Messages
+---------------------
+
+assertion
+   A user assertion (using e.g. :ada:`pragma Assert`) could fail
+
+conditional check
+   An exception could be raised depending on the outcome of a conditional test in user code
+
+raise exception
+   An exception is being raised on a reachable path. This is similar to *conditional check*, but the exception is raised systematically instead of conditionally.
+
+user precondition
+   A call might violate a subprogram’s specified precondition. This specification may be written as a :ada:`pragma Precondition`, or as a :ada:`Pre` aspect in Ada 2012 syntax
+
+postcondition
+   The subprogram’s body may violate its specified postcondition. This specification may be written as a :ada:`pragma Postcondition`, or as a :ada:`Post` aspect in Ada 2012 syntax
+
+-----------
+Assertion
+-----------
+
+A user assertion (using e.g. :ada:`pragma Assert`) could fail
+
+..
+   codepeer example (4.1.2 - assertion)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Assert is
+   
+      function And_Or (A, B : Boolean) return Boolean is
+      begin
+         return False;
+      end And_Or;
+   
+   begin
+      pragma Assert (And_Or (True, True));
+   end Assert;
+
+|``assert.adb:1:1: high warning: subp always fails: assert fails for all possible inputs``
+|``assert.adb:9:19: high: assertion fails here: requires (and_or'Result) /= false``
+
+-------------------
+Conditional Check
+-------------------
+
+An exception could be raised depending on the outcome of a conditional test in user code
+
+..
+   codepeer example (4.1.2 - conditional check)
+
+.. code:: Ada
+   :number-lines: 1
+
+   with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
+   with Ada.Text_IO;         use Ada.Text_IO;
+   
+   procedure Overflow is
+      Attempt_Count : Integer := Integer'Last;
+      --  Gets reset to zero before attempting password read
+      Pw : Natural;
+   begin
+      --  Oops forgot to reset Attempt_Count
+      loop
+         Put ("Enter password to delete system disk");
+         Get (Pw);
+         if Pw = 42 then
+            Put_Line ("system disk deleted");
+            exit;
+         else
+            Attempt_Count := Attempt_Count + 1;
+   
+            if Attempt_Count > 3 then
+               Put_Line ("max password count reached");
+               raise Program_Error;
+            end if;
+         end if;
+      end loop;
+   end Overflow;
+
+|``overflow.adb:17:41: high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
+|``overflow.adb:17:24: high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
+|``overflow.adb:17:24: medium warning: dead code because Attempt_Count = Integer_32'Last+1``
+|``overflow.adb:19:27: medium warning: test always true because Attempt_Count = Integer_32'Last+1``
+|``overflow.adb:21:13: high: conditional check raises exception here: requires Attempt_Count <= 3``
+
+-----------------
+Raise Exception
+-----------------
+
+An exception is being raised on a reachable path. This is similar to *conditional check*, but the exception is raised systematically instead of conditionally.
+
+..
+   codepeer example (4.1.2 - raise exception)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Raise_Exc is
+      X : Integer := raise Program_Error;
+   begin
+      null;
+   end Raise_Exc;
+
+|``raise_exc.adb:1:1: high warning: subp always fails: raise_exc fails for all possible inputs``
+|``raise_exc.adb:2:4: medium warning: unused assignment into X``
+|``raise_exc.adb:2:19: low: raise exception unconditional raise``
+
+-------------------
+User Precondition
+-------------------
+
+A call might violate a subprogram’s specified precondition. This specification may be written as a :ada:`pragma Precondition`, or as a :ada:`Pre` aspect in Ada 2012 syntax
+
+..
+   codepeer example (4.1.2 - user precondition)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Pre is
+      function "**" (Left, Right : Float) return Float with
+         Import,
+         Pre => Left /= 0.0;
+   
+      A : Float := 1.0;
+   begin
+      A := (A - 1.0)**2.0;
+   end Pre;
+
+|``pre.adb:1:1: high warning: subp always fails: pre fails for all possible inputs``
+|``pre.adb:8:18: high: precondition (user precondition) failure on call to pre."**": requires Left /= 0.0``
+|``pre.adb:8:6: medium warning: unused assignment into A``
+
+---------------
+Postcondition
+---------------
+
+The subprogram’s body may violate its specified postcondition. This specification may be written as a :ada:`pragma Postcondition`, or as a :ada:`Post` aspect in Ada 2012 syntax
+
+..
+   codepeer example (4.1.2 - postcondition)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Post is
+   
+      type States is (Normal_Condition, Under_Stress, Bad_Vibration);
+      State : States;
+   
+      function Stress_Is_Minimal return Boolean is (State = Normal_Condition);
+      function Stress_Is_Maximal return Boolean is (State = Bad_Vibration);
+   
+      procedure Decrement with
+         Pre  => not Stress_Is_Minimal,
+         Post => not Stress_Is_Maximal;
+   
+      procedure Decrement is
+      begin
+         State := States'Val (States'Pos (State) + 1);
+      end Decrement;
+   
+   begin
+      Decrement;
+   end Post;
+
+|``post.adb:13:4: high warning: subp always fails: post.decrement fails for all possible inputs``
+|``post.adb:15:47: medium: range check might fail: requires (States'Pos (State) + 1) /= 3``
+|``post.adb:16:8: high: postcondition failure on call to post.decrement: requires State /= Bad_Vibration``
+|``post.adb:19:4: high: precondition (postcondition, user precondition, range check) failure on call to post.decrement: requires State /= Normal_Condition``
+
+=====================================
+Uninitialized and Invalid Variables
+=====================================
+
+----------------------------------------------
+Uninitialized and Invalid Variables Messages
+----------------------------------------------
+
+validity check
+   The code may be reading an uninitialized or invalid value
 
 ----------------
 Validity Check
 ----------------
 
-Code may be reading an uninitialized or invalid value
+The code may be reading an uninitialized or invalid value
+
+..
+   codepeer example (4.1.3 - validity check)
 
 .. code:: Ada
    :number-lines: 1
@@ -827,281 +915,75 @@ Code may be reading an uninitialized or invalid value
       A := B;  --  we are reading B which is uninitialized!
    end Uninit;
 
-``uninit.adb:5:9: high: validity check: B is uninitialized here``
+|``uninit.adb:5:9: high: validity check: B is uninitialized here``
+|``uninit.adb:5:6: medium warning: unused assignment into A``
 
-=====================
-User Check Messages
-=====================
+==========
+Warnings
+==========
 
------------------------
-User Check Categories
------------------------
-
-assertion
-   User assertion (:ada:`pragma Assert`) could fail
-
-conditional check
-   Exception could be raised depending on a conditional test
-
-raise exception
-   Exception is raised on a reachable path
-
-user precondition
-   Call to subprogram may violate its specified precondition (Ada aspect *pre* )
-
-postcondition
-   Subprogram's body may violate its specified postcondition (Ada aspect *post* )
-
------------
-Assertion
------------
-
-User assertion (:ada:`pragma Assert`) could fail
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Assert is
-
-      function And_Or (A, B : Boolean) return Boolean is
-      begin
-         return False;
-      end And_Or;
-
-   begin
-      pragma Assert (And_Or (True, True));
-   end Assert;
-
-``assert.adb:9:19: high: assertion fails here``
-
--------------------
-Conditional Check
--------------------
-
-Exception could be raised depending on a conditional test
-
-.. code:: Ada
-   :number-lines: 1
-
-   with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
-   with Ada.Text_IO; use Ada.Text_IO;
-
-   procedure Overflow is
-      Attempt_Count : Integer := Integer'Last;
-      --  Gets reset to zero before attempting password read
-      PW            : Natural;
-   begin
-      --  Oops forgot to reset Attempt_Count
-      loop
-         Put ("Enter password to delete system disk");
-         Get (PW);
-         if PW = 42 then
-            Put_Line ("system disk deleted");
-            exit;
-         else
-            Attempt_Count := Attempt_Count + 1;
-
-            if Attempt_Count > 3 then
-               Put_Line ("max password count reached");
-               raise Program_Error;
-            end if;
-         end if;
-      end loop;
-   end Overflow;
-
-``overflow.adb:21:13: high: conditional check raises exception here: requires Attempt_Count <= 3``
-
------------------
-Raise Exception
------------------
-
-Exception is raised on a reachable path
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Raise_Exc is
-      X : Integer := raise Program_Error;
-   begin
-      null;
-   end Raise_Exc;
-
-``raise_exc.adb:2:19: low: raise exception unconditional raise``
-
--------------------
-User Precondition
--------------------
-Call to subprogram may violate its specified precondition (Ada aspect :ada:`Pre` )
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Pre is
-      function "**" (Left, Right : Float) return Float
-        with Import, Pre => Left /= 0.0;
-
-      A : Float := 1.0;
-   begin
-      A := (A - 1.0) ** 2.0;
-   end Pre;
-
-``pre.adb:7:19: high: precondition (user precondition) failure on call to pre."": requires Left /= +0``
-
----------------
-Postcondition
----------------
-
-Subprogram's body may violate its specified postcondition (Ada aspect :ada:`Post` )
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Post is
-
-      type States is (Normal_Condition, Under_Stress, Bad_Vibration);
-      State : States;
-
-      function Stress_Is_Minimal return Boolean is (State = Normal_Condition);
-      function Stress_Is_Maximal return Boolean is (State = Bad_Vibration);
-
-      procedure Decrement with
-        Pre  => not Stress_Is_Minimal,
-        Post => not Stress_Is_Maximal;
-
-      procedure Decrement is
-      begin
-         State := State'Val (State'Pos (State) + 1);
-      end Decrement;
-
-   begin
-      ...
-   end Post;
-
-``post.adb:16:8: high: postcondition failure on call to post.decrement: requires State <= Under_Stress``
-
-=========================
-Race Condition Messages
-=========================
-
----------------------------
-Race Condition Categories
----------------------------
-
-unprotected access
-  A task type reads or writes a shared object without holding a lock
-
-unprotected shared access
-  A task reads or writes a shared object without holding a lock, and this object is referenced by another task
-
-mismatch protected access
-  A task reads or writes a shared object while holding a lock, and this object is referenced by another task without holding the same lock
-
----------------------------
-Race Condition Checks
----------------------------
-
-.. columns::
-
-  .. column::
-
-    .. container:: latex_environment tiny
-
-      .. code:: Ada
-
-         package Race is
-           procedure Increment;
-           pragma Annotate (CodePeer,
-                            Multiple_Thread_Entry_Point,
-                            "Race.Increment");
-           procedure Decrement;
-           pragma Annotate (CodePeer,
-                            Multiple_Thread_Entry_Point,
-                            "Race.Decrement");
-         end Race;
-
-         package body Race is
-           Counter : Natural := 0;
-           procedure Acquire with Import;
-           procedure Release with Import;
-           pragma Annotate (CodePeer,
-                            Mutex,
-                            "Race.Acquire",
-                            "Race.Release");
-
-  .. column::
-
-    .. container:: latex_environment tiny
-
-      .. code:: Ada
-         :number-lines: 5
-
-         procedure Increment is
-         begin
-           Acquire;
-           if Counter = Natural'Last then
-             Counter := Natural'First;
-           else
-             Counter := Counter + 1;
-           end if;
-           Release;
-         end Increment;
-
-         procedure Decrement is
-         begin
-           if Counter = Natural'First then -- read without lock
-             Counter := Natural'Last; -- write without lock
-           else
-             Counter := Counter - 1; -- read/write without lock
-           end if;
-         end Decrement;
-
-.. container:: latex_environment tiny
-
-   | ``race.adb:20:10: mismatched protected access of shared object Counter via race.increment``
-   | ``race.adb:20:10: unprotected access of Counter via race.decrement``
-   | ``race.adb:21:18: mismatched protected access of shared object Counter via race.increment``
-   | ``race.adb:21:18: unprotected access of Counter via race.decrement``
-   | ``race.adb:23:18: mismatched protected access of shared object Counter via race.increment``
-   | ``race.adb:23:21: mismatched protected access of shared object Counter via race.increment``
-   | ``race.adb:23:18: unprotected access of Counter via race.decrement``
-   | ``race.adb:23:21: unprotected access of Counter via race.decrement``
-
-=========================
-Redundant Code Warnings
-=========================
-
----------------------------
-Redundant Code Categories
----------------------------
+------------------
+Warning Messages
+------------------
 
 dead code
-   Code cannot be executed
+   Also called *unreachable code*. Indicates logical errors as the programmer assumed the unreachable code could be executed 
+
+test always false
+   Indicates redundant conditionals, which could flag logical errors where the test always evaluates to false
+
+test always true
+   Indicates redundant conditionals, which could flag logical errors where the test always evaluates to true
 
 test predetermined
-   Condition tested has a known value
+   Indicates redundant conditionals, which could flag logical errors. This is similar to *test always true* and *test always false* and is only emitted when there is no real polarity associated with the test such as in a case statement
 
 condition predetermined
-   Condition inside a conditional has a known value
+   Indicates redundant condition inside a conditional, like the left or right operand of a boolean operator which is always true or false
 
 loop does not complete normally
-   Loop runs forever or fails to terminate normally (e.g. always raises an exception)
+   Indicates loops that either run forever or fail to terminate normally
 
 unused assignment
-   Value written is ignored (not later referenced)
+   Indicates redundant assignment. This may be an indication of unintentional loss of result or unexpected flow of control. Note that CodePeer recognizes special variable patterns as temporary variables that will be ignored by this check: :ada:`ignore`, :ada:`unused`, :ada:`discard`, :ada:`dummy`, :ada:`tmp`, :ada:`temp`. This can be tuned via the :filename:`MessagePatterns.xml` file if needed. An object marked as unreferenced via :ada:`pragma Unreferenced` is similarly ignored
 
 unused assignment to global
-   Value written in global is ignored
+   Indicates that a subprogram call modifies a global variable, which is then overwritten following the call without any uses between the assignments. Note that the redundant assignment may occur inside another subprogram call invoked by the current subprogram
 
 unused out parameter
-   Value written to an out parameter is ignored by the caller
+   Indicates that an actual parameter of a call is ignored (either never used or overwritten)
 
-useless self assignment
+useless reassignment
    Indicates when an assignment does not modify the value stored in the variable being assigned
+
+suspicious precondition
+   The precondition has a form that indicates there might be a problem with the algorithm. If the allowable value set of a given input expression is not contiguous (certain values of the expression that might cause a run-time problem inside the subprogram in between values that are safe), then this might be an indication that certain cases are not being properly handled by the code. In other situations, this might simply reflect the inherent nature of the algorithm involved
+
+suspicious input
+   Inputs mention a value reachable through an out-parameter of the suprogram before this parameter is assigned. Although the value may sometimes be initialized as the Ada standard allows, it generally uncovers a bug where the subprogram reads an uninitialized value or a value that the programmer did not mean to pass to the subprogram as an input value
+
+unread parameter
+   A parameter of an elementary type of mode in out is assigned on all paths through the subprogram before any reads, and so could be declared with mode :ada:`out`.
+
+unassigned parameter
+   A parameter of a scalar type of mode in out is never assigned, and so could be declared with mode :ada:`in`
+
+suspicious constant operation
+   An operation computes a constant value from non-constant operands. This is characteristic of a typographical mistake, where a variable is used instead of another one, or a missing part in the operation, like the lack of conversion to a floating-point or fixed-point type before division
+
+subp never returns
+   The subprogram will never return, presumably because of an infinite loop. There will typically be an additional message in the subprogram body (e.g. test always false) explaining why the subprogram never returns
+
+subp always fails
+   Indicates that a run-time problem is likely to occur on every execution of the subprogram. There will typically be an additional message in the subprogram body explaining why the subprogram always fails
 
 -----------
 Dead Code
 -----------
-Code cannot be executed
+Also called *unreachable code*. Indicates logical errors as the programmer assumed the unreachable code could be executed 
+
+..
+   codepeer example (4.1.4 - dead code)
 
 .. code:: Ada
    :number-lines: 1
@@ -1118,14 +1000,74 @@ Code cannot be executed
       end if;
    end Dead_Code;
 
-| ``dead_code.adb:5:9: medium warning: dead code because I = 10``
-| ``dead_code.adb:9:9: medium warning: dead code because I = 10``
+|``dead_code.adb:4:9: low warning: test always false because I = 10``
+|``dead_code.adb:5:9: medium warning: dead code because I = 10``
+|``dead_code.adb:6:4: medium warning: test always true because I = 10``
+|``dead_code.adb:9:9: medium warning: dead code because I = 10``
+
+-------------------
+Test Always False
+-------------------
+Indicates redundant conditionals, which could flag logical errors where the test always evaluates to false
+
+..
+   codepeer example (4.1.4 - test always false)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Dead_Code (X : out Integer) is
+      I : Integer := 10;
+   begin
+      if I < 4 then
+         X := 0;
+      elsif I >= 10 then
+         X := 0;
+      else
+         X := 0;
+      end if;
+   end Dead_Code;
+
+|``dead_code.adb:4:9: low warning: test always false because I = 10``
+|``dead_code.adb:5:9: medium warning: dead code because I = 10``
+|``dead_code.adb:6:4: medium warning: test always true because I = 10``
+|``dead_code.adb:9:9: medium warning: dead code because I = 10``
+
+------------------
+Test Always True
+------------------
+Indicates redundant conditionals, which could flag logical errors where the test always evaluates to true
+
+..
+   codepeer example (4.1.4 - test always true)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Dead_Code (X : out Integer) is
+      I : Integer := 10;
+   begin
+      if I < 4 then
+         X := 0;
+      elsif I >= 10 then
+         X := 0;
+      else
+         X := 0;
+      end if;
+   end Dead_Code;
+
+|``dead_code.adb:4:9: low warning: test always false because I = 10``
+|``dead_code.adb:5:9: medium warning: dead code because I = 10``
+|``dead_code.adb:6:4: medium warning: test always true because I = 10``
+|``dead_code.adb:9:9: medium warning: dead code because I = 10``
 
 --------------------
 Test Predetermined
 --------------------
+Indicates redundant conditionals, which could flag logical errors. This is similar to *test always true* and *test always false* and is only emitted when there is no real polarity associated with the test such as in a case statement
 
-Condition tested has a known value
+..
+   codepeer example (4.1.4 - test predetermined)
 
 .. code:: Ada
    :number-lines: 1
@@ -1135,30 +1077,33 @@ Condition tested has a known value
    begin
       case I is
          when 0 =>
-            ...
+            null;
          when 1 =>
-            ...
+            null;
          when others =>
-            ...
+            null;
       end case;
    end Predetermined;
 
-``predetermined.adb:4:4: low warning: test predetermined because I = 0``
+|``predetermined.adb:4:4: low warning: test predetermined because I = 0``
+|``predetermined.adb:5:12: medium warning: test always true (Infer): Boolean condition  `(I = 0)` is always true``
+|``predetermined.adb:8:10: medium warning: dead code because I = 0``
+|``predetermined.adb:10:10: medium warning: dead code because I = 0``
 
 -------------------------
 Condition Predetermined
 -------------------------
+Indicates redundant condition inside a conditional, like the left or right operand of a boolean operator which is always true or false
 
-Condition inside a conditional has a known value
-
-TBD! Is this right?
+..
+   codepeer example (4.1.4 - condition predetermined)
 
 .. code:: Ada
    :number-lines: 1
 
    procedure Condition is
       type L is (A, B, C);
-
+   
       procedure Or_Else (V : L) is
       begin
          if V /= A or else V /= B then
@@ -1167,105 +1112,134 @@ TBD! Is this right?
             raise Program_Error;
          end if;
       end Or_Else;
+   begin
+      Or_Else (A);
+   end Condition;
 
-``condition.adb:6:25: medium warning: condition predetermined because (V /= B) is always true``
+|``condition.adb:6:27: medium warning: condition predetermined because (V /= B) is always true``
 
 ---------------------------------
 Loop Does Not Complete Normally
 ---------------------------------
+Indicates loops that either run forever or fail to terminate normally
 
-Loop runs forever or fails to terminate normally (e.g. always raises an exception)
+..
+   codepeer example (4.1.4 - loop does not complete normally)
 
 .. code:: Ada
    :number-lines: 1
 
    procedure Loops is
       Buf : String := "The" & ASCII.NUL;
-      BP  : Natural;
+      Bp  : Natural;
    begin
       Buf (4) := 'a';   -- Eliminates null terminator
-      BP := Buf'First;
-
+      Bp      := Buf'First;
+   
       while True loop
-         BP := BP + 1;
-         exit when Buf (BP - 1) = ASCII.NUL;  -- Condition never reached
+         Bp := Bp + 1;
+         exit when Buf (Bp - 1) = ASCII.NUL;  -- Condition never reached
       end loop;
    end Loops;
 
-``loops.adb:8:10: medium warning: loop does not complete normally``
+|``loops.adb:1:1: medium warning: subp never returns: loops``
+|``loops.adb:8:10: medium warning: loop does not complete normally``
+|``loops.adb:10:17: low: array index check might fail: requires (Bp - 1) in 1..4``
+|``loops.adb:10:7: low warning: test always false because Buf((Bp - 1)) - nul in (84 | 97 | 101 | 104)``
+|``loops.adb:12:5: medium warning: dead code begins here``
 
 -------------------
 Unused Assignment
 -------------------
-Value written is ignored (not later referenced)
+Indicates redundant assignment. This may be an indication of unintentional loss of result or unexpected flow of control. Note that CodePeer recognizes special variable patterns as temporary variables that will be ignored by this check: :ada:`ignore`, :ada:`unused`, :ada:`discard`, :ada:`dummy`, :ada:`tmp`, :ada:`temp`. This can be tuned via the :filename:`MessagePatterns.xml` file if needed. An object marked as unreferenced via :ada:`pragma Unreferenced` is similarly ignored
+
+..
+   codepeer example (4.1.4 - unused assignment)
 
 .. code:: Ada
    :number-lines: 1
 
+   with Ada.Text_IO; use Ada.Text_IO;
    procedure Unused_Assignment is
-      C : Character := Get_Character;
+      S : String := Get_Line;
    begin
-      null;  -- C is not used in this subprogram
-end Unused_Assignment;
+      null;  -- S is not used in this subprogram
+   end Unused_Assignment;
 
-``unused_assignment.adb:2:4: medium warning: unused assignment into C``
+|``TBD``
 
 -----------------------------
 Unused Assignment To Global
 -----------------------------
-Value written in global is ignored
+Indicates that a subprogram call modifies a global variable, which is then overwritten following the call without any uses between the assignments. Note that the redundant assignment may occur inside another subprogram call invoked by the current subprogram
+
+..
+   codepeer example (4.1.4 - unused assignment to global)
 
 .. code:: Ada
    :number-lines: 1
 
+   package Unused_Global is
+      procedure Proc;
+   end Unused_Global;
+
    package body Unused_Global is
       G : Integer;
-
+   
       procedure Proc0 is
       begin
          G := 123;
       end Proc0;
-
+   
       procedure Proc1 is
       begin
          Proc0;
       end Proc1;
-
-      procedure Proc2 is
+   
+      procedure Proc is
       begin
          Proc1;
          G := 456;  -- override effect of calling Proc1
-      end Proc2;
+      end Proc;
+   
+   end Unused_Global;
 
-end Unused_Global;
-
-``unused_global.adb:16:7: low warning: unused assignment to global G in unused_global.proc1``
+|``TBD``
 
 ----------------------
 Unused Out Parameter
 ----------------------
-Value written to an out parameter is ignored by the caller
+Indicates that an actual parameter of a call is ignored (either never used or overwritten)
+
+..
+   codepeer example (4.1.4 - unused out parameter)
 
 .. code:: Ada
    :number-lines: 1
 
-   with Search;
-
-   procedure Unused_Out is
-      Table : Int_Array (1..10) := (others => 0);
-      Found : Boolean;
-      Index : Integer;
+   procedure Unused_Out (Flag : Integer) is
+      Table   : array (1 .. 10) of Integer := (others => 0);
+      Ret_Val : Boolean;
+      procedure Search (Success : out Boolean) is
+      begin
+         Success := False;
+         for I in Table'Range loop
+            Success := Success or Table (I) = Flag;
+         end loop;
+      end Search;
    begin
-      Search.Linear_Search (Table, 0, Found, Index);
+      Search (Ret_Val);
    end Unused_Out;
 
-| ``unused_out.adb:8:25: medium warning: unused out parameter Found``
-| ``unused_out.adb:8:25: medium warning: unused out parameter Index``
+|``unused_out.adb:12:4: medium warning: unused out parameter Ret_Val``
 
--------------------------
-Useless Self Assignment
--------------------------
+----------------------
+Useless Reassignment
+----------------------
 Indicates when an assignment does not modify the value stored in the variable being assigned
+
+..
+   codepeer example (4.1.4 - useless reassignment)
 
 .. code:: Ada
    :number-lines: 1
@@ -1277,60 +1251,48 @@ Indicates when an assignment does not modify the value stored in the variable be
       A := B;
    end Self_Assign;
 
-``self_assign.adb:5:6: medium warning: useless self assignment into A``
-
-==========================
-Suspicious Code Warnings
-==========================
-
-----------------------------
-Suspicious Code Categories
-----------------------------
-
-suspicious precondition
-   A precondition requires a non-contiguous set of values for an expression
-
-suspicious input
-   A value for an out parameter may be read before the parameter is assigned
-
-unread parameter
-   Parameter of mode in out is always assigned before being read (could be changed to mode out)
-
-unassigned parameter
-   Parameter of mode in out is never assigned (could be changed to mode in)
-
-suspicious constant operation
-   The evaluation of an expression always produces the same value
+|``self_assign.adb:5:6: medium warning: useless reassignment of A``
 
 -------------------------
 Suspicious Precondition
 -------------------------
+The precondition has a form that indicates there might be a problem with the algorithm. If the allowable value set of a given input expression is not contiguous (certain values of the expression that might cause a run-time problem inside the subprogram in between values that are safe), then this might be an indication that certain cases are not being properly handled by the code. In other situations, this might simply reflect the inherent nature of the algorithm involved
 
-A precondition requires a non-contiguous set of values for an expression
+..
+   codepeer example (4.1.4 - suspicious precondition)
 
 .. code:: Ada
    :number-lines: 1
 
-   package body Stack is
+   package Stack is
+      Overflow : exception;
+      type Stack_Type is record
+         Last : Integer;
+         Tab  : String (1 .. 20);
+      end record;
+      procedure Push (S : in out Stack_Type; V : Character);
+   end Stack;
 
-      procedure Push (S : in out Stack_Type; V : Value) is
+   package body Stack is
+      procedure Push (S : in out Stack_Type; V : Character) is
       begin
          if S.Last = S.Tab'Last then
             raise Overflow;
          end if;
-
-         S.Last := S.Last - 1;  --  Should be S.Last + 1
+         S.Last         := S.Last - 1;  --  Should be S.Last + 1
          S.Tab (S.Last) := V;
       end Push;
    end Stack;
 
-``stack.adb:3:4: medium warning: suspicious precondition for S.Last: not a contiguous range of values``
+|``stack.adb:2:4: medium warning: suspicious precondition for S.Last: not a contiguous range of values``
 
 ------------------
 Suspicious Input
 ------------------
+Inputs mention a value reachable through an out-parameter of the suprogram before this parameter is assigned. Although the value may sometimes be initialized as the Ada standard allows, it generally uncovers a bug where the subprogram reads an uninitialized value or a value that the programmer did not mean to pass to the subprogram as an input value
 
-A value for an out parameter may be read before the parameter is assigned
+..
+   codepeer example (4.1.4 - suspicious input)
 
 .. code:: Ada
    :number-lines: 1
@@ -1339,24 +1301,30 @@ A value for an out parameter may be read before the parameter is assigned
       type T is record
          I : Integer;
       end record;
-
+   
       procedure Take_In_Out (R : in out T) is
       begin
          R.I := R.I + 1;
       end Take_In_Out;
-
+   
       procedure Take_Out (R : out T; B : Boolean) is
       begin
          Take_In_Out (R);  -- R is 'out' but used as 'in out'
       end Take_Out;
+   
+   begin
+      null;
+   end In_Out;
 
-``in_out.adb:13:7: medium warning: suspicious input R.I: depends on input value of out-parameter``
+|``in_out.adb:13:7: medium warning: suspicious input R.I: depends on input value of out-parameter``
 
 ------------------
 Unread Parameter
 ------------------
+A parameter of an elementary type of mode in out is assigned on all paths through the subprogram before any reads, and so could be declared with mode :ada:`out`.
 
-Parameter of mode in out is always assigned before being read (could be changed to mode out)
+..
+   codepeer example (4.1.4 - unread parameter)
 
 .. code:: Ada
    :number-lines: 1
@@ -1366,13 +1334,15 @@ Parameter of mode in out is always assigned before being read (could be changed 
       X := 0;  -- X is assigned but never read
    end Unread;
 
-``unread.adb:1:1: medium warning: unread parameter X: could have mode out``
+|``unread.adb:1:1: medium warning: unread parameter X: could have mode out``
 
 ----------------------
 Unassigned Parameter
 ----------------------
+A parameter of a scalar type of mode in out is never assigned, and so could be declared with mode :ada:`in`
 
-Parameter of mode in out is never assigned (could be changed to mode in)
+..
+   codepeer example (4.1.4 - unassigned parameter)
 
 .. code:: Ada
    :number-lines: 1
@@ -1382,28 +1352,150 @@ Parameter of mode in out is never assigned (could be changed to mode in)
       Y := X;  -- X is read but never assigned
    end Unassigned;
 
-``unread.adb:1:1: medium warning: unassigned parameter X: could have mode in``
+|``unassigned.adb:1:1: medium warning: unassigned parameter X: could have mode in``
 
 -------------------------------
 Suspicious Constant Operation
 -------------------------------
-The evaluation of an expression always produces the same value
+An operation computes a constant value from non-constant operands. This is characteristic of a typographical mistake, where a variable is used instead of another one, or a missing part in the operation, like the lack of conversion to a floating-point or fixed-point type before division
+
+..
+   codepeer example (4.1.4 - suspicious constant operation)
 
 .. code:: Ada
    :number-lines: 1
 
    procedure Constant_Op is
       type T is new Natural range 0 .. 14;
-
+   
       function Incorrect (X : T) return T is
       begin
          return X / (T'Last + 1);
-      end;
+      end Incorrect;
    begin
       null;
    end Constant_Op;
 
-``constant_op.adb:6:16: medium warning: suspicious constant operation X/15 always evaluates to 0``
+|``constant_op.adb:6:16: medium warning: suspicious constant operation X/15 always evaluates to 0``
+
+--------------------
+Subp Never Returns
+--------------------
+The subprogram will never return, presumably because of an infinite loop. There will typically be an additional message in the subprogram body (e.g. test always false) explaining why the subprogram never returns
+
+..
+   codepeer example (4.1.4 - subp never returns)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Infinite_Loop is
+      X : Integer := 33;
+   begin
+      loop
+         X := X + 1;
+      end loop;
+   end Infinite_Loop;
+
+|``infinite_loop.adb:1:1: medium warning: subp never returns: infinite_loop``
+|``infinite_loop.adb:5:9: medium warning: loop does not complete normally``
+|``infinite_loop.adb:5:14: low: overflow check might fail: requires X /= Integer_32'Last``
+
+-------------------
+Subp Always Fails
+-------------------
+Indicates that a run-time problem is likely to occur on every execution of the subprogram. There will typically be an additional message in the subprogram body explaining why the subprogram always fails
+
+..
+   codepeer example (4.1.4 - subp always fails)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure P is
+      X : Integer := raise Program_Error;
+   begin
+      null;
+   end P;
+
+|``p.adb:1:1: high warning: subp always fails: p fails for all possible inputs``
+|``p.adb:2:4: medium warning: unused assignment into X``
+|``p.adb:2:19: low: raise exception unconditional raise``
+
+=================
+Race Conditions
+=================
+
+-------------------------
+Race Condition Messages
+-------------------------
+
+unprotected access
+  A reentrant task (e.g. task type) reads or writes a potentially shared object without holding a lock. The message is associated with places where the object is accessed in the absence of any lock, or with non-overlapping lock configuration
+
+unprotected shared access
+  A task accesses a potentially shared object without holding a lock and this object is also referenced by some other task. The message is associated with places where the object is referenced in the absence of any lock, or with non-overlapping lock configuration
+
+mismatch protected access
+  A task references a potentially shared object while holding a lock, and this object is also referenced by another task without holding the same lock. Messages are associated with the second task’s references
+
+-------------------------
+Race Condition Examples
+-------------------------
+
+..
+   codepeer example (4.1.5 - race conditions)
+
+.. code:: Ada
+   :number-lines: 1
+
+   package Race is
+   
+      procedure Increment;
+      pragma Annotate (Codepeer, Multiple_Thread_Entry_Point, "Race.Increment");
+   
+      procedure Decrement;
+      pragma Annotate (Codepeer, Multiple_Thread_Entry_Point, "Race.Decrement");
+   
+   end Race;
+
+   package body Race is
+   
+      Counter : Natural := 0;
+   
+      procedure Acquire;
+      pragma Import (C, Acquire);
+   
+      procedure Release;
+      pragma Import (C, Release);
+   
+      pragma Annotate (Codepeer, Mutex, "Race.Acquire", "Race.Release");
+   
+      procedure Increment is
+      begin
+         Acquire;
+   
+         if Counter = Natural'Last then
+            Counter := Natural'First;
+         else
+            Counter := Counter + 1;
+         end if;
+   
+         Release;
+      end Increment;
+   
+      procedure Decrement is
+      begin
+         if Counter = Natural'First then  --  reading Counter without any lock
+            Counter := Natural'Last;      --  writing without any lock
+         else
+            Counter := Counter - 1;       --  reading and writing without any lock
+         end if;
+      end Decrement;
+   
+   end Race;
+
+|``TBD``
 
 =====================================
 Automatically Generated Annotations
