@@ -418,8 +418,8 @@ Index value could be outside the array bounds. This is also known as buffer over
       end loop;
    end Buffer_Overflow;
 
-|``buffer_overflow.adb:1:1: high warning: subp always fails: buffer_overflow fails for all possible inputs``
-|``buffer_overflow.adb:10:7: high: array index check fails here: requires (X (I)) in 0..2``
+| ``buffer_overflow.adb:1:1: high warning: subp always fails: buffer_overflow fails for all possible inputs``
+| ``buffer_overflow.adb:10:7: high: array index check fails here: requires (X (I)) in 0..2``
 
 -----------------
 Divide By Zero
@@ -443,10 +443,10 @@ The second operand of a divide, mod or rem operation could be zero
       end loop;
    end Div;
 
-|``div.adb:1:1: high warning: subp always fails: div fails for all possible inputs``
-|``div.adb:7:23: high: divide by zero fails here: requires I /= 0``
-|``div.adb:7:9: medium warning: unused assignment into X``
-|``div.adb:7:23: medium: range check might fail: requires (A / I) = Integer_32'Last``
+| ``div.adb:1:1: high warning: subp always fails: div fails for all possible inputs``
+| ``div.adb:7:23: high: divide by zero fails here: requires I /= 0``
+| ``div.adb:7:9: medium warning: unused assignment into X``
+| ``div.adb:7:23: medium: range check might fail: requires (A / I) = Integer_32'Last``
 
 --------------
 Access Check
@@ -469,9 +469,9 @@ Attempting to dereference a reference that could be null
       end if;
    end Null_Deref;
 
-|``null_deref.adb:1:1: high warning: subp always fails: null_deref fails for all possible inputs``
-|``null_deref.adb:5:9: medium warning: test always true because X = null``
-|``null_deref.adb:6:7: high: access check fails here``
+| ``null_deref.adb:1:1: high warning: subp always fails: null_deref fails for all possible inputs``
+| ``null_deref.adb:5:9: medium warning: test always true because X = null``
+| ``null_deref.adb:6:7: high: access check fails here``
 
 -------------
 Range Check
@@ -499,8 +499,8 @@ A calculation may generate a value outside the bounds of an Ada type or subtype 
       Proc_1 (I => A);  --  A is out-of-range of parameter I
    end Out_Of_Range;
 
-|``out_of_range.adb:1:1: high warning: subp always fails: out_of_range fails for all possible inputs``
-|``out_of_range.adb:12:17: high: range check fails here: requires A in 1..2``
+| ``out_of_range.adb:1:1: high warning: subp always fails: out_of_range fails for all possible inputs``
+| ``out_of_range.adb:12:17: high: range check fails here: requires A in 1..2``
 
 ----------------
 Overflow Check
@@ -540,11 +540,11 @@ A calculation may overflow the bounds of a numeric type and wrap around. The lik
       end loop;
    end Overflow;
 
-|``overflow.adb:17:41: high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
-|``overflow.adb:17:24: high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
-|``overflow.adb:17:24: medium warning: dead code because Attempt_Count = Integer_32'Last+1``
-|``overflow.adb:19:27: medium warning: test always true because Attempt_Count = Integer_32'Last+1``
-|``overflow.adb:21:13: high: conditional check raises exception here: requires Attempt_Count <= 3``
+| ``overflow.adb:17:41: high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
+| ``overflow.adb:17:24: high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
+| ``overflow.adb:17:24: medium warning: dead code because Attempt_Count = Integer_32'Last+1``
+| ``overflow.adb:19:27: medium warning: test always true because Attempt_Count = Integer_32'Last+1``
+| ``overflow.adb:21:13: high: conditional check raises exception here: requires Attempt_Count <= 3``
 
 -----------------
 Aliasing Check
@@ -575,9 +575,9 @@ A parameter that can be passed by reference is aliased with another parameter or
       In_Out (A, B, A);
    end Alias;
 
-|``alias.adb:1:1: high warning: subp always fails: alias fails for all possible inputs``
-|``alias.adb:10:22: low: overflow check might fail: requires A.all(1) + B.all(1) in Integer_32'First..Integer_32'Last``
-|``alias.adb:15:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
+| ``alias.adb:1:1: high warning: subp always fails: alias fails for all possible inputs``
+| ``alias.adb:10:22: low: overflow check might fail: requires A.all(1) + B.all(1) in Integer_32'First..Integer_32'Last``
+| ``alias.adb:15:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
 
 -----------
 Tag Check
@@ -616,8 +616,8 @@ A tag check (incorrect tag value on a tagged object) may fail
       Call (X3); -- OK
    end Tag;
 
-|``tag.adb:1:1: high warning: subp always fails: tag fails for all possible inputs``
-|``tag.adb:21:4: high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2, tag.t3}``
+| ``tag.adb:1:1: high warning: subp always fails: tag fails for all possible inputs``
+| ``tag.adb:21:4: high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2, tag.t3}``
 
 --------------------
 Discriminant Check
@@ -656,8 +656,8 @@ A field for the wrong variant/discriminant is accessed
       X := Create (3, 2, 6.0);  -- discriminant check failure
    end Discr;
 
-|``discr.adb:1:1: high warning: subp always fails: discr fails for all possible inputs``
-|``discr.adb:23:9: high: discriminant check fails here: requires not (Create (3, 2, 6.0).b /= True or else Create (3, 2, 6.0).l /= 3)``
+| ``discr.adb:1:1: high warning: subp always fails: discr fails for all possible inputs``
+| ``discr.adb:23:9: high: discriminant check fails here: requires not (Create (3, 2, 6.0).b /= True or else Create (3, 2, 6.0).l /= 3)``
 
 --------------
 Precondition
@@ -702,9 +702,9 @@ Checks are reported in 2 possible places:
       In_Out (A, B, A);
    end Alias;
 
-|``alias.adb:1:1: high warning: subp always fails: alias fails for all possible inputs``
-|``alias.adb:12:22: low: overflow check might fail: requires A.all(1) + B.all(1) in Integer_32'First..Integer_32'Last``
-|``alias.adb:17:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
+| ``alias.adb:1:1: high warning: subp always fails: alias fails for all possible inputs``
+| ``alias.adb:12:22: low: overflow check might fail: requires A.all(1) + B.all(1) in Integer_32'First..Integer_32'Last``
+| ``alias.adb:17:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
 
 =============
 User Checks
@@ -724,10 +724,10 @@ raise exception
    An exception is being raised on a reachable path. This is similar to *conditional check*, but the exception is raised systematically instead of conditionally.
 
 user precondition
-   A call might violate a subprogram’s specified precondition. This specification may be written as a :ada:`pragma Precondition`, or as a :ada:`Pre` aspect in Ada 2012 syntax
+   A call might violate a subprogram's specified precondition. This specification may be written as a :ada:`pragma Precondition`, or as a :ada:`Pre` aspect in Ada 2012 syntax
 
 postcondition
-   The subprogram’s body may violate its specified postcondition. This specification may be written as a :ada:`pragma Postcondition`, or as a :ada:`Post` aspect in Ada 2012 syntax
+   The subprogram's body may violate its specified postcondition. This specification may be written as a :ada:`pragma Postcondition`, or as a :ada:`Post` aspect in Ada 2012 syntax
 
 -----------
 Assertion
@@ -752,8 +752,8 @@ A user assertion (using e.g. :ada:`pragma Assert`) could fail
       pragma Assert (And_Or (True, True));
    end Assert;
 
-|``assert.adb:1:1: high warning: subp always fails: assert fails for all possible inputs``
-|``assert.adb:9:19: high: assertion fails here: requires (and_or'Result) /= false``
+| ``assert.adb:1:1: high warning: subp always fails: assert fails for all possible inputs``
+| ``assert.adb:9:19: high: assertion fails here: requires (and_or'Result) /= false``
 
 -------------------
 Conditional Check
@@ -793,11 +793,11 @@ An exception could be raised depending on the outcome of a conditional test in u
       end loop;
    end Overflow;
 
-|``overflow.adb:17:41: high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
-|``overflow.adb:17:24: high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
-|``overflow.adb:17:24: medium warning: dead code because Attempt_Count = Integer_32'Last+1``
-|``overflow.adb:19:27: medium warning: test always true because Attempt_Count = Integer_32'Last+1``
-|``overflow.adb:21:13: high: conditional check raises exception here: requires Attempt_Count <= 3``
+| ``overflow.adb:17:41: high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
+| ``overflow.adb:17:24: high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
+| ``overflow.adb:17:24: medium warning: dead code because Attempt_Count = Integer_32'Last+1``
+| ``overflow.adb:19:27: medium warning: test always true because Attempt_Count = Integer_32'Last+1``
+| ``overflow.adb:21:13: high: conditional check raises exception here: requires Attempt_Count <= 3``
 
 -----------------
 Raise Exception
@@ -817,15 +817,15 @@ An exception is being raised on a reachable path. This is similar to *conditiona
       null;
    end Raise_Exc;
 
-|``raise_exc.adb:1:1: high warning: subp always fails: raise_exc fails for all possible inputs``
-|``raise_exc.adb:2:4: medium warning: unused assignment into X``
-|``raise_exc.adb:2:19: low: raise exception unconditional raise``
+| ``raise_exc.adb:1:1: high warning: subp always fails: raise_exc fails for all possible inputs``
+| ``raise_exc.adb:2:4: medium warning: unused assignment into X``
+| ``raise_exc.adb:2:19: low: raise exception unconditional raise``
 
 -------------------
 User Precondition
 -------------------
 
-A call might violate a subprogram’s specified precondition. This specification may be written as a :ada:`pragma Precondition`, or as a :ada:`Pre` aspect in Ada 2012 syntax
+A call might violate a subprogram's specified precondition. This specification may be written as a :ada:`pragma Precondition`, or as a :ada:`Pre` aspect in Ada 2012 syntax
 
 ..
    codepeer example (4.1.2 - user precondition)
@@ -843,15 +843,15 @@ A call might violate a subprogram’s specified precondition. This specification m
       A := (A - 1.0)**2.0;
    end Pre;
 
-|``pre.adb:1:1: high warning: subp always fails: pre fails for all possible inputs``
-|``pre.adb:8:18: high: precondition (user precondition) failure on call to pre."**": requires Left /= 0.0``
-|``pre.adb:8:6: medium warning: unused assignment into A``
+| ``pre.adb:1:1: high warning: subp always fails: pre fails for all possible inputs``
+| ``pre.adb:8:18: high: precondition (user precondition) failure on call to pre."**": requires Left /= 0.0``
+| ``pre.adb:8:6: medium warning: unused assignment into A``
 
 ---------------
 Postcondition
 ---------------
 
-The subprogram’s body may violate its specified postcondition. This specification may be written as a :ada:`pragma Postcondition`, or as a :ada:`Post` aspect in Ada 2012 syntax
+The subprogram's body may violate its specified postcondition. This specification may be written as a :ada:`pragma Postcondition`, or as a :ada:`Post` aspect in Ada 2012 syntax
 
 ..
    codepeer example (4.1.2 - postcondition)
@@ -880,10 +880,10 @@ The subprogram’s body may violate its specified postcondition. This specificatio
       Decrement;
    end Post;
 
-|``post.adb:13:4: high warning: subp always fails: post.decrement fails for all possible inputs``
-|``post.adb:15:47: medium: range check might fail: requires (States'Pos (State) + 1) /= 3``
-|``post.adb:16:8: high: postcondition failure on call to post.decrement: requires State /= Bad_Vibration``
-|``post.adb:19:4: high: precondition (postcondition, user precondition, range check) failure on call to post.decrement: requires State /= Normal_Condition``
+| ``post.adb:13:4: high warning: subp always fails: post.decrement fails for all possible inputs``
+| ``post.adb:15:47: medium: range check might fail: requires (States'Pos (State) + 1) /= 3``
+| ``post.adb:16:8: high: postcondition failure on call to post.decrement: requires State /= Bad_Vibration``
+| ``post.adb:19:4: high: precondition (postcondition, user precondition, range check) failure on call to post.decrement: requires State /= Normal_Condition``
 
 =====================================
 Uninitialized and Invalid Variables
@@ -915,8 +915,8 @@ The code may be reading an uninitialized or invalid value
       A := B;  --  we are reading B which is uninitialized!
    end Uninit;
 
-|``uninit.adb:5:9: high: validity check: B is uninitialized here``
-|``uninit.adb:5:6: medium warning: unused assignment into A``
+| ``uninit.adb:5:9: high: validity check: B is uninitialized here``
+| ``uninit.adb:5:6: medium warning: unused assignment into A``
 
 ==========
 Warnings
@@ -1000,10 +1000,10 @@ Also called *unreachable code*. Indicates logical errors as the programmer assum
       end if;
    end Dead_Code;
 
-|``dead_code.adb:4:9: low warning: test always false because I = 10``
-|``dead_code.adb:5:9: medium warning: dead code because I = 10``
-|``dead_code.adb:6:4: medium warning: test always true because I = 10``
-|``dead_code.adb:9:9: medium warning: dead code because I = 10``
+| ``dead_code.adb:4:9: low warning: test always false because I = 10``
+| ``dead_code.adb:5:9: medium warning: dead code because I = 10``
+| ``dead_code.adb:6:4: medium warning: test always true because I = 10``
+| ``dead_code.adb:9:9: medium warning: dead code because I = 10``
 
 -------------------
 Test Always False
@@ -1028,10 +1028,10 @@ Indicates redundant conditionals, which could flag logical errors where the test
       end if;
    end Dead_Code;
 
-|``dead_code.adb:4:9: low warning: test always false because I = 10``
-|``dead_code.adb:5:9: medium warning: dead code because I = 10``
-|``dead_code.adb:6:4: medium warning: test always true because I = 10``
-|``dead_code.adb:9:9: medium warning: dead code because I = 10``
+| ``dead_code.adb:4:9: low warning: test always false because I = 10``
+| ``dead_code.adb:5:9: medium warning: dead code because I = 10``
+| ``dead_code.adb:6:4: medium warning: test always true because I = 10``
+| ``dead_code.adb:9:9: medium warning: dead code because I = 10``
 
 ------------------
 Test Always True
@@ -1056,10 +1056,10 @@ Indicates redundant conditionals, which could flag logical errors where the test
       end if;
    end Dead_Code;
 
-|``dead_code.adb:4:9: low warning: test always false because I = 10``
-|``dead_code.adb:5:9: medium warning: dead code because I = 10``
-|``dead_code.adb:6:4: medium warning: test always true because I = 10``
-|``dead_code.adb:9:9: medium warning: dead code because I = 10``
+| ``dead_code.adb:4:9: low warning: test always false because I = 10``
+| ``dead_code.adb:5:9: medium warning: dead code because I = 10``
+| ``dead_code.adb:6:4: medium warning: test always true because I = 10``
+| ``dead_code.adb:9:9: medium warning: dead code because I = 10``
 
 --------------------
 Test Predetermined
@@ -1085,10 +1085,10 @@ Indicates redundant conditionals, which could flag logical errors. This is simil
       end case;
    end Predetermined;
 
-|``predetermined.adb:4:4: low warning: test predetermined because I = 0``
-|``predetermined.adb:5:12: medium warning: test always true (Infer): Boolean condition  `(I = 0)` is always true``
-|``predetermined.adb:8:10: medium warning: dead code because I = 0``
-|``predetermined.adb:10:10: medium warning: dead code because I = 0``
+| ``predetermined.adb:4:4: low warning: test predetermined because I = 0``
+| ``predetermined.adb:5:12: medium warning: test always true (Infer): Boolean condition  `(I = 0)` is always true``
+| ``predetermined.adb:8:10: medium warning: dead code because I = 0``
+| ``predetermined.adb:10:10: medium warning: dead code because I = 0``
 
 -------------------------
 Condition Predetermined
@@ -1116,7 +1116,7 @@ Indicates redundant condition inside a conditional, like the left or right opera
       Or_Else (A);
    end Condition;
 
-|``condition.adb:6:27: medium warning: condition predetermined because (V /= B) is always true``
+| ``condition.adb:6:27: medium warning: condition predetermined because (V /= B) is always true``
 
 ---------------------------------
 Loop Does Not Complete Normally
@@ -1142,11 +1142,11 @@ Indicates loops that either run forever or fail to terminate normally
       end loop;
    end Loops;
 
-|``loops.adb:1:1: medium warning: subp never returns: loops``
-|``loops.adb:8:10: medium warning: loop does not complete normally``
-|``loops.adb:10:17: low: array index check might fail: requires (Bp - 1) in 1..4``
-|``loops.adb:10:7: low warning: test always false because Buf((Bp - 1)) - nul in (84 | 97 | 101 | 104)``
-|``loops.adb:12:5: medium warning: dead code begins here``
+| ``loops.adb:1:1: medium warning: subp never returns: loops``
+| ``loops.adb:8:10: medium warning: loop does not complete normally``
+| ``loops.adb:10:17: low: array index check might fail: requires (Bp - 1) in 1..4``
+| ``loops.adb:10:7: low warning: test always false because Buf((Bp - 1)) - nul in (84 | 97 | 101 | 104)``
+| ``loops.adb:12:5: medium warning: dead code begins here``
 
 -------------------
 Unused Assignment
@@ -1166,7 +1166,7 @@ Indicates redundant assignment. This may be an indication of unintentional loss 
       null;  -- S is not used in this subprogram
    end Unused_Assignment;
 
-|``TBD``
+| ``TBD``
 
 -----------------------------
 Unused Assignment To Global
@@ -1204,7 +1204,7 @@ Indicates that a subprogram call modifies a global variable, which is then overw
    
    end Unused_Global;
 
-|``TBD``
+| ``TBD``
 
 ----------------------
 Unused Out Parameter
@@ -1231,7 +1231,7 @@ Indicates that an actual parameter of a call is ignored (either never used or ov
       Search (Ret_Val);
    end Unused_Out;
 
-|``unused_out.adb:12:4: medium warning: unused out parameter Ret_Val``
+| ``unused_out.adb:12:4: medium warning: unused out parameter Ret_Val``
 
 ----------------------
 Useless Reassignment
@@ -1251,7 +1251,7 @@ Indicates when an assignment does not modify the value stored in the variable be
       A := B;
    end Self_Assign;
 
-|``self_assign.adb:5:6: medium warning: useless reassignment of A``
+| ``self_assign.adb:5:6: medium warning: useless reassignment of A``
 
 -------------------------
 Suspicious Precondition
@@ -1284,7 +1284,7 @@ The precondition has a form that indicates there might be a problem with the alg
       end Push;
    end Stack;
 
-|``stack.adb:2:4: medium warning: suspicious precondition for S.Last: not a contiguous range of values``
+| ``stack.adb:2:4: medium warning: suspicious precondition for S.Last: not a contiguous range of values``
 
 ------------------
 Suspicious Input
@@ -1316,7 +1316,7 @@ Inputs mention a value reachable through an out-parameter of the suprogram befor
       null;
    end In_Out;
 
-|``in_out.adb:13:7: medium warning: suspicious input R.I: depends on input value of out-parameter``
+| ``in_out.adb:13:7: medium warning: suspicious input R.I: depends on input value of out-parameter``
 
 ------------------
 Unread Parameter
@@ -1334,7 +1334,7 @@ A parameter of an elementary type of mode in out is assigned on all paths throug
       X := 0;  -- X is assigned but never read
    end Unread;
 
-|``unread.adb:1:1: medium warning: unread parameter X: could have mode out``
+| ``unread.adb:1:1: medium warning: unread parameter X: could have mode out``
 
 ----------------------
 Unassigned Parameter
@@ -1352,7 +1352,7 @@ A parameter of a scalar type of mode in out is never assigned, and so could be d
       Y := X;  -- X is read but never assigned
    end Unassigned;
 
-|``unassigned.adb:1:1: medium warning: unassigned parameter X: could have mode in``
+| ``unassigned.adb:1:1: medium warning: unassigned parameter X: could have mode in``
 
 -------------------------------
 Suspicious Constant Operation
@@ -1376,7 +1376,7 @@ An operation computes a constant value from non-constant operands. This is chara
       null;
    end Constant_Op;
 
-|``constant_op.adb:6:16: medium warning: suspicious constant operation X/15 always evaluates to 0``
+| ``constant_op.adb:6:16: medium warning: suspicious constant operation X/15 always evaluates to 0``
 
 --------------------
 Subp Never Returns
@@ -1397,9 +1397,9 @@ The subprogram will never return, presumably because of an infinite loop. There 
       end loop;
    end Infinite_Loop;
 
-|``infinite_loop.adb:1:1: medium warning: subp never returns: infinite_loop``
-|``infinite_loop.adb:5:9: medium warning: loop does not complete normally``
-|``infinite_loop.adb:5:14: low: overflow check might fail: requires X /= Integer_32'Last``
+| ``infinite_loop.adb:1:1: medium warning: subp never returns: infinite_loop``
+| ``infinite_loop.adb:5:9: medium warning: loop does not complete normally``
+| ``infinite_loop.adb:5:14: low: overflow check might fail: requires X /= Integer_32'Last``
 
 -------------------
 Subp Always Fails
@@ -1418,9 +1418,9 @@ Indicates that a run-time problem is likely to occur on every execution of the s
       null;
    end P;
 
-|``p.adb:1:1: high warning: subp always fails: p fails for all possible inputs``
-|``p.adb:2:4: medium warning: unused assignment into X``
-|``p.adb:2:19: low: raise exception unconditional raise``
+| ``p.adb:1:1: high warning: subp always fails: p fails for all possible inputs``
+| ``p.adb:2:4: medium warning: unused assignment into X``
+| ``p.adb:2:19: low: raise exception unconditional raise``
 
 =================
 Race Conditions
@@ -1437,7 +1437,7 @@ unprotected shared access
   A task accesses a potentially shared object without holding a lock and this object is also referenced by some other task. The message is associated with places where the object is referenced in the absence of any lock, or with non-overlapping lock configuration
 
 mismatch protected access
-  A task references a potentially shared object while holding a lock, and this object is also referenced by another task without holding the same lock. Messages are associated with the second task’s references
+  A task references a potentially shared object while holding a lock, and this object is also referenced by another task without holding the same lock. Messages are associated with the second task's references
 
 -------------------------
 Race Condition Examples
@@ -1495,7 +1495,7 @@ Race Condition Examples
    
    end Race;
 
-|``TBD``
+| ``TBD``
 
 =====================================
 Automatically Generated Annotations
