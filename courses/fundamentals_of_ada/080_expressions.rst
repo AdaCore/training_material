@@ -53,16 +53,16 @@ Examples
       membership_choice_list ::= membership_choice
                                  { | membership_choice}
       membership_choice ::= expression | range | subtype_mark
- 
+
 * Acts like a boolean function
 * Usable anywhere a boolean value is allowed
 
 .. code:: Ada
 
-   X : Integer := ... 
+   X : Integer := ...
    B : Boolean := X in 0..5;
    C : Boolean := X not in 0..5; -- also "not (X in 0..5)"
- 
+
 ------------------------------------
 Testing Constraints via Membership
 ------------------------------------
@@ -76,7 +76,7 @@ Testing Constraints via Membership
    ...
    if Day in Mon .. Fri then ...
    if Day in Weekdays then ... - same as above
- 
+
 -----------------------------------
 Testing Non-Contiguous Membership
 -----------------------------------
@@ -89,16 +89,17 @@ Testing Non-Contiguous Membership
 
 .. code:: Ada
 
-    M : Month_Number := Month (Clock); 
+   declare
+    M : Month_Number := Month (Clock);
    begin
      if M in 9 | 4 | 6 | 11 then
        Put_Line ("31 days in this month");
-     elsif M = 2 then 
+     elsif M = 2 then
        Put_Line ("It's February, who knows?");
      else
        Put_Line ("30 days in this month");
      end if;
- 
+
 ------
 Quiz
 ------
@@ -140,7 +141,7 @@ Qualification
 
       qualified_expression ::= subtype_mark'(expression) |
                                subtype_mark'aggregate
- 
+
 * Similar to conversion syntax
 
    - Mnemonic - "qualification uses quote"
@@ -157,7 +158,7 @@ Testing Constraints via Qualification
 
 * Asserts value is compatible with subtype
 
-   - Raises exception `Constraint_Error` if not true
+   - Raises exception :ada:`Constraint_Error` if not true
 
 .. code:: Ada
 
@@ -175,7 +176,7 @@ Testing Constraints via Qualification
        Arrive_Early;
        Leave_Early;
    end case; -- no 'others' because all subtype values covered
- 
+
 -------------------
 Index Constraints
 -------------------
@@ -187,15 +188,15 @@ Index Constraints
       type Vector is array (Positive range <>) of Real;
       subtype Position_Vector is Vector (1..3);
       V : Position_Vector;
- 
+
 * Index constraints must not already be specified
 
    .. code:: Ada
 
       type String is array (Positive range <>) of Character;
-      subtype Full_Name is String(1 .. Max); 
+      subtype Full_Name is String(1 .. Max);
       subtype First_Name is Full_Name(1 .. N); -- compile error
- 
+
 =========================
 Conditional Expressions
 =========================
@@ -240,7 +241,7 @@ Conditional Expressions
 
    Ada 2012
 
-* Syntax looks like an if-statement without `end if`
+* Syntax looks like an if-statement without :ada:`end if`
 
    .. code:: Ada
 
@@ -249,15 +250,15 @@ Conditional Expressions
          {elsif condition then dependent_expression}
          [else dependent_expression])
       condition ::= boolean_expression
- 
+
    - The conditions are always Boolean values
 
       .. code:: Ada
 
          (if Today > Wednesday then 1 else 0)
- 
+
 -----------------------------------------
-Result Must Be Compatible with Context 
+Result Must Be Compatible with Context
 -----------------------------------------
 
 * The `dependent_expression` parts, specifically
@@ -266,24 +267,25 @@ Result Must Be Compatible with Context
 
    X : Integer :=
        (if Day_Of_Week (Clock) > Wednesday then 1 else 0);
- 
+
 -------------------------
 *If Expression* Example
 -------------------------
 
 .. code:: Ada
 
+   declare
      Remaining : Natural := 5;  -- arbitrary
    begin
      while Remaining > 0 loop
-       Put_Line ("Warning! Self-destruct in" & 
-         Remaining'Img & 
+       Put_Line ("Warning! Self-destruct in" &
+         Remaining'Img &
          (if Remaining = 1 then " second" else " seconds"));
        delay 1.0;
        Remaining := Remaining - 1;
      end loop;
      Put_Line ("Boom! (goodbye Nostromo)");
- 
+
 .. container:: speakernote
 
    Nostromo - ship from the original Alien :)
@@ -294,7 +296,7 @@ Boolean If-Expressions
 
 * Return a value of either True or False
 
-   - `(if P then Q)` - assuming `P` and `Q` are `Boolean`
+   - :ada:`(if P then Q)` - assuming `P` and `Q` are `Boolean`
    - "If P is True then the result of the if-expression is the value of Q"
 
 * But what is the overall result if all conditions are False?
@@ -315,7 +317,7 @@ The `else` Part When Result Is Boolean
 
 * Redundant because the default result is True
 
-   - `(if P then Q else True)`
+   - :ada:`(if P then Q else True)`
 
 * So for convenience and elegance it can be omitted
 
@@ -323,8 +325,8 @@ The `else` Part When Result Is Boolean
 
       Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
       Acceptable : Boolean := (if P1 > 0 then P2 > 0);
- 
-* Use `else` if you need to return False at the end
+
+* Use :ada:`else` if you need to return False at the end
 
 ---------------------------------------
 Rationale for Parentheses Requirement
@@ -336,7 +338,7 @@ Rationale for Parentheses Requirement
    .. code:: Ada
 
       X : integer := if condition then A else B + 1;
- 
+
 * Does that mean
 
    - If condition, then `X := A + 1`, else `X := B + 1` **OR**
@@ -349,7 +351,7 @@ Rationale for Parentheses Requirement
       .. code:: Ada
 
          Subprogram_Call(if A then B else C);
- 
+
 ------------------------------
 When To Use *If Expressions*
 ------------------------------
@@ -362,7 +364,7 @@ When To Use *If Expressions*
 
    - You'd already have written a function if you'd wanted one
 
-* Preconditions and postconditions 
+* Preconditions and postconditions
 
    - All the above reasons
    - Puts meaning close to use rather than in package body
@@ -376,11 +378,11 @@ When To Use *If Expressions*
 ---------------------------------------
 
 * Harder to read
-    
+
    .. code:: Ada
-    
+
       Leap : constant Boolean :=
-         (Today.Year mod 4 = 0 and Today.Year mod 100 /= 0) 
+         (Today.Year mod 4 = 0 and Today.Year mod 100 /= 0)
          or else (Today.Year mod 400 = 0);
       End_of_Month : array (Months) of Days := (Sep | Apr | Jun | Nov => 30,
                                                 Feb => 28,
@@ -391,17 +393,17 @@ When To Use *If Expressions*
         end if;
         if Today.Day = End_of_Month(Today.Month) then
            ...
-     
+
 * Becomes easier to read
-    
+
    .. code:: Ada
-    
+
       Leap : constant Boolean :=
          (Today.Year mod 4 = 0 and Today.Year mod 100 /= 0)
          or else (Today.Year mod 400 = 0);
-      End_Of_Month : constant array (Months) 
+      End_Of_Month : constant array (Months)
          of Days := (Sep | Apr | Jun | Nov => 30,
-                     Feb => (if Leap then 29 else 28), 
+                     Feb => (if Leap then 29 else 28),
                      others => 31);
       begin
         if Today.Day /= End_of_Month(Today.Month) then
@@ -416,14 +418,14 @@ Static Named Numbers Example
    .. code:: Ada
 
       Byte_MSB     : constant := Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First) * 7; 
+                     Default_Bit_Order = Low_Order_First) * 7;
       Halfword_MSB : constant := Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First) * 15;      
+                     Default_Bit_Order = Low_Order_First) * 15;
       Word_MSB     : constant := Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First) * 31;   
+                     Default_Bit_Order = Low_Order_First) * 31;
       NextBit      : constant := 1 - (2 * Boolean'Pos (
                      Default_Bit_Order = Low_Order_First));
- 
+
 * Becomes easier to read
 
    .. code:: Ada
@@ -433,7 +435,7 @@ Static Named Numbers Example
       Halfword_MSB : constant :=
                      (if Default_Bit_Order = Low_Order_First then 15 else 0);
       Word_MSB     : constant :=
-                     (if Default_Bit_Order = Low_Order_First then 31 else 0);   
+                     (if Default_Bit_Order = Low_Order_First then 31 else 0);
       NextBit      : constant :=
                      (if Default_Bit_Order = Low_Order_First then -1 else 1);
 
@@ -450,8 +452,8 @@ Static Named Numbers Example
  .. container:: column
 
    .. container:: latex_environment footnotesize
-  
-    * Syntax similar to `case` statements
+
+    * Syntax similar to :ada:`case` statements
 
        - Lighter: no closing `end case`
        - Commas between choices
@@ -462,13 +464,13 @@ Static Named Numbers Example
        - Type of "result" must match context
 
     * Advantage over *if expressions* is completeness checked by compiler
-    * Same as with `case` statements (unless `others` is used)
+    * Same as with :ada:`case` statements (unless :ada:`others` is used)
 
  .. container:: column
-    
+
     .. code:: Ada
-    
-       -- compile error if all 
+
+       -- compile error if all
        -- days not covered
        Hours : constant Integer :=
           (case Day_of_Week is
@@ -519,7 +521,7 @@ Quantified Expressions
 * "Existential" quantified expressions
 
    - Predicate is true for :ada:`some` element of the set
- 
+
 ------
 Quiz
 ------
@@ -574,7 +576,7 @@ Subtypes Localize Dependencies
          ...
          if K in 1 .. 12 then ...
          for J in Integer range 1 .. 12 loop
- 
+
    - Subtypes
 
       .. code:: Ada
@@ -587,7 +589,7 @@ Subtypes Localize Dependencies
          ...
          if K in Index then ...
          for J in Index loop ...
- 
+
 ----------------------------------
 Subtypes May Enhance Performance
 ----------------------------------
@@ -604,7 +606,7 @@ Subtypes May Enhance Performance
    ...
    K := Some_Value;   -- range checked here
    Values (K) := 0.0; -- so no range check needed here
- 
+
 ---------
 Summary
 ---------

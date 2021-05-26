@@ -72,7 +72,7 @@ Protected Types With Ravenscar
 
 * Like tasks, protected objects can be defined through types
 * Instantiation can then be done on library level
-* Protected object types are `limited` types
+* Protected object types are :ada:`limited` types
 
 ==================
 Tasking Behavior
@@ -102,34 +102,34 @@ What Tasks Look Like in Ravenscar
 -----------------------------------
 
 * Time-triggered task
-    
+
    .. code:: Ada
-    
+
       task body Cyclic is
         Period : constant Time_Span : Milliseconds (10);
         Activation : Time := Clock;
       begin
         loop
-          delay until Activation;   
+          delay until Activation;
           Do_Something;
           --  Compute next activation time
           Activation := Activation + Period;
          end loop;
       end Cyclic;
-     
+
 * Event-triggered task
-    
+
    .. code:: Ada
-    
+
       task body Sporadic is
       begin
          loop
-           -- Protected entry        
+           -- Protected entry
            Monitor.Wait_Event;
            Do_Something;
          end loop;
       end Sporadic;
-     
+
 -----------------
 Ravenscar Tasks
 -----------------
@@ -137,7 +137,7 @@ Ravenscar Tasks
 .. container:: columns
 
  .. container:: column
-  
+
     * Fixed set of tasks
 
        - Only at library level
@@ -149,7 +149,7 @@ Ravenscar Tasks
           + Task descriptors, stacks, ...
 
  .. container:: column
-  
+
     * Each task is an infinite loop
 
        - Single "triggering" action (delay or event)
@@ -196,7 +196,7 @@ Priorities
 .. container:: columns
 
  .. container:: column
-  
+
     * Priorities are defined in package System
 
        - Lower values mean lower priority
@@ -205,7 +205,7 @@ Priorities
           + `Priority`
           + `Interrupt_Priority`
 
-    * Priority is set by a `pragma Priority` or `pragma Interrupt_Priority`
+    * Priority is set by a :ada:`pragma Priority` or :ada:`pragma Interrupt_Priority`
 
        - Ignored for non-main subprograms
 
@@ -214,21 +214,21 @@ Priorities
     * `Interrupt_Priority` for priorities in the interrupt range
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        procedure Main is
          pragma Priority (2);
-       
+
        task T is
          pragma Priority (4);
-       
+
        protected Buffer is
           ...
        private
           pragma Priority (3);
        end Buffer;
-     
+
 ------------
 Scheduling
 ------------
@@ -266,19 +266,19 @@ Ceiling Locking
       task T is
         pragma Priority(4);
         ...
-   
+
       task body T is
         ...
         P.Set (1);
         ...
- 
+
    .. code:: Ada
 
       protected P is
          pragma Priority(5);
-         procedure Set 
+         procedure Set
             V : Integer);
- 
+
 =================
 Tasking Control
 =================
@@ -304,7 +304,7 @@ Synchronous Task Control
    private
       ...
    end Ada.Synchronous_Task_Control;
- 
+
 ---------------
 Timing Events
 ---------------
@@ -314,16 +314,15 @@ Timing Events
    - Implemented as protected procedures
 
 * Do not require a task or a delay statement
-
-* Controlled via procedural interface 
+* Controlled via procedural interface
 
    - Links the protected procedure
-   - Sets the time 
+   - Sets the time
 
 * Ravenscar Run-time Interface
-    
+
    .. code:: Ada
-          
+
       package Ada.Real_Time.Timing_Events is
          type Timing_Event is tagged limited private;
          type Timing_Event_Handler is access protected procedure (
@@ -335,12 +334,12 @@ Timing Events
                                    return Timing_Event_Handler;
          procedure Cancel_Handler (Event     : in out Timing_Event;
                                    Cancelled : out Boolean);
-         function Time_Of_Event (Event : Timing_Event) 
+         function Time_Of_Event (Event : Timing_Event)
                                  return Time;
       private
          ...
       end Ada.Real_Time.Timing_Events;
-     
+
 -----------------------
 Execution Time Clocks
 -----------------------
@@ -371,7 +370,7 @@ Partition Elaboration Control
 
    - Especially for certification!
 
-* `pragma Partition_Elaboration_Policy`
+* :ada:`pragma Partition_Elaboration_Policy`
 
    - Controls when activation and attachment happens relative to library unit elaboration completion
    - Defined in High Integrity Systems Annex
@@ -399,20 +398,20 @@ Task Termination Notification
 * States differentiated
 
    - Normal termination
-   - Termination due to an unhandled exception 
+   - Termination due to an unhandled exception
    - Termination due to task abort
 
 * Ravenscar Run-time Interface
-    
+
    .. code:: Ada
-    
+
       package Ada.Task_Termination is
         type Termination_Handler is access protected procedure (
             T : Ada.Task_Identification.Task_Id);
         procedure Set_Dependents_Fallback_Handler (Handler : Termination_Handler);
         function Current_Task_Fallback_Handler return Termination_Handler;
       end Ada.Task_Termination;
-     
+
 =========
 Summary
 =========
@@ -424,7 +423,7 @@ Ravenscar Small FootPrint
 .. container:: columns
 
  .. container:: column
-  
+
     * Everything is done by the Ada run-time library
 
        - No OS underneath
@@ -442,7 +441,7 @@ Ravenscar Small FootPrint
        - Then all activated and executed according to their priority
 
  .. container:: column
-  
+
     * Simple protected operations
 
        - No queuing
@@ -450,6 +449,6 @@ Ravenscar Small FootPrint
 
     * Complex features removed
 
-       - Such as exception handling and propagation 
+       - Such as exception handling and propagation
 
     * ECSS (E-ST-40C and Q-ST-80C) qualification material
