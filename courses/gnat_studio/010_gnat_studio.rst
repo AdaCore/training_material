@@ -228,7 +228,7 @@ Running and Debugging Applications
 Building Applications
 -----------------------
 
-+ Uses multi-language builder GPRbuild by default
++ Uses multi-language builder :toolname:`GPRbuild` by default
 
   + Ada, C, C++, assembly, user-defined
 
@@ -255,10 +255,10 @@ Integration with External Tools
 
 + GNAT-specific tools, if installed
 
-  + CodePeer
-  + SPARK
-  + GNATtest
-  + GNATcoverage
+  + :toolname:`CodePeer`
+  + :toolname:`SPARK`
+  + :toolname:`GNATtest`
+  + :toolname:`GNATcoverage`
   + Etc.
 
 + User-defined tools, with menu entries if needed
@@ -271,8 +271,8 @@ Symbolic Debugging
 
   + Additional views, menu entries, and toolbar icons
 
-+ A graphical interface to GDB
-+ Uses a GDB enhanced to be Ada-aware
++ A graphical interface to :toolname:`GDB`
++ Uses a :toolname:`GDB` enhanced to be Ada-aware
 
   + Task states, not just thread states
   + Advanced types' representations
@@ -281,7 +281,7 @@ Symbolic Debugging
 
   + Maybe an extra setup step for cross or bare-board targets
 
-+ Includes a GDB console for interactive commands
++ Includes a :toolname:`GDB` console for interactive commands
 
 --------------------
 Language Sensitive
