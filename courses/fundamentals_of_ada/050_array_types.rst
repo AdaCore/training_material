@@ -18,6 +18,7 @@ Introduction
 
 .. code:: Ada
 
+   declare
      type Hours is digits 6;
      type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
      type Schedule is array (Days) of Hours;
@@ -58,20 +59,24 @@ Array Type Index Constraints
    - Defines an empty array
    - Meaningful when bounds are computed at run-time
 
+* Can be applied on :ada:`type` or :ada:`subtype`
+
 .. code:: Ada
 
    type Schedule is array (Days range Mon .. Fri) of Real;
-   type Bits32_T is array (0 .. 31) of Bit_T;
    type Flags_T is array ( -10 .. 10 ) of Boolean;
    -- this may or may not be null range
    type Dynamic is array (1 .. N) of Integer;
+
+   subtype Line is String (1 .. 80);
+   subtype Translation is Matrix (1..3, 1..3);
 
 -------------------------
 Run-Time Index Checking
 -------------------------
 
 * Array indices are checked at run-time as needed
-* Invalid index values result in `Constraint_Error`
+* Invalid index values result in :ada:`Constraint_Error`
 
 .. code:: Ada
 
@@ -352,7 +357,7 @@ Bounds Must Satisfy Type Constraints
 ---------------------------------------
 
 * Must be somewhere in the range of possible values specified by the type declaration
-* `Constraint_Error` otherwise
+* :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
 
@@ -408,7 +413,7 @@ Application-Defined String Types
 Specifying Constraints via Initial Value
 ------------------------------------------
 
-* Lower bound is `Index_subtype'First`
+* Lower bound is :ada:`Index_subtype'First`
 * Upper bound is taken from number of items in value
 
 .. code:: Ada
@@ -459,6 +464,7 @@ Arrays of Arrays
 
 .. code:: Ada
 
+   declare
      type Array_of_10 is array (1..10) of Integer;
      type Array_of_Array is array (Boolean) of Array_of_10;
      A : Array_of_Array;
@@ -516,7 +522,7 @@ Array Attributes
    :T'Length: number of array components
    :T'First: value of lower index bound
    :T'Last: value of upper index bound
-   :T'Range: another way of saying `T'First` .. `T'Last`
+   :T'Range: another way of saying :ada:`T'First` .. :ada:`T'Last`
 
 * Meaningfully applied to constrained array types
 
@@ -541,6 +547,7 @@ Attributes' Benefits
 
    .. code:: Ada
 
+      declare
          type List is array (5 .. 15) of Integer;
          L : List;
          List_Index : Integer range List'Range := List'First;
@@ -581,12 +588,11 @@ Nth Dimension Array Attributes
           (1 .. 10, 12 .. 50) of T;
        TD : Two_Dimensioned;
 
-    * `TD'First` (2) is 12
-    * `TD'Last` (2) is 50
-    * `TD'Length` (2) is 39
-    * `TD'first` is 1 (same as `TD'first(1)`)
-    * `TD'last` is 10 (same as `TD'last(1)`)
-
+    * :ada:`TD'First` (2) is 12
+    * :ada:`TD'Last` (2) is 50
+    * :ada:`TD'Length` (2) is 39
+    * :ada:`TD'first` is 1 (same as :ada:`TD'first(1)`)
+    * :ada:`TD'last` is 10 (same as :ada:`TD'last(1)`)
 
 ------
 Quiz
@@ -663,7 +669,7 @@ Extra Object-Level Operations
       B : constant String_Type := "bar";
       C : constant String_Type := A & B;
       -- C now contains "foobar"
-     
+
 * Relational (for discrete component types)
 * Logical (for Boolean component type)
 * Slicing
@@ -760,7 +766,7 @@ Common Slicing Idiom Example
    - Index constraints
    - et cetera
 
-* Uses reserved word `in`
+* Uses reserved word :ada:`in`
 
 .. code:: Ada
 
@@ -913,7 +919,6 @@ Array Component For-Loop Example
          Put_Line (Integer'Image (Primes(P)));
       end loop;
 
-
 ----------------------------------------
 For-Loops with Multidimensional Arrays
 ----------------------------------------
@@ -933,11 +938,14 @@ For-Loops with Multidimensional Arrays
 
     * In low-level format looks like
 
-       - for each row loop
-       -   for each column loop
-       -     print Identity (row, column)
-       -   end loop
-       - end loop
+    .. code::
+
+       for each row loop
+          for each column loop
+             print Identity (
+                row, column)
+          end loop
+       end loop
 
  .. container:: column
 
@@ -1141,7 +1149,7 @@ Aggregate Consistency Rules
 
 * Indicates all components not yet assigned a value
 * All remaining components get this single value
-* Similar to case statement's `others`
+* Similar to case statement's :ada:`others`
 * Can be used to apply defaults too
 
 .. code:: Ada
@@ -1207,7 +1215,7 @@ Defaults Within Array Aggregates
 
 * Can only be used with "named association" form
 
-   - But `others` counts as named form
+   - But :ada:`others` counts as named form
 
 * Syntax
 
@@ -1310,6 +1318,107 @@ Anonymous Array Types
          -- legal assignment of values
          A(J) := B(K);
        end;
+
+========
+Slices
+========
+
+----------
+Examples
+----------
+
+.. include:: examples/050_array_types/slices.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#slices`
+
+---------
+Slicing
+---------
+
+.. container:: columns
+
+ .. container:: column
+
+    * Specifies a contiguous subsection of an array
+    * Allowed on any one-dimensional array type
+
+       - Any component type
+
+ .. container:: column
+
+    .. code:: Ada
+
+       procedure Test is
+         S1 : String (1 .. 9)
+            := "Hi Adam!!";
+         S2 : String
+            := "We love    !";
+       begin
+         Put_Line (S1 (4..6));
+         Put_Line (S2);
+         S2 (9..11) := S1 (4..6);
+         Put_Line (S2);
+         S2 (12) := '?';
+         Put_Line (S2);
+
+-------------------------------
+Slicing With Explicit Indexes
+-------------------------------
+
+* Imagine a requirement to have a name with two parts: first and last
+
+.. code:: Ada
+
+   declare
+     Full_Name : String (1 .. 20);
+   begin
+     Put_Line (Full_Name);
+     Put_Line (Full_Name (1..10));  -- first half of name
+     Put_Line (Full_Name (11..20)); -- second half of name
+
+-----------------------------------------
+Slicing With Named Subtypes for Indexes
+-----------------------------------------
+
+* Subtype name indicates the slice index range
+
+   - Names for constraints, in this case index constraints
+
+* Enhances readability and robustness
+
+.. code:: Ada
+
+   procedure Test is
+     subtype First_Name is Positive range 1 .. 10;
+     subtype Last_Name is Positive range 11 .. 20;
+     Full_Name : String(First_Name'First..Last_Name'Last);
+   begin
+     Put_Line(Full_Name(First_Name)); -- Full_Name(1..10)
+     if Full_Name (Last_Name) = SomeString then ...
+
+------------------------------------
+Dynamic Subtype Constraint Example
+------------------------------------
+
+* Useful when constraints not known at compile-time
+* Example: find the matching "raw" file name
+
+   - If the filename begins with CRW, we set the extension to CRW, otherwise we set it to CR2
+
+.. code:: Ada
+
+   -- actual bounds come from initial value
+   Image_File_Name : String := ...
+   Matching_Raw_File_Name : String := Image_File_Name;
+   subtype Prefix_Part is Positive range Image_File_Name'First ..
+                                         Image_File_Name'First + 2;
+   subtype Extension_Part is Positive range Image_File_Name'Last - 2 ..
+                                            Image_File_Name'Last;
+   begin
+     if Image_File_Name (Prefix_Part) = "CRW" then
+        Matching_Raw_File_Name(Extension_Part) := "CRW";
+     else
+       Matching_Raw_File_Name(Extension_Part) := "CR2";
 
 ========
 Lab

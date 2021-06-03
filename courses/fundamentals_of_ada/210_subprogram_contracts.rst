@@ -56,7 +56,7 @@ Terminology
 
      - Boolean expression expected to be True
 
-   * - 
+   * -
 
      - (Said "to hold" when True)
 
@@ -77,12 +77,12 @@ Terminology
      - Assertion expected to hold for all objects of given ADT when viewed by clients
 
 ---------------------
-Low-Level Assertions 
+Low-Level Assertions
 ---------------------
 
 * Language-defined package with procedures
 
-   - Raise `Assertion_Error` if expression is False
+   - Raise :ada:`Assertion_Error` if expression is False
 
    .. code:: Ada
 
@@ -100,7 +100,7 @@ Low-Level Assertions
       .. code:: Ada
 
          pragma Assert (any_boolean_expression [, [Message =>] string_expression]);
- 
+
    - Usage
 
       .. code:: Ada
@@ -109,8 +109,8 @@ Low-Level Assertions
          begin
            pragma Assert (not Full (Stack));
            -- if we get here, stack is not full
-           ... 
- 
+           ...
+
 -----------------------
 High-Level Assertions
 -----------------------
@@ -124,7 +124,7 @@ High-Level Assertions
         with Pre  => not Full (This),       -- requirement
              Post => not Empty (This)       -- guarantee
                      and Top (This) = Value;
- 
+
 * Type invariants ensure properties of objects over their lifetimes
 
    - *Described in a different module*
@@ -137,7 +137,7 @@ High-Level Assertions
       function Sorted (This : Table_T) return Boolean;
 
 ===================================
-Preconditions and Postconditions 
+Preconditions and Postconditions
 ===================================
 
 ----------
@@ -200,7 +200,7 @@ Pre/Postcondition Placement
          procedure Op with Pre => ... ;
          procedure Op is
            ...
- 
+
    * Body only
 
       .. code:: Ada
@@ -222,9 +222,9 @@ Expressions In Pre/Postconditions
       type List is array (1 .. 10) of Integer;
       procedure Extract_and_Clear (From : in out List;
                                    K : integer;
-                                   Value : out Integer) 
+                                   Value : out Integer)
         with Post => (if K in List'Range then From(K) = 0);
- 
+
 -------------------------------------
 Contract with Quantified Expression
 -------------------------------------
@@ -232,18 +232,18 @@ Contract with Quantified Expression
 .. code:: Ada
 
    type Status_Flag is ( Power, Locked, Running );
-   
+
    procedure Clear_All_Status (
        Unit : in out Controller)
      -- guarantees no flags remain set after call
      with Post => (for all Flag in Status_Flag =>
        not Status_Indicated (Unit, Flag));
-   
+
    function Status_Indicated (
        Unit : Controller;
        Flag : Status_Flag)
        return Boolean;
- 
+
 ---------------
 Preconditions
 ---------------
@@ -260,13 +260,13 @@ Preconditions
 
 * Checked prior to call by client
 
-   - `Assertion_Error` raised if false
+   - :ada:`Assertion_Error` raised if false
 
 .. code:: Ada
 
    procedure Push (This : in out Stack;  Value : Content)
      with Pre => not Full (This);
- 
+
 ----------------------
 Precondition Content
 ----------------------
@@ -289,7 +289,7 @@ Precondition Content
          function Top (This : Stack) return Content
            with Pre => not Empty (This);
          function Empty (This : Stack) return Boolean;
- 
+
 ----------------
 Postconditions
 ----------------
@@ -305,7 +305,7 @@ Postconditions
 * Content as for preconditions, plus some extras
 * Checked after corresponding subprogram call
 
-   - `Assertion_Error` raised if false
+   - :ada:`Assertion_Error` raised if false
 
 .. code:: Ada
 
@@ -315,7 +315,7 @@ Postconditions
    ...
    function Top (This : Stack) return Content
      with Pre => not Empty (This);
- 
+
 ------------------------------------------
 Preconditions and Postconditions Example
 ------------------------------------------
@@ -328,7 +328,7 @@ Preconditions and Postconditions Example
                      Value : Content)
        with Pre  => not Full (This),
             Post => not Empty (This) and Top (This) = Value;
- 
+
 ------------------------------------
 (Sub)Types Allow Simpler Contracts
 ------------------------------------
@@ -342,7 +342,7 @@ Preconditions and Postconditions Example
         with Pre  => Input >= 0,
              Post => (Result * Result) <= Input and
                      (Result + 1) * (Result + 1) > Input;
- 
+
 * Subtype
 
    .. code:: Ada
@@ -354,7 +354,7 @@ Preconditions and Postconditions Example
              -- (Input can't be < 0)
              Post => (Result * Result) <= Input and
                      (Result + 1) * (Result + 1) > Input;
- 
+
 ------
 Quiz
 ------
@@ -397,7 +397,7 @@ Examples
 .. include:: examples/210_subprogram_contracts/special_attributes.rst
 
 -----------------------------------------------
-Referencing Previous Values In Postconditions 
+Referencing Previous Values In Postconditions
 -----------------------------------------------
 
 * Values as they were just before the call
@@ -405,7 +405,7 @@ Referencing Previous Values In Postconditions
 
    - Can be applied to most any visible object
 
-      * Makes a copy so `limited` types not supported
+      * Makes a copy so :ada:`limited` types not supported
 
    - Applied to formal parameters, typically
 
@@ -414,7 +414,7 @@ Referencing Previous Values In Postconditions
       procedure Increment (This : in out Integer) with
           Pre  => This < Integer'Last,
           Post => This = This'Old + 1;
- 
+
 * Copies can be expensive!
 
 -----------------------------
@@ -431,7 +431,7 @@ Example for Attribute 'Old
       begin
          Global (Index) := Global (Index + 1);
          Index          := Index + 1;
-      end Shift_And_Advance;   
+      end Shift_And_Advance;
 
 * Note the different uses of `'Old` in the postcondition
 
@@ -447,7 +447,7 @@ Example for Attribute 'Old
          At_Index (Index'Old)
             -- look at Index position in Global after call
             = Global (Index);
-   
+
 -------------------------------------
 What Happens When 'Old Is Evaluated
 -------------------------------------
@@ -464,8 +464,8 @@ What Happens When 'Old Is Evaluated
              with Post => Found_At in In_String'Range and
                           In_String (Found_At'Old) = Look_For;
 
-   - On entry, `Found_At` is not valid, so `In_String(Found_At'Old)` will likely raise an exception
- 
+   - On entry, `Found_At` is not valid, so :ada:`In_String(Found_At'Old)` will likely raise an exception
+
 * Solution (required)
 
       .. code:: Ada
@@ -475,9 +475,9 @@ What Happens When 'Old Is Evaluated
                                      Found_At  :    out Integer)
              with Post => Found_At in In_String'Range and
                   In_String'Old(Found_At) = Look_For;
- 
+
 -------------------------------------------
-Using Function Results In Postconditions 
+Using Function Results In Postconditions
 -------------------------------------------
 
 * Sometimes you need to reference to the value returned by function you are defining
@@ -495,7 +495,7 @@ Using Function Results In Postconditions
 
       function Is_GCD (A, B, Candidate : Integer)
           return Boolean is (... );
- 
+
 * Only applicable to functions, in postconditions
 
 ------
@@ -580,7 +580,7 @@ No Secret Precondition Requirements
      function Hidden return Boolean;
      ...
    end P;
- 
+
 ---------------------------------------
 Postconditions Are Good Documentation
 ---------------------------------------
@@ -598,7 +598,7 @@ Postconditions Are Good Documentation
        Priority (Unit, Stream) = Priority_Low and
        (for all Interrupt in DMA_Interrupt =>
            not Interrupt_Enabled (Unit, Stream, Interrupt));
- 
+
 ---------------------------
 Postcondition Limitations
 ---------------------------
@@ -614,13 +614,13 @@ Postcondition Limitations
      Pre  =>  A > 0 and B > 0,
      Post =>  Is_GCD (A, B, Greatest_Common_Denominator'Result);
    function Is_GCD (A, B, Candidate : Integer)
-       return Boolean is 
+       return Boolean is
      (A rem Candidate = 0 and
       B rem Candidate = 0 and
       (for all K in 1 .. Integer'Min (A,B) =>
          (if (A rem K = 0 and B rem K = 0)
           then K <= Candidate)));
- 
+
 -------------------------------------
 Use Functions In Pre/Postconditions
 -------------------------------------
@@ -641,7 +641,7 @@ Use Functions In Pre/Postconditions
                                 return Boolean is
           (Amount > 0.0 and then Balance (This) >= Amount)
         with Pre => Open (This);
- 
+
 * May be unavoidable
 
    - Cannot reference hidden components of private types in the package visible part
@@ -670,14 +670,14 @@ Private Part Reference Approach
      function Current_Total (This : T) return Integer is
          (This.Total);
    end P;
- 
+
 --------------------------
 Using Pre/Postconditions
 --------------------------
 
 * Assertions are not good logic control structures
 
-   - Use `if` or `case` in subprogram to handle special cases
+   - Use :ada:`if` or :ada:`case` in subprogram to handle special cases
 
 * Assertions are not good external input validation
 
@@ -699,18 +699,18 @@ Preconditions Or Explicit Checks?
    - Otherwise clients must examine the body, breaking abstraction
 
 * Do this
-    
+
    .. code:: Ada
-    
+
       type Stack (Capacity : Positive) is tagged private;
       procedure Push (This : in out Stack;
                       Value : Content) with
         Pre  => not Full (This);
- 
+
 * Or do this
-    
+
    .. code:: Ada
-    
+
       procedure Push (This : in out Stack;
                       Value : Content) is
       begin
@@ -718,7 +718,7 @@ Preconditions Or Explicit Checks?
           raise Overflow;
         end if;
         ...
-     
+
 * But not both
 
    - A subprogram body should never test its own preconditions
@@ -751,12 +751,12 @@ Advantages Over Explicit Checks
 =============
 Exceptions
 =============
- 
+
 ----------------------------------
 Controlling the Exception Raised
 ----------------------------------
 
-* Failing pre/postconditions raise `Assertion_Error`
+* Failing pre/postconditions raise :ada:`Assertion_Error`
 * Abstractions may define dedicated exceptions
 
    - Assertion Error
@@ -766,8 +766,8 @@ Controlling the Exception Raised
          type Stack (Capacity : Positive) is tagged private;
          procedure Push (This : in out Stack;  Value : Content) with
            Pre  => not Full (This);
- 
-   - Overflow 
+
+   - Overflow
 
       .. code:: Ada
 
@@ -777,7 +777,7 @@ Controlling the Exception Raised
              raise Overflow;
            end if;
            ...
- 
+
 * How to get them raised in preconditions?
 
    - Not needed for postconditions (failures are supplier bugs)
@@ -805,7 +805,7 @@ Controlling the Exception Raised
    private
    ...
    end Bounded_Stacks;
- 
+
 ========
 Lab
 ========
@@ -834,8 +834,7 @@ Contract-Based Programming Benefits
 * Facilitates tool-based analysis
 
    - Compiler checks conformance to obligations
-
-   - Static analyzers (e.g., SPARK, CodePeer) can verify explicit precondition and postconditions 
+   - Static analyzers (e.g., SPARK, CodePeer) can verify explicit precondition and postconditions
 
 ---------
 Summary
@@ -853,8 +852,8 @@ Summary
    :header-rows: 1
    :stub-columns: 1
    :width: 90%
-    
-  * - 
+
+  * -
 
     - Clients
     - Suppliers

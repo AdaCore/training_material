@@ -267,5 +267,8 @@ if __name__== "__main__":
                 if not args.hush:
                     print ( " ".join(command) )
 
-                subprocess.check_call ( " ".join(command), shell=True )
+                r = subprocess.run( " ".join(command), shell=True )
+                if r.returncode:
+                    sys.exit(r.returncode)
+
             os.chdir(pcwd)

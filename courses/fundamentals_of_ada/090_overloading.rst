@@ -24,7 +24,7 @@ Introduction
    - Pascal
 
       + `WRITELN( 42 );`
-      + `WRITELN( 'This is a string' );`
+      + :ada:`WRITELN( 'This is a string' );`
 
    - Many others...
 
@@ -74,7 +74,7 @@ Function Operator Overloading Example
    ...
    I := J + K; -- overloaded operator (predefined)
    A := B + C; -- overloaded operator (user-defined)
- 
+
 ----------------------------------
 Benefits and Risk of Overloading
 ----------------------------------
@@ -93,7 +93,7 @@ Benefits and Risk of Overloading
       begin
          return integer'image ( L - R );
       end "+";
- 
+
 =========================
 Enumerals and Operators
 =========================
@@ -164,13 +164,13 @@ Parameters for Overloaded Operators
       .. code:: Ada
 
          function "*" (Left, Right : Integer) return integer;
- 
+
    - Usage
 
       .. code:: Ada
 
          X := 2 * 3;
- 
+
 * Named parameter associations allowed but ugly
 
    - Requires prefix notion for call
@@ -178,7 +178,7 @@ Parameters for Overloaded Operators
    .. code:: Ada
 
       X := "*" ( Left => 2, Right => 3 );
- 
+
 =================
 Call Resolution
 =================
@@ -217,7 +217,7 @@ Call Resolution
 Profile Components Used
 -------------------------
 
-* Significant components appear in the call itself 
+* Significant components appear in the call itself
 
    - Number of parameters
    - Order of parameters
@@ -236,7 +236,7 @@ Profile Components Used
       Display (X);
       Display (Foo => X);
       Display (Foo => X, Bar => Y);
- 
+
 -------------------------------
 Manually Disambiguating Calls
 -------------------------------
@@ -256,23 +256,23 @@ Manually Disambiguating Calls
    Put (Yellow);  -- not ambiguous: only 1 Yellow
    Put (Colors'(Red)); -- using type to distinguish
    Put (Light => Green); -- using profile to distinguish
- 
+
 ---------------------
 Overloading Example
 ---------------------
 
 .. code:: Ada
-    
+
    function "+" (Left : Position;
                  Right : Offset)
                  return Position is
    begin
      return Position'( Left.Row + Right.Row, Left.Column + Right.Col);
    end "+";
-       
+
    function Acceptable (P : Position) return Boolean;
    type Positions is array (Moves range <>) of Position;
-     
+
    function Next (Current : Position) return Positions is
      Result : Positions (Moves range 1 .. 4);
      Count  : Moves := 0;
@@ -285,9 +285,9 @@ Overloading Example
          Result (Count) := Test;
        end if;
      end loop;
-     return Result (1 .. Count); 
+     return Result (1 .. Count);
    end Next;
-     
+
 .. container:: speakernote
 
    If Count is 0, result is a null range
@@ -343,17 +343,17 @@ Inherently Ambiguous Declarations
 
       procedure Test is
         procedure P (X : in Natural) is ...
-        procedure P (A : in out Positive) is ... 
+        procedure P (A : in out Positive) is ...
       begin
         ...
       end Test;
- 
+
 * Compile error
 
    .. code:: Ada
 
       test.adb:3:04: duplicate body for "P" declared at line 2
- 
+
 ----------------
 Profile Hiding
 ----------------
@@ -372,7 +372,7 @@ Profile Hiding
          P ( ... );  -- not Outer.P
        end;
    end Outer;
- 
+
 =======================
 User-Defined Equality
 =======================
@@ -417,8 +417,8 @@ User-Defined `=` Returning Boolean
       if X /= Y then
       if not ( X = Y ) then
       if X not = Y then
- 
-* No explicit declaration of ``/=`` returning Boolean 
+
+* No explicit declaration of ``/=`` returning Boolean
 
    - Returning values of other types is allowed
 
@@ -426,7 +426,7 @@ User-Defined `=` Returning Boolean
 
          function "/=" (Left : Foo;  Right : Bar)
              return Fuzzy_Result;
- 
+
 -------------------------------
 User-Defined Equality Example
 -------------------------------
@@ -434,9 +434,9 @@ User-Defined Equality Example
 * Especially useful for composite types
 * Predefined ``=`` is bit-wise comparison over entire structure so may be inappropriate semantics
 * Given the following types:
-    
+
    .. code:: Ada
-    
+
       Max : constant := 100;
       type Index is range 0 .. Max;
       type List is array (Index range 1 .. Max) of Integer;
@@ -444,11 +444,11 @@ User-Defined Equality Example
         Values : List;
         Top : Index := 0;
       end record;
-     
+
 * Equality function might look like:
 
    .. code:: Ada
-    
+
       function "=" (Left, Right : Stack) return Boolean is
       begin
         if Left.Top /= Right.Top then -- not same size
@@ -462,7 +462,7 @@ User-Defined Equality Example
         end if;
         return True;
       end "=";
-     
+
 =========================
 Composition of Equality
 =========================
@@ -493,7 +493,7 @@ Composition vs Non-Composition
 --------------------------------
 
 .. code:: Ada
-    
+
    with Ada.Text_IO; use Ada.Text_IO;
    procedure Main is
 
@@ -519,7 +519,7 @@ Composition vs Non-Composition
       -- This array comparison uses our operator, so our local "=" is used as well
       Put_Line (Boolean'Image (X_B = Y_B));
    end Main;
-     
+
 .. container:: speakernote
 
    Equality for IntegerList doesn't compose because Integer is not a record type.
@@ -529,8 +529,7 @@ Enclosing Equality Function Example
 -------------------------------------
 
 * Explicitly declared for the enclosing type
-
-* Calls user-defined ``=`` for components 
+* Calls user-defined ``=`` for components
 
 .. code:: Ada
 
@@ -538,15 +537,15 @@ Enclosing Equality Function Example
      Value : Foo; -- assuming Foo is not a record type
      Id : Integer;
    end record;
-   
+
    function "=" (Left, Right : Bar) return Boolean is
    begin
      -- User-defined "=" for Foo
-     return Left.Value = Right.Value 
+     return Left.Value = Right.Value
         -- predefined "=" for integer
         and Left.Id = Right.Id;
    end "=";
- 
+
 ----------------------------------------
 `=` for Predefined Composites Composes
 ----------------------------------------
@@ -560,11 +559,9 @@ User-Defined Equality Composition
 -----------------------------------
 
 * No issue for all language-defined types in all versions of Ada
-
-* An issue for user-defined types 
-
-* Only automatic for `record` types in Ada 2012
-* Only automatic for `tagged record` types in Ada 2005
+* An issue for user-defined types
+* Only automatic for :ada:`record` types in Ada 2012
+* Only automatic for :ada:`tagged record` types in Ada 2005
 
    - Otherwise need explicit equality function for enclosing type
 
@@ -613,7 +610,7 @@ Lab
 ========
 
 .. include:: labs/090_overloading.lab.rst
- 
+
 =========
 Summary
 =========
