@@ -39,9 +39,9 @@ Create Project - Project Settings
    * Navigate to the **Sources** :math:`\rightarrow` **Main** tab
 
       * Replace the :filename:`main.adb` file with :filename:`sdc.adb`
-      * (Clicking the **+** icon brings up a list of all possible files
+      * (Clicking the **+** icon brings up a list of all possible files)
 
-   * Navigate to the **Build** :math:`\rightarrow` **Switches** :math:`rightarrow` **Ada* tab
+   * Navigate to the **Build** :math:`\rightarrow` **Switches** :math:`\rightarrow` **Ada** tab
 
       * Select *Debug information* (so we can debug later)
       * Under *Warnings*, enable most warnings
@@ -67,7 +67,8 @@ Error Fixing
 
       * In the **Locations** window
       * In the source file window
-      * Clicking either of these wrenches should fix the problem
+
+   * Clicking either of these wrenches should fix the problem
 
 * Continue fixing errors (and warnings) until the executable builds
 
@@ -77,11 +78,11 @@ Running the Executable
 
 * This example is a simplistic postfix desktop calculator that accepts input from a file or interactively
 
-   * For example, entering ``1 2 + print`` should give you the result 4, while ``12 6 / print`` will give you the result 2
+   * For example, entering :command:`1 2 + print` should give you the result 4, while :command:`12 6 / print` will give you the result 2
 
 * Run the executable via :menu:`Build` :math:`\rightarrow` :menu:`Run` or by pressing the right-pointing triangle icon
 
-   * Enter ``1 2 + print`` as the command
+   * Enter :command:`1 2 + print` as the command
    * **Internal Error** is not your fault - their is a bug in the code!
 
 --------------------------
@@ -108,7 +109,7 @@ Debug - Setting an Exception Breakpoint
       * In the *Breakpoints* window, click the **+** icon
       * Set the breakpoint type to *break on exception*
       * Press :menu:`OK`
-      * Breakpoint appears in the window
+      * Breakpoint appears in the ``Breakpoints`` window
       * Click :menu:`Continue` to enter your data and see the exception
 
    .. column::
