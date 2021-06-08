@@ -87,9 +87,9 @@ Call Chains on Exceptions: Example 1
 
       *Sample Execution*
 
-      :command:`gnatmake raise_ce -gnat12 -bargs -E`
+      :command:`gnatmake raise_ce -bargs -E`
 
-      ``gcc -c -gnat12 raise_ce.adb``
+      ``gcc -c raise_ce.adb``
 
       ``gnatbind -E -x raise_ce.ali``
 
