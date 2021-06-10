@@ -27,7 +27,7 @@ Why Static Analysis Saves Money
 
 Shifts costs from later, expensive phases to earlier, cheaper phases
 
-.. image:: image:: ../../images/cost_to_fix_bugs.png
+.. image:: ../../images/cost_to_fix_bugs.png
 
 -------------------
 Why Use CodePeer?
@@ -158,7 +158,7 @@ Running CodePeer on the Command Line
 Running CodePeer in GNAT Studio
 ---------------------------------
 
-.. image:: image:: ../../images/codepeer_from_gs.jpg
+.. image:: ../../images/codepeer_from_gs.jpg
 
 ---------------------
 Project File Set Up
