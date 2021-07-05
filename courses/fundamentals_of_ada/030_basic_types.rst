@@ -1515,14 +1515,12 @@ Quiz
 
    type Enum_T is (Sat, Sun, Mon, Tue, Wed, Thu, Fri);
    subtype Enum_Sub_T is Enum_T range Mon .. Fri;
-   type Array_T is array (Integer range <>) of Integer;
-   subtype Array_Sub_T is Array_T (1 .. 100);
 
 Which subtype definition is valid?
 
    A. ``subtype A is Enum_Sub_T range Enum_Sub_T'Pred (Enum_Sub_T'First) .. Enum_Sub_T'Last;``
-   B. ``subtype B is Array_Sub_T (1 .. 10);``
-   C. :answermono:`subtype C is String;`
+   B. ``subtype B is range Sat .. Mon;``
+   C. :answermono:`subtype C is Integer;`
    D. ``subtype D is digits 6;``
 
 .. container:: animate
@@ -1530,7 +1528,7 @@ Which subtype definition is valid?
    Explanations
 
    A. This generates a run-time error because the first enumeral specified is not in the range of :ada:`Enum_Sub_T`
-   B. Compile error - array type is already constrained
+   B. Compile error - no type specified
    C. Correct - standalone subtype
    D. :ada:`Digits 6` is used for a type definition, not a subtype
 
