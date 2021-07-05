@@ -42,7 +42,7 @@ Library Units
 
 * Restrictions
 
-   - No library level tasks 
+   - No library level tasks
 
       + They are always nested within another unit
 
@@ -65,7 +65,7 @@ Library Units
        ...
      end File_System;
    end Operating_System;
- 
+
 * `Operating_System` is library unit
 * `Foo`, `Bar`, etc - not library units
 
@@ -78,18 +78,18 @@ No 'Object' Library Items
    package Library_Package is
      ...
    end Library_Package;
-   
+
    -- Illegal: no such thing as "file scope"
    Library_Object : Integer;
-   
+
    procedure Library_Procedure;
-   
+
    function Library_Function (Formal : in out Integer) is
      Local : Integer;
    begin
      ...
    end Library_Function;
- 
+
 -----------------------------
 Declared Object "Lifetimes"
 -----------------------------
@@ -104,14 +104,14 @@ Declared Object "Lifetimes"
    - Exist only while subprogram executes
 
    .. code:: Ada
-    
+
           procedure Library_Subprogram is
             X : Integer;
             Y : Float;
           begin
             ...
           end Library_Subprogram;
-     
+
 -----------------------------
 Objects In Library Packages
 -----------------------------
@@ -120,11 +120,11 @@ Objects In Library Packages
 
 .. code:: Ada
 
-   package Named_Common is  
+   package Named_Common is
      X : Integer; -- valid object for life of application
      Y : Float;    -- valid object for life of application
    end Named_Common;
- 
+
 ---------------------------------
 Objects In Non-library Packages
 ---------------------------------
@@ -142,7 +142,7 @@ Objects In Non-library Packages
    begin
      ...
    end P;
- 
+
 --------------------
 Program "Lifetime"
 --------------------
@@ -177,7 +177,7 @@ Library Unit Subprograms
    .. code:: Ada
 
       procedure P (F : in Integer);
- 
+
 * File 2 (p.adb for GNAT)
 
    .. code:: Ada
@@ -186,7 +186,7 @@ Library Unit Subprograms
       begin
         ...
       end P;
- 
+
 --------------------------
 Library Unit Subprograms
 --------------------------
@@ -200,7 +200,7 @@ Library Unit Subprograms
       .. code:: Ada
 
          procedure P (F : in integer);
- 
+
       + Body for P
 
       .. code:: Ada
@@ -209,7 +209,7 @@ Library Unit Subprograms
          begin
          ...
          end P;
- 
+
    - Declaration creates subprogram `P` in library
    - Declaration exists so body does not act as declaration
    - Compilation of file "p.adb" must fail
@@ -224,21 +224,19 @@ Main Subprograms
 * Must be library subprograms
 * No special program unit name required
 * Can be many per program library
-
-* Always can be procedures 
-
+* Always can be procedures
 * Can be functions if implementation allows it
 
    - Execution environment must know how to handle result
 
 .. code:: Ada
-    
+
    with Ada.Text_IO;
    procedure Hello is
    begin
      Ada.Text_IO.Put( "Hello World" );
    end Hello;
-     
+
 ================
 Dependencies
 ================
@@ -267,7 +265,7 @@ Examples
       context_item ::= with_clause | use_clause
       with_clause ::= with library_unit_name
                       { , library_unit_name };
- 
+
 .. code:: Ada
 
    with Ada.Text_IO; -- dependency
@@ -275,7 +273,7 @@ Examples
    begin
      Ada.Text_IO.Put ("Hello World");
    end Hello;
- 
+
 -----------------------
 `with` Clauses Syntax
 -----------------------
@@ -283,7 +281,7 @@ Examples
 * Helps explain restrictions on library units
 
    - No overloaded library units
-   - If overloading allowed, which `P` would `with P;` refer to?
+   - If overloading allowed, which `P` would :ada:`with P;` refer to?
    - No library unit functions names as operators
 
       + Mostly because of no overloading
@@ -301,24 +299,24 @@ What To Import
    - Unlike "include directives" of some languages
 
 .. code:: Ada
-    
+
    package A is
      type Something is ...
    end A;
-       
+
    with A;
    package B is
      type Something is record
        Field : A.Something;
      end record;
    end B;
-       
-   with B; -- no "with" of A 
+
+   with B; -- no "with" of A
    procedure Foo is
      X : B.Something;
    begin
      X.Field := ...
- 
+
 =========
 Summary
 =========
@@ -331,7 +329,7 @@ Summary
 
    - Can contain subunits with similar structure
 
-* `with` clauses interconnect library units
+* :ada:`with` clauses interconnect library units
 
    - Express dependencies of the one being compiled
    - Not textual inclusion!
