@@ -3,7 +3,6 @@
 Inheritance
 *************
 
-
 .. role:: ada(code)
     :language: Ada
 
@@ -52,7 +51,7 @@ Examples
 ---------------------------
 The Notion of a Primitive
 ---------------------------
-  
+
 * A type is characterized by two sets of properties
 
    - Its data structure
@@ -62,20 +61,20 @@ The Notion of a Primitive
 
    * In Ada
 
-      -  the primitive relationship is implicit
+      - the primitive relationship is implicit
       - The "hidden" parameter **this** is explicit (and can have any name)
 
       .. code:: Ada
-       
+
           type T is record
              Attrib_Data : Integer;
           end record;
           procedure Attrib_Function(This : T);
-       
+
    * In C++
 
        .. code:: C++
-       
+
           class T {
             public:
               int Attrib_Data;
@@ -99,7 +98,7 @@ General Rule For a Primitive
             procedure P2 (V1 : Integer; V2 : T);
             function F return T;
          end P;
- 
+
 * A subprogram can be a primitive of several types
 
       .. code:: Ada
@@ -109,7 +108,7 @@ General Rule For a Primitive
             type T2 is (A, B, C);
             procedure Proc (V1 : T1; V2 : T2);
          end P;
- 
+
 --------------------------
 Beware of Access Types!
 --------------------------
@@ -123,8 +122,8 @@ Beware of Access Types!
          type A_T is access all T;
          procedure Proc (V : A_T); -- Primitive of A_T
       end P;
- 
-* In order to create a primitive using an access type, the `access` mode should be used
+
+* In order to create a primitive using an access type, the :ada:`access` mode should be used
 
    .. code:: Ada
 
@@ -132,7 +131,7 @@ Beware of Access Types!
          type T is range 1 .. 10;
          procedure Proc (V : access T); -- Primitive of T
       end P;
- 
+
 -------------------------------
 Implicit Primitive Operations
 -------------------------------
@@ -149,7 +148,7 @@ Implicit Primitive Operations
             type T2 is null record;
             -- implicit: function "=" (Left, Right : T2) return T2;
          end P;
- 
+
 * These primitives can be used just as any others
 
       .. code:: Ada
@@ -159,7 +158,7 @@ Implicit Primitive Operations
          begin
             V1 := P."+" (V1, V2);
          end Main;
- 
+
 ===================
 Simple Derivation
 ===================
@@ -177,16 +176,16 @@ Simple Type Derivation
 ------------------------
 
 * In Ada, any (non-tagged) type can be derived
-    
+
   .. code:: Ada
-    
+
     type Child is new Parent;
-     
+
 * A child is a distinct type that inherits from:
 
    - The data representation of the parent
    - The primitives of the parent
-    
+
    .. code:: Ada
 
       package P is
@@ -203,11 +202,11 @@ Simple Type Derivation
         V := 5;
         Prim (V);
       end Main1;
-     
+
 * Conversions are possible for non-primitive operations
-    
+
    .. code:: Ada
-    
+
      with P; use P;
      procedure Main2 is
         procedure Not_A_Primitive (V : Parent)
@@ -218,7 +217,7 @@ Simple Type Derivation
         Not_A_Primitive (V1);
         Not_A_Primitive (Parent (V2));
      end Main2;
-     
+
 --------------------------------------
 Simple Derivation and Type Structure
 --------------------------------------
@@ -235,7 +234,7 @@ Simple Derivation and Type Structure
       type Int is range -100 .. 100;
       type Nat is new Int range 0 .. 100;
       type Pos is new Nat range 1 .. 100;
- 
+
 * Constraints on unconstrained types can be specified
 
    .. code:: Ada
@@ -257,7 +256,7 @@ Simple Derivation and List of Operations
 
 * Operations can be overridden
 
-   + Overriding can be checked by optional `overriding` reserved word
+   + Overriding can be checked by optional :ada:`overriding` reserved word
 
    .. code:: Ada
 
@@ -265,10 +264,10 @@ Simple Derivation and List of Operations
       procedure Prim (V : Root);
       type Child is new Root;
       overriding procedure Prim (V : Child);
- 
+
 * Operations can be added
 
-   + Addition can be checked by optional `not overriding` reserved word
+   + Addition can be checked by optional :ada:`not overriding` reserved word
 
    .. code:: Ada
 
@@ -276,10 +275,10 @@ Simple Derivation and List of Operations
       procedure Prim (V : Root);
       type Child is new Root;
       not overriding procedure Prim2 (V : Child);
- 
+
 * Operations can be removed
 
-   + Removal can be checked by optional `overriding` reserved word
+   + Removal can be checked by optional :ada:`overriding` reserved word
 
    .. code:: Ada
 
@@ -287,7 +286,7 @@ Simple Derivation and List of Operations
       procedure Prim (V : Root);
       type Child is new Root;
       overriding procedure Prim (V : Child) is abstract;
- 
+
 ------
 Quiz
 ------
@@ -340,14 +339,14 @@ Signed Integer Types (Revisited)
    .. code:: Ada
 
       type T is range L .. R;
- 
+
 * Is actually a short-hand for:
 
    .. code:: Ada
 
       type <Anon> is new Predefined_Integer_Type;
       subtype T is <Anon> range L .. R;
- 
+
 ----------------------------------
 Signed Integer Types Explanation
 ----------------------------------
@@ -356,7 +355,7 @@ Signed Integer Types Explanation
 
    type <Anon> is new Predefined-Integer-Type;
    subtype T is <Anon> range L .. R;
- 
+
 * What's going on?
 
    - The compiler looks at L and R (which must be static) and chooses a predefined signed integer type from `Standard` (e.g. `Integer`, `Short_Integer`, `Long_Integer`, etc.) which at least includes the range L .. R.
@@ -364,7 +363,7 @@ Signed Integer Types Explanation
    - An anonymous type `Anon` is created, derived from that predefined type. `Anon` inherits all of the predefined type's primitive operations, like ``+``, ``-``, ``*`` and so on.
    - A subtype `T` of `Anon` is created with range L .. R
 
-      + `Anon` can be referred to as `T'Base` in your program.
+      + `Anon` can be referred to as :ada:`T'Base` in your program.
 
 ------------------------------
 Signed Integer Types Warning
@@ -374,8 +373,8 @@ Signed Integer Types Warning
 
    type <Anon> is new Predefined-Integer-Type;
    subtype T is <Anon> range L .. R;
- 
-* Warning! The choice of `T'Base` affects whether runtime computations will overflow.
+
+* Warning! The choice of :ada:`T'Base` affects whether runtime computations will overflow.
 
    - Example: on one machine, the compiler chooses `Integer`, which is 32-bit, and your code runs fine with no overflows.
    - On another machine, a compiler might choose `Short_Integer`, which is 16-bit, and your code will fail an *overflow check*
@@ -396,7 +395,7 @@ Signed Integer Types Guidance
       type My_Base_Integer is new Integer;
       pragma Assert (My_Base_Integer'First = -2**31);
       pragma Assert (My_Base_Integer'Last = 2**31-1);
- 
+
 * Then derive further types and subtypes from `My_Base_Integer`
 * Don't assume that "Shorter = Faster" for integer maths. On some machines, 32-bit is more efficient than 8- or 16-bit maths!
 
@@ -411,7 +410,7 @@ Signed Integer Types Guidance (cont)
    type Integer_8 is range -2**7 .. 2**7-1;
    for Integer_8'Size use 8;
    -- and so on for 16, 32, 64 bit types...
- 
+
 ===================
 Tagged Derivation
 ===================
@@ -429,8 +428,8 @@ Tagged Derivation
 -------------------
 
 * Simple derivation cannot change the structure of a type
-* Tagged derivation applies only to `tagged` record and allows fields to be added
-* An Ada `tagged` type is the equivalent of a C++ class in terms of OOP
+* Tagged derivation applies only to :ada:`tagged` record and allows fields to be added
+* An Ada :ada:`tagged` type is the equivalent of a C++ class in terms of OOP
 
 ------------------------------
 Tagged Derivation Ada vs C++
@@ -441,7 +440,7 @@ Tagged Derivation Ada vs C++
  .. container:: column
 
     .. code:: Ada
-    
+
        type T1 is tagged record
          Member1 : Integer;
        end record;
@@ -452,33 +451,33 @@ Tagged Derivation Ada vs C++
        overriding
        procedure Get_1 (This : T2);
        procedure Get_2 (This : T2);
-     
+
  .. container:: column
-    
+
     .. code:: C++
-    
+
        class T1 {
          public:
            int member1;
            virtual void get1(void);
          };
-       
+
        class T2 : public T {
          public:
            int member2;
            virtual void get1(void);
            virtual void get2(void);
          };
-     
+
 ------------
 Primitives
 ------------
 
 * As for regular types, primitives are implicitly inherited, and can be overridden
 * A child can add new primitives
-    
+
    .. code:: Ada
-    
+
       type Root is tagged null record;
       procedure Prim1 (V : Root);
       procedure Prim2 (V : Root);
@@ -487,27 +486,27 @@ Primitives
       not overriding procedure Prim3 (V : Child);
       -- implicitly inherited:
       -- procedure Prim2 (V : Child);
-     
+
 * The parameter which the subprogram is primitive of is called the controlling parameter
 * All controlling parameters must be of the same type
-    
+
    .. code:: Ada
-    
+
       type Root1 is tagged null record;
       type Root2 is tagged null record;
       procedure P1 ( V1 : Root1;
                      V2 : Root1);
       procedure P2 ( V1 : Root1;
                      V2 : Root2); -- illegal
- 
+
 ------------------
 Tagged Aggregate
 ------------------
 
 * Regular aggregate works - values must be given to all fields of the type hierarchy
-    
+
    .. code:: Ada
-    
+
        type Root is tagged record
            F1 : Integer;
          end record;
@@ -516,18 +515,17 @@ Tagged Aggregate
            F2 : Integer;
          end record;
          V2 : Child := (F1 => 0, F2 => 0);
-     
-* Doesn't work if there are private types involved!
 
+* Doesn't work if there are private types involved!
 * Aggregate extension allows using a copy of parent instance, or default initialization of the parent
-* `with null record` can be used when there are no additional components
-    
+* :ada:`with null record` can be used when there are no additional components
+
    .. code:: Ada
-    
+
       V  : Root := (F1 => 0);
       V2 : Child := (V with F2 => 0);
       V3 : Empty_Child := (V with null record);
-     
+
 --------------
 Freeze Point
 --------------
@@ -542,7 +540,7 @@ Freeze Point
 * Declaring primitives on a tagged type past this point is an error
 
 .. code:: Ada
-    
+
    type Root is tagged null record;
    procedure Prim (V : Root);
    type Child is new Root
@@ -561,9 +559,9 @@ Prefix Notation
    Ada 2012
 
 * Primitives of tagged types can be called like any other
-    
+
    .. code:: Ada
-    
+
       type Root is tagged record
          F1 : Integer;
       end record;
@@ -573,34 +571,31 @@ Prefix Notation
       ...
       Prim1 (X);
       Prim2 (X, 5);
-     
+
 * When the first parameter is a controlling parameter, the call can be prefixed by the object
-    
+
    .. code:: Ada
-    
- 
-     
-* No `use` or `use type` clause is needed to have visibility over the primitives in this case
+
+* No :ada:`use` or :ada:`use type` clause is needed to have visibility over the primitives in this case
 
 --------------------------------------
 Forbidden Operations in Tagged Types
 --------------------------------------
 
 * A tagged derivation has to be a type extension
-    
+
    .. code:: Ada
-    
+
       type Root is tagged record
          F1 : Integer;
       end record;
       type Child is new Root; -- illegal
-     
-* A tagged derivation cannot remove primitives
 
-*  Conversions from child to parent are allowed, but not the other way around (need extra fields to be provided)
-    
+* A tagged derivation cannot remove primitives
+* Conversions from child to parent are allowed, but not the other way around (need extra fields to be provided)
+
    .. code:: Ada
-    
+
       type Root is tagged record
           F1 : Integer;
         end record;
@@ -613,7 +608,7 @@ Forbidden Operations in Tagged Types
       V1 := Root (V2);
       V2 := Child (V1); -- illegal
       V2 := (V1 with F2 => 0);
-     
+
 ------
 Quiz
 ------

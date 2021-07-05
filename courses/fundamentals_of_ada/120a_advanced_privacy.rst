@@ -8,10 +8,10 @@ Type Views
 ============
 
 ---------------------------------------
-Capabilities / Constraints Of A Type 
+Capabilities / Constraints Of A Type
 ---------------------------------------
 
-* Are called "Constraints" in a type declaration 
+* Are called "Constraints" in a type declaration
 
    - Limited
    - Discriminants
@@ -45,13 +45,12 @@ Partial Vs Full View Of A Type
          -- at most as many constraints as [1], can have less
          -- at least as many capabilities as [1], can provide more
    end P;
- 
 
 ---------------
 Discriminants
 ---------------
 
-* Discriminants with no default must be declared both on the partial and full view 
+* Discriminants with no default must be declared both on the partial and full view
 
    .. code:: Ada
 
@@ -60,7 +59,7 @@ Discriminants
       private
          type T (V : Integer) is null record;
       end P;
- 
+
 * Discriminants with default (in the full view) may be omitted by the partial view
 
    .. code:: Ada
@@ -72,7 +71,6 @@ Discriminants
          type T1 (V : Integer := 0) is null record;
          type T2 (V : Integer := 0) is null record;
       end P;
- 
 
 --------------------
 Unknown Constraint
@@ -92,7 +90,6 @@ Unknown Constraint
       type T2 is array (Integer range <>) of Integer;
       type T3 is range 1 .. 10;
    end P;
- 
 
 ---------
 Limited
@@ -114,7 +111,6 @@ Limited
       end record;
       type T3 is range 1 .. 10;
    end P;
- 
 
 --------
 Tagged
@@ -134,7 +130,7 @@ Tagged
          type T2 is tagged null record;
          type T3 is new T2 with null record;
       end P;
- 
+
 * Primitives can be either public or private, except when they have to be derived (constructor functions or abstract subprograms)
 
 ------------------
@@ -172,7 +168,7 @@ Tagged Abstract
          type T1 is abstract tagged null record;
          type T2 is tagged null record;
       end P;
- 
+
 * Abstract primitives have to be public (otherwise, clients couldn't derive)
 
 ------------------
@@ -189,7 +185,7 @@ Protection Idiom
       private
          type T is null record;
       end P;
- 
+
 * Helps keeping track of the object usage
 
 ==================
@@ -206,7 +202,7 @@ Incomplete Types
    - Can specify the type discriminants
    - Can specify if the type is tagged
 
-* It can be used in contexts where minimum representation information is required 
+* It can be used in contexts where minimum representation information is required
 
    - In declaration of access types
    - In subprograms specifications (only if the body has full visibility on the representation)
@@ -221,11 +217,11 @@ How To Get An Incomplete Type View?
    .. code:: Ada
 
       type T;
-      type T_Access is access all T;   
+      type T_Access is access all T;
       type T is record
          V : T_Access;
       end record;
- 
+
 * From a limited with (see section on packages)
 * From an incomplete generic formal parameter (see section on generics)
 
@@ -234,10 +230,9 @@ How To Get An Incomplete Type View?
       generic
          type T;
          procedure Proc (V:T);
-      package P is 
+      package P is
          ...
-      end P; 
- 
+      end P;
 
 --------------------------------------
 Type Completion Deferred To The Body
@@ -251,7 +246,7 @@ Type Completion Deferred To The Body
    package P is
       ...
    private
-      type T; 
+      type T;
       procedure P (V : T);
       X : access T;
    end P;
@@ -282,7 +277,7 @@ Child Units And Privacy
          X1 : T; -- illegal
       private   X2 : T;
       end Root.Child;
- 
+
 * Private child units are units that can be only made accessible to the private descendance of their parent
 
    - Parent private & body
@@ -299,13 +294,13 @@ Child Units And Privacy
          X1 : T;
       private   X2 : T;
       end Root.Child;
-      
+
       with Root.Child; -- illegal
       procedure Main is
       begin
          Root.Child.X1 := 10; -- illegal
       end Main;
- 
+
 * They're used as "implementation details"
 
 ---------------------------------
@@ -317,7 +312,7 @@ Private Children And Dependency
    private package Root.Child1 is
       type T is range 1 .. 10;
    end Root.Child1;
- 
+
 * Private package cannot be withed by a public package
 
    .. code:: Ada
@@ -328,7 +323,7 @@ Private Children And Dependency
       Private
          X2 : Root.Child1.T; -- illegal
       end Root.Child2;
- 
+
 * They can by a private child or a child body
 
    .. code:: Ada
@@ -339,7 +334,7 @@ Private Children And Dependency
       Private
          X2 : Root.Child1.T;
       end Root.Child2;
- 
+
 * They can be private-withed
 
    .. code:: Ada
@@ -350,7 +345,7 @@ Private Children And Dependency
       Private
          X2 : Root.Child1.T;
       end Root.Child2;
- 
+
 * Once something is private, it can never exit the private area
 
 ------------------------------------------------------------
@@ -362,23 +357,23 @@ Children "Inherit" From Private Properties Of Parent
 * Private children of private packages restrain even more the accessibility
 
 .. code:: Ada
-    
+
    package Root is
    end Root;
-       
+
    private package Root.Child is
      --  with allowed on Root body
      --  with allowed on Root children
      --  with forbidden outside of Root
    end Root.Child;
-       
+
    package Root.Child.Grand1 is
      --  with allowed on Root body
      --  with allowed on Root children
      --  with forbidden outside of Root
    end Root.Child.Grand1;
-       
-   private package Root.Child.Grand2 is   
+
+   private package Root.Child.Grand2 is
      --  with allowed on Root.Child body
      --  with allowed on Root.Child children
      --  with forbidden outside of Root.Child

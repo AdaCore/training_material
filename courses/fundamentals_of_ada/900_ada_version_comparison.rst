@@ -36,7 +36,7 @@ Programming Structure, Modularity
    :header-rows: 1
    :stub-columns: 1
 
-  * - 
+  * -
 
     - Ada 83
     - Ada 95
@@ -52,17 +52,15 @@ Programming Structure, Modularity
 
   * - Child units
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - Limited with and mutually dependent specs
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
@@ -75,58 +73,51 @@ Programming Structure, Modularity
 
   * - Formal packages
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - Partial parameterization
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
   * - Conditional/Case expressions
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
   * - Quantified expressions
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
   * - In-out parameters for functions
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
   * - Iterators
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
   * - Expression functions
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
 -----------------------------
@@ -138,7 +129,7 @@ Object-Oriented Programming
    :header-rows: 1
    :stub-columns: 1
 
-  * - 
+  * -
 
     - Ada 83
     - Ada 95
@@ -154,17 +145,15 @@ Object-Oriented Programming
 
   * - Tagged types
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - Multiple inheritance of interfaces
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
@@ -177,17 +166,15 @@ Object-Oriented Programming
 
   * - Access parameters, Access to subprograms
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - Enhanced anonymous access types
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
@@ -200,17 +187,15 @@ Object-Oriented Programming
 
   * - Extension aggregates
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - Aggregates of limited type
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
@@ -223,26 +208,23 @@ Object-Oriented Programming
 
   * - Controlled types, Accessibility rules
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - Accessibility rules for anonymous types
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
   * - Contract programming
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
 -------------
@@ -254,7 +236,7 @@ Concurrency
    :header-rows: 1
    :stub-columns: 1
 
-  * - 
+  * -
 
     - Ada 83
     - Ada 95
@@ -270,17 +252,15 @@ Concurrency
 
   * - Protected types, Distributed annex
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - Synchronized interfaces
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
@@ -293,42 +273,37 @@ Concurrency
 
   * - Real-time annex
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - Ravenscar profile, Scheduling policies
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
   * - Multiprocessor affinity, barriers
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
   * - Re-queue on synchronized interfaces
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
   * - Ravenscar for multiprocessor systems
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
 --------------------
@@ -340,7 +315,7 @@ Standard Libraries
    :header-rows: 1
    :stub-columns: 1
 
-  * - 
+  * -
 
     - Ada 83
     - Ada 95
@@ -356,17 +331,15 @@ Standard Libraries
 
   * - Complex types
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - Vector/matrix libraries
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
@@ -379,34 +352,30 @@ Standard Libraries
 
   * - Elementary functions
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - Containers
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
   * - Bounded Containers, holder containers, multiway trees
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
   * - Task-safe queues
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 
   * - 7-bit ASCII
@@ -418,25 +387,22 @@ Standard Libraries
 
   * - 8/16 bit
 
-    - 
-
+    -
     - |checkmark|
     - |checkmark|
     - |checkmark|
 
   * - 8/16/32 bit (full Unicode)
 
-    - 
-    - 
-
+    -
+    -
     - |checkmark|
     - |checkmark|
 
   * - String encoding package
 
-    - 
-    - 
-    - 
-
+    -
+    -
+    -
     - |checkmark|
 

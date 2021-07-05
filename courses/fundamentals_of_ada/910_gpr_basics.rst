@@ -34,11 +34,10 @@ Subsystems of Subsystems of ...
 .. container:: columns
 
  .. container:: column
-  
+
     * Projects support incremental, modular project definition
 
-       - Projects can import other projects containing needed files 
-
+       - Projects can import other projects containing needed files
        - Child projects can extend parent projects, inheriting source files and optionally overriding any of them
 
     * Facilitates the structuring of large development efforts into hierarchical subsystems
@@ -46,7 +45,7 @@ Subsystems of Subsystems of ...
        - With build decisions deferred to the subsystem level
 
  .. container:: column
-  
+
     .. image:: ../../images/connected_cubes.png
 
 --------------------
@@ -74,9 +73,8 @@ Configurable Properties
 * Output directory for object modules and .ali files
 * Target directory for executable programs
 * Switch settings for project-enabled tools
-
-* Source files for main subprogram(s) to be built 
-* Source programming languages 
+* Source files for main subprogram(s) to be built
+* Source programming languages
 
    - Ada / C / C++ are preconfigured
 
@@ -90,9 +88,9 @@ The Minimal Project File
 .. code:: Ada
 
    project My_Project is
-   
+
    end My_Project;
- 
+
 -----------------------------------
 About Project Files and Makefiles
 -----------------------------------
@@ -104,7 +102,7 @@ About Project Files and Makefiles
 .. code:: console
 
    gprbuild -P <project-file> ...
- 
+
 ===============================
 Configuring Project Properties
 ===============================
@@ -119,7 +117,7 @@ Property Values Introduction
    .. code:: Ada
 
       ("-v", "-gnatv")
- 
+
 * Associative arrays
 
    - Like functions that map input string to either single string or list of strings
@@ -127,7 +125,7 @@ Property Values Introduction
    .. code:: Ada
 
       for <name> (<string-index>) use <list-of_strings>;
- 
+
 -----------
 Variables
 -----------
@@ -149,22 +147,20 @@ Variables
       Var2 := ("-gnato", "-gnata");
       ...
    end Build;
- 
+
 --------------------------------
 Typed Versus Untyped Variables
 --------------------------------
 
-* Typed variables have only listed values possible 
+* Typed variables have only listed values possible
 
    - Case sensitive, unlike Ada
 
 * Typed variables are declared once per scope
 
-   - Once at project level 
-
+   - Once at project level
    - Once within any package
-
-   - Essentially read-only constants 
+   - Essentially read-only constants
 
       + Especially nice for external inputs
 
@@ -206,9 +202,9 @@ Setting Tool Switches
    .. code:: Ada
 
       package Compiler is
-         for Default_Switches ("Ada") use ("-gnaty", "-v"); 
-      end Compiler; 
- 
+         for Default_Switches ("Ada") use ("-gnaty", "-v");
+      end Compiler;
+
 * May be specified on a per-unit basis
 
    - Associative array "Switches" indexed by unit name
@@ -217,9 +213,9 @@ Setting Tool Switches
 
       package Builder is
          for Switches ("main1.adb") use ("-O2");
-         for Switches ("main2.adb") use ("-g"); 
+         for Switches ("main2.adb") use ("-g");
       end Builder;
- 
+
 -------------------------------
 Specifying Main Subprogram(s)
 -------------------------------
@@ -231,9 +227,9 @@ Specifying Main Subprogram(s)
 .. code:: Ada
 
    project Foo is
-      for Main use ("bar.adb", "baz.adb"); 
-   end Foo; 
- 
+      for Main use ("bar.adb", "baz.adb");
+   end Foo;
+
 ========================
 Specifying Directories
 ========================
@@ -268,14 +264,14 @@ Source Directories
 
    .. code:: Ada
 
-      for Source_Dirs use ("mains", "drivers"); 
- 
+      for Source_Dirs use ("mains", "drivers");
+
 * Can specify that none are present
 
    .. code:: Ada
 
-      for Source_Dirs use (); 
- 
+      for Source_Dirs use ();
+
 --------------
 Source Files
 --------------
@@ -288,24 +284,24 @@ Source Files
    .. code:: Ada
 
       for Source_Files use ();
- 
+
 * Can specify source files by name
 
    .. code:: Ada
 
       for Source_Files use ("main.adb","pack1.ads","pack2.adb");
- 
+
 * Can specify an external file containing source names
 
    .. code:: Ada
 
       for Source_List_File use "source_list.txt";
- 
+
 ------------------
 Object Directory
 ------------------
 
-* Specifies the location for compiler's output 
+* Specifies the location for compiler's output
 
    - Such as "ali" files and object files
    - For the project's immediate sources
@@ -316,7 +312,7 @@ Object Directory
         for Object_Dir use "release";
         ...
       end Release;
- 
+
 * Only one per project
 
    - When extending a parent project the child's object directory is used for any inherited sources not already compiled in the parent
@@ -325,15 +321,15 @@ Object Directory
 Executable Directory
 ----------------------
 
-* Specifies the location for executable image 
+* Specifies the location for executable image
 
    .. code:: Ada
 
       project Release is
         for Exec_Dir use "executables";
         ...
-      end Release; 
- 
+      end Release;
+
 * Default is same directory as object files
 * Only one per project
 
@@ -373,7 +369,7 @@ Foreign Default File Naming Example
      end Naming;
      ...
    end Rational;
- 
+
 ----------------------------------
 GNAT Default File Naming Example
 ----------------------------------
@@ -390,7 +386,7 @@ GNAT Default File Naming Example
      end Naming;
      ...
    end GNAT;
- 
+
 ------------------------------------
 Individual (Arbitrary) File Naming
 ------------------------------------
@@ -410,7 +406,7 @@ Individual (Arbitrary) File Naming
       use "MMS1AF32"; -- base file name
    for Body ("MyPack.MyChild") - unit name
       use "MMS1AF33"; -- base file name
- 
+
 ====================
 Adding Flexibility
 ====================
@@ -420,27 +416,27 @@ Projects for Different Switch Settings
 ----------------------------------------
 
 .. code:: Ada
-    
-   project Debug is 
-     for Object_Dir use "debug"; 
+
+   project Debug is
+     for Object_Dir use "debug";
      package Builder is
        for Default_Switches ("Ada")
-         use ("-g"); 
-     end Builder; 
+         use ("-g");
+     end Builder;
      package Compiler is
-       for Default_Switches ("Ada") 
-          use ("-fstack-check", "-gnata", "-gnato"); 
+       for Default_Switches ("Ada")
+          use ("-fstack-check", "-gnata", "-gnato");
      end Compiler;
    end Debug;
-     
+
    project Release is
      for Object_Dir use "release";
-     package Compiler is 
+     package Compiler is
        for Default_Switches ("Ada")
-          use ("-O2"); 
+          use ("-O2");
      end Compiler;
    end Release;
- 
+
 -------------------------------------
 External and Conditional References
 -------------------------------------
@@ -457,13 +453,13 @@ External and Conditional References
 
    gprbuild -P... -Xname=value  ...
    gprbuild -P/common/build.gpr -Xtarget=test  /common/main.adb
- 
+
 ----------------------------------------
 External/Conditional Reference Example
 ----------------------------------------
 
 .. code:: Ada
-    
+
    project Build is
       type Targets is ("release", "test");
       Target : Targets := external("target", "test");
@@ -474,7 +470,7 @@ External/Conditional Reference Example
          when "test" =>
             for Object_Dir use "debug";
       end case;
-     
+
       package Compiler is
          case Target is
             when "release" =>
@@ -487,7 +483,7 @@ External/Conditional Reference Example
       end Compiler;
           ...
    end Build;
-     
+
 ===========
 GPRCONFIG
 ===========
@@ -586,8 +582,7 @@ Command line arguments
 
 * *--target=platform*
 
-   - Indicates target computer on which your application will run. 
-
+   - Indicates target computer on which your application will run.
    - Example: **--target=ppc-elf**
    - Special target "all" to display all targets on path
    - Default target is host machine
