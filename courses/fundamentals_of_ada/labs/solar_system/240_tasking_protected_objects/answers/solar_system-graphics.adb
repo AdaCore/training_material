@@ -5,6 +5,14 @@ package body Solar_System.Graphics is
    procedure Draw_Body (Object : Body_T; Canvas : Canvas_ID) is
       Tail_Color : RGBA_T;
       Dimmer : Color_Component_T := 30;
+      function Dim (C : Color_Component_T) return Color_Component_T is
+      begin
+         if C < Dimmer then
+            return 0;
+         else
+            return C - Dimmer;
+         end if;
+      end Dim;
    begin
       if Object.Visible then
          Draw_Sphere
@@ -20,9 +28,9 @@ package body Solar_System.Graphics is
                   Position => (Object.Tail (I).X, Object.Tail (I).Y, 0.0),
                   Radius   => Object.Radius,
                   Color    => Tail_Color);
-               Tail_Color.R := (if Tail_Color.R < Dimmer then 0 else Tail_Color.R - Dimmer);
-               Tail_Color.G := (if Tail_Color.G < Dimmer then 0 else Tail_Color.G - Dimmer);
-               Tail_Color.B := (if Tail_Color.B < Dimmer then 0 else Tail_Color.B - Dimmer);
+               Tail_Color.R := Dim (Tail_Color.R);
+               Tail_Color.G := Dim (Tail_Color.G);
+               Tail_Color.B := Dim (Tail_Color.B);
             end loop;
          end if;
       end if;

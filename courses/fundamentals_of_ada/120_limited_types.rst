@@ -1,4 +1,3 @@
-
 ***************
 Limited Types
 ***************
@@ -19,10 +18,10 @@ Views
 
    - Constants are just variables without any assignment view
    - Task types, protected types implicitly disallow assignment
-   - Mode `in` formal parameters disallow assignment
+   - Mode :ada:`in` formal parameters disallow assignment
 
 .. code:: Ada
-    
+
    Variable : Integer := 0;
    ...
    -- P's view of X prevents modification
@@ -31,8 +30,8 @@ Views
        ...
    end P;
    ...
-   P( Variable ); 
-     
+   P( Variable );
+
 -------------------------------
 Limited Type Views' Semantics
 -------------------------------
@@ -49,7 +48,7 @@ Limited Type Views' Semantics
       F1, F2 : File;
       ...
       F1 := F2; -- compile error
- 
+
 * Prevents incorrect comparison semantics
 
    - Disallows predefined equality operator
@@ -68,7 +67,7 @@ Inappropriate Copying Example
    Write ( F1, "Hello" );
    -- What is this assignment really trying to do?
    F2 := F1;
- 
+
 -----------------------------
 Intended Effects of Copying
 -----------------------------
@@ -81,7 +80,7 @@ Intended Effects of Copying
    Open (F1);
    Write ( F1, "Hello" );
    Copy (Source => F1, Target => F2);
- 
+
 ==============
 Declarations
 ==============
@@ -107,7 +106,7 @@ Limited Type Declarations
       type defining_identifier is limited record
           component_list
       end record;
- 
+
 * Are always record types unless also private
 
    - More in a moment...
@@ -118,7 +117,7 @@ Approximate Analog In C++
 
 .. code:: C++
 
-   class Stack { 
+   class Stack {
    public:
      Stack();
      void Push (int X);
@@ -129,7 +128,7 @@ Approximate Analog In C++
      // assignment operator hidden
      Stack& operator= (const Stack& other);
    }; // Stack
- 
+
 -------------------
 Spin Lock Example
 -------------------
@@ -146,14 +145,14 @@ Spin Lock Example
      procedure Unlock  (This : in out Spin_Lock);
      pragma Inline (Lock, Unlock);
    end Multiprocessor_Mutex;
- 
+
 -----------------------------
 Parameter Passing Mechanism
 -----------------------------
 
 * Always "by-reference" if explicitly limited
 
-   - Necessary for various reasons (`task` and `protected` types, etc)
+   - Necessary for various reasons (:ada:`task` and :ada:`protected` types, etc)
    - Advantageous when required for proper behavior
 
 * By definition, these subprograms would be called concurrently
@@ -164,7 +163,7 @@ Parameter Passing Mechanism
 
    procedure Lock  (This : in out Spin_Lock);
    procedure Unlock (This : in out Spin_Lock);
- 
+
 -------------------------------------
 Composites with Limited Types
 -------------------------------------
@@ -190,7 +189,7 @@ Composites with Limited Types
      A := B;  -- not legal since limited
      ...
    end;
- 
+
 ------
 Quiz
 ------
@@ -259,7 +258,7 @@ Creating Values
    end record;
    ...
    Mutex : Spin_Lock := (Flag => 0); -- limited aggregate
- 
+
 -----------------------------------
 Other Uses for Limited Aggregates
 -----------------------------------
@@ -268,16 +267,16 @@ Other Uses for Limited Aggregates
 * Components of enclosing array and record types
 * Default expressions for record components
 * Expression in an initialized allocator
-* Actual parameters for formals of mode `in`
+* Actual parameters for formals of mode :ada:`in`
 * Results of function return statements
-* Defaults for mode `in` formal parameters
+* Defaults for mode :ada:`in` formal parameters
 * But not right-hand side of assignment statements!
 
 ---------------------------------------
 Only Mode `in` for Limited Aggregates
 ---------------------------------------
 
-* Aggregates are not variables, so no place to put the returning values for `out` or `in out` formals
+* Aggregates are not variables, so no place to put the returning values for :ada:`out` or :ada:`in out` formals
 
 .. code:: Ada
 
@@ -293,7 +292,7 @@ Only Mode `in` for Limited Aggregates
    Wrong_Mode_For_Agg ( This => (Flag => 0) );
    -- allowed
    procedure Foo ( Param : access Spin_Lock );
- 
+
 .. container:: speakernote
 
    It is the 'WrongMode' because we are trying to pass a limited aggregate to a formal with that mode, not because the mode itself is somehow wrong.
@@ -305,7 +304,7 @@ Limited Constructor Functions
 .. container:: columns
 
  .. container:: column
-  
+
     * Allowed wherever limited aggregates are allowed
     * More capable (can perform arbitrary computations)
     * Necessary when limited type is also private
@@ -313,16 +312,16 @@ Limited Constructor Functions
        - Users won't have visibility required to express aggregate contents
 
  .. container:: column
-  
+
     .. code:: Ada
-    
-       function F return Spin_Lock 
+
+       function F return Spin_Lock
        is
        begin
          ...
          return (Flag => 0);
        end F;
-     
+
 ---------------------------------------
 Writing Limited Constructor Functions
 ---------------------------------------
@@ -338,7 +337,7 @@ Writing Limited Constructor Functions
      return Local_X; -- this is a copy - not legal
       -- (also illegal because of pass-by-reference)
    end F;
- 
+
 .. code:: Ada
 
    Global_X : Spin_Lock;
@@ -361,14 +360,14 @@ Writing Limited Constructor Functions
 .. code:: Ada
 
    Mutex : Spin_Lock := (Flag => 0);
- 
+
 .. code:: Ada
 
    function F return Spin_Lock is
    begin
      return (Flag => 0);
    end F;
- 
+
 ------
 Quiz
 ------
@@ -429,7 +428,7 @@ Function Extended Return Statements
 * More expressive than aggregates
 * Handling of unconstrained types
 * Syntax (simplified):
-    
+
    .. code:: Ada
     
       return identifier : subtype [:= expression];
@@ -442,11 +441,12 @@ Function Extended Return Statements
 ----------------------------------
 Extended Return Statements Example
 ----------------------------------
-    
+
    .. code:: Ada
 
-       -- Implicitely limited array
+       --  Implicitely limited array
        type Spin_Lock_Array (Positive range <>) of Spin_Lock;
+       
        function F return Spin_Lock_Array is
        begin
          return Result : Spin_Lock_Array (1 .. 10) do
@@ -466,11 +466,22 @@ Expression / Statements Are Optional
 
    .. code:: Ada
 
-      function F return Spin_Lock is      
+      function F return Spin_Lock is
       begin
         return Result : Spin_Lock;
       end F;
- 
+
+* With sequence
+
+   .. code:: Ada
+
+      function F return Spin_Lock is
+        X : Interfaces.Unsigned_8;
+      begin
+        --  compute X ...
+        return Result : Spin_Lock := (Flag => X);
+      end F;
+
 -----------------------
 Statements Restrictions
 -----------------------
@@ -486,16 +497,16 @@ Statements Restrictions
    - Returns the value of the **declared object** immediately
 
 .. code:: Ada
-    
-   function F return Spin_Lock is      
+
+   function F return Spin_Lock is
    begin
      return Result : Spin_Lock do
        if Set_Flag then
          Result.Flag := 1;
-         return;  -- returns 'Result'
+         return;  --  returns 'Result'
        end if; 
        Result.Flag := 0;
-     end return; -- Implicit return
+     end return; --  Implicit return
    end F;
 
 =====================================
@@ -514,20 +525,20 @@ Examples
 Limited Private Types
 -----------------------
 
-* A combination of `limited` and `private` views
+* A combination of :ada:`limited` and :ada:`private` views
 
    - No client compile-time visibility to representation
    - No client assignment or predefined equality
 
-* The typical design idiom for `limited` types
+* The typical design idiom for :ada:`limited` types
 * Syntax
 
-   - Additional reserved word `limited` added to `private` type declaration
+   - Additional reserved word :ada:`limited` added to :ada:`private` type declaration
 
    .. code:: Ada
 
       type defining_identifier is limited private;
- 
+
 ------------------------------------
 Limited Private Type Rationale (1)
 ------------------------------------
@@ -544,7 +555,7 @@ Limited Private Type Rationale (1)
      procedure Unlock (This : in out Spin_Lock);
      pragma Inline (Lock, Unlock);
    end Multiprocessor_Mutex;
- 
+
 ------------------------------------
 Limited Private Type Rationale (2)
 ------------------------------------
@@ -560,12 +571,12 @@ Limited Private Type Rationale (2)
    private
      type Spin_Lock is ...
    end MultiProcessor_Mutex;
- 
+
 ----------------------------------
 Limited Private Type Completions
 ----------------------------------
 
-* Clients have the partial view as `limited` and `private`
+* Clients have the partial view as :ada:`limited` and :ada:`private`
 * The full view completion can be any kind of type
 * Not required to be a record type just because the partial view is limited
 
@@ -577,7 +588,7 @@ Limited Private Type Completions
    private
      type Unique_ID_T is range 1 .. 10;
    end P;
- 
+
 -----------------------------
 Write-Only Register Example
 -----------------------------
@@ -597,17 +608,15 @@ Write-Only Register Example
    private
      type Byte is new Unsigned_8;
      type Word is new Unsigned_16;
-     type Longword is new Unsigned_32; 
+     type Longword is new Unsigned_32;
    end Write_Only;
- 
+
 --------------------------------
 Explicitly Limited Completions
 --------------------------------
 
-* Completion in Full view includes word `limited`
-
-* Optional 
-
+* Completion in Full view includes word :ada:`limited`
+* Optional
 * Requires a record type as the completion
 
 .. code:: Ada
@@ -622,7 +631,7 @@ Explicitly Limited Completions
          Flag : Interfaces.Unsigned_8;
        end record;
    end MultiProcessor_Mutex;
- 
+
 -------------------------------------------
 Effects of Explicitly Limited Completions
 -------------------------------------------
@@ -641,13 +650,13 @@ Effects of Explicitly Limited Completions
        Flag : Interfaces.Unsigned_8;
      end record;
    end MultiProcessor_Mutex;
- 
+
 ---------------------------------
 Automatically Limited Full View
 ---------------------------------
 
 * When other limited types are used in the representation
-* Recall composite types containing limited types are `limited` too
+* Recall composite types containing limited types are :ada:`limited` too
 
 .. code:: Ada
 
@@ -747,15 +756,15 @@ Summary
    - Incorrect equality semantics
    - Copying via assignment
 
-* Enclosing composite types are `limited` too
+* Enclosing composite types are :ada:`limited` too
 
-   - Even if they don't use keyword `limited` themselves
+   - Even if they don't use keyword :ada:`limited` themselves
 
 * Limited types are always passed by-reference
 * Extended return statements work for any type
 
    - Ada 2005 and later
 
-* Don't make types `limited` unless necessary
+* Don't make types :ada:`limited` unless necessary
 
    - Users generally expect assignment to be available
