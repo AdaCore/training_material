@@ -14,7 +14,7 @@ Introduction
 Introduction
 --------------
 
-* Are syntactically distinguished as `function` and `procedure`
+* Are syntactically distinguished as :ada:`function` and :ada:`procedure`
 
    - Functions represent *values*
    - Procedures represent *actions*
@@ -25,7 +25,7 @@ Introduction
       procedure Split (T : in out Tree;
                        Left : out Tree;
                        Right : out Tree)
- 
+
 * Provide direct syntactic support for separation of specification from implementation
 
    .. code:: Ada
@@ -35,7 +35,7 @@ Introduction
       begin
       ...
       end Is_Leaf;
- 
+
 --------------------------------------
 Recognizing Procedures and Functions
 --------------------------------------
@@ -56,7 +56,7 @@ Recognizing Procedures and Functions
           Display (Next_Char);
         end if;
       end loop;
- 
+
 ----------------------------------
 A Little "Preaching" About Names
 ----------------------------------
@@ -76,7 +76,7 @@ A Little "Preaching" About Names
    procedure Close (V : in out Valve);
    function Square_Root (V: Real) return Real;
    function Is_Open (V: Valve) return Boolean;
- 
+
 ========================
 Declarations and Bodies
 ========================
@@ -90,7 +90,7 @@ Examples
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#declarations-and-bodies`
 
 --------------------------
-Subprogram Declarations 
+Subprogram Declarations
 --------------------------
 
 * Define the external (user) interface
@@ -108,7 +108,7 @@ Subprogram Declarations
 
    procedure Swap (A, B : in out Integer);
    function F (X : Real) return Real;
- 
+
 -------------------
 Subprogram Bodies
 -------------------
@@ -126,7 +126,7 @@ Subprogram Bodies
            A := B;
            B := Temp;
          end Swap;
- 
+
    - Function body
 
       .. code:: Ada
@@ -135,16 +135,16 @@ Subprogram Bodies
          begin
            return X + 3.0 * X;
          end F;
- 
+
 -------------------------------------------
 Procedure Declaration Syntax (Simplified)
 -------------------------------------------
 
 .. code:: Ada
 
-   subprogram_declaration ::= subprogram_specification ; 
+   subprogram_declaration ::= subprogram_specification ;
    subprogram_specification ::=
-      procedure defining_name parameter_profile  
+      procedure defining_name parameter_profile
    parameter_profile ::= [ formal_part ]
    formal_part ::=
       ( parameter_specification
@@ -153,7 +153,7 @@ Procedure Declaration Syntax (Simplified)
       defining_identifier_list : mode subtype_mark
          [ := expression ]
    mode ::= [in] | out | in out
- 
+
 ------------------------------------------
 Function Declaration Syntax (Simplified)
 ------------------------------------------
@@ -163,12 +163,12 @@ Function Declaration Syntax (Simplified)
    subprogram_declaration ::= subprogram_specification;
    subprogram_specification ::= function
        defining_designator parameter_and_result_profile
-   defining_designator ::= defining_program_unit_name | 
+   defining_designator ::= defining_program_unit_name |
                            defining_operator_symbol
    operator_symbol ::= string_literal
    parameter_and_result_profile ::=
       [formal_part] return subtype_mark
- 
+
 * (remainder same as procedures)
 
 -------------
@@ -176,26 +176,26 @@ Body Syntax
 -------------
 
 .. code:: Ada
-    
+
    subprogram_body ::= subprogram_specification is
                          {basic_declarative_item}
                        begin
                          sequence_of_statements
                        end [designator];
-     
+
 .. code:: Ada
-    
+
    procedure Hello is
    begin
      Ada.Text_IO.Put_Line ("Hello World!");
      Ada.Text_IO.New_Line (2);
    end Hello;
-       
+
    function F (X : Real) return Real is
    begin
      return X + 3.0 * X;
    end F;
-     
+
 ---------------
 "Completions"
 ---------------
@@ -218,7 +218,7 @@ Completion Examples
 
       procedure Swap (A, B : in out Integer);
       function Min (X, Y : Person) return Person;
- 
+
 * Completions
 
    .. code:: Ada
@@ -229,7 +229,7 @@ Completion Examples
         A := B;
         B := Temp;
       end Swap;
-      
+
       function Min (X, Y : Person) return Person is
       begin
         if X.Age < Y.Age then
@@ -238,7 +238,7 @@ Completion Examples
           return Y;
         end if;
       end Min;
- 
+
 * Depending on usage, specifications may not be needed
 
 ------------------------
@@ -276,10 +276,9 @@ Why Separate Declarations?
 
 * Recursion
 
-   - Subprograms may call themselves 
+   - Subprograms may call themselves
 
-      + Directly 
-
+      + Directly
       + Indirectly
 
    - Limited only by available memory
@@ -303,7 +302,7 @@ Direct Recursion Example
        return Next & Input;
      end if;
    end Input;
- 
+
 ----------------------------------------
 Indirect Recursion Needs A Declaration
 ----------------------------------------
@@ -311,26 +310,26 @@ Indirect Recursion Needs A Declaration
 .. container:: columns
 
  .. container:: column
-  
+
     * Due to linear elaboration order
     * Only one of the two need be declared separately
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        procedure P;
-       
+
        procedure F is
        begin
          P;
        end F;
-       
+
        procedure P is
        begin
          F;
        end P;
-     
+
 ------
 Quiz
 ------
@@ -378,7 +377,7 @@ Subprogram Parameter Terminology
 
       procedure Something ( Formal1 : in     Integer;
                             Formal2 :    out Boolean );
- 
+
 * Call
 
    .. code:: Ada
@@ -387,7 +386,7 @@ Subprogram Parameter Terminology
       ActualY : Boolean;
       ...
       Something ( ActualX, ActualY );
- 
+
 ---------------------------------
 Parameter Associations In Calls
 ---------------------------------
@@ -412,7 +411,7 @@ Actual Parameters Respect Constraints
 ---------------------------------------
 
 * Must satisfy any constraints of formal parameters
-* `Constraint_Error` otherwise
+* :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
 
@@ -431,7 +430,7 @@ No `subtype_indications` In Specifications
 .. code:: Ada
 
    subtype_mark <constraint>
- 
+
 * Obviates pathology regarding dynamic subtypes
 * Illegal usage
 
@@ -440,11 +439,11 @@ No `subtype_indications` In Specifications
       Lower, Upper : Integer;
       procedure P (X : in Integer range Lower .. Upper );
       -- code which affects Lower and/or Upper...
-      procedure P (X : in Integer range Lower .. Upper )  is 
+      procedure P (X : in Integer range Lower .. Upper )  is
       begin
-      ... 
+      ...
       end P;
- 
+
 -----------------------
 Use Named Constraints
 -----------------------
@@ -461,11 +460,11 @@ Use Named Constraints
       procedure P (X : in Short );
       -- code which affects Lower and/or Upper...
       -- "Short" does not change
-      procedure P (X : in Short ) is 
+      procedure P (X : in Short ) is
       begin
-      ... 
+      ...
       end P;
- 
+
 ------------------------------
 No Anonymously-Typed Formals
 ------------------------------
@@ -477,7 +476,7 @@ No Anonymously-Typed Formals
 
       procedure P (Formal : in array (X .. Y) of Some_Type);
       function F return array (X .. Y) of Some_Type;
- 
+
 * Use named types instead of anonymous types
 
    .. code:: Ada
@@ -486,7 +485,7 @@ No Anonymously-Typed Formals
       ...
       procedure P (Formal : in List);
       function F return List;
- 
+
 -----------------
 Parameter Modes
 -----------------
@@ -496,18 +495,17 @@ Parameter Modes
    - Views within the subprogram with respect to formals
 
 * Views control use of formals within subprograms
-* Mode `in`
+* Mode :ada:`in`
 
    - Specifies that actual parameter is not altered
+   - Only reading of formal is allowed
 
-   - Only reading of formal is allowed 
-
-* Mode `out`
+* Mode :ada:`out`
 
    - Writing is expected, but reading is also allowed
    - Initial value inside subprogram is not defined
 
-* Mode `in out`
+* Mode :ada:`in out`
 
    - Actual is expected to be both read and altered
    - Initial value inside subprogram is defined (taken from actual)
@@ -533,7 +531,7 @@ Why Read Mode `out` Parameters?
        Value := Value + K; -- this is a read AND a write
      end loop;
    end Compute;
- 
+
 --------------------------
 Parameter Modes' Benefit
 --------------------------
@@ -547,17 +545,17 @@ Parameter Modes' Benefit
 
       Procedure Put ( X : in integer );
       Procedure Get ( X : out integer );
- 
+
 ---------------------------------
 Modes' Requirements for Actuals
 ---------------------------------
 
 * Use of variables versus expressions for actuals
-* Modes `in out` and `out`
+* Modes :ada:`in out` and :ada:`out`
 
    - Variables must be used since actual may/will be altered
 
-* Mode `in`
+* Mode :ada:`in`
 
    - Expressions may be used since the actual can't be altered
    - Recall expressions not limited to variable references
@@ -571,12 +569,12 @@ Modes' Requirements for Actuals
      Do_Something(X,Y);    -- legal
      Do_Something(X+2, Y); -- legal
      Do_Something(X, Y+1); -- compile error
- 
+
 -------------------------------------
 Parameter Defaults May Be Specified
 -------------------------------------
 
-* Mode `in` formals only
+* Mode :ada:`in` formals only
 * Callers may omit corresponding actual for calls
 
    - Possible since actual will not be altered
@@ -616,7 +614,7 @@ Skipping Over Actual Parameters
      -- Parameter "After" is skipped
      Activate (My_Process, Wait => 60.0, Prior => True);
      Activate (My_Process, 60.0, True); -- compile error
- 
+
 .. container:: speakernote
 
    Not using named association can cause confusion if future development adds parameters
@@ -671,17 +669,16 @@ By-Copy Types
 By-Reference Types
 --------------------
 
-* `tagged` types
-* `task` types and `protected` types
-
-* `limited` types 
+* :ada:`tagged` types
+* :ada:`task` types and :ada:`protected` types
+* :ada:`limited` types
 
    - Directly limited record types and their descendants
-   - Not just those that are `limited private`
+   - Not just those that are :ada:`limited private`
    - Described later
 
 * Composite types with by-reference component types
-* `private` types if fully defined as by-reference types
+* :ada:`private` types if fully defined as by-reference types
 
    - Described later
 
@@ -689,7 +686,7 @@ By-Reference Types
 Implementation-Dependent Types
 --------------------------------
 
-* `array` types containing only by-copy components
+* :ada:`array` types containing only by-copy components
 * Non-limited record types containing only by-copy components
 * Implementation chooses most efficient method
 
@@ -723,7 +720,7 @@ Unconstrained Formal Parameters
      Print (State);       -- V'range is 1 .. 4
      Print (State(1..2)); -- V'range is 1 .. 2
    end;
- 
+
 -----------------------------------
 Unconstrained Parameters Surprise
 -----------------------------------
@@ -745,7 +742,7 @@ Unconstrained Parameters Surprise
      R := Subtract (V2, V1);
      ...
    end;
- 
+
 ----------------------
 Naive Implementation
 ----------------------
@@ -766,7 +763,7 @@ Naive Implementation
      end loop;
      return Result;
    end Subtract;
- 
+
 .. container:: speakernote
 
   If Left and Right have different 'first and 'last, that's a problem
@@ -793,7 +790,7 @@ Correct Implementation
      end loop;
      return Result;
    end Subtract;
- 
+
 ------
 Quiz
 ------
@@ -845,14 +842,14 @@ Null Procedure Declarations
       begin
         null;
       end NOP;
- 
+
 * Shorthand form
 
    .. code:: Ada
 
       procedure NOP is null;
- 
-* The `null` statement is present in both cases
+
+* The :ada:`null` statement is present in both cases
 * Explicitly indicates nothing to be done, rather than an accidental removal of statements
 
 --------------------------------
@@ -870,7 +867,7 @@ Null Procedures As Completions
       procedure NOP;
       ...
       procedure NOP is null;
- 
+
 * A declaration and completion together
 
    - A body is then not required, thus not allowed
@@ -883,7 +880,7 @@ Null Procedures As Completions
       begin
         null;
       end NOP;
- 
+
 --------------------------------------
 Typical Use for Null Procedures: OOP
 --------------------------------------
@@ -921,7 +918,7 @@ Null Procedure Summary
 .. code:: Ada
 
    procedure Do_Something ( P : in     integer ) is null;
- 
+
 =====================
 Nested Subprograms
 =====================
@@ -933,7 +930,7 @@ Subprograms within Subprograms
 * Subprograms can be placed in any declarative block
 
    * So they can be nested inside another subprogram
-   * Or even within a `declare` block
+   * Or even within a :ada:`declare` block
 
 * Useful for performing sub-operations without passing parameter data
 
@@ -988,7 +985,7 @@ Procedure Specifics
 .. container:: columns
 
  .. container:: column
-  
+
     * Returns immediately to caller
     * Optional
 
@@ -997,18 +994,18 @@ Procedure Specifics
     * Fewer is traditionally considered better
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        procedure P is
        begin
          ...
-         if Some_Condition then 
+         if Some_Condition then
            return; -- early return
          end if;
          ...
        end P; -- automatic return
-     
+
 ====================
 Function Specifics
 ====================
@@ -1034,13 +1031,13 @@ Return Statements In Functions
            {statements}
            return expression;
         end designator;
- 
+
 ---------------------------------------
 No Path Analysis Required By Compiler
 ---------------------------------------
 
-* Running to the end of a function without hitting a `return` statement raises `Program_Error`
-* Compilers can issue warning if they suspect that a `return` statement will not be hit
+* Running to the end of a function without hitting a :ada:`return` statement raises :ada:`Program_Error`
+* Compilers can issue warning if they suspect that a :ada:`return` statement will not be hit
 
 .. code:: Ada
 
@@ -1050,7 +1047,7 @@ No Path Analysis Required By Compiler
        return True;
      end if;
    end Greater; -- possible compile warning
- 
+
 ----------------------------
 Multiple Return Statements
 ----------------------------
@@ -1069,7 +1066,7 @@ Multiple Return Statements
        return Converted;
      end if;
    end Truncated;
- 
+
 ---------------------------------------
 Multiple Return Statements Versus One
 ---------------------------------------
@@ -1087,7 +1084,7 @@ Multiple Return Statements Versus One
      end if;
      return Result;
    end Truncated;
- 
+
 --------------------------------
 Composite Result Types Allowed
 --------------------------------
@@ -1108,7 +1105,7 @@ Composite Result Types Allowed
      end loop;
      return Result;
    end Identity;
- 
+
 ----------------------------------------
 Function Results Are Objects
 ----------------------------------------
@@ -1133,7 +1130,7 @@ Function Results Are Objects
    S : String := Return_Record (' ').Field1;
    -- c set to character at index 3 in returned string
    C : Character := Return_String ('x', 4) (3);
- 
+
 ======================
 Expression Functions
 ======================
@@ -1159,29 +1156,29 @@ Expression Functions
    - Only the returned value appears
 
 * Syntax
-    
+
    .. code:: Ada
-    
+
       expr_func_declaration ::= function_specification is (expression);
-     
+
    * Parentheses are required
    * Parameters are optional, as usual, but typical
 
 * Expression function
-    
+
    .. code:: Ada
-    
+
       function Square (X : Integer) return Integer is (X ** 2);
-     
+
 * Is equivalent to
-    
+
    .. code:: Ada
-    
+
       function Square (X : Integer) return Integer is
       begin
          return X ** 2;
       end Square;
-     
+
 -------------------------------------
 Expression Functions As Completions
 -------------------------------------
@@ -1197,7 +1194,7 @@ Expression Functions As Completions
       function Squared (X : Integer) return Integer;
       function Squared (X : Integer) return Integer is
           (X ** 2);
- 
+
 * A declaration and completion together
 
    - A body is then not required, thus not allowed
@@ -1211,7 +1208,7 @@ Expression Functions As Completions
          begin
            return X ** 2;
          end Squared;
- 
+
 ---------------------------------------
 Typical Uses for Expression Functions
 ---------------------------------------
@@ -1228,17 +1225,17 @@ Typical Uses for Expression Functions
 
 .. code:: Ada
 
-   procedure Euclid (A, B : Integer; Result : out Integer) 
+   procedure Euclid (A, B : Integer; Result : out Integer)
      with Pre => A > 0 and B > 0,
      Post => GCD (A, B, Result);
    function GCD (A, B, Candidate : Integer)
        return Boolean is
-     (A rem Candidate = 0 and 
+     (A rem Candidate = 0 and
       B rem Candidate = 0 and
-      (for all K in 1 .. Integer'Min (A,B) => 
+      (for all K in 1 .. Integer'Min (A,B) =>
         (if (A rem K = 0 and B rem K = 0)
          then K <= Candidate)));
- 
+
 ------
 Quiz
 ------
@@ -1278,30 +1275,30 @@ Mode `out` Risk for Scalars
 .. container:: columns
 
  .. container:: column
-  
-    * Be sure to assign value of mode `out` formals!
+
+    * Be sure to assign value of mode :ada:`out` formals!
     * "By-copy" mechanism will copy something back
 
        - Value copied back may be junk
-       - `Constraint_Error` may be raised later or some other unexpected behavior may occur
+       - :ada:`Constraint_Error` may be raised later or some other unexpected behavior may occur
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        procedure P (
-          A, B : in Some_Type;  
+          A, B : in Some_Type;
           Result : out Scalar_Type)
        is
        begin
          Some_Statements;
-         if Some_Condition then 
+         if Some_Condition then
            return;  -- Result not set
          end if;
          Some_Statements;
          Result := Some_Value;
        end P;
-     
+
 ----------------
 "Side Effects"
 ----------------
@@ -1318,7 +1315,7 @@ Mode `out` Risk for Scalars
         Global := Global + X;
       return X;
       end F;
- 
+
    - Should generally be avoided!
 
       + They make nasty errors possible
@@ -1346,7 +1343,7 @@ Side Effects' Justification
            Counter := Counter + 1
            return Counter;
          end Next_Available;
- 
+
    * "Reasonable" side effect
 
       .. code:: Ada
@@ -1366,7 +1363,7 @@ Order-Dependent Code And Side Effects
 .. |rightarrow| replace:: :math:`\rightarrow`
 
 .. code:: Ada
-    
+
    Global : Integer := 0;
    function F return Integer is
    begin
@@ -1382,9 +1379,9 @@ Order-Dependent Code And Side Effects
    end Gear_Down;
    ...
    Gear_Down (Global, F);
-     
+
 * Order of evaluation of parameters in subprogram call is not specified in language
-* `Gear_Down` could get called with
+* :ada:`Gear_Down` could get called with
 
    - X |rightarrow| 0, Y |rightarrow| 1 (if `Global` evaluated first)
    - X |rightarrow| 1, Y |rightarrow| 1 (if `F` evaluated first)
@@ -1406,7 +1403,7 @@ Parameter Aliasing
 
 * Ada detects some cases
 
-   - When detected, raises `Program_Error`
+   - When detected, raises :ada:`Program_Error`
    - When not detected, does whatever it does
 
 ----------------------------------------
@@ -1415,6 +1412,7 @@ Parameter Aliasing via Global Variable
 
 .. code:: Ada
 
+   declare
      Actual : String := "Hello";
      procedure Print (Formal : in String) is
      begin
@@ -1425,14 +1423,15 @@ Parameter Aliasing via Global Variable
    begin
      -- if pass by-copy, prints "Hello"
      -- if pass by-reference, prints "World"
-     Print (Formal => Actual); 
- 
+     Print (Formal => Actual);
+
 -----------------------------------------
 Parameter Aliasing via Multiple Actuals
 -----------------------------------------
 
 .. code:: Ada
 
+   declare
      Actual : String := "Hello";
      procedure Print (Formal1 : out String;
                       Formal2 : in String) is
@@ -1445,7 +1444,7 @@ Parameter Aliasing via Multiple Actuals
      -- if pass by-copy, prints "Hello"
      -- if pass by-reference, prints "World"
      Print (Actual, Actual);
- 
+
 ---------------------------------------
 Easy Cases Detected and Not Legal (1)
 ---------------------------------------
@@ -1466,7 +1465,7 @@ Easy Cases Detected and Not Legal (1)
      -- Could print "2" or "3" depending on copy order
      Put_Line (A'Img);
    end Test;
- 
+
 .. container:: speakernote
 
    Ada 2012 - overlap is no longer allowed
@@ -1479,13 +1478,13 @@ Functions' Parameter Modes
 
    Ada 2012
 
-* Can be mode `in out` and `out` too
+* Can be mode :ada:`in out` and :ada:`out` too
 * **Note:** operator functions can only have mode `in`
 
    - Including those you overload
    - Keeps readers sane
 
-* Justification for only mode `in` prior to Ada 2012
+* Justification for only mode :ada:`in` prior to Ada 2012
 
    - No side effects: should be like mathematical functions
    - But side effects are still possible via globals
@@ -1498,6 +1497,7 @@ Easy Cases Detected and Not Legal (2)
 
 .. code:: Ada
 
+   declare
      X : array (1 .. 10) of Integer := (others => 42);
      function F (This : in out Integer) return Integer is
      begin
@@ -1510,7 +1510,7 @@ Easy Cases Detected and Not Legal (2)
      X (A) := F (A); -- not legal in Ada 2012
      Put_Line ("X(1) is"  &  X(1)'Img); -- "2" or "42"
      Put_Line ("X(2) is"  &  X(2)'Img); -- "2" or "42"
- 
+
 ===================
 Extended Examples
 ===================
@@ -1522,9 +1522,9 @@ Tic-Tac-Toe Winners Example (Spec)
 .. container:: columns
 
  .. container:: column
-    
+
     .. code:: Ada
-    
+
        package TicTacToe is
          type Players is (Nobody, X, O);
          type Move is range 1 .. 9;
@@ -1534,11 +1534,11 @@ Tic-Tac-Toe Winners Example (Spec)
            return Players;
          ...
        end TicTacToe;
-     
+
  .. container:: column
-  
+
     .. list-table::
-    
+
       * - :subscript:`1` N
 
         - :subscript:`2` N
@@ -1553,7 +1553,7 @@ Tic-Tac-Toe Winners Example (Spec)
 
         - :subscript:`8` N
         - :subscript:`9` N
-    
+
 .. container:: speakernote
 
    Prior to Ada2012 use:
@@ -1566,7 +1566,7 @@ Tic-Tac-Toe Winners Example (Body)
 ------------------------------------
 
 .. code:: Ada
-    
+
    function Winner (This : Game) return Players is
      type Winning_Combinations is range 1 .. 8;
      type Required_Positions   is range 1 .. 3;
@@ -1578,7 +1578,7 @@ Tic-Tac-Toe Winners Example (Body)
                      (1, 4, 7), (2, 5, 8), (3, 6, 9),
                      -- diagonals
                      (1, 5, 9), (3, 5, 7));
-     
+
    begin
      for K in Winning_Combinations loop
        if This (Winning (K, 1)) /= Nobody and then
@@ -1590,20 +1590,20 @@ Tic-Tac-Toe Winners Example (Body)
      end loop;
      return Nobody;
    end Winner;
-     
+
 -------------
 Set Example
 -------------
 
 .. code:: Ada
-    
+
    -- some colors
    type Color is (Red, Orange, Yellow, Green, Blue, Violet);
    -- truth table for each color
    type Set is array (Color) of Boolean;
    -- unconstrained array of colors
    type Set_Literal is array (Positive range <>) of Color;
-       
+
    -- Take an array of colors and set table value to True
    -- for each color in the array
    function Make (Values : Set_Literal) return Set;
@@ -1611,34 +1611,34 @@ Set Example
    function Make (Base : Color) return Set;
    -- Return True if the color has the truth value set
    function Is_Member (C : Color; Of_Set: Set) return Boolean;
-     
+
    Null_Set : constant Set := (Set'Range => False);
    RGB      : Set := Make (
               Set_Literal'( Red, Blue, Green));
    Domain   : Set := Make (Green);
-       
+
    if Is_Member (Red, Of_Set => RGB) then ...
-       
+
    -- Type supports operations via Boolean operations,
    -- as Set is a one-dimensional array of Boolean
    S1, S2 : Set := Make (....);
    Union : Set := S1 or S2;
    Intersection : Set := S1 and S2;
    Difference : Set := S1 xor S2;
-     
+
 ------------------------------
 Set Example (Implementation)
 ------------------------------
 
 .. code:: Ada
-    
+
    function Make (Base : Color) return Set is
      Result : Set := Null_Set;
    begin
       Result (Base) := True;
       return Result;
    end Make;
-       
+
    function Make (Values : Set_Literal) return Set is
      Result : Set := Null_Set;
    begin
@@ -1647,14 +1647,14 @@ Set Example (Implementation)
      end loop;
      return Result;
    end Make;
-     
+
    function Is_Member ( C: Color;
                         Of_Set: Set)
                         return Boolean is
    begin
      return Of_Set(C);
    end Is_Member;
-     
+
 ========
 Lab
 ========

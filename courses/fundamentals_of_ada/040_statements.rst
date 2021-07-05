@@ -59,7 +59,6 @@ Procedure Calls (Overview)
 
          Idle.Activate (True);
 
-
 ---------------------------------
 Parameter Associations In Calls
 ---------------------------------
@@ -219,7 +218,7 @@ Assignment Statements, Not Expressions
 
 * No assignment in conditionals
 
-   - E.g. `if ( a == 1 )` compared to `if ( a = 1 )`
+   - E.g. :ada:`if ( a == 1 )` compared to :ada:`if ( a = 1 )`
 
 ------------------
 Assignable Views
@@ -236,8 +235,8 @@ Assignable Views
 * Various un-assignable views
 
    - Constants
-   - Variables of `limited` types
-   - Formal parameters of mode `in`
+   - Variables of :ada:`limited` types
+   - Formal parameters of mode :ada:`in`
 
 .. code:: Ada
 
@@ -255,7 +254,7 @@ Target Variable Constraint Violations
 
 * May compile but will raise error at runtime
 
-   - Predefined exception `Constraint_Error` is raised
+   - Predefined exception :ada:`Constraint_Error` is raised
 
 * May be detected by compiler
 
@@ -397,15 +396,14 @@ If-then-else Statements
       end if;
     end if;
 
-
 --------------------------
 If-then-elsif Statements
 --------------------------
 
 * Sequential choice with alternatives
-* Avoids `if` nesting
-* `elsif` alternatives, tested in textual order
-* `else` part still optional
+* Avoids :ada:`if` nesting
+* :ada:`elsif` alternatives, tested in textual order
+* :ada:`else` part still optional
 * Applied to previous example
 
  .. code:: Ada
@@ -466,7 +464,7 @@ Case Statement Rules
 * **All** possible values must be covered
 
    - Explicitly
-   - ... or with `others` keyword
+   - ... or with :ada:`others` keyword
 
 * Choice values cannot be given more than once (exclusive)
 
@@ -651,7 +649,7 @@ Loop Exit Statements
 
       exit [<loop name>] [when <boolean expression>];
 
-* `exit when` exits with condition
+* :ada:`exit when` exits with condition
 
 .. code:: Ada
 
@@ -773,7 +771,6 @@ Variable and Sequence of Values
    - No assignment or update possible
 
 * Initialized as :ada:`'First`, incremented as :ada:`'Succ`
-
 * Syntaxic sugar: several forms allowed
 
 .. code:: Ada
@@ -811,13 +808,14 @@ Null Ranges
 
     * Null range when lower bound ``>`` upper bound
 
-       - `1 .. 0`, `Fri .. Mon`
+       - :ada:`1 .. 0`, :ada:`Fri .. Mon`
        - Literals and variables can specify null ranges
 
     * No iteration at all (not even one)
     * Shortcut for upper bound validation
 
     .. code:: Ada
+
       -- Null range: loop not entered
       for Today in Fri .. Mon loop
 
@@ -825,7 +823,7 @@ Null Ranges
 Reversing Low-Level Iteration Direction
 -----------------------------------------
 
-* Keyword `reverse` reverses iteration values
+* Keyword :ada:`reverse` reverses iteration values
 
     - Range must still be ascending
     - Null range still cause no iteration
@@ -879,7 +877,6 @@ Iterations Exit Statements
 --------------------------
 
 * Early loop exit
-
 * Syntax
 
   .. code:: Ada
