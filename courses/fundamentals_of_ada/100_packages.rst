@@ -18,14 +18,14 @@ Packages
 
    - In terms of compile-time visibility
    - For data
-   - For type representation, when combined with `private` types
+   - For type representation, when combined with :ada:`private` types
 
       + Abstract Data Types
 
 * Provide basic namespace control
 * Directly support software engineering principles
 
-   - Especially in combination with `private` types
+   - Especially in combination with :ada:`private` types
    - Modularity
    - Information Hiding (Encapsulation)
    - Abstraction
@@ -51,7 +51,7 @@ Separating Interface and Implementation
      procedure Push (X : in Float);
      procedure Pop (X : out Float);
    end Float_Stack;
- 
+
 ---------------------------------
 Uncontrolled Visibility Problem
 ---------------------------------
@@ -72,25 +72,25 @@ Basic Syntax and Nomenclature
 .. code:: Ada
 
    package_declaration ::= package_specification;
- 
+
 * Spec
 
       .. code:: Ada
 
-         package_specification ::=	
-            package name is 
+         package_specification ::=
+            package name is
                {basic_declarative_item}
             end [name];
- 
+
 * Body
 
       .. code:: Ada
 
-         package_body ::=	
+         package_body ::=
             package body name is
                declarative_part
             end [name];
- 
+
 ==============
 Declarations
 ==============
@@ -121,7 +121,7 @@ Package Declarations
    - The "pin-outs" have changed
 
 .. code:: Ada
-    
+
    package Float_Stack is
      Max : constant := 100;
      procedure Push (X : in Float);
@@ -144,7 +144,7 @@ Compile-Time Visibility Control
         -- exported declarations of
         --   types, variables, subprograms ...
       end name;
- 
+
 * Items in the body are never externally visible
 
    - Compiler prevents external references
@@ -156,7 +156,7 @@ Compile-Time Visibility Control
         --   types, variables, subprograms ...
         -- implementations of exported subprograms etc.
       end name;
- 
+
 ---------------------------------
 Example of Exporting To Clients
 ---------------------------------
@@ -166,37 +166,37 @@ Example of Exporting To Clients
    - The primary reason for separate subprogram declarations
 
 .. code:: Ada
-    
+
    package P is
       procedure This_Is_Exported;
    end P;
-       
+
    package body P is
       procedure Not_Exported is
          ...
       procedure This_Is_Exported is
          ...
    end P;
-     
+
 ----------------------------
 Referencing Exported Items
 ----------------------------
 
 * Achieved via "dot notation"
 * Package Specficiation
-    
+
    .. code:: Ada
-          
+
       package Float_Stack is
         Max : constant := 100;
         procedure Push (X : in Float);
         procedure Pop (X : out Float);
       end Float_Stack;
-     
+
 * Package Reference
-    
+
    .. code:: Ada
-    
+
       with Float_Stack;
       procedure Test is
          X : Float;
@@ -238,7 +238,7 @@ Package Bodies
 
    - Subprogram bodies
    - Task bodies
-   - Incomplete types in `private` part
+   - Incomplete types in :ada:`private` part
    - Others...
 
 ---------------------------
@@ -271,7 +271,7 @@ Example Spec That Cannot Have A Body
      end record;
      -- nothing to implement, so no body allowed
    end Graphics_Primitives;
- 
+
 ---------------------------------------
 Example Spec Requiring A Package Body
 ---------------------------------------
@@ -291,7 +291,7 @@ Example Spec Requiring A Package Body
      procedure Clear_Screen;
      procedure Cursor_Up (Count : in Positive := 1);
    end VT100;
- 
+
 -----------------------
 Required Body Example
 -----------------------
@@ -358,7 +358,7 @@ Which is the correct completion of package P?
    B. No assignment of a value to :ada:`out` parameter
    C. Cannot duplicate :ada:`Object_One`
    D. Correct
- 
+
 ==================
 Executable Parts
 ==================
@@ -383,7 +383,7 @@ Optional Executable Part
        [ begin
           handled_sequence_of_statements ]
        end [ name ];
- 
+
 .. container:: speakernote
 
    Executable part is optional
@@ -420,21 +420,21 @@ Requiring/Rejecting Bodies Justification
 .. container:: columns
 
  .. container:: column
-  
+
     * Consider the alternative: an optional package body that becomes obsolete prior to building
     * Builder could silently choose not to include the package in executable
 
        - Package executable part might do critical initialization!
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        package P is
          Data : array (L .. U) of
              Integer;
        end P;
-       
+
        package body P is
          ...
        begin
@@ -442,7 +442,7 @@ Requiring/Rejecting Bodies Justification
            Data(K) := ...
          end loop;
        end P;
-     
+
 ---------------------------------------
 Forcing A Package Body To be Required
 ---------------------------------------
@@ -450,8 +450,8 @@ Forcing A Package Body To be Required
 .. container:: columns
 
  .. container:: column
-  
-    * Use `pragma Elaborate_Body`
+
+    * Use :ada:`pragma Elaborate_Body`
 
        - Says to elaborate body immediately after spec
        - Hence there must be a body!
@@ -459,15 +459,15 @@ Forcing A Package Body To be Required
     * Additional pragmas we will examine later
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        package P is
          pragma Elaborate_Body;
          Data : array (L .. U) of
              Integer;
        end P;
-       
+
        package body P is
          ...
        begin
@@ -475,7 +475,7 @@ Forcing A Package Body To be Required
            Data(K) := ...
          end loop;
        end P;
-     
+
 ========
 Idioms
 ========
@@ -501,17 +501,17 @@ Named Collection of Declarations
 * Does not export operations
 
 .. code:: Ada
-    
+
    package Physical_Constants is
-     Polar_Radius_in_feet	: constant := 20_856_010.51; 
-     Equatorial_Radius_in_feet : constant := 20_926_469.20; 
+     Polar_Radius_in_feet	: constant := 20_856_010.51;
+     Equatorial_Radius_in_feet : constant := 20_926_469.20;
      Earth_Diameter_in_feet : constant := 2.0 *
           ((Polar_Radius_in_feet + Equatorial_Radius_in_feet)/2.0);
      Sea_Level_Air_Density : constant := 0.002378; --slugs/foot**3
      Altitude_Of_Tropopause_in_feet : constant := 36089.0;
      Tropopause_Temperature_in_celsius : constant := -56.5;
    end Physical_Constants;
-     
+
 --------------------------------------
 Named Collection of Declarations (2)
 --------------------------------------
@@ -519,7 +519,7 @@ Named Collection of Declarations (2)
 * Effectively application global data
 
 .. code:: Ada
-    
+
    package Equations_of_Motion is
      Longitudinal_Velocity : Real := 0.0;
      Longitudinal_Acceleration : Real := 0.0;
@@ -531,7 +531,7 @@ Named Collection of Declarations (2)
      Pitch_Rate : Real:= 0.0;
      Pitch_Acceleration : Real:= 0.0;
    end Equations_of_Motion;
-     
+
 --------------------------------
 Group of Related Program Units
 --------------------------------
@@ -555,7 +555,7 @@ Group of Related Program Units
      function "*" (L,R : Vector) return Vector;
      ...
    end Linear_Algebra;
- 
+
 --------------------------------------
 Uncontrolled Data Visibility Problem
 --------------------------------------
@@ -563,13 +563,13 @@ Uncontrolled Data Visibility Problem
 .. container:: columns
 
  .. container:: column
-  
+
     * Effects of changes are potentially pervasive so one must understand everything before changing anything
 
  .. container:: column
-  
+
     .. image:: ../../images/subprograms_accessing_global.png
-    
+
 --------------------------------------------
 Controlling Data Visibility Using Packages
 --------------------------------------------
@@ -600,13 +600,13 @@ Abstract Data Machines
 * No direct user access to data
 
 .. code:: Ada
-    
+
    package Float_Stack is
      Max : constant := 100;
      procedure Push (X : in Float);
      procedure Pop (X : out Float);
    end Float_Stack;
-       
+
    package body Float_Stack is
      type Contents is array (1 .. Max) of Float;
      Values : Contents;
@@ -614,7 +614,7 @@ Abstract Data Machines
      procedure Push (X : in Float) is ...
      procedure Pop (X : out Float) is ...
    end Float_Stack;
-     
+
 --------------------------------------------
 Controlling Type Representation Visibility
 --------------------------------------------
@@ -624,14 +624,14 @@ Controlling Type Representation Visibility
    - No operations visible to clients based on representation
 
 * The fundamental concept for Ada
-* Requires `private` types discussed in coming section...
+* Requires :ada:`private` types discussed in coming section...
 
 ========
 Lab
 ========
 
 .. include:: labs/100_packages.lab.rst
-     
+
 =========
 Summary
 =========

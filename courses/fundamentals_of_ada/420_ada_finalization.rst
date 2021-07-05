@@ -22,7 +22,7 @@ Constructor / Destructor
     - Default implementation is a null body
 
 ==================
-Ada.Finalization 
+Ada.Finalization
 ==================
 
 ---------------
@@ -60,7 +60,6 @@ Uses
    - Logic centralized in service rather than distributed across clients
 
 * Examples: heap reclamation, "mutex" unlocking
-
 * User-defined assignment
 
 ----------------
@@ -94,7 +93,6 @@ Assignment
 ------------
 
 * Subprogram `Adjust` invoked as part of an assignment operation
-
 * Assignment statement `Target := Source;` is basically:
 
    - `Finalize (Target)`
@@ -117,7 +115,6 @@ Unbounded String via Access Type
 ----------------------------------
 
 * Type contains a pointer to a string type
-
 * We want the provider to allocate and free memory "safely"
 
    - No sharing
@@ -143,7 +140,7 @@ Unbounded String Usage
          U1 := U2; -- Reclaims U1 memory
       end; -- Reclaims U2 memory
    end Test; -- Reclaims U1 memory
-   
+
 -----------------------------
 Unbounded String Definition
 -----------------------------
@@ -167,7 +164,7 @@ Unbounded String Definition
       procedure Finalize (Object : in out Ustring_T);
       procedure Adjust (Object : in out Ustring_T);
    end Unbounded_String_Pkg;
-   
+
 ---------------------------------
 Unbounded String Implementation
 ---------------------------------
@@ -178,27 +175,27 @@ Unbounded String Implementation
    package body Unbounded_String_Pkg is
       procedure Free_String is new Ada.Unchecked_Deallocation
         (String, String_Ref);
-   
+
       function "=" (L, R : Ustring_T) return Boolean is
          ( L.Ref.all = R.Ref.all );
-   
+
       function To_Ustring_T (Item : String) return Ustring_T is
          ( Controlled with Ref => new String'(Item) );
-   
+
       function To_String (Item : Ustring_T) return String is
          ( Item.Ref.all );
-   
+
       function Length (Item : Ustring_T) return Natural is
          ( Item.Ref.all'Length );
-   
+
       function "&" (L, R : Ustring_T) return Ustring_T is
          (Controlled with Ref => new String'(L.Ref.all & R.Ref.all);
-   
+
       procedure Finalize (Object : in out Ustring_T) is
       begin
          Free_String (Object.Ref);
       end Finalize;
-   
+
       procedure Adjust (Object : in out Ustring_T) is
       begin
          Object.Ref := new String'(Object.Ref.all);
@@ -220,7 +217,6 @@ Summary
 ---------
 
 * Controlled types allow access to object construction, assignment, destruction
-
 * `Ada.Finalization` can be expensive to use
 
    - Other mechanisms may be more efficient

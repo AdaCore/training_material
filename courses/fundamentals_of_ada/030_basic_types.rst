@@ -56,7 +56,7 @@ A Little Terminology
    .. code:: Ada
 
       type <name> is <type definition>;
- 
+
 * **Type-definition** defines its structure
 
    - Characteristics, and operations
@@ -84,7 +84,7 @@ Ada "Named Typing"
       Yours : Ruble;
       ...
       Mine := Yours; -- not legal
- 
+
 ---------------------
 Categories of Types
 ---------------------
@@ -183,7 +183,7 @@ Signed Integer Types
    .. code:: Ada
 
       type <identifier> is range  <lower> .. <upper>;
- 
+
 * Implicit numeric operators
 
    .. code:: Ada
@@ -197,7 +197,7 @@ Signed Integer Types
          Count := Count + 1;
          ...
       end;
- 
+
 --------------------------------
 Specifying Integer Type Bounds
 --------------------------------
@@ -213,7 +213,6 @@ Predefined Integer Types
 --------------------------
 
 * :ada:`Integer` **>= 16 bits** wide
-
 * Other **probably** available
 
    - :ada:`Long_Integer`, :ada:`Short_Integer`, etc.
@@ -251,7 +250,7 @@ Base Ranges
 * **Predefined** operators
 
    - Work on full-range
-        
+
         + **No range checks** on inputs or result
         + Best performance
 
@@ -265,23 +264,23 @@ Base Ranges
 
       type Foo is range -30_000 .. 30_000;
       function "+" (Left, Right : Foo'Base) return Foo'Base;
- 
+
 * Base range
 
     - Signed
-    - 8 bits |rightarrow| `-128 .. 127`
-    - 16 bits |rightarrow| `-32_768 .. 32767`
+    - 8 bits |rightarrow| :ada:`-128 .. 127`
+    - 16 bits |rightarrow| :ada:`-32_768 .. 32767`
 
 ---------------------------------
 Compile-Time Constraint Violation
 ---------------------------------
 
 * *May* produce **warnings**
-    
+
     - And compile successfuly
 
 * *May* produce **errors**
-    
+
     - And fail at compilation
 
 * Requirements for rejection
@@ -327,14 +326,14 @@ Integer Overflows
    K : Short_Integer := Short_Integer'Last;
    ...
    K := K + 1;
-      
+
     2#0111_1111_1111_1111#  = (2**16)-1
 
    +                    1
 
    =======================
     2#1000_0000_0000_0000#  = -32,768
- 
+
 -------------------------------
 Integer Overflow: Ada vs others
 -------------------------------
@@ -351,7 +350,7 @@ Integer Overflow: Ada vs others
 * C/C++
 
    - **Undefined** behavior (typically silent wrap-around)
- 
+
 ---------------
 Modular Types
 ---------------
@@ -367,7 +366,7 @@ Modular Types
    .. code:: Ada
 
       type <identifier> is mod <modulus>;
- 
+
 * Modulus must be **static**
 * Resulting range is  0 .. modulus-1
 
@@ -375,7 +374,7 @@ Modular Types
 
       type Unsigned_Word is mod 2**16; -- 16 bits, 0..65535
       type Byte is mod 256;            -- 8 bits, 0..255
- 
+
 ------------------------
 Modular Type Semantics
 ------------------------
@@ -408,7 +407,7 @@ Bit Pattern Values and Range Constraints
    begin
      B := 2#1000_0000#; -- not a negative value
    end Demo;
- 
+
 ---------------------------------
 Modular Range Must Be Respected
 ---------------------------------
@@ -416,7 +415,7 @@ Modular Range Must Be Respected
 .. code:: Ada
 
    procedure Unsigned is
-     type Byte is mod 2**8;  -- 0 .. 255  
+     type Byte is mod 2**8;  -- 0 .. 255
      B : Byte;
      type Signed_Byte is range -128 .. 127;
      SB : Signed_Byte;
@@ -425,9 +424,9 @@ Modular Range Must Be Respected
      B := -256;       -- compile error
      SB := -1;
      B := Byte (SB);  -- runtime error
-     ...   
+     ...
    end Unsigned;
- 
+
 --------------------------------------
 Safely Converting Signed To Unsigned
 --------------------------------------
@@ -441,14 +440,14 @@ Safely Converting Signed To Unsigned
   .. code:: Ada
 
      procedure Test is
-       type Byte is mod 2**8;  -- 0 .. 255  
+       type Byte is mod 2**8;  -- 0 .. 255
        B : Byte;
        type Signed_Byte is range -128 .. 127;
        SB : Signed_Byte;
      begin
        SB := -1;
        B := Byte'Mod (SB);  -- OK (255)
- 
+
 --------------------------
 Predefined Modular Types
 --------------------------
@@ -470,7 +469,7 @@ Predefined Modular Types
    ...
    type Unsigned_8 is mod 2 ** 8;
    type Unsigned_16 is mod 2 ** 16;
- 
+
 ------------------------
 Shift/Rotate Functions
 ------------------------
@@ -490,20 +489,20 @@ Bit-Oriented Operations Example
 ---------------------------------
 
 * Assuming :ada:`Unsigned_16` is used
-    
+
     - 16-bits modular
 
 .. code:: Ada
 
    with Interfaces;
    use Interfaces;
-   ... 
+   ...
    procedure Swap( X : in out Unsigned_16 ) is
    begin
      X := ( Shift_Left(X,8) and 16#FF00# ) or
           ( Shift_Right(X,8) and 16#00FF# );
    end Swap;
- 
+
 ---------------------------------
 Why No Implicit Shift and Rotate?
 ---------------------------------
@@ -536,9 +535,8 @@ Shift/Rotate for User-Defined Types
       type Half_Word is new Interfaces.Unsigned_16;
       type Word is new Interfaces.Unsigned_32;
 
- 
 ---------------------------------------------
-Integer Type (Signed and Modular) Literals 
+Integer Type (Signed and Modular) Literals
 ---------------------------------------------
 
 * **Must not** contain a **fractional** part
@@ -551,16 +549,16 @@ Integer Type (Signed and Modular) Literals
    OK : Counter_T := 0; -- Right type, legal
    Bad : Counter_T := 0.0 ; -- Promotion, compile error
    Legal : Counter_T := Counter_T (0.0); -- Conversion, legal
- 
+
 -----------------------------------
 String Attributes For All Scalars
 -----------------------------------
 
-* `T'Image( input )`
+* :ada:`T'Image( input )`
 
    - Converts :ada:`T` |rightarrow| :ada:`String`
 
-* `T'Value( input )`
+* :ada:`T'Value( input )`
 
    - Converts :ada:`String` |rightarrow| :ada:`T`
 
@@ -573,39 +571,39 @@ String Attributes For All Scalars
    ...
    Get( Input );
    Number := Integer'Value( Input );
- 
+
 ----------------------------------
 Range Attributes For All Scalars
 ----------------------------------
 
-* `T'First`
+* :ada:`T'First`
 
   - First (**smallest**) value of type :ada:`T`
 
-* `T'Last`
+* :ada:`T'Last`
 
   - Last (**greatest**) value of type :ada:`T`
 
-* `T'Range`
+* :ada:`T'Range`
 
   - Shorthand for :ada:`T'First .. T'Last`
 
 .. code:: Ada
-   
+
    type Signed_T is range -99 .. 100;
    Smallest : Signed_T := Signed_T'First; -- -99
    Largest  : Signed_T := Signed_T'Last;  -- 100
- 
+
 -------------------------------------
 Neighbor Attributes For All Scalars
 -------------------------------------
 
-* `T'Pred (Input)`
+* :ada:`T'Pred (Input)`
 
    - Predecessor of specified value
    - :ada:`Input` type must be :ada:`T`
 
-* `T'Succ (Input)`
+* :ada:`T'Succ (Input)`
 
    - Successor of specified value
    - :ada:`Input` type must be :ada:`T`
@@ -620,21 +618,21 @@ Neighbor Attributes For All Scalars
    Signed := Signed'Succ( Signed ); -- Signed = -2
    ...
    Unsigned := Unsigned'Pred( Unsigned ); -- Signed = 1
- 
+
 ------------------------------------
 Min/Max Attributes For All Scalars
 ------------------------------------
 
-* `T'Min (Value_A, Value_B)`
+* :ada:`T'Min (Value_A, Value_B)`
 
   - **Lesser** of two :ada:`T`
 
-* `T'Max (Value_A, Value_B)`
+* :ada:`T'Max (Value_A, Value_B)`
 
   - **Greater** of two :ada:`T`
 
 .. code:: Ada
-   
+
    Safe_Lower : constant := 10;
    Safe_Upper : constant := 30;
    C : Integer := 15;
@@ -642,7 +640,7 @@ Min/Max Attributes For All Scalars
    C := Integer'Max (Safe_Lower, C - 1);
    ...
    C := Integer'Min (Safe_Upper, C + 1);
- 
+
 ------
 Quiz
 ------
@@ -678,7 +676,7 @@ D. Unknown - depends on the compiler
 ============================
 Discrete Enumeration Types
 ============================
- 
+
 -----------
 Examples
 -----------
@@ -700,7 +698,7 @@ Enumeration Types
    .. code:: Ada
 
       type <identifier> is ( <identifier-list> ) ;
- 
+
 * Literals
 
    - Distinct, ordered
@@ -714,7 +712,7 @@ Enumeration Types
       -- Red both a member of Colors and Stop_Light
       Shade : Colors := Red;
       Light : Stop_Light := Red;
- 
+
 -----------------------------
 Enumeration Type Operations
 -----------------------------
@@ -737,7 +735,7 @@ Enumeration Type Operations
    Heading := South;
    Heading := East + 1; -- compile error
    if Today < Tomorrow then ...
- 
+
 ---------------
 Character Types
 ---------------
@@ -758,7 +756,7 @@ Character Types
       type EBCDIC is ( nul, ..., 'a' , ..., 'A', ..., del );
       Control : EBCDIC := 'A';
       Nullo : EBCDIC := nul;
- 
+
 ----------------------------------
 Language-Defined Character Types
 ----------------------------------
@@ -818,7 +816,7 @@ Character Oriented Packages
    ...
      LC_Y_Diaeresis       : constant Character := Character'Val (255);
    end Ada.Characters.Latin_1;
- 
+
 ----------------------------------------
 Ada.Characters.Handling Sample Content
 ----------------------------------------
@@ -845,7 +843,7 @@ Ada.Characters.Handling Sample Content
      function To_Basic (Item : String) return String;
    ...
    end Ada.Characters.Handling;
- 
+
 -------------------------------
 Language-Defined Type Boolean
 -------------------------------
@@ -855,7 +853,7 @@ Language-Defined Type Boolean
    .. code:: Ada
 
       type Boolean is ( False, True );
- 
+
 * Supports assignment, relational operators, attributes
 
    .. code:: Ada
@@ -864,13 +862,13 @@ Language-Defined Type Boolean
       Counter : Integer;
       ...
       A := (Counter = 22);
- 
+
 * Logical operators :ada:`and`, :ada:`or`, :ada:`xor`, :ada:`not`
 
    .. code:: Ada
 
       A := B or ( not C ); -- For A, B, C boolean
- 
+
 ------------------------------------
 Why Boolean Isn't Just An Integer?
 ------------------------------------
@@ -878,7 +876,7 @@ Why Boolean Isn't Just An Integer?
 .. container:: columns
 
  .. container:: column
-  
+
     * Example: Real-life error
 
        - HETE-2 satellite **attitude control** system software (ACS)
@@ -889,9 +887,9 @@ Why Boolean Isn't Just An Integer?
         - Deployed after launch
 
  .. container:: column
-  
+
     .. image:: ../../images/hete-2_satellite.jpeg
-    
+
 ------------------------------------
 Why Boolean Isn't Just An Integer!
 ------------------------------------
@@ -904,11 +902,11 @@ Why Boolean Isn't Just An Integer!
 
    .. code:: C
 
-      if (rom->paddles_deployed == 1) 
+      if (rom->paddles_deployed == 1)
         use_deployed_inertia_matrix();
       else
         use_stowed_inertia_matrix();
- 
+
 * Later :C:`paddles_deployed` became a **4-bits** value
 
     - One bit per paddle
@@ -933,7 +931,7 @@ Boolean Operators' Operand Evaluation
  .. code:: Ada
 
     if Divisor /= 0 and K / Divisor = Max then ... -- Problem!
- 
+
 -----------------------------
 Short-Circuit Control Forms
 -----------------------------
@@ -947,13 +945,13 @@ Short-Circuit Control Forms
      .. code:: Ada
 
         Divisor /= 0 and then K / Divisor = Max
- 
+
    - :ada:`or else`: if left is :ada:`True`, skip right
 
      .. code:: Ada
 
         Divisor = 0 or else K / Divisor = Max
- 
+
 -----------------------------------
 Enumeration Representation Values
 -----------------------------------
@@ -967,7 +965,7 @@ Enumeration Representation Values
 
          type Enum_T is (Able, Baker, Charlie, Dog, Easy, Fox);
          for Enum_T use (1, 2, 4, 8, Easy => 16, Fox => 32);
- 
+
 * No manipulation *in language standard*
 
    - Standard is **logical** ordering
@@ -985,12 +983,11 @@ Order Attributes For All Discrete Types
 -----------------------------------------
 
 * **All discrete** types, mostly useful for enumerated types
-
-* `T'Pos (Input)`
+* :ada:`T'Pos (Input)`
 
    - "Logical position number" of :ada:`Input`
 
-* `T'Val (Input)`
+* :ada:`T'Val (Input)`
 
    - Converts "logical position number" to :ada:`T`
 
@@ -1004,7 +1001,7 @@ Order Attributes For All Discrete Types
    ...
    Get( Position );
    Today := Days'Val( Position );
- 
+
 .. container:: speakernote
 
    Val/pos compared to value/image - same number of characters
@@ -1070,7 +1067,7 @@ Real Types
 * Class focuses on floating-point
 
 ------------------------------------------
-Real Type (Floating and Fixed) Literals 
+Real Type (Floating and Fixed) Literals
 ------------------------------------------
 
 * **Must** contain a fractional part
@@ -1081,7 +1078,7 @@ Real Type (Floating and Fixed) Literals
    type Phase is digits 8; -- floating-point
    OK : Phase := 0.0;
    Bad : Phase := 0 ; -- compile error
- 
+
 --------------------------------
 Declaring Floating Point Types
 --------------------------------
@@ -1092,7 +1089,7 @@ Declaring Floating Point Types
 
        type <identifier> is
            digits <expression> [range constraint];
- 
+
   - *digits* |rightarrow| **minimum** number of significant digits
   - **Decimal** digits, not bits
 
@@ -1107,7 +1104,6 @@ Predefined Floating Point Types
 ---------------------------------
 
 * Type :ada:`Float` ``>= 6`` digits
-
 * Additional implementation-defined types
 
    - :ada:`Long_Float` ``>= 11`` digits
@@ -1136,7 +1132,7 @@ Base Decimal Precision
       .. code:: Ada
 
          type My_Type is digits 8;
- 
+
    - :ada:`My_Type` will have 12 **or** 24 digits of precision
 
 -------------------------------
@@ -1158,7 +1154,6 @@ Floating Point Type Operators
       + Not possible to ask for root
       + `X**0.5` |rightarrow| `sqrt(x)`
 
-
 ---------------------------------
 Floating Point Division By Zero
 ---------------------------------
@@ -1176,7 +1171,7 @@ Floating Point Division By Zero
 
     subtype MyFloat is Float range Float'First .. Float'Last;
     type MyFloat is new Float range Float'First .. Float'Last;
- 
+
 -----------------------------------------
 Using Equality for Floating Point Types
 -----------------------------------------
@@ -1190,7 +1185,7 @@ Using Equality for Floating Point Types
 * Perhaps define your own function
 
    - Comparison within tolerance (:math:`+\varepsilon` / :math:`-\varepsilon`)
- 
+
 --------------------------------
 Floating Point Type Attributes
 --------------------------------
@@ -1200,22 +1195,22 @@ Floating Point Type Attributes
    .. code:: Ada
 
       type Real is digits N;  -- N static
- 
-   - `Real'Digits`
+
+   - :ada:`Real'Digits`
 
       + Number of digits **requested** (N)
 
-   - `Real'Base'Digits`
+   - :ada:`Real'Base'Digits`
 
       + Number of **actual** digits
 
-   - `Real'Rounding (X)`
+   - :ada:`Real'Rounding (X)`
 
       + Integral value nearest to `X`
       + *Note* :ada:`Float'Rounding (0.5) = 1`
 
-*  Model-oriented attributes
-    
+* Model-oriented attributes
+
    - Advanced machine representation of the floating-point type
    - Mantissa, strict mode
 
@@ -1267,7 +1262,7 @@ Miscellaneous
 
    - Unsafe **Unchecked_Conversion** available
 
-* Functional syntax 
+* Functional syntax
 
    - Function named :ada:`Target_Type`
    - Implicitely defined
@@ -1357,7 +1352,7 @@ Subtype
    .. code:: Ada
 
       subtype defining_identifier is type_name [constraints];
- 
+
    - `name` is an existing :ada:`type` or :ada:`subtype`
 
 * If no constraint |rightarrow| type alias
@@ -1373,13 +1368,13 @@ Subtype Example
       type Days is (Sun, Mon, Tues, Wed, Thurs, Fri, Sat);
       subtype Weekdays is Days range Mon .. Fri;
       Workday : Weekdays; -- type Days limited to Mon .. Fri
- 
+
 * Equivalent to **anonymous** subtype
 
    .. code:: Ada
 
       Same_As_Workday : Days range Mon .. Fri;
- 
+
 ----------------------
 Kinds of Constraints
 ----------------------
@@ -1393,7 +1388,7 @@ Kinds of Constraints
       subtype Weekdays is Days range Mon .. Fri;
       subtype Symmetric_Distribution is
           Float range -1.0 .. +1.0;
- 
+
 * Other kinds, discussed later
 
 ------------------------
@@ -1407,15 +1402,15 @@ Effects of Constraints
       type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
       subtype Weekdays is Days range Mon .. Fri;
       subtype Weekend is Days range Sat .. Sun;
- 
+
 * Functionalities are **kept**
 
    .. code:: Ada
 
-      subtype Positive is Integer range 1 .. Integer'Last; 
+      subtype Positive is Integer range 1 .. Integer'Last;
       P : Positive;
       X : Integer := P; -- X and P are the same type
- 
+
 ---------------------------------
 Assignment Respects Constraints
 ---------------------------------
@@ -1430,7 +1425,7 @@ Assignment Respects Constraints
    N : Natural  := Q; -- runtime error if Q < 0
    J : Integer  := P; -- always legal
    K : Integer  := N; -- always legal
- 
+
 ----------------------------------------
 Attributes Reflect the Underlying Type
 ----------------------------------------
@@ -1440,17 +1435,17 @@ Attributes Reflect the Underlying Type
    type Color is
        (White, Red, Yellow, Green, Blue, Brown, Black);
    subtype Rainbow is Color range Red .. Blue;
- 
-* `T'First` and `T'Last` respect constraints
 
-   - `Rainbow'First` |rightarrow| Red *but* `Color'First` |rightarrow| White
-   - `Rainbow'Last` |rightarrow| Blue *but* `Color'Last` |rightarrow| Black
+* :ada:`T'First` and :ada:`T'Last` respect constraints
+
+   - :ada:`Rainbow'First` |rightarrow| Red *but* :ada:`Color'First` |rightarrow| White
+   - :ada:`Rainbow'Last` |rightarrow| Blue *but* :ada:`Color'Last` |rightarrow| Black
 
 * Other attributes reflect base type
 
-   - `Color'Succ (Blue)` = Brown = `Rainbow'Succ (Blue)`
-   - `Color'Pos (Blue)` = 4 = `Rainbow'Pos (Blue)`
-   - `Color'Val (0)` = White = `Rainbow'Val (0)`
+   - :ada:`Color'Succ (Blue)` = Brown = :ada:`Rainbow'Succ (Blue)`
+   - :ada:`Color'Pos (Blue)` = 4 = :ada:`Rainbow'Pos (Blue)`
+   - :ada:`Color'Val (0)` = White = :ada:`Rainbow'Val (0)`
 
 * Assignment must still satisfy target constraints
 
@@ -1458,7 +1453,7 @@ Attributes Reflect the Underlying Type
 
       Shade : Color range Red .. Blue := Brown; -- runtime error
       Hue : Rainbow := Rainbow'Succ (Blue);     -- runtime error
- 
+
 ---------------------------
 Range Constraint Examples
 ---------------------------
@@ -1475,7 +1470,7 @@ Range Constraint Examples
        range 1 .. 0;  -- silly when hard-coded...
    -- evaluated when subtype defined, not when object declared
    subtype Dynamic is Integer range Lower .. Upper;
- 
+
 -----------------------------
 Stand-Alone (Sub)Type Names
 -----------------------------
@@ -1486,7 +1481,6 @@ Stand-Alone (Sub)Type Names
 
 * Selected examples
 
- 
 -------------------------------------
 Subtypes and Default Initialization
 -------------------------------------
@@ -1521,14 +1515,12 @@ Quiz
 
    type Enum_T is (Sat, Sun, Mon, Tue, Wed, Thu, Fri);
    subtype Enum_Sub_T is Enum_T range Mon .. Fri;
-   type Array_T is array (Integer range <>) of Integer;
-   subtype Array_Sub_T is Array_T (1 .. 100);
 
 Which subtype definition is valid?
 
    A. ``subtype A is Enum_Sub_T range Enum_Sub_T'Pred (Enum_Sub_T'First) .. Enum_Sub_T'Last;``
-   B. ``subtype B is Array_Sub_T (1 .. 10);``
-   C. :answermono:`subtype C is String;`
+   B. ``subtype B is range Sat .. Mon;``
+   C. :answermono:`subtype C is Integer;`
    D. ``subtype D is digits 6;``
 
 .. container:: animate
@@ -1536,7 +1528,7 @@ Which subtype definition is valid?
    Explanations
 
    A. This generates a run-time error because the first enumeral specified is not in the range of :ada:`Enum_Sub_T`
-   B. Compile error - array type is already constrained
+   B. Compile error - no type specified
    C. Correct - standalone subtype
    D. :ada:`Digits 6` is used for a type definition, not a subtype
 
@@ -1567,7 +1559,7 @@ Summary
       Mine : Yen := 1;
       Yours : Ruble := 1;
       Mine := Yours; -- illegal
- 
+
 ------------------------------------
 User-Defined Numeric Type Benefits
 ------------------------------------
@@ -1581,7 +1573,7 @@ User-Defined Numeric Type Benefits
 
    - No run-time (bad) suprise
 
-* **Portability** enhanced 
+* **Portability** enhanced
 
    - Reduced hardware dependencies
 
@@ -1598,7 +1590,7 @@ Summary
 
 * User definitions from existing types *can* be good
 * Right **trade-off** depends on **use-case**
-   
+
    - More types |rightarrow| more precision |rightarrow| less bugs
    - Storing **both** feet and meters in :ada:`Float` has caused bugs
    - More types |rightarrow| more complexity |rightarrow| more bugs

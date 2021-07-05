@@ -57,7 +57,7 @@ Common Container Processing
 
    - Prefixed: `My_List.Append ( Item );`
    - Untagged: `Append(My_List, Item);`
- 
+
 * Hashed vs Ordered
 
    - **Ordered** containers are sequential
@@ -116,7 +116,7 @@ Doubly Linked List Example
    type Space_Agencies_T is (Nasa, Esa, Rsa);
    Last_Position : constant integer :=
       Space_Agencies_T'pos ( Space_Agencies_T'last );
-   
+
    type List_Element_T is
       record
          Agency : Space_Agencies_T;
@@ -125,15 +125,15 @@ Doubly Linked List Example
    function Is_Equal ( Left, Right : List_Element_T )
          return boolean is
       ( Left.Agency = Right.Agency );
-   
+
    package Database_Pkg is new
      Ada.Containers.Bounded_Doubly_Linked_Lists
        (Element_Type => List_Element_T,
         "="          => Is_Equal);
-   
+
    Database : Database_Pkg.List(
       Ada.Containers.Count_Type(1 + Last_Position));
- 
+
 ----------------
 Vector Example
 ----------------
@@ -143,15 +143,15 @@ Vector Example
    type Space_Agencies_T is (Nasa, Esa, Rsa);
    Last_Position : constant integer :=
       Space_Agencies_T'pos ( Space_Agencies_T'last );
-   
-   package Database_Pkg is new 
+
+   package Database_Pkg is new
       Ada.Containers.Bounded_Vectors
          (Index_Type => natural,
           Element_Type => Satellite.Data_T);
-   
+
    Database : Database_Pkg.Vector(
       Ada.Containers.Count_Type(1 + Last_Position));
- 
+
 -------------
 Map Example
 -------------
@@ -161,15 +161,15 @@ Map Example
    type Space_Agencies_T is (Nasa, Esa, Rsa);
    Last_Position : constant integer :=
       Space_Agencies_T'pos ( Space_Agencies_T'last );
-   
-   package Database_Pkg is new 
+
+   package Database_Pkg is new
       Ada.Containers.Bounded_Ordered_Maps
          (Key_Type => Space_Agencies_T,
           Element_Type => Satellite.Data_T);
-   
+
    Database : Database_Pkg.Map(Ada.Containers.Count_Type(
                                1 + Last_Position));
- 
+
 --------------------
 Sorting Mechanisms
 --------------------
