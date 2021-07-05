@@ -9,6 +9,7 @@ procedure Main is
    --
    -- Define a type Object_Status_T that has four possible values
    -- Out_Of_Range, Tracked, Untracked, Selected
+   type Object_Status_T is (Unknown);
 
    -- Define a type Angle_Degrees_T that is modulo 360
 
@@ -20,8 +21,10 @@ procedure Main is
    -- QUESTION 1 - Part B
    --
    -- Declare John_Connor, an Object_Status_T with value Out_Of_Range
+   John_Connor : Object_Status_T := Unknown;
 
    -- Declare Radar_Angle to be an Angle_Degrees_T with a starting value
+   Radar_Angle : Float;
 
    -- Declare an Object_Distance_Km_T named Distance_Closest_Object, set to 10km
 
@@ -29,6 +32,8 @@ procedure Main is
 
    -- Declare a Float named Time_To_Arrival, calculated as
    -- Distance_Closest_Object / Running_Speed * 3600
+   Time_To_Arrival : Float;
+
 begin
    -- This line will compile if the declarations are OK
    Radar_Internals.Time_Step (Float (Radar_Angle), Time_To_Arrival,

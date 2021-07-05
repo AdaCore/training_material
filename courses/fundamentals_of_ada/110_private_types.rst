@@ -32,7 +32,7 @@ Information Hiding
 .. container:: columns
 
  .. container:: column
-  
+
     * A design technique in which implementation artifacts are made inaccessible to users
     * Based on control of visibility to those artifacts
 
@@ -42,10 +42,10 @@ Information Hiding
     * Concept is "software integrated circuits"
 
  .. container:: column
-  
+
     .. image:: ../../images/interface_vs_implementation.png
        :width: 70%
-    
+
 -------
 Views
 -------
@@ -56,7 +56,7 @@ Views
 
 * Some views are implicit in language
 
-   - Mode `in` parameters have a view disallowing assignment
+   - Mode :ada:`in` parameters have a view disallowing assignment
 
 * Views may be explicitly specified
 
@@ -90,7 +90,7 @@ Abstract Data Types
    type States is (Fully_Open, Partially_Open,
                    Closed, Unavailable);
    function Current_State (V : Valve) return States;
- 
+
 ============================================
 Implementing Abstract Data Types via Views
 ============================================
@@ -131,7 +131,7 @@ Package Visible and Private Parts for Views
    private
    ... hidden declarations of types, variables, subprograms ...
    end name;
- 
+
 -----------------------------------
 Declaring Private Types for Views
 -----------------------------------
@@ -141,7 +141,7 @@ Declaring Private Types for Views
    .. code:: Ada
 
       type defining_identifier is private;
- 
+
 * Private type declaration must occur in visible part
 
    - So users can reference the type name
@@ -160,7 +160,7 @@ Declaring Private Types for Views
    private
      type Valve is ...
    end Control;
- 
+
 ---------------------------------
 Partial and Full Views of Types
 ---------------------------------
@@ -210,7 +210,7 @@ Abstract Data Machine Stack
      procedure Push (Item : in Integer);
      procedure Pop(Item : out Integer);
    end Integer_Stack;
-   
+
    package body Integer_Stack is
      -- no external visibility to these global objects
      Values : array (1 .. Capacity) of Integer;
@@ -224,7 +224,7 @@ Abstract Data Machine Stack
         ...
      end Pop;
    end Integer_Stack;
- 
+
 -------------------------------------
 Abstract Data Type Stack Definition
 -------------------------------------
@@ -247,7 +247,7 @@ Abstract Data Type Stack Definition
        Top : Integer range 0 .. Capacity := 0;
      end record;
    end Bounded_Stacks;
- 
+
 ------------------------------------------
 Abstract Data Type Stack Body Visibility
 ------------------------------------------
@@ -270,7 +270,7 @@ Abstract Data Type Stack Body Visibility
      end Pop;
    ...
    end Bounded_Stacks;
- 
+
 -----------------------------------
 Users Declare Objects of the Type
 -----------------------------------
@@ -289,7 +289,7 @@ Users Declare Objects of the Type
    if Empty ( Y ) then
    ...
    Pop ( Counter, Z );
- 
+
 ------------------------------------
 Compile-Time Visibility Protection
 ------------------------------------
@@ -301,7 +301,7 @@ Compile-Time Visibility Protection
    .. code:: Ada
 
       with Bounded_Stacks;
-      procedure User is 
+      procedure User is
         S : Bounded_Stacks.Stack;
       begin
         S.Top := 1;  -- Top is not visible
@@ -318,7 +318,7 @@ Sample Expression In C++ for Comparison
    namespace Bounded_Stacks {
       // for integers, purely for sake of simplicity
       enum {Capacity=100};  // arbitrary
-      class Stack { 
+      class Stack {
       public:
          Stack();
          void Push (int X);
@@ -329,7 +329,7 @@ Sample Expression In C++ for Comparison
       }; // Stack
    } // Bounded_Stacks
    #endif
- 
+
 -------------------
 Benefits of Views
 -------------------
@@ -401,20 +401,20 @@ Private Part Location
 * Users can compile their code before the package body is compiled or even written
 
    * Package definition
-    
+
       .. code:: Ada
-    
+
           package Bounded_Stacks is
             type Stack is private;
             ...
           private
             type Stack is ...
           end Bounded_Stacks;
-     
+
    * Package reference
-    
+
       .. code:: Ada
-    
+
           with Bounded_Stacks;
           procedure User is
             S : Bounded_Stacks.Stack;
@@ -422,7 +422,7 @@ Private Part Location
           begin
             ...
           end User;
-     
+
 --------------------------------
 Private Part and Recompilation
 --------------------------------
@@ -447,7 +447,7 @@ Declarative Regions
    - Thus anything declared in specification is visible in body
 
 .. code:: Ada
-    
+
    package Foo is
       type Private_T is private;
       procedure X ( B : in out Private_T );
@@ -457,14 +457,14 @@ Declarative Regions
       type Hidden_T is ...;
       type Private_T is array ( 1 .. 3 ) of Hidden_T;
    end Foo;
-       
+
    package body Foo is
       -- Z is not visible to clients
       procedure Z ( B : in out Private_T ) is ...
       procedure Y ( B : in out Private_T ) is ...
       procedure X ( B : in out Private_T ) is ...
     end Foo;
-     
+
 -----------------------
 Full Type Declaration
 -----------------------
@@ -472,7 +472,7 @@ Full Type Declaration
 .. container:: columns
 
  .. container:: column
-  
+
     * May be any type
 
        - Predefined or user-defined
@@ -484,9 +484,9 @@ Full Type Declaration
        - Types, subprograms, variables, etc.
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        package P is
          type T is private;
          ...
@@ -499,7 +499,7 @@ Full Type Declaration
            A, B : List := Initial;
          end record;
        end P;
-     
+
 .. container:: speakernote
 
    List and Initial are not visible to callers
@@ -527,7 +527,7 @@ Deferred Constants
      Null_Set : constant Set :=  -- definition
         (others => False);
    end P;
- 
+
 ------
 Quiz
 ------
@@ -579,14 +579,14 @@ View Operations
  .. container:: columns
 
   .. container:: column
-  
+
     * **User** of package has **Partial** view
 
        - Operations exported by package
        - Basic operations
 
   .. container:: column
-  
+
     * **Designer** of package has **Full** view
 
        - All operations based upon full definition of type
@@ -594,7 +594,7 @@ View Operations
        - Selected components for records
        - Attributes per type definition
        - Numeric manipulation for numerics
-       - et cetera 
+       - et cetera
 
 -------------------------------------
 Designer View Sees Full Declaration
@@ -616,13 +616,13 @@ Designer View Sees Full Declaration
        Top : Index := 0;
      end record;
    end Bounded_Stacks;
- 
+
 .. container:: speakernote
 
    Inside BoundedStacks, STACK is just a normal record
 
 --------------------------------------
-Designer View Allows All Operations 
+Designer View Allows All Operations
 --------------------------------------
 
 .. code:: Ada
@@ -643,7 +643,7 @@ Designer View Allows All Operations
        The_Stack.Top := The_Stack.Top - 1;
      end Pop;
    end Bounded_Stacks;
- 
+
 -----------------------------
 Users Have the Partial View
 -----------------------------
@@ -664,7 +664,7 @@ Users Have the Partial View
    private
      ...
    end Bounded_Stacks;
- 
+
 ------------------------
 User View's Activities
 ------------------------
@@ -677,7 +677,7 @@ User View's Activities
    .. code:: Ada
 
       C : Complex.Number := Complex.I;
- 
+
 * Assignment, equality and inequality, conversions
 * Designer's declared subprograms
 * User-declared subprograms
@@ -699,7 +699,7 @@ User View Formal Parameters
 
    -- external implementation of "Top"
    procedure Get_Top (
-       The_Stack : in out Bounded_Stacks.Stack;  
+       The_Stack : in out Bounded_Stacks.Stack;
        Value : out Integer) is
      Local : Integer;
    begin
@@ -707,7 +707,7 @@ User View Formal Parameters
      Value := Local;
      Bounded_Stacks.Push (Local, The_Stack);
    end Get_Top;
- 
+
 ====================================
 When To Use or Avoid Private Types
 ====================================
@@ -732,7 +732,7 @@ When To Use Private Types
       C : Valve;
       ...
       C := A + B;  -- addition not meaningful
- 
+
 * Users have no "need to know"
 
    - Based upon expected usage
@@ -799,7 +799,7 @@ Constructors
 * Usually functions
 
 .. code:: Ada
-    
+
    package Complex is
      type Number is private;
      function Make (Real_Part : Float; Imaginary : Float) return Number;
@@ -838,7 +838,7 @@ Procedures As Constructors
           Real_Part, Imaginary : Float;
         end record;
       end Complex;
- 
+
 * Body (partial)
 
    .. code:: Ada
@@ -851,7 +851,7 @@ Procedures As Constructors
             This.Imaginary := Imaginary;
           end Make;
       ...
- 
+
 -----------
 Selectors
 -----------
@@ -860,7 +860,7 @@ Selectors
 * Usually functions
 
 .. code:: Ada
-    
+
    package Complex is
      type Number is private;
      function Real_Part (This: Number) return Float;
@@ -870,7 +870,7 @@ Selectors
        Real_Part, Imaginary : Float;
      end record;
    end Complex;
-       
+
    package body Complex is
      ...
      function Real_Part (This : Number) return Float is
@@ -904,7 +904,7 @@ Summary
    - Same protection as Abstract Data Machine idiom
    - Capabilities and flexibility of types
 
-* May also be `limited`
+* May also be :ada:`limited`
 
    - Thus additionally no assignment or predefined equality
    - More on this later

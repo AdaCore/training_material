@@ -23,7 +23,7 @@ Why Elaboration Is Needed
          -- value not known at compile time
          Val : constant Integer := Dep1.Call;
       end P1;
- 
+
 * May also involve dynamic allocation:
 
    .. code:: Ada
@@ -33,7 +33,7 @@ Why Elaboration Is Needed
          -- size not known at compile time
          Buffer : String (1 .. P1.Val);
       end P1;
- 
+
 * Or explicit user code to initialize a package
 
    .. code:: Ada
@@ -43,7 +43,7 @@ Why Elaboration Is Needed
       begin
          Put_Line ("Starting P3");
       end P3;
- 
+
 * Requires initialization code at startup
 * Implies ordering
 
@@ -75,13 +75,13 @@ Elaboration
    - Package sequence of statements
 
 .. code:: Ada
-    
+
    with Dep1;
    package P1 is
       -- Dep1 body has to be elaborated before this point
       V_Spec : Integer := Dep1.Call;
    end P1;
-       
+
    with Dep2;
    package body P1 is
       V_Body : Integer;
@@ -89,7 +89,7 @@ Elaboration
       -- Dep2 body has to be elaborated before this point
       V_Body := Dep2.Call;
    end P1;
-     
+
 -------------------
 Elaboration Order
 -------------------
@@ -111,7 +111,7 @@ Elaboration Order
       package body P2 is
          V_Body : Integer := Call('B');
       end P1;
- 
+
 * The binder (GNAT: gnatbind) is responsible for finding an elaboration order
 
    - Computes the possible order
@@ -121,22 +121,22 @@ Elaboration Order
 Circular Elaboration Dependencies
 -----------------------------------
 
-* Although not explicitly specified by the `with` clauses, elaboration dependencies may exhibit circularities
+* Although not explicitly specified by the :ada:`with` clauses, elaboration dependencies may exhibit circularities
 * Sometimes, they are static
-    
+
    .. code:: Ada
-    
+
       package body P1 is
          V_Body : Integer := P2.Call;
       end P1;
       package body P2 is
          V_Body : Integer := P1.Call;
       end P2;
-     
+
 * Sometimes they are dynamic
-    
+
    .. code:: Ada
-    
+
       package body P1 is
          V_Body : Integer;
       begin
@@ -151,7 +151,7 @@ Circular Elaboration Dependencies
             V_Body := P2.Call;
          end if;
       end P2;
-     
+
 -------------------------------
 GNAT Static Elaboration Model
 -------------------------------
@@ -256,7 +256,7 @@ Examples
          pragma Preelaborate;
          Var : Integer := 7;
       end P1;
- 
+
 * But compiler may generate elaboration code
 
    .. code:: Ada
@@ -266,7 +266,7 @@ Examples
         type Ptr is access String;
         v : Ptr := new String'("hello");
       end P1;
- 
+
 ---------------
 `Pragma Pure`
 ---------------
@@ -286,7 +286,7 @@ Examples
          Argument_Error : exception;
          Pi : constant := 3.14...;
       end Ada.Numerics;
- 
+
 * But compiler may generate elaboration code
 
    .. code:: Ada
@@ -296,7 +296,7 @@ Examples
          Var : constant Array (1 .. 10 * 1024) of Integer :=
                (others => 118);
       end P2;
- 
+
 -------------------------
 `Pragma Elaborate_Body`
 -------------------------
@@ -323,7 +323,7 @@ Examples
       package body P2 is
       ...
       end P2;
- 
+
 * Useful in the case where a variable declared in the specification is initialized in the body
 
 .. container:: speakernote
@@ -334,11 +334,11 @@ Examples
 `Pragma Elaborate`
 --------------------
 
-* `Pragma Elaborate` forces the elaboration of a dependency body
+* :ada:`Pragma Elaborate` forces the elaboration of a dependency body
 * It does not force the elaboration of transitive dependencies
 
 .. code:: Ada
-    
+
    package P1 is
       function Call return Integer;
    end P1;
@@ -361,17 +361,17 @@ Examples
    begin
       V := P2.Call;
    end P3;
-     
+
 ------------------------
 `Pragma Elaborate_All`
 ------------------------
 
-* `Pragma Elaborate_All` forces the elaboration of a dependency body and all transitive dependencies
+* :ada:`Pragma Elaborate_All` forces the elaboration of a dependency body and all transitive dependencies
 * May introduce unwanted cycles
 * Safer than `Elaborate`
 
 .. code:: Ada
-    
+
    package P1 is
       function Call return Integer;
    end P1;
@@ -394,7 +394,7 @@ Examples
    begin
       V := P2.Call;
    end P3;
-     
+
 ========
 Lab
 ========
