@@ -215,7 +215,7 @@ Which assignment is legal?
    A. ``T1    := T2;``
    B. ``R1    := R2;``
    C. :answermono:`R1.F1 := R2.F1;`
-   D. ``R2.F2 := R2.T2;``
+   D. ``R2.F2 := R2.F2;``
 
 .. container:: animate
 
@@ -380,24 +380,18 @@ Quiz
          F2 : Character;
       end record;
       Zero : T := (0, ' ');
+      One : constant T := (1, 'a');
+      Two : T;
       function F return T;
    end P;
 
 Which is a correct completion of F?
 
-A. :answermono:`function F return T is ((3, 'c'));`
-B. | ``function F return T is``
-   |   ``Two : T;``
-   | ``begin``
-   |   ``Two := (2, 'b');``
-   |   ``return Two;``
-   | ``end F;``
-C. | ``function F return T is``
-   |   ``One : constant T := (1, 'a');``
-   | ``begin``
-   |   ``return One;``
-   | ``end F;``
-D. ``function F return T is ( Zero );``
+A. :answermono:`return (3, 'c');`
+B. | ``Two := (2, 'b');``
+   | ``return Two;``
+C. ``return One;``
+D. ``return Zero;``
 
 .. container:: animate
 
@@ -426,34 +420,37 @@ Function Extended Return Statements
 
 * Result is expressed as an object
 * More expressive than aggregates
+* Handling of unconstrained types
 * Syntax (simplified):
 
    .. code:: Ada
+    
+      return identifier : subtype [:= expression];
 
-      extended_return_statement ::= return defining_identifier : [aliased]
-                                    return_subtype_indication
-                                    [:= expression]
-                                    [do handled_sequence_of_statements
-                                    end return];
-
-      return_subtype_indication ::= subtype_name [constraint]
-
-* Example
+      return identifier : subtype
+      [do
+         sequence_of_statements ...
+       end return];
+             
+----------------------------------
+Extended Return Statements Example
+----------------------------------
 
    .. code:: Ada
 
-       function F return Spin_Lock is
-         X : Interfaces.Unsigned_8;
+       --  Implicitely limited array
+       type Spin_Lock_Array (Positive range <>) of Spin_Lock;
+       
+       function F return Spin_Lock_Array is
        begin
-         return Result : Spin_Lock do
-           X := Do_Something ( 1 );
-           Result.Flag := X;
-         end return;
+         return Result : Spin_Lock_Array (1 .. 10) do
+           ...
+         end return;      
        end F;
 
---------------------------------------
-`Sequence_of_Statements` Is Optional
---------------------------------------
+------------------------------------
+Expression / Statements Are Optional
+------------------------------------
 
 .. admonition:: Language Variant
 
@@ -479,34 +476,31 @@ Function Extended Return Statements
         return Result : Spin_Lock := (Flag => X);
       end F;
 
----------------------------------------
-`Sequence_of_Statements` Restrictions
----------------------------------------
+-----------------------
+Statements Restrictions
+-----------------------
 
 .. admonition:: Language Variant
 
    Ada 2005
 
-* Any statement except another extended return
-* A simple return statement is allowed
+* **No** nested extended return
+* **Simple** return statement **allowed**
 
-   - Without an expression, since object expresses the value
-   - Returns the value of the declared object immediately
+   - **Without** expression
+   - Returns the value of the **declared object** immediately
 
 .. code:: Ada
 
    function F return Spin_Lock is
-     X : Boolean;
    begin
      return Result : Spin_Lock do
+       if Set_Flag then
+         Result.Flag := 1;
+         return;  --  returns 'Result'
+       end if; 
        Result.Flag := 0;
-       -- compute X ...
-       if X then
-         return;  -- returns 'Result'
-       end if;
-       ...
-       Result.Flag := 1;
-     end return;
+     end return; --  Implicit return
    end F;
 
 =====================================

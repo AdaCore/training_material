@@ -1,6 +1,6 @@
-*************************
-Ada Version Comparison
-*************************
+********************************
+Annex - Ada Version Comparison
+********************************
 
 .. |checkmark| replace:: :math:`\checkmark`
 

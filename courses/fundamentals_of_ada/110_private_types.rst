@@ -17,12 +17,12 @@ Introduction
 * Why does fixing bugs introduce new ones?
 * Control over visibility is a primary factor
 
-   - Changes to an abstraction's internals shouldn't break clients
+   - Changes to an abstraction's internals shouldn't break users
    - Including type representation
 
 * Need tool-enforced rules to isolate dependencies
 
-   - Between implementations of abstractions and their clients
+   - Between implementations of abstractions and their users
    - In other words, "information hiding"
 
 --------------------
@@ -62,34 +62,11 @@ Views
 
    - Disallowing access to representation
    - Disallowing assignment
-   - Others...
 
 * Purpose: control usage in accordance with design
 
    - Adherence to interface
-   - Abstract Data Types!
-
----------------------
-Abstract Data Types
----------------------
-
-* Designers define meaningful values and operations
-
-   - Logical values such as *opened*, *closed*, etc...
-   - Proper operations such as **Open**, **Close**, etc...
-
-* Users manipulate objects within designer's intent
-
-   - Representation-dependent manipulations are prohibited
-
-.. code:: Ada
-
-   type Valve is ...
-   procedure Open (V : in out Valve);
-   procedure Close (V : in out Valve);
-   type States is (Fully_Open, Partially_Open,
-                   Closed, Unavailable);
-   function Current_State (V : Valve) return States;
+   - Abstract Data Types
 
 ============================================
 Implementing Abstract Data Types via Views
@@ -144,11 +121,14 @@ Declaring Private Types for Views
 
 * Private type declaration must occur in visible part
 
+   - **Incomplete** type
    - So users can reference the type name
 
 * Full type declaration must appear in private part
 
-   - Thus representation is not visible outside the package
+   - Type **completion**
+   - **Never** visible to users
+   - **Not** visible to designer until reached
 
 .. code:: Ada
 
@@ -307,29 +287,6 @@ Compile-Time Visibility Protection
         S.Top := 1;  -- Top is not visible
       end User;
 
------------------------------------------
-Sample Expression In C++ for Comparison
------------------------------------------
-
-.. code:: C++
-
-   #ifndef BOUNDED_STACKS_
-   #define BOUNDED_STACKS_
-   namespace Bounded_Stacks {
-      // for integers, purely for sake of simplicity
-      enum {Capacity=100};  // arbitrary
-      class Stack {
-      public:
-         Stack();
-         void Push (int X);
-         void Pop (int& X);
-      private:
-         int Values[Capacity];
-         int Top;
-      }; // Stack
-   } // Bounded_Stacks
-   #endif
-
 -------------------
 Benefits of Views
 -------------------
@@ -396,7 +353,7 @@ Examples
 Private Part Location
 -----------------------
 
-* Must be in package declaration, not body
+* Must be in package specification, not body
 * Body usually compiled separately after declaration
 * Users can compile their code before the package body is compiled or even written
 
@@ -431,7 +388,7 @@ Private Part and Recompilation
 
    - Compiler needs info from private part for users' code, e.g., storage layouts for private-typed objects
 
-* Thus changes to private part require client recompilation
+* Thus changes to private part require user recompilation
 * Some vendors avoid "unnecessary" recompilation
 
    - Comment additions or changes
@@ -452,14 +409,14 @@ Declarative Regions
       type Private_T is private;
       procedure X ( B : in out Private_T );
    private
-      -- Y and Hidden_T are not visible to clients
+      -- Y and Hidden_T are not visible to users
       procedure Y ( B : in out Private_T );
       type Hidden_T is ...;
       type Private_T is array ( 1 .. 3 ) of Hidden_T;
    end Foo;
 
    package body Foo is
-      -- Z is not visible to clients
+      -- Z is not visible to users
       procedure Z ( B : in out Private_T ) is ...
       procedure Y ( B : in out Private_T ) is ...
       procedure X ( B : in out Private_T ) is ...
@@ -589,6 +546,7 @@ View Operations
 
     * **Designer** of package has **Full** view
 
+       - **Once** completion is reached
        - All operations based upon full definition of type
        - Indexed components for arrays
        - Selected components for records
