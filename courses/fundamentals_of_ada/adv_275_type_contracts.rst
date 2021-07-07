@@ -46,9 +46,9 @@ Type Invariants
 Examples
 ----------
 
-.. include:: examples/215_type_contracts/type_invariants.rst
+.. include:: examples/adv_275_type_contracts/type_invariants.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/215_type_contracts.html#type-invariants`
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_275_type_contracts.html#type-invariants`
 
 -----------------
 Type Invariants
@@ -295,9 +295,9 @@ Subtype Predicates
 Examples
 ----------
 
-.. include:: examples/215_type_contracts/subtype_predicates.rst
+.. include:: examples/adv_275_type_contracts/subtype_predicates.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/215_type_contracts.html#subtype-predicates`
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_275_type_contracts.html#subtype-predicates`
 
 ----------------------------
 Subtype Predicates Concept
@@ -852,7 +852,7 @@ D. | ``subtype T is Days_T with``
 Lab
 ========
 
-.. include:: labs/215_type_contracts.lab.rst
+.. include:: labs/adv_275_type_contracts.lab.rst
 
 =========
 Summary
