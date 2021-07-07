@@ -40,8 +40,8 @@ Classes
 ----------
 
 * In Ada, a Class denotes an inheritance subtree
-* Class of `T` is the class of `T` and all its children
-* Type :ada:`T'Class` can designate any object typed after type of class of `T`
+* Class of :ada:`T` is the class of :ada:`T` and all its children
+* Type :ada:`T'Class` can designate any object typed after type of class of :ada:`T`
 
    .. code:: Ada
 
@@ -59,11 +59,11 @@ Classes
    - Fields of `T`
    - Primitives of `T`
 
------------------
-Indefinite type
------------------
+-----------------------
+Class-types Declaration
+-----------------------
 
-* A class wide type is an indefinite type
+* A class wide type is an **indefinite** type
 
    - Just like an unconstrained array or a record with a discriminant
 
@@ -71,6 +71,12 @@ Indefinite type
 
    - Can be used for parameter declarations
    - Can be used for variable declaration with initialization
+
+* Warning: Subprograms with parameter of type `T'Class` are primitives of `T'Class`, not `T`
+
+-------------------------------
+Class-types Declaration Example
+-------------------------------
 
 .. code:: Ada
 
@@ -90,14 +96,24 @@ Indefinite type
       P (Obj);
    end Main;
 
--------------------------------
-Testing the type of an object
--------------------------------
+-------------
+Tag Attribute
+-------------
 
-* The tag of an object denotes its type
-* It can be accessed through the `'Tag` attribute
-* Applies to both objects and types
-* Membership operator is available to check the type against a hierarchy
+* Tagged types all have a tag
+* Accessed through the `'Tag` attribute
+* Applies to **both objects and types**
+* Membership check against a :ada:`'Tag` or :ada:`'Class`
+
+.. code:: Ada
+
+   Type'Tag = Object'Class'Tag;
+   Type'Tag in Object'Class;
+   Object'Tag = Type'Tag;
+
+---------------------
+Tag Attribute Example
+---------------------
 
 .. code:: Ada
 
@@ -176,19 +192,17 @@ Relation to Primitives
 
    Ada 2012
 
-* Warning: Subprograms with parameter of type `T'Class` are primitives of `T'Class`, not `T`
-
       .. code:: Ada
-
-         type Root is null record;
-         procedure P (V : Root'Class);
-         type Child is new Root with null record;
-         -- This does not override P!
-         overriding procedure P (V : Child'Class);
-
+ 
 * Prefix notation rules apply when the first parameter is of a class wide type
 
       .. code:: Ada
+         type Root is null record;
+
+         procedure P (V : Root'Class);
+         type Child is new Root with null record;
+
+         overriding procedure P (V : Child'Class);
 
          V1 : Root;
          V2 : Root'Class := Root'(others => <>);
@@ -307,7 +321,7 @@ Calls on class-wide types (3/3)
 Definite and class wide views
 -------------------------------
 
-* In C++, dispatching occurs only on pointers
+* In C++, dispatching occurs only on virtual methods
 * In Ada, dispatching occurs only on class wide views
 
 .. code:: Ada
@@ -432,6 +446,10 @@ Multiple dispatching operands
       overriding procedure P (Left : Child; Right : Child);
 
 * At call time, all actual parameters' tags have to match, either statically or dynamically
+
+-------------------------------------
+Multiple dispatching operands Example
+-------------------------------------
 
    .. code:: Ada
 
