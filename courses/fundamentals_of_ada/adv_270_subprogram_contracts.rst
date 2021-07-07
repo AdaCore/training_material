@@ -144,9 +144,9 @@ Preconditions and Postconditions
 Examples
 ----------
 
-.. include:: examples/210_subprogram_contracts/preconditions_and_postconditions.rst
+.. include:: examples/adv_270_subprogram_contracts/preconditions_and_postconditions.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/210_subprogram_contracts.html#preconditions-and-postconditions`
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_270_subprogram_contracts.html#preconditions-and-postconditions`
 
 -----------------------------
 Pre/Postcondition Contracts
@@ -394,7 +394,7 @@ Special Attributes
 Examples
 ----------
 
-.. include:: examples/210_subprogram_contracts/special_attributes.rst
+.. include:: examples/adv_270_subprogram_contracts/special_attributes.rst
 
 -----------------------------------------------
 Referencing Previous Values In Postconditions
@@ -810,7 +810,7 @@ Controlling the Exception Raised
 Lab
 ========
 
-.. include:: labs/210_subprogram_contracts.lab.rst
+.. include:: labs/adv_270_subprogram_contracts.lab.rst
 
 =========
 Summary
