@@ -25,17 +25,14 @@ Syntax and Examples
 
    .. code:: Ada
 
-      record_definition ::= record component_list end record |
-                            null record
-      component_list ::= component_declaration
-         {component_declaration }  |
-         {component_declaration } variant_part |
-         null;
-      component_declaration ::=
-         defining_identifier_list : component_definition
-             [:= default_expression];
+      type T is record
+         Component_Name : Type [:= Default_Value];
+         ...
+      end record;
 
-* Examples
+      type T_Empty is null record;
+
+* Example
 
    .. code:: Ada
 
@@ -44,8 +41,12 @@ Syntax and Examples
          Field2 : boolean;
       end record;
 
-      type Record2_T ( Size : natural := 0 ) is record
-         Text : string(1..Size);
+* Records can be **discriminated** as well
+
+   .. code:: Ada
+
+      type T ( Size : Natural := 0 ) is record
+         Text : String (1 .. Size);
       end record;
 
 ==================
