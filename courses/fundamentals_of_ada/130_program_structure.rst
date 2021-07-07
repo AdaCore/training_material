@@ -28,7 +28,6 @@ What is a System?
 -------------------
 
 * Also called Application or Program or ...
-
 * Collection of library units
 
    - Which are a collection of packages, subprograms, objects
@@ -46,7 +45,7 @@ Library Units Review
    - Generic Instantiations
    - Renamings
 
-* Dependencies between library units via `with` clauses
+* Dependencies between library units via :ada:`with` clauses
 
    - What happens when two units need to depend on each other?
 
@@ -87,7 +86,7 @@ Body-Level Cross Dependencies Are OK
 .. image:: ../../images/mutual_dependencies.png
    :width: 70%
    :align: center
-    
+
 --------------------------
 Resulting Design Problem
 --------------------------
@@ -107,7 +106,7 @@ Illegal Package Declaration Dependency
 ----------------------------------------
 
 .. code:: Ada
-    
+
    with Department;
    package Personnel is
      type Employee is private;
@@ -118,7 +117,7 @@ Illegal Package Declaration Dependency
        Assigned_To : Department.Section;
      end record;
    end Personnel;
-     
+
    with Personnel;
    package Department is
      type Section is private;
@@ -129,7 +128,7 @@ Illegal Package Declaration Dependency
        Manager : Personnel.Employee;
      end record;
    end Department;
-     
+
 ------------------------
 `limited with` Clauses
 ------------------------
@@ -148,24 +147,24 @@ Illegal Package Declaration Dependency
    - Types are viewed as *incomplete types*
 
 * Normal view
-    
+
    .. code:: Ada
-    
+
       package Personnel is
         type Employee is private;
         procedure Assign ...
       private
         type Employee is ...
       end Personnel;
-     
+
 * Implied limited view
-    
+
    .. code:: Ada
-    
+
       package Personnel is
         type Employee;
       end Personnel;
-     
+
 .. container:: speakernote
 
    Note that the names of nested packages are of course visible, otherwise we could not reference the names of types declared within them.
@@ -186,7 +185,7 @@ Using Incomplete Types
    - As generic formal type parameters
    - As introductions of private types
 
-* If `tagged`, may also use `'Class`
+* If :ada:`tagged`, may also use `'Class`
 * Thus typically involves some advanced features
 
 --------------------------------------
@@ -198,7 +197,7 @@ Legal Package Declaration Dependency
    Ada 2005
 
 .. code:: Ada
-    
+
    limited with Department;
    package Personnel is
      type Employee is private;
@@ -209,7 +208,7 @@ Legal Package Declaration Dependency
        Assigned_To : access Department.Section;
      end record;
    end Personnel;
-     
+
    limited with Personnel;
    package Department is
      type Section is private;
@@ -220,7 +219,7 @@ Legal Package Declaration Dependency
        Manager : access Personnel.Employee;
      end record;
    end Department;
-     
+
 ----------------------------------------
 Full `with` Clause On the Package Body
 ----------------------------------------
@@ -229,7 +228,7 @@ Full `with` Clause On the Package Body
 
    Ada 2005
 
-* Even though declaration has a `limited with` clause
+* Even though declaration has a :ada:`limited with` clause
 * Typically necessary since body does the work
 
    - Dereferencing, etc.
@@ -242,12 +241,12 @@ Full `with` Clause On the Package Body
       package Department is
       ...
       end Department;
-      
+
       with Personnel; -- normal view in body
       package body Department is
       ...
       end Department;
- 
+
 ============================
 Hierarchical Library Units
 ============================
@@ -287,7 +286,7 @@ Solution: Hierarchical Library Units
 .. container:: columns
 
  .. container:: column
-  
+
     * Address extensibility issue
 
        - Can extend packages with visibility to parent private part
@@ -299,17 +298,17 @@ Solution: Hierarchical Library Units
        - Extensions all have the same ancestor *root* name
 
  .. container:: column
-  
+
     .. image:: ../../images/hierarchical_library_units.png
-    
+
 --------------------------
 Programming By Extension
 --------------------------
 
 * Parent unit
-    
+
    .. code:: Ada
-    
+
       package Complex is
         type Number is private;
         function "*" ( Left, Right : Number ) return Number;
@@ -322,17 +321,17 @@ Programming By Extension
           Real_Part, Imaginary_Part : Float;
         end record;
       end Complex;
-     
+
 * Extension created to work with parent unit
-    
+
    .. code:: Ada
-    
+
       package Complex.Utils is
         procedure Put (C : in Number);
         function As_String (C : Number) return String;
         ...
       end Complex.Utils;
-     
+
 -----------------------------------
 Extension Can See Private Section
 -----------------------------------
@@ -356,35 +355,35 @@ Extension Can See Private Section
      end As_String;
    ...
    end Complex.Utils;
- 
+
 --------------------
 Subsystem Approach
 --------------------
 
 .. code:: Ada
-    
-   with Interfaces.C;  
+
+   with Interfaces.C;
    package OS is -- Unix and/or POSIX
     type File_Descriptor is new Interfaces.C.int;
-     ... 
+     ...
    end OS;
-     
+
    package OS.Mem_Mgmt is
      ...
      procedure Dump ( File               : File_Descriptor;
-                      Requested_Location : System.Address; 
+                      Requested_Location : System.Address;
                       Requested_Size     : Interfaces.C.Size_T );
      ...
    end OS.Mem_Mgmt;
-       
+
    package OS.Files is
      ...
-     function Open ( Device : Interfaces.C.char_array; 
+     function Open ( Device : Interfaces.C.char_array;
                      Permission : Permissions := S_IRWXO )
                      return File_Descriptor;
      ...
    end OS.Files;
-     
+
 ------------------------
 Predefined Hierarchies
 ------------------------
@@ -412,7 +411,7 @@ Hierarchical Visibility
 .. container:: columns
 
  .. container:: column
-  
+
     * Children can see ancestors' visible and private parts
 
        - All the way up to the root library unit
@@ -426,9 +425,9 @@ Hierarchical Visibility
           + Grandchildren within children, great-grandchildren within ...
 
  .. container:: column
-  
+
     .. image:: ../../images/hierarchical_visibility.png
-    
+
 ------------------------------------
 Example of Visibility As If Nested
 ------------------------------------
@@ -452,7 +451,7 @@ Example of Visibility As If Nested
        ...
      end Utils;
    end Complex;
- 
+
 -------------------------------------------
 `with` Clauses for Ancestors are Implicit
 -------------------------------------------
@@ -460,23 +459,23 @@ Example of Visibility As If Nested
 .. container:: columns
 
  .. container:: column
-  
+
     * Because children can reference ancestors' private parts
 
-       - Code is not in executable unless somewhere in the `with` clauses
+       - Code is not in executable unless somewhere in the :ada:`with` clauses
 
-    * Explicit clauses for ancestors are redundant but OK 
+    * Explicit clauses for ancestors are redundant but OK
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        package Parent is
          ...
        private
          A : Integer := 10;
        end Parent;
-       
+
        -- no "with" of parent needed
        package Parent.Child is
           ...
@@ -485,7 +484,7 @@ Example of Visibility As If Nested
          -- no dot-notation needed
          C : integer := A;
        end Parent.Child;
-     
+
 -------------------------------------------
  `with` Clauses for Siblings are Required
 -------------------------------------------
@@ -499,7 +498,7 @@ Example of Visibility As If Nested
       ...
       -- 'Foo' is directly visible because of the
       -- implied nesting rule
-      X : Foo.Typemark; 
+      X : Foo.Typemark;
    end A.Bar;
 
 ------
@@ -589,7 +588,7 @@ Correlation to C++ Class Visibility Controls
          package body P is
            C ...
          end P;
- 
+
  .. container:: column
 
    * Thus private part is like the protected part in C++
@@ -604,7 +603,7 @@ Correlation to C++ Class Visibility Controls
          private:
            C ...
          };
- 
+
 -------------------
 Visibility Limits
 -------------------
@@ -619,23 +618,23 @@ Visibility Limits
    - Child public spec only has access to parent public spec
 
 .. code:: Ada
-    
+
    package Parent is
       ...
    private
       type Parent_T is ...
    end Parent;
-       
+
    package Parent.Child is
      -- Parent_T is not visible here!
    private
      -- Parent_T is visible here
    end Parent.Child;
-       
+
    package body Parent.Child is
     -- Parent_T is visible here
    end Parent.Child;
-     
+
 --------------------------
 Misbehaving (?) Children
 --------------------------
@@ -656,7 +655,7 @@ Misbehaving (?) Children
      Values : array (1 .. N ) of Foo;
      Top : Natural range 0 .. N := 0
    end Stack;
- 
+
    package Stack.Child is
      procedure Misbehave;
      procedure Reset;
@@ -667,7 +666,7 @@ Misbehaving (?) Children
      begin
        Top := 0;
      end Misbehave;
- 
+
      procedure Reset is
      begin
        Top := 0;
@@ -687,7 +686,7 @@ Another Misbehaving Child
    private
      X : Integer := 0;
    end Skippy;
- 
+
 .. code:: Ada
 
    package Skippy.Evil_Twin is
@@ -699,7 +698,7 @@ Another Misbehaving Child
        return X;
      end Cheater;
    end Skippy.Evil_Twin;
- 
+
 ------
 Quiz
 ------
@@ -730,11 +729,11 @@ Quiz
 
   .. container:: column
 
-   Which is not a legal completion of P.Child.X?
+   Which return statement would be illegal in P.Child.X?
 
-      A.  ``function X return Integer is (Object_A);``
-      B.  ``function X return Integer is (Object_B);``
-      C.  :answermono:`function X return Integer is (Object_C);`
+      A.  ``return Object_A;``
+      B.  ``return Object_B;``
+      C.  ``return Object_C;``
       D.  None of the above
 
    .. container:: animate
@@ -765,8 +764,7 @@ Private Children
 * Intended as implementation artifacts
 * Only available within subsystem
 
-   - Rules prevent `with` clauses by clients 
-
+   - Rules prevent :ada:`with` clauses by clients
    - Thus cannot export anything outside subsystem
    - Thus have no parent visibility restrictions
 
@@ -807,7 +805,7 @@ Import Rules
 * Only parent of private unit and its descendants can import a private child
 * Public unit declarations import restrictions
 
-   - Not allowed to have `with` clauses for private units
+   - Not allowed to have :ada:`with` clauses for private units
 
       + Exception explained in a moment
 
@@ -822,16 +820,16 @@ Some Public Children Are Trustworthy
 --------------------------------------
 
 * Would only use a private sibling's exports privately
-* But rules disallow `with` clause
-    
+* But rules disallow :ada:`with` clause
+
 .. code:: Ada
-    
+
    private package OS.UART is
     type Device is limited private;
     procedure Open (This : out Device; ...);
     ...
    end OS.UART;
-     
+
    -- illegal - private child
    with OS.UART;
    package OS.Serial is
@@ -844,13 +842,13 @@ Some Public Children Are Trustworthy
      ...
      end record;
    end OS.Serial;
-     
+
 -----------------------------------------
 Solution 1: Move Type To Parent Package
 -----------------------------------------
 
 .. code:: Ada
-    
+
    package OS is
      ...
    private
@@ -863,9 +861,9 @@ Solution 1: Move Type To Parent Package
       ...);
      ...
    end OS.UART;
-     
+
 .. code:: Ada
-    
+
    package OS.Serial is
      type COM_Port is limited private;
      ...
@@ -884,13 +882,13 @@ Solution 2: Partially Import Private Unit
 
    Ada 2005
 
-* Via `private with` clause
+* Via :ada:`private with` clause
 * Syntax
 
    .. code:: Ada
 
       private with package_name {, package_name} ;
- 
+
 * Public declarations can then access private siblings
 
    - But only in their private part
@@ -909,16 +907,16 @@ Solution 2: Partially Import Private Unit
    Ada 2005
 
 .. code:: Ada
-    
+
    private package OS.UART is
      type Device is limited private;
-     procedure Open (This : out Device; 
+     procedure Open (This : out Device;
         ...);
      ...
    end OS.UART;
-     
+
 .. code:: Ada
-    
+
    private with OS.UART;
    package OS.Serial is
      type COM_Port is limited private;
@@ -939,23 +937,23 @@ Combining Private and Limited Withs
    Ada 2005
 
 * Cyclic declaration dependencies allowed
-* A public unit can `with` a private unit
+* A public unit can :ada:`with` a private unit
 * With-ed unit only visible in the private part
 
 .. code:: Ada
 
    limited with Parent.Public_Child;
    private package Parent.Private_Child is
-     type T is ... 
+     type T is ...
    end Parent.Private_Child;
-   
+
    limited private with Parent.Private_Child;
    package Parent.Public_Child is
      ...
    private
      X : access Parent.Private_Child.T;
    end Parent.Public_Child;
- 
+
 --------------------------------
 Completely Hidden Declarations
 --------------------------------
@@ -974,7 +972,7 @@ Completely Hidden Declarations
      X : Integer := 0;
      ...
    end Skippy;
- 
+
 -------------------
 Child Subprograms
 -------------------
@@ -986,7 +984,7 @@ Child Subprograms
 
 * Separate declaration required if private
 
-   - Syntax doesn't allow `private` on subprogram bodies
+   - Syntax doesn't allow :ada:`private` on subprogram bodies
 
 * Only library packages can be parents
 
@@ -995,7 +993,7 @@ Child Subprograms
 .. code:: Ada
 
    private procedure Parent.Child;
- 
+
 ========
 Lab
 ========
@@ -1025,7 +1023,6 @@ Summary
    - "These must always be in ascending order!"
 
 * Children cannot misbehave unless imported ("with'ed")
-
-* The writer of a child unit must be trusted 
+* The writer of a child unit must be trusted
 
    - As much as if he or she were to modify the parent itself

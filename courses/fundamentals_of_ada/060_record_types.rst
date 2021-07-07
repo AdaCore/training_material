@@ -1,4 +1,3 @@
-
 **************
 Record Types
 **************
@@ -26,17 +25,14 @@ Syntax and Examples
 
    .. code:: Ada
 
-      record_definition ::= record component_list end record |
-                            null record
-      component_list ::= component_declaration
-         {component_declaration }  |
-         {component_declaration } variant_part |
-         null;
-      component_declaration ::=
-         defining_identifier_list : component_definition
-             [:= default_expression];
+      type T is record
+         Component_Name : Type [:= Default_Value];
+         ...
+      end record;
 
-* Examples
+      type T_Empty is null record;
+
+* Example
 
    .. code:: Ada
 
@@ -45,11 +41,14 @@ Syntax and Examples
          Field2 : boolean;
       end record;
 
-      type Record2_T ( Size : natural := 0 ) is record
-         Text : string(1..Size);
+* Records can be **discriminated** as well
+
+   .. code:: Ada
+
+      type T ( Size : Natural := 0 ) is record
+         Text : String (1 .. Size);
       end record;
-      
- 
+
 ==================
 Components Rules
 ==================
@@ -94,7 +93,7 @@ Characteristics of Components
      Arrival.Day := 27;  -- components referenced by name
      Arrival.Month := November;
      Arrival.Year := 1990;
- 
+
 ------------------------------
 Anonymously-Typed Components
 ------------------------------
@@ -103,13 +102,13 @@ Anonymously-Typed Components
 * No type name so no compatibility check is possible
 
    .. code:: Ada
-      
+
       type Illegal is
         record
           A : array (Foo) of Bar;
         end record;
       X, Y : Illegal;
- 
+
    - Cannot perform `X.A := Y.A`
 
 ---------------------
@@ -127,7 +126,7 @@ Constant Components
           A : constant Foo := F(X);
         end record;
       X, Y : Illegal;
- 
+
    - Cannot perform `X.A := Y.A;`
 
 -------------------------
@@ -138,11 +137,11 @@ More Component Rules...
 
    .. code:: Ada
 
-      type Several is 
+      type Several is
         record
           A, B, C : Integer;
         end record;
- 
+
 * Recursive definitions are not allowed
 
    .. code:: Ada
@@ -152,7 +151,7 @@ More Component Rules...
           A, B : Some_Type;
           C : Not_Legal;
         end record;
- 
+
 ------
 Quiz
 ------
@@ -199,18 +198,18 @@ Available Operations
 
 * Predefined
 
-   - Equality (and thus inequality) 
+   - Equality (and thus inequality)
 
       .. code:: Ada
 
          if A = B then
- 
-   - Assignment 
+
+   - Assignment
 
       .. code:: Ada
 
          A := B;
- 
+
    - Component-level operations
 
       + Based on components' types
@@ -218,7 +217,7 @@ Available Operations
          .. code:: Ada
 
             if A.component < B.component then
- 
+
 * User-defined
 
    - Subprograms
@@ -245,13 +244,14 @@ Assignment Examples
       Phase1.Real := 2.5;
       Phase1.Real := Phase2.Real;
    end;
- 
+
 -------------------------------
 Referencing Nested Components
 -------------------------------
 
 .. code:: Ada
 
+   declare
      type Date is ....  -- as before
      type Personal_Information is record
          Name : String(1..80);
@@ -265,7 +265,7 @@ Referencing Nested Components
    begin
      ...
       Employee.Personal_Data.Birth.Month := March;
- 
+
 ============
 Aggregates
 ============
@@ -310,7 +310,7 @@ Aggregates
             Plate_No => "AX672",
             others => <>
         );
- 
+
 ---------------------------
 Record Aggregate Examples
 ---------------------------
@@ -327,7 +327,7 @@ Record Aggregate Examples
    begin
      Phase := (10.0, Imaginary => 2.5);
      Phase := (Imaginary => 12.5, Real => 0.212);
- 
+
 ------------------------
 Aggregate Completeness
 ------------------------
@@ -335,16 +335,16 @@ Aggregate Completeness
 .. container:: columns
 
  .. container:: column
-  
+
     * All component values must be accounted for
 
        - Including defaults via ``box``
 
     * Allows compiler to check for missed components
     * Type definition
-    
+
        .. code:: Ada
-    
+
           type Struct is record
               A : Integer;
               B : Integer;
@@ -352,25 +352,25 @@ Aggregate Completeness
               D : Integer;
             end record;
           S : Struct;
-     
+
  .. container:: column
-  
+
     * Compiler will not catch the missing component
-    
+
        .. code:: Ada
-    
+
           S.A := 10;
           S.B := 20;
           S.C := 12;
           Send (S);
-     
+
     * Aggregate must be complete - compiler error
-    
+
        .. code:: Ada
-    
+
           S := (10, 20, 12);
           Send (S);
-     
+
 --------------------
 Named Associations
 --------------------
@@ -378,7 +378,7 @@ Named Associations
 .. container:: columns
 
  .. container:: column
-  
+
     * Allows any order of associations
 
        - Don't have to remember the order
@@ -393,9 +393,9 @@ Named Associations
        - Must stick with named associations once begun
 
  .. container:: column
-    
+
     .. code:: Ada
-    
+
        type Complex is record
            Real : Float;
            Imaginary : Float;
@@ -420,7 +420,7 @@ Nested Aggregates
 * Result from composite component types
 
    .. code:: Ada
-    
+
      type Months_T is ( January, February, ..., December);
      type Date is record
          Day   : Integer range 1 .. 31;
@@ -434,9 +434,9 @@ Nested Aggregates
      John : Person    := ( (21, November, 1990), Brown );
      Julius : Person  := ( (2, August, 1995), Blond );
      Heather : Person := ( (2, March, 1989), Hair => Blond );
-     Megan : Person   := (Hair => Blond, 
+     Megan : Person   := (Hair => Blond,
                           Born => (16, December, 2001));
-     
+
 ------------------------------------
 Aggregates with Only One Component
 ------------------------------------
@@ -456,13 +456,13 @@ Aggregates with Only One Component
    S : Singular := (3);          -- illegal
    S : Singular := (3 + 1);      -- illegal
    S : Singular := (A => 3 + 1); -- required
- 
+
 --------------------------
 Aggregates with `others`
 --------------------------
 
 * Indicates all components not yet specified (like arrays)
-* Since all `others` get the same value, all such components must be the same type
+* Since all :ada:`others` get the same value, all such components must be the same type
 
 .. code:: Ada
 
@@ -477,7 +477,7 @@ Aggregates with `others`
        A, B, C : Integer;
      end record;
    Q : Homogeneous := (others => 10);
- 
+
 ------
 Quiz
 ------
@@ -540,7 +540,7 @@ Component Default Values
    Phasor : Complex;
    -- all components must be specified
    I : constant Complex := (0.0, 1.0);
- 
+
 ------------------------------------
 Default Component Value Evaluation
 ------------------------------------
@@ -562,7 +562,7 @@ Default Component Value Evaluation
    S1 : Structure;
    -- Clock is not called for S2
    S2 : Structure := (A => 0, R => Yesterday);
- 
+
 -----------------------------------
 Defaults Within Record Aggregates
 -----------------------------------
@@ -588,7 +588,7 @@ Defaults Within Record Aggregates
        Imaginary : Float := 0.0;
      end record;
    Phase := (42.0, Imaginary => <>);
- 
+
 ------------------------------------------
 Default Initialization Via Aspect Clause
 ------------------------------------------
@@ -612,7 +612,7 @@ Default Initialization Via Aspect Clause
      end record;
    C : Controller; -- Override => off, Enable => On
    D : Controller := (On, Off); -- All defaults replaced
- 
+
 ------
 Quiz
 ------
@@ -729,13 +729,13 @@ Semantics
 
       Pat  : Person(Student); -- May select Pat.GPA, not Pat.Pubs
       Prof : Person(Faculty); -- May select Prof.Pubs, not Prof.GPA
-      Soph : Person := ( Tag  => Student, 
-                         Name => "John Jones", 
-                         GPA  => 3.2, 
+      Soph : Person := ( Tag  => Student,
+                         Name => "John Jones",
+                         GPA  => 3.2,
                          Year => 2);
       X    : Person;  -- Illegal; discriminant must be initialized
 
-* Assignment between Person objects requires same discriminant values for LHS and RHS 
+* Assignment between Person objects requires same discriminant values for LHS and RHS
 
    .. code:: Ada
 

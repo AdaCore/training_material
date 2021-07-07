@@ -24,7 +24,7 @@ Introduction
    - Pascal
 
       + `WRITELN( 42 );`
-      + `WRITELN( 'This is a string' );`
+      + :ada:`WRITELN( 'This is a string' );`
 
    - Many others...
 
@@ -74,7 +74,7 @@ Function Operator Overloading Example
    ...
    I := J + K; -- overloaded operator (predefined)
    A := B + C; -- overloaded operator (user-defined)
- 
+
 ----------------------------------
 Benefits and Risk of Overloading
 ----------------------------------
@@ -93,7 +93,7 @@ Benefits and Risk of Overloading
       begin
          return integer'image ( L - R );
       end "+";
- 
+
 =========================
 Enumerals and Operators
 =========================
@@ -164,13 +164,13 @@ Parameters for Overloaded Operators
       .. code:: Ada
 
          function "*" (Left, Right : Integer) return integer;
- 
+
    - Usage
 
       .. code:: Ada
 
          X := 2 * 3;
- 
+
 * Named parameter associations allowed but ugly
 
    - Requires prefix notion for call
@@ -178,7 +178,7 @@ Parameters for Overloaded Operators
    .. code:: Ada
 
       X := "*" ( Left => 2, Right => 3 );
- 
+
 =================
 Call Resolution
 =================
@@ -217,7 +217,7 @@ Call Resolution
 Profile Components Used
 -------------------------
 
-* Significant components appear in the call itself 
+* Significant components appear in the call itself
 
    - Number of parameters
    - Order of parameters
@@ -236,7 +236,7 @@ Profile Components Used
       Display (X);
       Display (Foo => X);
       Display (Foo => X, Bar => Y);
- 
+
 -------------------------------
 Manually Disambiguating Calls
 -------------------------------
@@ -256,23 +256,23 @@ Manually Disambiguating Calls
    Put (Yellow);  -- not ambiguous: only 1 Yellow
    Put (Colors'(Red)); -- using type to distinguish
    Put (Light => Green); -- using profile to distinguish
- 
+
 ---------------------
 Overloading Example
 ---------------------
 
 .. code:: Ada
-    
+
    function "+" (Left : Position;
                  Right : Offset)
                  return Position is
    begin
      return Position'( Left.Row + Right.Row, Left.Column + Right.Col);
    end "+";
-       
+
    function Acceptable (P : Position) return Boolean;
    type Positions is array (Moves range <>) of Position;
-     
+
    function Next (Current : Position) return Positions is
      Result : Positions (Moves range 1 .. 4);
      Count  : Moves := 0;
@@ -285,9 +285,9 @@ Overloading Example
          Result (Count) := Test;
        end if;
      end loop;
-     return Result (1 .. Count); 
+     return Result (1 .. Count);
    end Next;
-     
+
 .. container:: speakernote
 
    If Count is 0, result is a null range
@@ -343,17 +343,17 @@ Inherently Ambiguous Declarations
 
       procedure Test is
         procedure P (X : in Natural) is ...
-        procedure P (A : in out Positive) is ... 
+        procedure P (A : in out Positive) is ...
       begin
         ...
       end Test;
- 
+
 * Compile error
 
    .. code:: Ada
 
       test.adb:3:04: duplicate body for "P" declared at line 2
- 
+
 ----------------
 Profile Hiding
 ----------------
@@ -372,7 +372,7 @@ Profile Hiding
          P ( ... );  -- not Outer.P
        end;
    end Outer;
- 
+
 =======================
 User-Defined Equality
 =======================
@@ -404,7 +404,7 @@ Lab
 ========
 
 .. include:: labs/090_overloading.lab.rst
- 
+
 =========
 Summary
 =========

@@ -1,6 +1,6 @@
-**************
-GNAT options
-**************
+**********************
+Annex - GNAT options
+**********************
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 
@@ -44,7 +44,7 @@ Some useful GNAT switches
 .. container:: columns
 
  .. container:: column
-  
+
     * **-O[0,1,2,3,s]**
 
        - Turns optimizations (0 = Minimal, 3 = Maximal, s = optimize for size)
@@ -62,10 +62,10 @@ Some useful GNAT switches
        - Do only semantic analysis (do not generate code)
 
  .. container:: column
-  
+
     * **-gnatn**
 
-       - Activates `pragma Inline`
+       - Activates :ada:`pragma Inline`
 
     * **-gnata**
 
@@ -86,7 +86,7 @@ Validity checks
 * **-gnatV[x]** options add checks on values validity
 * Checks if variables have an expected value in a lot of places
 * Expensive test (this is why it's not added by default)
-* `pragma Normalize_Scalar`
+* :ada:`pragma Normalize_Scalar`
 
    - Makes sure that uninitialized variables are initialized with invalid default
 
@@ -94,8 +94,7 @@ Validity checks
 Data representation
 ---------------------
 
-* **-gnatDG** produces *filename.dg* representing the intermediate representation 
-
+* **-gnatDG** produces *filename.dg* representing the intermediate representation
 * Code is expanded into simple structures and system calls
 * Useful to understand the complexity of the Ada constructions
 * Useful to identify check locations
@@ -151,7 +150,6 @@ Intermediate representation
             C at 8 range  0 ..  7;
          end record;
 
-
 ------------------------------------
 Intermediate representation (cont)
 ------------------------------------
@@ -176,7 +174,7 @@ Intermediate representation (cont)
             C at 1 range  0 ..  7;
             B at 4 range  0 .. 31;
          end record;
- 
+
  .. container:: column
 
    * ``-gnatR3``
@@ -197,13 +195,13 @@ Intermediate representation (cont)
             B at 0 range  1 .. 32;
             C at 4 range  1 ..  1;
          end record;
- 
+
 ----------
 Inlining
 ----------
 
 * Must be activated through **-gnatn**
-* Subprograms are selected through `pragma Inline`
+* Subprograms are selected through :ada:`pragma Inline`
 * Dependencies need visibility on the body (inlining works cross unit)
 * **gnatcheck** can flag wrong (too complex) inlining
 

@@ -75,12 +75,12 @@ Rendezvous Definitions
     - **Until** a client calls the related :ada:`entry`
 
    .. code:: Ada
-    
+
       task type Msg_Box_T is
          entry Start;
          entry Receive_Message (S : String);
       end Msg_Box_T;
-          
+
       task body Msg_Box_T is
       begin
          loop
@@ -93,7 +93,6 @@ Rendezvous Definitions
          end loop;
       end Msg_Box_T;
 
-
 ------------------------
 Rendezvous Entry Calls
 ------------------------
@@ -101,27 +100,27 @@ Rendezvous Entry Calls
 * Upon calling an :ada:`entry`, client **blocks**
 
      - **Until** server reaches :ada:`end` of its :ada:`accept` block
-    
+
    .. code:: Ada
-    
+
       Put_Line ("calling start");
       T.Start;
       Put_Line ("calling receive 1");
       T.Receive_Message ("1");
       Put_Line ("calling receive 2");
       T.Receive_Message ("2");
-     
+
 * May be executed as follows:
-    
+
    .. code:: Ada
-    
+
       calling start
       start             -- May switch place with line below
       calling receive 1 -- May switch place with line above
       Receive 1
       calling receive 2
       -- Blocked until another task calls Start
-     
+
 ------------------------
 Accepting a Rendezvous
 ------------------------
@@ -157,26 +156,26 @@ Protected Objects
 * Protected objects are :ada:`limited` types
 
 .. code:: Ada
-    
+
    protected type Protected_Value is
       procedure Set (V : Integer);
       function Get return Integer;
    private
       Value : Integer;
    end Protected_Value;
-       
+
    protected body Protected_Value is
       procedure Set (V : Integer) is
       begin
          Value := V;
       end Set;
-       
+
       function Get return Integer is
       begin
          return Value;
       end Get;
    end Protected_Value;
-     
+
 -------------------------------------
 Protected: Functions and Procedures
 -------------------------------------
@@ -216,7 +215,6 @@ Delay keyword
     Absolute : Time := Time_Of (2030, 10, 30);
     delay until Absolute;
 
-
 ==========================
 Task and Protected Types
 ==========================
@@ -235,11 +233,11 @@ Task Activation
     - Activated **immediately** at instanciation
 
 .. code:: Ada
-    
+
    task type First_T is [...]
 
    type First_T_A is access all First_T;
-       
+
    task body First_T is
    begin
       accept First;
@@ -258,7 +256,7 @@ Single Declaration
 
  * Instanciate an **anonymous** task (or protected) type
  * Declares an object of that type
-    
+
     - Body declaration is then using the **object** name
 
  .. code:: Ada
@@ -267,7 +265,7 @@ Single Declaration
        -- Msg_Box task is declared *and* instanciated
       entry Receive_Message (S : String);
    end Msg_Box_T;
-       
+
    task body Msg_Box is
    begin
       loop
@@ -276,7 +274,7 @@ Single Declaration
          end Receive_Message;
       end loop;
    end Msg_Box;
-     
+
 ---------------
 Scope Of a Task
 ---------------
@@ -285,13 +283,12 @@ Scope Of a Task
 * A **subprogram** finishes **only** when all its **nested task** bodies are over
 * The **program** terminates when all **library-level tasks** finish
 
-
 .. code:: Ada
 
    package P is
       task type Tick_T;
    end P;
-   
+
    -- Programs using the package may never terminate
    package body P is
       task body Tick_T is
@@ -315,7 +312,7 @@ Waiting On Multiple Entries
     - With **equal** priority, regardless of declaration order
 
 .. code:: Ada
-    
+
   select
      accept Receive_Message (V : String)
      do
@@ -360,7 +357,7 @@ Waiting With a Delay
        end select;
      end loop;
    end Msg_Box_T;
-     
+
 .. container:: speakernote
 
    Task will wait up to 50 seconds for "Receive_Message", print a message, and then enter the loop
@@ -376,11 +373,11 @@ Calling an Entry With a Delay Protection
 * No :ada:`accept` statement is allowed
 
 .. code:: Ada
-    
+
    task type Msg_Box_T is
       entry Receive_Message (V : String);
    end Msg_Box_T;
-       
+
    procedure Main is
    begin
       select
@@ -389,7 +386,7 @@ Calling an Entry With a Delay Protection
          delay 50.0;
       end select;
    end Main;
-     
+
 .. container:: speakernote
 
    Procedure will wait up to 50 seconds for "Receive_Message" to be accepted before it gives up
@@ -405,7 +402,7 @@ Non-blocking Accept or Entry
 * :ada:`delay` is **not** allowed in this case
 
 .. code:: Ada
-    
+
    select
       accept Receive_Message (V : String) do
          Put_Line ("Received : " & V);
@@ -438,22 +435,22 @@ Protected Object Entries
 * When condition is fulfilled, barrier is **relieved**
 
 .. code:: Ada
-       
+
    protected body Stack is
       entry Push (V : Integer) when Size < Buffer'Length is
       [...]
-          
+
       entry Pop  (V : out Integer) when Size > 0 is
       [...]
    end Object;
-     
+
 -------------------------------------
 Select On Protected Objects Entries
 -------------------------------------
 
 * Works the same way as :ada:`select` on task entries
 
-   - With a `delay` part
+   - With a :ada:`delay` part
 
    .. code:: Ada
 
@@ -463,8 +460,8 @@ Select On Protected Objects Entries
          delay 10.0;
          Put_Line ("Delayed overflow");
       end select;
-      
-   - With an `else` part
+
+   - With an :ada:`else` part
 
    .. code:: Ada
 
@@ -473,7 +470,7 @@ Select On Protected Objects Entries
       else
          Put_Line ("Overflow");
       end select;
- 
+
 ------
 Queue
 ------
