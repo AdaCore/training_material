@@ -314,7 +314,7 @@ Calls on class-wide types (3/3)
 
       Root * V1 = new Root ();
       Root * V2 = new Child ();
-      ((Root) *V1).P ();
+      ((Root) *V1).P ())
       ((Root) *V2).P ();
 
 -------------------------------
@@ -391,18 +391,25 @@ Quiz
 
 .. code::Ada
 
-   package P is
-      type Root is tagged null record;
-      function F1 (V : Root) return Integer is (101);
-      type Child is new Root with null record;
-      function F1 (V : Child) return Integer is (201);
-      type Grandchild is new Child with null record;
-      function F1 (V : Grandchild) return Integer is (301);
-   end P;
+   type Root is tagged null record;
+   function F1 (V : Root) return Integer is
+   begin
+     return 101;
+   end F1;
+   
+   type Child is new Root with null record;
+   function F1 (V : Child) return Integer is
+   begin
+     return 201;
+   end F1;
 
-   with P1; use P1;
-   procedure Main is
-      Z : Root'Class := Grandchild'(others => <>);
+   type Grandchild is new Child with null record;
+   function F1 (V : Grandchild) return Integer is
+   begin
+      return 301;
+   end F1;
+
+   Z : Root'Class := Grandchild'(others => <>);
 
 What is the value returned by :ada:`F1 (Child'Class (Z));`?
 

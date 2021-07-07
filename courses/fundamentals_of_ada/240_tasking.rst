@@ -376,7 +376,10 @@ Protected Object Types
    end Register_T;
 
    protected body Register_T is
-      function Read return Integer is (Register);
+      function Read return Integer is
+      begin
+         return Register;
+      end Read;
       procedure Write (Value : Integer) is
       begin
          Register := Value;
