@@ -47,7 +47,8 @@ Examples
 
 .. include:: examples/adv_240_tasking/tasks.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#tasks`
+.. TBD
+   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#tasks`
 
 ------------------------
 Interacting With Tasks
@@ -214,7 +215,8 @@ Examples
 
 .. include:: examples/adv_240_tasking/protected_objects.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#protected-objects`
+.. TBD
+   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#protected-objects`
 
 -------------------
 Protected Objects
@@ -321,7 +323,8 @@ Examples
 
 .. include:: examples/adv_240_tasking/task_and_protected_types.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#task-and-protected-types`
+.. TBD
+   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#task-and-protected-types`
 
 ------------
 Task Types
@@ -425,7 +428,8 @@ Examples
 
 .. include:: examples/adv_240_tasking/some_advanced_concepts.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#some-advanced-concepts`
+.. TBD
+   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#some-advanced-concepts`
 
 ------------------------------
 Waiting On Different Entries
