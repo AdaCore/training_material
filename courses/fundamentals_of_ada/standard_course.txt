@@ -4,6 +4,7 @@
 040_statements.rst
 050_array_types.rst
 060_record_types.rst
+065_type_derivation.rst
 070_subprograms.rst
 080_expressions.rst
 090_overloading.rst
