@@ -65,8 +65,8 @@ User-Defined `=` Returning Boolean
       if X /= Y then
       if not ( X = Y ) then
       if X not = Y then
- 
-* No explicit declaration of ``/=`` returning Boolean 
+
+* No explicit declaration of ``/=`` returning Boolean
 
    - Returning values of other types is allowed
 
@@ -74,7 +74,7 @@ User-Defined `=` Returning Boolean
 
          function "/=" (Left : Foo;  Right : Bar)
              return Fuzzy_Result;
- 
+
 -------------------------------
 User-Defined Equality Example
 -------------------------------
@@ -82,9 +82,9 @@ User-Defined Equality Example
 * Especially useful for composite types
 * Predefined ``=`` is bit-wise comparison over entire structure so may be inappropriate semantics
 * Given the following types:
-    
+
    .. code:: Ada
-    
+
       Max : constant := 100;
       type Index is range 0 .. Max;
       type List is array (Index range 1 .. Max) of Integer;
@@ -92,11 +92,11 @@ User-Defined Equality Example
         Values : List;
         Top : Index := 0;
       end record;
-     
+
 * Equality function might look like:
 
    .. code:: Ada
-    
+
       function "=" (Left, Right : Stack) return Boolean is
       begin
         if Left.Top /= Right.Top then -- not same size
@@ -110,7 +110,7 @@ User-Defined Equality Example
         end if;
         return True;
       end "=";
-     
+
 =========================
 Composition of Equality
 =========================
@@ -139,7 +139,7 @@ Composition vs Non-Composition
 --------------------------------
 
 .. code:: Ada
-    
+
    with Ada.Text_IO; use Ada.Text_IO;
    procedure Main is
 
@@ -171,7 +171,7 @@ Composition vs Non-Composition
       -- This array comparison uses our operator, so our local "=" is used as well
       Put_Line (Boolean'Image (X_B = Y_B));
    end Main;
-     
+
 .. container:: speakernote
 
    Equality for IntegerList doesn't compose because Integer is not a record type.
@@ -181,8 +181,7 @@ Enclosing Equality Function Example
 -------------------------------------
 
 * Explicitly declared for the enclosing type
-
-* Calls user-defined ``=`` for components 
+* Calls user-defined ``=`` for components
 
 .. code:: Ada
 
@@ -190,15 +189,15 @@ Enclosing Equality Function Example
      Value : Foo; -- assuming Foo is not a record type
      Id : Integer;
    end record;
-   
+
    function "=" (Left, Right : Bar) return Boolean is
    begin
      -- User-defined "=" for Foo
-     return Left.Value = Right.Value 
+     return Left.Value = Right.Value
         -- predefined "=" for integer
         and Left.Id = Right.Id;
    end "=";
- 
+
 ----------------------------------------
 `=` for Predefined Composites Composes
 ----------------------------------------
@@ -212,11 +211,9 @@ User-Defined Equality Composition
 -----------------------------------
 
 * No issue for all language-defined types in all versions of Ada
-
-* An issue for user-defined types 
-
-* Only automatic for `record` types in Ada 2012
-* Only automatic for `tagged record` types in Ada 2005
+* An issue for user-defined types
+* Only automatic for :ada:`record` types in Ada 2012
+* Only automatic for :ada:`tagged record` types in Ada 2005
 
    - Otherwise need explicit equality function for enclosing type
 
