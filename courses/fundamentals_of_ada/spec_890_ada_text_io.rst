@@ -258,7 +258,7 @@ Ada.IO_Exceptions
 Lab
 ========
 
-.. include:: labs/430_ada_text_io.lab.rst
+.. include:: labs/spec_890_ada_text_io.lab.rst
 
 =========
 Summary

@@ -190,7 +190,7 @@ Sorting Mechanisms
 Lab
 ========
 
-.. include:: labs/410_containers.lab.rst
+.. include:: labs/adv_250_containers.lab.rst
 
 =========
 Summary

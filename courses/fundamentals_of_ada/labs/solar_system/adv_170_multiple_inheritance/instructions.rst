@@ -15,7 +15,7 @@ Remember that privacy is still important!
 Question 1
 ==========
 
-.. figure:: labs/solar_system/180a_class_diagram.png
+.. figure:: labs/solar_system/adv_170_class_diagram.png
     :name:
 
     Class diagram for Q.1 and Q.2
@@ -52,7 +52,7 @@ Create a hierarchy of tagged types as follow
 Question 3
 ==========
 
-.. figure:: labs/solar_system/180a_class_diagram_display.png
+.. figure:: labs/solar_system/adv_170_class_diagram_display.png
     :name:
 
     Class diagram for Q.3, Q.4 and Q.5
