@@ -1,0 +1,34 @@
+with "amazing_config.gpr";
+project Amazing is
+
+   for Languages use ("Ada");
+   for Main use ("mice.adb", "mouse.adb");
+   for Source_Dirs use ("source", "source/consoles", "source/utils");
+
+   case Build_Config.Build is
+      when "debug" =>
+         for Exec_Dir use "bin/debug";
+         for Object_Dir use "objs/debug";
+      when others =>
+         for Exec_Dir use "bin/release";
+         for Object_Dir use "objs/release";
+   end case;
+   
+   type Display_Type is ("Win32", "ANSI");
+   Console : Display_Type := external ("Console", "Win32");
+
+   package Builder renames Build_Config.Builder;
+
+   package Compiler renames Build_Config.Compiler;
+
+   package Naming is
+      case Console is
+         when "Win32" =>
+            for Implementation ("console") use "console_win32.adb";
+         when "ANSI" =>
+            for Implementation ("console") use "console_ansi.adb";
+      end case;
+   end Naming;
+
+end Amazing;
+
