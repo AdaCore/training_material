@@ -16,7 +16,7 @@
 135_visibility.rst
 140_access_types.rst
 160_genericity.rst
-170_inheritance.rst
+170_tagged_derivation.rst
 180_polymorphism.rst
 190_exceptions.rst
 230_interfacing_with_c++.rst
