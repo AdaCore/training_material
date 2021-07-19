@@ -425,7 +425,7 @@ Use of Discriminants in Record Definition
 Lab
 ========
 
-.. include:: labs/060a_discriminated_record_types.lab.rst
+.. include:: labs/adv_060_discriminated_record_types.lab.rst
 
 =========
 Summary

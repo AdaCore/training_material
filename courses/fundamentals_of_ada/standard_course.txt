@@ -18,8 +18,7 @@
 170_inheritance.rst
 180_polymorphism.rst
 190_exceptions.rst
-210_subprogram_contracts.rst
-215_type_contracts.rst
 230_interfacing_with_c++.rst
 240_tasking.rst
 900_ada_version_comparison.rst
+920_reference_material.rst

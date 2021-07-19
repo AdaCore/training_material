@@ -55,9 +55,10 @@ Elaboration
 Examples
 ----------
 
-.. include:: examples/200_elaboration/elaboration.rst
+.. include:: examples/spec_880_elaboration/elaboration.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/200_elaboration.html#elaboration`
+.. TBD
+   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/spec_880_elaboration.html#elaboration`
 
 -------------
 Elaboration
@@ -234,9 +235,10 @@ Elaboration Control
 Examples
 ----------
 
-.. include:: examples/200_elaboration/elaboration_control.rst
+.. include:: examples/spec_880_elaboration/elaboration_control.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/200_elaboration.html#elaboration-control`
+.. TBD
+   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/spec_880_elaboration.html#elaboration-control`
 
 -----------------------
 `Pragma Preelaborate`
@@ -399,7 +401,7 @@ Examples
 Lab
 ========
 
-.. include:: labs/200_elaboration.lab.rst
+.. include:: labs/spec_880_elaboration.lab.rst
 
 =========
 Summary

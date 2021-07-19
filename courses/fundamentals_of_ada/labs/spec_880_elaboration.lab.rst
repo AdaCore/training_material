@@ -31,16 +31,16 @@ Elaboration Lab
 Elaboration Lab Solution - Constants
 ---------------------------------------
 
-.. container:: source_include labs/answers/200_elaboration.txt :start-after:--Constants :end-before:--Constants :code:Ada
+.. container:: source_include labs/answers/spec_880_elaboration.txt :start-after:--Constants :end-before:--Constants :code:Ada
 
 ---------------------------------------
 Elaboration Lab Solution - Data Store
 ---------------------------------------
 
-.. container:: source_include labs/answers/200_elaboration.txt :start-after:--Datastore :end-before:--Datastore :code:Ada
+.. container:: source_include labs/answers/spec_880_elaboration.txt :start-after:--Datastore :end-before:--Datastore :code:Ada
 
 ---------------------------------
 Elaboration Lab Solution - Main
 ---------------------------------
 
-.. container:: source_include labs/answers/200_elaboration.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/spec_880_elaboration.txt :start-after:--Main :end-before:--Main :code:Ada

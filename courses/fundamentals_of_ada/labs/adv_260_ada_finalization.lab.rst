@@ -28,16 +28,16 @@ Ada.Finalization Lab
 Ada.Finalization Lab Solution - Keys (Spec)
 ----------------------------------------------
 
-.. container:: source_include labs/answers/420_ada_finalization.txt :start-after:--Spec :end-before:--Spec :code:Ada
+.. container:: source_include labs/answers/adv_260_ada_finalization.txt :start-after:--Spec :end-before:--Spec :code:Ada
 
 ------------------------------------------------
 Ada.Finalization Lab Solution - Keys (Body)
 ------------------------------------------------
 
-.. container:: source_include labs/answers/420_ada_finalization.txt :start-after:--Body :end-before:--Body :code:Ada
+.. container:: source_include labs/answers/adv_260_ada_finalization.txt :start-after:--Body :end-before:--Body :code:Ada
 
 ----------------------------------------------
 Ada.Finalization Lab Solution - Main
 ----------------------------------------------
 
-.. container:: source_include labs/answers/420_ada_finalization.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/adv_260_ada_finalization.txt :start-after:--Main :end-before:--Main :code:Ada
