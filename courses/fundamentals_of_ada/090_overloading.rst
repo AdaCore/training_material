@@ -243,6 +243,19 @@ Profile Components Used
       Display (Foo => X);
       Display (Foo => X, Bar => Y);
 
+------------------------
+Subtypes Don't Overload
+------------------------
+
+- Illegal code: re-declaration of `F`
+
+   .. code:: Ada
+
+      type A is new Integer;
+      subtype B is A;
+      function F return A is (0);
+      function F return B is (1);
+
 -------------------------------
 Manually Disambiguating Calls
 -------------------------------
