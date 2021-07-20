@@ -14,21 +14,31 @@ Introduction
 Introduction
 --------------
 
-* Overloading is the use of an already existing name to define a new entity
-* Historically, only done within the language
+* Overloading is the use of an **existing** name to define a **new** entity
+* Historically, only done as part of the language **implementation**
 
-   - FORTRAN
+    - Eg. on operators
+    - Float vs integer vs pointers arithmetic
 
-      + Numeric operators for complex, real, integer, ...
+* Several languages allow **user-defined** overloading
 
-   - Pascal
+    - C++
+    - Python (limited to operators)
+    - Haskell
 
-      + `WRITELN( 42 );`
-      + :ada:`WRITELN( 'This is a string' );`
+--------------------
+Visibility and Scope
+--------------------
 
-   - Many others...
+* Overloading is **not** re-declaration
+* Both entities **share** the name
 
-* Most modern languages allow users to do it too
+    - No hiding
+    - Compiler performs **name resolution**
+
+* Allowed to be declared in **same scope**
+
+    - Remember this is forbidden for "usual" declarations
 
 ------------------------------
 Overloadable Entities In Ada
@@ -45,12 +55,10 @@ Overloadable Entities In Ada
 
    procedure Put (Str : in String);
    procedure Put (C : in Complex);
-   function Max (Left, Right : Integer) return Integer;
-   function Max (Left, Right : Float)   return Float;
+   type E1 is (A, B, C);
+   type E2 is (A, B);
    function "+" (Left, Right : Rational) return Rational;
    function "+" (Left, Right : Complex)  return Complex;
-   function "*" (Left : Natural; Right : Character)
-         return String;
 
 ---------------------------------------
 Function Operator Overloading Example
@@ -58,19 +66,15 @@ Function Operator Overloading Example
 
 .. code:: Ada
 
-   type Complex is record
-     Real_Part : Float;
-     Imaginary : Float;
-   end record;
-   ...
-   function "+" (L,R : Complex) return Complex is
+   -- User-defined overloading
+   function "+" (L, R : Complex) return Complex is
    begin
      return (L.Real_Part + R.Real_Part,
              L.Imaginary + R.Imaginary);
    end "+";
-   ...
-   A, B, C : Complex;
+
    I, J, K : Integer;
+   A, B, C : Complex;
    ...
    I := J + K; -- overloaded operator (predefined)
    A := B + C; -- overloaded operator (user-defined)
@@ -198,11 +202,13 @@ Call Resolution
 * Compilers must reject ambiguous calls
 * Resolution is based on the calling context
 
-   - Compiler attempts to find a matching specification
+   - Compiler attempts to find a matching **profile**
 
-      + Based on *Parameter and Result Type Profile*
+      + Based on **Parameter** and **Result** Type
 
-   - More than one matching specification is ambiguous
+* Overloading is not re-definition, or hiding
+
+   - More than one matching profile is ambiguous
 
 .. code:: Ada
 
@@ -236,6 +242,19 @@ Profile Components Used
       Display (X);
       Display (Foo => X);
       Display (Foo => X, Bar => Y);
+
+------------------------
+Subtypes Don't Overload
+------------------------
+
+- Illegal code: re-declaration of `F`
+
+   .. code:: Ada
+
+      type A is new Integer;
+      subtype B is A;
+      function F return A is (0);
+      function F return B is (1);
 
 -------------------------------
 Manually Disambiguating Calls
@@ -319,59 +338,6 @@ Which statement is not legal?
    B. No overloaded names
    C. Use of :ada:`Top` resolves ambiguity
    D. When overloading subprogram names, best to not just switch the order of parameters
-
-===================
-Visibility Issues
-===================
-
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/visibility_issues.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#visibility-issues`
-
------------------------------------
-Inherently Ambiguous Declarations
------------------------------------
-
-* When a profile appears again within a single scope
-* Are illegal since all calls would be ambiguous
-
-   .. code:: Ada
-
-      procedure Test is
-        procedure P (X : in Natural) is ...
-        procedure P (A : in out Positive) is ...
-      begin
-        ...
-      end Test;
-
-* Compile error
-
-   .. code:: Ada
-
-      test.adb:3:04: duplicate body for "P" declared at line 2
-
-----------------
-Profile Hiding
-----------------
-
-* Subprograms can hide others with same profile
-* Only when scopes differ (same scope would imply illegal declarations)
-
-.. code:: Ada
-
-   Outer : declare
-     procedure P (X : in Natural := 0) is ...
-     begin
-       declare
-         procedure P (A : in out Positive) is ...
-       begin
-         P ( ... );  -- not Outer.P
-       end;
-   end Outer;
 
 =======================
 User-Defined Equality
