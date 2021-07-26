@@ -19,13 +19,13 @@ Introduction
 .. code:: Ada
 
    declare
-     type Hours is digits 6;
-     type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
-     type Schedule is array (Days) of Hours;
-     Workdays : Schedule;
+      type Hours is digits 6;
+      type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+      type Schedule is array (Days) of Hours;
+      Workdays : Schedule;
    begin
-     ...
-     Workdays (Mon) := 8.5;
+      ...
+      Workdays (Mon) := 8.5;
 
 -------------
 Terminology
@@ -465,12 +465,12 @@ Arrays of Arrays
 .. code:: Ada
 
    declare
-     type Array_of_10 is array (1..10) of Integer;
-     type Array_of_Array is array (Boolean) of Array_of_10;
-     A : Array_of_Array;
+      type Array_of_10 is array (1..10) of Integer;
+      type Array_of_Array is array (Boolean) of Array_of_10;
+      A : Array_of_Array;
    begin
-     ...
-     A (True)(3) := 42;
+      ...
+      A (True)(3) := 42;
 
 ------
 Quiz
@@ -676,86 +676,6 @@ Extra Object-Level Operations
 
    - Portion of array
 
----------
-Slicing
----------
-
-* "Slices" out a contiguous part of an array
-
-   - Consisting of zero or more components
-
-* Allowed on any 1-dimensional array type
-* Any component type is allowed, not just `Character`
-
-.. code:: Ada
-
-   Full_Name : String := "Monty Python";
-   -- print all the characters
-   Put_Line (Full_Name);
-   -- print the last part
-   Put_Line (Full_Name (7..12));
-   -- update the first part
-   Full_Name (1 .. 5) := "Ariel";
-
-.. list-table::
-
-  * - M
-
-    - O
-    - N
-    - T
-    - Y
-
-    -
-
-    - P
-    - Y
-    - T
-    - H
-    - O
-    - N
-
-  * - 1
-
-    -
-    -
-    -
-
-    - 5
-
-    -
-
-    - 7
-
-    -
-    -
-    -
-    -
-
-    - 12
-
-------------------------------
-Common Slicing Idiom Example
-------------------------------
-
-.. code:: Ada
-
-   function Remove_Spaces (Str : String) return String is
-      Ret_Val   : String (1 .. Str'Length);
-      Last_Used : Natural := 0;
-   begin
-      for C in Str'First .. Str'Last loop
-         if Str (C) /= ' ' then
-            Last_Used := Last_Used + 1;
-            -- Build return string
-            Ret_Val (Last_Used) := Str (C);
-         end if;
-      end loop;
-      -- Return slices of return string that we need
-      -- (If Last_Used = 0, will return an empty string)
-      return Ret_Val (1 .. Last_Used);
-   end Remove_Spaces;
-
 --------------------
 "Membership" Tests
 --------------------
@@ -783,6 +703,92 @@ Common Slicing Idiom Example
        -- desired value
      end loop;
      if Index in People'Range then -- good
+
+----------
+Examples
+----------
+
+.. include:: examples/050_array_types/slices.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#slices`
+
+---------
+Slicing
+---------
+
+.. container:: columns
+
+ .. container:: column
+
+    * Specifies a contiguous subsection of an array
+    * Allowed on any one-dimensional array type
+
+       - Any component type
+
+ .. container:: column
+
+    .. code:: Ada
+
+       procedure Test is
+         S1 : String (1 .. 9)
+            := "Hi Adam!!";
+         S2 : String
+            := "We love    !";
+       begin
+         Put_Line (S1 (4..6));
+         Put_Line (S2);
+         S2 (9..11) := S1 (4..6);
+         Put_Line (S2);
+         S2 (12) := '?';
+         Put_Line (S2);
+
+-------------------------------
+Slicing With Explicit Indexes
+-------------------------------
+
+* Imagine a requirement to have a name with two parts: first and last
+
+.. code:: Ada
+
+   declare
+      Full_Name : String (1 .. 20);
+   begin
+      Put_Line (Full_Name);
+      Put_Line (Full_Name (1..10));  -- first half of name
+      Put_Line (Full_Name (11..20)); -- second half of name
+
+-----------------------------------------
+Slicing With Named Subtypes for Indexes
+-----------------------------------------
+
+* Subtype name indicates the slice index range
+
+   - Names for constraints, in this case index constraints
+
+* Enhances readability and robustness
+
+.. code:: Ada
+
+   procedure Test is
+     subtype First_Name is Positive range 1 .. 10;
+     subtype Last_Name is Positive range 11 .. 20;
+     Full_Name : String(First_Name'First..Last_Name'Last);
+   begin
+     Put_Line(Full_Name(First_Name)); -- Full_Name(1..10)
+     if Full_Name (Last_Name) = SomeString then ...
+
+------------------------------------
+Dynamic Subtype Constraint Example
+------------------------------------
+
+* Useful when constraints not known at compile-time
+* Example: remove file name extension
+
+.. code:: Ada
+
+    File_Name (File_Name'First
+               ..
+               Index (File_Name, '.', Direction = Backward));
 
 ------
 Quiz
@@ -1318,107 +1324,6 @@ Anonymous Array Types
          -- legal assignment of values
          A(J) := B(K);
        end;
-
-========
-Slices
-========
-
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/slices.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#slices`
-
----------
-Slicing
----------
-
-.. container:: columns
-
- .. container:: column
-
-    * Specifies a contiguous subsection of an array
-    * Allowed on any one-dimensional array type
-
-       - Any component type
-
- .. container:: column
-
-    .. code:: Ada
-
-       procedure Test is
-         S1 : String (1 .. 9)
-            := "Hi Adam!!";
-         S2 : String
-            := "We love    !";
-       begin
-         Put_Line (S1 (4..6));
-         Put_Line (S2);
-         S2 (9..11) := S1 (4..6);
-         Put_Line (S2);
-         S2 (12) := '?';
-         Put_Line (S2);
-
--------------------------------
-Slicing With Explicit Indexes
--------------------------------
-
-* Imagine a requirement to have a name with two parts: first and last
-
-.. code:: Ada
-
-   declare
-     Full_Name : String (1 .. 20);
-   begin
-     Put_Line (Full_Name);
-     Put_Line (Full_Name (1..10));  -- first half of name
-     Put_Line (Full_Name (11..20)); -- second half of name
-
------------------------------------------
-Slicing With Named Subtypes for Indexes
------------------------------------------
-
-* Subtype name indicates the slice index range
-
-   - Names for constraints, in this case index constraints
-
-* Enhances readability and robustness
-
-.. code:: Ada
-
-   procedure Test is
-     subtype First_Name is Positive range 1 .. 10;
-     subtype Last_Name is Positive range 11 .. 20;
-     Full_Name : String(First_Name'First..Last_Name'Last);
-   begin
-     Put_Line(Full_Name(First_Name)); -- Full_Name(1..10)
-     if Full_Name (Last_Name) = SomeString then ...
-
-------------------------------------
-Dynamic Subtype Constraint Example
-------------------------------------
-
-* Useful when constraints not known at compile-time
-* Example: find the matching "raw" file name
-
-   - If the filename begins with CRW, we set the extension to CRW, otherwise we set it to CR2
-
-.. code:: Ada
-
-   -- actual bounds come from initial value
-   Image_File_Name : String := ...
-   Matching_Raw_File_Name : String := Image_File_Name;
-   subtype Prefix_Part is Positive range Image_File_Name'First ..
-                                         Image_File_Name'First + 2;
-   subtype Extension_Part is Positive range Image_File_Name'Last - 2 ..
-                                            Image_File_Name'Last;
-   begin
-     if Image_File_Name (Prefix_Part) = "CRW" then
-        Matching_Raw_File_Name(Extension_Part) := "CRW";
-     else
-       Matching_Raw_File_Name(Extension_Part) := "CR2";
 
 ========
 Lab
