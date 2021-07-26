@@ -142,6 +142,27 @@ Null Values
       V := new Integer'(0);
       V := null; -- semantically correct, but memory leak
 
+---------------------------
+Access Types and Primitives
+---------------------------
+
+* Subprogram using an access type are primitive of the **access type**
+
+    - **Not** the type of the accessed object
+
+   .. code:: Ada
+
+         type A_T is access all T;
+         procedure Proc (V : A_T); -- Primitive of A_T, not T
+
+* Primitive of the type can be created with the :ada:`access` mode
+
+    - **Anonymous** access type
+
+   .. code:: Ada
+
+         procedure Proc (V : access T); -- Primitive of T
+
 ------------------------
 Dereferencing Pointers
 ------------------------
