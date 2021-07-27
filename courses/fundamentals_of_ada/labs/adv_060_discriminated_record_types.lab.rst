@@ -2,49 +2,95 @@
 Discriminated Record Types Lab
 --------------------------------
    
-* Requirements for a simplistic employee database
-   
-   - Create a package to handle varying length strings using variant records
+(Simplified) University Class Scheduling System
 
-      * The string type **must** be `private`!
-      * The variant can appear on the partial definition or the full
+  * Overview
 
-   - Create a package to create employee data in a variant record
+    * Four categories of people on campus
 
-      * Store first name, last name, and hourly pay rate for all employees
-      * Supervisors must also include the project they are supervising
-      * Managers must also include the number of employees they are managing and the department name
+      Undergrad Student
+        Takes some classes
 
-   - Main program should read employee information from the console
+      Grad Student
+        Takes some classes and helps teach some classes
 
-      * Any number of any type of employees can be entered in any order
-      * When data entry is done, print out all appropriate information for each employee
+      Professor
+        Teaches some classes
 
-* Hints
+      Other
+        Anybody else
 
-   - Create concatenation functions for your varying length string type
-   - Is it easier to create an input function for each employee category, or a common one?
- 
----------------------------------------------------
-Discriminated Record Types Lab Solution - Vstring
----------------------------------------------------
+  * Goal
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Strings :end-before:--Strings :code:Ada
+    * Create application that allows user to:
+
+      * Identify a person by first name, last name, and category
+      * Maintain a list of classes attended by students
+      * Maintain a list of classes taught by Grad Students and Professors
+      * Print a list of people on campus and the classes they take/teach
+
+----------------------
+Project Requirements
+----------------------
+
+* Variant Records
+
+  * Types must be :ada:`private`
+  * Text content must be stored using your own variant record data type (no :ada:`Ada.Strings.*`)
+
+    * This means you will need to implement some basic operations, such as concatenation
+
+  * You must use the same record for every person, and you must not be able to make invalid assignments
+
+    * For example, your code must prevent an Undergrad from teaching a class through run-time checks (not validation)
+
+* Driver
+
+  * You can read data from a file, the console, or you can hard-code the calls
+  * Your testing should show your code flags incorrect scenarios
+
+    * Even if that's just an exception propagated out of the executable
+
+--------------------------------
+Extra Credit (If Time Permits)
+--------------------------------
+
+* **After** your testing shows failure for an incorrect scenario, try adding validation routines
+
+  * If you do it first, you won't know what happens if your validation doesn't catch every issue
+  * Good software practice: Fix the problem *before* you prevent the problem
+
+* Print list in a specific order (for example: by name, by category)
+
+* Use generics for data entry formatting/verification
 
 ----------------------------------------------------------
-Discriminated Record Types Lab Solution - Employee (Spec)
+Discriminated Record Types Lab Solution - Strings (Spec)
 ----------------------------------------------------------
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Employee_Spec :end-before:--Employee_Spec :code:Ada
+.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Strings_Spec :end-before:--Strings_Spec :code:Ada
 
-----------------------------------------------------------
-Discriminated Record Types Lab Solution - Employee (Body)
-----------------------------------------------------------
+-------------------------------------------------------------
+Discriminated Record Types Lab Solution - Scheduling (Spec)
+-------------------------------------------------------------
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Employee_Body :end-before:--Employee_Body :code:Ada
+.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Scheduling_Spec :end-before:--Scheduling_Spec :code:Ada
 
 -------------------------------------------------
 Discriminated Record Types Lab Solution - Main
 -------------------------------------------------
 
 .. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Main :end-before:--Main :code:Ada
+
+----------------------------------------------------------
+Discriminated Record Types Lab Solution - Strings (Body)
+----------------------------------------------------------
+
+.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Strings_Body :end-before:--Strings_Body :code:Ada
+
+-------------------------------------------------------------
+Discriminated Record Types Lab Solution - Scheduling (Body)
+-------------------------------------------------------------
+
+.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Scheduling_Body :end-before:--Scheduling_Body :code:Ada
+

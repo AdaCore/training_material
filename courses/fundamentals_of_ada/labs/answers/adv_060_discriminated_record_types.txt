@@ -1,164 +1,310 @@
---Strings
-package Vstring is
-   Max_String_Length : constant := 1_000;
-   type Vstring_T is private;
-   function To_Vstring (Str : String) return Vstring_T;
-   function To_String (Vstr : Vstring_T) return String;
-   function "&" (L, R : Vstring_T) return Vstring_T;
-   function "&" (L : String; R : Vstring_T) return Vstring_T;
-   function "&" (L : Vstring_T; R : String) return Vstring_T;
+--Strings_Spec
+package Strings is
+
+   type String_T is private;
+
+   function Value (S : String) return String_T;
+   function Image (S : String_T) return String;
+
+   function Length (S : String_T) return Natural;
+
+   function "&" (L, R : String_T) return String_T;
+   function "&" (L : String_T; R : String) return String_T;
+   function "&" (L : String; R : String_T) return String_T;
+
+   function Element (S     : String_T;
+                     Index : Natural)
+                     return Character;
+   function Slice (S           : String_T;
+                   First, Last : Natural)
+                   return String_T;
+   function Slice (S           : String_T;
+                   First, Last : Natural)
+                   return String;
+
 private
-   subtype Index_T is Integer range 0 .. Max_String_Length;
-   type Vstring_T (Length : Index_T := 0) is record
+   Max_String_Length : constant := 132;
+   subtype String_Length_T is Natural range 0 .. Max_String_Length;
+   subtype String_Index_T is Natural range 1 .. String_Length_T'last;
+
+   type String_T (Length : String_Length_T := 0) is record
       Text : String (1 .. Length);
    end record;
-end Vstring;
 
-package body Vstring is
-   function To_Vstring (Str : String) return Vstring_T is
-      ((Length => Str'Length, Text => Str));
-   function To_String (Vstr : Vstring_T) return String is
-      (Vstr.Text);
-   function "&" (L, R : Vstring_T) return Vstring_T is
-      Ret_Val : constant String := L.Text & R.Text;
-   begin
-      return (Length => Ret_Val'Length, Text => Ret_Val);
-   end "&";
+end Strings;
+--Strings_Spec
 
-   function "&" (L : String; R : Vstring_T) return Vstring_T is
-      Ret_Val : constant String := L & R.Text;
-   begin
-      return (Length => Ret_Val'Length, Text => Ret_Val);
-   end "&";
+--Scheduling_Spec
+with Strings; use Strings;
+package Scheduling is
 
-   function "&" (L : Vstring_T; R : String) return Vstring_T is
-      Ret_Val : constant String := L.Text & R;
-   begin
-      return (Length => Ret_Val'Length, Text => Ret_Val);
-   end "&";
-end Vstring;
---Strings
+   Failure : exception;
 
---Employee_Spec
-with Ada.Text_IO; use Ada.Text_IO;
-with Vstring;     use Vstring;
-package Employee is
+   type Kind_T is
+     (Unknown, First_Year, Second_Year, Third_Year, Fourth_Year, Grad,
+      Professor);
+   type Schedule_T is private;
+   type Person_T is private;
 
-   type Category_T is (Staff, Supervisor, Manager);
-   type Pay_T is delta 0.01 range 0.0 .. 1_000.00;
+   function Create (First_Name : String;
+                    Last_Name  : String;
+                    Kind       : Kind_T := Unknown)
+                    return Person_T;
 
-   type Employee_T (Category : Category_T := Staff) is record
-      Last_Name   : Vstring.Vstring_T;
-      First_Name  : Vstring.Vstring_T;
-      Hourly_Rate : Pay_T;
-      case Category is
-         when Staff =>
+   procedure Attend_Class (Person : in out Person_T;
+                           Class  : in     String);
+
+   procedure Teach_Class (Person : in out Person_T;
+                          Class  : in     String);
+
+   procedure Print (Person : in Person_T);
+
+private
+
+   Max_Schedule_Size : constant := 10;
+   type Schedule_Array_T is array (1 .. Max_Schedule_Size) of String_T;
+   type Schedule_T is record
+      Count : Natural := 0;
+      List  : Schedule_Array_T;
+   end record;
+
+   type Person_T (Kind : Kind_T := Unknown) is record
+      First_Name : Strings.String_T;
+      Last_Name  : Strings.String_T;
+      case Kind is
+         when Unknown =>
             null;
-         when Supervisor =>
-            Project : Vstring.Vstring_T;
-         when Manager =>
-            Department  : Vstring.Vstring_T;
-            Staff_Count : Natural;
+         when First_Year .. Fourth_Year =>
+            Student_Schedule : Schedule_T;
+         when Grad =>
+            Grad_Schedule      : Schedule_T;
+            Assistant_Schedule : Schedule_T;
+         when Professor =>
+            Teaching_Schedule : Schedule_T;
       end case;
    end record;
 
-   function Get_Staff return Employee_T;
-   function Get_Supervisor return Employee_T;
-   function Get_Manager return Employee_T;
+end Scheduling;
+--Scheduling_Spec
 
-end Employee;
---Employee_Spec
+--Main
+with Ada.Text_IO; use Ada.Text_IO;
+with Scheduling;
+procedure Main is
 
---Employee_Body
-package body Employee is
-   function Read (Prompt : String) return String is
+   type Commands_T is (Add, Attend, Teach, Print, Quit);
+   function Command return Commands_T is
+   begin
+      loop
+         for C in Commands_T loop
+            Put (C'image & " ");
+         end loop;
+         Put ("> ");
+         declare
+            Response : constant String := Get_Line;
+         begin
+            return Commands_T'value (Response);
+         exception
+            when others => Put_Line ("Illegal command");
+         end;
+      end loop;
+   end Command;
+
+   function Kind return Scheduling.Kind_T is
+   begin
+      loop
+         for K in Scheduling.Kind_T loop
+            Put (K'image & " ");
+         end loop;
+         Put ("> ");
+         declare
+            Response : constant String := Get_Line;
+         begin
+            return Scheduling.Kind_T'value (Response);
+         exception
+            when others => Put_Line ("Illegal kind");
+         end;
+      end loop;
+   end Kind;
+
+   function Get_String (Prompt : String) return String is
    begin
       Put (Prompt & " > ");
       return Get_Line;
-   end Read;
+   end Get_String;
 
-   function Get_Staff return Employee_T is
-      Ret_Val : Employee_T (Staff);
-   begin
-      Ret_Val.Last_Name   := To_Vstring (Read ("Last name"));
-      Ret_Val.First_Name  := To_Vstring (Read ("First name"));
-      Ret_Val.Hourly_Rate := Pay_T'Value (Read ("Hourly rate"));
-      return Ret_Val;
-   end Get_Staff;
+   Database : array (1 .. 100) of Scheduling.Person_T;
+   Current  : Integer := 0;
 
-   function Get_Supervisor return Employee_T is
-      Ret_Val : Employee_T (Supervisor);
-   begin
-      Ret_Val.Last_Name   := To_Vstring (Read ("Last name"));
-      Ret_Val.First_Name  := To_Vstring (Read ("First name"));
-      Ret_Val.Hourly_Rate := Pay_T'Value (Read ("Hourly rate"));
-      Ret_Val.Project     := To_Vstring (Read ("Project"));
-      return Ret_Val;
-   end Get_Supervisor;
+begin
+   loop
+      case Command is
+         when Add =>
+            Current            := Current + 1;
+            Database (Current) := Scheduling.Create
+                (First_Name => Get_String ("First Name"),
+                 Last_Name  => Get_String ("Last Name"),
+                 Kind       => Kind);
+         when Attend =>
+            Scheduling.Attend_Class (Person => Database (Current),
+                                     Class  => Get_String ("Class"));
+         when Teach =>
+            Scheduling.Teach_Class (Person => Database (Current),
+                                    Class  => Get_String ("Class"));
+         when Print =>
+            for I in 1 .. Current loop
+               Scheduling.Print (Database (I));
+            end loop;
 
-   function Get_Manager return Employee_T is
-      Ret_Val : Employee_T (Manager);
-   begin
-      Ret_Val.Last_Name   := To_Vstring (Read ("Last name"));
-      Ret_Val.First_Name  := To_Vstring (Read ("First name"));
-      Ret_Val.Hourly_Rate := Pay_T'Value (Read ("Hourly rate"));
-      Ret_Val.Department  := To_Vstring (Read ("Department"));
-      Ret_Val.Staff_Count := Integer'Value (Read ("Staff count"));
-      return Ret_Val;
-   end Get_Manager;
-end Employee;
---Employee_Body
+         when Quit =>
+            exit;
+      end case;
+   end loop;
 
+end Main;
 --Main
-with Ada.Text_IO; use Ada.Text_IO;
-with Employee;
-with Vstring; use Vstring;
-procedure Main is
-   procedure Print (Member : Employee.Employee_T) is
-      First_Line : Vstring.Vstring_T :=
-        Member.First_Name & " " & Member.Last_Name & " " &
-        Member.Hourly_Rate'Image;
+
+--Strings_Body
+package body Strings is
+
+   function Value (S : String) return String_T is
+      ((S'length, S));
+
+   function Image (S : String_T) return String is
+      (S.Text);
+
+   function "&" (L, R : String_T) return String_T is
+      Retval : constant String := L.Text & R.Text;
    begin
-      Put_Line (Vstring.To_String (First_Line));
-      case Member.Category is
-         when Employee.Supervisor =>
-            Put_Line ("   Project: " & Vstring.To_String (Member.Project));
-         when Employee.Manager =>
-            Put_Line ("   Overseeing " & Member.Staff_Count'Image & " in " &
-                      Vstring.To_String (Member.Department));
-         when others => null;
+      return (Retval'length, Retval);
+   end "&";
+
+   function "&" (L : String_T; R : String) return String_T is
+      Retval : constant String := L.Text & R;
+   begin
+      return (Retval'length, Retval);
+   end "&";
+   function "&" (L : String; R : String_T) return String_T is
+      Retval : constant String := L & R.Text;
+   begin
+      return (Retval'length, Retval);
+   end "&";
+
+   function Element (S     : String_T;
+                     Index : Natural)
+                     return Character is
+      (S.Text (Index));
+
+   function Slice (S           : String_T;
+                   First, Last : Natural)
+                   return String_T is
+      Retval : constant String := S.Text (First .. Last);
+   begin
+      return (Retval'length, Retval);
+   end Slice;
+
+   function Slice (S           : String_T;
+                   First, Last : Natural)
+                   return String is
+      (S.Text (First .. Last));
+
+   function Length (S : String_T) return Natural is
+      (S.Length);
+
+end Strings;
+--Strings_Body
+
+--Scheduling_Body
+with Ada.Text_IO; use Ada.Text_IO;
+package body Scheduling is
+
+   function Create
+     (First_Name : String;
+      Last_Name  : String;
+      Kind       : Kind_T := Unknown)
+      return Person_T is
+      Retval : Person_T (Kind);
+   begin
+      Retval.First_Name := Value (First_Name);
+      Retval.Last_Name  := Value (Last_Name);
+      return Retval;
+   end Create;
+
+   procedure Add_To_Schedule
+     (Class    :        String;
+      Schedule : in out Schedule_T) is
+   begin
+      Schedule.Count                 := Schedule.Count + 1;
+      Schedule.List (Schedule.Count) := Value (Class);
+   end Add_To_Schedule;
+
+   procedure Attend_Class
+     (Person : in out Person_T;
+      Class  : in     String) is
+      Kind : constant Kind_T := Person.Kind;
+   begin
+      case Person.Kind is
+         when First_Year .. Fourth_Year =>
+            Add_To_Schedule (Class, Person.Student_Schedule);
+         when Grad =>
+            Add_To_Schedule (Class, Person.Grad_Schedule);
+         when others =>
+            raise Failure
+              with Image (Person.First_Name & " " & Person.Last_Name) &
+              " does not attend classes";
+      end case;
+   end Attend_Class;
+
+   procedure Teach_Class
+     (Person : in out Person_T;
+      Class  : in     String) is
+   begin
+      case Person.Kind is
+         when Grad =>
+            Add_To_Schedule (Class, Person.Assistant_Schedule);
+         when Professor =>
+            Add_To_Schedule (Class, Person.Teaching_Schedule);
+         when others =>
+            raise Failure
+              with Image (Person.First_Name & " " & Person.Last_Name) &
+              " does not teach classes";
+      end case;
+   end Teach_Class;
+
+   procedure Print_Schedule (Schedule : Schedule_T) is
+   begin
+      if Schedule.Count = 0
+      then
+         Put_Line ("   <no classes>");
+      else
+         for Class of Schedule.List (1 .. Schedule.Count)
+         loop
+            Put_Line ("   " & Image (Class));
+         end loop;
+      end if;
+   end Print_Schedule;
+
+   procedure Print (Person : in Person_T) is
+   begin
+      Put_Line
+        (Image (Person.First_Name) & " " & Image (Person.Last_Name) & " (" &
+         Person.Kind'image & ")");
+      case Person.Kind is
+         when First_Year .. Fourth_Year =>
+            Put_Line ("Taking:");
+            Print_Schedule (Person.Student_Schedule);
+         when Grad =>
+            Put_Line ("Taking:");
+            Print_Schedule (Person.Grad_Schedule);
+            Put_Line ("Teaching:");
+            Print_Schedule (Person.Assistant_Schedule);
+         when Professor =>
+            Put_Line ("Teaching:");
+            Print_Schedule (Person.Teaching_Schedule);
+         when Unknown =>
+            null;
       end case;
    end Print;
 
-   List  : array (1 .. 1_000) of Employee.Employee_T;
-   Count : Natural := 0;
-begin
-   loop
-      Put_Line ("E => Employee");
-      Put_Line ("S => Supervisor");
-      Put_Line ("M => Manager");
-      Put ("E/S/M (any other to stop): ");
-      declare
-         Choice : constant String := Get_Line;
-      begin
-         case Choice (1) is
-            when 'E' | 'e' =>
-               Count        := Count + 1;
-               List (Count) := Employee.Get_Staff;
-            when 'S' | 's' =>
-               Count        := Count + 1;
-               List (Count) := Employee.Get_Supervisor;
-            when 'M' | 'm' =>
-               Count        := Count + 1;
-               List (Count) := Employee.Get_Manager;
-            when others =>
-               exit;
-         end case;
-      end;
-   end loop;
-
-   for Item of List (1 .. Count) loop
-      Print (Item);
-   end loop;
-end Main;
---Main
+end Scheduling;
+--Scheduling_Body
