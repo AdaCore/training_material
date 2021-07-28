@@ -1,123 +1,255 @@
---Messages
-package Messages is
-   type Message_T is private;
+--Accounts_Spec
+package Accounts is
 
-   procedure Set_Content (Message : in out Message_T;
-                          Value   :        Integer);
-   function Content (Message : Message_T) return Integer;
-   function Image (Message : Message_T) return String;
+   Illegal_Access : exception;
+
+   type User_Key_T is limited private;
+   type Account_T is limited private;
+   type Funds_T is delta 0.01 range -9_999.99 .. 9_999.99;
+
+   function Secure_Key (Str : String) return User_Key_T;
+
+   function Create (Key : User_Key_T) return Account_T;
+   procedure Deposit (Account : Account_T;
+                      Key     : User_Key_T;
+                      Amount  : Funds_T);
+   procedure Withdraw (Account : Account_T;
+                       Key     : User_Key_T;
+                       Amount  : Funds_T);
+   function Balance (Account : Account_T;
+                     Key     : User_Key_T)
+                     return Funds_T;
 
 private
-   type Message_Content_T;
-   type Message_T is access Message_Content_T;
-end Messages;
 
-package body Messages is
-   type Message_Content_T is new Integer;
+   type User_Key_Data_T;
+   type User_Key_T is access User_Key_Data_T;
 
-   procedure Set_Content (Message : in out Message_T;
-                          Value   :        Integer) is
-      New_Value : constant Message_Content_T := Message_Content_T (Value);
+   type Account_Data_T;
+   type Account_T is access Account_Data_T;
+
+end Accounts;
+--Accounts_Spec
+
+with Accounts;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Text_IO;           use Ada.Text_IO;
+procedure Main is
+
+   type Commands_T is (Create, Deposit, Withdraw, Balance, Quit);
+   function Command return Commands_T is
    begin
-      if Message = null then
-         Message := new Message_Content_T'(New_Value);
-      else
-         Message.all := New_Value;
-      end if;
-   end Set_Content;
+      loop
+         for C in Commands_T loop
+            Put (C'image & " ");
+         end loop;
+         Put ("> ");
+         declare
+            Response : constant String := Get_Line;
+         begin
+            return Commands_T'value (Response);
+         exception
+            when others =>
+               Put_Line ("Illegal command");
+         end;
+      end loop;
+   end Command;
 
-   function Content (Message : Message_T) return Integer is
-      (Integer (Message.all));
-   function Image (Message : Message_T) return String is
-      ("**" & Message_Content_T'Image (Message.all));
-end Messages;
---Messages
---List_Types
-package Messages.List_Types is
-   type List_T is private;
-private
-   type List_Content_T;
-   type List_T is access List_Content_T;
-   type Id_Type is range 1_000 .. 9_999;
-   type List_Content_T is record
-      Id      : Id_Type;
-      Content : Message_T;
-      Next    : List_T;
-   end record;
-end Messages.List_Types;
---List_Types
-
-with Messages.List_Types;
---Operations
-package Messages.List_Types.Operations is
-   procedure Append (List : in out List_T;
-                     Item :        Message_T);
-   function Next (List : List_T) return List_T;
-   function Is_Null (List : List_T) return Boolean;
-   function Image (Message : List_T) return String;
-end Messages.List_Types.Operations;
-
-package body Messages.List_Types.Operations is
-   Id : Id_Type := Id_Type'First;
-
-   procedure Append (List : in out List_T;
-                     Item :        Message_T) is
+   function Get_String
+     (Prompt : String)
+      return String is
    begin
-      if List = null then
-         List := new List_Content_T'(Id => Id, Content => Item, Next => null);
-      else
-         List.Next := new List_Content_T'(Id => Id, Content => Item, Next => null);
-      end if;
-      Id := Id_Type'Succ (Id);
-   end Append;
-
-   function Next (List : List_T) return List_T is (List.Next);
-   function Is_Null (List : List_T) return Boolean is (List = null);
-
-   function Image (Message : List_T) return String is
-   begin
-      if Is_Null (Message) then
-         return "" & ASCII.LF;
-      else
-         return "id: " & Id_Type'Image (Message.Id) & " => " &
-           Image (Message.Content) & ASCII.LF & Image (Message.Next);
-      end if;
-   end Image;
-end Messages.List_Types.Operations;
---Operations
+      Put (Prompt & " > ");
+      return Get_Line;
+   end Get_String;
 
 --Main
-with Ada.Text_IO;
-with Messages;
-with Messages.List_Types;
-with Messages.List_Types.Operations;
-procedure Main is
-   package Types renames Messages.List_Types;
-   package Operations renames Messages.List_Types.Operations;
+   type Database_T is record
+      Key     : Unbounded_String;
+      Account : Accounts.Account_T;
+   end record;
 
-   List : Types.List_T;
-   Head : Types.List_T;
+   Database       : array (1 .. 100) of access Database_T;
+   Next_Available : Integer := 1;
 
-   function Convert (Value : Integer) return Messages.Message_T is
-      Ret_Value : Messages.Message_T;
+   function Index (Key : String) return Integer is
    begin
-      Messages.Set_Content (Ret_Value, Value);
-      return Ret_Value;
-   end Convert;
-
-   procedure Add_One (Value : Integer) is
-   begin
-      Operations.Append (List, Convert (Value));
-      List := Operations.Next (List);
-   end Add_One;
+      for I in 1 .. Next_Available - 1 loop
+         if Database (I).Key = Key then
+            return I;
+         end if;
+      end loop;
+      Put_Line (Key & " not found");
+      return Database'first - 1;
+   end Index;
 
 begin
-   Operations.Append (List, Convert (1));
-   Head := List;
-   Add_One (23);
-   Add_One (456);
-   Add_One (78);
-   Add_One (9);
-   Ada.Text_IO.Put_Line (Operations.Image (Head));
-end Main;
+   loop
+      case Command is
+         when Quit =>
+            exit;
+         when Create =>
+            declare
+               Key : constant String := Get_String ("New User Key");
+            begin
+               Database (Next_Available) :=
+                 new Database_T'
+                   (Key     => To_Unbounded_String (Key),
+                    Account => Accounts.Create (Accounts.Secure_Key (Key)));
+               Next_Available := Next_Available + 1;
+            end;
+         when Deposit =>
+            declare
+               Key : constant String  := Get_String ("Existing User Key");
+               Idx : constant Integer := Index (Key);
+            begin
+               if Idx in Database'range then
+                  Accounts.Deposit
+                    (Account => Database (Idx).Account,
+                     Key     => Accounts.Secure_Key (Key),
+                     Amount  =>
+                       Accounts.Funds_T'value
+                         (Get_String ("Amount to deposit")));
+               end if;
+            end;
+         when Withdraw =>
+            declare
+               Key : constant String  := Get_String ("Existing User Key");
+               Idx : constant Integer := Index (Key);
+            begin
+               if Idx in Database'range then
+                  Accounts.Withdraw
+                    (Account => Database (Idx).Account,
+                     Key     => Accounts.Secure_Key (Key),
+                     Amount  =>
+                       Accounts.Funds_T'value
+                         (Get_String ("Amount to withdraw")));
+               end if;
+            end;
+         when Balance =>
+            declare
+               Key : constant String  := Get_String ("Existing User Key");
+               Idx : constant Integer := Index (Key);
+            begin
+               if Idx in Database'range then
+                  Put_Line
+                    ("Balance: " & Accounts.Funds_T'image (Accounts.Balance
+                          (Account => Database (Idx).Account,
+                           Key     => Accounts.Secure_Key (Key))));
+               end if;
+            end;
+         when others =>
+            null;
+      end case;
+   end loop;
 --Main
+
+end Main;
+
+with Ada.Containers.Vectors;
+package body Accounts is
+
+--Accounts_Keys
+   subtype Key_T is String (1 .. 20);
+   type User_Key_Data_T is record
+      Key : Key_T;
+   end record;
+
+   function Flip
+     (C : Character)
+      return Character is
+      I : constant Integer := Character'pos (C);
+      J : constant Integer := Character'pos (Character'last) - I;
+   begin
+      return Character'val (J);
+   end Flip;
+
+   function Secure_Key
+     (Str : String)
+      return User_Key_T is
+      Retval : User_Key_T := new User_Key_Data_T;
+      Key    : Key_T renames Retval.Key;
+      I      : Integer    := Key'first;
+      J      : Integer    := Str'first;
+   begin
+      while I <= Key'last
+      loop
+         Key (I) := Flip (Str (J));
+         I       := I + 1;
+         if J = Str'last
+         then
+            J := Str'first;
+         else
+            J := J + 1;
+         end if;
+      end loop;
+      return Retval;
+   end Secure_Key;
+--Accounts_Keys
+
+--Accounts_Body
+   package Transactions is new Ada.Containers.Vectors (Positive, Funds_T);
+
+   type Unique_Id_T is mod 2**32;
+   Next_Available_Id : Unique_Id_T := 1;
+
+   type Account_Data_T is record
+      Unique_Id   : Unique_Id_T;
+      User_Key    : User_Key_Data_T;
+      Deposits    : Transactions.Vector;
+      Withdrawals : Transactions.Vector;
+   end record;
+
+   procedure Verify (Account : Account_T;
+                     Key     : User_Key_T) is
+   begin
+      if Account.User_Key /= Key.all then
+         raise Illegal_Access;
+      end if;
+   end Verify;
+
+   function Create (Key : User_Key_T) return Account_T is
+      Retval : Account_T :=
+        new Account_Data_T'
+          (Unique_Id   => Next_Available_Id, User_Key => Key.all,
+           Deposits    => Transactions.Empty_Vector,
+           Withdrawals => Transactions.Empty_Vector);
+   begin
+      return Retval;
+   end Create;
+
+   procedure Deposit (Account : Account_T;
+                      Key     : User_Key_T;
+                      Amount  : Funds_T) is
+   begin
+      Verify (Account, Key);
+      Transactions.Append (Account.Deposits, Amount);
+   end Deposit;
+
+   procedure Withdraw (Account : Account_T;
+                       Key     : User_Key_T;
+                       Amount  : Funds_T) is
+   begin
+      Verify (Account, Key);
+      Transactions.Append (Account.Withdrawals, Amount);
+   end Withdraw;
+
+   function Sum (List : Transactions.Vector) return Funds_T is
+      Retval : Funds_T := 0.0;
+   begin
+      for Value of List loop
+         Retval := Retval + Value;
+      end loop;
+      return Retval;
+   end Sum;
+
+   function Balance (Account : Account_T;
+                     Key     : User_Key_T)
+                     return Funds_T is
+   begin
+      Verify (Account, Key);
+      return Sum (Account.Deposits) - Sum (Account.Withdrawals);
+   end Balance;
+--Accounts_Body
+
+end Accounts;

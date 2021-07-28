@@ -2,45 +2,61 @@
 Advanced Privacy Lab
 ----------------------
    
-* Requirements
+(Simplified) Bank Account Managment
+
+  * Overview
+
+    * We want a (reasonably) secure way of storing withdrawals and deposits for bank accounts
+    * Each account should have a unique identifier and be "password-protected"
+  
+  * Goals
    
-   - Create a package defining a message type whose implementation is solely in the body
+    * Create application that allows user to
 
-      - You will need accessor functions to set / get the content
-      - Create a function to return a string representation of the message contents
+      * Create bank accounts for customers
+      * Allow user to deposit and withdraw funds and query the balance
+      * Ensure "reasonable" security on the accounts
 
-   - Create another package that defines the types needed for a linked list of messages
+----------------------
+Project Requirements
+----------------------
 
-      - Each message in the list should have an identifier not visible to any clients
+* Private / Limited Types
 
-   - Create a package containing simple operations on the list
+  * Account information must be :ada:`limited`
 
-      - Typical operations like list creation and list traversal
-      - Create a subprogram to print the list contents
- 
-   - Have your main program add items to the list and then print the list
+    * Should not be able to copy account information
 
-* Hints
+  * User and account information should be "encrypted" and consistent
 
-   - You will need to employ some (but not necessarily all) of the techniques discussed in this module
- 
-----------------------------------------------
-Advanced Privacy Lab Solution - Message Type
-----------------------------------------------
+    * Only the specified customer should have access to an account
 
-.. container:: source_include labs/answers/adv_120_advanced_privacy.txt :start-after:--Messages :end-before:--Messages :code:Ada
+* Driver
 
----------------------------------------------------
-Advanced Privacy Lab Solution - Message List Type
----------------------------------------------------
+  * You must maintain a collection of accounts
+  * You should be able to perform transactions on any account at any time
 
-.. container:: source_include labs/answers/adv_120_advanced_privacy.txt :start-after:--List_Types :end-before:--List_Types :code:Ada
- 
----------------------------------------------------------
-Advanced Privacy Lab Solution - Message List Operations
----------------------------------------------------------
+* Extra Credit
 
-.. container:: source_include labs/answers/adv_120_advanced_privacy.txt :start-after:--Operations :end-before:--Operations :code:Ada
+  * To increase security, no one should be able to write a child package to manipulate account information
+
+-------------------------------------------------
+Advanced Privacy Lab Solution - Accounts (Spec)
+-------------------------------------------------
+
+.. container:: source_include labs/answers/adv_120_advanced_privacy.txt :start-after:--Accounts_Spec :end-before:--Accounts_Spec :code:Ada
+
+-------------------------------------------------
+Advanced Privacy Lab Solution - Accounts (Body)
+-------------------------------------------------
+
+.. container:: source_include labs/answers/adv_120_advanced_privacy.txt :start-after:--Accounts_Body :end-before:--Accounts_Body :code:Ada
+
+-----------------------------------------------------------
+Advanced Privacy Lab Solution - Accounts (Key Generation)
+-----------------------------------------------------------
+
+.. container:: source_include labs/answers/adv_120_advanced_privacy.txt :start-after:--Accounts_Keys :end-before:--Accounts_Keys :code:Ada
 
 --------------------------------------
 Advanced Privacy Lab Solution - Main
