@@ -623,7 +623,7 @@ Error Classifications
 Lab
 ========
 
-.. include:: labs/190_exceptions.lab.rst
+.. include:: labs/adv_190_exceptions.lab.rst
 
 =========
 Summary
