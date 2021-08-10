@@ -12,7 +12,7 @@ Exceptions Lab
 
     * Application should allow user to add, subtract, multiply, and divide
     * We want to track exceptions without actually "interrupting" the application
-    * When the user has done entering data, the application should report the errors found
+    * When the user has finished entering data, the application should report the errors found
 
 ----------------------
 Project Requirements

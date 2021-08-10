@@ -1,0 +1,295 @@
+--User_Accounts_Spec
+with Ada.Finalization;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+package User_Accounts is
+   Quota_Exceeded : exception;
+   type Account_T is (User, Super_User, Admin, Deleted);
+   type User_T is private;
+   function Create (Kind : Account_T; Name : String) return User_T;
+   procedure Change_Account (User : in out User_T;
+                             Kind :        Account_T);
+   function Email (User : User_T) return String;
+   function Name (User : User_T) return String;
+   function Kind (User : User_T) return Account_T;
+   function Quota (User : User_T) return Natural;
+   function Quota return Natural;
+private
+   type User_T is new Ada.Finalization.Controlled with record
+      Kind  : Account_T;
+      Name  : Unbounded_String;
+      Email : Unbounded_String;
+      Quota : Natural;
+   end record;
+   procedure Initialize (Account : in out User_T);
+   procedure Finalize (Account : in out User_T);
+   procedure Adjust (Account : in out User_T);
+end User_Accounts;
+--User_Accounts_Spec
+with Ada.Text_IO;   use Ada.Text_IO;
+with Input;
+with User_Accounts; use User_Accounts;
+--Main
+procedure Main is
+   type Commands_T is (Create, Modify, Print, Quota, Finish);
+   function Get_Command is new Input.Get_Enum (Commands_T, "Command");
+   function Get_Kind is new Input.Get_Enum (Account_T, "Account Type");
+   function Get_Quota is new Input.Get_Number (Natural, "Quota");
+   type Query_T is (Yes, No);
+   function Get_Query is new Input.Get_Enum (Query_T, "Yes or No");
+   Users          : array (1 .. 100) of User_T;
+   Next_Available : Natural := 1;
+   procedure Print (Index : Integer) is
+   begin
+      Ada.Text_IO.Put_Line (Email (Users (Index)));
+      Ada.Text_IO.Put_Line ("  " & Name (Users (Index)));
+      Ada.Text_IO.Put_Line ("  " & Account_T'image (Kind (Users (Index))));
+      Ada.Text_IO.Put_Line (" " & Natural'image (Quota ((Users (Index)))));
+   end Print;
+   procedure Find
+     (Looking_For :        String;
+      Index       : in out Integer) is
+   begin
+      while Index < Next_Available - 1 loop
+         exit when Name (Users (Index)) = Looking_For;
+         Index := Index + 1;
+      end loop;
+   end Find;
+   function Find
+     (Looking_For : String)
+      return Integer is
+      Index : Natural := 1;
+   begin
+      loop
+         Find (Looking_For, Index);
+         if Index < Next_Available then
+            if Get_Query ("  " & Email (Users (Index))) = Yes then
+               return Index;
+            else
+               Index := Index + 1;
+            end if;
+         else
+            exit;
+         end if;
+      end loop;
+      return Integer'last;
+   end Find;
+begin
+   loop
+      case Get_Command is
+         when Create =>
+            Users (Next_Available) := Create
+                (Kind => Get_Kind,
+                 Name => Input.Get_String ("Name"));
+            Next_Available := Next_Available + 1;
+         when Modify =>
+            declare
+               Index : Natural := Find (Input.Get_String ("Name"));
+            begin
+               if Index < Next_Available then
+                  Change_Account
+                    (User => Users (Index),
+                     Kind => Get_Kind);
+               end if;
+            end;
+         when Print =>
+            declare
+               Index : Natural := Find (Input.Get_String ("Name"));
+            begin
+               if Index < Next_Available then
+                  Print (Index);
+               end if;
+            end;
+         when Quota =>
+            Put_Line
+              ("Quota Consumed: " & Natural'image (User_Accounts.Quota));
+         when Finish =>
+            exit;
+      end case;
+   end loop;
+end Main;
+--Main
+with Ada.Text_IO;
+with Input;
+--User_Accounts_Body
+package body User_Accounts is
+   use Ada.Finalization;
+   Constant_Quota_Limit : constant := 2_000_000;
+   Global_Quota         : Natural  := 0;
+   type Existing_Emails_T is record
+      Count : Natural := 0;
+      Name  : Unbounded_String;
+   end record;
+   Existing_Emails : array (1 .. 1_000) of Existing_Emails_T;
+   Email_Count     : Natural := 0;
+   function New_Email
+     (Name : String)
+      return Unbounded_String is
+   begin
+      for I in 1 .. Email_Count loop
+         if Name = Existing_Emails (I).Name then
+            Existing_Emails (I).Count := Existing_Emails (I).Count + 1;
+            declare
+               Str : constant String :=
+                 Integer'image (Existing_Emails (I).Count);
+            begin
+               return
+                 To_Unbounded_String (Name & Str (Str'first + 1 .. Str'last));
+            end;
+         end if;
+      end loop;
+      Email_Count                   := Email_Count + 1;
+      Existing_Emails (Email_Count) := (1, To_Unbounded_String (Name));
+      return Existing_Emails (Email_Count).Name;
+   end New_Email;
+   function Create
+     (Kind : Account_T;
+      Name : String)
+      return User_T is
+      Ret_Val : User_T;
+   begin
+      Ret_Val :=
+        (Controlled with Kind => Kind, Name => To_Unbounded_String (Name),
+         Email => New_Email (Name) & "@training.com", Quota => 0);
+      return Ret_Val;
+   end Create;
+   procedure Change_Account
+     (User : in out User_T;
+      Kind :        Account_T) is
+   begin
+      User :=
+        (Controlled with Kind => Kind, Name => User.Name, Email => User.Email,
+         Quota                => User.Quota);
+   end Change_Account;
+--User_Accounts_Body
+--User_Accounts_Support
+   function Email (User : User_T) return String is
+   begin
+      return To_String (User.Email);
+   end Email;
+   function Name (User : User_T) return String is
+   begin
+      return To_String (User.Name);
+   end Name;
+   function Kind (User : User_T) return Account_T is
+   begin
+      return User.Kind;
+   end Kind;
+   function Quota (User : User_T) return Natural is
+   begin
+      return User.Quota;
+   end Quota;
+   function Quota return Natural is
+   begin
+      return Global_Quota;
+   end Quota;
+   procedure Initialize (Account : in out User_T) is
+   begin
+      null;
+   end Initialize;
+   procedure Finalize (Account : in out User_T) is
+   begin
+      null;
+   end Finalize;
+   procedure Adjust (Account : in out User_T) is
+   begin
+      Global_Quota := Global_Quota - Account.Quota;
+      case Account.Kind is
+         when User =>
+            Account.Quota := 10;
+         when Super_User =>
+            Account.Quota := 1_000;
+         when Admin =>
+            Account.Quota := 1_000_000;
+         when Deleted =>
+            Account.Quota := 0;
+      end case;
+      Global_Quota := Global_Quota + Account.Quota;
+      if Global_Quota > Constant_Quota_Limit then
+         raise Quota_Exceeded;
+      end if;
+   end Adjust;
+end User_Accounts;
+--User_Accounts_Support
+--Input_Spec
+package Input is
+   Input_Canceled : exception;
+   function Get_String (Prompt : String) return String;
+   generic
+      type Enum_T is (<>);
+      Prompt : String;
+   function Get_Enum (Hint : String := "") return Enum_T;
+   generic
+      type Integer_T is range <>;
+      Prompt : String;
+   function Get_Number (Hint : String := "") return Integer;
+end Input;
+--Input_Spec
+with Ada.Characters.Handling; use Ada.Characters.Handling;
+with Ada.Text_IO;             use Ada.Text_IO;
+--Input_Body
+package body Input is
+   function Get_String (Prompt : String) return String is
+   begin
+      Put (Prompt & " > ");
+      return Get_Line;
+   end Get_String;
+   function Get_Enum (Hint : String := "") return Enum_T is
+      Possibles : String (1 .. 1 + Enum_T'pos (Enum_T'last)) := (others => ' ');
+   begin
+      loop
+         if Hint'length > 0 then
+            Put (Hint & " - ");
+         end if;
+         Put (Prompt & ": ");
+         for E in Enum_T'range loop
+            declare
+               Str : String := Enum_T'image (E);
+            begin
+               Possibles (1 + Enum_T'pos (E))  := Str (Str'first);
+               Str (Str'first + 1 .. Str'last) :=
+                 To_Lower (Str (Str'first + 1 .. Str'last));
+               Put (Str & " ");
+            end;
+         end loop;
+         Put (" > ");
+         declare
+            Retval : constant String := To_Upper (Get_Line);
+         begin
+            if Retval'length > 0 then
+               for I in Possibles'range loop
+                  if Retval (1) = Possibles (I) then
+                     return Enum_T'val (I - 1);
+                  end if;
+               end loop;
+               Put_Line ("Invalid input");
+            else
+               raise Input_Canceled;
+            end if;
+         end;
+      end loop;
+   end Get_Enum;
+   function Get_Number
+     (Hint : String := "")
+      return Integer is
+   begin
+      loop
+         if Hint'length > 0 then
+            Put (Hint & " - ");
+         end if;
+         Put (Prompt & " > ");
+         declare
+            Retval : constant String := Get_Line;
+         begin
+            if Retval'length > 0 then
+               return Integer'value (Retval);
+            else
+               raise Input_Canceled;
+            end if;
+         exception
+            when others =>
+               Put_Line ("Invalid input");
+         end;
+      end loop;
+   end Get_Number;
+end Input;
+--Input_Body
