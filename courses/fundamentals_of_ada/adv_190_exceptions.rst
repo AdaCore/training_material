@@ -24,135 +24,152 @@ Advanced Usages
     - Re-raising
     - Copying
 
-==========
+========
+Review
+========
+
+--------------------------
+Rationale for Exceptions
+--------------------------
+
+* Textual separation from normal processing
+* Rigorous Error Management
+
+   - Cannot be ignored, unlike status codes from routines
+   - Example: running out of gasoline in an automobile
+
+.. code:: Ada
+
+   package Automotive is
+     type Vehicle is record
+       Fuel_Quantity, Fuel_Minimum : Float;
+       Oil_Temperature : Float;
+       ...
+     end record;
+     Fuel_Exhausted : exception;
+     procedure Consume_Fuel (Car : in out Vehicle);
+     ...
+   end Automotive;
+
+----------
 Handlers
-==========
+----------
 
------------------------------------------
-Exceptions Raised In Exception Handlers
------------------------------------------
+* Exception Handler Part
 
-.. container:: columns
+  * Contains the exception handlers within a frame
+  * Separates normal processing code from abnormal
+  * Starts with the reserved word :ada:`exception`
+  * Optional
 
- .. container:: column
-
-    * Go immediately to caller unless also handled
-    * Goes to caller in any case, as usual
-
- .. container:: column
-
-    .. code:: Ada
-
-       begin
-         ...
-       exception
-         when Some_Error =>
-           declare
-             New_Data : Some_Type;
-           begin
-             P( New_Data );
-             ...
-           exception
-             when ...
-           end;
-       end;
-
-=============================
-Language-Defined Exceptions
-=============================
-
---------------------
-`Constraint_Error`
---------------------
-
-* Caused by violations of constraints on range, index, etc.
-* The most common exceptions encountered
+* Syntax
 
    .. code:: Ada
 
-      K : Integer range 1 .. 10;
-      ...
-      K := -1;
+      exception_handler ::=
+        when exception_choice { | exception_choice } =>
+          sequence_of_statements
+      exception_choice ::= exception_name | others
 
-   .. code:: Ada
+---------------------------------------------
+Implicitly and Explicitly Raised Exceptions
+---------------------------------------------
 
-      L : array (1 .. 100) of Some_Type;
-      ...
-      L (400) := SomeValue;
+* Implicitly-Raised Exceptions
 
------------------
-`Program_Error`
------------------
+  * Correspond to language-defined checks
+  * Can happen by statement execution
+  * Can happen by declaration elaboration
 
-* When runtime control structure is violated
+* Some Language-Defined Exceptions
 
-   - Elaboration order errors and function bodies
+  * :ada:`Constraint_Error`
+  * :ada:`Program_Error`
+  * :ada:`Storage_Error`
+  * For a complete list see RM Q-4
 
-* When implementation detects bounded errors
+* Explicitly-Raised Exceptions
 
-   - Discussed momentarily
+  * Raised by application via :ada:`raise` statements
+  * A :ada:`raise` by itself is only allowed in handlers
 
-.. code:: Ada
+-------------------------
+User-Defined Exceptions
+-------------------------
 
-   function F return Some_Type is
-   begin
-     if something then
-       return Some_Value;
-     end if; -- program error - no return statement
-   end F;
+* Behave like predefined exceptions
 
------------------
-`Storage_Error`
------------------
+* Exception identifiers' use is restricted
 
-* When insufficient storage is available
-* Potential causes
-
-   - Declarations
-   - Explicit allocations
-   - Implicit allocations
+   * :ada:`raise` statements
+   * Handlers
+   * Renaming declarations
 
 .. code:: Ada
 
-   Data : array (1..1e20) of Big_Type;
+   package Stack is
+     Underflow, Overflow : exception;
+     procedure Push (Item : in Integer);
+     procedure Pop (Item : out Integer);
+     ...
+   end Stack;
 
-------------------------------
-Explicitly-Raised Exceptions
-------------------------------
-
-.. container:: columns
-
- .. container:: column
-
-    * Raised by application via :ada:`raise` statements
-
-       - Named exception becomes active
-
-    * Syntax
-
-       .. code:: Ada
-
-          raise_statement ::= raise; |
-             raise exception_name
-             [with string_expression];
-
-       - :ada:`with string_expression` only available in Ada 2005 and later
-
-    * A :ada:`raise` by itself is only allowed in handlers (more later)
-
- .. container:: column
-
-    .. code:: Ada
-
-       if Unknown (User_ID) then
-         raise Invalid_User;
+   package body Stack is
+     procedure Push (Item : in Integer) is
+     begin
+       if Top = Index'Last then
+         raise Overflow;
        end if;
+       Top := Top + 1;
+       Values (Top) := Item;
+     end Push;
 
-       if Unknown (User_ID) then
-         raise Invalid_User
-            with "Attempt by " &
-                 Image (User_ID);
+     procedure Pop (Item : out Integer) is
+     begin
+       if Top = 0 then
+         raise Underflow;
        end if;
+       Item := Values (Top);
+       Top := Top - 1;
+     end Pop;
+   end Stack;
+
+-------------
+Propagation
+-------------
+
+* Control does not return to point of raising
+
+   * Termination Model
+
+* When a handler is not found in a block statement
+
+   * Re-raised immediately after the block
+
+* When a handler is not found in a subprogram
+
+   * Propagated to caller at the point of call
+
+* Propagation is dynamic, back up the call chain
+
+   * Not based on textual layout or order of declarations
+
+* Propagation stops at the main subprogram
+
+   * Main completes abnormally unless handled
+
+---------------------
+*Raise Expressions*
+---------------------
+
+* **Expression** raising specified exception **at run-time**
+
+.. code:: Ada
+
+    Foo : constant Integer := ( case X is
+                                when 1 => 10,
+                                when 2 => 20,
+                                when others => raise Error);
 
 =============
 Propagation
