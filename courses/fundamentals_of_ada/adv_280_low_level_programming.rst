@@ -34,6 +34,7 @@ Examples
 
 .. include:: examples/adv_280_low_level_programming/data_representation.rst
 
+.. TBD
    :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_280_low_level_programming.html#data-representation`
 
 -------------------------------------
@@ -313,6 +314,7 @@ Examples
 
 .. include:: examples/adv_280_low_level_programming/address_clauses_and_overlays.rst
 
+.. TBD
    :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_280_low_level_programming.html#address-clauses-and-overlays`
 
 ---------
@@ -718,6 +720,13 @@ Flat Arrays
 
       type Char_array is array (natural) of Character;
       type C_String_Acc is access Char_Array;
+
+
+========
+Lab
+========
+
+.. include:: labs/adv_280_low_level_programming.lab.rst
 
 =========
 Summary
