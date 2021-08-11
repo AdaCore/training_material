@@ -1,0 +1,221 @@
+--Playlist_Spec
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+package Playlist is
+
+   type Song_T is private;
+
+   procedure Add_Song
+     (Name   : String;
+      Artist : String;
+      Album  : String);
+
+   procedure Shuffle;
+
+   function Current return String;
+   function Next return String;
+   function Previous return String;
+
+   procedure Print;
+
+private
+
+   type Song_T is record
+      Name   : Unbounded_String;
+      Artist : Unbounded_String;
+      Album  : Unbounded_String;
+   end record;
+
+end Playlist;
+--Playlist_Spec
+
+--Main
+with Ada.Text_IO; use Ada.Text_IO;
+with Playlist;
+procedure Main is
+
+   function Get (Prompt : String) return String is
+   begin
+      Put (Prompt & " > ");
+      return Get_Line;
+   end Get;
+
+   type Command_T is (Add, Current, Next, Previous, Shuffle, Print, Quit);
+   function Command return Command_T is
+   begin
+      for C in Command_T'range loop
+         Put_Line
+           (Integer'image (1 + Command_T'pos (C)) & "> " &
+            Command_T'image (C));
+      end loop;
+      loop
+         declare
+            I : Integer;
+         begin
+            I := Integer'value (Get ("Command"));
+            return Command_T'val (I - 1);
+         exception
+            when others =>
+               Put_Line ("Illegal value");
+         end;
+      end loop;
+   end Command;
+
+   procedure Add_Song is
+      Name   : constant String := Get ("Name");
+      Artist : constant String := Get ("Artist");
+      Album  : constant String := Get ("Album");
+   begin
+      Playlist.Add_Song (Name, Artist, Album);
+   end Add_Song;
+
+begin
+
+   loop
+      case Command is
+         when Add      => Add_Song;
+         when Current  => Put_Line ("Now Playing: " & Playlist.Current);
+         when Next     => Put_Line ("Skipping To: " & Playlist.Next);
+         when Previous => Put_Line ("Backing Up To: " & Playlist.Previous);
+         when Shuffle  => Playlist.Shuffle;
+         when Print    => Playlist.Print;
+         when Quit     => exit;
+      end case;
+   end loop;
+end Main;
+--Main
+--Playlist_Creation
+with Ada.Text_IO; use Ada.Text_IO;
+with GNAT.Random_Numbers;
+package body Playlist is
+
+   function Image (Song : Song_T) return String is
+   begin
+      return
+        To_String (Song.Name) & " by " & To_String (Song.Artist) & " from " &
+        To_String (Song.Album);
+   end Image;
+
+   type Playlist_T;
+   type Playlist_Ptr_T is access Playlist_T;
+   type Playlist_T is record
+      Next     : Playlist_Ptr_T := null;
+      Previous : Playlist_Ptr_T := null;
+      Current  : Song_T;
+   end record;
+
+   Global_Playlist : Playlist_Ptr_T := null;
+   Global_Count    : Natural        := 0;
+
+   procedure Add_Song (Song : Song_T) is
+
+      New_Entry : Playlist_Ptr_T := new Playlist_T;
+   begin
+      Global_Count       := Global_Count + 1;
+      New_Entry.Current  := Song;
+      New_Entry.Previous := null;
+      New_Entry.Next     := Global_Playlist;
+      if Global_Playlist /= null then
+         Global_Playlist.Previous := New_Entry;
+      end if;
+      Global_Playlist := New_Entry;
+   end Add_Song;
+
+   procedure Add_Song
+     (Name   : String;
+      Artist : String;
+      Album  : String) is
+      Song : Song_T :=
+        (Name   => To_Unbounded_String (Name),
+         Artist => To_Unbounded_String (Artist),
+         Album  => To_Unbounded_String (Album));
+   begin
+      Add_Song (Song);
+   end Add_Song;
+--Playlist_Creation
+
+   procedure Move_To_End is
+   begin
+      while Global_Playlist.Next /= null loop
+         Global_Playlist := Global_Playlist.Next;
+      end loop;
+   end Move_To_End;
+
+   procedure Move_To_Beginning is
+   begin
+      while Global_Playlist.Previous /= null loop
+         Global_Playlist := Global_Playlist.Previous;
+      end loop;
+   end Move_To_Beginning;
+
+--Playlist_Manipulation
+   Generator : GNAT.Random_Numbers.Generator;
+   function Random is new GNAT.Random_Numbers.Random_Discrete (Integer);
+   procedure Shuffle is
+      List  : array (1 .. Global_Count) of Song_T;
+      Index : Integer := 1;
+      Swap  : Integer;
+      Hold  : Song_T;
+   begin
+      Move_To_Beginning;
+      while Global_Playlist /= null loop
+         List (Index)    := Global_Playlist.Current;
+         Index           := Index + 1;
+         Global_Playlist := Global_Playlist.Next;
+      end loop;
+      Global_Playlist := null;
+      Global_Count    := 0;
+      for I in List'range loop
+         Swap        := Random (Generator, 1, List'last);
+         Hold        := List (I);
+         List (I)    := List (Swap);
+         List (Swap) := Hold;
+      end loop;
+      for I in List'range loop
+         Add_Song (List (I));
+      end loop;
+   end Shuffle;
+
+   function Current return String is
+   begin
+      return Image (Global_Playlist.Current);
+   end Current;
+
+   function Next return String is
+   begin
+      if Global_Playlist.Next = null then
+         Move_To_Beginning;
+      else
+         Global_Playlist := Global_Playlist.Next;
+      end if;
+      return Current;
+   end Next;
+
+   function Previous return String is
+   begin
+      if Global_Playlist.Previous = null then
+         Move_To_End;
+      else
+         Global_Playlist := Global_Playlist.Previous;
+      end if;
+      return Current;
+   end Previous;
+
+   procedure Print is
+      Top : Playlist_Ptr_T := Global_Playlist;
+   begin
+      if Top = null then
+         Put_Line ("Empty Playlist");
+      else
+         Put_Line ("Playlist:");
+         while Top.Previous /= null loop
+            Top := Top.Previous;
+         end loop;
+         while Top /= null loop
+            Put_Line ("  " & Image (Top.Current));
+            Top := Top.Next;
+         end loop;
+      end if;
+   end Print;
+
+end Playlist;
+--Playlist_Manipulation
