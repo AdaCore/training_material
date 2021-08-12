@@ -1,0 +1,409 @@
+--Person_Pkg
+with Ada.Strings.Unbounded;
+with Dates_Pkg;
+package Person_Pkg is
+   type Person_T is tagged private;
+   procedure Create (Self       : in out Person_T;
+      Name       :        String;
+      Birth_Date :        Dates_Pkg.Date_T);
+   function Image (Self : Person_T'class) return String;
+private
+   type Person_T is tagged record
+      Name       : Ada.Strings.Unbounded.Unbounded_String;
+      Birth_Date : Dates_Pkg.Date_T;
+   end record;
+end Person_Pkg;
+
+package body Person_Pkg is
+   use Ada.Strings.Unbounded;
+   procedure Create
+     (Self       : in out Person_T;
+      Name       :        String;
+      Birth_Date :        Dates_Pkg.Date_T) is
+   begin
+      Self := (Name => To_Unbounded_String (Name), Birth_Date => Birth_Date);
+   end Create;
+   function Image
+     (Self : Person_T'class)
+      return String is
+   begin
+      return
+        To_String (Self.Name) & " (Born " & Dates_Pkg.Image (Self.Birth_Date) &
+        ")";
+   end Image;
+end Person_Pkg;
+--Person_Pkg
+
+--Employee_Pkg
+with Dates_Pkg;
+with Person_Pkg;
+package Employee_Pkg is
+   type Id_T is range 100_000 .. 999_999;
+   type Employee_T is new Person_Pkg.Person_T with private;
+   procedure Create (Self        : in out Employee_T;
+                     New_Hire    :        Person_Pkg.Person_T;
+                     Hire_Date   :        Dates_Pkg.Date_T;
+                     Hourly_Rate :        Float);
+   function Image (Self : Employee_T'class) return String;
+private
+   type Employee_T is new Person_Pkg.Person_T with record
+      Id          : Id_T;
+      Hire_Date   : Dates_Pkg.Date_T;
+      Hourly_Rate : Float;
+   end record;
+end Employee_Pkg;
+
+package body Employee_Pkg is
+   Global_Id : Id_T := Id_T'first;
+   function New_Id return Id_T is
+   begin
+      Global_Id := Global_Id + 1;
+      return Global_Id;
+   end New_Id;
+   procedure Create
+     (Self        : in out Employee_T;
+      New_Hire    :        Person_Pkg.Person_T;
+      Hire_Date   :        Dates_Pkg.Date_T;
+      Hourly_Rate :        Float) is
+   begin
+      Self :=
+        (New_Hire with Id => New_Id, Hire_Date => Hire_Date,
+         Hourly_Rate      => Hourly_Rate);
+   end Create;
+   function Image (Self : Employee_T'class) return String is
+      P    : constant String := Person_Pkg.Image (Self);
+      Id   : constant String := "  Employee ID: " & Id_T'image (Self.Id);
+      Rate : constant String :=
+        "  Hourly Rate: " & Float'image (Self.Hourly_Rate);
+      Date : constant String := "  Hired: " & Dates_Pkg.Image (Self.Hire_Date);
+   begin
+      return P & ASCII.LF & Id & ASCII.LF & Date & ASCII.LF & Rate;
+   end Image;
+end Employee_Pkg;
+--Employee_Pkg
+
+--Management_Pkg
+with Ada.Strings.Unbounded;
+with Employee_Pkg;
+with Person_Pkg;
+package Management_Pkg is
+   type Management_T is new Employee_Pkg.Employee_T with private;
+   procedure Create
+     (Self       : in out Management_T;
+      Worker     :        Employee_Pkg.Employee_T;
+      Department :        String);
+   function Image
+     (Self : Management_T'class)
+      return String;
+private
+   type Management_T is new Employee_Pkg.Employee_T with record
+      Department : Ada.Strings.Unbounded.Unbounded_String;
+   end record;
+end Management_Pkg;
+
+package body Management_Pkg is
+   use Ada.Strings.Unbounded;
+   procedure Create
+     (Self       : in out Management_T;
+      Worker     :        Employee_Pkg.Employee_T;
+      Department :        String) is
+   begin
+      Self := (Worker with Department => To_Unbounded_String (Department));
+   end Create;
+   function Image
+     (Self : Management_T'class)
+      return String is
+      E : constant String := Employee_Pkg.Image (Self);
+   begin
+      return E & ASCII.LF & "  Manager of: " & To_String (Self.Department);
+   end Image;
+end Management_Pkg;
+--Management_Pkg
+
+--Main_Utils
+with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Tags;    use Ada.Tags;
+with Dates_Pkg;
+with Employee_Pkg;
+with Management_Pkg;
+with Person_Pkg;
+procedure Main is
+   function Get (Prompt : String) return String is
+   begin
+      Put (Prompt & " > ");
+      return Get_Line;
+   end Get;
+   function Get (Prompt : String) return Positive is
+   begin
+      loop
+         declare
+            Str : constant String := Get (Prompt);
+         begin
+            return Positive'value (Str);
+         exception
+            when others =>
+               Put_Line ("Illegal value");
+         end;
+      end loop;
+   end Get;
+   function Get (Prompt : String) return Float is
+   begin
+      loop
+         declare
+            Str : constant String := Get (Prompt);
+         begin
+            return Float'value (Str);
+         exception
+            when others =>
+               Put_Line ("Illegal value");
+         end;
+      end loop;
+   end Get;
+   function Get (Prompt : String) return Dates_Pkg.Date_T is
+   begin
+      Put_Line (Prompt);
+      loop
+         declare
+            Year   : Positive         := Get ("  Year");
+            Month  : Positive         := Get ("  Month");
+            Day    : Positive         := Get ("  Day");
+            Retval : Dates_Pkg.Date_T := Dates_Pkg.Create (Year, Month, Day);
+         begin
+            if Dates_Pkg.Valid (Retval) then
+               return Retval;
+            else
+               Put_Line ("Illegal date");
+            end if;
+         end;
+      end loop;
+   end Get;
+   type Command_T is
+     (Person, Employee, Management, Print_One, Print_Kind, Print_All, Quit);
+   function Command return Command_T is
+   begin
+      for C in Command_T'range loop
+         Put_Line
+           (Integer'image (1 + Command_T'pos (C)) & "> " &
+            Command_T'image (C));
+      end loop;
+      loop
+         declare
+            I : Integer;
+         begin
+            I := Integer'value (Get ("Command"));
+            return Command_T'val (I - 1);
+         exception
+            when others =>
+               Put_Line ("Illegal value");
+         end;
+      end loop;
+   end Command;
+--Main_Utils
+--Main_Body
+   type Pointer_T is access all Person_Pkg.Person_T'class;
+   People         : array (1 .. 1_000) of Pointer_T;
+   Next_Available : Integer := 1;
+   procedure Create_Person is
+      Name : constant String  := Get ("Name");
+      Date : Dates_Pkg.Date_T := Get ("Birth Date");
+   begin
+      People (Next_Available) := new Person_Pkg.Person_T;
+      Person_Pkg.Create (People (Next_Available).all, Name, Date);
+      Next_Available := Next_Available + 1;
+   end Create_Person;
+   function Find_Person
+     (Employees : Boolean := False)
+      return Integer is
+   begin
+      for I in 1 .. Next_Available - 1 loop
+         if not Employees
+           or else People (I).all'tag = Employee_Pkg.Employee_T'class'tag
+         then
+            Put_Line
+              (Integer'image (I) & "> " & Person_Pkg.Image (People (I).all));
+         end if;
+      end loop;
+      return Get ("Select person");
+   end Find_Person;
+   procedure Create_Employee is
+      Index  : Positive         := Find_Person;
+      Date   : Dates_Pkg.Date_T := Get ("Hire Date");
+      Rate   : Float            := Get ("Hourly Rate");
+      Person : Person_Pkg.Person_T;
+   begin
+      if Index in 1 .. Next_Available - 1 then
+         Person         := Person_Pkg.Person_T (People (Index).all);
+         People (Index) := new Employee_Pkg.Employee_T;
+         Employee_Pkg.Create
+           (Self        => Employee_Pkg.Employee_T (People (Index).all),
+            New_Hire    => Person,
+            Hire_Date   => Date,
+            Hourly_Rate => Rate);
+      end if;
+   end Create_Employee;
+   procedure Create_Management is
+      Index      : Positive        := Find_Person (True);
+      Department : constant String := Get ("Department");
+      Employee   : Employee_Pkg.Employee_T;
+   begin
+      if Index in 1 .. Next_Available - 1 then
+         Employee       := Employee_Pkg.Employee_T (People (Index).all);
+         People (Index) := new Management_Pkg.Management_T;
+         Management_Pkg.Create
+           (Self       => Management_Pkg.Management_T (People (Index).all),
+            Worker     => Employee,
+            Department => Department);
+      end if;
+   end Create_Management;
+--Main_Body
+--Main_Print
+   procedure Print_One (Index : Positive) is
+   begin
+      if People (Index).all'tag = Person_Pkg.Person_T'class'tag then
+         Put_Line (Person_Pkg.Image (People (Index).all));
+      elsif People (Index).all'tag = Employee_Pkg.Employee_T'class'tag then
+         Put_Line
+           (Employee_Pkg.Image
+              (Employee_Pkg.Employee_T'class (People (Index).all)));
+      elsif People (Index).all'tag = Management_Pkg.Management_T'class'tag then
+         Put_Line
+           (Management_Pkg.Image
+              (Management_Pkg.Management_T'class (People (Index).all)));
+      end if;
+   end Print_One;
+   procedure Print_All_Entries is
+   begin
+      for I in 1 .. Next_Available - 1 loop
+         Print_One (I);
+      end loop;
+   end Print_All_Entries;
+   procedure Print_Entries_Of_Kind (Kind : String) is
+   begin
+      for I in 1 .. Next_Available - 1 loop
+         if Kind (Kind'first) = 'P'
+           and then People (I).all'tag = Person_Pkg.Person_T'class'tag
+         then
+            Print_One (I);
+         elsif Kind (Kind'first) = 'E'
+           and then People (I).all'tag = Employee_Pkg.Employee_T'class'tag
+         then
+            Print_One (I);
+         elsif Kind (Kind'first) = 'M'
+           and then People (I).all'tag = Management_Pkg.Management_T'class'tag
+         then
+            Print_One (I);
+         end if;
+      end loop;
+   end Print_Entries_Of_Kind;
+   procedure Print_One_Entry is
+      Index : Positive := Find_Person;
+   begin
+      if Index in 1 .. Next_Available - 1 then
+         Print_One (Index);
+      end if;
+   end Print_One_Entry;
+--Main_Print
+begin
+   loop
+      case Command is
+         when Person =>
+            Create_Person;
+         when Employee =>
+            Create_Employee;
+         when Management =>
+            Create_Management;
+         when Print_One =>
+            Print_One_Entry;
+         when Print_Kind =>
+            Print_Entries_Of_Kind (Get ("P/E/M"));
+         when Print_All =>
+            Print_All_Entries;
+         when Quit =>
+            exit;
+      end case;
+   end loop;
+end Main;
+--Dates_Spec
+package Dates_Pkg is
+   type Date_T is private;
+   function Create
+     (Year  : Positive;
+      Month : Positive;
+      Day   : Positive)
+      return Date_T;
+   function Image
+     (Date : Date_T)
+      return String;
+   function Valid
+     (Date : Date_T)
+      return Boolean;
+private
+   type Date_T is record
+      Valid : Boolean := False;
+      Year  : Positive;
+      Month : Positive;
+      Day   : Positive;
+   end record;
+end Dates_Pkg;
+--Dates_Spec
+--Dates_Body
+package body Dates_Pkg is
+   function Is_Leap_Year (Year : Positive) return Boolean is
+   begin
+      if Year mod 4 /= 0 then
+         return False;
+      elsif Year mod 100 = 0 then
+         return Year mod 400 = 0;
+      else
+         return True;
+      end if;
+   end Is_Leap_Year;
+   function Max_Days (Month : Positive;
+                      Year  : Positive)
+                      return Positive is
+   begin
+      case Month is
+         when 9 | 4 | 6 | 11 =>
+            return 30;
+         when 2 =>
+            if Is_Leap_Year (Year) then
+               return 29;
+            else
+               return 28;
+            end if;
+         when others =>
+            return 31;
+      end case;
+   end Max_Days;
+   function Create (Year  : Positive;
+                    Month : Positive;
+                    Day   : Positive)
+                    return Date_T is
+      Retval : Date_T;
+   begin
+      Retval.Valid := False;
+      if Month in 1 .. 12 and then Day in 1 .. Max_Days (Month, Year) then
+         Retval := (Valid => True, Year => Year, Month => Month, Day => Day);
+      end if;
+      return Retval;
+   end Create;
+   function Image (P : Positive) return String is
+      Retval : constant String := Positive'image (P);
+   begin
+      if Retval'length > 2 then
+         return Retval (2 .. Retval'last);
+      else
+         return '0' & Retval (2 .. Retval'last);
+      end if;
+   end Image;
+   function Image (Date : Date_T) return String is
+   begin
+      return
+        Image (Date.Year) & "/" & Image (Date.Month) & "/" & Image (Date.Day);
+   end Image;
+   function Valid (Date : Date_T) return Boolean is
+   begin
+      return Date.Valid;
+   end Valid;
+end Dates_Pkg;
+--Dates_Body
