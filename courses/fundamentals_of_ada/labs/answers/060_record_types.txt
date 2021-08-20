@@ -1,48 +1,134 @@
+with Ada.Characters.Handling; use Ada.Characters.Handling;
+with Ada.Strings;             use Ada.Strings;
+with Ada.Strings.Fixed;       use Ada.Strings.Fixed;
+with Ada.Text_IO;             use Ada.Text_IO;
+package body Input is
+   function Get_String
+     (Prompt : String)
+      return String is
+      Str : String (1 .. 100);
+   begin
+      Put (Prompt & " > ");
+      Ada.Text_IO.Get (Str);
+      return Trim (Str, Both);
+   end Get_String;
+   function Get_Number
+     (Prompt : String)
+      return Integer_T is
+   begin
+      loop
+         declare
+            Retval : constant String := Get_String (Prompt);
+         begin
+            if Retval'length > 0 then
+               return Integer_T'value (Retval);
+            else
+               raise Input_Canceled;
+            end if;
+         exception
+            when others =>
+               Put_Line ("Invalid input");
+         end;
+      end loop;
+   end Get_Number;
+   function Get_Enum
+     (Prompt : String)
+      return Enum_T is
+   begin
+      for E in Enum_T'range loop
+         Put_Line
+           (Integer'image (1 + Enum_T'pos (E)) & "> " & Enum_T'image (E));
+      end loop;
+      loop
+         declare
+            I : Integer := Get_Positive ("Prompt");
+         begin
+            return Enum_T'val (I - 1);
+         exception
+            when others =>
+               Put_Line ("Illegal value");
+         end;
+      end loop;
+   end Get_Enum;
+   function Internal_Get_Integer is new Get_Number (Integer);
+   function Internal_Get_Natural is new Get_Number (Natural);
+   function Internal_Get_Positive is new Get_Number (Positive);
+   function Get_Integer
+     (Prompt : String)
+      return Integer renames Internal_Get_Integer;
+   function Get_Natural
+     (Prompt : String)
+      return Natural renames Internal_Get_Natural;
+   function Get_Positive
+     (Prompt : String)
+      return Positive renames Internal_Get_Positive;
+end Input;
+package Input is
+   Input_Canceled : exception;
+   function Get_String
+     (Prompt : String)
+      return String;
+   function Get_Integer
+     (Prompt : String)
+      return Integer;
+   function Get_Natural
+     (Prompt : String)
+      return Natural;
+   function Get_Positive
+     (Prompt : String)
+      return Positive;
+   generic
+      type Enum_T is (<>);
+   function Get_Enum
+     (Prompt : String)
+      return Enum_T;
+   generic
+      type Integer_T is range <>;
+   function Get_Number
+     (Prompt : String)
+      return Integer_T;
+end Input;
 --Declarations
+with Input;       use Input;
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
-
    type Name_T is array (1 .. 6) of Character;
    type Index_T is range 0 .. 1_000;
    type Queue_T is array (Index_T range 1 .. 1_000) of Name_T;
-
    type Fifo_Queue_T is record
       Next_Available : Index_T := 1;
       Last_Served    : Index_T := 0;
       Queue          : Queue_T := (others => (others => ' '));
    end record;
-
-   Queue : Fifo_Queue_T;
+   Queue  : Fifo_Queue_T;
    Choice : Integer;
 --Declarations
-
 --Implementation
 begin
-
    loop
-      Put ("1 = add to queue | 2 = remove from queue | others => done: ");
-      Choice := Integer'Value (Get_Line);
+      Choice :=
+        Get_Natural
+          ("1 = add to queue | 2 = remove from queue | others => done: ");
       if Choice = 1 then
-         Put ("Enter name: ");
-         Queue.Queue (Queue.Next_Available) := Name_T (Get_Line);
-         Queue.Next_Available               := Queue.Next_Available + 1;
+         Queue.Queue (Queue.Next_Available) :=
+           Name_T (Get_String ("Enter name"));
+         Queue.Next_Available := Queue.Next_Available + 1;
       elsif Choice = 2 then
          if Queue.Next_Available = 1 then
             Put_Line ("Nobody in line");
          else
             Queue.Last_Served := Queue.Last_Served + 1;
-            Put_Line ("Now serving: " & String (Queue.Queue (Queue.Last_Served)));
+            Put_Line
+              ("Now serving: " & String (Queue.Queue (Queue.Last_Served)));
          end if;
       else
          exit;
       end if;
       New_Line;
    end loop;
-
    Put_Line ("Remaining in line: ");
    for Index in Queue.Last_Served + 1 .. Queue.Next_Available - 1 loop
       Put_Line ("  " & String (Queue.Queue (Index)));
    end loop;
-
 end Main;
 --Implementation

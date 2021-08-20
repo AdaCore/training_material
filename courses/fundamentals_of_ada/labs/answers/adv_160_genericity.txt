@@ -1,3 +1,303 @@
+--Database_Print_Body
+with Ada.Text_IO; use Ada.Text_IO;
+package body Database.Print is
+   procedure Print_One_Team is
+      Team_Key : constant Unbounded_String := Find_Team;
+      Team     : Team_T;
+      Found    : Boolean;
+   begin
+      Team_List_Pkg.Find
+        (List  => Teams,
+         Key   => Team_Key,
+         Item  => Team,
+         Found => Found);
+      if Found then
+         Player_Utils.Print (Team.Players);
+      end if;
+   end Print_One_Team;
+   procedure Print_All_Teams is
+   begin
+      for I in 1 .. 100 loop
+         declare
+            Key   : Unbounded_String;
+            Item  : Team_T;
+            Found : Boolean;
+         begin
+            Key := Team_Utils.Index_To_Key (Teams, I);
+            Team_List_Pkg.Find
+              (List  => Teams,
+               Key   => Key,
+               Item  => Item,
+               Found => Found);
+            Put_Line ("*** " & To_String (Item.Name) & " ***");
+            Player_Utils.Sort (Item.Players);
+            Player_Utils.Print (Item.Players);
+         exception
+            when others =>
+               exit;
+         end;
+      end loop;
+   end Print_All_Teams;
+end Database.Print;
+--Database_Print_Body
+--Database_Body
+with Input;           use Input;
+with Data_Structures; use Data_Structures;
+package body Database is
+   function Find_Team return Unbounded_String is
+      Index : Natural;
+   begin
+      Team_Utils.Print (Teams, True);
+      Index := Get_Natural ("Select team");
+      return Team_Utils.Index_To_Key (Teams, Index);
+   exception
+      when others =>
+         return Null_Unbounded_String;
+   end Find_Team;
+   function Find_Player
+     (Team : Team_T)
+      return Player_T is
+      Index : Natural;
+   begin
+      Player_Utils.Print (Team.Players, True);
+      Index := Get_Natural ("Select player");
+      return Player_Utils.Index_To_Key (Team.Players, Index);
+   exception
+      when others =>
+         return (Null_Unbounded_String, Null_Unbounded_String);
+   end Find_Player;
+   procedure Add_Player_To_Team is
+      Player   : Player_T;
+      Team_Key : constant Unbounded_String := Find_Team;
+   begin
+      if Team_Key /= Null_Unbounded_String then
+         declare
+            Team       : Team_T;
+            Found      : Boolean;
+            First_Name : constant String := Get_String ("First Name");
+            Last_Name  : constant String := Get_String ("Last Name");
+         begin
+            Player.First_Name := To_Unbounded_String (First_Name);
+            Player.Last_Name  := To_Unbounded_String (Last_Name);
+            Team_List_Pkg.Find
+              (List  => Teams,
+               Key   => Team_Key,
+               Item  => Team,
+               Found => Found);
+            Player_List_Pkg.Add (Team.Players, Player);
+            Team_List_Pkg.Modify (Teams, Team);
+         end;
+      end if;
+   end Add_Player_To_Team;
+   procedure Remove_Player_From_Team is
+      Player   : Player_T;
+      Team_Key : constant Unbounded_String := Find_Team;
+   begin
+      if Team_Key /= Null_Unbounded_String then
+         declare
+            Team   : Team_T;
+            Found  : Boolean;
+            Player : Player_T;
+         begin
+            Team_List_Pkg.Find
+              (List  => Teams,
+               Key   => Team_Key,
+               Item  => Team,
+               Found => Found);
+            Player := Find_Player (Team);
+            Player_List_Pkg.Remove
+              (Team.Players,
+               Key => Player);
+            Team_List_Pkg.Modify (Teams, Team);
+         end;
+      end if;
+   end Remove_Player_From_Team;
+   procedure Add_Team_To_Database is
+      Team : Team_T;
+      Name : constant String := Get_String ("New team");
+   begin
+      Team.Name := To_Unbounded_String (Name);
+      Team_List_Pkg.Add (Teams, Team);
+   end Add_Team_To_Database;
+   procedure Remove_Team_From_Database is
+      Team : Team_T;
+      Name : constant String := Get_String ("Team");
+   begin
+      Team.Name := To_Unbounded_String (Name);
+      Team_List_Pkg.Add (Teams, Team);
+   end Remove_Team_From_Database;
+end Database;
+--Database_Body
+--Database_Specs
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Data_Structures;       use Data_Structures;
+package Database is
+   function Find_Team return Unbounded_String;
+   function Find_Player
+     (Team : Team_T)
+      return Player_T;
+   procedure Add_Player_To_Team;
+   procedure Remove_Player_From_Team;
+   procedure Add_Team_To_Database;
+   procedure Remove_Team_From_Database;
+private
+   Teams : Team_List_Pkg.List_T;
+end Database;
+
+package Database.Print is
+   procedure Print_One_Team;
+   procedure Print_All_Teams;
+end Database.Print;
+--Database_Specs
+--Data_Structures_Body
+package body Data_Structures is
+   function ">"
+     (L, R : Player_T)
+      return Boolean is
+   begin
+      if L.Last_Name > R.Last_Name then
+         return True;
+      elsif L.Last_Name < R.Last_Name then
+         return False;
+      else
+         return L.First_Name > R.First_Name;
+      end if;
+   end ">";
+   function Image
+     (Player : Player_T)
+      return String is
+   begin
+      return
+        To_String (Player.Last_Name) & ", " & To_String (Player.First_Name);
+   end Image;
+   function Extract_Key
+     (Player : Player_T)
+      return Player_T is
+   begin
+      return Player;
+   end Extract_Key;
+   function Image
+     (Team : Team_T)
+      return String is
+   begin
+      return To_String (Team.Name);
+   end Image;
+   function Extract_Key
+     (Team : Team_T)
+      return Unbounded_String is
+   begin
+      return Team.Name;
+   end Extract_Key;
+end Data_Structures;
+--Data_Structures_Body
+--Data_Structures_Spec
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Generic_List;
+with Generic_List.Utilities;
+package Data_Structures is
+   type Player_T is record
+      First_Name : Unbounded_String;
+      Last_Name  : Unbounded_String;
+   end record;
+   function ">"
+     (L, R : Player_T)
+      return Boolean;
+   function Image
+     (Player : Player_T)
+      return String;
+   function Extract_Key
+     (Player : Player_T)
+      return Player_T;
+   package Player_List_Pkg is new Generic_List
+     (Item_T => Player_T, Key_T => Player_T, Extract_Key => Extract_Key,
+      "="    => "=", Max_Size => 10);
+   package Player_Utils is new Player_List_Pkg.Utilities
+     (Image => Image, ">" => ">");
+   type Team_T is record
+      Name    : Unbounded_String;
+      Players : Player_List_Pkg.List_T;
+   end record;
+   function Image
+     (Team : Team_T)
+      return String;
+   function Extract_Key
+     (Team : Team_T)
+      return Unbounded_String;
+   package Team_List_Pkg is new Generic_List
+     (Item_T => Team_T, Key_T => Unbounded_String, Extract_Key => Extract_Key,
+      "="    => "=", Max_Size => 10);
+   package Team_Utils is new Team_List_Pkg.Utilities
+     (Image => Image, ">" => ">");
+end Data_Structures;
+--Data_Structures_Spec
+--Generic_Utilities_Body
+with Ada.Text_IO; use Ada.Text_IO;
+package body Generic_List.Utilities is
+   function ">"
+     (L, R : Item_T)
+      return Boolean is
+   begin
+      return Extract_Key (L) > Extract_Key (R);
+   end ">";
+   procedure Sort (List : in out List_T) is
+      Swapped : Boolean;
+      Temp    : Item_T;
+   begin
+      for I in 1 .. List.Length loop
+         Swapped := False;
+         for J in 1 .. List.Length - I loop
+            if List.List (J) > List.List (J + 1) then
+               Temp              := List.List (J);
+               List.List (J)     := List.List (J + 1);
+               List.List (J + 1) := Temp;
+               Swapped           := True;
+            end if;
+         end loop;
+         if not Swapped then
+            return;
+         end if;
+      end loop;
+   end Sort;
+   package Io is new Ada.Text_IO.Integer_IO (Integer);
+   procedure Print
+     (List       : List_T;
+      Show_Index : Boolean := False) is
+   begin
+      for I in 1 .. List.Length loop
+         if Show_Index then
+            Io.Put
+              (I,
+               Width => 3);
+            Put ("> ");
+         end if;
+         Put_Line (Image (List.List (I)));
+      end loop;
+   end Print;
+   function Key_To_Index
+     (List : List_T;
+      Key  : Key_T)
+      return Natural is
+   begin
+      for I in 1 .. List.Length loop
+         if Extract_Key (List.List (I)) = Key then
+            return I;
+         end if;
+      end loop;
+      return 0;
+   end Key_To_Index;
+   function Index_To_Key
+     (List  : List_T;
+      Index : Positive)
+      return Key_T is
+   begin
+      if Index > List.Length then
+         raise Invalid_Item;
+      else
+         return Extract_Key (List.List (Index));
+      end if;
+   end Index_To_Key;
+end Generic_List.Utilities;
+--Generic_Utilities_Body
 --Generic_Specs
 generic
    type Item_T is private;
@@ -47,7 +347,6 @@ package Generic_List.Utilities is
                           return Key_T;
 end Generic_List.Utilities;
 --Generic_Specs
-
 --Generic_List_Body
 package body Generic_List is
    function Is_Full (List : List_T) return Boolean is
@@ -64,7 +363,8 @@ package body Generic_List is
       List.Length             := List.Length + 1;
       List.List (List.Length) := Item;
    exception
-      when others => raise Overflow;
+      when others =>
+         raise Overflow;
    end Add;
    function Find_Index (List : List_T;
                         Key  : Key_T)
@@ -119,122 +419,100 @@ package body Generic_List is
    end Modify;
 end Generic_List;
 --Generic_List_Body
-
---Generic_Utilities_Body
-with Ada.Text_IO; use Ada.Text_IO;
-package body Generic_List.Utilities is
-   function ">" (L, R : Item_T) return Boolean is
+with Ada.Characters.Handling; use Ada.Characters.Handling;
+with Ada.Text_IO;             use Ada.Text_IO;
+package body Input is
+   function Get_String
+     (Prompt : String)
+      return String is
+      Str  : String (1 .. 100);
+      Last : Integer;
    begin
-      return Extract_Key (L) > Extract_Key (R);
-   end ">";
-   procedure Sort (List : in out List_T) is
-      Swapped : Boolean;
-      Temp    : Item_T;
+      Put (Prompt & " > ");
+      Ada.Text_IO.Get_Line (Str, Last);
+      return Str (1 .. Last);
+   end Get_String;
+   function Get_Number
+     (Prompt : String)
+      return Integer_T is
    begin
-      for I in 1 .. List.Length loop
-         Swapped := False;
-         for J in 1 .. List.Length - I loop
-            if List.List (J) > List.List (J + 1) then
-               Temp              := List.List (J);
-               List.List (J)     := List.List (J + 1);
-               List.List (J + 1) := Temp;
-               Swapped           := True;
+      loop
+         declare
+            Retval : constant String := Get_String (Prompt);
+         begin
+            if Retval'length > 0 then
+               return Integer_T'value (Retval);
+            else
+               raise Input_Canceled;
             end if;
-         end loop;
-         if not Swapped then
-            return;
-         end if;
+         exception
+            when others =>
+               Put_Line ("Invalid input");
+         end;
       end loop;
-   end Sort;
-   package Io is new Ada.Text_IO.Integer_IO (Integer);
-   procedure Print (List       : List_T;
-                    Show_Index : Boolean := False) is
+   end Get_Number;
+   function Get_Enum
+     (Prompt : String)
+      return Enum_T is
    begin
-      for I in 1 .. List.Length loop
-         if Show_Index then
-            Io.Put
-              (I,
-               Width => 3);
-            Put ("> ");
-         end if;
-         Put_Line (Image (List.List (I)));
+      for E in Enum_T'range loop
+         Put_Line
+           (Integer'image (1 + Enum_T'pos (E)) & "> " & Enum_T'image (E));
       end loop;
-   end Print;
-   function Key_To_Index (List : List_T;
-                          Key  : Key_T)
-                          return Natural is
-   begin
-      for I in 1 .. List.Length loop
-         if Extract_Key (List.List (I)) = Key then
-            return I;
-         end if;
+      loop
+         declare
+            I : constant String := Get_String (Prompt);
+         begin
+            if I'length = 0 then
+               raise Input_Canceled;
+            end if;
+            return Enum_T'val (Natural'value (I) - 1);
+         exception
+            when Input_Canceled =>
+               raise Input_Canceled;
+            when others =>
+               Put_Line ("Illegal value");
+         end;
       end loop;
-      return 0;
-   end Key_To_Index;
-   function Index_To_Key (List  : List_T; Index : Positive)
-      return Key_T is
-   begin
-      if Index > List.Length then
-         raise Invalid_Item;
-      else
-         return Extract_Key (List.List (Index));
-      end if;
-   end Index_To_Key;
-end Generic_List.Utilities;
---Generic_Utilities_Body
-
---Data_Structures_Spec
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-with Generic_List;
-with Generic_List.Utilities;
-package Data_Structures is
-   type Player_T is record
-      First_Name : Unbounded_String;
-      Last_Name  : Unbounded_String;
-   end record;
-   function ">" (L, R : Player_T) return Boolean;
-   function Image (Player : Player_T) return String;
-   function Extract_Key (Player : Player_T) return Player_T;
-   package Player_List_Pkg is new Generic_List
-     (Item_T => Player_T, Key_T => Player_T, Extract_Key => Extract_Key,
-      "="    => "=", Max_Size => 10);
-   package Player_Utils is new Player_List_Pkg.Utilities
-     (Image => Image, ">" => ">");
-
-   type Team_T is record
-      Name    : Unbounded_String;
-      Players : Player_List_Pkg.List_T;
-   end record;
-   function Image (Team : Team_T) return String;
-   function Extract_Key (Team : Team_T) return Unbounded_String;
-   package Team_List_Pkg is new Generic_List
-     (Item_T => Team_T, Key_T => Unbounded_String, Extract_Key => Extract_Key,
-      "="    => "=", Max_Size => 10);
-   package Team_Utils is new Team_List_Pkg.Utilities
-     (Image => Image, ">" => ">");
-end Data_Structures;
---Data_Structures_Spec
-
---Database_Specs
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-with Data_Structures;       use Data_Structures;
-package Database is
-   function Find_Team return Unbounded_String;
-   function Find_Player (Team : Team_T) return Player_T;
-   procedure Add_Player_To_Team;
-   procedure Remove_Player_From_Team;
-   procedure Add_Team_To_Database;
-   procedure Remove_Team_From_Database;
-private
-   Teams : Team_List_Pkg.List_T;
-end Database;
-
-package Database.Print is
-   procedure Print_One_Team;
-   procedure Print_All_Teams;
-end Database.Print;
---Database_Specs
-
+   end Get_Enum;
+   function Internal_Get_Integer is new Get_Number (Integer);
+   function Internal_Get_Natural is new Get_Number (Natural);
+   function Internal_Get_Positive is new Get_Number (Positive);
+   function Get_Integer
+     (Prompt : String)
+      return Integer renames Internal_Get_Integer;
+   function Get_Natural
+     (Prompt : String)
+      return Natural renames Internal_Get_Natural;
+   function Get_Positive
+     (Prompt : String)
+      return Positive renames Internal_Get_Positive;
+end Input;
+package Input is
+   Input_Canceled : exception;
+   function Get_String
+     (Prompt : String)
+      return String;
+   function Get_Integer
+     (Prompt : String)
+      return Integer;
+   function Get_Natural
+     (Prompt : String)
+      return Natural;
+   function Get_Positive
+     (Prompt : String)
+      return Positive;
+   generic
+      type Enum_T is (<>);
+   function Get_Enum
+     (Prompt : String)
+      return Enum_T;
+   generic
+      type Integer_T is range <>;
+   function Get_Number
+     (Prompt : String)
+      return Integer_T;
+end Input;
 --Main
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 with Ada.Text_IO;           use Ada.Text_IO;
@@ -245,28 +523,10 @@ procedure Main is
    type Command_T is
      (Add_Team, Add_Player, Remove_Team, Remove_Player, Print_Team, Print_All,
       Quit);
-   function Command return Command_T is
-   begin
-      for C in Command_T'range loop
-         Put_Line
-           (Integer'image (1 + Command_T'pos (C)) & "> " &
-            Command_T'image (C));
-      end loop;
-      loop
-         declare
-            I : Integer;
-         begin
-            I := Integer'value (Input.Get ("Command"));
-            return Command_T'val (I - 1);
-         exception
-            when others =>
-               Put_Line ("Illegal value");
-         end;
-      end loop;
-   end Command;
+   function Command is new Input.Get_Enum (Command_T);
 begin
    loop
-      case Command is
+      case Command ("Select Command") is
          when Add_Player =>
             Database.Add_Player_To_Team;
          when Remove_Player =>
@@ -285,188 +545,3 @@ begin
    end loop;
 end Main;
 --Main
-
---Data_Structures_Body
-package body Data_Structures is
-   function ">" (L, R : Player_T) return Boolean is
-   begin
-      if L.Last_Name > R.Last_Name then
-         return True;
-      elsif L.Last_Name < R.Last_Name then
-         return False;
-      else
-         return L.First_Name > R.First_Name;
-      end if;
-   end ">";
-   function Image (Player : Player_T) return String is
-   begin
-      return To_String (Player.Last_Name) & ", " & To_String (Player.First_Name);
-   end Image;
-   function Extract_Key (Player : Player_T) return Player_T is
-   begin
-      return Player;
-   end Extract_Key;
-   function Image (Team : Team_T) return String is
-   begin
-      return To_String (Team.Name);
-   end Image;
-   function Extract_Key (Team : Team_T) return Unbounded_String is
-   begin
-      return Team.Name;
-   end Extract_Key;
-end Data_Structures;
---Data_Structures_Body
-
---Database_Body
-with Input;           use Input;
-with Data_Structures; use Data_Structures;
-package body Database is
-   function Find_Team return Unbounded_String is
-      Index : Natural;
-   begin
-      Team_Utils.Print (Teams, True);
-      Index := Get ("Select team");
-      return Team_Utils.Index_To_Key (Teams, Index);
-   exception
-      when others =>
-         return Null_Unbounded_String;
-   end Find_Team;
-   function Find_Player (Team : Team_T) return Player_T is
-      Index : Natural;
-   begin
-      Player_Utils.Print (Team.Players, True);
-      Index := Get ("Select player");
-      return Player_Utils.Index_To_Key (Team.Players, Index);
-   exception
-      when others =>
-         return (Null_Unbounded_String, Null_Unbounded_String);
-   end Find_Player;
-   procedure Add_Player_To_Team is
-      Player   : Player_T;
-      Team_Key : constant Unbounded_String := Find_Team;
-   begin
-      if Team_Key /= Null_Unbounded_String then
-         declare
-            Team       : Team_T;
-            Found      : Boolean;
-            First_Name : constant String := Get ("First Name");
-            Last_Name  : constant String := Get ("Last Name");
-         begin
-            Player.First_Name := To_Unbounded_String (First_Name);
-            Player.Last_Name  := To_Unbounded_String (Last_Name);
-            Team_List_Pkg.Find (List  => Teams,
-                                Key   => Team_Key,
-                                Item  => Team,
-                                Found => Found);
-            Player_List_Pkg.Add (Team.Players, Player);
-            Team_List_Pkg.Modify (Teams, Team);
-         end;
-      end if;
-   end Add_Player_To_Team;
-   procedure Remove_Player_From_Team is
-      Player   : Player_T;
-      Team_Key : constant Unbounded_String := Find_Team;
-   begin
-      if Team_Key /= Null_Unbounded_String then
-         declare
-            Team   : Team_T;
-            Found  : Boolean;
-            Player : Player_T;
-         begin
-            Team_List_Pkg.Find (List  => Teams,
-                                Key   => Team_Key,
-                                Item  => Team,
-                                Found => Found);
-            Player := Find_Player (Team);
-            Player_List_Pkg.Remove (Team.Players,
-                                    Key => Player);
-            Team_List_Pkg.Modify (Teams, Team);
-         end;
-      end if;
-   end Remove_Player_From_Team;
-   procedure Add_Team_To_Database is
-      Team : Team_T;
-      Name : constant String := Get ("New team");
-   begin
-      Team.Name := To_Unbounded_String (Name);
-      Team_List_Pkg.Add (Teams, Team);
-   end Add_Team_To_Database;
-   procedure Remove_Team_From_Database is
-      Team : Team_T;
-      Name : constant String := Get ("Team");
-   begin
-      Team.Name := To_Unbounded_String (Name);
-      Team_List_Pkg.Add (Teams, Team);
-   end Remove_Team_From_Database;
-end Database;
---Database_Body
-
---Database_Print_Body
-with Ada.Text_IO; use Ada.Text_IO;
-package body Database.Print is
-   procedure Print_One_Team is
-      Team_Key : constant Unbounded_String := Find_Team;
-      Team     : Team_T;
-      Found    : Boolean;
-   begin
-      Team_List_Pkg.Find (List  => Teams,
-                          Key   => Team_Key,
-                          Item  => Team,
-                          Found => Found);
-      if Found then
-         Player_Utils.Print (Team.Players);
-      end if;
-   end Print_One_Team;
-   procedure Print_All_Teams is
-   begin
-      for I in 1 .. 100 loop
-         declare
-            Key   : Unbounded_String;
-            Item  : Team_T;
-            Found : Boolean;
-         begin
-            Key := Team_Utils.Index_To_Key (Teams, I);
-            Team_List_Pkg.Find (List  => Teams,
-                                Key   => Key,
-                                Item  => Item,
-                                Found => Found);
-            Put_Line ("*** " & To_String (Item.Name) & " ***");
-            Player_Utils.Sort (Item.Players);
-            Player_Utils.Print (Item.Players);
-         exception
-            when others =>
-               exit;
-         end;
-      end loop;
-   end Print_All_Teams;
-end Database.Print;
---Database_Print_Body
-
---Input
-package Input is
-   function Get (Prompt : String) return String;
-   function Get (Prompt : String) return Natural;
-end Input;
-
-with Ada.Text_IO; use Ada.Text_IO;
-package body Input is
-   function Get (Prompt : String) return String is
-   begin
-      Put (Prompt & " > ");
-      return Get_Line;
-   end Get;
-   function Get (Prompt : String) return Natural is
-   begin
-      loop
-         declare
-            Str : constant String := Get (Prompt);
-         begin
-            return Natural'value (Str);
-         exception
-            when others =>
-               Put_Line ("Illegal value");
-         end;
-      end loop;
-   end Get;
-end Input;
---Input

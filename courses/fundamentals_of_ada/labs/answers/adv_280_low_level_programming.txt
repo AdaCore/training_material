@@ -3,34 +3,29 @@ with System;
 package Crc is
    type Crc_T is mod 2**32;
    for Crc_T'size use 32;
-   function Generate
-     (Address : System.Address;
-      Size : Natural)
-      return Crc_T;
+   function Generate (Address : System.Address;
+                      Size    : Natural)
+                      return Crc_T;
 end Crc;
 
 package body Crc is
    type Array_T is array (Positive range <>) of Crc_T;
-   function Generate
-     (Address : System.Address;
-      Size    : Natural)
+   function Generate (Address : System.Address;
+                      Size    : Natural)
       return Crc_T is
       Word_Count : Natural;
       Retval     : Crc_T := 0;
    begin
-      if Size > 0
-      then
+      if Size > 0 then
          Word_Count := Size / 32;
-         if Word_Count * 32 /= Size
-         then
+         if Word_Count * 32 /= Size then
             Word_Count := Word_Count + 1;
          end if;
          declare
             Overlay : Array_T (1 .. Word_Count);
             for Overlay'address use Address;
          begin
-            for I in Overlay'range
-            loop
+            for I in Overlay'range loop
                Retval := Retval + Overlay (I);
             end loop;
          end;
@@ -39,133 +34,175 @@ package body Crc is
    end Generate;
 end Crc;
 --Crc
-
---Messages_Spec
-with Crc; use Crc;
-package Messages is
-   type Message_T is private;
-   type Command_T is (Noop, Direction, Ascend, Descend, Speed);
-   for Command_T use
-     (Noop => 0, Direction => 1, Ascend => 2, Descend => 4, Speed => 8);
-   for Command_T'size use 8;
-   function Create (Command : Command_T;
-                    Value   : Positive;
-                    Text    : String := "")
-                    return Message_T;
-   function Get_Crc (Message : Message_T) return Crc_T;
-   procedure Write (Message : Message_T);
-   procedure Read ( Message : out Message_T;
-                    valid : out boolean );
-   procedure Print (Message : Message_T);
-private
-   type U32_T is mod 2**32;
-   for U32_T'size use 32;
-   Max_Text_Length : constant := 20;
-   type Text_Index_T is new Integer range 0 .. Max_Text_Length;
-   for Text_Index_T'size use 8;
-   type Text_T is record
-      Text : String (1 .. Max_Text_Length);
-      Last : Text_Index_T;
-   end record;
-   for Text_T'size use Max_Text_Length * 8 + Text_Index_T'size;
-   type Message_T is record
-      Unique_Id : U32_T;
-      Command   : Command_T;
-      Value     : U32_T;
-      Text      : Text_T;
-      Crc       : Crc_T;
-   end record;
-end Messages;
---Messages_Spec
-
---Main_Helpers
+with System;
+with Ada.Characters.Handling; use Ada.Characters.Handling;
+with Ada.Text_IO;             use Ada.Text_IO;
+package body Input is
+   function Get_String
+     (Prompt : String)
+      return String is
+      Str  : String (1 .. 100);
+      Last : Integer;
+   begin
+      Put (Prompt & " > ");
+      Ada.Text_IO.Get_Line (Str, Last);
+      return Str (1 .. Last);
+   end Get_String;
+   function Get_Number
+     (Prompt : String)
+      return Integer_T is
+   begin
+      loop
+         declare
+            Retval : constant String := Get_String (Prompt);
+         begin
+            if Retval'length > 0 then
+               return Integer_T'value (Retval);
+            else
+               raise Input_Canceled;
+            end if;
+         exception
+            when others =>
+               Put_Line ("Invalid input");
+         end;
+      end loop;
+   end Get_Number;
+   function Get_Float
+     (Prompt : String)
+      return Float_T is
+   begin
+      loop
+         declare
+            Retval : constant String := Get_String (Prompt);
+         begin
+            if Retval'length > 0 then
+               return Float_T'value (Retval);
+            else
+               raise Input_Canceled;
+            end if;
+         exception
+            when others =>
+               Put_Line ("Invalid input");
+         end;
+      end loop;
+   end Get_Float;
+   function Get_Enum
+     (Prompt : String)
+      return Enum_T is
+   begin
+      for E in Enum_T'range loop
+         Put_Line
+           (Integer'image (1 + Enum_T'pos (E)) & "> " & Enum_T'image (E));
+      end loop;
+      loop
+         declare
+            I : constant String := Get_String (Prompt);
+         begin
+            if I'length = 0 then
+               raise Input_Canceled;
+            end if;
+            return Enum_T'val (Natural'value (I) - 1);
+         exception
+            when Input_Canceled =>
+               raise Input_Canceled;
+            when others =>
+               Put_Line ("Illegal value");
+         end;
+      end loop;
+   end Get_Enum;
+   function Internal_Get_Integer is new Get_Number (Integer);
+   function Internal_Get_Natural is new Get_Number (Natural);
+   function Internal_Get_Positive is new Get_Number (Positive);
+   function Get_Integer
+     (Prompt : String)
+      return Integer renames Internal_Get_Integer;
+   function Get_Natural
+     (Prompt : String)
+      return Natural renames Internal_Get_Natural;
+   function Get_Positive
+     (Prompt : String)
+      return Positive renames Internal_Get_Positive;
+end Input;
+package Input is
+   Input_Canceled : exception;
+   function Get_String
+     (Prompt : String)
+      return String;
+   function Get_Integer
+     (Prompt : String)
+      return Integer;
+   function Get_Natural
+     (Prompt : String)
+      return Natural;
+   function Get_Positive
+     (Prompt : String)
+      return Positive;
+   generic
+      type Enum_T is (<>);
+   function Get_Enum
+     (Prompt : String)
+      return Enum_T;
+   generic
+      type Integer_T is range <>;
+   function Get_Number
+     (Prompt : String)
+      return Integer_T;
+   generic
+      type Float_T is digits <>;
+   function Get_Float
+     (Prompt : String)
+      return Float_T;
+end Input;
+--Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Crc;
+with Input;       use Input;
 with Messages;
 procedure Main is
    Message : Messages.Message_T;
-   function Command return Messages.Command_T is
+   function Get_Message is new Get_Enum (Messages.Command_T);
+   procedure Create_Message is
+      C : constant Messages.Command_T := Get_Message ("Message");
+      V : constant Positive           := Get_Positive ("Value");
+      T : constant String             := Get_String ("Text");
    begin
-      loop
-         Put ("Command ( ");
-         for E in Messages.Command_T
-         loop
-            Put (Messages.Command_T'image (E) & " ");
-         end loop;
-         Put ("): ");
-         begin
-            return Messages.Command_T'value (Get_Line);
-         exception
-            when others =>
-               Put_Line ("Illegal");
-         end;
-      end loop;
-   end Command;
-   function Value return Positive is
-   begin
-      loop
-         Put ("Value: ");
-         begin
-            return Positive'value (Get_Line);
-         exception
-            when others =>
-               Put_Line ("Illegal");
-         end;
-      end loop;
-   end Value;
-   function Text return String is
-   begin
-      Put ("Text: ");
-      return Get_Line;
-   end Text;
---Main_Helpers
---Main_Main
-   procedure Create is
-      C : constant Messages.Command_T := Command;
-      V : constant Positive           := Value;
-      T : constant String             := Text;
-   begin
-      Message := Messages.Create
-          (Command => C,
-           Value   => V,
-           Text    => T);
-   end Create;
-   procedure Read is
+      Message := Messages.Create (Command => C,
+                                  Value   => V,
+                                  Text    => T);
+   end Create_Message;
+   procedure Read_Message is
       Valid : Boolean;
    begin
-      Messages.Read ( Message, Valid );
-      Ada.Text_IO.Put_Line("Message valid: " & Boolean'Image ( Valid ));
-   end read;
+      Messages.Read (Message, Valid);
+      Ada.Text_IO.Put_Line ("Message valid: " & Boolean'image (Valid));
+   end Read_Message;
+   type Command_T is (Create, Write, Read, Print, Quit);
+   function Command is new Get_Enum (Command_T);
 begin
    loop
-      Put ("Create Write Read Print: ");
-      declare
-         Command : constant String := Get_Line;
-      begin
-         exit when Command'length = 0;
-         case Command (Command'first) is
-            when 'c' | 'C' =>
-               Create;
-            when 'w' | 'W' =>
-               Messages.Write (Message);
-            when 'r' | 'R' =>
-               read;
-            when 'p' | 'P' =>
-               Messages.Print (Message);
-            when others =>
-               null;
-         end case;
-      end;
+      case Command ("Select command") is
+         when Create =>
+            Create_Message;
+         when Write =>
+            Messages.Write (Message);
+         when Read =>
+            Read_Message;
+         when Print =>
+            Messages.Print (Message);
+         when others =>
+            null;
+      end case;
    end loop;
 end Main;
---Main_Main
-
+--Main
 --Messages_Helpers
 with Ada.Text_IO;
 with Unchecked_Conversion;
 package body Messages is
    Global_Unique_Id : U32_T := 0;
-   function To_Text (Str : String) return Text_T is
+   function To_Text
+     (Str : String)
+      return Text_T is
       Length : Integer := Str'length;
       Retval : Text_T  := (Text => (others => ' '), Last => 0);
    begin
@@ -176,16 +213,22 @@ package body Messages is
       Retval.Last               := Text_Index_T (Length);
       return Retval;
    end To_Text;
-   function From_Text (Text : Text_T) return String is
+   function From_Text
+     (Text : Text_T)
+      return String is
       Last : Integer := Integer (Text.Last);
    begin
       return Text.Text (1 .. Last);
    end From_Text;
-   function Get_Crc (Message : Message_T) return Crc_T is
+   function Get_Crc
+     (Message : Message_T)
+      return Crc_T is
    begin
       return Message.Crc;
    end Get_Crc;
-   function Validate (Original : Message_T) return Boolean is
+   function Validate
+     (Original : Message_T)
+      return Boolean is
       Clean : Message_T := Original;
    begin
       Clean.Crc := 0;
@@ -193,10 +236,11 @@ package body Messages is
    end Validate;
 --Messages_Helpers
 --Messages_Body
-   function Create (Command : Command_T;
-                    Value   : Positive;
-                    Text    : String := "")
-                    return Message_T is
+   function Create
+     (Command : Command_T;
+      Value   : Positive;
+      Text    : String := "")
+      return Message_T is
       Retval : Message_T;
    begin
       Global_Unique_Id := Global_Unique_Id + 1;
@@ -223,18 +267,21 @@ package body Messages is
       Ada.Text_IO.New_Line (File);
       Ada.Text_IO.Close (File);
    end Write;
-   procedure Read (Message : out Message_T;
-                   Valid   : out Boolean) is
-                   Overlay : Overlay_T;
-                   File    : Ada.Text_IO.File_Type;
+   procedure Read
+     (Message : out Message_T;
+      Valid   : out Boolean) is
+      Overlay : Overlay_T;
+      File    : Ada.Text_IO.File_Type;
    begin
       Valid := False;
       Ada.Text_IO.Open (File, Ada.Text_IO.In_File, Const_Filename);
       declare
-         Str : constant String := Ada.Text_IO.Get_Line (File);
+         Str  : String (1 .. 1_000);
+         Last : Natural;
       begin
+         Ada.Text_IO.Get_Line (File, Str, Last);
          Ada.Text_IO.Close (File);
-         for I in Str'range loop
+         for I in 1 .. Last loop
             Overlay (I) := Char (Str (I));
          end loop;
          Message := Convert (Overlay);
@@ -243,10 +290,52 @@ package body Messages is
    end Read;
    procedure Print (Message : Message_T) is
    begin
-      Ada.Text_IO.Put_Line ("Message" & U32_T'image (Message.Unique_Id));
-      Ada.Text_IO.Put_Line ("  " & Command_T'image (Message.Command) & " =>" &
-                            U32_T'image (Message.Value));
-      Ada.Text_IO.Put_Line ("  Additional Info: " & From_Text (Message.Text));
+      Ada.Text_Io.Put_Line ("Message" & U32_T'image (Message.Unique_Id));
+      Ada.Text_Io.Put_Line
+        ("  " & Command_T'image (Message.Command) & " =>" &
+         U32_T'image (Message.Value));
+      Ada.Text_Io.Put_Line ("  Additional Info: " & From_Text (Message.Text));
    end Print;
 end Messages;
 --Messages_Body
+--Messages_Spec
+with Crc; use Crc;
+package Messages is
+   type Message_T is private;
+   type Command_T is (Noop, Direction, Ascend, Descend, Speed);
+   for Command_T use
+     (Noop => 0, Direction => 1, Ascend => 2, Descend => 4, Speed => 8);
+   for Command_T'size use 8;
+   function Create
+     (Command : Command_T;
+      Value   : Positive;
+      Text    : String := "")
+      return Message_T;
+   function Get_Crc
+     (Message : Message_T)
+      return Crc_T;
+   procedure Write (Message : Message_T);
+   procedure Read
+     (Message : out Message_T;
+      Valid   : out Boolean);
+   procedure Print (Message : Message_T);
+private
+   type U32_T is mod 2**32;
+   for U32_T'size use 32;
+   Max_Text_Length : constant := 20;
+   type Text_Index_T is new Integer range 0 .. Max_Text_Length;
+   for Text_Index_T'size use 8;
+   type Text_T is record
+      Text : String (1 .. Max_Text_Length);
+      Last : Text_Index_T;
+   end record;
+   for Text_T'size use Max_Text_Length * 8 + Text_Index_T'size;
+   type Message_T is record
+      Unique_Id : U32_T;
+      Command   : Command_T;
+      Value     : U32_T;
+      Text      : Text_T;
+      Crc       : Crc_T;
+   end record;
+end Messages;
+--Messages_Spec

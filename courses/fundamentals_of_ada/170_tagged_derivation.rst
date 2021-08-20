@@ -1,7 +1,7 @@
 
-*****************
+*******************
 Tagged Derivation
-*****************
+*******************
 
 .. role:: ada(code)
     :language: Ada
@@ -294,7 +294,7 @@ Which code block is legal?
 Lab
 ========
 
-.. include:: labs/170_inheritance.lab.rst
+.. include:: labs/170_tagged_derivation.lab.rst
 
 =========
 Summary

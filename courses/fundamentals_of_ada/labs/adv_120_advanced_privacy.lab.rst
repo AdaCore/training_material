@@ -21,11 +21,7 @@ Advanced Privacy Lab
 Project Requirements
 ----------------------
 
-* Private / Limited Types
-
-  * Account information must be :ada:`limited`
-
-    * Should not be able to copy account information
+* Private Types
 
   * User and account information should be "encrypted" and consistent
 

@@ -1,84 +1,128 @@
---Playlist_Spec
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-package Playlist is
-
-   type Song_T is private;
-
-   procedure Add_Song
-     (Name   : String;
-      Artist : String;
-      Album  : String);
-
-   procedure Shuffle;
-
-   function Current return String;
-   function Next return String;
-   function Previous return String;
-
-   procedure Print;
-
-private
-
-   type Song_T is record
-      Name   : Unbounded_String;
-      Artist : Unbounded_String;
-      Album  : Unbounded_String;
-   end record;
-
-end Playlist;
---Playlist_Spec
-
---Main
-with Ada.Text_IO; use Ada.Text_IO;
-with Playlist;
-procedure Main is
-
-   function Get (Prompt : String) return String is
+with Ada.Characters.Handling; use Ada.Characters.Handling;
+with Ada.Text_IO;             use Ada.Text_IO;
+package body Input is
+   function Get_String
+     (Prompt : String)
+      return String is
+      Str  : String (1 .. 100);
+      Last : Integer;
    begin
       Put (Prompt & " > ");
-      return Get_Line;
-   end Get;
-
-   type Command_T is (Add, Current, Next, Previous, Shuffle, Print, Quit);
-   function Command return Command_T is
+      Ada.Text_IO.Get_Line (Str, Last);
+      return Str (1 .. Last);
+   end Get_String;
+   function Get_Number
+     (Prompt : String)
+      return Integer_T is
    begin
-      for C in Command_T'range loop
+      loop
+         declare
+            Retval : constant String := Get_String (Prompt);
+         begin
+            if Retval'length > 0 then
+               return Integer_T'value (Retval);
+            else
+               raise Input_Canceled;
+            end if;
+         exception
+            when others =>
+               Put_Line ("Invalid input");
+         end;
+      end loop;
+   end Get_Number;
+   function Get_Enum
+     (Prompt : String)
+      return Enum_T is
+   begin
+      for E in Enum_T'range loop
          Put_Line
-           (Integer'image (1 + Command_T'pos (C)) & "> " &
-            Command_T'image (C));
+           (Integer'image (1 + Enum_T'pos (E)) & "> " & Enum_T'image (E));
       end loop;
       loop
          declare
-            I : Integer;
+            I : constant String := Get_String (Prompt);
          begin
-            I := Integer'value (Get ("Command"));
-            return Command_T'val (I - 1);
+            if I'length = 0 then
+               raise Input_Canceled;
+            end if;
+            return Enum_T'val (Natural'value (I) - 1);
          exception
+            when Input_Canceled =>
+               raise Input_Canceled;
             when others =>
                Put_Line ("Illegal value");
          end;
       end loop;
-   end Command;
-
+   end Get_Enum;
+   function Internal_Get_Integer is new Get_Number (Integer);
+   function Internal_Get_Natural is new Get_Number (Natural);
+   function Internal_Get_Positive is new Get_Number (Positive);
+   function Get_Integer
+     (Prompt : String)
+      return Integer renames Internal_Get_Integer;
+   function Get_Natural
+     (Prompt : String)
+      return Natural renames Internal_Get_Natural;
+   function Get_Positive
+     (Prompt : String)
+      return Positive renames Internal_Get_Positive;
+end Input;
+package Input is
+   Input_Canceled : exception;
+   function Get_String
+     (Prompt : String)
+      return String;
+   function Get_Integer
+     (Prompt : String)
+      return Integer;
+   function Get_Natural
+     (Prompt : String)
+      return Natural;
+   function Get_Positive
+     (Prompt : String)
+      return Positive;
+   generic
+      type Enum_T is (<>);
+   function Get_Enum
+     (Prompt : String)
+      return Enum_T;
+   generic
+      type Integer_T is range <>;
+   function Get_Number
+     (Prompt : String)
+      return Integer_T;
+end Input;
+--Main
+with Ada.Text_IO; use Ada.Text_IO;
+with Input;       use Input;
+with Playlist;
+procedure Main is
+   type Command_T is (Add, Current, Next, Previous, Shuffle, Print, Quit);
+   function Command is new Get_Enum (Command_T);
    procedure Add_Song is
-      Name   : constant String := Get ("Name");
-      Artist : constant String := Get ("Artist");
-      Album  : constant String := Get ("Album");
+      Name   : constant String := Get_String ("Name");
+      Artist : constant String := Get_String ("Artist");
+      Album  : constant String := Get_String ("Album");
    begin
       Playlist.Add_Song (Name, Artist, Album);
    end Add_Song;
-
 begin
-
    loop
-      case Command is
-         when Add      => Add_Song;
-         when Current  => Put_Line ("Now Playing: " & Playlist.Current);
-         when Next     => Put_Line ("Skipping To: " & Playlist.Next);
-         when Previous => Put_Line ("Backing Up To: " & Playlist.Previous);
-         when Shuffle  => Playlist.Shuffle;
-         when Print    => Playlist.Print;
-         when Quit     => exit;
+      case Command ("Select command") is
+         when Add =>
+            Add_Song;
+         when Current =>
+            Put_Line ("Now Playing: " & Playlist.Current);
+         when Next =>
+            Put_Line ("Skipping To: " & Playlist.Next);
+         when Previous =>
+            Put_Line ("Backing Up To: " & Playlist.Previous);
+         when Shuffle =>
+            Playlist.Shuffle;
+         when Print =>
+            Playlist.Print;
+         when Quit =>
+            exit;
       end case;
    end loop;
 end Main;
@@ -87,14 +131,12 @@ end Main;
 with Ada.Text_IO; use Ada.Text_IO;
 with GNAT.Random_Numbers;
 package body Playlist is
-
    function Image (Song : Song_T) return String is
    begin
       return
         To_String (Song.Name) & " by " & To_String (Song.Artist) & " from " &
         To_String (Song.Album);
    end Image;
-
    type Playlist_T;
    type Playlist_Ptr_T is access Playlist_T;
    type Playlist_T is record
@@ -102,12 +144,9 @@ package body Playlist is
       Previous : Playlist_Ptr_T := null;
       Current  : Song_T;
    end record;
-
    Global_Playlist : Playlist_Ptr_T := null;
    Global_Count    : Natural        := 0;
-
    procedure Add_Song (Song : Song_T) is
-
       New_Entry : Playlist_Ptr_T := new Playlist_T;
    begin
       Global_Count       := Global_Count + 1;
@@ -119,11 +158,9 @@ package body Playlist is
       end if;
       Global_Playlist := New_Entry;
    end Add_Song;
-
-   procedure Add_Song
-     (Name   : String;
-      Artist : String;
-      Album  : String) is
+   procedure Add_Song (Name   : String;
+                       Artist : String;
+                       Album  : String) is
       Song : Song_T :=
         (Name   => To_Unbounded_String (Name),
          Artist => To_Unbounded_String (Artist),
@@ -131,22 +168,19 @@ package body Playlist is
    begin
       Add_Song (Song);
    end Add_Song;
---Playlist_Creation
-
    procedure Move_To_End is
    begin
       while Global_Playlist.Next /= null loop
          Global_Playlist := Global_Playlist.Next;
       end loop;
    end Move_To_End;
-
    procedure Move_To_Beginning is
    begin
       while Global_Playlist.Previous /= null loop
          Global_Playlist := Global_Playlist.Previous;
       end loop;
    end Move_To_Beginning;
-
+--Playlist_Creation
 --Playlist_Manipulation
    Generator : GNAT.Random_Numbers.Generator;
    function Random is new GNAT.Random_Numbers.Random_Discrete (Integer);
@@ -174,12 +208,10 @@ package body Playlist is
          Add_Song (List (I));
       end loop;
    end Shuffle;
-
    function Current return String is
    begin
       return Image (Global_Playlist.Current);
    end Current;
-
    function Next return String is
    begin
       if Global_Playlist.Next = null then
@@ -189,7 +221,6 @@ package body Playlist is
       end if;
       return Current;
    end Next;
-
    function Previous return String is
    begin
       if Global_Playlist.Previous = null then
@@ -199,7 +230,6 @@ package body Playlist is
       end if;
       return Current;
    end Previous;
-
    procedure Print is
       Top : Playlist_Ptr_T := Global_Playlist;
    begin
@@ -216,6 +246,25 @@ package body Playlist is
          end loop;
       end if;
    end Print;
-
 end Playlist;
 --Playlist_Manipulation
+--Playlist_Spec
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+package Playlist is
+   type Song_T is private;
+   procedure Add_Song
+     (Name   : String;
+      Artist : String;
+      Album  : String);
+   procedure Shuffle;
+   function Current return String;
+   function Next return String;
+   function Previous return String;
+   procedure Print;
+private
+   type Song_T is record
+      Name   : Unbounded_String;
+      Artist : Unbounded_String;
+      Album  : Unbounded_String;
+   end record;
+end Playlist;

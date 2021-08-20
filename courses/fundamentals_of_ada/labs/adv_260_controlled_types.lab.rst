@@ -59,16 +59,3 @@ Controlled Types Lab Solution - User Account (Body - Cont)
 ------------------------------------------------------------
 
 .. container:: source_include labs/answers/adv_260_controlled_types.txt :start-after:--User_Accounts_Support :end-before:--User_Accounts_Support :code:Ada
-
-----------------------------------------------
-Controlled Types Lab Solution - Input (Spec)
-----------------------------------------------
-
-.. container:: source_include labs/answers/adv_260_controlled_types.txt :start-after:--Input_Spec :end-before:--Input_Spec :code:Ada
-
-----------------------------------------------
-Controlled Types Lab Solution - Input (Body)
-----------------------------------------------
-
-.. container:: source_include labs/answers/adv_260_controlled_types.txt :start-after:--Input_Body :end-before:--Input_Body :code:Ada
-

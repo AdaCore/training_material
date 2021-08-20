@@ -1,62 +1,9 @@
---Shapes_Spec
-with Display; use Display;
-package Shapes is
-
-   type Shape_T is (Circle, Line, Box, Torus);
-   type Coord_T is record
-      X : Float;
-      Y : Float;
-   end record;
-   type Shape_Id_T is private;
-
-   procedure Create_Circle;
-   procedure Create_Box;
-   procedure Create_Torus;
-   procedure Create_Line;
-
-   procedure Update;
-
-   function Get_Coordinate (Shape_Id : Shape_Id_T) return Coord_T;
-   function Get_Coordinate_2 (Shape_Id : Shape_Id_T) return Coord_T;
-   function Get_Radius (Shape_Id : Shape_Id_T) return Float;
-   function Get_Inner_Radius (Shape_Id : Shape_Id_T) return Float;
-   function Get_Outer_Radius (Shape_Id : Shape_Id_T) return Float;
-   function Get_Color (Shape_Id : Shape_Id_T) return Color_Type;
-
-   procedure Set_Coordinate (Shape_Id : Shape_Id_T;
-                             Coord    : Coord_T);
-   procedure Set_Coordinate_2 (Shape_Id : Shape_Id_T;
-                               Coord    : Coord_T);
-   procedure Set_Radius (Shape_Id : Shape_Id_T;
-                         Radius   : Float);
-   procedure Set_Inner_Radius (Shape_Id : Shape_Id_T;
-                               Radius   : Float);
-   procedure Set_Outer_Radius (Shape_Id : Shape_Id_T;
-                               Radius   : Float);
-   procedure Set_Color (Shape_Id : Shape_Id_T;
-                        Color    : Color_Type);
-
-private
-   type Shape_Id_T is new Positive;
-end Shapes;
---Shapes_Spec
-
---Monitor_Spec
-with Shapes; use Shapes;
-package Monitor is
-   procedure Create
-     (Id      : Shape_Id_T;
-      Refresh : Float);
-end Monitor;
---Monitor_Spec
-
 --Main
 with Display;       use Display;
 with Display.Basic; use Display.Basic;
 with Shapes;
 procedure Main is
 begin
-
    while not At_End loop
       case To_Character (Current_Key_Press) is
          when 'c' | 'C' =>
@@ -73,15 +20,72 @@ begin
             delay 0.1;
       end case;
    end loop;
-
 end Main;
 --Main
-
+--Monitor_Body
+with Display;       use Display;
+with Display.Basic; use Display.Basic;
+package body Monitor is
+   task type Monitor_Task_T is
+      entry Initialize
+        (Id      : Shape_Id_T;
+         Refresh : Float);
+      entry Remove;
+   end Monitor_Task_T;
+   task body Monitor_Task_T is
+      Shape_Id    : Shape_Id_T;
+      Delay_Delta : Duration;
+      Color       : Color_Type;
+      Finished    : Boolean := False;
+   begin
+      accept Initialize
+        (Id      : Shape_Id_T;
+         Refresh : Float) do
+         Shape_Id    := Id;
+         Delay_Delta := Duration (Refresh);
+         Color       := Shapes.Get_Color (Shape_Id);
+      end Initialize;
+      loop
+         select
+            accept Remove do
+               Finished := True;
+            end Remove;
+         or
+            delay Delay_Delta;
+            exit when Finished;
+            if Color = Color_Type'last then
+               Color := Color_Type'first;
+            else
+               Color := Color_Type'succ (Color);
+            end if;
+            Shapes.Set_Color (Shape_Id, Color);
+         end select;
+      end loop;
+   end Monitor_Task_T;
+   Tasks          : array (1 .. 100) of access Monitor_Task_T;
+   Next_Available : Integer := 1;
+   procedure Create
+     (Id      : Shape_Id_T;
+      Refresh : Float) is
+   begin
+      Tasks (Next_Available) := new Monitor_Task_T;
+      Tasks (Next_Available).Initialize (Id, Refresh);
+      Next_Available := Next_Available + 1;
+   end Create;
+end Monitor;
+--Monitor_Body
+--Monitor_Spec
+with Shapes; use Shapes;
+package Monitor is
+   procedure Create
+     (Id      : Shape_Id_T;
+      Refresh : Float);
+end Monitor;
+--Monitor_Spec
 with Ada.Text_IO;   use Ada.Text_IO;
 with Display.Basic; use Display.Basic;
 with Monitor;
 package body Shapes is
-
 --Shape_Data_T_Spec
    protected type Shape_Data_T is
       procedure Initialize (New_Id : Shape_Id);
@@ -101,12 +105,9 @@ package body Shapes is
       Id : Shape_Id;
    end Shape_Data_T;
 --Shape_Data_T_Spec
-
    Database       : array (Shape_Id_T range 1 .. 100) of access Shape_Data_T;
    Next_Available : Shape_Id_T := 1;
-
    package Float_Io is new Ada.Text_IO.Float_IO (Float);
-
    function Get
      (Prompt : String)
       return Float is
@@ -121,7 +122,6 @@ package body Shapes is
       end;
       return Retval;
    end Get;
-
    function Get
      (Prompt : String)
       return Coord_T is
@@ -132,24 +132,21 @@ package body Shapes is
       Retval.Y := Get ("   Y coordinate");
       return Retval;
    end Get;
-
    function Get
      (Prompt : String := "Color")
       return Color_Type is
    begin
       Put (Prompt & " > ");
-      return Color_Type'Value (Get_Line);
+      return Color_Type'value (Get_Line);
    exception
       when others =>
          return White;
    end Get;
-
    function Get return Shape_Id_T is
    begin
       Put ("Shape ID > ");
-      return Shape_Id_T'Value (Get_Line);
+      return Shape_Id_T'value (Get_Line);
    end Get;
-
    procedure Add
      (Id      : Shape_Id;
       Refresh : Float) is
@@ -157,10 +154,9 @@ package body Shapes is
       Database (Next_Available) := new Shape_Data_T;
       Database (Next_Available).Initialize (New_Id => Id);
       Monitor.Create (Next_Available, Refresh);
-      Put_Line ("** Shape ID => " & Next_Available'Image);
+      Put_Line ("** Shape ID => " & Next_Available'image);
       Next_Available := Next_Available + 1;
    end Add;
-
 --Shapes_Creation
    procedure Create_Circle is
       C1      : Coord_T    := Get ("Origin");
@@ -175,7 +171,6 @@ package body Shapes is
    begin
       Add (Id, Refresh);
    end Create_Circle;
-
    procedure Create_Box is
       C1      : Coord_T    := Get ("First corner");
       C2      : Coord_T    := Get ("Opposite corner");
@@ -190,7 +185,6 @@ package body Shapes is
    begin
       Add (Id, Refresh);
    end Create_Box;
-
    procedure Create_Torus is
       C1      : Coord_T    := Get ("Origin");
       Inner   : Float      := Get ("Inner Radius");
@@ -206,7 +200,6 @@ package body Shapes is
    begin
       Add (Id, Refresh);
    end Create_Torus;
-
    procedure Create_Line is
       C1      : Coord_T    := Get ("First point");
       C2      : Coord_T    := Get ("Second point");
@@ -221,7 +214,6 @@ package body Shapes is
    begin
       Add (Id, Refresh);
    end Create_Line;
-
 --Shapes_Creation
    procedure Update is
       Id    : constant Shape_Id_T := Get;
@@ -231,9 +223,8 @@ package body Shapes is
       declare
          Str : constant String := Get_Line;
       begin
-         if Str'Length > 0
-         then
-            case Str (Str'First) is
+         if Str'length > 0 then
+            case Str (Str'first) is
                when 'X' | 'x' =>
                   Coord   := Get_Coordinate (Id);
                   Coord.X := Get ("New X Coordinate");
@@ -264,97 +255,94 @@ package body Shapes is
          end if;
       end;
    end Update;
-
 --Shapes_Interface
-   function Get_Coordinate (Shape_Id : Shape_Id_T)
+   function Get_Coordinate
+     (Shape_Id : Shape_Id_T)
       return Coord_T is (Database (Shape_Id).Get_Coordinate);
-   function Get_Coordinate_2 (Shape_Id : Shape_Id_T)
+   function Get_Coordinate_2
+     (Shape_Id : Shape_Id_T)
       return Coord_T is (Database (Shape_Id).Get_Coordinate_2);
-   function Get_Radius (Shape_Id : Shape_Id_T)
+   function Get_Radius
+     (Shape_Id : Shape_Id_T)
       return Float is (Database (Shape_Id).Get_Radius);
-   function Get_Inner_Radius (Shape_Id : Shape_Id_T)
+   function Get_Inner_Radius
+     (Shape_Id : Shape_Id_T)
       return Float is (Database (Shape_Id).Get_Inner_Radius);
-   function Get_Outer_Radius (Shape_Id : Shape_Id_T)
+   function Get_Outer_Radius
+     (Shape_Id : Shape_Id_T)
       return Float is (Database (Shape_Id).Get_Outer_Radius);
-   function Get_Color (Shape_Id : Shape_Id_T)
+   function Get_Color
+     (Shape_Id : Shape_Id_T)
       return Color_Type is (Database (Shape_Id).Get_Color);
-
-   procedure Set_Coordinate (Shape_Id : Shape_Id_T;
-                             Coord    : Coord_T) is
+   procedure Set_Coordinate
+     (Shape_Id : Shape_Id_T;
+      Coord    : Coord_T) is
    begin
       Database (Shape_Id).Set_Coordinate (Coord);
    end Set_Coordinate;
-
-   procedure Set_Coordinate_2 (Shape_Id : Shape_Id_T;
-                               Coord    : Coord_T) is
+   procedure Set_Coordinate_2
+     (Shape_Id : Shape_Id_T;
+      Coord    : Coord_T) is
    begin
       Database (Shape_Id).Set_Coordinate_2 (Coord);
    end Set_Coordinate_2;
-
-   procedure Set_Radius (Shape_Id : Shape_Id_T;
-                         Radius   : Float) is
+   procedure Set_Radius
+     (Shape_Id : Shape_Id_T;
+      Radius   : Float) is
    begin
       Database (Shape_Id).Set_Radius (Radius);
    end Set_Radius;
-
-   procedure Set_Inner_Radius (Shape_Id : Shape_Id_T;
-                               Radius   : Float) is
+   procedure Set_Inner_Radius
+     (Shape_Id : Shape_Id_T;
+      Radius   : Float) is
    begin
       Database (Shape_Id).Set_Inner_Radius (Radius);
    end Set_Inner_Radius;
-
-   procedure Set_Outer_Radius (Shape_Id : Shape_Id_T;
-                               Radius   : Float) is
+   procedure Set_Outer_Radius
+     (Shape_Id : Shape_Id_T;
+      Radius   : Float) is
    begin
       Database (Shape_Id).Set_Outer_Radius (Radius);
    end Set_Outer_Radius;
-
-   procedure Set_Color (Shape_Id : Shape_Id_T;
-                        Color    : Color_Type) is
+   procedure Set_Color
+     (Shape_Id : Shape_Id_T;
+      Color    : Color_Type) is
    begin
       Database (Shape_Id).Set_Color (Color);
    end Set_Color;
 --Shapes_Interface
-
 --Shape_Data_T_Body
    protected body Shape_Data_T is
       procedure Initialize (New_Id : Shape_Id) is
       begin
          Id := New_Id;
       end Initialize;
-
       procedure Set_Coordinate (Coord : Coord_T) is
       begin
          Display.Basic.Set_X (Id, Coord.X);
          Display.Basic.Set_Y (Id, Coord.Y);
       end Set_Coordinate;
-
       procedure Set_Coordinate_2 (Coord : Coord_T) is
       begin
          Display.Basic.Set_X2 (Id, Coord.X);
          Display.Basic.Set_Y2 (Id, Coord.Y);
       end Set_Coordinate_2;
-
       procedure Set_Radius (Radius : Float) is
       begin
          Display.Basic.Set_Radius (Id, Radius);
       end Set_Radius;
-
       procedure Set_Inner_Radius (Radius : Float) is
       begin
          Display.Basic.Set_Inner_Radius (Id, Radius);
       end Set_Inner_Radius;
-
       procedure Set_Outer_Radius (Radius : Float) is
       begin
          Display.Basic.Set_Outer_Radius (Id, Radius);
       end Set_Outer_Radius;
-
       procedure Set_Color (Color : Color_Type) is
       begin
          Display.Basic.Set_Color (Id, Color);
       end Set_Color;
-
       function Get_Coordinate return Coord_T is
         ((X => Display.Basic.Get_X (Id), Y => Display.Basic.Get_Y (Id)));
       function Get_Coordinate_2 return Coord_T is
@@ -367,67 +355,58 @@ package body Shapes is
       function Get_Color return Color_Type is (Display.Basic.Get_Color (Id));
    end Shape_Data_T;
 --Shape_Data_T_Body
-
 end Shapes;
-
---Monitor_Body
-with Display;       use Display;
-with Display.Basic; use Display.Basic;
-package body Monitor is
-
-   task type Monitor_Task_T is
-      entry Initialize
-        (Id      : Shape_Id_T;
-         Refresh : Float);
-      entry Remove;
-   end Monitor_Task_T;
-
-   task body Monitor_Task_T is
-      Shape_Id    : Shape_Id_T;
-      Delay_Delta : Duration;
-      Color       : Color_Type;
-      Finished    : Boolean := False;
-   begin
-      accept Initialize
-        (Id      : Shape_Id_T;
-         Refresh : Float) do
-         Shape_Id    := Id;
-         Delay_Delta := Duration (Refresh);
-         Color       := Shapes.Get_Color (Shape_Id);
-      end Initialize;
-
-      loop
-         select
-
-            accept Remove do
-               Finished := True;
-            end Remove;
-
-         or
-            delay Delay_Delta;
-            exit when Finished;
-            if Color = Color_Type'Last
-            then
-               Color := Color_Type'First;
-            else
-               Color := Color_Type'Succ (Color);
-            end if;
-            Shapes.Set_Color (Shape_Id, Color);
-         end select;
-      end loop;
-   end Monitor_Task_T;
-
-   Tasks          : array (1 .. 100) of access Monitor_Task_T;
-   Next_Available : Integer := 1;
-
-   procedure Create
-     (Id      : Shape_Id_T;
-      Refresh : Float) is
-   begin
-      Tasks (Next_Available) := new Monitor_Task_T;
-      Tasks (Next_Available).Initialize (Id, Refresh);
-      Next_Available := Next_Available + 1;
-   end Create;
-
-end Monitor;
---Monitor_Body
+--Shapes_Spec
+with Display; use Display;
+package Shapes is
+   type Shape_T is (Circle, Line, Box, Torus);
+   type Coord_T is record
+      X : Float;
+      Y : Float;
+   end record;
+   type Shape_Id_T is private;
+   procedure Create_Circle;
+   procedure Create_Box;
+   procedure Create_Torus;
+   procedure Create_Line;
+   procedure Update;
+   function Get_Coordinate
+     (Shape_Id : Shape_Id_T)
+      return Coord_T;
+   function Get_Coordinate_2
+     (Shape_Id : Shape_Id_T)
+      return Coord_T;
+   function Get_Radius
+     (Shape_Id : Shape_Id_T)
+      return Float;
+   function Get_Inner_Radius
+     (Shape_Id : Shape_Id_T)
+      return Float;
+   function Get_Outer_Radius
+     (Shape_Id : Shape_Id_T)
+      return Float;
+   function Get_Color
+     (Shape_Id : Shape_Id_T)
+      return Color_Type;
+   procedure Set_Coordinate
+     (Shape_Id : Shape_Id_T;
+      Coord    : Coord_T);
+   procedure Set_Coordinate_2
+     (Shape_Id : Shape_Id_T;
+      Coord    : Coord_T);
+   procedure Set_Radius
+     (Shape_Id : Shape_Id_T;
+      Radius   : Float);
+   procedure Set_Inner_Radius
+     (Shape_Id : Shape_Id_T;
+      Radius   : Float);
+   procedure Set_Outer_Radius
+     (Shape_Id : Shape_Id_T;
+      Radius   : Float);
+   procedure Set_Color
+     (Shape_Id : Shape_Id_T;
+      Color    : Color_Type);
+private
+   type Shape_Id_T is new Positive;
+end Shapes;
+--Shapes_Spec

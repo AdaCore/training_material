@@ -88,9 +88,3 @@ Advanced Genericity Lab Solution - Database Print (Body)
 
 .. container:: source_include labs/answers/adv_160_genericity.txt :start-after:--Database_Print_Body :end-before:--Database_Print_Body :code:Ada
 
-------------------------------------------
-Advanced Genericity Lab Solution - Input
-------------------------------------------
-
-.. container:: source_include labs/answers/adv_160_genericity.txt :start-after:--Input :end-before:--Input :code:Ada
-
