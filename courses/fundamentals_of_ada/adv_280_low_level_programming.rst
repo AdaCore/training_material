@@ -719,6 +719,12 @@ Flat Arrays
       type Char_array is array (natural) of Character;
       type C_String_Acc is access Char_Array;
 
+========
+Lab
+========
+
+.. include:: labs/adv_280_low_level_programming.lab.rst
+
 =========
 Summary
 =========
