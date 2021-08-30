@@ -1,6 +1,6 @@
 
 ******************
-Ada.Finalization
+Controlled Types
 ******************
 
 ==============
@@ -206,7 +206,7 @@ Unbounded String Implementation
 Lab
 ========
 
-.. include:: labs/adv_260_ada_finalization.lab.rst
+.. include:: labs/adv_260_controlled_types.lab.rst
 
 =========
 Summary
