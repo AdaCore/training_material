@@ -16,7 +16,7 @@ High-Integrity Software
 
    - More than cost, time-to-market, etc.
 
-* Must be known to be reliable before deployed
+* Must be known to be reliable before being deployed
 
    - With extremely low failure rates, e.g., 1 in 10:superscript:`9` hours (114,080 years)
    - Testing is insufficient and/or infeasible for such rates
@@ -55,18 +55,18 @@ Formal Methods
    How to specify formally the error messages from a compiler are readable, understandable, useful, etc?
 
 ------------------------------------------
-Combining Proof and Test - Cost Benefit 
+Combining Proof and Test - Cost Benefit
 ------------------------------------------
 
 .. container:: columns
 
  .. container:: column
-  
+
     * 80/20 rule holds for both test and proof activities
     * Same area of code is usually not both difficult to prove and difficult to test
 
  .. container:: column
-  
+
     .. image:: ../../images/80-20_provable_or_testable.png
 
 -------------------------------------
@@ -79,7 +79,7 @@ Language Facilitates Proof and Test
 
    - Additional aliasing detection beyond Ada RM requirements
 
-   - Additional data initialization and validity checks beyond Ada RM requirements 
+   - Additional data initialization and validity checks beyond Ada RM requirements
 
    - See the SPARK User's Guide for more details
 
@@ -114,10 +114,10 @@ The Programming Language
 
 * Excluded from SPARK:
 
-   - Access types designating data not on the heap
+   - Aliasing data-structures obtained using access types
    - Expressions (including function calls) with side-effects
    - Aliasing of names
-   - Goto statements
+   - Backwards goto statements
    - Controlled types
    - Handling of exceptions (raise statements can be used in a program but proof will attempt to show that they cannot be executed)
 
@@ -125,8 +125,8 @@ The Programming Language
 
    At this point it helps to understand the rationale behind the differences between the SPARK and Ada languages.
    The aim while designing the SPARK subset of Ada was to create the biggest possible subset still amenable to easy specification and sound verification.
-   The most notable exclusions include access type and allocators, as well as handling of exceptions, which are both known to increase considerably the amount of required user-written annotations.
-   Goto statements and controlled types are also not supported as they introduce non-trivial control flow. 
+   The most notable exclusions include uses of access type and allocators that create aliasing, as well as handling of exceptions, which are both known to increase considerably the amount of required user-written annotations.
+   Backwards goto statements and controlled types are also not supported as they introduce non-trivial control flow.
    The two remaining restrictions are side-effects in expressions and aliasing of names, which we will now look at in more detail.
 
 ------------------------------
@@ -135,7 +135,7 @@ Math Hidden Behind the Tools
 
 * Typical for engineering disciplines
 
-   - Engineer working with tool can ignore details of heavy-duty math required 
+   - Engineer working with tool can ignore details of heavy-duty math required
 
 * This is a simulation of the NASA Space Launch System
 
@@ -192,12 +192,12 @@ SPARK Contract Examples
                 and then Extent(This) = Extent(This'Old)+1,
      Global  => null,            -- data dependency
      Depends => (This =>+ Item); -- flow dependency
-   
+
    function Full (This : Stack) return Boolean;
    function Empty (This : Stack) return Boolean;
    function Top_Element (This : Stack) return Element;
    function Extent (This : Stack) return Element_Count;
- 
+
 .. container:: speakernote
 
    This example is just to give a feel for how contracts look and are expressed. The details will be covered later.
@@ -226,7 +226,7 @@ Objective: Data And Control Coupling
 
 * **Data coupling**
 
-   - "The dependence of a software component on data not exclusively under the control of that software component" 
+   - "The dependence of a software component on data not exclusively under the control of that software component"
 
 * **Control coupling**
 
@@ -251,7 +251,7 @@ How SPARK Addresses Data Coupling
 
          procedure Add_To_Total (X : in Integer) with
             Global => (In_Out => Total);
- 
+
    - Total is a global variable both read and written
 
 * Flow dependency contracts specify exactly how data influence subprogram output values
@@ -260,8 +260,8 @@ How SPARK Addresses Data Coupling
 
          procedure Add_To_Total (X : in Integer) with
             Depends => (Total => (Total, X));
- 
-   - Value of `Total` depends on inputs `Total` and `X`
+
+   - Value of output `Total` depends on inputs `Total` and `X`
 
 --------------------------------------
 How SPARK Addresses Control Coupling
@@ -275,14 +275,14 @@ How SPARK Addresses Control Coupling
 
          procedure Add_To_Total (X : in Integer) with
             Depends => (Total => (Total, X));
- 
+
 * Functional contracts specify the behavior of a subprogram, which defines how it "influences the execution of another software component"
 
       .. code:: Ada
 
          procedure Add_To_Total (X : in Integer) with
             Pre => X >= 0 and then Total <= Integer'Last - X;
- 
+
 .. container:: speakernote
 
    As a global, Total's value must affect some other unit
@@ -291,7 +291,7 @@ How SPARK Addresses Control Coupling
 Objective: Absence of Run-Time Errors
 ---------------------------------------
 
-* SPARK defines a number of run-time checks, and users can define their own too
+* SPARK defines a number of run-time checks, and users can define their own too (e.g., through assertions)
 
    - E.g., valid array indexing
 
@@ -317,8 +317,8 @@ Why Do We Care About Integer Overflow?
       .. code:: Ada
 
          Midpoint = (Low + High) / 2
- 
-* Security vulnerabilities 
+
+* Security vulnerabilities
 
    - PHP's `Msg_Receive()` function
 
@@ -367,7 +367,7 @@ Removing Run-Time Checks In SPARK
 
          procedure Increment (X : in out Integer) with
            Pre => X < Integer'Last;
- 
+
 * Therefore, you must either prove preconditions will hold or enable checks at run-time
 * Details discussed in the dedicated AoRTE section...
 
@@ -402,15 +402,15 @@ Proving Arbitrary Abstract Properties Example
 -----------------------------------------------
 
 .. code:: Ada
-    
+
    --Absence of Run-Time Errors
-   function Index (Input : List;
+   function Index (Input  : List;
                    Target : Natural)
-                   return Natural with 
+                   return Natural with
      Post => Index'Result in 0 | Input'Range;
-       
+
    --Correctness
-   function Index (Input : List;
+   function Index (Input  : List;
                    Target : Natural)
                    return Natural with
      Post => (if not Found (Target, Within => Input) then
@@ -419,7 +419,7 @@ Proving Arbitrary Abstract Properties Example
                  Index'Result in Input'Range
                  and then
                  Input (Index'Result) = Target);
-     
+
 .. container:: speakernote
 
    For example, to ensure no runtime error is raised when using the result of function Index, it may be enough to know that, whenever it is not 0, then it is in Input's range.
@@ -431,20 +431,20 @@ Proof Using Abstract Properties
 
 .. code:: Ada
 
-      function Index (Input : List;
-                      Target : Natural)
-                      return Natural
-        with Post =>
-               (if not Found (Target, Within => Input)
-                   then Index'Result = 0
-                else Index'Result in Input'Range and then
-                     Input (Index'Result) = Target);
+   function Index (Input  : List;
+                   Target : Natural)
+                   return Natural
+     with Post =>
+            (if not Found (Target, Within => Input)
+                then Index'Result = 0
+             else Index'Result in Input'Range and then
+                  Input (Index'Result) = Target);
    ...
       -- the target (ie array component) of the search
       T : constant Natural := 42;
       -- arbitrary but containing T
       L : constant List := (0, 0, T, others => 1);
-      I : Natural;  -- an index value for L  
+      I : Natural;  -- an index value for L
    begin
       I := Index (L, T);
       if I /= 0 then
@@ -455,7 +455,7 @@ Proof Using Abstract Properties
       end if;
       ...
    end Test;
- 
+
 .. container:: speakernote
 
    Pragma assert generates two info messages:
@@ -495,13 +495,13 @@ Components Integration: Defensive Code
 ------------------------------------------------
 Components Integration: Defensive Code Example
 ------------------------------------------------
-  
+
 .. code:: Ada
-    
+
    function Full (This : Stack)
                   return Boolean;
-       
-   procedure Push (This : in out Stack;
+
+          procedure Push (This  : in out Stack;
                    Value : Content) is
    begin
       if Full (This) then
@@ -509,12 +509,12 @@ Components Integration: Defensive Code Example
       end if;
       ...
    end Push;
-       
-   procedure Push (This : in out Stack;
+
+   procedure Push (This  : in out Stack;
                    Value : Content)
-      with   Pre     => not Full (This),
-             Post   => ...
-     
+      with   Pre  => not Full (This),
+             Post => ...
+
 ----------------------------------------
 Objective: Combining Proof and Testing
 ----------------------------------------
@@ -548,9 +548,9 @@ Combined Proof and Test
    - Integration testing will remain vital
 
 * Goal is to reach a level of confidence as good as the level reached by testing alone
-* Industrial use as of 2009
+* Industrial use
 
-   - E.g., Airbus for avionics software
+   - E.g., Airbus for avionics software, Altran for military software, etc.
 
 ========
 Lab

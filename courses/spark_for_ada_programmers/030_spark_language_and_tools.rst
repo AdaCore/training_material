@@ -17,6 +17,9 @@ Static Verification Goals
 
    - Presents no false negatives
    - If it does not indicate a problem, there is no problem in the analyzed code
+
+* Complete
+
    - With as few false alarms as possible
 
 * Fast
@@ -39,7 +42,7 @@ SPARK - A Brief History
 
 .. container:: speakernote
 
-   With SPARK 2014 the lag is (almost) gone (because the tools are built upon the compiler). 
+   With SPARK 2014 the lag is (almost) gone (because the tools are built upon the compiler).
 
 ----------------------------
 Language Design Principles
@@ -50,7 +53,7 @@ Language Design Principles
    - Unambiguous.
    - Amenable to formal verification which is sound.
 
-* DO-333 says: 
+* DO-333 says:
 
    - "...an analysis method can only be regarded as formal analysis if its determination of a property is sound. Sound analysis means that the method never asserts a property to be true when it is not true."
 
@@ -70,7 +73,7 @@ Language Design Principles Explained
    "Erroneous Execution" in Ada terminology.
    An Ada program is erroneous when it generates an error that is not required to be detected by the compiler or run-time environments.
    Some examples: Unchecked Conversion, Use of Uninitialized Variables, Unchecked Deallocation, Unchecked Access.
-   These are excluded from SPARK 
+   These are excluded from SPARK
 
 ----------------------------
 Language Design Principles
@@ -89,7 +92,7 @@ Language Design Principles
 The SPARK Language
 --------------------
 
-* Designed for static verification 
+* Designed for static verification
 
    - Completely unambiguous
    - All implementation dependencies are made explicit
@@ -110,15 +113,16 @@ A Simple Example of Verifiable Properties
 .. code:: Ada
 
    procedure Increment (X : in out Integer) with
-   Global  => null,     -- global variable dependencies
-   Depends => (X => X), -- flow dependencies
-     Pre     => X < Integer'Last,    
+     Global  => null,     -- data dependencies
+     Depends => (X => X), -- flow dependencies
+     Pre     => X < Integer'Last,
      Post    => X = X'Old + 1;
+
    procedure Increment (X : in out Integer) is
    begin
       X := X + 1;
    end Increment;
- 
+
 * These properties are proven (or not) for all possible cases
 
 --------------------------------------------
@@ -132,13 +136,13 @@ Verification Requires Construct Exclusions
 
 * Exclusions
 
-   - Access types and values except "ownership" subset
+   - Access types and values creating aliased data structures
 
       + Note you don't need them nearly as much in Ada/SPARK
 
    - Expressions (including function calls) with side effects
    - Aliasing of names
-   - The dreaded `goto` statements
+   - Backwards `goto` statements
 
       + Can create loops, which require a specific treatment in formal verification
 
@@ -169,28 +173,28 @@ What Is a Side-Effect?
 .. container:: columns
 
  .. container:: column
-  
+
     * An expression is side-effect free if its evaluation does not update any object
     * The objects updated by a subprogram call are any parameters of mode out (or in out), plus global variables updated by the subprogram body
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        function F (X : in out Integer)
                    return Integer;
-       function Sqrt (X : in Integer) 
+       function Sqrt (X : in Integer)
                       return Integer;
-       
+
        Global : Integer := 0;
-       
+
        function F (X : Integer)
           return Integer is
        begin
           Global := Global + X;
           return X;
        end F;
-     
+
 .. container:: speakernote
 
    "in out" in a function is illegal SPARK
@@ -204,20 +208,20 @@ Why not Side Effects - Modifying Globals
 
    Global : Integer := 0;
    function F return Integer is
-   begin   
+   begin
       Global := Global + 1
       return Global;
    end F;
-   
+
    procedure Gear_Down (X, Y : in Integer) is
    begin
       if X = Y then -- put gear down
          ...
       end if;
    end Gear_Down;
-   
+
    Gear_Down (Global, F);
- 
+
 * Causes Order-Dependent Code (ODC)
 
    - If left parameter evaluated first, X=0, Y=1
@@ -230,16 +234,16 @@ Why not Side Effects - `in out` Formals
 .. code:: Ada
 
    function F (X : in out Integer) return Integer is
-   begin   
+   begin
       X := X + 1;
       return X;
    end F;
    ...
    procedure Gear_Down (X, Y : in Integer);
    ...
-   Something : Integer := 0; 
+   Something : Integer := 0;
    Gear_Down (X => Something, Y => F (Something));
- 
+
 * Order Dependent Code
 
    - If left parameter evaluated first, X=0, Y=1
@@ -251,9 +255,9 @@ ODC Without Parameters or Side Effects
 
 .. code:: Ada
 
-   procedure Demo is 
+   procedure Demo is
       function F (X : in out Integer) return Integer is
-      begin   
+      begin
          X := X + 1;
          return X;
       end F;
@@ -265,7 +269,7 @@ ODC Without Parameters or Side Effects
          Put_Line (Integer'Image (V));
       end loop;
    end Demo;
- 
+
 * For the array assignment (the first statement), the language doesn't say whether the LHS is evaluated first, or the RHS.
 * This is rejected in SPARK, functions are not allowed to have mode `in out` or `out` formals.
 
@@ -304,7 +308,7 @@ Parameter Aliasing with Global Variable
      -- if pass by reference, result is "World"
      Print (Formal => Actual);
    end Demo_Aliasing;
- 
+
 .. container:: speakernote
 
    Rejected in SPARK if Print is not inlined so we would need to either add a precondition or use the --no-inlining GNATprove switch.
@@ -332,7 +336,7 @@ Parameter Aliasing via Repeated Actuals
      -- if pass by reference, result is "World"
      Print (Actual, Actual);
    end Demo_Aliasing;
- 
+
 ----------------------------------
 Aliasing with Complex Data Types
 ----------------------------------
@@ -344,7 +348,7 @@ Aliasing with Complex Data Types
       .. code:: Ada
 
          Swap (My_Array (X), My_Array (Y)); -- Illegal
- 
+
    - In the future, these checks might be moved to the proof stage, allowing the tools to be less restrictive
 
 * Records
@@ -355,14 +359,14 @@ Aliasing with Complex Data Types
       .. code:: Ada
 
          Swap (My_Record.F1, My_Record.F2); -- OK
- 
+
 ----------------------------------------
 Parameter Aliasing Prevention In SPARK
 ----------------------------------------
 
 * Goal: changing the value of an object should not also alter the value of some other object
 * Multiple output parameters must not be aliased
-* Input and output parameters must not be aliased, unless the inputs are always passed by copy
+* Input and output parameters must not be aliased, if there is possible interference
 * Output parameters must never be aliased with global variables referenced by the subprogram
 * Input parameters must not be aliased with global variables written by the subprogram, unless they are always passed by copy (reading is OK)
 
@@ -383,7 +387,7 @@ Data Initialization Policy Consequences
 
 * All inputs must be completely initialized on entry
 
-* All outputs must be completely initialized on exit 
+* All outputs must be completely initialized on exit
 
 * All objects must be completely initialized when read
 
@@ -399,21 +403,21 @@ No Initialization Across Library Packages
 
 * In SPARK, package elaboration cannot initialize variables declared in other library packages
 
-* In combination with other rules, prevents elaboration order issues 
+* In combination with other rules, prevents elaboration order issues
 
 .. code:: Ada
 
    package P is
       X : Integer;
    end P;
-   
+
    with P;
    package body Z with SPARK_Mode is
       ...
    begin
       P.X := 42; -- illegal (can't call P to do it either)
    end Z;
- 
+
 -----------------------------
 Thus The Term "Safe Subset"
 -----------------------------
@@ -448,10 +452,9 @@ Various Other Differences from Ada
 
       + No extensions or restrictions.
 
-   - 3.10 Access Types - Legality Rules
+   - 5.8 Goto Statements - Legality Rules
 
-      1. All forms of access type and parameter declarations are prohibited. [This follows from the rule forbidding use of the Ada reserved word access.]
-      2. The attribute 'Access shall not be denoted.
+      1. A goto_statement shall be located before the target statement in the innermost sequence_of_statements enclosing the target statement.
 
 * We will cover many of them
 
@@ -541,7 +544,7 @@ Identifying SPARK Code
 * It should be added to every unit to be analyzed
 
    - or can be set globally using a configuration pragma
-   - note that `with`ed units default to `Auto`
+   - note that with'ed units default to `Auto`
 
       + Up to :toolname:`GNATprove` to determine whether or not a given construct is in SPARK
 
@@ -563,9 +566,9 @@ Mixing SPARK Modes
          -- body is NOT SPARK, so assumed to
          -- be full Ada
       end P;
- 
+
 ------------------------
-Setting `SPARK_Mode` 
+Setting `SPARK_Mode`
 ------------------------
 
 * `SPARK_Mode` can be `On` or `Off` for
@@ -588,7 +591,7 @@ Setting `SPARK_Mode`
 
 .. code:: Ada
 
-   package P 
+   package P
       with SPARK_Mode -- on for package spec
    is
       ...
@@ -596,20 +599,20 @@ Setting `SPARK_Mode`
       pragma SPARK_Mode (Off); -- off for private section
       ...
    end P;
-   package body P
+   package body Q
       with SPARK_Mode -- on for package body
     is
       ...
    begin
       pragma SPARK_Mode (Off); -- off for package processing
       ...
-   end P;
- 
+   end Q;
+
 -----------------------------------
 Two General Principles for Mixing
 -----------------------------------
 
-* SPARK code must only reference SPARK code
+* SPARK code must only reference SPARK entities
 
    - But a SPARK declaration may have a non-SPARK completion
 
@@ -617,11 +620,11 @@ Two General Principles for Mixing
 
    - Unless enclosed code is explicitly marked as non-SPARK
 
-* The word **reference** is key: 
+* The word **reference** is key:
 
-   - The spec is what is referenced (i.e., the declaration) so the completion need not be in SPARK 
+   - The spec is what is referenced (i.e., the declaration) so the completion needs not be in SPARK
 
-   - A non-SPARK package can be "withed" by SPARK code as long as the referenced parts comply with the SPARK subset
+   - A non-SPARK package can be with'ed by SPARK code as long as the referenced parts comply with the SPARK subset
 
 ---------------------------------
 Common Mixed SPARK/Ada Approach
@@ -643,7 +646,7 @@ Common Mixed SPARK/Ada Approach
       -- body might NOT be in SPARK, i.e., assumed to
       -- be full Ada
    end P;
- 
+
 .. container:: speakernote
 
    The body uses full Ada features which, therefore, should not (and will not) be analyzed.
@@ -661,15 +664,14 @@ Can Verify Selected Subprograms
    package Q
      with SPARK_Mode
    is
-     -- 'access' legal because subprogram OFF
-     procedure P(X : access Integer)
-       with SPARK_Mode => Off,
-            Pre => X /= null;
+     -- 'in out' legal because function OFF
+     function P(X : in out Integer) return Integer
+       with SPARK_Mode => Off;
      procedure R(X : in out Integer); -- SPARK mode
-     -- 'access' illegal because package ON
-     procedure S(X : access Integer);
+     -- 'in out' illegal because package ON
+     function S(X : in out Integer) return Integer;
    end Q;
- 
+
 .. container:: speakernote
 
    Of course, we could do the reverse too: set the package's SPARK Mode to Off and only turned On some of the subprograms.
@@ -678,13 +680,13 @@ Can Verify Selected Subprograms
 So What Can't SPARK Code Reference?
 -------------------------------------
 
-* SPARK code must only reference SPARK code
+* SPARK code must only reference SPARK entities
 
    - Otherwise analysis cannot provide strong guarantees
    - Only one semantics: as if ``100%`` SPARK code in use
    - :toolname:`GNATprove` will reject invalid mixing
 
-* But what constitutes SPARK code?
+* But what constitutes SPARK code/entities?
 
    - Code explicitly set to `SPARK_Mode` `On`
    - Code covered by a global default value of `On`
@@ -707,9 +709,9 @@ SPARK Code Cannot Use Mode `Off` Code
       -- cannot be called by SPARK code
       -- (even though Q is SPARK)
       procedure P (X : Integer)
-        with SPARK_Mode => Off;   
+        with SPARK_Mode => Off;
    end Q;
- 
+
 ---------------------------------
 Subprogram Specs Are Sufficient
 ---------------------------------
@@ -725,12 +727,12 @@ Subprogram Specs Are Sufficient
    package body Z with SPARK_Mode is
       -- R is callable because its spec is ON
       procedure R (X : in out Integer) is
-         pragma SPARK_Mode (Off);      
+         pragma SPARK_Mode (Off);
       begin
          ...
       end R;
    end Z;
- 
+
 -----------------------------------------
 Mode `Off` for Bodies Allows Full Ada
 -----------------------------------------
@@ -746,14 +748,14 @@ Mode `Off` for Bodies Allows Full Ada
          type Pointer is access all Integer;
          function As_Pointer is new Ada.Unchecked_Conversion
            (Source => System.Address, Target => Pointer);
-         
+
          P : constant Pointer := As_Pointer (X'Address);
       begin
          P.all := P.all + 1;  --!
       end R;
       ...
    end Z;
- 
+
 .. container:: speakernote
 
    Not that anybody would write that specific code for R:w
@@ -779,15 +781,15 @@ If Implementing A SPARK Spec In Full Ada
       ...
    begin
       ...
-      pragma Assume (...); -- user must verify
+      pragma Assert (...); -- user must verify
       ...
    end P;
- 
+
 -----------------------------------------
 What If the Mode Is Not Explicitly Set?
 -----------------------------------------
 
-* I.e., `SPARK_Mode` aspect/pragma is not applied 
+* I.e., `SPARK_Mode` aspect/pragma is not applied
 
    - Neither in the unit in question nor globally
 
@@ -809,47 +811,42 @@ Auto `SPARK_Mode` Example
 
 .. code:: Ada
 
-   package Ada.Text_IO is -- no SPARK mode set
+   package IO is -- no SPARK mode set
       ...
-      type File_Access is
-          access constant File_Type; -- not SPARK
-      function Standard_Input
+      type File_Access is ...;       -- not SPARK
+      function Input
           return File_Access;        -- not SPARK
-      function Standard_Output
+      function Output
           return File_Access;        -- not SPARK
       ...
       ...
       procedure Put_Line (Item : String); -- SPARK-compliant
       ...
       ...
-   end Ada.Text_IO;
- 
+   end IO;
+
 ------------------------------------------
 Example Usage of Auto `SPARK_Mode`
 ------------------------------------------
 
 .. code:: Ada
 
-   with Ada.Text_IO;  use Ada.Text_IO;
+   with IO; use IO;
    package body QQ is
      pragma SPARK_Mode (On);
      procedure R (X : in out Integer) is
-       F : constant File_Access := Standard_Output;
+       F : constant File_Access := Output;
      begin
        Set_Output (F.all);
        ...
        Put_Line (Integer'Image (X));
      end R;
    end QQ;
- 
+
 .. code:: console
 
    File_Access is not allowed in SPARK violation of
       pragma SPARK_Mode at line 4
-   explicit dereference is not allowed in SPARK violation
-      of pragma SPARK_Mode at line 4
-   warning: no Global contract available for Put_Line
-   warning: assuming Put_Line has no effect on global items
 
 .. container:: speakernote
 
@@ -888,7 +885,7 @@ When `SPARK_Mode` Is Globally `Off`
       pragma SPARK_Mode (On);
       ...
    end Z;
- 
+
 * You cannot turn it on in a later part without also turning it on in the earlier part
 
    .. code:: console
@@ -916,7 +913,7 @@ When `SPARK_Mode` Is Globally `Off` (2)
    private
       pragma SPARK_Mode (On);
    end Z;
- 
+
 ================
 Language Tools
 ================
@@ -927,7 +924,7 @@ SPARK Key Tools
 
 * GNAT compiler
 
-   - checks conformance of source with Ada 2012 and SPARK 2014 
+   - checks conformance of source with Ada and SPARK
 
    - compiles source into executable
 
@@ -958,7 +955,7 @@ SPARK Key Tools
    - Reporting and Warnings modes
    - Prover controls
 
-* See the User Guide appendix *"Command Line Invocation"* for the full list
+* See the User's Guide appendix *"Command Line Invocation"* for the full list
 
 --------------------------------------
 :toolname:`GNATprove` Under the Hood
@@ -1003,10 +1000,8 @@ Analysis Summary File "gnatprove.out"
 
       .. code:: console
 
-         explicit dereference is not allowed in SPARK violation
-           of pragma SPARK_Mode at line 4
          global "Z" is missing from input dependence list
- 
+
 * Information Messages
 
    - Notify users of limitations of :toolname:`GNATprove` on some constructs
@@ -1016,7 +1011,7 @@ Analysis Summary File "gnatprove.out"
       .. code:: console
 
          info: overflow check proved
- 
+
 ------------------------------------------------
 :toolname:`GNATprove` Message Categories (2/2)
 ------------------------------------------------
@@ -1029,9 +1024,8 @@ Analysis Summary File "gnatprove.out"
 
       .. code:: console
 
-         warning: no Global contract available for "Put_Line"
-         warning: assuming "Put_Line" has no effect on global items
- 
+         warning: statement has no effect
+
 * Check Messages
 
    - Indicate potential problems affecting correctness
@@ -1043,8 +1037,8 @@ Analysis Summary File "gnatprove.out"
       .. code:: console
 
          medium: postcondition might fail,
-           cannot prove X < Integer'last (e.g. when X = 2147483647)
- 
+           cannot prove X < Integer'Last
+
 --------------------------------------
 :toolname:`GNATprove` Analysis Modes
 --------------------------------------
@@ -1073,15 +1067,15 @@ General :toolname:`GNATprove` Usage Workflow
 * Invoke :toolname:`GNATprove` on your sources, using **mode** switch to select analysis
 * Modes determine the proofs :toolname:`GNATprove` attempts
 * Thus modes determine what is accepted/rejected
-* Rejection is indicated by error messages
+* Rejection is indicated by check messages
 
    - Messages starting with **low** or **medium** or **high**
 
-* By default, absence of error messages |rightarrow| success
+* By default, absence of check messages |rightarrow| success
 
    - Analysis is sound: guaranteed no mode-specific error in code analyzed
 
-* If rejected, change the code: fix or justify (if can)
+* If rejected, change the code: fix or justify (if possible)
 
 ---------------------------------
 What Is Verified In "flow" Mode
@@ -1098,7 +1092,7 @@ What Is Verified In "flow" Mode
 What Is Verified In "prove" Mode
 ----------------------------------
 
-* SPARK subset conformance 
+* SPARK subset conformance
 
 * Success proves absence of run-time errors
 
@@ -1111,7 +1105,7 @@ What Is Verified In "prove" Mode
 
    - Unit functionality, as expressed in postconditions
 
-   - Any arbitrary abstract properties you specified 
+   - Any arbitrary abstract properties you specified
 
 * If you get error messages, change the code...
 
@@ -1142,10 +1136,9 @@ Which Mode To Use?
 
    - E.g., invalid data initialization may invalidate proof
 
-* Thus make sure you pass flow analysis (using "flow" mode) before moving on to "proof" mode 
+* Thus make sure you pass flow analysis (using "flow" mode) before moving on to "proof" mode
 
 * Consider that mode "all" does all the necessary analyses and does them in the necessary order
-* But doing all analyses every time is inefficient if you know lower mode analysis will pass... thus the options
 
 ------------------------------------------
 :toolname:`GNATprove` Project File Usage
@@ -1162,15 +1155,15 @@ Which Mode To Use?
      for Languages use ("Ada");
      ...
      package Compiler is
-       for Default_Switches ("Ada") use ("-gnatwa", 
+       for Default_Switches ("Ada") use ("-gnatwa",
         "-gnata", ... ); -- Enable contracts and assertions
      end Compiler;
      package Prove is
-       for Proof_Switches use ("--level=3");
+       for Proof_Switches ("Ada") use ("--level=3");
      end Prove;
      ...
    end SPARK_Dev;
- 
+
 -----------------------------------------
 To Specify Default `SPARK_Mode` Value
 -----------------------------------------
@@ -1188,7 +1181,7 @@ To Specify Default `SPARK_Mode` Value
          end Builder;
          ...
       end P;
- 
+
 * config.adc
 
    .. code:: Ada
@@ -1196,7 +1189,7 @@ To Specify Default `SPARK_Mode` Value
       pragma SPARK_Mode (On);
       pragma ...
       ...
- 
+
 -------------------------------------
 Two Available IDEs Supporting SPARK
 -------------------------------------
@@ -1210,9 +1203,9 @@ Two Available IDEs Supporting SPARK
 
    - If you are already using Eclipse
 
----------------------------------
+---------------------------------------------
 Basic :toolname:`GNAT Studio` Look and Feel
----------------------------------
+---------------------------------------------
 
 .. image:: ../../images/gnatstudio-look_and_feel.png
 
@@ -1268,7 +1261,7 @@ Preference for Selecting Profile
 .. container:: columns
 
  .. container:: column
-  
+
     * Controlled by SPARK preference "User profile"
 
        - Basic
@@ -1278,10 +1271,10 @@ Preference for Selecting Profile
 
        - Fast versus precise proof
        - Prover timeout (seconds)
-       - Et cetera
+       - Etc.
 
  .. container:: column
-  
+
     .. image:: ../../images/gnatstudio-preferences-spark.jpeg
 
 -------------------------------
@@ -1304,14 +1297,9 @@ Summary
 FAQs
 --------
 
-* Why can't I find the "SPARK" Menu?
+* Why can't I find the "SPARK" menu?
 
    - Check that :toolname:`GNATprove` is on your PATH
-
-* What if I have both the SPARK 2005 and SPARK 2014 toolsets installed?
-
-   - Two menus will appear - "SPARK" and "SPARK 2014"
-   - Use the "SPARK 2014" one in this course
 
 -------------------------
 SPARK Language Benefits
@@ -1339,7 +1327,7 @@ SPARK Language and Key Tools Summary
    - Others because analysis is feasible but not yet mature
    - Some are always suspect (e.g., side-effects)
 
-* Language subset is very large, most of Ada 2012
+* Language subset is very large, most of Ada
 
    - The subset is expanding over time
 
