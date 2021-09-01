@@ -14,7 +14,7 @@ Introduction
 * The design of a SPARK program can have a major impact on the size, clarity, and stability of the SPARK contracts, and hence the cost of their maintenance
 * Keys factors of good SPARK programs are:
 
-   - Identification and classification of state 
+   - Identification and classification of state
 
    - Abstraction and localization of state
 
@@ -41,7 +41,7 @@ Choice Of Architecture
 Importance Of Architecture
 ----------------------------
 
-* Of particular importance are 
+* Of particular importance are
 
    - Aggregation of state
    - Location of state components
@@ -65,7 +65,7 @@ Designing For Concise Contracts
    - Localization of state and state abstraction
    - Localization of state and package hierarchy
 
-   - Appropriate use of abstraction and refinement 
+   - Appropriate use of abstraction and refinement
 
 * Good SPARK design leads to contracts which are concise, maintainable and easier to prove
 
@@ -150,7 +150,7 @@ Program Hierarchy
 
 * In Ada and SPARK there is a hierarchy of packages in a program
 
-* Where modification of one package requires access to the state of another package 
+* Where modification of one package requires access to the state of another package
 
    - A hierarchy should be chosen to facilitate such access without the need to maintain local copies of other packages' state
    - Maintaining local copies of another package's state is error prone and may lead to complex contracts
@@ -172,7 +172,7 @@ Abstraction And Refinement
 
    - Allowing subprograms operating on the data type to maintain an invariance on objects of the type and preventing users from directly meddling with its components
 
-   - Aids maintainability; the details (refinement) of the type can be changed without directly affecting all users of the type 
+   - Aids maintainability; the details (refinement) of the type can be changed without directly affecting all users of the type
 
 ----------------------------------
 State Abstraction And Refinement
@@ -267,7 +267,7 @@ Effective State Abstraction: Initialization
 
    - During package elaboration by initialization at the point of declaration (including default initialization) or in the sequence of statements of a package body
 
-   - During execution by an explicit call to an "initialize" procedure declared by the package 
+   - During execution by an explicit call to an "initialize" procedure declared by the package
 
 ------------------------------------
 Effective Use Of State Abstraction
@@ -282,7 +282,7 @@ Effective Use Of State Abstraction
       + Do not mix differing integrity levels (also avoid this in private types)
       + Do not mix objects initialized at elaboration time with those initialized by an explicit procedure call
 
-   - The aggregation of different classes of data into a single state abstraction may cause misleading coupling between items, hence add complexity and reduce clarity of contracts 
+   - The aggregation of different classes of data into a single state abstraction may cause misleading coupling between items, hence add complexity and reduce clarity of contracts
 
 * The effective use of abstraction and refinement is therefore not the same as the maximum use
 
@@ -298,7 +298,7 @@ Example: External State Abstraction
 
    package Bad_Classes with
      SPARK_Mode,
-     Abstract_State => (State with External => 
+     Abstract_State => (State with External =>
                        (Async_Readers, Async_Writers)),
      Initializes => State
    is
@@ -307,7 +307,7 @@ Example: External State Abstraction
       procedure Read_Temperature (T : out Integer) with
         Global => State;
    end Bad_Classes;
- 
+
 -------------------------------------
 Example: External State Abstraction
 -------------------------------------
@@ -320,7 +320,7 @@ Example: External State Abstraction
 
          pragma SPARK_Mode (On);
          with Bad_Classes;
-         procedure Process 
+         procedure Process
            (Pressure : in Integer; Temperature : out Integer) with
            Global => (In_Out => Bad_Classes.State),
            Depends => (Temperature => Bad_Classes.State,
@@ -330,19 +330,19 @@ Example: External State Abstraction
             Bad_Classes.Write_Pressure (Pressure);
             Bad_Classes.Read_Temperature (Temperature);
          end Process;
- 
+
 * We get the following warning with or without a `Depends` contract
 
    .. code:: console
 
       warning: unused initial value of "Bad_Classes.State"
- 
+
 * With a `Depends` contract we also get
 
    .. code:: console
 
       warning: missing dependency "Temperature => Pressure"
- 
+
 -------------------------------------
 Example: External State Abstraction
 -------------------------------------
@@ -355,8 +355,8 @@ Example: External State Abstraction
 
          package Good_Classes with
            SPARK_Mode,
-           Abstract_State => 
-             ((Pressure with External => Async_Readers), 
+           Abstract_State =>
+             ((Pressure with External => Async_Readers),
               (Temperature with External => Async_Writers)),
            Initializes => Temperature
          is
@@ -365,7 +365,7 @@ Example: External State Abstraction
             procedure Read_Temperature (T : out Integer) with
               Global => Temperature;
          end Good_Classes;
- 
+
    - Using this package in `Process` there are no warnings
 
 -------------------------------------------
@@ -413,7 +413,7 @@ Moving State Outside SPARK Boundary
       X : Long_Integer;
    begin
       X := Long_Integer (A) + Long_Integer (B);
-      -- Call inside boundary but acts as null 
+      -- Call inside boundary but acts as null
       Test_Points.Copy (X);
       if X in 0 .. Long_Integer (Natural'Last) then
          C := Natural (X);
@@ -421,14 +421,14 @@ Moving State Outside SPARK Boundary
          C := Natural'Last;
       end if;
    end Calc;
- 
+
 -------------------------------------
 Moving State Outside SPARK Boundary
 -------------------------------------
 
 * We declare a `Test_Points` package which is in SPARK
 
-   - It declares an external state abstraction `The_Point` with the property `Async_Readers`; it is a volatile output 
+   - It declares an external state abstraction `The_Point` with the property `Async_Readers`; it is a volatile output
 
    - The `The_Point` will never be read so it requires no initialization
    - Copy has a null `Global` contract stating that it has no globals and a null `Depends` contract stating it has no effect on any state known to the SPARK code
@@ -444,14 +444,14 @@ Moving State Outside SPARK Boundary
         Global => null,
         Depends => (null => Val);
    end Test_Points;
- 
+
 -------------------------------------
 Moving State Outside SPARK Boundary
 -------------------------------------
 
 * `Test_Points` body is also in SPARK
 
-   - It has a `Refined_State` contract and declares the volatile variable `Test_Point` at the address of the test point port 
+   - It has a `Refined_State` contract and declares the volatile variable `Test_Point` at the address of the test point port
 
 .. code:: Ada
 
@@ -465,7 +465,7 @@ Moving State Outside SPARK Boundary
         Async_Readers,
         Address => System.Storage_Elements.To_Address
                    (16#FFFF_FFF0#);
- 
+
 -------------------------------------
 Moving State Outside SPARK Boundary
 -------------------------------------
@@ -490,7 +490,7 @@ Moving State Outside SPARK Boundary
          To_Test_Point (Val);
       end Copy;
    end Test_Points;
- 
+
 -------------------------------------
 Moving State Outside SPARK Boundary
 -------------------------------------
@@ -508,7 +508,7 @@ Moving State Outside SPARK Boundary
        null;
     end Copy;
    end Test_Points;
- 
+
 -----------------
 Read-Only State
 -----------------
@@ -527,10 +527,10 @@ Read-Only State
       Data_1 : constant T;
    private
       pragma Import (Assembler, Data_1);
-      for Data_1'Address use 
+      for Data_1'Address use
         System.Storage_Elements.To_Address (16#FFFF_0000#);
    end Read_Only_State;
- 
+
 ===================
 Summary
 ===================

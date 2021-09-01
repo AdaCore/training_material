@@ -28,7 +28,7 @@ Verification Condition Generation
 Hoare Triples
 ---------------
 
-* Hoare triples used to reason about program correctness 
+* Hoare triples used to reason about program correctness
 
    - With pre- and postconditions
 
@@ -56,7 +56,7 @@ Example Hoare Triples
    {x > 0} x := x * 2 {x > -2}
    {x = a} if (x < 0) then x := -x {x = |a|}
    {false} x := 3 {x = 8}
- 
+
 -------------------------------------------
 Example Triplets - Stronger Postcondition
 -------------------------------------------
@@ -66,11 +66,11 @@ Example Triplets - Stronger Postcondition
    .. code:: Ada
 
        {X = 5} X := X * 2 {X > 0}
- 
+
 * Is this triplet valid?
 * How can we make a stronger postcondition?
 
-   - What about 5 `<` X and X `<` 20 ? 
+   - What about 5 `<` X and X `<` 20 ?
 
 * What is the strongest possible postcondition for this precondition and program statement?
 
@@ -82,7 +82,7 @@ Example Triplets - Stronger Postcondition
 Strongest Postcondition
 -------------------------
 
-* Strongest postcondition (generally): 
+* Strongest postcondition (generally):
 
    - if ``{P}S{Qstrong}`` and for all ``Q`` such that ``{P}S{Q}``, ``Qstrong => Q``, then ``Qstrong`` is the strongest postcondition of ``S`` with respect to ``P``
 
@@ -92,7 +92,7 @@ Weakest Precondition
 
 * Conversely: what is the weakest precondition?
 
-* Generally: 
+* Generally:
 
    - If for all P such that ``{P}S{Q}``, ``P => WP``, then ``WP`` is the weakest precondition of ``S`` with respect to ``Q``
 
@@ -109,13 +109,13 @@ Example Triplets - Weakest Precondition
    .. code:: Ada
 
        {WP} X := X * 2; {X = 10}
- 
+
 * Modified example:
 
    .. code:: Ada
 
        {WP} X := X * 2; {5 < X and X < 20}
- 
+
    - Some valid preconditions?
    - What is the weakest precondition?
 
@@ -180,7 +180,7 @@ Combining Proof and Test
 =========================
 
 ---------------------------
-Combining Proof and Test 
+Combining Proof and Test
 ---------------------------
 
 * Same contract for test and proof
@@ -209,18 +209,18 @@ Proof and Test - Hybrid Verification
 .. image:: ../../images/call_cycle-prove_pre_test_post.png
 
 ------------------------------------------
-Combining Proof and Test - Cost Benefit 
+Combining Proof and Test - Cost Benefit
 ------------------------------------------
 
 .. container:: columns
 
  .. container:: column
-  
+
     * 80/20 rule holds for both test and proof activities
     * Same area of code is usually not simultaneously difficult to prove and difficult to test
 
  .. container:: column
-  
+
     .. image:: ../../images/80-20_provable_or_testable.png
 
 --------------------------

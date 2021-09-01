@@ -33,7 +33,7 @@ SPARK Mode
    .. code:: Ada
 
       package Device with SPARK_Mode is
- 
+
    + This is an abbreviation for `SPARK_Mode => On`
 
       - We have also seen the converse
@@ -41,14 +41,14 @@ SPARK Mode
       .. code:: Ada
 
          procedure Print_Board with SPARK_Mode => Off Is
- 
+
    + There is an equivalent pragma as an aspect cannot always be used
 
       .. code:: Ada
 
          pragma SPARK_Mode (On); -- equivalent to SPARK_Mode => On
          pragma SPARK_Mode (Off); -- equivalent to SPARK_Mode => Off
- 
+
 --------------------------
 `SPARK_Mode` Not Present
 --------------------------
@@ -64,7 +64,7 @@ SPARK Mode
            type T is range 0.. 100;
            type Access_T is access T; -- Not allowed in SPARK
          end No_SPARK_Mode;
- 
+
    - This unit's declarations can be denoted in SPARK code provided they are SPARK compatible, but use declarations of subprograms with caution - they may have globals which are not apparent
 
       .. code:: Ada
@@ -75,7 +75,7 @@ SPARK Mode
          begin
            My_Var := 0;
          end Use_No_SPARK_Mode;
- 
+
 --------------------------------
 `SPARK_Mode` Off for Unit Spec
 --------------------------------
@@ -90,7 +90,7 @@ SPARK Mode
          type T is range 0.. 100;
          type Access_T is access T;
          end SPARK_Mode_Off;
- 
+
    - If we try to use this unit we get errors
 
       .. code:: Ada
