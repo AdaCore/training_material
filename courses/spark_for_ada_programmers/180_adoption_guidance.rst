@@ -166,14 +166,14 @@ Stone Level Code Changes
 
    - E.g., change functions with side-effects into procedures
 
-* Hide use of pointers
+* Hide unsupported use of pointers (e.g. doubly linked list)
 
    - Within package bodies
    - Dereferences changed to function calls
    - Probably the most extensive effort
-   - Where pointers remain, turn off `SPARK_Mode`
+   - Where unsupported pointers remain, turn off `SPARK_Mode`
 
-* Et cetera
+* Etc.
 * See the Adoption Guide for how to make changes
 
    - Extensive examples provided!
