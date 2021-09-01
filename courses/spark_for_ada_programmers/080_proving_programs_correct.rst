@@ -23,6 +23,7 @@ Verification Condition Generation
 * How are verification conditions generated?
 
    - Weakest precondition calculus
+   - Strongest postcondition calculus
 
 ---------------
 Hoare Triples
@@ -170,7 +171,7 @@ Comparison Test and Proof
 * Both techniques can be expensive
 * Industry standards
 
-   - DO-178B, DO-178C, DO-333
+   - DO-178C, DO-333
 
 * Another problem - program not all SPARK, not even all Ada - some COTS, Libraries, C, ???  What can you do?
 * How to combine?
@@ -227,13 +228,13 @@ Combining Proof and Test - Cost Benefit
 Combining Proof and Test
 --------------------------
 
-* In Ada 2012 the proof contracts are executable - they can be checked at run time and an error is raised when a check fails
+* In Ada the proof contracts are executable - they can be checked at run time and an error is raised when a check fails
 * Compilation options to support integration of test and proof
 
    - Assertion checks enabled via :command:`-gnata` compiler switch
    - Aliasing can be checked at run time with the :command:`-gnateA` switch.
    - Initialization and Validity of Data can be checked at run time with the :command:`-gnateV` and :command:`-gnatVa` switches.
-   - See the *SPARK 2014 Toolset User's Guide* for more details.
+   - See the *SPARK Toolset User's Guide* for more details.
 
 -----------------------------------------
 :toolname:`GNATprove` Tool Architecture

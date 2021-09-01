@@ -284,10 +284,10 @@ Interfacing to C - Build Foundation
 
       .. code:: Ada
 
-         function Is_SHA_1 (Data : Buffer_Type;
+         function Is_SHA_1 (Data   : Buffer_Type;
                             Result : Result_Type)
                             return Boolean
-            with Convention => Ghost;
+            with Ghost;
 
 ----------------------------------
 Interfacing to C - Build Wrapper
@@ -299,9 +299,9 @@ Interfacing to C - Build Wrapper
 
       .. code:: Ada
 
-         procedure SHA_1 (Data : in Buffer_Type;
+         procedure SHA_1 (Data   : in Buffer_Type;
                           Result : out Result_Type;
-                          Error : out Error_Code)
+                          Error  : out Error_Code)
             with Global => null,
                  Post => (if Error = 0 then Is_SHA_1(Data,Result));
 
@@ -332,13 +332,13 @@ Interfacing to C - Result
 
    -- Internal_SHA_1 has a side-effect - an out parameter -
    -- which corresponds to the C function sha_1
-   procedure SHA_1 (Data : in Buffer_Type;
+   procedure SHA_1 (Data   : in Buffer_Type;
                     Result : out Result_Type;
-                    Error : out Error_Code)
+                    Error  : out Error_Code)
       -- The body of procedure SHA_1 is not in SPARK
       with SPARK_Mode => Off is
-      function Internal_SHA_1 ( Data : in Buffer_Type;
-                                Result : out Result_Type)
+      function Internal_SHA_1 (Data   : in Buffer_Type;
+                               Result : out Result_Type)
             -- Result type of Int rather than Error_Code to
             -- avoid possibility of invalid values
             return Int

@@ -260,12 +260,11 @@ Semantics of Contracts - Overflows
 
       procedure P (X, Y : in Positive; Z : out Positive)
          with Post => (if X + Y <= Positive'Last
-                          then Z = X + Y)
-                      and
-                      (if X + Y > Positive'Last
+                          then Z = X + Y
+                       else
                           then Z = Positive'Last);
 
-   - ``warning: overflow check might fail``
+   - ``medium: overflow check might fail``
 
 * Is this a false alarm in your context?
 
@@ -301,6 +300,26 @@ Overflow Checking Modes
    - 1 = strict Ada semantics for overflow checking
    - 2 = minimized overflow checking
    - 3 = eliminated - no possibility of overflow (mathematical semantics)
+
+------------------------------
+Big Integer Standard Library
+------------------------------
+
+* Overflow checking modes only applicable to expressions
+* Alternative is to use ``Ada.Numerics.Big_Numbers.Big_Integers``
+
+   - Conversions from/to signed and modular integers
+   - Specially recognized by :toolname:`GNATprove`
+
+   .. code:: Ada
+
+      function Big (Arg : Integer) return Big_Integer is
+        (To_Big_Integer (Arg)) with Ghost;
+      procedure P (X, Y : in Positive; Z : out Positive)
+         with Post => (if Big (X) + Big (Y) <= Big (Positive'Last)
+                          then Z = X + Y
+                       else
+                          then Z = Positive'Last);
 
 ========
 Lab

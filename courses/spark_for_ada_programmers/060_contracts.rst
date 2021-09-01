@@ -19,7 +19,7 @@ Low-Level Assertions
       package Ada.Assertions is
          Assertion_Error : exception;
          procedure Assert (Check : in Boolean);
-         procedure Assert (Check : in Boolean;
+         procedure Assert (Check   : in Boolean;
                            Message : in String);
       end Ada.Assertions;
 
@@ -27,11 +27,11 @@ Low-Level Assertions
 
    .. code:: Ada
 
-      procedure Push (This : in out Stack;  Value : Content) is
+      procedure Push (This : in out Stack; Value : Content) is
       begin
          -- Same semantics but also can be enabled/disabled
          pragma Assert (not Full (This));
-         ... code that only works if the stack is not full ...
+         -- Code that only works if the stack is not full ...
       end Push;
 
 * Both raise `Assertion_Error` if expression is False
@@ -46,11 +46,11 @@ Low-Level Assertions
 High-Level Assertion Examples
 -------------------------------
 
-* Pre- and postconditions specify obligations on subprogram caller and implementer
+* Preconditions and postconditions specify obligations on subprogram caller and implementer
 
    .. code:: Ada
 
-      procedure Push (This : in out Stack;  Value : Content) with
+      procedure Push (This : in out Stack; Value : Content) with
          Pre  => not Full (This),
          Post => not Empty (This) and Top (This) = Value;
       ...
@@ -61,14 +61,14 @@ High-Level Assertion Examples
 
    .. code:: Ada
 
-      type Bank_Account is private
+      type Bank_Account is record ... end record
         with Type_Invariant => Consistent_Balance(Bank_Account);
       function Consistent_Balance (This : Bank_Account)
                                    return Boolean;
 
----------------------------------------
-Mixing Low- and High-Level Assertions
----------------------------------------
+--------------------------------------------
+Mixing Low-Level and High-Level Assertions
+--------------------------------------------
 
 * Useful when trying to prove a difficult high-level form, i.e., subprogram contracts
 
@@ -107,13 +107,13 @@ What is a Contract?
 Why Use Contracts?
 --------------------
 
-* Core idea of contract-based programming:
+* Core idea of contract-based programming
 * Contract between a subprogram and its caller
 
    - The caller must meet the preconditions specified by the subprogram.
    - In turn, the subprogram must respect the postconditions it has specified.
 
-* New Ada 2012 features support the contract-based programming pattern.
+* Ada 2012 features support the contract-based programming pattern.
 
 .. container:: speakernote
 
@@ -142,7 +142,7 @@ Contract Participants
 Contracts as Aspects
 ----------------------
 
-* Contracts are written in new aspect notation in Ada 2012:
+* Contracts are written in the aspect notation of Ada 2012:
 
    .. code:: Ada
 
@@ -281,7 +281,7 @@ Postconditions
    - Any visible name in the visible scope of the subprogram (even if defined afterwards)
    - Any parameter of the subprogram
    - Values of any of the above before the call to the subprogram
-   - Result of a subprogram
+   - Result of a function
 
 * Part of the specification
 
@@ -435,11 +435,12 @@ Contract Cases
 
    .. code:: Ada
 
-      procedure Bounded_Add (X, Y : in Integer; Z : out Integer)
+      procedure Bounded_Add (X, Y : in Integer;
+                             Z    : out Integer)
         with Contract_Cases =>
-                  (X + Y in Integer      => Z = X + Y,
-                   X + Y < Integer'First => Z = Integer'First,
-                   X + Y > Integer'Last  => Z = Integer'Last);
+           (X + Y in Integer      => Z = X + Y,
+            X + Y < Integer'First => Z = Integer'First,
+            X + Y > Integer'Last  => Z = Integer'Last);
 
 * Each case has a condition and a consequence
 * Conditions are checked for:
@@ -484,13 +485,13 @@ What Is a Global Variable?
        is
        begin
           Value := Global;
-       end Read_ Global;
+       end Read_Global;
        procedure Global_Above_Zero
           (Value : out Boolean)
        is
        begin
           Value := (X > 0);
-       end Global _Above_Zero;
+       end Global_Above_Zero;
 
 -----------------
 Global Contract
@@ -502,7 +503,7 @@ Global Contract
 
     * Announces use of global variables
     * Optional mode can be `Input` (default), `Output`, `In_Out` or `Proof_In`
-    * `Proof_In` specifies globals that are only referenced within proof expressions within the subprogram
+    * `Proof_In` specifies globals that are only referenced within assertions in the subprogram
 
  .. container:: column
 
@@ -541,8 +542,8 @@ Functions Without Side-Effects
 --------------------------------
 
 * Recall: An expression is side-effect free if its evaluation does not update any object
-* Objects updated by subprogram call are any parameters of mode `out` (or `in out`) and any globals of mode `out` (or `in out`)
-* So function is side-effect free if all parameters and globals (if any) are of mode `in` only
+* Objects updated by subprogram call are any parameters of mode `out` (or `in out`) and any globals of mode `Output` (or `In_Out`)
+* So function is side-effect free if all parameters and globals (if any) are of mode `in` / `Input` / `Proof_In` only
 
 .. code:: Ada
 
@@ -599,7 +600,7 @@ Aliasing Revisited - Input of Global
       Y, Z : Some_Type;
       ...
       Update_Y (Z); -- OK
-      Update_Y (Y); -- Illegal
+      Update_Y (Y); -- Illegal unless Some_Type is pass-by-copy
 
 .. container:: speakernote
 
@@ -729,9 +730,9 @@ New Expressions in Ada 2012
 
           procedure Set_Array
              (A: out Array_Type)
-             with Post =>
-             (for all M in A'Range =
-                 A(M) = M);
+          with Post =>
+             (for all M in A'Range =>
+                A(M) = M);
 
 ----------------------
 Expression Functions
@@ -762,8 +763,10 @@ More on Expression Functions
    .. code:: Ada
 
       function Add_One (X : in Integer)
-            return Integer is (X + 1)
-         with Pre => (X < Integer'Last);
+        return Integer
+      is (X + 1)
+      with
+        Pre => X < Integer'Last;
 
 * Aspect comes after the parenthesized expression
 
@@ -771,7 +774,7 @@ More on Expression Functions
 'Old
 ------
 
-* Denotes the value of a parameter or a name (variable, function) before the call to the subprogram
+* Denotes the value of a parameter or a name (variable, function call) before the call to the subprogram
 * Is only available in the expression of a postcondition
 * Forbidden for limited types
 * At implementation level performs a copy of the value, to be used for the check afterwards
@@ -809,28 +812,28 @@ More on Expression Functions
 
    Also, conditional evaluation is not allowed.
 
-----------
- 'Update
-----------
+--------------------
+Delta Aggregates
+--------------------
 
 * Convenient for expressing in contracts how composite objects have been updated
 
    .. code:: Ada
 
       procedure P (R : in out Rec)
-        with Post => R = R'Old'Update (X => 1, Z => 5);
-      Some_Array'Update (1 .. 10 => True, 5 => False)
-      Some_Array'Update (Param_1'Range => True,
-                         Param_2'Range => False)
+        with Post => R = (R'Old with delta X => 1, Z => 5);
+      (Some_Array with delta 1 .. 10 => True, 5 => False)
+      (Some_Array with delta Param_1'Range => True,
+                             Param_2'Range => False)
 
-* Keeps things simple - for `'Update` of arrays:
+* Keeps things simple - for delta aggregates of arrays:
 
    - In contracts: avoids writing quantifiers
    - In code: avoids writing loops
 
 * Can have overlapping and dynamic choice ranges
 
-   - Looks similar to aggregates, but isn't
+   - Looks similar to plain aggregates, but isn't
 
 ---------
 'Result

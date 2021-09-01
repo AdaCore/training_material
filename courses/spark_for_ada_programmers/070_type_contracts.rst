@@ -49,8 +49,8 @@ What is a Predicate?
 
 * **Dynamic Predicates**
 
-   - Never static
-   - More powerful but not always expected to hold (in Ada)
+   - Not required to be static expressions
+   - Also expected to hold all the time (but not fully enforced by the compiler)
 
 .. container:: speakernote
 
@@ -62,17 +62,17 @@ Really, `type` and `subtype` Predicates
 
 * Applicable to both
 * Applied via aspect clauses in both cases
-* `aspect_mark` can be either `dynamic_predicate` or `static_predicate`
+* `aspect_mark` can be either `Dynamic_Predicate` or `Static_Predicate`
 
 .. code:: Ada
 
    type name is type_definition
       with aspect_mark [ => expression]
-           {, aspect_mark [ => expression] }
+        {, aspect_mark [ => expression] }
 
    subtype defining_identifier is subtype_indication
       with aspect_mark [ => expression]
-           {, aspect_mark [ => expression] }
+        {, aspect_mark [ => expression] }
 
 -------------------------------------
 Otherwise Inexpressible Constraints
@@ -81,21 +81,21 @@ Otherwise Inexpressible Constraints
 .. code:: Ada
 
    subtype Even is Integer
-      with Dynamic_Predicate =>  Even mod 2 = 0;
+      with Dynamic_Predicate => Even mod 2 = 0;
 
    type Serial_Baud_Rate is range 110 .. 115200
       with Static_Predicate =>
-         Serial_Baud_Rate  in
+         Serial_Baud_Rate in
             110 | 300 | 600 | 1200 | 2400 | 4800 | 9600 |
             14400 | 19200 | 28800 | 38400 | 56000 |
-            57600| 115200;
+            57600 | 115200;
 
 .. container:: speakernote
 
    Discontinuous ranges cannot be expressed with range constraints.
 
 -------------------------
-New Kinds of Constraint
+New Kinds of Constraints
 -------------------------
 
 .. code:: Ada
@@ -106,8 +106,8 @@ New Kinds of Constraint
             Prime mod Divisor /= 0);
 
    type Bundle is record
-      X, Y    : Integer;
-      CRC   : Unsigned_32;
+      X, Y : Integer;
+      CRC  : Unsigned_32;
    end record with
       Dynamic_Predicate => CRC = Math.CRC32 (X, Y);
 
@@ -126,6 +126,8 @@ New Kinds of Constraint
 Discriminant In A Range Constraint
 ------------------------------------
 
+* The following is illegal:
+
 .. code:: Ada
 
    type Bounded_String (Capacity : Positive) is
@@ -134,10 +136,14 @@ Discriminant In A Range Constraint
          Length : Natural range 0 .. Capacity := 0
       end record;
 
+* Here is a legal alternative:
+
+.. code:: Ada
+
    type Bounded_String (Capacity : Positive) is
       record
-         Value   : String (1 .. Capacity);
-         Length   : Natural := 0;
+         Value  : String (1 .. Capacity);
+         Length : Natural := 0;
       end record
          with Dynamic_Predicate => Length in 0 .. Capacity;
 
@@ -180,7 +186,7 @@ Predicate Run-Time Checking (If Enabled)
    type Prime is new Positive with
       Dynamic_Predicate =>
          (for all Divisor in 2 .. Prime / 2 =>
-         Prime mod Divisor /= 0);
+             Prime mod Divisor /= 0);
 
    P : constant Prime := 6; -- assertion error
 
@@ -200,7 +206,7 @@ The "Static" In Static Predicates
          Serial_Baud_Rate  in
             110 | 300 | 600 | 1200 | 2400 | 4800 | 9600 |
             14400 | 19200 | 28800 | 38400 | 56000 |
-            57600| 115200;
+            57600 | 115200;
    Rate : Serial_Baud_Rate :=
           Ada.Calendar.Day (Clock) * 100;
 
@@ -222,7 +228,7 @@ Allowed Static Predicate Content (1)
 
    type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
    subtype Weekend is Days
-      with Static_Predicate =>  Weekend in Sat | Sun;
+      with Static_Predicate => Weekend in Sat | Sun;
       -- Given this order, no other way to express
       -- this constraint
 
@@ -262,7 +268,7 @@ Allowed Static Predicate Content (3)
 * A call to `=`, `/=`, `<`, `<=`, `>`, or `>=` where one operand is the current instance (and the other is static)
 * Calls to operators `and`, `or`, `xor`, `not`
 
-   - Only for pre-defined type Boolean
+   - Only for predefined type Boolean
    - Only with operands of the above
 
 * Short-circuit controls with operands of the above
@@ -359,7 +365,7 @@ In Some Cases Neither Kind Is Allowed
    type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
    subtype Weekend is Days
       with Static_Predicate => Weekend in Sat | Sun;
-   type Play is array (Weekend) of Integer;
+   type Play is array (Weekend) of Integer; -- illegal
    type List is array (Days range <>) of Integer;
    L : List (Weekend); -- illegal
    M : List (Days); -- legal
@@ -388,7 +394,7 @@ Special Attributes for Predicated Types
    - `'First_Valid` returns smallest valid value, taking any range or predicate into account
    - `'Last_Valid` returns largest valid value, taking any range or predicate into account
 
-* Can be used for any static subtype
+* Can be used for any static subtype (no dynamic predicate)
 
 * Especially useful for types with static predicates
 * `'Succ` and `'Pred` are allowed since they always reflect underlying type anyway
@@ -448,8 +454,8 @@ Predicate Checking In Ada versus SPARK
 .. code:: Ada
 
    procedure Demo is
-      type Table is array (1 .. 5)
-          of Integer with Dynamic_Predicate =>
+      type Table is array (1 .. 5) of Integer
+          with Dynamic_Predicate =>
              (for all K in Table'Range =>
                (K = Table'First or else
                 Table(K-1) <= Table(K)));
@@ -592,16 +598,16 @@ Example Type Invariant
 .. code:: Ada
 
    package Bank is
-     type Account is private with
-       Type_Invariant => Consistent_Balance (Account);
+     type Account is private;
      type Currency is delta 0.01 digits 12;
+     ...
+   private
+     type Account is ... with
+       Type_Invariant => Consistent_Balance (Account);
      ...
      -- Called automatically for all Account objects
      function Consistent_Balance (This : Account)
        return Boolean;
-     ...
-   private
-     ...
    end Bank;
 
 -------------------------------------------
@@ -611,11 +617,8 @@ Example Type Invariant Realization (Spec)
 .. code:: Ada
 
    package Bank is
-     type Account is private with
-       Type_Invariant => Consistent_Balance (Account);
+     type Account is private;
      type Currency is delta 0.01 digits 12;
-     ...
-     function Consistent_Balance (This : Account) return Boolean;
      ...
    private
      -- initial state MUST satisfy invariant
@@ -624,7 +627,9 @@ Example Type Invariant Realization (Spec)
        Current_Balance : Currency := 0.0;
        Withdrawals : Transaction_List;
        Deposits : Transaction_List;
-     end record;
+     end record with
+       Type_Invariant => Consistent_Balance (Account);
+     function Consistent_Balance (This : Account) return Boolean;
      function Total (This : Transactions_List) return Currency;
    end Bank;
 
@@ -635,7 +640,6 @@ Example Type Invariant Realization (Body)
 .. code:: Ada
 
    package body Bank is
-   ...
      function Total (This : Transactions_List) return Currency is
        Result : Currency := 0.0;
      begin
@@ -644,6 +648,7 @@ Example Type Invariant Realization (Body)
        end loop;
        return Result;
      end Total;
+   ...
      function Consistent_Balance (This : Account) return Boolean is
      begin
        return Total (This.Deposits) - Total (This.Withdrawals) =
@@ -663,8 +668,8 @@ Invariants Don't Apply Internally
 
 .. code:: Ada
 
-   procedure Open (This : in out Account;
-                   Name : in String;
+   procedure Open (This            : in out Account;
+                   Name            : in String;
                    Initial_Deposit : in Currency) is
    begin
      This.Owner := To_Unbounded_String (Name);
@@ -686,40 +691,43 @@ Default Type Initialization for Invariants
 .. code:: Ada
 
    package P is
-     type T is private with Type_Invariant => Zero (T);
+     type T is private;
      procedure Op (This : in out T);
-     function Zero (This : T) return Boolean;
    private
-     type T is new Integer with Default_Value => 0;
-     function Zero (This : T) return Boolean is (This = 0);
+     type T is new Integer
+     with
+       Default_Value  => 0,
+       Type_Invariant => Zero (T);
    end P;
 
 ---------------------------------
 Type Invariant Clause Placement
 ---------------------------------
 
-* Can move aspect clause to private part
+* In SPARK, type invariant must be placed on the type completion
+* In Ada, type invariant can be placed on the initial type declaration
 
    .. code:: Ada
 
       package P is
-        type T is private;
+        type T is private
+          with Type_Invariant => Zero (T),
         procedure Op (This : in out T);
+        function Zero (This : T) return Boolean;
       private
-        type T is new Integer with
-          Type_Invariant => T = 0,
-          Default_Value => 0;
+        type T is new Integer
+          with Default_Value => 0;
+        function Zero (This : T) return Boolean is (This = 0);
       end P;
 
-* It is really an implementation aspect
-
-------------------------------
-Invariants Are Not Foolproof
-------------------------------
+-------------------------------------
+Invariants Are Not Foolproof in Ada
+-------------------------------------
 
 * Access to ADT representation via pointer allows back door manipulation
 * These are private types, so access to internals must be granted by the private type's code
 * Granting internal representation access for an ADT is a highly questionable design!
+* This is not possible in SPARK (invariants *are* foolproof in SPARK)
 
 ========
 Lab
@@ -737,7 +745,7 @@ Type Invariants vs Predicates
 
 * Type Invariants are valid at external boundary
 
-   - Useful for complex types, to the type may not be consistent during an operation
+   - Useful for complex types, as the type may not be consistent during an operation
 
 * Predicates are like other constraint checks
 

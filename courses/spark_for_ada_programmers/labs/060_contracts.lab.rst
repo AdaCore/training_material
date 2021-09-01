@@ -10,7 +10,7 @@ Contracts Lab
 
    + Or, on the command-line, do :command:`gnatstudio -Pdefault.gpr`
 
-- Unfold the source code directory (.) in the project pane 
+- Unfold the source code directory (.) in the project pane
 
 .. container:: speakernote
 
@@ -23,9 +23,9 @@ Longest Common Prefix
 
 * Requirements
 
- - Given a global array A containing integers
- - Given two integers X and Y, indices of A
- - Return the length of the longest common prefix of the two sub-arrays starting at X and Y.
+   + Given a global array A containing integers
+   + Given two integers X and Y, indices of A
+   + Return the length of the longest common prefix of the two sub-arrays starting at X and Y.
 
 * Example
 
@@ -44,7 +44,7 @@ Longest Common Prefix
       - 9
       - 2
 
-* ``|{|X = 2, Y = 6|}| => R = 4``
+* ``{X = 2, Y = 6} => R = 4``
 
 --------------------
 Lab Tasks Overview
