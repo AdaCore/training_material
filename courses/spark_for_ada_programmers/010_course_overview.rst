@@ -14,7 +14,7 @@ Motivating Example
 * Consider these lines of code from the original release of the Tokeneer code
 
    .. code:: Ada
-    
+
       if Success and then
           (RawDuration * 10 <= Integer(DurationT'Last) and
            RawDuration * 10 >= Integer(DurationT'First))
@@ -28,7 +28,7 @@ Motivating Example
 .. container:: speakernote
 
    Overflow can happen before check
-     
+
 ------------------------
 The Verifying Compiler
 ------------------------
@@ -51,7 +51,7 @@ The Verifying Compiler
    It exists. GNATprove. This is what we will talk about.
 
 ------------------------------------------------
-Static Verification and Programming Languages 
+Static Verification and Programming Languages
 ------------------------------------------------
 
 * There is a catch...
@@ -69,7 +69,7 @@ Static Verification Goals
    - Fast (tells you now)
    - Complete (with as few false alarms/positives as possible)
 
-   - Modular and Constructive (works on incomplete programs) 
+   - Modular and Constructive (works on incomplete programs)
 
 * SPARK is designed with these goals in mind. Since the eighties!
 
@@ -110,13 +110,13 @@ Course Contents
 =================
 
 -----------------
-Course Outline 
+Course Outline
 -----------------
 
 .. container:: columns
 
  .. container:: column
-  
+
     * Course Introduction
     * SPARK Rationale And Overview
 
@@ -132,11 +132,11 @@ Course Outline
     * Introduction to Proof
 
        - Proving Programs Correct
-       - Proving Abscence of Run-Time Errors
+       - Proving Absence of Run-Time Errors
        - The Proof Cycle
 
  .. container:: column
-  
+
     * Advanced Verification
 
        - Advanced Proof
@@ -164,8 +164,8 @@ Course Goals
 
 * What will you do after the course?
 
-   - Be comfortable with the fundamentals of SPARK. 
+   - Be comfortable with the fundamentals of SPARK.
 
-   - Know where to find our more.
+   - Know where to find out more.
    - Let SPARK work for you on your next project?
    - ... ?

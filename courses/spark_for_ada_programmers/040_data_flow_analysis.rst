@@ -96,7 +96,7 @@ Use of Uninitialized Variables
       begin
          Inner; -- This is the error!
       end Outer;
- 
+
 .. container:: speakernote
 
    Each example shows a different example of use of an uninitialized variable that can be detected by the tools.
@@ -109,21 +109,22 @@ Ineffective Statements
 .. container:: columns
 
  .. container:: column
-  
+
     .. code:: Ada
-    
-       procedure P (
-             X, Y : in Integer;
-             Z : out Integer) is
+
+       procedure P
+         (X, Y : in Integer;
+          Z    : out Integer)
+       is
           T : Integer;
        begin
           T := X + 1;
           T := T + Y;
           Z := 3;
        end P;
-     
+
  .. container:: column
-  
+
     * Have no effect on any output variable
 
        - Therefore no effect on behavior of code
@@ -144,13 +145,13 @@ Detecting Unused Variables
    Tmp : Integer;
    procedure Swap2 (X, Y : in out Integer) is
      Temp : Integer := X;
-     -- warning: initialization of Temp has no effect
+     -- warning: initialization of "Temp" has no effect
      -- warning: variable "Temp" is not referenced
    begin
      X := Y;
      Y := Tmp;
    end Swap2;
- 
+
 .. container:: speakernote
 
    Probably a spelling error!
@@ -172,9 +173,9 @@ Incorrect Parameter Mode
 
   * - |checkmark|
 
-    - 
+    -
 
-    - 
+    -
 
     - in
 
@@ -186,17 +187,17 @@ Incorrect Parameter Mode
 
     - in out
 
-  * - 
+  * -
 
     - |checkmark|
 
-    - 
+    -
 
     - in out
 
-  * - 
+  * -
 
-    - 
+    -
 
     - |checkmark|
 
@@ -212,7 +213,7 @@ Incorrect Parameter Mode
      Y := X;   -- The initial value of Y is not used
      X := Tmp; -- Y is computed to be out
    end Swap;
- 
+
 .. container:: speakernote
 
    Parameter modes influence the behavior of the compiler and are a key point for documenting the usage of a subprogram.
@@ -232,15 +233,15 @@ Flow Analysis - Why Do We Care?
 
 * A common source of errors
 
-   - See CWE (Common Weakness Enumeration)/SANS list of "Most Dangerous Software Errors" 
+   - See CWE (Common Weakness Enumeration)/SANS list of "Most Dangerous Software Errors"
 
    - http://cwe.mitre.org/top25/
 
 * Ensure there is no dead code
 
-* Improper initialization errors are listed as one of the most dangerous programming errors 
+* Improper initialization errors are listed as one of the most dangerous programming errors
 
-   - The SPARK flow analysis identifies all variables that have not been initialized prior to them being read. 
+   - The SPARK flow analysis identifies all variables that have not been initialized prior to them being read.
 
    - If the SPARK flow analysis finds no uninitialized variables, then there really are none!
 
@@ -278,7 +279,7 @@ Modularity
        X := Y + Z;
      end if;
    end Set_X_To_Y_Plus_Z;
- 
+
 .. container:: speakernote
 
    Flow analysis is a sound analysis, which means that, if it does not output any message on some analyzed SPARK code, then none of the supported errors may occur in this code.
@@ -286,8 +287,8 @@ Modularity
    The first, and maybe most common, reason for this has to do with modularity.
    To improve efficiency on large projects, verifications are in general done on a per subprogram basis.
    It is in particular the case for detection of uninitialized variables.
-   For this detection to be done modularly, flow analysis needs to assume initialization of inputs on subprogram entry and initialization of outputs after subprogram calls. 
-   Therefore, every time a subprogram is called, flow analysis will check that global and parameter inputs are initialized, and every time a subprogram returns, it will check that global and parameter outputs are initialized. 
+   For this detection to be done modularly, flow analysis needs to assume initialization of inputs on subprogram entry and initialization of outputs after subprogram calls.
+   Therefore, every time a subprogram is called, flow analysis will check that global and parameter inputs are initialized, and every time a subprogram returns, it will check that global and parameter outputs are initialized.
    This may lead to messages being issued on perfectly correct subprograms like SetXToYPlusZ which only sets its out parameter X when Overflow is false.
    This simply means that, in that case, flow analysis was not able to verify that no uninitialized variable could be read.
    To solve this problem, X can either be set to a dummy value when there is an overflow or the user can verify by her own means that X is never used after a call to SetXToYPlusZ if Overflow is True.
@@ -313,7 +314,7 @@ Value Dependency
    end Absolute_Value;
 
 * Flow analysis does not know that `R` is initialized
- 
+
 .. code:: Ada
 
    procedure Absolute_Value (X : Integer; R : out Natural) is
@@ -324,9 +325,9 @@ Value Dependency
        R := X;
      end if;
    end Absolute_Value;
-   
+
 * Flow analysis knows that `R` is initialized
- 
+
 .. container:: speakernote
 
    It is also worth noting that flow analysis is not value dependent, in the sense that it never reasons about values of expressions.
@@ -346,7 +347,7 @@ Flow Analysis of Composite Objects
 
 * Records
 
-   - Updating and reading of fields of records is analyzed in terms of those fields 
+   - Updating and reading of fields of records is analyzed in terms of those fields
 
    - Updates and reads not treated as operations on records in their entirety
 
@@ -366,7 +367,7 @@ Arrays and Flow Analysis
       type T is array (Index) of Boolean;
       A    : T;
       I, J : Index;
- 
+
 * (An array with one element is not very interesting!)
 
 ----------------------------------
@@ -378,7 +379,7 @@ Array Elements and Flow Analysis
    .. code:: Ada
 
       A (I) := True;
- 
+
 * The final value of `A` might be (True, y) or (x, True) depending on the value of `I`
 * Note that at least one element of the initial value is preserved in both cases
 * So the final value of `A` must depend on:
@@ -396,7 +397,7 @@ Array Element Assignment
 
       A (I) := True;
       A (J) := True;
- 
+
 * Three possible outcomes:
 
 |
@@ -420,7 +421,7 @@ Array Assignment
          A (1) := True; -- flow error
          A (2) := True;
       end Init_Array;
- 
+
 * Don't "fix" this by changing the mode of `A` to `in out`
 
 ----------------------
@@ -435,7 +436,7 @@ Array Initialization
       begin
          A := (1 .. 2 => True);
       end Init_Array;
- 
+
    - (`others` could be used in this particular instance)
 
 * Flow analysis knows that the array must be fully defined by the aggregate, so no errors are reported
@@ -451,13 +452,13 @@ Flow Analysis Using :toolname:`GNATprove`
 .. container:: columns
 
  .. container:: column
-  
+
     * From the command line:
 
        - :command:`gnatprove --mode=flow`
 
  .. container:: column
-  
+
     .. image:: ../../images/spark_menu-examine_file.jpeg
 
 ========
