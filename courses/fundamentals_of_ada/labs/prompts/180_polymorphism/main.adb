@@ -1,4 +1,4 @@
-with Ada.Text_IO;           use Ada.Text_IO;
+with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
    -- Create an object for Rectangle, Square, Triangle

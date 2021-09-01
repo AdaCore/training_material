@@ -24,7 +24,7 @@ package body Io is
       return File_T is
    begin
       -- Call C's "fopen" function to open the file and return the result
-      return File_T'(others => <> );
+      return File_T'(others => <>);
    end Create_File;
 
    -- Create import for C's "fputs" function

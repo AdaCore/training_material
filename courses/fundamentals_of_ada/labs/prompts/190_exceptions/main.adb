@@ -8,7 +8,7 @@ procedure Main is
       return Simple_Math.Float_T is
    begin
       Put ("  " & Prompt & " => ");
-      return Simple_Math.Float_T'Value (Get_Line);
+      return Simple_Math.Float_T'value (Get_Line);
    end Get;
 
    procedure Test_Square_Root (Number : Simple_Math.Float_T) is
@@ -21,14 +21,16 @@ procedure Main is
       null;
    end Test_Square;
 
-   procedure Test_Multiply (Left  : Simple_Math.Float_T;
-                            Right : Simple_Math.Float_T) is
+   procedure Test_Multiply
+     (Left  : Simple_Math.Float_T;
+      Right : Simple_Math.Float_T) is
    begin
       null;
    end Test_Multiply;
 
-   procedure Test_Divide (Numerator   : Simple_Math.Float_T;
-                          Denominator : Simple_Math.Float_T) is
+   procedure Test_Divide
+     (Numerator   : Simple_Math.Float_T;
+      Denominator : Simple_Math.Float_T) is
    begin
       null;
    end Test_Divide;

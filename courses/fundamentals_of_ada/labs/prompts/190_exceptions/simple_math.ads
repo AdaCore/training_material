@@ -4,9 +4,17 @@ package Simple_Math is
    -- Define an exception that can be raised when the operation
    -- is expected to fail
 
-  function Sqrt (X : Float_T) return Float_T;
-  function Square (X : Float_T) return Float_T;
+   function Sqrt
+     (X : Float_T)
+      return Float_T;
+   function Square
+     (X : Float_T)
+      return Float_T;
 
-  function Multiply (L, R : Float_T) return Float_T;
-  function Divide (N, D : Float_T) return Float_T;
+   function Multiply
+     (L, R : Float_T)
+      return Float_T;
+   function Divide
+     (N, D : Float_T)
+      return Float_T;
 end Simple_Math;

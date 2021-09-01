@@ -14,13 +14,13 @@ begin
 
    loop
       Put ("1 = add to queue | 2 = remove from queue | others => done: ");
-      Choice := Integer'Value (Get_Line);
+      Choice := Integer'value (Get_Line);
       if Choice = 1 then
          Put ("Enter name: ");
          -- Use Ada.Text_IO.Get_Line to help put a name on the queue
       elsif Choice = 2 then
          -- Remove the appropriate item from the queue and print it
-         Put_Line ( "TBD" );
+         Put_Line ("TBD");
       else
          exit;
       end if;

@@ -18,7 +18,7 @@ procedure Main is
 begin
 
    Put ("Enter number of elements in list: ");
-   Number := Integer'Value (Get_Line);
+   Number := Integer'value (Get_Line);
 
    declare
       List : List_T (1 .. Number);
@@ -27,7 +27,7 @@ begin
       -- Sort the list
       loop
          Put ("Enter number to look for: ");
-         Number := Integer'Value (Get_Line);
+         Number := Integer'value (Get_Line);
          exit when Number < 0;
          -- Print True/False based on whether Number is in List
       end loop;

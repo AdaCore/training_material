@@ -1,8 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
-   type Days_Of_Week_T is
-      (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+   type Days_Of_Week_T is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
    --  type Unconstrained_Array_T is ?
    --  Constant_Array : ?
    --  Array2 : ?

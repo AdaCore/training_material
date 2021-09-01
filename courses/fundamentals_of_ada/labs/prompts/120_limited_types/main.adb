@@ -1,4 +1,3 @@
-
 with Ada.Text_IO; use Ada.Text_IO;
 with Timecards;
 procedure Main is
@@ -8,7 +7,7 @@ procedure Main is
    Two : Timecards.Timecard_T;
 
 begin
-   Put_Line ( Timecards.Image ( One ) );
-   Put_Line ( Timecards.Image ( Two ) );
+   Put_Line (Timecards.Image (One));
+   Put_Line (Timecards.Image (Two));
 end Main;
 --Main

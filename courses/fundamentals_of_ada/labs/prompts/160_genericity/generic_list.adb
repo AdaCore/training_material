@@ -4,8 +4,8 @@ package body Generic_List is
    --  procedure Add (This : in out List_T;
    --                 Item : in     ?
 
-  procedure Sort (This : in out List_T) is
-  begin
+   procedure Sort (This : in out List_T) is
+   begin
       null;
    end Sort;
 

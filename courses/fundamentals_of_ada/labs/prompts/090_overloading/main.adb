@@ -20,7 +20,7 @@ begin
       declare
          Str : constant String := Get_Line;
       begin
-         exit when Str'Length = 0;
+         exit when Str'length = 0;
          -- If the string is a number
          --    Convert the entry to a name and print it
          --    if this input has the same value as the previous value, say so

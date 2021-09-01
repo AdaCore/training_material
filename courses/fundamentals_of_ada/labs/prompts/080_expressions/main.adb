@@ -12,35 +12,36 @@ procedure Main is
    end record;
 
    -- implement correctly as an expression function
-   function Is_Leap_Year (Year : Positive)
-                          return Boolean is
-     (False);
+   function Is_Leap_Year
+     (Year : Positive)
+      return Boolean is (False);
 
    -- implement correctly as an expression function
    -- (case expression would be helpful)
-   function Days_In_Month (Month : Positive;
-                           Year  : Positive)
-                              return Positive is
-      (1);
+   function Days_In_Month
+     (Month : Positive;
+      Year  : Positive)
+      return Positive is (1);
 
    -- Implement correctly as an expression function
-   function Is_Valid (Date : Date_T)
-                      return Boolean is
-     (False);
+   function Is_Valid
+     (Date : Date_T)
+      return Boolean is (False);
 
    List : array (1 .. 5) of Date_T;
    Item : Date_T;
 
-   function Number (Prompt : String)
-                    return Positive is
+   function Number
+     (Prompt : String)
+      return Positive is
    begin
       Put (Prompt & "> ");
-      return Positive'Value (Get_Line);
+      return Positive'value (Get_Line);
    end Number;
 
 begin
 
-   for I in List'Range loop
+   for I in List'range loop
       Item.Year  := Number ("Year");
       Item.Month := Number ("Month");
       Item.Day   := Number ("Day");
@@ -48,8 +49,8 @@ begin
    end loop;
 
    -- Print True/False if any date in the list is not valid
-   Put_Line ("Any invalid: " & Boolean'Image (False));
+   Put_Line ("Any invalid: " & Boolean'image (False));
    -- Print True/False if all dates in the list are in the same year
-   Put_Line ("Same Year: " & Boolean'Image (False));
+   Put_Line ("Same Year: " & Boolean'image (False));
 
 end Main;

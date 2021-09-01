@@ -10,7 +10,7 @@ procedure Main is
 
    --  My_List : List.List_T; -- Object of generic list type
 
-  Element : Data_Type.Record_T;
+   Element : Data_Type.Record_T;
 
 begin
    null;
