@@ -25,9 +25,16 @@ with Interfaces.C;
 with Interfaces.C.Strings;
 with Ada.Text_IO;
 package body Io is
-   function C_Gets return Interfaces.C.Strings.chars_ptr with Import, Convention => C, External_Name => "gets";
-   function Read_From_Stdin return String is (Interfaces.C.Strings.Value (C_Gets));
-
+   procedure C_Gets (Value : Interfaces.C.Strings.Chars_Ptr)
+      with Import, Conventiont => C, External_Name => "gets";
+   function Read_From_Stdin return String is
+      Placeholder : String (1 .. 1_000)            := (others => ASCII.NUL);
+      Retval      : Interfaces.C.Strings.chars_ptr :=
+        Interfaces.C.Strings.New_String (Placeholder);
+   begin
+      C_Gets (Retval);
+      return Interfaces.C.Strings.Value (Retval);
+   end Read_From_Stdin;
    procedure C_Putchar (Str : Interfaces.C.char) with Import, Convention => C, External_Name => "putchar";
    procedure Write_To_Stdout (Str : String) is
    begin
