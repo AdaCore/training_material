@@ -22,18 +22,18 @@ Low-Level Assertions
          procedure Assert (Check : in Boolean;
                            Message : in String);
       end Ada.Assertions;
- 
+
 * Language-defined pragma
 
    .. code:: Ada
 
       procedure Push (This : in out Stack;  Value : Content) is
       begin
-         -- Same semantics but also can be enabled/disabled 
+         -- Same semantics but also can be enabled/disabled
          pragma Assert (not Full (This));
          ... code that only works if the stack is not full ...
       end Push;
- 
+
 * Both raise `Assertion_Error` if expression is False
 
 .. container:: speakernote
@@ -56,7 +56,7 @@ High-Level Assertion Examples
       ...
       function Top (This : Stack) return Content;
       function Full (This : Stack) return Boolean;
- 
+
 * Type invariants ensure properties of abstract data type objects over their lifetimes
 
    .. code:: Ada
@@ -80,7 +80,7 @@ Mixing Low- and High-Level Assertions
 
 .. code:: Ada
 
-   procedure P (...) with 
+   procedure P (...) with
      Pre  => ...,
      Post => ...;
    procedure P (...) is
@@ -89,7 +89,7 @@ Mixing Low- and High-Level Assertions
       pragma Assert (this_is_true_here);
       ...
    end P;
- 
+
 ===========
 Contracts
 ===========
@@ -137,7 +137,7 @@ Contract Participants
    procedure Increment (X : in out Integer)
       with Pre  => X < Integer'Last,
            Post => X = X'Old + 1;
- 
+
 ----------------------
 Contracts as Aspects
 ----------------------
@@ -149,7 +149,7 @@ Contracts as Aspects
       aspect_specification ::=
          with aspect_mark [=> aspect_definition]
               {, aspect_mark [=> aspect_definition] }
- 
+
 * An aspect adds information to entities
 
    .. code:: Ada
@@ -157,12 +157,12 @@ Contracts as Aspects
       procedure Increment (X : in out Integer)
          with Pre  => X < Integer'Last,
               Post => X = X'Old + 1;
- 
+
 ---------------
 Preconditions
 ---------------
 
-* Boolean expression 
+* Boolean expression
 
 * Checked before the call to a subprogram
 * Constraint to the caller
@@ -182,7 +182,7 @@ No Secret Precondition Requirements
 .. container:: columns
 
  .. container:: column
-  
+
     * Should only require what the client can ensure
 
        - By only referencing entities also available to clients
@@ -190,9 +190,9 @@ No Secret Precondition Requirements
     * Language rules enforce this precept
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        package P is
           type Bar is private;
           ...
@@ -204,7 +204,7 @@ No Secret Precondition Requirements
              return Boolean;
           ...
        end P;
-     
+
 .. container:: speakernote
 
    Illegal because function Hidden is declared in the private part but the reference is in the visible part.
@@ -226,8 +226,8 @@ Controlling the Exception Raised
            Pre  => not Full (This),
            Post => ...
          function Full (This : Stack) return Boolean;
- 
-   - Overflow 
+
+   - Overflow
 
       .. code:: Ada
 
@@ -238,7 +238,7 @@ Controlling the Exception Raised
            end if;
            ...
          end Push;
- 
+
 * How to get them raised in preconditions?
 
    - Not needed for postconditions (failures are supplier bugs)
@@ -271,7 +271,7 @@ Controlling the Exception Raised
 Postconditions
 ----------------
 
-* Boolean expression 
+* Boolean expression
 
 * Checked after the call to a subprogram
 * Constraint to the implementer
@@ -316,34 +316,34 @@ Example - An Observation
 .. code:: Ada
 
    procedure Sqrt (Input : Integer; Res: out Natural)
-     with 
+     with
           Pre  => Input >= 0,
           Post => (Res * Res) <= Input and
                   (Res + 1) * (Res + 1) > Input;
- 
+
 --------------------------------------
 Types and Contracts - An Observation
 --------------------------------------
 
-* With the help of types... 
+* With the help of types...
 
    .. code:: Ada
 
       procedure Sqrt (Input : Integer; Res: out Natural)
-        with 
+        with
              Pre  => Input >= 0,
              Post => (Res * Res) <= Input and
                      (Res + 1) * (Res + 1) > Input;
- 
+
 * ... less to write!
 
    .. code:: Ada
 
       procedure Sqrt (Input : Natural; Res: out Natural)
-        with 
+        with
              Post => (Res * Res) <= Input and
                      (Res + 1) * (Res + 1) > Input;
- 
+
 .. container:: speakernote
 
    The main criticism (still usually minor) towards design by contract is that it burdens the user by requiring to write more (contracts/annotations).
@@ -357,12 +357,12 @@ Observation: Good Fit!
 
    - Type Ranges
 
-   - Accessibility 
+   - Accessibility
 
    - Parameter Modes
 
-   - Generic Parameters 
-   - Interfaces 
+   - Generic Parameters
+   - Interfaces
 
    - Privacy
    - Not Null Access...
@@ -376,19 +376,19 @@ Where are Type Constraints Checked?
    .. code:: Ada
 
       X : Integer := 2;
- 
+
 * On a conversion / qualification
 
    .. code:: Ada
 
       X : Integer := Integer (1 + Natural'(2));
- 
+
 * On a parameter passing
 
    .. code:: Ada
 
       procedure P (N : in out Natural);
- 
+
 * Intermediate expressions are computed using the base type, with no range check
 
    .. code:: Ada
@@ -409,16 +409,16 @@ More Facilities for Writing Contracts
 * Pre and Post
 * Assert
 
-* Contract Cases 
-* Global 
+* Contract Cases
+* Global
 
 * Expression Functions
 
-* Expressions 
+* Expressions
 
    - `if` expressions
 
-   - `case` expressions 
+   - `case` expressions
 
    - quantified expressions
 
@@ -440,11 +440,11 @@ Contract Cases
                   (X + Y in Integer      => Z = X + Y,
                    X + Y < Integer'First => Z = Integer'First,
                    X + Y > Integer'Last  => Z = Integer'Last);
- 
+
 * Each case has a condition and a consequence
 * Conditions are checked for:
 
-   - Completeness 
+   - Completeness
 
    - Non-overlap
 
@@ -458,7 +458,7 @@ Global Data
 Global Variables
 ------------------
 
-* Impact code organization 
+* Impact code organization
 
 * Are part of the signature (from the verification perspective)
 * May seem innocent at first, but often cause unexpected effects as programs grow.
@@ -472,26 +472,26 @@ What Is a Global Variable?
 .. container:: columns
 
  .. container:: column
-  
+
     * Any variable that is an input or output of a subprogram (that is not a parameter) is a global
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        procedure Read_Global
           (Value : out Integer)
        is
        begin
-          Value := Global; 
+          Value := Global;
        end Read_ Global;
-       procedure Global_Above_Zero 
+       procedure Global_Above_Zero
           (Value : out Boolean)
        is
        begin
           Value := (X > 0);
        end Global _Above_Zero;
-     
+
 -----------------
 Global Contract
 -----------------
@@ -499,27 +499,27 @@ Global Contract
 .. container:: columns
 
  .. container:: column
-  
+
     * Announces use of global variables
     * Optional mode can be `Input` (default), `Output`, `In_Out` or `Proof_In`
     * `Proof_In` specifies globals that are only referenced within proof expressions within the subprogram
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        procedure P
           with Global =>
           (Input    => (A, B, C),
            Output   => (L, M, N),
            In_Out   => (X, Y, Z),
            Proof_In => (I, J, K));
-     
+
 -----------------
 Global Contract
 -----------------
 
-* Optional 
+* Optional
 
 * So existing code can be analyzed without adding globals
 
@@ -530,7 +530,7 @@ Global Contract
 * `null` gives a positive indication that there are no globals
 * The option :command:`--no-global-generation` prohibits global generation, instead assumes `null`
 
-   - **NOTE** Omitted global declaration means global `null` with this option 
+   - **NOTE** Omitted global declaration means global `null` with this option
 
 .. container:: speakernote
 
@@ -545,7 +545,7 @@ Functions Without Side-Effects
 * So function is side-effect free if all parameters and globals (if any) are of mode `in` only
 
 .. code:: Ada
-    
+
    function A (X : in Integer) return Integer;
    function B (X : in Integer) return Integer
       with Global => null;
@@ -554,7 +554,7 @@ Functions Without Side-Effects
       with Global => (Input => V);
    function H (X : in Integer) return Integer
       with Global => (Output => V);
-     
+
 .. container:: speakernote
 
    A - need to see implementation
@@ -568,9 +568,9 @@ Functions With Side-Effects
 -----------------------------
 
 .. code:: Ada
-    
+
    function Sqrt (X : in Integer) return Integer;
-       
+
    function Sqrt (X : in Integer) return Integer is
       Result : Integer;
    begin
@@ -578,7 +578,7 @@ Functions With Side-Effects
       -- code to calculate Sqrt
       return Result;
    end Sqrt;
-     
+
 * What is the correct global contract here?
 
 --------------------------------------
@@ -591,7 +591,7 @@ Aliasing Revisited - Input of Global
 
       procedure Update_Y (X : in Some_Type)
          with Global => (Output => Y);
- 
+
 * Aliasing may be detected at the point where a call is made
 
    .. code:: Ada
@@ -600,7 +600,7 @@ Aliasing Revisited - Input of Global
       ...
       Update_Y (Z); -- OK
       Update_Y (Y); -- Illegal
- 
+
 .. container:: speakernote
 
    Global and Parameter Overlap
@@ -616,7 +616,7 @@ Aliasing Revisited - Output of Global
 
       procedure Update_X (X : out Some_Type)
          with Global => (Input => Y);
- 
+
 * The declaration above is OK
 * Aliasing may be detected at the point where a call is made
 
@@ -626,25 +626,25 @@ Aliasing Revisited - Output of Global
       ...
       Update_X (Z); -- OK
       Update_X (Y); -- Illegal
- 
+
 -------------------------
-Contracts - Test Them! 
+Contracts - Test Them!
 -------------------------
 
 * Dynamic Semantics - contracts can be:
 
-   - Compiled 
+   - Compiled
 
    - Checked at run time
    - Thought of as "pre-assert" and "post-assert" at the beginning and end of the subprogram body
 
 -------------------------
-Contracts - Prove Them! 
+Contracts - Prove Them!
 -------------------------
 
 * Static Semantics - contracts can be:
 
-   - Interpreted in logic 
+   - Interpreted in logic
 
    - Formal pre- and post- assertions of a Hoare triplet `{P}S{Q}`, the latter often called  proof obligation, or verification condition
    - Checked exhaustively for all possible inputs by a theorem prover
@@ -661,7 +661,7 @@ Semantics of Contracts
       procedure P (X, Y, M : in Natural; Z : out Natural)
          with Post => (if X / Y <= M then Z = F_1 (X, Y)) and
                       (if X / Y >  M then Z = F_2 (X, Y));
- 
+
    - Warning: divide by zero might fail
 
 * Observation: Ada semantics of contracts contribute to validation of contracts!
@@ -712,27 +712,27 @@ New Expressions in Ada 2012
 .. container:: columns
 
  .. container:: column
-  
+
     * Ada 2012 includes *if expressions*, *case expressions* and *quantified expressions*
     * Quantified expressions (`for all`, `for some`) are particularly useful when writing contracts involving arrays or containers
 
  .. container:: column
-  
+
        .. code:: Ada
-    
+
           A := (if X then 2 else 3);
-          
+
           B := (case Y
                 when E1     => V1,
                 when E2     => V2,
                 when others => V3);
-          
+
           procedure Set_Array
              (A: out Array_Type)
              with Post =>
              (for all M in A'Range =
                  A(M) = M);
-     
+
 ----------------------
 Expression Functions
 ----------------------
@@ -748,7 +748,7 @@ Expression Functions
                                      Low, Up : Index)
                                      return Boolean
          is (for some J in Low .. Up => A(J) = Val);
- 
+
 * There is no separate body for such functions
 * For proof, the expression forms the postcondition
 * Expression functions allow you to write functions in a package specification which can then be used in contracts
@@ -764,7 +764,7 @@ More on Expression Functions
       function Add_One (X : in Integer)
             return Integer is (X + 1)
          with Pre => (X < Integer'Last);
- 
+
 * Aspect comes after the parenthesized expression
 
 ------
@@ -785,20 +785,20 @@ More on Expression Functions
 
    procedure Increment (X : in out Integer)
      with Post => X = X'Old + 1;
-   
+
    procedure Call_Not_Modify_Global
      with Post => Some_Global = Some_Global'Old;
-   
+
    function F (V : SomeRecordT) return Integer
      with Global => Some_Global;
-   
+
    procedure P (V : in out T)
-     with Post => 
+     with Post =>
         V'Old.A   /= V.A and then
         V.B'Old   /= V.B and then
         F (V'Old) /= F (V) and then
         F (V)'Old /= F (V);
- 
+
 .. container:: speakernote
 
    A number of issues with last example:
@@ -822,7 +822,7 @@ More on Expression Functions
       Some_Array'Update (1 .. 10 => True, 5 => False)
       Some_Array'Update (Param_1'Range => True,
                          Param_2'Range => False)
- 
+
 * Keeps things simple - for `'Update` of arrays:
 
    - In contracts: avoids writing quantifiers
@@ -845,7 +845,7 @@ More on Expression Functions
                       (if Find'Result /= 0 then
                           T (Find'Result) = R);
    end Find;
- 
+
 * `'Result` allows you to use the function result in your contracts.
 
 --------------
@@ -863,7 +863,7 @@ Set Notation
       else
          ...
       end if;
- 
+
 * With set notation:
 
    .. code:: Ada
@@ -873,7 +873,7 @@ Set Notation
       else
          ...
       end if;
- 
+
 ---------------------------
 More Subprogram Contracts
 ---------------------------
@@ -902,7 +902,7 @@ Assert
 .. code:: Ada
 
    pragma Assert (I in Small_Range);
- 
+
 --------
 Assume
 --------
@@ -914,7 +914,7 @@ Assume
    .. code:: Ada
 
       pragma Assume (Ticks < Time_Type'Last);
- 
+
 * Soundness alert - use with great care!
 
 ========

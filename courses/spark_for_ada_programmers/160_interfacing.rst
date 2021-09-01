@@ -76,7 +76,7 @@ Monitored and Controlled Variable Examples
             Controlled_Var := 0;
             Controlled_Var := Monitored_Var;
          end Monitored_And_Controlled_Issues;
- 
+
 * Analysis incorrectly gives:
 
       .. code:: console
@@ -85,7 +85,7 @@ Monitored and Controlled Variable Examples
              info: assertion proved
          monitored_and_controlled_issues.adb:6:19:
              warning: unused assignment
- 
+
 -------------------------------------------------
 Representing Monitored and Controlled Variables
 -------------------------------------------------
@@ -107,11 +107,11 @@ External State
 .. container:: columns
 
  .. container:: column
-  
+
     * Model volatile state: actuators, sensors, queues...
 
  .. container:: column
-  
+
     .. image:: ../../images/valves_and_sensors.jpeg
 
 -----------------------------------
@@ -160,7 +160,7 @@ External State: `Async_Readers`
             Address => System.Storage_Elements.To_Address
                        (16#ACECAFE#);
    end Output_Port;
- 
+
 ---------------------------------
 External State: `Async_Writers`
 ---------------------------------
@@ -178,7 +178,7 @@ External State: `Async_Writers`
                  Address => System.Storage_Elements.To_Address
                             (16#ACECAFE#);
       end Input_Port;
- 
+
    - If neither `Async_Writers` nor `Async_Readers` is specified for a volatile variable then the External State specification defaults to:
 
       .. code:: Ada
@@ -192,7 +192,7 @@ External State: `Effective_Reads`
 
 * `Effective_Reads => True`
 
-   - Every read of the external state is significant 
+   - Every read of the external state is significant
 
       + For example, `Effective_Reads` would typically be True for a serial data port but False for a port providing the current speed value
 
@@ -206,7 +206,7 @@ External State: `Effective_Reads`
                        -- if Async_Writers is true
       Address => System.Storage_Elements.To_Address
                  (16#ABCCAFE#);
- 
+
 -----------------------------------
 External State: `Effective_Reads`
 -----------------------------------
@@ -221,7 +221,7 @@ External State: `Effective_Reads`
             Temp := Volatile_Input;
          end if;
          Temp := Volatile_Input;
- 
+
    - What is the correct flow relation if `Effective_Reads` is true for `Volatile_Input`?
    - What is the correct flow relation if `Effective_Reads` is false for `Volatile_Input`?
 
@@ -237,7 +237,7 @@ External State: `Effective_Reads`
          Temp := Volatile_Input;
       end if;
       Temp := Volatile_Input;
- 
+
 * If `Effective_Reads` is True then `Temp` will depend on `B`
 
    - (for example, if reading in characters from a buffer, `B` will determine whether `Temp` ends up holding the first or the second character)
@@ -268,7 +268,7 @@ External State: `Effective_Writes`
       Effective_Writes,
       Address => System.Storage_Elements.To_Address
                  (16#ADACAFE#);
- 
+
 --------------------------------------
 External State - Where To Specify It
 --------------------------------------
@@ -290,7 +290,7 @@ External State - Where To Specify It
           -- Not the case that every is read significant
           Effective_Reads => False))
    is
- 
+
 ----------------------------------------
 Example: A Simple Sensor Specification
 ----------------------------------------
@@ -312,7 +312,7 @@ Example: A Simple Sensor Specification
          -- Sensor is a Global Input of Is_Active
          Global => Sensor;
    end Water_High;
- 
+
 --------------------------------
 A Simple Sensor Implementation
 --------------------------------
@@ -339,7 +339,7 @@ A Simple Sensor Implementation
                     (16#FFFF_FFF0#),
          Volatile,
          Async_Writers;
- 
+
 ----------------------------------------
 A Simple Sensor Implementation - Query
 ----------------------------------------
@@ -367,7 +367,7 @@ A Simple Sensor Implementation - Query
          Active := True; -- "safe" value
       end if;
    end Is_Active;
- 
+
 ------------------------------------
 Example: A More Complex I/O Device
 ------------------------------------
@@ -395,9 +395,9 @@ A More Complex I/O Device Specification
 
    package Device with
       SPARK_Mode,
-      -- The state abstraction representing the external state 
-      -- is complex. From spec given earlier it has volatile 
-      -- read and write constituents as well as a non-volatile 
+      -- The state abstraction representing the external state
+      -- is complex. From spec given earlier it has volatile
+      -- read and write constituents as well as a non-volatile
       -- constituent
       Abstract_State => (State with External =>
          (Async_Readers, Effective_Writes, Async_Writers)),
@@ -405,7 +405,7 @@ A More Complex I/O Device Specification
    is
       procedure Write (X : Integer;
                        Success : out Boolean) with
-         -- In the Global_Contract of Write, State has mode 
+         -- In the Global_Contract of Write, State has mode
          -- In_Out, as it is both an input and an output
          Global => (In_Out => State);
          -- A function is possible with Global input of State
@@ -414,7 +414,7 @@ A More Complex I/O Device Specification
       function Last_Written return Integer with
          Global => State;
    end Device;
- 
+
 ------------------------------------------
 A More Complex I/O Device Implementation
 ------------------------------------------
@@ -443,7 +443,7 @@ A More Complex I/O Device Implementation
          Volatile,
          Async_Readers,
          Effective_Writes; -- Constituent that is an output
- 
+
 ---------------------------------------------------
 A More Complex I/O Device Implementation - Writer
 ---------------------------------------------------
@@ -477,7 +477,7 @@ A More Complex I/O Device Implementation - Writer
          Success := True;
       end if;
    end Write;
- 
+
 --------------------------------------------------
 A More Complex I/O Device Implementation - Query
 --------------------------------------------------
@@ -488,7 +488,7 @@ A More Complex I/O Device Implementation - Query
 
       function Last_Written return Integer is (Old_X) with
          Refined_Global => Old_X;
- 
+
    - `Refined_Global` contract in terms of the non-volatile constituent `Old_X` only
 
 * **Note:** A `Refined_Global` contract does not need to denote all of the constituents of the refinement
@@ -532,7 +532,7 @@ Initialization Of External State Variables
                (Sensor with External => Async_Writers),
             Initializes => Sensor
          is
- 
+
    - But the body contains no explicit initializations because:
 
       + `High_Sensor_Port` is a external state variable with the property `Async_Writers` and does not require an explicit initialization
@@ -545,7 +545,7 @@ Initialization Of External State Variables
                        (16#FFFF_FFF0#),
             Volatile,
             Async_Writers;
- 
+
 --------------------------------------------
 Initialization Of External State Variables
 --------------------------------------------
@@ -564,7 +564,7 @@ Initialization Of External State Variables
             (Async_Readers, Effective_Writes, Async_Writers)),
             Initializes => State
          is
- 
+
    - But the state abstraction `State` represents both volatile and nonvolatile constituents
    - The non-volatile constituent can be initialized
 
@@ -573,7 +573,7 @@ Initialization Of External State Variables
          Refined_State => (State => (Old_X, Status_Port, Register))
          is
          Old_X : Integer := 0;
- 
+
 --------------------------------------------
 Initialization Of External State Variables
 --------------------------------------------
@@ -589,7 +589,7 @@ Initialization Of External State Variables
                        (16#FFFF_FFF0#),
             Volatile,
             Async_Writers;
- 
+
    - The constituent `Register` is volatile and has the properties `Async_Readers` and `Effective_Writes`
    - It may be erroneous to write a spurious value to this external state
 
@@ -601,7 +601,7 @@ Initialization Of External State Variables
             Volatile,
             Async_Readers,
             Effective_Writes;
- 
+
 ========
 Lab
 ========

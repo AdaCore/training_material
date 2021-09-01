@@ -24,7 +24,7 @@ Flow Analysis
 ===============
 
 ------------------------
-Flow Analysis - Recap 
+Flow Analysis - Recap
 ------------------------
 
 * Static analysis performed by :toolname:`GNATprove`
@@ -69,8 +69,8 @@ Flow Analysis - Incorrect Parameter Mode
 
   * - |checkmark|
 
-    - 
-    - 
+    -
+    -
 
     - In
 
@@ -80,17 +80,17 @@ Flow Analysis - Incorrect Parameter Mode
     - |checkmark|
     - In out
 
-  * - 
+  * -
 
     - |checkmark|
 
-    - 
+    -
 
     - In out
 
-  * - 
+  * -
 
-    - 
+    -
 
     - |checkmark|
     - out
@@ -120,7 +120,7 @@ Flow Analysis - Global Contracts
    X : Natural := 0;
    function Get_Value_Of_X return Natural;
    -- Get_Value_Of_X reads value of global variable X
- 
+
 .. container:: speakernote
 
    Until now, we have seen verifications which do not require any additional annotations from the user.
@@ -149,11 +149,11 @@ Flow Analysis - Global Contracts
      Global => (Input  => Y,  -- reads value of Y
                 In_Out => X); -- modifies value of X
                               -- also reads its initial value
-   function Get_Value_Of_X return Natural with 
+   function Get_Value_Of_X return Natural with
      Global => X;  -- reads the value of the global variable X
    procedure Incr_Parameter_X (X : in out Natural) with
      Global => null; -- does not reference any global variable
- 
+
 .. container:: speakernote
 
    Global contracts are part of the specification.
@@ -194,7 +194,7 @@ Depends Contract
 
       procedure Sum (A, B : in Integer; Result : out Integer)
         with Depends => (Result => (A, B));
- 
+
    - Outputs appear on the left-hand side of the arrow
    - Inputs appear on the right
 
@@ -216,11 +216,11 @@ Depends Contracts
    procedure Swap (X, Y : in out T);
    -- The value of X (or Y) after the call depends only
    -- on the value of Y (or X) before the call
-   
+
    X : Natural;
    procedure Set_X_To_Zero;
    -- The value of X after the call depends on no input
- 
+
 .. container:: speakernote
 
    A user may also supply a Depends contract for a subprogram to specify dependencies between its outputs and its inputs.
@@ -241,7 +241,7 @@ Depends Contract
                            X : in     Elem_Type)
      with Depends => (A => +(I, X));
      -- Equivalent to writing Depends => (A => (A, I, X))
- 
+
 ------------------
 Depends Contract
 ------------------
@@ -254,8 +254,8 @@ Depends Contract
         with Depends => (S => null);
 
    - S does not depend on any input
- 
-* `null` can be used to specify that a list of (one or more) inputs do not affect any outputs 
+
+* `null` can be used to specify that a list of (one or more) inputs do not affect any outputs
 
    .. code:: Ada
 
@@ -263,7 +263,7 @@ Depends Contract
         with Depends => (null => (X, Y, Z));
 
    - No output depends on X, Y, or Z
- 
+
 * `null` output can only appear once and must be last
 
 ---------------------------
@@ -283,14 +283,14 @@ Information Flow Analysis
       X := X + 1;
       Y := Y + 1;
    end Q;
- 
+
 .. code:: console
 
    warning: missing dependency "X => X"
    warning: incorrect dependency "X => Y"
    warning: missing dependency "Y => Y"
    warning: incorrect dependency "Y => X"
- 
+
 --------------------------
 Arrays and Flow Analysis
 --------------------------
@@ -312,7 +312,7 @@ Arrays and Flow Analysis
       begin
          A := (1 .. 2 => True, others => False);
       end Init_Array;
- 
+
 * Flow analysis knows that the array must be fully defined by the aggregate so no errors are reported
 
 --------------------------------
@@ -325,7 +325,7 @@ Flow Analysis - Path Sensitive
    - Global and parameter outputs should be initialized prior to subprogram return.
 
 .. code:: Ada
-    
+
   procedure Set_X_To_Y_Plus_Z
     (Y, Z     :     Natural;
      X        : out Natural;
@@ -339,7 +339,7 @@ Flow Analysis - Path Sensitive
       X := Y + Z;
     end if;
   end Set_X_To_Y_Plus_Z;
-     
+
 .. container:: speakernote
 
    Flow analysis is a sound analysis, which means that, if it does not output any message on some analyzed SPARK code, then none of the supported errors may occur in this code.
@@ -388,7 +388,7 @@ Nature of Synthesized Contracts
    - But safe so analysis is still sound
 
 -------------------------------------
-How Flow Contracts Are Synthesized 
+How Flow Contracts Are Synthesized
 -------------------------------------
 
 * For each contract, synthesis takes the existence of the other into account, if present
@@ -424,9 +424,9 @@ When Only Global Contracts Specified
 
    - Hence "conservative"
 
-* Allows detecting all possible initialization and contract violation errors 
+* Allows detecting all possible initialization and contract violation errors
 
-   - In the subprogram 
+   - In the subprogram
 
    - In the subprogram's callers
 
@@ -461,7 +461,7 @@ Synthesized Depends Contract Example
         Global  => (In_Out => V),
         Depends => (X => Y, Y => X, V => V);
    end Only_Data_Dependencies;
- 
+
 .. container:: speakernote
 
    Depending on the bodies, other flow dependencies with fewer dependencies between inputs and outputs would be compatible with the given data dependencies of Add and Swap.
@@ -489,7 +489,7 @@ When Only Depends Contracts Specified
       procedure Call_Swap (X, Y : in out Integer) with
         ...
    end Only_Flow_Dependencies;
- 
+
 --------------------------------------
 Synthesis When No Contract Specified
 --------------------------------------
@@ -500,7 +500,7 @@ Synthesis When No Contract Specified
 
    - Uses path-sensitive flow analysis to track data flows in the subprogram body
 
-* The above is for code in SPARK 
+* The above is for code in SPARK
 
    - (When code is not in SPARK will be covered momentarily)
 
@@ -511,9 +511,9 @@ Example When Neither Given, In SPARK
 .. container:: columns
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        package Gen_Global with
          SPARK_Mode
        is
@@ -524,11 +524,11 @@ Example When Neither Given, In SPARK
          procedure Do_Nothing;
          procedure Set_Global_Twice;
        end Gen_Global;
-     
+
  .. container:: column
-  
+
     .. code:: Ada
-    
+
       package body Gen_Global with
         SPARK_Mode
       is
@@ -543,15 +543,15 @@ Example When Neither Given, In SPARK
           Set_Global;
         end Set_Global_Twice;
       end Gen_Global;
-     
+
 -----------------------------------------
 Synthesis When The Body Is Not In SPARK
 -----------------------------------------
 
 * "Coarse" data and flow contracts computed, based on body content
 
-* A variable written in the body is considered both an input and an output 
-* A variable only read is considered an input 
+* A variable written in the body is considered both an input and an output
+* A variable only read is considered an input
 
 * All outputs are considered to depend on all inputs
 
@@ -562,9 +562,9 @@ Example When Neither Given, Not In SPARK
 .. container:: columns
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        package Gen_Global with
          SPARK_Mode
        is
@@ -577,13 +577,13 @@ Example When Neither Given, Not In SPARK
        end Gen_Global;
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        package body Gen_Global with
          SPARK_Mode
        is
-         procedure Set_Global with 
+         procedure Set_Global with
            SPARK_Mode => Off is
          begin
            V := True;

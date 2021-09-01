@@ -18,7 +18,7 @@ Adoption Guidance Document
 .. container:: columns
 
  .. container:: column
-  
+
     * Based on adoption experience
     * Proposes adoption levels
     * For every level, presents:
@@ -29,7 +29,7 @@ Adoption Guidance Document
        - Remediation solutions
 
  .. container:: column
-  
+
     .. image:: ../../images/thales_adoption_manual.png
        :width: 100%
 
@@ -106,7 +106,7 @@ Responding To New Industrial Challenges
 
       + Flow analysis (with or without dependency contracts)
 
-      + RTE proof 
+      + RTE proof
 
       + Correctness proof (maybe)
 
@@ -238,11 +238,11 @@ Gold Level
 
    - Typically derived from software requirements
 
-   - Maintaining critical data invariants throughout execution 
+   - Maintaining critical data invariants throughout execution
 
 * Works with Silver level to ensure program integrity
 
-   - Control flow cannot be circumvented through run-time errors 
+   - Control flow cannot be circumvented through run-time errors
 
    - Data cannot be corrupted
 

@@ -14,16 +14,16 @@ Analysis of Failed Proof Attempts
 .. container:: columns
 
  .. container:: column
-  
+
     * It should work!?
     * Did I get something wrong?
 
-    * Error in code or spec? 
+    * Error in code or spec?
 
     * Need to strengthen proof?
 
  .. container:: column
-  
+
     .. image:: ../../images/failed_proof_bus_example.png
 
 -----------------
@@ -135,7 +135,7 @@ Intermediate Assertions
    pragma Assume (Assumption_Validated_By_Other_Means);
    --  The tool does not attempt to check this expression.
    --  It is recorded as an assumption.
- 
+
 .. container:: speakernote
 
    As properties of interest for functional correctness are more complex than those involved in proof of program integrity, it is expected that GNATprove may not be able to verify them right away even though they are valid.
@@ -159,7 +159,7 @@ Interpreting :toolname:`GNATprove` Messages
 
 * :toolname:`GNATprove` issues four different kinds of messages: **errors**, **warnings**, **checks** and **information** messages.
 
-* Errors are issued for SPARK violations or other language legality problems, or any other problem which does not allow proceeding to analysis. 
+* Errors are issued for SPARK violations or other language legality problems, or any other problem which does not allow proceeding to analysis.
 
       + Errors cannot be suppressed and must be fixed before proceeding with analysis.
 
@@ -172,9 +172,9 @@ Interpreting :toolname:`GNATprove` Messages
 Interpreting :toolname:`GNATprove` Messages
 ---------------------------------------------
 
-* Checks are issued for any potential problem in the code which could affect the correctness of the program 
+* Checks are issued for any potential problem in the code which could affect the correctness of the program
 
-   - Examples: missing initialization, possible failing run-time checks or unproved assertions. 
+   - Examples: missing initialization, possible failing run-time checks or unproved assertions.
 
    - Checks come with a severity and depending on the severity the message text is prefixed with **low**, **medium** or **high**.
    - Check messages cannot be suppressed like warnings, but they can be individually justified with `pragma Annotate`
@@ -187,7 +187,7 @@ Interpreting :toolname:`GNATprove` Messages
 
 * Check messages get a rank of **high**, **medium** or **low** according to both the severity of the problem, and the likelihood that it corresponds to a true problem
 
-   - Example 1: reading a certain locally uninitialized variable gets a *high* rank, 
+   - Example 1: reading a certain locally uninitialized variable gets a *high* rank,
 
    - Example 2: returning an OUT parameter with a component uninitialized gets a *medium* rank if this occurs on all paths, and a *low* rank if this occurs only on some path.
 
@@ -243,20 +243,20 @@ Pragma Warnings
 
 .. code:: Ada
 
-   package body Warnings_Example is 
-      procedure Mumble (X : Integer) is 
-      begin 
-         null; 
-      end Mumble; 
+   package body Warnings_Example is
+      procedure Mumble (X : Integer) is
+      begin
+         null;
+      end Mumble;
    end Warnings_Example;
- 
+
 * Compiling (with :command:`-gnatwae`):
 
    .. code:: console
 
       warnings_example.adb:5:22: warning:
           formal parameter "X" is not referenced
- 
+
 -----------------
 Pragma Warnings
 -----------------
@@ -265,8 +265,8 @@ Pragma Warnings
 
    .. code:: Ada
 
-      pragma Warnings (On | Off [,REASON]); 
-      pragma Warnings (On | Off, LOCAL_NAME [,REASON]); 
+      pragma Warnings (On | Off [,REASON]);
+      pragma Warnings (On | Off, LOCAL_NAME [,REASON]);
       pragma Warnings (static_string_EXPRESSION [,REASON]);
       pragma Warnings (On | Off,
                        static_string_EXPRESSION
@@ -274,16 +274,16 @@ Pragma Warnings
 
 .. code:: Ada
 
-   package body Warnings_Example is   
+   package body Warnings_Example is
       pragma Warnings (Off, "formal parameter ""X"" is not referenced");
-      procedure Mumble (X : Integer) is 
+      procedure Mumble (X : Integer) is
       pragma Warnings (On, "formal parameter ""X"" is not referenced");
        -- X is ignored here, because blah blah blah...
-      begin 
-         null; 
-      end Mumble; 
+      begin
+         null;
+      end Mumble;
    end Warnings_Example;
- 
+
 ---------------------------
 Control of Check Messages
 ---------------------------
@@ -295,7 +295,7 @@ Control of Check Messages
       return (X + Y) / (X - Y);
       pragma Annotate (GNATprove, False_Positive,
          "divide by zero", "reviewed by John Smith");
- 
+
 * The pragma has the following form:
 
    .. code:: Ada

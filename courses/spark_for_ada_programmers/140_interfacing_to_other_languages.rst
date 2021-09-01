@@ -72,7 +72,7 @@ Example: Ada.Containers.Vectors
          ...
       private
          type Vector is new Controlled with record ...
- 
+
 * We will show a simple interface to Ada.Containers.Vectors
 
    - Facilitates extending vector using `&`
@@ -99,7 +99,7 @@ Example: Ada.Containers.Vectors
       -- Declaration of our Vector type
       type Vector is private;
       Empty_Vector : constant Vector;
- 
+
 ---------------------------------
 Example: Ada.Containers.Vectors
 ---------------------------------
@@ -150,7 +150,7 @@ Example: Ada.Containers.Vectors
       Empty_Vector : constant Vector :=
                      (Vec => Vectors.Empty_Vector);
    end My_Vectors;
- 
+
 ---------------------------------
 Example: Ada.Containers.Vectors
 ---------------------------------
@@ -222,7 +222,7 @@ Interfacing to C
 
       typedef unsigned char BYTE;
       int sha_1 (BYTE *data, BYTE *result);
- 
+
 * What does this tell us? Not much compared with an Ada or SPARK specification!
 
 -------------------------------------
@@ -239,7 +239,7 @@ Interfacing to C - Examine C Source
       placed.  Function returns an integer in the range 0 to 3.
       0 indicates no error has occurred. */
       int sha_1 (BYTE *data, BYTE *result);
- 
+
    - Ok - this tells us enough to make progress
 
 * Step 2 - Is there any persistent state?
@@ -279,7 +279,7 @@ Interfacing to C - Build Foundation
          type Buffer_Type is array (Buffer_Index) of Byte;
          type Result_Type is array (Result_Index) of Byte;
          subtype Error_Code is Int range 0 .. 3;
- 
+
    - If proof of properties is required a ghost function would be useful
 
       .. code:: Ada
@@ -288,7 +288,7 @@ Interfacing to C - Build Foundation
                             Result : Result_Type)
                             return Boolean
             with Convention => Ghost;
- 
+
 ----------------------------------
 Interfacing to C - Build Wrapper
 ----------------------------------
@@ -304,7 +304,7 @@ Interfacing to C - Build Wrapper
                           Error : out Error_Code)
             with Global => null,
                  Post => (if Error = 0 then Is_SHA_1(Data,Result));
- 
+
    - This gives us a clean SPARK-compatible interface to the C API
 
       + **NOTE:** If error is not equal to zero the postcondition says nothing about the result of calling `SHA_1`
@@ -330,7 +330,7 @@ Interfacing to C - Result
 
 .. code:: Ada
 
-   -- Internal_SHA_1 has a side-effect - an out parameter - 
+   -- Internal_SHA_1 has a side-effect - an out parameter -
    -- which corresponds to the C function sha_1
    procedure SHA_1 (Data : in Buffer_Type;
                     Result : out Result_Type;
@@ -356,7 +356,7 @@ Interfacing to C - Result
                 then Status_Code
                 else 3);
    end SHA_1;
- 
+
 ==========
 Summary
 ==========

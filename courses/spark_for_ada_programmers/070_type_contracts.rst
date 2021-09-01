@@ -37,7 +37,7 @@ What is a Predicate?
 
 * Something asserted to be true about some subject
 
-   - When true, said to "hold" 
+   - When true, said to "hold"
 
    - Thus Boolean expressions
 
@@ -63,13 +63,13 @@ Really, `type` and `subtype` Predicates
 * Applicable to both
 * Applied via aspect clauses in both cases
 * `aspect_mark` can be either `dynamic_predicate` or `static_predicate`
-    
+
 .. code:: Ada
-    
+
    type name is type_definition
       with aspect_mark [ => expression]
            {, aspect_mark [ => expression] }
-       
+
    subtype defining_identifier is subtype_indication
       with aspect_mark [ => expression]
            {, aspect_mark [ => expression] }
@@ -80,16 +80,16 @@ Otherwise Inexpressible Constraints
 
 .. code:: Ada
 
-   subtype Even is Integer 
+   subtype Even is Integer
       with Dynamic_Predicate =>  Even mod 2 = 0;
-   
+
    type Serial_Baud_Rate is range 110 .. 115200
       with Static_Predicate =>
          Serial_Baud_Rate  in
             110 | 300 | 600 | 1200 | 2400 | 4800 | 9600 |
             14400 | 19200 | 28800 | 38400 | 56000 |
             57600| 115200;
- 
+
 .. container:: speakernote
 
    Discontinuous ranges cannot be expressed with range constraints.
@@ -104,13 +104,13 @@ New Kinds of Constraint
       Dynamic_Predicate =>
          (for all Divisor in 2 .. Prime / 2 =>
             Prime mod Divisor /= 0);
-   
+
    type Bundle is record
       X, Y    : Integer;
       CRC   : Unsigned_32;
    end record with
       Dynamic_Predicate => CRC = Math.CRC32 (X, Y);
-   
+
    type Table is array (M .. N) of Integer with
       Dynamic_Predicate =>
          (for all K in Table'Range =>
@@ -133,7 +133,7 @@ Discriminant In A Range Constraint
          Value  : String (1 .. Capacity);
          Length : Natural range 0 .. Capacity := 0
       end record;
-   
+
    type Bounded_String (Capacity : Positive) is
       record
          Value   : String (1 .. Capacity);
@@ -181,9 +181,9 @@ Predicate Run-Time Checking (If Enabled)
       Dynamic_Predicate =>
          (for all Divisor in 2 .. Prime / 2 =>
          Prime mod Divisor /= 0);
-   
+
    P : constant Prime := 6; -- assertion error
- 
+
 -----------------------------------
 The "Static" In Static Predicates
 -----------------------------------
@@ -203,7 +203,7 @@ The "Static" In Static Predicates
             57600| 115200;
    Rate : Serial_Baud_Rate :=
           Ada.Calendar.Day (Clock) * 100;
- 
+
 .. container:: speakernote
 
    Works 4 days of each month - Assertion Error on the others
@@ -243,7 +243,7 @@ Allowed Static Predicate Content (2)
          (case Weekend is
             when Sat | Sun => True,
             when Mon .. Fri => False);
- 
+
 * Note: if-expressions are disallowed, and not needed
 
    .. code:: Ada
@@ -254,7 +254,7 @@ Allowed Static Predicate Content (2)
       subtype Work is Days with Static_Predicate =>
         -- legal:
         Work in Mon .. Fri;
- 
+
 --------------------------------------
 Allowed Static Predicate Content (3)
 --------------------------------------
@@ -280,13 +280,13 @@ Dynamic Predicate Expression Content
 
    .. code:: Ada
 
-      subtype Even is Integer 
+      subtype Even is Integer
          with Dynamic_Predicate => Even mod 2 = 0;
       subtype Vowel is Character with Dynamic_Predicate =>
            (case Vowel is
                when 'A' | 'E' | 'I' | 'O' | 'U' => True,
                when others => False);
- 
+
 * Plus calls to functions
 
    - User-defined
@@ -304,7 +304,7 @@ Dynamic Predicate Content In SPARK
 
    .. code:: Ada
 
-      type T is ... with 
+      type T is ... with
          Dynamic_Predicate => Foo;
       Global : Integer := 0;
       function Foo return Boolean is
@@ -312,7 +312,7 @@ Dynamic Predicate Content In SPARK
          Global := Global + 1;  -- function with side effects
          return Global = 42;
       end Foo;
- 
+
 * SPARK adds restrictions on content
 
    - Cannot read global variables or have side-effects
@@ -328,23 +328,23 @@ Types Controlling For-Loops
 
    .. code:: Ada
 
-      subtype Even is Integer 
+      subtype Even is Integer
          with Dynamic_Predicate => Even mod 2 = 0;
       for K in Even loop -- not legal (how many iterations?)
          ...
       end loop;
- 
+
 * Those with static predicates can be used
 
    .. code:: Ada
 
-      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);   
+      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
       subtype Weekend is Days
          with Static_Predicate => Weekend in Sat | Sun;
       for K in Weekend loop -- legal ("Sun" comes first)
          ...
       end loop;
- 
+
 ---------------------------------------
 In Some Cases Neither Kind Is Allowed
 ---------------------------------------
@@ -358,14 +358,14 @@ In Some Cases Neither Kind Is Allowed
 
    type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
    subtype Weekend is Days
-      with Static_Predicate => Weekend in Sat | Sun; 
+      with Static_Predicate => Weekend in Sat | Sun;
    type Play is array (Weekend) of Integer;
    type List is array (Days range <>) of Integer;
    L : List (Weekend); -- illegal
    M : List (Days); -- legal
    ...
    M (Weekend) := (...); -- illegal
- 
+
 * **NOTE** See Annotated Ada RM 3.2.4/25
 
 .. container:: speakernote
@@ -379,7 +379,7 @@ In Some Cases Neither Kind Is Allowed
 Special Attributes for Predicated Types
 -----------------------------------------
 
-* `'Range`, `'First`, and `'Last` are not allowed 
+* `'Range`, `'First`, and `'Last` are not allowed
 
    - Because they reflect only range constraints, not predicates
 
@@ -388,7 +388,7 @@ Special Attributes for Predicated Types
    - `'First_Valid` returns smallest valid value, taking any range or predicate into account
    - `'Last_Valid` returns largest valid value, taking any range or predicate into account
 
-* Can be used for any static subtype 
+* Can be used for any static subtype
 
 * Especially useful for types with static predicates
 * `'Succ` and `'Pred` are allowed since they always reflect underlying type anyway
@@ -407,7 +407,7 @@ Lack of Initial Values Can Be Problematic
          subtype Even is Integer
             with Dynamic_Predicate => Even mod 2 = 0;
          K : Even;  -- unknown initial value
- 
+
 * Since value is otherwise undefined the predicate is not checked when no initial value is given
 * In Ada one can reference such junk values
 * SPARK prevents reading an uninitialized variable
@@ -419,8 +419,8 @@ References Are Not Checked
 .. code:: Ada
 
    with Ada.Text_IO;   use Ada.Text_IO;
-   procedure Test is   
-      subtype Even is Integer 
+   procedure Test is
+      subtype Even is Integer
          with Dynamic_Predicate => Even mod 2 = 0;
       J, K : Even;
    begin
@@ -430,32 +430,32 @@ References Are Not Checked
      Put_Line ("K is" & Integer'Image (K));
      Put_Line ("J is" & Integer'Image (j));
    end Test;
-   
+
 .. code:: console
 
    K is 1969492223
    J is 4220029
    raised SYSTEM.ASSERTIONS.ASSERT_FAILURE :
       Dynamic_Predicate failed at test.adb:9
- 
+
 ----------------------------------------
 Predicate Checking In Ada versus SPARK
 ----------------------------------------
 
 * :toolname:`GNATprove` verifies predicates are always satisfied
 * In Ada, not every situation is checked
-    
+
 .. code:: Ada
-    
+
    procedure Demo is
       type Table is array (1 .. 5)
           of Integer with Dynamic_Predicate =>
              (for all K in Table'Range =>
-               (K = Table'First or else 
+               (K = Table'First or else
                 Table(K-1) <= Table(K)));
       Values : Table := (1,3,5,7,9);
    begin
-      ...   
+      ...
       Values (3) := 0;
       ...
       Values := (1, 3, 0, 7, 9);
@@ -478,20 +478,20 @@ Beware Recursion In Predicates
    .. code:: Ada
 
       type Table is array (1 .. N) of Integer
-         with Dynamic_Predicate => Sorted (Table); 
+         with Dynamic_Predicate => Sorted (Table);
       function Sorted (T : Table) return Boolean is
          (for all K in T'Range =>
             (K = T'First or else T(K-1) <= T(K)));
- 
+
 * Not recursive
 
    .. code:: Ada
 
       type Table is array (1 .. N) of Integer
-         with Dynamic_Predicate => 
+         with Dynamic_Predicate =>
             (for all K in Table'Range =>
                (K = Table'First or else Table(K-1) <= Table(K)));
- 
+
 ----------------------------------------
 "Safe" Functions In Subtype Predicates
 ----------------------------------------
@@ -499,30 +499,30 @@ Beware Recursion In Predicates
 .. container:: columns
 
  .. container:: column
-  
+
     * Those that will not recurse...
     * No formal parameter of the type with the predicate being checked
 
  .. container:: column
-  
+
     .. code:: Ada
-    
+
        type Foo is
           record
              A : Integer;
              B : Float;
           end record
-          with Dynamic_Predicate => 
+          with Dynamic_Predicate =>
              Bar (Foo.A) and
              Baz (Foo.B);
-       function Bar (This : Integer) 
+       function Bar (This : Integer)
           return Boolean is (...);
-       function Baz (This : Float) 
+       function Baz (This : Float)
           return Boolean is (...);
 
 .. container:: speakernote
 
-   Do not use type foo for dynamic predicate functions 
+   Do not use type foo for dynamic predicate functions
 
 =================
 Type Invariants
@@ -544,7 +544,7 @@ Type Invariants
 
       -- Guaranteed, absent unchecked conversion
       Workday : Weekdays := Mon;
- 
+
 * Type invariants apply across entire lifetime for complex abstract data types
 * Part of ADT concept, hence only for private types
 
@@ -555,7 +555,7 @@ Type Invariant Verifications
 .. container:: columns
 
  .. container:: column
-  
+
     * Automatically inserted by compiler
     * Evaluated as a postcondition of any operation that creates, evaluates or returns a value of the type
 
@@ -565,13 +565,13 @@ Type Invariant Verifications
 
     * Not evaluated on internal state changes
 
-       - Internal routine calls 
+       - Internal routine calls
 
        - Internal assignments
        - Remember these are abstract data types
 
  .. container:: column
-  
+
     .. image:: ../../images/black_box_flow.png
        :width: 100%
 
@@ -593,7 +593,7 @@ Example Type Invariant
 
    package Bank is
      type Account is private with
-       Type_Invariant => Consistent_Balance (Account);   
+       Type_Invariant => Consistent_Balance (Account);
      type Currency is delta 0.01 digits 12;
      ...
      -- Called automatically for all Account objects
@@ -603,7 +603,7 @@ Example Type Invariant
    private
      ...
    end Bank;
- 
+
 -------------------------------------------
 Example Type Invariant Realization (Spec)
 -------------------------------------------
@@ -612,7 +612,7 @@ Example Type Invariant Realization (Spec)
 
    package Bank is
      type Account is private with
-       Type_Invariant => Consistent_Balance (Account);   
+       Type_Invariant => Consistent_Balance (Account);
      type Currency is delta 0.01 digits 12;
      ...
      function Consistent_Balance (This : Account) return Boolean;
@@ -627,7 +627,7 @@ Example Type Invariant Realization (Spec)
      end record;
      function Total (This : Transactions_List) return Currency;
    end Bank;
- 
+
 -------------------------------------------
 Example Type Invariant Realization (Body)
 -------------------------------------------
@@ -650,7 +650,7 @@ Example Type Invariant Realization (Body)
               This.Current_Balance;
      end Consistent_Balance;
    end Bank;
- 
+
 -----------------------------------
 Invariants Don't Apply Internally
 -----------------------------------
@@ -670,8 +670,8 @@ Invariants Don't Apply Internally
      This.Owner := To_Unbounded_String (Name);
      This.Current_Balance := Initial_Deposit;
      -- invariant would be false here!
-     This.Withdrawals := Transactions.Empty_List; 
-     This.Deposits := Transactions.Empty_List; 
+     This.Withdrawals := Transactions.Empty_List;
+     This.Deposits := Transactions.Empty_List;
      This.Deposits.Append (Initial_Deposit);
      -- invariant is now true
    end Open;
@@ -690,10 +690,10 @@ Default Type Initialization for Invariants
      procedure Op (This : in out T);
      function Zero (This : T) return Boolean;
    private
-     type T is new Integer with Default_Value => 0; 
+     type T is new Integer with Default_Value => 0;
      function Zero (This : T) return Boolean is (This = 0);
    end P;
- 
+
 ---------------------------------
 Type Invariant Clause Placement
 ---------------------------------
@@ -710,7 +710,7 @@ Type Invariant Clause Placement
           Type_Invariant => T = 0,
           Default_Value => 0;
       end P;
- 
+
 * It is really an implementation aspect
 
 ------------------------------
