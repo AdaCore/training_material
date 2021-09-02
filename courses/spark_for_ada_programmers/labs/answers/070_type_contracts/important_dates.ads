@@ -60,18 +60,19 @@ private
      (L, R : Event_T)
       return Boolean;
 
+   subtype Count_T is Integer range 0 .. 1_000;
    subtype Index_T is Integer range 1 .. 1_000;
    type Event_List_T is array (Index_T) of Event_T;
    function Is_Sorted
      (List : Event_List_T;
-      Used : Integer)
+      Used : Count_T)
       return Boolean is
      (for all K in List'First .. List'First + Used - 1 =>
         K = List'First or else List (K) >= List (K - 1));
 
    type Calendar_T is record
       List   : Event_List_T;
-      In_Use : Integer := 0;
+      In_Use : Count_T := 0;
    end record with
       Type_Invariant => Is_Sorted (Calendar_T.List, Calendar_T.In_Use);
 

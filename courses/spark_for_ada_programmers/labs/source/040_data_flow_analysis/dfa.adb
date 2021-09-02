@@ -6,9 +6,8 @@ is
    is
       Tmp : Integer;
    begin
-      -- The most basic form of DFA bug - Tmp is definitely
-      -- not initialized. We call this an Unconditional
-      -- Data Flow Error
+      -- The most basic form of DFA bug - Tmp is definitely not initialized. We
+      -- call this an Unconditional Data Flow Error
       return X + Tmp;
    end F1;
 
@@ -25,11 +24,10 @@ is
 	    Tmp := 1;
       end case;
       
-      -- Slightly more subtle - Tmp _might_ not be
-      -- initialized, depending on the initial value of X.
-      -- We call this a Conditional Data Flow Error.
-      -- Note that the error message issued here is different
-      -- from that issued in F1 above.
+      -- Slightly more subtle - Tmp _might_ not be initialized, depending on
+      -- the initial value of X. We call this a Conditional Data Flow Error.
+      -- Note that the error message issued here is different from that issued
+      -- in F1 above.
       return X + Tmp;
    end F2;
    
