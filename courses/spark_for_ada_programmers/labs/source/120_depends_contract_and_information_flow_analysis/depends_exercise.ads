@@ -10,7 +10,7 @@ package Depends_Exercise is
    procedure Initialize;
       
    -- Add suitable Global and Depends contracts
-      procedure Push (X : in Integer);
+   procedure Push (X : in Integer);
    
    -- Add suitable Global and Depends contracts
    -- Why might it be useful to put a Depends contract on a function?

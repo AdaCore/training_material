@@ -53,7 +53,7 @@ Run-Time Exception Freedom Proof (cont)
 
    + There is an implicit precondition, what is it?
    + Square of longest side is in the range of `Natural`
-   + Sum of the squares of the other two sides is in the range of` Natural`
+   + Sum of the squares of the other two sides is in the range of `Natural`
 
 * Rebuild and re-run.
 

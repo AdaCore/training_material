@@ -11,8 +11,8 @@ is
        Pre     => X /= Y and
                   Y /= Z and
                   X /= Z,
-       Post    => A = A'Old'Update (X => A'Old(Y),
-                                    Y => A'Old(Z),
-                                    Z => A'Old(X));
+       Post    => A = (A'Old with delta X => A'Old(Y),
+                                        Y => A'Old(Z),
+                                        Z => A'Old(X));
 
 end Array_Swapping;
