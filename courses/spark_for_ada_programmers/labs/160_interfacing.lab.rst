@@ -2,7 +2,7 @@
 Interfacing Lab
 -----------------
 
-- Find the :filename:`150_interfacing` sub-directory in :filename:`source`
+- Find the :filename:`160_interfacing` sub-directory in :filename:`source`
 
    + You can copy it locally, or work with it in-place
 

@@ -11,20 +11,15 @@ is
    --  (Note that the function could have been implemented as a simple
    --  expression function.)
 
-   function valid_length ( side : natural ) return boolean is
- --     ( side > 0 and then side <= natural'last / side );
-      ( side > 0 and then side <= natural'last / side );
-
    function Is_Right_Angle_Triangle (Long_Side : Natural;
                                      Side_2    : Natural;
                                      Side_3    : Natural) return Boolean
      with
---       with pre => ( valid_length ( long_side ) and then
---       valid_length ( side_2 ) and then
---       valid_length ( side_3 ) ),
+       Pre  => Long_Side * Long_Side in Natural
+         and then (Side_2 * Side_2) + (Side_3 * Side_3) in Natural,
        Post => (if Long_Side * Long_Side =
                      (Side_2 * Side_2) + (Side_3 * Side_3)
-                   then Is_Right_Angle_Triangle'Result = True)
+                then Is_Right_Angle_Triangle'Result = True)
    is
    begin
       -- Note that this function has multiple return statements. In SPARK 2005

@@ -6,22 +6,22 @@ package body Crypto with
    Refined_State => (key_store => null)
 is
 
-   --------------
-   -- load_key --
-   --------------
+   -------------
+   -- loadkey --
+   -------------
 
-   procedure load_key
-     (keyslot : in Key_Slot; the_key : in Key; result : out Boolean) with
-      SPARK_Mode => off
+   procedure loadkey
+     (keyslot : in Key_Slot; the_key : in Key; result : out Boolean)
    is
       function c_loadkey
         (keyslot : Key_Slot; the_key : Key) return Interfaces.C.int with
          Import,
          Convention    => c,
-         External_Name => "loadkey";
+         External_Name => "loadkey",
+         Global        => null;
    begin
       result := c_loadkey (keyslot, the_key) = 0;
-   end load_key;
+   end loadkey;
 
    -------------
    -- encrypt --
@@ -32,8 +32,7 @@ is
       SPARK_Mode => off
    is
       function c_encrypt
-        (keyslot : Key_Slot; the_data : in out Data) return Interfaces.C
-        .int with
+        (keyslot : Key_Slot; the_data : in out Data) return Interfaces.C.int with
          Import,
          Convention    => c,
          External_Name => "encrypt";

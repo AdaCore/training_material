@@ -192,7 +192,7 @@ Interpreting :toolname:`GNATprove` Messages
    - Example 2: returning an OUT parameter with a component uninitialized gets a *medium* rank if this occurs on all paths, and a *low* rank if this occurs only on some path.
 
 --------------------------
-Some Notes about Ranking
+Some Notes About Ranking
 --------------------------
 
 * Ranking helps the user to direct and prioritize review effort
@@ -228,7 +228,7 @@ Warning Control - Compiler Warnings
 Warning Control - SPARK Warnings
 ----------------------------------
 
-* SPARK warnings are controlled with switch warnings:
+* SPARK warnings are controlled with switch :command:`--warnings`:
 
    - :command:`--warnings=off` suppresses all warnings
    - :command:`--warnings=error` treats warnings as errors

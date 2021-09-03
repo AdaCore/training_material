@@ -46,8 +46,8 @@ SPARK Mode
 
       .. code:: Ada
 
-         pragma SPARK_Mode (On); -- equivalent to SPARK_Mode => On
-         pragma SPARK_Mode (Off); -- equivalent to SPARK_Mode => Off
+         pragma SPARK_Mode (On); -- same as SPARK_Mode => On
+         pragma SPARK_Mode (Off); -- same as SPARK_Mode => Off
 
 --------------------------
 `SPARK_Mode` Not Present
@@ -61,8 +61,7 @@ SPARK Mode
       .. code:: Ada
 
          package No_SPARK_Mode is
-           type T is range 0.. 100;
-           type Access_T is access T; -- Not allowed in SPARK
+           type T is range 0.. 100; -- Allowed in SPARK
          end No_SPARK_Mode;
 
    - This unit's declarations can be denoted in SPARK code provided they are SPARK compatible, but use declarations of subprograms with caution - they may have globals which are not apparent
@@ -87,8 +86,7 @@ SPARK Mode
       .. code:: Ada
 
          package SPARK_Mode_Off with SPARK_Mode => Off is
-         type T is range 0.. 100;
-         type Access_T is access T;
+            type T is range 0.. 100;
          end SPARK_Mode_Off;
 
    - If we try to use this unit we get errors
@@ -132,10 +130,10 @@ What Can It Apply To?
 
    - A unit specification (declaration)
    - A unit body
-   - A private part of a package (`pragma SPARK_Mode` must used here)
-   - The sequence of statements of a package body (`pragma SPARK_Mode` must used here)
+   - A private part of a package (using `pragma SPARK_Mode`)
+   - The sequence of statements of a package body (using `pragma SPARK_Mode`)
 
-* `SPARK_Mode` is a also a configuration pragma
+* `SPARK_Mode` is also a configuration pragma
 
    - This means it can be placed in a configuration file and apply to all compilation units
 
@@ -143,7 +141,8 @@ What Can It Apply To?
 Where Can It Be Placed?
 -------------------------
 
-* `SPARK_Mode` can only be placed at library-level
+* `SPARK_Mode => On` can only be placed at library level
+* `SPARK_Mode => Off` can also be used for local subprograms/packages
 * If `pragma SPARK_Mode` is used rather than aspect for a unit
 
    - It is placed before any context clause, or,
@@ -188,7 +187,7 @@ Summary
 
 * Our entire project cannot be SPARK
 
-   + At least not yet!
+   + At least not always!
    + Interactions with the outside world can't always conform to the necessary requirements
 
 * How do we use SPARK as much as possible?

@@ -13,11 +13,10 @@ package Depends_Exercise is
    Depends => (stack_pointer=>null, stack=>null);
       
    -- Add suitable Global and Depends contracts
-      procedure Push (X : in Integer) with
+   procedure Push (X : in Integer) with
      Global => ( input => null,
-                 in_out => stack_pointer,
-                 output => stack),  
-     Depends => (stack_pointer=>stack_pointer, stack=>(stack_pointer,x));
+                 in_out => (stack_pointer, stack)),  
+     Depends => (stack_pointer=>stack_pointer, stack=>+(stack_pointer,x));
    
    -- Add suitable Global and Depends contracts
    -- Why might it be useful to put a Depends contract on a function?

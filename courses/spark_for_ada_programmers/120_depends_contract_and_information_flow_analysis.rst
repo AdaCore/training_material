@@ -371,7 +371,7 @@ Flow Analysis Contract Computation
    - Global variable may have mode `In_Out` instead of `Output`
    - `Depends` contracts always assume that all outputs depend on all inputs.
 
-* Use :command:`--no-global-generation` for modular behavior
+* Use :command:`--no-global-generation` for fully modular behavior
 
 ---------------------------------
 Nature of Synthesized Contracts
@@ -391,7 +391,7 @@ Nature of Synthesized Contracts
 How Flow Contracts Are Synthesized
 -------------------------------------
 
-* For each contract, synthesis takes the existence of the other into account, if present
+* For each of `Global` and `Depends` contracts, synthesis takes the existence of the other into account, if present
 
   * The body content is also taken into account
 
@@ -413,7 +413,7 @@ How Flow Contracts Are Synthesized
   * No flow contracts, body does not exist
 
     - Synthesize a `Global` contract indicating no objects referenced
-    - Syntehsize a `Depends` contract indicating each output depends on all inputs
+    - Synthesize a `Depends` contract indicating each output depends on all inputs
 
 --------------------------------------
 When Only Global Contracts Specified
@@ -612,12 +612,12 @@ Summary
 
 * Global contracts
 
-   - Forces coder to specify global data interaction
+   - Forces programmer to specify global data interaction
 
 * Depends contracts
 
-   - Forces coder to specify data flow
+   - Forces programmer to specify data flow
 
-* Without these contracts, flow analysis can still be calculated
+* Without these contracts, flow analysis can still be performed
 
    - But it will be based on code as *written* as opposed to *requirements*

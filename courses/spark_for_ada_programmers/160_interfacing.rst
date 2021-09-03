@@ -64,8 +64,8 @@ Monitored and Controlled Variable Examples
 
          procedure Monitored_And_Controlled_Issues with
             SPARK_Mode,
-            Global => (Input => Monitored_Var,
-            Output => Controlled_Var)
+            Global => (Input  => Monitored_Var,
+                       Output => Controlled_Var)
          is
          begin
             -- Assertion may fail because successive reads of a

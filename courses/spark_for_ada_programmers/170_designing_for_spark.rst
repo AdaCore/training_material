@@ -26,7 +26,7 @@ Architecture
 ==============
 
 ----------------------------
-Choice Of Architecture
+Choice of Architecture
 ----------------------------
 
 * The choice of architecture is vitally important in determining the following properties of a program:
@@ -38,7 +38,7 @@ Choice Of Architecture
    - Stability
 
 ----------------------------
-Importance Of Architecture
+Importance of Architecture
 ----------------------------
 
 * Of particular importance are
@@ -458,7 +458,7 @@ Moving State Outside SPARK Boundary
    with System.Storage_Elements;
    package body Test_Points with
      SPARK_Mode,
-     Refined_State =>  (The_Point => Test_Point)
+     Refined_State => (The_Point => Test_Point)
    is
       Test_Point : Long_Integer with
         Volatile,
@@ -477,7 +477,7 @@ Moving State Outside SPARK Boundary
 
 .. code:: Ada
 
-   procedure To_Test_Point (Val : Long_Integer) with
+      procedure To_Test_Point (Val : Long_Integer) with
         Global => (Output => Test_Point)
       is
       begin
@@ -501,12 +501,12 @@ Moving State Outside SPARK Boundary
 
 .. code:: Ada
 
-   procedure Copy (Val : Long_Integer) with
-        SPARK_Mode => On
-    is
-    begin
-       null;
-    end Copy;
+      procedure Copy (Val : Long_Integer) with
+         SPARK_Mode => On
+      is
+      begin
+         null;
+      end Copy;
    end Test_Points;
 
 -----------------

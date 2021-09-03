@@ -2,7 +2,7 @@
 Crossing the SPARK Boundary Lab
 ---------------------------------
 
-- Find the :filename:`140_crossing_the_spark_boundary` sub-directory in :filename:`source`
+- Find the :filename:`150_crossing_the_spark_boundary` sub-directory in :filename:`source`
 
    + You can copy it locally, or work with it in-place
 

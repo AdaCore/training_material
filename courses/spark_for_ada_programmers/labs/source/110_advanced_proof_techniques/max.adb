@@ -1,4 +1,6 @@
-package body Max is
+package body Max
+  with SPARK_Mode
+is
 
    function Arrays_Max (A : in Our_Array) return Index_Range is
       X : Index_Range := Index_Range'First;

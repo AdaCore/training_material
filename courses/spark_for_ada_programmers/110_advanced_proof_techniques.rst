@@ -298,7 +298,7 @@ Loop Invariant
 
          (for all N in Integer => Prop(N) => Prop(N + 1))
 
-* Important: to be useful, the loop invariant needs to be strong enough to prove the post condition *of the loop*
+* Important: to be useful, the loop invariant needs to be strong enough to prove the postcondition *of the loop*
 
 * Loop invariant can be placed anywhere
 
@@ -327,12 +327,12 @@ Loop Invariant
 Loop Proof in :toolname:`GNATprove`
 -------------------------------------
 
-* :toolname:`GNATprove` to prove iterations around the (virtual) loop formed by the following steps:
+* :toolname:`GNATprove` considers iterations around the (virtual) loop formed by the following steps:
 
    - Take any context satisfying the loop invariant, which summarizes all previous iterations of the loop.
-   - Execute the end of a source loop iteration (just the increment here).
+   - Execute the end of a source loop iteration.
    - Test whether the loop exits, and continue with values which do not exit.
-   - Execute the start of a source loop iteration (just the if-statement here).
+   - Execute the start of a source loop iteration.
    - Check that the loop invariant still holds.
 
 .. container:: speakernote
@@ -432,7 +432,7 @@ Loop Invariants - Recipe
 * Always start with the hardest constraint...
 * ... and the easiest check!
 
-   1. Start by inspecting the post condition of the loop
+   1. Start by inspecting the postcondition of the loop
    2. Study the terminating condition of the loop
 
    3. What are the loop variables?
@@ -515,9 +515,9 @@ Summary
 * Ghost Code
 
    - Objects to maintain state information
-   - Subprogram to modularize queries and debugging steps
+   - Subprogram to modularize queries and proof steps
 
 * Loop pragmas
 
-   - Prove loop is valid for all iterations of loop
+   - Prove loop is valid for all iterations
    - Ensure loop terminates

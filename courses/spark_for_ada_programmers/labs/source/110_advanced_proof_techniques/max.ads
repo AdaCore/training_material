@@ -1,4 +1,6 @@
-package Max is
+package Max
+  with SPARK_Mode
+is
 
    Min_Table_Size : constant := 1;
    Max_Table_Size : constant := 100;
