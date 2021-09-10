@@ -13,9 +13,16 @@ Advanced Static Analysis
 What is Static Analysis?
 --------------------------
 
-+ Symbolic interpretation of source code, to find what could go wrong (and right) without executing it
-+ Formally verifying high level or abstract properties on your application, giving strong guarantees
-+ May be exhaustive
++ **Symbolic** interpretation of **source code**
+
+  + Find what could go wrong
+  + No execution
+
++ **Formally** verifying **high level** or **abstract** properties
+
+  + Strong guarantees
+
++ *May* be exhaustive
 
   + All possible errors are reported
   + No false negatives; there may be false positives
@@ -33,20 +40,24 @@ Shifts costs from later, expensive phases to earlier, cheaper phases
 Why Use CodePeer?
 -------------------
 
-+ An efficient, potentially exhaustive code reviewer
++ Efficient, potentially exhaustive code reviewer
 
-  + Identifies constructs that may lead to run-time errors with a level of certainty
+  + Identifies run-time errors with a **level of certainty**
 
     + E.g. buffer overflows, division by zero
 
-  + Flags legal but suspect code, typical of logic errors
+  + Flags legal but **suspect** code
 
-+ Produces a detailed analysis of each subprogram, including preconditions and postconditions
+    + Typically logic errors
 
-  + Compares implicit, deduced specification (what it really does) to explicit specification (what it is supposed to do) and alerts reviewer if they don't match
++ Detailed subprograms analysis
 
-+ Can be used retrospectively on existing code, to detect and remove latent bugs
+  + Including contracts (preconditions, postconditions)
+  + **Deduced implicit** specification checked with **written explicit** specification
 
++ Can analyze existing code bases
+
+  + Detect and remove **latent bugs**
   + Legacy code
   + Code from external sources
 
@@ -60,19 +71,19 @@ CodePeer In A Nutshell (1/2)
 
 + :toolname:`CodePeer` is a static analysis tool
 
-  + It provides feedback prior to execution and test
-  + It provides "as-built" documentation to support source code review
+  + Provides feedback **before** execution and test
+  + Provides *as-built documentation* for code reviews
 
-+ It helps to identify and eliminate vulnerabilities and bugs in the application
++ Helps identifying and eliminating **vulnerabilities and bugs** early
++ Modular
 
-  + And it does it early in the lifecycle
+  + Analyze entire project or a single file
+  + Configurable as more or less strict
 
-+ It is modular and scalable
++ Scalable
 
-  + Can be used on an entire project or a single file
-  + Can be configured to be more or less strict, from very picky to laid back
-  + Can be adapted to filter out or emphasize certain issues
-  + Can concentrate on differences between baselines / versions
+  + Can filter out or emphasize certain issues
+  + Can analyze the difference between baselines / versions
 
 ------------------------------
 CodePeer In A Nutshell (2/2)
@@ -81,17 +92,18 @@ CodePeer In A Nutshell (2/2)
 + Large Ada support
 
   + Usable with Ada 83, 95, 2005, 2012
-  + Usable with other compilers, including Apex, GHS, ObjectAda, VADS
+  + No vendor lock-in, supports GNAT, Apex, GHS, ObjectAda, VADS
 
-+ It comes bundled with a Coding Standards Checker and a Metrics Tool
++ Bundled with a Coding Standards Checker and a Metrics Tool
 
-  + :toolname:`GNATCheck` and :toolname:`GNATMetric`
+  + :toolname:`GNATcheck` and :toolname:`GNAT Metric`
 
-+ Detects runtime and logic errors
++ Detects runtime and logic errors exhaustively
 
-  + Checks (exhaustive): Initialization errors, run-time errors and assertion failures (16)
-  + Warnings: dead code and suspicious code (17)
-  + Race condition errors (exhaustive): unprotected access to global variables (3)
+  + Initialization errors, run-time errors and assertion failures (16 rules)
+  + Race condition errors: unprotected access to globals (3 rules)
+
++ Warns on dead or suspicious code (17 rules)
 
 ----------------------
 CodePeer Integration
@@ -101,58 +113,74 @@ CodePeer Integration
 + Command-line tool (uses GNAT project files)
 + Interactive use in :toolname:`GNAT Studio` and :toolname:`GNATbench` IDEs
 + Integration with Jenkins (continuous builder)
-+ Integration with SonarQube (code quality visualization)
++ Integration with SonarQube (continuous inspection of code quality)
 
 -----------------------------
 Typical Users And Use Cases
 -----------------------------
 
-Developers
-   While writing the code, so as to minimize introduction of (local) problems prior to integration of their work
++ Developers, during code-writing
 
-Reviewers
-   To annotate code with analysis of potential problems, including analysis of specific CWE issues
+  + **Fix** (local) problems before integration
 
-Project managers and quality engineers
-   Who can track reported vulnerabilities day after day, and identify quickly newly introduced problems
++ Reviewers
 
-Software auditors
-   Who can run a one-shot analysis to identify overall vulnerabilities, hot spots, or issues with compliance to quality standards
+  + **Annotate** code with analysis of potential problems
+  + **Analyse** specific CWE issues
+
++ Project managers and quality engineers
+
+  + **Track** reported vulnerabilities regularly
+  + **Identify** new issues quickly
+
++ Software auditors
+
+  + **Identify** overall vulnerabilities or hot spots
+  + **Verify** compliance to quality standards
 
 =================
 Getting Started
 =================
 
---------------------------------------
-Running CodePeer on the Command Line
---------------------------------------
+------------------------------
+Command Line Interface (1/2)
+------------------------------
 
 :command:`codepeer -P <project> [-level <level>] [-output-msg[-only]] [-html[-only]]`
 
--P ``<project-file>``
-   Specify the project file name.
-   All files from the specified project tree (projects and subprojects) will be analyzed.
+**-P <gpr project-file>**
+   NB: All files from the project (including subprojects) will be analyzed.
 
--level ``0|1|2|3|4|min|max``
-   Specify the level of analysis performed: 0 for fast and light checkers,
-   1 for fast and per subprogram analysis, 2 for slightly more
-   accurate/slower (per small set of units), 3 for more accurate and much
-   slower, and 4 for global analysis with no automatic partitioning (may
-   exceed memory capacity and take a very long time).
-   Default is level 0; min is equivalent to 0; max is equivalent to 4.
+**-level 0|1|2|3|4|min|max**
+   Specify the level of analysis performed:
 
--output-msg[-only] [-output-msg switches]
+  + 0, min (default): fast and light checkers
+  + 1: fast and per subprogram analysis
+  + 2: more accurate/slower, automatic partitioning per set of units
+  + 3: more accurate and much slower
+  + 4, max: global analysis, no automatic partitioning
+
+  Warning: Level 4 may exceed memory capacity and take a very long time
+
+------------------------------
+Command Line Interface (2/2)
+------------------------------
+
+:command:`codepeer -P <project> [-level <level>] [-output-msg[-only]] [-html[-only]]`
+
+**-output-msg[-only] [-output-msg switches]**
    If specified, :toolname:`CodePeer` will output its results, in various formats.
-   If -output-msg is given, :toolname:`CodePeer` will perform a new analysis, and output
-   its results. Conversely, if -output-msg-only is specified, no new
+   If ``-output-msg`` is given, :toolname:`CodePeer` will perform a new analysis, and output
+   its results. Conversely, if ``-output-msg-only`` is specified, no new
    analysis is performed, and the results from the previous run (of the same
-   level) will be emitted. You can control this output by adding switches
-   (e.g. "-output-msg -csv -out report.csv" to generate a CSV file). See
-   the following section for all relevant switches.
+   level) will be emitted.
 
+   You can control this output by adding switches.
 
--html, -html-only
-   Generate HTML output. If -html-only, do not run any analysis.
+   e.g. ``-output-msg -csv -out report.csv`` to generate a CSV file
+
+**-html, -html-only**
+   Generate HTML output. If ``-html-only``, do not run any analysis.
 
 ---------------------------------
 Running CodePeer in GNAT Studio
@@ -167,9 +195,7 @@ Project File Set Up
 Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 
    * `Link: Basic Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#basic-project-file-setup>`_
-
    * `Link: Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#project-file-setup>`_
-
    * `Link: Advanced Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#advanced-project-file-setup>`_
 
 -------------------
@@ -254,7 +280,7 @@ CodePeer Levels
 
       * -
 
-        -  May require large amounts of memory and time
+        - May require large amounts of memory and time
 
 --------------------------
 CodePeer Levels Use Case
@@ -363,7 +389,7 @@ Run-Time Checks
 Run-Time Check Messages
 ---------------------------
 
-array index check	
+array index check
    Index value could be outside the array bounds. This is also known as buffer overflow.
 
 divide by zero
@@ -412,7 +438,7 @@ Index value could be outside the array bounds. This is also known as buffer over
       for I in X'Range loop
          X (I) := I + 1;
       end loop;
-   
+
       for I in X'Range loop
          Y (X (I)) := I;  -- Bad when I = 2, since X (I) = 3
       end loop;
@@ -482,12 +508,12 @@ A calculation may generate a value outside the bounds of an Ada type or subtype 
    procedure Out_Of_Range is
       subtype Constrained_Integer is Integer range 1 .. 2;
       A : Integer;
-   
+
       procedure Proc_1 (I : in Constrained_Integer) is
       begin
          A := I + 1;
       end Proc_1;
-   
+
    begin
       A := 0;
       Proc_1 (I => A);  --  A is out-of-range of parameter I
@@ -509,7 +535,7 @@ A calculation may overflow the bounds of a numeric type and wrap around. The lik
 
    with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
    with Ada.Text_IO;         use Ada.Text_IO;
-   
+
    procedure Overflow is
       Attempt_Count : Integer := Integer'Last;
       --  Gets reset to zero before attempting password read
@@ -524,7 +550,7 @@ A calculation may overflow the bounds of a numeric type and wrap around. The lik
             exit;
          else
             Attempt_Count := Attempt_Count + 1;
-   
+
             if Attempt_Count > 3 then
                Put_Line ("max password count reached");
                raise Program_Error;
@@ -551,7 +577,7 @@ A parameter that can be passed by reference is aliased with another parameter or
    procedure Alias is
       type Int_Array is array (1 .. 10) of Integer;
       A, B : Int_Array := (others => 1);
-   
+
       procedure In_Out (A : Int_Array; B : Int_Array; C : out Int_Array) is
       begin
          --  Read A multiple times, and write C multiple times:
@@ -559,7 +585,7 @@ A parameter that can be passed by reference is aliased with another parameter or
          C (1) := A (1) + B (1);
          C (1) := A (1) + B (1);
       end In_Out;
-   
+
    begin
       --  We pass A as both an 'in' and 'out' parameter: danger!
       In_Out (A, B, A);
@@ -581,20 +607,20 @@ A tag check (incorrect tag value on a tagged object) may fail
 
    procedure Tag is
       type T1 is tagged null record;
-   
+
       package Pkg is
          type T2 is new T1 with null record;
          procedure Op (X : T2) is null;
       end Pkg;
       use Pkg;
-   
+
       type T3 is new T2 with null record;
-   
+
       procedure Call (X1 : T1'Class) is
       begin
          Op (T2'Class (X1));
       end Call;
-   
+
       X1 : T1;
       X2 : T2;
       X3 : T3;
@@ -619,7 +645,7 @@ A field for the wrong variant/discriminant is accessed
    :number-lines: 1
 
    procedure Discr is
-   
+
       subtype Length is Natural range 0 .. 10;
       type T (B : Boolean := True; L : Length := 1) is record
          I : Integer;
@@ -631,14 +657,14 @@ A field for the wrong variant/discriminant is accessed
                F : Float := 5.0;
          end case;
       end record;
-   
+
       X : T (B => True, L => 3);
-   
+
       function Create (L : Length; I : Integer; F : Float) return T is
       begin
          return (False, L, I, F);
       end Create;
-   
+
    begin
       X := Create (3, 2, 6.0);  -- discriminant check failure
    end Discr;
@@ -723,12 +749,12 @@ A user assertion (using e.g. :ada:`pragma Assert`) could fail
    :number-lines: 1
 
    procedure Assert is
-   
+
       function And_Or (A, B : Boolean) return Boolean is
       begin
          return False;
       end And_Or;
-   
+
    begin
       pragma Assert (And_Or (True, True));
    end Assert;
@@ -749,7 +775,7 @@ An exception could be raised depending on the outcome of a conditional test in u
 
    with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
    with Ada.Text_IO;         use Ada.Text_IO;
-   
+
    procedure Overflow is
       Attempt_Count : Integer := Integer'Last;
       --  Gets reset to zero before attempting password read
@@ -764,7 +790,7 @@ An exception could be raised depending on the outcome of a conditional test in u
             exit;
          else
             Attempt_Count := Attempt_Count + 1;
-   
+
             if Attempt_Count > 3 then
                Put_Line ("max password count reached");
                raise Program_Error;
@@ -811,7 +837,7 @@ A call might violate a subprogram's specified precondition. This specification m
       function "**" (Left, Right : Float) return Float with
          Import,
          Pre => Left /= 0.0;
-   
+
       A : Float := 1.0;
    begin
       A := (A - 1.0)**2.0;
@@ -832,22 +858,22 @@ The subprogram's body may violate its specified postcondition. This specificatio
    :number-lines: 1
 
    procedure Post is
-   
+
       type States is (Normal_Condition, Under_Stress, Bad_Vibration);
       State : States;
-   
+
       function Stress_Is_Minimal return Boolean is (State = Normal_Condition);
       function Stress_Is_Maximal return Boolean is (State = Bad_Vibration);
-   
+
       procedure Decrement with
          Pre  => not Stress_Is_Minimal,
          Post => not Stress_Is_Maximal;
-   
+
       procedure Decrement is
       begin
          State := States'Val (States'Pos (State) + 1);
       end Decrement;
-   
+
    begin
       Decrement;
    end Post;
@@ -895,7 +921,7 @@ Warning Messages (1/2)
 ------------------------
 
 dead code
-   Also called *unreachable code*. Indicates logical errors as the programmer assumed the unreachable code could be executed 
+   Also called *unreachable code*. Indicates logical errors as the programmer assumed the unreachable code could be executed
 
 test always false
    Indicates redundant conditionals, which could flag logical errors where the test always evaluates to false
@@ -952,7 +978,7 @@ subp always fails
 -----------
 Dead Code
 -----------
-Also called *unreachable code*. Indicates logical errors as the programmer assumed the unreachable code could be executed 
+Also called *unreachable code*. Indicates logical errors as the programmer assumed the unreachable code could be executed
 
 ..
    codepeer example (4.1.4 - dead code)
@@ -1064,7 +1090,7 @@ Indicates redundant condition inside a conditional, like the left or right opera
 
    procedure Condition is
       type L is (A, B, C);
-   
+
       procedure Or_Else (V : L) is
       begin
          if V /= A or else V /= B then
@@ -1096,7 +1122,7 @@ Indicates loops that either run forever or fail to terminate normally
    begin
       Buf (4) := 'a';   -- Eliminates null terminator
       Bp      := Buf'First;
-   
+
       while True loop
          Bp := Bp + 1;
          exit when Buf(Bp-1) = ASCII.NUL; -- Condition never reached
@@ -1260,17 +1286,17 @@ Inputs mention a value reachable through an out-parameter of the suprogram befor
       type T is record
          I : Integer;
       end record;
-   
+
       procedure Take_In_Out (R : in out T) is
       begin
          R.I := R.I + 1;
       end Take_In_Out;
-   
+
       procedure Take_Out (R : out T; B : Boolean) is
       begin
          Take_In_Out (R);  -- R is 'out' but used as 'in out'
       end Take_Out;
-   
+
    begin
       null;
    end In_Out;
@@ -1326,7 +1352,7 @@ An operation computes a constant value from non-constant operands. This is chara
 
    procedure Constant_Op is
       type T is new Natural range 0 .. 14;
-   
+
       function Incorrect (X : T) return T is
       begin
          return X / (T'Last + 1);
@@ -1431,7 +1457,7 @@ Race Condition Examples
          end if;
          Release;
       end Increment;
-   
+
       procedure Decrement is
       begin
          if Counter = Natural'First then  --  reading Counter without any lock
@@ -1440,7 +1466,7 @@ Race Condition Examples
             Counter := Counter - 1;       --  reading and writing without any lock
          end if;
       end Decrement;
-   
+
    end Race;
 
 | ``race.adb:24:10: medium warning: mismatched protected access of shared object Counter via race.increment``
@@ -1892,11 +1918,11 @@ Justifying CodePeer messages (1/2)
 .. code:: Ada
 
    ...
-   return (X + Y) / (X - Y); 
-   pragma Annotate (CodePeer, 
-                    False_Positive, 
-                    "Divide By Zero", 
-                    "reviewed by John Smith"); 
+   return (X + Y) / (X - Y);
+   pragma Annotate (CodePeer,
+                    False_Positive,
+                    "Divide By Zero",
+                    "reviewed by John Smith");
 
 ----------------------------------------
 Justifying CodePeer messages (2/2)
@@ -1961,7 +1987,7 @@ Project Specialization For CodePeer
    package Builder is
       case Build is
          when "CodePeer" =>
-            for Global_Compilation_Switches ("Ada") use 
+            for Global_Compilation_Switches ("Ada") use
             ("-gnatI",
              -- ignore representation clauses confusing analysis
              "-gnateT=" & My_Project'Project_Dir & "/target.atp",
