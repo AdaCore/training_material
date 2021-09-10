@@ -111,7 +111,7 @@ Adding a Utilization Function
       - But must be declared in the body
 
 + Add a new global object to maintain the maximum utilization
-+ Compiling your code generates an error!
++ Analyzing your code generates an error!
 
    .. code:: console
 
