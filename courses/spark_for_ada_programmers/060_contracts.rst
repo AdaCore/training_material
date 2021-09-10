@@ -583,7 +583,7 @@ Functions With Side-Effects
 * What is the correct global contract here?
 
 --------------------------------------
-Aliasing Revisited - Input of Global
+Aliasing Revisited - Output of Global
 --------------------------------------
 
 * This declaration is OK
@@ -608,7 +608,7 @@ Aliasing Revisited - Input of Global
    Recall aliasing is detected for overlapping parameters.
 
 ---------------------------------------
-Aliasing Revisited - Output of Global
+Aliasing Revisited - Input of Global
 ---------------------------------------
 
 * As previous example except this time the formal parameter is the export

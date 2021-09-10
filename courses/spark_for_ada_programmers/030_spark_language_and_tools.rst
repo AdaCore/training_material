@@ -444,7 +444,6 @@ Various Other Differences from Ada
 * Important extensions and restrictions
 
    - E.g., additional aspects not defined by Ada
-   - E.g., record type default initialization must be all or nothing
 
 * SPARK Reference Manual mirrors the Ada RM, showing what, if any, is different per construct
 
