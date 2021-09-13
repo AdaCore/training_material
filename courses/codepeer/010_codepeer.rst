@@ -34,7 +34,7 @@ Why Static Analysis Saves Money
 
 Shifts costs from later, expensive phases to earlier, cheaper phases
 
-.. image:: ../../images/cost_to_fix_bugs.png
+.. image:: cost_to_fix_bugs.png
 
 -------------------
 Why Use CodePeer?
@@ -115,6 +115,15 @@ CodePeer Integration
 + Integration with Jenkins (continuous builder)
 + Integration with SonarQube (continuous inspection of code quality)
 
+-------------------
+Infer Integration
+-------------------
+
++ Infer for Ada on top of main analysis
++ Based on Facebook's Infer engine
++ Adds **lightweight** checks
++ Disable with ``--no-infer`` switch
+
 -----------------------------
 Typical Users And Use Cases
 -----------------------------
@@ -146,12 +155,14 @@ Getting Started
 Command Line Interface (1/2)
 ------------------------------
 
-:command:`codepeer -P <project> [-level <level>] [-output-msg[-only]] [-html[-only]]`
+:command:`codepeer -P <project> [-level <level>]` ...
 
-**-P <gpr project-file>**
+``-P <gpr project-file>``
    NB: All files from the project (including subprojects) will be analyzed.
 
-**-level 0|1|2|3|4|min|max**
+   Tip: if missing a project file, use the ``--simple-project`` switch
+
+``-level 0|1|2|3|4|min|max``
    Specify the level of analysis performed:
 
   + 0, min (default): fast and light checkers
@@ -166,27 +177,31 @@ Command Line Interface (1/2)
 Command Line Interface (2/2)
 ------------------------------
 
-:command:`codepeer -P <project> [-level <level>] [-output-msg[-only]] [-html[-only]]`
+:command:`codepeer` ... :command:`[-output-msg[-only]] [-html[-only]]`
 
-**-output-msg[-only] [-output-msg switches]**
-   If specified, :toolname:`CodePeer` will output its results, in various formats.
-   If ``-output-msg`` is given, :toolname:`CodePeer` will perform a new analysis, and output
-   its results. Conversely, if ``-output-msg-only`` is specified, no new
-   analysis is performed, and the results from the previous run (of the same
-   level) will be emitted.
+``-output-msg[-only] [-output-msg switches]``
+   If specified, :toolname:`CodePeer` will output its results, in various
+   formats.
+
+   If ``-output-msg`` is given, :toolname:`CodePeer` will perform a new
+   analysis, and output its results.
+
+   If ``-output-msg-only`` is specified, no new
+   analysis is performed, and the results from the previous run
+   (of the same level) will be emitted.
 
    You can control this output by adding switches.
 
    e.g. ``-output-msg -csv -out report.csv`` to generate a CSV file
 
-**-html, -html-only**
+``-html, -html-only``
    Generate HTML output. If ``-html-only``, do not run any analysis.
 
 ---------------------------------
 Running CodePeer in GNAT Studio
 ---------------------------------
 
-.. image:: ../../images/codepeer_from_gs.jpg
+.. image:: codepeer_from_gs.jpg
 
 ---------------------
 Project File Set Up
@@ -194,236 +209,289 @@ Project File Set Up
 
 Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 
-   * `Link: Basic Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#basic-project-file-setup>`_
-   * `Link: Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#project-file-setup>`_
-   * `Link: Advanced Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#advanced-project-file-setup>`_
++ `Link: Basic Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#basic-project-file-setup>`_
++ `Link: Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#project-file-setup>`_
++ `Link: Advanced Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#advanced-project-file-setup>`_
 
 -------------------
 CodePeer Tutorial
 -------------------
 
-+ Live Demo
-+ If you want to reproduce on your side:
++ Get a fresh copy of the :toolname:`GNAT Studio` tutorial directory
 
-  + Get a fresh copy of the :toolname:`GNAT Studio` tutorial directory
+  + From :filename:`GNATPRO/xxx/share/examples/gnatstudio/tutorial`
+  + Check it include the :filename:`sdc` project
+  + Copy it as :filename:`sources/codepeer/tutorial/`
 
-    + From :filename:`GNATPRO/xxx/share/examples/gnatstudio/tutorial`
-    + Contains the :filename:`sdc` project
-    + Be sure to do this, the :toolname:`CodePeer` tutorial requires it
++ Open this :filename:`sdc` project copy with :toolname:`GNAT Studio`
++ Open the :toolname:`CodePeer` Tutorial from :toolname:`GNAT Studio`
 
-  + Put this copy in the :filename:`sources/codepeer` directory
+  + :menu:`Help` :math:`\rightarrow` :menu:`CodePeer` :math:`\rightarrow` :menu:`CodePeer Tutorial`
 
-    + Thus :filename:`sources/codepeer/tutorial` as a result
++ Walk through the steps of the :toolname:`CodePeer` tutorial
 
-  + Open :toolname:`GNAT Studio` on this copy of the :filename:`sdc` project file
-  + Open the :toolname:`CodePeer` Tutorial from :toolname:`GNAT Studio`
+---------------------------------------
+CodePeer Levels Depth and Constraints
+---------------------------------------
 
-     + :menu:`Help` :math:`\rightarrow` :menu:`CodePeer` :math:`\rightarrow` :menu:`CodePeer Tutorial`
++ The **higher** the level the **deeper** and **costlier** the analysis
 
-  + Walk through the steps of the :toolname:`CodePeer` tutorial
-
------------------
-CodePeer Levels
------------------
-
-.. container:: latex_environment tiny
+.. container:: latex_environment
 
    .. list-table::
+      :header-rows: 1
 
-      * - *Level 0*
+      * - *Level*
 
-        - Default level
+        - *Description*
+        - *Code size*
+        - *False positives*
 
-      * -
+      * - *0*
 
-        - Light and fast analysis performed via the Libadalang Light Checkers Integration
+        - Infer only (default)
+        - No limits
+        - Lowest
 
-      * -
+      * - *1*
 
-        - Very few false alarms
+        - Subprograms
+        - No limits
+        - Few
 
-      * - *Level 1*
+      * - *2*
 
-        - Run :toolname:`CodePeer`'s core engine subprogram by subprogram
+        - Groups of units
+        - No limits
+        - Some
 
-      * -
+      * - *3*
 
-        - Few false alarms
-
-      * - *Level 2*
-
-        - Analyze by groups of units
-
-      * -
-
-        - Slower analysis, more precise
-
-      * -
-
-        - Few false alarms
-
-      * - *Level 3*
-
-        - Semi-global analysis
+        - Semi-global
+        - < 1 million SLOC
+        - High
 
       * -
 
-        - Automatic partitioning to complete the analysis within the memory constraints of the machine
+        - Automatic partitioning
+        - CC < 40
+        -
 
-      * - *Level 4*
+      * - *4*
 
-        - Global and exhaustive analysis
+        - Global and **exhaustive**
+        - < 200 KSLOC
+        - Highest
 
       * -
 
-        - Analyze all units together with no partitioning and with all potential issues flagged (potentially high false alarms)
+        - Flag all issues
+        - CC < 20
+        -
 
-      * -
-
-        - May require large amounts of memory and time
++ *SLOC* : Source lines of code
++ *CC* : Cyclomatic Complexity
 
 --------------------------
 CodePeer Levels Use Case
 --------------------------
 
-.. container:: latex_environment tiny
++ The levels adapt to various **workflows** and **users**
++ The **lower** the level the **more frequently** it should be run
+
+.. container:: latex_environment
 
    .. list-table::
+      :header-rows: 1
 
-      * - *Level 0*
+      * - *Level*
 
-        - Get initial static analysis results.
+        - *Condition*
+        - *Workflow Step*
+        - *Goal*
 
-      * -
+      * - *0*
 
-        - At each developer's desk or after each commit.
+        - None
+        - Initial static analysis
+        - Quick feedback
 
-      * -
+      * - *1*
 
-        - Can enable *--simple-project* switch to avoid a full setup of your project.
+        - Project set-up
+        - After each commit
+        - Sanity check
 
-      * - *Level 1*
+      * - *2*
 
-        - After setting up the project file.
+        - Level 1 results clean
+        - Integration, CI
+        - Regular check
 
-      * -
+      * - *3*
 
-        - Includes light checkers from level 0.
-
-      * -
-
-        - At each developer's desk or after each commit.
-
-      * - *Level 2*
-
-        - After having clean results at level 1.
-
-      * -
-
-        - More detailed analysis with some level of interprocedural analysis.
-
-      * -
-
-        - At each developer's desk for small to medium code bases (e.g. less than 100K SLOC).
+        - Medium code base
+        - Integration, Nightly
+        - Manual review
 
       * -
 
-        - On servers automatically for larger code bases.
+        - Server run
+        -
+        - Baseline
 
-      * - *Level 3*
+      * - *4*
 
-        - Semi-global analysis, to be used for code bases no larger than 1 million lines of code.
-
-      * -
-
-        - More detailed interprocedural analysis.
-
-      * -
-
-        - Suitable for automatic runs on servers.
-
-      * - *Level 4*
-
-        - Suitable for small to medium code bases (typically less than 200K SLOC).
+        - Small code base
+        - Before production
+        - Exhaustive review
 
       * -
 
-        - Exhaustive analysis (all possible errors are reported).
+        - Server run
+        -
+        -
 
-      * -
-
-        - When systematic review of all potential run-time checks is required.
-
-------------------------------
+--------------------------
 "No False Positive" Mode
-------------------------------
+--------------------------
 
-+ Enabled via :command:`-level 0` or :command:`messages min`
-+ Suppresses output of messages more likely to be false positives
-+ Allows programmers to focus initial work on likely problems
-+ Can be combined with any level of analysis
++ :command:`-level 0` or :command:`-messages min`
++ Suppresses messages most **likely** to be false positives
++ Allows programmers to **focus** initial work on likely problems
++ Can be combined with **any level** of analysis
 + :command:`-messages min` is default for levels 0, 1, and 2
 
---------------------------------
+----------------------------
 Running CodePeer regularly
---------------------------------
+----------------------------
 
-+ Historical database (SQLite) stores all past results per level
-+ Can be stored in CM
-+ Notion of baseline run:
++ Historical database (SQLite) stores all results **per level**
 
-  + Each run compared to some previous baseline run (default: first run)
-  + Differences of messages shown in :toolname:`CodePeer` report window
-  + :command:`-cutoff` to override baseline for a given run
-  + :command:`-baseline` to set the reference baseline for future runs
-  + Typical use: nightly run with :command:`-baseline`, daily development without
+  + Can be stored in Configuration Management
 
-+ Can compare between two runs
-+ Combine :command:`-cutoff` and :command:`-current` switches
++ **Baseline run**
+
+  + **Previous** run each new run is compared to
+  + Differences of **messages** in :toolname:`CodePeer` report
+  + Default: first run
+  + :command:`-baseline` to change it
+
++ Typical use
+
+  + **Nightly** :command:`-baseline` run on servers
+  + **Daily** development compares to baseline
+
++ :command:`-cutoff` overrides it for a **single** run
++ Compare between two arbitrary runs with :command:`-cutoff` and :command:`-current`
+
+---------------------
+Messages Categories
+---------------------
+
++ **Run-Time Checks**
+
+  + Errors that will raise built-in exceptions at runtime
+  + Or fail silently with :command:`-gnatp`
+
++ **User Checks**
+
+  + Errors that will raise user exceptions at runtime
+  + Or fail silently with :command:`-gnatp`
+
++ **Validity Checks**
+
+  + Mishandled object scope and value
+
++ **Warnings**
+
+  + Questionable code that seems to have logic flaws
+  + Hints at logical errors
+
++ **Race Conditions**
+
+  + Code unsafe due to multi-tasking
 
 =================
 Run-Time Checks
 =================
 
----------------------------
+-------------------------
 Run-Time Check Messages
----------------------------
+-------------------------
 
-array index check
-   Index value could be outside the array bounds. This is also known as buffer overflow.
+.. container:: latex_environment
 
-divide by zero
-   The second operand of a divide, mod or rem operation could be zero
+   .. list-table::
+        :header-rows: 1
 
-access check
-   Attempting to dereference a reference that could be null
+        * - *Message*
 
-range check
-   A calculation may generate a value outside the bounds of an Ada type or subtype and generate an invalid value
+          - *Definition*
 
-overflow check
-   A calculation may overflow the bounds of a numeric type and wrap around. The likelihood this will affect operation of the program depends on how narrow is the range of the numeric value
+        * - ``divide by zero``
 
-aliasing check
-   A parameter that can be passed by reference is aliased with another parameter or a global object and a subprogram call might violate the associated precondition by writing to one of the aliased objects and reading the other aliased object, possibly resulting in undesired behavior. Aliasing checks are generally expressed as a requirement that a parameter not be the same as some other parameter, or not match the address of some global object and will be flagged as a precondition check in the caller.
+          - The second operand could be zero
 
-tag check
-   A tag check (incorrect tag value on a tagged object) may fail
+        * -
 
-validity
-    Code may be reading an uninitialized or invalid value
+          - On a division, :ada:`mod` or :ada:`rem` operation
 
-discriminant check
-   A field for the wrong variant/discriminant is accessed
+        * - ``range check``
 
-precondition
-   Subprogram call may violate the subprogram's generated precondition
+          - A discrete could reach a value out of its :ada:`range`
+
+        * - ``overflow check``
+
+          - An operation could overflow its numeric type
+
+        * -
+
+          - NB: Depends on the `'Base` representation
+
+        * - ``array index check``
+
+          - Array index could be out of bounds
+
+        * - ``access check``
+
+          - A :ada:`null` access could be dereferenced
+
+        * - ``aliasing check``
+
+          - A subprogram call could cause an aliasing error
+
+        * -
+
+          - eg. passing a single reference as two parameters
+
+        * - ``tag check``
+
+          - A dynamic :ada:`'Class` or :ada:`'Tag` check could fail
+
+        * - ``validity``
+
+          - An uninitialized or invalid object could be read
+
+        * - ``discriminant check``
+
+          - The wrong variant could be used
+
+        * -
+
+          - eg. copy with the wrong discriminant
+
+        * - ``precondition``
+
+          - A subprogram call could violate its calculated precondition
 
 -------------------
 Array Index Check
 -------------------
 
-Index value could be outside the array bounds. This is also known as buffer overflow.
++ Index value could be outside the array bounds
++ Also known as **buffer overflow**.
++ Will generate a :ada:`Constraint_Error`
 
 ..
    codepeer example (4.1.1 - array index check)
@@ -444,13 +512,14 @@ Index value could be outside the array bounds. This is also known as buffer over
       end loop;
    end Buffer_Overflow;
 
-| ``buffer_overflow.adb:10:7: high: array index check fails here: requires (X (I)) in 0..2``
+| ``high: array index check fails here: requires (X (I)) in 0..2``
 
 -----------------
 Divide By Zero
 -----------------
 
-The second operand of a divide, mod or rem operation could be zero
++ The second operand of a divide, :ada:`mod` or :ada:`rem` operation could be zero
++ Will generate a :ada:`Program_Error`
 
 ..
    codepeer example (4.1.1 - divide by zero)
@@ -468,13 +537,14 @@ The second operand of a divide, mod or rem operation could be zero
       end loop;
    end Div;
 
-| ``div.adb:7:23: high: divide by zero fails here: requires I /= 0``
+| ``high: divide by zero fails here: requires I /= 0``
 
 --------------
 Access Check
 --------------
 
-Attempting to dereference a reference that could be null
++ Attempting to dereference a reference that could be :ada:`null`
++ Will generate an :ada:`Access_Error`
 
 ..
    codepeer example (4.1.1 - access check)
@@ -491,13 +561,14 @@ Attempting to dereference a reference that could be null
       end if;
    end Null_Deref;
 
-| ``null_deref.adb:6:7: high: access check fails here``
+| ``high: access check fails here``
 
 -------------
 Range Check
 -------------
 
-A calculation may generate a value outside the bounds of an Ada type or subtype and generate an invalid value
++ Calculation may generate a value outside the :ada:`range` of an Ada type or subtype
++ Will generate a :ada:`Constraint_Error`
 
 ..
    codepeer example (4.1.1 - range check)
@@ -505,27 +576,26 @@ A calculation may generate a value outside the bounds of an Ada type or subtype 
 .. code:: Ada
    :number-lines: 1
 
-   procedure Out_Of_Range is
-      subtype Constrained_Integer is Integer range 1 .. 2;
-      A : Integer;
+   subtype Constrained_Integer is Integer range 1 .. 2;
+   A : Integer;
 
-      procedure Proc_1 (I : in Constrained_Integer) is
-      begin
-         A := I + 1;
-      end Proc_1;
-
+   procedure Proc_1 (I : in Constrained_Integer) is
    begin
-      A := 0;
-      Proc_1 (I => A);  --  A is out-of-range of parameter I
-   end Out_Of_Range;
+      A := I + 1;
+   end Proc_1;
+   ...
+   A := 0;
+   Proc_1 (I => A);  --  A is out-of-range of parameter I
 
-| ``out_of_range.adb:12:17: high: range check fails here: requires A in 1..2``
+| ``high: range check fails here: requires A in 1..2``
 
 ----------------
 Overflow Check
 ----------------
 
-A calculation may overflow the bounds of a numeric type and wrap around. The likelihood this will affect operation of the program depends on how narrow is the range of the numeric value
++ Calculation may overflow the bounds of a numeric type.
++ Depends on the size of the underlying type (base type)
++ Will generate a :ada:`Constraint_Error`
 
 ..
    codepeer example (4.1.1 - overflow check)
@@ -533,40 +603,29 @@ A calculation may overflow the bounds of a numeric type and wrap around. The lik
 .. code:: Ada
    :number-lines: 1
 
-   with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
-   with Ada.Text_IO;         use Ada.Text_IO;
-
-   procedure Overflow is
+   is
       Attempt_Count : Integer := Integer'Last;
-      --  Gets reset to zero before attempting password read
-      Pw : Natural;
    begin
-      --  Oops forgot to reset Attempt_Count
+      -- Forgot to reset Attempt_Count to 0
       loop
          Put ("Enter password to delete system disk");
-         Get (Pw);
-         if Pw = 42 then
-            Put_Line ("system disk deleted");
-            exit;
+         if Get_Correct_Pw then
+            Allow_Access;
          else
             Attempt_Count := Attempt_Count + 1;
 
-            if Attempt_Count > 3 then
-               Put_Line ("max password count reached");
-               raise Program_Error;
-            end if;
-         end if;
-      end loop;
-   end Overflow;
+| ``high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
+| ``high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
 
-| ``overflow.adb:17:41: high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
-| ``overflow.adb:17:24: high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
-
------------------
+----------------
 Aliasing Check
------------------
+----------------
 
-A parameter that can be passed by reference is aliased with another parameter or a global object and a subprogram call might violate the associated precondition by writing to one of the aliased objects and reading the other aliased object, possibly resulting in undesired behavior. Aliasing checks are generally expressed as a requirement that a parameter not be the same as some other parameter, or not match the address of some global object and will be flagged as a precondition check in the caller.
++ Some parameters could be passed as **reference**
++ For such parameters, **precondition** that they:
+
+  + Are a **different object** from other parameters
+  + Do **not match** the address of a global object
 
 ..
    codepeer example (4.1.1 - aliasing check)
@@ -574,30 +633,22 @@ A parameter that can be passed by reference is aliased with another parameter or
 .. code:: Ada
    :number-lines: 1
 
-   procedure Alias is
-      type Int_Array is array (1 .. 10) of Integer;
-      A, B : Int_Array := (others => 1);
-
-      procedure In_Out (A : Int_Array; B : Int_Array; C : out Int_Array) is
+      procedure In_Out (A : Int_Array; B : out Int_Array) is
       begin
-         --  Read A multiple times, and write C multiple times:
-         --  if A and C alias and are passed by reference, we are in trouble!
-         C (1) := A (1) + B (1);
-         C (1) := A (1) + B (1);
+         B (1) := A (1) + 1;
+         ...
+         B (1) := A (1) + 2;
       end In_Out;
+   ...
+      In_Out (A, A); -- Aliasing!
 
-   begin
-      --  We pass A as both an 'in' and 'out' parameter: danger!
-      In_Out (A, B, A);
-   end Alias;
-
-| ``alias.adb:15:4: high: precondition (aliasing check) failure on call to alias.in_out: requires C /= A``
+| ``high: precondition (aliasing check) failure on call to alias.in_out: requires B /= A``
 
 -----------
 Tag Check
 -----------
 
-A tag check (incorrect tag value on a tagged object) may fail
+A tag check operation on a :ada:`tagged` object might fail
 
 ..
    codepeer example (4.1.1 - tag check)
@@ -605,32 +656,21 @@ A tag check (incorrect tag value on a tagged object) may fail
 .. code:: Ada
    :number-lines: 1
 
-   procedure Tag is
+   is
       type T1 is tagged null record;
-
-      package Pkg is
-         type T2 is new T1 with null record;
-         procedure Op (X : T2) is null;
-      end Pkg;
-      use Pkg;
-
-      type T3 is new T2 with null record;
+      type T2 is new T1 with null record;
 
       procedure Call (X1 : T1'Class) is
       begin
-         Op (T2'Class (X1));
+         An_Operation (T2'Class (X1));
       end Call;
 
       X1 : T1;
       X2 : T2;
-      X3 : T3;
    begin
       Call (X1); -- not OK, Call requires T2'Class
-      Call (X2); -- OK
-      Call (X3); -- OK
-   end Tag;
 
-| ``tag.adb:21:4: high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2, tag.t3}``
+| ``high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2, tag.t3}``
 
 --------------------
 Discriminant Check
@@ -644,48 +684,35 @@ A field for the wrong variant/discriminant is accessed
 .. code:: Ada
    :number-lines: 1
 
-   procedure Discr is
+   type T (B : Boolean := True) is record
+      case B is
+         when True =>
+            J : Integer;
+         when False =>
+            F : Float;
+      end case;
+   end record;
 
-      subtype Length is Natural range 0 .. 10;
-      type T (B : Boolean := True; L : Length := 1) is record
-         I : Integer;
-         case B is
-            when True =>
-               S : String (1 .. L);
-               J : Integer;
-            when False =>
-               F : Float := 5.0;
-         end case;
-      end record;
+   X : T (B => True);
 
-      X : T (B => True, L => 3);
+   function Create (F : Float) return T is
+     (False, F);
+   ...
+   X := Create (6.0);  -- discriminant check failure
 
-      function Create (L : Length; I : Integer; F : Float) return T is
-      begin
-         return (False, L, I, F);
-      end Create;
-
-   begin
-      X := Create (3, 2, 6.0);  -- discriminant check failure
-   end Discr;
-
-| ``discr.adb:23:9: high: discriminant check fails here: requires not (Create (3, 2, 6.0).b /= True or else Create (3, 2, 6.0).l /= 3)``
+| ``high: discriminant check fails here: requires (Create (6.0).b = True)``
 
 --------------
 Precondition
 --------------
 
-Subprogram call may violate the subprogram's generated precondition
++ Subprogram call could violate preconditions, either
 
-Checks are reported in 2 possible places:
+  + Where the error may occur
+  + Where a caller passes in a value causing the error
 
-  + Where the error may occur, or
-  + Where a caller passes in a value causing the error in a call
-
-+ Understanding case 2 above:
-
-  + Look at generated preconditions
-  + Precondition check: look at associated checks and backtrace (in :toolname:`GNAT Studio` or via *-show-backtraces*)
++ Need to check generated preconditions
++ :toolname:`GNAT Studio` or :command:`-show-backtraces` to analyze checks
 
 ..
    codepeer example (4.1.1 - precondition)
@@ -693,25 +720,18 @@ Checks are reported in 2 possible places:
 .. code:: Ada
    :number-lines: 1
 
-   procedure Precondition is
-      X : Integer := 0;
-
-      function Call (X : Integer) return Integer is
-      begin
-         if X < 0 then
-            return -1;
-         elsif X > 0 then
-            return 1;
-         end if;
-      end Call;
-
+   function Call (X : Integer) return Integer is
    begin
-      for I in -5 .. 5 loop
-         X := X + Call (I);
-      end loop;
-   end Precondition;
+      if X < 0 then
+         return -1;
+      end if;
+   end Call;
+   ...
+   for I in -5 .. 5 loop
+      X := X + Call (I);
+   end loop;
 
-| ``precondition.adb:15:16: high: precondition (conditional check) failure on call to precondition.call: requires X /= 0``
+| ``high: precondition (conditional check) failure on call to precondition.call: requires X < 0``
 
 =============
 User Checks
@@ -721,20 +741,50 @@ User Checks
 User Check Messages
 ---------------------
 
-assertion
-   A user assertion (using e.g. :ada:`pragma Assert`) could fail
+.. container:: latex_environment
 
-conditional check
-   An exception could be raised depending on the outcome of a conditional test in user code
+   .. list-table::
+        :header-rows: 1
 
-raise exception
-   An exception is being raised on a reachable path. This is similar to *conditional check*, but the exception is raised systematically instead of conditionally.
+        * - *Message*
 
-user precondition
-   A call might violate a subprogram's specified precondition. This specification may be written as a :ada:`pragma Precondition`, or as a :ada:`Pre` aspect in Ada 2012 syntax
+          - *Description*
 
-postcondition
-   The subprogram's body may violate its specified postcondition. This specification may be written as a :ada:`pragma Postcondition`, or as a :ada:`Post` aspect in Ada 2012 syntax
+        * - ``assertion``
+
+          - A user assertion could fail
+
+        * -
+
+          - eg. :ada:`pragma Assert`
+
+        * - ``conditional check``
+
+          - An :ada:`exception` could be raised conditionally
+
+        * - ``raise exception``
+
+          - An :ada:`exception` is raised on a reachable path
+
+        * - 
+
+          - Same as *conditional check*, but unconditionally
+
+        * - ``user precondition``
+
+          - Potential violation of a specified precondition
+
+        * -
+
+          - As a :ada:`Pre` aspect or as a :ada:`pragma Precondition`
+
+        * - ``postcondition``
+
+          - Potential violation of a specified postcondition
+
+        * -
+
+          - As a :ada:`Post` aspect or as a :ada:`pragma Postcondition`
 
 -----------
 Assertion
@@ -759,13 +809,13 @@ A user assertion (using e.g. :ada:`pragma Assert`) could fail
       pragma Assert (And_Or (True, True));
    end Assert;
 
-| ``assert.adb:9:19: high: assertion fails here: requires (and_or'Result) /= false``
+| ``high: assertion fails here: requires (and_or'Result) /= false``
 
 -------------------
 Conditional Check
 -------------------
 
-An exception could be raised depending on the outcome of a conditional test in user code
+An exception could be raised **conditionally** in user code
 
 ..
    codepeer example (4.1.2 - conditional check)
@@ -773,39 +823,22 @@ An exception could be raised depending on the outcome of a conditional test in u
 .. code:: Ada
    :number-lines: 1
 
-   with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
-   with Ada.Text_IO;         use Ada.Text_IO;
+   if Wrong_Password then
+      Attempt_Count := Attempt_Count + 1;
 
-   procedure Overflow is
-      Attempt_Count : Integer := Integer'Last;
-      --  Gets reset to zero before attempting password read
-      Pw : Natural;
-   begin
-      --  Oops forgot to reset Attempt_Count
-      loop
-         Put ("Enter password to delete system disk");
-         Get (Pw);
-         if Pw = 42 then
-            Put_Line ("system disk deleted");
-            exit;
-         else
-            Attempt_Count := Attempt_Count + 1;
+      if Attempt_Count > 3 then
+         Put_Line ("max password count reached");
+         raise Program_Error;
+      end if;
+   end if;
 
-            if Attempt_Count > 3 then
-               Put_Line ("max password count reached");
-               raise Program_Error;
-            end if;
-         end if;
-      end loop;
-   end Overflow;
-
-| ``overflow.adb:21:13: high: conditional check raises exception here: requires Attempt_Count <= 3``
+| ``high: conditional check raises exception here: requires Attempt_Count <= 3``
 
 -----------------
 Raise Exception
 -----------------
 
-An exception is being raised on a reachable path. This is similar to *conditional check*, but the exception is raised systematically instead of conditionally.
+An exception is raised **unconditionally** on a **reachable** path.
 
 ..
    codepeer example (4.1.2 - raise exception)
@@ -819,13 +852,13 @@ An exception is being raised on a reachable path. This is similar to *conditiona
       null;
    end Raise_Exc;
 
-| ``raise_exc.adb:2:19: low: raise exception unconditional raise``
+| ``low: raise exception unconditional raise``
 
 -------------------
 User Precondition
 -------------------
 
-A call might violate a subprogram's specified precondition. This specification may be written as a :ada:`pragma Precondition`, or as a :ada:`Pre` aspect in Ada 2012 syntax
+A call might violate a subprogram's specified precondition.
 
 ..
    codepeer example (4.1.2 - user precondition)
@@ -843,13 +876,13 @@ A call might violate a subprogram's specified precondition. This specification m
       A := (A - 1.0)**2.0;
    end Pre;
 
-| ``pre.adb:8:18: high: precondition (user precondition) failure on call to pre."**": requires Left /= 0.0``
+| ``high: precondition (user precondition) failure on call to pre."**": requires Left /= 0.0``
 
 ---------------
 Postcondition
 ---------------
 
-The subprogram's body may violate its specified postcondition. This specification may be written as a :ada:`pragma Postcondition`, or as a :ada:`Post` aspect in Ada 2012 syntax
+The subprogram's body may violate its specified postcondition. 
 
 ..
    codepeer example (4.1.2 - postcondition)
@@ -857,28 +890,19 @@ The subprogram's body may violate its specified postcondition. This specificatio
 .. code:: Ada
    :number-lines: 1
 
-   procedure Post is
+   type Stress_Level is (None, Under_Stress, Destructive);
 
-      type States is (Normal_Condition, Under_Stress, Bad_Vibration);
-      State : States;
+   function Reduce (Stress : Stress_Level)
+     return Stress_Level with
+      Pre  => (Stress /= None),
+      Post => (Stress /= Destructive)
+      is (Stress_Level'Val (Stress_Level'Pos (Stress) + 1));
+      --                                              ^
+      --                                             Typo!
+   ...
+   Reduce (My_Component_Stress);
 
-      function Stress_Is_Minimal return Boolean is (State = Normal_Condition);
-      function Stress_Is_Maximal return Boolean is (State = Bad_Vibration);
-
-      procedure Decrement with
-         Pre  => not Stress_Is_Minimal,
-         Post => not Stress_Is_Maximal;
-
-      procedure Decrement is
-      begin
-         State := States'Val (States'Pos (State) + 1);
-      end Decrement;
-
-   begin
-      Decrement;
-   end Post;
-
-| ``post.adb:16:8: high: postcondition failure on call to post.decrement: requires State /= Bad_Vibration``
+| ``high: postcondition failure on call to post.reduce: requires Stress /= Destructive``
 
 =====================================
 Uninitialized and Invalid Variables
@@ -888,8 +912,18 @@ Uninitialized and Invalid Variables
 Uninitialized and Invalid Variables Messages
 ----------------------------------------------
 
-validity check
-   The code may be reading an uninitialized or invalid value
+.. container:: latex_environment
+
+   .. list-table::
+        :header-rows: 1
+
+        * - *Message*
+
+          - *Description*
+
+        * - ``validity check``
+
+          - An uninitialized or invalid value could be read
 
 ----------------
 Validity Check
@@ -910,7 +944,7 @@ The code may be reading an uninitialized or invalid value
       A := B;  --  we are reading B which is uninitialized!
    end Uninit;
 
-| ``uninit.adb:5:9: high: validity check: B is uninitialized here``
+| ``high: validity check: B is uninitialized here``
 
 ==========
 Warnings
@@ -920,65 +954,136 @@ Warnings
 Warning Messages (1/2)
 ------------------------
 
-dead code
-   Also called *unreachable code*. Indicates logical errors as the programmer assumed the unreachable code could be executed
+.. container:: latex_environment
 
-test always false
-   Indicates redundant conditionals, which could flag logical errors where the test always evaluates to false
+   .. list-table::
+        :header-rows: 1
 
-test always true
-   Indicates redundant conditionals, which could flag logical errors where the test always evaluates to true
+        * - *Message*
 
-test predetermined
-   Indicates redundant conditionals, which could flag logical errors. This is similar to *test always true* and *test always false* and is only emitted when there is no real polarity associated with the test such as in a case statement
+          - *Description*
 
-condition predetermined
-   Indicates redundant condition inside a conditional, like the left or right operand of a boolean operator which is always true or false
+        * - ``dead code``
 
-loop does not complete normally
-   Indicates loops that either run forever or fail to terminate normally
+          - Also called *unreachable code*. 
 
-unused assignment
-   Indicates redundant assignment. This may be an indication of unintentional loss of result or unexpected flow of control. Note that CodePeer recognizes special variable patterns as temporary variables that will be ignored by this check: :ada:`ignore`, :ada:`unused`, :ada:`discard`, :ada:`dummy`, :ada:`tmp`, :ada:`temp`. This can be tuned via the :filename:`MessagePatterns.xml` file if needed. An object marked as unreferenced via :ada:`pragma Unreferenced` is similarly ignored
+        * -
 
-unused assignment to global
-   Indicates that a subprogram call modifies a global variable, which is then overwritten following the call without any uses between the assignments. Note that the redundant assignment may occur inside another subprogram call invoked by the current subprogram
+          - Assumed all code should be reachable
 
-unused out parameter
-   Indicates that an actual parameter of a call is ignored (either never used or overwritten)
+        * - ``test always false``
+
+          - Code always evaluating to :ada:`False`
+
+        * - ``test always true``
+
+          - Code always evaluating to :ada:`True`
+
+        * - ``test predetermined``
+
+          - Choice evaluating to a constant value
+
+        * -
+
+          - For eg. :ada:`case` statements
+
+        * - ``condition predetermined``
+
+          - Constant RHS or LHS in a conditional 
+
+        * - ``loop does not complete normally``
+
+          - Loop :ada:`exit` condition is always :ada:`False`
+
+        * - ``unused assignment``
+
+          - Redundant assignment
+
+        * - ``unused assignment to global``
+
+          - Redundant global object assignment
+
+        * - ``unused out parameter``
+
+          - Actual parameter of a call is ignored 
+
+        * - 
+
+          - Either never used or overwritten
+
++ **RHS** : Right-Hand-Side of a binary operation
++ **LHS** : Left-Hand-Side of a binary operation
 
 ------------------------
 Warning Messages (2/2)
 ------------------------
 
-useless reassignment
-   Indicates when an assignment does not modify the value stored in the variable being assigned
+.. container:: latex_environment
 
-suspicious precondition
-   The precondition has a form that indicates there might be a problem with the algorithm. If the allowable value set of a given input expression is not contiguous (certain values of the expression that might cause a run-time problem inside the subprogram in between values that are safe), then this might be an indication that certain cases are not being properly handled by the code. In other situations, this might simply reflect the inherent nature of the algorithm involved
+   .. list-table::
+        :header-rows: 1
 
-suspicious input
-   Inputs mention a value reachable through an out-parameter of the suprogram before this parameter is assigned. Although the value may sometimes be initialized as the Ada standard allows, it generally uncovers a bug where the subprogram reads an uninitialized value or a value that the programmer did not mean to pass to the subprogram as an input value
+        * - *Message*
 
-unread parameter
-   A parameter of an elementary type of mode in out is assigned on all paths through the subprogram before any reads, and so could be declared with mode :ada:`out`.
+          - *Description*
 
-unassigned parameter
-   A parameter of a scalar type of mode in out is never assigned, and so could be declared with mode :ada:`in`
+        * - ``useless reassignment``
 
-suspicious constant operation
-   An operation computes a constant value from non-constant operands. This is characteristic of a typographical mistake, where a variable is used instead of another one, or a missing part in the operation, like the lack of conversion to a floating-point or fixed-point type before division
+          - Assignment does not modify the object
 
-subp never returns
-   The subprogram will never return, presumably because of an infinite loop. There will typically be an additional message in the subprogram body (e.g. test always false) explaining why the subprogram never returns
+        * - ``suspicious precondition``
 
-subp always fails
-   Indicates that a run-time problem is likely to occur on every execution of the subprogram. There will typically be an additional message in the subprogram body explaining why the subprogram always fails
+          - Precondition seems to have a logic flaw
+
+        * -
+
+          - eg. possible set of values is not contiguous
+
+        * - ``suspicious input``
+
+          - :ada:`out` parameter read before assignment
+
+        * -
+
+          - should be :ada:`in out`
+
+        * - ``unread parameter``
+
+          - :ada:`in out` parameter is never read
+
+        * -
+
+          - should be :ada:`out`
+
+        * - ``unassigned parameter``
+
+          - :ada:`in out` parameter is never assigned
+
+        * -
+
+          - should be :ada:`in`
+
+        * - ``suspicious constant operation``
+
+          - Constant result from variable operands
+
+        * -
+
+          - May hint at a typo, or missing operation
+
+        * - ``subp never returns``
+
+          - Subprogram will never terminate
+
+        * - ``subp always fails``
+
+          - Subprogram will always terminate in error
 
 -----------
 Dead Code
 -----------
-Also called *unreachable code*. Indicates logical errors as the programmer assumed the unreachable code could be executed
++ Also called **unreachable code**.
++ All code is expected to be reachable
 
 ..
    codepeer example (4.1.4 - dead code)
@@ -991,20 +1096,18 @@ Also called *unreachable code*. Indicates logical errors as the programmer assum
    begin
       if I < 4 then
          X := 0;
-      elsif I >= 10 then
-         X := 0;
-      else
+      elsif I >= 8 then
          X := 0;
       end if;
    end Dead_Code;
 
-| ``dead_code.adb:5:9: medium warning: dead code because I = 10``
-| ``dead_code.adb:9:9: medium warning: dead code because I = 10``
+| ``medium warning: dead code because I = 10``
 
 -------------------
 Test Always False
 -------------------
-Indicates redundant conditionals, which could flag logical errors where the test always evaluates to false
+
+Redundant conditionals, always :ada:`False`
 
 ..
    codepeer example (4.1.4 - test always false)
@@ -1017,19 +1120,16 @@ Indicates redundant conditionals, which could flag logical errors where the test
    begin
       if I < 4 then
          X := 0;
-      elsif I >= 10 then
-         X := 0;
-      else
-         X := 0;
       end if;
    end Dead_Code;
 
-| ``dead_code.adb:4:9: low warning: test always false because I = 10``
+| ``low warning: test always false because I = 10``
 
 ------------------
 Test Always True
 ------------------
-Indicates redundant conditionals, which could flag logical errors where the test always evaluates to true
+
+Redundant conditionals, always :ada:`True`
 
 ..
    codepeer example (4.1.4 - test always true)
@@ -1040,21 +1140,21 @@ Indicates redundant conditionals, which could flag logical errors where the test
    procedure Dead_Code (X : out Integer) is
       I : Integer := 10;
    begin
-      if I < 4 then
-         X := 0;
-      elsif I >= 10 then
-         X := 0;
-      else
+      if I >= 8 then
          X := 0;
       end if;
    end Dead_Code;
 
-| ``dead_code.adb:6:4: medium warning: test always true because I = 10``
+| ``medium warning: test always true because I = 10``
 
 --------------------
 Test Predetermined
 --------------------
-Indicates redundant conditionals, which could flag logical errors. This is similar to *test always true* and *test always false* and is only emitted when there is no real polarity associated with the test such as in a case statement
+
++ Similar to ``test always true`` and ``test always false``
+
+  + When choice is not binary
+  + eg. :ada:`case` statement
 
 ..
    codepeer example (4.1.4 - test predetermined)
@@ -1075,12 +1175,14 @@ Indicates redundant conditionals, which could flag logical errors. This is simil
       end case;
    end Predetermined;
 
-| ``predetermined.adb:4:4: low warning: test predetermined because I = 0``
+| ``low warning: test predetermined because I = 0``
 
 -------------------------
 Condition Predetermined
 -------------------------
-Indicates redundant condition inside a conditional, like the left or right operand of a boolean operator which is always true or false
+
++ Redundant condition inside a conditional
++ One operand of a boolean operation is always :ada:`True` or :ada:`False`
 
 ..
    codepeer example (4.1.4 - condition predetermined)
@@ -1088,27 +1190,20 @@ Indicates redundant condition inside a conditional, like the left or right opera
 .. code:: Ada
    :number-lines: 1
 
-   procedure Condition is
-      type L is (A, B, C);
+      if V /= A or else V /= B then
+         raise Program_Error;
+      end if;
 
-      procedure Or_Else (V : L) is
-      begin
-         if V /= A or else V /= B then
-            return;
-         else
-            raise Program_Error;
-         end if;
-      end Or_Else;
-   begin
-      Or_Else (A);
-   end Condition;
-
-| ``condition.adb:6:27: medium warning: condition predetermined because (V /= B) is always true``
+| ``medium warning: condition predetermined because (V /= B) is always true``
 
 ---------------------------------
 Loop Does Not Complete Normally
 ---------------------------------
-Indicates loops that either run forever or fail to terminate normally
+
++ Indicates loops that either
+
+  + runs forever
+  + fails to terminate normally
 
 ..
    codepeer example (4.1.4 - loop does not complete normally)
@@ -1123,18 +1218,26 @@ Indicates loops that either run forever or fail to terminate normally
       Buf (4) := 'a';   -- Eliminates null terminator
       Bp      := Buf'First;
 
-      while True loop
+      loop
          Bp := Bp + 1;
-         exit when Buf(Bp-1) = ASCII.NUL; -- Condition never reached
+         exit when Buf (Bp - 1) = ASCII.NUL; -- Condition never reached
       end loop;
    end Loops;
 
-| ``loops.adb:8:10: medium warning: loop does not complete normally``
+| ``medium warning: loop does not complete normally``
 
 -------------------
 Unused Assignment
 -------------------
-Indicates redundant assignment. This may be an indication of unintentional loss of result or unexpected flow of control. Note that CodePeer recognizes special variable patterns as temporary variables that will be ignored by this check: :ada:`ignore`, :ada:`unused`, :ada:`discard`, :ada:`dummy`, :ada:`tmp`, :ada:`temp`. This can be tuned via the :filename:`MessagePatterns.xml` file if needed. An object marked as unreferenced via :ada:`pragma Unreferenced` is similarly ignored
+
++ Object assigned more than once between reads
++ Unintentional loss of result or unexpected control flow
++ The check ignores some names as temporary:
+
+  + :ada:`ignore`, :ada:`unused`, :ada:`discard`, :ada:`dummy`, :ada:`tmp`, :ada:`temp`
+  + Tuned via the :filename:`MessagePatterns.xml` file if needed.
+
++ :ada:`pragma Unreferenced` also ignored
 
 ..
    codepeer example (4.1.4 - unused assignment)
@@ -1142,19 +1245,17 @@ Indicates redundant assignment. This may be an indication of unintentional loss 
 .. code:: Ada
    :number-lines: 1
 
-   with Ada.Text_IO; use Ada.Text_IO;
-   procedure Unused_Assignment (I : out Integer) is
-   begin
-      I := Integer'Value (Get_Line);
-      I := Integer'Value (Get_Line);
-   end Unused_Assignment;
+   I := Integer'Value (Get_Line);
+   I := Integer'Value (Get_Line);
 
-| ``unused_assignment.adb:4:6: medium warning: unused assignment into I``
+| ``medium warning: unused assignment into I``
 
 -----------------------------
 Unused Assignment To Global
 -----------------------------
-Indicates that a subprogram call modifies a global variable, which is then overwritten following the call without any uses between the assignments. Note that the redundant assignment may occur inside another subprogram call invoked by the current subprogram
+
++ Global variable assigned more than once between reads
++ Note: the redundant assignment may occur deep in the **call tree**
 
 ..
    codepeer example (4.1.4 - unused assignment to global)
@@ -1162,39 +1263,27 @@ Indicates that a subprogram call modifies a global variable, which is then overw
 .. code:: Ada
    :number-lines: 1
 
-   procedure Unused_Global is
-
-      package P is
-         G : Integer;
-         procedure Proc;
-      end P;
-      package body P is
-         procedure Proc0 is
-         begin
-            G := 123;
-         end Proc0;
-
-         procedure Proc1 is
-         begin
-            Proc0;
-         end Proc1;
-
-         procedure Proc is
-         begin
-            Proc1;
-            G := 456;  -- override effect of calling Proc1
-         end Proc;
-      end P;
+   procedure Proc1 is
    begin
-      null;
-   end Unused_Global;
+      G := 123;
+   end Proc1;
 
-| ``unused_global.adb:20:10: low warning: unused assignment to global G in unused_global.p.proc1``
+   procedure Proc is
+   begin
+      Proc1;
+      G := 456;  -- override effect of calling Proc1
+   end Proc;
+
+| ``low warning: unused assignment to global G in unused_global.p.proc1``
 
 ----------------------
 Unused Out Parameter
 ----------------------
-Indicates that an actual parameter of a call is ignored (either never used or overwritten)
+
++ Actual :ada:`out` parameter of a call is ignored
+
+  + either never used
+  + or overwritten
 
 ..
    codepeer example (4.1.4 - unused out parameter)
@@ -1202,26 +1291,21 @@ Indicates that an actual parameter of a call is ignored (either never used or ov
 .. code:: Ada
    :number-lines: 1
 
-   procedure Unused_Out (Flag : Integer) is
-      Table   : array (1 .. 10) of Integer := (others => 0);
+   procedure Search (Success : out Boolean);
+   ...
+   procedure Search is
       Ret_Val : Boolean;
-      procedure Search (Success : out Boolean) is
-      begin
-         Success := False;
-         for I in Table'Range loop
-            Success := Success or Table (I) = Flag;
-         end loop;
-      end Search;
    begin
       Search (Ret_Val);
-   end Unused_Out;
+   end Search;
 
-| ``unused_out.adb:12:4: medium warning: unused out parameter Ret_Val``
+| ``medium warning: unused out parameter Ret_Val``
 
 ----------------------
 Useless Reassignment
 ----------------------
-Indicates when an assignment does not modify the value stored in the variable being assigned
+
++ Assignments do not modify the value stored in the assigned object
 
 ..
    codepeer example (4.1.4 - useless reassignment)
@@ -1236,12 +1320,18 @@ Indicates when an assignment does not modify the value stored in the variable be
       A := B;
    end Self_Assign;
 
-| ``self_assign.adb:5:6: medium warning: useless reassignment of A``
+| ``medium warning: useless reassignment of A``
 
 -------------------------
 Suspicious Precondition
 -------------------------
-The precondition has a form that indicates there might be a problem with the algorithm. If the allowable value set of a given input expression is not contiguous (certain values of the expression that might cause a run-time problem inside the subprogram in between values that are safe), then this might be an indication that certain cases are not being properly handled by the code. In other situations, this might simply reflect the inherent nature of the algorithm involved
+
++ Set of allowed inputs is **not contiguous**
+
+  + some values **inbetween** allowed inputs can cause **runtime errors**
+
++ Certain cases may be missing from the user's precondition
++ May be a **false-positive** depending on the algorithm
 
 ..
    codepeer example (4.1.4 - suspicious precondition)
@@ -1249,32 +1339,25 @@ The precondition has a form that indicates there might be a problem with the alg
 .. code:: Ada
    :number-lines: 1
 
-   package Stack is
-      Overflow : exception;
-      type Stack_Type is record
-         Last : Integer;
-         Tab  : String (1 .. 20);
-      end record;
-      procedure Push (S : in out Stack_Type; V : Character);
-   end Stack;
+   if S.Last = S.Arr'Last then
+      raise Overflow;
+   end if;
+   --  Typo: Should be S.Last + 1
+   S.Last         := S.Last - 1; 
+   --  Error when S.Last = S.Arr'First - 1
+   S.Arr (S.Last) := V;
 
-   package body Stack is
-      procedure Push (S : in out Stack_Type; V : Character) is
-      begin
-         if S.Last = S.Tab'Last then
-            raise Overflow;
-         end if;
-         S.Last         := S.Last - 1;  --  Should be S.Last + 1
-         S.Tab (S.Last) := V;
-      end Push;
-   end Stack;
-
-| ``stack.adb:2:4: medium warning: suspicious precondition for S.Last: not a contiguous range of values``
+| ``medium warning: suspicious precondition for S.Last: not a contiguous range of values``
 
 ------------------
 Suspicious Input
 ------------------
-Inputs mention a value reachable through an out-parameter of the suprogram before this parameter is assigned. Although the value may sometimes be initialized as the Ada standard allows, it generally uncovers a bug where the subprogram reads an uninitialized value or a value that the programmer did not mean to pass to the subprogram as an input value
+
++ :ada:`out` parameter read before assignment
++ Should have been an :ada:`in out`
++ Ada standard allows it
+
+  + but it is a bug most of the time
 
 ..
    codepeer example (4.1.4 - suspicious input)
@@ -1282,31 +1365,23 @@ Inputs mention a value reachable through an out-parameter of the suprogram befor
 .. code:: Ada
    :number-lines: 1
 
-   procedure In_Out is
-      type T is record
-         I : Integer;
-      end record;
-
-      procedure Take_In_Out (R : in out T) is
-      begin
-         R.I := R.I + 1;
-      end Take_In_Out;
-
-      procedure Take_Out (R : out T; B : Boolean) is
-      begin
-         Take_In_Out (R);  -- R is 'out' but used as 'in out'
-      end Take_Out;
-
+   procedure Take_In_Out (R : in out T);
+   ...
+   procedure Take_Out (R : out T; B : Boolean) is
    begin
-      null;
-   end In_Out;
+      Take_In_Out (R);  -- R is 'out' but used as 'in out'
+   end Take_Out;
 
-| ``in_out.adb:13:7: medium warning: suspicious input R.I: depends on input value of out-parameter``
+| ``medium warning: suspicious input R.I: depends on input value of out-parameter``
 
 ------------------
 Unread Parameter
 ------------------
-A parameter of an elementary type of mode in out is assigned on all paths through the subprogram before any reads, and so could be declared with mode :ada:`out`.
+
++ :ada:`in out` parameter is not read
+
+  + but is assigned on **all** paths
+  + Could be declared :ada:`out`
 
 ..
    codepeer example (4.1.4 - unread parameter)
@@ -1319,12 +1394,15 @@ A parameter of an elementary type of mode in out is assigned on all paths throug
       X := 0;  -- X is assigned but never read
    end Unread;
 
-| ``unread.adb:1:1: medium warning: unread parameter X: could have mode out``
+| ``medium warning: unread parameter X: could have mode out``
 
 ----------------------
 Unassigned Parameter
 ----------------------
-A parameter of a scalar type of mode in out is never assigned, and so could be declared with mode :ada:`in`
+
++ :ada:`in out` parameter is never assigned
+
+  + Could be declared :ada:`in`
 
 ..
    codepeer example (4.1.4 - unassigned parameter)
@@ -1332,17 +1410,25 @@ A parameter of a scalar type of mode in out is never assigned, and so could be d
 .. code:: Ada
    :number-lines: 1
 
-   procedure Unassigned (X : in out Integer; Y : out Integer) is
+   procedure Unassigned
+     (X : in out Integer; Y : out Integer) is
    begin
       Y := X;  -- X is read but never assigned
    end Unassigned;
 
-| ``unassigned.adb:1:1: medium warning: unassigned parameter X: could have mode in``
+| ``medium warning: unassigned parameter X: could have mode in``
 
 -------------------------------
 Suspicious Constant Operation
 -------------------------------
-An operation computes a constant value from non-constant operands. This is characteristic of a typographical mistake, where a variable is used instead of another one, or a missing part in the operation, like the lack of conversion to a floating-point or fixed-point type before division
+
++ Constant value calculated from **non-constant operands**
++ Hint that there is a **coding mistake**
+
+  + either a **typo**, using the **wrong variable**
+  + or an operation that is **missing**
+
+    + eg :ada:`Float` conversion before division
 
 ..
    codepeer example (4.1.4 - suspicious constant operation)
@@ -1350,23 +1436,26 @@ An operation computes a constant value from non-constant operands. This is chara
 .. code:: Ada
    :number-lines: 1
 
-   procedure Constant_Op is
-      type T is new Natural range 0 .. 14;
+   type T is new Natural range 0 .. 14;
 
-      function Incorrect (X : T) return T is
-      begin
-         return X / (T'Last + 1);
-      end Incorrect;
+   function Incorrect (X : T) return T is
    begin
-      null;
-   end Constant_Op;
+      return X / (T'Last + 1);
+   end Incorrect;
 
-| ``constant_op.adb:6:16: medium warning: suspicious constant operation X/15 always evaluates to 0``
+| ``medium warning: suspicious constant operation X/15 always evaluates to 0``
 
 --------------------
 Subp Never Returns
 --------------------
-The subprogram will never return, presumably because of an infinite loop. There will typically be an additional message in the subprogram body (e.g. test always false) explaining why the subprogram never returns
+
++ Subprogram will **never** return
+
+  + presumably **infinite loop**
+
++ Typically, **another message** in the body can explain why
+
+  + eg. ``test always false``
 
 ..
    codepeer example (4.1.4 - subp never returns)
@@ -1382,12 +1471,14 @@ The subprogram will never return, presumably because of an infinite loop. There 
       end loop;
    end Infinite_Loop;
 
-| ``infinite_loop.adb:1:1: medium warning: subp never returns: infinite_loop``
+| ``medium warning: subp never returns: infinite_loop``
 
 -------------------
 Subp Always Fails
 -------------------
-Indicates that a run-time problem is likely to occur on every execution of the subprogram. There will typically be an additional message in the subprogram body explaining why the subprogram always fails
+
++ A run-time problem could occur on **every** execution
++ Typically, **another message** in the body can explain why
 
 ..
    codepeer example (4.1.4 - subp always fails)
@@ -1401,7 +1492,7 @@ Indicates that a run-time problem is likely to occur on every execution of the s
       null;
    end P;
 
-| ``p.adb:1:1: high warning: subp always fails: p fails for all possible inputs``
+| ``high warning: subp always fails: p fails for all possible inputs``
 
 =================
 Race Conditions
@@ -1411,14 +1502,38 @@ Race Conditions
 Race Condition Messages
 -------------------------
 
-unprotected access
-  A reentrant task (e.g. task type) reads or writes a potentially shared object without holding a lock. The message is associated with places where the object is accessed in the absence of any lock, or with non-overlapping lock configuration
+.. container:: latex_environment
 
-unprotected shared access
-  A task accesses a potentially shared object without holding a lock and this object is also referenced by some other task. The message is associated with places where the object is referenced in the absence of any lock, or with non-overlapping lock configuration
+   .. list-table::
+        :header-rows: 1
 
-mismatch protected access
-  A task references a potentially shared object while holding a lock, and this object is also referenced by another task without holding the same lock. Messages are associated with the second task's references
+        * - *Message*
+
+          - *Description*
+
+        * - ``unprotected access``
+
+          - Shared object access without lock
+
+        * - ``unprotected shared access``
+
+          - Object is referenced is multiple tasks
+
+        * -
+
+          - And accessed without a lock
+
+        * - ``mismatch protected access``
+
+          - Mismatch in locks used
+
+        * -
+
+          - Checked for all shared objects access
+
+        * -
+
+          - eg. task1 uses lock1, task2 uses lock2
 
 -------------------------
 Race Condition Examples
@@ -1430,118 +1545,145 @@ Race Condition Examples
 .. code:: Ada
    :number-lines: 1
 
-   package Race is
-      procedure Increment;
-      pragma Annotate (Codepeer, Multiple_Thread_Entry_Point, "Race.Increment");
-      procedure Decrement;
-      pragma Annotate (Codepeer, Multiple_Thread_Entry_Point, "Race.Decrement");
-   end Race;
+   procedure Increment is
+   begin
+      Mutex_Acquire;
+      if Counter = Natural'Last then
+         Counter := Natural'First;
+      else
+         Counter := Counter + 1;
+      end if;
+      Mutex_Release;
+   end Increment;
 
-   package body Race is
-      Counter : Natural := 0;
+   procedure Reset is
+   begin
+      Counter := 0; -- lock missing
+   end Decrement;
 
-      procedure Acquire;
-      pragma Import (C, Acquire);
-
-      procedure Release;
-      pragma Import (C, Release);
-      pragma Annotate (Codepeer, Mutex, "Race.Acquire", "Race.Release");
-
-      procedure Increment is
-      begin
-         Acquire;
-         if Counter = Natural'Last then
-            Counter := Natural'First;
-         else
-            Counter := Counter + 1;
-         end if;
-         Release;
-      end Increment;
-
-      procedure Decrement is
-      begin
-         if Counter = Natural'First then  --  reading Counter without any lock
-            Counter := Natural'Last;      --  writing without any lock
-         else
-            Counter := Counter - 1;       --  reading and writing without any lock
-         end if;
-      end Decrement;
-
-   end Race;
-
-| ``race.adb:24:10: medium warning: mismatched protected access of shared object Counter via race.increment``
-| ``race.adb:24:10: medium warning: unprotected access of Counter via race.decrement``
-| ``race.adb:25:18: medium warning: mismatched protected access of shared object Counter via race.increment``
-| ``race.adb:25:18: medium warning: unprotected access of Counter via race.decrement``
-| ``race.adb:27:18: medium warning: mismatched protected access of shared object Counter via race.increment``
-| ``race.adb:27:21: medium warning: mismatched protected access of shared object Counter via race.increment``
-| ``race.adb:27:18: medium warning: unprotected access of Counter via race.decrement``
-| ``race.adb:27:21: medium warning: unprotected access of Counter via race.decrement``
+| ``medium warning: mismatched protected access of shared object Counter via race.increment``
+| ``medium warning: unprotected access of Counter via race.reset``
 
 =====================================
 Automatically Generated Annotations
 =====================================
 
+
+-----------------------
+Generated Annotations
+-----------------------
+
++ :toolname:`CodePeer` generates **annotations** on the code
++ Not errors
++ Express **properties** and **assumptions** on the code
++ Can be reviewed
+
+    + But not necessarily
+    + Can help spot **inconsistencies**
+
++ Can help understand and **debug** messages
+
 ------------------------
 Annotations Categories
 ------------------------
 
-precondition
-   Specify requirements that the subprogram imposes on its inputs. For example, a subprogram might require a certain parameter to be non-null for proper operation of the subprogram. These preconditions are checked at every call site. A message is given for any precondition that a caller might violate. Precondition messages include in parenthesis a list of the checks involved in the requirements.
+.. container:: latex_environment
 
-presumption
-   Display what :toolname:`CodePeer` presumes about the results of an external subprogram whose code is unavailable, or are in a separate partition. There are separate presumptions for each call site, with a string in the form ``@<line-number-of-the-call>`` appended to the name of the subprogram. Presumptions are not generally used to determine preconditions of the calling routine, but they might influence postconditions of the calling routine.
+   .. list-table::
+        :header-rows: 1
 
-postcondition
-   Characterize the behavior of the subprogram in terms of its outputs and the presumptions made.
+        * - *Annotation*
 
-unanalyzed call
-   Display the external calls to subprograms that the :toolname:`CodePeer` has not analyzed, and so participate in the determination of presumptions. Note that these annotations include all directly unanalyzed calls as well as the unanalyzed calls in the call graph subtree that have an influence on the current subprograms.
+          - *Description*
 
-global inputs
-   List of all global variables referenced by each subprogram. Note that this only includes enclosing objects and not e.g. specific components. In the case of pointers, only the pointer is listed. Dereference to pointers may be implied by the pointer listed.
+        * - ``precondition``
 
-global outputs
-   List of all global variables (objects and components) modified by each subprogram
+          - Requirements imposed the subprogram's inputs
 
-new objects
-   list of heap-allocated objects, created by a subprogram, that are not reclaimed during the execution of the subprogram itself; these are new objects that are accessible after return from the subprogram
+        * - ``presumption``
+
+          - Display what :toolname:`CodePeer` presumes about the results of an external subprogram whose code is unavailable, or are in a separate partition. There are separate presumptions for each call site, with a string in the form ``@<line-number-of-the-call>`` appended to the name of the subprogram. Presumptions are not generally used to determine preconditions of the calling routine, but they might influence postconditions of the calling routine.
+
+        * - ``postcondition``
+
+          - Characterize the behavior of the subprogram in terms of its outputs and the presumptions made.
+
+        * - ``unanalyzed call``
+
+          - Display the external calls to subprograms that the :toolname:`CodePeer` has not analyzed, and so participate in the determination of presumptions. Note that these annotations include all directly unanalyzed calls as well as the unanalyzed calls in the call graph subtree that have an influence on the current subprograms.
+
+        * - ``global inputs``
+
+          - List of all global variables referenced by each subprogram. Note that this only includes enclosing objects and not e.g. specific components. In the case of pointers, only the pointer is listed. Dereference to pointers may be implied by the pointer listed.
+
+        * - ``global outputs``
+
+          - List of all global variables (objects and components) modified by each subprogram
+
+        * - ``new objects``
+
+          - list of heap-allocated objects, created by a subprogram, that are not reclaimed during the execution of the subprogram itself; these are new objects that are accessible after return from the subprogram
 
 --------------
 Precondition
 --------------
 
-TBD
+Preconditions specify requirements that the subprogram imposes on its inputs. For example, a subprogram might require a certain parameter to be non-null for proper operation of the subprogram. These preconditions are checked at every call site. A message is given for any precondition that a caller might violate. Precondition messages include in parenthesis a list of the checks involved in the requirements.
+
+.. code:: ada
+    :number-lines: 1
+
+    TBD
 
 -------------
 Presumption
 -------------
 
-TBD
+Display what :toolname:`CodePeer` presumes about the results of an external subprogram whose code is unavailable, or are in a separate partition. There are separate presumptions for each call site, with a string in the form ``@<line-number-of-the-call>`` appended to the name of the subprogram. Presumptions are not generally used to determine preconditions of the calling routine, but they might influence postconditions of the calling routine.
 
 ---------------
 Postcondition
 ---------------
 
-TBD
+Characterize the behavior of the subprogram in terms of its outputs and the presumptions made.
+
+.. code:: ada
+    :number-lines: 1
+
+    TBD
 
 -----------------
 Unanalyzed Call
 -----------------
 
-TBD
+Display the external calls to subprograms that the :toolname:`CodePeer` has not analyzed, and so participate in the determination of presumptions. Note that these annotations include all directly unanalyzed calls as well as the unanalyzed calls in the call graph subtree that have an influence on the current subprograms.
+
+.. code:: ada
+    :number-lines: 1
+
+    TBD
 
 -----------------------
 Global Inputs/Outputs
 -----------------------
 
-TBD
+List of all global variables referenced by each subprogram. Note that this only includes enclosing objects and not e.g. specific components. In the case of pointers, only the pointer is listed. Dereference to pointers may be implied by the pointer listed.
+
+.. code:: ada
+    :number-lines: 1
+
+    TBD
 
 -------------
 New Objects
 -------------
 
-TBD
+list of heap-allocated objects, created by a subprogram, that are not reclaimed during the execution of the subprogram itself; these are new objects that are accessible after return from the subprogram
+
+.. code:: ada
+    :number-lines: 1
+
+    TBD
 
 ============================
 External Tools Integration
@@ -1594,7 +1736,7 @@ Analyze Messages (1/4)
 ------------------------
 
 + Start with default (level 0)
-+ If the run is mostly clean/contains mostly interesting messages, run at next level (e.g. level 1) and iterate until number of false alarms/timing is too high for your needs
++ If the run is mostly clean/contains mostly interesting messages, run at next level (e.g. level 1) and iterate until number of false positive/timing is too high for your needs
 
 .. code:: Ada
 
@@ -1836,7 +1978,7 @@ Compare Local Changes With Master (1/3)
 + Analysis running on server with latest source version
 + The ("gold") database gets updated when sources are updated
 
-   + :command:`-baseline` switch
+  + :command:`-baseline` switch
 
 + Developers pre-validate changes locally with :toolname:`CodePeer` prior to commit, in a separate sandbox and using the same analysis settings.
 + **Continuous integration** :math:`\rightarrow` local user creates a separate branch and commit his change on this branch
@@ -1847,16 +1989,16 @@ Compare local changes with master (2/3)
 
 A continuous builder (e.g. Jenkins) is monitoring user branches and triggers an analysis that will:
 
-   + Copy in a separate sandbox the database from the reference (nightly) run.
-   + Perform a run with the same settings as the reference run
-   + Send results to the user either via its web server and the :toolname:`CodePeer` HTML interface, or by generating a textual report (-output-msg).
-   + Can be combined with -show-added so that the user can concentrate on the new messages found:
+  + Copy in a separate sandbox the database from the reference (nightly) run.
+  + Perform a run with the same settings as the reference run
+  + Send results to the user either via its web server and the :toolname:`CodePeer` HTML interface, or by generating a textual report (-output-msg).
+  + Can be combined with -show-added so that the user can concentrate on the new messages found:
 
       .. container:: latex_environment tiny
 
          :command:`codepeer -Pprj -output-msg -show-added | grep "[added]"`
 
-   + Throw out this separate sandbox
+  + Throw out this separate sandbox
 
 -----------------------------------------
 Compare local changes with master (3/3)
@@ -1864,15 +2006,15 @@ Compare local changes with master (3/3)
 
 + Once the user receives the report he can *address the findings* by
 
-   + Modifying the code
-   + Using :ada:`pragma Annotate`
-   + Posting an analysis on the gold database after his change is merged on the master branch and a new baseline run is available for review.
+  + Modifying the code
+  + Using :ada:`pragma Annotate`
+  + Posting an analysis on the gold database after his change is merged on the master branch and a new baseline run is available for review.
 
 + Another, more *manual alternative* involves
 
-   + Make a local copy of the gold database in the user space
-   + Run :toolname:`CodePeer` there
-   + Look at differences then throw out this local environment.
+  + Make a local copy of the gold database in the user space
+  + Run :toolname:`CodePeer` there
+  + Look at differences then throw out this local environment.
 
 ----------------------------------------------
 Multiple teams analyzing multiple subsystems
