@@ -940,29 +940,37 @@ Quiz
 
    A, B : Integer := 123;
 
-Which loop block is illegal?
+.. container:: columns
 
-A. | :answermono:`for A in 1 .. 10 loop`
-   |    :answermono:`A := A + 1;`
-   | :answermono:`end loop;`
-B. | ``for B in 1 .. 10 loop``
-   |    ``Put_Line (Integer'Image (B));``
-   | ``end loop;``
-C. | ``for C in reverse 1 .. 10 loop``
-   |    ``Put_Line (Integer'Image (A));``
-   | ``end loop;``
-D. | ``for D in 10 .. 1 loop``
-   |    ``Put_Line (Integer'Image (D));``
-   | ``end loop;``
+ .. container:: column
 
-.. container:: animate
+  Which loop block is illegal?
 
-   Explanations
+  A. | :answermono:`for A in 1 .. 10 loop`
+     |    :answermono:`A := A + 1;`
+     | :answermono:`end loop;`
+  B. | ``for B in 1 .. 10 loop``
+     |    ``Put_Line (Integer'Image (B));``
+     | ``end loop;``
+  C. | ``for C in reverse 1 .. 10 loop``
+     |    ``Put_Line (Integer'Image (A));``
+     | ``end loop;``
+  D. | ``for D in 10 .. 1 loop``
+     |    ``Put_Line (Integer'Image (D));``
+     | ``end loop;``
 
-   A. Cannot assign to a loop parameter
-   B. Legal - 10 iterations
-   C. Legal - 10 iterations
-   D. Legal - 0 iterations
+ .. container:: column
+
+  .. container:: animate
+
+     Explanations
+
+     A. Cannot assign to a loop parameter
+     B. Legal - 10 iterations
+     C. Legal - 10 iterations
+     D. Legal - 0 iterations
+
+.
 
 =================
 GOTO Statements
