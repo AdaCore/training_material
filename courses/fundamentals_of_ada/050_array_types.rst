@@ -721,31 +721,19 @@ Examples
 Slicing
 ---------
 
-.. container:: columns
+* Contiguous subsection of an array
+* On any one-dimensional array type
 
- .. container:: column
+  - Any component type
 
-    * Specifies a contiguous subsection of an array
-    * Allowed on any one-dimensional array type
+.. code:: Ada
 
-       - Any component type
-
- .. container:: column
-
-    .. code:: Ada
-
-       procedure Test is
-         S1 : String (1 .. 9)
-            := "Hi Adam!!";
-         S2 : String
-            := "We love    !";
-       begin
-         Put_Line (S1 (4..6));
-         Put_Line (S2);
-         S2 (9..11) := S1 (4..6);
-         Put_Line (S2);
-         S2 (12) := '?';
-         Put_Line (S2);
+   procedure Test is
+     S1 : String (1 .. 9) := "Hi Adam!!";
+     S2 : String := "We love    !";
+   begin
+     Put_Line (S1 (4..6));
+     S2 (9..11) := S1 (4..6);
 
 -------------------------------
 Slicing With Explicit Indexes
