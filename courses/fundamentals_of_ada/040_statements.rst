@@ -519,7 +519,7 @@ Dangers of *Others* Case Alternative
 
 * Maintenance issue: new value requiring a new alternative?
 
-    - Compiler won't warn: `others` hides it
+    - Compiler won't warn: :ada:`others` hides it
 
 .. code:: Ada
 
