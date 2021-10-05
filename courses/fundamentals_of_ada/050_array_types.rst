@@ -578,33 +578,29 @@ Attributes' Benefits
 Nth Dimension Array Attributes
 --------------------------------
 
-.. container:: columns
+* Attribute with **parameter**
 
- .. container:: column
+.. code:: Ada
 
-    * Attribute parameter indicates dimension requested
+  T'Length (n)
+  T'First (n)
+  T'Last (n)
+  T'Range (n)
 
-       - ``T'Length(n)``
-       - ``T'First(n)``
-       - ``T'Last(n)``
-       - ``T'Range(n)``
-       - where n is the dimension required, including 1
+- ``n`` is the dimension
 
-          + if 'n' is not specified, it defaults to 1
+  + defaults to 1
 
- .. container:: column
+.. code:: Ada
 
-    .. code:: Ada
+   type Two_Dimensioned is array
+      (1 .. 10, 12 .. 50) of T;
+   TD : Two_Dimensioned;
 
-       type Two_Dimensioned is array
-          (1 .. 10, 12 .. 50) of T;
-       TD : Two_Dimensioned;
-
-    * :ada:`TD'First` (2) is 12
-    * :ada:`TD'Last` (2) is 50
-    * :ada:`TD'Length` (2) is 39
-    * :ada:`TD'first` is 1 (same as :ada:`TD'first(1)`)
-    * :ada:`TD'last` is 10 (same as :ada:`TD'last(1)`)
+* :ada:`TD'First (2) = 12`
+* :ada:`TD'Last  (2) = 50`
+* :ada:`TD'Length (2) = 39`
+* :ada:`TD'First = TD'First (1) = 1`
 
 ------
 Quiz
