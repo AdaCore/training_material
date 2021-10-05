@@ -672,7 +672,8 @@ Extra Object-Level Operations
 
    .. code:: Ada
 
-      type String_Type is array ( integer range <> ) of character;
+      type String_Type is array
+        (Integer range <>) of Character;
       A : constant String_Type := "foo";
       B : constant String_Type := "bar";
       C : constant String_Type := A & B;
