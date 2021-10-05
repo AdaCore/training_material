@@ -689,29 +689,25 @@ Extra Object-Level Operations
 "Membership" Tests
 --------------------
 
-* Shorthand for constraint checking
+* Constraint checking
 
    - Range constraints
    - Index constraints
    - et cetera
 
-* Uses reserved word :ada:`in`
+* Reserved word :ada:`in`
 
 .. code:: Ada
 
    procedure Test is
      type Humanity is array (1 .. N) of Age;
-     ...
      People : Humanity := Some_Initial_Value;
-     Index : Integer range People'First - 1 ..  People'Last :=
-             People'First - 1;
+     Index : Integer range People'First - 1 ..  People'Last
+       := People'First - 1;
    begin
-     ...
      for K in People'Range loop
-       -- set Index to K if found
-       -- desired value
-     end loop;
-     if Index in People'Range then -- good
+     ...
+     if Index in People'Range then
 
 ----------
 Examples
