@@ -299,19 +299,17 @@ Aggregates
          {[component_choice_list =>] component_init ,}
          [others => component_init]
 
-* Example
-
-   .. code:: Ada
-
-        V : Car_T := (
-            Red,
-            Plate_No => "AX672",
-            others => <>
-        );
-
 ---------------------------
 Record Aggregate Examples
 ---------------------------
+
+.. code:: Ada
+
+     V : Car_T := (
+         Red,
+         Plate_No => "AX672",
+         others => <>
+     );
 
 .. code:: Ada
 
