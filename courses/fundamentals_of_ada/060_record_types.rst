@@ -371,39 +371,26 @@ Aggregate Completeness
 Named Associations
 --------------------
 
-.. container:: columns
+* **Any** order of associations
+* Provides more information to the reader
 
- .. container:: column
+   - Can mix with positional
 
-    * Allows any order of associations
+* Restriction
 
-       - Don't have to remember the order
-       - Less likely to mix up associations of the same type
+   - Must stick with named associations **once started**
 
-    * Provides more information to the reader
+.. code:: Ada
 
-       - May be mixed with positional form
-
-    * Restriction
-
-       - Must stick with named associations once begun
-
- .. container:: column
-
-    .. code:: Ada
-
-       type Complex is record
-           Real : Float;
-           Imaginary : Float;
-         end record;
-       Phase : Complex := (0.0, 0.0);
-       ...
-       Phase := (10.0,
-                 Imaginary => 2.5);
-       Phase := (Imaginary => 12.5,
-                 Real => 0.212);
-       Phase := (Imaginary => 12.5,
-                 0.212); -- illegal
+   type Complex is record
+       Real : Float;
+       Imaginary : Float;
+     end record;
+   Phase : Complex := (0.0, 0.0);
+   ...
+   Phase := (10.0, Imaginary => 2.5);
+   Phase := (Imaginary => 12.5, Real => 0.212);
+   Phase := (Imaginary => 12.5, 0.212); -- illegal
 
 .. container:: speakernote
 
@@ -413,42 +400,37 @@ Named Associations
 Nested Aggregates
 -------------------
 
-* Result from composite component types
+.. code:: Ada
 
-   .. code:: Ada
-
-     type Months_T is ( January, February, ..., December);
-     type Date is record
-         Day   : Integer range 1 .. 31;
-         Month : Months_T;
-         Year  : Integer range 0 .. 2099;
-       end record;
-     type Person is record
-         Born : Date;
-         Hair : Color;
-       end record;
-     John : Person    := ( (21, November, 1990), Brown );
-     Julius : Person  := ( (2, August, 1995), Blond );
-     Heather : Person := ( (2, March, 1989), Hair => Blond );
-     Megan : Person   := (Hair => Blond,
-                          Born => (16, December, 2001));
+  type Months_T is ( January, February, ..., December);
+  type Date is record
+     Day   : Integer range 1 .. 31;
+     Month : Months_T;
+     Year  : Integer range 0 .. 2099;
+  end record;
+  type Person is record
+     Born : Date;
+     Hair : Color;
+  end record;
+  John : Person    := ( (21, November, 1990), Brown );
+  Julius : Person  := ( (2, August, 1995), Blond );
+  Heather : Person := ( (2, March, 1989), Hair => Blond );
+  Megan : Person   := (Hair => Blond,
+                       Born => (16, December, 2001));
 
 ------------------------------------
 Aggregates with Only One Component
 ------------------------------------
 
-* Must use named form
-
-   - Since syntax for expressions includes same tokens
-
-* Same as array aggregates, for same reason
+* **Must** use named form
+* Same reason as array aggregates
 
 .. code:: Ada
 
-   type Singular is
-     record
-       A : Integer;
-     end record;
+   type Singular is record
+      A : Integer;
+   end record;
+
    S : Singular := (3);          -- illegal
    S : Singular := (3 + 1);      -- illegal
    S : Singular := (A => 3 + 1); -- required
