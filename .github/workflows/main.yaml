@@ -36,7 +36,7 @@ jobs:
           pandoc -v
 
       - name: Install python dependencies
-        run: pip install pandocfilters
+        run: pip install pandocfilters Pygments
 
 
       - name: Generate slides for Ada fundamentals
