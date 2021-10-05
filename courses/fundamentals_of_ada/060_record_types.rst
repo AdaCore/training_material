@@ -599,31 +599,27 @@ Quiz
 
    function Next return Natural; -- returns next number starting with 1
 
-   declare
-      type Record_T is record
-         A, B : Integer := Next;
-         C    : Integer := Next;
-      end record;
-      R : Record_T := (C => 100, others => <>);
-   begin
-      Put_Line (Integer'Image (R.A) & Integer'Image (R.B) & Integer'Image (R.C));
-   end;
+   type Record_T is record
+      A, B : Integer := Next;
+      C    : Integer := Next;
+   end record;
+   R : Record_T := (C => 100, others => <>);
 
-What is the output from this block?
+What is the value of R?
 
-A. 1 2 3
-B. 1 1 100
-C. :answer:`1 2 100`
-D. 100, 101, 102
+A. (1, 2, 3)
+B. (1, 1, 100)
+C. :answer:`(1, 2, 100)`
+D. (100, 101, 102)
 
 .. container:: animate
 
-   Explanations
+ Explanations
 
-   A. Assignment of :ada:`C` to 100 takes precedence over the call to :ada:`Next`
-   B. Declaration of multiple components is identical to a series of single declarations
-   C. Correct
-   D. Assignment of 100 to :ada:`C` has no effect on components :ada:`A` and :ada:`B`
+ A. :ada:`C => 100`
+ B. Multiple declaration calls :ada:`Next` twice
+ C. Correct
+ D. :ada:`C => 100` has no effect on :ada:`A` and :ada:`B`
 
 =================
 Variant Records
