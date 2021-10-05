@@ -990,21 +990,29 @@ Quiz
       end loop;
    end;
 
-Which output is correct?
+.. container:: columns
 
-   A. 1 1 1 1 22 23 1 32 33
-   B. :answer:`33 32 1 23 22 1 1 1 1`
-   C. 0 0 0 0 22 23 0 32 33
-   D. 33 32 0 23 22 0 0 0 0
+ .. container:: column
 
-.. container:: animate
+   Which output is correct?
+   
+      A. 1 1 1 1 22 23 1 32 33
+      B. :answer:`33 32 1 23 22 1 1 1 1`
+      C. 0 0 0 0 22 23 0 32 33
+      D. 33 32 0 23 22 0 0 0 0
+   
+ .. container:: column
 
-   Explanations
+  .. container:: animate
+  
+     Explanations
+  
+     A. There is a :ada:`reverse`
+     B. Yes
+     C. Default value is 1
+     D. No
 
-   A. This is the result if :ada:`reverse` was not specified
-   B. Start with last element (3,3) and work backwards
-   C. This might be the result without :ada:`Default_Component_Value.` (Zeroes may not be correct - could be any uninitialized value.)
-   D. Result without :ada:`Default_Component_Value` and :ada:`reverse`
+NB: Without :ada:`Default_Component_Value`, init. values are random
 
 ============
 Aggregates
