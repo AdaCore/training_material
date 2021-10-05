@@ -779,9 +779,10 @@ Dynamic Subtype Constraint Example
 
 .. code:: Ada
 
-    File_Name (File_Name'First
-               ..
-               Index (File_Name, '.', Direction = Backward));
+    File_Name
+      (File_Name'First
+      ..
+      Index (File_Name, '.', Direction => Backward));
 
 ------
 Quiz
