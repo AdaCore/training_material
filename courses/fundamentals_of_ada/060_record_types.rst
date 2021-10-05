@@ -440,20 +440,23 @@ Aggregates with `others`
 --------------------------
 
 * Indicates all components not yet specified (like arrays)
-* Since all :ada:`others` get the same value, all such components must be the same type
+* All :ada:`others` get the same value
+
+  - They must be the **exact same** type
 
 .. code:: Ada
 
-   type Poly is
-     record
-       A : Real;
-       B, C, D : Integer;
-     end record;
+   type Poly is record
+      A : Real;
+      B, C, D : Integer;
+   end record;
+
    P : Poly := (2.5, 3, others => 0);
-   type Homogeneous is
-     record
-       A, B, C : Integer;
-     end record;
+
+   type Homogeneous is record
+      A, B, C : Integer;
+   end record;
+
    Q : Homogeneous := (others => 10);
 
 ------
@@ -468,28 +471,25 @@ Quiz
    type Record_T is record
       One   : Integer := 1;
       Two   : Character;
-      Three : Boolean;
-      Four  : Integer := -1;
-      Five  : Nested_T;
+      Three  : Integer := -1;
+      Four  : Nested_T;
    end record;
    X, Y : Record_T;
    Z    : constant Nested_T := (others => -1);
 
 Which assignment is illegal?
 
-A. :answermono:`X := (1, '2', Three => True, Four => 4, Five => (6));`
-B. ``X := (Two => '2', Three => False, Five => Z, others => 5);``
-C. ``X := Y;``
-D. ``X := (1, '2', True, 4, (others => 5));``
+A. :answermono:`X := (1, '2', Three => 3, Four => (6))`
+B. ``X := (Two => '2', Four => Z, others => 5)``
+C. ``X := Y``
+D. ``X := (1, '2', 4, (others => 5))``
 
 .. container:: animate
 
-   Explanations
-
-   A. Component :ada:`Five` is a singleton record - aggregate requires named notation (:ada:`Five => ( Field => 6 )` )
-   B. Correct - :ada:`others` clause covers components :ada:`One` and :ada:`Four` which are both integers`
-   C. Correct - simple assignment. Note that components :ada:`Two` and :ada:`Three` are still not initialized
-   D. Correct - positional notation for all components
+   A. :ada:`Four` **must** use named association
+   B. :ada:`others` valid: :ada:`One` and :ada:`Three` are :ada:`Integer`
+   C. Valid but :ada:`Two` is not initialized
+   D. Positional for all components
 
 ================
 Default Values
