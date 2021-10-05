@@ -91,13 +91,13 @@ Type Invariant Verifications
 
 * Remember - these are abstract data types
 
-.. image:: ../../images/black_box_flow.png
+.. image:: black_box_flow.png
 
 ----------------------------------------
 Invariant Over Object Lifetime (Calls)
 ----------------------------------------
 
-.. image:: ../../images/type_invariant_check_flow.png
+.. image:: type_invariant_check_flow.png
 
 .. container:: speakernote
 

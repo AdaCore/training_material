@@ -12,7 +12,7 @@ Introduction
 Run-Time Errors
 -----------------
 
-.. image:: ../../images/coffee_pot_runtime_error.jpeg
+.. image:: coffee_pot_runtime_error.jpeg
 
 ---------------------------
 Run-Time Errors - Example
@@ -195,7 +195,7 @@ Usage
 Usage Scenarios
 -----------------
 
-.. image:: ../../images/when_to_switch_to_spark.png
+.. image:: when_to_switch_to_spark.png
 
 .. container:: speakernote
 

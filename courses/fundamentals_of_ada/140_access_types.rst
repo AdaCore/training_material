@@ -70,7 +70,7 @@ Stack vs Heap
   I : Integer := 0;
   J : String := "Some Long String";
 
-.. image:: ../../images/items_on_stack.png
+.. image:: items_on_stack.png
    :width: 50%
 
 .. code:: Ada
@@ -78,7 +78,7 @@ Stack vs Heap
   I : Access_Int:= new Integer'(0);
   J : Access_Str := new String ("Some Long String");
 
-.. image:: ../../images/stack_pointing_to_heap.png
+.. image:: stack_pointing_to_heap.png
    :width: 50%
 
 ==========================

@@ -190,7 +190,7 @@ The Type Model Saves Money
 
     - Cost of an error *during a flight*?
 
-.. image:: ../../images/relative_cost_to_fix.png
+.. image:: relative_cost_to_fix.png
    :height: 50%
 
 ---------------------------
@@ -361,7 +361,7 @@ Generic Units
 
  .. container:: column
 
-    .. image:: ../../images/generic_template_to_instances.png
+    .. image:: generic_template_to_instances.png
 
 -------------------
 Stack with Generics
@@ -566,7 +566,7 @@ So Why Isn't Ada Used Everywhere?
 
  .. container:: column
 
-    .. image:: ../../images/mark_twain.jpeg
+    .. image:: mark_twain.jpeg
 
 =======
 Setup

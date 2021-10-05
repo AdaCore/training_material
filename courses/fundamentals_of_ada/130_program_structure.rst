@@ -72,7 +72,7 @@ Handling Cyclic Dependencies
 
 * Which package elaborates first?
 
-.. image:: ../../images/cyclic_dependencies.png
+.. image:: cyclic_dependencies.png
    :width: 50%
    :align: center
 
@@ -83,7 +83,7 @@ Body-Level Cross Dependencies Are OK
 * The bodies only depend on other packages' declarations
 * The declarations are already elaborated by the time the bodies are elaborated
 
-.. image:: ../../images/mutual_dependencies.png
+.. image:: mutual_dependencies.png
    :width: 70%
    :align: center
 
@@ -299,7 +299,7 @@ Solution: Hierarchical Library Units
 
  .. container:: column
 
-    .. image:: ../../images/hierarchical_library_units.png
+    .. image:: hierarchical_library_units.png
 
 --------------------------
 Programming By Extension
@@ -426,7 +426,7 @@ Hierarchical Visibility
 
  .. container:: column
 
-    .. image:: ../../images/hierarchical_visibility.png
+    .. image:: hierarchical_visibility.png
 
 ------------------------------------
 Example of Visibility As If Nested
