@@ -102,14 +102,6 @@ Benefits and Risk of Overloading
 Enumerals and Operators
 =========================
 
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/enumerals_and_operators.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#enumerals-and-operators`
-
 -----------------------
 Overloading Enumerals
 -----------------------
@@ -181,14 +173,6 @@ Parameters for Overloaded Operators
 =================
 Call Resolution
 =================
-
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/call_resolution.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#call-resolution`
 
 -----------------
 Call Resolution
@@ -337,14 +321,6 @@ Which statement is not legal?
 User-Defined Equality
 =======================
 
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/user_defined_equality.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#user-defined-equality`
-
 -----------------------
 User-Defined Equality
 -----------------------
@@ -426,14 +402,6 @@ User-Defined Equality Example
 =========================
 Composition of Equality
 =========================
-
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/composition_of_equality.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#composition-of-equality`
 
 ----------------------------
  "Composition of Equality"
@@ -564,12 +532,6 @@ D. ``function "=" (L, R : Coord_3D_T) return Boolean is (L = R);``
    We are looking to use our own equality operator (that compares absolute
    values) so the only time that happens is when we examine each
    :ada:`Range_T` component individually
-
-========
-Lab
-========
-
-.. include:: labs/090_overloading.lab.rst
 
 =========
 Summary

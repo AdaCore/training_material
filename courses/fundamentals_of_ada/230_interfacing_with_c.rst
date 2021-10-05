@@ -554,12 +554,6 @@ Interfaces.C.Strings
 
    end Interfaces.C.Strings;
 
-========
-Lab
-========
-
-.. include:: labs/230_interfacing_with_c.lab.rst
-
 =========
 Summary
 =========

@@ -47,14 +47,6 @@ Ada Mechanisms for Type Inheritance
 Primitives
 ============
 
-----------
-Examples
-----------
-
-.. include:: examples/170_inheritance/primitives.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#primitives`
-
 --------------------
 Primitive Operations
 --------------------
@@ -159,14 +151,6 @@ Implicit Primitive Operations
 ===================
 Simple Derivation
 ===================
-
-----------
-Examples
-----------
-
-.. include:: examples/170_inheritance/simple_derivation.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#simple-derivation`
 
 ------------------------
 Simple Type Derivation

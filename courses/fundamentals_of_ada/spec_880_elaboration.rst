@@ -51,15 +51,6 @@ Why Elaboration Is Needed
 Elaboration
 =============
 
-----------
-Examples
-----------
-
-.. include:: examples/spec_880_elaboration/elaboration.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/spec_880_elaboration.html#elaboration`
-
 -------------
 Elaboration
 -------------
@@ -231,15 +222,6 @@ What is the output of running this program
 Elaboration Control
 =====================
 
-----------
-Examples
-----------
-
-.. include:: examples/spec_880_elaboration/elaboration_control.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/spec_880_elaboration.html#elaboration-control`
-
 -----------------------
 `Pragma Preelaborate`
 -----------------------
@@ -396,12 +378,6 @@ Examples
    begin
       V := P2.Call;
    end P3;
-
-========
-Lab
-========
-
-.. include:: labs/spec_880_elaboration.lab.rst
 
 =========
 Summary

@@ -99,14 +99,6 @@ Stack vs Heap
 Access Types
 ==========================
 
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/access_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#access-types`
-
 ----------------------
 Declaration Location
 ----------------------
@@ -218,14 +210,6 @@ Dereference Examples
 Pool-Specific Access Types
 ===========================
 
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/pool_specific_access_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#pool-specific-access-types`
-
 ---------------------------
 Pool-Specific Access Type
 ---------------------------
@@ -300,14 +284,6 @@ Deallocation Example
 ==========================
 General Access Types
 ==========================
-
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/general_access_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#general-access-types`
 
 ----------------------
 General Access Types
@@ -404,14 +380,6 @@ D. ``Two := A'Access;``
 ======================
 Accessibility Checks
 ======================
-
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/accessibility_checks.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#accessibility-checks`
 
 --------------------------------------------
 Introduction to Accessibility Checks (1/2)
@@ -544,14 +512,6 @@ D. ``Local_Pointer  := Local_Object'Access;``
 Memory Management
 ===================
 
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/memory_management.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#memory-management`
-
 ------------------------------
 Common Memory Problems (1/3)
 ------------------------------
@@ -646,14 +606,6 @@ How To Fix Memory Problems?
 Anonymous Access Types
 ========================
 
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/anonymous_access_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#anonymous-access-types`
-
 -----------------------------
 Anonymous Access Parameters
 -----------------------------
@@ -726,12 +678,6 @@ Anonymous Access Constants
 
       procedure Bar ( V1 : access constant integer);
       procedure Foo ( V1 : not null access integer); -- Ada 2005
-
-========
-Lab
-========
-
-.. include:: labs/140_access_types.lab.rst
 
 =========
 Summary

@@ -140,15 +140,6 @@ High-Level Assertions
 Preconditions and Postconditions
 ===================================
 
-----------
-Examples
-----------
-
-.. include:: examples/adv_270_subprogram_contracts/preconditions_and_postconditions.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_270_subprogram_contracts.html#preconditions-and-postconditions`
-
 -----------------------------
 Pre/Postcondition Contracts
 -----------------------------
@@ -390,12 +381,6 @@ Which expression will guarantee :ada:`Area` calculates the correct result for al
 ====================
 Special Attributes
 ====================
-
-----------
-Examples
-----------
-
-.. include:: examples/adv_270_subprogram_contracts/special_attributes.rst
 
 -----------------------------------------------
 Referencing Previous Values In Postconditions
@@ -809,12 +794,6 @@ Controlling the Exception Raised
    private
    ...
    end Bounded_Stacks;
-
-========
-Lab
-========
-
-.. include:: labs/adv_270_subprogram_contracts.lab.rst
 
 =========
 Summary
