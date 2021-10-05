@@ -496,7 +496,7 @@ Case Statement Rules
        Go_To (Work, Arrive=>Early, Leave=>Early);
      when others => -- weekend
        Go_To (Home, Arrive=>Day_Before, Leave=>Day_After);
-     end case;
+   end case;
 
 ------------------------------------
 Case Statements Range Alternatives
