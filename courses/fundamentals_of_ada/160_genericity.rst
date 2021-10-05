@@ -405,12 +405,19 @@ Given an integer Z initialized to 100, what is the value of Z after calling I fo
 .. list-table::
 
    * - :ada:`procedure I is new G (Z);`
+
      - :animate:`200 - Calls P1 and null`
+
    * - :ada:`procedure I is new G (Z, P1 => P3); `
+
      - :animate:`103 - Calls P3 and null`
+
    * - :ada:`procedure I is new G (Z, P2 => P3); `
+
      - :animate:`203 - Calls P1 and P3`
+
    * - :ada:`procedure I is new G (Z, P1 => P3, P2 => P3); `
+
      - :animate:`106 - Calls P3 twice`
 
 ====================

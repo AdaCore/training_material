@@ -680,15 +680,22 @@ What will get printed for these values of Input_Value?
 .. list-table::
 
    * - **A.**
+
      - Integer'Last
      - :animate:`Constraint Error`
+
    * - **B.**
+
      - 0
      - :animate:`Unknown problem`
+
    * - **C.**
+
      - Integer'First
      - :animate:`Program Error`
+
    * - **D.**
+
      - 100
      - :animate:`Success`
 
