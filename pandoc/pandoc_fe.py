@@ -155,7 +155,7 @@ if __name__== "__main__":
 
     parser.add_argument('--directories',
                         help='Comma-separated list of folders to search for things like images and Beamer themes',
-                        default=str(ROOT) + "//,:",
+                        default=f"{ROOT}//,:{ROOT}/images:",
                         required=False)
 
     parser.add_argument('--title',

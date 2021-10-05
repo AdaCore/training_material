@@ -46,7 +46,7 @@ Subsystems of Subsystems of ...
 
  .. container:: column
 
-    .. image:: ../../images/connected_cubes.png
+    .. image:: connected_cubes.png
 
 --------------------
 GNAT Project Files

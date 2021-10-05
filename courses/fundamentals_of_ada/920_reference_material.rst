@@ -13,7 +13,7 @@ Learning the Ada Language
 
 * Written as a tutorial for those new to Ada
 
-.. image:: ../../images/barnes_2012_cover.png
+.. image:: barnes_2012_cover.png
 
 ------------------
 Reference Manual
@@ -50,7 +50,7 @@ Reference Manual
 
 * Reference Manual(s) available from :toolname:`GNAT Studio` Help
 
-.. image:: ../../images/gnatstudio-help-gnat.jpeg
+.. image:: gnatstudio-help-gnat.jpeg
 
 -------------
 GNAT Tools

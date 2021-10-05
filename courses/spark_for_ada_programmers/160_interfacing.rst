@@ -35,7 +35,7 @@ System and SPARK Boundaries
 Interaction With the External Environment
 -------------------------------------------
 
-.. image:: ../../images/interaction_with_environment.png
+.. image:: interaction_with_environment.png
 
 ==================
 External Objects
@@ -112,7 +112,7 @@ External State
 
  .. container:: column
 
-    .. image:: ../../images/valves_and_sensors.jpeg
+    .. image:: valves_and_sensors.jpeg
 
 -----------------------------------
 Package Contracts: External State

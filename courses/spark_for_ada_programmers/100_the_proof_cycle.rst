@@ -24,13 +24,13 @@ Analysis of Failed Proof Attempts
 
  .. container:: column
 
-    .. image:: ../../images/failed_proof_bus_example.png
+    .. image:: failed_proof_bus_example.png
 
 -----------------
 The Proof Cycle
 -----------------
 
-.. image:: ../../images/fortify_analyze_prove_cycle.png
+.. image:: fortify_analyze_prove_cycle.png
 
 .. container:: speakernote
 
@@ -70,7 +70,7 @@ How to Deal with Unproved Checks
 * Clicking on the magnifying glass next to the source line number will highlight the path leading to the unproved check.
 
 |
-.. image:: ../../images/unproved_check_example.png
+.. image:: unproved_check_example.png
    :width: 85%
 
 .. container:: speakernote
@@ -90,7 +90,7 @@ How to Deal with Unproved Checks
 How to Deal with Unproved Checks
 ----------------------------------
 
-.. image:: ../../images/prove_dialog-basic-proof_level.png
+.. image:: prove_dialog-basic-proof_level.png
 
 ----------------------------------
 How to Deal with Unproved Checks

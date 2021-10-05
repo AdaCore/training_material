@@ -839,7 +839,7 @@ Exceptions Are Not Always Appropriate
 
  .. container:: column
 
-    .. image:: ../../images/airbag_exception_handler.png
+    .. image:: airbag_exception_handler.png
 
 ---------------------------------------
 Relying On Exception Raising Is Risky

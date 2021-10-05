@@ -578,14 +578,14 @@ Type Invariant Verifications
 
  .. container:: column
 
-    .. image:: ../../images/black_box_flow.png
+    .. image:: black_box_flow.png
        :width: 100%
 
 ----------------------------------------
 Invariant Over Object Lifetime (Calls)
 ----------------------------------------
 
-.. image:: ../../images/type_invariant_check_flow.png
+.. image:: type_invariant_check_flow.png
 
 ------------------------
 Example Type Invariant
