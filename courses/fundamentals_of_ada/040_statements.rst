@@ -385,17 +385,6 @@ If-then-else Statements
 
     - :ada:`null` for explicit no-op
 
- .. code:: Ada
-
-    if Valve(N) /= Closed then
-      Isolate (Valve(N));
-      Notify (Valve_Failure, Valve (N));
-    else
-      if System = Off then
-        Notify (Valve_Failure, Valve (N));
-      end if;
-    end if;
-
 --------------------------
 If-then-elsif Statements
 --------------------------
@@ -404,16 +393,32 @@ If-then-elsif Statements
 * Avoids :ada:`if` nesting
 * :ada:`elsif` alternatives, tested in textual order
 * :ada:`else` part still optional
-* Applied to previous example
 
- .. code:: Ada
+.. container:: columns
 
-    if Valve(N) /= Closed then
-      Isolate (Valve(N));
-      Notify (Valve_Failure, Valve (N));
-    elsif System = Off then
-      Notify (Valve_Failure, Valve (N));
-    end if;
+ .. container:: column
+
+  .. code:: Ada
+
+     if Valve(N) /= Closed then
+       Isolate (Valve(N));
+       Failure (Valve (N));
+     else
+       if System = Off then
+         Failure (Valve (N));
+       end if;
+     end if;
+
+ .. container:: column
+
+  .. code:: Ada
+
+     if Valve(N) /= Closed then
+       Isolate (Valve(N));
+       Failure (Valve (N));
+     elsif System = Off then
+       Failure (Valve (N));
+     end if;
 
 .. container:: speakernote
 
