@@ -637,24 +637,22 @@ Examples
 Variant Record Types
 ----------------------
 
-* *Variant record type* is a record type where
+* **Variant** record type
 
-   + Different objects may have different sets of components (i.e. different variants)
-   + Given object itself may be *unconstrained*
+   + Different **objects** may have **different** components
+   + All object **still** share the same type
 
-      * Different variants at different times
+* Equivalent to :C:`union` in C
+* Kind of **storage overlay**
 
-* Supported in other languages
+   + **Same** storage for **several** variant
+   + Ada preserves type checking
 
-   + Variant records in Pascal
-   + Unions in C
+      - Unlike C
 
-* Variant record offers a kind of storage overlaying
+* The object may be **unconstrained**
 
-   + Same storage might be used for one variant at one time, and then for another variant later
-   + Language issue: Ensure this does not provide loophole from type checking
-
-      * Neither Pascal nor C avoids this loophole
+   + Or even dynamically **mutable**
 
 -------------------------------------
 Discriminant in Ada Variant Records
@@ -668,48 +666,42 @@ Discriminant in Ada Variant Records
      case Tag is
         when Student => -- 1st variant
            Gpa  : Float range 0.0 .. 4.0;
-           Year : Integer range 1 .. 4;
         when Faculty => -- 2nd variant
            Pubs : Integer;
      end case;
   end record;
 
-* Variant record type contains a special field (*discriminant*) whose value indicates which variant is present
-* When a field in a variant is selected, run-time check ensures that discriminant value is consistent with the selection
+* :ada:`Tag` is the **discriminant**
+* Run-time check for component **consistency**
 
-   + If you could store into `Pubs` but read `GPA`, type safety would not be guaranteed
+   + eg :ada:`A_Person.Pubs := 1` checks :ada:`A_Person.Tag = Faculty`
+   + :ada:`Constraint_Error` if check fails
 
-* Ada prevents this type of access
+* Discriminant is **constant**
 
-   + Discriminant (Tag) established when object of type Person created
-   + Run-time check verifies that field selected from variant is consistent with discriminant value
+   + Unless mutable (advanced)
 
-      * Constraint_Error raised if the check fails
-
-* Can only read discriminant (as any other field), not write
-
-      * Aggregate assignment is allowed
+* Aggregate assignment is allowed
 
 -----------
 Semantics
 -----------
 
-* Variable of type `Person` is constrained by value of discriminant supplied at object declaration
+* :ada:`Person` objects are **constrained** by their discriminant
 
-   + Determines minimal storage requirements
-   + Limits object to corresponding variant
+   + Assignment to same variant **only**
+   + **Representation** requirements
 
    .. code:: Ada
 
-      Pat  : Person(Student); -- May select Pat.GPA, not Pat.Pubs
-      Prof : Person(Faculty); -- May select Prof.Pubs, not Prof.GPA
+      Pat  : Person(Student); -- No Pat.Pubs
+      Prof : Person(Faculty); -- No Prof.GPA
       Soph : Person := ( Tag  => Student,
                          Name => "John Jones",
-                         GPA  => 3.2,
-                         Year => 2);
-      X    : Person;  -- Illegal; discriminant must be initialized
+                         GPA  => 3.2);
+      X : Person;  -- Illegal: must specify discriminant
 
-* Assignment between Person objects requires same discriminant values for LHS and RHS
+* Assignment between :ada:`Person` objects requires same discriminant
 
    .. code:: Ada
 
