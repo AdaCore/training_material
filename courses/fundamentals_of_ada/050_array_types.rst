@@ -280,21 +280,27 @@ Quiz
    X1, Y1 : Array1_T;
    X2, Y2 : Array2_T;
 
-Which statement is not legal?
+.. container:: columns
+
+ .. container:: column
+
+   Which statement is not legal?
 
    A. ``X1(1) := Y1(1);``
    B. ``X1 := Y1;``
    C. ``X1(1) := X2(1);``
    D. :answermono:`X2 := X1;`
 
-.. container:: animate
+ .. container:: column
 
-   Explanations
+  .. container:: animate
 
-   A. Legal - elements are :ada:`Boolean`
-   B. Legal - object types match
-   C. Legal - elements are :ada:`Boolean`
-   D. Although the sizes are the same and the elements are the same, the type is different
+    Explanations
+
+    A. Legal - elements are :ada:`Boolean`
+    B. Legal - object types match
+    C. Legal - elements are :ada:`Boolean`
+    D. Although the sizes are the same and the elements are the same, the type is different
 
 ===========================
 Unconstrained Array Types
@@ -485,21 +491,27 @@ Quiz
    Y : Array1_T := (1, 2, 3, 4);
    Z : Array2_T := (1, 2, 3, 4);
 
-Which statement is illegal?
+.. container:: columns
 
-   A. :answermono:`X(1) := Y(1);`
-   B. ``Y(1) := Z(1);``
+ .. container:: column
+
+   Which statement is illegal?
+
+   A. :answermono:`X (1) := Y (1);`
+   B. ``Y (1) := Z (1);``
    C. ``Y := X;``
    D. ``Z := X;``
 
-.. container:: animate
+ .. container:: column
+
+  .. container:: animate
 
    Explanations
 
-   A. First index of :ada:`Array_T` is first value in :ada:`Integer` - so :ada:`X(1)` is not in range
-   B. Legal - indices are both in range
-   C. Legal - arrays are same type and same size
-   D. Legal - :ada:`X` has been constrained to correct size
+   A. :ada:`Array_T` starts at :ada:`Integer'First` not :ada:`1`
+   B. OK, both in range
+   C. OK, same type and size
+   D. OK, same type and size
 
 ============
 Attributes
