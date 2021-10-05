@@ -65,14 +65,12 @@ Examples
 Characteristics of Components
 -------------------------------
 
-* Heterogeneous types allowed
-* Referenced by name
-* May be no components, for empty records
-* No anonymous types (e.g., arrays) allowed
-* No constant components
-* Multiple component declarations allowed
-* No recursive definitions
-* Default initial expressions allowed
+* **Heterogeneous** types allowed
+* Referenced **by name**
+* May be no components, for **empty records**
+* **No** anonymous types (e.g., arrays) allowed
+* **No** constant components
+* **No** recursive definitions
 
 -----------------------------------------
 "Dot" Notation for Components Reference
