@@ -1,7 +1,7 @@
 
-*************
-Overloading
-*************
+**********************
+Overloading Equality
+**********************
 
 .. role:: ada(code)
     :language: Ada
