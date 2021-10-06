@@ -93,9 +93,9 @@ Benefits and Risk of Overloading
 
    .. code:: Ada
 
-      function "+" ( L, R : integer ) return string is
+      function "+" ( L, R : Integer ) return String is
       begin
-         return integer'image ( L - R );
+         return Integer'Image ( L - R );
       end "+";
 
 =========================
@@ -167,7 +167,7 @@ Parameters for Overloaded Operators
 
       .. code:: Ada
 
-         function "*" (Left, Right : Integer) return integer;
+         function "*" (Left, Right : Integer) return Integer;
 
    - Usage
 
