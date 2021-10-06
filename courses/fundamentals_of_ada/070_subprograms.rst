@@ -1097,56 +1097,21 @@ Mode `out` Risk for Scalars
 * Any effect upon external objects or external environment
 
    - Typically alteration of non-local variables or states
+   - Can cause hard-to-debug errors
+   - Not legal in SPARK
 
-   .. code:: Ada
+* Can be there for historical reasons
 
-      Global : Integer := 0;
-      function F (X : Integer) return Integer is
-      begin
-        Global := Global + X;
-      return X;
-      end F;
+   - Or some design patterns
 
-   - Should generally be avoided!
+.. code:: Ada
 
-      + They make nasty errors possible
-      + Not legal in SPARK
+   Global : Integer := 0;
 
-   - Are not specific to Ada
-
------------------------------
-Side Effects' Justification
------------------------------
-
-* Functions could not update formal parameters prior to Ada 2012
-
-  - Not without some ugly tricks...
-
-* May be part of the most clear approach
-
-   * So-called "memo" functions
-
-      .. code:: Ada
-
-         Counter : integer := 0;
-         function Next_Available return Integer is
-         begin
-           Counter := Counter + 1
-           return Counter;
-         end Next_Available;
-
-   * "Reasonable" side effect
-
-      .. code:: Ada
-
-         Seed : Integer;
-         function Random_Number return Real is
-           Result : Real;
-         begin
-           -- Compute result based on Seed
-           -- Alter Seed so next call gets different value
-           return Result;
-         end Random_Number;
+   procedure P (X : Integer) is
+   begin
+      Global := Global + X;
+   end P;
 
 ---------------------------------------
 Order-Dependent Code And Side Effects
@@ -1156,110 +1121,44 @@ Order-Dependent Code And Side Effects
 .. code:: Ada
 
    Global : Integer := 0;
-   function F return Integer is
+
+   function Inc return Integer is
    begin
      Global := Global + 1;
      return Global;
    end F;
-   procedure Gear_Down (
-      X, Y : in Integer) is
-   begin
-     if X = Y then -- put gear down
-     ...
-     end if;
-   end Gear_Down;
+
+   procedure Assert_Equals (X, Y : in Integer);
    ...
-   Gear_Down (Global, F);
+   Assert_Equals (Global, Inc);
 
-* Order of evaluation of parameters in subprogram call is not specified in language
-* :ada:`Gear_Down` could get called with
+* Language does **not** specify parameters' order of evaluation
+* :ada:`Assert_Equals` could get called with
 
-   - X |rightarrow| 0, Y |rightarrow| 1 (if `Global` evaluated first)
-   - X |rightarrow| 1, Y |rightarrow| 1 (if `F` evaluated first)
+   - X |rightarrow| 0, Y |rightarrow| 1 (if :ada:`Global` evaluated first)
+   - X |rightarrow| 1, Y |rightarrow| 1 (if :ada:`Inc` evaluated first)
 
 --------------------
 Parameter Aliasing
 --------------------
 
-* When there are multiple names for an actual parameter inside a subprogram body
+* **Aliasing** : Multiple names for an actual parameter inside a subprogram body
+* Multiple causes possible
 
-   - Global variable passed as actual parameter and referenced inside subprogram via global name
+   - Global object used is also passed as actual parameter
    - Same actual passed to more than one formal
-   - Two actuals are overlapping slices
-   - One actual is contained within another actual
+   - Overlapping :ada:`array` slices
+   - One actual is a component of another actual
 
 * Can lead to code dependent on parameter-passing mechanism
-
-   - Issue is not specific to Ada!
-
-* Ada detects some cases
-
-   - When detected, raises :ada:`Program_Error`
-   - When not detected, does whatever it does
-
-----------------------------------------
-Parameter Aliasing via Global Variable
-----------------------------------------
+* Ada detects some cases and raises :ada:`Program_Error`
 
 .. code:: Ada
 
-   declare
-     Actual : String := "Hello";
-     procedure Print (Formal : in String) is
-     begin
-       Actual := "World";
-       -- output dependent on passing mechanism
-       Put_Line (Formal);
-     end Print;
-   begin
-     -- if pass by-copy, prints "Hello"
-     -- if pass by-reference, prints "World"
-     Print (Formal => Actual);
-
------------------------------------------
-Parameter Aliasing via Multiple Actuals
------------------------------------------
-
-.. code:: Ada
-
-   declare
-     Actual : String := "Hello";
-     procedure Print (Formal1 : out String;
-                      Formal2 : in String) is
-     begin
-       Formal1 := "World";
-       -- output dependent on passing mechanism
-       Put_Line (Formal2);
-     end Print;
-   begin
-     -- if pass by-copy, prints "Hello"
-     -- if pass by-reference, prints "World"
-     Print (Actual, Actual);
-
----------------------------------------
-Easy Cases Detected and Not Legal (1)
----------------------------------------
-
-.. code:: Ada
-
-   -- order of copying data to actual params not specified
-   procedure Update (Doubled, Tripled : in out Integer) is
-   begin
-     Doubled := Doubled * 2;
-     Tripled := Tripled * 3;
-   end Update;
-   procedure Test is
-     A : Integer := 1;
-   begin
-     Update (Doubled => A,
-             Tripled => A);  -- illegal in Ada 2012
-     -- Could print "2" or "3" depending on copy order
-     Put_Line (A'Img);
-   end Test;
-
-.. container:: speakernote
-
-   Ada 2012 - overlap is no longer allowed
+   procedure Update (Doubled, Tripled : in out Integer);
+   ...
+   Update (Doubled => A,
+           Tripled => A);  -- illegal in Ada 2012
 
 ----------------------------
 Functions' Parameter Modes
