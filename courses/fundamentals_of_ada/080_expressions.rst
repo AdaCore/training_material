@@ -523,31 +523,34 @@ Subtypes Localize Dependencies
 
 * Single points of change
 * Relationships captured in code
-* Which is more maintainable
 
-   - No subtypes
+Code examples
 
-      .. code:: Ada
+* No subtypes
 
-         type List is array (1 .. 12) of Some_Type;
-         K : Integer range 0 .. 12;
-         Values : List;
-         ...
-         if K in 1 .. 12 then ...
-         for J in Integer range 1 .. 12 loop
+.. code:: Ada
 
-   - Subtypes
+   type List is array (1 .. 12) of Some_Type;
 
-      .. code:: Ada
+   K : Integer range 0 .. 12 := 0; -- anonymous subtype
+   Values : List;
+   ...
+   if K in 1 .. 12 then ...
+   for J in Integer range 1 .. 12 loop ...
 
-         type Counter is range 0 .. 12;
-         subtype Index is Counter range 1 .. Counter'Last;
-         type List is array (Index) of Some_Type;
-         K : Counter := 0;
-         Values : List;
-         ...
-         if K in Index then ...
-         for J in Index loop ...
+* Subtypes
+
+.. code:: Ada
+
+   type Counter is range 0 .. 12;
+   subtype Index is Counter range 1 .. Counter'Last;
+   type List is array (Index) of Some_Type;
+
+   K : Counter := 0;
+   Values : List;
+   ...
+   if K in Index then ...
+   for J in Index loop ...
 
 ----------------------------------
 Subtypes May Enhance Performance
