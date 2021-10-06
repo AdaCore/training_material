@@ -590,9 +590,9 @@ Discriminated Record Types
 
 * Aggregate assignment is allowed
 
--------------------------------------
-Discriminant in Ada Variant Records
--------------------------------------
+---------------
+Discriminants
+---------------
 
 .. code:: Ada
 
