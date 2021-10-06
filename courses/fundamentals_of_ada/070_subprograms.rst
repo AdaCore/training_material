@@ -640,7 +640,6 @@ Naive Implementation
         Result (K) := Left (K) - Right (K);
       end loop;
 
-
 ------------------------
 Correct Implementation
 ------------------------
@@ -811,36 +810,16 @@ Nested Subprogram Example
    procedure Main is
 
       function Read (Prompt : String) return Types.Line_T is
-         function Read (Inner_Prompt : String) return Types.Coordinate_T is
-         begin
-            Put (Prompt & " - " & Inner_Prompt & "> ");
-            return Types.Coordinate_T'Value (Get_Line);
-         end Read;
       begin
-         return (X => Read ("X coordinate"), Y => Read ("Y coordinate"));
+         Put ("> ");
+         return Types.Line_T'Value (Get_Line);
       end Read;
 
-      Count : Natural;
-
+      Lines : Types.Lines_T (1 .. 10);
    begin
-      Put ("Number of lines: ");
-      Count := Natural'Value (Get_Line);
-      declare
-         Lines : Types.Lines_T (1 .. Count);
-         procedure Print (I : Natural) is
-         begin
-            Put_Line (I'Image & " => ( " & Lines (I).X'Image & ", " & Lines (I).Y'Image & " )");
-         end Print;
-      begin
-         for I in Lines'Range loop
-            Lines (I) := Read ("Line " & I'Image);
-         end loop;
-         for I in Lines'First .. Lines'Last loop
-            Print (I);
-         end loop;
-      end;
-
-   end Main;
+      for J in Lines'Range loop
+         Lines (J) := Read ("Line " & J'Image);
+      end loop;
 
 =====================
 Procedure Specifics
