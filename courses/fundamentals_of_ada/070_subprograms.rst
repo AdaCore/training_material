@@ -670,24 +670,24 @@ Quiz
                P3 : in     Character := ' ';
                P4 :    out Character)
       return Integer;
-   I1, I2, I3, I4 : Integer;
-   C1, C2, C3, C4 : Character;
+   J1, J2 : Integer;
+   C : Character;
 
 Which call is legal?
 
-   A. ``I4 := F (P1 => 1, P2 => 2, P3 => '3', P4 => 4);``
-   B. ``I4 := F (P1 => 1, P3 => C3, P4 => C4);``
-   C. :answermono:`I4 := F (I1, I2, C3, C4);`
-   D. ``F (I1, I2, C3, C4);``
+   A. ``J1 := F (P1 => 1, P2 => J2, P3 => '3', P4 => '4');``
+   B. ``J1 := F (P1 => 1, P3 => '3', P4 => C);``
+   C. :answermono:`J1 := F (1, J2, '3', C);`
+   D. ``F (J1, J2, '3', C);``
 
 .. container:: animate
 
    Explanations
 
-   A. :ada:`P4` can be modified by :ada:`P`, so it must be a variable
-   B. :ada:`P2` has no default value so it must be specified
+   A. :ada:`P4` is :ada:`out`, it **must** be a variable
+   B. :ada:`P2` has no default value, it **must** be specified
    C. Correct
-   D. :ada:`F` is a function - return value must be stored
+   D. :ada:`F` is a function, its :ada:`return` **must** be handled
 
 =================
 Null Procedures
