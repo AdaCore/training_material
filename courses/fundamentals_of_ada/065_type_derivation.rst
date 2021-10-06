@@ -265,39 +265,43 @@ Quiz
 
 .. code:: Ada
 
-   package P1 is
-      type T1 is range 1 .. 100;
-      procedure Proc_A (X : in out T1);
+   type T1 is range 1 .. 100;
+   procedure Proc_A (X : in out T1);
 
-      type T2 is new T1 range 2 .. 99;
-      procedure Proc_B (X : in out T1);
-      procedure Proc_B (X : in out T2);
-   end P1;
+   type T2 is new T1 range 2 .. 99;
+   procedure Proc_B (X : in out T1);
+   procedure Proc_B (X : in out T2);
 
-   with P1; use P1;
-   package P2 is
-      procedure Proc_C (X : in out T2);
+   -- Other scope
+   procedure Proc_C (X : in out T2);
 
-      type T3 is new T2 range 3 .. 98;
+   type T3 is new T2 range 3 .. 98;
 
-      procedure Proc_C (X : in out T3);
-   end P2;
+   procedure Proc_C (X : in out T3);
 
-Which subprogram(s) is/are a primitive of T1
+.. container:: columns
 
-   A. :answermono:`Proc_A`
-   B. ``Proc_A, Proc_B``
-   C. ``Proc_A, Proc_B, Proc_C``
-   D. No primitives of T1
+ .. container:: column
 
-.. container:: animate
+  Which are :ada:`T1`'s primitives
+
+     A. :answermono:`Proc_A`
+     B. ``Proc_B``
+     C. ``Proc_C``
+     D. No primitives of :ada:`T1`
+
+ .. container:: column
+
+  .. container:: animate
 
    Explanations
 
    A. Correct
-   B. :ada:`Proc_B` is defined *too late* - a new type has been derived from :ada:`T1`
-   C. :ada:`Proc_B` is defined *too late* and :ada:`Proc_C` is in the wrong scope
+   B. Freeze: :ada:`T1` has been derived
+   C. Freeze: scope change
    D. Incorrect
+
+.
 
 ======================
 Signed Integer Types
