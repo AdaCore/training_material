@@ -405,36 +405,6 @@ When To Use *If Expressions*
         if Today.Day /= End_of_Month(Today.Month) then
       ...
 
-------------------------------
-Static Named Numbers Example
-------------------------------
-
-* Hard to read
-
-   .. code:: Ada
-
-      Byte_MSB     : constant := Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First) * 7;
-      Halfword_MSB : constant := Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First) * 15;
-      Word_MSB     : constant := Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First) * 31;
-      NextBit      : constant := 1 - (2 * Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First));
-
-* Becomes easier to read
-
-   .. code:: Ada
-
-      Byte_MSB     : constant :=
-                     (if Default_Bit_Order = Low_Order_First then 7 else 0);
-      Halfword_MSB : constant :=
-                     (if Default_Bit_Order = Low_Order_First then 15 else 0);
-      Word_MSB     : constant :=
-                     (if Default_Bit_Order = Low_Order_First then 31 else 0);
-      NextBit      : constant :=
-                     (if Default_Bit_Order = Low_Order_First then -1 else 1);
-
 ---------------------
  *Case Expressions*
 ---------------------
