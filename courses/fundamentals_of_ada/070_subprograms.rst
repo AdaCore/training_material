@@ -1072,32 +1072,23 @@ Examples
 Mode `out` Risk for Scalars
 -----------------------------
 
-.. container:: columns
+* Always assign value to :ada:`out` parameters
+* Else "By-copy" mechanism will copy something back
 
- .. container:: column
+   - May be junk
+   - :ada:`Constraint_Error` or unknown behaviour further down
 
-    * Be sure to assign value of mode :ada:`out` formals!
-    * "By-copy" mechanism will copy something back
+.. code:: Ada
 
-       - Value copied back may be junk
-       - :ada:`Constraint_Error` may be raised later or some other unexpected behavior may occur
-
- .. container:: column
-
-    .. code:: Ada
-
-       procedure P (
-          A, B : in Some_Type;
-          Result : out Scalar_Type)
-       is
-       begin
-         Some_Statements;
-         if Some_Condition then
-           return;  -- Result not set
-         end if;
-         Some_Statements;
-         Result := Some_Value;
-       end P;
+   procedure P
+     (A, B : in Some_Type; Result : out Scalar_Type) is
+   begin
+     if Some_Condition then
+       return;  -- Result not set
+     end if;
+     ...
+     Result := Some_Value;
+   end P;
 
 ----------------
 "Side Effects"
