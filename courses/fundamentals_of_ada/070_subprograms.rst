@@ -76,85 +76,53 @@ A Little "Preaching" About Names
    function Square_Root (V: Real) return Real;
    function Is_Open (V: Valve) return Boolean;
 
-========================
-Declarations and Bodies
-========================
+========
+Syntax
+========
 
-----------
-Examples
-----------
+-------------------------
+ Specification and Body
+-------------------------
 
-.. include:: examples/070_subprograms/declarations_and_bodies.rst
+* Subprogram specification is the external (user) **interface**
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#declarations-and-bodies`
+   - **Declaration** and **specification** are used synonymously
 
---------------------------
-Subprogram Declarations
---------------------------
+* Specification may be required
 
-* Define the external (user) interface
+   - Package specification
+   - Recursion
+   - Optional otherwise
 
-   - Provide the subprogram specification
-   - *Declaration* and *specification* are often used synonymously
+* Subprogram body is the **implementation**
 
-* Required in some circumstances
-
-  - Packages exporting subprograms
-  - Recursion
-
-* Optional otherwise
+-------------------------------------------
+Procedure Specification Syntax (Simplified)
+-------------------------------------------
 
 .. code:: Ada
 
    procedure Swap (A, B : in out Integer);
-   function F (X : Real) return Real;
-
--------------------
-Subprogram Bodies
--------------------
-
-* Provide the implementation
-* Define execution behavior
-
-   - Procedure body
-
-      .. code:: Ada
-
-         procedure Swap (A, B : in out Integer) is
-           Temp : Integer := A;
-         begin
-           A := B;
-           B := Temp;
-         end Swap;
-
-   - Function body
-
-      .. code:: Ada
-
-         function F (X : Real) return Real is
-         begin
-           return X + 3.0 * X;
-         end F;
-
--------------------------------------------
-Procedure Declaration Syntax (Simplified)
--------------------------------------------
 
 .. code:: Ada
 
    subprogram_specification ::=
-      procedure defining_name [ formal_part ]
-   formal_part ::=
-      ( parameter_specification
-        { ; parameter_specification } )
+      procedure identifier [ formal_part ]
+
+   formal_part ::= ( parameter_spec { ; parameter_spec} )
+
    parameter_specification ::=
-      defining_identifier_list : mode subtype_mark
-         [ := expression ]
+      identifier_list : mode subtype_mark [ := expression ]
+
    mode ::= [in] | out | in out
 
 ------------------------------------------
 Function Declaration Syntax (Simplified)
 ------------------------------------------
+
+.. code:: Ada
+
+   function F (X : Real) return Real;
 
 * Same as :ada:`procedure`
 
@@ -163,12 +131,12 @@ Function Declaration Syntax (Simplified)
 
 .. code:: Ada
 
-   subprogram_specification ::= function
-       defining_designator parameter_and_result_profile
-   defining_designator ::= defining_name |
-                           operator_symbol
-   parameter_and_result_profile ::=
-      [formal_part] return subtype_mark
+   subprogram_specification ::=
+      function designator profile
+
+   designator ::= identifier | operator_symbol
+
+   profile ::= [formal_part] return subtype_mark
 
 -------------
 Body Syntax
