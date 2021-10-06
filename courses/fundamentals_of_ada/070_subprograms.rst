@@ -992,90 +992,49 @@ Expression Functions
 
    Ada 2012
 
-* Shorthand for declaring functions whose implementations are only "expressions"
+* Functions whose implementations are pure expressions
 
-   - Only the returned value appears
+   - No body is allowed
+   - No :ada:`return` keyword
 
-* Syntax
-
-   .. code:: Ada
-
-      expr_func_declaration ::= function_specification is (expression);
-
-   * Parentheses are required
-   * Parameters are optional, as usual, but typical
-
-* Expression function
-
-   .. code:: Ada
-
-      function Square (X : Integer) return Integer is (X ** 2);
-
-* Is equivalent to
-
-   .. code:: Ada
-
-      function Square (X : Integer) return Integer is
-      begin
-         return X ** 2;
-      end Square;
-
--------------------------------------
-Expression Functions As Completions
--------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Completions for a distinct, prior declaration
-
-   .. code:: Ada
-
-      function Squared (X : Integer) return Integer;
-      function Squared (X : Integer) return Integer is
-          (X ** 2);
-
-* A declaration and completion together
-
-   - A body is then not required, thus not allowed
-
-      .. code:: Ada
-
-         function Squared (X : Integer) return Integer is
-          (X ** 2);
-         -- Then this would be a compile error
-         function Squared (X : Integer) return Integer is
-         begin
-           return X ** 2;
-         end Squared;
-
----------------------------------------
-Typical Uses for Expression Functions
----------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* May be part of general (ADT) implementation
 * May exist only for sake of pre/postconditions
-
-   - Convenience: likely to appear where bodies are not allowed
-   - Can supply higher level of abstraction
 
 .. code:: Ada
 
-   procedure Euclid (A, B : Integer; Result : out Integer)
-     with Pre => A > 0 and B > 0,
-     Post => GCD (A, B, Result);
-   function GCD (A, B, Candidate : Integer)
-       return Boolean is
-     (A rem Candidate = 0 and
-      B rem Candidate = 0 and
-      (for all K in 1 .. Integer'Min (A,B) =>
-        (if (A rem K = 0 and B rem K = 0)
-         then K <= Candidate)));
+   function function_specification is ( expression );
+
+NB: Parentheses around expression are **required**
+
+* Can complete a prior declaration
+
+.. code:: Ada
+
+   function Squared (X : Integer) return Integer;
+   function Squared (X : Integer) return Integer is
+      (X ** 2);
+
+------------------------------
+Expression Functions Example
+------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
+
+* Expression function
+
+.. code:: Ada
+
+   function Square (X : Integer) return Integer is (X ** 2);
+
+* Is equivalent to
+
+.. code:: Ada
+
+   function Square (X : Integer) return Integer is
+   begin
+      return X ** 2;
+   end Square;
 
 ------
 Quiz
