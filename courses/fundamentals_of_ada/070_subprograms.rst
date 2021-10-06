@@ -289,48 +289,33 @@ Examples
 Subprogram Parameter Terminology
 ----------------------------------
 
-* *Actual* parameters are values passed to a call
+* **Actual** parameters are values passed to a call
 
    - Variables, constants, expressions
 
-* *Formal* parameters are defined by specification
+* **Formal** parameters are defined by specification
 
    - Receive the values passed from the actual parameters
    - Specify the types required of the actual parameters
 
-* Specification
-
    .. code:: Ada
 
-      procedure Something ( Formal1 : in     Integer;
-                            Formal2 :    out Boolean );
-
-* Call
-
-   .. code:: Ada
+      procedure Something (Formal1 : in Integer);
 
       ActualX : Integer;
-      ActualY : Boolean;
       ...
-      Something ( ActualX, ActualY );
+      Something (ActualX);
 
 ---------------------------------
 Parameter Associations In Calls
 ---------------------------------
 
 * Associate formal parameters with actuals
-* Traditional "positional association" is allowed
-
-   - Nth actual goes to nth formal
-
-* "Named association" also allowed
-
-   - Name of formal parameter is repeated
-   - Order of associations may be altered
+* Both positional and named association allowed
 
 .. code:: Ada
 
-   Something ( ActualX, Formal2 => ActualY );
+   Something (ActualX, Formal2 => ActualY);
    Something (Formal2 => ActualY, Formal1 => ActualX);
 
 ---------------------------------------
@@ -417,37 +402,29 @@ No Anonymously-Typed Formals
 Parameter Modes
 -----------------
 
-* Complete abstraction by presenting different views
-
-   - Views within the subprogram with respect to formals
-
-* Views control use of formals within subprograms
+* Views **inside** the subprogram
 * Mode :ada:`in`
 
-   - Specifies that actual parameter is not altered
-   - Only reading of formal is allowed
+   - Actual parameter is :ada:`constant`
 
 * Mode :ada:`out`
 
-   - Writing is expected, but reading is also allowed
-   - Initial value inside subprogram is not defined
+   - Writing is **expected**
+   - Reading is **allowed**
 
 * Mode :ada:`in out`
 
-   - Actual is expected to be both read and altered
-   - Initial value inside subprogram is defined (taken from actual)
+   - Actual is expected to be **both** read and written
 
 ---------------------------------
 Why Read Mode `out` Parameters?
 ---------------------------------
 
-* Convenience of writing the body
+* **Convenience** of writing the body
 
-   - No need for readable temporary variable in place of formal
+   - No need for readable temporary variable
 
-* Be aware that initial value is not defined
-
-   - There is no input value (with some exceptions...)
+* Warning: initial value is **not defined**
 
 .. code:: Ada
 
@@ -459,33 +436,17 @@ Why Read Mode `out` Parameters?
      end loop;
    end Compute;
 
---------------------------
-Parameter Modes' Benefit
---------------------------
-
-* Callers need not examine the implementation to determine effect upon actuals
-* Intended effect (or lack thereof) is in specification
-
-   - Although weakly guaranteed
-
-   .. code:: Ada
-
-      Procedure Put ( X : in integer );
-      Procedure Get ( X : out integer );
-
 ---------------------------------
 Modes' Requirements for Actuals
 ---------------------------------
 
-* Use of variables versus expressions for actuals
 * Modes :ada:`in out` and :ada:`out`
 
-   - Variables must be used since actual may/will be altered
+   - Must **not** use expressions
 
 * Mode :ada:`in`
 
-   - Expressions may be used since the actual can't be altered
-   - Recall expressions not limited to variable references
+   - May use expressions (actual can't be altered)
 
 .. code:: Ada
 
@@ -493,34 +454,29 @@ Modes' Requirements for Actuals
                            Y :    out Integer );
    ...
    begin
-     Do_Something(X,Y);    -- legal
-     Do_Something(X+2, Y); -- legal
-     Do_Something(X, Y+1); -- compile error
+     Do_Something(X + 2, Y); -- legal
+     Do_Something(X, Y + 1); -- compile error
 
 -------------------------------------
 Parameter Defaults May Be Specified
 -------------------------------------
 
-* Mode :ada:`in` formals only
-* Callers may omit corresponding actual for calls
-
-   - Possible since actual will not be altered
+* :ada:`in` parameters only
+* Default used when **no value** is provided
 
 .. code:: Ada
 
    My_Process, Your_Process : Process_Name;
-   Period : Duration;
    procedure Activate( Process : in Process_Name;
                        After : in Process_Name := None;
-                       Wait : in Duration := 0.0;
                        Prior : in Boolean := False  );
    ...
    begin
      -- no defaults taken
-     Activate (My_Process, Your_Process, Period, True);
-     -- defaults for After, Wait, Prior
+     Activate (My_Process, Your_Process, True);
+     -- defaults for After, Prior
      Activate (My_Process);
-     -- defaults for Wait, Prior
+     -- defaults for Prior
      Activate (My_Process, Your_Process);
 
 ---------------------------------
@@ -534,13 +490,12 @@ Skipping Over Actual Parameters
    procedure Activate(
      Process : in Process_Name;
      After : in Process_Name := None;
-     Wait : in Duration := 0.0;
      Prior : in Boolean := False );
    ...
    begin
      -- Parameter "After" is skipped
-     Activate (My_Process, Wait => 60.0, Prior => True);
-     Activate (My_Process, 60.0, True); -- compile error
+     Activate (My_Process, Prior => True);
+     Activate (My_Process, True); -- compile error
 
 .. container:: speakernote
 
