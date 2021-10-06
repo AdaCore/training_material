@@ -1180,25 +1180,22 @@ Functions' Parameter Modes
    - But side effects are still possible via globals
    - So worst possible case: side effects are possible and necessarily hidden!
 
----------------------------------------
-Easy Cases Detected and Not Legal (2)
----------------------------------------
+----------------------------------
+Easy Cases Detected and Not Legal
+----------------------------------
 
 .. code:: Ada
 
-   declare
-     X : array (1 .. 10) of Integer := (others => 42);
-     function F (This : in out Integer) return Integer is
-     begin
-       This := This + 1;
-       return This;
-     end F;
-     A : Integer := 1;
+   function Increment (This : in out Integer) return Integer is
    begin
-     -- order of evaluating A not specified
-     X (A) := F (A); -- not legal in Ada 2012
-     Put_Line ("X(1) is"  &  X(1)'Img); -- "2" or "42"
-     Put_Line ("X(2) is"  &  X(2)'Img); -- "2" or "42"
+      This := This + 1;
+      return This;
+   end Increment;
+
+   X : array (1 .. 10) of Integer;
+   ...
+   -- order of evaluating A not specified
+   X (A) := Increment (A); -- not legal in Ada 2012
 
 ===================
 Extended Examples
