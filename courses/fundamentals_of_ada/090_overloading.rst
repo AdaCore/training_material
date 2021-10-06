@@ -265,6 +265,7 @@ Manually Disambiguating Calls
    type Colors is (Red, Blue, Green);
    procedure Put (Light : in Stop_Light);
    procedure Put (Shade : in Colors);
+
    Put (Red);  -- ambiguous call
    Put (Yellow);  -- not ambiguous: only 1 Yellow
    Put (Colors'(Red)); -- using type to distinguish
@@ -276,11 +277,10 @@ Overloading Example
 
 .. code:: Ada
 
-   function "+" (Left : Position;
-                 Right : Offset)
-                 return Position is
+   function "+" (Left : Position; Right : Offset)
+     return Position is
    begin
-     return Position'( Left.Row + Right.Row, Left.Column + Right.Col);
+      return Position'(Left.Row + Right.Row, Left.Column + Right.Col);
    end "+";
 
    function Acceptable (P : Position) return Boolean;
