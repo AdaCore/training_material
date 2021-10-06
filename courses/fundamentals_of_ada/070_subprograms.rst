@@ -195,17 +195,30 @@ Body Syntax
       return X * Y;
    end F;
 
----------------
-"Completions"
----------------
+--------------
+Completions
+--------------
 
-* Bodies "complete" the corresponding declarations
+* Bodies **complete** the specification
 
-   - "Completions" because there are other ways to complete a declaration in addition to writing a full body
+   - There are **other** ways to complete
 
-* Bodies may act as both declaration and completion
+* Separate specification is **not required**
 
-   - Separate declarations not required to define subprograms
+   - Body can act as a specification
+
+* A declaration and its body must **fully** conform
+
+   - Mostly **semantic** check
+   - But parameters **must** have same name
+
+.. code:: Ada
+
+   procedure P (J, K : Integer)
+   procedure P (J : Integer; K : Integer)
+   procedure P (J, K : in Integer)
+   -- Invalid
+   procedure P (A : Integer; B : Integer)
 
 ---------------------
 Completion Examples
@@ -229,40 +242,10 @@ Completion Examples
         B := Temp;
       end Swap;
 
-      function Min (X, Y : Person) return Person is
+      function Mac (A, X, Y : Integer) return Integer is
       begin
-        if X.Age < Y.Age then
-          return X;
-        else
-          return Y;
-        end if;
+         return A + X * Y;
       end Min;
-
-* Depending on usage, specifications may not be needed
-
-------------------------
-Completion Conformance
-------------------------
-
-* Profile conformance is an issue in several situations
-
-   - Separate declaration in a package specification
-   - Access types designating subprograms
-   - Others...
-
-* A declaration and its body must fully conform
-
-   - So compiler can be certain which goes with which
-
-* Syntax of profiles need not be identical as long as semantics are the same
-
-   - But need not be *textually* identical
-
-.. code:: Ada
-
-   procedure P (J, K : Integer)
-   procedure P (J : Integer; K: Integer)
-   procedure P (J, K : in Integer)
 
 ----------------------------
 Why Separate Declarations?
