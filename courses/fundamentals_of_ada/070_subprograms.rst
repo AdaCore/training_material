@@ -99,9 +99,10 @@ Subprogram Declarations
 
 * Required in some circumstances
 
-   - You'll see them...
+  - Packages exporting subprograms
+  - Recursion
 
-* Optional in other circumstances
+* Optional otherwise
 
 .. code:: Ada
 
@@ -247,24 +248,6 @@ Completion Examples
          return A + X * Y;
       end Min;
 
-----------------------------
-Why Separate Declarations?
-----------------------------
-
-* Packages exporting subprograms
-
-   - Package declarations never contain bodies of anything
-   - Explained when we cover packages...
-
-* Recursion
-
-   - Subprograms may call themselves
-
-      + Directly
-      + Indirectly
-
-   - Limited only by available memory
-
 --------------------------
 Direct Recursion Example
 --------------------------
@@ -273,44 +256,38 @@ Direct Recursion Example
 
    type List is array (Natural range <>) of Integer;
    Empty_List : constant List (1 .. 0) := (others => 0);
-   function Input return List is
+
+   function Get_List return List is
      Next : Integer;
    begin
-     Put ("Enter an integer, or 0 to quit:");
      Get (Next);
+
      if Next = 0 then
        return Empty_List;
      else
-       return Next & Input;
+       return Get_List & Next;
      end if;
    end Input;
 
-----------------------------------------
-Indirect Recursion Needs A Declaration
-----------------------------------------
+----------------------------
+Indirect Recursion Example
+----------------------------
 
-.. container:: columns
+* Elaboration in **linear order**
 
- .. container:: column
+.. code:: Ada
 
-    * Due to linear elaboration order
-    * Only one of the two need be declared separately
+   procedure P;
 
- .. container:: column
+   procedure F is
+   begin
+     P;
+   end F;
 
-    .. code:: Ada
-
-       procedure P;
-
-       procedure F is
-       begin
-         P;
-       end F;
-
-       procedure P is
-       begin
-         F;
-       end P;
+   procedure P is
+   begin
+     F;
+   end P;
 
 ------
 Quiz
