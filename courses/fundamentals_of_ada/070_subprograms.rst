@@ -1355,9 +1355,9 @@ Summary
 Summary
 ---------
 
-* Procedures are abstractions for actions
-* Functions are abstractions for value computations
-* Functions may return composite values
+* :ada:`procedure` are abstractions for actions
+* :ada:`function` are abstractions for value computations
+* :ada:`functions` may return values of variable size
 * Separate declarations are sometimes necessary
 
    - Mutual recursion
