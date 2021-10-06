@@ -377,37 +377,33 @@ When To Use *If Expressions*
 *If Expression* Example for Constants
 ---------------------------------------
 
-* Harder to read
+* Starting from
 
    .. code:: Ada
 
-      Leap : constant Boolean :=
-         (Today.Year mod 4 = 0 and Today.Year mod 100 /= 0)
-         or else (Today.Year mod 400 = 0);
-      End_of_Month : array (Months) of Days := (Sep | Apr | Jun | Nov => 30,
-                                                Feb => 28,
-                                                others => 31);
+      End_of_Month : array (Months) of Days
+        := (Sep | Apr | Jun | Nov => 30,
+           Feb => 28,
+           others => 31);
       begin
-        if Leap then -- adjust for leap year
+        if Leap (Today.Year) then -- adjust for leap year
           End_of_Month (Feb) := 29;
         end if;
         if Today.Day = End_of_Month(Today.Month) then
-           ...
+      ...
 
-* Becomes easier to read
+* Using if-expression to call :ada:`Leap (Year)` as needed
 
    .. code:: Ada
 
-      Leap : constant Boolean :=
-         (Today.Year mod 4 = 0 and Today.Year mod 100 /= 0)
-         or else (Today.Year mod 400 = 0);
-      End_Of_Month : constant array (Months)
-         of Days := (Sep | Apr | Jun | Nov => 30,
-                     Feb => (if Leap then 29 else 28),
-                     others => 31);
+      End_Of_Month : constant array (Months) of Days
+        := (Sep | Apr | Jun | Nov => 30,
+            Feb => (if Leap (Today.Year)
+                    then 29 else 28),
+            others => 31);
       begin
         if Today.Day /= End_of_Month(Today.Month) then
-           ...
+      ...
 
 ------------------------------
 Static Named Numbers Example
