@@ -1051,10 +1051,10 @@ Which statement is True?
 
    Explanations
 
-   A. Expression functions can be declared anywhere a regular function is declared.
-   B. An expression function body can act as its own specification.
-   C. Expression functions only contain an expression - no :ada:`return` statement allowed.
-   D. Correct - although the expression function itself cannot modify an :ada:`out` parameter, it could call another function that does.
+   A. False, they can be declared just like regular function
+   B. False, an expression function cannot have a body
+   C. False, expression functions cannot contain a no :ada:`return`
+   D. Correct, but it can assign to :ada:`out` parameters only by calling another function.
 
 ====================
 Potential Pitfalls
