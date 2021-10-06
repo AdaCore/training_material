@@ -317,8 +317,8 @@ Implicit Subtype
 
    .. code:: Ada
 
-      type <Anon> is new Predefined_Integer_Type;
-      subtype T is <Anon> range L .. R;
+      type T is new Predefined_Integer_Type;
+      subtype T is T range L .. R;
 
 ----------------------------
 Implicit Subtype Explanation
@@ -326,8 +326,8 @@ Implicit Subtype Explanation
 
 .. code:: Ada
 
-   type <Anon> is new Predefined-Integer-Type;
-   subtype T is <Anon> range L .. R;
+   type Typ is new Predefined-Integer-Type;
+   subtype Sub is Typ range L .. R;
 
 * Compiler choses a standard integer type that includes L .. R
 
@@ -336,8 +336,8 @@ Implicit Subtype Explanation
 
 * New anonymous type `Anon` is derived from the predefined type
 * `Anon` inherits the type's operations (``+``, ``-`` ...)
-* `T`, subtype of `Anon` is created with range L .. R
-* :ada:`T'Base` will return the type `Anon`
+* `Sub`, subtype of `Anon` is created with range L .. R
+* :ada:`Sub'Base` will return the type `Anon`
 
 --------------------------
 Integer Types Base Warning
@@ -345,10 +345,10 @@ Integer Types Base Warning
 
 .. code:: Ada
 
-   type <Anon> is new Predefined-Integer-Type;
-   subtype T is <Anon> range L .. R;
+   type Typ is new Predefined-Integer-Type;
+   subtype Sub is Typ range L .. R;
 
-* Runtime overflow conditions depend on :ada:`T'Base`
+* Runtime overflow conditions depend on :ada:`Sub'Base`
 * Compiler will change base type depending on machine
 * Take extra care when using two compilers
 
