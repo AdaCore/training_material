@@ -953,30 +953,24 @@ Composite Result Types Allowed
      return Result;
    end Identity;
 
-----------------------------------------
-Function Results Are Objects
-----------------------------------------
+-------------------------------
+Function Dynamic-Size Results
+-------------------------------
 
 .. code:: Ada
 
-   type Record_T is record
-      Field1 : String (1 .. 10);
-      Field2 : Character;
-   end record;
-   function Return_Record (C : Character) return Record_T is
-   begin
-      return (Field1 => (others => C), Field2 => C);
-   end Return_Record;
-   function Return_String (C : Character; L : Natural) return String is
-      R : String (1 .. L) := (others => C);
-   begin
-      return R;
-   end Return_String;
+ is
+    function Char_Mult (C : Character; L : Natural)
+      return String is
+       R : String (1 .. L) := (others => C);
+    begin
+       return R;
+    end Char_Mult;
 
-   -- s set to 'field1' in returned record
-   S : String := Return_Record (' ').Field1;
-   -- c set to character at index 3 in returned string
-   C : Character := Return_String ('x', 4) (3);
+    X : String := Char_Mult ('x', 4);
+ begin
+    -- OK
+    pragma Assert (X'Length = 4 and X = "xxxx");
 
 ======================
 Expression Functions
