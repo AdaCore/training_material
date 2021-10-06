@@ -1,103 +1,70 @@
---IO_Spec
-with System;
-package Io is
-
-   type File_T is limited private;
-
-   function Read_From_Stdin return String;
-   procedure Write_To_Stdout (Str : String);
-
-   function Create_File
-     (Filename : String)
-      return File_T;
-   procedure Write_To_File
-     (File    : File_T;
-      Str     : String);
-   procedure Close_File (File : File_T);
-
-private
-   type File_T is access all Integer;
-
-end Io;
---IO_Spec
---IO_Body
+--Ada
+with Ada.Text_IO; use Ada.Text_IO;
 with Interfaces.C;
-with Interfaces.C.Strings;
-with Ada.Text_IO;
-package body Io is
-   procedure C_Gets (Value : Interfaces.C.Strings.Chars_Ptr)
-      with Import, Conventiont => C, External_Name => "gets";
-   function Read_From_Stdin return String is
-      Placeholder : String (1 .. 1_000)            := (others => ASCII.NUL);
-      Retval      : Interfaces.C.Strings.chars_ptr :=
-        Interfaces.C.Strings.New_String (Placeholder);
-   begin
-      C_Gets (Retval);
-      return Interfaces.C.Strings.Value (Retval);
-   end Read_From_Stdin;
-   procedure C_Putchar (Str : Interfaces.C.char) with Import, Convention => C, External_Name => "putchar";
-   procedure Write_To_Stdout (Str : String) is
-   begin
-      for C of Str loop
-         C_Putchar (Interfaces.C.To_C (C));
-      end loop;
-   end Write_To_Stdout;
-
-   function C_Fopen (Filename : Interfaces.C.char_array;
-                     Mode     : Interfaces.C.char_array)
-                     return File_T
-      with Import, Convention => C, External_Name => "fopen";
-   function Create_File (Filename : String) return File_T is
-     (C_Fopen (Interfaces.C.To_C (Filename), Interfaces.C.To_C ("w")));
-
-   procedure C_Fputs (Str  : Interfaces.C.Strings.chars_ptr;
-                      File : File_T)
-      with Import, Convention => C, External_Name => "fputs";
-   procedure Write_To_File (File    : File_T;
-                            Str     : String) is
-      To_C : Interfaces.C.Strings.chars_ptr;
-   begin
-      To_C := Interfaces.C.Strings.New_String (Str & ASCII.LF);
-      C_Fputs (To_C, File);
-      Interfaces.C.Strings.Free (To_C);
-   end Write_To_File;
-
-   procedure C_Fclose (File : File_T) with Import, Convention => C, External_Name => "fclose";
-   procedure Close_File (File : File_T) is
-   begin
-      C_Fclose (File);
-   end Close_File;
-end Io;
---IO_Body
---Main
-with Ada.Exceptions;
-with Io; use Io;
 procedure Main is
 
-   function Get
-     (Prompt : String)
-      return String is
+   package Float_Io is new Ada.Text_IO.Float_IO (Interfaces.C.C_float);
+
+   One_Minute_In_Seconds : constant := 60.0;
+   One_Hour_In_Seconds   : constant := 60.0 * One_Minute_In_Seconds;
+
+   type Distance_T is (Feet, Meters, Miles) with Convention => C;
+   type Data_T is record
+      Distance      : Interfaces.C.C_float;
+      Distance_Type : Distance_T;
+      Seconds       : Interfaces.C.C_float;
+   end record with Convention => C;
+   function C_Miles_Per_Hour (Data : Data_T) return Interfaces.C.C_float
+      with Import, Convention => C, External_Name => "miles_per_hour";
+
+   Object_Feet : Data_T :=
+     (Distance => 6_000.0,
+      Distance_Type => Feet,
+      Seconds  => One_Minute_In_Seconds);
+   Object_Meters : Data_T :=
+     (Distance => 3_000.0,
+      Distance_Type => Meters,
+      Seconds  => One_Hour_In_Seconds);
+   Object_Miles : Data_T :=
+     (Distance => 1.0,
+      Distance_Type =>
+      Miles, Seconds => 1.0);
+
+   procedure Run (Object : Data_T) is
    begin
-      Io.Write_To_Stdout (Prompt & ">");
-      return Io.Read_From_Stdin;
-   end Get;
+      Float_Io.Put (Object.Distance);
+      Put (" " & Distance_T'Image (Object.Distance_Type) & " in ");
+      Float_Io.Put (Object.Seconds);
+      Put (" seconds = ");
+      Float_Io.Put (C_Miles_Per_Hour (Object));
+      Put_Line (" mph");
+   end Run;
 
 begin
-
-   declare
-      Filename : constant String := Get ("Filename");
-      File_Ptr : Io.File_T       := Io.Create_File (Filename);
-   begin
-      loop
-         declare
-            Str : constant String := Get ("Line");
-         begin
-            exit when Str'Length = 0;
-            Io.Write_To_File (File_Ptr, Str);
-         end;
-      end loop;
-      Io.Close_File (File_Ptr);
-   end;
-
+   Run (Object_Feet);
+   Run (Object_Meters);
+   Run (Object_Miles);
 end Main;
---Main
+--Ada
+
+--C
+enum DistanceT { FEET, METERS, MILES };
+struct DataT {
+    float distance;
+    enum DistanceT distanceType;
+    float seconds;
+    };
+
+float miles_per_hour ( struct DataT data ) {
+   float miles = data.distance;
+   switch ( data.distanceType ) {
+      case METERS:
+         miles = data.distance / 1609.344;
+         break;
+      case FEET:
+         miles = data.distance / 5280.0;
+         break;
+   };
+   return miles / ( data.seconds / ( 60.0 * 60.0 ) );
+}
+--C

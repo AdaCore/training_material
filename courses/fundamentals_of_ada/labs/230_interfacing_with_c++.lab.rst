@@ -4,44 +4,40 @@ Interfacing with C++ Lab
 
 * Requirements
 
-   - Create a simplistic I/O package
+   - Given a C function that calculates speed in MPH from some information, your application should
 
-      + Read from standard input
-      + Write to standard output
-      + Create / Write to / Close a file
-
-   - Implement I/O package bodies using C functions
-
-      + Use `Interfaces.C` hierarchy for C-style strings
-
-   - Main program should ask user for a file name, and then ask for data to be placed into the file
-
-      - No use of `Ada.Text_IO` in this lab
+      + Ask user for distance and time
+      + Populate the structure appropriately
+      + Call C function to return speed
+      + Print speed to console
 
 * Hints
 
-   .. code:: C++
+   - Structure contains the following fields
 
-      char *gets(char *str);
-      int puts(const char *str);
-      FILE *fopen(const char *filename, const char *mode);
-      int fputs(const char *str, FILE *stream);
-      int fclose(FILE *stream);
+      + Distance (floating point)
+      + Distance Type (enumeral)
+      + Seconds (floating point)
+   
+-------------------------------------------------
+Interfacing with C++ Lab Solution - GNAT Studio
+-------------------------------------------------
 
-------------------------------------------------
-Interfacing with C++ Lab Solution - I/O (Spec)
-------------------------------------------------
+To compile/link the C file into the Ada executable:
 
-.. container:: source_include labs/answers/230_interfacing_with_c++.txt :start-after:--IO_Spec :end-before:--IO_Spec :code:Ada
+   1. Make sure the C file is in the same directory as the Ada source files
+   2. :menu:`Edit` :math:`\rightarrow` :menu:`Project Properties`
+   3. :menu:`Sources` :math:`\rightarrow` :menu:`Languages` :math:`\rightarrow` Check the "C" box
+   4. Build and execute as normal
+   
+-----------------------------------------
+Interfacing with C++ Lab Solution - Ada
+-----------------------------------------
 
-------------------------------------------------
-Interfacing with C++ Lab Solution - I/O (Body)
-------------------------------------------------
+.. container:: source_include labs/answers/230_interfacing_with_c++.txt :start-after:--Ada :end-before:--Ada :code:Ada
 
-.. container:: source_include labs/answers/230_interfacing_with_c++.txt :start-after:--IO_Body :end-before:--IO_Body :code:Ada
+---------------------------------------
+Interfacing with C++ Lab Solution - C
+---------------------------------------
 
-------------------------------------------
-Interfacing with C++ Lab Solution - Main
-------------------------------------------
-
-.. container:: source_include labs/answers/230_interfacing_with_c++.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/230_interfacing_with_c++.txt :start-after:--C :end-before:--C :code:C
