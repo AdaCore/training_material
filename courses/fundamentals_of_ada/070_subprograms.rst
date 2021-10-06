@@ -1179,7 +1179,6 @@ Functions' Parameter Modes
    - No side effects: should be like mathematical functions
    - But side effects are still possible via globals
    - So worst possible case: side effects are possible and necessarily hidden!
-   - Technical issues too...
 
 ---------------------------------------
 Easy Cases Detected and Not Legal (2)
