@@ -567,40 +567,28 @@ D. (100, 101, 102)
  A. :ada:`C => 100`
  B. Multiple declaration calls :ada:`Next` twice
  C. Correct
- D. :ada:`C => 100` has no effect on :ada:`A` and :ada:`B`
+ D. :ada:`C => 100` ha no effect on :ada:`A` and :ada:`B`
 
-=================
-Variant Records
-=================
+=======================
+Discriminated Records
+=======================
 
-----------
-Examples
-----------
+----------------------------
+Discriminated Record Types
+----------------------------
 
-.. include:: examples/060_record_types/variant_records.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#variant-records`
-
-----------------------
-Variant Record Types
-----------------------
-
-* **Variant** record type
+* **Discriminated** record type
 
    + Different **objects** may have **different** components
    + All object **still** share the same type
 
-* Equivalent to :C:`union` in C
 * Kind of **storage overlay**
 
-   + **Same** storage for **several** variant
-   + Ada preserves type checking
+   + Similar to :C:`union` in C
+   + But preserves **type checking**
+   + And object size **depends** on discriminant
 
-      - Unlike C
-
-* The object may be **unconstrained**
-
-   + Or even dynamically **mutable**
+* Aggregate assignment is allowed
 
 -------------------------------------
 Discriminant in Ada Variant Records
@@ -608,10 +596,10 @@ Discriminant in Ada Variant Records
 
 .. code:: Ada
 
-  type Person_Tag is (Student, Faculty);
-  type Person (Tag : Person_Tag) is record
+  type Person_Group is (Student, Faculty);
+  type Person (Group : Person_Group) is record
      Name : String (1 .. 10);
-     case Tag is
+     case Group is
         when Student => -- 1st variant
            Gpa  : Float range 0.0 .. 4.0;
         when Faculty => -- 2nd variant
@@ -619,17 +607,39 @@ Discriminant in Ada Variant Records
      end case;
   end record;
 
-* :ada:`Tag` is the **discriminant**
+* :ada:`Group` is the **discriminant**
 * Run-time check for component **consistency**
 
-   + eg :ada:`A_Person.Pubs := 1` checks :ada:`A_Person.Tag = Faculty`
+   + eg :ada:`A_Person.Pubs := 1` checks :ada:`A_Person.Group = Faculty`
    + :ada:`Constraint_Error` if check fails
 
 * Discriminant is **constant**
 
-   + Unless mutable (advanced)
+   + Unless object is **mutable**
 
-* Aggregate assignment is allowed
+------------------------------
+Mutable Discriminated Record
+------------------------------
+
+* When discriminant has a **default value**
+
+   + Any object instanciated **without** a discriminant value is **mutable**
+
+* Mutable records have **variable** discriminants
+* Use **same** storage for **several** variant
+
+.. code:: Ada
+
+  -- Potentially mutable
+  type Person (Group : Person_Group := Student) is record
+
+  -- Uses default value: mutable
+  S : Person;
+  -- Specifies the value: not mutable
+  S2 : Person (Group => Student);
+  ...
+  S := (Group => Student, Gpa => 0.0);
+  S := (Group => Faculty, Pubs => 10);
 
 -----------
 Semantics
@@ -644,7 +654,7 @@ Semantics
 
       Pat  : Person(Student); -- No Pat.Pubs
       Prof : Person(Faculty); -- No Prof.GPA
-      Soph : Person := ( Tag  => Student,
+      Soph : Person := ( Group  => Student,
                          Name => "John Jones",
                          GPA  => 3.2);
       X : Person;  -- Illegal: must specify discriminant
