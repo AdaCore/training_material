@@ -416,6 +416,10 @@ Parameter Modes
 
    - Actual is expected to be **both** read and written
 
+* Function :ada:`return`
+
+   - **Must** always be handled
+
 ---------------------------------
 Why Read Mode `out` Parameters?
 ---------------------------------
