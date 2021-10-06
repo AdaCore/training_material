@@ -1,5 +1,5 @@
 --------------------------
-Interfacing with C++ Lab
+Interfacing with C Lab
 --------------------------
 
 * Requirements
@@ -20,7 +20,7 @@ Interfacing with C++ Lab
       + Seconds (floating point)
    
 -------------------------------------------------
-Interfacing with C++ Lab Solution - GNAT Studio
+Interfacing with C Lab Solution - GNAT Studio
 -------------------------------------------------
 
 To compile/link the C file into the Ada executable:
@@ -31,13 +31,13 @@ To compile/link the C file into the Ada executable:
    4. Build and execute as normal
    
 -----------------------------------------
-Interfacing with C++ Lab Solution - Ada
+Interfacing with C Lab Solution - Ada
 -----------------------------------------
 
-.. container:: source_include labs/answers/230_interfacing_with_c++.txt :start-after:--Ada :end-before:--Ada :code:Ada
+.. container:: source_include labs/answers/230_interfacing_with_c.txt :start-after:--Ada :end-before:--Ada :code:Ada
 
 ---------------------------------------
-Interfacing with C++ Lab Solution - C
+Interfacing with C Lab Solution - C
 ---------------------------------------
 
-.. container:: source_include labs/answers/230_interfacing_with_c++.txt :start-after:--C :end-before:--C :code:C
+.. container:: source_include labs/answers/230_interfacing_with_c.txt :start-after:--C :end-before:--C :code:C
