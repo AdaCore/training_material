@@ -172,7 +172,7 @@ Examples
 Simple Type Derivation
 ------------------------
 
-* In Ada, any (non-tagged) type can be derived
+* Any type (except :ada:`tagged`) can be derived
 
   .. code:: Ada
 
@@ -183,37 +183,18 @@ Simple Type Derivation
    - The data **representation** of the parent
    - The **primitives** of the parent
 
-   .. code:: Ada
-
-      package P is
-        type Parent is range 1 .. 10;
-        procedure Prim (V : Parent);
-        type Child is new Parent;
-        --  implicit Prim (V : Child);
-      end P;
-
-      with P; use P;
-      procedure Main1 is
-        V : Child;
-      begin
-        V := 5;
-        Prim (V);
-      end Main1;
-
-* Conversions are possible for non-primitive operations
+* Conversions are possible from child to parent
 
    .. code:: Ada
 
-     with P; use P;
-     procedure Main2 is
-        procedure Not_A_Primitive (V : Parent)
-           is null;
-        V1 : Parent;
-        V2 : Child;
-     begin
-        Not_A_Primitive (V1);
-        Not_A_Primitive (Parent (V2));
-     end Main2;
+     type Parent is range 1 .. 10;
+     procedure Prim (V : Parent);
+     type Child is new Parent;  -- Freeze
+     procedure Not_A_Primitive (V : Parent);
+     C : Child;
+     ...
+     Prim (C);  -- Implicitly declared
+     Not_A_Primitive (Parent (C));
 
 --------------------------------------
 Simple Derivation and Type Structure
