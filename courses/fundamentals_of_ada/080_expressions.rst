@@ -413,36 +413,29 @@ When To Use *If Expressions*
 
    Ada 2012
 
-.. container:: columns
+.. container:: latex_environment footnotesize
 
- .. container:: column
+ * Syntax similar to :ada:`case` statements
 
-   .. container:: latex_environment footnotesize
+    - Lighter: no closing `end case`
+    - Commas between choices
 
-    * Syntax similar to :ada:`case` statements
+ * Same general rules as *if expressions*
 
-       - Lighter: no closing `end case`
-       - Commas between choices
+    - Parentheses required unless already present
+    - Type of "result" must match context
 
-    * Same general rules as *if expressions*
+ * Advantage over *if expressions* is completeness checked by compiler
+ * Same as with :ada:`case` statements (unless :ada:`others` is used)
 
-       - Parentheses required unless already present
-       - Type of "result" must match context
+.. code:: Ada
 
-    * Advantage over *if expressions* is completeness checked by compiler
-    * Same as with :ada:`case` statements (unless :ada:`others` is used)
-
- .. container:: column
-
-    .. code:: Ada
-
-       -- compile error if all
-       -- days not covered
-       Hours : constant Integer :=
-          (case Day_of_Week is
-           when Mon .. Thurs => 9,
-           when Fri          => 4,
-           when Sat | Sun    => 0);
+    -- compile error if not all days covered
+    Hours : constant Integer :=
+       (case Day_of_Week is
+        when Mon .. Thurs => 9,
+        when Fri          => 4,
+        when Sat | Sun    => 0);
 
 ---------------------------
 *Case Expression* Example
