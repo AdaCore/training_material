@@ -141,10 +141,8 @@ Procedure Declaration Syntax (Simplified)
 
 .. code:: Ada
 
-   subprogram_declaration ::= subprogram_specification ;
    subprogram_specification ::=
-      procedure defining_name parameter_profile
-   parameter_profile ::= [ formal_part ]
+      procedure defining_name [ formal_part ]
    formal_part ::=
       ( parameter_specification
         { ; parameter_specification } )
@@ -157,18 +155,19 @@ Procedure Declaration Syntax (Simplified)
 Function Declaration Syntax (Simplified)
 ------------------------------------------
 
+* Same as :ada:`procedure`
+
+  + With :ada:`return`
+  + Can be an operator: :ada:`+ - * / mod rem` ...
+
 .. code:: Ada
 
-   subprogram_declaration ::= subprogram_specification;
    subprogram_specification ::= function
        defining_designator parameter_and_result_profile
-   defining_designator ::= defining_program_unit_name |
-                           defining_operator_symbol
-   operator_symbol ::= string_literal
+   defining_designator ::= defining_name |
+                           operator_symbol
    parameter_and_result_profile ::=
       [formal_part] return subtype_mark
-
-* (remainder same as procedures)
 
 -------------
 Body Syntax
@@ -176,23 +175,24 @@ Body Syntax
 
 .. code:: Ada
 
-   subprogram_body ::= subprogram_specification is
-                         {basic_declarative_item}
-                       begin
-                         sequence_of_statements
-                       end [designator];
+   subprogram_specification is
+      [declarations]
+   begin
+      sequence_of_statements
+   end [designator];
 
 .. code:: Ada
 
    procedure Hello is
    begin
-     Ada.Text_IO.Put_Line ("Hello World!");
-     Ada.Text_IO.New_Line (2);
+      Ada.Text_IO.Put_Line ("Hello World!");
+      Ada.Text_IO.New_Line (2);
    end Hello;
 
    function F (X : Real) return Real is
+      Y : constant Real := X + 3.0;
    begin
-     return X + 3.0 * X;
+      return X * Y;
    end F;
 
 ---------------
