@@ -99,19 +99,25 @@ Components Declarations
 
 .. code:: Ada
 
-   declare
-      type Months_T is (January, February, ..., December);
-      type Date is
-         record
-            Day : Integer range 1 .. 31;
-            Month : Months_T;
-            Year : Integer range 0 .. 2099;
-         end record;
-      Arrival : Date;
-   begin
-     Arrival.Day := 27;  -- components referenced by name
-     Arrival.Month := November;
-     Arrival.Year := 1990;
+   type Months_T is (January, February, ..., December);
+   type Date is record
+      Day : Integer range 1 .. 31;
+      Month : Months_T;
+      Year : Integer range 0 .. 2099;
+   end record;
+   Arrival : Date;
+   ...
+   Arrival.Day := 27;  -- components referenced by name
+   Arrival.Month := November;
+   Arrival.Year := 1990;
+
+* Can reference nested components
+
+.. code:: Ada
+
+   Employee
+      .Birth_Date
+        .Month := March;
 
 ------
 Quiz
@@ -205,27 +211,6 @@ Assignment Examples
       Phase1.Real := 2.5;
       Phase1.Real := Phase2.Real;
    end;
-
--------------------------------
-Referencing Nested Components
--------------------------------
-
-.. code:: Ada
-
-   declare
-     type Date is ....  -- as before
-     type Personal_Information is record
-         Name : String(1..80);
-         Birth : Date;
-       end record;
-     type Employee_Information is record
-         Number : Employee_Number;
-         Personal_Data : Personal_Information;
-       end record;
-     Employee : Employee_Information;
-   begin
-     ...
-      Employee.Personal_Data.Birth.Month := March;
 
 ============
 Aggregates
