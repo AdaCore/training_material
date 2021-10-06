@@ -72,6 +72,27 @@ Characteristics of Components
 * **No** constant components
 * **No** recursive definitions
 
+------------------------
+Components Declarations
+------------------------
+
+* Multiple declarations are allowed (like objects)
+
+   .. code:: Ada
+
+      type Several is record
+         A, B, C : Integer;
+      end record;
+
+* Recursive definitions are not allowed
+
+   .. code:: Ada
+
+      type Not_Legal is record
+        A, B : Some_Type;
+        C : Not_Legal;
+      end record;
+
 -----------------------------------------
 "Dot" Notation for Components Reference
 -----------------------------------------
@@ -91,64 +112,6 @@ Characteristics of Components
      Arrival.Day := 27;  -- components referenced by name
      Arrival.Month := November;
      Arrival.Year := 1990;
-
-------------------------------
-Anonymously-Typed Components
-------------------------------
-
-* Not allowed
-* No type name so no compatibility check is possible
-
-   .. code:: Ada
-
-      type Illegal is
-        record
-          A : array (Foo) of Bar;
-        end record;
-      X, Y : Illegal;
-
-   - Cannot perform `X.A := Y.A`
-
----------------------
-Constant Components
----------------------
-
-* Not allowed
-* Assignment would allow altering constants
-* Constant record objects (not components) are allowed
-
-   .. code:: Ada
-
-      type Illegal is
-        record
-          A : constant Foo := F(X);
-        end record;
-      X, Y : Illegal;
-
-   - Cannot perform `X.A := Y.A;`
-
--------------------------
-More Component Rules...
--------------------------
-
-* Multiple declarations are allowed (like objects)
-
-   .. code:: Ada
-
-      type Several is
-        record
-          A, B, C : Integer;
-        end record;
-
-* Recursive definitions are not allowed
-
-   .. code:: Ada
-
-      type Not_Legal is
-        record
-          A, B : Some_Type;
-          C : Not_Legal;
-        end record;
 
 ------
 Quiz
