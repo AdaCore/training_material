@@ -587,95 +587,77 @@ Implementation-Dependent Types
 Unconstrained Formal Parameters
 ---------------------------------
 
-* Take bounds from actual parameters
+* Take bounds from **actual** parameters
+* Also applies to :ada:`return` values
 
 .. code:: Ada
 
    type Vector is array (Positive range <>) of Real;
+   procedure Print (V : Vector);
+
    Phase : Vector (X .. Y);
    State : Vector (1 .. 4);
-   procedure Print (V : in Vector) is
-   begin
-     for Index in V'Range loop
-       Put (V (Index));
-     end loop;
-   end Print;
    ...
    begin
-     Print (Phase);       -- V'range is X .. Y
-     Print (State);       -- V'range is 1 .. 4
-     Print (State(1..2)); -- V'range is 1 .. 2
-   end;
+     Print (Phase);          -- V'range is X .. Y
+     Print (State);          -- V'range is 1 .. 4
+     Print (State (3 .. 4)); -- V'range is 3 .. 4
 
 -----------------------------------
 Unconstrained Parameters Surprise
 -----------------------------------
 
-* Taking bounds from actual sometimes requires care
-* Assumptions about bounds of formal may be wrong
+* Assumptions about formal bounds may be **wrong**
 
 .. code:: Ada
 
-   procedure Test is
-     type Vector is array (Positive range <>) of Real;
-     function Subtract (Left, Right : Vector) return Vector is ...
-     V1 : Vector (1 .. 10); -- length = 10
-     V2 : Vector (15 .. 24); -- length = 10
-     R : Vector (1 .. 10); -- length = 10
-   begin
-     ...
-     -- What are the indices returned by Subtract?
-     R := Subtract (V2, V1);
-     ...
-   end;
+  type Vector is array (Positive range <>) of Real;
+  function Subtract (Left, Right : Vector) return Vector;
+
+  V1 : Vector (1 .. 10); -- length = 10
+  V2 : Vector (15 .. 24); -- length = 10
+  R : Vector (1 .. 10); -- length = 10
+  ...
+  -- What are the indices returned by Subtract?
+  R := Subtract (V2, V1);
 
 ----------------------
 Naive Implementation
 ----------------------
 
-* Assumes bounds are the same everywhere
+* **Assumes** bounds are the same everywhere
+* Fails when :ada:`Left'First /= Right'First`
+* Fails when :ada:`Left'First /= 1`
 
-.. code:: Ada
+  .. code:: Ada
 
-   function Subtract (Left, Right : Vector) return Vector is
-     -- either length will do
-     Result : Vector (1 .. Left'Length);
+   function Subtract (Left, Right : Vector)
+     return Vector is
+      Result : Vector (1 .. Left'Length);
    begin
-     if Left'Length /= Right'Length then
-       raise Length_Error;
-     end if;
-     for K in Result'Range loop
-       Result (K) := Left (K) - Right (K);
-     end loop;
-     return Result;
-   end Subtract;
+      ...
+      for K in Result'Range loop
+        Result (K) := Left (K) - Right (K);
+      end loop;
 
-.. container:: speakernote
-
-  If Left and Right have different 'first and 'last, that's a problem
 
 ------------------------
 Correct Implementation
 ------------------------
 
-* Covers all bounds
+* Covers **all** bounds
+* :ada:`return` indexed by :ada:`Left'Range`
 
 .. code:: Ada
 
    function Subtract (Left, Right : Vector) return Vector is
-     Result : Vector (Left'Range);
-     Offset : Integer;
+      Result : Vector (Left'Range);
+      Offset : constant Integer := Right'First - Result'First;
    begin
-     if Left'Length /= Right'Length then
-       raise Length_Error;
-     end if;
-     -- Offset will be positive, negative or zero
-     Offset := Right'First - Result'First;
-     for K in Result'Range loop
-       Result (K) := Left (K) - Right (K + Offset);
-     end loop;
-     return Result;
-   end Subtract;
+      ...
+      for K in Result'Range loop
+        Result (K) := Left (K) - Right (K + Offset);
+      end loop;
 
 ------
 Quiz
