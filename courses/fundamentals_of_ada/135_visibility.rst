@@ -195,8 +195,8 @@ No Ambiguity Introduction
 `use` Clauses and Child Units
 ------------------------------
 
-* A clause for a child does not imply one for its parent
-* A clause for a parent makes the child directly visible
+* A clause for a child does **not** imply one for its parent
+* A clause for a parent makes the child **directly** visible
 
    - Since children are 'inside' declarative region of parent
 
@@ -204,12 +204,10 @@ No Ambiguity Introduction
 
    package Parent is
      P1 : Integer;
-     ...
    end Parent;
 
    package Parent.Child is
      PC1 : Integer;
-     ...
    end Parent.Child;
 
    with Parent.Child;
@@ -219,9 +217,7 @@ No Ambiguity Introduction
      use Parent;
      D3 : Integer := P1;
      D4 : Integer := Child.PC1;
-   begin
      ...
-   end Demo;
 
 .. container:: speakernote
 
