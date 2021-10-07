@@ -635,42 +635,31 @@ Visibility Limits
     -- Parent_T is visible here
    end Parent.Child;
 
---------------------------
-Misbehaving (?) Children
---------------------------
+--------------------------------
+Children Can Break Abstraction
+--------------------------------
 
-* Can break a parent's abstraction
+* Could **break** a parent's abstraction
 
-  - Exporting a subprogram that alters package state
-  - Exporting a subprogram that alters ADT object state
+  - Alter a parent package state
+  - Alters an ADT object state
 
-* Nice for testing via fault injection...
+* Useful for testing: fault injections...
 
 .. code:: Ada
 
    package Stack is
-     procedure Push ( X : in Foo );
-     procedure Pop ( X : out Foo );
+      ...
    private
-     Values : array (1 .. N ) of Foo;
-     Top : Natural range 0 .. N := 0
+      Values : array (1 .. N ) of Foo;
+      Top : Natural range 0 .. N := 0
    end Stack;
 
-   package Stack.Child is
-     procedure Misbehave;
-     procedure Reset;
-   end Stack.Child;
-
    package body Stack.Child is
-     procedure Misbehave is
-     begin
-       Top := 0;
-     end Misbehave;
-
-     procedure Reset is
-     begin
-       Top := 0;
-     end Reset;
+      procedure Reset is
+      begin
+        Top := 0;
+      end Reset;
    end Stack.Tools;
 
 ---------------------------
