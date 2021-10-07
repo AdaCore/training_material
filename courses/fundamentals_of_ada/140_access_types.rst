@@ -14,30 +14,39 @@ Introduction
 Access Types Design
 ---------------------
 
-* Java references, or C/C++ pointers are called access type in Ada
-* An object is associated to a pool of memory
-* Different pools may have different allocation / deallocation policies
-* Without doing unchecked deallocations, and by using pool-specific access types, access values are guaranteed to be always meaningful
-* In Ada, access types are typed
+* Memory addresses objects are called **access types**
+* Objects are associated to **pools** of memory
 
-   - Ada
+  - With different allocation / deallocation policies
 
-      .. code:: Ada
+* Access objects are **guaranteed** to always be meaningful
 
-         type Integer_Pool_Access is access Integer;
-         P_A : Integer_Pool_Access := new Integer;
+  - In the absence of :ada:`Unchecked_Deallocation`
+  - And if pool-specific
 
-         type Integer_General_Access is access all Integer;
-         G : aliased Integer
-         G_A : Integer_General_Access := G'access;
+.. container:: columns
 
-   - Compared to C/C++
+ .. container:: column
 
-      .. code:: C++
+  .. code:: Ada
 
-         int * P_C = malloc (sizeof (int));
-         int * P_CPP = new int;
-         int * G_C = &Some_Int;
+     type Integer_Pool_Access
+       is access Integer;
+     P_A : Integer_Pool_Access
+       := new Integer;
+
+     type Integer_General_Access is access all Integer;
+     G : aliased Integer
+     G_A : Integer_General_Access := G'access;
+
+ .. container:: column
+
+  .. code:: C++
+
+     int * P_C = malloc (sizeof (int));
+     int * P_CPP = new int;
+     int * G_C = &Some_Int;
+.
 
 -------------------------------
 Access Types Can Be Dangerous
