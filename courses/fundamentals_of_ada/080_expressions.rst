@@ -523,9 +523,6 @@ Subtypes Localize Dependencies
 
 * Single points of change
 * Relationships captured in code
-
-Code examples
-
 * No subtypes
 
 .. code:: Ada
