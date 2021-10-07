@@ -233,13 +233,7 @@ Pool-Specific Access Type
       type T_Access is access T;
       V : T_Access := new T;
 
-* Conversion is needed to move an object pointed by one type to another (pools may differ)
-* You can not do this kind of conversion with a pool-specific access type
-
-   .. code:: Ada
-
-      type T_Access_2 is access T;
-      V2 : T_Access_2 := T_Access_2 (V); -- illegal
+* Conversion is **not** possible between pool-specific access types
 
 -------------
 Allocations
