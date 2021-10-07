@@ -433,60 +433,48 @@ Implications at Compile-Time
 Generic and Freezing Points
 -----------------------------
 
-.. container:: columns
+* A generic type **freezes** the type and needs the **full view**
+* May force separation between its declaration (in spec) and instantiations (in private or body)
 
- .. container:: column
+.. code:: Ada
 
-    * A generic type "freezes" the type and needs to have access to its full view
-    * This may force separation of the generic type declaration and subsequent generic instantiations (e.g. with containers)
+   generic
+      type X is private;
+   package Base is
+      V : access X;
+   end Base;
 
- .. container:: column
-
-    .. code:: Ada
-
-       generic
-          type X is private;
-       package Base is
-          V : access X;
-       end Base;
-
-       package P is
-          type X is private;
-          -- illegal
-          package B is new Base (X);
-       private
-          type X is null record;
-       end P;
+   package P is
+      type X is private;
+      -- illegal
+      package B is new Base (X);
+   private
+      type X is null record;
+   end P;
 
 -------------------------------
 Generic Incomplete Parameters
 -------------------------------
 
-.. container:: columns
+* A generic type can be incomplete
+* Allows generic instantiations before full type definition
+* Restricts the possible usages (only :ada:`access`)
 
- .. container:: column
+.. code:: Ada
 
-    * A generic type can be incomplete
-    * This allows generic instantiations before full type definition
-    * Usage of the type is then fairly restricted (can only be used through an access)
+   generic
+      type X; -- incomplete
+   package Base is
+      V : access X;
+   end Base;
 
- .. container:: column
-
-    .. code:: Ada
-
-       generic
-          type X; -- incomplete
-       package Base is
-          V : access X;
-       end Base;
-
-       package P is
-          type X is private;
-          -- legal
-          package B is new Base (X);
-       private
-          type X is null record;
-       end P;
+   package P is
+      type X is private;
+      -- legal
+      package B is new Base (X);
+   private
+      type X is null record;
+   end P;
 
 ========
 Lab
