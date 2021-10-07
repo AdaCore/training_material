@@ -364,27 +364,21 @@ Quiz
 The above describes an array A whose elements are arrays of three elements.
 Which expression would one use to determine if at least one of A's elements are sorted?
 
-A. | ``(for some Element of A =>``
-   |    ``(for some Index in 2 .. 3 =>``
-   |       ``Element (Index) >= Element (Index - 1)));``
-B. | ``(for all Element of A =>``
-   |    ``(for all Index in 2 .. 3 =>``
-   |       ``Element (Index) >= Element (Index - 1)));``
-C. | :answermono:`(for some Element of A =>`
-   |    :answermono:`(for all Index in 2 .. 3 =>`
-   |       :answermono:`Element (Index) >= Element (Index - 1)));`
-D. | ``(for all Element of A =>``
-   |    ``(for some Index in 2 .. 3 =>``
-   |       ``Element (Index) >= Element (Index - 1)));``
+A. | ``(for some El of A => (for some Idx in 2 .. 3 =>``
+   |     ``El (Idx) >= El (Idx - 1)));``
+B. | ``(for all El of A => for all Idx in 2 .. 3 =>``
+   |     ``El (Idx) >= El (Idx - 1)));``
+C. | :answermono:`(for some El of A => (for all Idx in 2 .. 3 =>`
+   |     :answermono:`El (Idx) >= El (Idx - 1)));`
+D. | ``(for all El of A => (for some Idx in 2 .. 3 =>``
+   |      ``El (Idx) >= El (Idx - 1)));``
 
 .. container:: animate
 
-   Explanations
-
-   A. Will be :ada:`True` if any element has two consecutive increasing values
-   B. Will be :ada:`True` if every element is sorted
-   C. Correct
-   D. Will be :ada:`True` if every element has two consecutive increasing values
+ A. Will be :ada:`True` if any element has two consecutive increasing values
+ B. Will be :ada:`True` if every element is sorted
+ C. Correct
+ D. Will be :ada:`True` if every element has two consecutive increasing values
 
 ========
 Lab
