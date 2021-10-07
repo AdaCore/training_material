@@ -475,7 +475,7 @@ Getting Around Accessibility Checks
 -------------------------------------
 
 * Sometimes it is OK to use unsafe accesses to data
-* `'Unchecked_Access` allows access to a variable of an incompatible accessibility level
+* :ada:`'Unchecked_Access` allows access to a variable of an incompatible accessibility level
 * Beware of potential problems!
 
    .. code:: Ada
