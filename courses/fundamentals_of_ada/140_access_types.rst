@@ -347,6 +347,8 @@ Referencing The Stack
 
       A : Int_Access := V'Access;
 
+   - :ada:`'Unchecked_Access` does it **without checks**
+
 ----------------------------
 `Aliased` Objects Examples
 ----------------------------
