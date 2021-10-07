@@ -356,22 +356,18 @@ Referencing The Stack
 .. code:: Ada
 
    type Acc is access all Integer;
-      V : Acc;
-      I : aliased Integer;
-   begin
-      V := I'Access;
-      V.all := 5; -- Same a I := 5
-
+   V, G : Acc;
+   I : aliased Integer;
    ...
-
-   type Acc is access all Integer;
-   G : Acc;
+   V := I'Access;
+   V.all := 5; -- Same a I := 5
+   ...
    procedure P1 is
       I : aliased Integer;
    begin
       G := I'Unchecked_Access;
-      -- Same as 'Access (see later)
    end P1;
+
    procedure P2 is
    begin
       G.all := 5;
