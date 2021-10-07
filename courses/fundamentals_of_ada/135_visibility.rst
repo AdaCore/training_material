@@ -400,14 +400,13 @@ Examples
 
    package Complex is
      type Number is private;
-     function "*" (Left, Right : Number) return Number;
-     function "/" (Left, Right : Number) return Number;
      function "+" (Left, Right : Number) return Number;
-     procedure Put (C : Number);
      procedure Make ( C : out Number;
                       From_Real, From_Imag : Float );
      procedure Non_Primitive ( X : Integer );
-       ...
+   ...
+
+.. code:: Ada
 
    with Complex;
    use all type Complex.Number;
