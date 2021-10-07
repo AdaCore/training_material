@@ -653,7 +653,7 @@ Examples
 Anonymous Access Parameters
 -----------------------------
 
-* Parameter modes are of 4 types: `in`, `out`, `in out`, `access`
+* Parameter modes are of 4 types: :ada:`in`, :ada:`out`, :ada:`in out`, :ada:`access`
 * The access mode is called **anonymous access type**
 
    - Anonymous access is implicitly general (no need for :ada:`all`)
