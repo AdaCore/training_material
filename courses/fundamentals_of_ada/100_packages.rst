@@ -183,7 +183,7 @@ Referencing Exported Items
 ----------------------------
 
 * Achieved via "dot notation"
-* Package Specficiation
+* Package Specification
 
    .. code:: Ada
 
