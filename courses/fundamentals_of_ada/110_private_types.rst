@@ -491,15 +491,12 @@ Designer View Sees Full Declaration
      Capacity : constant := 100;
      type Stack is private;
      procedure Push (Item : in Integer; Onto : in out Stack);
-     procedure Pop (Item : out Integer; From : in out Stack);
      ...
    private
      type Index is range 0 .. Capacity;
      type List is array (Index range 1..Capacity) of Integer;
      type Stack is record
-       Values : List;
-       Top : Index := 0;
-     end record;
+     ...
    end Bounded_Stacks;
 
 .. container:: speakernote
@@ -515,17 +512,14 @@ Designer View Allows All Operations
    package body Bounded_Stacks is
      procedure Push (Item : in Integer;
                      Onto : in out Stack) is
-       The_Stack : Stack renames Onto;
      begin
-       The_Stack.Top := The_Stack.Top + 1;
-       The_Stack.Values (The_Stack.Top) := Item;
+        ...
      end Push;
+
      procedure Pop (Item : out Integer;
                     From : in out Stack) is
-       The_Stack : Stack renames From;
      begin
-       Item := The_Stack.Values (The_Stack.Top);
-       The_Stack.Top := The_Stack.Top - 1;
+        ...
      end Pop;
    end Bounded_Stacks;
 
@@ -689,22 +683,16 @@ Constructors
      type Number is private;
      function Make (Real_Part : Float; Imaginary : Float) return Number;
    private
-     type Number is record
-       Real_Part, Imaginary : Float;
-     end record;
+     type Number is record ...
    end Complex;
 
    package body Complex is
-      function Make (Real_Part : Float; Imaginary_Part : Float) return Number is
-      begin
-        return Number'( Real_Part, Imaginary_Part );
-      end Make;
+      function Make (Real_Part : Float; Imaginary_Part : Float)
+        return Number is ...
    end Complex:
-
    ...
    A : Complex.Number :=
        Complex.Make (Real_Part => 2.5, Imaginary => 1.0);
-   ...
 
 ----------------------------
 Procedures As Constructors
@@ -757,18 +745,15 @@ Selectors
    end Complex;
 
    package body Complex is
-     ...
      function Real_Part (This : Number) return Float is
      begin
        return This.Real_Part;
      end Real_Part;
      ...
    end Complex;
-
    ...
    Phase : Complex.Number := Complex.Make (10.0, 5.5);
    Object : Float := Complex.Real_Part (Phase);
-   ...
 
 ========
 Lab
