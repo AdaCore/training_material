@@ -201,14 +201,9 @@ Referencing Exported Items
       procedure Test is
          X : Float;
       begin
-         ...
-         Float_Stack.Push (12.0);
-         ...
          Float_Stack.Pop (X);
-         ...
-         if Count < Float_Stack.Max then
-           ...
-        end if;
+         Float_Stack.Push (12.0);
+         if Count < Float_Stack.Max then ...
 
 ========
 Bodies
