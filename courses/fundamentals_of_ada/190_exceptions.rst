@@ -515,7 +515,6 @@ User-Defined Exceptions Example
    package Stack is
      Underflow, Overflow : exception;
      procedure Push (Item : in Integer);
-     procedure Pop (Item : out Integer);
      ...
    end Stack;
 
@@ -528,16 +527,7 @@ User-Defined Exceptions Example
        Top := Top + 1;
        Values (Top) := Item;
      end Push;
-
-     procedure Pop (Item : out Integer) is
-     begin
-       if Top = 0 then
-         raise Underflow;
-       end if;
-       Item := Values (Top);
-       Top := Top - 1;
-     end Pop;
-   end Stack;
+   ...
 
 =============
 Propagation
