@@ -382,44 +382,41 @@ Quiz
 
 .. code:: Ada
 
-   package P is
-      procedure P1 (X : in out Integer); -- add 100 to X
-      procedure P2 (X : in out Integer); -- add 20 to X
-      procedure P3 (X : in out Integer); -- add 3 to X
-      generic
-         Z : in out Integer;
-         with procedure P1 (X : in out Integer) is <>;
-         with procedure P2 (X : in out Integer) is null;
-      procedure G;
-   end P;
+   procedure P1 (X : in out Integer); -- add 100 to X
+   procedure P2 (X : in out Integer); -- add 20 to X
+   procedure P3 (X : in out Integer); -- add 3 to X
+   generic
+      Z : in out Integer;
+      with procedure P1 (X : in out Integer) is <>;
+      with procedure P2 (X : in out Integer) is null;
+   procedure G;
+   ...
+   procedure G is begin
+      P1 (Z);
+      P2 (Z);
+   end G;
+   Z : Integer := 0;
+   procedure I is new G ( ... );
 
-   package body P is
-      -- bodies of P1/P2/P3 skipped for space
-      procedure G is begin
-         P1 (Z);
-         P2 (Z);
-      end G;
-   end P;
-
-Given an integer Z initialized to 100, what is the value of Z after calling I for each of the following instantiations?
+After calling :ada:`I`, what is the value of :ada:`Z`?
 
 .. list-table::
 
    * - :ada:`procedure I is new G (Z);`
 
-     - :animate:`200 - Calls P1 and null`
+     - :animate:`100 - Calls P1 and null`
 
    * - :ada:`procedure I is new G (Z, P1 => P3); `
 
-     - :animate:`103 - Calls P3 and null`
+     - :animate:`3 - Calls P3 and null`
 
    * - :ada:`procedure I is new G (Z, P2 => P3); `
 
-     - :animate:`203 - Calls P1 and P3`
+     - :animate:`103 - Calls P1 and P3`
 
    * - :ada:`procedure I is new G (Z, P1 => P3, P2 => P3); `
 
-     - :animate:`106 - Calls P3 twice`
+     - :animate:`6 - Calls P3 twice`
 
 ====================
 Generic Completion
