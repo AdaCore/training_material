@@ -995,18 +995,18 @@ Quiz
  .. container:: column
 
    Which output is correct?
-   
+
       A. 1 1 1 1 22 23 1 32 33
       B. :answer:`33 32 1 23 22 1 1 1 1`
       C. 0 0 0 0 22 23 0 32 33
       D. 33 32 0 23 22 0 0 0 0
-   
+
  .. container:: column
 
   .. container:: animate
-  
+
      Explanations
-  
+
      A. There is a :ada:`reverse`
      B. Yes
      C. Default value is 1
