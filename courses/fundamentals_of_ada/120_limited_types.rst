@@ -654,25 +654,23 @@ Automatically Limited Full View
 
 .. code:: Ada
 
-   with Bounded_Stacks; -- Stack is a limited type
    package Foo is
       type Legal is limited private;
       type Also_Legal is limited private;
       type Not_Legal is private;
       type Also_Not_Legal is private;
-     ...
    private
       type Legal is record
-         S : Bounded_Stacks.Stack;
+         S : A_Limited_Type;
       end record;
       type Also_Legal is limited record
-         S : Bounded_Stacks.Stack;
+         S : A_Limited_Type;
       end record;
       type Not_Legal is limited record
-         S : Bounded_Stacks.Stack;
+         S : A_Limited_Type;
       end record;
       type Also_Not_Legal is record
-         S : Bounded_Stacks.Stack;
+         S : A_Limited_Type;
       end record;
    end Foo;
 
