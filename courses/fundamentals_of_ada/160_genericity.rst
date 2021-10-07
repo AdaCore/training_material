@@ -59,30 +59,33 @@ Solution: Generics
 Ada Generic Compared to C++ Template
 --------------------------------------
 
-* Ada Generic
+.. container:: columns
+
+ .. container:: column
+
+   * Ada Generic
 
    .. code:: Ada
 
       -- specification
       generic
-        type T is private;
-      procedure Swap (L, R : in out T);
+      type T is private;
+      procedure Swap
+        (L, R : in out T);
       -- implementation
-      procedure Swap (L, R : in out T) is
-        Tmp : T := L
+      procedure Swap
+        (L, R : in out T) is
+         Tmp : T := L
       begin
-        L := R;
-        R := Tmp;
+         L := R;
+         R := Tmp;
       end Swap;
       -- instance
       procedure Swap_F is new Swap (Float);
-      F1, F2 : Float;
-      procedure Main is
-      begin
-         Swap_F (F1, F2);
-      end Main;
 
-* C++ Template
+ .. container:: column
+
+   * C++ Template
 
    .. code:: C++
 
@@ -94,10 +97,8 @@ Ada Generic Compared to C++ Template
          L = R;
          R = Tmp;
       }
-      float F1, F2;
-      void Main (void) {
-         Swap <float> (F1, F2);
-      }
+
+.
 
 ===================
 Creating Generics
