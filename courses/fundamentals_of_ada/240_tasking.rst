@@ -21,7 +21,7 @@ A Simple Task
 ---------------
 
 * Parallel code execution via **task**
-* Tasks are :ada:`limited` types (No copies allowed)
+* :ada:`limited` types (No copies allowed)
 
    .. code:: Ada
 
@@ -147,22 +147,28 @@ Protected Objects
 Protected Objects
 -------------------
 
-* **Passive** objects state
+* **Multitask-safe** accessors to get and set state
+* **No** direct state manipulation
+* **No** concurrent modifications
+* :ada:`limited` types (No copies allowed)
 
-   - **Multitask-safe** accessors to get and set state
-   - **No** direct state manipulation
-   - **No** concurrent modifications
+.. container:: columns
 
-* Protected objects are :ada:`limited` types
+ .. container:: column
 
-.. code:: Ada
+  .. code:: Ada
 
-   protected type Protected_Value is
+   protected type
+     Protected_Value is
       procedure Set (V : Integer);
       function Get return Integer;
    private
       Value : Integer;
    end Protected_Value;
+
+ .. container:: column
+
+  .. code:: Ada
 
    protected body Protected_Value is
       procedure Set (V : Integer) is
@@ -175,6 +181,8 @@ Protected Objects
          return Value;
       end Get;
    end Protected_Value;
+
+.
 
 -------------------------------------
 Protected: Functions and Procedures
