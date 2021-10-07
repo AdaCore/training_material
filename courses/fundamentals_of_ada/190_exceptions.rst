@@ -632,33 +632,30 @@ Quiz
 
    .. code:: Ada
 
-    with Ada.Text_IO; use Ada.Text_IO;
-    procedure Main is
-       Main_Problem : exception;
-       function F (P : Integer) return Integer is
-       begin
-          if P > 0 then
-             return P + 1;
-          elsif P = 0 then
-             raise Main_Problem;
-          end if;
-       end F;
-
-       procedure P (X : Integer) is
-          R : Integer;
-       begin
-          R := F (X);
-       end P;
+    Main_Problem : exception;
+    function F (P : Integer) return Integer is
     begin
-       P ( 0 );
-       Put_Line ( "Success" );
+       if P > 0 then
+          return P + 1;
+       elsif P = 0 then
+          raise Main_Problem;
+       end if;
+    end F;
+
+    procedure P (X : Integer) is
+       R : Integer;
+    begin
+       R := F (X);
+    end P;
+    ...
+       P (Input_Value);
+       Put_Line ("Success");
     exception
        when Constraint_Error => Put_Line ("Constraint Error");
        when Program_Error => Put_Line ("Program Error");
        when others => Put_Line ("Unknown problem");
-    end Main;
 
-What will get printed for these values of Input_Value?
+What will get printed for these values of :ada:`Input_Value`?
 
 .. list-table::
 
@@ -688,10 +685,9 @@ What will get printed for these values of Input_Value?
 
    .. container:: latex_environment tiny
 
-      A |rightarrow| When :ada:`F` is called with :ada:`Integer'Last`, it overflows and raises a :ada:`Constraint_Error`
-
-      B |rightarrow| The :ada:`Main_Problem` exception is raised, and catched in the :ada:`when others`
-      C |rightarrow| :ada:`function F` does not hit return, a :ada:`Program_Error` is raised
+      * A |rightarrow| When :ada:`F` is called with :ada:`Integer'Last`, it overflows and raises a :ada:`Constraint_Error`
+      * B |rightarrow| The :ada:`Main_Problem` exception is raised, and catched in the :ada:`when others`
+      * C |rightarrow| :ada:`function F` does not hit return, a :ada:`Program_Error` is raised
 
 =======================
 Exceptions as Objects
