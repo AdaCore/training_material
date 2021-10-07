@@ -417,7 +417,6 @@ Examples
      Make (A, From_Real => 1.0, From_Imag => 0.0);
      Make (B, From_Real => 1.0, From_Imag => 0.0);
      C := A + B;
-     Put (C);
      -- but not this one
      Non_Primitive (0);
    end Demo;
@@ -545,31 +544,21 @@ Writing Readable Code - Part 2
    .. code:: Ada
 
       begin
-         Side1          : Base_Types.Float_T renames Observation.Sides (Viewpoint_Types.Observer_Point1);
-         Side2          : Base_Types.Float_T renames Observation.Sides (Viewpoint_Types.Observer_Point2);
-         Angles         : Viewpoint_Types.Vertices_Array_T renames Observation.Vertices;
-         Required_Angle : Viewpoint_Types.Vertices_T renames Viewpoint_Types.Observer;
-         Desired_Side   : Base_Types.Float_T renames
-           Observation.Sides (Viewpoint_Types.Point1_Point2);
-
          package Math renames Math_Utilities;
-         package Trig renames Math.Trigonometry;
 
          function Sqrt (X : Base_Types.Float_T) return Base_Types.Float_T
            renames Math.Square_Root;
 
+         Side1          : Base_Types.Float_T
+           renames Observation.Sides (Viewpoint_Types.Observer_Point1);
+         -- Same for Side2, Angles, Required_Angle, Desired_Side
       begin
-
-         Side1                   := Sensors.Read;
-         Side2                   := Sensors.Read;
-         Angles (Required_Angle) := Sensors.Read;
-
+         ...
          -- use cosine rule to determine distance between two points, given angle
          -- and distances between observer and 2 points A**2 = B**2 + C**2 -
          -- 2*B*C*cos(A)
          Desired_Side := Sqrt (Side1**2 + Side2**2 +
                                2.0 * Side1 * Side2 * Math.Cosine (Angles (Required_Angle)));
-
       end;
 
 ========
