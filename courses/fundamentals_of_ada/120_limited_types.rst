@@ -424,14 +424,14 @@ Function Extended Return Statements
 * Syntax (simplified):
 
    .. code:: Ada
-    
+
       return identifier : subtype [:= expression];
 
       return identifier : subtype
       [do
          sequence_of_statements ...
        end return];
-             
+
 ----------------------------------
 Extended Return Statements Example
 ----------------------------------
@@ -440,12 +440,12 @@ Extended Return Statements Example
 
        --  Implicitely limited array
        type Spin_Lock_Array (Positive range <>) of Spin_Lock;
-       
+
        function F return Spin_Lock_Array is
        begin
          return Result : Spin_Lock_Array (1 .. 10) do
            ...
-         end return;      
+         end return;
        end F;
 
 ------------------------------------
@@ -498,7 +498,7 @@ Statements Restrictions
        if Set_Flag then
          Result.Flag := 1;
          return;  --  returns 'Result'
-       end if; 
+       end if;
        Result.Flag := 0;
      end return; --  Implicit return
    end F;
