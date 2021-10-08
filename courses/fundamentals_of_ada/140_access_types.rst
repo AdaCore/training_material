@@ -28,6 +28,8 @@ Access Types Design
 
  .. container:: column
 
+  * Ada
+
   .. code:: Ada
 
      type Integer_Pool_Access
@@ -35,11 +37,14 @@ Access Types Design
      P_A : Integer_Pool_Access
        := new Integer;
 
-     type Integer_General_Access is access all Integer;
+     type Integer_General_Access
+       is access all Integer;
      G : aliased Integer
      G_A : Integer_General_Access := G'access;
 
  .. container:: column
+
+  * C++
 
   .. code:: C++
 
