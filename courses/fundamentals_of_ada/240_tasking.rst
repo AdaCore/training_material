@@ -238,7 +238,7 @@ Task Activation
 
 * On the **heap**
 
-   - **Immediately** at instanciation
+   - **Immediately** at instantiation
 
 .. code:: Ada
 
