@@ -221,7 +221,7 @@ Profile Components Used
 
    - **Number** of parameters
    - **Order** of parameters
-   - Base **type** of parameters
+   - **Base type** of parameters
    - **Result** type (for functions)
 
 * Insignificant components might not appear at call
