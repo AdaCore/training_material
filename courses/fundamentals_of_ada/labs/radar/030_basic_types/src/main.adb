@@ -5,12 +5,10 @@ procedure Main is
    -- Some of the radar code is already in place, it is just missing the
    -- high-level interface to handle incoming objects.
 
+   type Object_Status_T is (Out_Of_Range, Tracked, Cleared, Selected);
+
    -- QUESTION 1 - Part A
    --
-   -- Define a type Object_Status_T that has four possible values
-   -- Out_Of_Range, Tracked, Untracked, Selected
-   type Object_Status_T is (Unknown);
-
    -- Define a type Angle_Degrees_T that is modulo 360
 
    -- Define a subtype Object_Distance_Km_T as a Float with values
@@ -18,21 +16,21 @@ procedure Main is
 
    -- Define a subtype Speed_Kph_T that is a Float between 0 and 50 km/h
 
+
+   John_Connor : Object_Status_T := Out_Of_Range;
+
    -- QUESTION 1 - Part B
    --
-   -- Declare John_Connor, an Object_Status_T with value Out_Of_Range
-   John_Connor : Object_Status_T := Unknown;
-
-   -- Declare Radar_Angle to be an Angle_Degrees_T with a starting value
-   Radar_Angle : Float;
+   -- Set Radar_Angle to be an Angle_Degrees_T with a starting value
+   Radar_Angle : Integer := 0;
 
    -- Declare an Object_Distance_Km_T named Distance_Closest_Object, set to 10km
 
    -- Declare a Speed_Kph_T named Running_Speed, set to 25km/h
 
-   -- Declare a Float named Time_To_Arrival, calculated as
-   -- Distance_Closest_Object / Running_Speed * 3600
-   Time_To_Arrival : Float;
+   -- Assign Time_To_Arrival to
+   -- Distance_Closest_Object divided by Running_Speed * 3600
+   Time_To_Arrival : Float := 0.0;
 
 begin
    -- This line will compile if the declarations are OK
@@ -70,15 +68,14 @@ begin
    -- QUESTION 3 - Quiz
    --
    -- a. What happens if we want to rotate the radar by 361 degrees?
-   -- b. There is a last minute change in the spec: John Connor is know in
-   --     a new "Friend" status, make changes to the code to allow for that.
+   -- b. There is a last minute change in the spec: John Connor is now in
+   --    the "Friend" status, make changes to the code to allow for that.
    -- c. What happens to the E.T.A. if Running_Speed is 0? Try it.
 
    -- QUESTION 4 - Advanced
    --
    -- Redefine Object_Distance_Km_T as a type instead of subtype.
    -- Modify the two division to make it work, using explicit casting.
-
 end Main;
 
 -- You can use the 'Scenario' tab on the right to change the Mode from
