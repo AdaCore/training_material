@@ -21,7 +21,7 @@ A Simple Task
 ---------------
 
 * Parallel code execution via **task**
-* Tasks are :ada:`limited` types (No copies allowed)
+* :ada:`limited` types (No copies allowed)
 
    .. code:: Ada
 
@@ -147,22 +147,28 @@ Protected Objects
 Protected Objects
 -------------------
 
-* **Passive** objects state
+* **Multitask-safe** accessors to get and set state
+* **No** direct state manipulation
+* **No** concurrent modifications
+* :ada:`limited` types (No copies allowed)
 
-   - **Multitask-safe** accessors to get and set state
-   - **No** direct state manipulation
-   - **No** concurrent modifications
+.. container:: columns
 
-* Protected objects are :ada:`limited` types
+ .. container:: column
 
-.. code:: Ada
+  .. code:: Ada
 
-   protected type Protected_Value is
+   protected type
+     Protected_Value is
       procedure Set (V : Integer);
       function Get return Integer;
    private
       Value : Integer;
    end Protected_Value;
+
+ .. container:: column
+
+  .. code:: Ada
 
    protected body Protected_Value is
       procedure Set (V : Integer) is
@@ -175,6 +181,8 @@ Protected Objects
          return Value;
       end Get;
    end Protected_Value;
+
+.
 
 -------------------------------------
 Protected: Functions and Procedures
@@ -223,32 +231,27 @@ Task and Protected Types
 Task Activation
 ---------------
 
-* An instantiated task starts running when **activated**
-* On the stack
+* Instantiated tasks start running when **activated**
+* On the **stack**
 
-    - Activated when **enclosing** declarative part finishes its **elaboration**
+   - When **enclosing** declarative part finishes **elaborating**
 
-* On the heap
+* On the **heap**
 
-    - Activated **immediately** at instanciation
+   - **Immediately** at instantiation
 
 .. code:: Ada
 
-   task type First_T is [...]
-
+   task type First_T is ...
    type First_T_A is access all First_T;
 
-   task body First_T is
-   begin
-      accept First;
-   end First_T;
-
-   [...]
-
+   task body First_T is ...
+   ...
+   declare
       V1 : First_T;
       V2 : First_T_A;
-   begin -- Task V1 is activated
-      V2 := new First_T; -- Task V2 is activated
+   begin  -- V1 is activated
+      V2 := new First_T;  -- V2 is activated immediately
 
 --------------------
 Single Declaration
@@ -321,9 +324,7 @@ Waiting On Multiple Entries
      accept Stop;
      exit;
   end select;
-
-  [...]
-
+  ...
   T.Receive_Message ("A");
   T.Receive_Message ("B");
   T.Stop;
@@ -342,20 +343,17 @@ Waiting With a Delay
 
 .. code:: Ada
 
-   task body Msg_Box_T is
-   begin
-     loop
-       select
-         accept Receive_Message (V : String) do
-           Put_Line ("Message : " & String);
-         end Receive_Message;
-       or
-         delay 50.0;
-         Put_Line ("Don't wait any longer");
-         exit;
-       end select;
-     end loop;
-   end Msg_Box_T;
+  loop
+    select
+      accept Receive_Message (V : String) do
+        Put_Line ("Message : " & String);
+      end Receive_Message;
+    or
+      delay 50.0;
+      Put_Line ("Don't wait any longer");
+      exit;
+    end select;
+  end loop;
 
 .. container:: speakernote
 
