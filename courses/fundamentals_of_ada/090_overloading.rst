@@ -93,9 +93,9 @@ Benefits and Risk of Overloading
 
    .. code:: Ada
 
-      function "+" ( L, R : integer ) return string is
+      function "+" ( L, R : Integer ) return String is
       begin
-         return integer'image ( L - R );
+         return Integer'Image ( L - R );
       end "+";
 
 =========================
@@ -152,13 +152,8 @@ Parameters for Overloaded Operators
 
 * Must not change syntax of calls
 
-   - Number of parameters must remain same
-
-      + Unary, Binary, etc ...
-
+   - Number of parameters must remain same (unary, binary...)
    - No default expressions allowed for operators
-
-      + Since number of parameters must remain the same
 
 * Infix calls use positional parameter associations
 
@@ -167,7 +162,7 @@ Parameters for Overloaded Operators
 
       .. code:: Ada
 
-         function "*" (Left, Right : Integer) return integer;
+         function "*" (Left, Right : Integer) return Integer;
 
    - Usage
 
@@ -203,8 +198,7 @@ Call Resolution
 * Resolution is based on the calling context
 
    - Compiler attempts to find a matching **profile**
-
-      + Based on **Parameter** and **Result** Type
+   - Based on **Parameter** and **Result** Type
 
 * Overloading is not re-definition, or hiding
 
@@ -225,17 +219,17 @@ Profile Components Used
 
 * Significant components appear in the call itself
 
-   - Number of parameters
-   - Order of parameters
-   - Base type of parameters
-   - Result type (for functions)
+   - **Number** of parameters
+   - **Order** of parameters
+   - **Base type** of parameters
+   - **Result** type (for functions)
 
 * Insignificant components might not appear at call
 
-   - Formal parameter names are optional
-   - Formal parameter modes never appear
-   - Formal parameter subtypes never appear
-   - Default expressions never appear
+   - Formal parameter **names** are optional
+   - Formal parameter **modes** never appear
+   - Formal parameter **subtypes** never appear
+   - **Default** expressions never appear
 
    .. code:: Ada
 
@@ -263,7 +257,7 @@ Manually Disambiguating Calls
 * Qualification can be used
 * Named parameter association can be used
 
-   - If unique
+   - If name makes it unambiguous
 
 .. code:: Ada
 
@@ -271,6 +265,7 @@ Manually Disambiguating Calls
    type Colors is (Red, Blue, Green);
    procedure Put (Light : in Stop_Light);
    procedure Put (Shade : in Colors);
+
    Put (Red);  -- ambiguous call
    Put (Yellow);  -- not ambiguous: only 1 Yellow
    Put (Colors'(Red)); -- using type to distinguish
@@ -282,11 +277,10 @@ Overloading Example
 
 .. code:: Ada
 
-   function "+" (Left : Position;
-                 Right : Offset)
-                 return Position is
+   function "+" (Left : Position; Right : Offset)
+     return Position is
    begin
-     return Position'( Left.Row + Right.Row, Left.Column + Right.Col);
+      return Position'(Left.Row + Right.Row, Left.Column + Right.Col);
    end "+";
 
    function Acceptable (P : Position) return Boolean;
