@@ -210,30 +210,23 @@ Similarity To Case Statements
 Handlers Don't "Fall Through"
 -------------------------------
 
-* Again as in case statements
-
 .. code:: Ada
 
    begin
      ...
-     -- sequence of statements
-     -- a statement causes Name3 to be raised
-     ...
-     -- so code here is not executed
+     raise Name3;
+     -- code here is not executed
      ...
    exception
      when Name1 =>
-       ...
-       -- not executed
-       ...
+        -- not executed
+        ...
      when Name2 | Name3 =>
-     ...
-     -- executed
-     ...
+        -- executed
+        ...
      when Name4 =>
-       ...
-       -- not executed
-       ...
+        -- not executed
+        ...
    end;
 
 -----------------------------
@@ -522,7 +515,6 @@ User-Defined Exceptions Example
    package Stack is
      Underflow, Overflow : exception;
      procedure Push (Item : in Integer);
-     procedure Pop (Item : out Integer);
      ...
    end Stack;
 
@@ -535,16 +527,7 @@ User-Defined Exceptions Example
        Top := Top + 1;
        Values (Top) := Item;
      end Push;
-
-     procedure Pop (Item : out Integer) is
-     begin
-       if Top = 0 then
-         raise Underflow;
-       end if;
-       Item := Values (Top);
-       Top := Top - 1;
-     end Pop;
-   end Stack;
+   ...
 
 =============
 Propagation
@@ -649,46 +632,50 @@ Quiz
 
    .. code:: Ada
 
-    with Ada.Text_IO; use Ada.Text_IO;
-    procedure Main is
-       Main_Problem : exception;
-       function F (P : Integer) return Integer is
-       begin
-          if P > 0 then
-             return P + 1;
-          elsif P = 0 then
-             raise Main_Problem;
-          end if;
-       end F;
-
-       procedure P (X : Integer) is
-          R : Integer;
-       begin
-          R := F (X);
-       end P;
+    Main_Problem : exception;
+    function F (P : Integer) return Integer is
     begin
-       P ( 0 );
-       Put_Line ( "Success" );
+       if P > 0 then
+          return P + 1;
+       elsif P = 0 then
+          raise Main_Problem;
+       end if;
+    end F;
+
+    procedure P (X : Integer) is
+       R : Integer;
+    begin
+       R := F (X);
+    end P;
+    ...
+       P (Input_Value);
+       Put_Line ("Success");
     exception
        when Constraint_Error => Put_Line ("Constraint Error");
        when Program_Error => Put_Line ("Program Error");
        when others => Put_Line ("Unknown problem");
-    end Main;
 
-What will get printed for these values of Input_Value?
+What will get printed for these values of :ada:`Input_Value`?
 
 .. list-table::
 
    * - **A.**
+
      - Integer'Last
      - :animate:`Constraint Error`
+
    * - **B.**
+
      - 0
      - :animate:`Unknown problem`
+
    * - **C.**
+
      - Integer'First
      - :animate:`Program Error`
+
    * - **D.**
+
      - 100
      - :animate:`Success`
 
@@ -698,10 +685,9 @@ What will get printed for these values of Input_Value?
 
    .. container:: latex_environment tiny
 
-      A |rightarrow| When :ada:`F` is called with :ada:`Integer'Last`, it overflows and raises a :ada:`Constraint_Error`
-
-      B |rightarrow| The :ada:`Main_Problem` exception is raised, and catched in the :ada:`when others`
-      C |rightarrow| :ada:`function F` does not hit return, a :ada:`Program_Error` is raised
+      * A |rightarrow| When :ada:`F` is called with :ada:`Integer'Last`, it overflows and raises a :ada:`Constraint_Error`
+      * B |rightarrow| The :ada:`Main_Problem` exception is raised, and catched in the :ada:`when others`
+      * C |rightarrow| :ada:`function F` does not hit return, a :ada:`Program_Error` is raised
 
 =======================
 Exceptions as Objects
