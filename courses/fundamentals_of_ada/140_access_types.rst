@@ -14,30 +14,44 @@ Introduction
 Access Types Design
 ---------------------
 
-* Java references, or C/C++ pointers are called access type in Ada
-* An object is associated to a pool of memory
-* Different pools may have different allocation / deallocation policies
-* Without doing unchecked deallocations, and by using pool-specific access types, access values are guaranteed to be always meaningful
-* In Ada, access types are typed
+* Memory addresses objects are called **access types**
+* Objects are associated to **pools** of memory
 
-   - Ada
+  - With different allocation / deallocation policies
 
-      .. code:: Ada
+* Access objects are **guaranteed** to always be meaningful
 
-         type Integer_Pool_Access is access Integer;
-         P_A : Integer_Pool_Access := new Integer;
+  - In the absence of :ada:`Unchecked_Deallocation`
+  - And if pool-specific
 
-         type Integer_General_Access is access all Integer;
-         G : aliased Integer
-         G_A : Integer_General_Access := G'access;
+.. container:: columns
 
-   - Compared to C/C++
+ .. container:: column
 
-      .. code:: C++
+  * Ada
 
-         int * P_C = malloc (sizeof (int));
-         int * P_CPP = new int;
-         int * G_C = &Some_Int;
+  .. code:: Ada
+
+     type Integer_Pool_Access
+       is access Integer;
+     P_A : Integer_Pool_Access
+       := new Integer;
+
+     type Integer_General_Access
+       is access all Integer;
+     G : aliased Integer
+     G_A : Integer_General_Access := G'access;
+
+ .. container:: column
+
+  * C++
+
+  .. code:: C++
+
+     int * P_C = malloc (sizeof (int));
+     int * P_CPP = new int;
+     int * G_C = &Some_Int;
+.
 
 -------------------------------
 Access Types Can Be Dangerous
@@ -224,13 +238,7 @@ Pool-Specific Access Type
       type T_Access is access T;
       V : T_Access := new T;
 
-* Conversion is needed to move an object pointed by one type to another (pools may differ)
-* You can not do this kind of conversion with a pool-specific access type
-
-   .. code:: Ada
-
-      type T_Access_2 is access T;
-      V2 : T_Access_2 := T_Access_2 (V); -- illegal
+* Conversion is **not** possible between pool-specific access types
 
 -------------
 Allocations
@@ -338,6 +346,8 @@ Referencing The Stack
 
       A : Int_Access := V'Access;
 
+   - :ada:`'Unchecked_Access` does it **without checks**
+
 ----------------------------
 `Aliased` Objects Examples
 ----------------------------
@@ -345,22 +355,18 @@ Referencing The Stack
 .. code:: Ada
 
    type Acc is access all Integer;
-      V : Acc;
-      I : aliased Integer;
-   begin
-      V := I'Access;
-      V.all := 5; -- Same a I := 5
-
+   V, G : Acc;
+   I : aliased Integer;
    ...
-
-   type Acc is access all Integer;
-   G : Acc;
+   V := I'Access;
+   V.all := 5; -- Same a I := 5
+   ...
    procedure P1 is
       I : aliased Integer;
    begin
       G := I'Unchecked_Access;
-      -- Same as 'Access (see later)
    end P1;
+
    procedure P2 is
    begin
       G.all := 5;
@@ -468,7 +474,7 @@ Getting Around Accessibility Checks
 -------------------------------------
 
 * Sometimes it is OK to use unsafe accesses to data
-* `'Unchecked_Access` allows access to a variable of an incompatible accessibility level
+* :ada:`'Unchecked_Access` allows access to a variable of an incompatible accessibility level
 * Beware of potential problems!
 
    .. code:: Ada
@@ -652,7 +658,7 @@ Examples
 Anonymous Access Parameters
 -----------------------------
 
-* Parameter modes are of 4 types: `in`, `out`, `in out`, `access`
+* Parameter modes are of 4 types: :ada:`in`, :ada:`out`, :ada:`in out`, :ada:`access`
 * The access mode is called **anonymous access type**
 
    - Anonymous access is implicitly general (no need for :ada:`all`)
