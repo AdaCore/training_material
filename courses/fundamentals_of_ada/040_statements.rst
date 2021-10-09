@@ -385,17 +385,6 @@ If-then-else Statements
 
     - :ada:`null` for explicit no-op
 
- .. code:: Ada
-
-    if Valve(N) /= Closed then
-      Isolate (Valve(N));
-      Notify (Valve_Failure, Valve (N));
-    else
-      if System = Off then
-        Notify (Valve_Failure, Valve (N));
-      end if;
-    end if;
-
 --------------------------
 If-then-elsif Statements
 --------------------------
@@ -404,16 +393,32 @@ If-then-elsif Statements
 * Avoids :ada:`if` nesting
 * :ada:`elsif` alternatives, tested in textual order
 * :ada:`else` part still optional
-* Applied to previous example
 
- .. code:: Ada
+.. container:: columns
 
-    if Valve(N) /= Closed then
-      Isolate (Valve(N));
-      Notify (Valve_Failure, Valve (N));
-    elsif System = Off then
-      Notify (Valve_Failure, Valve (N));
-    end if;
+ .. container:: column
+
+  .. code:: Ada
+
+     if Valve(N) /= Closed then
+       Isolate (Valve(N));
+       Failure (Valve (N));
+     else
+       if System = Off then
+         Failure (Valve (N));
+       end if;
+     end if;
+
+ .. container:: column
+
+  .. code:: Ada
+
+     if Valve(N) /= Closed then
+       Isolate (Valve(N));
+       Failure (Valve (N));
+     elsif System = Off then
+       Failure (Valve (N));
+     end if;
 
 .. container:: speakernote
 
@@ -491,7 +496,7 @@ Case Statement Rules
        Go_To (Work, Arrive=>Early, Leave=>Early);
      when others => -- weekend
        Go_To (Home, Arrive=>Day_Before, Leave=>Day_After);
-     end case;
+   end case;
 
 ------------------------------------
 Case Statements Range Alternatives
@@ -514,7 +519,7 @@ Dangers of *Others* Case Alternative
 
 * Maintenance issue: new value requiring a new alternative?
 
-    - Compiler won't warn: `others` hides it
+    - Compiler won't warn: :ada:`others` hides it
 
 .. code:: Ada
 
@@ -935,29 +940,37 @@ Quiz
 
    A, B : Integer := 123;
 
-Which loop block is illegal?
+.. container:: columns
 
-A. | :answermono:`for A in 1 .. 10 loop`
-   |    :answermono:`A := A + 1;`
-   | :answermono:`end loop;`
-B. | ``for B in 1 .. 10 loop``
-   |    ``Put_Line (Integer'Image (B));``
-   | ``end loop;``
-C. | ``for C in reverse 1 .. 10 loop``
-   |    ``Put_Line (Integer'Image (A));``
-   | ``end loop;``
-D. | ``for D in 10 .. 1 loop``
-   |    ``Put_Line (Integer'Image (D));``
-   | ``end loop;``
+ .. container:: column
 
-.. container:: animate
+  Which loop block is illegal?
 
-   Explanations
+  A. | :answermono:`for A in 1 .. 10 loop`
+     |    :answermono:`A := A + 1;`
+     | :answermono:`end loop;`
+  B. | ``for B in 1 .. 10 loop``
+     |    ``Put_Line (Integer'Image (B));``
+     | ``end loop;``
+  C. | ``for C in reverse 1 .. 10 loop``
+     |    ``Put_Line (Integer'Image (A));``
+     | ``end loop;``
+  D. | ``for D in 10 .. 1 loop``
+     |    ``Put_Line (Integer'Image (D));``
+     | ``end loop;``
 
-   A. Cannot assign to a loop parameter
-   B. Legal - 10 iterations
-   C. Legal - 10 iterations
-   D. Legal - 0 iterations
+ .. container:: column
+
+  .. container:: animate
+
+     Explanations
+
+     A. Cannot assign to a loop parameter
+     B. Legal - 10 iterations
+     C. Legal - 10 iterations
+     D. Legal - 0 iterations
+
+.
 
 =================
 GOTO Statements
