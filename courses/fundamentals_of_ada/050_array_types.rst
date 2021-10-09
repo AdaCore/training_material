@@ -280,21 +280,27 @@ Quiz
    X1, Y1 : Array1_T;
    X2, Y2 : Array2_T;
 
-Which statement is not legal?
+.. container:: columns
+
+ .. container:: column
+
+   Which statement is not legal?
 
    A. ``X1(1) := Y1(1);``
    B. ``X1 := Y1;``
    C. ``X1(1) := X2(1);``
    D. :answermono:`X2 := X1;`
 
-.. container:: animate
+ .. container:: column
 
-   Explanations
+  .. container:: animate
 
-   A. Legal - elements are :ada:`Boolean`
-   B. Legal - object types match
-   C. Legal - elements are :ada:`Boolean`
-   D. Although the sizes are the same and the elements are the same, the type is different
+    Explanations
+
+    A. Legal - elements are :ada:`Boolean`
+    B. Legal - object types match
+    C. Legal - elements are :ada:`Boolean`
+    D. Although the sizes are the same and the elements are the same, the type is different
 
 ===========================
 Unconstrained Array Types
@@ -485,21 +491,27 @@ Quiz
    Y : Array1_T := (1, 2, 3, 4);
    Z : Array2_T := (1, 2, 3, 4);
 
-Which statement is illegal?
+.. container:: columns
 
-   A. :answermono:`X(1) := Y(1);`
-   B. ``Y(1) := Z(1);``
+ .. container:: column
+
+   Which statement is illegal?
+
+   A. :answermono:`X (1) := Y (1);`
+   B. ``Y (1) := Z (1);``
    C. ``Y := X;``
    D. ``Z := X;``
 
-.. container:: animate
+ .. container:: column
+
+  .. container:: animate
 
    Explanations
 
-   A. First index of :ada:`Array_T` is first value in :ada:`Integer` - so :ada:`X(1)` is not in range
-   B. Legal - indices are both in range
-   C. Legal - arrays are same type and same size
-   D. Legal - :ada:`X` has been constrained to correct size
+   A. :ada:`Array_T` starts at :ada:`Integer'First` not :ada:`1`
+   B. OK, both in range
+   C. OK, same type and size
+   D. OK, same type and size
 
 ============
 Attributes
@@ -566,33 +578,29 @@ Attributes' Benefits
 Nth Dimension Array Attributes
 --------------------------------
 
-.. container:: columns
+* Attribute with **parameter**
 
- .. container:: column
+.. code:: Ada
 
-    * Attribute parameter indicates dimension requested
+  T'Length (n)
+  T'First (n)
+  T'Last (n)
+  T'Range (n)
 
-       - ``T'Length(n)``
-       - ``T'First(n)``
-       - ``T'Last(n)``
-       - ``T'Range(n)``
-       - where n is the dimension required, including 1
+- ``n`` is the dimension
 
-          + if 'n' is not specified, it defaults to 1
+  + defaults to 1
 
- .. container:: column
+.. code:: Ada
 
-    .. code:: Ada
+   type Two_Dimensioned is array
+      (1 .. 10, 12 .. 50) of T;
+   TD : Two_Dimensioned;
 
-       type Two_Dimensioned is array
-          (1 .. 10, 12 .. 50) of T;
-       TD : Two_Dimensioned;
-
-    * :ada:`TD'First` (2) is 12
-    * :ada:`TD'Last` (2) is 50
-    * :ada:`TD'Length` (2) is 39
-    * :ada:`TD'first` is 1 (same as :ada:`TD'first(1)`)
-    * :ada:`TD'last` is 10 (same as :ada:`TD'last(1)`)
+* :ada:`TD'First (2) = 12`
+* :ada:`TD'Last  (2) = 50`
+* :ada:`TD'Length (2) = 39`
+* :ada:`TD'First = TD'First (1) = 1`
 
 ------
 Quiz
@@ -664,7 +672,8 @@ Extra Object-Level Operations
 
    .. code:: Ada
 
-      type String_Type is array ( integer range <> ) of character;
+      type String_Type is array
+        (Integer range <>) of Character;
       A : constant String_Type := "foo";
       B : constant String_Type := "bar";
       C : constant String_Type := A & B;
@@ -680,29 +689,25 @@ Extra Object-Level Operations
 "Membership" Tests
 --------------------
 
-* Shorthand for constraint checking
+* Constraint checking
 
    - Range constraints
    - Index constraints
    - et cetera
 
-* Uses reserved word :ada:`in`
+* Reserved word :ada:`in`
 
 .. code:: Ada
 
    procedure Test is
      type Humanity is array (1 .. N) of Age;
-     ...
      People : Humanity := Some_Initial_Value;
-     Index : Integer range People'First - 1 ..  People'Last :=
-             People'First - 1;
+     Index : Integer range People'First - 1 ..  People'Last
+       := People'First - 1;
    begin
-     ...
      for K in People'Range loop
-       -- set Index to K if found
-       -- desired value
-     end loop;
-     if Index in People'Range then -- good
+     ...
+     if Index in People'Range then
 
 ----------
 Examples
@@ -716,31 +721,19 @@ Examples
 Slicing
 ---------
 
-.. container:: columns
+* Contiguous subsection of an array
+* On any one-dimensional array type
 
- .. container:: column
+  - Any component type
 
-    * Specifies a contiguous subsection of an array
-    * Allowed on any one-dimensional array type
+.. code:: Ada
 
-       - Any component type
-
- .. container:: column
-
-    .. code:: Ada
-
-       procedure Test is
-         S1 : String (1 .. 9)
-            := "Hi Adam!!";
-         S2 : String
-            := "We love    !";
-       begin
-         Put_Line (S1 (4..6));
-         Put_Line (S2);
-         S2 (9..11) := S1 (4..6);
-         Put_Line (S2);
-         S2 (12) := '?';
-         Put_Line (S2);
+   procedure Test is
+     S1 : String (1 .. 9) := "Hi Adam!!";
+     S2 : String := "We love    !";
+   begin
+     Put_Line (S1 (4..6));
+     S2 (9..11) := S1 (4..6);
 
 -------------------------------
 Slicing With Explicit Indexes
@@ -786,9 +779,10 @@ Dynamic Subtype Constraint Example
 
 .. code:: Ada
 
-    File_Name (File_Name'First
-               ..
-               Index (File_Name, '.', Direction = Backward));
+    File_Name
+      (File_Name'First
+      ..
+      Index (File_Name, '.', Direction => Backward));
 
 ------
 Quiz
@@ -996,21 +990,29 @@ Quiz
       end loop;
    end;
 
-Which output is correct?
+.. container:: columns
 
-   A. 1 1 1 1 22 23 1 32 33
-   B. :answer:`33 32 1 23 22 1 1 1 1`
-   C. 0 0 0 0 22 23 0 32 33
-   D. 33 32 0 23 22 0 0 0 0
+ .. container:: column
 
-.. container:: animate
+   Which output is correct?
 
-   Explanations
+      A. 1 1 1 1 22 23 1 32 33
+      B. :answer:`33 32 1 23 22 1 1 1 1`
+      C. 0 0 0 0 22 23 0 32 33
+      D. 33 32 0 23 22 0 0 0 0
 
-   A. This is the result if :ada:`reverse` was not specified
-   B. Start with last element (3,3) and work backwards
-   C. This might be the result without :ada:`Default_Component_Value.` (Zeroes may not be correct - could be any uninitialized value.)
-   D. Result without :ada:`Default_Component_Value` and :ada:`reverse`
+ .. container:: column
+
+  .. container:: animate
+
+     Explanations
+
+     A. There is a :ada:`reverse`
+     B. Yes
+     C. Default value is 1
+     D. No
+
+NB: Without :ada:`Default_Component_Value`, init. values are random
 
 ============
 Aggregates
