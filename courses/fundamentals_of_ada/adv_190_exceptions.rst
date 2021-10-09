@@ -302,15 +302,22 @@ What will get printed for these values of Input_Value?
 .. list-table::
 
    * - **A.**
+
      - Integer'Last
      - :animate:`Known Problem`
+
    * - **B.**
+
      - Integer'First
      - :animate:`Unknown Problem`
+
    * - **C.**
+
      - 10000
      - :animate:`Unknown Problem`
+
    * - **D.**
+
      - 100
      - :animate:`Success`
 
