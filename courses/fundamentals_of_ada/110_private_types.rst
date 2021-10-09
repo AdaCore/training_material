@@ -178,79 +178,6 @@ Software Engineering Principles
    - Dynamically allocated
    - et cetera
 
------------------------------
-Abstract Data Machine Stack
------------------------------
-
-.. code:: Ada
-
-   -- This package itself is an object
-   package Integer_Stack is
-     Capacity : constant := 100;
-     procedure Push (Item : in Integer);
-     procedure Pop(Item : out Integer);
-   end Integer_Stack;
-
-   package body Integer_Stack is
-     -- no external visibility to these global objects
-     Values : array (1 .. Capacity) of Integer;
-     Top : Integer range 0 .. Capacity := 0;
-     procedure Push(Item : in Integer) is
-     begin
-        ...
-     end Push;
-     procedure Pop(Item : out Integer) is
-     begin
-        ...
-     end Pop;
-   end Integer_Stack;
-
--------------------------------------
-Abstract Data Type Stack Definition
--------------------------------------
-
-.. code:: Ada
-
-   -- User now creates their own stack objects but can
-   -- only use subprograms defined here to manipulate them
-   package Bounded_Stacks is
-     type Stack is private;
-     procedure Push (Item : in Integer; This : in out Stack);
-     procedure Pop (Item : out Integer; This : in out Stack);
-     function Empty (This : Stack) return Boolean;
-     Capacity : constant := 100;
-     ...
-   private
-     type List is array  (1 .. Capacity) of Integer;
-     type Stack is record
-       Values : List;
-       Top : Integer range 0 .. Capacity := 0;
-     end record;
-   end Bounded_Stacks;
-
-------------------------------------------
-Abstract Data Type Stack Body Visibility
-------------------------------------------
-
-.. code:: Ada
-
-   package body Bounded_Stacks is
-     procedure Push (Item : in Integer;
-                     This : in out  Stack) is
-     begin
-       if This.Top < Capacity then
-         This.Top := This.Top + 1;
-         This.Values (This.Top) := Item;
-       else
-         ...
-     end Push;
-     function Empty (This : Stack) return Boolean is
-     begin
-       return This.Top = 0;
-     end Pop;
-   ...
-   end Bounded_Stacks;
-
 -----------------------------------
 Users Declare Objects of the Type
 -----------------------------------
@@ -564,15 +491,12 @@ Designer View Sees Full Declaration
      Capacity : constant := 100;
      type Stack is private;
      procedure Push (Item : in Integer; Onto : in out Stack);
-     procedure Pop (Item : out Integer; From : in out Stack);
      ...
    private
      type Index is range 0 .. Capacity;
      type List is array (Index range 1..Capacity) of Integer;
      type Stack is record
-       Values : List;
-       Top : Index := 0;
-     end record;
+     ...
    end Bounded_Stacks;
 
 .. container:: speakernote
@@ -588,17 +512,14 @@ Designer View Allows All Operations
    package body Bounded_Stacks is
      procedure Push (Item : in Integer;
                      Onto : in out Stack) is
-       The_Stack : Stack renames Onto;
      begin
-       The_Stack.Top := The_Stack.Top + 1;
-       The_Stack.Values (The_Stack.Top) := Item;
+        ...
      end Push;
+
      procedure Pop (Item : out Integer;
                     From : in out Stack) is
-       The_Stack : Stack renames From;
      begin
-       Item := The_Stack.Values (The_Stack.Top);
-       The_Stack.Top := The_Stack.Top - 1;
+        ...
      end Pop;
    end Bounded_Stacks;
 
@@ -762,22 +683,16 @@ Constructors
      type Number is private;
      function Make (Real_Part : Float; Imaginary : Float) return Number;
    private
-     type Number is record
-       Real_Part, Imaginary : Float;
-     end record;
+     type Number is record ...
    end Complex;
 
    package body Complex is
-      function Make (Real_Part : Float; Imaginary_Part : Float) return Number is
-      begin
-        return Number'( Real_Part, Imaginary_Part );
-      end Make;
+      function Make (Real_Part : Float; Imaginary_Part : Float)
+        return Number is ...
    end Complex:
-
    ...
    A : Complex.Number :=
        Complex.Make (Real_Part => 2.5, Imaginary => 1.0);
-   ...
 
 ----------------------------
 Procedures As Constructors
@@ -830,18 +745,15 @@ Selectors
    end Complex;
 
    package body Complex is
-     ...
      function Real_Part (This : Number) return Float is
      begin
        return This.Real_Part;
      end Real_Part;
      ...
    end Complex;
-
    ...
    Phase : Complex.Number := Complex.Make (10.0, 5.5);
    Object : Float := Complex.Real_Part (Phase);
-   ...
 
 ========
 Lab
