@@ -740,10 +740,10 @@ package body Display.Basic is
       return Current_Id;
    end Create_Window;
 
+   SDL_S : access SDL_Surface;
 
    function Create_SDL_Window (Width : Integer; Height : Integer; Name : String) return SDL_Window_Surface is
       S : SDL_Window_Surface;
-      SDL_S : access SDL_Surface;
    begin
       Ada.Text_IO.Put_Line("Create_SDL_Window Entry ");
       if not Initialized then
