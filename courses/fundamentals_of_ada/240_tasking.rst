@@ -217,7 +217,7 @@ Delay keyword
 
 .. code:: Ada
 
-    Relative : Duration := Seconds(5.0);
+    Relative : Duration := 5.0;
     delay Relative;
 
     Absolute : Time := Time_Of (2030, 10, 30);
@@ -267,7 +267,7 @@ Single Declaration
    task Msg_Box is
        -- Msg_Box task is declared *and* instanciated
       entry Receive_Message (S : String);
-   end Msg_Box_T;
+   end Msg_Box;
 
    task body Msg_Box is
    begin
@@ -318,7 +318,7 @@ Waiting On Multiple Entries
   select
      accept Receive_Message (V : String)
      do
-        Put_Line ("Message : " & String);
+        Put_Line ("Message : " & V);
      end Receive_Message;
   or
      accept Stop;
@@ -346,7 +346,7 @@ Waiting With a Delay
   loop
     select
       accept Receive_Message (V : String) do
-        Put_Line ("Message : " & String);
+        Put_Line ("Message : " & V);
       end Receive_Message;
     or
       delay 50.0;
