@@ -551,7 +551,7 @@ Writing Readable Code - Part 2
 
          Side1          : Base_Types.Float_T
            renames Observation.Sides (Viewpoint_Types.Observer_Point1);
-         -- Same for Side2, Angles, Required_Angle, Desired_Side
+         -- Rename the others as Side2, Angles, Required_Angle, Desired_Side
       begin
          ...
          -- use cosine rule to determine distance between two points, given angle
