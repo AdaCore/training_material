@@ -189,7 +189,7 @@ Simple Type Derivation
 
      type Parent is range 1 .. 10;
      procedure Prim (V : Parent);
-     type Child is new Parent;  -- Freeze
+     type Child is new Parent;  -- Freeze Parent
      procedure Not_A_Primitive (V : Parent);
      C : Child;
      ...
@@ -315,14 +315,14 @@ Implicit Subtype
 
    .. code:: Ada
 
-      type T is range L .. R;
+      type Typ is range L .. R;
 
 * Is short-hand for
 
    .. code:: Ada
 
-      type T is new Predefined_Integer_Type;
-      subtype T is T range L .. R;
+      type Typ is new Predefined_Integer_Type;
+      subtype Sub is Typ range L .. R;
 
 ----------------------------
 Implicit Subtype Explanation
@@ -338,10 +338,10 @@ Implicit Subtype Explanation
    - :ada:`Integer`, :ada:`Short_Integer`, :ada:`Long_Integer`, etc.
    - **Implementation-defined** choice, non portable
 
-* New anonymous type `Anon` is derived from the predefined type
-* `Anon` inherits the type's operations (``+``, ``-`` ...)
-* `Sub`, subtype of `Anon` is created with range L .. R
-* :ada:`Sub'Base` will return the type `Anon`
+* New anonymous type `Typ` is derived from the predefined type
+* `Typ` inherits the type's operations (``+``, ``-`` ...)
+* `Sub`, subtype of `Typ` is created with range L .. R
+* :ada:`Sub'Base` will return the type `Typ`
 
 --------------------------
 Integer Types Base Warning
