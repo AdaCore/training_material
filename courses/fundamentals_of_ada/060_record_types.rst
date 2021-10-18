@@ -567,7 +567,7 @@ D. (100, 101, 102)
  A. :ada:`C => 100`
  B. Multiple declaration calls :ada:`Next` twice
  C. Correct
- D. :ada:`C => 100` ha no effect on :ada:`A` and :ada:`B`
+ D. :ada:`C => 100` has no effect on :ada:`A` and :ada:`B`
 
 =======================
 Discriminated Records
@@ -623,7 +623,8 @@ Mutable Discriminated Record
 
 * When discriminant has a **default value**
 
-   + Any object instanciated **without** a discriminant value is **mutable**
+   + Objects instantiated **using the default** are **mutable**
+   + Objects specifying an **explicit** value are **not** mutable
 
 * Mutable records have **variable** discriminants
 * Use **same** storage for **several** variant
@@ -633,9 +634,10 @@ Mutable Discriminated Record
   -- Potentially mutable
   type Person (Group : Person_Group := Student) is record
 
-  -- Uses default value: mutable
+  --  Use default value: mutable
   S : Person;
-  -- Specifies the value: not mutable
+  --  Explicit value: *not* mutable
+  --  even if Student is also the default
   S2 : Person (Group => Student);
   ...
   S := (Group => Student, Gpa => 0.0);
@@ -647,7 +649,8 @@ Semantics
 
 * :ada:`Person` objects are **constrained** by their discriminant
 
-   + Assignment to same variant **only**
+   + **Unless** mutable
+   + Assignment from same variant **only**
    + **Representation** requirements
 
    .. code:: Ada
@@ -658,8 +661,6 @@ Semantics
                          Name => "John Jones",
                          GPA  => 3.2);
       X : Person;  -- Illegal: must specify discriminant
-
-* Assignment between :ada:`Person` objects requires same discriminant
 
    .. code:: Ada
 
