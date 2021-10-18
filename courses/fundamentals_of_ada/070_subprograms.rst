@@ -88,11 +88,11 @@ Syntax
 
    - **Declaration** and **specification** are used synonymously
 
-* Specification may be required
+* Specification may be required in
 
    - Package specification
    - Recursion
-   - Optional otherwise
+   - (Optional otherwise)
 
 * Subprogram body is the **implementation**
 
@@ -446,7 +446,8 @@ Modes' Requirements for Actuals
 
 * Modes :ada:`in out` and :ada:`out`
 
-   - Must **not** use expressions
+   - Must be a **writable object**
+   - **No** expressions
 
 * Mode :ada:`in`
 
@@ -588,7 +589,9 @@ Unconstrained Formal Parameters
 ---------------------------------
 
 * Take bounds from **actual** parameters
-* Also applies to :ada:`return` values
+* Also applies to formal :ada:`return` specification
+
+    + Actual :ada:`return` is constrained in the body
 
 .. code:: Ada
 
@@ -1355,9 +1358,9 @@ Summary
 Summary
 ---------
 
-* :ada:`procedure` are abstractions for actions
-* :ada:`function` are abstractions for value computations
-* :ada:`functions` may return values of variable size
+* :ada:`procedure` is abstraction for actions
+* :ada:`function` is abstraction for value computations
+* A :ada:`function` may return values of variable size
 * Separate declarations are sometimes necessary
 
    - Mutual recursion
