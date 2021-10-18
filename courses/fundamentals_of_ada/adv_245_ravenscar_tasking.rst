@@ -256,7 +256,7 @@ Ceiling Locking
 
 |
 
-.. image:: ../../images/ravenscar_ceiling_locking.png
+.. image:: ravenscar_ceiling_locking.png
    :width: 45%
 
  .. container:: column

@@ -177,7 +177,7 @@ Pre/Postcondition Semantics
 
 |
 
-.. image:: ../../images/pre_and_post_insertion_flow.png
+.. image:: pre_and_post_insertion_flow.png
    :width: 90%
 
 -----------------------------

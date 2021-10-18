@@ -102,7 +102,7 @@ What is SPARK?
 
 |
 
-.. image:: ../../images/ada_vs_spark_venn.png
+.. image:: ada_vs_spark_venn.png
    :width: 85%
 
 =================

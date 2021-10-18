@@ -459,7 +459,7 @@ Flow Analysis Using :toolname:`GNATprove`
 
  .. container:: column
 
-    .. image:: ../../images/spark_menu-examine_file.jpeg
+    .. image:: spark_menu-examine_file.jpeg
 
 ========
 Lab
