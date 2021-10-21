@@ -141,45 +141,33 @@ Ada Type Model
     - User-defined
     - Checked at compilation and run-time
 
-------------------------
-Weakly-Typed Languages
-------------------------
+----------------------------------------
+Strongly-Typed vs Weakly-Typed Languages
+----------------------------------------
 
-* Conversions are **unchecked**
-* Type errors are easy
+* Weakly-typed:
+
+    - Conversions are **unchecked**
+    - Type errors are easy
 
 .. code:: C++
 
    typedef enum { north, south, east, west } direction ;
    direction heading = north;
-   typedef enum { mon, tue, wed, thur, fri, sat, sun } weekday;
-   weekday day = wed;
 
-   ...
+   heading = 1 + 3 * south/sun;// what?
 
-   day = heading; // typo?
-   heading = tue + 3 * south/sun;// what?
+* Strongly-typed:
 
---------------------------
-Strongly-Typed Languages
---------------------------
-
-* Conversions are **checked**
-* Type errors are hard
+    - Conversions are **checked**
+    - Type errors are hard
 
 .. code:: Ada
 
    type Directions is ( North, South, East, West );
-   type Days is ( Mon, Tue, Wed, Thu, Fri, Sat, Sun );
-
    Heading : Directions := North;
-   Day : Days := Wed;
-
    ...
-
-   Day := Heading; -- Compile Error
-
-   Heading := Tue + 3 * South/Sun; -- Compile Error
+   Heading := 1 + 3 * South/Sun; --  Compile Error
 
 --------------------------
 The Type Model Saves Money
