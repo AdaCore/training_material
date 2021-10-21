@@ -336,19 +336,21 @@ Actual Parameters Respect Constraints
 Parameter Modes
 -----------------
 
-* Views **inside** the subprogram
 * Mode :ada:`in`
 
    - Actual parameter is :ada:`constant`
+   - Can have default, used when **no value** is provided
 
 * Mode :ada:`out`
 
    - Writing is **expected**
    - Reading is **allowed**
+   - Actual **must** be a writable object
 
 * Mode :ada:`in out`
 
    - Actual is expected to be **both** read and written
+   - Actual **must** be a writable object
 
 * Function :ada:`return`
 
@@ -373,50 +375,6 @@ Why Read Mode `out` Parameters?
        Value := Value + K; -- this is a read AND a write
      end loop;
    end Compute;
-
----------------------------------
-Modes' Requirements for Actuals
----------------------------------
-
-* Modes :ada:`in out` and :ada:`out`
-
-   - Must be a **writable object**
-   - **No** expressions
-
-* Mode :ada:`in`
-
-   - May use expressions (actual can't be altered)
-
-.. code:: Ada
-
-   procedure Do_Something (X : in     Integer;
-                           Y :    out Integer );
-   ...
-   begin
-     Do_Something(X + 2, Y); -- legal
-     Do_Something(X, Y + 1); -- compile error
-
--------------------------------------
-Parameter Defaults May Be Specified
--------------------------------------
-
-* :ada:`in` parameters only
-* Default used when **no value** is provided
-
-.. code:: Ada
-
-   My_Process, Your_Process : Process_Name;
-   procedure Activate( Process : in Process_Name;
-                       After : in Process_Name := None;
-                       Prior : in Boolean := False  );
-   ...
-   begin
-     -- no defaults taken
-     Activate (My_Process, Your_Process, True);
-     -- defaults for After, Prior
-     Activate (My_Process);
-     -- defaults for Prior
-     Activate (My_Process, Your_Process);
 
 ---------------------------------
 Skipping Over Actual Parameters
