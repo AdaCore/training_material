@@ -186,12 +186,6 @@ Sorting Mechanisms
       + Allows you to define your own comparison and swap mechanisms!
       + This means you can extend sorting to container classes
 
-========
-Lab
-========
-
-.. include:: labs/adv_250_containers.lab.rst
-
 =========
 Summary
 =========

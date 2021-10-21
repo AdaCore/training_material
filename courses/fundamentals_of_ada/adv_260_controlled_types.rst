@@ -202,12 +202,6 @@ Unbounded String Implementation
       end Adjust;
    end Unbounded_String_Pkg;
 
-========
-Lab
-========
-
-.. include:: labs/adv_260_controlled_types.lab.rst
-
 =========
 Summary
 =========

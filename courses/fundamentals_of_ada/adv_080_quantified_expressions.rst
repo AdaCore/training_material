@@ -34,12 +34,6 @@ Introduction
 
    - Indicate whether predicate holds for at least one component
 
-----------
-Examples
-----------
-
-.. include:: examples/080_expressions/quantified_expressions.rst
-
 -----------------------------------------
 Semantics Are As If You Wrote This Code
 -----------------------------------------
@@ -379,12 +373,6 @@ D. | ``(for all El of A => (for some Idx in 2 .. 3 =>``
  B. Will be :ada:`True` if every element is sorted
  C. Correct
  D. Will be :ada:`True` if every element has two consecutive increasing values
-
-========
-Lab
-========
-
-.. include:: labs/080_expressions.lab.rst
 
 =========
 Summary

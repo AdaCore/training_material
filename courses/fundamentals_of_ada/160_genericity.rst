@@ -148,14 +148,6 @@ How Do You Use A Generic?
 Generic Data
 ==============
 
-----------
-Examples
-----------
-
-.. include:: examples/160_genericity/generic_data.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/160_genericity.html#generic-data`
-
 --------------------------------
 Generic Types Parameters (1/2)
 --------------------------------
@@ -269,14 +261,6 @@ Which is an illegal instantiation?
 =====================
 Generic Formal Data
 =====================
-
-----------
-Examples
-----------
-
-.. include:: examples/160_genericity/generic_formal_data.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/160_genericity.html#generic-formal-data`
 
 --------------------------------------------
 Generic Constants and Variables Parameters
@@ -475,12 +459,6 @@ Generic Incomplete Parameters
    private
       type X is null record;
    end P;
-
-========
-Lab
-========
-
-.. include:: labs/160_genericity.lab.rst
 
 =========
 Summary

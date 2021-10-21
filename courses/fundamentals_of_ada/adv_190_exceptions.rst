@@ -626,12 +626,6 @@ Error Classifications
 
    Evaluation of an uninitialized scalar variable is a bounded error; evaluation of non-scalars is erroneous. See 13.9.1 Data Validity
 
-========
-Lab
-========
-
-.. include:: labs/adv_190_exceptions.lab.rst
-
 =========
 Summary
 =========

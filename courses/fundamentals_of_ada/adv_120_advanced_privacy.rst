@@ -381,12 +381,6 @@ Children "Inherit" From Private Properties Of Parent
      --  with forbidden on Root children
    end Root.Child1.Grand2;
 
-========
-Lab
-========
-
-.. include:: labs/adv_120_advanced_privacy.lab.rst
-
 =========
 Summary
 =========
