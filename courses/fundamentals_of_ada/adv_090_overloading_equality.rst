@@ -27,12 +27,6 @@ Introduction
 User-Defined Equality
 =======================
 
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/user_defined_equality.rst
-
 -----------------------
 User-Defined Equality
 -----------------------
@@ -114,12 +108,6 @@ User-Defined Equality Example
 =========================
 Composition of Equality
 =========================
-
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/composition_of_equality.rst
 
 ----------------------------
  "Composition of Equality"

@@ -254,12 +254,6 @@ Ada.IO_Exceptions
    * :ada:`Use_Error` :math:`\rightarrow` Raised if unable to `Open`/`Create`
    * :ada:`Data_Error` :math:`\rightarrow` Failure of `Get` to read valid data
 
-========
-Lab
-========
-
-.. include:: labs/spec_890_ada_text_io.lab.rst
-
 =========
 Summary
 =========
