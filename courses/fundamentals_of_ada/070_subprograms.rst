@@ -396,79 +396,46 @@ Why Read Mode `out` Parameters?
 Parameter Passing Mechanisms
 ------------------------------
 
-* Passed either "by-copy" or "by-reference"
 * By-Copy
 
    - The formal denotes a separate object from the actual
-   - A copy of the actual is placed into the formal before the call
-   - A copy of the formal is placed back into the actual after the call
+   - :ada:`in`, :ada:`in out`: actual is copied into the formal **before** the call
+   - :ada:`out`, :ada:`in out`: formal is copied into the actual **after** the call
 
 * By-Reference
 
    - The formal denotes a view of the actual
    - Reads and updates to the formal directly affect the actual
+   - More efficient for large objects
 
 * Parameter **types** control mechanism selection
 
    - Not the parameter **modes**
    - Compiler determines the mechanism
 
------------------------------------
-Why Pass Parameters By-Reference?
------------------------------------
+-------------------------------
+By-Copy vs By-Reference Types
+-------------------------------
 
-* More efficient for large objects
+* By-Copy
 
-   - The address of the actual is copied, rather than the value
+   - Scalar types
+   - :ada:`access` types
 
-* Little gain for small objects
+* By-Reference
 
-   - When an address is about the same size
+   - :ada:`tagged` types
+   - :ada:`task` types and :ada:`protected` types
+   - :ada:`limited` types
 
----------------
-By-Copy Types
----------------
 
-* Elementary types
+* :ada:`array`, :ada:`record`
 
-   - Scalar
-   - Access
+   - By-Reference when they have by-reference **components**
+   - By-Reference for **implementation-defined** optimizations
+   - By-Copy otherwise
 
-* Private types if fully defined as elementary types
-
-   - Described later
-
---------------------
-By-Reference Types
---------------------
-
-* :ada:`tagged` types
-* :ada:`task` types and :ada:`protected` types
-* :ada:`limited` types
-
-   - Directly limited record types and their descendants
-   - Not just those that are :ada:`limited private`
-   - Described later
-
-* Composite types with by-reference component types
-* :ada:`private` types if fully defined as by-reference types
-
-   - Described later
-
---------------------------------
-Implementation-Dependent Types
---------------------------------
-
-* :ada:`array` types containing only by-copy components
-* Non-limited record types containing only by-copy components
-* Implementation chooses most efficient method
-
-   - Based on size of actual value to be passed
-   - No gain if the value size approximates the size of an address
-
-.. container:: speakernote
-
-   So arrays of integers, or records of Booleans, etc
+* :ada:`private` depends on its full definition
 
 ---------------------------------
 Unconstrained Formal Parameters
