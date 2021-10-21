@@ -315,6 +315,13 @@ Parameter Associations In Calls
    Something (ActualX, Formal2 => ActualY);
    Something (Formal2 => ActualY, Formal1 => ActualX);
 
+* Having named **then** positional is forbidden
+
+.. code:: Ada
+
+   -- Compilation Error
+   Something (Formal1 => ActualX, ActualY);
+
 ---------------------------------------
 Actual Parameters Respect Constraints
 ---------------------------------------
@@ -375,28 +382,6 @@ Why Read Mode `out` Parameters?
        Value := Value + K; -- this is a read AND a write
      end loop;
    end Compute;
-
----------------------------------
-Skipping Over Actual Parameters
----------------------------------
-
-* Requires named format for remaining arguments
-
-.. code:: Ada
-
-   procedure Activate(
-     Process : in Process_Name;
-     After : in Process_Name := None;
-     Prior : in Boolean := False );
-   ...
-   begin
-     -- Parameter "After" is skipped
-     Activate (My_Process, Prior => True);
-     Activate (My_Process, True); -- compile error
-
-.. container:: speakernote
-
-   Not using named association can cause confusion if future development adds parameters
 
 ------------------------------
 Parameter Passing Mechanisms
