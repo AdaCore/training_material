@@ -195,12 +195,12 @@ Assignment Statements
 
 .. code:: Ada
 
-   type Bar is range 0 .. Max;
-   type Foo is range -200 .. 200;
+   type Miles_T is range 0 .. Max_Miles;
+   type Km_T is range 0 .. Max_Kilometers
    ...
-   F : Foo := 2; -- universal integer legal for any integer
-   B : Bar := 2; -- universal integer legal for any integer
-   F := B; -- compile error
+   M : Miles_T := 2; -- universal integer legal for any integer
+   K : Km_T := 2; -- universal integer legal for any integer
+   M := K; -- compile error
 
 ----------------------------------------
 Assignment Statements, Not Expressions
@@ -940,11 +940,7 @@ Quiz
 
    A, B : Integer := 123;
 
-.. container:: columns
-
- .. container:: column
-
-  Which loop block is illegal?
+Which loop block is illegal?
 
   A. | :answermono:`for A in 1 .. 10 loop`
      |    :answermono:`A := A + 1;`
@@ -959,16 +955,14 @@ Quiz
      |    ``Put_Line (Integer'Image (D));``
      | ``end loop;``
 
- .. container:: column
+.. container:: animate
 
-  .. container:: animate
+   Explanations
 
-     Explanations
-
-     A. Cannot assign to a loop parameter
-     B. Legal - 10 iterations
-     C. Legal - 10 iterations
-     D. Legal - 0 iterations
+   A. Cannot assign to a loop parameter
+   B. Legal - 10 iterations
+   C. Legal - 10 iterations
+   D. Legal - 0 iterations
 
 .
 
