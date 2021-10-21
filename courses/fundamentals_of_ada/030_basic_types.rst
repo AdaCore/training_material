@@ -330,8 +330,8 @@ Predefined Modular Types
 * **Fixed-size** numeric types
 * Common name **format**
 
-   - `Unsigned_n`
-   - `Integer_n`
+   - :ada:`Unsigned_n`
+   - :ada:`Integer_n`
 
 .. code:: Ada
 
@@ -818,7 +818,7 @@ Floating Point Type Attributes
 
    - :ada:`Real'Rounding (X)`
 
-      + Integral value nearest to `X`
+      + Integral value nearest to :ada:`X`
       + *Note* :ada:`Float'Rounding (0.5) = 1`
 
 * Model-oriented attributes
@@ -963,9 +963,9 @@ Subtype
 
    .. code:: Ada
 
-      subtype defining_identifier is type_name [constraints];
+      subtype Defining_Identifier is Type_Name [constraints];
 
-   - `name` is an existing :ada:`type` or :ada:`subtype`
+   - :ada:`Type_Name` is an existing :ada:`type` or :ada:`subtype`
 
 * If no constraint |rightarrow| type alias
 
