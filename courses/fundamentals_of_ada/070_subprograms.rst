@@ -324,27 +324,6 @@ Actual Parameters Respect Constraints
      Foo (Q); -- runtime error if Q <= 0
      Foo (P);
 
------------------------
-Use Named Constraints
------------------------
-
-* Use subtypes instead of `subtype_indications`
-* Legal usage
-
-   .. code:: Ada
-
-      Lower, Upper : Integer;
-      ...
-      subtype Short is range Lower .. Upper;
-      -- definition frozen - cannot change
-      procedure P (X : in Short );
-      -- code which affects Lower and/or Upper...
-      -- "Short" does not change
-      procedure P (X : in Short ) is
-      begin
-      ...
-      end P;
-
 -----------------
 Parameter Modes
 -----------------
