@@ -420,14 +420,17 @@ By-Copy vs By-Reference Types
 
 * :ada:`private` depends on its full definition
 
----------------------------------
-Unconstrained Formal Parameters
----------------------------------
+------------------------------------------
+Unconstrained Formal Parameters or Return
+------------------------------------------
 
-* Take bounds from **actual** parameters
-* Also applies to formal :ada:`return` specification
+* **Unconstrained** formals are allowed
 
-    + Actual :ada:`return` is constrained in the body
+    - Constrained by **actual**
+
+* **Unconstrained** :ada:`return` are allowed too
+
+    + Constrained by the **returned object**
 
 .. code:: Ada
 
