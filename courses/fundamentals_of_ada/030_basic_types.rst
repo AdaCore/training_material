@@ -755,27 +755,6 @@ Predefined Floating Point Types
    - Loss of **portability**
    - Easy to avoid
 
-------------------------
-Base Decimal Precision
-------------------------
-
-* **Actual** hardware implementation precision
-
-   - Based on **type declaration**
-   - May be **better** than requested
-
-* Attribute :ada:`'Base`
-* Example:
-
-   - Available: 6, 12, or 24 digits of precision
-   - Type with **8 digits** of precision
-
-      .. code:: Ada
-
-         type My_Type is digits 8;
-
-   - :ada:`My_Type` will have 12 **or** 24 digits of precision
-
 -------------------------------
 Floating Point Type Operators
 -------------------------------
@@ -793,39 +772,7 @@ Floating Point Type Operators
    - Power must be :ada:`Integer`
 
       + Not possible to ask for root
-      + `X**0.5` |rightarrow| `sqrt(x)`
-
----------------------------------
-Floating Point Division By Zero
----------------------------------
-
-* Language-defined do as the machine does
-
-   - If :ada:`T'Machine_Overflows` attribute is :ada:`True` raises :ada:`Constraint_Error`
-   - Else :math:`+\infty` / :math:`-\infty`
-
-      + Better performance
-
-* User-defined types always raise :ada:`Constraint_Error`
-
- .. code:: Ada
-
-    subtype MyFloat is Float range Float'First .. Float'Last;
-    type MyFloat is new Float range Float'First .. Float'Last;
-
------------------------------------------
-Using Equality for Floating Point Types
------------------------------------------
-
-* Questionable: representation issue
-
-   - Equality |rightarrow| identical bits
-   - Approximations |rightarrow| hard to **analyze**, and **not portable**
-   - Related to floating-point, not Ada
-
-* Perhaps define your own function
-
-   - Comparison within tolerance (:math:`+\varepsilon` / :math:`-\varepsilon`)
+      + :ada:`X**0.5` |rightarrow| :ada:`sqrt(x)`
 
 --------------------------------
 Floating Point Type Attributes
@@ -1059,34 +1006,6 @@ Assignment Respects Constraints
    J : Integer  := P; -- always legal
    K : Integer  := N; -- always legal
 
-----------------------------------------
-Attributes Reflect the Underlying Type
-----------------------------------------
-
-.. code:: Ada
-
-   type Color is
-       (White, Red, Yellow, Green, Blue, Brown, Black);
-   subtype Rainbow is Color range Red .. Blue;
-
-* :ada:`T'First` and :ada:`T'Last` respect constraints
-
-   - :ada:`Rainbow'First` |rightarrow| Red *but* :ada:`Color'First` |rightarrow| White
-   - :ada:`Rainbow'Last` |rightarrow| Blue *but* :ada:`Color'Last` |rightarrow| Black
-
-* Other attributes reflect base type
-
-   - :ada:`Color'Succ (Blue)` = Brown = :ada:`Rainbow'Succ (Blue)`
-   - :ada:`Color'Pos (Blue)` = 4 = :ada:`Rainbow'Pos (Blue)`
-   - :ada:`Color'Val (0)` = White = :ada:`Rainbow'Val (0)`
-
-* Assignment must still satisfy target constraints
-
-   .. code:: Ada
-
-      Shade : Color range Red .. Blue := Brown; -- runtime error
-      Hue : Rainbow := Rainbow'Succ (Blue);     -- runtime error
-
 ---------------------------
 Range Constraint Examples
 ---------------------------
@@ -1103,42 +1022,6 @@ Range Constraint Examples
        range 1 .. 0;  -- silly when hard-coded...
    -- evaluated when subtype defined, not when object declared
    subtype Dynamic is Integer range Lower .. Upper;
-
------------------------------
-Stand-Alone (Sub)Type Names
------------------------------
-
-* Denote all the values of the type or subtype
-
-   - Unless explicitly constrained
-
-* Selected examples
-
--------------------------------------
-Subtypes and Default Initialization
--------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Not allowed: Defaults on new :ada:`type` only
-
-    - :ada:`subtype` is still the same type
-
-* **Note:** Default value may violate subtype constraints
-
-   - Compiler error for static definition
-   - :ada:`Constraint_Error` otherwise
-
-.. code:: Ada
-
-   type Tertiary_Switch is (Off, On, Neither)
-      with Default_Value => Neither;
-   subtype Toggle_Switch is Tertiary_Switch
-       range Off .. On;
-   Safe : Toggle_Switch := Off;
-   Implicit : Toggle_Switch; -- compile error: out of range
 
 ------
 Quiz
