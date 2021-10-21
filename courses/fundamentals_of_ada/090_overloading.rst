@@ -472,12 +472,12 @@ Composition vs Non-Composition
 
    begin
       -- Use local "=" for integer comparison
-      Put_Line (Boolean'Image (X = Y));
-      Put_Line (Boolean'Image (X_A (2) = Y_A (2)));
+      Put_Line (Boolean'Image (X = Y));             -- False
+      Put_Line (Boolean'Image (X_A (2) = Y_A (2))); -- False
       -- This array comparison uses the predefined operator, so our local "=" is ignored
-      Put_Line (Boolean'Image (X_A = Y_A));
+      Put_Line (Boolean'Image (X_A = Y_A));         -- True
       -- This array comparison uses our operator, so our local "=" is used as well
-      Put_Line (Boolean'Image (X_B = Y_B));
+      Put_Line (Boolean'Image (X_B = Y_B));         -- False
    end Main;
 
 .. container:: speakernote
@@ -493,6 +493,8 @@ Enclosing Equality Function Example
 
 .. code:: Ada
 
+   function "=" (Left, Right : Foo) return Boolean;
+   ...
    type Bar is record
      Value : Foo; -- assuming Foo is not a record type
      Id : Integer;
