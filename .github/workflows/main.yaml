@@ -31,8 +31,8 @@ jobs:
 
       - name: Manual pandoc install
         run: |
-          wget https://github.com/jgm/pandoc/releases/download/2.11/pandoc-2.11-1-amd64.deb
-          sudo dpkg -i pandoc-2.11-1-amd64.deb
+          wget https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-1-amd64.deb
+          sudo dpkg -i pandoc-2.14.2-1-amd64.deb
           pandoc -v
 
       - name: Install python dependencies
