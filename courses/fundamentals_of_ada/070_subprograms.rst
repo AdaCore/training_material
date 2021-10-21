@@ -198,7 +198,7 @@ Completion Examples
    .. code:: Ada
 
       procedure Swap (A, B : in out Integer);
-      function Min (X, Y : Person) return Person;
+      function Mac (A, X, Y : Integer) return Integer;
 
 * Completions
 
@@ -220,20 +220,16 @@ Completion Examples
 Direct Recursion Example
 --------------------------
 
+* Specification considered over at :ada:`is`
+
 .. code:: Ada
 
-   type List is array (Natural range <>) of Integer;
-   Empty_List : constant List (1 .. 0) := (others => 0);
-
-   function Get_List return List is
-     Next : Integer;
+   function Fib (N : Integer) return Integer is
    begin
-     Get (Next);
-
-     if Next = 0 then
-       return Empty_List;
+     if N in 0 .. 1 then
+       return N;
      else
-       return Get_List & Next;
+       return Fib (N - 1) + Fib (N - 2);
      end if;
    end Input;
 
