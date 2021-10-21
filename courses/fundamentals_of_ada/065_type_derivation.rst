@@ -172,7 +172,7 @@ Examples
 Simple Type Derivation
 ------------------------
 
-* In Ada, any (non-tagged) type can be derived
+* Any type (except :ada:`tagged`) can be derived
 
   .. code:: Ada
 
@@ -183,37 +183,18 @@ Simple Type Derivation
    - The data **representation** of the parent
    - The **primitives** of the parent
 
-   .. code:: Ada
-
-      package P is
-        type Parent is range 1 .. 10;
-        procedure Prim (V : Parent);
-        type Child is new Parent;
-        --  implicit Prim (V : Child);
-      end P;
-
-      with P; use P;
-      procedure Main1 is
-        V : Child;
-      begin
-        V := 5;
-        Prim (V);
-      end Main1;
-
-* Conversions are possible for non-primitive operations
+* Conversions are possible from child to parent
 
    .. code:: Ada
 
-     with P; use P;
-     procedure Main2 is
-        procedure Not_A_Primitive (V : Parent)
-           is null;
-        V1 : Parent;
-        V2 : Child;
-     begin
-        Not_A_Primitive (V1);
-        Not_A_Primitive (Parent (V2));
-     end Main2;
+     type Parent is range 1 .. 10;
+     procedure Prim (V : Parent);
+     type Child is new Parent;  -- Freeze Parent
+     procedure Not_A_Primitive (V : Parent);
+     C : Child;
+     ...
+     Prim (C);  -- Implicitly declared
+     Not_A_Primitive (Parent (C));
 
 --------------------------------------
 Simple Derivation and Type Structure
@@ -284,39 +265,43 @@ Quiz
 
 .. code:: Ada
 
-   package P1 is
-      type T1 is range 1 .. 100;
-      procedure Proc_A (X : in out T1);
+   type T1 is range 1 .. 100;
+   procedure Proc_A (X : in out T1);
 
-      type T2 is new T1 range 2 .. 99;
-      procedure Proc_B (X : in out T1);
-      procedure Proc_B (X : in out T2);
-   end P1;
+   type T2 is new T1 range 2 .. 99;
+   procedure Proc_B (X : in out T1);
+   procedure Proc_B (X : in out T2);
 
-   with P1; use P1;
-   package P2 is
-      procedure Proc_C (X : in out T2);
+   -- Other scope
+   procedure Proc_C (X : in out T2);
 
-      type T3 is new T2 range 3 .. 98;
+   type T3 is new T2 range 3 .. 98;
 
-      procedure Proc_C (X : in out T3);
-   end P2;
+   procedure Proc_C (X : in out T3);
 
-Which subprogram(s) is/are a primitive of T1
+.. container:: columns
 
-   A. :answermono:`Proc_A`
-   B. ``Proc_A, Proc_B``
-   C. ``Proc_A, Proc_B, Proc_C``
-   D. No primitives of T1
+ .. container:: column
 
-.. container:: animate
+  Which are :ada:`T1`'s primitives
+
+     A. :answermono:`Proc_A`
+     B. ``Proc_B``
+     C. ``Proc_C``
+     D. No primitives of :ada:`T1`
+
+ .. container:: column
+
+  .. container:: animate
 
    Explanations
 
    A. Correct
-   B. :ada:`Proc_B` is defined *too late* - a new type has been derived from :ada:`T1`
-   C. :ada:`Proc_B` is defined *too late* and :ada:`Proc_C` is in the wrong scope
+   B. Freeze: :ada:`T1` has been derived
+   C. Freeze: scope change
    D. Incorrect
+
+.
 
 ======================
 Signed Integer Types
@@ -330,14 +315,14 @@ Implicit Subtype
 
    .. code:: Ada
 
-      type T is range L .. R;
+      type Typ is range L .. R;
 
 * Is short-hand for
 
    .. code:: Ada
 
-      type <Anon> is new Predefined_Integer_Type;
-      subtype T is <Anon> range L .. R;
+      type Typ is new Predefined_Integer_Type;
+      subtype Sub is Typ range L .. R;
 
 ----------------------------
 Implicit Subtype Explanation
@@ -345,18 +330,18 @@ Implicit Subtype Explanation
 
 .. code:: Ada
 
-   type <Anon> is new Predefined-Integer-Type;
-   subtype T is <Anon> range L .. R;
+   type Typ is new Predefined-Integer-Type;
+   subtype Sub is Typ range L .. R;
 
 * Compiler choses a standard integer type that includes L .. R
 
    - :ada:`Integer`, :ada:`Short_Integer`, :ada:`Long_Integer`, etc.
    - **Implementation-defined** choice, non portable
 
-* New anonymous type `Anon` is derived from the predefined type
-* `Anon` inherits the type's operations (``+``, ``-`` ...)
-* `T`, subtype of `Anon` is created with range L .. R
-* :ada:`T'Base` will return the type `Anon`
+* New anonymous type `Typ` is derived from the predefined type
+* `Typ` inherits the type's operations (``+``, ``-`` ...)
+* `Sub`, subtype of `Typ` is created with range L .. R
+* :ada:`Sub'Base` will return the type `Typ`
 
 --------------------------
 Integer Types Base Warning
@@ -364,10 +349,10 @@ Integer Types Base Warning
 
 .. code:: Ada
 
-   type <Anon> is new Predefined-Integer-Type;
-   subtype T is <Anon> range L .. R;
+   type Typ is new Predefined-Integer-Type;
+   subtype Sub is Typ range L .. R;
 
-* Runtime overflow conditions depend on :ada:`T'Base`
+* Runtime overflow conditions depend on :ada:`Sub'Base`
 * Compiler will change base type depending on machine
 * Take extra care when using two compilers
 
