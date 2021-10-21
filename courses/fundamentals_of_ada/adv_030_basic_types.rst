@@ -215,6 +215,64 @@ Shift/Rotate for User-Defined Types
       type Half_Word is new Interfaces.Unsigned_16;
       type Word is new Interfaces.Unsigned_32;
 
+=======================
+Representation Values
+=======================
+
+-----------------------------------
+Enumeration Representation Values
+-----------------------------------
+
+* Numeric **representation** of enumerals
+
+    - Position, unless redefined
+    - Redefinition syntax
+
+      .. code:: Ada
+
+         type Enum_T is (Able, Baker, Charlie, Dog, Easy, Fox);
+         for Enum_T use (1, 2, 4, 8, Easy => 16, Fox => 32);
+
+* No manipulation *in language standard*
+
+   - Standard is **logical** ordering
+   - Ignores **representation** value
+
+* Still accessible
+
+   - **Unchecked** conversion
+   - **Implementation**-defined facility
+
+      + GNAT attribute :ada:`T'Enum_Rep`
+
+-----------------------------------------
+Order Attributes For All Discrete Types
+-----------------------------------------
+
+* **All discrete** types, mostly useful for enumerated types
+* :ada:`T'Pos (Input)`
+
+   - "Logical position number" of :ada:`Input`
+
+* :ada:`T'Val (Input)`
+
+   - Converts "logical position number" to :ada:`T`
+
+.. code:: Ada
+
+   type Days is ( Sun, Mon, Tue, Wed, Thu, Fri, Sat ); -- 0 .. 6
+   Today    : Days := Some_Value;
+   Position : Integer;
+   ...
+   Position := Days'Pos( Today );
+   ...
+   Get( Position );
+   Today := Days'Val( Position );
+
+.. container:: speakernote
+
+   Val/pos compared to value/image - same number of characters
+
 =================
 Character Types
 =================
