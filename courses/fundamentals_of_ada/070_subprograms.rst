@@ -458,23 +458,6 @@ Unconstrained Parameters Surprise
 -----------------------------------
 
 * Assumptions about formal bounds may be **wrong**
-
-.. code:: Ada
-
-  type Vector is array (Positive range <>) of Real;
-  function Subtract (Left, Right : Vector) return Vector;
-
-  V1 : Vector (1 .. 10); -- length = 10
-  V2 : Vector (15 .. 24); -- length = 10
-  R : Vector (1 .. 10); -- length = 10
-  ...
-  -- What are the indices returned by Subtract?
-  R := Subtract (V2, V1);
-
-----------------------
-Naive Implementation
-----------------------
-
 * **Assumes** bounds are the same everywhere
 * Fails when :ada:`Left'First /= Right'First`
 * Fails when :ada:`Left'First /= 1`
