@@ -41,15 +41,6 @@ A Simple Task
 Tasks
 =======
 
-----------
-Examples
-----------
-
-.. include:: examples/adv_240_tasking/tasks.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#tasks`
-
 ------------------------
 Interacting With Tasks
 ------------------------
@@ -209,15 +200,6 @@ Quiz
 Protected Objects
 ===================
 
-----------
-Examples
-----------
-
-.. include:: examples/adv_240_tasking/protected_objects.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#protected-objects`
-
 -------------------
 Protected Objects
 -------------------
@@ -317,15 +299,6 @@ What of the following completions for :ada:`P`'s members is illegal?
 Task and Protected Types
 ==========================
 
-----------
-Examples
-----------
-
-.. include:: examples/adv_240_tasking/task_and_protected_types.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#task-and-protected-types`
-
 ------------
 Task Types
 ------------
@@ -421,15 +394,6 @@ Scope Of a Task
 ========================
 Some Advanced Concepts
 ========================
-
-----------
-Examples
-----------
-
-.. include:: examples/adv_240_tasking/some_advanced_concepts.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#some-advanced-concepts`
 
 ------------------------------
 Waiting On Different Entries
@@ -722,12 +686,6 @@ Abort Statements
 
 * :ada:`select` can call :ada:`abort`
 * Can abort anywhere in the processing, highly unsafe
-
-========
-Lab
-========
-
-.. include:: labs/adv_240_tasking.lab.rst
 
 =========
 Summary

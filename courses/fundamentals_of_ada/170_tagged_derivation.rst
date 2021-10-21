@@ -75,14 +75,6 @@ Tagged Derivation Ada vs C++
 Tagged Derivation
 =================
 
-----------
-Examples
-----------
-
-.. include:: examples/170_inheritance/tagged_derivation.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#tagged-derivation`
-
 ---------------------------------
 Difference with Simple Derivation
 ---------------------------------
@@ -289,12 +281,6 @@ Which code block is legal?
    B. Correct
    C. Components must have distinct names
    D. Types derived from a tagged type must have an extension
-
-========
-Lab
-========
-
-.. include:: labs/170_inheritance.lab.rst
 
 =========
 Summary

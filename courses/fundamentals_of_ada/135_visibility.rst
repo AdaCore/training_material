@@ -48,14 +48,6 @@ Operators and Primitives
 "use" Clauses
 ===============
 
-----------
-Examples
-----------
-
-.. include:: examples/135_visibility/use_clauses.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/135_visibility.html#use-clauses`
-
 ----------------
  `use` Clauses
 ----------------
@@ -255,14 +247,6 @@ No Ambiguity Introduction
 "use type" Clauses
 ====================
 
-----------
-Examples
-----------
-
-.. include:: examples/135_visibility/use_type_clauses.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/135_visibility.html#use-type-clauses`
-
 ---------------------
 `use type` Clauses
 ---------------------
@@ -362,14 +346,6 @@ Multiple `use type` Clauses
 ========================
 "use all type" Clauses
 ========================
-
-----------
-Examples
-----------
-
-.. include:: examples/135_visibility/use_all_type_clauses.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/135_visibility.html#use-all-type-clauses`
 
 -------------------------
 `use all type` Clauses
@@ -560,12 +536,6 @@ Writing Readable Code - Part 2
          Desired_Side := Sqrt (Side1**2 + Side2**2 +
                                2.0 * Side1 * Side2 * Math.Cosine (Angles (Required_Angle)));
       end;
-
-========
-Lab
-========
-
-.. include:: labs/135_visibility.lab.rst
 
 =========
 Summary

@@ -95,14 +95,6 @@ Basic Syntax and Nomenclature
 Declarations
 ==============
 
-----------
-Examples
-----------
-
-.. include:: examples/100_packages/declarations.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/100_packages.html#declarations`
-
 ----------------------
 Package Declarations
 ----------------------
@@ -208,14 +200,6 @@ Referencing Exported Items
 ========
 Bodies
 ========
-
-----------
-Examples
-----------
-
-.. include:: examples/100_packages/bodies.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/100_packages.html#bodies`
 
 ----------------
 Package Bodies
@@ -357,14 +341,6 @@ Which is a valid completion of package P?
 Executable Parts
 ==================
 
-----------
-Examples
-----------
-
-.. include:: examples/100_packages/executable_parts.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/100_packages.html#executable-parts`
-
 --------------------------
 Optional Executable Part
 --------------------------
@@ -473,14 +449,6 @@ Forcing A Package Body To be Required
 ========
 Idioms
 ========
-
-----------
-Examples
-----------
-
-.. include:: examples/100_packages/idioms.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/100_packages.html#idioms`
 
 ----------------------------------
 Named Collection of Declarations
@@ -619,12 +587,6 @@ Controlling Type Representation Visibility
 
 * The fundamental concept for Ada
 * Requires :ada:`private` types discussed in coming section...
-
-========
-Lab
-========
-
-.. include:: labs/100_packages.lab.rst
 
 =========
 Summary
