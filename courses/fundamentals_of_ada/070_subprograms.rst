@@ -302,6 +302,7 @@ Subprogram Parameter Terminology
 
    - Receive the values passed from the actual parameters
    - Specify the types required of the actual parameters
+   - Type **cannot** be anonymous
 
    .. code:: Ada
 
@@ -339,69 +340,6 @@ Actual Parameters Respect Constraints
    begin
      Foo (Q); -- runtime error if Q <= 0
      Foo (P);
-
---------------------------------------------
-No `subtype_indications` In Specifications
---------------------------------------------
-
-.. code:: Ada
-
-   subtype_mark <constraint>
-
-* Obviates pathology regarding dynamic subtypes
-* Illegal usage
-
-   .. code:: Ada
-
-      Lower, Upper : Integer;
-      procedure P (X : in Integer range Lower .. Upper );
-      -- code which affects Lower and/or Upper...
-      procedure P (X : in Integer range Lower .. Upper )  is
-      begin
-      ...
-      end P;
-
------------------------
-Use Named Constraints
------------------------
-
-* Use subtypes instead of :code:`subtype_indications`
-* Legal usage
-
-   .. code:: Ada
-
-      Lower, Upper : Integer;
-      ...
-      subtype Short is range Lower .. Upper;
-      -- definition frozen - cannot change
-      procedure P (X : in Short );
-      -- code which affects Lower and/or Upper...
-      -- "Short" does not change
-      procedure P (X : in Short ) is
-      begin
-      ...
-      end P;
-
-------------------------------
-No Anonymously-Typed Formals
-------------------------------
-
-* No name to use in type checking for formals to actuals
-* No name for type checking function results to target
-
-   .. code:: Ada
-
-      procedure P (Formal : in array (X .. Y) of Some_Type);
-      function F return array (X .. Y) of Some_Type;
-
-* Use named types instead of anonymous types
-
-   .. code:: Ada
-
-      type List is array  (X .. Y) of Integer;
-      ...
-      procedure P (Formal : in List);
-      function F return List;
 
 -----------------
 Parameter Modes
