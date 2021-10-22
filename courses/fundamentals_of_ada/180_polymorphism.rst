@@ -189,6 +189,41 @@ Quiz
    procedure Main is
       Z : Root'Class := Grandchild'(others => <>);
 
+What is the value returned by :ada:`Z.F1;`?
+
+   A. :answer:`301`
+   B. 201
+   C. 101
+   D. Compilation error
+
+.. container:: animate
+
+   Explanations
+
+   A. Z actual type is `Grandchild`
+   B. False
+   C. False
+   D. No
+
+------
+Quiz
+------
+
+.. code::Ada
+
+   package P is
+      type Root is tagged null record;
+      function F1 (V : Root) return Integer is (101);
+      type Child is new Root with null record;
+      function F1 (V : Child) return Integer is (201);
+      type Grandchild is new Child with null record;
+      function F1 (V : Grandchild) return Integer is (301);
+   end P;
+
+   with P1; use P1;
+   procedure Main is
+      Z : Root'Class := Grandchild'(others => <>);
+
 What is the value returned by :ada:`F1 (Child'Class (Z));`?
 
    A. :answer:`301`
