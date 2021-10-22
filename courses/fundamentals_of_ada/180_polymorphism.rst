@@ -109,98 +109,13 @@ Testing the type of an object
    B3 : Boolean := Child_Class'Tag = Parent'Class'Tag;   -- False
    B4 : Boolean := Child_Class in Child'Class;           -- True
 
-----------------
-Abstract Types
-----------------
-
-* A tagged type can be declared :ada:`abstract`
-* Then, :ada:`abstract tagged` types:
-
-   - cannot be instantiated
-   - can have abstract subprograms (with no implementation)
-   - Non-abstract derivation of an abstract type must override and implement abstract subprograms
+=============
+Dispatching
+=============
 
 ---------------------------
-Abstract Types Ada vs C++
+Calls on class-wide types
 ---------------------------
-
-* Ada
-
-    .. code:: Ada
-
-       type Root is abstract tagged record
-          F : Integer;
-       end record;
-       procedure P1 (V : Root) is abstract;
-       procedure P2 (V : Root);
-       type Child is abstract new Root with null record;
-       type Grand_Child is new Child with null record;
-
-       overriding  -- Ada 2005 and later
-       procedure P1 (V : Grand_Child);
-
-* C++
-
-    .. code:: Ada
-
-       class Root {
-          public:
-             int F;
-             virtual void P1 (void) = 0;
-             virtual void P2 (void);
-       };
-       class Child : public Root {
-       };
-       class Grand_Child {
-          public:
-             virtual void P1 (void);
-       };
-
-.. container:: speakernote
-
-   "overriding" keyword is optional
-
-------------------------
-Relation to Primitives
-------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Warning: Subprograms with parameter of type `T'Class` are primitives of `T'Class`, not `T`
-
-      .. code:: Ada
-
-         type Root is null record;
-         procedure P (V : Root'Class);
-         type Child is new Root with null record;
-         -- This does not override P!
-         overriding procedure P (V : Child'Class);
-
-* Prefix notation rules apply when the first parameter is of a class wide type
-
-      .. code:: Ada
-
-         V1 : Root;
-         V2 : Root'Class := Root'(others => <>);
-         ...
-         P (V1);
-         P (V2);
-         V1.P;
-         V2.P;
-
-.. container:: speakernote
-
-   Overriding procedure parameter must be derived from Root'class, not 'class of something derived from Root
-
-===============================
-Dispatching and Redispatching
-===============================
-
----------------------------------
-Calls on class-wide types (1/3)
----------------------------------
 
 * Any subprogram expecting a T object can be called with a :ada:`T'Class` object
 
@@ -218,12 +133,14 @@ Calls on class-wide types (1/3)
       P (V1);
       P (V2);
 
----------------------------------
-Calls on class-wide types (2/3)
----------------------------------
+-------------------
+Dispatching calls
+-------------------
 
-* The *actual* type of the object is not known at compile time
+* The **actual** type of the object is not known at compile time
 * The *right* type will be selected at runtime
+
+    - Its primitive will be called
 
 .. container:: columns
 
@@ -252,108 +169,6 @@ Calls on class-wide types (2/3)
          Root * V2 = new Child ();
          V1->P ();
          V2->P ();
-
----------------------------------
-Calls on class-wide types (3/3)
----------------------------------
-
-* It is still possible to force a call to be static using a conversion of view
-
-.. container:: columns
-
- .. container:: column
-
-   *Ada*
-
-   .. code:: Ada
-
-      declare
-        V1 : Root'Class :=
-             Root'(others => <>);
-        V2 : Root'Class :=
-             Child'(others => <>);
-      begin
-        Root (V1).P; -- calls P of Root
-        Root (V2).P; -- calls P of Root
-
- .. container:: column
-
-   *C++*
-
-   .. code:: C++
-
-      Root * V1 = new Root ();
-      Root * V2 = new Child ();
-      ((Root) *V1).P ();
-      ((Root) *V2).P ();
-
--------------------------------
-Definite and class wide views
--------------------------------
-
-* In C++, dispatching occurs only on pointers
-* In Ada, dispatching occurs only on class wide views
-
-.. code:: Ada
-
-   type Root is tagged null record;
-   procedure P1 (V : Root);
-   procedure P2 (V : Root);
-   type Child is new Root with null record;
-   overriding procedure P2 (V : Child);
-   procedure P1 (V : Root) is
-   begin
-      P2 (V); -- always calls P2 from Root
-   end P1;
-   procedure Main is
-      V1 : Root'Class :=
-           Child'(others => <>);
-   begin
-      -- Calls P1 from the implicitly overridden subprogram
-      -- Calls P2 from Root!
-      V1.P1;
-
-.. container:: speakernote
-
-   P1 operates on ROOT, not ROOT'class
-
----------------
-Redispatching
----------------
-
-* :ada:`tagged` types are always passed by reference
-
-   - The original object is not copied
-
-* Therefore, it is possible to convert them to different views
-
-.. code:: Ada
-
-   type Root is tagged null record;
-   procedure P1 (V : Root);
-   procedure P2 (V : Root);
-   type Child is new Root with null record;
-   overriding procedure P2 (V : Child);
-
------------------------
-Redispatching Example
------------------------
-
-.. code:: Ada
-
-   procedure P1 (V : Root) is
-      V_Class : Root'Class renames
-                Root'Class (V); -- naming of a view
-   begin
-      P2 (V);              -- static: uses the definite view
-      P2 (Root'Class (V)); -- dynamic: (redispatching)
-      P2 (V_Class);        -- dynamic: (redispatching)
-
-      -- Ada 2005 "distinguished receiver" syntax
-      V.P2;                -- static: uses the definite view
-      Root'Class (V).P2;   -- dynamic: (redispatching)
-      V_Class.P2;          -- dynamic: (redispatching)
-   end P1;
 
 ------
 Quiz
