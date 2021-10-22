@@ -17,11 +17,54 @@ Ada Basic Types - Advanced
 Base Type
 ===========
 
+----------------
+Implicit Subtype
+----------------
+
+* The declaration
+
+   .. code:: Ada
+
+      type Typ is range L .. R;
+
+* Is short-hand for
+
+   .. code:: Ada
+
+      type <Anon> is new Predefined_Integer_Type;
+      subtype Typ is <Anon> range L .. R;
+
+* :ada:`<Anon>` is the :dfn:`Base` type of :ada:`Typ`
+
+    - Accessed with :ada:`Typ'Base`
+
+----------------------------
+Implicit Subtype Explanation
+----------------------------
+
+.. code:: Ada
+
+   type <Anon> is new Predefined_Integer_Type;
+   subtype Typ is <Anon> range L .. R;
+
+* Compiler choses a standard integer type that includes :ada:`L .. R`
+
+   - :ada:`Integer`, :ada:`Short_Integer`, :ada:`Long_Integer`, etc.
+   - **Implementation-defined** choice, non portable
+
+* New anonymous type `<Anon>` is derived from the predefined type
+* `<Anon>` inherits the type's operations (``+``, ``-`` ...)
+* `Typ`, subtype of `<Anon>` is created with :ada:`range L .. R`
+* :ada:`Typ'Base` will return the type `<Anon>`
+
 -------------
 Base Ranges
 -------------
 
 * Actual **hardware-supported** numeric type used
+
+   - GNAT makes consistent and predictable choices on all major platforms.
+
 * **Predefined** operators
 
    - Work on full-range
@@ -164,7 +207,7 @@ Modular Range Must Be Respected
 
 .. code:: Ada
 
-   procedure Unsigned is
+   procedure P_Unsigned is
      type Byte is mod 2**8;  -- 0 .. 255
      B : Byte;
      type Signed_Byte is range -128 .. 127;
@@ -175,7 +218,7 @@ Modular Range Must Be Respected
      SB := -1;
      B := Byte (SB);  -- runtime error
      ...
-   end Unsigned;
+   end P_Unsigned;
 
 --------------------------------------
 Safely Converting Signed To Unsigned
@@ -197,6 +240,31 @@ Safely Converting Signed To Unsigned
      begin
        SB := -1;
        B := Byte'Mod (SB);  -- OK (255)
+
+-----------------------
+Package **Interfaces**
+-----------------------
+
+* **Standard** package
+* Integer types with **defined bit length**
+
+   .. code:: Ada
+
+      type My_Base_Integer is new Integer;
+      pragma Assert (My_Base_Integer'First = -2**31);
+      pragma Assert (My_Base_Integer'Last = 2**31-1);
+
+    - Dealing with hardware registers
+
+* Note: Shorter may not be faster for integer maths.
+
+    - Modern 64-bit machines are not efficient at 8-bit maths
+
+.. code:: Ada
+
+   type Integer_8 is range -2**7 .. 2**7-1;
+   for Integer_8'Size use 8;
+   -- and so on for 16, 32, 64 bit types...
 
 ------------------------
 Shift/Rotate Functions
