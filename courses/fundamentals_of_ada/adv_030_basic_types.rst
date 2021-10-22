@@ -17,11 +17,50 @@ Ada Basic Types - Advanced
 Base Type
 ===========
 
+----------------
+Implicit Subtype
+----------------
+
+* The declaration
+
+   .. code:: Ada
+
+      type Typ is range L .. R;
+
+* Is short-hand for
+
+   .. code:: Ada
+
+      type Typ is new Predefined_Integer_Type;
+      subtype Sub is Typ range L .. R;
+
+----------------------------
+Implicit Subtype Explanation
+----------------------------
+
+.. code:: Ada
+
+   type Typ is new Predefined-Integer-Type;
+   subtype Sub is Typ range L .. R;
+
+* Compiler choses a standard integer type that includes L .. R
+
+   - :ada:`Integer`, :ada:`Short_Integer`, :ada:`Long_Integer`, etc.
+   - **Implementation-defined** choice, non portable
+
+* New anonymous type `Typ` is derived from the predefined type
+* `Typ` inherits the type's operations (``+``, ``-`` ...)
+* `Sub`, subtype of `Typ` is created with range L .. R
+* :ada:`Sub'Base` will return the type `Typ`
+
 -------------
 Base Ranges
 -------------
 
 * Actual **hardware-supported** numeric type used
+
+   - GNAT makes consistent and predictable choices on all major platforms.
+
 * **Predefined** operators
 
    - Work on full-range
