@@ -147,9 +147,9 @@ Simple Derivation and Type Structure
       end record;
       type Ten_Elem_Rec is new Rec (10);
 
-------------------------------------------
-Simple Derivation and List of Operations
-------------------------------------------
+------------------------
+Overriding Indications
+------------------------
 
 .. admonition:: Language Variant
 
@@ -225,88 +225,6 @@ Quiz
    D. Incorrect
 
 .
-
-======================
-Signed Integer Types
-======================
-
-----------------
-Implicit Subtype
-----------------
-
-* The declaration
-
-   .. code:: Ada
-
-      type Typ is range L .. R;
-
-* Is short-hand for
-
-   .. code:: Ada
-
-      type Typ is new Predefined_Integer_Type;
-      subtype Sub is Typ range L .. R;
-
-----------------------------
-Implicit Subtype Explanation
-----------------------------
-
-.. code:: Ada
-
-   type Typ is new Predefined-Integer-Type;
-   subtype Sub is Typ range L .. R;
-
-* Compiler choses a standard integer type that includes L .. R
-
-   - :ada:`Integer`, :ada:`Short_Integer`, :ada:`Long_Integer`, etc.
-   - **Implementation-defined** choice, non portable
-
-* New anonymous type `Typ` is derived from the predefined type
-* `Typ` inherits the type's operations (``+``, ``-`` ...)
-* `Sub`, subtype of `Typ` is created with range L .. R
-* :ada:`Sub'Base` will return the type `Typ`
-
---------------------------
-Integer Types Base Warning
---------------------------
-
-.. code:: Ada
-
-   type Typ is new Predefined-Integer-Type;
-   subtype Sub is Typ range L .. R;
-
-* Runtime overflow conditions depend on :ada:`Sub'Base`
-* Compiler will change base type depending on machine
-* Take extra care when using two compilers
-
-    - Multiple hosts (Windows, Linux), or architectures
-
-* GNAT makes consistent and predictable choices on all major platforms.
-
------------------------
-Package **Interfaces**
------------------------
-
-* **Standard** package
-* Integer types with **defined bit length**
-
-   .. code:: Ada
-
-      type My_Base_Integer is new Integer;
-      pragma Assert (My_Base_Integer'First = -2**31);
-      pragma Assert (My_Base_Integer'Last = 2**31-1);
-
-    - Dealing with hardware registers
-
-* Note: Shorter may not be faster for integer maths.
-
-    - Modern 64-bit machines are not efficient at 8-bit maths
-
-.. code:: Ada
-
-   type Integer_8 is range -2**7 .. 2**7-1;
-   for Integer_8'Size use 8;
-   -- and so on for 16, 32, 64 bit types...
 
 =========
 Summary
