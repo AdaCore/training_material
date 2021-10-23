@@ -13,9 +13,9 @@ Ada Basic Types - Advanced
 .. role:: cpp(code)
    :language: C++
 
-===========
-Base Type
-===========
+=========================
+Subtypes - Full Picture
+=========================
 
 ----------------
 Implicit Subtype
@@ -52,6 +52,59 @@ Implicit Subtype Explanation
 * `Typ` inherits the type's operations (``+``, ``-`` ...)
 * `Sub`, subtype of `Typ` is created with range L .. R
 * :ada:`Sub'Base` will return the type `Typ`
+
+--------------------------------
+Subtypes Localize Dependencies
+--------------------------------
+
+* Single points of change
+* Relationships captured in code
+* No subtypes
+
+.. code:: Ada
+
+   type List is array (1 .. 12) of Some_Type;
+
+   K : Integer range 0 .. 12 := 0; -- anonymous subtype
+   Values : List;
+   ...
+   if K in 1 .. 12 then ...
+   for J in Integer range 1 .. 12 loop ...
+
+* Subtypes
+
+.. code:: Ada
+
+   type Counter is range 0 .. 12;
+   subtype Index is Counter range 1 .. Counter'Last;
+   type List is array (Index) of Some_Type;
+
+   K : Counter := 0;
+   Values : List;
+   ...
+   if K in Index then ...
+   for J in Index loop ...
+
+----------------------------------
+Subtypes May Enhance Performance
+----------------------------------
+
+* Provides compiler with more information
+* Redundant checks can more easily be identified
+
+.. code:: Ada
+
+   subtype Index is Integer range 1 .. Max;
+   type List is array (Index) of Float;
+   K : Index;
+   Values : List;
+   ...
+   K := Some_Value;   -- range checked here
+   Values (K) := 0.0; -- so no range check needed here
+
+===========
+Base Type
+===========
 
 -------------
 Base Ranges
