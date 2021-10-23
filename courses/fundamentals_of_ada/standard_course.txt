@@ -6,6 +6,7 @@
 050_array_types.rst
 060_record_types.rst
 070_subprograms.rst
+labs/070_subprograms.lab.rst
 090_overloading.rst
 065_type_derivation.rst
 095_library_units.rst
@@ -15,8 +16,10 @@ labs/100_packages.lab.rst
 130_program_structure.rst
 135_visibility.rst
 170_tagged_derivation.rst
+labs/170_tagged_derivation.lab.rst
 140_access_types.rst
 190_exceptions.rst
+labs/190_exceptions.lab.rst
 160_genericity.rst
 240_tasking.rst
 180_polymorphism.rst
