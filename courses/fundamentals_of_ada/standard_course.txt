@@ -22,5 +22,6 @@ labs/100_packages.lab.rst
 180_polymorphism.rst
 adv_170_multiple_inheritance.rst
 230_interfacing_with_c.rst
+labs/230_interfacing_with_c.lab.rst
 900_ada_version_comparison.rst
 920_reference_material.rst
