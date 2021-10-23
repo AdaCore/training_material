@@ -277,44 +277,6 @@ Result Must Be Compatible with Context
 
    Nostromo - ship from the original Alien :)
 
-------------------------
-Boolean If-Expressions
-------------------------
-
-* Return a value of either True or False
-
-   - :ada:`(if P then Q)` - assuming `P` and `Q` are `Boolean`
-   - "If P is True then the result of the if-expression is the value of Q"
-
-* But what is the overall result if all conditions are False?
-* Answer: the default result value is True
-
-   - Why?
-
-      + Consistency with mathematical proving
-
-.. container:: speakernote
-
-   Mathematical proving: Statements are either True or False.
-   If P is false, we don't know anything, so, for mathematical purposes, we assume the statement is true
-
-----------------------------------------
-The `else` Part When Result Is Boolean
-----------------------------------------
-
-* Redundant because the default result is True
-
-   - :ada:`(if P then Q else True)`
-
-* So for convenience and elegance it can be omitted
-
-   .. code:: Ada
-
-      Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
-      Acceptable : Boolean := (if P1 > 0 then P2 > 0);
-
-* Use :ada:`else` if you need to return False at the end
-
 ---------------------------------------
 Rationale for Parentheses Requirement
 ---------------------------------------
@@ -338,59 +300,6 @@ Rationale for Parentheses Requirement
       .. code:: Ada
 
          Subprogram_Call(if A then B else C);
-
-------------------------------
-When To Use *If Expressions*
-------------------------------
-
-* When you need computation to be done prior to sequence of statements
-
-   - Allows constants that would otherwise have to be variables
-
-* When an enclosing function would be either heavy or redundant with enclosing context
-
-   - You'd already have written a function if you'd wanted one
-
-* Preconditions and postconditions
-
-   - All the above reasons
-   - Puts meaning close to use rather than in package body
-
-* Static named numbers
-
-   - Can be much cleaner than using Boolean'Pos(condition)
-
----------------------------------------
-*If Expression* Example for Constants
----------------------------------------
-
-* Starting from
-
-   .. code:: Ada
-
-      End_of_Month : array (Months) of Days
-        := (Sep | Apr | Jun | Nov => 30,
-           Feb => 28,
-           others => 31);
-      begin
-        if Leap (Today.Year) then -- adjust for leap year
-          End_of_Month (Feb) := 29;
-        end if;
-        if Today.Day = End_of_Month(Today.Month) then
-      ...
-
-* Using if-expression to call :ada:`Leap (Year)` as needed
-
-   .. code:: Ada
-
-      End_Of_Month : constant array (Months) of Days
-        := (Sep | Apr | Jun | Nov => 30,
-            Feb => (if Leap (Today.Year)
-                    then 29 else 28),
-            others => 31);
-      begin
-        if Today.Day /= End_of_Month(Today.Month) then
-      ...
 
 ---------------------
  *Case Expressions*
@@ -498,63 +407,9 @@ Which statement is illegal?
 Summary
 =========
 
---------------------------------
-Subtypes Localize Dependencies
---------------------------------
-
-* Single points of change
-* Relationships captured in code
-* No subtypes
-
-.. code:: Ada
-
-   type List is array (1 .. 12) of Some_Type;
-
-   K : Integer range 0 .. 12 := 0; -- anonymous subtype
-   Values : List;
-   ...
-   if K in 1 .. 12 then ...
-   for J in Integer range 1 .. 12 loop ...
-
-* Subtypes
-
-.. code:: Ada
-
-   type Counter is range 0 .. 12;
-   subtype Index is Counter range 1 .. Counter'Last;
-   type List is array (Index) of Some_Type;
-
-   K : Counter := 0;
-   Values : List;
-   ...
-   if K in Index then ...
-   for J in Index loop ...
-
-----------------------------------
-Subtypes May Enhance Performance
-----------------------------------
-
-* Provides compiler with more information
-* Redundant checks can more easily be identified
-
-.. code:: Ada
-
-   subtype Index is Integer range 1 .. Max;
-   type List is array (Index) of Float;
-   K : Index;
-   Values : List;
-   ...
-   K := Some_Value;   -- range checked here
-   Values (K) := 0.0; -- so no range check needed here
-
 ---------
 Summary
 ---------
-
-* Constraints are very beneficial in their own right
-
-   - Robustness  and performance
-   - Naming them is even better
 
 * Conditional expressions are allowed wherever expressions are allowed, but beware over-use
 
