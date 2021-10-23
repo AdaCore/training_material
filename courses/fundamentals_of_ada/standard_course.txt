@@ -9,6 +9,7 @@
 090_overloading.rst
 065_type_derivation.rst
 100_packages.rst
+labs/100_packages.lab.rst
 110_private_types.rst
 130_program_structure.rst
 135_visibility.rst
