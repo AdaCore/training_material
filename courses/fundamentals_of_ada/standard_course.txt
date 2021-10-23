@@ -4,10 +4,10 @@
 040_statements.rst
 050_array_types.rst
 060_record_types.rst
+080_expressions.rst
 070_subprograms.rst
 090_overloading.rst
 065_type_derivation.rst
-080_expressions.rst
 100_packages.rst
 110_private_types.rst
 130_program_structure.rst
