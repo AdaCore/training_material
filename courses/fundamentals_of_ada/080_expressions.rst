@@ -141,23 +141,25 @@ Qualification
 
 * Various uses shown in course
 
-   - Testing constraints
+   - Explicitly constrain
    - Removing ambiguity of overloading
    - Enhancing readability via explicitness
 
----------------------------------------
-Testing Constraints via Qualification
----------------------------------------
+-------------------------------------------
+Explicitly Constraining via Qualification
+-------------------------------------------
 
 * Asserts value is compatible with subtype
 
    - Raises exception :ada:`Constraint_Error` if not true
+   - Can reduce :ada:`case` choices
 
 .. code:: Ada
 
    subtype Weekdays is Days range Mon .. Fri;
    This_Day : Days;
    ...
+   --  We assume this_Day is a eeek day
    case Weekdays'(This_Day) is --runtime error if out of range
      when Mon =>
        Arrive_Late;
