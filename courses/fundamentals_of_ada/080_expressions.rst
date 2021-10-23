@@ -52,8 +52,9 @@ Membership Tests
 .. code:: Ada
 
    X : Integer := ...
-   B : Boolean := X in 0..5;
-   C : Boolean := X not in 0..5; -- also "not (X in 0..5)"
+   B : Boolean := X in 0 .. 5;
+   C : Boolean := X not in 0 .. 5; -- also "not (X in 0..5)"
+   D : Boolean := X in 0 | 2 .. 5; -- Ada 2012
 
 ------------------------------------
 Testing Constraints via Membership
