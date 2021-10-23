@@ -8,9 +8,9 @@
 070_subprograms.rst
 090_overloading.rst
 065_type_derivation.rst
+095_library_units.rst
 100_packages.rst
 labs/100_packages.lab.rst
-095_library_units.rst
 110_private_types.rst
 130_program_structure.rst
 135_visibility.rst
