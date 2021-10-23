@@ -533,10 +533,6 @@ Summary
 Summary
 ---------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Hierarchical library units address important issues
 
    - Direct support for subsystems
