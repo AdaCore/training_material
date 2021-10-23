@@ -415,3 +415,8 @@ Summary
 
    - Especially useful when a constant is intended
    - Especially useful when a static expression is required
+
+* Quantified expressions are expressive
+
+   - But very verbose
+   - Best used in contract-based programming
