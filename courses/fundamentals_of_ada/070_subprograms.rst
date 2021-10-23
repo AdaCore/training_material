@@ -827,7 +827,7 @@ Expression Functions
 
 * Functions whose implementations are pure expressions
 
-   - No body is allowed
+   - No statements
    - No :ada:`return` keyword
 
 * May exist only for sake of pre/postconditions
