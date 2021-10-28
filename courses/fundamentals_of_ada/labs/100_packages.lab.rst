@@ -8,7 +8,7 @@ Packages Lab
 
    - Program should allow user to do the following as many times as desired
 
-      - Add an integer to the list
+      - Add an integer in a pre-defined range to the list
       - Remove all occurrences of an integer from the list
       - Print the values in the list
 
@@ -20,13 +20,16 @@ Packages Lab
       2. User input (ensure value is in range)
       3. List ADT
 
-   - :code:`with package_name;` gives access to :code:`package_name`
+   - Remember: :code:`with package_name;` gives access to :code:`package_name`
 
 ----------------------------------------------
 Creating Packages in :toolname:`GNAT Studio`
 ----------------------------------------------
 
-* Right-click on :filename:`src` node
+* Right-click on the source directory node
+
+   - If you used a prompt, the directory is probably :file:`.`
+   - If you used the wizard, the directory is probably :file:`src`
 
 * :menu:`New` :math:`\rightarrow` :menu:`Ada Package`
 
