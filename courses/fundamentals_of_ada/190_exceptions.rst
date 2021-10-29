@@ -628,66 +628,49 @@ Termination Model
 Quiz
 ------
 
-.. container:: latex_environment footnotesize
+.. container:: latex_environment tiny
 
-   .. code:: Ada
+  .. code:: Ada
+     :number-lines: 2
 
     Main_Problem : exception;
-    function F (P : Integer) return Integer is
+    function F (P_F : Integer) return Integer is
     begin
-       if P > 0 then
-          return P + 1;
-       elsif P = 0 then
-          raise Main_Problem;
-       end if;
+      if P_F > 0 then
+        return P_F + 1;
+      elsif P_F = 0 then
+        raise Main_Problem;
+      end if;
     end F;
 
-    procedure P (X : Integer) is
-       R : Integer;
+    procedure P (P_P : in out Integer) is
     begin
-       R := F (X);
+      P_P := F (P_P);
     end P;
-    ...
-       P (Input_Value);
-       Put_Line ("Success");
+
+    begin
+      P (Input_Value);
+      Put_Line ("Success");
     exception
-       when Constraint_Error => Put_Line ("Constraint Error");
-       when Program_Error => Put_Line ("Program Error");
-       when others => Put_Line ("Unknown problem");
+      when Constraint_Error => Put_Line ("Constraint Error");
+      when Program_Error    => Put_Line ("Program Error");
+      when others           => Put_Line ("Unknown problem");
 
-What will get printed for these values of :ada:`Input_Value`?
+What will get printed if :ada:`Input_Value` on line 19 is :ada:`Integer'Last`?
 
-.. list-table::
-
-   * - **A.**
-
-     - Integer'Last
-     - :animate:`Constraint Error`
-
-   * - **B.**
-
-     - 0
-     - :animate:`Unknown problem`
-
-   * - **C.**
-
-     - Integer'First
-     - :animate:`Program Error`
-
-   * - **D.**
-
-     - 100
-     - :animate:`Success`
+A. ``Unknown Problem``
+B. ``Success``
+C. :answermono:`Constraint Error`
+D. ``Program Error``
 
 .. container:: animate
 
-   Explanations
+  Explanations
 
-   .. container:: latex_environment tiny
-
-      * A |rightarrow| When :ada:`F` is called with :ada:`Integer'Last`, it overflows and raises a :ada:`Constraint_Error`
-      * B |rightarrow| The :ada:`Main_Problem` exception is raised, and catched in the :ada:`when others`
-      * C |rightarrow| :ada:`function F` does not hit return, a :ada:`Program_Error` is raised
+  A. ``"Unknown problem"`` is printed by the :ada:`when others` due to the raise on line 8 when :ada:`P_F` is 0
+  B. ``"Success"`` is printed when  0 < :ada:`P_F` < :ada:`Integer'Last`
+  C. Trying to add 1 to :ada:`P_F` on line 6 generates a :ada:`Constraint_Error`
+  D. :ada:`Program_Error` will be raised by :ada:`F` if :ada:`P_F` < 0 (no :ada:`return` statement found)
 
 =======================
 Exceptions as Objects
