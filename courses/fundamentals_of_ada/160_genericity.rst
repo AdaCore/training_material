@@ -381,6 +381,7 @@ Quiz
 ------
 
 .. code:: Ada
+   :number-lines: 1
 
    procedure P1 (X : in out Integer); -- add 100 to X
    procedure P2 (X : in out Integer); -- add 20 to X
@@ -389,34 +390,34 @@ Quiz
       Z : in out Integer;
       with procedure P1 (X : in out Integer) is <>;
       with procedure P2 (X : in out Integer) is null;
-   procedure G;
-   ...
-   procedure G is begin
-      P1 (Z);
-      P2 (Z);
+   procedure G ( P : integer );
+   procedure G ( P : integer ) is
+      X : integer := P;
+   begin
+      P1(X);
+      P2(X);
+      Ada.Text_IO.Put_Line ( X'Image );
    end G;
-   Z : Integer := 0;
-   procedure I is new G ( ... );
+   procedure Instance is new G ( P1 => P3 );
 
-After calling :ada:`I`, what is the value of :ada:`Z`?
+What is printed when :ada:`Instance` is called?
 
-.. list-table::
+A. 100
+B. 120
+C. :answer:`3`
+D. 103
 
-   * - :ada:`procedure I is new G (Z);`
+.. container:: animate
 
-     - :animate:`100 - Calls P1 and null`
+   Explanations
 
-   * - :ada:`procedure I is new G (Z, P1 => P3); `
-
-     - :animate:`3 - Calls P3 and null`
-
-   * - :ada:`procedure I is new G (Z, P2 => P3); `
-
-     - :animate:`103 - Calls P1 and P3`
-
-   * - :ada:`procedure I is new G (Z, P1 => P3, P2 => P3); `
-
-     - :animate:`6 - Calls P3 twice`
+   A. | Wrong - result for
+      | :ada:`procedure Instance is new G;`
+   B. | Wrong - result for
+      | :ada:`procedure Instance is new G(P1,P2);`
+   C. :ada:`P1` at line 12 is mapped to :ada:`P3` at line 3, and :ada:`P2` at line 14 wasn't specified so it defaults to :ada:`null`
+   B. | Wrong - result for
+      | :ada:`procedure Instance is new G(P2=>P3);`
 
 ====================
 Generic Completion
