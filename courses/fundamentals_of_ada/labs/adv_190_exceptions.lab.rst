@@ -1,6 +1,6 @@
-----------------
-Exceptions Lab
-----------------
+-------------------------
+Advanced Exceptions Lab
+-------------------------
 
 (Simplified) Calculator
 
@@ -34,27 +34,27 @@ Project Requirements
 
   * Allow multiple operations on a line
 
----------------------------------------------
-Exceptions Lab Solution - Calculator (Spec)
----------------------------------------------
+------------------------------------------------------
+Advanced Exceptions Lab Solution - Calculator (Spec)
+------------------------------------------------------
 
 .. container:: source_include labs/answers/adv_190_exceptions.txt :start-after:--Calculator_Spec :end-before:--Calculator_Spec :code:Ada
 
---------------------------------
-Exceptions Lab Solution - Main
---------------------------------
+-----------------------------------------
+Advanced Exceptions Lab Solution - Main
+-----------------------------------------
 
 .. container:: source_include labs/answers/adv_190_exceptions.txt :start-after:--Main :end-before:--Main :code:Ada
 
----------------------------------------------
-Exceptions Lab Solution - Calculator (Body)
----------------------------------------------
+------------------------------------------------------
+Advanced Exceptions Lab Solution - Calculator (Body)
+------------------------------------------------------
 
 .. container:: source_include labs/answers/adv_190_exceptions.txt :start-after:--Calculator_Body :end-before:--Calculator_Body :code:Ada
 
----------------------------------
-Exceptions Lab Solution - Debug
----------------------------------
+------------------------------------------
+Advanced Exceptions Lab Solution - Debug
+------------------------------------------
 
 .. container:: source_include labs/answers/adv_190_exceptions.txt :start-after:--Debug :end-before:--Debug :code:Ada
 
