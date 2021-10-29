@@ -840,6 +840,13 @@ Relying On Exception Raising Is Risky
         end if;
       end Tomorrow;
 
+========
+Lab
+========
+
+.. include:: labs/190_exceptions.lab.rst
+
+
 =========
 Summary
 =========
