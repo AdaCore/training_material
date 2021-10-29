@@ -392,7 +392,7 @@ Introduction to Accessibility Checks (1/2)
    .. code:: Ada
 
       package body P is
-         --  Library level, depth 0
+         --  Library level package, depth 0
          procedure Proc is
             --  Library level subprogram, depth 1
             procedure Nested is
@@ -405,10 +405,10 @@ Introduction to Accessibility Checks (1/2)
          end Proc;
       end P;
 
-* Access types can access objects at most of the same depth
-* The compiler checks it statically
-
-   - Removing checks is a workaround!
+* Rule: **Access type** depth <= **Accessed object** depth
+* The **compiler** checks it **statically**
+* The **run-time** checks it **dynamically**
+* NB: Suprograms library units are at depth 1
 
 --------------------------------------------
 Introduction to Accessibility Checks (2/2)
