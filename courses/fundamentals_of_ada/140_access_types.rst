@@ -671,13 +671,15 @@ Anonymous Access Parameters
 .. code:: Ada
 
    type Acc is access all Integer;
-   G : Acc := new Integer;
-   procedure P1 (V : access Integer);
-   procedure P2 (V : access Integer) is
+   Aliased_Integer : aliased Integer;
+   Access_Object   : Acc := Aliased_Integer'access;
+   procedure P1 (Anon_Access : access Integer) is null;
+   procedure P2 (Access_Parameter : access Integer) is
    begin
-      P1 (G);
-      P1 (V);
-   end P;
+      P1 (Aliased_Integer'access);
+      P1 (Access_Object);
+      P1 (Access_Parameter);
+   end P2;
 
 ------------------------
 Anonymous Access Types
