@@ -230,15 +230,16 @@ Allocations
 -------------
 
 * Objects are created with the :ada:`new` reserved word
-* The created object must be constrained
+* Created objects must be constrained
 
-   - The constraint is given during the allocation
+   - Either **explicitely**
 
       .. code:: Ada
 
+         --  Note: Default initial value
          V : String_Access := new String (1 .. 10);
 
-* The object can be created by copying an existing object - using a qualifier
+   - Or by **copy** of an existing object - using a qualifier
 
    .. code:: Ada
 
