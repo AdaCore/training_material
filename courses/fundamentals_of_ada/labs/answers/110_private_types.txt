@@ -50,7 +50,7 @@ end Colors;
 --Flags_Spec
 with Colors;
 package Flags is
-   type Key_T is (Boston, London, Paris, Rome);
+   type Key_T is (USA, England, France, Italy);
    type Map_Element_T is private;
    type Map_T is private;
 
@@ -72,7 +72,7 @@ package Flags is
    function Image (Flag : Map_T) return String;
 private
    type Map_Element_T is record
-      Key         : Key_T := Boston;
+      Key         : Key_T := Key_T'First;
       Description : Colors.Color_Set_T := Colors.Empty_Set;
    end record;
    type Map_Array_T is array (1 .. 100) of Map_Element_T;
