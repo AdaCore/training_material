@@ -1,6 +1,6 @@
------------------
-Inheritance Lab
------------------
+-----------------------
+Tagged Derivation Lab
+-----------------------
 
 * Requirements
 
@@ -17,20 +17,20 @@ Inheritance Lab
 
    - Use `overriding` and `not overriding` as appropriate
 
------------------------------------------
-Inheritance Lab Solution - Types (Spec)
------------------------------------------
+-----------------------------------------------
+Tagged Derivation Lab Solution - Types (Spec)
+-----------------------------------------------
 
-.. container:: source_include labs/answers/170_inheritance.txt :start-after:--Types_Spec :end-before:--Types_Spec :code:Ada
+.. container:: source_include labs/answers/170_tagged_derivation.txt :start-after:--Types_Spec :end-before:--Types_Spec :code:Ada
 
-----------------------------------------------------
-Inheritance Lab Solution - Types (Body - Incomplete)
-----------------------------------------------------
+----------------------------------------------------------
+Tagged Derivation Lab Solution - Types (Body - Incomplete)
+----------------------------------------------------------
 
-.. container:: source_include labs/answers/170_inheritance.txt :start-after:--Types_Body_Partial :end-before:--Types_Body_Partial :code:Ada
+.. container:: source_include labs/answers/170_tagged_derivation.txt :start-after:--Types_Body_Partial :end-before:--Types_Body_Partial :code:Ada
 
----------------------------------
-Inheritance Lab Solution - Main
----------------------------------
+---------------------------------------
+Tagged Derivation Lab Solution - Main
+---------------------------------------
 
-.. container:: source_include labs/answers/170_inheritance.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/170_tagged_derivation.txt :start-after:--Main :end-before:--Main :code:Ada

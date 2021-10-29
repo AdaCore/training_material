@@ -51,9 +51,9 @@ Primitives
 Examples
 ----------
 
-.. include:: examples/170_inheritance/primitives.rst
+.. include:: examples/170_tagged_derivation/primitives.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#primitives`
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_tagged_derivation.html#primitives`
 
 --------------------
 Primitive Operations
@@ -164,9 +164,9 @@ Simple Derivation
 Examples
 ----------
 
-.. include:: examples/170_inheritance/simple_derivation.rst
+.. include:: examples/170_tagged_derivation/simple_derivation.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#simple-derivation`
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_tagged_derivation.html#simple-derivation`
 
 ------------------------
 Simple Type Derivation
