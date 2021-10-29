@@ -259,7 +259,7 @@ Deallocations
 * But sometimes, you have to do what you have to do ...
 
    - There's no simple way of doing it
-   - Ada provides `Ada.Unchecked_Deallocation`
+   - Ada provides :ada:`Ada.Unchecked_Deallocation`
    - Has to be instantiated (it's a generic)
    - Must work on an object, reset to :ada:`null` afterwards
 
@@ -601,7 +601,7 @@ How To Fix Memory Problems?
 
    - :command:`gnatmem`  monitor memory leaks
    - :command:`valgrind`  monitor all the dynamic memory
-   - `GNAT.Debug_Pools` gives a pool for an access type, raising explicit exception in case of invalid access
+   - :ada:`GNAT.Debug_Pools` gives a pool for an access type, raising explicit exception in case of invalid access
    - Others...
 
 ========================
