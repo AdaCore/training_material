@@ -442,6 +442,12 @@ Other constructions are available
 * :ada:`abort` to stop a task immediately
 * :ada:`select ... then abort` some other task
 
+========
+Lab
+========
+
+.. include:: labs/240_tasking.lab.rst
+
 =========
 Summary
 =========
