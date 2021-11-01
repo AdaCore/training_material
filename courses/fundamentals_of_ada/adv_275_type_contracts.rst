@@ -251,8 +251,8 @@ Quiz
          procedure Do_Something (X : in out Some_T);
       private
          function Counter (I : Integer) return Boolean;
-      type Some_T is new Integer with
-         Type_Invariant => Counter (Integer (Some_T));
+         type Some_T is new Integer with
+            Type_Invariant => Counter (Integer (Some_T));
       end P;
 
       package body P is
