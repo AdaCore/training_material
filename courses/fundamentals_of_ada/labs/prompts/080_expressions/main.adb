@@ -39,6 +39,9 @@ procedure Main is
       return Positive'value (Get_Line);
    end Number;
 
+   function Any_Invalid return Boolean is (False);
+   function Same_Year return Boolean is (False);
+
 begin
 
    for I in List'range loop
@@ -49,8 +52,8 @@ begin
    end loop;
 
    -- Print True/False if any date in the list is not valid
-   Put_Line ("Any invalid: " & Boolean'image (False));
+   Put_Line ("Any invalid: " & Boolean'image (Any_Invalid));
    -- Print True/False if all dates in the list are in the same year
-   Put_Line ("Same Year: " & Boolean'image (False));
+   Put_Line ("Same Year: " & Boolean'image (Same_Year));
 
 end Main;
