@@ -384,7 +384,7 @@ D. | ``(for all El of A => (for some Idx in 2 .. 3 =>``
 Lab
 ========
 
-.. include:: labs/080_expressions.lab.rst
+.. include:: labs/adv_080_expressions.lab.rst
 
 =========
 Summary
