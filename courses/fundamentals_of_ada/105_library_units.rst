@@ -23,9 +23,9 @@ Library Units
 Examples
 ----------
 
-.. include:: examples/095_library_units/library_units.rst
+.. include:: examples/105_library_units/library_units.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/095_library_units.html#library-units`
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/105_library_units.html#library-units`
 
 ---------------
 Library Units
@@ -245,9 +245,9 @@ Dependencies
 Examples
 ----------
 
-.. include:: examples/095_library_units/with_clauses.rst
+.. include:: examples/105_library_units/with_clauses.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/095_library_units.html#with-clauses`
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/105_library_units.html#with-clauses`
 
 -----------------
  `with` Clauses

@@ -8,8 +8,8 @@
 070_subprograms.rst
 080_expressions.rst
 090_overloading.rst
-095_library_units.rst
 100_packages.rst
+105_library_units.rst
 110_private_types.rst
 120_limited_types.rst
 130_program_structure.rst
