@@ -403,7 +403,6 @@ Examples
      function "+" (Left, Right : Number) return Number;
      procedure Make ( C : out Number;
                       From_Real, From_Imag : Float );
-     procedure Non_Primitive ( X : Integer );
    ...
 
 .. code:: Ada
@@ -412,6 +411,7 @@ Examples
    use all type Complex.Number;
    procedure Demo is
      A, B, C : Complex.Number;
+     procedure Non_Primitive ( X : Complex.Number ) is null;
    begin
      -- "use all type" makes these available
      Make (A, From_Real => 1.0, From_Imag => 0.0);
@@ -470,7 +470,7 @@ Three Positives Make a Negative
       -- given angle and distances between observer and 2 points
       -- A**2 = B**2 + C**2 - 2*B*C*cos(A)
       Observation.Sides (Viewpoint_Types.Point1_Point2) :=
-        Math_Utilities.Trigonometry.Square_Root
+        Math_Utilities.Square_Root
           (Observation.Sides (Viewpoint_Types.Observer_Point1)**2 +
            Observation.Sides (Viewpoint_Types.Observer_Point2)**2 +
            2.0 * Observation.Sides (Viewpoint_Types.Observer_Point1) *
@@ -545,6 +545,7 @@ Writing Readable Code - Part 2
 
       begin
          package Math renames Math_Utilities;
+         package Trig renames Math.Trigonometry;
 
          function Sqrt (X : Base_Types.Float_T) return Base_Types.Float_T
            renames Math.Square_Root;
@@ -558,7 +559,7 @@ Writing Readable Code - Part 2
          -- and distances between observer and 2 points A**2 = B**2 + C**2 -
          -- 2*B*C*cos(A)
          Desired_Side := Sqrt (Side1**2 + Side2**2 +
-                               2.0 * Side1 * Side2 * Math.Cosine (Angles (Required_Angle)));
+                               2.0 * Side1 * Side2 * Trig.Cosine (Angles (Required_Angle)));
       end;
 
 ========
