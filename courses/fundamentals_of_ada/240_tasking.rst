@@ -315,15 +315,17 @@ Waiting On Multiple Entries
 
 .. code:: Ada
 
-  select
-     accept Receive_Message (V : String)
-     do
+  loop
+    select
+      accept Receive_Message (V : String)
+      do
         Put_Line ("Message : " & String);
-     end Receive_Message;
-  or
-     accept Stop;
-     exit;
-  end select;
+      end Receive_Message;
+    or
+      accept Stop;
+      exit;
+    end select;
+  end loop;
   ...
   T.Receive_Message ("A");
   T.Receive_Message ("B");
@@ -440,6 +442,12 @@ Other constructions are available
 * :ada:`abort` to stop a task immediately
 * :ada:`select ... then abort` some other task
 
+========
+Lab
+========
+
+.. include:: labs/240_tasking.lab.rst
+
 =========
 Summary
 =========
@@ -448,7 +456,7 @@ Summary
 Summary
 ---------
 
-* Tasks are **language-based** multiprocessing mechanisms
+* Tasks are **language-based** multi-threading mechanisms
 
    - Not necessarily for **truly** parallel operations
    - Originally for task-switching / time-slicing

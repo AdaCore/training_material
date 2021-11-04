@@ -1,6 +1,6 @@
--------------
-Tasking Lab
--------------
+-----------------------
+Advanced Tasking Lab
+-----------------------
 
 * Requirements
 
@@ -19,20 +19,20 @@ Tasking Lab
    - Datastore needs to control access to its contents
    - One task per register is easier than one task trying to maintain multiple update frequencies
 
-----------------------------------
-Tasking Lab Solution - Datastore
-----------------------------------
+--------------------------------------------
+Advanced Tasking Lab Solution - Datastore
+--------------------------------------------
 
 .. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Datastore :end-before:--Datastore :code:Ada
 
--------------------------------------------
-Tasking Lab Solution - Monitor Task Type
--------------------------------------------
+-----------------------------------------------------
+Advanced Tasking Lab Solution - Monitor Task Type
+-----------------------------------------------------
 
 .. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Task :end-before:--Task :code:Ada
 
-----------------------------
-Tasking Lab Solution - Main
-----------------------------
+--------------------------------------
+Advanced Tasking Lab Solution - Main
+--------------------------------------
 
 .. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Main :end-before:--Main :code:Ada
