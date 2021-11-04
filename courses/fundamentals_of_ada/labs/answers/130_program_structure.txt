@@ -98,8 +98,7 @@ package body Messages.Queue.Debug is
 
    procedure Inject_Crc_Fault (Position : Integer) is
    begin
-      Top                 := Position;
-      The_Queue (Top).Crc := The_Queue (Top).Crc + 1;
+      The_Queue (Position).Crc := The_Queue (Position).Crc + 1;
    end Inject_Crc_Fault;
 
    function Text (Message : Message_T) return String is

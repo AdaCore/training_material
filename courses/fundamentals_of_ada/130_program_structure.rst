@@ -726,7 +726,7 @@ Quiz
 
       A.  ``return Object_A;``
       B.  ``return Object_B;``
-      C.  ``return Object_C;``
+      C.  :answermono:`return Object_C;`
       D.  None of the above
 
    .. container:: animate
