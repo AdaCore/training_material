@@ -156,7 +156,7 @@ Composition vs Non-Composition
       begin
          return False;
       end "=";
-      -- We define our own array equality operator so it will use our integer operator
+      -- We define our own array equality operator so it will use our integer equality operator
       function "=" (L, R : Array2_T) return Boolean is
       begin
          return (for all I in 1 .. 3 => L (I) = R (I));
