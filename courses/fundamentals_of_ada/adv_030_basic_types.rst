@@ -34,6 +34,22 @@ Implicit Subtype
       type Typ is new Predefined_Integer_Type;
       subtype Sub is Typ range L .. R;
 
+-----------------------------
+Stand-Alone (Sub)Type Names
+-----------------------------
+
+* Denote all the values of the type or subtype
+
+   - Unless explicitly constrained
+
+   .. code:: Ada
+
+      subtype Sub is Integer range 0 .. 10;
+      ...
+      for I in Sub loop
+        ...
+      end loop;
+
 ----------------------------
 Implicit Subtype Explanation
 ----------------------------
@@ -101,6 +117,73 @@ Subtypes May Enhance Performance
    ...
    K := Some_Value;   -- range checked here
    Values (K) := 0.0; -- so no range check needed here
+
+---------------------------------
+Subtypes Don't Cause Overloading
+---------------------------------
+
+- Illegal code: re-declaration of `F`
+
+   .. code:: Ada
+
+      type A is new Integer;
+      subtype B is A;
+      function F return A is (0);
+      function F return B is (1);
+
+-------------------------------------
+Subtypes and Default Initialization
+-------------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
+
+* Not allowed: Defaults on new :ada:`type` only
+
+    - :ada:`subtype` is still the same type
+
+* **Note:** Default value may violate subtype constraints
+
+   - Compiler error for static definition
+   - :ada:`Constraint_Error` otherwise
+
+.. code:: Ada
+
+   type Tertiary_Switch is (Off, On, Neither)
+      with Default_Value => Neither;
+   subtype Toggle_Switch is Tertiary_Switch
+       range Off .. On;
+   Safe : Toggle_Switch := Off;
+   Implicit : Toggle_Switch; -- compile error: out of range
+
+----------------------------------------
+Attributes Reflect the Underlying Type
+----------------------------------------
+
+.. code:: Ada
+
+   type Color is
+       (White, Red, Yellow, Green, Blue, Brown, Black);
+   subtype Rainbow is Color range Red .. Blue;
+
+* :ada:`T'First` and :ada:`T'Last` respect constraints
+
+   - :ada:`Rainbow'First` |rightarrow| Red *but* :ada:`Color'First` |rightarrow| White
+   - :ada:`Rainbow'Last` |rightarrow| Blue *but* :ada:`Color'Last` |rightarrow| Black
+
+* Other attributes reflect base type
+
+   - :ada:`Color'Succ (Blue)` = Brown = :ada:`Rainbow'Succ (Blue)`
+   - :ada:`Color'Pos (Blue)` = 4 = :ada:`Rainbow'Pos (Blue)`
+   - :ada:`Color'Val (0)` = White = :ada:`Rainbow'Val (0)`
+
+* Assignment must still satisfy target constraints
+
+   .. code:: Ada
+
+      Shade : Color range Red .. Blue := Brown; -- runtime error
+      Hue : Rainbow := Rainbow'Succ (Blue);     -- runtime error
 
 ===========
 Base Type
@@ -412,72 +495,6 @@ Order Attributes For All Discrete Types
 .. container:: speakernote
 
    Val/pos compared to value/image - same number of characters
-
-============
-Subtypes
-============
-
------------------------------
-Stand-Alone (Sub)Type Names
------------------------------
-
-* Denote all the values of the type or subtype
-
-   - Unless explicitly constrained
-
--------------------------------------
-Subtypes and Default Initialization
--------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Not allowed: Defaults on new :ada:`type` only
-
-    - :ada:`subtype` is still the same type
-
-* **Note:** Default value may violate subtype constraints
-
-   - Compiler error for static definition
-   - :ada:`Constraint_Error` otherwise
-
-.. code:: Ada
-
-   type Tertiary_Switch is (Off, On, Neither)
-      with Default_Value => Neither;
-   subtype Toggle_Switch is Tertiary_Switch
-       range Off .. On;
-   Safe : Toggle_Switch := Off;
-   Implicit : Toggle_Switch; -- compile error: out of range
-
-----------------------------------------
-Attributes Reflect the Underlying Type
-----------------------------------------
-
-.. code:: Ada
-
-   type Color is
-       (White, Red, Yellow, Green, Blue, Brown, Black);
-   subtype Rainbow is Color range Red .. Blue;
-
-* :ada:`T'First` and :ada:`T'Last` respect constraints
-
-   - :ada:`Rainbow'First` |rightarrow| Red *but* :ada:`Color'First` |rightarrow| White
-   - :ada:`Rainbow'Last` |rightarrow| Blue *but* :ada:`Color'Last` |rightarrow| Black
-
-* Other attributes reflect base type
-
-   - :ada:`Color'Succ (Blue)` = Brown = :ada:`Rainbow'Succ (Blue)`
-   - :ada:`Color'Pos (Blue)` = 4 = :ada:`Rainbow'Pos (Blue)`
-   - :ada:`Color'Val (0)` = White = :ada:`Rainbow'Val (0)`
-
-* Assignment must still satisfy target constraints
-
-   .. code:: Ada
-
-      Shade : Color range Red .. Blue := Brown; -- runtime error
-      Hue : Rainbow := Rainbow'Succ (Blue);     -- runtime error
 
 =================
 Character Types
