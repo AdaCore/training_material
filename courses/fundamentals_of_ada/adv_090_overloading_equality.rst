@@ -132,7 +132,7 @@ Examples
    * If you define "=" for a composite containing the scalar type, your scalar "=" will be used
    * If you rely on the implicit "=" for the composite, then the scalar's implicit "=" will also be used
 
-      * Not the one you just defined
+      * **Not** the one you just defined
 
 --------------------------------
 Composition vs Non-Composition

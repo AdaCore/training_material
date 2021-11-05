@@ -23,7 +23,7 @@ Introduction
 
    - Pascal
 
-      + `WRITELN( 42 );`
+      + :ada:`WRITELN( 42 );`
       + :ada:`WRITELN( 'This is a string' );`
 
    - Many others...
@@ -393,11 +393,11 @@ User-Defined Equality
 
    - Must remain a binary operator
 
-* Typically declared to return type Boolean
-* Tricky to do right on composed types
+* Typically declared as :ada:`return Boolean`
+* Hard to do correctly for composed types
 
-    - Especially user-defined types
-    - "Composition of equality"
+    - Especially **user-defined** types
+    - Issue of *Composition of equality*
 
 ========
 Lab
