@@ -997,7 +997,7 @@ Expression Functions
 
 * Functions whose implementations are pure expressions
 
-   - No body is allowed
+   - No other completion is allowed
    - No :ada:`return` keyword
 
 * May exist only for sake of pre/postconditions
@@ -1146,7 +1146,7 @@ Parameter Aliasing
 --------------------
 
 * **Aliasing** : Multiple names for an actual parameter inside a subprogram body
-* Multiple causes possible
+* Possible causes:
 
    - Global object used is also passed as actual parameter
    - Same actual passed to more than one formal
