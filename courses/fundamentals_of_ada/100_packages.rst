@@ -183,7 +183,7 @@ Referencing Exported Items
 ----------------------------
 
 * Achieved via "dot notation"
-* Package Specficiation
+* Package Specification
 
    .. code:: Ada
 
@@ -201,14 +201,9 @@ Referencing Exported Items
       procedure Test is
          X : Float;
       begin
-         ...
-         Float_Stack.Push (12.0);
-         ...
          Float_Stack.Pop (X);
-         ...
-         if Count < Float_Stack.Max then
-           ...
-        end if;
+         Float_Stack.Push (12.0);
+         if Count < Float_Stack.Max then ...
 
 ========
 Bodies
@@ -326,29 +321,28 @@ Quiz
 .. code:: Ada
 
    package P is
-      Object_One : integer;
-      procedure One ( P : out integer );
+      Object_One : Integer;
+      procedure One ( P : out Integer );
    end One;
 
-Which is the correct completion of package P?
+Which is a valid completion of package P?
 
    A. No completion needed
-   B. | ``package body P is``
-      |   ``procedure One ( P : out integer ) is null;``
-      | ``end P;``
-   C. | ``package body P is``
-      |   ``Object_One : integer;``
-      |   ``procedure One ( P : out integer ) is``
+
+   ``package body P is``
+
+   B. |   ``procedure One ( P : out Integer ) is null;``
+   C. |   ``Object_One : integer;``
+      |   ``procedure One ( P : out Integer ) is``
       |   ``begin``
       |      ``P := Object_One;``
       |   ``end One;``
-      | ``end P;``
-   D. | :answermono:`package body P is`
-      |   :answermono:`procedure One ( P : out integer ) is`
+   D. |   :answermono:`procedure One ( P : out Integer ) is`
       |   :answermono:`begin`
       |      :answermono:`P := Object_One;`
       |   :answermono:`end One;`
-      | :answermono:`end P;`
+
+   ``end P;``
 
 .. container:: animate
 
@@ -568,7 +562,7 @@ Uncontrolled Data Visibility Problem
 
  .. container:: column
 
-    .. image:: ../../images/subprograms_accessing_global.png
+    .. image:: subprograms_accessing_global.png
 
 --------------------------------------------
 Controlling Data Visibility Using Packages
@@ -585,7 +579,7 @@ Controlling Data Visibility Using Packages
 
 |
 
-.. image:: ../../images/packages_hiding_global_data.png
+.. image:: packages_hiding_global_data.png
    :width: 85%
 
 ------------------------

@@ -31,8 +31,8 @@ jobs:
 
       - name: Manual pandoc install
         run: |
-          wget https://github.com/jgm/pandoc/releases/download/2.11/pandoc-2.11-1-amd64.deb
-          sudo dpkg -i pandoc-2.11-1-amd64.deb
+          wget https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-1-amd64.deb
+          sudo dpkg -i pandoc-2.14.2-1-amd64.deb
           pandoc -v
 
       - name: Install python dependencies
@@ -65,6 +65,15 @@ jobs:
         with:
           name: Standard course
           path: out/fundamentals_of_ada/standard_course.pdf
+
+      - name: Generate OPAT Ada course
+        run: python pandoc/pandoc_fe.py --extension pdf --source courses/fundamentals_of_ada/opat.txt --output-dir out/fundamentals_of_ada
+
+      - name: Package and upload OPAT Ada course
+        uses: actions/upload-artifact@v2
+        with:
+          name: OPAT
+          path: out/fundamentals_of_ada/opat.pdf
 
 
       - name: Generate slides for SPARK

@@ -377,67 +377,33 @@ When To Use *If Expressions*
 *If Expression* Example for Constants
 ---------------------------------------
 
-* Harder to read
+* Starting from
 
    .. code:: Ada
 
-      Leap : constant Boolean :=
-         (Today.Year mod 4 = 0 and Today.Year mod 100 /= 0)
-         or else (Today.Year mod 400 = 0);
-      End_of_Month : array (Months) of Days := (Sep | Apr | Jun | Nov => 30,
-                                                Feb => 28,
-                                                others => 31);
+      End_of_Month : array (Months) of Days
+        := (Sep | Apr | Jun | Nov => 30,
+           Feb => 28,
+           others => 31);
       begin
-        if Leap then -- adjust for leap year
+        if Leap (Today.Year) then -- adjust for leap year
           End_of_Month (Feb) := 29;
         end if;
         if Today.Day = End_of_Month(Today.Month) then
-           ...
+      ...
 
-* Becomes easier to read
+* Using if-expression to call :ada:`Leap (Year)` as needed
 
    .. code:: Ada
 
-      Leap : constant Boolean :=
-         (Today.Year mod 4 = 0 and Today.Year mod 100 /= 0)
-         or else (Today.Year mod 400 = 0);
-      End_Of_Month : constant array (Months)
-         of Days := (Sep | Apr | Jun | Nov => 30,
-                     Feb => (if Leap then 29 else 28),
-                     others => 31);
+      End_Of_Month : constant array (Months) of Days
+        := (Sep | Apr | Jun | Nov => 30,
+            Feb => (if Leap (Today.Year)
+                    then 29 else 28),
+            others => 31);
       begin
         if Today.Day /= End_of_Month(Today.Month) then
-           ...
-
-------------------------------
-Static Named Numbers Example
-------------------------------
-
-* Hard to read
-
-   .. code:: Ada
-
-      Byte_MSB     : constant := Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First) * 7;
-      Halfword_MSB : constant := Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First) * 15;
-      Word_MSB     : constant := Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First) * 31;
-      NextBit      : constant := 1 - (2 * Boolean'Pos (
-                     Default_Bit_Order = Low_Order_First));
-
-* Becomes easier to read
-
-   .. code:: Ada
-
-      Byte_MSB     : constant :=
-                     (if Default_Bit_Order = Low_Order_First then 7 else 0);
-      Halfword_MSB : constant :=
-                     (if Default_Bit_Order = Low_Order_First then 15 else 0);
-      Word_MSB     : constant :=
-                     (if Default_Bit_Order = Low_Order_First then 31 else 0);
-      NextBit      : constant :=
-                     (if Default_Bit_Order = Low_Order_First then -1 else 1);
+      ...
 
 ---------------------
  *Case Expressions*
@@ -447,36 +413,29 @@ Static Named Numbers Example
 
    Ada 2012
 
-.. container:: columns
+.. container:: latex_environment footnotesize
 
- .. container:: column
+ * Syntax similar to :ada:`case` statements
 
-   .. container:: latex_environment footnotesize
+    - Lighter: no closing `end case`
+    - Commas between choices
 
-    * Syntax similar to :ada:`case` statements
+ * Same general rules as *if expressions*
 
-       - Lighter: no closing `end case`
-       - Commas between choices
+    - Parentheses required unless already present
+    - Type of "result" must match context
 
-    * Same general rules as *if expressions*
+ * Advantage over *if expressions* is completeness checked by compiler
+ * Same as with :ada:`case` statements (unless :ada:`others` is used)
 
-       - Parentheses required unless already present
-       - Type of "result" must match context
+.. code:: Ada
 
-    * Advantage over *if expressions* is completeness checked by compiler
-    * Same as with :ada:`case` statements (unless :ada:`others` is used)
-
- .. container:: column
-
-    .. code:: Ada
-
-       -- compile error if all
-       -- days not covered
-       Hours : constant Integer :=
-          (case Day_of_Week is
-           when Mon .. Thurs => 9,
-           when Fri          => 4,
-           when Sat | Sun    => 0);
+    -- compile error if not all days covered
+    Hours : constant Integer :=
+       (case Day_of_Week is
+        when Mon .. Thurs => 9,
+        when Fri          => 4,
+        when Sat | Sun    => 0);
 
 ---------------------------
 *Case Expression* Example
@@ -498,29 +457,6 @@ Static Named Numbers Example
          when Feb => (if Leap then 29 else 28),
          when others => 31);
    end loop;
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#quantified-expressions`
-
-------------------------
-Quantified Expressions
-------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Check if a condition is true on a set
-
-    - Arbitrary boolean **predicate**
-    - Any **iterable** set of objects
-
-* "Universal" quantified expressions
-
-   - Predicate is true for :ada:`all` elements of the set
-
-* "Existential" quantified expressions
-
-   - Predicate is true for :ada:`some` element of the set
 
 ------
 Quiz
@@ -564,31 +500,31 @@ Subtypes Localize Dependencies
 
 * Single points of change
 * Relationships captured in code
-* Which is more maintainable
+* No subtypes
 
-   - No subtypes
+.. code:: Ada
 
-      .. code:: Ada
+   type List is array (1 .. 12) of Some_Type;
 
-         type List is array (1 .. 12) of Some_Type;
-         K : Integer range 0 .. 12;
-         Values : List;
-         ...
-         if K in 1 .. 12 then ...
-         for J in Integer range 1 .. 12 loop
+   K : Integer range 0 .. 12 := 0; -- anonymous subtype
+   Values : List;
+   ...
+   if K in 1 .. 12 then ...
+   for J in Integer range 1 .. 12 loop ...
 
-   - Subtypes
+* Subtypes
 
-      .. code:: Ada
+.. code:: Ada
 
-         type Counter is range 0 .. 12;
-         subtype Index is Counter range 1 .. Counter'Last;
-         type List is array (Index) of Some_Type;
-         K : Counter := 0;
-         Values : List;
-         ...
-         if K in Index then ...
-         for J in Index loop ...
+   type Counter is range 0 .. 12;
+   subtype Index is Counter range 1 .. Counter'Last;
+   type List is array (Index) of Some_Type;
+
+   K : Counter := 0;
+   Values : List;
+   ...
+   if K in Index then ...
+   for J in Index loop ...
 
 ----------------------------------
 Subtypes May Enhance Performance

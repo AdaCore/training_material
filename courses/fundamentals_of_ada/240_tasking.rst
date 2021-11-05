@@ -21,7 +21,7 @@ A Simple Task
 ---------------
 
 * Parallel code execution via **task**
-* Tasks are :ada:`limited` types (No copies allowed)
+* :ada:`limited` types (No copies allowed)
 
    .. code:: Ada
 
@@ -68,7 +68,7 @@ Rendezvous Definitions
 ------------------------
 
 * **Server** declares several :ada:`entry`
-* Client calls entries
+* Client calls entries like subprograms
 * Server :ada:`accept` the client calls
 * At each standalone :ada:`accept`, server task **blocks**
 
@@ -147,22 +147,28 @@ Protected Objects
 Protected Objects
 -------------------
 
-* **Passive** objects state
+* **Multitask-safe** accessors to get and set state
+* **No** direct state manipulation
+* **No** concurrent modifications
+* :ada:`limited` types (No copies allowed)
 
-   - **Multitask-safe** accessors to get and set state
-   - **No** direct state manipulation
-   - **No** concurrent modifications
+.. container:: columns
 
-* Protected objects are :ada:`limited` types
+ .. container:: column
 
-.. code:: Ada
+  .. code:: Ada
 
-   protected type Protected_Value is
+   protected type
+     Protected_Value is
       procedure Set (V : Integer);
       function Get return Integer;
    private
       Value : Integer;
    end Protected_Value;
+
+ .. container:: column
+
+  .. code:: Ada
 
    protected body Protected_Value is
       procedure Set (V : Integer) is
@@ -175,6 +181,8 @@ Protected Objects
          return Value;
       end Get;
    end Protected_Value;
+
+.
 
 -------------------------------------
 Protected: Functions and Procedures
@@ -223,32 +231,27 @@ Task and Protected Types
 Task Activation
 ---------------
 
-* An instantiated task starts running when **activated**
-* On the stack
+* Instantiated tasks start running when **activated**
+* On the **stack**
 
-    - Activated when **enclosing** declarative part finishes its **elaboration**
+   - When **enclosing** declarative part finishes **elaborating**
 
-* On the heap
+* On the **heap**
 
-    - Activated **immediately** at instanciation
+   - **Immediately** at instantiation
 
 .. code:: Ada
 
-   task type First_T is [...]
-
+   task type First_T is ...
    type First_T_A is access all First_T;
 
-   task body First_T is
-   begin
-      accept First;
-   end First_T;
-
-   [...]
-
+   task body First_T is ...
+   ...
+   declare
       V1 : First_T;
       V2 : First_T_A;
-   begin -- Task V1 is activated
-      V2 := new First_T; -- Task V2 is activated
+   begin  -- V1 is activated
+      V2 := new First_T;  -- V2 is activated immediately
 
 --------------------
 Single Declaration
@@ -275,29 +278,28 @@ Single Declaration
       end loop;
    end Msg_Box;
 
----------------
-Scope Of a Task
----------------
+-----------
+Task Scope
+-----------
 
-* Tasks can be nested in **any** declarative block
-* A **subprogram** finishes **only** when all its **nested task** bodies are over
-* The **program** terminates when all **library-level tasks** finish
+* Nesting is possible in **any** declarative block
+* Scope has to **wait** for tasks to finish before ending
+* At library level: program ends only when **all tasks** finish
 
-.. code:: Ada
+   .. code:: Ada
 
-   package P is
-      task type Tick_T;
-   end P;
+      package P is
+         task T;
+      end P;
 
-   -- Programs using the package may never terminate
-   package body P is
-      task body Tick_T is
-         loop
-            delay 1.0;
-            Put_Line ("tick");
-         end loop;
-      end Tick_T;
-   end P;
+      package body P is
+         task body T is
+            loop
+               delay 1.0;
+               Put_Line ("tick");
+            end loop;
+         end T;
+      end P;
 
 ========================
 Some Advanced Concepts
@@ -313,18 +315,18 @@ Waiting On Multiple Entries
 
 .. code:: Ada
 
-  select
-     accept Receive_Message (V : String)
-     do
+  loop
+    select
+      accept Receive_Message (V : String)
+      do
         Put_Line ("Message : " & String);
-     end Receive_Message;
-  or
-     accept Stop;
-     exit;
-  end select;
-
-  [...]
-
+      end Receive_Message;
+    or
+      accept Stop;
+      exit;
+    end select;
+  end loop;
+  ...
   T.Receive_Message ("A");
   T.Receive_Message ("B");
   T.Stop;
@@ -343,20 +345,17 @@ Waiting With a Delay
 
 .. code:: Ada
 
-   task body Msg_Box_T is
-   begin
-     loop
-       select
-         accept Receive_Message (V : String) do
-           Put_Line ("Message : " & String);
-         end Receive_Message;
-       or
-         delay 50.0;
-         Put_Line ("Don't wait any longer");
-         exit;
-       end select;
-     end loop;
-   end Msg_Box_T;
+  loop
+    select
+      accept Receive_Message (V : String) do
+        Put_Line ("Message : " & String);
+      end Receive_Message;
+    or
+      delay 50.0;
+      Put_Line ("Don't wait any longer");
+      exit;
+    end select;
+  end loop;
 
 .. container:: speakernote
 
@@ -419,58 +418,6 @@ Non-blocking Accept or Entry
       Put_Line ("Receive message not called");
    end select;
 
-------------------------
-Protected Object Entries
-------------------------
-
-* **Special** kind of protected :ada:`procedure`
-* Several tasks can be waiting on the same :ada:`entry`
-* Only **one** will be re-activated when the barrier is **relieved**
-* May use a **barrier**, that is **evaluated** when
-
-   - A task calls :ada:`entry`
-   - A protected :ada:`entry` or :ada:`procedure` is **exited**
-
-* Barriers **only** allow call on a boolean condition
-* When condition is fulfilled, barrier is **relieved**
-
-.. code:: Ada
-
-   protected body Stack is
-      entry Push (V : Integer) when Size < Buffer'Length is
-      [...]
-
-      entry Pop  (V : out Integer) when Size > 0 is
-      [...]
-   end Object;
-
--------------------------------------
-Select On Protected Objects Entries
--------------------------------------
-
-* Works the same way as :ada:`select` on task entries
-
-   - With a :ada:`delay` part
-
-   .. code:: Ada
-
-      select
-         O.Push (5);
-      or
-         delay 10.0;
-         Put_Line ("Delayed overflow");
-      end select;
-
-   - With an :ada:`else` part
-
-   .. code:: Ada
-
-      select
-         O.Push (5);
-      else
-         Put_Line ("Overflow");
-      end select;
-
 ------
 Queue
 ------
@@ -495,6 +442,12 @@ Other constructions are available
 * :ada:`abort` to stop a task immediately
 * :ada:`select ... then abort` some other task
 
+========
+Lab
+========
+
+.. include:: labs/240_tasking.lab.rst
+
 =========
 Summary
 =========
@@ -503,7 +456,7 @@ Summary
 Summary
 ---------
 
-* Tasks are **language-based** multiprocessing mechanisms
+* Tasks are **language-based** multi-threading mechanisms
 
    - Not necessarily for **truly** parallel operations
    - Originally for task-switching / time-slicing

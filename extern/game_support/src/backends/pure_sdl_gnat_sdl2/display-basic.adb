@@ -585,10 +585,10 @@ package body Display.Basic is
       return Current_Id;
    end Create_Window;
 
+   SDL_S : access SDL_Surface;
 
    function Create_SDL_Window (Width : Integer; Height : Integer; Name : String) return SDL_Window_Surface is
       S : SDL_Window_Surface;
-      SDL_S : access SDL_Surface;
       PF : Uint32;
       CP : Interfaces.C.Strings.chars_ptr;
    begin

@@ -151,7 +151,7 @@ Record Types
 
  .. container:: column
 
-    .. image:: ../../images/record_packing_examples.png
+    .. image:: record_packing_examples.png
        :width: 50%
 
 -------------
@@ -514,7 +514,7 @@ Operands
 
    - `Asm_Input` and `Asm_Output` attributes on types
 
-.. image:: ../../images/annotated_assembly_statement.png
+.. image:: annotated_assembly_statement.png
    :width: 85%
 
 -----------------------------------------
@@ -718,6 +718,12 @@ Flat Arrays
 
       type Char_array is array (natural) of Character;
       type C_String_Acc is access Char_Array;
+
+========
+Lab
+========
+
+.. include:: labs/adv_280_low_level_programming.lab.rst
 
 =========
 Summary

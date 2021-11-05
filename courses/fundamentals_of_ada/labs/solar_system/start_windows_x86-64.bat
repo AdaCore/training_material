@@ -1,7 +1,7 @@
 set LOCAL=%~dp0
 
 rem vvvv Put the GNAT install path below
-set INSTALL=C:\GNAT\2020
+set INSTALL=C:\GNAT\2021
 
 set PATH=%INSTALL%\bin;%PATH%
 set PATH=%LOCAL%\libs64;%PATH%

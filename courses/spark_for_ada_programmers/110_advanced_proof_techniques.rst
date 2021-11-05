@@ -31,7 +31,7 @@ Ghost Code
 
 * Ghost code is normal Ada code that is only used for specification
 
-   - Ghost code should have no effect on the behavior of the program 
+   - Ghost code should have no effect on the behavior of the program
 
    - When the program is compiled with assertions, ghost code is executed like normal code
    - It can also be ignored by the compiler
@@ -48,7 +48,7 @@ Ghost Code
      -- It is OK to use X_Init inside an assertion.
      X := X_Init; --  Compilation error:
      -- Ghost entity cannot appear in this context
- 
+
 .. container:: speakernote
 
    As the properties we want to specify grow more complex, the need can arise for entities that are only used for specification purposes
@@ -93,7 +93,7 @@ Global Ghost Variables
 
 * Global ghost variables store information that is only useful for specification. They can be used to
 
-   - Maintain a model of a complex or private data-structure 
+   - Maintain a model of a complex or private data-structure
 
    - Specify properties over several runs of subprograms
    - Act as placeholders for intermediate values of variables
@@ -111,7 +111,7 @@ Global Ghost Variables
    procedure Do_Two_Things (V : in out T) with
      Post => (First_Thing_Done (V'Old, V_Interm)
           and Second_Thing_Done (V_Interm, V));
- 
+
 .. container:: speakernote
 
    Though it happens less often, specification may require storing additional information into global variables.
@@ -151,7 +151,7 @@ Local Ghost Variables
      Post => (for all I in A'Range =>
                 (for some J in A'Range => A (I) = A'Old (J)))
    is
-     Permutation : Index_Array := (1 => 1, 2 => 2, ...) with 
+     Permutation : Index_Array := (1 => 1, 2 => 2, ...) with
        Ghost;
 
 .. container:: speakernote
@@ -175,7 +175,7 @@ Ghost Procedures
 
    - They can be used to abstract away complex treatment on ghost variables
 
-   - Or to group together intermediate assertions 
+   - Or to group together intermediate assertions
 
    - In normal code, the only statements that can refer to ghost entities are assignments to ghost variables and ghost procedure calls
 
@@ -191,7 +191,7 @@ Ghost Procedures
    procedure Prove_P (X : T) with Ghost,
      Global => null,
      Post   => P (X);
- 
+
 .. container:: speakernote
 
    Ghost procedures cannot affect the value of normal variables.
@@ -238,22 +238,22 @@ Loop Invariant
 
 .. code:: Ada
 
-   function Get_Prime (Low, High : Positive) return Natural is 
-     J : Positive := Low; 
-   begin 
-     while J <= High loop 
-       if Is_Prime (J) then 
-         return J; 
-       end if; 
-       pragma Loop_Invariant 
-         (J in Low .. High 
-           and 
-         (for all K in Low .. J => not Is_Prime (K))); 
-       J := J + 1; 
-     end loop; 
-     return 0; 
+   function Get_Prime (Low, High : Positive) return Natural is
+     J : Positive := Low;
+   begin
+     while J <= High loop
+       if Is_Prime (J) then
+         return J;
+       end if;
+       pragma Loop_Invariant
+         (J in Low .. High
+           and
+         (for all K in Low .. J => not Is_Prime (K)));
+       J := J + 1;
+     end loop;
+     return 0;
    end Get_Prime;
- 
+
 ----------------
 Loop Invariant
 ----------------
@@ -264,22 +264,22 @@ Loop Invariant
 
 * Static Semantics
 
-   - :toolname:`GNATprove` proves the loop invariant in two stages: 
+   - :toolname:`GNATprove` proves the loop invariant in two stages:
 
    - It proves first that the loop invariant is true at the first iteration.
 
       .. code:: console
 
          loopinv.adb:33:7: info:
-            loop invariant initialization proved 
- 
+            loop invariant initialization proved
+
    - It then proves that, assuming the loop invariant held at the previous iteration, it still holds at the next iteration.
 
       .. code:: console
 
          loopinv.adb:33:7: info:
             loop invariant preservation proved
- 
+
 ----------------
 Loop Invariant
 ----------------
@@ -292,15 +292,15 @@ Loop Invariant
 
    - Prove that the property holds for an arbitrary step
 
-   -  for example: 
+   -  for example:
 
       .. code:: Ada
 
          (for all N in Integer => Prop(N) => Prop(N + 1))
- 
-* Important: to be useful, the loop invariant needs to be strong enough to prove the post condition *of the loop*
 
-* Loop invariant can be placed anywhere 
+* Important: to be useful, the loop invariant needs to be strong enough to prove the postcondition *of the loop*
+
+* Loop invariant can be placed anywhere
 
    - Except in branches
    - Slightly different than classical Hoare loop invariant
@@ -320,19 +320,19 @@ Loop Invariant
             pragma Loop_Invariant (
                Result <= Result'Loop_Entry + 7 * I);
          end loop;
- 
+
 * `'Loop_Entry(Loop_Name)` specifies the name of the loop being referred to, when in nested loops
 
 -------------------------------------
-Loop Proof in :toolname:`GNATprove` 
+Loop Proof in :toolname:`GNATprove`
 -------------------------------------
 
-* :toolname:`GNATprove` to prove iterations around the (virtual) loop formed by the following steps:
+* :toolname:`GNATprove` considers iterations around the (virtual) loop formed by the following steps:
 
    - Take any context satisfying the loop invariant, which summarizes all previous iterations of the loop.
-   - Execute the end of a source loop iteration (just the increment here).
+   - Execute the end of a source loop iteration.
    - Test whether the loop exits, and continue with values which do not exit.
-   - Execute the start of a source loop iteration (just the if-statement here).
+   - Execute the start of a source loop iteration.
    - Check that the loop invariant still holds.
 
 .. container:: speakernote
@@ -344,22 +344,22 @@ Steps of Loop Proof in :toolname:`GNATprove`
 ----------------------------------------------
 
 .. code:: Ada
-    
-  function Get_Prime (Low, High : Positive) return Natural is 
-    J : Positive := Low; 
-  begin 
-    while J <= High loop -- (3) 
-      if Is_Prime (J) then -- (4) 
-        return J; 
-      end if; 
+
+  function Get_Prime (Low, High : Positive) return Natural is
+    J : Positive := Low;
+  begin
+    while J <= High loop -- (3)
+      if Is_Prime (J) then -- (4)
+        return J;
+      end if;
       pragma Loop_Invariant -- (1)
         (J in Low .. High and (for all K in Low .. J =>
-           not Is_Prime (K))); --(5) 
+           not Is_Prime (K))); --(5)
       J := J + 1; --(2)
-    end loop; 
-    return 0; 
+    end loop;
+    return 0;
   end Get_Prime;
-     
+
 1. Take any context satisfying the loop invariant, which summarizes all previous iterations of the loop.
 2. Execute the end of a source loop iteration (just the increment here).
 3. Test whether the loop exits, and continue with values which do not exit.
@@ -375,7 +375,7 @@ Writing Loop Invariants
    - General theory behind loop invariants
    - Semantics of the programming language used
 
-   - Specific application of the general theory to the programming language used in a given tool, and 
+   - Specific application of the general theory to the programming language used in a given tool, and
 
    - Detailed knowledge of what the loop performs
 
@@ -385,11 +385,11 @@ Writing Loop Invariants
 
 * General Theory
 
-   - A loop invariant should provide all the necessary information about variables modified in the loop, which is otherwise lost for proving properties inside the loop (including the loop invariant itself) and after the loop. 
+   - A loop invariant should provide all the necessary information about variables modified in the loop, which is otherwise lost for proving properties inside the loop (including the loop invariant itself) and after the loop.
 
 * Language Semantics
 
-   - Between two iterations of the loop, the only information available for variables written to directly in the loop, or through calls inside the loop (including global output variables, and output parameters), and only those, is what the loop invariant mentions. 
+   - Between two iterations of the loop, the only information available for variables written to directly in the loop, or through calls inside the loop (including global output variables, and output parameters), and only those, is what the loop invariant mentions.
 
 -------------------------
 Writing Loop Invariants
@@ -401,10 +401,10 @@ Writing Loop Invariants
 
 * Loop Behavior
 
-   - The programmer should mention in the loop invariant not only what properties the loop modifies, but also what properties the loop maintains up to the nth iteration, when these properties involved variables modified in the loop. 
+   - The programmer should mention in the loop invariant not only what properties the loop modifies, but also what properties the loop maintains up to the nth iteration, when these properties involved variables modified in the loop.
 
 ---------------------------------
-Loop Invariants - Ingredients  
+Loop Invariants - Ingredients
 ---------------------------------
 
 * Four properties of a good loop invariant, in increasing order of difficulty:
@@ -432,10 +432,10 @@ Loop Invariants - Recipe
 * Always start with the hardest constraint...
 * ... and the easiest check!
 
-   1. Start by inspecting the post condition of the loop
+   1. Start by inspecting the postcondition of the loop
    2. Study the terminating condition of the loop
 
-   3. What are the loop variables? 
+   3. What are the loop variables?
 
       + Their value on termination?
 
@@ -474,7 +474,7 @@ Does your loop terminate?
           end if;
       end loop;
    end P;
- 
+
 .. container:: speakernote
 
    There is an example of this in :toolname:`GNAT Studio` we can look at if we want to.
@@ -492,7 +492,7 @@ Does your loop terminate?
 
 * Rules for where to place: same as for `Loop_Invariant`
 * Must be at least one instance of Increases (or Decreases) followed by an expression
-* Additional instances of Increases/Decreases expressions may appear, processed in textual order:   
+* Additional instances of Increases/Decreases expressions may appear, processed in textual order:
 
    - Check is made that the first expression increases (or decreases) for this iteration, or stays the same
    - If it stays the same for this iteration then the next expression is checked, and so on
@@ -515,10 +515,9 @@ Summary
 * Ghost Code
 
    - Objects to maintain state information
-   - Subprogram to modularize queries and debugging steps
+   - Subprogram to modularize queries and proof steps
 
 * Loop pragmas
 
-   - Prove loop is valid for all iterations of loop
+   - Prove loop is valid for all iterations
    - Ensure loop terminates
-

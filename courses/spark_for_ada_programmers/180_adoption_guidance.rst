@@ -18,7 +18,7 @@ Adoption Guidance Document
 .. container:: columns
 
  .. container:: column
-  
+
     * Based on adoption experience
     * Proposes adoption levels
     * For every level, presents:
@@ -29,15 +29,15 @@ Adoption Guidance Document
        - Remediation solutions
 
  .. container:: column
-  
-    .. image:: ../../images/thales_adoption_manual.png
+
+    .. image:: thales_adoption_manual.png
        :width: 100%
 
 -----------------------------------------
 Responding To New Industrial Challenges
 -----------------------------------------
 
-.. image:: ../../images/when_to_switch_to_spark.png
+.. image:: when_to_switch_to_spark.png
 
 .. container:: speakernote
 
@@ -106,7 +106,7 @@ Responding To New Industrial Challenges
 
       + Flow analysis (with or without dependency contracts)
 
-      + RTE proof 
+      + RTE proof
 
       + Correctness proof (maybe)
 
@@ -166,14 +166,14 @@ Stone Level Code Changes
 
    - E.g., change functions with side-effects into procedures
 
-* Hide use of pointers
+* Hide unsupported use of pointers (e.g. doubly linked list)
 
    - Within package bodies
    - Dereferences changed to function calls
    - Probably the most extensive effort
-   - Where pointers remain, turn off `SPARK_Mode`
+   - Where unsupported pointers remain, turn off `SPARK_Mode`
 
-* Et cetera
+* Etc.
 * See the Adoption Guide for how to make changes
 
    - Extensive examples provided!
@@ -238,11 +238,11 @@ Gold Level
 
    - Typically derived from software requirements
 
-   - Maintaining critical data invariants throughout execution 
+   - Maintaining critical data invariants throughout execution
 
 * Works with Silver level to ensure program integrity
 
-   - Control flow cannot be circumvented through run-time errors 
+   - Control flow cannot be circumvented through run-time errors
 
    - Data cannot be corrupted
 

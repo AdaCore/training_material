@@ -140,34 +140,43 @@ Subprogram Bodies
 Procedure Declaration Syntax (Simplified)
 -------------------------------------------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
 
-   subprogram_declaration ::= subprogram_specification ;
-   subprogram_specification ::=
-      procedure defining_name parameter_profile
-   parameter_profile ::= [ formal_part ]
-   formal_part ::=
-      ( parameter_specification
-        { ; parameter_specification } )
-   parameter_specification ::=
-      defining_identifier_list : mode subtype_mark
-         [ := expression ]
-   mode ::= [in] | out | in out
+   .. code:: Ada
+
+      subprogram_declaration ::= subprogram_specification ;
+
+      subprogram_specification ::= procedure defining_name parameter_profile
+
+      parameter_profile ::= [ formal_part ]
+
+      formal_part ::= ( parameter_specification
+                      { ; parameter_specification } )
+
+      parameter_specification ::=
+         defining_identifier_list : mode subtype_mark [ := expression ]
+
+      mode ::= [in] | out | in out
 
 ------------------------------------------
 Function Declaration Syntax (Simplified)
 ------------------------------------------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
 
-   subprogram_declaration ::= subprogram_specification;
-   subprogram_specification ::= function
-       defining_designator parameter_and_result_profile
-   defining_designator ::= defining_program_unit_name |
-                           defining_operator_symbol
-   operator_symbol ::= string_literal
-   parameter_and_result_profile ::=
-      [formal_part] return subtype_mark
+   .. code:: Ada
+
+      subprogram_declaration ::= subprogram_specification;
+
+      subprogram_specification ::=
+            function defining_designator parameter_and_result_profile
+
+      defining_designator ::= defining_program_unit_name |
+                              defining_operator_symbol
+
+      operator_symbol ::= string_literal
+
+      parameter_and_result_profile ::= [formal_part] return subtype_mark
 
 * (remainder same as procedures)
 
@@ -283,9 +292,11 @@ Why Separate Declarations?
 
    - Limited only by available memory
 
---------------------------
-Direct Recursion Example
---------------------------
+------------------------------------------
+Direct Recursion - No Declaration Needed
+------------------------------------------
+
+* A subprogram becomes visible as soon as :ada:`is` is reached, so it can call itself without a declaration
 
 .. code:: Ada
 
@@ -581,20 +592,19 @@ Parameter Defaults May Be Specified
 
 .. code:: Ada
 
-   My_Process, Your_Process : Process_Name;
-   Period : Duration;
-   procedure Activate( Process : in Process_Name;
-                       After : in Process_Name := None;
-                       Wait : in Duration := 0.0;
-                       Prior : in Boolean := False  );
+   My_Process : Process_Name;
+   Before, After : Duration;
+   procedure Activate( Process : in Process_Name := Unknown;
+                       Before : in Duration := 0.0;
+                       After : in Duration := 0.0 );
    ...
    begin
      -- no defaults taken
-     Activate (My_Process, Your_Process, Period, True);
-     -- defaults for After, Wait, Prior
+     Activate (My_Process, Before, After);
+     -- defaults for Before, After
      Activate (My_Process);
-     -- defaults for Wait, Prior
-     Activate (My_Process, Your_Process);
+     -- defaults for After
+     Activate (My_Process, 60.0);
 
 ---------------------------------
 Skipping Over Actual Parameters
@@ -605,15 +615,17 @@ Skipping Over Actual Parameters
 .. code:: Ada
 
    procedure Activate(
-     Process : in Process_Name;
-     After : in Process_Name := None;
-     Wait : in Duration := 0.0;
-     Prior : in Boolean := False );
+     Process : in Process_Name := Unknown;
+     Before : in Duration := 0.0;
+     After : in Duration := 0.0);
    ...
    begin
-     -- Parameter "After" is skipped
-     Activate (My_Process, Wait => 60.0, Prior => True);
-     Activate (My_Process, 60.0, True); -- compile error
+     -- Parameter "Process" is skipped
+     Activate (Before => 60.0, After => 10.0);
+     Activate (60.0, 60.0); -- compile error
+     -- Parameter "Before is skipped
+     Activate (My_Process, After => 10.0);
+     Activate (My_Process, 60.0); -- Not an error, but WRONG!
 
 .. container:: speakernote
 
@@ -1313,7 +1325,7 @@ Mode `out` Risk for Scalars
       function F (X : Integer) return Integer is
       begin
         Global := Global + X;
-      return X;
+        return X;
       end F;
 
    - Should generally be avoided!

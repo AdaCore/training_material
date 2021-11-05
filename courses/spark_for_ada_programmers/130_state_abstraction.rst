@@ -32,7 +32,7 @@ What is an Abstraction?
    begin
      X := X + 1;
    end Increase;
- 
+
 ----------------------------
 Why is Abstraction Useful?
 ----------------------------
@@ -59,7 +59,7 @@ Why is Abstraction Useful?
      Increase (X);      --  Increase can be called safely
    end loop;
    pragma Assert (X = 101); --  Will this hold ?
- 
+
 ===========================
 Package State Abstraction
 ===========================
@@ -90,12 +90,12 @@ Abstraction of a Package's State
    package body Stack is
      Content : Element_Array (1 .. Max);
      Top     : Natural;
- 
+
 -------------------------------
 Declaring a State Abstraction
 -------------------------------
 
-* A name, called **State Abstraction**, can be introduced for the hidden state of a package using the `Abstract_State` aspect 
+* A name, called **State Abstraction**, can be introduced for the hidden state of a package using the `Abstract_State` aspect
 
    - Several state abstractions can be introduced at once using an aggregate notation
    - It can be introduced equivalently using an `Abstract_State` pragma located at the beginning of the package specification
@@ -110,7 +110,7 @@ Declaring a State Abstraction
    is
    package Stack is
      pragma Abstract_State (The_Stack);
- 
+
 ----------------------------
 Refining an Abstract State
 ----------------------------
@@ -129,9 +129,9 @@ Refining an Abstract State
    is
      Content : Element_Array (1 .. Max);
      Top     : Natural;
-     --  Both Content and Top must be listed in the list of 
+     --  Both Content and Top must be listed in the list of
      --  constituents of The_Stack
- 
+
 --------------------------------
 Representing Private Variables
 --------------------------------
@@ -155,7 +155,7 @@ Representing Private Variables
    end Stack;
    package body Stack with
      Refined_State => (The_Stack => (Content, Top))
- 
+
 ===================
 Additional States
 ===================
@@ -176,17 +176,17 @@ Nested Packages
        Abstract_State => Visible_State is
        ...
    end P;
-   package body P with 
+   package body P with
      Refined_State => (State => Hidden_Nested.Hidden_State)
    is
      package Hidden_Nested with
        Abstract_State => Hidden_State is
- 
+
 --------------------------------
 Constants with Variable Inputs
 --------------------------------
 
-* Constants with variable inputs are considered as variables in contracts 
+* Constants with variable inputs are considered as variables in contracts
 
    - A constant has variable inputs if its value depends on a variable, a parameter, or another constant with variable inputs
    - Constants with variable inputs participate to the flow of information between variables
@@ -202,7 +202,7 @@ Constants with Variable Inputs
      Top     : Natural;
      --  Max has variable inputs. It must appear as a
      --  constituent of The_Stack
- 
+
 ======================
 Subprogram Contracts
 ======================
@@ -221,15 +221,15 @@ Global and Depends
      Abstract_State => (Top_State, Content_State) is
      procedure Pop  (E : out Element) with
        Global  => (Input  => Content_State,
-                   In_Out => Top_State), 
+                   In_Out => Top_State),
        Depends => (Top_State => Top_State,
                    E         => (Content, Top_State));
    package Stack with
      Abstract_State => The_Stack is
      procedure Pop  (E : out Element) with
-       Global  => (In_Out => The_Stack), 
+       Global  => (In_Out => The_Stack),
        Depends => ((The_Stack, E) => The_Stack);
- 
+
 --------------------
 Global and Depends
 --------------------
@@ -247,10 +247,10 @@ Global and Depends
      ...
      procedure Pop  (E : out Element) with
        Refined_Global  => (Input  => Content,
-                           In_Out => Top), 
+                           In_Out => Top),
        Refined_Depends => (Top => Top,
                            E   => (Content, Top)) is
- 
+
 ------------------------
 Pre and Postconditions
 ------------------------
@@ -273,14 +273,14 @@ Pre and Postconditions
      ...
      function Is_Empty return Boolean is (Top = 0);
      function Is_Full  return Boolean is (Top = Max);
- 
+
 ------------------------
 Pre and Postconditions
 ------------------------
 
 * The `Refined_Post` aspect can be used to strengthen a postcondition
 
-   - Like with expression functions, refined postconditions will only be available for internal calls 
+   - Like with expression functions, refined postconditions will only be available for internal calls
 
    - It must be at least as strong as the subprogram's postcondition
    - There are no counterparts for preconditions
@@ -296,7 +296,7 @@ Pre and Postconditions
      ...
      procedure Push (E : Element) with
        Refined_Post => not Is_Empty and E = Content (Top);
- 
+
 -----------------------------------
 Initialization of Local Variables
 -----------------------------------
@@ -316,7 +316,7 @@ Initialization of Local Variables
    is
    -- Flow analysis will make sure both Top and Content are
    -- initialized at package elaboration
- 
+
 -----------------------------------
 Initialization of Local Variables
 -----------------------------------
@@ -336,7 +336,7 @@ Initialization of Local Variables
    end P;
    --  The association for V1 is omitted, it does not
    -- depend on any external state.
- 
+
 ========
 Lab
 ========

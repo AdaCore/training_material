@@ -16,7 +16,7 @@ is
    Port : Integer with volatile,
      async_writers,
      effective_reads,
-       address => system.storage_elements.to_address ( 16#1234ABCD# );
+     address => system.storage_elements.to_address ( 16#1234ABCD# );
 
    Limit : constant Integer := 3_000_000;
 

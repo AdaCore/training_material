@@ -5,10 +5,10 @@ Expressions Lab
 * Requirements
 
    - Allow the user to fill a list with dates
-   - After the list is created, use *quantified expressions* to print True/False
+   - After the list is created, create functions to print True/False if ...
 
-      * If any date is not legal (taking into account leap years!)
-      * If all dates are in the same calendar year
+      * Any date is not legal (taking into account leap years!)
+      * All dates are in the same calendar year
 
    - Use *expression functions* for all validation routines
 

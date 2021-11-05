@@ -5,12 +5,10 @@ procedure Main is
    -- Some of the radar code is already in place, it is just missing the
    -- high-level interface to handle incoming objects.
 
-   -- QUESTION 1 - Part A
-   --
-   -- Define a type Object_Status_T that has four possible values
-   -- Out_Of_Range, Tracked, Untracked, Selected
    type Object_Status_T is (Out_Of_Range, Tracked, Cleared, Selected);
 
+   -- QUESTION 1 - Part A
+   --
    -- Define a type Angle_Degrees_T that is modulo 360
    type Angle_Degrees_T is mod 360;
 
@@ -21,13 +19,13 @@ procedure Main is
    -- Define a subtype Speed_Kph_T that is a Float between 0 and 50 km/h
    subtype Speed_Kph_T is Float range 0.0 .. 50.0;
 
-   -- QUESTION 1 - Part B
-   --
-   -- Declare John_Connor, an Object_Status_T with value Out_Of_Range
+
    John_Connor : Object_Status_T := Out_Of_Range;
 
-   -- Declare Radar_Angle to be an Angle_Degrees_T with a starting value
-   Radar_Angle : Angle_Degrees_T := 120;
+   -- QUESTION 1 - Part B
+   --
+   -- Set Radar_Angle to be an Angle_Degrees_T with a starting value
+   Radar_Angle : Angle_Degrees_T := 180;
 
    -- Declare an Object_Distance_Km_T named Distance_Closest_Object, set to 10km
    Distance_Closest_Object : Object_Distance_Km_T := 10.0;
@@ -35,9 +33,10 @@ procedure Main is
    -- Declare a Speed_Kph_T named Running_Speed, set to 25km/h
    Running_Speed : Speed_Kph_T := 25.0;
 
-   -- Declare a Float named Time_To_Arrival, calculated as
-   -- Distance_Closest_Object / Running_Speed * 3600
+   -- Assign Time_To_Arrival to
+   -- Distance_Closest_Object divided by Running_Speed * 3600
    Time_To_Arrival : Float := Distance_Closest_Object / Running_Speed * 3600.0;
+
 begin
    -- This line will compile if the declarations are OK
    Radar_Internals.Time_Step (Float (Radar_Angle), Time_To_Arrival,
@@ -80,9 +79,26 @@ begin
    -- QUESTION 3 - Quiz
    --
    -- a. What happens if we want to rotate the radar by 361 degrees?
-   -- b. There is a last minute change in the spec: John Connor is know in
-   --     a new "Friend" status, make changes to the code to allow for that.
+
+   -- This won't compile: 361 is not a valid `Angle_Degrees_T`
+   --     Radar_Angle := Radar_Angle + 361;
+
+   -- This will work though, end result is identical to adding 1 degree
+   Radar_Angle := Radar_Angle + 359;
+   Radar_Angle := Radar_Angle + 2;
+
+   -- b. There is a last minute change in the spec: John Connor is now in
+   --    the "Friend" status, make changes to the code to allow for that.
+
+   -- Simply add a Friend value to Object_Status_T and call
+   --    John_Connor := Friend;
+   -- Notice that Time_Step handles the new enumeral without issue
+
    -- c. What happens to the E.T.A. if Running_Speed is 0? Try it.
+
+   -- Running speed is used as a divisor, so there will be a division
+   -- by 0. This will either return a NaN or raise a Constraint_Error
+   -- depending on value of Real'Machine_Overflows.
 
    -- QUESTION 4 - Advanced
    --

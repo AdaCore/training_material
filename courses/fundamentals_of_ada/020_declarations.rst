@@ -18,7 +18,7 @@ Introduction
 Identifiers
 ---------------------
 
-.. image:: ../../images/identifier_flow.png
+.. image:: identifier_flow.png
    :width: 60%
 
 .. container:: columns
@@ -653,7 +653,7 @@ Scope and "Lifetime"
 
     - C's :c:`static`, :c:`auto` etc...
 
-.. image:: ../../images/block_scope_example.jpeg
+.. image:: block_scope_example.jpeg
     :height: 50%
 
 -------------

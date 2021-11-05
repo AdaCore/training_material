@@ -177,7 +177,7 @@ Pre/Postcondition Semantics
 
 |
 
-.. image:: ../../images/pre_and_post_insertion_flow.png
+.. image:: pre_and_post_insertion_flow.png
    :width: 90%
 
 -----------------------------
@@ -520,14 +520,17 @@ What would the following expressions evaluate to in the Postcondition when calle
 .. list-table::
 
    * - Database'Old(Index)
+
      - :animate:`11`
      - :animate:`Use new index in copy of original Database`
 
    * - Database(Index`Old)
+
      - :animate:`-1`
      - :animate:`Use copy of original index in current Database`
 
    * - Database(Index)'Old
+
      - :animate:`10`
      - :animate:`Evaluation of Database(Index) before call`
 

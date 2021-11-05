@@ -9,16 +9,22 @@ procedure Main is
    --
    -- Declare Running_Calculation of type Boolean, set to False
    Running_Calculation : Boolean := False;
+
    -- Declare Active_Processors, a Positive set to 1
    Active_Processors : Positive := 1;
+
    -- Declare All_Active_Processors, set to the value of Active_Processors
    All_Active_Processors : Positive := Active_Processors;
+
    -- Declare Distance_Meters, a Float with a value of 2
    Distance_Meters : Float := 2.0;
+
    -- Declare Body_Weight_Kg, a *named number* with a value of 2.5 x 10^3
    Body_Weigth_Kg : constant := 2.5E+3;
+
    -- Declare State_Register, a Natural with a binary value of 1 0101 1010
    State_Register : Natural := 2#1_0101_1010#;
+
 begin
 
    -- QUESTION 2 - Part A
@@ -65,5 +71,4 @@ begin
    -- and are now using only one processor.
    Running_Calculation := False;
    All_Active_Processors := Active_Processors;
-
 end Main;

@@ -19,13 +19,13 @@ Introduction
 .. code:: Ada
 
    declare
-     type Hours is digits 6;
-     type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
-     type Schedule is array (Days) of Hours;
-     Workdays : Schedule;
+      type Hours is digits 6;
+      type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+      type Schedule is array (Days) of Hours;
+      Workdays : Schedule;
    begin
-     ...
-     Workdays (Mon) := 8.5;
+      ...
+      Workdays (Mon) := 8.5;
 
 -------------
 Terminology
@@ -280,21 +280,27 @@ Quiz
    X1, Y1 : Array1_T;
    X2, Y2 : Array2_T;
 
-Which statement is not legal?
+.. container:: columns
+
+ .. container:: column
+
+   Which statement is not legal?
 
    A. ``X1(1) := Y1(1);``
    B. ``X1 := Y1;``
    C. ``X1(1) := X2(1);``
    D. :answermono:`X2 := X1;`
 
-.. container:: animate
+ .. container:: column
 
-   Explanations
+  .. container:: animate
 
-   A. Legal - elements are :ada:`Boolean`
-   B. Legal - object types match
-   C. Legal - elements are :ada:`Boolean`
-   D. Although the sizes are the same and the elements are the same, the type is different
+    Explanations
+
+    A. Legal - elements are :ada:`Boolean`
+    B. Legal - object types match
+    C. Legal - elements are :ada:`Boolean`
+    D. Although the sizes are the same and the elements are the same, the type is different
 
 ===========================
 Unconstrained Array Types
@@ -465,12 +471,12 @@ Arrays of Arrays
 .. code:: Ada
 
    declare
-     type Array_of_10 is array (1..10) of Integer;
-     type Array_of_Array is array (Boolean) of Array_of_10;
-     A : Array_of_Array;
+      type Array_of_10 is array (1..10) of Integer;
+      type Array_of_Array is array (Boolean) of Array_of_10;
+      A : Array_of_Array;
    begin
-     ...
-     A (True)(3) := 42;
+      ...
+      A (True)(3) := 42;
 
 ------
 Quiz
@@ -485,21 +491,27 @@ Quiz
    Y : Array1_T := (1, 2, 3, 4);
    Z : Array2_T := (1, 2, 3, 4);
 
-Which statement is illegal?
+.. container:: columns
 
-   A. :answermono:`X(1) := Y(1);`
-   B. ``Y(1) := Z(1);``
+ .. container:: column
+
+   Which statement is illegal?
+
+   A. :answermono:`X (1) := Y (1);`
+   B. ``Y (1) := Z (1);``
    C. ``Y := X;``
    D. ``Z := X;``
 
-.. container:: animate
+ .. container:: column
+
+  .. container:: animate
 
    Explanations
 
-   A. First index of :ada:`Array_T` is first value in :ada:`Integer` - so :ada:`X(1)` is not in range
-   B. Legal - indices are both in range
-   C. Legal - arrays are same type and same size
-   D. Legal - :ada:`X` has been constrained to correct size
+   A. :ada:`Array_T` starts at :ada:`Integer'First` not :ada:`1`
+   B. OK, both in range
+   C. OK, same type and size
+   D. OK, same type and size
 
 ============
 Attributes
@@ -566,33 +578,29 @@ Attributes' Benefits
 Nth Dimension Array Attributes
 --------------------------------
 
-.. container:: columns
+* Attribute with **parameter**
 
- .. container:: column
+.. code:: Ada
 
-    * Attribute parameter indicates dimension requested
+  T'Length (n)
+  T'First (n)
+  T'Last (n)
+  T'Range (n)
 
-       - ``T'Length(n)``
-       - ``T'First(n)``
-       - ``T'Last(n)``
-       - ``T'Range(n)``
-       - where n is the dimension required, including 1
+- ``n`` is the dimension
 
-          + if 'n' is not specified, it defaults to 1
+  + defaults to 1
 
- .. container:: column
+.. code:: Ada
 
-    .. code:: Ada
+   type Two_Dimensioned is array
+      (1 .. 10, 12 .. 50) of T;
+   TD : Two_Dimensioned;
 
-       type Two_Dimensioned is array
-          (1 .. 10, 12 .. 50) of T;
-       TD : Two_Dimensioned;
-
-    * :ada:`TD'First` (2) is 12
-    * :ada:`TD'Last` (2) is 50
-    * :ada:`TD'Length` (2) is 39
-    * :ada:`TD'first` is 1 (same as :ada:`TD'first(1)`)
-    * :ada:`TD'last` is 10 (same as :ada:`TD'last(1)`)
+* :ada:`TD'First (2) = 12`
+* :ada:`TD'Last  (2) = 50`
+* :ada:`TD'Length (2) = 39`
+* :ada:`TD'First = TD'First (1) = 1`
 
 ------
 Quiz
@@ -602,19 +610,24 @@ Quiz
 
    subtype Index1_T is Integer range 0 .. 7;
    subtype Index2_T is Integer range 1 .. 8;
-   type Array_T is array (0..7, 1..8, Boolean) of Integer;
+   type Array_T is array (Index1_T, Index2_T) of Integer;
    X : Array_T;
 
-Which description is incorrect?
+Which comparison is False?
 
-   A. ``X'First(2) is 1``
-   B. :answermono:`X'Range(3) is True .. False;`
+   A. ``X'Last(2) = Index2_T'Last``
+   B. :answermono:`X'Last(1)*X'Last(2) = X'Length(1)*X'Length(2)`
    C. ``X'Length(1) = X'Length(2)``
    D. ``X'Last(1) = 7``
 
 .. container:: animate
 
-   :ada:`Boolean` enumeration is :ada:`( False, True )`
+   Explanations
+
+   A. 8 = 8
+   B. 7*8 /= 8*8
+   C. 8 = 8
+   D. 7 = 7
 
 ============
 Operations
@@ -664,7 +677,8 @@ Extra Object-Level Operations
 
    .. code:: Ada
 
-      type String_Type is array ( integer range <> ) of character;
+      type String_Type is array
+        (Integer range <>) of Character;
       A : constant String_Type := "foo";
       B : constant String_Type := "bar";
       C : constant String_Type := A & B;
@@ -676,113 +690,107 @@ Extra Object-Level Operations
 
    - Portion of array
 
----------
-Slicing
----------
-
-* "Slices" out a contiguous part of an array
-
-   - Consisting of zero or more components
-
-* Allowed on any 1-dimensional array type
-* Any component type is allowed, not just `Character`
-
-.. code:: Ada
-
-   Full_Name : String := "Monty Python";
-   -- print all the characters
-   Put_Line (Full_Name);
-   -- print the last part
-   Put_Line (Full_Name (7..12));
-   -- update the first part
-   Full_Name (1 .. 5) := "Ariel";
-
-.. list-table::
-
-  * - M
-
-    - O
-    - N
-    - T
-    - Y
-
-    -
-
-    - P
-    - Y
-    - T
-    - H
-    - O
-    - N
-
-  * - 1
-
-    -
-    -
-    -
-
-    - 5
-
-    -
-
-    - 7
-
-    -
-    -
-    -
-    -
-
-    - 12
-
-------------------------------
-Common Slicing Idiom Example
-------------------------------
-
-.. code:: Ada
-
-   function Remove_Spaces (Str : String) return String is
-      Ret_Val   : String (1 .. Str'Length);
-      Last_Used : Natural := 0;
-   begin
-      for C in Str'First .. Str'Last loop
-         if Str (C) /= ' ' then
-            Last_Used := Last_Used + 1;
-            -- Build return string
-            Ret_Val (Last_Used) := Str (C);
-         end if;
-      end loop;
-      -- Return slices of return string that we need
-      -- (If Last_Used = 0, will return an empty string)
-      return Ret_Val (1 .. Last_Used);
-   end Remove_Spaces;
-
 --------------------
 "Membership" Tests
 --------------------
 
-* Shorthand for constraint checking
+* Constraint checking
 
    - Range constraints
    - Index constraints
    - et cetera
 
-* Uses reserved word :ada:`in`
+* Reserved word :ada:`in`
 
 .. code:: Ada
 
    procedure Test is
      type Humanity is array (1 .. N) of Age;
-     ...
      People : Humanity := Some_Initial_Value;
-     Index : Integer range People'First - 1 ..  People'Last :=
-             People'First - 1;
+     Index : Integer range People'First - 1 ..  People'Last
+       := People'First - 1;
    begin
-     ...
      for K in People'Range loop
-       -- set Index to K if found
-       -- desired value
-     end loop;
-     if Index in People'Range then -- good
+     ...
+     if Index in People'Range then
+
+----------
+Examples
+----------
+
+.. include:: examples/050_array_types/slices.rst
+
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#slices`
+
+---------
+Slicing
+---------
+
+* Contiguous subsection of an array
+* On any one-dimensional array type
+
+  - Any component type
+
+.. code:: Ada
+
+   procedure Test is
+     S1 : String (1 .. 9) := "Hi Adam!!";
+     S2 : String := "We love    !";
+   begin
+     S2 (9..11) := S1 (4..6);
+     Put_Line (S2);
+   end Test;
+
+Result: ``We love Ada!``
+
+-------------------------------
+Slicing With Explicit Indexes
+-------------------------------
+
+* Imagine a requirement to have a name with two parts: first and last
+
+.. code:: Ada
+
+   declare
+      Full_Name : String (1 .. 20);
+   begin
+      Put_Line (Full_Name);
+      Put_Line (Full_Name (1..10));  -- first half of name
+      Put_Line (Full_Name (11..20)); -- second half of name
+
+-----------------------------------------
+Slicing With Named Subtypes for Indexes
+-----------------------------------------
+
+* Subtype name indicates the slice index range
+
+   - Names for constraints, in this case index constraints
+
+* Enhances readability and robustness
+
+.. code:: Ada
+
+   procedure Test is
+     subtype First_Name is Positive range 1 .. 10;
+     subtype Last_Name is Positive range 11 .. 20;
+     Full_Name : String(First_Name'First..Last_Name'Last);
+   begin
+     Put_Line(Full_Name(First_Name)); -- Full_Name(1..10)
+     if Full_Name (Last_Name) = SomeString then ...
+
+------------------------------------
+Dynamic Subtype Constraint Example
+------------------------------------
+
+* Useful when constraints not known at compile-time
+* Example: remove file name extension
+
+.. code:: Ada
+
+    File_Name
+      (File_Name'First
+      ..
+      Index (File_Name, '.', Direction => Backward));
 
 ------
 Quiz
@@ -990,21 +998,29 @@ Quiz
       end loop;
    end;
 
-Which output is correct?
+.. container:: columns
 
-   A. 1 1 1 1 22 23 1 32 33
-   B. :answer:`33 32 1 23 22 1 1 1 1`
-   C. 0 0 0 0 22 23 0 32 33
-   D. 33 32 0 23 22 0 0 0 0
+ .. container:: column
 
-.. container:: animate
+   Which output is correct?
 
-   Explanations
+      A. 1 1 1 1 22 23 1 32 33
+      B. :answer:`33 32 1 23 22 1 1 1 1`
+      C. 0 0 0 0 22 23 0 32 33
+      D. 33 32 0 23 22 0 0 0 0
 
-   A. This is the result if :ada:`reverse` was not specified
-   B. Start with last element (3,3) and work backwards
-   C. This might be the result without :ada:`Default_Component_Value.` (Zeroes may not be correct - could be any uninitialized value.)
-   D. Result without :ada:`Default_Component_Value` and :ada:`reverse`
+ .. container:: column
+
+  .. container:: animate
+
+     Explanations
+
+     A. There is a :ada:`reverse`
+     B. Yes
+     C. Default value is 1
+     D. No
+
+NB: Without :ada:`Default_Component_Value`, init. values are random
 
 ============
 Aggregates
@@ -1270,7 +1286,7 @@ Which statement is correct?
 
    A. ``X := (1, 2, 3, 4 => 4, 5 => 5);``
    B. :answermono:`X := (1..3 => 100, 4..5 => -100, others => -1);`
-   C. ``X := (J => -1, J + 1..A'Last => 1);``
+   C. ``X := (J => -1, J + 1..X'Last => 1);``
    D. ``X := (1..3 => 100, 3..5 => 200);``
 
 .. container:: animate
@@ -1318,107 +1334,6 @@ Anonymous Array Types
          -- legal assignment of values
          A(J) := B(K);
        end;
-
-========
-Slices
-========
-
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/slices.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#slices`
-
----------
-Slicing
----------
-
-.. container:: columns
-
- .. container:: column
-
-    * Specifies a contiguous subsection of an array
-    * Allowed on any one-dimensional array type
-
-       - Any component type
-
- .. container:: column
-
-    .. code:: Ada
-
-       procedure Test is
-         S1 : String (1 .. 9)
-            := "Hi Adam!!";
-         S2 : String
-            := "We love    !";
-       begin
-         Put_Line (S1 (4..6));
-         Put_Line (S2);
-         S2 (9..11) := S1 (4..6);
-         Put_Line (S2);
-         S2 (12) := '?';
-         Put_Line (S2);
-
--------------------------------
-Slicing With Explicit Indexes
--------------------------------
-
-* Imagine a requirement to have a name with two parts: first and last
-
-.. code:: Ada
-
-   declare
-     Full_Name : String (1 .. 20);
-   begin
-     Put_Line (Full_Name);
-     Put_Line (Full_Name (1..10));  -- first half of name
-     Put_Line (Full_Name (11..20)); -- second half of name
-
------------------------------------------
-Slicing With Named Subtypes for Indexes
------------------------------------------
-
-* Subtype name indicates the slice index range
-
-   - Names for constraints, in this case index constraints
-
-* Enhances readability and robustness
-
-.. code:: Ada
-
-   procedure Test is
-     subtype First_Name is Positive range 1 .. 10;
-     subtype Last_Name is Positive range 11 .. 20;
-     Full_Name : String(First_Name'First..Last_Name'Last);
-   begin
-     Put_Line(Full_Name(First_Name)); -- Full_Name(1..10)
-     if Full_Name (Last_Name) = SomeString then ...
-
-------------------------------------
-Dynamic Subtype Constraint Example
-------------------------------------
-
-* Useful when constraints not known at compile-time
-* Example: find the matching "raw" file name
-
-   - If the filename begins with CRW, we set the extension to CRW, otherwise we set it to CR2
-
-.. code:: Ada
-
-   -- actual bounds come from initial value
-   Image_File_Name : String := ...
-   Matching_Raw_File_Name : String := Image_File_Name;
-   subtype Prefix_Part is Positive range Image_File_Name'First ..
-                                         Image_File_Name'First + 2;
-   subtype Extension_Part is Positive range Image_File_Name'Last - 2 ..
-                                            Image_File_Name'Last;
-   begin
-     if Image_File_Name (Prefix_Part) = "CRW" then
-        Matching_Raw_File_Name(Extension_Part) := "CRW";
-     else
-       Matching_Raw_File_Name(Extension_Part) := "CR2";
 
 ========
 Lab

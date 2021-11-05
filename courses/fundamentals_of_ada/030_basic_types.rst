@@ -89,7 +89,7 @@ Ada "Named Typing"
 Categories of Types
 ---------------------
 
-.. image:: ../../images/types_tree.png
+.. image:: types_tree.png
 
 --------------
 Scalar Types
@@ -765,16 +765,19 @@ Language-Defined Character Types
 
    - 8-bit Latin-1
    - Base element of :ada:`String`
+   - Uses attributes :ada:`'Image` / :ada:`'Value`
 
 * :ada:`Wide_Character`
 
    - 16-bit Unicode
    - Base element of :ada:`Wide_Strings`
+   - Uses attributes :ada:`'Wide_Image` / :ada:`'Wide_Value`
 
 * :ada:`Wide_Wide_Character`
 
    - 32-bit Unicode
    - Base element of :ada:`Wide_Wide_Strings`
+   - Uses attributes :ada:`'Wide_Wide_Image` / :ada:`'Wide_Wide_Value`
 
 -----------------------------
 Character Oriented Packages
@@ -888,7 +891,7 @@ Why Boolean Isn't Just An Integer?
 
  .. container:: column
 
-    .. image:: ../../images/hete-2_satellite.jpeg
+    .. image:: hete-2_satellite.jpeg
 
 ------------------------------------
 Why Boolean Isn't Just An Integer!
