@@ -6,11 +6,7 @@ package body Task_Select is
    task body Select_Loop_Task is
    begin
 
-      accept Start do
-         Put_Line ("Select_Loop_Task started at" &
-                   Day_Duration'Image (Seconds (Clock)));
-      end Start;
-
+      --$ begin cut
       loop
          select
             accept Receive_Message (V : String) do
@@ -24,10 +20,12 @@ package body Task_Select is
             accept Stop;
          or
             delay 0.5;
-            Put_Line ("No more waiting at" & Day_Duration'Image (Seconds (Clock)));
+            Put_Line
+              ("No more waiting at" & Day_Duration'Image (Seconds (Clock)));
             exit;
          end select;
       end loop;
+      --$ end cut
 
    end Select_Loop_Task;
 
