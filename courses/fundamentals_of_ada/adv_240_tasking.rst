@@ -276,17 +276,24 @@ Protected: Functions and Procedures
 
 * A :ada:`function` can **get** the state
 
+   - **Multiple-Readers**
    - Protected data is **read-only**
    - Concurrent call to :ada:`function` is **allowed**
    - **No** concurrent call to :ada:`procedure`
 
 * A :ada:`procedure` can **set** the state
 
+   - **Single-Writer**
    - **No** concurrent call to either :ada:`procedure` or :ada:`function`
 
 * In case of concurrency, other callers get **blocked**
 
     - Until call finishes
+
+* Support for read-only locks **depends on OS**
+
+    - Windows has **no** support for those
+    - In that case, :ada:`function` are **blocking** as well
 
 ------------------------------------------
 Example: Protected Objects - Declaration
