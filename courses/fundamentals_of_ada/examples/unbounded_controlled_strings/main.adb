@@ -1,6 +1,6 @@
 with Unbounded_String_Pkg; use Unbounded_String_Pkg;
 
-procedure Test is
+procedure Main is
    U1 : Ustring_T;
 begin
    U1 := To_Ustring_T ("Hello");
