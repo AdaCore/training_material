@@ -3,8 +3,6 @@ with Task_Select; use Task_Select;
 
 procedure Main is
 begin
-   Put_Line ("calling start");
-   Select_Loop_Task.Start;
    Select_Loop_Task.Receive_Message ("1");
    Select_Loop_Task.Send_Message ("A");
    Select_Loop_Task.Send_Message ("B");
