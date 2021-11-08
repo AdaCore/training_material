@@ -1,4 +1,3 @@
---$ begin cut
 with Ada.Unchecked_Deallocation;
 
 package body Unbounded_String_Pkg is
@@ -17,21 +16,3 @@ package body Unbounded_String_Pkg is
 
    function "&" (L, R : Ustring_T) return Ustring_T is
       (Controlled with Ref => new String'(L.Ref.all & R.Ref.all));
---$ end cut
-
---$ begin cut
-   procedure Free_String is new Ada.Unchecked_Deallocation
-     (String, String_Ref);
-
-   procedure Finalize (Object : in out Ustring_T) is
-   begin
-      Free_String (Object.Ref);
-   end Finalize;
-
-   procedure Adjust (Object : in out Ustring_T) is
-   begin
-      Object.Ref := new String'(Object.Ref.all);
-   end Adjust;
-
-end Unbounded_String_Pkg;
---$ end cut

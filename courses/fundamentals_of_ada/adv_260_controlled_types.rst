@@ -106,9 +106,9 @@ Assignment
    - The copy step copies the access value
    - :ada:`Adjust` either clones a "deep copy" of the referenced object or increments a reference count
 
-=========
-Example
-=========
+============================
+Example: Unbounded Strings
+============================
 
 ----------------------------------
 Unbounded String via Access Type
@@ -126,21 +126,35 @@ Unbounded String via Access Type
 Unbounded String Usage
 ------------------------
 
-.. include:: examples/adv_260_controlled_types/main.adb
+.. include:: examples/unbounded_controlled_strings/main.adb
     :code: Ada
 
------------------------------
-Unbounded String Definition
------------------------------
+------------------
+Public Interface
+------------------
 
-.. include:: examples/adv_260_controlled_types/unbounded_string_pkg.ads
+.. include:: examples/unbounded_controlled_strings/extracts/unbounded_string_pkg.public.ads
     :code: Ada
 
----------------------------------
-Unbounded String Implementation
----------------------------------
+-----------
+Full View
+-----------
 
-.. include:: examples/adv_260_controlled_types/unbounded_string_pkg.adb
+.. include:: examples/unbounded_controlled_strings/extracts/unbounded_string_pkg.private.ads
+    :code: Ada
+
+-----------------------------------
+Unbounded String Body: Operations
+-----------------------------------
+
+.. include:: examples/unbounded_controlled_strings/extracts/unbounded_string_pkg.operations.adb
+    :code: Ada
+
+-------------------------------
+Unbounded String Body: Memory
+-------------------------------
+
+.. include:: examples/unbounded_controlled_strings/extracts/unbounded_string_pkg.memory.adb
     :code: Ada
 
 ========
