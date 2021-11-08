@@ -100,12 +100,13 @@ class AdaCut:
             assert False, "Bug!"
 
 
-
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("input_file")
     ap.add_argument("-o", "--output-file")
     ap.add_argument("-c", "--cut", type=int)
+    ap.add_argument("-d", "--dedent", action="store_true",
+                    help="Dedent by the first-line indent")
     ap.add_argument("-C", "--cut-counting", action="store_true",
                     help="Return the number of cuts in the file")
     ap.add_argument(
@@ -120,10 +121,19 @@ if __name__ == "__main__":
         out = sys.stdout
 
     cut = AdaCut(args.cut, args.mode)
+    dedent_cols = None
     with open(args.input_file) as fin:
         for l in fin:
             lp = cut.new_line(l)
             if lp != None:
+                if args.dedent:
+                    if dedent_cols is None:
+                        dedent_cols = len(lp) - len(lp.lstrip())
+
+                    if lp.strip() != '':
+                        assert lp[:dedent_cols] == ' ' * dedent_cols, repr(lp)
+                        lp = lp[dedent_cols:]
+
                 print(lp, file=out, end="")
 
     if args.cut_counting:
