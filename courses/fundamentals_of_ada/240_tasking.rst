@@ -373,14 +373,14 @@ Calling an Entry With a Delay Protection
 
 .. code:: Ada
 
-   task type Msg_Box_T is
+   task Msg_Box is
       entry Receive_Message (V : String);
-   end Msg_Box_T;
+   end Msg_Box;
 
    procedure Main is
    begin
       select
-         T.Receive_Message ("A");
+         Msg_Box.Receive_Message ("A");
       or
          delay 50.0;
       end select;
