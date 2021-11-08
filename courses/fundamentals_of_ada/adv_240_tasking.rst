@@ -14,7 +14,8 @@ Introduction
 A Simple Task
 ---------------
 
-* Ada implements the notion of a **thread** via the task entity
+* Parallel code execution via **task**
+* :ada:`limited` types (No copies allowed)
 
    .. code:: Ada
 
@@ -34,74 +35,104 @@ A Simple Task
          end loop;
       end;
 
-* A task is started when its declaration scope is elaborated
-* Its enclosing scope exits when all tasks have finished
+* A task is started when its declaration scope is **elaborated**
+* Its enclosing scope exits when **all tasks** have finished
+
+--------------------------
+Two Synchronization Models
+--------------------------
+
+* Active
+
+   - Rendezvous
+   - **Client / Server** model
+   - Server **entries**
+   - Client **entry calls**
+
+* Passive
+
+   - **Protected objects** model
+   - Concurrency-safe **semantics**
 
 =======
 Tasks
 =======
 
-----------
-Examples
-----------
-
-.. include:: examples/adv_240_tasking/tasks.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#tasks`
-
-------------------------
-Interacting With Tasks
-------------------------
-
-* Active synchronization
-
-   - Client/server model of interaction ("asymmetric rendezvous")
-   - Server task declares **entries** for interacting
-
-      + Services it offers to other tasks
-      + Can wait for a client task to request its service
-
-   - Client task makes an **entry call**
-
-      + Request for a service offered by another task
-      + Will wait for the server task to **accept** and handle entry call
-
-* Passive synchronization
-
-   - Uses data objects with concurrency-safe access semantics
-   - **Protected objects** in Ada - more about them later
-
 ------------------------
 Rendezvous Definitions
 ------------------------
 
-* A task can declare entries for interacting and wait for an entry call to arrive
+* **Server** declares several :ada:`entry`
+* Client calls entries like subprograms
+* Server :ada:`accept` the client calls
+* At each standalone :ada:`accept`, server task **blocks**
+
+    - **Until** a client calls the related :ada:`entry`
 
    .. code:: Ada
 
-      task T is
+      task type Msg_Box_T is
          entry Start;
-         entry Receive_Message (V : String);
-      end T;
+         entry Receive_Message (S : String);
+      end Msg_Box_T;
 
-      task body T is
+      task body Msg_Box_T is
       begin
          loop
-            accept Start do
-               Put_Line ("start");
-            end Start;
-            accept Receive_Message(V : String) do
-               Put_Line ("Receive " & V);
+            accept Start;
+            Put_Line ("start");
+
+            accept Receive_Message (S : String) do
+               Put_Line (S);
             end Receive_Message;
          end loop;
-      end T;
+      end Msg_Box_T;
 
-* When reaching :ada:`accept` statement, the task waits until **entry** is called
+------------------------
+Rendezvous Entry Calls
+------------------------
 
-.. container:: speakernote
+* Upon calling an :ada:`entry`, client **blocks**
 
-   The loop requires Accept and ReceiveMessage to be called one followed by other
+     - **Until** server reaches :ada:`end` of its :ada:`accept` block
+
+   .. code:: Ada
+
+      Put_Line ("calling start");
+      T.Start;
+      Put_Line ("calling receive 1");
+      T.Receive_Message ("1");
+      Put_Line ("calling receive 2");
+      T.Receive_Message ("2");
+
+* May be executed as follows:
+
+   .. code:: Ada
+
+      calling start
+      start             -- May switch place with line below
+      calling receive 1 -- May switch place with line above
+      Receive 1
+      calling receive 2
+      -- Blocked until another task calls Start
+
+------------------------
+Accepting a Rendezvous
+------------------------
+
+* :ada:`accept` statement
+
+   - Wait on single entry
+   - If entry call waiting: Server handles it
+   - Else: Server **waits** for an entry call
+
+* :ada:`select` statement
+
+   - **Several** entries accepted at the **same time**
+   - Can **time-out** on the wait
+   - Can be **not blocking** if no entry call waiting
+   - Can **terminate** if no clients can **possibly** make entry call
+   - Can **conditionally** accept a rendezvous based on a **guard expression**
 
 ------------------------
 Rendezvous Calls
@@ -148,6 +179,27 @@ Accepting a Rendezvous
    - Withdraw its offer if no rendezvous is immediately available
    - Terminate if no clients can possibly call its entries
    - Conditionally accept a rendezvous based on a guard expression
+
+---------------------------
+Example: Task - Declaration
+---------------------------
+
+.. include:: examples/task_very_simple/src/tasks.ads
+    :code: Ada
+
+--------------------
+Example: Task - Body
+--------------------
+
+.. include:: examples/task_very_simple/src/tasks.adb
+    :code: Ada
+
+---------------
+Example: Main
+---------------
+
+.. include:: examples/task_very_simple/src/main.adb
+    :code: Ada
 
 ------
 Quiz
@@ -209,64 +261,46 @@ Quiz
 Protected Objects
 ===================
 
-----------
-Examples
-----------
-
-.. include:: examples/adv_240_tasking/protected_objects.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#protected-objects`
-
 -------------------
 Protected Objects
 -------------------
 
-* Tasks are **active** objects
-* Synchronization can be achieved through **passive** objects that hold and manage values
-* A protected object is an object with an interface
-
-   - No concurrent modifications allowed
-
-* It is a natural replacement for a lot of cases where a semaphore is needed
-
-.. code:: Ada
-
-   protected Object is
-      --  Only subprograms are allowed here
-      procedure Set (V : Integer);
-      function Get return Integer;
-   private
-      --  Data declaration
-      Local : Integer;
-   end Object;
-
-   protected body Object is
-      procedure Set (V : Integer) is
-      begin
-         Local := V;
-      end Set;
-
-      function Get return Integer is
-      begin
-         return Local;
-      end Get;
-   end Object;
+* **Multitask-safe** accessors to get and set state
+* **No** direct state manipulation
+* **No** concurrent modifications
+* :ada:`limited` types (No copies allowed)
 
 -------------------------------------
-Protected: Functions Vs. Procedures
+Protected: Functions and Procedures
 -------------------------------------
 
-* Procedures can modify the state of the protected data
+* A :ada:`function` can **get** the state
 
-   - No concurrent access to procedures can be done
-   - No procedure can be called when functions are called
+   - Protected data is **read-only**
+   - Concurrent call to :ada:`function` is **allowed**
+   - **No** concurrent call to :ada:`procedure`
 
-* Functions are just ways to retrieve values, the protected data is read-only
+* A :ada:`procedure` can **set** the state
 
-   - Concurrent access to functions can be done
+   - **No** concurrent call to either :ada:`procedure` or :ada:`function`
 
-* No function can be called while a procedure is executing
+* In case of concurrency, other callers get **blocked**
+
+    - Until call finishes
+
+------------------------------------------
+Example: Protected Objects - Declaration
+------------------------------------------
+
+.. include:: examples/protected_objects/src/protected_objects.ads
+    :code: Ada
+
+-----------------------------------
+Example: Protected Objects - Body
+-----------------------------------
+
+.. include:: examples/protected_objects/src/protected_objects.adb
+    :code: Ada
 
 ------
 Quiz
@@ -317,156 +351,148 @@ What of the following completions for :ada:`P`'s members is illegal?
 Task and Protected Types
 ==========================
 
-----------
-Examples
-----------
+---------------
+Task Activation
+---------------
 
-.. include:: examples/adv_240_tasking/task_and_protected_types.rst
+* Instantiated tasks start running when **activated**
+* On the **stack**
 
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#task-and-protected-types`
+   - When **enclosing** declarative part finishes **elaborating**
 
-------------
-Task Types
-------------
+* On the **heap**
 
-* It is possible to create task types
-
-   - Objects can be instantiated on the stack or on the heap
-
-* Tasks instantiated on the stack are activated at the end of the elaboration of their enclosing declarative part
-
-   - As if they were declared there
-
-* Tasks instantiated on the heap are activated right away
-* Tasks are limited objects (no copies allowed)
+   - **Immediately** at instantiation
 
 .. code:: Ada
 
-   task type T is
-      entry Start;
-   end T;
+   task type First_T is ...
+   type First_T_A is access all First_T;
 
-   type T_A is access all T;
-
-   task body T is
-   begin
-      accept Start;
-   end T;
+   task body First_T is ...
    ...
-      V1 : T;
-      V2 : A_T;
+   declare
+      V1 : First_T;
+      V2 : First_T_A;
+   begin  -- V1 is activated
+      V2 := new First_T;  -- V2 is activated immediately
+
+--------------------
+Single Declaration
+--------------------
+
+ * Instanciate an **anonymous** task (or protected) type
+ * Declares an object of that type
+
+    - Body declaration is then using the **object** name
+
+ .. code:: Ada
+
+   task Msg_Box is
+       -- Msg_Box task is declared *and* instanciated
+      entry Receive_Message (S : String);
+   end Msg_Box_T;
+
+   task body Msg_Box is
    begin
-      V1.Start;
-      V2 := new T;
-      V2.all.Start;
+      loop
+         accept Receive_Message (S : String) do
+            Put_Line (S);
+         end Receive_Message;
+      end loop;
+   end Msg_Box;
 
-------------------------
-Protected Object Types
-------------------------
+-----------
+Task Scope
+-----------
 
-* Like tasks, protected objects can be defined through types
-* Instantiation can then be done on the heap or the stack
-* Protected object types are :ada:`limited` types
+* Nesting is possible in **any** declarative block
+* Scope has to **wait** for tasks to finish before ending
+* At library level: program ends only when **all tasks** finish
 
-.. code:: Ada
+   .. code:: Ada
 
-   protected type Register_T is
-      function Read return Integer;
-      procedure Write (Value : Integer);
-   private
-      Register : Integer;
-   end Register_T;
+      package P is
+         task T;
+      end P;
 
-   protected body Register_T is
-      function Read return Integer is
-      begin
-         return Register;
-      end Read;
-      procedure Write (Value : Integer) is
-      begin
-         Register := Value;
-      end Write;
-   end Register_T;
+      package body P is
+         task body T is
+            loop
+               delay 1.0;
+               Put_Line ("tick");
+            end loop;
+         end T;
+      end P;
 
------------------
-Scope Of a Task
------------------
+------------------------------------------
+Example: Protected Objects - Declaration
+------------------------------------------
 
-.. container:: columns
+.. include:: examples/protected_objects_2/src/protected_objects.ads
+    :code: Ada
 
- .. container:: column
+-----------------------------------
+Example: Protected Objects - Body
+-----------------------------------
 
-    * Tasks can be nested in any declarative block
-    * When nested in a subprogram, for example, the task and the subprogram body have to finish before the subprogram ends
-    * Tasks declared at library level all have to finish before the program terminates
+.. include:: examples/protected_objects_2/src/protected_objects.adb
+    :code: Ada
 
- .. container:: column
+------------------------------
+Example: Tasks - Declaration
+------------------------------
 
-    .. code:: Ada
+.. include:: examples/protected_objects_2/src/tasks.ads
+    :code: Ada
 
-       package P is
-          task T;
-       end P;
+-----------------------
+Example: Tasks - Body
+-----------------------
 
-       package body P is
-          task body T is
-             loop
-                delay 1.0;
-                Put_Line ("tick");
-             end loop;
-          end T;
-       end P;
+.. include:: examples/protected_objects_2/extracts/tasks.body.adb
+    :code: Ada
+
+------------------
+Example: Main
+------------------
+
+.. include:: examples/protected_objects_2/src/test_protected_objects.adb
+    :code: Ada
 
 ========================
 Some Advanced Concepts
 ========================
-
-----------
-Examples
-----------
-
-.. include:: examples/adv_240_tasking/some_advanced_concepts.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_240_tasking.html#some-advanced-concepts`
 
 ------------------------------
 Waiting On Different Entries
 ------------------------------
 
 * It is convenient to be able to accept several entries
-* The :ada:`select` statements can wait simultaneously on a list of entries, and accept the first one that is requested
+* The :ada:`select` statements can wait simultaneously on a list of entries
+
+    - It accepts the **first** one that is requested
 
 .. code:: Ada
 
-   task T is
-     entry Start;
-     entry Receive_Message (V : String);
-     entry Stop;
-   end T;
-
-   task body T is
-   begin
-     accept Start;
-     loop
-       select
-         accept Receive_Message (V : String)
-         do
-           Put_Line ("Message : " & String);
-         end Receive_Message;
-       or
-         accept Stop;
-           exit;
-         end select;
-     end loop;
-   end T;
+   select
+     accept Receive_Message (V : String)
+     do
+       Put_Line ("Message : " & String);
+     end Receive_Message;
+   or
+     accept Stop;
+       exit;
+     end select;
 
 ----------------------
 Waiting With a Delay
 ----------------------
 
-* A :ada:`select` statement can wait for only a given amount of time, and then do something when that delay is exceeded
+* A :ada:`select` statement can wait with a :ada:`delay`
+
+    - If that delay is exceeded with no entry call, block is executed
+
 * The :ada:`delay until` statement can be used as well
 * There can be multiple :ada:`delay` statements
 
@@ -474,82 +500,113 @@ Waiting With a Delay
 
 .. code:: Ada
 
-   task body T is
+   select
+     accept Receive_Message (V:String) do
+       Put_Line ("Message : " & String);
+     end Receive_Message;
+   or
+     delay 50.0;
+     Put_Line ("Don't wait any longer");
+     exit;
+   end select;
+
+----------------------------
+The Delay Is Not A Timeout
+----------------------------
+
+* The :ada:`or delay` is not *really* a timeout
+* The server time to process messages is **not included**
+* In the following, the total delay can be up to **110 seconds**
+
+.. code:: Ada
+
+   procedure Update_Thingy is
    begin
-     loop
-       select
-         accept Receive_Message (V:String) do
-           Put_Line ("Message : " & String);
-         end Receive_Message;
-       or
-         delay 50.0;
-         Put_Line ("Don't wait any longer");
-         exit;
-       end select;
-     end loop;
-   end T;
-
-.. container:: speakernote
-
-   Task will wait up to 50 seconds for "Receive_Message", print a message, and then enter the loop
-   Without the "exit" it will print the message and wait another 50 seconds, and so on
+      if not Thingy_Ready then
+         delay 100.0; --  Wait for the thingy
+      end if;
+   ...
+   select
+     accept ....
+   or
+     delay 10.0;
+     Update_Thingy; 
+   end select;
 
 ------------------------------------------
 Calling an Entry With a Delay Protection
 ------------------------------------------
 
-* A call to an entry normally blocks the thread until the entry can be accepted by the task
-* It is possible to wait for a given amount of time using a :ada:`select` ... :ada:`delay` statement
-* Only one entry call is allowed
+* A call to :ada:`entry` **blocks** the task until the entry is :ada:`accept` 'ed
+* Wait for a **given amount of time** with :ada:`select ... delay`
+* Only **one** entry call is allowed
 * No :ada:`accept` statement is allowed
 
 .. code:: Ada
 
-   task T is
-      entry Receive_Message (V:String);
-   end T;
+   task Msg_Box is
+      entry Receive_Message (V : String);
+   end Msg_Box;
 
    procedure Main is
    begin
       select
-         T.Receive_Message ("A");
+         Msg_Box.Receive_Message ("A");
       or
          delay 50.0;
       end select;
    end Main;
 
-.. container:: speakernote
+----------------------------
+The Delay Is Not A Timeout
+----------------------------
 
-   Procedure will wait up to 50 seconds for "Receive_Message" to be accepted before it gives up
+* Similar to :ada:`select ... or delay`
+* The time spent by the client is actually **not bounded**
 
--------------------------------------------
-Avoid Waiting If No Entry Or Accept Ready
--------------------------------------------
-
-* The :ada:`else` part allows task to avoid waiting if the accept statements or entries are not ready to be entered
-* No delay statement is allowed in this case
+    - Delay stops on :ada:`accept`
+    - **But** the call blocks until :ada:`end` of server-side statements
 
 .. code:: Ada
 
-   task body T is
-   begin
-      select
-         accept Receive_Message (V : String) do
-            Put_Line ("Received : " & V);
-         end Receive_Message;
-      else
-         Put_Line ("Nothing to receive");
-      end select;
-   end T;
+    task body Msg_Box is
+       accept Receive_Message (S : String) do
+          delay 1000.0;
+       end Receive_Message;
+    ...
+    procedure Client is
+    begin
+       select
+          Msg_Box.Receive_Message ("My_Message")
+       or
+          delay 10.0;
+       end select;
 
-   procedure Main is
-   begin
-      select
-         T.Receive_Message ("A");
-      else
-         Put_Line ("Receive message not called");
-      end select;
-   end Main;
+----------------------------
+Non-blocking Accept or Entry
+----------------------------
+
+* Using :ada:`else`
+
+    - Task **skips** the :ada:`accept` or :ada:`entry` call if they are **not ready** to be entered
+
+* :ada:`delay` is **not** allowed in this case
+
+.. code:: Ada
+
+   select
+      accept Receive_Message (V : String) do
+         Put_Line ("Received : " & V);
+      end Receive_Message;
+   else
+      Put_Line ("Nothing to receive");
+   end select;
+   ...
+   select
+      T.Receive_Message ("A");
+   else
+      Put_Line ("Receive message not called");
+   end select;
 
 -----------------------
 Terminate Alternative
@@ -621,10 +678,9 @@ Protected Object Entries
 
    protected body Stack is
       entry Push (V : Integer) when Size < Buffer'Length is
-      [...]
-
+      ...
       entry Pop  (V : out Integer) when Size > 0 is
-      [...]
+      ...
    end Object;
 
 -------------------------------------
@@ -689,6 +745,20 @@ Queue
 
 * Same parameter values will be used on the queue
 
+-----------------------
+:ada:`requeue` Tricks
+-----------------------
+
+* Only an accepted call can be requeued
+* Accepted entries are waiting for :ada:`end`
+
+    - Not in a :ada:`select ... or delay ... else` anymore
+
+* So the following means the client blocks for **2 seconds**
+
+.. include:: examples/select_requeue_issue/extracts/tasks.bodies.adb
+   :code: Ada
+
 ------------------
 Abort Statements
 ------------------
@@ -721,7 +791,22 @@ Abort Statements
 -----------------------------------
 
 * :ada:`select` can call :ada:`abort`
-* Can abort anywhere in the processing, highly unsafe
+* Can abort anywhere in the processing
+* **Highly** unsafe
+
+-------------------------
+Multiple Select Example
+-------------------------
+
+.. include:: examples/task_select_multiple_or/extracts/task_select.select_or.adb
+    :code: Ada
+
+------------------
+Example: Main
+------------------
+
+.. include:: examples/task_select_multiple_or/src/main.adb
+    :code: Ada
 
 ========
 Lab
