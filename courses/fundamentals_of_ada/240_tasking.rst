@@ -230,13 +230,8 @@ Delay keyword
 - Relative: Blocks for at least :ada:`Duration`
 - Absolute: Blocks until a given :ada:`Calendar.Time` or :ada:`Real_Time.Time`
 
-.. code:: Ada
-
-    Relative : Duration := Seconds(5.0);
-    delay Relative;
-
-    Absolute : Time := Time_Of (2030, 10, 30);
-    delay until Absolute;
+.. include:: examples/delays/src/main.adb
+   :code: Ada
 
 ==========================
 Task and Protected Types
