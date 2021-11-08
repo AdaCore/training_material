@@ -161,7 +161,7 @@ Unbounded String Body: Memory
 Lab
 ========
 
-.. include:: labs/adv_260_controlled_types.lab.rst
+.. include:: labs/secured_tracker/adv_260_controlled_types/instructions.rst
 
 =========
 Summary
