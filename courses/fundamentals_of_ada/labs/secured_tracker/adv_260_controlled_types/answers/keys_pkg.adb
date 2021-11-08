@@ -1,29 +1,9 @@
---Spec
-with Ada.Finalization;
-package Keys_Pkg is
-
-   type Key_T is limited private;
-   function Generate return Key_T;
-   procedure Destroy (Key : Key_T);
-   function In_Use return Natural;
-   function Image (Key : Key_T) return String;
-
-private
-   type Key_T is new Ada.Finalization.Limited_Controlled with record
-      Value : Character;
-   end record;
-   procedure Initialize (Key : in out Key_T);
-   procedure Finalize (Key : in out Key_T);
-
-end Keys_Pkg;
---Spec
-
---Body
 package body Keys_Pkg is
    Global_In_Use : array (Character range 'a' .. 'z') of Boolean :=
      (others => False);
 
    pragma Warnings ( Off );
+
    function Next_Available return Character is
    begin
       for C in Global_In_Use'Range loop
@@ -67,31 +47,5 @@ package body Keys_Pkg is
    begin
       Global_In_Use (Key.Value) := False;
    end Finalize;
+
 end Keys_Pkg;
---Body
-
---Main
-with Keys_Pkg;
-with Ada.Text_IO; use Ada.Text_IO;
-procedure Main is
-
-   Keys : array (1 .. 3) of Keys_Pkg.Key_T;
-
-   procedure Generate (Count : Natural) is
-      Keys : array (1 .. Count) of Keys_Pkg.Key_T;
-   begin
-      Put_Line ("In use: " & Integer'Image (Keys_Pkg.In_Use));
-      for Key of Keys
-      loop
-         Put_Line ("   " & Keys_Pkg.Image (Key));
-      end loop;
-   end Generate;
-
-begin
-   Put_Line ("In use: " & Integer'Image (Keys_Pkg.In_Use));
-
-   Generate (4);
-   Put_Line ("In use: " & Integer'Image (Keys_Pkg.In_Use));
-
-end Main;
---Main
