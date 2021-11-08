@@ -354,6 +354,22 @@ What of the following completions for :ada:`P`'s members is illegal?
    C. Functions in a protected object cannot modify global objects
    D. Legal
 
+======
+Delays
+======
+
+-------------
+Delay keyword
+-------------
+
+- :ada:`delay` keyword part of tasking
+- Blocks for a time
+- Relative: Blocks for at least :ada:`Duration`
+- Absolute: Blocks until a given :ada:`Calendar.Time` or :ada:`Real_Time.Time`
+
+.. include:: examples/delays/src/main.adb
+   :code: Ada
+
 ==========================
 Task and Protected Types
 ==========================
