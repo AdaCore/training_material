@@ -1,7 +1,8 @@
-
 *******************
 Ravenscar Tasking
 *******************
+
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction

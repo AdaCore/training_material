@@ -2,11 +2,7 @@
 Type Derivation
 ***************
 
-.. role:: cpp(code)
-    :language: C++
-
-.. role:: ada(code)
-    :language: Ada
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction

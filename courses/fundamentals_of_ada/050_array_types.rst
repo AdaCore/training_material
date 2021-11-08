@@ -3,8 +3,7 @@
 Array Types
 *************
 
-.. role:: ada(code)
-   :language: ada
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction

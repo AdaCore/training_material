@@ -1,7 +1,8 @@
-
 ******************
 Advanced Privacy
 ******************
+
+.. include:: support_files/symbols.rst
 
 ============
 Type Views

@@ -1,7 +1,8 @@
-
 ******************
 Controlled Types
 ******************
+
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction
@@ -14,11 +15,11 @@ Constructor / Destructor
 * Possible to specify behavior of object initialization, finalization, and assignment
 
    - Based on type definition
-   - Type must derive from `Controlled` or `Limited_Controlled` in package `Ada.Finalization`
+   - Type must derive from :ada:`Controlled` or :ada:`Limited_Controlled` in package :ada:`Ada.Finalization`
 
 * This derived type is called a *controlled type*
 
-    - User may override any or all subprograms in `Ada.Finalization`
+    - User may override any or all subprograms in :ada:`Ada.Finalization`
     - Default implementation is a null body
 
 ==================
@@ -66,14 +67,14 @@ Uses
 Initialization
 ----------------
 
-* Subprogram `Initialize` invoked after object created
+* Subprogram :ada:`Initialize` invoked after object created
 
    - Either by object declaration or allocator
    - Only if no explicit initialization expression
 
 * Often default initialization expressions on record components are sufficient
 
-   - No need for an explicit call to `Initialize`
+   - No need for an explicit call to :ada:`Initialize`
 
 * Similar to C++ constructor
 
@@ -81,7 +82,7 @@ Initialization
 Finalization
 ----------------
 
-* Subprogram `Finalize` invoked just before object is destroyed
+* Subprogram :ada:`Finalize` invoked just before object is destroyed
 
    - Leaving the scope of a declared object
    - Unchecked deallocation of an allocated object
@@ -92,19 +93,19 @@ Finalization
 Assignment
 ------------
 
-* Subprogram `Adjust` invoked as part of an assignment operation
-* Assignment statement `Target := Source;` is basically:
+* Subprogram :ada:`Adjust` invoked as part of an assignment operation
+* Assignment statement :ada:`Target := Source;` is basically:
 
-   - `Finalize (Target)`
+   - :ada:`Finalize (Target)`
    - Copy Source to Target
-   - `Adjust (Target)`
+   - :ada:`Adjust (Target)`
    - *Actual rules are more complicated, e.g. to allow cases where Target and Source are the same object*
 
 * Typical situations where objects are access values
 
-   - `Finalize` does unchecked deallocation or decrements a reference count
+   - :ada:`Finalize` does unchecked deallocation or decrements a reference count
    - The copy step copies the access value
-   - `Adjust` either clones a "deep copy" of the referenced object or increments a reference count
+   - :ada:`Adjust` either clones a "deep copy" of the referenced object or increments a reference count
 
 =========
 Example
@@ -118,8 +119,8 @@ Unbounded String via Access Type
 * We want the provider to allocate and free memory "safely"
 
    - No sharing
-   - `Adjust` allocates referenced String
-   - `Finalize` frees the referenced String
+   - :ada:`Adjust` allocates referenced String
+   - :ada:`Finalize` frees the referenced String
    - Assignment deallocates target string and assigns copy of source string to target string
 
 ------------------------
@@ -217,7 +218,7 @@ Summary
 ---------
 
 * Controlled types allow access to object construction, assignment, destruction
-* `Ada.Finalization` can be expensive to use
+* :ada:`Ada.Finalization` can be expensive to use
 
    - Other mechanisms may be more efficient
 

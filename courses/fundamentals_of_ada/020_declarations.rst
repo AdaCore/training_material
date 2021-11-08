@@ -1,14 +1,8 @@
-.. |equivalent| replace:: :math:`\iff`
-
-.. role:: c(code)
-    :language: C
-
-.. role:: ada(code)
-    :language: Ada
-
 **************
 Declarations
 **************
+
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction
