@@ -551,7 +551,7 @@ The Delay Is Not A Timeout
      accept ....
    or
      delay 10.0;
-     Update_Thingy; 
+     Update_Thingy;
    end select;
 
 ------------------------------------------
@@ -611,23 +611,37 @@ Non-blocking Accept or Entry
 
     - Task **skips** the :ada:`accept` or :ada:`entry` call if they are **not ready** to be entered
 
+* On an :ada:`accept`
+
+.. include:: examples/select_non_blocking_entry_and_call/extracts/tasks.adb
+   :code: Ada
+
+* As caller on an :ada:`entry`
+
+.. include:: examples/select_non_blocking_entry_and_call/extracts/main_no_stop.adb
+   :code: Ada
+
 * :ada:`delay` is **not** allowed in this case
 
-.. code:: Ada
+-----------------------------------
+Issues With "Double Non-Blocking"
+-----------------------------------
 
-   select
-      accept Receive_Message (V : String) do
-         Put_Line ("Received : " & V);
-      end Receive_Message;
-   else
-      Put_Line ("Nothing to receive");
-   end select;
-   ...
-   select
-      T.Receive_Message ("A");
-   else
-      Put_Line ("Receive message not called");
-   end select;
+* For :ada:`accept ... else` the server **peeks** into the queue
+
+   - Server **does not** wait
+
+* For :ada:`<entry-call> ... else` the caller look for a **waiting** server
+* If both use it, the entry will **never** be called
+* Server
+
+.. include:: examples/select_non_blocking_entry_and_call/extracts/tasks.adb
+   :code: Ada
+
+* Caller
+
+.. include:: examples/select_non_blocking_entry_and_call/extracts/main_no_call.adb
+   :code: Ada
 
 -----------------------
 Terminate Alternative
