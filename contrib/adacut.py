@@ -129,8 +129,10 @@ if __name__ == "__main__":
                 if args.dedent:
                     if dedent_cols is None:
                         dedent_cols = len(lp) - len(lp.lstrip())
-                    assert lp[:dedent_cols] == ' ' * dedent_cols
-                    lp = lp[dedent_cols:]
+
+                    if lp.strip() != '':
+                        assert lp[:dedent_cols] == ' ' * dedent_cols, repr(lp)
+                        lp = lp[dedent_cols:]
 
                 print(lp, file=out, end="")
 
