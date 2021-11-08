@@ -18,7 +18,7 @@ class AdaCut:
         self.cut = cut
         self.current_cut = 0
         if self.cut:
-            # Cut mode: throw everything but the given cut
+            # Cut mode: throw everything but the given cut(s)
             self.mode = None
             self.default_keeping = False
         else:
@@ -29,7 +29,7 @@ class AdaCut:
 
     def match_mode_or_cut(self, typ_name):
         if self.cut:
-            return self.current_cut == self.cut
+            return self.current_cut in self.cut
         else:
             return self.mode == typ_name or self.mode == "keep_all"
 
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("input_file")
     ap.add_argument("-o", "--output-file")
-    ap.add_argument("-c", "--cut", type=int)
+    ap.add_argument("-c", "--cut", nargs='*', type=int)
     ap.add_argument("-d", "--dedent", action="store_true",
                     help="Dedent by the first-line indent")
     ap.add_argument("-C", "--cut-counting", action="store_true",
@@ -122,6 +122,7 @@ if __name__ == "__main__":
 
     cut = AdaCut(args.cut, args.mode)
     dedent_cols = None
+    prev_cut = None
     with open(args.input_file) as fin:
         for l in fin:
             lp = cut.new_line(l)
@@ -133,6 +134,10 @@ if __name__ == "__main__":
                     if lp.strip() != '':
                         assert lp[:dedent_cols] == ' ' * dedent_cols, repr(lp)
                         lp = lp[dedent_cols:]
+
+                if args.cut and prev_cut and prev_cut != cut.current_cut:
+                    print(' ' * (len(lp) - len(lp.lstrip())) + '...')
+                prev_cut = cut.current_cut
 
                 print(lp, file=out, end="")
 
