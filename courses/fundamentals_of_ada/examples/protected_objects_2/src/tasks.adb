@@ -2,9 +2,12 @@ with Protected_Objects; use Protected_Objects;
 
 package body Tasks is
 
+   --$ begin cut
    task body T is
       My_Id : Character := ' ';
+   --$ end cut
    begin
+      --$ begin cut
       accept Start (Id : Character; Initial_1, Initial_2 : Integer) do
          My_Id := Id;
          O1.Set (My_Id, Initial_1);
@@ -22,6 +25,7 @@ package body Tasks is
             end;
          end Receive_Message;
       end loop;
+      --$ end cut
    end T;
 
 end Tasks;
