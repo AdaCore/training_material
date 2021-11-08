@@ -2,8 +2,7 @@
 Quantified Expressions
 ************************
 
-.. |forall| replace:: :math:`\forall`
-.. |exists| replace:: :math:`\exists`
+.. include:: support_files/symbols.rst
 
 ========================
 Quantified Expressions

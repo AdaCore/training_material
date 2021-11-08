@@ -1,7 +1,8 @@
-
 *****************************
 Annex - Reference Materials
 *****************************
+
+.. include:: support_files/symbols.rst
 
 ==========================
 General Ada Information

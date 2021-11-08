@@ -2,10 +2,7 @@
 Genericity
 ************
 
-.. |rightarrow| replace:: :math:`\rightarrow`
-
-.. role:: ada(code)
-    :language: Ada
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction

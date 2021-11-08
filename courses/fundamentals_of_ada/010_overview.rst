@@ -1,9 +1,8 @@
-.. role:: ada(code)
-    :language: ada
-
 **********
 Overview
 **********
+
+.. include:: support_files/symbols.rst
 
 ==================
 A Little History

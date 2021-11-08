@@ -2,7 +2,7 @@
 Annex - GNAT options
 **********************
 
-.. |rightarrow| replace:: :math:`\rightarrow`
+.. include:: support_files/symbols.rst
 
 ------------------------------------
 Understanding the GNAT Build Steps

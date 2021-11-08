@@ -2,6 +2,8 @@
 Multiple Inheritance
 **********************
 
+.. include:: support_files/symbols.rst
+
 ==============
 Introduction
 ==============

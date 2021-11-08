@@ -2,7 +2,7 @@
 Annex - Ada Version Comparison
 ********************************
 
-.. |checkmark| replace:: :math:`\checkmark`
+.. include:: support_files/symbols.rst
 
 ---------------
 Ada Evolution

@@ -1,7 +1,8 @@
-
 ******************
 Controlled Types
 ******************
+
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction

@@ -1,12 +1,8 @@
-
 *********************
 Advanced Exceptions
 *********************
 
-.. role:: ada(code)
-    :language: Ada
-
-.. |rightarrow| replace:: :math:`\rightarrow`
+.. include:: support_files/symbols.rst
 
 =============
 Introduction

@@ -1,7 +1,8 @@
-
 ******************
 Ada.Text_IO
 ******************
+
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction

@@ -2,6 +2,8 @@
 Annex - Predefined Libraries
 ******************************
 
+.. include:: support_files/symbols.rst
+
 -------------------------
 Ada Top-Level Namespace
 -------------------------

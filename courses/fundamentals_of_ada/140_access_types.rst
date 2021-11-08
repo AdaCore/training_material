@@ -1,10 +1,8 @@
-
 **************
 Access Types
 **************
 
-.. role:: ada(code)
-    :language: Ada
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction

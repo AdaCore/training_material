@@ -1,16 +1,8 @@
-
 *********
 Tasking
 *********
 
-.. role:: ada(code)
-   :language: ada
-
-.. role:: C(code)
-   :language: C
-
-.. role:: cpp(code)
-   :language: C++
+.. include:: support_files/symbols.rst
 
 ================
 Introduction

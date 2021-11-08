@@ -1,7 +1,8 @@
-
 ********************
 Annex - GPR Basics
 ********************
+
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction

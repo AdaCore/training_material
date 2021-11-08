@@ -2,7 +2,7 @@
 Low Level Programming
 ***********************
 
-.. |rightarrow| replace:: :math:`\rightarrow`
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction
