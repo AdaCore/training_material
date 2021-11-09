@@ -818,6 +818,30 @@ Queue
 
 * When the server task **terminates**, tasks still queued receive :ada:`Tasking_Error`
 
+-----------------
+Queuing Policy
+-----------------
+
+* Queuing policy can be set using
+
+.. code:: Ada
+
+   pragma Queuing_Policy (<policy_identifier>);
+
+* The following policy_identifier are available
+
+   - FIFO_Queuing (default)
+   - Priority_Queuing
+
+* FIFO_Queuing
+
+   - First-in First-out, classical queue
+
+* Priority_Queuing
+
+   - Takes into account priority
+   - Priority of the calling task **at time of call**
+
 --------------------------
 :ada:`requeue` Instruction
 --------------------------
