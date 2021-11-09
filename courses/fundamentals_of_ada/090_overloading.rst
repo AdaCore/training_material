@@ -14,31 +14,31 @@ Introduction
 Introduction
 --------------
 
-* Overloading is the use of an **existing** name to define a **new** entity
+* Overloading is the use of an already existing name to define a **new** entity
 * Historically, only done as part of the language **implementation**
 
-    - Eg. on operators
-    - Float vs integer vs pointers arithmetic
+   - Eg. on operators
+   - Float vs integer vs pointers arithmetic
 
 * Several languages allow **user-defined** overloading
 
-    - C++
-    - Python (limited to operators)
-    - Haskell
+   - C++
+   - Python (limited to operators)
+   - Haskell
 
---------------------
+----------------------
 Visibility and Scope
---------------------
+----------------------
 
 * Overloading is **not** re-declaration
 * Both entities **share** the name
 
-    - No hiding
-    - Compiler performs **name resolution**
+   - No hiding
+   - Compiler performs **name resolution**
 
-* Allowed to be declared in **same scope**
+* Allowed to be declared in the **same scope**
 
-    - Remember this is forbidden for "usual" declarations
+   - Remember this is forbidden for "usual" declarations
 
 ------------------------------
 Overloadable Entities In Ada
@@ -55,10 +55,12 @@ Overloadable Entities In Ada
 
    procedure Put (Str : in String);
    procedure Put (C : in Complex);
-   type E1 is (A, B, C);
-   type E2 is (A, B);
+   function Max (Left, Right : Integer) return Integer;
+   function Max (Left, Right : Float)   return Float;
    function "+" (Left, Right : Rational) return Rational;
    function "+" (Left, Right : Complex)  return Complex;
+   function "*" (Left : Natural; Right : Character)
+         return String;
 
 ---------------------------------------
 Function Operator Overloading Example
@@ -66,16 +68,16 @@ Function Operator Overloading Example
 
 .. code:: Ada
 
-   -- User-defined overloading
-   function "+" (L, R : Complex) return Complex is
+   --  User-defined overloading
+   function "+" (L,R : Complex) return Complex is
    begin
      return (L.Real_Part + R.Real_Part,
              L.Imaginary + R.Imaginary);
    end "+";
 
-   I, J, K : Integer;
    A, B, C : Complex;
-   ...
+   I, J, K : Integer;
+
    I := J + K; -- overloaded operator (predefined)
    A := B + C; -- overloaded operator (user-defined)
 
@@ -237,19 +239,6 @@ Profile Components Used
       Display (Foo => X);
       Display (Foo => X, Bar => Y);
 
-------------------------
-Subtypes Don't Overload
-------------------------
-
-- Illegal code: re-declaration of `F`
-
-   .. code:: Ada
-
-      type A is new Integer;
-      subtype B is A;
-      function F return A is (0);
-      function F return B is (1);
-
 -------------------------------
 Manually Disambiguating Calls
 -------------------------------
@@ -257,7 +246,7 @@ Manually Disambiguating Calls
 * Qualification can be used
 * Named parameter association can be used
 
-   - If name makes it unambiguous
+   - Unless name is ambiguous
 
 .. code:: Ada
 
@@ -280,7 +269,7 @@ Overloading Example
    function "+" (Left : Position; Right : Offset)
      return Position is
    begin
-      return Position'(Left.Row + Right.Row, Left.Column + Right.Col);
+      return Position'( Left.Row + Right.Row, Left.Column + Right.Col);
    end "+";
 
    function Acceptable (P : Position) return Boolean;
@@ -353,219 +342,11 @@ User-Defined Equality
 
    - Must remain a binary operator
 
-* May have any parameter and result types
+* Typically declared as :ada:`return Boolean`
+* Hard to do correctly for composed types
 
-   - Typically declared to return type Boolean
-
-* Non-Boolean result example:
-
-   .. code:: Ada
-
-      type Fuzzy_Result is (Unknown, False, True);
-      function "=" (Left : Foo;  Right : Bar)
-          return Fuzzy_Result;
-
-------------------------------------
-User-Defined `=` Returning Boolean
-------------------------------------
-
-* Implicitly declares ``/=``
-* Thus negation has consistent meaning
-
-   .. code:: Ada
-
-      if X /= Y then
-      if not ( X = Y ) then
-      if X not = Y then
-
-* No explicit declaration of ``/=`` returning Boolean
-
-   - Returning values of other types is allowed
-
-      .. code:: Ada
-
-         function "/=" (Left : Foo;  Right : Bar)
-             return Fuzzy_Result;
-
--------------------------------
-User-Defined Equality Example
--------------------------------
-
-* Especially useful for composite types
-* Predefined ``=`` is bit-wise comparison over entire structure so may be inappropriate semantics
-* Given the following types:
-
-   .. code:: Ada
-
-      Max : constant := 100;
-      type Index is range 0 .. Max;
-      type List is array (Index range 1 .. Max) of Integer;
-      type Stack is record
-        Values : List;
-        Top : Index := 0;
-      end record;
-
-* Equality function might look like:
-
-   .. code:: Ada
-
-      function "=" (Left, Right : Stack) return Boolean is
-      begin
-        if Left.Top /= Right.Top then -- not same size
-          return False;
-        else -- compare values
-          for K in 1 .. Left.Top loop
-            if Left.Values(K) /= Right.Values(K) then
-              return False;
-            end if;
-          end loop;
-        end if;
-        return True;
-      end "=";
-
-=========================
-Composition of Equality
-=========================
-
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/composition_of_equality.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#composition-of-equality`
-
-----------------------------
- "Composition of Equality"
-----------------------------
-
-* Whether user-defined equality functions are called automatically as part of equality for composite types containing types having such functions
-* Only composes when user-defined equality is defined
-
-   * Assume you defined "=" for a scalar type
-   * If you define "=" for a composite containing the scalar type, your scalar "=" will be used
-   * If you rely on the implicit "=" for the composite, then the scalar's implicit "=" will also be used
-
-      * Not the one you just defined
-
---------------------------------
-Composition vs Non-Composition
---------------------------------
-
-.. code:: Ada
-
-   with Ada.Text_IO; use Ada.Text_IO;
-   procedure Main is
-
-      type Array1_T is array (1 .. 3) of Integer;
-      type Array2_T is array (1 .. 3) of Integer;
-
-      X, Y     : Integer  := 123;
-      X_A, Y_A : Array1_T := (others => 123);
-      X_B, Y_B : Array2_T := (others => 123);
-
-      -- When comparing integers directly, this function forces those comparisons
-      -- to be false
-      function "=" (L, R : Integer) return Boolean is (False);
-      -- We define our own array equality operator so it will use our integer operator
-      function "=" (L, R : Array2_T) return Boolean is (for all I in 1 .. 3 => L (I) = R (I));
-
-   begin
-      -- Use local "=" for integer comparison
-      Put_Line (Boolean'Image (X = Y));             -- False
-      Put_Line (Boolean'Image (X_A (2) = Y_A (2))); -- False
-      -- This array comparison uses the predefined operator, so our local "=" is ignored
-      Put_Line (Boolean'Image (X_A = Y_A));         -- True
-      -- This array comparison uses our operator, so our local "=" is used as well
-      Put_Line (Boolean'Image (X_B = Y_B));         -- False
-   end Main;
-
-.. container:: speakernote
-
-   Equality for IntegerList doesn't compose because Integer is not a record type.
-
--------------------------------------
-Enclosing Equality Function Example
--------------------------------------
-
-* Explicitly declared for the enclosing type
-* Calls user-defined ``=`` for components
-
-.. code:: Ada
-
-   function "=" (Left, Right : Foo) return Boolean;
-   ...
-   type Bar is record
-     Value : Foo; -- assuming Foo is not a record type
-     Id : Integer;
-   end record;
-
-   function "=" (Left, Right : Bar) return Boolean is
-   begin
-     -- User-defined "=" for Foo
-     return Left.Value = Right.Value
-        -- predefined "=" for integer
-        and Left.Id = Right.Id;
-   end "=";
-
-----------------------------------------
-`=` for Predefined Composites Composes
-----------------------------------------
-
-* Per RM 4.5.2(32/1)
-* For all non-limited types declared in language-defined packages
-* Thus you can safely ignore the issue for composite types defined by the language
-
------------------------------------
-User-Defined Equality Composition
------------------------------------
-
-* No issue for all language-defined types in all versions of Ada
-* An issue for user-defined types
-* Only automatic for :ada:`record` types in Ada 2012
-* Only automatic for :ada:`tagged record` types in Ada 2005
-
-   - Otherwise need explicit equality function for enclosing type
-
-* Not automatic for other user-defined types in any Ada version
-
-   - Need explicit equality function for enclosing type
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-   type Range_T is range -1_000 .. 1_000;
-   function "=" (L, R : Range_T) return Boolean is
-      (Integer (abs (L)) = Integer (abs (R)));
-   type Coord_T is record
-      X : Range_T;
-      Y : Range_T;
-   end record;
-   type Coord_3D_T is record
-      XY : Coord_T;
-      Z  : Range_T;
-   end record;
-   A : Coord_3D_T := (XY => (1, -1), Z => 2);
-   B : Coord_3D_T := (XY => (-1, 1), Z => -2);
-
-Which function will return True when comparing A and B?
-
-A. | Implicit equality operator
-B. | :answermono:`function "=" (L, R : Coord_3D_T) return Boolean is`
-   |    :answermono:`(L.Z = R.Z and`
-   |     :answermono:`L.XY.X = R.XY.X and L.XY.Y = R.XY.Y);`
-C. | ``function "=" (L, R : Coord_3D_T) return Boolean is``
-   |    ``(L.Z = R.Z and L.XY = R.XY);``
-D. ``function "=" (L, R : Coord_3D_T) return Boolean is (L = R);``
-
-.. container:: animate
-
-   We are looking to use our own equality operator (that compares absolute
-   values) so the only time that happens is when we examine each
-   :ada:`Range_T` component individually
+    - Especially **user-defined** types
+    - Issue of *Composition of equality*
 
 ========
 Lab
@@ -600,4 +381,4 @@ Summary
 
 * User-defined equality is allowed
 
-   - Remember `=` for record types does compose, otherwise not
+   - But is tricky
