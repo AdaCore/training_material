@@ -293,6 +293,44 @@ Protected: Functions and Procedures
     - Windows has **no** support for those
     - In that case, :ada:`function` are **blocking** as well
 
+------------------------
+Protected: Limitations
+------------------------
+
+* **No** potentially blocking action
+
+   - :ada:`select`, :ada:`accept`, :ada:`entry` call, :ada:`delay`, :ada:`abort`
+   - :ada:`task` creation or activation
+   - Some standard lib operations, eg. IO
+
+      + Depends on implementation
+
+* May raise :ada:`Program_Error` or deadlocks
+* **Will** cause performance and portability issues
+* :ada:`pragma Detect_Blocking` forces a proactive runtime detection
+* Solve by deferring blocking operations
+
+   - Using eg. a FIFO
+
+-------------------------------------
+Protected: Lock-Free Implementation
+-------------------------------------
+
+* GNAT-Specific
+* Generates code without any locks
+* Best performance
+* No deadlock possible
+* Very constrained
+
+   - No :ada:`entry`, :ada:`goto`, :ada:`loop`, :ada:`procedure` call
+   - No :ada:`access` dereference
+   - No globals
+   - No composite parameters
+   - See GNAT RM 2.100
+
+.. include:: examples/protected_objects_lock_free/extracts/protected_objects.lock_free_declare.ads
+    :code: Ada
+
 ------------------------------------------
 Example: Protected Objects - Declaration
 ------------------------------------------
