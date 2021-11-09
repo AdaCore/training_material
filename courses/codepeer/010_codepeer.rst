@@ -1597,37 +1597,44 @@ Annotations Categories
 
         * - ``precondition``
 
-          - Requirements imposed the subprogram's inputs
+          - Requirements imposed on the subprogram's inputs
 
         * - ``presumption``
 
-          - Display what :toolname:`CodePeer` presumes about the results of an external subprogram whose code is unavailable, or are in a separate partition. There are separate presumptions for each call site, with a string in the form ``@<line-number-of-the-call>`` appended to the name of the subprogram. Presumptions are not generally used to determine preconditions of the calling routine, but they might influence postconditions of the calling routine.
+          - Presumption on the result of an **external** subprogram
 
         * - ``postcondition``
 
-          - Characterize the behavior of the subprogram in terms of its outputs and the presumptions made.
+          - Presumption on the outputs of a subprogram
 
         * - ``unanalyzed call``
 
-          - Display the external calls to subprograms that the :toolname:`CodePeer` has not analyzed, and so participate in the determination of presumptions. Note that these annotations include all directly unanalyzed calls as well as the unanalyzed calls in the call graph subtree that have an influence on the current subprograms.
+          - External calls to unanalysed subprograms
 
         * - ``global inputs``
 
-          - List of all global variables referenced by each subprogram. Note that this only includes enclosing objects and not e.g. specific components. In the case of pointers, only the pointer is listed. Dereference to pointers may be implied by the pointer listed.
+          - Global variables **referenced** by each subprogram
 
         * - ``global outputs``
 
-          - List of all global variables (objects and components) modified by each subprogram
+          - Global variables **modified** by each subprogram
 
         * - ``new objects``
 
-          - list of heap-allocated objects, created by a subprogram, that are not reclaimed during the execution of the subprogram itself; these are new objects that are accessible after return from the subprogram
+          - Unreclaimed heap-allocated object
 
 --------------
 Precondition
 --------------
 
-Preconditions specify requirements that the subprogram imposes on its inputs. For example, a subprogram might require a certain parameter to be non-null for proper operation of the subprogram. These preconditions are checked at every call site. A message is given for any precondition that a caller might violate. Precondition messages include in parenthesis a list of the checks involved in the requirements.
++ Requirements imposed on the subprogram inputs
+
+    - eg. a certain parameter to be non-null
+
++ Checked at every call site
++ A message is given for any precondition that a caller **might** violate.
+
+    - Includes the **checks involved** in the requirements
 
 .. code:: ada
     :number-lines: 1
@@ -1638,13 +1645,26 @@ Preconditions specify requirements that the subprogram imposes on its inputs. Fo
 Presumption
 -------------
 
-Display what :toolname:`CodePeer` presumes about the results of an external subprogram whose code is unavailable, or are in a separate partition. There are separate presumptions for each call site, with a string in the form ``@<line-number-of-the-call>`` appended to the name of the subprogram. Presumptions are not generally used to determine preconditions of the calling routine, but they might influence postconditions of the calling routine.
++ Presumption about the results of an **external** subprogram
+
+    - Code is unavailable
+    - Code is in a separate partition
+
++ Separate presumptions for each call site
+
+.. code::
+
+    <subprogram-name>@<line-number-of-the-call>
+
++ Generally not used to determine preconditions of the calling routine
+
+    - but they might influence postconditions of the calling routine.
 
 ---------------
 Postcondition
 ---------------
 
-Characterize the behavior of the subprogram in terms of its outputs and the presumptions made.
++ Presumption about the outputs of a subprogram
 
 .. code:: ada
     :number-lines: 1
@@ -1655,7 +1675,16 @@ Characterize the behavior of the subprogram in terms of its outputs and the pres
 Unanalyzed Call
 -----------------
 
-Display the external calls to subprograms that the :toolname:`CodePeer` has not analyzed, and so participate in the determination of presumptions. Note that these annotations include all directly unanalyzed calls as well as the unanalyzed calls in the call graph subtree that have an influence on the current subprograms.
++ External calls to unanalysed subprograms
+
+    - Participate in the determination of presumptions
+
++ These annotations include **all** unanalyzed calls
+
+    - **Direct** calls
+    - Calls in the **call graph** subtree
+
+        + **If** they have an influence on the current subprograms
 
 .. code:: ada
     :number-lines: 1
@@ -1666,7 +1695,14 @@ Display the external calls to subprograms that the :toolname:`CodePeer` has not 
 Global Inputs/Outputs
 -----------------------
 
-List of all global variables referenced by each subprogram. Note that this only includes enclosing objects and not e.g. specific components. In the case of pointers, only the pointer is listed. Dereference to pointers may be implied by the pointer listed.
++ Global variables referenced by each subprogram
++ Only includes **enclosing** objects
+
+    - Not e.g. specific components
+
++ For accesses, only the **access object** is listed
+
+    - Dereference to accesses **may** be implied by the access object listed
 
 .. code:: ada
     :number-lines: 1
@@ -1677,7 +1713,12 @@ List of all global variables referenced by each subprogram. Note that this only 
 New Objects
 -------------
 
-list of heap-allocated objects, created by a subprogram, that are not reclaimed during the execution of the subprogram itself; these are new objects that are accessible after return from the subprogram
++ Unreclaimed heap-allocated objects
+
+    - **Created** by a subprogram
+    - **Not reclaimed** during the execution of the subprogram itself
+
++ New objects that are accessible **after** return from the subprogram
 
 .. code:: ada
     :number-lines: 1
@@ -1694,11 +1735,16 @@ GNAT Warnings
 
 + GNAT warnings can be generated by :toolname:`CodePeer`
 
-  :command:`--gnat-warnings= xxx` *(uses -gnatwxxx)*
+  :code:`--gnat-warnings=xxx` *(uses -gnatwxxx)*
 
-+ Messages are stored in the database, displayed and filtered as any other message
-+ Manual justification can be stored in the database
-+ Manual justification in the source is achieved via pragma Warnings instead of :ada:`pragma Annotate`
++ Messages are stored in the database
+
+    - Displayed and filtered as any other message
+
++ Manual justification
+
+    - Can be stored in the database
+    - Done via :ada:`pragma Warnings` instead of :ada:`pragma Annotate`
 
 ------------------------
 GNATcheck messages
@@ -1706,12 +1752,20 @@ GNATcheck messages
 
 + :toolname:`GNATcheck` messages can be generated by :toolname:`CodePeer`
 
-  :command:`--gnatcheck`
+  :code:`--gnatcheck`
 
-+ Uses the :toolname:`GNATcheck` rules file as defined in your project file in package :ada:`Check`
-+ Messages are stored in the database, displayed and filtered as any other message
-+ Manual justification can be stored in the database
-+ Manual justification in the source is achieved via :ada:`pragma Annotate (GNATcheck, ...)`
++ Uses the :toolname:`GNATcheck` rules file
+
+    - defined in your project file in :ada:`package Check`
+
++ Messages are stored in the database
+
+    - Displayed and filtered as any other message
+
++ Manual justification
+
+    - Can be stored in the database
+    - Done via :ada:`pragma Annotate (GNATcheck, ...)`
 
 ============================
 Finding the Right Settings
@@ -1735,14 +1789,19 @@ Analyze Messages (1/4)
 ------------------------
 
 + Start with default (level 0)
-+ If the run is mostly clean/contains mostly interesting messages, run at next level (e.g. level 1) and iterate until number of false positive/timing is too high for your needs
++ Check number of **false positives**
++ Check number of **interesting** message
++ Check **duration** of analysis
++ If these conditions are OK
+
+    + Increase level (eg. level 1) and iterate
 
 .. code:: Ada
 
    project My_Project is
-      for Source_Dirs use ...
+      ...
       package CodePeer is
-         for Switches use ( "-level", "1" );
+         for Switches use ("-level", "1");
       end CodePeer;
    end My_Project;
 
@@ -1752,8 +1811,17 @@ Analyze Messages (1/4)
 Analyze Messages (2/4)
 ------------------------
 
-+ If a run contains many messages, analyze some and identify groups of uninteresting messages
-+ Exclude categories of uninteresting messages via e.g. :command:`--be-messages` (starting with level 1).
++ Runs contain many messages
++ **Sample** them
++ **Identify** groups of **false positives**
++ **Exclude** them by categories
+
+    + Using :code:`--infer-messages` for infer (level 0)
+    + Using :code:`--be-messages` for CodePeer (level 1+)
+
++ For example, to disable messages related to access check:
+
+   :code:`--be-messages=-access_check`
 
 ------------------------
 Analyze Messages (3/4)
@@ -1763,15 +1831,13 @@ Analyze Messages (3/4)
 
   + :command:`-output-msg` :command:`-hide-low` on the command line
   + Check boxes to filter on message category / rank in :toolname:`GNAT Studio` and HTML
-  + :command:`--be-messages` :command:`--gnat-warnings` :command:`--lal-checkers` switches
+  + :code:`--infer-messages` :code:`--be-messages` :code:`--gnat-warnings` :code:`--lal-checkers` switches
   + :command:`-messages min/normal/max`
   + Pattern-based automatic filtering (:filename:`MessagePatterns.xml`)
 
-+ For example, to disable messages related to access check:
++ You can exclude a :ada:`package` or a subprogram from analysis
 
-   :command:`--be-messages=-access_check`
-
-+ If many uninteresting messages in the same file, you can exclude this file from analysis (see next slides)
+    + :ada:`pragma Annotate (CodePeer, Skip_Analysis)`
 
 ------------------------
 Analyze Messages (4/4)
@@ -1779,21 +1845,39 @@ Analyze Messages (4/4)
 
 + Choose relevant messages based on ranking
 
-  + Rank = severity + certainty
+  + Rank = severity x certainty
   + **High** :math:`\rightarrow` certain problem
   + **Medium** :math:`\rightarrow` possible problem, or certain with low severity
   + **Low** :math:`\rightarrow` less likely problem (yet useful for exhaustivity)
 
-+ When analysing existing code, start looking at *High* messages first, then *Medium*, and finally if it makes sense, *Low* messages.
-+ A recommended setting is to consider High and Medium messages (default in :toolname:`GNAT Studio` and HTML interfaces).
++ When analysing messages
+
+    + Start with **High** rank
+    + Then **Medium** rank
+    + Finally **Low** rank if needed
+
++ Considering only High and Medium is recommended
+
+    + Default in :toolname:`GNAT Studio` and HTML interfaces
 
 ---------------------
 Run CodePeer faster
 ---------------------
 
-+ Use a 64-bit machine with a lot of memory and cores
-+ Lower analysis level (:command:`-level <num>`), use :command:`-j0` (default)
-+ Identify files taking too long to analyze and disable analysis of selected subprograms or files
++ Hardware
+
+    + 64-bit machine
+    + Large amounts of memory
+    + Large number of cores
+
++ Command-line switches
+
+    + Lower analysis level :command:`-level <num>`
+    + Paralellize :command:`-j0` (default)
+
++ Identify files taking too long to analyze
+
+    + Disable analysis of their packages, subprograms or files
 
 | ``analyzed main.scil in 0.05 seconds``
 | ``analyzed main__body.scil in 620.31 seconds``
@@ -1804,7 +1888,8 @@ Run CodePeer faster
 Code-Based Partial Analysis
 -----------------------------
 
-+ Excluding Subprograms or Packages From Analysis
++ Excluding subprograms or packages from analysis
++ :ada:`pragma Annotate (CodePeer, Skip_Analysis)`
 
 .. code:: Ada
 
