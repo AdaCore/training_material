@@ -766,7 +766,7 @@ User Check Messages
 
           - An :ada:`exception` is raised on a reachable path
 
-        * - 
+        * -
 
           - Same as *conditional check*, but unconditionally
 
@@ -882,7 +882,7 @@ A call might violate a subprogram's specified precondition.
 Postcondition
 ---------------
 
-The subprogram's body may violate its specified postcondition. 
+The subprogram's body may violate its specified postcondition.
 
 ..
    codepeer example (4.1.2 - postcondition)
@@ -965,7 +965,7 @@ Warning Messages (1/2)
 
         * - ``dead code``
 
-          - Also called *unreachable code*. 
+          - Also called *unreachable code*.
 
         * -
 
@@ -989,7 +989,7 @@ Warning Messages (1/2)
 
         * - ``condition predetermined``
 
-          - Constant RHS or LHS in a conditional 
+          - Constant RHS or LHS in a conditional
 
         * - ``loop does not complete normally``
 
@@ -1005,9 +1005,9 @@ Warning Messages (1/2)
 
         * - ``unused out parameter``
 
-          - Actual parameter of a call is ignored 
+          - Actual parameter of a call is ignored
 
-        * - 
+        * -
 
           - Either never used or overwritten
 
@@ -1343,7 +1343,7 @@ Suspicious Precondition
       raise Overflow;
    end if;
    --  Typo: Should be S.Last + 1
-   S.Last         := S.Last - 1; 
+   S.Last         := S.Last - 1;
    --  Error when S.Last = S.Arr'First - 1
    S.Arr (S.Last) := V;
 
@@ -1567,7 +1567,6 @@ Race Condition Examples
 =====================================
 Automatically Generated Annotations
 =====================================
-
 
 -----------------------
 Generated Annotations
