@@ -842,6 +842,31 @@ Queuing Policy
    - Takes into account priority
    - Priority of the calling task **at time of call**
 
+-----------------------
+Setting Task Priority
+-----------------------
+
+* GNAT available priorities are :ada:`0 .. 30`, see :file:`gnat/system.ads`
+* Tasks with the highest priority are prioritized more
+* Priority can be set **statically**
+
+.. code:: Ada
+
+  task T
+     with Priority => <priority_level>
+     is ...
+
+* Priority can be set **dynamically**
+
+.. code:: Ada
+
+   with Ada.Dynamic_Priorities;
+
+   task body T is
+   begin
+      Ada.Dynamic_Priorities.Set_Priority (10);
+   end T;
+
 --------------------------
 :ada:`requeue` Instruction
 --------------------------
