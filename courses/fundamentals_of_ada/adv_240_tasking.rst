@@ -932,6 +932,28 @@ Example: Main
 .. include:: examples/task_select_multiple_or/src/main.adb
     :code: Ada
 
+--------------------------------------
+Standard "Embedded" Tasking Profiles
+--------------------------------------
+
+* Better performances but more constrained
+* Ravenscar profile
+
+  - Ada 2005
+  - No :ada:`select`
+  - No :ada:`entry` for tasks
+  - Single :ada:`entry` for :ada:`protected` types
+  - No entry queues
+
+* Jorvik profile
+
+  - Ada 2022
+  - Less constrained, still performant
+  - Any number of :ada:`entry` for :ada:`protected` types
+  - Entry queues
+
+* See RM D.13
+
 ========
 Lab
 ========
