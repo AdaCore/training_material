@@ -473,7 +473,7 @@ Single Declaration
    task Msg_Box is
        -- Msg_Box task is declared *and* instanciated
       entry Receive_Message (S : String);
-   end Msg_Box_T;
+   end Msg_Box;
 
    task body Msg_Box is
    begin
