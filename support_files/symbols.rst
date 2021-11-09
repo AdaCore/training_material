@@ -10,6 +10,8 @@
 .. |checkmark| replace:: :math:`\checkmark`
 .. |forall| replace:: :math:`\forall`
 .. |exists| replace:: :math:`\exists`
+.. |tip| image:: icon/tip.png
+   :width: 16px
 
 ..
     Language inline roles
