@@ -1932,6 +1932,74 @@ Project-Based Partial Analysis
 
       for Externally_Built use "True";
 
+==============================
+Justifying CodePeer Messages
+==============================
+
+------------------------
+Database Justification
+------------------------
+
++ Add review status in database
+
+  + :toolname:`GNAT Studio`: select review icon on message(s)
+  + HTML web server: click on :menu:`Add Review` button above messages
+  + Displayed with :command:`-output-msg-only -show-reviews (-only)`
+
++ Can run :toolname:`CodePeer` as a server
+
+  + Share the database on network
+  + :command:`codepeer --ide-server --port=8080`
+
++ Access the IDE server from :toolname:`GNAT Studio`
+
+  + Set the project file to the following
+
+  .. code:: Ada
+
+   package CodePeer is
+      for Server_URL use "http://server:8080";
+   end CodePeer;
+
+-----------------------
+In-Code Justification
+-----------------------
+
++ Add message review pragma in code
++ :ada:`pragma Annotate` added next to code with message
+
+  + :ada:`False_Positive`: Condition in question cannot occur
+  + :ada:`Intentional`: Condition is justified by a design choice
+  + Also added in the database
+
+.. code:: Ada
+
+   ...
+   return (X + Y) / (X - Y);
+   pragma Annotate (CodePeer,
+                    False_Positive,
+                    "Divide By Zero",
+                    "reviewed by John Smith");
+
+-------------------------------
+Outside Tooling Justification
+-------------------------------
+
++ Use spreadsheet tool
+
+  + Export messages in CSV format
+
+     :command:`codepeer -Pprj -output-msg-only -csv`
+
+  + Review them via the spreadsheet tool (e.g. Excel)
+  + Import back CSV reviews into the :toolname:`CodePeer` database
+
+     :command:`codepeer_bridge --import-reviews`
+
++ Use external justification connected to output
+
+  + Textual output: compiler-like messages or CSV format
+
 ====================
 CodePeer Workflows
 ====================
@@ -1940,72 +2008,86 @@ CodePeer Workflows
 CodePeer Use Cases
 --------------------
 
-+ Analyzing code locally prior to commit
-+ Nightly runs on a server
-+ Continuous runs on a server after each change
-+ Combined desktop/nightly run
-+ Combined continuous/nightly run
-+ Combined desktop/continuous/nightly run
-+ Software customization per project
-+ Compare local changes with master
-+ Multiple teams analyzing multiple subsystems
-+ Use :toolname:`CodePeer` to generate a security report
++ Analyzing code locally prior to **commit** (desktop)
++ **Nightly** runs on a server
++ Continuous runs on a server after each **push**
++ Any **combination** desktop/continuous/nightly run
++ **Per-project** software customization
++ **Compare** local changes with master
++ Multiple teams **reviewing** multiple subsystems
++ Use :toolname:`CodePeer` to generate a **security report**
 
 ----------------------------------------------
 Analyzing Code Locally Prior To Commit (1/2)
 ----------------------------------------------
 
-Fast analysis done at each developer's desk
++ Each **developer** as a single user, on a **desktop** machine
++ After compilation, before testing.
++ Solution #1: File by File analysis
 
-+ Solution #1
-
-  + Use :toolname:`GNAT Studio` menu :menu:`CodePeer` :math:`\rightarrow` :menu:`Analyze File` (or :menu:`Analyze File by File`) after each compilation, before testing.
-  + Incremental, fast analysis
+  + Use :toolname:`GNAT Studio` menu
+  + :menu:`CodePeer` :math:`\rightarrow` :menu:`Analyze File`
+  + On the files that were **modified**
+  + Fastest, incremental
 
 + Solution #2
 
-  + run :toolname:`CodePeer` with :command:`-level 1/2 -baseline`
-  + Local :toolname:`CodePeer` database used for comparison
-  + Look at Added messages only
+  + Run :command:`codepeer -level 1/2 -baseline`
+  + Local **baseline** database used for comparison
+  + Look at **added** messages only
+  + More exhaustive
+  + Uses past reviews (less false positives)
 
 ----------------------------------------------
 Analyzing Code Locally Prior To Commit (2/2)
 ----------------------------------------------
 
++ If duration or number of messages is not good :math:`\rightarrow` refine the settings
 + For each new message:
 
-   Fix the code
-      if a real issue is found
+   + If a real issue is found :math:`\rightarrow` Fix the code
+   + If it is a false positive :math:`\rightarrow` Justify it with :ada:`pragma Annotate`
 
-   Justify false positives
-      via :ada:`pragma Annotate`
+--------------
+Nightly Runs
+--------------
 
-   Refine the settings
-      e.g. to exclude some message kinds or subprograms/files from analysis
++ :toolname:`CodePeer` run daily on a dedicated server
 
---------------------------
-Nightly Runs On A Server
---------------------------
+    + With large resources
+    + Exhaustive level (2 :math:`\rightarrow` 4)
 
-+ :toolname:`CodePeer` run daily on a dedicated server (highest suitable level) allowing users to justify messages manually via :toolname:`CodePeer` web server.
-+ Messages already justified through :ada:`pragma Annotate` do not need to be justified again.
-+ These runs will typically be run nightly to take into account commits of the day, and *provide results to users the next morning*
-+ Developers can analyze the results via the web interface or from :toolname:`GNAT Studio` by accessing the database remotely.
-+ Developers then *fix the code*, or *justify the relevant messages* using either :ada:`pragma Annotate` or via :toolname:`GNAT Studio` or the web interface.
-+ *Optionally* for each release, results are committed under CM for traceability purposes.
++ Typically run nightly
 
------------------------------------------------
-Continuous Runs On A Server After Each Change
------------------------------------------------
+    + Takes into account commits of the day
+    + Provides results to users the next morning
 
-+ :toolname:`CodePeer` is run on a dedicated server with lots of resources at a level suitable for performing runs rapidly (e.g. level 0 or 1)
-+ These runs do not need to be exhaustive: *focus is on differences from previous run*
-+ Continuous runs *trigger on new repository changes* (e.g. via Jenkins)
-+ A *summary is sent to developers* via email or a web interface:
++ Allows users to analyze and justify messages **manually**
 
-.. container:: latex_environment tiny
+    + Via the **web** interface
+    + From :toolname:`GNAT Studio` by accessing the **database** remotely
 
-    :command:`codepeer -Pprj -output-msg -only -show-added | grep "[added]"`
++ At release, results can be committed under CM for **traceability** purposes
+
+-----------------
+Continuous Runs
+-----------------
+
++ :toolname:`CodePeer` is run on a dedicated server
+
+    + With large resources
+    + Fast level (0 or 1)
+
++ No need to be exhaustive
+
+    + Focus on **differences** from previous run
+
++ Continuous runs triggerred on repository events
++ Summary is sent to developers
+
+    + Email
+    + Web interface
+      :command:`codepeer -Pprj -output-msg -only -show-added | grep "[added]"`
 
 + Developers then *fix the code*, or *justify the relevant messages*
 
@@ -2016,97 +2098,80 @@ Continuous Runs On A Server After Each Change
 Combined Desktop/Nightly Run
 ------------------------------
 
-+ *Fast analysis* of code changes done at each *developer's desk*
-+ A longer and *more complete analysis* is performed nightly on a *powerful server*
-+ Combination of *Analyzing code locally prior to commit* and *Nightly runs on a server*
++ **Fast** analysis of code changes done at each **developer's desk**
++ A longer and **more exhaustive** analysis is performed nightly
++ The developer can re-use the **nightly** database as a baseline for analysis
++ Database reviews **should** be stored in the **nightly** (*gold*) database
+
+    + No conflict with nightly runs
+    + Updated every morning in the users' databases
 
 ---------------------------------
 Combined Continuous/Nightly Run
 ---------------------------------
 
-+ *Fast analysis* of code changes done after each commit *on a server*
-+ A longer and more *complete analysis* is performed nightly on a *powerful server*
-+ Or alternatively: a baseline run is performed nightly at same level as continuous runs (:command:`-baseline`).
-+ Combination of *Analyzing code locally prior to commit* and *Continuous runs on a server after each change*
++ **Fast** analysis of code changes done at each **developer's desk**
++ A longer and **more exhaustive** analysis is performed nightly
++ Alternatively: a baseline run is performed nightly
+
+    + Same level as continuous runs and :command:`-baseline`
+
++ Database reviews **should** be stored in the **nightly** (*gold*) database
+
+    + No conflict with nightly runs
+    + Updated every morning in the continuous database
 
 -----------------------------------------
 Combined Desktop/Continuous/Nightly Run
 -----------------------------------------
 
-+ *Fast analysis* of code changes done at each *developer's desk*
-+ An *analysis* (fast but potentially longer than the one performed by developers) is done after each commit *on a server*
-+ A *more exhaustive analysis* performed nightly on a *powerful server*
-+ Combination of *Analyzing code locally prior to commit*, *Nightly runs on a server* and *Continuous runs on a server after each change* .
++ **Fast** analysis of code changes done at each **developer's desk**
++ A **more exhaustive** analysis of code changes done continuously **on a server**
++ A longer and **even more exhaustive** analysis is performed nightly
++ Database reviews **should** be stored in the **nightly** (*gold*) database
+
+    + No conflict with nightly runs
+    + Updated every morning in the users' and continuous databases
 
 --------------------------------------------
 Software Customization Per Project/Mission
 --------------------------------------------
 
-+ A *core version* of your software gets branched out or instantiated and *modified on a per-project/mission* basis.
++ A *core* version of the software gets branched out or instantiated
+
+    + Modified on a **per-project/mission** basis
+
++ Objectives
+
+  + Separate :toolname:`CodePeer` runs on **all** active branches
+  + Database is used to **compare** runs on a **single** given branch
+
 + **Continuous solution**
 
-  + Share message justifications via :ada:`pragma Annotate`
-  + Merge of justifications handled via standard CM
-  + Separate :toolname:`CodePeer` runs on all active branches, database used to compare runs on a given branch
+  + Justify message via :ada:`pragma Annotate` **only**
+  + Merge of justifications handled via **standard CM**
+  + Advantage: Code is self-justified
 
 + **One shot solution**
 
-  + Copy the justifications from the DB at branch point
-  + Maintain it separately from there (*fork*)
-  + Separate :toolname:`CodePeer` runs on all active branches, database used to compare runs on a given branch
-
------------------------------------------
-Compare Local Changes With Master (1/3)
------------------------------------------
-
-+ Analysis running on server with latest source version
-+ The ("gold") database gets updated when sources are updated
-
-  + :command:`-baseline` switch
-
-+ Developers pre-validate changes locally with :toolname:`CodePeer` prior to commit, in a separate sandbox and using the same analysis settings.
-+ **Continuous integration** :math:`\rightarrow` local user creates a separate branch and commit his change on this branch
-
------------------------------------------
-Compare local changes with master (2/3)
------------------------------------------
-
-A continuous builder (e.g. Jenkins) is monitoring user branches and triggers an analysis that will:
-
-  + Copy in a separate sandbox the database from the reference (nightly) run.
-  + Perform a run with the same settings as the reference run
-  + Send results to the user either via its web server and the :toolname:`CodePeer` HTML interface, or by generating a textual report (-output-msg).
-  + Can be combined with -show-added so that the user can concentrate on the new messages found:
-
-      .. container:: latex_environment tiny
-
-         :command:`codepeer -Pprj -output-msg -show-added | grep "[added]"`
-
-  + Throw out this separate sandbox
-
------------------------------------------
-Compare local changes with master (3/3)
------------------------------------------
-
-+ Once the user receives the report he can *address the findings* by
-
-  + Modifying the code
-  + Using :ada:`pragma Annotate`
-  + Posting an analysis on the gold database after his change is merged on the master branch and a new baseline run is available for review.
-
-+ Another, more *manual alternative* involves
-
-  + Make a local copy of the gold database in the user space
-  + Run :toolname:`CodePeer` there
-  + Look at differences then throw out this local environment.
+  + **Version** the database alongside the code
+  + At branch point database is **forked**
+  + Database is maintained separately from there
+  + Advantage: Can use database reviews
 
 ----------------------------------------------
-Multiple teams analyzing multiple subsystems
+Multiple Teams Analyzing Multiple Subsystems
 ----------------------------------------------
 
-+ Large software system composed of *multiple subsystems* maintained by *different teams*
-+ Perform a *separate analysis for each subsystem*, using a separate workspace and database
-+ Create *one project file (.gpr) per subsystem*
++ Large software system with **multiple** subsystems
+
+    + Maintained by **different** teams
+
++ Perform a **separate** analysis for each subsystem
+
+    + Using a separate workspace and database
+
++ Create one project file (.gpr) per subsystem
 + To resolve dependencies between subsystems, use :ada:`limited with`
 
    .. code:: Ada
@@ -2121,53 +2186,53 @@ Multiple teams analyzing multiple subsystems
 
    :command:`codepeer -Psubsystem1 --no-subprojects`
 
-==============================
-Justifying CodePeer Messages
-==============================
+=======================
+Comparing to Baseline
+=======================
 
-------------------------------------
-Justifying CodePeer messages (1/2)
-------------------------------------
+---------------
+Baseline Runs
+---------------
 
-+ Add review status in database
++ Analysis running with latest source version
 
-  + :toolname:`GNAT Studio`: select review icon on message(s)
-  + HTML web server: click on :menu:`Add Review` button above messages
-  + Displayed with :command:`-output-msg-only -show-reviews (-only)`
+  + On a server
 
-+ Add message review pragma in code
++ Baseline run
 
-  + :ada:`pragma Annotate` added next to code with message
-  + 2 modalities: *False_Positive* or *Intentional*
-  + Also added in the database
+  + **Reference** database (*gold*)
+  + **All changes** are compared to it
+  + **All reviews** should be pushed to it
 
-.. code:: Ada
++ Create a baseline run
 
-   ...
-   return (X + Y) / (X - Y);
-   pragma Annotate (CodePeer,
-                    False_Positive,
-                    "Divide By Zero",
-                    "reviewed by John Smith");
+  + :command:`codepeer -baseline`
 
-----------------------------------------
-Justifying CodePeer messages (2/2)
-----------------------------------------
+--------------------------------------
+Baseline With Continuous-Integration
+--------------------------------------
 
-+ Use spreadsheet tool
++ Developers pre-validate changes **locally** prior to commit
 
-  + Export messages in CSV format
+    + Then creates a **separate** branch and commits to it
 
-     :command:`codepeer -Pprj -output-msg-only -csv`
++ The continuous builder is **triggered**
 
-  + Review them via the spreadsheet tool (e.g. Excel)
-  + Import back reviews into the :toolname:`CodePeer` database
+  + Copy the database from the **baseline** run
+  + Perform a run with the **same** settings as the reference run
+  + Share results to the user
 
-     :command:`codepeer_bridge --import-reviews`
+      + Can use :command:`-show-added` to show only the **new** messages
 
-+ Use external justification connected to output
+      .. container:: latex_environment tiny
 
-  + Textual output: compiler-like messages or CSV format
+         :command:`codepeer -Pprj -output-msg -show-added | grep "[added]"`
+
++ The user **addresses** the findings
+
+  + Modifying the code
+  + Using :ada:`pragma Annotate`
+  + Updating the gold database with an analysis
 
 ========================
 CodePeer Customization
@@ -2311,28 +2376,35 @@ Report File
 CodePeer for Certification
 ============================
 
-----------------------
+------------------
 CodePeer and CWE
-----------------------
+------------------
 
-+ MITRE's Common Weakness Enumeration (CWE) is a set of common vulnerabilities in software applications
-+ It is referenced in many government contracts and cyber-security requirements
-+ :toolname:`CodePeer` is officially CWE-compatible
++ MITRE's Common Weakness Enumeration (CWE)
+
+    + **Common** vulnerabilities in **software** applications
+    + Referenced in many government contracts and cyber-security **requirements**
+
++ :toolname:`CodePeer` is officially **CWE-compatible**
 
   https://cwe.mitre.org/compatible/questionnaires/43.html
 
-+ Mapping is provided between :toolname:`CodePeer` findings and CWE identifiers
++ :toolname:`CodePeer` findings are **mapped** to CWE identifiers
 
 ---------------------------
 CodePeer and DO178B/C
 ---------------------------
 
-+ :toolname:`CodePeer` supports DO-178B/C Avionics Standard
++ :toolname:`CodePeer` **supports** DO-178B/C Avionics Standard
 + DO-178C Objective A-5.6 (activity 6.3.4.f):
 
-  **Code Accuracy and Consistency** The objective is to determine the correctness and consistency of the Source Code, including stack usage, memory usage, *fixed point arithmetic overflow and resolution*, *floating-point arithmetic*, resource contention and limitations, worst-case execution timing, exception handling, *use of uninitialized variables*, cache management, *unused variables*, and *data corruption due to task or interrupt conflicts*. The compiler (including its options), the linker (including its options), and some hardware features may have an impact on the worst-case execution timing and this impact should be assessed.
+  **Code Accuracy and Consistency** (emphasis added)
 
-+ :toolname:`CodePeer` helps *reduce* the scope of manual review
+  The objective is to determine the correctness and consistency of the Source Code, including stack usage, memory usage, **fixed point arithmetic overflow and resolution**, **floating-point arithmetic**, resource contention and limitations, worst-case execution timing, exception handling, **use of uninitialized variables**, cache management, **unused variables**, and **data corruption due to task or interrupt conflicts**.
+  
+  The compiler (including its options), the linker (including its options), and some hardware features may have an impact on the worst-case execution timing and this impact should be assessed.
+
++ :toolname:`CodePeer` **reduces** the scope of manual review
 + See Booklet: *AdaCore Technologies for DO-178C/ED-12C*
 
   + Authored by Frederic Pothon & Quentin Ochem
@@ -2341,8 +2413,8 @@ CodePeer and DO178B/C
 CodePeer and CENELEC - EN50128
 ------------------------------------
 
-+ :toolname:`CodePeer` Qualified as a T2 tool for this CENELEC Rail Standard
-+ :toolname:`CodePeer` Supports:
++ :toolname:`CodePeer` **qualified** as a T2 tool for this CENELEC Rail Standard
++ :toolname:`CodePeer` supports:
 
   + D.4 Boundary Value Analysis
   + D.8 Control Flow Analysis
@@ -2365,14 +2437,23 @@ How Does CodePeer Work?
 How Does CodePeer Work?
 -------------------------
 
-+ :toolname:`CodePeer` computes the possible value of every variable and every expression at each program point.
-+ It starts with leaf subprograms and propagates information up in the call-graph, iterating to handle recursion.
-+ For each subprogram:
++ :toolname:`CodePeer` computes the **possible** value
 
-  + It computes a precondition that guards against check failures.
-  + It issues check/warning messages for the subprogram.
-  + It computes a postcondition ensured by the subprogram.
-  + It uses the generated subprogram contract (precondition + postcondition) to analyze calls.
+    + Of every **variable**
+    + and every **expression**
+    + at each **program point**
+
++ Starting with a **leaf** subprograms
++ Information is propagated up in the call-graph
+
+    + Iterations to handle **recursion**
+
++ For each subprogram :ada:`Sub`
+
+  + It generates a **precondition** guarding against :ada:`Sub` check failures
+  + It issues **check/warning** messages for :ada:`Sub`
+  + It generates a **postcondition** ensured by :ada:`Sub`
+  + It uses the **generated contracts** to analyze calls to :ada:`Sub`
 
 -----------------------------
 How Does CodePeer Work?
@@ -2380,7 +2461,9 @@ How Does CodePeer Work?
 
 See *CodePeer By Example* for more details
 
-   From :toolname:`GNAT Studio` go to :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Examples` :math:`\rightarrow` :menu:`Codepeer By Example`
+   From :toolname:`GNAT Studio`
+   
+   :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Examples` :math:`\rightarrow` :menu:`Codepeer By Example`
 
 -----------------------------------------
 CodePeer Limitations and Heuristics
