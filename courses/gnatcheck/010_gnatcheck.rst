@@ -3,8 +3,7 @@
 GNATcheck
 ***********
 
-.. role:: ada(code)
-   :language: ada
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction
@@ -13,32 +12,26 @@ Introduction
 -----------------
 GNATcheck Is...
 -----------------
-+ An automated coding standards checker
++ An **automated** coding standards checker
 + Capable of expressing a variety of rules
 
-  + GNAT compiler warnings and style checks
-  + Language-defined and GNAT-defined restrictions
-  + Complexity metrics
-  + Specific GNATcheck-defined rules (~80, and growing)
+  + GNAT compiler **warnings and style** checks
+  + Language-defined and GNAT-defined **restrictions**
+  + Complexity **metrics**
+  + **Specific** GNATcheck-defined rules
 
 + Qualified to DO-178 in several programs
-+ A command-line tool
-+ Integrated in GPS / GNATbench
++ Integrated in :toolname:`GNAT Studio`
 
-   .. image:: ../../images/number_one_ribbon.png
-      :height: 20%
+--------------------
+Required by DO-178
+--------------------
 
-   + Recommended approach
+   .. image:: images/gnatcheck/do178_table_a5.jpg
 
----------------------
-Required by DO-178B
----------------------
-
-   .. image:: ../../images/gnatcheck/do178_table_a5.jpg
-
---------------------------------------
-Conformance To Standards Requirement
---------------------------------------
+-----------------------------------------------
+Conformance To Standards Requirement - DO-178
+-----------------------------------------------
 
 .. container:: latex_environment beamercolorbox {blueonorange}
 
@@ -46,96 +39,90 @@ Conformance To Standards Requirement
 
    [...]
 
-   d. Conformance to standards: The objective is to **ensure that the Software Code Standards were followed** during the development of the code, especially complexity restrictions and code constraints that would be consistent with the system safety objectives. Complexity includes the degree of coupling between software components, the nesting levels for control structures, and the complexity of logical or numeric expressions. This analysis also ensures that deviations to the standards are justified.
+   d. Conformance to standards
+
+   The objective is to **ensure that the Software Code Standards were followed** during the development of the code, especially **complexity restrictions and code constraints** that would be consistent with the system safety objectives.
+
+   Complexity includes the degree of coupling between software components, the nesting levels for control structures, and the complexity of logical or numeric expressions.
+
+   This analysis also ensures that **deviations to the standards are justified**.
 
 ---------------------------
 GNATcheck Is An ASIS Tool
 ---------------------------
-+ Source must be compilable
 
-  + Warnings issued otherwise
-  + GNATcheck will continue without analyzing them
++ Sources must be **compilable**
 
-+ All source dependencies must be available
+  + Otherwise incomplete
+  + Warnings and :toolname:`GNATcheck` will ignore those files
+  + Changing with upcoming *lalcheck*
 
-  + Those units named in with-clauses, transitively
++ All source dependencies must be **available**
+
+  + Those units named in :ada:`with`-clauses, transitively
   + Whether or not they are to be analyzed themselves
 
 -------------------------
 Command Line Invocation
 -------------------------
 
-.. container:: latex_environment footnotesize
+.. code::
 
-   :command:`gnatcheck [options] {filename} | {-files=filename} -rules rule_switches`
+   gnatcheck [options]
+             <filename> | -files=<filenames_file>
+             -rules
+                rule_switches | -from=file
 
-.. epigraph::
+* :code:`<filename>`
 
-   **options**
+   - Source file names; wildcards allowed
+   - Mutually exclusive with :code:`-files=<filenames_file>`
 
-      Including project file switch and name (*-P <filename.gpr>*)
+      + :code:`filenames_file` is a file containing the source files names
 
-.. epigraph::
+* :code:`-rules`
 
-   **{filename}**
-
-      Source file names; wildcards allowed
-
-**OR**
-
-.. epigraph::
-
-   **{files=filename}**
-
-      Name of a file containing source file names
-
-.. epigraph::
-
-   **-rules rule_switches**
-
-      Specific rules, or name of a text file containing rules (*-from=filename*)
-
-Examples:
+   - Specific rules switches
+   - Or name of a text file containing them: :code:`-from=<filename>`
 
 .. container:: latex_environment footnotesize
 
    :command:`gnatcheck main.adb  -rules +RPositional_Parameters`
-
    :command:`gnatcheck -P foo.gpr`
 
 ----------------------
 Some Useful Switches
 ----------------------
-**--help** | **-h**
+* :code:`--help`, :code:`-h`
 
   + List rule identifiers with very brief descriptions
 
-**--show-rule**
+* :code:`--show-rule`
 
   + Append rule names to messages
 
-**- Xname=value**
+* :code:`-Xname=value`
 
   + Specify an external reference for argument in project file
 
-**-o filename**
+* :code:`-o filename`
 
-  + Specify the name of the report file
-  + Default is *toolprefix-*gnatcheck.out
+  + Specify the name of the **report** file
+  + Default is :code:`<toolprefix>-gnatcheck.out`
 
 ---------------------
 Using Project Files
 ---------------------
 
-+ The optimum approach
-+ Convenient for multiple source directories
-+ Convenient for checking multiple projects
++ Recommended approach
++ Convenient for multiple source **directories**
++ Convenient for checking multiple **projects**
 
   + Root project and dependencies
 
-+ Usable with both command line and IDEs
-+ File specified via switch **-P** as usual
-+ Uses a tool-specific package named **Check**
++ Usable with **both** command line and IDEs
++ File specified via switch :code:`-P<project.gpr>` as usual
++ In :toolname:`GPRbuild` uses a tool-specific :ada:`package Check`
 
 ------------------------------
 Specifying Rules In GPR File
@@ -146,14 +133,14 @@ Specifying Rules In GPR File
    project Gnatcheck_Example is
       ...
       package Check is
-         for Default_Switches ("Ada") use      
+         for Default_Switches ("Ada") use
             ("-rules", -- DON'T FORGET THIS!
              "+RAbstract_Type_Declarations",
              "+RAnonymous_Arrays",
              "+RLocal_Packages",
              "+RFloat_Equality_Checks",
              "+REXIT_Statements_With_No_Loop_Name",
-             "+RStyle_Checks:e"); 
+             "+RStyle_Checks:e");
       end Check;
    end Gnatcheck_Example;
 
@@ -170,7 +157,7 @@ Convenient due to typically large number of rules
       package Check is
          for Default_Switches ("Ada") use (
                "-rules",
-                -- arbitrary filename:
+                --  No constraint on file name
                 "-from=coding_standard");
       end Check;
    end Gnatcheck_Example;
@@ -179,65 +166,44 @@ Convenient due to typically large number of rules
 GNATcheck Switches In Project Properties
 ------------------------------------------
 
-.. image:: ../../images/gnatcheck/properties_dialog.png
+* Direct manual entry is supported
+* Graphical entry through :toolname:`GNAT Studio`
 
-As always, direct manual entry is also supported
+.. image:: images/gnatcheck/properties_dialog.png
 
 -------------------
 Basic Rule Syntax
 -------------------
 
-.. epigraph::
+* :code:`+R <rule name>`
 
-   **+R <rule name>**
+   - Activates specified rule
 
-      Activates rule specified
+* :code:`+R <rule name : parameter>`
 
-.. epigraph::
+   - Activates specified rule, with a value for the parameter
 
-   **+R <rule name : parameter>**
+* :code:`-R <rule name>`
 
-      Activates rule specified, for the value of the parameter
+   - Deactivates previously activated rule
 
-.. epigraph::
+* :code:`-R <rule name : parameter>`
 
-   **-R <rule name>**
+   - Deactivates rule previously activated with the parameter value
 
-      Deactivates specified rule previously activated
+* :code:`-from=rule_option_filename`
 
-.. epigraph::
+   - Textually includes rules from specified file name
+   - Files can reference **other files**
 
-   **-R <rule name : parameter>**
-
-      Deactivates specified rule, depending on parameter value
-
-.. epigraph::
-
-   **-from=rule_option_filename**
-
-      Textually includes rules from specified file name (Hence files can reference other files)
-
-*Rule names are not case sensitive*
+* Rule names are case insensitive
 
 -------------------
 Sample Rules File
 -------------------
 
-::
-
-   -----------------------------------------------------
-   -- This is a sample gnatcheck coding standard file --
-   -----------------------------------------------------
-   --  First, turn on rules that are defined by gnatcheck
-   +RAbstract_Type_Declarations
-   +RAnonymous_Arrays
-   +RLocal_Packages
-   +RFloat_Equality_Checks
-   +REXIT_Statements_With_No_Loop_Name
-   --  Then, activate some checks defined by GNAT compiler:
-   +RStyle_Checks:e
-   --  This style check checks if a unit name is present
-   --  on END keyword that is the end of the unit declaration
+.. include:: examples/standard_file.rules
+   :code:
 
 -------------------------------
 Sample Invocation Results (1)
@@ -255,7 +221,8 @@ Sample Invocation Results (1)
             function Is_Equal (L, R : My_Float) return Boolean;
          end Inner;
       private
-         type T is abstract tagged null record; -- declaration of abstract type
+         type T is
+           abstract tagged null record; -- declaration of abstract type
       end; -- (style) "end Pack" required
 
 -------------------------------
@@ -277,30 +244,29 @@ Sample Invocation Results (2)
 Rule Exemptions Specified In Source Code
 ------------------------------------------
 
-+ Uses GNAT-specific pragma Annotate
++ Uses GNAT-specific :ada:`pragma Annotate`
 
-  + Used by source-oriented tools external to compiler
+  + Used by source-oriented tools **external** to compiler
   + Syntax checked by compiler but no compilation effect
 
      .. code:: Ada
 
         pragma Annotate (identifier [,identifier {, arg}]);
 
-
 + GNATcheck-specific usage
 
      .. code:: Ada
 
-        pragma Annotate (gnatcheck,
+        pragma Annotate (GNATcheck,
                          exemption_control,
                          rule_name,
                          [justification]);
 
-     * exemption_control ::= *Exempt_On | Exempt_Off*
-     * rule_name ::= *string_literal*
-     * justification ::= *string_literal*
+     * :code:`exemption_control ::= Exempt_On | Exempt_Off`
+     * :code:`rule_name ::= <string_literal>`
+     * :code:`justification ::= <string_literal>`
 
-* Usage errors are detected by GNATcheck
+* Usage errors are detected by :toolname:`GNATcheck`
 
 ------------------------
 Example Rule Exemption
@@ -309,22 +275,16 @@ Example Rule Exemption
 .. code:: Ada
 
    procedure Main is
-
       -- Included in reports
-      pragma Annotate (gnatcheck, Exempt_On,
+      pragma Annotate (GNATcheck, Exempt_On,
                        "Anonymous_Arrays", "this one is fine");
       -- Ignored
       Anon_Array : array (1 .. 10) of Float;
-      pragma Annotate (gnatcheck, Exempt_Off, "Anonymous_Arrays");
+      pragma Annotate (GNATcheck, Exempt_Off, "Anonymous_Arrays");
 
       -- Message: anonymous array type
       Another_Anon_Array : array (1 .. 10) of Integer;
-
       ...
-
-   begin
-      ...
-   end Main;
 
 *Exemption sections can be nested*
 
@@ -336,7 +296,7 @@ Sample Report File Produced
 
 ::
 
-   GNATCheck report
+   GNATcheck report
    date              	: 2014-02-24 11:45
    gnatcheck version	: gnatcheck Pro 7.3.0w (20140219-47)
    command line      	: C:\GNATPRO\7.3.0w\bin\gnat.exe check -P gnatcheck_example.gpr
@@ -404,13 +364,13 @@ Accessing the GNATcheck RM
 Accessing GNATcheck RM Within GPS
 -----------------------------------
 
-.. image:: ../../images/gnatcheck/rm_cascade.png
+.. image:: images/gnatcheck/rm_cascade.png
 
 ----------------------------------
 GNATcheck RM Sections In Browser
 ----------------------------------
 
-.. image:: ../../images/gnatcheck/rm_browser.png
+.. image:: images/gnatcheck/rm_browser.png
 
 + One big section, thus searchable
 
@@ -437,7 +397,7 @@ Accessing GNATcheck RM in GPS Lab
 GPS: Check All Sources In Single Project
 ------------------------------------------
 
-.. image:: ../../images/gnatcheck/perform_check_cascade.png
+.. image:: images/gnatcheck/perform_check_cascade.png
 
 + TBD: Right-click to display contextual menu
 + TBD: Click to invoke
@@ -446,7 +406,7 @@ GPS: Check All Sources In Single Project
 Results
 ---------
 
-.. image:: ../../images/gnatcheck/check_results.png
+.. image:: images/gnatcheck/check_results.png
 
 + TBD: File for 1 st entry
 + TBD: Click to focus on source line
@@ -455,7 +415,7 @@ Results
 GPS Source File Contextual Menu
 ---------------------------------
 
-.. image:: ../../images/gnatcheck/perform_right_click.png
+.. image:: images/gnatcheck/perform_right_click.png
 
 + TBD: Right-click to display contextual menu
 + TBD: Click to invoke
@@ -600,7 +560,7 @@ Rules File
 Graphically Editing Rules Files
 ---------------------------------
 
-.. image:: ../../images/gnatcheck/edit_rules_cascade.png
+.. image:: images/gnatcheck/edit_rules_cascade.png
 
 + Same as via project contextual menu
 + Invokes dialog
@@ -609,7 +569,7 @@ Graphically Editing Rules Files
 Rules File Editor Dialog
 --------------------------
 
-.. image:: ../../images/gnatcheck/rules_editor.png
+.. image:: images/gnatcheck/rules_editor.png
 
 + TBD: Editable; empty if no file specified already
 + TBD: Buttons invoking sub-dialogs
@@ -619,7 +579,7 @@ Rules File Editor Dialog
 When Rules Files Contain Comments
 -----------------------------------
 
-.. image:: ../../images/gnatcheck/rules_comment_warning.png
+.. image:: images/gnatcheck/rules_comment_warning.png
 
 + Even if you don't change anything, pressing Save removes the comments
 + TBD: verify and update screenshot if needed
@@ -628,8 +588,7 @@ When Rules Files Contain Comments
 The "Edit Rules File" Dialog Boxes
 ------------------------------------
 
-.. image:: ../../images/gnatcheck/rules_example_dialog.png
-
+.. image:: images/gnatcheck/rules_example_dialog.png
 
 ----------------------
 Style Rules: Tasking
@@ -684,7 +643,7 @@ Tasking Style Rule Lab
 Tasking Style Rule Lab
 ------------------------
 
-.. image:: ../../images/gnatcheck/tasking_rules_dialog.png
+.. image:: images/gnatcheck/tasking_rules_dialog.png
 
 --------------------------------------------
 Enforcing Abstraction & Information Hiding
@@ -704,14 +663,14 @@ Enforcing Abstraction & Information Hiding
       procedure Push (This : in out Stack;  Value : Integer) with
         Pre => not Full (This);
 
-      function Full (This : Stack) return Boolean is 
+      function Full (This : Stack) return Boolean is
         (This.Top = This.Size);
 
    end P;
 
 *Stack should be a private type!*
 
-   * If this was a private type with that same discriminant, no violation would be reported 
+   * If this was a private type with that same discriminant, no violation would be reported
 
 --------------------
 OO Style Rule Quiz
@@ -755,7 +714,6 @@ Exception Propagation Beyond Visibility
                raise Error;
             end Q;
          end P;
-
 
    .. column::
 
@@ -803,7 +761,7 @@ Beware "Others"
 .. code:: Ada
 
    -- Future mods may add many more agencies
-   type Space_Agencies is (NASA, ESA, RFSA); 
+   type Space_Agencies is (NASA, ESA, RFSA);
    Bureau : Space_Agencies;
    ...
    case Bureau is
