@@ -1,7 +1,8 @@
-
 ************
 GPR Basics
 ************
+
+.. include:: support_files/symbols.rst
 
 ==============
 Introduction
@@ -11,79 +12,95 @@ Introduction
 Origins and Purposes of Projects
 ----------------------------------
 
-* The need for flexibility
+* Need for **flexibility**
 
-   - Managing huge applications is a difficult task; many AdaCore customers benefit from a tool to help them
+   - Managing large applications is **hard**
+   - A common tool benefits many AdaCore customers
 
-* The GNAT compilation model
+* GNAT compilation model
 
-   - Compiler needs to know where to find the Ada files imported by the Ada unit which is being compiled
+   - Compile when :ada:`with`'ed (except main subprograms)
 
-* The IDEs
+       + Recursively
 
-   - AdaCore IDEs need to know where to find the source files, and also the object files
+   - Compiler needs to know **where** to find the source files
 
-* The Tools (metrics, documentation generator, etc)
+* :toolname:`GNAT Studio` (IDE) need to find
 
-   - AdaCore Tools benefit from having knowledge of the application structure
+   - **Source** files
+   - **Object** files
+   - **Linker** information
+   - Project configuration (**scenario**, **sub-projects**...)
 
----------------------------------
-Subsystems of Subsystems of ...
----------------------------------
+* Various Tools
+
+   - Metrics, Documentation generator, etc...
+   - Benefit from knowledge of the application **structure**
+
+--------------------
+Projects Hierarchy
+--------------------
 
 .. container:: columns
 
  .. container:: column
 
-    * Projects support incremental, modular project definition
+    * Support **incremental, modular** project definition
+    * Can **import** sub-projects
 
-       - Projects can import other projects containing needed files
-       - Child projects can extend parent projects, inheriting source files and optionally overriding any of them
+       - **Hierarchical** subsystems
+       - Build decisions **deferred** to the subsystem level
 
-    * Facilitates the structuring of large development efforts into hierarchical subsystems
+    * Can **extend** parent projects
 
-       - With build decisions deferred to the subsystem level
+       - **Inherit** source files
+       - Optional **overriding**
 
  .. container:: column
 
-    .. image:: ../../images/connected_cubes.png
+    .. image:: images/connected_cubes.png
 
 --------------------
 GNAT Project Files
 --------------------
 
-* Text files with Ada-like syntax
-* Also known as "gpr files" due to file extension
-* Integrated into command-line tools
+* Text files with **Ada-like** syntax
+* Also known as **gpr files** due to file extension
+* Integrated into **command-line** tools
 
    - Specified via the **-P project-file-name** switch
 
-* Integrated into the IDEs
+* Integrated into the **IDEs**
 
    - A fundamental part
-   - Automatically generated if desired
+   - **Automatic** update graphically
+   - Optional **automatic generation**
 
-* Should be under configuration management
+* **Should** be put under configuration management
 
 -------------------------
 Configurable Properties
 -------------------------
 
-* Source directories and specific files' names
-* Output directory for object modules and .ali files
+* **Source** directories and specific files' names
+* **Output** directory for object modules and .ali files
 * Target directory for executable programs
-* Switch settings for project-enabled tools
-* Source files for main subprogram(s) to be built
-* Source programming languages
+* **Switch** settings for supported tools
+* Source files for **main** subprogram(s) to be built
+* Source programming **languages**
 
    - Ada / C / C++ are preconfigured
 
-* Source file naming conventions
-* et cetera
+* Source file **naming conventions** (:code:`ads` vs :code:`ad0`)
+* **Large** set of specific configurations
 
 --------------------------
 The Minimal Project File
 --------------------------
+
+* No main
+* Source are in gpr file's directory
+* Output files are put in gpr file's directory
 
 .. code:: Ada
 
@@ -92,26 +109,65 @@ The Minimal Project File
    end My_Project;
 
 -----------------------------------
-About Project Files and Makefiles
+Comparison with Makefiles
 -----------------------------------
 
 * A Makefile performs actions (indirectly)
-* A project file describes a project
-* Command lines using project files fit naturally in the Makefile paradigm
+
+   - **Dependency** tree declaration
+   - **Procedural** build resolution
+   - **Adaptable** to large set of conditions
+
+* A project file describes an Ada project
+
+   - **Implicit** dependency tree
+   - **Declarative** build resolution
+   - **Limited** to supported build process
+
+* Both approaches are complementary
+* Usually a **top-level** Makefile
 
 .. code:: console
 
-   gprbuild -P <project-file> ...
+    build-gpr:
+       gprbuild -P <project-file> ...
+
+    all: pre-build build-gpr post-build
+
+--------------------------
+Advantages over Makefile
+--------------------------
+
+* Syntax **close** to Ada
+
+   - Clearer
+   - No exotic operators
+   - No project-specific idioms or syntax
+
+* No issue with **dependency** declaration
+
+   - Rebuilds **as needed**
+   - **Order** of dependencies guaranteed
+   - Dependency of sources over **scenario** variables
+   - Sub-projects
+
+* Simpler, more **deterministic**
+* More **performant**
 
 ===============================
 Configuring Project Properties
 ===============================
 
 ------------------------------
-Property Values Introduction
+Variables Types Introduction
 ------------------------------
 
 * Strings
+
+   .. code:: Ada
+
+      "main.adb"
+
 * Lists of strings
 
    .. code:: Ada
@@ -120,7 +176,10 @@ Property Values Introduction
 
 * Associative arrays
 
-   - Like functions that map input string to either single string or list of strings
+   - Array-like syntax
+   - **Implicitely** system-defined
+   - Mapped to **either** single string or list of strings
+   - May hide a **subprogram call**
 
    .. code:: Ada
 
@@ -130,17 +189,56 @@ Property Values Introduction
 Variables
 -----------
 
-* "Typed" - a set of possible string values
-* "Untyped" - unspecified set of values
+* Typed
 
-   - Strings and lists
+   - **Restricted** to a set of String values
+   - **Can** be user-defined
+
+* Untyped
+
+   - Strings or lists
+   - **Can** be user-defined
+
+* Attributes
+
+   - Any type, including **arrays**
+   - **Cannot** be user-defined
+
+------------------------
+Variables Declarations
+------------------------
+
+* Typed variables limited to a set of values
+
+   - Values as **String**, unlike Ada
+   - **Case sensitive**, unlike Ada
+
+* Typed variables are declared **once** per scope
+
+   - Once at :ada:`project` level
+   - Once within any :ada:`package` block
+   - Essentially **read-only** constants
+
+      + Especially nice for **external** inputs
+
+* Untyped variables may be **re-declared**
+
+   - **No** previous declaration required
+
+----------------------
+Variables Assignment
+----------------------
+
+* User-defined use :ada:`:=`
+
+    + Typed or untyped
 
 .. code:: Ada
 
    project Build is
       type Targets is ("release", "test");
       -- typed variable
-      Target : Targets := external("target", "test");
+      Target : Targets := external ("target", "test");
       -- untyped string variable
       Var := "foo";
       -- untyped string list variable
@@ -148,48 +246,41 @@ Variables
       ...
    end Build;
 
---------------------------------
-Typed Versus Untyped Variables
---------------------------------
+* Attributes use :ada:`for`
 
-* Typed variables have only listed values possible
+   + Scalar, lists
+   + Associative arrays elements
 
-   - Case sensitive, unlike Ada
+.. code:: Ada
 
-* Typed variables are declared once per scope
-
-   - Once at project level
-   - Once within any package
-   - Essentially read-only constants
-
-      + Especially nice for external inputs
-
-* Untyped variables may be "declared" many times
-
-   - No previous declaration required
+   project Build is
+      for Object_Dir use "obj";
+      for Main use ("main1.adb", "main2.adb");
+      for Runtime ("Ada") use ...
 
 --------------------------------
 "Packages" Correspond to Tools
 --------------------------------
 
-* **Builder**
+* :ada:`package Builder`
 
-   - *gprbuild*
+  :command:`gprbuild`
 
-* **Compiler**
+* :ada:`package Compiler`
 
-   - *gcc*
 
-* **Linker**
+  :command:`gcc`
 
-   - *gnatlink*
+* :ada:`package Linker`
 
-* **Binder**
+  :command:`gnatlink`
 
-   - *gnatbind*
+* :ada:`package Binder`
+
+  :command:`gnatbind`
 
 * Others...
-* Allowable names and content defined by vendor
+* Names and content defined by **vendor**
 
    - Not by users
 
@@ -197,7 +288,11 @@ Typed Versus Untyped Variables
 Setting Tool Switches
 -----------------------
 
-* May be specified to apply by default
+* Command-line **options**
+* May be specified to apply **by default**
+
+   - Array :ada:`Default_Switches`
+   - Indexed by **language**
 
    .. code:: Ada
 
@@ -205,9 +300,10 @@ Setting Tool Switches
          for Default_Switches ("Ada") use ("-gnaty", "-v");
       end Compiler;
 
-* May be specified on a per-unit basis
+* May be overloaded on a **per-unit** basis
 
-   - Associative array "Switches" indexed by unit name
+   - Array :ada:`Switches`
+   - Indexed by **unit name**
 
    .. code:: Ada
 
@@ -220,16 +316,86 @@ Setting Tool Switches
 Specifying Main Subprogram(s)
 -------------------------------
 
-* Optional, otherwise requires specification on command line to build
-* Can have more than one file named
-* A project-level setting
+* Optional
+
+   - Can be specified with switch :command:`gprbuild gpr-file [switches] main-file`
+
+* Project-level setting
+* Can specify several main files
+
+   - One executable per main specified
 
 .. code:: Ada
 
    project Foo is
+      --  Generates executables `bar` and `baz`
       for Main use ("bar.adb", "baz.adb");
    end Foo;
 
+=========================
+Extending and Importing
+=========================
+
+-----------
+Extending
+-----------
+
+* Sort of **template** project
+* Use **modified** versions of the source files
+* **No** change to the original sources
+* Extension-specific attributes
+
+   - :ada:`Excluded_Source_Files`, :ada:`Excluded_Source_List_File`
+
+* :ada:`extends` keyword
+
+.. code:: Ada
+
+   project Work extends "../bld/build.gpr" is
+
+      for Source_Files use ("pack.ads");
+      --  New spec of Pkg does not need a completion
+      for Excluded_Source_Files use ("pack.adb");
+
+   end Work;
+
+-----------
+Importing
+-----------
+
+* Use the project as a **sub-project**
+* :ada:`with` keyword
+
+.. code:: Ada
+
+   with "my_driver/my_driver.gpr";
+   project B is
+      
+   end B;
+
+* Access the sub-project **attributes** with :code:`<subp>'<attr>`
+* Access the sub-project **variables** with :code:`<subp>.<var>`
+
+.. code:: Ada
+
+   for Target use My_Driver'Target;
+
+   case My_Driver.Var is
+   ...
+
+-------------------------
+Searching for GPR Files
+-------------------------
+
+* :toolname:`GPRbuild` search the .gpr files using
+* **Absolute** path
+* **Relative** path
+
+   - Relative to current project file
+   - Relative to any path in :command:`GPR_PROJECT_PATH_FILE`
+
+      + Several other environment variables used otherwise
+
 ========================
 Specifying Directories
 ========================
@@ -238,33 +404,35 @@ Specifying Directories
 Specifying Directories
 ------------------------
 
-* Any number of Source Directories
+* **Any** number of source directories
 
-   - Source Directories contain Source Files
-   - By default, the directory that contains the project file
-   - It is possible to create a project with no Source Directory
+   - Source directories contain **source files**
+   - Project file's directory **by default**
 
-* One Object Directory
+* A **single** object directory
 
-   - Contains object files and any files generated by the tools
-   - By default, the directory that contains the Project File
+   - Contains **object** files
+   - Contains **all generated files**
+   - Project file's directory **by default**
 
-* One Executables Directory
+* A **single** executables directory
 
-   - Contains the executables
-   - By default, it is same as Object Directory
+   - Contains the **executables**
+   - By default, it is the **object directory**
 
 --------------------
 Source Directories
 --------------------
 
 * One or more in any project file
-* Default is same directory as project file
-* Can specify additional / other directories
+* Project file's directory **by default**
+* Can be **re-defined**
 
    .. code:: Ada
 
       for Source_Dirs use ("mains", "drivers");
+      ...
+      for Source_Dirs use ("mains", "mock_drivers");
 
 * Can specify that none are present
 
@@ -276,22 +444,19 @@ Source Directories
 Source Files
 --------------
 
-* Must be at least one "immediate" source file
+* Can specify source files **by name**
 
-   - In one of the source directories of the project file
-   - Unless explicitly specifies none present
+   .. code:: Ada
+
+      for Source_Files use ("main.adb", "pack1.ads", "pack2.adb");
+
+* Can specify that **none** are present
 
    .. code:: Ada
 
       for Source_Files use ();
 
-* Can specify source files by name
-
-   .. code:: Ada
-
-      for Source_Files use ("main.adb","pack1.ads","pack2.adb");
-
-* Can specify an external file containing source names
+* Can specify an **external file** containing source names
 
    .. code:: Ada
 
@@ -301,7 +466,7 @@ Source Files
 Object Directory
 ------------------
 
-* Specifies the location for compiler's output
+* Specifies the location for tools' output
 
    - Such as "ali" files and object files
    - For the project's immediate sources
@@ -313,15 +478,16 @@ Object Directory
         ...
       end Release;
 
-* Only one per project
+* Only **one** per project
+* For extension, the **child**'s object directory is used for sources
 
-   - When extending a parent project the child's object directory is used for any inherited sources not already compiled in the parent
+    - Except those already compiled in the parent
 
 ----------------------
 Executable Directory
 ----------------------
 
-* Specifies the location for executable image
+* Specifies the location for **executable** output
 
    .. code:: Ada
 
@@ -330,8 +496,8 @@ Executable Directory
         ...
       end Release;
 
-* Default is same directory as object files
-* Only one per project
+* Default is **same** directory as object files
+* Only **one** per project
 
 =======================
 Naming Considerations
@@ -341,34 +507,17 @@ Naming Considerations
 Source File Naming Schemes
 ----------------------------
 
-* Allow arbitrary naming conventions
+* Allow **arbitrary** naming conventions
 
-   - Other than GNAT default convention
+   - Not limited to GNAT default convention
 
-* May be applied to all source files in a project
+* May be applied to **all** source files in a project
 
-   - Specified in a package named "Naming"
+   - Specified in :ada:`package Naming`
 
 * May be applied to specific files in a project
 
-   - Individual attribute specifications
-
--------------------------------------
-Foreign Default File Naming Example
--------------------------------------
-
-.. code:: Ada
-
-   project Rational is
-     ...
-     package Naming is
-       for Casing use "lowercase";
-       for Dot_Replacement use ".";
-       for Spec_Suffix ("Ada")  use ".1.ada";
-       for Body_Suffix ("Ada") use ".2.ada";
-     end Naming;
-     ...
-   end Rational;
+   - Individual **attribute** specifications
 
 ----------------------------------
 GNAT Default File Naming Example
@@ -387,18 +536,33 @@ GNAT Default File Naming Example
      ...
    end GNAT;
 
+-------------------------------------
+Foreign Default File Naming Example
+-------------------------------------
+
+.. code:: Ada
+
+   project Rational is
+     ...
+     package Naming is
+       for Casing use "lowercase";
+       for Dot_Replacement use ".";
+       for Spec_Suffix ("Ada")  use ".1.ada";
+       for Body_Suffix ("Ada") use ".2.ada";
+     end Naming;
+     ...
+   end Rational;
+
 ------------------------------------
 Individual (Arbitrary) File Naming
 ------------------------------------
 
-* Uses associative arrays to specify file names
+* Uses arrays :ada:`Spec` and :ada:`Body` to specify file names
 
-   - Index is a string containing the unit name
-   - Value is a string
+   - Indexed by the unit name
+   - Value is a String
 
-      + Case sensitivity depends on host file system
-
-* Has distinct attributes for specs and bodies
+      + Case sensitivity depends on **host** file system
 
 .. code:: Ada
 
@@ -419,10 +583,6 @@ Projects for Different Switch Settings
 
    project Debug is
      for Object_Dir use "debug";
-     package Builder is
-       for Default_Switches ("Ada")
-         use ("-g");
-     end Builder;
      package Compiler is
        for Default_Switches ("Ada")
           use ("-fstack-check", "-gnata", "-gnato");
@@ -441,18 +601,55 @@ Projects for Different Switch Settings
 External and Conditional References
 -------------------------------------
 
-* Allow project file content to depend on value of environment variables and command-line arguments
-* Reference to external values is by function
+* Import **environment** variables and command-line **switches**
 
-   - **external( name [, default] )** returns value of name as supplied on the command line or as environment variable
-   - If name is undefined, return default (if supplied) or ""
+  .. code:: Ada
+  
+     external (name [, default])
 
-* Set via command line switch (for example)
+* Value of :ada:`name` as supplied
 
-.. code:: console
+   - On the command line
 
-   gprbuild -P... -Xname=value  ...
-   gprbuild -P/common/build.gpr -Xtarget=test  /common/main.adb
+     :command:`gprbuild -Xname=value`
+
+   - Else as environment variable
+
+     :command:`name=value gprbuild`
+
+   - If none found, return :ada:`default`
+   - If no :ada:`default`, return :ada:`""`
+
+-------------------
+Case Construction
+-------------------
+
+* Similar to Ada's :ada:`case` statement
+* Conditional execution
+* Depends on :code:`<variable>`'s String value
+
+.. code:: Ada
+
+  case <variable> is
+     when "Choice" =>
+     ...
+     when "Other_Choice" | "Third_Choice" =>
+     ...
+  end case;
+
+* Empty declaration can be :ada:`null`
+* If variable is typed, all values must be covered **exactly once**
+
+    - Can use :ada:`when others`
+
+.. code:: Ada
+
+  case OS is
+     when "Unix" =>
+     ...
+     when others =>
+        null;
+  end case;
 
 ----------------------------------------
 External/Conditional Reference Example
@@ -463,6 +660,7 @@ External/Conditional Reference Example
    project Build is
       type Targets is ("release", "test");
       Target : Targets := external("target", "test");
+
       case Target is -- project attributes
          when "release" =>
             for Object_Dir use "release";
@@ -484,42 +682,71 @@ External/Conditional Reference Example
           ...
    end Build;
 
+-------------------
+Cross-Compilation
+-------------------
+
+* Target
+
+   - Compiler target
+   - Target that the compiled code **runs on**
+   - Default is **host machine**
+
+* RTS
+
+   - Runtime used
+   - Default depends on &&toolchain**
+
+* Specified via **switches**
+
+  :command:`gprbuild -target=<target> -RTS=<rts>`
+
+* Can also be specified with attributes
+
+.. code:: Ada
+
+  for Target use "arm-eabi";
+  for Runtime ("Ada") use "ravenscar-sfp-stm32f429disco";
+
+* Notice runtime is actually a pre-built binary for the exact target
+
 ===========
-GPRCONFIG
+GPRconfig
 ===========
 
---------------------------------
-Configuration File Description
---------------------------------
+--------------------
+Configuration File 
+--------------------
 
-* Describes languages and toolchains used
-* Typically created automatically by GPRbuild based on
+* Describes **languages** and **toolchains** used
+* Extension :command:`.cgpr`
+* Typically created **automatically** by :toolname:`GPRbuild` based on
 
-   - Languages defined in GPR files
-   - Compilers on path
+   - Languages defined in project files
+   - Compilers in :command:`PATH`
+
+- Create it **explicitely** with
+
+  :command:`gprbuild -autoconf=<file.cgpr>`
 
 -----------------------------
 Default Configuration Files
 -----------------------------
 
-* GPRbuild searches for configuration file
+* :toolname:`GPRbuild` searches for configuration file
 
-   - Search default configuration file for file
+   - ``<target>-<rts>.cgpr``
+   - ``<target>.cgpr``
+   - ``<rts>.cgpr``
+   - ``default.cgpr``
 
-      * ``<target>-<rts>.cgpr``
-      * ``<target>.cgpr``
-      * ``<rts>.cgpr``
-      * ``default.cgpr``
-      * *Target and RTS parameters are specified via -target and -RTS switches of gprbuild*
-      * *Default directory is share/gpr in gprbuild installation directory*
+* **RTS**: RunTime
+* Default directory is :code:`<gprbuild_install>/share/gpr`
+* Check environment variable :command:`GPR_CONFIG` for a valid file
 
-   - Check environment variable :command:`GPR_CONFIG` for valid configuration file
-
-      + Either absolute path name or base name for searching as above
-
-   - If -autoconf specified, new configuration file is automatically generated
-
-      + Based on specified target and languages specified in projects.
+   * Must contain an **absolute** path
+   * Can be cgpr **file** directly
+   * Or **default** directory to search from
 
 ------------------------------
 Creating Configuration Files
@@ -527,97 +754,97 @@ Creating Configuration Files
 
 * Preferable (and often necessary) to generate your own when
 
+   - Wrong autoconfig
    - Cross compilers
-
-      + --target=
-
    - Specific Ada runtime
+   - Compilers **not in** :command:`PATH` 
 
-      + --RTS=
-
-   - Compilers not in the path (or not first in the path)
-   - autoconfiguration does not give the expected results.
+      - Or not first in :command:`PATH`
 
 * Default method
 
-   - Simple interactive mode lists all known compilers for all known languages
-   - Select a compiler for each of the languages
-   - Compatible compilers for other languages are proposed.
+   - Interactive mode lists all known compilers
+
+     :code:`gprconfig --target=ppc-elf`
+
+      + List cross compilers for target :code:`ppc-elf`
+
+   - Select a compiler for each of language
+   - Compatible compilers for other languages are proposed
 
 -------------------------
 Examples of "gprconfig"
 -------------------------
 
-* Interactive
+* Interactive (expects user inputs)
 
-   - :command:`gprconfig`
+   :command:`gprconfig`
 
-      + File will be generated in GPRbuild's default location, (./default.cgpr)
+   - File will be generated in GPRbuild's default location, (./default.cgpr)
 
-   - :command:`gprconfig -o path/my_config.cgpr`
+   :command:`gprconfig -o path/my_config.cgpr`
 
-      + File stored in :command:`path/my_config.cgpr`
+   - File stored in :command:`path/my_config.cgpr`
 
-   - :command:`gprconfig --target=ppc-elf`
+* Automatic (batch) with :code:`gprconfig --batch`
 
-      + Only relevant cross compilers for target ppc-elf will be proposed
+   :code:`gprconfig --config=Ada --config=C --batch`
 
-* Automatic (batch)
+   - Generates at **default** location 
+   - Using **first** native Ada and C compilers on path.
 
-   - :command:`gprconfig --config=Ada --config=C --batch`
+   :code:`gprconfig --target=leon-elf --config=Ada,,hi --config=C --batch -o x.cgpr`
 
-      + Generates at default location using first native Ada and C compilers on path.
+   - Generates configuration file :code:`x.cgpr`
+   - For cross-compiling on LEON with Ada run-time :code:`hi`
+   - Using Ada and C
 
-   - :command:`gprconfig --target=leon-elf --config=Ada,,hi --config=C --batch -o x.cgpr`
-
-      + Generates configuration file named x.cgpr for cross-compiling Ada with a run-time called hi and using C for the LEON processor.
-
-===================
-GPRCONFIG Options
-===================
+====================
+GPRconfig Switches
+====================
 
 ------------------------
 Command line arguments
 ------------------------
 
-* *--target=platform*
+* :code:`--target=<platform>`
 
-   - Indicates target computer on which your application will run.
-   - Example: **--target=ppc-elf**
-   - Special target "all" to display all targets on path
-   - Default target is host machine
+   - Indicates cross-compiler target
+   - Example: :code:`--target=ppc-elf`
+   - Special target "all" to display **all targets** on path
 
-* *--show-targets*
+* :code:`--show-targets`
 
-   - List targets that are compatible with **--target**
+   - List all supported :code:`--target`
 
-* *--config=language[,version[,runtime[,path[,name]]]]*
+* :code:`--config=language[,version[,runtime[,path[,name]]]]`
 
-   - Preselect one or more compilers directly from the command line
-   - Optional arguments will be computed automatically
+   - Preselect **one or more** compilers directly from the command line
+   - Optional arguments will be computed **automatically**
 
 ------------------------------------
 Command line arguments (continued)
 ------------------------------------
 
-* **--batch**
+* :code:`--batch`
 
-   - Automatically select first compiler matching each of the -config switches
+   - **Automatically** select **first** compiler matching
+   - Guided by :code:`-config` switches
+   - Never interactive
 
-      + Not interactive
+* :code:`-o <file>`
 
-* **-o file**
+   - Name of generated **configuration file**
+   - Default is a file in :toolname:`GPRbuild`'s installation directory
 
-   - Specify name of generated configuration file that will be generated
-   - If not specified, a default file is generated in installation directory of GPRbuild
+* :code:`--db directory, --db-**`
 
-* **--db directory, --db-**
+   - Add a directory to parse for configuration files
 
-   - Indicates another directory that should be parsed for GPRconfig's knowledge base
+* :code:`-h`
 
-* **-h**
-
-   - Generates help message listing all GPRconfig switches and their default values
+   - Generates help message
+   - Lists all :toolname:`GPRconfig` switches with their default values
 
 =========
 Summary
@@ -627,7 +854,7 @@ Summary
 GNAT Project Manager Summary
 ------------------------------
 
-* Supports hierarchical, localized build decisions
-* IDEs provide direct support
-* See the GNAT Pro User's Guide for further functionality and capabilities
-* We haven't covered everything by any means!
+* Supports **hierarchical**, localized build decisions
+* IDEs provide **direct support**
+* See the **GNAT Pro User's Guide** for further functionality and capabilities
+* This set of slides is far from being exhaustive
