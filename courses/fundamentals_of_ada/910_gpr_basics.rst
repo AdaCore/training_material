@@ -268,7 +268,6 @@ Variables Assignment
 
 * :ada:`package Compiler`
 
-
   :command:`gcc`
 
 * :ada:`package Linker`
@@ -370,7 +369,7 @@ Importing
 
    with "my_driver/my_driver.gpr";
    project B is
-      
+
    end B;
 
 * Access the sub-project **attributes** with :code:`<subp>'<attr>`
@@ -604,7 +603,7 @@ External and Conditional References
 * Import **environment** variables and command-line **switches**
 
   .. code:: Ada
-  
+
      external (name [, default])
 
 * Value of :ada:`name` as supplied
@@ -715,7 +714,7 @@ GPRconfig
 ===========
 
 --------------------
-Configuration File 
+Configuration File
 --------------------
 
 * Describes **languages** and **toolchains** used
@@ -757,7 +756,7 @@ Creating Configuration Files
    - Wrong autoconfig
    - Cross compilers
    - Specific Ada runtime
-   - Compilers **not in** :command:`PATH` 
+   - Compilers **not in** :command:`PATH`
 
       - Or not first in :command:`PATH`
 
@@ -790,7 +789,7 @@ Examples of "gprconfig"
 
    :code:`gprconfig --config=Ada --config=C --batch`
 
-   - Generates at **default** location 
+   - Generates at **default** location
    - Using **first** native Ada and C compilers on path.
 
    :code:`gprconfig --target=leon-elf --config=Ada,,hi --config=C --batch -o x.cgpr`
