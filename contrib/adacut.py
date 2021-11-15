@@ -15,6 +15,11 @@ class AdaCut:
     RE_PURE_COMMENT = re.compile(r"^\s*\-\-.*$")
 
     def __init__(self, cut, mode, default_keeping=True):
+        self.lines = 0
+        self.directives = 0
+        self.comments = 0
+        self.kept = 0
+
         self.cut = cut
         self.current_cut = 0
         if self.cut:
@@ -54,12 +59,15 @@ class AdaCut:
     def new_line(self, l):
         keeping_code, keeping_comments = self.keeping_code_comments()
         self.line = None
+        self.lines += 1
 
         is_code = not self.RE_PURE_COMMENT.match(l)
         if is_code:
             if keeping_code:
+                self.kept += 1
                 return l
             elif keeping_comments:
+                self.kept += 1
                 # Special case: Keep empty lines to fill
                 return l[-1]
             else:
@@ -70,8 +78,15 @@ class AdaCut:
             assert not self.RE_DIRECTIVE_PARTIAL.match(
                 l
             ), f"malformed --$ comment: {l[:-1]}"
-            return l if keeping_comments else None
 
+            self.comments += 1
+            if keeping_comments:
+                self.kept += 1
+                return l
+            else:
+                return None
+
+        self.directives += 1
         directive = m.group(1).lower()
         typ = m.group(2).lower(), m.group(4).lower() if m.group(4) else "all"
         if directive not in self.DIRECTIVES:
@@ -123,22 +138,30 @@ if __name__ == "__main__":
     cut = AdaCut(args.cut, args.mode)
     dedent_cols = None
     prev_cut = None
+    prev_ln = 0
+    prev_indent = None
     with open(args.input_file) as fin:
         for l in fin:
             lp = cut.new_line(l)
             if lp != None:
+                cur_ln = cut.lines - cut.directives
+                cur_indent = len(lp) - len(lp.lstrip())
                 if args.dedent:
                     if dedent_cols is None:
-                        dedent_cols = len(lp) - len(lp.lstrip())
+                        dedent_cols = cur_indent
 
                     if lp.strip() != '':
                         assert lp[:dedent_cols] == ' ' * dedent_cols, repr(lp)
                         lp = lp[dedent_cols:]
 
-                if args.cut and prev_cut and prev_cut != cut.current_cut:
-                    print(' ' * (len(lp) - len(lp.lstrip())) + '...')
+                if args.cut \
+                   and prev_cut \
+                   and prev_cut != cut.current_cut \
+                   and prev_ln != cur_ln - 1:
+                    print((' ' * max(cur_indent, prev_indent)) + '...')
+                prev_ln = cur_ln
                 prev_cut = cut.current_cut
-
+                prev_indent = cur_indent
                 print(lp, file=out, end="")
 
     if args.cut_counting:
