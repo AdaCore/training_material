@@ -8,30 +8,30 @@ GNATtest
 GNATtest
 ----------
 
-+ An automatic unit test stub generator, including driver infrastructure
-+ Handles large, complex projects
-+ Can integrate external tests
-+ Supports contract-based programming tests
-+ Helps verify OOP requirements of DO-178C
-+ Integrated into GPS
-+ Supports native, cross & high-integrity platforms
+* An automatic unit test stub generator, including driver infrastructure
+* Handles large, complex projects
+* Can integrate external tests
+* Supports contract-based programming tests
+* Helps verify OOP requirements of DO-178C
+* Integrated into :toolname:`GNAT Studio`
+* Supports native, cross & high-integrity platforms
 
 ---------------------------
 Why Automate the Process?
 ---------------------------
 
-+ Developing tests is labor-intensive
-+ Much of the effort is not specific to the tests
+* Developing tests is labor-intensive
+* Much of the effort is not specific to the tests
 
-  + Developing the harness and driver
+    - Developing the harness and driver
 
-    + How to test generic units, etc.
+        + How to test generic units, etc.
 
-  + Verifying output is as expected
-  + Maintenance and update when new units to be tested
+    - Verifying output is as expected
+    - Maintenance and update when new units to be tested
 
-+ Ideally developers should concentrate on the high-value part: the test cases themselves
-+ GNATtest makes that ideal possible
+* Ideally developers should concentrate on the high-value part: the test cases themselves
+* :toolname:`GNATtest` makes that ideal possible
 
 ------------------------
 What Can Be Automated?
@@ -43,28 +43,28 @@ What Can Be Automated?
 An ASIS Tool
 --------------
 
-+ TBD - is this still true?
-+ Sources must be compilable
+* TBD - is this still true?
+* Sources must be compilable
 
-  + Warnings issued otherwise
-  + If not, GNATtest will skip it and continue to any others
+    - Warnings issued otherwise
+    - If not, GNATtest will skip it and continue to any others
 
-+ All source dependencies must be available
+* All source dependencies must be available
 
-  + Those units named in with-clauses, transitively
-  + Whether or not they are to be analyzed themselves
+    - Those units named in with-clauses, transitively
+    - Whether or not they are to be analyzed themselves
 
 ----------------
 Based On AUnit
 ----------------
 
-+ Unit test framework based on CppUnit for C++
-+ Generates the boilerplate code for test harnesses, suites, and cases needed to use the framework
-+ For more information on AUnit view the series of tutorials created by Daniel Bigelow
+* Unit test framework based on CppUnit for C++
+* Generates the boilerplate code for test harnesses, suites, and cases needed to use the framework
+* For more information on AUnit view the series of tutorials created by Daniel Bigelow
 
-  + http://www.youtube.com/user/DanielRBigelow
+    - http://www.youtube.com/user/DanielRBigelow
 
-+ Installation required for GNATtest
+* Installation required for :toolname:`GNATtest`
 
 -------------------------
 Command Line Invocation
@@ -72,60 +72,53 @@ Command Line Invocation
 
 .. container:: latex_environment footnotesize
 
-   :command:`gnattest -P <project-filename> {switches} [filename] [-cargs GCC_switches]`
+:command:`gnattest -P <project-filename> {switches} [filename] [-cargs GCC_switches]`
 
-.. epigraph::
+* :command:`<project-filename>`
 
-   **<project-filename>**
+    - Name of the GNAT Project File
 
-      Name of the GNAT Project File
+* :command:`{switches}`
 
-.. epigraph::
+    - GNATtest-specific switches
 
-   **{switches}**
+* :command:`[filename]`
 
-      GNATtest-specific switches
+    - File containing package to test
+    - Default: generate for all sources
 
-.. epigraph::
+* :command:`[-cargs GCC_switches]`
 
-   **[filename]**
+    - Switches passed to compiler invocations
 
-      File containing package to test (optional)
+* Examples:
 
-.. epigraph::
-
-   **[-cargs GCC_switches]**
-
-      Switches passed to compiler invocations
-
-Examples:
-
-   + gnattest -P foo.gpr src/repository.ads
-   + gnattest -P foo.gpr
+    :command:`gnattest -P foo.gpr src/repository.ads`
+    :command:`gnattest -P foo.gpr`
 
 -------------------
 Generated Outputs
 -------------------
 
-+ Automatic harness code (driver infrastructure)
+* Automatic harness code (driver infrastructure)
 
-  + Can be destroyed and regenerated at will
-  + You *can* but *should not* modify this code manually because your changes could easily be overwritten
+    - Can be destroyed and regenerated at will
+    - You *can* but *should not* modify this code manually because your changes could easily be overwritten
 
-+ Unit test skeletons (actual unit test code)
+* Unit test skeletons (actual unit test code)
 
-  + One for each visible subprogram in packages to be tested
-  + You manually modify for specific tests' logic
-  + *Not* overwritten if already exists
+    - One for each visible subprogram in packages to be tested
+    - You manually modify for specific tests' logic
+    - *Not* overwritten if already exists
 
 -------------------------------------
 Default Directory Names & Locations
 -------------------------------------
 
-+ Under the object directory specified by project file
+* Under the object directory specified by project file
 
-  + Harness code in "gnattest/harness/"
-  + Unit test skeletons in "gnattest/tests/"
+    - Harness code in "gnattest/harness/"
+    - Unit test skeletons in "gnattest/tests/"
 
 .. columns::
 
@@ -134,8 +127,8 @@ Default Directory Names & Locations
       .. code:: Ada
 
          project Demo is
-	    for Object_Dir use "obj";
-             ...
+	     for Object_Dir use "obj";
+            ...
          end Demo;
 
    .. column::
@@ -146,36 +139,36 @@ Default Directory Names & Locations
 Switches for the Harness
 --------------------------
 
-**--harness-dir=dirname**
+:code:`--harness-dir=dirname`
 
-   + Specifies the directory that will hold the harness packages and project file for the test driver
-   + If *dirname* is a relative path, it is relative to the object directory
+    - Specifies the directory that will hold the harness packages and project file for the test driver
+    - If *dirname* is a relative path, it is relative to the object directory
 
-**--passed-tests=value**
+:code:`--passed-tests=value`
 
-  + Controls whether or not passed tests should be shown when tests are run
-  + Value is either **show** (the default) or **hide** (lowercase)
+    - Controls whether or not passed tests should be shown when tests are run
+    - Value is either **show** (the default) or **hide** (lowercase)
 
 ----------------------------
 **Miscellaneous Switches**
 ----------------------------
 
-**-r**
+:code:`-r`
 
-  + Process all sources from all projects in a tree of projects
-  + Directories are generated for each project, local to each
+    - Process all sources from all projects in a tree of projects
+    - Directories are generated for each project, local to each
 
-**-Xname=value**
+:code:`-Xname=value`
 
-  + External variable *name* is set to *value* for current invocation
+    - External variable *name* is set to *value* for current invocation
 
-**-q**
+:code:`-q`
 
-  + Suppresses noncritical output messages
+    - Suppresses noncritical output messages
 
-**-v**
+:code:`-v`
 
-  + Verbose mode: generates version information
+    - Verbose mode: generates version information
 
 Others...
 
@@ -183,51 +176,51 @@ Others...
 Are The Default Locations Good Enough?
 ----------------------------------------
 
-+ The defaults are perfectly workable, but...
-+ Object directory contents are conceptually transient
-+ The test harness is regenerated as needed, and never manually modified, thus transient
-+ Hence the test harness can stay under the object directory
-+ Unit tests are (in automatically generated) source files, manually modified and thus persistent
+* The defaults are perfectly workable, but...
+* Object directory contents are conceptually transient
+* The test harness is regenerated as needed, and never manually modified, thus transient
+* Hence the test harness can stay under the object directory
+* Unit tests are (in automatically generated) source files, manually modified and thus persistent
 
-   + Under configuration control too
+    - Under configuration control too
 
-+ Hence you may want to put unit tests elsewhere
+* Hence you may want to put unit tests elsewhere
 
 --------------------------
 Where To Put Unit Tests?
 --------------------------
 
-+ Since the object dir should not hold them
-+ We likely don't want to mix unit tests and application code directly in same directories
-+ Thus various GNATtest switches are applicable
-+ The `source-dir/**` notation is a potential issue
+* Since the object dir should not hold them
+* We likely don't want to mix unit tests and application code directly in same directories
+* Thus various :toolname:`GNATtest` switches are applicable
+* The :filename:`source-dir/**` notation is a potential issue
 
-  + **All** directories rooted at *source-dir* are treated as application source directories
-  + Your tests would thus be treated as part of the application
+    - **All** directories rooted at *source-dir* are treated as application source directories
+    - Your tests would thus be treated as part of the application
 
 ----------------------------------------
 Switches for Tests Directory Structure
 ----------------------------------------
 
-**--tests-dir=dirname**
+:code:`--tests-dir=dirname`
 
-  + All test packages are placed in the *dirname* directory
-  + If *dirname* is a relative path, it is relative to the object dir
+    - All test packages are placed in the *dirname* directory
+    - If *dirname* is a relative path, it is relative to the object dir
 
-**--tests-root=dirname**
+:code:`--tests-root=dirname`
 
-  + Specifies root of directory hierarchy for test source dirs
-  + **A test directory corresponding to each source directory will be created**
-  + If *dirname* is a relative path, it is relative to the object dir
-  + Cannot combine with "--tests-dir" switch
+    - Specifies root of directory hierarchy for test source dirs
+    - **A test directory corresponding to each source directory will be created**
+    - If *dirname* is a relative path, it is relative to the object dir
+    - Cannot combine with :code:`--tests-dir` switch
 
-**--subdir=dirname**
+:code:`--subdir=dirname`
 
-  + Generated test packages are placed in subdirectories named *dirname*, **under the corresponding source directories**
+    - Generated test packages are placed in subdirectories named *dirname*, **under the corresponding source directories**
 
-----------------------------------
-The "--test-dir" Switch Effect
-----------------------------------
+--------------------------------------
+The :code:`--test-dir` Switch Effect
+--------------------------------------
 
 All tests are located in the specified directory
 
@@ -235,9 +228,9 @@ All tests are located in the specified directory
 
 .. image:: images/gnattest/test-dir_switch.jpg
 
------------------------------------
-The "--tests-root" Switch Effect
------------------------------------
+----------------------------------------
+The :code:`--tests-root` Switch Effect
+----------------------------------------
 
 The source dir hierarchy is *replicated*, starting at the root dir specified
 
@@ -245,9 +238,9 @@ The source dir hierarchy is *replicated*, starting at the root dir specified
 
 .. image:: images/gnattest/tests-root_switch.jpg
 
---------------------------------
-The "--subdir " Switch Effect
---------------------------------
+-------------------------------------
+The :code:`--subdir ` Switch Effect
+-------------------------------------
 
 The source dir hierarchy is *supplemented*, using the dir name specified
 
@@ -265,7 +258,7 @@ Project File Support
 
    .. column::
 
-      + Tool package :ada:`GNATtest`
+      + :ada:`package GNATtest`
       + Generate list attribute :ada:`GNATtest_Switches`
       + Specific attributes corresponding to *some* switches
 
@@ -295,10 +288,9 @@ Project File Support
 Fundamental Concept of the Approach
 -------------------------------------
 
-+ Code to be tested resides in library packages
-+ Tests are in hierarchical library units that are "children" of the packages to be tested
-+ Thus no need to alter the code to be tested
-
+* Code to be tested resides in library packages
+* Tests are in hierarchical library units that are "children" of the packages to be tested
+* Thus no need to alter the code to be tested
 * Code to be tested
 
    .. code:: Ada
@@ -435,48 +427,48 @@ Test routines get unique numeric suffixes
 Building & Executing the Generated Tests
 ------------------------------------------
 
-+ Performed via the (re)generated harness code
-+ Building
+* Performed via the (re)generated harness code
+* Building
 
-   + Entry point is generated project file :filename:`test_driver.gpr`
+    - Entry point is generated project file :filename:`test_driver.gpr`
 
-+ Executing
+* Executing
 
-   + Main program is :filename:`test_runner`
+    - Main program is :filename:`test_runner`
 
       + :command:`gnatmake -P<harness-dir>/test_driver`
       + :command:`test_runner`
 
-+ Note you may need to specify scenario variables' values if not using the AUnit defaults
+* Note you may need to specify scenario variables' values if not using the AUnit defaults
 
-   + **-Xvariable=value**
+    - :code:`-Xvariable=value`
 
 ------------------------------------------
 In Practice: Unimplemented Tests Results
 ------------------------------------------
 
-+ The generated test driver can report the results of unimplemented tests in two ways
-+ Can report them as failed
+* The generated test driver can report the results of unimplemented tests in two ways
+* Can report them as failed
 
-  + Useful to see which tests are still unimplemented
-  + The default behavior
+    - Useful to see which tests are still unimplemented
+    - The default behavior
 
-+ Can report them as passed
+* Can report them as passed
 
-  + To sort those unimplemented from those actually failing
+    - To sort those unimplemented from those actually failing
 
-+ Controlled by user
+* Controlled by user
 
-  + Switch **--skeleton-default=value**
-  + Attribute *Skeleton_Default* in project file
-  + Value is either *fail* or *pass* (lowercase)
+    - Switch :code:`--skeleton-default=value`
+    - Attribute *Skeleton_Default* in project file
+    - Value is either *fail* or *pass* (lowercase)
 
 ----------------------
 The "Simple" Example
 ----------------------
 
-+ Included in the GNAT installation examples
-+ Application code:
+* Included in the GNAT installation examples
+* Application code:
 
 .. code:: Ada
 
@@ -522,9 +514,9 @@ Generated Child Package Test_Data
 Test Case Declaration, As Generated
 -------------------------------------
 
-+ Unique names guaranteed by code generator
+* Unique names guaranteed by code generator
 
-  + Handles overloading, if any, in application code
+    - Handles overloading, if any, in application code
 
 .. container:: latex_environment small
 
@@ -551,10 +543,10 @@ Test Case Declaration, As Generated
 Assertion Facility Provided
 -----------------------------
 
-+ A procedure rather than a pragma
-+ Exported from :ada:`AUnit.Assertions`
+* A procedure rather than a pragma
+* Exported from :ada:`AUnit.Assertions`
 
-   + :ada:`AUnit.Assertions.Assert ( boolean-expression, message );`
+    - :ada:`AUnit.Assertions.Assert ( boolean-expression, message );`
 
       * *boolean-expression* :math:`\rightarrow` Assert this proposition
       * *message* :math:`\rightarrow` Message to display when proposition does *not* hold
@@ -625,29 +617,29 @@ Modified Test Case Body
 Using the Package Private Part
 --------------------------------
 
-+ Put implementation artifacts in the private part if they will be needed by the test code
+* Put implementation artifacts in the private part if they will be needed by the test code
 
-  + Type declarations
-  + *Subprogram declarations*
-  + Et cetera
+    - Type declarations
+    - *Subprogram declarations*
+    - Et cetera
 
-+ They will be compile-time visible to test code
-+ They will remain hidden from client code
+* They will be compile-time visible to test code
+* They will remain hidden from client code
 
-  + Good software engineering
+    - Good software engineering
 
 -----------------
 Support for OOP
 -----------------
 
-+ Tests for tagged types are automatically inherited
+* Tests for tagged types are automatically inherited
 
-  + Inherited tests can be overridden in subclasses
+    - Inherited tests can be overridden in subclasses
 
-+ Global Type Consistency can be verified
+* Global Type Consistency can be verified
 
-  + A form of Liskov Substitutability Principle (LSP) regarding preconditions and postconditions
-  + One of the new objectives of DO-178C supplement on Object-Oriented Technology and Related Techniques (DO-332)
+    - A form of Liskov Substitutability Principle (LSP) regarding preconditions and postconditions
+    - One of the new objectives of DO-178C supplement on Object-Oriented Technology and Related Techniques (DO-332)
 
 -----------------------------------
 Test Inheritance for Tagged Types
@@ -659,14 +651,14 @@ Test Inheritance for Tagged Types
 Liskov Substitutability Principle (LSP)
 -----------------------------------------
 
-+ Any subclass object can be used in place of a corresponding superclass object, transparently
-+ An essential property for abstracting away specific type info via dynamic dispatching
-+ Makes specific subclass independence conceivable
+* Any subclass object can be used in place of a corresponding superclass object, transparently
+* An essential property for abstracting away specific type info via dynamic dispatching
+* Makes specific subclass independence conceivable
 
-  + Data structures
-  + Algorithms
+    - Data structures
+    - Algorithms
 
-+ This is one of the goals of OOP, i.e., isolating the effects of change
+* This is one of the goals of OOP, i.e., isolating the effects of change
 
 --------------------------------------
 Subclass-Independent Data Structures
@@ -709,7 +701,7 @@ Subclass-Independent Data Structures
 Subclass-Independent Algorithms
 ---------------------------------
 
-+ Uses dynamic dispatching to transparently invoke subclass-specific overridings (if any)
+* Uses dynamic dispatching to transparently invoke subclass-specific overridings (if any)
 
 .. code:: Ada
 
@@ -729,9 +721,9 @@ Subclass-Independent Algorithms
 Recap: Preconditions and Postconditions
 -----------------------------------------
 
-+ Optionally specify subprogram client (caller) and implementer (supplier) obligations
-+ **Precondition** :math:`\rightarrow` Assertion expected to hold when a given subprogram is called by a client
-+ **Postcondition** :math:`\rightarrow` Assertion expected to hold when a given subprogram (supplier) returns normally
+* Optionally specify subprogram client (caller) and implementer (supplier) obligations
+* **Precondition** :math:`\rightarrow` Assertion expected to hold when a given subprogram is called by a client
+* **Postcondition** :math:`\rightarrow` Assertion expected to hold when a given subprogram (supplier) returns normally
 
 .. code:: Ada
 
@@ -746,57 +738,57 @@ Recap: Preconditions and Postconditions
 The Contractor-Subcontractor Metaphor
 ---------------------------------------
 
-+ Inheritance with overriding and dynamic binding means that clients may be using a subclass of the supplier they specify, without knowing it
-+ Thus supplier subclasses are *subcontractors* to superclass suppliers
-+ Subcontractors can define additional preconditions and postconditions on overridden primitives
+* Inheritance with overriding and dynamic binding means that clients may be using a subclass of the supplier they specify, without knowing it
+* Thus supplier subclasses are *subcontractors* to superclass suppliers
+* Subcontractors can define additional preconditions and postconditions on overridden primitives
 
-  + Subcontractor-specific contracts with clients
+    - Subcontractor-specific contracts with clients
 
 -------------------------
 Global Type Consistency
 -------------------------
 
-+ Preserved when, in all cases, a subcontractor will do the job as contracted, or better, but not less
-+ Hence no stronger preconditions
+* Preserved when, in all cases, a subcontractor will do the job as contracted, or better, but not less
+* Hence no stronger preconditions
 
-  + No demands beyond those of superclasses
+    - No demands beyond those of superclasses
 
-+ Hence no weaker postconditions
+* Hence no weaker postconditions
 
-  + No guarantees weaker than those of superclasses
+    - No guarantees weaker than those of superclasses
 
 -----------------------------------
 Verifying Global Type Consistency
 -----------------------------------
 
-+ For a given derived type, run all tests from all parent types
+* For a given derived type, run all tests from all parent types
 
-  + Verifies no stronger preconditions
-  + Verifies no weaker postconditions
+    - Verifies no stronger preconditions
+    - Verifies no weaker postconditions
 
-+ Requires switch **--validate-type-extensions**
-+ Find tests that would otherwise pass, when applied to specific type defining them
+* Requires switch :code:`--validate-type-extensions`
+* Find tests that would otherwise pass, when applied to specific type defining them
 
 ----------------------------
 Support for External Tests
 ----------------------------
 
-+ Those AUnit tests created manually
-+ Use switch "--harness-only" initially
+* Those AUnit tests created manually
+* Use switch :code:`--harness-only` initially
 
-  + Only generate the harness since these tests already exist
-
-  .. container:: latex_environment footnotesize
-
-     + :command:`gnattest -P additional/external.gpr --harness-dir=external --harness-only`
-
-+ Add switch "--additional-tests=project-file-name" when generating the tests
-
-  + Sources described in :filename:`project-file-name` are considered additional manual tests to be added to the test suite
+    - Only generate the harness since these tests already exist
 
   .. container:: latex_environment footnotesize
 
-     + :command:`gnattest -P simple.gpr --additional-tests=additional/external.gpr --harness-dir=external`
+     :code:`gnattest -P additional/external.gpr --harness-dir=external --harness-only`
+
+* Add switch :command:`--additional-tests=project-file-name` when generating the tests
+
+    - Sources described in :filename:`project-file-name` are considered additional manual tests to be added to the test suite
+
+  .. container:: latex_environment footnotesize
+
+     :code:`gnattest -P simple.gpr --additional-tests=additional/external.gpr --harness-dir=external`
 
 ----------
 Stubbing
@@ -806,9 +798,9 @@ Stubbing
 
    .. column::
 
-      + Designed to test a high-level subsystem in isolation from its dependencies
-      + Activated by --stub switch
-      + -r adds + recursivity
+      * Designed to test a high-level subsystem in isolation from its dependencies
+      * Activated by --stub switch
+      * -r adds + recursivity
 
       .. image:: images/gnattest/stub_before.jpg
 
@@ -822,9 +814,9 @@ Stubbing
 
          .. image:: images/gnattest/stub_level2.jpg
 
-----------------------------------------
-Integration with GPS: Generating Tests
-----------------------------------------
+------------------------------------------------------------
+Integration with :toolname:`GNAT Studio`: Generating Tests
+------------------------------------------------------------
 
 .. columns::
 
@@ -836,31 +828,31 @@ Integration with GPS: Generating Tests
 
       .. image:: images/gnattest/invoke_gnattest_dialog.jpg
 
--------------------------------------
-Integration with GPS: Running Tests
--------------------------------------
+---------------------------------------------------------
+Integration with :toolname:`GNAT Studio`: Running Tests
+---------------------------------------------------------
 
-+ Invoking a test generator setup menu will automatically switch to the test harness project
-+ Just build and run as any other project
+* Invoking a test generator setup menu will automatically switch to the test harness project
+* Just build and run as any other project
 
-  + Invocation dialog allows overriding switches
+    - Invocation dialog allows overriding switches
 
 .. image:: images/gnattest/run_gnattest.jpg
 
-------------------------------------
-Integration with GPS: Test Results
-------------------------------------
+--------------------------------------------------------
+Integration with :toolname:`GNAT Studio`: Test Results
+--------------------------------------------------------
 
-+ TBD
-+ GPS automatically opens the app source file and designates the failed test file with a link
+* TBD
+* :toolname:`GNAT Studio` automatically opens the app source file and designates the failed test file with a link
 
 .. image:: images/gnattest/test_results.jpg
 
----------------------------------------
-Integration with GPS: Exiting Testing
----------------------------------------
+-----------------------------------------------------------
+Integration with :toolname:`GNAT Studio`: Exiting Testing
+-----------------------------------------------------------
 
-+ To return to the development project
+* To return to the development project
 
 .. image:: images/gnattest/exit_gnattest.jpg
 
@@ -868,37 +860,37 @@ Integration with GPS: Exiting Testing
 Non-Native Platforms & Runtime Libraries
 -------------------------------------------
 
-+ May support only a subset of full Ada
+* May support only a subset of full Ada
 
-  + Memory allocation, exceptions, etc.
+    - Memory allocation, exceptions, etc.
 
-+ Thus may need to generate tests differently, corresponding to those limitations
-+ Can be requested via **-X** switch
+* Thus may need to generate tests differently, corresponding to those limitations
+* Can be requested via :code:`-X` switch
 
-   + **-Xname=value**
+    - :code:`-Xname=value`
 
-+ Defined scenario variable names:
+* Defined scenario variable names:
 
-  + PLATFORM
-  + RUNTIME
+    - PLATFORM
+    - RUNTIME
 
-+ Allowed values depend on products purchased
+* Allowed values depend on products purchased
 
 ---------------------------------
 Example: LynxOS-178 for PowerPC
 ---------------------------------
 
-+ A cross-development platform
+* A cross-development platform
 
-  + Hence we use the cross-development version of the tool
-  + No need to specify PLATFORM
+    - Hence we use the cross-development version of the tool
+    - No need to specify PLATFORM
 
-+ Available run-time libraries
+* Available run-time libraries
 
-  + **pthread** (full Ada)
-  + **ravenscar-cert**
-  + **cert**
-  + **zfp**
+    - **pthread** (full Ada)
+    - **ravenscar-cert**
+    - **cert**
+    - **zfp**
 
 :command:`powerpc-xcoff-lynxos178-gnattest -P simple.gpr -XRUNTIME=zfp`
 
@@ -906,21 +898,21 @@ Example: LynxOS-178 for PowerPC
 Getting Help
 --------------
 
-+ Invoke gnattest with :command:`--help` switch
-+ See the GNAT Pro User Guide
+* Invoke gnattest with :command:`--help` switch
+* See the GNAT Pro User Guide
 
-  + Section 27 "Creating Unit Tests with gnattest"
-  + Available from within GPS
-  + Available under your GNAT Pro installation directory tree
+    - Section 27 "Creating Unit Tests with gnattest"
+    - Available from within :toolname:`GNAT Studio`
+    - Available under your GNAT Pro installation directory tree
 
-    + In a subdir corresponding to the file format
-    + File name is :filename:`gnat_ugn.[pdf | html | txt | info]`
-    + Example: *C:\\GNATPRO\\7.2.1\\share\\doc\\gnat\\pdf\\gnat_ugn.pdf*
-    + Where *C:\\GNATPRO\\7.2.1\\share\\doc\\gnat* is the default path
+        + In a subdir corresponding to the file format
+        + File name is :filename:`gnat_ugn.[pdf | html | txt | info]`
+        + Example: *C:\\GNATPRO\\7.2.1\\share\\doc\\gnat\\pdf\\gnat_ugn.pdf*
+        + Where *C:\\GNATPRO\\7.2.1\\share\\doc\\gnat* is the default path
 
--------------------------
-Getting Help Within GPS
--------------------------
+---------------------------------------------
+Getting Help Within :toolname:`GNAT Studio`
+---------------------------------------------
 
 .. image:: images/gnattest/help_from_menu.jpg
 
@@ -928,29 +920,29 @@ Getting Help Within GPS
 Currently Unsupported Constructs
 ----------------------------------
 
-+ Tests for protected subprograms and entries
-+ See the latest GNAT Pro User Guide for status
+* Tests for protected subprograms and entries
+* See the latest GNAT Pro User Guide for status
 
 ---------------
 DO-178C Ready
 ---------------
 
-+ Natural path from DO-178 low level requirements to structural coverage
+* Natural path from DO-178 low level requirements to structural coverage
 
 .. image:: images/gnattest/do178c_ready.jpg
 
-+ Substitution verification implemented, to support OOP supplement of DO-178C
+* Substitution verification implemented, to support OOP supplement of DO-178C
 
 ------------------
 GNATtest Summary
 ------------------
 
-+ Automatically creates and maintains harness code, and unit test skeletons for each subprogram to be tested
-+ Developers can thus focus on the high-value task of writing the actual test cases
-+ Especially valuable in systems requiring high levels of reliability, safety, and/or security
+* Automatically creates and maintains harness code, and unit test skeletons for each subprogram to be tested
+* Developers can thus focus on the high-value task of writing the actual test cases
+* Especially valuable in systems requiring high levels of reliability, safety, and/or security
 
-  + Simplifies effort required to implement required test procedures
-  + Can use GNATcoverage to verify test completeness
+    - Simplifies effort required to implement required test procedures
+    - Can use GNATcoverage to verify test completeness
 
-+ Fully integrated into GPS
-+ Supports native, cross and high-integrity platforms
+* Fully integrated into :toolname:`GNAT Studio`
+* Supports native, cross and high-integrity platforms
