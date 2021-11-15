@@ -46,7 +46,6 @@ An ASIS Tool
 --------------
 
 + TBD - is this still true?
-
 + Sources must be compilable
 
   + Warnings issued otherwise
@@ -302,7 +301,6 @@ Fundamental Concept of the Approach
 + Tests are in hierarchical library units that are "children" of the packages to be tested
 + Thus no need to alter the code to be tested
 
-
 * Code to be tested
 
    .. code:: Ada
@@ -451,7 +449,6 @@ Building & Executing the Generated Tests
       + :command:`gnatmake -P<harness-dir>/test_driver`
       + :command:`test_runner`
 
-
 + Note you may need to specify scenario variables' values if not using the AUnit defaults
 
    + **-Xvariable=value**
@@ -563,7 +560,7 @@ Assertion Facility Provided
 
       * *boolean-expression* :math:`\rightarrow` Assert this proposition
       * *message* :math:`\rightarrow` Message to display when proposition does *not* hold
-   
+
 .. code:: Ada
 
    AUnit.Assertions.Assert (Head = null,
@@ -588,7 +585,7 @@ Test Case Body, As Generated
 
          pragma Unreferenced (Gnattest_T);
       begin
-         AUnit.Assertions.Assert 
+         AUnit.Assertions.Assert
             (Gnattest_Generated.Default_Assert_Value,
              "Test not implemented.");
 
@@ -625,7 +622,6 @@ Modified Test Case Body
    --  end read only
 
    end Simple.Test_Data.Tests;
-
 
 --------------------------------
 Using the Package Private Part
