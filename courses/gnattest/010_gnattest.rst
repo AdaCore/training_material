@@ -8,9 +8,13 @@ GNATtest
 GNATtest
 ----------
 
-* An automatic unit test stub generator, including driver infrastructure
+* An **automatic** unit test **harness** generator
+
+    + Including driver infrastructure
+    + Including stubs
+
 * Handles large, complex projects
-* Can integrate external tests
+* Can integrate **external** tests
 * Supports contract-based programming tests
 * Helps verify OOP requirements of DO-178C
 * Integrated into :toolname:`GNAT Studio`
@@ -20,18 +24,21 @@ GNATtest
 Why Automate the Process?
 ---------------------------
 
-* Developing tests is labor-intensive
-* Much of the effort is not specific to the tests
+* Developing tests is **labor-intensive**
+* Much of the effort is **not specific** to the tests
 
     - Developing the harness and driver
 
-        + How to test generic units, etc.
+        + eg. How to test class hierarchy?
 
-    - Verifying output is as expected
-    - Maintenance and update when new units to be tested
+    - **Verifying** output is as expected
+    - **Maintenance** and update when new units to be tested
 
-* Ideally developers should concentrate on the high-value part: the test cases themselves
-* :toolname:`GNATtest` makes that ideal possible
+* Using :toolname:`GNATtest` developers are **focused**
+
+    + Test **cases**
+    + Test **data**
+    + **High-value** part
 
 ------------------------
 What Can Be Automated?
@@ -57,10 +64,17 @@ A Libadalang Tool
 Based On AUnit
 ----------------
 
-* Unit test framework based on CppUnit for C++
-* Generates the boilerplate code for test harnesses, suites, and cases needed to use the framework
-* For more information on AUnit view the series of tutorials created by Daniel Bigelow
+* Unit test framework
+* Based on CppUnit for C++
+* Generate the test harnesses' boilerplate code
 
+    + Suites
+    + Use cases
+    + Compilable as-is
+
+* More information on AUnit
+
+    - Tutorials serie by Daniel Bigelow
     - http://www.youtube.com/user/DanielRBigelow
 
 * Installation required for :toolname:`GNATtest`
