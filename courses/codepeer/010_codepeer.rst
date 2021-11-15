@@ -2401,7 +2401,7 @@ CodePeer and DO178B/C
   **Code Accuracy and Consistency** (emphasis added)
 
   The objective is to determine the correctness and consistency of the Source Code, including stack usage, memory usage, **fixed point arithmetic overflow and resolution**, **floating-point arithmetic**, resource contention and limitations, worst-case execution timing, exception handling, **use of uninitialized variables**, cache management, **unused variables**, and **data corruption due to task or interrupt conflicts**.
-  
+
   The compiler (including its options), the linker (including its options), and some hardware features may have an impact on the worst-case execution timing and this impact should be assessed.
 
 + :toolname:`CodePeer` **reduces** the scope of manual review
@@ -2462,7 +2462,7 @@ How Does CodePeer Work?
 See *CodePeer By Example* for more details
 
    From :toolname:`GNAT Studio`
-   
+
    :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Examples` :math:`\rightarrow` :menu:`Codepeer By Example`
 
 -----------------------------------------
