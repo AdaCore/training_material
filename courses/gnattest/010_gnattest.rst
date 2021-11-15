@@ -1,10 +1,8 @@
-
-.. role:: ada(code)
-    :language: Ada
-
 **********
 GNATtest
 **********
+
+.. include:: support_files/symbols.rst
 
 ----------
 GNATtest
