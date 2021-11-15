@@ -152,12 +152,12 @@ Default Directory Names & Locations
 Switches for the Harness
 --------------------------
 
-:code:`--harness-dir=dirname`
+:command:`--harness-dir=dirname`
 
     - Specifies the directory that will hold the harness packages and project file for the test driver
     - If *dirname* is a relative path, it is relative to the object directory
 
-:code:`--passed-tests=value`
+:command:`--passed-tests=value`
 
     - Controls whether or not passed tests should be shown when tests are run
     - Value is either **show** (the default) or **hide** (lowercase)
@@ -166,24 +166,22 @@ Switches for the Harness
 **Miscellaneous Switches**
 ----------------------------
 
-:code:`-r`
+:command:`-r`
 
     - Process all sources from all projects in a tree of projects
     - Directories are generated for each project, local to each
 
-:code:`-Xname=value`
+:command:`-Xname=value`
 
     - External variable *name* is set to *value* for current invocation
 
-:code:`-q`
+:command:`-q`
 
     - Suppresses noncritical output messages
 
-:code:`-v`
+:command:`-v`
 
     - Verbose mode: generates version information
-
-Others...
 
 ----------------------------------------
 Are The Default Locations Good Enough?
@@ -215,19 +213,19 @@ Where To Put Unit Tests?
 Switches for Tests Directory Structure
 ----------------------------------------
 
-:code:`--tests-dir=dirname`
+:command:`--tests-dir=dirname`
 
     - All test packages are placed in the *dirname* directory
     - If *dirname* is a relative path, it is relative to the object dir
 
-:code:`--tests-root=dirname`
+:command:`--tests-root=dirname`
 
     - Specifies root of directory hierarchy for test source dirs
     - **A test directory corresponding to each source directory will be created**
     - If *dirname* is a relative path, it is relative to the object dir
-    - Cannot combine with :code:`--tests-dir` switch
+    - Cannot combine with :command:`--tests-dir` switch
 
-:code:`--subdir=dirname`
+:command:`--subdir=dirname`
 
     - Generated test packages are placed in subdirectories named *dirname*, **under the corresponding source directories**
 
@@ -237,7 +235,7 @@ The :code:`--test-dir` Switch Effect
 
 All tests are located in the specified directory
 
-   :command:`gnattest -P simple --test-dir=../unit_tests`
+:command:`gnattest -P simple --test-dir=../unit_tests`
 
 .. image:: images/gnattest/test-dir_switch.jpg
 
@@ -247,7 +245,7 @@ The :code:`--tests-root` Switch Effect
 
 The source dir hierarchy is *replicated*, starting at the root dir specified
 
-   :command:`gnattest -P simple --tests-root=../unit_tests`
+:command:`gnattest -P simple --tests-root=../unit_tests`
 
 .. image:: images/gnattest/tests-root_switch.jpg
 
@@ -257,7 +255,7 @@ The :code:`--subdir ` Switch Effect
 
 The source dir hierarchy is *supplemented*, using the dir name specified
 
-   :command:`gnattest -P simple --subdir=unit_tests`
+:command:`gnattest -P simple --subdir=unit_tests`
 
 .. image:: images/gnattest/subdir_switch.jpg
 
@@ -449,7 +447,7 @@ Building & Executing the Generated Tests
 
     - Main program is :filename:`test_runner`
 
-      + :command:`gnatmake -P<harness-dir>/test_driver`
+      + :command:`gprbuild -P<harness-dir>/test_driver`
       + :command:`test_runner`
 
 * Note you may need to specify scenario variables' values if not using the AUnit defaults
@@ -779,7 +777,7 @@ Verifying Global Type Consistency
     - Verifies no stronger preconditions
     - Verifies no weaker postconditions
 
-* Requires switch :code:`--validate-type-extensions`
+* Requires switch :command:`--validate-type-extensions`
 * Find tests that would otherwise pass, when applied to specific type defining them
 
 ----------------------------
@@ -787,7 +785,7 @@ Support for External Tests
 ----------------------------
 
 * Those AUnit tests created manually
-* Use switch :code:`--harness-only` initially
+* Use switch :command:`--harness-only` initially
 
     - Only generate the harness since these tests already exist
 
@@ -878,7 +876,7 @@ Non-Native Platforms & Runtime Libraries
     - Memory allocation, exceptions, etc.
 
 * Thus may need to generate tests differently, corresponding to those limitations
-* Can be requested via :code:`-X` switch
+* Can be requested via :command:`-X` switch
 
     - :code:`-Xname=value`
 
