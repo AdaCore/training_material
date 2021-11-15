@@ -39,20 +39,19 @@ What Can Be Automated?
 
 .. image:: images/gnattest/what_can_be_automated.jpg
 
---------------
-An ASIS Tool
---------------
+-------------------
+A Libadalang Tool
+-------------------
 
-* TBD - is this still true?
-* Sources must be compilable
+* Syntax **needs** to be correct
+* Sources **should** be compilable
 
-    - Warnings issued otherwise
-    - If not, GNATtest will skip it and continue to any others
+    - Else generated code won't be
 
-* All source dependencies must be available
+* Sources **should** be complete
+* Preprocessing is **limited**
 
-    - Those units named in with-clauses, transitively
-    - Whether or not they are to be analyzed themselves
+    - Complex preprocessing will cause issues
 
 ----------------
 Based On AUnit
