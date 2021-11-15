@@ -6,7 +6,7 @@ Special handling done by this filter:
       - toolname => small caps
       - menu => colored box with white text
       - command => black box with monospaced white text
-      - filename => bold italic
+      - filename => bold monospaced on light yellow background
    + Search TEXINPUTS environment variable for paths to find images
    + Slides are vertically aligned to the top, with the 'shrink' attribute
      so everything fits one the page
@@ -106,8 +106,8 @@ def latex_box ( text, color='adacore2' ):
 def latex_color ( text, color='white' ):
     return "\\textcolor{" + color + "}{" + text + "}"
 
-def latex_bold_italic ( text ):
-    return "\\textbf{\\textit{" + text + "}}"
+def latex_bold ( text ):
+    return "\\textbf{" + text + "}"
 
 def latex_monospace ( text ):
     return "\\texttt{" + text + "}"
@@ -540,8 +540,8 @@ def format_command ( literal_text ):
 (items that indicate a particular filename/folder)
 '''
 def format_filename ( literal_text ):
-   # bold and italic
-   return latex_inline ( latex_bold_italic ( latex_escape ( literal_text ) ) )
+   # bold monospaced on light yellow background
+   return latex_inline ( latex_box ( latex_bold ( latex_monospace ( latex_escape ( literal_text ) ) ), "lightyellow") )
 
 '''
 "answer" role
