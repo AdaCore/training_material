@@ -113,7 +113,8 @@ def latex_monospace ( text ):
     return "\\texttt{" + text + "}"
 
 def latex_escape ( text ):
-    return text.replace('_', '\\_' ).replace('&', '\\&').replace('#', '\\#')
+    # For "--": https://tex.stackexchange.com/questions/9813/how-can-i-stop-latex-from-converting-two-hyphens-to-a-single-hyphen-when-loading
+    return text.replace('_', '\\_' ).replace('&', '\\&').replace('#', '\\#').replace("--", "-{}-")
 
 def latex_answer ( text ):
     return "\\textit<2>{\\textbf<2>{\\textcolor<2>{green!65!black}{" + text + "}}}"
