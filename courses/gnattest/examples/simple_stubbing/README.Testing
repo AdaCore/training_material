@@ -1,0 +1,81 @@
+             G N A T T E S T   E X A M P L E S
+
+In order to generate and compile test driver, make sure that 'gnattest' and
+'gprbuild' commands are in your path and AUnit is in your default project path.
+
+To generate a test driver for a number of sources you need to use gnattest
+utility. Note that in order to process given files, gnattest has to
+semantically analyze the Ada sources. Therefore, test packages can only be
+generated for legal Ada units.
+
+Getting started
+---------------
+
+Source example in this directory represents a two-layered system. At the
+top is the Square routine that returns the square of a number, which is read
+using the function Read_Number supplied by subsystem Input. The latter
+reads the numbers from the console.
+
+The objective of our testing campaign is to test the Square routine
+independently without executing subsystem Input that it depends on, so that
+we don't have to require a human actually entering the test numbers. This
+is achieved by the so-called "stubbing" of the dependencies. 
+
+Invocation
+----------
+
+To generate the skeleton infrastructure for a stubbed test suite, just type:
+  $ gnattest -Pops --stub
+
+By default, to avoid conflict between non-stubbed and stubbed modes, gnattest
+creates the harness, respectively, in subdirectories gnattest and gnattest_stub
+of the object directory of a project file. In stubbing mode this directory,
+in addition to already familiar subdirectories "harness" and "tests", contains
+the subdirectory "stubs" where gnattest has placed the stubbed versions of the
+package bodies.
+
+To compile and run the test driver do the following:
+  $ cd obj/gnattest_stub/harness
+  $ make
+  $ gnattest test_drivers.list
+
+Notice that the build and run procedure has changed a bit compared to the
+simplest case. This is because stubbing implies generating separate test
+drivers for every test, which means there are multiple projects to build, and
+then multiple executables to run. gnattest generates the Makefile to automate
+building them, and itself serves as a test aggregator.
+
+Writing Actual Test
+-------------------
+
+Now, let's write the actual test for the Square routine. Before that however,
+let us take a moment to acquaint ourselves with the stub for the routine
+Input.Read_Number. gnattest has created the framework for that, which is
+sufficient in this simple case, but in a more complex case it may need
+to be completed.
+
+The project for the stubbed Input subsystem can be found in
+<...>/obj/gnattest_stub/stubs/Input/stub_input.gpr.
+It is an extension of original project input.gpr, which allows to reference its
+sources (namely input.ads), but also replace some of them (namely input.adb).
+There is also an additional child package Input.Stub_Data that is used to
+configure the stub behavior. In particular it defines a state object which
+allows to condition the next stub return value based on the previous one, and
+keeps track of how many times the stub has been invoked. Both are useful if the
+stub needs to return different values over the lifecycle of a single test. If
+a more complex logic needs to be implemented, there are many different ways in
+which Input.Stub_Data can be customized.
+
+Let's now go ahead with implementing the test, in 
+<...>/obj/gnattest_stub/tests/square-test_data-tests.adb. The obvious
+difference from the usual (non-stubbed) case is the commented-out call to the
+stub setter. Let's uncomment and complete it:
+
+      Input.Stub_Data.Set_Stub_Read_Number_<tag> (Read_Number_Result => 5);
+
+Now all that remains is to implement the test condition:
+
+      AUnit.Assertions.Assert (Square = 25, "5*5 /= 25.");
+
+After rebuilding and rerunning the test driver you should see a successfully
+passed test.

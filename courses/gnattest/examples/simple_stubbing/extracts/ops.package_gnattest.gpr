@@ -1,0 +1,8 @@
+project Ops is
+   ...
+   package GNATtest is
+      for Tests_Root use "unit_tests";
+      for GNATtest_Switches use ("-v");
+   end GNATtest;
+   ...
+end Ops;
