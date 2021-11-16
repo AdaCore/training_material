@@ -64,15 +64,18 @@ A Libadalang Tool
 Based On AUnit
 ----------------
 
-* Unit test framework
-* Based on CppUnit for C++
-* Generate the test harnesses' boilerplate code
+* Unit test **framework**
 
-    + Suites
-    + Use cases
-    + Compilable as-is
+    - Based on CppUnit for C++
 
-* More information on AUnit
+* Generate the unit-tests' **boilerplate** code
+
+    - Test **harness**
+    - Suites
+    - Default (*skeleton*) test cases
+    - Compilable **as-is**
+
+* More information on :toolname:`AUnit`
 
     - Tutorials serie by Daniel Bigelow
     - http://www.youtube.com/user/DanielRBigelow
@@ -89,11 +92,11 @@ Command Line Invocation
 
 * :command:`<project-filename>`
 
-    - Name of the GNAT Project File
+    - Name of the GNAT **project file**
 
 * :command:`{switches}`
 
-    - GNATtest-specific switches
+    - :toolname:`GNATtest`-specific switches
 
 * :command:`[filename]`
 
@@ -102,7 +105,7 @@ Command Line Invocation
 
 * :command:`[-cargs GCC_switches]`
 
-    - Switches passed to compiler invocations
+    - Switches passed to **compiler** invocations
 
 * Examples:
 
@@ -113,36 +116,36 @@ Command Line Invocation
 Generated Outputs
 -------------------
 
-* Automatic harness code (driver infrastructure)
+* Automatic **harness** code
 
-    - Can be destroyed and regenerated at will
-    - You *can* but *should not* modify this code manually because your changes could easily be overwritten
+    - Driver **infrastructure**
+    - Can be destroyed and **regenerated** at will
+    - Manual changes can be **overwritten** by the tool
+    - You **should not** modify this code manually
 
-* Unit test skeletons (actual unit test code)
+* Unit test **skeletons**
 
-    - One for each visible subprogram in packages to be tested
-    - You manually modify for specific tests' logic
-    - *Not* overwritten if already exists
+    - **Actual** unit-test code
+    - One for each visible **subprogram** in tested packages
+    - **Manually** modified for specific tests' logic
+    - **Created** automatically if they don't exist
+    - Otherwise **never** overwritten
 
 -------------------------------------
 Default Directory Names & Locations
 -------------------------------------
 
-* Under the object directory specified by project file
+* Under the project's **object** directory
 
-    - Harness code in "gnattest/harness/"
-    - Unit test skeletons in "gnattest/tests/"
+    - **Harness** code in :filename:`gnattest/harness/`
+    - Unit test **skeletons** in :filename:`gnattest/tests/`
 
 .. columns::
 
    .. column::
 
-      .. code:: Ada
-
-         project Demo is
-	     for Object_Dir use "obj";
-            ...
-         end Demo;
+      .. include:: examples/simple_stubbing/extracts/ops.object_dir.gpr
+         :code: Ada
 
    .. column::
 
@@ -152,15 +155,15 @@ Default Directory Names & Locations
 Switches for the Harness
 --------------------------
 
-:command:`--harness-dir=dirname`
+:command:`--harness-dir=<dirname>`
 
-    - Specifies the directory that will hold the harness packages and project file for the test driver
-    - If *dirname* is a relative path, it is relative to the object directory
+    - Directory holding the **harness** packages and the test **driver**'s project file
+    - :filename:`<dirname>` **may** be relative to the object directory
 
-:command:`--passed-tests=value`
+:command:`--passed-tests=<value>`
 
-    - Controls whether or not passed tests should be shown when tests are run
-    - Value is either **show** (the default) or **hide** (lowercase)
+    - Show **passed tests** when they succeed
+    - :code:`<value>` is either :code:`show` (the default) :code:`hide` (lowercase)
 
 ----------------------------
 **Miscellaneous Switches**
@@ -168,141 +171,147 @@ Switches for the Harness
 
 :command:`-r`
 
-    - Process all sources from all projects in a tree of projects
-    - Directories are generated for each project, local to each
+    - Process **recursively** all sources from all the project tree
+    - Directories are generated for **each project**, local to each
 
-:command:`-Xname=value`
+:command:`-X<name>=<value>`
 
-    - External variable *name* is set to *value* for current invocation
+    - Set external variable :code:`<name>` to :code:`<value>` for current invocation
 
 :command:`-q`
 
-    - Suppresses noncritical output messages
+    - Suppresses **noncritical** output messages
 
 :command:`-v`
 
-    - Verbose mode: generates version information
+    - Verbose mode: generates **additional** output
+    - When run alone display **version** information
 
 ----------------------------------------
 Are The Default Locations Good Enough?
 ----------------------------------------
 
-* The defaults are perfectly workable, but...
-* Object directory contents are conceptually transient
-* The test harness is regenerated as needed, and never manually modified, thus transient
-* Hence the test harness can stay under the object directory
-* Unit tests are (in automatically generated) source files, manually modified and thus persistent
+* The defaults are **workable**
 
-    - Under configuration control too
+    - With **caveats**
 
-* Hence you may want to put unit tests elsewhere
+* **Object** directory contents are conceptually **transient**
+* Test **harness**
+
+    - **Never** manually modified
+    - Regenerated **automatically**
+    - **Transient**
+    * Can stay under the **object** directory
+
+* Unit tests are **source** files
+
+    - **Manually** modified
+    - Under **configuration control**
+    - **Persistent**
+    - Should be put **elsewhere**
 
 --------------------------
 Where To Put Unit Tests?
 --------------------------
 
-* Since the object dir should not hold them
-* We likely don't want to mix unit tests and application code directly in same directories
-* Thus various :toolname:`GNATtest` switches are applicable
-* The :filename:`source-dir/**` notation is a potential issue
+* **Not** in the object directory
+* **Separate** from application code
+* Use :toolname:`GNATtest` switches
+* Having all tests in :filename:`source-dir/` is an issue
 
-    - **All** directories rooted at *source-dir* are treated as application source directories
-    - Your tests would thus be treated as part of the application
+    - **All** directories rooted at :filename:`source-dir`
+    - Treated as **application** source directories
+    - Tests would be treated as part of the **application**
 
 ----------------------------------------
 Switches for Tests Directory Structure
 ----------------------------------------
 
-:command:`--tests-dir=dirname`
+* Three **mutually exclusive** commands
 
-    - All test packages are placed in the *dirname* directory
-    - If *dirname* is a relative path, it is relative to the object dir
+:command:`--tests-dir=<tests_directory>`
 
-:command:`--tests-root=dirname`
+    - **All** generated test packages are in :filename:`<tests_directory>/`
+    - May be relative to the object dir
 
-    - Specifies root of directory hierarchy for test source dirs
-    - **A test directory corresponding to each source directory will be created**
-    - If *dirname* is a relative path, it is relative to the object dir
-    - Cannot combine with :command:`--tests-dir` switch
+:command:`--tests-root=<tests_root>`
 
-:command:`--subdir=dirname`
+    - For each tested package :filename:`<package.ads>`
 
-    - Generated test packages are placed in subdirectories named *dirname*, **under the corresponding source directories**
+        * Associated test packages are in :filename:`<tests_root>/<package>/`
+        * Test packages hierarchy is followed in :filename:`<tests_root>/`
 
---------------------------------------
-The :code:`--test-dir` Switch Effect
---------------------------------------
+    - :filename:`<tests_root>` may be relative to the object dir
 
-All tests are located in the specified directory
+:command:`--subdirs=<dirname>`
+
+    - For each tested package :filename:`<package_src>/<package.ads>`
+
+        + Associated test packages are in :filename:`<package_src>/<dirname>/`
+
+----------------------------
+:code:`--test-dir` Example
+----------------------------
+
 
 :command:`gnattest -P simple --test-dir=../unit_tests`
 
+* **All** test packages are directly in :filename:`root/unit_tests/`
+
 .. image:: images/gnattest/test-dir_switch.jpg
 
-----------------------------------------
-The :code:`--tests-root` Switch Effect
-----------------------------------------
-
-The source dir hierarchy is *replicated*, starting at the root dir specified
+------------------------------
+:code:`--tests-root` Example
+------------------------------
 
 :command:`gnattest -P simple --tests-root=../unit_tests`
 
+* Associated test packages are in :filename:`root/unit_tests/<package>/`
+* Internal test packages hierarchy is **replicated**
+
 .. image:: images/gnattest/tests-root_switch.jpg
 
--------------------------------------
-The :code:`--subdir ` Switch Effect
--------------------------------------
+---------------------------
+:code:`--subdirs ` Example
+---------------------------
 
-The source dir hierarchy is *supplemented*, using the dir name specified
+:command:`gnattest -P simple --subdirs=unit_tests`
 
-:command:`gnattest -P simple --subdir=unit_tests`
+* Test packages are in :filename:`root/src/package/.../unit_tests/`
+* Warning: recursive :ada:`Source_Dirs` globs (eg :filename:`src/**`) will cause errors
 
 .. image:: images/gnattest/subdir_switch.jpg
-
-*Beware "src/\*\*" for Source_Dirs*
 
 ----------------------
 Project File Support
 ----------------------
 
-.. columns::
+* :ada:`package GNATtest`
+* **Some** switches have a specific attribute
 
-   .. column::
+    - :ada:`Harness_Dir`
+    - :ada:`Tests_Dir`
+    - :ada:`Tests_Root`
+    - :ada:`Subdir`
+    - :ada:`Additional_Tests`
+    - :ada:`Skeletons_Default`
 
-      + :ada:`package GNATtest`
-      + Generate list attribute :ada:`GNATtest_Switches`
-      + Specific attributes corresponding to *some* switches
+* **Other** switches in list attribute :ada:`GNATtest_Switches`
 
-        + :ada:`Harness_Dir`
-        + :ada:`Tests_Dir`
-        + :ada:`Tests_Root`
-        + :ada:`Subdir`
-        + :ada:`Additional_Tests`
-        + :ada:`Skeletons_Default`
-        + *Meaning and values as per switches*
-
-   .. column::
-
-     .. code:: Ada
-
-        project Demo is
-           ...
-           package GNATtest is
-              for Tests_Root use "../unit_tests";
-              ...
-              for GNATtest_Switches use ("-v");
-           end GNATtest;
-           ...
-        end Demo;
+.. include:: examples/simple_stubbing/extracts/ops.package_gnattest.gpr
+        :code: Ada
 
 -------------------------------------
 Fundamental Concept of the Approach
 -------------------------------------
 
-* Code to be tested resides in library packages
-* Tests are in hierarchical library units that are "children" of the packages to be tested
-* Thus no need to alter the code to be tested
-* Code to be tested
+* Code **under test** in a package
+* Tests are **children** of the package under test
+
+    - **No alteration** to the code under test
+    - Access to private part for **white-box** tests
+
+* Package under test:
 
    .. code:: Ada
 
@@ -312,7 +321,7 @@ Fundamental Concept of the Approach
          ...
       end Parent;
 
-* Test Declarations
+* Test declarations:
 
    .. code:: Ada
 
@@ -322,7 +331,7 @@ Fundamental Concept of the Approach
          ...
       end Parent.Child;
 
-* Test Bodies
+* Test bodies
 
    .. code:: Ada
 
@@ -330,149 +339,78 @@ Fundamental Concept of the Approach
          ...
       end Parent.Child;
 
------------------------------------------
-Child Unit Compile-Time Visibility: ADT
------------------------------------------
+---------------------------------------
+Reminder on Child Packages Visibility
+---------------------------------------
 
-.. columns::
+* Parent
 
-   .. column::
+   .. include:: examples/stacks/extracts/integer_stacks.type_decl.ads
+      :code: Ada
 
-      .. container:: latex_environment tiny
+* Child
 
-         * Parent
-
-            .. code:: Ada
-
-               package Integer_Stacks is
-                  type Stack is limited private;
-                  procedure Push (This  : in out Stack;
-                                  Input : in Integer);
-                  procedure Pop (This    : in out Stack;
-                                  Output : out Integer);
-                  ...
-                  Max : constant := 100;
-               private
-                  type Contents is array (1 .. Max) of Integer;
-                  type Stack is
-                     record
-                        Values   : Contents;
-                        Top       : Natural range 0 .. Max := 0;
-                     end record;
-               end Integer_Stacks;
-
-   .. column::
-
-      .. container:: latex_environment tiny
-
-         * Child
-
-            .. code:: Ada
-
-               package Integer_Stacks.Utils is
-                  procedure Reset (This : in out Stack);
-               end Integer_Stacks.Utils;
-
-               package body Integer_Stacks.Utils is
-                  procedure Reset (This : in out Stack) is
-                  begin
-                     This.Top := 0;
-                  end Reset;
-               end Integer_Stacks.Utils;
-
------------------------------------------
-Child Unit Compile-Time Visibility: ADM
------------------------------------------
-
-.. columns::
-
-   .. column::
-
-      .. container:: latex_environment tiny
-
-         * Parent
-
-            .. code:: Ada
-
-               package Integer_Stack is
-                  procedure Push (Input : in Integer);
-                  procedure Pop (Output : out Integer);
-                  ...
-                  Max : constant := 100;
-               private
-                  type Contents is array (1 .. Max) of Integer;
-                  Values : Contents;
-                  Top    : Natural range 0 .. Max := 0;
-               end Integer_Stack;
-
-   .. column::
-
-      .. container:: latex_environment tiny
-
-         * Child
-
-            .. code:: Ada
-
-               package Integer_Stack.Utils is
-                  procedure Reset;
-               end Integer_Stack.Utils;
-
-               package body Integer_Stack.Utils is
-                  procedure Reset is
-                  begin
-                     Top := 0;
-                  end Reset;
-               end Integer_Stack.Utils;
+   .. include:: examples/stacks/src/integer_stacks-utils.adb
+      :code: Ada
 
 -----------------------------
 Test Skeleton Naming Scheme
 -----------------------------
 
-Note that the generated test packages' names may conflict with application unit names
+* Given :ada:`package Pkg` under test
+* Generates :ada:`package Pkg.Test_Data`
+
+    - With :ada:`procedure Set_Up`, :ada:`procedure Tear_Down`
+
+* :ada:`package Pkg.Test_Data.Tests` with test routines
+
+    - One for each subprogram
+    - Generated test routines get **unique** numeric suffixes
+
+* Warning: Conflict with any existing :ada:`package Test_Data`
 
 .. image:: images/gnattest/naming_scheme.jpg
 
-Test routines get unique numeric suffixes
 
 ------------------------------------------
 Building & Executing the Generated Tests
 ------------------------------------------
 
-* Performed via the (re)generated harness code
+* Via the (re)generated **harness** code
 * Building
 
-    - Entry point is generated project file :filename:`test_driver.gpr`
+    - Entry point is **generated** :filename:`test_driver.gpr`
+    - :command:`gprbuild -P<harness-dir>/test_driver`
 
 * Executing
 
     - Main program is :filename:`test_runner`
+    - :command:`<harness-dir>/test_runner`
 
-      + :command:`gprbuild -P<harness-dir>/test_driver`
-      + :command:`test_runner`
+* You may need to specify scenario variables' values
 
-* Note you may need to specify scenario variables' values if not using the AUnit defaults
-
+    - Else uses the AUnit defaults
     - :code:`-Xvariable=value`
 
 ------------------------------------------
 In Practice: Unimplemented Tests Results
 ------------------------------------------
 
-* The generated test driver can report the results of unimplemented tests in two ways
-* Can report them as failed
+* Generated test drivers report a **default** result
+* As **failed**
 
     - Useful to see which tests are still unimplemented
-    - The default behavior
+    - **Default** behavior
 
-* Can report them as passed
+* As **passed**
 
-    - To sort those unimplemented from those actually failing
+    - To sort those unimplemented from those **actually** failing
 
 * Controlled by user
 
     - Switch :code:`--skeleton-default=value`
-    - Attribute *Skeleton_Default* in project file
-    - Value is either *fail* or *pass* (lowercase)
+    - :ada:`package GNATtest`'s attribute :code:`Skeleton_Default`
+    - Value is either :code:`fail` or :code:`pass` (lowercase)
 
 ----------------------
 The "Simple" Example
