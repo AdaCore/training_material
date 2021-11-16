@@ -674,22 +674,28 @@ Verifying Global Type Consistency
 Support for External Tests
 ----------------------------
 
-* Those AUnit tests created manually
-* Use switch :command:`--harness-only` initially
+* eg. :toolname:`AUnit` tests created manually
 
-    - Only generate the harness since these tests already exist
+    + For project :filename:`simple.gpr`
+    + With existing tests in :filename:`additional/external.gpr`
 
-  .. container:: latex_environment footnotesize
+* Use switch :command:`--harness-only`
 
-     :code:`gnattest -P additional/external.gpr --harness-dir=external --harness-only`
+    - **Only** generate the harness
+    - Do **not** generate or update the drivers
 
-* Add switch :command:`--additional-tests=project-file-name` when generating the tests
+:command:`gnattest -P additional/external.gpr --harness-only`
+   :command:`--harness-dir=external`
 
-    - Sources described in :filename:`project-file-name` are considered additional manual tests to be added to the test suite
+* Generate the tests with :command:`--additional-tests=<project-file>`
 
-  .. container:: latex_environment footnotesize
+    - Sources in :filename:`<project-file>.gpr` are considered manual tests
 
-     :code:`gnattest -P simple.gpr --additional-tests=additional/external.gpr --harness-dir=external`
+        + And are added to the test suite
+
+:command:`gnattest -P simple.gpr`
+   :command:`--additional-tests=additional/external.gpr`
+   :command:`--harness-dir=external`
 
 ----------
 Stubbing
