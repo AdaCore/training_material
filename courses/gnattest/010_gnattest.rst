@@ -532,9 +532,6 @@ Liskov Substitutability Principle (LSP)
 Subclass-Independent Data Structures
 --------------------------------------
 
-.. columns::
-
-   .. column::
 
       .. code:: Ada
 
@@ -550,20 +547,24 @@ Subclass-Independent Data Structures
 
          type Node;
          type List is access Node;
-         type Node is
-            record
-               Command : Any_Instruction;
-               Next    : List;
-            end record;
+         type Node isrecord
+            Command : Any_Instruction;
+            Next    : List;
+         end record;
 
-   .. column::
+.. columns::
 
-   .. column::
+    .. column::
 
-      .. image:: images/gnattest/data_structure_hierarchy.jpg
-         :align: right
+        .. image:: images/gnattest/data_structure_hierarchy.jpg
+           :width: 120%
 
-.. image:: images/gnattest/command_sequence_list.jpg
+    .. column::
+
+        .. image:: images/gnattest/command_sequence_list.png
+           :width: 180%
+
+.
 
 ---------------------------------
 Subclass-Independent Algorithms
