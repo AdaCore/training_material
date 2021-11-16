@@ -14,5 +14,7 @@ clean:
 extract:
 	$(ADACUT) -c 1 2 -- src/simple.ads > extracts/simple.ads
 	$(ADACUT) -c 1 2 -- src/simple.adb > extracts/simple.adb
+	$(ADACUT) -c 1 2 3 4 -- obj/gnattest/tests/simple-test_data-tests.adb > extracts/simple-test_data-tests.before.adb
+	$(ADACUT) -c 1 2 3 4 -- obj/gnattest/tests/simple-test_data-tests.after.adb > extracts/simple-test_data-tests.after.adb
 
 .PHONY: clean simple 

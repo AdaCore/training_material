@@ -47,8 +47,8 @@ package body Simple.Test_Data.Tests is
    begin
 
       AUnit.Assertions.Assert
-        (Gnattest_Generated.Default_Assert_Value,
-         "Test not implemented.");
+        (Inc (1) = 2,
+         "Inc (1) = " & Inc (1)'Img & " /= 2");
 
 --  begin read only
    end Test_Inc;
