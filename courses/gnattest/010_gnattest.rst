@@ -201,6 +201,7 @@ Are The Default Locations Good Enough?
     - **Never** manually modified
     - Regenerated **automatically**
     - **Transient**
+
     * Can stay under the **object** directory
 
 * Unit tests are **source** files
@@ -252,7 +253,6 @@ Switches for Tests Directory Structure
 ----------------------------
 :code:`--test-dir` Example
 ----------------------------
-
 
 :command:`gnattest -P simple --test-dir=../unit_tests`
 
@@ -371,7 +371,6 @@ Test Skeleton Naming Scheme
 
 .. image:: images/gnattest/naming_scheme.jpg
 
-
 ------------------------------------------
 Building & Executing the Generated Tests
 ------------------------------------------
@@ -470,7 +469,6 @@ Assertion Facility Provided
 Test Case Body, As Generated
 ------------------------------
 
-
 .. include:: examples/gnat_simple/extracts/simple-test_data-tests.before.adb
    :code: Ada
 
@@ -510,7 +508,6 @@ Support for OOP
 
 * Inherited tests can be **overridden** in subclasses
 
-
 -----------------------------------
 Test Inheritance for Tagged Types
 -----------------------------------
@@ -544,7 +541,6 @@ Liskov Substitutability Principle (LSP)
 --------------------------------------
 Subclass-Independent Data Structures
 --------------------------------------
-
 
       .. code:: Ada
 
