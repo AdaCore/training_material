@@ -485,14 +485,15 @@ Modified Test Case Body
 Using the Package Private Part
 --------------------------------
 
-* Put implementation artifacts in the private part if they will be needed by the test code
+* Some implementation **details** are needed by the test code
 
-    - Type declarations
-    - *Subprogram declarations*
+    - **Type** declarations
+    - **Subprogram** declarations
     - Et cetera
 
-* They will be compile-time visible to test code
-* They will remain hidden from client code
+* Declare them as :ada:`private`
+* They will be visible to test code
+* They will **remain hidden** from client code
 
     - Good software engineering
 
@@ -500,14 +501,15 @@ Using the Package Private Part
 Support for OOP
 -----------------
 
-* Tests for tagged types are automatically inherited
+* Tests for tagged types are automatically **inherited**
+* Verifies **Local Type Consistency**
 
-    - Inherited tests can be overridden in subclasses
+    - Relaxed form of *Liskov Substitutability Principle* (LSP)
+    - Ensures that each class pass the tests of its **parent** class
+    - See DO-178C supplement on Object-Oriented Technology and Related Techniques (DO-332)
 
-* Global Type Consistency can be verified
+* Inherited tests can be **overridden** in subclasses
 
-    - A form of Liskov Substitutability Principle (LSP) regarding preconditions and postconditions
-    - One of the new objectives of DO-178C supplement on Object-Oriented Technology and Related Techniques (DO-332)
 
 -----------------------------------
 Test Inheritance for Tagged Types
@@ -519,14 +521,25 @@ Test Inheritance for Tagged Types
 Liskov Substitutability Principle (LSP)
 -----------------------------------------
 
-* Any subclass object can be used in place of a corresponding superclass object, transparently
-* An essential property for abstracting away specific type info via dynamic dispatching
-* Makes specific subclass independence conceivable
+.. code:: Ada
+
+    type Child is new Root with ...
+
+* **Any** :ada:`R : Root` in code can be substituted by a :ada:`C : Child`
+
+    - Without causing any **type error**
+    - Without causing any **dynamic check** failure
+    - Any code, including **tests**
+
+* Essential property for **dispatching**, especially dynamically
+* Allow for specific subclass **independence**
 
     - Data structures
     - Algorithms
 
-* This is one of the goals of OOP, i.e., isolating the effects of change
+* Very **useful** in OOP context
+
+    - **Isolates** the effects of change
 
 --------------------------------------
 Subclass-Independent Data Structures
