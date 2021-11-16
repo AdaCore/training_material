@@ -60,9 +60,9 @@ A Libadalang Tool
 
     - Complex preprocessing will cause issues
 
-----------------
-Based On AUnit
-----------------
+----------------------------
+Based On :toolname:`AUnit`
+----------------------------
 
 * Unit test **framework**
 
@@ -389,7 +389,7 @@ Building & Executing the Generated Tests
 
 * You may need to specify scenario variables' values
 
-    - Else uses the AUnit defaults
+    - Else uses the :toolname:`AUnit` defaults
     - :code:`-Xvariable=value`
 
 ------------------------------------------
@@ -485,14 +485,15 @@ Modified Test Case Body
 Using the Package Private Part
 --------------------------------
 
-* Put implementation artifacts in the private part if they will be needed by the test code
+* Some implementation **details** are needed by the test code
 
-    - Type declarations
-    - *Subprogram declarations*
+    - **Type** declarations
+    - **Subprogram** declarations
     - Et cetera
 
-* They will be compile-time visible to test code
-* They will remain hidden from client code
+* Declare them as :ada:`private`
+* They will be visible to test code
+* They will **remain hidden** from client code
 
     - Good software engineering
 
@@ -500,14 +501,15 @@ Using the Package Private Part
 Support for OOP
 -----------------
 
-* Tests for tagged types are automatically inherited
+* Tests for tagged types are automatically **inherited**
+* Verifies **Local Type Consistency**
 
-    - Inherited tests can be overridden in subclasses
+    - Relaxed form of *Liskov Substitutability Principle* (LSP)
+    - Ensures that each class pass the tests of its **parent** class
+    - See DO-178C supplement on Object-Oriented Technology and Related Techniques (DO-332)
 
-* Global Type Consistency can be verified
+* Inherited tests can be **overridden** in subclasses
 
-    - A form of Liskov Substitutability Principle (LSP) regarding preconditions and postconditions
-    - One of the new objectives of DO-178C supplement on Object-Oriented Technology and Related Techniques (DO-332)
 
 -----------------------------------
 Test Inheritance for Tagged Types
@@ -519,14 +521,25 @@ Test Inheritance for Tagged Types
 Liskov Substitutability Principle (LSP)
 -----------------------------------------
 
-* Any subclass object can be used in place of a corresponding superclass object, transparently
-* An essential property for abstracting away specific type info via dynamic dispatching
-* Makes specific subclass independence conceivable
+.. code:: Ada
+
+    type Child is new Root with ...
+
+* **Any** :ada:`R : Root` in code can be substituted by a :ada:`C : Child`
+
+    - Without causing any **type error**
+    - Without causing any **dynamic check** failure
+    - Any code, including **tests**
+
+* Essential property for **dispatching**, especially dynamically
+* Allow for specific subclass **independence**
 
     - Data structures
     - Algorithms
 
-* This is one of the goals of OOP, i.e., isolating the effects of change
+* Very **useful** in OOP context
+
+    - **Isolates** the effects of change
 
 --------------------------------------
 Subclass-Independent Data Structures
@@ -538,7 +551,7 @@ Subclass-Independent Data Structures
          package Robot is
             type Instruction is tagged private;
             procedure Respond (To : Instruction);
-            ..
+            ...
          end Robot;
 
       .. code:: Ada
@@ -547,7 +560,7 @@ Subclass-Independent Data Structures
 
          type Node;
          type List is access Node;
-         type Node isrecord
+         type Node is record
             Command : Any_Instruction;
             Next    : List;
          end record;
@@ -570,7 +583,9 @@ Subclass-Independent Data Structures
 Subclass-Independent Algorithms
 ---------------------------------
 
-* Uses dynamic dispatching to transparently invoke subclass-specific overridings (if any)
+* **Transparently** invoke subclass-specific overridings
+
+    - Using dynamic dispatching
 
 .. code:: Ada
 
@@ -584,15 +599,22 @@ Subclass-Independent Algorithms
       end loop;
    end Perform;
 
-.. image:: images/gnattest/command_sequence_list.jpg
+.. image:: images/gnattest/command_sequence_list.png
 
 -----------------------------------------
 Recap: Preconditions and Postconditions
 -----------------------------------------
 
-* Optionally specify subprogram client (caller) and implementer (supplier) obligations
-* **Precondition** :math:`\rightarrow` Assertion expected to hold when a given subprogram is called by a client
-* **Postcondition** :math:`\rightarrow` Assertion expected to hold when a given subprogram (supplier) returns normally
+* Specifies subprogram obligations
+* **Precondition** :math:`\rightarrow` Assertion expected to hold **before** the call
+
+    - Obligation for the **caller**
+    - Guarantee to the **implementation**
+
+* **Postcondition** :math:`\rightarrow` Assertion expected to hold **after** the call
+
+    - Obligation for the **implementation**
+    - Guarantee to the **caller**
 
 .. code:: Ada
 
@@ -607,36 +629,50 @@ Recap: Preconditions and Postconditions
 The Contractor-Subcontractor Metaphor
 ---------------------------------------
 
-* Inheritance with overriding and dynamic binding means that clients may be using a subclass of the supplier they specify, without knowing it
-* Thus supplier subclasses are *subcontractors* to superclass suppliers
-* Subcontractors can define additional preconditions and postconditions on overridden primitives
+* Inheritance with **dynamic** dispatching
 
-    - Subcontractor-specific contracts with clients
+    - Clients may be using a supplier **subclass**
+    - With **no** knowledge of it
+
+* Supplier subclasses are **subcontractors**
+* Can redefine the preconditions
+* Can redefine the postconditions
 
 -------------------------
 Global Type Consistency
 -------------------------
 
-* Preserved when, in all cases, a subcontractor will do the job as contracted, or better, but not less
-* Hence no stronger preconditions
+* A subcontractor will still accept the **same input**
 
-    - No demands beyond those of superclasses
+    - But can accept **more** input types
+    - **Never** less
 
-* Hence no weaker postconditions
+* So preconditions must be same, or **weaker**
 
-    - No guarantees weaker than those of superclasses
+    - **No** demands beyond those of superclasses
+
+* It will do the **same job**
+
+    - Or **more** operations
+    - **Never** less
+
+* So postconditions must be same, or **stronger**
+
+    - Guarantees at least **as much** as the superclasses
 
 -----------------------------------
 Verifying Global Type Consistency
 -----------------------------------
 
-* For a given derived type, run all tests from all parent types
+* For a given derived type, run **all tests** from all parent types
 
-    - Verifies no stronger preconditions
-    - Verifies no weaker postconditions
+    - Verifies **no stronger** preconditions
+    - Verifies **no weaker** postconditions
 
 * Requires switch :command:`--validate-type-extensions`
-* Find tests that would otherwise pass, when applied to specific type defining them
+* Find tests that **would** otherwise pass
+
+    - When applied to the type **defining** them
 
 ----------------------------
 Support for External Tests
