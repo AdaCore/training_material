@@ -419,6 +419,8 @@ Specifying Directories
    - Contains the **executables**
    - By default, it is the **object directory**
 
+* Can use *globs* naming patterns
+
 --------------------
 Source Directories
 --------------------
