@@ -625,36 +625,50 @@ Recap: Preconditions and Postconditions
 The Contractor-Subcontractor Metaphor
 ---------------------------------------
 
-* Inheritance with overriding and dynamic binding means that clients may be using a subclass of the supplier they specify, without knowing it
-* Thus supplier subclasses are *subcontractors* to superclass suppliers
-* Subcontractors can define additional preconditions and postconditions on overridden primitives
+* Inheritance with **dynamic** dispatching
 
-    - Subcontractor-specific contracts with clients
+    - Clients may be using a supplier **subclass**
+    - With **no** knowledge of it
+
+* Supplier subclasses are **subcontractors**
+* Can redefine the preconditions
+* Can redefine the postconditions
 
 -------------------------
 Global Type Consistency
 -------------------------
 
-* Preserved when, in all cases, a subcontractor will do the job as contracted, or better, but not less
-* Hence no stronger preconditions
+* A subcontractor will still accept the **same input**
 
-    - No demands beyond those of superclasses
+    - But can accept **more** input types
+    - **Never** less
 
-* Hence no weaker postconditions
+* So preconditions must be same, or **weaker**
 
-    - No guarantees weaker than those of superclasses
+    - **No** demands beyond those of superclasses
+
+* It will do the **same job**
+
+    - Or **more** operations
+    - **Never** less
+
+* So postconditions must be same, or **stronger**
+
+    - Guarantees at least **as much** as the superclasses
 
 -----------------------------------
 Verifying Global Type Consistency
 -----------------------------------
 
-* For a given derived type, run all tests from all parent types
+* For a given derived type, run **all tests** from all parent types
 
-    - Verifies no stronger preconditions
-    - Verifies no weaker postconditions
+    - Verifies **no stronger** preconditions
+    - Verifies **no weaker** postconditions
 
 * Requires switch :command:`--validate-type-extensions`
-* Find tests that would otherwise pass, when applied to specific type defining them
+* Find tests that **would** otherwise pass
+
+    - When applied to the type **defining** them
 
 ----------------------------
 Support for External Tests
