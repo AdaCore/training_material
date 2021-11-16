@@ -60,9 +60,9 @@ A Libadalang Tool
 
     - Complex preprocessing will cause issues
 
-----------------
-Based On AUnit
-----------------
+----------------------------
+Based On :toolname:`AUnit`
+----------------------------
 
 * Unit test **framework**
 
@@ -389,7 +389,7 @@ Building & Executing the Generated Tests
 
 * You may need to specify scenario variables' values
 
-    - Else uses the AUnit defaults
+    - Else uses the :toolname:`AUnit` defaults
     - :code:`-Xvariable=value`
 
 ------------------------------------------
@@ -551,7 +551,7 @@ Subclass-Independent Data Structures
          package Robot is
             type Instruction is tagged private;
             procedure Respond (To : Instruction);
-            ..
+            ...
          end Robot;
 
       .. code:: Ada
@@ -560,7 +560,7 @@ Subclass-Independent Data Structures
 
          type Node;
          type List is access Node;
-         type Node isrecord
+         type Node is record
             Command : Any_Instruction;
             Next    : List;
          end record;
@@ -583,7 +583,9 @@ Subclass-Independent Data Structures
 Subclass-Independent Algorithms
 ---------------------------------
 
-* Uses dynamic dispatching to transparently invoke subclass-specific overridings (if any)
+* **Transparently** invoke subclass-specific overridings
+
+    - Using dynamic dispatching
 
 .. code:: Ada
 
@@ -597,15 +599,22 @@ Subclass-Independent Algorithms
       end loop;
    end Perform;
 
-.. image:: images/gnattest/command_sequence_list.jpg
+.. image:: images/gnattest/command_sequence_list.png
 
 -----------------------------------------
 Recap: Preconditions and Postconditions
 -----------------------------------------
 
-* Optionally specify subprogram client (caller) and implementer (supplier) obligations
-* **Precondition** :math:`\rightarrow` Assertion expected to hold when a given subprogram is called by a client
-* **Postcondition** :math:`\rightarrow` Assertion expected to hold when a given subprogram (supplier) returns normally
+* Specifies subprogram obligations
+* **Precondition** :math:`\rightarrow` Assertion expected to hold **before** the call
+
+    - Obligation for the **caller**
+    - Guarantee to the **implementation**
+
+* **Postcondition** :math:`\rightarrow` Assertion expected to hold **after** the call
+
+    - Obligation for the **implementation**
+    - Guarantee to the **caller**
 
 .. code:: Ada
 
