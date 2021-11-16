@@ -417,20 +417,15 @@ The "Simple" Example
 ----------------------
 
 * Included in the GNAT installation examples
-* Application code:
+* Package Specification
 
-.. code:: Ada
+.. include:: examples/gnat_simple/extracts/simple.ads
+   :code: Ada
 
-   package Simple is
-      function Inc (X : Integer) return Integer;
-   end Simple;
+* Package Body
 
-   package body Simple is
-      function Inc (X : Integer) return Integer is
-      begin
-         return X + 1;
-      end Inc;
-   end Simple;
+.. include:: examples/gnat_simple/extracts/simple.adb
+   :code: Ada
 
 ------------------------------------
 Generated Child Package Test_Data
@@ -438,67 +433,33 @@ Generated Child Package Test_Data
 
 .. container:: latex_environment small
 
- .. code:: Ada
-
-   --  This package is intended to set up and tear down  the test environment.
-   --  Once created by GNATtest, this package will never be overwritten
-   --  automatically. Contents of this package can be modified in any way
-   --  except for sections surrounded by a 'read only' marker.
-
-   with AUnit.Test_Fixtures;
-
-   package Simple.Test_Data is
-
-   --  begin read only
-      type Test is new AUnit.Test_Fixtures.Test_Fixture
-   --  end read only
-      with null record;
-
-      procedure Set_Up (Gnattest_T : in out Test);
-      procedure Tear_Down (Gnattest_T : in out Test);
-
-   end Simple.Test_Data;
+ .. include:: examples/gnat_simple/obj/gnattest/tests/simple-test_data.ads
+   :code: Ada
 
 -------------------------------------
 Test Case Declaration, As Generated
 -------------------------------------
 
-* Unique names guaranteed by code generator
+* Unique names **guaranteed** by code generator
 
-    - Handles overloading, if any, in application code
+    - Handles **overloading**, if any, in application code
 
 .. container:: latex_environment small
 
- .. code:: Ada
-
-   --  This package has been generated automatically by GNATtest.
-   --  Do not edit any part of it, see GNATtest documentation for more details.
-
-   --  begin read only
-   with Gnattest_Generated;
-
-   package Simple.Test_Data.Tests is
-
-      type Test is new GNATtest_Generated.GNATtest_Standard.Simple.Test_Data.Test
-      with null record;
-
-      procedure Test_Inc_4f8b9f (Gnattest_T : in out Test);
-      --  simple.ads:7:4:Inc
-
-   end Simple.Test_Data.Tests;
-   --  end read only
+ .. include:: examples/gnat_simple/obj/gnattest/tests/simple-test_data-tests.ads
+   :code: Ada
 
 -----------------------------
 Assertion Facility Provided
 -----------------------------
 
-* A procedure rather than a pragma
+* A :ada:`procedure` rather than a :ada:`pragma`
 * Exported from :ada:`AUnit.Assertions`
 
-    - :ada:`AUnit.Assertions.Assert ( boolean-expression, message );`
+    :ada:`AUnit.Assertions.Assert (boolean-expression, message);`
 
-      * *boolean-expression* :math:`\rightarrow` Assert this proposition
-      * *message* :math:`\rightarrow` Message to display when proposition does *not* hold
+    - :code:`boolean-expression` :math:`\rightarrow` Assert this proposition
+    - :code:`message` :math:`\rightarrow` Message to display when assertion **fails**
 
 .. code:: Ada
 
@@ -509,58 +470,16 @@ Assertion Facility Provided
 Test Case Body, As Generated
 ------------------------------
 
-.. code:: Ada
 
-   with AUnit.Assertions; use AUnit.Assertions;
-   package body Simple.Test_Data.Tests is
-
-   --  begin read only
-      procedure Test_Inc (Gnattest_T : in out Test);
-      procedure Test_Inc_4f8b9f (Gnattest_T : in out Test) renames Test_Inc;
-   --  id:2.2/4f8b9f38b0ce8c74/Inc/1/0/
-      procedure Test_Inc (Gnattest_T : in out Test) is
-      --  simple.ads:7:4:Inc
-   --  end read only
-
-         pragma Unreferenced (Gnattest_T);
-      begin
-         AUnit.Assertions.Assert
-            (Gnattest_Generated.Default_Assert_Value,
-             "Test not implemented.");
-
-   --  begin read only
-      end Test_Inc;
-   --  end read only
-
-   end Simple.Test_Data.Tests;
+.. include:: examples/gnat_simple/extracts/simple-test_data-tests.before.adb
+   :code: Ada
 
 -------------------------
 Modified Test Case Body
 -------------------------
 
-.. code:: Ada
-
-   with AUnit.Assertions; use AUnit.Assertions;
-   package body Simple.Test_Data.Tests is
-
-   --  begin read only
-      procedure Test_Inc (Gnattest_T : in out Test);
-      procedure Test_Inc_4f8b9f (Gnattest_T : in out Test) renames Test_Inc;
-   --  id:2.2/4f8b9f38b0ce8c74/Inc/1/0/
-      procedure Test_Inc (Gnattest_T : in out Test) is
-      --  simple.ads:7:4:Inc
-   --  end read only
-
-         pragma Unreferenced (Gnattest_T);
-      begin
-         -- new assertion values
-         AUnit.Assertions.Assert (Inc (1) = 2, "Inc failure.");
-
-   --  begin read only
-      end Test_Inc;
-   --  end read only
-
-   end Simple.Test_Data.Tests;
+.. include:: examples/gnat_simple/extracts/simple-test_data-tests.after.adb
+   :code: Ada
 
 --------------------------------
 Using the Package Private Part
