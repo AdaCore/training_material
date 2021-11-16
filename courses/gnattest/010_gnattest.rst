@@ -701,25 +701,29 @@ Support for External Tests
 Stubbing
 ----------
 
+* Test a :ada:`package` in isolation from its dependencies
+* :command:`--stub`
+* :command:`-r` for recursivity
+
 .. columns::
 
-   .. column::
+  .. column::
 
-      * Designed to test a high-level subsystem in isolation from its dependencies
-      * Activated by --stub switch
-      * -r adds + recursivity
+   * Original hierarchy
 
-      .. image:: images/gnattest/stub_before.jpg
+       .. image:: images/gnattest/stub_before.jpg
 
-   .. column::
+  .. column::
 
-      * Stub at the :ada:`Input` level
+   * Stubbing :ada:`Input`
 
-         .. image:: images/gnattest/stub_level1.jpg
+       .. image:: images/gnattest/stub_level1.jpg
 
-      * Stub at the :ada:`Console` level
+   * Stubbing :ada:`Console`
 
-         .. image:: images/gnattest/stub_level2.jpg
+       .. image:: images/gnattest/stub_level2.jpg
+
+.
 
 ------------------------------------------------------------
 Integration with :toolname:`GNAT Studio`: Generating Tests
