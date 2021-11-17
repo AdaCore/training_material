@@ -725,43 +725,53 @@ Stubbing
 
 .
 
-------------------------------------------------------------
-Integration with :toolname:`GNAT Studio`: Generating Tests
-------------------------------------------------------------
+-------------------------------------------------------
+Generating Tests with :toolname:`GNAT Studio`: - Menu
+-------------------------------------------------------
 
-.. columns::
+.. image:: images/gnattest/invoke_gnattest.jpg
 
-   .. column::
+----------------------------------------------------------------
+Generating Tests with :toolname:`GNAT Studio`: - Configuration
+----------------------------------------------------------------
 
-      .. image:: images/gnattest/invoke_gnattest.jpg
+.. image:: images/gnattest/invoke_gnattest_dialog.jpg
 
-   .. column::
+--------------------------------------------
+Running Tests with :toolname:`GNAT Studio`
+--------------------------------------------
 
-      .. image:: images/gnattest/invoke_gnattest_dialog.jpg
+* Test generator setup menu will automatically switch to the test **harness** project
+* Just **build and run** as any other project
 
----------------------------------------------------------
-Integration with :toolname:`GNAT Studio`: Running Tests
----------------------------------------------------------
-
-* Invoking a test generator setup menu will automatically switch to the test harness project
-* Just build and run as any other project
-
-    - Invocation dialog allows overriding switches
+    - Invocation dialog allows overriding **switches**
 
 .. image:: images/gnattest/run_gnattest.jpg
 
---------------------------------------------------------
-Integration with :toolname:`GNAT Studio`: Test Results
---------------------------------------------------------
+-------------------------------------------
+Test Results with :toolname:`GNAT Studio`
+-------------------------------------------
 
-* TBD
-* :toolname:`GNAT Studio` automatically opens the app source file and designates the failed test file with a link
+.. columns::
 
-.. image:: images/gnattest/test_results.jpg
+  .. column::
 
------------------------------------------------------------
-Integration with :toolname:`GNAT Studio`: Exiting Testing
------------------------------------------------------------
+    * Failed
+
+    .. image:: images/gnattest/test_fail.png
+
+  .. column::
+
+    * Passed
+
+    .. image:: images/gnattest/test_pass.png
+
+* Source **under test** is automatically opened
+* Can access failed **test** source from the **Locations** view
+
+-----------------------------------------------------
+Exiting :toolname:`GNAT Studio` Testing Perspective
+-----------------------------------------------------
 
 * To return to the development project
 
