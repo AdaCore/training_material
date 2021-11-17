@@ -863,12 +863,20 @@ DO-178C Ready
 GNATtest Summary
 ------------------
 
-* Automatically creates and maintains harness code, and unit test skeletons for each subprogram to be tested
-* Developers can thus focus on the high-value task of writing the actual test cases
-* Especially valuable in systems requiring high levels of reliability, safety, and/or security
+* **Automatically** creates and updates code
 
-    - Simplifies effort required to implement required test procedures
-    - Can use GNATcoverage to verify test completeness
+    - Harness
+    - Unit test skeletons
+
+* Developers can **focus** on actual test cases
+* Adapted high levels of **reliability**, **safety**, and **security**
+
+    - Simplifies effort required to implement **required** test procedures
+    - Can use :toolname:`GNATcoverage` to verify test completeness
 
 * Fully integrated into :toolname:`GNAT Studio`
-* Supports native, cross and high-integrity platforms
+* Supports large choice of platforms
+
+    - Native
+    - Cross
+    - High-integrity
