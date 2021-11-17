@@ -8,21 +8,22 @@ Ada Top-Level Namespace
 
 * Top-level language-defined packages
 
-   - Standard
-   - Ada
-   - Interfaces
-   - System
+   - :ada:`package Standard`
+   - :ada:`package Ada`
+   - :ada:`package Interfaces`
+   - :ada:`package System`
 
-* Implementations can add top-level units
+* GNAT adds top-level units
 
-   - GNAT
+   - :ada:`package GNAT`
 
-* Binding generators and support for inter-language interfacing can make libraries in other languages accessible to Ada and vice versa
-* Full hierarchy (language-defined and GNAT) is browsable from :toolname:`GNAT Studio` Help menu
+* **Binding generators** and support for Foreign-Language Interface (FLI)
+* Interoperable with foreign language code
+* Full hierarchy can be browsed from :toolname:`GNAT Studio` Help menu
 
----------------------
-Ada.* Hierarchy (1)
----------------------
+--------------------------------------
+:ada:`package Ada.*`: Standard Types
+--------------------------------------
 
 * Character Handling
 
@@ -45,9 +46,9 @@ Ada.* Hierarchy (1)
    - `Ada.Numerics.Generic_Elementary_Functions`
    - `Ada.Numerics.Float_Random`
 
----------------------
-Ada.* Hierarchy (2)
----------------------
+-----------------------------------
+:ada:`package Ada.*`: Environment
+-----------------------------------
 
 * Input/Output
 
@@ -68,9 +69,9 @@ Ada.* Hierarchy (2)
    - `Ada.Directories`
    - `Ada.Environment_Variables`
 
----------------------
-Ada.* Hierarchy (3)
----------------------
+-------------------------------------
+:ada:`package Ada.*`: Miscellaneous
+-------------------------------------
 
 * Containers
 
@@ -91,13 +92,13 @@ Ada.* Hierarchy (3)
 
 * Other predefined units are defined in Annex B (*Interfacing to Other Languages*) and in the **Specialized Needs Annexes**
 
-----------------------
-Interfaces Hierarchy
-----------------------
+---------------------------
+:ada:`package Interfaces`
+---------------------------
 
 * Interfaces
 
-   - Contains standardized numeric types and operators
+   - Fixed width numeric types and operators
 
       + Sized numbers (e.g. `Integer_16`, `Unsigned_64`)
       + Shift functions
@@ -105,30 +106,30 @@ Interfaces Hierarchy
 
 * Language-interfaces
 
-   - `Interfaces.C`
+   - :ada:`Interfaces.C`
 
-      + `Interfaces.C.Extensions`
-      + `Interfaces.C.Pointers`
-      + `Interfaces.C_Streams`
-      + `Interfaces.C.Strings`
+      + :ada:`Interfaces.C.Extensions`
+      + :ada:`Interfaces.C.Pointers`
+      + :ada:`Interfaces.C_Streams`
+      + :ada:`Interfaces.C.Strings`
 
-   - `Interfaces.COBOL`
-   - `Interfaces.Fortran`
+   - :ada:`Interfaces.COBOL`
+   - :ada:`Interfaces.Fortran`
 
-* `Interfaces.Packed_Decimal`
+* :ada:`Interfaces.Packed_Decimal`
 
-   - For converting to IBM packed decimal format
+   - IBM packed decimal format
 
-------------------
-System Hierarchy
-------------------
+-----------------------
+:ada:`package System`
+-----------------------
 
 * Typical System Packages
 
-   - `System`
-   - `System.Address_Operations`
-   - `System.Address_to_Access_Conversions`
+   - :ada:`System`
+   - :ada:`System.Address_Operations`
+   - :ada:`System.Address_to_Access_Conversions`
 
-* Hundreds of other packages for standardizing interaction with environment
+* **Hundreds** of other packages for standardizing interaction with environment
 
    - Many are compiler-specific
