@@ -843,6 +843,10 @@ Currently Unsupported Constructs
 ----------------------------------
 
 * Tests for protected subprograms and entries
+* Generic units
+
+    - But can test concrete instances
+
 * See the latest GNAT Pro User Guide for status
 
 ---------------
