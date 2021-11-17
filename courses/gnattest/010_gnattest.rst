@@ -829,8 +829,8 @@ Getting Help
 
         + In a subdir corresponding to the file format
         + File name is :filename:`gnat_ugn.[pdf | html | txt | info]`
-        + Example: *C:\\GNATPRO\\7.2.1\\share\\doc\\gnat\\pdf\\gnat_ugn.pdf*
-        + Where *C:\\GNATPRO\\7.2.1\\share\\doc\\gnat* is the default path
+        + Example: :filename:`/usr/gnat-21.2/share/doc/gnat/pdf/gnat_ugn.pdf`
+        + Where :filename:`/usr/gnat-21.2/share/doc/gnat` is the default path
 
 ---------------------------------------------
 Getting Help Within :toolname:`GNAT Studio`
