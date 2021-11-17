@@ -872,7 +872,10 @@ GNATtest Summary
 * Adapted high levels of **reliability**, **safety**, and **security**
 
     - Simplifies effort required to implement **required** test procedures
-    - Can use :toolname:`GNATcoverage` to verify test completeness
+
+* Part of *Dynamic Analysis Suite*
+
+    - Alongside :toolname:`GNATcoverage`, :toolname:`GNATfuzz`
 
 * Fully integrated into :toolname:`GNAT Studio`
 * Supports large choice of platforms
