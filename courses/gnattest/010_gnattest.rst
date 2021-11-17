@@ -781,21 +781,21 @@ Exiting :toolname:`GNAT Studio` Testing Perspective
 Non-Native Platforms & Runtime Libraries
 -------------------------------------------
 
-* May support only a subset of full Ada
+* May support only a **subset** of full Ada
 
     - Memory allocation, exceptions, etc.
 
-* Thus may need to generate tests differently, corresponding to those limitations
+* Need to **adapt** test generation tests to those limitations
 * Can be requested via :command:`-X` switch
 
-    - :code:`-Xname=value`
+    - :command:`-Xname=value`
 
 * Defined scenario variable names:
 
-    - PLATFORM
-    - RUNTIME
+    - :command:`PLATFORM`
+    - :command:`RUNTIME`
 
-* Allowed values depend on products purchased
+* Supported values depend on licenses
 
 ---------------------------------
 Example: LynxOS-178 for PowerPC
@@ -813,7 +813,8 @@ Example: LynxOS-178 for PowerPC
     - **cert**
     - **zfp**
 
-:command:`powerpc-xcoff-lynxos178-gnattest -P simple.gpr -XRUNTIME=zfp`
+:command:`powerpc-xcoff-lynxos178-gnattest -P simple.gpr`
+:command:`\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -XRUNTIME=zfp`
 
 --------------
 Getting Help
