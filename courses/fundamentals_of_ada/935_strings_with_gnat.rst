@@ -151,7 +151,7 @@ Unbounded Strings
 * Memory and size
 
     - Size is a **variable** :ada:`Length (S : Unbounded_String) return Natural`
-    - Memory size is **dynamic**
+    - Memory size is **dynamic** (using Finalization)
 
 * **Bad** performances
 
