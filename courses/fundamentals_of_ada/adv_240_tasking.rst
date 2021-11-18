@@ -953,12 +953,6 @@ Standard "Embedded" Tasking Profiles
 
 * See RM D.13
 
-========
-Lab
-========
-
-.. include:: labs/adv_240_tasking.lab.rst
-
 =========
 Summary
 =========
