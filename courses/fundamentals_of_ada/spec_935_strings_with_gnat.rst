@@ -14,7 +14,10 @@ GNAT vs Ada String packages
 
 * Ada provides several standard :ada:`String` manipulation packages
 
-    -
+    - RM A.4
+    - **Search** for pattern strings or characters
+    - **Modifications**: Replacing, inserting, overwriting, and deleting
+    - Character-to-character mapping **translation**
 
 * Ada has 3 standard "character" sets
 
