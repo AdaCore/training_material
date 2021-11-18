@@ -46,9 +46,9 @@ Ada :ada:`String` and Unicode
 
 * See https://unicode.org/faq/
 
-------------------------------------
-Use Standard libraries for Unicode
-------------------------------------
+----------------------
+Use GNAT for Unicode
+----------------------
 
 * Encoding turns a sequence of code-points to a string-type object
 
@@ -67,9 +67,11 @@ Use Standard libraries for Unicode
 * :ada:`Ada.Strings.UTF_Encoding` for encoding (RM A.4.11)
 * :ada:`GNAT.UTF_32` for code-point informations
 
-    + Uses type :ada:`Wide_Wide_String`
-    + Name is confusing because UTF-32 is an encoding
-    + Common mix-up between code-point, character set and encoding
+    - Uses type :ada:`Wide_Wide_String`
+    - Name is confusing because UTF-32 is an encoding
+    - Common mix-up between code-point, character set and encoding
+
+* :ada:`GNAT.Encode_*_String`, :ada:`GNAT.Decode_*_String`
 
 =========================
 Ada :ada:`String` types
