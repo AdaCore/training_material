@@ -37,7 +37,7 @@ Ada :ada:`String` and Unicode
     - Each encoding needs a different data-stream width
     - UTF-8: 8-bits
     - UCS-2, UTF-16, UTF-16LE, UTF-16BE: 16-bits
-    - UTF-32, UTF-32LE, UTF-32BE: 32-bits 
+    - UTF-32, UTF-32LE, UTF-32BE: 32-bits
 
 * Character sets are **unrelated** to unicode encoding
 
@@ -239,7 +239,7 @@ Regular Expressions
 * Optimized for matching **multiple choices**
 * Syntax
 
-    - :code:`abc` The literal string "abc" 
+    - :code:`abc` The literal string "abc"
     - :code:`(abc)` Grouping operator
     - :code:`.` Any character
     - :code:`\.` Literal :code:`.` (all special char can be escaped)
@@ -250,6 +250,8 @@ Regular Expressions
     - :code:`[a-c]` Any character in the range between a and c
     - :code:`[^abc]` Any character that is **not** a, b, or c
     - :code:`A|B` The group A or the group B
+
+* See :filename:`g-regpat.ads` for more
 
 ------------------------------
 Regular Expressions Examples
@@ -309,26 +311,31 @@ Which of the following will the pattern :code:`[a-zA-Z0-9]+@[a-zA-Z0-9]+\.(com|e
 * john.silver@adacore.com
 * :answer:`SARAHCONNOR@ADACORE.EDU`
 
---------------------
-Defining a Pattern
---------------------
+----------------------------
+Defining a Pattern Matcher
+----------------------------
 
 .. code:: Ada
 
-    GNAT.Regexp.Compile (Pattern        : String;
-                         Glob           : Boolean;
-                         Case_Sensitive : Boolean)
-      return Regexp;
+    Regpat.Compile (Pattern : String;
+                    Flags   : Regexp_Flags := No_Flags)
+      return Pattern_Matcher;
 
 * :code:`Pattern`: Regex pattern
-* :code:`Glob`: Use globbing syntax
-* :code:`Case_Sensitive`: Use a case-sensitive pattern
+* :code:`Flags`:
+
+    - :ada:`Case_Insensitive`
+    - :ada:`Single_Line` - :ada:`.` matches :ada:`\n`, :ada:`^$` ignore :ada:`\n`
+    - :ada:`Multiple_Lines` - :ada:`^$` match :ada:`ASCII.LF`
+    - Combine flags with :ada:`Flag1 or Flag2`
+
 * Match with
 
 .. code:: Ada
 
-    function Match (S : String;
-                    R : Regexp) return Boolean;
+    function Regpat.Match (Self : Pattern_Matcher;
+                           Data : String)
+      return Natural;
 
 -------------------------
 Updating Code for Regex
@@ -344,20 +351,18 @@ Updating Code for Regex
     :math:`O(n) = S1'Length \times (S2'Length + S3'Length)`
 
 * Replace by the regexp :code:`S2|S3`
+* Sanitize :code:`S2` and :ada:`S3` with :ada:`GNAT.Regpat.Quote` beforehand
 * Following code is more efficient
 
 .. code:: Ada
 
     declare
-       R : constant Regexp := GNAT.Regexp.Compile (S1 & "|" & S3);
+       R : constant Pattern_Matcher := Regpat.Compile
+         (Regpat.Quote (S1) & "|" & Regpat.Quote (S3));
     begin
-       if Match (S1, R) then
+       if Match (R, S1) then
        ...
     end;
-
-* Beware of :code:`S2` and :ada:`S3` containing regexp characters!
-
-    - Escape them with "\" beforehand
 
 ------
 Quiz
@@ -365,13 +370,13 @@ Quiz
 
 .. code:: Ada
 
-    R : constant Regexp := GNAT.Regexp.Compile ("a*d");
-    B : Boolean := GNAT.Regexp.Match (R, "ad");
+    R : constant Pattern_Matcher := GNAT.Regpat.Compile ("a*d");
+    B : constant Natural := GNAT.Regpat.Match ("ad", R);
 
 What is the result?
 
-* B is True
-* B is False
+* B is 1
+* B is 0
 * :answer:`Compilation Error`
 * Runtime Error
 
@@ -381,13 +386,13 @@ Quiz
 
 .. code:: Ada
 
-    R : constant Regexp := GNAT.Regexp.Compile ("ab?c*d+");
-    B : Boolean := GNAT.Regexp.Match ("ad", R);
+    R : constant Pattern_Matcher := GNAT.Regpat.Compile ("a*d");
+    B : constant Natural := GNAT.Regpat.Match (R, "ad");
 
 What is the result?
 
-* :answer:`B is True`
-* B is False
+* :answer:`B is 1`
+* B is 0
 * Compilation Error
 * Runtime Error
 
@@ -397,13 +402,13 @@ Quiz
 
 .. code:: Ada
 
-    R : constant Regexp := GNAT.Regexp.Compile ("*");
-    B : Boolean := GNAT.Regexp.Match ("ad", R);
+    R : constant Regexp := GNAT.Regpat.Compile ("*");
+    B : Boolean := GNAT.Regpat.Match (R, "ad");
 
 What is the result?
 
-* B is True
-* B is False
+* B is 1
+* B is 0
 * Compilation Error
 * :answer:`Runtime Error`
 
@@ -415,10 +420,40 @@ Performance-oriented operations
 :ada:`GNAT.String_Split`
 --------------------------
 
-TBD
+.. code:: Ada
+
+   String_Split.Create (S          : out Slice_Set;
+                        From       : String;
+                        Separators : Maps.Character_Set;
+                        Mode       : Separator_Mode := Single);
+
+* Split a :ada:`String` into several based on a set of separators and a mode
+* Returns direct accesses to the slices
+
+    - As Finalized objects
+
+* Parameters
+
+    - :ada:`S` - The :ada:`Slice_Set`
+    - :ada:`From` - The sliced :ada:`String`
+    - :ada:`Separators` - The set of :ada:`Character` to use for splitting
+    - :ada:`Mode` - In :ada:`Multiple` mode, treat contiguous separators as a single one
+
+* Exists for :ada:`Wide_*_String`
 
 --------------------------
 :ada:`GNAT.Rewrite_Data`
 --------------------------
 
-TBD
+.. code:: Ada
+
+    Rewrite_Data.Create (Pattern : in String;
+                         Value   : in String;
+                         Size    : in Stream_Element_Offset := 1_024)
+      return Buffer;
+
+* Rewrites parts of a :ada:`String`
+* Loads partially the input stream
+
+    - Improved memory usage
+    - To be used on large streams of data (files, sockets...)
