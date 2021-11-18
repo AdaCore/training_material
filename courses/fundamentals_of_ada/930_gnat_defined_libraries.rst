@@ -156,7 +156,7 @@ https://docs.adacore.com/gnat_rm-docs/html/gnat_rm/gnat_rm/the_gnat_library.html
 
 * Search
 
-    - :ada:`GNAT.Regexp`, :ada:`GNAT.Regpat` - Regex matching
+    - :ada:`GNAT.Regpat` - Regex matching
     - :ada:`GNAT.Spelling_Checker` - Search *near-spellings* in :ada:`String` arrays
 
         + Also :ada:`GNAT.Wide_*_Spelling_Checker`
