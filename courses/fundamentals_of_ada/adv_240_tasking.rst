@@ -569,29 +569,6 @@ Waiting With a Delay
      exit;
    end select;
 
-----------------------------
-The Delay Is Not A Timeout
-----------------------------
-
-* The :ada:`or delay` is not *really* a timeout
-* The server time to process messages is **not included**
-* In the following, the total delay can be up to **110 seconds**
-
-.. code:: Ada
-
-   procedure Update_Thingy is
-   begin
-      if not Thingy_Ready then
-         delay 100.0; --  Wait for the thingy
-      end if;
-   ...
-   select
-     accept ....
-   or
-     delay 10.0;
-     Update_Thingy;
-   end select;
-
 ------------------------------------------
 Calling an Entry With a Delay Protection
 ------------------------------------------
@@ -620,11 +597,12 @@ Calling an Entry With a Delay Protection
 The Delay Is Not A Timeout
 ----------------------------
 
-* Similar to :ada:`select ... or delay`
 * The time spent by the client is actually **not bounded**
 
-    - Delay stops on :ada:`accept`
-    - **But** the call blocks until :ada:`end` of server-side statements
+    - Delay's timer **stops** on :ada:`accept`
+    - The call blocks **until** :ada:`end` of server-side statements
+
+* In this example, the total delay is up to **1010 s**
 
 .. code:: Ada
 
@@ -669,7 +647,7 @@ Issues With "Double Non-Blocking"
 
    - Server **does not** wait
 
-* For :ada:`<entry-call> ... else` the caller look for a **waiting** server
+* For :ada:`<entry-call> ... else` the caller looks for a **waiting** server
 * If both use it, the entry will **never** be called
 * Server
 
