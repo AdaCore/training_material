@@ -225,15 +225,7 @@ Replacement
 * Linear replacement
 * No change of size
 * Performant
-* Limited...
-
--------------------------
-Chaining Concatenations
--------------------------
-
-.. code:: Ada
-
-    
+* Limited, especially for fixed-length and bounded
 
 ===============================
 Match with :ada:`GNAT.Regexp`
