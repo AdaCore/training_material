@@ -324,9 +324,9 @@ Protected: Lock-Free Implementation
 * No deadlock possible
 * Very constrained
 
-   - No :ada:`entry`, :ada:`goto`, :ada:`loop`, :ada:`procedure` call
+   - No reference to entities **outside** the scope
+   - No direct or indirect :ada:`entry`, :ada:`goto`, :ada:`loop`, :ada:`procedure` call
    - No :ada:`access` dereference
-   - No globals
    - No composite parameters
    - See GNAT RM 2.100
 
