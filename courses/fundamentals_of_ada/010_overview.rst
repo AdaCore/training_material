@@ -363,31 +363,6 @@ Generic Units
 
     .. image:: generic_template_to_instances.png
 
--------------------
-Stack with Generics
--------------------
-
-.. code:: Ada
-
-   generic
-     type Content is ... -- type is factored out
-   package Bounded_Stacks is
-     type Stack is private;
-     procedure Push (This : in out Stack;
-                     Item : in     Content);
-     procedure Pop (This : in out Stack;
-                    Item : out    Content);
-     ...
-     Max : constant := 100;
-   private
-     type Contents is array (1 .. Max) of Content;
-     type Stack is
-       record
-         Values : Contents;
-         Top    : Integer range 0 .. Max := 0;
-     end record;
-   end Bounded_Stacks;
-
 -----------------------------
 Object-Oriented Programming
 -----------------------------
@@ -543,7 +518,7 @@ Language Examination Summary
 * Unique capabilities
 * Three main goals
 
-   - **Reliability**, maintenability
+   - **Reliability**, maintainability
    - Programming as a **human** activity
    - Efficiency
 
