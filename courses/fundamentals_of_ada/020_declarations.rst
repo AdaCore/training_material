@@ -215,10 +215,12 @@ Decimal Numeric Literals
 Based Numeric Literals
 ------------------------
 
-.. code::
+.. container:: latex_environment small
+
+ .. code::
 
    based_literal ::=
-     base # based_number [.based_number] # E [+numeral|-numeral]
+     base # base_number [.based_number] # E [+numeral|-numeral]
    based_number ::= base_digit { '_' base_digit }
 
 * Base can be 2 .. 16
