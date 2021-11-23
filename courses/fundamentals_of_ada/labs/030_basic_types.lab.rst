@@ -40,7 +40,7 @@ Basic Types Lab Hints
 
    .. code:: Ada
 
-      <typemark>'image ( object )
+      <typemark>'image ( Object )
       Object'image
 
 ----------------------------------------
