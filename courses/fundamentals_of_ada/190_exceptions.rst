@@ -628,28 +628,21 @@ Termination Model
 Quiz
 ------
 
-.. container:: latex_environment tiny
-
-  .. code:: Ada
-     :number-lines: 2
+.. code:: Ada
+  :number-lines: 2
 
     Main_Problem : exception;
-    function F (P_F : Integer) return Integer is
+    I : Integer;
+    function F (P : Integer) return Integer is
     begin
-      if P_F > 0 then
-        return P_F + 1;
-      elsif P_F = 0 then
+      if P > 0 then
+        return P + 1;
+      elsif P = 0 then
         raise Main_Problem;
       end if;
     end F;
-
-    procedure P (P_P : in out Integer) is
     begin
-      P_P := F (P_P);
-    end P;
-
-    begin
-      P (Input_Value);
+      I := F(Input_Value);
       Put_Line ("Success");
     exception
       when Constraint_Error => Put_Line ("Constraint Error");
@@ -667,10 +660,10 @@ D. ``Program Error``
 
   Explanations
 
-  A. ``"Unknown problem"`` is printed by the :ada:`when others` due to the raise on line 8 when :ada:`P_F` is 0
-  B. ``"Success"`` is printed when  0 < :ada:`P_F` < :ada:`Integer'Last`
-  C. Trying to add 1 to :ada:`P_F` on line 6 generates a :ada:`Constraint_Error`
-  D. :ada:`Program_Error` will be raised by :ada:`F` if :ada:`P_F` < 0 (no :ada:`return` statement found)
+  A. ``"Unknown problem"`` is printed by the :ada:`when others` due to the raise on line 8 when :ada:`P` is 0
+  B. ``"Success"`` is printed when  0 < :ada:`P` < :ada:`Integer'Last`
+  C. Trying to add 1 to :ada:`P` on line 7 generates a :ada:`Constraint_Error`
+  D. :ada:`Program_Error` will be raised by :ada:`F` if :ada:`P` < 0 (no :ada:`return` statement found)
 
 =======================
 Exceptions as Objects
