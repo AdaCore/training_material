@@ -380,44 +380,54 @@ Generic Package Parameters
 Quiz
 ------
 
-.. code:: Ada
-   :number-lines: 1
+.. container:: columns
 
-   procedure P1 (X : in out Integer); -- add 100 to X
-   procedure P2 (X : in out Integer); -- add 20 to X
-   procedure P3 (X : in out Integer); -- add 3 to X
-   generic
-      Z : in out Integer;
-      with procedure P1 (X : in out Integer) is <>;
-      with procedure P2 (X : in out Integer) is null;
-   procedure G ( P : integer );
-   procedure G ( P : integer ) is
-      X : integer := P;
-   begin
-      P1(X);
-      P2(X);
-      Ada.Text_IO.Put_Line ( X'Image );
-   end G;
-   procedure Instance is new G ( P1 => P3 );
+ .. container:: column
 
-What is printed when :ada:`Instance` is called?
+  .. container:: latex_environment tiny
 
-A. 100
-B. 120
-C. :answer:`3`
-D. 103
+   .. code:: Ada
+      :number-lines: 1
 
-.. container:: animate
+      procedure P1 (X : in out Integer); -- add 100 to X
+      procedure P2 (X : in out Integer); -- add 20 to X
+      procedure P3 (X : in out Integer); -- add 3 to X
+      generic
+         Z : in out Integer;
+         with procedure P1 (X : in out Integer) is <>;
+         with procedure P2 (X : in out Integer) is null;
+      procedure G ( P : integer );
+      procedure G ( P : integer ) is
+         X : integer := P;
+      begin
+         P1(X);
+         P2(X);
+         Ada.Text_IO.Put_Line ( X'Image );
+      end G;
+      procedure Instance is new G ( P1 => P3 );
 
-   Explanations
+ .. container:: column
 
-   A. | Wrong - result for
-      | :ada:`procedure Instance is new G;`
-   B. | Wrong - result for
-      | :ada:`procedure Instance is new G(P1,P2);`
-   C. :ada:`P1` at line 12 is mapped to :ada:`P3` at line 3, and :ada:`P2` at line 14 wasn't specified so it defaults to :ada:`null`
-   B. | Wrong - result for
-      | :ada:`procedure Instance is new G(P2=>P3);`
+  .. container:: latex_environment scriptsize
+
+   What is printed when :ada:`Instance` is called?
+
+   A. 100
+   B. 120
+   C. :answer:`3`
+   D. 103
+
+   .. container:: animate
+
+      Explanations
+
+      A. | Wrong - result for
+         | :ada:`procedure Instance is new G;`
+      B. | Wrong - result for
+         | :ada:`procedure Instance is new G(P1,P2);`
+      C. :ada:`P1` at line 12 is mapped to :ada:`P3` at line 3, and :ada:`P2` at line 14 wasn't specified so it defaults to :ada:`null`
+      D. | Wrong - result for
+         | :ada:`procedure Instance is new G(P2=>P3);`
 
 ====================
 Generic Completion
