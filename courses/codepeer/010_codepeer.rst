@@ -103,7 +103,7 @@ CodePeer In A Nutshell (2/2)
   + Initialization errors, run-time errors and assertion failures (16 rules)
   + Race condition errors: unprotected access to globals (3 rules)
 
-+ Warns on dead or suspicious code (17 rules)
++ Warns on dead or suspicious code (21 rules)
 
 ----------------------
 CodePeer Integration
@@ -169,7 +169,7 @@ Command Line Interface (1/2)
   + 1: fast and per subprogram analysis
   + 2: more accurate/slower, automatic partitioning per set of units
   + 3: more accurate and much slower
-  + 4, max: global analysis, no automatic partitioning
+  + 4/max: global (exhaustive) analysis, no partitioning
 
   Warning: Level 4 may exceed memory capacity and take a very long time
 
@@ -195,7 +195,8 @@ Command Line Interface (2/2)
    e.g. ``-output-msg -csv -out report.csv`` to generate a CSV file
 
 ``-html, -html-only``
-   Generate HTML output. If ``-html-only``, do not run any analysis.
+   Generate HTML output. If ``-html-only``, do not run any analysis
+   but use the previous run.
 
 ---------------------------------
 Running CodePeer in GNAT Studio
@@ -670,7 +671,8 @@ A tag check operation on a :ada:`tagged` object might fail
    begin
       Call (X1); -- not OK, Call requires T2'Class
 
-| ``high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2, tag.t3}``
+| ``high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2}``
+
 
 --------------------
 Discriminant Check
@@ -951,7 +953,7 @@ Warnings
 ==========
 
 ------------------------
-Warning Messages (1/2)
+Warning Messages (1/3)
 ------------------------
 
 .. container:: latex_environment
@@ -1015,7 +1017,7 @@ Warning Messages (1/2)
 + **LHS** : Left-Hand-Side of a binary operation
 
 ------------------------
-Warning Messages (2/2)
+Warning Messages (2/3)
 ------------------------
 
 .. container:: latex_environment
@@ -1078,6 +1080,40 @@ Warning Messages (2/2)
         * - ``subp always fails``
 
           - Subprogram will always terminate in error
+
+------------------------
+Warning Messages -- Infer (3/3)
+------------------------
+
+.. container:: latex_environment
+
+   .. list-table::
+        :header-rows: 1
+
+        * - *Message*
+
+          - *Description*
+
+        * - ``same operands``
+
+          - Binary operator has the same argument twice
+
+        * - ``same logic``
+
+          - Same argument appears twice in a boolean expression
+
+        * - ``duplicate branches``
+
+          - Duplicate code in 'if' or 'case' branches
+
+        * - ``test duplication``
+
+          - An expression is tested multiple times
+
+        * -
+
+          - in an :ada:`if ... elsif ... else`
+
 
 -----------
 Dead Code
@@ -1637,9 +1673,25 @@ Precondition
     - Includes the **checks involved** in the requirements
 
 .. code:: ada
-    :number-lines: 1
 
-    TBD
+    procedure Assign (X : out Integer; Y : in Integer) is
+    begin
+      X := Y + 1;
+    end Assign;
+    -- assign.adb:1: (pre)- assign:(overflow check [CWE 190])
+    -- Y /= 2_147_483_647
+
+---------------
+Postcondition
+---------------
+
++ Inferences about the outputs of a subprogram
+
+.. code:: ada
+    :number-lines: 2
+
+    -- assign.adb:1: (post)- assign:X /= -2_147_483_648
+    -- assign.adb:1: (post)- assign:X = Y + 1
 
 -------------
 Presumption
@@ -1660,16 +1712,14 @@ Presumption
 
     - but they might influence postconditions of the calling routine.
 
----------------
-Postcondition
----------------
-
-+ Presumption about the outputs of a subprogram
-
 .. code:: ada
-    :number-lines: 1
 
-    TBD
+    procedure Above_Call_Unknown (X : out Integer) is
+    begin
+      Call_Unknown (X);
+      pragma Assert (X /= 10);
+    end Above_Call_Unknown;
+    -- (presumption)- above_call_unknown:unknown.X@4 /= 10
 
 -----------------
 Unanalyzed Call
@@ -1687,9 +1737,9 @@ Unanalyzed Call
         + **If** they have an influence on the current subprograms
 
 .. code:: ada
-    :number-lines: 1
 
-    TBD
+    -- above_call_unknown.adb:2: (unanalyzed)-
+    --     above_call_unknown:call on unknown
 
 -----------------------
 Global Inputs/Outputs
@@ -1705,9 +1755,14 @@ Global Inputs/Outputs
     - Dereference to accesses **may** be implied by the access object listed
 
 .. code:: ada
-    :number-lines: 1
 
-    TBD
+    procedure Double_Pointer_Assign (X, Y : in Ptr) is
+    begin
+       X.all := 1;
+       Y.all := 2;
+    end Double_Pointer_Assign;
+    -- call_double_pointer_assign.adb:4: (global outputs)-
+    --     call_double_pointer_assign.call:X, Y
 
 -------------
 New Objects
@@ -1721,9 +1776,15 @@ New Objects
 + New objects that are accessible **after** return from the subprogram
 
 .. code:: ada
-    :number-lines: 1
 
-    TBD
+   procedure Create (X : out Ptr) is
+   begin
+      X := new Integer;
+   end;
+   -- alloc.adb:2: (post)- alloc.create:X =
+   --     new integer(in alloc.create)#1'Address
+   -- alloc.adb:2: (post)- alloc.create:
+   --     new integer(in alloc.create)#1.<num objects> = 1
 
 ============================
 External Tools Integration
@@ -1831,7 +1892,7 @@ Analyze Messages (3/4)
 
   + :command:`-output-msg` :command:`-hide-low` on the command line
   + Check boxes to filter on message category / rank in :toolname:`GNAT Studio` and HTML
-  + :code:`--infer-messages` :code:`--be-messages` :code:`--gnat-warnings` :code:`--lal-checkers` switches
+  + :code:`--infer-messages` :code:`--be-messages` :code:`--gnat-warnings`  switches
   + :command:`-messages min/normal/max`
   + Pattern-based automatic filtering (:filename:`MessagePatterns.xml`)
 
@@ -2221,6 +2282,10 @@ Baseline With Continuous-Integration
   + Copy the database from the **baseline** run
   + Perform a run with the **same** settings as the reference run
   + Share results to the user
+  + Review them via the spreadsheet tool (e.g. Excel)
+..
+   Beware: fill all the columns
+  + Import back reviews into the :toolname:`CodePeer` database
 
       + Can use :command:`-show-added` to show only the **new** messages
 
