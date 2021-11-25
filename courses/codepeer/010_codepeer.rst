@@ -2470,7 +2470,7 @@ CodePeer and DO178B/C
   The compiler (including its options), the linker (including its options), and some hardware features may have an impact on the worst-case execution timing and this impact should be assessed.
 
 + :toolname:`CodePeer` **reduces** the scope of manual review
-+ See Booklet: *AdaCore Technologies for DO-178C/ED-12C*
++ See Booklet: `Link: AdaCore Technologies for DO-178C/ED-12C <https://www.adacore.com/books/do-178c-tech>`_
 
   + Authored by Frederic Pothon & Quentin Ochem
 
@@ -2490,7 +2490,7 @@ CodePeer and CENELEC - EN50128
   + D.32 Impact Analysis
 
 + :toolname:`CodePeer` is uniquely supportive of Walkthroughs and Design Reviews via its as-built documentation
-+ See Booklet: *AdaCore Technologies for CENELEC EN 50128:2011*
++ See Booklet: `Link: AdaCore Technologies for CENELEC EN 50128:2011 <https://www.adacore.com/books/cenelec-en-50128-2011>`_
 
   + Authored by Jean-Louis Boulanger & Quentin Ochem
 
