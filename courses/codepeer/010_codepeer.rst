@@ -1081,9 +1081,9 @@ Warning Messages (2/3)
 
           - Subprogram will always terminate in error
 
-------------------------
-Warning Messages -- Infer (3/3)
-------------------------
+------------------------------
+Warning Messages - Infer (3/3)
+------------------------------
 
 .. container:: latex_environment
 
