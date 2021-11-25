@@ -1530,6 +1530,101 @@ Subp Always Fails
 
 | ``high warning: subp always fails: p fails for all possible inputs``
 
+
+-------------------
+Same Operands
+-------------------
+
++ The two operands of a binary operation are syntactically equivalent
++ The resulting expression will always yield the same value
+
+.. code:: Ada
+   :number-lines: 1
+
+   function Same_Op (X : Natural) return Integer is
+   begin
+      --  Copy/paste error? Always return 1
+      return (X + 1) / (X + 1);
+   end Same_Op;
+
+| ``medium warning: same operands (Infer): operands of '/' are identical``
+
+-------------------
+Same Logic
+-------------------
+
++ The same sub-expression occurs twice in a boolean expression
++ The entire expression can be simplified, or always return the same value
+
+.. code:: Ada
+   :number-lines: 1
+
+   function Same_Logic (A, B : Boolean) return Boolean is
+   begin
+      return A or else B or else A;
+   end Same_Logic;
+
+| ``medium warning: same operands (Infer): 'A' duplicated at line 3``
+
+-------------------
+Test duplication
+-------------------
+
++ The same expression is tested twice in successive `if ... elsif ... elsif ... `
++ Usually indicates a copy-paste error (CWE 1041)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Same_Test (Str : String) is
+      A : constant String := "toto";
+      B : constant String := "titi";
+   begin
+      if Str = A then
+         Ada.Text_IO.Put_Line("Hello, tata!");
+      elsif Str = B then
+         Ada.Text_IO.Put_Line("Hello, titi!");
+      elsif Str = A then
+         Ada.Text_IO.Put_Line("Hello, toto!");
+      else
+         Ada.Text_IO.Put_Line("Hello, world!");
+      end if;
+   end Same_Test;
+
+| ``medium warning: same test (Infer): test 'Str = A' duplicated at line 9``
+
+-------------------
+Duplicate branches
+-------------------
+
++ Branches are duplicated in a `if` or a `case`
++ Should be refactored, or results from incorrect copy-paste (CWE 1041)
+
+.. code:: Ada
+   :number-lines: 1
+
+   function Dup (X : Integer) return Integer is
+   begin
+      if X > 0 then
+         declare
+            A : Integer := X;
+            B : Integer := A + 1;
+         begin
+            return B;
+         end;
+      else
+         declare
+            A : Integer := X;
+            B : Integer := A + 1;
+         begin
+            return B;
+         end;
+      end if;
+   end Dup;
+
+| ``infer.adb:4:10: medium warning: duplicate branches (Infer): code duplicated at line 11``
+
+
 =================
 Race Conditions
 =================
