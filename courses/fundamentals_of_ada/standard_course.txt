@@ -9,13 +9,13 @@
 090_overloading.rst
 065_type_derivation.rst
 100_packages.rst
+095_library_units.rst
 110_private_types.rst
 130_program_structure.rst
 135_visibility.rst
 170_tagged_derivation.rst
 140_access_types.rst
 190_exceptions.rst
-095_library_units.rst
 160_genericity.rst
 240_tasking.rst
 180_polymorphism.rst
