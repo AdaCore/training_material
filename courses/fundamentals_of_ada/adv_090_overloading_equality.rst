@@ -139,6 +139,7 @@ Composition vs Non-Composition
 --------------------------------
 
 .. code:: Ada
+   :number-lines: 1
 
    with Ada.Text_IO; use Ada.Text_IO;
    procedure Main is
@@ -146,29 +147,26 @@ Composition vs Non-Composition
       type Array1_T is array (1 .. 3) of Integer;
       type Array2_T is array (1 .. 3) of Integer;
 
-      X, Y     : Integer  := 123;
       X_A, Y_A : Array1_T := (others => 123);
       X_B, Y_B : Array2_T := (others => 123);
 
-      -- When comparing integers directly, this function forces those comparisons
-      -- to be false
+      -- When comparing integers, this forces False result
       function "=" (L, R : Integer) return Boolean is
       begin
          return False;
       end "=";
-      -- We define our own array equality operator so it will use our integer equality operator
+      -- Array equality operator will use "=" on line 11
       function "=" (L, R : Array2_T) return Boolean is
       begin
          return (for all I in 1 .. 3 => L (I) = R (I));
       end "=";
 
    begin
-      -- Use local "=" for integer comparison
-      Put_Line (Boolean'Image (X = Y));
+      -- Use "=" on line 11 for integer comparison
       Put_Line (Boolean'Image (X_A (2) = Y_A (2)));
-      -- This array comparison uses the predefined operator, so our local "=" is ignored
+      -- Comparison using predefined operator: "=" on line 11 is ignored
       Put_Line (Boolean'Image (X_A = Y_A));
-      -- This array comparison uses our operator, so our local "=" is used as well
+      -- Comparison using "=" on line 16: "=" on line 11 is "composed"
       Put_Line (Boolean'Image (X_B = Y_B));
    end Main;
 
