@@ -496,7 +496,8 @@ Designer View Sees Full Declaration
      type Index is range 0 .. Capacity;
      type List is array (Index range 1..Capacity) of Integer;
      type Stack is record
-     ...
+        Top : integer;
+        ...
    end Bounded_Stacks;
 
 .. container:: speakernote
@@ -513,12 +514,14 @@ Designer View Allows All Operations
      procedure Push (Item : in Integer;
                      Onto : in out Stack) is
      begin
+        Onto.Top := Onto.Top + 1;
         ...
      end Push;
 
      procedure Pop (Item : out Integer;
                     From : in out Stack) is
      begin
+        Onto.Top := Onto.Top - 1;
         ...
      end Pop;
    end Bounded_Stacks;

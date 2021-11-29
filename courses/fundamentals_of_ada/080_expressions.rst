@@ -458,29 +458,6 @@ When To Use *If Expressions*
          when others => 31);
    end loop;
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#quantified-expressions`
-
-------------------------
-Quantified Expressions
-------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Check if a condition is true on a set
-
-    - Arbitrary boolean **predicate**
-    - Any **iterable** set of objects
-
-* "Universal" quantified expressions
-
-   - Predicate is true for :ada:`all` elements of the set
-
-* "Existential" quantified expressions
-
-   - Predicate is true for :ada:`some` element of the set
-
 ------
 Quiz
 ------

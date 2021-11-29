@@ -129,14 +129,20 @@ Function Specification Syntax (Simplified)
   + With :ada:`return`
   + Can be an operator: :ada:`+ - * / mod rem` ...
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
 
-   function_specification ::=
-      function designator profile
+   .. code:: Ada
 
-   designator ::= identifier | operator_symbol
+      subprogram_declaration ::= subprogram_specification ;
 
-   profile ::= [formal_part] return subtype_mark
+      subprogram_specification ::= procedure defining_name parameter_profile
+
+      function_specification ::=
+         function designator profile
+
+      designator ::= identifier | operator_symbol
+
+      profile ::= [formal_part] return subtype_mark
 
 -------------
 Body Syntax
@@ -497,9 +503,10 @@ Skipping Over Actual Parameters
 
 .. code:: Ada
 
-   procedure Activate( Process : in Process_Name := Unknown;
-                       Before : in Duration := 0.0;
-                       After : in Duration := 0.0 );
+   procedure Activate (
+     Process : in Process_Name := Unknown;
+     Before : in Duration := 0.0;
+     After : in Duration := 0.0);
    ...
    begin
      -- Parameter "Process" is skipped

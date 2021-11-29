@@ -610,19 +610,24 @@ Quiz
 
    subtype Index1_T is Integer range 0 .. 7;
    subtype Index2_T is Integer range 1 .. 8;
-   type Array_T is array (0..7, 1..8, Boolean) of Integer;
+   type Array_T is array (Index1_T, Index2_T) of Integer;
    X : Array_T;
 
-Which description is incorrect?
+Which comparison is False?
 
-   A. ``X'First(2) is 1``
-   B. :answermono:`X'Range(3) is True .. False;`
+   A. ``X'Last(2) = Index2_T'Last``
+   B. :answermono:`X'Last(1)*X'Last(2) = X'Length(1)*X'Length(2)`
    C. ``X'Length(1) = X'Length(2)``
    D. ``X'Last(1) = 7``
 
 .. container:: animate
 
-   :ada:`Boolean` enumeration is :ada:`( False, True )`
+   Explanations
+
+   A. 8 = 8
+   B. 7*8 /= 8*8
+   C. 8 = 8
+   D. 7 = 7
 
 ============
 Operations
@@ -732,8 +737,11 @@ Slicing
      S1 : String (1 .. 9) := "Hi Adam!!";
      S2 : String := "We love    !";
    begin
-     Put_Line (S1 (4..6));
      S2 (9..11) := S1 (4..6);
+     Put_Line (S2);
+   end Test;
+
+Result: ``We love Ada!``
 
 -------------------------------
 Slicing With Explicit Indexes
@@ -1278,7 +1286,7 @@ Which statement is correct?
 
    A. ``X := (1, 2, 3, 4 => 4, 5 => 5);``
    B. :answermono:`X := (1..3 => 100, 4..5 => -100, others => -1);`
-   C. ``X := (J => -1, J + 1..A'Last => 1);``
+   C. ``X := (J => -1, J + 1..X'Last => 1);``
    D. ``X := (1..3 => 100, 3..5 => 200);``
 
 .. container:: animate

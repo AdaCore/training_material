@@ -79,9 +79,9 @@ Tagged Derivation
 Examples
 ----------
 
-.. include:: examples/170_inheritance/tagged_derivation.rst
+.. include:: examples/170_tagged_derivation/tagged_derivation.rst
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_inheritance.html#tagged-derivation`
+:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_tagged_derivation.html#tagged-derivation`
 
 ---------------------------------
 Difference with Simple Derivation
@@ -294,7 +294,7 @@ Which code block is legal?
 Lab
 ========
 
-.. include:: labs/170_inheritance.lab.rst
+.. include:: labs/170_tagged_derivation.lab.rst
 
 =========
 Summary

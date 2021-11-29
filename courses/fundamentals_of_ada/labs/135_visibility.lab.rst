@@ -13,7 +13,7 @@ Visibility Lab
    - Create a types child package for converting distance, time, and mph into a string
 
       + Use :code:`Ada.Text_IO.Float_IO` package to convert floating point to string
-      + Create visible global objects to set **Fore** and **Aft** parameters for :code:`Put`
+      + Create visible global objects to set **Exp** and **Aft** parameters for :code:`Put`
 
    - Create a main program to enter distance and time and then print speed value
 
@@ -24,7 +24,7 @@ Visibility Lab
 
       + :code:` use all type` if calculations are primitives
 
-   - :code:`renames` to make using **Fore** and **Aft** easier
+   - :code:`renames` to make using **Exp** and **Aft** easier
 
 ----------------------------------------
 Visibility Lab Solution - Types

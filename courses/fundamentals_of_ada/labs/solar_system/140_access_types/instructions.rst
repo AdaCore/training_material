@@ -45,6 +45,7 @@ Question 5
 
 Modify :code:`Move` procedure as defined in the specification of the :code:`Solar_System` package.
 
+-------------------
 It’s compiling now!
 -------------------
 

@@ -635,69 +635,62 @@ Visibility Limits
     -- Parent_T is visible here
    end Parent.Child;
 
---------------------------
-Misbehaving (?) Children
---------------------------
+--------------------------------
+Children Can Break Abstraction
+--------------------------------
 
-* Can break a parent's abstraction
+* Could **break** a parent's abstraction
 
-  - Exporting a subprogram that alters package state
-  - Exporting a subprogram that alters ADT object state
+  - Alter a parent package state
+  - Alters an ADT object state
 
-* Nice for testing via fault injection...
+* Useful for reset, testing: fault injections...
 
 .. code:: Ada
 
    package Stack is
-     procedure Push ( X : in Foo );
-     procedure Pop ( X : out Foo );
-   private
-     Values : array (1 .. N ) of Foo;
-     Top : Natural range 0 .. N := 0
-   end Stack;
-
-   package Stack.Child is
-     procedure Misbehave;
-     procedure Reset;
-   end Stack.Child;
-
-   package body Stack.Child is
-     procedure Misbehave is
-     begin
-       Top := 0;
-     end Misbehave;
-
-     procedure Reset is
-     begin
-       Top := 0;
-     end Reset;
-   end Stack.Tools;
-
----------------------------
-Another Misbehaving Child
----------------------------
-
-* Can indirectly export parent's private information
-
-.. code:: Ada
-
-   package Skippy is
       ...
    private
-     X : Integer := 0;
-   end Skippy;
+      Values : array (1 .. N ) of Foo;
+      Top : Natural range 0 .. N := 0
+   end Stack;
+
+   package body Stack.Reset is
+      procedure Reset is
+      begin
+        Top := 0;
+      end Reset;
+   end Stack.Tools;
+
+--------------------------
+Using Children for Debug
+--------------------------
+
+* Provide **accessors** to parent's private information
+* eg internal metrics...
 
 .. code:: Ada
 
-   package Skippy.Evil_Twin is
-     function Cheater return Integer;
-   end Skippy.Evil_Twin;
-   package body Skippy.Evil_Twin is
-     function Cheater return Integer is
+   package P is
+      ...
+   private
+     Internal_Counter : Integer := 0;
+   end P;
+
+.. code:: Ada
+
+   package P.Child is
+     function Count return Integer;
+   end P.Child;
+
+.. code:: Ada
+
+   package body P.Child is
+     function Count return Integer is
      begin
-       return X;
-     end Cheater;
-   end Skippy.Evil_Twin;
+       return Internal_Counter;
+     end Count;
+   end P.Child;
 
 ------
 Quiz
@@ -733,7 +726,7 @@ Quiz
 
       A.  ``return Object_A;``
       B.  ``return Object_B;``
-      C.  ``return Object_C;``
+      C.  :answermono:`return Object_C;`
       D.  None of the above
 
    .. container:: animate
