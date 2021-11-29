@@ -449,8 +449,8 @@ No Unconstrained Component Types
 
 .. code:: Ada
 
-   type List is array (1 .. 10) of String (1 .. 20); -- OK
-   type List is array (1 .. 10) of String; -- Illegal
+   type Good is array (1 .. 10) of String (1 .. 20); -- OK
+   type Bad is array (1 .. 10) of String; -- Illegal
 
 .. container:: speakernote
 
