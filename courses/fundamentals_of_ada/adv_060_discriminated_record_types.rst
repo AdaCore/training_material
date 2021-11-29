@@ -215,7 +215,7 @@ Primitives
 
    .. code:: Ada
 
-      procedure Get ( Item : in Person ) is
+      procedure Get ( Item : out Person ) is
       begin
         -- Tag specified by caller
         case Item.Tag is
