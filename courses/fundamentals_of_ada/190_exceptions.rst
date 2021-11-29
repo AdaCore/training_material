@@ -762,6 +762,23 @@ Exception Occurence
       + Location where exception occurred
       + Language-defined check that failed (if such)
 
+--------------
+Exception ID
+--------------
+
+* For an exception identifier, the :defn:`identity` of the exception is :ada:`<name>'Identity`
+
+.. code:: Ada
+
+   Mine : exception
+   use Ada.Exceptions;
+   ...
+   exception
+      when Occurrence : others =>
+         if Exception_Identity(Occurrence) = Mine'Identity
+         then
+            ...
+
 =======================
 *Raise Expressions*
 =======================
