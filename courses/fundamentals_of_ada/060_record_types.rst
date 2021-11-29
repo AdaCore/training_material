@@ -253,24 +253,25 @@ Record Aggregate Examples
 
 .. code:: Ada
 
-     V : Car_T := (
-         Red,
-         Plate_No => "AX672",
-         others => <>
-     );
+   type Color_T is (Red);
+   type Car_T is record
+      Color    : Color_T;
+      Plate_No : String (1 .. 6);
+      Year     : Natural;
+   end record;
+   type Complex_T is record
+      Real      : Float;
+      Imaginary : Float;
+   end record;
 
 .. code:: Ada
 
-   procedure Test is
-     type Complex is
-       record
-         Real      : Float;
-         Imaginary : Float;
-       end record;
-     Phase : Complex := (0.0, 0.0);
+   declare
+      Car   : Car_T     := (Red, "ABC123", Year => 2_022);
+      Phase : Complex_T := (1.2, 3.4);
    begin
-     Phase := (10.0, Imaginary => 2.5);
-     Phase := (Imaginary => 12.5, Real => 0.212);
+      Phase := (Real => 5.6, Imaginary => 7.8);
+   end;
 
 ------------------------
 Aggregate Completeness
@@ -542,6 +543,10 @@ Default Initialization Via Aspect Clause
 ------
 Quiz
 ------
+
+.. admonition:: Language Variant
+
+   Ada 2012
 
 .. code:: Ada
 
