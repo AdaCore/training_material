@@ -215,16 +215,13 @@ Decimal Numeric Literals
 Based Numeric Literals
 ------------------------
 
-.. container:: latex_environment small
+.. code::
 
- .. code::
-
-   based_literal ::=
-     base # base_number [.based_number] # E [+numeral|-numeral]
-   based_number ::= base_digit { '_' base_digit }
+   based_literal ::= base # numeral [.numeral] # exponent
+   numeral ::= base_digit { '_' base_digit }
 
 * Base can be 2 .. 16
-* Exponent is always a decimal number
+* Exponent is always a base 10 integer
 
    .. code:: Ada
 
