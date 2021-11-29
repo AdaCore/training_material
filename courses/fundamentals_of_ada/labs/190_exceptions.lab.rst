@@ -2,34 +2,43 @@
 Exceptions Lab
 ----------------
 
-* Requirements
+(Simplified) Input Verifier
 
-   - Create a simple math package that performs *square*, *square root*, *multiply*, *divide*
+  * Overview
 
-      + *square* and *square root* should raise a user-defined exception if their input value is out of range
-      + *multiply* and *divide* should not do any range checking
+    * Create an application that allows users to enter integer values
 
-   - Your main program should call the four functions with various values
+  * Goal
 
-      + If the user-defined exception is caught, print whatever message was raised
-      + If a pre-defined exception is caught, print all available exception information
+    * Application should read data from a string and return the numeric value (or raise an exception)
 
-* Hints
+----------------------
+Project Requirements
+----------------------
 
-   - Define a floating point type with a range that includes negative numbers
+* Exception Tracking
 
-      + This allows illegal values for *square root*
+  * Non-numeric data should raise a different exception than out-of-range data
+  * Exceptions should not stop the application
 
-   - Use `Ada.Numerics.Generic_Elementary_Functions` for the *square root* function
+* Extra Credit
+
+  * Handle values with exponents (e.g 123E4)
+
+---------------------------------
+Exceptions Lab Solution - Types
+---------------------------------
+
+.. container:: source_include labs/answers/190_exceptions.txt :start-after:--Types :end-before:--Types :code:Ada
+
+-------------------------------------
+Exceptions Lab Solution - Converter
+-------------------------------------
+
+.. container:: source_include labs/answers/190_exceptions.txt :start-after:--Converter :end-before:--Converter :code:Ada
 
 --------------------------------
-Exceptions Lab Solution - Math 
+Exceptions Lab Solution - Main
 --------------------------------
-
-.. container:: source_include labs/answers/190_exceptions.txt :start-after:--Math :end-before:--Math :code:Ada
-
----------------------------------------------------
-Exceptions Lab Solution - Main (Test Subprograms)
----------------------------------------------------
 
 .. container:: source_include labs/answers/190_exceptions.txt :start-after:--Main :end-before:--Main :code:Ada
