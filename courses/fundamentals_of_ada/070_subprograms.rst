@@ -623,7 +623,7 @@ Skipping Over Actual Parameters
      -- Parameter "Process" is skipped
      Activate (Before => 60.0, After => 10.0);
      Activate (60.0, 60.0); -- compile error
-     -- Parameter "Before is skipped
+     -- Parameter "Before" is skipped
      Activate (My_Process, After => 10.0);
      Activate (My_Process, 60.0); -- Not an error, but WRONG!
 
@@ -951,6 +951,7 @@ Nested Subprogram Example
 ----------------------------
 
 .. code:: Ada
+   :number-lines: 1
 
    procedure Main is
 
