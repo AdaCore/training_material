@@ -40,8 +40,8 @@ Basic Types Lab Hints
 
    .. code:: Ada
 
-      <typemark>'image ( Object )
-      Object'image
+      <typemark>'Image ( Object )
+      Object'Image
 
 ----------------------------------------
 Basic Types Lab Solution - Declarations

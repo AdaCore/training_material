@@ -540,7 +540,7 @@ Integer Type (Signed and Modular) Literals
 ---------------------------------------------
 
 * **Must not** contain a **fractional** part
-* **Promotion/demotion** is **not done silently**
+* **No** silent promotion/demotion
 * **Conversion** can be used
 
 .. code:: Ada
