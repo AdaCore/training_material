@@ -88,11 +88,9 @@ Syntax
 
    - **Declaration** and **specification** are used synonymously
 
-* Specification may be required in
+* Specification may be required in some cases
 
-   - Package specification
-   - Recursion
-   - (Optional otherwise)
+   - eg. recursion
 
 * Subprogram body is the **implementation**
 
@@ -107,9 +105,9 @@ Procedure Specification Syntax (Simplified)
 .. code:: Ada
 
    procedure_specification ::=
-      procedure identifier
+      procedure program_unit_name
         ( parameter_specification
-        { ; parameter_specification} )
+        { ; parameter_specification} );
 
    parameter_specification ::=
       identifier_list : mode subtype_mark [ := expression ]
@@ -124,7 +122,7 @@ Function Specification Syntax (Simplified)
 
    function F (X : Real) return Real;
 
-* Same as :ada:`procedure`
+* Close to :ada:`procedure` specification syntax
 
   + With :ada:`return`
   + Can be an operator: :ada:`+ - * / mod rem` ...
@@ -133,16 +131,13 @@ Function Specification Syntax (Simplified)
 
    .. code:: Ada
 
-      subprogram_declaration ::= subprogram_specification ;
-
-      subprogram_specification ::= procedure defining_name parameter_profile
-
       function_specification ::=
-         function designator profile
+         function designator
+           ( parameter_specification
+           { ; parameter_specification} )
+           return result_type;
 
-      designator ::= identifier | operator_symbol
-
-      profile ::= [formal_part] return subtype_mark
+      designator ::= program_unit_name | operator_symbol
 
 -------------
 Body Syntax
@@ -299,11 +294,11 @@ Examples
 Subprogram Parameter Terminology
 ----------------------------------
 
-* **Actual** parameters are values passed to a call
+* *Actual* parameters are values passed to a call
 
    - Variables, constants, expressions
 
-* **Formal** parameters are defined by specification
+* *Formal* parameters are defined by specification
 
    - Receive the values passed from the actual parameters
    - Specify the types required of the actual parameters
@@ -370,7 +365,7 @@ No `subtype_indications` In Specifications
 Use Named Constraints
 -----------------------
 
-* Use subtypes instead of `subtype_indications`
+* Use subtypes instead of :code:`subtype_indications`
 * Legal usage
 
    .. code:: Ada
@@ -610,15 +605,15 @@ Unconstrained Formal Parameters
 .. code:: Ada
 
    type Vector is array (Positive range <>) of Real;
-   procedure Print (V : Vector);
+   procedure Print (Formal : Vector);
 
    Phase : Vector (X .. Y);
    State : Vector (1 .. 4);
    ...
    begin
-     Print (Phase);          -- V'range is X .. Y
-     Print (State);          -- V'range is 1 .. 4
-     Print (State (3 .. 4)); -- V'range is 3 .. 4
+     Print (Phase);          -- Formal'Range is X .. Y
+     Print (State);          -- Formal'Range is 1 .. 4
+     Print (State (3 .. 4)); -- Formal'Range is 3 .. 4
 
 -----------------------------------
 Unconstrained Parameters Surprise
@@ -1115,7 +1110,7 @@ Mode `out` Risk for Scalars
 
    - Typically alteration of non-local variables or states
    - Can cause hard-to-debug errors
-   - Not legal in SPARK
+   - Not legal for :ada:`function` in SPARK
 
 * Can be there for historical reasons
 
@@ -1125,14 +1120,16 @@ Mode `out` Risk for Scalars
 
    Global : Integer := 0;
 
-   procedure P (X : Integer) is
+   function F (X : Integer) return Integer is
    begin
       Global := Global + X;
+      return Global;
    end P;
 
 ---------------------------------------
 Order-Dependent Code And Side Effects
 ---------------------------------------
+
 .. |rightarrow| replace:: :math:`\rightarrow`
 
 .. code:: Ada
