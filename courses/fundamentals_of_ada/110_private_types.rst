@@ -476,8 +476,8 @@ View Operations
        - **Once** completion is reached
        - All operations based upon full definition of type
        - Indexed components for arrays
-       - Selected components for records
-       - Attributes per type definition
+       - components for records
+       - Type-specific attributes
        - Numeric manipulation for numerics
        - et cetera
 
