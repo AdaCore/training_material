@@ -106,10 +106,10 @@ Procedure Specification Syntax (Simplified)
 
 .. code:: Ada
 
-   subprogram_specification ::=
-      procedure identifier [ formal_part ]
-
-   formal_part ::= ( parameter_spec { ; parameter_spec} )
+   procedure_specification ::=
+      procedure identifier
+        ( parameter_specification
+        { ; parameter_specification} )
 
    parameter_specification ::=
       identifier_list : mode subtype_mark [ := expression ]
@@ -117,7 +117,7 @@ Procedure Specification Syntax (Simplified)
    mode ::= [in] | out | in out
 
 ------------------------------------------
-Function Declaration Syntax (Simplified)
+Function Specification Syntax (Simplified)
 ------------------------------------------
 
 .. code:: Ada
@@ -131,7 +131,7 @@ Function Declaration Syntax (Simplified)
 
 .. code:: Ada
 
-   subprogram_specification ::=
+   function_specification ::=
       function designator profile
 
    designator ::= identifier | operator_symbol
@@ -216,9 +216,13 @@ Completion Examples
          return A + X * Y;
       end Min;
 
---------------------------
-Direct Recursion Example
---------------------------
+------------------------------------------
+Direct Recursion - No Declaration Needed
+------------------------------------------
+
+* When:ada:`is` is reached, the subprogram becomes **visible**
+
+    - It can call **itself** without a declaration
 
 .. code:: Ada
 
@@ -471,18 +475,19 @@ Parameter Defaults May Be Specified
 
 .. code:: Ada
 
-   My_Process, Your_Process : Process_Name;
+   My_Process : Process_Name;
+   Before, After : Duration;
    procedure Activate( Process : in Process_Name;
-                       After : in Process_Name := None;
-                       Prior : in Boolean := False  );
+                       Before : in Duration := 0.0;
+                       After : in Duration := 0.0 );
    ...
    begin
      -- no defaults taken
-     Activate (My_Process, Your_Process, True);
-     -- defaults for After, Prior
+     Activate (My_Process, Before, After);
+     -- defaults for Before, After
      Activate (My_Process);
-     -- defaults for Prior
-     Activate (My_Process, Your_Process);
+     -- defaults for After
+     Activate (My_Process, 60.0);
 
 ---------------------------------
 Skipping Over Actual Parameters
@@ -492,15 +497,17 @@ Skipping Over Actual Parameters
 
 .. code:: Ada
 
-   procedure Activate(
-     Process : in Process_Name;
-     After : in Process_Name := None;
-     Prior : in Boolean := False );
+   procedure Activate( Process : in Process_Name := Unknown;
+                       Before : in Duration := 0.0;
+                       After : in Duration := 0.0 );
    ...
    begin
-     -- Parameter "After" is skipped
-     Activate (My_Process, Prior => True);
-     Activate (My_Process, True); -- compile error
+     -- Parameter "Process" is skipped
+     Activate (Before => 60.0, After => 10.0);
+     Activate (60.0, 60.0); -- compile error
+     -- Parameter "Before is skipped
+     Activate (My_Process, After => 10.0);
+     Activate (My_Process, 60.0); -- Not an error, but WRONG!
 
 .. container:: speakernote
 
