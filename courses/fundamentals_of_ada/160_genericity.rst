@@ -380,6 +380,10 @@ Generic Package Parameters
 Quiz
 ------
 
+.. admonition:: Language Variant
+
+   Ada 2005
+
 .. container:: columns
 
  .. container:: column
