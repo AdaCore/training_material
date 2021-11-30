@@ -98,9 +98,9 @@ Examples
 
       use_package_clause ::= use package_name {, package_name};
 
-* Can only :ada:`use` a library package
+* Can only :ada:`use` a package
 
-   - Subprograms don't make sense
+   - Subprograms have no contents to :ada:`use`
 
 --------------------
 `use` Clause Scope
@@ -558,8 +558,9 @@ Writing Readable Code - Part 2
          -- use cosine rule to determine distance between two points, given angle
          -- and distances between observer and 2 points A**2 = B**2 + C**2 -
          -- 2*B*C*cos(A)
-         Desired_Side := Sqrt (Side1**2 + Side2**2 +
-                               2.0 * Side1 * Side2 * Trig.Cosine (Angles (Required_Angle)));
+         Desired_Side :=
+               Sqrt (Side1**2 + Side2**2 +
+                     2.0 * Side1 * Side2 * Trig.Cosine (Angles (Required_Angle)));
       end;
 
 ========
