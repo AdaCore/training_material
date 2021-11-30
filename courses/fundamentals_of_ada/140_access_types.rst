@@ -365,12 +365,13 @@ Referencing The Stack
       I : aliased Integer;
    begin
       G := I'Unchecked_Access;
+      P2;
    end P1;
 
    procedure P2 is
    begin
+      -- What if P2 is called before P1?
       G.all := 5;
-      -- What if P2 is called after P1?
    end P2;
 
 ------
@@ -461,7 +462,6 @@ Introduction to Accessibility Checks (2/2)
          A1 := V0'Access;
          A1 := V1'Access;
          A1 := T1 (A0);
-         A0 := T0 (A1); -- illegal
          A1 := new Integer;
          A0 := T0 (A1); -- illegal
      end Proc;
@@ -708,7 +708,7 @@ Anonymous Access Constants
 
       type CAcc is access constant Integer;
       G1 : aliased Integer;
-      G2 : aliased constant Integer;
+      G2 : aliased constant Integer := 123;
       V1 : CAcc := G1'Access;
       V2 : CAcc := G2'Access;
       V1.all := 0; -- illegal
