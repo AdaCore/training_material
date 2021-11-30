@@ -5,6 +5,19 @@
 Overview
 **********
 
+===================
+About This Course
+===================
+
+--------
+Styles
+--------
+
+* :dfn:`This` is a definition
+* :filename:`this/is/a.path`
+* :ada:`code is highlighted`
+* :command:`commands are emphasised --like-this`
+
 ==================
 A Little History
 ==================
@@ -77,13 +90,13 @@ Big Picture
 Language Structure (Ada95 and Onward)
 ---------------------------------------
 
-* **Required** *Core* implementation
+* **Required** :dfn:`Core` implementation
 
    - Reference Manual (RM) sections 1 :math:`\rightarrow` 13
    - Predefined Language Environment (Annex A)
    - Foreign Language Interfaces (Annex B)
 
-* Optional *Specialized Needs Annexes*
+* Optional :dfn:`Specialized Needs Annexes`
 
    - No additional syntax
    - Systems Programming (C)

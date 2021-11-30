@@ -55,6 +55,7 @@ role_format_functions = { 'toolname'   : 'SmallCaps',
                           'url'        : 'format_url',
                           'menu'       : 'format_menu',
                           'command'    : 'format_command',
+                          'dfn'        : 'format_dfn',
                           'answer'     : 'format_answer',
                           'answermono' : 'format_answermono',
                           'animate'    : 'format_animate',
@@ -108,6 +109,12 @@ def latex_color ( text, color='white' ):
 
 def latex_bold ( text ):
     return "\\textbf{" + text + "}"
+
+def latex_italic ( text ):
+    return "\\textit{" + text + "}"
+
+def latex_bold_italic ( text ):
+    return "\\textbf{\\textit{" + text + "}}"
 
 def latex_monospace ( text ):
     return "\\texttt{" + text + "}"
@@ -534,6 +541,14 @@ def format_url ( literal_text ):
 def format_command ( literal_text ):
    # white text on box of black
    return latex_inline ( latex_box ( latex_color ( latex_monospace ( latex_escape ( literal_text ) ) ), "black" ) )
+
+'''
+"dfn" role
+Items that indicate a term definition
+'''
+def format_dfn ( literal_text ):
+   return latex_inline ( latex_box ( latex_color ( latex_italic (
+        latex_escape (literal_text) ) ), "cyan" ) )
 
 '''
 "filename" role
