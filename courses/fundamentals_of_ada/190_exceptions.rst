@@ -766,7 +766,7 @@ Exception Occurence
 Exception ID
 --------------
 
-* For an exception identifier, the :defn:`identity` of the exception is :ada:`<name>'Identity`
+* For an exception identifier, the :dfn:`identity` of the exception is :ada:`<name>'Identity`
 
 .. code:: Ada
 
