@@ -186,7 +186,7 @@ Implementation
             end record;
          -- parameters can be unconstrained (constraint comes from caller)
          procedure Put ( Item : in Person );
-         procedure Get ( Item : out Person );
+         procedure Get ( Item : in out Person );
       end Person_Pkg;
 
 ----------------
@@ -215,7 +215,7 @@ Primitives
 
    .. code:: Ada
 
-      procedure Get ( Item : in Person ) is
+      procedure Get ( Item : in out Person ) is
       begin
         -- Tag specified by caller
         case Item.Tag is

@@ -28,14 +28,6 @@ Introduction
 Data Representation
 =====================
 
-----------
-Examples
-----------
-
-.. include:: examples/adv_280_low_level_programming/data_representation.rst
-
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_280_low_level_programming.html#data-representation`
-
 -------------------------------------
 Data Representation vs Requirements
 -------------------------------------
@@ -214,16 +206,17 @@ Record Representation Clauses
       .. code:: Ada
 
         type Rec1 is record
-          A : Integer range 0 .. 4;
-          B : Boolean;
-          C : Integer;
-          D : Enum;
+           A : Integer range 0 .. 4;
+           B : Boolean;
+           C : Integer;
+           D : Enum;
         end record;
         for Rec1 use record
-          A at 0 range 0 .. 2;
-          B at 0 range 3 .. 3;
-          C at 0 range 5 .. 37;
-          D at 5 range 0 .. 2;
+           A at 0 range 0 ..  2;
+           B at 0 range 3 ..  3;
+           C at 0 range 4 .. 35;
+           -- unused space here
+           D at 5 range 0 ..  2;
         end record;
 
 ------------------------------
@@ -306,14 +299,6 @@ Change of Representation
 ==============================
 Address Clauses and Overlays
 ==============================
-
-----------
-Examples
-----------
-
-.. include:: examples/adv_280_low_level_programming/address_clauses_and_overlays.rst
-
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_280_low_level_programming.html#address-clauses-and-overlays`
 
 ---------
 Address
