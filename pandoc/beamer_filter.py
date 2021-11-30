@@ -53,7 +53,6 @@ slide_decorators = [ 't', 'shrink' ]
 # Otherwise (for local functions), the parameter will be a literal text string
 role_format_functions = { 'toolname'   : 'SmallCaps',
                           'url'        : 'format_url',
-                          'dfn'        : 'Emph',
                           'menu'       : 'format_menu',
                           'command'    : 'format_command',
                           'answer'     : 'format_answer',
