@@ -34,7 +34,7 @@ begin
    -- operations / attributes
    Test_Score_Total := Test_Score_Total / Test_Score_Total_T (Number_Of_Tests);
    Angle            := Angle + 359;
-   Color            := Cymk_T'Succ (Color);
+   Color            := Cymk_T'Pred (Cymk_T'Last);
 
    Put_Line (Test_Score_Total'Image);
    Put_Line (Angle'Image);
