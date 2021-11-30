@@ -9,19 +9,37 @@ class AdaCut:
     RE_DIRECTIVE_PARTIAL = re.compile(r"^\s*\-\-\$.*$")
 
     DIRECTIVES = ["begin", "end", "line"]
-    TYPES = ["answer", "question"]
+    TYPES = ["answer", "question", "cut"]
     TARGETS = ["code", "comment", "all"]
 
     RE_PURE_COMMENT = re.compile(r"^\s*\-\-.*$")
 
-    def __init__(self, mode, default_keeping=True):
-        self.mode = mode
-        self.default_keeping = default_keeping
+    def __init__(self, cut, mode, default_keeping=True):
+        self.lines = 0
+        self.directives = 0
+        self.comments = 0
+        self.kept = 0
+
+        self.cut = cut
+        self.current_cut = 0
+        if self.cut:
+            # Cut mode: throw everything but the given cut(s)
+            self.mode = None
+            self.default_keeping = False
+        else:
+            self.mode = mode
+            self.default_keeping = default_keeping
         self.line = None
         self.block = []
 
+    def match_mode_or_cut(self, typ_name):
+        if self.cut:
+            return self.current_cut in self.cut
+        else:
+            return self.mode == typ_name or self.mode == "keep_all"
+
     def keeping_code_comments_with(self, typ):
-        if typ[0] == self.mode or self.mode == "keep_all":
+        if self.match_mode_or_cut(typ[0]):
             return True, True
         elif typ[1] == "comment":
             return True, False
@@ -41,12 +59,15 @@ class AdaCut:
     def new_line(self, l):
         keeping_code, keeping_comments = self.keeping_code_comments()
         self.line = None
+        self.lines += 1
 
         is_code = not self.RE_PURE_COMMENT.match(l)
         if is_code:
             if keeping_code:
+                self.kept += 1
                 return l
             elif keeping_comments:
+                self.kept += 1
                 # Special case: Keep empty lines to fill
                 return l[-1]
             else:
@@ -57,8 +78,15 @@ class AdaCut:
             assert not self.RE_DIRECTIVE_PARTIAL.match(
                 l
             ), f"malformed --$ comment: {l[:-1]}"
-            return l if keeping_comments else None
 
+            self.comments += 1
+            if keeping_comments:
+                self.kept += 1
+                return l
+            else:
+                return None
+
+        self.directives += 1
         directive = m.group(1).lower()
         typ = m.group(2).lower(), m.group(4).lower() if m.group(4) else "all"
         if directive not in self.DIRECTIVES:
@@ -76,6 +104,8 @@ class AdaCut:
 
         if directive == "begin":
             self.block.append(typ)
+            if typ[0] == "cut":
+                self.current_cut += 1
         elif directive == "end":
             assert typ == self.block[-1], f"{typ} != {self.block[-1]}"
             self.block = self.block[:-1]
@@ -89,8 +119,14 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("input_file")
     ap.add_argument("-o", "--output-file")
+    ap.add_argument("-c", "--cut", nargs='*', type=int)
+    ap.add_argument("-d", "--dedent", action="store_true",
+                    help="Dedent by the first-line indent")
+    ap.add_argument("-C", "--cut-counting", action="store_true",
+                    help="Return the number of cuts in the file")
     ap.add_argument(
-        "-m", "--mode", default="question", choices=["answer", "question", "keep_all"]
+        "-m", "--mode", default="question",
+        choices=["answer", "question", "keep_all"]
     )
     args = ap.parse_args()
 
@@ -99,9 +135,34 @@ if __name__ == "__main__":
     else:
         out = sys.stdout
 
-    cut = AdaCut(args.mode)
+    cut = AdaCut(args.cut, args.mode)
+    dedent_cols = None
+    prev_cut = None
+    prev_ln = 0
+    prev_indent = None
     with open(args.input_file) as fin:
         for l in fin:
             lp = cut.new_line(l)
             if lp != None:
+                cur_ln = cut.lines - cut.directives
+                cur_indent = len(lp) - len(lp.lstrip())
+                if args.dedent:
+                    if dedent_cols is None:
+                        dedent_cols = cur_indent
+
+                    if lp.strip() != '':
+                        assert lp[:dedent_cols] == ' ' * dedent_cols, repr(lp)
+                        lp = lp[dedent_cols:]
+
+                if args.cut \
+                   and prev_cut \
+                   and prev_cut != cut.current_cut \
+                   and prev_ln != cur_ln - 1:
+                    print((' ' * max(cur_indent, prev_indent)) + '...')
+                prev_ln = cur_ln
+                prev_cut = cut.current_cut
+                prev_indent = cur_indent
                 print(lp, file=out, end="")
+
+    if args.cut_counting:
+        print(cut.current_cut)
