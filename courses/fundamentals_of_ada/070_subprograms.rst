@@ -302,6 +302,7 @@ Subprogram Parameter Terminology
 
    - Receive the values passed from the actual parameters
    - Specify the types required of the actual parameters
+   - Type **cannot** be anonymous
 
    .. code:: Ada
 
@@ -323,6 +324,13 @@ Parameter Associations In Calls
    Something (ActualX, Formal2 => ActualY);
    Something (Formal2 => ActualY, Formal1 => ActualX);
 
+* Having named **then** positional is forbidden
+
+.. code:: Ada
+
+   -- Compilation Error
+   Something (Formal1 => ActualX, ActualY);
+
 ---------------------------------------
 Actual Parameters Respect Constraints
 ---------------------------------------
@@ -340,86 +348,25 @@ Actual Parameters Respect Constraints
      Foo (Q); -- runtime error if Q <= 0
      Foo (P);
 
---------------------------------------------
-No `subtype_indications` In Specifications
---------------------------------------------
-
-.. code:: Ada
-
-   subtype_mark <constraint>
-
-* Obviates pathology regarding dynamic subtypes
-* Illegal usage
-
-   .. code:: Ada
-
-      Lower, Upper : Integer;
-      procedure P (X : in Integer range Lower .. Upper );
-      -- code which affects Lower and/or Upper...
-      procedure P (X : in Integer range Lower .. Upper )  is
-      begin
-      ...
-      end P;
-
------------------------
-Use Named Constraints
------------------------
-
-* Use subtypes instead of :code:`subtype_indications`
-* Legal usage
-
-   .. code:: Ada
-
-      Lower, Upper : Integer;
-      ...
-      subtype Short is range Lower .. Upper;
-      -- definition frozen - cannot change
-      procedure P (X : in Short );
-      -- code which affects Lower and/or Upper...
-      -- "Short" does not change
-      procedure P (X : in Short ) is
-      begin
-      ...
-      end P;
-
-------------------------------
-No Anonymously-Typed Formals
-------------------------------
-
-* No name to use in type checking for formals to actuals
-* No name for type checking function results to target
-
-   .. code:: Ada
-
-      procedure P (Formal : in array (X .. Y) of Some_Type);
-      function F return array (X .. Y) of Some_Type;
-
-* Use named types instead of anonymous types
-
-   .. code:: Ada
-
-      type List is array  (X .. Y) of Integer;
-      ...
-      procedure P (Formal : in List);
-      function F return List;
-
 -----------------
 Parameter Modes
 -----------------
 
-* Views **inside** the subprogram
 * Mode :ada:`in`
 
    - Actual parameter is :ada:`constant`
+   - Can have default, used when **no value** is provided
 
 * Mode :ada:`out`
 
    - Writing is **expected**
    - Reading is **allowed**
+   - Actual **must** be a writable object
 
 * Mode :ada:`in out`
 
    - Actual is expected to be **both** read and written
+   - Actual **must** be a writable object
 
 * Function :ada:`return`
 
@@ -445,162 +392,62 @@ Why Read Mode `out` Parameters?
      end loop;
    end Compute;
 
----------------------------------
-Modes' Requirements for Actuals
----------------------------------
-
-* Modes :ada:`in out` and :ada:`out`
-
-   - Must be a **writable object**
-   - **No** expressions
-
-* Mode :ada:`in`
-
-   - May use expressions (actual can't be altered)
-
-.. code:: Ada
-
-   procedure Do_Something (X : in     Integer;
-                           Y :    out Integer );
-   ...
-   begin
-     Do_Something(X + 2, Y); -- legal
-     Do_Something(X, Y + 1); -- compile error
-
--------------------------------------
-Parameter Defaults May Be Specified
--------------------------------------
-
-* :ada:`in` parameters only
-* Default used when **no value** is provided
-
-.. code:: Ada
-
-   My_Process : Process_Name;
-   Before, After : Duration;
-   procedure Activate( Process : in Process_Name;
-                       Before : in Duration := 0.0;
-                       After : in Duration := 0.0 );
-   ...
-   begin
-     -- no defaults taken
-     Activate (My_Process, Before, After);
-     -- defaults for Before, After
-     Activate (My_Process);
-     -- defaults for After
-     Activate (My_Process, 60.0);
-
----------------------------------
-Skipping Over Actual Parameters
----------------------------------
-
-* Requires named format for remaining arguments
-
-.. code:: Ada
-
-   procedure Activate (
-     Process : in Process_Name := Unknown;
-     Before : in Duration := 0.0;
-     After : in Duration := 0.0);
-   ...
-   begin
-     -- Parameter "Process" is skipped
-     Activate (Before => 60.0, After => 10.0);
-     Activate (60.0, 60.0); -- compile error
-     -- Parameter "Before" is skipped
-     Activate (My_Process, After => 10.0);
-     Activate (My_Process, 60.0); -- Not an error, but WRONG!
-
-.. container:: speakernote
-
-   Not using named association can cause confusion if future development adds parameters
-
 ------------------------------
 Parameter Passing Mechanisms
 ------------------------------
 
-* Passed either "by-copy" or "by-reference"
 * By-Copy
 
    - The formal denotes a separate object from the actual
-   - A copy of the actual is placed into the formal before the call
-   - A copy of the formal is placed back into the actual after the call
+   - :ada:`in`, :ada:`in out`: actual is copied into the formal **on entry to** the subprogram
+   - :ada:`out`, :ada:`in out`: formal is copied into the actual **on exit from** the subprogram
 
 * By-Reference
 
    - The formal denotes a view of the actual
    - Reads and updates to the formal directly affect the actual
+   - More efficient for large objects
 
 * Parameter **types** control mechanism selection
 
    - Not the parameter **modes**
    - Compiler determines the mechanism
 
------------------------------------
-Why Pass Parameters By-Reference?
------------------------------------
+-------------------------------
+By-Copy vs By-Reference Types
+-------------------------------
 
-* More efficient for large objects
+* By-Copy
 
-   - The address of the actual is copied, rather than the value
+   - Scalar types
+   - :ada:`access` types
 
-* Little gain for small objects
+* By-Reference
 
-   - When an address is about the same size
+   - :ada:`tagged` types
+   - :ada:`task` types and :ada:`protected` types
+   - :ada:`limited` types
 
----------------
-By-Copy Types
----------------
 
-* Elementary types
+* :ada:`array`, :ada:`record`
 
-   - Scalar
-   - Access
+   - By-Reference when they have by-reference **components**
+   - By-Reference for **implementation-defined** optimizations
+   - By-Copy otherwise
 
-* Private types if fully defined as elementary types
+* :ada:`private` depends on its full definition
 
-   - Described later
+------------------------------------------
+Unconstrained Formal Parameters or Return
+------------------------------------------
 
---------------------
-By-Reference Types
---------------------
+* Unconstrained **formals** are allowed
 
-* :ada:`tagged` types
-* :ada:`task` types and :ada:`protected` types
-* :ada:`limited` types
+    - Constrained by **actual**
 
-   - Directly limited record types and their descendants
-   - Not just those that are :ada:`limited private`
-   - Described later
+* Unconstrained :ada:`return` is allowed too
 
-* Composite types with by-reference component types
-* :ada:`private` types if fully defined as by-reference types
-
-   - Described later
-
---------------------------------
-Implementation-Dependent Types
---------------------------------
-
-* :ada:`array` types containing only by-copy components
-* Non-limited record types containing only by-copy components
-* Implementation chooses most efficient method
-
-   - Based on size of actual value to be passed
-   - No gain if the value size approximates the size of an address
-
-.. container:: speakernote
-
-   So arrays of integers, or records of Booleans, etc
-
----------------------------------
-Unconstrained Formal Parameters
----------------------------------
-
-* Take bounds from **actual** parameters
-* Also applies to formal :ada:`return` specification
-
-    + Actual :ada:`return` is constrained in the body
+    + Constrained by the **returned object**
 
 .. code:: Ada
 
