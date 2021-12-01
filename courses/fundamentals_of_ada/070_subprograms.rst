@@ -399,8 +399,8 @@ Parameter Passing Mechanisms
 * By-Copy
 
    - The formal denotes a separate object from the actual
-   - :ada:`in`, :ada:`in out`: actual is copied into the formal **before** the call
-   - :ada:`out`, :ada:`in out`: formal is copied into the actual **after** the call
+   - :ada:`in`, :ada:`in out`: actual is copied into the formal **on entry to** the subprogram
+   - :ada:`out`, :ada:`in out`: formal is copied into the actual **on exit from** the subprogram
 
 * By-Reference
 
@@ -445,7 +445,7 @@ Unconstrained Formal Parameters or Return
 
     - Constrained by **actual**
 
-* Unconstrained :ada:`return` are allowed too
+* Unconstrained :ada:`return` is allowed too
 
     + Constrained by the **returned object**
 
