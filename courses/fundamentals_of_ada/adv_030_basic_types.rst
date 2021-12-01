@@ -13,9 +13,9 @@ Ada Basic Types - Advanced
 .. role:: cpp(code)
    :language: C++
 
-===========
-Base Type
-===========
+=========================
+Subtypes - Full Picture
+=========================
 
 ----------------
 Implicit Subtype
@@ -38,6 +38,22 @@ Implicit Subtype
 
     - Accessed with :ada:`Typ'Base`
 
+-----------------------------
+Stand-Alone (Sub)Type Names
+-----------------------------
+
+* Denote all the values of the type or subtype
+
+   - Unless explicitly constrained
+
+   .. code:: Ada
+
+      subtype Sub is Integer range 0 .. 10;
+      ...
+      for I in Sub loop
+        ...
+      end loop;
+
 ----------------------------
 Implicit Subtype Explanation
 ----------------------------
@@ -56,6 +72,126 @@ Implicit Subtype Explanation
 * `<Anon>` inherits the type's operations (``+``, ``-`` ...)
 * `Typ`, subtype of `<Anon>` is created with :ada:`range L .. R`
 * :ada:`Typ'Base` will return the type `<Anon>`
+
+--------------------------------
+Subtypes Localize Dependencies
+--------------------------------
+
+* Single points of change
+* Relationships captured in code
+* No subtypes
+
+.. code:: Ada
+
+   type List is array (1 .. 12) of Some_Type;
+
+   K : Integer range 0 .. 12 := 0; -- anonymous subtype
+   Values : List;
+   ...
+   if K in 1 .. 12 then ...
+   for J in Integer range 1 .. 12 loop ...
+
+* Subtypes
+
+.. code:: Ada
+
+   type Counter is range 0 .. 12;
+   subtype Index is Counter range 1 .. Counter'Last;
+   type List is array (Index) of Some_Type;
+
+   K : Counter := 0;
+   Values : List;
+   ...
+   if K in Index then ...
+   for J in Index loop ...
+
+----------------------------------
+Subtypes May Enhance Performance
+----------------------------------
+
+* Provides compiler with more information
+* Redundant checks can more easily be identified
+
+.. code:: Ada
+
+   subtype Index is Integer range 1 .. Max;
+   type List is array (Index) of Float;
+   K : Index;
+   Values : List;
+   ...
+   K := Some_Value;   -- range checked here
+   Values (K) := 0.0; -- so no range check needed here
+
+---------------------------------
+Subtypes Don't Cause Overloading
+---------------------------------
+
+- Illegal code: re-declaration of `F`
+
+   .. code:: Ada
+
+      type A is new Integer;
+      subtype B is A;
+      function F return A is (0);
+      function F return B is (1);
+
+-------------------------------------
+Subtypes and Default Initialization
+-------------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
+
+* Not allowed: Defaults on new :ada:`type` only
+
+    - :ada:`subtype` is still the same type
+
+* **Note:** Default value may violate subtype constraints
+
+   - Compiler error for static definition
+   - :ada:`Constraint_Error` otherwise
+
+.. code:: Ada
+
+   type Tertiary_Switch is (Off, On, Neither)
+      with Default_Value => Neither;
+   subtype Toggle_Switch is Tertiary_Switch
+       range Off .. On;
+   Safe : Toggle_Switch := Off;
+   Implicit : Toggle_Switch; -- compile error: out of range
+
+----------------------------------------
+Attributes Reflect the Underlying Type
+----------------------------------------
+
+.. code:: Ada
+
+   type Color is
+       (White, Red, Yellow, Green, Blue, Brown, Black);
+   subtype Rainbow is Color range Red .. Blue;
+
+* :ada:`T'First` and :ada:`T'Last` respect constraints
+
+   - :ada:`Rainbow'First` |rightarrow| Red *but* :ada:`Color'First` |rightarrow| White
+   - :ada:`Rainbow'Last` |rightarrow| Blue *but* :ada:`Color'Last` |rightarrow| Black
+
+* Other attributes reflect base type
+
+   - :ada:`Color'Succ (Blue)` = Brown = :ada:`Rainbow'Succ (Blue)`
+   - :ada:`Color'Pos (Blue)` = 4 = :ada:`Rainbow'Pos (Blue)`
+   - :ada:`Color'Val (0)` = White = :ada:`Rainbow'Val (0)`
+
+* Assignment must still satisfy target constraints
+
+   .. code:: Ada
+
+      Shade : Color range Red .. Blue := Brown; -- runtime error
+      Hue : Rainbow := Rainbow'Succ (Blue);     -- runtime error
+
+===========
+Base Type
+===========
 
 -------------
 Base Ranges
@@ -388,72 +524,6 @@ Order Attributes For All Discrete Types
 .. container:: speakernote
 
    Val/pos compared to value/image - same number of characters
-
-============
-Subtypes
-============
-
------------------------------
-Stand-Alone (Sub)Type Names
------------------------------
-
-* Denote all the values of the type or subtype
-
-   - Unless explicitly constrained
-
--------------------------------------
-Subtypes and Default Initialization
--------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Not allowed: Defaults on new :ada:`type` only
-
-    - :ada:`subtype` is still the same type
-
-* **Note:** Default value may violate subtype constraints
-
-   - Compiler error for static definition
-   - :ada:`Constraint_Error` otherwise
-
-.. code:: Ada
-
-   type Tertiary_Switch is (Off, On, Neither)
-      with Default_Value => Neither;
-   subtype Toggle_Switch is Tertiary_Switch
-       range Off .. On;
-   Safe : Toggle_Switch := Off;
-   Implicit : Toggle_Switch; -- compile error: out of range
-
-----------------------------------------
-Attributes Reflect the Underlying Type
-----------------------------------------
-
-.. code:: Ada
-
-   type Color is
-       (White, Red, Yellow, Green, Blue, Brown, Black);
-   subtype Rainbow is Color range Red .. Blue;
-
-* :ada:`T'First` and :ada:`T'Last` respect constraints
-
-   - :ada:`Rainbow'First` |rightarrow| Red *but* :ada:`Color'First` |rightarrow| White
-   - :ada:`Rainbow'Last` |rightarrow| Blue *but* :ada:`Color'Last` |rightarrow| Black
-
-* Other attributes reflect base type
-
-   - :ada:`Color'Succ (Blue)` = Brown = :ada:`Rainbow'Succ (Blue)`
-   - :ada:`Color'Pos (Blue)` = 4 = :ada:`Rainbow'Pos (Blue)`
-   - :ada:`Color'Val (0)` = White = :ada:`Rainbow'Val (0)`
-
-* Assignment must still satisfy target constraints
-
-   .. code:: Ada
-
-      Shade : Color range Red .. Blue := Brown; -- runtime error
-      Hue : Rainbow := Rainbow'Succ (Blue);     -- runtime error
 
 =================
 Character Types
