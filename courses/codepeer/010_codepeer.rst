@@ -1,9 +1,9 @@
 .. role:: ada(code)
     :language: ada
 
-**********
-CodePeer
-**********
+**********************
+:toolname:`CodePeer`
+**********************
 
 ==========================
 Advanced Static Analysis
@@ -36,9 +36,9 @@ Shifts costs from later, expensive phases to earlier, cheaper phases
 
 .. image:: cost_to_fix_bugs.png
 
--------------------
-Why Use CodePeer?
--------------------
+-------------------------------
+Why Use :toolname:`CodePeer`?
+-------------------------------
 
 + Efficient, potentially exhaustive code reviewer
 
@@ -61,13 +61,13 @@ Why Use CodePeer?
   + Legacy code
   + Code from external sources
 
-===================
-CodePeer Overview
-===================
+===============================
+:toolname:`CodePeer` Overview
+===============================
 
-------------------------------
-CodePeer In A Nutshell (1/2)
-------------------------------
+------------------------------------------
+:toolname:`CodePeer` In A Nutshell (1/2)
+------------------------------------------
 
 + :toolname:`CodePeer` is a static analysis tool
 
@@ -85,9 +85,9 @@ CodePeer In A Nutshell (1/2)
   + Can filter out or emphasize certain issues
   + Can analyze the difference between baselines / versions
 
-------------------------------
-CodePeer In A Nutshell (2/2)
-------------------------------
+------------------------------------------
+:toolname:`CodePeer` In A Nutshell (2/2)
+------------------------------------------
 
 + Large Ada support
 
@@ -105,15 +105,15 @@ CodePeer In A Nutshell (2/2)
 
 + Warns on dead or suspicious code (21 rules)
 
-----------------------
-CodePeer Integration
-----------------------
+----------------------------------
+:toolname:`CodePeer` Integration
+----------------------------------
 
 + Output: textual, XML, CSV, HTML
 + Command-line tool (uses GNAT project files)
 + Interactive use in :toolname:`GNAT Studio` and :toolname:`GNATbench` IDEs
 + Integration with Jenkins (continuous builder)
-+ Integration with SonarQube (continuous inspection of code quality)
++ Integration with :toolname:`SonarQube` (continuous inspection of code quality)
 
 -------------------
 Infer Integration
@@ -198,9 +198,9 @@ Command Line Interface (2/2)
    Generate HTML output. If ``-html-only``, do not run any analysis
    but use the previous run.
 
----------------------------------
-Running CodePeer in GNAT Studio
----------------------------------
+---------------------------------------------------------
+Running :toolname:`CodePeer` in :toolname:`GNAT Studio`
+---------------------------------------------------------
 
 .. image:: codepeer_from_gs.jpg
 
@@ -214,9 +214,9 @@ Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 + `Link: Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#project-file-setup>`_
 + `Link: Advanced Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#advanced-project-file-setup>`_
 
--------------------
-CodePeer Tutorial
--------------------
+-------------------------------
+:toolname:`CodePeer` Tutorial
+-------------------------------
 
 + Get a fresh copy of the :toolname:`GNAT Studio` tutorial directory
 
@@ -231,9 +231,9 @@ CodePeer Tutorial
 
 + Walk through the steps of the :toolname:`CodePeer` tutorial
 
----------------------------------------
-CodePeer Levels Depth and Constraints
----------------------------------------
+---------------------------------------------------
+:toolname:`CodePeer` Levels Depth and Constraints
+---------------------------------------------------
 
 + The **higher** the level the **deeper** and **costlier** the analysis
 
@@ -293,9 +293,9 @@ CodePeer Levels Depth and Constraints
 + *SLOC* : Source lines of code
 + *CC* : Cyclomatic Complexity
 
---------------------------
-CodePeer Levels Use Case
---------------------------
+--------------------------------------
+:toolname:`CodePeer` Levels Use Case
+--------------------------------------
 
 + The levels adapt to various **workflows** and **users**
 + The **lower** the level the **more frequently** it should be run
@@ -363,9 +363,9 @@ CodePeer Levels Use Case
 + Can be combined with **any level** of analysis
 + :command:`-messages min` is default for levels 0, 1, and 2
 
-----------------------------
-Running CodePeer regularly
-----------------------------
+----------------------------------------
+Running :toolname:`CodePeer` regularly
+----------------------------------------
 
 + Historical database (SQLite) stores all results **per level**
 
@@ -495,7 +495,7 @@ Array Index Check
 + Will generate a :ada:`Constraint_Error`
 
 ..
-   codepeer example (4.1.1 - array index check)
+   :toolname:`CodePeer` example (4.1.1 - array index check)
 
 .. code:: Ada
    :number-lines: 1
@@ -523,7 +523,7 @@ Divide By Zero
 + Will generate a :ada:`Program_Error`
 
 ..
-   codepeer example (4.1.1 - divide by zero)
+   :toolname:`CodePeer` example (4.1.1 - divide by zero)
 
 .. code:: Ada
    :number-lines: 1
@@ -548,7 +548,7 @@ Access Check
 + Will generate an :ada:`Access_Error`
 
 ..
-   codepeer example (4.1.1 - access check)
+   :toolname:`CodePeer` example (4.1.1 - access check)
 
 .. code:: Ada
    :number-lines: 1
@@ -572,7 +572,7 @@ Range Check
 + Will generate a :ada:`Constraint_Error`
 
 ..
-   codepeer example (4.1.1 - range check)
+   :toolname:`CodePeer` example (4.1.1 - range check)
 
 .. code:: Ada
    :number-lines: 1
@@ -599,7 +599,7 @@ Overflow Check
 + Will generate a :ada:`Constraint_Error`
 
 ..
-   codepeer example (4.1.1 - overflow check)
+   :toolname:`CodePeer` example (4.1.1 - overflow check)
 
 .. code:: Ada
    :number-lines: 1
@@ -629,7 +629,7 @@ Aliasing Check
   + Do **not match** the address of a global object
 
 ..
-   codepeer example (4.1.1 - aliasing check)
+   :toolname:`CodePeer` example (4.1.1 - aliasing check)
 
 .. code:: Ada
    :number-lines: 1
@@ -652,7 +652,7 @@ Tag Check
 A tag check operation on a :ada:`tagged` object might fail
 
 ..
-   codepeer example (4.1.1 - tag check)
+   :toolname:`CodePeer` example (4.1.1 - tag check)
 
 .. code:: Ada
    :number-lines: 1
@@ -673,7 +673,6 @@ A tag check operation on a :ada:`tagged` object might fail
 
 | ``high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2}``
 
-
 --------------------
 Discriminant Check
 --------------------
@@ -681,7 +680,7 @@ Discriminant Check
 A field for the wrong variant/discriminant is accessed
 
 ..
-   codepeer example (4.1.1 - discriminant check)
+   :toolname:`CodePeer` example (4.1.1 - discriminant check)
 
 .. code:: Ada
    :number-lines: 1
@@ -717,7 +716,7 @@ Precondition
 + :toolname:`GNAT Studio` or :command:`-show-backtraces` to analyze checks
 
 ..
-   codepeer example (4.1.1 - precondition)
+   :toolname:`CodePeer` example (4.1.1 - precondition)
 
 .. code:: Ada
    :number-lines: 1
@@ -795,7 +794,7 @@ Assertion
 A user assertion (using e.g. :ada:`pragma Assert`) could fail
 
 ..
-   codepeer example (4.1.2 - assertion)
+   :toolname:`CodePeer` example (4.1.2 - assertion)
 
 .. code:: Ada
    :number-lines: 1
@@ -820,7 +819,7 @@ Conditional Check
 An exception could be raised **conditionally** in user code
 
 ..
-   codepeer example (4.1.2 - conditional check)
+   :toolname:`CodePeer` example (4.1.2 - conditional check)
 
 .. code:: Ada
    :number-lines: 1
@@ -843,7 +842,7 @@ Raise Exception
 An exception is raised **unconditionally** on a **reachable** path.
 
 ..
-   codepeer example (4.1.2 - raise exception)
+   :toolname:`CodePeer` example (4.1.2 - raise exception)
 
 .. code:: Ada
    :number-lines: 1
@@ -863,7 +862,7 @@ User Precondition
 A call might violate a subprogram's specified precondition.
 
 ..
-   codepeer example (4.1.2 - user precondition)
+   :toolname:`CodePeer` example (4.1.2 - user precondition)
 
 .. code:: Ada
    :number-lines: 1
@@ -887,7 +886,7 @@ Postcondition
 The subprogram's body may violate its specified postcondition.
 
 ..
-   codepeer example (4.1.2 - postcondition)
+   :toolname:`CodePeer` example (4.1.2 - postcondition)
 
 .. code:: Ada
    :number-lines: 1
@@ -934,7 +933,7 @@ Validity Check
 The code may be reading an uninitialized or invalid value
 
 ..
-   codepeer example (4.1.3 - validity check)
+   :toolname:`CodePeer` example (4.1.3 - validity check)
 
 .. code:: Ada
    :number-lines: 1
@@ -1114,15 +1113,15 @@ Warning Messages - Infer (3/3)
 
           - in an :ada:`if ... elsif ... else`
 
-
 -----------
 Dead Code
 -----------
+
 + Also called **unreachable code**.
 + All code is expected to be reachable
 
 ..
-   codepeer example (4.1.4 - dead code)
+   :toolname:`CodePeer` example (4.1.4 - dead code)
 
 .. code:: Ada
    :number-lines: 1
@@ -1146,7 +1145,7 @@ Test Always False
 Redundant conditionals, always :ada:`False`
 
 ..
-   codepeer example (4.1.4 - test always false)
+   :toolname:`CodePeer` example (4.1.4 - test always false)
 
 .. code:: Ada
    :number-lines: 1
@@ -1168,7 +1167,7 @@ Test Always True
 Redundant conditionals, always :ada:`True`
 
 ..
-   codepeer example (4.1.4 - test always true)
+   :toolname:`CodePeer` example (4.1.4 - test always true)
 
 .. code:: Ada
    :number-lines: 1
@@ -1193,7 +1192,7 @@ Test Predetermined
   + eg. :ada:`case` statement
 
 ..
-   codepeer example (4.1.4 - test predetermined)
+   :toolname:`CodePeer` example (4.1.4 - test predetermined)
 
 .. code:: Ada
    :number-lines: 1
@@ -1221,7 +1220,7 @@ Condition Predetermined
 + One operand of a boolean operation is always :ada:`True` or :ada:`False`
 
 ..
-   codepeer example (4.1.4 - condition predetermined)
+   :toolname:`CodePeer` example (4.1.4 - condition predetermined)
 
 .. code:: Ada
    :number-lines: 1
@@ -1242,7 +1241,7 @@ Loop Does Not Complete Normally
   + fails to terminate normally
 
 ..
-   codepeer example (4.1.4 - loop does not complete normally)
+   :toolname:`CodePeer` example (4.1.4 - loop does not complete normally)
 
 .. code:: Ada
    :number-lines: 1
@@ -1276,7 +1275,7 @@ Unused Assignment
 + :ada:`pragma Unreferenced` also ignored
 
 ..
-   codepeer example (4.1.4 - unused assignment)
+   :toolname:`CodePeer` example (4.1.4 - unused assignment)
 
 .. code:: Ada
    :number-lines: 1
@@ -1294,7 +1293,7 @@ Unused Assignment To Global
 + Note: the redundant assignment may occur deep in the **call tree**
 
 ..
-   codepeer example (4.1.4 - unused assignment to global)
+   :toolname:`CodePeer` example (4.1.4 - unused assignment to global)
 
 .. code:: Ada
    :number-lines: 1
@@ -1322,7 +1321,7 @@ Unused Out Parameter
   + or overwritten
 
 ..
-   codepeer example (4.1.4 - unused out parameter)
+   :toolname:`CodePeer` example (4.1.4 - unused out parameter)
 
 .. code:: Ada
    :number-lines: 1
@@ -1344,7 +1343,7 @@ Useless Reassignment
 + Assignments do not modify the value stored in the assigned object
 
 ..
-   codepeer example (4.1.4 - useless reassignment)
+   :toolname:`CodePeer` example (4.1.4 - useless reassignment)
 
 .. code:: Ada
    :number-lines: 1
@@ -1370,7 +1369,7 @@ Suspicious Precondition
 + May be a **false-positive** depending on the algorithm
 
 ..
-   codepeer example (4.1.4 - suspicious precondition)
+   :toolname:`CodePeer` example (4.1.4 - suspicious precondition)
 
 .. code:: Ada
    :number-lines: 1
@@ -1396,7 +1395,7 @@ Suspicious Input
   + but it is a bug most of the time
 
 ..
-   codepeer example (4.1.4 - suspicious input)
+   :toolname:`CodePeer` example (4.1.4 - suspicious input)
 
 .. code:: Ada
    :number-lines: 1
@@ -1420,7 +1419,7 @@ Unread Parameter
   + Could be declared :ada:`out`
 
 ..
-   codepeer example (4.1.4 - unread parameter)
+   :toolname:`CodePeer` example (4.1.4 - unread parameter)
 
 .. code:: Ada
    :number-lines: 1
@@ -1441,7 +1440,7 @@ Unassigned Parameter
   + Could be declared :ada:`in`
 
 ..
-   codepeer example (4.1.4 - unassigned parameter)
+   :toolname:`CodePeer` example (4.1.4 - unassigned parameter)
 
 .. code:: Ada
    :number-lines: 1
@@ -1467,7 +1466,7 @@ Suspicious Constant Operation
     + eg :ada:`Float` conversion before division
 
 ..
-   codepeer example (4.1.4 - suspicious constant operation)
+   :toolname:`CodePeer` example (4.1.4 - suspicious constant operation)
 
 .. code:: Ada
    :number-lines: 1
@@ -1494,7 +1493,7 @@ Subp Never Returns
   + eg. ``test always false``
 
 ..
-   codepeer example (4.1.4 - subp never returns)
+   :toolname:`CodePeer` example (4.1.4 - subp never returns)
 
 .. code:: Ada
    :number-lines: 1
@@ -1517,7 +1516,7 @@ Subp Always Fails
 + Typically, **another message** in the body can explain why
 
 ..
-   codepeer example (4.1.4 - subp always fails)
+   :toolname:`CodePeer` example (4.1.4 - subp always fails)
 
 .. code:: Ada
    :number-lines: 1
@@ -1529,7 +1528,6 @@ Subp Always Fails
    end P;
 
 | ``high warning: subp always fails: p fails for all possible inputs``
-
 
 -------------------
 Same Operands
@@ -1570,7 +1568,7 @@ Same Logic
 Test duplication
 -------------------
 
-+ The same expression is tested twice in successive `if ... elsif ... elsif ... `
++ The same expression is tested twice in successive :ada:`if ... elsif ... elsif ... `
 + Usually indicates a copy-paste error (CWE 1041)
 
 .. code:: Ada
@@ -1597,7 +1595,7 @@ Test duplication
 Duplicate branches
 -------------------
 
-+ Branches are duplicated in a `if` or a `case`
++ Branches are duplicated in a :ada:`if` or a :ada:`case`
 + Should be refactored, or results from incorrect copy-paste (CWE 1041)
 
 .. code:: Ada
@@ -1623,7 +1621,6 @@ Duplicate branches
    end Dup;
 
 | ``infer.adb:4:10: medium warning: duplicate branches (Infer): code duplicated at line 11``
-
 
 =================
 Race Conditions
@@ -1671,7 +1668,7 @@ Race Condition Examples
 -------------------------
 
 ..
-   codepeer example (4.1.5 - race conditions)
+   :toolname:`CodePeer` example (4.1.5 - race conditions)
 
 .. code:: Ada
    :number-lines: 1
@@ -1902,9 +1899,9 @@ GNAT Warnings
     - Can be stored in the database
     - Done via :ada:`pragma Warnings` instead of :ada:`pragma Annotate`
 
-------------------------
-GNATcheck messages
-------------------------
+------------------------------------
+:toolname:`GNATcheck` messages
+------------------------------------
 
 + :toolname:`GNATcheck` messages can be generated by :toolname:`CodePeer`
 
@@ -1973,7 +1970,7 @@ Analyze Messages (2/4)
 + **Exclude** them by categories
 
     + Using :code:`--infer-messages` for infer (level 0)
-    + Using :code:`--be-messages` for CodePeer (level 1+)
+    + Using :code:`--be-messages` for :toolname:`CodePeer` (level 1+)
 
 + For example, to disable messages related to access check:
 
@@ -2016,9 +2013,9 @@ Analyze Messages (4/4)
 
     + Default in :toolname:`GNAT Studio` and HTML interfaces
 
----------------------
-Run CodePeer faster
----------------------
+---------------------------------
+Run :toolname:`CodePeer` faster
+---------------------------------
 
 + Hardware
 
@@ -2088,9 +2085,9 @@ Project-Based Partial Analysis
 
       for Externally_Built use "True";
 
-==============================
-Justifying CodePeer Messages
-==============================
+==========================================
+Justifying :toolname:`CodePeer` Messages
+==========================================
 
 ------------------------
 Database Justification
@@ -2156,13 +2153,13 @@ Outside Tooling Justification
 
   + Textual output: compiler-like messages or CSV format
 
-====================
-CodePeer Workflows
-====================
+================================
+:toolname:`CodePeer` Workflows
+================================
 
---------------------
-CodePeer Use Cases
---------------------
+--------------------------------
+:toolname:`CodePeer` Use Cases
+--------------------------------
 
 + Analyzing code locally prior to **commit** (desktop)
 + **Nightly** runs on a server
@@ -2394,13 +2391,13 @@ Baseline With Continuous-Integration
   + Using :ada:`pragma Annotate`
   + Updating the gold database with an analysis
 
-========================
-CodePeer Customization
-========================
+====================================
+:toolname:`CodePeer` Customization
+====================================
 
-------------------------------------------
-CodePeer Specific Project Attributes
-------------------------------------------
+------------------------------------------------------
+:toolname:`CodePeer` Specific Project Attributes
+------------------------------------------------------
 
 .. code:: Ada
 
@@ -2426,9 +2423,9 @@ CodePeer Specific Project Attributes
      end CodePeer;
    end Prj1;
 
------------------------------------------
-Project Specialization For CodePeer
------------------------------------------
+-------------------------------------------------
+Project Specialization For :toolname:`CodePeer`
+-------------------------------------------------
 
 .. code:: Ada
 
@@ -2532,13 +2529,13 @@ Report File
       | ``unit2.adb:12:25: medium: divide by zero might fail: requires X /= 0``
       | ``[...]``
 
-============================
-CodePeer for Certification
-============================
+========================================
+:toolname:`CodePeer` for Certification
+========================================
 
-------------------
-CodePeer and CWE
-------------------
+------------------------------
+:toolname:`CodePeer` and CWE
+------------------------------
 
 + MITRE's Common Weakness Enumeration (CWE)
 
@@ -2551,9 +2548,9 @@ CodePeer and CWE
 
 + :toolname:`CodePeer` findings are **mapped** to CWE identifiers
 
----------------------------
-CodePeer and DO178B/C
----------------------------
+---------------------------------------
+:toolname:`CodePeer` and DO178B/C
+---------------------------------------
 
 + :toolname:`CodePeer` **supports** DO-178B/C Avionics Standard
 + DO-178C Objective A-5.6 (activity 6.3.4.f):
@@ -2569,9 +2566,9 @@ CodePeer and DO178B/C
 
   + Authored by Frederic Pothon & Quentin Ochem
 
-------------------------------------
-CodePeer and CENELEC - EN50128
-------------------------------------
+--------------------------------------------
+:toolname:`CodePeer` and CENELEC - EN50128
+--------------------------------------------
 
 + :toolname:`CodePeer` **qualified** as a T2 tool for this CENELEC Rail Standard
 + :toolname:`CodePeer` supports:
@@ -2589,13 +2586,13 @@ CodePeer and CENELEC - EN50128
 
   + Authored by Jean-Louis Boulanger & Quentin Ochem
 
-=========================
-How Does CodePeer Work?
-=========================
+=====================================
+How Does :toolname:`CodePeer` Work?
+=====================================
 
--------------------------
-How Does CodePeer Work?
--------------------------
+-------------------------------------
+How Does :toolname:`CodePeer` Work?
+-------------------------------------
 
 + :toolname:`CodePeer` computes the **possible** value
 
@@ -2615,9 +2612,9 @@ How Does CodePeer Work?
   + It generates a **postcondition** ensured by :ada:`Sub`
   + It uses the **generated contracts** to analyze calls to :ada:`Sub`
 
------------------------------
-How Does CodePeer Work?
------------------------------
+-------------------------------------
+How Does :toolname:`CodePeer` Work?
+-------------------------------------
 
 See *CodePeer By Example* for more details
 
@@ -2625,26 +2622,26 @@ See *CodePeer By Example* for more details
 
    :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Examples` :math:`\rightarrow` :menu:`Codepeer By Example`
 
------------------------------------------
-CodePeer Limitations and Heuristics
------------------------------------------
+-------------------------------------------------
+:toolname:`CodePeer` Limitations and Heuristics
+-------------------------------------------------
 
 + Let's explore section 7.13 of the User's Guide
 + http://docs.adacore.com/codepeer-docs/users_guide/_build/html/appendix.html#codepeer-limitations-and-heuristics
 
--------------------------
-CodePeer References
--------------------------
+---------------------------------
+:toolname:`CodePeer` References
+---------------------------------
 
 + :toolname:`CodePeer` User's Guide and Tutorial
 
-  + Online: https://www.adacore.com/documentation#CodePeer
-  + In local install at share/doc/codepeer/users_guide (or tutorial)
+  + Online: https://www.adacore.com/documentation#:toolname:`CodePeer`
+  + In local install at share/doc/:toolname:`CodePeer`/users_guide (or tutorial)
   + From :toolname:`GNAT Studio` go to :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Codepeer User's Guide` (or :menu:`Codepeer Tutorial`)
 
 + :toolname:`CodePeer` website
 
-  + http://www.adacore.com/codepeer
+  + http://www.adacore.com/:toolname:`CodePeer`
   + Videos, product pages, articles, challenges
 
 + Book chapter on :toolname:`CodePeer`
