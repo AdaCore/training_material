@@ -1,1 +1,2 @@
 courses/fundamentals_of_ada/*.rst
+courses/codepeer/*.rst
