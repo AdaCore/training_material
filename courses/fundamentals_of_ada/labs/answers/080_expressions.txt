@@ -12,6 +12,9 @@ procedure Main is
       Day   : Positive;
    end record;
 
+   List : array (1 .. 5) of Date_T;
+   Item : Date_T;
+
    function Is_Leap_Year (Year : Positive)
                           return Boolean is
      (Year mod 400 = 0 or else (Year mod 4 = 0 and Year mod 100 /= 0));
@@ -47,9 +50,6 @@ procedure Main is
       return True;
    end Same_Year;
    --Checks
-
-   List : array (1 .. 5) of Date_T;
-   Item : Date_T;
 
    --Main
    function Number (Prompt : String)
