@@ -2167,6 +2167,9 @@ Outside Tooling Justification
      :command:`codepeer -Pprj -output-msg-only -csv`
 
   + Review them via the spreadsheet tool (e.g. Excel)
+
+    + Beware fill **all** the columns
+
   + Import back CSV reviews into the :toolname:`CodePeer` database
 
      :command:`codepeer_bridge --import-reviews`
@@ -2393,25 +2396,17 @@ Baseline With Continuous-Integration
 
 + The continuous builder is **triggered**
 
-  + Copy the database from the **baseline** run
-  + Perform a run with the **same** settings as the reference run
-  + Share results to the user
-  + Review them via the spreadsheet tool (e.g. Excel)
-..
-   Beware: fill all the columns
-  + Import back reviews into the :toolname:`CodePeer` database
+  + Database is copied from the **Baseline** run
+  + Setting are copied from the **Reference** run settings
 
-      + Can use :command:`-show-added` to show only the **new** messages
++ Results are reviewed via a spreadsheet tool (e.g. Excel)
++ Reviews are imported into the :toolname:`CodePeer` database
 
-      .. container:: latex_environment tiny
+  + Can use :command:`-show-added` to show only the **new** messages
 
-         :command:`codepeer -Pprj -output-msg -show-added | grep "[added]"`
+  .. container:: latex_environment tiny
 
-+ The user **addresses** the findings
-
-  + Modifying the code
-  + Using :ada:`pragma Annotate`
-  + Updating the gold database with an analysis
+     :command:`codepeer -Pprj -output-msg -show-added | grep "[added]"`
 
 ====================================
 :toolname:`CodePeer` Customization
