@@ -562,13 +562,14 @@ Character Types
 
 * Literals
 
-   - Enclosed in single quotes
+   - Enclosed in single quotes eg. :ada:`'A'`
    - Case-sensitive
 
 * **Special-case** of enumerated type
 
    - At least one character enumeral
 
+* System-defined :ada:`Character`
 * Can be user-defined
 
    .. code:: Ada
