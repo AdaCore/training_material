@@ -96,11 +96,11 @@ Why Use :toolname:`CodePeer`?
   + Provides feedback **before** execution and test
   + Provides *as-built documentation* for code reviews
 
-+ Helps identifying and eliminating **vulnerabilities and bugs** early
++ Helps identify and eliminate **vulnerabilities and bugs** early
 + Modular
 
   + Analyze entire project or a single file
-  + Configurable as more or less strict
+  + Configure strictiness level
 
 + Scalable
 
@@ -137,12 +137,12 @@ Why Use :toolname:`CodePeer`?
 + Integration with Jenkins (continuous builder)
 + Integration with :toolname:`SonarQube` (continuous inspection of code quality)
 
--------------------
-Infer Integration
--------------------
+-------------------------------
+:toolname:`infer` Integration
+-------------------------------
 
-+ Infer for Ada on top of main analysis
-+ Based on Facebook's Infer engine
++ :toolname:`infer` for Ada on top of main analysis
++ Based on Facebook's :toolname:`infer` engine
 + Adds **lightweight** checks
 + Disable with ``--no-infer`` switch
 
@@ -180,20 +180,20 @@ Command Line Interface (1/2)
 :command:`codepeer -P <project> [-level <level>]` ...
 
 ``-P <gpr project-file>``
-   NB: All files from the project (including subprojects) will be analyzed.
+   Note: All files from the project (including subprojects) will be analyzed.
 
    Tip: if missing a project file, use the ``--simple-project`` switch
 
 ``-level 0|1|2|3|4|min|max``
    Specify the level of analysis performed:
 
-  + 0, min (default): fast and light checkers
+  + 0/min (default): fast and light checkers
   + 1: fast and per subprogram analysis
   + 2: more accurate/slower, automatic partitioning per set of units
   + 3: more accurate and much slower
   + 4/max: global (exhaustive) analysis, no partitioning
 
-  Warning: Level 4 may exceed memory capacity and take a very long time
+  Warning: Level 4 may exceed memory capacity or take a very long time
 
 ------------------------------
 Command Line Interface (2/2)
@@ -243,7 +243,7 @@ Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 + Get a fresh copy of the :toolname:`GNAT Studio` tutorial directory
 
   + From :filename:`GNATPRO/xxx/share/examples/gnatstudio/tutorial`
-  + Check it include the :filename:`sdc` project
+  + Check that the project file includes the :filename:`sdc` project
   + Copy it as :filename:`sources/codepeer/tutorial/`
 
 + Open this :filename:`sdc` project copy with :toolname:`GNAT Studio`
@@ -380,7 +380,7 @@ Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 --------------------------
 
 + :command:`-level 0` or :command:`-messages min`
-+ Suppresses messages most **likely** to be false positives
++ Suppresses messages **most likely** to be false positives
 + Allows programmers to **focus** initial work on likely problems
 + Can be combined with **any level** of analysis
 + :command:`-messages min` is default for levels 0, 1, and 2
@@ -470,7 +470,7 @@ Run-Time Check Messages
 
         * -
 
-          - NB: Depends on the `'Base` representation
+          - Note: Depends on the `'Base` representation
 
         * - ``array index check``
 
@@ -508,41 +508,12 @@ Run-Time Check Messages
 
           - A subprogram call could violate its calculated precondition
 
--------------------
-Array Index Check
--------------------
-
-+ Index value could be outside the array bounds
-+ Also known as **buffer overflow**.
-+ Will generate a :ada:`Constraint_Error`
-
-..
-   :toolname:`CodePeer` example (4.1.1 - array index check)
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Buffer_Overflow is
-      type Int_Array is array (0 .. 2) of Integer;
-      X, Y : Int_Array;
-   begin
-      for I in X'Range loop
-         X (I) := I + 1;
-      end loop;
-
-      for I in X'Range loop
-         Y (X (I)) := I;  -- Bad when I = 2, since X (I) = 3
-      end loop;
-   end Buffer_Overflow;
-
-| ``high: array index check fails here: requires (X (I)) in 0..2``
-
 -----------------
 Divide By Zero
 -----------------
 
 + The second operand of a divide, :ada:`mod` or :ada:`rem` operation could be zero
-+ Will generate a :ada:`Program_Error`
++ Will generate a :ada:`Constraint_Error`
 
 ..
    :toolname:`CodePeer` example (4.1.1 - divide by zero)
@@ -561,30 +532,6 @@ Divide By Zero
    end Div;
 
 | ``high: divide by zero fails here: requires I /= 0``
-
---------------
-Access Check
---------------
-
-+ Attempting to dereference a reference that could be :ada:`null`
-+ Will generate an :ada:`Access_Error`
-
-..
-   :toolname:`CodePeer` example (4.1.1 - access check)
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Null_Deref is
-      type Int_Access is access Integer;
-      X : Int_Access;
-   begin
-      if X = null then
-         X.all := 1;  -- null dereference
-      end if;
-   end Null_Deref;
-
-| ``high: access check fails here``
 
 -------------
 Range Check
@@ -617,7 +564,7 @@ Overflow Check
 ----------------
 
 + Calculation may overflow the bounds of a numeric type.
-+ Depends on the size of the underlying type (base type)
++ Depends on the size of the underlying (base) type
 + Will generate a :ada:`Constraint_Error`
 
 ..
@@ -639,6 +586,59 @@ Overflow Check
 
 | ``high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
 | ``high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
+
+-------------------
+Array Index Check
+-------------------
+
++ Index value could be outside the array bounds
++ Also known as **buffer overflow**.
++ Will generate a :ada:`Constraint_Error`
+
+..
+   :toolname:`CodePeer` example (4.1.1 - array index check)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Buffer_Overflow is
+      type Int_Array is array (0 .. 2) of Integer;
+      X, Y : Int_Array;
+   begin
+      for I in X'Range loop
+         X (I) := I + 1;
+      end loop;
+
+      for I in X'Range loop
+         Y (X (I)) := I;  -- Bad when I = 2, since X (I) = 3
+      end loop;
+   end Buffer_Overflow;
+
+| ``high: array index check fails here: requires (X (I)) in 0..2``
+
+--------------
+Access Check
+--------------
+
++ Attempting to dereference a reference that could be :ada:`null`
++ Will generate an :ada:`Access_Error`
+
+..
+   :toolname:`CodePeer` example (4.1.1 - access check)
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Null_Deref is
+      type Int_Access is access Integer;
+      X : Int_Access;
+   begin
+      if X = null then
+         X.all := 1;  -- null dereference
+      end if;
+   end Null_Deref;
+
+| ``high: access check fails here``
 
 ----------------
 Aliasing Check
@@ -694,6 +694,24 @@ A tag check operation on a :ada:`tagged` object might fail
       Call (X1); -- not OK, Call requires T2'Class
 
 | ``high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2}``
+
+----------
+Validity
+----------
+
+..
+   :toolname:`CodePeer` example (4.1.3 - validity check)
+
+.. code:: Ada
+
+    procedure Uninit is
+       A : Integer;
+       B : Integer;
+    begin
+       A := B;  --  we are reading B which is uninitialized!
+    end Uninit;
+
+| ``high: validity check: B is uninitialized here``
 
 --------------------
 Discriminant Check
@@ -1102,9 +1120,9 @@ Warning Messages (2/3)
 
           - Subprogram will always terminate in error
 
-------------------------------
-Warning Messages - Infer (3/3)
-------------------------------
+------------------------------------------
+Warning Messages - :toolname:`infer` (3/3)
+------------------------------------------
 
 .. container:: latex_environment
 
@@ -1991,7 +2009,7 @@ Analyze Messages (2/4)
 + **Identify** groups of **false positives**
 + **Exclude** them by categories
 
-    + Using :code:`--infer-messages` for infer (level 0)
+    + Using :code:`--infer-messages` for :toolname:`infer` (level 0)
     + Using :code:`--be-messages` for :toolname:`CodePeer` (level 1+)
 
 + For example, to disable messages related to access check:
