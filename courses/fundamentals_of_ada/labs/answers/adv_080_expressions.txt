@@ -21,14 +21,14 @@ procedure Main is
 
    function Days_In_Month (Month : Positive;
                            Year  : Positive)
-                           return Positive is
+                           return Day_T is
      (case Month is when 4 | 6 | 9 | 11 => 30,
         when 2 => (if Is_Leap_Year (Year) then 29 else 28), when others => 31);
 
    function Is_Valid (Date : Date_T)
                       return Boolean is
      (Date.Year in Year_T and then Date.Month in Month_T
-      and then Date.Day in 1 .. Days_In_Month (Date.Month, Date.Year));
+      and then Date.Day <= Days_In_Month (Date.Month, Date.Year));
 
    function Any_Invalid return Boolean is
      (for some Date of List => not Is_Valid (Date));

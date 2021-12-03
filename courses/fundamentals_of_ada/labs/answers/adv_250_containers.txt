@@ -31,8 +31,8 @@ package body City_Trivia is
 
   procedure Add_Trivia (City        : String;
                        Information : String) is
-    Key    : Unbounded_String := To_Unbounded_String (City);
-    Info   : Unbounded_String := To_Unbounded_String (Information);
+    Key    : constant Unbounded_String := To_Unbounded_String (City);
+    Info   : constant Unbounded_String := To_Unbounded_String (Information);
     Cursor : Maps.Cursor;
     Vector : Strings_Vector_T;
   begin
@@ -51,7 +51,7 @@ package body City_Trivia is
 
   function Get_Trivia (City : String) return Strings_Vector_T is
     Ret_Val : Strings_Vector_T;
-    Key     : Unbounded_String := To_Unbounded_String (City);
+    Key     : constant Unbounded_String := To_Unbounded_String (City);
     Cursor  : Maps.Cursor;
   begin
     Cursor := Map.Find (Key);
@@ -78,7 +78,6 @@ package body City_Trivia is
 end City_Trivia;
 --Database_Body
 --Main
-with Ada.Containers.Generic_Sort;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 with Ada.Text_IO;           use Ada.Text_IO;
 with City_Trivia;

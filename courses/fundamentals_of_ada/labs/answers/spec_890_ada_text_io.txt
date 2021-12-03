@@ -22,7 +22,7 @@ begin
          Enum_Io.Get (E);
          Enum_Io.Put (File, E, Width => 10);
       exception
-         when Data_Err : others =>
+         when others =>
             Put_Line ("Something didn't look right");
       end;
       New_Line (File);

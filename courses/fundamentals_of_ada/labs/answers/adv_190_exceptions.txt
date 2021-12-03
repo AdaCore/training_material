@@ -95,7 +95,6 @@ package body Debug_Pkg is
    end Print_Exceptions;
 end Debug_Pkg;
 --Debug
-with Ada.Characters.Handling; use Ada.Characters.Handling;
 with Ada.Text_IO;             use Ada.Text_IO;
 package body Input is
    function Get_String
@@ -221,7 +220,6 @@ with Debug_Pkg;
 with Input;                 use Input;
 procedure Main is
    Illegal_Operator : exception;
-   type Operator_T is ('+', '-', '*', '/');
    procedure Parser
      (Str      :     String;
       Left     : out Unbounded_String;

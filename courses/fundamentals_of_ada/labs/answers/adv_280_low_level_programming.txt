@@ -80,7 +80,6 @@ end Messages;
 
 --Main_Helpers
 with Ada.Text_IO; use Ada.Text_IO;
-with Crc;
 with Messages;
 procedure Main is
    Message : Messages.Message_T;
@@ -177,7 +176,7 @@ package body Messages is
       return Retval;
    end To_Text;
    function From_Text (Text : Text_T) return String is
-      Last : Integer := Integer (Text.Last);
+      Last : constant Integer := Integer (Text.Last);
    begin
       return Text.Text (1 .. Last);
    end From_Text;
@@ -213,7 +212,7 @@ package body Messages is
    function Convert is new Unchecked_Conversion (Overlay_T, Message_T);
    Const_Filename : constant String := "message.txt";
    procedure Write (Message : Message_T) is
-      Overlay : Overlay_T := Convert (Message);
+      Overlay : constant Overlay_T := Convert (Message);
       File    : Ada.Text_IO.File_Type;
    begin
       Ada.Text_IO.Create (File, Ada.Text_IO.Out_File, Const_Filename);

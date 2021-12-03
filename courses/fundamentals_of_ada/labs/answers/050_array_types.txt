@@ -7,7 +7,7 @@ procedure Main is
    type Unconstrained_Array_T is
       array (Days_Of_Week_T range <>) of Natural;
 
-   Const_Arr : Unconstrained_Array_T := (1, 2, 3, 4, 5, 6, 7);
+   Const_Arr : constant Unconstrained_Array_T := (1, 2, 3, 4, 5, 6, 7);
    Array_Var : Unconstrained_Array_T (Days_Of_Week_T);
 
    type Name_T is array (1 .. 6) of Character;

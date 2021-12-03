@@ -95,7 +95,7 @@ package body Flags is
            (1 .. Map.Length) => Item.Key /= Key);
       if Success then
          declare
-            New_Item : Map_Element_T :=
+            New_Item : constant Map_Element_T :=
               (Key => Key, Description => Description);
          begin
             Map.Length              := Map.Length + 1;
