@@ -1,0 +1,77 @@
+--Datastore
+package Datastore is
+  type String_Ptr_T is access String;
+  type History_T is array (1 .. 10) of String_Ptr_T;
+  type Element_T is record
+    History : History_T;
+  end record;
+  type Reference_T is access all Element_T;
+  type Constant_Reference_T is access constant Element_T;
+
+  subtype Index_T is Integer range 1 .. 100;
+  function Object (Index : Index_T) return Reference_T;
+  function View (Index : Index_T) return Constant_Reference_T;
+
+end Datastore;
+
+package body Datastore is
+  type Array_T is array (Index_T) of aliased Element_T;
+  Global_Data : aliased Array_T;
+
+  function Object (Index : Index_T) return Reference_T is
+  begin
+    return Global_Data (Index)'Access;
+  end Object;
+
+  function View (Index : Index_T) return Constant_Reference_T is
+  begin
+    return Global_Data (Index)'Access;
+  end View;
+end Datastore;
+--Datastore
+--Main
+with Ada.Text_IO; use Ada.Text_IO;
+with Datastore;   use Datastore;
+procedure Main is
+  function Get (Prompt : String) return String is
+    S : String(1..100);
+    L : Integer;
+  begin
+    Put ("   " & Prompt & "> ");
+    Get_Line (S, L);
+    return S(1..L);
+  end Get;
+
+  procedure Add (History : in out Datastore.History_T;
+                 Text    : in     String) is
+  begin
+    for Index in History'Range loop
+      if History(Index) = null then
+        History(Index) := new String'(Text);
+        exit;
+      end if;
+    end loop;
+  end Add;
+
+  Index  : Integer;
+  Object : Datastore.Constant_Reference_T;
+
+begin
+  loop
+    Index := Integer'Value (Get ("Enter index"));
+    exit when Index not in Datastore.Index_T'Range;
+    Add (Datastore.Object (Index).History, Get ("Text"));
+  end loop;
+
+  for I in Index_T'Range loop
+    Object := Datastore.View (I);
+    if Object.History (1) /= null then
+      Put_Line (Integer'Image (I) & ">");
+      for Index in Object.History'Range loop
+        exit when Object.History(Index) = null;
+        Put_Line ("  " & Object.History(Index).all);
+      end loop;
+    end if;
+  end loop;
+end Main;
+--Main
