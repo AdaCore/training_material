@@ -8,24 +8,28 @@ procedure Main is
    One_Minute_In_Seconds : constant := 60.0;
    One_Hour_In_Seconds   : constant := 60.0 * One_Minute_In_Seconds;
 
-   type Distance_T is (Feet, Meters, Miles) with Convention => C;
+   type Distance_T is (Feet, Meters, Miles);
+   pragma Convention (C, Distance_T);
+
    type Data_T is record
       Distance      : Interfaces.C.C_float;
       Distance_Type : Distance_T;
       Seconds       : Interfaces.C.C_float;
-   end record with Convention => C;
-   function C_Miles_Per_Hour (Data : Data_T) return Interfaces.C.C_float
-      with Import, Convention => C, External_Name => "miles_per_hour";
+   end record;
+   pragma Convention (C, Data_T);
 
-   Object_Feet : constant Data_T :=
+   function C_Miles_Per_Hour (Data : Data_T) return Interfaces.C.C_float;
+   pragma Import (C, C_Miles_Per_Hour, "miles_per_hour");
+
+   Object_Feet : Data_T :=
      (Distance => 6_000.0,
       Distance_Type => Feet,
       Seconds  => One_Minute_In_Seconds);
-   Object_Meters : constant Data_T :=
+   Object_Meters : Data_T :=
      (Distance => 3_000.0,
       Distance_Type => Meters,
       Seconds  => One_Hour_In_Seconds);
-   Object_Miles : constant Data_T :=
+   Object_Miles : Data_T :=
      (Distance => 1.0,
       Distance_Type =>
       Miles, Seconds => 1.0);

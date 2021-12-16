@@ -83,6 +83,13 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Messages;
 procedure Main is
    Message : Messages.Message_T;
+   function Get_Line return String is
+      S : String (1 .. 100);
+      L : Integer;
+   begin
+      Get_Line (S, L);
+      return S (1 .. L);
+   end Get_Line;
    function Command return Messages.Command_T is
    begin
       loop
@@ -230,10 +237,12 @@ package body Messages is
       Valid := False;
       Ada.Text_IO.Open (File, Ada.Text_IO.In_File, Const_Filename);
       declare
-         Str : constant String := Ada.Text_IO.Get_Line (File);
+         Str : String (1 .. 1_000);
+         L   : Integer;
       begin
+         Ada.Text_IO.Get_Line (File, Str, L);
          Ada.Text_IO.Close (File);
-         for I in Str'range loop
+         for I in 1 .. L loop
             Overlay (I) := Char (Str (I));
          end loop;
          Message := Convert (Overlay);

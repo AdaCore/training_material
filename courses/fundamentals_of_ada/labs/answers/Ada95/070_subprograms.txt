@@ -3,6 +3,14 @@ procedure Main is
 
    type List_T is array (Integer range <>) of Integer;
 
+   function Get_Line return String is
+      S : String(1..10);
+      L : Integer;
+   begin
+      Get_Line (S, L);
+      return S (1..L);
+   end Get_Line;
+
    --Search
    function Is_Found (List : List_T;
                       Item : Integer)

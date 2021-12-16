@@ -16,9 +16,13 @@ end Vstring;
 
 package body Vstring is
    function To_Vstring (Str : String) return Vstring_T is
-      ((Length => Str'Length, Text => Str));
+   begin
+      return (Length => Str'Length, Text => Str);
+   end To_Vstring;
    function To_String (Vstr : Vstring_T) return String is
-      (Vstr.Text);
+   begin
+      return Vstr.Text;
+   end To_String;
    function "&" (L, R : Vstring_T) return Vstring_T is
       Ret_Val : constant String := L.Text & R.Text;
    begin
@@ -72,9 +76,12 @@ end Employee;
 with Ada.Text_IO; use Ada.Text_IO;
 package body Employee is
    function Read (Prompt : String) return String is
+      S : String(1..100);
+      L : Integer;
    begin
       Put (Prompt & " > ");
-      return Get_Line;
+      Get_Line (S, L);
+      return S(1..L);
    end Read;
 
    function Get_Staff return Employee_T is
@@ -117,16 +124,18 @@ procedure Main is
    procedure Print (Member : Employee.Employee_T) is
       First_Line : constant Vstring.Vstring_T :=
         Member.First_Name & " " & Member.Last_Name & " " &
-        Member.Hourly_Rate'Image;
+        Employee.Pay_T'Image (Member.Hourly_Rate);
    begin
       Put_Line (Vstring.To_String (First_Line));
       case Member.Category is
          when Employee.Supervisor =>
             Put_Line ("   Project: " & Vstring.To_String (Member.Project));
          when Employee.Manager =>
-            Put_Line ("   Overseeing " & Member.Staff_Count'Image & " in " &
-                      Vstring.To_String (Member.Department));
-         when others => null;
+            Put_Line
+              ("   Overseeing " & Natural'Image (Member.Staff_Count) & " in " &
+               Vstring.To_String (Member.Department));
+         when others =>
+            null;
       end case;
    end Print;
 
@@ -139,8 +148,10 @@ begin
       Put_Line ("M => Manager");
       Put ("E/S/M (any other to stop): ");
       declare
-         Choice : constant String := Get_Line;
+         Choice : String(1..100);
+         L      : Integer;
       begin
+         Get_Line (Choice, L);
          case Choice (1) is
             when 'E' | 'e' =>
                Count        := Count + 1;
@@ -157,8 +168,9 @@ begin
       end;
    end loop;
 
-   for Item of List (1 .. Count) loop
-      Print (Item);
+   for I in 1 .. Count loop
+      Print (List (I));
    end loop;
+
 end Main;
 --Main

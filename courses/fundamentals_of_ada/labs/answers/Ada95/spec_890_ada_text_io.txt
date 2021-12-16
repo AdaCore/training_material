@@ -7,6 +7,15 @@ procedure Main is
    E    : Enumerated_T;
    C    : Count_T;
    File : File_Type;
+
+   function Get_Line (File : File_Type) return String is
+      S : String (1 .. 100);
+      L : Integer;
+   begin
+      Get_Line (File, S, L);
+      return S (1 .. L);
+   end Get_Line;
+
 begin
 
    Put ("Count: ");

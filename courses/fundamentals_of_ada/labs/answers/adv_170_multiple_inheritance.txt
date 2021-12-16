@@ -84,9 +84,9 @@ package body Line_Draw is
    end Fill_Matrix;
 
    procedure Print (Object : Object_T'Class) is
-      Lines        : Base_Types.Lines_T := Object.Convert;
-      Max_X, Max_Y : Integer            := Integer'First;
-      Min_X, Min_Y : Integer            := Integer'Last;
+      Lines        : constant Base_Types.Lines_T := Object.Convert;
+      Max_X, Max_Y : Integer                     := Integer'First;
+      Min_X, Min_Y : Integer                     := Integer'Last;
    begin
       for Line of Lines loop
          for Coord of Line loop
