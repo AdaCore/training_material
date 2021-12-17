@@ -379,8 +379,8 @@ Accessing the GNATcheck RM
   + Located under your GNAT Pro installation directory tree
   + Multiple file formats provided
   + In subdirs corresponding to the file format
-  + File name is gnatcheck_rm .[pdf | html | txt | info]
-  + Eg: <installation>/share/doc/gnat/pdf/gnatcheck_rm.pdf
+  + File name is :filename:`gnatcheck_rm .[pdf | html | txt | info]`
+  + Eg: :filename:`<installation>/share/doc/gnat/pdf/gnatcheck_rm.pdf`
 
 -----------------------------------
 Accessing GNATcheck RM Within GPS
@@ -468,6 +468,7 @@ What Predefined Rules Are Available?
 -----------------------------------
 "Predefined Rules" Categorization
 -----------------------------------
+
 + Style-Related Rules
 
   + Object Orientation
