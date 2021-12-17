@@ -1,6 +1,6 @@
-***********
-GNATcheck
-***********
+***********************
+:toolname:`GNATcheck`
+***********************
 
 ..
     Coding language
@@ -31,16 +31,17 @@ GNATcheck
 Introduction
 ==============
 
------------------
-GNATcheck Is...
------------------
+------------------------------
+:toolname:`GNATcheck` Is...
+------------------------------
+
 + An **automated** coding standards checker
 + Capable of expressing a variety of rules
 
   + GNAT compiler **warnings and style** checks
   + Language-defined and GNAT-defined **restrictions**
   + Complexity **metrics**
-  + **Specific** GNATcheck-defined rules
+  + **Specific** :toolname:`GNATcheck` rules
 
 + Qualified to DO-178 in several programs
 + Integrated in :toolname:`GNAT Studio`
@@ -69,9 +70,9 @@ Conformance To Standards Requirement - DO-178
 
    This analysis also ensures that **deviations to the standards are justified**.
 
----------------------------
-GNATcheck Is An ASIS Tool
----------------------------
+---------------------------------------
+:toolname:`GNATcheck` Is An ASIS Tool
+---------------------------------------
 
 + Sources must be **compilable**
 
@@ -90,7 +91,7 @@ Command Line Invocation
 
 .. code::
 
-   gnatcheck [options]
+    gnatcheck [options]
              <filename> | -files=<filenames_file>
              -rules
                 rule_switches | -from=file
@@ -184,9 +185,9 @@ Convenient due to typically large number of rules
       end Check;
    end Gnatcheck_Example;
 
-------------------------------------------
-GNATcheck Switches In Project Properties
-------------------------------------------
+------------------------------------------------------
+:toolname:`GNATcheck` Switches In Project Properties
+------------------------------------------------------
 
 * Direct manual entry is supported
 * Graphical entry through :toolname:`GNAT Studio`
@@ -275,7 +276,7 @@ Rule Exemptions Specified In Source Code
 
         pragma Annotate (identifier [,identifier {, arg}]);
 
-+ GNATcheck-specific usage
++ :toolname:`GNATcheck` specific usage
 
      .. code:: Ada
 
@@ -318,9 +319,9 @@ Sample Report File Produced
 
 ::
 
-   GNATcheck report
+   gnatcheck report
    date              	: 2014-02-24 11:45
-   gnatcheck version	: gnatcheck Pro 7.3.0w (20140219-47)
+   gnatcheck version	: GNATcheck Pro 7.3.0w (20140219-47)
    command line      	: C:\GNATPRO\7.3.0w\bin\gnat.exe check -P gnatcheck_example.gpr
    runtime              : <default>
    coding standard      : coding_standard
@@ -358,39 +359,39 @@ Installation Verification & Basic Use Lab
 
 + Open a command line prompt window
 + Go to the :filename:`gnatcheck/basic` folder in the folders provided
-+ Invoke gnatcheck using the project file supplied
++ Invoke :toolname:`GNATcheck` using the project file supplied
 
    :command:`gnatcheck -P gnatcheck_example.gpr -XPLATFORM=native`
 
 + Verify results
 + Leave the command prompt window open
 
-----------------------------
-Accessing the GNATcheck RM
-----------------------------
+----------------------------------------
+Accessing the :toolname:`GNATcheck` RM
+----------------------------------------
 
-+ From within GPS
++ From within :toolname:`GNAT Studio`
 
   + In HTML
   + Via Help :math:`\rightarrow` GNAT menu
 
-+ Outside GPS, on the file system
++ Outside :toolname:`GNAT Studio`, on the file system
 
-  + Located under your GNAT Pro installation directory tree
+  + Located under your :toolname:`GNAT Pro` installation directory tree
   + Multiple file formats provided
   + In subdirs corresponding to the file format
   + File name is :filename:`gnatcheck_rm .[pdf | html | txt | info]`
   + Eg: :filename:`<installation>/share/doc/gnat/pdf/gnatcheck_rm.pdf`
 
------------------------------------
-Accessing GNATcheck RM Within GPS
------------------------------------
+-------------------------------------------------------------------
+Accessing :toolname:`GNATcheck` RM Within :toolname:`GNAT Studio`
+-------------------------------------------------------------------
 
 .. image:: images/gnatcheck/rm_cascade.png
 
-----------------------------------
-GNATcheck RM Sections In Browser
-----------------------------------
+----------------------------------------------
+:toolname:`GNATcheck` RM Sections In Browser
+----------------------------------------------
 
 .. image:: images/gnatcheck/rm_browser.png
 
@@ -400,24 +401,25 @@ GNATcheck RM Sections In Browser
 Lab 2
 =======
 
------------------------------------
-Accessing GNATcheck RM in GPS Lab
------------------------------------
+-------------------------------------------------------------------
+Accessing :toolname:`GNATcheck` RM in :toolname:`GNAT Studio` Lab
+-------------------------------------------------------------------
+
 + Use the command prompt window already open
 
   + At the :filename:`basic` lab directory
 
-+ Open GPS by typing :command:`gps` on the command line
++ Open :toolname:`GNAT Studio` by typing :command:`gps` on the command line
 
-  + GPS will find the one project file there and use it
+  + :toolname:`GNAT Studio` will find the one project file there and use it
 
-+ Open the GNATcheck Reference Manual
++ Open the :toolname:`GNATcheck` Reference Manual
 + Find the *Predefined Rules* chapter
-+ Leave both GPS and the browser showing the GNATcheck Reference Manual open
++ Leave both :toolname:`GNAT Studio` and the browser showing the :toolname:`GNATcheck` Reference Manual open
 
-------------------------------------------
-GPS: Check All Sources In Single Project
-------------------------------------------
+--------------------------------------------------------------
+:toolname:`GNAT Studio`: Check All Sources In Single Project
+--------------------------------------------------------------
 
 .. image:: images/gnatcheck/perform_check_cascade.png
 
@@ -434,7 +436,7 @@ Results
 + TBD: Click to focus on source line
 
 ---------------------------------
-GPS Source File Contextual Menu
+:toolname:`GNAT Studio` Source File Contextual Menu
 ---------------------------------
 
 .. image:: images/gnatcheck/perform_right_click.png
@@ -455,13 +457,13 @@ What Predefined Rules Are Available?
   + Style checks
   + Additional identifiers for pragma Restrictions
 
-+ Defined by GNATcheck itself
++ Defined by :toolname:`GNATcheck` itself
 
   + Based on *Guide for the Use of the Ada Programming Language in High Integrity Systems"  (ISO/IEC TR 15942)
   + Based on customers' certification requirements
   + Others...
 
-+ All can be listed by GNATcheck with :command:`-h` switch
++ All can be listed by :toolname:`GNATcheck` with :command:`-h` switch
 
   + Lists rule identifiers with very brief descriptions
 
@@ -497,7 +499,7 @@ Rules for Compiler Style Checks
 
       :command:`-gnaty`
 
-  + As GNATcheck rule
+  + As :toolname:`GNATcheck` rule
 
       + Enable: ``RStyle_Checks:y``
       + Disable: ``+RStyle_Checks:yN``
@@ -516,7 +518,7 @@ Rules for Compiler Warnings
 
       :command:`-gnatwa`
 
-  + As GNATcheck rule
+  + As :toolname:`GNATcheck` rule
 
       + Enable: ``RWarnings:a``
       + Disable: ``+RWarnings:`` - *must use individual disabler characters*
@@ -539,7 +541,7 @@ Rules for Language Restriction Checks
 
      :ada:`pragma Restrictions (No_Dispatch);`
 
-  + As GNATcheck rule
+  + As :toolname:`GNATcheck` rule
 
      ``+RRestrictions:No_Dispatch``
 
@@ -616,6 +618,7 @@ The "Edit Rules File" Dialog Boxes
 ----------------------
 Style Rules: Tasking
 ----------------------
+
 + Multiple_Entries_In_Protected_Definitions
 
   + Flags a protected definition with more than one entry
@@ -888,7 +891,7 @@ Feature Usage Rule Quiz
 
    + *Note that any assignment to a mode* **out** *formal satisfies the check for that formal*
 
-      + *This error is not detected by GNATcheck, maybe will be by the compiler, definitely will be by CodePeer*
+      + *This error is not detected by :toolname:`GNATcheck`, maybe will be by the compiler, definitely will be by CodePeer*
 
 ----------------------
 Combining Rule Forms
@@ -898,7 +901,7 @@ Combining Rule Forms
 
   + Compiler-defined rules (switches)
   + Ada pragma Restrictions
-  + GNATcheck-defined rules
+  + :toolname:`GNATcheck` defined rules
 
 + Any combination of the three forms is allowed
 
@@ -923,7 +926,7 @@ Sample Combination: Boolean Operators
 
   + Flags operators :ada:`and`, :ada:`or`, and :ada:`xor` for boolean types
 
-+ GNATcheck rule ``+RNon_Short_Circuit_Operators``
++ :toolname:`GNATcheck` rule ``+RNon_Short_Circuit_Operators``
 
   + Flags all calls to predefined :ada:`and` and  :ada:`or` for booleans
   + Not flagged for use on modular types or boolean array types
@@ -943,7 +946,7 @@ Sample Combination : Preventing Recursion
   + Flags locally detected recursion
   + Program is erroneous if it uses recursion
 
-+ GNATcheck rule ``+RRecursive_Subprograms``
++ :toolname:`GNATcheck` rule ``+RRecursive_Subprograms``
 
   + Flags all recursive chains of direct calls
   + Indirect calls via pointers are not detected
@@ -967,9 +970,9 @@ Getting Started
   + Many of them conflict with others
   + Define the subset that matches your (existing) code
 
--------------------
-GNATcheck Summary
--------------------
+-------------------------------
+:toolname:`GNATcheck` Summary
+-------------------------------
 
 + An automated coding standards verifier/checker
 + Capable of expressing a variety of rules
