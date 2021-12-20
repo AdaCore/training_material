@@ -50,7 +50,7 @@ Introduction
 Required by DO-178
 --------------------
 
-   .. image:: images/gnatcheck/do178_table_a5.jpg
+   .. image:: gnatcheck/do178_table_a5.jpg
 
 -----------------------------------------------
 Conformance To Standards Requirement - DO-178
@@ -192,7 +192,7 @@ Convenient due to typically large number of rules
 * Direct manual entry is supported
 * Graphical entry through :toolname:`GNAT Studio`
 
-.. image:: images/gnatcheck/properties_dialog.png
+.. image:: gnatcheck/properties_dialog.png
 
 -------------------
 Basic Rule Syntax
@@ -387,13 +387,13 @@ Accessing the :toolname:`GNATcheck` RM
 Accessing :toolname:`GNATcheck` RM Within :toolname:`GNAT Studio`
 -------------------------------------------------------------------
 
-.. image:: images/gnatcheck/rm_cascade.png
+.. image:: gnatcheck/rm_cascade.png
 
 ----------------------------------------------
 :toolname:`GNATcheck` RM Sections In Browser
 ----------------------------------------------
 
-.. image:: images/gnatcheck/rm_browser.png
+.. image:: gnatcheck/rm_browser.png
 
 + One big section, thus searchable
 
@@ -421,7 +421,7 @@ Accessing :toolname:`GNATcheck` RM in :toolname:`GNAT Studio` Lab
 :toolname:`GNAT Studio`: Check All Sources In Single Project
 --------------------------------------------------------------
 
-.. image:: images/gnatcheck/perform_check_cascade.png
+.. image:: gnatcheck/perform_check_cascade.png
 
 + TBD: Right-click to display contextual menu
 + TBD: Click to invoke
@@ -430,7 +430,7 @@ Accessing :toolname:`GNATcheck` RM in :toolname:`GNAT Studio` Lab
 Results
 ---------
 
-.. image:: images/gnatcheck/check_results.png
+.. image:: gnatcheck/check_results.png
 
 + TBD: File for 1 st entry
 + TBD: Click to focus on source line
@@ -439,7 +439,7 @@ Results
 :toolname:`GNAT Studio` Source File Contextual Menu
 ---------------------------------
 
-.. image:: images/gnatcheck/perform_right_click.png
+.. image:: gnatcheck/perform_right_click.png
 
 + TBD: Right-click to display contextual menu
 + TBD: Click to invoke
@@ -585,7 +585,7 @@ Rules File
 Graphically Editing Rules Files
 ---------------------------------
 
-.. image:: images/gnatcheck/edit_rules_cascade.png
+.. image:: gnatcheck/edit_rules_cascade.png
 
 + Same as via project contextual menu
 + Invokes dialog
@@ -594,7 +594,7 @@ Graphically Editing Rules Files
 Rules File Editor Dialog
 --------------------------
 
-.. image:: images/gnatcheck/rules_editor.png
+.. image:: gnatcheck/rules_editor.png
 
 + TBD: Editable; empty if no file specified already
 + TBD: Buttons invoking sub-dialogs
@@ -604,7 +604,7 @@ Rules File Editor Dialog
 When Rules Files Contain Comments
 -----------------------------------
 
-.. image:: images/gnatcheck/rules_comment_warning.png
+.. image:: gnatcheck/rules_comment_warning.png
 
 + Even if you don't change anything, pressing Save removes the comments
 + TBD: verify and update screenshot if needed
@@ -613,7 +613,7 @@ When Rules Files Contain Comments
 The "Edit Rules File" Dialog Boxes
 ------------------------------------
 
-.. image:: images/gnatcheck/rules_example_dialog.png
+.. image:: gnatcheck/rules_example_dialog.png
 
 ----------------------
 Style Rules: Tasking
@@ -669,7 +669,7 @@ Tasking Style Rule Lab
 Tasking Style Rule Lab
 ------------------------
 
-.. image:: images/gnatcheck/tasking_rules_dialog.png
+.. image:: gnatcheck/tasking_rules_dialog.png
 
 --------------------------------------------
 Enforcing Abstraction & Information Hiding
