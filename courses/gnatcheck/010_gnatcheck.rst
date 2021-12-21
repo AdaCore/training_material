@@ -85,53 +85,163 @@ Conformance To Standards Requirement - DO-178
   + Those units named in :ada:`with`-clauses, transitively
   + Whether or not they are to be analyzed themselves
 
+=============
+Basic Usage
+=============
+
 -------------------------
 Command Line Invocation
 -------------------------
 
-.. code::
+.. container:: latex_environment tiny
 
-    gnatcheck [options]
-             <filename> | -files=<filenames_file>
-             -rules
-                rule_switches | -from=file
+.. container:: latex_environment scriptsize
 
-* :code:`<filename>`
+  .. code::
 
-   - Source file names; wildcards allowed
-   - Mutually exclusive with :code:`-files=<filenames_file>`
+    gnatcheck [options] {filename} {-files=filename} [-cargs gcc_switches] -rules rule_switches
 
-      + :code:`filenames_file` is a file containing the source files names
+.. list-table::
+   :header-rows: 1
 
-* :code:`-rules`
+   * - Argument
 
-   - Specific rules switches
-   - Or name of a text file containing them: :code:`-from=<filename>`
+     - Description
 
-.. container:: latex_environment footnotesize
+   * - {filename}
 
-   :command:`gnatcheck main.adb  -rules +RPositional_Parameters`
-   :command:`gnatcheck -P foo.gpr`
+     - File to analyze (wildcards allowed)
+
+   * - {files=filename}
+
+     - :filename:`filename` specifies text file containing list of files to analyze
+
+   * - -rules rule_switches
+
+     - Rules to apply for analysis
+
+Where ``rule_switches`` can be any combination of the following:
+
+  .. list-table::
+     :header-rows: 1
+
+     * - Switch
+
+       - Explanation
+
+     * - -from=filename
+
+       - read rule options from :filename:`filename`
+
+     * - +R<rule_id>[:param]
+
+       - turn ON a given rule [with given parameter]
+
+     * - -R<rule_id>
+
+       - turn OFF a given rule
+
+     * - -R<rule_id>:param
+
+       - turn OFF some of the checks for a given  rule,
+
+     * - 
+
+       - depending on the specified parameter
 
 ----------------------
-Some Useful Switches
+Some Useful Options
 ----------------------
-* :code:`--help`, :code:`-h`
 
-  + List rule identifiers with very brief descriptions
+.. list-table::
+   :header-rows: 1
 
-* :code:`--show-rule`
+   * - Option
 
-  + Append rule names to messages
+     - Description
 
-* :code:`-Xname=value`
+   * - --help
 
-  + Specify an external reference for argument in project file
+     - Usage information
 
-* :code:`-o filename`
+   * - -h
 
-  + Specify the name of the **report** file
-  + Default is :code:`<toolprefix>-gnatcheck.out`
+     - List currently implemented rules
+
+   * - --show-rule
+
+     - Append rule names to messages
+
+   * - -o filename
+
+     - Specify the name of the **report** file
+
+   * -
+
+     - Default is :filename:`[toolprefix-]gnatcheck.out`
+
+=================
+Basic Usage Lab
+=================
+
+---------------------
+Verify Installation
+---------------------
+
+* Copy :filename:`labs` folder locally
+
+  * :filename:`source` folder - Ada code
+  * :filename:`coding_standards.rules`  - :toolname:`GNATcheck` rules to apply
+
+* Open a command prompt in the :filename:`labs` folder and run the command:
+
+.. container:: latex_environment scriptsize
+
+    ``gnatcheck --show-rule source\*.ad? -rules -from=coding_standard.rules``
+
+.. container:: latex_environment scriptsize
+
+  .. list-table::
+
+    * - --show-rule
+
+      - Append rule name to message
+
+    * - source\*.ad?
+
+      - Examine all files in :filename:`source` folder
+
+    * - -rules -from=coding_standard.rules
+
+      - Apply rules from file :filename:`coding_standard.rules`
+
+-------------------
+Results (Partial)
+-------------------
+
+.. container:: latex_environment tiny
+
+  .. code::
+
+    compiler_checks_7.adb:4:04: warning: "Global1" is not modified, could be declared constant [Warnings:k]
+    compiler_checks_7.adb:6:04: warning: violation of restriction "No_Tasking" [Restrictions]
+    compiler_checks_7.adb:12:07: warning: variable "T" is assigned but never read [Warnings:m]
+    compiler_checks_7.adb:20:04: (style) "end Proc" required [Style_Checks]
+    feature_usage_11_2.adb:3:04: branching in inlined subprogram (line 5) [Complex_Inlined_Subprograms]
+    feature_usage_11_2.adb:6:10: block statement [Blocks]
+    feature_usage_11_2.ads:4:44: declaration of abstract type [Abstract_Type_Declarations]
+    feature_usage_11_2.ads:5:04: declaration of controlled type [Controlled_Type_Declarations]
+    feature_usage_11_2.ads:7:34: anonymous subtype [Anonymous_Subtypes]
+    feature_usage_11_2.ads:8:35: aggregate is not a part of a qualified expression [Non_Qualified_Aggregates]
+    object_orientation_11_1_2.ads:28:07: derivation tree is too deep (6) [Deep_Inheritance_Hierarchies]
+    program_practice_11_1_5.adb:8:20: use of predefined OR for boolean type [Non_Short_Circuit_Operators]
+    program_practice_11_1_5.adb:20:15: OTHERS choice in case statement [OTHERS_In_CASE_Statements]
+    program_practice_11_1_5.adb:26:12: OTHERS choice in exception handler [OTHERS_In_Exception_Handlers]
+    program_practice_11_1_5.ads:4:22: anonymous array type [Anonymous_Arrays]
+    program_practice_11_1_5.ads:5:23: OTHERS choice in aggregate [OTHERS_In_Aggregates]
+    program_practice_11_1_6.ads:14:04: object does not have casing specified (mixed) [Identifier_Casing:Others]
+    program_structure_11_1_4.ads:23:16: deeply nested generic (4) [Deeply_Nested_Generics]
+    spark_ada_11_4.ads:5:27: comparison of Boolean values [Boolean_Relational_Operators]
 
 ---------------------
 Using Project Files
