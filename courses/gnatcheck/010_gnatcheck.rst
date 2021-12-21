@@ -243,6 +243,10 @@ Results (Partial)
     program_structure_11_1_4.ads:23:16: deeply nested generic (4) [Deeply_Nested_Generics]
     spark_ada_11_4.ads:5:27: comparison of Boolean values [Boolean_Relational_Operators]
 
+===============================
+GNAT Studio and Project Files
+===============================
+
 ---------------------
 Using Project Files
 ---------------------
@@ -254,20 +258,48 @@ Using Project Files
   + Root project and dependencies
 
 + Usable with **both** command line and IDEs
-+ File specified via switch :code:`-P<project.gpr>` as usual
-+ In :toolname:`GPRbuild` uses a tool-specific :ada:`package Check`
++ Project file specified via switch :code:`-P<project.gpr>` as usual
++ :toolname:`GNATcheck` options specified in project file via :ada:`package Check`
 
-------------------------------
-Specifying Rules In GPR File
-------------------------------
+------------------------
+Rules File In GPR File
+------------------------
+
+* Direct manual entry is supported
+* Convenient due to typically large number of rules
+
+  * Also allows easier sharing of a common set of rules
+
+* Graphical entry through :toolname:`GNAT Studio`
+
+.. image:: gnatcheck/properties_dialog.png
+
+------------------------------------------------
+:toolname:`GNATcheck` Switches In Project File
+------------------------------------------------
 
 .. code:: Ada
 
    project Gnatcheck_Example is
-      ...
       package Check is
          for Default_Switches ("Ada") use
             ("-rules", -- DON'T FORGET THIS!
+             "-from=coding_standard");
+      end Check;
+   end Gnatcheck_Example;
+
+------------------------------
+Individual Rules In GPR File
+------------------------------
+
+* Must be added by hand
+
+.. code:: Ada
+
+   project Gnatcheck_Example is
+      package Check is
+         for Default_Switches ("Ada") use
+            ("-rules",
              "+RAbstract_Type_Declarations",
              "+RAnonymous_Arrays",
              "+RLocal_Packages",
@@ -277,32 +309,44 @@ Specifying Rules In GPR File
       end Check;
    end Gnatcheck_Example;
 
-----------------------------
-Rules File Use In GPR File
-----------------------------
-
-Convenient due to typically large number of rules
+* Can combine rules file and individual rules
 
 .. code:: Ada
 
    project Gnatcheck_Example is
-      for Source_Dirs use (...);
       package Check is
-         for Default_Switches ("Ada") use (
-               "-rules",
-                --  No constraint on file name
-                "-from=coding_standard");
+         for Default_Switches ("Ada") use
+            ("-rules",
+             "+RFloat_Equality_Checks",
+             "-from=coding_standard");
       end Check;
    end Gnatcheck_Example;
 
-------------------------------------------------------
-:toolname:`GNATcheck` Switches In Project Properties
-------------------------------------------------------
+===================================
+GNAT Studio and Project Files Lab
+===================================
 
-* Direct manual entry is supported
-* Graphical entry through :toolname:`GNAT Studio`
+-------------------------
+Analyze via GNAT Studio
+-------------------------
 
-.. image:: gnatcheck/properties_dialog.png
+* Start :toolname:`GNAT Studio`
+
+* Open project :filename:`default.gpr` in :filename:`labs` folder
+
+* Select :menu:`Edit` |rightarrow| :menu:`Project Properties...` |rightarrow| :menu:`GNATcheck` (under switches)
+
+* Browse to and select :filename:`coding_standard.rules`
+
+* :menu:`Save` options
+
+* :menu:`Analyze` |rightarrow| :menu:`Coding Standard` |rightarrow| :menu:`Check Root Project`
+
+---------
+Results
+---------
+
+.. image:: gnatcheck/results_in_gnatstudio.png
 
 -------------------
 Basic Rule Syntax
