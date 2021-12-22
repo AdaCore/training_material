@@ -348,32 +348,31 @@ Results
 
 .. image:: gnatcheck/results_in_gnatstudio.png
 
+==================
+Specifying Rules
+==================
+
 -------------------
 Basic Rule Syntax
 -------------------
 
-* :code:`+R <rule name>`
+* ``+R<rule name>``
 
    - Activates specified rule
 
-* :code:`+R <rule name : parameter>`
+* ``+R<rule name>:<parameter>``
 
    - Activates specified rule, with a value for the parameter
 
-* :code:`-R <rule name>`
+* ``-R<rule name>``
 
    - Deactivates previously activated rule
 
-* :code:`-R <rule name : parameter>`
+* ``-R<rule name>:<parameter>``
 
    - Deactivates rule previously activated with the parameter value
 
-* :code:`-from=rule_option_filename`
-
-   - Textually includes rules from specified file name
-   - Files can reference **other files**
-
-* Rule names are case insensitive
+**Rule names are case insensitive**
 
 -------------------
 Sample Rules File
@@ -382,53 +381,58 @@ Sample Rules File
 .. include:: examples/standard_file.rules
    :code:
 
--------------------------------
-Sample Invocation Results (1)
--------------------------------
+------------------------------------
+Code and Results Using Sample File
+------------------------------------
 
-.. container:: latex_environment footnotesize
+.. container:: columns
 
-   .. code:: Ada
+  .. container:: column
 
-      package Pack is
-         type T is abstract tagged private; -- declaration of abstract type
-         procedure P (X : T) is abstract;
-         package Inner is -- declaration of local package
-            type My_Float is digits 8;
-            function Is_Equal (L, R : My_Float) return Boolean;
-         end Inner;
-      private
-         type T is
-           abstract tagged null record; -- declaration of abstract type
-      end; -- (style) "end Pack" required
+    .. container:: latex_environment tiny
 
--------------------------------
-Sample Invocation Results (2)
--------------------------------
+      .. code:: Ada
+         :number-lines: 1
 
-.. code:: Ada
+         package Example is
+           type T is abstract tagged private;
+           procedure P (X : T) is abstract;
+           package Inner is
+              type My_Float is digits 8;
+              function Is_Equal
+                (L, R : My_Float)
+                 return Boolean is (L = R);
+           end Inner;
+         private
+           type T is abstract tagged null record;
+         end;
 
-   package body Pack is
-      package body Inner is
-         function Is_Equal (L, R : My_Float) return Boolean is
-         begin
-      	     return L = R; -- use of equality for float values
-         end; -- (style) "end Is_Equal" required
-      end Inner;
-   end Pack;
+  .. container:: column
 
-------------------------------------------
-Rule Exemptions Specified In Source Code
-------------------------------------------
+    .. container:: latex_environment tiny
+
+      .. code::
+
+        -- GNATcheck output
+        example.ads:2:07: declaration of abstract type
+
+        example.ads:4:07: declaration of local package
+
+
+
+        example.ads:8:35: use of equality operation for float values
+
+
+        example.ads:11:33: declaration of abstract type
+
+------------------------------------
+Rule Exemptions Via In Source Code
+------------------------------------
 
 + Uses GNAT-specific :ada:`pragma Annotate`
 
   + Used by source-oriented tools **external** to compiler
-  + Syntax checked by compiler but no compilation effect
-
-     .. code:: Ada
-
-        pragma Annotate (identifier [,identifier {, arg}]);
+  + :ada:`Pragma` syntax checked by compiler but no compilation effect
 
 + :toolname:`GNATcheck` specific usage
 
@@ -439,70 +443,241 @@ Rule Exemptions Specified In Source Code
                          rule_name,
                          [justification]);
 
-     * :code:`exemption_control ::= Exempt_On | Exempt_Off`
-     * :code:`rule_name ::= <string_literal>`
-     * :code:`justification ::= <string_literal>`
+  .. list-table::
+     :header-rows: 1
+
+     * - Parameter
+
+       - Value
+
+     * - exemption_control
+
+       - Exempt_On | Exempt_Off
+
+     * - rule_name
+
+       - <string_literal>
+
+     * - justification
+
+       - <string_literal>
 
 * Usage errors are detected by :toolname:`GNATcheck`
 
-------------------------
-Example Rule Exemption
-------------------------
+---------------------------
+Adding Exemptions to Code
+---------------------------
 
 .. code:: Ada
+   :number-lines: 1
 
-   procedure Main is
-      -- Included in reports
-      pragma Annotate (GNATcheck, Exempt_On,
-                       "Anonymous_Arrays", "this one is fine");
-      -- Ignored
-      Anon_Array : array (1 .. 10) of Float;
-      pragma Annotate (GNATcheck, Exempt_Off, "Anonymous_Arrays");
-
-      -- Message: anonymous array type
-      Another_Anon_Array : array (1 .. 10) of Integer;
-      ...
-
-*Exemption sections can be nested*
+   package Example is
+      type T is abstract tagged private;
+      procedure P (X : T) is abstract;
+      package Inner is
+         type My_Float is digits 8;
+         pragma Annotate (Gnatcheck,
+                          Exempt_On,
+                          "Float_Equality_Checks",
+                          "this one is fine");
+         function Is_Equal
+           (L, R : My_Float)
+            return Boolean is (L = R);
+         pragma Annotate (Gnatcheck,
+                          Exempt_Off,
+                          "Float_Equality_Checks");
+      end Inner;
+   private
+      type T is abstract tagged null record;
+   end;
 
 -----------------------------
 Sample Report File Produced
 -----------------------------
 
-:filename:`toolprefix-gnatcheck.out`
+.. container:: latex_environment tiny
 
-::
+  ::
 
-   gnatcheck report
-   date              	: 2014-02-24 11:45
-   gnatcheck version	: GNATcheck Pro 7.3.0w (20140219-47)
-   command line      	: C:\GNATPRO\7.3.0w\bin\gnat.exe check -P gnatcheck_example.gpr
-   runtime              : <default>
-   coding standard      : coding_standard
-   list of sources      : gnatcheck-source-list.out
+    GNATCheck report
+    
+    date              : 2021-12-22 09:46
+    gnatcheck version : gnatcheck Pro 21.1 (20210111)
+    command line      : gnatcheck.exe example.ads -rules -from=standard_file.rules
+    runtime           : <default>
+    coding standard   : standard_file.rules
+    list of sources   : gnatcheck-source-list.out
+    
+    1. Summary
+       fully compliant sources               : 0
+       sources with exempted violations only : 0
+       sources with non-exempted violations  : 1
+       unverified sources                    : 0
+       total sources                         : 1
+       ignored sources                       : 0
+    
+       non-exempted violations               : 4
+       rule exemption warnings               : 0
+       compilation errors                    : 0
+       exempted violations                   : 1
+       gnatcheck warnings                    : 0
+    
+    2. Exempted Coding Standard Violations
+    
+    example.ads:12:31: use of equality operation for float values
+       (this one is fine)
+    
+    3. Non-exempted Coding Standard Violations
+    
+    example.ads:2:04: declaration of abstract type
+    example.ads:4:04: declaration of local package
+    example.ads:18:30: declaration of abstract type
+    example.ads:19:01: (style) "end Example" required
+    
+    4. Rule exemption problems
+       no rule exemption problems detected
+    
+    5. Language violations
+       no language violations detected
+    
+    6. Gnatcheck warnings
+       no gnatcheck warnings issued
 
-   1. Summary
-      fully compliant sources                  : 0
-      sources with exempted violations only    : 0
-      sources with non-exempted violations     : 3
-      unverified sources                       : 0
-      total sources                            : 3
-      non-exempted violations                  : 8
-      rule exemption warnings                  : 0
-      compilation errors                       : 0
-      exempted violations                      : 1
+==================
+Available Rules
+==================
 
-   2. Exempted Coding Standard Violations
+--------------------------------------
+What Predefined Rules Are Available?
+--------------------------------------
 
-   main.adb:6:23: anonymous array type  (this one is fine)
++ Defined by the language and AdaCore
 
-   3. Non-exempted Coding Standard Violations
+  + Using :ada:`pragma Restrictions`
 
-   main.adb:9:31: anonymous array type
-   main.adb:19:15: exit statement with no loop name
-   pack.adb:5:24: use of equality operation for float values
-   ...
++ Defined by GNAT compiler
 
+  + Style checks
+  + Additional identifiers for :ada:`pragma Restrictions`
+
++ Defined by :toolname:`GNATcheck` itself
+
+  + Based on *Guide for the Use of the Ada Programming Language in High Integrity Systems*  (ISO/IEC TR 15942)
+  + Based on customers' certification requirements
+  + Others...
+
++ All can be listed by :toolname:`GNATcheck` with :command:`-h` switch
+
+  + Lists rule identifiers with very brief descriptions
+
+---------------------------------
+Predefined Rules Categorization
+---------------------------------
+
++ Style-Related Rules
+
+  + Tasking
+  + Object Orientation
+  + Portability
+  + Program Structure
+  + Programming Practice
+  + Readability
+  + Source Code Presentation
+
++ Feature Usage Rules
++ Metrics-Related Rules
++ SPARK Ada Rules
+
+---------------------------------
+Rules for Compiler Style Checks
+---------------------------------
+
++ Allows expressing compiler style checks as rules
++ Syntax
+
+   ``+RStyle_Checks:style-string-literals``
+
++ Example: enabling GNAT's built-in style checks
+
+  + As compiler switch or :ada:`pragma Warnings` argument
+
+      :command:`-gnaty`
+
+  + As :toolname:`GNATcheck` rule
+
+      + Enable: ``-RStyle_Checks:y``
+      + Disable: ``+RStyle_Checks:yN``
+
+-----------------------------
+Rules for Compiler Warnings
+-----------------------------
+
++ Allows expressing compiler warning switches as rules
++ Syntax
+
+   ``+RWarnings:warning-string``
+
++ Example: enabling (most of the) optional warnings
+
+  + As compiler switch or :ada:`pragma Warnings` argument
+
+      :command:`-gnatwa`
+
+  + As :toolname:`GNATcheck` rule
+
+      + Enable: ``+RWarnings:a``
+      + Disable: ``+RWarnings:A`` - *must use individual disabler characters*
+
+---------------------------------------
+Rules for Language Restriction Checks
+---------------------------------------
+
++ Allows expressing :ada:`pragma Restrictions` as rules
+
+  + And GNAT-defined :ada:`pragma Restriction_Warnings`
+
++ Syntax
+
+   ``+RRestrictions:<restrictions-parameter>``
+
++ Example: disabling dynamic dispatching
+
+  + As :ada:`pragma Restrictions` argument
+
+     :ada:`pragma Restrictions (No_Dispatch);`
+
+  + As :toolname:`GNATcheck` rule
+
+     ``+RRestrictions:No_Dispatch``
+
+  + Disabled using -RRestrictions with parameter
+
+-------------------------------------
+Example for Detecting Implicit Code
+-------------------------------------
+
+.. container:: latex_environment footnotesize
+
+  Rules File
+
+  ::
+
+    +RRestrictions:No_Implicit_Heap_Allocations -- defined by Ada
+    +RRestrictions:No_Implicit_Loops            -- defined by GNAT
+    +RRestrictions:No_Implicit_Dynamic_Code     -- defined by GNAT
+    +RRestrictions:No_Implicit_Conditionals     -- defined by GNAT
+
+  .. code:: Ada
+
+     with F; -- a function
+     package P is
+        -- An implicit heap allocation in GNAT
+        Obj : array (1 .. F) of Integer;
+     end P;
+
+  ``p.ads:3:04: warning: violation of restriction "No_Implicit_Heap_Allocations"``
+
+    
 =======
 Lab 1
 =======
@@ -598,142 +773,6 @@ Results
 + TBD: Right-click to display contextual menu
 + TBD: Click to invoke
 
---------------------------------------
-What Predefined Rules Are Available?
---------------------------------------
-
-+ Defined by the language and AdaCore
-
-  + Using :ada:`pragma Restrictions`
-
-+ Defined by GNAT compiler
-
-  + Style checks
-  + Additional identifiers for pragma Restrictions
-
-+ Defined by :toolname:`GNATcheck` itself
-
-  + Based on *Guide for the Use of the Ada Programming Language in High Integrity Systems"  (ISO/IEC TR 15942)
-  + Based on customers' certification requirements
-  + Others...
-
-+ All can be listed by :toolname:`GNATcheck` with :command:`-h` switch
-
-  + Lists rule identifiers with very brief descriptions
-
------------------------------------
-"Predefined Rules" Categorization
------------------------------------
-
-+ Style-Related Rules
-
-  + Object Orientation
-  + Portability
-  + Program Structure
-  + Programming Practice
-  + Readability
-  + Tasking
-  + *Rules appear underneath the (sub)categories*
-
-+ Feature Usage Rules
-+ Metrics-Related Rules
-+ SPARK Ada Rules
-
----------------------------------
-Rules for Compiler Style Checks
----------------------------------
-+ Allows expressing compiler style checks as rules
-+ Syntax
-
-   ``+R Style_Checks : style-string-literals``
-
-+ Example: enabling GNAT's built-in style checks
-
-  + As compiler switch or :ada:`pragma Warnings` argument
-
-      :command:`-gnaty`
-
-  + As :toolname:`GNATcheck` rule
-
-      + Enable: ``RStyle_Checks:y``
-      + Disable: ``+RStyle_Checks:yN``
-
------------------------------
-Rules for Compiler Warnings
------------------------------
-+ Allows expressing compiler warning switches as rules
-+ Syntax
-
-   ``+RWarnings: warning-string``
-
-+ Example: enabling (most of the) optional warnings
-
-  + As compiler switch or :ada:`pragma Warnings` argument
-
-      :command:`-gnatwa`
-
-  + As :toolname:`GNATcheck` rule
-
-      + Enable: ``RWarnings:a``
-      + Disable: ``+RWarnings:`` - *must use individual disabler characters*
-
----------------------------------------
-Rules for Language Restriction Checks
----------------------------------------
-
-+ Allows expressing :ada:`pragma Restrictions` as rules
-
-  + And GNAT-defined :ada:`pragma Restriction_Warnings`
-
-+ Syntax
-
-   ``+RRestrictions : restrictions-parameter``
-
-+ Example: disabling dynamic dispatching
-
-  + As :ada:`pragma Restrictions` argument
-
-     :ada:`pragma Restrictions (No_Dispatch);`
-
-  + As :toolname:`GNATcheck` rule
-
-     ``+RRestrictions:No_Dispatch``
-
-  + Disabled using -RRestrictions with parameter
-
--------------------------------------
-Example for Detecting Implicit Code
--------------------------------------
-
-Rules File
-
-.. list-table::
-
-  * - +RRestrictions:No_Implicit_Heap_Allocations
-
-    - -- defined by Ada
-
-  * - +RRestrictions:No_Implicit_Loops
-
-    - -- defined by GNAT
-
-  * - +RRestrictions:No_Implicit_Dynamic_Code
-
-    - -- defined by GNAT
-
-  * - +RRestrictions:No_Implicit_Conditionals
-
-    - -- defined by GNAT
-
-.. code:: Ada
-
-   with F; -- a function
-   package P is
-      -- An implicit heap allocation in GNAT
-      Obj : array (1 .. F) of Integer;
-   end P;
-
-``p.ads:3:04: warning: violation of restriction "No_Implicit_Heap_Allocations"``
 
 ---------------------------------
 Graphically Editing Rules Files
@@ -757,6 +796,12 @@ Rules File Editor Dialog
 -----------------------------------
 When Rules Files Contain Comments
 -----------------------------------
+
+* ``-from=rule_option_filename``
+
+   - Textually includes rules from specified file name
+   - Files can reference **other files**
+
 
 .. image:: gnatcheck/rules_comment_warning.png
 
