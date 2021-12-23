@@ -1,4 +1,4 @@
-package Program_Structure_11_1_4 is
+package Program_Structure is
 
    generic
       type T_Formal1_Type is private;
@@ -34,4 +34,4 @@ package Program_Structure_11_1_4 is
 
    end Level1;
 
-end Program_Structure_11_1_4;
+end Program_Structure;

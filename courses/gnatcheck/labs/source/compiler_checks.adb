@@ -1,5 +1,5 @@
 with Ada.Containers;
-package body Compiler_Checks_7 is
+package body Compiler_Checks is
 
    Global1 : Integer := 1_234;
 
@@ -24,4 +24,4 @@ package body Compiler_Checks_7 is
       accept Start;
    end T_Task_Type;
 
-end Compiler_Checks_7;
+end Compiler_Checks;

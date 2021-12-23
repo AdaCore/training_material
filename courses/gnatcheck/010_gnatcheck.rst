@@ -153,7 +153,9 @@ Where ``rule_switches`` can be any combination of the following:
 Some Useful Options
 ----------------------
 
-.. list-table::
+.. container:: latex_environment small
+
+  .. list-table::
    :header-rows: 1
 
    * - Option
@@ -168,6 +170,18 @@ Some Useful Options
 
      - List currently implemented rules
 
+   * - --write-rules=<filename>
+
+     - Create text file containing all rules
+
+   * -
+
+     - (Rules will be disabled,
+
+   * -
+
+     - and have a comment indicating behavior)
+
    * - --show-rule
 
      - Append rule names to messages
@@ -180,9 +194,9 @@ Some Useful Options
 
      - Default is :filename:`[toolprefix-]gnatcheck.out`
 
-=================
-Basic Usage Lab
-=================
+===================
+Lab - Basic Usage
+===================
 
 ---------------------
 Verify Installation
@@ -221,27 +235,47 @@ Results (Partial)
 
 .. container:: latex_environment tiny
 
-  .. code::
+  ::
 
-    compiler_checks_7.adb:4:04: warning: "Global1" is not modified, could be declared constant [Warnings:k]
-    compiler_checks_7.adb:6:04: warning: violation of restriction "No_Tasking" [Restrictions]
-    compiler_checks_7.adb:12:07: warning: variable "T" is assigned but never read [Warnings:m]
-    compiler_checks_7.adb:20:04: (style) "end Proc" required [Style_Checks]
-    feature_usage_11_2.adb:3:04: branching in inlined subprogram (line 5) [Complex_Inlined_Subprograms]
-    feature_usage_11_2.adb:6:10: block statement [Blocks]
-    feature_usage_11_2.ads:4:44: declaration of abstract type [Abstract_Type_Declarations]
-    feature_usage_11_2.ads:5:04: declaration of controlled type [Controlled_Type_Declarations]
-    feature_usage_11_2.ads:7:34: anonymous subtype [Anonymous_Subtypes]
-    feature_usage_11_2.ads:8:35: aggregate is not a part of a qualified expression [Non_Qualified_Aggregates]
-    object_orientation_11_1_2.ads:28:07: derivation tree is too deep (6) [Deep_Inheritance_Hierarchies]
-    program_practice_11_1_5.adb:8:20: use of predefined OR for boolean type [Non_Short_Circuit_Operators]
-    program_practice_11_1_5.adb:20:15: OTHERS choice in case statement [OTHERS_In_CASE_Statements]
-    program_practice_11_1_5.adb:26:12: OTHERS choice in exception handler [OTHERS_In_Exception_Handlers]
-    program_practice_11_1_5.ads:4:22: anonymous array type [Anonymous_Arrays]
-    program_practice_11_1_5.ads:5:23: OTHERS choice in aggregate [OTHERS_In_Aggregates]
-    program_practice_11_1_6.ads:14:04: object does not have casing specified (mixed) [Identifier_Casing:Others]
-    program_structure_11_1_4.ads:23:16: deeply nested generic (4) [Deeply_Nested_Generics]
-    spark_ada_11_4.ads:5:27: comparison of Boolean values [Boolean_Relational_Operators]
+    compiler_checks.adb:6:04: warning: violation of restriction "No_Tasking" [Restrictions]
+    compiler_checks.adb:12:07: warning: variable "T" is assigned but never read [Warnings:m]
+    compiler_checks.adb:20:04: (style) "end Proc" required [Style_Checks]
+    feature_usage.adb:3:04: branching in inlined subprogram (line 5) [Complex_Inlined_Subprograms]
+    feature_usage.adb:6:10: block statement [Blocks]
+    feature_usage.ads:4:44: declaration of abstract type [Abstract_Type_Declarations]
+    feature_usage.ads:5:04: declaration of controlled type [Controlled_Type_Declarations]
+    feature_usage.ads:7:34: anonymous subtype [Anonymous_Subtypes]
+    object_orientation.ads:28:07: derivation tree is too deep (6) [Deep_Inheritance_Hierarchies]
+    program_practice.adb:8:20: use of predefined OR for boolean type [Non_Short_Circuit_Operators]
+    program_practice.adb:20:15: OTHERS choice in case statement [OTHERS_In_CASE_Statements]
+    program_practice.adb:26:12: OTHERS choice in exception handler [OTHERS_In_Exception_Handlers]
+    program_practice.ads:4:22: anonymous array type [Anonymous_Arrays]
+    program_practice.ads:5:23: OTHERS choice in aggregate [OTHERS_In_Aggregates]
+    program_structure.ads:23:16: deeply nested generic (4) [Deeply_Nested_Generics]
+    readability.ads:3:09: wrong suffix in type name [Identifier_Suffixes:Type_Suffix]
+    readability.ads:6:09: wrong suffix in access type name [Identifier_Suffixes:Access_Suffix]
+    readability.ads:14:04: object does not have casing specified (mixed) [Identifier_Casing:Others]
+    spark_ada.ads:5:27: comparison of Boolean values [Boolean_Relational_Operators]
+
+--------------------------------
+Accessing the Reference Manual
+--------------------------------
+
+* GNAT Studio
+
+  * :menu:`Help` |rightarrow| :menu:`GNAT` |rightarrow| :menu:`GNATcheck Reference Manual`
+
+.. image:: gnatcheck/rm_browser.png
+   :width: 50%
+
+* RM files installed in installation directory :filename:`share` folder
+
+  ::
+
+    share/doc/gnat/html/gnatcheck_rm/gnatcheck_rm.html
+    share/doc/gnat/info/gnatcheck_rm.info
+    share/doc/gnat/pdf/gnatcheck_rm.pdf
+    share/doc/gnat/txt/gnatcheck_rm.txt
 
 ===============================
 GNAT Studio and Project Files
@@ -294,37 +328,37 @@ Individual Rules In GPR File
 
 * Must be added by hand
 
-.. code:: Ada
+   .. code:: Ada
 
-   project Gnatcheck_Example is
-      package Check is
-         for Default_Switches ("Ada") use
-            ("-rules",
-             "+RAbstract_Type_Declarations",
-             "+RAnonymous_Arrays",
-             "+RLocal_Packages",
-             "+RFloat_Equality_Checks",
-             "+REXIT_Statements_With_No_Loop_Name",
-             "+RStyle_Checks:e");
-      end Check;
-   end Gnatcheck_Example;
+      project Gnatcheck_Example is
+         package Check is
+            for Default_Switches ("Ada") use
+               ("-rules",
+                "+RAbstract_Type_Declarations",
+                "+RAnonymous_Arrays",
+                "+RLocal_Packages",
+                "+RFloat_Equality_Checks",
+                "+REXIT_Statements_With_No_Loop_Name",
+                "+RStyle_Checks:e");
+         end Check;
+      end Gnatcheck_Example;
 
 * Can combine rules file and individual rules
 
-.. code:: Ada
+   .. code:: Ada
 
-   project Gnatcheck_Example is
-      package Check is
-         for Default_Switches ("Ada") use
-            ("-rules",
-             "+RFloat_Equality_Checks",
-             "-from=coding_standard");
-      end Check;
-   end Gnatcheck_Example;
+      project Gnatcheck_Example is
+         package Check is
+            for Default_Switches ("Ada") use
+               ("-rules",
+                "+RFloat_Equality_Checks",
+                "-from=coding_standard");
+         end Check;
+      end Gnatcheck_Example;
 
-===================================
-GNAT Studio and Project Files Lab
-===================================
+=====================================
+Lab - GNAT Studio and Project Files
+=====================================
 
 -------------------------
 Analyze via GNAT Studio
@@ -347,6 +381,36 @@ Results
 ---------
 
 .. image:: gnatcheck/results_in_gnatstudio.png
+
+--------------------------
+GNAT Studio Right-Clicks
+--------------------------
+
+.. container:: columns
+
+  .. container:: column
+
+    * Entire Project
+
+    .. image:: gnatcheck/gnatstudio_rightclick_project.png
+       :width: 70%
+
+    * Single Source Directory
+
+    .. image:: gnatcheck/gnatstudio_rightclick_directory.png
+       :width: 70%
+
+  .. container:: column
+
+    * Specific File
+
+    .. image:: gnatcheck/gnatstudio_rightclick_file.png
+       :width: 70%
+
+    * Within Editor
+
+    .. image:: gnatcheck/gnatstudio_rightclick_editor.png
+       :width: 50%
 
 ==================
 Specifying Rules
@@ -378,8 +442,19 @@ Basic Rule Syntax
 Sample Rules File
 -------------------
 
-.. include:: examples/standard_file.rules
-   :code:
+.. container:: latex_environment tiny
+
+  .. include:: examples/standard_file.rules
+     :code:
+
+* Notes
+
+  * Comments are allowed (using standard Ada comment syntax)
+
+  * ``-from=<rule_option_filename>``
+
+    * Textually includes rules from specified file name
+    * Included files can also contain ``-from=<rule_option_filename>``
 
 ------------------------------------
 Code and Results Using Sample File
@@ -425,13 +500,13 @@ Code and Results Using Sample File
 
         example.ads:11:33: declaration of abstract type
 
-------------------------------------
-Rule Exemptions Via In Source Code
-------------------------------------
+---------------------------------
+Rule Exemptions Via Source Code
+---------------------------------
 
 + Uses GNAT-specific :ada:`pragma Annotate`
 
-  + Used by source-oriented tools **external** to compiler
+  + Processed by source-oriented tools **external** to compiler
   + :ada:`Pragma` syntax checked by compiler but no compilation effect
 
 + :toolname:`GNATcheck` specific usage
@@ -439,8 +514,8 @@ Rule Exemptions Via In Source Code
      .. code:: Ada
 
         pragma Annotate (GNATcheck,
-                         exemption_control,
-                         rule_name,
+                         <exemption_control>,
+                         <rule_name>,
                          [justification]);
 
   .. list-table::
@@ -656,512 +731,43 @@ Rules for Language Restriction Checks
 Example for Detecting Implicit Code
 -------------------------------------
 
-.. container:: latex_environment footnotesize
-
-  Rules File
-
-  ::
-
-    +RRestrictions:No_Implicit_Heap_Allocations -- defined by Ada
-    +RRestrictions:No_Implicit_Loops            -- defined by GNAT
-    +RRestrictions:No_Implicit_Dynamic_Code     -- defined by GNAT
-    +RRestrictions:No_Implicit_Conditionals     -- defined by GNAT
-
-  .. code:: Ada
-
-     with F; -- a function
-     package P is
-        -- An implicit heap allocation in GNAT
-        Obj : array (1 .. F) of Integer;
-     end P;
-
-  ``p.ads:3:04: warning: violation of restriction "No_Implicit_Heap_Allocations"``
-
-    
-=======
-Lab 1
-=======
-
--------------------------------------------
-Installation Verification & Basic Use Lab
--------------------------------------------
-
-+ Open a command line prompt window
-+ Go to the :filename:`gnatcheck/basic` folder in the folders provided
-+ Invoke :toolname:`GNATcheck` using the project file supplied
-
-   :command:`gnatcheck -P gnatcheck_example.gpr -XPLATFORM=native`
-
-+ Verify results
-+ Leave the command prompt window open
-
-----------------------------------------
-Accessing the :toolname:`GNATcheck` RM
-----------------------------------------
-
-+ From within :toolname:`GNAT Studio`
-
-  + In HTML
-  + Via Help :math:`\rightarrow` GNAT menu
-
-+ Outside :toolname:`GNAT Studio`, on the file system
-
-  + Located under your :toolname:`GNAT Pro` installation directory tree
-  + Multiple file formats provided
-  + In subdirs corresponding to the file format
-  + File name is :filename:`gnatcheck_rm .[pdf | html | txt | info]`
-  + Eg: :filename:`<installation>/share/doc/gnat/pdf/gnatcheck_rm.pdf`
-
--------------------------------------------------------------------
-Accessing :toolname:`GNATcheck` RM Within :toolname:`GNAT Studio`
--------------------------------------------------------------------
-
-.. image:: gnatcheck/rm_cascade.png
-
-----------------------------------------------
-:toolname:`GNATcheck` RM Sections In Browser
-----------------------------------------------
-
-.. image:: gnatcheck/rm_browser.png
-
-+ One big section, thus searchable
-
-=======
-Lab 2
-=======
-
--------------------------------------------------------------------
-Accessing :toolname:`GNATcheck` RM in :toolname:`GNAT Studio` Lab
--------------------------------------------------------------------
-
-+ Use the command prompt window already open
-
-  + At the :filename:`basic` lab directory
-
-+ Open :toolname:`GNAT Studio` by typing :command:`gps` on the command line
-
-  + :toolname:`GNAT Studio` will find the one project file there and use it
-
-+ Open the :toolname:`GNATcheck` Reference Manual
-+ Find the *Predefined Rules* chapter
-+ Leave both :toolname:`GNAT Studio` and the browser showing the :toolname:`GNATcheck` Reference Manual open
-
---------------------------------------------------------------
-:toolname:`GNAT Studio`: Check All Sources In Single Project
---------------------------------------------------------------
-
-.. image:: gnatcheck/perform_check_cascade.png
-
-+ TBD: Right-click to display contextual menu
-+ TBD: Click to invoke
-
----------
-Results
----------
-
-.. image:: gnatcheck/check_results.png
-
-+ TBD: File for 1 st entry
-+ TBD: Click to focus on source line
-
----------------------------------
-:toolname:`GNAT Studio` Source File Contextual Menu
----------------------------------
-
-.. image:: gnatcheck/perform_right_click.png
-
-+ TBD: Right-click to display contextual menu
-+ TBD: Click to invoke
-
-
----------------------------------
-Graphically Editing Rules Files
----------------------------------
-
-.. image:: gnatcheck/edit_rules_cascade.png
-
-+ Same as via project contextual menu
-+ Invokes dialog
-
---------------------------
-Rules File Editor Dialog
---------------------------
-
-.. image:: gnatcheck/rules_editor.png
-
-+ TBD: Editable; empty if no file specified already
-+ TBD: Buttons invoking sub-dialogs
-+ TBD: Editable; reflects choices via sub-dialogs
-
------------------------------------
-When Rules Files Contain Comments
------------------------------------
-
-* ``-from=rule_option_filename``
-
-   - Textually includes rules from specified file name
-   - Files can reference **other files**
-
-
-.. image:: gnatcheck/rules_comment_warning.png
-
-+ Even if you don't change anything, pressing Save removes the comments
-+ TBD: verify and update screenshot if needed
-
-------------------------------------
-The "Edit Rules File" Dialog Boxes
-------------------------------------
-
-.. image:: gnatcheck/rules_example_dialog.png
-
-----------------------
-Style Rules: Tasking
-----------------------
-
-+ Multiple_Entries_In_Protected_Definitions
-
-  + Flags a protected definition with more than one entry
-  + Processing for those with only one entry can be optimized
-
-+ Volatile_Objects_Without_Address_Clauses
-
-  + Flags each volatile object lacking an address clause
-  + Two reasons for volatile objects:
-
-    + Shared variable communication between tasks
-    + Objects imported from external source set independently of Ada code
-    + In this case an address clause will appear also
-
-       .. code:: Ada
-
-          Weight_On_Wheels : Unsigned_8 with
-                Volatile,
-                Address => To_Address (16#DEAD_BEEF#);
-
-=======
-Lab 3
-=======
-
-------------------------
-Tasking Style Rule Lab
-------------------------
-
-+ Two reasons for volatile objects (at least):
-
-  + Shared variable communication between tasks
-  + Objects imported from external source and set externally
-
-    + In this case an address clause will appear also
-
-       .. code:: Ada
-
-          Weight_On_Wheels : Unsigned_8 with
-                Volatile,
-                Address => To_Address (16#DEAD_BEEF#);
-
-+ Some standards disallow shared variables for communicating between tasks
-+ Use the rules file editor to specify the rule flagging volatile objects that do not have address clauses
-
-  + Hint: Style
-
-------------------------
-Tasking Style Rule Lab
-------------------------
-
-.. image:: gnatcheck/tasking_rules_dialog.png
-
---------------------------------------------
-Enforcing Abstraction & Information Hiding
---------------------------------------------
-
 .. code:: Ada
+   :number-lines: 1
 
+   with F; -- a function
    package P is
-
-      type Content is array (Positive range <>) of Integer;
-
-      type Stack (Size : Positive) is record
-         Values : Content (1 .. Size);
-         Top    : Natural := 0;
-      end record;
-
-      procedure Push (This : in out Stack;  Value : Integer) with
-        Pre => not Full (This);
-
-      function Full (This : Stack) return Boolean is
-        (This.Top = This.Size);
-
+      -- An implicit heap allocation in GNAT
+      Obj : array (1 .. F) of Integer;
    end P;
 
-*Stack should be a private type!*
+.. container:: latex_environment scriptsize
 
-   * If this was a private type with that same discriminant, no violation would be reported
+  * *Rules File*
 
---------------------
-OO Style Rule Quiz
---------------------
+    ::
 
-+ Question: what is the rule for enforcing abstraction & information hiding for types -- i.e., private types?
-+ Answer: :animate:`+RVisible_Components`
+      +RRestrictions:No_Implicit_Heap_Allocations -- defined by Ada
+      +RRestrictions:No_Implicit_Loops            -- defined by GNAT
+      +RRestrictions:No_Implicit_Dynamic_Code     -- defined by GNAT
+      +RRestrictions:No_Implicit_Conditionals     -- defined by GNAT
 
-.. code:: Ada
+  * Output
 
-   package P is
-      type Content is array (Positive range <>) of Integer;
+    ::
 
-      type Stack (Size : Positive) is record
-         Values : Content (1 .. Size);
-         Top    : Natural := 0;
-      end record;
-      ...
-   end P;
-
-``p.ads:5:4: type defines publicly accessible components``
-
------------------------------------------
-Exception Propagation Beyond Visibility
------------------------------------------
-
-.. columns::
-
-   .. column::
-
-      .. code:: Ada
-
-         package P is
-            procedure Q;
-         end P;
-
-         package body P is
-            Error : exception;
-            procedure Q is
-            begin
-               raise Error;
-            end Q;
-         end P;
-
-   .. column::
-
-      .. code:: Ada
-
-         with P;
-         procedure Client is
-         begin
-            P.Q;
-         exception
-            -- not visible!
-            when P.Error =>
-               ...
-         end Client;
-
------------------------------------
-Program Structure Style Rule Quiz
------------------------------------
-
-+ Question: What is the rule for detecting exception propagation beyond the visibility of that name?
-+ Answer: :animate:`+RRaising_External_Exceptions`
-
-.. code:: Ada
-
-   package body P is
-      Error : exception;
-      procedure Q is
-      begin
-         raise Error;
-      end Q;
-   end P;
-
-``p.adb:7:17: raised exception is not declared in visible part of enclosing library package``
-
------------------
-Beware "Others"
------------------
-
-+ A maintenance issue: compiler can't detect lack of specific handling when new values added
-+ Case statement example
-
-  + Suppose a new value **must** have a new case statement alternative, per application requirements
-  + If you forget to add the new alternative, the compiler can't detect that fact because :ada:`others` covers new value too
-
-.. code:: Ada
-
-   -- Future mods may add many more agencies
-   type Space_Agencies is (NASA, ESA, RFSA);
-   Bureau : Space_Agencies;
-   ...
-   case Bureau is
-      when ESA => ...
-      when NASA => ...
-      when others => ...
-   end case;
-   ...
-
----------------------------------
-Programming Practice Style Quiz
----------------------------------
-
-+ Question: what are the rules for detecting the most important maintainability issues for "case statements"?
-+ Answer:
-
-.. container:: animate
-
-   ::
-
-         OTHERS_In_CASE_Statements
-         Enumeration_Ranges_In_CASE_Statements
-
----------------------------
-"Use Package" Clause Quiz
----------------------------
-
-+ There has been much controversy over whether or not "use clauses" should be applied
-
-  + Some say they decrease readability by removing info
-  + Some say they help readability by reducing noise
-  + Nowadays a decent IDE can tell you everything...
-
-+ Question: what is the rule for detecting "use clauses" for packages?
-
-  + Use-type clauses are ignored
-
-+ Answer: :animate:`USE_PACKAGE_Clauses`
+      p.ads:3:4: warning: violation of restriction "No_Implicit_Heap_Allocations"
 
 ---------------------------------------------
-Feature Usage Rule Example: "Magic Numbers"
+Generating Rules File From The Command Line
 ---------------------------------------------
 
-+ Numeric literals used instead of named numbers, constants, or attributes
-+ Prevented using ``Numeric_Literals`` rule
-+ Syntax
+:command:`gnatcheck --write-rules=<filename>`
 
-   + ``+RNumeric_Literals [:  N  |  All  |  Statements_Only]``
-
-   **N**
-
-      *Allow integer literals not exceeding this value*
-
-   **All**
-
-      *All integer literals are flagged*
-
-   **Statements_Only**
-
-      *Numeric literals are flagged only when used in statements*
-
-+ If no parameters are set, max unflagged value is 1 and is not limited to statements
-
-----------------------------------------
-Unassigned Mode OUT Parameters Example
-----------------------------------------
-
-+ Always a coding error
-+ For scalar types, worse: *by-copy* mechanism will copy something back
-
-  + May copy junk, with unpredictable effects
-
-.. code:: Ada
-
-   procedure Q (Input : in Integer;  Output : out Integer) is
-   begin
-      if ... then
-         return;
-      end if;
-   end Q;
-
--------------------------
-Feature Usage Rule Quiz
--------------------------
-
-+ Question: what is the rule for detecting formal parameters of mode "out" that are not assigned within a subprogram?
-+ Answer: :animate:`Unassigned_OUT_Parameters`
-
-.. code:: Ada
-
-   procedure Q (Input  : in  Integer;
-                Output : out Integer) is
-   begin
-      if ... then
-         return;
-      end if;
-      Output := ...
-   end Q;
-
-.. container:: animate
-
-   + *Note that any assignment to a mode* **out** *formal satisfies the check for that formal*
-
-      + *This error is not detected by :toolname:`GNATcheck`, maybe will be by the compiler, definitely will be by CodePeer*
-
-----------------------
-Combining Rule Forms
-----------------------
-
-+ You may need to apply a combination of the forms in order to achieve a specific effect
-
-  + Compiler-defined rules (switches)
-  + Ada pragma Restrictions
-  + :toolname:`GNATcheck` defined rules
-
-+ Any combination of the three forms is allowed
-
-  + No need to use any one form
-
-+ Their individual effects will overlap somewhat
-
----------------------------------------
-Sample Combination: Boolean Operators
----------------------------------------
-
-+ You may want to require use of short-circuit form
-
-  + :ada:`and then` instead of :ada:`and`, :ada:`or else` instead of :ada:`or`
-  + For sake of reducing complexity of MC/DC checks, etc.
-
-+ Compiler style check rule ``+RStyle_Checks:B``
-
-  + Flags :ada:`and` as well as :ada:`or` for boolean types, except for simple variables and constants
-
-+ Restriction rule ``+RRestrictions:No_Direct_Boolean_Operators``
-
-  + Flags operators :ada:`and`, :ada:`or`, and :ada:`xor` for boolean types
-
-+ :toolname:`GNATcheck` rule ``+RNon_Short_Circuit_Operators``
-
-  + Flags all calls to predefined :ada:`and` and  :ada:`or` for booleans
-  + Not flagged for use on modular types or boolean array types
-
--------------------------------------------
-Sample Combination : Preventing Recursion
--------------------------------------------
-
-+ Compiler always applies the style check rule
-
-  + Not optional
-  + Flags possible infinitely recursive calls
-  + Can be justified with pragma Warnings(Off)
-
-+ Restriction rule ``+RRestrictions:No_Recursion``
-
-  + Flags locally detected recursion
-  + Program is erroneous if it uses recursion
-
-+ :toolname:`GNATcheck` rule ``+RRecursive_Subprograms``
-
-  + Flags all recursive chains of direct calls
-  + Indirect calls via pointers are not detected
-
------------------
-Getting Started
------------------
-
-+ A switch is defined to facilitate rules file creation
-
-   + :command:`gnatcheck --write-rules= file_name`
-   + Creates a file with name as specified
++ Creates a file with name as specified
 
 + File contains all the rules, all turned off
 
-  + A project file, if given, has no effect on content
+  + Each rule has a short description
 
 + Edit this file to get your own rules file
 + You will not use all the defined rules!
@@ -1169,11 +775,252 @@ Getting Started
   + Many of them conflict with others
   + Define the subset that matches your (existing) code
 
--------------------------------
-:toolname:`GNATcheck` Summary
--------------------------------
+===================================
+Interactive Rules File Generation
+===================================
+    
+---------------------------------
+Graphically Editing Rules Files
+---------------------------------
 
-+ An automated coding standards verifier/checker
+* :menu:`Analyze` |rightarrow| :menu:`Coding Standard` |rightarrow| :menu:`Edit Rules File`
+
+  .. image:: gnatcheck/rules_editor.png
+
+* Notes
+
+  * You must specify a file before the rules buttons are active
+  * This dialog does **NOT** modify the GPR file
+
+    * You need to set the *Project Properties* to point to this file
+
+-------------------------
+Comments in Rules Files
+-------------------------
+
+* If you specify an existing file that contains comments, you will get a warning message!
+
+  .. image:: gnatcheck/rules_comment_warning.png
+
+  * Even if you don't change anything, pressing Save removes the comments
+  * To maintain comments, edit the file using a text editor
+
+------------------------------
+Edit Rules File Dialog Boxes
+------------------------------
+
+.. image:: gnatcheck/rules_feature_usage_dialog.png
+
+.. image:: gnatcheck/rules_style_related_dialog.png
+
+=========================================
+Lab - Interactive Rules File Generation
+=========================================
+
+------------------
+Build Rules File
+------------------
+
+* Using :toolname:`GNAT Studio` create a new project with the original :filename:`source` files
+
+* Use :toolname:`GNAT Studio` to build a rules file to identify the following occurrences:
+
+  * Abstract types
+  * Controlled Types
+  * Anonymous subtypes
+  * Type names that do not end with ``_T``
+  * Anonymous arrays
+  * :ada:`declare` blocks
+  * :ada:`new` keyword
+  * Use of :ada:`others` clauses
+  * Aggregates without qualification
+  * Inlined subprograms with conditional code
+  * Inequality comparions of boolean objects
+  * Use of non-short-circuit boolean operations
+  * Incorrect identifier naming
+  * Missing :ada:`end` label
+
+------------------
+Perform Analysis
+------------------
+
+* Run :toolname:`GNATcheck` on source file with created rules file
+
+  * Total messages per file should be:
+
+    * compiler_checks.adb - 3
+    * feature_usage.adb - 2
+    * feature_usage.ads - 7
+    * object_orientation.ads - 7
+    * program_practice.adb - 3
+    * program_practice.ads - 3
+    * readability.ads - 7
+    * spark_ada.ads - 1
+
+-------------------
+Fix The Problems!
+-------------------
+
+* Use the ``Locations`` window to jump to each problem
+
+  * If the wrench icon is present, click on it to have :toolname:`GNAT Studio` make the fix
+  * If an identifier is incorrect:
+
+    * Select the identifier
+    * Right-click and select ``Refactoring``
+    * Select ``Rename <name>`` and enter the new name
+
+  * If there's no easy way to fix it, annotate it
+
+=====================
+Other Popular Rules
+=====================
+
+--------------------
+Visible_Components
+--------------------
+
+Flag all the type declarations located in the visible part of a library package or a library generic package that can declare a visible component.
+
+.. code:: Ada
+   :number-lines: 1
+
+   with Types;
+   package Example is
+      type Record_T is record
+         I : Integer;
+         B : Boolean;
+      end record;
+      type Tagged_Record_T is tagged record
+         I : Integer;
+         B : Boolean;
+      end record;
+      type Private_Extension is new Types.Tagged_Private with private;
+      type Non_Private_Extension is new Types.Tagged_Private with record
+         B : Boolean;
+      end record;
+   private
+      type Rec is tagged record
+         I : Integer;
+      end record;
+      type Private_Extension is new Types.Tagged_Private with record
+         C : Rec;
+      end record;
+   end Example;
+
+::
+
+   example.ads:3:04: type defines publicly accessible components
+   example.ads:7:04: type defines publicly accessible components
+   example.ads:12:04: type defines publicly accessible components
+
+---------------------
+USE_PACKAGE_Clauses
+---------------------
+
+Flag all use clauses for packages; use type clauses are not flagged.
+
+.. code:: Ada
+   :number-lines: 1
+
+   with Ada.Text_IO; use Ada.Text_IO;
+   procedure Sample is
+   begin
+      Put_Line ("Hello, World");
+   end Sample;
+
+::
+
+   sample.adb:1:19: use clause for package
+
+Should we use "use clauses"?
+
+  + Some say they decrease readability by removing info
+  + Some say they help readability by reducing noise
+  + Nowadays a decent IDE can tell you everything...
+
+------------------
+Numeric_Literals
+------------------
+
+Flag each use of a numeric literal
+
+* Optional Parameters
+
+  * *N* - Maximum possible value to remain unflagged
+  * *All* - All integer literals are flagged
+  * *Statements_Only* - Only literals in statements are flagged
+
+* With no parameters, max unflagged value is 1 and is not limited to statements
+
+* Exceptions to the rule: 
+
+  * Occurring in initialization expression for a constant declaration or a named number declaration
+  * Occurring in an aspect definition or in an aspect clause
+
+.. code:: Ada
+   :number-lines: 1
+
+   procedure Sample (Value : in out Integer) is
+      Const     : constant := 123;
+      Temporary : Integer  := Value + (3 * Const);
+   begin
+      Value := Value + Temporary + 1;
+      Value := Value * 5;
+   end Sample;
+
+::
+
+  sample.adb:3:37: numeric literal (3) outside a constant declaration
+  sample.adb:6:21: numeric literal (5) outside a constant declaration
+
+---------------------------
+Unassigned_OUT_Parameters
+---------------------------
+
+Flag procedures' :ada:`out` parameters that are not assigned.
+
+.. code:: Ada
+   :number-lines: 1
+
+   package body Example is
+      procedure One (Flag : out Boolean) is
+      begin
+         if Global_Object > 0 then
+            Global_Object := 0;
+         end if;
+      end One;
+      procedure Two (Flag : out Boolean) is
+      begin
+         if Global_Object * Global_Object > 0 then
+            Flag := True;
+         else
+            Flag := False;
+         end if;
+      exception
+         when others =>
+            null;
+      end Two;
+   end Example;
+
+::
+
+  example.adb:2:04: procedure body does not define values for OUT parameters: Flag
+  example.adb:16:07: exception handler does not define values for OUT parameters: Flag
+
+Always a coding error
+
+  + Worst case: *pass-by-copy* mechanism will copy something (junk?) back
+
+=========
+Summary
+=========
+
+--------------------------------
+Why use :toolname:`GNATcheck`?
+--------------------------------
+
++ Automated coding standards verifier/checker
 + Capable of expressing a variety of rules
 
   + GNAT compiler warnings and style checks
@@ -1181,10 +1028,4 @@ Getting Started
   + Complexity metrics (GNATmetric results)
   + Others, including SPARK related rules
 
-+ You should not use all the existing rules!
-
-  + Some of them conflict with others
-
-+ Use switch :command:`--help` for useful switches list
-
-  + E.g., :command:`-jn` for concurrent processing
+* Enforces consistent appearance and behavior across code base

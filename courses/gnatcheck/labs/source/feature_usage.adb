@@ -1,4 +1,4 @@
-package body Feature_Usage_11_2 is
+package body Feature_Usage is
 
    procedure Complex_Inlined (Flag : in out Integer) is
    begin
@@ -11,4 +11,4 @@ package body Feature_Usage_11_2 is
       end if;
    end Complex_Inlined;
 
-end Feature_Usage_11_2;
+end Feature_Usage;

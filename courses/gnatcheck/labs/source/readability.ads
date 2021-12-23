@@ -1,4 +1,4 @@
-package Program_Practice_11_1_6 is
+package Readability is
 
    type T_Mixed_Case is tagged null record;
    type Mixed_Case_Type is tagged null record;
@@ -13,4 +13,4 @@ package Program_Practice_11_1_6 is
    Number : constant := 1_234;
    object : integer;
 
-end Program_Practice_11_1_6;
+end Readability;

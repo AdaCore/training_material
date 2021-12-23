@@ -1,7 +1,7 @@
-package Spark_Ada_11_4 is
+package Spark_Ada is
 
    One   : Boolean;
    Two   : Boolean;
    Three : Boolean := One < Two;
 
-end Spark_Ada_11_4;
+end Spark_Ada;

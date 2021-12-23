@@ -1,4 +1,4 @@
-package Program_Practice_11_1_5 is
+package Program_Practice is
 
    type T_Index_Type is range 1 .. 10;
    Anonymous_Array : array (T_Index_Type) of Integer :=
@@ -13,4 +13,4 @@ package Program_Practice_11_1_5 is
      (Flag : Character)
       return Character;
 
-end Program_Practice_11_1_5;
+end Program_Practice;

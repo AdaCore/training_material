@@ -1,4 +1,4 @@
-package Object_Orientation_11_1_2 is
+package Object_Orientation is
 
    package Level1 is
       type T_Tagged_Type is tagged null record;
@@ -28,4 +28,4 @@ package Object_Orientation_11_1_2 is
       type T_Tagged_Type is new Level6.T_Tagged_Type with null record;
    end Level7;
 
-end Object_Orientation_11_1_2;
+end Object_Orientation;

@@ -1,4 +1,4 @@
-package body Program_Practice_11_1_5 is
+package body Program_Practice is
 
    function Test
      (Flag1 : in Boolean;
@@ -27,4 +27,4 @@ package body Program_Practice_11_1_5 is
          return Character'last;
    end Test;
 
-end Program_Practice_11_1_5;
+end Program_Practice;

@@ -1,5 +1,5 @@
 with Ada.Finalization;
-package Feature_Usage_11_2 is
+package Feature_Usage is
 
    type T_Abstract_Type is abstract tagged null record;
    type T_Controlled_Type is new Ada.Finalization.Controlled with null record;
@@ -10,4 +10,4 @@ package Feature_Usage_11_2 is
    procedure Complex_Inlined (Flag : in out Integer);
    pragma Inline (Complex_Inlined);
 
-end Feature_Usage_11_2;
+end Feature_Usage;
