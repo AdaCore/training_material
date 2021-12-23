@@ -413,6 +413,7 @@ If-then-elsif Statements
  .. container:: column
 
   .. code:: Ada
+     :number-lines: 1
 
      if Valve(N) /= Closed then
        Isolate (Valve(N));
@@ -426,6 +427,7 @@ If-then-elsif Statements
  .. container:: column
 
   .. code:: Ada
+     :number-lines: 1
 
      if Valve(N) /= Closed then
        Isolate (Valve(N));
@@ -880,12 +882,12 @@ Referencing Hidden Names
 
    Foo:
    declare
-      Counter : Integer := 0;
+      Counter : Float := 0.0;
    begin
       ...
       for Counter in Integer range 1 .. Number_Read loop
          -- set declared "Counter" to loop counter
-         Foo.Counter := Counter;
+         Foo.Counter := Float (Counter);
          ...
       end loop;
       ...

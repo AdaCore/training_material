@@ -69,6 +69,7 @@ Recognizing Procedures and Functions
 * You can always distinguish them via the call context
 
    .. code:: Ada
+      :number-lines: 10
 
       Open (Source, "SomeFile.txt");
       while not End_of_File (Source) loop
@@ -1070,16 +1071,17 @@ Easy Cases Detected and Not Legal
 
 .. code:: Ada
 
-   function Increment (This : in out Integer) return Integer is
+   procedure Example ( A : in out Positive ) is
+      function Increment (This : Integer) return Integer is
+      begin
+         A := A + This;
+         return A;
+      end Increment;
+      X : array (1 .. 10) of Integer;
    begin
-      This := This + 1;
-      return This;
-   end Increment;
-
-   X : array (1 .. 10) of Integer;
-   ...
-   -- order of evaluating A not specified
-   X (A) := Increment (A); -- not legal in Ada 2012
+      -- order of evaluating A not specified
+      X (A) := Increment (A);
+   end Example;
 
 ===================
 Extended Examples

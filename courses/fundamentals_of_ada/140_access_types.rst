@@ -391,7 +391,8 @@ Referencing The Stack
 
    procedure P2 is
    begin
-      -- What if P2 is called before P1?
+      -- OK when P2 call from P1.
+      -- What if P2 is called from elsewhere?
       G.all := 5;
    end P2;
 

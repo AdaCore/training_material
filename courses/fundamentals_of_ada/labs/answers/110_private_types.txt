@@ -113,6 +113,7 @@ package body Flags is
             Map.Values
               (I .. Map.Length - 1) := Map.Values
                 (I + 1 .. Map.Length);
+            Map.Length := Map.Length - 1;
             Success := True;
             exit;
          end if;
