@@ -162,15 +162,15 @@ Some Useful Options
 
      - Description
 
-   * - --help
+   * - ``--help``
 
      - Usage information
 
-   * - -h
+   * - ``-h``
 
      - List currently implemented rules
 
-   * - --write-rules=<filename>
+   * - ``--write-rules=<filename>``
 
      - Create text file containing all rules
 
@@ -182,11 +182,11 @@ Some Useful Options
 
      - and have a comment indicating behavior)
 
-   * - --show-rule
+   * - ``--show-rule``
 
      - Append rule names to messages
 
-   * - -o filename
+   * - ``-o filename``
 
      - Specify the name of the **report** file
 
