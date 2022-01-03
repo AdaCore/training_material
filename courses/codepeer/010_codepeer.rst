@@ -56,7 +56,7 @@ Why Static Analysis Saves Money
 
 Shifts costs from later, expensive phases to earlier, cheaper phases
 
-.. image:: cost_to_fix_bugs.png
+.. image:: relative_cost_to_fix_bugs.jpg
 
 -------------------------------
 Why Use :toolname:`CodePeer`?
@@ -74,14 +74,28 @@ Why Use :toolname:`CodePeer`?
 
 + Detailed subprograms analysis
 
-  + Including contracts (preconditions, postconditions)
-  + **Deduced implicit** specification checked with **written explicit** specification
-
 + Can analyze existing code bases
 
   + Detect and remove **latent bugs**
   + Legacy code
   + Code from external sources
+
+------------------------------
+Detailed Subprogram Analysis
+------------------------------
+
++ **Explicit** specification
+
+    + Written in the code
+    + Types
+    + Contracts
+    + Assertions
+    + etc...
+
++ **Implicit** specification
+
+    + Assumptions by :toolname:`CodePeer`
+    + :dfn:`Deduced preconditions`
 
 ===============================
 :toolname:`CodePeer` Overview
@@ -393,7 +407,7 @@ Running :toolname:`CodePeer` regularly
 
   + Can be stored in Configuration Management
 
-+ **Baseline run**
++ :dfn:`Baseline` run
 
   + **Previous** run each new run is compared to
   + Differences of **messages** in :toolname:`CodePeer` report
@@ -506,7 +520,7 @@ Run-Time Check Messages
 
         * - ``precondition``
 
-          - A subprogram call could violate its calculated precondition
+          - A subprogram call could violate its deduced precondition
 
 -----------------
 Divide By Zero
@@ -645,7 +659,7 @@ Aliasing Check
 ----------------
 
 + Some parameters could be passed as **reference**
-+ For those, :toolname:`CodePeer` uses preconditions:
++ Deduced preconditions:
 
   + Do not **reference** another parameter
   + Do not **match** the address of a global object
@@ -2398,7 +2412,7 @@ Baseline Runs
 
   + **Reference** database 
 
-    + Can be referenced as :dfn:`gold`
+    + Is a *gold* reference
 
   + **All changes** are compared to it
   + **All reviews** should be pushed to it
