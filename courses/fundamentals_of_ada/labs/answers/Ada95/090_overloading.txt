@@ -6,40 +6,63 @@ procedure Main is
    type Digit_Name_T is
      (Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine);
 
-   function Convert (Value : Digit_T) return Digit_Name_T;
    function Convert (Value : Digit_Name_T) return Digit_T;
    function Convert (Value : Character) return Digit_Name_T;
    function Convert (Value : String) return Digit_T;
 
-   function "=" (L : Digit_Name_T; R : Digit_T) return Boolean is (Convert (L) = R);
-
-   function Convert (Value : Digit_T) return Digit_Name_T is
-     (case Value is when 0 => Zero,  when 1 => One,
-                    when 2 => Two,   when 3 => Three,
-                    when 4 => Four,  when 5 => Five,
-                    when 6 => Six,   when 7 => Seven,
-                    when 8 => Eight, when 9 => Nine);
+   function "=" (L : Digit_Name_T; R : Digit_T) return Boolean is
+   begin
+      return Convert (L) = R;
+   end "=";
 
    function Convert (Value : Digit_Name_T) return Digit_T is
-     (case Value is when Zero  => 0, when One => 1,
-                    when Two   => 2, when Three => 3,
-                    when Four  => 4, when Five => 5,
-                    when Six   => 6, when Seven => 7,
-                    when Eight => 8, when Nine => 9);
+   begin
+      case Value is
+         when Zero  => return 0;
+         when One   => return 1;
+         when Two   => return 2;
+         when Three => return 3;
+         when Four  => return 4;
+         when Five  => return 5;
+         when Six   => return 6;
+         when Seven => return 7;
+         when Eight => return 8;
+         when Nine  => return 9;
+      end case;
+   end Convert;
 
    function Convert (Value : Character) return Digit_Name_T is
-     (case Value is when '0' => Zero,  when '1' => One,
-                    when '2' => Two,   when '3' => Three,
-                    when '4' => Four,  when '5' => Five,
-                    when '6' => Six,   when '7' => Seven,
-                    when '8' => Eight, when '9' => Nine,
-                    when others => Zero);
+   begin
+      case Value is
+         when '0' => return Zero;
+         when '1' => return One;
+         when '2' => return Two;
+         when '3' => return Three;
+         when '4' => return Four;
+         when '5' => return Five;
+         when '6' => return Six;
+         when '7' => return Seven;
+         when '8' => return Eight;
+         when '9' => return Nine;
+         when others => return Zero;
+      end case;
+   end Convert;
 
    function Convert (Value : String) return Digit_T is
-     (Convert (Digit_Name_T'Value (Value)));
+   begin
+      return Convert (Digit_Name_T'Value (Value));
+   end Convert;
    --Conversion_Functions
 
    --Main
+   function Get_Line return String is
+      S : String (1 .. 100);
+      L : Integer;
+   begin
+      Get_Line (S, L);
+      return S (1 .. L);
+   end Get_Line;
+
    Last_Entry : Digit_T := 0;
 
 begin

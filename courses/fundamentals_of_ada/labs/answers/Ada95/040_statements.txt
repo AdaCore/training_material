@@ -8,13 +8,16 @@ procedure Main is
    Total_Worked : Hours_Worked := 0.0;
    Hours_Today  : Hours_Worked;
    Overtime     : Hours_Worked;
+   S            : String(1..10);
+   L            : Integer;
 begin
    Day_Loop :
    for Day in Days_Of_Week_T loop
-      Put_Line (Day'Image);
+      Put_Line (Days_Of_Week_T'Image (Day));
       Input_Loop :
       loop
-         Hours_Today := Hours_Worked'Value (Get_Line);
+         Get_Line (S, L);
+         Hours_Today := Hours_Worked'Value (S(1..L));
          exit Day_Loop when Hours_Today < 0.0;
          if Hours_Today > 24.0 then
             Put_Line ("I don't believe you");
@@ -24,7 +27,7 @@ begin
       end loop Input_Loop;
       if Hours_Today > 8.0 then
          Overtime := Hours_Today - 8.0;
-         Hours_Today := Hours_Today + 0.5 * Overtime;
+         Hours_Today := Hours_Today + 1.5 * Overtime;
       end if;
       case Day is
          when Monday .. Friday => Total_Worked := Total_Worked + Hours_Today;
@@ -33,6 +36,6 @@ begin
       end case;
    end loop Day_Loop;
 
-   Put_Line (Total_Worked'Image);
+   Put_Line (Hours_Worked'Image (Total_Worked));
 end Main;
 --Statements

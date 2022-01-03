@@ -39,7 +39,10 @@ package body Shapes is
   function Distance (Vertex1 : Vertex_T;
                      Vertex2 : Vertex_T)
                      return Float_T is
-   (Math.Sqrt ((Vertex1.X - Vertex2.X)**2 + (Vertex1.Y - Vertex2.Y)**2));
+   begin
+      return
+        Math.Sqrt ((Vertex1.X - Vertex2.X)**2 + (Vertex1.Y - Vertex2.Y)**2);
+   end Distance;
 
   function Perimeter (Vertices : Vertices_T) return Float_T is
     Ret_Val : Float_T := 0.0;
@@ -51,15 +54,33 @@ package body Shapes is
     return Ret_Val;
   end Perimeter;
 
-  function Get_Description (Shape : Shape_T'Class) return String is (To_String (Shape.Description));
+   function Get_Description (Shape : Shape_T'Class) return String is
+   begin
+      return To_String (Shape.Description);
+   end Get_Description;
 
-  function Number_Of_Sides (Shape : Quadrilateral_T) return Natural is (4);
-  function Perimeter (Shape : Quadrilateral_T) return Float_T is (Perimeter (Shape.Sides));
+   function Number_Of_Sides (Shape : Quadrilateral_T) return Natural is
+   begin
+      return 4;
+   end Number_Of_Sides;
+   function Perimeter (Shape : Quadrilateral_T) return Float_T is
+   begin
+      return Perimeter (Shape.Sides);
+   end Perimeter;
 
-  function Perimeter (Shape : Square_T) return Float_T is (4.0 * Distance (Shape.Sides (1), Shape.Sides (2)));
+   function Perimeter (Shape : Square_T) return Float_T is
+   begin
+      return 4.0 * Distance (Shape.Sides (1), Shape.Sides (2));
+   end Perimeter;
 
-  function Number_Of_Sides (Shape : Triangle_T) return Natural is (3);
-  function Perimeter (Shape : Triangle_T) return Float_T is (Perimeter (Shape.Sides));
+   function Number_Of_Sides (Shape : Triangle_T) return Natural is
+   begin
+      return 3;
+   end Number_Of_Sides;
+   function Perimeter (Shape : Triangle_T) return Float_T is
+   begin
+      return Perimeter (Shape.Sides);
+   end Perimeter;
 end Shapes;
 --Shapes_Body
 --Main
@@ -80,10 +101,11 @@ procedure Main is
 
   procedure Describe (Shape : Shapes.Shape_T'Class) is
   begin
-    Put_Line (Shape.Get_Description);
+    Put_Line (Get_Description (Shape));
     if Shape not in Shapes.Shape_T then
-      Put_Line ("  Number of sides:" & Integer'Image (Shape.Number_Of_Sides));
-      Put_Line ("  Perimeter:" & Shapes.Float_T'Image (Shape.Perimeter));
+      Put_Line
+        ("  Number of sides:" & Integer'Image (Number_Of_Sides (Shape)));
+      Put_Line ("  Perimeter:" & Shapes.Float_T'Image (Perimeter (Shape)));
     end if;
   end Describe;
 begin

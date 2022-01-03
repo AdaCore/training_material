@@ -734,6 +734,7 @@ Quiz
    What output does the following code produce? (Assume :code:`Print` prints the current value of its argument)
 
    .. code:: Ada
+      :number-lines: 1
 
       declare
          M : Integer := 1;

@@ -12,16 +12,16 @@ package Employee is
   procedure Print (O : Person_T);
 
   type Employee_T is new Person_T with private;
-  not overriding procedure Set_Start_Date (O     : in out Employee_T;
-                                           Value :        String);
-  not overriding function Start_Date (O : Employee_T) return String;
-  overriding procedure Print (O : Employee_T);
+  procedure Set_Start_Date (O     : in out Employee_T;
+                            Value :        String);
+  function Start_Date (O : Employee_T) return String;
+  procedure Print (O : Employee_T);
 
   type Position_T is new Employee_T with private;
-  not overriding procedure Set_Job (O     : in out Position_T;
-                                    Value :        String);
-  not overriding function Job (O : Position_T) return String;
-  overriding procedure Print (O : Position_T);
+  procedure Set_Job (O     : in out Position_T;
+                     Value :        String);
+  function Job (O : Position_T) return String;
+  procedure Print (O : Position_T);
 
 private
   type Person_T is tagged record
@@ -40,7 +40,6 @@ private
 end Employee;
 --Types_Spec
 
-with Ada.Calendar.Formatting;
 with Ada.Text_IO; use Ada.Text_IO;
 package body Employee is
 
@@ -58,9 +57,14 @@ package body Employee is
   end To_String;
 
   function From_String (S : String) return Ada.Calendar.Time is
-    Date : constant String := S & " 12:00:00";
+    Year  : Ada.Calendar.Year_Number;
+    Month : Ada.Calendar.Month_Number;
+    Day   : Ada.Calendar.Day_Number;
   begin
-    return Ada.Calendar.Formatting.Value (Date);
+    Year  := Ada.Calendar.Year_Number'Value (S (S'First .. S'First + 3));
+    Month := Ada.Calendar.Month_Number'Value (S (S'First + 5 .. S'First + 6));
+    Day := Ada.Calendar.Day_Number'Value (S (S'First + 8 .. S'First + 9));
+    return Ada.Calendar.Time_Of (Year, Month, Day);
   end From_String;
 
   procedure Set_Name (O     : in out Person_T;
@@ -68,27 +72,36 @@ package body Employee is
   begin
     O.Name := To_Unbounded_String (Value);
   end Set_Name;
-  function Name (O : Person_T) return String is (To_String (O.Name));
+  function Name (O : Person_T) return String is
+  begin
+    return To_String (O.Name);
+  end Name;
 
   procedure Set_Birth_Date (O     : in out Person_T;
                             Value :        String) is
   begin
     O.Birth_Date := From_String (Value);
   end Set_Birth_Date;
-  function Birth_Date (O : Person_T) return String is (To_String (O.Birth_Date));
+  function Birth_Date (O : Person_T) return String is
+  begin
+    return To_String (O.Birth_Date);
+  end Birth_Date;
   procedure Print (O : Person_T) is
   begin
     Put_Line ("Name: " & Name (O));
     Put_Line ("Birthdate: " & Birth_Date (O));
   end Print;
 
-  not overriding procedure Set_Start_Date (O     : in out Employee_T;
-                                           Value :        String) is
+  procedure Set_Start_Date (O     : in out Employee_T;
+                            Value :        String) is
   begin
     O.Start_Date := From_String (Value);
   end Set_Start_Date;
-  not overriding function Start_Date (O : Employee_T) return String is (To_String (O.Start_Date));
-  overriding procedure Print (O : Employee_T) is
+  function Start_Date (O : Employee_T) return String is
+  begin
+    return To_String (O.Start_Date);
+  end Start_Date;
+  procedure Print (O : Employee_T) is
   begin
     Put_Line ("Name: " & Name (O));
     Put_Line ("Birthdate: " & Birth_Date (O));
@@ -96,13 +109,16 @@ package body Employee is
   end Print;
 --Types_Body_Partial
 
-  not overriding procedure Set_Job (O     : in out Position_T;
-                                    Value :        String) is
+  procedure Set_Job (O     : in out Position_T;
+                     Value :        String) is
   begin
     O.Job := To_Unbounded_String (Value);
   end Set_Job;
-  not overriding function Job (O : Position_T) return String is (To_String (O.Job));
-  overriding procedure Print (O : Position_T) is
+  function Job (O : Position_T) return String is
+  begin
+    return To_String (O.Job);
+  end Job;
+  procedure Print (O : Position_T) is
   begin
     Put_Line ("Name: " & Name (O));
     Put_Line ("Birthdate: " & Birth_Date (O));
@@ -117,31 +133,37 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Employee;
 procedure Main is
   function Read (Prompt : String) return String is
+    S : String(1..100);
+    L : Integer;
   begin
     Put (Prompt & "> ");
-    return Get_Line;
+    Get_Line (S, L);
+    return S(1..L);
   end Read;
-  function Read_Date (Prompt : String) return String is (Read (Prompt & " (YYYY-MM-DD)"));
+  function Read_Date (Prompt : String) return String is
+  begin
+    return Read (Prompt & " (YYYY-MM-DD)");
+  end Read_Date;
 
   Applicant : Employee.Person_T;
   Employ    : Employee.Employee_T;
   Staff     : Employee.Position_T;
 
 begin
-  Applicant.Set_Name (Read ("Applicant name"));
-  Applicant.Set_Birth_Date (Read_Date ("   Birth Date"));
+  Employee.Set_Name (Applicant, Read ("Applicant name"));
+  Employee.Set_Birth_Date (Applicant, Read_Date ("   Birth Date"));
 
-  Employ.Set_Name (Read ("Employee name"));
-  Employ.Set_Birth_Date (Read_Date ("   Birth Date"));
-  Employ.Set_Start_Date (Read_Date ("   Start Date"));
+  Employee.Set_Name (Employ, Read ("Employee name"));
+  Employee.Set_Birth_Date (Employ, Read_Date ("   Birth Date"));
+  Employee.Set_Start_Date (Employ, Read_Date ("   Start Date"));
 
-  Staff.Set_Name (Read ("Staff name"));
-  Staff.Set_Birth_Date (Read_Date ("   Birth Date"));
-  Staff.Set_Start_Date (Read_Date ("   Start Date"));
-  Staff.Set_Job (Read ("   Job"));
+  Employee.Set_Name (Staff, Read ("Staff name"));
+  Employee.Set_Birth_Date (Staff, Read_Date ("   Birth Date"));
+  Employee.Set_Start_Date (Staff, Read_Date ("   Start Date"));
+  Employee.Set_Job (Staff, Read ("   Job"));
 
-  Applicant.Print;
-  Employ.Print;
-  Staff.Print;
+  Employee.Print (Applicant);
+  Employee.Print (Employ);
+  Employee.Print (Staff);
 end Main;
 --Main

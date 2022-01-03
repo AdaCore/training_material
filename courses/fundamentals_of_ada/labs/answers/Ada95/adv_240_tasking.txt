@@ -20,7 +20,9 @@ package body Datastore is
 
   protected body Registers is
     function Read (Register : Register_T) return Integer is
-       (Register_Data (Register));
+    begin
+      return Register_Data (Register);
+    end Read;
     procedure Write (Register : Register_T;
                      Value    : Integer) is
     begin
@@ -29,7 +31,9 @@ package body Datastore is
   end Registers;
 
   function Read (Register : Register_T) return Integer is
-     (Registers.Read (Register));
+  begin
+    return Registers.Read (Register);
+  end Read;
   procedure Write (Register : Register_T;
                    Value    : Integer) is
   begin
@@ -87,6 +91,14 @@ with Datastore;   use Datastore;
 procedure Main is
   Counters : array (Register_T) of Counter_T;
 
+  function Get_Line return String is
+    S : String (1 .. 100);
+    L : Integer;
+  begin
+    Get_Line (S, L);
+    return S (1 .. L);
+  end Get_Line;
+
   function Get (Prompt : String) return Integer is
   begin
     Put ("  " & Prompt & ">");
@@ -96,13 +108,15 @@ procedure Main is
   procedure Print is
   begin
     for Register in Register_T loop
-      Put_Line (Register'Image & " =>" & Integer'Image (Datastore.Read (Register)));
+         Put_Line
+           (Register_T'Image (Register) & " =>" &
+            Integer'Image (Datastore.Read (Register)));
     end loop;
   end Print;
 
 begin
   for Register in Register_T loop
-    Put_Line ("Register " & Register'Image);
+    Put_Line ("Register " & Register_T'Image (Register));
     declare
       V : constant Integer := Get ("Initial value");
       I : constant Integer := Get ("Increment");
@@ -120,7 +134,8 @@ begin
     declare
       Str : constant String := Get_Line;
     begin
-      exit when Str'Length > 0 and then (Str (Str'First) in 'Q' | 'q');
+      exit when Str'Length > 0
+        and then (Str (Str'First) = 'Q' or else Str (Str'First) = 'q');
       Print;
     end;
   end loop;

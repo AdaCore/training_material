@@ -31,8 +31,14 @@ package body Messages is
               Crc       => Crc (Content));
    end Create;
 
-   function Kind (Message : Message_T) return Kind_T is (Message.Kind);
-   function Content (Message : Message_T) return Content_T is (To_String (Message.Content));
+   function Kind (Message : Message_T) return Kind_T is
+   begin
+      return Message.Kind;
+   end Kind;
+   function Content (Message : Message_T) return Content_T is
+   begin
+      return To_String (Message.Content);
+   end Content;
 end Messages;
 --Messages
 
@@ -44,9 +50,9 @@ function Messages.Crc (Content : Content_T)
                        return Crc_T is
    Ret_Val : Crc_T := 1;
 begin
-   for C of Content
+   for Index in Content'Range
    loop
-      Ret_Val := Ret_Val * Character'Pos (C);
+      Ret_Val := Ret_Val * Character'Pos (Content(Index));
    end loop;
    return Ret_Val;
 end Messages.Crc;
@@ -63,12 +69,20 @@ package Messages.Queue is
 private
    The_Queue : array (1 .. 10) of Message_T;
    Top       : Integer := 0;
-   function Empty return Boolean is (Top = 0);
-   function Full return Boolean is (Top = The_Queue'Last);
 end Messages.Queue;
 
 with Messages.Crc;
 package body Messages.Queue is
+
+   function Empty return Boolean is
+   begin
+      return Top = 0;
+   end Empty;
+   function Full return Boolean is
+   begin
+      return Top = The_Queue'Last;
+   end Full;
+
    procedure Push (Message : Message_T) is
    begin
       Top             := Top + 1;
@@ -93,7 +107,10 @@ package Messages.Queue.Debug is
 end Messages.Queue.Debug;
 
 package body Messages.Queue.Debug is
-   function Queue_Length return Integer is (Top);
+   function Queue_Length return Integer is
+   begin
+      return Top;
+   end Queue_Length;
 
    procedure Inject_Crc_Fault (Position : Integer) is
    begin
@@ -101,8 +118,11 @@ package body Messages.Queue.Debug is
    end Inject_Crc_Fault;
 
    function Text (Message : Message_T) return String is
-     (Kind_T'Image (Message.Kind) & " => " & To_String (Message.Content) &
-      " (" & Crc_T'Image (Message.Crc) & " )");
+   begin
+      return Kind_T'Image (Message.Kind) & " => " &
+         To_String (Message.Content) &
+         " (" & Crc_T'Image (Message.Crc) & " )";
+   end Text;
 end Messages.Queue.Debug;
 --Debug
 

@@ -629,9 +629,9 @@ Neighbor Attributes For All Scalars
    Signed   : Signed_T := -1;
    Unsigned : Unsigned_T := 0;
    ...
-   Signed := Signed'Succ( Signed ); -- Signed = -2
+   Signed := Signed_T'Succ( Signed ); -- Signed = 0
    ...
-   Unsigned := Unsigned'Pred( Unsigned ); -- Signed = 1
+   Unsigned := Unsigned_T'Pred( Unsigned ); -- Signed = 255
 
 ------------------------------------
 Min/Max Attributes For All Scalars
@@ -687,9 +687,9 @@ D. Unknown - depends on the compiler
 
       - :ada:`V` is assigned the value -10
 
-============================
-Discrete Enumeration Types
-============================
+====================
+Enumeration Types
+====================
 
 -----------
 Examples

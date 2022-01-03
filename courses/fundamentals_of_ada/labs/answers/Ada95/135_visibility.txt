@@ -1,0 +1,168 @@
+--Types
+package Types is
+   type Mph_T is digits 6;
+   type Feet_T is digits 6;
+   type Miles_T is digits 6;
+   type Kilometers_T is digits 6;
+   type Seconds_T is digits 6;
+   type Minutes_T is digits 6;
+   type Hours_T is digits 6;
+
+   function "/" (Distance : Feet_T; Time : Seconds_T) return Mph_T;
+   function "/" (Distance : Kilometers_T; Time : Minutes_T) return Mph_T;
+   function "/" (Distance : Miles_T; Time : Hours_T) return Mph_T;
+
+   function Convert (Distance : Feet_T) return Miles_T;
+   function Convert (Distance : Kilometers_T) return Miles_T;
+   function Convert (Time : Seconds_T) return Hours_T;
+   function Convert (Time : Minutes_T) return Hours_T;
+end Types;
+
+package body Types is
+   function "/" (Distance : Feet_T; Time : Seconds_T) return Mph_T is
+   begin
+     return Convert (Distance) / Convert (Time);
+   end "/";
+   function "/" (Distance : Kilometers_T; Time : Minutes_T) return Mph_T is
+   begin
+     return Convert (Distance) / Convert (Time);
+   end "/";
+   function "/" (Distance : Miles_T; Time : Hours_T) return Mph_T is
+   begin
+     return Mph_T (Distance) / Mph_T (Time);
+   end "/";
+
+   function Convert (Distance : Feet_T) return Miles_T is
+   begin
+     return Miles_T (Distance) / 5_280.0;
+   end Convert;
+   function Convert (Distance : Kilometers_T) return Miles_T is
+   begin
+     return Miles_T (Distance) / 1.6;
+   end Convert;
+
+   function Convert (Time : Seconds_T) return Hours_T is
+   begin
+     return Hours_T (Time) / (60.0 * 60.0);
+   end Convert;
+   function Convert (Time : Minutes_T) return Hours_T is
+   begin
+     return Hours_T (Time) / 60.0;
+   end Convert;
+end Types;
+--Types
+
+--Strings
+package Types.Strings is
+   Exponent_Digits      : Natural := 2;
+   Digits_After_Decimal : Natural := 3;
+
+   function To_String (Value : Mph_T) return String;
+   function To_String (Value : Feet_T) return String;
+   function To_String (Value : Miles_T) return String;
+   function To_String (Value : Kilometers_T) return String;
+   function To_String (Value : Seconds_T) return String;
+   function To_String (Value : Minutes_T) return String;
+   function To_String (Value : Hours_T) return String;
+end Types.Strings;
+
+with Ada.Text_IO; use Ada.Text_IO;
+package body Types.Strings is
+   package Io is new Ada.Text_IO.Float_IO (Float);
+   function To_String (Value : Float) return String is
+      Ret_Val : String (1 .. 30);
+   begin
+      Io.Put (To   => Ret_Val,
+              Item => Value,
+              Aft  => Digits_After_Decimal,
+              Exp  => Exponent_Digits);
+      for I in reverse Ret_Val'Range loop
+         if Ret_Val (I) = ' ' then
+            return Ret_Val (I + 1 .. Ret_Val'Last);
+         end if;
+      end loop;
+      return Ret_Val;
+   end To_String;
+
+   function To_String (Value : Mph_T) return String is
+   begin
+     return To_String (Float (Value));
+   end To_String;
+   function To_String (Value : Feet_T) return String is
+   begin
+     return To_String (Float (Value));
+   end To_String;
+   function To_String (Value : Miles_T) return String is
+   begin
+     return To_String (Float (Value));
+   end To_String;
+   function To_String (Value : Kilometers_T) return String is
+   begin
+     return To_String (Float (Value));
+   end To_String;
+   function To_String (Value : Seconds_T) return String is
+   begin
+     return To_String (Float (Value));
+   end To_String;
+   function To_String (Value : Minutes_T) return String is
+   begin
+     return To_String (Float (Value));
+   end To_String;
+   function To_String (Value : Hours_T) return String is
+   begin
+     return To_String (Float (Value));
+   end To_String;
+end Types.Strings;
+--Strings
+
+--Main
+with Ada.Text_IO; use Ada.Text_IO;
+with Types;       use Types;
+with Types.Strings;
+procedure Main is
+   Aft : Integer renames Types.Strings.Digits_After_Decimal;
+   Exp : Integer renames Types.Strings.Exponent_Digits;
+
+   Feet       : Feet_T;
+   Miles      : Miles_T;
+   Kilometers : Kilometers_T;
+   Seconds    : Seconds_T;
+   Minutes    : Minutes_T;
+   Hours      : Hours_T;
+   Mph        : Mph_T;
+
+   function Get (Prompt : String) return String is
+      S : String(1..100);
+      L : Integer;
+   begin
+      Put (Prompt & "> ");
+      Get_Line (S, L);
+      return S(1..L);
+   end Get;
+
+begin
+   Feet       := Feet_T'Value (Get ("Feet"));
+   Miles      := Miles_T'Value (Get ("Miles"));
+   Kilometers := Kilometers_T'Value (Get ("Kilometers"));
+
+   Seconds := Seconds_T'Value (Get ("Seconds"));
+   Minutes := Minutes_T'Value (Get ("Minutes"));
+   Hours   := Hours_T'Value (Get ("Hours"));
+
+   Aft := 2;
+   Exp := 2;
+   Mph := Feet / Seconds;
+   Put_Line (Strings.To_String (Feet) & " feet / " & Strings.To_String (Seconds) &
+             " seconds = " & Strings.To_String (Mph) & " mph");
+   Aft := Aft + 1;
+   Exp := Exp + 1;
+   Mph := Miles / Hours;
+   Put_Line (Strings.To_String (Miles) & " miles / " & Strings.To_String (Hours) &
+             " hour = " & Strings.To_String (Mph) & " mph");
+   Aft := Aft + 1;
+   Exp := Exp + 1;
+   Mph := Kilometers / Minutes;
+   Put_Line (Strings.To_String (Kilometers) & " km / " & Strings.To_String (Minutes) &
+             " minute = " & Strings.To_String (Mph) & " mph");
+end Main;
+--Main

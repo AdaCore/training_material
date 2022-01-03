@@ -1022,15 +1022,11 @@ Summary
 Summary
 ---------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Hierarchical library units address important issues
 
    - Direct support for subsystems
    - Extension without recompilation
-   - Separation of concerns with controlled sharing of visibility
+   - Separation of concerns with controlled sharing of visibility (Ada 2012)
 
 * Parents should document assumptions for children
 
