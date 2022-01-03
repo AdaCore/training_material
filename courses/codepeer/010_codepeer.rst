@@ -513,7 +513,7 @@ Divide By Zero
 -----------------
 
 + The second operand of a divide, :ada:`mod` or :ada:`rem` operation could be zero
-+ Will generate a :ada:`Constraint_Error`
++ Runtime :ada:`Constraint_Error`
 
 ..
    :toolname:`CodePeer` example (4.1.1 - divide by zero)
@@ -645,10 +645,10 @@ Aliasing Check
 ----------------
 
 + Some parameters could be passed as **reference**
-+ For such parameters, **precondition** that they:
++ For those, :toolname:`CodePeer` uses preconditions:
 
-  + Are a **different object** from other parameters
-  + Do **not match** the address of a global object
+  + Do not **reference** another parameter
+  + Do not **match** the address of a global object
 
 ..
    :toolname:`CodePeer` example (4.1.1 - aliasing check)
@@ -671,7 +671,7 @@ Aliasing Check
 Tag Check
 -----------
 
-A tag check operation on a :ada:`tagged` object might fail
+A tag check operation on a :ada:`tagged` object might raise a :ada:`Constraint_Error`
 
 ..
    :toolname:`CodePeer` example (4.1.1 - tag check)
@@ -1403,7 +1403,7 @@ Suspicious Precondition
 
 + Set of allowed inputs is **not contiguous**
 
-  + some values **inbetween** allowed inputs can cause **runtime errors**
+  + some values **in-between** allowed inputs can cause **runtime errors**
 
 + Certain cases may be missing from the user's precondition
 + May be a **false-positive** depending on the algorithm
@@ -1609,7 +1609,7 @@ Test duplication
 -------------------
 
 + The same expression is tested twice in successive :ada:`if ... elsif ... elsif ... `
-+ Usually indicates a copy-paste error (CWE 1041)
++ Usually indicates a copy-paste error
 
 .. code:: Ada
    :number-lines: 1
@@ -1635,8 +1635,8 @@ Test duplication
 Duplicate branches
 -------------------
 
-+ Branches are duplicated in a :ada:`if` or a :ada:`case`
-+ Should be refactored, or results from incorrect copy-paste (CWE 1041)
++ Branches are duplicated in :ada:`if` or :ada:`case`
++ Should be refactored, or results from incorrect copy-paste
 
 .. code:: Ada
    :number-lines: 1
@@ -1777,7 +1777,7 @@ Annotations Categories
 
         * - ``unanalyzed call``
 
-          - External calls to unanalysed subprograms
+          - External calls to unanalyzed subprograms
 
         * - ``global inputs``
 
@@ -1857,7 +1857,7 @@ Presumption
 Unanalyzed Call
 -----------------
 
-+ External calls to unanalysed subprograms
++ External calls to unanalyzed subprograms
 
     - Participate in the determination of presumptions
 
@@ -2038,7 +2038,7 @@ Analyze Messages (4/4)
 
 + Choose relevant messages based on ranking
 
-  + Rank = severity x certainty
+  + Rank = severity :math:`\times` certainty
   + **High** :math:`\rightarrow` certain problem
   + **Medium** :math:`\rightarrow` possible problem, or certain with low severity
   + **Low** :math:`\rightarrow` less likely problem (yet useful for exhaustivity)
@@ -2186,7 +2186,7 @@ Outside Tooling Justification
 
   + Review them via the spreadsheet tool (e.g. Excel)
 
-    + Beware fill **all** the columns
+    + Beware: Fill **all** the columns
 
   + Import back CSV reviews into the :toolname:`CodePeer` database
 
@@ -2297,7 +2297,7 @@ Combined Desktop/Nightly Run
 + **Fast** analysis of code changes done at each **developer's desk**
 + A longer and **more exhaustive** analysis is performed nightly
 + The developer can re-use the **nightly** database as a baseline for analysis
-+ Database reviews **should** be stored in the **nightly** (*gold*) database
++ Database reviews **should** be stored in this database
 
     + No conflict with nightly runs
     + Updated every morning in the users' databases
@@ -2312,7 +2312,7 @@ Combined Continuous/Nightly Run
 
     + Same level as continuous runs and :command:`-baseline`
 
-+ Database reviews **should** be stored in the **nightly** (*gold*) database
++ Database reviews **should** be stored in this database
 
     + No conflict with nightly runs
     + Updated every morning in the continuous database
@@ -2324,7 +2324,7 @@ Combined Desktop/Continuous/Nightly Run
 + **Fast** analysis of code changes done at each **developer's desk**
 + A **more exhaustive** analysis of code changes done continuously **on a server**
 + A longer and **even more exhaustive** analysis is performed nightly
-+ Database reviews **should** be stored in the **nightly** (*gold*) database
++ Database reviews **should** be stored in this database
 
     + No conflict with nightly runs
     + Updated every morning in the users' and continuous databases
@@ -2396,7 +2396,10 @@ Baseline Runs
 
 + Baseline run
 
-  + **Reference** database (*gold*)
+  + **Reference** database 
+
+    + Can be referenced as :dfn:`gold`
+
   + **All changes** are compared to it
   + **All reviews** should be pushed to it
 
@@ -2405,12 +2408,12 @@ Baseline Runs
   + :command:`codepeer -baseline`
 
 --------------------------------------
-Baseline With Continuous-Integration
+Baseline With Continuous Integration
 --------------------------------------
 
 + Developers pre-validate changes **locally** prior to commit
 
-    + Then creates a **separate** branch and commits to it
+    + Then create a **separate** branch and commits to it
 
 + The continuous builder is **triggered**
 
@@ -2582,6 +2585,20 @@ Report File
   https://cwe.mitre.org/compatible/questionnaires/43.html
 
 + :toolname:`CodePeer` findings are **mapped** to CWE identifiers
+
+.. code:: Ada
+
+  project Prj1 is
+     ...
+     package CodePeer is
+        for Include_CWE use "true";
+     end CodePeer;
+   end Prj1;
+
+.. code:: ada
+
+    -- assign.adb:1: (pre)- assign:(overflow check [CWE 190])
+    -- Y /= 2_147_483_647
 
 ---------------------------------------
 :toolname:`CodePeer` and DO178B/C
