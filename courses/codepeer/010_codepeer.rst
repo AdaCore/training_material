@@ -73,7 +73,6 @@ Why Use :toolname:`CodePeer`?
     + Typically logic errors
 
 + Detailed subprograms analysis
-
 + Can analyze existing code bases
 
   + Detect and remove **latent bugs**
@@ -132,7 +131,7 @@ Detailed Subprogram Analysis
 
 + Bundled with a Coding Standards Checker and a Metrics Tool
 
-  + :toolname:`GNATcheck` and :toolname:`GNAT Metric`
+  + :toolname:`GNATcheck` and :toolname:`GNATmetric`
 
 + Detects runtime and logic errors exhaustively
 
@@ -2410,7 +2409,7 @@ Baseline Runs
 
 + Baseline run
 
-  + **Reference** database 
+  + **Reference** database
 
     + Is a *gold* reference
 
