@@ -63,13 +63,13 @@ Pragma Import / Export (1/2)
       .. code:: Ada
 
          procedure C_Proc;
-         pragma Import (C, C_Proc, "c_proc");
+         pragma Import (C, C_Proc, "SomeProcedure");
 
    - C implementation
 
        .. code:: C
 
-          void c_proc (void) {
+          void SomeProcedure (void) {
              // some code
           }
 
@@ -79,18 +79,18 @@ Pragma Import / Export (1/2)
 
        .. code:: Ada
 
-          procedure Ada_Proc;
-          pragma Export (C, Ada_Proc, "ada_proc");
-          procedure Ada_Proc is
+          procedure Some_Procedure;
+          pragma Export (C, Ada_Proc, "ada_some_procedure");
+          procedure Some_Procedure is
           begin
            -- some code
-          end Ada_Proc;
+          end Some_Procedure;
 
    - C view
 
        .. code:: C
 
-          extern void ada_proc (void);
+          extern void ada_some_procedure (void);
 
 ------------------------------
 Pragma Import / Export (2/2)

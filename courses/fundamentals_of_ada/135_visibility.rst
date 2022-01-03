@@ -112,10 +112,7 @@ Examples
 ---------------------
 
 * May have several, like :ada:`with` clauses
-* Must name an imported library unit
-
-   - From same context clause
-
+* Can refer to any visible package (including nested packages)
 * Syntax
 
    .. code:: Ada
