@@ -1,2 +1,3 @@
 courses/fundamentals_of_ada/*.rst
+courses/gnatcheck/*.rst
 courses/codepeer/*.rst
