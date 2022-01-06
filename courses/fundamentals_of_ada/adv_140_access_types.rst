@@ -46,8 +46,8 @@ Access Types Design
      P_A : Integer_Pool_Access := new Integer;
 
      type Integer_General_Access is access all Integer;
-     G : aliased Integer
-     G_A1 : Integer_General_Access := G'access;
+     G : aliased Integer;
+     G_A1 : Integer_General_Access := G'Access;
      G_A2 : Integer_General_Access := new Integer;
 
 * This module will only deal with :dfn:`general access types`
@@ -70,7 +70,7 @@ Access Types Can Be Dangerous
 * Ada avoids using accesses as much as possible
 
    - Arrays are not pointers
-   - Parameters are implicitly passed by reference
+   - Many parameters are implicitly passed by reference
 
 * Only use them when needed
 
@@ -87,7 +87,7 @@ Declaration Location
    .. code:: Ada
 
       package P is
-        type String_Access is access String;
+        type String_Access is access all String;
       end P;
 
 * Can be nested in a procedure
@@ -96,7 +96,7 @@ Declaration Location
 
       package body P is
          procedure Proc is
-            type String_Access is access String;
+            type String_Access is access all String;
          begin
             ...
          end Proc;
@@ -617,7 +617,7 @@ System.Storage_Pools
 
 * Mechanism to allow coder control over allocation/deallocation process
 
-  * Uses :ada:`Ada.Finalization.Limited_Controlled` to add callbacks during creation and modification of pointers
+  * Uses :ada:`Ada.Finalization.Limited_Controlled` to implement customized memory allocation and deallocation.
   * Must be specified for each access type being controlled
 
     .. code:: Ada
