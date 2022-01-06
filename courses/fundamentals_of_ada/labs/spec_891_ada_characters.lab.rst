@@ -13,9 +13,9 @@ Ada.Characters Lab
     * If the character is a line terminator, print its name
     * If none of the above apply, just print out "unprintable"
 
-----------------------------------------------
-Ada.Text_IO Lab Solution
-----------------------------------------------
+-----------------------------
+Ada.Characters Lab Solution
+-----------------------------
 
 .. container:: source_include labs/answers/spec_891_ada_characters.txt :code:Ada
 
