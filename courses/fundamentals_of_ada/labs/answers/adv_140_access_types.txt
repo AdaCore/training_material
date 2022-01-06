@@ -1,0 +1,425 @@
+--Database
+with Ada.Strings.Unbounded;
+package Database is
+   type Database_T is private;
+   function "=" (L, R : Database_T) return Boolean;
+   function To_Database (Value : String) return Database_T;
+   function From_Database (Value : Database_T) return String;
+   function "<" (L, R : Database_T) return Boolean;
+private
+   type Database_T is record
+      Value  : String (1 .. 100);
+      Length : Natural;
+   end record;
+end Database;
+
+package body Database is
+   use Ada.Strings.Unbounded;
+   function "=" (L, R : Database_T) return Boolean is
+   begin
+      return L.Value (1 .. L.Length) = R.Value (1 .. R.Length);
+   end "=";
+   function To_Database (Value : String) return Database_T is
+      Retval : Database_T;
+   begin
+      Retval.Length                     := Value'length;
+      Retval.Value (1 .. Retval.Length) := Value;
+      return Retval;
+   end To_Database;
+   function From_Database (Value : Database_T) return String is
+   begin
+      return Value.Value (1 .. Value.Length);
+   end From_Database;
+
+   function "<" (L, R : Database_T) return Boolean is
+   begin
+      return L.Value (1 .. L.Length) < R.Value (1 .. R.Length);
+   end "<";
+end Database;
+--Database
+
+--Database_List_Spec
+with Database; use Database;
+-- Uncomment next line when using debug/storage pools
+-- with Memory_Mgmt;
+package Database_List is
+   type List_T is limited private;
+   procedure First (List : in out List_T);
+   procedure Next (List : in out List_T);
+   function End_Of_List (List : List_T) return Boolean;
+   function Current (List : List_T) return Database_T;
+   procedure Insert (List    : in out List_T;
+                    Element :        Database_T);
+   procedure Delete (List    : in out List_T;
+                     Element :        Database_T);
+   function Is_Empty (List : List_T) return Boolean;
+private
+   type Linked_List_T;
+   type Linked_List_Ptr_T is access all Linked_List_T;
+   -- Uncomment next line when using debug/storage pools
+   -- for Linked_List_Ptr_T'storage_pool use Memory_Mgmt.Storage_Pool;
+   type Linked_List_T is record
+      Next    : Linked_List_Ptr_T;
+      Content : Database_T;
+   end record;
+   type List_T is record
+      Head    : Linked_List_Ptr_T;
+      Current : Linked_List_Ptr_T;
+   end record;
+end Database_List;
+--Database_List_Spec
+
+--Database_List_Helpers
+with Interfaces;
+with Unchecked_Deallocation;
+package body Database_List is
+   use type Database.Database_T;
+
+   function Is_Empty (List : List_T) return Boolean is
+   begin
+      return List.Head = null;
+   end Is_Empty;
+
+   procedure First (List : in out List_T) is
+   begin
+      List.Current := List.Head;
+   end First;
+
+   procedure Next (List : in out List_T) is
+   begin
+      if not Is_Empty (List) then
+         if List.Current /= null then
+            List.Current := List.Current.Next;
+         end if;
+      end if;
+   end Next;
+
+   function End_Of_List (List : List_T) return Boolean is
+   begin
+      return List.Current = null;
+   end End_Of_List;
+
+   function Current (List : List_T) return Database_T is
+   begin
+      return List.Current.Content;
+   end Current;
+
+--Database_List_Helpers
+--Database_List_Substance
+   procedure Insert (List    : in out List_T;
+                    Element :        Database_T) is
+      New_Element : Linked_List_Ptr_T :=
+        new Linked_List_T'(Next => null, Content => Element);
+   begin
+      if Is_Empty (List) then
+         List.Current := New_Element;
+         List.Head    := New_Element;
+      elsif Element < List.Head.Content then
+         New_Element.Next := List.Head;
+         List.Current     := New_Element;
+         List.Head        := New_Element;
+      else
+         declare
+            Current : Linked_List_Ptr_T := List.Head;
+         begin
+            while Current.Next /= null and then Current.Next.Content < Element
+            loop
+               Current := Current.Next;
+            end loop;
+            New_Element.Next := Current.Next;
+            Current.Next     := New_Element;
+         end;
+      end if;
+      -- Uncomment next line when using debug/storage pools
+      -- Memory_Mgmt.Print_Info;
+   end Insert;
+
+   procedure Free is new Unchecked_Deallocation
+     (Linked_List_T, Linked_List_Ptr_T);
+   procedure Delete
+     (List    : in out List_T;
+      Element :        Database_T) is
+      To_Delete : Linked_List_Ptr_T := null;
+   begin
+      if not Is_Empty (List) then
+         if List.Head.Content = Element then
+            To_Delete    := List.Head;
+            List.Head    := List.Head.Next;
+            List.Current := List.Head;
+         else
+            declare
+               Previous : Linked_List_Ptr_T := List.Head;
+               Current  : Linked_List_Ptr_T := List.Head.Next;
+            begin
+               while Current /= null loop
+                  if Current.Content = Element then
+                     To_Delete     := Current;
+                     Previous.Next := Current.Next;
+                  end if;
+                  Current := Current.Next;
+               end loop;
+            end;
+            List.Current := List.Head;
+         end if;
+         if To_Delete /= null then
+            Free (To_Delete);
+         end if;
+      end if;
+      -- Uncomment next line when using debug/storage pools
+      -- Memory_Mgmt.Print_Info;
+   end Delete;
+end Database_List;
+--Database_List_Substance
+
+--Main
+with Simple_Io; use Simple_Io;
+with Database;
+with Database_List;
+procedure Main is
+   List    : Database_List.List_T;
+   Element : Database.Database_T;
+
+   procedure Add is
+      Value : constant String := Get_String ("Add");
+   begin
+      if Value'length > 0 then
+         Element := Database.To_Database (Value);
+         Database_List.Insert (List, Element);
+      end if;
+   end Add;
+
+   procedure Delete is
+      Value : constant String := Get_String ("Delete");
+   begin
+      if Value'length > 0 then
+         Element := Database.To_Database (Value);
+         Database_List.Delete (List, Element);
+      end if;
+   end Delete;
+
+   procedure Print is
+   begin
+      Database_List.First (List);
+      Simple_Io.Print_String ("List");
+      while not Database_List.End_Of_List (List) loop
+         Element := Database_List.Current (List);
+         Print_String ("  " & Database.From_Database (Element));
+         Database_List.Next (List);
+      end loop;
+   end Print;
+
+begin
+   loop
+      case Get_Character ("A=Add D=Delete P=Print Q=Quit") is
+         when 'a' | 'A' => Add;
+         when 'd' | 'D' => Delete;
+         when 'p' | 'P' => Print;
+         when 'q' | 'Q' => exit;
+         when others    => null;
+      end case;
+   end loop;
+end Main;
+--Main
+
+--Simple_IO_Spec
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+package Simple_Io is
+   function Get_String (Prompt : String)
+                        return String;
+   function Get_Number (Prompt : String)
+                        return Integer;
+   function Get_Character (Prompt : String)
+                           return Character;
+   procedure Print_String (Str : String);
+   procedure Print_Number (Num : Integer);
+   procedure Print_Character (Char : Character);
+   function Get_String (Prompt : String)
+                        return Unbounded_String;
+   procedure Print_String (Str : Unbounded_String);
+end Simple_Io;
+--Simple_IO_Spec
+
+--Simple_IO_Body
+with Ada.Text_IO;
+package body Simple_Io is
+   function Get_String (Prompt : String) return String is
+      Str  : String (1 .. 1_000);
+      Last : Integer;
+   begin
+      Ada.Text_IO.Put (Prompt & "> ");
+      Ada.Text_IO.Get_Line (Str, Last);
+      return Str (1 .. Last);
+   end Get_String;
+
+   function Get_Number (Prompt : String) return Integer is
+      Str : constant String := Get_String (Prompt);
+   begin
+      return Integer'value (Str);
+   end Get_Number;
+
+   function Get_Character (Prompt : String) return Character is
+      Str : constant String := Get_String (Prompt);
+   begin
+      return Str (Str'first);
+   end Get_Character;
+
+   procedure Print_String (Str : String) is
+   begin
+      Ada.Text_IO.Put_Line (Str);
+   end Print_String;
+   procedure Print_Number (Num : Integer) is
+   begin
+      Ada.Text_IO.Put_Line (Integer'image (Num));
+   end Print_Number;
+   procedure Print_Character (Char : Character) is
+   begin
+      Ada.Text_IO.Put_Line (Character'image (Char));
+   end Print_Character;
+
+   function Get_String (Prompt : String) return Unbounded_String is
+   begin
+      return To_Unbounded_String (Get_String (Prompt));
+   end Get_String;
+   procedure Print_String (Str : Unbounded_String) is
+   begin
+      Print_String (To_String (Str));
+   end Print_String;
+end Simple_Io;
+--Simple_IO_Body
+
+--Memory_Mgmt_Debug
+with GNAT.Debug_Pools;
+package Memory_Mgmt is
+   Storage_Pool : GNAT.Debug_Pools.Debug_Pool;
+   procedure Print_Info;
+end Memory_Mgmt;
+
+package body Memory_Mgmt is
+   procedure Print_Info is
+   begin
+      GNAT.Debug_Pools.Print_Info_Stdout (Storage_Pool);
+   end Print_Info;
+end Memory_Mgmt;
+--Memory_Mgmt_Debug
+
+--Memory_Mgmt_Spec
+with System.Storage_Elements;
+with System.Storage_Pools;
+package Memory_Mgmt is
+
+   type Storage_Pool_T is new System.Storage_Pools.Root_Storage_Pool with
+   null record;
+
+   procedure Print_Info;
+
+   procedure Allocate
+     (Pool                     : in out Storage_Pool_T;
+      Storage_Address          :    out System.Address;
+      Size_In_Storage_Elements :        System.Storage_Elements.Storage_Count;
+      Alignment                :        System.Storage_Elements.Storage_Count);
+   procedure Deallocate
+     (Pool                     : in out Storage_Pool_T;
+      Storage_Address          :        System.Address;
+      Size_In_Storage_Elements :        System.Storage_Elements.Storage_Count;
+      Alignment                :        System.Storage_Elements.Storage_Count);
+   function Storage_Size
+     (Pool : Storage_Pool_T)
+      return System.Storage_Elements.Storage_Count;
+
+   Storage_Pool : Storage_Pool_T;
+
+end Memory_Mgmt;
+--Memory_Mgmt_Spec
+
+--Memory_Mgmt_Helpers
+with Ada.Text_IO;
+with Interfaces;
+package body Memory_Mgmt is
+   use System.Storage_Elements;
+   use type System.Address;
+
+   subtype Index_T is Storage_Count range 1 .. 1_000;
+   Memory_Block : aliased array (Index_T) of Interfaces.Unsigned_8;
+   Memory_Used  : array (Index_T) of Boolean := (others => False);
+
+   Current_Water_Mark : Storage_Count := 0;
+   High_Water_Mark    : Storage_Count := 0;
+
+   procedure Set_In_Use
+     (Start  : Index_T;
+      Length : Storage_Count;
+      Used   : Boolean) is
+   begin
+      for I in 0 .. Length - 1 loop
+         Memory_Used (Start + I) := Used;
+      end loop;
+      if Used then
+         Current_Water_Mark := Current_Water_Mark + Length;
+         High_Water_Mark    :=
+           Storage_Count'max (High_Water_Mark, Current_Water_Mark);
+      else
+         Current_Water_Mark := Current_Water_Mark - Length;
+      end if;
+   end Set_In_Use;
+
+   function Find_Free_Block
+     (Length : Storage_Count)
+      return Index_T is
+      Consecutive : Storage_Count := 0;
+   begin
+      for I in Memory_Used'range loop
+         if Memory_Used (I) then
+            Consecutive := 0;
+         else
+            Consecutive := Consecutive + 1;
+            if Consecutive >= Length then
+               return I;
+            end if;
+         end if;
+      end loop;
+      raise Storage_Error;
+   end Find_Free_Block;
+--Memory_Mgmt_Helpers
+
+--Memory_Mgmt_Substance
+   procedure Allocate
+     (Pool                     : in out Storage_Pool_T;
+      Storage_Address          :    out System.Address;
+      Size_In_Storage_Elements :        Storage_Count;
+      Alignment                :        Storage_Count) is
+      Index : Storage_Count := Find_Free_Block (Size_In_Storage_Elements);
+   begin
+      Storage_Address := Memory_Block (Index)'address;
+      Set_In_Use (Index, Size_In_Storage_Elements, True);
+   end Allocate;
+
+   procedure Deallocate
+     (Pool                     : in out Storage_Pool_T;
+      Storage_Address          :        System.Address;
+      Size_In_Storage_Elements :        Storage_Count;
+      Alignment                :        Storage_Count) is
+   begin
+      for I in Memory_Block'range loop
+         if Memory_Block (I)'address = Storage_Address then
+            Set_In_Use (I, Size_In_Storage_Elements, False);
+         end if;
+      end loop;
+   end Deallocate;
+
+   function Storage_Size
+     (Pool : Storage_Pool_T)
+      return System.Storage_Elements.Storage_Count is
+   begin
+      return 0;
+   end Storage_Size;
+
+   procedure Print_Info is
+   begin
+      Ada.Text_IO.Put_Line
+        ("Current Water Mark: " & Storage_Count'image (Current_Water_Mark));
+      Ada.Text_IO.Put_Line
+        ("High Water Mark: " & Storage_Count'image (High_Water_Mark));
+   end Print_Info;
+
+end Memory_Mgmt;
+--Memory_Mgmt_Substance
