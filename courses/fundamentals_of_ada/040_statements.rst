@@ -2,16 +2,30 @@
 Statements
 ************
 
-.. |rightarrow| replace:: :math:`\rightarrow`
+..
+    Coding language
 
 .. role:: ada(code)
-   :language: ada
+    :language: Ada
 
 .. role:: C(code)
-   :language: C
+    :language: C
 
 .. role:: cpp(code)
-   :language: C++
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -399,6 +413,7 @@ If-then-elsif Statements
  .. container:: column
 
   .. code:: Ada
+     :number-lines: 1
 
      if Valve(N) /= Closed then
        Isolate (Valve(N));
@@ -412,6 +427,7 @@ If-then-elsif Statements
  .. container:: column
 
   .. code:: Ada
+     :number-lines: 1
 
      if Valve(N) /= Closed then
        Isolate (Valve(N));
@@ -866,12 +882,12 @@ Referencing Hidden Names
 
    Foo:
    declare
-      Counter : Integer := 0;
+      Counter : Float := 0.0;
    begin
       ...
       for Counter in Integer range 1 .. Number_Read loop
          -- set declared "Counter" to loop counter
-         Foo.Counter := Counter;
+         Foo.Counter := Float (Counter);
          ...
       end loop;
       ...

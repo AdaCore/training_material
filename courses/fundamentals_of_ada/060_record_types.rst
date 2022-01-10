@@ -2,16 +2,30 @@
 Record Types
 **************
 
-.. |rightarrow| replace:: :math:`\rightarrow`
+..
+    Coding language
 
 .. role:: ada(code)
-   :language: ada
+    :language: Ada
 
 .. role:: C(code)
-   :language: C
+    :language: C
 
 .. role:: cpp(code)
-   :language: C++
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -622,6 +636,30 @@ Discriminants
 
    + Unless object is **mutable**
 
+-----------
+Semantics
+-----------
+
+* :ada:`Person` objects are **constrained** by their discriminant
+
+   + **Unless** mutable
+   + Assignment from same variant **only**
+   + **Representation** requirements
+
+   .. code:: Ada
+
+      Pat  : Person(Student); -- No Pat.Pubs
+      Prof : Person(Faculty); -- No Prof.GPA
+      Soph : Person := ( Group  => Student,
+                         Name => "John Jones",
+                         GPA  => 3.2);
+      X : Person;  -- Illegal: must specify discriminant
+
+   .. code:: Ada
+
+      Pat  := Soph; -- OK
+      Soph := Prof; -- Constraint_Error at run time
+
 ------------------------------
 Mutable Discriminated Record
 ------------------------------
@@ -647,30 +685,6 @@ Mutable Discriminated Record
   ...
   S := (Group => Student, Gpa => 0.0);
   S := (Group => Faculty, Pubs => 10);
-
------------
-Semantics
------------
-
-* :ada:`Person` objects are **constrained** by their discriminant
-
-   + **Unless** mutable
-   + Assignment from same variant **only**
-   + **Representation** requirements
-
-   .. code:: Ada
-
-      Pat  : Person(Student); -- No Pat.Pubs
-      Prof : Person(Faculty); -- No Prof.GPA
-      Soph : Person := ( Group  => Student,
-                         Name => "John Jones",
-                         GPA  => 3.2);
-      X : Person;  -- Illegal: must specify discriminant
-
-   .. code:: Ada
-
-      Pat  := Soph; -- OK
-      Soph := Prof; -- Constraint_Error at run time
 
 ========
 Lab

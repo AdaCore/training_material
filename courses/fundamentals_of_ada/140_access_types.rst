@@ -1,10 +1,31 @@
-
 **************
 Access Types
 **************
 
+..
+    Coding language
+
 .. role:: ada(code)
     :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -370,7 +391,8 @@ Referencing The Stack
 
    procedure P2 is
    begin
-      -- What if P2 is called before P1?
+      -- OK when P2 called from P1.
+      -- What if P2 is called from elsewhere?
       G.all := 5;
    end P2;
 

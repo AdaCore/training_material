@@ -1,10 +1,31 @@
-
 *******************
 Program Structure
 *******************
 
+..
+    Coding language
+
 .. role:: ada(code)
     :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -1001,15 +1022,11 @@ Summary
 Summary
 ---------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Hierarchical library units address important issues
 
    - Direct support for subsystems
    - Extension without recompilation
-   - Separation of concerns with controlled sharing of visibility
+   - Separation of concerns with controlled sharing of visibility (Ada 2012)
 
 * Parents should document assumptions for children
 

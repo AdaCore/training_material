@@ -1,13 +1,31 @@
-
 **********************
 Interfacing with C
 **********************
 
+..
+    Coding language
+
 .. role:: ada(code)
-   :language: ada
+    :language: Ada
 
 .. role:: C(code)
-   :language: C
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -45,13 +63,13 @@ Pragma Import / Export (1/2)
       .. code:: Ada
 
          procedure C_Proc;
-         pragma Import (C, C_Proc, "c_proc");
+         pragma Import (C, C_Proc, "SomeProcedure");
 
    - C implementation
 
        .. code:: C
 
-          void c_proc (void) {
+          void SomeProcedure (void) {
              // some code
           }
 
@@ -61,18 +79,18 @@ Pragma Import / Export (1/2)
 
        .. code:: Ada
 
-          procedure Ada_Proc;
-          pragma Export (C, Ada_Proc, "ada_proc");
-          procedure Ada_Proc is
+          procedure Some_Procedure;
+          pragma Export (C, Ada_Proc, "ada_some_procedure");
+          procedure Some_Procedure is
           begin
            -- some code
-          end Ada_Proc;
+          end Some_Procedure;
 
    - C view
 
        .. code:: C
 
-          extern void ada_proc (void);
+          extern void ada_some_procedure (void);
 
 ------------------------------
 Pragma Import / Export (2/2)

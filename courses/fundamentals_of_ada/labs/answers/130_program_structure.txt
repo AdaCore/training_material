@@ -92,7 +92,6 @@ package Messages.Queue.Debug is
    function Text (Message : Message_T) return String;
 end Messages.Queue.Debug;
 
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 package body Messages.Queue.Debug is
    function Queue_Length return Integer is (Top);
 

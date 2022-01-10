@@ -1,7 +1,31 @@
-
 ************
 Visibility
 ************
+
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -88,10 +112,7 @@ Examples
 ---------------------
 
 * May have several, like :ada:`with` clauses
-* Must name an imported library unit
-
-   - From same context clause
-
+* Can refer to any visible package (including nested packages)
 * Syntax
 
    .. code:: Ada

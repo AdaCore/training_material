@@ -40,7 +40,6 @@ end Vstring;
 --Strings
 
 --Employee_Spec
-with Ada.Text_IO; use Ada.Text_IO;
 with Vstring;     use Vstring;
 package Employee is
 
@@ -70,6 +69,7 @@ end Employee;
 --Employee_Spec
 
 --Employee_Body
+with Ada.Text_IO; use Ada.Text_IO;
 package body Employee is
    function Read (Prompt : String) return String is
    begin
@@ -115,7 +115,7 @@ with Employee;
 with Vstring; use Vstring;
 procedure Main is
    procedure Print (Member : Employee.Employee_T) is
-      First_Line : Vstring.Vstring_T :=
+      First_Line : constant Vstring.Vstring_T :=
         Member.First_Name & " " & Member.Last_Name & " " &
         Member.Hourly_Rate'Image;
    begin

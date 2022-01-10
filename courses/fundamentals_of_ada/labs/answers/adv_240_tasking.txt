@@ -104,9 +104,9 @@ begin
   for Register in Register_T loop
     Put_Line ("Register " & Register'Image);
     declare
-      V : Integer := Get ("Initial value");
-      I : Integer := Get ("Increment");
-      D : Integer := Get ("Delay in tenths");
+      V : constant Integer := Get ("Initial value");
+      I : constant Integer := Get ("Increment");
+      D : constant Integer := Get ("Delay in tenths");
     begin
       Counters (Register).Initialize (Register   => Register,
                                       Value      => V,

@@ -34,7 +34,7 @@ procedure Main is
    procedure Sort (List : in out List_T) is
       Swapped : Boolean;
       procedure Swap (I, J : in Integer) is
-         Temp : Integer := List (I);
+         Temp : constant Integer := List (I);
       begin
          List (I) := List (J);
          List (J) := Temp;

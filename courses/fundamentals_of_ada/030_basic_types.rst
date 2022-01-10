@@ -2,16 +2,30 @@
 Basic Types
 *************
 
-.. |rightarrow| replace:: :math:`\rightarrow`
+..
+    Coding language
 
 .. role:: ada(code)
-   :language: ada
+    :language: Ada
 
 .. role:: C(code)
-   :language: C
+    :language: C
 
 .. role:: cpp(code)
-   :language: C++
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ================
 Introduction
@@ -421,9 +435,9 @@ Neighbor Attributes For All Scalars
    Signed   : Signed_T := -1;
    Unsigned : Unsigned_T := 0;
    ...
-   Signed := Signed'Succ( Signed ); -- Signed = -2
+   Signed := Signed_T'Succ( Signed ); -- Signed = 0
    ...
-   Unsigned := Unsigned'Pred( Unsigned ); -- Signed = 1
+   Unsigned := Unsigned_T'Pred( Unsigned ); -- Signed = 255
 
 ------------------------------------
 Min/Max Attributes For All Scalars
@@ -479,9 +493,9 @@ D. Unknown - depends on the compiler
 
       - :ada:`V` is assigned the value -10
 
-============================
-Discrete Enumeration Types
-============================
+====================
+Enumeration Types
+====================
 
 -----------
 Examples

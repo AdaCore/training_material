@@ -1,0 +1,49 @@
+with Ada.Numerics.Discrete_Random;
+with Ada.Numerics.Float_Random;
+with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
+with Ada.Text_IO; use Ada.Text_IO;
+procedure Main is
+
+   package Io is new Float_IO (Float);
+
+   type Index_T is range 1 .. 10;
+   type Element_T is record
+      Count : Natural := 0;
+      Total : Float   := 0.0;
+   end record;
+   Values : array (Index_T) of Element_T;
+   Index  : Index_T;
+
+   package I_Random is new Ada.Numerics.Discrete_Random (Index_T);
+   package F_Random renames Ada.Numerics.Float_Random;
+
+   I_Generator : I_Random.Generator;
+   F_Generator : F_Random.Generator;
+
+   function Random_Float return Float is
+      R     : Float    := F_Random.Random (F_Generator);
+      First : constant := 1_000.0;
+      Last  : constant := 9_999.0;
+   begin
+      return R * (Last - First) + First;
+   end Random_Float;
+
+begin
+   I_Random.Reset (I_Generator);
+   F_Random.Reset (F_Generator);
+   for I in 1 .. 100 loop
+      Index          := I_Random.Random (I_Generator);
+      Values (Index) :=
+        (Values (Index).Count + 1, Values (Index).Total + Sqrt (Random_Float));
+   end loop;
+
+   for I in Index_T'Range loop
+      Put (Index_T'Image (I) & "> ");
+      Put ("Count: " & Integer'Image (Values (I).Count) & " ");
+      Put ("Average: ");
+      Io.Put
+        (Values (I).Total / Float (Values (I).Count),
+         Exp => 0);
+      New_Line;
+   end loop;
+end Main;

@@ -75,8 +75,6 @@ with Keys_Pkg;
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
-   Keys : array (1 .. 3) of Keys_Pkg.Key_T;
-
    procedure Generate (Count : Natural) is
       Keys : array (1 .. Count) of Keys_Pkg.Key_T;
    begin

@@ -1,14 +1,31 @@
-.. |equivalent| replace:: :math:`\iff`
+**************
+Declarations
+**************
 
-.. role:: c(code)
-    :language: C
+..
+    Coding language
 
 .. role:: ada(code)
     :language: Ada
 
-**************
-Declarations
-**************
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -717,6 +734,7 @@ Quiz
    What output does the following code produce? (Assume :code:`Print` prints the current value of its argument)
 
    .. code:: Ada
+      :number-lines: 1
 
       declare
          M : Integer := 1;

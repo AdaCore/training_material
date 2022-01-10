@@ -13,13 +13,13 @@ end Constants;
 --Input
 with Constants;
 package Input is
-   function Get_Value (Prompt : String) return Constants.Integer;
+   function Get_Value (Prompt : String) return Constants.Integer_T;
 end Input;
 
 with Ada.Text_IO; use Ada.Text_IO;
 package body Input is
 
-   function Get_Value (Prompt : String) return Constants.Integer is
+   function Get_Value (Prompt : String) return Constants.Integer_T is
       Ret_Val : Integer;
    begin
       Put (Prompt & "> ");
