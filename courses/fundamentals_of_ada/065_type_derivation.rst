@@ -103,7 +103,6 @@ General Rule For a Primitive
         + As a parameter
         + As its return type (for :ada:`function`)
 
-   - In scope of `S` declaration
    - `S` is above :dfn:`freeze-point`
 
 * Rule of thumb
