@@ -107,7 +107,7 @@ General Rule For a Primitive
 
 * Rule of thumb
 
-    - Declare **all** of the type's primitives right after itself
+    - Primitives must be declared **right after** the type itself
     - In a scope, declare at most a **single** type with primitives
 
       .. code:: Ada
