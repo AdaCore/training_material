@@ -2489,7 +2489,7 @@ Baseline With Continuous Integration
         for Additional_Patterns use "ExtraMessagePatterns.xml";
         --  also Message_Patterns to replace default one
 
-        for Include_CWE use "true";
+        for CWE use "true";
      end CodePeer;
    end Prj1;
 
@@ -2623,7 +2623,7 @@ Report File
   project Prj1 is
      ...
      package CodePeer is
-        for Include_CWE use "true";
+        for CWE use "true";
      end CodePeer;
    end Prj1;
 
