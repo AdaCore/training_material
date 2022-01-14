@@ -27,6 +27,22 @@
 
 .. |checkmark| replace:: :math:`\checkmark`
 
+===================
+About This Course
+===================
+
+--------
+Styles
+--------
+
+* :dfn:`This` is a definition
+* :filename:`this/is/a.path`
+* :ada:`code is highlighted`
+* :command:`commands are emphasised --like-this`
+
+| ``console outputs``
+| ``are shown like that``
+
 ==========================
 Advanced Static Analysis
 ==========================
