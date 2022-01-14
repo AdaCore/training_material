@@ -70,9 +70,12 @@ What is Static Analysis?
 Why Static Analysis Saves Money
 ---------------------------------
 
-Shifts costs from later, expensive phases to earlier, cheaper phases
+* Costs shift
+* From later, **expensive** phases
+* To earlier, **cheaper** phases
 
 .. image:: relative_cost_to_fix_bugs.jpg
+    :width: 100%
 
 -------------------------------
 Why Use :toolname:`CodePeer`?
