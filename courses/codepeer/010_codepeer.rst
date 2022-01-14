@@ -2606,6 +2606,16 @@ Report File
       | ``unit2.adb:12:25: medium: divide by zero might fail: requires X /= 0``
       | ``[...]``
 
+==================================================
+:toolname:`CodePeer` Advanced Customization Lab
+==================================================
+
+--------------
+Instructions
+--------------
+
+* Follow the :filename:`cruise/` lab instructions.
+
 ========================================
 :toolname:`CodePeer` for Certification
 ========================================
