@@ -268,23 +268,6 @@ Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 + `Link: Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#project-file-setup>`_
 + `Link: Advanced Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#advanced-project-file-setup>`_
 
--------------------------------
-:toolname:`CodePeer` Tutorial
--------------------------------
-
-+ Get a fresh copy of the :toolname:`GNAT Studio` tutorial directory
-
-  + From :filename:`GNATPRO/xxx/share/examples/gnatstudio/tutorial`
-  + Check that the project file includes the :filename:`sdc` project
-  + Copy it as :filename:`sources/codepeer/tutorial/`
-
-+ Open this :filename:`sdc` project copy with :toolname:`GNAT Studio`
-+ Open the :toolname:`CodePeer` Tutorial from :toolname:`GNAT Studio`
-
-  + :menu:`Help` :math:`\rightarrow` :menu:`CodePeer` :math:`\rightarrow` :menu:`CodePeer Tutorial`
-
-+ Walk through the steps of the :toolname:`CodePeer` tutorial
-
 ---------------------------------------------------
 :toolname:`CodePeer` Levels Depth and Constraints
 ---------------------------------------------------
@@ -439,6 +422,20 @@ Running :toolname:`CodePeer` regularly
 
 + :command:`-cutoff` overrides it for a **single** run
 + Compare between two arbitrary runs with :command:`-cutoff` and :command:`-current`
+
+===============================
+:toolname:`CodePeer` Tutorial
+===============================
+
+--------------
+Instructions
+--------------
+
++ Walk through the steps of the :toolname:`CodePeer` tutorial
+
+=============================
+:toolname:`CodePeer` Checks
+=============================
 
 ---------------------
 Messages Categories
