@@ -2225,6 +2225,16 @@ Outside Tooling Justification
 
   + Textual output: compiler-like messages or CSV format
 
+=================================
+:toolname:`CodePeer` Review Lab
+=================================
+
+--------------
+Instructions
+--------------
+
+* Follow the :filename:`radar/` lab instructions.
+
 ================================
 :toolname:`CodePeer` Workflows
 ================================
