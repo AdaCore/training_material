@@ -1,0 +1,8 @@
+project Radar is
+   package CodePeer is
+      for Switches use ("-race-conditions", "-level", "3");
+      --  -race-conditions is enabled at level 3, but make it explicit.
+      --  -race-conditions is not enabled by default when using -level 0/1/2
+      for Server_URL use "http://localhost:8080";
+   end CodePeer;
+end Radar;
