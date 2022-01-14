@@ -43,78 +43,25 @@ jobs:
         run: python contrib/ci/fix_prelude.py
 
 
-      - name: Generate slides for Ada fundamentals
-        run: python pandoc/pandoc_fe.py --output-dir out/fundamentals_of_ada --hush --extension pdf --source courses/fundamentals_of_ada/*.rst
+      - name: Generate slides for CodePeer
+        run: python pandoc/pandoc_fe.py --output-dir out/codepeer --hush --extension pdf --source courses/codepeer/*.rst
 
-      - name: Generate slides for Ada fundamentals labs
-        run: python pandoc/pandoc_fe.py --output-dir out/fundamentals_of_ada/labs --hush --extension pdf --source courses/fundamentals_of_ada/labs/*.rst
 
-      - name: Package and upload Ada fundamental slides
+      - name: Package and upload CodePeer slides
         uses: actions/upload-artifact@v2
         with:
-          name: Ada fundamentals
-          path: out/fundamentals_of_ada/*.pdf
+          name: CodePeer
+          path: out/codepeer/*.pdf
 
-      - name: Package and upload Ada fundamental labs slides
+
+      - name: CodePeer Lab
+        run: python3 contrib/ci/package_labs.py courses/codepeer/labs/ && mv out/labs out/codepeer_labs && unzip out/codepeer_labs/labs.zip -d out/codepeer_labs/pkg
+
+      - name: CodePeer Lab upload
         uses: actions/upload-artifact@v2
         with:
-          name: Ada fundamentals Labs
-          path: out/fundamentals_of_ada/labs/*.pdf
-
-      - name: Generate standard Ada course
-        run: python pandoc/pandoc_fe.py --extension pdf --source courses/fundamentals_of_ada/standard_course.txt --output-dir out/fundamentals_of_ada
-
-      - name: Package and upload standard Ada course
-        uses: actions/upload-artifact@v2
-        with:
-          name: Standard course
-          path: out/fundamentals_of_ada/standard_course.pdf
-
-      - name: Generate OPAT Ada course
-        run: python pandoc/pandoc_fe.py --extension pdf --source courses/fundamentals_of_ada/opat.txt --output-dir out/fundamentals_of_ada
-
-      - name: Package and upload OPAT Ada course
-        uses: actions/upload-artifact@v2
-        with:
-          name: OPAT
-          path: out/fundamentals_of_ada/opat.pdf
-
-
-      - name: Generate slides for SPARK
-        run: python pandoc/pandoc_fe.py --output-dir out/spark_for_ada_programmers --hush --extension pdf --source courses/spark_for_ada_programmers/*.rst
-
-      - name: Package and upload SPARK slides
-        uses: actions/upload-artifact@v2
-        with:
-          name: SPARK for Ada programmers
-          path: out/spark_for_ada_programmers/*.pdf
-
-      - name: Generate standard SPARK course
-        run: python pandoc/pandoc_fe.py --extension pdf --source courses/spark_for_ada_programmers/course.txt --output-dir out/spark_for_ada_programmers
-
-      - name: Package and upload standard SPARK course
-        uses: actions/upload-artifact@v2
-        with:
-          name: Standard SPARK course
-          path: out/spark_for_ada_programmers/course.pdf
-
-      - name: Lab Radar PDF and package
-        run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/radar && unzip out/radar/radar.zip -d out/radar/pkg
-
-      - name: Lab Radar upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: Radar lab full
-          path: out/radar/pkg/*
-
-      - name: Lab Solar System PDF and package
-        run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/solar_system && unzip out/solar_system/solar_system.zip -d out/solar_system/pkg
-
-      - name: Lab Solar System upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: Solar System lab full
-          path: out/solar_system/pkg/*
+          name: CodePeer labs
+          path: out/codepeer_labs/pkg/*
 
   labs-build:
 
