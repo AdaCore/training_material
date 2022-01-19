@@ -38,7 +38,7 @@ jobs:
       - name: Install python dependencies
         run: pip install pandocfilters
 
-      
+
       - name: Check source is updated with prelude
         run: python contrib/ci/fix_prelude.py
 
@@ -115,6 +115,24 @@ jobs:
         with:
           name: Solar System lab full
           path: out/solar_system/pkg/*
+
+      - name: CodePeer - Generate slides
+        run: python pandoc/pandoc_fe.py --output-dir out/codepeer --hush --extension pdf --source courses/codepeer/*.rst
+
+      - name: CodePeer - Package and upload slides
+        uses: actions/upload-artifact@v2
+        with:
+          name: CodePeer
+          path: out/codepeer/*.pdf
+
+      - name: CodePeer - Package labs
+        run: python3 contrib/ci/package_labs.py courses/codepeer/labs/ && mv out/labs out/codepeer_labs && unzip out/codepeer_labs/labs.zip -d out/codepeer_labs/pkg
+
+      - name: CodePeer - Upload labs
+        uses: actions/upload-artifact@v2
+        with:
+          name: CodePeer labs
+          path: out/codepeer_labs/pkg/*
 
   labs-build:
 
