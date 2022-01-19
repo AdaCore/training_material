@@ -1761,7 +1761,7 @@ Race Condition Examples
    procedure Reset is
    begin
       Counter := 0; -- lock missing
-   end Decrement;
+   end Reset;
 
 | ``medium warning: mismatched protected access of shared object Counter via race.increment``
 | ``medium warning: unprotected access of Counter via race.reset``
