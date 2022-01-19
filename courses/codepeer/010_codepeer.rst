@@ -134,10 +134,11 @@ Detailed Subprogram Analysis
   + Analyze entire project or a single file
   + Configure strictiness level
 
-+ Scalable
++ Review features
 
-  + Can filter out or emphasize certain issues
-  + Can analyze the difference between baselines / versions
+  + Filtering messages by category, severity, package...
+  + Comparative analysis between runs
+  + Shareable reviews database
 
 ------------------------------------------
 :toolname:`CodePeer` In A Nutshell (2/2)
