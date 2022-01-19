@@ -1307,10 +1307,12 @@ Condition Predetermined
 Loop Does Not Complete Normally
 ---------------------------------
 
-+ Indicates loops that either
++ The loop will never complete its **exit condition**
++ Causes can be
 
-  + runs forever
-  + fails to terminate normally
+  + Exit condition is always :ada:`False`
+  + An exception is raised
+  + The exit condition code is dead
 
 ..
    :toolname:`CodePeer` example (4.1.4 - loop does not complete normally)
