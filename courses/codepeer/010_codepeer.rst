@@ -1339,9 +1339,9 @@ Loop Does Not Complete Normally
 Unused Assignment
 -------------------
 
-+ Object assigned more than once between reads
++ Object is assigned a value that is never read
 + Unintentional loss of result or unexpected control flow
-+ The check ignores some names as temporary:
++ Object with the following names won't be checked:
 
   + :ada:`ignore`, :ada:`unused`, :ada:`discard`, :ada:`dummy`, :ada:`tmp`, :ada:`temp`
   + Tuned via the :filename:`MessagePatterns.xml` file if needed.
