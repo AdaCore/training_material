@@ -1801,13 +1801,13 @@ Annotations Categories
 
           - Requirements imposed on the subprogram's inputs
 
-        * - ``presumption``
-
-          - Presumption on the result of an **external** subprogram
-
         * - ``postcondition``
 
           - Presumption on the outputs of a subprogram
+
+        * - ``presumption``
+
+          - Presumption on the result of an **external** subprogram
 
         * - ``unanalyzed call``
 
