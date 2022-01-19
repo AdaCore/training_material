@@ -1286,8 +1286,8 @@ Test Predetermined
 Condition Predetermined
 -------------------------
 
-+ Redundant condition inside a conditional
-+ One operand of a boolean operation is always :ada:`True` or :ada:`False`
++ **Redundant** condition in a boolean operation
++ RHS operand is **constant** in this context
 
 ..
    :toolname:`CodePeer` example (4.1.4 - condition predetermined)
@@ -1296,6 +1296,8 @@ Condition Predetermined
    :number-lines: 1
 
       if V /= A or else V /= B then
+         --     ^^^^^^^
+         --     V = A, so V /= B
          raise Program_Error;
       end if;
 
