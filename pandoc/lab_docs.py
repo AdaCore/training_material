@@ -9,12 +9,17 @@ CURRENT_DIR = Path(sys.argv[0]).parent.resolve()
 
 def lab_doc(input, output, default_args, args):
     print(f"{input} -> {output}")
-    subprocess.check_call(f"pandoc " + \
-                          f"--data-dir={(CURRENT_DIR.parent / 'support_files').resolve()} " + \
-                          f"{input.resolve()} -o {output.resolve()} " + \
-                          f"{default_args} {' '.join(args)}",
-                          cwd=CURRENT_DIR.parent,
-                          shell=True)
+    rc = subprocess.call(f"pandoc " + \
+                         f"--data-dir={(CURRENT_DIR.parent / 'support_files').resolve()} " + \
+                         "--fail-if-warning " + \
+                         f"{input.resolve()} -o {output.resolve()} " + \
+                         f"{default_args} {' '.join(args)}",
+                         cwd=CURRENT_DIR.parent,
+                         shell=True)
+
+    if rc != 0:   
+        print(f"\033[1;31mpandoc failed\033[0m on {input}", file=sys.stderr)
+        sys.exit(2)
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
