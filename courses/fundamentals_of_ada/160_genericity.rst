@@ -417,7 +417,6 @@ Quiz
       procedure P2 (X : in out Integer); -- add 20 to X
       procedure P3 (X : in out Integer); -- add 3 to X
       generic
-         Z : in out Integer;
          with procedure P1 (X : in out Integer) is <>;
          with procedure P2 (X : in out Integer) is null;
       procedure G ( P : integer );

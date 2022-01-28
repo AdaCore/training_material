@@ -291,7 +291,7 @@ Quiz
    .. code:: Ada
 
       with Ada.Text_IO; use Ada.Text_IO;
-      procedure Main is
+      procedure Exception_Test (Input_Value : Integer) is
          Known_Problem : exception;
          function F (P : Integer) return Integer is
          begin
@@ -314,7 +314,7 @@ Quiz
       exception
          when Known_Problem => Put_Line ("Known problem");
          when others => Put_Line ("Unknown problem");
-      end Main;
+      end Exception_Test;
 
 What will get printed for these values of Input_Value?
 

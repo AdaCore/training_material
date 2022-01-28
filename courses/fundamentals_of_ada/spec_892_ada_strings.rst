@@ -274,7 +274,7 @@ Summary
   - Requires generic instantiation
   - Implementation may be handled without dynamic memory allocation
 
-* :ada:`Ada.Strings.Unounded`
+* :ada:`Ada.Strings.Unbounded`
 
   - Varying length string with no maximum length
   - Implementation typically requires dynamic memory allocation

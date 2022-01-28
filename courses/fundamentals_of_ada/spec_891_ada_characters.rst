@@ -167,10 +167,10 @@ Summary
 Summary
 ---------
 
-* :ada:`Ada.Text_IO` is the most common text input/output processing process
-* Text_IO has simple mechanisms to read scalar types
+* :ada:`Ada.Characters` contains consistent mechanisms for
 
-   - 'Image and 'Value work, but are simplistic
+  * Referring to unprintable and special characters
+  * Queries on the properties of characters
 
-      * 'Image does not allow formatting of output
-      * 'Value will fail if entire input cannot be converted
+* Same capabilities for other character sets in :ada:`Ada.Wide_Characters` and :ada:`Ada.Wide_Wide_Characters`
+

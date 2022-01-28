@@ -364,22 +364,22 @@ Task Types
 
 .. code:: Ada
 
-   task type T is
+   task type Task_T is
       entry Start;
-   end T;
+   end Task_T;
 
-   type T_A is access all T;
+   type Task_Ptr_T is access all Task_T;
 
-   task body T is
+   task body Task_T is
    begin
       accept Start;
-   end T;
+   end Task_T;
    ...
-      V1 : T;
-      V2 : A_T;
+      V1 : Task_T;
+      V2 : Task_Ptr_T;
    begin
       V1.Start;
-      V2 := new T;
+      V2 := new Task_T;
       V2.all.Start;
 
 ------------------------
@@ -758,7 +758,7 @@ Summary
 Summary
 ---------
 
-* Tasks are language-based multiprocessing mechanisms
+* Tasks are language-based multithreading mechanisms
 
    - Not necessarily designed to be operated in parallel
    - Original design assumed task-switching / time-slicing

@@ -20,7 +20,7 @@ Interfacing with C Lab
       + Seconds (floating point)
    
 -------------------------------------------------
-Interfacing with C Lab Solution - GNAT Studio
+Interfacing with C Lab - GNAT Studio
 -------------------------------------------------
 
 To compile/link the C file into the Ada executable:

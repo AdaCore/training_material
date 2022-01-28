@@ -200,7 +200,8 @@ Pack Aspect
          C : Boolean;
          D : Enum;
       end record with Pack;
-      type Ar is array (1 .. 1000) of Boolean with Pack;
+      type Ar is array (1 .. 1000) of Boolean;
+      pragma Pack (Ar);
       -- Rec'Size is 36, Ar'Size is 1000
 
 -------------------------------
