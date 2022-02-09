@@ -804,6 +804,67 @@ Precondition
 
 | ``high: precondition (conditional check) failure on call to precondition.call: requires X < 0``
 
+------
+Quiz
+------
+
+* What check will be raised with the following?
+
+.. code:: Ada
+
+    function Before_First return Integer is
+    begin
+       return Integer'First - 1;
+    end Dec;
+
+A. Precondition check
+B. Range check
+C. :answermono:`Overflow check`
+D. Underflow check
+
+.. container:: animate
+
+    The value is out of representation range so the operation will fail,
+    that is an overflow, not a range check.
+
+    Difference between the two: Overflow is checked for intermediate operations,
+    range is then checked at affectation (parameter passing, conversion...).
+
+------
+Quiz
+------
+
+* What check will be raised with the following?
+
+.. code:: Ada
+
+   type Ptr_T is access Natural;
+   type Idx_T is range 0 .. 10;
+   type Arr_T is array (Idx_T) of Ptr_T;
+
+   procedure Update
+     (A : in out Arr_T) is
+   begin
+      for J in Idx_T loop
+         declare
+            K : constant Idx_T := J - 1;
+         begin
+            A (K).all := (if A (K) /= null then A (K).all - 1 else 0);
+         end;
+      end loop;
+   end Update;
+
+A. Array index check
+B. :answermono:`Range check`
+C. Overflow check
+D. Access check
+
+.. container:: animate
+
+    When :ada:`J = 0`, the declaration of :ada:`K` will raise a :ada:`Constraint_Error`
+
+    If any :ada:`A (K).all = 0`, a second range check is raised.
+
 =============
 User Checks
 =============
