@@ -2700,13 +2700,13 @@ See *CodePeer By Example* for more details
 
 + :toolname:`CodePeer` User's Guide and Tutorial
 
-  + Online: https://www.adacore.com/documentation#:toolname:`CodePeer`
-  + In local install at share/doc/:toolname:`CodePeer`/users_guide (or tutorial)
+  + Online: https://www.adacore.com/documentation#codepeer
+  + In local install at share/doc/codepeer/users_guide (or tutorial)
   + From :toolname:`GNAT Studio` go to :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Codepeer User's Guide` (or :menu:`Codepeer Tutorial`)
 
 + :toolname:`CodePeer` website
 
-  + http://www.adacore.com/:toolname:`CodePeer`
+  + http://www.adacore.com/codepeer
   + Videos, product pages, articles, challenges
 
 + Book chapter on :toolname:`CodePeer`
