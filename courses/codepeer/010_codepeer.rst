@@ -804,6 +804,67 @@ Precondition
 
 | ``high: precondition (conditional check) failure on call to precondition.call: requires X < 0``
 
+------
+Quiz
+------
+
+* Which check will be raised with the following?
+
+.. code:: Ada
+
+    function Before_First return Integer is
+    begin
+       return Integer'First - 1;
+    end Dec;
+
+A. Precondition check
+B. Range check
+C. :answer:`Overflow check`
+D. Underflow check
+
+.. container:: animate
+
+    The value is out of representation range so the operation will fail,
+    that is an overflow, not a range check.
+
+    Difference between the two: Overflow is checked for intermediate operations,
+    range is then checked at affectation (parameter passing, conversion...).
+
+------
+Quiz
+------
+
+* Which check will be raised with the following?
+
+.. code:: Ada
+
+   type Ptr_T is access Natural;
+   type Idx_T is range 0 .. 10;
+   type Arr_T is array (Idx_T) of Ptr_T;
+
+   procedure Update
+     (A : in out Arr_T) is
+   begin
+      for J in Idx_T loop
+         declare
+            K : constant Idx_T := J - 1;
+         begin
+            A (K).all := (if A (K) /= null then A (K).all - 1 else 0);
+         end;
+      end loop;
+   end Update;
+
+A. Array index check
+B. :answer:`Range check`
+C. Overflow check
+D. Access check
+
+.. container:: animate
+
+    When :ada:`J = 0`, the declaration of :ada:`K` will raise a :ada:`Constraint_Error`
+
+    If any :ada:`A (K).all = 0`, a second range check is raised.
+
 =============
 User Checks
 =============
@@ -974,6 +1035,34 @@ The subprogram's body may violate its specified postcondition.
    Reduce (My_Component_Stress);
 
 | ``high: postcondition failure on call to post.reduce: requires Stress /= Destructive``
+
+------
+Quiz
+------
+
+* Which user check will be raised with the following?
+
+.. code:: Ada
+
+   procedure Raise_Exc (X : Integer) is
+   begin
+      if X > 0 or X < 0 then
+         raise Program_Error;
+      else
+         pragma Assert (X >= 0);
+      end if;
+   end Raise_Exc;
+
+A. :answer:`Conditional check`
+B. Assertion
+C. Raise Exception
+D. User precondition
+
+.. container:: animate
+
+    The exception is raised on :ada:`X /= 0`, it is **conditionally** reachable.
+
+    In other cases, :ada:`X = 0` so the assertion always holds.
 
 =====================================
 Uninitialized and Invalid Variables
@@ -1695,6 +1784,34 @@ Duplicate branches
    end Dup;
 
 | ``infer.adb:4:10: medium warning: duplicate branches (Infer): code duplicated at line 11``
+
+------
+Quiz
+------
+
+* Which warnings will be raised with the following?
+
+.. code:: Ada
+
+    function F (A : Integer; B : Integer) return Integer is
+    begin
+        if A > B then
+           return 0;
+        elsif A < B + 1 then
+           return 1;
+        elsif A /= B then
+           return 2;
+        end if;
+    end F;
+
+A. :answer:`Dead Code`
+B. Condition Predetermined
+C. Test Always False
+D. Test Always True
+
+.. container:: animate
+
+    The last elsif can never be reached.
 
 =================
 Race Conditions
