@@ -7,15 +7,21 @@ import parse_pandoc_defaults
 
 CURRENT_DIR = Path(sys.argv[0]).parent.resolve()
 
+def call(*a, **kw):
+    print("+", *a)
+    print("K", kw)
+    return subprocess.call(a, **kw)
+
+
 def lab_doc(input, output, default_args, args):
     print(f"{input} -> {output}")
-    rc = subprocess.call(f"pandoc " + \
-                         f"--data-dir={(CURRENT_DIR.parent / 'support_files').resolve()} " + \
-                         "--fail-if-warning " + \
-                         f"{input.resolve()} -o {output.resolve()} " + \
-                         f"{default_args} {' '.join(args)}",
-                         cwd=CURRENT_DIR.parent,
-                         shell=True)
+    rc = call(f"pandoc " + \
+              f"--data-dir={(CURRENT_DIR.parent / 'support_files').resolve()} " + \
+              "--fail-if-warning " + \
+              f"{input.resolve()} -o {output.resolve()} " + \
+              f"{default_args} {' '.join(args)}",
+              cwd=CURRENT_DIR.parent,
+              shell=True)
 
     if rc != 0:   
         print(f"\033[1;31mpandoc failed\033[0m on {input}", file=sys.stderr)
