@@ -673,7 +673,6 @@ A tag check operation on a :ada:`tagged` object might fail
 
 | ``high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2}``
 
-
 --------------------
 Discriminant Check
 --------------------
@@ -734,6 +733,67 @@ Precondition
    end loop;
 
 | ``high: precondition (conditional check) failure on call to precondition.call: requires X < 0``
+
+------
+Quiz
+------
+
+* What check will be raised with the following?
+
+.. code:: Ada
+
+    function Before_First return Integer is
+    begin
+       return Integer'First - 1;
+    end Dec;
+
+A. Precondition check
+B. Range check
+C. :answermono:`Overflow check`
+D. Underflow check
+
+.. container:: animate
+
+    The value is out of representation range so the operation will fail,
+    that is an overflow, not a range check.
+
+    Difference between the two: Overflow is checked for intermediate operations,
+    range is then checked at affectation (parameter passing, conversion...).
+
+------
+Quiz
+------
+
+* What check will be raised with the following?
+
+.. code:: Ada
+
+   type Ptr_T is access Natural;
+   type Idx_T is range 0 .. 10;
+   type Arr_T is array (Idx_T) of Ptr_T;
+
+   procedure Update
+     (A : in out Arr_T) is
+   begin
+      for J in Idx_T loop
+         declare
+            K : constant Idx_T := J - 1;
+         begin
+            A (K).all := (if A (K) /= null then A (K).all - 1 else 0);
+         end;
+      end loop;
+   end Update;
+
+A. Array index check
+B. :answermono:`Range check`
+C. Overflow check
+D. Access check
+
+.. container:: animate
+
+    When :ada:`J = 0`, the declaration of :ada:`K` will raise a :ada:`Constraint_Error`
+
+    If any :ada:`A (K).all = 0`, a second range check is raised.
 
 =============
 User Checks
@@ -1113,7 +1173,6 @@ Warning Messages - Infer (3/3)
         * -
 
           - in an :ada:`if ... elsif ... else`
-
 
 -----------
 Dead Code
@@ -1530,7 +1589,6 @@ Subp Always Fails
 
 | ``high warning: subp always fails: p fails for all possible inputs``
 
-
 -------------------
 Same Operands
 -------------------
@@ -1570,7 +1628,7 @@ Same Logic
 Test duplication
 -------------------
 
-+ The same expression is tested twice in successive `if ... elsif ... elsif ... `
++ The same expression is tested twice in successive :ada:`if ... elsif ... elsif ... `
 + Usually indicates a copy-paste error (CWE 1041)
 
 .. code:: Ada
@@ -1597,7 +1655,7 @@ Test duplication
 Duplicate branches
 -------------------
 
-+ Branches are duplicated in a `if` or a `case`
++ Branches are duplicated in a :ada:`if` or a :ada:`case`
 + Should be refactored, or results from incorrect copy-paste (CWE 1041)
 
 .. code:: Ada
@@ -1623,7 +1681,6 @@ Duplicate branches
    end Dup;
 
 | ``infer.adb:4:10: medium warning: duplicate branches (Infer): code duplicated at line 11``
-
 
 =================
 Race Conditions
