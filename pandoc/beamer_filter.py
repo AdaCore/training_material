@@ -439,7 +439,10 @@ def format_text ( key, value, format ):
    elif ( key == "Code" and
           'interpreted-text' in classes and
           kvs[0][0] == 'role'):
-      return perform_role ( kvs[0][1], text, format )
+      n = perform_role ( kvs[0][1], text, format )
+      if n == None:
+         # Fallback returns default
+         return pandoc_format ( 'default', literal_to_AST_node ( text ) )
 
 '''
 pandoc_format takes the name of a pandoc emphasis function and
@@ -447,7 +450,6 @@ an AST string node and calls the function with the node.
 If the function doesn't exist, we will default to Strong
 '''
 def pandoc_format ( function_name, ast_string_node ):
-   global role_format_functions
    function_name = role_format_functions[function_name]
    return globals()[function_name]( ast_string_node )
 
@@ -458,9 +460,10 @@ If not, we will assume the function is defined locally and pass in the
 literal text.
 '''
 def perform_role ( role, literal_text, format ):
-   global role_format_functions
-   function_name = role_format_functions[role]
-   if function_name in dir(pandocfilters):
+   function_name = role_format_functions.get(role, None)
+   if function_name == None:
+      return function_name
+   elif function_name in dir(pandocfilters):
       return globals()[function_name] ( literal_to_AST_node ( literal_text ) )
    elif format == 'beamer':
       return globals()[function_name] ( literal_text )
