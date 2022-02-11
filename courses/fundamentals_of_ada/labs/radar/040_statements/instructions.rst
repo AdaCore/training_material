@@ -1,6 +1,7 @@
 :title: Ada Fundamentals - Lab 3 - Statements
 
-.. include:: support_files/docs_common.rst
+.. role:: ada(code)
+   :language: ada
 
 The purpose of this lab is to understand the various statements, and how they
 can be used to make the code more terse.
