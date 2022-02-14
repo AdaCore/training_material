@@ -815,7 +815,7 @@ Quiz
     function Before_First return Integer is
     begin
        return Integer'First - 1;
-    end Dec;
+    end Before_First;
 
 A. Precondition check
 B. Range check
