@@ -1,4 +1,5 @@
-.. include:: support_files/docs_common.rst
+.. role:: ada(code)
+   :language: ada
 
 -----------------
 Navigate the code
