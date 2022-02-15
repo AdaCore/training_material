@@ -52,22 +52,6 @@ Implicit Subtype
 
     - Accessed with :ada:`Typ'Base`
 
------------------------------
-Stand-Alone (Sub)Type Names
------------------------------
-
-* Denote all the values of the type or subtype
-
-   - Unless explicitly constrained
-
-   .. code:: Ada
-
-      subtype Sub is Integer range 0 .. 10;
-      ...
-      for I in Sub loop
-        ...
-      end loop;
-
 ----------------------------
 Implicit Subtype Explanation
 ----------------------------
@@ -86,6 +70,24 @@ Implicit Subtype Explanation
 * `<Anon>` inherits the type's operations (``+``, ``-`` ...)
 * `Typ`, subtype of `<Anon>` is created with :ada:`range L .. R`
 * :ada:`Typ'Base` will return the type `<Anon>`
+
+-----------------------------
+Stand-Alone (Sub)Type Names
+-----------------------------
+
+* Denote all the values of the type or subtype
+
+   - Unless explicitly constrained
+
+   .. code:: Ada
+
+      subtype Constrained_Sub is Integer range 0 .. 10;
+      subtype Just_A_Rename is Integer;
+      X : Just_A_Rename;
+      ...
+      for I in Constrained_Sub loop
+        X := I;
+      end loop;
 
 --------------------------------
 Subtypes Localize Dependencies

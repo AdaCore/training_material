@@ -80,7 +80,7 @@ Pragma Import / Export (1/2)
        .. code:: Ada
 
           procedure Some_Procedure;
-          pragma Export (C, Ada_Proc, "ada_some_procedure");
+          pragma Export (C, SomeProcedure, "ada_some_procedure");
           procedure Some_Procedure is
           begin
            -- some code
