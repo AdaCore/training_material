@@ -135,7 +135,7 @@ Detailed Subprogram Analysis
   + Analyze entire project or a single file
   + Configure strictiness level
 
-+ Review features
++ Review of analysis report
 
   + Filtering messages by category, severity, package...
   + Comparative analysis between runs
@@ -825,11 +825,8 @@ D. Underflow check
 
 .. container:: animate
 
-    The value is out of representation range so the operation will fail,
-    that is an overflow, not a range check.
-
-    Difference between the two: Overflow is checked for intermediate operations,
-    range is then checked at affectation (parameter passing, conversion...).
+    Out of representation range, so it is flagged for overflow error.
+    Range check happens at boundaries: assignment, parameter passing...
 
 ------
 Quiz
@@ -1397,12 +1394,12 @@ Condition Predetermined
 Loop Does Not Complete Normally
 ---------------------------------
 
-+ The loop will never complete its **exit condition**
++ The loop will never satisfies its **exit condition**
 + Causes can be
 
   + Exit condition is always :ada:`False`
   + An exception is raised
-  + The exit condition code is dead
+  + The exit condition code is unreachable (dead code)
 
 ..
    :toolname:`CodePeer` example (4.1.4 - loop does not complete normally)
