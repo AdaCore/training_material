@@ -808,7 +808,7 @@ Precondition
 Quiz
 ------
 
-* Which check will be raised with the following?
+* Which check will be flagged with the following?
 
 .. code:: Ada
 
@@ -834,7 +834,7 @@ D. Underflow check
 Quiz
 ------
 
-* Which check will be raised with the following?
+* Which check will be flagged with the following?
 
 .. code:: Ada
 
@@ -863,7 +863,7 @@ D. Access check
 
     When :ada:`J = 0`, the declaration of :ada:`K` will raise a :ada:`Constraint_Error`
 
-    If any :ada:`A (K).all = 0`, a second range check is raised.
+    If any :ada:`A (K).all = 0`, a second range check is flagged.
 
 =============
 User Checks
@@ -1789,7 +1789,7 @@ Duplicate branches
 Quiz
 ------
 
-* Which warnings will be raised with the following?
+* Which warnings will be reported with the following?
 
 .. code:: Ada
 
