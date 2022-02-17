@@ -71,8 +71,9 @@ Why Static Analysis Saves Money
 ---------------------------------
 
 * Costs shift
-* From later, **expensive** phases
-* To earlier, **cheaper** phases
+
+    + From later, **expensive** phases
+    + To earlier, **cheaper** phases
 
 .. image:: relative_cost_to_fix_bugs.jpg
     :width: 100%
