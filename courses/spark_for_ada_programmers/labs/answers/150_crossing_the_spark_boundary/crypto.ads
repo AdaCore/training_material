@@ -13,7 +13,7 @@ is
    type Data_Index is range 1 .. 1_024;
    type Data is array (Data_Index) of Byte;
 
-   procedure load_key
+   procedure loadkey
      (keyslot : in Key_Slot; the_key : in Key; result : out Boolean) with
       Global => (in_out => key_store);
 

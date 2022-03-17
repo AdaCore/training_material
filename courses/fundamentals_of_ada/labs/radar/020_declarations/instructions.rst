@@ -1,11 +1,12 @@
 :title: Ada Fundamentals - Lab 1 - Declarations
 
-.. include:: support_files/docs_common.rst
+.. role:: ada(code)
+   :language: ada
 
 The purpose of this lab is to discover the basics of the GNAT toolchain on Windows
 and to put that knowledge to use by declaring some variables.
 
-.. include:: courses/gnatstudio/getting_started_lab_1.rst
+.. include:: gnatstudio/getting_started_lab_1.rst
 .. raw:: latex
 
     \clearpage

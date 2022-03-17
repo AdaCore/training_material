@@ -4,20 +4,22 @@ package Constants is
    Lowest_Value  : constant := 100;
    Highest_Value : constant := 999;
    Maximum_Count : constant := 10;
+   subtype Integer_T is Integer
+      range Lowest_Value .. Highest_Value;
 
 end Constants;
 --Constants
 
 --Input
+with Constants;
 package Input is
-   function Get_Value (Prompt : String) return Integer;
+   function Get_Value (Prompt : String) return Constants.Integer_T;
 end Input;
 
 with Ada.Text_IO; use Ada.Text_IO;
-with Constants;
 package body Input is
 
-   function Get_Value (Prompt : String) return Integer is
+   function Get_Value (Prompt : String) return Constants.Integer_T is
       Ret_Val : Integer;
    begin
       Put (Prompt & "> ");
@@ -58,11 +60,14 @@ package body List is
    end Add;
 
    procedure Remove (Value : Integer) is
+      I : Natural := 1;
    begin
-      for I in 1 .. Last loop
+      while I <= Last loop
          if Content (I) = Value then
-            Content(I .. Last - 1) := Content(I + 1 .. Last);
-            Last := Last - 1;
+            Content (I .. Last - 1) := Content (I + 1 .. Last);
+            Last                    := Last - 1;
+         else
+            I := I + 1;
          end if;
       end loop;
    end Remove;

@@ -1,11 +1,32 @@
-
 *************
 Overloading
 *************
 
+..
+    Coding language
+
 .. role:: ada(code)
     :language: Ada
 
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
+
 ==============
 Introduction
 ==============
@@ -14,21 +35,31 @@ Introduction
 Introduction
 --------------
 
-* Overloading is the use of an already existing name to define a new entity
-* Historically, only done within the language
+* Overloading is the use of an already existing name to define a **new** entity
+* Historically, only done as part of the language **implementation**
 
-   - FORTRAN
+   - Eg. on operators
+   - Float vs integer vs pointers arithmetic
 
-      + Numeric operators for complex, real, integer, ...
+* Several languages allow **user-defined** overloading
 
-   - Pascal
+   - C++
+   - Python (limited to operators)
+   - Haskell
 
-      + `WRITELN( 42 );`
-      + :ada:`WRITELN( 'This is a string' );`
+----------------------
+Visibility and Scope
+----------------------
 
-   - Many others...
+* Overloading is **not** re-declaration
+* Both entities **share** the name
 
-* Most modern languages allow users to do it too
+   - No hiding
+   - Compiler performs **name resolution**
+
+* Allowed to be declared in the **same scope**
+
+   - Remember this is forbidden for "usual" declarations
 
 ------------------------------
 Overloadable Entities In Ada
@@ -58,20 +89,16 @@ Function Operator Overloading Example
 
 .. code:: Ada
 
-   type Complex is record
-     Real_Part : Float;
-     Imaginary : Float;
-   end record;
-   ...
+   --  User-defined overloading
    function "+" (L,R : Complex) return Complex is
    begin
      return (L.Real_Part + R.Real_Part,
              L.Imaginary + R.Imaginary);
    end "+";
-   ...
+
    A, B, C : Complex;
    I, J, K : Integer;
-   ...
+
    I := J + K; -- overloaded operator (predefined)
    A := B + C; -- overloaded operator (user-defined)
 
@@ -89,9 +116,9 @@ Benefits and Risk of Overloading
 
    .. code:: Ada
 
-      function "+" ( L, R : integer ) return string is
+      function "+" ( L, R : Integer ) return String is
       begin
-         return integer'image ( L - R );
+         return Integer'Image ( L - R );
       end "+";
 
 =========================
@@ -148,13 +175,8 @@ Parameters for Overloaded Operators
 
 * Must not change syntax of calls
 
-   - Number of parameters must remain same
-
-      + Unary, Binary, etc ...
-
+   - Number of parameters must remain same (unary, binary...)
    - No default expressions allowed for operators
-
-      + Since number of parameters must remain the same
 
 * Infix calls use positional parameter associations
 
@@ -163,7 +185,7 @@ Parameters for Overloaded Operators
 
       .. code:: Ada
 
-         function "*" (Left, Right : Integer) return integer;
+         function "*" (Left, Right : Integer) return Integer;
 
    - Usage
 
@@ -198,11 +220,12 @@ Call Resolution
 * Compilers must reject ambiguous calls
 * Resolution is based on the calling context
 
-   - Compiler attempts to find a matching specification
+   - Compiler attempts to find a matching **profile**
+   - Based on **Parameter** and **Result** Type
 
-      + Based on *Parameter and Result Type Profile*
+* Overloading is not re-definition, or hiding
 
-   - More than one matching specification is ambiguous
+   - More than one matching profile is ambiguous
 
 .. code:: Ada
 
@@ -219,17 +242,17 @@ Profile Components Used
 
 * Significant components appear in the call itself
 
-   - Number of parameters
-   - Order of parameters
-   - Base type of parameters
-   - Result type (for functions)
+   - **Number** of parameters
+   - **Order** of parameters
+   - **Base type** of parameters
+   - **Result** type (for functions)
 
 * Insignificant components might not appear at call
 
-   - Formal parameter names are optional
-   - Formal parameter modes never appear
-   - Formal parameter subtypes never appear
-   - Default expressions never appear
+   - Formal parameter **names** are optional
+   - Formal parameter **modes** never appear
+   - Formal parameter **subtypes** never appear
+   - **Default** expressions never appear
 
    .. code:: Ada
 
@@ -244,7 +267,7 @@ Manually Disambiguating Calls
 * Qualification can be used
 * Named parameter association can be used
 
-   - If unique
+   - Unless name is ambiguous
 
 .. code:: Ada
 
@@ -252,6 +275,7 @@ Manually Disambiguating Calls
    type Colors is (Red, Blue, Green);
    procedure Put (Light : in Stop_Light);
    procedure Put (Shade : in Colors);
+
    Put (Red);  -- ambiguous call
    Put (Yellow);  -- not ambiguous: only 1 Yellow
    Put (Colors'(Red)); -- using type to distinguish
@@ -263,11 +287,10 @@ Overloading Example
 
 .. code:: Ada
 
-   function "+" (Left : Position;
-                 Right : Offset)
-                 return Position is
+   function "+" (Left : Position; Right : Offset)
+     return Position is
    begin
-     return Position'( Left.Row + Right.Row, Left.Column + Right.Col);
+      return Position'( Left.Row + Right.Row, Left.Column + Right.Col);
    end "+";
 
    function Acceptable (P : Position) return Boolean;
@@ -320,59 +343,6 @@ Which statement is not legal?
    C. Use of :ada:`Top` resolves ambiguity
    D. When overloading subprogram names, best to not just switch the order of parameters
 
-===================
-Visibility Issues
-===================
-
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/visibility_issues.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#visibility-issues`
-
------------------------------------
-Inherently Ambiguous Declarations
------------------------------------
-
-* When a profile appears again within a single scope
-* Are illegal since all calls would be ambiguous
-
-   .. code:: Ada
-
-      procedure Test is
-        procedure P (X : in Natural) is ...
-        procedure P (A : in out Positive) is ...
-      begin
-        ...
-      end Test;
-
-* Compile error
-
-   .. code:: Ada
-
-      test.adb:3:04: duplicate body for "P" declared at line 2
-
-----------------
-Profile Hiding
-----------------
-
-* Subprograms can hide others with same profile
-* Only when scopes differ (same scope would imply illegal declarations)
-
-.. code:: Ada
-
-   Outer : declare
-     procedure P (X : in Natural := 0) is ...
-     begin
-       declare
-         procedure P (A : in out Positive) is ...
-       begin
-         P ( ... );  -- not Outer.P
-       end;
-   end Outer;
-
 =======================
 User-Defined Equality
 =======================
@@ -393,217 +363,11 @@ User-Defined Equality
 
    - Must remain a binary operator
 
-* May have any parameter and result types
+* Typically declared as :ada:`return Boolean`
+* Hard to do correctly for composed types
 
-   - Typically declared to return type Boolean
-
-* Non-Boolean result example:
-
-   .. code:: Ada
-
-      type Fuzzy_Result is (Unknown, False, True);
-      function "=" (Left : Foo;  Right : Bar)
-          return Fuzzy_Result;
-
-------------------------------------
-User-Defined `=` Returning Boolean
-------------------------------------
-
-* Implicitly declares ``/=``
-* Thus negation has consistent meaning
-
-   .. code:: Ada
-
-      if X /= Y then
-      if not ( X = Y ) then
-      if X not = Y then
-
-* No explicit declaration of ``/=`` returning Boolean
-
-   - Returning values of other types is allowed
-
-      .. code:: Ada
-
-         function "/=" (Left : Foo;  Right : Bar)
-             return Fuzzy_Result;
-
--------------------------------
-User-Defined Equality Example
--------------------------------
-
-* Especially useful for composite types
-* Predefined ``=`` is bit-wise comparison over entire structure so may be inappropriate semantics
-* Given the following types:
-
-   .. code:: Ada
-
-      Max : constant := 100;
-      type Index is range 0 .. Max;
-      type List is array (Index range 1 .. Max) of Integer;
-      type Stack is record
-        Values : List;
-        Top : Index := 0;
-      end record;
-
-* Equality function might look like:
-
-   .. code:: Ada
-
-      function "=" (Left, Right : Stack) return Boolean is
-      begin
-        if Left.Top /= Right.Top then -- not same size
-          return False;
-        else -- compare values
-          for K in 1 .. Left.Top loop
-            if Left.Values(K) /= Right.Values(K) then
-              return False;
-            end if;
-          end loop;
-        end if;
-        return True;
-      end "=";
-
-=========================
-Composition of Equality
-=========================
-
-----------
-Examples
-----------
-
-.. include:: examples/090_overloading/composition_of_equality.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/090_overloading.html#composition-of-equality`
-
-----------------------------
- "Composition of Equality"
-----------------------------
-
-* Whether user-defined equality functions are called automatically as part of equality for composite types containing types having such functions
-* Only composes when user-defined equality is defined
-
-   * Assume you defined "=" for a scalar type
-   * If you define "=" for a composite containing the scalar type, your scalar "=" will be used
-   * If you rely on the implicit "=" for the composite, then the scalar's implicit "=" will also be used
-
-      * Not the one you just defined
-
---------------------------------
-Composition vs Non-Composition
---------------------------------
-
-.. code:: Ada
-
-   with Ada.Text_IO; use Ada.Text_IO;
-   procedure Main is
-
-      type Array1_T is array (1 .. 3) of Integer;
-      type Array2_T is array (1 .. 3) of Integer;
-
-      X, Y     : Integer  := 123;
-      X_A, Y_A : Array1_T := (others => 123);
-      X_B, Y_B : Array2_T := (others => 123);
-
-      -- When comparing integers directly, this function forces those comparisons
-      -- to be false
-      function "=" (L, R : Integer) return Boolean is (False);
-      -- We define our own array equality operator so it will use our integer operator
-      function "=" (L, R : Array2_T) return Boolean is (for all I in 1 .. 3 => L (I) = R (I));
-
-   begin
-      -- Use local "=" for integer comparison
-      Put_Line (Boolean'Image (X = Y));
-      Put_Line (Boolean'Image (X_A (2) = Y_A (2)));
-      -- This array comparison uses the predefined operator, so our local "=" is ignored
-      Put_Line (Boolean'Image (X_A = Y_A));
-      -- This array comparison uses our operator, so our local "=" is used as well
-      Put_Line (Boolean'Image (X_B = Y_B));
-   end Main;
-
-.. container:: speakernote
-
-   Equality for IntegerList doesn't compose because Integer is not a record type.
-
--------------------------------------
-Enclosing Equality Function Example
--------------------------------------
-
-* Explicitly declared for the enclosing type
-* Calls user-defined ``=`` for components
-
-.. code:: Ada
-
-   type Bar is record
-     Value : Foo; -- assuming Foo is not a record type
-     Id : Integer;
-   end record;
-
-   function "=" (Left, Right : Bar) return Boolean is
-   begin
-     -- User-defined "=" for Foo
-     return Left.Value = Right.Value
-        -- predefined "=" for integer
-        and Left.Id = Right.Id;
-   end "=";
-
-----------------------------------------
-`=` for Predefined Composites Composes
-----------------------------------------
-
-* Per RM 4.5.2(32/1)
-* For all non-limited types declared in language-defined packages
-* Thus you can safely ignore the issue for composite types defined by the language
-
------------------------------------
-User-Defined Equality Composition
------------------------------------
-
-* No issue for all language-defined types in all versions of Ada
-* An issue for user-defined types
-* Only automatic for :ada:`record` types in Ada 2012
-* Only automatic for :ada:`tagged record` types in Ada 2005
-
-   - Otherwise need explicit equality function for enclosing type
-
-* Not automatic for other user-defined types in any Ada version
-
-   - Need explicit equality function for enclosing type
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-   type Range_T is range -1_000 .. 1_000;
-   function "=" (L, R : Range_T) return Boolean is
-      (Integer (abs (L)) = Integer (abs (R)));
-   type Coord_T is record
-      X : Range_T;
-      Y : Range_T;
-   end record;
-   type Coord_3D_T is record
-      XY : Coord_T;
-      Z  : Range_T;
-   end record;
-   A : Coord_3D_T := (XY => (1, -1), Z => 2);
-   B : Coord_3D_T := (XY => (-1, 1), Z => -2);
-
-Which function will return True when comparing A and B?
-
-A. | Implicit equality operator
-B. | :answermono:`function "=" (L, R : Coord_3D_T) return Boolean is`
-   |    :answermono:`(L.Z = R.Z and`
-   |     :answermono:`L.XY.X = R.XY.X and L.XY.Y = R.XY.Y);`
-C. | ``function "=" (L, R : Coord_3D_T) return Boolean is``
-   |    ``(L.Z = R.Z and L.XY = R.XY);``
-D. ``function "=" (L, R : Coord_3D_T) return Boolean is (L = R);``
-
-.. container:: animate
-
-   We are looking to use our own equality operator (that compares absolute
-   values) so the only time that happens is when we examine each
-   :ada:`Range_T` component individually
+    - Especially **user-defined** types
+    - Issue of *Composition of equality*
 
 ========
 Lab
@@ -638,4 +402,4 @@ Summary
 
 * User-defined equality is allowed
 
-   - Remember `=` for record types does compose, otherwise not
+   - But is tricky

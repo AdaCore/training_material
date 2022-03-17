@@ -1,7 +1,31 @@
-
 ******************
 Advanced Privacy
 ******************
+
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ============
 Type Views
@@ -222,7 +246,7 @@ How To Get An Incomplete Type View?
          V : T_Access;
       end record;
 
-* From a limited with (see section on packages)
+* From a :ada:`limited with` (see section on packages)
 * From an incomplete generic formal parameter (see section on generics)
 
    .. code:: Ada
@@ -267,39 +291,64 @@ Child Units And Privacy
 
 * Normally, a child public part cannot access a parent private part
 
-   .. code:: Ada
+  .. container:: columns
 
-      package Root is
-      private
-         type T is range 1 .. 10;
-      end Root;
-      package Root.Child is
-         X1 : T; -- illegal
-      private   X2 : T;
-      end Root.Child;
+    .. container:: column
 
-* Private child units are units that can be only made accessible to the private descendance of their parent
 
-   - Parent private & body
-   - Public Siblings private & body
-   - Private Siblings public, private & body
+    .. container:: column
 
-   .. code:: Ada
+      .. code:: Ada
 
-      package Root is
-      private
-         type T is range 1 .. 10;
-      end Root;
-      Private package Root.Child is
-         X1 : T;
-      private   X2 : T;
-      end Root.Child;
+        package Root is
+        private
+           type T is range 1..10;
+        end Root;
 
-      with Root.Child; -- illegal
-      procedure Main is
-      begin
-         Root.Child.X1 := 10; -- illegal
-      end Main;
+    .. container:: column
+
+      .. code:: Ada
+
+        package Root.Child is
+          X1 : T; -- illegal
+        private
+          X2 : T;
+        end Root.Child;
+
+* Private child units are units that can be only made accessible to the private descendents of their parent
+
+  - Parent - visible in body
+  - Public siblings - visible in private section plus body
+  - Private siblings - visible in public and private sections plus body
+
+  .. container:: columns
+
+    .. container:: column
+
+    .. container:: column
+
+      .. code:: Ada
+
+        package Root is
+        private
+          type T is range 1..10;
+        end Root;
+
+    .. container:: column
+
+      .. code:: Ada
+
+        private package Root.Child is
+          X1 : T;
+        private
+          X2 : T;
+        end Root.Child;
+
+        with Root.Child; -- illegal
+        procedure Main is
+        begin
+           Root.Child.X1 := 10; -- illegal
+        end Main;
 
 * They're used as "implementation details"
 

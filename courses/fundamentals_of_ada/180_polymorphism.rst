@@ -2,10 +2,30 @@
 Polymorphism
 **************
 
-.. |rightarrow| replace:: :math:`\rightarrow`
+..
+    Coding language
 
 .. role:: ada(code)
     :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -40,8 +60,8 @@ Classes
 ----------
 
 * In Ada, a Class denotes an inheritance subtree
-* Class of :ada:`T` is the class of :ada:`T` and all its children
-* Type :ada:`T'Class` can designate any object typed after type of class of :ada:`T`
+* Class of `T` is the class of `T` and all its children
+* Type :ada:`T'Class` can designate any object typed after type of class of `T`
 
    .. code:: Ada
 
@@ -59,11 +79,11 @@ Classes
    - Fields of `T`
    - Primitives of `T`
 
------------------------
-Class-types Declaration
------------------------
+-----------------
+Indefinite type
+-----------------
 
-* A class wide type is an **indefinite** type
+* A class wide type is an indefinite type
 
    - Just like an unconstrained array or a record with a discriminant
 
@@ -71,12 +91,6 @@ Class-types Declaration
 
    - Can be used for parameter declarations
    - Can be used for variable declaration with initialization
-
-* Warning: Subprograms with parameter of type `T'Class` are primitives of `T'Class`, not `T`
-
--------------------------------
-Class-types Declaration Example
--------------------------------
 
 .. code:: Ada
 
@@ -96,24 +110,14 @@ Class-types Declaration Example
       P (Obj);
    end Main;
 
--------------
-Tag Attribute
--------------
+-------------------------------
+Testing the type of an object
+-------------------------------
 
-* Tagged types all have a tag
-* Accessed through the `'Tag` attribute
-* Applies to **both objects and types**
-* Membership check against a :ada:`'Tag` or :ada:`'Class`
-
-.. code:: Ada
-
-   Type'Tag = Object'Class'Tag;
-   Type'Tag in Object'Class;
-   Object'Tag = Type'Tag;
-
----------------------
-Tag Attribute Example
----------------------
+* The tag of an object denotes its type
+* It can be accessed through the `'Tag` attribute
+* Applies to both objects and types
+* Membership operator is available to check the type against a hierarchy
 
 .. code:: Ada
 
@@ -192,17 +196,19 @@ Relation to Primitives
 
    Ada 2012
 
+* Warning: Subprograms with parameter of type `T'Class` are primitives of `T'Class`, not `T`
+
       .. code:: Ada
- 
+
+         type Root is null record;
+         procedure P (V : Root'Class);
+         type Child is new Root with null record;
+         -- This does not override P!
+         overriding procedure P (V : Child'Class);
+
 * Prefix notation rules apply when the first parameter is of a class wide type
 
       .. code:: Ada
-         type Root is null record;
-
-         procedure P (V : Root'Class);
-         type Child is new Root with null record;
-
-         overriding procedure P (V : Child'Class);
 
          V1 : Root;
          V2 : Root'Class := Root'(others => <>);
@@ -314,14 +320,14 @@ Calls on class-wide types (3/3)
 
       Root * V1 = new Root ();
       Root * V2 = new Child ();
-      ((Root) *V1).P ())
+      ((Root) *V1).P ();
       ((Root) *V2).P ();
 
 -------------------------------
 Definite and class wide views
 -------------------------------
 
-* In C++, dispatching occurs only on virtual methods
+* In C++, dispatching occurs only on pointers
 * In Ada, dispatching occurs only on class wide views
 
 .. code:: Ada
@@ -391,25 +397,18 @@ Quiz
 
 .. code::Ada
 
-   type Root is tagged null record;
-   function F1 (V : Root) return Integer is
-   begin
-     return 101;
-   end F1;
-   
-   type Child is new Root with null record;
-   function F1 (V : Child) return Integer is
-   begin
-     return 201;
-   end F1;
+   package P is
+      type Root is tagged null record;
+      function F1 (V : Root) return Integer is (101);
+      type Child is new Root with null record;
+      function F1 (V : Child) return Integer is (201);
+      type Grandchild is new Child with null record;
+      function F1 (V : Grandchild) return Integer is (301);
+   end P;
 
-   type Grandchild is new Child with null record;
-   function F1 (V : Grandchild) return Integer is
-   begin
-      return 301;
-   end F1;
-
-   Z : Root'Class := Grandchild'(others => <>);
+   with P1; use P1;
+   procedure Main is
+      Z : Root'Class := Grandchild'(others => <>);
 
 What is the value returned by :ada:`F1 (Child'Class (Z));`?
 
@@ -453,10 +452,6 @@ Multiple dispatching operands
       overriding procedure P (Left : Child; Right : Child);
 
 * At call time, all actual parameters' tags have to match, either statically or dynamically
-
--------------------------------------
-Multiple dispatching operands Example
--------------------------------------
 
    .. code:: Ada
 

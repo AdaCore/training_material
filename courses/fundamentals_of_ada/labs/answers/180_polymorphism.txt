@@ -68,13 +68,13 @@ with Ada.Text_IO;           use Ada.Text_IO;
 with Shapes;                use Shapes;
 procedure Main is
 
-  Rectangle : Shapes.Quadrilateral_T :=
+  Rectangle : constant Shapes.Quadrilateral_T :=
    (Description => To_Unbounded_String ("rectangle"),
     Sides       => ((0.0, 10.0), (0.0, 20.0), (1.0, 20.0), (1.0, 10.0)));
-  Triangle : Shapes.Triangle_T :=
+  Triangle : constant Shapes.Triangle_T :=
    (Description => To_Unbounded_String ("triangle"),
     Sides       => ((0.0, 0.0), (0.0, 3.0), (4.0, 0.0)));
-  Square : Shapes.Square_T :=
+  Square : constant Shapes.Square_T :=
    (Description => To_Unbounded_String ("square"),
     Sides       => ((0.0, 1.0), (0.0, 2.0), (1.0, 2.0), (1.0, 1.0)));
 

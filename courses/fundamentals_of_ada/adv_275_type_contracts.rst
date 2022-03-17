@@ -1,10 +1,31 @@
-
 ****************
 Type Contracts
 ****************
 
+..
+    Coding language
+
 .. role:: ada(code)
     :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -91,13 +112,13 @@ Type Invariant Verifications
 
 * Remember - these are abstract data types
 
-.. image:: ../../images/black_box_flow.png
+.. image:: black_box_flow.png
 
 ----------------------------------------
 Invariant Over Object Lifetime (Calls)
 ----------------------------------------
 
-.. image:: ../../images/type_invariant_check_flow.png
+.. image:: type_invariant_check_flow.png
 
 .. container:: speakernote
 
@@ -192,7 +213,7 @@ Default Type Initialization for Invariants
    private
      -- Type is not a record, so we need to use aspect
      -- (A record could use default values for its components)
-     type T is new Integer with Default_Value => 0; 
+     type T is new Integer with Default_Value => 0;
      function Zero (This : T) return Boolean is
      begin
         return (This = 0);
@@ -251,8 +272,8 @@ Quiz
          procedure Do_Something (X : in out Some_T);
       private
          function Counter (I : Integer) return Boolean;
-      type Some_T is new Integer with
-         Type_Invariant => Counter (Integer (Some_T));
+         type Some_T is new Integer with
+            Type_Invariant => Counter (Integer (Some_T));
       end P;
 
       package body P is

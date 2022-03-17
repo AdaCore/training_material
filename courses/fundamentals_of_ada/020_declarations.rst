@@ -1,14 +1,31 @@
-.. |equivalent| replace:: :math:`\iff`
+**************
+Declarations
+**************
 
-.. role:: c(code)
-    :language: C
+..
+    Coding language
 
 .. role:: ada(code)
     :language: Ada
 
-**************
-Declarations
-**************
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -18,7 +35,7 @@ Introduction
 Identifiers
 ---------------------
 
-.. image:: ../../images/identifier_flow.png
+.. image:: identifier_flow.png
    :width: 60%
 
 .. container:: columns
@@ -217,12 +234,11 @@ Based Numeric Literals
 
 .. code::
 
-   based_literal ::=
-     base # based_number [.based_number] # E [+numeral|-numeral]
-   based_number ::= base_digit { '_' base_digit }
+   based_literal ::= base # numeral [.numeral] # exponent
+   numeral ::= base_digit { '_' base_digit }
 
 * Base can be 2 .. 16
-* Exponent is always a decimal number
+* Exponent is always a base 10 integer
 
    .. code:: Ada
 
@@ -653,7 +669,7 @@ Scope and "Lifetime"
 
     - C's :c:`static`, :c:`auto` etc...
 
-.. image:: ../../images/block_scope_example.jpeg
+.. image:: block_scope_example.jpeg
     :height: 50%
 
 -------------
@@ -718,6 +734,7 @@ Quiz
    What output does the following code produce? (Assume :code:`Print` prints the current value of its argument)
 
    .. code:: Ada
+      :number-lines: 1
 
       declare
          M : Integer := 1;

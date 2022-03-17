@@ -24,7 +24,7 @@ begin
       end loop Input_Loop;
       if Hours_Today > 8.0 then
          Overtime := Hours_Today - 8.0;
-         Hours_Today := Hours_Today + 1.5 * Overtime;
+         Hours_Today := Hours_Today + 0.5 * Overtime;
       end if;
       case Day is
          when Monday .. Friday => Total_Worked := Total_Worked + Hours_Today;

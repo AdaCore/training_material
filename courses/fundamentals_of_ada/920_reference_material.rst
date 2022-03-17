@@ -1,7 +1,31 @@
-
 *****************************
 Annex - Reference Materials
 *****************************
+
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==========================
 General Ada Information
@@ -13,7 +37,7 @@ Learning the Ada Language
 
 * Written as a tutorial for those new to Ada
 
-.. image:: ../../images/barnes_2012_cover.png
+.. image:: barnes_2012_cover.png
 
 ------------------
 Reference Manual
@@ -50,7 +74,7 @@ Reference Manual
 
 * Reference Manual(s) available from :toolname:`GNAT Studio` Help
 
-.. image:: ../../images/gnatstudio-help-gnat.jpeg
+.. image:: gnatstudio-help-gnat.jpeg
 
 -------------
 GNAT Tools

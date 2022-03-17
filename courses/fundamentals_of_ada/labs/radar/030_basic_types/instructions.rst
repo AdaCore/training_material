@@ -1,11 +1,12 @@
 :title: Ada Fundamentals - Lab 2 - Basic Types
 
-.. include:: support_files/docs_common.rst
+.. role:: ada(code)
+   :language: ada
 
 The purpose of this lab is to present basic Ada types and some advanced :toolname:`GNAT Studio`
 features.
 
-.. include:: courses/gnatstudio/navigate_debug_lab_2.rst
+.. include:: gnatstudio/navigate_debug_lab_2.rst
 
 ---------
 Questions

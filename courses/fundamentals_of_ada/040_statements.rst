@@ -2,16 +2,30 @@
 Statements
 ************
 
-.. |rightarrow| replace:: :math:`\rightarrow`
+..
+    Coding language
 
 .. role:: ada(code)
-   :language: ada
+    :language: Ada
 
 .. role:: C(code)
-   :language: C
+    :language: C
 
 .. role:: cpp(code)
-   :language: C++
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -195,12 +209,12 @@ Assignment Statements
 
 .. code:: Ada
 
-   type Bar is range 0 .. Max;
-   type Foo is range -200 .. 200;
+   type Miles_T is range 0 .. Max_Miles;
+   type Km_T is range 0 .. Max_Kilometers
    ...
-   F : Foo := 2; -- universal integer legal for any integer
-   B : Bar := 2; -- universal integer legal for any integer
-   F := B; -- compile error
+   M : Miles_T := 2; -- universal integer legal for any integer
+   K : Km_T := 2; -- universal integer legal for any integer
+   M := K; -- compile error
 
 ----------------------------------------
 Assignment Statements, Not Expressions
@@ -385,17 +399,6 @@ If-then-else Statements
 
     - :ada:`null` for explicit no-op
 
- .. code:: Ada
-
-    if Valve(N) /= Closed then
-      Isolate (Valve(N));
-      Notify (Valve_Failure, Valve (N));
-    else
-      if System = Off then
-        Notify (Valve_Failure, Valve (N));
-      end if;
-    end if;
-
 --------------------------
 If-then-elsif Statements
 --------------------------
@@ -404,16 +407,34 @@ If-then-elsif Statements
 * Avoids :ada:`if` nesting
 * :ada:`elsif` alternatives, tested in textual order
 * :ada:`else` part still optional
-* Applied to previous example
 
- .. code:: Ada
+.. container:: columns
 
-    if Valve(N) /= Closed then
-      Isolate (Valve(N));
-      Notify (Valve_Failure, Valve (N));
-    elsif System = Off then
-      Notify (Valve_Failure, Valve (N));
-    end if;
+ .. container:: column
+
+  .. code:: Ada
+     :number-lines: 1
+
+     if Valve(N) /= Closed then
+       Isolate (Valve(N));
+       Failure (Valve (N));
+     else
+       if System = Off then
+         Failure (Valve (N));
+       end if;
+     end if;
+
+ .. container:: column
+
+  .. code:: Ada
+     :number-lines: 1
+
+     if Valve(N) /= Closed then
+       Isolate (Valve(N));
+       Failure (Valve (N));
+     elsif System = Off then
+       Failure (Valve (N));
+     end if;
 
 .. container:: speakernote
 
@@ -491,7 +512,7 @@ Case Statement Rules
        Go_To (Work, Arrive=>Early, Leave=>Early);
      when others => -- weekend
        Go_To (Home, Arrive=>Day_Before, Leave=>Day_After);
-     end case;
+   end case;
 
 ------------------------------------
 Case Statements Range Alternatives
@@ -514,7 +535,7 @@ Dangers of *Others* Case Alternative
 
 * Maintenance issue: new value requiring a new alternative?
 
-    - Compiler won't warn: `others` hides it
+    - Compiler won't warn: :ada:`others` hides it
 
 .. code:: Ada
 
@@ -861,12 +882,12 @@ Referencing Hidden Names
 
    Foo:
    declare
-      Counter : Integer := 0;
+      Counter : Float := 0.0;
    begin
       ...
       for Counter in Integer range 1 .. Number_Read loop
          -- set declared "Counter" to loop counter
-         Foo.Counter := Counter;
+         Foo.Counter := Float (Counter);
          ...
       end loop;
       ...
@@ -937,18 +958,18 @@ Quiz
 
 Which loop block is illegal?
 
-A. | :answermono:`for A in 1 .. 10 loop`
-   |    :answermono:`A := A + 1;`
-   | :answermono:`end loop;`
-B. | ``for B in 1 .. 10 loop``
-   |    ``Put_Line (Integer'Image (B));``
-   | ``end loop;``
-C. | ``for C in reverse 1 .. 10 loop``
-   |    ``Put_Line (Integer'Image (A));``
-   | ``end loop;``
-D. | ``for D in 10 .. 1 loop``
-   |    ``Put_Line (Integer'Image (D));``
-   | ``end loop;``
+  A. | :answermono:`for A in 1 .. 10 loop`
+     |    :answermono:`A := A + 1;`
+     | :answermono:`end loop;`
+  B. | ``for B in 1 .. 10 loop``
+     |    ``Put_Line (Integer'Image (B));``
+     | ``end loop;``
+  C. | ``for C in reverse 1 .. 10 loop``
+     |    ``Put_Line (Integer'Image (A));``
+     | ``end loop;``
+  D. | ``for D in 10 .. 1 loop``
+     |    ``Put_Line (Integer'Image (D));``
+     | ``end loop;``
 
 .. container:: animate
 
@@ -958,6 +979,8 @@ D. | ``for D in 10 .. 1 loop``
    B. Legal - 10 iterations
    C. Legal - 10 iterations
    D. Legal - 0 iterations
+
+.
 
 =================
 GOTO Statements

@@ -18,9 +18,9 @@ is
       Z := 10;
 
       R := Y / Z + F (X); -- possible order dependency here.
-
-      Simple_IO.Put_Line (R);  -- R = 13 if L->R evaluation,
-			       -- constraint error if R->L
+                          -- R = 13 if L->R evaluation,
+                          -- constraint error if R->L evaluation
+      Simple_IO.Put_Line (R);
    end Test;
 
 end Side_Effects;

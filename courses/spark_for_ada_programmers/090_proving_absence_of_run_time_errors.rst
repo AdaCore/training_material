@@ -12,7 +12,7 @@ Introduction
 Run-Time Errors
 -----------------
 
-.. image:: ../../images/coffee_pot_runtime_error.jpeg
+.. image:: coffee_pot_runtime_error.jpeg
 
 ---------------------------
 Run-Time Errors - Example
@@ -21,17 +21,17 @@ Run-Time Errors - Example
 .. container:: columns
 
  .. container:: column
-  
+
     * A simple assignment statement
-    
+
     .. code:: Ada
-    
+
        A (I + J) := P / Q;
-       
+
     * Which are the possible run-time errors for this example?
 
  .. container:: column
-  
+
     *  ``I+J`` might overflow the base-type of the index range's subtype
     *  ``I+J`` might be outside the index range's subtype
     *  ``P/Q`` might overflow the base-type of the element type
@@ -46,7 +46,7 @@ Absence of Run Time Errors (AoRTE)
 Run-time Exception Freedom
 ----------------------------
 
-* By default, the compiler will generate an executable that contains checks 
+* By default, the compiler will generate an executable that contains checks
 
    - So that an exception is raised if a run-time error occurs
 
@@ -86,7 +86,7 @@ RTE Freedom - A Simple Example
       begin
          X := X + 1;
       end Increment;
- 
+
 * But it cannot prove this for the assignment statement so it reports: overflow check not proved
 * How can we ensure that ``X + 1`` doesn't overflow?
 
@@ -105,7 +105,7 @@ RTE Freedom - A Simple Example
       begin
          X := X + 1;
       end Increment;
- 
+
 * This avoids the potential overflow
 
    - But only if we can guarantee that the precondition is met
@@ -125,16 +125,16 @@ RTE Freedom - An Example
          Increment (X);
          Increment (X);
       end Add2;
- 
+
 * The tools report *precondition not proved* for each call to `Increment`
 
-* So let's add a precondition to `Add2` ... 
+* So let's add a precondition to `Add2` ...
 
 --------------------------
 RTE Freedom - An Example
 --------------------------
 
-* So let's add a precondition to `Add2` ... 
+* So let's add a precondition to `Add2` ...
 
    .. code:: Ada
 
@@ -145,7 +145,7 @@ RTE Freedom - An Example
          Increment (X);
          Increment (X);
       end Add2;
- 
+
 * This eliminates the problem for the first call to `Increment`, but the tools still can't prove the check for the second call
 * Why not?
 
@@ -164,7 +164,7 @@ RTE Freedom - An Example
          Increment (X);
          Increment (X);
       end Add2;
- 
+
 * When proving `Add2`, all we know about `Increment` must come from its contract, not its body
 * So after the first call to `Increment`, we know nothing about the new value of `X` (except that it is in type)
 
@@ -183,7 +183,7 @@ RTE Freedom - An Example
       begin
          X := X + 1;
       end Increment;
- 
+
 * The tools prove that the body of `Increment` satisfies the postcondition - easy!
 * And now all checks are proved for `Add2` so we can be sure it will not raise any run-time exceptions
 
@@ -195,7 +195,7 @@ Usage
 Usage Scenarios
 -----------------
 
-.. image:: ../../images/when_to_switch_to_spark.png
+.. image:: when_to_switch_to_spark.png
 
 .. container:: speakernote
 
@@ -213,7 +213,7 @@ Local Subprograms Without Contracts
  begin
     X := X + 1;
  end Increment;
-    
+
  procedure Add2 (X : in out Integer)
     with Pre => (X <= Integer'Last - 2)
  is
@@ -221,7 +221,7 @@ Local Subprograms Without Contracts
     Increment (X);
     Increment (X);
  end Add2;
-     
+
 * In fact, a local subprogram without a contract, will be inlined for proof. :toolname:`GNATprove` will then prove it!
 
    - Default behavior
@@ -232,7 +232,7 @@ Inlined Subprograms
 
 * Inlined subprograms are analyzed specially
 
-   - :toolname:`GNATprove` sees calls exactly as if statements in the body are textually present at the call sites 
+   - :toolname:`GNATprove` sees calls exactly as if statements in the body are textually present at the call sites
 
    - Thus :toolname:`GNATprove` knows effects of body statements
 
@@ -240,12 +240,12 @@ Inlined Subprograms
 
    - Local
 
-   - Without contracts 
+   - Without contracts
 
    - Not externally visible
    - See UG "7.4.5. Contextual Analysis of Subprograms Without Contracts" for full list
 
-* Options for strict modular verification: 
+* Options for strict modular verification:
 
    - :command:`--no-inlining`
    - :command:`--no-global-generation`
@@ -260,17 +260,16 @@ Semantics of Contracts - Overflows
 
       procedure P (X, Y : in Positive; Z : out Positive)
          with Post => (if X + Y <= Positive'Last
-                          then Z = X + Y)
-                      and
-                      (if X + Y > Positive'Last
+                          then Z = X + Y
+                       else
                           then Z = Positive'Last);
- 
-   - ``warning: overflow check might fail``
+
+   - ``medium: overflow check might fail``
 
 * Is this a false alarm in your context?
 
 --------------------------
-Overflow Checking Modes 
+Overflow Checking Modes
 --------------------------
 
 * Different user needs
@@ -301,6 +300,26 @@ Overflow Checking Modes
    - 1 = strict Ada semantics for overflow checking
    - 2 = minimized overflow checking
    - 3 = eliminated - no possibility of overflow (mathematical semantics)
+
+------------------------------
+Big Integer Standard Library
+------------------------------
+
+* Overflow checking modes only applicable to expressions
+* Alternative is to use ``Ada.Numerics.Big_Numbers.Big_Integers``
+
+   - Conversions from/to signed and modular integers
+   - Specially recognized by :toolname:`GNATprove`
+
+   .. code:: Ada
+
+      function Big (Arg : Integer) return Big_Integer is
+        (To_Big_Integer (Arg)) with Ghost;
+      procedure P (X, Y : in Positive; Z : out Positive)
+         with Post => (if Big (X) + Big (Y) <= Big (Positive'Last)
+                          then Z = X + Y
+                       else
+                          then Z = Positive'Last);
 
 ========
 Lab

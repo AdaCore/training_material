@@ -2,10 +2,30 @@
 Genericity
 ************
 
-.. |rightarrow| replace:: :math:`\rightarrow`
+..
+    Coding language
 
 .. role:: ada(code)
     :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -59,30 +79,33 @@ Solution: Generics
 Ada Generic Compared to C++ Template
 --------------------------------------
 
-* Ada Generic
+.. container:: columns
+
+ .. container:: column
+
+   * Ada Generic
 
    .. code:: Ada
 
       -- specification
       generic
-        type T is private;
-      procedure Swap (L, R : in out T);
+      type T is private;
+      procedure Swap
+        (L, R : in out T);
       -- implementation
-      procedure Swap (L, R : in out T) is
-        Tmp : T := L
+      procedure Swap
+        (L, R : in out T) is
+         Tmp : T := L
       begin
-        L := R;
-        R := Tmp;
+         L := R;
+         R := Tmp;
       end Swap;
       -- instance
       procedure Swap_F is new Swap (Float);
-      F1, F2 : Float;
-      procedure Main is
-      begin
-         Swap_F (F1, F2);
-      end Main;
 
-* C++ Template
+ .. container:: column
+
+   * C++ Template
 
    .. code:: C++
 
@@ -94,10 +117,8 @@ Ada Generic Compared to C++ Template
          L = R;
          R = Tmp;
       }
-      float F1, F2;
-      void Main (void) {
-         Swap <float> (F1, F2);
-      }
+
+.
 
 ===================
 Creating Generics
@@ -379,39 +400,57 @@ Generic Package Parameters
 Quiz
 ------
 
-.. code:: Ada
+.. admonition:: Language Variant
 
-   package P is
+   Ada 2005
+
+.. container:: columns
+
+ .. container:: column
+
+  .. container:: latex_environment tiny
+
+   .. code:: Ada
+      :number-lines: 1
+
       procedure P1 (X : in out Integer); -- add 100 to X
       procedure P2 (X : in out Integer); -- add 20 to X
       procedure P3 (X : in out Integer); -- add 3 to X
       generic
-         Z : in out Integer;
          with procedure P1 (X : in out Integer) is <>;
          with procedure P2 (X : in out Integer) is null;
-      procedure G;
-   end P;
-
-   package body P is
-      -- bodies of P1/P2/P3 skipped for space
-      procedure G is begin
-         P1 (Z);
-         P2 (Z);
+      procedure G ( P : integer );
+      procedure G ( P : integer ) is
+         X : integer := P;
+      begin
+         P1(X);
+         P2(X);
+         Ada.Text_IO.Put_Line ( X'Image );
       end G;
-   end P;
+      procedure Instance is new G ( P1 => P3 );
 
-Given an integer Z initialized to 100, what is the value of Z after calling I for each of the following instantiations?
+ .. container:: column
 
-.. list-table::
+  .. container:: latex_environment scriptsize
 
-   * - :ada:`procedure I is new G (Z);`
-     - :animate:`200 - Calls P1 and null`
-   * - :ada:`procedure I is new G (Z, P1 => P3); `
-     - :animate:`103 - Calls P3 and null`
-   * - :ada:`procedure I is new G (Z, P2 => P3); `
-     - :animate:`203 - Calls P1 and P3`
-   * - :ada:`procedure I is new G (Z, P1 => P3, P2 => P3); `
-     - :animate:`106 - Calls P3 twice`
+   What is printed when :ada:`Instance` is called?
+
+   A. 100
+   B. 120
+   C. :answer:`3`
+   D. 103
+
+   .. container:: animate
+
+      Explanations
+
+      A. | Wrong - result for
+         | :ada:`procedure Instance is new G;`
+      B. | Wrong - result for
+         | :ada:`procedure Instance is new G(P1,P2);`
+      C. :ada:`P1` at line 12 is mapped to :ada:`P3` at line 3, and :ada:`P2` at line 14 wasn't specified so it defaults to :ada:`null`
+      D. | Wrong - result for
+         | :ada:`procedure Instance is new G(P2=>P3);`
 
 ====================
 Generic Completion
@@ -428,60 +467,48 @@ Implications at Compile-Time
 Generic and Freezing Points
 -----------------------------
 
-.. container:: columns
+* A generic type **freezes** the type and needs the **full view**
+* May force separation between its declaration (in spec) and instantiations (in private or body)
 
- .. container:: column
+.. code:: Ada
 
-    * A generic type "freezes" the type and needs to have access to its full view
-    * This may force separation of the generic type declaration and subsequent generic instantiations (e.g. with containers)
+   generic
+      type X is private;
+   package Base is
+      V : access X;
+   end Base;
 
- .. container:: column
-
-    .. code:: Ada
-
-       generic
-          type X is private;
-       package Base is
-          V : access X;
-       end Base;
-
-       package P is
-          type X is private;
-          -- illegal
-          package B is new Base (X);
-       private
-          type X is null record;
-       end P;
+   package P is
+      type X is private;
+      -- illegal
+      package B is new Base (X);
+   private
+      type X is null record;
+   end P;
 
 -------------------------------
 Generic Incomplete Parameters
 -------------------------------
 
-.. container:: columns
+* A generic type can be incomplete
+* Allows generic instantiations before full type definition
+* Restricts the possible usages (only :ada:`access`)
 
- .. container:: column
+.. code:: Ada
 
-    * A generic type can be incomplete
-    * This allows generic instantiations before full type definition
-    * Usage of the type is then fairly restricted (can only be used through an access)
+   generic
+      type X; -- incomplete
+   package Base is
+      V : access X;
+   end Base;
 
- .. container:: column
-
-    .. code:: Ada
-
-       generic
-          type X; -- incomplete
-       package Base is
-          V : access X;
-       end Base;
-
-       package P is
-          type X is private;
-          -- legal
-          package B is new Base (X);
-       private
-          type X is null record;
-       end P;
+   package P is
+      type X is private;
+      -- legal
+      package B is new Base (X);
+   private
+      type X is null record;
+   end P;
 
 ========
 Lab

@@ -1,9 +1,44 @@
-.. role:: ada(code)
-    :language: ada
-
 **********
 Overview
 **********
+
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
+
+===================
+About This Course
+===================
+
+--------
+Styles
+--------
+
+* :dfn:`This` is a definition
+* :filename:`this/is/a.path`
+* :ada:`code is highlighted`
+* :command:`commands are emphasised --like-this`
 
 ==================
 A Little History
@@ -77,13 +112,13 @@ Big Picture
 Language Structure (Ada95 and Onward)
 ---------------------------------------
 
-* **Required** *Core* implementation
+* **Required** :dfn:`Core` implementation
 
    - Reference Manual (RM) sections 1 :math:`\rightarrow` 13
    - Predefined Language Environment (Annex A)
    - Foreign Language Interfaces (Annex B)
 
-* Optional *Specialized Needs Annexes*
+* Optional :dfn:`Specialized Needs Annexes`
 
    - No additional syntax
    - Systems Programming (C)
@@ -141,45 +176,33 @@ Ada Type Model
     - User-defined
     - Checked at compilation and run-time
 
-------------------------
-Weakly-Typed Languages
-------------------------
+----------------------------------------
+Strongly-Typed vs Weakly-Typed Languages
+----------------------------------------
 
-* Conversions are **unchecked**
-* Type errors are easy
+* Weakly-typed:
+
+    - Conversions are **unchecked**
+    - Type errors are easy
 
 .. code:: C++
 
    typedef enum { north, south, east, west } direction ;
    direction heading = north;
-   typedef enum { mon, tue, wed, thur, fri, sat, sun } weekday;
-   weekday day = wed;
 
-   ...
+   heading = 1 + 3 * south/sun;// what?
 
-   day = heading; // typo?
-   heading = tue + 3 * south/sun;// what?
+* Strongly-typed:
 
---------------------------
-Strongly-Typed Languages
---------------------------
-
-* Conversions are **checked**
-* Type errors are hard
+    - Conversions are **checked**
+    - Type errors are hard
 
 .. code:: Ada
 
    type Directions is ( North, South, East, West );
-   type Days is ( Mon, Tue, Wed, Thu, Fri, Sat, Sun );
-
    Heading : Directions := North;
-   Day : Days := Wed;
-
    ...
-
-   Day := Heading; -- Compile Error
-
-   Heading := Tue + 3 * South/Sun; -- Compile Error
+   Heading := 1 + 3 * South/Sun; --  Compile Error
 
 --------------------------
 The Type Model Saves Money
@@ -190,7 +213,7 @@ The Type Model Saves Money
 
     - Cost of an error *during a flight*?
 
-.. image:: ../../images/relative_cost_to_fix.png
+.. image:: relative_cost_to_fix_bugs.jpg
    :height: 50%
 
 ---------------------------
@@ -361,32 +384,7 @@ Generic Units
 
  .. container:: column
 
-    .. image:: ../../images/generic_template_to_instances.png
-
--------------------
-Stack with Generics
--------------------
-
-.. code:: Ada
-
-   generic
-     type Content is ... -- type is factored out
-   package Bounded_Stacks is
-     type Stack is private;
-     procedure Push (This : in out Stack;
-                     Item : in     Content);
-     procedure Pop (This : in out Stack;
-                    Item : out    Content);
-     ...
-     Max : constant := 100;
-   private
-     type Contents is array (1 .. Max) of Content;
-     type Stack is
-       record
-         Values : Contents;
-         Top    : Integer range 0 .. Max := 0;
-     end record;
-   end Bounded_Stacks;
+    .. image:: generic_template_to_instances.png
 
 -----------------------------
 Object-Oriented Programming
@@ -543,7 +541,7 @@ Language Examination Summary
 * Unique capabilities
 * Three main goals
 
-   - **Reliability**, maintenability
+   - **Reliability**, maintainability
    - Programming as a **human** activity
    - Efficiency
 
@@ -566,7 +564,7 @@ So Why Isn't Ada Used Everywhere?
 
  .. container:: column
 
-    .. image:: ../../images/mark_twain.jpeg
+    .. image:: mark_twain.jpeg
 
 =======
 Setup

@@ -1,7 +1,31 @@
-
 *******************
 Ravenscar Tasking
 *******************
+
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -256,7 +280,7 @@ Ceiling Locking
 
 |
 
-.. image:: ../../images/ravenscar_ceiling_locking.png
+.. image:: ravenscar_ceiling_locking.png
    :width: 45%
 
  .. container:: column

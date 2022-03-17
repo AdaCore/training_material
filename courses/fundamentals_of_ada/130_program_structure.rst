@@ -1,10 +1,31 @@
-
 *******************
 Program Structure
 *******************
 
+..
+    Coding language
+
 .. role:: ada(code)
     :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -72,7 +93,7 @@ Handling Cyclic Dependencies
 
 * Which package elaborates first?
 
-.. image:: ../../images/cyclic_dependencies.png
+.. image:: cyclic_dependencies.png
    :width: 50%
    :align: center
 
@@ -83,7 +104,7 @@ Body-Level Cross Dependencies Are OK
 * The bodies only depend on other packages' declarations
 * The declarations are already elaborated by the time the bodies are elaborated
 
-.. image:: ../../images/mutual_dependencies.png
+.. image:: mutual_dependencies.png
    :width: 70%
    :align: center
 
@@ -299,7 +320,7 @@ Solution: Hierarchical Library Units
 
  .. container:: column
 
-    .. image:: ../../images/hierarchical_library_units.png
+    .. image:: hierarchical_library_units.png
 
 --------------------------
 Programming By Extension
@@ -426,7 +447,7 @@ Hierarchical Visibility
 
  .. container:: column
 
-    .. image:: ../../images/hierarchical_visibility.png
+    .. image:: hierarchical_visibility.png
 
 ------------------------------------
 Example of Visibility As If Nested
@@ -635,69 +656,62 @@ Visibility Limits
     -- Parent_T is visible here
    end Parent.Child;
 
---------------------------
-Misbehaving (?) Children
---------------------------
+--------------------------------
+Children Can Break Abstraction
+--------------------------------
 
-* Can break a parent's abstraction
+* Could **break** a parent's abstraction
 
-  - Exporting a subprogram that alters package state
-  - Exporting a subprogram that alters ADT object state
+  - Alter a parent package state
+  - Alters an ADT object state
 
-* Nice for testing via fault injection...
+* Useful for reset, testing: fault injections...
 
 .. code:: Ada
 
    package Stack is
-     procedure Push ( X : in Foo );
-     procedure Pop ( X : out Foo );
-   private
-     Values : array (1 .. N ) of Foo;
-     Top : Natural range 0 .. N := 0
-   end Stack;
-
-   package Stack.Child is
-     procedure Misbehave;
-     procedure Reset;
-   end Stack.Child;
-
-   package body Stack.Child is
-     procedure Misbehave is
-     begin
-       Top := 0;
-     end Misbehave;
-
-     procedure Reset is
-     begin
-       Top := 0;
-     end Reset;
-   end Stack.Tools;
-
----------------------------
-Another Misbehaving Child
----------------------------
-
-* Can indirectly export parent's private information
-
-.. code:: Ada
-
-   package Skippy is
       ...
    private
-     X : Integer := 0;
-   end Skippy;
+      Values : array (1 .. N ) of Foo;
+      Top : Natural range 0 .. N := 0
+   end Stack;
+
+   package body Stack.Reset is
+      procedure Reset is
+      begin
+        Top := 0;
+      end Reset;
+   end Stack.Tools;
+
+--------------------------
+Using Children for Debug
+--------------------------
+
+* Provide **accessors** to parent's private information
+* eg internal metrics...
 
 .. code:: Ada
 
-   package Skippy.Evil_Twin is
-     function Cheater return Integer;
-   end Skippy.Evil_Twin;
-   package body Skippy.Evil_Twin is
-     function Cheater return Integer is
+   package P is
+      ...
+   private
+     Internal_Counter : Integer := 0;
+   end P;
+
+.. code:: Ada
+
+   package P.Child is
+     function Count return Integer;
+   end P.Child;
+
+.. code:: Ada
+
+   package body P.Child is
+     function Count return Integer is
      begin
-       return X;
-     end Cheater;
-   end Skippy.Evil_Twin;
+       return Internal_Counter;
+     end Count;
+   end P.Child;
 
 ------
 Quiz
@@ -733,7 +747,7 @@ Quiz
 
       A.  ``return Object_A;``
       B.  ``return Object_B;``
-      C.  ``return Object_C;``
+      C.  :answermono:`return Object_C;`
       D.  None of the above
 
    .. container:: animate
@@ -1008,15 +1022,11 @@ Summary
 Summary
 ---------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Hierarchical library units address important issues
 
    - Direct support for subsystems
    - Extension without recompilation
-   - Separation of concerns with controlled sharing of visibility
+   - Separation of concerns with controlled sharing of visibility (Ada 2012)
 
 * Parents should document assumptions for children
 

@@ -1,10 +1,31 @@
-
 *********
 Tasking
 *********
 
+..
+    Coding language
+
 .. role:: ada(code)
     :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -343,22 +364,22 @@ Task Types
 
 .. code:: Ada
 
-   task type T is
+   task type Task_T is
       entry Start;
-   end T;
+   end Task_T;
 
-   type T_A is access all T;
+   type Task_Ptr_T is access all Task_T;
 
-   task body T is
+   task body Task_T is
    begin
       accept Start;
-   end T;
+   end Task_T;
    ...
-      V1 : T;
-      V2 : A_T;
+      V1 : Task_T;
+      V2 : Task_Ptr_T;
    begin
       V1.Start;
-      V2 := new T;
+      V2 := new Task_T;
       V2.all.Start;
 
 ------------------------
@@ -555,17 +576,20 @@ Avoid Waiting If No Entry Or Accept Ready
 Terminate Alternative
 -----------------------
 
-* When waiting for an entry, if all other task dependent on the same master task (including the master task) are terminated, the entry can't be called anymore
-* This can be detected by the :ada:`or terminate` alternative, which terminates the tasks if all other tasks are terminated
+* An entry can't be called anymore if all tasks calling it are over
+* Handled through :ada:`or terminate` alternative
 
-   - Or themselves waiting on :ada:`or terminate` select statements
+   - Terminates the task if **all others** are terminated
+   - Or are **blocked** on :ada:`or terminate` themselves
 
-* Once reached, the task is terminated right away, no additional code is called
+* Task is terminated **immediately**
+
+    - No additional code executed
 
 .. code:: Ada
 
    select
-      accept Entry_Point;
+      accept Entry_Point
    or
       terminate;
    end select;
@@ -574,8 +598,9 @@ Terminate Alternative
 Guard Expressions
 -------------------
 
-* The :ada:`accept` statement can be activated according to a guard condition
-* This condition is evaluated when entering select
+* :ada:`accept` may depend on a **guard condition** with :ada:`when`
+
+    - Evaluated when entering :ada:`select`
 
 .. code:: Ada
 
@@ -598,73 +623,36 @@ Guard Expressions
       end loop;
    end T;
 
---------------------------------
-Protected Object Entries (1/2)
---------------------------------
+------------------------
+Protected Object Entries
+------------------------
 
-* Protected entries are a special kind of protected procedures
-* They can be defined using a barrier, a conditional expression allowing the entry to be called or not
-* The barriers are evaluated...
+* **Special** kind of protected :ada:`procedure`
+* May use a **barrier**, that **only** allows call on a **boolean** condition
+* Barrier is **evaluated** and may be **relieved** when
 
-   - Every time a task requests to call an entry
-   - Every time a protected entry or procedure is exited
+   - A task calls :ada:`entry`
+   - A protected :ada:`entry` or :ada:`procedure` is **exited**
+
+* Several tasks can be waiting on the same :ada:`entry`
+
+    - Only **one** will be re-activated when the barrier is relieved
 
 .. code:: Ada
 
-   protected Object is
-      entry Push (V : Integer);
-      entry Pop  (V : out Integer);
-   private
-      Buffer : Integer_Array (1 .. 10);
-      Size : Integer := 0;
-   end Object;
-
-   protected body Object is
+   protected body Stack is
       entry Push (V : Integer) when Size < Buffer'Length is
-      begin
-         Buffer (Size + 1) := V;
-         Size := Size + 1;
-      end Push;
+      [...]
 
       entry Pop  (V : out Integer) when Size > 0 is
-      begin
-         V := Buffer (Size);
-         Size := Size - 1;
-      end Pop;
+      [...]
    end Object;
-
---------------------------------
-Protected Object Entries (2/2)
---------------------------------
-
-* Several tasks can be waiting on entries
-* Only one task is reactivated when the barrier is relieved, depending on the activation policy
-
-.. code:: Ada
-
-   task body T1 is
-      V : Integer;
-   begin
-      Object.Pop (V);
-   end T1;
-
-   task body T2 is
-      V : Integer;
-   begin
-      Object.Pop (V);
-   end T2;
-
-   task body T3 is
-   begin
-      delay 1.0;
-      Object.Push (42);
-   end T3;
 
 -------------------------------------
 Select On Protected Objects Entries
 -------------------------------------
 
-* Works the same way as select on task entries
+* Same as :ada:`select` but on task entries
 
    - With a :ada:`delay` part
 
@@ -677,7 +665,7 @@ Select On Protected Objects Entries
          Put_Line ("Delayed overflow");
       end select;
 
-   - With an :ada:`else` part
+  - or with an :ada:`else` part
 
    .. code:: Ada
 
@@ -687,25 +675,29 @@ Select On Protected Objects Entries
          Put_Line ("Overflow");
       end select;
 
--------------------
-Notion Of a Queue
--------------------
+------
+Queue
+------
 
-* Protected entries, protected procedures and task entries can only be activated by one task at a time
-* If several tasks are trying to enter a mutually exclusion section, they are put in a queue
-* By default, tasks are entering the queue in FIFO
-* If several tasks are in a queue when the server task is terminated, :ada:`Tasking_Error` is sent to the waiting tasks
+* Protected :ada:`entry`, :ada:`procedure`, and tasks :ada:`entry` are activated by **one** task at a time
+* **Mutual exclusion** section
+* Other tasks trying to enter are **queued**
 
------------------------
-`requeue` Instruction
------------------------
+    - In **First-In First-Out** (FIFO) by default
 
-* The :ada:`requeue` instruction can be called in an entry (task or protected)
-* It places the queued task back to another entry with the same profile
+* When the server task **terminates**, tasks still queued receive :ada:`Tasking_Error`
 
-   - Or the same entry...
+--------------------------
+:ada:`requeue` Instruction
+--------------------------
 
-* Useful if the treatment couldn't be done and need to be re-considered later
+* :ada:`requeue` can be called in any :ada:`entry` (task or protected)
+* Puts the requesting task back into the queue
+
+   - May be handled by another :ada:`entry`
+   - Or the same one...
+
+* Reschedule the processing for later
 
    .. code:: Ada
 
@@ -722,7 +714,11 @@ Notion Of a Queue
 Abort Statements
 ------------------
 
-* All tasks can be abruptly aborted
+* :ada:`abort` stops the tasks **immediately**
+
+    - From an external caller
+    - No cleanup possible
+    - Highly unsafe - should be used only as **last resort**
 
    .. code:: Ada
 
@@ -741,33 +737,12 @@ Abort Statements
          abort T;
       end;
 
-* Abortion may stop the task almost anywhere in the assembly code
-* Highly unsafe - should be used only as last resort
+-----------------------------------
+:ada:`select` ... :ada:`then abort`
+-----------------------------------
 
----------------------------
-`select` ... `then abort`
----------------------------
-
-* A sequence of statements can be planned to be aborted as a result of an incoming event (entry call or delay expiration)
-* Again, abortion can occur anywhere in the processing, avoid it if other options exist
-
-   .. code:: Ada
-
-      select
-         delay 10.0;
-      then abort
-         Some_Long_Processing;
-      end select;
-      -- statements to execute after select
-
-   .. code:: Ada
-
-      select
-         T.Wait_For_Interruption;
-      then abort
-         Some_Long_Processing;
-      end select;
-      -- statements to execute after select
+* :ada:`select` can call :ada:`abort`
+* Can abort anywhere in the processing, highly unsafe
 
 ========
 Lab
@@ -783,7 +758,7 @@ Summary
 Summary
 ---------
 
-* Tasks are language-based multiprocessing mechanisms
+* Tasks are language-based multithreading mechanisms
 
    - Not necessarily designed to be operated in parallel
    - Original design assumed task-switching / time-slicing

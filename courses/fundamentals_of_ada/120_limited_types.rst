@@ -2,8 +2,30 @@
 Limited Types
 ***************
 
+..
+    Coding language
+
 .. role:: ada(code)
     :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -424,14 +446,14 @@ Function Extended Return Statements
 * Syntax (simplified):
 
    .. code:: Ada
-    
+
       return identifier : subtype [:= expression];
 
       return identifier : subtype
       [do
          sequence_of_statements ...
        end return];
-             
+
 ----------------------------------
 Extended Return Statements Example
 ----------------------------------
@@ -440,12 +462,12 @@ Extended Return Statements Example
 
        --  Implicitely limited array
        type Spin_Lock_Array (Positive range <>) of Spin_Lock;
-       
+
        function F return Spin_Lock_Array is
        begin
          return Result : Spin_Lock_Array (1 .. 10) do
            ...
-         end return;      
+         end return;
        end F;
 
 ------------------------------------
@@ -498,7 +520,7 @@ Statements Restrictions
        if Set_Flag then
          Result.Flag := 1;
          return;  --  returns 'Result'
-       end if; 
+       end if;
        Result.Flag := 0;
      end return; --  Implicit return
    end F;
@@ -654,25 +676,23 @@ Automatically Limited Full View
 
 .. code:: Ada
 
-   with Bounded_Stacks; -- Stack is a limited type
    package Foo is
       type Legal is limited private;
       type Also_Legal is limited private;
       type Not_Legal is private;
       type Also_Not_Legal is private;
-     ...
    private
       type Legal is record
-         S : Bounded_Stacks.Stack;
+         S : A_Limited_Type;
       end record;
       type Also_Legal is limited record
-         S : Bounded_Stacks.Stack;
+         S : A_Limited_Type;
       end record;
       type Not_Legal is limited record
-         S : Bounded_Stacks.Stack;
+         S : A_Limited_Type;
       end record;
       type Also_Not_Legal is record
-         S : Bounded_Stacks.Stack;
+         S : A_Limited_Type;
       end record;
    end Foo;
 

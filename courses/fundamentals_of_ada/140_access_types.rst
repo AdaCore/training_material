@@ -1,10 +1,31 @@
-
 **************
 Access Types
 **************
 
+..
+    Coding language
+
 .. role:: ada(code)
     :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -14,30 +35,44 @@ Introduction
 Access Types Design
 ---------------------
 
-* Java references, or C/C++ pointers are called access type in Ada
-* An object is associated to a pool of memory
-* Different pools may have different allocation / deallocation policies
-* Without doing unchecked deallocations, and by using pool-specific access types, access values are guaranteed to be always meaningful
-* In Ada, access types are typed
+* Memory addresses objects are called **access types**
+* Objects are associated to **pools** of memory
 
-   - Ada
+  - With different allocation / deallocation policies
 
-      .. code:: Ada
+* Access objects are **guaranteed** to always be meaningful
 
-         type Integer_Pool_Access is access Integer;
-         P_A : Integer_Pool_Access := new Integer;
+  - In the absence of :ada:`Unchecked_Deallocation`
+  - And if pool-specific
 
-         type Integer_General_Access is access all Integer;
-         G : aliased Integer
-         G_A : Integer_General_Access := G'access;
+.. container:: columns
 
-   - Compared to C/C++
+ .. container:: column
 
-      .. code:: C++
+  * Ada
 
-         int * P_C = malloc (sizeof (int));
-         int * P_CPP = new int;
-         int * G_C = &Some_Int;
+  .. code:: Ada
+
+     type Integer_Pool_Access
+       is access Integer;
+     P_A : Integer_Pool_Access
+       := new Integer;
+
+     type Integer_General_Access
+       is access all Integer;
+     G : aliased Integer
+     G_A : Integer_General_Access := G'access;
+
+ .. container:: column
+
+  * C++
+
+  .. code:: C++
+
+     int * P_C = malloc (sizeof (int));
+     int * P_CPP = new int;
+     int * G_C = &Some_Int;
+.
 
 -------------------------------
 Access Types Can Be Dangerous
@@ -70,7 +105,7 @@ Stack vs Heap
   I : Integer := 0;
   J : String := "Some Long String";
 
-.. image:: ../../images/items_on_stack.png
+.. image:: items_on_stack.png
    :width: 50%
 
 .. code:: Ada
@@ -78,7 +113,7 @@ Stack vs Heap
   I : Access_Int:= new Integer'(0);
   J : Access_Str := new String ("Some Long String");
 
-.. image:: ../../images/stack_pointing_to_heap.png
+.. image:: stack_pointing_to_heap.png
    :width: 50%
 
 ==========================
@@ -142,6 +177,27 @@ Null Values
       V := new Integer'(0);
       V := null; -- semantically correct, but memory leak
 
+---------------------------
+Access Types and Primitives
+---------------------------
+
+* Subprogram using an access type are primitive of the **access type**
+
+    - **Not** the type of the accessed object
+
+   .. code:: Ada
+
+         type A_T is access all T;
+         procedure Proc (V : A_T); -- Primitive of A_T, not T
+
+* Primitive of the type can be created with the :ada:`access` mode
+
+    - **Anonymous** access type
+
+   .. code:: Ada
+
+         procedure Proc (V : access T); -- Primitive of T
+
 ------------------------
 Dereferencing Pointers
 ------------------------
@@ -203,13 +259,7 @@ Pool-Specific Access Type
       type T_Access is access T;
       V : T_Access := new T;
 
-* Conversion is needed to move an object pointed by one type to another (pools may differ)
-* You can not do this kind of conversion with a pool-specific access type
-
-   .. code:: Ada
-
-      type T_Access_2 is access T;
-      V2 : T_Access_2 := T_Access_2 (V); -- illegal
+* Conversion is **not** possible between pool-specific access types
 
 -------------
 Allocations
@@ -317,6 +367,8 @@ Referencing The Stack
 
       A : Int_Access := V'Access;
 
+   - :ada:`'Unchecked_Access` does it **without checks**
+
 ----------------------------
 `Aliased` Objects Examples
 ----------------------------
@@ -324,26 +376,24 @@ Referencing The Stack
 .. code:: Ada
 
    type Acc is access all Integer;
-      V : Acc;
-      I : aliased Integer;
-   begin
-      V := I'Access;
-      V.all := 5; -- Same a I := 5
-
+   V, G : Acc;
+   I : aliased Integer;
    ...
-
-   type Acc is access all Integer;
-   G : Acc;
+   V := I'Access;
+   V.all := 5; -- Same a I := 5
+   ...
    procedure P1 is
       I : aliased Integer;
    begin
       G := I'Unchecked_Access;
-      -- Same as 'Access (see later)
+      P2;
    end P1;
+
    procedure P2 is
    begin
+      -- OK when P2 called from P1.
+      -- What if P2 is called from elsewhere?
       G.all := 5;
-      -- What if P2 is called after P1?
    end P2;
 
 ------
@@ -434,7 +484,6 @@ Introduction to Accessibility Checks (2/2)
          A1 := V0'Access;
          A1 := V1'Access;
          A1 := T1 (A0);
-         A0 := T0 (A1); -- illegal
          A1 := new Integer;
          A0 := T0 (A1); -- illegal
      end Proc;
@@ -447,7 +496,7 @@ Getting Around Accessibility Checks
 -------------------------------------
 
 * Sometimes it is OK to use unsafe accesses to data
-* `'Unchecked_Access` allows access to a variable of an incompatible accessibility level
+* :ada:`'Unchecked_Access` allows access to a variable of an incompatible accessibility level
 * Beware of potential problems!
 
    .. code:: Ada
@@ -631,7 +680,7 @@ Examples
 Anonymous Access Parameters
 -----------------------------
 
-* Parameter modes are of 4 types: `in`, `out`, `in out`, `access`
+* Parameter modes are of 4 types: :ada:`in`, :ada:`out`, :ada:`in out`, :ada:`access`
 * The access mode is called **anonymous access type**
 
    - Anonymous access is implicitly general (no need for :ada:`all`)
@@ -644,13 +693,15 @@ Anonymous Access Parameters
 .. code:: Ada
 
    type Acc is access all Integer;
-   G : Acc := new Integer;
-   procedure P1 (V : access Integer);
-   procedure P2 (V : access Integer) is
+   Aliased_Integer : aliased Integer;
+   Access_Object   : Acc := Aliased_Integer'access;
+   procedure P1 (Anon_Access : access Integer) is null;
+   procedure P2 (Access_Parameter : access Integer) is
    begin
-      P1 (G);
-      P1 (V);
-   end P;
+      P1 (Aliased_Integer'access);
+      P1 (Access_Object);
+      P1 (Access_Parameter);
+   end P2;
 
 ------------------------
 Anonymous Access Types
@@ -679,7 +730,7 @@ Anonymous Access Constants
 
       type CAcc is access constant Integer;
       G1 : aliased Integer;
-      G2 : aliased constant Integer;
+      G2 : aliased constant Integer := 123;
       V1 : CAcc := G1'Access;
       V2 : CAcc := G2'Access;
       V1.all := 0; -- illegal

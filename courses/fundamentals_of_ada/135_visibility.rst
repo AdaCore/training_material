@@ -1,7 +1,31 @@
-
 ************
 Visibility
 ************
+
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -88,19 +112,16 @@ Examples
 ---------------------
 
 * May have several, like :ada:`with` clauses
-* Must name an imported library unit
-
-   - From same context clause
-
+* Can refer to any visible package (including nested packages)
 * Syntax
 
    .. code:: Ada
 
       use_package_clause ::= use package_name {, package_name};
 
-* Can only :ada:`use` a library package
+* Can only :ada:`use` a package
 
-   - Subprograms don't make sense
+   - Subprograms have no contents to :ada:`use`
 
 --------------------
 `use` Clause Scope
@@ -195,8 +216,8 @@ No Ambiguity Introduction
 `use` Clauses and Child Units
 ------------------------------
 
-* A clause for a child does not imply one for its parent
-* A clause for a parent makes the child directly visible
+* A clause for a child does **not** imply one for its parent
+* A clause for a parent makes the child **directly** visible
 
    - Since children are 'inside' declarative region of parent
 
@@ -204,12 +225,10 @@ No Ambiguity Introduction
 
    package Parent is
      P1 : Integer;
-     ...
    end Parent;
 
    package Parent.Child is
      PC1 : Integer;
-     ...
    end Parent.Child;
 
    with Parent.Child;
@@ -219,9 +238,7 @@ No Ambiguity Introduction
      use Parent;
      D3 : Integer := P1;
      D4 : Integer := Child.PC1;
-   begin
      ...
-   end Demo;
 
 .. container:: speakernote
 
@@ -404,25 +421,23 @@ Examples
 
    package Complex is
      type Number is private;
-     function "*" (Left, Right : Number) return Number;
-     function "/" (Left, Right : Number) return Number;
      function "+" (Left, Right : Number) return Number;
-     procedure Put (C : Number);
      procedure Make ( C : out Number;
                       From_Real, From_Imag : Float );
-     procedure Non_Primitive ( X : Integer );
-       ...
+   ...
+
+.. code:: Ada
 
    with Complex;
    use all type Complex.Number;
    procedure Demo is
      A, B, C : Complex.Number;
+     procedure Non_Primitive ( X : Complex.Number ) is null;
    begin
      -- "use all type" makes these available
      Make (A, From_Real => 1.0, From_Imag => 0.0);
      Make (B, From_Real => 1.0, From_Imag => 0.0);
      C := A + B;
-     Put (C);
      -- but not this one
      Non_Primitive (0);
    end Demo;
@@ -476,7 +491,7 @@ Three Positives Make a Negative
       -- given angle and distances between observer and 2 points
       -- A**2 = B**2 + C**2 - 2*B*C*cos(A)
       Observation.Sides (Viewpoint_Types.Point1_Point2) :=
-        Math_Utilities.Trigonometry.Square_Root
+        Math_Utilities.Square_Root
           (Observation.Sides (Viewpoint_Types.Observer_Point1)**2 +
            Observation.Sides (Viewpoint_Types.Observer_Point2)**2 +
            2.0 * Observation.Sides (Viewpoint_Types.Observer_Point1) *
@@ -550,31 +565,23 @@ Writing Readable Code - Part 2
    .. code:: Ada
 
       begin
-         Side1          : Base_Types.Float_T renames Observation.Sides (Viewpoint_Types.Observer_Point1);
-         Side2          : Base_Types.Float_T renames Observation.Sides (Viewpoint_Types.Observer_Point2);
-         Angles         : Viewpoint_Types.Vertices_Array_T renames Observation.Vertices;
-         Required_Angle : Viewpoint_Types.Vertices_T renames Viewpoint_Types.Observer;
-         Desired_Side   : Base_Types.Float_T renames
-           Observation.Sides (Viewpoint_Types.Point1_Point2);
-
          package Math renames Math_Utilities;
          package Trig renames Math.Trigonometry;
 
          function Sqrt (X : Base_Types.Float_T) return Base_Types.Float_T
            renames Math.Square_Root;
 
+         Side1          : Base_Types.Float_T
+           renames Observation.Sides (Viewpoint_Types.Observer_Point1);
+         -- Rename the others as Side2, Angles, Required_Angle, Desired_Side
       begin
-
-         Side1                   := Sensors.Read;
-         Side2                   := Sensors.Read;
-         Angles (Required_Angle) := Sensors.Read;
-
+         ...
          -- use cosine rule to determine distance between two points, given angle
          -- and distances between observer and 2 points A**2 = B**2 + C**2 -
          -- 2*B*C*cos(A)
-         Desired_Side := Sqrt (Side1**2 + Side2**2 +
-                               2.0 * Side1 * Side2 * Math.Cosine (Angles (Required_Angle)));
-
+         Desired_Side :=
+               Sqrt (Side1**2 + Side2**2 +
+                     2.0 * Side1 * Side2 * Trig.Cosine (Angles (Required_Angle)));
       end;
 
 ========

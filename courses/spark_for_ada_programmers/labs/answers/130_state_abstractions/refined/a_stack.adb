@@ -1,6 +1,6 @@
 package body A_Stack with
    SPARK_Mode,
-   --  The_Stack is actually refined into two constituents
+   --  The_Stack is actually refined into three constituents
    Refined_State => (The_Stack => (P, V, M))
 is
 
@@ -17,9 +17,9 @@ is
    function Top return Item is (V (P)) with
       Refined_Global => (P, V);
 
-      ----------
-      -- Push --
-      ----------
+   ----------
+   -- Push --
+   ----------
 
    procedure Push (It : in Item) with
       Refined_Global => (In_Out => (P, V, M))

@@ -2,7 +2,30 @@
 Low Level Programming
 ***********************
 
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
 .. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -27,14 +50,6 @@ Introduction
 =====================
 Data Representation
 =====================
-
-----------
-Examples
-----------
-
-.. include:: examples/adv_280_low_level_programming/data_representation.rst
-
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_280_low_level_programming.html#data-representation`
 
 -------------------------------------
 Data Representation vs Requirements
@@ -151,7 +166,7 @@ Record Types
 
  .. container:: column
 
-    .. image:: ../../images/record_packing_examples.png
+    .. image:: record_packing_examples.png
        :width: 50%
 
 -------------
@@ -185,7 +200,8 @@ Pack Aspect
          C : Boolean;
          D : Enum;
       end record with Pack;
-      type Ar is array (1 .. 1000) of Boolean with Pack;
+      type Ar is array (1 .. 1000) of Boolean;
+      pragma Pack (Ar);
       -- Rec'Size is 36, Ar'Size is 1000
 
 -------------------------------
@@ -214,16 +230,17 @@ Record Representation Clauses
       .. code:: Ada
 
         type Rec1 is record
-          A : Integer range 0 .. 4;
-          B : Boolean;
-          C : Integer;
-          D : Enum;
+           A : Integer range 0 .. 4;
+           B : Boolean;
+           C : Integer;
+           D : Enum;
         end record;
         for Rec1 use record
-          A at 0 range 0 .. 2;
-          B at 0 range 3 .. 3;
-          C at 0 range 5 .. 37;
-          D at 5 range 0 .. 2;
+           A at 0 range 0 ..  2;
+           B at 0 range 3 ..  3;
+           C at 0 range 4 .. 35;
+           -- unused space here
+           D at 5 range 0 ..  2;
         end record;
 
 ------------------------------
@@ -306,14 +323,6 @@ Change of Representation
 ==============================
 Address Clauses and Overlays
 ==============================
-
-----------
-Examples
-----------
-
-.. include:: examples/adv_280_low_level_programming/address_clauses_and_overlays.rst
-
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_280_low_level_programming.html#address-clauses-and-overlays`
 
 ---------
 Address
@@ -514,7 +523,7 @@ Operands
 
    - `Asm_Input` and `Asm_Output` attributes on types
 
-.. image:: ../../images/annotated_assembly_statement.png
+.. image:: annotated_assembly_statement.png
    :width: 85%
 
 -----------------------------------------
@@ -718,6 +727,12 @@ Flat Arrays
 
       type Char_array is array (natural) of Character;
       type C_String_Acc is access Char_Array;
+
+========
+Lab
+========
+
+.. include:: labs/adv_280_low_level_programming.lab.rst
 
 =========
 Summary

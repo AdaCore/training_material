@@ -45,13 +45,13 @@ Demonstrating What You Have Learned
 
    - You can accept the flow errors with an appropriate justification
 
-   - Correct the code if  necessary 
+   - Correct the code if necessary
 
 * Add postconditions as complete as possible and prove them
 
    -  You can reformulate the code to make it easier to prove
 
-* To prove `Insert`, `Overwrite`, and `Head`:
+* To prove `Insert`, `Overwrite`, and `Head` :
 
    - Assume that `Source` and `New_Item` start at 1.
 

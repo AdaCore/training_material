@@ -62,16 +62,16 @@ Component-Based Iteration Controls
       for name of [reverse] object loop
          ...
       end loop;
-     
-- Object is an array or iterable container
+
+- Object is an array or iterable (formal) container
 - Starts with first element unless you reverse it
 
 .. code:: Ada
 
-   Values : constant array (1 .. 10) of boolean := (...);
-   
+   Values : constant array (1 .. 10) of Boolean := (...);
+
    for V of Values loop
-      Put_Line ( boolean'image ( V ) );
+      Put_Line ( Boolean'Image ( V ) );
    end loop;
 
 ------------------------------------
@@ -80,24 +80,24 @@ Index-Based Iteration Controls
 
 - Declares an object that takes on successive values of a discrete type
 - Syntax indicates range of discrete indices
-    
+
    .. code:: Ada
-    
+
       for name in [reverse] range_def loop
          ...
       end loop;
-     
+
 - Starts with first discrete value you specify unless you reverse it
 
 .. code:: Ada
 
-   Values : constant array (1 .. 10) of boolean := (...);
-   
-   for I in Values'range loop
-      Put_Line ( integer'image(I) & " => " &
-                 boolean'image ( Values(I) ) );
+   Values : constant array (1 .. 10) of Boolean := (...);
+
+   for I in Values'Range loop
+      Put_Line ( Integer'Image(I) & " => " &
+                 Boolean'Image ( Values(I) ) );
    end loop;
- 
+
 ========================
 Quantified Expressions
 ========================
@@ -117,7 +117,7 @@ Semantics: As If You Wrote This Spec...
      function Existential (Collection : Set) return Boolean;
      -- True if Predicate is True for any member of Collection
    end Quantified_Expressions;
- 
+
 -----------------------------
 ...With This Implementation
 -----------------------------
@@ -135,8 +135,8 @@ Semantics: As If You Wrote This Spec...
          end loop;
          return True;
       end Universal;
-      function Existential (Collection : Set)
-         return Boolean is
+
+      function Existential (Collection : Set) return Boolean is
       begin
          for Member of Collection loop
             if Predicate (Member) then
@@ -147,7 +147,7 @@ Semantics: As If You Wrote This Spec...
          return False;
       end Existential;
    end Quantified_Expressions;
- 
+
 -------------------------------
 Quantified Expressions Syntax
 -------------------------------
@@ -156,10 +156,10 @@ Quantified Expressions Syntax
 
    quantified_expression ::=
        (for quantifier in range_specification => predicate)
-     | (for quantifier of array_expression=> predicate)
-   
+     | (for quantifier of array_expression => predicate)
+
    predicate ::= boolean_expression
-   
+
    quantifier ::= all | some
 
 .. container:: speakernote
@@ -181,7 +181,7 @@ Universal Quantifier
 
    Ultimate_Answer : constant := 42;
    Answers : constant array (1 .. 10) of Integer := ( ... );
-   
+
    All_Correct_1 : constant Boolean :=
       (for all Component of Answers =>
           Component = Ultimate_Answer);
@@ -209,14 +209,14 @@ Existential Quantifier
 
    Ultimate_Answer : constant := 42;
    Answers : constant array (1 .. 10) of Integer := ( ... );
-   
+
    Any_Correct_1 : constant Boolean :=
       (for some Component of Answers =>
           Component = Ultimate_Answer);
    Any_Correct_2 : constant Boolean :=
       (for some K in Answers'Range =>
           Answers(K) = Ultimate_Answer);
- 
+
 .. container:: speakernote
 
    Each one will "return" True
@@ -233,10 +233,10 @@ Why Index-Based Iteration Controls?
       .. code:: Ada
 
          Table : constant array (1 .. 10) of Integer := (...);
-         Ascending_Order : constant Boolean := 
-            (for all K in Table'Range => 
+         Ascending_Order : constant Boolean :=
+            (for all K in Table'Range =>
                K = Table'First or else Table (K - 1) <= Table (K));
- 
+
    - E.g., when precise control over range required
 
       .. code:: Ada
@@ -282,9 +282,9 @@ Summary
       Table : constant array (1 .. 10) of Integer :=
             (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
       Ascending_Order : constant Boolean := (
-        for all K in Table'Range => 
+        for all K in Table'Range =>
           K > Table'First and then Table (K - 1) <= Table (K));
- 
+
    - Answer: **False**. Predicate fails when `K = Table'First`
 
       + First subcondition is False!
@@ -295,4 +295,3 @@ Summary
           Ascending_Order : constant Boolean := (
              for all K in Table'Range => K = Table'first or else
                                          Table (K - 1) <= Table (K));
-

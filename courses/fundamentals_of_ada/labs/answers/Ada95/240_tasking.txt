@@ -1,0 +1,90 @@
+--Protected
+with Task_Type;
+package Protected_Object is
+   protected Monitor is
+      procedure Set (Id : Task_Type.Task_Id_T);
+      function Get return Task_Type.Task_Id_T;
+   private
+      Value : Task_Type.Task_Id_T;
+   end Monitor;
+end Protected_Object;
+
+package body Protected_Object is
+   protected body Monitor is
+      procedure Set (Id : Task_Type.Task_Id_T) is
+      begin
+         Value := Id;
+      end Set;
+      function Get return Task_Type.Task_Id_T is
+      begin
+         return Value;
+      end Get;
+   end Monitor;
+end Protected_Object;
+--Protected
+
+--Task
+package Task_Type is
+   type Task_Id_T is range 1_000 .. 9_999;
+   task type Task_T is
+      entry Start_Task (Task_Id        : Task_Id_T;
+                        Delay_Duration : Duration);
+      entry Stop_Task;
+   end Task_T;
+end Task_Type;
+
+with Protected_Object;
+package body Task_Type is
+   task body Task_T is
+      Wait_Time : Duration;
+      Id        : Task_Id_T;
+   begin
+      accept Start_Task (Task_Id        : Task_Id_T;
+                         Delay_Duration : Duration) do
+         Wait_Time := Delay_Duration;
+         Id        := Task_Id;
+      end Start_Task;
+      loop
+         select
+            accept Stop_Task;
+            exit;
+         or
+            delay Wait_Time;
+            Protected_Object.Monitor.Set (Id);
+         end select;
+      end loop;
+   end Task_T;
+end Task_Type;
+--Task
+
+--Main
+with Ada.Text_IO; use Ada.Text_IO;
+with Protected_Object;
+with Task_Type;
+procedure Main is
+   T1, T2, T3       : Task_Type.Task_T;
+   Last_Id, This_Id : Task_Type.Task_Id_T := Task_Type.Task_Id_T'last;
+   use type Task_Type.Task_Id_T;
+begin
+
+   T1.Start_Task (1_111, 0.3);
+   T2.Start_Task (2_222, 0.5);
+   T3.Start_Task (3_333, 0.7);
+
+   for Count in 1 .. 20 loop
+      This_Id := Protected_Object.Monitor.Get;
+      if Last_Id /= This_Id then
+         Last_Id := This_Id;
+         Put_Line
+           (Integer'image (Count) & "> " &
+            Task_Type.Task_Id_T'image (Last_Id));
+      end if;
+      delay 0.2;
+   end loop;
+
+   T1.Stop_Task;
+   T2.Stop_Task;
+   T3.Stop_Task;
+
+end Main;
+--Main

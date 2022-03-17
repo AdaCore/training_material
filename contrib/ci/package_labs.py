@@ -16,7 +16,9 @@ def check_call(*args, **kw):
     al = [str(s) for s in args]
     if verbose:
         print(" ".join(al))
-    subprocess.check_call(al, **kw)
+    rc = subprocess.call(al, **kw)
+    if rc != 0:
+        sys.exit(2)
 
 def python(script, *args, **kw):
     assert script.is_file()

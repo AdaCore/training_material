@@ -2,16 +2,30 @@
 Record Types
 **************
 
-.. |rightarrow| replace:: :math:`\rightarrow`
+..
+    Coding language
 
 .. role:: ada(code)
-   :language: ada
+    :language: Ada
 
 .. role:: C(code)
-   :language: C
+    :language: C
 
 .. role:: cpp(code)
-   :language: C++
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -65,14 +79,33 @@ Examples
 Characteristics of Components
 -------------------------------
 
-* Heterogeneous types allowed
-* Referenced by name
-* May be no components, for empty records
-* No anonymous types (e.g., arrays) allowed
-* No constant components
-* Multiple component declarations allowed
-* No recursive definitions
-* Default initial expressions allowed
+* **Heterogeneous** types allowed
+* Referenced **by name**
+* May be no components, for **empty records**
+* **No** anonymous types (e.g., arrays) allowed
+* **No** constant components
+* **No** recursive definitions
+
+------------------------
+Components Declarations
+------------------------
+
+* Multiple declarations are allowed (like objects)
+
+   .. code:: Ada
+
+      type Several is record
+         A, B, C : Integer;
+      end record;
+
+* Recursive definitions are not allowed
+
+   .. code:: Ada
+
+      type Not_Legal is record
+        A, B : Some_Type;
+        C : Not_Legal;
+      end record;
 
 -----------------------------------------
 "Dot" Notation for Components Reference
@@ -80,77 +113,25 @@ Characteristics of Components
 
 .. code:: Ada
 
-   declare
-      type Months_T is (January, February, ..., December);
-      type Date is
-         record
-            Day : Integer range 1 .. 31;
-            Month : Months_T;
-            Year : Integer range 0 .. 2099;
-         end record;
-      Arrival : Date;
-   begin
-     Arrival.Day := 27;  -- components referenced by name
-     Arrival.Month := November;
-     Arrival.Year := 1990;
+   type Months_T is (January, February, ..., December);
+   type Date is record
+      Day : Integer range 1 .. 31;
+      Month : Months_T;
+      Year : Integer range 0 .. 2099;
+   end record;
+   Arrival : Date;
+   ...
+   Arrival.Day := 27;  -- components referenced by name
+   Arrival.Month := November;
+   Arrival.Year := 1990;
 
-------------------------------
-Anonymously-Typed Components
-------------------------------
+* Can reference nested components
 
-* Not allowed
-* No type name so no compatibility check is possible
+.. code:: Ada
 
-   .. code:: Ada
-
-      type Illegal is
-        record
-          A : array (Foo) of Bar;
-        end record;
-      X, Y : Illegal;
-
-   - Cannot perform `X.A := Y.A`
-
----------------------
-Constant Components
----------------------
-
-* Not allowed
-* Assignment would allow altering constants
-* Constant record objects (not components) are allowed
-
-   .. code:: Ada
-
-      type Illegal is
-        record
-          A : constant Foo := F(X);
-        end record;
-      X, Y : Illegal;
-
-   - Cannot perform `X.A := Y.A;`
-
--------------------------
-More Component Rules...
--------------------------
-
-* Multiple declarations are allowed (like objects)
-
-   .. code:: Ada
-
-      type Several is
-        record
-          A, B, C : Integer;
-        end record;
-
-* Recursive definitions are not allowed
-
-   .. code:: Ada
-
-      type Not_Legal is
-        record
-          A, B : Some_Type;
-          C : Not_Legal;
-        end record;
+   Employee
+      .Birth_Date
+        .Month := March;
 
 ------
 Quiz
@@ -245,27 +226,6 @@ Assignment Examples
       Phase1.Real := Phase2.Real;
    end;
 
--------------------------------
-Referencing Nested Components
--------------------------------
-
-.. code:: Ada
-
-   declare
-     type Date is ....  -- as before
-     type Personal_Information is record
-         Name : String(1..80);
-         Birth : Date;
-       end record;
-     type Employee_Information is record
-         Number : Employee_Number;
-         Personal_Data : Personal_Information;
-       end record;
-     Employee : Employee_Information;
-   begin
-     ...
-      Employee.Personal_Data.Birth.Month := March;
-
 ============
 Aggregates
 ============
@@ -301,32 +261,31 @@ Aggregates
          {[component_choice_list =>] component_init ,}
          [others => component_init]
 
-* Example
-
-   .. code:: Ada
-
-        V : Car_T := (
-            Red,
-            Plate_No => "AX672",
-            others => <>
-        );
-
 ---------------------------
 Record Aggregate Examples
 ---------------------------
 
 .. code:: Ada
 
-   procedure Test is
-     type Complex is
-       record
-         Real      : Float;
-         Imaginary : Float;
-       end record;
-     Phase : Complex := (0.0, 0.0);
+   type Color_T is (Red);
+   type Car_T is record
+      Color    : Color_T;
+      Plate_No : String (1 .. 6);
+      Year     : Natural;
+   end record;
+   type Complex_T is record
+      Real      : Float;
+      Imaginary : Float;
+   end record;
+
+.. code:: Ada
+
+   declare
+      Car   : Car_T     := (Red, "ABC123", Year => 2_022);
+      Phase : Complex_T := (1.2, 3.4);
    begin
-     Phase := (10.0, Imaginary => 2.5);
-     Phase := (Imaginary => 12.5, Real => 0.212);
+      Phase := (Real => 5.6, Imaginary => 7.8);
+   end;
 
 ------------------------
 Aggregate Completeness
@@ -375,39 +334,26 @@ Aggregate Completeness
 Named Associations
 --------------------
 
-.. container:: columns
+* **Any** order of associations
+* Provides more information to the reader
 
- .. container:: column
+   - Can mix with positional
 
-    * Allows any order of associations
+* Restriction
 
-       - Don't have to remember the order
-       - Less likely to mix up associations of the same type
+   - Must stick with named associations **once started**
 
-    * Provides more information to the reader
+.. code:: Ada
 
-       - May be mixed with positional form
-
-    * Restriction
-
-       - Must stick with named associations once begun
-
- .. container:: column
-
-    .. code:: Ada
-
-       type Complex is record
-           Real : Float;
-           Imaginary : Float;
-         end record;
-       Phase : Complex := (0.0, 0.0);
-       ...
-       Phase := (10.0,
-                 Imaginary => 2.5);
-       Phase := (Imaginary => 12.5,
-                 Real => 0.212);
-       Phase := (Imaginary => 12.5,
-                 0.212); -- illegal
+   type Complex is record
+       Real : Float;
+       Imaginary : Float;
+     end record;
+   Phase : Complex := (0.0, 0.0);
+   ...
+   Phase := (10.0, Imaginary => 2.5);
+   Phase := (Imaginary => 12.5, Real => 0.212);
+   Phase := (Imaginary => 12.5, 0.212); -- illegal
 
 .. container:: speakernote
 
@@ -417,42 +363,37 @@ Named Associations
 Nested Aggregates
 -------------------
 
-* Result from composite component types
+.. code:: Ada
 
-   .. code:: Ada
-
-     type Months_T is ( January, February, ..., December);
-     type Date is record
-         Day   : Integer range 1 .. 31;
-         Month : Months_T;
-         Year  : Integer range 0 .. 2099;
-       end record;
-     type Person is record
-         Born : Date;
-         Hair : Color;
-       end record;
-     John : Person    := ( (21, November, 1990), Brown );
-     Julius : Person  := ( (2, August, 1995), Blond );
-     Heather : Person := ( (2, March, 1989), Hair => Blond );
-     Megan : Person   := (Hair => Blond,
-                          Born => (16, December, 2001));
+  type Months_T is ( January, February, ..., December);
+  type Date is record
+     Day   : Integer range 1 .. 31;
+     Month : Months_T;
+     Year  : Integer range 0 .. 2099;
+  end record;
+  type Person is record
+     Born : Date;
+     Hair : Color;
+  end record;
+  John : Person    := ( (21, November, 1990), Brown );
+  Julius : Person  := ( (2, August, 1995), Blond );
+  Heather : Person := ( (2, March, 1989), Hair => Blond );
+  Megan : Person   := (Hair => Blond,
+                       Born => (16, December, 2001));
 
 ------------------------------------
 Aggregates with Only One Component
 ------------------------------------
 
-* Must use named form
-
-   - Since syntax for expressions includes same tokens
-
-* Same as array aggregates, for same reason
+* **Must** use named form
+* Same reason as array aggregates
 
 .. code:: Ada
 
-   type Singular is
-     record
-       A : Integer;
-     end record;
+   type Singular is record
+      A : Integer;
+   end record;
+
    S : Singular := (3);          -- illegal
    S : Singular := (3 + 1);      -- illegal
    S : Singular := (A => 3 + 1); -- required
@@ -462,20 +403,23 @@ Aggregates with `others`
 --------------------------
 
 * Indicates all components not yet specified (like arrays)
-* Since all :ada:`others` get the same value, all such components must be the same type
+* All :ada:`others` get the same value
+
+  - They must be the **exact same** type
 
 .. code:: Ada
 
-   type Poly is
-     record
-       A : Real;
-       B, C, D : Integer;
-     end record;
+   type Poly is record
+      A : Real;
+      B, C, D : Integer;
+   end record;
+
    P : Poly := (2.5, 3, others => 0);
-   type Homogeneous is
-     record
-       A, B, C : Integer;
-     end record;
+
+   type Homogeneous is record
+      A, B, C : Integer;
+   end record;
+
    Q : Homogeneous := (others => 10);
 
 ------
@@ -490,28 +434,25 @@ Quiz
    type Record_T is record
       One   : Integer := 1;
       Two   : Character;
-      Three : Boolean;
-      Four  : Integer := -1;
-      Five  : Nested_T;
+      Three  : Integer := -1;
+      Four  : Nested_T;
    end record;
    X, Y : Record_T;
    Z    : constant Nested_T := (others => -1);
 
 Which assignment is illegal?
 
-A. :answermono:`X := (1, '2', Three => True, Four => 4, Five => (6));`
-B. ``X := (Two => '2', Three => False, Five => Z, others => 5);``
-C. ``X := Y;``
-D. ``X := (1, '2', True, 4, (others => 5));``
+A. :answermono:`X := (1, '2', Three => 3, Four => (6))`
+B. ``X := (Two => '2', Four => Z, others => 5)``
+C. ``X := Y``
+D. ``X := (1, '2', 4, (others => 5))``
 
 .. container:: animate
 
-   Explanations
-
-   A. Component :ada:`Five` is a singleton record - aggregate requires named notation (:ada:`Five => ( Field => 6 )` )
-   B. Correct - :ada:`others` clause covers components :ada:`One` and :ada:`Four` which are both integers`
-   C. Correct - simple assignment. Note that components :ada:`Two` and :ada:`Three` are still not initialized
-   D. Correct - positional notation for all components
+   A. :ada:`Four` **must** use named association
+   B. :ada:`others` valid: :ada:`One` and :ada:`Three` are :ada:`Integer`
+   C. Valid but :ada:`Two` is not initialized
+   D. Positional for all components
 
 ================
 Default Values
@@ -617,130 +558,133 @@ Default Initialization Via Aspect Clause
 Quiz
 ------
 
+.. admonition:: Language Variant
+
+   Ada 2012
+
 .. code:: Ada
 
    function Next return Natural; -- returns next number starting with 1
 
-   declare
-      type Record_T is record
-         A, B : Integer := Next;
-         C    : Integer := Next;
-      end record;
-      R : Record_T := (C => 100, others => <>);
-   begin
-      Put_Line (Integer'Image (R.A) & Integer'Image (R.B) & Integer'Image (R.C));
-   end;
+   type Record_T is record
+      A, B : Integer := Next;
+      C    : Integer := Next;
+   end record;
+   R : Record_T := (C => 100, others => <>);
 
-What is the output from this block?
+What is the value of R?
 
-A. 1 2 3
-B. 1 1 100
-C. :answer:`1 2 100`
-D. 100, 101, 102
+A. (1, 2, 3)
+B. (1, 1, 100)
+C. :answer:`(1, 2, 100)`
+D. (100, 101, 102)
 
 .. container:: animate
 
-   Explanations
+ Explanations
 
-   A. Assignment of :ada:`C` to 100 takes precedence over the call to :ada:`Next`
-   B. Declaration of multiple components is identical to a series of single declarations
-   C. Correct
-   D. Assignment of 100 to :ada:`C` has no effect on components :ada:`A` and :ada:`B`
+ A. :ada:`C => 100`
+ B. Multiple declaration calls :ada:`Next` twice
+ C. Correct
+ D. :ada:`C => 100` has no effect on :ada:`A` and :ada:`B`
 
-=================
-Variant Records
-=================
+=======================
+Discriminated Records
+=======================
 
-----------
-Examples
-----------
+----------------------------
+Discriminated Record Types
+----------------------------
 
-.. include:: examples/060_record_types/variant_records.rst
+* **Discriminated** record type
 
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#variant-records`
+   + Different **objects** may have **different** components
+   + All object **still** share the same type
 
-----------------------
-Variant Record Types
-----------------------
+* Kind of **storage overlay**
 
-* *Variant record type* is a record type where
+   + Similar to :C:`union` in C
+   + But preserves **type checking**
+   + And object size **depends** on discriminant
 
-   + Different objects may have different sets of components (i.e. different variants)
-   + Given object itself may be *unconstrained*
+* Aggregate assignment is allowed
 
-      * Different variants at different times
-
-* Supported in other languages
-
-   + Variant records in Pascal
-   + Unions in C
-
-* Variant record offers a kind of storage overlaying
-
-   + Same storage might be used for one variant at one time, and then for another variant later
-   + Language issue: Ensure this does not provide loophole from type checking
-
-      * Neither Pascal nor C avoids this loophole
-
--------------------------------------
-Discriminant in Ada Variant Records
--------------------------------------
+---------------
+Discriminants
+---------------
 
 .. code:: Ada
 
-  type Person_Tag is (Student, Faculty);
-  type Person (Tag : Person_Tag) is record
+  type Person_Group is (Student, Faculty);
+  type Person (Group : Person_Group) is record
      Name : String (1 .. 10);
-     case Tag is
+     case Group is
         when Student => -- 1st variant
            Gpa  : Float range 0.0 .. 4.0;
-           Year : Integer range 1 .. 4;
         when Faculty => -- 2nd variant
            Pubs : Integer;
      end case;
   end record;
 
-* Variant record type contains a special field (*discriminant*) whose value indicates which variant is present
-* When a field in a variant is selected, run-time check ensures that discriminant value is consistent with the selection
+* :ada:`Group` is the **discriminant**
+* Run-time check for component **consistency**
 
-   + If you could store into `Pubs` but read `GPA`, type safety would not be guaranteed
+   + eg :ada:`A_Person.Pubs := 1` checks :ada:`A_Person.Group = Faculty`
+   + :ada:`Constraint_Error` if check fails
 
-* Ada prevents this type of access
+* Discriminant is **constant**
 
-   + Discriminant (Tag) established when object of type Person created
-   + Run-time check verifies that field selected from variant is consistent with discriminant value
-
-      * Constraint_Error raised if the check fails
-
-* Can only read discriminant (as any other field), not write
-
-      * Aggregate assignment is allowed
+   + Unless object is **mutable**
 
 -----------
 Semantics
 -----------
 
-* Variable of type `Person` is constrained by value of discriminant supplied at object declaration
+* :ada:`Person` objects are **constrained** by their discriminant
 
-   + Determines minimal storage requirements
-   + Limits object to corresponding variant
+   + **Unless** mutable
+   + Assignment from same variant **only**
+   + **Representation** requirements
 
    .. code:: Ada
 
-      Pat  : Person(Student); -- May select Pat.GPA, not Pat.Pubs
-      Prof : Person(Faculty); -- May select Prof.Pubs, not Prof.GPA
-      Soph : Person := ( Tag  => Student,
+      Pat  : Person(Student); -- No Pat.Pubs
+      Prof : Person(Faculty); -- No Prof.GPA
+      Soph : Person := ( Group  => Student,
                          Name => "John Jones",
-                         GPA  => 3.2,
-                         Year => 2);
-      X    : Person;  -- Illegal; discriminant must be initialized
-
-* Assignment between Person objects requires same discriminant values for LHS and RHS
+                         GPA  => 3.2);
+      X : Person;  -- Illegal: must specify discriminant
 
    .. code:: Ada
 
       Pat  := Soph; -- OK
       Soph := Prof; -- Constraint_Error at run time
+
+------------------------------
+Mutable Discriminated Record
+------------------------------
+
+* When discriminant has a **default value**
+
+   + Objects instantiated **using the default** are **mutable**
+   + Objects specifying an **explicit** value are **not** mutable
+
+* Mutable records have **variable** discriminants
+* Use **same** storage for **several** variant
+
+.. code:: Ada
+
+  -- Potentially mutable
+  type Person (Group : Person_Group := Student) is record
+
+  --  Use default value: mutable
+  S : Person;
+  --  Explicit value: *not* mutable
+  --  even if Student is also the default
+  S2 : Person (Group => Student);
+  ...
+  S := (Group => Student, Gpa => 0.0);
+  S := (Group => Faculty, Pubs => 10);
 
 ========
 Lab

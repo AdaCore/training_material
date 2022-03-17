@@ -1,7 +1,31 @@
-
 ****************************
 Discriminated Record Types
 ****************************
+
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -186,7 +210,7 @@ Implementation
             end record;
          -- parameters can be unconstrained (constraint comes from caller)
          procedure Put ( Item : in Person );
-         procedure Get ( Item : out Person );
+         procedure Get ( Item : in out Person );
       end Person_Pkg;
 
 ----------------
@@ -215,7 +239,7 @@ Primitives
 
    .. code:: Ada
 
-      procedure Get ( Item : in Person ) is
+      procedure Get ( Item : in out Person ) is
       begin
         -- Tag specified by caller
         case Item.Tag is

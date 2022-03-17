@@ -12,24 +12,44 @@ procedure Main is
       Day   : Positive;
    end record;
 
+   List : array (1 .. 5) of Date_T;
+   Item : Date_T;
+
    function Is_Leap_Year (Year : Positive)
                           return Boolean is
      (Year mod 400 = 0 or else (Year mod 4 = 0 and Year mod 100 /= 0));
 
    function Days_In_Month (Month : Positive;
                            Year  : Positive)
-                           return Positive is
+                           return Day_T is
      (case Month is when 4 | 6 | 9 | 11 => 30,
         when 2 => (if Is_Leap_Year (Year) then 29 else 28), when others => 31);
 
    function Is_Valid (Date : Date_T)
                       return Boolean is
      (Date.Year in Year_T and then Date.Month in Month_T
-      and then Date.Day in 1 .. Days_In_Month (Date.Month, Date.Year));
-   --Checks
+      and then Date.Day <= Days_In_Month (Date.Month, Date.Year));
 
-   List : array (1 .. 5) of Date_T;
-   Item : Date_T;
+   function Any_Invalid return Boolean is
+   begin
+      for Date of List loop
+         if not Is_Valid (Date) then
+            return True;
+         end if;
+      end loop;
+      return False;
+   end Any_Invalid;
+
+   function Same_Year return Boolean is
+   begin
+      for Index in List'range loop
+         if List (Index).Year /= List (List'first).Year then
+            return False;
+         end if;
+      end loop;
+      return True;
+   end Same_Year;
+   --Checks
 
    --Main
    function Number (Prompt : String)
@@ -48,12 +68,8 @@ begin
       List (I)   := Item;
    end loop;
 
-   Put_Line ("Any invalid: " &
-             Boolean'Image (for some Date of List => not Is_Valid (Date)));
-   Put_Line ("Same Year: " &
-             Boolean'Image
-                (for all I in List'Range =>
-                   I = List'First or else List (I).Year = List (I - 1).Year));
+   Put_Line ("Any invalid: " & Boolean'image (Any_Invalid));
+   Put_Line ("Same Year: " & Boolean'image (Same_Year));
 
 end Main;
 --Main

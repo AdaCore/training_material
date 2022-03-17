@@ -1,7 +1,7 @@
 project Default is
 
    package Compiler is
-      for Default_Switches ("ada") use ("-g", "-gnata", "-gnato13");
+      for Default_Switches ("ada") use ("-g");
    end Compiler;
 
    package Prove is
@@ -11,4 +11,3 @@ project Default is
    for Main use ("main.adb");
 
 end Default;
-

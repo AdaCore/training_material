@@ -48,9 +48,9 @@ Global Data
 
    + No errors because data flow specified via global contracts
 
-      * Actual global objects are used in the contracts (Actual names `SP` and `Vec`)
+      * Actual global objects are used in the contracts (Actual names `Sp` and `Vec`)
 
-      * Even `Reverser` uses the global objects in its contracts
+      * Even `Reverser` uses the global objects in its contract
 
 - Imagine how much more complicated this would be with more global data
 
@@ -83,14 +83,14 @@ Refining a State
 
       * Specify constituents of the state abstraction `The_Stack`.
 
-- Subprograms previously declared with `Abstract_State` need to add `Refined_State` to their implementation
+- Subprograms previously declared with `Abstract_State` may add `Refined_State` to their implementation
 
    * Specify global data being referenced
 
 - Lots of "extra work" to add this information
 
    + Only affects body of implementation
-   + Saves work later
+   + If not provided by the user, computed by the tool
 
 - :menu:`Prove` (or :menu:`Examine`) the packages
 
@@ -100,7 +100,7 @@ Refining a State
 Adding a Utilization Function
 -------------------------------
 
-+ Add a function `Utilization` to return a `natural` which gives maximum depth of `The_Stack` used so far.
++ Add a function `Utilization` to return a `Natural` which gives maximum depth of `The_Stack` used so far.
 
    * Has to be declared in specification of `A_Stack`
 
@@ -111,7 +111,7 @@ Adding a Utilization Function
       - But must be declared in the body
 
 + Add a new global object to maintain the maximum utilization
-+ Compiling your code generates an error!
++ Analyzing your code generates an error!
 
    .. code:: console
 

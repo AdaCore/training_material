@@ -92,14 +92,12 @@ package Messages.Queue.Debug is
    function Text (Message : Message_T) return String;
 end Messages.Queue.Debug;
 
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 package body Messages.Queue.Debug is
    function Queue_Length return Integer is (Top);
 
    procedure Inject_Crc_Fault (Position : Integer) is
    begin
-      Top                 := Position;
-      The_Queue (Top).Crc := The_Queue (Top).Crc + 1;
+      The_Queue (Position).Crc := The_Queue (Position).Crc + 1;
    end Inject_Crc_Fault;
 
    function Text (Message : Message_T) return String is
