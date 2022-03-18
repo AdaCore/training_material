@@ -220,9 +220,9 @@ Viewing Predefined and GNAT Source Files
 
 .. image:: ../../images/gnat_studio/help_gnat_runtime.jpg
 
-====================================
-Running and Debugging Applications
-====================================
+======================
+Running Applications
+======================
 
 -----------------------
 Building Applications
@@ -251,7 +251,7 @@ Integration with External Tools
 + Common GUI for version control systems
 
   + Predefined support for Git , Subversion, CVS, Rational Clearcase
-  + You can create your own tool-specific integration to the GUI
+  + Manual integration allowed for other tools
 
 + GNAT-specific tools, if installed
 
@@ -262,6 +262,10 @@ Integration with External Tools
   + Etc.
 
 + User-defined tools, with menu entries if needed
+
+========================
+Debugging Applications
+========================
 
 --------------------
 Symbolic Debugging
@@ -279,7 +283,7 @@ Symbolic Debugging
 
 + Same interface for native, cross, bare-board
 
-  + Maybe an extra setup step for cross or bare-board targets
+  + Some targets may require target-specific setup
 
 + Includes a :toolname:`GDB` console for interactive commands
 

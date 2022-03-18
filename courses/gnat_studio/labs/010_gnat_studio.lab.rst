@@ -10,7 +10,7 @@ GNAT Studio Lab
       * Fix coding issues by hand or automatically
       * Debug executables
 
-* Copy the two source directories (:filename:`common` and :filename:`struct`) to a workarea
+* Copy the two source directories (:filename:`common` and :filename:`struct`) to a work area
  
 ------------------------------
 Create Project - New Project
@@ -83,7 +83,7 @@ Running the Executable
 * Run the executable via :menu:`Build` :math:`\rightarrow` :menu:`Run` or by pressing the right-pointing triangle icon
 
    * Enter :command:`1 2 + print` as the command
-   * **Internal Error** is not your fault - their is a bug in the code!
+   * **Internal Error** is not your fault - there is a bug in the code!
 
 --------------------------
 Debugging the Executable
