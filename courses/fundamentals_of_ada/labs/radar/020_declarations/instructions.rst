@@ -6,7 +6,8 @@
 The purpose of this lab is to discover the basics of the GNAT toolchain on Windows
 and to put that knowledge to use by declaring some variables.
 
-.. include:: gnat_studio/900_quickstart.rst
+.. include:: courses/gnat_studio/900_quickstart.rst
+
 .. raw:: latex
 
     \clearpage
