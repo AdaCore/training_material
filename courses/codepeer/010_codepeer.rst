@@ -27,6 +27,22 @@
 
 .. |checkmark| replace:: :math:`\checkmark`
 
+===================
+About This Course
+===================
+
+--------
+Styles
+--------
+
+* :dfn:`This` is a definition
+* :filename:`this/is/a.path`
+* :ada:`code is highlighted`
+* :command:`commands are emphasised --like-this`
+
+| ``console outputs``
+| ``are shown like that``
+
 ==========================
 Advanced Static Analysis
 ==========================
@@ -54,9 +70,13 @@ What is Static Analysis?
 Why Static Analysis Saves Money
 ---------------------------------
 
-Shifts costs from later, expensive phases to earlier, cheaper phases
+* Costs shift
+
+    + From later, **expensive** phases
+    + To earlier, **cheaper** phases
 
 .. image:: relative_cost_to_fix_bugs.jpg
+    :width: 100%
 
 -------------------------------
 Why Use :toolname:`CodePeer`?
@@ -115,10 +135,11 @@ Detailed Subprogram Analysis
   + Analyze entire project or a single file
   + Configure strictiness level
 
-+ Scalable
++ Review of analysis report
 
-  + Can filter out or emphasize certain issues
-  + Can analyze the difference between baselines / versions
+  + Filtering messages by category, severity, package...
+  + Comparative analysis between runs
+  + Shareable reviews database
 
 ------------------------------------------
 :toolname:`CodePeer` In A Nutshell (2/2)
@@ -248,23 +269,6 @@ Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 + `Link: Basic Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#basic-project-file-setup>`_
 + `Link: Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#project-file-setup>`_
 + `Link: Advanced Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#advanced-project-file-setup>`_
-
--------------------------------
-:toolname:`CodePeer` Tutorial
--------------------------------
-
-+ Get a fresh copy of the :toolname:`GNAT Studio` tutorial directory
-
-  + From :filename:`GNATPRO/xxx/share/examples/gnatstudio/tutorial`
-  + Check that the project file includes the :filename:`sdc` project
-  + Copy it as :filename:`sources/codepeer/tutorial/`
-
-+ Open this :filename:`sdc` project copy with :toolname:`GNAT Studio`
-+ Open the :toolname:`CodePeer` Tutorial from :toolname:`GNAT Studio`
-
-  + :menu:`Help` :math:`\rightarrow` :menu:`CodePeer` :math:`\rightarrow` :menu:`CodePeer Tutorial`
-
-+ Walk through the steps of the :toolname:`CodePeer` tutorial
 
 ---------------------------------------------------
 :toolname:`CodePeer` Levels Depth and Constraints
@@ -420,6 +424,20 @@ Running :toolname:`CodePeer` regularly
 
 + :command:`-cutoff` overrides it for a **single** run
 + Compare between two arbitrary runs with :command:`-cutoff` and :command:`-current`
+
+===============================
+:toolname:`CodePeer` Tutorial
+===============================
+
+--------------
+Instructions
+--------------
+
++ Walk through the steps of the :toolname:`CodePeer` tutorial
+
+=============================
+:toolname:`CodePeer` Checks
+=============================
 
 ---------------------
 Messages Categories
@@ -787,6 +805,64 @@ Precondition
 
 | ``high: precondition (conditional check) failure on call to precondition.call: requires X < 0``
 
+------
+Quiz
+------
+
+* Which check will be flagged with the following?
+
+.. code:: Ada
+
+    function Before_First return Integer is
+    begin
+       return Integer'First - 1;
+    end Before_First;
+
+A. Precondition check
+B. Range check
+C. :answer:`Overflow check`
+D. Underflow check
+
+.. container:: animate
+
+    Out of representation range, so it is flagged for overflow error.
+    Range check happens at boundaries: assignment, parameter passing...
+
+------
+Quiz
+------
+
+* Which check will be flagged with the following?
+
+.. code:: Ada
+
+   type Ptr_T is access Natural;
+   type Idx_T is range 0 .. 10;
+   type Arr_T is array (Idx_T) of Ptr_T;
+
+   procedure Update
+     (A : in out Arr_T) is
+   begin
+      for J in Idx_T loop
+         declare
+            K : constant Idx_T := J - 1;
+         begin
+            A (K).all := (if A (K) /= null then A (K).all - 1 else 0);
+         end;
+      end loop;
+   end Update;
+
+A. Array index check
+B. :answer:`Range check`
+C. Overflow check
+D. Access check
+
+.. container:: animate
+
+    When :ada:`J = 0`, the declaration of :ada:`K` will raise a :ada:`Constraint_Error`
+
+    If any :ada:`A (K).all = 0`, a second range check is flagged.
+
 =============
 User Checks
 =============
@@ -957,6 +1033,34 @@ The subprogram's body may violate its specified postcondition.
    Reduce (My_Component_Stress);
 
 | ``high: postcondition failure on call to post.reduce: requires Stress /= Destructive``
+
+------
+Quiz
+------
+
+* Which user check will be raised with the following?
+
+.. code:: Ada
+
+   procedure Raise_Exc (X : Integer) is
+   begin
+      if X > 0 or X < 0 then
+         raise Program_Error;
+      else
+         pragma Assert (X >= 0);
+      end if;
+   end Raise_Exc;
+
+A. :answer:`Conditional check`
+B. Assertion
+C. Raise Exception
+D. User precondition
+
+.. container:: animate
+
+    The exception is raised on :ada:`X /= 0`, it is **conditionally** reachable.
+
+    In other cases, :ada:`X = 0` so the assertion always holds.
 
 =====================================
 Uninitialized and Invalid Variables
@@ -1269,8 +1373,8 @@ Test Predetermined
 Condition Predetermined
 -------------------------
 
-+ Redundant condition inside a conditional
-+ One operand of a boolean operation is always :ada:`True` or :ada:`False`
++ **Redundant** condition in a boolean operation
++ RHS operand is **constant** in this context
 
 ..
    :toolname:`CodePeer` example (4.1.4 - condition predetermined)
@@ -1279,6 +1383,8 @@ Condition Predetermined
    :number-lines: 1
 
       if V /= A or else V /= B then
+         --     ^^^^^^^
+         --     V = A, so V /= B
          raise Program_Error;
       end if;
 
@@ -1288,10 +1394,12 @@ Condition Predetermined
 Loop Does Not Complete Normally
 ---------------------------------
 
-+ Indicates loops that either
++ The loop will never satisfies its **exit condition**
++ Causes can be
 
-  + runs forever
-  + fails to terminate normally
+  + Exit condition is always :ada:`False`
+  + An exception is raised
+  + The exit condition code is unreachable (dead code)
 
 ..
    :toolname:`CodePeer` example (4.1.4 - loop does not complete normally)
@@ -1318,9 +1426,9 @@ Loop Does Not Complete Normally
 Unused Assignment
 -------------------
 
-+ Object assigned more than once between reads
++ Object is assigned a value that is never read
 + Unintentional loss of result or unexpected control flow
-+ The check ignores some names as temporary:
++ Object with the following names won't be checked:
 
   + :ada:`ignore`, :ada:`unused`, :ada:`discard`, :ada:`dummy`, :ada:`tmp`, :ada:`temp`
   + Tuned via the :filename:`MessagePatterns.xml` file if needed.
@@ -1675,6 +1783,34 @@ Duplicate branches
 
 | ``infer.adb:4:10: medium warning: duplicate branches (Infer): code duplicated at line 11``
 
+------
+Quiz
+------
+
+* Which warnings will be reported with the following?
+
+.. code:: Ada
+
+    function F (A : Integer; B : Integer) return Integer is
+    begin
+        if A > B then
+           return 0;
+        elsif A < B + 1 then
+           return 1;
+        elsif A /= B then
+           return 2;
+        end if;
+    end F;
+
+A. :answer:`Dead Code`
+B. Condition Predetermined
+C. Test Always False
+D. Test Always True
+
+.. container:: animate
+
+    The last elsif can never be reached.
+
 =================
 Race Conditions
 =================
@@ -1740,7 +1876,7 @@ Race Condition Examples
    procedure Reset is
    begin
       Counter := 0; -- lock missing
-   end Decrement;
+   end Reset;
 
 | ``medium warning: mismatched protected access of shared object Counter via race.increment``
 | ``medium warning: unprotected access of Counter via race.reset``
@@ -1780,13 +1916,13 @@ Annotations Categories
 
           - Requirements imposed on the subprogram's inputs
 
-        * - ``presumption``
-
-          - Presumption on the result of an **external** subprogram
-
         * - ``postcondition``
 
           - Presumption on the outputs of a subprogram
+
+        * - ``presumption``
+
+          - Presumption on the result of an **external** subprogram
 
         * - ``unanalyzed call``
 
@@ -2209,6 +2345,16 @@ Outside Tooling Justification
 
   + Textual output: compiler-like messages or CSV format
 
+=================================
+:toolname:`CodePeer` Review Lab
+=================================
+
+--------------
+Instructions
+--------------
+
+* Follow the :filename:`radar/` lab instructions.
+
 ================================
 :toolname:`CodePeer` Workflows
 ================================
@@ -2470,7 +2616,7 @@ Baseline With Continuous Integration
         for Additional_Patterns use "ExtraMessagePatterns.xml";
         --  also Message_Patterns to replace default one
 
-        for Include_CWE use "true";
+        for CWE use "true";
      end CodePeer;
    end Prj1;
 
@@ -2580,6 +2726,16 @@ Report File
       | ``unit2.adb:12:25: medium: divide by zero might fail: requires X /= 0``
       | ``[...]``
 
+==================================================
+:toolname:`CodePeer` Advanced Customization Lab
+==================================================
+
+--------------
+Instructions
+--------------
+
+* Follow the :filename:`cruise/` lab instructions.
+
 ========================================
 :toolname:`CodePeer` for Certification
 ========================================
@@ -2604,7 +2760,7 @@ Report File
   project Prj1 is
      ...
      package CodePeer is
-        for Include_CWE use "true";
+        for CWE use "true";
      end CodePeer;
    end Prj1;
 
@@ -2700,13 +2856,13 @@ See *CodePeer By Example* for more details
 
 + :toolname:`CodePeer` User's Guide and Tutorial
 
-  + Online: https://www.adacore.com/documentation#:toolname:`CodePeer`
-  + In local install at share/doc/:toolname:`CodePeer`/users_guide (or tutorial)
+  + Online: https://www.adacore.com/documentation#codepeer
+  + In local install at share/doc/codepeer/users_guide (or tutorial)
   + From :toolname:`GNAT Studio` go to :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Codepeer User's Guide` (or :menu:`Codepeer Tutorial`)
 
 + :toolname:`CodePeer` website
 
-  + http://www.adacore.com/:toolname:`CodePeer`
+  + http://www.adacore.com/codepeer
   + Videos, product pages, articles, challenges
 
 + Book chapter on :toolname:`CodePeer`
