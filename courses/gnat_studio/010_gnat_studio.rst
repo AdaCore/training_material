@@ -24,7 +24,7 @@ GNAT Studio
 GNAT Studio IDE
 -----------------
 
-.. image:: ../../images/gnat_studio/welcome_to_gnat_studio.jpg
+.. image:: gnat_studio/welcome_to_gnat_studio.jpg
 
 ------------------------------------
 Integrated with GNAT Project Files
@@ -48,7 +48,7 @@ Integrated with GNAT Project Files
 GNAT Studio - Project Perspective
 ------------------------------------
 
-.. image:: ../../images/gnat_studio/project_perspective.jpg
+.. image:: gnat_studio/project_perspective.jpg
 
 ==========
 Features
@@ -93,13 +93,13 @@ Provides Language-Sensitive Editing
 Syntax Highlighting
 ---------------------
 
-.. image:: ../../images/gnat_studio/syntax_highlighting.jpg
+.. image:: gnat_studio/syntax_highlighting.jpg
 
 ---------------------------------------
 Line / Block / Delimiter Highlighting
 ---------------------------------------
 
-.. image:: ../../images/gnat_studio/line_block_delimiter_highlighting.jpg
+.. image:: gnat_studio/line_block_delimiter_highlighting.jpg
 
 -----------------------
 Automatic Indentation
@@ -162,27 +162,27 @@ Smart (Semantic) Completions
 Smart Completions Example for Packages
 ----------------------------------------
 
-.. image:: ../../images/gnat_studio/completion_examples_for_packages.jpg
+.. image:: gnat_studio/completion_examples_for_packages.jpg
    :width: 50%
 
 -------------------------------
 Filtered Completion Proposals
 -------------------------------
 
-.. image:: ../../images/gnat_studio/completion_proposals_filtered.jpg
+.. image:: gnat_studio/completion_proposals_filtered.jpg
    :width: 50%
 
 -------------------------------------
 Information In Subprogram Proposals
 -------------------------------------
 
-.. image:: ../../images/gnat_studio/information_in_subprogram_proposals.jpg
+.. image:: gnat_studio/information_in_subprogram_proposals.jpg
 
 ------------------------------
 Formal Parameter Completions
 ------------------------------
 
-.. image:: ../../images/gnat_studio/completion_formal_parameters.jpg
+.. image:: gnat_studio/completion_formal_parameters.jpg
 
 ----------------------------
 Supports Source Navigation
@@ -206,19 +206,19 @@ Supports Source Navigation
 Editor's Contextual Navigation Menu
 -------------------------------------
 
-.. image:: ../../images/gnat_studio/editor_contextual_menu.jpg
+.. image:: gnat_studio/editor_contextual_menu.jpg
 
 ------------------
 Tool-Tip Example
 ------------------
 
-.. image:: ../../images/gnat_studio/tooltip_example.jpg
+.. image:: gnat_studio/tooltip_example.jpg
 
 ------------------------------------------
 Viewing Predefined and GNAT Source Files
 ------------------------------------------
 
-.. image:: ../../images/gnat_studio/help_gnat_runtime.jpg
+.. image:: gnat_studio/help_gnat_runtime.jpg
 
 ======================
 Running Applications
@@ -241,7 +241,7 @@ Building Applications
 
   + Manually invoked
 
-.. image:: ../../images/gnat_studio/fix_missing_semi.jpg
+.. image:: gnat_studio/fix_missing_semi.jpg
    :width: 50%
 
 ---------------------------------
@@ -354,20 +354,20 @@ Tasking/Thread Aware
 + Set task specific breakpoints
 + Switch among tasks by clicking on view entries
 
-.. image:: ../../images/gnat_studio/debug_task_view.jpg
+.. image:: gnat_studio/debug_task_view.jpg
    :width: 50%
 
 -------------------------------------------
 :toolname:`GNAT Studio` Debug Perspective
 -------------------------------------------
 
-.. image:: ../../images/gnat_studio/debug_perspective.jpg
+.. image:: gnat_studio/debug_perspective.jpg
 
 -----------------------
 The Debugging Toolbar
 -----------------------
 
-.. image:: ../../images/gnat_studio/debug_toolbar.jpg
+.. image:: gnat_studio/debug_toolbar.jpg
 
 -------------
 Data Window
@@ -388,7 +388,7 @@ Data Window
 :toolname:`GNAT Studio` Active In Debug Perspective
 -----------------------------------------------------
 
-.. image:: ../../images/gnat_studio/debug_active_perspective.jpg
+.. image:: gnat_studio/debug_active_perspective.jpg
 
 ==================
 Workflow Example
@@ -402,7 +402,7 @@ Starting :toolname:`GNAT Studio`
 
   + Double-click on the "project gpr" file icon in a file browser
 
-      .. image:: ../../images/gnat_studio/start_from_file_explorer.png
+      .. image:: gnat_studio/start_from_file_explorer.png
          :width: 25%
 
   + Or start :toolname:`GNAT Studio` and use the Welcome Screen to select project
@@ -416,7 +416,7 @@ Starting :toolname:`GNAT Studio`
 :toolname:`GNAT Studio` Welcome Screen
 ----------------------------------------
 
-.. image:: ../../images/gnat_studio/welcome_dialog.jpg
+.. image:: gnat_studio/welcome_dialog.jpg
 
 + Choose :menu:`Open Project`
 
@@ -435,13 +435,13 @@ Building Executables
       + Press F4 (for first main in list)
       + Or use "Build Main" icon
 
-         .. image:: ../../images/gnat_studio/build_main_icon.jpg
+         .. image:: gnat_studio/build_main_icon.jpg
 
    .. column::
 
       + Or click :menu:`Build` :math:`\rightarrow` :menu:`Project` :math:`\rightarrow` *main unit name*
 
-         .. image:: ../../images/gnat_studio/build_project_main_menu.jpg
+         .. image:: gnat_studio/build_project_main_menu.jpg
 
 ---------------------------------
 Chance To Change Build Switches
@@ -450,14 +450,14 @@ Chance To Change Build Switches
 + May be displayed when build is invoked
 + Just press OK
 
-   .. image:: ../../images/gnat_studio/build_switches_dialog.jpg
+   .. image:: gnat_studio/build_switches_dialog.jpg
          :width: 50%
 
 -----------------------------------------
 Error In Source File and Locations View
 -----------------------------------------
 
-.. image:: ../../images/gnat_studio/build_error.jpg
+.. image:: gnat_studio/build_error.jpg
 
 ---------------------
 Results of Building
@@ -474,13 +474,13 @@ Using the Locations Window
 + Can click on a line to go to that source location
 + Click on the "wrench" icon to apply Code Fix
 
-.. image:: ../../images/gnat_studio/location_windows_wrench.jpg
+.. image:: gnat_studio/location_windows_wrench.jpg
 
 ------------------------------------
 Result of Code Fix via Wrench Icon
 ------------------------------------
 
-.. image:: ../../images/gnat_studio/after_using_wrench.jpg
+.. image:: gnat_studio/after_using_wrench.jpg
 
 --------------------------------
 Build the Executable After Fix
@@ -498,13 +498,13 @@ Running The Program
 + Leave *Use external terminal* unchecked
 + Press :menu:`Execute`
 
-.. image:: ../../images/gnat_studio/run_the_program.jpg
+.. image:: gnat_studio/run_the_program.jpg
 
 -----------------------
 (Internal) Run Window
 -----------------------
 
-.. image:: ../../images/gnat_studio/internal_run_window.jpg
+.. image:: gnat_studio/internal_run_window.jpg
 
 ------------------------------------------
 When Multiple Mains Are Defined
@@ -516,19 +516,19 @@ When Multiple Mains Are Defined
 
       + Build Icon
 
-         .. image:: ../../images/gnat_studio/build_multiple_icon.jpg
+         .. image:: gnat_studio/build_multiple_icon.jpg
 
    .. column::
 
       + Run Icon
 
-         .. image:: ../../images/gnat_studio/run_multiple_icon.jpg
+         .. image:: gnat_studio/run_multiple_icon.jpg
 
 -----------------------------------
 Help With :toolname:`GNAT Studio`
 -----------------------------------
 
-.. image:: ../../images/gnat_studio/help_menu_cascade.jpg
+.. image:: gnat_studio/help_menu_cascade.jpg
 
 ------------------------------------
 About :toolname:`GNAT Studio` Help
@@ -553,7 +553,7 @@ About :toolname:`GNAT Studio` Help
 User Guides and Examples
 --------------------------
 
-.. image:: ../../images/gnat_studio/users_guides_and_examples.jpg
+.. image:: gnat_studio/users_guides_and_examples.jpg
 
 ========
 Lab

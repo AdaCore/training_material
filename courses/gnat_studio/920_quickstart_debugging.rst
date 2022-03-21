@@ -15,17 +15,17 @@ Debugging with GNAT Studio
 
       Click on the Build and Debug icon
 
-         .. image:: ../../images/gnat_studio/debug_icon.jpg
+         .. image:: gnat_studio/debug_icon.jpg
 
    .. column::
 
          :toolname:`GNAT Studio` will go into debugging perspective, which you can see because a few more views have popped up.
 
-         .. image:: ../../images/gnat_studio/debug_active_perspective.jpg
+         .. image:: gnat_studio/debug_active_perspective.jpg
 
 Eight new buttons are added to the toolbar, allowing for precise debugging actions.
 
-.. image:: ../../images/gnat_studio/debug_toolbar.jpg
+.. image:: gnat_studio/debug_toolbar.jpg
    :width: 30%
 
 ---------------------
@@ -58,7 +58,7 @@ e. Practice clicking the remaining navigation buttons
 
       a. While execution is stopped, hover over any variable to see it's value and other information
 
-         .. image:: ../../images/gnat_studio/quickstart/debug-data_hover.jpg
+         .. image:: gnat_studio/quickstart/debug-data_hover.jpg
 
    .. column::
 
@@ -66,4 +66,4 @@ e. Practice clicking the remaining navigation buttons
 
          * Right-click the object and select :menu:`Debug` :math:`\rightarrow` :menu:`Display <> in Variables view`
 
-         .. image:: ../../images/gnat_studio/quickstart/debug-data_view.jpg
+         .. image:: gnat_studio/quickstart/debug-data_view.jpg

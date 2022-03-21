@@ -11,7 +11,7 @@ Finding Declaration or Implementation
 
 1. In :filename:`main.adb` right-click on :ada:`Time_Step`
 
-   .. image:: ../../images/gnat_studio/quickstart/navigation-declaration.jpg
+   .. image:: gnat_studio/quickstart/navigation-declaration.jpg
 
 2. To examine the code for :ada:`Time_Step` you can:
 
@@ -28,10 +28,10 @@ Finding References
 
       1. In :filename:`main.adb` right-click on :ada:`Time_Step`
 
-         .. image:: ../../images/gnat_studio/quickstart/navigation-references.jpg
+         .. image:: gnat_studio/quickstart/navigation-references.jpg
 
    .. column::
 
       2. Select :menu:`Find All References` to see a listing of all uses for the object
 
-         .. image:: ../../images/gnat_studio/quickstart/navigation-reference_result.jpg
+         .. image:: gnat_studio/quickstart/navigation-reference_result.jpg

@@ -23,14 +23,14 @@ Start from the command line using :command:`gnatstudio` or from the application 
 
       a. From the *Welcome* dialog, select :menu:`Open Project`
 
-         .. image:: ../../images/gnat_studio/quickstart/getting_started-welcome_dialog.jpg
+         .. image:: gnat_studio/quickstart/getting_started-welcome_dialog.jpg
 
    .. column::
 
       b. Select the project directory
       c. Open the project :filename:`radar.gpr` file
 
-         .. image:: ../../images/gnat_studio/quickstart/getting_started-open_project.jpg
+         .. image:: gnat_studio/quickstart/getting_started-open_project.jpg
 
 -----------------------
 3. Open a Source File
@@ -38,7 +38,7 @@ Start from the command line using :command:`gnatstudio` or from the application 
 
 In the *Project* pane on the left, double-click :filename:`main.adb` file under the :filename:`src/` directory
 
-   .. image:: ../../images/gnat_studio/quickstart/getting_started-main.jpg
+   .. image:: gnat_studio/quickstart/getting_started-main.jpg
 
 -------------------------
 4. Build the Executable
@@ -50,7 +50,7 @@ In the *Project* pane on the left, double-click :filename:`main.adb` file under 
 
       a. Locate and click on the :menu:`Compile & Run` button
 
-         .. image:: ../../images/gnat_studio/run_main_icon.jpg
+         .. image:: gnat_studio/run_main_icon.jpg
 
    .. column::
 
@@ -58,7 +58,7 @@ In the *Project* pane on the left, double-click :filename:`main.adb` file under 
 
          *(It should succeed)*
 
-         .. image:: ../../images/gnat_studio/quickstart/getting_started-success.jpg
+         .. image:: gnat_studio/quickstart/getting_started-success.jpg
 
 -------------------------
 5. Remove Build Results
@@ -66,4 +66,4 @@ In the *Project* pane on the left, double-click :filename:`main.adb` file under 
 
  You can clean the project files by click the :menu:`Clean` button
 
-   .. image:: ../../images/gnat_studio/clean_icon.jpg
+   .. image:: gnat_studio/clean_icon.jpg
