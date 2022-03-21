@@ -114,7 +114,7 @@ Debug - Setting an Exception Breakpoint
 
    .. column::
 
-      .. image:: ../../images/gnat_studio/lab_breakpoint_editor.jpg
+      .. image:: gnat_studio/lab_breakpoint_editor.jpg
 
 ---------------------------------
 Debug - Following an Breakpoint
