@@ -41,7 +41,7 @@ jobs:
 
 
       - name: ${{ env.PRETTY_NAME }} - Slides
-        run: python3 pandoc/pandoc_fe.py --output-dir ${{ env.OUTPUT_DIR }} --hush --extension pdf --source ${{ format('{0}/{1}/{2}', 'courses', matrix.source, '*.rst') }}
+        run: python3 pandoc/pandoc_fe.py --output-dir ${{ env.OUTPUT_DIR }} --hush --extension pdf --source ${{ env.SOURCES }}
 
       - name: ${{ env.PRETTY_NAME }} - Package and upload slides
         uses: actions/upload-artifact@v2

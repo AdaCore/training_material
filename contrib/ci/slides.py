@@ -50,7 +50,7 @@ def dir_pretty_name(d):
 
 
 class SlidesCLI:
-    ENV_ATTRS = ("pretty_name", "output_dir", "artifacts")
+    ENV_ATTRS = ("pretty_name", "sources", "output_dir", "artifacts")
 
     def __init__(self, path):
         assert path.exists(), f"{path} does not exist"
@@ -69,6 +69,7 @@ class SlidesCLI:
 
         files_as_pdf = (self.output_dir / f.with_suffix(".pdf").name for f in self.files_p)
         self.artifacts = os.linesep.join(strlist(files_as_pdf))
+        self.sources = ' '.join(strlist(self.files_p))
 
         assert list(self.files_p), f"{fullpath}/ does not contain RST files"
         assert all(f.is_file() for f in self.files_p)
@@ -79,7 +80,7 @@ class SlidesCLI:
         run(sys.executable, PANDOC_FE,
             "--output-dir", self.output_dir,
             "--hush", "--extension", "pdf",
-            "--source", *strlist(self.files_p),
+            "--source", *self.sources.split(' '),
             check=True, text=True)
 
 
@@ -104,25 +105,3 @@ if __name__ == "__main__":
                 print(f"{k.upper()}<<{DELIM}{os.linesep}{v}{os.linesep}{DELIM}")
             else:
                 print(f"{k.upper()}={v}")
-
-
-"""
-      - name: Generate slides for Ada fundamentals
-        run: python3 pandoc/pandoc_fe.py --output-dir out/fundamentals_of_ada --hush --extension pdf --source courses/fundamentals_of_ada/*.rst
-
-      - name: Generate slides for Ada fundamentals labs
-        run: python3 pandoc/pandoc_fe.py --output-dir out/fundamentals_of_ada/labs --hush --extension pdf --source courses/fundamentals_of_ada/labs/*.rst
-
-      - name: Package and upload Ada fundamental slides
-        uses: actions/upload-artifact@v2
-        with:
-          name: Ada fundamentals
-          path: out/fundamentals_of_ada/*.pdf
-
-      - name: Package and upload Ada fundamental labs slides
-        uses: actions/upload-artifact@v2
-        with:
-          name: Ada fundamentals Labs
-          path: out/fundamentals_of_ada/labs/*.pdf
-"""
-
