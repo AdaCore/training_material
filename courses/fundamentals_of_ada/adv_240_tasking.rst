@@ -466,23 +466,23 @@ Single Declaration
  * Instanciate an **anonymous** task (or protected) type
  * Declares an object of that type
 
-    - Body declaration is then using the **object** name
+   task type Task_T is
+      entry Start;
+   end Task_T;
 
- .. code:: Ada
+   type Task_Ptr_T is access all Task_T;
 
-   task Msg_Box is
-       -- Msg_Box task is declared *and* instanciated
-      entry Receive_Message (S : String);
-   end Msg_Box;
-
-   task body Msg_Box is
+   task body Task_T is
    begin
-      loop
-         accept Receive_Message (S : String) do
-            Put_Line (S);
-         end Receive_Message;
-      end loop;
-   end Msg_Box;
+      accept Start;
+   end Task_T;
+   ...
+      V1 : Task_T;
+      V2 : Task_Ptr_T;
+   begin
+      V1.Start;
+      V2 := new Task_T;
+      V2.all.Start;
 
 -----------
 Task Scope
@@ -961,7 +961,7 @@ Summary
 Summary
 ---------
 
-* Tasks are language-based multiprocessing mechanisms
+* Tasks are language-based multithreading mechanisms
 
    - Not necessarily designed to be operated in parallel
    - Original design assumed task-switching / time-slicing

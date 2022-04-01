@@ -28,15 +28,6 @@ from pandocfilters import toJSONFilter, Strong, Str, SmallCaps, Emph, Para
 ## CONFIGURATION INFORMATION HERE
 ##
 
-# If debug_file is not an empty string, exceptions will be writte to the file
-if sys.platform.startswith ('win'):
-    debug_file = "c:\\temp\\pandoc\\output.txt"
-else:
-    import tempfile
-    debug_file = tempfile.mkstemp (prefix="beamerfilter-")[1]
-# First time through open the file for writing
-debug_file_mode = 'wt'
-
 # Control wether sub-bullets appear one at a time in a 'beamer' presentation
 # (False indicates everything appears at once)
 bullet_point_animation = False
@@ -65,18 +56,11 @@ role_format_functions = { 'toolname'   : 'SmallCaps',
 ## END CONFIGURATION INFORMATION
 #############################################################################
 
-'''
-If the debug file is specified, append 'text' to the end of the file
-'''
-def debug ( text ):
-   global debug_file
-   global debug_file_mode
+class FilterException(Exception):
+    pass
 
-   if len(debug_file) > 0:
-      with open(debug_file, debug_file_mode) as myfile:
-         myfile.write ( text + "\n" )
-      # Future opens will be for appending
-      debug_file_mode = 'at'
+def fail(s):
+    raise FilterException(s)
 
 '''
 Convert an AST paragraph node to a literal text string
@@ -89,7 +73,7 @@ def para_to_text ( content_list ):
         elif c['t'] == 'Space':
             ret_val = ret_val + ' '
         else:
-            debug ( " *** Don't understand: " + str(c) )
+            fail ( " *** Don't understand: " + str(c) )
     return ret_val
 
 ############################
@@ -198,31 +182,27 @@ If not, we will look in each of the directories specified by TEXINPUTS
 to find the file (EVEN IF WE ARE NOT GENERATING TEX/PDF!)
 '''
 def find_file ( filename ):
-   try:
-      if os.path.isfile ( filename ):
-         return filename
-      else:
-         paths = os.environ['TEXINPUTS']
-         # For linux, try separating paths by ':' first
-         path_list = []
-         if not sys.platform.startswith ( 'win' ):
-            path_list = paths.split(':')
-         path_list = ( paths.split(';') )
-         # try combining full specified filename with path
-         for path in path_list:
-            attempt = os.path.join ( path, filename )
-            if os.path.isfile ( attempt ):
-               return attempt
-         # try combining just filename with path
-         just_filename = os.path.basename ( filename )
-         for path in path_list:
-            attempt = os.path.join ( path, just_filename )
-            if os.path.isfile ( attempt ):
-               return attempt
-      return filename
-   except Exception as e:
-      debug ( "find_file EXCEPTION: " + str(e) )
-      return filename
+    if os.path.isfile ( filename ):
+        return filename
+    else:
+        paths = os.environ['TEXINPUTS']
+        # For linux, try separating paths by ':' first
+        path_list = []
+        if not sys.platform.startswith ( 'win' ):
+           path_list = paths.split(':')
+        path_list = ( paths.split(';') )
+        # try combining full specified filename with path
+        for path in path_list:
+           attempt = os.path.join ( path, filename )
+           if os.path.isfile ( attempt ):
+              return attempt
+        # try combining just filename with path
+        just_filename = os.path.basename ( filename )
+        for path in path_list:
+           attempt = os.path.join ( path, just_filename )
+           if os.path.isfile ( attempt ):
+              return attempt
+    return filename
 
 ##########################
 ## CONVERSION FUNCTIONS ##
@@ -359,17 +339,13 @@ def animate ( classes, contents ):
    slide_number = 2
    dash = '-'
    if len(classes) > 2:
-      try:
-         requested = classes[2]
-         if len(requested) > 0:
-            if requested[-1] == '-':
-               requested = requested[0:-2]
-            else:
-               dash = ''
-            slide_number = int(requested)
-      except Exception as e:
-         slide_number = 2
-         dash = '-'
+       requested = classes[2]
+       if len(requested) > 0:
+          if requested[-1] == '-':
+             requested = requested[0:-2]
+          else:
+             dash = ''
+          slide_number = int(requested)
    slide_number = str(slide_number) + dash
       
    first = {'t': 'RawBlock', 'c': ['latex', '\\begin{visibleenv}<' + slide_number + '>']}
@@ -433,16 +409,12 @@ def latex_environment ( classes, contents ):
 
 # Return the type of the admonition
 def admonition_type ( classes, contents ):
-   try:
-      if "admonition" in classes:
-         if len(contents) == 2:
-            if contents[0]['t'] == 'Para' and contents[1]['t'] == 'Para':
-               type = para_to_text ( contents[0]['c'] )
-               return type.lower()
-      return ""
-   except Exception as e:
-      debug ( "admonition_type EXCEPTION: " + str(e) )
-      return ""
+    if "admonition" in classes:
+       if len(contents) == 2:
+          if contents[0]['t'] == 'Para' and contents[1]['t'] == 'Para':
+             type = para_to_text ( contents[0]['c'] )
+             return type.lower()
+    return ""
 
 # Look at information in AST to see if this is a speaker note
 def is_speakernote ( classes ):
@@ -467,9 +439,9 @@ def format_text ( key, value, format ):
    elif ( key == "Code" and
           'interpreted-text' in classes and
           kvs[0][0] == 'role'):
-      try:
-         return perform_role ( kvs[0][1], text, format )
-      except Exception as e:
+      n = perform_role ( kvs[0][1], text, format )
+      if n == None:
+         # Fallback returns default
          return pandoc_format ( 'default', literal_to_AST_node ( text ) )
 
 '''
@@ -478,12 +450,8 @@ an AST string node and calls the function with the node.
 If the function doesn't exist, we will default to Strong
 '''
 def pandoc_format ( function_name, ast_string_node ):
-   global role_format_functions
    function_name = role_format_functions[function_name]
-   try:
-      return globals()[function_name]( ast_string_node )
-   except:
-      return Strong ( ast_string_node )
+   return globals()[function_name]( ast_string_node )
 
 '''
 If the role is a function defined in the pandocfilters module, we will
@@ -492,17 +460,15 @@ If not, we will assume the function is defined locally and pass in the
 literal text.
 '''
 def perform_role ( role, literal_text, format ):
-   global role_format_functions
-   function_name = role_format_functions[role]
-   try:
-      if function_name in dir(pandocfilters):
-         return globals()[function_name] ( literal_to_AST_node ( literal_text ) )
-      elif format == 'beamer':
-         return globals()[function_name] ( literal_text )
-      else:
-         return globals()[function_name] ( literal_to_AST_node ( literal_text ) )
-   except Exception as e:
-      debug ( "perform_role EXCEPTION: " + str(e) )
+   function_name = role_format_functions.get(role, None)
+   if function_name == None:
+      return function_name
+   elif function_name in dir(pandocfilters):
+      return globals()[function_name] ( literal_to_AST_node ( literal_text ) )
+   elif format == 'beamer':
+      return globals()[function_name] ( literal_text )
+   else:
+      return globals()[function_name] ( literal_to_AST_node ( literal_text ) )
 
 '''
 "menu" role
@@ -583,52 +549,45 @@ def format_animate( literal_text ):
 #####################
 
 def perform_filter(key, value, format, meta):
+     # For an inserted image, 'value' is a triplet whose 3rd element is
+     # a doublet, the first element of which is the path to the file.
+     if key == "Image":
+        value[2][0] = find_file ( value[2][0] )
 
-   try:
+     # Common manipulations
+     elif key == "Code" or key == "Span":
+        return format_text ( key, value, format )
 
-      # For an inserted image, 'value' is a triplet whose 3rd element is
-      # a doublet, the first element of which is the path to the file.
-      if key == "Image":
-         value[2][0] = find_file ( value[2][0] )
+     ## Beamer-specific manipulations
+     elif format == "beamer":
+        if key == "BlockQuote":
+            return bullet_point_fix ( value )
 
-      # Common manipulations
-      elif key == "Code" or key == "Span":
-         return format_text ( key, value, format )
+        elif key == "Header":
+           modify_header ( value )
 
-      ## Beamer-specific manipulations
-      elif format == "beamer":
-         if key == "BlockQuote":
-             return bullet_point_fix ( value )
+        # Div is used when Pandoc finds a container
+        # If it is a container, handle the containers that we care about
+        # looking like [<some string>, ['container', '<container name>'], [<some tuple]]
+        elif key == "Div":
 
-         elif key == "Header":
-            modify_header ( value )
+           [[ident, classes, kvs], contents] = value
 
-         # Div is used when Pandoc finds a container
-         # If it is a container, handle the containers that we care about
-         # looking like [<some string>, ['container', '<container name>'], [<some tuple]]
-         elif key == "Div":
+           if is_speakernote ( classes ):
+               return speaker_note ( contents )
 
-            [[ident, classes, kvs], contents] = value
+           if is_source_include ( classes ):
+               return source_include ( classes, contents )
 
-            if is_speakernote ( classes ):
-                return speaker_note ( contents )
+           if is_animate ( classes ):
+               return animate ( classes, contents )
 
-            if is_source_include ( classes ):
-                return source_include ( classes, contents )
+           if is_latex_environment ( classes ):
+               return latex_environment ( classes, contents )
 
-            if is_animate ( classes ):
-                return animate ( classes, contents )
-
-            if is_latex_environment ( classes ):
-                return latex_environment ( classes, contents )
-
-            # language variant admonition
-            elif admonition_type ( classes, contents ) == "language variant":
-               return language_variant_admonition ( contents )
-
-   except Exception as e:
-      debug ( "perform_filter EXCEPTION: " + str(e) )
-      pass
+           # language variant admonition
+           elif admonition_type ( classes, contents ) == "language variant":
+              return language_variant_admonition ( contents )
 
 if __name__ == "__main__":
   toJSONFilter(perform_filter)

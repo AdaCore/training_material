@@ -150,7 +150,7 @@ High-Level Assertions
    .. code:: Ada
 
       procedure Push (This : in out Stack_T;
-                      Value : Content_T)
+                      Value : Content_T);
       pragma Pre (not Full (This));       -- requirement
       pragma Post (not Empty (This));     -- guarantee
 
@@ -434,7 +434,7 @@ Example for Attribute 'Old
                    -- call At_Index after call with original Index
                    At_Index (Index'Old)
                       -- look at Index position in Global after call
-                      = Global (Index));;
+                      = Global (Index));
 
 -------------------------------------
 What Happens When 'Old Is Evaluated

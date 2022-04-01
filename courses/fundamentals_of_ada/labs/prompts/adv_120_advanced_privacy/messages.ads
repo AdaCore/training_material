@@ -13,5 +13,6 @@ package Messages is
       return String;
 
 private
+   -- Replace "null record" with your message content
    type Message_T is null record;
 end Messages;
