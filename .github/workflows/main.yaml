@@ -9,7 +9,7 @@ on:
     branches: [ master ]
 
 jobs:
-  RST-build:
+  Slides:
     runs-on: ubuntu-latest
     container: sawertyu/pandoc_beamer:latest
 
@@ -21,10 +21,10 @@ jobs:
                      fundamentals_of_ada/opat.txt,
                      fundamentals_of_ada/labs/,
                      spark_for_ada_programmers/,
-                     spark_for_ada_programmers/course.txt ]
+                     spark_for_ada_programmers/course.txt,
+                     codepeer/]
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       - name: Additional Python setup
@@ -47,6 +47,12 @@ jobs:
           path: ${{ env.ARTIFACTS }}
           if-no-files-found: error
 
+  Labs-Slides:
+    runs-on: ubuntu-latest
+    container: sawertyu/pandoc_beamer:latest
+
+    steps:
+      - uses: actions/checkout@v2
 
       - name: Lab Radar PDF and package
         run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/radar && unzip out/radar/radar.zip -d out/radar/pkg
@@ -66,16 +72,6 @@ jobs:
           name: Solar System lab full
           path: out/solar_system/pkg/*
 
-
-      - name: CodePeer - Standard course - Generate
-        run: python3 pandoc/pandoc_fe.py --output-dir out/codepeer --hush --extension pdf --source courses/codepeer/*.rst
-
-      - name: CodePeer - Standard course - Package and upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: CodePeer
-          path: out/codepeer/*.pdf
-
       - name: CodePeer - Labs - Package
         run: python3 contrib/ci/package_labs.py courses/codepeer/labs/ && mv out/labs out/codepeer_labs && unzip out/codepeer_labs/labs.zip -d out/codepeer_labs/pkg
 
@@ -87,7 +83,7 @@ jobs:
 
   labs-build:
 
-    name: labs # intentionly short
+    name: Labs # intentionly short
     strategy:
       matrix:
         os: [ubuntu-latest] #windows-latest TODO
