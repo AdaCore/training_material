@@ -16,13 +16,13 @@ jobs:
     strategy:
         fail-fast: false
         matrix:
-            source: [fundamentals_of_ada/,
+            source: [fundamentals_of_ada,
                      fundamentals_of_ada/standard_course.txt,
                      fundamentals_of_ada/opat.txt,
-                     fundamentals_of_ada/labs/,
-                     spark_for_ada_programmers/,
+                     fundamentals_of_ada/labs,
+                     spark_for_ada_programmers,
                      spark_for_ada_programmers/course.txt,
-                     codepeer/]
+                     codepeer]
 
     steps:
       - uses: actions/checkout@v2
@@ -37,10 +37,10 @@ jobs:
         run: python3 contrib/ci/slides.py ${{ format('{0}/{1}', 'courses', matrix.source) }} printenv >> $GITHUB_ENV
 
 
-      - name: ${{ env.PRETTY_NAME }} - Slides
+      - name: ${{ env.PRETTY_NAME }} - Build
         run: python3 pandoc/pandoc_fe.py --output-dir ${{ env.OUTPUT_DIR }} --hush --extension pdf --source ${{ env.SOURCES }}
 
-      - name: ${{ env.PRETTY_NAME }} - Package and upload slides
+      - name: ${{ env.PRETTY_NAME }} - Package and upload
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.PRETTY_NAME }}
@@ -54,28 +54,28 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Lab Radar PDF and package
+      - name: Radar - Package
         run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/radar && unzip out/radar/radar.zip -d out/radar/pkg
 
-      - name: Lab Radar upload
+      - name: Radar - Upload
         uses: actions/upload-artifact@v2
         with:
-          name: Radar lab full
+          name: Radar labs
           path: out/radar/pkg/*
 
-      - name: Lab Solar System PDF and package
+      - name: Solar System - Package
         run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/solar_system && unzip out/solar_system/solar_system.zip -d out/solar_system/pkg
 
-      - name: Lab Solar System upload
+      - name: Solar System - Upload
         uses: actions/upload-artifact@v2
         with:
-          name: Solar System lab full
+          name: Solar System labs
           path: out/solar_system/pkg/*
 
-      - name: CodePeer - Labs - Package
+      - name: CodePeer - Package
         run: python3 contrib/ci/package_labs.py courses/codepeer/labs/ && mv out/labs out/codepeer_labs && unzip out/codepeer_labs/labs.zip -d out/codepeer_labs/pkg
 
-      - name: CodePeer - Labs - Upload
+      - name: CodePeer - Upload
         uses: actions/upload-artifact@v2
         with:
           name: CodePeer labs
