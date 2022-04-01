@@ -71,13 +71,14 @@ class SlidesCLI:
         assert COURSES in fullpath.parents, "this script only support courses"
         self.is_lab = (fullpath.name == "labs")
 
+        suffix = " - Labs" if self.is_lab else ""
         if fullpath.is_dir():
             self.files_p = sorted(list(fullpath.glob("*.rst")))
-            self.pretty_name = dir_pretty_name(fullpath.parent if self.is_lab else fullpath)
+            self.pretty_name = dir_pretty_name(fullpath.parent if self.is_lab else fullpath) + suffix
             self.output_dir = OUT / fullpath.relative_to(COURSES)
         else:
             self.files_p = [fullpath]
-            self.pretty_name = single_file_pretty_name(fullpath)
+            self.pretty_name = single_file_pretty_name(fullpath) + suffix
             self.output_dir = OUT / fullpath.parent.relative_to(COURSES)
 
         files_as_pdf = (self.output_dir / f.with_suffix(".pdf").name for f in self.files_p)
