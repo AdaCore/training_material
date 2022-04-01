@@ -27,9 +27,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Additional Python setup
-        run: pip install toml
-
       - name: Check source is updated with prelude
         run: python3 contrib/ci/fix_prelude.py
 
