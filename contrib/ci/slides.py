@@ -38,8 +38,21 @@ def build_pdf(files, output_dir):
                "--source", *strlist(files))
 
 
+def capitalize_words(s):
+    upper = True
+    r = ""
+    for c in s:
+        if upper:
+            r += c.upper()
+        else:
+            r += c.lower()
+        upper = (c == " ")
+    return r
+
 def single_file_pretty_name(f):
-    return f.with_suffix("").name
+    fname_raw = f.with_suffix("").name
+    fname_pretty = capitalize_words(fname_raw.replace("_", " "))
+    return f"{dir_pretty_name(f.parent)} - {fname_pretty}"
 
 
 def dir_pretty_name(d):
