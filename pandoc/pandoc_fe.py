@@ -2,6 +2,7 @@ import argparse
 import os
 import sys
 import subprocess
+import multiprocessing
 from pathlib import Path
 
 
@@ -157,8 +158,11 @@ def expand_source(source_file):
                     files.append(path)
         return files
 
+def pandoc_prepare_run(args):
+    return (pandoc_prepare_run_single(n, source_or_source_list, args)
+            for n, source_or_source_list in enumerate(args.source))
 
-def pandoc_convert(n, source_or_source_list, args):
+def pandoc_prepare_run_single(n, source_or_source_list, args):
     assert os.path.isfile(source_or_source_list), source_or_source_list + " does not exist"
 
     theme = args.theme
@@ -200,41 +204,44 @@ def pandoc_convert(n, source_or_source_list, args):
 
     source_list = expand_source(source_or_source_list)
 
-    pcwd = os.getcwd()
+    assert len(source_list) != 0, "No source files found"
 
-    os.chdir(os.path.dirname(source_or_source_list))
+    command = (
+        "pandoc --standalone",
+        "--resource-path",
+        texinputs,
+        filter,
+        pandoc_title_arg,
+        theme,
+        color,
+        "--fail-if-warnings",
+        "-f rst",
+        "-t " + output_format(args.extension.lower()),
+        "-o " + output_file,
+        *source_list,
+    )
 
-    if len(source_list) == 0:
-        print("No source files found")
+    if not args.hush:
+        print(" ".join(command))
 
-    else:
-        if len(args.source) > 1:
-            print(f"{input_file} -> " f"{output_file}")
+    return {"cwd" : os.path.dirname(source_or_source_list),
+            "env" : {k : str(v) for k, v in os.environ.items()},
+            "source": source_or_source_list,
+            "input_file": input_file,
+            "output_file": output_file,
+            "command": command}
 
-        command = (
-            "pandoc --standalone",
-            "--resource-path",
-            texinputs,
-            filter,
-            pandoc_title_arg,
-            theme,
-            color,
-            "--fail-if-warnings",
-            "-f rst",
-            "-t " + output_format(args.extension.lower()),
-            "-o " + output_file,
-            *source_list,
-        )
+def run_pandoc(args):
+    task_name = f"{args['input_file']} -> {args['output_file']}"
 
-        if not args.hush:
-            print(" ".join(command))
-
-        r = subprocess.run(" ".join(command), shell=True)
-        if r.returncode:
-            sys.exit(r.returncode)
-
-    os.chdir(pcwd)
-
+    print(f"[start] {task_name}")
+    try:
+        subprocess.run(" ".join(args["command"]),
+                       cwd=args["cwd"], env=args["env"], shell=True, check=True)
+    except Exception as e:
+        print(f"\031[1;31m[error]\031[0m {task_name}: {e}")
+        raise
+    print(f"[end  ] {task_name}")
 
 if __name__ == "__main__":
     PANDOC = Path(sys.argv[0]).resolve().parent
@@ -263,6 +270,9 @@ if __name__ == "__main__":
         help="Comma-separated list of folders to search for things like images and Beamer themes",
         default=f"{ROOT}//,:{ROOT}/images:",
         required=False,
+    )
+    parser.add_argument(
+        "-j", "--jobs", type=int, default=0, required=False
     )
 
     parser.add_argument(
@@ -305,5 +315,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    for n, source_or_source_list in enumerate(args.source):
-        pandoc_convert(n, source_or_source_list, args)
+    pandoc_prepared = pandoc_prepare_run(args)
+
+    with multiprocessing.Pool(None if args.jobs == 0 else args.jobs) as p:
+        p.map(run_pandoc, pandoc_prepared)
