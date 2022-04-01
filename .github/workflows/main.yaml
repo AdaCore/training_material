@@ -11,7 +11,7 @@ on:
 jobs:
   Slides:
     runs-on: ubuntu-latest
-    container: sawertyu/pandoc_beamer:latest
+    container: public.ecr.aws/w0s6m4g9/pandoc-beamer:latest
 
     strategy:
         fail-fast: false
