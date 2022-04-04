@@ -6,9 +6,9 @@
 The purpose of this lab is to present basic Ada types and some advanced :toolname:`GNAT Studio`
 features.
 
-.. include:: gnat_studio/910_quickstart_navigate.rst
+.. include:: ../../../../gnat_studio/910_quickstart_navigate.rst
 
-.. include:: gnat_studio/920_quickstart_debugging.rst
+.. include:: ../../../../gnat_studio/920_quickstart_debugging.rst
 
 ---------
 Questions
