@@ -22,6 +22,8 @@ jobs:
                      fundamentals_of_ada/labs,
                      spark_for_ada_programmers,
                      spark_for_ada_programmers/course.txt,
+                     gnatcheck,
+                     gnatstudio,
                      codepeer]
 
     steps:
