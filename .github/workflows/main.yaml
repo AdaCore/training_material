@@ -11,7 +11,7 @@ on:
 jobs:
   Slides:
     runs-on: ubuntu-latest
-    container: sawertyu/pandoc_beamer:latest
+    container: public.ecr.aws/w0s6m4g9/pandoc-beamer:latest
 
     strategy:
         fail-fast: false
@@ -26,9 +26,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Additional Python setup
-        run: pip install toml
 
       - name: Check source is updated with prelude
         run: python3 contrib/ci/fix_prelude.py
