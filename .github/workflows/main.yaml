@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
@@ -11,106 +9,72 @@ on:
     branches: [ master ]
 
 jobs:
-  RST-build:
+  Slides:
     runs-on: ubuntu-latest
-    container: sawertyu/pandoc_beamer:latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    container: public.ecr.aws/w0s6m4g9/pandoc-beamer:latest
+
+    strategy:
+        fail-fast: false
+        matrix:
+            source: [fundamentals_of_ada,
+                     fundamentals_of_ada/standard_course.txt,
+                     fundamentals_of_ada/opat.txt,
+                     fundamentals_of_ada/labs,
+                     spark_for_ada_programmers,
+                     spark_for_ada_programmers/course.txt,
+                     gnatcheck,
+                     gnat_studio,
+                     codepeer]
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       - name: Check source is updated with prelude
         run: python3 contrib/ci/fix_prelude.py
 
+      - name: Prepare slides environment
+        run: python3 contrib/ci/slides.py ${{ format('{0}/{1}', 'courses', matrix.source) }} printenv >> $GITHUB_ENV
 
-      - name: Generate slides for Ada fundamentals
-        run: python3 pandoc/pandoc_fe.py --output-dir out/fundamentals_of_ada --hush --extension pdf --source courses/fundamentals_of_ada/*.rst
 
-      - name: Generate slides for Ada fundamentals labs
-        run: python3 pandoc/pandoc_fe.py --output-dir out/fundamentals_of_ada/labs --hush --extension pdf --source courses/fundamentals_of_ada/labs/*.rst
+      - name: ${{ env.PRETTY_NAME }} - Build
+        run: python3 pandoc/pandoc_fe.py --output-dir ${{ env.OUTPUT_DIR }} --hush --extension pdf --source ${{ env.SOURCES }}
 
-      - name: Package and upload Ada fundamental slides
+      - name: ${{ env.PRETTY_NAME }} - Package and upload
         uses: actions/upload-artifact@v2
         with:
-          name: Ada fundamentals
-          path: out/fundamentals_of_ada/*.pdf
+          name: ${{ env.PRETTY_NAME }}
+          path: ${{ env.ARTIFACTS }}
+          if-no-files-found: error
 
-      - name: Package and upload Ada fundamental labs slides
-        uses: actions/upload-artifact@v2
-        with:
-          name: Ada fundamentals Labs
-          path: out/fundamentals_of_ada/labs/*.pdf
+  Labs-Slides:
+    runs-on: ubuntu-latest
+    container: sawertyu/pandoc_beamer:latest
 
-      - name: Generate standard Ada course
-        run: python3 pandoc/pandoc_fe.py --extension pdf --source courses/fundamentals_of_ada/standard_course.txt --output-dir out/fundamentals_of_ada
+    steps:
+      - uses: actions/checkout@v2
 
-      - name: Package and upload standard Ada course
-        uses: actions/upload-artifact@v2
-        with:
-          name: Standard course
-          path: out/fundamentals_of_ada/standard_course.pdf
-
-      - name: Generate OPAT Ada course
-        run: python3 pandoc/pandoc_fe.py --extension pdf --source courses/fundamentals_of_ada/opat.txt --output-dir out/fundamentals_of_ada
-
-      - name: Package and upload OPAT Ada course
-        uses: actions/upload-artifact@v2
-        with:
-          name: OPAT
-          path: out/fundamentals_of_ada/opat.pdf
-
-
-      - name: Generate slides for SPARK
-        run: python3 pandoc/pandoc_fe.py --output-dir out/spark_for_ada_programmers --hush --extension pdf --source courses/spark_for_ada_programmers/*.rst
-
-      - name: Package and upload SPARK slides
-        uses: actions/upload-artifact@v2
-        with:
-          name: SPARK for Ada programmers
-          path: out/spark_for_ada_programmers/*.pdf
-
-      - name: Generate standard SPARK course
-        run: python3 pandoc/pandoc_fe.py --extension pdf --source courses/spark_for_ada_programmers/course.txt --output-dir out/spark_for_ada_programmers
-
-      - name: Package and upload standard SPARK course
-        uses: actions/upload-artifact@v2
-        with:
-          name: Standard SPARK course
-          path: out/spark_for_ada_programmers/course.pdf
-
-
-      - name: Lab Radar PDF and package
+      - name: Radar - Package
         run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/radar && unzip out/radar/radar.zip -d out/radar/pkg
 
-      - name: Lab Radar upload
+      - name: Radar - Upload
         uses: actions/upload-artifact@v2
         with:
-          name: Radar lab full
+          name: Radar labs
           path: out/radar/pkg/*
 
-      - name: Lab Solar System PDF and package
+      - name: Solar System - Package
         run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/solar_system && unzip out/solar_system/solar_system.zip -d out/solar_system/pkg
 
-      - name: Lab Solar System upload
+      - name: Solar System - Upload
         uses: actions/upload-artifact@v2
         with:
-          name: Solar System lab full
+          name: Solar System labs
           path: out/solar_system/pkg/*
 
-
-      - name: CodePeer - Standard course - Generate
-        run: python3 pandoc/pandoc_fe.py --output-dir out/codepeer --hush --extension pdf --source courses/codepeer/*.rst
-
-      - name: CodePeer - Standard course - Package and upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: CodePeer
-          path: out/codepeer/*.pdf
-
-      - name: CodePeer - Labs - Package
+      - name: CodePeer - Package
         run: python3 contrib/ci/package_labs.py courses/codepeer/labs/ && mv out/labs out/codepeer_labs && unzip out/codepeer_labs/labs.zip -d out/codepeer_labs/pkg
 
-      - name: CodePeer - Labs - Upload
+      - name: CodePeer - Upload
         uses: actions/upload-artifact@v2
         with:
           name: CodePeer labs
@@ -118,7 +82,7 @@ jobs:
 
   labs-build:
 
-    name: labs # intentionly short
+    name: Labs # intentionly short
     strategy:
       matrix:
         os: [ubuntu-latest] #windows-latest TODO
