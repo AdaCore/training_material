@@ -23,7 +23,7 @@ jobs:
                      spark_for_ada_programmers,
                      spark_for_ada_programmers/course.txt,
                      gnatcheck,
-                     gnat_studio,
+                     gnatstudio,
                      codepeer]
 
     steps:
