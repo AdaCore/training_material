@@ -251,7 +251,7 @@ Probable Errors - Explanations
 
    * But maybe not? It could be a bit location
 
-* Line 11 - :ada:`E` is :ada:`natural`, so it should never be less than zero
+* Line 11 - :ada:`E` is :ada:`natural`, so it can never be less than zero (without invalid data)
 
 * Line 13 - :ada:`D` is an :ada:`out` parameter, so there is no guarantee on it's initial value
 
@@ -318,16 +318,22 @@ Highly Optional Warnings Enabled By -gnatw.e
 ---------------------------------------------------
 
 + Implicit dereferencing (missing optional :ada:`.all`)
-+ Nested declaration hiding an outer declaration
-+ Tags (strings) added to warning messages
-+ Record representation clauses that specify gaps
-+ Overlapping subprogram actual parameters
-+ Declaration of names already in package :ada:`Standard`
-+ Possible elaboration problems
-+ Listing of inherited aspects
-+ Variables modified by passing to mode :ada:`out` formal parameters, but then unreferenced by caller
-+ Notifications of deleted conditional code
-+ Unordered enumeration value comparisons
++ Activate tagging (warning messages tagged with certain strings)
++ Suspicious Subp'Access
++ Warnings for GNAT sources
++ Hiding (Potentially confusing hiding of declarations)
++ Holes/gaps in records
++ Redefinition of names in package :ada:`Standard`
++ Elaboration pragmas
++ List inherited aspects
++ Atomic synchronization
++ Modified but unreferenced parameters
++ Out of order record representation clauses
++ Overridden size clauses
++ Tracking of deleted conditional code
++ Unordered enumeration types
++ Warnings Off pragmss (flags unnecessary pragmas)
++ Activate information messages for why package needs a body
 
 -----------------------------------------
 Unordered Enumeration Value Comparisons
@@ -829,6 +835,8 @@ Definition of Language Subsets
   + Certification restrictions compliance
   + Compiler/target portability
 
++ Restrictions can also be added by setting up a runtime profile via :ada:`Pragma Profile(<runtime>)` which enables all restrictions implemented in the specified runtime
+
 -----------------------------------------
 Example Restriction & Violation Message
 -----------------------------------------
@@ -888,11 +896,18 @@ Applying Restriction Identifiers
 
 + In source or in configuration file
 
-  + Configuration file name can be default or given by gpr file
+  + Configuration file name should be specified in the GPR file
 
-     + Default config file name is :filename:`gnat.adc`
+    .. code:: Ada
 
-  .. code:: Ada
+      package Compiler is
+        for Local_Configuration_Pragmas
+            use "configuration_pragmas.adc";
+      end Compiler;
+
+  + Or, if not GPR file is in use, in the default config file :filename:`gnat.adc`
+
+.. code:: Ada
 
      pragma Restrictions (No_Implicit_Heap_Allocations);
      pragma Restrictions (No_Implicit_Conditionals);
@@ -969,17 +984,19 @@ Quiz
 
   .. container:: column
 
-    Which line number(s) violate the restriction?
+    .. container:: latex_environment footnotesize
 
-    A. 5, 6, 8, 9, 11
-    B. 11
-    C. :answer:`5, 6, 11`
-    D. No violations
+      Which line(s) violate the restriction?
+
+      A. 5, 6, 8, 9, 11
+      B. 11
+      C. :answer:`5, 6, 11`
+      D. No violations
 
     .. container:: animate
 
        + Line 5 - Dispatch needed to determine size of O
-       + Line 6 - Just a copy
+       + Line 6 - Just a memory copy (no dispatching)
        + Line 8 - Membership not a dispatching call
        + Line 9 - Type conversion so no dispatching
        + Line 11 - Dispatch needed to find correct :ada:`P`
