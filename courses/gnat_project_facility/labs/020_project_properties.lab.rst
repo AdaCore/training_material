@@ -1,8 +1,22 @@
+------------------------
+Project Properties Lab
+------------------------
+
+* Create new project file in an empty directory
+
+* Specify source and output directories
+
+  * Use source files from the :filename:`fibonacci` directory (under :filename:`source`)
+  * Specify where object files and executable should be located
+
+* Build executable
+
+  * Note location of object files and executable
+
 ------------------------------------
-Configuring Project Properties Lab
+Project Properties Lab - Switches
 ------------------------------------
 
-* Still in :filename:`fibonacci` directory (under :filename:`source`)
 * Modify project file to disable overflow checking
 
    * Add the :ada:`Compiler` package
@@ -16,13 +30,14 @@ Configuring Project Properties Lab
    * Need to use switch :command:`-f` on command line to force rebuild
    * (Changes to GPR file do not automatically force recompile)
 
----------------------------------------------
-Configuring Project Properties Lab Solution
----------------------------------------------
+---------------------------------
+Project Properties Lab Solution
+---------------------------------
 
 .. code:: Ada
 
    project Lab is
+      for Source_Directories use ("../fibonacci");
       for Main use ("main.adb");
       package Compiler is
          for Default_Switches ("Ada") use ("-gnato0");
