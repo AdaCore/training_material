@@ -58,6 +58,48 @@ Specifying Directories
    * Backslash will only work on Windows
    * Forward slash will work on all supported systems (including Windows)
 
+-----------
+Variables
+-----------
+
+**Typed**
+  Set of possible string values
+
+**Untyped**
+  Unspecified set of values (strings and lists)
+
+.. code:: Ada
+
+   project Build is
+      type Targets is ("release", "test");
+      -- Typed variable
+      Target : Targets := external("target", "test");
+      -- Untyped string variable
+      Var := "foo";
+      -- Untyped string list variable
+      Var2 := ("-gnato", "-gnata");
+      ...
+   end Build;
+
+--------------------------------
+Typed Versus Untyped Variables
+--------------------------------
+
++ Typed variables have only listed values possible
+
+  + Case sensitive, unlike Ada
+
++ Typed variables are declared once per scope
+
+  + Once at project or package level
+  + Essentially read-only constants
+
+    + Useful for external inputs
+
++ Untyped variables may be "declared" many times
+
+  + No previous declaration required
+
 -----------------
 Property Values
 -----------------
@@ -152,51 +194,9 @@ Executable Directory
 + Default is same directory as object files
 + Only one per project
 
-====================
-Project Properties
-====================
-
------------
-Variables
------------
-
-**Typed**
-  Set of possible string values
-
-**Untyped**
-  Unspecified set of values (strings and lists)
-
-.. code:: Ada
-
-   project Build is
-      type Targets is ("release", "test");
-      -- Typed variable
-      Target : Targets := external("target", "test");
-      -- Untyped string variable
-      Var := "foo";
-      -- Untyped string list variable
-      Var2 := ("-gnato", "-gnata");
-      ...
-   end Build;
-
---------------------------------
-Typed Versus Untyped Variables
---------------------------------
-
-+ Typed variables have only listed values possible
-
-  + Case sensitive, unlike Ada
-
-+ Typed variables are declared once per scope
-
-  + Once at project or package level
-  + Essentially read-only constants
-
-    + Useful for external inputs
-
-+ Untyped variables may be "declared" many times
-
-  + No previous declaration required
+==================
+Project Packages
+==================
 
 ------------------------------
 Packages Correspond to Tools
@@ -259,6 +259,264 @@ Setting Tool Switches
          for Switches ("main1.adb") use ("-O2");
          for Switches ("main2.adb") use ("-g");
       end Builder;
+
+=======================
+Naming Considerations
+=======================
+
+-----------
+Rationale
+-----------
+
++ Project files assume source files have GNAT naming conventions
+
+  Specification
+    ``<unitname>[-<childunit>].ads``
+
+  Body
+    ``<unitname>[-<childunit>].adb``
+
++ Sometimes you want different conventions
+
+  + Third-party libraries
+  + Legacy code used different compiler
+
+    + Changing filenames would make tracking changes harder
+
+----------------------------
+Source File Naming Schemes
+----------------------------
+
++ Allow arbitrary naming conventions
+
+  + Other than GNAT default convention
+
++ May be applied to all source files in a project
+
+  + Specified in a package named :ada:`Naming`
+
++ May be applied to specific files in a project
+
+  + Individual attribute specifications
+
+-------------------------------------
+Foreign Default File Naming Example
+-------------------------------------
+
+* Sample source file names
+
+  * Package spec for :ada:`Utilities` in :filename:`utilities.spec`
+  * Package body for :ada:`Utilities` in :filename:`utilities.body`
+  * Package spec for :ada:`Utilities.Child` in :filename:`utilities.child.spec`
+  * Package body for :ada:`Utilities.Child` in :filename:`utilities.child.body`
+
+.. code:: Ada
+
+   project Legacy_Code is
+      ...
+      package Naming is
+         for Casing use "lowercase";
+         for Dot_Replacement use ".";
+         for Spec_Suffix ("Ada") use ".spec";
+         for Body_Suffix ("Ada") use ".body";
+      end Naming;
+      ...
+   end Legacy_Code;
+
+----------------------------------
+GNAT Default File Naming Example
+----------------------------------
+
+* Sample source file names
+
+  * Package spec for :ada:`Utilities` in :filename:`utilities.ads`
+  * Package body for :ada:`Utilities` in :filename:`utilities.adb`
+  * Package spec for :ada:`Utilities.Child` in :filename:`utilities-child.ads`
+  * Package body for :ada:`Utilities.Child` in :filename:`utilities-child.adb`
+
+.. code:: Ada
+
+   project GNAT is
+      ...
+      package Naming is
+         for Casing use "lowercase";
+         for Dot_Replacement use "-";
+         for Spec_Suffix ("Ada") use ".ads";
+         for Body_Suffix ("Ada") use ".adb";
+      end Naming;
+      ...
+   end GNAT;
+
+------------------------------------
+Individual (Arbitrary) File Naming
+------------------------------------
+
++ Uses associative arrays to specify file names
+
+  + Index is a string containing the unit name
+
+    + Case insensitive
+
+  + Value is a string containing the file name
+
+    + Case sensitivity depends on host file system
+
++ Has distinct attributes for specs and bodies
+
+   *for Spec ("<unit name>") use "<filename>";*
+
+   :ada:`for Spec ("MyPack.MyChild") use "MMS1AF32.A";`
+
+   :ada:`for Body ("MyPack.MyChild") use "MMS1AF32.B";`
+
+======================================
+Variables for Conditional Processing
+======================================
+
+---------------------------------------------------
+Two Sample Projects for Different Switch Settings
+---------------------------------------------------
+
+.. container:: latex_environment scriptsize
+
+ .. columns::
+
+   .. column::
+
+      .. code:: Ada
+
+         project Debug is 
+           for Object_Dir use "debug"; 
+           package Builder is
+             for Default_Switches ("Ada")
+                use ("-g"); 
+           end Builder; 
+           package Compiler is
+             for Default_Switches ("Ada") 
+                use ("-fstack-check",
+                     "-gnata",
+                     "-gnato"); 
+           end Compiler;
+         end Debug; 
+
+   .. column::
+
+      .. code:: Ada
+
+         project Release is
+           for Object_Dir use "release";
+           package Compiler is 
+             for Default_Switches ("Ada")
+                use ("-O2"); 
+           end Compiler;
+         end Release; 
+
+-------------------------------------
+External and Conditional References
+-------------------------------------
+
++ Allow project file content to depend on value of environment variables and command-line arguments
++ Reference to external values is by function
+
+  ``external (<name> [, default])``
+
+  + Returns value of **name** as supplied via
+
+    * Command line
+    * Environment variable
+    * If not specified, uses **default** or else ""
+
++ Command line switch
+
+  *gprbuild -P... -Xname=value ...*
+
+  .. container:: latex_environment footnotesize
+
+     :command:`gprbuild -P common/build.gpr -Xtarget=test  common/main.adb`
+
++ **Note:** Command line values override environment variables
+
+----------------------------------------
+External/Conditional Reference Example
+----------------------------------------
+
+.. code:: Ada
+
+   project Build is
+      type Targets is ("release", "test");
+      Target : Targets := external("target", "test");
+      case Target is -- project attributes
+         when "release" =>
+            for Object_Dir use "release";
+            for Exec_Dir use ".";
+         when "test" =>
+            for Object_Dir use "debug";
+      end case;
+      package Compiler is
+         case Target is
+            when "release" =>
+               for Default_Switches ("Ada") use ("-O2");
+            when "test" =>
+               for Default_Switches ("Ada") use
+                     ("-g", "-fstack-check", "-gnata", "-gnato");
+         end case;
+      end Compiler;
+      ...
+   end Build;
+
+--------------------------------------------
+Scenario Controlling Source File Selection
+--------------------------------------------
+
+.. code:: Ada
+
+   project Demo is
+      ...
+      type Displays is ("Win32", "ANSI");
+      Output : Displays := external ("OUTPUT", "Win32");
+      ...
+      package Naming is
+         case Output is
+            when "Win32" =>
+               for Body ("Console") use "console_win32.adb";
+            when "ANSI" =>
+               for Body ("Console") use "console_ansi.adb";
+           end case;
+      end Naming;
+   end Demo;
+
+* Source Files
+
+ .. list-table::
+   :header-rows: 1
+    
+   * - :filename:`console.ads`
+
+     - 
+     - :filename:`console_win32.adb`
+     - 
+     - :filename:`console_ansi.adb`
+
+   * - :ada:`package Console is`
+
+     - 
+     - :ada:`package body Console is`
+     - 
+     - :ada:`package body Console is`
+
+   * - :ada:`...`
+
+     - 
+     - :ada:`...`
+     - 
+     - :ada:`...`
+
+   * - :ada:`end Console;`
+
+     - 
+     - :ada:`end Console;`
+     - 
+     - :ada:`end Console;`
 
 =====
 Lab

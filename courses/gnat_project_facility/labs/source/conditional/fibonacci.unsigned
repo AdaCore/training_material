@@ -14,7 +14,7 @@ package body Fibonacci is
       for K in 1 .. Count
       loop
          Result := Prev + Next;
-         Put (Long_Long_Integer(K));
+         Put (K'Image);
          Put ("  ");
          Put (Result);
          New_Line;

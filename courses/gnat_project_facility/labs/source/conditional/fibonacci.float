@@ -1,20 +1,21 @@
 with Ada.Text_IO; use Ada.Text_IO;
+with Interfaces; use Interfaces;
 package body Fibonacci is
    procedure Perform (Count : Positive) is
 
-      package Io is new Ada.Text_Io.Integer_Io (Long_Long_Integer);
+      package Io is new Ada.Text_Io.Float_Io (IEEE_Float_64);
       use Io;
 
-      Prev, Next : Long_Long_Integer;
-      Result     : Long_Long_Integer;
+      Prev, Next : IEEE_Float_64;
+      Result     : IEEE_Float_64;
 
    begin
-      Prev := 0;
-      Next := 1;
+      Prev := 0.0;
+      Next := 1.0;
       for K in 1 .. Count
       loop
          Result := Prev + Next;
-         Put (Long_Long_Integer(K));
+         Put (K'Image);
          Put ("  ");
          Put (Result);
          New_Line;

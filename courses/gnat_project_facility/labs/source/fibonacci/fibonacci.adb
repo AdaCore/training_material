@@ -1,13 +1,17 @@
+with Ada.Text_IO; use Ada.Text_IO;
 package body Fibonacci is
    procedure Perform (Count : Positive) is
 
-      Prev, Next : Long_Long_Integer;
-      Result     : Long_Long_Integer;
+      package Io is new Ada.Text_Io.Integer_Io (Integer);
+      use Io;
+
+      Prev, Next : Integer;
+      Result     : Integer;
 
    begin
       Prev := 0;
       Next := 1;
-      for K in Long_Long_Integer range 1 .. Long_Long_Integer (Count)
+      for K in 1 .. Count
       loop
          Result := Prev + Next;
          Put (K);
