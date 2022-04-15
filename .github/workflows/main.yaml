@@ -24,7 +24,8 @@ jobs:
                      spark_for_ada_programmers/course.txt,
                      gnatcheck,
                      gnat_studio,
-                     codepeer]
+                     codepeer,
+                     static_analysis_via_compiler]
 
     steps:
       - uses: actions/checkout@v2
