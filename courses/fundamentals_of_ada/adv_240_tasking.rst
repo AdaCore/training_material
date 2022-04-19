@@ -507,6 +507,28 @@ Task Scope
          end T;
       end P;
 
+------------------------------
+Waiting On Different Entries
+------------------------------
+
+* It is convenient to be able to accept several entries
+* The :ada:`select` statements can wait simultaneously on a list of entries
+
+    - For :ada:`task` only
+    - It accepts the **first** one that is requested
+
+.. code:: Ada
+
+   select
+     accept Receive_Message (V : String)
+     do
+       Put_Line ("Message : " & String);
+     end Receive_Message;
+   or
+     accept Stop;
+       exit;
+     end select;
+
 ------------------------------------------
 Example: Protected Objects - Declaration
 ------------------------------------------
@@ -545,27 +567,6 @@ Example: Main
 ========================
 Some Advanced Concepts
 ========================
-
-------------------------------
-Waiting On Different Entries
-------------------------------
-
-* It is convenient to be able to accept several entries
-* The :ada:`select` statements can wait simultaneously on a list of entries
-
-    - It accepts the **first** one that is requested
-
-.. code:: Ada
-
-   select
-     accept Receive_Message (V : String)
-     do
-       Put_Line ("Message : " & String);
-     end Receive_Message;
-   or
-     accept Stop;
-       exit;
-     end select;
 
 ----------------------
 Waiting With a Delay
