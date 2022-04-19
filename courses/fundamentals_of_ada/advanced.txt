@@ -12,6 +12,4 @@ adv_170_multiple_inheritance.rst
 180_polymorphism.rst
 adv_190_exceptions.rst
 adv_240_tasking.rst
-adv_270_subprogram_contracts.rst
-adv_275_type_contracts.rst
 adv_280_low_level_programming.rst
