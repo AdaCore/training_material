@@ -466,6 +466,8 @@ Single Declaration
  * Instantiate an **anonymous** task (or protected) type
  * Declares an object of that type
 
+.. code:: Ada
+
    task type Task_T is
       entry Start;
    end Task_T;
