@@ -439,12 +439,11 @@ def format_text ( key, value, format ):
    elif ( key == "Code" and
           'interpreted-text' in classes and
           kvs[0][0] == 'role'):
-      n = perform_role ( kvs[0][1], text, format )
-      if n == None:
+      res = perform_role ( kvs[0][1], text, format )
+      if res == None:
          # Fallback returns default
-         return pandoc_format ( 'default', literal_to_AST_node ( text ) )
-      else:
-         return n
+         res = pandoc_format ( 'default', literal_to_AST_node ( text ) )
+      return res
 
 '''
 pandoc_format takes the name of a pandoc emphasis function and
