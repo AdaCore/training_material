@@ -1064,6 +1064,85 @@ Quiz
 
 .. code:: Ada
 
+    task T is
+       entry E1;
+       entry E2;
+    end T;
+    ...
+    task body Other_Task is
+    begin
+       select
+          T.E1;
+       or
+          T.E2;
+       end select;
+    end Other_Task;
+
+What is the result of compiling and running this code?
+
+A. :ada:`T.E1` is called
+B. Nothing
+C. :answer:`Compilation error`
+D. Runtime error
+
+.. container:: animate
+
+    A :ada:`select` entry call can only call one :ada:`entry` at a time.
+
+------
+Quiz
+------
+
+.. container:: columns
+
+ .. container:: column
+
+  .. code:: Ada
+
+      procedure Main is
+         task T is
+            entry A;
+         end T;
+
+         task body T is
+         begin
+            select
+               accept A;
+               Put_Line ("A");
+            else
+               delay 1.0;
+            end select;
+         end T;
+      begin
+         select
+            T.A;
+         else
+            delay 1.0;
+         end select;
+      end Main;
+
+ .. container:: column
+
+  What is the output of this code?
+
+  A. "AAAAA..."
+  B. :answer:`Nothing`
+  C. Compilation error
+  D. Runtime error
+
+  .. container:: animate
+
+      Common mistake: :ada:`Main` and :ada:`T` won't wait on each other and
+      will both execute their :ada:`delay` statement only.
+
+.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
     procedure Main is
        task type T is
           entry A;
