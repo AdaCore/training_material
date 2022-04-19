@@ -424,7 +424,7 @@ Delay keyword
 - :ada:`delay` keyword part of tasking
 - Blocks for a time
 - Relative: Blocks for at least :ada:`Duration`
-- Absolute: Blocks until a given :ada:`Calendar.Time` or :ada:`Real_Time.Time`
+- Absolute: Blocks until no earlier than :ada:`Calendar.Time` or :ada:`Real_Time.Time`
 
 .. include:: examples/delays/src/main.adb
    :code: Ada
@@ -463,7 +463,7 @@ Task Activation
 Single Declaration
 --------------------
 
- * Instanciate an **anonymous** task (or protected) type
+ * Instantiate an **anonymous** task (or protected) type
  * Declares an object of that type
 
    task type Task_T is
