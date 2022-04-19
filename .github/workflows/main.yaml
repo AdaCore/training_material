@@ -19,6 +19,7 @@ jobs:
             source: [fundamentals_of_ada,
                      fundamentals_of_ada/standard_course.txt,
                      fundamentals_of_ada/advanced.txt,
+                     fundamentals_of_ada/special.txt,
                      fundamentals_of_ada/opat.txt,
                      fundamentals_of_ada/labs,
                      spark_for_ada_programmers,
