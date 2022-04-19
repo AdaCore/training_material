@@ -66,10 +66,10 @@ Implicit Subtype Explanation
    - :ada:`Integer`, :ada:`Short_Integer`, :ada:`Long_Integer`, etc.
    - **Implementation-defined** choice, non portable
 
-* New anonymous type `<Anon>` is derived from the predefined type
-* `<Anon>` inherits the type's operations (``+``, ``-`` ...)
-* `Typ`, subtype of `<Anon>` is created with :ada:`range L .. R`
-* :ada:`Typ'Base` will return the type `<Anon>`
+* New anonymous type ``<Anon>`` is derived from the predefined type
+* ``<Anon>`` inherits the type's operations (``+``, ``-`` ...)
+* ``Typ``, subtype of ``<Anon>`` is created with :ada:`range L .. R`
+* :ada:`Typ'Base` will return the type ``<Anon>``
 
 -----------------------------
 Stand-Alone (Sub)Type Names
