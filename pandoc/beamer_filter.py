@@ -443,6 +443,8 @@ def format_text ( key, value, format ):
       if n == None:
          # Fallback returns default
          return pandoc_format ( 'default', literal_to_AST_node ( text ) )
+      else:
+         return n
 
 '''
 pandoc_format takes the name of a pandoc emphasis function and
