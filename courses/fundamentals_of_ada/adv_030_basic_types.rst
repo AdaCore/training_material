@@ -214,7 +214,7 @@ Quiz
     type T1 is new Integer range 0 .. 10;
     subtype T2 is T1 range 1 .. 9;
 
-What is the result of :ada:`T2'Base`?
+What is the :ada:`type` of :ada:`T2'Base`?
 
    A. ``Integer``
    B. ``An unspecified integer type``
@@ -230,7 +230,7 @@ Quiz
     subtype T1 is range 0 .. 10;
     type T2 is range 1 .. 9;
 
-What is the result of :ada:`T2'Base`?
+What is the :ada:`type` of :ada:`T2'Base`?
 
 A. ``Integer``
 B. :answermono:`An unspecified integer type`
@@ -282,6 +282,24 @@ D. None, this does not compile
 .. container:: animate
 
     :ada:`T'Succ` and :ada:`T'Pred` are defined on the :ada:`type`, not the :ada:`subtype`.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type T is new Integer range 0 .. Integer'Last;
+    subtype S is T range 0 .. 10;
+
+    Obj : S;
+
+What is the result of :ada:`Obj := S'Last + 1`?
+
+A. 0
+B. 11
+C. :answer:`None, this fails at runtime`
+D. None, this does not compile
 
 ===========
 Base Type
@@ -409,24 +427,6 @@ Using Equality for Floating Point Types
 * Perhaps define your own function
 
    - Comparison within tolerance (:math:`+\varepsilon` / :math:`-\varepsilon`)
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-    type T is new Integer range 0 .. Integer'Last;
-    subtype S is T range 0 .. 10;
-
-    Obj : T;
-
-What is the result of :ada:`Obj := S'Last + 1`?
-
-A. 0
-B. :answer:`11`
-C. None, this fails at runtime
-D. None, this does not compile
 
 ===============
 Modular Types
@@ -588,7 +588,7 @@ Quiz
     type T is mod 256;
     V : T := 255;
 
-Which statements are correct?
+Which statements are legal?
 
 A. :answermono:`V := V + 1`
 B. :answermono:`V := 16#ff#`
@@ -609,7 +609,7 @@ Quiz
     type T2 is mod 256;
     V2 : T2 := 255;
 
-Which statements are correct?
+Which statements are legal?
 
 A. :answermono:`V1 := Rotate_Left (V1, 1)`
 B. ``V1 := Positive'First``
@@ -684,7 +684,7 @@ Quiz
     type T is (Left, Top, Right, Bottom);
     V : T := Left;
 
-Which of the following propositions are true?
+Which of the following proposition(s) are true?
 
 A. ``T'Value (V) = 1``
 B. :answermono:`T'Pos (V) = 1`
@@ -795,7 +795,7 @@ Quiz
     type T2 is array (Positive range <>) of T1;
     Obj : T2 := "CC" & A & NUL;
 
-Which of the following propositions are true?
+Which of the following proposition(s) are true?
 
 A. The code fails at runtime
 B. ``Obj'Length = 3``
@@ -813,7 +813,7 @@ Quiz
     with Ada.Characters.Handling;
     use Ada.Characters.Handling;
 
-Which of the following propositions are true?
+Which of the following proposition(s) are true?
 
 A. ``NUL = 0``
 B. ``NUL = '\0'``
