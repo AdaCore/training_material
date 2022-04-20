@@ -32,10 +32,38 @@ Introduction
 ==============
 
 ----------------------
+Unconstrained Arrays
+----------------------
+
+* :dfn:`Unconstrained array` is an array type where
+
+    + Different objects may have different number of components
+    + As a result a different length
+    + ... including a length of 0 (empty)
+
+* Support in other languages
+
+    + Pointers in C
+
+* Warning: An array **object** still needs to have a **fixed length**
+
+-----------------------------------------
+Example Unconstrained Array Description
+-----------------------------------------
+
+.. code:: Ada
+
+    type Int_Array is array
+        (Positive range <>) -- Unconstrained Index
+        ;
+
+    Obj : Int_Array (0 .. 3); -- Constraint MUST be specified here
+
+----------------------
 Variant Record Types
 ----------------------
 
-* *Variant record type* is a record type where
+* :dfn:`Variant record type` is a record type where
 
    + Different objects may have different sets of components (i.e. different variants)
    + Given object itself may be *unconstrained*
