@@ -296,11 +296,9 @@ Implementation
          procedure Get ( Item : in out Person );
       end Person_Pkg;
 
-----------------
-Primitives
-----------------
-
-* Output
+--------------------
+Primitives: Output
+--------------------
 
    .. code:: Ada
 
@@ -312,13 +310,15 @@ Primitives
         case Item.Variant is
           when Student =>
             Put_Line("GPA:" & Float'Image(Item.GPA));
-            Put_Line("Year:" & Integer'Image(Item.Year) );
+            Put_Line("Year:" & Integer'Image(Item.Year));
           when Faculty =>
-            Put_Line("Pubs:" & Integer'Image(Item.Pubs) );
+            Put_Line("Pubs:" & Integer'Image(Item.Pubs));
         end case;
       end Put;
 
-* Input
+-------------------
+Primitives: Input
+-------------------
 
    .. code:: Ada
 
