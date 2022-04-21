@@ -122,6 +122,7 @@ if __name__ == "__main__":
     ap.add_argument("input_file")
     ap.add_argument("-o", "--output-file")
     ap.add_argument("-c", "--cut", nargs='*', type=int)
+    ap.add_argument("-K", "--no-default-keeping", action="store_true")
     ap.add_argument("-d", "--dedent", action="store_true",
                     help="Dedent by the first-line indent")
     ap.add_argument("-C", "--cut-counting", action="store_true",
@@ -137,7 +138,8 @@ if __name__ == "__main__":
     else:
         out = sys.stdout
 
-    cut = AdaCut(args.cut, args.mode)
+    default_keeping = not args.no_default_keeping
+    cut = AdaCut(args.cut, args.mode, default_keeping=default_keeping)
     dedent_cols = None
     prev_cut = None
     prev_ln = 0
