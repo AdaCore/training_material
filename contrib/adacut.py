@@ -138,7 +138,9 @@ if __name__ == "__main__":
     else:
         out = sys.stdout
 
+    output_cut = not args.cut_counting
     default_keeping = not args.no_default_keeping
+
     cut = AdaCut(args.cut, args.mode, default_keeping=default_keeping)
     dedent_cols = None
     prev_cut = None
@@ -166,7 +168,8 @@ if __name__ == "__main__":
                 prev_ln = cur_ln
                 prev_cut = cut.current_cut
                 prev_indent = cur_indent
-                print(lp, file=out, end="")
+                if output_cut:
+                    print(lp, file=out, end="")
 
     if args.cut_counting:
-        print(cut.current_cut)
+        print(cut.current_cut, file=out)
