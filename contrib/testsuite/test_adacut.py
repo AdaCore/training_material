@@ -39,7 +39,7 @@ class TestAdaCut:
             expected = f.read()
 
         try:
-            assert expected == actual
+            assert actual == expected
         except AssertionError:
             self.maybe_update_baseline(pytestconfig, expected_file, actual)
             raise
