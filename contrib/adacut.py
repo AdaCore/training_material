@@ -111,6 +111,8 @@ class AdaCut:
             self.block = self.block[:-1]
         elif directive == "line":
             self.line = typ
+            if typ[0] == "cut":
+                self.current_cut += 1
         else:
             assert False, "Bug!"
 

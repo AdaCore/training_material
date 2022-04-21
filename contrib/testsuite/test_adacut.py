@@ -53,7 +53,7 @@ class TestAdaCut:
         options = cls.parse_options(d_src.name[len("src_"):])
         for f in (d / "template").glob("*.ad?"):
             def test_file_content_is_expected(self, pytestconfig):
-                actual = adacut(*options, f, check=True, out_filter=ShellProgramFilters.text)
+                actual = adacut(*options, "--", f, check=True, out_filter=ShellProgramFilters.text)
                 self.assert_file_content_equal(pytestconfig, d_src / f.name, actual)
 
             tests[f"{d_src.name}_{f.name}"] = test_file_content_is_expected
