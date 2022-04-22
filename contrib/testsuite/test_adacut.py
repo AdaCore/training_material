@@ -22,9 +22,6 @@ class TestAdaCut:
 
             for dd in (d_src for d_src in d.glob("src_*") if d_src.is_dir()):
                 cls.add_src_tests(tests, d, dd)
-
-            if (d / "quiz").is_dir():
-                cls.add_quiz_test(tests, d, d / "quiz")
                 
             for name, test in tests.items():
                 setattr(cls, f"test_{name}", test)
