@@ -14,29 +14,30 @@ class AdaCut:
 
     RE_PURE_COMMENT = re.compile(r"^\s*\-\-.*$")
 
-    def __init__(self, cut, mode, default_keeping=True):
+    def __init__(self, cut, mode, default_keeping):
         self.lines = 0
         self.directives = 0
         self.comments = 0
         self.kept = 0
 
+        self.default_keeping = default_keeping
         self.cut = cut
         self.current_cut = 0
-        if self.cut:
-            # Cut mode: throw everything but the given cut(s)
+        if self.cut and not self.default_keeping:
+            # Pure cut mode: throw everything but the given cut(s)
             self.mode = None
-            self.default_keeping = False
         else:
             self.mode = mode
-            self.default_keeping = default_keeping
         self.line = None
         self.block = []
 
     def match_mode_or_cut(self, typ_name):
+        keep = False
         if self.cut:
-            return self.current_cut in self.cut
-        else:
-            return self.mode == typ_name or self.mode == "keep_all"
+            keep = self.current_cut in self.cut
+        if (not self.cut) or self.default_keeping:
+            keep = keep or self.mode == typ_name or self.mode == "keep_all"
+        return keep
 
     def keeping_code_comments_with(self, typ):
         if self.match_mode_or_cut(typ[0]):
@@ -122,7 +123,10 @@ if __name__ == "__main__":
     ap.add_argument("input_file")
     ap.add_argument("-o", "--output-file")
     ap.add_argument("-c", "--cut", nargs='*', type=int)
-    ap.add_argument("-K", "--no-default-keeping", action="store_true")
+    ap.add_argument("-k", "--default-keeping", action="store_true",
+                    help="Set for answer, question, keep_all modes by default")
+    ap.add_argument("-K", "--no-default-keeping", action="store_true",
+                    help="Set for cut mode by default")
     ap.add_argument("-d", "--dedent", action="store_true",
                     help="Dedent by the first-line indent")
     ap.add_argument("-C", "--cut-counting", action="store_true",
@@ -139,7 +143,13 @@ if __name__ == "__main__":
         out = sys.stdout
 
     output_cut = not args.cut_counting
-    default_keeping = not args.no_default_keeping
+    assert not (args.default_keeping and args.no_default_keeping)
+    if args.default_keeping:
+        default_keeping = True
+    elif args.no_default_keeping:
+        default_keeping = False
+    else:
+        default_keeping = not args.cut
 
     cut = AdaCut(args.cut, args.mode, default_keeping=default_keeping)
     dedent_cols = None
@@ -161,6 +171,7 @@ if __name__ == "__main__":
                         lp = lp[dedent_cols:]
 
                 if args.cut \
+                   and not default_keeping \
                    and prev_cut \
                    and prev_cut != cut.current_cut \
                    and prev_ln != cur_ln - 1:
