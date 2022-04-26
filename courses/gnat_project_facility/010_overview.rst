@@ -139,10 +139,4 @@ About Project Files and Makefiles
 + A project file describes a project
 + Command lines using project files fit naturally in Makefile paradigm
 
-:command:`gnatmake -P <project-file> ...`
-
-=====
-Lab
-=====
-
-.. include:: labs/010_overview.lab.rst
+:command:`gprbuild -P <project-file> ...`

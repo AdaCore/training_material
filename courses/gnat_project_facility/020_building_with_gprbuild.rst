@@ -197,3 +197,8 @@ Switches to be specified on command line or in ``Builder`` package of main proje
 
       - Creating missing output directory (e.g. object directory)
 
+=====
+Lab
+=====
+
+.. include:: labs/020_building_with_gprbuild.lab.rst

@@ -1,9 +1,9 @@
 --------------
-Overview Lab
+GPRbuild Lab
 --------------
 
 * Open a command shell
-* Go to :filename:`010_overview` directory (under :filename:`source`)
+* Go to :filename:`020_building_with_gprbuild` directory (under :filename:`source`)
 
   * Contains a main procedure and a supporting package for the "8 Queens" problem
 
@@ -27,7 +27,7 @@ Overview Lab
     * Plus (possibly) some intermediate files
 
 --------------------------------
-Overview Lab - Simple GPR File
+GPRbuild Lab - Simple GPR File
 --------------------------------
 
 .. code:: Ada
@@ -45,7 +45,7 @@ Overview Lab - Simple GPR File
    Deletes ALI and object files for :ada:`Queens` and :ada:`Queens_Pkg`
    
 ---------------------
-Overview Lab Part 2
+GPRbuild Lab Part 2
 ---------------------
 
 * Change project file so that it specifies the main program
@@ -59,7 +59,7 @@ Overview Lab Part 2
   * Note the :filename:`queens` executable is now also deleted (as well as any intermediate files)
 
 ---------------------------------------
-Overview Lab - Main Program Specified
+GPRbuild Lab - Main Program Specified
 ---------------------------------------
 
 .. code:: Ada
