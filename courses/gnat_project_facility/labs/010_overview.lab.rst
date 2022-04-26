@@ -2,55 +2,75 @@
 Overview Lab
 --------------
 
-   * Open a command shell
-   * Go to :filename:`fibonacci` directory (under :filename:`source`)
+* Open a command shell
+* Go to :filename:`010_overview` directory (under :filename:`source`)
 
-      * Contains a main procedure and a supporting package
+  * Contains a main procedure and a supporting package for the "8 Queens" problem
 
-   * Use an editor to create minimum project file
+* Use an editor to create minimum project file
 
-      * Name the project anything you wish
-      * Filename and project name should be the same
+  * Name the project anything you wish
+  * Filename and project name should be the same
 
-   * Build :ada:`fibonacci` using :command:`gprbuild` and the project file as-is
+* Build :ada:`Queens` using :command:`gprbuild` and the project file as-is
 
-      * Use :command:`-P` argument on the command line to specify project file
-      * Must also specify file name on command line to get executable
+  * Use :command:`-P` argument on the command line to specify project file
+  * Must also specify file name on command line to get executable
 
-   * Clean the project with :command:`gprclean`
+    * For example: :command:`gprbuild -P lab.gpr queens`
 
-      * Use :command:`-P` argument on the command line to specify project file
-      * Note that the :filename:`main` executable remains
+* Clean the project with :command:`gprclean`
 
+  * Use :command:`-P` argument on the command line to specify project file
+  * Note that the :filename:`queens.exe` executable remains
+
+    * Plus (possibly) some intermediate files
+
+--------------------------------
+Overview Lab - Simple GPR File
+--------------------------------
+
+.. code:: Ada
+
+   project Lab is
+   end Lab;
+
+:command:`gprbuild -P lab.gpr`
+   Only compiles source files
+   
+:command:`gprbuild -P lab.gpr queens`
+   Compiles source and creates :filename:`queens` executable
+   
+:command:`gprclean -P lab.gpr`
+   Deletes ALI and object files for :ada:`Queens` and :ada:`Queens_Pkg`
+   
 ---------------------
 Overview Lab Part 2
 ---------------------
 
-   * Change project file so that it specifies the main program
+* Change project file so that it specifies the main program
 
-   * Build again, without specifying the main on the command line
+* Build again, without specifying the main on the command line
 
-      * Use only :command:`-P` argument on the command line to specify project file
+  * Use only :command:`-P` argument on the command line to specify project file
 
-   * Clean the project with gprclean again
+* Clean the project with :command:`gprclean` again
 
-      * Note the :filename:`main` executable is now also deleted
+  * Note the :filename:`queens` executable is now also deleted (as well as any intermediate files)
 
------------------------
-Overview Lab Solution
------------------------
+---------------------------------------
+Overview Lab - Main Program Specified
+---------------------------------------
 
-* Minimal Project File
+.. code:: Ada
 
-   .. code:: Ada
+  project Lab is
+     for Main use ( "main.adb" );
+  end Lab;
 
-      project Lab is
-      end Lab;
-
-* Minimal Project File with main specified (Part 2)
-
-   .. code:: Ada
-
-      project Lab is
-         for Main use ( "main.adb" );
-      end Lab;
+:command:`gprbuild -P lab.gpr`
+   Compiles source and creates :filename:`queens` executable
+   
+:command:`gprclean -P lab.gpr`
+   Deletes all generated files
+   
