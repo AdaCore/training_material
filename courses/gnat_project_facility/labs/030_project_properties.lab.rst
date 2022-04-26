@@ -6,7 +6,7 @@ Project Properties Lab - Directories
 
 * Specify source and output directories
 
-  * Use source files from the :filename:`fibonacci` directory (under :filename:`source`)
+  * Use source files from the :filename:`030_project_properties` directory (under :filename:`source`)
   * Specify where object files and executable should be located
 
 * Build and run executable (pass command line argument of 200)
@@ -23,7 +23,7 @@ Directories Solution
    .. code:: Ada
 
       project Lab is
-         for Source_Dirs use ("source/fibonacci");
+         for Source_Dirs use ("source/030_project_properties");
          for Main use ( "main.adb" );
          for Object_Dir use "obj";
          for Exec_Dir use "exec";
@@ -72,7 +72,7 @@ Switches Solution
    .. code:: Ada
 
       project Lab is
-         for Source_Dirs use ("source/fibonacci");
+         for Source_Dirs use ("source/030_project_properties");
          for Main use ( "main.adb" );
 
          package Compiler is

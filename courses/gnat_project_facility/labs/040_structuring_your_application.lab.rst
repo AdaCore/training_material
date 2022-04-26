@@ -2,7 +2,7 @@
 Structuring Your Application Lab 
 ----------------------------------
 
-* Source is included in folder :filename:`030_structuring_your_application`
+* Source is included in folder :filename:`040_structuring_your_application`
 
 * **Very** simplistic speed monitor
 

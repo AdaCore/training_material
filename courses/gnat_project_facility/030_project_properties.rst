@@ -522,4 +522,4 @@ Scenario Controlling Source File Selection
 Lab
 =====
 
-.. include:: labs/020_project_properties.lab.rst
+.. include:: labs/030_project_properties.lab.rst
