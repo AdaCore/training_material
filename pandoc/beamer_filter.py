@@ -277,6 +277,8 @@ def source_file_contents ( filename, keywords ):
       return retval
    else:
       return filename
+
+SUPPORTED_CLASSES = ["container", "source_include", "admonition", "animate", "speakernote", "columns", "column", "latex_environment", "footnotesize"]
       
 def source_include ( classes, contents ):
    # useful for debugging
@@ -573,6 +575,9 @@ def perform_filter(key, value, format, meta):
         elif key == "Div":
 
            [[ident, classes, kvs], contents] = value
+
+           assert all(c in SUPPORTED_CLASSES for c in classes[:2]), \
+               f"unsupported: {', '.join(c for c in classes[:2] if c not in SUPPORTED_CLASSES)}"
 
            if is_speakernote ( classes ):
                return speaker_note ( contents )
