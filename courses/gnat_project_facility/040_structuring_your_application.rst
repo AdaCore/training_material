@@ -27,6 +27,7 @@ Structuring Your Application
 
 .. |checkmark| replace:: :math:`\checkmark`
 
+
 ==============
 Introduction
 ==============
