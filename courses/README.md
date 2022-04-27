@@ -17,19 +17,19 @@ same name as their course module with ".lab" appended to the name).
 
 When adding a new course to this folder, there is some maintenance that needs
 to be done to this repository in addition to creating the course directory.
-(Assume *<course name>* is replaced with the name of the folder you are creating.)
+(Assume *(course name)* is replaced with the name of the folder you are creating.)
 
 ### File **.github/workflows/main.yaml**
 
-Add *<course name>* to the ``source`` object
+Add *(course name)* to the ``source`` object
 
 ### File **contrib/rst_files_with_prelude.txt**
 
-Add ``courses/<course name>/*.rst`` to the end of the file
+Add ``courses/(course name)/*.rst`` to the end of the file
 
-### File **courses/<course name>/course.toml**
+### File **courses/(course name)/course.toml**
 
-This file must be created in the *<course name>* directory.
+This file must be created in the *(course name)* directory.
 It provides the "pretty" name of the course. The content should just be
 ``name = "Course Name"``
 
