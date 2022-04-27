@@ -25,6 +25,7 @@ jobs:
                      spark_for_ada_programmers/course.txt,
                      gnatcheck,
                      gnat_studio,
+                     gnat_project_facility,
                      codepeer,
                      static_analysis_via_compiler]
 
