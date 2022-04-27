@@ -1,0 +1,5 @@
+project Prj is
+   for Main use ("main_no_stop.adb", "main_no_send_message.adb", "main_no_call.adb");
+   for Source_Dirs use ("src");
+   for Object_Dir use "obj";
+end Prj;
