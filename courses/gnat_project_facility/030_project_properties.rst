@@ -27,7 +27,6 @@ Project Properties
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-
 ==============
 Introduction
 ==============

@@ -27,7 +27,6 @@ Building with GPRbuild
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-
 ==============
 Introduction
 ==============

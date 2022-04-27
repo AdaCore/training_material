@@ -27,7 +27,6 @@ Advanced Capabilities
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-
 ==============
 Introduction
 ==============

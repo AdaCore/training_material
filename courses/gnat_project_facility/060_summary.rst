@@ -27,7 +27,6 @@ Summary
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-
 ============
 Conclusion
 ============
