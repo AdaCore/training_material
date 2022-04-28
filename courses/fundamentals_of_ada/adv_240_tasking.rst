@@ -1,6 +1,6 @@
-*********
-Tasking
-*********
+******************
+Advanced Tasking
+******************
 
 ..
     Coding language
@@ -226,6 +226,61 @@ Example: Main
 Quiz
 ------
 
+.. code:: Ada
+
+    task type T is
+        entry Go;
+    end T;
+
+    task body T is
+    begin
+        accept Go do
+            loop
+                null;
+            end loop;
+        end Go;
+    end T;
+
+    My_Task : T;
+
+What happens when :ada:`My_Task.Go` is called?
+
+A. Compilation error
+B. Runtime error
+C. :answer:`The calling task hangs`
+D. :answer:`My_Task hangs`
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    task type T is
+        entry Go;
+    end T;
+
+    task body T is
+    begin
+        accept Go;
+        loop
+            null;
+        end loop;
+    end T;
+
+    My_Task : T;
+
+What happens when :ada:`My_Task.Go` is called?
+
+A. Compilation error
+B. Runtime error
+C. The calling task hangs
+D. :answer:`My_Task hangs`
+
+------
+Quiz
+------
+
 .. container:: columns
 
  .. container:: column
@@ -372,6 +427,75 @@ Example: Protected Objects - Body
 Quiz
 ------
 
+.. code:: Ada
+
+    procedure Main is
+        protected type O is
+           entry P;
+        end O;
+
+        protected body O is
+           entry P when True is
+           begin
+              Put_Line ("OK");
+           end P;
+        end O;
+    begin
+        O.P;
+    end Main;
+
+What is the result of compiling and running this code?
+
+A. "OK"
+B. Nothing
+C. :answer:`Compilation error`
+D. Runtime error
+
+.. container:: animate
+
+    :ada:`O` is a :ada:`protected type`, needs instantiation
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    protected O is
+       function Get return Integer;
+       procedure Set (V : Integer);
+    private
+       Val, Access_Count : Integer := 0;
+    end O;
+
+    protected body O is
+       function Get return Integer is
+       begin
+          Access_count := Access_Count + 1;
+          return Val;
+       end Get;
+
+       procedure Set (V : Integer) is
+       begin
+          Access_count := Access_Count + 1;
+          Val := V;
+       end Set;
+    end O;
+
+What is the result of compiling and running this code?
+
+A. No error
+B. :answer:`Compilation error`
+C. Runtime error
+
+.. container:: animate
+
+    Cannot set :ada:`Access_Count` from a :ada:`function`
+
+------
+Quiz
+------
+
 .. container:: latex_environment footnotesize
 
  .. code:: Ada
@@ -466,6 +590,8 @@ Single Declaration
  * Instantiate an **anonymous** task (or protected) type
  * Declares an object of that type
 
+.. code:: Ada
+
    task type Task_T is
       entry Start;
    end Task_T;
@@ -507,6 +633,28 @@ Task Scope
          end T;
       end P;
 
+------------------------------
+Waiting On Different Entries
+------------------------------
+
+* It is convenient to be able to accept several entries
+* The :ada:`select` statements can wait simultaneously on a list of entries
+
+    - For :ada:`task` only
+    - It accepts the **first** one that is requested
+
+.. code:: Ada
+
+   select
+     accept Receive_Message (V : String)
+     do
+       Put_Line ("Message : " & String);
+     end Receive_Message;
+   or
+     accept Stop;
+       exit;
+     end select;
+
 ------------------------------------------
 Example: Protected Objects - Declaration
 ------------------------------------------
@@ -545,27 +693,6 @@ Example: Main
 ========================
 Some Advanced Concepts
 ========================
-
-------------------------------
-Waiting On Different Entries
-------------------------------
-
-* It is convenient to be able to accept several entries
-* The :ada:`select` statements can wait simultaneously on a list of entries
-
-    - It accepts the **first** one that is requested
-
-.. code:: Ada
-
-   select
-     accept Receive_Message (V : String)
-     do
-       Put_Line ("Message : " & String);
-     end Receive_Message;
-   or
-     accept Stop;
-       exit;
-     end select;
 
 ----------------------
 Waiting With a Delay
@@ -930,6 +1057,189 @@ Example: Main
 
 .. include:: examples/task_select_multiple_or/src/main.adb
     :code: Ada
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    task T is
+       entry E1;
+       entry E2;
+    end T;
+    ...
+    task body Other_Task is
+    begin
+       select
+          T.E1;
+       or
+          T.E2;
+       end select;
+    end Other_Task;
+
+What is the result of compiling and running this code?
+
+A. :ada:`T.E1` is called
+B. Nothing
+C. :answer:`Compilation error`
+D. Runtime error
+
+.. container:: animate
+
+    A :ada:`select` entry call can only call one :ada:`entry` at a time.
+
+------
+Quiz
+------
+
+.. container:: columns
+
+ .. container:: column
+
+  .. code:: Ada
+
+      procedure Main is
+         task T is
+            entry A;
+         end T;
+
+         task body T is
+         begin
+            select
+               accept A;
+               Put ("A");
+            else
+               delay 1.0;
+            end select;
+         end T;
+      begin
+         select
+            T.A;
+         else
+            delay 1.0;
+         end select;
+      end Main;
+
+ .. container:: column
+
+  What is the output of this code?
+
+  A. "AAAAA..."
+  B. :answer:`Nothing`
+  C. Compilation error
+  D. Runtime error
+
+  .. container:: animate
+
+      Common mistake: :ada:`Main` and :ada:`T` won't wait on each other and
+      will both execute their :ada:`delay` statement only.
+
+.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    procedure Main is
+       task type T is
+          entry A;
+       end T;
+
+       task body T is
+       begin
+          select
+             accept A;
+          or
+             terminate;
+          end select;
+
+          Put_Line ("Terminated");
+       end T;
+
+       My_Task : T;
+    begin
+       null;
+    end Main;
+
+What is the output of this code?
+
+A. "Terminated"
+B. :answer:`Nothing`
+C. Compilation error
+D. Runtime error
+
+.. container:: animate
+
+    :ada:`T` is terminated at the end of :ada:`Main`
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    procedure Main is
+    begin
+       select
+          delay 2.0;
+       then abort
+          loop
+             delay 1.5;
+             Put ("A");
+          end loop;
+       end select;
+
+       Put ("B");
+    end Main;
+
+What is the output of this code?
+
+A. "A"
+B. "AAAA..."
+C. :answer:`"AB"`
+D. Compilation error
+E. Runtime error
+
+.. container:: animate
+
+    :ada:`then abort` aborts the select only, not :ada:`Main`.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    procedure Main is
+        Ok : Boolean := False
+
+        protected O is
+           entry P;
+        end O;
+
+        protected body O is
+        begin
+           entry P when Ok is
+              Put_Line ("OK");
+           end P;
+        end O;
+    begin
+        O.P;
+    end Main;
+
+What is the result of compiling and running this code?
+
+A. "OK"
+B. :answer:`Nothing`
+C. Compilation error
+D. Runtime error
+
+.. container:: animate
+
+    Stuck on waiting for :ada:`Ok` to be set, :ada:`Main` will never terminate.
 
 --------------------------------------
 Standard "Embedded" Tasking Profiles
