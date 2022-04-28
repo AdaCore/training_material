@@ -66,10 +66,10 @@ Implicit Subtype Explanation
    - :ada:`Integer`, :ada:`Short_Integer`, :ada:`Long_Integer`, etc.
    - **Implementation-defined** choice, non portable
 
-* New anonymous type `<Anon>` is derived from the predefined type
-* `<Anon>` inherits the type's operations (``+``, ``-`` ...)
-* `Typ`, subtype of `<Anon>` is created with :ada:`range L .. R`
-* :ada:`Typ'Base` will return the type `<Anon>`
+* New anonymous type ``<Anon>`` is derived from the predefined type
+* ``<Anon>`` inherits the type's operations (``+``, ``-`` ...)
+* ``Typ``, subtype of ``<Anon>`` is created with :ada:`range L .. R`
+* :ada:`Typ'Base` will return the type ``<Anon>``
 
 -----------------------------
 Stand-Alone (Sub)Type Names
@@ -204,6 +204,70 @@ Attributes Reflect the Underlying Type
 
       Shade : Color range Red .. Blue := Brown; -- runtime error
       Hue : Rainbow := Rainbow'Succ (Blue);     -- runtime error
+
+------
+Quiz
+------
+
+.. code:: Ada
+    :number-lines: 1
+
+    type T1 is range 0 .. 10;
+    function "-" (V : T1) return T1;
+    subtype T2 is T1 range 1 .. 9;
+    function "-" (V : T2) return T2;
+
+    Obj : T2 := -T2 (1);
+
+Which function is executed at line 6?
+
+A. The one at line 2
+B. The one at line 4
+C. A predefined ``"-"`` operator for integer types
+D. :answer:`None: The code is illegal`
+
+.. container:: animate
+
+    The :ada:`type` is used for the overload profile, and here both :ada:`T1` and :ada:`T2`
+    are of type :ada:`T1`, which means line 4 is actually a redeclaration, which is forbidden.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   type T is range 0 .. 10;
+   subtype S is T range 1 .. 9;
+
+What is the value of :ada:`S'Succ (S (9))`?
+
+A. 9
+B. :answer:`10`
+C. None, this fails at runtime
+D. None, this does not compile
+
+.. container:: animate
+
+    :ada:`T'Succ` and :ada:`T'Pred` are defined on the :ada:`type`, not the :ada:`subtype`.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type T is new Integer range 0 .. Integer'Last;
+    subtype S is T range 0 .. 10;
+
+    Obj : S;
+
+What is the result of :ada:`Obj := S'Last + 1`?
+
+A. 0
+B. 11
+C. :answer:`None, this fails at runtime`
+D. None, this does not compile
 
 ===========
 Base Type
@@ -483,6 +547,44 @@ Shift/Rotate for User-Defined Types
       type Half_Word is new Interfaces.Unsigned_16;
       type Word is new Interfaces.Unsigned_32;
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type T is mod 256;
+    V : T := 255;
+
+Which statement(s) is(are) legal?
+
+A. :answermono:`V := V + 1`
+B. :answermono:`V := 16#ff#`
+C. ``V := 256``
+D. :answermono:`V := 255 + 1`
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    with Interfaces; use Interfaces;
+
+    type T1 is new Unsigned_8;
+    V1 : T1 := 255;
+
+    type T2 is mod 256;
+    V2 : T2 := 255;
+
+Which statement(s) is(are) legal?
+
+A. :answermono:`V1 := Rotate_Left (V1, 1)`
+B. ``V1 := Positive'First``
+C. :answermono:`V2 := 1 and V2`
+D. ``V2 := Rotate_Left (V2, 1)``
+E. ``V2 := T2'Mod (2.0)``
+
 =======================
 Representation Values
 =======================
@@ -540,6 +642,22 @@ Order Attributes For All Discrete Types
 .. container:: speakernote
 
    Val/pos compared to value/image - same number of characters
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type T is (Left, Top, Right, Bottom);
+    V : T := Left;
+
+Which of the following proposition(s) are true?
+
+A. ``T'Value (V) = 1``
+B. :answermono:`T'Pos (V) = 1`
+C. ``T'Image (T'Pos (V)) = Left``
+D. ``T'Val (T'Pos (V) - 1) = Bottom``
 
 =================
 Character Types
@@ -635,3 +753,37 @@ Ada.Characters.Handling Sample Content
    ...
    end Ada.Characters.Handling;
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type T1 is (NUL = 0, A, B, 'C');
+    type T2 is array (Positive range <>) of T1;
+    Obj : T2 := "CC" & A & NUL;
+
+Which of the following proposition(s) are true?
+
+A. The code fails at runtime
+B. ``Obj'Length = 3``
+C. :answer:`Obj (1) = 'C'`
+D. :answer:`Obj (3) = A`
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    with Ada.Characters.Latin_1;
+    use Ada.Characters.Latin_1;
+    with Ada.Characters.Handling;
+    use Ada.Characters.Handling;
+
+Which of the following proposition(s) are true?
+
+A. ``NUL = 0``
+B. ``NUL = '\0'``
+C. :answermono:`Character'Pos (NUL) = 0`
+D. :answermono:`Is_Control (NUL)`
