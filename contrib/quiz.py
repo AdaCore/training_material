@@ -63,8 +63,9 @@ class QuizAnswer:
     def code_out_filter(cls, s):
         if s.endswith(os.linesep):
             s = s[: -len(os.linesep)]
-        if s.endswith(";"):
-            s = s[:-1]
+        if os.linesep not in s:
+            if s.endswith(";"):
+                s = s[:-1]
 
         return s
 
@@ -101,9 +102,13 @@ class QuizAnswer:
             epycs.subprocess.exit_on_error = True
 
 
+def indent(lines):
+    return [re.search(r"[^ ]", l).span()[1] - 1 for l in lines]
+
+
 def text_indent(min_indent, text):
     lines = text.splitlines()
-    actual_min_indent = min(re.search(r"[^ ]", l).span()[1] - 1 for l in lines)
+    actual_min_indent = min(indent(lines))
     if min_indent >= actual_min_indent:
 
         def indent_line(l):
@@ -116,6 +121,28 @@ def text_indent(min_indent, text):
             return l[actual_min_indent - min_indent :]
 
     return os.linesep.join(indent_line(l) for l in lines)
+
+
+def code_as_text(code, answer, pre_code_indent=3):
+    lines_raw = code.splitlines()
+    lines_indent_raw = indent(lines_raw)
+    min_lines_indent = min(lines_indent_raw)
+    corrected_lines_indent = [i - min_lines_indent for i in lines_indent_raw]
+    lines = [l.strip() for l in lines_raw]
+
+    if answer:
+        def wrap(s):
+            return f":answermono:`{s}`"
+    else:
+        def wrap(s):
+            return f"``{s}``"
+
+    if len(lines) > 1:
+        return (os.linesep + (" " * pre_code_indent)).join(
+            "| " + " " * corrected_lines_indent[i] + wrap(l)
+            for i, l in enumerate(lines))
+    else:
+        return wrap(lines[0])
 
 
 if __name__ == "__main__":
@@ -151,7 +178,4 @@ if __name__ == "__main__":
 
         answer = QuizAnswer(args.input_file, i)
 
-        if not answer.runs:
-            print(f"{chr(ord('A') + i)}. ``{answer.code}``", file=out)
-        else:
-            print(f"{chr(ord('A') + i)}. :answermono:`{answer.code}`", file=out)
+        print(f"{chr(ord('A') + i)}.", code_as_text(answer.code, answer=answer.runs), file=out)
