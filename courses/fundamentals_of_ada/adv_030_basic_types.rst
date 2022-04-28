@@ -210,38 +210,6 @@ Quiz
 ------
 
 .. code:: Ada
-
-    type T1 is new Integer range 0 .. 10;
-    subtype T2 is T1 range 1 .. 9;
-
-What is the :ada:`type` of :ada:`T2'Base`?
-
-   A. ``Integer``
-   B. ``An unspecified integer type``
-   C. :answermono:`T1`
-   D. ``None: T1 or T2 declaration is illegal``
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-    subtype T1 is range 0 .. 10;
-    type T2 is range 1 .. 9;
-
-What is the :ada:`type` of :ada:`T2'Base`?
-
-A. ``Integer``
-B. :answermono:`An unspecified integer type`
-C. ``T1``
-D. ``None: T1 or T2 declaration is illegal``
-
-------
-Quiz
-------
-
-.. code:: Ada
     :number-lines: 1
 
     type T1 is range 0 .. 10;
@@ -588,7 +556,7 @@ Quiz
     type T is mod 256;
     V : T := 255;
 
-Which statements are legal?
+Which statement(s) is(are) legal?
 
 A. :answermono:`V := V + 1`
 B. :answermono:`V := 16#ff#`
@@ -609,7 +577,7 @@ Quiz
     type T2 is mod 256;
     V2 : T2 := 255;
 
-Which statements are legal?
+Which statement(s) is(are) legal?
 
 A. :answermono:`V1 := Rotate_Left (V1, 1)`
 B. ``V1 := Positive'First``
