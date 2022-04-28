@@ -161,6 +161,46 @@ D. ``Component5 : constant integer := 123;``
    C. No recursive definitions
    D. No constant components
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type Cell is record
+       Val : Integer;
+       Next : Cell;
+    end record;
+
+Is the definition legal?
+
+A. Yes
+B. :answer:`No`
+
+.. container:: animate
+
+    A :ada:`record` definition cannot be recursive, here :ada:`type Cell` references itself
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type Cell is record
+       Val : Integer;
+       Message : String;
+    end record;
+
+Is the definition legal?
+
+A. Yes
+B. :answer:`No`
+
+.. container:: animate
+
+    A :ada:`record` definition cannot have a component of an indefinite type. :ada:`String` is indefinite if you don't specify its size.
+
 ============
 Operations
 ============
@@ -421,6 +461,119 @@ Aggregates with `others`
    end record;
 
    Q : Homogeneous := (others => 10);
+
+------
+Quiz
+------
+
+What is the result of running this code?
+
+.. code:: Ada
+
+   procedure Main is
+      type Record_T is record
+         A, B, C : Integer := 0;
+      end record;
+
+      V : Record_T := (A => 1);
+   begin
+      Put_Line (Integer'Image (V.A));
+   end Main;
+
+A. ``0``
+B. ``1``
+C. :answer:`Compilation error`
+D. Runtime error
+
+.. container:: animate
+
+   The aggregate should be written as :ada:`(A => 1, others => <>)`
+
+------
+Quiz
+------
+
+What is the result of running this code?
+
+.. code:: Ada
+
+   procedure Main is
+      type My_Integer is new Integer;
+      type Record_T is record
+         A, B, C : Integer := 0;
+         D : My_Integer := 0;
+      end record;
+
+      V : Record_T := (others => 1);
+   begin
+      Put_Line (Integer'Image (V.A));
+   end Main;
+
+A. ``0``
+B. ``1``
+C. :answer:`Compilation error`
+D. Runtime error
+
+.. container:: animate
+
+   All components associated to a value using :ada:`others` must be of the same :ada:`type`.
+
+------
+Quiz
+------
+
+What is the result of running this code?
+
+.. code:: Ada
+
+   procedure Main is
+      type My_Integer is new Integer;
+      type Record_T is record
+         A, B, C : Integer := 0;
+         D : My_Integer := 0;
+      end record;
+
+      V : R := (others => <>);
+   begin
+      Put_Line (Integer'Image (V.A));
+   end Main;
+
+A. :answermono:`0`
+B. ``1``
+C. Compilation error
+D. Runtime error
+
+.. container:: animate
+
+   :ada:`<>` is an exception to the rule for :ada:`others`, it can apply to several components of a different type.
+
+------
+Quiz
+------
+
+What is the result of running this code?
+
+.. code:: Ada
+
+   procedure Main is
+      type My_Integer is new Integer;
+      type Record_T is record
+         A : Integer := 0;
+      end record;
+
+      V : R := (1);
+   begin
+      Put_Line (Integer'Image (V.A));
+   end Main;
+
+A. ``0``
+B. ``1``
+C. :answer:`Compilation error`
+D. Runtime error
+
+.. container:: animate
+
+    Single-valued aggregate must use named association.
 
 ------
 Quiz
