@@ -243,11 +243,11 @@ Quiz
 
     My_Task : T;
 
-What is the result of calling :ada:`My_Task.Go` from "Main"?
+What happens when :ada:`My_Task.Go` is called?
 
 A. Compilation error
 B. Runtime error
-C. :answer:`Main hangs`
+C. :answer:`The calling task hangs`
 D. :answer:`My_Task hangs`
 
 ------
@@ -270,11 +270,11 @@ Quiz
 
     My_Task : T;
 
-What is the result of calling :ada:`My_Task.Go` from "Main"?
+What happens when :ada:`My_Task.Go` is called?
 
 A. Compilation error
 B. Runtime error
-C. Main hangs
+C. The calling task hangs
 D. :answer:`My_Task hangs`
 
 ------
@@ -435,8 +435,8 @@ Quiz
         end O;
 
         protected body O is
-        begin
-           entry P is
+           entry P when True is
+           begin
               Put_Line ("OK");
            end P;
         end O;
@@ -453,7 +453,7 @@ D. Runtime error
 
 .. container:: animate
 
-    :ada:`O` is a :ada:`protected type`, needs instanciation
+    :ada:`O` is a :ada:`protected type`, needs instantiation
 
 ------
 Quiz
@@ -1108,7 +1108,7 @@ Quiz
          begin
             select
                accept A;
-               Put_Line ("A");
+               Put ("A");
             else
                delay 1.0;
             end select;
@@ -1188,11 +1188,11 @@ Quiz
        then abort
           loop
              delay 1.5;
-             Put_Line ("A");
+             Put ("A");
           end loop;
        end select;
 
-       Put_Line ("B");
+       Put ("B");
     end Main;
 
 What is the output of this code?
