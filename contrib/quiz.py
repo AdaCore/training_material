@@ -149,6 +149,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("input_file", type=Path)
     ap.add_argument("-o", "--output-file")
+    ap.add_argument("-t", "--add-title", action="store_true",
+                    help="Decorate the resulting rst with a Quiz title")
     args = ap.parse_args()
 
     if args.output_file:
@@ -160,10 +162,12 @@ if __name__ == "__main__":
 
     quiz = Quiz(args.input_file)
 
-    print("------")
-    print("Quiz")
-    print("------")
-    print()
+    if args.add_title:
+        print("------")
+        print("Quiz")
+        print("------")
+        print()
+
     if quiz.code_question:
         print(".. code:: Ada")
         print()
