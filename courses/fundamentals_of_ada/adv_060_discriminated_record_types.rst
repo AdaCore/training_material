@@ -335,6 +335,12 @@ Unconstrained Variant Record Example
       Pat      := Zork;    -- Run-time error (Constraint_Error)
    end;
 
+------
+Quiz
+------
+
+.. include:: quiz/unconstrained_arrays_declaration/quiz.rst
+
 =======================
 Varying Length Arrays
 =======================
@@ -410,6 +416,12 @@ Varying Length Array via Variant Records
 
    * With default discriminant value, objects can be copied even if lengths are different
    * With no default discriminant value, objects of different lengths cannot be copied
+
+------
+Quiz
+------
+
+.. include:: quiz/mutable_with_array/quiz.rst
 
 ========================
 Variant Record Details
