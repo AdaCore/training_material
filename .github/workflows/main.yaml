@@ -117,3 +117,26 @@ jobs:
         run: |
             source contrib/ci/lab_env.sh
             python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada
+
+  pytest:
+    name: PyTest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: actions/cache@v2
+        with:
+          path: ./cached_gnat
+          key: ${{ runner.os }}-gnat-ce-2020
+
+      - name: Get GNAT Community 2020 toolchain
+        uses: ada-actions/toolchain@ce2020
+        with:
+          distrib: community
+          install_dir: ./cached_gnat
+
+      - name: Setup PyTest
+        run: python3 -m pip install pytest git+https://gitlab.com/leogermond/epycs.git
+
+      - name: Run PyTest
+        run: pytest --ignore=cached_gnat
