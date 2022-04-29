@@ -11,8 +11,6 @@ import subprocess
 from pathlib import Path
 import shutil
 
-epycs.subprocess.verbose = True
-
 SCRIPTS = Path(__file__).parent
 ADACUT_PY = SCRIPTS / "adacut.py"
 assert ADACUT_PY.is_file()
@@ -70,6 +68,7 @@ class QuizAnswer:
         return s
 
     def __init__(self, input_file, i):
+        self.identifier = chr(ord('A') + i)
         self.input_file = input_file
 
         self.code = self.adacut("-dc", i + 1, out_filter=self.code_out_filter)
@@ -91,10 +90,12 @@ class QuizAnswer:
             print(Path(d) / "src" / self.input_file.name, file=sys.stderr)
 
             epycs.subprocess.exit_on_error = False
+            print("compiling", self.identifier, file=sys.stderr)
             self.compiles = (
                 gprbuild(stdout=subprocess.PIPE, quiet=True, cwd=d).returncode == 0
             )
             if self.compiles:
+                print("running", self.identifier, file=sys.stderr)
                 main = find_single_executable(d)
                 self.runs = main(stdout=subprocess.PIPE, quiet=True).returncode == 0
             else:
@@ -182,4 +183,4 @@ if __name__ == "__main__":
 
         answer = QuizAnswer(args.input_file, i)
 
-        print(f"{chr(ord('A') + i)}.", code_as_text(answer.code, answer=answer.runs), file=out)
+        print(f"{answer.identifier}.", code_as_text(answer.code, answer=answer.runs), file=out)
