@@ -53,6 +53,6 @@ class TestAdaCut:
                 actual = adacut(*options, "--", f, check=True, out_filter=ShellProgramFilters.text)
                 self.assert_file_content_equal(pytestconfig, d_src / f.name, actual)
 
-            tests[f"{d_src.name}_{f.name}"] = test_file_content_is_expected
+            tests[f"{d_src.parent.name}_{d_src.name}_{f.name}"] = test_file_content_is_expected
 
 TestAdaCut.init_tests()
