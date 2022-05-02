@@ -22,7 +22,7 @@ if __name__ == "__main__":
         prelude_content = pf.read()
 
     if prelude_content.endswith(os.linesep):
-        prelude_content = prelude_content[:-len(os.linesep)]
+        prelude_content = prelude_content[:-1]
 
     for f in args.files:
         with open(f, 'rt') as ff:

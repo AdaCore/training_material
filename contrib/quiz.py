@@ -37,6 +37,16 @@ def find_single_executable(d):
     return epycs.subprocess.find_program(x.resolve())
 
 
+def decomment_dedent_lines(s):
+    def decomment_dedent_line(ls):
+        sls = ls.strip()
+        if sls.startswith("--"):
+            sls = sls[2:].strip()
+        return sls
+
+    return [decomment_dedent_line(l) for l in s.splitlines()]
+
+
 class Quiz:
     def __init__(self, input_file):
         self.input_file = input_file
@@ -51,6 +61,7 @@ class Quiz:
         else:
             self.question = None
         self.code_question = self.adacut("-Km", "question", out_filter=str)
+        self.general_explainations = self.adacut("-Km", "answer", out_filter=decomment_dedent_lines)
 
     def adacut(self, *a, **kw):
         return adacut(*a, "--", self.input_file, **kw)
@@ -58,20 +69,35 @@ class Quiz:
 
 class QuizAnswer:
     @classmethod
-    def code_out_filter(cls, s):
+    def code_explain_out_filter(cls, s):
         if s.endswith(os.linesep):
             s = s[: -len(os.linesep)]
-        if os.linesep not in s:
-            if s.endswith(";"):
-                s = s[:-1]
 
-        return s
+        code_l = []
+        explain_l = []
+
+        explaining = True
+        for l in reversed(s.splitlines()):
+            ls = l.strip()
+            if ls.startswith("--") and explaining:
+                explain_l.insert(0, ls[2:].strip())
+            else:
+                explaining = False
+                code_l.insert(0, l)
+
+        if len(code_l) == 1:
+            if code_l[0].endswith(";"):
+                code_l[0] = code_l[0][:-1]
+
+        return os.linesep.join(code_l), os.linesep.join(explain_l)
 
     def __init__(self, input_file, i):
-        self.identifier = chr(ord('A') + i)
+        self.identifier = chr(ord("A") + i)
         self.input_file = input_file
 
-        self.code = self.adacut("-dc", i + 1, out_filter=self.code_out_filter)
+        self.code, self.explain = self.adacut(
+            "-dc", i + 1, out_filter=self.code_explain_out_filter
+        )
         self.full_code = self.adacut("-kc", i + 1, out_filter=str)
 
         self.check_full_code()
@@ -132,16 +158,20 @@ def code_as_text(code, answer, pre_code_indent=3):
     lines = [l.strip() for l in lines_raw]
 
     if answer:
+
         def wrap(s):
             return f":answermono:`{s}`"
+
     else:
+
         def wrap(s):
             return f"``{s}``"
 
     if len(lines) > 1:
         return (os.linesep + (" " * pre_code_indent)).join(
             "| " + " " * corrected_lines_indent[i] + wrap(l)
-            for i, l in enumerate(lines))
+            for i, l in enumerate(lines)
+        )
     else:
         return wrap(lines[0])
 
@@ -150,8 +180,12 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("input_file", type=Path)
     ap.add_argument("-o", "--output-file")
-    ap.add_argument("-t", "--add-title", action="store_true",
-                    help="Decorate the resulting rst with a Quiz title")
+    ap.add_argument(
+        "-t",
+        "--add-title",
+        action="store_true",
+        help="Decorate the resulting rst with a Quiz title",
+    )
     args = ap.parse_args()
 
     if args.output_file:
@@ -159,28 +193,40 @@ if __name__ == "__main__":
     else:
         out = sys.stdout
 
+    def pout(*a, file=out, **kw):
+        print(*a, file=file, **kw)
+
     assert args.input_file.is_file()
 
     quiz = Quiz(args.input_file)
 
     if args.add_title:
-        print("------")
-        print("Quiz")
-        print("------")
-        print()
+        pout("------")
+        pout("Quiz")
+        pout("------")
+        pout()
 
     if quiz.code_question:
-        print(".. code:: Ada")
-        print()
-        print(text_indent(4, quiz.code_question))
-        print()
+        pout(".. code:: Ada")
+        pout()
+        pout(text_indent(4, quiz.code_question))
+        pout()
 
     if quiz.question:
-        print(quiz.question)
-        print()
+        pout(quiz.question)
+        pout()
 
+    explainations = quiz.general_explainations
     for i in range(quiz.answers_number):
 
         answer = QuizAnswer(args.input_file, i)
 
-        print(f"{answer.identifier}.", code_as_text(answer.code, answer=answer.runs), file=out)
+        pout(f"{answer.identifier}.", code_as_text(answer.code, answer=answer.runs))
+        if answer.explain:
+            explainations.append(f"{answer.identifier}. {answer.explain}")
+
+    if explainations:
+        pout()
+        pout(".. container:: animate")
+        pout()
+        pout((" " * 4) + (os.linesep + (" " * 4)).join(explainations))

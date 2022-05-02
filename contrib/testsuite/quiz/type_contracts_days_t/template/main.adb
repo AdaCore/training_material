@@ -21,10 +21,10 @@ procedure Main is
       Static_Predicate => not Is_Weekday (T);
    --$ end cut
    --$ begin cut
-  subtype T is Days_T with
-     Static_Predicate =>
-        case T is when Sat | Sun => True,
-                  when others => False;
+   subtype T is Days_T with
+      Static_Predicate =>
+         case T is when Sat | Sun => True,
+                   when others => False;
    --$ end cut
 begin
    null;
