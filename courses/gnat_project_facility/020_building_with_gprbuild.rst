@@ -127,15 +127,15 @@ Common Command Line Switches
 
   .. list-table::
 
-    * - -P *<project file>*
+    * - :command:`-P <project file>`
 
       - Name of main project file (space between *P* and *<filename>* is optional)
 
-    * - -aP *<directory>*
+    * - :command:`-aP <directory>`
 
       - Add *<directory>* to list of directories to search for project files
 
-    * - -u [<source file> [, <source file>...]]
+    * - :command:`-u [<source file> [, <source file>...]]`
 
       - If sources specified, only compile these sources.
 
@@ -143,7 +143,7 @@ Common Command Line Switches
 
       - Otherwise, compile all sources in main project file
 
-    * - -U [<source file> [, <source file>...]]
+    * - :command:`-U [<source file> [, <source file>...]]`
 
       - If sources specified, only compile these sources.
 
@@ -151,19 +151,19 @@ Common Command Line Switches
 
       - Otherwise, compile all sources in project tree
 
-    * - -Xnm=val
+    * - :command:`-Xnm=val`
 
       - Specify external reference that may be read via built-in function ``external``.
 
-    * - --version
+    * - :command:`--version`
 
       - Display information about GPRbuild: version, origin and legal status
 
-    * - --help
+    * - :command:`--help`
 
       - Display GPRbuild usage
 
-    * - --config=<config project file name>
+    * - :command:`--config=<config project file name>`
 
       - Configuration project file name (default :filename:`default.cgpr`)
 
@@ -177,7 +177,7 @@ Switches to be specified on command line or in ``Builder`` package of main proje
 
   .. list-table::
 
-    * - --create-map-file[=<map file>]
+    * - :command:`--create-map-file[=<map file>]`
 
       - When linking, (if supported) by the platform, create a map file :filename:`<map file>`.
 
@@ -185,15 +185,15 @@ Switches to be specified on command line or in ``Builder`` package of main proje
 
       - (If not specified, filename is :filename:`<executable name>.map`)
 
-    * - -j<num>
+    * - :command:`-j<num>`
 
       - Use <num> simultaneous compilation jobs
 
-    * - -k
+    * - :command:`-k`
 
       - Keep going after compilation errors (default is to stop on first error)
 
-    * - -p (or --create-missing-dirs)
+    * - :command:`-p (or --create-missing-dirs)`
 
       - Creating missing output directory (e.g. object directory)
 

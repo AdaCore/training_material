@@ -173,23 +173,24 @@ Importing Projects Example
 Referencing Imported Content
 ------------------------------
 
-+ Use the Ada *dot notation* concept for declarations
++ When referencing imported projects, use the Ada *dot notation* concept for declarations
 
   + Start with the project name
+  + Use the tick (') for attributes
 
-+ Use the tick (') for attributes
-
-   .. code:: Ada
+    .. code:: Ada
 
       with "foo.gpr";
       project P is
          package Compiler is
             for Default_Switches ("Ada") use 
-               Foo.Compiler'Default_Switches & "-gnatwa";
+               Foo.Compiler'Default_Switches("Ada") & "-gnatwa";
          end Compiler;
       end P;
 
    + Project P uses all the compiler switches in project Foo and adds ``-gnatwa``
+
+   + *Note: in GPR files, "&" can be used to concatenate string lists and string*
 
 ----------
 Renaming
@@ -210,33 +211,67 @@ Renaming
       ...
    end Clients;
 
+----------------------------------
+Project Source Code Dependencies
+----------------------------------
+
++ Not unusual for projects to be interdependent
+
+  + In the :ada:`Nav` project
+
+    .. code:: Ada
+
+      with Hmi.Controls;
+      package body Nav.Engine is
+         Global_Speed : Speed_T := 0.0;
+         procedure Increase_Speed (Change : Speed_Delta_T) is
+            Max_Change : Speed_T := Global_Speed * 0.10;
+         begin
+            Global_Speed :=
+              Global_Speed + Speed_T'max (Speed_T (Change),
+                                          Max_Change);
+            Hmi.Controls.Display_Speed (Global_Speed);
+         end Increase_Speed;
+      end Nav.Engine;
+
+  + In the :ada:`HMI` project
+
+    .. code:: Ada
+
+      package body Hmi.Controls is
+         procedure Display_Speed (Speed : Nav.Engine.Speed_T) is
+         begin
+            Display_Speed_On_Console (Speed);
+         end Display_Speed;
+         procedure Change_Speed (Speed_Change : Nav.Engine.Speed_Delta_T) is
+         begin
+            Nav.Engine.Increase_Speed (Speed_Change);
+         end Change_Speed;
+      end Hmi.Controls;
+
 ----------------------
 Project Dependencies
 ----------------------
 
-+ Not unusual for projects to be interdependent
-
-  + Source in project A refers to source in project B, and source in project B refers to source in project A
-
 + Project files cannot create a cycle using :ada:`with`
 
-    + Neither direct (A |rightarrow| B |rightarrow| A)
-    + Nor indirect (A |rightarrow| B |rightarrow| C |rightarrow| A)
+    + Neither direct (:ada:`Hmi` |rightarrow| :ada:`Nav` |rightarrow| :ada:`Hmi`)
+    + Nor indirect (:ada:`Hmi` |rightarrow| :ada:`Nav` |rightarrow| :ada:`Monitor` |rightarrow| :ada:`Hmi`)
 
 + So how do we allow the sources in each project to interact?
 
     + :ada:`limited with`
     + Allows sources to be interdependent, but not the projects
 
-   .. code:: Ada
+.. code:: Ada
 
-      limited with "A.gpr";
-      project B is
-         package Compiler is
-            for Default_Switches ("Ada") use 
-               A.Compiler'Default_Switches & "-gnatwa"; -- illegal
-         end Compiler;
-      end B;
+   limited with "Hmi.gpr";
+   project Nav is
+     package Compiler is
+       for Switches ("Ada") use 
+           Hmi.Compiler'Switches & "-gnatwa"; -- illegal
+     end Compiler;
+   end Nav;
 
 ------------
 Subsystems

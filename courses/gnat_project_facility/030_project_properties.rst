@@ -143,7 +143,11 @@ Source Files
 
 + Must be at least one **immediate** source file
 
-  + In any source directory of project file
+  + *Immediate*
+
+    + Resides in project source directories OR
+    + Specified through source-related attribute
+
   + Unless explicitly specified none present
 
      :ada:`for Source_Files use ();`
@@ -172,11 +176,11 @@ Object Directory
            ...
         end Release;
 
-+ Only one per project
++ Only one object directory per project
 
-  + When extending a parent project
++ If :ada:`Child` extends project :ada:`Parent` and then building :ada:`Child`
 
-    + Child's object directory contains output for source not already compiled in parent
+    + For any source that exists only in :ada:`Parent` but has not been compiled, it's object files will appear in the :ada:`Child` object directory
 
 ----------------------
 Executable Directory
