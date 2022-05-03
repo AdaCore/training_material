@@ -339,6 +339,12 @@ Unconstrained Variant Record Example
 Quiz
 ------
 
+.. include:: quiz/variant_record_decl/quiz.rst
+
+------
+Quiz
+------
+
 .. include:: quiz/unconstrained_arrays_declaration/quiz.rst
 
 =======================
