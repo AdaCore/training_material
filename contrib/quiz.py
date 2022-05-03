@@ -130,7 +130,7 @@ class QuizAnswer:
 
 
 def indent(lines):
-    return [re.search(r"[^ ]", l).span()[1] - 1 for l in lines]
+    return [re.search(r"[^ ]", l).span()[1] - 1 if l.strip() else 0 for l in lines]
 
 
 def text_indent(min_indent, text):
