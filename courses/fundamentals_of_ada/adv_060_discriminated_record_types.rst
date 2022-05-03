@@ -339,13 +339,13 @@ Unconstrained Variant Record Example
 Quiz
 ------
 
-.. include:: quiz/variant_record_decl/quiz.rst
+.. include:: quiz/variant_record_assignment_wrong_discriminant/quiz.rst
 
 ------
 Quiz
 ------
 
-.. include:: quiz/unconstrained_arrays_declaration/quiz.rst
+.. include:: quiz/variant_record_decl/quiz.rst
 
 =======================
 Varying Length Arrays
@@ -422,6 +422,12 @@ Varying Length Array via Variant Records
 
    * With default discriminant value, objects can be copied even if lengths are different
    * With no default discriminant value, objects of different lengths cannot be copied
+
+------
+Quiz
+------
+
+.. include:: quiz/unconstrained_arrays_declaration/quiz.rst
 
 ------
 Quiz
