@@ -130,7 +130,7 @@ jobs:
             python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada/labs
 
   pytest:
-    name: PyTest
+    name: Contrib scripts check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -146,8 +146,11 @@ jobs:
           distrib: community
           install_dir: ./cached_gnat
 
-      - name: Setup PyTest
+      - name: Setup Python
         run: python3 -m pip install pytest git+https://gitlab.com/leogermond/epycs.git
 
       - name: Run PyTest
         run: pytest --ignore=cached_gnat
+
+      - name: Check Quizes
+        run: python3 contrib/quiz_update.py -v courses/fundamentals_of_ada/quiz/
