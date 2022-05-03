@@ -126,7 +126,7 @@ jobs:
             GAME_SUPPORT: extern/game_support
         run: |
             source contrib/ci/lab_env.sh
-            python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada
+            python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada/labs
 
   pytest:
     name: PyTest
