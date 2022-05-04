@@ -122,7 +122,13 @@ Recap. on type derivation
 Quiz
 ------
 
-.. include:: quiz/derivation_op_overload/quiz.rst
+.. include:: quiz/operator_override_simple/quiz.rst
+
+------
+Quiz
+------
+
+.. include:: quiz/derivation_op_override/quiz.rst
 
 ====================
 Tagged Inheritance
