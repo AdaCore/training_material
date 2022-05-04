@@ -216,6 +216,12 @@ Composites with Limited Types
 Quiz
 ------
 
+.. include:: quiz/limited_syntax/quiz.rst
+
+------
+Quiz
+------
+
 .. code:: Ada
 
    package P is
