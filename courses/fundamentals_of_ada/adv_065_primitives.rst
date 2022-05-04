@@ -83,7 +83,8 @@ Implicit Primitive Operations
 
       package P is
          type T1 is range 1 .. 10;
-         -- implicit: function "+" (Left, Right : T1) return T1;
+         -- implicit
+         -- function "+" (Left, Right : T1) return T1;
       end P;
       ...
       procedure Main is
