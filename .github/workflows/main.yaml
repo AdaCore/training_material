@@ -83,6 +83,15 @@ jobs:
           name: CodePeer labs
           path: out/codepeer_labs/pkg/*
 
+      - name: GNAT Project Facility - Package
+        run: python3 contrib/ci/package_labs.py courses/gnat_project_facility/labs/ && mv out/labs out/gnat_project_facility_labs && unzip out/gnat_project_facility_labs/labs.zip -d out/gnat_project_facility_labs/pkg
+
+      - name: GNAT Project Facility - Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: GNAT Project Facility labs
+          path: out/gnat_project_facility_labs/pkg/*
+
   labs-build:
 
     name: Labs # intentionly short
