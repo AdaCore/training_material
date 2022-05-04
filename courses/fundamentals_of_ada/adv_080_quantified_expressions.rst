@@ -377,6 +377,12 @@ Conditional / Quantified Expression Usage
 Quiz
 ------
 
+.. include:: quiz/quantified_expr_equality/quiz.rst
+
+------
+Quiz
+------
+
 .. code:: Ada
 
    type Array1_T is array (1 .. 3) of Integer;
