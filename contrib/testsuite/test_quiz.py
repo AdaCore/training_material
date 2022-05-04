@@ -59,7 +59,7 @@ class TestQuiz:
                     pytestconfig, d_src / f"{f.name}.rst", actual
                 )
 
-            tests[f"{d_src.name}_{f.name}"] = test_file_content_is_expected
+            tests[f"{d_src.parent.name}_{f.name}"] = test_file_content_is_expected
 
 
 TestQuiz.init_tests()
