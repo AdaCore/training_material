@@ -118,6 +118,12 @@ Recap. on type derivation
         - Their representation does not change
         - Could raise :ada:`Constraint_Error` (:ada:`range`...)
 
+------
+Quiz
+------
+
+.. include:: quiz/derivation_op_overload/quiz.rst
+
 ====================
 Tagged Inheritance
 ====================
