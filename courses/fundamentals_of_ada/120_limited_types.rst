@@ -228,6 +228,12 @@ Quiz
 Quiz
 ------
 
+.. include:: quiz/limited_operators/quiz.rst
+
+------
+Quiz
+------
+
 .. code:: Ada
 
    package P is
