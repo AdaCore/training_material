@@ -222,6 +222,12 @@ Quiz
 Quiz
 ------
 
+.. include:: quiz/limited_constructor/quiz.rst
+
+------
+Quiz
+------
+
 .. code:: Ada
 
    package P is
@@ -505,6 +511,12 @@ Statements Restrictions
        Result.Flag := 0;
      end return; --  Implicit return
    end F;
+
+------
+Quiz
+------
+
+.. include:: quiz/limited_constructor/quiz.rst
 
 =====================================
 Combining Limited and Private Views
