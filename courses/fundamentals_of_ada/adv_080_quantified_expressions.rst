@@ -377,6 +377,12 @@ Conditional / Quantified Expression Usage
 Quiz
 ------
 
+.. include:: quiz/quantified_expr_syntax/quiz.rst
+
+------
+Quiz
+------
+
 .. include:: quiz/quantified_expr_equality/quiz.rst
 
 ------
