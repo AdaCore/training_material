@@ -122,7 +122,7 @@ Recap. on type derivation
 Quiz
 ------
 
-.. include:: quiz/operator_override_simple/quiz.rst
+.. include:: quiz/operators_override_simple/quiz.rst
 
 ------
 Quiz
