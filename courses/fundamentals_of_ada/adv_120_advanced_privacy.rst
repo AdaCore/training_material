@@ -327,11 +327,21 @@ Child Units And Privacy
           X2 : T;
         end Root.Child;
 
-* Private child units are units that can be only made accessible to the private descendents of their parent
+* :dfn:`Private child` can
 
-  - Parent - visible in body
-  - Public siblings - visible in private section plus body
-  - Private siblings - visible in public and private sections plus body
+    + Used for "implementation details"
+
+---------------------------
+Importing a Private Child
+---------------------------
+
+* A private child can access its parent private part
+* Access to a private child is limited
+
+   + *Private descendents of their parent*
+   + Parent - visible from body
+   + Public siblings - visible from private section, and body
+   + Private siblings - visible from public and private sections, and body
 
   .. container:: columns
 
@@ -361,8 +371,6 @@ Child Units And Privacy
         begin
            Root.Child.X1 := 10; -- illegal
         end Main;
-
-* They're used as "implementation details"
 
 ---------------------------------
 Private Children And Dependency
