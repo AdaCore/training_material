@@ -220,7 +220,7 @@ Incomplete Types
 Incomplete Types
 ------------------
 
-* An incomplete type is a premature view on a type
+* An :dfn:`incomplete type` is a premature view on a type
 
    - Does specify the type name
    - Can specify the type discriminants
@@ -280,6 +280,12 @@ Type Completion Deferred To The Body
       end record;
       ...
    end P;
+
+------
+Quiz
+------
+
+.. include:: quiz/private_incomplete/quiz.rst
 
 =======================
 Private Library Units
