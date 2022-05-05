@@ -147,7 +147,9 @@ Tagged
          type T3 is new T2 with null record;
       end P;
 
-* Primitives can be either public or private, except when they have to be derived (constructor functions or abstract subprograms)
+* Primitives can be either public or private
+
+    + Except when they **have** to be derived (constructor functions or abstract subprograms)
 
 ------------------
 Tagged Extension
