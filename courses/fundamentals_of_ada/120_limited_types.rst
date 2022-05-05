@@ -222,12 +222,6 @@ Quiz
 Quiz
 ------
 
-.. include:: quiz/limited_constructor/quiz.rst
-
-------
-Quiz
-------
-
 .. include:: quiz/limited_operators/quiz.rst
 
 ------
