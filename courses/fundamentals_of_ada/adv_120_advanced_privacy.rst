@@ -35,40 +35,32 @@ Type Views
 Capabilities / Constraints Of A Type
 ---------------------------------------
 
-* Are called "Constraints" in a type declaration
+* :dfn:`Constraints` in a type declaration
 
-   - Limited
-   - Discriminants
-   - Abstract
+    - Reduce the set of operations available on a type
+    - :ada:`limited`
+    - Discriminants
+    - :ada:`abstract`
 
-* Are called "Capabilities" in a type declaration
+* :dfn:`Capabilities` in a type declaration
 
-   - Tagged
-   - Tagged extensions
+    - Extends or modifies the set of operations available on a type
+    - :ada:`tagged`
+    - Tagged extensions
 
 --------------------------------
 Partial Vs Full View Of A Type
 --------------------------------
 
-* The **full** view of a type provides at least all capabilities the **partial** view declares to have
+* If the partial view declares **capabilities**, the full view **must provide** them
 
-   - Capabilities can be mentioned in the full view and not in the partial view
+   - Full view may provide supplementary capabilities undeclared in the partial view
 
-* The **partial** view of a type provides at least all constraints the **full** view declares to have
+* If the full has **constraints**, the partial view **must declare** them
 
-   - Constraints can be mentioned in the partial view and not in the full view
+   - Partial view may declare supplementary constraint that the full view doesn't have
 
-.. code:: Ada
-
-   package P is
-      type T is [1]
-         -- at least as many constraints as [2], can add more
-         -- at most as many capabilities as [2], can provide less
-   private
-      type T is [2]
-         -- at most as many constraints as [1], can have less
-         -- at least as many capabilities as [1], can provide more
-   end P;
+.. include:: examples/adv_120_advanced_privacy/capabilities_and_constraints.adb
 
 ---------------
 Discriminants
