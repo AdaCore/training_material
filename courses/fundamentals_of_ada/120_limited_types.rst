@@ -406,6 +406,12 @@ Writing Limited Constructor Functions
 Quiz
 ------
 
+.. include:: quiz/limited_constructor_syntax/quiz.rst
+
+------
+Quiz
+------
+
 .. code:: Ada
 
    package P is
