@@ -285,6 +285,12 @@ Type Completion Deferred To The Body
 Quiz
 ------
 
+.. include:: quiz/incomplete_type/quiz.rst
+
+------
+Quiz
+------
+
 .. include:: quiz/private_incomplete/quiz.rst
 
 =======================
