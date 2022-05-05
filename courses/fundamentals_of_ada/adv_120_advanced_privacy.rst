@@ -61,6 +61,7 @@ Partial Vs Full View Of A Type
    - Partial view may declare supplementary constraint that the full view doesn't have
 
 .. include:: examples/adv_120_advanced_privacy/capabilities_and_constraints.adb
+    :code: Ada
 
 ---------------
 Discriminants
