@@ -274,9 +274,9 @@ Referencing The Stack
 Accessibility Checks
 ======================
 
---------------------------------------
-Introduction to Accessibility Checks
---------------------------------------
+--------------------------------------------
+Introduction to Accessibility Checks (1/2)
+--------------------------------------------
 
 * The depth of an object depends on its nesting within declarative scopes
 
@@ -296,10 +296,37 @@ Introduction to Accessibility Checks
          end Proc;
       end P;
 
-* Access types can access objects at most of the same depth
+* Access types can access objects of the **same or lower** depth
 * The compiler checks it statically
 
    - Removing checks is a workaround!
+
+--------------------------------------------
+Introduction to Accessibility Checks (2/2)
+--------------------------------------------
+
+* Issues with nesting
+
+.. include:: examples/140_access_types/nesting_issues/src/p.adb
+    :code: Ada
+
+* Simple workaround is to avoid nested access types
+
+------------------------------
+Dynamic Accessibility Checks
+------------------------------
+
+* Following the same rules
+
+    - Performed dynamically by the runtime
+
+* Lots of possible cases
+
+    - New compiler versions may detect more cases
+    - Using access always requires proper debugging and reviewing
+
+.. include:: examples/140_access_types/dynamic_accessibility_check/src/main.adb
+    :code: Ada
 
 -------------------------------------
 Getting Around Accessibility Checks
