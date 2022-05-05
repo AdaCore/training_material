@@ -731,6 +731,12 @@ Automatically Limited Full View
 Quiz
 ------
 
+.. include:: quiz/limited_private/quiz.rst
+
+------
+Quiz
+------
+
 .. container:: latex_environment footnotesize
 
  .. container:: columns
