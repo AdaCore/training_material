@@ -35,7 +35,7 @@ Introduction
 Access Types Design
 ---------------------
 
-* Memory addresses objects are called **access types**
+* Memory addresses objects are called :dfn:`access types`
 * Objects are associated to **pools** of memory
 
   - With different allocation / deallocation policies
