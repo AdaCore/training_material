@@ -206,6 +206,12 @@ Protection Idiom
 
 * Helps keeping track of the object usage
 
+------
+Quiz
+------
+
+.. include:: quiz/privacy_completion/quiz.rst
+
 ==================
 Incomplete Types
 ==================
