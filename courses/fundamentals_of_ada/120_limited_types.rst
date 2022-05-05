@@ -542,7 +542,7 @@ Statements Restrictions
 Quiz
 ------
 
-.. include:: quiz/limited_constructor/quiz.rst
+.. include:: quiz/limited_extended_return/quiz.rst
 
 =====================================
 Combining Limited and Private Views
