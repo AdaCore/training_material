@@ -289,7 +289,6 @@ Child Units And Privacy
 
     .. container:: column
 
-
     .. container:: column
 
       .. code:: Ada
