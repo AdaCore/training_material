@@ -406,6 +406,12 @@ Generic Package Parameters
 Quiz
 ------
 
+.. include:: quiz/genericity_type_and_variable/quiz.rst
+
+------
+Quiz
+------
+
 .. admonition:: Language Variant
 
    Ada 2005
