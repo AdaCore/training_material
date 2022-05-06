@@ -412,6 +412,12 @@ Quiz
 Quiz
 ------
 
+.. include:: quiz/genericity_limited_type/quiz.rst
+
+------
+Quiz
+------
+
 .. admonition:: Language Variant
 
    Ada 2005
