@@ -266,6 +266,12 @@ Generic Parameters Can Be Combined
 Quiz
 ------
 
+.. include:: quiz/generic_subp_syntax/quiz.rst
+
+------
+Quiz
+------
+
 .. code:: Ada
 
    generic
