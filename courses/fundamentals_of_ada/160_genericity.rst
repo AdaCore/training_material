@@ -522,6 +522,12 @@ Generic Incomplete Parameters
       type X is null record;
    end P;
 
+------
+Quiz
+------
+
+.. include:: quiz/genericity_private_type/quiz.rst
+
 ========
 Lab
 ========
