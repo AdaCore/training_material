@@ -272,6 +272,12 @@ Prefix Notation
 Quiz
 ------
 
+.. include:: quiz/tagged_primitives/quiz.rst
+
+------
+Quiz
+------
+
 .. include:: quiz/tagged_dot_and_with/quiz.rst
 
 ------
