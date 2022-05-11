@@ -50,7 +50,7 @@ Access Types Design
      G_A1 : Integer_General_Access := G'Access;
      G_A2 : Integer_General_Access := new Integer;
 
-* This module will only deal with :dfn:`general access types`
+* This module is mostly about :dfn:`general access types`
 
 -------------------------------
 Access Types Can Be Dangerous
