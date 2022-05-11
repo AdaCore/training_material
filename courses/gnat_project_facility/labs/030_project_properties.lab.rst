@@ -57,7 +57,8 @@ Project Properties Lab - Switches
 * Build and run again
 
   * Need to use switch :command:`-f` on command line to force rebuild
-  * (Changes to GPR file do not automatically force recompile)
+
+     * (Changes to GPR file do not automatically force recompile)
 
   * No :ada:`Constraint_Error`
 
@@ -123,7 +124,7 @@ Naming Solution
    .. code:: Ada
 
       project Lab is
-         for Source_Dirs use ("source/naming");
+         for Source_Dirs use ("source/030_project_properties/naming");
 
          package Naming is
             for Casing use "lowercase";
@@ -179,7 +180,8 @@ Conditional Solution
 
       project Lab is
 
-         for Source_Dirs use ("source/naming", "source/conditional");
+         for Source_Dirs use ("source/030_project_properties/naming",
+                              "source/030_project_properties/conditional");
 
          type Precision_T is ( "unsigned", "float", "default" );
          Precision : Precision_T := external ( "PRECISION", "default");
