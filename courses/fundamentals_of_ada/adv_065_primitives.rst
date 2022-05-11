@@ -27,9 +27,13 @@ Advanced Primitives
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-=================
-Type Derivation
-=================
+============
+Primitives
+============
+
+-------------
+Inheritance
+-------------
 
 --------------
 Freeze Point
@@ -53,6 +57,16 @@ Freeze Point
 
    V : Child; --  freeze child
    procedure Prim3 (V : Child); -- Not a primitive
+
+----------------------
+What is type freeze?
+----------------------
+
+* :command:`-gnatDG`
+
+=================
+Type Derivation
+=================
 
 ------------------------------
 Primitive of Multiple Types
