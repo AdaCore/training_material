@@ -1,0 +1,28 @@
+with Ada.Text_IO; use Ada.Text_IO;
+with Interfaces; use Interfaces;
+package body Fibonacci is
+   procedure Perform (Count : Positive) is
+
+      package Io is new Ada.Text_Io.Integer_Io (Integer);
+      use Io;
+      package Mod_Io is new Ada.Text_Io.Modular_Io (Unsigned_64);
+      use Mod_Io;
+
+      Prev, Next : Unsigned_64;
+      Result     : Unsigned_64;
+
+   begin
+      Prev := 0;
+      Next := 1;
+      for K in 1 .. Count
+      loop
+         Result := Prev + Next;
+         Put (K);
+         Put ("  ");
+         Put (Result);
+         New_Line;
+         Prev := Next;
+         Next := Result;
+      end loop;
+   end Perform;
+end Fibonacci;
