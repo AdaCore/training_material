@@ -10,12 +10,12 @@ procedure Main is
    --$ begin cut
    function "=" (A : T1; B : T2) return Boolean is
      (for all E1 of A => (for all E2 of B => E1 = E2));
-   -- Counterexample: ``A` and ``B`` = ``(0, 1, 0)`` returns :ada:`False`
+   -- Counterexample: ``A = B = (0, 1, 0)`` returns :ada:`False`
    --$ end cut
    --$ begin cut
    function "=" (A : T1; B : T2) return Boolean is
      (for some E1 of A => (for some E2 of B => A = B));
-   -- Counterexample: ``A`` = (0, 0, 1) and ``B`` = ``(0, 1, 1)`` returns :ada:`True`
+   -- Counterexample: ``A = (0, 0, 1) and B = (0, 1, 1)`` returns :ada:`True`
    --$ end cut
    --$ begin cut
    function "=" (A : T1; B : T2) return Boolean is
