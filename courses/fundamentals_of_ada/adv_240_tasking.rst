@@ -509,7 +509,7 @@ Quiz
       Object : Integer := 0;
    end P;
 
-What of the following completions for :ada:`P`'s members is illegal?
+Which completion(s) of :ada:`P` is(are) illegal?
 
  .. container:: latex_environment footnotesize
 
