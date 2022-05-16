@@ -1,15 +1,13 @@
-.. code:: Ada
-
    procedure P is
-      type T is tagged null record;
-      procedure Not_Prim (A : T) is null;
-      type T2 is tagged null record;
+      type T1 is tagged null record;
+      procedure Not_Prim (A : T1) is null;
+      type T2 is new T1 with null record;
 
-      A : T;
-      B : T2;
+      O1 : T1;
+      O2 : T2;
    begin
       -- Not a primitive
-      Not_Prim (A);
+      Not_Prim (O1);
       -- Would not compile
-      -- Not_Prim (B);
+      -- Not_Prim (O2);
    end P;
