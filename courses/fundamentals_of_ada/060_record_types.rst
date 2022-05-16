@@ -511,7 +511,7 @@ What is the result of running this code?
          D : My_Integer := 0;
       end record;
 
-      V : R := (others => <>);
+      V : Record_T := (others => <>);
    begin
       Put_Line (Integer'Image (V.A));
    end Main;
@@ -539,7 +539,7 @@ What is the result of running this code?
          A : Integer := 0;
       end record;
 
-      V : R := (1);
+      V : Record_T := (1);
    begin
       Put_Line (Integer'Image (V.A));
    end Main;
