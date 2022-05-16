@@ -12,6 +12,7 @@
                 Radius : Float;
           end case;
        end record;
+       -- V and V2 declaration...
     begin
        V := V2;
 

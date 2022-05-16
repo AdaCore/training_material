@@ -12,6 +12,7 @@ procedure Main is
             Radius : Float;
       end case;
    end record;
+   -- V and V2 declaration...
 --$ end question
 
    --$ begin cut
