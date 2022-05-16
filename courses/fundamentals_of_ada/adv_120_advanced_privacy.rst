@@ -176,7 +176,7 @@ Tagged Abstract
 -----------------
 
 * Partial view may be abstract even if Full view is not
-* If Full view is abstract, Private view has to be so
+* If Full view is abstract, private view has to be so
 
    .. code:: Ada
 
@@ -302,7 +302,7 @@ Private Library Units
 Child Units And Privacy
 -------------------------
 
-* Normally, a child public part cannot access a parent private part
+* Normally, a child public part cannot view a parent private part
 
   .. container:: columns
 
@@ -335,17 +335,15 @@ Child Units And Privacy
 Importing a Private Child
 ---------------------------
 
-* A private child can access its parent private part
-* Access to a private child is limited
+* A :ada:`private package` can view its **parent** :ada:`private` part
+* View on a private package is restricted
 
-   + *Private descendents of their parent*
-   + Parent - visible from body
-   + Public siblings - visible from private section, and body
-   + Private siblings - visible from public and private sections, and body
+   + To the *Private descendents of their parent*
+   + Visible from parent's :ada:`body`
+   + Visible from public sibling's :ada:`private` section, and :ada:`body`
+   + Visible from private siblings (public, :ada:`private`, :ada:`body`)
 
   .. container:: columns
-
-    .. container:: column
 
     .. container:: column
 
@@ -372,9 +370,9 @@ Importing a Private Child
            Root.Child.X1 := 10; -- illegal
         end Main;
 
----------------------------------
-Private Children And Dependency
----------------------------------
+----------------------------------
+Private Children And :ada:`with`
+----------------------------------
 
 .. code:: Ada
 
@@ -382,40 +380,50 @@ Private Children And Dependency
       type T is range 1 .. 10;
    end Root.Child1;
 
-* Private package cannot be withed by a public package
+* Public package cannot :ada:`with` a private package
 
    .. code:: Ada
 
       with Root.Child1; -- illegal
       package Root.Child2 is
          X1 : Root.Child1.T; -- illegal
-      Private
+      private
          X2 : Root.Child1.T; -- illegal
       end Root.Child2;
 
-* They can by a private child or a child body
+* Child packages can :ada:`with` a sibling private package
+
+    + From their body only
 
    .. code:: Ada
 
       with Root.Child1;
-      Private package Root.Child2 is
+      private package Root.Child2 is
          X1 : Root.Child1.T;
-      Private
+      private
          X2 : Root.Child1.T;
       end Root.Child2;
 
-* They can be private-withed
+
+---------------------
+:ada:`private with`
+---------------------
+
+* The parent and its children can :ada:`private with` a private package
+
+    + From anywhere
+    + View given **stays** :ada:`private`
 
    .. code:: Ada
 
-      Private with Root.Child1;
+      private with Root.Child1;
       package Root.Child2 is
          X1 : Root.Child1.T; -- illegal
-      Private
+      private
          X2 : Root.Child1.T;
       end Root.Child2;
 
-* Once something is private, it can never exit the private area
+* Clients of :ada:`Root.Child2` don't have any visibility on :ada:`Root.Child1`
 
 ------------------------------------------------------------
 Children "Inherit" From Private Properties Of Parent
