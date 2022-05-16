@@ -223,15 +223,18 @@ Recap. on tagged inheritance
 * :ada:`tagged` types are Ada's OOP
 * They can
 
-    + Be converted from a parent: :ada:`Child_Type (Parent)`
+    + Be converted from child to parent: :ada:`Parent_Type (Child)`
+
+        - :dfn:`Upcast` in OOP parlance
 
 * They **cannot**
 
     + Remove a primitive
     + Have a primitive with multiple controlling types
-    + Be converted to a parent: :ada:`Parent_Type (Child)`
+    + Be converted from parent to child: :ada:`Child_Type (Parent)`
 
         - Because their representation may change
+        - :dfn:`Downcast` forbidden in OOP parlance
 
 ------
 Quiz
