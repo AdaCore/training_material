@@ -137,29 +137,7 @@ Components Declarations
 Quiz
 ------
 
-Which component definition is legal?
-
-.. code:: Ada
-
-   type Record_T is record
-
-A. ``Component1 : array ( 1 .. 3 ) of boolean;``
-B. :answermono:`Component2, Component3 : integer;`
-C. ``Component4 : Record_T;``
-D. ``Component5 : constant integer := 123;``
-
-.. code:: Ada
-
-   end record;
-
-.. container:: animate
-
-   Explanations
-
-   A. Anonymous types not allowed
-   B. Correct
-   C. No recursive definitions
-   D. No constant components
+.. include:: quiz/record_component_decl/quiz.rst
 
 ------
 Quiz
