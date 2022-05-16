@@ -571,7 +571,7 @@ Quiz
    X, Y : Record_T;
    Z    : constant Nested_T := (others => -1);
 
-Which assignment is illegal?
+Which assignment(s) is(are) illegal?
 
 A. :answermono:`X := (1, '2', Three => 3, Four => (6))`
 B. ``X := (Two => '2', Four => Z, others => 5)``
