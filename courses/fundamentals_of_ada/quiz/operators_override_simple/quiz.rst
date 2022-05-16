@@ -4,8 +4,8 @@
 
 Which operator(s) definition(s) is legal?
 
-A. ``function "+" (V : T) return Boolean is (T /= 0)``
-B. :answermono:`function "+" (A, B : T) return T is (A + B)`
+A. :answermono:`function "+" (V : T) return Boolean is (V /= 0)`
+B. ``function "+" (A, B : T) return T is (A + B)``
 C. :answermono:`function "=" (A, B : T) return T is (A - B)`
 D. ``function ":=" (A : T) return T is (A)``
 

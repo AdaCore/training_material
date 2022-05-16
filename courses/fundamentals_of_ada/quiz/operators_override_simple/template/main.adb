@@ -4,17 +4,21 @@ procedure Main is
    type T is new Integer;
 
    --$ line cut
-   function "+" (V : T) return Boolean is (T /= 0);
+   function "+" (V : T) return Boolean is (V /= 0);
    --$ begin cut
    function "+" (A, B : T) return T is (A + B);
    -- Infinite recursion
    --$ end cut
-   --$ line cut
+   --$ begin cut
    function "=" (A, B : T) return T is (A - B);
+   --$ end cut
    --$ begin cut
    function ":=" (A : T) return T is (A);
    -- Unlike some languages, there is no assignment operator
    --$ end cut
+
+   A, B, C : T := 1;
 begin
-   null;
+   C := A + B;
+   pragma Assert (C = 2);
 end Main;
