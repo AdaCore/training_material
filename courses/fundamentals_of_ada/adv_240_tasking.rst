@@ -429,38 +429,6 @@ Quiz
 
 .. code:: Ada
 
-    procedure Main is
-        protected type O is
-           entry P;
-        end O;
-
-        protected body O is
-           entry P when True is
-           begin
-              Put_Line ("OK");
-           end P;
-        end O;
-    begin
-        O.P;
-    end Main;
-
-What is the result of compiling and running this code?
-
-A. "OK"
-B. Nothing
-C. :answer:`Compilation error`
-D. Runtime error
-
-.. container:: animate
-
-    :ada:`O` is a :ada:`protected type`, needs instantiation
-
-------
-Quiz
-------
-
-.. code:: Ada
-
     protected O is
        function Get return Integer;
        procedure Set (V : Integer);
@@ -689,6 +657,38 @@ Example: Main
 
 .. include:: examples/protected_objects_2/src/test_protected_objects.adb
     :code: Ada
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    procedure Main is
+        protected type O is
+           entry P;
+        end O;
+
+        protected body O is
+           entry P when True is
+           begin
+              Put_Line ("OK");
+           end P;
+        end O;
+    begin
+        O.P;
+    end Main;
+
+What is the result of compiling and running this code?
+
+A. "OK"
+B. Nothing
+C. :answer:`Compilation error`
+D. Runtime error
+
+.. container:: animate
+
+    :ada:`O` is a :ada:`protected type`, needs instantiation
 
 ========================
 Some Advanced Concepts
