@@ -4,7 +4,7 @@
        I : Integer;
     end record;
 
-Which piece(s) of code is a legal constructor for :ada:`T`?
+Which piece(s) of code is(are) a legal constructor for :ada:`T`?
 
 A. | ``function F return T is``
    | ``begin``
