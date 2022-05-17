@@ -142,12 +142,13 @@ Declaring Private Types for Views
 
 * Private type declaration must occur in visible part
 
-   - **Incomplete** type
-   - So users can reference the type name
+   - :dfn:`Partial view`
+   - Only partial information on the type
+   - Users can reference the type name
 
 * Full type declaration must appear in private part
 
-   - Type **completion**
+   - Completion is the :dfn:`Full view`
    - **Never** visible to users
    - **Not** visible to designer until reached
 
