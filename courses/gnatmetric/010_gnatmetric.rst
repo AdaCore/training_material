@@ -254,6 +254,89 @@ Coupling Metrics
 
 + Package bodies and specs for *classes* are both considered when computing dependencies
 
+==============
+Command Line
+==============
+
+-------------------------
+Command Line Invocation
+-------------------------
+
+:command:`gnatmetric [options] {filename}`
+
+* In general, same process as :toolname:`GNAT Studio`
+
+  * Without the fancy graphical output
+
+* Easier access to output file control
+
+
+-----------------------------
+Useful Command Line Options
+-----------------------------
+
+.. container:: latex_environment scriptsize
+
+ .. list-table::
+
+  * - :command:`--help`
+
+    - Display usage and exit
+
+  * - :command:`-Pproject`
+
+    - Use project file project. Only one such switch can be used
+
+  * - :command:`-U main`
+
+    - Process the closure of units rooted at unit main
+
+  * - :command:`--contract-all`
+
+    - All contract metrics
+
+  * - :command:`--complexity-all`
+
+    - All complexity metrics
+
+  * - :command:`--lines-all`
+
+    - All line metrics
+
+  * - :command:`--syntax-all`
+
+    - All syntax element metrics
+
+  * - :command:`--coupling-all`
+
+    - All coupling metrics
+
+  * - :command:`--output-dir=dirname`
+
+    - Put files with detailed metrics into 'dirname'
+
+  * - :command:`--generate-xml-output`
+
+    - Generate XML output
+
+  * - :command:`--generate-xml-schema`
+
+    - Generate XML output and corresponding schema file
+
+  * - :command:`--no-text-output`
+
+    - Do not generate output in text form
+
+=====
+Lab
+=====
+
+.. include:: labs/010_gnatmetric.lab.rst
+
+=========
+Summary
+=========
+
 -----------------
 Closing Remarks
 -----------------
