@@ -15,5 +15,5 @@ D. | :answermono:`function "=" (A : T1; B : T2) return Boolean is`
 
 .. container:: animate
 
-    B. Counterexample: ``A` and ``B`` = ``(0, 1, 0)`` returns :ada:`False`
-    C. Counterexample: ``A`` = (0, 0, 1) and ``B`` = ``(0, 1, 1)`` returns :ada:`True`
+    B. Counterexample: ``A = B = (0, 1, 0)`` returns :ada:`False`
+    C. Counterexample: ``A = (0, 0, 1) and B = (0, 1, 1)`` returns :ada:`True`
