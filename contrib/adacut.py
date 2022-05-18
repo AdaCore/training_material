@@ -2,6 +2,13 @@
 import argparse
 import re
 import sys
+import enum
+
+
+class CutState(enum.Enum):
+    NONE = 0
+    IN_BLOCK = 1
+    IN_LINE = 2
 
 
 class AdaCut:
@@ -14,29 +21,31 @@ class AdaCut:
 
     RE_PURE_COMMENT = re.compile(r"^\s*\-\-.*$")
 
-    def __init__(self, cut, mode, default_keeping=True):
+    def __init__(self, cut, mode, default_keeping):
         self.lines = 0
         self.directives = 0
         self.comments = 0
         self.kept = 0
 
+        self.default_keeping = default_keeping
         self.cut = cut
+        self.cut_state = CutState.NONE
         self.current_cut = 0
-        if self.cut:
-            # Cut mode: throw everything but the given cut(s)
+        if self.cut and not self.default_keeping:
+            # Pure cut mode: throw everything but the given cut(s)
             self.mode = None
-            self.default_keeping = False
         else:
             self.mode = mode
-            self.default_keeping = default_keeping
         self.line = None
         self.block = []
 
     def match_mode_or_cut(self, typ_name):
-        if self.cut:
-            return self.current_cut in self.cut
-        else:
-            return self.mode == typ_name or self.mode == "keep_all"
+        keep = False
+        if self.cut and self.cut_state != CutState.NONE:
+            keep = self.current_cut in self.cut
+        if (not self.cut) or self.default_keeping:
+            keep = keep or self.mode == typ_name or self.mode == "keep_all"
+        return keep
 
     def keeping_code_comments_with(self, typ):
         if self.match_mode_or_cut(typ[0]):
@@ -59,6 +68,8 @@ class AdaCut:
     def new_line(self, l):
         keeping_code, keeping_comments = self.keeping_code_comments()
         self.line = None
+        if self.cut_state == CutState.IN_LINE:
+            self.cut_state = CutState.NONE
         self.lines += 1
 
         is_code = not self.RE_PURE_COMMENT.match(l)
@@ -105,12 +116,18 @@ class AdaCut:
         if directive == "begin":
             self.block.append(typ)
             if typ[0] == "cut":
+                self.cut_state = CutState.IN_BLOCK
                 self.current_cut += 1
         elif directive == "end":
             assert typ == self.block[-1], f"{typ} != {self.block[-1]}"
             self.block = self.block[:-1]
+            if typ[0] == "cut":
+                self.cut_state = CutState.NONE
         elif directive == "line":
             self.line = typ
+            if typ[0] == "cut":
+                self.cut_state = CutState.IN_LINE
+                self.current_cut += 1
         else:
             assert False, "Bug!"
 
@@ -120,6 +137,10 @@ if __name__ == "__main__":
     ap.add_argument("input_file")
     ap.add_argument("-o", "--output-file")
     ap.add_argument("-c", "--cut", nargs='*', type=int)
+    ap.add_argument("-k", "--default-keeping", action="store_true",
+                    help="Set for answer, question, keep_all modes by default")
+    ap.add_argument("-K", "--no-default-keeping", action="store_true",
+                    help="Set for cut mode by default")
     ap.add_argument("-d", "--dedent", action="store_true",
                     help="Dedent by the first-line indent")
     ap.add_argument("-C", "--cut-counting", action="store_true",
@@ -135,7 +156,16 @@ if __name__ == "__main__":
     else:
         out = sys.stdout
 
-    cut = AdaCut(args.cut, args.mode)
+    output_cut = not args.cut_counting
+    assert not (args.default_keeping and args.no_default_keeping)
+    if args.default_keeping:
+        default_keeping = True
+    elif args.no_default_keeping:
+        default_keeping = False
+    else:
+        default_keeping = not args.cut
+
+    cut = AdaCut(args.cut, args.mode, default_keeping=default_keeping)
     dedent_cols = None
     prev_cut = None
     prev_ln = 0
@@ -155,14 +185,16 @@ if __name__ == "__main__":
                         lp = lp[dedent_cols:]
 
                 if args.cut \
+                   and not default_keeping \
                    and prev_cut \
                    and prev_cut != cut.current_cut \
                    and prev_ln != cur_ln - 1:
-                    print((' ' * max(cur_indent, prev_indent)) + '...')
+                    print((' ' * max(cur_indent, prev_indent)) + '...', file=out)
                 prev_ln = cur_ln
                 prev_cut = cut.current_cut
                 prev_indent = cur_indent
-                print(lp, file=out, end="")
+                if output_cut:
+                    print(lp, file=out, end="")
 
     if args.cut_counting:
-        print(cut.current_cut)
+        print(cut.current_cut, file=out)

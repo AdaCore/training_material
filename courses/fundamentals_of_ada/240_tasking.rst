@@ -230,13 +230,8 @@ Delay keyword
 - Relative: Blocks for at least :ada:`Duration`
 - Absolute: Blocks until a given :ada:`Calendar.Time` or :ada:`Real_Time.Time`
 
-.. code:: Ada
-
-    Relative : Duration := Seconds(5.0);
-    delay Relative;
-
-    Absolute : Time := Time_Of (2030, 10, 30);
-    delay until Absolute;
+.. include:: examples/delays/src/main.adb
+   :code: Ada
 
 ==========================
 Task and Protected Types
@@ -388,14 +383,14 @@ Calling an Entry With a Delay Protection
 
 .. code:: Ada
 
-   task type Msg_Box_T is
+   task Msg_Box is
       entry Receive_Message (V : String);
-   end Msg_Box_T;
+   end Msg_Box;
 
    procedure Main is
    begin
       select
-         T.Receive_Message ("A");
+         Msg_Box.Receive_Message ("A");
       or
          delay 50.0;
       end select;

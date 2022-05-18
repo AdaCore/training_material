@@ -18,13 +18,16 @@ jobs:
         matrix:
             source: [fundamentals_of_ada,
                      fundamentals_of_ada/standard_course.txt,
+                     fundamentals_of_ada/advanced.txt,
                      fundamentals_of_ada/opat.txt,
                      fundamentals_of_ada/labs,
                      spark_for_ada_programmers,
                      spark_for_ada_programmers/course.txt,
                      gnatcheck,
                      gnat_studio,
-                     codepeer]
+                     gnat_project_facility,
+                     codepeer,
+                     static_analysis_via_compiler]
 
     steps:
       - uses: actions/checkout@v2
@@ -80,6 +83,15 @@ jobs:
           name: CodePeer labs
           path: out/codepeer_labs/pkg/*
 
+      - name: GNAT Project Facility - Package
+        run: python3 contrib/ci/package_labs.py courses/gnat_project_facility/labs/ && mv out/labs out/gnat_project_facility_labs && unzip out/gnat_project_facility_labs/labs.zip -d out/gnat_project_facility_labs/pkg
+
+      - name: GNAT Project Facility - Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: GNAT Project Facility labs
+          path: out/gnat_project_facility_labs/pkg/*
+
   labs-build:
 
     name: Labs # intentionly short
@@ -114,4 +126,30 @@ jobs:
             GAME_SUPPORT: extern/game_support
         run: |
             source contrib/ci/lab_env.sh
-            python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada
+            python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada/labs
+
+  pytest:
+    name: Contrib scripts check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: actions/cache@v2
+        with:
+          path: ./cached_gnat
+          key: ${{ runner.os }}-gnat-ce-2020
+
+      - name: Get GNAT Community 2020 toolchain
+        uses: ada-actions/toolchain@ce2020
+        with:
+          distrib: community
+          install_dir: ./cached_gnat
+
+      - name: Setup Python
+        run: python3 -m pip install pytest git+https://gitlab.com/leogermond/epycs.git
+
+      - name: Run PyTest
+        run: pytest --ignore=cached_gnat
+
+      - name: Check Quizes
+        run: python3 contrib/quiz_update.py -v courses/fundamentals_of_ada/quiz/
