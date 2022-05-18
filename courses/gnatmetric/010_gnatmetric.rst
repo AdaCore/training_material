@@ -97,85 +97,250 @@ Select body file to get results for that particular file
 Line Metrics Explained
 ------------------------
 
-**Average Lines In Body**
+:dfn:`Average Lines In Body`
    Average number of code lines in subprogram bodies, task bodies, entry bodies and package body executable code
 
-**All Lines**
+:dfn:`All Lines`
    Total number of lines in file(s)
 
-**Blank Lines**
+:dfn:`Blank Lines`
    Total number of blank in file(s)
 
-**Code Lines**
+:dfn:`Code Lines`
    Total lines of code in file(s)
 
-**Comment Lines**
+:dfn:`Comment Lines`
    Total lines of comments in file(s)
 
-**Comment Percentage**
+:dfn:`Comment Percentage`
    Comment lines divided by total of code lines and comment lines
 
-**End-Of-Line Comments**
+:dfn:`End-Of-Line Comments`
    Count of code lines that also contain comments
+
+----------------------
+Line Metrics Example
+----------------------
+
+.. columns::
+
+ .. column::
+
+  .. container:: latex_environment tiny
+
+   .. code:: Ada
+      :number-lines: 1
+
+    with Ada.Text_IO; use Ada.Text_IO;
+    package body Example is
+
+       procedure Internal (C : Character) is
+       begin
+          Put (C);
+       end Internal;
+
+       -- Print the prompt
+       procedure Example (S1, S2 : String_T) is
+          S : constant String := To_String (S1 & S2);
+       begin
+          for C of S
+          loop
+             Internal (C);
+          end loop;
+          New_Line;
+       end Example;
+
+    end Example;
+
+ .. column::
+
+  .. container:: latex_environment tiny
+
+   ::
+
+     Metrics computed for src\example.adb
+     containing package body Example
+     === Code line metrics ===
+       all lines           : 20
+       code lines          : 16
+       comment lines       : 1
+       end-of-line comments: 0
+       comment percentage  : 5.88
+       blank lines         : 3
+     Average lines in body: 6.50
+
+     Example (package body - library item at lines  2: 20)
+     === Code line metrics ===
+        all lines           : 19
+        code lines          : 15
+        comment lines       : 1
+        end-of-line comments: 0
+        comment percentage  : 6.25
+        blank lines         : 3
+
+        Internal (procedure body at lines  4: 7)
+        === Code line metrics ===
+           all lines           : 4
+           code lines          : 4
+           comment lines       : 0
+           end-of-line comments: 0
+           comment percentage  : 0.00
+           blank lines         : 0
+
+        Example (procedure body at lines  10: 18)
+        === Code line metrics ===
+           all lines           : 9
+           code lines          : 9
+           comment lines       : 0
+           end-of-line comments: 0
+           comment percentage  : 0.00
+           blank lines         : 0
 
 ----------------------------------
 Syntax Element Metrics Explained
 ----------------------------------
 
-**All Declarations**
+:dfn:`All Declarations`
  Total number of objects declared
 
-**All Statements**
+:dfn:`All Statements`
  Total number of statements in file(s)
 
-**All Subprogram Bodies**
+:dfn:`All Subprogram Bodies`
  Total number of subprograms in file(s)
 
-**All Type Definitions**
+:dfn:`All Type Definitions`
  Total number of types in file(s)
 
-**Logical SLOC**
+:dfn:`Logical SLOC`
  Total of declarations plus statements
 
-**Public Subprograms**
+:dfn:`Public Subprograms`
  Count of subprograms declared in visible part of package
 
-**Public Types**
+:dfn:`Public Types`
  Count of types (not subtypes) declared in the visible part of a package plus in the visible part of a generic nested package
 
-**Maximal Construct Nesting**
+:dfn:`Maximal Construct Nesting`
  Maximal nesting level of composite syntactic constructs
 
-**Maximum Unit Nesting**
+:dfn:`Maximum Unit Nesting`
  Maximal static nesting level of inner program units
+
+--------------------------------
+Syntax Element Metrics Example
+--------------------------------
+
+.. columns::
+
+ .. column::
+
+  .. container:: latex_environment tiny
+
+   .. code:: Ada
+      :number-lines: 1
+
+    package body Strings is
+
+       function "&"
+         (L, R : String_T)
+          return String_T is
+        (From_String (To_String (L) & To_String (R)));
+
+       function To_String
+         (S : String_T)
+          return String is
+        (S.Text (1 .. S.Length));
+
+       function From_String
+         (S : String)
+          return String_T is
+          L      : constant Natural :=
+                   Integer'min (S'length, Maximum_Length);
+          Retval : String_T;
+       begin
+          Retval.Length        := L;
+          Retval.Text (1 .. L) :=
+              S (S'first .. S'first + L - 1);
+          return Retval;
+       end From_String;
+
+    end Strings;
+
+ .. column::
+
+  .. container:: latex_environment tiny
+
+   ::
+
+    Metrics computed for src\strings.adb
+    containing package body Strings
+
+    Strings (package body - library item at lines  1: 26)
+    === Element metrics ===
+       all subprogram bodies    : 1
+       all statements           : 3
+       all declarations         : 9
+       logical SLOC             : 12
+       maximal unit nesting     : 1
+       maximal construct nesting: 2
+
+       "&" (expression function at lines  3: 6)
+       === Element metrics ===
+          all statements           : 0
+          all declarations         : 2
+          logical SLOC             : 2
+          maximal construct nesting: 1
+          all parameters           : 2
+          IN parameters            : 2
+          OUT parameters           : 0
+          IN OUT parameters        : 0
+
+       To_String (expression function at lines  8: 11)
+       === Element metrics ===
+          all statements           : 0
+          all declarations         : 2
+          logical SLOC             : 2
+          maximal construct nesting: 1
+          all parameters           : 1
+          IN parameters            : 1
+          OUT parameters           : 0
+          IN OUT parameters        : 0
+
+       From_String (function body at lines  13: 24)
+       === Element metrics ===
+          all statements           : 3
+          all declarations         : 4
+          logical SLOC             : 7
+          maximal construct nesting: 1
 
 ------------------------------
 Complexity Metrics Explained
 ------------------------------
 
-**Average Complexity**
+:dfn:`Average Complexity`
     Total Cyclomatic Complexity divided by total number of subprograms
 
-**Cyclomatic Complexity**
+:dfn:`Cyclomatic Complexity`
     McCabe cyclomatic complexity (number of independent paths in the control flow graph)
 
-**Essential Complexity**
+:dfn:`Essential Complexity`
     McCabe essential complexity (cyclomatic complexity after removing blocks with single entry/exit points)
 
-**Expression Complexity**
+:dfn:`Expression Complexity`
     Complexity introduced by short-circuit control forms only
 
-**Maximum Loop Nesting**
+:dfn:`Maximum Loop Nesting`
     Maximum depth of nested loops
 
-**Statement Complexity**
+:dfn:`Statement Complexity`
     Complexity introduced by control statements only, without taking into account short-circuit forms 
 
 ---------------------------------
 Understanding McCabe Complexity
 ---------------------------------
 
-http://www.mccabe.com/pdf/mccabe-nist235r.pdf
+:url:`http://www.mccabe.com/pdf/mccabe-nist235r.pdf`
 
 + Given a control flow graph of a program
 
@@ -183,9 +348,11 @@ http://www.mccabe.com/pdf/mccabe-nist235r.pdf
   + N - number of nodes
   + P - number of connected components (exit nodes)
 
-+ The complexity is computed by:
++ The complexity *v(G)* is computed by:
 
-  + E - N + 2 * P
+.. math::
+
+  v(G) = E - N + 2 * P
 
 + Aimed a measuring the complexity of execution paths
 + Needs to be adapted for each language
@@ -216,9 +383,78 @@ McCabe Example
 
      9 edges - 7 nodes + 2 * 1 exit = complexity 4
 
-------------------------------
+----------------------------
+Complexity Metrics Example
+----------------------------
+
+.. columns::
+
+ .. column::
+
+  .. container:: latex_environment tiny
+
+   .. code:: Ada
+      :number-lines: 1
+
+    with Ada.Text_IO; use Ada.Text_IO;
+    package body Example is
+
+       procedure Internal (C : Character) is
+       begin
+          Put (C);
+       end Internal;
+
+       -- Print the prompt
+       procedure Example (S1, S2 : String_T) is
+          S : constant String := To_String (S1 & S2);
+       begin
+          for C of S
+          loop
+             Internal (C);
+          end loop;
+          New_Line;
+       end Example;
+
+    end Example;
+
+ .. column::
+
+  .. container:: latex_environment tiny
+
+   ::
+
+    Metrics computed for src\example.adb
+    containing package body Example
+    Example (package body - library item at lines  2: 20)
+
+       Internal (procedure body at lines  4: 7)
+       === Complexity metrics ===
+          statement complexity     : 1
+          expression complexity    : 0
+          cyclomatic complexity    : 1
+          essential complexity     : 1
+          maximum loop nesting     : 0
+          extra exit points        : 0
+
+       Example (procedure body at lines  10: 18)
+       === Complexity metrics ===
+          statement complexity     : 2
+          expression complexity    : 0
+          cyclomatic complexity    : 2
+          essential complexity     : 1
+          maximum loop nesting     : 1
+          extra exit points        : 0
+
+    === Average complexity metrics ===
+          statement_complexity     :  1.50
+          expression_complexity    :  0.00
+          cyclomatic_complexity    :  1.50
+          essential_complexity     :  1.00
+          max_loop_nesting         :  1.00
+
+-----------------------------
 Coupling Metrics Explained
-------------------------------
+-----------------------------
 
 + Measures dependencies between given entity and other entities in the program
 
@@ -226,33 +462,104 @@ Coupling Metrics Explained
 
 + Metrics computed:
 
-  **Object-oriented coupling**
+  :dfn:`Object-oriented coupling`
      Classes in traditional object-oriented sense
 
-  **Unit coupling**
+  :dfn:`Unit coupling`
      All units making up a program
 
-  **Control coupling**
+  :dfn:`Control coupling`
      Dependencies between unit and other units that contain subprograms
 
-------------------------------
+------------------
 Coupling Metrics
-------------------------------
+------------------
 
-+ Uses Ada's approach to definition of *class*
++ Uses Ada's approach to definition of *class*, but only for polymorphic classes:
 
   + Tagged types declared within packages
   + Interface types declared within packages
 
 + Two kinds of coupling computed
 
-  **Fan-out coupling**
-    Number of classes given class
+  :dfn:`Fan-out coupling`
+    Number of classes given class depends on
 
-  **Fan-in coupling**
+  :dfn:`Fan-in coupling`
     Number of classes that depend on given class
 
 + Package bodies and specs for *classes* are both considered when computing dependencies
+
+--------------------------
+Coupling Metrics Example
+--------------------------
+
+.. columns::
+
+ .. column::
+
+  .. container:: latex_environment tiny
+
+   .. code:: Ada
+
+    package Strings is
+       type String_T is tagged private;
+       function Length (S : String_T) return Natural;
+       function "&" (L, R : String_T) return String_T;
+       function To_String (S : String_T) return String;
+       function From_String (S : String) return String_T;
+    private
+       Maximum_Length : constant := 100;
+       subtype Index_T is Natural range 0 .. Maximum_Length;
+       type String_T is tagged record
+          Length : Index_T := 0;
+          Text   : String (1 .. Maximum_Length);
+       end record;
+    end Strings;
+
+    with Strings; use Strings;
+    package Example is
+       procedure Example (S1, S2 : String_T);
+    end Example;
+
+    with Example; use Example;
+    with Strings; use Strings;
+    procedure Main is
+       S1 : constant String_T := From_String ("Hello ");
+       S2 : constant String_T := From_String ("World");
+    begin
+       Example.Example (S1, S2);
+    end Main;
+
+ .. column::
+
+  .. container:: latex_environment tiny
+
+   ::
+
+    Coupling metrics:
+    =================
+       Unit Example (src\example.ads)
+          control fan-out coupling  : 1
+          control fan-in coupling   : 1
+          unit fan-out coupling     : 1
+          unit fan-in coupling      : 1
+
+       Unit Main (src\main.adb)
+          control fan-out coupling  : 2
+          control fan-in coupling   : 0
+          unit fan-out coupling     : 2
+          unit fan-in coupling      : 0
+
+       Unit Strings (src\strings.ads)
+          tagged fan-out coupling   : 0
+          hierarchy fan-out coupling: 0
+          tagged fan-in coupling    : 0
+          hierarchy fan-in coupling : 0
+          control fan-out coupling  : 0
+          control fan-in coupling   : 2
+          unit fan-out coupling     : 0
+          unit fan-in coupling      : 2
 
 ==============
 Command Line

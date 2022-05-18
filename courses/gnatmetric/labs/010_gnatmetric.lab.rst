@@ -10,15 +10,15 @@ GNATmetrics Lab - GNAT Studio
 
     .. container:: animate
 
-      - Underneath :ada:`Queens_Pkg` click :ada:`Test` to see metrics
-      - Code Lines is 16
+      - **Underneath** :ada:`Queens_Pkg` **click** :ada:`Test` **to see metrics**
+      - **Code Lines is 16**
 
   - Average complexity in Lab project
 
     .. container:: animate
 
-      - Click :filename:`Lab` folder icon
-      - Average Complexity is 5.3
+      - **Click** :filename:`Lab` **folder icon**
+      - **Average Complexity is 5.3**
 
 --------------------------------
 GNATmetrics Lab - Command Line
@@ -31,19 +31,19 @@ GNATmetrics Lab - Command Line
   .. container:: animate
 
     - :command:`gnatmetric -P lab.gpr`
-    - Metrics are displayed on the console
+    - **Metrics are displayed on the console**
 
-* Then, put detailed metrics into a :filename:`metrics` folder
-
-  .. container:: animate
-
-    - :command:`gnatmetric -P lab.gpr --output-dir=metrics`
-    - Metrics are displayed on the console and .metrix file is built for each source file
-
-* Next, stop outputting to the console (all the information is in :filename:`metrics`)
+* Then, put detailed metrics into a :filename:`output` folder
 
   .. container:: animate
 
-  - :command:`gnatmetric -P lab.gpr --output-dir=metrics --no-text-output`
-  - Not much displayed on the console and .metrix file is built for each source file
+    - :command:`gnatmetric -P lab.gpr --output-dir=output`
+    - **Metrics are displayed on the console and .metrix file is built for each source file**
+
+* Next, stop outputting to the console (all the information is in :filename:`output`)
+
+  .. container:: animate
+
+    - :command:`gnatmetric -P lab.gpr --output-dir=output --no-text-output`
+    - **Not much displayed on the console and .metrix file is built for each source file**
 
