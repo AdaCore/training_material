@@ -996,6 +996,13 @@ Example: LynxOS-178 for PowerPC
 
   :command:`powerpc-xcoff-lynxos178-gnattest -P simple.gpr -XRUNTIME=zfp`
 
+
+=====
+Lab
+=====
+
+.. include:: labs/010_gnattest.lab.rst
+
 =========
 Summary
 =========
