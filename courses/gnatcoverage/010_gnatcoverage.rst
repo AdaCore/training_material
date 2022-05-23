@@ -344,3 +344,78 @@ GNAT Studio "Run All Actions" Commands
     gnatcov coverage -Pgnatcov/default.gpr -c stmt+mcdc --annotate=xcov+
         --output-dir=gnatcov/obj/ -T gnatcov/obj/main.exe.srctrace
 
+---------------------------
+"Instrument" Command Line
+---------------------------
+
+:command:`gnatcov instrument --level=<> <units-of-interest> [OPTIONS]`
+
+* Arguments
+
+  .. list-table::
+
+    * - :command:`--level`
+
+      - Strictest criterion instrumentation will allow assessing afterwards
+
+    * - :command:`<units-of-interest>`
+
+      - Set of units for which such assessment will be possible
+
+* Common options
+
+  .. list-table::
+
+    * - :command:`--dump-trigger=[<trigger>]`
+
+      - When coverage data should be injected into output
+
+    * - 
+
+      - *manual* - user requests coverage data (default)
+
+    * - 
+
+      - *atexit* - termination of application
+
+    * - 
+
+      - *main-end* - end of main subprogram (skipped if exception)
+
+    * - 
+
+      - *ravenscar-task-termination* - termination of main task
+
+    * - :command:`--dump-channel=[<channel>]`
+
+      - Mechanism used to output coverage data
+
+    * -
+
+      - *bin-file* - source trace file
+
+    * -
+
+      - *base64-stdout* - base64 encoded file
+
+----------------------
+"Cover" Command Line
+----------------------
+
+:command:`gnatcov coverage --level=<> <units-of-interest> [OPTIONS]`
+
+.. container:: latex_environment tiny
+
+  .. list-table::
+
+    * - :command:`--annotate [FORM]` or :command:`-a [FORM]`
+
+      - *form* can be asm, xcov, xcov+, html, html+, dhtml, report
+
+    * - :command:`--output-dir [SUBDIR]`
+
+      - Directory to store XCOV or HTML reports
+
+    * - :command:`--trace [TRACE]` or :command:`-T [TRACE]`
+
+      - Trace file name
