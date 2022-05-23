@@ -279,3 +279,68 @@ Modified Condition/Decision Coverage Example
    * Better test results, but we need more tests
    * In general, if there are N subconditions, need N+1 sets of data to get complete MC/DC coverage
 
+=======
+Usage
+=======
+
+---------------------------
+GNAT Studio Setup Options
+---------------------------
+
+:menu:`Edit` |rightarrow| :menu:`Project Properties` |rightarrow| :menu:`GNATcov`
+
+.. image:: gnatcoverage/properties_dialog.jpg
+
+* **Run** Switches (also used for **Instrument**)
+
+  * *Coverage Level*
+
+    * Type of coverage instrumentation to apply to executable
+
+* **Coverage** Switches
+
+  * *Coverage Level*
+
+    * Type of coverage data to report
+
+* **Extra Switches**
+
+  * e.g. :command:`--units` to specify units of interest (rather than choosing project contents)
+
+---------------------------------
+Instrumentation via GNAT Studio
+---------------------------------
+
+.. image:: gnatcoverage/run_all_actions.jpg
+
+* :menu:`Analyze` |rightarrow| :menu:`Coverage` |rightarrow| :menu:`GNATcoverage Source Traces` |rightarrow| :menu:`Run All Actions` |rightarrow| :filename:`main.adb`
+
+* Same behavior as running the commands in sequence:
+
+  * :menu:`Analyze` |rightarrow| :menu:`Coverage` |rightarrow| :menu:`GNATcoverage Source Traces` |rightarrow|
+
+    * :menu:`Select prebuilt runtime`
+    * :menu:`Instrumentation` |rightarrow| :filename:`main.adb`
+    * :menu:`Build` |rightarrow| :filename:`main.adb`
+    * :menu:`Run` |rightarrow| :filename:`main.adb`
+    * :menu:`Generate Report` |rightarrow| :ada:`main`
+
+----------------------------------------
+GNAT Studio "Run All Actions" Commands
+----------------------------------------
+
+.. container:: latex_environment scriptsize
+
+  ::
+
+    gnatcov instrument -Pgnatcov/default.gpr --level stmt+mcdc
+        --dump-trigger=atexit --dump-channel=bin-file --dump-filename-simple
+
+    gprbuild -p -Pgnatcov/default.gpr --src-subdirs=gnatcov-instr
+        --implicit-with=<gnatcov_rts_dir>/gnatcov_rts_full.gpr
+
+    gnatcov/obj/main.exe
+
+    gnatcov coverage -Pgnatcov/default.gpr -c stmt+mcdc --annotate=xcov+
+        --output-dir=gnatcov/obj/ -T gnatcov/obj/main.exe.srctrace
+
