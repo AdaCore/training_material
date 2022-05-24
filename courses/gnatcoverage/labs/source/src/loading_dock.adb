@@ -9,13 +9,13 @@ package body Loading_Dock is
    package Asf renames Ada.Strings.Fixed;
 
    procedure Load_From_Manifest (Manifest : String) is
-      File : Ada.Text_Io.File_Type;
+      File : Ada.Text_IO.File_Type;
    begin
-      Ada.Text_Io.Open (File, Ada.Text_Io.In_File, Manifest);
-      while not Ada.Text_Io.End_Of_File (File)
+      Ada.Text_IO.Open (File, Ada.Text_IO.In_File, Manifest);
+      while not Ada.Text_IO.End_Of_File (File)
       loop
          declare
-            Line      : constant String := Ada.Text_Io.Get_Line (File);
+            Line      : constant String := Ada.Text_IO.Get_Line (File);
             Separator : Integer         := Asf.Index (Line, "|");
          begin
             if Separator not in Line'range
@@ -30,7 +30,10 @@ package body Loading_Dock is
                     Asf.Trim
                       (Line (Separator + 1 .. Line'last), Ada.Strings.Both);
                begin
-                  Inventory.Add (Item, Positive'value (Count));
+                  if Item'length > 0 and then Count'length > 0
+                  then
+                     Inventory.Add (Item, Positive'value (Count));
+                  end if;
                exception
                   when The_Err : others =>
                      Console.Print

@@ -497,6 +497,12 @@ Coverage View - MC/DC
   * Partially covered
   * Have not shown that :ada:`C > 0` has an independent influence
 
+=====
+Lab
+=====
+
+.. include:: labs/010_gnatcoverage.lab.rst
+
 =========
 Summary
 =========
