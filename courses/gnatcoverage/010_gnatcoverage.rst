@@ -161,9 +161,10 @@ Decision Coverage
 Modified Condition/Decision Coverage
 --------------------------------------
 
-* Decision Coverage plus :dfn:`Unique-Cause` verification
+* Decision Coverage plus *Unique-Cause* verification
 
-  * Proof that, for each subcondition, changing just the subcondition can change the expression result
+  :dfn:`Independent Influence`
+    For each subcondition, changing just the subcondition can change the expression result
 
 * Simple example: :ada:`A and then (B or else C)`
 
@@ -419,3 +420,141 @@ GNAT Studio "Run All Actions" Commands
     * - :command:`--trace [TRACE]` or :command:`-T [TRACE]`
 
       - Trace file name
+
+    * - :command:`--show-mcdc-vectors`
+
+      - If a boolean expression is not fully covered (and MC/DC coverage specified), describe what is missing
+
+=================
+Coverage Report
+=================
+
+-------------------------
+Coverage Summary Report
+-------------------------
+
+.. image:: gnatcoverage/coverage_report_summary.jpg
+
+------------------------------------
+Coverage View - Statement Coverage
+------------------------------------
+
+.. image:: gnatcoverage/coverage_view_statement.jpg
+
+* Lines 6, 8, 9 (**"+"**)
+
+  * Covered
+
+* Line 10 (**"+"**)
+
+  * Covered - we reached this line, but we don't verify True/False
+
+* Lines 12, 13 (**"-"**)
+
+  * Uncovered
+
+--------------------------
+Coverage View - Decision
+--------------------------
+
+.. image:: gnatcoverage/coverage_view_decision.jpg
+
+* Lines 20, 22 (**"+"**)
+
+  * Covered - boolean expressions evaluated to both True and False
+
+* Line 24 (**"+"**)
+
+  * Covered (statement)
+
+* Line 25 (**"!"**)
+
+  * Partially covered - either True or False branch was reached
+  * Clicking on **"!"** shows an explanation
+
+    .. image:: gnatcoverage/coverage_view_decision-expanded.jpg
+
+* Lines 27, 28, 30 (**"-"**)
+
+  * Uncovered (statement)
+
+-----------------------
+Coverage View - MC/DC
+-----------------------
+
+.. image:: gnatcoverage/coverage_view_mcdc.jpg
+
+* Line 39 (**"+"**)
+
+  * Covered - boolean expressions evaluated to both True and False **and** A and B have shown independent influence
+
+* Lines 41, 45 (**"+"**)
+
+  * Covered (statement)
+
+* Line 43 (**"!"**)
+
+  * Partially covered
+  * Have not shown that :ada:`C > 0` has an independent influence
+
+=========
+Summary
+=========
+
+--------------------------
+Coverage Is Not Testing!
+--------------------------
+
+* Coverage can show
+
+  * Lines of code executed
+  * Conditional values reached
+
+* Coverage cannot show
+
+  * Correct path was taken
+  * Calculations are correct
+  * Behavior is desired
+
+* Example
+
+  * We can show perfect coverage for the following:
+
+    .. code:: Ada
+
+      function Abs_Val ( Number : integer ) return integer is
+      begin
+        if Number <= 0 then
+          return Number;
+        else
+          return -Number;
+        end if;
+     end Abs_Val;
+
+  * But the behavior is wrong!
+
+----------
+Benefits
+----------
+
+* Coverage is a test tool to verify entire code base was evaluated
+
+  * Code could be tested via requirements testing or exhaustive testing
+
+    * Sometimes error reporting/handling code is hard to reach
+
+* Definition of "evaluated" should be based on criticality of code
+
+  * Statement coverage may be enough for low impact code (e.g writing to a console)
+  * MC/DC coverage may be necessary for safety-critical code
+
+    * If MC/DC coverage is hard, maybe rewriting conditionals is better?
+
+----------------------
+GNATcoverage Summary
+----------------------
+
+* Automatically generates coverage instrumentation using project framework
+* Coverage reports show lines and expressions as covered, uncovered, or partially covered
+
+  * For partially covered, explanations are included

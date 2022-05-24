@@ -17,13 +17,18 @@ package body Examples is
    procedure Test_Decision
      (A, B, C :     Integer;
       Z       : out Integer) is
-      Check : constant Boolean := A > 0 and then (B**2 > 0 or else C**2 > 0);
+      Check : constant Boolean := B**2 > 0 or else C**2 > 0;
    begin
       if Check
       then
          Z := A + B + C;
-      else
+      elsif A > 0
+      then
          Z := A * B * C;
+         if A = 123
+         then
+            Z := 0;
+         end if;
       end if;
    end Test_Decision;
 

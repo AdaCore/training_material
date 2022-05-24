@@ -30,6 +30,7 @@ begin
    test ( "Test_Decision False", 1, 1, integer'last, examples.Test_Decision'access );
    test ( "Test_Mcdc A > 0, B = 0", 1, 0, 0, examples.Test_Mcdc'access );
    test ( "Test_Mcdc A = 0, B > 0", 0, 1, 0, examples.Test_Mcdc'access );
-   test ( "Test_Mcdc A > 0, B > 0", 1, 1, 0, examples.Test_Mcdc'access );
+   test ( "Test_Mcdc A > 0, B > 0", 1, 1, 1, examples.Test_Mcdc'access );
+   test ( "Test_Mcdc A, B, C = -1", -1, -1, -1, examples.Test_Mcdc'access );
 
 end Main;
