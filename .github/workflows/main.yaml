@@ -26,6 +26,7 @@ jobs:
                      gnatcheck,
                      gnat_studio,
                      gnat_project_facility,
+                     gnattest,
                      codepeer,
                      static_analysis_via_compiler]
 
