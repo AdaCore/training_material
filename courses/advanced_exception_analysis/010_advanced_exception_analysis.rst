@@ -27,29 +27,100 @@ Advanced Exception Analysis
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-=============
-Call Chains
-=============
+==============
+Introduction
+==============
+
+---------------------
+Diagnosing Problems
+---------------------
+
+* In Ada, a problem (usually) results in an exception being raised
+
+* Exception handlers allow us to recover from an exception
+
+  * But not necessarily diagnose the problem
+
+* :ada:`Ada.Exceptions` can give us some information about the exception
+
+  * But only if the runtime or application provides it
+
+* GNAT provides some extra capabilities
+
+-------------
+Sample Code
+-------------
+
+* Simple code example that doesn't do anything intelligent
+
+  * Recursive calls - any one of them can cause a failure
+
+.. code:: Ada
+  :number-lines: 1
+
+  with Ada.Command_Line; use Ada.Command_Line;
+  with Ada.Text_IO;      use Ada.Text_IO;
+  procedure Main is
+     type Short_T is range -1_000 .. 1_000;
+     Input : Short_T := Short_T'value (Ada.Command_Line.Argument (1));
+     function One (Num : Short_T) return Short_T;
+
+     function Three (Num : Short_T) return Short_T is
+       (if Num < Short_T'last then One (Num + 300) else Num);
+     function Two (Num : Short_T) return Short_T is
+       (if Num < Short_T'last then Three (Num + 200) else Num);
+     function One (Num : Short_T) return Short_T is
+       (if Num < Short_T'last then Two (Num + 100) else Num);
+
+  begin
+     Put_Line (Input'image & " => " & Short_T'image (Three (Input)));
+  end Main;
+
+=============================
+Exceptions Without Handlers
+=============================
+
+------------------------------
+Typical Exception Occurrence
+------------------------------
+
+* What happens when an exception is propagated out of :ada:`main`?
+
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
+    :number-lines: 3
+
+    procedure Main is
+       type Short_T is range -1_000 .. 1_000;
+       Input : Short_T := Short_T'value (Ada.Command_Line.Argument (1));
+
+::
+
+  obj\main.exe
+
+.. container:: animate
+
+    raised CONSTRAINT_ERROR : a-comlin.adb:61 explicit raise
+
+  No argument on the command line caused the exception
 
 ------------
 Call Chain
 ------------
 
-+ A sequence of addresses corresponding to places in the code, also known as stack tracebacks
-+ GNAT provides access to call chains
+* Sequence of addresses corresponding to code locations
 
-  + Associated with exceptions
-  + At arbitrary point in code
-  + No runtime performance penalty when enabled
+  * also known as stack tracebacks
 
-+ Can be symbolized (converted to SLOC positions)
+* GNAT provides access to call chains
 
-  + At runtime
-  + Off-line
+  * Associated with exceptions
+  * No runtime performance penalty when enabled
 
-+ Subject to platform and runtime limitations
+* Subject to platform and runtime limitations
 
-  + Some features may not be available...
+  * Some features may not be available...
 
 --------------------------------------
 Call Chains on Exception Occurrences
@@ -61,437 +132,239 @@ Call Chains on Exception Occurrences
   + Using :command:`-Es` instead will output symbolic backtraces
 
 + Will be printed on an unhandled exception
-+ Package :ada:`Ada.Exceptions.Traceback` can be used to see information within Ada program
-+ Function :ada:`Ada.Exceptions.Exception_Information` returns a string that includes traceback
+
+.. image:: advanced_exception_analysis/properties_dialog.jpg
 
 --------------------------------------
-Call Chains on Exceptions: Example 1
+Exception Occurrence with Call Chain
 --------------------------------------
 
-.. columns:: 
+Using :command:`-E`
 
-  .. column::
+.. container:: latex_environment tiny
 
-    .. container:: latex_environment tiny
+  ::
 
-      *Example Code*
+    obj\main.exe
 
-      .. code:: Ada
+    Execution of obj\main.exe terminated by unhandled exception
+    raised CONSTRAINT_ERROR : a-comlin.adb:61 explicit raise
+    Load address: 0x7ff76a030000
+    Call stack traceback locations:
+    0x7ff76a032223 0x7ff76a031737 0x7ff76a032076 0x7ff76a031423
+        0x7ff76a03113b 0x7ffedfa37032 0x7ffedffc264f
 
-         with Ada.Exceptions.Traceback;
-         use  Ada.Exceptions.Traceback;
-         with GNAT.Debug_Utilities;
-         with Text_IO; use Text_IO;
+Using :command:`-Es`
 
-         procedure Raise_CE is
-            procedure Inner_Raise is
-            begin
-               raise Constraint_Error;
-            end;
-         begin
-            Inner_Raise;
-         exception
-            when E : others =>
-               declare
-                  A : Tracebacks_Array := Tracebacks (E);
-               begin
-                  for Addr of A loop
-                     Put (GNAT.Debug_Utilities.Image
-                           (Addr) & " ");
-                  end loop;
-                  raise;
-               end;
-         end;
+.. container:: latex_environment tiny
 
-  .. column::
+  ::
 
-    .. container:: latex_environment tiny
+    obj\main.exe
 
-      *Sample Execution*
+    raised CONSTRAINT_ERROR : a-comlin.adb:61 explicit raise
+    [C:\temp\advanced_exception_analysis\obj\main.exe]
+    0x7ff7ece72233 ada__command_line__argument at ???
+    0x7ff7ece71737 _ada_main at ???
+    0x7ff7ece72082 main at ???
+    0x7ff7ece71423 __tmainCRTStartup at ???
+    0x7ff7ece7113b mainCRTStartup at ???
+    [C:\Windows\System32\KERNEL32.DLL]
+    0x7ffedfa37032
+    [C:\Windows\SYSTEM32\ntdll.dll]
+    0x7ffedffc264f
 
-      :command:`gnatmake raise_ce -bargs -E`
+=======================================
+Information Within Exception Handlers
+=======================================
 
-      ``gcc -c raise_ce.adb``
+----------------
+Ada.Exceptions
+----------------
 
-      ``gnatbind -E -x raise_ce.ali``
+* :ada:`Ada.Exceptions` provides information about exception occurrence
 
-      ``gnatlink raise_ce.ali``
+  * :ada:`Exception_Information` provides whatever runtime has available
+  * What is available depends on binder switches
 
-      :command:`./raise_ce`
+.. container:: latex_environment footnotesize
 
-      ``16#0040_179C# 16#0040_17B2# 16#0040_176B# 16#0040_10B9# 16#0040_12A6# 16#7625_3398# 16#76F5_9EF0# 16#76F5_9EC3# ``
+  .. code:: Ada
+    :number-lines: 1
 
-      ``Execution terminated by unhandled exception``
+    with Ada.Command_Line; use Ada.Command_Line;
+    with Ada.Exceptions;   use Ada.Exceptions;
+    with Ada.Text_IO;      use Ada.Text_IO;
+    procedure Main_Exceptions is
+    ...
 
-      ``Exception name: CONSTRAINT_ERROR``
+  .. code:: Ada
+    :number-lines: 17
 
-      ``Message: raise_ce.adb:8 explicit raise``
+    ...
+      Put_Line (Input'image & " => " & Short_T'image (Three (Input)));
+    exception
+       when The_Err : others =>
+          Put_Line ("FAILED: " & Exception_Information (The_Err));
+    end Main_Exceptions;
 
-      ``Call stack traceback locations:``
+---------------------------------
+Available Exception Information
+---------------------------------
 
-      ``0x40179c 0x4017b2 0x40176b 0x4010b9 0x4012a6 0x76253398 0x76f59ef0 0x76f59ec3``
+* No binder switches
 
-.. container:: speakernote
+  ::
 
-   Note the reraise causing the unhandled exception to ultimately output a second message.
+    obj\main_exceptions.exe foo
+    FAILED: raised CONSTRAINT_ERROR : bad input for 'Value: "foo"
 
---------------------------------------
-Call Chains on Exceptions: Example 2
---------------------------------------
+* Using :command:`-E`
 
-.. columns:: 
+  ::
 
-  .. column::
+    obj\main.exe foo
 
-    .. container:: latex_environment tiny
+    FAILED: raised CONSTRAINT_ERROR : bad input for 'Value: "foo"
+    Load address: 0x7ff7ad110000
+    Call stack traceback locations:
+    0x7ff7ad1325ad 0x7ff7ad131689 0x7ff7ad131744 0x7ff7ad11175a
+        0x7ff7ad112236 0x7ff7ad111423 0x7ff7ad11113b 0x7ffedfa37032 0x7ffedffc264f
 
-      *Example Code*
+* Using :command:`-Es`
 
-      .. code:: Ada
+  ::
 
-         with Ada.Exceptions; use Ada.Exceptions;
-         with Ada.Text_IO;    use Ada.Text_IO;
+    obj\main.exe foo
 
-         procedure Exceptions is
-
-            procedure Recurse (Count : Integer) is
-            begin
-               if Count <= 0 then
-                  raise Constraint_Error;
-               else
-                  Recurse (Count - 1);
-               end if;
-            end Recurse;
-
-         begin
-            Recurse (10);
-         exception
-            when E : others =>
-               Put_Line (Exception_Information (E));
-            raise;
-         end Exceptions;
-
-  .. column::
-
-    .. container:: latex_environment tiny
-
-      *Sample Execution*
-
-      :command:`gnatmake exceptions.adb -bargs -E`
-
-      ``gcc -c exceptions.adb``
-
-      ``gnatbind -E -x exceptions.ali``
-
-      ``gnatlink exceptions.ali``
-
-      :command:`./exceptions`
-
-      ``raised CONSTRAINT_ERROR : exceptions.adb:9 explicit raise``
-
-      ``Call stack traceback locations:``
-
-      ``0x402e47 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e9d 0x402ddf 0x7f9504003b43 0x402945 0xfffffffffffffffe``
-
-      ``Execution of ./exceptions terminated by unhandled exception``
-
-      ``raised CONSTRAINT_ERROR : exceptions.adb:9 explicit raise``
-
-      ``Call stack traceback locations:``
-
-      ``0x402e47 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e6f 0x402e9b 0x402ddf 0x7fbe5ada6b43 0x402945 0xfffffffffffffffe``
-
---------------------------------------
-Call Chains on Exceptions: Example 3
---------------------------------------
-
-.. columns:: 
-
-  .. column::
-
-    .. container:: latex_environment tiny
-
-      *Example Code*
-
-      .. code:: Ada
-
-         with Ada.Exceptions; use Ada.Exceptions;
-         with Ada.Text_IO;    use Ada.Text_IO;
-
-         procedure Exceptions is
-
-            procedure Recurse (Count : Integer) is
-            begin
-               if Count <= 0 then
-                  raise Constraint_Error;
-               else
-                  Recurse (Count - 1);
-               end if;
-            end Recurse;
-
-         begin
-            Recurse (10);
-         exception
-            when E : others =>
-               Put_Line (Exception_Information (E));
-            raise;
-         end Exceptions;
-
-  .. column::
-
-    .. container:: latex_environment tiny
-
-      *Sample Execution*
-
-      :command:`gnatmake -f exceptions.adb -bargs -Es`
-
-      ``gcc -c exceptions.adb``
-
-      ``gnatbind -Es -x exceptions.ali``
-
-      ``gnatlink exceptions.ali``
-
-      :command:`./exceptions`
-
-      ``raised CONSTRAINT_ERROR : exceptions.adb:9 explicit raise``
-
-      ``[./exceptions]``
-
-      ``0x402e51 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402ea5 _ada_exceptions at ???``
-
-      ``0x402de9 main at ???``
-
-      ``[/lib/x86_64-linux-gnu/libc.so.6]``
-
-      ``0x7f13579b9b43``
-
-      ``[./exceptions]``
-
-      ``0x402945 at ???``
-
-      ``0xfffffffffffffffe``
-
-      ``raised CONSTRAINT_ERROR : exceptions.adb:9 explicit raise``
-
-      ``[./exceptions]``
-
-      ``0x402e51 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402e79 exceptions__recurse.4201 at ???``
-
-      ``0x402ea5 _ada_exceptions at ???``
-
-      ``0x402de9 main at ???``
-
-      ``[/lib/x86_64-linux-gnu/libc.so.6]``
-
-      ``0x7f13579b9b43``
-
-      ``[./exceptions]``
-
-      ``0x402945 at ???``
-
-      ``0xfffffffffffffffe``
+    FAILED: raised CONSTRAINT_ERROR : bad input for 'Value: "foo"
+    [C:\temp\advanced_exception_analysis\obj\main_exceptions.exe]
+    0x7ff657b525bd ada__finalization___assign__3 at ???
+    0x7ff657b51699 ada__finalization___assign__3 at ???
+    0x7ff657b51754 ada__finalization___assign__3 at ???
+    0x7ff657b3175a _ada_main_exceptions at ???
+    0x7ff657b32242 main at ???
+    0x7ff657b31423 __tmainCRTStartup at ???
+    0x7ff657b3113b mainCRTStartup at ???
+    [C:\Windows\System32\KERNEL32.DLL]
+    0x7ffedfa37032
+    [C:\Windows\SYSTEM32\ntdll.dll]
+    0x7ffedffc264f
 
 ============
 Tracebacks
 ============
 
--------------------------------------------------
-Call Chains on Arbitrary Locations in a Program
--------------------------------------------------
+--------------------------
+Examining the Call Stack
+--------------------------
 
-+ Package :ada:`GNAT.Traceback`
+* Need :command:`-E` (or :command:`-Es`) in binder switches for traceback information
+* Need :command:`-g` in binder *and compiler* switches for symbol information
 
-  + Returns call chain rooted at the point of call
+* Package :ada:`Ada.Exceptions.Traceback`
 
-.. container:: latex_environment scriptsize
+  * Subprogram :ada:`Tracebacks` takes :ada:`Exception_Occurrence` as input and returns call stack (as :ada:`Tracebacks_Array`)
 
-   .. code:: Ada
+* Package :ada:`GNAT.Traceback`
 
-      package GNAT.Traceback is
-         ...
-         procedure Call_Chain (Traceback : out Tracebacks_Array;
-                               Len : out Natural);
-         ...
-      end GNAT.Traceback;
+  * Subprogram :ada:`Call_Chain` returns :ada:`Tracebacks_Array` from current location
 
-----------------------------
-Symbolizing Tracebacks (1)
-----------------------------
+    * Function or procedure call
 
-+ Package :ada:`GNAT.Traceback.Symbolic`
+  * Does not need to be called from exception handler
 
-  + Returns symbolic representation of a given call chain
+* Package :ada:`GNAT.Traceback.Symbolic`
 
-.. container:: latex_environment scriptsize
+  * Subprogram :ada:`Symbolic_Traceback` returns call stack using source references (rather than addresses)
+  * Overloaded functions to accept either :ada:`Exception_Occurrence` or :ada:`Tracebacks_Array`
 
-   .. code:: Ada
+--------------------------
+Ada.Exceptions.Traceback
+--------------------------
 
-      package GNAT.Traceback.Symbolic is
-         ...
-         function Symbolic_Traceback (T : Tracebacks_Array) return String;
-         function Symbolic_Traceback (E : Exception_Occurrence) return String;
-         ...
-      end GNAT.Traceback;
+.. code:: Ada
+  :number-lines: 2
 
-+ Some important limitations
+    with Ada.Exceptions;           use Ada.Exceptions;
+    with Ada.Exceptions.Traceback; use Ada.Exceptions.Traceback;
+    with GNAT.Debug_Utilities;     use GNAT.Debug_Utilities;
+    with Ada.Text_IO;              use Ada.Text_IO;
+    procedure Main_Tracebacks is
+    ...
 
-  + Native only
-  + No shared libraries support
-  + Application must be compiled *and deployed* with :command:`-g`
+.. code:: Ada
+  :number-lines: 19
 
-----------------------------
-Symbolizing Tracebacks (2)
-----------------------------
+  ...
+     Put_Line (Input'image & " => " & Short_T'image (Three (Input)));
+  exception
+     when The_Err : others =>
+        declare
+           A : Tracebacks_Array := Tracebacks (The_Err);
+        begin
+           Put_Line ("FAILED: " & Exception_Name (The_Err) & " at: ");
+           for Addr of A
+           loop
+              Put_Line ("   " & GNAT.Debug_Utilities.Image (Addr) & " ");
+           end loop;
+        end;
 
-+ Alternative method: save non-symbolic tracebacks and symbolize later
-+ Deployed application doesn't need to have debug info
+* Results
 
-  + Compiled with :command:`-g` for analysis and without :command:`-g` for deployment (or, stripped of debug info for deployment)
-  + Limitation: analyzed executable must match deployed executable
+  ::
 
-+ Tracebacks displayed with :toolname:`addr2line` tool
+    obj\main_tracebacks 30
+    FAILED: CONSTRAINT_ERROR at:
+       16#0000_7FF7_B576_1F47#
+       16#0000_7FF7_B576_1FAD#
+       16#0000_7FF7_B576_2009#
+       16#0000_7FF7_B576_1F52#
+       16#0000_7FF7_B576_1FAD#
+       16#0000_7FF7_B576_1814#
+       16#0000_7FF7_B576_259E#
+       16#0000_7FF7_B576_1423#
+       16#0000_7FF7_B576_113B#
+       16#0000_7FFE_DFA3_7032#
+       16#0000_7FFE_DFFC_264F#
 
-   :command:`addr2line -e ./raise_ce.exe 0x40179c 0x4017b2 0x40176b` *(as reported at run time)*
+----------------
+GNAT.Traceback
+----------------
 
-   ``.../raise_ce.adb:8``
+.. code:: Ada
+  :number-lines: 3
 
-   ``.../raise_ce.adb:11``
+  with GNAT.Traceback;          use GNAT.Traceback;
+  with GNAT.Traceback.Symbolic; use GNAT.Traceback.Symbolic;
+  with Ada.Text_IO;             use Ada.Text_IO;
+  procedure Main_Symbolic is
+  ...
 
-   ``.../b~raise_ce.adb:256``
+.. code:: Ada
+  :number-lines: 20
 
-----------------------------
-Symbolizing Tracebacks (3)
-----------------------------
+  ...
+  function One (Num : Short_T) return Short_T is
+  begin
+    Put_Line ("ONE: " &
+              GNAT.Traceback.Symbolic.Symbolic_Traceback
+               (GNAT.Traceback.Call_Chain (10)));
+    if Num < Short_T'last then
+      return Two (Num + 100);
+    else
+      return Num;
+    end if;
+  end One;
+  ...
 
-+ :toolname:`vxaddr2line` :math:`\rightarrow` for VxWorks ports
+.. code:: Ada
+  :number-lines: 34
 
-  + On :toolname:`VxWorks`, the addresses used in the module are different from the ones used within the target memory address space
-  + Need to also provide address of :ada:`adainit` to compute displacements
+  ...
+  exception
+     when The_Err : others =>
+        Put_Line ("FAILED: " & Exception_Name (The_Err) & " at: ");
+        Put_Line (GNAT.Traceback.Symbolic.Symbolic_Traceback (The_Err));
 
-  + Execution
-
-    :command:`-> ld < ce`
-
-    ``Loading /ce |``
-
-    ``value = 591824 = 0x907d0``
-
-    :command:`-> sp ce`
-
-    ``task spawned: id = 1b8aae0, name = s2u0``
-
-    ``value = 28879584 = 0x1b8aae0``
-
-    ``->``
-
-    ``Execution terminated by unhandled exception``
-
-    ``Exception name: CONSTRAINT_ERROR Message: ce.adb:6``
-
-    ``Call stack traceback locations: 0x3b8394 0x3b83e0 0x3b8420 0x3b8458 0x3b82f0 0x19a184``
-
-    :command:`-> lkup "adainit"`
-
-    ``adainit 0x003b81d0 text (ce.exe)``
-
-    ``value = 0 = 0x0``
-
-  + Check result
-
-    :command:`powerpc-wrs-vxworks-vxaddr2line ce 0x003b81d0 0x3b8394 ...`
-
-    ``000001C0 at .../ce.adb:6``
-
-    ``0000020C at .../ce.adb:12``
-
-    ``0000024C at .../ce.adb:18``
-
-    ``00000284 at .../ce.adb:21``
-
-    ``0000011C at .../b~ce.adb:88``
-
----------------------------------------------
-Instrumenting Exceptions : Exception Traces
----------------------------------------------
-
-+ :ada:`GNAT.Exception_Traces`
-
-  + Automatic output of exception information to stdout
-  + Can be turned on and off
-
-    + For every raise
-    + For unhandled raise
-
-  + Can be customized with an arbitrary decorator (callback)
-
-.. container:: latex_environment scriptsize
-
-   .. code:: Ada
-
-      -- Careful, this call is resource-intensive!
-      Set_Trace_Decorator (GNAT.Traceback.Symbolic.Symbolic_Traceback);
-      Trace_On (Unhandled_Raise);
-
-----------------------------------------------
-Instrumenting Exceptions : Exception Actions
-----------------------------------------------
-
-+ :ada:`GNAT.Exception_Actions`
-
-  + Even more flexible
-  + Register arbitrary callbacks
-
-    + For all exceptions
-    + For a specific exception
-
-  + Callback is called before any unwinding
-  + Also contains routine to dump core
-
-.. container:: latex_environment scriptsize
-
-   .. code:: Ada
-
-      Register_Id_Action (Constraint_Error'Identity, Core_Dump'Access);
 
