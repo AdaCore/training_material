@@ -367,4 +367,81 @@ GNAT.Traceback
         Put_Line ("FAILED: " & Exception_Name (The_Err) & " at: ");
         Put_Line (GNAT.Traceback.Symbolic.Symbolic_Traceback (The_Err));
 
+=================
+Advanced Topics
+=================
 
+-------------------------------
+Controlling Exception Tracing
+-------------------------------
+
+* :ada:`GNAT.Exception_Traces`
+
+  * Automatic output of exception information to stdout
+  * Can be turned on and off
+
+    * For every raise
+    * For unhandled raise
+
+  * Can be customized with an arbitrary decorator (callback)
+  * Occurs at raise
+
+    * In the runtime, not in user code
+
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
+
+    -- Set the decorator (function that returns a string from a
+    -- traceback array) that will get called when an exception occurs
+    GNAT.Exception_Traces.Set_Trace_Decorator (
+        GNAT.Traceback.Symbolic.Symbolic_Traceback);
+    -- Turn on automatic exception information for
+    -- any unhandled exception
+    GNAT.Exception_Traces.Trace_On (GNAT.Exception_Traces.Unhandled_Raise);
+
+* For more information, see documentation in :ada:`GNAT.Exception_Traces`
+
+-------------------------------
+Controlling Exception Actions
+-------------------------------
+
+* :ada:`GNAT.Exception_Actions`
+
+  * Even more flexible
+  * Register arbitrary callbacks
+
+    * For all (global) exceptions
+    * For a specific exception
+
+  * Callback is called before any unwinding
+  * Also contains routine to dump core
+
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
+
+    -- On Constraint Error, call Core_Dump
+    GNAT.Exception_Actions.Register_Id_Action (
+      Constraint_Error'Identity,
+      GNAT.Exception_Actions.Core_Dump'Access );
+
+* For more information, see documentation in :ada:`GNAT.Exception_Actions`
+
+=========
+Summary
+=========
+
+---------
+Summary
+---------
+
+* Exception packages typically used during development, not deployment
+
+  * Useful information during testing
+  * Expensive overhead in practice
+
+* Symbolic information most useful
+
+  * But increases size of application
+  
