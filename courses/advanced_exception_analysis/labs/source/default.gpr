@@ -1,0 +1,10 @@
+project Default is
+    for Source_Dirs use ("src");
+    for Object_Dir use "obj";
+    for Main use ("main.adb");
+    package Compiler is
+       for Switches("Ada") use ("-g");
+    end Compiler;
+    package Binder is
+    end Binder
+end Default;

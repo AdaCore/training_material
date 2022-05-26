@@ -428,6 +428,12 @@ Controlling Exception Actions
 
 * For more information, see documentation in :ada:`GNAT.Exception_Actions`
 
+=====
+Lab
+=====
+
+.. include:: labs/010_advanced_exception_analysis.lab.rst
+
 =========
 Summary
 =========
@@ -444,4 +450,3 @@ Summary
 * Symbolic information most useful
 
   * But increases size of application
-  
