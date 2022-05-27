@@ -1,0 +1,17 @@
+groceries|apples|11|12.34
+clothing|shirt|1|33
+home_goods|toaster|2|$39
+sporting_goods|fishing rod|1|199
+clothes|pants|2|11
+furniture|chair|1|23
+groceries|bread|2|34.56
+home_goods|towels|3|45
+groceries|meat|45|678
+clothing|shoes|5|67
+home_goods|pot|6|78
+furniture|sofa|1|23
+groceries|seafood|2|34.56
+home_goods|blankets|3|45
+groceries|ice cream|45|678
+clothing|hat|5|67
+home_goods|ladle|6|78
