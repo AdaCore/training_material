@@ -1,0 +1,3 @@
+Planes | 3
+Trains | 22
+Automobiles | 111

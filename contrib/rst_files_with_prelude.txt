@@ -2,5 +2,6 @@ courses/fundamentals_of_ada/*.rst
 courses/gnatcheck/*.rst
 courses/codepeer/*.rst
 courses/static_analysis_via_compiler/*.rst
+courses/gnattest/*.rst
 courses/gnat_project_facility/*.rst
 courses/gnatcoverage/*.rst
