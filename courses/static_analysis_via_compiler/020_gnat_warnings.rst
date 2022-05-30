@@ -463,8 +463,4 @@ Pragma Warnings Usage Examples
 Lab
 =====
 
------
-TBD
------
-
-   TBD
+.. include:: labs/020_gnat_warnings.lab.rst
