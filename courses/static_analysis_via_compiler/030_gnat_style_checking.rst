@@ -377,8 +377,4 @@ Dialog Pop-Ups Explain Style Options
 Lab
 =====
 
------
-TBD
------
-
-   TBD
+.. include:: labs/030_gnat_style_checking.lab.rst
