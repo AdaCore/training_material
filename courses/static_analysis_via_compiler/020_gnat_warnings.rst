@@ -316,7 +316,7 @@ Highly Optional Warnings Enabled By -gnatw.e
 + Overridden size clauses
 + Tracking of deleted conditional code
 + Unordered enumeration types
-+ Warnings Off pragmss (flags unnecessary pragmas)
++ Warnings Off pragmas (flags unnecessary pragmas)
 + Activate information messages for why package needs a body
 
 -----------------------------------------
