@@ -134,7 +134,7 @@ Anonymous Access Types
 
 * Can be declared in several places
 
-    + Are **pool-specific**
+    + Are **general**
 
 * Make sense as parameters of a primitive
 * Else, raises a fundamental issue
