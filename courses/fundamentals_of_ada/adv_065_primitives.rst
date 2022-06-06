@@ -133,9 +133,9 @@ Implicit Primitive Operations
          V1 := V1 + V2;
       end Main;
 
----------------------------
-Recap. on type derivation
----------------------------
+-------------------------
+Type derivation: Review
+-------------------------
 
 * For all types
 
@@ -148,7 +148,7 @@ Recap. on type derivation
         - Comparison operators
         - Equality except if :ada:`limited`
 
-* Derived type that are **not** :ada:`tagged`
+* Derived types that are **not** :ada:`tagged`
 
     + Are **not** OOP
     + Can remove a primitive
@@ -242,9 +242,9 @@ Primitive of Multiple Types
     procedure P1_Correct (V1 : Root1; V2 : Root1);
     procedure P2_Incorrect (V1 : Root1; V2 : Root2); -- FAIL
 
-------------------------------
-Recap. on tagged inheritance
-------------------------------
+----------------------------
+Tagged inheritance: Review
+----------------------------
 
 * :ada:`tagged` types are Ada's OOP
 * They can
