@@ -284,22 +284,21 @@ Introduction to Accessibility Checks (1/2)
 
       package body P is
          --  Library level, depth 0
+         O0 : aliased Integer;
          procedure Proc is
             --  Library level subprogram, depth 1
+            type Acc1 is access all Integer;
             procedure Nested is
                -- Nested subprogram, enclosing + 1, here 2
-            begin
-                null;
-            end Nested;
-         begin
-            null;
-         end Proc;
-      end P;
+               O2 : aliased Integer;
 
-* Access types can access objects of the **same or lower** depth
+* Access **types** can only access **objects** with a depth **equal or higher**
+* :ada:`type Acc1` (depth 1) can access :ada:`O2` (depth 2) but not `O0` (depth 0)
 * The compiler checks it statically
 
    - Removing checks is a workaround!
+
+* Note: Subprogram library units are at **depth 1** and not 0
 
 --------------------------------------------
 Introduction to Accessibility Checks (2/2)
