@@ -31,10 +31,6 @@ Advanced Primitives
 Primitives
 ============
 
--------------
-Inheritance
--------------
-
 --------------
 Freeze Point
 --------------
@@ -58,11 +54,41 @@ Freeze Point
    V : Child; --  freeze child
    procedure Prim3 (V : Child); -- Not a primitive
 
-----------------------
-What is type freeze?
-----------------------
+-------------------
+Debug type freeze
+-------------------
 
-* :command:`-gnatDG`
+* Freeze |rightarrow| Type **completely** defined
+* Compiler do **need** that point
+
+    - To instantiate, derive, get info on the type (:ada:`'Size`)...
+    - Freeze rules are a guide to place it
+    - Actual choice is more technical
+
+        + May contradict the standard
+
+* :command:`-gnatDG` to get **expanded** source
+
+    - **Pseudo-Ada** debug information
+
+:filename:`pkg.ads`
+
+.. code:: Ada
+
+    type Up_To_Eleven is range 0 .. 11;
+
+:filename:`<obj>/pkg.ads.dg`
+
+.. code:: Ada
+
+    -- type declaration
+    type pkg__up_to_eleven is range 0 .. 11;
+    -- representation
+    [type pkg__Tup_to_elevenB is new short_short_integer]
+    -- freeze representation
+    freeze pkg__Tup_to_elevenB []
+    -- freeze type
+    freeze pkg__up_to_eleven []
 
 =================
 Type Derivation
