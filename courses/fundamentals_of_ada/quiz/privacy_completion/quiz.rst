@@ -8,3 +8,10 @@ A. :answermono:`type T is tagged null record`
 B. ``type T is limited null record``
 C. :answermono:`type T is array (1 .. 10) of Integer`
 D. ``type T is abstract tagged null record``
+
+.. container:: animate
+
+    A. Can declare supplementary capability
+    B. Cannot add further constraint
+    C. Note: an unconstrained `range <>` would be incorrect
+    D. Abstract is a constraint
