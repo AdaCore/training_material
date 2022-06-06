@@ -5,14 +5,26 @@ procedure Main is
       type T is private;
 
    private
-      --$ line cut
+      --$ begin cut
       type T is tagged null record;
-      --$ line cut
+      -- Can declare supplementary capability
+      --$ end cut
+
+      --$ begin cut
       type T is limited null record;
-      --$ line cut
+      -- Cannot add further constraint
+      --$ end cut
+
+      --$ begin cut
       type T is array (1 .. 10) of Integer;
-      --$ line cut
+      -- Note: an unconstrained `range <>` would be incorrect
+      --$ end cut
+
+      --$ begin cut
       type T is abstract tagged null record;
+      -- Abstract is a constraint
+      --$ end cut
+
    end Pkg;
 begin
    null;

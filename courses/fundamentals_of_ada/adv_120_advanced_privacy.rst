@@ -402,7 +402,7 @@ Private Children And :ada:`with`
       type T is range 1 .. 10;
    end Root.Child1;
 
-* Public package cannot :ada:`with` a private package
+* Public package spec cannot :ada:`with` a private package
 
    .. code:: Ada
 
