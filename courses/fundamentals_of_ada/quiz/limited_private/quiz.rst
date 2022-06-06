@@ -4,6 +4,7 @@
        type Priv is private;
     private
        type Lim is limited null record;
+       -- Complete Here
     end P;
 
 Which of the following piece(s) of code is(are) legal?

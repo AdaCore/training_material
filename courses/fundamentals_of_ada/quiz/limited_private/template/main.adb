@@ -5,6 +5,7 @@ procedure Main is
       type Priv is private;
    private
       type Lim is limited null record;
+      -- Complete Here
    --$ end question
       
       --$ begin cut
