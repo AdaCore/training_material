@@ -465,7 +465,7 @@ D. Runtime error
 
 .. container:: animate
 
-   The aggregate should be written as :ada:`(A => 1, others => <>)`
+   The aggregate is incomplete. The aggregate must specify all components, you could use box notation :ada:`(A => 1, others => <>)`
 
 ------
 Quiz
