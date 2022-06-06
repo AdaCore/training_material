@@ -148,9 +148,31 @@ Tagged
          type T3 is new T2 with null record;
       end P;
 
-* Primitives can be either public or private
+--------------------
+Private Primitives
+--------------------
 
-    + Except when they **have** to be derived (constructor functions or abstract subprograms)
+* Primitives can be either public or private
+* Privacy is **orthogonal** with type hierarchy
+
+    - Derived types **may not** have access to private primitives
+    - Child packages **can** access private part
+
+        + and call the private primitive directly
+
+* A primitive that has to be derived **must** be public
+
+    - Abstract, constructor...
+
+.. code:: Ada
+
+    package P is
+        type T is private;
+        procedure Execute (Obj : T) is abstract; -- abstract must be public
+        function Make return T; -- constructor must be public
+    private
+        procedure Internal_Reset (Obj : T); -- can be private
+    end package P;
 
 ------------------
 Tagged Extension
