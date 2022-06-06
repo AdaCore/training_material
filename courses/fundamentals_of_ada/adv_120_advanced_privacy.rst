@@ -358,9 +358,9 @@ Importing a Private Child
 ---------------------------
 
 * A :ada:`private package` can view its **parent** :ada:`private` part
-* View on a private package is restricted
+* A private package's usage (*view*) is
 
-   + To the *Private descendents of their parent*
+   + Restricted to the *Private descendents of their parent*
    + Visible from parent's :ada:`body`
    + Visible from public sibling's :ada:`private` section, and :ada:`body`
    + Visible from private siblings (public, :ada:`private`, :ada:`body`)
