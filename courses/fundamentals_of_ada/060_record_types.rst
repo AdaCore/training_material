@@ -444,7 +444,7 @@ Aggregates with `others`
 Quiz
 ------
 
-What is the result of running this code?
+What is the result of building and running this code?
 
 .. code:: Ada
 
@@ -471,7 +471,7 @@ D. Runtime error
 Quiz
 ------
 
-What is the result of running this code?
+What is the result of building and running this code?
 
 .. code:: Ada
 
@@ -500,7 +500,7 @@ D. Runtime error
 Quiz
 ------
 
-What is the result of running this code?
+What is the result of building and running this code?
 
 .. code:: Ada
 
@@ -529,7 +529,7 @@ D. Runtime error
 Quiz
 ------
 
-What is the result of running this code?
+What is the result of building and running this code?
 
 .. code:: Ada
 
