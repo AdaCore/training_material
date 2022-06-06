@@ -147,26 +147,6 @@ Quiz
 
     type Cell is record
        Val : Integer;
-       Next : Cell;
-    end record;
-
-Is the definition legal?
-
-A. Yes
-B. :answer:`No`
-
-.. container:: animate
-
-    A :ada:`record` definition cannot be recursive, here :ada:`type Cell` references itself
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-    type Cell is record
-       Val : Integer;
        Message : String;
     end record;
 
