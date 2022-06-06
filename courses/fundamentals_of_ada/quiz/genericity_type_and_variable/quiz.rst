@@ -12,6 +12,8 @@
        Y : E;
        Z : F;
 
+Which of the following piece(s) of code is(are) legal?
+
 A. :answermono:`procedure P is new G_P (I, X)`
 B. :answermono:`procedure P is new G_P (E, Y)`
 C. ``procedure P is new G_P (I, E'Pos (Y))``

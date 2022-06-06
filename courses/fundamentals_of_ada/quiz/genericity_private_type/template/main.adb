@@ -1,4 +1,4 @@
--- Which of the following statement(s) is(are) valid for P's body?
+-- Which of the following statement(s) is(are) valid for ``G_P``'s body?
 procedure Main is
    --$ begin question
    generic

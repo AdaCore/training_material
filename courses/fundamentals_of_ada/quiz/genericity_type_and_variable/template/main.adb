@@ -1,3 +1,5 @@
+-- Which of the following piece(s) of code is(are) legal?
+
 procedure Main is
    --$ begin question
    generic
