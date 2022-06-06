@@ -15,7 +15,7 @@ D. :answermono:`procedure Proc (V : T2) is null`
 
 .. container:: animate
 
-    A. Not compiling: declared after T1 is frozen
+    A. Declared in the scope of T1, **after** T1 is frozen: illegal for :ada:`tagged` types
     B. Correct, but not a primitive
     C. :ada:`T1'Class` contains :ada:`T2'Class`
     D. Proc is a primitive of T2 **only**
