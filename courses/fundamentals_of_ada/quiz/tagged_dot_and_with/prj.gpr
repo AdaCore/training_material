@@ -8,6 +8,5 @@ project Prj is
    end Compiler;
 
    package Builder is
-
    end Builder;
 end Prj;
