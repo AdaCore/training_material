@@ -32,7 +32,10 @@ if __name__ == "__main__":
 
     check_failed = False
 
-    for f in sorted(args.main_directory.glob(f"*/{args.quiz_file_name}")):
+    quizzes = list(sorted(args.main_directory.glob(f"*/{args.quiz_file_name}")))
+    assert len(quizzes) != 0
+
+    for f in quizzes:
         d = f.parent
         print(d.name, end=": ")
         dtpl = d / "template"
