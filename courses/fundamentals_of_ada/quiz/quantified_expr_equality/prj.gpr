@@ -8,6 +8,5 @@ project Prj is
    end Compiler;
 
    package Builder is
-      for Global_Configuration_Pragmas use "prj.adc";
    end Builder;
 end Prj;
