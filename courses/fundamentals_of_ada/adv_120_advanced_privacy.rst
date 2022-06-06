@@ -349,7 +349,7 @@ Child Units And Privacy
           X2 : T;
         end Root.Child;
 
-* :dfn:`Private child` can
+* :dfn:`Private child` can view the private part
 
     + Used for "implementation details"
 
