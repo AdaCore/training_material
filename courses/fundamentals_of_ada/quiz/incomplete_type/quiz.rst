@@ -2,7 +2,7 @@
 
     type T;
 
-Which of the following types is(are) legal?
+In the same scope, which of the following types is(are) legal?
 
 A. :answermono:`type Acc is access T`
 B. ``type Arr is array (1 .. 10) of T``
@@ -13,4 +13,7 @@ D. | :answermono:`type T2 is record`
 
 .. container:: animate
 
+    A. Can :ada:`access` the type
+    B. Cannot use the type as a component
+    C. Cannot derive from an incomplete type
     D. Be careful about the use of an anonymous type here!
