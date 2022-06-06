@@ -10,7 +10,7 @@ procedure Main is
 
       --$ begin cut
       procedure Proc (V : T1) is null;
-      --  Not compiling: declared after T1 is frozen
+      --  Declared in the scope of T1, **after** T1 is frozen: illegal for :ada:`tagged` types
       --$ end cut
 
       --$ begin cut
