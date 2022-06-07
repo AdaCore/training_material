@@ -454,7 +454,7 @@ Extended Return Statements Example
 
    .. code:: Ada
 
-       --  Implicitely limited array
+       --  Implicitly limited array
        type Spin_Lock_Array (Positive range <>) of Spin_Lock;
 
        function F return Spin_Lock_Array is
