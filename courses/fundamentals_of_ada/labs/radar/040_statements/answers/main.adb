@@ -126,17 +126,18 @@ begin
 
       exit when Active_Object_Status = Selected;
 
-      -- QUESTION 5 - Part A
+      -- QUESTION 5
       --
       -- We want a Radar_Scan_Delay delay in case of scan (Active_Object_Status = Tracked)
       -- else a Radar_No_Scan_Delay seconds delay.
       -- Implement it using a case-expression
 
-      -- QUESTION 5 - Part B
-      --
-      -- Reimplement it using an if-expression instead
-      delay (if Active_Object_Status = Tracked
-             then Radar_Scan_Delay else Radar_No_Scan_Delay);
+      if Active_Object_Status = Tracked then
+         delay Radar_Scan_Delay;
+      else
+         delay Radar_No_Scan_Delay;
+      end if;
+
       Time_Step;
    end loop;
 
