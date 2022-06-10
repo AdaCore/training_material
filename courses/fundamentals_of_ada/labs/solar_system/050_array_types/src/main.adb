@@ -42,8 +42,6 @@ procedure Main is
 
    --  declare variable Colors which is an instance of Colors_Array_T
 
-
-
    --  declare a variable Next of type Time to store the Next step time
    Next : Time;
 
@@ -77,23 +75,21 @@ begin
    --  initialize Colors variable with Sun is Yellow, Earth is Blue, Moon is
    --  White, Satellite is Red
 
-
-
    --  initialize the Next step time begin the current time (Clock) + the period
    Next := Clock + Period;
 
    while not Is_Killed loop
       --  QUESTION 2 - part 1
       --  create a loop to update each body position and angles
+      --  Note: the Sun does not orbit against any body, you may declare
+      --  and use a subtype to reference the orbiting bodies
       --    the position of an object around (0,0) at distance d with an angle a
       --    is (d*cos(a), d*sin(a))
       --    update angle parameter of each body adding speed to the previous angle
 
       --  QUESTION 2 - part 2
       --  create a loop to draw every objects
-      --    use the Draw_Sphere procedure to do it
-
-
+      --    use the Draw_Sphere procedure with the Point3D argument (using Z = 0.0) do to it
 
       --  update the screen using procedure Swap_Buffers
       Swap_Buffers (Window);
