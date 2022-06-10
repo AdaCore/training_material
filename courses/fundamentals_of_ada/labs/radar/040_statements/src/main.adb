@@ -101,7 +101,7 @@ begin
    --
    -- We want a Radar_Scan_Delay delay in case of scan (Active_Object_Status = Tracked)
    -- else a Radar_No_Scan_Delay seconds delay.
-   -- Implement it using a case-expression
+   -- Implement it using a case statement
 
    delay Radar_No_Scan_Delay;
    Time_Step;
