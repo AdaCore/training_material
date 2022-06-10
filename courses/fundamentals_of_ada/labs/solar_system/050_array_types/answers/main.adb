@@ -128,8 +128,7 @@ begin
          end;
       end loop;
 
-      --  create a loop to draw every objects
-      --  use the Draw_Sphere procedure to do it
+      --  loop to draw every objects
 
       for B in Bodies_Enum_T loop
          Draw_Sphere(Canvas   => Canvas,
