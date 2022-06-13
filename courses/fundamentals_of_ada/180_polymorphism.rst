@@ -35,7 +35,7 @@ Introduction
 Introduction
 --------------
 
-* `'Class` operator to categorize classes of types
+* :ada:`'Class` operator to categorize :dfn:`classes of types`
 * Type classes allow dispatching calls
 
    - Abstract types
