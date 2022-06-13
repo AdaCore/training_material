@@ -512,7 +512,7 @@ Defaults Within Record Aggregates
 
    Ada 2005
 
-* Specified via the ``box`` notation
+* Specified via the :dfn:`box` notation
 * Value for the component is thus taken as for a stand-alone object declaration
 
    - So there may or may not be a defined default!
@@ -596,12 +596,12 @@ Discriminated Records
 Discriminated Record Types
 ----------------------------
 
-* **Discriminated** record type
+* :dfn:`Discriminated record` type
 
    + Different **objects** may have **different** components
    + All object **still** share the same type
 
-* Kind of **storage overlay**
+* Kind of :dfn:`storage overlay`
 
    + Similar to :C:`union` in C
    + But preserves **type checking**
@@ -626,7 +626,7 @@ Discriminants
      end case;
   end record;
 
-* :ada:`Group` is the **discriminant**
+* :ada:`Group` is the :dfn:`discriminant`
 * Run-time check for component **consistency**
 
    + eg :ada:`A_Person.Pubs := 1` checks :ada:`A_Person.Group = Faculty`
