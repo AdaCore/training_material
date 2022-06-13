@@ -58,7 +58,7 @@ Rationale for Exceptions
 Semantics Overview
 --------------------
 
-* Exceptions become active by being *raised*
+* Exceptions become active by being :dfn:`raised`
 
    - Failure of implicit language-defined checks
    - Explicitly by application
@@ -74,7 +74,7 @@ Semantics Overview
 * Normal execution abandoned when they occur
 
    - Error processing takes over in response
-   - Response specified by **exception handlers**
+   - Response specified by :dfn:`exception handlers`
    - *Handling the exception* means taking action in response
    - Other threads need not be affected
 
