@@ -35,11 +35,11 @@ Introduction
 Ada Type Model
 ----------------
 
-* **Static** Typing
+* :dfn:`Static` Typing
 
    - Object type **cannot change**
 
-* **Strong** Typing
+* :dfn:`Strong` Typing
 
    - By **name**
    - **Compiler-enforced** operations and values
@@ -50,10 +50,10 @@ Ada Type Model
 Strong Typing
 ---------------
 
-* Definition of **type**
+* Definition of :dfn:`type`
 
    - Applicable **values**
-   - Applicable **operations**
+   - Applicable :dfn:`primitive` **operations**
 
 * Compiler-enforced
 
@@ -81,6 +81,8 @@ A Little Terminology
       type Type_1 is digits 12; -- floating-point
       type Type_2 is range -200 .. 200; -- signed integer
       type Type_3 is mod 256; -- unsigned integer
+
+* :dfn:`Representation` is the memory-layout of an **object** of the type
 
 -------------------------
 Ada "Named Typing"
