@@ -71,7 +71,7 @@ The Notion of a Pattern
 Solution: Generics
 --------------------
 
-* A generic unit is a unit that does not exist
+* A :dfn:`generic unit` is a unit that does not exist
 * It is a pattern based on properties
 * The instantiation applies the pattern to certain parameters
 
@@ -194,7 +194,7 @@ Generic Types Parameters (1/2)
          type T3 is limited private; -- can be limited
       package Parent is [...]
 
-* The actual parameter must provide at least as many properties as the generic contract
+* The actual parameter must provide at least as many properties as the :dfn:`generic contract`
 
 --------------------------------
 Generic Types Parameters (2/2)
