@@ -44,7 +44,7 @@ Object-Oriented Programming With Tagged Types
 
 * Child types can add new components (*attributes*)
 * Object of a child type can be **substituted** for base type
-* Primitive (*method*) can **dispatch at runtime** depending on the type at call-site
+* Primitive (*method*) can :dfn:`dispatch` **at runtime** depending on the type at call-site
 * Types can be **extended** by other packages
 
     - Casting and qualification to base type is allowed
@@ -151,10 +151,10 @@ Primitives
 
 * Child **cannot remove** a primitive
 * Child **can add** new primitives
-* **Controlling parameter**
+* :dfn:`Controlling parameter`
 
     - Parameters the subprogram is a primitive of
-    - For tagged types, all should have the **same type**
+    - For :ada:`tagged` types, all should have the **same type**
 
    .. code:: Ada
 
@@ -210,7 +210,7 @@ Tagged Aggregate
 
        V : Child := (F1 => 0, F2 => 0);
 
-* For **private types** use **aggregate extension**
+* For **private types** use :dfn:`aggregate extension`
 
     - Copy of a parent instance
     - Use :ada:`with null record` absent new fields
