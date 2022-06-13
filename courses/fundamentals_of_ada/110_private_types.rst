@@ -167,13 +167,13 @@ Declaring Private Types for Views
 Partial and Full Views of Types
 ---------------------------------
 
-* Private type declaration defines a partial view
+* Private type declaration defines a :dfn:`partial view`
 
    - The type name is visible
    - Only designer's operations and some predefined operations
    - No references to full type representation
 
-* Full type declaration defines the full view
+* Full type declaration defines the :dfn:`full view`
 
    - Fully defined as a record type, scalar, imported type, etc...
    - Just an ordinary type within the package
@@ -692,8 +692,8 @@ Effects of Hiding Type Representation
 
 * Common idioms are a result
 
-   - *Constructors*
-   - *Selectors*
+   - :dfn:`Constructor`
+   - :dfn:`Selector`
 
 --------------
 Constructors
