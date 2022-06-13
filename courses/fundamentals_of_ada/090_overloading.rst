@@ -35,7 +35,7 @@ Introduction
 Introduction
 --------------
 
-* Overloading is the use of an already existing name to define a **new** entity
+* :dfn:`Overloading` is the use of an already existing name to define a **new** entity
 * Historically, only done as part of the language **implementation**
 
    - Eg. on operators
@@ -218,7 +218,7 @@ Call Resolution
 -----------------
 
 * Compilers must reject ambiguous calls
-* Resolution is based on the calling context
+* :dfn:`Resolution` is based on the calling context
 
    - Compiler attempts to find a matching **profile**
    - Based on **Parameter** and **Result** Type
