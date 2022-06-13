@@ -748,7 +748,7 @@ Slicing
 ---------
 
 * Contiguous subsection of an array
-* On any one-dimensional array type
+* On any **one-dimensional** array type
 
   - Any component type
 
