@@ -56,7 +56,7 @@ Packages
 Separating Interface and Implementation
 -----------------------------------------
 
-* Implementation and specification are textually distinct from each other
+* :dfn:`Implementation` and :dfn:`specification` are textually distinct from each other
 
    - Typically in separate files
 
@@ -250,7 +250,7 @@ Package Bodies
 
    - Any code that would require editing would not have compiled in the first place
 
-* Required when specification contains declarations requiring completions it cannot contain
+* Necessary for specifications that require a completion, for example:
 
    - Subprogram bodies
    - Task bodies
