@@ -35,7 +35,7 @@ Introduction
 Type Derivation
 -----------------
 
-* Type derivation allows for reusing code
+* Type :dfn:`derivation` allows for reusing code
 * Type can be **derived** from a **base type**
 * Base type can be substituted by the derived type
 * Subprograms defined on the base type are **inherited** on derived type
