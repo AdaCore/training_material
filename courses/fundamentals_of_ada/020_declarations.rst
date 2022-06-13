@@ -298,7 +298,7 @@ Examples
 Declarations
 --------------
 
-* Associate a **name** to an **entity**
+* Associate a :dfn:`name` to an :dfn:`entity`
 
     - Objects
     - Types
@@ -610,13 +610,13 @@ Examples
 Scope and Visibility
 ----------------------
 
-* **Scope** of a name
+* :dfn:`Scope` of a name
 
    - Where the name is **potentially** available
    - Determines **lifetime**
    - Scopes can be **nested**
 
-* **Visibility** of a name
+* :dfn:`Visibility` of a name
 
    - Where the name is **actually** available
    - Defined by **visibility rules**
