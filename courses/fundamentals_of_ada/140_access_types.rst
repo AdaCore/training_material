@@ -36,7 +36,7 @@ Access Types Design
 ---------------------
 
 * Memory addresses objects are called :dfn:`access types`
-* Objects are associated to **pools** of memory
+* Objects are associated to :dfn:`pools` of memory
 
   - With different allocation / deallocation policies
 
@@ -440,7 +440,7 @@ Examples
 Introduction to Accessibility Checks (1/2)
 --------------------------------------------
 
-* The depth of an object depends on its nesting within declarative scopes
+* The :dfn:`depth` of an object depends on its nesting within declarative scopes
 
    .. code:: Ada
 
@@ -681,7 +681,7 @@ Anonymous Access Parameters
 -----------------------------
 
 * Parameter modes are of 4 types: :ada:`in`, :ada:`out`, :ada:`in out`, :ada:`access`
-* The access mode is called **anonymous access type**
+* The access mode is called :dfn:`anonymous access type`
 
    - Anonymous access is implicitly general (no need for :ada:`all`)
 
