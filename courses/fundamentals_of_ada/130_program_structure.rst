@@ -49,7 +49,7 @@ What is a System?
 -------------------
 
 * Also called Application or Program or ...
-* Collection of library units
+* Collection of :dfn:`library units`
 
    - Which are a collection of packages, subprograms, objects
 
@@ -162,10 +162,10 @@ Illegal Package Declaration Dependency
 
    - Controlled cycles are now permitted
 
-* Provide a "limited" view of the specified package
+* Provide a :dfn:`limited view` of the specified package
 
    - Only type names are visible (including in nested packages)
-   - Types are viewed as *incomplete types*
+   - Types are viewed as :dfn:`incomplete types`
 
 * Normal view
 
@@ -326,7 +326,7 @@ Solution: Hierarchical Library Units
 Programming By Extension
 --------------------------
 
-* Parent unit
+* :dfn:`Parent unit`
 
    .. code:: Ada
 
