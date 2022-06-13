@@ -77,7 +77,7 @@ Procedure Calls (Overview)
 Parameter Associations In Calls
 ---------------------------------
 
-* Traditional "positional association" is allowed
+* Traditional :dfn:`positional association` is allowed
 
    - Nth actual parameter goes to nth formal parameter
 
@@ -85,7 +85,7 @@ Parameter Associations In Calls
 
    Activate ( Idle, True ); -- positional
 
-* "Named association" also allowed
+* :dfn:`Named association` also allowed
 
    - Name of formal parameter is explicit
 
@@ -238,7 +238,7 @@ Assignment Statements, Not Expressions
 Assignable Views
 ------------------
 
-* Views control the way an entity can be treated
+* A :dfn:`view` controls the way an entity can be treated
 
    - At different points in the program text
 
@@ -827,7 +827,7 @@ Low-Level For-loop Parameter Type
 Null Ranges
 -------------
 
-    * Null range when lower bound ``>`` upper bound
+    * :dfn:`Null range` when lower bound ``>`` upper bound
 
        - :ada:`1 .. 0`, :ada:`Fri .. Mon`
        - Literals and variables can specify null ranges
