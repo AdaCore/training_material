@@ -317,11 +317,11 @@ Examples
 Subprogram Parameter Terminology
 ----------------------------------
 
-* *Actual* parameters are values passed to a call
+* :dfn:`Actual parameters` are values passed to a call
 
    - Variables, constants, expressions
 
-* *Formal* parameters are defined by specification
+* :dfn:`Formal parameters` are defined by specification
 
    - Receive the values passed from the actual parameters
    - Specify the types required of the actual parameters
@@ -1027,7 +1027,7 @@ Order-Dependent Code And Side Effects
 Parameter Aliasing
 --------------------
 
-* **Aliasing** : Multiple names for an actual parameter inside a subprogram body
+* :dfn:`Aliasing`: Multiple names for an actual parameter inside a subprogram body
 * Possible causes:
 
    - Global object used is also passed as actual parameter
