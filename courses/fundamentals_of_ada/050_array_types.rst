@@ -52,11 +52,11 @@ Introduction
 Terminology
 -------------
 
-* Index type
+* :dfn:`Index type`
 
    - Specifies the values to be used to access the array components
 
-* Component type
+* :dfn:`Component type`
 
    - Specifies the type of values contained by objects of the array type
    - All components are of this same type
@@ -116,12 +116,12 @@ Run-Time Index Checking
 Kinds of Array Types
 ----------------------
 
-* Constrained Array Types
+* :dfn:`Constrained` Array Types
 
    - Bounds specified by type declaration
    - All objects of the type have the same bounds
 
-* Unconstrained Array Types
+* :dfn:`Unconstrained` Array Types
 
    - Bounds not specified by type declaration
    - More flexible
@@ -1370,7 +1370,7 @@ Summary
 Final Notes on Type `String`
 ------------------------------
 
-* Any single-dimensioned array of some character type is a string type
+* Any single-dimensioned array of some character type is a :dfn:`string type`
 
    - Language defines types `String`, `Wide_String`, etc.
 
