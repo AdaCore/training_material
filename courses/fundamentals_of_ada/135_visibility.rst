@@ -55,7 +55,7 @@ Improving Readability
 Operators and Primitives
 --------------------------
 
-* *Operators*
+* :dfn:`Operators`
 
    - Constructs which behave generally like functions but which differ syntactically or semantically.
    - Typically arithmetic, comparison, and logical
@@ -86,7 +86,7 @@ Examples
 
 * Provide direct visibility into packages' exported items
 
-   + *Direct Visibility* - as if object was referenced from within package being used
+   + :dfn:`Direct Visibility` - as if object was referenced from within package being used
 
 * May still use expanded name
 
