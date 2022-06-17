@@ -419,13 +419,13 @@ Why Read Mode `out` Parameters?
 Parameter Passing Mechanisms
 ------------------------------
 
-* By-Copy
+* :dfn:`By-Copy`
 
    - The formal denotes a separate object from the actual
    - :ada:`in`, :ada:`in out`: actual is copied into the formal **on entry to** the subprogram
    - :ada:`out`, :ada:`in out`: formal is copied into the actual **on exit from** the subprogram
 
-* By-Reference
+* :dfn:`By-Reference`
 
    - The formal denotes a view of the actual
    - Reads and updates to the formal directly affect the actual
