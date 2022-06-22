@@ -1,25 +1,15 @@
-set LOCAL=%~dp0
+rem vvvv Put the GNAT and libs install path below
+set GNAT=C:\GNAT\2021\bin
+set LIBS=%cd%\libs64
+if not exist "%GNAT%\*" goto error
+if not exist "%LIBS%\*" goto error
 
-rem vvvv Put the GNAT install path below
-set INSTALL=C:\GNAT\2021
-
-set PATH=%INSTALL%\bin;%PATH%
-set PATH=%LOCAL%\libs64;%PATH%
-set ADA_PROJECT_PATH=%LOCAL%\game_support;%LOCAL%\gnat_sdl;
-set LIBRARY_PATH=%LOCAL%\libs64;%LIBRARY_PATH%
-set GNAT_STUDIO_HOME=%LOCAL%
+set PATH=%GNAT%;%PATH%
+set PATH=%LIBS%;%PATH%
+set ADA_PROJECT_PATH=%cd%\game_support;%LOCAL%\gnat_sdl;
+set LIBRARY_PATH=%LIBS%;%LIBRARY_PATH%
+set GNAT_STUDIO_HOME=%cd%
 set HOST=Windows
-@echo off
-echo -
-echo -
-echo ********************************
-echo **                            **
-echo ** 64 bits environment ready  **
-echo **                            **
-echo ********************************
-echo - 
-echo -  run GNAT Studio from this console
-echo - 
-echo -
 start "" "gnatstudio"
+:error:
 cmd
