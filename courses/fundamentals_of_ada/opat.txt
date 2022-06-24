@@ -12,7 +12,6 @@ adv_080_quantified_expressions.rst
 100_packages.rst
 095_library_units.rst
 110_private_types.rst
-120_limited_types.rst
 130_program_structure.rst
 135_visibility.rst
 170_tagged_derivation.rst
