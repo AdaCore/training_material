@@ -294,31 +294,6 @@ Other Uses for Limited Aggregates
 * Defaults for mode :ada:`in` formal parameters
 * But not right-hand side of assignment statements!
 
----------------------------------------
-Only Mode `in` for Limited Aggregates
----------------------------------------
-
-* Aggregates are not variables, so no place to put the returning values for :ada:`out` or :ada:`in out` formals
-
-.. code:: Ada
-
-   -- allowed, but not helpful
-   procedure Wrong_Mode_For_Agg (This : in out Spin_Lock) is
-   begin
-     Lock (This);
-     ...
-     Unlock (This);
-   end Wrong_Mode_For_Agg;
-   ...
-   -- not allowed
-   Wrong_Mode_For_Agg ( This => (Flag => 0) );
-   -- allowed
-   procedure Foo ( Param : access Spin_Lock );
-
-.. container:: speakernote
-
-   It is the 'WrongMode' because we are trying to pass a limited aggregate to a formal with that mode, not because the mode itself is somehow wrong.
-
 -------------------------------
 Limited Constructor Functions
 -------------------------------
