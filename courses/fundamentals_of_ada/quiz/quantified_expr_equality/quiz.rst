@@ -3,7 +3,7 @@
     type T1 is array (1 .. 3) of Integer;
     type T2 is array (1 .. 3) of Integer;
 
-Which piece(s) of code is(are) correctly performs equality check on A and B?
+Which piece(s) of code correctly perform(s) equality check on A and B?
 
 A. :answermono:`function "=" (A : T1; B : T2) return Boolean is (A = T1 (B))`
 B. | ``function "=" (A : T1; B : T2) return Boolean is``

@@ -1,4 +1,4 @@
--- Which piece(s) of code is(are) correctly performs equality check on A and B?
+-- Which piece(s) of code correctly perform(s) equality check on A and B?
 procedure Main is
    --$ begin question
    type T1 is array (1 .. 3) of Integer;
