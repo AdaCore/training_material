@@ -612,6 +612,35 @@ User View Formal Parameters
      Bounded_Stacks.Push (Local, The_Stack);
    end Get_Top;
 
+-----------------
+Private Limited
+-----------------
+
+* :ada:`limited` is itself a view
+
+    - Cannot perform assignment, copy, or equality
+
+* :ada:`private limited` can restrain user's operation
+
+    - Actual type **does not** need to be :ada:`limited`
+
+.. code:: Ada
+
+    package UART is
+        type Instance is private limited;
+        function Get_Next_Available return Instance;
+    [...]
+
+.. code:: Ada
+
+    declare
+       A, B := UART.Get_Next_Available;
+    begin
+       if A = B -- Illegal
+       then
+           A := B; -- Illegal
+       end if;
+
 ====================================
 When To Use or Avoid Private Types
 ====================================
