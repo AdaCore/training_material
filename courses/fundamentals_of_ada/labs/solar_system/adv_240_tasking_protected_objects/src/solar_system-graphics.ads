@@ -4,6 +4,6 @@ package Solar_System.Graphics is
 
 private
 
-   procedure Draw_Body (Object : Body_Type; Canvas : Canvas_ID);
+   procedure Draw_Body (Object : Body_T; Canvas : Canvas_ID);
 
 end Solar_System.Graphics;

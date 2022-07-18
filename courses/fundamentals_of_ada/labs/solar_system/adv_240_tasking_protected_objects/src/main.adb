@@ -26,7 +26,7 @@ with Solar_System.Graphics; use Solar_System.Graphics;
 
 procedure Main is
 
-   --  declare variable Bodies which is an array of Body_Type
+   --  declare variable Bodies which is an array of Body_T
    Bodies : Bodies_Array_T;
 
    --  declare a variable Now of type Time to record current time

@@ -49,32 +49,32 @@ package body Solar_System is
    --  implement a function to compute the X coordinate
    --  x of the reference + distance * cos(angle)
    function Compute_X
-     (Body_To_Move : Body_Type;
-      Turns_Around : Body_Type) return Float;
+     (Body_To_Move : Body_T;
+      Turns_Around : Body_T) return Float;
 
    --  implement a function to compute the Y coordinate
    --  y of the reference + distance * sin(angle)
    function Compute_Y
-     (Body_To_Move : Body_Type;
-      Turns_Around : Body_Type) return Float;
+     (Body_To_Move : Body_T;
+      Turns_Around : Body_T) return Float;
 
    function Compute_X
-     (Body_To_Move : Body_Type;
-      Turns_Around : Body_Type) return Float
+     (Body_To_Move : Body_T;
+      Turns_Around : Body_T) return Float
    is
    begin
       return Turns_Around.X + Body_To_Move.Distance * Cos (Body_To_Move.Angle);
    end Compute_X;
 
    function Compute_Y
-     (Body_To_Move : Body_Type;
-      Turns_Around : Body_Type) return Float
+     (Body_To_Move : Body_T;
+      Turns_Around : Body_T) return Float
    is
    begin
       return Turns_Around.Y + Body_To_Move.Distance * Sin (Body_To_Move.Angle);
    end Compute_Y;
 
-   procedure Move (Body_To_Move : in out Body_Type; Bodies : Bodies_Array_T) is
+   procedure Move (Body_To_Move : in out Body_T; Bodies : Bodies_Array_T) is
    begin
 
       Body_To_Move.X :=
