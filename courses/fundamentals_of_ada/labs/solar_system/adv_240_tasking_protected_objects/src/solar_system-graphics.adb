@@ -1,6 +1,6 @@
 package body Solar_System.Graphics is
 
-   procedure Draw_Body (Object : Body_Type; Canvas : Canvas_ID) is
+   procedure Draw_Body (Object : Body_T; Canvas : Canvas_ID) is
    begin
       if Object.Visible then
          Draw_Sphere

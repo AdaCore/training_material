@@ -42,9 +42,9 @@ package Solar_System is
 
 private
 
-   --  define a type Body_Type to store every information about a body
+   --  define a type Body_T to store every information about a body
    --   X, Y, Distance, Speed, Angle, Radius, Color
-   type Body_Type is record
+   type Body_T is record
       X            : Float   := 0.0;
       Y            : Float   := 0.0;
       Distance     : Float;
@@ -56,9 +56,9 @@ private
       Turns_Around : Bodies_Enum_T;
    end record;
 
-   --  define type Bodies_Array as an array of Body_Type indexed by bodies enumeration
-   type Bodies_Array_T is array (Bodies_Enum_T) of Body_Type;
+   --  define type Bodies_Array as an array of Body_T indexed by bodies enumeration
+   type Bodies_Array_T is array (Bodies_Enum_T) of Body_T;
 
-   procedure Move (Body_To_Move : in out Body_Type; Bodies : Bodies_Array_T);
+   procedure Move (Body_To_Move : in out Body_T; Bodies : Bodies_Array_T);
 
 end Solar_System;
