@@ -35,24 +35,78 @@ Introduction
 What Is the Ravenscar Profile?
 --------------------------------
 
+* A **subset** of the Ada tasking model
+
+  + Defined in the RM D.13
+
 * Use concurrency in embedded real-time systems
 
    - Verifiable
    - Simple (Implemented reliably and efficiently)
 
 * Scheduling theory for accurate analysis of real-time behavior
-* A subset of the Ada tasking model
-* Defined to help meeting safety-critical real-time requirements
+* Defined to help meeting **safety-critical real-time** requirements
 
    - Determinism
    - Schedulability analysis
    - Memory-boundedness
    - Execution efficiency and small footprint
-   - Suitability for certification
+   - Certification
 
 * State-of-the-art concurrency constructs
 
    - Adequate for most types of real-time software
+
+* :ada:`pragma Profile (Ravenscar)`
+
+-----------------------------
+What Is the Jorvik profile?
+-----------------------------
+
+* A **non-backwards compatible update** to Ravenscar
+
+  + Defined in the RM D.13 (Ada 2022)
+
+* Remove some constraints
+
+  - Scheduling analysis may be harder to perform
+
+* Keep the same requirements
+* This class is about the more popular Ravenscar
+
+  + But Jorvik's improvements are evoked
+
+* :ada:`pragma Profile (Jorvik)`
+
+-------------------------
+What are GNAT runtimes?
+-------------------------
+
+* The :dfn:`runtime` is an embedded piece of software
+
+  - In charge of standard's library support...
+  - ...including tasking
+
+* Standard runtime
+
+  - Full runtime support
+  - "Full-fledged" OS target (Linux, WxWorks...)
+  - Large memory footprint
+  - Full tasking (not shown in this class)
+
+* Embedded runtime
+
+  - Baremetal and RTOS targets
+  - Reduced memory footprint
+  - Most of runtime, except I/O and networking
+  - Ravenscar/Jorvik tasking
+
+* Light runtime
+
+  - Baremetal targets
+  - Very small memory footprint
+  - Selected, very limited, runtime
+  - Optional Ravenscar/Jorvik tasking (Light-tasking)
 
 ===================================
 Differences From Standard Tasking
@@ -65,30 +119,35 @@ Ravenscar Tasking Limitations
 * Active synchronization not supported
 
    - Asymmetric rendezvous
-   - Entries
+   - Task entries
 
-* Tasks can only be declared at library level
+* Tasks declaration **must be** at library level
 
-   - All have to finish before the program terminates
+   - All **must** finish before the program terminates
 
 * Protected object entries
 
    - Only one entry per protected object
+
+      + Unlimited in Jorvik
+
    - Barriers can only be simple boolean values
+
+      + Typically blocking until a flag clears
+      + Jorvik allows for any :dfn:`pure barriers`
 
 ---------------------------
 Task Types with Ravenscar
 ---------------------------
 
-* It is possible to create task types
+* It is possible to create :ada:`task` types
 
-   - Task objects can only be instantiated statically in Ravenscar
-   - Can be instantiated on stack or heap in full Ada tasking model
+   - Only **static** ones in Ravenscar, no :ada:`new`
+   - No "task hierarchy": declaration at library-level
 
-* By default tasks are activated at the end of the elaboration of their library unit's declarative part
+* Tasks are activated at the end of their library unit's declarative part
 
-   - As if they were declared there
-   - Activation can be deferred to the end of all elaboration
+   - Can be deferred to the end of **all** elaboration
 
 --------------------------------
 Protected Types With Ravenscar
@@ -192,26 +251,19 @@ Protected Objects and Interrupt Handling
 
 * Simple protected operations
 
-   - At most one entry
-   - No queuing
+   - No queuing (except in Jorvik)
+   - :dfn:`Ceiling locking` on monoprocessor (see later)
+   - :dfn:`Proxy model` for protected entries
 
-      + Only one task can be blocked on the entry
-
-   - Ceiling locking on monoprocessor
-
-      + Bounded priority inversion
-      + Efficient locking/unlocking by increasing/decreasing priority
-
-   - "Proxy model" for protected entries
-
+      + Entry body executed by the active task on behalf of the waiting tasks
       + Avoid unneeded context switches
 
-* Interrupt handling
+* Simple, efficient, interrupt handling
 
-   - Simple and efficient
-
-      + Protected procedures as low level interrupt handlers
-      + Masking hardware interrupts according to active priority
+    - :dfn:`Interrupt entries`
+    - Protected procedures as low level interrupt handlers
+    - Procedure is :dfn:`attached` to interrupt
+    - Interrupt masking follows active priority
 
 ------------
 Priorities
@@ -221,21 +273,23 @@ Priorities
 
  .. container:: column
 
-    * Priorities are defined in package System
+  * Set by a :ada:`pragma Priority` or :ada:`Interrupt_Priority`
 
-       - Lower values mean lower priority
-       - Two non-overlapping ranges:
+    - Can also use aspects
+    - Tasks
+    - Main subprogram (environment task)
+    - :ada:`protected` definition
 
-          + `Priority`
-          + `Interrupt_Priority`
+  * Lower values mean lower priority
 
-    * Priority is set by a :ada:`pragma Priority` or :ada:`pragma Interrupt_Priority`
+    - :ada:`Priority`
 
-       - Ignored for non-main subprograms
+      + At least 30 levels
 
-          + Set the priority of the environment task
+    - :ada:`Interrupt_Priority`
 
-    * `Interrupt_Priority` for priorities in the interrupt range
+      + At least 1 level
+      + ``>`` :ada:`Priority`
 
  .. container:: column
 
@@ -262,46 +316,59 @@ Scheduling
 * A task executes until ...
 
    - The task is blocked (on delays or on protected object entry)
-   - A higher priority task is woken up or unblocked
+   - A higher priority task is woken up or unblocked (preemption)
 
 -----------------
 Ceiling Locking
 -----------------
 
-.. container:: columns
+* Example of priority inversion
 
- .. container:: column
+.. code::
 
-   * Task priority is increased within a protected object
+   L : Lock;
 
-      - Priorities of task must be lower or equal than the priorities of protected objects used
-      - Blocks other tasks
-      - Performs locks without using locks
+   T1 : Task (Priority => 1);
+   T2 : Task (Priority => 2);
+   T3 : Task (Priority => 3);
 
-|
+   T1 locks L
+   T3 starts, get scheduled (T3 > T1)
+   T3 tries to get L, blocks
+   T2 starts, get scheduled (T2 > T1)
+
+   Result: T2 running, T1 blocked, T3 blocked through L (but T3 > T2!)
+
+* Solved with ceiling locking
+* Task priority is increased within a protected object
+
+    - Condition: Task priority ``<=`` priorities of all protected objects it uses
+    - Blocks other tasks without explicit locking
+
+* :ada:`pragma Locking_Policy (Ceiling_Locking)`
+
+    - Default on Ravenscar
+
+-------------------------
+Ceiling Locking Example
+-------------------------
+
+ .. code:: Ada
+
+     protected P with Priority => 5 is
+        procedure Set (V : Integer);
+
+ .. code:: Ada
+
+     task T with Priority => 4 is
+       ...
+
+     task body T is
+       ...
+       P.Set (1);
 
 .. image:: ravenscar_ceiling_locking.png
    :width: 45%
-
- .. container:: column
-
-   .. code:: Ada
-
-      task T is
-        pragma Priority(4);
-        ...
-
-      task body T is
-        ...
-        P.Set (1);
-        ...
-
-   .. code:: Ada
-
-      protected P is
-         pragma Priority(5);
-         procedure Set
-            V : Integer);
 
 =================
 Tasking Control
@@ -311,11 +378,17 @@ Tasking Control
 Synchronous Task Control
 --------------------------
 
-* Provides primitives to construct synchronization mechanisms and two-stage suspend operations
+* Primitives synchronization mechanisms and two-stage suspend operations
+
+   - No critical section
+   - More lightweight than protected objects
+
 * Package exports a `Suspension_Object` type
 
-   - Values are "True" and "False", initially "False"
-   - Such objects are awaited by one task but set by other tasks
+   - Values are :ada:`True` and :ada:`False`, initially :ada:`False`
+   - Such objects are awaited by (at most) one task
+
+      + But can be set by several tasks
 
 .. code:: Ada
 
@@ -335,34 +408,28 @@ Timing Events
 
 * User-defined actions executed at a specified wall-clock time
 
-   - Implemented as protected procedures
+   - Calls back an :ada:`access protected procedure`
 
-* Do not require a task or a delay statement
-* Controlled via procedural interface
+* Do not require a :ada:`task` or a :ada:`delay` statement
 
-   - Links the protected procedure
-   - Sets the time
+ .. code:: Ada
 
-* Ravenscar Run-time Interface
-
-   .. code:: Ada
-
-      package Ada.Real_Time.Timing_Events is
-         type Timing_Event is tagged limited private;
-         type Timing_Event_Handler is access protected procedure (
-             Event : in out Timing_Event);
-         procedure Set_Handler (Event   : in out Timing_Event;
-                                At_Time : Time;
-                                Handler : Timing_Event_Handler);
-         function Current_Handler (Event : Timing_Event)
-                                   return Timing_Event_Handler;
-         procedure Cancel_Handler (Event     : in out Timing_Event;
-                                   Cancelled : out Boolean);
-         function Time_Of_Event (Event : Timing_Event)
-                                 return Time;
-      private
-         ...
-      end Ada.Real_Time.Timing_Events;
+    package Ada.Real_Time.Timing_Events is
+       type Timing_Event is tagged limited private;
+       type Timing_Event_Handler is access protected procedure (
+           Event : in out Timing_Event);
+       procedure Set_Handler (Event   : in out Timing_Event;
+                              At_Time : Time;
+                              Handler : Timing_Event_Handler);
+       function Current_Handler (Event : Timing_Event)
+                                 return Timing_Event_Handler;
+       procedure Cancel_Handler (Event     : in out Timing_Event;
+                                 Cancelled : out Boolean);
+       function Time_Of_Event (Event : Timing_Event)
+                               return Time;
+    private
+       ...
+    end Ada.Real_Time.Timing_Events;
 
 -----------------------
 Execution Time Clocks
@@ -372,13 +439,19 @@ Execution Time Clocks
 
    - Accessible via function call
 
-* Clocks start after creation but before activation
-* Whenever the task executes the clock increments
-* Total time includes run-time library and O.S. services executed on its behalf
-* System and run-time library execution not specific to a given task may be assigned to some task(s)
+* Clocks starts at creation time
 
-   - Implementation-defined whether it does
-   - Implementation-defined which task if it does
+    - **Before** activation
+
+* Measures the task's total execution time
+    
+    - Including calls to libraries, O/S services...
+    - But not including time in a blocked or suspended state
+
+* System and run-time library also execute code
+
+   - As well as interrupt handlers
+   - Their execution time clock assignment is implementation-defined
 
 -------------------------------
 Partition Elaboration Control
@@ -387,24 +460,29 @@ Partition Elaboration Control
 * Library units are elaborated in an undefined order
 
    - They can declare tasks and interrupt handlers
-   - Once elaborated tasks start executing
-   - Interrupts occur as soon as hardware is enabled
+   - Once elaborated, tasks start executing
+   - Interrupts may occur as soon as hardware is enabled
 
-* These are unacceptable race conditions
+      * May be during elaboration
 
-   - Especially for certification!
+* This can cause race conditions
+
+   - Not acceptable for certification
 
 * :ada:`pragma Partition_Elaboration_Policy`
 
-   - Controls when activation and attachment happens relative to library unit elaboration completion
-   - Defined in High Integrity Systems Annex
+   - Defined in RM Annex H "High Integrity Systems"
+   - Controls tasks activation
+   - Controls interrupts attachment
+   - Always relative to library units' elaboration
    - **Concurrent policy**
 
-      + Normal semantics: tasks and interrupts are concurrent with remaining library units' elaboration
+      + Ada default policy
 
    - **Sequential policy**
 
-      + Task activation and interrupt handler attachment are deferred until library unit elaboration completes
+      + Deferred activation and attachment until **all** library units are activated
+      + Default policy for Ravenscar and Jorvik profiles
 
 -------------------------------
 Task Termination Notification
@@ -417,32 +495,34 @@ Task Termination Notification
 * User-defined handlers for termination
 
    - Essentially a task's "last wishes"
-   - Handlers are protected procedures called by the run-time library
+   - Runtime calls back :ada:`access protected procedure`
 
-* States differentiated
+* Termination cause provided as argument
 
    - Normal termination
    - Termination due to an unhandled exception
-   - Termination due to task abort
+   - Termination due to task abort (forbidden in Ravenscar)
 
 * Ravenscar Run-time Interface
 
    .. code:: Ada
 
       package Ada.Task_Termination is
-        type Termination_Handler is access protected procedure (
-            T : Ada.Task_Identification.Task_Id);
-        procedure Set_Dependents_Fallback_Handler (Handler : Termination_Handler);
-        function Current_Task_Fallback_Handler return Termination_Handler;
+         type Termination_Handler is access protected procedure
+          (Cause : in Cause_Of_Termination;
+           T     : in Ada.Task_Identification.Task_Id;
+           X     : in Ada.Exceptions.Exception_Occurrence);
+         procedure Set_Dependents_Fallback_Handler (Handler : Termination_Handler);
+         function Current_Task_Fallback_Handler return Termination_Handler;
       end Ada.Task_Termination;
 
 =========
 Summary
 =========
 
----------------------------
-Ravenscar Small FootPrint
----------------------------
+---------------
+Light-Tasking
+---------------
 
 .. container:: columns
 
