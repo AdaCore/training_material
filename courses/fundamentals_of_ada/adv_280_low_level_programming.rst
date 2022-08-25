@@ -247,7 +247,7 @@ Record Representation Clauses
 Array Representation Clauses
 ------------------------------
 
-* :ada:`Component_Size` for array's **components** size
+* :ada:`Component_Size` for array's **component's** size
 
 .. code:: Ada
 
