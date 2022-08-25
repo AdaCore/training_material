@@ -212,10 +212,10 @@ Record Representation Clauses
 
  .. container:: column
 
-    * The developer can specify the exact mapping between a record and its binary representation
-    * This mapping can be used for optimization purposes, or to match hardware requirements
+    * Exact mapping between a record and its binary representation
+    * Optimization purposes, or hardware requirements
 
-       - driver mapped on the address space, communication protocol, binary file representation...
+       - Driver mapped on the address space, communication protocol...
 
     * Fields represented as
 
@@ -247,7 +247,7 @@ Record Representation Clauses
 Array Representation Clauses
 ------------------------------
 
-* The size of an array component can be specified with the `Component_Size` aspect (or attribute)
+* :ada:`Component_Size` for array's **components** size
 
 .. code:: Ada
 
@@ -258,13 +258,18 @@ Array Representation Clauses
    type Ar2 is array (1 .. 1000) of Boolean
        with Component_Size => 2;
 
-------------------------------------------
-Endianness Specification (GNAT Specific)
-------------------------------------------
+--------------------------
+Endianness Specification
+--------------------------
 
-* GNAT allows defining the endianness through the `Scalar_Storage_Order` aspect, on composite types
-* Need to be associated with a consistent `Bit_Order` (convention for the bit range numbering)
-* The compiler will perform bitwise transformations if needed when sending data to the processor
+* `Bit_Order` for a type's endianness
+* `Scalar_Storage_Order` for composite types
+
+    - Endianess of components' ordering
+    - GNAT-specific
+    - Must be consistent with `Bit_Order`
+
+* Compiler will peform needed bitwise transformations when performing operations
 
 .. code:: Ada
 
@@ -272,28 +277,22 @@ Endianness Specification (GNAT Specific)
       A : Integer;
       B : Boolean;
    end record;
+   for Rec use record
+      A at 0 range 0 .. 31;
+      B at 0 range 32 .. 33;
+   end record;
    for Rec'Bit_Order use System.High_Order_First;
    for Rec'Scalar_Storage_Order use System.High_Order_First;
 
-   type Ar is array (1 .. 1000) of Boolean;
-   for Ar'Scalar_Storage_Order use System.Low_Order_First;
-
    -- using Ada 2012 aspects
-   type Rec is record
-        A : Integer;
-        B : Boolean;
-     end record with
-       Bit_Order            => High_Order_First,
-       Scalar_Storage_Order => High_Order_First;
-
    type Ar is array (1 .. 1000) of Boolean with
-     Scalar_Storage_Order => Low_Order_First;
+     Scalar_Storage_Order => System.Low_Order_First;
 
 --------------------------
 Change of Representation
 --------------------------
 
-* Explicit conversion can be used to change representation
+* Explicit new type can be used to set representation
 * Very useful to unpack data from file/hardware to speed up references
 
 .. code:: Ada
@@ -411,9 +410,9 @@ Volatile
       pragma Volatile(Volatile_U16);
       type Volatile_U32 is mod 2**32 with Volatile; -- Ada 2012
 
-* Volatile means that the exact sequence of reads and writes of an object indicated in the source code must be respected in the generated code.
+* The exact sequence of reads and writes from the source code must appear in the generated code.
 
-   - No optimization of reads and writes please!
+   - No optimization of reads and writes
 
 * Volatile types are passed by-reference.
 
@@ -424,33 +423,35 @@ Ada Address Example
 .. code:: Ada
 
    type Bitfield is array (Integer range <>) of Boolean;
+   pragma Component_Size (1);
 
    V  : aliased Integer; -- object can be referenced elsewhere
-   Pragma Volatile (V);  -- may be updated at any time
+   pragma Volatile (V);  -- may be updated at any time
 
    V2 : aliased Integer;
-   Pragma Volatile (V2);
+   pragma Volatile (V2);
 
    V_A : System.Address := V'Address;
    V_I : Integer_Address := To_Integer (V_A);
 
    --  This maps directly on to the bits of V
    V3 : aliased Bitfield (1 .. V'Size);
-   For V3'address use V_A; -- overlay
+   for V3'Address use V_A; -- overlay
 
    V4 : aliased Integer;
    --  Trust me, I know what I'm doing, this is V2
-   For V4'address use To_Address (V_I - 4);
+   for V4'Address use To_Address (V_I - 4);
 
 --------------------
 Aliasing Detection
 --------------------
 
-* Aliasing happens when one object has two names
+* :dfn:`Aliasing`: multiple objects are accessing the same address
 
-   - Two pointers pointing to the same object
-   - Two references referencing the same object
-   - Two variables at the same address
+   - Types can be different
+   - Two pointers pointing to the same address
+   - Two references onto the same address
+   - Two objects at the same address
 
 * :ada:`Var1'Has_Same_Storage (Var2)` checks if two objects occupy exactly the same space
 * :ada:`Var'Overlaps_Storage (Var2)` checks if two object are partially or fully overlapping
@@ -483,7 +484,10 @@ Calling Assembly Code
 -----------------------
 
 * Calling assembly code is a vendor-specific extension
-* GNAT allows passing assembly scripts directly to the linker through `System.Machine_Code.ASM`
+* GNAT allows passing assembly with `System.Machine_Code.ASM`
+
+   - Handled by the linker directly
+
 * The developer is responsible for mapping variables on temporaries or registers
 * See documentation
 
@@ -500,8 +504,8 @@ Simple Statement
 
       Asm ("halt", Volatile => True);
 
-   - Specify `Volatile` to avoid compiler optimization
-   - GNAT is picky on that point
+   - You may specify `Volatile` to avoid compiler optimizations
+   - In general, keep it False unless it created issues
 
 * You can group several instructions
 
@@ -565,9 +569,9 @@ Mapping Inputs / Outputs on Temporaries
 
      - A constant
 
-   * - D
+   * - g
 
-     - edx (on x86)
+     - global (on x86)
 
    * - a
 
@@ -591,16 +595,21 @@ Main Rules
 * On x86, the assembler uses ``AT&T`` convention
 
    - First operand is source, second is destination
-   - See GNU assembler manual for details
+
+* See your toolchain's ``as`` assembler manual for syntax
 
 -------------------------------------
 Volatile and Clobber ASM Parameters
 -------------------------------------
 
-* Volatile |rightarrow| True deactivates optimizations with regards to suppressed instructions
-* Clobber |rightarrow| "reg1, reg2, ..." contains the list of registers considered to be "destroyed" by the use of the ASM call
+* :ada:`Volatile` |rightarrow| :ada:`True` deactivates optimizations with regards to suppressed instructions
+* :ada:`Clobber` |rightarrow| :ada:`"reg1, reg2, ..."` contains the list of registers considered to be "destroyed" by the use of the ASM call
 
-   - Use 'memory' if the memory is accessed in an unpredictable fashion.  The compiler will not keep memory values cached in registers across the instruction.
+   - ``memory`` if the memory is accessed
+
+      + Compiler won't use memory cache in registers across the instruction.
+
+   - ``cc`` if flags might have changed
 
 -----------------------------------
 Instruction Counter Example (x86)
@@ -619,7 +628,7 @@ Instruction Counter Example (x86)
    begin
       Asm ("rdtsc" & LF,
            Outputs =>
-              (Unsigned_32'Asm_Output ("=d", Low),
+              (Unsigned_32'Asm_Output ("=g", Low),
                Unsigned_32'Asm_Output ("=a", High)),
            Volatile => True);
       Values := Unsigned_64 (Low) +
