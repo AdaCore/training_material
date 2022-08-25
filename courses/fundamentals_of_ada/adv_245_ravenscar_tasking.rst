@@ -82,8 +82,9 @@ What Is the Jorvik profile?
 What are GNAT runtimes?
 -------------------------
 
-* The :dfn:`runtime` is an embedded piece of software
+* The :dfn:`runtime` is an embedded library
 
+  - Executing at run-time
   - In charge of standard's library support...
   - ...including tasking
 
@@ -448,7 +449,7 @@ Execution Time Clocks
     - Including calls to libraries, O/S services...
     - But not including time in a blocked or suspended state
 
-* System and run-time library also execute code
+* System and runtime also execute code
 
    - As well as interrupt handlers
    - Their execution time clock assignment is implementation-defined
@@ -528,7 +529,7 @@ Light-Tasking
 
  .. container:: column
 
-    * Everything is done by the Ada run-time library
+    * Everything is done by the Ada runtime
 
        - No OS underneath
 
@@ -539,10 +540,9 @@ Light-Tasking
 
     * Static tasking model
 
-       - Tasks descriptors and stacks are statically created at compile time
+       - Static tasks descriptors and stacks created at compile time
        - Task creation and activation is very simple
        - All tasks are created at initialization
-       - Then all activated and executed according to their priority
 
  .. container:: column
 
