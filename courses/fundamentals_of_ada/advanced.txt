@@ -11,4 +11,5 @@ adv_240_tasking.rst
 adv_245_ravenscar_tasking.rst
 adv_270_subprogram_contracts.rst
 adv_275_type_contracts.rst
+adv_280_low_level_programming.rst
 230_interfacing_with_c.rst
