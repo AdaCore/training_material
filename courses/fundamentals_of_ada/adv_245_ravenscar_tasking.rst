@@ -130,7 +130,7 @@ Ravenscar Tasking Limitations
 
    - Only one entry per protected object
 
-      + Unlimited in Jorvik
+      + **Unlimited** in Jorvik
 
    - Barriers can only be simple boolean values
 
@@ -144,7 +144,7 @@ Task Types with Ravenscar
 * It is possible to create :ada:`task` types
 
    - Only **static** ones in Ravenscar, no :ada:`new`
-   - No "task hierarchy": declaration at library-level
+   - No "task hierarchy" - Declaration at library-level
 
 * Tasks are activated at the end of their library unit's declarative part
 
@@ -478,6 +478,7 @@ Partition Elaboration Control
    - Always relative to library units' elaboration
    - **Concurrent policy**
 
+      + Activation at the end of declaration's scope elaboration
       + Ada default policy
 
    - **Sequential policy**
