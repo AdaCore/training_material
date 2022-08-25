@@ -49,7 +49,7 @@ if __name__ == "__main__":
                 q_old = fread.read()
 
             stderr = None if args.verbose else subprocess.DEVNULL
-            q_new = quiz(QUIZ_SCRIPT, inf, stderr=stderr, out_filter=str)
+            q_new = quiz(inf, stderr=stderr, out_filter=str)
             
             if q_old != q_new:
                 print("\033[31mFAIL\033[0m")
