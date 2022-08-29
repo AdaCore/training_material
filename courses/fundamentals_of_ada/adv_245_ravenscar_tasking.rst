@@ -133,26 +133,22 @@ Ravenscar Tasking Limitations
       + Typically blocking until a flag clears
       + Jorvik allows for more general :dfn:`pure barriers`
 
----------------------------
-Task Types with Ravenscar
----------------------------
+-----------------------------------------
+Task Types and Protected with Ravenscar
+-----------------------------------------
 
-* It is possible to create :ada:`task` types
+* The **whole** tasking setup must be **static**
 
-   - Only **static** ones in Ravenscar, no :ada:`new`
-   - No "task hierarchy" - Declaration at library-level
+    - Compiler "compiles-in" the scheduling
+    - Protected and tasks instantiation **must** be at library level
+
+        + No "task hierarchy" or "local protected"
+
+    - No :ada:`new` allocators for tasks or protected objects
 
 * Tasks are activated at the end of their library unit's declarative part
 
    - Can be deferred to the end of **all** elaboration
-
---------------------------------
-Protected Types With Ravenscar
---------------------------------
-
-* Like tasks, protected objects can be defined through types
-* Instantiation can then be done on library level
-* Protected object types are :ada:`limited` types
 
 ==================
 Tasking Behavior
