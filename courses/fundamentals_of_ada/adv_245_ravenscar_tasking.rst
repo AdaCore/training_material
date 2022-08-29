@@ -53,17 +53,13 @@ What Is the Ravenscar Profile?
    - Execution efficiency and small footprint
    - Certification
 
-* State-of-the-art concurrency constructs
-
-   - Adequate for most types of real-time software
-
 * :ada:`pragma Profile (Ravenscar)`
 
 -----------------------------
 What Is the Jorvik profile?
 -----------------------------
 
-* A **non-backwards compatible update** to Ravenscar
+* A **non-backwards compatible profile** based on Ravenscar
 
   + Defined in the RM D.13 (Ada 2022)
 
@@ -71,10 +67,10 @@ What Is the Jorvik profile?
 
   - Scheduling analysis may be harder to perform
 
-* Keep the same requirements
-* This class is about the more popular Ravenscar
+* Subset of Ravenscars' requirements
+* This class is about the more widespread Ravenscar
 
-  + But Jorvik's improvements are evoked
+  + But some of Jorvik's differences are indicated
 
 * :ada:`pragma Profile (Jorvik)`
 
@@ -107,7 +103,7 @@ What are GNAT runtimes?
   - Baremetal targets
   - Very small memory footprint
   - Selected, very limited, runtime
-  - Optional Ravenscar/Jorvik tasking (Light-tasking)
+  - Optional Ravenscar tasking (*Light-tasking* runtime)
 
 ===================================
 Differences From Standard Tasking
@@ -124,7 +120,7 @@ Ravenscar Tasking Limitations
 
 * Tasks declaration **must be** at library level
 
-   - All **must** finish before the program terminates
+   - They must **never** finish
 
 * Protected object entries
 
@@ -135,7 +131,7 @@ Ravenscar Tasking Limitations
    - Barriers can only be simple boolean values
 
       + Typically blocking until a flag clears
-      + Jorvik allows for any :dfn:`pure barriers`
+      + Jorvik allows for more general :dfn:`pure barriers`
 
 ---------------------------
 Task Types with Ravenscar
@@ -179,7 +175,7 @@ Ravenscar Patterns
    - Interrupt
    - Data from another task
 
-* Protected objects to synchronize tasks
+* Tasks synchronized and communicating with protected objects
 
 -----------------------------------
 What Tasks Look Like in Ravenscar
@@ -257,11 +253,11 @@ Protected Objects and Interrupt Handling
    - :dfn:`Proxy model` for protected entries
 
       + Entry body executed by the active task on behalf of the waiting tasks
-      + Avoid unneeded context switches
+      + Avoids unneeded context switches
+      + Timing harder to analyze
 
 * Simple, efficient, interrupt handling
 
-    - :dfn:`Interrupt entries`
     - Protected procedures as low level interrupt handlers
     - Procedure is :dfn:`attached` to interrupt
     - Interrupt masking follows active priority
@@ -348,7 +344,7 @@ Ceiling Locking
 
 * :ada:`pragma Locking_Policy (Ceiling_Locking)`
 
-    - Default on Ravenscar
+    - Default on Ravenscar / Jorvik
 
 -------------------------
 Ceiling Locking Example
@@ -379,7 +375,7 @@ Tasking Control
 Synchronous Task Control
 --------------------------
 
-* Primitives synchronization mechanisms and two-stage suspend operations
+* Primitives synchronization mechanisms and two-stage suspend operation
 
    - No critical section
    - More lightweight than protected objects
@@ -436,6 +432,7 @@ Timing Events
 Execution Time Clocks
 -----------------------
 
+* Not specific to Ravenscar / Jorvik
 * Each task has an associated CPU time clock
 
    - Accessible via function call
@@ -472,51 +469,26 @@ Partition Elaboration Control
 
 * :ada:`pragma Partition_Elaboration_Policy`
 
+------------------------------
+Partition Elaboration Policy
+------------------------------
+
+* :ada:`pragma Partition_Elaboration_Policy`
+
    - Defined in RM Annex H "High Integrity Systems"
-   - Controls tasks activation
-   - Controls interrupts attachment
-   - Always relative to library units' elaboration
-   - **Concurrent policy**
 
-      + Activation at the end of declaration's scope elaboration
-      + Ada default policy
+* Controls tasks' activation
+* Controls interrupts attachment
+* Always relative to library units' elaboration
+* **Concurrent policy**
 
-   - **Sequential policy**
+  - Activation at the end of declaration's scope elaboration
+  - Ada default policy
 
-      + Deferred activation and attachment until **all** library units are activated
-      + Default policy for Ravenscar and Jorvik profiles
+* **Sequential policy**
 
--------------------------------
-Task Termination Notification
--------------------------------
-
-* Tasks silently terminate
-
-   - Without notification by default
-
-* User-defined handlers for termination
-
-   - Essentially a task's "last wishes"
-   - Runtime calls back :ada:`access protected procedure`
-
-* Termination cause provided as argument
-
-   - Normal termination
-   - Termination due to an unhandled exception
-   - Termination due to task abort (forbidden in Ravenscar)
-
-* Ravenscar Run-time Interface
-
-   .. code:: Ada
-
-      package Ada.Task_Termination is
-         type Termination_Handler is access protected procedure
-          (Cause : in Cause_Of_Termination;
-           T     : in Ada.Task_Identification.Task_Id;
-           X     : in Ada.Exceptions.Exception_Occurrence);
-         procedure Set_Dependents_Fallback_Handler (Handler : Termination_Handler);
-         function Current_Task_Fallback_Handler return Termination_Handler;
-      end Ada.Task_Termination;
+  - Deferred activation and attachment until **all** library units are activated
+  - Easier scheduling analysis
 
 =========
 Summary
