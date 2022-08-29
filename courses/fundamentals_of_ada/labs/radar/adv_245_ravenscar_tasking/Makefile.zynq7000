@@ -1,7 +1,9 @@
 .PHONY: compile
 
+MODE ?= "Question"
+
 compile:
-	gprbuild --target=arm-elf --RTS=light-tasking-zynq7000
+	gprbuild --target=arm-elf --RTS=light-tasking-zynq7000 -XMode=$(MODE)
 
 test:
 	@echo ""

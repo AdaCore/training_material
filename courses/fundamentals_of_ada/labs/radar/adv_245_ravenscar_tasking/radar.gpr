@@ -1,6 +1,17 @@
 project Radar is
+
+   type Mode_T is ("Question", "Answer");
+   Mode : Mode_T := External ("Mode", "Question");
+
    for Main use ("main.adb");
-   for Source_Dirs use ("src", "util", "pragmarc");
+   
+   case Mode is
+   when "Question" =>
+       for Source_Dirs use ("src", "util", "common", "pragmarc");
+   when "Answer" =>
+       for Source_Dirs use ("answers", "util", "common", "pragmarc");
+   end case;
+
    for Object_Dir use "obj";
 
    package Compiler is
