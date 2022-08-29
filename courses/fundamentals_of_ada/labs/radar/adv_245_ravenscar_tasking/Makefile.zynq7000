@@ -3,7 +3,7 @@
 MODE ?= "Question"
 
 compile:
-	gprbuild --target=arm-elf --RTS=light-tasking-zynq7000 -XMode=$(MODE)
+	gprbuild -p --target=arm-elf --RTS=light-tasking-zynq7000 -XMode=$(MODE)
 
 test:
 	@echo ""
