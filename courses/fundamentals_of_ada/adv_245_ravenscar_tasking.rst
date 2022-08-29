@@ -333,6 +333,9 @@ Ceiling Locking
    Result: T2 running, T1 blocked, T3 blocked through L (but T3 > T2!)
 
 * Solved with ceiling locking
+
+    - Increase the priority of a task when it uses a protected
+
 * Task priority is increased within a protected object
 
     - Condition: Task priority ``<=`` priorities of all protected objects it uses
@@ -451,7 +454,7 @@ Execution Time Clocks
 Partition Elaboration Control
 -------------------------------
 
-* Library units are elaborated in an undefined order
+* Library units are elaborated in a partially-defined order
 
    - They can declare tasks and interrupt handlers
    - Once elaborated, tasks start executing
