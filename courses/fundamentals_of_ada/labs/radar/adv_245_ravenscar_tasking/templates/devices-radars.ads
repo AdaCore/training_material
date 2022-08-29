@@ -26,7 +26,13 @@ package Devices.Radars is
         function Angle return Radar_Internals.Angle_Degrees_T;
         -- Current radar angle
     private
+        --$ line question
         -- TODO: Fill in any needed objects
+        --$ begin answer
+        New_Event : Boolean := False;
+        Event : Event_T;
+        Rotation : Radar_Internals.Angle_Degrees_T;
+        --$ end answer
     end Radar;
 
     task Radar_Detect is
