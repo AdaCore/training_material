@@ -1,0 +1,47 @@
+project Mini_Cinema is
+
+   type Mode_T is ("Question", "Answer");
+   Mode : Mode_T := external ("Mode", "Question");
+
+   type Main_T is ("UT_Sprites", "UT_Display",
+                   "Static_Image_Display_Test",
+                   "Movie_Test",
+                   "Server_Test",
+                   "Mini_Cinema");
+   Main : Main_T := external ("Main", "UT_Sprites");
+
+   Source_Prefix := "";
+   case Mode is
+      when "Question" =>
+         Source_Prefix := "src/";
+      when "Answer" =>
+         Source_Prefix := "answer/";
+   end case;
+
+   for Source_Dirs use (Source_Prefix & "mini_cinema",
+                        Source_Prefix & "server",
+                        Source_Prefix & "display",
+                        Source_Prefix & "sprites",
+                        "include",
+                        "logs", "tests", "testsuite");
+   for Object_Dir use "obj";
+
+   case Main is
+      when "UT_Sprites" =>
+         for Main use ("run_test_sprites.adb");
+      when "UT_Display" =>
+         for Main use ("run_test_display.adb");
+      when "Static_Image_Display_Test" =>
+         for Main use ("static_image_display.adb");
+      when "Movie_Test" =>
+         for Main use ("simple_movie_play.adb");
+      when "Server_Test" =>
+         for Main use ("movie_server_test.adb");
+      when others =>
+         for Main use ("mini_cinema.adb");
+   end case;
+
+   package Compiler is
+      for Default_Switches ("Ada") use ("-gnata", "-gnat2022");
+   end Compiler;
+end Mini_Cinema;
