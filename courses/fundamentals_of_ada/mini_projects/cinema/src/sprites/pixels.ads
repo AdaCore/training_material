@@ -7,7 +7,8 @@ package Pixels is
    
    type Pixel_T is record
       -- TODO: At least R, G, B pixel components 
-      DUMMY : Integer;
+      --      replace those dummy variables with the proper name and type
+      DUMMY1, DUMMY2, DUMMY3, DUMMY4 : Integer;
    end record;
    
    function "+" (A, B : Pixel_T) return Pixel_T;
