@@ -45,7 +45,7 @@ What Is the Ravenscar Profile?
    - Simple (Implemented reliably and efficiently)
 
 * Scheduling theory for accurate analysis of real-time behavior
-* Defined to help meeting **safety-critical real-time** requirements
+* Defined to help meet **safety-critical real-time** requirements
 
    - Determinism
    - Schedulability analysis
@@ -171,7 +171,7 @@ Ravenscar Patterns
    - Interrupt
    - Data from another task
 
-* Tasks synchronized and communicating with protected objects
+* Tasks can synchronize and communicate via protected objects
 
 -----------------------------------
 What Tasks Look Like in Ravenscar
