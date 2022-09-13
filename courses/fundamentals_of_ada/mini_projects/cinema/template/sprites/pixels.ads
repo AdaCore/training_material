@@ -12,7 +12,8 @@ package Pixels is
    type Pixel_T is record
       --$ begin question
       -- TODO: At least R, G, B pixel components 
-      DUMMY : Integer;
+      --      replace those dummy variables with the proper name and type
+      DUMMY1, DUMMY2, DUMMY3, DUMMY4 : Integer;
       --$ end question
       --$ begin answer
       R, G, B, A : Pixel_Component_T;

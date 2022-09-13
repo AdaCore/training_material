@@ -1,4 +1,4 @@
-ADACUT="python $WORKSPACE/training_material/contrib/adacut.py"
+ADACUT="python3 $WORKSPACE/training_material/contrib/adacut.py"
 
 for d in template/*; do
     ans_dest_dir=answer/$(basename $d)

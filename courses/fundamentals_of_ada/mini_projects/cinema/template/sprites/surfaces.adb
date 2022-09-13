@@ -5,8 +5,13 @@ package body Surfaces is
       --$ line answer
       Pix_Row : Pixel_Component_Row_Array_T (Surf'First (2) .. Surf'Last (2));
    begin
-      --$ line question
-      return (others => <>); -- TODO
+      --$ begin question
+      -- Returns the luminosity of each pixel in the row so that it
+      -- can later be used as a mean to convert it to a set of characters.
+      -- For example a black pixel will be converted to '#' and a white pixel
+      -- to ' ', giving "# # " for a checkerboard pattern.
+      return (1 => <>); -- TODO
+      --$ end question
       --$ begin answer
       for Col in Pix_Row'Range loop
          Pix_Row (Col) := Pixels.Luminosity (Surf (Row, Col));

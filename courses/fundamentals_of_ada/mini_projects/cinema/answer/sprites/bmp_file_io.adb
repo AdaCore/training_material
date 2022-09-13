@@ -98,8 +98,16 @@ package body BMP_File_IO is
      (Surf : in out Surface_T;
       Col : Color_Table;
       Pixel_Size : Natural;
+      Input_Stream : Ada.Streams.Stream_IO.Stream_Access);
+     --  Read the content of an input stream of bytes that is the pixels data part of
+     --  a BMP file and convert it to a surface data, according to the given color table,
+     --  and pixel size.
+
+   procedure Read_Surface_Data
+     (Surf : in out Surface_T;
+      Col : Color_Table;
+      Pixel_Size : Natural;
       Input_Stream : Ada.Streams.Stream_IO.Stream_Access) is
-      
       Height : constant Row_T := Surf'Length (1);
       Width : constant Column_T := Surf'Length (2);
       
@@ -143,6 +151,50 @@ package body BMP_File_IO is
       end loop;
    end Read_Surface_Data;
    
+   function Get (File : File_Type) return Surface_T
+   is
+      -- cannot read from a file type, directly, need
+      -- to have a stream from it
+      Input_Stream : Ada.Streams.Stream_IO.Stream_Access
+        := Ada.Streams.Stream_IO.Stream (File);
+
+      Hdr : Header;
+      Inf : Info;
+      Col : Color_Table;
+      
+      Width : Column_T;
+      Height : Row_T;
+   
+   begin
+      -- Reading BMP header
+      U8_Array'Read (Input_Stream, Hdr.Arr);
+      -- Reading BMP info table
+      U8_Array'Read (Input_Stream, Inf.Arr);
+      Col := (Size => Natural (Inf.Palette_Size),
+              others => <>); 
+      Color_Array'Read (Input_Stream, Col.Arr);
+
+      Width  := Column_T (Inf.Width);
+      Height := Row_T (Inf.Height);
+      
+      -- signature should be as per the BMP spec above
+      pragma Assert (Hdr.Signature = 16#4d42#);
+      -- supported compression scheme are 0 or 3
+      pragma Assert (Inf.Compression = 0 or Inf.Compression = 3);
+      -- supported pixel sizes are: 4 bytes, 3 bytes,
+      --    1 byte (index to the palette)
+      pragma Assert (Inf.Pixel_Size = 32 or Inf.Pixel_Size = 24
+                     or (Inf.Pixel_Size = 8 and Inf.Palette_Size > 0));
+      
+      -- Jump to the proper pixel data offset (see in Header)
+      Set_Index (File, Positive_Count (Hdr.Offset + 1));
+      -- Read the file's BMP pixels raw data, and convert those to RGB
+      -- Tip: use Read_Surface_Data you've already written
+      return S : Surface_T (1 .. Height, 1 .. Width) do
+         Read_Surface_Data (S, Col, Positive (Inf.Pixel_Size), Input_Stream);
+      end return;
+   end Get;
+
    function Get (File_Name : String) return Surfaces.Surface_T is
       File : File_Type;
    begin
@@ -156,39 +208,6 @@ package body BMP_File_IO is
          -- release all resources, and re-raise
          Close (File);
          raise;
-   end Get;
-   
-   function Get (File : File_Type) return Surface_T
-   is
-      Input_Stream : Ada.Streams.Stream_IO.Stream_Access
-        := Ada.Streams.Stream_IO.Stream (File);
-
-      Hdr : Header;
-      Inf : Info;
-      Col : Color_Table;
-      
-      Width : Column_T;
-      Height : Row_T;
-   
-   begin
-      U8_Array'Read (Input_Stream, Hdr.Arr);
-      U8_Array'Read (Input_Stream, Inf.Arr);
-      Col := (Size => Natural (Inf.Palette_Size),
-              others => <>); 
-      Color_Array'Read (Input_Stream, Col.Arr);
-
-      Width  := Column_T (Inf.Width);
-      Height := Row_T (Inf.Height);
-      
-      pragma Assert (Hdr.Signature = 16#4d42#);
-      pragma Assert (Inf.Compression = 0 or Inf.Compression = 3);
-      pragma Assert (Inf.Pixel_Size = 32 or Inf.Pixel_Size = 24
-                     or (Inf.Pixel_Size = 8 and Inf.Palette_Size > 0));
-      
-      Set_Index (File, Positive_Count (Hdr.Offset + 1));
-      return S : Surface_T (1 .. Height, 1 .. Width) do
-         Read_Surface_Data (S, Col, Positive (Inf.Pixel_Size), Input_Stream);
-      end return;
    end Get;
 
 end BMP_File_IO;

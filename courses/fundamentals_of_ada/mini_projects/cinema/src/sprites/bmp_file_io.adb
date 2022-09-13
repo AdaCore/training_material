@@ -98,33 +98,39 @@ package body BMP_File_IO is
      (Surf : in out Surface_T;
       Col : Color_Table;
       Pixel_Size : Natural;
+      Input_Stream : Ada.Streams.Stream_IO.Stream_Access);
+     --  Read the content of an input stream of bytes that is the pixels data part of
+     --  a BMP file and convert it to a surface data, according to the given color table,
+     --  and pixel size.
+
+   procedure Read_Surface_Data
+     (Surf : in out Surface_T;
+      Col : Color_Table;
+      Pixel_Size : Natural;
       Input_Stream : Ada.Streams.Stream_IO.Stream_Access) is
       
-      Row_Size    : constant Integer_32 := 0; -- TODO
+      -- TODO: calculate the size of a row of pixels
+      Row_Size    : constant Integer_32 := 0;
       -- Rows have a 32 bits padding
       Row_Padding : constant Integer_32 := (32 - (Row_Size mod 32)) mod 32 / 8;
 
    begin
-      null; -- TODO
-   end Read_Surface_Data;
-   
-   function Get (File_Name : String) return Surfaces.Surface_T is
-      File : File_Type;
-   begin
-      -- Open file, read BMP info, close file
       -- TODO
-      return S : Surfaces.Surface_T (1 .. 0, 1 ..0);
-   exception
-      when others =>
-         -- release all resources, and re-raise
-         -- TODO
-         return S : Surfaces.Surface_T (1 .. 0, 1 ..0);
-   end Get;
+      -- Be careful of several things:
+      -- 1. the rows are stored for the bottom one to the top one
+      -- 2. the color data is not necessarily used, depending on the
+      --    size of the color data table (0 or not)
+      -- 3. even though the color index may be of several sizes, you can
+      --    safely assume it is on 8 bits, using a Unsigned_8
+      null;
+   end Read_Surface_Data;
    
    function Get (File : File_Type) return Surface_T
    is
+      -- cannot read from a file type, directly, need
+      -- to have a stream from it
       Input_Stream : Ada.Streams.Stream_IO.Stream_Access
-        := null; -- TODO: Open stream
+        := null; -- TODO: Turn file to a stream
 
       Hdr : Header;
       Inf : Info;
@@ -134,11 +140,47 @@ package body BMP_File_IO is
       Height : Row_T;
    
    begin
+      -- Reading BMP header
       U8_Array'Read (Input_Stream, Hdr.Arr);
+      -- Reading BMP info table
       U8_Array'Read (Input_Stream, Inf.Arr);
       -- TODO
+      -- The color table is stored with a size given
+      -- in the info table
       Col := (others => <>);
+
+      -- TODO
+      -- Verify the header's and info table's content
+      -- signature should be as per the BMP spec above
+      -- supported compression scheme are 0 or 3
+      -- supported pixel sizes are: 4 bytes, 3 bytes,
+      --    or else 1 byte (index to the palette)
+
+      -- TODO
+      -- Jump to the proper pixel data offset (see in Header)
+      -- TODO
+      -- Read the file's BMP pixels raw data, and convert those
+      -- to a Surface
       return S : Surface_T (1 .. 0, 1 .. 0);
+   end Get;
+
+   function Get (File_Name : String) return Surfaces.Surface_T is
+      File : File_Type;
+   begin
+      -- Open file, read BMP info, close file
+      -- TODO
+      -- Open the file, read its content as a surface,
+      -- close the file.
+      -- In order to read the content, re-use the Get from a
+      -- stream you have already implemented above.
+      return S : Surfaces.Surface_T (1 .. 0, 1 ..0);
+   exception
+      when others =>
+         -- release all resources, and re-raise
+         -- TODO
+         -- In case of error, we want to close the
+         -- opened file, and re-raise the exception
+         return S : Surfaces.Surface_T (1 .. 0, 1 ..0);
    end Get;
 
 end BMP_File_IO;
