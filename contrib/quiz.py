@@ -61,7 +61,9 @@ class Quiz:
         else:
             self.question = None
         self.code_question = self.adacut("-Km", "question", out_filter=str)
-        self.general_explainations = self.adacut("-Km", "answer", out_filter=decomment_dedent_lines)
+        self.general_explainations = self.adacut(
+            "-Km", "answer", out_filter=decomment_dedent_lines
+        )
 
     def adacut(self, *a, **kw):
         return adacut(*a, "--", self.input_file, **kw)
