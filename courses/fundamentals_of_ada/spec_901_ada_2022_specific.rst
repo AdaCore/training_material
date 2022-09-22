@@ -72,7 +72,32 @@ Generalized :ada:`'Image`
 ---------------------------
 
 * All types have a :ada:`Image` attribute
-* Its return value is standardized
+* Its return value is (mostly) standardized
 
-.. 
-    
+    - Except for e.g. unchecked unions
+
+* Non-exhaustive example
+
+.. container:: columns
+
+ .. container:: column
+
+  * Code
+
+  .. include:: examples/spec_901_ada_2022_specific/generalized_image_attribute/extracts/put_line.adb
+    :code: Ada
+
+ .. container:: column
+
+ .. container:: column
+
+  * Output
+
+  .. include:: examples/spec_901_ada_2022_specific/generalized_image_attribute/out.txt
+    :code:
+
+.
+
+---------------------------
+User-defined :ada:`Image`
+---------------------------
