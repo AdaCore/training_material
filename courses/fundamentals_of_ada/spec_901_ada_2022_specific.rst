@@ -84,16 +84,14 @@ Generalized :ada:`'Image`
 
   * Code
 
-  .. include:: examples/spec_901_ada_2022_specific/generalized_image_attribute/extracts/put_line.adb
+  .. include:: examples/ada2022/generalized_image_attribute/extracts/put_line.adb
     :code: Ada
-
- .. container:: column
 
  .. container:: column
 
   * Output
 
-  .. include:: examples/spec_901_ada_2022_specific/generalized_image_attribute/out.txt
+  .. include:: examples/ada2022/generalized_image_attribute/out.txt
     :code:
 
 .
@@ -101,3 +99,56 @@ Generalized :ada:`'Image`
 ---------------------------
 User-defined :ada:`Image`
 ---------------------------
+
+* User-defined types can have a :ada:`Image` attribute
+
+    - Need to specify the :ada:`Put_Image` aspect
+
+.. code:: Ada
+
+   type My_Type
+   [...]
+     with Put_Image => My_Put_Image;
+
+.. code:: Ada
+
+   procedure My_Put_Image
+     (Buffer : in out
+               Ada.Strings.Text_Buffers.Root_Buffer_Type'Class;
+      Arg   : in T);
+
+* :ada:`Root_Buffer_Type` is a text stream
+
+.. code:: Ada
+
+   procedure Put (
+      Buffer : in out Root_Buffer_Type;
+      Item   : in     String) is abstract;
+
+* Several variants (wide, UTF8...)
+   
+------------------------------------
+User-defined :ada:`'Image` example
+------------------------------------
+
+* Spec
+
+.. include:: examples/ada2022/user_defined_image_attribute/extracts/spec.ads
+   :code: Ada
+
+* Body
+
+.. include:: examples/ada2022/user_defined_image_attribute/extracts/body.adb
+   :code: Ada
+
+-----------------------
+User-defined literals
+-----------------------
+
+* User-defined types can accept literals as inputs
+
+    - :ada:`Integer`, :ada:`Float`, or :ada:`String`
+
+* Example
+
+.. include:: examples/

@@ -24,10 +24,14 @@ procedure Main is
 begin
 
    --$ begin cut
-   Put_Line (Record_Obj'Image);
-   Put_Line (Array_Obj'Image);
-   Put_Line (Acc_O'Image);
-   Put_Line (Task_Obj'Image);
+   Put_Line
+      (Record_Obj'Image);
+   Put_Line
+      (Array_Obj'Image);
+   Put_Line
+      (Acc_O'Image);
+   Put_Line
+      (Task_Obj'Image);
    --$ end cut
 
 end Main;
