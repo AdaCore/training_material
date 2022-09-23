@@ -57,9 +57,9 @@ Standard Lib
 * :ada:`System.Atomic_Operations`
 * Jorvik profile
 
----------------
-Miscellaneous
----------------
+---------------------
+Miscellaneous (1/2)
+---------------------
 
 * Target Name Symbol (``@``)
 
@@ -86,20 +86,30 @@ Miscellaneous
 .. include:: examples/ada2022/variadic/extracts/variadic_decl.ads
     :code: Ada
 
+---------------------
+Miscellaneous (2/2)
+---------------------
+
 * Contract on access types
 
 .. include:: examples/ada2022/contract_access/extracts/decl.ads
     :code: Ada
 
----------------
-Unimplemented
----------------
+* Declare expressions
 
-* Global states
-* Parallel loops
-* Conflict checking
-* Chunked iterators
-* Procedural iterators
+.. code:: Ada
+
+    Area : Float := (declare
+                        Pi : constant Float := 3.14159
+                     begin
+                        (Pi ** 2) * R);
+
+* More expressive renamings
+
+.. code:: Ada
+
+    A : Integer;
+    B renames A; -- B type is infered
 
 ====================
 Image and Literals
@@ -245,6 +255,8 @@ Container aggregates
 .. include:: examples/ada2022/container_aggregates/extracts/decl_object.ads
     :code: Ada
 
+* Implemented on standard lib's containers
+
 ------------------
 Delta aggregates
 ------------------
@@ -370,8 +382,33 @@ Jorvik Profile
 Summary
 =========
 
-------------------------
-Adapting to new usages
-------------------------
+----------
+Ada 2022
+----------
 
+* Adapting to new usages
 
+    - Cryptography
+    - Lock-free synchronizations
+
+* More expressive syntax
+
+    - :ada:`'Image` and literals
+    - Functional approach: filters...
+    - Simplified declarations and renamings
+
+* Some features are not implemented...
+
+    - ...by anyone
+    - Those are related to parallelization
+    - Subject to change in the future
+
+---------------
+Unimplemented
+---------------
+
+* Global states
+* Parallel loops
+* Conflict checking
+* Chunked iterators
+* Procedural iterators
