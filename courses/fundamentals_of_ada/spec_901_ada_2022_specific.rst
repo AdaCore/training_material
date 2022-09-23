@@ -126,7 +126,7 @@ User-defined :ada:`Image`
       Item   : in     String) is abstract;
 
 * Several variants (wide, UTF8...)
-   
+
 ------------------------------------
 User-defined :ada:`'Image` example
 ------------------------------------
@@ -150,5 +150,10 @@ User-defined literals
     - :ada:`Integer`, :ada:`Float`, or :ada:`String`
 
 * Example
+* :file:`my_int.ads`
 
-.. include:: examples/
+.. include:: examples/ada2022/generalized_literals/extracts/my_int.ads
+
+* :file:`main.adb`
+
+.. include:: examples/ada2022/generalized_literals/extracts/main.adb
