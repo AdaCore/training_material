@@ -85,6 +85,11 @@ Miscellaneous
 .. include:: examples/ada2022/variadic/extracts/variadic_decl.ads
     :code: Ada
 
+* Contract on access types
+
+.. include:: examples/ada2022/contract_access/extracts/decl.ads
+    :code: Ada
+
 ---------------
 Unimplemented
 ---------------
@@ -224,12 +229,27 @@ Iteration filters
 Container aggregates
 ----------------------
 
+* Using :ada:`with Aggregate => (<Args>)`
+* Args are
 
+    - :ada:`Empty =>` init function (or else default)
+    - :ada:`Add_Named =>`
+    - :ada:`Add_Unnamed =>`
+
+* You **cannot** mix named and unnamed
+
+.. include:: examples/ada2022/container_aggregates/extracts/decl_aspect.ads
+    :code: Ada
+
+.. include:: examples/ada2022/container_aggregates/extracts/decl_object.ads
+    :code: Ada
 
 ------------------
 Delta aggregates
 ------------------
 
+.. include:: examples/ada2022/delta_aggregates/extracts/spec.ads
+    :code: Ada
 
 ==============
 Standard Lib
@@ -239,8 +259,11 @@ Standard Lib
 ``Ada.Numerics.Big_Numbers``
 ------------------------------
 
-* Numbers of arbitary precision
-* :ada:`Big_Integers` child package
+* Numbers of arbitary size
+
+    - Particularly useful for cryptography
+
+* :ada:`Big_Integers`, :ada:`Big_Reals` child packages
 
 .. code:: Ada
 
@@ -310,7 +333,7 @@ Standard Lib
 
 * Several child packages
 
-    - :ada:`Exchange` 
+    - :ada:`Exchange`
 
         + :ada:`function Atomic_Exchange` ...
 
