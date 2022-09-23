@@ -75,12 +75,14 @@ Miscellaneous
     E'Enum_Rep (A); -- 10
     E'Enum_Val (10); -- A
 
-* C variadic functions interface
-
-
 * Staticness
 
 .. include:: examples/ada2022/staticness/extracts/static_expr_fun.ads
+    :code: Ada
+
+* C variadic functions interface
+
+.. include:: examples/ada2022/variadic/extracts/variadic_decl.ads
     :code: Ada
 
 ---------------
