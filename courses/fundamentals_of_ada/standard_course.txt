@@ -14,12 +14,12 @@
 120_limited_types.rst
 130_program_structure.rst
 135_visibility.rst
+adv_120_advanced_privacy.rst
 140_access_types.rst
-160_genericity.rst
-170_tagged_derivation.rst
-180_polymorphism.rst
+adv_140_access_types.rst
 190_exceptions.rst
-230_interfacing_with_c.rst
 240_tasking.rst
+spec_875_gpr_basics.rst
+spec_870_gnat_options.rst
 900_ada_version_comparison.rst
 920_reference_material.rst
