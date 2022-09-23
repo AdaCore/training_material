@@ -55,6 +55,7 @@ Standard Lib
 * :ada:`Ada.Numerics.Big_Numbers`
 * :ada:`Ada.Strings.Text_Buffers`
 * :ada:`System.Atomic_Operations`
+* Jorvik profile
 
 ---------------
 Miscellaneous
@@ -232,9 +233,9 @@ Container aggregates
 * Using :ada:`with Aggregate => (<Args>)`
 * Args are
 
-    - :ada:`Empty =>` init function (or else default)
-    - :ada:`Add_Named =>`
-    - :ada:`Add_Unnamed =>`
+    - :ada:`Empty` init function (or else default)
+    - :ada:`Add_Named` named aggregate element
+    - :ada:`Add_Unnamed` positional aggregate element
 
 * You **cannot** mix named and unnamed
 
@@ -247,6 +248,11 @@ Container aggregates
 ------------------
 Delta aggregates
 ------------------
+
+* Can build an object from another one
+
+    - Similarly to tagged types' extension aggregates
+    - Using :ada:`with delta` in the aggregate
 
 .. include:: examples/ada2022/delta_aggregates/extracts/spec.ads
     :code: Ada
@@ -281,14 +287,12 @@ Standard Lib
 
     function "=" (L, R : Valid_Big_Integer) return Boolean;
     function "<" (L, R : Valid_Big_Integer) return Boolean;
-    function ">" (L, R : Valid_Big_Integer) return Boolean;
     [...]
 
 * Arithmetic operators
 
 .. code:: Ada
 
-    function "-" (L : Valid_Big_Integer) return Valid_Big_Integer;
     function "abs" (L : Valid_Big_Integer) return Valid_Big_Integer;
     function "+" (L, R : Valid_Big_Integer) return Valid_Big_Integer;
     [...]
@@ -345,3 +349,29 @@ Standard Lib
 
         + :ada:`generic package`
         + :ada:`procedure Atomic_Add` ...
+
+----------------
+Jorvik Profile
+----------------
+
+* A **non-backwards compatible profile** based on Ravenscar
+
+  + Defined in the RM D.13 (Ada 2022)
+
+* Remove some constraints
+
+  - Number of protected entries, entry queue length...
+  - Scheduling analysis may be harder to perform
+
+* Subset of Ravenscars' requirements
+* :ada:`pragma Profile (Jorvik)`
+
+=========
+Summary
+=========
+
+------------------------
+Adapting to new usages
+------------------------
+
+
