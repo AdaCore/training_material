@@ -5,9 +5,13 @@ procedure Main is
 
    O : A := [];
    O2 : A := [1, 2];
+   --$ begin cut
    O3 : A := [for I in 1 .. 10
               => (if I * I > 1 and I * I < 20 then I else 0)];
+   --$ end cut
+   --$ begin cut
    O4 : A := (for I of O3 when I /= 0 => I);
+   --$ end cut
 
    procedure Put_Line (O : A) is
    begin

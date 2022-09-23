@@ -155,12 +155,12 @@ User-defined :ada:`Image`
 User-defined :ada:`'Image` example
 ------------------------------------
 
-* Spec
+* :filename:`custom_image.ads`
 
 .. include:: examples/ada2022/user_defined_image_attribute/extracts/spec.ads
    :code: Ada
 
-* Body
+* :filename:`custom_image.adb`
 
 .. include:: examples/ada2022/user_defined_image_attribute/extracts/body.adb
    :code: Ada
@@ -173,7 +173,6 @@ User-defined literals
 
     - :ada:`Integer`, :ada:`Float`, or :ada:`String`
 
-* Example
 * :filename:`my_int.ads`
 
 .. include:: examples/ada2022/generalized_literals/extracts/my_int.ads
@@ -192,25 +191,45 @@ Composite Types
 Square Bracket Array Aggregates
 ---------------------------------
 
-.
+* Only for :ada:`array` aggregates
+* Syntax not backwards-compatible
+
+.. code:: Ada
+
+    A : array (1 .. 1) of Integer := [99]; -- Legal
+    B : array (1 .. 1) of Integer := (99); -- Not legal
+
+* Allows for more complex initialization
+
+.. include:: examples/ada2022/general_aggregates/extracts/square_brackets.ads
+    :code: Ada
 
 -------------------
 Iteration filters
 -------------------
 
-.
+* For any iteration
+* Using the :ada:`when` keyword
+
+.. code:: Ada
+
+    for J in 1 .. 100 when J mode 2 /= 0 loop
+
+* Can be used for aggregates as well
+
+.. include:: examples/ada2022/general_aggregates/extracts/iteration_filters.ads
+    :code: Ada
 
 ----------------------
 Container aggregates
 ----------------------
 
-.
+
 
 ------------------
 Delta aggregates
 ------------------
 
-.
 
 ==============
 Standard Lib
