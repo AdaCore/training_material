@@ -148,7 +148,7 @@ def expand_source(source_file):
             for source in sources:
                 # Generate full path
                 path = os.path.abspath(os.path.join(dirname, source.strip()))
-                assert os.path.isfile(path)
+                assert os.path.isfile(path), path + " does not exist"
                 # If there are spaces in the path, enclose path in quotes
                 if " " in path:
                     path = '"' + path + '"'
