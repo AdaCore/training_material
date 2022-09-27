@@ -6,7 +6,7 @@ if not exist "%LIBS%\*" goto error
 
 set PATH=%GNAT%;%PATH%
 set PATH=%LIBS%;%PATH%
-set ADA_PROJECT_PATH=%cd%\game_support;%LOCAL%\gnat_sdl;
+set ADA_PROJECT_PATH=%cd%\game_support;%cd%\gnat_sdl;
 set LIBRARY_PATH=%LIBS%;%LIBRARY_PATH%
 set GNAT_STUDIO_HOME=%cd%
 set HOST=Windows
