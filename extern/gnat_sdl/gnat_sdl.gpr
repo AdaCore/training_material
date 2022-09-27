@@ -11,7 +11,7 @@ project GNAT_SDL is
    case Host is
       when "Windows" =>
          case SDL_Backend_Choice is
-            when "Auto" => SDL_Backend := "gnat_sdl";
+            when "Auto" => SDL_Backend := "gnat_sdl2";
             when others => SDL_Backend := SDL_Backend_Choice;
          end case;
       when "Linux" =>
