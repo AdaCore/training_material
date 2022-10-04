@@ -31,22 +31,19 @@ Ada 2022
 What's New
 ============
 
---------------------
-Image and Literals
---------------------
+--------------
+Types Syntax
+--------------
 
-* :ada:`'Image` generalized to all types
-* User-defined :ada:`'Image` attribute
-* User-defined literals
+* Image and litterals
 
------------------
-Composite Types
------------------
+    - :ada:`'Image` improvements
+    - User-defined literals
 
-* Square-bracket array aggregates
-* Iteration filters
-* Container aggregates
-* Delta aggregates
+* Composite Types
+
+    - Improved aggregates
+    - Iteration filters
 
 --------------
 Standard Lib
@@ -55,7 +52,23 @@ Standard Lib
 * :ada:`Ada.Numerics.Big_Numbers`
 * :ada:`Ada.Strings.Text_Buffers`
 * :ada:`System.Atomic_Operations`
+
+---------------
+Miscellaneous
+---------------
+
 * Jorvik profile
+* Target name symbol
+* Enumeration representation
+* Staticness
+* C variadics
+* Subprogram access contracts
+* Declare expression
+* Simpler renames
+
+===============
+Miscellaneous
+===============
 
 ---------------------
 Miscellaneous (1/2)
@@ -69,12 +82,14 @@ Miscellaneous (1/2)
 
 * Enumeration representation attributes
 
-.. code:: Ada
+    .. code:: Ada
 
-    type E is (A => 10, B => 20);
-    ...
-    E'Enum_Rep (A); -- 10
-    E'Enum_Val (10); -- A
+        type E is (A => 10, B => 20);
+        ...
+        E'Enum_Rep (A); -- 10
+        E'Enum_Val (10); -- A
+
+    - :ada:`'Enum_Rep` already present in GNAT
 
 * Staticness
 
@@ -188,6 +203,7 @@ User-defined literals
 * User-defined types can accept literals as inputs
 
     - :ada:`Integer`, :ada:`Float`, or :ada:`String`
+    - Specifying a constructor to :ada:`Integer_Literal` aspect (resp :ada:`Float`, :ada:`String`)
 
 * :filename:`my_int.ads`
 
@@ -208,7 +224,10 @@ Square Bracket Array Aggregates
 ---------------------------------
 
 * Only for :ada:`array` aggregates
-* Syntax not backwards-compatible
+
+    - **Required** in Ada 2022
+    - **Forbidden** otherwise
+    - Not backwards-compatible
 
 .. code:: Ada
 
@@ -229,7 +248,7 @@ Iteration filters
 
 .. code:: Ada
 
-    for J in 1 .. 100 when J mode 2 /= 0 loop
+    for J in 1 .. 100 when J mod 2 /= 0 loop
 
 * Can be used for aggregates as well
 
@@ -290,6 +309,7 @@ Standard Lib
            Put_Image => Put_Image;
     subtype Big_Positive is Big_Integer [...]
     subtype Big_Natural is Big_Integer [...]
+    subtype Valid_Big_Integer is [...]
 
     function To_Big_Integer (Arg : Integer) return Valid_Big_Integer;
 
