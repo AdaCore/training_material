@@ -292,8 +292,8 @@ Introduction to Accessibility Checks (1/2)
                -- Nested subprogram, enclosing + 1, here 2
                O2 : aliased Integer;
 
-* Access **types** can only access **objects** with a depth **equal or higher**
-* :ada:`type Acc1` (depth 1) can access :ada:`O2` (depth 2) but not `O0` (depth 0)
+* Access **types** can only access objects that are at **same or lower depth**
+* :ada:`type Acc1` (depth 1) can access :ada:`O0` (depth 0) but not `O2` (depth 2)
 * The compiler checks it statically
 
    - Removing checks is a workaround!
