@@ -401,14 +401,22 @@ Ada 2022
 
     - ...by anyone
     - Those are related to parallelization
-    - Subject to change in the future
+    - And are subject to future specification change
 
 ---------------
 Unimplemented
 ---------------
 
 * Global states
-* Parallel loops
-* Conflict checking
-* Chunked iterators
-* Procedural iterators
+
+    - Available in SPARK
+    - Declare side-effect in spec
+
+* :ada:`parallel` reserved word
+
+    - Parallelizes code
+    - Conflict checking
+    - Chunked iterators
+    - Procedural iterators
+
+        + :ada:`My_Map.Iterate (My_Procedure'Access)`
