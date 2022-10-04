@@ -161,7 +161,7 @@ Declaration Location
 Null Values
 -------------
 
-* A pointer that does not point to any actual data has a null value
+* A pointer that does not point to any actual data has a :ada:`null` value
 * Without an initialization, a pointer is :ada:`null` by default
 * :ada:`null` can be used in assignments and comparisons
 

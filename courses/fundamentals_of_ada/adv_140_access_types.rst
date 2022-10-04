@@ -144,6 +144,26 @@ Anonymous Access Types
 .. include:: examples/140_access_types/anonymous_access/src/main.adb
     :code: Ada
 
+-------------
+Null Values
+-------------
+
+* A pointer that does not point to any actual data has a :ada:`null` value
+* Without an initialization, a pointer is :ada:`null` by default
+* :ada:`null` can be used in assignments and comparisons
+
+.. code:: Ada
+
+   declare
+      type Acc is access all Integer;
+      V : Acc;
+   begin
+      if V = null then
+         --  will go here
+      end if
+      V := new Integer'(0);
+      V := null; -- semantically correct, but memory leak
+
 ===========================
 Pool-Specific Access Types
 ===========================
