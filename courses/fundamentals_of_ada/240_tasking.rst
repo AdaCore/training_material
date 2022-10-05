@@ -299,7 +299,7 @@ Task Scope
    .. code:: Ada
 
       package P is
-         task T;
+         task type T;
       end P;
 
       package body P is
@@ -309,6 +309,8 @@ Task Scope
                Put_Line ("tick");
             end loop;
          end T;
+
+         Task_Instance : T;
       end P;
 
 ========================
