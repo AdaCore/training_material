@@ -200,7 +200,7 @@ Relation to Primitives
 
       .. code:: Ada
 
-         type Root is null record;
+         type Root is tagged null record;
          procedure P (V : Root'Class);
          type Child is new Root with null record;
          -- This does not override P!
@@ -242,7 +242,7 @@ Calls on class-wide types (1/3)
 
 .. code:: Ada
 
-   type Root is null record;
+   type Root is tagged null record;
    procedure P (V : Root);
 
    type Child is new Root with null record;
@@ -446,7 +446,7 @@ Multiple dispatching operands
 
    .. code:: Ada
 
-      type Root is null tagged record;
+      type Root is tagged null record;
       procedure P (Left : Root; Right : Root);
       type Child is new Root with null record;
       overriding procedure P (Left : Child; Right : Child);
@@ -478,7 +478,7 @@ Special case for equality
 
 .. code:: Ada
 
-   type Root is null tagged record;
+   type Root is tagged null record;
    function "=" (L : Root; R : Root) return Boolean;
    type Child is new Root with null record;
    overriding function "=" (L : Child; R : Child) return Boolean;
