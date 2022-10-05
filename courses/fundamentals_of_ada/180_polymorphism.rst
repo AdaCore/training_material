@@ -196,7 +196,7 @@ Relation to Primitives
 
    Ada 2012
 
-* Warning: Subprograms with parameter of type `T'Class` are primitives of `T'Class`, not `T`
+* Warning: Subprograms with parameter of type `T'Class` are not primitives of `T`
 
       .. code:: Ada
 
