@@ -133,8 +133,8 @@ Testing the type of an object
                     -- Child_Class'Tag  = Child'Tag
 
    B1 : Boolean := Parent_Class_1 in Parent'Class;       -- True
-   B2 : Boolean := Parent_Class_1'Tag = Child'Class'Tag; -- False
-   B3 : Boolean := Child_Class'Tag = Parent'Class'Tag;   -- False
+   B2 : Boolean := Parent_Class_1'Tag = Child'Tag; -- False
+   B3 : Boolean := Child_Class'Tag = Parent'Tag;   -- False
    B4 : Boolean := Child_Class in Child'Class;           -- True
 
 ----------------
