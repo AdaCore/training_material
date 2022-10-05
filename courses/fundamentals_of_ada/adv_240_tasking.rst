@@ -41,7 +41,7 @@ A Simple Task
    .. code:: Ada
 
       procedure Main is
-         task T;
+         task type T;
          task body T is
          begin
             loop
@@ -291,7 +291,7 @@ Quiz
 
       with Ada.Text_IO; use Ada.Text_IO;
       procedure Main is
-         task T is
+         task type T is
             entry Hello;
             entry Goodbye;
          end T;
@@ -589,7 +589,7 @@ Task Scope
    .. code:: Ada
 
       package P is
-         task T;
+         task type T;
       end P;
 
       package body P is
@@ -599,6 +599,8 @@ Task Scope
                Put_Line ("tick");
             end loop;
          end T;
+
+         Task_Instance : T;
       end P;
 
 ------------------------------
@@ -957,7 +959,7 @@ Setting Task Priority
 
 .. code:: Ada
 
-  task T
+  task type T
      with Priority => <priority_level>
      is ...
 
@@ -1022,9 +1024,9 @@ Abort Statements
    .. code:: Ada
 
       procedure Main is
-         task T;
+         task type T;
 
-         task T is
+         task body T is
          begin
             loop
                delay 1.0;
