@@ -655,7 +655,7 @@ Quiz
 Which of the following proposition(s) are true?
 
 A. ``T'Value (V) = 1``
-B. :answermono:`T'Pos (V) = 1`
+B. :answermono:`T'Pos (V) = 0`
 C. ``T'Image (T'Pos (V)) = Left``
 D. ``T'Val (T'Pos (V) - 1) = Bottom``
 
