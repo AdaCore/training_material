@@ -7,7 +7,9 @@ adv_030_basic_types.rst
 071_expression_functions.rst
 080_expressions.rst
 adv_080_quantified_expressions.rst
-120_limited_types.rst
 adv_240_tasking.rst
-230_interfacing_with_c.rst
+120_limited_types.rst
+adv_270_subprogram_contracts.rst
+adv_275_type_contracts.rst
 spec_901_ada_2022_specific.rst
+230_interfacing_with_c.rst
