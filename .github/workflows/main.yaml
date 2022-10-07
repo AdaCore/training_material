@@ -132,6 +132,22 @@ jobs:
             source contrib/ci/lab_env.sh
             python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada/labs
 
+  python-black:
+    name: Python scripts black lint check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+
+      - name: Install black
+        run: python3 -m pip install black
+
+      - name: Run black on contrib/
+        run: python3 -m black --check $(find contrib -name '*.py')
+
+      - name: Run black on pandoc/
+        run: python3 -m black --check $(find pandoc -name '*.py')
+
   pytest:
     name: Contrib scripts check
     runs-on: ubuntu-latest
