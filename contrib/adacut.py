@@ -136,18 +136,30 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("input_file")
     ap.add_argument("-o", "--output-file")
-    ap.add_argument("-c", "--cut", nargs='*', type=int)
-    ap.add_argument("-k", "--default-keeping", action="store_true",
-                    help="Set for answer, question, keep_all modes by default")
-    ap.add_argument("-K", "--no-default-keeping", action="store_true",
-                    help="Set for cut mode by default")
-    ap.add_argument("-d", "--dedent", action="store_true",
-                    help="Dedent by the first-line indent")
-    ap.add_argument("-C", "--cut-counting", action="store_true",
-                    help="Return the number of cuts in the file")
+    ap.add_argument("-c", "--cut", nargs="*", type=int)
     ap.add_argument(
-        "-m", "--mode", default="question",
-        choices=["answer", "question", "keep_all"]
+        "-k",
+        "--default-keeping",
+        action="store_true",
+        help="Set for answer, question, keep_all modes by default",
+    )
+    ap.add_argument(
+        "-K",
+        "--no-default-keeping",
+        action="store_true",
+        help="Set for cut mode by default",
+    )
+    ap.add_argument(
+        "-d", "--dedent", action="store_true", help="Dedent by the first-line indent"
+    )
+    ap.add_argument(
+        "-C",
+        "--cut-counting",
+        action="store_true",
+        help="Return the number of cuts in the file",
+    )
+    ap.add_argument(
+        "-m", "--mode", default="question", choices=["answer", "question", "keep_all"]
     )
     args = ap.parse_args()
 
@@ -180,16 +192,18 @@ if __name__ == "__main__":
                     if dedent_cols is None:
                         dedent_cols = cur_indent
 
-                    if lp.strip() != '':
-                        assert lp[:dedent_cols] == ' ' * dedent_cols, repr(lp)
+                    if lp.strip() != "":
+                        assert lp[:dedent_cols] == " " * dedent_cols, repr(lp)
                         lp = lp[dedent_cols:]
 
-                if args.cut \
-                   and not default_keeping \
-                   and prev_cut \
-                   and prev_cut != cut.current_cut \
-                   and prev_ln != cur_ln - 1:
-                    print((' ' * max(cur_indent, prev_indent)) + '...', file=out)
+                if (
+                    args.cut
+                    and not default_keeping
+                    and prev_cut
+                    and prev_cut != cut.current_cut
+                    and prev_ln != cur_ln - 1
+                ):
+                    print((" " * max(cur_indent, prev_indent)) + "...", file=out)
                 prev_ln = cur_ln
                 prev_cut = cut.current_cut
                 prev_indent = cur_indent

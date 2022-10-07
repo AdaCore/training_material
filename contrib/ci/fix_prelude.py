@@ -13,22 +13,25 @@ CONTRIB = PROJECT / "contrib"
 
 
 def rst_update_prelude(files):
-    subprocess.check_call(str(s) for s in
-                          [sys.executable, CONTRIB / 'rst_update_prelude.py', '-i'] + files)
+    subprocess.check_call(
+        str(s)
+        for s in [sys.executable, CONTRIB / "rst_update_prelude.py", "-i"] + files
+    )
 
 
 def files_digest(files):
     h = hashlib.sha256()
     for f in sorted(files):
-        with open(f, 'rb') as frd:
+        with open(f, "rb") as frd:
             h.update(frd.read())
     return h.digest()
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--files-to-check", type=Path,
-                    default=CONTRIB / "rst_files_with_prelude.txt")
+    ap.add_argument(
+        "--files-to-check", type=Path, default=CONTRIB / "rst_files_with_prelude.txt"
+    )
     ap.add_argument("--no-digests-check", "-C", action="store_true")
     args = ap.parse_args()
 
@@ -37,7 +40,7 @@ if __name__ == "__main__":
 
     with open(args.files_to_check, "rt") as f:
         files_with_prelude_glob = f.read().splitlines()
-    
+
     for glob in files_with_prelude_glob:
         f_prel = list(PROJECT.glob(glob))
         if not f_prel:

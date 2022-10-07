@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import re
 
-PANDOC_OPTIONS_HELP_TEXT="""
+PANDOC_OPTIONS_HELP_TEXT = """
 --from=FORMAT, --read=FORMAT
 --to=FORMAT, --write=FORMAT
 --output=FILE
@@ -95,22 +95,23 @@ PANDOC_OPTIONS_HELP_TEXT="""
 PANDOC_OPTION_RE = re.compile("\-\-([^\s,\[=]+)")
 PANDOC_OPTIONS = PANDOC_OPTION_RE.findall(PANDOC_OPTIONS_HELP_TEXT)
 
+
 def parse_defaults(f):
     with open(f) as ff:
         data = ff.read()
 
     setup = ""
     # Ugly parsing for a very simple YAML
-    # This is necessary because the --defaults pandoc option 
+    # This is necessary because the --defaults pandoc option
     # is not available on current Debian repos...
     # https://pandoc.org/MANUAL.html#default-files for format
-    for l in data.split('\n'):
+    for l in data.split("\n"):
         l = l.strip()
 
-        if l.startswith('#'):
+        if l.startswith("#"):
             continue
 
-        kv = l.split(': ')
+        kv = l.split(": ")
 
         if len(kv) < 2:
             continue
