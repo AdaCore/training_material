@@ -250,7 +250,9 @@ def run_pandoc(args):
             check=True,
         )
     except Exception as e:
-        print(f"\031[1;31m[error]\031[0m {task_name}: {e}")
+        print(f"\033[1;31m[error]\033[0m {task_name}", file=sys.stderr)
+        print(e, file=sys.stderr)
+        print()
         raise
     print(f"[end  ] {task_name}")
 
@@ -327,5 +329,8 @@ if __name__ == "__main__":
 
     pandoc_prepared = pandoc_prepare_run(args)
 
-    with multiprocessing.Pool(None if args.jobs == 0 else args.jobs) as p:
-        p.map(run_pandoc, pandoc_prepared)
+    try:
+        with multiprocessing.Pool(None if args.jobs == 0 else args.jobs) as p:
+            p.map(run_pandoc, pandoc_prepared)
+    except subprocess.CalledProcessError as e:
+        sys.exit(2)
