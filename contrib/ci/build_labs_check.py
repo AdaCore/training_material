@@ -11,6 +11,7 @@ def gprbuild(*args):
     print(" ".join(called))
     subprocess.check_call(called)
 
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("search_path", type=Path, default=Path(sys.argv[0]).parent)
@@ -23,7 +24,7 @@ if __name__ == "__main__":
 
     for p in args.search_path.glob("**/*.gpr"):
         print(p)
-        if (p.parent / '.ci_build_skip').exists():
+        if (p.parent / ".ci_build_skip").exists():
             print("Skip")
             continue
 

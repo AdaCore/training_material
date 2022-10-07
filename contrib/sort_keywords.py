@@ -3,10 +3,11 @@
 # It will also mark language version, if not Ada 83
 
 ada_kw_ref = {
-      '95' : ['abstract', 'aliased', 'protected', 'requeue', 'tagged', 'until'],
-    '2005' : ['interface', 'overriding', 'synchronized'],
-    '2012' : ['some'],
+    "95": ["abstract", "aliased", "protected", "requeue", "tagged", "until"],
+    "2005": ["interface", "overriding", "synchronized"],
+    "2012": ["some"],
 }
+
 
 def add_ref(kw):
     for refname, kws in ada_kw_ref.items():
@@ -30,11 +31,12 @@ def tabulate(words, number_of_columns):
         for c in cols:
             if i < len(c):
                 width = max([15] + [2 + len(s) for s in c])
-                line.append(("{:"+f"{width}"+"}").format(c[i]))
+                line.append(("{:" + f"{width}" + "}").format(c[i]))
         lines.append("".join(line))
     return "\n".join(lines)
 
-kw=set()
+
+kw = set()
 try:
     while True:
         kw.add(input())

@@ -12,6 +12,7 @@ OUT_DIR = ROOT_DIR / "out"
 
 verbose = True
 
+
 def check_call(*args, **kw):
     al = [str(s) for s in args]
     if verbose:
@@ -20,25 +21,32 @@ def check_call(*args, **kw):
     if rc != 0:
         sys.exit(2)
 
+
 def python(script, *args, **kw):
     assert script.is_file()
     check_call(sys.executable, script, *args, **kw)
 
+
 def generate_labs_docs(labs_dir, out_dir):
     python(PANDOC_DIR / "lab_docs.py", "-r", labs_dir, out_dir)
+
 
 def bash(script, *args, **kw):
     assert script.is_file()
     check_call("bash", script, *args, **kw)
 
+
 def package_labs(labs_dir, out_dir):
     bash(CI_DIR / "package_labs.sh", labs_dir, out_dir)
 
+
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser( "Generate and package the lab sources and "
-                                + "PDF file together")
-    ap.add_argument("labs_dir", help="Directory containing one or several labs",
-                    type=Path)
+    ap = argparse.ArgumentParser(
+        "Generate and package the lab sources and " + "PDF file together"
+    )
+    ap.add_argument(
+        "labs_dir", help="Directory containing one or several labs", type=Path
+    )
     ap.add_argument("out_dir", nargs="?", type=Path)
     args = ap.parse_args()
 

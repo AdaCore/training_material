@@ -32,10 +32,17 @@ def run(*a, **kw):
 
 
 def build_pdf(files, output_dir):
-    return run(sys.executable, PANDOC_FE,
-               "--output-dir", output_dir,
-               "--hush", "--extension", "pdf",
-               "--source", *strlist(files))
+    return run(
+        sys.executable,
+        PANDOC_FE,
+        "--output-dir",
+        output_dir,
+        "--hush",
+        "--extension",
+        "pdf",
+        "--source",
+        *strlist(files),
+    )
 
 
 def capitalize_words(s):
@@ -46,8 +53,9 @@ def capitalize_words(s):
             r += c.upper()
         else:
             r += c.lower()
-        upper = (c == " ")
+        upper = c == " "
     return r
+
 
 def single_file_pretty_name(f):
     fname_raw = f.with_suffix("").name
@@ -69,42 +77,50 @@ class SlidesCLI:
         assert path.exists(), f"{path} does not exist"
         fullpath = path.resolve()
         assert COURSES in fullpath.parents, "this script only support courses"
-        self.is_lab = (fullpath.name == "labs")
+        self.is_lab = fullpath.name == "labs"
 
         suffix = " - Labs" if self.is_lab else ""
         if fullpath.is_dir():
             self.files_p = sorted(list(fullpath.glob("*.rst")))
-            self.pretty_name = dir_pretty_name(fullpath.parent if self.is_lab else fullpath) + suffix
+            self.pretty_name = (
+                dir_pretty_name(fullpath.parent if self.is_lab else fullpath) + suffix
+            )
             self.output_dir = OUT / fullpath.relative_to(COURSES)
         else:
             self.files_p = [fullpath]
             self.pretty_name = single_file_pretty_name(fullpath) + suffix
             self.output_dir = OUT / fullpath.parent.relative_to(COURSES)
 
-        files_as_pdf = (self.output_dir / f.with_suffix(".pdf").name for f in self.files_p)
+        files_as_pdf = (
+            self.output_dir / f.with_suffix(".pdf").name for f in self.files_p
+        )
         self.artifacts = os.linesep.join(strlist(files_as_pdf))
-        self.sources = ' '.join(strlist(self.files_p))
+        self.sources = " ".join(strlist(self.files_p))
 
         assert list(self.files_p), f"{fullpath}/ does not contain RST files"
         assert all(f.is_file() for f in self.files_p)
         assert all(hasattr(self, k) for k in self.ENV_ATTRS)
 
-
     def build(self):
-        run(sys.executable, PANDOC_FE,
-            "--output-dir", self.output_dir,
-            "--hush", "--extension", "pdf",
-            "--source", *self.sources.split(' '),
-            check=True, text=True)
+        run(
+            sys.executable,
+            PANDOC_FE,
+            "--output-dir",
+            self.output_dir,
+            "--hush",
+            "--extension",
+            "pdf",
+            "--source",
+            *self.sources.split(" "),
+            check=True,
+            text=True,
+        )
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("path")
-    ap.add_argument("action",
-                    choices=["printenv", "build"],
-                    default="build",
-                    nargs="?")
+    ap.add_argument("action", choices=["printenv", "build"], default="build", nargs="?")
     args = ap.parse_args()
 
     sci = SlidesCLI(Path(args.path))
@@ -115,7 +131,9 @@ if __name__ == "__main__":
             v = str(getattr(sci, k))
             if os.linesep in v:
                 DELIM = "@EOF@"
-                assert not DELIM in v, f"BUG: change delimiter here (current is {DELIM!r})"
+                assert (
+                    not DELIM in v
+                ), f"BUG: change delimiter here (current is {DELIM!r})"
                 print(f"{k.upper()}<<{DELIM}{os.linesep}{v}{os.linesep}{DELIM}")
             else:
                 print(f"{k.upper()}={v}")
