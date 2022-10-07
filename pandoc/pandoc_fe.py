@@ -126,6 +126,44 @@ def output_format(extension):
         return extension
 
 
+def parse_rst_list_file(dirname, f):
+    """
+    Parse a file containing a list of RST entries, empty lines, or comments.
+
+    /!\ Use a file object
+
+    Each RST entry is a file path, starting from the given dirname
+
+    The file content can look like ("> " prefix added to each line)
+
+    > # Full course on salad dressing
+    > buy_a_lettuce.rst
+    > wash_the_salad.rst # Unless you like sand...
+    > # Apparently it's not necessary?
+    > # cut_the_salad.rst
+    > dress_your_salad.rst
+
+    """
+    files = list()
+    for line in f:
+        if "#" in line:
+            source = line[: line.index("#")].strip()
+        else:
+            source = line.strip()
+
+        if source == "":
+            continue
+
+        # Generate full path
+        path = os.path.abspath(os.path.join(dirname, source))
+        assert os.path.isfile(path), path + " does not exist"
+        # If there are spaces in the path, enclose path in quotes
+        if " " in path:
+            path = '"' + path + '"'
+        files.append(path)
+    return files
+
+
 """
 If the source file is an RST file, then send it to Pandoc
 For any other type of file, assume it contains a list of
@@ -142,16 +180,8 @@ def expand_source(source_file):
     else:
         dirname = os.path.dirname(source_file)
         # Read lines from source file
-        with open(source_file) as sources:
-            files = list()
-            for source in sources:
-                # Generate full path
-                path = os.path.abspath(os.path.join(dirname, source.strip()))
-                assert os.path.isfile(path), path + " does not exist"
-                # If there are spaces in the path, enclose path in quotes
-                if " " in path:
-                    path = '"' + path + '"'
-                files.append(path)
+        with open(source_file) as f:
+            files = parse_rst_list_file(dirname, f)
         return files
 
 
