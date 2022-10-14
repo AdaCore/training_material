@@ -775,7 +775,7 @@ Declaring Floating Point Types
   - *digits* |rightarrow| **minimum** number of significant digits
   - **Decimal** digits, not bits
 
-* Complier choses representation
+* Compiler choses representation
 
   - From **available** floating point types
   - May be **more** accurate, but not less
