@@ -15,6 +15,8 @@ SCRIPTS = Path(__file__).parent
 ADACUT_PY = SCRIPTS / "adacut.py"
 assert ADACUT_PY.is_file()
 
+debug = False
+
 adacut = cmd.python.arg(ADACUT_PY)
 gprbuild = cmd.gprbuild
 
@@ -69,36 +71,78 @@ class Quiz:
         return adacut(*a, "--", self.input_file, **kw)
 
 
+class QuizAnswerLineParser:
+    def __init__(self):
+        self.state = self.in_fulltext
+        self.fulltext = ""
+        self.code = ""
+        self.explain = ""
+
+    def next(self, line):
+        line_dedent = line.strip()
+        if line_dedent.startswith("--"):
+            comment_line = line_dedent[3:].strip()
+        else:
+            comment_line = None
+        next_state = self.state(line, comment_line)
+
+        if next_state is None:
+            next_state = self.state
+
+        if next_state != self.state and debug:
+            print(repr(line), file=sys.stderr)
+            print(self.state.__name__ + " -> " + next_state.__name__, file=sys.stderr)
+        self.state = next_state
+
+    def in_fulltext(self, line, comment_line):
+        if comment_line:
+            if self.fulltext:
+                self.fulltext += " "
+            self.fulltext += comment_line
+        else:
+            self.code = line
+            return self.in_code
+
+    def in_code(self, line, comment_line):
+        if comment_line:
+            self.explain = comment_line
+            return self.in_explaination
+        else:
+            self.code += os.linesep + line
+
+    def in_explaination(self, line, comment_line):
+        if comment_line:
+            if not self.explain.endswith(" "):
+                self.explain += " "
+            self.explain += comment_line
+        else:
+            return self.over
+
+    def over(self, line, comment_line):
+        pass
+
+
 class QuizAnswer:
     @classmethod
-    def code_explain_out_filter(cls, s):
+    def quiz_code_out_filter(cls, s):
         if s.endswith(os.linesep):
             s = s[: -len(os.linesep)]
 
-        code_l = []
-        explain_l = []
+        parser = QuizAnswerLineParser()
+        for l in s.splitlines():
+            parser.next(l)
 
-        explaining = True
-        for l in reversed(s.splitlines()):
-            ls = l.strip()
-            if ls.startswith("--") and explaining:
-                explain_l.insert(0, ls[2:].strip())
-            else:
-                explaining = False
-                code_l.insert(0, l)
-
-        if len(code_l) == 1:
-            if code_l[0].endswith(";"):
-                code_l[0] = code_l[0][:-1]
-
-        return os.linesep.join(code_l), os.linesep.join(explain_l)
+        return parser
 
     def __init__(self, input_file, i):
         self.identifier = chr(ord("A") + i)
         self.input_file = input_file
 
-        self.code, self.explain = self.adacut(
-            "-dc", i + 1, out_filter=self.code_explain_out_filter
+        parsed = self.adacut("-dc", i + 1, out_filter=self.quiz_code_out_filter)
+        self.code, self.explain, self.fulltext = (
+            parsed.code,
+            parsed.explain,
+            parsed.fulltext,
         )
         self.full_code = self.adacut("-kc", i + 1, out_filter=str)
 
@@ -152,22 +196,41 @@ def text_indent(min_indent, text):
     return os.linesep.join(indent_line(l) for l in lines)
 
 
+def answer_wrapper(as_code, valid_answer):
+    if as_code:
+        if valid_answer:
+
+            def wrap(s):
+                return f":answermono:`{s}`"
+
+        else:
+
+            def wrap(s):
+                return f"``{s}``"
+
+    else:
+        if valid_answer:
+
+            def wrap(s):
+                return f":answer:`{s}`"
+
+        else:
+
+            def wrap(s):
+                return s
+
+    return wrap
+
+
 def code_as_text(code, answer, pre_code_indent=3):
     lines_raw = code.splitlines()
+    if len(lines_raw) == 1 and lines_raw[0].endswith(";"):
+        lines_raw[0] = lines_raw[0][:-1]
     lines_indent_raw = indent(lines_raw)
     min_lines_indent = min(lines_indent_raw)
     corrected_lines_indent = [i - min_lines_indent for i in lines_indent_raw]
     lines = [l.strip() for l in lines_raw]
-
-    if answer:
-
-        def wrap(s):
-            return f":answermono:`{s}`"
-
-    else:
-
-        def wrap(s):
-            return f"``{s}``"
+    wrap = answer_wrapper(as_code=True, valid_answer=answer)
 
     if len(lines) > 1:
         return (os.linesep + (" " * pre_code_indent)).join(
@@ -223,7 +286,17 @@ if __name__ == "__main__":
 
         answer = QuizAnswer(args.input_file, i)
 
-        pout(f"{answer.identifier}.", code_as_text(answer.code, answer=answer.runs))
+        if answer.fulltext:
+            answer_text = answer_wrapper(as_code=False, valid_answer=answer.runs)(
+                answer.fulltext
+            )
+        else:
+            answer_text = code_as_text(answer.code, answer=answer.runs)
+
+        pout(
+            f"{answer.identifier}. {answer_text}",
+        )
+
         if answer.explain:
             explainations.append(f"{answer.identifier}. {answer.explain}")
 
