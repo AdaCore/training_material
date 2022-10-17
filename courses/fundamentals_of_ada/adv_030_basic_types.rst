@@ -544,8 +544,17 @@ Shift/Rotate for User-Defined Types
    .. code:: Ada
 
       type Byte is new Interfaces.Unsigned_8;
-      type Half_Word is new Interfaces.Unsigned_16;
-      type Word is new Interfaces.Unsigned_32;
+
+* Approach 3: use GNAT's intrinsic
+
+   - Conditions on function name and type representation
+   - See GNAT UG 8.11
+
+   .. code:: Ada
+
+      function Shift_Left
+        (Value  : T;
+        Amount : Natural) return T with Import, Convention => Intrinsic;
 
 ------
 Quiz
