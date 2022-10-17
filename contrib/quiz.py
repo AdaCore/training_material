@@ -18,7 +18,7 @@ assert ADACUT_PY.is_file()
 debug = False
 
 adacut = cmd.python.arg(ADACUT_PY)
-gprbuild = cmd.gprbuild
+gprbuild = cmd.gprbuild.arg("-p")
 
 
 def is_executable(f):
