@@ -613,7 +613,7 @@ Enumeration Representation Values
    - **Unchecked** conversion
    - **Implementation**-defined facility
 
-      + GNAT attribute :ada:`T'Enum_Rep`
+      + Ada 2022 attributes :ada:`T'Enum_Rep`, :ada:`T'Enum_Val`
 
 -----------------------------------------
 Order Attributes For All Discrete Types
