@@ -34,7 +34,7 @@ jobs:
                      static_analysis_via_compiler]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Check source is updated with prelude
         run: python3 contrib/ci/fix_prelude.py
@@ -47,7 +47,7 @@ jobs:
         run: python3 pandoc/pandoc_fe.py --output-dir ${{ env.OUTPUT_DIR }} --hush --extension pdf --source ${{ env.SOURCES }}
 
       - name: ${{ env.PRETTY_NAME }} - Package and upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.PRETTY_NAME }}
           path: ${{ env.ARTIFACTS }}
@@ -58,13 +58,13 @@ jobs:
     container: sawertyu/pandoc_beamer:latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Radar - Package
         run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/radar && unzip out/radar/radar.zip -d out/radar/pkg
 
       - name: Radar - Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Radar labs
           path: out/radar/pkg/*
@@ -73,7 +73,7 @@ jobs:
         run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/solar_system && unzip out/solar_system/solar_system.zip -d out/solar_system/pkg
 
       - name: Solar System - Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Solar System labs
           path: out/solar_system/pkg/*
@@ -82,7 +82,7 @@ jobs:
         run: python3 contrib/ci/package_labs.py courses/codepeer/labs/ && mv out/labs out/codepeer_labs && unzip out/codepeer_labs/labs.zip -d out/codepeer_labs/pkg
 
       - name: CodePeer - Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: CodePeer labs
           path: out/codepeer_labs/pkg/*
@@ -91,7 +91,7 @@ jobs:
         run: python3 contrib/ci/package_labs.py courses/gnat_project_facility/labs/ && mv out/labs out/gnat_project_facility_labs && unzip out/gnat_project_facility_labs/labs.zip -d out/gnat_project_facility_labs/pkg
 
       - name: GNAT Project Facility - Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: GNAT Project Facility labs
           path: out/gnat_project_facility_labs/pkg/*
@@ -106,9 +106,9 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+      - uses: actions/cache@v3
         with:
           path: ./cached_gnat
           key: ${{ runner.os }}-gnat-ce-2020
@@ -136,8 +136,8 @@ jobs:
     name: Python scripts black lint check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
 
       - name: Install black
         run: python3 -m pip install black
@@ -152,9 +152,9 @@ jobs:
     name: Contrib scripts check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+      - uses: actions/cache@v3
         with:
           path: ./cached_gnat
           key: ${{ runner.os }}-gnat-ce-2020
