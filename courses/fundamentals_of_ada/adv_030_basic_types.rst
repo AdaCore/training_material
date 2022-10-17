@@ -766,18 +766,7 @@ Ada.Characters.Handling Sample Content
 Quiz
 ------
 
-.. code:: Ada
-
-    type T1 is (NUL = 0, A, B, 'C');
-    type T2 is array (Positive range <>) of T1;
-    Obj : T2 := "CC" & A & NUL;
-
-Which of the following proposition(s) are true?
-
-A. The code fails at runtime
-B. ``Obj'Length = 3``
-C. :answer:`Obj (1) = 'C'`
-D. :answer:`Obj (3) = A`
+.. include:: quiz/user_defined_character/quiz.rst
 
 ------
 Quiz
