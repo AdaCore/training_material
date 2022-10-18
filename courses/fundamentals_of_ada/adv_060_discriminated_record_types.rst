@@ -71,10 +71,10 @@ Example Defined in C
 
 .. code:: C
 
-   enum person_tag {Student, Faculty};
+   enum person_group {Student, Faculty};
 
    struct Person {
-      enum person_tag tag;
+      enum person_group group;
       char name [10];
       union {
          struct { float gpa; int year; } s;
@@ -82,7 +82,7 @@ Example Defined in C
       };
    };
 
-* Issue: maintaining consistency between tag and union fields is responsibility of the programmer
+* Issue: maintaining consistency between group and union components is responsibility of the programmer
 
    + Source of potential vulnerabilities
 
@@ -92,11 +92,11 @@ Example Defined in Ada
 
 .. code:: Ada
 
-   type Person_Tag is (Student, Faculty);
-   type Person (Tag : Person_Tag) is -- Tag is the discriminant
+   type Person_Group is (Student, Faculty);
+   type Person (Group : Person_Group) is -- Group is the discriminant
       record
          Name : String(1..10); -- Always present
-         case Tag is
+         case Group is
             when Student => -- 1st variant
                GPA  : Float range 0.0 .. 4.0;
                Year : Integer range 1..4;
@@ -105,10 +105,10 @@ Example Defined in Ada
          end case;
       end record;
 
-* `Tag` value enforces field availability
+* `Group` value enforces component availability
 
-   + Can only access `GPA` and `Year` when `Tag` is `Student`
-   + Can only access `Pubs` when `Tag` is `Faculty`
+   + Can only access `GPA` and `Year` when `Group` is `Student`
+   + Can only access `Pubs` when `Group` is `Faculty`
 
 ------------------------
 Variant Part of Record
@@ -143,19 +143,22 @@ Variant Record Semantics
 Discriminant in Ada Variant Records
 -------------------------------------
 
-* Variant record type contains a special field (*discriminant*) whose value indicates which variant is present
-* When a field in a variant is selected, run-time check ensures that discriminant value is consistent with the selection
+* Variant record type contains a special :dfn:`discriminant` component
+
+    - Value indicates which :dfn:`variant` is present
+
+* When a component in a variant is selected, run-time check ensures that discriminant value is consistent with the selection
 
    + If you could store into `Pubs` but read `GPA`, type safety would not be guaranteed
 
 * Ada prevents this type of access
 
-   + Discriminant (Tag) established when object of type Person created
-   + Run-time check verifies that field selected from variant is consistent with discriminant value
+   + Discriminant (`Group`) established when object of type Person created
+   + Run-time check verifies that component selected from variant is consistent with discriminant value
 
       * Constraint_Error raised if the check fails
 
-* Can only read discriminant (as any other field), not write
+* Can only read discriminant (as any other component), not write
 
       * Aggregate assignment is allowed
 
@@ -172,7 +175,7 @@ Semantics
 
       Pat  : Person(Student); -- May select Pat.GPA, not Pat.Pubs
       Prof : Person(Faculty); -- May select Prof.Pubs, not Prof.GPA
-      Soph : Person := ( Tag  => Student,
+      Soph : Person := ( Group  => Student,
                          Name => "John Jones",
                          GPA  => 3.2,
                          Year => 2);
@@ -196,11 +199,11 @@ Implementation
    .. code:: Ada
 
       package Person_Pkg is
-         type Person_Tag is (Student, Faculty);
-         type Person (Tag : Person_Tag) is
+         type Person_Group is (Student, Faculty);
+         type Person (Group : Person_Group) is
             record
                Name : String(1..10);
-               case Tag is
+               case Group is
                   when Student =>
                      GPA  : Float range 0.0 .. 4.0;
                      Year : Integer range 1..4;
@@ -223,10 +226,10 @@ Primitives
 
       procedure Put ( Item : in Person ) is
       begin
-        Put_Line("Tag:" & Person_Tag'Image(Item.Tag));
+        Put_Line("Group:" & Person_Group'Image(Item.Group));
         Put_Line("Name: " & Item.Name );
-        -- Tag specified by caller
-        case Item.Tag is
+        -- Group specified by caller
+        case Item.Group is
           when Student =>
             Put_Line("GPA:" & Float'Image(Item.GPA));
             Put_Line("Year:" & Integer'Image(Item.Year) );
@@ -241,8 +244,8 @@ Primitives
 
       procedure Get ( Item : in out Person ) is
       begin
-        -- Tag specified by caller
-        case Item.Tag is
+        -- Group specified by caller
+        case Item.Group is
           when Student =>
             Item.GPA := Get_GPA;
             Item.Year := Get_Year;
@@ -260,20 +263,20 @@ Usage
    with Person_Pkg; use Person_Pkg;
    with Ada.Text_IO; use Ada.Text_IO;
    procedure Person_Test is
-     Tag   : Person_Tag;
+     Group   : Person_Group;
      Line  : String(1..80);
      Index : Natural;
    begin
      loop
-       Put("Tag (Student or Faculty, empty line to quit): ");
+       Put("Group (Student or Faculty, empty line to quit): ");
        Get_Line(Line, Index);
        exit when Index=0;
-       Tag := Person_Tag'Value(Line(1..Index));
+       Group := Person_Group'Value(Line(1..Index));
        declare
-         Someone : Person(Tag);
+         Someone : Person(Group);
        begin
          Get(Someone);
-         case Someone.Tag is
+         case Someone.Group is
            when Student => Student_Do_Something ( Someone );
            when Faculty => Faculty_Do_Something ( Someone );
          end case;
@@ -290,7 +293,7 @@ Unconstrained Variant Records
 Adding Flexibility to Variant Records
 ---------------------------------------
 
-* Previously, declaration of `Person` implies that object, once created, is always constrained by initial value of `Tag`
+* Previously, declaration of `Person` implies that object, once created, is always constrained by initial value of `Group`
 
    + Assigning `Person(Faculty)` to `Person(Student)` or vice versa, raises Constraint_Error
 
@@ -312,10 +315,10 @@ Unconstrained Variant Record Example
 .. code:: Ada
 
    declare
-      type Mutant( Tag : Person_Tag := Faculty ) is
+      type Mutant( Group : Person_Group := Faculty ) is
          record
             Name : String(1..10);
-            case Tag is
+            case Group is
                when Student =>
                   GPA  : Float range 0.0 .. 4.0;
                   Year : Integer range 1..4;
@@ -326,12 +329,12 @@ Unconstrained Variant Record Example
 
       Pat  : Mutant( Student ); -- Constrained
       Doc  : Mutant( Faculty ); -- Constrained
-      Zork : Mutant; -- Unconstrained (Zork.Tag = Faculty)
+      Zork : Mutant; -- Unconstrained (Zork.Group = Faculty)
 
    begin
-      Zork     := Pat;     -- OK, Zork.Tag was Faculty, is now Student
-      Zork.Tag := Faculty; -- Illegal to assign to discriminant
-      Zork     := Doc;     -- OK, Zork.Tag is now Faculty
+      Zork       := Pat;     -- OK, Zork.Group was Faculty, is now Student
+      Zork.Group := Faculty; -- Illegal to assign to discriminant
+      Zork       := Doc;     -- OK, Zork.Group is now Faculty
       Pat      := Zork;    -- Run-time error (Constraint_Error)
    end;
 
@@ -409,7 +412,7 @@ Simple Varying Length Array
 Varying Length Array via Variant Records
 ------------------------------------------
 
-* Discriminant can serve as bound of array field
+* Discriminant can serve as bound of array component
 
 .. code:: Ada
 
@@ -495,5 +498,5 @@ Properties of Variant Record Types
 
 * Flexibility
 
-   - Variant parts may be nested, if some fields common to a set of variants
+   - Variant parts may be nested, if some components common to a set of variants
 
