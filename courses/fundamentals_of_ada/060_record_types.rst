@@ -253,11 +253,11 @@ Aggregates
 
    .. code:: Ada
 
-      component_init ::= expression | <>
-
-      record_aggregate ::=
-         {[component_choice_list =>] component_init ,}
-         [others => component_init]
+      (Pos_1_Value,
+       Pos_2_Value,
+       Component_3 => Pos_3_Value,
+       Component_4 => <>, -- Default value (Ada 2005)
+       others => Remaining_Value)
 
 ---------------------------
 Record Aggregate Examples
