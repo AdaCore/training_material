@@ -145,6 +145,36 @@ Type Extension
       V1 := Root (V2);
       V2 := Child (V1); -- illegal
 
+-------------------
+Private Tagged
+-------------------
+
+* Tagged types can be :ada:`private`
+
+    - :ada:`tagged private`
+
+* Type extensions can be private too
+
+    - Use :ada:`with private`
+
+   .. code:: Ada
+
+      package Pkg is
+         type Root is tagged null record;
+
+         type Child1 is new Root with private;
+         type Child2 is tagged private;
+
+      private
+
+         type Child1 is new Root with null record;
+         type Child2 is new Child1 with null record;
+      end Pkg;
+
+* Client can call :ada:`Root` operations on `Child1`
+
+    - But not on `Child2`
+
 ------------
 Primitives
 ------------
