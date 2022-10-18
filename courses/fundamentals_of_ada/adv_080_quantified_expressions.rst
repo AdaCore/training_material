@@ -100,15 +100,17 @@ Quantified Expressions Syntax
 
    Ada 2012
 
+* Four variants
+
+    - :ada:`for ... in`, :ada:`for ... of`
+    - :ada:`for some ...`, :ada: `for all ...`
+
 .. code:: Ada
 
-   quantified_expression ::=
-      (for quantifier loop_parameter_specification
-             => predicate) |
-      (for quantifier iterator_specification =>
-             predicate)
-   predicate ::= boolean_expression
-   quantifier ::= all | some
+    (for some Index in Subtype_T => Predicate (Index))
+    (for all Index in Subtype_T => Predicate (Index))
+    (for some Value of Container_Obj => Predicate (Value))
+    (for all Value of Container_Obj => Predicate (Value))
 
 -----------------
 Simple Examples
