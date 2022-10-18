@@ -625,6 +625,61 @@ Waiting On Different Entries
        exit;
      end select;
 
+------------------------
+Protected Object Entries
+------------------------
+
+* **Special** kind of protected :ada:`procedure`
+* May use a **barrier**, that **only** allows call on a **boolean** condition
+* Barrier is **evaluated** and may be **relieved** when
+
+   - A task calls :ada:`entry`
+   - A protected :ada:`entry` or :ada:`procedure` is **exited**
+
+* Several tasks can be waiting on the same :ada:`entry`
+
+    - Only **one** will be re-activated when the barrier is relieved
+
+.. code:: Ada
+
+   protected body Stack is
+      entry Push (V : Integer) when Size < Buffer'Length is
+      ...
+      entry Pop  (V : out Integer) when Size > 0 is
+      ...
+   end Object;
+
+-------------------
+Guard Expressions
+-------------------
+
+* :ada:`accept` may depend on a **guard condition** with :ada:`when`
+
+    - Evaluated when entering :ada:`select`
+
+* Protected objects may also use one on an :ada:`entry`
+
+.. code:: Ada
+
+   task body T is
+      Val : Integer;
+      Initialized : Boolean := False;
+   begin
+      loop
+         select
+            accept Put (V : Integer) do
+               Val := V;
+               Initialized := True;
+            end Put;
+         or
+            when Initialized =>
+               accept Get (V : out Integer) do
+                  V := Val;
+               end Get;
+         end select;
+      end loop;
+   end T;
+
 ------------------------------------------
 Example: Protected Objects - Declaration
 ------------------------------------------
@@ -669,12 +724,14 @@ Quiz
     procedure Main is
         protected type O is
            entry P;
+        private
+            Ok : Boolean := False;
         end O;
 
         protected body O is
-           entry P when True is
+           entry P when not Ok is
            begin
-              Put_Line ("OK");
+              Ok := True;
            end P;
         end O;
     begin
@@ -683,7 +740,7 @@ Quiz
 
 What is the result of compiling and running this code?
 
-A. "OK"
+A. :ada:`Ok = True`
 B. Nothing
 C. :answer:`Compilation error`
 D. Runtime error
@@ -832,59 +889,6 @@ Terminate Alternative
    or
       terminate;
    end select;
-
--------------------
-Guard Expressions
--------------------
-
-* :ada:`accept` may depend on a **guard condition** with :ada:`when`
-
-    - Evaluated when entering :ada:`select`
-
-.. code:: Ada
-
-   task body T is
-      Val : Integer;
-      Initialized : Boolean := False;
-   begin
-      loop
-         select
-            accept Put (V : Integer) do
-               Val := V;
-               Initialized := True;
-            end Put;
-         or
-            when Initialized =>
-               accept Get (V : out Integer) do
-                  V := Val;
-               end Get;
-         end select;
-      end loop;
-   end T;
-
-------------------------
-Protected Object Entries
-------------------------
-
-* **Special** kind of protected :ada:`procedure`
-* May use a **barrier**, that **only** allows call on a **boolean** condition
-* Barrier is **evaluated** and may be **relieved** when
-
-   - A task calls :ada:`entry`
-   - A protected :ada:`entry` or :ada:`procedure` is **exited**
-
-* Several tasks can be waiting on the same :ada:`entry`
-
-    - Only **one** will be re-activated when the barrier is relieved
-
-.. code:: Ada
-
-   protected body Stack is
-      entry Push (V : Integer) when Size < Buffer'Length is
-      ...
-      entry Pop  (V : out Integer) when Size > 0 is
-      ...
-   end Object;
 
 -------------------------------------
 Select On Protected Objects Entries
