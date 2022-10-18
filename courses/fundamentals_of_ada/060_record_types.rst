@@ -228,11 +228,17 @@ Assignment Examples
 Aggregates
 ============
 
-----------
-Examples
-----------
+----------------
+Examples (1/2)
+----------------
 
-.. include:: examples/060_record_types/aggregates.rst
+.. include:: examples/060_record_types/aggregates.1.rst
+
+----------------
+Examples (2/2)
+----------------
+
+.. include:: examples/060_record_types/aggregates.2.rst
 
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#aggregates`
 
