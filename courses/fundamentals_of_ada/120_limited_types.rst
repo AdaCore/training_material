@@ -281,9 +281,9 @@ Creating Values
 
    - Functions returning values of limited types
 
-* Via **limited aggregates**
+* Via an **aggregate**
 
-   - Aggregates for limited types
+    - :dfn:`limited aggregate` when used for a :ada:`limited` type
 
 .. code:: Ada
 
@@ -292,19 +292,6 @@ Creating Values
    end record;
    ...
    Mutex : Spin_Lock := (Flag => 0); -- limited aggregate
-
------------------------------------
-Other Uses for Limited Aggregates
------------------------------------
-
-* Values for constant declarations
-* Components of enclosing array and record types
-* Default expressions for record components
-* Expression in an initialized allocator
-* Actual parameters for formals of mode :ada:`in`
-* Results of function return statements
-* Defaults for mode :ada:`in` formal parameters
-* But not right-hand side of assignment statements!
 
 -------------------------------
 Limited Constructor Functions
