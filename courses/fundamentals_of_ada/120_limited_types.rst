@@ -264,13 +264,27 @@ Which assignment is legal?
 Creating Values
 =================
 
-----------
-Examples
-----------
+-----------------
+Examples (Spec)
+-----------------
 
-.. include:: examples/120_limited_types/creating_values.rst
+.. include:: examples/120_limited_types/creating_values/multiprocessor_mutex.ads
+    :code: Ada
 
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/120_limited_types.html#creating-values`
+
+-----------------
+Examples (Body)
+-----------------
+
+.. include:: examples/120_limited_types/creating_values/multiprocessor_mutex.adb
+    :code: Ada
+-----------------
+Examples (Main)
+-----------------
+
+.. include:: examples/120_limited_types/creating_values/perform_lock.adb
+    :code: Ada
 
 -----------------
 Creating Values
@@ -404,13 +418,28 @@ D. ``return Zero;``
 Extended Return Statements
 ============================
 
-----------
-Examples
-----------
+-----------------
+Examples (Spec)
+-----------------
 
-.. include:: examples/120_limited_types/extended_return_statements.rst
+.. include:: examples/120_limited_types/extended_return_statements/multiprocessor_mutex.ads
+    :code: Ada
 
 :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/120_limited_types.html#extended-return-statements`
+
+-----------------
+Examples (Body)
+-----------------
+
+.. include:: examples/120_limited_types/extended_return_statements/multiprocessor_mutex.adb
+    :code: Ada
+
+-----------------
+Examples (Main)
+-----------------
+
+.. include:: examples/120_limited_types/extended_return_statements/perform_lock.adb
+    :code: Ada
 
 -------------------------------------
 Function Extended Return Statements
