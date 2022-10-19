@@ -100,10 +100,12 @@ Quantified Expressions Syntax
 
    Ada 2012
 
-* Four variants
+* Four :ada:`for` variants
 
-    - :ada:`for ... in`, :ada:`for ... of`
-    - :ada:`for some ...`, :ada: `for all ...`
+    - Index-based :ada:`in` or component-based :ada:`of`
+    - Existential :ada:`some` or universal :ada:`all`
+
+* Using arrow ``=>`` to indicate :dfn:`predicate` expression
 
 .. code:: Ada
 
