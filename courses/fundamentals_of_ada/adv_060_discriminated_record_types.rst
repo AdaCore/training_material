@@ -423,8 +423,29 @@ Varying Length Array via Variant Records
 
 * Discriminant default value?
 
-   * With default discriminant value, objects can be copied even if lengths are different
-   * With no default discriminant value, objects of different lengths cannot be copied
+   + With default discriminant value, objects can be copied even if lengths are different
+   + With no default discriminant value, objects of different lengths cannot be copied
+
+-------------------------------------------------------
+Varying Length Array via Variant Records and Subtypes
+-------------------------------------------------------
+
+* Discriminant can serve as bound of array component
+* Subtype serves as upper bound for :ada:`Size_T'Last`
+
+.. code:: Ada
+
+   subtype VString_Size is Natural range 0 .. Max_Length;
+
+   type VString (Size : VString_Size := 0) is
+     record
+       Data   : String (1 .. Size) := (others => ' ');
+     end record;
+
+   Empty_VString : constant VString := (0, "");
+
+   function Make (S : String) return VString is
+      ((Size => S'Length, Data => S));
 
 ------
 Quiz
