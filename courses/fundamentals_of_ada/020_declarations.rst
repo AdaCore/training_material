@@ -122,25 +122,25 @@ Reserved Words
 
 .. code:: Ada
 
-   abort          else              null               select
-   abs            elsif             of                 separate
-   abstract (95)  end               or                 some (2012)
-   accept         entry             others             subtype
-   access         exception         out                synchronized (2005)
-   aliased (95)   exit              overriding (2005)  tagged (95)
-   all            for               package            task
-   and            function          pragma             terminate
-   array          generic           private            then
-   at             goto              procedure          type
-   begin          if                protected (95)     until (95)
-   body           in                raise              use
-   case           interface (2005)  range              when
-   constant       is                record             while
-   declare        limited           rem                with
-   delay          loop              renames            xor
-   delta          mod               requeue (95)
-   digits         new               return
-   do             not               reverse
+   abort          else              null               reverse
+   abs            elsif             of                 select
+   abstract (95)  end               or                 separate
+   accept         entry             others             some (2012)
+   access         exception         out                subtype
+   aliased (95)   exit              overriding (2005)  synchronized (2005)
+   all            for               package            tagged (95)
+   and            function          parallel (2022)    task
+   array          generic           pragma             terminate
+   at             goto              private            then
+   begin          if                procedure          type
+   body           in                protected (95)     unitl (95)
+   case           interface (2005)  raise              use
+   constant       is                range              when
+   declare        limited           record             while
+   delay          loop              rem                with
+   delta          mod               renames            xor
+   digits         new               requeue (95)
+   do             not               return
 
 ----------
 Comments
@@ -221,6 +221,7 @@ Decimal Numeric Literals
       numeral ::= digit {[underline] digit}
 
 * Underscore is not significant
+* **E** (exponent) must always be integer
 * Examples
 
    .. code:: Ada
@@ -573,26 +574,26 @@ Named Number Benefit
     Named_Number   : constant :=       1.0 / 3.0;
     Typed_Constant : constant float := 1.0 / 3.0;
 
-.. container:: columns
+.. container:: latex_environment footnotesize
 
- .. container:: column
+  .. list-table::
+    :header-rows: 1
 
-    * :code:`Named_Number` value
+    * - Object
+      - Named_Number
+      - Typed_Constant
 
-       - as a 32 bits Float |rightarrow| 3.33333E-01
-       - as a 64 bits Float |rightarrow| 3.33333333333333E-01
-       - as a 128 bits Float |rightarrow| 3.33333333333333333E-01
+    * - :ada:`F32 : Float_32;`
+      - 3.33333E-01
+      - 3.33333E-01
 
- .. container:: column
+    * - :ada:`F64 : Float_64;`
+      - 3.33333333333333E-01
+      - 3.333333_43267441E-01
 
-    * :code:`Typed_Constant` value
-
-       - as a 32 bits Float |rightarrow| 3.33333E-01
-       - as a 64 bits Float |rightarrow| 3.333333_43267441E-01
-       - as a 128 bits Float |rightarrow| 3.333333_43267440796E-01
-
-..
-    TODO Try using a table
+    * - :ada:`F128 : Float_128;`
+      - 3.33333333333333333E-01
+      - 3.333333_43267440796E-01
 
 ======================
 Scope and Visibility
