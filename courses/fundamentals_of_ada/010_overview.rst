@@ -65,44 +65,55 @@ The Name
 Ada Evolution Highlights
 --------------------------
 
+
 .. container:: columns
 
  .. container:: column
 
-    * **Ada 83**
+  .. container:: latex_environment footnotesize
 
-       - Abstract Data Types
-       - Modules
-       - Concurrency
-       - Generics
-       - Exceptions
+    **Ada 83**
+       | Abstract Data Types
+       | Modules
+       | Concurrency
+       | Generics
+       | Exceptions
+    |
 
-    * **Ada 95**
+    **Ada 95**
+       | OOP
+       | Efficient synchronization
+       | Better Access Types
+       | Child Packages
+       | Annexes
+    |
 
-       - OOP
-       - Efficient synchronization
-       - Better Access Types
-       - Child Packages
-       - Annexes
+    **Ada 2005**
+       | Multiple Inheritance
+       | Containers
+       | Better Limited Types
+       | More Real-Time
+       | Ravenscar
 
  .. container:: column
 
-    * **Ada 2005**
+  .. container:: latex_environment footnotesize
 
-       - Multiple Inheritance
-       - Containers
-       - Better Limited Types
-       - More Real-Time
-       - Ravenscar
+    **Ada 2012**
+       | Contracts
+       | Iterators
+       | Flexible Expressions
+       | More containers
+       | Multi-processor Support
+       | More Real-Time
+    |
 
-    * **Ada 2012**
-
-       - Contracts
-       - Iterators
-       - Flexible Expressions
-       - More containers
-       - Multi-processor Support
-       - More Real-Time
+    **Ada 2022**
+       | :ada:`'Image` for all types
+       | Target name symbol
+       | Support for C varidics
+       | Declare expression
+       | Simplified :ada:`renames`
 
 =============
 Big Picture
