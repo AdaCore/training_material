@@ -232,16 +232,24 @@ Overriding Indicators
 
    .. code:: Ada
 
-      type Root is tagged null record;
+      type Shape_T is tagged record
+         Name : String(1..10);
+      end record;
 
-      procedure Prim1 (V : Root);
-      procedure Prim2 (V : Root);
+      -- primitives of "Shape_T"
+      procedure Set_Name (S : in out Shape_T);
+      function Name (S : Shape_T) return string;
 
-      type Child is new Root with null record;
+      -- Derive "Point" from Shape_T
+      type Point is new Shape_T with record
+         Origin : Coord_T;
+      end Point;
 
-      overriding procedure Prim1 (V : Child);
-      -- Prim2 (V : Child) is implicitely inherited
-      not overriding procedure Prim3 (V : Child);
+      -- We want to _change_ the behavior of Set_Name
+      overriding procedure Set_Name (P : in out Point_T);
+      -- We want to _add_ a new primitive
+      not overriding Origin ( P : Point_T ) return Point_T;
+      -- We get "Name" for free
 
 -----------------
 Prefix Notation
