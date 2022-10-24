@@ -5,8 +5,7 @@
 
 Which piece(s) of code correctly perform(s) equality check on A and B?
 
-A. | :answermono:`function "=" (A : T1; B : T2) return Boolean is`
-   |   :answermono:`(A = T1 (B));`
+A. :answermono:`function "=" (A : T1; B : T2) return Boolean is (A = T1 (B))`
 B. | ``function "=" (A : T1; B : T2) return Boolean is``
    |   ``(for all E1 of A => (for all E2 of B => E1 = E2));``
 C. | ``function "=" (A : T1; B : T2) return Boolean is``
