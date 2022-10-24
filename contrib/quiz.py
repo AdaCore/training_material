@@ -191,7 +191,7 @@ if __name__ == "__main__":
     args = ap.parse_args()
 
     if args.output_file:
-        out = open(ap, "w")
+        out = open(args.output_file, "w")
     else:
         out = sys.stdout
 
