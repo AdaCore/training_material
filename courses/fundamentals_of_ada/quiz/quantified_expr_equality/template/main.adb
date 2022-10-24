@@ -5,8 +5,10 @@ procedure Main is
    type T2 is array (1 .. 3) of Integer;
    --$ end question
 
-   --$ line cut
-   function "=" (A : T1; B : T2) return Boolean is (A = T1 (B));
+   --$ begin cut
+   function "=" (A : T1; B : T2) return Boolean is
+     (A = T1 (B));
+   --$ end cut
    --$ begin cut
    function "=" (A : T1; B : T2) return Boolean is
      (for all E1 of A => (for all E2 of B => E1 = E2));
