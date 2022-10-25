@@ -270,8 +270,8 @@ Index-Based vs Component-Based Indexing
    .. code:: Ada
 
       Is_Sorted : constant Boolean :=
-         (for all I in Values'Range =>
-            I = Values'first or else Values(I) >= Values(I-1));
+        (for all I in Values'Range =>
+          I = Values'first or else Values(I) >= Values(I-1));
 
 ---------------------------------------
 "Pop Quiz" for Quantified Expressions
@@ -281,7 +281,9 @@ Index-Based vs Component-Based Indexing
 
    Ada 2012
 
-* What will be the value of `Ascending_Order`?
+.. container:: latex_environment small
+
+ * What will be the value of `Ascending_Order`?
 
    .. code:: Ada
 
@@ -299,8 +301,8 @@ Index-Based vs Component-Based Indexing
          .. code:: Ada
 
           Ascending_Order : constant Boolean := (
-             for all K in Table'Range => K = Table'first or else
-                                         Table (K - 1) <= Table (K));
+             for all K in Table'Range =>
+                K = Table'first or else Table (K - 1) <= Table (K));
 
 ---------------------------
  When The Set Is Empty...

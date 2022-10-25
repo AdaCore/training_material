@@ -20,6 +20,11 @@ Advanced Expressions Lab
 
       * But you *must* use indexed-based iterations for others
 
+   - This is the same lab as the *Expressions* lab, we're just replacing
+     the validation functions with quantified expressions!
+
+      * So you can just copy that project and update the code!
+
 --------------------------------------------
 Advanced Expressions Lab Solution - Checks
 --------------------------------------------
