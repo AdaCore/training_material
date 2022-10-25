@@ -481,12 +481,12 @@ References Are Not Checked
      J, K : Even;
    begin
      -- predicates are not checked here
-     Put_Line ("K is" & K'Img);
-     Put_Line ("J is" & J'Img);
+     Put_Line ("K is" & K'Image);
+     Put_Line ("J is" & J'Image);
      -- predicate is checked here
      K := J; -- assertion failure here
-     Put_Line ("K is" & K'Img);
-     Put_Line ("J is" & J'Img);
+     Put_Line ("K is" & K'Image);
+     Put_Line ("J is" & J'Image);
    end Test;
 
 * Output would look like
@@ -658,7 +658,7 @@ Why Allow Types with Static Predicates?
       subtype Weekend is Days with Static_Predicate => Weekend in Sat | Sun;
       ...
       for W in Weekend loop
-        GNAT.IO.Put_Line (W'Img);
+        GNAT.IO.Put_Line (W'Image);
       end loop;
 
 * :ada:`for` loop generates code like
@@ -669,7 +669,7 @@ Why Allow Types with Static Predicates?
         w : weekend := sun;
       begin
         loop
-          gnat__io__put_line__2 (w'Img);
+          gnat__io__put_line__2 (w'Image);
           case w is
             when sun =>
               w := sat;

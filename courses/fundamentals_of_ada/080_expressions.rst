@@ -299,7 +299,7 @@ Result Must Be Compatible with Context
    begin
      while Remaining > 0 loop
        Put_Line ("Warning! Self-destruct in" &
-         Remaining'Img &
+         Remaining'Image &
          (if Remaining = 1 then " second" else " seconds"));
        delay 1.0;
        Remaining := Remaining - 1;

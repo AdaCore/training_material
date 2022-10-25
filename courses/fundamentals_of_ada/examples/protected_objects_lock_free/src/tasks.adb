@@ -14,7 +14,7 @@ package body Tasks is
                V : Integer := Object.Get;
             begin
                 Object.Set (V + 1);
-                Ada.Text_IO.Put_Line (V'Img);
+                Ada.Text_IO.Put_Line (V'Image);
             end;
          end Receive_Message;
       end loop;
@@ -31,7 +31,7 @@ package body Tasks is
                V : Integer := Object.Get;
             begin
                 Object.Set (V * 2);
-                Ada.Text_IO.Put_Line (V'Img);
+                Ada.Text_IO.Put_Line (V'Image);
             end;
          end Receive_Message;
       end loop;

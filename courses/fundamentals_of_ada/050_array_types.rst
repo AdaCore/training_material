@@ -109,7 +109,7 @@ Run-Time Index Checking
      A := (others => 0);
      K := FOO;
      A (K) := 42; -- runtime error if Foo returns < 1 or > 10
-     Put_Line (A(K)'Img);
+     Put_Line (A(K)'Image);
    end Test;
 
 ----------------------
