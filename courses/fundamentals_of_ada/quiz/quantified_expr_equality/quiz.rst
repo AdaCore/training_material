@@ -5,13 +5,13 @@
 
 Which piece(s) of code correctly perform(s) equality check on A and B?
 
-A. :answermono:`function "=" (A : T1; B : T2) return Boolean is (A = T1 (B))`
+A. :answermono:`function "=" (A : T1; B : T2) return Boolean is`
 B. | ``function "=" (A : T1; B : T2) return Boolean is``
    |   ``(for all E1 of A => (for all E2 of B => E1 = E2));``
 C. | ``function "=" (A : T1; B : T2) return Boolean is``
    |   ``(for some E1 of A => (for some E2 of B => A = B));``
-D. | :answermono:`function "=" (A : T1; B : T2) return Boolean is`
-   |   :answermono:`(for all J in A'Range => A (J) = B (J));`
+D. | ``function "=" (A : T1; B : T2) return Boolean is``
+   |   ``(for all J in A'Range => A (J) = B (J));``
 
 .. container:: animate
 
