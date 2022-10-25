@@ -437,9 +437,9 @@ Quiz
       generic
          with procedure P1 (X : in out Integer) is <>;
          with procedure P2 (X : in out Integer) is null;
-      procedure G ( P : integer );
-      procedure G ( P : integer ) is
-         X : integer := P;
+      procedure G ( Object : integer );
+      procedure G ( Object : integer ) is
+         X : integer := Object;
       begin
          P1(X);
          P2(X);
@@ -449,16 +449,14 @@ Quiz
 
  .. container:: column
 
-  .. container:: latex_environment scriptsize
-
-   What is printed when :ada:`Instance` is called?
+   What is printed when we call :ada:`Instance (Object => 0);`?
 
    A. 100
    B. 120
    C. :answer:`3`
    D. 103
 
-   .. container:: animate
+.. container:: animate
 
       Explanations
 
