@@ -392,7 +392,7 @@ Which expression will guarantee :ada:`Area` calculates the correct result for al
 
    A. ``Pre => L > 0 and H > 0``
    B. ``Pre => L < Integer'last and H < Integer'last``
-   C. ``Pre => L * H in Integer``
+   C. ``Pre => L > 0 and H > 0 and L * H in Integer``
    D. :answer:`None of the above`
 
 .. container:: animate
