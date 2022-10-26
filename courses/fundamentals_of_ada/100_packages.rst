@@ -344,26 +344,28 @@ Quiz
    package P is
       Object_One : Integer;
       procedure One ( P : out Integer );
-   end One;
+   end P;
 
 Which is a valid completion of package P?
 
    A. No completion needed
 
-   ``package body P is``
-
-   B. |   ``procedure One ( P : out Integer ) is null;``
-   C. |   ``Object_One : integer;``
+   B. | ``package body P is``
+      |   ``procedure One ( P : out Integer ) is null;``
+      | ``end P;``
+   C. | ``package body P is``
+      |   ``Object_One : integer;``
       |   ``procedure One ( P : out Integer ) is``
       |   ``begin``
       |      ``P := Object_One;``
       |   ``end One;``
-   D. |   :answermono:`procedure One ( P : out Integer ) is`
+      | ``end P;``
+   D. | :answermono:`package body P is`
+      |   :answermono:`procedure One ( P : out Integer ) is`
       |   :answermono:`begin`
       |      :answermono:`P := Object_One;`
       |   :answermono:`end One;`
-
-   ``end P;``
+      | :answermono:`end P;`
 
 .. container:: animate
 
