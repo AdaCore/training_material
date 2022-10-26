@@ -64,7 +64,7 @@ package body Test_Suite is
       end loop;
       Logs.Unbuffer;
       
-      Put_Line ("success:" & Successes'Img & " failures:" & Failures'Img & " errors:" & Errors'Img); 
+      Put_Line ("success:" & Successes'Image & " failures:" & Failures'Image & " errors:" & Errors'Image); 
       if Failures = 0 then
          Put_Line (Green, "OK all tests passed");
       else

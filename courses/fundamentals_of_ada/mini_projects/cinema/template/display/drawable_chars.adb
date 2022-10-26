@@ -28,7 +28,7 @@ package body Drawable_Chars is
             El : Char_With_Characteristic_T := Element (It);
          begin
             S :=
-              S & """" & Image (El.Char.all) & """ => " & El.Value'Img & " ";
+              S & """" & Image (El.Char.all) & """ => " & El.Value'Image & " ";
             It := Next (It);
          end;
       end loop;

@@ -21,7 +21,7 @@ procedure Main is
   begin
 
     Put_Line (O);
-    Put_Line (I'Img);
+    Put_Line (I'Image);
     Put_Line (Integer'Image ([for E of O when E /= 0 => E]'Reduce ("*", 1)));
 
 end Main;

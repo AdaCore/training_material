@@ -633,7 +633,7 @@ Instruction Counter Example (x86)
            Volatile => True);
       Values := Unsigned_64 (Low) +
                 Unsigned_64 (High) * 2 ** 32;
-      Put_Line (Values'Img);
+      Put_Line (Values'Image);
    end Main;
 
 ----------------------------------

@@ -24,11 +24,11 @@
    
    begin
       begin
-         Put_Line ("J is" & J'Img);
+         Put_Line ("J is" & J'Image);
          J := Integer'Succ (J); -- assertion failure here
-         Put_Line ("J is" & J'Img);
+         Put_Line ("J is" & J'Image);
          J := Integer'Succ (J); -- or maybe here
-         Put_Line ("J is" & J'Img);
+         Put_Line ("J is" & J'Image);
       exception
          when The_Err : others =>
             Put_Line (Exception_Message (The_Err));
