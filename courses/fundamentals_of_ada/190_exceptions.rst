@@ -362,7 +362,7 @@ Quiz
     :number-lines: 1
 
       procedure Main is
-         A, B, C, D : Natural;
+         A, B, C, D : Integer range 0 .. 100;
       begin
          A := 1; B := 2; C := 3; D := 4;
          begin
@@ -593,33 +593,35 @@ Propagation Demo
  .. container:: column
 
     .. code:: Ada
+      :number-lines: 1
 
-       procedure P is
+       procedure Do_Something is
          Error : exception;
-         procedure R is
+         procedure Unhandled is
          begin
            Maybe_Raise(1);
-         end R;
-         procedure Q is
+         end Unhandled;
+         procedure Handled is
          begin
            R;
            Maybe_Raise(2);
          exception
            when Error =>
-             Print("Exception from 1 or 2");
-         end Q;
+             Print("Handle 1 or 2");
+         end Handled;
 
  .. container:: column
 
     .. code:: Ada
+      :number-lines: 16
 
-       begin
+       begin -- Do_Something
          Maybe_Raise(3);
-         Q;
+         Handled;
        exception
          when Error =>
-           Print("Exception from 3");
-       end P;
+           Print("Handle 3");
+       end Do_Something;
 
 -------------------
 Termination Model
