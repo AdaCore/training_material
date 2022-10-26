@@ -235,16 +235,26 @@ Completion Examples
         B := Temp;
       end Swap;
 
-      function Mac (A, X, Y : Integer) return Integer is
+      -- Completion as specification
+      function Less_Than ( X, Y : Person) return boolean is
       begin
-         return A + X * Y;
+         return X.Age < Y.Age;
+      endf Less_Than
+
+      function Min (X, Y : Person) return Person;
+      begin
+         if Less_Than ( X, Y ) then
+            return X;
+         else
+            return Y;
+         end if;
       end Min;
 
 ------------------------------------------
 Direct Recursion - No Declaration Needed
 ------------------------------------------
 
-* When:ada:`is` is reached, the subprogram becomes **visible**
+* When :ada:`is` is reached, the subprogram becomes **visible**
 
     - It can call **itself** without a declaration
 
