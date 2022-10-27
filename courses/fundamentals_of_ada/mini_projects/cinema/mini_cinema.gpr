@@ -42,6 +42,6 @@ project Mini_Cinema is
    end case;
 
    package Compiler is
-      for Default_Switches ("Ada") use ("-gnata", "-gnat2022");
+      for Default_Switches ("Ada") use ("-gnata", "-gnat2022", "-gnatwa", "-Wall", "-pedantic");
    end Compiler;
 end Mini_Cinema;
