@@ -1,9 +1,11 @@
 with Test_Suite;
 
+pragma Warnings (Off, "not referenced");
 -- Sprites
 with Pixels.Tests;
 with Surfaces.Tests;
 with BMP_File_IO.Tests;
+pragma Warnings (On, "not referenced");
 
 procedure Run_Test_Sprites is
 begin
