@@ -1,3 +1,4 @@
+set -e
 ADACUT="python3 $WORKSPACE/training_material/contrib/adacut.py"
 
 for d in template/*; do

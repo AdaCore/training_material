@@ -26,7 +26,7 @@ package body Movie_Servers is
    end Play_Settings_T;
 
    function Make_Default return Movie_Server_Task_T is
-      S : Play_Settings_Access_T := new Play_Settings_T;
+      S : constant Play_Settings_Access_T := new Play_Settings_T;
    begin
       S.Set_FPS (4);
       S.Set_Charset (Drawable_Chars.Latin_1.By_Black);
@@ -55,7 +55,7 @@ package body Movie_Servers is
             accept Play_Loop (Dir : String) do
                Movie := Movies.Load_From (Dir);
                declare
-                  Res : Resolution_T := Resolution (Movie);
+                  Res : constant Resolution_T := Resolution (Movie);
                begin
                   CD :=
                     (Rows => Res.Rows, Columns => Res.Columns, others => <>);

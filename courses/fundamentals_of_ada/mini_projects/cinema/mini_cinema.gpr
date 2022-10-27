@@ -92,5 +92,6 @@ project Mini_Cinema is
 
    package Compiler is
       for Default_Switches ("Ada") use ("-gnata", "-gnat2022", "-gnatwa", "-Wall", "-pedantic");
+      for Local_Configuration_Pragmas use "mini_cinema.adc";
    end Compiler;
 end Mini_Cinema;

@@ -51,7 +51,6 @@ package body BMP_File_IO is
    --  +-----------+
 
    type U8_Array is array (Natural range <>) of Unsigned_8;
-   type U16_Array is array (Natural range <>) of Unsigned_16;
 
    type Header (As_Array : Boolean := True) is record
       case As_Array is
