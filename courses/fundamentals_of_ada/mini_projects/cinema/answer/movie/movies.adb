@@ -12,7 +12,7 @@ package body Movies is
 
       declare
          Movie : Movie_T := (Path => To_Unbounded_String (Path), others => <>);
-         Surface : Surface_T := Frame (Movie, Frame_T'First);
+         Surface : constant Surface_T := Frame (Movie, Frame_T'First);
       begin
          Movie.Resolution := (Surface'Length (1), Surface'Length (2));
          return Movie;
@@ -69,7 +69,7 @@ package body Movies is
                  (File => F, Mode => In_File,
                   Name => To_String (M.Path & "/" & Name));
                declare
-                  Surf : Surface_T := BMP_File_IO.Get (F);
+                  Surf : constant Surface_T := BMP_File_IO.Get (F);
                begin
                   Close (F);
                   return Surf;

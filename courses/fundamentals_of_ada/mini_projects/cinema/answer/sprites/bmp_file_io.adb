@@ -51,7 +51,6 @@ package body BMP_File_IO is
    --  +-----------+
 
    type U8_Array is array (Natural range <>) of Unsigned_8;
-   type U16_Array is array (Natural range <>) of Unsigned_16;
 
    type Header (As_Array : Boolean := True) is record
       case As_Array is
@@ -136,7 +135,7 @@ package body BMP_File_IO is
                begin
                   Unsigned_8'Read (Input_Stream, CT_Idx);
                   declare
-                     Pix_In : Pix_Val_Arr
+                     Pix_In : constant Pix_Val_Arr
                        := Col.Arr (Color_Table_Size_T (Natural (CT_Idx + 1)));
                   begin
                      Surf (X, Y)
@@ -153,10 +152,14 @@ package body BMP_File_IO is
    
    function Get (File : File_Type) return Surface_T
    is
+      -- 'Read is not understood as modifying the stream
+      pragma Warnings (Off, "could be declared constant");
+
       -- cannot read from a file type, directly, need
       -- to have a stream from it
       Input_Stream : Ada.Streams.Stream_IO.Stream_Access
         := Ada.Streams.Stream_IO.Stream (File);
+      pragma Warnings (Off, "could be declared constant");
 
       Hdr : Header;
       Inf : Info;

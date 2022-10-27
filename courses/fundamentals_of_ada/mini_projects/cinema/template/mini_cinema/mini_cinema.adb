@@ -24,7 +24,7 @@ procedure Mini_Cinema is
    --$ begin answer
    Charset_Chosen : Positive := Positive'First;
 
-   Play_Settings : Movie_Servers.Play_Settings_Access_T :=
+   Play_Settings : constant Movie_Servers.Play_Settings_Access_T :=
      new Movie_Servers.Play_Settings_T;
    Display_Server : Movie_Servers.Movie_Server_Task_T (Play_Settings);
    --$ end answer
@@ -39,7 +39,7 @@ begin
    --$ begin answer
    loop
       declare
-         Input : String := Ada.Text_IO.Get_Line;
+         Input : constant String := Ada.Text_IO.Get_Line;
       begin
          if Input = "pause" then
             Display_Server.Pause;

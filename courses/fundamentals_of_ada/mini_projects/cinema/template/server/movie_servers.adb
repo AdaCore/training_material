@@ -37,7 +37,7 @@ package body Movie_Servers is
 
    function Make_Default return Movie_Server_Task_T is
       --$ line answer
-      S : Play_Settings_Access_T := new Play_Settings_T;
+      S : constant Play_Settings_Access_T := new Play_Settings_T;
    begin
       --$ begin question
       -- How to return a task there?
@@ -83,7 +83,7 @@ package body Movie_Servers is
             accept Play_Loop (Dir : String) do
                Movie := Movies.Load_From (Dir);
                declare
-                  Res : Resolution_T := Resolution (Movie);
+                  Res : constant Resolution_T := Resolution (Movie);
                begin
                   CD :=
                     (Rows => Res.Rows, Columns => Res.Columns, others => <>);

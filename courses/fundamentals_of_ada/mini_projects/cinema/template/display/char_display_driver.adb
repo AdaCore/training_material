@@ -22,7 +22,7 @@ package body Char_Display_Driver is
 
    function Get_Row (CD : Char_Display; Row : Row_T) return String is
       --$ begin answer
-      Lux : Pixel_Component_Row_Array_T := Row_Luminosity (CD.Surf, Row);
+      Lux : constant  Pixel_Component_Row_Array_T := Row_Luminosity (CD.Surf, Row);
       S   : Unbounded_String;
       --$ end answer
    begin

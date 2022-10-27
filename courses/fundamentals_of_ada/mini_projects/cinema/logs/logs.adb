@@ -36,7 +36,7 @@ package body Logs is
    
    function VT100_Esc (Colors : Style_Content_T) return Escaped_VT100 is
       function To_VT100 (I : Integer) return String is
-         S : String := I'Image;
+         S : constant String := I'Image;
       begin
          return S (S'First + 1 .. S'Last);
       end To_VT100;
@@ -81,7 +81,7 @@ package body Logs is
    end Unbuffer;
    
    procedure Put_Buffer is
-      Old_Buffered : Boolean := Buffered;
+      Old_Buffered : constant Boolean := Buffered;
    begin
       Buffered := False;
       for Line of B loop
@@ -105,7 +105,6 @@ package body Logs is
    end Drop_Buffer;
    
    procedure Put (Sty : Style; S : String) is
-      SF : String := VT100 (Sty, S);
    begin
       Put (VT100 (Sty, S));
    end Put;

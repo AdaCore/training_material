@@ -14,7 +14,7 @@ package body Char_Display_Driver is
    end Make;
 
    function Get_Row (CD : Char_Display; Row : Row_T) return String is
-      Lux : Pixel_Component_Row_Array_T := Row_Luminosity (CD.Surf, Row);
+      Lux : constant  Pixel_Component_Row_Array_T := Row_Luminosity (CD.Surf, Row);
       S   : Unbounded_String;
    begin
       for L of Lux loop

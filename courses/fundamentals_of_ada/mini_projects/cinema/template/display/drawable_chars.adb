@@ -25,7 +25,7 @@ package body Drawable_Chars is
       --$ begin answer
       while Has_Element (It) loop
          declare
-            El : Char_With_Characteristic_T := Element (It);
+            El : constant Char_With_Characteristic_T := Element (It);
          begin
             S :=
               S & """" & Image (El.Char.all) & """ => " & El.Value'Img & " ";
@@ -60,9 +60,14 @@ package body Drawable_Chars is
             Curr : constant Char_With_Characteristic_T := Element (It);
          begin
             if Curr.Value >= Value then
-               if Natural (Curr.Value - Value) < Best_Dist then
-                  Best := Curr;
-               end if;
+               declare
+                  Curr_Dist : constant Natural := Natural (Curr.Value - Value);
+               begin
+                  if Curr_Dist < Best_Dist then
+                     Best_Dist := Curr_Dist;
+                     Best := Curr;
+                  end if;
+               end;
 
                Continue := False;
             else
@@ -107,7 +112,7 @@ package body Drawable_Chars is
       --$ begin answer
       while Has_Element (It) loop
          declare
-            El : Char_With_Characteristic_T := Element (It);
+            El : constant Char_With_Characteristic_T := Element (It);
          begin
             SC2.Insert ((El.Char, 255 - El.Value));
          end;
