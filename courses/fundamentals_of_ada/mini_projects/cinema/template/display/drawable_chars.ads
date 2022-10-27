@@ -59,6 +59,11 @@ private
    package Chars_Sorted_By_Characteristic_Pkg is
      new Ada.Containers.Ordered_Sets (Element_Type => Char_With_Characteristic_T);
    --$ end answer
+   --$ begin question
+   -- TODO Declare a proper container type here
+   package Chars_Sorted_By_Characteristic_Pkg is
+      new ???;
+   --$ end question
 
    type Drawable_Char_Caracteristics_List_T
      is array (Positive range <>) of Drawable_Char_Characteristic_T;
