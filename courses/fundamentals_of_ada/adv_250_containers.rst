@@ -35,69 +35,255 @@ Introduction
 Container Library
 -------------------
 
-* Packages (including generics) for different types of data containers
+* :ada:`Ada.Containers` parent package
+* Packages (including generics)
 
-   - Vectors
-   - Doubly-linked lists
-   - Maps
-   - Sets
-   - Trees
-   - Queues
-   - Indefinite containers (holder/wrapper)
+    - Different types of data containers
+    - Hold an :ada:`Element` type
+    - Container types are :ada:`tagged`
 
-* Sorting mechanisms
+* Types defined as a product of both
+
+    - A data structure
+    - An implementation
+    - Define some added operations
+
+* Container share sets of operations
+
+    - Seen later
+
+=================
+Container Types
+=================
+
+-----------------------
+Data Structures (1/2)
+-----------------------
+
+* Vector
+
+   - Essentially an array
+   - :dfn:`Capacity` and size can differ
+
+* Doubly-linked list
+
+    - Linked list
+    - Iteration in both directions
+
+* Map
+
+    - Containers matching Key -> Element
+    - Not a one-to-one relationship
+        
+        + Can have several keys for a single element
+    
+* Set
+
+    - Collection of **unique** values
+
+* Queue
+
+    - No iterator
+    - Only ordered access
+    - For multi-tasking operations
+
+----------------------
+Data Structures (2/2)
+----------------------
+
+.. admonition:: Language Variant
+
+    Ada 2012
+
+* Tree
+
+    - Similar to list
+    - A node can have several children
+
+* Holder
+
+    - Wraps around an indefinite (unconstrained, classwide, incomplete...)
+    - Resulting type is definite
+    - Single element, no iteration or cursor
+
+-----------------------
+Implementations (1/2)
+-----------------------
+
+* :dfn:`Bounded`
+
+    - Maximal storage is bounded
+    - Constant capacity and element size
+    - Only static allocation
+    - :ada:`Bounded_<Structure>`
+
+* :dfn:`Unbounded`
+
+    - Capacity can grow dynamically
+    - Easiest to use
+    - Default
+
+* :dfn:`Ordered`
+
+    - Elements are sorted in order
+    - Must provide :ada:`<` and :ada:`=` operators
+    - Not hashed
+    - :ada:`XXX_Ordered_<Structure>`
+
+* :dfn:`Hashed`
+
+    - Elements are hashed
+    - Must provide :ada:`Hash` function and :ada:`=` operator
+    - Not ordered
+    - Some hash functions are provided (e.g. :ada:`Ada.Strings.Hash`)
+    - :ada:`XXX_Hashed_<Structure>`
+
+-----------------------
+Implementations (2/2)
+-----------------------
+
+.. admonition:: Language Variant
+
+    Ada 2012
+
+* :dfn:`Indefinite`
+    
+    - Element can be indefinite
+    - Size of element is unknown
+    - :ada:`Indefinite_XXX_<Structure>`
+
+-----------------------
+Example of Containers
+-----------------------
+
+* Standard defines 25 different container variations
+* :ada:`Indefinite_Vector`
+
+    - Static capacity
+    - Dynamically sized (indefinite elements)
+    - Random access in ``O(1)``
+
+* :ada:`Ordered_Set`
+
+    - Unique elements
+    - Differenciated by :ada:`<` and :ada:`=`
+    - Manipulated in order
+
+* :ada:`Bounded_Doubly_Linked_List`
+
+    - Static size of container and elements
+    - Insertions and deletions in ``O(1)``
+
+-------------
+Declaration
+-------------
+
+* Generic packages
+* Always need at least the ``Element_Type``
+* Examples chosen for the next slides:
+
+.. include:: examples/containers/extracts/decl_vector.ads
+    :code: Ada
+
+.. include:: examples/containers/extracts/decl_set.ads
+    :code: Ada
+
+.. include:: examples/containers/extracts/decl_map.ads
+    :code: Ada
+
+---------------
+Instanciation
+---------------
+
+* May require an initial :ada:`Empty_xxx` value
+
+.. include:: examples/containers/extracts/decl_instances.adb
+    :code: Ada
+
+=======================
+Containers Operations
+=======================
 
 -------------------
-Library Structure
+Common Operations
 -------------------
 
-* Groups of objects of
+* Lots of common operations
 
-   - Definite types
-   - Indefinite types
-   - Bounded capacity (of definite types)
+    - What is available depends greatly on the exact container type
+    - ... so does syntax
 
-* Definite types
+* Insertion
+* Iteration
+* Comparison
+* Sort
+* Search
 
-   - More efficient
+-----------
+Insertion
+-----------
 
-* Indefinite types
+* May be in order :ada:`Append` or :ada:`Prepend`
+* May be :ada:`Insert` (at random or at given index)
+* May :ada:`Replace` an existing element
 
-   - More flexible
+.. include:: examples/containers/extracts/insert.adb
+    :code: Ada
 
-* Bounded capacity
+-----------
+Iteration
+-----------
 
-   - Known size
+* Container have a :ada:`Cursor` type
 
------------------------------
-Common Container Processing
------------------------------
+    - Points to an element in a container
+    - Can be used for advanced iterations
 
-* Every container has a type `Cursor` which points to an element in a container
+.. include:: examples/containers/extracts/iterate.adb
+    :code: Ada
 
-   - Points to the container as well as the element!
+------------
+Comparison
+------------
 
-* Container types are tagged allowing for prefixed notation
+.. include:: examples/containers/extracts/compare.adb
+    :code: Ada
 
-   - Prefixed: `My_List.Append ( Item );`
-   - Untagged: `Append(My_List, Item);`
+------
+Sort
+------
 
-* Hashed vs Ordered
+* Arrays
 
-   - **Ordered** containers are sequential
+   - `Ada.Containers.Generic_Array_Sort`
+   - `Ada.Containers.Generic_Constrained_Array_Sort`
 
-      + Searching can be slow for large containers
+* Any object that has indexing
 
-   - **Hashed** containers require effort
+   - `Ada.Containers.Generic_Sort`
 
-      + Hash function needs to be carefully written
+.. include:: examples/containers/extracts/sort.adb
+    :code: Ada
 
-==========
-Examples
-==========
+--------
+Search
+--------
+
+* Use :ada:`Find` for a :ada:`Cursor`
+
+    - :ada:`<Pkg>.No_Element` is a :ada:`Cursor` if not found
+
+* Use :ada:`Find_Index` for an :ada:`Index_Type` (vectors)
+
+.. include:: examples/containers/extracts/search.adb
+    :code: Ada
+
+===========
+Reference
+===========
 
 --------------------------------------
-Actual containers - Ada.Containers.*
+Standard ``Ada.Containers`` Packages
 --------------------------------------
 
 * Definite Types
@@ -131,85 +317,6 @@ Actual containers - Ada.Containers.*
   - Bounded_Hashed_Sets
   - Bounded_Ordered_Sets
 
-----------------------------
-Doubly Linked List Example
-----------------------------
-
-.. code:: Ada
-
-   type Space_Agencies_T is (Nasa, Esa, Rsa);
-   Last_Position : constant integer :=
-      Space_Agencies_T'pos ( Space_Agencies_T'last );
-
-   type List_Element_T is
-      record
-         Agency : Space_Agencies_T;
-         Values : Satellite.Data_T;
-      end record;
-   function Is_Equal ( Left, Right : List_Element_T )
-         return boolean is
-      ( Left.Agency = Right.Agency );
-
-   package Database_Pkg is new
-     Ada.Containers.Bounded_Doubly_Linked_Lists
-       (Element_Type => List_Element_T,
-        "="          => Is_Equal);
-
-   Database : Database_Pkg.List(
-      Ada.Containers.Count_Type(1 + Last_Position));
-
-----------------
-Vector Example
-----------------
-
-.. code:: Ada
-
-   type Space_Agencies_T is (Nasa, Esa, Rsa);
-   Last_Position : constant integer :=
-      Space_Agencies_T'pos ( Space_Agencies_T'last );
-
-   package Database_Pkg is new
-      Ada.Containers.Bounded_Vectors
-         (Index_Type => natural,
-          Element_Type => Satellite.Data_T);
-
-   Database : Database_Pkg.Vector(
-      Ada.Containers.Count_Type(1 + Last_Position));
-
--------------
-Map Example
--------------
-
-.. code:: Ada
-
-   type Space_Agencies_T is (Nasa, Esa, Rsa);
-   Last_Position : constant integer :=
-      Space_Agencies_T'pos ( Space_Agencies_T'last );
-
-   package Database_Pkg is new
-      Ada.Containers.Bounded_Ordered_Maps
-         (Key_Type => Space_Agencies_T,
-          Element_Type => Satellite.Data_T);
-
-   Database : Database_Pkg.Map(Ada.Containers.Count_Type(
-                               1 + Last_Position));
-
---------------------
-Sorting Mechanisms
---------------------
-
-* Arrays
-
-   - `Ada.Containers.Generic_Array_Sort`
-   - `Ada.Containers.Generic_Constrained_Array_Sort`
-
-* Any object
-
-   - `Ada.Containers.Generic_Sort`
-
-      + Allows you to define your own comparison and swap mechanisms!
-      + This means you can extend sorting to container classes
-
 ========
 Lab
 ========
@@ -232,3 +339,7 @@ Containers Review
       + When writing your own, you may not create all the functions someone else neds
 
    - Part of the language, so reliability is much higher
+
+* Availability depends on language-version and runtime
+
+    - Typically not available on certified runtimes (e.g. ravenscar)
