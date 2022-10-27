@@ -52,6 +52,9 @@ private
       Value : Drawable_Char_Characteristic_T;
    end record;
 
+   -- TODO Declare a proper container type here
+   package Chars_Sorted_By_Characteristic_Pkg is
+      new ???;
 
    type Drawable_Char_Caracteristics_List_T
      is array (Positive range <>) of Drawable_Char_Characteristic_T;
