@@ -48,14 +48,6 @@ will provide more contextual information.
 
     This package is in charge of reading a file in the BMP format and converting it to a Surface.
 
-    * `Movies` package
-
-    A movie is a collection of frames, that are stored as BMP files in their alphabetical order in a
-    single directory.
-
-    This package does not need to be implemented right away for the unit tests, it is required for running the
-    Movie integration test, and later tests (as well as the main program).
-
 - `display/`
 
     * `Drawable_Char` package
@@ -67,6 +59,13 @@ will provide more contextual information.
 
     This package contains a driver that is in charge of displaying series of characters to the screen as
     an image. That is the package responsible for calling the `Put` IO operations.
+
+- `movie/`
+
+    * `Movies` package
+
+    A movie is a collection of frames, that are stored as BMP files in their alphabetical order in a
+    single directory.
 
 - `server/`
 
