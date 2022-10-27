@@ -16,22 +16,8 @@ jobs:
     strategy:
         fail-fast: false
         matrix:
-            source: [fundamentals_of_ada,
-                     fundamentals_of_ada/standard_course.txt,
-                     fundamentals_of_ada/advanced.txt,
-                     fundamentals_of_ada/libs_containers_strings_and_dynamic_memory.txt,
-                     fundamentals_of_ada/opat.txt,
-                     fundamentals_of_ada/labs,
-                     spark_for_ada_programmers,
-                     spark_for_ada_programmers/course.txt,
-                     advanced_exception_analysis,
-                     gnatcheck,
-                     gnat_studio,
-                     gnat_project_facility,
-                     gnattest,
-                     codepeer,
-                     gnatcoverage,
-                     static_analysis_via_compiler]
+            source: [fundamentals_of_ada/advanced.txt,
+                     fundamentals_of_ada/special.txt]
 
     steps:
       - uses: actions/checkout@v2
