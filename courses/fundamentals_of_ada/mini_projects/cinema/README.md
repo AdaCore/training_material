@@ -16,10 +16,27 @@ If using GNAT studio, the Mode and Main can be selected from the scenario tab.
 
 There are two build modes, corresponding to the two implementations available
 
-- Question (default): Build the `src/` implementation, which is incomplete and needs to be
+- `Question_Sprite` (default): Build the `src/` implementation, which is incomplete and needs to be
   filled-in to work properly.
-  Run with `-XMode=Question`
-- Answer : Build the `answers/` directory, which contains the reference implementation, to
+- `Question_Display`: Use the answer's implementation for all `sprite/` packages. Otherwise use the
+  `src/` directory.
+  This is a shortcut to start answering `UT_Display` and
+  `Static_Image_Display_Test` without having implemented an `UT_Sprites` solution
+  Run with `-XMode=Question_Display`
+- `Question_Movie`: Use the answer's implementation for all `sprite/` and `display/` packages.
+  Otherwise use the `src/` directory.
+  This is a shortcut to start answering `Movie_Test`
+  without having implemented an `Static_Image_Display_Test` solution
+  Run with `-XMode=Question_Movie`
+- `Question_Server`: Use the answer's implementation for all `sprite/`, `display/`, and `movie/`
+  packages. Otherwise use the `src/` directory.
+  This is a shortcut to start answering `Server_Test`
+  without having implemented an `Movie_Test` solution
+  Run with `-XMode=Question_Server`
+- `Question_Mini_Cinema`: Use the answer's implementation for all packages, use the `src/` Mini Cinema main.
+  This is a shortcut to start answering `Mini_Cinema` without having implemented the packages.
+  Run with `-XMode=Question_Mini_Cinema`
+- `Answer` : Build the `answers/` directory, which contains the reference implementation, to
   which the behaviour and code of the Question implementation can be compared.
   Run with `-XMode=Answer`
 
