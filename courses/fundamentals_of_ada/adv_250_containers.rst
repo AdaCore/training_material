@@ -74,9 +74,9 @@ Data Structures (1/2)
 
     - Containers matching Key -> Element
     - Not a one-to-one relationship
-        
+
         + Can have several keys for a single element
-    
+
 * Set
 
     - Collection of **unique** values
@@ -147,7 +147,7 @@ Implementations (2/2)
     Ada 2012
 
 * :dfn:`Indefinite`
-    
+
     - Element can be indefinite
     - Size of element is unknown
     - :ada:`Indefinite_XXX_<Structure>`
