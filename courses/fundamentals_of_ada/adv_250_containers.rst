@@ -48,7 +48,7 @@ Container Library
     - An implementation
     - Define some added operations
 
-* Container share sets of operations
+* Containers share sets of operations
 
     - Seen later
 
