@@ -46,7 +46,6 @@ Container Library
 
     - A data structure
     - An implementation
-    - Define some added operations
 
 * Containers share sets of operations
 
@@ -63,7 +62,7 @@ Data Structures (1/2)
 * Vector
 
    - Essentially an array
-   - :dfn:`Capacity` and size can differ
+   - Dynamic length
 
 * Doubly-linked list
 
@@ -113,7 +112,7 @@ Implementations (1/2)
 * :dfn:`Bounded`
 
     - Maximal storage is bounded
-    - Constant capacity and element size
+    - Constant :dfn:`capacity` and element size
     - Only static allocation
     - :ada:`Bounded_<Structure>`
 
@@ -234,7 +233,7 @@ Insertion
 Iteration
 -----------
 
-* Container have a :ada:`Cursor` type
+* Container has a :ada:`Cursor` type
 
     - Points to an element in a container
     - Can be used for advanced iterations
@@ -258,7 +257,7 @@ Sort
    - `Ada.Containers.Generic_Array_Sort`
    - `Ada.Containers.Generic_Constrained_Array_Sort`
 
-* Any object that has indexing
+* Any type that supports indexing
 
    - `Ada.Containers.Generic_Sort`
 
@@ -271,7 +270,9 @@ Search
 
 * Use :ada:`Find` for a :ada:`Cursor`
 
-    - :ada:`<Pkg>.No_Element` is a :ada:`Cursor` if not found
+    - :ada:`<Pkg>.No_Element` returned if unsuccesful
+
+        + :ada:`Has_Element (No_Element) = False`
 
 * Use :ada:`Find_Index` for an :ada:`Index_Type` (vectors)
 
