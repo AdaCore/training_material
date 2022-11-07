@@ -625,39 +625,17 @@ Waiting On Different Entries
        exit;
      end select;
 
-------------------------
-Protected Object Entries
-------------------------
-
-* **Special** kind of protected :ada:`procedure`
-* May use a **barrier**, that **only** allows call on a **boolean** condition
-* Barrier is **evaluated** and may be **relieved** when
-
-   - A task calls :ada:`entry`
-   - A protected :ada:`entry` or :ada:`procedure` is **exited**
-
-* Several tasks can be waiting on the same :ada:`entry`
-
-    - Only **one** will be re-activated when the barrier is relieved
-
-.. code:: Ada
-
-   protected body Stack is
-      entry Push (V : Integer) when Size < Buffer'Length is
-      ...
-      entry Pop  (V : out Integer) when Size > 0 is
-      ...
-   end Object;
-
--------------------
-Guard Expressions
--------------------
+------------------
+Guard Conditions
+------------------
 
 * :ada:`accept` may depend on a **guard condition** with :ada:`when`
 
     - Evaluated when entering :ada:`select`
 
-* Protected objects may also use one on an :ada:`entry`
+* May use a :dfn:`guard condition`, that **only** accepts entries on a **boolean** condition
+
+    - Condition is evaluated when the task reaches it
 
 .. code:: Ada
 
@@ -679,6 +657,29 @@ Guard Expressions
          end select;
       end loop;
    end T;
+
+------------------------
+Protected Object Entries
+------------------------
+
+* **Special** kind of protected :ada:`procedure`
+* May use a :dfn:`barrier` which is evaluated when
+
+   - A task calls an :ada:`entry`
+   - A protected :ada:`entry` or :ada:`procedure` is **exited**
+
+* Several tasks can be waiting on the same :ada:`entry`
+
+    - Only **one** may be re-activated when the barrier is **relieved**
+
+.. code:: Ada
+
+   protected body Stack is
+      entry Push (V : Integer) when Size < Buffer'Length is
+      ...
+      entry Pop  (V : out Integer) when Size > 0 is
+      ...
+   end Object;
 
 ------------------------------------------
 Example: Protected Objects - Declaration
