@@ -33,26 +33,32 @@ package body Drawable_Chars is
       return Drawable_Char_T
    is
       use Chars_Sorted_By_Characteristic_Pkg;
-      It   : Sorted_Charset_Cursor_T    := Metric.First;
-      Best : Char_With_Characteristic_T := Element (It);
 
-      Best_Dist : Natural := Natural (abs (Best.Value - Value));
-      Continue  : Boolean := True;
+      Has_Best : Boolean := False;
+      Best : Char_With_Characteristic_T;
+      Best_Dist : Natural;
+
+      It   : Sorted_Charset_Cursor_T    := Metric.First;
+      Continue  : Boolean := Has_Element (It);
    begin
       while Continue loop
-         declare
+          declare
             Curr : constant Char_With_Characteristic_T := Element (It);
          begin
-            if Curr.Value >= Value then
-               declare
-                  Curr_Dist : constant Natural := Natural (Curr.Value - Value);
-               begin
-                  if Curr_Dist < Best_Dist then
-                     Best_Dist := Curr_Dist;
-                     Best := Curr;
-                  end if;
-               end;
+            declare
+               Curr_Dist : constant Natural := Natural (abs (Curr.Value - Value));
+            begin
+               pragma Warnings (Off, """Best_Dist"" may be referenced before it has a value");
+               --  Best_Dist is set at the same time as Has_Best
+               if not Has_Best or Curr_Dist < Best_Dist then
+                  Best_Dist := Curr_Dist;
+                  Best := Curr;
+                  Has_Best := True;
+               end if;
+               pragma Warnings (On, """Best_Dist"" may be referenced before it has a value");
+            end;
 
+            if Curr.Value >= Value then
                Continue := False;
             else
                Best     := Curr;
@@ -61,6 +67,8 @@ package body Drawable_Chars is
             end if;
          end;
       end loop;
+
+      pragma Assert (Has_Best);
 
       return Best.Char.all;
    end Closest;

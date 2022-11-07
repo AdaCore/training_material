@@ -14,7 +14,7 @@ package body Char_Display_Driver.Tests is
          Surf =>
            (1 => (P (1), P (2), P(3), P(4), P (5), P (4), P (3), P (2), P (1))));
    begin
-      pragma Assert (Get_Row (CD, 1) = "  ..--~~xx~~--..  ", Get_Row (CD, 1));
+      pragma Assert (Get_Row (CD, 1) = "  ..--~~++~~--..  ", Get_Row (CD, 1));
    end Test_Get_Row;
 
 end Char_Display_Driver.Tests;
