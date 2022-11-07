@@ -384,23 +384,23 @@ Quiz
 
 .. code:: Ada
 
-   function Area (L : Integer; H : Integer) return Integer is
+   function Area (L : Positive; H : Positive) return Integer is
       (L * H)
    with Pre => ?
 
 Which expression will guarantee :ada:`Area` calculates the correct result for all values :ada:`L` and :ada:`H`
 
    A. ``Pre => L > 0 and H > 0``
-   B. ``Pre => L < Integer'last and H < Integer'last``
-   C. ``Pre => L * H in Integer``
+   B. ``Pre => L < Positive'last and H < Positive'last``
+   C. ``L * H in Positive``
    D. :answer:`None of the above`
 
 .. container:: animate
 
    Explanations
 
-   A. Does not handle large numbers
-   B. Does not handle negative numbers
+   A. Parameters are :ada:`positive`, so this is unnecessary
+   B. Does not handle large numbers
    C. Will generate a constraint error on large numbers
 
    The correct precondition would be
