@@ -249,7 +249,7 @@ Aggregates
 
     - Unambiguous
 
-* Syntax (simplified):
+* Example:
 
    .. code:: Ada
 
