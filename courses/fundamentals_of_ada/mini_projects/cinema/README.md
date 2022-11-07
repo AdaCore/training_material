@@ -28,14 +28,22 @@ There are several build modes, providing different implementations
 
   + Run with `-XMode=Question_Display`
 
-- `Question_Movie`: Use the answer's implementation for all `sprite/` and `display/` packages.
+- `Question_Format`: Use the answer's implementation for all `sprite/` and `display/` packages.
+  Otherwise use the `src/` directory.
+  This is a shortcut to start answering `Static_Image_Display_Test` without having implemented
+  an `UT_Display` solution
+
+  + Run with `-XMode=Question_Format`
+
+- `Question_Movie`: Use the answer's implementation for all `sprite/`, `display/`, and `format/`
+  packages.
   Otherwise use the `src/` directory.
   This is a shortcut to start answering `Movie_Test`
   without having implemented an `Static_Image_Display_Test` solution
 
   + Run with `-XMode=Question_Movie`
 
-- `Question_Server`: Use the answer's implementation for all `sprite/`, `display/`, and `movie/`
+- `Question_Server`: Use the answer's implementation for all `sprite/`, `display/`, `format/`, and `movie/`
   packages. Otherwise use the `src/` directory.
   This is a shortcut to start answering `Server_Test`
   without having implemented an `Movie_Test` solution
@@ -73,10 +81,6 @@ will provide more contextual information.
     This package organizes the pixels into "surfaces" which are col x rows of pixels representing a
     2D displayable image.
 
-    * `BMP_File_IO` package
-
-    This package is in charge of reading a file in the BMP format and converting it to a Surface.
-
 - `display/`
 
     * `Drawable_Char` package
@@ -88,6 +92,12 @@ will provide more contextual information.
 
     This package contains a driver that is in charge of displaying series of characters to the screen as
     an image. That is the package responsible for calling the `Put` IO operations.
+
+- `format/`
+
+    * `BMP_File_IO` package
+
+    This package is in charge of reading a file in the BMP format and converting it to a Surface.
 
 - `movie/`
 
