@@ -2,6 +2,7 @@ project Mini_Cinema is
 
    type Mode_T is ("Question_Sprites",
                    "Question_Display",
+                   "Question_Format",
                    "Question_Movie",
                    "Question_Server",
                    "Question_Mini_Cinema",
@@ -33,10 +34,21 @@ project Mini_Cinema is
          Display_Dir := "answer/display";
    end case;
 
+   Format_Dir := "";
+   case Mode is
+      when "Question_Sprites"
+         | "Question_Display"
+         | "Question_Format" =>
+         Format_Dir := "src/format";
+      when others =>
+         Format_Dir := "answer/format";
+   end case;
+
    Movie_Dir := "";
    case Mode is
       when "Question_Sprites"
          | "Question_Display"
+         | "Question_Format"
          | "Question_Movie" =>
          Movie_Dir := "src/movie";
       when others =>
@@ -47,6 +59,7 @@ project Mini_Cinema is
    case Mode is
       when "Question_Sprites"
          | "Question_Display"
+         | "Question_Format"
          | "Question_Movie"
          | "Question_Server" =>
          Server_Dir := "src/server";
@@ -58,6 +71,7 @@ project Mini_Cinema is
    case Mode is
       when "Question_Sprites"
          | "Question_Display"
+         | "Question_Format"
          | "Question_Movie"
          | "Question_Server"
          | "Question_Mini_Cinema" =>
@@ -69,6 +83,7 @@ project Mini_Cinema is
    for Source_Dirs use (Mini_Cinema_Dir,
                         Server_Dir,
                         Movie_Dir,
+                        Format_Dir,
                         Display_Dir,
                         Sprites_Dir,
                         "include",
