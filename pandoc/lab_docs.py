@@ -55,7 +55,11 @@ if __name__ == "__main__":
     default_args = parse_pandoc_defaults.parse_defaults(args.defaults)
 
     if args.recursive:
-        for f in args.input.glob("*/" + args.index_file_name):
+        found = False
+        for f in args.input.glob("**/" + args.index_file_name):
             lab_doc(f, args.output / f"{f.parent.name}.pdf", default_args, args.args)
+            found = True
+
+        assert found, f"no {args.index_file_name} found"
     else:
         lab_doc(args.input, args.output, default_args, args.args)
