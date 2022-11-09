@@ -1,11 +1,11 @@
 set -ex
 
 root=$(dirname $(readlink -e $0))
-out="$root/pkg"
+out="$root/pkg/$(basename $root)"
 zip="$1"
 test ! -z "$zip"
 
-test -d "$out" || mkdir "$out"
+test -d "$out" || mkdir -p "$out"
 rm -rf "$out/*"
 
 for sub in src answer mini_cinema.gpr mini_cinema.adc include logs resources tests testsuite README.md; do
@@ -17,5 +17,5 @@ done
 cd $(dirname $out)
 
 rm -f "$zip" 2>/dev/null
-zip -r "$zip" "$out"
+zip -r "$zip" "$(basename $out)"
 )
