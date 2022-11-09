@@ -56,8 +56,11 @@ if __name__ == "__main__":
 
     if args.recursive:
         found = False
-        for f in args.input.glob("**/" + args.index_file_name):
-            lab_doc(f, args.output / f"{f.parent.name}.pdf", default_args, args.args)
+        for f in args.input.glob("**/*.rst"):
+            if f.name == args.index_file_name:
+                lab_doc(f, args.output / f"{f.parent.name}.pdf", default_args, args.args)
+            else:
+                lab_doc(f, args.output / f"{f.with_suffix('').name}.pdf", default_args, args.args)
             found = True
 
         assert found, f"no {args.index_file_name} found"
