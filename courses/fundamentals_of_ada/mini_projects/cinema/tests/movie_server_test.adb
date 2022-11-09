@@ -2,7 +2,7 @@ with Movie_Servers;
 with Logs;
 
 procedure Movie_Server_Test is
-   Server : Movie_Servers.Movie_Server_Task_T := Movie_Servers.Make_Default;
+   Server : constant Movie_Servers.Movie_Server_Task_T := Movie_Servers.Make_Default;
 begin
    Server.Play_Loop (Dir => "resources/movies/space");
    delay 3.0;
