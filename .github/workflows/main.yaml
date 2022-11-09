@@ -69,6 +69,7 @@ jobs:
         with:
           name: Radar labs
           path: out/radar/pkg/*
+          if-no-files-found: error
 
       - name: Solar System - Package
         run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/solar_system && unzip out/solar_system/solar_system.zip -d out/solar_system/pkg
@@ -78,6 +79,7 @@ jobs:
         with:
           name: Solar System labs
           path: out/solar_system/pkg/*
+          if-no-files-found: error
 
       - name: CodePeer - Package
         run: python3 contrib/ci/package_labs.py courses/codepeer/labs/ && mv out/labs out/codepeer_labs && unzip out/codepeer_labs/labs.zip -d out/codepeer_labs/pkg
@@ -87,6 +89,7 @@ jobs:
         with:
           name: CodePeer labs
           path: out/codepeer_labs/pkg/*
+          if-no-files-found: error
 
       - name: GNAT Project Facility - Package
         run: python3 contrib/ci/package_labs.py courses/gnat_project_facility/labs/ && mv out/labs out/gnat_project_facility_labs && unzip out/gnat_project_facility_labs/labs.zip -d out/gnat_project_facility_labs/pkg
@@ -96,6 +99,7 @@ jobs:
         with:
           name: GNAT Project Facility labs
           path: out/gnat_project_facility_labs/pkg/*
+          if-no-files-found: error
 
       - name: Mini Cinema - Package
         run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/mini_projects/cinema && unzip out/cinema/cinema.zip -d out/cinema/pkg
@@ -105,6 +109,7 @@ jobs:
         with:
           name: Mini Project - Mini Cinema
           path: out/cinema/pkg/*
+          if-no-files-found: error
 
   labs-build:
 
