@@ -25,17 +25,17 @@ package body BMP_File_IO is
    --
    -- Palette colors are stored as 4 bytes entries
    --
-   --  +---+---+---+------------+
-   --  | R | G | B | Reservered |
-   --  +---+---+---+------------+
+   --  +---+---+---+----------+
+   --  | R | G | B | Reserved |
+   --  +---+---+---+----------+
    --
    -- If there is no palette, pixels are directly stored, as either
    -- 4 bytes (Pixel_Size = 32).
    -- This is the case for the dummy files, and for the rotating_triangle movie.
    --
-   --  +---+---+---+------------+
-   --  | R | G | B | Reservered |
-   --  +---+---+---+------------+
+   --  +---+---+---+----------+
+   --  | R | G | B | Reserved |
+   --  +---+---+---+----------+
    --
    -- or 3 bytes (Pixel_Size = 24). This is the case for the sunset file.
    --
