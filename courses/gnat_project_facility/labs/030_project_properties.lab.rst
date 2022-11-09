@@ -1,6 +1,5 @@
---------------------------------------
-Project Properties Lab - Directories
---------------------------------------
+:title: Project Properties Lab
+:subtitle: Directories
 
 * Create new project file in an empty directory
 

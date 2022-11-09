@@ -1,6 +1,4 @@
-----------------------------------
-Structuring Your Application Lab 
-----------------------------------
+:title: Structuring Your Application Lab 
 
 * Source is included in folder :filename:`040_structuring_your_application`
 
