@@ -103,7 +103,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Mini Project - Mini Cinema
-          path: out/mini_project/cinema/pkg/*
+          path: out/cinema/pkg/*
 
   labs-build:
 
