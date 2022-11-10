@@ -46,7 +46,6 @@ jobs:
       - name: Prepare slides environment
         run: python3 contrib/ci/slides.py ${{ format('{0}/{1}', 'courses', matrix.source) }} printenv >> $GITHUB_ENV
 
-
       - name: ${{ env.PRETTY_NAME }} - Build
         run: python3 pandoc/pandoc_fe.py --output-dir ${{ env.OUTPUT_DIR }} --hush --extension pdf --source ${{ env.SOURCES }}
 
@@ -122,34 +121,26 @@ jobs:
         os: [ubuntu-latest] #windows-latest TODO
 
     runs-on: ${{ matrix.os }}
+    container: sawertyu/alr:latest
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - uses: actions/cache@v3
-        with:
-          path: ./cached_gnat
-          key: ${{ runner.os }}-gnat-ce-2020
-
-      - name: Get GNAT Community 2020 toolchain
-        uses: ada-actions/toolchain@ce2020
-        with:
-          distrib: community
-          install_dir: ./cached_gnat
 
       - name: Update base system
         run: |
-          sudo apt-get update
-          sudo apt-get install libsdl2-dev libglu1-mesa-dev freeglut3-dev libsdl2-ttf-dev
+          apt update
+          apt install -y libsdl2-dev libglu1-mesa-dev freeglut3-dev libsdl2-ttf-dev python3
+
+      - name: Install GNAT & GPRbuild
+        run: |
+            alr toolchain --install gnat_native=12.2.1 gprbuild=22.0.1
 
       - name: Solution build for Ada Fundamentals
         env:
             GNAT_SDL: extern/gnat_sdl
             GAME_SUPPORT: extern/game_support
         run: |
-            source contrib/ci/lab_env.sh
+            . contrib/ci/lab_env.profile
             python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada/labs
 
   python-black:
@@ -160,6 +151,7 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+
       - name: Install black
         run: python3 -m pip install black
 
@@ -172,27 +164,26 @@ jobs:
   pytest:
     name: Contrib scripts check
     runs-on: ubuntu-latest
+    container: sawertyu/alr:latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - uses: actions/cache@v3
-        with:
-          path: ./cached_gnat
-          key: ${{ runner.os }}-gnat-ce-2020
 
-      - name: Get GNAT Community 2020 toolchain
-        uses: ada-actions/toolchain@ce2020
-        with:
-          distrib: community
-          install_dir: ./cached_gnat
+      - name: Update base system
+        run: |
+            apt update
+            apt install -y python3 python3-pip
+
+      - name: Install GNAT & GPRbuild
+        run: |
+            alr toolchain --install gnat_native=12.2.1 gprbuild=22.0.1
 
       - name: Setup Python
         run: python3 -m pip install pytest epycs
 
       - name: Run PyTest
-        run: pytest --ignore=cached_gnat
+        run: pytest --ignore=cached_gnat --ignore=courses/fundamentals_of_ada/labs/radar/test_all.py
 
       - name: Check Quizes
-        run: python3 contrib/quiz_update.py -v courses/fundamentals_of_ada/quiz/
+        run: |
+            . contrib/ci/alr_gnat_env.profile
+            python3 contrib/quiz_update.py -v courses/fundamentals_of_ada/quiz/
