@@ -15,6 +15,8 @@ below.
 
 You can download the PDF by going to [the actions page](http://github.com/adacore/training_material/actions).
 
+**NB: You need to be connected to GitHub.**
+
 Click on the build you want. You probably want to take one from the **master** branch.
 
 ![Click build](images/github/artifacts_1.png)
