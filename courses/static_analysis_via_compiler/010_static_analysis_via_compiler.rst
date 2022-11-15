@@ -1,5 +1,5 @@
 *****************************
-Static Analyis Via Compiler
+Static Analysis Via Compiler
 *****************************
 
 ..
