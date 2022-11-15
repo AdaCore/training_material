@@ -21,6 +21,14 @@ Introduction
 
    - Specialized pragmas to deal with provers inability to track loop iterations
 
+* Relaxed Initialization
+
+   - Ability to partly initialize objects
+
+* Pointers and Ownership
+
+  - Ability to manipulate pointers safely
+
 ============
 Ghost Code
 ============
@@ -498,6 +506,189 @@ Does your loop terminate?
    - If it stays the same for this iteration then the next expression is checked, and so on
    - As long as one of the expressions can be shown to be changing (progressing) in the specified direction for each iteration then termination can be proved
 
+========================
+Relaxed Initialization
+========================
+
+------------------------------------------
+Limitations of the Initialization Policy
+------------------------------------------
+
+* Objects must be fully initialized when read
+
+* Arrays must be initialized from an aggregate
+
+  - Otherwise flow analysis cannot check initialization
+
+  - Except in some special cases when a heuristic works (fully initialize an
+    array with a loop)
+
+* All outputs must be fully initialized when returning
+
+-----------------------------------
+Specifying Relaxed Initialization
+-----------------------------------
+
+* Aspect `Relaxed_Initialization` can be used on objects, types and subprograms
+
+  .. code:: Ada
+
+     type My_Rec is record ... end record with Relaxed_Initialization;
+     X : Integer with Relaxed_Initialization;
+     procedure Update (R : in out Rec) with Relaxed_Initialization => R;
+
+* Corresponding objects (variables, components) have relaxed initialization
+
+  - Flow analysis does not check (full) initialization
+
+  - Instead, proof checks (partial) initialization when read
+
+  - Not applicable to scalar parameter or function result
+
+* Attribute `'Initialized` is used to specify initialized parts
+
+  .. code:: Ada
+
+     procedure Update (R : in out Rec) with
+       Post => R.C'Initialized;
+
+----------------------------------
+Verifying Relaxed Initialization
+----------------------------------
+
+* Contracts (postcondition, predicate) may refer to `'Initialized`
+
+* Any read of an object requires its initialization
+
+* Loop invariant may need to state what part of an array is initialized
+
+  .. code:: Ada
+
+     for J in Arr'Range loop
+       Arr(J) := ...
+       pragma Loop_Invariant (Arr(Arr'First .. J)'Initialized;
+     end loop;
+
+========================
+Pointers and Ownership
+========================
+
+-----------------------
+Access Types in SPARK
+-----------------------
+
+* Named pool-specific access-to-variable types: subject to ownership
+
+  .. code:: Ada
+
+     type PS_Int_Acc is access Integer;
+
+* Named access-to-constant types: aliasing allowed, deallocation forbidden
+
+  .. code:: Ada
+
+     type Cst_Int_Acc is access constant Integer;
+
+* Named general access-to-variable types: subject to ownership, deallocation forbidden
+
+  .. code:: Ada
+
+     type Gen_Int_Acc is access all Integer;
+
+* Anonymous access-to-object types: for borrowing and observing
+
+  .. code:: Ada
+
+     X : access Cell := ...
+     X : access constant Cell := ...
+
+-------------------------
+Memory Ownership Policy
+-------------------------
+
+* A chunk of memory has a single "owner"
+
+* Only the owner can both read and write the memory
+
+  .. code:: Ada
+
+     X := new Integer'(1);      --  X has the ownership of the cell
+     Y := X;                    --  The ownership it transferred to Y
+     Y.all := Y.all + 1;        --  Y can access and modify the data
+     pragma Assert (X.all = 1); --  X can no longer access the data
+
+-------------------------
+Borrowing and Observing
+-------------------------
+
+* Borrowing is temporary read-write access
+
+  - either through a declaration
+
+  .. code:: Ada
+
+     X : access Cell := Current_Cell.Next;
+
+  - or through call
+
+  .. code:: Ada
+
+     procedure Update_Cell (X : access Cell);
+     Update_Cell (Current_Cell.Next);
+
+* Observing is temporary read-only access
+
+  - either through a declaration
+
+  .. code:: Ada
+
+     X : access constant Cell := Current_Cell.Next;
+
+  - or through call
+
+  .. code:: Ada
+
+     procedure Read_Cell (X : access constant Cell);
+     Read_Cell (Current_Cell.Next);
+
+-------------------------
+Access to Constant Data
+-------------------------
+
+* Data is constant all the way down
+
+* Also applies to input parameters of composite types containing pointers
+
+* Aliasing is allowed
+
+-----------------------------
+Access to Data on the Stack
+-----------------------------
+
+* Use attribute `'Access` on local variable
+
+* `Constant'Access` of access-to-constant type
+
+* `Variable'Access` of access-to-variable type
+
+* Variable is "moved" and cannot be referenced anymore
+
+-------------
+Useful Tips
+-------------
+
+* No cycles or sharing inside mutable data structures
+
+* Global objects can also be moved temporarily
+
+* Allocation function simply returns object of access-to-variable type
+
+* Deallocation procedure simply nullifies in-out access parameter
+
+* Attribute `'Old` and `'Loop_Entry` not applicable to pointers
+
+* Predefined pointer equality is not supported (only with null)
+
 ========
 Lab
 ========
@@ -521,3 +712,13 @@ Summary
 
    - Prove loop is valid for all iterations
    - Ensure loop terminates
+
+* Relaxed Initialization
+
+   - Ability to partly initialize objects
+   - Proof is used instead of flow analysis
+
+* Pointers and Ownership
+
+  - Ability to manipulate pointers safely
+  - Mutability requires ownership
