@@ -23,7 +23,7 @@ Motivating Example
       else
 
 * Can you see the problem?
-* This error escaped lots of testing!
+* This error escaped lots of testing and reviews!
 
 .. container:: speakernote
 
@@ -44,7 +44,7 @@ The Verifying Compiler
    - Use types, assertions, and other information in the source code as correctness criteria
    - Work in combination with other program development and testing tools
 
-* Grand Challenge for computer science [Hoare 1968]
+* Grand Challenge for computer science [Hoare 2003]
 
 .. container:: speakernote
 

@@ -231,12 +231,6 @@ Why Do We Need Flow Analysis
 Flow Analysis - Why Do We Care?
 ---------------------------------
 
-* A common source of errors
-
-   - See CWE (Common Weakness Enumeration)/SANS list of "Most Dangerous Software Errors"
-
-   - http://cwe.mitre.org/top25/
-
 * Ensure there is no dead code
 
 * Improper initialization errors are listed as one of the most dangerous programming errors
@@ -262,7 +256,7 @@ Modularity
 
 * Flow analysis, and in particular detection of uninitialized variables, is done modularly on a per subprogram basis
 
-   - Global and parameter inputs should be initialized prior to any subprogram call.
+   - Global and parameter inputs should be initialized prior to any subprogram call
    - Global and parameter outputs should be initialized prior to subprogram return
 
 .. code:: Ada
@@ -301,32 +295,32 @@ Value Dependency
 
    - It only reasons in terms of control flow
 
-.. code:: Ada
+* Flow analysis does not know that `R` is initialized:
 
-   procedure Absolute_Value (X : Integer; R : out Natural) is
-   begin
-     if X < 0 then
-       R := -X;
-     end if;
-     if X >= 0 then
-       R := X;
-     end if;
-   end Absolute_Value;
+  .. code:: Ada
 
-* Flow analysis does not know that `R` is initialized
+     procedure Absolute_Value (X : Integer; R : out Natural) is
+     begin
+       if X < 0 then
+         R := -X;
+       end if;
+       if X >= 0 then
+         R := X;
+       end if;
+     end Absolute_Value;
 
-.. code:: Ada
+* Flow analysis knows that `R` is initialized:
 
-   procedure Absolute_Value (X : Integer; R : out Natural) is
-   begin
-     if X < 0 then
-       R := -X;
-     else
-       R := X;
-     end if;
-   end Absolute_Value;
+  .. code:: Ada
 
-* Flow analysis knows that `R` is initialized
+     procedure Absolute_Value (X : Integer; R : out Natural) is
+     begin
+       if X < 0 then
+         R := -X;
+       else
+         R := X;
+       end if;
+     end Absolute_Value;
 
 .. container:: speakernote
 
@@ -478,5 +472,5 @@ Summary
 - Data Flow Analysis helps in achieving Bronze Level verification
 
    + No reading of uninitialized data
-   + No interference bewteen parameters and global data
+   + No interference between parameters and global data
    + No unintended access to global data
