@@ -13,42 +13,39 @@ Introduction
 What Are Quantified Expressions?
 ----------------------------------
 
-* Expressions that have a Boolean value
-* The value indicates something about a set of objects
+* Expressions that have a boolean value
 
-   - In particular, whether something is True about that set
+* The value indicates whether a property is True about that set
 
-* That "something" is expressed as an arbitrary boolean expression
-
-   - A so-called "predicate"
+* The property is expressed as an arbitrary boolean expression
 
 * "Universal" quantified expressions
 
-   - Indicate whether predicate holds for all components
+   - Indicate whether property holds for all components
 
 * "Existential" quantified expressions
 
-   - Indicate whether predicate holds for at least one component
+   - Indicate whether property holds for at least one component
 
 -------------------------
 Loop Iteration Controls
 -------------------------
 
-* *Component-based* form is convenient
+* Iteration controls can be used in `for` loops as well as quantified expressions
+
+* *Component-based* form `for .. of` is convenient
 
    - Provides the components' values directly
    - Hides iteration controls
 
-* *Index-based* form is expressive and flexible
+* *Index-based* form  `for .. in` is expressive and flexible
 
-   - Iteration controls are explicit, thus available to the predicate expression
+   - Iteration controls are explicit, thus available in expressions
    - Component values can be referenced via the indexes
 
 * Most appropriate form depends on situation
 
-   - If predicate expression just requires component values alone, use the more convenient form
-
-* Iteration controls can be used in `for` loops as well as quantified expressions
+   - If property or loop just requires component values alone, use the more convenient form
 
 ------------------------------------
 Component-Based Iteration Controls
@@ -66,13 +63,13 @@ Component-Based Iteration Controls
 - Object is an array or iterable (formal) container
 - Starts with first element unless you reverse it
 
-.. code:: Ada
+  .. code:: Ada
 
-   Values : constant array (1 .. 10) of Boolean := (...);
+     Values : array (1 .. 10) of Boolean := (...);
 
-   for V of Values loop
-      Put_Line ( Boolean'Image ( V ) );
-   end loop;
+     for V of Values loop
+        Put_Line ( Boolean'Image ( V ) );
+     end loop;
 
 ------------------------------------
 Index-Based Iteration Controls
@@ -89,13 +86,13 @@ Index-Based Iteration Controls
 
 - Starts with first discrete value you specify unless you reverse it
 
-.. code:: Ada
+  .. code:: Ada
 
-   Values : constant array (1 .. 10) of Boolean := (...);
+     Values : array (1 .. 10) of Boolean := (...);
 
-   for I in Values'Range loop
-      Put_Line ( Integer'Image(I) & " => " &
-                 Boolean'Image ( Values(I) ) );
+     for I in Values'Range loop
+        Put_Line ( Integer'Image(I) & " => " &
+                   Boolean'Image ( Values(I) ) );
    end loop;
 
 ========================
@@ -111,11 +108,11 @@ Semantics: As If You Wrote This Spec...
    package Quantified_Expressions is
      type Set_Member is ...;
      type Set is array (Positive range <>) of Set_Member;
-     function Predicate (Member : Set_Member) return Boolean;
+     function Property (Member : Set_Member) return Boolean;
      function Universal (Collection : Set) return Boolean;
-     -- True if Predicate is True for all members of Collection
+     -- True if Property is True for all members of Collection
      function Existential (Collection : Set) return Boolean;
-     -- True if Predicate is True for any member of Collection
+     -- True if Property is True for any member of Collection
    end Quantified_Expressions;
 
 -----------------------------
@@ -128,8 +125,8 @@ Semantics: As If You Wrote This Spec...
       function Universal (Collection : Set) return Boolean is
       begin
          for Member of Collection loop
-            if not Predicate (Member) then
-               -- Predicate must be true for all
+            if not Property (Member) then
+               -- Property must be true for all
                return False;
             end if;
          end loop;
@@ -139,8 +136,8 @@ Semantics: As If You Wrote This Spec...
       function Existential (Collection : Set) return Boolean is
       begin
          for Member of Collection loop
-            if Predicate (Member) then
-               -- Predicate need be true for at least one
+            if Property (Member) then
+               -- Property need be true for at least one
                return True;
             end if;
          end loop;
@@ -155,10 +152,10 @@ Quantified Expressions Syntax
 .. code:: Ada
 
    quantified_expression ::=
-       (for quantifier in range_specification => predicate)
-     | (for quantifier of array_expression => predicate)
+       (for quantifier name in range_specification => property)
+     | (for quantifier name of array_expression => property)
 
-   predicate ::= boolean_expression
+   property ::= boolean_expression
 
    quantifier ::= all | some
 
@@ -171,9 +168,9 @@ Universal Quantifier
 ----------------------
 
 * In logic, denoted by |forall| (inverted 'A', for "all")
-* "There is no member of the set for which the predicate does not hold"
+* "There is no member of the set for which the property does not hold"
 
-   - If predicate is False for any element, the whole is False
+   - If property is False for any element, the whole is False
 
 * Given a set of answers to a quiz, there are no answers that are not 42 (i.e., all are 42)
 
@@ -198,10 +195,10 @@ Universal Quantifier
 Existential Quantifier
 ------------------------
 
-* In logic, denoted by |exists| (rotated 'E', for "exists")
-* "There is at least one member of the set for which the predicate holds"
+* In logic, denoted by |exists| (inverted 'E', for "exists")
+* "There is at least one member of the set for which the property holds"
 
-   - If predicate is True for any element, the whole is True
+   - If property is True for any element, the whole is True
 
 * Given a set of answers to a quiz, there is at least one answer that is 42
 
@@ -228,7 +225,7 @@ Why Index-Based Iteration Controls?
 
 * Needed when expression requires more than the component value alone
 
-   - E.g., when predicate must refer to the indexes
+   - E.g., when property must refer to the indexes
 
       .. code:: Ada
 
@@ -247,7 +244,7 @@ Why Index-Based Iteration Controls?
 
 .. container:: speakernote
 
-   Note we could not use "K `>` Table'First and then Table (K - 1) `<=` Table (K)" because we are using the universal quantifier and at the first index value the predicate would be false.
+   Note we could not use "K `>` Table'First and then Table (K - 1) `<=` Table (K)" because we are using the universal quantifier and at the first index value the property would be false.
 
 --------------------------
 When The Set Is Empty...
@@ -255,14 +252,14 @@ When The Set Is Empty...
 
 * Universally quantified expressions are True
 
-   - Definition: there is no member of the set for which the predicate does not hold
+   - Definition: there is no member of the set for which the property does not hold
    - If the set is empty there is no such member, so True
 
       + "All people 12-feet tall will be given free chocolate."
 
 * Existentially quantified expressions are False
 
-   - Definition: there is at least one member of the set for which the predicate holds
+   - Definition: there is at least one member of the set for which the property holds
    - If the set is empty there is no such member, so False
 
 * An established convention in logic and set theory
@@ -281,17 +278,17 @@ Summary
 
       Table : constant array (1 .. 10) of Integer :=
             (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-      Ascending_Order : constant Boolean := (
-        for all K in Table'Range =>
+      Ascending_Order : constant Boolean :=
+        (for all K in Table'Range =>
           K > Table'First and then Table (K - 1) <= Table (K));
 
-   - Answer: **False**. Predicate fails when `K = Table'First`
+   - Answer: **False**. Property fails when `K = Table'First`
 
       + First subcondition is False!
       + Condition should be
 
          .. code:: Ada
 
-          Ascending_Order : constant Boolean := (
-             for all K in Table'Range => K = Table'first or else
+          Ascending_Order : constant Boolean :=
+            (for all K in Table'Range => K = Table'First or else
                                          Table (K - 1) <= Table (K));

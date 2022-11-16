@@ -533,9 +533,11 @@ Specifying Relaxed Initialization
 
   .. code:: Ada
 
-     type My_Rec is record ... end record with Relaxed_Initialization;
+     type My_Rec is record ... end record
+       with Relaxed_Initialization;
      X : Integer with Relaxed_Initialization;
-     procedure Update (R : in out Rec) with Relaxed_Initialization => R;
+     procedure Update (R : in out Rec)
+       with Relaxed_Initialization => R;
 
 * Corresponding objects (variables, components) have relaxed initialization
 
@@ -545,18 +547,34 @@ Specifying Relaxed Initialization
 
   - Not applicable to scalar parameter or function result
 
-* Attribute `'Initialized` is used to specify initialized parts
+------------------------------
+Specifying Initialized Parts
+------------------------------
+
+* Attribute `'Initialized` is used to specify initialized objects
 
   .. code:: Ada
 
-     procedure Update (R : in out Rec) with
-       Post => R.C'Initialized;
+     pragma Assert (R'Initialized);
+
+* Or initialization of parts of objects
+
+  .. code:: Ada
+
+     pragma Assert (R.C'Initialized);
+
+* Attribute executed like `'Valid_Scalars`
 
 ----------------------------------
 Verifying Relaxed Initialization
 ----------------------------------
 
 * Contracts (postcondition, predicate) may refer to `'Initialized`
+
+  .. code:: Ada
+
+     procedure Update (R : in out Rec) with
+       Post => R'Initialized;
 
 * Any read of an object requires its initialization
 
@@ -566,7 +584,8 @@ Verifying Relaxed Initialization
 
      for J in Arr'Range loop
        Arr(J) := ...
-       pragma Loop_Invariant (Arr(Arr'First .. J)'Initialized;
+       pragma Loop_Invariant
+         (Arr(Arr'First .. J)'Initialized;
      end loop;
 
 ========================
@@ -612,10 +631,14 @@ Memory Ownership Policy
 
   .. code:: Ada
 
-     X := new Integer'(1);      --  X has the ownership of the cell
-     Y := X;                    --  The ownership it transferred to Y
-     Y.all := Y.all + 1;        --  Y can access and modify the data
-     pragma Assert (X.all = 1); --  X can no longer access the data
+     X := new Integer'(1);
+     --  X has the ownership of the cell
+     Y := X;
+     --  The ownership it transferred to Y
+     Y.all := Y.all + 1;
+     --  Y can access and modify the data
+     pragma Assert (X.all = 1);
+     --  Error: X can no longer access the data
 
 -------------------------
 Borrowing and Observing
@@ -625,31 +648,31 @@ Borrowing and Observing
 
   - either through a declaration
 
-  .. code:: Ada
+    .. code:: Ada
 
-     X : access Cell := Current_Cell.Next;
+       X : access Cell := Current_Cell.Next;
 
-  - or through call
+  - or through a call
 
-  .. code:: Ada
+    .. code:: Ada
 
-     procedure Update_Cell (X : access Cell);
-     Update_Cell (Current_Cell.Next);
+       procedure Update_Cell (X : access Cell);
+       Update_Cell (Current_Cell.Next);
 
 * Observing is temporary read-only access
 
   - either through a declaration
 
-  .. code:: Ada
+    .. code:: Ada
 
-     X : access constant Cell := Current_Cell.Next;
+       X : access constant Cell := Current_Cell.Next;
 
-  - or through call
+  - or through a call
 
-  .. code:: Ada
+    .. code:: Ada
 
-     procedure Read_Cell (X : access constant Cell);
-     Read_Cell (Current_Cell.Next);
+       procedure Read_Cell (X : access constant Cell);
+       Read_Cell (Current_Cell.Next);
 
 -------------------------
 Access to Constant Data

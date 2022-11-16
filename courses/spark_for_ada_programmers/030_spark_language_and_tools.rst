@@ -227,9 +227,9 @@ Why not Side Effects - Modifying Globals
    - If left parameter evaluated first, X=0, Y=1
    - If right parameter evaluated first, X=1, Y=1
 
------------------------------------------
-Why not Side Effects - `in out` Formals
------------------------------------------
+-----------------------------------------------
+Why not Side Effects - `in out` Formals (1/2)
+-----------------------------------------------
 
 .. code:: Ada
 
@@ -249,9 +249,9 @@ Why not Side Effects - `in out` Formals
    - If left parameter evaluated first, X=0, Y=1
    - If right parameter evaluated first, X=1, Y=1
 
-----------------------------------------
-ODC Without Parameters or Side Effects
-----------------------------------------
+-----------------------------------------------
+Why not Side Effects - `in out` Formals (2/2)
+-----------------------------------------------
 
 .. code:: Ada
 
@@ -281,7 +281,7 @@ Parameter Name Aliasing
 -------------------------
 
 * In terms of formal and actual parameters
-* Occurs when there are multiple names for an actual parameter inside the routine's body
+* Occurs when there are multiple names for an actual parameter inside the subprogram body
 
    - Global variable passed as actual parameter and referenced inside subprogram via global name
    - Same actual passed to more than one formal
@@ -337,9 +337,9 @@ Parameter Aliasing via Repeated Actuals
      Print (Actual, Actual);
    end Demo_Aliasing;
 
-----------------------------------
-Aliasing with Complex Data Types
-----------------------------------
+------------------------------------
+Aliasing with Composite Data Types
+------------------------------------
 
 * Arrays
 
@@ -347,7 +347,7 @@ Aliasing with Complex Data Types
 
       .. code:: Ada
 
-         Swap (My_Array (X), My_Array (Y)); -- Illegal
+         Swap (My_Array (X), My_Array (Y)); -- illegal
 
    - In the future, these checks might be moved to the proof stage, allowing the tools to be less restrictive
 
@@ -703,10 +703,10 @@ SPARK Code Cannot Use Mode `Off` Code
 
    package Q with SPARK_Mode is
       -- can be called by SPARK code
-      -- (even if body of Q isn't SPARK)
+      -- (even if body of S isn't SPARK)
       procedure S (X : Integer);
       -- cannot be called by SPARK code
-      -- (even though Q is SPARK)
+      -- (even though P is SPARK)
       procedure P (X : Integer)
         with SPARK_Mode => Off;
    end Q;
@@ -944,7 +944,7 @@ SPARK Key Tools
 
 * Invocation syntax:
 
-   - :command:`gnatprove -P prj-file [switches] [-cargs switches]`
+   - :command:`gnatprove -P prj-file [switches]`
 
 * Project file required
 * A large number of switches
@@ -964,8 +964,7 @@ SPARK Key Tools
 
 .. container:: speakernote
 
-   If CodePeer is installed and in the PATH, the command line option --codepeer=on enables this feature.
-   CodePeer will then be run before the other SPARK analyses. If it proves a check, GNATprove will not attempt to run another prover on this check
+   CodePeer has been removed in release 23
 
 ----------------------------------------
 :toolname:`GNATprove` Output for Users
@@ -1081,10 +1080,10 @@ What Is Verified In "flow" Mode
 ---------------------------------
 
 * Code intended to be in SPARK is indeed in subset
-* With no SPARK-specific aspects (standard Ada), success means no reads of uninitialized data
-* With Global aspects added, success means correct use of global data, or no use at all
-* With Depends aspects added, success means information flow for parameters is as specified
-* If you get error messages, change the code...
+* With no SPARK-specific aspects (standard Ada), success means no reads of uninitialized data and no problematic aliasing
+* With Global aspects added, success means correct use of global data
+* With Depends aspects added, success means information flow for parameters and globals is as specified
+* If you get errors or check messages, change the code...
 * We will cover these aspects in detail
 
 ----------------------------------
@@ -1104,9 +1103,9 @@ What Is Verified In "prove" Mode
 
    - Unit functionality, as expressed in postconditions
 
-   - Any arbitrary abstract properties you specified
+   - Any arbitrary boolean properties you specified
 
-* If you get error messages, change the code...
+* If you get check messages, change the code...
 
 -------------------------------------------------
 Using SPARK Features with :toolname:`GNATprove`
@@ -1189,9 +1188,9 @@ To Specify Default `SPARK_Mode` Value
       pragma ...
       ...
 
--------------------------------------
-Two Available IDEs Supporting SPARK
--------------------------------------
+---------------------------------------
+Three Available IDEs Supporting SPARK
+---------------------------------------
 
 * :toolname:`GNAT Studio`
 
@@ -1201,6 +1200,10 @@ Two Available IDEs Supporting SPARK
 * GNATbench for Eclipse
 
    - If you are already using Eclipse
+
+* Ada/SPARK extention for Visual Studio Code
+
+   - If you are already using VS Code
 
 ---------------------------------------------
 Basic :toolname:`GNAT Studio` Look and Feel

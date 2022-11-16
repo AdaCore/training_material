@@ -207,27 +207,6 @@ Some Notes About Ranking
 Warning Control
 -----------------
 
-* :toolname:`GNATprove` issues two kinds of warnings, which are controlled separately:
-
-   - Compiler warnings
-   - SPARK warnings
-
--------------------------------------
-Warning Control - Compiler Warnings
--------------------------------------
-
-* Compiler warnings are controlled with the usual GNAT compilation switches:
-
-   - :command:`-gnatws` suppresses all warnings
-   - :command:`-gnatwa` enables all optional warnings
-   - :command:`-gnatw?` enables a specific warning denoted by the last character (See the GNAT User's Guide for more details.)
-
-* These should be passed through the compilation switches specified in the project file.
-
-----------------------------------
-Warning Control - SPARK Warnings
-----------------------------------
-
 * SPARK warnings are controlled with switch :command:`--warnings`:
 
    - :command:`--warnings=off` suppresses all warnings

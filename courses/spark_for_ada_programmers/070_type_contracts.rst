@@ -39,7 +39,7 @@ What is a Predicate?
 
    - When true, said to "hold"
 
-   - Thus Boolean expressions
+   - Thus boolean expressions
 
 * Can be specified for types, thus values of the types
 * **Static Predicates**

@@ -64,12 +64,7 @@ Run-time Exception Freedom
 ----------------------------
 
 * :toolname:`GNATprove` can automatically produce verification conditions to prove the absence of run-time errors
-* A verification condition is generated for:
-
-   - Every potential run-time error, or
-   - Every execution path leading to a potential run-time error
-   - (Depending on the VC generation strategy)
-
+* A verification condition is generated for every potential run-time error
 * Proving every verification condition proves that the potential run-time errors cannot arise in practice
 * Special case of regular proof
 

@@ -269,7 +269,7 @@ How SPARK Addresses Control Coupling
 
 * Flow dependency contracts specify the shared data potentially written by a subprogram
 
-   - Those data values affect the execution, otherwise an error
+   - Those data values affect the execution, otherwise a message
 
       .. code:: Ada
 
@@ -341,7 +341,7 @@ Allow Safely Removing Run-Time Checks
 * These checks ensure proper behavior at run-time
 
    - Array index checks: no writing into invalid memory locations
-   - Case statement checks: no invalid execution jumps
+   - Division by zero checks: no invalid division operation
    - Others...
 
 * Compiler optimization can remove most checks
@@ -387,7 +387,7 @@ Objective: Functional Correctness
    - Verification can be done earlier in the development, before bodies are implemented
 
 ---------------------------------------
-Proving Arbitrary Abstract Properties
+Proving Arbitrary Boolean Properties
 ---------------------------------------
 
 * Proof of functional correctness verifies compliance with a specification
@@ -398,7 +398,7 @@ Proving Arbitrary Abstract Properties
 * :toolname:`GNATprove` can verify these additional properties
 
 -----------------------------------------------
-Proving Arbitrary Abstract Properties Example
+Proving Arbitrary Boolean Properties Example
 -----------------------------------------------
 
 .. code:: Ada
@@ -426,7 +426,7 @@ Proving Arbitrary Abstract Properties Example
    However, for the program to be meaningful, we may want Index to verify more complex properties. For example, it only returns 0 if E is not in A and that, otherwise, it returns an index of A where E is stored.
 
 ---------------------------------
-Proof Using Abstract Properties
+Proof Using Boolean Properties
 ---------------------------------
 
 .. code:: Ada
@@ -501,7 +501,7 @@ Components Integration: Defensive Code Example
    function Full (This : Stack)
                   return Boolean;
 
-          procedure Push (This  : in out Stack;
+   procedure Push (This  : in out Stack;
                    Value : Content) is
    begin
       if Full (This) then
@@ -550,7 +550,7 @@ Combined Proof and Test
 * Goal is to reach a level of confidence as good as the level reached by testing alone
 * Industrial use
 
-   - E.g., Airbus for avionics software, Altran for military software, etc.
+   - E.g., Airbus for avionics software, NVIDIA for automotive software, etc.
 
 ========
 Lab
