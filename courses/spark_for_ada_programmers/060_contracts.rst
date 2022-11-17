@@ -90,15 +90,15 @@ Mixing Low-Level and High-Level Assertions
       ...
    end P;
 
-===========
-Contracts
-===========
+======================
+Subprogram Contracts
+======================
 
 ---------------------
 What is a Contract?
 ---------------------
 
-* Formal agreement between the implementer and the user of a program unit (package or subprogram)
+* Formal agreement between the implementer and the user of a subprogram
 * Assigns responsibilities
 * A way to organize your code
 * Not a new idea (Floyd, Hoare, Dijkstra, Meyer)
@@ -115,6 +115,12 @@ Why Use Contracts?
 
 * Ada 2012 features support the contract-based programming pattern.
 
+  .. code:: Ada
+
+     procedure Increment (X : in out Integer)
+       with Pre  => X < Integer'Last,
+            Post => X = X'Old + 1;
+
 .. container:: speakernote
 
    Ada 2012 allows arbitrary Boolean expressions to specify behavior contracts on subprograms and types
@@ -122,21 +128,6 @@ Why Use Contracts?
    the term 'contracts' is preferred to 'annotations' (but not all annotations are contracts)
    the term 'annotations' is preferred to 'aspects' or 'pragmas'
    all annotations may be expressed as pragmas, but the aspect form is preferred if available
-
------------------------
-Contract Participants
------------------------
-
-* Contract between a subprogram and its caller
-
-   - The caller must meet the preconditions specified by the subprogram.
-   - In turn, the subprogram must respect the postconditions it has specified.
-
-.. code:: Ada
-
-   procedure Increment (X : in out Integer)
-      with Pre  => X < Integer'Last,
-           Post => X = X'Old + 1;
 
 ----------------------
 Contracts as Aspects
@@ -367,50 +358,13 @@ Observation: Good Fit!
    - Privacy
    - Not Null Access...
 
--------------------------------------
-Where are Type Constraints Checked?
--------------------------------------
-
-* On an assignment / explicit initialization
-
-   .. code:: Ada
-
-      X : Integer := 2;
-
-* On a conversion / qualification
-
-   .. code:: Ada
-
-      X : Integer := Integer (1 + Natural'(2));
-
-* On a parameter passing
-
-   .. code:: Ada
-
-      procedure P (N : in out Natural);
-
-* Intermediate expressions are computed using the base type, with no range check
-
-   .. code:: Ada
-
-      X : Natural := 4;
-      Y : Natural := 1 + X + 1;
-
-.. container:: speakernote
-
-   For intermediate operations, such as "+" of "Integer", parameters and result of the op are of Integer'Base.
-   There are no range checks on these operations (just overflow checks).
-   There will be a range check on the result to be assigned before assignment though.
-
 ---------------------------------------
 More Facilities for Writing Contracts
 ---------------------------------------
 
 * Pre and Post
-* Assert
 
 * Contract Cases
-* Global
 
 * Expression Functions
 
@@ -442,8 +396,8 @@ Contract Cases
             X + Y < Integer'First => Z = Integer'First,
             X + Y > Integer'Last  => Z = Integer'Last);
 
-* Each case has a condition and a consequence
-* Conditions are checked for:
+* Each case has a guard and a consequence
+* Guards are checked for:
 
    - Completeness
 
@@ -525,223 +479,240 @@ Semantics of Contracts (continued)
    Which ones will prove?
    Which one will give more work for the caller?
 
-=======================
-Language Capabilities
-=======================
+========================
+Specification Features
+========================
 
------------------------------
-New Expressions in Ada 2012
------------------------------
+---------------------------------
+New Features For Specifications
+---------------------------------
 
-.. container:: columns
+* New Features in Ada 2012 or Ada 2022
 
- .. container:: column
+* Most features can be used both in code and in assertions
 
-    * Ada 2012 includes *if expressions*, *case expressions* and *quantified expressions*
-    * Quantified expressions (`for all`, `for some`) are particularly useful when writing contracts involving arrays or containers
+* Main benefit is for specifications
 
- .. container:: column
+* New attributes: `'Old`, `'Result`
 
-       .. code:: Ada
+* New expressions: set notation, *if expressions*, *case expressions*,
+  *quantified expressions*, *declare expressions*, *delta aggregates*
 
-          A := (if X then 2 else 3);
+* New declarations: *expression functions*
 
-          B := (case Y
-                when E1     => V1,
-                when E2     => V2,
-                when others => V3);
+-----------------------------------
+New Attributes For Specifications
+-----------------------------------
 
-          procedure Set_Array
-             (A: out Array_Type)
-          with Post =>
-             (for all M in A'Range =>
-                A(M) = M);
+* Attribute `'Old` and `Result` can be used only in postconditions (and
+  consequences of contract cases)
 
-----------------------
-Expression Functions
-----------------------
+* Attribute `'Old` refers to the value of an object at subprogram entry
 
-* Simple functions can be written as expression functions
+  .. code:: Ada
 
-   .. code:: Ada
+     procedure Increment (X : in out Integer)
+       with Post => X = X'Old + 1;
 
-      function Is_Full return Boolean is
-         (Stack_Pointer = Stack_Size);
-      function Value_Found_In_Range (A       : Arr;
-                                     Val     : Element;
-                                     Low, Up : Index)
-                                     return Boolean
-         is (for some J in Low .. Up => A(J) = Val);
+* Attribute `'Result` refers to the value returned by a function
 
-* There is no separate body for such functions
-* For proof, the expression forms the postcondition
-* Expression functions allow you to write functions in a package specification which can then be used in contracts
+  .. code:: Ada
 
-------------------------------
-More on Expression Functions
-------------------------------
+     function Increment (X : Integer) return Integer
+       with Post => Increment'Result = X + 1;
 
-* Note that the expression does not have to be boolean:
+----------------
+Attribute 'Old
+----------------
 
-   .. code:: Ada
+* Dynamic semantics is to make a copy at subprogram entry
 
-      function Add_One (X : in Integer)
-        return Integer
-      is (X + 1)
-      with
-        Pre => X < Integer'Last;
+  - Forbidden on limited types
 
-* Aspect comes after the parenthesized expression
+  - Restricted in SPARK for access types (due to ownership policy)
 
-------
-'Old
-------
+* Evaluation for the copy may raise runtime errors
 
-* Denotes the value of a parameter or a name (variable, function call) before the call to the subprogram
-* Is only available in the expression of a postcondition
-* Forbidden for limited types
-* At implementation level performs a copy of the value, to be used for the check afterwards
-* **Note:** making copies of objects may impact performance
+  - Not allowed by default inside *potentially unevaluated expressions*
 
----------------
-'Old Examples
----------------
+    .. code:: Ada
 
-.. code:: Ada
+       procedure Extract (A : in out My_Array;
+                          J : Integer;
+                          V : out Value)
+         with Post =>
+           (if J in A'Range then V = A(J)'Old); -- Illegal
 
-   procedure Increment (X : in out Integer)
-     with Post => X = X'Old + 1;
+  - Use `pragma Unevaluated_Use_Of_Old (Alloww)` to allow
 
-   procedure Call_Not_Modify_Global
-     with Post => Some_Global = Some_Global'Old;
+----------------------------------
+Special Cases for Attribute 'Old
+----------------------------------
 
-   function F (V : SomeRecordT) return Integer
-     with Global => Some_Global;
+* Function call in the prefix of `'Old` is evaluated at subprogram entry
 
-   procedure P (V : in out T)
-     with Post =>
-        V'Old.A   /= V.A and then
-        V.B'Old   /= V.B and then
-        F (V'Old) /= F (V) and then
-        F (V)'Old /= F (V);
+  - Value of globals is the one at subprogram entry
 
-.. container:: speakernote
+  - Not the same as calling the function on parameters with `'Old`
 
-   A number of issues with last example:
+    .. code:: Ada
 
-   1. Potentially unevaluated prefixes!
-   2. Efficiency: 'Old will create a copy so consider efficiency. First conjunct: the entire record V will be copied. This can be inefficient compared to approach in second conjunct, where only one component is copied.
-   3. What happens when F has global input?
+       function F (X : Integer) return Integer
+         with Global => Glob;
 
-   Also, conditional evaluation is not allowed.
+       procedure P (X : in out Integer)
+         with Post =>
+           F (X'Old) = 0 and then
+           F (X)'Old = 0;
 
---------------------
-Delta Aggregates
---------------------
+* Prefix of access type need to be a call to an *allocating function*
 
-* Convenient for expressing in contracts how composite objects have been updated
+  .. code:: Ada
 
-   .. code:: Ada
+     function Copy (X : Ptr) return Ptr
+       with Post => Copy'Result.all = Ptr.all;
 
-      procedure P (R : in out Rec)
-        with Post => R = (R'Old with delta X => 1, Z => 5);
-      (Some_Array with delta 1 .. 10 => True, 5 => False)
-      (Some_Array with delta Param_1'Range => True,
-                             Param_2'Range => False)
+     procedure P (X : in out Ptr)
+       with Post => Property (Copy (X)'Old);
 
-* Keeps things simple - for delta aggregates of arrays:
+------------------------------------
+New Expressions For Specifications
+------------------------------------
 
-   - In contracts: avoids writing quantifiers
-   - In code: avoids writing loops
+* *if expressions* express a logical implication
 
-* Can have overlapping and dynamic choice ranges
+  - `(if A then B)` is the same as "A implies B" or "(not) A or B"
 
-   - Looks similar to plain aggregates, but isn't
+  - `(if A then B else C)` is "(A implies B) and ((not A) implies C)"
 
----------
-'Result
----------
+  - complete form has `elsif` parts
 
-.. code:: Ada
+  - if-then-else form can be used with arbitrary types:
 
-   package Find is
-      type A is array (1..10) of Integer;
-      function Find (T : A; R : Integer) return Integer
-         with Post => Find'Result >= 0 and then
-                      (if Find'Result /= 0 then
-                          T (Find'Result) = R);
-   end Find;
+    .. code:: Ada
 
-* `'Result` allows you to use the function result in your contracts.
+       A := (if X then 2 else 3);
+
+* *case expressions* is the extension to non-boolean discrete types
 
 --------------
 Set Notation
 --------------
 
-* Another Ada 2012 feature useful for specifications
-* Set notation can be used in membership tests
+* Usable in both *case expressions* / *case statements* and in membership tests
+
 * Without set notation:
 
-   .. code:: Ada
+  .. code:: Ada
 
-      if not (C = 'A' or else C = 'B' or else C = 'C') then
-         ...
-      else
-         ...
-      end if;
+     if X = 'A' or else X = 'B' or else X = 'C' then
 
 * With set notation:
 
-   .. code:: Ada
+  .. code:: Ada
 
-      if C not in 'A' | 'B' | 'C' then
-         ...
-      else
-         ...
-      end if;
+     if X in 'A' | 'B' | 'C' then
 
----------------------------
-More Subprogram Contracts
----------------------------
+* Also allowed for opposite membership test: `if X not in ...`
 
-* We have seen:
+---------------------
+Declare Expressions
+---------------------
 
-   - Global, Pre, and Post
+* New feature in Ada 2022
 
-* Now...
+* Convenient shorthand for repeated subexpression
 
-   - Assert
-   - Assume
+  - Only constants and renamings allowed
+  - Typically used in postconditions
 
-* Later...
+  .. code:: Ada
 
-   - Depends
-   - Loop Invariant, Loop Variant
+     function Find (T : A; R : Integer) return Integer
+       with Post =>
+         (declare
+            Res : constant Integer := Find'Result;
+          begin
+            Res >= 0 and then
+            (if Res /= 0 then T (Res) = R));
 
---------
-Assert
---------
+------------------
+Delta Aggregates
+------------------
 
-* It may be executed or proved or both
-* Verification condition is generated for the check, but there is no 'cutpoint' in the proof
+* Express the value of a modified composite object (record or array)
 
-.. code:: Ada
+  .. code:: Ada
 
-   pragma Assert (I in Small_Range);
+     (Rec with delta Comp1 => Val1, Comp2 => Val2)
 
---------
-Assume
---------
+     (Arr with delta 1 => True, 42 => False)
 
-* No verification condition is generated to prove that the boolean expression is true
-* But it is carried forward as though it had been proved true
-* Will be checked at run time if assertion checks are on
+* Typically used to relate input and output values of parameters
 
-   .. code:: Ada
+  - Combines delta aggregate with use of attribute `'Old`
 
-      pragma Assume (Ticks < Time_Type'Last);
+  .. code:: Ada
 
-* Soundness alert - use with great care!
+     procedure P (Rec : in out T)
+        with Post => Rec = (Rec'Old with delta Comp1 => Val1,
+                                               Comp2 => Val2);
+
+* With array object:
+
+  - Avoids the introduction of explicit quantifiers
+  - Can have overlapping and dynamic choices (values or ranges)
+
+----------------------
+Expression Functions
+----------------------
+
+* Simple query functions used in contracts can be given as *expression
+  functions*
+
+  .. code:: Ada
+
+     function Increment (X : Integer) return Integer is (X + 1);
+
+* Above is equivalent to having a postcondition
+
+  - But no subprogram body to add in the body unit
+
+  .. code:: Ada
+
+     function Increment (X : Integer) return Integer
+       with Post => Increment'Result = X + 1;
+
+* Precondition can be specified after the expression
+
+  .. code:: Ada
+
+     function Increment (X : Integer) return Integer is (X + 1)
+       with Pre => X < Integer'Last;
+
+-----------------------------
+Use of Expression Functions
+-----------------------------
+
+* Expression functions can be declared in a package spec and used in contracts
+
+* For queries over objects of a private type:
+
+  - Function spec is declared in the public part
+
+  - Expression function is declared in the private part
+
+  .. code:: Ada
+
+     package P is
+       type T is private;
+       function Value (X : T) return Integer;
+     private
+       type T is new Integer;
+       function Value (X : T) return Integer is (Integer (X));
+     end;
+
+  - :toolname:`GNATprove` uses the implicit postcondition to prove client units
 
 ========
 Lab

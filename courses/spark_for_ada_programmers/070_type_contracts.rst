@@ -27,6 +27,41 @@ Type-Oriented Contracts
 
 * **Type invariants** ensure properties of ADT objects
 
+-------------------------------------
+Where are Type Constraints Checked?
+-------------------------------------
+
+* On an assignment / explicit initialization
+
+   .. code:: Ada
+
+      X : Integer := 2;
+
+* On a conversion / qualification
+
+   .. code:: Ada
+
+      X : Integer := Integer (1 + Natural'(2));
+
+* On a parameter passing
+
+   .. code:: Ada
+
+      procedure P (N : in out Natural);
+
+* Intermediate expressions are computed using the base type, with no range check
+
+   .. code:: Ada
+
+      X : Natural := 4;
+      Y : Natural := 1 + X + 1;
+
+.. container:: speakernote
+
+   For intermediate operations, such as "+" of "Integer", parameters and result of the op are of Integer'Base.
+   There are no range checks on these operations (just overflow checks).
+   There will be a range check on the result to be assigned before assignment though.
+
 ============
 Predicates
 ============

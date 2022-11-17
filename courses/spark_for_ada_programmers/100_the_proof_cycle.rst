@@ -287,6 +287,20 @@ Control of Check Messages
    - `Reason` is a string literal providing a reason for the suppression.
    - All arguments should be provided.
 
+--------
+Assume
+--------
+
+* No verification condition is generated to prove that the boolean expression is true
+* But it is carried forward as though it had been proved true
+* Will be checked at run time if assertion checks are on
+
+   .. code:: Ada
+
+      pragma Assume (Ticks < Time_Type'Last);
+
+* Soundness alert - use with great care!
+
 ==========
 Summary
 ==========
