@@ -1,4 +1,6 @@
-:title: GPRbuild Lab
+--------------
+Start GPRBuild
+--------------
 
 * Open a command shell
 * Go to :filename:`020_building_with_gprbuild` directory (under :filename:`source`)
@@ -35,19 +37,18 @@ GPRbuild Lab - Simple GPR File
 
 :command:`gprbuild -P lab.gpr`
    Only compiles source files
-   
+
 :command:`gprbuild -P lab.gpr queens`
    Compiles source and creates :filename:`queens` executable
-   
+
 :command:`gprclean -P lab.gpr`
    Deletes ALI and object files for :ada:`Queens` and :ada:`Queens_Pkg`
-   
+
 ---------------------
 GPRbuild Lab Part 2
 ---------------------
 
 * Change project file so that it specifies the main program
-
 * Build again, without specifying the main on the command line
 
   * Use only :command:`-P` argument on the command line to specify project file
@@ -68,7 +69,7 @@ GPRbuild Lab - Main Program Specified
 
 :command:`gprbuild -P lab.gpr`
    Compiles source and creates :filename:`queens` executable
-   
+
 :command:`gprclean -P lab.gpr`
    Deletes all generated files
-   
+

@@ -1,8 +1,8 @@
-:title: Project Properties Lab
-:subtitle: Directories
+----------------------
+Project Properties Lab
+----------------------
 
 * Create new project file in an empty directory
-
 * Specify source and output directories
 
   * Use source files from the :filename:`030_project_properties` directory (under :filename:`source`)
