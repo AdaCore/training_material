@@ -1,7 +1,8 @@
-:title: Structuring Your Application Lab 
+--------------------------------
+Structuring Your Application Lab
+--------------------------------
 
 * Source is included in folder :filename:`040_structuring_your_application`
-
 * **Very** simplistic speed monitor
 
   * Reads current distance
@@ -27,9 +28,7 @@ Assignment Part One
 1. Build GPR files for each subsystem
 
   * Hint: These subsystems *depend* on each other, they do not *override* source files
-
   * As you build each GPR file, run :command:`gprbuild -P <gprfile>` to make sure everything works
-
   * Main program is in :filename:`main.adb`
 
 2. Run :ada:`main`
@@ -71,7 +70,6 @@ Assignment Part One - Solution
        for Object_Dir use "obj";
    end Sensors;
 
-
    project Base is
        for Source_Dirs use ("src");
        for Object_Dir use "obj";
@@ -84,7 +82,6 @@ Assignment Part Two
 1. Build GPR files to create test stubs for :ada:`Odometer` and :ada:`Sender`
 
   * Test bodies exist in the appropriate :filename:`test` subfolders
-
   * Create extensions for :filename:`messages.gpr` and :filename:`sensors.gpr`
 
     * We want to inherit the package spec, but use the "test" package bodies
