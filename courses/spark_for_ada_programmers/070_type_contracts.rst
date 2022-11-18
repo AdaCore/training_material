@@ -1,31 +1,34 @@
 
-*************************
-Type-Oriented Contracts
-*************************
+****************
+Type Contracts
+****************
 .. |rightarrow| replace:: :math:`\rightarrow`
 
 ==============
 Introduction
 ==============
 
--------------------------
-Type-Oriented Contracts
--------------------------
+----------------
+Type Contracts
+----------------
 
-* Ada defines support for various kinds of constraints
+* Scalar ranges gives tighter bounds to scalar types
 
-   - Range constraints, index constraints, etc.
+  - This applies to array index types as well
 
-* The language defines the rules for these constraints
+* Record discriminants can be specialized to specific values
 
-   - All range constraints are continuous, etc.
+* Not null access types cannot be null
 
-* **Subtype predicates** generalize possibilities
+* **Subtype predicates** generalize all these
 
-   - You can define new constraints
-   - You can define constraints not otherwise expressible!
+  - Greater expressivity by using arbitrary boolean expressions
+  - Like type constraints, they should always hold
 
-* **Type invariants** ensure properties of ADT objects
+* **Type invariants** allow temporary violations
+
+  - Applicable to private types
+  - They should hold outside of the unit
 
 -------------------------------------
 Where are Type Constraints Checked?
@@ -70,86 +73,74 @@ Predicates
 What is a Predicate?
 ---------------------
 
-* Something asserted to be true about some subject
+* Boolean property that should always hold of objects of the type
 
-   - When true, said to "hold"
+* Can be specified on a type or subtype
 
-   - Thus boolean expressions
+  .. code::Ada
 
-* Can be specified for types, thus values of the types
-* **Static Predicates**
+  type Non_Zero is new Integer
+    with Predicate => Non_Zero /= 0;
 
-   - Content can be static expressions but not required to be
-   - Expected to hold all the time, like language-defined constraints (and with same caveats)
+  subtype Even is Integer
+    with Predicate => Even mod 2 = 0;
 
-* **Dynamic Predicates**
+* Predicate can be Static_Predicate or Dynamic_Predicate
 
-   - Not required to be static expressions
-   - Also expected to hold all the time (but not fully enforced by the compiler)
+  .. code::Ada
+
+  type Non_Zero is new Integer
+    with Static_Predicate => Non_Zero /= 0;
+
+  subtype Even is Integer
+    with Dynamic_Predicate => Even mod 2 = 0;
 
 .. container:: speakernote
 
    Caveats include use of invalid values, e.g., via uninitialized variables or unchecked conversion.
-
------------------------------------------
-Really, `type` and `subtype` Predicates
------------------------------------------
-
-* Applicable to both
-* Applied via aspect clauses in both cases
-* `aspect_mark` can be either `Dynamic_Predicate` or `Static_Predicate`
-
-.. code:: Ada
-
-   type name is type_definition
-      with aspect_mark [ => expression]
-        {, aspect_mark [ => expression] }
-
-   subtype defining_identifier is subtype_indication
-      with aspect_mark [ => expression]
-        {, aspect_mark [ => expression] }
-
--------------------------------------
-Otherwise Inexpressible Constraints
--------------------------------------
-
-.. code:: Ada
-
-   subtype Even is Integer
-      with Dynamic_Predicate => Even mod 2 = 0;
-
-   type Serial_Baud_Rate is range 110 .. 115200
-      with Static_Predicate =>
-         Serial_Baud_Rate in
-            110 | 300 | 600 | 1200 | 2400 | 4800 | 9600 |
-            14400 | 19200 | 28800 | 38400 | 56000 |
-            57600 | 115200;
-
-.. container:: speakernote
-
+   Otherwise Inexpressible Constraints
    Discontinuous ranges cannot be expressed with range constraints.
 
--------------------------
-New Kinds of Constraints
--------------------------
+-------------------------------
+Examples of Static Predicates
+-------------------------------
 
 .. code:: Ada
 
-   type Prime is new Positive with
-      Dynamic_Predicate =>
-         (for all Divisor in 2 .. Prime / 2 =>
-            Prime mod Divisor /= 0);
+   type Serial_Baud_Rate is range 110 .. 115200
+     with Static_Predicate =>
+       Serial_Baud_Rate in
+         110   | 300   | 600   | 1200  | 2400  |
+         4800  | 9600  | 14400 | 19200 | 28800 |
+         38400 | 56000 | 57600 | 115200;
+
+   subtype Normal_Float is Float with
+     with Static_Predicate =>
+       Normal_Float <= -2.0**(-126) or
+       Normal_Float = 0.0 or
+       Normal_Float >= 2.0**(-126);
+
+--------------------------------
+Examples of Dynamic Predicates
+--------------------------------
+
+.. code:: Ada
+
+   type Prime is new Positive
+     with Dynamic_Predicate =>
+       (for all Divisor in 2 .. Prime / 2 =>
+         Prime mod Divisor /= 0);
 
    type Bundle is record
       X, Y : Integer;
       CRC  : Unsigned_32;
-   end record with
-      Dynamic_Predicate => CRC = Math.CRC32 (X, Y);
+   end record
+     with Dynamic_Predicate => CRC = Math.CRC32 (X, Y);
 
-   type Table is array (M .. N) of Integer with
-      Dynamic_Predicate =>
-         (for all K in Table'Range =>
-            (K = Table'First or else Table(K-1) <= Table(K)));
+   type Table is array (M .. N) of Integer
+     with Dynamic_Predicate =>
+       (for all K in Table'Range =>
+         (K = Table'First or else Table(K-1) <= Table(K)));
 
 .. container:: speakernote
 
@@ -158,7 +149,7 @@ New Kinds of Constraints
    Table will always be sorted
 
 ------------------------------------
-Discriminant In A Range Constraint
+Discriminant in a Range Constraint
 ------------------------------------
 
 * The following is illegal:
@@ -190,64 +181,21 @@ Discriminant In A Range Constraint
 Why Two Predicate Forms?
 --------------------------
 
-* Static predicates can be used in more contexts
+* Static predicates are more restricted
 
-   - But with restrictions on content to make that possible
+  - Boolean combination of comparisons with static values
 
-* Dynamic predicates have more expressive power
+  - That does not mean statically checked by the compiler
 
-   - Fewer restrictions on expression content
-   - But cannot be used in all possible contexts
+* Dynamic predicates are arbitrary boolean expressions
 
-* Static predicates are allowed anywhere that dynamic predicates are allowed
+  - Applicable to array and record types
 
-   - But not the reverse
+* Types with static predicates are allowed in more contexts
 
-------------------------------------------
-Predicate Run-Time Checking (If Enabled)
-------------------------------------------
+  - Used as range in a *for loop*
 
-* Inserted automatically by compiler
-
-   - Where a value would be assigned that may violate the constraint of the predicated target
-
-* Violations raise exception `Assertion_Error`
-* Performed before value change, like language-defined constraint checks
-
-   - Associated variable is therefore unchanged
-
-.. code:: Ada
-
-   type Prime is new Positive with
-      Dynamic_Predicate =>
-         (for all Divisor in 2 .. Prime / 2 =>
-             Prime mod Divisor /= 0);
-
-   P : constant Prime := 6; -- assertion error
-
------------------------------------
-The "Static" In Static Predicates
------------------------------------
-
-* Allows more than ordinary static expressions that are calculable at compile-time
-* Does not imply compile-time verification
-
-   - Violations raise `Assertion_Error`
-
-.. code:: Ada
-
-   type Serial_Baud_Rate is range 110 .. 115200
-      with Static_Predicate =>
-         Serial_Baud_Rate  in
-            110 | 300 | 600 | 1200 | 2400 | 4800 | 9600 |
-            14400 | 19200 | 28800 | 38400 | 56000 |
-            57600 | 115200;
-   Rate : Serial_Baud_Rate :=
-          Ada.Calendar.Day (Clock) * 100;
-
-.. container:: speakernote
-
-   Works 4 days of each month - Assertion Error on the others
+  - Used as choice in *case statement* or *case expression*
 
 --------------------------------------
 Allowed Static Predicate Content (1)
@@ -309,34 +257,6 @@ Allowed Static Predicate Content (3)
 * Short-circuit controls with operands of the above
 * Any of the above in parentheses
 
---------------------------------------
-Dynamic Predicate Expression Content
---------------------------------------
-
-* Any arbitrary boolean expression
-
-   - Hence all allowed static predicates' content
-
-* Plus additional operators, etc.
-
-   .. code:: Ada
-
-      subtype Even is Integer
-         with Dynamic_Predicate => Even mod 2 = 0;
-      subtype Vowel is Character with Dynamic_Predicate =>
-           (case Vowel is
-               when 'A' | 'E' | 'I' | 'O' | 'U' => True,
-               when others => False);
-
-* Plus calls to functions
-
-   - User-defined
-   - Language-defined
-
-.. container:: speakernote
-
-   The predicate on type Vowels could also be a Static Predicate.
-
 ------------------------------------
 Dynamic Predicate Content In SPARK
 ------------------------------------
@@ -390,10 +310,9 @@ Types Controlling For-Loops
 In Some Cases Neither Kind Is Allowed
 ---------------------------------------
 
-* Where gaps in values would be problematic
+* An array index or slice specification usage
 
-   - A choice in a named array aggregate (is it overlapping, etc?)
-   - An array index or slice specification usage
+  - Where gaps in values would be problematic
 
 .. code:: Ada
 
@@ -407,14 +326,11 @@ In Some Cases Neither Kind Is Allowed
    ...
    M (Weekend) := (...); -- illegal
 
-* **NOTE** See Annotated Ada RM 3.2.4/25
-
 .. container:: speakernote
 
    An index subtype, discrete range of an index constraint or slice
    A discrete subtype definition of a constrained array definition
    A discrete subtype definition of an entry declaration or entry index specification
-   The discrete choice of a named array aggregate
 
 -----------------------------------------
 Special Attributes for Predicated Types
@@ -434,28 +350,36 @@ Special Attributes for Predicated Types
 * Especially useful for types with static predicates
 * `'Succ` and `'Pred` are allowed since they always reflect underlying type anyway
 
--------------------------------------------
-Lack of Initial Values Can Be Problematic
--------------------------------------------
+------------------------------------------
+Predicate Run-Time Checking (If Enabled)
+------------------------------------------
 
-* Users might not initialize when declaring objects
-* Most types do not define automatic initialization
+* Inserted automatically by compiler
 
-   - No language guarantee of any specific value (random bits)
+   - Where a value would be assigned that may violate the constraint of the predicated target
 
-   .. code:: Ada
+* Violations raise exception `Assertion_Error`
 
-         subtype Even is Integer
-            with Dynamic_Predicate => Even mod 2 = 0;
-         K : Even;  -- unknown initial value
+* Performed before value change, like language-defined constraint checks
 
-* Since value is otherwise undefined the predicate is not checked when no initial value is given
-* In Ada one can reference such junk values
-* SPARK prevents reading an uninitialized variable
+   - Associated variable is therefore unchanged
 
-----------------------------
-References Are Not Checked
-----------------------------
+* Predicate of `T` also checked for membership test `V in T`
+
+  - Reason for which predicate cannot be ghost
+
+--------------------------------
+Dynamic Checking of Predicates
+--------------------------------
+
+* Inserted by the compiler on every assignment, parameter passing and type
+  conversion/qualification like type constraints
+
+  - No dynamic checking on an uninitialized object
+
+  - No dynamic checking on a reference to the object
+
+  - No dynamic checking on assigning a part of the object
 
 .. code:: Ada
 
@@ -468,8 +392,6 @@ References Are Not Checked
      Put_Line ("K is" & Integer'Image (K)); -- not checked
      Put_Line ("J is" & Integer'Image (J)); -- not checked
      K := J; -- predicate check here
-     Put_Line ("K is" & Integer'Image (K));
-     Put_Line ("J is" & Integer'Image (j));
    end Test;
 
 .. code:: console
@@ -479,148 +401,115 @@ References Are Not Checked
    raised SYSTEM.ASSERTIONS.ASSERT_FAILURE :
       Dynamic_Predicate failed at test.adb:9
 
-----------------------------------------
-Predicate Checking In Ada versus SPARK
-----------------------------------------
+-------------------------------
+Static Checking of Predicates
+-------------------------------
 
-* :toolname:`GNATprove` verifies predicates are always satisfied
-* In Ada, not every situation is checked
+* :toolname:`GNATprove` verifies predicates are always satisfied on initialized
+  objects
 
-.. code:: Ada
+  - No static checking on an uninitialized object
 
-   procedure Demo is
-      type Table is array (1 .. 5) of Integer
-          with Dynamic_Predicate =>
-             (for all K in Table'Range =>
-               (K = Table'First or else
-                Table(K-1) <= Table(K)));
-      Values : Table := (1,3,5,7,9);
-   begin
-      ...
-      Values (3) := 0;
-      ...
-      Values := (1, 3, 0, 7, 9);
-      ...
-   end Demo;
+  - No static checking on a reference to the object
 
-.. container:: speakernote
+  - Static checking on assigning a part of the object
 
-   element assignment - no exception
-   object assignment - exception
+* :toolname:`GNATprove` can assume that all initialized objects satisfy their
+  predicates
+
+  - Types with predicates cannot be used in objects with relaxed initialization
 
 --------------------------------
 Beware Recursion In Predicates
 --------------------------------
 
-* Necessarily involves functions because predicates are expressions
-* Caused by checks on function arguments
-* Predicate is checked recursively!
+* Infinite recursion when calling inside the predicate a function taking the
+  type with predicate as parameter type
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Table is array (1 .. N) of Integer
-         with Dynamic_Predicate => Sorted (Table);
-      function Sorted (T : Table) return Boolean is
-         (for all K in T'Range =>
-            (K = T'First or else T(K-1) <= T(K)));
+     type Nat is new Integer with Predicate => Above_Zero (Nat);
+     function Above_Zero (X : Nat) return Boolean is (X >= 0);
 
-* Not recursive
+  .. code:: console
 
-   .. code:: Ada
+     warning: predicate check includes a call to "Above_Zero" that requires a predicate check
+     warning: this will result in infinite recursion
+     warning: use an explicit subtype of "Nat" to carry the predicate
 
-      type Table is array (1 .. N) of Integer
-         with Dynamic_Predicate =>
-            (for all K in Table'Range =>
-               (K = Table'First or else Table(K-1) <= Table(K)));
+* Fix by inlining the property or introducing a subtype
 
-----------------------------------------
-"Safe" Functions In Subtype Predicates
-----------------------------------------
+  .. code:: Ada
 
-.. container:: columns
-
- .. container:: column
-
-    * Those that will not recurse...
-    * No formal parameter of the type with the predicate being checked
-
- .. container:: column
-
-    .. code:: Ada
-
-       type Foo is
-          record
-             A : Integer;
-             B : Float;
-          end record
-          with Dynamic_Predicate =>
-             Bar (Foo.A) and
-             Baz (Foo.B);
-       function Bar (This : Integer)
-          return Boolean is (...);
-       function Baz (This : Float)
-          return Boolean is (...);
-
-.. container:: speakernote
-
-   Do not use type foo for dynamic predicate functions
+     type Int is new Integer;
+     function Above_Zero (X : Int) return Boolean is (X >= 0);
+     subtype Nat is Int with Predicate => Above_Zero (Nat);
 
 =================
 Type Invariants
 =================
 
------------------
-Type Invariants
------------------
+---------------------------
+What is a Type Invariant?
+---------------------------
 
-* There may be conditions that must hold over the entire lifetime of objects
+* Boolean property that should always hold of objects of the type outside of
+  its unit
 
-   - Pre/postconditions apply only to subprogram calls
+* Can only be specified on the completion of a private type
 
-* Sometimes low-level facilities can express it
+  .. code:: Ada
 
-   .. code:: Ada
+     package Bank is
+       type Account is private;
+       type Currency is delta 0.01 digits 12;
+       ...
+     private
+       type Account is ... with
+         Type_Invariant => Consistent_Balance (Account);
 
-      subtype Weekdays is Days range Mon .. Fri;
+-------------------------------------
+Dynamic Checking of Type Invariants
+-------------------------------------
 
-      -- Guaranteed, absent unchecked conversion
-      Workday : Weekdays := Mon;
+* Inserted by the compiler when creating values of type `T`
 
-* Type invariants apply across entire lifetime for complex abstract data types
-* Part of ADT concept, hence only for private types
+  - Default initial value of an object of type `T`
+  - Type conversion to `T`
+  - After calls to *boundary subprograms* that may modify a value of the type
+    `T` (subprograms in the public package spec)
 
-------------------------------
-Type Invariant Verifications
-------------------------------
+* Dynamic checks also introduced for parts of objects of type `T`
 
-.. container:: columns
+* No similar dynamic checks for global variables
 
- .. container:: column
-
-    * Automatically inserted by compiler
-    * Evaluated as a postcondition of any operation that creates, evaluates or returns a value of the type
-
-       - Creation of objects
-       - Assignment by clients
-       - Type conversions (as that creates new instances)
-
-    * Not evaluated on internal state changes
-
-       - Internal routine calls
-
-       - Internal assignments
-       - Remember these are abstract data types
-
- .. container:: column
-
-    .. image:: black_box_flow.png
-       :width: 100%
+* No checking for internal modifications: assignment or call
 
 ----------------------------------------
 Invariant Over Object Lifetime (Calls)
 ----------------------------------------
 
 .. image:: type_invariant_check_flow.png
+
+------------------------------------
+Static Checking of Type Invariants
+------------------------------------
+
+* Inserted by the :toolname:`GNATprove` when exposing values of type `T`
+
+  - Default initial value of an object of type `T`
+  - Type conversion to `T`
+  - After calls to *boundary subprograms* that may modify a value of the type
+    `T` (subprograms in the public package spec)
+  - Before internal calls to *external subprograms* (subprograms not internal
+    to the unit)
+    - Avoid reentrancy problems
+
+* Static checks also introduced for parts of objects of type `T`
+
+* Similar static checks for global variables
+
+* No checking for internal modifications: assignment or call
 
 ------------------------
 Example Type Invariant
