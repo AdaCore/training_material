@@ -247,11 +247,11 @@ Probable Errors - Results
 Probable Errors - Explanations
 --------------------------------
 
-* Line 4 - Coder probably meant :ada:`2 ** 32`
+* Line 5 - Coder probably meant :ada:`2 ** 32`
 
    * But maybe not? It could be a bit location
 
-* Line 11 - :ada:`E` is :ada:`natural`, so it can never be less than zero (without invalid data)
+* Line 12 - :ada:`E` is :ada:`natural`, so it can never be less than zero (without invalid data)
 
 * Line 13 - :ada:`D` is an :ada:`out` parameter, so there is no guarantee on it's initial value
 
