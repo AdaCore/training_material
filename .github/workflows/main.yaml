@@ -28,6 +28,7 @@ jobs:
                      gnatcheck,
                      gnat_studio,
                      gnat_project_facility,
+                     gnat_project_facility/standard_course.txt,
                      gnattest,
                      codepeer,
                      gnatcoverage,
