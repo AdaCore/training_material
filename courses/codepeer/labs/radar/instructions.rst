@@ -106,7 +106,7 @@ This server needs to be run from a console.
 
 .. code:: bash
 
-    $ codepeer --ide-server -Pradar -verbose
+    $ codepeer --ide-server -Pradar --verbose
 
 The review server starts listening to `localhost:8080`
 This command will serve forever, it is necessary to keep it in the background.
