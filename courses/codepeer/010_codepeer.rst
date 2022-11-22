@@ -1025,14 +1025,14 @@ The subprogram's body may violate its specified postcondition.
    function Reduce (Stress : Stress_Level)
      return Stress_Level with
       Pre  => (Stress /= None),
-      Post => (Stress /= Destructive)
+      Post => (Reduce'Result /= Destructive)
       is (Stress_Level'Val (Stress_Level'Pos (Stress) + 1));
       --                                              ^
       --                                             Typo!
    ...
    Reduce (My_Component_Stress);
 
-| ``high: postcondition failure on call to post.reduce: requires Stress /= Destructive``
+| ``high: postcondition failure on call to post.reduce: requires Reduce'Result /= Destructive``
 
 ------
 Quiz
