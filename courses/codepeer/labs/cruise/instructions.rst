@@ -81,7 +81,7 @@ The :toolname:`GPRBuild` attribute to set the switches is `CodePeer.Switches`
 
 * Change the default level of analysis to 2.
 
-The corresponding switch is `-level`
+The corresponding switch is `--level`
 
 * Add multiprocessing to "0" cores (ie. let the tool chose).
 
@@ -99,7 +99,7 @@ In the opened window, you can modify the command used to call CodePeer directly 
 
 Notice that there is also an history for this bar.
 
-* Remove the `-level` switch to use the default level.
+* Remove the `--level` switch to use the default level.
 
 *******************
 Tools Integration
@@ -153,7 +153,7 @@ Delta Analysis
 
 * Perform the analysis so that only changes are displayed
 
-Use the switches :command:`-show-added` and :command:`-show-removed`
+Use the switches :command:`--show-added` and :command:`--show-removed`
 
 * Run a new analysis
 
