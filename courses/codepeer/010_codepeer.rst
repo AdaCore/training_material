@@ -1431,7 +1431,6 @@ Unused Assignment
 + Object with the following names won't be checked:
 
   + :ada:`ignore`, :ada:`unused`, :ada:`discard`, :ada:`dummy`, :ada:`tmp`, :ada:`temp`
-  + Tuned via the :filename:`MessagePatterns.xml` file if needed.
 
 + :ada:`pragma Unreferenced` also ignored
 
@@ -2175,7 +2174,6 @@ Analyze Messages (3/4)
   + Check boxes to filter on message category / rank in :toolname:`GNAT Studio` and HTML
   + :code:`--infer-messages` :code:`--be-messages` :code:`--gnat-warnings`  switches
   + :command:`-messages min/normal/max`
-  + Pattern-based automatic filtering (:filename:`MessagePatterns.xml`)
 
 + You can exclude a :ada:`package` or a subprogram from analysis
 
