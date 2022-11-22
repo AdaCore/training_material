@@ -543,7 +543,7 @@ Attribute 'Old
          with Post =>
            (if J in A'Range then V = A(J)'Old); -- Illegal
 
-  - Use `pragma Unevaluated_Use_Of_Old (Alloww)` to allow
+  - Use `pragma Unevaluated_Use_Of_Old (Allow)` to allow
 
 ----------------------------------
 Special Cases for Attribute 'Old
@@ -565,7 +565,7 @@ Special Cases for Attribute 'Old
            F (X'Old) = 0 and then
            F (X)'Old = 0;
 
-* Prefix of access type need to be a call to an *allocating function*
+* Prefix of access type needs to be a call to an *allocating function*
 
   .. code:: Ada
 
@@ -581,7 +581,7 @@ New Expressions For Specifications
 
 * *if expressions* express a logical implication
 
-  - `(if A then B)` is the same as "A implies B" or "(not) A or B"
+  - `(if A then B)` is the same as "A implies B" or "(not A) or B"
 
   - `(if A then B else C)` is "(A implies B) and ((not A) implies C)"
 
@@ -672,7 +672,8 @@ Expression Functions
 
   .. code:: Ada
 
-     function Increment (X : Integer) return Integer is (X + 1);
+     function Increment (X : Integer) return Integer is
+       (X + 1);
 
 * Above is equivalent to having a postcondition
 
@@ -687,7 +688,8 @@ Expression Functions
 
   .. code:: Ada
 
-     function Increment (X : Integer) return Integer is (X + 1)
+     function Increment (X : Integer) return Integer is
+       (X + 1)
        with Pre => X < Integer'Last;
 
 -----------------------------
@@ -696,7 +698,7 @@ Use of Expression Functions
 
 * Expression functions can be declared in a package spec and used in contracts
 
-* For queries over objects of a private type:
+* For queries over objects of a private type
 
   - Function spec is declared in the public part
 
