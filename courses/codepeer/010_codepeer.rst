@@ -218,7 +218,7 @@ Command Line Interface (1/2)
 
    Tip: if missing a project file, use the ``--simple-project`` switch
 
-``-level 0|1|2|3|4|min|max``
+``--level 0|1|2|3|4|min|max``
    Specify the level of analysis performed:
 
   + 0/min (default): fast and light checkers
@@ -233,25 +233,25 @@ Command Line Interface (1/2)
 Command Line Interface (2/2)
 ------------------------------
 
-:command:`codepeer` ... :command:`[-output-msg[-only]] [-html[-only]]`
+:command:`codepeer` ... :command:`[--output-msg[-only]] [--html[-only]]`
 
-``-output-msg[-only] [-output-msg switches]``
+``--output-msg[-only] [--output-msg switches]``
    If specified, :toolname:`CodePeer` will output its results, in various
    formats.
 
-   If ``-output-msg`` is given, :toolname:`CodePeer` will perform a new
+   If ``--output-msg`` is given, :toolname:`CodePeer` will perform a new
    analysis, and output its results.
 
-   If ``-output-msg-only`` is specified, no new
+   If ``--output-msg-only`` is specified, no new
    analysis is performed, and the results from the previous run
    (of the same level) will be emitted.
 
    You can control this output by adding switches.
 
-   e.g. ``-output-msg -csv -out report.csv`` to generate a CSV file
+   e.g. ``--output-msg --csv --out report.csv`` to generate a CSV file
 
-``-html, -html-only``
-   Generate HTML output. If ``-html-only``, do not run any analysis
+``--html, --html-only``
+   Generate HTML output. If ``--html-only``, do not run any analysis
    but use the previous run.
 
 ---------------------------------------------------------
@@ -396,11 +396,11 @@ Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 "No False Positive" Mode
 --------------------------
 
-+ :command:`-level 0` or :command:`-messages min`
++ :command:`--level 0` or :command:`--messages min`
 + Suppresses messages **most likely** to be false positives
 + Allows programmers to **focus** initial work on likely problems
 + Can be combined with **any level** of analysis
-+ :command:`-messages min` is default for levels 0, 1, and 2
++ :command:`--messages min` is default for levels 0, 1, and 2
 
 ----------------------------------------
 Running :toolname:`CodePeer` regularly
@@ -415,15 +415,15 @@ Running :toolname:`CodePeer` regularly
   + **Previous** run each new run is compared to
   + Differences of **messages** in :toolname:`CodePeer` report
   + Default: first run
-  + :command:`-baseline` to change it
+  + :command:`--baseline` to change it
 
 + Typical use
 
-  + **Nightly** :command:`-baseline` run on servers
+  + **Nightly** :command:`--baseline` run on servers
   + **Daily** development compares to baseline
 
-+ :command:`-cutoff` overrides it for a **single** run
-+ Compare between two arbitrary runs with :command:`-cutoff` and :command:`-current`
++ :command:`--cutoff` overrides it for a **single** run
++ Compare between two arbitrary runs with :command:`--cutoff` and :command:`--current`
 
 ===============================
 :toolname:`CodePeer` Tutorial
@@ -784,7 +784,7 @@ Precondition
   + Where a caller passes in a value causing the error
 
 + Need to check generated preconditions
-+ :toolname:`GNAT Studio` or :command:`-show-backtraces` to analyze checks
++ :toolname:`GNAT Studio` or :command:`--show-backtraces` to analyze checks
 
 ..
    :toolname:`CodePeer` example (4.1.1 - precondition)
@@ -2146,7 +2146,7 @@ Analyze Messages (1/4)
       end CodePeer;
    end My_Project;
 
-:command:`codepeer -Pmy_project -level 1 ...`
+:command:`codepeer -Pmy_project --level 1 ...`
 
 ------------------------
 Analyze Messages (2/4)
@@ -2170,10 +2170,10 @@ Analyze Messages (3/4)
 
 + Filtering of messages
 
-  + :command:`-output-msg` :command:`-hide-low` on the command line
+  + :command:`--output-msg` :command:`--hide-low` on the command line
   + Check boxes to filter on message category / rank in :toolname:`GNAT Studio` and HTML
   + :code:`--infer-messages` :code:`--be-messages` :code:`--gnat-warnings`  switches
-  + :command:`-messages min/normal/max`
+  + :command:`--messages min/normal/max`
 
 + You can exclude a :ada:`package` or a subprogram from analysis
 
@@ -2212,7 +2212,7 @@ Run :toolname:`CodePeer` faster
 
 + Command-line switches
 
-    + Lower analysis level :command:`-level <num>`
+    + Lower analysis level :command:`--level <num>`
     + Paralellize :command:`-j0` (default)
 
 + Identify files taking too long to analyze
@@ -2284,7 +2284,7 @@ Database Justification
 
   + :toolname:`GNAT Studio`: select review icon on message(s)
   + HTML web server: click on :menu:`Add Review` button above messages
-  + Displayed with :command:`-output-msg-only -show-reviews (-only)`
+  + Displayed with :command:`--output-msg-only --show-reviews (-only)`
 
 + Can run :toolname:`CodePeer` as a server
 
@@ -2329,7 +2329,7 @@ Outside Tooling Justification
 
   + Export messages in CSV format
 
-     :command:`codepeer -Pprj -output-msg-only -csv`
+     :command:`codepeer -Pprj --output-msg-only --csv`
 
   + Review them via the spreadsheet tool (e.g. Excel)
 
@@ -2385,7 +2385,7 @@ Analyzing Code Locally Prior To Commit (1/2)
 
 + Solution #2
 
-  + Run :command:`codepeer -level 1/2 -baseline`
+  + Run :command:`codepeer --level 1/2 --baseline`
   + Local **baseline** database used for comparison
   + Look at **added** messages only
   + More exhaustive
@@ -2440,7 +2440,7 @@ Continuous Runs
 
     + Email
     + Web interface
-      :command:`codepeer -Pprj -output-msg -only -show-added | grep "[added]"`
+      :command:`codepeer -Pprj --output-msg-only --show-added | grep "[added]"`
 
 + Developers then *fix the code*, or *justify the relevant messages*
 
@@ -2467,7 +2467,7 @@ Combined Continuous/Nightly Run
 + A longer and **more exhaustive** analysis is performed nightly
 + Alternatively: a baseline run is performed nightly
 
-    + Same level as continuous runs and :command:`-baseline`
+    + Same level as continuous runs and :command:`--baseline`
 
 + Database reviews **should** be stored in this database
 
@@ -2562,7 +2562,7 @@ Baseline Runs
 
 + Create a baseline run
 
-  + :command:`codepeer -baseline`
+  + :command:`codepeer --baseline`
 
 --------------------------------------
 Baseline With Continuous Integration
@@ -2580,11 +2580,11 @@ Baseline With Continuous Integration
 + Results are reviewed via a spreadsheet tool (e.g. Excel)
 + Reviews are imported into the :toolname:`CodePeer` database
 
-  + Can use :command:`-show-added` to show only the **new** messages
+  + Can use :command:`--show-added` to show only the **new** messages
 
   .. container:: latex_environment tiny
 
-     :command:`codepeer -Pprj -output-msg -show-added | grep "[added]"`
+     :command:`codepeer -Pprj --output-msg --show-added | grep "[added]"`
 
 ====================================
 :toolname:`CodePeer` Customization
@@ -2609,7 +2609,7 @@ Baseline With Continuous Integration
         --  can be local or on shared drive
 
         for Switches use ("-level", "1");
-        --  typically -level -jobs
+        --  typically --level, --jobs
 
         for Additional_Patterns use "ExtraMessagePatterns.xml";
         --  also Message_Patterns to replace default one
@@ -2687,16 +2687,16 @@ Report File
       + You can combine some or all of the following switches to generate a report file
       + Mandatory switches:
 
-        + :command:`-output-msg`
-        + :command:`-out <report file>`
+        + :command:`--output-msg`
+        + :command:`--out <report file>`
 
       + Optional switches
 
-        + :command:`-show-header`
-        + :command:`-show-info`
-        + :command:`-show-removed`
-        + :command:`-show-reviews`
-        + :command:`-show-added`
+        + :command:`--show-header`
+        + :command:`--show-info`
+        + :command:`--show-removed`
+        + :command:`--show-reviews`
+        + :command:`--show-added`
 
    .. column::
 
@@ -2715,7 +2715,7 @@ Report File
       | ``codepeer version : 18.2 (yyyymmdd)``
       | ``host : Windows 64 bits``
       | ``command line : codepeer -P my_project.gpr``
-      | ``codepeer switches : -level max -output-msg -out report_file.out -show-header -show-info``
+      | ``codepeer switches : --level max --output-msg --out report_file.out --show-header --show-info``
       | ``current run number: 4``
       | ``base run number : 1``
       | ``excluded file : /path/to/unit3.adb``
