@@ -8,7 +8,7 @@ Introduction
 **************
 
 * Start :toolname:`GNAT Studio`
-* Start a baseline run
+* Start a baseline run at **level 3**
 * Analyze summarily the result
 
 ******************
