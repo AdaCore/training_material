@@ -115,6 +115,7 @@ How to Deal with Unproved Checks
       + Manual
 
    - Intermediate assertions
+   - Lemmas
 
 -------------------------
 Intermediate Assertions
@@ -148,6 +149,23 @@ Intermediate Assertions
    Those remaining assertions can then be verified by other means like testing, since they are executable, or review.
    Users can choose to instruct GNATprove to ignore them, either by turning them into assumptions, like in our example, or by justifying the check using a pragma Annotate.
    In both cases, the assumption will still be checked at runtime when assertions are enabled.
+
+--------
+Lemmas
+--------
+
+* A lemma is a ghost procedure with
+
+  - a precondition to state the hypotheses
+  - a postcondition to state the conclusion
+
+* The lemma can be independently proved or justified
+
+* Lemma is used by inserting call where needed
+
+  - Or add annotation `Automatic_Instantiation`
+
+* SPARK Lemma Library is a set of predefined proved lemmas
 
 =======================
 :toolname:`GNATprove`
@@ -214,7 +232,7 @@ Warning Control
    - :command:`--warnings=continue` issues warnings but does not stop analysis (default)
    - The default is that :toolname:`GNATprove` issues warnings but does not stop.
 
-* Both types of warnings can be suppressed selectively by the use of `pragma Warnings` in the source code...
+* Warnings can be suppressed selectively by the use of `pragma Warnings` in the source code
 
 -----------------
 Pragma Warnings

@@ -23,7 +23,7 @@ Introduction
 
 * Relaxed Initialization
 
-   - Ability to partly initialize objects
+   - Ability to partially initialize objects
 
 * Pointers and Ownership
 
@@ -397,7 +397,7 @@ Writing Loop Invariants
 
 * Language Semantics
 
-   - Between two iterations of the loop, the only information available for variables written to directly in the loop, or through calls inside the loop (including global output variables, and output parameters), and only those, is what the loop invariant mentions.
+   - Between two iterations of the loop, the only information available for variables written to directly in the loop, or through calls inside the loop (including global output variables, and output parameters), is what the loop invariant mentions.
 
 -------------------------
 Writing Loop Invariants
@@ -438,7 +438,7 @@ Loop Invariants - Recipe
 --------------------------
 
 * Always start with the hardest constraint...
-* ... and the easiest check!
+* ...and the easiest check!
 
    1. Start by inspecting the postcondition of the loop
    2. Study the terminating condition of the loop
@@ -545,7 +545,7 @@ Specifying Relaxed Initialization
 
   - Instead, proof checks (partial) initialization when read
 
-  - Not applicable to scalar parameter or function result
+  - Not applicable to scalar parameter or scalar function result
 
 ------------------------------
 Specifying Initialized Parts
@@ -652,7 +652,7 @@ Borrowing and Observing
 
        X : access Cell := Current_Cell.Next;
 
-  - or through a call
+  - or through a call (access type can be named or anonymous)
 
     .. code:: Ada
 
@@ -680,7 +680,13 @@ Access to Constant Data
 
 * Data is constant all the way down
 
+  - Data designated by the pointer is constant
+
+  - Pointers in that data inherit the same property
+
 * Also applies to input parameters of composite types containing pointers
+
+  - Different from input of access type
 
 * Aliasing is allowed
 
@@ -689,6 +695,8 @@ Access to Data on the Stack
 -----------------------------
 
 * Use attribute `'Access` on local variable
+
+  - Not allowed on global variable which would remain visible
 
 * `Constant'Access` of access-to-constant type
 
@@ -704,11 +712,19 @@ Useful Tips
 
 * Global objects can also be moved temporarily
 
+  - Procedure must restore some value (or null) before returning
+
 * Allocation function simply returns object of access-to-variable type
+
+  - Similar to initialized allocator with `new T'(Value)`
+
+  - Some special *traversal functions* give access to part of an object
 
 * Deallocation procedure simply nullifies in-out access parameter
 
 * Attribute `'Old` and `'Loop_Entry` not applicable to pointers
+
+  - Must call a copy function inside the prefix
 
 * Predefined pointer equality is not supported (only with null)
 
@@ -738,7 +754,7 @@ Summary
 
 * Relaxed Initialization
 
-   - Ability to partly initialize objects
+   - Ability to partially initialize objects
    - Proof is used instead of flow analysis
 
 * Pointers and Ownership
