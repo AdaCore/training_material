@@ -95,7 +95,7 @@ RTE Freedom - A Simple Example
    .. code:: Ada
 
       procedure Increment (X: in out Integer)
-         with Pre => (X < Integer'Last)
+         with Pre => X < Integer'Last
       is
       begin
          X := X + 1;
@@ -134,7 +134,7 @@ RTE Freedom - An Example
    .. code:: Ada
 
       procedure Add2 (X : in out Integer)
-         with Pre => (X <= Integer'Last - 2)
+         with Pre => X <= Integer'Last - 2
       is
       begin
          Increment (X);
@@ -153,7 +153,7 @@ RTE Freedom - An Example
    .. code:: Ada
 
       procedure Add2 (X : in out Integer)
-         with Pre => (X <= Integer'Last - 2)
+         with Pre => X <= Integer'Last - 2
       is
       begin
          Increment (X);
@@ -172,8 +172,8 @@ RTE Freedom - An Example
    .. code:: Ada
 
       procedure Increment (X: in out Integer)
-         with Pre  => (X < Integer'Last),
-              Post => (X = X'Old + 1)
+         with Pre  => X < Integer'Last,
+              Post => X = X'Old + 1
       is
       begin
          X := X + 1;
@@ -182,21 +182,9 @@ RTE Freedom - An Example
 * The tools prove that the body of `Increment` satisfies the postcondition - easy!
 * And now all checks are proved for `Add2` so we can be sure it will not raise any run-time exceptions
 
-=======
-Usage
-=======
-
------------------
-Usage Scenarios
------------------
-
-.. image:: when_to_switch_to_spark.png
-
-.. container:: speakernote
-
-   What is this diagram trying to show?
-   There are different clients with different requirements.
-   Some will want only to develop new code from scratch, some want to analyze existing code, some want to do a mixture.
+===============
+Special Cases
+===============
 
 -------------------------------------
 Local Subprograms Without Contracts

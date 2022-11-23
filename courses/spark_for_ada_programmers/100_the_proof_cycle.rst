@@ -229,39 +229,39 @@ Pragma Warnings
       end Mumble;
    end Warnings_Example;
 
-* Compiling (with :command:`-gnatwae`):
+* Warning issues by :toolname:`GNATprove`
 
    .. code:: console
 
-      warnings_example.adb:5:22: warning:
-          formal parameter "X" is not referenced
+      warnings_example.ads:2:11:
+      warning: subprogram "Mumble" has no effect
 
 -----------------
 Pragma Warnings
 -----------------
 
-* Syntax:
+.. code:: Ada
 
-   .. code:: Ada
+   pragma Warnings (Off, "subprogram ""Mumble"" has no effect");
+   procedure Mumble (X : Integer);
+   pragma Warnings (On, "subprogram ""Mumble"" has no effect");
 
-      pragma Warnings (On | Off [,REASON]);
-      pragma Warnings (On | Off, LOCAL_NAME [,REASON]);
-      pragma Warnings (static_string_EXPRESSION [,REASON]);
-      pragma Warnings (On | Off,
-                       static_string_EXPRESSION
-                       [,REASON]);
+or better for :toolname:`GNATprove`:
 
 .. code:: Ada
 
-   package body Warnings_Example is
-      pragma Warnings (Off, "formal parameter ""X"" is not referenced");
-      procedure Mumble (X : Integer) is
-      pragma Warnings (On, "formal parameter ""X"" is not referenced");
-       -- X is ignored here, because blah blah blah...
-      begin
-         null;
-      end Mumble;
-   end Warnings_Example;
+   pragma Warnings (GNATprove, Off,
+                    "subprogram ""Mumble"" has no effect");
+   procedure Mumble (X : Integer);
+   pragma Warnings (GNATprove, On,
+                    "subprogram ""Mumble"" has no effect");
+
+or better here:
+
+.. code:: Ada
+
+   procedure Mumble (X : Integer)
+     with Global => null;
 
 ---------------------------
 Control of Check Messages

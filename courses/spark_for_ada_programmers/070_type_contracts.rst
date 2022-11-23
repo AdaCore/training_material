@@ -79,21 +79,21 @@ What is a Predicate?
 
   .. code::Ada
 
-  type Non_Zero is new Integer
-    with Predicate => Non_Zero /= 0;
+     type Non_Zero is new Integer
+       with Predicate => Non_Zero /= 0;
 
-  subtype Even is Integer
-    with Predicate => Even mod 2 = 0;
+     subtype Even is Integer
+       with Predicate => Even mod 2 = 0;
 
 * Predicate can be Static_Predicate or Dynamic_Predicate
 
   .. code::Ada
 
-  type Non_Zero is new Integer
-    with Static_Predicate => Non_Zero /= 0;
+     type Non_Zero is new Integer
+       with Static_Predicate => Non_Zero /= 0;
 
-  subtype Even is Integer
-    with Dynamic_Predicate => Even mod 2 = 0;
+     subtype Even is Integer
+       with Dynamic_Predicate => Even mod 2 = 0;
 
 .. container:: speakernote
 
@@ -428,12 +428,14 @@ Beware Recursion In Predicates
 
   .. code:: Ada
 
-     type Nat is new Integer with Predicate => Above_Zero (Nat);
+     type Nat is new Integer
+       with Predicate => Above_Zero (Nat);
      function Above_Zero (X : Nat) return Boolean is (X >= 0);
 
   .. code:: console
 
-     warning: predicate check includes a call to "Above_Zero" that requires a predicate check
+     warning: predicate check includes a call to "Above_Zero"
+     that requires a predicate check
      warning: this will result in infinite recursion
      warning: use an explicit subtype of "Nat" to carry the predicate
 
