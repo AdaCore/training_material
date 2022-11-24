@@ -456,55 +456,70 @@ Loop Invariants - Recipe
 
    Framing problem! Is enough known about the loop variables?
 
----------------------------
-Does your loop terminate?
----------------------------
+------------------
+Loop Termination
+------------------
 
-* `Loop_Variant`
+* Anything is proved after a non-terminating loop
 
-   - Allows proof of loop termination by specifying expressions that will increase or decrease on each iteration
+  .. code:: Ada
+
+     loop
+        null;
+     end loop;
+     pragma Assert (False);
+
+* *for loops* always terminate in SPARK
+
+* Proof of other loops is based on loop variants
+
+  - Specification of scalar expression increasing or decreasing at every
+    iteration
+
+  - More complex variants are possible (multiple, structural)
+
+----------------------
+Loop Variant Example
+----------------------
 
 .. code:: Ada
 
-   procedure P is
-      type Total is range 1 .. 100;
-      subtype T is Total range 1 .. 10;
-      I : T := 1;
-      R : Total := 100;
+   procedure Terminating_Loops (X : Natural) is
+      Y : Natural := 0;
    begin
-      while I < 10 and R > 10 loop
-          pragma Loop_Invariant (I <= 5);
-          pragma Loop_Variant (Increases => I,
-                               Decreases => R);
-          R := R - I;     -- 100, 99, 97, 94, 90, 85, 80, ...
-          if I < 5 then
-             I := I + 1;  -- 1, 2, 3, 4, 5, 5, 5, 5, 5...
-          end if;
+      while X - Y >= 3 loop
+         Y := Y + 3;
+         pragma Loop_Variant (Increases => Y);
+         pragma Loop_Variant (Decreases => X - Y);
+         pragma Loop_Variant (Increases => Natural'Min (Y, 100),
+                              Decreases => X - Y);
       end loop;
-   end P;
+   end Terminating_Loops;
 
 .. container:: speakernote
 
-   There is an example of this in :toolname:`GNAT Studio` we can look at if we want to.
-   The sharper students might point out that the 'Increases I' isn't actually needed and you can still prove termination with just 'Decreases R'.
-   This is true, and it would be nice to come up with a better example!
-   You could do something such as changing the first assignment to:
-   if I `>` 3 then
-   R := R - I;     -- 100, 99, 97, 94, 90, 85, 80, 75, 70...
-   end if;
-   In order to make both parts of the loop variant necessary.
+   Only one loop variant is needed, any one would do.
+   The last one shows a more complex variant.
 
 ----------------
 `Loop_Variant`
 ----------------
 
-* Rules for where to place: same as for `Loop_Invariant`
-* Must be at least one instance of Increases (or Decreases) followed by an expression
-* Additional instances of Increases/Decreases expressions may appear, processed in textual order:
+* Same placement rules as for `Loop_Invariant`
 
-   - Check is made that the first expression increases (or decreases) for this iteration, or stays the same
-   - If it stays the same for this iteration then the next expression is checked, and so on
-   - As long as one of the expressions can be shown to be changing (progressing) in the specified direction for each iteration then termination can be proved
+* One or more directions (`Increases` or `Decreases`) followed by an integer
+  expression
+
+  - Can use also a `Big_Natural` from Ada or SPARK Library
+
+  - Progress at each iteration is defined using lexicographic order
+
+    + First expression makes progress, or
+
+    + First expression stays the same and next one progresses, or ...
+
+* Or structural loop variant (with `Structural`) for recursive pointer data
+  structures
 
 ========================
 Relaxed Initialization
@@ -516,14 +531,18 @@ Limitations of the Initialization Policy
 
 * Objects must be fully initialized when read
 
+  - Forces useless initialization of unread components
+
 * Arrays must be initialized from an aggregate
 
   - Otherwise flow analysis cannot check initialization
 
   - Except in some special cases when a heuristic works (fully initialize an
-    array with a loop)
+    array with a *for loop*)
 
 * All outputs must be fully initialized when returning
+
+  - Forces useless initialization of unread outputs
 
 -----------------------------------
 Specifying Relaxed Initialization
@@ -533,11 +552,11 @@ Specifying Relaxed Initialization
 
   .. code:: Ada
 
-     type My_Rec is record ... end record
+     type Rec is record ... end record
        with Relaxed_Initialization;
      X : Integer with Relaxed_Initialization;
-     procedure Update (R : in out Rec)
-       with Relaxed_Initialization => R;
+     procedure Update (A : in out Arr)
+       with Relaxed_Initialization => A;
 
 * Corresponding objects (variables, components) have relaxed initialization
 
@@ -564,6 +583,9 @@ Specifying Initialized Parts
      pragma Assert (R.C'Initialized);
 
 * Attribute executed like `'Valid_Scalars`
+
+  - All scalar subcomponents are dynamically checked to be valid values of
+    their type
 
 ----------------------------------
 Verifying Relaxed Initialization
@@ -634,7 +656,7 @@ Memory Ownership Policy
      X := new Integer'(1);
      --  X has the ownership of the cell
      Y := X;
-     --  The ownership it transferred to Y
+     --  The ownership is transferred to Y
      Y.all := Y.all + 1;
      --  Y can access and modify the data
      pragma Assert (X.all = 1);
@@ -658,6 +680,8 @@ Borrowing and Observing
 
        procedure Update_Cell (X : access Cell);
        Update_Cell (Current_Cell.Next);
+
+* In-out parameter of access type is *moved* on entry and return
 
 * Observing is temporary read-only access
 
@@ -684,6 +708,8 @@ Access to Constant Data
 
   - Pointers in that data inherit the same property
 
+  - This is specific to SPARK: in Ada only designated data is constant
+
 * Also applies to input parameters of composite types containing pointers
 
   - Different from input of access type
@@ -697,6 +723,8 @@ Access to Data on the Stack
 * Use attribute `'Access` on local variable
 
   - Not allowed on global variable which would remain visible
+
+  - Result of general access type with `access all` syntax
 
 * `Constant'Access` of access-to-constant type
 
@@ -722,7 +750,7 @@ Useful Tips
 
 * Deallocation procedure simply nullifies in-out access parameter
 
-* Attribute `'Old` and `'Loop_Entry` not applicable to pointers
+* Attributes `'Old` and `'Loop_Entry` not applicable to pointers
 
   - Must call a copy function inside the prefix
 
