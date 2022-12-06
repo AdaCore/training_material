@@ -159,50 +159,47 @@ Functions May Not Have Side-Effects
 -------------------------------------
 
 * The analysis of SPARK programs relies on the property that expressions are free from side-effects
+
+  - Side-effects in expressions lead to erroneous behavior
+
+  - Not so with procedures, which are called in statements
+
 * Function calls can appear in expressions, so function calls must be free from side-effects
+
+  - Nice benefit is that functions have a simpler logical interpretation
+
 * What is a side-effect?
-
-   - With functions, they make nasty situations possible
-
-      + Not so with procedures, due to differences in calling
 
 ------------------------
 What Is a Side-Effect?
 ------------------------
 
-.. container:: columns
+* An expression is side-effect free if its evaluation does not update any object
 
- .. container:: column
+  - `out` and `in out` parameters of a call
 
-    * An expression is side-effect free if its evaluation does not update any object
-    * The objects updated by a subprogram call are any parameters of mode out (or in out), plus global variables updated by the subprogram body
+  - global variables written by a call
 
- .. container:: column
+.. code:: Ada
 
-    .. code:: Ada
+   function F (X : in out Integer) return Integer;
 
-       function F (X : in out Integer)
-                   return Integer;
-       function Sqrt (X : in Integer)
-                      return Integer;
+   Global : Integer := 0;
 
-       Global : Integer := 0;
-
-       function F (X : Integer)
-          return Integer is
-       begin
-          Global := Global + X;
-          return X;
-       end F;
+   function F (X : Integer) return Integer is
+   begin
+      Global := Global + X;
+      return X;
+   end F;
 
 .. container:: speakernote
 
    "in out" in a function is illegal SPARK
    modifying a global in a function is illegal SPARK
 
-------------------------------------------
-Why not Side Effects - Modifying Globals
-------------------------------------------
+----------------------------------------
+Why not Side Effects - Writing Globals
+----------------------------------------
 
 .. code:: Ada
 
@@ -244,7 +241,7 @@ Why not Side Effects - `in out` Formals (1/2)
    Something : Integer := 0;
    Gear_Down (X => Something, Y => F (Something));
 
-* Order Dependent Code
+* Causes Order-Dependent Code
 
    - If left parameter evaluated first, X=0, Y=1
    - If right parameter evaluated first, X=1, Y=1
@@ -270,17 +267,20 @@ Why not Side Effects - `in out` Formals (2/2)
       end loop;
    end Demo;
 
-* For the array assignment (the first statement), the language doesn't say whether the LHS is evaluated first, or the RHS.
-* This is rejected in SPARK, functions are not allowed to have mode `in out` or `out` formals.
+* Causes Order-Dependent Code
 
-   - If left hand side evaluated first, result = "22345"
-   - If right-hand side evaluated first, result  = "12345"
+  - If `Values (Index)` evaluated first, result = "22345"
+  - If `F (Index)` evaluated first, result = "12345"
+
+.. container:: speakernote
+
+For the array assignment (the first statement), the language doesn't say whether the LHS is evaluated first, or the RHS.
 
 -------------------------
 Parameter Name Aliasing
 -------------------------
 
-* In terms of formal and actual parameters
+* In terms of actual parameters and global variables
 * Occurs when there are multiple names for an actual parameter inside the subprogram body
 
    - Global variable passed as actual parameter and referenced inside subprogram via global name
@@ -288,7 +288,7 @@ Parameter Name Aliasing
    - Two actuals are overlapping array slices
    - One actual is contained within another actual
 
-* Can lead to code dependent on parameter-passing mechanism
+* Can lead to code dependent on parameter-passing mechanism (another case of erroneous behavior)
 
 -----------------------------------------
 Parameter Aliasing with Global Variable
@@ -364,13 +364,12 @@ Aliasing with Composite Data Types
 Parameter Aliasing Prevention In SPARK
 ----------------------------------------
 
-* Goal: changing the value of an object should not also alter the value of some other object
 * Multiple output parameters must not be aliased
 * Input and output parameters must not be aliased, if there is possible interference
 * Output parameters must never be aliased with global variables referenced by the subprogram
 * Input parameters must not be aliased with global variables written by the subprogram, unless they are always passed by copy (reading is OK)
 
-   - Functions cannot have parameters (or global variables) of mode `out` or `in out` so function calls cannot introduce illegal aliasing
+* Functions cannot have outputs (parameters or global variables) hence cannot introduce illegal aliasing
 
 ----------------------------
 Data Initialization Policy
@@ -547,25 +546,6 @@ Identifying SPARK Code
 
       + Up to :toolname:`GNATprove` to determine whether or not a given construct is in SPARK
 
---------------------
-Mixing SPARK Modes
---------------------
-
-   .. code:: Ada
-
-      package P
-        with SPARK_Mode => On
-      is
-         -- package spec is SPARK, so can be used
-         -- by SPARK clients
-      end P;
-      package body P
-        with SPARK_Mode => Off
-      is
-         -- body is NOT SPARK, so assumed to
-         -- be full Ada
-      end P;
-
 ------------------------
 Setting `SPARK_Mode`
 ------------------------
@@ -675,24 +655,6 @@ Can Verify Selected Subprograms
 
    Of course, we could do the reverse too: set the package's SPARK Mode to Off and only turned On some of the subprograms.
 
--------------------------------------
-So What Can't SPARK Code Reference?
--------------------------------------
-
-* SPARK code must only reference SPARK entities
-
-   - Otherwise analysis cannot provide strong guarantees
-   - Only one semantics: as if ``100%`` SPARK code in use
-   - :toolname:`GNATprove` will reject invalid mixing
-
-* But what constitutes SPARK code/entities?
-
-   - Code explicitly set to `SPARK_Mode` `On`
-   - Code covered by a global default value of `On`
-   - Code in Ada packages included by with-clauses, as long as the referenced parts are compliant
-
-* Hence: cannot reference non-compliant code and code with `SPARK_Mode` explicitly `Off`
-
 -----------------------------------------
 SPARK Code Cannot Use Mode `Off` Code
 -----------------------------------------
@@ -760,7 +722,7 @@ Mode `Off` for Bodies Allows Full Ada
    Not that anybody would write that specific code for R:w
 
 ------------------------------------------
-If Implementing A SPARK Spec In Full Ada
+If Implementing a SPARK Spec in Full Ada
 ------------------------------------------
 
 * The user must verify SPARK properties

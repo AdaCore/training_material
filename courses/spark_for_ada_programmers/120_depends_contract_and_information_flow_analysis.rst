@@ -286,10 +286,10 @@ Information Flow Analysis
 
 .. code:: console
 
-   warning: missing dependency "X => X"
-   warning: incorrect dependency "X => Y"
-   warning: missing dependency "Y => Y"
-   warning: incorrect dependency "Y => X"
+   medium: missing dependency "X => X"
+   medium: incorrect dependency "X => Y"
+   medium: missing dependency "Y => Y"
+   medium: incorrect dependency "Y => X"
 
 --------------------------
 Arrays and Flow Analysis

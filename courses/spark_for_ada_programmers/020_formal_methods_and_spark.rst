@@ -168,7 +168,7 @@ Objectives of Using SPARK
 A Brief Terminology Introduction
 ----------------------------------
 
-* **Contracts** are parts of specifications stipulating something that must be true and verifiable
+* **Contracts** are parts of specifications attached to program entities like subprograms
 * **Data dependency** contracts specify global data that a subprogram is allowed to read and/or write
 * **Flow dependency** contracts specify how a subprogram's outputs depend on its inputs
 * **Precondition** contracts specify caller constraints

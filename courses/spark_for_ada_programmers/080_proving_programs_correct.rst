@@ -60,11 +60,11 @@ Example Hoare Triples
 
 * False implies anything
 
-  - Beware inconsistent preconditions (and use :toolname:`GNATprove` switch
-    :command:`--proof-warnings`)
+  - Beware inconsistent preconditions like `X < 0 and X > 5` (and use
+  :toolname:`GNATprove` switch :command:`--proof-warnings`)
 
-  - Beware unrealizable contracts on *functions* (that should be proven,
-    including their termination)
+  - Beware unrealizable contracts on *functions* like a postcondition that `X <
+    0 and X > 5` (functions should be proven, including their termination)
 
 -------------------------
 Stronger Postconditions
