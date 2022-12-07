@@ -1,3 +1,4 @@
+2_formal_methods_and_spark.rst
 010_course_overview.rst
 020_formal_methods_and_spark.rst
 030_spark_language_and_tools.rst
