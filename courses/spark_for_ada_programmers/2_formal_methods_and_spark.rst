@@ -212,7 +212,8 @@ Symbolic Execution and Bounded Model Checking
 
 * Analysis of loops is limited to few iterations (same for recursion)
 
-  - The other iterations are approximated, so the value of :code:`T` is lost
+  - The other iterations are ignored or approximated, so the value of :code:`T`
+    is lost
 
   - After the call to :code:`Reset`, the analysis does not know that :code:`T`
     is initialized with value zero between indexes :code:`A` and :code:`B`
