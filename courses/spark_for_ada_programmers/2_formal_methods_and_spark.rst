@@ -33,17 +33,17 @@ High-Integrity Software
 
 * Has reliability as the most important requirement
 
-   - More than cost, time-to-market, etc.
+  - More than cost, time-to-market, etc.
 
 * Must be known to be reliable before being deployed
 
-   - With extremely low failure rates, e.g., 1 in 10:superscript:`9` hours (114,080 years)
-   - Testing alone is insufficient and/or infeasible for such rates
+  - With extremely low failure rates, e.g., 1 in 10:superscript:`9` hours (114,080 years)
+  - Testing alone is insufficient and/or infeasible for such rates
 
 * Is not necessarily safety-critical (no risk of human loss)
 
-   - E.g., satellites and remote exploration vehicles
-   - E.g., financial systems
+  - E.g., satellites and remote exploration vehicles
+  - E.g., financial systems
 
 ------------------------------------
 Developing High-Integrity Software
@@ -82,7 +82,7 @@ Formal Methods
 
   - Are applicable to existing development artifacts (models, code, etc.)
 
-  - Are integrated in existing processes
+  - Are automated and integrated in existing processes
 
   - Provide value for certification
 
@@ -156,9 +156,9 @@ Capabilities of Static Analysis of Programs
 
   - Modular analysis with no missing alarms is better for :dfn:`formal verification`
 
--------------------------
-Abstract Interpretation
--------------------------
+---------------------------------------
+Comparing Techniques on a Simple Code
+---------------------------------------
 
 * Consider a simple loop-based procedure
 
@@ -171,7 +171,17 @@ Abstract Interpretation
       end loop;
    end;
 
-* Access `T(Idx)` is safe iff :code:`Idx in Table'Range`
+* Access :code:`T(Idx)` is safe iff :code:`Idx in Table'Range`
+
+* As a result of calling :code:`Reset`:
+
+  - Array :code:`T` is initialized between indexes :code:`A` and :code:`B`
+
+  - Array :code:`T` has value zero between indexes :code:`A` and :code:`B`
+
+-------------------------
+Abstract Interpretation
+-------------------------
 
 * :code:`Reset` is analyzed in the context of each of its calls
 
@@ -180,25 +190,18 @@ Abstract Interpretation
 
   - Otherwise, an alarm is emitted (for sound analysis)
 
-* Initialization and value of individual array cells is not tracked (*weak
-  update* updates the abstract value for the whole array)
+* Initialization and value of individual array cells is not tracked
+
+  - The assignment to a cell is a *weak update*: the abstract value for the
+    whole array now includes value zero (but is also possibly uninitialized or
+    keeps a previous value)
+
+  - After the call to :code:`Reset`, the analysis does not know that :code:`T`
+    is initialized with value zero between indexes :code:`A` and :code:`B`
 
 -----------------------------------------------
 Symbolic Execution and Bounded Model Checking
 -----------------------------------------------
-
-* Consider a simple loop-based procedure
-
-.. code:: ada
-
-   procedure Reset (T : in out Table; A, B : Index) is
-   begin
-      for Idx in A .. B loop
-         T(Idx) := 0;
-      end loop;
-   end;
-
-* Access `T(Idx)` is safe iff :code:`Idx in Table'Range`
 
 * :code:`Reset` is analyzed in the context of program traces
 
@@ -209,22 +212,14 @@ Symbolic Execution and Bounded Model Checking
 
 * Analysis of loops is limited to few iterations (same for recursion)
 
+  - The other iterations are approximated, so the value of :code:`T` is lost
+
+  - After the call to :code:`Reset`, the analysis does not know that :code:`T`
+    is initialized with value zero between indexes :code:`A` and :code:`B`
+
 ------------------------
 Deductive Verification
 ------------------------
-
-* Consider a simple loop-based procedure
-
-.. code:: ada
-
-   procedure Reset (T : in out Table; A, B : Index) is
-   begin
-      for Idx in A .. B loop
-         T(Idx) := 0;
-      end loop;
-   end;
-
-* Access `T(Idx)` is safe iff :code:`Idx in Table'Range`
 
 * :code:`Reset` is analyzed in the context of a precondition
 
@@ -233,6 +228,22 @@ Deductive Verification
   - Otherwise, an alarm is emitted
 
 * A precondition must be given to restrict the calling context
+
+* Initialization and value of individual array cells is tracked
+
+* Analysis of loops is based on user-provided loop invariants
+
+  - Stating here that :code:`T(A .. Idx)'Initialized` and :code:`T(A .. Idx) =
+    (A .. Idx => 0)`
+
+* Code after the call to :code:`Reset` is analyzed in the context of a
+  postcondition
+
+  - Stating here that :code:`T(A .. B)'Initialized` and :code:`T(A .. B) =
+    (A .. B => 0)`
+
+  - So the analysis knows that :code:`T` is initialized with value zero between
+    indexes :code:`A` and :code:`B`
 
 =======
 SPARK
@@ -404,7 +415,7 @@ Which statement is correct?
 
    Explanations
 
-   A. Formal methods can also apply to requirements or models.
+   A. Formal methods can also apply to requirements, models, data, etc.
    B. Correct
    C. To achieve soundness, it may be impossible to avoid false alarms.
    D. Not all three at the same time.
@@ -448,3 +459,29 @@ Which statement is correct?
    B. AoRTE is a common objective with SPARK because it is simple.
    C. Full functional correctness is hard but can be achieved.
    D. SPARK code can be interfaced with code in Ada/C/C++, etc.
+
+=========
+Summary
+=========
+
+--------------------------
+Formal Methods and SPARK
+--------------------------
+
+* Development of large, complex software is difficult
+
+  - Especially so for high-integrity software
+
+* Formal methods can be used industrially
+
+  - During development and verification
+
+  - To address objectives of certification
+
+  - They must be sound (no missing alarm) in general
+
+* SPARK is an industrially usable formal method
+
+  - Based on flow analysis and proof
+
+  - At various levels of software assurance
