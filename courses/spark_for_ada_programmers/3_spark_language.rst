@@ -73,6 +73,34 @@ Excluding Ambiguity
 
 * Also facilitates portability across platforms and compilers!
 
+------------------------
+SPARK Reference Manual
+------------------------
+
+* Precise definition of the SPARK subset
+
+* Builds on the Ada Reference Manual
+
+  - Follows the same section numbering
+
+  - Has similar subsections:
+
+    + **Syntax**
+
+    + **Name Resolution Rules**
+
+    + **Legality Rules**
+
+    + **Static Semantics**
+
+    + **Dynamic Semantics**
+
+    + **Verification Rules** *(specific to SPARK RM)*
+
+    + **Examples**
+
+:url:`https://docs.adacore.com/live/wave/spark2014/html/spark2014_rm/packages.html`
+
 =======================
 SPARK Language Subset
 =======================
@@ -92,6 +120,31 @@ Categories of Types in SPARK
 .. container:: speakernote
 
    SPARK supports all the types in Ada, but with restrictions.
+
+---------------------
+Assertions in SPARK
+---------------------
+
+* Assertions in Ada are just Boolean expressions
+
+  - They can be executed
+
+  - Thus they can raise runtime errors (to be checked in SPARK)
+
+* Low-level assertions
+
+  .. code:: ada
+
+     pragma Assert (Idx in T'Range and then T (Idx) = 0);
+
+* High-level assertions, aka specifications, aka :dfn:`contracts`
+
+  .. code:: ada
+
+     function Get (T : Table; Idx : Index) return Elem
+       with Pre => Idx in T'Range and then T (Idx) = 0;
+
+* Much more to come in later courses
 
 -----------------------
 Excluded Ada Features
