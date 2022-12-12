@@ -245,7 +245,7 @@ Deductive Verification
 
 * Initialization and value of individual array cells is tracked
 
-* Analysis of loops is based on user-provided loop invariants
+* Analysis of loops is based on user-provided :dfn:`loop invariants`
 
   - Stating here that :code:`T(A .. Idx)'Initialized` and :code:`T(A .. Idx) =
     (A .. Idx => 0)`
