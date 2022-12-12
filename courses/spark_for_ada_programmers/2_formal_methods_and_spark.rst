@@ -37,7 +37,10 @@ High-Integrity Software
 
 * Must be known to be reliable before being deployed
 
-  - With extremely low failure rates, e.g., 1 in 10:superscript:`9` hours (114,080 years)
+  - With extremely low failure rates
+
+        + e.g., 1 in 10:superscript:`9` hours (114,080 years)
+
   - Testing alone is insufficient and/or infeasible for such rates
 
 * Is not necessarily safety-critical (no risk of human loss)
