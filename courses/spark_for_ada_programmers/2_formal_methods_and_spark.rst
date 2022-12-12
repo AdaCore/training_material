@@ -290,21 +290,21 @@ SPARK is a Language Subset
 
   - Strong typing **simplifies** analysis
 
-  - Some language features improve analysis precision
+  - Some language features **improve** analysis precision
 
     + e.g. first-class arrays with bounds available like
       :code:`Table'First` and :code:`Table'Last`
 
-  - Some language features degrade analysis precision
+  - Some language features **degrade** analysis precision
 
     + e.g. arbitrary aliasing of pointers, dispatching calls in
       OO programming
 
-* SPARK hits the sweet spot for proof
+* SPARK hits the **sweet spot** for proof
 
   - Based on strongly typed feature-rich Ada programming language
 
-  - Restrictions on Ada features to make proof easier
+  - **Restrictions** on Ada features to make proof easier
 
     1. Simplify user's effort for annotating the code
 
