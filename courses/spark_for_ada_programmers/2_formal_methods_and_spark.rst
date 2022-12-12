@@ -204,9 +204,10 @@ Abstract Interpretation
 
 * Initialization and value of individual array cells is not tracked
 
-  - The assignment to a cell is a *weak update*: the abstract value for the
-    whole array now includes value zero (but is also possibly uninitialized or
-    keeps a previous value)
+  - The assignment to a cell is a *weak update*
+
+    + The abstract value for the whole array now includes value zero
+    + ... but is also possibly uninitialized or keeps a previous value
 
   - After the call to :code:`Reset`, the analysis does not know that :code:`T`
     is initialized with value zero between indexes :code:`A` and :code:`B`
