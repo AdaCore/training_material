@@ -247,14 +247,12 @@ Deductive Verification
 
 * Analysis of loops is based on user-provided :dfn:`loop invariants`
 
-  - Stating here that :code:`T(A .. Idx)'Initialized` and :code:`T(A .. Idx) =
-    (A .. Idx => 0)`
+  :ada:`T(A .. Idx)'Initialized and T(A .. Idx) = (A .. Idx => 0)`
 
 * Code after the call to :code:`Reset` is analyzed in the context of a
   :dfn:`postcondition`
 
-  - Stating here that :code:`T(A .. B)'Initialized` and :code:`T(A .. B) =
-    (A .. B => 0)`
+  :ada:`T(A .. B)'Initialized and T(A .. B) = (A .. B => 0)`
 
   - So the analysis knows that :code:`T` is initialized with value zero between
     indexes :code:`A` and :code:`B`
