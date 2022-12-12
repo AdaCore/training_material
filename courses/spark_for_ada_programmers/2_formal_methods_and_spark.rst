@@ -115,9 +115,9 @@ Static Analysis of Programs
 * :dfn:`Symbolic execution` and :dfn:`bounded model checking` (SymExe/BMC) analyze
   possible traces of execution of the program
 
-  - SymExe explores traces one by one
+  - SymExe explores traces **one by one**
 
-  - BMC explores traces all at once
+  - BMC explores traces **all at once**
 
 * :dfn:`Deductive verification` (Proof) separately analyzes individual functions
   against their specification
