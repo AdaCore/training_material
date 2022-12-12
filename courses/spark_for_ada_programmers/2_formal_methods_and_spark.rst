@@ -404,7 +404,7 @@ Project Scenarios
 
   - Migration guide available
 
-    :url:`https://www.adacore.com/books/implementation-guidance-spark`
+:url:`https://www.adacore.com/books/implementation-guidance-spark`
 
   - Can progressively move to higher assurance levels
 
