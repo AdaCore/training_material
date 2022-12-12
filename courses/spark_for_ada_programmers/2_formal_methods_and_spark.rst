@@ -486,11 +486,11 @@ Summary
 Formal Methods and SPARK
 --------------------------
 
-* Development of large, complex software is difficult
+* Development of large, complex software is **difficult**
 
   - Especially so for high-integrity software
 
-* Formal methods can be used industrially
+* Formal methods **can** be used industrially
 
   - During development and verification
 
@@ -498,7 +498,7 @@ Formal Methods and SPARK
 
   - They must be sound (no missing alarm) in general
 
-* SPARK is an industrially usable formal method
+* SPARK is an **industrially** usable formal method
 
   - Based on flow analysis and proof
 
