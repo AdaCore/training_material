@@ -100,8 +100,11 @@ Formal Methods
   - Provide value for certification
 
     - Some certification standards explicitly encourage the use of formal
-      methods, like in railway (EN 50128) or avionics (DO-178C + DO-333 Formal
-      Methods Supplement) or security (Common Criteria)
+      methods
+
+        + Railway (EN 50128)
+        + Avionics (DO-178C + DO-333 Formal Methods Supplement)
+        + Security (Common Criteria)
 
 -----------------------------
 Static Analysis of Programs
