@@ -235,7 +235,7 @@ Symbolic Execution and Bounded Model Checking
 Deductive Verification
 ------------------------
 
-* :code:`Reset` is analyzed in the context of a precondition
+* :code:`Reset` is analyzed in the context of a :dfn:`precondition`
 
   - Proof checks if the precondition entails :code:`Idx in Table'Range`
 
@@ -251,7 +251,7 @@ Deductive Verification
     (A .. Idx => 0)`
 
 * Code after the call to :code:`Reset` is analyzed in the context of a
-  postcondition
+  :dfn:`postcondition`
 
   - Stating here that :code:`T(A .. B)'Initialized` and :code:`T(A .. B) =
     (A .. B => 0)`
