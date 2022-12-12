@@ -216,9 +216,9 @@ Abstract Interpretation
 Symbolic Execution and Bounded Model Checking
 -----------------------------------------------
 
-* :code:`Reset` is analyzed in the context of program traces
+* :code:`Reset` is analyzed in the context of **program traces**
 
-  - If the values of :code:`A` and :code:`B` are close enough, SymExe/BMC can
+  - If the values of :code:`A` and :code:`B` are *close enough*, SymExe/BMC can
     analyze all loop iterations and deduce that :code:`Idx in Table'Range`
 
   - Otherwise, an alarm is emitted (for sound analysis)
@@ -226,9 +226,9 @@ Symbolic Execution and Bounded Model Checking
 * Analysis of loops is limited to few iterations (same for recursion)
 
   - The other iterations are ignored or approximated, so the value of :code:`T`
-    is lost
+    is **lost**
 
-  - After the call to :code:`Reset`, the analysis does not know that :code:`T`
+  - After the call to :code:`Reset`, the analysis does **not** know that :code:`T`
     is initialized with value zero between indexes :code:`A` and :code:`B`
 
 ------------------------
