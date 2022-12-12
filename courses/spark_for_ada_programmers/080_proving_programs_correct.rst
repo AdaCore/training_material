@@ -23,7 +23,7 @@ Verification Condition Generation
 * How are verification conditions generated?
 
    - Weakest precondition calculus
-   - Strongest postcondition calculus
+   - Strongest postcondition calculus (in SPARK)
 
 ---------------
 Hoare Triples
@@ -50,113 +50,92 @@ Example Hoare Triples
 
 * Are these valid?
 
-.. code:: Ada
+  .. code:: Ada
 
-   {true} x := 5 {x = 5}
-   {x = y} x := x + 3 {x = y + 3}
-   {x > 0} x := x * 2 {x > -2}
-   {x = a} if (x < 0) then x := -x {x = |a|}
-   {false} x := 3 {x = 8}
+     {true} x := 5 {x = 5}
+     {x = y} x := x + 3 {x = y + 3}
+     {x > 0} x := x * 2 {x > -2}
+     {x = a} if (x < 0) then x := -x {x = |a|}
+     {false} x := 3 {x = 8}
 
--------------------------------------------
-Example Triplets - Stronger Postcondition
--------------------------------------------
+* False implies anything
 
-* Example:
+  - Beware inconsistent preconditions like `X < 0 and X > 5` (and use
+  :toolname:`GNATprove` switch :command:`--proof-warnings`)
 
-   .. code:: Ada
+  - Beware unrealizable contracts on *functions* like a postcondition that `X <
+    0 and X > 5` (functions should be proven, including their termination)
 
-       {X = 5} X := X * 2 {X > 0}
+-------------------------
+Stronger Postconditions
+-------------------------
+
+* Example of weak postcondition (precondition is fixed):
+
+  .. code:: Ada
+
+     {X = 5} X := X * 2 {X > 0}
 
 * Is this triplet valid?
+
 * How can we make a stronger postcondition?
 
-   - What about 5 `<` X and X `<` 20 ?
+   - What about `5 < X and X < 20` ?
 
 * What is the strongest possible postcondition for this precondition and program statement?
+
+  - A weaker postcondition is always provable
 
 .. container:: speakernote
 
    Strongest postcondition for this precondition and program is X = 10.
 
+----------------------
+Weaker Preconditions
+----------------------
+
+* Example of strong precondition (postcondition is fixed):
+
+  .. code:: Ada
+
+     {X = 5} X := X * 2 {X > 0}
+
+* How can we make a weaker precondition?
+
+  - Accept more calling contexts as valid
+
+* What is the weakest possible precondition for this postcondition and program statement?
+
+  - In general, precondition is fixed by specifications
+
+.. container:: speakernote
+
+   Weakest precondition for this postcondition and program is X > 0.
+
 -------------------------
 Strongest Postcondition
 -------------------------
 
-* Strongest postcondition (generally):
+* If ``{P}S{Qstrong}`` and for all ``Q`` such that ``{P}S{Q}``, ``Qstrong => Q``, then ``Qstrong`` is the strongest postcondition of ``S`` with respect to ``P``
 
-   - if ``{P}S{Qstrong}`` and for all ``Q`` such that ``{P}S{Q}``, ``Qstrong => Q``, then ``Qstrong`` is the strongest postcondition of ``S`` with respect to ``P``
+* Strongest postcondition computation computes automatically ``Qstrong`` given
+  ``P`` and ``S``
 
-----------------------
-Weakest Precondition
-----------------------
+* Then, to know if ``{P}S{Q}`` is true, we just check if ``Qstrong => Q``
 
-* Conversely: what is the weakest precondition?
+  - Automatic provers actually check if ``Qstrong and (not Q)`` is satisfiable
 
-* Generally:
-
-   - If for all P such that ``{P}S{Q}``, ``P => WP``, then ``WP`` is the weakest precondition of ``S`` with respect to ``Q``
-
-* All valid preconditions, what do they have in common?
-
-   - That is the weakest precondition.
-
------------------------------------------
-Example Triplets - Weakest Precondition
------------------------------------------
-
-* Same example, consider the postcondition is fixed, what is the weakest precondition (WP)?:
-
-   .. code:: Ada
-
-       {WP} X := X * 2; {X = 10}
-
-* Modified example:
-
-   .. code:: Ada
-
-       {WP} X := X * 2; {5 < X and X < 20}
-
-   - Some valid preconditions?
-   - What is the weakest precondition?
-
-.. container:: speakernote
-
-   Weakest precondition for first example is X = 5.
-   Valid preconditions for second example: X = 3, X = 4, ..., X = 9
-   Is X = 10 a valid precondition? No
-   WP second example: `2 < X` and `X < 10`
-
--------------------------------
-Weakest Precondition Calculus
--------------------------------
-
-* A calculus for "backward reasoning"
-* Predicate transformer to ``WP``
-* Function ``WP`` that takes a program statement ``S`` and a postcondition ``Q`` and returns a precondition
-* Read ``WP(S,Q)`` as "the weakest precondition of ``S`` with respect to ``Q``"
-
--------------------------------
-Weakest Precondition Calculus
--------------------------------
-
-* How is WP calculus used for program verification?
-* Observation: ``{P}S{Q}`` iff ``(P => WP (S, Q))``
-
-   - For a sequence of statements ``S``, for example a subprogram, want to prove ``{P}S{Q}``.
-   - We may prove ``P => WP (S, Q)`` instead.
-
-* Verification is reduced to the calculation of weakest preconditions!
-
-======================
-Modular Verification
-======================
+* Similar notion of weakest precondition computation
 
 ----------------------
 Modular Verification
 ----------------------
 
 .. image:: call_cycle-pre_and_post_condition.png
+
+=========================
+Combining Proof and Test
+=========================
 
 ---------------------------
 Comparison Test and Proof
@@ -167,18 +146,14 @@ Comparison Test and Proof
    - Presence/Absence of Bugs
    - State-of-the-art, State-of-practice
 
-* Both techniques flawed
+* Both techniques imperfect
 * Both techniques can be expensive
 * Industry standards
 
    - DO-178C, DO-333
 
-* Another problem - program not all SPARK, not even all Ada - some COTS, Libraries, C, ???  What can you do?
+* Another problem - program not all SPARK, not even all Ada - some COTS, Libraries, C???  What can you do?
 * How to combine?
-
-=========================
-Combining Proof and Test
-=========================
 
 ---------------------------
 Combining Proof and Test
@@ -194,6 +169,7 @@ Proof and Test - Hybrid Verification
 --------------------------------------
 
 * Scenario: **tested** procedure calls proved procedure
+  - Core proved module in SPARK
 * Still modular verification
 * Responsibilities!
 
@@ -204,6 +180,7 @@ Proof and Test - Hybrid Verification
 --------------------------------------
 
 * Scenario: **proved** procedure calls tested procedure
+  - Application proved in SPARK wrt SPARK API
 * Still modular verification
 * Responsibilities!
 
@@ -228,13 +205,13 @@ Combining Proof and Test - Cost Benefit
 Combining Proof and Test
 --------------------------
 
-* In Ada the proof contracts are executable - they can be checked at run time and an error is raised when a check fails
+* Contracts are executable - they can be checked at runtime and an error is raised when a check fails
 * Compilation options to support integration of test and proof
 
    - Assertion checks enabled via :command:`-gnata` compiler switch
    - Aliasing can be checked at run time with the :command:`-gnateA` switch.
    - Initialization and Validity of Data can be checked at run time with the :command:`-gnateV` and :command:`-gnatVa` switches.
-   - See the *SPARK Toolset User's Guide* for more details.
+   - See the *SPARK User's Guide* for more details.
 
 -----------------------------------------
 :toolname:`GNATprove` Tool Architecture

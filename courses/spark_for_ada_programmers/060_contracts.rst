@@ -376,6 +376,10 @@ More Facilities for Writing Contracts
 
    - quantified expressions
 
+   - declare expressions
+
+   - etc.
+
 .. container:: speakernote
 
    Some of these we'll talk about now, some postponed to later during the day.

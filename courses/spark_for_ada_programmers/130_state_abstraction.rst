@@ -280,8 +280,7 @@ Pre and Postconditions
 
 * The `Refined_Post` aspect can be used to strengthen a postcondition
 
-   - Like with expression functions, refined postconditions will only be available for internal calls
-
+   - Refined postconditions will only be available for internal calls
    - It must be at least as strong as the subprogram's postcondition
    - There are no counterparts for preconditions
 

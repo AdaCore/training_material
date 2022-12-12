@@ -76,8 +76,7 @@ RTE Freedom - A Simple Example
 
    .. code:: Ada
 
-      procedure Increment (X: in out Integer)
-      is
+      procedure Increment (X : in out Integer) is
       begin
          X := X + 1;
       end Increment;
@@ -114,8 +113,7 @@ RTE Freedom - An Example
 
    .. code:: Ada
 
-      procedure Add2 (X : in out Integer)
-      is
+      procedure Add2 (X : in out Integer) is
       begin
          Increment (X);
          Increment (X);
@@ -198,14 +196,14 @@ Local Subprograms Without Contracts
  end Increment;
 
  procedure Add2 (X : in out Integer)
-    with Pre => (X <= Integer'Last - 2)
+    with Pre => X <= Integer'Last - 2
  is
  begin
     Increment (X);
     Increment (X);
  end Add2;
 
-* In fact, a local subprogram without a contract, will be inlined for proof. :toolname:`GNATprove` will then prove it!
+* In fact, a local subprogram without a contract will be inlined for proof. :toolname:`GNATprove` will then prove it!
 
    - Default behavior
 
@@ -242,10 +240,10 @@ Semantics of Contracts - Overflows
    .. code:: Ada
 
       procedure P (X, Y : in Positive; Z : out Positive)
-         with Post => (if X + Y <= Positive'Last
-                          then Z = X + Y
-                       else
-                          then Z = Positive'Last);
+         with Post =>
+           (if X + Y <= Positive'Last
+            then Z = X + Y
+            else Z = Positive'Last);
 
    - ``medium: overflow check might fail``
 
@@ -289,7 +287,8 @@ Big Integer Standard Library
 ------------------------------
 
 * Overflow checking modes only applicable to expressions
-* Alternative is to use ``Ada.Numerics.Big_Numbers.Big_Integers``
+* Alternative is to use ``SPARK.Big_Integers`` or
+  ``Ada.Numerics.Big_Numbers.Big_Integers``
 
    - Conversions from/to signed and modular integers
    - Specially recognized by :toolname:`GNATprove`
@@ -299,10 +298,10 @@ Big Integer Standard Library
       function Big (Arg : Integer) return Big_Integer is
         (To_Big_Integer (Arg)) with Ghost;
       procedure P (X, Y : in Positive; Z : out Positive)
-         with Post => (if Big (X) + Big (Y) <= Big (Positive'Last)
-                          then Z = X + Y
-                       else
-                          then Z = Positive'Last);
+         with Post =>
+           (if Big (X) + Big (Y) <= Big (Positive'Last)
+            then Z = X + Y
+            else Z = Positive'Last);
 
 ========
 Lab

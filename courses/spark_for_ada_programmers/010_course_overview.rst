@@ -12,12 +12,13 @@ Motivating Example
 --------------------
 
 * Consider these lines of code from the original release of the Tokeneer code
+  (demonstrator for the NSA)
 
    .. code:: Ada
 
       if Success and then
-          (RawDuration * 10 <= Integer(DurationT'Last) and
-           RawDuration * 10 >= Integer(DurationT'First))
+        (RawDuration * 10 <= Integer(DurationT'Last) and
+         RawDuration * 10 >= Integer(DurationT'First))
       then
          Value := DurationT(RawDuration * 10);
       else
