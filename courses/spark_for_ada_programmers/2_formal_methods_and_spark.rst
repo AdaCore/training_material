@@ -265,20 +265,22 @@ SPARK
 SPARK is a Formal Method
 --------------------------
 
-* Soundness is the most important requirement (no missing alarms)
+* **Soundness** is the most important requirement (no missing alarms)
 
-* Analysis is a combination of techniques
+* Analysis is a **combination of techniques**
 
   - :dfn:`Flow analysis` is a simple form of modular abstract interpretation
 
   - :dfn:`Proof` is modular deductive verification
 
-* Inside proof, abstract interpretation is used to compute bounds on arithmetic
-  expressions based on type bounds information
+* Inside proof, abstract interpretation is used to compute **bounds** on arithmetic
+  expressions
 
-  - If :code:`X` is of type :code:`Natural`
+  - Based on type bounds information
 
-  - Then `Integer'Last - X` cannot overflow
+  - E.g if :code:`X` is of type :ada:`Natural`
+
+  - Then :ada:`Integer'Last - X` cannot overflow
 
 ----------------------------
 SPARK is a Language Subset
@@ -286,13 +288,17 @@ SPARK is a Language Subset
 
 * Static analysis is very tied to the programming language
 
-  - Strong typing simplifies analysis
+  - Strong typing **simplifies** analysis
 
-  - Some language features improve analysis precision (e.g. first-class arrays
-    with bounds available like :code:`Table'First` and :code:`Table'Last`)
+  - Some language features improve analysis precision
 
-  - Some language features degrade analysis precision (e.g. arbitrary aliasing
-    of pointers, dispatching calls in OO programming)
+    + e.g. first-class arrays with bounds available like
+      :code:`Table'First` and :code:`Table'Last`
+
+  - Some language features degrade analysis precision
+
+    + e.g. arbitrary aliasing of pointers, dispatching calls in
+      OO programming
 
 * SPARK hits the sweet spot for proof
 
