@@ -137,17 +137,15 @@ Goals of Static Analysis of Programs
 * **Precision** is better with SymExe/BMC and Proof
 
   - Automatic provers are **more powerful** than abstract domains
+  - SymExe/BMC explore infinitely many traces
 
-  - AbsInt may cause false alarms (aka :dfn:`false positives`)
+    + Limit the exploration to a subset of traces
 
 * **Soundness** is better with AbsInt and Proof
 
   - Soundness is not missing alarms (aka :dfn:`false negatives`)
-
+  - AbsInt may cause false alarms (aka :dfn:`false positives`)
   - Sound handing of loops and recursion in AbsInt and Proof
-
-  - SymExe/BMC incur the cost of exploring infinitely many traces, thus
-    requiring to limit the exploration to a subset of traces
 
 ---------------------------------------------
 Capabilities of Static Analysis of Programs
