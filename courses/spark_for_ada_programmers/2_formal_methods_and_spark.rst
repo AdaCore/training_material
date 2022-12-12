@@ -185,7 +185,7 @@ Comparing Techniques on a Simple Code
       end loop;
    end;
 
-* Access :code:`T(Idx)` is safe iff :code:`Idx in Table'Range`
+* :code:`T(Idx)` is safe |equivalent| :code:`Idx in Table'Range`
 
 * As a result of calling :code:`Reset`:
 
