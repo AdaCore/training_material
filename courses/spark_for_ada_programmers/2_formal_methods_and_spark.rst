@@ -74,7 +74,6 @@ Developing High-Integrity Software
 * Need to comply with a certification regime
 
   - Process-based or argument-based
-
   - Independently assessed (avionics, railway) or not (automotive)
 
 ================
