@@ -55,11 +55,21 @@ Developing High-Integrity Software
 
 * Software quality obtained by a combination of
 
-  - Process: specifications, reviews, testing, audits, independence,
-    expertise...
+  - Process
 
-  - Arguments: system architecture, use cases, programming language, code
-    analysis...
+        + Specifications
+        + Reviews
+        + Testing
+        + Others: audits, independence, expertise...
+
+  - Arguments
+
+        + System architecture
+        + Use cases
+        + Programming language
+        + Static code analysis
+        + Dynamic code analysis
+        + etc...
 
 * Need to comply with a certification regime
 
