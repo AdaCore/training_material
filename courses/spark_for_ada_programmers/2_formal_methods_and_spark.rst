@@ -98,13 +98,11 @@ Formal Methods
   - Are automated and integrated in existing processes
 
   - Provide value for certification
+  - Explicitely encouraged  by some standards
 
-    - Some certification standards explicitly encourage the use of formal
-      methods
-
-        + Railway (EN 50128)
-        + Avionics (DO-178C + DO-333 Formal Methods Supplement)
-        + Security (Common Criteria)
+     + Railway (EN 50128)
+     + Avionics (DO-178C + DO-333 Formal Methods Supplement)
+     + Security (Common Criteria)
 
 -----------------------------
 Static Analysis of Programs
