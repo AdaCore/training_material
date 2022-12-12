@@ -366,23 +366,23 @@ Levels of Software Assurance
 Objectives of Using SPARK
 ---------------------------
 
-* Safe coding standard for critical software
+* **Safe** coding standard for critical software
 
-  - Typically achieved at Stone or Bronze levels
+  - Typically achieved at **Stone or Bronze** levels
 
-* Prove absence of run-time errors (AoRTE)
+* Prove absence of run-time errors (:dfn:`AoRTE`)
 
-  - Achieved at Silver level
+  - Achieved at **Silver** level
 
-* Prove correct integration between components
+* Prove correct **integration** between components
 
   - Particular case is correct API usage
 
-* Prove functional correctness
+* Prove **functional correctness**
 
 * Ensure correct behavior of parameterized software
 
-* Safe optimization of run-time checks
+* Safe **optimization** of run-time checks
 
 * Address data and control coupling
 
