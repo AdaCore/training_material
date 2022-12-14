@@ -31,9 +31,9 @@ Absence of Runtime Errors
 
   + The objective is to get no messages when running :toolname:`GNATprove`.
 
----------------------------
-Functional Specifications
----------------------------
+---------------------------------
+Functional Specifications (1/2)
+---------------------------------
 
 - Add a postcondition to procedure :code:`Swap_The_Table` stating that the
   values at indexes :code:`I` and :code:`J` have been exchanged.
@@ -56,6 +56,10 @@ Functional Specifications
   (depending on the value of the discriminant) has been incremented
 
   + Hint: you may have to use function :code:`Value_Rec`
+
+---------------------------------
+Functional Specifications (2/2)
+---------------------------------
 
 - Add similarly a postcondition to procedures :code:`Init_The_Rec` and
   :code:`Init_Rec` stating that the value of component :code:`A` or :code:`B`
