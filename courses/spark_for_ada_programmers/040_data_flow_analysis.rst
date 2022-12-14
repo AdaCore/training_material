@@ -633,9 +633,9 @@ Flow Analysis Using :toolname:`GNATprove`
 
     .. image:: spark_menu-examine_file.jpeg
 
-========
+=====
 Lab
-========
+=====
 
 .. include:: labs/040_data_flow_analysis.lab.rst
 

@@ -445,6 +445,7 @@ Dealing with False Alarms
 Lab
 =====
 
+.. include:: labs/5_flow_analysis.lab.rst
 
 =========
 Summary

@@ -593,6 +593,7 @@ Cost/Benefit Analysis
 Lab
 =====
 
+.. include:: labs/6_proof.lab.rst
 
 =========
 Summary
