@@ -29,6 +29,8 @@ Absence of Runtime Errors
 
 - Add preconditions to avoid runtime errors in subprograms
 
+  + Hint: use function :code:`Value_Rec` for procedures :code:`Bump_Rec` and
+    :code:`Bump_The_Rec`
   + The objective is to get no messages when running :toolname:`GNATprove`.
 
 ---------------------------------
@@ -55,7 +57,7 @@ Functional Specifications (1/2)
   :code:`Bump_Rec` stating that the value of component :code:`A` or :code:`B`
   (depending on the value of the discriminant) has been incremented
 
-  + Hint: you may have to use function :code:`Value_Rec`
+  + Hint: use again function :code:`Value_Rec`
 
 ---------------------------------
 Functional Specifications (2/2)
