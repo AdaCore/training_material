@@ -3,6 +3,8 @@
 4_spark_tools.rst
 5_flow_analysis.rst
 6_proof.rst
+7_specification_language.rst
+8_subprogram_contracts.rst
 010_course_overview.rst
 020_formal_methods_and_spark.rst
 030_spark_language_and_tools.rst
