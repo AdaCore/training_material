@@ -460,9 +460,7 @@ Flow Analysis
 * Flow analysis detects:
 
   - Interferences between parameters and global variables
-
   - Read of uninitialized variable
-
   - Violation of data dependency contracts (:code:`Global`)
 
 * Flow analysis allows to reach Bronze level
@@ -470,7 +468,5 @@ Flow Analysis
 * Flow analysis is imprecise
 
   - On value-dependent flows
-
   - On array assignment to index/slice
-
   - During generation of data dependency contracts
