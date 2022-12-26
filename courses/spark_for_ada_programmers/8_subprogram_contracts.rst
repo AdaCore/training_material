@@ -124,9 +124,9 @@ Frame Condition - Records
 
 * In both cases, value of :code:`Y` is known to be preserved
 
----------------------------
+--------------------------
 Frame Condition - Arrays
----------------------------
+--------------------------
 
 * Use universal quantification to denote components preserved
 
@@ -223,9 +223,9 @@ Frame Condition - Private Types
      procedure Set_X (P : in out Pair; Value : Integer)
        with Post => P.Model = (P.Model'Old with delta X => Value);
 
-----------------
-Attribute 'Old
-----------------
+-----------------------
+Attribute :code:`Old`
+-----------------------
 
 * Dynamic semantics is to make a copy at subprogram entry
 
@@ -247,19 +247,19 @@ Attribute 'Old
          with Post =>
            (if J in A'Range then V = A(J)'Old); -- Illegal
 
-  - Use `pragma Unevaluated_Use_Of_Old (Allow)` to allow
+  - Use :code:`pragma Unevaluated_Use_Of_Old (Allow)` to allow
 
     + :toolname:`GNATprove` checks that this is safe
 
-----------------------------------
-Special Cases for Attribute 'Old
-----------------------------------
+-----------------------------------------
+Special Cases for Attribute :code:`Old`
+-----------------------------------------
 
-* Function call in the prefix of `'Old` is evaluated at subprogram entry
+* Function call in the prefix of :code:`Old` is evaluated at subprogram entry
 
   - Value of globals is the one at subprogram entry
 
-  - Not the same as calling the function on parameters with `'Old`
+  - Not the same as calling the function on parameters with :code:`Old`
 
     .. code:: Ada
 
@@ -492,6 +492,8 @@ What's wrong with the following code?
 * Function :code:`Half` does not terminate
 
 * :toolname:`GNATprove` proves the postcondition of :code:`Half`!
+
+  - Because that program point is unreachable (dead code)
 
 * :toolname:`GNATprove` does not generate an axiom for :code:`Half`
 
