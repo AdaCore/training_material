@@ -1,0 +1,19 @@
+with "sparklib";
+
+project Lab is
+
+   for Object_Dir use "obj";
+
+   package Compiler is
+      for Default_Switches ("Ada") use ("-g", "-O0", "-gnata", "-gnat2022", "-gnatX");
+   end Compiler;
+
+   package Builder is
+      for Global_Configuration_Pragmas use "config.adc";
+   end Builder;
+
+   package Prove is
+      for Proof_Switches ("Ada") use ("-j0");
+   end Prove;
+
+end Lab;

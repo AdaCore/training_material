@@ -231,8 +231,6 @@ Attribute :code:`Old`
 
   - Forbidden on limited types
 
-  - Restricted in SPARK for access types (due to ownership policy)
-
 * Evaluation for the copy may raise runtime errors
 
   - Not allowed by default inside *potentially unevaluated expressions*
@@ -255,6 +253,10 @@ Attribute :code:`Old`
 Special Cases for Attribute :code:`Old`
 -----------------------------------------
 
+* Simple component access :code:`X.C'Old` equivalent to :code:`X'Old.C`
+
+  - Although one may be more efficient at runtime
+
 * Function call in the prefix of :code:`Old` is evaluated at subprogram entry
 
   - Value of globals is the one at subprogram entry
@@ -270,16 +272,6 @@ Special Cases for Attribute :code:`Old`
          with Post =>
            F (X'Old) = 0 and then
            F (X)'Old = 0;
-
-* Prefix of access type needs to be a call to an *allocating function*
-
-  .. code:: Ada
-
-     function Copy (X : Ptr) return Ptr
-       with Post => Copy'Result.all = Ptr.all;
-
-     procedure P (X : in out Ptr)
-       with Post => Property (Copy (X)'Old);
 
 ====================
 Contracts by Cases

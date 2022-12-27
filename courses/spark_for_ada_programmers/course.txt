@@ -8,6 +8,7 @@
 9_type_contracts.rst
 10_advanced_proof.rst
 11_advanced_flow_analysis.rst
+12_pointer_programs.rst
 010_course_overview.rst
 020_formal_methods_and_spark.rst
 030_spark_language_and_tools.rst
