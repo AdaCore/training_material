@@ -589,6 +589,37 @@ Cost/Benefit Analysis
   - Specifications can be larger than code
   - Annotations typically much larger than code (:math:`\times` 10)
 
+---------------------------
+Dealing with False Alarms
+---------------------------
+
+* Check messages can be justified with pragma :code:`Annotate`
+
+  .. code:: Ada
+
+     pragma Annotate (GNATprove, Category, Pattern, Reason);
+
+  - :code:`GNATprove` is a fixed identifier
+  - :code:`Category` is one of :code:`False_Positive` or :code:`Intentional`
+
+    + :code:`False_Positive`: check cannot fail
+    + :code:`Intentional`: check can fail but is not a bug
+
+  - :code:`Pattern` is a substring of the check message
+
+    + Asterisks :code:`*` match zero or more characters in the message
+
+  - :code:`Reason` is a string literal for reviews
+
+    + Reason is repeated in analysis summary file :file:`gnatprove.out`
+
+* Justification inserted immediately after the check message location
+
+  - Or at the beginning of a scope
+
+    + Applies to all the scope
+    + Generally used when not suitable after the check message location
+
 =====
 Lab
 =====

@@ -301,6 +301,31 @@ Proof
 
   - Warnings can be inspected and silenced
 
+------------------------
+Categories of Messages
+------------------------
+
+* :dfn:`Error messages` start with :command:`error:`
+
+  - :toolname:`GNATprove` aborts analysis and exits with error status
+
+* :dfn:`Check messages` start with severity :command:`high:`,
+  :command:`medium:` or :command:`low:`
+
+  - With switch :command:`--checks-as-errors`, :toolname:`GNATprove` exits with
+    error status
+
+* :dfn:`Warnings` start with :command:`warning:`
+
+  - With switch :command:`--warnings=error`, :toolname:`GNATprove` exits with
+    error status
+  - Some warnings are guaranteed to be issued
+
+* :dfn:`Information messages` start with :command:`info:`
+
+  - Report proved checks with switch :command:`--report=all`
+  - Report information about analysis with switch :command:`--info`
+
 ----------------------------------------
 :toolname:`GNATprove` Output for Users
 ----------------------------------------
