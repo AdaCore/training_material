@@ -1,3 +1,8 @@
+..
+
+    This file is auto-generated from the quiz template, it should not be modified
+    directly. Read README.md for more information.
+
 .. code:: Ada
 
     type T is limited record

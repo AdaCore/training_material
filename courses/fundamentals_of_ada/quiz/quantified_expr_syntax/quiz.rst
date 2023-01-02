@@ -1,3 +1,8 @@
+..
+
+    This file is auto-generated from the quiz template, it should not be modified
+    directly. Read README.md for more information.
+
 Which declaration(s) is(are) legal?
 
 A. | :answermono:`function F (S : String) return Boolean is`
