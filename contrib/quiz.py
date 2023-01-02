@@ -267,7 +267,9 @@ if __name__ == "__main__":
 
     pout("..")
     pout()
-    pout("    This file is auto-generated from the quiz template, it should not be modified")
+    pout(
+        "    This file is auto-generated from the quiz template, it should not be modified"
+    )
     pout("    directly. Read README.md for more information.")
     pout()
 
