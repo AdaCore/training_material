@@ -265,6 +265,12 @@ if __name__ == "__main__":
 
     quiz = Quiz(args.input_file)
 
+    pout("..")
+    pout()
+    pout("    This file is auto-generated from the quiz template, it should not be modified")
+    pout("    directly. Read README.md for more information.")
+    pout()
+
     if args.add_title:
         pout("------")
         pout("Quiz")
