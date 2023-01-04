@@ -1,3 +1,4 @@
+1_course_overview.rst
 2_formal_methods_and_spark.rst
 3_spark_language.rst
 4_spark_tools.rst
