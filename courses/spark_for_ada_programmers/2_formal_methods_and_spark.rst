@@ -108,19 +108,23 @@ Formal Methods
 Static Analysis of Programs
 -----------------------------
 
-* :dfn:`Abstract interpretation` (AbsInt) analyzes an abstraction of the program
+* :dfn:`Abstract interpretation` (AbsInt)
 
-* :dfn:`Symbolic execution` and :dfn:`bounded model checking` (SymExe/BMC) analyze
-  possible traces of execution of the program
+  - AbsInt analyzes an abstraction of the program
 
+* :dfn:`Symbolic execution` (SymExe) and :dfn:`bounded model checking` (BMC)
+
+  - Both analyze possible traces of execution of the program
   - SymExe explores traces **one by one**
-
   - BMC explores traces **all at once**
 
-* :dfn:`Deductive verification` (Proof) separately analyzes individual functions
-  against their specification
+* :dfn:`Deductive verification` (Proof)
 
-* Static analysis is a formal method when it is :dfn:`sound` (no missing alarms)
+  - Proof analyzes functions against their specification
+
+* Static analysis is a formal method when it is :dfn:`sound`
+
+  - Soundness means no missing alarms
 
 * All techniques have different costs and benefits
 
@@ -131,19 +135,19 @@ Goals of Static Analysis of Programs
 * **Automation** is better with AbsInt and SymExe/BMC
 
   - Proof incurs the cost of writing specification of functions
-
+|
 * **Precision** is better with SymExe/BMC and Proof
 
   - Automatic provers are **more powerful** than abstract domains
   - SymExe/BMC explore infinitely many traces
 
     + Limit the exploration to a subset of traces
-
+|
 * **Soundness** is better with AbsInt and Proof
 
   - Soundness is not missing alarms (aka :dfn:`false negatives`)
   - AbsInt may cause false alarms (aka :dfn:`false positives`)
-  - Sound handing of loops and recursion in AbsInt and Proof
+  - Sound handling of loops and recursion in AbsInt and Proof
 
 ---------------------------------------------
 Capabilities of Static Analysis of Programs
@@ -151,21 +155,22 @@ Capabilities of Static Analysis of Programs
 
 * **Modularity** is the ability to analyze a partial program
 
-  - Most programs are partial: libraries themselves, use of external libraries,
-    program during development
+  - Most programs are partial
+
+    + Libraries themselves
+    + Use of external libraries
+    + Program during development
 
   - Proof is inherently modular
-
+|
 * **Speed** of the analysis drives usage
 
   - Unsound analysis can be much faster than sound one
-
   - For sound analysis, modular analysis is faster
-
+|
 * **Usage** depends on capabilities
 
   - Fast analysis with no false alarms is better for :dfn:`bug-finding`
-
   - Modular analysis with no missing alarms is better for :dfn:`formal verification`
 
 ---------------------------------------
@@ -188,7 +193,6 @@ Comparing Techniques on a Simple Code
 * As a result of calling :code:`Reset`:
 
   - Array :code:`T` is initialized between indexes :code:`A` and :code:`B`
-
   - Array :code:`T` has value zero between indexes :code:`A` and :code:`B`
 
 -------------------------
@@ -198,7 +202,7 @@ Abstract Interpretation
 * :code:`Reset` is analyzed in the context of each of its calls
 
   - If the values of :code:`Table`, :code:`A`, :code:`B` are precise enough,
-    AbsInt can deduce that :code:`Idx in Table'Range`
+    AbsInt can deduce that :ada:`Idx in Table'Range`
 
   - Otherwise, an alarm is emitted (for sound analysis)
 
@@ -219,7 +223,7 @@ Symbolic Execution and Bounded Model Checking
 * :code:`Reset` is analyzed in the context of **program traces**
 
   - If the values of :code:`A` and :code:`B` are *close enough*, SymExe/BMC can
-    analyze all loop iterations and deduce that :code:`Idx in Table'Range`
+    analyze all loop iterations and deduce that :ada:`Idx in Table'Range`
 
   - Otherwise, an alarm is emitted (for sound analysis)
 
@@ -237,11 +241,9 @@ Deductive Verification
 
 * :code:`Reset` is analyzed in the context of a :dfn:`precondition`
 
-  - Proof checks if the precondition entails :code:`Idx in Table'Range`
-
+  - Predicate defined by the user which restricts the calling context
+  - Proof checks if the precondition entails :ada:`Idx in Table'Range`
   - Otherwise, an alarm is emitted
-
-* A precondition must be given to restrict the calling context
 
 * Initialization and value of individual array cells is tracked
 
@@ -266,20 +268,17 @@ SPARK is a Formal Method
 --------------------------
 
 * **Soundness** is the most important requirement (no missing alarms)
-
+|
 * Analysis is a **combination of techniques**
 
   - :dfn:`Flow analysis` is a simple form of modular abstract interpretation
-
   - :dfn:`Proof` is modular deductive verification
-
+|
 * Inside proof, abstract interpretation is used to compute **bounds** on arithmetic
   expressions
 
   - Based on type bounds information
-
-  - E.g if :code:`X` is of type :ada:`Natural`
-
+  - e.g if :code:`X` is of type :ada:`Natural`
   - Then :ada:`Integer'Last - X` cannot overflow
 
 ----------------------------
@@ -292,13 +291,13 @@ SPARK is a Language Subset
 
   - Some language features **improve** analysis precision
 
-    + e.g. first-class arrays with bounds available like
+    + e.g. first-class arrays with bounds
       :code:`Table'First` and :code:`Table'Last`
 
   - Some language features **degrade** analysis precision
 
     + e.g. arbitrary aliasing of pointers, dispatching calls in
-      OO programming
+      OOP
 
 * SPARK hits the **sweet spot** for proof
 
@@ -489,17 +488,14 @@ Formal Methods and SPARK
 * Development of large, complex software is **difficult**
 
   - Especially so for high-integrity software
-
+|
 * Formal methods **can** be used industrially
 
   - During development and verification
-
   - To address objectives of certification
-
   - They must be sound (no missing alarm) in general
-
+|
 * SPARK is an **industrially** usable formal method
 
   - Based on flow analysis and proof
-
   - At various levels of software assurance

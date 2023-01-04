@@ -110,7 +110,7 @@ Formal Verification Goals
   - Deep (tells you something useful)
   - Sound (with no false negatives)
   - Fast (tells you now)
-  - Complete (with as few false alarms/positives as possible)
+  - Precise (with as few false alarms/positives as possible)
   - Modular (analyzes modules in parallel)
   - Constructive (works on incomplete programs)
 

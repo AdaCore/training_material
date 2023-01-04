@@ -36,6 +36,7 @@ Design Goals for SPARK
   - Precise - it has few false alarms
   - Fast - it can run as part of development
   - Modular - it does not require the complete program
+  - Constructive - it works on incomplete programs
 
 * Combine tool automation and user interaction
 
@@ -117,9 +118,7 @@ Categories of Types in SPARK
 
 .. image:: types_tree.png
 
-.. container:: speakernote
-
-   SPARK supports all the types in Ada, but with restrictions.
+SPARK supports all the types in Ada, with some restrictions
 
 ---------------------
 Assertions in SPARK
@@ -236,7 +235,7 @@ Support for Concurrency
 
 * This is also a benefit for programs on a single core!
 
-  - Concurrency :math:`neq` parallelism
+  - Concurrency :math:`\neq` parallelism
 
 =======================
 Language Restrictions
@@ -308,7 +307,6 @@ Side-Effects and Ambiguity
       Var := Var + 1
       return Var;
    end Fun;
-
    pragma Assert (Fun = Var); -- Ambiguous evaluation
 
 * Same with :code:`Fun` writing to an :code:`out` or :code:`in out` parameter
@@ -373,7 +371,6 @@ Interferences and Ambiguity (1/2)
       A := 0;
       B := 1;
    end Proc;
-
    Proc (Var, Var); -- Ambiguous call
 
 * Actually, Ada forbids this simple case and GNAT rejects it
@@ -402,7 +399,6 @@ Interferences and Ambiguity (2/2)
       A := (Value => 1);
       pragma Assert (Var = A); -- Ambiguous
    end Proc;
-
    Proc (Var);
 
 * Ada cannot forbid and GNAT cannot detect this case
