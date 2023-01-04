@@ -94,15 +94,15 @@ What is the problem with this postcondition?
 
 .. container:: animate
 
-* The postcondition does not say that the value of :code:`Y` is preserved!
+   * The postcondition does not say that the value of :code:`Y` is preserved!
 
-* As a result, nothing is known about :code:`Y` after calling :code:`Set_X`
+   * As a result, nothing is known about :code:`Y` after calling :code:`Set_X`
 
-  .. code:: ada
+     .. code:: ada
 
-     P : Pair := Pair'(X => 1, Y => 2);
-     P.Set_X (42);
-     pragma Assert (P.Y = 2); -- unproved
+        P : Pair := Pair'(X => 1, Y => 2);
+        P.Set_X (42);
+        pragma Assert (P.Y = 2); -- unproved
 
 ---------------------------
 Frame Condition - Records
@@ -422,15 +422,15 @@ What's wrong with the following contract?
 
 .. container:: animate
 
-* The postcondition is false when :code:`Value` is odd
+   * The postcondition is false when :code:`Value` is odd
 
-* :toolname:`GNATprove` generates an inconsistent axiom for :code:`Half`
+   * :toolname:`GNATprove` generates an inconsistent axiom for :code:`Half`
 
-  - It says that any integer is equal to twice another integer
-  - This can be used by provers to deduce :code:`False`
-  - Anything can be proved from :code:`False`
+     - It says that any integer is equal to twice another integer
+     - This can be used by provers to deduce :code:`False`
+     - Anything can be proved from :code:`False`
 
-    + As if the code was dead code
+       + As if the code was dead code
 
 ----------------------
 Unfeasible Contracts
@@ -481,17 +481,17 @@ What's wrong with the following code?
 
 .. container:: animate
 
-* Function :code:`Half` does not terminate
+   * Function :code:`Half` does not terminate
 
-* :toolname:`GNATprove` proves the postcondition of :code:`Half`!
+   * :toolname:`GNATprove` proves the postcondition of :code:`Half`!
 
-  - Because that program point is unreachable (dead code)
+     - Because that program point is unreachable (dead code)
 
-* :toolname:`GNATprove` does not generate an axiom for :code:`Half`
+   * :toolname:`GNATprove` does not generate an axiom for :code:`Half`
 
-  - Because function may not terminate
-  - :command:`info: function contract not available for proof`
-  - Info message issued when using switch :command:`--info`
+     - Because function may not terminate
+     - :command:`info: function contract not available for proof`
+     - Info message issued when using switch :command:`--info`
 
 -----------------------
 Terminating Functions

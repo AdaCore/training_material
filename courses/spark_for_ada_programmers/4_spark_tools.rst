@@ -276,6 +276,10 @@ Flow Analysis
 
 * Corresponds to :menu:`Examine` menus in IDEs
 
+* :toolname:`GNATprove` applies flow analysis to each subprogram separately
+
+  - Notion of dependency contracts summarize effects of call
+
 * Outputs messages:
 
   - Error messages need to be fixed
@@ -294,6 +298,10 @@ Proof
   default)
 
 * Corresponds to :menu:`Prove` menus in IDEs
+
+* :toolname:`GNATprove` applies proof to each subprogram separately
+
+  - Notion of functional contracts summarize effects of call
 
 * Outputs messages:
 
