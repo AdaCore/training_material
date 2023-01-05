@@ -234,8 +234,6 @@ Violations of the Data Initialization Policy
 
     * Parameter only partially written should be of mode :ada:`in out`
 
-    |
-
     .. code:: ada
 
        procedure Cond_Init
@@ -251,8 +249,6 @@ Violations of the Data Initialization Policy
  .. container:: column
 
     * Global variable only partially written should be of mode :ada:`In_Out`
-
-    |
 
     .. code:: ada
 

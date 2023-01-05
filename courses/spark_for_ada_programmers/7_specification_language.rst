@@ -106,8 +106,7 @@ If Expressions
 
 * Frequent use with Boolean type in specifications
 
-  - :ada:`(if Cond then Property)` is shortcut for :ada:`(if Cond then
-    Property else True)`
+  - :ada:`(if Cond then Property)` is shortcut for :ada:`(if Cond then Property else True)`
   - This expresses a logical implication :ada:`Cond` |rightarrow| :ada:`Property`
   - Also equivalent to :ada:`not Cond or else Property`
 
