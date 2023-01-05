@@ -32,7 +32,7 @@ Simple Expressions
 * Simple specifications use simple expressions
 
   - Arithmetic operations and comparisons
-  - Membership tests :code:`X in A .. B`
+  - Membership tests :ada:`X in A .. B`
 
     .. code:: ada
 
@@ -46,8 +46,8 @@ Simple Expressions
 
   - Conjunctions and disjunctions
 
-    + Lazy operators :code:`and then`/:code:`or else` preferred in general to
-      :code:`and`/:code:`or`
+    + Lazy operators :ada:`and then`/:ada:`or else` preferred in general to
+      :ada:`and`/:ada:`or`
 
 * But that's not sufficient to easily write all specifications
 
@@ -93,11 +93,11 @@ Conditional Expressions
 If Expressions
 ----------------
 
-* :code:`(if Cond then A else B)` evaluates :code:`A` or :code:`B` depending on
-  the value of :code:`Cond`
+* :ada:`(if Cond then A else B)` evaluates :ada:`A` or :ada:`B` depending on
+  the value of :ada:`Cond`
 
   - Note: always in parentheses!
-  - :code:`A` and :code:`B` must have the same type
+  - :ada:`A` and :ada:`B` must have the same type
   - ...not always Boolean!
 
     .. code:: Ada
@@ -106,10 +106,10 @@ If Expressions
 
 * Frequent use with Boolean type in specifications
 
-  - :code:`(if Cond then Property)` is shortcut for :code:`(if Cond then
+  - :ada:`(if Cond then Property)` is shortcut for :ada:`(if Cond then
     Property else True)`
-  - This expresses a logical implication :code:`Cond` |rightarrow| :code:`Property`
-  - Also equivalent to :code:`not Cond or else Property`
+  - This expresses a logical implication :ada:`Cond` |rightarrow| :ada:`Property`
+  - Also equivalent to :ada:`not Cond or else Property`
 
 * Complete form has `elsif` parts
 
@@ -132,7 +132,7 @@ Case Expressions
 
 * Same choice expressions as in *case statements*
 
-  - Can also use :code:`others` as last alternative
+  - Can also use :ada:`others` as last alternative
   - Note: always in parentheses!
   - Note: cases are separated by commas
 
@@ -154,7 +154,7 @@ Set Notation
 
      if X in 'A' | 'B' | 'C' then
 
-* Also allowed for opposite membership test: `if X not in ...`
+* Also allowed for opposite membership test: :ada:`if X not in ...`
 
 ========================
 Quantified Expressions
@@ -171,22 +171,19 @@ Range-based Form
      for J in T'Range loop
         T (J) := 0;
      end loop;
-
      pragma Assert (for all J in T'Range => T(J) = 0);
 
-* Universally quantified expression :code:`(for all J in A .. B => Property)`
+* Universally quantified expression :ada:`(for all J in A .. B => Property)`
 
   - Express that property holds for all values in the range
   - True if the range is empty (:math:`\forall` in logic)
-  - At runtime, executed as a loop which stops at first value where the
-    property is not satisfied
+  - At runtime, executed as a loop which stops at first value where the property is not satisfied
 
-* Existentially quantified expression :code:`(for some J in A .. B => Property)`
+* Existentially quantified expression :ada:`(for some J in A .. B => Property)`
 
   - Express that property holds for at least one value in the range
   - False if the range is empty (:math:`\exists` in logic)
-  - At runtime, executed as a loop which stops at first value where the
-    property is satisfied
+  - At runtime, executed as a loop which stops at first value where the property is satisfied
 
 ------------------
 Array-based Form
@@ -199,13 +196,12 @@ Array-based Form
      for E of T loop
         E := 0;
      end loop;
-
      pragma Assert (for all E of T => E = 0);
 
 * Counterparts of range-based forms
 
-  - Universally quantified expression :code:`(for all E of T => Property)`
-  - Existentially quantified expression :code:`(for some E of T => Property)`
+  - Universally quantified expression :ada:`(for all E of T => Property)`
+  - Existentially quantified expression :ada:`(for some E of T => Property)`
 
 * Note: always in parentheses!
 
@@ -213,10 +209,10 @@ Array-based Form
 Range-based vs Array-based Forms
 ----------------------------------
 
-* Array-based form only possible if :code:`Property` does not refer to the
+* Array-based form only possible if :ada:`Property` does not refer to the
   index
 
-* Example: array :code:`T` is sorted
+* Example: array :ada:`T` is sorted
 
   .. code:: ada
 
@@ -235,7 +231,7 @@ Range-based vs Array-based Forms
 General Iteration Mechanism
 -----------------------------
 
-* Based on the :code:`Iterable` aspect on a type
+* Based on the :ada:`Iterable` aspect on a type
 
   - Not the same as the standard Ada mechanism!
   - Simpler mechanism adopted for the SPARK formal containers
@@ -243,20 +239,20 @@ General Iteration Mechanism
   .. code:: ada
 
      type Container is private with
-       (First       => First,
-        Next        => Next,
-        Has_Element => Has_Element
-        Element     => Element);
+       Iterable => (First       => First,
+                    Next        => Next,
+                    Has_Element => Has_Element
+                    Element     => Element);
 
-* :dfn:`Iteration over positions` uses :code:`for .. in` syntax
+* :dfn:`Iteration over positions` uses :ada:`for .. in` syntax
 
-  - Uses cursor type with :code:`First`, :code:`Next` and :code:`Has_Element`
-  - Function :code:`Element` is not required
+  - Uses cursor type with :ada:`First`, :ada:`Next` and :ada:`Has_Element`
+  - Function :ada:`Element` is not required
 
-* :dfn:`Iteration over elements` uses :code:`for .. of` syntax
+* :dfn:`Iteration over elements` uses :ada:`for .. of` syntax
 
   - Based on the previous iteration
-  - Function :code:`Element` retrieves the element for a given cursor
+  - Function :ada:`Element` retrieves the element for a given cursor
 
 ----------------------------------
 Iteration Over Formal Containers
@@ -276,14 +272,14 @@ Iteration Over Formal Containers
 
 * Iteration over positions
 
-  - Access to element through function :code:`Element`
-  - For maps, access to key through function :code:`Key`
+  - Access to element through function :ada:`Element`
+  - For maps, access to key through function :ada:`Key`
 
 * Iteration over elements
 
   - For maps, really an iteration over keys
 
-    - Use another function :code:`Element` to get element
+    - Use another function :ada:`Element` to get element
 
 -------------------------------
 Iteration Over Formal Vectors
@@ -336,7 +332,6 @@ Delta Aggregates
   .. code:: Ada
 
      (Rec with delta Comp1 => Val1, Comp2 => Val2)
-
      (Arr with delta 1 => True, 42 => False)
 
 * Typically used to relate input and output values of parameters
@@ -373,7 +368,7 @@ Iterated Component Associations
 * This is a :dfn:`component association`
 
   - Can be used in any aggregate
-  - Can be mixed with regular component associations :code:`Idx => Val`
+  - Can be mixed with regular component associations :ada:`Idx => Val`
 
 =========================
 Structuring Expressions
@@ -440,6 +435,8 @@ Use of Expression Functions
 -----------------------------
 
 * Expression functions can be declared in a package spec and used in contracts
+
+  - It can even be declared after its use in contracts!
 
 * For queries over objects of a private type
 

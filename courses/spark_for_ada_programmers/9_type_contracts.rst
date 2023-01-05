@@ -44,7 +44,7 @@ Range Constraints
      type Nat is new Integer range 0 .. Integer'Last;
      subtype Nat is Integer range 0 .. Integer'Last;
 
-* Also in standard subtypes :code:`Natural` and :code:`Positive`
+* Also in standard subtypes :ada:`Natural` and :ada:`Positive`
 
 * Range constraint also for enumeration and array types
 
@@ -71,7 +71,6 @@ Discriminant Constraints
   .. code:: ada
 
      type Vector (Capacity : Capacity_Range) is record ...
-
      My_Vec : Vector (10);
 
 * Discriminant without default cannot be changed
@@ -80,8 +79,8 @@ Discriminant Constraints
 
 * Discriminant with default can be changed
 
-  - If variable :code:`Var` declared with unconstrained type
-  - Then :code:`Var'Constrained = False`
+  - If variable :ada:`Var` declared with unconstrained type
+  - Then :ada:`Var'Constrained = False`
 
 -----------------------
 Richer Type Contracts
@@ -93,7 +92,7 @@ Richer Type Contracts
 
 * Predicates and invariants added in Ada 2012
 
-  - Using the aspect syntax for :code:`Predicate` and :code:`Type_Invariant`
+  - Using the aspect syntax for :ada:`Predicate` and :ada:`Type_Invariant`
 
 * Language support goes much beyond contracts-as-a-library
 
@@ -136,8 +135,7 @@ What is a Type Predicate?
 
 * Type predicate can be static or dynamic
 
-  - Aspect :code:`Predicate` can be :code:`Static_Predicate` or
-    :code:`Dynamic_Predicate`
+  - Aspect :ada:`Predicate` can be :ada:`Static_Predicate` or :ada:`Dynamic_Predicate`
 
   .. code::Ada
 
@@ -147,7 +145,7 @@ What is a Type Predicate?
      subtype Even is Integer
        with Dynamic_Predicate => Even mod 2 = 0;
 
-* Like a type constraint, part of membership test :code:`X in T`
+* Like a type constraint, part of membership test :ada:`X in T`
 
 -----------------------------
 Static vs Dynamic Predicate
@@ -169,10 +167,10 @@ Static vs Dynamic Predicate
 
   - Used as choice in *case statement* or *case expression*
 
-* Aspect :code:`Predicate` is GNAT name for:
+* Aspect :ada:`Predicate` is GNAT name for:
 
-  - :code:`Static_Predicate` if predicate is static
-  - :code:`Dynamic_Predicate` otherwise
+  - :ada:`Static_Predicate` if predicate is static
+  - :ada:`Dynamic_Predicate` otherwise
 
 --------------------------
 Useful Static Predicates
@@ -193,9 +191,11 @@ Useful Static Predicates
 
 * Enumeration of scalar values
 
-   type Serial_Baud_Rate is range 110 .. 1200
-     with Static_Predicate =>
-       Serial_Baud_Rate in 110 | 300 | 600 | 1200;
+  .. code:: ada
+
+     type Serial_Baud_Rate is range 110 .. 1200
+       with Static_Predicate =>
+         Serial_Baud_Rate in 110 | 300 | 600 | 1200;
 
 * Enumeration ranges with holes
 
@@ -267,7 +267,7 @@ Useful Dynamic Predicates (1/2)
 Restrictions in Usage
 -----------------------
 
-* Type with predicate :code:`T` now allowed for some usages
+* Type with predicate :ada:`T` not allowed for some usages
 
   - As an array index
 
@@ -281,11 +281,11 @@ Restrictions in Usage
 
        Var := Param(T); -- Illegal
 
-  - As prefix of attributes :code:`Range`, :code:`First`, and :code:`Last`
+  - As prefix of attributes :ada:`Range`, :ada:`First`, and :ada:`Last`
 
     + Because they reflect only range constraints, not predicates
 
-    + Use instead attributes :code:`First_Valid` and :code:`Last_Valid`
+    + Use instead attributes :ada:`First_Valid` and :ada:`Last_Valid`
 
     + Not allowed on type with dynamic predicate
 
@@ -301,12 +301,12 @@ Dynamic Checking of Predicates
 * Dynamic checks inserted by GNAT
 
   - When using switch :command:`-gnata`
-  - Or pragma :code:`Assertion_Policy (Predicate => Check)`
+  - Or pragma :ada:`Assertion_Policy (Predicate => Check)`
 
 * Placement of checks similar as for type constraints
 
   - On assignment and initialization
-  - On conversion :code:`T(...)` and qualification :code:`T'(...)`
+  - On conversion :ada:`T(...)` and qualification :ada:`T'(...)`
   - On parameter passing in a call
 
 * No checks where not needed
@@ -358,7 +358,6 @@ Beware Recursion In Predicates
        that requires a predicate check
      warning: this will result in infinite recursion
      warning: use an explicit subtype of "Nat" to carry the predicate
-
      high: infinite recursion might occur
 
 * Fix by inlining the property or introducing a subtype
@@ -394,7 +393,7 @@ What is a Type Invariant?
        type Account is ... with
          Type_Invariant => Consistent_Balance (Account);
 
-* Not part of membership test :code:`X in T`
+* Not part of membership test :ada:`X in T`
 
 -------------------------------------
 Dynamic Checking of Type Invariants
@@ -403,13 +402,13 @@ Dynamic Checking of Type Invariants
 * Dynamic checks inserted by GNAT
 
   - When using switch :command:`-gnata`
-  - Or pragma :code:`Assertion_Policy (Type_Invariant => Check)`
+  - Or pragma :ada:`Assertion_Policy (Type_Invariant => Check)`
 
-* Placement of checks on the creation of values of type :code:`T`
+* Placement of checks on the creation of values of type :ada:`T`
 
-  - Note: that applies to objects with a part of type :code:`T`
+  - Note: that applies to objects with a part of type :ada:`T`
   - On default initial value
-  - On type conversion :code:`T(...)`
+  - On type conversion :ada:`T(...)`
   - On parameter passing after a call to a :dfn:`boundary subprogram`
 
     + i.e. call to a subprogram in the public spec of the package
@@ -417,13 +416,13 @@ Dynamic Checking of Type Invariants
 * No checks where not needed
 
   - On assignment and initialization
-  - On qualification :code:`T'(...)`
+  - On qualification :ada:`T'(...)`
   - On references to an object
   - On internal assignment or call
 
 * No checks where this is impossible for the compiler
 
-  - On global variables of type :code:`T`
+  - On global variables of type :ada:`T`
   - On parts of objects under components of access type
 
 ------------------------------------
@@ -499,12 +498,12 @@ Type Contracts
 * Type contracts given by
 
   - Type constraints (range and discriminant constraints)
-  - Type predicates with aspect :code:`Predicate`
-  - Type invariants with aspect :code:`Type_Invariant`
+  - Type predicates with aspect :ada:`Predicate`
+  - Type invariants with aspect :ada:`Type_Invariant`
 
 * Type predicates are static or dynamic
 
-  - Special aspects :code:`Static_Predicate` and :code:`Dynamic_Predicate`
+  - Special aspects :ada:`Static_Predicate` and :ada:`Dynamic_Predicate`
   - Slightly different use cases
 
 * Type invariants define an abstraction on private types

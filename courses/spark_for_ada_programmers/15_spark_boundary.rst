@@ -67,10 +67,10 @@ System Boundary
 Volatile Variables (1/2)
 --------------------------
 
-* Volatile variable is identified by aspect :code:`Volatile`
+* Volatile variable is identified by aspect :ada:`Volatile`
 
   - Either on the variable or its type
-  - Aspect :code:`Atomic` implies :code:`Volatile`
+  - Aspect :ada:`Atomic` implies :ada:`Volatile`
 
 * :toolname:`GNATprove` assumes that volatile variable may change value
 
@@ -95,7 +95,8 @@ Volatile Variables (2/2)
 
      Var : T with
        Volatile,
-       Address => System.Storage_Elements.To_Address (16#CAFECAFE#);
+       Address =>
+         System.Storage_Elements.To_Address (16#CAFECAFE#);
 
 * A volatile variable can only occur in a :dfn:`non-interfering context`
 
@@ -118,31 +119,27 @@ Volatility Properties
 
 * Four different properties of volatile variables in SPARK
 
-  - :code:`Async_Readers` - asynchronous reader may read the variable
-  - :code:`Async_Writers` - asynchronous write may write to the variable
-  - :code:`Effective_Reads` - reading the variable changes its value
-  - :code:`Effective_Writes` - writing the variable changes its value
+  - :ada:`Async_Readers` - asynchronous reader may read the variable
+  - :ada:`Async_Writers` - asynchronous write may write to the variable
+  - :ada:`Effective_Reads` - reading the variable changes its value
+  - :ada:`Effective_Writes` - writing the variable changes its value
 
 * Each is a Boolean aspect of volatile variables
 
-  - By default a volatile variable has all four set to :code:`True`
-  - When one or more are set explicitly, others default to :code:`False`
+  - By default a volatile variable has all four set to :ada:`True`
+  - When one or more are set explicitly, others default to :ada:`False`
 
-* A sensor has aspect :code:`Async_Writers => True`
+* A sensor (program input) has aspect :ada:`Async_Writers => True`
 
-  - It is a program input
+* An actuator (program output) has aspect :ada:`Async_Readers => True`
 
-* An actuator has aspect :code:`Async_Readers => True`
-
-  - It is a program output
-
-* A machine register has :code:`Effective_Reads` and :code:`Effective_Writes`
-  set to :code:`False`
+* A machine register has :ada:`Effective_Reads` and :ada:`Effective_Writes`
+  set to :ada:`False`
 
   - It is a single data
 
-* A serial port has :code:`Effective_Reads` and :code:`Effective_Writes` set to
-  :code:`True`
+* A serial port has :ada:`Effective_Reads` and :ada:`Effective_Writes` set to
+  :ada:`True`
 
   - It is a stream of data
 
@@ -152,17 +149,17 @@ Volatile Functions
 
 * Some volatile variables can be read in functions
 
-  - When :code:`Async_Writers` and :code:`Effective_Reads` are set to :code:`False`
+  - When :ada:`Async_Writers` and :ada:`Effective_Reads` are set to :ada:`False`
   - These correspond to program outputs
 
 * :dfn:`Volatile functions` can read volatile inputs
 
-  - When :code:`Async_Writers` is set to :code:`True`
-  - Function needs to have the aspect :code:`Volatile_Function`
+  - When :ada:`Async_Writers` is set to :ada:`True`
+  - Function needs to have the aspect :ada:`Volatile_Function`
 
 * Functions (even volatile ones) cannot read some volatile variables
 
-  - When :code:`Effective_Reads` is set to :code:`True`
+  - When :ada:`Effective_Reads` is set to :ada:`True`
   - A read is a side-effect, which is forbidding in SPARK functions
 
 * A call to a volatile function must appear in a non-interfering context
@@ -175,46 +172,46 @@ External State
 
 * Abstract state may have volatile variables as constituents
 
-  - Abstract state needs to have aspect :code:`External`
+  - Abstract state needs to have aspect :ada:`External`
 
 * An external state is subject to the four volatility properties
 
-  - All volatility properties set to :code:`True` by default
+  - All volatility properties set to :ada:`True` by default
   - Specific properties can be specified like for volatile variables
-  - An external state with :code:`Prop` set to :code:`False` can only have
+  - An external state with :ada:`Prop` set to :ada:`False` can only have
 
     + Non-volatile constituents
-    + Volatile constituents with :code:`Prop` set to :code:`False`
+    + Volatile constituents with :ada:`Prop` set to :ada:`False`
 
 * Special case for external state always initialized
 
-  - An external state with :code:`Async_Writers` set to :code:`True`
+  - An external state with :ada:`Async_Writers` set to :ada:`True`
   - The asynchronous writer is responsible for initialization
 
 ---------------------------------------
 Effect of Volatility on Flow Analysis
 ---------------------------------------
 
-* A variable with :code:`Effective_Reads` set to :code:`True`
+* A variable with :ada:`Effective_Reads` set to :ada:`True`
 
   - Has its value influenced by conditions on branches where read happens
 
   .. code:: ada
 
      Var : Integer := 42 with Volatile, Effective_Reads;
-     if Conf then
+     if Cond then
         Val := Var;
      end if;
      -- value of Var here depends on Cond
 
-* A variable with :code:`Effective_Writes` set to :code:`True`
+* A variable with :ada:`Effective_Writes` set to :ada:`True`
 
   - Never triggers a warning on unused assignment
 
   .. code:: ada
 
      Var : Integer := 42 with Volatile, Effective_Writes;
-     Val := 1; -- previous assignment is not useless
+     Var := 1; -- previous assignment is not useless
 
 -------------------------------
 Effect of Volatility on Proof
@@ -222,8 +219,8 @@ Effect of Volatility on Proof
 
 * A variable is :dfn:`effectively volatile for reading` if
 
-  - It has :code:`Async_Writers` set to :code:`True`
-  - Or it has :code:`Effective_Reads` set to :code:`True`
+  - It has :ada:`Async_Writers` set to :ada:`True`
+  - Or it has :ada:`Effective_Reads` set to :ada:`True`
 
 * The value of such a variable a variable is never known
 
@@ -246,56 +243,65 @@ Software Boundary
 Identifying SPARK Code
 ------------------------
 
-* SPARK code is identified by pragma/aspect :code:`SPARK_Mode` with value
-  :code:`On`
+* SPARK code is identified by pragma/aspect :ada:`SPARK_Mode` with value
+  :ada:`On`
 
-  - Other values: :code:`Off` or :code:`Auto`
+* Other values: :ada:`Off` or :ada:`Auto`
 
-    + :code:`Off` to exclude code
-    + :code:`Auto` to include only SPARK-compatible declarations (not bodies)
+  - :ada:`Off` to exclude code
+  - :ada:`Auto` to include only SPARK-compatible declarations (not bodies)
 
-  - Default is :code:`On` when using :code:`SPARK_Mode` without value
-  - Default is :code:`Auto` when :code:`SPARK_Mode` not specified
+* Default is :ada:`On` when using :ada:`SPARK_Mode` without value
+
+* Default is :ada:`Auto` when :ada:`SPARK_Mode` not specified
+
+---------------------------------
+Sections with :ada:`SPARK_Mode`
+---------------------------------
 
 * Subprograms can have 1 or 2 sections: spec and body
 
-  - :code:`SPARK_Mode` can be :code:`On` for spec then :code:`On` or
-    :code:`Off` for body
+  - :ada:`SPARK_Mode` can be :ada:`On` for spec then :ada:`On` or
+    :ada:`Off` for body
 
 * Packages can have between 1 and 4 sections:
 
   - package spec visible and private parts, package body declarations and
     statements
-  - :code:`SPARK_Mode` can be :code:`On` for some sections then :code:`On` or
-    :code:`Off` for the remaining sections
+  - :ada:`SPARK_Mode` can be :ada:`On` for some sections then :ada:`On` or
+    :ada:`Off` for the remaining sections
 
-* :code:`SPARK_Mode` **cannot** be :code:`Off` for a section
+* :ada:`SPARK_Mode` **cannot** be :ada:`Off` for a section
 
-  - Then :code:`On` for a following section
-  - Or :code:`On` inside the section
+  - Then :ada:`On` for a following section
+  - Or :ada:`On` inside the section
 
-------------------------------------
-Inheritance for :code:`SPARK_Mode`
-------------------------------------
+-------------------------------------------------
+Inheritance for :ada:`SPARK_Mode` on Subprogram
+-------------------------------------------------
 
-* Value of :code:`SPARK_Mode` inherited inside subprogram body
+* Value of :ada:`SPARK_Mode` inherited inside subprogram body
 
-  - Nested subprogram or package can have :code:`SPARK_Mode` with value
-    :code:`Off`
+  - Nested subprogram or package can have :ada:`SPARK_Mode` with value
+    :ada:`Off`
 
 * Value for subprogram spec **not** inherited for subprogram body
 
-* Value :code:`On` of :code:`SPARK_Mode` inherited inside package spec/body
+----------------------------------------------
+Inheritance for :ada:`SPARK_Mode` on Package
+----------------------------------------------
 
-  - Nested subprogram or package can have :code:`SPARK_Mode` with value
-    :code:`Off`
+* Value :ada:`On` of :ada:`SPARK_Mode` inherited inside package spec/body
 
-* Value :code:`Off` of :code:`SPARK_Mode` inherited inside package spec/body
+  - Nested subprogram or package can have :ada:`SPARK_Mode` with value
+    :ada:`Off`
 
-* Value :code:`Auto` of :code:`SPARK_Mode` inherited inside package spec/body
+* Value :ada:`Off` of :ada:`SPARK_Mode` inherited inside package spec/body
 
-  - Nested subprogram or package can have :code:`SPARK_Mode` with value
-    :code:`On` or :code:`Off`
+* Value :ada:`Auto` of :ada:`SPARK_Mode` inherited inside package spec/body
+
+  - Nested subprogram or package can have :ada:`SPARK_Mode` with value
+    :ada:`On` or :ada:`Off`
 
 * Value for package spec visible part inherited in private part
 
@@ -304,7 +310,7 @@ Inheritance for :code:`SPARK_Mode`
 * Value for package spec **not** inherited for package body
 
 -------------------------------
-Syntax for :code:`SPARK_Mode`
+Syntax for :ada:`SPARK_Mode`
 -------------------------------
 
 * Aspect on declarations (pragma is also possible)
@@ -330,26 +336,26 @@ Syntax for :code:`SPARK_Mode`
    end P;
 
 ---------------------------------
-Generics and :code:`SPARK_Mode`
+Generics and :ada:`SPARK_Mode`
 ---------------------------------
 
 * Remember: only generic instances are analyzed
 
-* If generic spec/body has no value of :code:`SPARK_Mode`
+* If generic spec/body has no value of :ada:`SPARK_Mode`
 
   - Each instance spec/body inherites value from context
   - As if the instantiation was replaced by the instance spec and body
 
-* If generic spec/body has :code:`SPARK_Mode` with value :code:`On`
+* If generic spec/body has :ada:`SPARK_Mode` with value :ada:`On`
 
-  - Each instance spec/body has :code:`SPARK_Mode` with value :code:`On`
-  - Unless context has value :code:`Off`, which takes precedence
+  - Each instance spec/body has :ada:`SPARK_Mode` with value :ada:`On`
+  - Unless context has value :ada:`Off`, which takes precedence
 
-    + Remember: :code:`SPARK_Mode` **cannot** be :code:`Off` then :code:`On`
+    + Remember: :ada:`SPARK_Mode` **cannot** be :ada:`Off` then :ada:`On`
 
-* If generic spec/body has :code:`SPARK_Mode` with value :code:`Off`
+* If generic spec/body has :ada:`SPARK_Mode` with value :ada:`Off`
 
-  - Each instance spec/body has :code:`SPARK_Mode` with value :code:`Off`
+  - Each instance spec/body has :ada:`SPARK_Mode` with value :ada:`Off`
 
 * Value of library-level pragma inside generic file **not** inherited in
   instance
@@ -360,61 +366,61 @@ Typical Use Cases
 
 * Unit fully in SPARK
 
-  - Spec and body both have :code:`SPARK_Mode` with value :code:`On`
+  - Spec and body both have :ada:`SPARK_Mode` with value :ada:`On`
 
 * Spec only in SPARK
 
-  - Spec has :code:`SPARK_Mode` with value :code:`On`
-  - Body has no :code:`SPARK_Mode` or with value :code:`Off`
+  - Spec has :ada:`SPARK_Mode` with value :ada:`On`
+  - Body has no :ada:`SPARK_Mode` or with value :ada:`Off`
 
 * Package spec is partly in SPARK
 
-  - Visible part of spec has :code:`SPARK_Mode` with value :code:`On`
-  - Private part of spec has :code:`SPARK_Mode` with value :code:`Off`
-  - Body has no :code:`SPARK_Mode` or with value :code:`Off`
+  - Visible part of spec has :ada:`SPARK_Mode` with value :ada:`On`
+  - Private part of spec has :ada:`SPARK_Mode` with value :ada:`Off`
+  - Body has no :ada:`SPARK_Mode` or with value :ada:`Off`
 
 * Package is partly in SPARK
 
-  - Spec and body both have :code:`SPARK_Mode` with value :code:`On`
-  - Some subprograms inside have :code:`SPARK_Mode` with value :code:`Off` on
+  - Spec and body both have :ada:`SPARK_Mode` with value :ada:`On`
+  - Some subprograms inside have :ada:`SPARK_Mode` with value :ada:`Off` on
     spec and body
 
 ------------------------
 Multiple Levels of Use
 ------------------------
 
-* :code:`SPARK_Mode` can be specified in a global/local configuration pragmas
+* :ada:`SPARK_Mode` can be specified in a global/local configuration pragmas
   file
 
   - Configuration pragmas file referenced in the GNAT project file
-  - Only for :code:`SPARK_Mode` with value :code:`On`
+  - Only for :ada:`SPARK_Mode` with value :ada:`On`
 
-* :code:`SPARK_Mode` can be specified as library-level pragma in a file
+* :ada:`SPARK_Mode` can be specified as library-level pragma in a file
 
   - Initial pragmas in a file before with/use clauses
   - Takes precedence over value in configuration pragmas file
-  - Typically for :code:`SPARK_Mode` with value :code:`On` or :code:`Off`
-  - Can be used with explicit value :code:`Auto`
+  - Typically for :ada:`SPARK_Mode` with value :ada:`On` or :ada:`Off`
+  - Can be used with explicit value :ada:`Auto`
 
-    + Useful when configuration pragmas file has value :code:`On`
+    + Useful when configuration pragmas file has value :ada:`On`
 
-* :code:`SPARK_Mode` can be specified on top-level subprogram or package
+* :ada:`SPARK_Mode` can be specified on top-level subprogram or package
 
   - Takes precedence over value in library-level pragmas
-  - Only for :code:`SPARK_Mode` with value :code:`On` or :code:`Off`
+  - Only for :ada:`SPARK_Mode` with value :ada:`On` or :ada:`Off`
 
-* :code:`SPARK_Mode` can be specified on nested subprogram or package
+* :ada:`SPARK_Mode` can be specified on nested subprogram or package
 
   - Takes precedence over inherited value from context
-  - Only for :code:`SPARK_Mode` with value :code:`On` or :code:`Off`
+  - Only for :ada:`SPARK_Mode` with value :ada:`On` or :ada:`Off`
 
 --------------------------------
 Integrating SPARK and Ada Code
 --------------------------------
 
-* SPARK code has :code:`SPARK_Mode` with value :code:`On`
+* SPARK code has :ada:`SPARK_Mode` with value :ada:`On`
 
-* Ada code has no :code:`SPARK_Mode` or with value :code:`Off`
+* Ada code has no :ada:`SPARK_Mode` or with value :ada:`Off`
 
 * GNAT compiles all code together
 
@@ -434,24 +440,24 @@ Integrating SPARK and C Code
 * GNAT data layout follows C ABI by default
 
   - Representation clauses may change the default
-  - Aspect :code:`Pack` forces data packing
+  - Aspect :ada:`Pack` forces data packing
 
 * Subprograms used across the boundary
 
-  - Must have aspect :code:`Convention => C`
-  - Must be marked with aspect :code:`Import` or :code:`Export`
-  - Must have their C name given in aspect :code:`External_Name`
+  - Must have aspect :ada:`Convention => C`
+  - Must be marked with aspect :ada:`Import` or :ada:`Export`
+  - Must have their C name given in aspect :ada:`External_Name`
 
 * Parameters of these subprograms
 
-  - Ada mode :code:`in out` |rightarrow| C pointer
+  - Ada mode :ada:`in out` |rightarrow| C pointer
   - Ada record/array |rightarrow| C pointer
   - Ada scalar |rightarrow| C scalar
 
 * Standard library unit
 
-  - :code:`Interfaces.C` defines C standard scalar types
-  - :code:`Interfaces.C.Strings` defines character and string conversion
+  - :ada:`Interfaces.C` defines C standard scalar types
+  - :ada:`Interfaces.C.Strings` defines character and string conversion
     functions between Ada and C
 
 ---------------------------------------------------
@@ -487,20 +493,20 @@ Integrating With Main Procedure not in Ada
 
 * GNAT compiler generates startup and closing code
 
-  - Procedure :code:`adainit` calls elaboration code
-  - Procedure :code:`adafinal` calls finalization code
+  - Procedure :ada:`adainit` calls elaboration code
+  - Procedure :ada:`adafinal` calls finalization code
   - These are generated in the file generated by :toolname:`GNATbind`
 
 * When using a main procedure not in Ada
 
-  - Main procedure should declare :code:`adainit` and :code:`adafinal`
+  - Main procedure should declare :ada:`adainit` and :ada:`adafinal`
 
     .. code:: ada
 
        extern void adainit (void);
        extern void adafinal (void);
 
-  - Main procedure should call :code:`adainit` and :code:`adafinal`
+  - Main procedure should call :ada:`adainit` and :ada:`adafinal`
 
 * When generating a stand-alone library
 
@@ -528,14 +534,14 @@ Modelling an API
   - Data dependencies must reflect effects on global data
   - Functional contracts can model underlying automatons
 
-    + Possibly defining ghost query functions, e.g. :code:`Is_Open` for a file
-    + Ghost function may be marked :code:`Import` when not implementable
+    + Possibly defining ghost query functions, e.g. :ada:`Is_Open` for a file
+    + Ghost function may be marked :ada:`Import` when not implementable
 
 ----------------------------
 Modelling an API - Example
 ----------------------------
 
-* Standard unit :code:`Ada.Text_IO` is modelled in SPARK
+* Standard unit :ada:`Ada.Text_IO` is modelled in SPARK
 
   - Subprograms can be called in SPARK code
   - File system is not precisely modelled
@@ -569,19 +575,18 @@ Modelling an API to Manage a Resource
 
   - Preventing aliasing of the resource
 
-    + E.g. with limited type as in :code:`Ada.Text_IO.File_Type`
+    + e.g. with limited type as in :ada:`Ada.Text_IO.File_Type`
 
   - Requiring release of the resource
 
-    + E.g. free memory, close file or socket, ...
+    + e.g. free memory, close file or socket, ...
 
 * :toolname:`GNATprove` can force ownership on a type
 
-  - With :code:`Annotate => (GNATprove, Ownership)`
+  - With :ada:`Annotate => (GNATprove, Ownership)`
 
     + On a private type
-    + In a package spec whose private part has :code:`SPARK_Mode` with value
-      :code:`Off`
+    + When private part of package has :ada:`SPARK_Mode` with value :ada:`Off`
 
   - Assignment transfers ownership of object
 
@@ -646,18 +651,18 @@ Is the following code correct?
 
 .. container:: animate
 
-   * No - :toolname:`GNATprove` assumes that :code:`Random` is a mathematical
+   * No - :toolname:`GNATprove` assumes that :ada:`Random` is a mathematical
      function
 
-     - An abstract state should be added in package :code:`Random_Numbers`
-     - :code:`Random` should be a procedure
+     - An abstract state should be added in package :ada:`Random_Numbers`
+     - :ada:`Random` should be a procedure
      - A data dependency contract should be added for reads/writes to this
        abstract state
 
-   * No - :toolname:`GNATprove` assumes that the postcondition of :code:`Random`
-     is always satisfied, even when :code:`From > To`
+   * No - :toolname:`GNATprove` assumes that the postcondition of :ada:`Random`
+     is always satisfied, even when :ada:`From > To`
 
-     - A precondition :code:`From <= To` should be added
+     - A precondition :ada:`From <= To` should be added
      - The implementation must satisfy the postcondition
 
 ------------------
@@ -701,7 +706,7 @@ SPARK Boundary
   - Using volatile variables and external states
   - With precise volatility properties
 
-* SPARK software boundary defined by aspect/pragma :code:`SPARK_Mode`
+* SPARK software boundary defined by aspect/pragma :ada:`SPARK_Mode`
 
   - Fine-grain integration of SPARK and non-SPARK code is possible
 

@@ -31,8 +31,8 @@ Subprogram Contracts and Information Hiding
 
 * Subprogram contracts expose variables and types
 
-  - In preconditions with aspect :code:`Pre`
-  - In postconditions with aspect :code:`Post`
+  - In preconditions with aspect :ada:`Pre`
+  - In postconditions with aspect :ada:`Post`
 
 * Variables and types mentioned directly need to be visible
 
@@ -63,8 +63,8 @@ Dependency Contracts and Information Hiding
 
 * Dependency contracts expose variables
 
-  - In data dependencies with aspect :code:`Global`
-  - In flow dependencies with aspect :code:`Depends`
+  - In data dependencies with aspect :ada:`Global`
+  - In flow dependencies with aspect :ada:`Depends`
 
 * These variables need to be visible
 
@@ -83,7 +83,7 @@ Abstract States
 Abstract State
 ----------------
 
-* Abstract state declared with aspect :code:`Abstract_State`
+* Abstract state declared with aspect :ada:`Abstract_State`
 
   - On the package spec
 
@@ -116,7 +116,7 @@ State Refinement
   - All hidden variables must be constituents of an abstract state
   - This includes variables in the private part and in the body
 
-* Refined state declared with aspect :code:`Refined_State`
+* Refined state declared with aspect :ada:`Refined_State`
 
   - On the package body
 
@@ -131,7 +131,8 @@ State Refinement
   .. code:: Ada
 
      package body Stack with
-       Refined_State => (Top_State => Top, Content_State => Content)
+       Refined_State => (Top_State => Top,
+                         Content_State => Content)
      is ...
 
 ---------------------------
@@ -146,7 +147,7 @@ State in the Private Part
 
     + This is a problem for flow analysis
 
-* Partial refinement declared with aspect :code:`Part_Of`
+* Partial refinement declared with aspect :ada:`Part_Of`
 
   - On variables in the private part
   - Even when only one abstract state declared
@@ -161,7 +162,7 @@ State in the Private Part
         Top     : Natural with Part_Of => The_Stack;
      end Stack;
 
-* When package body is present, confirmation in :code:`Refined_State`
+* When package body is present, confirmation in :ada:`Refined_State`
 
   .. code:: ada
 
@@ -176,20 +177,20 @@ Additional States
 Nested Packages
 -----------------
 
-* State of package :code:`P` includes state of nested packages :code:`N`
+* State of package :ada:`P` includes state of nested packages :ada:`N`
 
-  - :code:`N` may have visible state (variables in the public part, abstract states)
+  - :ada:`N` may have visible state (variables in the public part, abstract states)
 
-  - :code:`N` may have hidden state (variables in the private part of body)
+  - :ada:`N` may have hidden state (variables in the private part of body)
 
-  - If :code:`N` is visible
+  - If :ada:`N` is visible
 
-    + Its visible state is visible for :code:`P` too
+    + Its visible state is visible for :ada:`P` too
     + Its hidden state is a constituent of its own abstract states
 
-  - If :code:`N` is hidden
+  - If :ada:`N` is hidden
 
-    + Its visible state is a constituent of :code:`P`'s abstract states
+    + Its visible state is a constituent of :ada:`P`'s abstract states
     + Its hidden state is a constituent of its own abstract states
 
 .. code:: Ada
@@ -209,12 +210,12 @@ Nested Packages
 Child Packages
 ----------------
 
-* State of package :code:`P` includes state of private child package :code:`P.Priv`
+* State of package :ada:`P` includes state of private child package :ada:`P.Priv`
 
-  - Its visible state is a constituent of :code:`P`'s abstract states
+  - Its visible state is a constituent of :ada:`P`'s abstract states
   - Its hidden state is a constituent of its own abstract states
 
-* The visible state of private child packages should have :code:`Part_Of`
+* The visible state of private child packages should have :ada:`Part_Of`
 
 * The state of public child packages is not concerned
 
@@ -229,7 +230,8 @@ Child Packages
        ...
 
    package body P with
-     Refined_State => (State => (P.Priv.Visible_State, P.Priv.Var, ...
+     Refined_State => (State => (P.Priv.Visible_State,
+                                 P.Priv.Var, ...
 
 -------------------------------
 Constants with Variable Input
@@ -270,7 +272,7 @@ Dependency Contracts
 Data Dependencies
 -------------------
 
-* Abstract states are used in :code:`Global` contracts
+* Abstract states are used in :ada:`Global` contracts
 
   - Abstract state represents all its constituents
   - Mode is the aggregate of all modes of constituents
@@ -296,7 +298,7 @@ Data Dependencies
 Flow Dependencies
 -------------------
 
-* Abstract states are used in :code:`Depends` contracts
+* Abstract states are used in :ada:`Depends` contracts
 
 .. code:: Ada
 
@@ -322,8 +324,8 @@ Dependency Refinement
   - Referring to constituents instead of abstract states
   - With aspects for refined dependencies on the subprogram body
 
-    + Aspect :code:`Refined_Global` for data dependencies
-    + Aspect :code:`Refined_Depends` for flow dependencies
+    + Aspect :ada:`Refined_Global` for data dependencies
+    + Aspect :ada:`Refined_Depends` for flow dependencies
 
 * :toolname:`GNATprove` verifies these specifications when present
 
@@ -349,11 +351,11 @@ Data Dependencies of a Package
 
   - A package cannot write the state of another package in SPARK
 
-* Aspect :code:`Initializes` specifies state initialized during elaboration
+* Aspect :ada:`Initializes` specifies state initialized during elaboration
 
   - If present, must be complete, including visible and hidden state
   - Otherwise, :toolname:`GNATprove` generates it
-  - Similar to the outputs of mode :code:`Output` for the package elaboration
+  - Similar to the outputs of mode :ada:`Output` for the package elaboration
 
 .. code:: Ada
 
@@ -370,9 +372,9 @@ Flow Dependencies of a Package
 
 * Initialization of package state can depend on other packages
 
-  - This dependency needs to be specified in aspect :code:`Initializes`
+  - This dependency needs to be specified in aspect :ada:`Initializes`
   - If no such aspect, :toolname:`GNATprove` also generates these dependencies
-  - Similar to the :code:`Depends` aspect for the package elaboration
+  - Similar to the :ada:`Depends` aspect for the package elaboration
 
 .. code:: Ada
 
@@ -408,14 +410,12 @@ State Abstraction
 
 * Each abstract state must be refined into constituents
 
-  - Special annotation :code:`Part_Of` needed on declarations in the private
-    part
+  - Annotation :ada:`Part_Of` needed on declarations in the private part
 
-* Dependency contracts must use abstract states to refer to hidden state
+* Dependency contracts use abstract states to refer to hidden state
 
-* Initialization at elaboration can be specified with aspect
-  :code:`Initializes`
+* Initialization at elaboration specified with aspect :ada:`Initializes`
 
   - This concerns both visible and hidden state
-  - This replaces aspects :code:`Global` and :code:`Depends` for package
+  - This replaces aspects :ada:`Global` and :ada:`Depends` for package
     elaboration

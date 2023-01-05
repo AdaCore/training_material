@@ -45,9 +45,9 @@ What is Flow Analysis?
 
 * Performs checks and detects violations
 
----------------------------
-Control Flow Graphs (CFG)
----------------------------
+--------------------------
+Control Flow Graph (CFG)
+--------------------------
 
 * A representation, using graph notation, of all paths that might be traversed
   through a program during its execution [Wikipedia]
@@ -112,12 +112,12 @@ Uncontrolled Data Visibility Problem
 Data Dependency Contracts
 ---------------------------
 
-* Introduced by aspect :code:`Global`
+* Introduced by aspect :ada:`Global`
 
 * Optional, but must be complete if specified
 
-* Optional mode can be :code:`Input` (default), :code:`Output`, :code:`In_Out`
-  or :code:`Proof_In`
+* Optional mode can be :ada:`Input` (default), :ada:`Output`, :ada:`In_Out`
+  or :ada:`Proof_In`
 
   .. code:: Ada
 
@@ -128,11 +128,11 @@ Data Dependency Contracts
                   In_Out   => V,
                   Proof_In => W);
 
-* :code:`Proof_In` used for inputs only referenced in assertions
+* :ada:`Proof_In` used for inputs only referenced in assertions
 
-* :code:`Global => null` used to state that no global variable is read/written
+* :ada:`Global => null` used to state that no global variable is read/written
 
-* Functions can have only :code:`Input` and :code:`Proof_In` global variables
+* Functions can have only :ada:`Input` and :ada:`Proof_In` global variables
 
   - Remember: no side-effects in functions!
 
@@ -140,13 +140,15 @@ Data Dependency Contracts
 Data Initialization Policy
 ----------------------------
 
-* Subprogram :dfn:`inputs` are input parameters and globals (union of
-  parameters of mode :code:`in` and :code:`in out` and global variables of mode
-  :code:`Input` and :code:`In_Out`)
+* Subprogram :dfn:`inputs` are input parameters and globals
 
-* Subprogram :dfn:`outputs` are output parameters and globals (union of
-  parameters of mode :code:`out` and :code:`in out` and global variables of
-  mode :code:`Output` and :code:`In_Out`)
+  - parameters of mode :ada:`in` and :ada:`in out`
+  - global variables of mode :ada:`Input` and :ada:`In_Out`
+
+* Subprogram :dfn:`outputs` are output parameters and globals
+
+  - parameters of mode :ada:`out` and :ada:`in out`
+  - global variables of mode :ada:`Output` and :ada:`In_Out`
 
 * Inputs should be completely initialized on a call
 
@@ -230,12 +232,15 @@ Violations of the Data Initialization Policy
 
  .. container:: column
 
-    Parameter only partially written should be of mode :code:`in out`
+    * Parameter only partially written should be of mode :ada:`in out`
+
+    |
 
     .. code:: ada
 
        procedure Cond_Init
-         (X    : out T; -- Incorrect
+         (X    : out T;
+          -- Incorrect
           Cond : Boolean) is
        begin
           if Cond then
@@ -245,15 +250,19 @@ Violations of the Data Initialization Policy
 
  .. container:: column
 
-    Global variable only partially written should be of mode :code:`In_Out`
+    * Global variable only partially written should be of mode :ada:`In_Out`
+
+    |
 
     .. code:: ada
 
        X : T;
 
-       procedure Cond_Init (Cond : Boolean)
+       procedure Cond_Init
+         (Cond : Boolean)
        with
-         Global => (Output => X) -- Incorrect
+         Global => (Output => X)
+         -- Incorrect
        is
        begin
           if Cond then
@@ -315,20 +324,19 @@ Flow Warnings
 * Ineffective statement = statement without effects
 
   - Dead code
-
   - Or statement does not contribute to an output
-
   - Or effect of statement is hidden from :toolname:`GNATprove`
 
-* Warnings can be suppressed with pragma :code:`Warnings`
+* Warnings can be suppressed with pragma :ada:`Warnings`
 
   .. code:: ada
 
-     pragma Warnings (Off, "statement has no effect", Reason => "debug");
+     pragma Warnings (Off, "statement has no effect",
+                      Reason => "debug");
      Debug_Print (X);
      pragma Warnings (On, "statement has no effect");
 
-* Optional first pragma argument :code:`GNATprove` indicates it is specific to
+* Optional first pragma argument :ada:`GNATprove` indicates it is specific to
   :toolname:`GNATprove`
 
 ==============================
@@ -358,7 +366,7 @@ Analysis of Value-Dependent Flows
        end if;
      end Absolute_Value;
 
-* Use control flow instead: use :code:`if-then-else` above
+* Use control flow instead: use :ada:`if-then-else` above
 
 ----------------------------------------
 Analysis of Array Initialization (1/2)
@@ -378,9 +386,7 @@ Analysis of Array Initialization (1/2)
 
      type T is array (1 .. 10) of Boolean;
 
-     procedure Init_Array
-       (A : out T) -- Initialization check fails
-     is
+     procedure Init_Array (A : out T) is -- Initialization check fails
      begin
         A (1) := True;
         A (2 .. 10) := (others => False);
@@ -398,24 +404,20 @@ Analysis of Array Initialization (2/2)
 
      type T is array (1 .. 10) of Boolean;
 
-     procedure Init_Array
-       (A : out T) -- Initialization check proved
-     is
+     procedure Init_Array (A : out T) is -- Initialization check proved
      begin
         A := (1 => True, 2 .. 10 => False);
      end Init_Array;
 
-* Do not please the tool! :code:`A` is not :code:`in out` here!
+* Do not please the tool! :ada:`A` is not :ada:`in out` here!
 
-  - Otherwise, caller is forced to initialize :code:`A`
+  - Otherwise, caller is forced to initialize :ada:`A`
 
 * Some built-in heuristics recognize an initializing loop
 
   .. code:: Ada
 
-     procedure Init_Array
-       (A : out T) -- Initialization check proved
-     is
+     procedure Init_Array (A : out T) is -- Initialization check proved
      begin
         for J in A'Range loop
            A (J) := False;
@@ -426,7 +428,7 @@ Analysis of Array Initialization (2/2)
 Dealing with False Alarms
 ---------------------------
 
-* Check messages can be justified with pragma :code:`Annotate`
+* Check messages can be justified with pragma :ada:`Annotate`
 
   .. code:: Ada
 
@@ -461,7 +463,7 @@ Flow Analysis
 
   - Interferences between parameters and global variables
   - Read of uninitialized variable
-  - Violation of data dependency contracts (:code:`Global`)
+  - Violation of data dependency contracts (:ada:`Global`)
 
 * Flow analysis allows to reach Bronze level
 

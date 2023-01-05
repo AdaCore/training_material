@@ -41,7 +41,7 @@ Absence of Interferences
 
   - Array types
   - By-reference parameter passing mode
-  - Address specifications :code:`X : Integer with Address => ...`
+  - Address specifications :ada:`X : Integer with Address => ...`
   - Generics (avoid C-style :code:`void*` genericity)
 
 * What about pointers?
@@ -81,7 +81,7 @@ Access Types in Ada
      AV : access Integer;
      AC : access constant Integer;
 
-  - :code:`AV` can be used to modify the integer, :code:`AC` cannot
+  - :ada:`AV` can be used to modify the integer, :ada:`AC` cannot
 
 * Named vs anonymous access types
 
@@ -100,12 +100,12 @@ Access Types in Ada
      type PS_Acc is access Integer;
      type G_Acc is access all Integer;
 
-  - Type :code:`PS_Acc` can only point to the heap, :code:`GS_Acc` can point to
+  - Type :ada:`PS_Acc` can only point to the heap, :ada:`GS_Acc` can point to
     the heap and stack.
 
 * Accessibility levels prevent escaping pointers to the stack
 
-* Not null access types forbid use of value :code:`null`
+* Not null access types forbid use of value :ada:`null`
 
 -----------------------
 Access Types in SPARK
@@ -190,7 +190,7 @@ Model of Pointers in SPARK
     + Allow allocators in expressions
     + Allow dellocation in functions
 
-  - Equality of pointers is not supported (only with :code:`null`)
+  - Equality of pointers is not supported (only with :ada:`null`)
 
 -------------------------
 Borrowing and Observing
@@ -248,22 +248,22 @@ Access to Constant Data
 Access to Data on the Stack
 -----------------------------
 
-* Use attribute :code:`Access` on local variable
+* Use attribute :ada:`Access` on local variable
 
   - Not allowed on global variable which would remain visible
-  - Result of general access type with :code:`access all` syntax
+  - Result of general access type with :ada:`access all` syntax
 
-* :code:`Constant'Access` of access-to-constant type
+* :ada:`Constant'Access` of access-to-constant type
 
-* :code:`Variable'Access` of access-to-variable type
+* :ada:`Variable'Access` of access-to-variable type
 
 * Variable is *moved* and cannot be referenced anymore
 
 -----------------------------------------------
-Attributes :code:`Old` and :code:`Loop_Entry`
+Attributes :ada:`Old` and :ada:`Loop_Entry`
 -----------------------------------------------
 
-* Attributes :code:`Old` and :code:`Loop_Entry` not applicable to pointers
+* Attributes :ada:`Old` and :ada:`Loop_Entry` not applicable to pointers
 
   - Implicit copy on subprogram/loop entry would violate ownership
 
@@ -289,7 +289,7 @@ Useful Tips
 
 * Allocation function simply returns object of access-to-variable type
 
-  - Similar to initialized allocator with :code:`new T'(Value)`
+  - Similar to initialized allocator with :ada:`new T'(Value)`
   - Some special *traversal functions* give access to part of an object
 
 * Deallocation procedure simply nullifies in-out access parameter
@@ -351,7 +351,7 @@ Pointers and Recursion
 Pointers and Loops
 --------------------
 
-* Procedure :code:`Init_List_Zero` initializes :code:`L`
+* Procedure :ada:`Init_List_Zero` initializes :ada:`L`
 
   .. code:: ada
 
@@ -373,13 +373,13 @@ Pointers and Loops
 
 * Problem: how do we express that previous cells have value zero?
 
-  - Cannot refer to value of :code:`L` while borrowed
+  - Cannot refer to value of :ada:`L` while borrowed
 
 ----------
 Promises
 ----------
 
-* Special annotation :code:`At_End_Borrow` on identity function
+* Special annotation :ada:`At_End_Borrow` on identity function
 
   - For proof, refers to value of argument at the end of the borrow
   - For execution, is simply the identity function
@@ -387,7 +387,8 @@ Promises
   .. code:: ada
 
      function At_End
-       (L : access constant List_Cell) return access constant List_Cell
+       (L : access constant List_Cell)
+       return access constant List_Cell
      is (L)
      with
        Ghost,
@@ -395,13 +396,14 @@ Promises
 
 * Loop invariant can refer to values at end of the borrow
 
-  - Value of borrower at end of the borrow :code:`At_End (B)`
-  - Value of borrowed at end of the borrow :code:`At_End (L)`
+  - Value of borrower at end of the borrow :ada:`At_End (B)`
+  - Value of borrowed at end of the borrow :ada:`At_End (L)`
 
   .. code:: ada
 
      pragma Loop_Invariant
-       (if All_List_Zero (At_End (B)) then All_List_Zero (At_End (L)));
+       (if All_List_Zero (At_End (B))
+        then All_List_Zero (At_End (L)));
 
 =================
 SPARK Libraries
@@ -413,13 +415,13 @@ Pointers with Aliasing (1/2)
 
 * SPARK Library defines two generics
 
-  - :code:`SPARK.Pointers.Pointers_With_Aliasing`
-  - :code:`SPARK.Pointers.Pointers_With_Aliasing_Separate_Memory`
-  - Only generic parameter is any type :code:`Object`
+  - :ada:`SPARK.Pointers.Pointers_With_Aliasing`
+  - :ada:`SPARK.Pointers.Pointers_With_Aliasing_Separate_Memory`
+  - Only generic parameter is any type :ada:`Object`
 
 * Both allow aliasing pointers
 
-  - Type :code:`Pointer` is private
+  - Type :ada:`Pointer` is private
 
     + User code can copy such pointers freely
     + Ownership policy does not apply
@@ -439,7 +441,7 @@ Pointers with Aliasing (1/2)
      procedure Assign (P : Pointer; O : Object);
      procedure Dealloc (P : in out Pointer);
 
-* Version in :code:`Pointers_With_Aliasing_Separate_Memory` adds parameter
+* Version in :ada:`Pointers_With_Aliasing_Separate_Memory` adds parameter
 
   .. code:: ada
 

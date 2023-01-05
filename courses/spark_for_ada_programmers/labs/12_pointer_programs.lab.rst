@@ -24,9 +24,9 @@ Swapping Pointers
 
 - Run :toolname:`GNATprove` in flow analysis mode
 
-- Fix the ownership error in :code:`Swap_Ptr`
+- Fix the ownership error in :ada:`Swap_Ptr`
 
-- Add postconditions to procedures :code:`Swap` and :code:`Swap_Ptr`
+- Add postconditions to procedures :ada:`Swap` and :ada:`Swap_Ptr`
 
   + Hint: you cannot compare pointers in SPARK
   + Rerun :toolname:`GNATprove` to prove these procedures
@@ -35,12 +35,12 @@ Swapping Pointers
 Allocation and Deallocation
 -----------------------------
 
-- Run :toolname:`GNATprove` to prove procedure :code:`Realloc`
+- Run :toolname:`GNATprove` to prove procedure :ada:`Realloc`
 
   + Understand the memory leak message and fix it.
-  + Hint: you need to add a postcondition to :code:`Dealloc`
+  + Hint: you need to add a postcondition to :ada:`Dealloc`
 
-- Understand what makes :code:`Alloc` and :code:`Dealloc` special
+- Understand what makes :ada:`Alloc` and :ada:`Dealloc` special
 
   + Discuss with the course instructor.
 
@@ -48,22 +48,23 @@ Allocation and Deallocation
 Recursion and Loops
 ---------------------
 
-- Review the rest of the code manipulating types :code:`List_Cell` and :code:`List_Acc`
+- Review the rest of the code manipulating types :ada:`List_Cell` and :ada:`List_Acc`
 
   + Discuss with the course instructor.
 
 - Run :toolname:`GNATprove` to prove the complete unit.
 
-- Add a loop invariant in procedure :code:`Init_List_Zero`
+- Add a loop invariant in procedure :ada:`Init_List_Zero`
 
-  + The postcondition of :code:`Init_List_Zero` should be proved
+  + The postcondition of :ada:`Init_List_Zero` should be proved
 
-- Add a loop variant in procedure :code:`Init_List_Zero`
+- Add a loop variant in procedure :ada:`Init_List_Zero`
 
   + First using the structural loop variant
   + Next using a numerical loop variant, by defining a recusrive function
-    :code:`Length`
+    :ada:`Length`
 
     .. code:: Ada
 
-       function Length (L : access constant List_Cell) return Big_Natural;
+       function Length
+         (L : access constant List_Cell) return Big_Natural;

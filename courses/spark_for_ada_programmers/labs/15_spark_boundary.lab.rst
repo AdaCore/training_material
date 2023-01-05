@@ -23,28 +23,28 @@ System Boundary
 
   + Check that you understand the error messages.
 
-- Specify correct volatility properties for :code:`Temperature` and
-  :code:`Status`
+- Specify correct volatility properties for :ada:`Temperature` and
+  :ada:`Status`
 
-  + :code:`Temperature` is an input register
-  + :code:`Status` is an output port
+  + :ada:`Temperature` is an input register
+  + :ada:`Status` is an output port
 
 - Rerun :toolname:`GNATprove` on the unit
 
   + Fix the SPARK violations in the implementation
   + Hint: you need to mark one of the functions as a volatile function
 
-- Add an external state :code:`State` with both :code:`Temperature` and
-  :code:`Status` as constituents
+- Add an external state :ada:`State` with both :ada:`Temperature` and
+  :ada:`Status` as constituents
 
   + What is the problem?
 
 - Add separate external states with suitable volatile properties for
-  :code:`Temperature` and :code:`Status`
+  :ada:`Temperature` and :ada:`Status`
 
   + The unit should be fully proved
 
-- Review warnings and mark variables with aspect :code:`Warnings => Off`
+- Review warnings and mark variables with aspect :ada:`Warnings => Off`
 
 -------------------
 Software Boundary
@@ -57,7 +57,7 @@ Software Boundary
 
   + Check that you understand the error message.
 
-- Add aspect :code:`SPARK_Mode` to the package body with value :code:`Off`
+- Add aspect :ada:`SPARK_Mode` to the package body with value :ada:`Off`
 
 - Run :toolname:`GNATprove` on the unit
 
@@ -66,20 +66,20 @@ Software Boundary
 
 - Complete the spec so that it is compatible with SPARK
 
------------------------------
-Integration With C and Rust
------------------------------
+--------------------
+Integration With C
+--------------------
 
 - Find and open the file :filename:`main.adb` in :toolname:`GNAT Studio`
 
 - Run :toolname:`GNATprove` on the unit
 
-  + Fix the warnings with suitable annotations on the declaration of :code:`Swap`
+  + Fix the warnings with suitable annotations on the declaration of :ada:`Swap`
 
-- Add a suitable postcondition on :code:`Swap`
+- Add a suitable postcondition on :ada:`Swap`
 
-  + Check that you can prove after the call that the values of :code:`X` and
-    :code:`Y` have been swapped
+  + Check that you can prove after the call that the values of :ada:`X` and
+    :ada:`Y` have been swapped
   + Hint: add a suitable assertion
 
 - Compile the code of :filename:`main.adb`
@@ -98,6 +98,23 @@ Integration With C and Rust
      gnatlink main swap.o
      ./main
 
+- Or declare the main and languages used in the project file
+
+  .. code:: ada
+
+     for Main use ("main.adb");
+     for Languages use ("Ada", "C");
+
+  and build the project with :toolname:`GPRbuild`
+
+- What assumptions did you make on the C implementation?
+
+  + Discuss these with the course instructor.
+
+-----------------------
+Integration With Rust
+-----------------------
+
 - Compile a Rust implementation for swap in :filename:`swap.rs`, link it with the
   SPARK code, and run the executable
 
@@ -108,6 +125,8 @@ Integration With C and Rust
      gnatlink main swap.o
      ./main
 
-- What assumptions did you make on C or Rust implementations?
+- Or build a Rust library with cargo and link that library with the SPARK code
+
+- What assumptions did you make on the Rust implementation?
 
   + Discuss these with the course instructor.

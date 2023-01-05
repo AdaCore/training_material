@@ -22,28 +22,28 @@ Selection Sort
 
 - Find and open the files :filename:`sort_types.ads`, :filename:`sort.ads` and :filename:`sort.adb` in :toolname:`GNAT Studio`
 
-  + Study the specification of procedure :code:`Selection_Sort`. Is it a full
+  + Study the specification of procedure :ada:`Selection_Sort`. Is it a full
     functional specification?
 
-  + Study the implementation of procedure :code:`Selection_Sort`. Does it
+  + Study the implementation of procedure :ada:`Selection_Sort`. Does it
     implement selection sort algorithm?
 
-- Add a full functional contract to procedure :code:`Swap`
+- Add a full functional contract to procedure :ada:`Swap`
 
-  + Prove procedure :code:`Swap`
+  + Prove procedure :ada:`Swap`
 
-- Add a full functional contract to procedure :code:`Index_Of_Minimum`
+- Add a full functional contract to procedure :ada:`Index_Of_Minimum`
 
-  + Prove procedure :code:`Index_Of_Minimum`
+  + Prove procedure :ada:`Index_Of_Minimum`
 
-- Start by proving that :code:`Values` is sorted when returning from procedure
-  :code:`Selection_Sort`
+- Start by proving that :ada:`Values` is sorted when returning from procedure
+  :ada:`Selection_Sort`
 
-  + Add a loop invariant to procedure :code:`Selection_Sort`
+  + Add a loop invariant to procedure :ada:`Selection_Sort`
 
-- Then prove that the output value of :code:`Values` is a permutation of its input value
+- Then prove that the output value of :ada:`Values` is a permutation of its input value
 
-  + Hint: you need to update global ghost variable :code:`Permutation`
+  + Hint: you need to update global ghost variable :ada:`Permutation`
 
 - Run :toolname:`GNATprove` to prove the file
 

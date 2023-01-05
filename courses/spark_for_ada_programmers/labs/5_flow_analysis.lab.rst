@@ -27,7 +27,7 @@ Aliasing and Initialization
 
   + Discuss these with the course instructor.
 
-- Either change the code or justify the message with pragma :code:`Annotate`.
+- Either change the code or justify the message with pragma :ada:`Annotate`.
 
   + The objective is to get no messages when running :toolname:`GNATprove`.
 
@@ -42,13 +42,13 @@ Data Dependencies
 
   + Study the generated contracts and make sure you understand them.
 
-- Add a null data dependencies contracts with aspect :code:`Global => null` to
+- Add a null data dependencies contracts with aspect :ada:`Global => null` to
   all subprograms.
 
 - Run flow analysis. Make sure you understand the check messages that
   :toolname:`GNATprove` produces.
 
-- Add correct data dependencies contracts with aspect :code:`Global` to all
+- Add correct data dependencies contracts with aspect :ada:`Global` to all
   subprograms.
 
   + The objective is to get no messages when running :toolname:`GNATprove`.

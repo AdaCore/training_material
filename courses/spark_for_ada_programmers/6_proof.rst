@@ -31,7 +31,7 @@ What is Proof?
 
 * Second static analysis performed by :toolname:`GNATprove`
 
-  - Depends on successful flow analysis
+   - Depends on successful flow analysis
 
 * Models the computation in a subprogram
 
@@ -39,12 +39,14 @@ What is Proof?
 
 * Performs checks and detects violations
 
-  - Generates logical formulas, aka Verification Conditions (VC) or Proof
-    Obligations (PO)
+   - Generates logical formulas
 
-  - Automatic provers check that the VC is valid (always true)
+     + aka Verification Conditions (VC)
+     + aka Proof Obligations (PO)
 
-  - It not, a check message is emitted
+   - Automatic provers check that the VC is valid (always true)
+
+   - It not, a check message is emitted
 
 ---------------
 Hoare Triples
@@ -82,10 +84,10 @@ Which one of these is invalid?
 
    Explanations
 
-   A. :code:`Y >= 2` entails :code:`Y >= 0`
+   A. :ada:`Y >= 2` entails :ada:`Y >= 0`
    B. This is true independent of the precondition.
    C. This is true independent of the postcondition.
-   D. Invalid: :code:`Y >= 2` does not entail :code:`Y >= 3`
+   D. Invalid: :ada:`Y >= 2` does not entail :ada:`Y >= 3`
    E. This is true independent of the precondition.
 
 -----------------------------------------
@@ -112,21 +114,21 @@ VC Generation - Strongest Postcondition
 Quiz - Strongest Postcondition
 --------------------------------
 
-Which one of these is the Strongest Postcondition?
+Which one of these has a Strongest Postcondition?
 
    A. ``{ X >= 3 } Y := X – 1 { Y >= 0 }``
    B. ``{ X >= 3 } Y := X – 1 { Y = X – 1 }``
    C. ``{ X >= 3 } Y := X – 1 { Y >= 2 }``
-   D. :answermono:`{ X >= 3 } Y := X – 1 { Y = X – 1 and Y >= 2 }`
-   E. :answermono:`{ X >= 3 } Y := X – 1 { Y = X – 1 and X >= 3 }`
+   D. :answermono:`\{ X >= 3 \} Y := X – 1 \{ Y = X – 1 and Y >= 2 \}`
+   E. :answermono:`\{ X >= 3 \} Y := X – 1 \{ Y = X – 1 and X >= 3 \}`
 
 .. container:: animate
 
    Explanations
 
-   A. Information about :code:`X` is lost.
-   B. Information about :code:`X` is lost.
-   C. Information about :code:`X` is lost.
+   A. Information about :ada:`X` is lost.
+   B. Information about :ada:`X` is lost.
+   C. Information about :ada:`X` is lost.
    D. Correct
    E. Correct (equivalent to answer D)
 
@@ -138,29 +140,29 @@ Proof
 Functional Contracts
 ----------------------
 
-* Precondition introduced by aspect :code:`Pre`
+* Precondition introduced by aspect :ada:`Pre`
 
   - Boolean expression stating constraint on the caller
   - Contraint on the value of inputs
 
-* Postcondition introduced by aspect :code:`Post`
+* Postcondition introduced by aspect :ada:`Post`
 
   - Boolean expression stating constraint on the subprogram
   - Contraint on the value of inputs and outputs
 
 * On the first declaration of a subprogram
 
-  - This can be a declaration or a body
+  - This can be a spec or a body
 
-* Optional, default is :code:`True`
+* Optional, default is :ada:`True`
 
   - Precondition: subprogram can be called in any context
   - Postcondition: subprogram gives no information on its behavior
 
 * Special attributes in postconditions
 
-  - :code:`X'Old` denotes the input value of :code:`X`
-  - :code:`F'Result` denotes the result of function :code:`F`
+  - :ada:`X'Old` denotes the input value of :ada:`X`
+  - :ada:`F'Result` denotes the result of function :ada:`F`
 
 -----------------------------
 Silver/Gold/Platinum Levels
@@ -180,7 +182,7 @@ Silver/Gold/Platinum Levels
 
      procedure Swap (X, Y : in out Integer) is
      begin
-        Temp := X;
+        Temp := Y;
         X := Y;
         Y := Temp;
      end Swap;
@@ -199,17 +201,17 @@ Run-Time Errors Are Pervasive
 
     * A simple assignment statement
 
-    .. code:: Ada
+      .. code:: Ada
 
-       A (I + J) := P / Q;
+         A (I + J) := P / Q;
 
     * Which are the possible run-time errors for this example?
 
  .. container:: column
 
-    *  ``I+J`` might overflow the base-type of the index range's subtype
+    *  ``I+J`` might overflow the base type of the index range's subtype
     *  ``I+J`` might be outside the index range's subtype
-    *  ``P/Q`` might overflow the base-type of the element type
+    *  ``P/Q`` might overflow the base type of the element type
     *  ``P/Q`` might be outside the element subtype
     *  ``Q`` might be zero
 
@@ -219,7 +221,7 @@ Categories of Run-Time Errors
 
 * Divide by zero
 
-  - Arithmetic operations: division, :code:`mod`, :code:`rem`
+  - Arithmetic operations: division, :ada:`mod`, :ada:`rem`
 
 * Index check
 
@@ -271,17 +273,17 @@ Which of the following cannot cause a runtime error:
 
    Explanations:
 
-   A. Index check fails if :code:`T` is empty.
-   B. Overflow check fails if :code:`X = Integer'First`
-   C. Overflow check fails if :code:`X = Integer'First`
-   D. Range check fails if :code:`T'Range` is :code:`Natural`
-   E. Discriminant check if :code:`R.Disc /= True`
+   A. Index check fails if :ada:`T` is empty.
+   B. Overflow check fails if :ada:`X = Integer'First`
+   C. Overflow check fails if :ada:`X = Integer'First`
+   D. Range check fails if :ada:`T'Range` is :ada:`Natural`
+   E. Discriminant check fails if :ada:`R.Disc /= True`
 
 --------------------------
 Categories of Assertions
 --------------------------
 
-* Pragma :code:`Assert` and similar (:code:`Assert_And_Cut`, :code:`Assume`)
+* Pragma :ada:`Assert` and similar (:ada:`Assert_And_Cut`, :ada:`Assume`)
 
   - AoRTE is also proved for its expression
 
@@ -350,7 +352,7 @@ Levels of Software Assurance
 Preconditions
 ---------------
 
-* Default precondition of :code:`True` may not be sufficient
+* Default precondition of :ada:`True` may not be sufficient
 
   .. code:: ada
 
@@ -374,7 +376,7 @@ Preconditions
 Postconditions
 ----------------
 
-* Default postcondition of :code:`True` may not be sufficient
+* Default postcondition of :ada:`True` may not be sufficient
 
   .. code:: ada
 
@@ -412,14 +414,14 @@ Contextual Analysis of Local Subprograms
 * Local subprograms without contracts are *inlined* in proof
 
   - Local: declared inside private part or body
-  - Without contracts: no :code:`Global`, :code:`Pre`, :code:`Post`, etc.
+  - Without contracts: no :ada:`Global`, :ada:`Pre`, :ada:`Post`, etc.
   - Additional conditions, details in the SPARK User's Guide
 
 * Benefit: no need to add a contract
 
 * Possible cost: proof of caller may become more complex
 
-  - Add explicit contract like :code:`Pre => True` to disable inlining of a
+  - Add explicit contract like :ada:`Pre => True` to disable inlining of a
     subprogram
   - Use switch :command:`--no-inlining` to disable this feature globally
 
@@ -439,8 +441,8 @@ Overflow Checking (1/2)
   .. code:: ada
 
      procedure Saturate_Add (X, Y : Natural; Z : out Natural)
-       with Post =>
-         Z = (if X <= Natural'Last - Y then X + Y else Natural'Last);
+       with Post => Z =
+         (if X <= Natural'Last - Y then X + Y else Natural'Last);
 
 * Or a larger integer type can be used for computations
 
@@ -449,7 +451,8 @@ Overflow Checking (1/2)
      subtype LI is Long_Integer;
 
      procedure Saturate_Add (X, Y : Natural; Z : out Natural)
-       with Post => LI(Z) = LI'Min (LI(X) + LI(Y), LI(Natural'Last));
+       with Post => LI(Z) =
+         LI'Min (LI(X) + LI(Y), LI(Natural'Last));
 
 -------------------------
 Overflow Checking (2/2)
@@ -465,23 +468,21 @@ Overflow Checking (2/2)
      function Big (Arg : Integer) return Big_Integer is
        (To_Big_Integer (Arg)) with Ghost;
      procedure Saturate_Add (X, Y : Natural; Z : out Natural)
-       with Post =>
-         Z = (if Big (X) + Big (Y) <= Big (Natural'Last)
-              then X + Y
-              else Natural'Last);
+       with Post => Z =
+         (if Big (X) + Big (Y) <= Big (Natural'Last)
+          then X + Y else Natural'Last);
 
-* Or use compiler switch :command:`-gnato13` to use big integers in all
-  assertions
+* Or use compiler switch :command:`-gnato13` to use big integers in all assertions
 
   - Implicit use
   - Should be used also when compiling assertions
-  - Only applies to arithmetic operations (not :code:`Integer'Min`)
+  - Only applies to arithmetic operations (not :ada:`Integer'Min`)
 
   .. code:: ada
 
      procedure Saturate_Add (X, Y : Natural; Z : out Natural)
-       with Post =>
-         Z = (if X + Y <= Natural'Last then X + Y else Natural'Last);
+       with Post => Z =
+         (if X + Y <= Natural'Last then X + Y else Natural'Last);
 
 ======================
 Limitations of Proof
@@ -493,20 +494,20 @@ Functional Specifications
 
 * Non-functional specifications cannot be expressed as contracts
 
-  - Time or space complexity
-  - Timing properties for scheduling
-  - Call sequences
+   - Time or space complexity
+   - Timing properties for scheduling
+   - Call sequences
 
 * But automatons can be encoded as contracts
 
-  - Being in a given state is a functional property
-  - Can use normal queries
+   - Being in a given state is a functional property
+   - Can use normal queries
 
-    + E.g. contracts on :filename:`Ada.Text_IO` use :code:`Is_Open`
+     + e.g. contracts on :filename:`Ada.Text_IO` use :ada:`Is_Open`
 
-  - Or ghost imported functions that cannot be executed
+   - Or ghost imported functions that cannot be executed
 
-    + When query cannot be expressed in the code
+     + When query cannot be expressed in the code
 
 -----------------------------------------------
 Limitations of Automatic Provers - Arithmetic
@@ -514,15 +515,15 @@ Limitations of Automatic Provers - Arithmetic
 
 * Provers struggle with non-linear arithmetic
 
-  - Use of multiplication, division, :code:`mod`, :code:`rem`
-  - E.g. monotonicity of division on positive values
-  - Solution: use lemmas from the SPARK Lemma Library
+   - Use of multiplication, division, :ada:`mod`, :ada:`rem`
+   - e.g. monotonicity of division on positive values
+   - Solution: use lemmas from the SPARK Lemma Library
 
 * Provers struggle with mixed arithmetic
 
-  - Mix of signed and modular integers
-  - Mix of integers and floats
-  - Solution: define lemmas for elementary properties
+   - Mix of signed and modular integers
+   - Mix of integers and floats
+   - Solution: define lemmas for elementary properties
 
 ------------------------------------------------
 Limitations of Automatic Provers - Quantifiers
@@ -530,32 +531,32 @@ Limitations of Automatic Provers - Quantifiers
 
 * Quantified expressions express property over a collection
 
-  - Universal: :code:`(for all I in T'Range => T(I) /= 0)`
-  - Existential: :code:`(for some I in T'Range => T(I) /= 0)`
+   - Universal: :ada:`(for all I in T'Range => T(I) /= 0)`
+   - Existential: :ada:`(for some I in T'Range => T(I) /= 0)`
 
 * Provers struggle with existential
 
-  - Need to exhibit a :dfn:`witness` that satisfies the property
-  - Solution: define a function that computes the witness
+   - Need to exhibit a :dfn:`witness` that satisfies the property
+   - Solution: define a function that computes the witness
 
 * Provers cannot reason inductively
 
-  - Inductive reasoning deduces a property over integer :code:`I`
+   - Inductive reasoning deduces a property over integer :ada:`I`
 
-    + If it can be proved for :code:`I = 0`
-    + If it can be proved for :code:`I+1` from the property for :code:`I`
+     + If it can be proved for :ada:`I = 0`
+     + If it can be proved for :ada:`I+1` from the property for :ada:`I`
 
-  - Solution: lead the prover to this reasoning with a loop
+   - Solution: lead the prover to this reasoning with a loop
 
 --------------------------------------------------
 Limitations of Automatic Provers - Proof Context
 --------------------------------------------------
 
-* Proof context for a check in a subprogram :code:`S` is:
+* Proof context for a check in a subprogram :ada:`S` is:
 
-  - The contracts of all subprograms called by :code:`S`
-  - The body of :code:`S` prior to the check
-  - The logical modeling of all entities used in :code:`S`
+  - The contracts of all subprograms called by :ada:`S`
+  - The body of :ada:`S` prior to the check
+  - The logical modeling of all entities used in :ada:`S`
 
 * Proof context can become too large
 
@@ -564,12 +565,12 @@ Limitations of Automatic Provers - Proof Context
 
 * Various solutions to reduce the proof context
 
-  - Split the body of :code:`S` in smaller subprograms
+  - Split the body of :ada:`S` in smaller subprograms
   - Extract properties of interest in lemmas
   - Use special SPARK features
 
-    + Pragma :code:`Assert_And_Cut`
-    + SPARK Library :code:`SPARK.Cut_Operations`
+    + Pragma :ada:`Assert_And_Cut`
+    + SPARK Library :ada:`SPARK.Cut_Operations`
 
 -----------------------
 Cost/Benefit Analysis
@@ -579,37 +580,37 @@ Cost/Benefit Analysis
 
 * Difficulty of proof (cost) not correlated with benefit
 
-* E.g. proving that a sorting algorithm preserves the elements
+* e.g. proving that a sorting algorithm preserves the elements
 
-  - Trivial by review if the only operation is :code:`Swap`
-  - May require many annotations for proof
+   - Trivial by review if the only operation is :ada:`Swap`
+   - May require many annotations for proof
 
 * Functional correctness of complex algorithms is costly
 
-  - Specifications can be larger than code
-  - Annotations typically much larger than code (:math:`\times` 10)
+   - Specifications can be larger than code
+   - Annotations typically much larger than code (:math:`\times` 10)
 
 ---------------------------
 Dealing with False Alarms
 ---------------------------
 
-* Check messages can be justified with pragma :code:`Annotate`
+* Check messages can be justified with pragma :ada:`Annotate`
 
   .. code:: Ada
 
      pragma Annotate (GNATprove, Category, Pattern, Reason);
 
-  - :code:`GNATprove` is a fixed identifier
-  - :code:`Category` is one of :code:`False_Positive` or :code:`Intentional`
+  - :ada:`GNATprove` is a fixed identifier
+  - :ada:`Category` is one of :ada:`False_Positive` or :ada:`Intentional`
 
-    + :code:`False_Positive`: check cannot fail
-    + :code:`Intentional`: check can fail but is not a bug
+    + :ada:`False_Positive`: check cannot fail
+    + :ada:`Intentional`: check can fail but is not a bug
 
-  - :code:`Pattern` is a substring of the check message
+  - :ada:`Pattern` is a substring of the check message
 
-    + Asterisks :code:`*` match zero or more characters in the message
+    + Asterisks :ada:`*` match zero or more characters in the message
 
-  - :code:`Reason` is a string literal for reviews
+  - :ada:`Reason` is a string literal for reviews
 
     + Reason is repeated in analysis summary file :file:`gnatprove.out`
 
@@ -644,7 +645,7 @@ Proof
 
   - Possible failure of assertions
 
-  - Violation of functional contracts (:code:`Pre` and :code:`Post`)
+  - Violation of functional contracts (:ada:`Pre` and :ada:`Post`)
 
 * Proof allows to reach Silver/Golf/Platinum levels
 

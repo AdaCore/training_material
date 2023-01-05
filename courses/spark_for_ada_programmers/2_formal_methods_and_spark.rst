@@ -135,14 +135,18 @@ Goals of Static Analysis of Programs
 * **Automation** is better with AbsInt and SymExe/BMC
 
   - Proof incurs the cost of writing specification of functions
+
 |
+
 * **Precision** is better with SymExe/BMC and Proof
 
   - Automatic provers are **more powerful** than abstract domains
   - SymExe/BMC explore infinitely many traces
 
     + Limit the exploration to a subset of traces
+
 |
+
 * **Soundness** is better with AbsInt and Proof
 
   - Soundness is not missing alarms (aka :dfn:`false negatives`)
@@ -162,12 +166,16 @@ Capabilities of Static Analysis of Programs
     + Program during development
 
   - Proof is inherently modular
+
 |
+
 * **Speed** of the analysis drives usage
 
   - Unsound analysis can be much faster than sound one
   - For sound analysis, modular analysis is faster
+
 |
+
 * **Usage** depends on capabilities
 
   - Fast analysis with no false alarms is better for :dfn:`bug-finding`
@@ -188,20 +196,20 @@ Comparing Techniques on a Simple Code
       end loop;
    end;
 
-* :code:`T(Idx)` is safe |equivalent| :code:`Idx in Table'Range`
+* :ada:`T(Idx)` is safe |equivalent| :ada:`Idx in Table'Range`
 
-* As a result of calling :code:`Reset`:
+* As a result of calling :ada:`Reset`:
 
-  - Array :code:`T` is initialized between indexes :code:`A` and :code:`B`
-  - Array :code:`T` has value zero between indexes :code:`A` and :code:`B`
+  - Array :ada:`T` is initialized between indexes :ada:`A` and :ada:`B`
+  - Array :ada:`T` has value zero between indexes :ada:`A` and :ada:`B`
 
 -------------------------
 Abstract Interpretation
 -------------------------
 
-* :code:`Reset` is analyzed in the context of each of its calls
+* :ada:`Reset` is analyzed in the context of each of its calls
 
-  - If the values of :code:`Table`, :code:`A`, :code:`B` are precise enough,
+  - If the values of :ada:`Table`, :ada:`A`, :ada:`B` are precise enough,
     AbsInt can deduce that :ada:`Idx in Table'Range`
 
   - Otherwise, an alarm is emitted (for sound analysis)
@@ -213,33 +221,33 @@ Abstract Interpretation
     + The abstract value for the whole array now includes value zero
     + ... but is also possibly uninitialized or keeps a previous value
 
-  - After the call to :code:`Reset`, the analysis does not know that :code:`T`
-    is initialized with value zero between indexes :code:`A` and :code:`B`
+  - After the call to :ada:`Reset`, the analysis does not know that :ada:`T`
+    is initialized with value zero between indexes :ada:`A` and :ada:`B`
 
 -----------------------------------------------
 Symbolic Execution and Bounded Model Checking
 -----------------------------------------------
 
-* :code:`Reset` is analyzed in the context of **program traces**
+* :ada:`Reset` is analyzed in the context of **program traces**
 
-  - If the values of :code:`A` and :code:`B` are *close enough*, SymExe/BMC can
+  - If the values of :ada:`A` and :ada:`B` are *close enough*, SymExe/BMC can
     analyze all loop iterations and deduce that :ada:`Idx in Table'Range`
 
   - Otherwise, an alarm is emitted (for sound analysis)
 
 * Analysis of loops is limited to few iterations (same for recursion)
 
-  - The other iterations are ignored or approximated, so the value of :code:`T`
+  - The other iterations are ignored or approximated, so the value of :ada:`T`
     is **lost**
 
-  - After the call to :code:`Reset`, the analysis does **not** know that :code:`T`
-    is initialized with value zero between indexes :code:`A` and :code:`B`
+  - After the call to :ada:`Reset`, the analysis does **not** know that :ada:`T`
+    is initialized with value zero between indexes :ada:`A` and :ada:`B`
 
 ------------------------
 Deductive Verification
 ------------------------
 
-* :code:`Reset` is analyzed in the context of a :dfn:`precondition`
+* :ada:`Reset` is analyzed in the context of a :dfn:`precondition`
 
   - Predicate defined by the user which restricts the calling context
   - Proof checks if the precondition entails :ada:`Idx in Table'Range`
@@ -251,13 +259,13 @@ Deductive Verification
 
   :ada:`T(A .. Idx)'Initialized and T(A .. Idx) = (A .. Idx => 0)`
 
-* Code after the call to :code:`Reset` is analyzed in the context of a
+* Code after the call to :ada:`Reset` is analyzed in the context of a
   :dfn:`postcondition`
 
   :ada:`T(A .. B)'Initialized and T(A .. B) = (A .. B => 0)`
 
-  - So the analysis knows that :code:`T` is initialized with value zero between
-    indexes :code:`A` and :code:`B`
+  - So the analysis knows that :ada:`T` is initialized with value zero between
+    indexes :ada:`A` and :ada:`B`
 
 =======
 SPARK
@@ -268,17 +276,21 @@ SPARK is a Formal Method
 --------------------------
 
 * **Soundness** is the most important requirement (no missing alarms)
+
 |
+
 * Analysis is a **combination of techniques**
 
   - :dfn:`Flow analysis` is a simple form of modular abstract interpretation
   - :dfn:`Proof` is modular deductive verification
+
 |
+
 * Inside proof, abstract interpretation is used to compute **bounds** on arithmetic
   expressions
 
   - Based on type bounds information
-  - e.g if :code:`X` is of type :ada:`Natural`
+  - e.g if :ada:`X` is of type :ada:`Natural`
   - Then :ada:`Integer'Last - X` cannot overflow
 
 ----------------------------
@@ -292,7 +304,7 @@ SPARK is a Language Subset
   - Some language features **improve** analysis precision
 
     + e.g. first-class arrays with bounds
-      :code:`Table'First` and :code:`Table'Last`
+      :ada:`Table'First` and :ada:`Table'Last`
 
   - Some language features **degrade** analysis precision
 
@@ -488,13 +500,17 @@ Formal Methods and SPARK
 * Development of large, complex software is **difficult**
 
   - Especially so for high-integrity software
+
 |
+
 * Formal methods **can** be used industrially
 
   - During development and verification
   - To address objectives of certification
   - They must be sound (no missing alarm) in general
+
 |
+
 * SPARK is an **industrially** usable formal method
 
   - Based on flow analysis and proof

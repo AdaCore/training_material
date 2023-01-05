@@ -89,7 +89,7 @@ Parts of a Check Message
 
 * Typical check message consists in multiple parts
 
-  .. code:: ada
+  .. code:: console
 
      file:line:col: severity: check "might fail"
        "cannot prove" this-part
@@ -118,8 +118,10 @@ What is the problem with this code?
       incr.adb:3:11: high: overflow check might fail
         cannot prove upper bound for X + 1
         e.g. when X = Integer'Last
-        reason for check: result of addition must fit in a 32-bits machine integer
-        possible fix: subprogram at line 1 should mention X in a precondition
+        reason for check: result of addition must fit in a 32-bits
+          machine integer
+        possible fix: subprogram at line 1 should mention X in
+          a precondition
 
 -----------------
 Counterexamples
@@ -169,7 +171,7 @@ Possible Fix
 
   - Because some variable in check is not constrained at all
 
-  .. code:: ada
+  .. code:: console
 
      possible fix: precondition of subprogram should mention Var
      possible fix: precondition of subprogram should mention Var'Initialized
@@ -178,7 +180,7 @@ Possible Fix
 
 * Also suggests missing postcondition
 
-  .. code:: ada
+  .. code:: console
 
      possible fix: call should mention Var in a postcondition
      possible fix: you should consider adding a postcondition to function
@@ -186,10 +188,12 @@ Possible Fix
 
 * Other suggestions for arithmetic and representation
 
-  .. code:: ada
+  .. code:: console
 
-     possible fix: use pragma Overflow_Mode or switch -gnato13 or unit SPARK.Big_Integers
-     possible fix: overlaying object should have an Alignment representation clause
+     possible fix: use pragma Overflow_Mode or switch -gnato13
+       or unit SPARK.Big_Integers
+     possible fix: overlaying object should have an Alignment
+       representation clause
 
 -----------------------
 Continuation Messages
@@ -232,7 +236,7 @@ Information Messages
 * Information messages about proved or justified checks
 
   - With switch :command:`--report=all/provers/statistics`
-  - Checks justified with pragma :code:`Annotate`
+  - Checks justified with pragma :ada:`Annotate`
 
   .. code:: ada
 
@@ -297,7 +301,7 @@ Proof Levels
 
 * Specific values for lower-level switches take precedence
 
-  - E.g. :command:`--level=2 --timeout=120 --steps=10000`
+  - e.g. :command:`--level=2 --timeout=120 --steps=10000`
 
 ----------------------
 Running Proof Faster
@@ -324,9 +328,9 @@ Running Proof Faster
 
   - This also allows to simply replay proofs with :command:`--replay`
 
-* Sharing proof results via a Memcached server
+* Sharing proof results via a cache
 
-  - Can either store database in a file, or connect to a server
+  - Can either store database in a file, or connect to a Memcached server
 
 ============
 Ghost Code
@@ -367,18 +371,19 @@ Intermediate Assertions
 Ghost Code
 ------------
 
-* dfn:`Ghost code` is code meant only for verification
+* :dfn:`Ghost code` is code meant only for verification
 
   - Intermediate assertions are a special case of ghost code
   - Contracts are also part of ghost code
 
-* Special aspect :code:`Ghost` used to identify ghost entities
+* Special aspect :ada:`Ghost` used to identify ghost entities
 
   - Ghost functions express properties used in contracts
 
     .. code:: ada
 
-       function Is_Valid (X : T) return Boolean is (...) with Ghost;
+       function Is_Valid (X : T) return Boolean is (...)
+         with Ghost;
        procedure Proc (X : T) with Pre => Is_Valid (X);
 
   - Ghost variables hold intermediate values referred to in assertions
@@ -403,7 +408,7 @@ Compilation of Ghost Code
 * Ghost code compiled by GNAT
 
   - When using switch :command:`-gnata`
-  - Or pragma :code:`Assertion_Policy (Ghost => Check)`
+  - Or pragma :ada:`Assertion_Policy (Ghost => Check)`
 
 * :toolname:`GNATprove` checks that ghost code has no effect
 
@@ -434,8 +439,8 @@ Ghost Functions
 
   - If objective is not to execute them!
   - Typically when creating models of the actual types
-  - E.g. using SPARK functional containers (sets, maps, etc)
-  - E.g. like it is done for SPARK formal containers
+  - e.g. using SPARK functional containers (sets, maps, etc)
+  - e.g. like it is done for SPARK formal containers
 
 -----------------
 Ghost Variables
@@ -445,7 +450,7 @@ Ghost Variables
 
   - Typically to store intermediate values
 
-    + E.g. value of variable at subprogram entry
+    + e.g. value of variable at subprogram entry
 
   - Also used to build useful data structure supporting proof
 
@@ -481,7 +486,10 @@ Ghost Procedures
 
     .. code:: Ada
 
-       procedure Lemma (X : T) with Pre => ..., Post => ...;
+       procedure Lemma (X : T)
+       with
+         Pre  => ...,
+         Post => ...;
        procedure Lemma (X : T) is null;
 
   - Lemma is used by calling it on relevant arguments
@@ -496,7 +504,7 @@ Ghost Procedures
 SPARK Lemma Library
 ---------------------
 
-* Part of SPARK Library in :code:`SPARK.Lemmas.<unit>`
+* Part of SPARK Library in :ada:`SPARK.Lemmas.<unit>`
 
 * Mostly non-linear arithmetic lemmas
 

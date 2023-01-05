@@ -37,7 +37,7 @@ Data and Information Flow Analysis
 
 * Data dependencies can be specified
 
-  - Introduced by aspect :code:`Global`
+  - Introduced by aspect :ada:`Global`
 
 * Information flow analysis
 
@@ -46,7 +46,7 @@ Data and Information Flow Analysis
 
 * Flow dependencies can be specified
 
-  - Introduced by aspect :code:`Depends`
+  - Introduced by aspect :ada:`Depends`
 
 ===========================
 Information Flow Analysis
@@ -56,13 +56,13 @@ Information Flow Analysis
 Direct and Indirect Flows
 ---------------------------
 
-* A direct flow occurs when assigning :code:`A` to :code:`B`
+* A direct flow occurs when assigning :ada:`A` to :ada:`B`
 
   .. code:: ada
 
      B := A;
 
-* An indirect flow occurs when assigning :code:`B` conditioned on :code:`A`
+* An indirect flow occurs when assigning :ada:`B` conditioned on :ada:`A`
 
   .. code:: ada
 
@@ -96,7 +96,8 @@ Self-Dependency on Array Assignment
      A : T := ...
 
      A (1) := True;
-     -- intermediate value of A seen as dependent on original value
+     -- intermediate value of A seen as dependent on
+     -- original value
      A (2) := False;
      -- final value of A seen as dependent on original value
 
@@ -115,7 +116,7 @@ Flow Dependency Contracts
 Basic Data Dependency Contracts
 ---------------------------------
 
-* Introduced by aspect :code:`Depends`
+* Introduced by aspect :ada:`Depends`
 
 * Optional, but must be complete if specified
 
@@ -155,7 +156,7 @@ Special Cases
 
   - Typically when effect hidden from analysis
   - Or input used only for debug
-  - Also the case for global variables of mode :code:`Proof_In`
+  - Also the case for global variables of mode :ada:`Proof_In`
   - Must be last line of flow dependencies
 
   .. code:: Ada
@@ -190,7 +191,8 @@ Special Notation
 
      procedure Update (T1, T2 : in out Table)
      with
-       Depends => ((T1, T2) => +null);  -- same as (T1 => T1, T2 => T2)
+       Depends => ((T1, T2) => +null);
+                  -- same as (T1 => T1, T2 => T2)
 
 ======================
 Automatic Generation
@@ -205,7 +207,7 @@ From Data Dependencies
 * If flow dependencies are not specified, they are generated
 
   - All outputs depend on all inputs
-  - All globals of mode :code:`Proof_In` have no effect on outputs
+  - All globals of mode :ada:`Proof_In` have no effect on outputs
 
 * This is a correct over-approximation of actual flow dependencies
 
@@ -226,7 +228,7 @@ From Flow Dependencies
 
 * This is the exact data dependencies consistent with flow dependencies
 
-  - Except some globals of mode :code:`Proof_In` may be classified as inputs
+  - Except some globals of mode :ada:`Proof_In` may be classified as inputs
 
 =====
 Lab
@@ -248,7 +250,7 @@ Advanced Flow Analysis
 
 * Flow analysis detects:
 
-  - Violation of flow dependency contracts (:code:`Depends`)
+  - Violation of flow dependency contracts (:ada:`Depends`)
   - Inconsistency between data and flow dependency contracts
 
 * Flow analysis is imprecise

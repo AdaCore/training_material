@@ -149,7 +149,7 @@ Assertions in SPARK
 Excluded Ada Features
 -----------------------
 
-* Backward :code:`goto` statement
+* Backward :ada:`goto` statement
 
   - Can create loops, which require a specific treatment in formal verification
 
@@ -162,8 +162,8 @@ Excluded Ada Features
   - Creates complex control flow across calls
   - Raising exceptions is allowed
 
-* Tasking features: :code:`accept` statement (aka :dfn:`rendezvous`),
-  :code:`requeue` statement, :code:`select` statement, etc
+* Tasking features: :ada:`accept` statement (aka :dfn:`rendezvous`),
+  :ada:`requeue` statement, :ada:`select` statement, etc
 
   - But features in Ravenscar and Jorvik profiles are supported
 
@@ -278,7 +278,7 @@ Functions Without Side-Effects
 
   - Writing to a global variable
 
-  - Writing to an :code:`out` or :code:`in out` parameter
+  - Writing to an :ada:`out` or :ada:`in out` parameter
 
   - Reading a volatile variable
 
@@ -290,12 +290,12 @@ Functions Without Side-Effects
 Side-Effects and Ambiguity
 ----------------------------
 
-* If function :code:`Fun` writes to global variable :code:`Var`, what is the
-  value of the expression :code:`Fun = Var`?
+* If function :ada:`Fun` writes to global variable :ada:`Var`, what is the
+  value of the expression :ada:`Fun = Var`?
 
-  - :code:`Var` may be evaluated before the call to :code:`Fun`
+  - :ada:`Var` may be evaluated before the call to :ada:`Fun`
 
-  - ...or after the call to :code:`Fun`
+  - ...or after the call to :ada:`Fun`
 
   - Thus leading to an ambiguity
 
@@ -309,7 +309,7 @@ Side-Effects and Ambiguity
    end Fun;
    pragma Assert (Fun = Var); -- Ambiguous evaluation
 
-* Same with :code:`Fun` writing to an :code:`out` or :code:`in out` parameter
+* Same with :ada:`Fun` writing to an :ada:`out` or :ada:`in out` parameter
 
 --------------------------------------------
 Benefits of Functions Without Side-Effects
@@ -333,13 +333,13 @@ Benefits of Functions Without Side-Effects
 Absence of Interferences
 --------------------------
 
-* :dfn:`Interferences` between names :code:`A` and :code:`B` when:
+* :dfn:`Interferences` between names :ada:`A` and :ada:`B` when:
 
-  - :code:`A` and :code:`B` designate the same object
+  - :ada:`A` and :ada:`B` designate the same object
 
-  - and the code writes to :code:`A`, then reads :code:`B`
+  - and the code writes to :ada:`A`, then reads :ada:`B`
 
-  - or the code writes to :code:`A` and to :code:`B`
+  - or the code writes to :ada:`A` and to :ada:`B`
 
 * Interferences are caused by passing parameters
 
@@ -353,13 +353,13 @@ Absence of Interferences
 Interferences and Ambiguity (1/2)
 -----------------------------------
 
-* If procedure :code:`Proc` writes to parameter :code:`A` then to parameter
-  :code:`B`, what is the value of `Var` after the call :code:`Proc (Var, Var)`?
+* If procedure :ada:`Proc` writes to parameter :ada:`A` then to parameter
+  :ada:`B`, what is the value of `Var` after the call :ada:`Proc (Var, Var)`?
 
-  - if :code:`A` and :code:`B` are passed by reference: the value of :code:`B`
+  - if :ada:`A` and :ada:`B` are passed by reference: the value of :ada:`B`
 
-  - if :code:`A` and :code:`B` are passed by copy: the value of :code:`A` or
-    :code:`B`, depending on which one is copied back last
+  - if :ada:`A` and :ada:`B` are passed by copy: the value of :ada:`A` or
+    :ada:`B`, depending on which one is copied back last
 
   - Thus leading to an ambiguity
 
@@ -375,18 +375,18 @@ Interferences and Ambiguity (1/2)
 
 * Actually, Ada forbids this simple case and GNAT rejects it
 
-  - But problem remains with :code:`Table(Var)` instead of :code:`Var`
+  - But problem remains with :ada:`Table(Var)` instead of :ada:`Var`
 
 -----------------------------------
 Interferences and Ambiguity (2/2)
 -----------------------------------
 
-* If procedure :code:`Proc` writes to parameter :code:`A` then reads global
-  variable :code:`Var`, what is the value read in a call to :code:`Proc (Var)`?
+* If procedure :ada:`Proc` writes to parameter :ada:`A` then reads global
+  variable :ada:`Var`, what is the value read in a call to :ada:`Proc (Var)`?
 
-  - if :code:`A` is passed by reference: the value written to :code:`A`
+  - if :ada:`A` is passed by reference: the value written to :ada:`A`
 
-  - if :code:`A` is passed by copy: the initial value of :code:`Var`
+  - if :ada:`A` is passed by copy: the initial value of :ada:`Var`
 
   - Thus leading to an ambiguity
 
@@ -412,7 +412,7 @@ Interferences and Ambiguity (2/2)
 Benefits of Absence of Interferences
 --------------------------------------
 
-* No hidden changes to an object :code:`A` through another unrelated name
+* No hidden changes to an object :ada:`A` through another unrelated name
 
   - Simplifies both flow analysis and proof
 
@@ -502,16 +502,12 @@ Migrating from C to SPARK
 
   - C uses pointers everywhere
 
-  - Better to use parameter modes :code:`out` and :code:`in out` and array
+  - Better to use parameter modes :ada:`out` and :ada:`in out` and array
     types in Ada
 
   - Choose between different access types in SPARK, with different semantics
 
     + Details discussed in the course on Pointer Programs
-
-======
-Labs
-======
 
 =========
 Summary

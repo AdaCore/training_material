@@ -52,12 +52,12 @@ Contracts in SPARK
 
 * Preconditions and postconditions added in Ada 2012
 
-  - Using the aspect syntax for :code:`Pre` and :code:`Post`
+  - Using the aspect syntax for :ada:`Pre` and :ada:`Post`
   - Already in GNAT since 2008 as pragmas
 
 * Language support goes much beyond contracts-as-a-library
 
-  - Ability to relate pre-state and post-state with attribute :code:`Old`
+  - Ability to relate pre-state and post-state with attribute :ada:`Old`
   - Fine-grain control over execution
 
     .. code:: ada
@@ -94,9 +94,9 @@ What is the problem with this postcondition?
 
 .. container:: animate
 
-   * The postcondition does not say that the value of :code:`Y` is preserved!
+   * The postcondition does not say that the value of :ada:`Y` is preserved!
 
-   * As a result, nothing is known about :code:`Y` after calling :code:`Set_X`
+   * As a result, nothing is known about :ada:`Y` after calling :ada:`Set_X`
 
      .. code:: ada
 
@@ -122,7 +122,7 @@ Frame Condition - Records
      procedure Set_X (P : in out Pair; Value : Integer)
        with Post => P = (P'Old with delta X => Value);
 
-* In both cases, value of :code:`Y` is known to be preserved
+* In both cases, value of :ada:`Y` is known to be preserved
 
 --------------------------
 Frame Condition - Arrays
@@ -145,8 +145,8 @@ Frame Condition - Arrays
        with Post =>
          T = (T'Old with delta I => T(J)'Old, J => T(I)'Old);
 
-* In both cases, value of :code:`T(K)` is known to be preserved for :code:`K`
-  different from :code:`I` and :code:`J`
+* In both cases, value of :ada:`T(K)` is known to be preserved for :ada:`K`
+  different from :ada:`I` and :ada:`J`
 
 ------------------------------
 Frame Condition - Conditions
@@ -224,7 +224,7 @@ Frame Condition - Private Types
        with Post => P.Model = (P.Model'Old with delta X => Value);
 
 -----------------------
-Attribute :code:`Old`
+Attribute :ada:`Old`
 -----------------------
 
 * Dynamic semantics is to make a copy at subprogram entry
@@ -245,23 +245,23 @@ Attribute :code:`Old`
          with Post =>
            (if J in A'Range then V = A(J)'Old); -- Illegal
 
-  - Use :code:`pragma Unevaluated_Use_Of_Old (Allow)` to allow
+  - Use :ada:`pragma Unevaluated_Use_Of_Old (Allow)` to allow
 
     + :toolname:`GNATprove` checks that this is safe
 
 -----------------------------------------
-Special Cases for Attribute :code:`Old`
+Special Cases for Attribute :ada:`Old`
 -----------------------------------------
 
-* Simple component access :code:`X.C'Old` equivalent to :code:`X'Old.C`
+* Simple component access :ada:`X.C'Old` equivalent to :ada:`X'Old.C`
 
   - Although one may be more efficient at runtime
 
-* Function call in the prefix of :code:`Old` is evaluated at subprogram entry
+* Function call in the prefix of :ada:`Old` is evaluated at subprogram entry
 
   - Value of globals is the one at subprogram entry
 
-  - Not the same as calling the function on parameters with :code:`Old`
+  - Not the same as calling the function on parameters with :ada:`Old`
 
     .. code:: Ada
 
@@ -285,7 +285,7 @@ Contract Cases (1/2)
 
   - Inspired by Parnas Tables
 
-* SPARK defines aspect :code:`Contract_Cases`
+* SPARK defines aspect :ada:`Contract_Cases`
 
   - Syntax of named aggregate
   - Each case consists of a guard and a consequence
@@ -307,7 +307,7 @@ Contract Cases (2/2)
 
   - When guard is enabled on entry, consequence holds on exit
   - Note: guards are evaluated *on entry*
-  - Attributes :code:`Old` and :code:`Result` allowed in consequence
+  - Attributes :ada:`Old` and :ada:`Result` allowed in consequence
 
 * :toolname:`GNATprove` checks that cases are disjoint and complete
 
@@ -357,7 +357,8 @@ Contracts on Callbacks
 
   .. code:: ada
 
-     type Update_Proc is access procedure (X : in out Natural) with
+     type Update_Proc is access procedure (X : in out Natural)
+     with
        Pre  => Precond (X),
        Post => Postcond (X'Old, X);
 
@@ -367,13 +368,13 @@ Contracts on Callbacks
 
      Callback : Update_Proc := Proc'Access;
 
-  - Precondition of :code:`Proc` should be weaker than :code:`Precond(X)`
-  - Postcondition of :code:`Proc` should be stronger than
-    :code:`Postcond(X'Old, X)`
-  - Data dependencies should be :code:`null`
+  - Precondition of :ada:`Proc` should be weaker than :ada:`Precond(X)`
+  - Postcondition of :ada:`Proc` should be stronger than
+    :ada:`Postcond(X'Old, X)`
+  - Data dependencies should be :ada:`null`
 
-* :toolname:`GNATprove` uses contract of :code:`Update_Proc` when
-  :code:`Callback` is called
+* :toolname:`GNATprove` uses contract of :ada:`Update_Proc` when
+  :ada:`Callback` is called
 
 -------------------
 Contracts for OOP
@@ -395,15 +396,15 @@ Contracts for OOP
      type Derived is new Object with record ...
      procedure Proc (X : in out Derived) with ...
 
-  - Precondition of :code:`Proc` should be weaker than :code:`Precond(X)`
-  - Postcondition of :code:`Proc` should be stronger than
-    :code:`Postcond(X'Old, X)`
+  - Precondition of :ada:`Proc` should be weaker than :ada:`Precond(X)`
+  - Postcondition of :ada:`Proc` should be stronger than
+    :ada:`Postcond(X'Old, X)`
   - Data dependencies should be the same
 
-* :toolname:`GNATprove` uses contract of :code:`Proc` in :code:`Object` when
-  :code:`Proc` is called with static type :code:`Object`
+* :toolname:`GNATprove` uses contract of :ada:`Proc` in :ada:`Object` when
+  :ada:`Proc` is called with static type :ada:`Object`
 
-  - Dynamic type might be :code:`Derived`
+  - Dynamic type might be :ada:`Derived`
 
 ========================
 Preventing Unsoundness
@@ -422,13 +423,13 @@ What's wrong with the following contract?
 
 .. container:: animate
 
-   * The postcondition is false when :code:`Value` is odd
+   * The postcondition is false when :ada:`Value` is odd
 
-   * :toolname:`GNATprove` generates an inconsistent axiom for :code:`Half`
+   * :toolname:`GNATprove` generates an inconsistent axiom for :ada:`Half`
 
      - It says that any integer is equal to twice another integer
-     - This can be used by provers to deduce :code:`False`
-     - Anything can be proved from :code:`False`
+     - This can be used by provers to deduce :ada:`False`
+     - Anything can be proved from :ada:`False`
 
        + As if the code was dead code
 
@@ -441,9 +442,9 @@ Unfeasible Contracts
   - There exists a correct implementation
   - This includes absence of runtime errors
 
-* Contract of :code:`Double` also leads to unsoundness
+* Contract of :ada:`Double` also leads to unsoundness
 
-  - The postcondition is false when :code:`Value` is too large
+  - The postcondition is false when :ada:`Value` is too large
 
   .. code:: ada
 
@@ -481,13 +482,13 @@ What's wrong with the following code?
 
 .. container:: animate
 
-   * Function :code:`Half` does not terminate
+   * Function :ada:`Half` does not terminate
 
-   * :toolname:`GNATprove` proves the postcondition of :code:`Half`!
+   * :toolname:`GNATprove` proves the postcondition of :ada:`Half`!
 
      - Because that program point is unreachable (dead code)
 
-   * :toolname:`GNATprove` does not generate an axiom for :code:`Half`
+   * :toolname:`GNATprove` does not generate an axiom for :ada:`Half`
 
      - Because function may not terminate
      - :command:`info: function contract not available for proof`
@@ -559,7 +560,7 @@ Which statement is correct?
    A. :answer:`The frame condition is easily overlooked.`
    B. The frame condition is generated by :toolname:`GNATprove`.
    C. Delta aggregates are only used in frame conditions.
-   D. Attribute :code:`Old` is illegal after :code:`and then` or :code:`or
+   D. Attribute :ada:`Old` is illegal after :ada:`and then` or :ada:`or
       else`.
 
 .. container:: animate
@@ -569,7 +570,7 @@ Which statement is correct?
    A. Correct
    B. Only part of the frame condition is generated.
    C. No, but they are particularly useful in frame conditions.
-   D. Use pragma :code:`Unevaluated_Use_Of_Old (Allow)`.
+   D. Use pragma :ada:`Unevaluated_Use_Of_Old (Allow)`.
 
 --------------------
 Quiz - Unsoundness
@@ -601,9 +602,9 @@ Subprogram Contracts
 
 * Functional contracts given by
 
-  - The precondition with aspect :code:`Pre`
-  - The postcondition with aspect :code:`Post`
-  - The contract cases with aspect :code:`Contract_Cases`
+  - The precondition with aspect :ada:`Pre`
+  - The postcondition with aspect :ada:`Post`
+  - The contract cases with aspect :ada:`Contract_Cases`
 
 * Postcondition may be imprecise
 

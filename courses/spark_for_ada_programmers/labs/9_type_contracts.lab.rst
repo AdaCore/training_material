@@ -21,15 +21,15 @@ Type Predicates
 - Run :toolname:`GNATprove` to prove the unit
 
   + Look at unproved predicate checks, can you explain them?
-  + Does it make a difference that :code:`Swap_Pair` is public and
-    :code:`Bump_Pair` is private?
+  + Does it make a difference that :ada:`Swap_Pair` is public and
+    :ada:`Bump_Pair` is private?
 
-- Fix the predicate check failure in :code:`Bump_Pair`
+- Fix the predicate check failure in :ada:`Bump_Pair`
 
   + Hint: use an aggregate assignment
 
-- Fix the predicate check failure in :code:`Swap_Pair` by using a base type
-  without predicate for :code:`Pair`
+- Fix the predicate check failure in :ada:`Swap_Pair` by using a base type
+  without predicate for :ada:`Pair`
 
 -----------------
 Type Invariants
@@ -38,19 +38,19 @@ Type Invariants
 - Run :toolname:`GNATprove` to prove the unit
 
   + Look at unproved invariant checks, can you explain them?
-  + Does it make a difference that :code:`Swap_Triplet` is public and
-    :code:`Bump_Triplet` is private?
+  + Does it make a difference that :ada:`Swap_Triplet` is public and
+    :ada:`Bump_Triplet` is private?
 
-- Fix the invariant check failure on the default value for :code:`Triplet`
+- Fix the invariant check failure on the default value for :ada:`Triplet`
 
-- Fix the invariant check failure in :code:`Swap_Triplet`
+- Fix the invariant check failure in :ada:`Swap_Triplet`
 
   + Hint: the intent is for the value of all components to rotate
 
-- Fix the invariant check failure in :code:`Bump_And_Swap_Triplet`
+- Fix the invariant check failure in :ada:`Bump_And_Swap_Triplet`
 
-  + Hint: look also at :code:`Bump_Triplet`
-  + Hint: you will need to add a postcondition to :code:`Bump_Triplet`
+  + Hint: look also at :ada:`Bump_Triplet`
+  + Hint: you will need to add a postcondition to :ada:`Bump_Triplet`
 
 --------------
 All Together
@@ -60,5 +60,5 @@ All Together
 
 - Can you explain the presence of predicate checks and invariant checks?
 
-  + How about the absence of checks in :code:`Bump_And_Swap_Pair`?
-  + How about the checks in :code:`Bump_And_Swap_Triplet`?
+  + How about the absence of checks in :ada:`Bump_And_Swap_Pair`?
+  + How about the checks in :ada:`Bump_And_Swap_Triplet`?

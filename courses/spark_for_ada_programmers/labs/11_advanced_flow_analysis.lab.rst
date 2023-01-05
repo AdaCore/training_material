@@ -21,17 +21,17 @@ Flow Dependencies
 - Run :toolname:`GNATprove` in flow analysis mode
 
 - Add flow dependency contracts to all subprograms except
-  :code:`Strange_Init_Rec` and :code:`Strange_Init_Table`
+  :ada:`Strange_Init_Rec` and :ada:`Strange_Init_Table`
 
   + Rerun :toolname:`GNATprove` in flow analysis mode
-  + Discuss the correct flow dependencies of :code:`Init_Table` with the instructor.
+  + Discuss the correct flow dependencies of :ada:`Init_Table` with the instructor.
 
 -----------------------------
 Imprecise Flow Dependencies
 -----------------------------
 
-- Copy the flow dependencies of :code:`Init_Rec` and :code:`Init_Table` for
-  respectively :code:`Strange_Init_Rec` and :code:`Strange_Init_Table`
+- Copy the flow dependencies of :ada:`Init_Rec` and :ada:`Init_Table` for
+  respectively :ada:`Strange_Init_Rec` and :ada:`Strange_Init_Table`
 
 - Run :toolname:`GNATprove` in flow analysis mode
 
@@ -40,4 +40,4 @@ Imprecise Flow Dependencies
 - Run :toolname:`GNATprove` in flow analysis mode
 
   + Do you understand the reason for the check messages?
-  + Either adapt the flow dependencies or justify the messages with pragma :code:`Annotate`
+  + Either adapt the flow dependencies or justify the messages with pragma :ada:`Annotate`

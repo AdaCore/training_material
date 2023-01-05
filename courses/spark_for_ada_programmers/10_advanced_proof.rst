@@ -54,7 +54,7 @@ Proof So Far
 
 .. container:: speakernote
 
-   :code:`T` is progressively initialized in a loop.
+   :ada:`T` is progressively initialized in a loop.
    The techniques we saw so far can't deal with this program.
 
 --------------------------
@@ -92,8 +92,9 @@ Limitations of the Initialization Policy
 
   - Otherwise flow analysis cannot check initialization
 
-  - Except in some special cases when a heuristic works (fully initialize an
-    array with a *for loop*)
+  - Except in some special cases when a heuristic works
+
+    + e.g. fully initialize an array with a *for loop*
 
 * All outputs must be fully initialized when returning
 
@@ -103,7 +104,7 @@ Limitations of the Initialization Policy
 Specifying Relaxed Initialization
 -----------------------------------
 
-* Aspect `Relaxed_Initialization` can be used on objects, types and subprograms
+* Aspect :ada:`Relaxed_Initialization` can be used on objects, types and subprograms
 
   .. code:: Ada
 
@@ -116,16 +117,14 @@ Specifying Relaxed Initialization
 * Corresponding objects (variables, components) have relaxed initialization
 
   - Flow analysis does not check (full) initialization
-
   - Instead, proof checks (partial) initialization when read
-
   - Not applicable to scalar parameter or scalar function result
 
 ------------------------------
 Specifying Initialized Parts
 ------------------------------
 
-* Attribute `'Initialized` is used to specify initialized objects
+* Attribute :ada:`Initialized` is used to specify initialized objects
 
   .. code:: Ada
 
@@ -137,7 +136,7 @@ Specifying Initialized Parts
 
      pragma Assert (R.C'Initialized);
 
-* Attribute executed like `'Valid_Scalars`
+* Attribute executed like :ada:`Valid_Scalars`
 
   - All scalar subcomponents are dynamically checked to be valid values of
     their type
@@ -146,7 +145,7 @@ Specifying Initialized Parts
 Verifying Relaxed Initialization
 ----------------------------------
 
-* Contracts (postcondition, predicate) may refer to `'Initialized`
+* Contracts (postcondition, predicate) may refer to :ada:`Initialized`
 
   .. code:: Ada
 
@@ -175,7 +174,7 @@ Unrolling Loops
 
 * :toolname:`GNATprove` can unroll loops when:
 
-  - Loop is of the form :code:`for J in A .. B loop`
+  - Loop is of the form :ada:`for J in A .. B loop`
   - Number of iterations is less than 20
   - The only local variables declared in the loop are scalars
 
@@ -209,18 +208,18 @@ Loop Invariants
 * Dynamic checks inserted by GNAT
 
   - When using switch :command:`-gnata`
-  - Or pragma :code:`Assertion_Policy (Loop_Invariant => Check)`
+  - Or pragma :ada:`Assertion_Policy (Loop_Invariant => Check)`
 
 * Multiple loop invariants are allowed
 
   - Must be grouped
-  - Same as conjunction of conditions using :code:`and`
+  - Same as conjunction of conditions using :ada:`and`
 
 * Placement anywhere in the top-level sequence of statements
 
   - Typically at the beginning or end of the loop
   - Can be inside the statements of a *declare block*
-  - Default loop invariant of :code:`True` at beginning of the loop
+  - Default loop invariant of :ada:`True` at beginning of the loop
 
 --------------------------
 Loop Invariants in Proof
@@ -327,10 +326,10 @@ Accumulating Information
      end Search_Table;
 
 ------------------------------
-Attribute :code:`Loop_Entry`
+Attribute :ada:`Loop_Entry`
 ------------------------------
 
-* Attribute :code:`Loop_Entry` used to refer to the value of a variable on
+* Attribute :ada:`Loop_Entry` used to refer to the value of a variable on
   entry to the loop
 
   .. code:: ada
@@ -344,14 +343,14 @@ Attribute :code:`Loop_Entry`
         end loop;
      end Bump_Table;
 
-* Similar to attribute :code:`Old` which is usable only inside postconditions
+* Similar to attribute :ada:`Old` which is usable only inside postconditions
 
-  - In many cases, :code:`X'Loop_Entry` is also value on subprogram entry
-  - Same limitations as for attribute :code:`Old`
+  - In many cases, :ada:`X'Loop_Entry` is also value on subprogram entry
+  - Same limitations as for attribute :ada:`Old`
 
-    + Use :code:`pragma Unevaluated_Use_Of_Old (Allow)` if needed
+    + Use :ada:`pragma Unevaluated_Use_Of_Old (Allow)` if needed
 
-* Use :code:`X'Loop_Entry(Loop_Name)` for value of :code:`X` on entry to loop
+* Use :ada:`X'Loop_Entry(Loop_Name)` for value of :ada:`X` on entry to loop
   not directly enclosing
 
 ----------------------------
@@ -363,7 +362,7 @@ Loop Frame Condition (1/2)
   - All information on modified variables is lost
   - Except information preserved in the loop invariant
 
-* This is true for the :code:`loop frame condition`
+* This is true for the :dfn:`loop frame condition`
 
   - Variables that are not modified
   - Parts of modified variables that are preserved
@@ -383,7 +382,7 @@ Loop Frame Condition (2/2)
 
 * In other cases, explicit frame condition might be needed
 
-* Typically use attribute :code:`Loop_Entry`
+* Typically use attribute :ada:`Loop_Entry`
 
   .. code:: ada
 
@@ -437,17 +436,17 @@ What's wrong with the following code?
 
 .. container:: animate
 
-* Loop does not terminate
+   * Loop does not terminate
 
-* :toolname:`GNATprove` proves the assertion of :code:`False`!
+   * :toolname:`GNATprove` proves the assertion of :ada:`False`!
 
-  - Because that program point is unreachable (dead code)
+     - Because that program point is unreachable (dead code)
 
-* :toolname:`GNATprove` implements defense in depth
+   * :toolname:`GNATprove` implements defense in depth
 
-  - Non-terminating loop causes enclosing subprogram to also not terminate
-  - Switch :command:`--proof-warnings` can detect dead code
-  - Proof of loop termination based on loop variants
+     - Non-terminating loop causes enclosing subprogram to also not terminate
+     - Switch :command:`--proof-warnings` can detect dead code
+     - Proof of loop termination based on loop variants
 
 ---------------------
 Loop Variants (1/2)
@@ -462,7 +461,7 @@ Loop Variants (1/2)
 * Dynamic checks inserted by GNAT
 
   - When using switch :command:`-gnata`
-  - Or pragma :code:`Assertion_Policy (Loop_Variant => Check)`
+  - Or pragma :ada:`Assertion_Policy (Loop_Variant => Check)`
   - Check that expression varies as indicated at each iteration
 
 * Only one loop variant is needed to prove loop termination
@@ -491,7 +490,7 @@ Loop Variants (2/2)
         end loop;
      end Bump_Table;
 
-* Could also use :code:`(Decreases => -J)`
+* Could also use :ada:`(Decreases => -J)`
 
 * Same loop variant could be placed anywhere in the loop here
 
@@ -532,11 +531,11 @@ Bounded Formal Containers
 
 * Bounded version for light and embedded runtimes
 
-* Under :code:`SPARK.Containers.Formal.<name>`
+* Under :ada:`SPARK.Containers.Formal.<name>`
 
 * Use discriminated record
 
-  - Discriminant :code:`Capacity` fixes maximum size
+  - Discriminant :ada:`Capacity` fixes maximum size
 
 * Element type must have known size (:dfn:`definite` type)
 
@@ -550,7 +549,7 @@ Unbounded Formal Containers
 
 * Unbounded version for full runtimes
 
-* Under :code:`SPARK.Containers.Formal.Unbounded_<name>`
+* Under :ada:`SPARK.Containers.Formal.Unbounded_<name>`
 
 * Use dynamic memory allocation
 
@@ -601,7 +600,7 @@ Loop Invariants Over Formal Containers
 
 * Range-based iteration (only for vectors)
 
-  - Use scalar index :code:`J` to access vector at :code:`V.Element (J)`
+  - Use scalar index :ada:`J` to access vector at :ada:`V.Element (J)`
 
 * Iteration over positions
 
@@ -621,7 +620,7 @@ Loop Invariants Over Formal Containers
 Formal Model of Formal Containers
 -----------------------------------
 
-* Defined in local package :code:`Formal_Model`
+* Defined in local package :ada:`Formal_Model`
 
   - Based on functional containers (also part of SPARKlib)
 
@@ -631,7 +630,7 @@ Formal Model of Formal Containers
 
 * Functional model of the container
 
-  - Given by function :code:`Model`
+  - Given by function :ada:`Model`
   - Returns a different type
 
     + A sequence of elements for formal lists
@@ -640,7 +639,7 @@ Formal Model of Formal Containers
 
 * Mapping from cursors to positions
 
-  - Given by function :code:`Positions`
+  - Given by function :ada:`Positions`
   - Positions in the iteration sequence
 
 * Sequence of elements/keys of the container
@@ -648,9 +647,9 @@ Formal Model of Formal Containers
   - Corresponds to the iteration sequence
   - Given by different functions
 
-    + :code:`Model` for lists
-    + :code:`Elements` for sets
-    + :code:`Keys` for maps
+    + :ada:`Model` for lists
+    + :ada:`Elements` for sets
+    + :ada:`Keys` for maps
 
 ------------------------------------------------
 Difficulties With Loops Over Formal Containers
@@ -662,7 +661,7 @@ Difficulties With Loops Over Formal Containers
 
   - Contrary to loops over arrays
   - Need to explicitly state the frame condition using attribute
-    :code:`Loop_Entry`
+    :ada:`Loop_Entry`
 
 * Container structure may be modified in the loop
 
@@ -690,7 +689,7 @@ Advanced Proof
 
   - Some variable are partially initialized
   - Some array variables are initialized in a loop
-  - More annotations are needed with attribute :code:`Initialized`
+  - More annotations are needed with attribute :ada:`Initialized`
 
 * Proof of loops requires more work
 
