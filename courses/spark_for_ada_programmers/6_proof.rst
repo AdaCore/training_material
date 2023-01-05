@@ -119,8 +119,8 @@ Which one of these has a Strongest Postcondition?
    A. ``{ X >= 3 } Y := X – 1 { Y >= 0 }``
    B. ``{ X >= 3 } Y := X – 1 { Y = X – 1 }``
    C. ``{ X >= 3 } Y := X – 1 { Y >= 2 }``
-   D. :answermono:`\{ X >= 3 \} Y := X – 1 \{ Y = X – 1 and Y >= 2 \}`
-   E. :answermono:`\{ X >= 3 \} Y := X – 1 \{ Y = X – 1 and X >= 3 \}`
+   D. :answermono:`{ X >= 3 } Y := X – 1 { Y = X – 1 and Y >= 2 }`
+   E. :answermono:`{ X >= 3 } Y := X – 1 { Y = X – 1 and X >= 3 }`
 
 .. container:: animate
 
