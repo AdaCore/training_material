@@ -74,6 +74,16 @@ Investigating Unproved Checks
 
   - Tool tries to help you help it
 
+-----------------
+The Proof Cycle
+-----------------
+
+.. image:: fortify_analyze_prove_cycle.png
+
+.. container:: speakernote
+
+   For SPARK (or other verification systems users) the basic process is the same, but details vary
+
 ================================
 :toolname:`GNATprove` Messages
 ================================
