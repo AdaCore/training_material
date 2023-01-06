@@ -424,6 +424,8 @@ Contextual Analysis of Local Subprograms
   - Add explicit contract like :ada:`Pre => True` to disable inlining of a
     subprogram
   - Use switch :command:`--no-inlining` to disable this feature globally
+  - Use switch :command:`--info` to get more information about inlined
+    subprograms
 
 -------------------------
 Overflow Checking (1/2)
@@ -647,7 +649,7 @@ Proof
 
   - Violation of functional contracts (:ada:`Pre` and :ada:`Post`)
 
-* Proof allows to reach Silver/Golf/Platinum levels
+* Proof allows to reach Silver/Gold/Platinum levels
 
 * Proof is imprecise
 
