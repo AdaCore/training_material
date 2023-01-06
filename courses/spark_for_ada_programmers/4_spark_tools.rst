@@ -269,7 +269,9 @@ Flow Analysis
 
 * :dfn:`Flow analysis` is a prerequisite to proof
 
-* :toolname:`GNATprove` does only that with switch :command:`--mode=flow`
+* :toolname:`GNATprove` does that with switch :command:`--mode=flow`
+
+  - This follows legality checking
 
 * Corresponds to :menu:`Examine` menus in IDEs
 
@@ -409,7 +411,7 @@ Source Code Contextual Menu
 "Basic" Proof Dialog Panel
 ----------------------------
 
-.. image:: prove_dialog-basic.jpeg
+.. image:: prove_dialog-basic.png
 
 -----------------------------------------------------
 Example Analysis Results in :toolname:`GNAT Studio`
@@ -444,7 +446,7 @@ Preference for Selecting Profile
 "Advanced" Proof Dialog Panel
 -------------------------------
 
-.. image:: prove_dialog-advanced.jpeg
+.. image:: prove_dialog-advanced.png
 
 =====
 Lab

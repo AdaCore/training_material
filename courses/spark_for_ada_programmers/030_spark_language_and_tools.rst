@@ -1206,7 +1206,7 @@ Source Code Contextual Menu
 "Basic" Profile's Proof Dialog Panel
 ---------------------------------------
 
-.. image:: prove_dialog-basic.jpeg
+.. image:: prove_dialog-basic.png
 
 .. container:: speakernote
 
@@ -1245,7 +1245,7 @@ Preference for Selecting Profile
 "Advanced" Proof Dialog Panel
 -------------------------------
 
-.. image:: prove_dialog-advanced.jpeg
+.. image:: prove_dialog-advanced.png
 
 ========
 Lab

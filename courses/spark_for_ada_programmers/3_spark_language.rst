@@ -183,7 +183,7 @@ Support for Generics
 
     + To name objects manipulated through calls to formal parameters
 
-    + To add specifications to formal subprogram parameters
+    + To add dependency contracts to formal subprogram parameters
 
   - More efforts from users to annotate programs
 
@@ -248,10 +248,6 @@ Main Language Restrictions
 * Functions without side-effects
 
   - Thus expressions are also without side-effects
-
-* Data initialization policy
-
-  - All inputs and outputs are completely initialized
 
 * Memory ownership policy (like in Rust)
 
