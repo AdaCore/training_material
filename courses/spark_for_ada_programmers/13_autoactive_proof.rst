@@ -128,8 +128,8 @@ What is the problem with this code?
       incr.adb:3:11: high: overflow check might fail
         cannot prove upper bound for X + 1
         e.g. when X = Integer'Last
-        reason for check: result of addition must fit in a 32-bits
-          machine integer
+        reason for check: result of addition must fit in
+          a 32-bits machine integer
         possible fix: subprogram at line 1 should mention X in
           a precondition
 
@@ -319,13 +319,13 @@ Running Proof Faster
 
 * During development, run :toolname:`GNATprove` on relevant part
 
-  - On a given file
+  - On given file
 
     + With :menu:`SPARK` |rightarrow| :menu:`Prove File` in :toolname:`GNAT Studio`
     + With task :menu:`Prove file` in Visual Studio Code
     + With :command:`-u file` in terminal
 
-  - On a given subprogram, selected region of code, selected line of code
+  - On given subprogram, selected region of code, selected line of code
 
     + With corresponding menus in IDEs and switches in terminal
 
@@ -340,7 +340,7 @@ Running Proof Faster
 
 * Sharing proof results via a cache
 
-  - Can either store database in a file, or connect to a Memcached server
+  - Can store database in a file, or connect to a Memcached server
 
 ============
 Ghost Code

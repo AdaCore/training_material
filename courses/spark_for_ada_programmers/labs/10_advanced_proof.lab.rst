@@ -56,14 +56,14 @@ Array Mapping Loop
 
 - Add a loop invariant in :ada:`Bump_Table`.
 
-  + Hint: use attribute :ada:`Loop_Entry`
-  + Can you prove the subprogram without a loop frame condition?
+   + Hint: use attribute :ada:`Loop_Entry`
+   + Can you prove the subprogram without a loop frame condition?
 
 - Change the assignment inside the loop into :ada:`T(J + 0) := T (J) + 1;`
 
-  + Can you still prove the subprogram without a loop frame condition?
-  + Discuss this with the course instructor.
-  + Complete the loop invariant with a frame condition to prove :ada:`Bump_Table`
+   + Can you still prove the subprogram without a loop frame condition?
+   + Discuss this with the course instructor.
+   + Complete the loop invariant with a frame condition to prove :ada:`Bump_Table`
 
 ------------------------
 Formal Container Loops
@@ -73,11 +73,11 @@ Formal Container Loops
 
 - Add a loop invariant in :ada:`Init_Vector`
 
-  + Hint: you need to state that :ada:`V.Last_Index` is preserved
+   + Hint: you need to state that :ada:`V.Last_Index` is preserved
 
 - Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_List`
 
 - Add a loop invariant in :ada:`Init_List`
 
-  + Hint: the position of cursor :ada:`Cu` in :ada:`L` is :ada:`Positions (L).Get (Cu)`
-  + Hint: the sequence of elements for :ada:`L` is :ada:`Model (L)`
+   + Hint: the position of cursor :ada:`Cu` in :ada:`L` is :ada:`Positions (L).Get (Cu)`
+   + Hint: the sequence of elements for :ada:`L` is :ada:`Model (L)`

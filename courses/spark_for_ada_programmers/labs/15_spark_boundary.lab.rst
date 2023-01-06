@@ -66,9 +66,9 @@ Software Boundary
 
 - Complete the spec so that it is compatible with SPARK
 
---------------------
-Integration With C
---------------------
+----------------------------------------------
+Integration With Other Programming Languages
+----------------------------------------------
 
 - Find and open the file :filename:`main.adb` in :toolname:`GNAT Studio`
 
@@ -87,6 +87,10 @@ Integration With C
   .. code:: console
 
      gcc -c main.adb
+
+--------------------
+Integration With C
+--------------------
 
 - Compile a C implementation for swap in :filename:`swap.c`, link it with the
   SPARK code, and run the executable

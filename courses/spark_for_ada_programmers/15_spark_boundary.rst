@@ -129,19 +129,19 @@ Volatility Properties
   - By default a volatile variable has all four set to :ada:`True`
   - When one or more are set explicitly, others default to :ada:`False`
 
+----------------------------------
+Volatility Properties - Examples
+----------------------------------
+
 * A sensor (program input) has aspect :ada:`Async_Writers => True`
 
 * An actuator (program output) has aspect :ada:`Async_Readers => True`
 
-* A machine register has :ada:`Effective_Reads` and :ada:`Effective_Writes`
-  set to :ada:`False`
+* A machine register (single data) has :ada:`Effective_Reads => False` and
+  :ada:`Effective_Writes => False`
 
-  - It is a single data
-
-* A serial port has :ada:`Effective_Reads` and :ada:`Effective_Writes` set to
-  :ada:`True`
-
-  - It is a stream of data
+* A serial port (stream of data) has :ada:`Effective_Reads => True` and
+  :ada:`Effective_Writes => True`
 
 --------------------
 Volatile Functions

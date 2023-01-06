@@ -258,7 +258,7 @@ Four Properties of a Good Loop Invariant
 
 * [INIT] - It should hold in the first iteration of the loop
 
-  - :toolname:`GNATprove` generates a loop invariant initialization check
+   - :toolname:`GNATprove` generates a loop invariant initialization check
 
 * [INSIDE] - It should allow proving absence of run-time errors and local
   assertions inside the loop
@@ -268,7 +268,7 @@ Four Properties of a Good Loop Invariant
 
 * [PRESERVE] - It should be preserved by the loop
 
-  - :toolname:`GNATprove` generates a loop invariant preservation check
+   - :toolname:`GNATprove` generates a loop invariant preservation check
 
 -----------------------
 Summarizing Mutations

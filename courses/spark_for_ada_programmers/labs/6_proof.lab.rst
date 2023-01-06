@@ -70,11 +70,11 @@ Functional Specifications (2/2)
   :ada:`Init_Table` stating that the value of the first and last elements
   are 1 and 2.
 
-  + Hint: you may have to strengthen the precondition of :ada:`Init_Table`.
+   + Hint: you may have to strengthen the precondition of :ada:`Init_Table`.
 
 - Rerun :toolname:`GNATprove` with checkbox :menu:`Report check proved` selected.
 
-  + Review the info messages and make sure you understand them.
+   + Review the info messages and make sure you understand them.
 
 - Modify the code or contracts and check that :toolname:`GNATprove` detects
   mismatches between them. Make sure you understand the check messages that

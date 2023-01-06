@@ -77,7 +77,7 @@ Which one of these is invalid?
    A. ``{ X >= 3 } Y := X – 1 { Y >= 0 }``
    B. ``{ X >= 3 } Y := X – 1 { Y = X – 1 }``
    C. ``{ False } Y := X – 1 { Y = X }``
-   D. :answermono:`{ X >= 3 } Y := X – 1 { Y >= 3 }`
+   D. :answermono:`\{ X >= 3 \} Y := X – 1 \{ Y >= 3 \}`
    E. ``{ X >= 3 } Y := X – 1 { True }``
 
 .. container:: animate
@@ -119,8 +119,8 @@ Which one of these has a Strongest Postcondition?
    A. ``{ X >= 3 } Y := X – 1 { Y >= 0 }``
    B. ``{ X >= 3 } Y := X – 1 { Y = X – 1 }``
    C. ``{ X >= 3 } Y := X – 1 { Y >= 2 }``
-   D. :answermono:`{ X >= 3 } Y := X – 1 { Y = X – 1 and Y >= 2 }`
-   E. :answermono:`{ X >= 3 } Y := X – 1 { Y = X – 1 and X >= 3 }`
+   D. :answermono:`\{ X >= 3 \} Y := X – 1 \{ Y = X – 1 and Y >= 2 \}`
+   E. :answermono:`\{ X >= 3 \} Y := X – 1 \{ Y = X – 1 and X >= 3 \}`
 
 .. container:: animate
 
@@ -271,7 +271,7 @@ Which of the following cannot cause a runtime error:
 
 .. container:: animate
 
-   Explanations:
+   Explanations: all of then can cause a runtime error!
 
    A. Index check fails if :ada:`T` is empty.
    B. Overflow check fails if :ada:`X = Integer'First`

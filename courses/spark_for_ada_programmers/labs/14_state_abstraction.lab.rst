@@ -34,11 +34,11 @@ Dependency Contracts
 
 - Run :toolname:`GNATprove` in flow analysis mode
 
-  + There should be no check messages, only a warning: :command:`no procedure
-    exists that can initialize abstract state`
+   + There should be no check messages, only a warning: :command:`no procedure
+     exists that can initialize abstract state`
 
 - Add a procedure :ada:`Init_The_State` that initializes all of the state
 
-  + The body of this procedure can simply call :ada:`Init_The_Rec` and
-    :ada:`Init_The_Table`
-  + Do you understand how :toolname:`GNATprove` checks that this is correct?
+   + The body of this procedure can simply call :ada:`Init_The_Rec` and
+     :ada:`Init_The_Table`
+   + Do you understand how :toolname:`GNATprove` checks that this is correct?

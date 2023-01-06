@@ -234,6 +234,8 @@ Violations of the Data Initialization Policy
 
     * Parameter only partially written should be of mode :ada:`in out`
 
+    |
+
     .. code:: ada
 
        procedure Cond_Init
@@ -253,7 +255,6 @@ Violations of the Data Initialization Policy
     .. code:: ada
 
        X : T;
-
        procedure Cond_Init
          (Cond : Boolean)
        with

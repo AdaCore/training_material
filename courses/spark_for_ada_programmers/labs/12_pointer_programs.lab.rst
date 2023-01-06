@@ -28,8 +28,8 @@ Swapping Pointers
 
 - Add postconditions to procedures :ada:`Swap` and :ada:`Swap_Ptr`
 
-  + Hint: you cannot compare pointers in SPARK
-  + Rerun :toolname:`GNATprove` to prove these procedures
+   + Hint: you cannot compare pointers in SPARK
+   + Rerun :toolname:`GNATprove` to prove these procedures
 
 -----------------------------
 Allocation and Deallocation
@@ -37,12 +37,12 @@ Allocation and Deallocation
 
 - Run :toolname:`GNATprove` to prove procedure :ada:`Realloc`
 
-  + Understand the memory leak message and fix it.
-  + Hint: you need to add a postcondition to :ada:`Dealloc`
+   + Understand the memory leak message and fix it.
+   + Hint: you need to add a postcondition to :ada:`Dealloc`
 
 - Understand what makes :ada:`Alloc` and :ada:`Dealloc` special
 
-  + Discuss with the course instructor.
+   + Discuss with the course instructor.
 
 ---------------------
 Recursion and Loops
@@ -50,21 +50,23 @@ Recursion and Loops
 
 - Review the rest of the code manipulating types :ada:`List_Cell` and :ada:`List_Acc`
 
-  + Discuss with the course instructor.
+   + Discuss with the course instructor.
 
 - Run :toolname:`GNATprove` to prove the complete unit.
 
 - Add a loop invariant in procedure :ada:`Init_List_Zero`
 
-  + The postcondition of :ada:`Init_List_Zero` should be proved
+   + The postcondition of :ada:`Init_List_Zero` should be proved
 
 - Add a loop variant in procedure :ada:`Init_List_Zero`
 
-  + First using the structural loop variant
-  + Next using a numerical loop variant, by defining a recusrive function
-    :ada:`Length`
+   + First using the structural loop variant
+   + Next using a numerical loop variant, by defining a recusrive function
+     :ada:`Length`
 
-    .. code:: Ada
+     |
 
-       function Length
-         (L : access constant List_Cell) return Big_Natural;
+     .. code:: Ada
+
+        function Length
+          (L : access constant List_Cell) return Big_Natural;
