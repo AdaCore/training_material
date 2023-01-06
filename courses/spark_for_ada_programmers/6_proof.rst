@@ -258,10 +258,10 @@ Consider the following declarations:
    type Table is array (Natural range <>) of Integer;
    type Rec (Disc : Boolean) is record ...
    T : Table;
-   R : Rec;
+   R : Rec := ...;
    X : Integer;
 
-Which of the following cannot cause a runtime error:
+Which of the following *cannot* cause a runtime error:
 
    A. ``X := T (T'First)``
    B. ``X := X / (-1);``
