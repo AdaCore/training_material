@@ -58,9 +58,11 @@ Control Flow Graph (CFG)
 
     .. code:: ada
 
-       function Is_Positive (X : Integer)
+       function Is_Positive
+         (X : Integer)
          return Boolean
-         with Post => Is_Positive'Result = (X > 0)
+       with Post =>
+         Is_Positive'Result = (X > 0)
        is
        begin
           if X > 0 then
