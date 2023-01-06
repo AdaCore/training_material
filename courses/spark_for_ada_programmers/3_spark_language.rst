@@ -35,7 +35,7 @@ Design Goals for SPARK
   - Sound - it has no missing alarms
   - Precise - it has few false alarms
   - Fast - it can run as part of development
-  - Modular - it does not require the complete program
+  - Modular - it analyzes modules in parallel
   - Constructive - it works on incomplete programs
 
 * Combine tool automation and user interaction
