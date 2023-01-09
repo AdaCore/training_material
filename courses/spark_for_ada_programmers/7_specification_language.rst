@@ -409,7 +409,7 @@ Expression Functions
 
   .. code:: Ada
 
-     function Is_Sorted (T : Int_Array) return Boolean is
+     function Is_Sorted (T : Table) return Boolean is
        (for all J in T'Range =>
           (for all K in T'Range => (if J < K then T(J) <= T(K))));
 
@@ -419,14 +419,14 @@ Expression Functions
 
   .. code:: Ada
 
-     function Is_Sorted (T : Int_Array) return Boolean
+     function Is_Sorted (T : Table) return Boolean
        with Post => Is_Sorted'Result = (for all J in T'Range => ...);
 
 * Pre and posconditions can be specified after the expression
 
   .. code:: Ada
 
-     function Is_Sorted (T : Int_Array) return Boolean is (...)
+     function Is_Sorted (T : Table) return Boolean is (...)
        with Pre => T'Length > 0;
 
 -----------------------------
