@@ -177,9 +177,11 @@ Model of Pointers in SPARK
 
   .. code:: ada
 
-     type Int_Acc is record
-       Nul     : Boolean;
-       Content : Integer;
+     type Int_Acc (Nul : Boolean) is record
+       case Nul is
+         when True  => null;
+         when False => Content : Integer;
+       end case;
      end record;
      X : Int_Acc := Int_Acc'(Nul => False, Content => 42);
 
