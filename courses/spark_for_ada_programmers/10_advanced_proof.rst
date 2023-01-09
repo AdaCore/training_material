@@ -671,6 +671,32 @@ Difficulties With Loops Over Formal Containers
     + Relative to current cursor: e.g. previous/next cursor
     + Otherwise difficult with hashed sets/maps
 
+----------------------
+Functional Containers
+----------------------
+
+* Available from SPARK Library
+
+* Four kinds of functional containers
+
+  - infinite sequences
+  - vectors
+  - sets
+  - maps
+
+* Simple containers close to mathematical structures
+
+  - No bounds on cardinality
+  - No cursors for iteration
+  - No order of elements in sets and maps
+  - Functional: cannot modify them, rather create a new one
+  
+* They are easy to handle for proof
+
+  - Often used as models for more complex structures
+
+* They are executable but might be inefficient
+
 =====
 Lab
 =====
