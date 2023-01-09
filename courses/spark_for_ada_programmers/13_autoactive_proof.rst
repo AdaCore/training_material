@@ -467,11 +467,11 @@ Ghost Variables
     .. code:: Ada
 
        procedure Sort (T : in out Table)
-         with Post => Is_Sorted (T)
+         with Post => Is_Permutation (T, T'Old)
        is
-       begin
          Permutation : Index_Array := (for J in T'Range => J)
            with Ghost;
+       begin
 
 * Global ghost variable
 

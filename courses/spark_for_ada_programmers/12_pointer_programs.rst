@@ -177,7 +177,7 @@ Model of Pointers in SPARK
 
   .. code:: ada
 
-     type Int_Acc (Nul : Boolean) is record
+     type Int_Acc (Nul : Boolean := False) is record
        case Nul is
          when True  => null;
          when False => Content : Integer;
@@ -240,9 +240,9 @@ Access to Constant Data
   - Pointers in that data inherit the same property
   - This is specific to SPARK: in Ada only designated data is constant
 
-* Also applies to input parameters of composite types containing pointers
+* Also applies to constants and input parameters of composite types containing pointers
 
-  - Different from input of access type
+  - Different from input and constants of access-to-variable type
 
 * Aliasing is allowed
 
@@ -271,6 +271,8 @@ Attributes :ada:`Old` and :ada:`Loop_Entry`
 
 * Prefix of access type needs to be a call to an *allocating function*
 
+  - Allocating function is a function returing an access-to-variable type
+
   .. code:: Ada
 
      function Copy (X : Ptr) return Ptr
@@ -289,16 +291,16 @@ Useful Tips
 
   - Procedure must restore some value (or null) before returning
 
-* Allocation function simply returns object of access-to-variable type
+* Allocation function returns a new object of access-to-variable type
 
   - Similar to initialized allocator with :ada:`new T'(Value)`
   - Some special *traversal functions* give access to part of an object
 
 * Deallocation procedure simply nullifies in-out access parameter
 
-====================
-Loops and Promises
-====================
+===========================
+Loops and Predicted Values
+===========================
 
 ---------------------------
 Recursive Data Structures
@@ -377,9 +379,9 @@ Pointers and Loops
 
   - Cannot refer to value of :ada:`L` while borrowed
 
-----------
-Promises
-----------
+------------------
+Predicted Values
+------------------
 
 * Special annotation :ada:`At_End_Borrow` on identity function
 
@@ -406,6 +408,11 @@ Promises
      pragma Loop_Invariant
        (if All_List_Zero (At_End (B))
         then All_List_Zero (At_End (L)));
+        
+* Invariant proved using what is known now about the value at end
+
+  - There is no look ahead
+  - Loop invariant proved because values in L and not B are frozen to 0
 
 =================
 SPARK Libraries
