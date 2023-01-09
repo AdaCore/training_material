@@ -445,11 +445,11 @@ Static Checking of Type Invariants
 
 * No checks only where not needed
 
-* :toolname:`GNATprove` can assume that all inputs to *boundary subprograms*
+* :toolname:`GNATprove` can assume that all inputs to *boundary subprograms* and all objects of the type outside the unit
   satisfy their type invariants
 
-  - Type invariant only used for proof of unit itself
-  - Type invariant performs useful abstraction
+  - Type invariant is used both for proof of unit itself and in other units
+  - An expression function deferred to the body can be used to perform an abstraction
 
 -------------------------------------
 Beware Recursion In Type Invariants
@@ -510,4 +510,3 @@ Type Contracts
 
   - Always hold on objects outside their unit
   - Can be violated inside the unit
-  - Only used by :toolname:`GNATprove` for proving the unit
