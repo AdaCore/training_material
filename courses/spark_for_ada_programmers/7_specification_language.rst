@@ -409,8 +409,9 @@ Expression Functions
 
   .. code:: Ada
 
-     function Increment (X : Integer) return Integer is
-       (X + 1);
+     function Is_Sorted (T : Int_Array) return Boolean is
+       (for all J in T'Range =>
+          (for all K in T'Range => (if J < K then T(J) <= T(K))));
 
 * Above is equivalent to having a postcondition
 
@@ -418,16 +419,15 @@ Expression Functions
 
   .. code:: Ada
 
-     function Increment (X : Integer) return Integer
-       with Post => Increment'Result = X + 1;
+     function Is_Sorted (T : Int_Array) return Boolean
+       with Post => Is_Sorted'Result = (for all J in T'Range => ...);
 
-* Precondition can be specified after the expression
+* Pre and posconditions can be specified after the expression
 
   .. code:: Ada
 
-     function Increment (X : Integer) return Integer is
-       (X + 1)
-       with Pre => X < Integer'Last;
+     function Is_Sorted (T : Int_Array) return Boolean is (...)
+       with Pre => T'Length > 0;
 
 -----------------------------
 Use of Expression Functions
