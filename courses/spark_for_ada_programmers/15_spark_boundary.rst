@@ -222,7 +222,7 @@ Effect of Volatility on Proof
   - It has :ada:`Async_Writers` set to :ada:`True`
   - Or it has :ada:`Effective_Reads` set to :ada:`True`
 
-* The value of such a variable a variable is never known
+* The value of such a variable is never known
 
 * Same for external state with these volatility properties
 
@@ -254,6 +254,8 @@ Identifying SPARK Code
 * Default is :ada:`On` when using :ada:`SPARK_Mode` without value
 
 * Default is :ada:`Auto` when :ada:`SPARK_Mode` not specified
+
+  - :ada:`Auto` can only be used explicitly in configuration pragmas
 
 ---------------------------------
 Sections with :ada:`SPARK_Mode`

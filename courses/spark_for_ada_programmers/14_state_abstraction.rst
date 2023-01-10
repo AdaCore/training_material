@@ -186,11 +186,13 @@ Nested Packages
   - If :ada:`N` is visible
 
     + Its visible state is visible for :ada:`P` too
+    + As are its own abstract states
     + Its hidden state is a constituent of its own abstract states
 
   - If :ada:`N` is hidden
 
     + Its visible state is a constituent of :ada:`P`'s abstract states
+    + As are its own abstract states
     + Its hidden state is a constituent of its own abstract states
 
 .. code:: Ada
@@ -213,6 +215,7 @@ Child Packages
 * State of package :ada:`P` includes state of private child package :ada:`P.Priv`
 
   - Its visible state is a constituent of :ada:`P`'s abstract states
+  - As are its own abstract states
   - Its hidden state is a constituent of its own abstract states
 
 * The visible state of private child packages should have :ada:`Part_Of`
