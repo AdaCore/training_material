@@ -321,7 +321,7 @@ SPARK is a Language Subset
 
     2. Simplify the job of automatic provers
 
-* "SPARK" originally stands for "SPADE Ada Ratiocinare Kernel"
+* "SPARK" originally stands for "SPADE Ada Ratiocinative Kernel"
 
 ------------------
 History of SPARK
