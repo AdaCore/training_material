@@ -35,9 +35,9 @@ Introduction
 Overview
 ----------
 
-* What is flow analysis?
-* Which errors does it detect?
-* How does flow analysis work?
+* **What** is flow analysis?
+* Which **errors** does it detect?
+* How does flow analysis **work**?
 * Flow analysis of composite objects
 * Global data
 * Flow analysis using :toolname:`GNATprove`
@@ -46,18 +46,18 @@ Overview
 What is Flow Analysis
 =======================
 
-------------------------
-What is Flow Analysis?
-------------------------
+----------------------------
+**What** is Flow Analysis?
+----------------------------
 
 * Static analysis performed by :toolname:`GNATprove`
-* Models the variables used by a subprogram
+* Models the **variables** used by a subprogram
 
    - Global variables
    - Local variables
    - Formal parameters
 
-* Models how information flows through the statements in the subprogram
+* Models how **information flows** through the statements in the subprogram
 
    - From initial values of variables
    - To final values of variables
@@ -73,19 +73,19 @@ What is Flow Analysis?
 Detecting Errors (or "Issues")
 --------------------------------
 
-* What Classes of Errors Does It Detect?
+* Which **Classes of Errors** Does It Detect?
 
-   - Use of uninitialized variables
-   - Ineffective statements
+   - Use of **uninitialized** variables
+   - **Ineffective** statements
 
       + Statements which update variables
-      + But which have no effect on the final value of any variable
+      + But which have **no effect** on the final value of any variable
 
-   - Detecting unused variables
+   - Detecting **unused** variables
 
-      + Not considered an error in SPARK
-      + But probably is a coding error
-      + Generates warnings
+      + **Not** considered an error in SPARK
+      + But **probably** is a coding error
+      + Generates **warnings**
 
 * More classes of errors can be detected if contracts are added, more about that later...
 
@@ -148,16 +148,16 @@ Ineffective Statements
 
  .. container:: column
 
-    * Have no effect on any output variable
+    * Have **no effect** on any output variable
 
        - Therefore no effect on behavior of code
 
-    * Are different from dead code
+    * Are **different** from dead code
 
        - They are executed
-       - May modify some variables, but not outputs
+       - **May** modify some variables, but not outputs
 
-    * Usually indicate a coding error
+    * Usually indicate a **coding error**
 
 ----------------------------
 Detecting Unused Variables
@@ -198,13 +198,13 @@ Incorrect Parameter Mode
 
     -
 
-    - in
+    - :ada:`in`
 
   * - |checkmark|
 
     - |checkmark|
     - |checkmark|
-    - in out
+    - :ada:`in out`
 
   * -
 
@@ -212,14 +212,14 @@ Incorrect Parameter Mode
 
     -
 
-    - in out
+    - :ada:`in out`
 
   * -
 
     -
 
     - |checkmark|
-    - out
+    - :ada:`out`
 
 * Detection of incorrect mode of parameters (:ada:`in`, :ada:`out`, or :ada:`in out`)
 
@@ -241,26 +241,26 @@ Incorrect Parameter Mode
    Finally, flow analysis will also warn when an in out parameter is not updated or when its initial value is not used in the subprogram, as it may be the sign of an error. An example is shown on this slide in the subprogram called Swap.
    Note that, in SPARK, a parameter which is not read but not updated on every path should be declared as in out as its final value may depend on its initial value.
 
-==============================
-Why Do We Need Flow Analysis
-==============================
+==================================
+**Why** Do We Need Flow Analysis
+==================================
 
 ---------------------------------
 Flow Analysis - Why Do We Care?
 ---------------------------------
 
-* Ensure there is no dead code
-* Improper initialization errors are listed as one of the most dangerous programming errors
+* Ensure there is **no dead code**
+* Improper initialization errors are listed as one of the **most dangerous** programming errors
 
-   - The SPARK flow analysis identifies all variables that have not been initialized prior to them being read.
-   - If the SPARK flow analysis finds no uninitialized variables, then there really are none!
+   - The SPARK flow analysis identifies **all** variables that have not been initialized prior to them being read.
+   - If the SPARK flow analysis finds no uninitialized variables, then there **really** are none!
 
 * Identifying ineffective statements
-* Well-defined basis for deeper analysis (proof)
+* Well-defined basis for **deeper** analysis (proof)
 * Security properties
 
    - Advanced flow analysis with contracts, more about this later...
-   - Not sound in the presence of some of these errors
+   - **Not sound** in the presence of some of these errors
 
 .. container:: speakernote
 
@@ -270,10 +270,10 @@ Flow Analysis - Why Do We Care?
 Modularity
 ------------
 
-* Flow analysis, and in particular detection of uninitialized variables, is done modularly on a per subprogram basis
+* Flow analysis, and in particular detection of uninitialized variables, is done modularly on a **per subprogram** basis
 
-   - Global and parameter inputs should be initialized prior to any subprogram call
-   - Global and parameter outputs should be initialized prior to subprogram return
+   - Global and parameter **inputs** should be initialized prior to any subprogram **call**
+   - Global and parameter **outputs** should be initialized prior to subprogram **return**
 
 .. code:: Ada
 
@@ -307,11 +307,11 @@ Modularity
 Value Dependency
 ------------------
 
-* Flow analysis is not value dependent
+* Flow analysis is **not value dependent**
 
    - It only reasons in terms of control flow
 
-* Flow analysis does not know that `R` is initialized:
+* Flow analysis **does not know** that :ada:`R` is initialized in:
 
   .. code:: Ada
 
@@ -325,7 +325,7 @@ Value Dependency
        end if;
      end Absolute_Value;
 
-* Flow analysis knows that `R` is initialized:
+* Flow analysis **knows** that :ada:`R` is initialized in:
 
   .. code:: Ada
 
@@ -350,12 +350,12 @@ Value Dependency
 Flow Analysis of Composite Objects
 ------------------------------------
 
-* Arrays
+* :ada:`array`
 
    - Flow analysis treats array objects as single, entire objects
    - Changing one element of an array object preserves the value of the other elements
 
-* Records
+* :ada:`record`
 
    - Updating and reading of fields of records is analyzed in terms of those fields
    - Updates and reads not treated as operations on records in their entirety
@@ -383,24 +383,24 @@ Arrays and Flow Analysis
 Array Elements and Flow Analysis
 ----------------------------------
 
-* Let's assume the initial value of `A` is (x, y), and we execute the assignment statement:
+* Let's assume the initial value of :ada:`A` is :ada:`(x, y)`, and we execute the assignment statement:
 
    .. code:: Ada
 
       A (I) := True;
 
-* The final value of `A` might be (True, y) or (x, True) depending on the value of `I`
+* The final value of :ada:`A` might be :ada:`(True, y)` or :ada:`(x, True)` depending on the value of :ada:`I`
 * Note that at least one element of the initial value is preserved in both cases
-* So the final value of `A` must depend on:
+* So the final value of :ada:`A` must depend on:
 
-   - Initial value of `A` (because one element of `A` is preserved)
-   - Value of `I` (because `I` specifies which element of `A` is updated)
+   - Initial value of :ada:`A` (because one element of :ada:`A` is preserved)
+   - Value of :ada:`I` (because :ada:`I` specifies which element of :ada:`A` is updated)
 
 --------------------------
 Array Element Assignment
 --------------------------
 
-* Let's assume the initial value of `A` is (x, y), and we execute the assignment statements:
+* Let's assume the initial value of :ada:`A` is :ada:`(x, y)`, and we execute the assignment statements:
 
    .. code:: Ada
 
@@ -410,18 +410,18 @@ Array Element Assignment
 * Three possible outcomes:
 
 |
-   :(True, y): if I = J = 1
-   :(x, True): if I = J = 2
-   :(True, True): if I /= J
+   :``(True, y)``: :ada:`if I = J = 1`
+   :``(x, True)``: :ada:`if I = J = 2`
+   :``(True, True)``: :ada:`if I /= J`
 
-* Flow analysis doesn't know the values of `I` and `J` so conservatively assumes that `A` depends on `A`, `I` and `J`
+* Flow analysis doesn't know the values of :ada:`I` and :ada:`J` so conservatively assumes that :ada:`A` depends on :ada:`A`, :ada:`I` and :ada:`J`
 
 ------------------
 Array Assignment
 ------------------
 
-* In general, there is no way for the flow analyzer to determine whether a sequence of assignments to an array has updated all the elements of the array or a subset of them
-* So initializing an array with a sequence of statements will result in a flow error
+* In general, there is **no way** for the flow analyzer to determine whether a sequence of assignments to an array has updated **all** the elements of the array **or a subset** of them
+* So initializing an array with a sequence of statements will result in a **flow error**
 
    .. code:: Ada
 
@@ -431,13 +431,13 @@ Array Assignment
          A (2) := True;
       end Init_Array;
 
-* Don't "fix" this by changing the mode of `A` to :ada:`in out`
+* Don't "fix" this by changing the mode of :ada:`A` to :ada:`in out`
 
 ----------------------
 Array Initialization
 ----------------------
 
-* If possible, use an aggregate to initialize the array
+* If possible, use an **aggregate** to initialize the array
 
    .. code:: Ada
 
@@ -448,7 +448,7 @@ Array Initialization
 
    - (:ada:`others` could be used in this particular instance)
 
-* Flow analysis knows that the array must be fully defined by the aggregate, so no errors are reported
+* Flow analysis **knows** that the array must be fully defined by the aggregate, so no errors are reported
 
 =============
 Global Data
@@ -458,9 +458,9 @@ Global Data
 Global Variables
 ------------------
 
-* Impact code organization
-* Are part of the signature (from the verification perspective)
-* May seem innocent at first, but often cause unexpected effects as programs grow.
+* Impact **code organization**
+* Are part of the **signature** (from the verification perspective)
+* May seem innocent at first, but often cause **unexpected effects** as programs grow.
 
    - (Not saying that you should not have them, or that they are evil.)
 
@@ -468,64 +468,50 @@ Global Variables
 What Is a Global Variable?
 ----------------------------
 
-.. container:: columns
+* Any variable that is an input or output of a subprogram (that is not a parameter) is a global
 
- .. container:: column
 
-    * Any variable that is an input or output of a subprogram (that is not a parameter) is a global
+.. code:: Ada
 
- .. container:: column
+   procedure Read_Global (Value : out Integer) is
+   begin
+      Value := Global;
+   end Read_Global;
 
-    .. code:: Ada
+   procedure Global_Above_Zero (Value : out Boolean) is
+   begin
+      Value := (X > 0);
+   end Global_Above_Zero;
 
-       procedure Read_Global
-          (Value : out Integer)
-       is
-       begin
-          Value := Global;
-       end Read_Global;
-       procedure Global_Above_Zero
-          (Value : out Boolean)
-       is
-       begin
-          Value := (X > 0);
-       end Global_Above_Zero;
+-----------------------------
+:ada:`Global` Contract
+-----------------------------
 
------------------
-Global Contract
------------------
+* **Announces** use of global variables
+* Optional mode can be :ada:`Input` (default), :ada:`Output`, :ada:`In_Out` or :ada:`Proof_In`
+* :ada:`Proof_In` specifies globals that are **only** referenced within **assertions** in the subprogram
 
-.. container:: columns
+.. code:: Ada
 
- .. container:: column
+   procedure P
+      with Global =>
+      (Input    => (A, B, C),
+       Output   => (L, M, N),
+       In_Out   => (X, Y, Z),
+       Proof_In => (I, J, K));
 
-    * Announces use of global variables
-    * Optional mode can be `Input` (default), `Output`, `In_Out` or `Proof_In`
-    * `Proof_In` specifies globals that are only referenced within assertions in the subprogram
-
- .. container:: column
-
-    .. code:: Ada
-
-       procedure P
-          with Global =>
-          (Input    => (A, B, C),
-           Output   => (L, M, N),
-           In_Out   => (X, Y, Z),
-           Proof_In => (I, J, K));
-
------------------
-Global Contract
------------------
+------------------------
+:ada:`Global` Contract
+------------------------
 
 * Optional
-* So existing code can be analyzed without adding globals
+* So existing code can be analyzed **without adding globals**
 
-   - Tools will then compute them by default
+   - Tools will then compute them **by default**
 
-* But if present, global contract must be complete and correct
+* But **if present**, global contract must be **complete and correct**
 * Can be omitted if there are no globals
-* :ada:`null` gives a positive indication that there are no globals
+* :ada:`null` gives a positive indication that there are **no globals**
 * The option :command:`--no-global-generation` prohibits global generation, instead assumes :ada:`null`
 
    - **NOTE** Omitted global declaration means global :ada:`null` with this option
@@ -538,9 +524,9 @@ Global Contract
 Functions Without Side-Effects
 --------------------------------
 
-* Recall: An expression is side-effect free if its evaluation does not update any object
-* Objects updated by subprogram call are any parameters of mode :ada:`out` (or :ada:`in out`) and any globals of mode `Output` (or `In_Out`)
-* So function is side-effect free if all parameters and globals (if any) are of mode :ada:`in` / `Input` / `Proof_In` only
+* Recall: An expression is side-effect free if its **evaluation does not update** any object
+* Objects updated by subprogram call are any parameters of mode :ada:`out` (or :ada:`in out`) and any globals of mode :ada:`Output` (or :ada:`In_Out`)
+* So function is side-effect free if all parameters and globals (if any) are of mode :ada:`in` / :ada:`Input` / :ada:`Proof_In` only
 
 .. code:: Ada
 
@@ -590,14 +576,14 @@ Aliasing Revisited - Output of Global
       procedure Update_Y (X : in Some_Type)
          with Global => (Output => Y);
 
-* Aliasing may be detected at the point where a call is made
+* **Aliasing** may be detected at the point where a **call is made**
 
-   .. code:: Ada
+.. code:: Ada
 
-      Y, Z : Some_Type;
-      ...
-      Update_Y (Z); -- OK
-      Update_Y (Y); -- Illegal unless Some_Type is pass-by-copy
+  Y, Z : Some_Type;
+  ...
+  Update_Y (Z); -- OK
+  Update_Y (Y); -- Illegal unless Some_Type is pass-by-copy
 
 .. container:: speakernote
 
@@ -608,7 +594,7 @@ Aliasing Revisited - Output of Global
 Aliasing Revisited - Input of Global
 ---------------------------------------
 
-* As previous example except this time the formal parameter is the export
+* As previous example except this time the formal parameter **is** the export
 
    .. code:: Ada
 
@@ -659,7 +645,7 @@ Summary
 Summary
 ----------
 
-- Data Flow Analysis helps in achieving Bronze Level verification
+- Data Flow Analysis helps in achieving **Bronze Level verification**
 
    + No reading of uninitialized data
    + No interference between parameters and global data
