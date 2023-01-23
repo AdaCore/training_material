@@ -66,7 +66,7 @@ Formal Methods
    - We cannot produce a **complete**, correct formal specification
    - Not everything lends itself to formal specification
 
-      + :ada:`generic`, unchecked Ada, :ada:`with Import`...
+      + :ada:`generic`, :ada:`Ada.Unchecked_Conversion`, :ada:`with Import`...
 
 * Can prove extremely useful properties for portions of programs
 * Allow **combined** proof and test
