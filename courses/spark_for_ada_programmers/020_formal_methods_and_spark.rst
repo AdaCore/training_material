@@ -393,7 +393,7 @@ Allow Safely Removing Run-Time Checks
 Removing Run-Time Checks In SPARK
 -----------------------------------
 
-* SPARK allows proof of absence of run-time errors
+* SPARK allows **proof** of absence of run-time errors
 
    - Language-defined and user-defined checks
 
@@ -414,21 +414,21 @@ Objective: Functional Correctness
 
 * Contracts for functional correctness can be executed...
 
-   - Executable specifications can stand for test oracles
-   - If they are checked during integration testing, they may replace unit testing
-   - They are more maintainable than comments
+   - Executable specifications can stand for **test oracles**
+   - If they are checked during integration testing, they may **replace** unit testing
+   - They are more **maintainable** than comments
 
 * ... as well as formally proven
 
-   - Formal proof verifies the program on all possible inputs
-   - Verification can be done earlier in the development, before bodies are implemented
+   - Formal proof verifies the program on **all possible inputs**
+   - Verification can be done **earlier** in the development, before bodies are implemented
 
 ---------------------------------------
 Proving Arbitrary Boolean Properties
 ---------------------------------------
 
-* Proof of functional correctness verifies compliance with a specification
-* Specification may extend beyond requirements for program integrity (i.e., absence of run-time errors)
+* Proof of functional correctness verifies **compliance** with a specification
+* Specification may extend beyond requirements for **program integrity** (i.e., absence of run-time errors)
 
    - Arbitrary properties: derived requirements, etc.
 
@@ -507,7 +507,10 @@ Objective: Correct Components Integration
 
    - A subprogram, a unit, or a set of units
 
-* Even if components are verified individually, their combination may still fail because of unforeseen interactions or design problems
+* Even if components are verified individually, their **combination** may still fail
+
+   - Unforeseen interactions or design problems
+
 * You can specify exactly the inputs and outputs of each subprogram
 
    - Data dependency contracts
@@ -522,11 +525,11 @@ Objective: Correct Components Integration
 Components Integration: Defensive Code
 ----------------------------------------
 
-* Code that checks proper caller requirements
+* Code that checks proper **caller requirements**
 
    - E.g., cannot call `Push` on a full `Stack` object
 
-* You can replace defensive code with preconditions
+* You can **replace** defensive code with preconditions
 * Preconditions help component integration by proving callers adhere to called unit requirements
 
 ------------------------------------------------
@@ -556,18 +559,18 @@ Components Integration: Defensive Code Example
 Objective: Combining Proof and Testing
 ----------------------------------------
 
-* Some degree of testing is unavoidable
+* Some degree of testing is **unavoidable**
 
    - Social/legal reasons (Would you fly in an untested airplane?)
    - Limitations of formal proofs
    - Use of other, unverifiable languages along with SPARK
 
-* Typically, infeasible to test every possible case
+* Typically, **infeasible** to test **every** possible case
 
    - Huge number of cases, some unknown
    - Is deployment environment available? (e.g., Mars rovers)
 
-* Hit theoretical limits at extreme reliability levels
+* Hits theoretical limits at extreme reliability levels
 
    - *Butler, Ricky W.; Finelli, George B.* "The Infeasibility of Quantifying the Reliability of Life-critical Real-time Software"
 
@@ -575,16 +578,16 @@ Objective: Combining Proof and Testing
 Combined Proof and Test
 -------------------------
 
-* Combined proof and comprehensive testing is too expensive
+* Combined proof and **comprehensive** testing is **too expensive**
 
    - Comprehensive testing is already too expensive
 
-* Combined proof and selective testing can be less expensive than comprehensive testing alone
+* Combined proof and **selective** testing can be less expensive than comprehensive testing **alone**
 
-   - Only test things that cannot be proved (i.e., some unit tests)
-   - Integration testing will remain vital
+   - Only test things that **cannot be proved** (i.e., some unit tests)
+   - **Integration** testing will **remain vital**
 
-* Goal is to reach a level of confidence as good as the level reached by testing alone
+* Goal is to reach a **level of confidence** as good as the level reached by testing alone
 * Industrial use
 
    - E.g., Airbus for avionics software, NVIDIA for automotive software, etc.
@@ -607,11 +610,11 @@ Formal Methods and SPARK Summary
 
    - Especially so for high-integrity software
 
-* SPARK does not abolish complexity or difficulty
+* SPARK does **not** abolish complexity or difficulty
 
-   - But it does make it possible to reason about them!
+   - But it does make it **possible to reason** about them!
 
-* SPARK tools can prove extremely valuable properties
-* No silver bullets, but far better costs and quality are possible
+* SPARK tools can prove extremely valuable **properties**
+* **No silver bullets**, but far better costs and quality are possible
 
    - Demonstrated by real projects
