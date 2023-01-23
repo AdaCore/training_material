@@ -959,7 +959,7 @@ Analysis Summary File :filename:`gnatprove.out`
 * Located in :filename:`gnatprove/` under project object dir
 * An overview of results for all checks in project
 * Especially useful when results must be documented
-* Details in the UG *"How to View :toolname:`GNATprove` Output"*
+* Details in the UG *"How to View GNATprove Output"*
 
 |
 
@@ -972,9 +972,9 @@ Analysis Summary File :filename:`gnatprove.out`
 
 * Error Messages
 
-   - Indicate illegalities
+   - Indicate **illegalities**
    - E.g., SPARK subset violations and violations of flow analysis
-   - Processing cannot continue so cannot be suppressed
+   - Processing **cannot continue** so cannot be suppressed
 
       .. code:: console
 
@@ -984,7 +984,7 @@ Analysis Summary File :filename:`gnatprove.out`
 
    - Notify users of limitations of :toolname:`GNATprove` on some constructs
    - Prevent confusion regarding other output
-   - Can include the list of proved checks if requested
+   - Can include the **list of proved checks** if requested
 
       .. code:: console
 
@@ -996,7 +996,7 @@ Analysis Summary File :filename:`gnatprove.out`
 
 * Warning Messages
 
-   - Indicate suspicious situations, e.g., useless assignments
+   - Indicate **suspicious** situations, e.g., useless assignments
    - Prefixed with **warning:**
    - Can be suppressed with :ada:`pragma Warnings`
 
@@ -1006,9 +1006,9 @@ Analysis Summary File :filename:`gnatprove.out`
 
 * Check Messages
 
-   - Indicate potential problems affecting correctness
+   - Indicate **potential** problems affecting correctness
    - E.g., possible failing run-time checks or unproved contracts
-   - Prefixed with **low** or **medium** or **high**
+   - Prefixed with ``low``, ``medium``, or ``high``
    - Cannot be suppressed like warning messages
    - Can be individually justified with :ada:`pragma Annotate`
 
@@ -1032,11 +1032,11 @@ Analysis Summary File :filename:`gnatprove.out`
 
 * Selected by switch :command:`--mode=<mode>`
 
-   :check: Fast partial check for SPARK subset
-   :`check_all`: Full check for SPARK subset (e.g., side effects)
-   :flow: Flow mode
-   :prove: Proof mode
-   :all: ``check_all`` + flow + prove (default)
+   :``check``: Fast partial check for SPARK subset
+   :``check_all``: Full check for SPARK subset (e.g., side effects)
+   :``flow``: Flow mode
+   :``prove``: Proof mode
+   :``all``: ``check_all`` + ``flow`` + ``prove`` (**default**)
 
 ----------------------------------------------
 General :toolname:`GNATprove` Usage Workflow
@@ -1051,34 +1051,34 @@ General :toolname:`GNATprove` Usage Workflow
 
 * By default, absence of check messages |rightarrow| success
 
-   - Analysis is sound: guaranteed no mode-specific error in code analyzed
+   - Analysis is **sound**: guaranteed no mode-specific error in code analyzed
 
 * If rejected, change the code: fix or justify (if possible)
 
 ---------------------------------
-What Is Verified In "flow" Mode
+What Is Verified In ``flow`` Mode
 ---------------------------------
 
 * Code intended to be in SPARK is indeed in subset
-* With no SPARK-specific aspects (standard Ada), success means no reads of uninitialized data and no problematic aliasing
-* With Global aspects added, success means correct use of global data
-* With Depends aspects added, success means information flow for parameters and globals is as specified
+* With **no** SPARK-specific aspects (standard Ada), success |rightarrow| no reads of uninitialized data and no problematic aliasing
+* With :ada:`with Global`, success |rightarrow| correct use of global data
+* With :ada:`with Depends`, success |rightarrow| information flow for parameters and globals is as specified
 * If you get errors or check messages, change the code...
 * We will cover these aspects in detail
 
 ----------------------------------
-What Is Verified In "prove" Mode
+What Is Verified In ``prove`` Mode
 ----------------------------------
 
 * SPARK subset conformance
-* Success proves absence of run-time errors
+* Success proves **absence of run-time errors**
 
    - From Ada language-defined run-time checks
-   - From explicit raise statements
-   - From Assert pragmas
+   - From explicit :ada:`raise` statements
+   - From :ada:`pragma Assert`
    - But you will likely need to add some contracts to get there
 
-* With preconditions and postconditions, success proves those contracts always hold
+* With preconditions and postconditions, success proves those contracts **always** hold
 
    - Unit functionality, as expressed in postconditions
    - Any arbitrary boolean properties you specified
@@ -1089,17 +1089,17 @@ What Is Verified In "prove" Mode
 Using SPARK Features with :toolname:`GNATprove`
 -------------------------------------------------
 
-* Can start with only Ada and basic checking modes
+1. Can start with only Ada and basic checking modes
 
    - Nothing SPARK-specific
    - No Ada contracts required (but allowed)
    - :toolname:`GNATprove` only attempts to verify SPARK subset compliance
 
-* As contracts are added, invoke :toolname:`GNATprove` with more advanced analysis modes
+2. As contracts are added, invoke :toolname:`GNATprove` with more advanced analysis modes
 
    - Increases the strength of the properties proven (e.g., no buffer overflow, functional correctness)
 
-* Use a more advanced mode only after analysis at all lower modes is successful
+3. Use a more advanced mode only after analysis at all lower modes is successful
 
    - Higher modes' analyses depend on them (e.g., subset conformance, no uninitialized data is read)
    - Higher modes perform nearly all lower modes' analyses
@@ -1112,17 +1112,17 @@ Which Mode To Use?
 
    - E.g., invalid data initialization may invalidate proof
 
-* Thus make sure you pass flow analysis (using "flow" mode) before moving on to "proof" mode
-* Consider that mode "all" does all the necessary analyses and does them in the necessary order
+* Thus make sure you pass flow analysis (using ``flow`` mode) before moving on to ``proof`` mode
+* Consider that mode ``all`` does all the necessary analyses and does them in the necessary order
 
 ------------------------------------------
 :toolname:`GNATprove` Project File Usage
 ------------------------------------------
 
 * Apply the usual attributes to define source dirs, set compiler switches, and so on
-* Tool package `Prove` corresponds to :toolname:`GNATprove`
+* Tool package :ada:`Prove` corresponds to :toolname:`GNATprove`
 
-   - Use attribute `Proof_Switches` to apply tool-defined switches
+   - Use attribute :ada:`Proof_Switches` to apply tool-defined switches
 
 .. code:: Ada
 
@@ -1139,13 +1139,13 @@ Which Mode To Use?
      ...
    end SPARK_Dev;
 
------------------------------------------
-To Specify Default `SPARK_Mode` Value
------------------------------------------
+--------------------------------------------
+To Specify Default :ada:`SPARK_Mode` Value
+--------------------------------------------
 
-* Include pragma `SPARK_Mode` in a "configuration pragmas" file, with the chosen default value
-* The project file specifies path/name of this file via the `Global_Configuration_Pragmas` attribute
-* GPR file
+* Include :ada:`pragma SPARK_Mode` in a "configuration pragmas" file, with the chosen default value
+* The project file specifies path/name of this file via the :ada:`Global_Configuration_Pragmas` attribute
+* :filename:`p.gpr`
 
    .. code:: Ada
 
@@ -1157,7 +1157,7 @@ To Specify Default `SPARK_Mode` Value
          ...
       end P;
 
-* config.adc
+* :filename:`config.adc`
 
    .. code:: Ada
 
@@ -1197,7 +1197,7 @@ Basic :toolname:`GNAT Studio` Look and Feel
 .. container:: speakernote
 
    "all" = all provers
-   The "Examine *" menu entries also check for SPARK subset conformance.
+   The "Examine XXX" menu entries also check for SPARK subset conformance.
    Proof involves the Flow Analysis function as well.
 
 ------------------------------
@@ -1278,23 +1278,23 @@ FAQs
 
 * Why can't I find the "SPARK" menu?
 
-   - Check that :toolname:`GNATprove` is on your PATH
+   - Check that :toolname:`GNATprove` is on your ``PATH``
 
 -------------------------
 SPARK Language Benefits
 -------------------------
 
-* Amplifies the strengths of Ada
+* **Amplifies** the strengths of Ada
 
    - Truly complete specifications for subprograms etc.
 
-* Gives program source text a precise meaning
-* Guarantees freedom from certain classes of error
+* Gives program source text a **precise meaning**
+* Guarantees **freedom** from certain **classes of error**
 
    - Extremely important errors, such as buffer overflow
 
-* Simplifies early detection of other errors
-* Captures important design information in the code
+* Simplifies **early detection** of other errors
+* Captures important **design information** in the code
 
 --------------------------------------
 SPARK Language and Key Tools Summary
@@ -1302,13 +1302,13 @@ SPARK Language and Key Tools Summary
 
 * Restrictions are imposed on language constructs
 
-   - Some because their effects would defy formal analysis
-   - Others because analysis is feasible but not yet mature
-   - Some are always suspect (e.g., side-effects)
+   - Some because their effects would **defy** formal analysis
+   - Others because analysis is feasible but not yet **mature**
+   - Some are always **suspect** (e.g., side-effects)
 
-* Language subset is very large, most of Ada
+* Language subset is **very large**, most of Ada
 
-   - The subset is expanding over time
+   - The subset is **expanding** over time
 
 * Includes additional aspects not in Ada (yet)
 * Mixing with Ada allows flexibility and reuse
