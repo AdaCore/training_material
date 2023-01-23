@@ -163,13 +163,15 @@ Math Hidden Behind the Tools
 
 * Typical for engineering disciplines
 
-   - Engineer working with tool can ignore details of heavy-duty math required
+   - Tool abstracts the **heavy-duty** math required
+   - User can focus on **abstracted** problems
 
 * This is a simulation of the NASA Space Launch System
 
-   - Shock wave (colored by pressure) is shown at front of vehicle
-   - Farther back, booster separation-motor plumes are colored by Mach number.
-   - Engineers can visualize issues without knowing how visualization is created
+   - Shock wave (colored by **pressure**) visible at the front of vehicle
+   - Farther back, booster separation-motor plumes are colored by **Mach number**
+   - Tool takes care of creating the **visualization**
+   - Engineers can focus on issues **visually**
 
 .. image:: rocket_launch_shock_wave.png
    :width: 30%
