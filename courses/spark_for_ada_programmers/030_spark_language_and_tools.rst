@@ -35,18 +35,18 @@ Introduction
 Static Verification Goals
 ---------------------------
 
-* Deep, i.e., tells you something useful
-* Sound
+* **Deep**, i.e., tells you something useful
+* **Sound**
 
-   - Presents no false negatives
+   - Presents **no false negatives**
    - If it does not indicate a problem, there is no problem in the analyzed code
 
-* Complete
+* **Complete**
 
-   - With as few false alarms as possible
+   - With as **few false alarms** as possible
 
-* Fast
-* Modular and constructive, works on incomplete programs
+* **Fast**
+* **Modular** and **constructive**, works on incomplete programs
 
 =================
 Language Design
@@ -56,7 +56,7 @@ Language Design
 SPARK - A Brief History
 -------------------------
 
-* The SPARK language has continually evolved along with the major revisions of Ada
+* The SPARK language has **continually evolved** along with the major revisions of Ada
 
 |
 
@@ -78,17 +78,17 @@ Language Design Principles
 
 * DO-333 says:
 
-   - "...an analysis method can only be regarded as formal analysis if its determination of a property is sound. Sound analysis means that the method never asserts a property to be true when it is not true."
+   - "...an analysis method can only be regarded as **formal analysis** if its determination of a property is **sound**. Sound analysis means that the method **never** asserts a property **to be true when it is not** true."
 
 --------------------------------------
 Language Design Principles Explained
 --------------------------------------
 
-* "Unambiguous" - What does this mean in practice?
+* "Unambiguous" - What does this mean **in practice**?
 
-   - No erroneous behavior allowed.
-   - No unspecified language features.
-   - Limit implementation-defined features to as small a set as possible and allow these to be configured for a particular implementation.
+   - **No erroneous** behavior allowed.
+   - **No unspecified** language features.
+   - Limit implementation-defined features to as **small a set as possible** and allow these to be **configured** for a particular implementation.
 
 .. container:: speakernote
 
