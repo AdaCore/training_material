@@ -219,7 +219,7 @@ What Is a Side-Effect?
    modifying a global in a function is illegal SPARK
 
 ----------------------------------------
-Why not Side Effects - Writing Globals
+Why no Side Effects - Writing Globals
 ----------------------------------------
 
 .. code:: Ada
@@ -245,9 +245,9 @@ Why not Side Effects - Writing Globals
    - If left parameter evaluated first, X=0, Y=1
    - If right parameter evaluated first, X=1, Y=1
 
------------------------------------------------
-Why not Side Effects - `in out` Formals (1/2)
------------------------------------------------
+----------------------------------------------------
+Why no Side Effects - :ada:`in out` Formals (1/2)
+----------------------------------------------------
 
 .. code:: Ada
 
@@ -267,9 +267,9 @@ Why not Side Effects - `in out` Formals (1/2)
    - If left parameter evaluated first, X=0, Y=1
    - If right parameter evaluated first, X=1, Y=1
 
------------------------------------------------
-Why not Side Effects - `in out` Formals (2/2)
------------------------------------------------
+----------------------------------------------------
+Why no Side Effects - :ada:`in out` Formals (2/2)
+----------------------------------------------------
 
 .. code:: Ada
 
@@ -302,14 +302,14 @@ Parameter Name Aliasing
 -------------------------
 
 * In terms of actual parameters and global variables
-* Occurs when there are multiple names for an actual parameter inside the subprogram body
+* Occurs when there are **multiple names** for an actual parameter inside the subprogram body
 
    - Global variable passed as actual parameter and referenced inside subprogram via global name
    - Same actual passed to more than one formal
    - Two actuals are overlapping array slices
    - One actual is contained within another actual
 
-* Can lead to code dependent on parameter-passing mechanism (another case of erroneous behavior)
+* Can lead to code **dependent** on parameter-passing mechanism (another case of **erroneous** behavior)
 
 -----------------------------------------
 Parameter Aliasing with Global Variable
@@ -362,19 +362,22 @@ Parameter Aliasing via Repeated Actuals
 Aliasing with Composite Data Types
 ------------------------------------
 
-* Arrays
+* :ada:`array`
 
-   - Array elements can be indexed dynamically so this is not allowed (because X and Y could be the same, and aliasing checks are done at flow analysis stage)
+   - Array elements can be indexed **dynamically** so this is **not allowed**
+
+      * :ada:`X` and :ada:`Y` **could** be the same
+      * Aliasing checks are done at **flow analysis** stage
 
       .. code:: Ada
 
          Swap (My_Array (X), My_Array (Y)); -- illegal
 
-   - In the future, these checks might be moved to the proof stage, allowing the tools to be less restrictive
+   - **In the future**, these checks might be moved to the **proof stage**, allowing the tools to be **less restrictive**
 
-* Records
+* :ada:`record`
 
-   - Aliasing of inputs is permitted if they do not overlap with outputs
+   - Aliasing of inputs is **permitted** if they **do not overlap** with outputs
    - Different fields of a record cannot overlap so this is allowed
 
       .. code:: Ada
@@ -385,10 +388,10 @@ Aliasing with Composite Data Types
 Parameter Aliasing Prevention In SPARK
 ----------------------------------------
 
-* Multiple output parameters must not be aliased
-* Input and output parameters must not be aliased, if there is possible interference
-* Output parameters must never be aliased with global variables referenced by the subprogram
-* Input parameters must not be aliased with global variables written by the subprogram, unless they are always passed by copy (reading is OK)
+* **Multiple output** parameters must **not** be aliased
+* **Input and output** parameters must not be aliased, if there is **possible interference**
+* **Output** parameters must **never** be aliased with **global variables** referenced by the subprogram
+* **Input** parameters must not be aliased with **global variables** written by the subprogram, **unless** they are always **passed by copy** (reading is OK)
 * Functions cannot have outputs (parameters or global variables) hence cannot introduce illegal aliasing
 
 ----------------------------
@@ -396,29 +399,29 @@ Data Initialization Policy
 ----------------------------
 
 * Modes on formal parameters and data dependency contracts have a stricter meaning than in Ada
-* Mode :ada:`in` (and global mode `Input`): the object should be completely initialized before the call
-* Mode :ada:`out` (and global mode `Output`): the object should be completely initialized before returning
-* Mode :ada:`in out` (and global mode `In_Out`): the object should be completely initialized before calling the subprogram
+* Mode :ada:`in` (and global mode :ada:`Input`): the object should be completely **initialized before the call**
+* Mode :ada:`out` (and global mode :ada:`Output`): the object should be completely **initialized before returning**
+* Mode :ada:`in out` (and global mode :ada:`In_Out`): the object should be completely **initialized before the call**
 
 -----------------------------------------
 Data Initialization Policy Consequences
 -----------------------------------------
 
-* All inputs must be completely initialized on entry
-* All outputs must be completely initialized on exit
-* All objects must be completely initialized when read
+* All **inputs** must be completely initialized **on entry**
+* All **outputs** must be completely initialized **on exit**
+* All **objects** must be completely initialized **when read**
 
-   - Except for record objects, provided those components that are read are initialized
-   - Above rule exception doesn't apply to array objects
+   - **Except** for :ada:`record` objects, provided those components that are read are initialized
+   - Above rule exception doesn't apply to :ada:`array` objects
 
-* A parameter or global variable partially written in a subprogram should be mode :ada:`in out`, not mode :ada:`out`
+* A parameter or global variable **partially written** in a subprogram should be mode :ada:`in out`, not mode :ada:`out`
 * :toolname:`GNATprove` will complain if policy is violated
 
 -------------------------------------------
 No Initialization Across Library Packages
 -------------------------------------------
 
-* In SPARK, package elaboration cannot initialize variables declared in other library packages
+* In SPARK, package elaboration **cannot** initialize variables declared in **other library** packages
 * In combination with other rules, prevents elaboration order issues
 
 .. code:: Ada
@@ -440,11 +443,11 @@ Thus The Term "Safe Subset"
 
 * A good idea even if you don't yet use all of SPARK
 
-   - Helpful for better coding practices in Ada
+   - Helpful for **better coding practices** in Ada
 
       + Reduces chances of errors
 
-   - Works for other languages as well
+   - Works for **other languages** as well
 
       + Even without language limitations, useful for reducing complexity of code
       + Enforce through standards rather than compiler
@@ -477,14 +480,14 @@ Various Other Differences from Ada
 Mixing SPARK and Ada
 ----------------------
 
-* May be necessary for new code
+* May be necessary for **new code**
 
    - A prohibited construct may be "best" approach
 
-* May be necessary for reusing existing code
+* May be necessary for reusing **existing code**
 
    - Prohibited constructs may require extensive changes
-   - May want to approach legacy code incrementally
+   - May want to approach legacy code **incrementally**
    - May have extensive reusable libraries
 
 * Allows verifying as much as possible of a code base
@@ -501,22 +504,22 @@ Identifying SPARK Code
 
 * Aspect and :ada:`pragma SPARK_Mode` specify whether code is intended to be in SPARK
 
-   - Argument values are `On` and `Off`
+   - Argument values are :ada:`On` and :ada:`Off`
 
 * Can be applied to individual units, or globally as a default
 * Absent the aspect/pragma, code is assumed to be full Ada
 
-------------------------------------
-Meaning of `SPARK_Mode` Argument
-------------------------------------
+---------------------------------------
+Meaning of :ada:`SPARK_Mode` Argument
+---------------------------------------
 
-* `On`
+* :ada:`On`
 
    - Corresponding code is required to be in SPARK
    - Corresponding code will be analyzed by :toolname:`GNATprove`
    - The default argument when no argument specified explicitly
 
-* `Off`
+* :ada:`Off`
 
    - Corresponding code can be in full Ada
    - Corresponding code will not be analyzed by :toolname:`GNATprove`
