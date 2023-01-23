@@ -1,8 +1,31 @@
-
 **************************
 Formal Methods and SPARK
 **************************
 .. |rightarrow| replace:: :math:`\rightarrow`
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 ==============
 Introduction
@@ -12,17 +35,18 @@ Introduction
 High-Integrity Software
 -------------------------
 
-* Has reliability as the most important requirement
+* Has **reliability** as the most important requirement
 
    - More than cost, time-to-market, etc.
 
-* Must be known to be reliable before being deployed
+* Must be known to be reliable **before** being deployed
 
    - With extremely low failure rates, e.g., 1 in 10:superscript:`9` hours (114,080 years)
    - Testing is insufficient and/or infeasible for such rates
 
-* Is not necessarily safety-critical
+* Is **not** necessarily safety-critical
 
+   - Could be *mission*-critical
    - E.g., satellites and remote exploration vehicles
    - E.g., financial systems
 
@@ -36,17 +60,19 @@ Rationale for Formal Analysis
 Formal Methods
 ----------------
 
-* Are a sufficient and cost-effective approach to show reliability prior to deployment
-* Are incapable of proving entire programs correct
+* **Sufficient** and **cost-effective** approach to show reliability **prior** to deployment
+* Are **not** capable of proving entire programs correct
 
-   - We cannot produce a complete, correct formal specification
+   - We cannot produce a **complete**, correct formal specification
    - Not everything lends itself to formal specification
 
+      + :ada:`generic`, unchecked Ada, :ada:`with Import`...
+
 * Can prove extremely useful properties for portions of programs
-* Allow combined proof and test
+* Allow **combined** proof and test
 
    - You don't have to test that which has been proven
-   - Or your tests will pass the first time
+   - Else your tests will pass the first time
    - Language capabilities help with testing
 
 .. container:: speakernote
@@ -78,9 +104,7 @@ Language Facilitates Proof and Test
 * The GNAT compiler has specific support options
 
    - Additional aliasing detection beyond Ada RM requirements
-
    - Additional data initialization and validity checks beyond Ada RM requirements
-
    - See the SPARK User's Guide for more details
 
 * Unit test tool :toolname:`GNATtest` makes testing easier
