@@ -189,9 +189,7 @@ Incorrect Parameter Mode
   * - Initial Value
 
     - Some Path Updated
-
     - Every Path Updated
-
     - Parameter Mode
 
   * - |checkmark|
@@ -205,9 +203,7 @@ Incorrect Parameter Mode
   * - |checkmark|
 
     - |checkmark|
-
     - |checkmark|
-
     - in out
 
   * -
@@ -223,10 +219,9 @@ Incorrect Parameter Mode
     -
 
     - |checkmark|
-
     - out
 
-* Detection of incorrect mode of parameters (`in`, `out`, or `in out`)
+* Detection of incorrect mode of parameters (:ada:`in`, :ada:`out`, or :ada:`in out`)
 
 .. code:: Ada
 
@@ -255,11 +250,9 @@ Flow Analysis - Why Do We Care?
 ---------------------------------
 
 * Ensure there is no dead code
-
 * Improper initialization errors are listed as one of the most dangerous programming errors
 
    - The SPARK flow analysis identifies all variables that have not been initialized prior to them being read.
-
    - If the SPARK flow analysis finds no uninitialized variables, then there really are none!
 
 * Identifying ineffective statements
@@ -365,7 +358,6 @@ Flow Analysis of Composite Objects
 * Records
 
    - Updating and reading of fields of records is analyzed in terms of those fields
-
    - Updates and reads not treated as operations on records in their entirety
 
 =========================
@@ -439,7 +431,7 @@ Array Assignment
          A (2) := True;
       end Init_Array;
 
-* Don't "fix" this by changing the mode of `A` to `in out`
+* Don't "fix" this by changing the mode of `A` to :ada:`in out`
 
 ----------------------
 Array Initialization
@@ -454,7 +446,7 @@ Array Initialization
          A := (1 .. 2 => True);
       end Init_Array;
 
-   - (`others` could be used in this particular instance)
+   - (:ada:`others` could be used in this particular instance)
 
 * Flow analysis knows that the array must be fully defined by the aggregate, so no errors are reported
 
@@ -467,7 +459,6 @@ Global Variables
 ------------------
 
 * Impact code organization
-
 * Are part of the signature (from the verification perspective)
 * May seem innocent at first, but often cause unexpected effects as programs grow.
 
@@ -528,17 +519,16 @@ Global Contract
 -----------------
 
 * Optional
-
 * So existing code can be analyzed without adding globals
 
    - Tools will then compute them by default
 
 * But if present, global contract must be complete and correct
 * Can be omitted if there are no globals
-* `null` gives a positive indication that there are no globals
-* The option :command:`--no-global-generation` prohibits global generation, instead assumes `null`
+* :ada:`null` gives a positive indication that there are no globals
+* The option :command:`--no-global-generation` prohibits global generation, instead assumes :ada:`null`
 
-   - **NOTE** Omitted global declaration means global `null` with this option
+   - **NOTE** Omitted global declaration means global :ada:`null` with this option
 
 .. container:: speakernote
 
@@ -549,8 +539,8 @@ Functions Without Side-Effects
 --------------------------------
 
 * Recall: An expression is side-effect free if its evaluation does not update any object
-* Objects updated by subprogram call are any parameters of mode `out` (or `in out`) and any globals of mode `Output` (or `In_Out`)
-* So function is side-effect free if all parameters and globals (if any) are of mode `in` / `Input` / `Proof_In` only
+* Objects updated by subprogram call are any parameters of mode :ada:`out` (or :ada:`in out`) and any globals of mode `Output` (or `In_Out`)
+* So function is side-effect free if all parameters and globals (if any) are of mode :ada:`in` / `Input` / `Proof_In` only
 
 .. code:: Ada
 
