@@ -529,12 +529,12 @@ Meaning of :ada:`SPARK_Mode` Argument
 The Pragma Will Be Used Often
 -------------------------------
 
-* Because there is no syntax defined for an aspect at several points in the language
+* Because there is **no syntax** defined for an aspect at several points in the language
 
    - E.g., optional private part of a package or task declaration
 
-* Can be used anywhere the aspect can be used
-* Must appear first (so that it applies to all of it), except for other pragmas if any
+* Can be used **anywhere** the aspect can be used
+* **Must appear first** (so that it applies to all of it), except for other pragmas if any
 
 ---------------------------------
 Meaning of "Corresponding Code"
@@ -557,12 +557,12 @@ Mixing SPARK and Ada
 Identifying SPARK Code
 ------------------------
 
-* `SPARK_Mode` (aspect or pragma)
+* :ada:`SPARK_Mode` (aspect or pragma)
 * Specifies whether code is intended to be SPARK
-* It should be added to every unit to be analyzed
+* It **should** be added to **every unit** to be analyzed
 
-   - or can be set globally using a configuration pragma
-   - note that with'ed units default to `Auto`
+   - or can be set **globally** using a **configuration pragma**
+   - note that :ada:`with`'ed units default to :ada:`Auto`
 
       + Up to :toolname:`GNATprove` to determine whether or not a given construct is in SPARK
 
@@ -570,7 +570,7 @@ Identifying SPARK Code
 Setting `SPARK_Mode`
 ------------------------
 
-* `SPARK_Mode` can be `On` or `Off` for
+* :ada:`SPARK_Mode` can be :ada:`On` or :ada:`Off` for
 
    - visible part of package specification
    - private part of package specification
@@ -579,14 +579,14 @@ Setting `SPARK_Mode`
    - subprogram specification
    - subprogram body
 
-* If SPARK mode is `Off` for a package or subprogram then it cannot be switched `On` for a later part of that package or subprogram
-* Note that a package spec and its corresponding body are not the same construct!
+* If SPARK mode is :ada:`Off` for a package or subprogram then it **cannot** be switched :ada:`On` for a later part of that package or subprogram
+* Note that a package spec and its corresponding body are **not** the same construct!
 
    - Mode for the spec does not set mode for the body
 
---------------------------------------
-"Later" Parts Can Be Turned `Off`
---------------------------------------
+----------------------------------------
+"Later" Parts Can Be Turned :ada:`Off`
+----------------------------------------
 
 .. code:: Ada
 
@@ -611,18 +611,18 @@ Setting `SPARK_Mode`
 Two General Principles for Mixing
 -----------------------------------
 
-* SPARK code must only reference SPARK entities
+* SPARK code **must** only reference SPARK entities
 
-   - But a SPARK declaration may have a non-SPARK completion
+   - But a SPARK declaration **may** have a non-SPARK **completion**
 
-* SPARK code is assumed to enclose SPARK code
+* SPARK code is **assumed** to enclose SPARK code
 
-   - Unless enclosed code is explicitly marked as non-SPARK
+   - **Unless** enclosed code is **explicitly** marked as non-SPARK
 
 * The word **reference** is key:
 
    - The spec is what is referenced (i.e., the declaration) so the completion needs not be in SPARK
-   - A non-SPARK package can be with'ed by SPARK code as long as the referenced parts comply with the SPARK subset
+   - A non-SPARK package **can** be :ada:`with`'ed by SPARK code as long as the referenced parts comply with the SPARK subset
 
 ---------------------------------
 Common Mixed SPARK/Ada Approach
@@ -653,7 +653,7 @@ Common Mixed SPARK/Ada Approach
 Can Verify Selected Subprograms
 ---------------------------------
 
-* Some specs with `SPARK_Mode` `On`, others `Off`
+* Some specs with :ada:`SPARK_Mode` :ada:`On`, others :ada:`Off`
 
    - Modes determine what is allowed in the specs
 
@@ -678,7 +678,7 @@ Can Verify Selected Subprograms
 SPARK Code Cannot Use Mode `Off` Code
 -----------------------------------------
 
-* That is, when spec is explicitly marked as `Off`
+* That is, when spec is explicitly marked as :ada:`Off`
 
 .. code:: Ada
 
@@ -696,7 +696,7 @@ SPARK Code Cannot Use Mode `Off` Code
 Subprogram Specs Are Sufficient
 ---------------------------------
 
-* `SPARK_Mode` `On` for declaration, `Off` for body
+* :ada:`SPARK_Mode` :ada:`On` for declaration, :ada:`Off` for body
 * SPARK callers "see" only SPARK, thus callable
 
 .. code:: Ada
@@ -744,9 +744,9 @@ Mode `Off` for Bodies Allows Full Ada
 If Implementing a SPARK Spec in Full Ada
 ------------------------------------------
 
-* The user must verify SPARK properties
+* The user **must** verify SPARK properties
 
-   - Failure to do so may invalidate entire :toolname:`GNATprove` analysis of SPARK caller code, silently!
+   - Failure to do so may invalidate **entire** :toolname:`GNATprove` analysis of SPARK caller code, **silently**!
 
 .. code:: Ada
 
@@ -769,14 +769,14 @@ If Implementing a SPARK Spec in Full Ada
 What If the Mode Is Not Explicitly Set?
 -----------------------------------------
 
-* I.e., `SPARK_Mode` aspect/pragma is not applied
+* I.e., :ada:`SPARK_Mode` aspect/pragma is not applied
 
    - Neither in the unit in question nor globally
 
-* The mode is then said to be `Auto`
-* In this mode :toolname:`GNATprove` only checks subset conformance on declarations of entities actually referenced in SPARK code
+* The mode is then said to be :ada:`Auto`
+* In this mode :toolname:`GNATprove` only checks subset conformance on **declarations** of entities actually **referenced** in SPARK code
 
-   - Their implementations are not analyzed by :toolname:`GNATprove`
+   - Their **implementations** are **not** analyzed by :toolname:`GNATprove`
 
 * Allowed for Ada packages named in :ada:`with` clauses
 
@@ -785,9 +785,9 @@ What If the Mode Is Not Explicitly Set?
 
 * Such Ada code can still be used with SPARK code
 
----------------------------------
-Auto `SPARK_Mode` Example
----------------------------------
+--------------------------------
+Auto :ada:`SPARK_Mode` Example
+--------------------------------
 
 .. code:: Ada
 
@@ -805,9 +805,9 @@ Auto `SPARK_Mode` Example
       ...
    end IO;
 
-------------------------------------------
-Example Usage of Auto `SPARK_Mode`
-------------------------------------------
+-----------------------------------------
+Example Usage of Auto :ada:`SPARK_Mode`
+-----------------------------------------
 
 .. code:: Ada
 
@@ -832,9 +832,9 @@ Example Usage of Auto `SPARK_Mode`
 
    Put Line is not rejected because its spec is SPARK conformant.
 
------------------------------------------
-Setting Default `SPARK_Mode` Globally
------------------------------------------
+--------------------------------------------
+Setting Default :ada:`SPARK_Mode` Globally
+--------------------------------------------
 
 * Achieved via *configuration pragma* usage
 
@@ -842,19 +842,19 @@ Setting Default `SPARK_Mode` Globally
    - Applies to entire partition (program), by definition
    - Illustrated later...
 
-* If the argument is `Off` then Ada is assumed
+* If the argument is :ada:`Off` then **Ada is assumed**
 
-   - Only code explicitly marked `On` is assumed to be in SPARK
-   - Appropriate when only a very small amount is in SPARK
+   - **Only** code explicitly marked :ada:`On` is assumed to be in SPARK
+   - Appropriate when only a **very small** amount is in **SPARK**
 
-* If the argument is `On` then SPARK is assumed
+* If the argument is :ada:`On` then **SPARK is assumed**
 
-   - Only code explicitly marked as `Off` is assumed to be in Ada
-   - Appropriate when only a small amount is in Ada
+   - **Only** code explicitly marked as `Off` is assumed to be in Ada
+   - Appropriate when only a **small amount** is in **Ada**
 
------------------------------------------
-When `SPARK_Mode` Is Globally `Off`
------------------------------------------
+-----------------------------------------------------
+When :ada:`SPARK_Mode` Is Globally :ada:`Off` (1/2)
+-----------------------------------------------------
 
 .. code:: Ada
 
@@ -866,7 +866,7 @@ When `SPARK_Mode` Is Globally `Off`
       ...
    end Z;
 
-* You cannot turn it on in a later part without also turning it on in the earlier part
+* You **cannot** turn it on in a later part without also turning it on in the earlier part
 
    .. code:: console
 
@@ -876,11 +876,11 @@ When `SPARK_Mode` Is Globally `Off`
      z.ads:7:23: value Off was set for SPARK_Mode on "Z" at
         config.adc:1
 
----------------------------------------------
-When `SPARK_Mode` Is Globally `Off` (2)
----------------------------------------------
+-----------------------------------------------------
+When :ada:`SPARK_Mode` Is Globally :ada:`Off` (2/2)
+-----------------------------------------------------
 
-* Only the pragma can turn it on for a unit
+* **Only** the :ada:`pragma` can turn it on for a unit
 
 .. code:: Ada
 
@@ -952,9 +952,9 @@ SPARK Key Tools
 
 .. image:: gnatprove-output-options.png
 
----------------------------------------
-Analysis Summary File "gnatprove.out"
----------------------------------------
+-------------------------------------------------
+Analysis Summary File :filename:`gnatprove.out`
+-------------------------------------------------
 
 * Located in :filename:`gnatprove/` under project object dir
 * An overview of results for all checks in project
