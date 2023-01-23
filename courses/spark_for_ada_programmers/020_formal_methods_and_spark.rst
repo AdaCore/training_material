@@ -127,6 +127,10 @@ SPARK
 * Uses **statically provable** contracts + testing
 * Based on Ada
 
+   - Strict subset of Ada **2022**
+   - Compiled SPARK is **binary-compatible** with Ada
+   - Can be **linked** directly to Ada
+
 --------------------------
 The Programming Language
 --------------------------
@@ -139,7 +143,7 @@ The Programming Language
 * Excluded from SPARK:
 
    - Aliasing data-structures obtained using access types
-   - Expressions (including function calls) with side-effects
+   - Expressions (including function calls) with **side-effects**
    - Aliasing of names
    - Backwards goto statements
    - Controlled types
@@ -269,23 +273,28 @@ Objective: Data And Control Coupling
 How SPARK Addresses Data Coupling
 -----------------------------------
 
-* Global data dependency contracts specify global inputs and outputs, thus identifying data not exclusively under unit's control
+* Global data dependency contracts specify **global inputs and outputs**
 
-      .. code:: Ada
+    - :ada:`with Global`
+    - Identifying data **not exclusively** under unit's control
 
-         procedure Add_To_Total (X : in Integer) with
-            Global => (In_Out => Total);
+    .. code:: Ada
 
-   - Total is a global variable both read and written
+        procedure Add_To_Total (X : in Integer) with
+           Global => (In_Out => Total);
 
-* Flow dependency contracts specify exactly how data influence subprogram output values
+   - :ada:`Total` is an :ada:`in out` global variable: both **read and written**
 
-      .. code:: Ada
+* Flow dependency contracts specify exactly how data influence subprogram **output values**
 
-         procedure Add_To_Total (X : in Integer) with
-            Depends => (Total => (Total, X));
+    - :ada:`with Depends`
 
-   - Value of output `Total` depends on inputs `Total` and `X`
+    .. code:: Ada
+
+        procedure Add_To_Total (X : in Integer) with
+           Depends => (Total => (Total, X));
+
+   - Value of output :ada:`Total` depends on inputs :ada:`Total` and :ada:`X`
 
 --------------------------------------
 How SPARK Addresses Control Coupling
@@ -293,19 +302,21 @@ How SPARK Addresses Control Coupling
 
 * Flow dependency contracts specify the shared data potentially written by a subprogram
 
-   - Those data values affect the execution, otherwise a message
+    - Those data values **will** affect the execution (otherwise emit a message)
 
-      .. code:: Ada
+    .. code:: Ada
 
-         procedure Add_To_Total (X : in Integer) with
-            Depends => (Total => (Total, X));
+        procedure Add_To_Total (X : in Integer) with
+           Depends => (Total => (Total, X));
 
-* Functional contracts specify the behavior of a subprogram, which defines how it "influences the execution of another software component"
+* Functional contracts specify the behavior of a subprogram
 
-      .. code:: Ada
+    - How it "influences the execution of another software component"
 
-         procedure Add_To_Total (X : in Integer) with
-            Pre => X >= 0 and then Total <= Integer'Last - X;
+    .. code:: Ada
+
+        procedure Add_To_Total (X : in Integer) with
+           Pre => X >= 0 and then Total <= Integer'Last - X;
 
 .. container:: speakernote
 
