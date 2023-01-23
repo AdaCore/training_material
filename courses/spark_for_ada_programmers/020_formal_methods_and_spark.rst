@@ -99,12 +99,12 @@ Combining Proof and Test - Cost Benefit
 Language Facilitates Proof and Test
 -------------------------------------
 
-* Proof contracts are executable, not just comments
-* Thus proof contracts can be checked at run-time with an error raised when a check fails
+* Proof contracts are **executable**, not just comments
+* Thus proof contracts can be **checked at run-time** with an error raised when a check fails
 * The GNAT compiler has specific support options
 
-   - Additional aliasing detection beyond Ada RM requirements
-   - Additional data initialization and validity checks beyond Ada RM requirements
+   - Additional **aliasing detection** beyond Ada RM requirements
+   - Additional data **initialization and validity** checks beyond Ada RM requirements
    - See the SPARK User's Guide for more details
 
 * Unit test tool :toolname:`GNATtest` makes testing easier
@@ -124,7 +124,7 @@ SPARK
 
    - Hides the math from users
 
-* Uses statically provable contracts + testing
+* Uses **statically provable** contracts + testing
 * Based on Ada
 
 --------------------------
