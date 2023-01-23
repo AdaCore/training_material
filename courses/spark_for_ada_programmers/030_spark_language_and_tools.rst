@@ -106,10 +106,10 @@ Language Design Principles
 
    - SPARK 2014 is designed to be a **formal method** as defined by DO-333.
 
-* Support contract-based programming
+* Support **contract-based** programming
 
-   - For programmers to declare intent and responsibilities of different parts of the source code
-   - Support both static and dynamic verification of contracts
+   - For programmers to declare **intent and responsibilities** of different parts of the source code
+   - Support both **static and dynamic** verification of contracts
 
 --------------------
 The SPARK Language
@@ -117,15 +117,15 @@ The SPARK Language
 
 * Designed for static verification
 
-   - Completely unambiguous
-   - All implementation dependencies are made explicit
+   - Completely **unambiguous**
+   - All implementation **dependencies** are made **explicit**
    - All rule violations are detectable
-   - Formally defined
+   - Formally **defined**
    - Tool supported
 
-* Designed to enable reasoning rigorously about software
+* Designed to enable rigorous reasoning about software
 
-   - Nothing hidden, especially state dependencies
+   - **Nothing** hidden, especially state dependencies
 
 * Based on Ada's foundation for high reliability
 
@@ -146,7 +146,7 @@ A Simple Example of Verifiable Properties
       X := X + 1;
    end Increment;
 
-* These properties are proven (or not) for all possible cases
+* These properties are proven (or not) for **all possible cases**
 
 --------------------------------------------
 Verification Requires Construct Exclusions
@@ -154,23 +154,23 @@ Verification Requires Construct Exclusions
 
 * Design according to the SPARK design principles:
 
-   - Exclude language features difficult to specify/verify
-   - Eliminate sources of ambiguity
+   - **Exclude** language features **difficult** to specify/verify
+   - **Eliminate** sources of **ambiguity**
 
 * Exclusions
 
-   - Access types and values creating aliased data structures
+   - **Access** types and values creating **aliased** data structures
 
       + Note you don't need them nearly as much in Ada/SPARK
 
-   - Expressions (including function calls) with side effects
-   - Aliasing of names
-   - Backwards `goto` statements
+   - Expressions (including function calls) with **side effects**
+   - **Aliasing** of names
+   - Backwards :ada:`goto` statements
 
       + Can create loops, which require a specific treatment in formal verification
 
-   - Controlled types (complex control flow)
-   - Exception handlers (raising them is allowed)
+   - **Controlled** types (complex control flow)
+   - Exception **handlers** (raising them is allowed)
    - Tasking constructs other than in Ravenscar and Jorvik
 
 ======================
@@ -181,15 +181,14 @@ Language Limitations
 Functions May Not Have Side-Effects
 -------------------------------------
 
-* The analysis of SPARK programs relies on the property that expressions are free from side-effects
+* The analysis of SPARK programs relies on the property that **expressions are free from side-effects**
 
   - Side-effects in expressions lead to erroneous behavior
-
   - Not so with procedures, which are called in statements
 
-* Function calls can appear in expressions, so function calls must be free from side-effects
+* Function calls can appear in expressions, so function calls **must** be free from side-effects
 
-  - Nice benefit is that functions have a simpler logical interpretation
+  - Nice benefit is that functions have a **simpler logical interpretation**
 
 * What is a side-effect?
 
@@ -197,10 +196,9 @@ Functions May Not Have Side-Effects
 What Is a Side-Effect?
 ------------------------
 
-* An expression is side-effect free if its evaluation does not update any object
+* An expression is **side-effect free** if its evaluation **does not update** any object
 
-  - `out` and `in out` parameters of a call
-
+  - :ada:`out` and :ada:`in out` parameters of a call
   - global variables written by a call
 
 .. code:: Ada
@@ -242,7 +240,7 @@ Why not Side Effects - Writing Globals
 
    Gear_Down (Global, F);
 
-* Causes Order-Dependent Code (ODC)
+* Causes Order-Dependent Code (:dfn:`ODC`)
 
    - If left parameter evaluated first, X=0, Y=1
    - If right parameter evaluated first, X=1, Y=1
@@ -292,12 +290,12 @@ Why not Side Effects - `in out` Formals (2/2)
 
 * Causes Order-Dependent Code
 
-  - If `Values (Index)` evaluated first, result = "22345"
-  - If `F (Index)` evaluated first, result = "12345"
+  - If :ada:`Values (Index)` evaluated first, result = "22345"
+  - If :ada:`F (Index)` evaluated first, result = "12345"
 
 .. container:: speakernote
 
-For the array assignment (the first statement), the language doesn't say whether the LHS is evaluated first, or the RHS.
+    For the array assignment (the first statement), the language doesn't say whether the LHS is evaluated first, or the RHS.
 
 -------------------------
 Parameter Name Aliasing
@@ -334,7 +332,7 @@ Parameter Aliasing with Global Variable
 
 .. container:: speakernote
 
-   Rejected in SPARK if Print is not inlined so we would need to either add a precondition or use the --no-inlining GNATprove switch.
+   Rejected in SPARK if Print is not inlined so we would need to either add a precondition or use the --no-inlining :toolname:`GNATprove` switch.
    This is a bounded error in Ada 2012. It might raise Program Error, but it might just run (i.e., not be detected) and do whatever it will do.
    What it will do depends on how Formal is passed, and that is up to the compiler since Character is a by-copy type.  If passed by copy, the assignment to Actual does not affect the copy in Formal.
    See RM 6.4.1 paragraphs 6/17-19
@@ -391,7 +389,6 @@ Parameter Aliasing Prevention In SPARK
 * Input and output parameters must not be aliased, if there is possible interference
 * Output parameters must never be aliased with global variables referenced by the subprogram
 * Input parameters must not be aliased with global variables written by the subprogram, unless they are always passed by copy (reading is OK)
-
 * Functions cannot have outputs (parameters or global variables) hence cannot introduce illegal aliasing
 
 ----------------------------
@@ -399,24 +396,22 @@ Data Initialization Policy
 ----------------------------
 
 * Modes on formal parameters and data dependency contracts have a stricter meaning than in Ada
-* Mode `in` (and global mode `Input`): the object should be completely initialized before the call
-* Mode `out` (and global mode `Output`): the object should be completely initialized before returning
-* Mode `in out` (and global mode `In_Out`): the object should be completely initialized before calling the subprogram
+* Mode :ada:`in` (and global mode `Input`): the object should be completely initialized before the call
+* Mode :ada:`out` (and global mode `Output`): the object should be completely initialized before returning
+* Mode :ada:`in out` (and global mode `In_Out`): the object should be completely initialized before calling the subprogram
 
 -----------------------------------------
 Data Initialization Policy Consequences
 -----------------------------------------
 
 * All inputs must be completely initialized on entry
-
 * All outputs must be completely initialized on exit
-
 * All objects must be completely initialized when read
 
    - Except for record objects, provided those components that are read are initialized
    - Above rule exception doesn't apply to array objects
 
-* A parameter or global variable partially written in a subprogram should be mode `in out`, not mode `out`
+* A parameter or global variable partially written in a subprogram should be mode :ada:`in out`, not mode :ada:`out`
 * :toolname:`GNATprove` will complain if policy is violated
 
 -------------------------------------------
@@ -424,7 +419,6 @@ No Initialization Across Library Packages
 -------------------------------------------
 
 * In SPARK, package elaboration cannot initialize variables declared in other library packages
-
 * In combination with other rules, prevents elaboration order issues
 
 .. code:: Ada
@@ -505,7 +499,7 @@ Mixing SPARK and Ada
 Identifying SPARK Code
 ------------------------
 
-* Aspect and `pragma SPARK_Mode` specify whether code is intended to be in SPARK
+* Aspect and :ada:`pragma SPARK_Mode` specify whether code is intended to be in SPARK
 
    - Argument values are `On` and `Off`
 
@@ -625,7 +619,6 @@ Two General Principles for Mixing
 * The word **reference** is key:
 
    - The spec is what is referenced (i.e., the declaration) so the completion needs not be in SPARK
-
    - A non-SPARK package can be with'ed by SPARK code as long as the referenced parts comply with the SPARK subset
 
 ---------------------------------
@@ -782,7 +775,7 @@ What If the Mode Is Not Explicitly Set?
 
    - Their implementations are not analyzed by :toolname:`GNATprove`
 
-* Allowed for Ada packages named in `with` clauses
+* Allowed for Ada packages named in :ada:`with` clauses
 
    - Language-defined packages
    - Application packages to be reused without analysis
@@ -909,7 +902,6 @@ SPARK Key Tools
 * GNAT compiler
 
    - checks conformance of source with Ada and SPARK
-
    - compiles source into executable
 
 * :toolname:`GNATprove`
@@ -949,7 +941,7 @@ SPARK Key Tools
 
 .. container:: speakernote
 
-   CodePeer has been removed in release 23
+   :toolname:`CodePeer` has been removed in release 23
 
 ----------------------------------------
 :toolname:`GNATprove` Output for Users
@@ -964,7 +956,7 @@ Analysis Summary File "gnatprove.out"
 * Located in :filename:`gnatprove/` under project object dir
 * An overview of results for all checks in project
 * Especially useful when results must be documented
-* Details in the UG *"How to View GNATprove Output"*
+* Details in the UG *"How to View :toolname:`GNATprove` Output"*
 
 |
 
@@ -1003,7 +995,7 @@ Analysis Summary File "gnatprove.out"
 
    - Indicate suspicious situations, e.g., useless assignments
    - Prefixed with **warning:**
-   - Can be suppressed with `pragma Warnings`
+   - Can be suppressed with :ada:`pragma Warnings`
 
       .. code:: console
 
@@ -1015,7 +1007,7 @@ Analysis Summary File "gnatprove.out"
    - E.g., possible failing run-time checks or unproved contracts
    - Prefixed with **low** or **medium** or **high**
    - Cannot be suppressed like warning messages
-   - Can be individually justified with `pragma Annotate`
+   - Can be individually justified with :ada:`pragma Annotate`
 
       .. code:: console
 
@@ -1076,7 +1068,6 @@ What Is Verified In "prove" Mode
 ----------------------------------
 
 * SPARK subset conformance
-
 * Success proves absence of run-time errors
 
    - From Ada language-defined run-time checks
@@ -1087,7 +1078,6 @@ What Is Verified In "prove" Mode
 * With preconditions and postconditions, success proves those contracts always hold
 
    - Unit functionality, as expressed in postconditions
-
    - Any arbitrary boolean properties you specified
 
 * If you get check messages, change the code...
@@ -1120,7 +1110,6 @@ Which Mode To Use?
    - E.g., invalid data initialization may invalidate proof
 
 * Thus make sure you pass flow analysis (using "flow" mode) before moving on to "proof" mode
-
 * Consider that mode "all" does all the necessary analyses and does them in the necessary order
 
 ------------------------------------------
