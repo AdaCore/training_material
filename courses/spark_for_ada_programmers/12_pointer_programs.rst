@@ -8,6 +8,12 @@ Pointer Programs
 .. role:: ada(code)
     :language: Ada
 
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
 ..
     Math symbols
 
