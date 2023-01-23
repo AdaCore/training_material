@@ -189,8 +189,8 @@ Objectives of Using SPARK
 
 * Provide a safe coding subset
 * Address both data and control coupling
-* Prove absence of run-time errors (AoRTE)
-* Prove functional correctness
+* Prove absence of run-time errors (:dfn:`AoRTE`)
+* Prove **functional correctness**
 * Prove components integration
 * Support combined proof and unit testing
 
@@ -198,16 +198,16 @@ Objectives of Using SPARK
 A Brief Terminology Introduction
 ----------------------------------
 
-* **Contracts** are parts of specifications attached to program entities like subprograms
-* **Data dependency** contracts specify global data that a subprogram is allowed to read and/or write
-* **Flow dependency** contracts specify how a subprogram's outputs depend on its inputs
-* **Precondition** contracts specify caller constraints
+* :dfn:`Contracts` are parts of specifications attached to program entities like subprograms
+* :dfn:`Data dependency` contracts specify global data that a subprogram is allowed to **read and/or write**
+* :dfn:`Flow dependency` contracts specify how a subprogram's **outputs** depend on its **inputs**
+* :dfn:`Precondition` contracts specify caller **constraints**
 
-   - E.g., don't call `Push` on a full stack
+   - E.g., don't call :ada:`Push` on a full stack
 
-* **Postcondition** contracts specify guarantees by implementations
+* :dfn:`Postcondition` contracts specify **guarantees** by implementations
 
-   - E.g., after `Push` returns, the stack is not empty
+   - E.g., after :ada:`Push` returns, the stack is not empty
 
 -------------------------
 SPARK Contract Examples
@@ -236,15 +236,15 @@ SPARK Contract Examples
 Objective: Safe Coding Subset
 -------------------------------
 
-* Exclusion of unsafe features
+* Exclusion of **unsafe** features
 
-   - Constructs that preclude analysis
-   - Constructs that are likely to introduce errors
+   - Constructs that **preclude** analysis
+   - Constructs that are **likely** to introduce **errors**
 
       + Functions with side-effects (illustrated later)
       + Others...
 
-* Detection of errors in earlier lifecycle phases
+* Detection of errors in **earlier** lifecycle phases
 
    - Use of uninitialized variables
    - Problems due to parameter aliasing (illustrated later)
@@ -254,17 +254,17 @@ Objective: Safe Coding Subset
 Objective: Data And Control Coupling
 --------------------------------------
 
-* **Data coupling**
+* :dfn:`Data coupling`
 
-   - "The dependence of a software component on data not exclusively under the control of that software component"
+   - "The dependence of a software component on data **not exclusively** under the control of that software component"
 
-* **Control coupling**
+* :dfn:`Control coupling`
 
-   - "The manner or degree by which one software component influences the execution of another software component"
+   - "The manner or degree by which one software component influences the **execution** of another software component"
 
-* Vital to assessing impact of code changes
-* Vital part of security measures, ensuring data only go where intended
-* Typically required for project certification
+* Vital to assessing **impact** of code changes
+* Vital part of **security measures**, ensuring data only go where intended
+* Typically **required** for project **certification**
 
 .. container:: speakernote
 
