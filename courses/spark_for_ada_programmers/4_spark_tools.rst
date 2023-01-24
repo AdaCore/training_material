@@ -74,7 +74,7 @@ Main Tools for SPARK
     + Analysis of unit depends on bodies of :ada:`with`'ed units
     + ...unless all data dependencies are specified
 
-  - Behavior similar to builder like GPRbuild
+  - Behavior similar to builder like :toolname:`GPRbuild`
 
     + Units can be analyzed in parallel on multicore machines
     + Minimal rework if code and dependencies did not change
