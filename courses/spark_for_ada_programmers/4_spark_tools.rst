@@ -95,7 +95,7 @@ Compiling SPARK Code
   - Compiles source into executable
 
 * Native and cross compilers
-* Any runtime library: full, embedded, light
+* Any runtime library: full, embedded, light, light-tasking
 
 ---------------------------------
 Enabling Assertions at Run-Time
