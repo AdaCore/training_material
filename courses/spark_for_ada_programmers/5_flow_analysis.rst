@@ -153,7 +153,7 @@ Data Initialization Policy
   - global variables of mode :ada:`Output` and :ada:`In_Out`
 
 * Inputs should be completely initialized on a call
-* Outputs should be completely initialized after a call
+* Outputs should be completely initialized **after** a call
 * Stricter policy than in Ada
 
   - Allows **modular analysis** of initialization
