@@ -462,11 +462,11 @@ Migrating from C to SPARK
 
 * Special attention on the use of pointers
 
-  - C uses pointers everywhere
+  - C uses pointers **everywhere**
   - Better to use parameter modes :ada:`out` and :ada:`in out` and array
     types in Ada
 
-  - Choose between different access types in SPARK, with different semantics
+  - Choose between **different access types** in SPARK, with different semantics
 
     + Details discussed in the course on Pointer Programs
 
@@ -478,8 +478,8 @@ Summary
 SPARK Language
 ----------------
 
-* SPARK was designed for formal analysis
-* Soundness is key!
+* SPARK was designed **for formal analysis**
+* **Soundness** is key!
 
   - No language ambiguities
   - Hence functions without side-effects
