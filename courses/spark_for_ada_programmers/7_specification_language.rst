@@ -116,7 +116,7 @@ If Expressions
   - This expresses a logical implication :ada:`Cond` |rightarrow| :ada:`Property`
   - Also equivalent to :ada:`not Cond or else Property`
 
-* Complete form has `elsif` parts
+* Complete form has :ada:`elsif` parts
 
 ------------------
 Case Expressions
@@ -146,7 +146,6 @@ Set Notation
 --------------
 
 * Usable in both *case expressions* / *case statements* and in membership tests
-
 * Without set notation:
 
   .. code:: Ada
@@ -291,7 +290,6 @@ Iteration Over Formal Vectors
 -------------------------------
 
 * Only formal container to have 3 iteration mechanisms
-
 * Range-based iteration (using :command:`-gnatX` for dot-notation)
 
   .. code:: ada
@@ -363,7 +361,6 @@ Iterated Component Associations
    Ada 2022
 
 * Express the value of an array aggregate depending on index
-
 * Example: the identity function
 
   .. code:: Ada
@@ -446,7 +443,6 @@ Use of Expression Functions
 * For queries over objects of a private type
 
   - Function spec is declared in the public part
-
   - Expression function is declared in the private part
 
   .. code:: Ada
