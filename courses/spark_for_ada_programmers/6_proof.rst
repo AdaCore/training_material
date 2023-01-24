@@ -40,9 +40,7 @@ What is Proof?
    - Depends on successful flow analysis
 
 * Models the computation in a subprogram
-
 * Models assertions in a subprogram
-
 * Performs checks and detects violations
 
    - Generates logical formulas
@@ -51,7 +49,6 @@ What is Proof?
      + aka Proof Obligations (PO)
 
    - Automatic provers check that the VC is valid (always true)
-
    - It not, a check message is emitted
 
 ---------------
@@ -101,7 +98,6 @@ VC Generation - Strongest Postcondition
 -----------------------------------------
 
 * VC are generated using a *Strongest Postcondition Calculus*
-
 * The strongest postcondition ``Q`` for a program ``S`` and a precondition
   ``P`` is such that:
 
@@ -110,7 +106,6 @@ VC Generation - Strongest Postcondition
     i.e. ``Q`` implies ``Q'``
 
 * The strongest postcondition summarizes what is known at any program point
-
 * The strongest postcondition is computed through a *predicate transformer*
 
   - Information is propagated from the precondition
@@ -175,9 +170,7 @@ Silver/Gold/Platinum Levels
 -----------------------------
 
 * Check absence of runtime errors (AoRTE)
-
 * Check that assertions are always true
-
 * Check that code respects functional contrats
 
   .. code:: Ada
@@ -215,11 +208,11 @@ Run-Time Errors Are Pervasive
 
  .. container:: column
 
-    *  ``I+J`` might overflow the base type of the index range's subtype
-    *  ``I+J`` might be outside the index range's subtype
-    *  ``P/Q`` might overflow the base type of the element type
-    *  ``P/Q`` might be outside the element subtype
-    *  ``Q`` might be zero
+    * ``I+J`` might overflow the base type of the index range's subtype
+    * ``I+J`` might be outside the index range's subtype
+    * ``P/Q`` might overflow the base type of the element type
+    * ``P/Q`` might be outside the element subtype
+    * ``Q`` might be zero
 
 -------------------------------
 Categories of Run-Time Errors
@@ -424,7 +417,6 @@ Contextual Analysis of Local Subprograms
   - Additional conditions, details in the SPARK User's Guide
 
 * Benefit: no need to add a contract
-
 * Possible cost: proof of caller may become more complex
 
   - Add explicit contract like :ada:`Pre => True` to disable inlining of a
@@ -585,9 +577,7 @@ Cost/Benefit Analysis
 -----------------------
 
 * Not all provable properties are worth proving!
-
 * Difficulty of proof (cost) not correlated with benefit
-
 * e.g. proving that a sorting algorithm preserves the elements
 
    - Trivial by review if the only operation is :ada:`Swap`
@@ -644,23 +634,16 @@ Proof
 -------
 
 * Proof uses Strongest Postcondition Calculus to generate formulas
-
 * Formulas aka Verification Conditions (VC) are sent to provers
-
 * Proof detects:
 
   - Possible run-time errors
-
   - Possible failure of assertions
-
   - Violation of functional contracts (:ada:`Pre` and :ada:`Post`)
 
 * Proof allows to reach Silver/Gold/Platinum levels
-
 * Proof is imprecise
 
   - On non-linear arithmetic and mixed arithmetic
-
   - On existential quantification and inductive reasoning
-
   - When the proof context is too large
