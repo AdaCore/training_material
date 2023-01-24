@@ -62,7 +62,6 @@ Motivating Example
       else
 
 * Can you see the problem?
-
 * This error escaped lots of testing and reviews!
 
 .. container:: speakernote
