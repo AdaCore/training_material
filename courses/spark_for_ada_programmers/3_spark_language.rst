@@ -50,7 +50,7 @@ Design Goals for SPARK
   - Rely on the user to provide essential code annotations
 
 * Combine execution and proof of specifications
-* Support the largest possible subset of Ada
+* Support the largest possible subset of Ada 2022
 
 ---------------------
 Excluding Ambiguity
@@ -485,7 +485,7 @@ SPARK Language
   - Hence functions without side-effects
   - Hence absence of interferences
 
-* Still, SPARK subset is most of Ada
+* Still, SPARK subset is most of Ada 2022
 
   - All categories of types
   - OO programming with LSP
