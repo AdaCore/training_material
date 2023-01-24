@@ -213,7 +213,7 @@ Abstract Interpretation
   - If the values of :ada:`Table`, :ada:`A`, :ada:`B` are precise enough,
     AbsInt can deduce that :ada:`Idx in Table'Range`
 
-  - Otherwise, an alarm is emitted (for sound analysis)
+  - Otherwise, an :dfn:`alarm` is emitted (for sound analysis)
 
 * Initialization and value of individual array cells is **not** tracked
 
