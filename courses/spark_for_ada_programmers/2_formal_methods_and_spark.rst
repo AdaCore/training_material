@@ -42,7 +42,7 @@ High-Integrity Software
 
 * Must be known to be **reliable** before being deployed
 
-  - With extremely low failure rates
+  - With **extremely** low failure rates
 
         + e.g., 1 in 10:superscript:`9` hours (114,080 **years**)
 
@@ -97,10 +97,10 @@ Formal Methods
 
 * Industrially usable formal methods
 
-  - Are applicable to existing development artifacts (models, code, etc.)
-  - Are automated and integrated in existing processes
-  - Provide value for certification
-  - Explicitely encouraged  by some standards
+  - Are applicable to **existing** development **artifacts** (models, code, etc.)
+  - Are automated and integrated in **existing processes**
+  - Provide value for **certification**
+  - Explicitely **encouraged** by some standards
 
      + Railway (EN 50128)
      + Avionics (DO-178C + DO-333 Formal Methods Supplement)
@@ -112,7 +112,7 @@ Static Analysis of Programs
 
 * :dfn:`Abstract interpretation` (AbsInt)
 
-  - AbsInt analyzes an abstraction of the program
+  - AbsInt analyzes an **abstraction** of the program
 
 * :dfn:`Symbolic execution` (SymExe) and :dfn:`bounded model checking` (BMC)
 
@@ -122,7 +122,7 @@ Static Analysis of Programs
 
 * :dfn:`Deductive verification` (Proof)
 
-  - Proof analyzes functions against their specification
+  - Proof analyzes functions **against their specification**
 
 * Static analysis is a formal method when it is :dfn:`sound`
 
@@ -215,7 +215,7 @@ Abstract Interpretation
 
   - Otherwise, an alarm is emitted (for sound analysis)
 
-* Initialization and value of individual array cells is not tracked
+* Initialization and value of individual array cells is **not** tracked
 
   - The assignment to a cell is a *weak update*
 
