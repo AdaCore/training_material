@@ -185,7 +185,7 @@ written, or object written only on some paths, or both
 
     -
 
-    - in
+    - :ada:`in`
 
   * - |checkmark|
 
@@ -193,14 +193,14 @@ written, or object written only on some paths, or both
 
     -
 
-    - in out
+    - :ada:`in out`
 
   * - |checkmark|
 
     -
 
     - |checkmark|
-    - in out
+    - :ada:`in out`
 
   * -
 
@@ -208,14 +208,14 @@ written, or object written only on some paths, or both
 
     -
 
-    - in out
+    - :ada:`in out`
 
   * -
 
     -
 
     - |checkmark|
-    - out
+    - :ada:`out`
 
 * Similar rules for modes of global variables
 
