@@ -405,7 +405,7 @@ Migrating from Ada to SPARK
 -----------------------------
 
 * Analyzing the Ada code will point to SPARK violations
-* First goal is to reach Stone level
+* First goal is to reach **Stone level**: Valid SPARK
 * Violation: functions with side-effects
 
   - Fix: transform function into procedure
