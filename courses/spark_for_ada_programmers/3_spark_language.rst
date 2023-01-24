@@ -384,7 +384,7 @@ Benefits of Absence of Interferences
 
 * No hidden changes to an object :ada:`A` through another unrelated name
 
-  - Simplifies both flow analysis and proof
+  - **Simplifies** both flow analysis and proof
 
 * No need for users to add specifications about separation
 
@@ -394,7 +394,7 @@ Benefits of Absence of Interferences
 
 * Program behavior does not depend on parameter-passing mechanism
 
-  - This improves portability across platforms and compilers!
+  - This improves **portability** across platforms and compilers!
 
 ====================
 Migrating to SPARK
