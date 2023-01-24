@@ -35,26 +35,26 @@ Introduction
 What is Flow Analysis?
 ------------------------
 
-* First static analysis performed by :toolname:`GNATprove`
-* Models the variables used by a subprogram
+* **First** static analysis performed by :toolname:`GNATprove`
+* Models the **variables** used by a subprogram
 
   - Global variables
   - Scope variables (local variables of enclosing scope)
   - Local variables
   - Formal parameters
 
-* Models how information flows through the statements in the subprogram
+* Models how **information flows** through the statements in the subprogram
 
   - From initial values of variables
   - To final values of variables
 
-* Performs checks and detects violations
+* Performs checks and detects **violations**
 
 --------------------------
 Control Flow Graph (CFG)
 --------------------------
 
-* A representation, using graph notation, of all paths that might be traversed
+* A representation, using **graph notation**, of all **paths** that might be traversed
   through a program during its execution [Wikipedia]
 
 .. container:: columns
