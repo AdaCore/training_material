@@ -36,7 +36,6 @@ What is Flow Analysis?
 ------------------------
 
 * First static analysis performed by :toolname:`GNATprove`
-
 * Models the variables used by a subprogram
 
   - Global variables
@@ -87,7 +86,6 @@ Program Dependence Graph (PDG)
 --------------------------------
 
 * Extension of the CFG with information on data flows
-
 * Control Dependence Graph
 
   - Compute post-dominators nodes: a node z is said to post-dominate a node n
@@ -121,9 +119,7 @@ Data Dependency Contracts
 ---------------------------
 
 * Introduced by aspect :ada:`Global`
-
 * Optional, but must be complete if specified
-
 * Optional mode can be :ada:`Input` (default), :ada:`Output`, :ada:`In_Out`
   or :ada:`Proof_In`
 
@@ -137,9 +133,7 @@ Data Dependency Contracts
                   Proof_In => W);
 
 * :ada:`Proof_In` used for inputs only referenced in assertions
-
 * :ada:`Global => null` used to state that no global variable is read/written
-
 * Functions can have only :ada:`Input` and :ada:`Proof_In` global variables
 
   - Remember: no side-effects in functions!
@@ -159,13 +153,10 @@ Data Initialization Policy
   - global variables of mode :ada:`Output` and :ada:`In_Out`
 
 * Inputs should be completely initialized on a call
-
 * Outputs should be completely initialized after a call
-
 * Stricter policy than in Ada
 
   - Allows modular analysis of initialization
-
   - Relaxed initialization will be seen in course on Advanced Proof
 
 --------------------------
@@ -185,9 +176,7 @@ written, or object written only on some paths, or both
   * - Initial Read
 
     - Partial Write
-
     - Full Write
-
     - Parameter Mode
 
   * - |checkmark|
@@ -211,7 +200,6 @@ written, or object written only on some paths, or both
     -
 
     - |checkmark|
-
     - in out
 
   * -
@@ -227,7 +215,6 @@ written, or object written only on some paths, or both
     -
 
     - |checkmark|
-
     - out
 
 * Similar rules for modes of global variables
@@ -282,9 +269,7 @@ Generation of Data Dependency Contracts
 * :toolname:`GNATprove` computes a correct approximation
 
   - Based on the implementation
-
   - Using either specified or generated contracts for calls
-
   - More precise generation for SPARK code than for Ada code
 
 * Generated contract may be imprecise
@@ -292,7 +277,6 @@ Generation of Data Dependency Contracts
   - Output may be computed as both input and output
 
     + Because it is not known if the initial value is read
-
     + Because it is not known if the object is fully written on all paths
 
   - Precision can be recovered by adding a user contract
@@ -302,7 +286,6 @@ Bronze Level
 --------------
 
 * Check that each object read has been initialized
-
 * Check that code respects data dependency contrats
 
   .. code:: Ada
@@ -319,7 +302,6 @@ Bronze Level
      end Swap;
 
 * Errors for most serious issues, need fixing for proof
-
 * Warn on unused variables, ineffective statements
 
 ---------------
@@ -353,7 +335,6 @@ Analysis of Value-Dependent Flows
 -----------------------------------
 
 * Flow analysis depends only on control flow, not on values
-
 * Flow analysis is imprecise on value-dependent flows
 
   .. code:: Ada
@@ -378,13 +359,10 @@ Analysis of Array Initialization (1/2)
 ----------------------------------------
 
 * Array indexes are values
-
 * Flow analysis does not depend on values
-
 * Flow analysis treats array assignment as a partial write
 
   - When assigning to an array index
-
   - When assigning to an array slice
 
   .. code:: Ada
@@ -445,7 +423,6 @@ Dealing with False Alarms
                          "value-dependent init");
 
 * Justification inserted immediately after the check message location
-
 * Relaxed initialization will be seen in course on Advanced Proof
 
 =====
@@ -463,7 +440,6 @@ Flow Analysis
 ---------------
 
 * Flow analysis builds a Program Dependence Graph
-
 * Flow analysis detects:
 
   - Interferences between parameters and global variables
@@ -471,7 +447,6 @@ Flow Analysis
   - Violation of data dependency contracts (:ada:`Global`)
 
 * Flow analysis allows to reach Bronze level
-
 * Flow analysis is imprecise
 
   - On value-dependent flows
