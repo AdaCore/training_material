@@ -35,36 +35,36 @@ Introduction
 What is Proof?
 ----------------
 
-* Second static analysis performed by :toolname:`GNATprove`
+* **Second** static analysis performed by :toolname:`GNATprove`
 
    - Depends on successful flow analysis
 
-* Models the computation in a subprogram
-* Models assertions in a subprogram
-* Performs checks and detects violations
+* Models the **computation** in a subprogram
+* Models **assertions** in a subprogram
+* Performs checks and detects **violations**
 
-   - Generates logical formulas
+   - Generates **logical formulas**
 
      + aka Verification Conditions (VC)
      + aka Proof Obligations (PO)
 
    - Automatic provers check that the VC is valid (always true)
-   - It not, a check message is emitted
+   - If not, a check message is emitted
 
 ---------------
 Hoare Triples
 ---------------
 
-* Hoare triples (1969) used to reason about program correctness
+* **Hoare triples** (1969) used to reason about program correctness
 
    - With pre- and postconditions
 
 * Syntax: ``{P} S {Q}``
 
    - ``S`` is a program
-   - ``P`` and ``Q`` are predicates
-   - ``P`` is the precondition
-   - ``Q`` is the postcondition
+   - ``P`` and ``Q`` are **predicates**
+   - ``P`` is the **precondition**
+   - ``Q`` is the **postcondition**
 
 * Meaning of ``{P} S {Q}`` triple:
 
@@ -75,7 +75,7 @@ Hoare Triples
 Quiz - Hoare Triples
 ----------------------
 
-Which one of these is invalid?
+Which one of these is **invalid**?
 
    A. ``{ X >= 3 } Y := X – 1 { Y >= 0 }``
    B. ``{ X >= 3 } Y := X – 1 { Y = X – 1 }``
@@ -90,7 +90,7 @@ Which one of these is invalid?
    A. :ada:`Y >= 2` entails :ada:`Y >= 0`
    B. This is true independent of the precondition.
    C. This is true independent of the postcondition.
-   D. Invalid: :ada:`Y >= 2` does not entail :ada:`Y >= 3`
+   D. **Invalid**: :ada:`Y >= 2` does not entail :ada:`Y >= 3`
    E. This is true independent of the precondition.
 
 -----------------------------------------
@@ -102,20 +102,20 @@ VC Generation - Strongest Postcondition
   ``P`` is such that:
 
   - ``{P} S {Q}`` is a valid Hoare triple
-  - For every valid Hoare triple ``{P} S {Q'}``, ``Q`` is stronger than ``Q'``,
+  - For every valid Hoare triple ``{P} S {Q'}``, ``Q`` is **stronger** than ``Q'``,
     i.e. ``Q`` implies ``Q'``
 
-* The strongest postcondition summarizes what is known at any program point
+* The strongest postcondition **summarizes** what is known at any program point
 * The strongest postcondition is computed through a *predicate transformer*
 
-  - Information is propagated from the precondition
-  - VCs are generated each time a check is encountered
+  - Information is **propagated** from the precondition
+  - VCs are generated each time a **check** is encountered
 
 --------------------------------
 Quiz - Strongest Postcondition
 --------------------------------
 
-Which one of these has a Strongest Postcondition?
+Which one of these has a **Strongest Postcondition**?
 
    A. ``{ X >= 3 } Y := X – 1 { Y >= 0 }``
    B. ``{ X >= 3 } Y := X – 1 { Y = X – 1 }``
@@ -143,12 +143,12 @@ Functional Contracts
 
 * Precondition introduced by aspect :ada:`Pre`
 
-  - Boolean expression stating constraint on the caller
+  - Boolean expression stating **constraint on the caller**
   - Contraint on the value of inputs
 
 * Postcondition introduced by aspect :ada:`Post`
 
-  - Boolean expression stating constraint on the subprogram
+  - Boolean expression stating **constraint on the subprogram**
   - Contraint on the value of inputs and outputs
 
 * On the first declaration of a subprogram
@@ -270,7 +270,7 @@ Which of the following *cannot* cause a runtime error:
 
 .. container:: animate
 
-   Explanations: all of then can cause a runtime error!
+   Explanations: **all** of then can cause a runtime error!
 
    A. Index check fails if :ada:`T` is empty.
    B. Overflow check fails if :ada:`X = Integer'First`
@@ -288,8 +288,8 @@ Categories of Assertions
 
 * Precondition on call
 
-  - AoRTE is also proved for any calling context
-  - This may require guarding the precondition
+  - AoRTE is also proved for **any** calling context
+  - This may require **guarding** the precondition
 
   .. code:: ada
 
@@ -300,8 +300,8 @@ Categories of Assertions
 
 * Postcondition on subprogram
 
-  - AoRTE is proved in the context of the subprogram body
-  - Still better to include info for AoRTE in caller
+  - AoRTE is proved in the context of the subprogram **body**
+  - Still better to include info for AoRTE in **caller**
 
   .. code:: ada
 
@@ -315,7 +315,7 @@ Levels of Software Assurance
 
 * Silver level
 
-  - Goal is absence of runtime errors
+  - Goal is **absence** of runtime errors
   - Functional contracts added to support that goal
 
     + Typically a few preconditions only
@@ -328,7 +328,7 @@ Levels of Software Assurance
 * Gold level
 
   - Builds on the Stone level
-  - Functional contracts added to express desired properties
+  - Functional contracts added to **express desired properties**
 
   .. code:: ada
 
@@ -339,7 +339,7 @@ Levels of Software Assurance
 * Platinum level
 
   - Same as Gold level
-  - But the full functional specification is expressed as contracts
+  - But the **full** functional specification is expressed as contracts
 
   .. code:: ada
 
@@ -351,7 +351,7 @@ Levels of Software Assurance
 Preconditions
 ---------------
 
-* Default precondition of :ada:`True` may not be sufficient
+* Default precondition of :ada:`True` may **not** be sufficient
 
   .. code:: ada
 
@@ -360,7 +360,7 @@ Preconditions
         X := X + 1; -- Overflow check might fail
      end Increment;
 
-* Precondition constrains input context
+* Precondition constrains **input context**
 
   .. code:: ada
 
@@ -375,7 +375,7 @@ Preconditions
 Postconditions
 ----------------
 
-* Default postcondition of :ada:`True` may not be sufficient
+* Default postcondition of :ada:`True` may **not** be sufficient
 
   .. code:: ada
 
@@ -388,7 +388,7 @@ Postconditions
         Increment (X); -- Precondition might fail
      end Add2;
 
-* Postcondition constrains output context
+* Postcondition constrains **output context**
 
   .. code:: ada
 
@@ -492,13 +492,13 @@ Limitations of Proof
 Functional Specifications
 ---------------------------
 
-* Non-functional specifications cannot be expressed as contracts
+* **Non-functional** specifications **cannot** be expressed as contracts
 
    - Time or space complexity
    - Timing properties for scheduling
    - Call sequences
 
-* But automatons can be encoded as contracts
+* But **automatons** can be encoded as contracts
 
    - Being in a given state is a functional property
    - Can use normal queries
@@ -517,36 +517,36 @@ Limitations of Automatic Provers - Arithmetic
 
    - Use of multiplication, division, :ada:`mod`, :ada:`rem`
    - e.g. monotonicity of division on positive values
-   - Solution: use lemmas from the SPARK Lemma Library
+   - Solution: use **lemmas** from the SPARK Lemma Library
 
 * Provers struggle with mixed arithmetic
 
    - Mix of signed and modular integers
    - Mix of integers and floats
-   - Solution: define lemmas for elementary properties
+   - Solution: define lemmas for **elementary properties**
 
 ------------------------------------------------
 Limitations of Automatic Provers - Quantifiers
 ------------------------------------------------
 
-* Quantified expressions express property over a collection
+* Quantified expressions express property over a **collection**
 
    - Universal: :ada:`(for all I in T'Range => T(I) /= 0)`
    - Existential: :ada:`(for some I in T'Range => T(I) /= 0)`
 
-* Provers struggle with existential
+* Provers struggle with **existential**
 
    - Need to exhibit a :dfn:`witness` that satisfies the property
    - Solution: define a function that computes the witness
 
-* Provers cannot reason inductively
+* Provers cannot **reason inductively**
 
    - Inductive reasoning deduces a property over integer :ada:`I`
 
      + If it can be proved for :ada:`I = 0`
      + If it can be proved for :ada:`I+1` from the property for :ada:`I`
 
-   - Solution: lead the prover to this reasoning with a loop
+   - Solution: lead the prover to this reasoning with a **loop**
 
 --------------------------------------------------
 Limitations of Automatic Provers - Proof Context
@@ -558,7 +558,7 @@ Limitations of Automatic Provers - Proof Context
   - The body of :ada:`S` prior to the check
   - The logical modeling of all entities used in :ada:`S`
 
-* Proof context can become too large
+* Proof context can become **too large**
 
   - Thousands of lines in the VC
   - This can make the VC unprovable, or hard to prove
@@ -566,7 +566,7 @@ Limitations of Automatic Provers - Proof Context
 * Various solutions to reduce the proof context
 
   - Split the body of :ada:`S` in smaller subprograms
-  - Extract properties of interest in lemmas
+  - Extract **properties of interest** in lemmas
   - Use special SPARK features
 
     + Pragma :ada:`Assert_And_Cut`
@@ -581,9 +581,9 @@ Cost/Benefit Analysis
 * e.g. proving that a sorting algorithm preserves the elements
 
    - Trivial by review if the only operation is :ada:`Swap`
-   - May require many annotations for proof
+   - May require many **annotations** for proof
 
-* Functional correctness of complex algorithms is costly
+* Functional correctness of complex algorithms is **costly**
 
    - Specifications can be larger than code
    - Annotations typically much larger than code (:math:`\times` 10)
