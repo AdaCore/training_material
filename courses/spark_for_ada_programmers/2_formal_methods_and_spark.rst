@@ -36,7 +36,6 @@ High-Integrity Software
 -------------------------
 
 * Also known as (safety- or security- or mission-) :dfn:`critical software`
-
 * Has reliability as the most important requirement
 
   - More than cost, time-to-market, etc.
@@ -94,15 +93,12 @@ Formal Methods
   software
 
   - :dfn:`Heavyweight formal methods` expose the maths to users
-
   - :dfn:`Lightweight formal methods` hide the maths from users
 
 * Industrially usable formal methods
 
   - Are applicable to existing development artifacts (models, code, etc.)
-
   - Are automated and integrated in existing processes
-
   - Provide value for certification
   - Explicitely encouraged  by some standards
 
@@ -203,7 +199,6 @@ Comparing Techniques on a Simple Code
    end;
 
 * :ada:`T(Idx)` is safe |equivalent| :ada:`Idx in Table'Range`
-
 * As a result of calling :ada:`Reset`:
 
   - Array :ada:`T` is initialized between indexes :ada:`A` and :ada:`B`
@@ -260,7 +255,6 @@ Deductive Verification
   - Otherwise, an alarm is emitted
 
 * Initialization and value of individual array cells is tracked
-
 * Analysis of loops is based on user-provided :dfn:`loop invariants`
 
   :ada:`T(A .. Idx)'Initialized and T(A .. Idx) = (A .. Idx => 0)`
@@ -306,7 +300,6 @@ SPARK is a Language Subset
 * Static analysis is very tied to the programming language
 
   - Strong typing **simplifies** analysis
-
   - Some language features **improve** analysis precision
 
     + e.g. first-class arrays with bounds
@@ -320,7 +313,6 @@ SPARK is a Language Subset
 * SPARK hits the **sweet spot** for proof
 
   - Based on strongly typed feature-rich Ada programming language
-
   - **Restrictions** on Ada features to make proof easier
 
     1. Simplify user's effort for annotating the code
@@ -336,19 +328,14 @@ History of SPARK
 * *Vintage SPARK* followed Ada revisions
 
   - SPARK 83 based on Ada 83
-
   - SPARK 95 based on Ada 95
-
   - SPARK 2005 based on Ada 2005
 
 * Since 2014, *SPARK* is updated annually
 
   - OO programming added in 2015
-
   - Concurrency added in 2016
-
   - Type invariants added in 2017
-
   - Pointers added in 2019
 
 ============================
@@ -360,7 +347,6 @@ Levels of Software Assurance
 ------------------------------
 
 * Various reasons for using SPARK
-
 * Levels of software assurance
 
   1. **Stone level** - valid SPARK
@@ -374,7 +360,6 @@ Levels of Software Assurance
   5. **Platinum level** - full functional proof of requirements
 
 * Higher levels are more costly to achieve
-
 * Higher levels build on lower levels
 
   - Project can decide to move to higher level later
@@ -396,13 +381,9 @@ Objectives of Using SPARK
   - Particular case is correct API usage
 
 * Prove **functional correctness**
-
 * Ensure correct behavior of parameterized software
-
 * Safe **optimization** of run-time checks
-
 * Address data and control coupling
-
 * Ensure portability of programs
 
 .. container:: speakernote
@@ -416,9 +397,7 @@ Project Scenarios
 * Maintenance and evolution of existing Ada software
 
   - Requires migration to SPARK of a part of the codebase
-
   - Fine-grain control over parts in SPARK or in Ada
-
   - Migration guide available
 
 :url:`https://www.adacore.com/books/implementation-guidance-spark`
@@ -428,7 +407,6 @@ Project Scenarios
 * New developments in SPARK
 
   - Either completely in SPARK
-
   - More often interfacing with other code in Ada/C/C++, etc.
 
 ======
