@@ -201,7 +201,7 @@ Setting the Default :ada:`SPARK_Mode` Value
 Adapting the Project File for Analysis
 ----------------------------------------
 
-* If needed, define a project variable to control sources, compilation
+* If needed, define a **project variable** to control sources, compilation
   switches, etc.
 
   .. code:: Ada
@@ -238,7 +238,7 @@ Structure of :toolname:`GNATprove`
 Legality Checking
 -------------------
 
-* First step in analysis
+* **First step** in analysis
 * :toolname:`GNATprove` does only that with switch :command:`--mode=check_all`
 * Error messages on violations
 
@@ -349,7 +349,7 @@ Three Available IDEs Supporting SPARK
 * :toolname:`GNAT Studio`
 
   - The AdaCore flagship IDE
-  - Best integration overall
+  - **Best** integration overall
 
     + Most interaction capabilities
     + Specialized display of rich messages
@@ -390,7 +390,7 @@ Source Code Contextual Menu
 
 .. container:: speakernote
 
-   Prove Line - The current line under the cursor when the contextual menu was invoked.
+   Prove Line - The current line **under the cursor** when the contextual menu was invoked.
 
 ----------------------------
 "Basic" Proof Dialog Panel
