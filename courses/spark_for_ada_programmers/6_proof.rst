@@ -610,7 +610,7 @@ Dealing with False Alarms
 
   - :ada:`Reason` is a string literal for reviews
 
-    + Reason is repeated in analysis summary file :file:`gnatprove.out`
+    + Reason is repeated in analysis summary file :filename:`gnatprove.out`
 
 * Justification inserted immediately after the check message location
 
