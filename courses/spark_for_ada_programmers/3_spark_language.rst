@@ -209,8 +209,8 @@ Support for OO Programming
 Support for Concurrency
 -------------------------
 
-* Ravenscar and Jorvik profiles of Ada are supported
-* Tasks and protected objects must be defined at library level
+* Ravenscar and Jorvik profiles of Ada are **supported**
+* Tasks and protected objects must be defined at **library level**
 * Tasks can only communicate through :dfn:`synchronized objects`
 
   - Protected objects
@@ -233,15 +233,15 @@ Language Restrictions
 Main Language Restrictions
 ----------------------------
 
-* Functions without side-effects
+* Functions **without side-effects**
 
   - Thus expressions are also without side-effects
 
-* Memory ownership policy (like in Rust)
+* Memory **ownership** policy (like in Rust)
 * Absence of interferences
 * Termination of subprograms
 
-  - Functions must always terminate normally
+  - Functions must **always** terminate normally
 
 * OO programming must respect Liskov Substitution Principle
 * Concurrency must support Ravenscar or Jorvik profile
@@ -294,14 +294,14 @@ Benefits of Functions Without Side-Effects
 
 * Expressions have no side-effects
 
-  - Unambiguous evaluation of expressions
+  - **Unambiguous** evaluation of expressions
   - Simplifies both flow analysis and proof
 
 * Specifications and assertions have no side-effects
 
   - As specifications and assertions are expressions
 
-* SPARK functions are mathematical functions from inputs to a result
+* SPARK functions are **mathematical functions** from inputs to a result
 
   - Interpreted as such in proof
 
