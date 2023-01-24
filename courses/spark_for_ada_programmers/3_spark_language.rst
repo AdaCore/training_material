@@ -311,7 +311,7 @@ Absence of Interferences
 
 * :dfn:`Interferences` between names :ada:`A` and :ada:`B` when:
 
-  - :ada:`A` and :ada:`B` designate the same object
+  - :ada:`A` and :ada:`B` designate the **same object** (:dfn:`aliasing`)
   - and the code writes to :ada:`A`, then reads :ada:`B`
   - or the code writes to :ada:`A` and to :ada:`B`
 
