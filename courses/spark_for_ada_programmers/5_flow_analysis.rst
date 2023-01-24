@@ -85,11 +85,11 @@ Control Flow Graph (CFG)
 Program Dependence Graph (PDG)
 --------------------------------
 
-* Extension of the CFG with information on data flows
+* **Extension** of the CFG with information on **data flows**
 * Control Dependence Graph
 
   - Compute post-dominators nodes: a node z is said to post-dominate a node n
-    if all paths to the exit node of the graph starting at n must go through z
+    if **all** paths to the exit node of the graph starting at n must go through z
 
 * Data Dependence Graph
 
@@ -99,7 +99,7 @@ Program Dependence Graph (PDG)
 
   - Compute how outputs of a call depend on its inputs
 
-* Flow analysis checks are translated into queries on the PDG
+* Flow analysis checks are translated into **queries** on the PDG
 
 ===============
 Flow Analysis
@@ -111,7 +111,7 @@ Uncontrolled Data Visibility Problem
 
 .. image:: subprograms_accessing_global.png
 
-* Effects of changes are potentially pervasive so one must understand
+* Effects of changes are **potentially pervasive** so one must understand
   everything before changing anything
 
 ---------------------------
@@ -132,7 +132,7 @@ Data Dependency Contracts
                   In_Out   => V,
                   Proof_In => W);
 
-* :ada:`Proof_In` used for inputs only referenced in assertions
+* :ada:`Proof_In` used for inputs **only** referenced in **assertions**
 * :ada:`Global => null` used to state that no global variable is read/written
 * Functions can have only :ada:`Input` and :ada:`Proof_In` global variables
 
@@ -156,7 +156,7 @@ Data Initialization Policy
 * Outputs should be completely initialized after a call
 * Stricter policy than in Ada
 
-  - Allows modular analysis of initialization
+  - Allows **modular analysis** of initialization
   - Relaxed initialization will be seen in course on Advanced Proof
 
 --------------------------
