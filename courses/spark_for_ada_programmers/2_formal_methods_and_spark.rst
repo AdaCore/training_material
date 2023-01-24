@@ -222,7 +222,7 @@ Abstract Interpretation
     + The abstract value for the whole array now includes value zero
     + ... but is also possibly uninitialized or keeps a previous value
 
-  - After the call to :ada:`Reset`, the analysis does not know that :ada:`T`
+  - After the call to :ada:`Reset`, the analysis does **not** know that :ada:`T`
     is initialized with value zero between indexes :ada:`A` and :ada:`B`
 
 -----------------------------------------------
@@ -264,7 +264,7 @@ Deductive Verification
 
   :ada:`T(A .. B)'Initialized and T(A .. B) = (A .. B => 0)`
 
-  - So the analysis knows that :ada:`T` is initialized with value zero between
+  - So the analysis now **knows** that :ada:`T` is initialized with value zero between
     indexes :ada:`A` and :ada:`B`
 
 =======
@@ -297,7 +297,7 @@ SPARK is a Formal Method
 SPARK is a Language Subset
 ----------------------------
 
-* Static analysis is very tied to the programming language
+* Static analysis is **very tied** to the programming language
 
   - Strong typing **simplifies** analysis
   - Some language features **improve** analysis precision
