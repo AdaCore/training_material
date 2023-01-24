@@ -36,9 +36,7 @@ Identifying SPARK Code
 ------------------------
 
 * Pragma or aspect :ada:`SPARK_Mode` identifies SPARK code
-
 * As a pragma in the global/local configuration pragmas file
-
 * As a configuration pragma at the start of a unit
 
   - Note: it comes before :ada:`with` clauses
@@ -70,19 +68,15 @@ Main Tools for SPARK
 * SPARK analysis tools
 
   - Flow analysis and proof
-
   - File dependencies are different from the compiler
 
     + Due to generation of data dependencies
-
     + Analysis of unit depends on bodies of :ada:`with`'ed units
-
     + ...unless all data dependencies are specified
 
   - Behavior similar to builder like GPRbuild
 
     + Units can be analyzed in parallel on multicore machines
-
     + Minimal rework if code and dependencies did not change
 
 * IDEs for Ada/SPARK development
@@ -98,11 +92,9 @@ Compiling SPARK Code
 * GNAT compiler for Ada/SPARK
 
   - Checks conformance of source with Ada and SPARK legality rules
-
   - Compiles source into executable
 
 * Native and cross compilers
-
 * Any runtime library: full, embedded, light
 
 ---------------------------------
@@ -110,7 +102,6 @@ Enabling Assertions at Run-Time
 ---------------------------------
 
 * Assertions can be enabled globally with switch :command:`-gnata`
-
 * Assertions can be enabled/disabled locally with pragma
   :ada:`Assertion_Policy`
 
@@ -121,7 +112,6 @@ Enabling Assertions at Run-Time
      pragma Assertion_Policy (Pre => Check, Post => Ignore);
 
 * Pragma can also be used in global/local configuration pragmas file
-
 * Failing assertion raises exception :ada:`Assertion_Failure`
 
 ----------------------
@@ -145,7 +135,6 @@ SPARK Analysis Tools
 ---------------------------------------------
 
 * Invocation syntax: :command:`gnatprove -P prj-file [switches]`
-
 * If project file not given, like :toolname:`GPRbuild`:
 
   - Takes the project file in the current directory if present
@@ -250,13 +239,10 @@ Legality Checking
 -------------------
 
 * First step in analysis
-
 * :toolname:`GNATprove` does only that with switch :command:`--mode=check_all`
-
 * Error messages on violations
 
   - Need to fix to go beyond this step
-
   - Ex: :command:`<expr> cannot depend on variable input <var>` |rightarrow|
     declare a constant :ada:`value` to get the value of :ada:`var` and use
     :ada:`value` inside :ada:`expr`
@@ -274,13 +260,11 @@ Flow Analysis
 ---------------
 
 * :dfn:`Flow analysis` is a prerequisite to proof
-
 * :toolname:`GNATprove` does that with switch :command:`--mode=flow`
 
   - This follows legality checking
 
 * Corresponds to :menu:`Examine` menus in IDEs
-
 * :toolname:`GNATprove` applies flow analysis to each subprogram separately
 
   - Notion of dependency contracts summarize effects of call
@@ -288,9 +272,7 @@ Flow Analysis
 * Outputs messages:
 
   - Error messages need to be fixed
-
   - Check messages need to be reviewed, and either fixed or justified
-
   - Warnings can be inspected and silenced
 
 -------
@@ -298,12 +280,10 @@ Proof
 -------
 
 * :dfn:`Proof` is the final step
-
 * :toolname:`GNATprove` does it all with switch :command:`--mode=all` (the
   default)
 
 * Corresponds to :menu:`Prove` menus in IDEs
-
 * :toolname:`GNATprove` applies proof to each subprogram separately
 
   - Notion of functional contracts summarize effects of call
@@ -311,7 +291,6 @@ Proof
 * Outputs messages:
 
   - Check messages need to be reviewed, and either fixed or justified
-
   - Warnings can be inspected and silenced
 
 ------------------------
@@ -470,9 +449,7 @@ SPARK Tutorial
   - Or online at :url:`https://www.adacore.com/documentation`
 
 * Go to section 6 about the :menu:`SPARK Tutorial`
-
 * Follow intructions to use the development and analysis tools
-
 * Discuss these with the instructor
 
 =========
@@ -484,7 +461,6 @@ SPARK Tools
 -------------
 
 * Development tools for SPARK are those for Ada
-
 * Analysis tools in :toolname:`GNATprove`
 
   - Flow analysis
