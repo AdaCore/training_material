@@ -217,7 +217,7 @@ Abstract Interpretation
 
 * Initialization and value of individual array cells is **not** tracked
 
-  - The assignment to a cell is a *weak update*
+  - The assignment to a cell is a :dfn:`weak update`
 
     + The abstract value for the whole array now includes value zero
     + ... but is also possibly uninitialized or keeps a previous value
