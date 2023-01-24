@@ -55,7 +55,7 @@ Identifying SPARK Code
        with SPARK_Mode
      is ...
 
-* Both unit spec and unit body need a pragma/aspect
+* **Both** unit spec and unit body need a pragma/aspect
 
 ----------------------
 Main Tools for SPARK
@@ -63,12 +63,12 @@ Main Tools for SPARK
 
 * GNAT development tools: SPARK is a subset of Ada 2022
 
-  - Compiler also checks SPARK-specific legality rules
+  - Compiler also checks **SPARK-specific** legality rules
 
 * SPARK analysis tools
 
   - Flow analysis and proof
-  - File dependencies are different from the compiler
+  - File dependencies are **different** from the compiler
 
     + Due to generation of data dependencies
     + Analysis of unit depends on bodies of :ada:`with`'ed units
