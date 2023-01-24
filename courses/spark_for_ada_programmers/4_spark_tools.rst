@@ -61,7 +61,7 @@ Identifying SPARK Code
 Main Tools for SPARK
 ----------------------
 
-* GNAT development tools: SPARK is a subset of Ada
+* GNAT development tools: SPARK is a subset of Ada 2022
 
   - Compiler also checks SPARK-specific legality rules
 
