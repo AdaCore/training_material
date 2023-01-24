@@ -122,7 +122,7 @@ Debugging SPARK Code
 
   - Code should be compiled with :command:`-g -O0`
 
-* Assertions can be debugged too!
+* Assertions can be debugged **too**!
 
   - Code should be compiled with :command:`-gnata`
 
@@ -137,7 +137,7 @@ SPARK Analysis Tools
 * Invocation syntax: :command:`gnatprove -P prj-file [switches]`
 * If project file not given, like :toolname:`GPRbuild`:
 
-  - Takes the project file in the current directory if present
+  - Takes the project file in the **current directory** if present
   - Otherwise generates a basic project file
 
 * See all switches with: :command:`gnatprove --help`
