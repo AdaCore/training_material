@@ -408,7 +408,7 @@ Migrating from Ada to SPARK
 * First goal is to reach **Stone level**: Valid SPARK
 * Violation: functions with side-effects
 
-  - Fix: transform function into procedure
+  - Fix: transform :ada:`function` into :ada:`procedure`
 
 * Violation: pointers do not respect ownership
 
@@ -436,9 +436,9 @@ Adoption Guidance Document
     * For every level, presents:
 
        - Benefits, impact on process, costs, and limitations
-       - Setup and tool usage
-       - Messages issued by the tool
-       - Remediation solutions
+       - Setup and tool **usage**
+       - **Messages** issued by the tool
+       - **Remediation** solutions
 
  .. container:: column
 
