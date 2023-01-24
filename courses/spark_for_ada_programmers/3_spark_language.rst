@@ -180,14 +180,14 @@ Support for Generics
 
   - More efforts from users to annotate programs
 
-* No restrictions regarding use of generics
+* **No restrictions** regarding use of generics
 
 ----------------------------
 Support for OO Programming
 ----------------------------
 
-* Root class and derived class (aka tagged types) must respect the Liskov
-  Substitution Principle (LSP)
+* Root class and derived class (aka tagged types) must respect the
+  :dfn:`Liskov Substitution Principle` (LSP)
 
   - Behavior of overriding subprogram must be a subset of the allowed behaviors
     of the overridden subprogram
