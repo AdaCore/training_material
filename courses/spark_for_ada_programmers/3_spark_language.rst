@@ -50,7 +50,6 @@ Design Goals for SPARK
   - Rely on the user to provide essential code annotations
 
 * Combine execution and proof of specifications
-
 * Support the largest possible subset of Ada
 
 ---------------------
@@ -58,7 +57,6 @@ Excluding Ambiguity
 ---------------------
 
 * Soundness requires that program semantics are clear
-
 * Easiest way is to avoid language ambiguities:
 
   - No :dfn:`erroneous behavior` from Ada Reference Manual
@@ -85,25 +83,17 @@ SPARK Reference Manual
 ------------------------
 
 * Precise definition of the SPARK subset
-
 * Builds on the Ada Reference Manual
 
   - Follows the same section numbering
-
   - Has similar subsections:
 
     + **Syntax**
-
     + **Name Resolution Rules**
-
     + **Legality Rules**
-
     + **Static Semantics**
-
     + **Dynamic Semantics**
-
     + **Verification Rules** *(specific to SPARK RM)*
-
     + **Examples**
 
 :url:`https://docs.adacore.com/live/wave/spark2014/html/spark2014_rm/packages.html`
@@ -133,7 +123,6 @@ Assertions in SPARK
 * Assertions in Ada are just Boolean expressions
 
   - They can be executed
-
   - Thus they can raise runtime errors (to be checked in SPARK)
 
 * Low-level assertions
@@ -182,13 +171,11 @@ Support for Generics
 ----------------------
 
 * Only instances of generics are analyzed
-
 * Analysis of generics themselves would require:
 
   - Extending the SPARK language with new specifications
 
     + To name objects manipulated through calls to formal parameters
-
     + To add dependency contracts to formal subprogram parameters
 
   - More efforts from users to annotate programs
@@ -206,7 +193,6 @@ Support for OO Programming
     of the overridden subprogram
 
     + Overridden subprogram is in root class
-
     + Overriding subprogram is in derived class
 
 * Overriding subprogram puts less constraints on caller than overridden one
@@ -224,19 +210,15 @@ Support for Concurrency
 -------------------------
 
 * Ravenscar and Jorvik profiles of Ada are supported
-
 * Tasks and protected objects must be defined at library level
-
 * Tasks can only communicate through :dfn:`synchronized objects`
 
   - Protected objects
-
   - Atomic objects
 
 * This ensures absence of data races (aka race conditions)
 
   - One task writes an object while another task reads it
-
   - Two tasks write the object at the same time
 
 * This is also a benefit for programs on a single core!
@@ -256,15 +238,12 @@ Main Language Restrictions
   - Thus expressions are also without side-effects
 
 * Memory ownership policy (like in Rust)
-
 * Absence of interferences
-
 * Termination of subprograms
 
   - Functions must always terminate normally
 
 * OO programming must respect Liskov Substitution Principle
-
 * Concurrency must support Ravenscar or Jorvik profile
 
 .. container:: speakernote
@@ -279,9 +258,7 @@ Functions Without Side-Effects
 * :dfn:`Side-effects` of a function are:
 
   - Writing to a global variable
-
   - Writing to an :ada:`out` or :ada:`in out` parameter
-
   - Reading a volatile variable
 
 * But :dfn:`volatile functions` can read a volatile variable
@@ -296,9 +273,7 @@ Side-Effects and Ambiguity
   value of the expression :ada:`Fun = Var`?
 
   - :ada:`Var` may be evaluated before the call to :ada:`Fun`
-
   - ...or after the call to :ada:`Fun`
-
   - Thus leading to an ambiguity
 
 .. code:: Ada
@@ -320,7 +295,6 @@ Benefits of Functions Without Side-Effects
 * Expressions have no side-effects
 
   - Unambiguous evaluation of expressions
-
   - Simplifies both flow analysis and proof
 
 * Specifications and assertions have no side-effects
@@ -338,15 +312,12 @@ Absence of Interferences
 * :dfn:`Interferences` between names :ada:`A` and :ada:`B` when:
 
   - :ada:`A` and :ada:`B` designate the same object
-
   - and the code writes to :ada:`A`, then reads :ada:`B`
-
   - or the code writes to :ada:`A` and to :ada:`B`
 
 * Interferences are caused by passing parameters
 
   - Parameter and global variable may designate the same object
-
   - Two parameters may designate the same object
 
 * Thus no interferences on function calls!
@@ -359,7 +330,6 @@ Interferences and Ambiguity (1/2)
   :ada:`B`, what is the value of `Var` after the call :ada:`Proc (Var, Var)`?
 
   - if :ada:`A` and :ada:`B` are passed by reference: the value of :ada:`B`
-
   - if :ada:`A` and :ada:`B` are passed by copy: the value of :ada:`A` or
     :ada:`B`, depending on which one is copied back last
 
@@ -387,9 +357,7 @@ Interferences and Ambiguity (2/2)
   variable :ada:`Var`, what is the value read in a call to :ada:`Proc (Var)`?
 
   - if :ada:`A` is passed by reference: the value written to :ada:`A`
-
   - if :ada:`A` is passed by copy: the initial value of :ada:`Var`
-
   - Thus leading to an ambiguity
 
 .. code:: Ada
@@ -421,9 +389,7 @@ Benefits of Absence of Interferences
 * No need for users to add specifications about separation
 
   - Between parameters and global variables
-
   - Between parameters themselves
-
   - Between parts of objects (one could be a part of another)
 
 * Program behavior does not depend on parameter-passing mechanism
@@ -439,9 +405,7 @@ Migrating from Ada to SPARK
 -----------------------------
 
 * Analyzing the Ada code will point to SPARK violations
-
 * First goal is to reach Stone level
-
 * Violation: functions with side-effects
 
   - Fix: transform function into procedure
@@ -486,24 +450,19 @@ Migrating from C to SPARK
 ---------------------------
 
 * Same recommendations as when migrating from C to Ada
-
 * Even more important to use appropriate types
 
   - private types as much as possible (e.g. private type for flags with
     constants and boolean operator instead of modular type)
 
   - enumerations instead of :code:`int`
-
   - ranges on scalar types
-
   - non-null access types
-
   - type predicates
 
 * Special attention on the use of pointers
 
   - C uses pointers everywhere
-
   - Better to use parameter modes :ada:`out` and :ada:`in out` and array
     types in Ada
 
@@ -520,23 +479,17 @@ SPARK Language
 ----------------
 
 * SPARK was designed for formal analysis
-
 * Soundness is key!
 
   - No language ambiguities
-
   - Hence functions without side-effects
-
   - Hence absence of interferences
 
 * Still, SPARK subset is most of Ada
 
   - All categories of types
-
   - OO programming with LSP
-
   - Concurrency with Ravenscar and Jorvik
-
   - Pointer programs with ownership
 
 * Recommendations for migration from Ada or C
