@@ -37,12 +37,12 @@ Design Goals for SPARK
 
 * Support formal analysis that is
 
-  - Deep - it tells you something useful
-  - Sound - it has no missing alarms
-  - Precise - it has few false alarms
+  - Deep - it tells you something **useful**
+  - Sound - it has **no** missing alarms
+  - Precise - it has **few** false alarms
   - Fast - it can run as part of development
-  - Modular - it analyzes modules in parallel
-  - Constructive - it works on incomplete programs
+  - Modular - it analyzes modules in **parallel**
+  - Constructive - it works on **incomplete programs**
 
 * Combine tool automation and user interaction
 
@@ -56,8 +56,8 @@ Design Goals for SPARK
 Excluding Ambiguity
 ---------------------
 
-* Soundness requires that program semantics are clear
-* Easiest way is to avoid language ambiguities:
+* Soundness requires that program semantics are **clear**
+* Easiest way is to avoid **language** ambiguities:
 
   - No :dfn:`erroneous behavior` from Ada Reference Manual
 
@@ -76,7 +76,7 @@ Excluding Ambiguity
 
     - Analyzer should make the same choices as the compiler
 
-* Also facilitates portability across platforms and compilers!
+* Also facilitates **portability** across platforms and compilers!
 
 ------------------------
 SPARK Reference Manual
@@ -85,7 +85,7 @@ SPARK Reference Manual
 * Precise definition of the SPARK subset
 * Builds on the Ada Reference Manual
 
-  - Follows the same section numbering
+  - Follows the **same section numbering**
   - Has similar subsections:
 
     + **Syntax**
@@ -120,7 +120,7 @@ SPARK supports all the types in Ada, with some restrictions
 Assertions in SPARK
 ---------------------
 
-* Assertions in Ada are just Boolean expressions
+* Assertions in Ada are just :ada:`Boolean` expressions
 
   - They can be executed
   - Thus they can raise runtime errors (to be checked in SPARK)
@@ -155,7 +155,7 @@ Excluded Ada Features
 * Exception handlers
 
   - Creates complex control flow across calls
-  - Raising exceptions is allowed
+  - **Raising** exceptions is **allowed**
 
 * Tasking features: :ada:`accept` statement (aka :dfn:`rendezvous`),
   :ada:`requeue` statement, :ada:`select` statement, etc
@@ -170,7 +170,7 @@ Excluded Ada Features
 Support for Generics
 ----------------------
 
-* Only instances of generics are analyzed
+* Only **instances** of generics are analyzed
 * Analysis of generics themselves would require:
 
   - Extending the SPARK language with new specifications
