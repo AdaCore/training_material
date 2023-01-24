@@ -256,7 +256,7 @@ Consider the following declarations:
 
    type Table is array (Natural range <>) of Integer;
    type Rec (Disc : Boolean) is record ...
-   T : Table;
+   T : Table := ...;
    R : Rec := ...;
    X : Integer;
 
