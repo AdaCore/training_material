@@ -75,12 +75,12 @@ The Verifying Compiler
 
 * Could a compiler find the error we just saw?
 
-  - Formal verification of source code
+  - Formal **verification** of source code
 
 * What if we had a verifying compiler?
 
-  - Check correctness at compile time
-  - Perform exhaustive checking
+  - Check correctness at **compile time**
+  - Perform **exhaustive** checking
   - Use types, assertions, and other information in the source code as
     correctness criteria
   - Work in combination with other program development and testing tools
@@ -99,12 +99,12 @@ Formal Verification and Programming Languages
 
 |
 
-* Our ability to deliver automatic formal verification critically depends on
-  the language that is being analyzed.
+* Our ability to deliver automatic formal verification **critically** depends on
+  the **language** that is being analyzed.
 
 |
 
-* Most languages were not designed with formal verification as a primary design
+* Most languages were **not** designed with formal verification as a primary design
   goal.
 
 ---------------------------
@@ -113,9 +113,9 @@ Formal Verification Goals
 
 * Ideally we would like static verification to be:
 
-  - Deep (tells you something useful)
-  - Sound (with no false negatives)
-  - Fast (tells you now)
+  - Deep (tells you something **useful**)
+  - Sound (with **no false negatives**)
+  - Fast (tells you **now**)
   - Precise (with as few false alarms/positives as possible)
   - Modular (analyzes modules in parallel)
   - Constructive (works on incomplete programs)
@@ -142,9 +142,9 @@ What is SPARK?
 
 * SPARK is
 
-   - A programming language
-   - A set of formal verification tools
-   - A design approach for high-integrity software
+   - A programming **language**
+   - A set of formal verification **tools**
+   - A **design approach** for high-integrity software
 
 * All of the above!
 
