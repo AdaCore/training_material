@@ -149,7 +149,7 @@ SPARK Analysis Tools
     + Warnings mode with :command:`--warnings=`
     + Proof level with :command:`--level=0/1/2/3/4`
 
-  - Advanced switches for fine-grain control
+  - Advanced switches for **fine-grained** control
 
     + Prover selection with :command:`--prover=`
     + Prover control with :command:`--timeout= --steps= --memlimit=`
