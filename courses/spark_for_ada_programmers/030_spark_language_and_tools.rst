@@ -1,8 +1,31 @@
-
 **************************
 SPARK Language and Tools
 **************************
 .. |rightarrow| replace:: :math:`\rightarrow`
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
 
 =================
 Introduction
@@ -1206,7 +1229,7 @@ Source Code Contextual Menu
 "Basic" Profile's Proof Dialog Panel
 ---------------------------------------
 
-.. image:: prove_dialog-basic.jpeg
+.. image:: prove_dialog-basic.png
 
 .. container:: speakernote
 
@@ -1245,7 +1268,7 @@ Preference for Selecting Profile
 "Advanced" Proof Dialog Panel
 -------------------------------
 
-.. image:: prove_dialog-advanced.jpeg
+.. image:: prove_dialog-advanced.png
 
 ========
 Lab

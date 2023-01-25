@@ -8,6 +8,12 @@ SPARK Tools
 .. role:: ada(code)
     :language: Ada
 
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
 ..
     Math symbols
 
@@ -29,20 +35,18 @@ Introduction
 Identifying SPARK Code
 ------------------------
 
-* Pragma or aspect :code:`SPARK_Mode` identifies SPARK code
+* Pragma or aspect :ada:`SPARK_Mode` identifies SPARK code
 
 * As a pragma in the global/local configuration pragmas file
 
 * As a configuration pragma at the start of a unit
 
-  - Note: it comes before :code:`with` clauses
+  - Note: it comes before :ada:`with` clauses
 
   .. code:: ada
 
      pragma SPARK_Mode (On); -- On is the default
-
      with Lib; use Lib;
-
      package Pack is ...
 
 * As an aspect on the unit declaration
@@ -71,7 +75,7 @@ Main Tools for SPARK
 
     + Due to generation of data dependencies
 
-    + Analysis of unit depends on bodies of :code:`with`'ed units
+    + Analysis of unit depends on bodies of :ada:`with`'ed units
 
     + ...unless all data dependencies are specified
 
@@ -108,7 +112,7 @@ Enabling Assertions at Run-Time
 * Assertions can be enabled globally with switch :command:`-gnata`
 
 * Assertions can be enabled/disabled locally with pragma
-  :code:`Assertion_Policy`
+  :ada:`Assertion_Policy`
 
   For example to enable preconditions and disable postconditions:
 
@@ -118,7 +122,7 @@ Enabling Assertions at Run-Time
 
 * Pragma can also be used in global/local configuration pragmas file
 
-* Failing assertion raises exception :code:`Assertion_Failure`
+* Failing assertion raises exception :ada:`Assertion_Failure`
 
 ----------------------
 Debugging SPARK Code
@@ -169,25 +173,25 @@ SPARK Analysis Tools
 
   - Use attribute :code:`Proof_Switches` to apply tool-defined switches
 
-    - For all files with value :code:`"Ada"`
+    - For all files with value :ada:`"Ada"`
     - For specific file with its name
 
-.. code:: Ada
+  .. code:: Ada
 
-   project Proj is
-     package Prove is
-       for Proof_Switches ("Ada") use ("--level=2");
-       for Proof_Switches ("file.adb") use ("--level=3");
-     end Prove;
-   end Proj;
+     project Proj is
+       package Prove is
+         for Proof_Switches ("Ada") use ("--level=2");
+         for Proof_Switches ("file.adb") use ("--level=3");
+       end Prove;
+     end Proj;
 
   - Use attribute :code:`Proof_Dir` to specify directory for session files
 
 ----------------------------------------------
-Setting the Default :code:`SPARK_Mode` Value
+Setting the Default :ada:`SPARK_Mode` Value
 ----------------------------------------------
 
-* Set :code:`SPARK_Mode` in a global/local configuration pragmas file
+* Set :ada:`SPARK_Mode` in a global/local configuration pragmas file
   :filename:`config.adc`
 
   .. code:: Ada
@@ -215,7 +219,6 @@ Adapting the Project File for Analysis
 
      type Modes is ("Compile", "Analyze");
      Mode : Modes := External ("MODE", "Compile");
-
      case Mode is
         when "Compile" =>
            for Source_Dirs use (...);
@@ -255,11 +258,11 @@ Legality Checking
   - Need to fix to go beyond this step
 
   - Ex: :command:`<expr> cannot depend on variable input <var>` |rightarrow|
-    declare a constant :code:`value` to get the value of :code:`var` and use
-    :code:`value` inside :code:`expr`
+    declare a constant :ada:`value` to get the value of :ada:`var` and use
+    :ada:`value` inside :ada:`expr`
 
-  - Ex: :command:`uninitialized allocator without default initialization is not
-    allowed` |rightarrow| use :code:`new T'(Value)` instead of :code:`new T`
+  - Ex: :command:`uninitialized allocator is not allowed` |rightarrow| use
+    :ada:`new T'(Value)` instead of :ada:`new T`
 
   - Ex: :command:`<such-and-such> not allowed` |rightarrow| rewrite code
     without such-and-such construct
@@ -272,9 +275,15 @@ Flow Analysis
 
 * :dfn:`Flow analysis` is a prerequisite to proof
 
-* :toolname:`GNATprove` does only that with switch :command:`--mode=flow`
+* :toolname:`GNATprove` does that with switch :command:`--mode=flow`
+
+  - This follows legality checking
 
 * Corresponds to :menu:`Examine` menus in IDEs
+
+* :toolname:`GNATprove` applies flow analysis to each subprogram separately
+
+  - Notion of dependency contracts summarize effects of call
 
 * Outputs messages:
 
@@ -295,11 +304,40 @@ Proof
 
 * Corresponds to :menu:`Prove` menus in IDEs
 
+* :toolname:`GNATprove` applies proof to each subprogram separately
+
+  - Notion of functional contracts summarize effects of call
+
 * Outputs messages:
 
   - Check messages need to be reviewed, and either fixed or justified
 
   - Warnings can be inspected and silenced
+
+------------------------
+Categories of Messages
+------------------------
+
+* :dfn:`Error messages` start with :command:`error:`
+
+  - :toolname:`GNATprove` aborts analysis and exits with error status
+
+* :dfn:`Check messages` start with severity :command:`high:`,
+  :command:`medium:` or :command:`low:`
+
+  - With switch :command:`--checks-as-errors`, :toolname:`GNATprove` exits with
+    error status
+
+* :dfn:`Warnings` start with :command:`warning:`
+
+  - With switch :command:`--warnings=error`, :toolname:`GNATprove` exits with
+    error status
+  - Some warnings are guaranteed to be issued
+
+* :dfn:`Information messages` start with :command:`info:`
+
+  - Report proved checks with switch :command:`--report=all`
+  - Report information about analysis with switch :command:`--info`
 
 ----------------------------------------
 :toolname:`GNATprove` Output for Users
@@ -379,7 +417,7 @@ Source Code Contextual Menu
 "Basic" Proof Dialog Panel
 ----------------------------
 
-.. image:: prove_dialog-basic.jpeg
+.. image:: prove_dialog-basic.png
 
 -----------------------------------------------------
 Example Analysis Results in :toolname:`GNAT Studio`
@@ -414,7 +452,7 @@ Preference for Selecting Profile
 "Advanced" Proof Dialog Panel
 -------------------------------
 
-.. image:: prove_dialog-advanced.jpeg
+.. image:: prove_dialog-advanced.png
 
 =====
 Lab
@@ -450,13 +488,11 @@ SPARK Tools
 * Analysis tools in :toolname:`GNATprove`
 
   - Flow analysis
-
   - Proof
 
-* Project files supports both command-line and IDEs
+* Project files supports both command-line and IDEs use
 
   - Package :code:`Prove` specific to :toolname:`GNATprove`
-
   - Possibility to indicate that all code is in SPARK by default
 
 * All integrated in multiple IDEs

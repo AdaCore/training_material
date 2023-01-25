@@ -1,4 +1,5 @@
 courses/fundamentals_of_ada/*.rst
+courses/spark_for_ada_programmers/*.rst
 courses/advanced_exception_analysis/*.rst
 courses/gnatcheck/*.rst
 courses/codepeer/*.rst

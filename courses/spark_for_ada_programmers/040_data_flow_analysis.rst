@@ -2,7 +2,29 @@
 Data Flow Analysis
 ********************
 
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
 .. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+
+..
+    Miscellaneous symbols
+
 .. |checkmark| replace:: :math:`\checkmark`
 
 ==============
@@ -633,9 +655,9 @@ Flow Analysis Using :toolname:`GNATprove`
 
     .. image:: spark_menu-examine_file.jpeg
 
-========
+=====
 Lab
-========
+=====
 
 .. include:: labs/040_data_flow_analysis.lab.rst
 
