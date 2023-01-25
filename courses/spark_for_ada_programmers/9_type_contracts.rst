@@ -51,7 +51,6 @@ Range Constraints
      subtype Nat is Integer range 0 .. Integer'Last;
 
 * Also in standard subtypes :ada:`Natural` and :ada:`Positive`
-
 * Range constraint also for enumeration and array types
 
   .. code:: ada
@@ -71,7 +70,6 @@ Discriminant Constraints
    Ada 83
 
 * Record discriminants can be specialized to specific values
-
 * Formal bounded containers from SPARK Library
 
   .. code:: ada
@@ -170,7 +168,6 @@ Static vs Dynamic Predicate
 * Types with static predicates are allowed in more contexts
 
   - Used as range in a *for loop*
-
   - Used as choice in *case statement* or *case expression*
 
 * Aspect :ada:`Predicate` is GNAT name for:
@@ -290,9 +287,7 @@ Restrictions in Usage
   - As prefix of attributes :ada:`Range`, :ada:`First`, and :ada:`Last`
 
     + Because they reflect only range constraints, not predicates
-
     + Use instead attributes :ada:`First_Valid` and :ada:`Last_Valid`
-
     + Not allowed on type with dynamic predicate
 
 * Type with dynamic predicate further restricted
@@ -450,7 +445,6 @@ Static Checking of Type Invariants
     outside of their unit
 
 * No checks only where not needed
-
 * :toolname:`GNATprove` can assume that all inputs to *boundary subprograms* and all objects of the type outside the unit
   satisfy their type invariants
 
