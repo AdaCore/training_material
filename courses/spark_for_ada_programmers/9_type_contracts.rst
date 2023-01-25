@@ -69,7 +69,7 @@ Discriminant Constraints
 
    Ada 83
 
-* Record discriminants can be specialized to specific values
+* Record discriminants can be **specialized** to specific values
 * Formal bounded containers from SPARK Library
 
   .. code:: ada
@@ -98,7 +98,7 @@ Richer Type Contracts
 
   - Using the aspect syntax for :ada:`Predicate` and :ada:`Type_Invariant`
 
-* Language support goes much beyond contracts-as-a-library
+* Language support goes **much beyond** contracts-as-a-library
 
   - Constraint expressed once and verified *everywhere*
   - Fine-grain control over execution
@@ -122,7 +122,7 @@ Type Predicates
 What is a Type Predicate?
 ---------------------------
 
-* Boolean property that should always hold of objects of the type
+* Boolean property that should **always hold** for objects of the type
 
   - Name of the type used to refer to an object of the type
   - Direct use of component names also allowed
@@ -155,13 +155,13 @@ What is a Type Predicate?
 Static vs Dynamic Predicate
 -----------------------------
 
-* Static predicates are more restricted
+* **Static** predicates are **more restricted**
 
-  - Boolean combination of comparisons with static values
+  - Boolean combination of comparisons with **static** values
   - Usable mostly on scalar and enumeration types
-  - That does not mean statically checked by the compiler
+  - That does **not** mean statically checked by the compiler
 
-* Dynamic predicates are arbitrary boolean expressions
+* **Dynamic** predicates are **arbitrary** boolean expressions
 
   - Applicable to array and record types
 
@@ -179,7 +179,7 @@ Static vs Dynamic Predicate
 Useful Static Predicates
 --------------------------
 
-* Scalar ranges with holes
+* Scalar ranges with **holes**
 
   .. code:: ada
 
@@ -211,7 +211,7 @@ Useful Static Predicates
 Useful Dynamic Predicates (1/2)
 ---------------------------------
 
-* Array types with fixed lower bound
+* Array types with **fixed lower bound**
 
   .. code:: ada
 
@@ -247,7 +247,7 @@ Useful Dynamic Predicates (1/2)
          (for all K in Table'Range =>
            (K = Table'First or else Table(K-1) <= Table(K)));
 
-* Record type with relationship between components
+* Record type with relationship **between** components
 
   .. code:: ada
 
@@ -292,7 +292,7 @@ Restrictions in Usage
 
 * Type with dynamic predicate further restricted
 
-  - Not allowed as range in a *for loop*
+  - Not allowed as range in a :ada:`for in ... loop`
   - Not allowed as choice in *case statement* or *case expression*
 
 --------------------------------
@@ -304,7 +304,7 @@ Dynamic Checking of Predicates
   - When using switch :command:`-gnata`
   - Or pragma :ada:`Assertion_Policy (Predicate => Check)`
 
-* Placement of checks similar as for type constraints
+* Placement of checks **similar** as for type constraints
 
   - On assignment and initialization
   - On conversion :ada:`T(...)` and qualification :ada:`T'(...)`
@@ -361,7 +361,7 @@ Beware Recursion In Predicates
      warning: use an explicit subtype of "Nat" to carry the predicate
      high: infinite recursion might occur
 
-* Fix by inlining the property or introducing a subtype
+* Fix by **inlining the property** or introducing a **subtype**
 
   .. code:: Ada
 
@@ -377,9 +377,9 @@ Type Invariants
 What is a Type Invariant?
 ---------------------------
 
-* Boolean property that should always hold of objects of the type
+* :ada:`Boolean` property that should always hold of objects of the type
 
-  - ...outside of its unit
+  - ...**outside** of its unit
   - Same use of name of the type and component names as in predicates
 
 * Can only be specified on the completion of a private type (in SPARK)
@@ -394,7 +394,7 @@ What is a Type Invariant?
        type Account is ... with
          Type_Invariant => Consistent_Balance (Account);
 
-* Not part of membership test :ada:`X in T`
+* **Not** part of membership test :ada:`X in T`
 
 -------------------------------------
 Dynamic Checking of Type Invariants
@@ -419,12 +419,12 @@ Dynamic Checking of Type Invariants
   - On assignment and initialization
   - On qualification :ada:`T'(...)`
   - On references to an object
-  - On internal assignment or call
+  - On **internal** assignment or call
 
 * No checks where this is impossible for the compiler
 
-  - On global variables of type :ada:`T`
-  - On parts of objects under components of access type
+  - On **global** variables of type :ada:`T`
+  - On parts of objects under components of **access** type
 
 ------------------------------------
 Static Checking of Type Invariants
@@ -432,11 +432,11 @@ Static Checking of Type Invariants
 
 * Static checks performed by :toolname:`GNATprove`
 
-  - Always where needed (independent of the choice of switches or pragmas)
+  - **Always** where needed (independent of the choice of switches or pragmas)
 
 * Placement of checks as for dynamic checks
 
-  - Plus global variables and objects under access types
+  - **Plus** global variables and objects under access types
   - On each call to external subprogram from inside the unit
 
     + This avoids so-called :dfn:`reentrancy problems`
@@ -471,7 +471,7 @@ Beware Recursion In Type Invariants
 
      high: cannot call boundary subprogram for type in its own invariant
 
-* Fix by declaring the function in the private part of the spec
+* Fix by declaring the function in the **private** part of the spec
 
   .. code:: Ada
 
