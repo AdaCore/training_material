@@ -35,7 +35,7 @@ Introduction
 Simple Expressions
 --------------------
 
-* Simple specifications use simple expressions
+* Simple specifications use **simple** expressions
 
   - Arithmetic operations and comparisons
   - Membership tests :ada:`X in A .. B`
@@ -55,7 +55,7 @@ Simple Expressions
     + Lazy operators :ada:`and then`/:ada:`or else` preferred in general to
       :ada:`and`/:ada:`or`
 
-* But that's not sufficient to easily write all specifications
+* But that's not sufficient to easily write **all** specifications
 
   .. code:: ada
 
@@ -70,26 +70,26 @@ Simple Expressions
 Richer Expressions
 --------------------
 
-* Counterparts of conditional statements
+* Counterparts of **conditional** statements
 
   - *if expressions* are the counterpart of *if statements*
   - *case expressions* are the counterpart of *case statements*
 
-* Expressions over a collection (range or array or...)
+* Expressions over a **collection** (range or array or...)
 
-  - *universally quantified expression* for properties over all elements
-  - *existentially quantified expression* for properties over one element
+ - *universally quantified expression* for properties over **all** elements
+ - *existentially quantified expression* for properties over **one** element
 
-* New forms of aggregates
+* New forms of **aggregates**
 
   - *delta aggregates* express the value of an updated composite object
   - *iterated component associations* express array aggregates where the
-    expression depends on the index
+    expression depends on the **index**
 
 * Structuring expressions
 
-  - *declare expressions* introduce names for local constants
-  - *expression functions* introduce names for common expressions
+ - *declare expressions* introduce **names** for local constants
+ - *expression functions* introduce **names** for common expressions
 
 =========================
 Conditional Expressions
@@ -102,18 +102,18 @@ If Expressions
 * :ada:`(if Cond then A else B)` evaluates :ada:`A` or :ada:`B` depending on
   the value of :ada:`Cond`
 
-  - Note: always in parentheses!
+  - Note: always in **parentheses**!
   - :ada:`A` and :ada:`B` must have the same type
-  - ...not always Boolean!
+  - ...not always :ada:`Boolean`!
 
     .. code:: Ada
 
        A := (if Cond then 2 else 3);
 
-* Frequent use with Boolean type in specifications
+* Frequent use with :ada:`Boolean` type in specifications
 
   - :ada:`(if Cond then Property)` is shortcut for :ada:`(if Cond then Property else True)`
-  - This expresses a logical implication :ada:`Cond` |rightarrow| :ada:`Property`
+  - This expresses a **logical implication** :ada:`Cond` |rightarrow| :ada:`Property`
   - Also equivalent to :ada:`not Cond or else Property`
 
 * Complete form has :ada:`elsif` parts
@@ -135,7 +135,7 @@ Case Expressions
            | Saturday  => 8,
         when Wednesday => 9)
 
-* Same choice expressions as in *case statements*
+* Same **choice expressions** as in *case statements*
 
   - Can also use :ada:`others` as last alternative
   - Note: always in parentheses!
@@ -179,13 +179,13 @@ Range-based Form
 
 * Universally quantified expression :ada:`(for all J in A .. B => Property)`
 
-  - Express that property holds for all values in the range
+  - Express that property holds for **all** values in the range
   - True if the range is empty (:math:`\forall` in logic)
   - At runtime, executed as a loop which stops at first value where the property is not satisfied
 
 * Existentially quantified expression :ada:`(for some J in A .. B => Property)`
 
-  - Express that property holds for at least one value in the range
+  - Express that property holds for **at least one** value in the range
   - False if the range is empty (:math:`\exists` in logic)
   - At runtime, executed as a loop which stops at first value where the property is satisfied
 
@@ -207,14 +207,14 @@ Array-based Form
   - Universally quantified expression :ada:`(for all E of T => Property)`
   - Existentially quantified expression :ada:`(for some E of T => Property)`
 
-* Note: always in parentheses!
+* Note: always in **parentheses**!
 
 ----------------------------------
 Range-based vs Array-based Forms
 ----------------------------------
 
-* Array-based form only possible if :ada:`Property` does not refer to the
-  index
+* Array-based form only possible if :ada:`Property` does **not** refer to the
+  **index**
 
 * Example: array :ada:`T` is sorted
 
@@ -235,10 +235,10 @@ Range-based vs Array-based Forms
 General Iteration Mechanism
 -----------------------------
 
-* Based on the :ada:`Iterable` aspect on a type
+* **Based** on the :ada:`Iterable` aspect on a type
 
-  - Not the same as the standard Ada mechanism!
-  - Simpler mechanism adopted for the SPARK formal containers
+  - **Not the same** as the standard Ada mechanism!
+  - **Simpler** mechanism adopted for the SPARK formal containers
 
   .. code:: ada
 
@@ -250,24 +250,24 @@ General Iteration Mechanism
 
 * :dfn:`Iteration over positions` uses :ada:`for .. in` syntax
 
-  - Uses cursor type with :ada:`First`, :ada:`Next` and :ada:`Has_Element`
-  - Function :ada:`Element` is not required
+ - Uses cursor type with :ada:`First`, :ada:`Next` and :ada:`Has_Element`
+ - Function :ada:`Element` is **not** required
 
 * :dfn:`Iteration over elements` uses :ada:`for .. of` syntax
 
   - Based on the previous iteration
-  - Function :ada:`Element` retrieves the element for a given cursor
+  - Function :ada:`Element` retrieves the **element** for a given cursor
 
 ----------------------------------
 Iteration Over Formal Containers
 ----------------------------------
 
-* Generic units compatible with SPARK
+* **Generic** units compatible with SPARK
 
   - The API is slightly different from standard Ada containers
   - Available in the SPARK Library
 
-* Available for all formal containers:
+* Available for **all** formal containers:
 
   - vectors
   - doubly linked lists
@@ -276,14 +276,14 @@ Iteration Over Formal Containers
 
 * Iteration over positions
 
-  - Access to element through function :ada:`Element`
-  - For maps, access to key through function :ada:`Key`
+  - Access to **element** through function :ada:`Element`
+  - For maps, access to **key** through function :ada:`Key`
 
 * Iteration over elements
 
-  - For maps, really an iteration over keys
+  - For maps, really an iteration over **keys**
 
-    - Use another function :ada:`Element` to get element
+    - Use another function :ada:`Element` to get **element**
 
 -------------------------------
 Iteration Over Formal Vectors
@@ -309,7 +309,7 @@ Iteration Over Formal Vectors
      end loop;
      pragma Assert (for all J in V => V.Element (J) = 0);
 
-* Iteration over elements (no update!)
+* Iteration over elements (**no update**!)
 
   .. code:: ada
 
@@ -330,16 +330,16 @@ Delta Aggregates
 
    Ada 2022
 
-* Express the value of a modified composite object (record or array)
+* Express the value of a **modified** composite object (record or array)
 
   .. code:: Ada
 
      (Rec with delta Comp1 => Val1, Comp2 => Val2)
      (Arr with delta 1 => True, 42 => False)
 
-* Typically used to relate input and output values of parameters
+* Typically used to relate input and output **values** of parameters
 
-  - Combines delta aggregate with use of attribute `'Old`
+  - Combines delta aggregate with use of attribute :ada:`'Old`
 
   .. code:: Ada
 
@@ -349,8 +349,8 @@ Delta Aggregates
 
 * With array object:
 
-  - Avoids the introduction of explicit quantifiers
-  - Can have overlapping and dynamic choices (values or ranges)
+  - Avoids the introduction of **explicit** quantifiers
+  - Can have **overlapping** and **dynamic** choices (values or ranges)
 
 ---------------------------------
 Iterated Component Associations
@@ -360,8 +360,8 @@ Iterated Component Associations
 
    Ada 2022
 
-* Express the value of an array aggregate depending on index
-* Example: the identity function
+* Express the **value** of an array aggregate depending on index
+* Example: the *identity* function
 
   .. code:: Ada
 
@@ -369,7 +369,7 @@ Iterated Component Associations
 
 * This is a :dfn:`component association`
 
-  - Can be used in any aggregate
+  - Can be used in **any** aggregate
   - Can be mixed with regular component associations :ada:`Idx => Val`
 
 =========================
@@ -384,10 +384,10 @@ Declare Expressions
 
    Ada 2022
 
-* Convenient shorthand for repeated subexpression
+* Convenient shorthand for **repeated** subexpression
 
   - Only constants and renamings allowed
-  - Typically used in postconditions
+  - Typically used in **postconditions**
 
   .. code:: Ada
 
@@ -403,10 +403,10 @@ Declare Expressions
 Expression Functions
 ----------------------
 
-* Convenient shorthand for repeated subexpression
+* Convenient shorthand for **repeated** subexpression
 
   - Somewhat similar goal as delta expressions
-  - But visible in a larger scope
+  - But visible in a **larger** scope
 
 * Simple query functions used in contracts
 
@@ -416,7 +416,7 @@ Expression Functions
        (for all J in T'Range =>
           (for all K in T'Range => (if J < K then T(J) <= T(K))));
 
-* Above is equivalent to having a postcondition
+* Above is equivalent to having a **postcondition**
 
   - But no subprogram body to add in the body unit
 
@@ -425,7 +425,7 @@ Expression Functions
      function Is_Sorted (T : Table) return Boolean
        with Post => Is_Sorted'Result = (for all J in T'Range => ...);
 
-* Pre and posconditions can be specified after the expression
+* Pre and posconditions can be specified **after** the expression
 
   .. code:: Ada
 
@@ -436,14 +436,14 @@ Expression Functions
 Use of Expression Functions
 -----------------------------
 
-* Expression functions can be declared in a package spec and used in contracts
+* Expression functions can be declared in a package spec and used in **contracts**
 
-  - It can even be declared after its use in contracts!
+  - It can even be declared **after** its use in contracts!
 
-* For queries over objects of a private type
+* For queries over objects of a :ada:`private` type
 
-  - Function spec is declared in the public part
-  - Expression function is declared in the private part
+  - Function **spec** is declared in the **public** part
+  - **Expression function** is declared in the **private** part
 
   .. code:: Ada
 
@@ -455,7 +455,7 @@ Use of Expression Functions
        function Value (X : T) return Integer is (Integer (X));
      end;
 
-  - :toolname:`GNATprove` uses the implicit postcondition to prove client units
+  - :toolname:`GNATprove` uses the **implicit postcondition** to prove client units
 
 =====
 Lab
@@ -471,18 +471,18 @@ Summary
 Specification Language
 ------------------------
 
-* Rich specification language in SPARK
+* Rich **specification language** in SPARK
 
   - Conditional expressions
   - Quantified expressions
   - New forms of aggregates
   - Structuring expressions
 
-* Expression functions are handled specially in proof
+* Expression functions are handled **specially** in proof
 
   - Implicit postcondition given by their expression
 
-* Expression functions define queries on private types
+* Expression functions define **queries** on private types
 
   - Function spec declared in the visible part
   - Expression function given in the private part
