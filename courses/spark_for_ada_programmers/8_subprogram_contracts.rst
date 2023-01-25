@@ -309,7 +309,7 @@ Contract Cases (2/2)
 * :toolname:`GNATprove` checks that **each** case holds
 
   - When guard is enabled on entry, consequence holds on exit
-  - Note: guards are evaluated **on entry***
+  - Note: guards are evaluated **on entry**
   - Attributes :ada:`Old` and :ada:`Result` allowed in consequence
 
 * :toolname:`GNATprove` checks that cases are **disjoint** and **complete**
@@ -341,8 +341,8 @@ What's Refinement?
 
 * SPARK uses refinement
 
-  - For analysis of callbacks
-  - For analysis of dispatching calls in OOP
+  - For analysis of **callbacks**
+  - For analysis of **dispatching calls** in OOP
 
     - aka Liskov Substitution Principle (LSP)
 
@@ -365,16 +365,18 @@ Contracts on Callbacks
        Pre  => Precond (X),
        Post => Postcond (X'Old, X);
 
-* :toolname:`GNATprove` checks refinement on actual subprograms
+* :toolname:`GNATprove` checks refinement on **actual** subprograms
 
   .. code:: ada
 
      Callback : Update_Proc := Proc'Access;
 
-  - Precondition of :ada:`Proc` should be weaker than :ada:`Precond(X)`
-  - Postcondition of :ada:`Proc` should be stronger than
+  - **Precondition** of :ada:`Proc` should be **weaker** than :ada:`Precond(X)`
+  - **Postcondition** of :ada:`Proc` should be **stronger** than
     :ada:`Postcond(X'Old, X)`
-  - Data dependencies should be :ada:`null`
+  - Data **dependencies** should be :ada:`null`
+
+     + **No** use of globals
 
 * :toolname:`GNATprove` uses contract of :ada:`Update_Proc` when
   :ada:`Callback` is called
@@ -392,17 +394,17 @@ Contracts for OOP
        Pre'Class  => Precond (X),
        Post'Class => Postcond (X'Old, X);
 
-* :toolname:`GNATprove` checks refinement on overriding subprograms
+* :toolname:`GNATprove` checks refinement on :ada:`overriding` subprograms
 
   .. code:: ada
 
      type Derived is new Object with record ...
      procedure Proc (X : in out Derived) with ...
 
-  - Precondition of :ada:`Proc` should be weaker than :ada:`Precond(X)`
-  - Postcondition of :ada:`Proc` should be stronger than
+  - **Precondition** of :ada:`Proc` should be **weaker** than :ada:`Precond(X)`
+  - **Postcondition** of :ada:`Proc` should be **stronger** than
     :ada:`Postcond(X'Old, X)`
-  - Data dependencies should be the same
+  - Data **dependencies** should be the **same**
 
 * :toolname:`GNATprove` uses contract of :ada:`Proc` in :ada:`Object` when
   :ada:`Proc` is called with static type :ada:`Object`
@@ -431,7 +433,7 @@ What's wrong with the following contract?
 
      - It says that any integer is equal to twice another integer
      - This can be used by provers to deduce :ada:`False`
-     - Anything can be proved from :ada:`False`
+     - **Anything** can be proved from :ada:`False`
 
        + As if the code was dead code
 
@@ -439,12 +441,12 @@ What's wrong with the following contract?
 Unfeasible Contracts
 ----------------------
 
-* All contracts should be feasible
+* All contracts **should** be feasible
 
   - There exists a correct implementation
   - This includes absence of runtime errors
 
-* Contract of :ada:`Double` also leads to unsoundness
+* Contract of :ada:`Double` also leads to **unsoundness**
 
   - The postcondition is false when :ada:`Value` is too large
 
@@ -456,14 +458,14 @@ Unfeasible Contracts
 * :toolname:`GNATprove` implements defense in depth
 
   - Axiom only generated for functions (not procedures)
-  - Function sandboxing adds a guard to the axiom
+  - Function **sandboxing** adds a guard to the axiom
 
     + Unless switch :command:`--function-sandboxing=off` is used
 
   - Switch :command:`--proof-warnings` can detect inconsistencies
   - Proof of subprogram will detect contract unfeasibility
 
-    + Except when subprogram does not terminate
+    + **Except** when subprogram does not terminate
 
 ---------------------------
 Non-terminating Functions
@@ -499,7 +501,7 @@ What's wrong with the following code?
 Terminating Functions
 -----------------------
 
-* All functions should terminate
+* **All** functions should terminate
 
   - Specific annotation to require proof of termination
 
@@ -507,12 +509,12 @@ Terminating Functions
 
      Annotate => (GNATprove, Always_Return)
 
-* Flow analysis proves termination in simple cases
+* Flow analysis proves termination in **simple cases**
 
   - No (mutually) recursive calls
   - Only bounded loops
 
-* Proof used to prove termination in remaining cases
+* **Proof** used to prove termination in remaining cases
 
   - Based on subprogram variant for recursive subprograms
   - Based on loop variant for unbounded loops
@@ -608,11 +610,11 @@ Subprogram Contracts
 
 * Postcondition may be imprecise
 
-  - In particular, frame condition might be missing
-  - This may prevent proof of callers
+  - In particular, **frame condition** might be missing
+  - This may prevent **proof of callers**
 
 * Function contracts may lead to unsoundness
 
   - If contract is unfeasible
   - If function does not terminate
-  - Prove functions and their termination!
+  - Prove functions **and** their termination!
