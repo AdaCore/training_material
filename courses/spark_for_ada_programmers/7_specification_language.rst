@@ -77,8 +77,8 @@ Richer Expressions
 
 * Expressions over a **collection** (range or array or...)
 
- - *universally quantified expression* for properties over **all** elements
- - *existentially quantified expression* for properties over **one** element
+  - *universally quantified expression* for properties over **all** elements
+  - *existentially quantified expression* for properties over **one** element
 
 * New forms of **aggregates**
 
