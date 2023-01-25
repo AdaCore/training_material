@@ -101,7 +101,6 @@ What is the problem with this postcondition?
 .. container:: animate
 
    * The postcondition does not say that the value of :ada:`Y` is preserved!
-
    * As a result, nothing is known about :ada:`Y` after calling :ada:`Set_X`
 
      .. code:: ada
@@ -205,7 +204,6 @@ Frame Condition - Private Types
 ---------------------------------
 
 * Direct access to value or components not possible
-
 * Simpler solution: define query functions
 
   - Hide access to value or components
@@ -266,7 +264,6 @@ Special Cases for Attribute :ada:`Old`
 * Function call in the prefix of :ada:`Old` is evaluated at subprogram entry
 
   - Value of globals is the one at subprogram entry
-
   - Not the same as calling the function on parameters with :ada:`Old`
 
     .. code:: Ada
@@ -430,7 +427,6 @@ What's wrong with the following contract?
 .. container:: animate
 
    * The postcondition is false when :ada:`Value` is odd
-
    * :toolname:`GNATprove` generates an inconsistent axiom for :ada:`Half`
 
      - It says that any integer is equal to twice another integer
@@ -489,7 +485,6 @@ What's wrong with the following code?
 .. container:: animate
 
    * Function :ada:`Half` does not terminate
-
    * :toolname:`GNATprove` proves the postcondition of :ada:`Half`!
 
      - Because that program point is unreachable (dead code)
