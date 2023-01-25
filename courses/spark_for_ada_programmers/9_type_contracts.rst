@@ -39,7 +39,7 @@ Range Constraints
 
    Ada 83
 
-* Scalar ranges gives tighter bounds to scalar types
+* Scalar ranges gives **tighter** bounds to scalar types
 
   - Integer types: signed, modular
   - Real types: floating-point, fixed-point
