@@ -35,7 +35,7 @@ Introduction
 Programming by Contract
 -------------------------
 
-* Pioneered by programming language Eiffel in the 80's
+* Pioneered by programming language **Eiffel** in the 80's
 
   - Since then adopted in Ada, .NET
   - Also being discussed for C++, Rust
@@ -46,10 +46,10 @@ Programming by Contract
   - What a caller guarantees to the subprogram (the precondition)
   - What the subprogram guarantees to its caller (the postcondition)
 
-* A contract should include all the necessary information
+* A contract should include **all** the necessary information
 
   - Completes the API
-  - Caller should not rely on implementation details
+  - Caller should **not** rely on **implementation details**
   - Typically parts of the contract are in English
 
 --------------------
@@ -61,10 +61,10 @@ Contracts in SPARK
   - Using the aspect syntax for :ada:`Pre` and :ada:`Post`
   - Already in GNAT since 2008 as pragmas
 
-* Language support goes much beyond contracts-as-a-library
+* Language support goes much **beyond** contracts-as-a-library
 
   - Ability to relate pre-state and post-state with attribute :ada:`Old`
-  - Fine-grain control over execution
+  - **Fine-grained** control over execution
 
     .. code:: ada
 
@@ -73,8 +73,8 @@ Contracts in SPARK
 
 * :toolname:`GNATprove` analysis based on contracts
 
-  - Precondition should be sufficient to prove subprogram itself
-  - Postcondition should be sufficient to prove its callers
+  - Precondition should be sufficient to prove subprogram **itself**
+  - Postcondition should be sufficient to prove **its callers**
   - ...at all levels of software assurance beyond Bronze!
 
 * SPARK contracts by cases, for callbacks, for OOP, etc.
@@ -113,14 +113,14 @@ What is the problem with this postcondition?
 Frame Condition - Records
 ---------------------------
 
-* Simpler solution is to state what components are preserved
+* Simpler solution is to state which components are **preserved**
 
   .. code:: ada
 
      procedure Set_X (P : in out Pair; Value : Integer)
        with Post => P.X = Value and P.Y = P.Y'Old;
 
-* Or with a delta aggregate
+* Or with a **delta aggregate**
 
   .. code:: ada
 
@@ -166,7 +166,7 @@ Frame Condition - Conditions
      procedure Zero_If (X : in out Integer; Cond : Boolean)
        with Post => (if Cond then X = 0);
 
-* The preservation case needs to be explicited
+* The preservation case needs to be **explicited**
 
   .. code:: ada
 
@@ -175,14 +175,14 @@ Frame Condition - Conditions
 
 * :dfn:`Frame condition` is **all** the parts of objects that may be preserved
 
-  - Bounded by user-defined or generated data dependencies
-  - Anything else needs to be stated explicitly
+  - Bounded by user-defined or generated **data dependencies**
+  - Anything else needs to be stated **explicitly**
 
 --------------------------------------------
 Frame Condition - Bounds and Discriminants
 --------------------------------------------
 
-* Some parts of objects cannot be changed by a call
+* Some parts of objects **cannot** be changed by a call
 
   - Array bounds
   - Discriminants of constrained records
@@ -204,9 +204,9 @@ Frame Condition - Private Types
 ---------------------------------
 
 * Direct access to value or components not possible
-* Simpler solution: define query functions
+* Simpler solution: define **query functions**
 
-  - Hide access to value or components
+  - **Hide** access to value or components
 
   .. code:: ada
 
@@ -215,9 +215,9 @@ Frame Condition - Private Types
      procedure Set_X (P : in out Pair; Value : Integer)
        with Post => P.Get_Y = P.Get_Y'Old;
 
-* More comprehensive solution: define model functions
+* More comprehensive solution: define **model functions**
 
-  - Create a visible model of the value
+  - Create a visible **model** of the value
 
   .. code:: ada
 
@@ -233,7 +233,7 @@ Attribute :ada:`Old`
 
 * Dynamic semantics is to make a copy at subprogram entry
 
-  - Forbidden on limited types
+  - Forbidden on :ada:`limited` types
 
 * Evaluation for the copy may raise runtime errors
 
@@ -247,11 +247,11 @@ Attribute :ada:`Old`
                           J : Integer;
                           V : out Value)
          with Post =>
-           (if J in A'Range then V = A(J)'Old); -- Illegal
+           (if J in A'Range then V = A (J)'Old); -- Illegal
 
   - Use :ada:`pragma Unevaluated_Use_Of_Old (Allow)` to allow
 
-    + :toolname:`GNATprove` checks that this is safe
+    + :toolname:`GNATprove` **checks** that this is safe
 
 -----------------------------------------
 Special Cases for Attribute :ada:`Old`
@@ -263,7 +263,7 @@ Special Cases for Attribute :ada:`Old`
 
 * Function call in the prefix of :ada:`Old` is evaluated at subprogram entry
 
-  - Value of globals is the one at subprogram entry
+  - Value of **globals** is the one at subprogram entry
   - Not the same as calling the function on parameters with :ada:`Old`
 
     .. code:: Ada
@@ -286,7 +286,7 @@ Contract Cases (1/2)
 
 * Some contracts are best expressed by cases
 
-  - Inspired by Parnas Tables
+  - Inspired by *Parnas Tables*
 
 * SPARK defines aspect :ada:`Contract_Cases`
 
@@ -306,15 +306,15 @@ Contract Cases (1/2)
 Contract Cases (2/2)
 ----------------------
 
-* :toolname:`GNATprove` checks that each case holds
+* :toolname:`GNATprove` checks that **each** case holds
 
   - When guard is enabled on entry, consequence holds on exit
-  - Note: guards are evaluated *on entry*
+  - Note: guards are evaluated **on entry***
   - Attributes :ada:`Old` and :ada:`Result` allowed in consequence
 
-* :toolname:`GNATprove` checks that cases are disjoint and complete
+* :toolname:`GNATprove` checks that cases are **disjoint** and **complete**
 
-  - All inputs allowed by the precondition are covered
+  - All inputs allowed by the precondition are covered by a single case
 
 * When enabled at runtime:
 
@@ -334,7 +334,7 @@ What's Refinement?
   - An :dfn:`abstract` representation
   - A :dfn:`concrete` representation
 
-* Concrete behaviors are included in abstract behaviors
+* Concrete behaviors are **included** in abstract behaviors
 
   - Analysis on the abstract representation
   - Findings are valid on the concrete one
