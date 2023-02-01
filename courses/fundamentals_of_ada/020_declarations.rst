@@ -790,7 +790,7 @@ Aspect Clauses
 
 * Define **additional** properties of an entity
 
-    - Representation (eg. :code:`Packed`)
+    - Representation (eg. :ada:`with Pack`)
     - Operations (eg. :code:`Inline`)
     - Can be **standard** or **implementation**-defined
 
