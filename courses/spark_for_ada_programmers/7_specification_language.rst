@@ -88,8 +88,8 @@ Richer Expressions
 
 * Structuring expressions
 
- - *declare expressions* introduce **names** for local constants
- - *expression functions* introduce **names** for common expressions
+  - *declare expressions* introduce **names** for local constants
+  - *expression functions* introduce **names** for common expressions
 
 =========================
 Conditional Expressions

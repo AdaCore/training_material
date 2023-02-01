@@ -344,7 +344,7 @@ What's Refinement?
   - For analysis of **callbacks**
   - For analysis of **dispatching calls** in OOP
 
-    - aka Liskov Substitution Principle (LSP)
+    + aka Liskov Substitution Principle (LSP)
 
 * Generics do not follow refinement in SPARK
 
