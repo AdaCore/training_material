@@ -17,22 +17,7 @@ jobs:
         fail-fast: false
         matrix:
             source: [fundamentals_of_ada,
-                     fundamentals_of_ada/standard_course.txt,
-                     fundamentals_of_ada/advanced.txt,
-                     fundamentals_of_ada/libs_containers_strings_and_dynamic_memory.txt,
-                     fundamentals_of_ada/opat.txt,
-                     fundamentals_of_ada/labs,
-                     spark_for_ada_programmers,
-                     spark_for_ada_programmers/course.txt,
-                     advanced_exception_analysis,
-                     gnatcheck,
-                     gnat_studio,
-                     gnat_project_facility,
-                     gnat_project_facility/standard_course.txt,
-                     gnattest,
-                     codepeer,
-                     gnatcoverage,
-                     static_analysis_via_compiler]
+                     fundamentals_of_ada/gnat.txt]
 
     steps:
       - uses: actions/checkout@v3
@@ -81,16 +66,6 @@ jobs:
           path: out/solar_system/pkg/*
           if-no-files-found: error
 
-      - name: CodePeer - Package
-        run: python3 contrib/ci/package_labs.py courses/codepeer/labs/ && mv out/labs out/codepeer_labs && unzip out/codepeer_labs/labs.zip -d out/codepeer_labs/pkg
-
-      - name: CodePeer - Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: CodePeer labs
-          path: out/codepeer_labs/pkg/*
-          if-no-files-found: error
-
       - name: GNAT Project Facility - Package
         run: python3 contrib/ci/package_labs.py courses/gnat_project_facility/labs/ && mv out/labs out/gnat_project_facility_labs && unzip out/gnat_project_facility_labs/labs.zip -d out/gnat_project_facility_labs/pkg
 
@@ -99,16 +74,6 @@ jobs:
         with:
           name: GNAT Project Facility labs
           path: out/gnat_project_facility_labs/pkg/*
-          if-no-files-found: error
-
-      - name: Mini Cinema - Package
-        run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/mini_projects/cinema && unzip out/cinema/cinema.zip -d out/cinema/pkg
-
-      - name: Mini Cinema - Upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: Mini Project - Mini Cinema
-          path: out/cinema/pkg/*
           if-no-files-found: error
 
   labs-build:
