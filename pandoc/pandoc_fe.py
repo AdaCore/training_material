@@ -46,7 +46,6 @@ and Beamer theme files
 
 
 def set_texinputs(new_directories):
-
     # initialize list of directories
     unique = list()
 

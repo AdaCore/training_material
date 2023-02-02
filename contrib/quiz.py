@@ -291,7 +291,6 @@ if __name__ == "__main__":
 
     explainations = quiz.general_explainations
     for i in range(quiz.answers_number):
-
         answer = QuizAnswer(args.input_file, i)
 
         if answer.fulltext:

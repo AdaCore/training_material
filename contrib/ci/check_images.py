@@ -74,7 +74,6 @@ def fail(*msg):
 
 
 if __name__ == "__main__":
-
     for f in IMAGES_DIR.glob("**/*"):
         if is_ignored(f):
             continue

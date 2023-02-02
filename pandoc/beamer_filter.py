@@ -399,7 +399,6 @@ def is_animate(classes):
 
 
 def animate(classes, contents):
-
     slide_number = 2
     dash = "-"
     if len(classes) > 2:
@@ -452,7 +451,6 @@ def is_latex_environment(classes):
 
 
 def latex_environment(classes, contents):
-
     if len(classes) > 2:
         environment = classes[2]
         begin = "\\begin{" + environment + "}"
@@ -477,6 +475,7 @@ def latex_environment(classes, contents):
 #####################
 ## QUERY FUNCTIONS ##
 #####################
+
 
 # Return the type of the admonition
 def admonition_type(classes, contents):
@@ -681,7 +680,6 @@ def perform_filter(key, value, format, meta):
         # If it is a container, handle the containers that we care about
         # looking like [<some string>, ['container', '<container name>'], [<some tuple]]
         elif key == "Div":
-
             [[ident, classes, kvs], contents] = value
 
             assert all(
