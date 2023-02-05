@@ -364,6 +364,12 @@ Levels of Software Assurance
 
   - Project can decide to move to higher level later
 
+------------------------------------------
+Levels of Software Assurance in Pictures
+------------------------------------------
+
+.. image:: software_assurance_levels.png
+
 ---------------------------
 Objectives of Using SPARK
 ---------------------------
