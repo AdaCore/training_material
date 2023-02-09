@@ -315,11 +315,11 @@ Accumulating Information
 
   .. code:: ada
 
-     procedure Init_Table (T : Table; Found : out Boolean)
+     procedure Search_Table (T : Table; Found : out Boolean)
      with
        Post => Found = (for some J in T'Range => T(J) = 0);
 
-     procedure Search_Table (T : out Table; Found : out Boolean) is
+     procedure Search_Table (T : Table; Found : out Boolean) is
      begin
         for J in T'Range loop
            if T(J) = 0 then
@@ -696,7 +696,7 @@ Functional Containers
   - No cursors for iteration
   - No order of elements in sets and maps
   - Functional: cannot modify them, rather create a new one
-  
+
 * They are easy to handle for proof
 
   - Often used as models for more complex structures
