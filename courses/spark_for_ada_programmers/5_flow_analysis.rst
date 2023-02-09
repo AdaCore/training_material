@@ -152,7 +152,7 @@ Data Initialization Policy
   - parameters of mode :ada:`out` and :ada:`in out`
   - global variables of mode :ada:`Output` and :ada:`In_Out`
 
-* Inputs should be completely initialized on a call
+* Inputs should be completely initialized **before** a call
 * Outputs should be completely initialized **after** a call
 * Stricter policy than in Ada
 
@@ -236,7 +236,8 @@ Violations of the Data Initialization Policy
        procedure Cond_Init
          (X    : out T;
           -- Incorrect
-          Cond : Boolean) is
+          Cond : Boolean)
+       is
        begin
           if Cond then
              X := ..;

@@ -441,7 +441,7 @@ Static Checking of Type Invariants
 
     + This avoids so-called :dfn:`reentrancy problems`
 
-  - :toolname:`GNATprove` checks objects **always** satisfy their predicate
+  - :toolname:`GNATprove` checks objects **always** satisfy their invariant
     outside of their unit
 
 * No checks only where not needed

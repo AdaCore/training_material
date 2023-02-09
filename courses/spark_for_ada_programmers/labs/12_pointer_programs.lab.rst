@@ -6,9 +6,9 @@ Pointer Programs Lab
 
    + You can copy it locally, or work with it in-place
 
-- Define variable :code:`SPARKLIB_OBJECT_DIR` to have value :code:`obj` in the environment
+- Define variable :code:`SPARKLIB_OBJECT_DIR` to have value :code:`\$PWD/obj` in the environment
 
-  - For example with bash/zsh: :command:`export SPARKLIB_OBJECT_DIR=obj`
+  - For example with bash/zsh: :command:`export SPARKLIB_OBJECT_DIR=\$PWD/obj`
 
 - In that directory, open the project :filename:`lab.gpr` in :toolname:`GNAT Studio`
 
