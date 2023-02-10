@@ -51,7 +51,7 @@ Introduction
        - Guarantees specific functional behavior
        - Has requirements for guarantees to hold
 
-   - :dfn:`Client` utilitizes services
+   - :dfn:`Client` utilizes services
 
        - In Ada: Calls the subprogram
        - Guarantees supplier's conditions are met
@@ -176,8 +176,7 @@ Which of the following statements is/are correct?
 
     A. Will be checked at elaboration
     B. No assertion expression, but :ada:`raise` expression exists
-    C. Exceptions as flow-control adds complexity, prefer a proactive :ada:`if` to
-    a (reactive) :ada:`exception` handler
+    C. Exceptions as flow-control adds complexity, prefer a proactive :ada:`if` to a (reactive) :ada:`exception` handler
     D. You can call :ada:`Ada.Assertions.Assert`, or even directly :ada:`raise Assertion_Error`
 
 ------
@@ -198,9 +197,7 @@ Which of the following statements is/are correct?
     A. Principles are sane, contracts extend those
     B. See previous slide example
     C. e.g. generic contracts are resolved at compile-time
-    D. A failing contract **will cause** a runtime error, only extensive
-    (dynamic / static) analysis of contracted code may provide confidence
-    in the absence of runtime errors (AoRTE)
+    D. A failing contract **will cause** a runtime error, only extensive (dynamic / static) analysis of contracted code may provide confidence in the absence of runtime errors (AoRTE)
 
 ===================================
 Preconditions and Postconditions
@@ -237,30 +234,33 @@ Subprogram-based Assertions
 Requirements / Guarantees: Quiz
 ---------------------------------
 
-* Which of the following is a **requirement** or **guarantee**?
+* Given the following piece of code
 
-.. code:: Ada
+    .. code:: Ada
 
-   procedure Turn_On
-    with Pre => Has_Power,
-         Post => Is_On;
+       procedure Start is
+       begin
+           ...
+           Turn_On;
+           ...
 
-   procedure Start is
-   begin
-       Turn_On;
-       ...
+       procedure Turn_On
+        with Pre => Has_Power,
+             Post => Is_On;
+
+* Complete the table in terms of requirements and guarantees
 
 .. list-table::
 
-   * - Type
-     - Client = :ada:`Start`
-     - Supplier = :ada:`Turn_On`
+   * - 
+     - Client (:ada:`Start`)
+     - Supplier (:ada:`Turn_On`)
 
-   * - :ada:`Has_Power`
+   * - Pre (:ada:`Has_Power`)
      - :animate:`Requirement`
      - :animate:`Guarantee`
 
-   * - :ada:`Is_On`
+   * - Post (:ada:`Is_On`)
      - :animate:`Guarantee`
      - :animate:`Requirement`
 
@@ -393,9 +393,7 @@ all values :ada:`L` and :ada:`H`
    B. :ada:`L = Positive'Last and H = Positive'Last` will cause an overflow
    C. Classic trap: the check itself may cause an overflow!
 
-   Preventing an overflow requires using the expression
-
-         :ada:`Integer'Last / L <= H`
+   Preventing an overflow requires using the expression :ada:`Integer'Last / L <= H`
 
 ====================
 Special Attributes
@@ -407,10 +405,10 @@ Evaluate An Expression on Subprogram Entry
 
 * Post-conditions may require knowledge of a subprogram's **entry context**
 
-  .. code::
+  .. code:: Ada
 
       procedure Increment (This : in out Integer)
-       with Post => ??? -- how to assert incrementation of this?
+       with Post => ??? -- how to assert incrementation of `This`?
 
 * Language-defined attribute :ada:`'Old`
 * Expression is **evaluated** at subprogram entry
@@ -460,30 +458,32 @@ Example for Attribute :ada:`'Old`
             -- look at Index position in Global after call
             = Global (Index);
 
----------------------------------------
-Conditional Evaluation of :ada:`'Old`
----------------------------------------
+------------------------------------------------
+Error on conditional Evaluation of :ada:`'Old`
+------------------------------------------------
 
-   .. code:: Ada
+* This code is **incorrect**
 
-      procedure Clear_Character (In_String : in out String;
-                                 At_Position : Positive)
-         with Post => (if Found_At in In_String'Range
-                       then In_String (Found_At)'Old = ' ');
+.. code:: Ada
 
-* Index :ada:`In_String (Found_At)` on entry
+  procedure Clear_Character (In_String : in out String;
+                             At_Position : Positive)
+     with Post => (if Found_At in In_String'Range
+                   then In_String (Found_At)'Old = ' ');
+
+* Copies :ada:`In_String (Found_At)` on entry
 
    - Will raise an exception on entry if :ada:`Found_At not in In_String'Range`
    - The postcondition's :ada:`if` check is not sufficient
 
 * Solution requires a full copy of :ada:`In_String`
 
-   .. code:: Ada
+.. code:: Ada
 
-      procedure Clear_Character (In_String : in out String;
-                                 At_Position : Positive)
-         with Post => (if Found_At in In_String'Range
-                       then In_String'Old (Found_At) = ' ');
+  procedure Clear_Character (In_String : in out String;
+                             At_Position : Positive)
+     with Post => (if Found_At in In_String'Range
+                   then In_String'Old (Found_At) = ' ');
 
 -------------------------------------------
 Postcondition Usage of Function Results
@@ -491,13 +491,13 @@ Postcondition Usage of Function Results
 
 * :ada:`function` result can be manipulated with :ada:`'Result`
 
-   .. code:: Ada
+.. code:: Ada
 
-      function Greatest_Common_Denominator (A, B : Integer)
-        return Integer with
-          Pre  =>  A > 0 and B > 0,
-          Post =>  Is_GCD (A, B,
-                           Greatest_Common_Denominator'Result);
+  function Greatest_Common_Denominator (A, B : Integer)
+    return Integer with
+      Pre  =>  A > 0 and B > 0,
+      Post =>  Is_GCD (A, B,
+                       Greatest_Common_Denominator'Result);
 
 ------
 Quiz
@@ -549,15 +549,15 @@ In Practice
 Pre/Postconditions: To Be or Not To Be
 ----------------------------------------
 
-* Preconditions are reasonable default for runtime checks
-* Postconditions return-on-investment (RoI) can be comparatively low
+* **Preconditions** are reasonable **default** for runtime checks
+* **Postconditions** advantages can be **comparatively** low
 
    - Use of :ada:`'Old` and :ada:`'Result` with (maybe deep) copy
-   - High RoI, but in static analysis contexts (Hoare triplets)
+   - Very useful in **static analysis** contexts (Hoare triplets)
 
-* When using a **trusted** library, enabling preconditions makes sense
+* For **trusted** library, enabling **preconditions only** makes sense
 
-   - Catch errors in your usage of it
+   - Catch **user's errors**
    - Library is trusted, so :ada:`Post => True` is a reasonable expectation
 
 * Typically contracts are used for **validation**
@@ -568,7 +568,7 @@ Pre/Postconditions: To Be or Not To Be
    - Consequences of violations **propagation**
    - Time and space **cost** of the contracts
 
-* Typically completed / replaced by telemetry and off-line analysis in production
+* Typically production settings favour telemetry and off-line analysis
 
 -------------------------------------
 No Secret Precondition Requirements
@@ -611,15 +611,14 @@ Postcondition Compared to Their Body
 * Specifying relevant properties will "repeat" the body
 
    - Unlike preconditions
-   - Typically simpler than the body
-   - Closer to a "re-phrasing" than a tautology
+   - Typically **simpler** than the body
+   - Closer to a **re-phrasing** than a tautology
 
-* Very good fit for problems that are both hard to solve and easy to check
+* Fit well *hard to solve and easy to check* problems
 
-   - Numerical solutions: :ada:`Calculate (Find_Root'Result, Equation) = 0`
+   - Solvers: :ada:`Solve (Find_Root'Result, Equation) = 0`
    - Search: :ada:`Can_Exit (Path_To_Exit'Result, Maze)`
-   - Cryptography: :ada:`Match (Signer_Certificate (Sign_Certificate'Result), Key.Public_Part)`
-   - Optimization: :ada:`Cost (Best_Choice'Result) = Min (for V of Possible_Choices => Cost (V))`
+   - Cryptography: :ada:`Match (Signer (Sign_Certificate'Result), Key.Public_Part)`
 
 * Bad fit for poorly-defined or self-defining programs
 
@@ -644,7 +643,6 @@ Postcondition Compared to Their Body: Example
    function Greatest_Common_Denominator (A, B : Integer)
      return Integer is
    
-
    function Is_GCD (A, B, Candidate : Integer)
        return Boolean is
      (A rem Candidate = 0 and
@@ -666,8 +664,8 @@ Contracts Code Reuse
 * Extracting them to :ada:`function` is a good idea
 
    - *Code as documentation, executable specification*
-   - Completes the interface that the client has access to
-   - Allows for code reuse
+   - Completes the **interface** that the client has access to
+   - Allows for **code reuse**
 
    .. code:: Ada
 
@@ -686,9 +684,9 @@ Contracts Code Reuse
 
    - Referencing private type components
 
-----------------------------------
-Private Part Reference Approach
-----------------------------------
+---------------------------------------
+Subprogram Contracts on Private Types
+---------------------------------------
 
 .. code:: Ada
 
@@ -715,7 +713,7 @@ Private Part Reference Approach
 Preconditions Or Explicit Checks?
 -----------------------------------
 
-* Anything that is part of the spec so should be a pre-condition
+* Any requirement from the spec should be a pre-condition
 
    - If clients need to know the body, abstraction is **broken**
 
@@ -728,7 +726,7 @@ Preconditions Or Explicit Checks?
                       Value : Content) with
         Pre  => not Full (This);
 
-* With defensive code
+* With defensive code, comments, and return values
 
    .. code:: Ada
 
@@ -743,7 +741,7 @@ Preconditions Or Explicit Checks?
 
 * But not both
 
-   - Preconditions are a **given**
+   - For the implementation, preconditions are a **guarantee**
    - A subprogram body should **never** test them
 
 ------------------
@@ -752,7 +750,7 @@ Assertion Policy
 
 * Pre/postconditions can be controled with :ada:`pragma Assertion_Policy`
 
-   .. code::
+   .. code:: Ada
       
       pragma Assertion_Policy
            (Pre => Check,
