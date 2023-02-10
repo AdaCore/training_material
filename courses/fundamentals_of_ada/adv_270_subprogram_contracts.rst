@@ -92,7 +92,8 @@ Ada Contracts
 
    pragma Assert (not Full (Stack));
    -- stack is not full
-   pragma Assert (Stack_Length = 0, Message => "stack was not empty");
+   pragma Assert (Stack_Length = 0,
+                  Message => "stack was not empty");
    -- stack is empty
 
 * Raises language-defined :ada:`Assertion_Error` exception if expression does not hold
