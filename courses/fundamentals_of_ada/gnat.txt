@@ -19,5 +19,6 @@ adv_140_access_types.rst
 190_exceptions.rst
 230_interfacing_with_c.rst
 adv_240_tasking.rst
+adv_270_subprogram_contracts.rst
 900_ada_version_comparison.rst
 920_reference_material.rst
