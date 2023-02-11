@@ -19,7 +19,7 @@ intro_160_genericity.rst
 180_polymorphism.rst
 190_exceptions.rst
 230_interfacing_with_c.rst
-adv_240_tasking.rst
+240_tasking.rst
 adv_270_subprogram_contracts.rst
 adv_275_type_contracts.rst
 spec_901_ada_2022_specific.rst
