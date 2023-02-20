@@ -1,4 +1,4 @@
-:title: Lab 5 - Records
+:title: Records - Lab
 :subtitle: The Satellite around the Earth
 
 The purpose of this exercise is to use records to store information about the celestial

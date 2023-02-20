@@ -1,4 +1,4 @@
-:title: Lab 29 - Interfaces
+:title: Interfaces - Lab
 :subtitle: The :code:`Solar_System` API is not working anymore
 
 The purpose of this exercise is to write a driver for the STM32F4

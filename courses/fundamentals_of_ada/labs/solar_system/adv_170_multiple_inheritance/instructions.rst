@@ -1,4 +1,4 @@
-:title: Lab 18 - Multiple Inheritance
+:title: Multiple Inheritance - Lab
 :subtitle: A true Object-Oriented :code:`Solar_System` 
 
 The purpose of this exercise is to rewrite the previous exercise using OOP.

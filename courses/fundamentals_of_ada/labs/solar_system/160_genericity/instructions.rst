@@ -1,4 +1,4 @@
-:title: Lab 11 - Genericity
+:title: Genericity - Lab
 :subtitle: The Generic :code:`Solar_System` 
 
 The purpose of this exercise is to make our solar system generic

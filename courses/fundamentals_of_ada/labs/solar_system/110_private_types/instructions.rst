@@ -1,4 +1,4 @@
-:title: Lab 8 - Privacy
+:title: Privacy - Lab
 :subtitle: The :code:`Solar_System` API is not working anymore
 
 The purpose of this exercise is to protect your API and make it more robust to users’
