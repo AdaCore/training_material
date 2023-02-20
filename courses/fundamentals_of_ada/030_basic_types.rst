@@ -843,6 +843,28 @@ Floating Point Type Attributes
    - Advanced machine representation of the floating-point type
    - Mantissa, strict mode
 
+---------------------------
+Numeric Types Conversion
+---------------------------
+
+* Ada's integer and real are :dfn:`numeric`
+
+    - Holding a numeric value
+
+* Special rule: they can always be converted inbetween them
+
+    - Explicitely
+    - :ada:`Real` :rightarrow: :ada:`Integer` causes **rounding**
+
+.. code:: Ada
+
+   declare
+      N : Integer := 0;
+      F : Float := 1.5;
+   begin
+      N := Integer (F); -- N = 2
+      F := Integer (N); -- F = 2.0
+
 ------
 Quiz
 ------
