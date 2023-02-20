@@ -327,7 +327,7 @@ Levels of Software Assurance
 
 * Gold level
 
-  - Builds on the Stone level
+  - Builds on the Silver level
   - Functional contracts added to **express desired properties**
 
   .. code:: ada
