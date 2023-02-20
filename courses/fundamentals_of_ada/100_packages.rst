@@ -339,6 +339,8 @@ Required Body Example
 Quiz
 ------
 
+.. include:: quiz/package_subprogram_completion/quiz.rst
+
 .. code:: Ada
 
    package P is
