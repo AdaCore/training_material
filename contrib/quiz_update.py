@@ -38,7 +38,7 @@ if __name__ == "__main__":
     if (args.main_directory / args.quiz_file_name).is_file():
         quizzes = [args.main_directory / args.quiz_file_name]
     else:
-        quizzes = list(sorted(args.main_directory.glob(f"*/{args.quiz_file_name}")))
+        quizzes = list(sorted(args.main_directory.glob(f"**/{args.quiz_file_name}")))
     assert len(quizzes) != 0
 
     for f in quizzes:
