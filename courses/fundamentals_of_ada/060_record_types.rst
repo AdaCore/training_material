@@ -228,6 +228,33 @@ Assignment Examples
       Phase1.Real := Phase2.Real;
    end;
 
+----------------------
+Constant and Limited
+----------------------
+
+* Both un-assignable
+* Constants can **never** change
+
+    - May be inlined
+    - Carried by the **object**
+
+* Limited cannot be **copied** or **compared**
+
+    - May be modified component-wise
+    - Carried by the **type**
+
+.. code:: Ada
+
+    type Lim is limited record
+        A, B : Integer;
+    end record;
+
+    L1, L2 : Lim := (1, 2); -- Initial value OK
+
+    L1 := L2; -- Illegal
+    if L1 /= L2 then -- Illegal
+    [...]
+
 ============
 Aggregates
 ============
