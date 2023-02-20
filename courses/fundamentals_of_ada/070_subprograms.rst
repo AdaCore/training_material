@@ -381,14 +381,20 @@ Actual Parameters Respect Constraints
      Foo (Q); -- runtime error if Q <= 0
      Foo (P);
 
------------------
-Parameter Modes
------------------
+---------------------------
+Parameter and Return Mode
+---------------------------
 
 * Mode :ada:`in`
 
    - Actual parameter is :ada:`constant`
-   - Can have default, used when **no value** is provided
+   - Can have **default**, used when **no value** is provided
+
+    .. code:: Ada
+
+       procedure P (N : in Integer := 1; M : in Positive);
+       [...]
+       P (M => 2);
 
 * Mode :ada:`out`
 
