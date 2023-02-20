@@ -858,7 +858,7 @@ Numeric Types Conversion
 * Special rule: they can always be converted inbetween them
 
     - Explicitely
-    - :ada:`Real` :rightarrow: :ada:`Integer` causes **rounding**
+    - :ada:`Real` |rightarrow| :ada:`Integer` causes **rounding**
 
 .. code:: Ada
 
