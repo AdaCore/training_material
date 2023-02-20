@@ -13,7 +13,7 @@ Which record definition is legal?
 A. ``Component_1 : array (1 .. 3) of Boolean``
 B. :answermono:`Component_2, Component_3 : Integer`
 C. ``Component_1 : Record_T``
-D. ``Component_1 : constant Integer = 123``
+D. ``Component_1 : constant Integer := 123``
 
 .. container:: animate
 
