@@ -21,6 +21,10 @@ Overloading
 .. |forall| replace:: :math:`\forall`
 .. |exists| replace:: :math:`\exists`
 .. |equivalent| replace:: :math:`\iff`
+.. |le| replace:: :math:`\le`
+.. |ge| replace:: :math:`\ge`
+.. |lt| replace:: :math:`<`
+.. |gt| replace:: :math:`>`
 
 ..
     Miscellaneous symbols
