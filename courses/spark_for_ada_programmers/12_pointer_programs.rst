@@ -62,7 +62,7 @@ Pointers and Aliasing
 
 * Rust programming language popularized :dfn:`ownership`
 
-  - Only one pointer (the *owner*) at anytime has read-write access
+  - Only one pointer (the *owner*) at any time has read-write access
   - Assigning a pointer transfers its ownership
 
 * Work on ownership in SPARK started in 2017
@@ -248,7 +248,7 @@ Access to Constant Data
 
 * Also applies to constants and input parameters of composite types containing pointers
 
-  - Different from input and constants of access-to-variable type
+  - Different from constants and input parameters of access-to-variable type
 
 * Aliasing is allowed
 
@@ -282,7 +282,7 @@ Attributes :ada:`Old` and :ada:`Loop_Entry`
   .. code:: Ada
 
      function Copy (X : Ptr) return Ptr
-       with Post => Copy'Result.all = Ptr.all;
+       with Post => Copy'Result.all = X.all;
 
      procedure P (X : in out Ptr)
        with Post => Property (Copy (X)'Old);
@@ -414,7 +414,7 @@ Predicted Values
      pragma Loop_Invariant
        (if All_List_Zero (At_End (B))
         then All_List_Zero (At_End (L)));
-        
+
 * Invariant proved using what is known now about the value at end
 
   - There is no look ahead

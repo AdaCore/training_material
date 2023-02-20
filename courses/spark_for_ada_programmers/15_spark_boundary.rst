@@ -139,15 +139,23 @@ Volatility Properties
 Volatility Properties - Examples
 ----------------------------------
 
-* A sensor (program input) has aspect :ada:`Async_Writers => True`
+* A sensor (program input) has aspect
 
-* An actuator (program output) has aspect :ada:`Async_Readers => True`
+  - :ada:`Async_Writers => True`
 
-* A machine register (single data) has :ada:`Effective_Reads => False` and
-  :ada:`Effective_Writes => False`
+* An actuator (program output) has aspect
 
-* A serial port (stream of data) has :ada:`Effective_Reads => True` and
-  :ada:`Effective_Writes => True`
+  - :ada:`Async_Readers => True`
+
+* A machine register (single data) has aspects
+
+  - :ada:`Effective_Reads => False`
+  - :ada:`Effective_Writes => False`
+
+* A serial port (stream of data) has aspects
+
+  - :ada:`Effective_Reads => True`
+  - :ada:`Effective_Writes => True`
 
 --------------------
 Volatile Functions
