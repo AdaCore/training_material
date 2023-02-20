@@ -427,9 +427,9 @@ Classical Loop Invariants
   - See section *7.9.2 Loop Examples*
   - Loops on arrays or formal containers
 
------------------------
-Non-terminating Loops
------------------------
+-----------------------------
+Quiz: Non-terminating Loops
+-----------------------------
 
 What's wrong with the following code?
 
