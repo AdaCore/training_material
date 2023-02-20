@@ -1,4 +1,4 @@
-:title: Lab 9 - Exceptions
+:title: Exceptions - Lab
 :subtitle: :code:`Solar_System` API collides!
 
 The purpose of this exercise is to use exceptions, for some original bodies physics.

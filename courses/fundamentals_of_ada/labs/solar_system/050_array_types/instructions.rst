@@ -1,4 +1,4 @@
-:title: Lab 4 - Array Types
+:title: Array Types - Lab
 :subtitle: The Sun, the Earth, the Moon and one Satellite
 
 The purpose of this exercise is to animate planets on the screen, one planet turning

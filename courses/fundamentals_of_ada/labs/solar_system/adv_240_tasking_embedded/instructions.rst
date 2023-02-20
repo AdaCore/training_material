@@ -1,4 +1,4 @@
-:title: Lab 22 - Tasking with interrupts
+:title: Tasking with interrupts - Lab
 :subtitle: The :code:`Solar_System` API is not working anymore
 
 The purpose of this exercise is to implement a handler on the button’s interrupt

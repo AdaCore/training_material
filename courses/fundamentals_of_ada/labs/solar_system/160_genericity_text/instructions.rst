@@ -1,4 +1,4 @@
-:title: Lab 11 - Genericity
+:title: Genericity - Lab
 :subtitle: Introduction to generics
 
 The purpose of this exercise is to genericize some existing algorithms.

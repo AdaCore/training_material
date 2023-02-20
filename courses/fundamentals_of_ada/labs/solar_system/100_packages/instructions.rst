@@ -1,4 +1,4 @@
-:title: Lab 7 - Packages
+:title: Packages - Lab
 :subtitle: The :code:`Solar_System` API
 
 The purpose of this exercise is to factor out the code for stars into a package.

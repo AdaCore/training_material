@@ -1,4 +1,4 @@
-:title: Lab 10 - Access
+:title: Access - Lab
 :subtitle: The :code:`Solar_System` API is still not working
 
 The purpose of this exercise is to use :ada:`Access` types to avoid passing

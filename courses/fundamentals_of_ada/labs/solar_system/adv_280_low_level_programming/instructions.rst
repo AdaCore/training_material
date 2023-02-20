@@ -1,4 +1,4 @@
-:title: Lab 6 - Subprograms
+:title: Subprograms - Lab
 :subtitle: A Simple Comet
 
 The purpose of this exercise is to animate the planets using subprograms.

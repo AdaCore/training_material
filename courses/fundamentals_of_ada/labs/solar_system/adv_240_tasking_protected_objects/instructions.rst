@@ -1,4 +1,4 @@
-:title: Lab 22 - Tasking with Ravenscar
+:title: Tasking with Ravenscar - Lab
 :subtitle: The :code:`Solar_System` API with tasking
 
 The purpose of this exercise is to use Ravenscar tasks instead of one
