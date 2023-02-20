@@ -17,7 +17,7 @@ procedure Main is
       -- No recursive definition
       --$ end cut
       --$ begin cut
-      Component_1 : constant Integer = 123;
+      Component_1 : constant Integer := 123;
       -- No constant component
       --$ end cut
    --$ end question
