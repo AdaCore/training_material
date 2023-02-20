@@ -458,7 +458,10 @@ Introduction to Accessibility Checks (1/2)
                -- Nested subprogram, enclosing + 1, here 2
                O2 : aliased Integer;
 
-* Access **types** can only access objects that are at **same or lower depth**
+* Objects can be access by access **types** that are at **same depth or deeper**
+
+    - An **access scope** must be |le| the object scope
+
 * :ada:`type Acc1` (depth 1) can access :ada:`O0` (depth 0) but not `O2` (depth 2)
 * The compiler checks it statically
 
