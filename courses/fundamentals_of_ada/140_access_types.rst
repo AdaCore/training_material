@@ -458,7 +458,7 @@ Introduction to Accessibility Checks (1/2)
                -- Nested subprogram, enclosing + 1, here 2
                O2 : aliased Integer;
 
-* Objects can be access by access **types** that are at **same depth or deeper**
+* Objects can be referenced by access **types** that are at **same depth or deeper**
 
     - An **access scope** must be |le| the object scope
 
