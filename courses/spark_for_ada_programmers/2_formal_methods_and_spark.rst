@@ -104,7 +104,7 @@ Formal Methods
   - Are applicable to **existing** development **artifacts** (models, code, etc.)
   - Are automated and integrated in **existing processes**
   - Provide value for **certification**
-  - Explicitely **encouraged** by some standards
+  - Explicitly **encouraged** by some standards
 
      + Railway (EN 50128)
      + Avionics (DO-178C + DO-333 Formal Methods Supplement)

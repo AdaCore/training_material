@@ -126,11 +126,11 @@ Eg. "Most optional warnings" `-gnatwa` is first, then "Failing assertions" `-gna
 
 Each warning can be either unselected, or a bar or a checkmark
 
-The bar indicates that the warning is implicitely checked by CodePeer.
+The bar indicates that the warning is implicitly checked by CodePeer.
 
 .. image:: codepeer/cruise_analysis_warnings_bar.png
 
-The checkmark indicates that the warning is explicitely checked by CodePeer.
+The checkmark indicates that the warning is explicitly checked by CodePeer.
 
 .. image:: codepeer/cruise_analysis_warnings_check.png
 
