@@ -857,7 +857,7 @@ Numeric Types Conversion
 
 * Special rule: can always convert between numeric types
 
-    - Explicitely
+    - Explicitly
     - :ada:`Real` |rightarrow| :ada:`Integer` causes **rounding**
 
 .. code:: Ada
@@ -920,8 +920,8 @@ Miscellaneous
 * Functional syntax
 
    - Function named :ada:`Target_Type`
-   - Implicitely defined
-   - **Must** be explicitely called
+   - Implicitly defined
+   - **Must** be explicitly called
 
 .. code:: Ada
 
