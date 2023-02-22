@@ -840,7 +840,7 @@ Floating Point Type Attributes
    - :ada:`Real'Rounding (X)`
 
       + Integral value nearest to :ada:`X`
-      + *Note* :ada:`Float'Rounding (0.5) = 1`
+      + *Note* :ada:`Float'Rounding (0.5) = 1` and :ada:`Float'Rounding (-0.5) = -1`
 
 * Model-oriented attributes
 
@@ -855,7 +855,7 @@ Numeric Types Conversion
 
     - Holding a numeric value
 
-* Special rule: they can always be converted inbetween them
+* Special rule: can always convert between numeric types
 
     - Explicitely
     - :ada:`Real` |rightarrow| :ada:`Integer` causes **rounding**
