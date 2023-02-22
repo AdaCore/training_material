@@ -385,9 +385,9 @@ Actual Parameters Respect Constraints
      Foo (Q); -- runtime error if Q <= 0
      Foo (P);
 
----------------------------
-Parameter and Return Mode
----------------------------
+----------------------------
+Parameter Modes and Return
+----------------------------
 
 * Mode :ada:`in`
 
