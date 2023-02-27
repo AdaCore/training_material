@@ -556,10 +556,10 @@ Array Attributes
 
 * Return info about array index bounds
 
-   :T'Length: number of array components
-   :T'First: value of lower index bound
-   :T'Last: value of upper index bound
-   :T'Range: another way of saying :ada:`T'First` .. :ada:`T'Last`
+   :O'Length: number of array components
+   :O'First: value of lower index bound
+   :O'Last: value of upper index bound
+   :O'Range: another way of saying :ada:`T'First` .. :ada:`T'Last`
 
 * Meaningfully applied to constrained array types
 
