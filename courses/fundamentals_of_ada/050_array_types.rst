@@ -715,30 +715,6 @@ Extra Object-Level Operations
 
    - Portion of array
 
---------------------
-"Membership" Tests
---------------------
-
-* Constraint checking
-
-   - Range constraints
-   - Index constraints
-   - et cetera
-
-* Reserved word :ada:`in`
-
-.. code:: Ada
-
-   procedure Test is
-     type Humanity is array (1 .. N) of Age;
-     People : Humanity := Some_Initial_Value;
-     Index : Integer range People'First - 1 ..  People'Last
-       := People'First - 1;
-   begin
-     for K in People'Range loop
-     ...
-     if Index in People'Range then
-
 ----------
 Examples
 ----------
