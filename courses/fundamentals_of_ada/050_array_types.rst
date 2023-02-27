@@ -88,7 +88,7 @@ Array Type Index Constraints
 
 .. code:: Ada
 
-   type Schedule is array (Days range Mon .. Fri) of Real;
+   type Schedule is array (Days range Mon .. Fri) of Float;
    type Flags_T is array ( -10 .. 10 ) of Boolean;
    -- this may or may not be null range
    type Dynamic is array (1 .. N) of Integer;
@@ -171,10 +171,10 @@ Constrained Array Type Declarations
 
    .. code:: Ada
 
-      type Full_Week_T is array (Days) of Real;
-      type Work_Week_T is array (Days range Mon .. Fri) of Real;
-      type Weekdays is array (Mon .. Fri) of Real;
-      type Workdays is array (Weekdays'Range) of Real;
+      type Full_Week_T is array (Days) of Float;
+      type Work_Week_T is array (Days range Mon .. Fri) of Float;
+      type Weekdays is array (Mon .. Fri) of Float;
+      type Workdays is array (Weekdays'Range) of Float;
 
 ----------------------------------
 Multiple-Dimensioned Array Types
@@ -379,7 +379,7 @@ Supplying Index Constraints for Objects
 
    .. code:: Ada
 
-      type Schedule is array (Days range <>) of Real;
+      type Schedule is array (Days range <>) of Float;
       Work : Schedule (Mon .. Fri);
       All_Days : Schedule (Days);
 
@@ -1123,7 +1123,7 @@ Aggregates Are True Literal Values
 
 .. code:: Ada
 
-   type Schedule is array (Mon .. Fri) of Real;
+   type Schedule is array (Mon .. Fri) of Float;
    Work : Schedule;
    Normal : constant Schedule := (8.0, 8.0, 8.0, 8.0, 8.0);
    ...
@@ -1171,7 +1171,7 @@ Aggregate Consistency Rules
 
 .. code:: Ada
 
-   type Schedule is array (Days) of Real;
+   type Schedule is array (Days) of Float;
    Work : Schedule;
    Normal : constant Schedule := (8.0, 8.0, 8.0, 8.0, 8.0,
                                   others => 0.0);
@@ -1186,7 +1186,7 @@ Nested Aggregates
 .. code:: Ada
 
    type Matrix is array (Positive range <>
-                         Positive range <>) of Real;
+                         Positive range <>) of Float;
    Mat_4x2 : Matrix (1..4, 1..2) := (1 =>  (2.5, 3.0),
                                      2 =>  (1.5, 0.0),
                                      3 =>  (2.1, 0.0),
@@ -1262,7 +1262,7 @@ Named Format Aggregate Rules
 
 .. code:: Ada
 
-   type List is array (Integer range <>) of Real;
+   type List is array (Integer range <>) of Float;
    Ages : List (1 .. 10) := (1 .. 3 => X, 4 .. 10 => Y);
    -- illegal: 3 appears twice
    Overlap : List (1 .. 10) := (1 .. 4 => X, 3 .. 10 => Y);
