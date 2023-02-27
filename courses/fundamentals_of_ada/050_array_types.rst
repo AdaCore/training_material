@@ -1185,7 +1185,7 @@ Nested Aggregates
 
 .. code:: Ada
 
-   type Matrix is array (Positive range <>
+   type Matrix is array (Positive range <>,
                          Positive range <>) of Float;
    Mat_4x2 : Matrix (1..4, 1..2) := (1 =>  (2.5, 3.0),
                                      2 =>  (1.5, 0.0),
