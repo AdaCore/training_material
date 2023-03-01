@@ -17,7 +17,8 @@ jobs:
         fail-fast: false
         matrix:
             source: [fundamentals_of_ada,
-                     fundamentals_of_ada/gnat.txt]
+                     fundamentals_of_ada/gnat.txt,
+                     gnat_project_facility/standard_course.txt]
 
     steps:
       - uses: actions/checkout@v3
