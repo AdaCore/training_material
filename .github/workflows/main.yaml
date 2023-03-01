@@ -18,7 +18,8 @@ jobs:
         matrix:
             source: [fundamentals_of_ada,
                      fundamentals_of_ada/gnat.txt,
-                     gnat_project_facility/standard_course.txt]
+                     gnat_project_facility/standard_course.txt,
+                     static_analysis_via_compiler]
 
     steps:
       - uses: actions/checkout@v3
