@@ -317,9 +317,9 @@ Controlling Warnings With A Single Switch
   + Likely generates many warnings you'll end up ignoring
   + But you might want some of them, individually
 
----------------------------------------------------
-Highly Optional Warnings Enabled By -gnatw.e
----------------------------------------------------
+----------------------------------------------
+Highly Optional Warnings :command:`-gnatw.e`
+----------------------------------------------
 
 + Implicit dereferencing (missing optional :ada:`.all`)
 + Activate tagging (warning messages tagged with certain strings)
@@ -516,6 +516,40 @@ GNAT Style Enforcement Switches
 
 + :command:`-gnatyN` suppresses all style warnings
 + See *GNAT User's Guide* section 3.2.5 for all the options available
+
+------------
+GNAT Modes
+------------
+
++ Internal GNAT implementation mode :command:`-gnatg` |rightarrow| :command:`-gnatyg -gnatw.ge`
++ GNAT-Style mode :command:`-gnatyg` |rightarrow| :command:`-gnatyydISuxz`
+
+  + ``y`` All standard check options
+  + ``d`` No DOS line-terminators
+  + ``I`` No **explicit** :ada:`in` keyword
+  + ``S`` :ada:`then` / :ada:`else` statements on **different** line
+  + ``u`` No unnecessary blank lines
+  + ``x`` No extra parentheses in conditionals
+  + ``z`` No extra parentheses in operations
+
++ GNAT source warnings :command:`-gnatw.g` (next slide)
++ Activate every optional warning :command:`-gnatw.e`
+
+------------------------------------------
+GNAT Source Warnings :command:`-gnatw.g`
+------------------------------------------
+
++ *GNAT Source warnings* meaning may evolve and switches may change
++ As of now, :command:`-gnatw.g` |rightarrow| :command:`-gnatwAao.q.s.CI.V.X.Z`
+
+    + ``Aao`` Reset warnings to :command:`-gnatwa`
+    + ``.q`` Questionable / inneficient layout of record type
+    + ``.s`` Overriden size clause (sizes mismatch)
+    + ``.C`` No warning for incomplete component representation clause
+    + ``I`` No warning on :ada:`with` of internal GNAT package
+    + ``.V`` No info message on non-default bit-order
+    + ``.X`` No warning for ``Restriction (No_Exception_Propagation)``
+    + ``.Z`` No warning for ``'Size mod 'Alignment /= 0``
 
 --------------------------------
 Layout and Presentation Checks
