@@ -20,5 +20,7 @@
 230_interfacing_with_c.rst
 240_tasking.rst
 spec_901_ada_2022_specific.rst
+adv_270_subprogram_contracts.rst
+adv_275_type_contracts.rst
 900_ada_version_comparison.rst
 920_reference_material.rst
