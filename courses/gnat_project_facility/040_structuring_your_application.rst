@@ -114,6 +114,30 @@ Project Import Notation
        ...
      end MyApp;
 
+-----------------------
+GPRBuild search paths
+-----------------------
+
+GPR with **relative** paths are searched
+
+- From the current project directory
+- From the environment variables
+
+    * Path to a file listing directory paths
+
+        + ``GPR_PROJECT_PATH`_FILE``
+
+    * List of directories, separated by PATH-like (``:``, ``;``) separator
+
+        + ``GPR_PROJECT_PATH``
+        + ``ADA_PROJECT_PATH`` (deprecated)
+
+- From the current toolchain's install dir
+
+    * Can be target-specific
+    * Can be runtime-specific
+    * See GPR Tool's User Guide
+
 ----------------------------
 Importing Projects Example
 ----------------------------
