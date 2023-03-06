@@ -4,12 +4,3 @@
 4_spark_tools.rst
 5_flow_analysis.rst
 6_proof.rst
-7_specification_language.rst
-8_subprogram_contracts.rst
-9_type_contracts.rst
-10_advanced_proof.rst
-11_advanced_flow_analysis.rst
-12_pointer_programs.rst
-13_autoactive_proof.rst
-14_state_abstraction.rst
-15_spark_boundary.rst
