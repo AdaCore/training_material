@@ -3,6 +3,7 @@
 040_statements.rst
 050_array_types.rst
 060_record_types.rst
+chapters/075_expression_functions.rst
 080_expressions.rst
 adv_080_quantified_expressions.rst
 spec_870_gnat_options.rst
