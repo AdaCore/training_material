@@ -14,7 +14,7 @@ A. | :answermono:`function "=" (A : T1; B : T2) return Boolean is`
 B. | ``function "=" (A : T1; B : T2) return Boolean is``
    |   ``(for all E1 of A => (for all E2 of B => E1 = E2));``
 C. | ``function "=" (A : T1; B : T2) return Boolean is``
-   |   ``(for some E1 of A => (for some E2 of B => A = B));``
+   |   ``(for some E1 of A => (for some E2 of B => E1 = E2));``
 D. | :answermono:`function "=" (A : T1; B : T2) return Boolean is`
    |   :answermono:`(for all J in A'Range => A (J) = B (J));`
 
