@@ -11,7 +11,6 @@
 095_library_units.rst
 100_packages.rst
 110_private_types.rst
-120_limited_types.rst
 130_program_structure.rst
 135_visibility.rst
 140_access_types.rst
