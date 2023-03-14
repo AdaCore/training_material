@@ -35,9 +35,9 @@ project GNAT_SDL is
       when "Windows" =>
          case SDL_Backend is
             when "gnat_sdl" =>
-               Link_Opts := ("-lglu32", "-lopengl32", "-lSDL", "-lSDL_ttf");
+               Link_Opts := ("-mwindows", "-lglu32", "-lopengl32", "-lSDL", "-lSDL_ttf");
             when "gnat_sdl2" =>
-               Link_Opts := ("-lmingw32", "-lSDL2",  "-lopengl32" , "-lglu32");
+               Link_Opts := ("-mwindows", "-lmingw32", "-lSDL2",  "-lopengl32" , "-lglu32");
          end case;
       when "Linux" =>
          case SDL_Backend is
