@@ -409,7 +409,7 @@ Simple Varying Length Array
 * Issues
 
    + Every object has same maximum length
-   + `Length` needs to be maintained by program logic
+   + ``Length`` needs to be maintained by program logic
    + Need to define "="
 
 ------------------------------------------
