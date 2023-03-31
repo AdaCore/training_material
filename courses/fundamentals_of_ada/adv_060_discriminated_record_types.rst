@@ -349,7 +349,7 @@ Quiz
 .. include:: quiz/variant_record_decl/quiz.rst
 
 =======================
-Varying Length Arrays
+Unconstrained Arrays
 =======================
 
 ----------------------------------
@@ -376,15 +376,15 @@ Varying Lengths of Array Objects
    + Index for last valid element
 
 -----------------------------
-Simple Varying Length Array
+Simple Unconstrained Array
 -----------------------------
 
 .. code:: Ada
 
    type Simple_VString is
       record
-         Length : Natural range 0..Max_Length := 0;
-         Data   : String(1..Max_Length) := (others => ' ');
+         Length : Natural range 0 .. Max_Length := 0;
+         Data   : String (1 .. Max_Length) := (others => ' ');
       end record;
 
    function "&"(Left, Right : Simple_VString) return Simple_VString is
@@ -394,8 +394,8 @@ Simple Varying Length Array
          raise Constraint_Error;
       else
          Result.Length := Left.Length + Right.Length;
-         Result.Data(1..Result.Length) :=
-            Left.Data(1..Left.Length) & Right.Data(1..Right.Length);
+         Result.Data (1 .. Result.Length) :=
+            Left.Data (1 .. Left.Length) & Right.Data (1 .. Right.Length);
          return Result;
       end if;
    end "&";
