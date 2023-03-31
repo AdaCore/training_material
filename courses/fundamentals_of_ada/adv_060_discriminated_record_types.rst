@@ -39,7 +39,7 @@ Introduction
 Variant Record Types
 ----------------------
 
-* *Variant record type* is a record type where
+* :dfn:`Variant record type` is a record type where
 
    + Different objects may have different sets of components (i.e. different variants)
    + Given object itself may be *unconstrained*
