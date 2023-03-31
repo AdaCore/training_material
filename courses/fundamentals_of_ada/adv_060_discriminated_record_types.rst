@@ -35,32 +35,26 @@ Discriminated Record Types
 Introduction
 ==============
 
-----------------------
-Variant Record Types
-----------------------
+----------------------------
+Discriminated Record Types
+----------------------------
 
-* :dfn:`Variant record type` is a record type where
+* :dfn:`Discriminated record` type
 
-   + Different objects may have different sets of components (i.e. different variants)
-   + Given object itself may be *unconstrained*
+   + Different **objects** may have **different** components
+   + All object **still** share the same type
 
-      * Different variants at different times
+* Kind of :dfn:`storage overlay`
 
-* Supported in other languages
+   + Similar to :C:`union` in C
+   + But preserves **type checking**
+   + And object size **depends** on discriminant
 
-   + Variant records in Pascal
-   + Unions in C
+* Aggregate assignment is allowed
 
-* Variant record offers a kind of storage overlaying
-
-   + Same storage might be used for one variant at one time, and then for another variant later
-   + Language issue: Ensure this does not provide loophole from type checking
-
-      * Neither Pascal nor C avoids this loophole
-
-------------------------------------
-Example Variant Record Description
-------------------------------------
+-------------------------------------------
+Example Discriminated Record Description
+-------------------------------------------
 
 * Record / structure type for a person
 
@@ -139,13 +133,13 @@ Variant Part of Record
 
       - Variant must be last part of record definition
 
-==========================
-Variant Record Semantics
-==========================
+================================
+Discriminated Record Semantics
+================================
 
--------------------------------------
-Discriminant in Ada Variant Records
--------------------------------------
+-------------------------------------------
+Discriminant in Ada Discriminated Records
+-------------------------------------------
 
 * Variant record type contains a special :dfn:`discriminant` component
 
@@ -289,13 +283,13 @@ Usage
      end loop;
    end Person_Test;
 
-===============================
-Unconstrained Variant Records
-===============================
+=====================================
+Unconstrained Discriminated Records
+=====================================
 
----------------------------------------
-Adding Flexibility to Variant Records
----------------------------------------
+---------------------------------------------
+Adding Flexibility to Discriminated Records
+---------------------------------------------
 
 * Previously, declaration of :ada:`Person` implies that object, once created, is always constrained by initial value of :ada:`Group`
 
@@ -312,9 +306,9 @@ Adding Flexibility to Variant Records
 
       * Either through copying an object or aggregate assignment
 
---------------------------------------
-Unconstrained Variant Record Example
---------------------------------------
+--------------------------------------------
+Unconstrained Discriminated Record Example
+--------------------------------------------
 
 .. code:: Ada
 
@@ -412,9 +406,9 @@ Simple Varying Length Array
    + ``Length`` needs to be maintained by program logic
    + Need to define "="
 
-------------------------------------------
-Varying Length Array via Variant Records
-------------------------------------------
+-------------------------------------------------
+Varying Length Array via Discriminated Records
+-------------------------------------------------
 
 * Discriminant can serve as bound of array component
 
@@ -430,9 +424,9 @@ Varying Length Array via Variant Records
    + With default discriminant value, objects can be copied even if lengths are different
    + With no default discriminant value, objects of different lengths cannot be copied
 
--------------------------------------------------------
-Varying Length Array via Variant Records and Subtypes
--------------------------------------------------------
+-------------------------------------------------------------
+Varying Length Array via Discriminated Records and Subtypes
+-------------------------------------------------------------
 
 * Discriminant can serve as bound of array component
 * Subtype serves as upper bound for :ada:`Size_T'Last`
@@ -463,9 +457,9 @@ Quiz
 
 .. include:: quiz/mutable_with_array/quiz.rst
 
-========================
-Variant Record Details
-========================
+==============================
+Discriminated Record Details
+==============================
 
 ------------------------------------
 Semantics of Discriminated Records
@@ -507,9 +501,9 @@ Lab
 Summary
 =========
 
-------------------------------------
-Properties of Variant Record Types
-------------------------------------
+------------------------------------------
+Properties of Discriminated Record Types
+------------------------------------------
 
 * Rules
 
