@@ -16,13 +16,9 @@ if __name__ == "__main__":
     if args.action == "find":
         # courses are all the direct subdirs that contain a course.toml file,
         # and any txt files in those dirs is a course variant
-        courses = [
-            d.parent for d in args.dir.glob("**/course.toml")
-        ]
+        courses = [d.parent for d in args.dir.glob("**/course.toml")]
 
-        courses += [
-            f for d in courses for f in d.glob("*.txt")
-        ]
+        courses += [f for d in courses for f in d.glob("*.txt")]
 
         courses_str = [str(c.relative_to(args.dir)) for c in courses]
 
