@@ -109,10 +109,10 @@ Example Defined in Ada
          end case;
       end record;
 
-* `Group` value enforces component availability
+* :ada:`Group` value enforces component availability
 
-   + Can only access `GPA` and `Year` when `Group` is `Student`
-   + Can only access `Pubs` when `Group` is `Faculty`
+   + Can only access :ada:`GPA` and :ada:`Year` when :ada:`Group` is :ada:`Student`
+   + Can only access :ada:`Pubs` when :ada:`Group` is :ada:`Faculty`
 
 ------------------------
 Variant Part of Record
@@ -153,11 +153,11 @@ Discriminant in Ada Variant Records
 
 * When a component in a variant is selected, run-time check ensures that discriminant value is consistent with the selection
 
-   + If you could store into `Pubs` but read `GPA`, type safety would not be guaranteed
+   + If you could store into :ada:`Pubs` but read :ada:`GPA`, type safety would not be guaranteed
 
 * Ada prevents this type of access
 
-   + Discriminant (`Group`) established when object of type Person created
+   + Discriminant (:ada:`Group`) established when object of type Person created
    + Run-time check verifies that component selected from variant is consistent with discriminant value
 
       * Constraint_Error raised if the check fails
@@ -170,7 +170,7 @@ Discriminant in Ada Variant Records
 Semantics
 -----------
 
-* Variable of type `Person` is constrained by value of discriminant supplied at object declaration
+* Variable of type :ada:`Person` is constrained by value of discriminant supplied at object declaration
 
    + Determines minimal storage requirements
    + Limits object to corresponding variant
@@ -297,13 +297,13 @@ Unconstrained Variant Records
 Adding Flexibility to Variant Records
 ---------------------------------------
 
-* Previously, declaration of `Person` implies that object, once created, is always constrained by initial value of `Group`
+* Previously, declaration of :ada:`Person` implies that object, once created, is always constrained by initial value of :ada:`Group`
 
-   + Assigning `Person(Faculty)` to `Person(Student)` or vice versa, raises Constraint_Error
+   + Assigning :ada:`Person (Faculty)` to :ada:`Person (Student)` or vice versa, raises :ada:`Constraint_Error`
 
 * Additional flexibility is sometimes desired
 
-   + Allow declaration of unconstrained `Person`, to which either `Person(Faculty)` or `Person(Student)` can be assigned
+   + Allow declaration of unconstrained :ada:`Person`, to which either :ada:`Person (Faculty)` or :ada:`Person (Student)` can be assigned
    + To do this, *declare discriminant with default initialization*
 
 * Type safety is not compromised
