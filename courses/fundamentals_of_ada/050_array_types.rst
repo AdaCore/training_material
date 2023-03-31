@@ -123,19 +123,22 @@ Kinds of Array Types
 * :dfn:`Constrained` Array Types
 
    - Bounds specified by type declaration
-   - All objects of the type have the same bounds
+   - **All** objects of the type have the same bounds
 
 * :dfn:`Unconstrained` Array Types
 
-   - Bounds not specified by type declaration
+   - Bounds not constrained by type declaration
+   - Objects share the type, but not the bounds
    - More flexible
-   - Allows having objects of the same type but different bounds
 
    .. code:: Ada
 
+      type Unconstrained is array (Positive range <>)
+        of Integer;
+
+      U1 : Unconstrained (1 .. 10);
       S1 : String (1 .. 50);
       S2 : String (35 .. 95);
-      S3 : String (1 .. 1024);
 
 =========================
 Constrained Array Types
