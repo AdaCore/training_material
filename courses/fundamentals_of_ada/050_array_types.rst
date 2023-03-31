@@ -541,6 +541,73 @@ Quiz
    C. OK, same type and size
    D. OK, same type and size
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type My_Array is array (Boolean range <>) of Boolean;
+
+    O : My_Array (False .. False) := (others => True);
+
+What is the value of :ada:`O (True)`?
+
+A. :ada:`False`
+B. :ada:`True`
+C. None: Compilation error
+D. :answer:`None: Runtime error`
+
+.. container:: animate
+
+    :ada:`True` is not a valid index for :ada:`O`.
+
+    NB: GNAT will emit a warning by default.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type My_Array is array (Integer range <>) of Boolean;
+
+    O : My_Array (0 .. -1) := (others => True);
+
+What is the value of :ada:`O'Length`?
+
+A. 1
+B. :answer:`0`
+C. None: Compilation error
+D. None: Runtime error
+
+.. container:: animate
+
+    Valid index for empty array, and :ada:`others` initialization allowed for empty range.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type I_0 is range 0 .. 0;
+
+    type My_Array is array (I_0 range <>) of Boolean;
+
+How to declare an **empty** object of type :ada:`My_Array` ?
+
+A. ``O : My_Array (null);``
+B. ``O : My_Array (I_0'First .. I_0'First);``
+C. :answermono:`O : My_Array (I_0'First + 1 .. I_0'First);`
+D. ``O : My_Array (I_0'Last .. I_0'First);``
+
+.. container:: animate
+
+    For initializing empty arrays, index values out of the range are allowed.
+
+    NB: for enumerated index type, this may be impossible.
+
 ============
 Attributes
 ============
