@@ -9,30 +9,31 @@ on:
     branches: [ master ]
 
 jobs:
+  List-Courses:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Black magic to generate the list of courses from the python script to JSON
+      -
+        id: set-courses
+        run: echo "::set-output name=courses::$(python3 contrib/ci/course.py find courses/ --json)"
+
+    outputs:
+        matrix: ${{steps.set-courses.outputs.courses}}
+
   Slides:
+    needs: List-Courses
+
     runs-on: ubuntu-latest
     container: public.ecr.aws/w0s6m4g9/pandoc-beamer:latest
 
     strategy:
         fail-fast: false
         matrix:
-            source: [fundamentals_of_ada,
-                     fundamentals_of_ada/standard_course.txt,
-                     fundamentals_of_ada/advanced.txt,
-                     fundamentals_of_ada/libs_containers_strings_and_dynamic_memory.txt,
-                     fundamentals_of_ada/opat.txt,
-                     fundamentals_of_ada/labs,
-                     spark_for_ada_programmers,
-                     spark_for_ada_programmers/course.txt,
-                     advanced_exception_analysis,
-                     gnatcheck,
-                     gnat_studio,
-                     gnat_project_facility,
-                     gnat_project_facility/standard_course.txt,
-                     gnattest,
-                     codepeer,
-                     gnatcoverage,
-                     static_analysis_via_compiler]
+            # Import list of courses from the List-Courses job
+            source: ${{fromJson(needs.List-Courses.outputs.matrix)}}
 
     steps:
       - uses: actions/checkout@v3
