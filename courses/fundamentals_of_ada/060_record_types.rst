@@ -801,6 +801,89 @@ Mutable Discriminated Record
   S := (Group => Student, Gpa => 0.0);
   S := (Group => Faculty, Pubs => 10);
 
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type T (Sign : Integer) is record
+        case Sign is
+        when Integer'First .. -1 =>
+            I : Integer;
+            B : Boolean;
+        when others =>
+            N : Natural;
+        end case;
+    end record;
+
+    O : T (1);
+
+Which component does :ada:`O` contain?
+
+A. :ada:`O.I, O.B`
+B. :answermono:`O.N`
+C. None: Compilation error
+D. None: Runtime error
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type T (Floating : Integer) is record
+        case Floating is
+            when 0 =>
+                I : Integer;
+            when 1 =>
+                F : Float;
+        end case;
+    end record;
+
+    O : T (1);
+
+Which component does :ada:`O` contain?
+
+A. :ada:`O.F, O.I`
+B. :ada:`O.F`
+C. :answer:`None: Compilation error`
+D. None: Runtime error
+
+.. container:: animate
+
+    The variant :ada:`case` must cover all the possible values of :ada:`Integer`.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+    type T (Floating : Boolean) is record
+        case Floating is
+            when False =>
+                I : Integer;
+            when True =>
+                F : Float;
+        end case;
+        I2 : Integer;
+    end record;
+
+    O : T (True);
+
+Which component does :ada:`O` contain?
+
+A. :ada:`O.F, O.I2`
+B. :ada:`O.F`
+C. :answer:`None: Compilation error`
+D. None: Runtime error
+
+.. container:: animate
+
+    The variant part cannot be followed by a component declaration (:ada:`i2 : integer` there)
+
+
 ========
 Lab
 ========
