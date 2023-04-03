@@ -720,7 +720,7 @@ Discriminated Record Types
 
    + Similar to :C:`union` in C
    + But preserves **type checking**
-   + And object size **depends** on discriminant
+   + And object size **is related to** discriminant
 
 * Aggregate assignment is allowed
 
