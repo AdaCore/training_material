@@ -113,7 +113,7 @@ Identifiers
 
    - 8, 16, 32 bit-wide characters
 
-* Case **not significant**
+* Case not significant
 
    - `SpacePerson` |equivalent| `SPACEPERSON`
    - but **different** from `Space_Person`
