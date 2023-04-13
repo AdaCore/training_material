@@ -189,7 +189,7 @@ jobs:
           install_dir: ./cached_gnat
 
       - name: Setup Python
-        run: python3 -m pip install pytest git+https://gitlab.com/leogermond/epycs.git
+        run: python3 -m pip install pytest epycs
 
       - name: Run PyTest
         run: pytest --ignore=cached_gnat
