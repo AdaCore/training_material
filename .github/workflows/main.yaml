@@ -124,6 +124,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
       - uses: actions/cache@v3
         with:
           path: ./cached_gnat
@@ -154,7 +156,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
-
+        with:
+          python-version: '3.10'
       - name: Install black
         run: python3 -m pip install black
 
@@ -170,6 +173,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
       - uses: actions/cache@v3
         with:
           path: ./cached_gnat
