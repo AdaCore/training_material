@@ -130,7 +130,10 @@ def parse_rst_list_file(dirname, f):
     """
     Parse a file containing a list of RST entries, empty lines, or comments.
 
-    /!\ Use a file object
+    dirname : str - a path to the target directory
+    f : [str] - a list of lines, which make up the rst-list file content
+
+    Returns [str] - the list of resolved files
 
     Each RST entry is a file path, starting from the given dirname
 
