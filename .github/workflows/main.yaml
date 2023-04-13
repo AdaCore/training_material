@@ -106,7 +106,7 @@ jobs:
         run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/mini_projects/cinema && unzip out/cinema/cinema.zip -d out/cinema/pkg
 
       - name: Mini Cinema - Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Mini Project - Mini Cinema
           path: out/cinema/pkg/*
