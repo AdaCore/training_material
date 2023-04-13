@@ -18,7 +18,9 @@ jobs:
       # Black magic to generate the list of courses from the python script to JSON
       -
         id: set-courses
-        run: echo "::set-output name=courses::$(python3 contrib/ci/course.py find courses/ --json)"
+        run: |
+          courses="$(python3 contrib/ci/course.py find courses/ --json)"
+          echo "courses=$courses" >> $GITHUB_OUTPUT
 
     outputs:
         matrix: ${{steps.set-courses.outputs.courses}}
