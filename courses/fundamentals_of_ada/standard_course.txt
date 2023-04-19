@@ -18,7 +18,7 @@
 intro_160_genericity.rst
 170_tagged_derivation.rst
 190_exceptions.rst
-230_interfacing_with_c.rst
-240_tasking.rst
+adv_245_ravenscar_tasking.rst
+intro_270_contracts.rst
 900_ada_version_comparison.rst
 920_reference_material.rst
