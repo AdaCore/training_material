@@ -405,7 +405,7 @@ def animate(classes, contents):
         requested = classes[2]
         if len(requested) > 0:
             if requested[-1] == "-":
-                requested = requested[0:-2]
+                requested = requested[:-1]
             else:
                 dash = ""
             slide_number = int(requested)
