@@ -1,3 +1,40 @@
+*************************
+Lab - CodePeer Messages
+*************************
+
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+.. |le| replace:: :math:`\le`
+.. |ge| replace:: :math:`\ge`
+.. |lt| replace:: :math:`<`
+.. |gt| replace:: :math:`>`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
+
+===========
+Lab Setup
+===========
+
 --------------------
 Using CodePeer Lab
 --------------------
@@ -8,7 +45,7 @@ Using CodePeer Lab
 
 * In this lab we will examine some sample code for the messages generated during analysis
 
-* Use :toolname:`GNAT Studio` to open the :filename:`default.gpr` project in the :filename:`100_codepeer.lab` folder
+* Use :toolname:`GNAT Studio` to open the :filename:`default.gpr` project in the :filename:`110_lab_codepeer_messages` folder
 
 ------------------
 Perform Analysis
@@ -58,10 +95,13 @@ Filtering Analysis
 
 * Undo these changes to recover medium messages only.
 
----------------------------------------
-Understanding Messages - Checks (1/4)
----------------------------------------
+========================
+Understanding Messages
+========================
 
+---------------------
+Message Information
+---------------------
 
 .. container:: columns
 
@@ -95,9 +135,9 @@ Understanding Messages - Checks (1/4)
 
           * More detail if available
 
----------------------------------------
-Understanding Messages - Checks (2/4)
----------------------------------------
+--------------------
+Analyzing Messages
+--------------------
 
 * Expression at line 26 is accessing at the first index in local variable :ada:`Word`
 
@@ -111,9 +151,9 @@ Understanding Messages - Checks (2/4)
   .. image:: codepeer/tutorial_next_word_annotations.png
     :width: 40%
 
----------------------------------------
-Understanding Messages - Checks (3/4)
----------------------------------------
+--------------------------
+Manipulating Annotations
+--------------------------
 
 * Hide these annotations by clicking on the right mouse button and selecting :menu:`CodePeer -> Hide annotations`.
 
@@ -122,9 +162,9 @@ Understanding Messages - Checks (3/4)
 
 * Re-display these annotations by clicking on the right mouse button and selecting :menu:`CodePeer -> Show annotations`.
 
----------------------------------------
-Understanding Messages - Checks (4/4)
----------------------------------------
+---------------------------
+Understanding Annotations
+---------------------------
 
 * In postconditions, you can see that CodePeer computed
 
@@ -147,9 +187,13 @@ Understanding Messages - Checks (4/4)
 * Re-run CodePeer by selecting the menu :menu:`CodePeer -> Analyze All`.
 * Notice that the error on :file:`tokens.adb` has disappeared.
 
------------------------------------------
-Understanding Messages - Warnings (1/2)
------------------------------------------
+==========
+Warnings
+==========
+
+----------------------------
+Warnings are Coding Issues
+----------------------------
 
 * Warnings refer to potential logic errors:
 
@@ -158,11 +202,11 @@ Understanding Messages - Warnings (1/2)
   * Unused assignment
   * Etc.
 
-* Same ranking scheme as checks
+* (Same ranking scheme as checks)
 
------------------------------------------
-Understanding Messages - Warnings (2/2)
------------------------------------------
+---------------------
+Examining a Warning
+---------------------
 
 * In the locations view, click on the message reported at line 41 of :file:`stack.adb`. 
 
@@ -187,9 +231,13 @@ Understanding Messages - Warnings (2/2)
 * Correct the faulty line
 * Re-run CodePeer.
 
------------------------------------------------
-Understanding Messages - False Positive (1/2)
------------------------------------------------
+=================
+False Positives
+=================
+
+---------------------------------
+When a Problem is Not a Problem
+---------------------------------
 
 * Some messages are not actual errors
 
@@ -209,9 +257,9 @@ Understanding Messages - False Positive (1/2)
 
     * This can't happen the way the code is written
 
------------------------------------------------
-Understanding Messages - False Positive (2/2)
------------------------------------------------
+--------------------------------------
+Marking an Issue as a False Positive
+--------------------------------------
 
 * You can choose to ignore a false positive or mark it as reviewed
 
@@ -227,9 +275,13 @@ Understanding Messages - False Positive (2/2)
 
 * Change its *New status* to **Not a bug**.
 
---------------------------------------
-Understanding Basic Annotations (1/2)
---------------------------------------
+=============
+Annotations
+=============
+
+-------------------------
+Basic Annotations (1/2)
+-------------------------
 
 * Open file :file:`stack.adb` and look at the annotations for procedure :ada:`Push`.
 
@@ -251,9 +303,9 @@ Understanding Basic Annotations (1/2)
   * Some come from checks inside the subprogram
   * Others come from called subprograms (directly or indirectly)
 
---------------------------------------
-Understanding Basic Annotations (2/2)
---------------------------------------
+-------------------------
+Basic Annotations (2/2)
+-------------------------
 
 .. code:: ada
 
@@ -268,9 +320,9 @@ Understanding Basic Annotations (2/2)
   * :ada:`Last` will be in the range 1 .. 200
   * (See next section for an explanation of the last postcondition)
 
------------------------------------------
-Understanding Complex Annotations (1/2)
------------------------------------------
+---------------------------
+Complex Annotations (1/2)
+---------------------------
 
 .. container:: latex_environment tiny
 
@@ -297,9 +349,9 @@ Understanding Complex Annotations (1/2)
     * If :ada:`T.Kind = Op` then :ada:`Last` will be 2..200
     * Constraint on :ada:`Last` only occurs if :ada:`T.Kind = Op`
 
------------------------------------------
-Understanding Complex Annotations (2/2)
------------------------------------------
+---------------------------
+Complex Annotations (2/2)
+---------------------------
 
 .. container:: latex_environment tiny
 

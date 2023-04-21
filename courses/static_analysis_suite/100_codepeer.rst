@@ -363,19 +363,3 @@ Running :toolname:`CodePeer` regularly
 
 + :command:`--cutoff` overrides it for a **single** run
 + Compare between two arbitrary runs with :command:`--cutoff` and :command:`--current`
-
-=====
-Lab
-=====
-
-.. include:: labs/100_codepeer.lab.rst
-
-=========
-Summary
-=========
-
---------
-Review
---------
-
-+ TBD

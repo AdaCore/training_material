@@ -1,2 +1,8 @@
 010_overview.rst
 100_codepeer.rst
+110_lab_codepeer_messages.rst
+120_checks.rst
+130_lab_message_review.rst
+140_customization.rst
+150_lab_customization.rst
+160_workflows.rst
