@@ -1,5 +1,5 @@
 with Except;
-with Input; use Input;
+with Input;  use Input;
 with Stack;
 
 package body Values is
@@ -17,9 +17,7 @@ package body Values is
    -- Read --
    ----------
 
-   function Read
-     (Word : String)
-      return Value is
+   function Read (Word : String) return Value is
       Int_Val  : Integer;
       Real_Val : Float;
       Kind     : Input.Number_Kind;
@@ -27,8 +25,7 @@ package body Values is
    begin
       Input.Read_Number (Word, Int_Val, Real_Val, Kind);
 
-      if Kind /= Int_Number
-      then
+      if Kind /= Int_Number then
          raise Except.User_Error;
       end if;
 
@@ -42,9 +39,7 @@ package body Values is
    -- To_String --
    ---------------
 
-   function To_String
-     (V : Value)
-      return String is
+   function To_String (V : Value) return String is
    begin
       return Integer'Image (V.E);
       --  V is a pointer to a Value_Info record. V.all is the

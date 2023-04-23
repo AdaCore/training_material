@@ -8,24 +8,18 @@ package body Values.Operations is
    -- Read --
    ----------
 
-   function Read
-     (Op : String)
-      return Operation is
+   function Read (Op : String) return Operation is
    begin
-      if Op = "+"
-      then
+      if Op = "+" then
          return Add;
 
-      elsif Op = "-"
-      then
+      elsif Op = "-" then
          return Sub;
 
-      elsif Op = "*"
-      then
+      elsif Op = "*" then
          return Mul;
 
-      elsif Op = "/"
-      then
+      elsif Op = "/" then
          return Div;
 
       else
@@ -73,3 +67,5 @@ package body Values.Operations is
    end Process;
 
 end Values.Operations;
+
+

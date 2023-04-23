@@ -1,8 +1,8 @@
 with Except;
-with Screen_Output;    use Screen_Output;
+with Screen_Output; use Screen_Output;
 with Stack;
-with Tokens;           use Tokens;
-with Ada.Text_IO;      use Ada.Text_IO;
+with Tokens; use Tokens;
+with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Command_Line; use Ada.Command_Line;
 
 procedure Sdc is
@@ -10,8 +10,7 @@ procedure Sdc is
 begin
    Msg ("Welcome to sdc. Go ahead type your commands ...");
 
-   if Argument_Count = 1
-   then
+   if Argument_Count = 1 then
       begin
          Open (File, In_File, Argument (1));
       exception
@@ -29,7 +28,7 @@ begin
       begin
 
          Process (Next);
-        --  Read the next Token from the input and process it.
+         --  Read the next Token from the input and process it.
 
       exception
          when Stack.Underflow =>
@@ -42,7 +41,7 @@ begin
    end loop;
 
 exception
-   when Except.Exit_Sdc =>
+   when Except.Exit_SDC =>
       Msg ("Thank you for using sdc.");
 
    when others =>

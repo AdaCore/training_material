@@ -5,9 +5,7 @@ package Instructions is
    type Instruction is private;
    --  The actual instruction type.
 
-   function Read
-     (Word : String)
-      return Instruction;
+   function Read (Word : String) return Instruction;
    --  If Word contains the name of a valid instruction the instruction is
    --  returned, otherwise Except.User_Error is raised.
 
@@ -19,3 +17,5 @@ private
    type Instruction is (Clear, Print, Quit);
 
 end Instructions;
+
+

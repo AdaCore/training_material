@@ -17,12 +17,12 @@ package body Screen_Output is
    procedure Msg
      (S1       : String;
       S2       : String  := "";
-      End_Line : Boolean := True) is
+      End_Line : Boolean := True)
+   is
    begin
       Put (S1);
       Put (S2);
-      if End_Line
-      then
+      if End_Line then
          New_Line;
       end if;
    end Msg;
@@ -33,8 +33,7 @@ package body Screen_Output is
 
    procedure Debug_Msg (S : String) is
    begin
-      if not Debug_On
-      then
+      if not Debug_On then
          return;
       end if;
 
@@ -47,10 +46,7 @@ package body Screen_Output is
    -- Error_Msg --
    ---------------
 
-   procedure Error_Msg
-     (S1 : String;
-      S2 : String := "";
-      S3 : String := "") is
+   procedure Error_Msg (S1 : String; S2 : String := ""; S3 : String := "") is
    begin
       Put ("sdc error at line");
       Put (Natural'Image (Input.Line_Number) & ": ");
@@ -64,14 +60,11 @@ package body Screen_Output is
    -- Syntax_Error --
    ------------------
 
-   procedure Syntax_Error
-     (S         : String;
-      Error_Pos : Natural := 0) is
+   procedure Syntax_Error (S : String; Error_Pos : Natural := 0) is
       Pos : Natural := Error_Pos;
 
    begin
-      if Pos = 0
-      then
+      if Pos = 0 then
          Pos := Input.Column_Number;
       end if;
 
@@ -79,8 +72,7 @@ package body Screen_Output is
       Put_Line (Input.Current_Line);
 
       Put ("sdc:");
-      for I in 1 .. Pos - 1
-      loop
+      for I in 1 .. Pos - 1 loop
          Put ("-");
       end loop;
 

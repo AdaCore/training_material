@@ -12,18 +12,18 @@ package body Input is
    --  In ASCII the first printable non blank character is '!', the last one
    --  is '~'.
 
-   Line_Size : constant := 1_024;
-   Line      : String (1 .. Line_Size);
+   Line_Size  : constant := 1024;
+   Line       : String (1 .. Line_Size);
    --  Used to save the current input line.
 
    First_Char : Positive := 1;
    --  Indicates the position of the first character in Line that has not yet
    --  been read by the routine Get_Char below.
 
-   Last_Char : Natural := 0;
+   Last_Char  : Natural := 0;
    --  Gives the position of the last valid character in Line;
 
-   Line_Num : Natural := 0;
+   Line_Num   : Natural := 0;
    --  Keeps track of the number of lines read for the input.
 
    --------------------
@@ -33,9 +33,7 @@ package body Input is
    function Get_Char return Character;
    --  Reads and returns the next character from the input.
 
-   function End_Line
-     (N : Positive := 1)
-      return Boolean;
+   function End_Line (N : Positive := 1) return Boolean;
    --  Returns True if at least N characters can be read from Line, before
    --  reaching its end. If End_Line (1) returns True then all the available
    --  characters in Line have been read by the Get_Char.
@@ -66,10 +64,8 @@ package body Input is
       --  closest multiple of 8 (so if you are in column 14 and you hit a
       --  TAB the column number becomes 16).
 
-      for I in 1 .. First_Char - 1
-      loop
-         if Line (I) /= ASCII.HT
-         then
+      for I in 1 .. First_Char - 1 loop
+         if Line (I) /= ASCII.HT then
             Col := Col + 1;
          else
             Col := Col + 8 - (Col mod 8);
@@ -92,9 +88,7 @@ package body Input is
    -- End_Line --
    --------------
 
-   function End_Line
-     (N : Positive := 1)
-      return Boolean is
+   function End_Line (N : Positive := 1) return Boolean is
    begin
       return Last_Char < First_Char + (N - 1);
    end End_Line;
@@ -109,12 +103,11 @@ package body Input is
    begin
       --  First check if the line is empty or has been all read.
 
-      if End_Line
-      then
+      if End_Line then
          Read_New_Line;
       end if;
 
-      C          := Line (First_Char);
+      C := Line (First_Char);
       First_Char := First_Char + 1;
 
       return C;
@@ -134,17 +127,18 @@ package body Input is
    -----------------
 
    procedure Read_Number
-     (S : in     String;
-      I :    out Integer;
-      R :    out Float;
-      K :    out Number_Kind) is
+     (S : in  String;
+      I : out Integer;
+      R : out Float;
+      K : out Number_Kind)
+   is
       --  GNAT may complain that I and R are not always set by this
       --  procedure, so disable corresponding warnings.
       pragma Warnings (Off, I);
       pragma Warnings (Off, R);
 
-      package Int_IO is new Ada.Text_IO.Integer_IO (Integer);
-      package Real_IO is new Ada.Text_IO.Float_IO (Float);
+      package Int_Io  is new Ada.Text_IO.Integer_IO (Integer);
+      package Real_Io is new Ada.Text_IO.Float_IO   (Float);
 
       Last : Positive;
 
@@ -153,16 +147,11 @@ package body Input is
       I := 0;
       R := 0.0;
 
-      Try_Integer :
-      declare
+      Try_Integer : declare
       begin
-         Int_IO.Get
-           (From => S,
-            Item => I,
-            Last => Last);
+         Int_Io.Get (From => S, Item => I, Last => Last);
 
-         if Last = S'Last
-         then
+         if Last = S'Last then
             K := Int_Number;
             return;
          end if;
@@ -172,16 +161,11 @@ package body Input is
             null;
       end Try_Integer;
 
-      Try_Float :
-      declare
+      Try_Float : declare
       begin
-         Real_IO.Get
-           (From => S,
-            Item => R,
-            Last => Last);
+         Real_Io.Get (From => S, Item => R, Last => Last);
 
-         if Last = S'Last
-         then
+         if Last = S'Last then
             K := Real_Number;
             return;
          end if;
@@ -204,8 +188,7 @@ package body Input is
       Input.Skip_Spaces;
 
       Start := First_Char;
-      while Line (First_Char) in Printable_Character
-      loop
+      while Line (First_Char) in Printable_Character loop
          First_Char := First_Char + 1;
       end loop;
 
@@ -215,8 +198,7 @@ package body Input is
          S : String := Line (Start .. First_Char - 1);
 
       begin
-         for I in S'Range
-         loop
+         for I in S'Range loop
             S (I) := Ada.Characters.Handling.To_Upper (S (I));
          end loop;
 
@@ -233,9 +215,8 @@ package body Input is
    begin
       First_Char := Line'First;
 
-      if Ada.Text_IO.End_Of_File
-      then
-         raise Except.Exit_Sdc;
+      if Ada.Text_IO.End_Of_File then
+         raise Except.Exit_SDC;
       end if;
 
       --  Read a line from the standard input. Routine Text_Io.Get_Line
@@ -245,15 +226,14 @@ package body Input is
 
       Ada.Text_IO.Get_Line (Line, Last_Char);
 
-      if Ada.Text_IO.Current_Input /= Ada.Text_IO.Standard_Input
-      then
+      if Ada.Text_IO.Current_Input /= Ada.Text_IO.Standard_Input then
          Ada.Text_IO.Put_Line (Line (Line'First .. Last_Char));
       end if;
 
       --  Save a carriage return at the end of the Line and update the line
       --  count.
 
-      Last_Char        := Last_Char + 1;
+      Last_Char := Last_Char + 1;
       Line (Last_Char) := ASCII.CR;
 
       Line_Num := Line_Num + 1;
@@ -292,8 +272,7 @@ package body Input is
 
    procedure Unread_Char (N : Positive := 1) is
    begin
-      if First_Char - N >= Line'First
-      then
+      if First_Char - N >= Line'First then
          First_Char := First_Char - N;
       else
          First_Char := Line'First;

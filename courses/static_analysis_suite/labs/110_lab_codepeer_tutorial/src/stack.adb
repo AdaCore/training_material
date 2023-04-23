@@ -10,7 +10,7 @@ package body Stack is
    Size : constant := 200;
    --  The stack size.
 
-   Tab : array (1 .. Size) of Value;
+   Tab  : array (1 .. Size) of Value;
    --  The stack. We push and pop pointers to Values.
 
    Last : Natural := Tab'First - 1;
@@ -40,14 +40,13 @@ package body Stack is
 
    procedure Push (V : Value) is
    begin
-      if Last = Tab'Last
-      then
+      if Last = Tab'Last then
          raise Overflow;
       end if;
 
       Screen_Output.Debug_Msg ("Pushing -> " & Values.To_String (V));
 
-      Last       := Last - 1;
+      Last := Last - 1;
       Tab (Last) := V;
    end Push;
 
@@ -59,12 +58,11 @@ package body Stack is
       V : Value;
 
    begin
-      if Empty
-      then
+      if Empty then
          raise Underflow;
       end if;
 
-      V    := Tab (Last);
+      V := Tab (Last);
       Last := Last - 1;
 
       Screen_Output.Debug_Msg ("Popping <- " & Values.To_String (V));
@@ -78,8 +76,7 @@ package body Stack is
 
    function Top return Value is
    begin
-      if Empty
-      then
+      if Empty then
          raise Underflow;
       end if;
 
@@ -92,8 +89,7 @@ package body Stack is
 
    procedure View is
    begin
-      for I in Tab'First .. Last
-      loop
+      for I in Tab'First .. Last loop
          Screen_Output.Msg (Values.To_String (Tab (I)));
       end loop;
 

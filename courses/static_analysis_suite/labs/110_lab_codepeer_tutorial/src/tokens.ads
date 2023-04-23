@@ -21,15 +21,17 @@ package Tokens is
 
 private
 
-   type Token (Kind : Token_Kind) is record
+   type Token (Kind  : Token_Kind) is record
       case Kind is
          when Val =>
-            Val : Values.Value;
+            Val   : Values.Value;
          when Op =>
-            Op : Values.Operations.Operation;
+            Op    : Values.Operations.Operation;
          when Instr =>
             Instr : Instructions.Instruction;
       end case;
    end record;
 
 end Tokens;
+
+

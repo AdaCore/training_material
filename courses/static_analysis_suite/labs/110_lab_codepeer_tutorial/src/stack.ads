@@ -1,10 +1,11 @@
+
 --  This package implements a stack.
 
 with Values; use Values;
 
 package Stack is
 
-   Overflow : exception;
+   Overflow  : exception;
    --  Raised if operation Push below is called when the stack is full.
 
    Underflow : exception;

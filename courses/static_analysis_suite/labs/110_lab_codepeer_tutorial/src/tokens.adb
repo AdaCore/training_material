@@ -14,8 +14,7 @@ package body Tokens is
 
          --  Open block to catch exceptions raised for user errors.
 
-         Read_A_Valid_Token :
-         declare
+         Read_A_Valid_Token : declare
             Word : String := Input.Next_Word;
 
          begin
@@ -27,36 +26,24 @@ package body Tokens is
             case Word (Word'First) is
 
                when '0' .. '9' | '.' =>
-                  return
-                    Token'
-                      (Kind => Val,
-                       Val  => Values.Read (Word));
+                  return Token'(Kind => Val, Val => Values.Read (Word));
 
                when '+' | '*' | '/' =>
                   return
-                    Token'
-                      (Kind => Op,
-                       Op   => Values.Operations.Read (Word));
+                    Token'(Kind => Op, Op => Values.Operations.Read (Word));
 
                when '-' =>
-                  if Word'Length > 1
-                  then
-                     return
-                       Token'
-                         (Kind => Val,
-                          Val  => Values.Read (Word));
+                  if Word'Length > 1 then
+                     return Token'(Kind => Val, Val => Values.Read (Word));
                   else
                      return
-                       Token'
-                         (Kind => Op,
-                          Op   => Values.Operations.Read (Word));
+                       Token'(Kind => Op, Op => Values.Operations.Read (Word));
                   end if;
 
-               when 'a' .. 'z' | 'A' .. 'Z' =>
+               when 'a' .. 'z'
+                 |  'A' .. 'Z' =>
                   return
-                    Token'
-                      (Kind  => Instr,
-                       Instr => Instructions.Read (Word));
+                    Token'(Kind => Instr, Instr => Instructions.Read (Word));
 
                when others =>
                   raise Except.User_Error;
@@ -89,3 +76,4 @@ package body Tokens is
    end Process;
 
 end Tokens;
+

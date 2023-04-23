@@ -7,9 +7,7 @@ package Values.Operations is
    type Operation is private;
    --  The actual operation type.
 
-   function Read
-     (Op : String)
-      return Operation;
+   function Read (Op : String) return Operation;
    --  If Op contains the characters of a valid operation the operation is
    --  returned, otherwise Except.User_Error is raised.
 
@@ -21,3 +19,5 @@ private
    type Operation is (Add, Div, Mul, Sub);
 
 end Values.Operations;
+
+

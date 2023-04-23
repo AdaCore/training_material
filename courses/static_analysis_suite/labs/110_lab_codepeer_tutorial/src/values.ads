@@ -6,14 +6,10 @@ package Values is
    type Value is private;
    --  The actual value type.
 
-   function To_String
-     (V : Value)
-      return String;
+   function To_String (V : Value) return String;
    --  Returns a String representation of the Value.
 
-   function Read
-     (Word : String)
-      return Value;
+   function Read (Word : String) return Value;
    --  If Word contains a value, the value is returned, otherwise
    --  Except.User_Error is raised.
 

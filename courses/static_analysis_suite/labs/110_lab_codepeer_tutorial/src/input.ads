@@ -10,10 +10,10 @@ package Input is
 
    type Number_Kind is (No_Number, Int_Number, Real_Number);
    procedure Read_Number
-     (S : in     String;
-      I :    out Integer;
-      R :    out Float;
-      K :    out Number_Kind);
+     (S : in  String;
+      I : out Integer;
+      R : out Float;
+      K : out Number_Kind);
    --  If string S contains an integer or real number this routine reads the
    --  number into either I or R and sets K to either Int_Number or Real_Number
    --  If no number is found or the number is ill-formed K is set to No_Number.
