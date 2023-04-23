@@ -1,6 +1,6 @@
-**********************
-:toolname:`CodePeer`
-**********************
+**********
+CodePeer
+**********
 
 ..
     Coding language
@@ -73,9 +73,9 @@ What Can CodePeer Do?
 
 + Warns on dead or suspicious code (21 rules)
 
--------------------------------------
-How Does :toolname:`CodePeer` Work?
--------------------------------------
+-------------------------
+How Does CodePeer Work?
+-------------------------
 
 + :toolname:`CodePeer` computes the **possible** value
 
@@ -101,9 +101,9 @@ How Does :toolname:`CodePeer` Work?
 
    :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Examples` :math:`\rightarrow` :menu:`Codepeer By Example`
 
-----------------------------------
-:toolname:`CodePeer` Integration
-----------------------------------
+----------------------
+CodePeer Integration
+----------------------
 
 + Output: textual, XML, CSV, HTML
 + Command-line tool (uses GNAT project files)
@@ -111,9 +111,9 @@ How Does :toolname:`CodePeer` Work?
 + Integration with Jenkins (continuous builder)
 + Integration with :toolname:`SonarQube` (continuous inspection of code quality)
 
--------------------------------
-:toolname:`infer` Integration
--------------------------------
+-------------------
+infer Integration
+-------------------
 
 + :toolname:`infer` for Ada on top of main analysis
 + Based on Facebook's :toolname:`infer` engine
@@ -193,9 +193,9 @@ Command Line Interface (2/2)
    Generate HTML output. If ``--html-only``, do not run any analysis
    but use the previous run.
 
----------------------------------------------------------
-Running :toolname:`CodePeer` in :toolname:`GNAT Studio`
----------------------------------------------------------
+---------------------------------
+Running CodePeer in GNAT Studio
+---------------------------------
 
 .. image:: codepeer_from_gs.jpg
 
@@ -203,15 +203,36 @@ Running :toolname:`CodePeer` in :toolname:`GNAT Studio`
 Project File Set Up
 ---------------------
 
-Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
+* Sample project (GPR) file
 
-+ `Link: Basic Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#basic-project-file-setup>`_
-+ `Link: Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#project-file-setup>`_
-+ `Link: Advanced Project File Setup<http://docs.adacore.com/codepeer-docs/users_guide/_build/html/introduction.html#advanced-project-file-setup>`_
+.. code:: Ada
 
----------------------------------------------------
-:toolname:`CodePeer` Levels Depth and Constraints
----------------------------------------------------
+  project My_Project is
+
+     -- Use current directory and all subdirectories
+     for Source_Dirs use ("./**");
+
+     -- required when using non-GNAT compiler
+     for Target use "codepeer";
+
+     package CodePeer is
+        -- Remove if using above level 0 analysis
+        for Switches use ("--simple-project");
+     end CodePeer;
+
+  end My_Project;
+
+* For more information on setting up GPR files with :toolname:`CodePeer`, refer to the ``CodePeer User's Guide``
+
+  * :menu:`Help` |rightarrow| :menu:`CodePeer` |rightarrow| :menu:`CodePeer User's Guide`
+
+* For more information on GPR files in general, refer to the ``GPR User's Tool Guide``
+
+  * :menu:`Help` |rightarrow| :menu:`GPR` |rightarrow| :menu:`GPR Tool User's Guide`
+
+---------------------------------------
+CodePeer Levels Depth and Constraints
+---------------------------------------
 
 + The **higher** the level the **deeper** and **costlier** the analysis
 
@@ -234,7 +255,7 @@ Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 
       * - *1*
 
-        - Subprograms
+        - Subprogram by subprogram
         - No limits
         - Few
 
@@ -271,9 +292,9 @@ Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 + *SLOC* : Source lines of code
 + *CC* : Cyclomatic Complexity
 
---------------------------------------
-:toolname:`CodePeer` Levels Use Case
---------------------------------------
+--------------------------
+CodePeer Levels Use Case
+--------------------------
 
 + The levels adapt to various **workflows** and **users**
 + The **lower** the level the **more frequently** it should be run
@@ -341,9 +362,9 @@ Let's explore sections 1.4, 1.5 and 1.6 of the User's Guide
 + Can be combined with **any level** of analysis
 + :command:`--messages min` is default for levels 0, 1, and 2
 
-----------------------------------------
-Running :toolname:`CodePeer` regularly
-----------------------------------------
+----------------------------
+Running CodePeer Regularly
+----------------------------
 
 + Historical database (SQLite) stores all results **per level**
 
@@ -351,10 +372,10 @@ Running :toolname:`CodePeer` regularly
 
 + :dfn:`Baseline` run
 
-  + **Previous** run each new run is compared to
+  + **Original** run each new run is compared to
   + Differences of **messages** in :toolname:`CodePeer` report
   + Default: first run
-  + :command:`--baseline` to change it
+  + :command:`--baseline` to update it
 
 + Typical use
 

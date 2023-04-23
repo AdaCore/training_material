@@ -97,7 +97,7 @@ Run-Time Check Messages
 
         * -
 
-          - Note: Depends on the `'Base` representation
+          - Note: Depends on the :ada:`'Base` representation
 
         * - ``array index check``
 
@@ -833,9 +833,9 @@ Warning Messages (2/3)
 
           - Subprogram will always terminate in error
 
-------------------------------------------
-Warning Messages - :toolname:`infer` (3/3)
-------------------------------------------
+-------------------------------
+Warning Messages - infer (3/3)
+-------------------------------
 
 .. container:: latex_environment
 
@@ -1324,7 +1324,7 @@ Same Logic
 Test duplication
 -------------------
 
-+ The same expression is tested twice in successive :ada:`if ... elsif ... elsif ... `
++ The same expression is tested twice in successive :ada:`if ... elsif ... elsif ...`
 + Usually indicates a copy-paste error
 
 .. code:: Ada
@@ -1661,74 +1661,3 @@ New Objects
    --     new integer(in alloc.create)#1'Address
    -- alloc.adb:2: (post)- alloc.create:
    --     new integer(in alloc.create)#1.<num objects> = 1
-
-==========================================
-Justifying :toolname:`CodePeer` Messages
-==========================================
-
-------------------------
-Database Justification
-------------------------
-
-+ Add review status in database
-
-  + :toolname:`GNAT Studio`: select review icon on message(s)
-  + HTML web server: click on :menu:`Add Review` button above messages
-  + Displayed with :command:`--output-msg-only --show-reviews (-only)`
-
-+ Can run :toolname:`CodePeer` as a server
-
-  + Share the database on network
-  + :command:`codepeer --ide-server --port=8080`
-
-+ Access the IDE server from :toolname:`GNAT Studio`
-
-  + Set the project file to the following
-
-  .. code:: Ada
-
-   package CodePeer is
-      for Server_URL use "http://server:8080";
-   end CodePeer;
-
------------------------
-In-Code Justification
------------------------
-
-+ Add message review pragma in code
-+ :ada:`pragma Annotate` added next to code with message
-
-  + :ada:`False_Positive`: Condition in question cannot occur
-  + :ada:`Intentional`: Condition is justified by a design choice
-  + Also added in the database
-
-.. code:: Ada
-
-   ...
-   return (X + Y) / (X - Y);
-   pragma Annotate (CodePeer,
-                    False_Positive,
-                    "Divide By Zero",
-                    "reviewed by John Smith");
-
--------------------------------
-Outside Tooling Justification
--------------------------------
-
-+ Use spreadsheet tool
-
-  + Export messages in CSV format
-
-     :command:`codepeer -Pprj --output-msg-only --csv`
-
-  + Review them via the spreadsheet tool (e.g. Excel)
-
-    + Beware: Fill **all** the columns
-
-  + Import back CSV reviews into the :toolname:`CodePeer` database
-
-     :command:`codepeer_bridge --import-reviews`
-
-+ Use external justification connected to output
-
-  + Textual output: compiler-like messages or CSV format

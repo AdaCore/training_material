@@ -89,13 +89,13 @@ Filtering Source Files
 
 These filtering options on existing analysis are useful, but now we want to simply ignore the legacy files when performing the analysis.
 
-* Open the project file from the :menu:`Project` tab, by right-clicking on the :menu:`Cruise -> Project -> Edit Source File`.
+* Open the project file from the :menu:`Project` tab, by right-clicking on the :menu:`Cruise` |rightarrow| :menu:`Project` |rightarrow| :menu:`Edit Source File`.
 
 .. image:: codepeer/radar_open_gpr.png
 
-* Ignore the `Cruise.Legacy` package in analysis
+* Ignore the :ada:`Cruise.Legacy` package in analysis
 
-In :toolname:`GPRBuild` you can set the `CodePeer.Excluded_Source_Files` attribute
+In :toolname:`GPRBuild` you can set the :ada:`CodePeer.Excluded_Source_Files` attribute
 
 You can follow the **template** below to do it
 
@@ -131,17 +131,17 @@ Settings Via The Project File
 
 We want to set the default value of the CodePeer parameters in the GPR file.
 
-The :toolname:`GPRBuild` attribute to set the switches is `CodePeer.Switches`
+The :toolname:`GPRBuild` attribute to set the switches is :ada:`CodePeer.Switches`
 
 * Change the default level of analysis to 2.
 
-The corresponding switch is `--level`
+The corresponding switch is :ada:`--level`
 
 * Add multiprocessing to "0" cores (ie. let the tool chose).
 
-The corresponding switch is `-j`
+The corresponding switch is :ada:`-j`
 
-* Run a new analysis with :menu:`CodePeer -> Analyze All`
+* Run a new analysis with :menu:`CodePeer` |rightarrow| :menu:`Analyze All`
 
 The analysis should return fewer result.
 
@@ -149,7 +149,7 @@ The analysis should return fewer result.
 Overriding Project File Settings
 ----------------------------------
 
-* Configure a new analysis with :menu:`CodePeer -> Analyse...`
+* Configure a new analysis with :menu:`CodePeer` |rightarrow| :menu:`Analyse...`
 
 In the opened window, you can modify the command used to call CodePeer directly at the bottom of the screen.
 
@@ -157,7 +157,7 @@ In the opened window, you can modify the command used to call CodePeer directly 
 
 Notice that there is also an history for this bar.
 
-* Remove the `--level` switch to use the default level.
+* Remove the :ada:`--level` switch to use the default level.
 
 ===================
 Tools Integration
@@ -171,7 +171,7 @@ CodePeer has integration to several tools, namely the GNAT compiler Warnings and
 
 We will use a bit of the GNAT warnings integration there.
 
-* Configure a new analysis with :menu:`CodePeer -> Analyse...`
+* Configure a new analysis with :menu:`CodePeer` |rightarrow| :menu:`Analyse...`
 * The *Warnings ...* choice is actually a **button**, click on it
 
 .. image:: codepeer/cruise_analysis_warnings_button.png
@@ -184,7 +184,7 @@ The full list of available GNAT Warnings can be found at https://docs.adacore.co
 Depending on your version of the compiler and target, some warnings will or will not be available.
 
 The warning are sorted in the order of **their switch**.
-Eg. "Most optional warnings" `-gnatwa` is first, then "Failing assertions" `-gnatw.a`...
+Eg. "Most optional warnings" :ada:`-gnatwa` is first, then "Failing assertions" :ada:`-gnatw.a`...
 
 ---------------------------------
 Configure Which Warnings To See
@@ -207,7 +207,7 @@ Notice that there is a **scrollbar** on the right.
   - Variables that could be constant (`-gnatwk`)
   - Unused entities (`-gnatwu`)
 
-Notice that the called command line now has `--gnat-warnings=uk`
+Notice that the called command line now has :ada:`--gnat-warnings=uk`
 
 * Run the analysis
 

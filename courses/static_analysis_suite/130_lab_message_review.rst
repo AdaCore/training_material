@@ -39,7 +39,7 @@ Reviewing changes
 Perform Baseline Run
 ----------------------
 
-* Select the menu :menuselection:`CodePeer -> Analyze` in the menu bar at the top.
+* Select the menu :menuselection:`CodePeer` |rightarrow| :menu:`Analyze` in the menu bar at the top.
 * Run a **level 4** analysis as a **baseline run**
 
 .. image:: codepeer/radar_analyze_level_4_baseline.png
@@ -59,7 +59,7 @@ To do this you have to click on the little pencil to the left of the message in 
 
 * Filter this message out
 
-In `Message Review Status`, select only `Uncategorized`
+In :menu:`Message Review Status`, select only :menu:`Uncategorized`
 
 .. image:: codepeer/radar_report_filter_status.png
 
@@ -69,7 +69,7 @@ The bug should no longer be visible
 Non-Baseline Run
 ------------------
 
-* Reapply the default status filter: only `Intentional` are hidden
+* Reapply the default status filter: only :menu:`Intentional` are hidden
 * Fix the bug
 * Run a new analysis but without making it baseline
 
@@ -96,7 +96,7 @@ At this point you have 2 runs
 
 * Set filter to display only the fix
 
-In `Message History` select only `removed`
+In :menu:`Message History` select only :menu:`Removed`
 
 * Reset the filter back
 
@@ -165,12 +165,12 @@ This server needs to be run from a console.
 
     $ codepeer --ide-server -Pradar --verbose
 
-The review server starts listening to `localhost:8080`
+The review server starts listening to ``localhost:8080``
 This command will serve forever, it is necessary to keep it in the background.
 
 .. image:: codepeer/radar_ide_server_start.png
 
-**Warning**: you may encounter `SQLite DB Error` messages. In that case you will need to reset the database, by removing the :file:`codepeer/` directory, then running a new baseline analysis from :toolname:`GNAT Studio`.
+**Warning**: you may encounter ``SQLite DB Error`` messages. In that case you will need to reset the database, by removing the :file:`codepeer/` directory, then running a new baseline analysis from :toolname:`GNAT Studio`.
 
 ------------------------------
 Connect to the Review Server
@@ -210,6 +210,6 @@ As a matter of fact, in that setup you are not expected to run your local analys
 * Add a review
 * Check on the server log that the review has been added
 
-You should see a call to `appendAudit`.
+You should see a call to ``appendAudit``.
 
 .. image:: codepeer/radar_ide_server_add_review.png

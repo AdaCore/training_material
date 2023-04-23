@@ -3,6 +3,7 @@ project Default is
    for Languages use ("ada");
    for Source_Dirs use ("src");
    for Object_Dir use "obj";
+   for Main use ("sdc.adb");
 
    package Compiler is
       for Switches ("ada") use ("-gnatwe", "-gnato", "-g");

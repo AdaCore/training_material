@@ -1,5 +1,5 @@
 *************************
-Lab - CodePeer Messages
+Lab - CodePeer Tutorial
 *************************
 
 ..
@@ -45,7 +45,7 @@ Using CodePeer Lab
 
 * In this lab we will examine some sample code for the messages generated during analysis
 
-* Use :toolname:`GNAT Studio` to open the :filename:`default.gpr` project in the :filename:`110_lab_codepeer_messages` folder
+* Use :toolname:`GNAT Studio` to open the :filename:`default.gpr` project in the :filename:`110_lab_codepeer_tutorial` folder
 
 ------------------
 Perform Analysis
@@ -55,7 +55,7 @@ Perform Analysis
 
   .. container:: column
 
-    * Select the menu :menu:`CodePeer -> Analyze All` in the menu bar at the top.
+    * Select the menu :menu:`CodePeer` |rightarrow| :menu:`Analyze All` in the menu bar at the top.
 
       .. image:: codepeer/menu_analyze_all.png
 
@@ -107,7 +107,7 @@ Message Information
 
   .. container:: column
 
-    * In the locations view, click in the tree on the `+` sign (or triangle) at the left of :file:`tokens.adb`.
+    * In the locations view, click in the tree on the ``+`` sign (or triangle) at the left of :file:`tokens.adb`.
 
       .. image:: codepeer/tutorial_l26_location.png
 
@@ -155,12 +155,12 @@ Analyzing Messages
 Manipulating Annotations
 --------------------------
 
-* Hide these annotations by clicking on the right mouse button and selecting :menu:`CodePeer -> Hide annotations`.
+* Hide these annotations by clicking on the right mouse button and selecting :menu:`CodePeer` |rightarrow| :menu:`Hide annotations`.
 
 .. image:: codepeer/tutorial_next_word_hide_annotations.png
   :width: 30%
 
-* Re-display these annotations by clicking on the right mouse button and selecting :menu:`CodePeer -> Show annotations`.
+* Re-display these annotations by clicking on the right mouse button and selecting :menu:`CodePeer` |rightarrow| :menu:`Show annotations`.
 
 ---------------------------
 Understanding Annotations
@@ -168,8 +168,8 @@ Understanding Annotations
 
 * In postconditions, you can see that CodePeer computed
 
-  * Possible range of `1..1_024` for the application of attribute :ada:`First`
-  * Possible range of `0..1_023` for the application of attribute :ada:`Last`
+  * Possible range of ``1..1_024`` for the application of attribute :ada:`First`
+  * Possible range of ``0..1_023`` for the application of attribute :ada:`Last`
   * This means :ada:`Result'First` |rightarrow| 1 and :ada:`Result'Last` |rightarrow| 0, so an empty string is possible
 
 * In :ada:`Next_Word`, an empty string is returned when the first character read is not in :ada:`Printable_Character`.
@@ -184,7 +184,7 @@ Understanding Annotations
         raise Except.User_Error;
      end if;
 
-* Re-run CodePeer by selecting the menu :menu:`CodePeer -> Analyze All`.
+* Re-run CodePeer by selecting the menu :menu:`CodePeer` |rightarrow| :menu:`Analyze All`.
 * Notice that the error on :file:`tokens.adb` has disappeared.
 
 ==========

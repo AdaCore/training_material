@@ -35,9 +35,9 @@ CodePeer Workflows
 CodePeer Use Cases
 ====================
 
---------------------------------
-:toolname:`CodePeer` Use Cases
---------------------------------
+--------------------
+CodePeer Use Cases
+--------------------
 
 + Analyzing code locally prior to **commit** (desktop)
 + **Nightly** runs on a server
