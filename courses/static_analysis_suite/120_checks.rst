@@ -142,23 +142,21 @@ Divide By Zero
 + The second operand of a divide, :ada:`mod` or :ada:`rem` operation could be zero
 + Runtime :ada:`Constraint_Error`
 
-..
-   :toolname:`CodePeer` example (4.1.1 - divide by zero)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 3
 
    procedure Div is
       type Int is range 0 .. 2**32 - 1;
       A : Int := Int'Last;
       X : Integer;
    begin
-      for I in Int range 0 .. 2 loop
-         X := Integer (A / I); -- division by zero when I=0
+      for I in Int range 0 .. 2
+      loop
+         X := Integer (A / I);
       end loop;
    end Div;
 
-| ``high: divide by zero fails here: requires I /= 0``
+| ``example.adb:10:23: high: divide by zero fails here: requires I /= 0``
 
 -------------
 Range Check
@@ -167,24 +165,24 @@ Range Check
 + Calculation may generate a value outside the :ada:`range` of an Ada type or subtype
 + Will generate a :ada:`Constraint_Error`
 
-..
-   :toolname:`CodePeer` example (4.1.1 - range check)
-
 .. code:: Ada
    :number-lines: 1
 
-   subtype Constrained_Integer is Integer range 1 .. 2;
-   A : Integer;
+   procedure Example is
 
-   procedure Proc_1 (I : in Constrained_Integer) is
+      subtype Constrained_Integer is Integer range 1 .. 2;
+      A : Integer;
+
+      procedure Proc_1 (I : in Constrained_Integer) is
+      begin
+         A := I + 1;
+      end Proc_1;
+
    begin
-      A := I + 1;
-   end Proc_1;
-   ...
-   A := 0;
-   Proc_1 (I => A);  --  A is out-of-range of parameter I
+      A := 0;
+      Proc_1 (I => A);
 
-| ``high: range check fails here: requires A in 1..2``
+| ``example.adb:13:17: high: range check fails here: requires A in 1..2``
 
 ----------------
 Overflow Check
@@ -194,25 +192,22 @@ Overflow Check
 + Depends on the size of the underlying (base) type
 + Will generate a :ada:`Constraint_Error`
 
-..
-   :toolname:`CodePeer` example (4.1.1 - overflow check)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 8
 
-   is
+   procedure Example is
       Attempt_Count : Integer := Integer'Last;
    begin
-      -- Forgot to reset Attempt_Count to 0
       loop
          Put ("Enter password to delete system disk");
-         if Get_Correct_Pw then
+         if Get_Correct_Pw
+         then
             Allow_Access;
          else
             Attempt_Count := Attempt_Count + 1;
 
-| ``high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
-| ``high: overflow check fails here: requires Attempt_Count in Integer_32'First-1..Integer_32'Last-1``
+
+| ``example.adb:17:44: high: overflow check fails here: requires Attempt_Count /= Integer_32'Last``
 
 -------------------
 Array Index Check
@@ -222,26 +217,25 @@ Array Index Check
 + Also known as **buffer overflow**.
 + Will generate a :ada:`Constraint_Error`
 
-..
-   :toolname:`CodePeer` example (4.1.1 - array index check)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Buffer_Overflow is
+   procedure Example is
       type Int_Array is array (0 .. 2) of Integer;
       X, Y : Int_Array;
    begin
-      for I in X'Range loop
+      for I in X'Range
+      loop
          X (I) := I + 1;
       end loop;
 
-      for I in X'Range loop
-         Y (X (I)) := I;  -- Bad when I = 2, since X (I) = 3
+      for I in X'Range
+      loop
+         Y (X (I)) := I;
       end loop;
-   end Buffer_Overflow;
+   end Example;
 
-| ``high: array index check fails here: requires (X (I)) in 0..2``
+| ``example.adb:12:7: high: array index check fails here: requires (X (I)) in 0..2``
 
 --------------
 Access Check
@@ -250,22 +244,20 @@ Access Check
 + Attempting to dereference a reference that could be :ada:`null`
 + Will generate an :ada:`Access_Error`
 
-..
-   :toolname:`CodePeer` example (4.1.1 - access check)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Null_Deref is
+   procedure Example is
       type Int_Access is access Integer;
       X : Int_Access;
    begin
-      if X = null then
-         X.all := 1;  -- null dereference
+      if X = null
+      then
+         X.all := 1;
       end if;
-   end Null_Deref;
+   end Example;
 
-| ``high: access check fails here``
+| ``example.adb:7:7: high: access check fails here``
 
 ----------------
 Aliasing Check
@@ -277,22 +269,26 @@ Aliasing Check
   + Do not **reference** another parameter
   + Do not **match** the address of a global object
 
-..
-   :toolname:`CodePeer` example (4.1.1 - aliasing check)
-
 .. code:: Ada
    :number-lines: 1
 
-      procedure In_Out (A : Int_Array; B : out Int_Array) is
+   procedure Example is
+      X : String := "Hello, World";
+      procedure In_Out
+        (A :     String;
+         B : out String) is
       begin
-         B (1) := A (1) + 1;
-         ...
-         B (1) := A (1) + 2;
+         B (B'First) := A (A'First);
+         if A'Length > 1
+         then
+            B (B'First) := A (A'Last);
+         end if;
       end In_Out;
-   ...
-      In_Out (A, A); -- Aliasing!
+   begin
+      In_Out (X, X);
+   end Example;
 
-| ``high: precondition (aliasing check) failure on call to alias.in_out: requires B /= A``
+| ``example.adb:14:4: high: precondition (aliasing check) failure on call to example.in_out: requires B /= A``
 
 -----------
 Tag Check
@@ -300,45 +296,40 @@ Tag Check
 
 A tag check operation on a :ada:`tagged` object might raise a :ada:`Constraint_Error`
 
-..
-   :toolname:`CodePeer` example (4.1.1 - tag check)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 5
 
-   is
-      type T1 is tagged null record;
-      type T2 is new T1 with null record;
+   type T2 is new T1 with null record;
 
-      procedure Call (X1 : T1'Class) is
-      begin
-         An_Operation (T2'Class (X1));
-      end Call;
+   procedure One (X1 : T1'Class) is
+   begin
+      An_Operation (T2'Class (X1));
+   end One;
 
+   procedure Two is
       X1 : T1;
       X2 : T2;
    begin
-      Call (X1); -- not OK, Call requires T2'Class
+      One (X1);
+   end Two;
 
-| ``high: precondition (tag check) failure on call to tag.call: requires X1'Tag in {tag.pkg.t2}``
+| ``example.adb:16:7: high: precondition (tag check) failure on call to example.one: requires X1'Tag = example.t2``
 
 ----------
 Validity
 ----------
 
-..
-   :toolname:`CodePeer` example (4.1.3 - validity check)
-
 .. code:: Ada
+   :number-lines: 1
 
-    procedure Uninit is
-       A : Integer;
-       B : Integer;
-    begin
-       A := B;  --  we are reading B which is uninitialized!
-    end Uninit;
+   procedure Example is
+      A : Integer := 123;
+      B : Integer;
+   begin
+      A := B;
+   end Example;
 
-| ``high: validity check: B is uninitialized here``
+| ``example.adb:5:9: high: validity check: B is uninitialized here``
 
 --------------------
 Discriminant Check
@@ -352,23 +343,25 @@ A field for the wrong variant/discriminant is accessed
 .. code:: Ada
    :number-lines: 1
 
-   type T (B : Boolean := True) is record
-      case B is
-         when True =>
-            J : Integer;
-         when False =>
-            F : Float;
-      end case;
-   end record;
+   procedure Example is
+      type T (B : Boolean := True) is record
+         case B is
+            when True =>
+               J : Integer;
+            when False =>
+               F : Float;
+         end case;
+      end record;
 
-   X : T (B => True);
+      X : T (B => True);
 
-   function Create (F : Float) return T is
-     (False, F);
-   ...
-   X := Create (6.0);  -- discriminant check failure
+      function Create (F : Float) return T is
+        (False, F);
+   begin
+      X := Create (6.0);
+   end Example;
 
-| ``high: discriminant check fails here: requires (Create (6.0).b = True)``
+| ``example.adb:16:9: high: discriminant check fails here: requires (Create (6.0)).B = true``
 
 --------------
 Precondition
@@ -382,30 +375,30 @@ Precondition
 + Need to check generated preconditions
 + :toolname:`GNAT Studio` or :command:`--show-backtraces` to analyze checks
 
-..
-   :toolname:`CodePeer` example (4.1.1 - precondition)
-
 .. code:: Ada
    :number-lines: 1
 
-   function Call (X : Integer) return Integer is
+   procedure Example is
+      X : Integer := 0;
+      function Call (X : Integer) return Integer is
+      begin
+         if X < 0
+         then
+            return -1;
+         end if;
+      end Call;
    begin
-      if X < 0 then
-         return -1;
-      end if;
-   end Call;
-   ...
-   for I in -5 .. 5 loop
-      X := X + Call (I);
-   end loop;
+      for I in -5 .. 5
+      loop
+         X := X + Call (I);
+      end loop;
+   end Example;
 
-| ``high: precondition (conditional check) failure on call to precondition.call: requires X < 0``
+| ``example.adb:13:16: high: precondition (conditional check) failure on call to example.call: requires X <= -1``
 
 ------
 Quiz
 ------
-
-* Which check will be flagged with the following?
 
 .. code:: Ada
 
@@ -413,6 +406,8 @@ Quiz
     begin
        return Integer'First - 1;
     end Before_First;
+
+* Which check will be flagged with the above code?
 
 A. Precondition check
 B. Range check
@@ -427,8 +422,6 @@ D. Underflow check
 ------
 Quiz
 ------
-
-* Which check will be flagged with the following?
 
 .. code:: Ada
 
@@ -478,7 +471,7 @@ User Check Messages
 
         * - ``assertion``
 
-          - A user assertion could fail
+          - User assertion could fail
 
         * -
 
@@ -486,11 +479,11 @@ User Check Messages
 
         * - ``conditional check``
 
-          - An :ada:`exception` could be raised conditionally
+          - :ada:`exception` could be raised conditionally
 
         * - ``raise exception``
 
-          - An :ada:`exception` is raised on a reachable path
+          - :ada:`exception` raised on reachable path
 
         * -
 
@@ -498,19 +491,19 @@ User Check Messages
 
         * - ``user precondition``
 
-          - Potential violation of a specified precondition
+          - Potential violation of specified precondition
 
         * -
 
-          - As a :ada:`Pre` aspect or as a :ada:`pragma Precondition`
+          - :ada:`Pre` aspect or :ada:`pragma Precondition`
 
         * - ``postcondition``
 
-          - Potential violation of a specified postcondition
+          - Potential violation of specified postcondition
 
         * -
 
-          - As a :ada:`Post` aspect or as a :ada:`pragma Postcondition`
+          - :ada:`Post` aspect or :ada:`pragma Postcondition`
 
 -----------
 Assertion
@@ -518,14 +511,10 @@ Assertion
 
 A user assertion (using e.g. :ada:`pragma Assert`) could fail
 
-..
-   :toolname:`CodePeer` example (4.1.2 - assertion)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Assert is
-
+   procedure Example is
       function And_Or (A, B : Boolean) return Boolean is
       begin
          return False;
@@ -533,9 +522,9 @@ A user assertion (using e.g. :ada:`pragma Assert`) could fail
 
    begin
       pragma Assert (And_Or (True, True));
-   end Assert;
+   end Example;
 
-| ``high: assertion fails here: requires (and_or'Result) /= false``
+| ``example.adb:8:19: high: assertion fails here: requires (and_or'Result) /= false``
 
 -------------------
 Conditional Check
@@ -543,22 +532,21 @@ Conditional Check
 
 An exception could be raised **conditionally** in user code
 
-..
-   :toolname:`CodePeer` example (4.1.2 - conditional check)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 8
 
-   if Wrong_Password then
+   if Wrong_Password
+   then
       Attempt_Count := Attempt_Count + 1;
 
-      if Attempt_Count > 3 then
+      if Attempt_Count > 3
+      then
          Put_Line ("max password count reached");
          raise Program_Error;
       end if;
    end if;
 
-| ``high: conditional check raises exception here: requires Attempt_Count <= 3``
+| ``example.adb:15:10: high: conditional check raises exception here: requires Attempt_Count <= 3``
 
 -----------------
 Raise Exception
@@ -566,19 +554,12 @@ Raise Exception
 
 An exception is raised **unconditionally** on a **reachable** path.
 
-..
-   :toolname:`CodePeer` example (4.1.2 - raise exception)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 2
 
-   procedure Raise_Exc is
-      X : Integer := raise Program_Error;
-   begin
-      null;
-   end Raise_Exc;
+   Bad : Integer := (raise Constraint_Error);
 
-| ``low: raise exception unconditional raise``
+| ``example.adb:2:22: low: raise exception unconditional raise``
 
 -------------------
 User Precondition
@@ -586,23 +567,19 @@ User Precondition
 
 A call might violate a subprogram's specified precondition.
 
-..
-   :toolname:`CodePeer` example (4.1.2 - user precondition)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Pre is
+   procedure Example is
       function "**" (Left, Right : Float) return Float with
-         Import,
-         Pre => Left /= 0.0;
+        Import, Pre => Left /= 0.0;
 
       A : Float := 1.0;
    begin
       A := (A - 1.0)**2.0;
-   end Pre;
+   end Example;
 
-| ``high: precondition (user precondition) failure on call to pre."**": requires Left /= 0.0``
+| ``example.adb:7:18: high: precondition (user precondition) failure on call to example."**": requires Left /= 0.0``
 
 ---------------
 Postcondition
@@ -610,31 +587,27 @@ Postcondition
 
 The subprogram's body may violate its specified postcondition.
 
-..
-   :toolname:`CodePeer` example (4.1.2 - postcondition)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 2
 
    type Stress_Level is (None, Under_Stress, Destructive);
 
-   function Reduce (Stress : Stress_Level)
-     return Stress_Level with
-      Pre  => (Stress /= None),
-      Post => (Reduce'Result /= Destructive)
-      is (Stress_Level'Val (Stress_Level'Pos (Stress) + 1));
-      --                                              ^
-      --                                             Typo!
-   ...
-   Reduce (My_Component_Stress);
+   function Reduce (Stress : Stress_Level) return Stress_Level is
+     (Stress_Level'Val (Stress_Level'Pos (Stress) + 1))
+   with
+     Pre => (Stress /= None),
+     Post => (Reduce'Result /= Destructive);
 
-| ``high: postcondition failure on call to post.reduce: requires Reduce'Result /= Destructive``
+   procedure Reduce (Stress : in out Stress_Level) is
+   begin
+      Stress := Reduce (Stress);
+   end Reduce;
+
+| ``example.adb:8:40: high: postcondition failure on call to example.reduce: requires example.reduce'Result /= Destructive``
 
 ------
 Quiz
 ------
-
-* Which user check will be raised with the following?
 
 .. code:: Ada
 
@@ -647,6 +620,8 @@ Quiz
       end if;
    end Raise_Exc;
 
+* Which check will be flagged with the above code?
+
 A. :answer:`Conditional check`
 B. Assertion
 C. Raise Exception
@@ -658,54 +633,12 @@ D. User precondition
 
     In other cases, :ada:`X = 0` so the assertion always holds.
 
-=====================================
-Uninitialized and Invalid Variables
-=====================================
-
-----------------------------------------------
-Uninitialized and Invalid Variables Messages
-----------------------------------------------
-
-.. container:: latex_environment
-
-   .. list-table::
-        :header-rows: 1
-
-        * - *Message*
-
-          - *Description*
-
-        * - ``validity check``
-
-          - An uninitialized or invalid value could be read
-
-----------------
-Validity Check
-----------------
-
-The code may be reading an uninitialized or invalid value
-
-..
-   :toolname:`CodePeer` example (4.1.3 - validity check)
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Uninit is
-      A : Integer;
-      B : Integer;
-   begin
-      A := B;  --  we are reading B which is uninitialized!
-   end Uninit;
-
-| ``high: validity check: B is uninitialized here``
-
 ==========
 Warnings
 ==========
 
 ------------------------
-Warning Messages (1/3)
+Warning Messages (1/2)
 ------------------------
 
 .. container:: latex_environment
@@ -723,7 +656,7 @@ Warning Messages (1/3)
 
         * -
 
-          - Assumed all code should be reachable
+          - All code should be reachable
 
         * - ``test always false``
 
@@ -735,7 +668,7 @@ Warning Messages (1/3)
 
         * - ``test predetermined``
 
-          - Choice evaluating to a constant value
+          - Choice evaluating to constant value
 
         * -
 
@@ -743,11 +676,11 @@ Warning Messages (1/3)
 
         * - ``condition predetermined``
 
-          - Constant RHS or LHS in a conditional
+          - Constant operand in a conditional
 
         * - ``loop does not complete normally``
 
-          - Loop :ada:`exit` condition is always :ada:`False`
+          - Loop :ada:`exit` condition always :ada:`False`
 
         * - ``unused assignment``
 
@@ -765,11 +698,8 @@ Warning Messages (1/3)
 
           - Either never used or overwritten
 
-+ **RHS** : Right-Hand-Side of a binary operation
-+ **LHS** : Left-Hand-Side of a binary operation
-
 ------------------------
-Warning Messages (2/3)
+Warning Messages (2/2)
 ------------------------
 
 .. container:: latex_environment
@@ -833,107 +763,34 @@ Warning Messages (2/3)
 
           - Subprogram will always terminate in error
 
--------------------------------
-Warning Messages - infer (3/3)
--------------------------------
-
-.. container:: latex_environment
-
-   .. list-table::
-        :header-rows: 1
-
-        * - *Message*
-
-          - *Description*
-
-        * - ``same operands``
-
-          - Binary operator has the same argument twice
-
-        * - ``same logic``
-
-          - Same argument appears twice in a boolean expression
-
-        * - ``duplicate branches``
-
-          - Duplicate code in 'if' or 'case' branches
-
-        * - ``test duplication``
-
-          - An expression is tested multiple times
-
-        * -
-
-          - in an :ada:`if ... elsif ... else`
-
------------
-Dead Code
------------
+----------------------------------------
+Dead Code | Always True | Always False
+----------------------------------------
 
 + Also called **unreachable code**.
 + All code is expected to be reachable
 
-..
-   :toolname:`CodePeer` example (4.1.4 - dead code)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Dead_Code (X : out Integer) is
+   procedure Example (X : out Integer) is
       I : Integer := 10;
    begin
       if I < 4 then
-         X := 0;
-      elsif I >= 8 then
-         X := 0;
-      end if;
-   end Dead_Code;
-
-| ``medium warning: dead code because I = 10``
-
--------------------
-Test Always False
--------------------
-
-Redundant conditionals, always :ada:`False`
-
-..
-   :toolname:`CodePeer` example (4.1.4 - test always false)
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Dead_Code (X : out Integer) is
-      I : Integer := 10;
-   begin
-      if I < 4 then
+         X := -1;
+      elsif I > 8 then
+         X := 1;
+      else
          X := 0;
       end if;
-   end Dead_Code;
+   end Example;
 
-| ``low warning: test always false because I = 10``
+.. container:: latex_environment small
 
-------------------
-Test Always True
-------------------
-
-Redundant conditionals, always :ada:`True`
-
-..
-   :toolname:`CodePeer` example (4.1.4 - test always true)
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Dead_Code (X : out Integer) is
-      I : Integer := 10;
-   begin
-      if I >= 8 then
-         X := 0;
-      end if;
-   end Dead_Code;
-
-| ``medium warning: test always true because I = 10``
+   | ``example.adb:4:9: low warning: test always false because I = 10``
+   | ``example.adb:5:9: medium warning: dead code because I = 10``
+   | ``example.adb:6:4: medium warning: test always true because I = 10``
+   | ``example.adb:9:9: medium warning: dead code because I = 10``
 
 --------------------
 Test Predetermined
@@ -944,14 +801,11 @@ Test Predetermined
   + When choice is not binary
   + eg. :ada:`case` statement
 
-..
-   :toolname:`CodePeer` example (4.1.4 - test predetermined)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Predetermined is
-      I : Integer := 0;
+   procedure Example is
+      I : Integer := 10;
    begin
       case I is
          when 0 =>
@@ -961,30 +815,34 @@ Test Predetermined
          when others =>
             null;
       end case;
-   end Predetermined;
+   end Example;
 
-| ``low warning: test predetermined because I = 0``
+| ``example.adb:4:4: low warning: test predetermined because I = 10``
 
 -------------------------
 Condition Predetermined
 -------------------------
 
 + **Redundant** condition in a boolean operation
-+ RHS operand is **constant** in this context
-
-..
-   :toolname:`CodePeer` example (4.1.4 - condition predetermined)
 
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 2
 
-      if V /= A or else V /= B then
-         --     ^^^^^^^
-         --     V = A, so V /= B
+   type Enum_T is (One, Two, Three);
+
+   procedure Or_Else (V : Enum_T) is
+   begin
+      if V /= One or else V /= Two
+      then
+         return;
+      else
          raise Program_Error;
       end if;
+   end Or_Else;
 
-| ``medium warning: condition predetermined because (V /= B) is always true``
+| ``example.adb:6:29: medium warning: condition predetermined because (V /= Two) is always true``
+
+*(If the first subcondition is false, that means V has to be One, so the second subcondition will always be true)*
 
 ---------------------------------
 Loop Does Not Complete Normally
@@ -997,13 +855,10 @@ Loop Does Not Complete Normally
   + An exception is raised
   + The exit condition code is unreachable (dead code)
 
-..
-   :toolname:`CodePeer` example (4.1.4 - loop does not complete normally)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Loops is
+   procedure Example is
       Buf : String := "The" & ASCII.NUL;
       Bp  : Natural;
    begin
@@ -1014,9 +869,9 @@ Loop Does Not Complete Normally
          Bp := Bp + 1;
          exit when Buf (Bp - 1) = ASCII.NUL; -- Condition never reached
       end loop;
-   end Loops;
+   end Example;
 
-| ``medium warning: loop does not complete normally``
+| ``example.adb:9:10: medium warning: loop does not complete normally``
 
 -------------------
 Unused Assignment
@@ -1030,16 +885,16 @@ Unused Assignment
 
 + :ada:`pragma Unreferenced` also ignored
 
-..
-   :toolname:`CodePeer` example (4.1.4 - unused assignment)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 2
 
-   I := Integer'Value (Get_Line);
-   I := Integer'Value (Get_Line);
+   procedure Example (I : out Integer) is
+   begin
+      I := Integer'Value (Get_Line);
+      I := Integer'Value (Get_Line);
+   end Example;
 
-| ``medium warning: unused assignment into I``
+| ``example.adb:4:6: medium warning: unused assignment into I``
 
 -----------------------------
 Unused Assignment To Global
@@ -1048,24 +903,21 @@ Unused Assignment To Global
 + Global variable assigned more than once between reads
 + Note: the redundant assignment may occur deep in the **call tree**
 
-..
-   :toolname:`CodePeer` example (4.1.4 - unused assignment to global)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Proc1 is
+   procedure Example (I : out Integer) is
+      Var : Integer := 0;
+      procedure Proc1 (X : Integer) is
+      begin
+         Var := X;
+      end Proc1;
    begin
-      G := 123;
-   end Proc1;
+      Proc1 (123);
+      Var := 456;
+   end Example;
 
-   procedure Proc is
-   begin
-      Proc1;
-      G := 456;  -- override effect of calling Proc1
-   end Proc;
-
-| ``low warning: unused assignment to global G in unused_global.p.proc1``
+| ``example.adb:9:11: medium warning: unused assignment into Var``
 
 ----------------------
 Unused Out Parameter
@@ -1076,21 +928,20 @@ Unused Out Parameter
   + either never used
   + or overwritten
 
-..
-   :toolname:`CodePeer` example (4.1.4 - unused out parameter)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Search (Success : out Boolean);
-   ...
-   procedure Search is
-      Ret_Val : Boolean;
+   procedure Example is
+      Y : Integer;
+      procedure Proc (X : out Integer) is
+      begin
+         X := 1_234;
+      end Proc;
    begin
-      Search (Ret_Val);
-   end Search;
+      Proc (Y);
+   end Example;
 
-| ``medium warning: unused out parameter Ret_Val``
+| ``example.adb:8:4: medium warning: unused out parameter Y``
 
 ----------------------
 Useless Reassignment
@@ -1098,20 +949,16 @@ Useless Reassignment
 
 + Assignments do not modify the value stored in the assigned object
 
-..
-   :toolname:`CodePeer` example (4.1.4 - useless reassignment)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Self_Assign (A : in out Integer) is
-      B : Integer;
+   procedure Example (A : in out Integer) is
+      B : Integer := A;
    begin
-      B := A;
       A := B;
-   end Self_Assign;
+   end Example;
 
-| ``medium warning: useless reassignment of A``
+| ``example.adb:4:6: medium warning: useless reassignment of A``
 
 -------------------------
 Suspicious Precondition
@@ -1121,24 +968,22 @@ Suspicious Precondition
 
   + some values **in-between** allowed inputs can cause **runtime errors**
 
-+ Certain cases may be missing from the user's precondition
-+ May be a **false-positive** depending on the algorithm
-
-..
-   :toolname:`CodePeer` example (4.1.4 - suspicious precondition)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 8
 
-   if S.Last = S.Arr'Last then
-      raise Overflow;
-   end if;
-   --  Typo: Should be S.Last + 1
-   S.Last         := S.Last - 1;
-   --  Error when S.Last = S.Arr'First - 1
-   S.Arr (S.Last) := V;
+   procedure Push (S : in out Stack_Type;
+                   V :        Integer) is
+   begin
+      if S.Last = S.Tab'Last
+      then
+         raise Overflow;
+      end if;
+      -- Increment Last
+      S.Last         := S.Last - 1;
+      S.Tab (S.Last) := V;
+   end Push;
 
-| ``medium warning: suspicious precondition for S.Last: not a contiguous range of values``
+| ``example.adb:8:4: medium warning: suspicious precondition for S.Last: not a contiguous range of values``
 
 ------------------
 Suspicious Input
@@ -1154,16 +999,19 @@ Suspicious Input
    :toolname:`CodePeer` example (4.1.4 - suspicious input)
 
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 6
 
-   procedure Take_In_Out (R : in out T);
-   ...
-   procedure Take_Out (R : out T; B : Boolean) is
+   procedure Take_In_Out (R : in out T) is
    begin
-      Take_In_Out (R);  -- R is 'out' but used as 'in out'
+      R.I := R.I + 1;
+   end Take_In_Out;
+
+   procedure Take_Out (R : out T;
+      B :     Boolean) is begin
+      Take_In_Out (R);
    end Take_Out;
 
-| ``medium warning: suspicious input R.I: depends on input value of out-parameter``
+| ``example.adb:13:7: medium warning: suspicious input R.I: depends on input value of out-parameter``
 
 ------------------
 Unread Parameter
@@ -1174,18 +1022,15 @@ Unread Parameter
   + but is assigned on **all** paths
   + Could be declared :ada:`out`
 
-..
-   :toolname:`CodePeer` example (4.1.4 - unread parameter)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Unread (X : in out Integer) is
+   procedure Example (X : in out Integer) is
    begin
-      X := 0;  -- X is assigned but never read
-   end Unread;
+      X := 0;
+   end Example;
 
-| ``medium warning: unread parameter X: could have mode out``
+| ``example.adb:1:1: medium warning: unread parameter X: could have mode out``
 
 ----------------------
 Unassigned Parameter
@@ -1195,19 +1040,17 @@ Unassigned Parameter
 
   + Could be declared :ada:`in`
 
-..
-   :toolname:`CodePeer` example (4.1.4 - unassigned parameter)
-
 .. code:: Ada
    :number-lines: 1
 
-   procedure Unassigned
-     (X : in out Integer; Y : out Integer) is
+   procedure Example
+     (X : in out Integer;
+      Y :    out Integer) is
    begin
-      Y := X;  -- X is read but never assigned
-   end Unassigned;
+      Y := X;
+   end Example;
 
-| ``medium warning: unassigned parameter X: could have mode in``
+| ``example.adb:1:1: medium warning: unassigned parameter X: could have mode in``
 
 -------------------------------
 Suspicious Constant Operation
@@ -1221,11 +1064,8 @@ Suspicious Constant Operation
 
     + eg :ada:`Float` conversion before division
 
-..
-   :toolname:`CodePeer` example (4.1.4 - suspicious constant operation)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 2
 
    type T is new Natural range 0 .. 14;
 
@@ -1234,7 +1074,7 @@ Suspicious Constant Operation
       return X / (T'Last + 1);
    end Incorrect;
 
-| ``medium warning: suspicious constant operation X/15 always evaluates to 0``
+| ``example.adb:6:16: medium warning: suspicious constant operation X/15 always evaluates to 0``
 
 --------------------
 Subp Never Returns
@@ -1248,11 +1088,8 @@ Subp Never Returns
 
   + eg. ``test always false``
 
-..
-   :toolname:`CodePeer` example (4.1.4 - subp never returns)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 3
 
    procedure Infinite_Loop is
       X : Integer := 33;
@@ -1262,7 +1099,9 @@ Subp Never Returns
       end loop;
    end Infinite_Loop;
 
-| ``medium warning: subp never returns: infinite_loop``
+| ``example.adb:3:4: medium warning: subp never returns: example.infinite_loop``
+| ``example.adb:7:12: medium warning: loop does not complete normally``
+| ``example.adb:7:17: low: overflow check might fail: requires X /= Integer_32'Last``
 
 -------------------
 Subp Always Fails
@@ -1271,118 +1110,21 @@ Subp Always Fails
 + A run-time problem could occur on **every** execution
 + Typically, **another message** in the body can explain why
 
-..
-   :toolname:`CodePeer` example (4.1.4 - subp always fails)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 3
 
    procedure P is
-      X : Integer := raise Program_Error;
+      X : Integer := (raise Program_Error);
    begin
       null;
    end P;
 
-| ``high warning: subp always fails: p fails for all possible inputs``
-
--------------------
-Same Operands
--------------------
-
-+ The two operands of a binary operation are syntactically equivalent
-+ The resulting expression will always yield the same value
-
-.. code:: Ada
-   :number-lines: 1
-
-   function Same_Op (X : Natural) return Integer is
-   begin
-      --  Copy/paste error? Always return 1
-      return (X + 1) / (X + 1);
-   end Same_Op;
-
-| ``medium warning: same operands (Infer): operands of '/' are identical``
-
--------------------
-Same Logic
--------------------
-
-+ The same sub-expression occurs twice in a boolean expression
-+ The entire expression can be simplified, or always return the same value
-
-.. code:: Ada
-   :number-lines: 1
-
-   function Same_Logic (A, B : Boolean) return Boolean is
-   begin
-      return A or else B or else A;
-   end Same_Logic;
-
-| ``medium warning: same operands (Infer): 'A' duplicated at line 3``
-
--------------------
-Test duplication
--------------------
-
-+ The same expression is tested twice in successive :ada:`if ... elsif ... elsif ...`
-+ Usually indicates a copy-paste error
-
-.. code:: Ada
-   :number-lines: 1
-
-   procedure Same_Test (Str : String) is
-      A : constant String := "toto";
-      B : constant String := "titi";
-   begin
-      if Str = A then
-         Ada.Text_IO.Put_Line("Hello, tata!");
-      elsif Str = B then
-         Ada.Text_IO.Put_Line("Hello, titi!");
-      elsif Str = A then
-         Ada.Text_IO.Put_Line("Hello, toto!");
-      else
-         Ada.Text_IO.Put_Line("Hello, world!");
-      end if;
-   end Same_Test;
-
-| ``medium warning: same test (Infer): test 'Str = A' duplicated at line 9``
-
--------------------
-Duplicate branches
--------------------
-
-+ Branches are duplicated in :ada:`if` or :ada:`case`
-+ Should be refactored, or results from incorrect copy-paste
-
-.. code:: Ada
-   :number-lines: 1
-
-   function Dup (X : Integer) return Integer is
-   begin
-      if X > 0 then
-         declare
-            A : Integer := X;
-            B : Integer := A + 1;
-         begin
-            return B;
-         end;
-      else
-         declare
-            A : Integer := X;
-            B : Integer := A + 1;
-         begin
-            return B;
-         end;
-      end if;
-   end Dup;
-
-| ``infer.adb:4:10: medium warning: duplicate branches (Infer): code duplicated at line 11``
+| ``example.adb:3:4: high warning: subp always fails: example.p fails for all possible inputs``
+| ``example.adb:4:23: low: raise exception unconditional raise``
 
 ------
 Quiz
 ------
-
-* Which warnings will be reported with the following?
 
 .. code:: Ada
 
@@ -1397,10 +1139,12 @@ Quiz
         end if;
     end F;
 
+* Which warning(s) will be reported with the above code?
+
 A. :answer:`Dead Code`
 B. Condition Predetermined
 C. Test Always False
-D. Test Always True
+D. :answer:`Test Always True`
 
 .. container:: animate
 
