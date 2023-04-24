@@ -8,5 +8,9 @@ project Default is
       for Switches ("ada") use ("-gnatwe", "-gnato", "-g");
    end Compiler;
 
+   package CodePeer is
+      for Switches use ("-level", "3");
+   end CodePeer;
+
 end Default;
 

@@ -139,10 +139,10 @@ Message Information
 Analyzing Messages
 --------------------
 
-* Expression at line 26 is accessing at the first index in local variable :ada:`Word`
+* Expression at line 26 is accessing first index in :ada:`Word`
 
-  * Initialized at line 18 with a call to :ada:`Input.Next_Word`
-  * Will raise a :ada:`Constraint_Error` if :ada:`Input.Next_Word` returns empty string.
+  * Initialized at line 18 with call to :ada:`Input.Next_Word`
+  * Will raise :ada:`Constraint_Error` if :ada:`Input.Next_Word` returns empty string.
 
 * Go to the definition of function :ada:`Input.Next_Word`.
 
@@ -168,9 +168,12 @@ Understanding Annotations
 
 * In postconditions, you can see that CodePeer computed
 
-  * Possible range of ``1..1_024`` for the application of attribute :ada:`First`
-  * Possible range of ``0..1_023`` for the application of attribute :ada:`Last`
-  * This means :ada:`Result'First` |rightarrow| 1 and :ada:`Result'Last` |rightarrow| 0, so an empty string is possible
+  .. code:: Ada
+
+    -- input.next_word'Result'First <= 1_024
+    -- input.next_word'Result'Last in 0..1_023
+    
+  * Indicating :ada:`Result'First` could be and :ada:`Result'Last` could be 0 |rightarrow| empty string
 
 * In :ada:`Next_Word`, an empty string is returned when the first character read is not in :ada:`Printable_Character`.
 
@@ -219,12 +222,12 @@ Examining a Warning
       --  Preconditions:
       --    Last in (2..199, 201)
 
-    * Note the hole - 199 and 201 are valid, but 200 is not
+    * Note the hole |rightarrow| 199 and 201 are valid, but 200 is not
     * 200 is the value of :ada:`Tab'Last` - indicating full stack, so we shouldn't call :ada:`Push` when stack is full
 
   * Why is 201 valid?
 
-    * What happens when we call :ada:`Push` with :ada:`Last` is 201?
+    * What happens when we call :ada:`Push` when :ada:`Last` is 201?
     * Test on line 43 is false, so execution continues until line 49 :ada:`Last` is assigned the value 200 (201-1)!
     * We are decrementing :ada:`Last` in :ada:`Push` rather than incrementing it!
 
