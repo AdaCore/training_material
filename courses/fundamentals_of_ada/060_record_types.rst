@@ -228,20 +228,18 @@ Assignment Examples
       Phase1.Real := Phase2.Real;
    end;
 
-----------------------
-Constant and Limited
-----------------------
+-----------------------------
+Limited Types - Quick Intro
+-----------------------------
 
-* Both un-assignable
-* Constants can **never** change
+* A :ada:`record` type can be limited
 
-    - May be inlined
-    - Carried by the **object**
+    - And some other types, described later
 
-* Limited cannot be **copied** or **compared**
+* :dfn:`limited` types cannot be **copied** or **compared**
 
-    - May be modified component-wise
-    - Carried by the **type**
+    - As a result then cannot be assigned
+    - May still be modified component-wise
 
 .. code:: Ada
 
