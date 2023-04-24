@@ -125,7 +125,7 @@ GPR with **relative** paths are searched
 
     * Path to a file listing directory paths
 
-        + ``GPR_PROJECT_PATH`_FILE``
+        + ``GPR_PROJECT_PATH_FILE``
 
     * List of directories, separated by PATH-like (``:``, ``;``) separator
 
