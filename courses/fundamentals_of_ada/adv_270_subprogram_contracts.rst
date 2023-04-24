@@ -640,9 +640,6 @@ Postcondition Compared to Their Body: Example
      Pre  =>  A > 0 and B > 0,
      Post =>  Is_GCD (A, B, Greatest_Common_Denominator'Result);
 
-   function Greatest_Common_Denominator (A, B : Integer)
-     return Integer is
-   
    function Is_GCD (A, B, Candidate : Integer)
        return Boolean is
      (A rem Candidate = 0 and
