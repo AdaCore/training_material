@@ -1148,7 +1148,7 @@ D. :answer:`Test Always True`
 
 .. container:: animate
 
-    The last elsif can never be reached.
+    The last :ada:`elsif` can never be reached.
 
 =================
 Race Conditions
@@ -1195,30 +1195,38 @@ Race Condition Messages
 Race Condition Examples
 -------------------------
 
-..
-   :toolname:`CodePeer` example (4.1.5 - race conditions)
-
 .. code:: Ada
-   :number-lines: 1
+   :number-lines: 13
 
    procedure Increment is
    begin
-      Mutex_Acquire;
+      Acquire;
       if Counter = Natural'Last then
          Counter := Natural'First;
       else
          Counter := Counter + 1;
       end if;
-      Mutex_Release;
+      Release;
    end Increment;
 
-   procedure Reset is
-   begin
-      Counter := 0; -- lock missing
-   end Reset;
+   procedure Decrement is
+   begin  --  no Acquire/Release
+      if Counter = Natural'First then
+         Counter := Natural'Last;
+      else
+         Counter := Counter - 1;
+      end if;
+   end Decrement;
 
-| ``medium warning: mismatched protected access of shared object Counter via race.increment``
-| ``medium warning: unprotected access of Counter via race.reset``
+.. container:: latex_environment tiny
+
+  ``race.adb:26:10: medium warning: mismatched protected access of shared object Counter via race.increment``
+
+  ``race.adb:26:10: medium warning: unprotected access of Counter via race.decrement``
+
+  ``race.adb:27:18: medium warning: mismatched protected access of shared object Counter via race.increment``
+
+  ``race.adb:27:18: medium warning: unprotected access of Counter via race.decrement``
 
 =====================================
 Automatically Generated Annotations
