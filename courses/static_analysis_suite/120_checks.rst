@@ -1237,7 +1237,9 @@ Generated Annotations
 -----------------------
 
 + :toolname:`CodePeer` generates **annotations** on the code
-+ Not errors
+
+   + Not errors
+
 + Express **properties** and **assumptions** on the code
 + Can be reviewed
 
@@ -1259,37 +1261,57 @@ Annotations Categories
 
           - *Description*
 
-        * - ``precondition``
+        * - ``Preconditions``
 
-          - Requirements imposed on the subprogram's inputs
+          - Requirements imposed on subprogram inputs
 
-        * - ``postcondition``
+        * - ``Presumptions``
 
-          - Presumption on the outputs of a subprogram
+          - Presumption on result of **external** subprogram
 
-        * - ``presumption``
+        * - ``Postconditions``
 
-          - Presumption on the result of an **external** subprogram
+          - Presumption on subprogram outputs
 
-        * - ``unanalyzed call``
+        * - ``unanalyzed``
 
-          - External calls to unanalyzed subprograms
+          - External call to unanalyzed subprogram
 
-        * - ``global inputs``
+        * - ``Global Inputs``
 
           - Global variables **referenced** by each subprogram
 
-        * - ``global outputs``
+        * - ``Global Outputs``
 
           - Global variables **modified** by each subprogram
 
-        * - ``new objects``
+        * - ``New Objects``
 
           - Unreclaimed heap-allocated object
 
 --------------
-Precondition
+Example Code
 --------------
+
+.. code:: Ada
+   :number-lines: 10
+
+   Sensor : Integer := 123;
+   Offset : Integer := 0;
+
+   procedure Example
+     (Old_Object :        Access_T;
+      New_Object : in out Access_T) is
+   begin
+      Read_Register (Sensor);
+      New_Object     := new Integer;
+      Sensor         := Sensor + Offset;
+      New_Object.all := Old_Object.all + Sensor;
+   end Example;
+
+---------------
+Preconditions
+---------------
 
 + Requirements imposed on the subprogram inputs
 
@@ -1302,28 +1324,13 @@ Precondition
 
 .. code:: ada
 
-    procedure Assign (X : out Integer; Y : in Integer) is
-    begin
-      X := Y + 1;
-    end Assign;
-    -- assign.adb:1: (pre)- assign:(overflow check [CWE 190])
-    -- Y /= 2_147_483_647
+   --  Preconditions:
+   --    Old_Object /= null
+   --    (soft) Old_Object.all'Initialized
 
----------------
-Postcondition
----------------
-
-+ Inferences about the outputs of a subprogram
-
-.. code:: ada
-    :number-lines: 2
-
-    -- assign.adb:1: (post)- assign:X /= -2_147_483_648
-    -- assign.adb:1: (post)- assign:X = Y + 1
-
--------------
-Presumption
--------------
+--------------
+Presumptions
+--------------
 
 + Presumption about the results of an **external** subprogram
 
@@ -1332,42 +1339,30 @@ Presumption
 
 + Separate presumptions for each call site
 
-.. code::
-
-    <subprogram-name>@<line-number-of-the-call>
-
 + Generally not used to determine preconditions of the calling routine
 
     - but they might influence postconditions of the calling routine.
 
 .. code:: ada
 
-    procedure Above_Call_Unknown (X : out Integer) is
-    begin
-      Call_Unknown (X);
-      pragma Assert (X /= 10);
-    end Above_Call_Unknown;
-    -- (presumption)- above_call_unknown:unknown.X@4 /= 10
+   --  Presumptions:
+   --    example.read_register.Value@17 + Old_Object.all in
+   --       Integer_32'First..Integer_32'Last
 
------------------
-Unanalyzed Call
------------------
+----------------
+Postconditions
+----------------
 
-+ External calls to unanalyzed subprograms
-
-    - Participate in the determination of presumptions
-
-+ These annotations include **all** unanalyzed calls
-
-    - **Direct** calls
-    - Calls in the **call graph** subtree
-
-        + **If** they have an influence on the current subprograms
++ Inferences about the outputs of a subprogram
 
 .. code:: ada
 
-    -- above_call_unknown.adb:2: (unanalyzed)-
-    --     above_call_unknown:call on unknown
+   --  Postconditions:
+   --    New_Object = new integer(in example.example)#1'Address
+   --    possibly_updated(New_Object.all)
+   --    New_Object'Initialized
+   --    new integer(in example.example)#1 num objects = 1
+   --    Sensor'Initialized
 
 -----------------------
 Global Inputs/Outputs
@@ -1384,13 +1379,11 @@ Global Inputs/Outputs
 
 .. code:: ada
 
-    procedure Double_Pointer_Assign (X, Y : in Ptr) is
-    begin
-       X.all := 1;
-       Y.all := 2;
-    end Double_Pointer_Assign;
-    -- call_double_pointer_assign.adb:4: (global outputs)-
-    --     call_double_pointer_assign.call:X, Y
+   --  Global Inputs:
+   --    Offset
+   --
+   --  Global Outputs:
+   --    Sensor
 
 -------------
 New Objects
@@ -1405,11 +1398,21 @@ New Objects
 
 .. code:: ada
 
-   procedure Create (X : out Ptr) is
-   begin
-      X := new Integer;
-   end;
-   -- alloc.adb:2: (post)- alloc.create:X =
-   --     new integer(in alloc.create)#1'Address
-   -- alloc.adb:2: (post)- alloc.create:
-   --     new integer(in alloc.create)#1.<num objects> = 1
+   --    New_Object = new integer(in example.example)#1'Address
+   --    new integer(in example.example)#1 num objects = 1
+
+-----------------
+Unanalyzed Call
+-----------------
+
++ External calls to unanalyzed subprograms
+
+    - Participate in the determination of presumptions
+
++ These annotations include **all** unanalyzed calls
+
+    - **Direct** calls
+    - Calls in the **call graph** subtree
+
+        + **If** they have an influence on the current subprograms
+
