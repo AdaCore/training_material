@@ -41,7 +41,7 @@ Customization Lab
 
 * Use :toolname:`GNAT Studio` to open the :filename:`default.gpr` project in the :filename:`150_lab_customization` folder
 * Start a baseline run at **level 3**
-* Analyze the result
+* Examine the result
 
 ===================
 Filtering Sources
