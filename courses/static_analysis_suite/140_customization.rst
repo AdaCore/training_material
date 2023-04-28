@@ -39,7 +39,11 @@ Introduction
 Customization
 ---------------
 
-+ TBD
++ Ways to customize :toolname:`CodePeer` execution
+
+  + Skip problematic files
+  + Specify database and output locations
+  + Include compiler warnings and :toolname:`gnatcheck` messages
 
 ============================
 External Tools Integration
@@ -91,18 +95,22 @@ Finding the Right Settings
 System Requirements
 ---------------------
 
-+ Fast 64bits machine with multiple cores and memory
-+ **Server** :math:`\rightarrow` 24 to 48 cores with at least 2GB per core (48 to 96GB)
-+ **Local desktop** :math:`\rightarrow` 4 to 8 cores, with at least 8 to 16GB
-+ **Avoid slow filesystems** :math:`\rightarrow` networks drives (NFS, SMB), configuration management filesystems (e.g. ClearCase dynamic views).
++ Fast 64-bit machine with multiple cores and memory
 
+  + **Server** :math:`\rightarrow` 24 to 48 cores with at least 2GB per core (48 to 96GB)
+  + **Local desktop** :math:`\rightarrow` 4 to 8 cores, with at least 8 to 16GB
+
++ **Avoid slow filesystems**
+
+  + Networks drives (NFS, SMB)
+  + Configuration management filesystems (e.g. ClearCase dynamic views).
   + If not possible, at least generate output file in a local disk via the *Output_Directory* and *Database_Directory* project attributes.
 
 + **Global analysis (-level max)** :math:`\rightarrow` At least 12GB + 1GB per 10K SLOC, e.g. At least 32GB for 200K SLOC.
 
-------------------------
-Analyze Messages (1/4)
-------------------------
+-----------------------------------
+Finding a Suitable Analysis Level
+-----------------------------------
 
 + Start with default (level 0)
 + Check number of **false positives**
@@ -123,14 +131,15 @@ Analyze Messages (1/4)
 
 :command:`codepeer -Pmy_project --level 1 ...`
 
-------------------------
-Analyze Messages (2/4)
-------------------------
+-----------------------------------
+Search For Common Coding Patterns
+-----------------------------------
 
 + Runs contain many messages
-+ **Sample** them
-+ **Identify** groups of **false positives**
-+ **Exclude** them by categories
+
+  + **Sample** them
+  + **Identify** groups of **false positives**
+  + **Exclude** them by categories
 
     + Using :code:`--infer-messages` for :toolname:`infer` (level 0)
     + Using :code:`--be-messages` for :toolname:`CodePeer` (level 1+)
@@ -139,9 +148,9 @@ Analyze Messages (2/4)
 
    :code:`--be-messages=-access_check`
 
-------------------------
-Analyze Messages (3/4)
-------------------------
+--------------------------------------
+Filter Out Unwanted Messages / Units
+--------------------------------------
 
 + Filtering of messages
 
@@ -154,13 +163,12 @@ Analyze Messages (3/4)
 
     + :ada:`pragma Annotate (CodePeer, Skip_Analysis)`
 
-------------------------
-Analyze Messages (4/4)
-------------------------
+--------------------------
+Examine Messages By Rank
+--------------------------
 
-+ Choose relevant messages based on ranking
++ Choose relevant messages based on ranking (severity :math:`\times` certainty)
 
-  + Rank = severity :math:`\times` certainty
   + **High** :math:`\rightarrow` certain problem
   + **Medium** :math:`\rightarrow` possible problem, or certain with low severity
   + **Low** :math:`\rightarrow` less likely problem (yet useful for exhaustivity)
@@ -169,14 +177,14 @@ Analyze Messages (4/4)
 
     + Start with **High** rank
     + Then **Medium** rank
-    + Finally **Low** rank if needed
+    + Finally **Low** rank if needed / time available
 
 + Considering only High and Medium is recommended
 
     + Default in :toolname:`GNAT Studio` and HTML interfaces
 
 ---------------------
-Run CodePeer faster
+Run CodePeer Faster
 ---------------------
 
 + Hardware
@@ -283,9 +291,13 @@ In-Code Justification
 + Add message review pragma in code
 + :ada:`pragma Annotate` added next to code with message
 
-  + :ada:`False_Positive`: Condition in question cannot occur
-  + :ada:`Intentional`: Condition is justified by a design choice
   + Also added in the database
+
+  False_Positive
+    Condition in question cannot occur
+
+  :ada:`Intentional`
+    Condition is justified by a design choice
 
 .. code:: Ada
 
