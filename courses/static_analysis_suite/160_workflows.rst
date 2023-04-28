@@ -365,7 +365,7 @@ Presumptions
 
 + In partitioned analysis, :toolname:`CodePeer` makes assumptions about *unanalyzed subprogram calls*
 
-  + Subprograms in a different partition than one being anaylzed
+  + Subprograms in a different partition than one being analyzed
 
 + Presumptions are listed in information block
 
@@ -404,13 +404,13 @@ Summary
 References
 ------------
 
-  + Online: https://www.adacore.com/documentation#codepeer
+  + Online: https://www.adacore.com/documentation#CodePeer
   + In local install at share/doc/codepeer/users_guide (or tutorial)
   + From :toolname:`GNAT Studio` go to :menu:`Help` :math:`\rightarrow` :menu:`Codepeer` :math:`\rightarrow` :menu:`Codepeer User's Guide` (or :menu:`Codepeer Tutorial`)
 
 + :toolname:`CodePeer` website
 
-  + http://www.adacore.com/codepeer
+  + http://www.adacore.com/static-analysis/codepeer
   + Videos, product pages, articles, challenges
 
 + Book chapter on :toolname:`CodePeer`
