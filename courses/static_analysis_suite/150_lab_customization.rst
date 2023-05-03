@@ -51,7 +51,7 @@ Filtering Sources
 Focusing Our Analysis
 -----------------------
 
-The Legacy module is raising the majority of error, and its code is using many dangerous constructs
+The Legacy module is raising the majority of the errors, and its code is using many dangerous constructs
 
 As a result we want to focus on the module that is not legacy.
 
@@ -97,9 +97,9 @@ Filtering Source Files
 
   * Open the project file from the :menu:`Project` tab
 
-    *  Right-click on :menu:`Cruise` |rightarrow| :menu:`Project` |rightarrow| :menu:`Edit Source File`.
+    *  Right-click on :menu:`Default` |rightarrow| :menu:`Project` |rightarrow| :menu:`Edit Source File`.
 
-      .. image:: codepeer/radar_open_gpr.png
+      .. image:: codepeer/cruise_edit_gpr_file.png
 
 * Ignore the :ada:`Cruise.Legacy` package in analysis
 
@@ -155,13 +155,13 @@ Settings Via The Project File
 Overriding Project File Settings
 ----------------------------------
 
-* Configure a new analysis with :menu:`CodePeer` |rightarrow| :menu:`Analyse...`
+* Configure a new analysis with :menu:`CodePeer` |rightarrow| :menu:`Analyze...`
 
 * In the opened window, you can modify the command used to call CodePeer directly at the bottom of the screen.
 
 .. image:: codepeer/cruise_analysis_manual_switches.png
 
-* Notice that there is also an history for this bar.
+* Notice there is also history for the filter
 
   * Remove the :ada:`--level` switch to use the default level.
 
@@ -176,7 +176,7 @@ GNAT Warnings
 * CodePeer has integration to several tools, namely the GNAT compiler Warnings and GNATcheck.
 * We will use a bit of the GNAT warnings integration there.
 
-* Configure a new analysis with :menu:`CodePeer` |rightarrow| :menu:`Analyse...`
+* Configure a new analysis with :menu:`CodePeer` |rightarrow| :menu:`Analyze...`
 
    * The *Warnings ...* choice is actually a **button**, click on it
 
@@ -210,10 +210,10 @@ Configure Which Warnings To See
 
 * Enable GNAT Warnings for
 
-  - Variables that could be constant (`-gnatwk`)
+  - Variables that could be constants (`-gnatwk`)
   - Unused entities (`-gnatwu`)
 
-* Notice that the called command line now has :ada:`--gnat-warnings=uk`
+* Notice that the called command line now has :ada:`--gnat-warnings=ku`
 
 * Run the analysis
 
@@ -235,7 +235,7 @@ Checking Only Changed Code
 
   * You should see no message
 
-* Fix a bug on :file:`cruise.adb`
+* Fix a bug in :file:`cruise.adb`
 * Run a new analysis
 
-  * You should see that the bug is now present, as **removed**
+  * Bug now present but listed as **removed**

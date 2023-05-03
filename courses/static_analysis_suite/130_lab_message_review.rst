@@ -55,7 +55,7 @@ Perform Baseline Run
   * Expand :file:`radar.adb` hierarchy (if not already)
   * Select a message on line 10
 
-* The subprogram has two bugs:
+* The subprogram has two types of bugs:
 
   * Overflow check on addition
   * Array index check on array access

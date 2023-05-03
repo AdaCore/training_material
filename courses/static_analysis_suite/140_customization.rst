@@ -76,7 +76,7 @@ GNATcheck messages
 
 + Uses the :toolname:`GNATcheck` rules file
 
-    - defined in your project file in :ada:`package Check`
+    - Defined in your project file in :ada:`package Check`
 
 + Messages are stored in the database
 
@@ -102,7 +102,7 @@ System Requirements
 
 + **Avoid slow filesystems**
 
-  + Networks drives (NFS, SMB)
+  + Network drives (NFS, SMB)
   + Configuration management filesystems (e.g. ClearCase dynamic views).
   + If not possible, at least generate output file in a local disk via the *Output_Directory* and *Database_Directory* project attributes.
 
@@ -114,7 +114,7 @@ Finding a Suitable Analysis Level
 
 + Start with default (level 0)
 + Check number of **false positives**
-+ Check number of **interesting** message
++ Check number of **interesting** messages
 + Check **duration** of analysis
 + If these conditions are OK
 

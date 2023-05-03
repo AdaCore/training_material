@@ -113,7 +113,7 @@ Continuous Runs
 
     + Focus on **differences** from previous run
 
-+ Continuous runs triggerred on repository events
++ Continuous runs triggered on repository events
 + Summary is sent to developers
 
     + Email
@@ -253,7 +253,7 @@ Baseline With Continuous Integration
 + The continuous builder is **triggered**
 
   + Database is copied from the **Baseline** run
-  + Setting are copied from the **Reference** run settings
+  + Settings are copied from the **Reference** run settings
 
 + Results are reviewed via a spreadsheet tool (e.g. Excel)
 + Reviews are imported into the :toolname:`CodePeer` database
@@ -415,4 +415,4 @@ References
 
 + Book chapter on :toolname:`CodePeer`
 
-  + In Static Analysis of Software: The Abstract Interpretation, published by Wiley (2012)
+  + In *Static Analysis of Software: The Abstract Interpretation*, published by Wiley (2012)

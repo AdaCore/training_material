@@ -70,8 +70,6 @@ Run-Time Checks
 Run-Time Check Messages
 -------------------------
 
-.. container:: latex_environment
-
    .. list-table::
         :header-rows: 1
 
@@ -407,12 +405,12 @@ Quiz
        return Integer'First - 1;
     end Before_First;
 
-* Which check will be flagged with the above code?
+Which check will be flagged with the above code?
 
-A. Precondition check
-B. Range check
-C. :answer:`Overflow check`
-D. Underflow check
+  A. Precondition check
+  B. Range check
+  C. :answer:`Overflow check`
+  D. Underflow check
 
 .. container:: animate
 
@@ -441,10 +439,12 @@ Quiz
       end loop;
    end Update;
 
-A. Array index check
-B. :answer:`Range check`
-C. Overflow check
-D. Access check
+Which check will be flagged with the above code?
+
+  A. Array index check
+  B. :answer:`Range check`
+  C. Overflow check
+  D. Access check
 
 .. container:: animate
 
@@ -459,8 +459,6 @@ User Checks
 ---------------------
 User Check Messages
 ---------------------
-
-.. container:: latex_environment
 
    .. list-table::
         :header-rows: 1
@@ -641,8 +639,6 @@ Warnings
 Warning Messages (1/2)
 ------------------------
 
-.. container:: latex_environment
-
    .. list-table::
         :header-rows: 1
 
@@ -701,8 +697,6 @@ Warning Messages (1/2)
 ------------------------
 Warning Messages (2/2)
 ------------------------
-
-.. container:: latex_environment
 
    .. list-table::
         :header-rows: 1
@@ -848,7 +842,7 @@ Condition Predetermined
 Loop Does Not Complete Normally
 ---------------------------------
 
-+ The loop will never satisfies its **exit condition**
++ Loop never satisfies its **exit condition**
 + Causes can be
 
   + Exit condition is always :ada:`False`
@@ -1158,8 +1152,6 @@ Race Conditions
 Race Condition Messages
 -------------------------
 
-.. container:: latex_environment
-
    .. list-table::
         :header-rows: 1
 
@@ -1252,8 +1244,6 @@ Generated Annotations
 Annotations Categories
 ------------------------
 
-.. container:: latex_environment
-
    .. list-table::
         :header-rows: 1
 
@@ -1341,7 +1331,7 @@ Presumptions
 
 + Generally not used to determine preconditions of the calling routine
 
-    - but they might influence postconditions of the calling routine.
++ Might influence postconditions of the calling routine.
 
 .. code:: ada
 
@@ -1355,14 +1345,16 @@ Postconditions
 
 + Inferences about the outputs of a subprogram
 
-.. code:: ada
+.. container:: latex_environment small
 
-   --  Postconditions:
-   --    New_Object = new integer(in example.example)#1'Address
-   --    possibly_updated(New_Object.all)
-   --    New_Object'Initialized
-   --    new integer(in example.example)#1 num objects = 1
-   --    Sensor'Initialized
+  .. code:: ada
+
+    --  Postconditions:
+    --    New_Object = new integer(in example.example)#1'Address
+    --    possibly_updated(New_Object.all)
+    --    New_Object'Initialized
+    --    new integer(in example.example)#1 num objects = 1
+    --    Sensor'Initialized
 
 -----------------------
 Global Inputs/Outputs
@@ -1396,10 +1388,12 @@ New Objects
 
 + New objects that are accessible **after** return from the subprogram
 
-.. code:: ada
+.. container:: latex_environment small
 
-   --    New_Object = new integer(in example.example)#1'Address
-   --    new integer(in example.example)#1 num objects = 1
+  .. code:: ada
+
+    --    New_Object = new integer(in example.example)#1'Address
+    --    new integer(in example.example)#1 num objects = 1
 
 -----------------
 Unanalyzed Call
