@@ -257,7 +257,7 @@ Quiz
 
 Which of the following statement is true?
 
-A. :Generics contracts define new types
+A. Generic contracts define new types
 B. Generic contracts can express any type constraint
 C. :answer:`Generic contracts can express inheritance constraint`
 D. Generic contracts can require a type to be numeric (Real or Integer)
