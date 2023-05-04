@@ -544,10 +544,8 @@ def perform_role(role, literal_text, format):
         return function_name
     elif function_name in dir(pandocfilters):
         return globals()[function_name](literal_to_AST_node(literal_text))
-    elif format == "beamer":
-        return globals()[function_name](literal_text)
     else:
-        return globals()[function_name](literal_to_AST_node(literal_text))
+        return globals()[function_name](literal_text)
 
 
 """
