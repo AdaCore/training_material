@@ -271,7 +271,7 @@ Task Activation
 Single Declaration
 --------------------
 
- * Instanciate an **anonymous** task (or protected) type
+ * Instantiate an **anonymous** task (or protected) type
  * Declares an object of that type
 
     - Body declaration is then using the **object** name
@@ -279,7 +279,7 @@ Single Declaration
  .. code:: Ada
 
    task Msg_Box is
-       -- Msg_Box task is declared *and* instanciated
+       -- Msg_Box task is declared *and* instantiated
       entry Receive_Message (S : String);
    end Msg_Box;
 
