@@ -1,0 +1,16 @@
+project Default is
+
+   for Languages use ("ada");
+   for Source_Dirs use ("src");
+   for Object_Dir use "obj";
+
+   package Compiler is
+      for Switches ("ada") use ("-gnatwe", "-gnato", "-g");
+   end Compiler;
+
+   package CodePeer is
+      for Switches use ("-level", "3");
+   end CodePeer;
+
+end Default;
+
