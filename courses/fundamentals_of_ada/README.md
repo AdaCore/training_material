@@ -18,12 +18,19 @@ separated by "\_").
 When the filename starts with the 3-digit prefix, this prefix specifies
 the expected order of teaching the modules.
 
+Files that are prefaced by "intro_" are introductory courses. When the prefix
+matches a fundamental course prefix, then the introductory topic is a lightweight
+version the fundamental course (or a portion thereof).
+When the prefix does not match a fundamental course prefix, then the
+course is just an introduction to an Ada topic that was not covered in
+the fundamental course.
+
 Files that are prefaced by "adv_" are advanced courses. When the prefix
 matches a fundamental course prefix, then the advanced topic is an
 in-depth version the fundamental course (or a portion thereof).
 When the prefix does not match a fundamental course prefix, then the
 advanced topic is just an advanced Ada topic that was not covered in
-th fundamentatl course.
+the fundamental course.
 
 Files that are prefaced by "spec_" are courses that were created at
 the request of a customer, and may or may not be useful to other customers.
