@@ -195,7 +195,7 @@ Declaration
     :code: Ada
 
 ---------------
-Instanciation
+Instantiation
 ---------------
 
 * May require an initial :ada:`Empty_xxx` value
