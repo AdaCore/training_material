@@ -135,21 +135,48 @@ Change Settings
 Settings Via The Project File
 -------------------------------
 
-* We want to set the default value of the CodePeer parameters in the GPR file.
+.. container:: columns
 
-  * The :toolname:`GPRBuild` attribute to set the switches is :ada:`CodePeer.Switches`
+  .. container:: column
 
-* Change the default level of analysis to **2**
+      * We want to set the default value of the CodePeer parameters in the GPR file.
 
-  * The corresponding switch is :ada:`--level`
+      * Change default level of analysis to **2**
 
-* Set multiprocessing to **0** cores (ie. let the tool chose).
+          * Corresponding switch is ``--level``
 
-  * The corresponding switch is :ada:`-j`
+      * Set multiprocessing to **0** cores (ie. let the tool choose)
 
-* Run a new analysis with :menu:`CodePeer` |rightarrow| :menu:`Analyze All`
+          * Corresponding switch ``-j``
 
-* The analysis should return fewer results
+      * Run new analysis with :menu:`CodePeer` |rightarrow| :menu:`Analyze All`
+
+      * Analysis should return fewer results
+
+  .. container:: column
+
+    .. container:: latex_environment tiny
+
+      ::
+
+        project Default is
+
+           for Languages use ("ada");
+           for Source_Dirs use ("src");
+           for Object_Dir use "obj";
+
+           package Compiler is
+              for Switches ("ada") use ("-gnatwe",
+                                        "-gnato",
+                                        "-g");
+           end Compiler;
+
+           package Codepeer is
+              for Switches use ("--level", "2", "-j0");
+           end Codepeer;
+
+        end Default;
+
 
 ----------------------------------
 Overriding Project File Settings
