@@ -119,7 +119,7 @@ Declaration
 
       generic
          type T is private;
-      procedure Swap (L, R : in out T)
+      procedure Swap (L, R : in out T);
 
 * Packages
 
