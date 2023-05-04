@@ -390,7 +390,7 @@ Summary
     - But has some resemblance to it
     - e.g. discretes' :ada:`type Enum is (A, B, C)` vs generics' :ada:`type T is (<>)`
 
-* Instanciation "generates" code
+* Instantiation "generates" code
 
     - Costly
     - Beware of local generic instances!
