@@ -99,9 +99,11 @@ Usage
 .. code:: Ada
 
    --  Standard library
-   function Convert is new Ada.Unchecked_Conversion (Integer, Array_Of_4_Bytes);
+   function Convert is new Ada.Unchecked_Conversion
+     (Integer, Array_Of_4_Bytes);
    --  Callbacks
-   procedure Parse_Tree is new Tree_Parser (Visitor_Procedure);
+   procedure Parse_Tree is new Tree_Parser
+     (Visitor_Procedure);
    --  Containers, generic data-structures
    package Integer_Stack is new Stack (Integer);
 
