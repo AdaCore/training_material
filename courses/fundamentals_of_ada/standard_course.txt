@@ -17,5 +17,4 @@ spec_875_gpr_basics.rst
 190_exceptions.rst
 spec_270_subprogram_contracts_ada95.rst
 adv_280_low_level_programming.rst
-900_ada_version_comparison.rst
 920_reference_material.rst
