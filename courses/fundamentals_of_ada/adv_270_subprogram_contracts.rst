@@ -47,13 +47,11 @@ Introduction
 
    - :dfn:`Supplier` provides services
 
-       - In Ada: Implements it
        - Guarantees specific functional behavior
        - Has requirements for guarantees to hold
 
    - :dfn:`Client` utilizes services
 
-       - In Ada: Calls the subprogram
        - Guarantees supplier's conditions are met
        - Requires result to follow the subprogram's guarantees
 
@@ -74,7 +72,7 @@ Ada Contracts
    - OOP :ada:`interface` types (Ada 2005)
    - Work well, but on a restricted set of use-cases
 
-* Contracts are explicitly added in **Ada 2012**
+* Contracts aspects are explicitly added in **Ada 2012**
 
    - Carried by subprograms
    - ... or by types (seen later)
@@ -87,6 +85,8 @@ Ada Contracts
 * Boolean expression expected to be :ada:`True`
 * Said *to hold* when :ada:`True`
 * Language-defined :ada:`pragma`
+
+    - The :ada:`Ada.Assertions.Assert` subprogram can wrap it
 
 .. code:: Ada
 
@@ -154,7 +154,7 @@ Which of the following statements is/are correct?
 
     Explanations
 
-    A. No, but design-by-contract can be **explicitly** used in Ada 2012
+    A. No, but design-by-contract **aspects** are fully integrated to Ada 2012 design
     B. Yes, special case should be included in the contract
     C. No, in eiffel, in 1986!
     D. No, in fact you are always **both**, even the :ada:`Main` has a caller!
@@ -307,7 +307,7 @@ Contract with Quantified Expression
        return Boolean;
 
 -------------------------------------
-Visibility for subprogram contracts
+Visibility for Subprogram Contracts
 -------------------------------------
 
 * **Any** visible name
@@ -489,7 +489,7 @@ Error on conditional Evaluation of :ada:`'Old`
 Postcondition Usage of Function Results
 -------------------------------------------
 
-* :ada:`function` result can be manipulated with :ada:`'Result`
+* :ada:`function` result can be read with :ada:`'Result`
 
 .. code:: Ada
 
@@ -745,7 +745,7 @@ Preconditions Or Explicit Checks?
 Assertion Policy
 ------------------
 
-* Pre/postconditions can be controled with :ada:`pragma Assertion_Policy`
+* Pre/postconditions can be controlled with :ada:`pragma Assertion_Policy`
 
    .. code:: Ada
       
