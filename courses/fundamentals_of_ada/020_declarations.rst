@@ -137,7 +137,7 @@ Reserved Words
    array          generic           pragma             terminate
    at             goto              private            then
    begin          if                procedure          type
-   body           in                protected (95)     unitl (95)
+   body           in                protected (95)     until (95)
    case           interface (2005)  raise              use
    constant       is                range              when
    declare        limited           record             while
