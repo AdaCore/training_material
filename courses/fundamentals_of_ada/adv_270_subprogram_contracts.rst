@@ -152,7 +152,7 @@ Which of the following statements is/are correct?
 
 .. container:: animate
 
-   Explanations
+    Explanations
 
     A. No, but design-by-contract can be **explicitly** used in Ada 2012
     B. Yes, special case should be included in the contract
@@ -172,7 +172,7 @@ Which of the following statements is/are correct?
 
 .. container:: animate
 
-   Explanations
+    Explanations
 
     A. Will be checked at elaboration
     B. No assertion expression, but :ada:`raise` expression exists
@@ -192,7 +192,7 @@ Which of the following statements is/are correct?
 
 .. container:: animate
 
-   Explanations
+    Explanations
 
     A. Principles are sane, contracts extend those
     B. See previous slide example
