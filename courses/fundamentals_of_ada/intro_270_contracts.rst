@@ -458,7 +458,6 @@ Separations of Concerns
 
    Process (Val);
 
-
 * Review of interface: guaranteed to work
 
     - What is returned by :ada:`Val` is always valid for :ada:`Process` 
