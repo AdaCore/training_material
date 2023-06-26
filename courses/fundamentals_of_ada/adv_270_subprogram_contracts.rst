@@ -41,13 +41,13 @@ Introduction
 
 * Source code acting in roles of **client** and **supplier** under a binding **contract**
 
-   - :dfn:`Contract` specifies *requirements* and *guarantees*
+   - :dfn:`Contract` specifies *requirements* or *guarantees*
 
       - *"A specification of a software element that affects its use by potential clients."* (Bertrand Meyer)
 
    - :dfn:`Supplier` provides services
 
-       - In Ada: Implements a subprogram
+       - In Ada: Implements it
        - Guarantees specific functional behavior
        - Has requirements for guarantees to hold
 
@@ -78,7 +78,7 @@ Ada Contracts
 
    - Carried by subprograms
    - ... or by types (seen later)
-   - Can have **arbitrary** conditions, more **polyvalent**
+   - Can have **arbitrary** conditions, more **versatile**
 
 ------------------
 :dfn:`Assertion`
@@ -115,7 +115,7 @@ Defensive Programming
 .. code:: Ada
 
    procedure Push (S : Stack) is
-      Entry_Length : Positive := Length (S);
+      Entry_Length : constant Positive := Length (S);
    begin
       pragma Assert (not Is_Full (S)); -- entry condition
       [...]
@@ -608,13 +608,13 @@ Postconditions Are Good Documentation
 Postcondition Compared to Their Body
 --------------------------------------
 
-* Specifying relevant properties will "repeat" the body
+* Specifying relevant properties may "repeat" the body
 
    - Unlike preconditions
    - Typically **simpler** than the body
    - Closer to a **re-phrasing** than a tautology
 
-* Fit well *hard to solve and easy to check* problems
+* Good fit for *hard to solve and easy to check* problems
 
    - Solvers: :ada:`Solve (Find_Root'Result, Equation) = 0`
    - Search: :ada:`Can_Exit (Path_To_Exit'Result, Maze)`
