@@ -727,7 +727,7 @@ Preconditions Or Explicit Checks?
 
    .. code:: Ada
 
-      -- returns True iif push is successful
+      -- returns True iff push is successful
       function Try_Push (This : in out Stack;
                          Value : Content) return Boolean
       begin
