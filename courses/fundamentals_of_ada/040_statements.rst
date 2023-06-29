@@ -969,7 +969,7 @@ Which loop block is illegal?
      |    ``Put_Line (Integer'Image (B));``
      | ``end loop;``
   C. | ``for C in reverse 1 .. 10 loop``
-     |    ``Put_Line (Integer'Image (A));``
+     |    ``Put_Line (Integer'Image (C));``
      | ``end loop;``
   D. | ``for D in 10 .. 1 loop``
      |    ``Put_Line (Integer'Image (D));``
