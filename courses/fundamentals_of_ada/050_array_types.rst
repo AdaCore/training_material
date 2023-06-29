@@ -106,8 +106,8 @@ Run-Time Index Checking
 .. code:: Ada
 
    procedure Test is
-     type List is array (1..10) of Integer;
-     A : List;
+     type Int_Arr is array (1..10) of Integer;
+     A : Int_Arr;
      K : Integer;
    begin
      A := (others => 0);
@@ -364,7 +364,7 @@ Unconstrained Array Type Declarations
    .. code:: Ada
 
       type Index is range 1 .. Integer'Last;
-      type CharList is array (Index range <>) of Character;
+      type Char_Arr is array (Index range <>) of Character;
 
 -----------------------------------------
 Supplying Index Constraints for Objects
@@ -396,10 +396,10 @@ Bounds Must Satisfy Type Constraints
 .. code:: Ada
 
    type Index is range 1 .. 100;
-   type List is array (Index range <>) of Character;
+   type Char_Arr is array (Index range <>) of Character;
    ...
-   Wrong : List (0 .. 10);  -- runtime error
-   OK : List (50 .. 75);
+   Wrong : Char_Arr (0 .. 10);  -- runtime error
+   OK : Char_Arr (50 .. 75);
 
 ----------------
 "String" Types
@@ -655,10 +655,10 @@ Attributes' Benefits
    .. code:: Ada
 
       declare
-         type List is array (5 .. 15) of Integer;
-         L : List;
-         List_Index : Integer range List'Range := List'First;
-         Count : Integer range  0 .. List'Length := 0;
+         type Int_Arr is array (5 .. 15) of Integer;
+         L : Int_Arr;
+         Int_Arr_Index : Integer range Int_Arr'Range := Int_Arr'First;
+         Count : Integer range  0 .. Int_Arr'Length := 0;
       begin
          ...
          for K in L'Range loop
@@ -1314,8 +1314,8 @@ Defaults Within Array Aggregates
 
    .. code:: Ada
 
-      type List is array (1 .. N) of Integer;
-      Primes : List := (1 => 2, 2 .. N => <>);
+      type Int_Arr is array (1 .. N) of Integer;
+      Primes : Int_Arr := (1 => 2, 2 .. N => <>);
 
 ------------------------------
 Named Format Aggregate Rules
@@ -1332,16 +1332,16 @@ Named Format Aggregate Rules
 
 .. code:: Ada
 
-   type List is array (Integer range <>) of Float;
-   Ages : List (1 .. 10) := (1 .. 3 => X, 4 .. 10 => Y);
+   type Float_Arr is array (Integer range <>) of Float;
+   Ages : Float_Arr (1 .. 10) := (1 .. 3 => X, 4 .. 10 => Y);
    -- illegal: 3 appears twice
-   Overlap : List (1 .. 10) := (1 .. 4 => X, 3 .. 10 => Y);
+   Overlap : Float_Arr (1 .. 10) := (1 .. 4 => X, 3 .. 10 => Y);
    N, M, K, L : Integer;
    -- illegal: cannot determine if
    -- every index covered at compile time
-   Not_Static : List (1 .. 10) := (M .. N => X, K .. L => Y);
+   Not_Static : Float_Arr (1 .. 10) := (M .. N => X, K .. L => Y);
    -- This is legal
-   Values : List (1 .. N) := (1 .. N => X);
+   Values : Float_Arr (1 .. N) := (1 .. N => X);
 
 ------
 Quiz
