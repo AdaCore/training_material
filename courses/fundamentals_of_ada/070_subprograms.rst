@@ -933,7 +933,7 @@ Mode `out` Risk for Scalars
    begin
       Global := Global + X;
       return Global;
-   end P;
+   end F;
 
 ---------------------------------------
 Order-Dependent Code And Side Effects
@@ -949,7 +949,7 @@ Order-Dependent Code And Side Effects
    begin
      Global := Global + 1;
      return Global;
-   end F;
+   end Inc;
 
    procedure Assert_Equals (X, Y : in Integer);
    ...
