@@ -100,7 +100,7 @@ A Little "Preaching" About Names
 
    procedure Open (V : in out Valve);
    procedure Close (V : in out Valve);
-   function Square_Root (V: Real) return Real;
+   function Square_Root (V: Float) return Float;
    function Is_Open (V: Valve) return Boolean;
 
 ========
@@ -147,7 +147,7 @@ Function Specification Syntax (Simplified)
 
 .. code:: Ada
 
-   function F (X : Real) return Real;
+   function F (X : Float) return Float;
 
 * Close to :ada:`procedure` specification syntax
 
@@ -186,8 +186,8 @@ Body Syntax
       Ada.Text_IO.New_Line (2);
    end Hello;
 
-   function F (X : Real) return Real is
-      Y : constant Real := X + 3.0;
+   function F (X : Float) return Float is
+      Y : constant Float := X + 3.0;
    begin
       return X * Y;
    end F;
@@ -494,7 +494,7 @@ Unconstrained Formal Parameters or Return
 
 .. code:: Ada
 
-   type Vector is array (Positive range <>) of Real;
+   type Vector is array (Positive range <>) of Float;
    procedure Print (Formal : Vector);
 
    Phase : Vector (X .. Y);
@@ -513,7 +513,7 @@ Unconstrained Parameters Surprise
 
 .. code:: Ada
 
-  type Vector is array (Positive range <>) of Real;
+  type Vector is array (Positive range <>) of Float;
   function Subtract (Left, Right : Vector) return Vector;
 
   V1 : Vector (1 .. 10); -- length = 10
@@ -807,10 +807,10 @@ Multiple Return Statements
 
 .. code:: Ada
 
-   function Truncated (R : Real) return Integer is
+   function Truncated (R : Float) return Integer is
      Converted : Integer := Integer (R);
    begin
-     if R - Real (Converted) < 0.0 then -- rounded up
+     if R - Float (Converted) < 0.0 then -- rounded up
        return Converted - 1;
      else -- rounded down
        return Converted;
@@ -826,10 +826,10 @@ Multiple Return Statements Versus One
 
 .. code:: Ada
 
-   function Truncated (R : Real) return Integer is
+   function Truncated (R : Float) return Integer is
      Result : Integer := Integer (R);
    begin
-     if R - Real (Result) < 0.0 then -- rounded up
+     if R - Float (Result) < 0.0 then -- rounded up
        Result := Result - 1;
      end if;
      return Result;
