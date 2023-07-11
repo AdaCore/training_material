@@ -74,6 +74,7 @@ Ada Contracts
 
 * Contracts aspects exist in Ada 95
 
+   - As a set of GNAT-specific :ada:`pragma`
    - Carried by subprograms
 
 ------------------
@@ -272,7 +273,7 @@ Contract with Quantified Expression
    type Status_Flag is ( Power, Locked, Running );
 
    procedure Clear_All_Status (
-       Unit : in out Controller)
+       Unit : in out Controller);
      -- guarantees no flags remain set after call
    pragma Post ((for all Flag in Status_Flag =>
                  not Status_Indicated (Unit, Flag)));
@@ -313,7 +314,7 @@ Preconditions and Postconditions Example
 .. code:: Ada
 
      procedure Push (This : in out Stack;
-                     Value : Content)
+                     Value : Content);
      pragma Pre (not Full (This));
      pragma Post (not Empty (This) and Top (This) = Value);
 
@@ -326,7 +327,7 @@ Preconditions and Postconditions Example
    .. code:: Ada
 
       procedure Compute_Square_Root (Input : Integer;
-                                     Result : out Natural)
+                                     Result : out Natural);
       pragma Pre (Input >= 0);
       pragma Post ((Result * Result) <= Input and
                    (Result + 1) * (Result + 1) > Input);
@@ -337,8 +338,8 @@ Preconditions and Postconditions Example
 
       procedure Compute_Square_Root (Input  : Natural;
                                      Result : out Natural);
-             -- "pragma Pre (Input >= 0)" not needed
-             -- (Input can't be < 0)
+      -- "pragma Pre (Input >= 0)" not needed
+      -- (Input can't be < 0)
       pragma Post
          ((Result * Result) <= Input and
           (Result + 1) * (Result + 1) > Input);
@@ -459,7 +460,7 @@ Error on conditional Evaluation of :ada:`'Old`
 .. code:: Ada
 
   procedure Clear_Character (In_String : in out String;
-                             At_Position : Positive)
+                             At_Position : Positive);
   pragma Post
     ((if Found_At in In_String'Range
      then In_String'Old (Found_At) = ' '));
@@ -605,8 +606,8 @@ Postcondition Compared to Their Body
 .. code:: Ada
 
     function Get_Magic_Number return Integer
-        -- Useless post-condition, simply repeating the body
         is (42);
+    -- Useless post-condition, simply repeating the body
     pragma Post (Get_Magic_Number'Result = 42);
 
 -----------------------------------------------
@@ -618,7 +619,8 @@ Postcondition Compared to Their Body: Example
    function Greatest_Common_Denominator (A, B : Integer)
      return Integer;
    pragma Pre (A > 0 and B > 0);
-   pragma Post (Is_GCD (A, B, Greatest_Common_Denominator'Result));
+   pragma Post
+      (Is_GCD (A, B, Greatest_Common_Denominator'Result));
 
    function Is_GCD (A, B, Candidate : Integer)
        return Boolean is
