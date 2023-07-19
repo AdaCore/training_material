@@ -617,21 +617,21 @@ User View Formal Parameters
    end Get_Top;
 
 -----------------
-Private Limited
+Limited Private
 -----------------
 
 * :ada:`limited` is itself a view
 
     - Cannot perform assignment, copy, or equality
 
-* :ada:`private limited` can restrain user's operation
+* :ada:`limited private` can restrain user's operation
 
     - Actual type **does not** need to be :ada:`limited`
 
 .. code:: Ada
 
     package UART is
-        type Instance is private limited;
+        type Instance is limited private;
         function Get_Next_Available return Instance;
     [...]
 
