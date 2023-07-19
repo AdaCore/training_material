@@ -12,7 +12,7 @@ procedure Main is
       type Priv is record
          E : Lim;
       end record;
-      -- ``E`` has limited type, partial view of ``Priv`` must be :ada:`private limited`
+      -- ``E`` has limited type, partial view of ``Priv`` must be :ada:`limited private`
       --$ end cut
       
       --$ begin cut
@@ -26,7 +26,7 @@ procedure Main is
       type Priv is record
          F : A;
       end record;
-      -- ``F`` has limited type, partial view of ``Priv`` must be :ada:`private limited`
+      -- ``F`` has limited type, partial view of ``Priv`` must be :ada:`limited private`
       --$ end cut
       
       --$ begin cut
