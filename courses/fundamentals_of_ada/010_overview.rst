@@ -444,7 +444,7 @@ Language-Based Concurrency
 
     - Close to problem-space
     - Specialized constructs
-    - **Explicit** interractions
+    - **Explicit** interactions
 
 * **Run-time** handling
 
