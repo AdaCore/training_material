@@ -196,6 +196,29 @@ Typed Versus Untyped Variables
 
    - No previous declaration required
 
+----------------------
+Concatenation :ada:`&`
+----------------------
+
+* :ada:`A & B` concatenate two variables
+* :ada:`String` and :ada:`String`
+
+.. code::
+
+   Optim_Option := "-O" & external ("optim_level", "2");
+
+* :ada:`array` and :ada:`String`
+
+.. code::
+
+   User_Options := ("-gnaty") & Optim_Option;
+
+* :ada:`array` and :ada:`array`
+
+.. code::
+
+   Compiler_Options := User_Options & ("-g", "-gnata");
+
 --------------------------------
 "Packages" Correspond to Tools
 --------------------------------
@@ -443,6 +466,8 @@ Adding Flexibility
 Projects for Different Switch Settings
 ----------------------------------------
 
+:filename:`debug.gpr`
+
 .. code:: Ada
 
    project Debug is
@@ -457,12 +482,78 @@ Projects for Different Switch Settings
      end Compiler;
    end Debug;
 
+:filename:`release.gpr`
+
+.. code:: Ada
+
    project Release is
      for Object_Dir use "release";
      package Compiler is
        for Default_Switches ("Ada")
           use ("-O2");
      end Compiler;
+   end Release;
+
+---------------------------------
+Modularisation using :ada:`with`
+---------------------------------
+
+:filename:`library/library.gpr`
+
+.. code:: Ada
+
+   project Library is
+      -- Paths are relative to the gpr file
+      for Source_Dirs use ("src");
+      for Object_Dir use "obj";
+   end Library;
+
+:filename:`debug.gpr`
+
+.. code:: Ada
+
+   with "library/library.gpr"
+   project Debug extends "common.gpr" is
+     for Object_Dir use "debug";
+     ...
+   end Debug;
+
+:filename:`release.gpr`
+
+.. code:: Ada
+
+   with "library/library.gpr"
+   project Release extends "common.gpr" is
+     for Object_Dir use "release";
+     ...
+   end Release;
+
+-------------------------------------
+Modularisation using :ada:`extends`
+-------------------------------------
+
+:filename:`common.gpr`
+
+.. code:: Ada
+
+   project Common is
+      for Source_Dirs use ("src");
+   end Common;
+
+:filename:`debug.gpr`
+
+.. code:: Ada
+
+   project Debug extends "common.gpr" is
+     for Object_Dir use "debug";
+   end Debug;
+
+:filename:`release.gpr`
+
+.. code:: Ada
+
+   project Release extends "common.gpr" is
+     for Object_Dir use "release";
    end Release;
 
 -------------------------------------
