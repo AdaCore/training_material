@@ -493,11 +493,11 @@ Three Positives Make a Negative
 
       -- use cosine rule to determine distance between two points,
       -- given angle and distances between observer and 2 points
-      -- A**2 = B**2 + C**2 - 2*B*C*cos(A)
+      -- A**2 = B**2 + C**2 - 2*B*C*cos(angle)
       Observation.Sides (Viewpoint_Types.Point1_Point2) :=
         Math_Utilities.Square_Root
           (Observation.Sides (Viewpoint_Types.Observer_Point1)**2 +
-           Observation.Sides (Viewpoint_Types.Observer_Point2)**2 +
+           Observation.Sides (Viewpoint_Types.Observer_Point2)**2 -
            2.0 * Observation.Sides (Viewpoint_Types.Observer_Point1) *
              Observation.Sides (Viewpoint_Types.Observer_Point2) *
              Math_Utilities.Trigonometry.Cosine
@@ -513,11 +513,11 @@ Writing Readable Code - Part 1
 
       -- use cosine rule to determine distance between two points, given angle
       -- and distances between observer and 2 points A**2 = B**2 + C**2 -
-      -- 2*B*C*cos(A)
+      -- 2*B*C*cos(angle)
       Observation.Sides (Point1_Point2) :=
         Square_Root
           (Observation.Sides (Observer_Point1)**2 +
-           Observation.Sides (Observer_Point2)**2 +
+           Observation.Sides (Observer_Point2)**2 -
            2.0 * Observation.Sides (Observer_Point1) *
              Observation.Sides (Observer_Point2) *
              Cosine (Observation.Vertices (Observer)));
@@ -566,6 +566,9 @@ Writing Readable Code - Part 2
 
 * With :ada:`renames` our complicated code example is easier to understand
 
+   - Executable code is very close to the specification
+   - Declarations as "glue" to the implementation details
+
    .. code:: Ada
 
       begin
@@ -574,18 +577,15 @@ Writing Readable Code - Part 2
 
          function Sqrt (X : Base_Types.Float_T) return Base_Types.Float_T
            renames Math.Square_Root;
+         function Cos ...
 
-         Side1          : Base_Types.Float_T
+         B : Base_Types.Float_T
            renames Observation.Sides (Viewpoint_Types.Observer_Point1);
          -- Rename the others as Side2, Angles, Required_Angle, Desired_Side
       begin
          ...
-         -- use cosine rule to determine distance between two points, given angle
-         -- and distances between observer and 2 points A**2 = B**2 + C**2 -
-         -- 2*B*C*cos(A)
-         Desired_Side :=
-               Sqrt (Side1**2 + Side2**2 +
-                     2.0 * Side1 * Side2 * Trig.Cosine (Angles (Required_Angle)));
+         -- A**2 = B**2 + C**2 - 2*B*C*cos(angle)
+         A := Sqrt (B**2 + C**2 - 2.0 * B * C * Cos (Angle));
       end;
 
 ========
