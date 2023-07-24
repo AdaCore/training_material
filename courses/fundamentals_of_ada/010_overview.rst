@@ -131,7 +131,8 @@ Language Structure (Ada95 and Onward)
 
    - Reference Manual (RM) sections 1 :math:`\rightarrow` 13
    - Predefined Language Environment (Annex A)
-   - Foreign Language Interfaces (Annex B)
+   - Interface to Other Languages (Annex B)
+   - Obsolescent Features (Annex J)
 
 * Optional :dfn:`Specialized Needs Annexes`
 
