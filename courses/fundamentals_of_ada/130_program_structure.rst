@@ -685,7 +685,7 @@ Children Can Break Abstraction
       begin
         Top := 0;
       end Reset;
-   end Stack.Tools;
+   end Stack.Reset;
 
 --------------------------
 Using Children for Debug
