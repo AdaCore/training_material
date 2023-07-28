@@ -103,10 +103,10 @@ Subtypes Localize Dependencies
 
 .. code:: Ada
 
-   type List is array (1 .. 12) of Some_Type;
+   type Vector is array (1 .. 12) of Some_Type;
 
    K : Integer range 0 .. 12 := 0; -- anonymous subtype
-   Values : List;
+   Values : Vector;
    ...
    if K in 1 .. 12 then ...
    for J in Integer range 1 .. 12 loop ...
@@ -117,10 +117,10 @@ Subtypes Localize Dependencies
 
    type Counter is range 0 .. 12;
    subtype Index is Counter range 1 .. Counter'Last;
-   type List is array (Index) of Some_Type;
+   type Vector is array (Index) of Some_Type;
 
    K : Counter := 0;
-   Values : List;
+   Values : Vector;
    ...
    if K in Index then ...
    for J in Index loop ...
@@ -135,9 +135,9 @@ Subtypes May Enhance Performance
 .. code:: Ada
 
    subtype Index is Integer range 1 .. Max;
-   type List is array (Index) of Float;
+   type Vector is array (Index) of Float;
    K : Index;
-   Values : List;
+   Values : Vector;
    ...
    K := Some_Value;   -- range checked here
    Values (K) := 0.0; -- so no range check needed here

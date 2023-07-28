@@ -264,7 +264,7 @@ Direct Recursion - No Declaration Needed
 
 .. code:: Ada
 
-   type List is array (Natural range <>) of Integer;
+   type Vector is array (Natural range <>) of Integer;
    Empty_List : constant List (1 .. 0) := (others => 0);
 
    function Get_List return List is
