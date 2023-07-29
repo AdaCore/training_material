@@ -247,7 +247,7 @@ Object-Oriented Programming
     - |checkmark|
     - |checkmark|
 
-  * - Contract programming
+  * - Design-by-Contract aspects
 
     -
     -
