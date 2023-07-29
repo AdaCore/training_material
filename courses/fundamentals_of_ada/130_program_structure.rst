@@ -677,7 +677,7 @@ Children Can Break Abstraction
       ...
    private
       Values : array (1 .. N ) of Foo;
-      Top : Natural range 0 .. N := 0
+      Top : Natural range 0 .. N := 0;
    end Stack;
 
    package body Stack.Reset is
@@ -685,7 +685,7 @@ Children Can Break Abstraction
       begin
         Top := 0;
       end Reset;
-   end Stack.Tools;
+   end Stack.Reset;
 
 --------------------------
 Using Children for Debug
