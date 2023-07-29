@@ -86,8 +86,6 @@ Ada Contracts
 * Said *to hold* when :ada:`True`
 * Language-defined :ada:`pragma`
 
-    - The :ada:`Ada.Assertions.Assert` subprogram can wrap it
-
 .. code:: Ada
 
    pragma Assert (not Full (Stack));
@@ -97,6 +95,7 @@ Ada Contracts
    -- stack is empty
 
 * Raises language-defined :ada:`Assertion_Error` exception if expression does not hold
+* The :ada:`Ada.Assertions.Assert` subprogram wraps it
 
 .. code:: Ada
 
@@ -105,39 +104,6 @@ Ada Contracts
      procedure Assert (Check : in Boolean);
      procedure Assert (Check : in Boolean; Message : in String);
    end Ada.Assertions;
-
------------------------
-Defensive Programming
------------------------
-
-* Should be replaced by subprogram contracts when possible
-
-.. code:: Ada
-
-   procedure Push (S : Stack) is
-      Entry_Length : constant Positive := Length (S);
-   begin
-      pragma Assert (not Is_Full (S)); -- entry condition
-      [...]
-      pragma Assert (Length (S) = Entry_Length + 1); -- exit condition
-   end Push;
-
-* Subprogram contracts are an **assertion** mechanism
-
-   - **Not** a drop-in replacement for all defensive code
-
-.. code:: Ada
-
-   procedure Force_Acquire (P : Peripheral) is
-   begin
-      if not Available (P) then
-         -- Corrective action
-         Force_Release (P);
-         pragma Assert (Available (P));
-      end if;
-
-      Acquire (P);
-   end;
 
 ------
 Quiz
@@ -264,6 +230,39 @@ Requirements / Guarantees: Quiz
      - :animate:`Guarantee`
      - :animate:`Requirement`
 
+-----------------------
+Defensive Programming
+-----------------------
+
+* Should be replaced by subprogram contracts when possible
+
+.. code:: Ada
+
+   procedure Push (S : Stack) is
+      Entry_Length : constant Positive := Length (S);
+   begin
+      pragma Assert (not Is_Full (S)); -- entry condition
+      [...]
+      pragma Assert (Length (S) = Entry_Length + 1); -- exit condition
+   end Push;
+
+* Subprogram contracts are an **assertion** mechanism
+
+   - **Not** a drop-in replacement for all defensive code
+
+.. code:: Ada
+
+   procedure Force_Acquire (P : Peripheral) is
+   begin
+      if not Available (P) then
+         -- Corrective action
+         Force_Release (P);
+         pragma Assert (Available (P));
+      end if;
+
+      Acquire (P);
+   end;
+
 ----------
 Examples
 ----------
@@ -272,7 +271,6 @@ Examples
 
 .. TBD
    :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_270_subprogram_contracts.html#preconditions-and-postconditions`
-
 
 -----------------------------
 Pre/Postcondition Semantics

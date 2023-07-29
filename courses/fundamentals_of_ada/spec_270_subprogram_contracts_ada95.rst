@@ -35,163 +35,221 @@ Subprogram Contracts
 Introduction
 ==============
 
-----------------------------
-Contract-Based Programming
-----------------------------
+--------------------------
+:dfn:`Design-By-Contract`
+--------------------------
 
 * Source code acting in roles of **client** and **supplier** under a binding **contract**
 
-   - *Supplier* provides services
-   - *Client* utilitizes services
-   - *Contract* specifies requirements and guarantees
+   - :dfn:`Contract` specifies *requirements* or *guarantees*
 
-      - "A specification of a software element that affects its use by potential clients." (Bertrand Meyer)
+      - *"A specification of a software element that affects its use by potential clients."* (Bertrand Meyer)
 
-* Includes enforcement
+   - :dfn:`Supplier` provides services
+
+       - Guarantees specific functional behavior
+       - Has requirements for guarantees to hold
+
+   - :dfn:`Client` utilizes services
+
+       - Guarantees supplier's conditions are met
+       - Requires result to follow the subprogram's guarantees
+
+---------------
+Ada Contracts
+---------------
+
+* Ada contracts include enforcement
 
    - At compile-time: specific constructs, features, and rules
    - At run-time: language-defined and user-defined exceptions
 
-------------------
-Contracts In Ada
-------------------
+* Existing facilities
 
-* Exist implicitly in facilities you may already be using
-
-   - Exceptions
    - Range specifications
-   - Subtypes
    - Parameter modes
-   - OOP interface types
-   - et cetera
+   - Generic contracts
+   - OOP :ada:`interface` types (Ada 2005)
+   - Work well, but on a restricted set of use-cases
 
-* Are explicitly supported
+* Contracts aspects exist in Ada 95
 
-   - Low-level and high-level **assertions**
-   - Predicates
-   - Including OOP context
+   - As a set of GNAT-specific :ada:`pragma`
+   - Carried by subprograms
 
--------------
-Terminology
--------------
+------------------
+:dfn:`Assertion`
+------------------
 
-.. list-table::
-   :widths: 20 80
+* Boolean expression expected to be :ada:`True`
+* Said *to hold* when :ada:`True`
+* Language-defined :ada:`pragma`
 
-   * - **Assertion**
+.. code:: Ada
 
-     - Boolean expression expected to be True
+   pragma Assert (not Full (Stack));
+   -- stack is not full
+   pragma Assert (Stack_Length = 0,
+                  Message => "stack was not empty");
+   -- stack is empty
 
-   * -
+* Raises language-defined :ada:`Assertion_Error` exception if expression does not hold
+* The :ada:`Ada.Assertions.Assert` subprogram wraps it
 
-     - (Said "to hold" when True)
+.. code:: Ada
 
-   * - **Precondition**
+   package Ada.Assertions is
+     Assertion_Error : exception;
+     procedure Assert (Check : in Boolean);
+     procedure Assert (Check : in Boolean; Message : in String);
+   end Ada.Assertions;
 
-     - Assertion expected to hold prior to client call
+------
+Quiz
+------
 
-   * - **Postcondition**
+Which of the following statements is/are correct?
 
-     - Assertion expected to hold after supplier return
+    A. :answer:`Assertions can be used in declarations`
+    B. Assertions can be used in expressions
+    C. :answer:`Any corrective action should happen before contract checks`
+    D. Assertions must be checked using :ada:`pragma Assert`
 
-   * - **Predicate**
+.. container:: animate
 
-     - Assertion expected to hold for all objects of given type
+    Explanations
 
-   * -
+    A. Will be checked at elaboration
+    B. No assertion expression, but :ada:`raise` expression exists
+    C. Exceptions as flow-control adds complexity, prefer a proactive :ada:`if` to a (reactive) :ada:`exception` handler
+    D. You can call :ada:`Ada.Assertions.Assert`, or even directly :ada:`raise Assertion_Error`
 
-     - (Ada 2012 - not covered in this module)
+------
+Quiz
+------
 
-   * - **Invariant**
+Which of the following statements is/are correct?
 
-     - Assertion expected to hold for all objects of given ADT when viewed by clients
+    A. :answer:`Defensive coding is a good practice`
+    B. Contracts can replace all defensive code
+    C. Contracts are executable constructs
+    D. Having exhaustive contracts will prevent runtime errors
 
-   * -
+.. container:: animate
 
-     - (Ada 2012 - not covered in this module)
+    Explanations
 
----------------------
-Low-Level Assertions
----------------------
-
-* Language-defined package with procedures
-
-   - Raise :ada:`Assertion_Error` if expression is False
-
-   .. code:: Ada
-
-      package Ada.Assertions is
-        Assertion_Error : exception;
-        procedure Assert (Check : in Boolean);
-        procedure Assert (Check : in Boolean; Message : in String);
-      end Ada.Assertions;
-
-* Language-defined pragma
-
-   - Easier to enable/disable
-   - Definition
-
-      .. code:: Ada
-
-         pragma Assert (any_boolean_expression [, [Message =>] string_expression]);
-
-   - Usage
-
-      .. code:: Ada
-
-         procedure Push ( Value : in     Content_T ) is
-         begin
-           pragma Assert (not Full (Stack));
-           -- if we get here, stack is not full
-           ...
-
------------------------
-High-Level Assertions
------------------------
-
-* Pre- and postconditions specify obligations on supplier and client
-
-   .. code:: Ada
-
-      procedure Push (This : in out Stack_T;
-                      Value : Content_T);
-      pragma Pre (not Full (This));       -- requirement
-      pragma Post (not Empty (This));     -- guarantee
-
-* Type invariants ensure properties of objects over their lifetimes
-
-   - *Described in a different module*
-
-   .. code:: Ada
-
-      type Table_T is private with Type_Invariant =>
-        Sorted (Table_T); -- user-defined boolean expression
-      -- external usage of Table will always be sorted
-      function Sorted (This : Table_T) return Boolean;
+    A. Principles are sane, contracts extend those
+    B. See previous slide example
+    C. e.g. generic contracts are resolved at compile-time
+    D. A failing contract **will cause** a runtime error, only extensive (dynamic / static) analysis of contracted code may provide confidence in the absence of runtime errors (AoRTE)
 
 ===================================
 Preconditions and Postconditions
 ===================================
 
 -----------------------------
-Pre/Postcondition Contracts
+Subprogram-based Assertions
 -----------------------------
 
-* Suppliers provide subprograms, clients call them
-* Supplier will:
+* **Explicit** part of a subprogram's **specification**
 
-   - Guarantee specific functional behavior
-   - Specify conditions required for guarantees to hold
+    - Unlike defensive code
 
-* Client will:
+* :dfn:`Precondition`
 
-   - Ensure supplier's conditions are met
-   - Rely on resulting guarantees
+   - Assertion expected to hold **prior to** subprogram call
 
-* Obligations and guarantees are enforced
+* :dfn:`Postcondition`
 
-   - At run-time
-   - Under user control
+   - Assertion expected to hold **after** subprogram return
+
+* Requirements and guarantees on both supplier and client
+* Syntax uses **aspects**, set by pragma in Ada95
+
+   .. code:: Ada
+
+      procedure Push (This : in out Stack_T;
+                      Value : Content_T);
+      pragma Pre (not Full (This));
+      pragma Post (not Empty (This)
+                   and Top (This) = Value);
+
+---------------------------------
+Requirements / Guarantees: Quiz
+---------------------------------
+
+* Given the following piece of code
+
+    .. code:: Ada
+
+       procedure Start is
+       begin
+           ...
+           Turn_On;
+           ...
+
+       procedure Turn_On;
+       pragma Pre (Has_Power);
+       pragma Post (Is_On);
+
+* Complete the table in terms of requirements and guarantees
+
+.. list-table::
+
+   * -
+     - Client (:ada:`Start`)
+     - Supplier (:ada:`Turn_On`)
+
+   * - Pre (:ada:`Has_Power`)
+     - :animate:`Requirement`
+     - :animate:`Guarantee`
+
+   * - Post (:ada:`Is_On`)
+     - :animate:`Guarantee`
+     - :animate:`Requirement`
+
+-----------------------
+Defensive Programming
+-----------------------
+
+* Should be replaced by subprogram contracts when possible
+
+.. code:: Ada
+
+   procedure Push (S : Stack) is
+      Entry_Length : constant Positive := Length (S);
+   begin
+      pragma Assert (not Is_Full (S)); -- entry condition
+      [...]
+      pragma Assert (Length (S) = Entry_Length + 1); -- exit condition
+   end Push;
+
+* Subprogram contracts are an **assertion** mechanism
+
+   - **Not** a drop-in replacement for all defensive code
+
+.. code:: Ada
+
+   procedure Force_Acquire (P : Peripheral) is
+   begin
+      if not Available (P) then
+         -- Corrective action
+         Force_Release (P);
+         pragma Assert (Available (P));
+      end if;
+
+      Acquire (P);
+   end;
+
+----------
+Examples
+----------
+
+.. include:: examples/adv_270_subprogram_contracts/preconditions_and_postconditions.rst
+
+.. TBD
+   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_270_subprogram_contracts.html#preconditions-and-postconditions`
 
 -----------------------------
 Pre/Postcondition Semantics
@@ -204,125 +262,61 @@ Pre/Postcondition Semantics
 .. image:: pre_and_post_insertion_flow.png
    :width: 90%
 
------------------------------
-Pre/Postcondition Placement
------------------------------
+-------------------------------------
+Contract with Quantified Expression
+-------------------------------------
 
-   * Contracts referenced by subprogram bodies
-
-      - Requirements to provide service
-      - Guarantee on results
-
-   * But used by clients so appear with declarations
-
-      - Typically separate declarations in package specs
-      - On subprogram body when no separate declaration used
-
-   * Spec and body
-
-      .. code:: Ada
-
-         procedure Op;
-         pragma Pre (Boolean_Expression);
-         pragma Post (Boolean_Expression);
-         procedure Op is
-           ...
-
-   * Body only
-
-      .. code:: Ada
-
-         procedure Op is
-            pragma Pre (Boolean_Expression);
-            pragma Post (Boolean_Expression);
-           ...
-
------------------------------------
-Expressions In Pre/Postconditions
------------------------------------
-
-* Add to expressive power
-* Contract value is a Boolean
-* Can include any legal Ada expression
-
-   .. code:: Ada
-
-      type List is array (1 .. 10) of Integer;
-      procedure Extract_and_Clear (From : in out List;
-                                   K : integer;
-                                   Value : out Integer)
-      pragma Post (if K in List'Range then From(K) = 0);
-
----------------
-Preconditions
----------------
-
-* Define obligations on client for successful call
-
-   - Precondition specifies required conditions
-   - Clients must meet precondition for supplier to succeed
-
-* Boolean expressions
-
-   - Arbitrary complexity
-   - Specified via :ada:`Pragma Pre`
-
-* Checked prior to call by client
-
-   - :ada:`Assertion_Error` raised if false
+* Pre- and post-conditions can be **arbitrary** :ada:`Boolean` expressions
 
 .. code:: Ada
 
-   procedure Push (This : in out Stack;  Value : Content);
-   pragma Pre (not Full (This));
+   type Status_Flag is ( Power, Locked, Running );
 
-----------------------
-Precondition Content
-----------------------
+   procedure Clear_All_Status (
+       Unit : in out Controller);
+     -- guarantees no flags remain set after call
+   pragma Post ((for all Flag in Status_Flag =>
+                 not Status_Indicated (Unit, Flag)));
 
-* Any parameter of the subprogram
+   function Status_Indicated (
+       Unit : Controller;
+       Flag : Status_Flag)
+       return Boolean;
 
-   - Any mode
+-------------------------------------
+Visibility for Subprogram Contracts
+-------------------------------------
 
-* Any visible name in scope
+* **Any** visible name
 
-   - Variables, including globals
-   - Functions
+   - All of the subprogram's **parameters**
+   - Can refer to functions **not yet specified**
 
-      - Can refer to functions not yet defined
       - Must be declared in same scope
+      - Different elaboration rules for expression functions
 
-      .. code:: Ada
+  .. code:: Ada
 
-         function Top (This : Stack) return Content;
-         pragma Pre (not Empty (This));
-         function Empty (This : Stack) return Boolean;
+     function Top (This : Stack) return Content;
+     pragma Pre (not Empty (This));
+     function Empty (This : Stack) return Boolean;
 
-----------------
-Postconditions
-----------------
+* :ada:`Post` has access to special attributes
 
-* Define obligations on supplier
+    - See later
 
-   - Specify guaranteed conditions after call
+------------------------------------------
+Preconditions and Postconditions Example
+------------------------------------------
 
-* Boolean expressions (same as preconditions)
-
-   - Specified via :ada:`Pragma Post`
-
-* Content as for preconditions, plus some extras
-* Checked after corresponding subprogram call
-
-   - :ada:`Assertion_Error` raised if false
+* Multiple pragma separated by commas
 
 .. code:: Ada
 
-   procedure Push (This : in out Stack;  Value : Content);
-   pragma Pre (not Full (This));
-   pragma Post (not Empty (This) and Top (This) = Value);
-   ...
-   function Top (This : Stack) return Content;
-   pragma Pre (not Empty (This));
+     procedure Push (This : in out Stack;
+                     Value : Content);
+     pragma Pre (not Full (This));
+     pragma Post (not Empty (This) and Top (This) = Value);
 
 ------------------------------------
 (Sub)Types Allow Simpler Contracts
@@ -336,7 +330,7 @@ Postconditions
                                      Result : out Natural);
       pragma Pre (Input >= 0);
       pragma Post ((Result * Result) <= Input and
-                     (Result + 1) * (Result + 1) > Input);
+                   (Result + 1) * (Result + 1) > Input);
 
 * Subtype
 
@@ -344,10 +338,11 @@ Postconditions
 
       procedure Compute_Square_Root (Input  : Natural;
                                      Result : out Natural);
-      -- "pragma Pre (Input >= 0);" not needed
+      -- "pragma Pre (Input >= 0)" not needed
       -- (Input can't be < 0)
-      pragma Post ((Result * Result) <= Input and
-                   (Result + 1) * (Result + 1) > Input);
+      pragma Post
+         ((Result * Result) <= Input and
+          (Result + 1) * (Result + 1) > Input);
 
 ------
 Quiz
@@ -355,49 +350,55 @@ Quiz
 
 .. code:: Ada
 
-   function Area (L : Integer; H : Integer) return Integer is
-   begin
-      return L * H;
-   end Area;
-   pragma Pre ( ? )
+   function Area (L : Positive; H : Positive) return Positive is
+      (L * H);
+   pragma Pre (???);
 
-Which expression will guarantee :ada:`Area` calculates the correct result for all values :ada:`L` and :ada:`H`
+Which pre-condition is necessary for :ada:`Area` to calculate the correct result for
+all values :ada:`L` and :ada:`H`
 
    A. ``L > 0 and H > 0``
-   B. ``L < Integer'last and H < Integer'last``
-   C. ``L * H in Integer``
+   B. ``L < Positive'Last and H < Positive'Last``
+   C. ``L * H in Positive``
    D. :answer:`None of the above`
 
 .. container:: animate
 
    Explanations
 
-   A. Does not handle large numbers
-   B. Does not handle negative numbers
-   C. Will generate a constraint error on large numbers
+   A. Parameters are :ada:`Positive`, so this is unnecessary
+   B. :ada:`L = Positive'Last and H = Positive'Last` will cause an overflow
+   C. Classic trap: the check itself may cause an overflow!
 
-   The correct precondition would be
-
-         :ada:`L > 0 and then H > 0 and then Integer'Last / L <= H`
-
-   to prevent overflow errors on the range check.
+   Preventing an overflow requires using the expression :ada:`Integer'Last / L <= H`
 
 ====================
 Special Attributes
 ====================
 
------------------------------------------------
-Referencing Previous Values In Postconditions
------------------------------------------------
+--------------------------------------------
+Evaluate An Expression on Subprogram Entry
+--------------------------------------------
 
-* Values as they were just before the call
-* Uses language-defined attribute `'Old`
+* Post-conditions may require knowledge of a subprogram's **entry context**
 
-   - Can be applied to most any visible object
+  .. code:: Ada
 
-      * Makes a copy so :ada:`limited` types not supported
+      procedure Increment (This : in out Integer);
+      pragma Post (???); -- how to assert incrementation of `This`?
 
-   - Applied to formal parameters, typically
+* Language-defined attribute :ada:`'Old`
+* Expression is **evaluated** at subprogram entry
+
+   - After pre-conditions check
+   - Makes a copy
+
+        + :ada:`limited` types are forbidden
+        + May be expensive
+
+   - Expression can be **arbitrary**
+
+        + Typically :ada:`in out` parameters and globals
 
    .. code:: Ada
 
@@ -405,20 +406,14 @@ Referencing Previous Values In Postconditions
       pragma Pre (This < Integer'Last);
       pragma Post (This = This'Old + 1);
 
-* Copies can be expensive!
-
------------------------------
-Example for Attribute 'Old
------------------------------
-
-* Simple code to shift a character in a string
+-----------------------------------
+Example for Attribute :ada:`'Old`
+-----------------------------------
 
    .. code:: Ada
 
-      function At_Index (Index : Integer) return Character is
-      begin
-         return Global (Index);
-      end At_Index;
+      Global : String := Init_Global;
+      ...
       procedure Shift_And_Advance (Index : in out Integer) is
       begin
          Global (Index) := Global (Index + 1);
@@ -430,65 +425,60 @@ Example for Attribute 'Old
    .. code:: Ada
 
       procedure Shift_And_Advance (Index : in out Integer);
-      pragma Post (-- call At_Index before call
-                   At_Index (Index)'Old
-                      -- look at Index position in Global before call
-                      = Global'Old (Index'Old)
-                   and
-                   -- call At_Index after call with original Index
-                   At_Index (Index'Old)
-                      -- look at Index position in Global after call
-                      = Global (Index));
+      pragma Post
+         (-- call At_Index before call
+         Global (Index)'Old
+            -- look at Index position in Global before call
+            = Global'Old (Index'Old)
+         and
+         -- call At_Index after call with original Index
+         Global (Index'Old)
+            -- look at Index position in Global after call
+            = Global (Index));
 
--------------------------------------
-What Happens When 'Old Is Evaluated
--------------------------------------
+------------------------------------------------
+Error on conditional Evaluation of :ada:`'Old`
+------------------------------------------------
 
-* Copy made on entrance for use by postconditions
-* "Safety" checks in postcondition weren't applied to the entrance copy evaluation
-* Incorrect
+* This code is **incorrect**
 
-      .. code:: Ada
+.. code:: Ada
 
-          procedure Clear_Character (In_String : in out String;
-                                     Look_For  : in     Character;
-                                     Found_At  :    out Integer);
-          pragma Post (Found_At in In_String'Range and
-                       In_String (Found_At'Old) = Look_For);
+  procedure Clear_Character (In_String : in out String;
+                             At_Position : Positive);
+  pragma Post
+    ((if Found_At in In_String'Range
+     then In_String (Found_At)'Old = ' '));
 
-   - On entry, `Found_At` is not valid, so :ada:`In_String(Found_At'Old)` will likely raise an exception
+* Copies :ada:`In_String (Found_At)` on entry
 
-* Solution (required)
+   - Will raise an exception on entry if :ada:`Found_At not in In_String'Range`
+   - The postcondition's :ada:`if` check is not sufficient
 
-      .. code:: Ada
+* Solution requires a full copy of :ada:`In_String`
 
-          procedure Clear_Character (In_String : in out String;
-                                     Look_For  : in     Character;
-                                     Found_At  :    out Integer)
-          pragma Post (Found_At in In_String'Range and
-                       In_String'Old(Found_At) = Look_For);
+.. code:: Ada
+
+  procedure Clear_Character (In_String : in out String;
+                             At_Position : Positive);
+  pragma Post
+    ((if Found_At in In_String'Range
+     then In_String'Old (Found_At) = ' '));
 
 -------------------------------------------
-Using Function Results In Postconditions
+Postcondition Usage of Function Results
 -------------------------------------------
 
-* Sometimes you need to reference to the value returned by function you are defining
-* Uses language-defined attribute `'Result`
+* :ada:`function` result can be read with :ada:`'Result`
 
-   .. code:: Ada
+.. code:: Ada
 
-      function Greatest_Common_Denominator (A, B : Integer)
-        return Integer;
-      pragma Pre (A > 0 and B > 0);
-      -- pass result of Greatest_Common_Denominator to Is_GCD
-      pragma Post (Is_GCD (A,
-                           B,
-                           Greatest_Common_Denominator'Result));
-
-      function Is_GCD (A, B, Candidate : Integer)
-          return Boolean;
-
-* Only applicable to functions, in postconditions
+  function Greatest_Common_Denominator (A, B : Integer)
+    return Integer;
+  pragma Pre
+    (A > 0 and B > 0);
+  pragma Post
+    (Is_GCD (A, B, Greatest_Common_Denominator'Result));
 
 ------
 Quiz
@@ -504,26 +494,33 @@ Quiz
    function Set_And_Move (Value :        Integer;
                           Index : in out Index_T)
                           return Boolean;
-   pragma Post ( ? );
+   pragma Post (...);
 
-What would the following expressions evaluate to in the Postcondition when called with :ada:`Value` of -1 and :ada:`Index` of 10?
+Given the following expressions, what is their value if they are evaluated in the postcondition
+of the call :ada:`Set_And_Move (-1, 10)`
 
 .. list-table::
 
-   * - Database'Old(Index)
+   * - ``Database'Old (Index)``
 
      - :animate:`11`
      - :animate:`Use new index in copy of original Database`
 
-   * - Database(Index`Old)
+   * - ``Database (Index`Old)``
 
      - :animate:`-1`
      - :animate:`Use copy of original index in current Database`
 
-   * - Database(Index)'Old
+   * - ``Database (Index)'Old``
 
      - :animate:`10`
-     - :animate:`Evaluation of Database(Index) before call`
+     - :animate:`Evaluation of Database (Index) before call`
+
+----------
+Examples
+----------
+
+.. include:: examples/adv_270_subprogram_contracts/special_attributes.rst
 
 =============
 In Practice
@@ -533,47 +530,41 @@ In Practice
 Pre/Postconditions: To Be or Not To Be
 ----------------------------------------
 
-* Preconditions generally not too expensive
+* **Preconditions** are reasonable **default** for runtime checks
+* **Postconditions** advantages can be **comparatively** low
 
-   - Reasonable default for checking
+   - Use of :ada:`'Old` and :ada:`'Result` with (maybe deep) copy
+   - Very useful in **static analysis** contexts (Hoare triplets)
 
-      * But they can be disabled at run-time!
+* For **trusted** library, enabling **preconditions only** makes sense
 
-* Postconditions can be comparatively expensive
+   - Catch **user's errors**
+   - Library is trusted, so :ada:`Post => True` is a reasonable expectation
 
-   - Use of `'Old` and `'Result` involve copying (maybe deep)
+* Typically contracts are used for **validation**
+* Enabling subprogram contracts in production may be a valid trade-off depending on...
 
-* Enabling preconditions alone makes sense when calling trusted library routines
+   - Exception failure **trace availability** in production
+   - Overall **timing constraints** of the final application
+   - Consequences of violations **propagation**
+   - Time and space **cost** of the contracts
 
-   - That way, you catch client errors
-
-* Do you enable them all the time?  It depends...
-
-   - How tight is the overall timing in your application?
-   - Is response-time available to respond to violations?
-   - What are the consequences of not catching violations?
-   - How expensive are run-time checks in this implementation?
+* Typically production settings favour telemetry and off-line analysis
 
 -------------------------------------
 No Secret Precondition Requirements
 -------------------------------------
 
-* Should only require what client can ensure
-
-   - By only referencing entities also available to clients
-
-* Language rules enforce this
+* Client should be able to **guarantee** them
+* Enforced by the compiler
 
 .. code:: Ada
 
    package P is
-     type Bar is private;
-     ...
-     function Foo (This : Bar) return Baz;
-     pragma Pre (Hidden); -- illegal reference
+     function Foo return Bar;
+     pragma Pre (Hidden); -- illegal private reference
    private
      function Hidden return Boolean;
-     ...
    end P;
 
 ---------------------------------------
@@ -584,72 +575,128 @@ Postconditions Are Good Documentation
 
    procedure Reset
        (Unit : in out DMA_Controller;
-        Stream : DMA_Stream_Selector)
-     pragma Post (
-        not Enabled (Unit, Stream) and
-        Operating_Mode (Unit, Stream) = Normal_Mode and
-        Selected_Channel (Unit, Stream) = Channel_0 and
-        not Double_Buffered (Unit, Stream) and
-        Priority (Unit, Stream) = Priority_Low);
+        Stream : DMA_Stream_Selector);
+   pragma Post
+      (not Enabled (Unit, Stream) and
+       Operating_Mode (Unit, Stream) = Normal_Mode and
+       Selected_Channel (Unit, Stream) = Channel_0 and
+       not Double_Buffered (Unit, Stream) and
+       Priority (Unit, Stream) = Priority_Low and
+       (for all Interrupt in DMA_Interrupt =>
+           not Interrupt_Enabled (Unit, Stream, Interrupt));
 
--------------------------------------
-Use Functions In Pre/Postconditions
--------------------------------------
+--------------------------------------
+Postcondition Compared to Their Body
+--------------------------------------
 
-* Abstraction increases chances of getting it right
+* Specifying relevant properties may "repeat" the body
 
-   - Provides higher-level interface to clients too
+   - Unlike preconditions
+   - Typically **simpler** than the body
+   - Closer to a **re-phrasing** than a tautology
+
+* Good fit for *hard to solve and easy to check* problems
+
+   - Solvers: :ada:`Solve (Find_Root'Result, Equation) = 0`
+   - Search: :ada:`Can_Exit (Path_To_Exit'Result, Maze)`
+   - Cryptography: :ada:`Match (Signer (Sign_Certificate'Result), Key.Public_Part)`
+
+* Bad fit for poorly-defined or self-defining programs
+
+.. code:: Ada
+
+    function Get_Magic_Number return Integer
+        is (42);
+    -- Useless post-condition, simply repeating the body
+    pragma Post (Get_Magic_Number'Result = 42);
+
+-----------------------------------------------
+Postcondition Compared to Their Body: Example
+-----------------------------------------------
+
+.. code:: Ada
+
+   function Greatest_Common_Denominator (A, B : Integer)
+     return Integer;
+   pragma Pre (A > 0 and B > 0);
+   pragma Post
+      (Is_GCD (A, B, Greatest_Common_Denominator'Result));
+
+   function Is_GCD (A, B, Candidate : Integer)
+       return Boolean is
+     (A rem Candidate = 0 and
+      B rem Candidate = 0 and
+      (for all K in 1 .. Integer'Min (A,B) =>
+         (if (A rem K = 0 and B rem K = 0)
+          then K <= Candidate)));
+
+----------------------
+Contracts Code Reuse
+----------------------
+
+* Contracts are about **usage** and **behaviour**
+
+   - Not optimization
+   - Not implementation details
+   - **Abstraction** level is typically high
+
+* Extracting them to :ada:`function` is a good idea
+
+   - *Code as documentation, executable specification*
+   - Completes the **interface** that the client has access to
+   - Allows for **code reuse**
 
    .. code:: Ada
 
       procedure Withdraw (This   : in out Account;
                           Amount :        Currency);
-      pragma Pre (Open (This) and Funds_Available (This, Amount);
+      pragma Pre (Open (This) and Funds_Available (This, Amount));
       pragma Post (Balance (This) = Balance (This)'Old - Amount);
-      function Funds_Available (This   : Account;
-                                Amount : Currency)
-                                return Boolean;
-      pragma Pre (Open (This));
       ...
       function Funds_Available (This   : Account;
                                 Amount : Currency)
                                 return Boolean is
-      begin
-          return Amount > 0.0 and then Balance (This) >= Amount;
-      end Funds_Available;
+          (Amount > 0.0 and then Balance (This) >= Amount);
+      pragma Pre (Open (This));
 
-* May be unavoidable
+* A :ada:`function` may be unavoidable
 
-   - Cannot reference hidden components of private types in the package visible part
+   - Referencing private type components
 
---------------------------
-Using Pre/Postconditions
---------------------------
+---------------------------------------
+Subprogram Contracts on Private Types
+---------------------------------------
 
-* Assertions are not good logic control structures
+.. code:: Ada
 
-   - Use :ada:`if` or :ada:`case` in subprogram to handle special cases
-
-* Assertions are not good external input validation
-
-   - Contracts are internal: between parts of the source code
-   - Precondition cannot prevent invalid user data entry
-
-* Precondition violations indicate client bugs
-
-   - Maybe the requirements spec is wrong, but too late to argue now
-
-* Postcondition violations indicate supplier bugs
+   package P is
+     type T is private;
+     procedure Q (This : T);
+     pragma Pre (This.Total > 0); -- not legal
+     ...
+     function Current_Total (This : T) return Integer;
+     ...
+     procedure R (This : T);
+     pragma Pre (Current_Total (This) > 0); -- legal
+     ...
+   private
+     type T is record
+       Total : Natural ;
+       ...
+     end record;
+     function Current_Total (This : T) return Integer is
+         (This.Total);
+   end P;
 
 -----------------------------------
 Preconditions Or Explicit Checks?
 -----------------------------------
 
-* Logically part of the spec so should be textually too
+* Any requirement from the spec should be a pre-condition
 
-   - Otherwise clients must examine the body, breaking abstraction
+   - If clients need to know the body, abstraction is **broken**
 
-* Do this
+* With pre-conditions
 
    .. code:: Ada
 
@@ -658,52 +705,59 @@ Preconditions Or Explicit Checks?
                       Value : Content);
       pragma Pre (not Full (This));
 
-* Or do this
+* With defensive code, comments, and return values
 
    .. code:: Ada
 
-      procedure Push (This : in out Stack;
-                      Value : Content) is
+      -- returns True iff push is successful
+      function Try_Push (This : in out Stack;
+                         Value : Content) return Boolean
       begin
         if Full (This) then
-          raise Overflow;
+            return False;
         end if;
         ...
 
 * But not both
 
-   - A subprogram body should never test its own preconditions
+   - For the implementation, preconditions are a **guarantee**
+   - A subprogram body should **never** test them
 
----------------------------------
-Advantages Over Explicit Checks
----------------------------------
+------------------
+Assertion Policy
+------------------
 
-* Pre/postconditions can be turned off
+* Pre/postconditions can be controlled with :ada:`pragma Assertion_Policy`
 
-   - Like language-defined checks
+   .. code:: Ada
+      
+      pragma Assertion_Policy
+           (Pre => Check, Post => Ignore);
 
-* Explicit checks cannot be disabled except by changing the source text
+* Fine **granularity** over assertion kinds and policy identifiers
 
-   - Conditional compilation via preprocessor (``#ifdef``)
-   - Conditional compilation via static Boolean constants
+:url:`https://docs.adacore.com/gnat_rm-docs/html/gnat_rm/gnat_rm/implementation_defined_pragmas.html#pragma-assertion-policy`
 
-      .. code:: Ada
 
-         procedure Push (This : in out Stack;  Value : Content) is
-         begin
-           if Debugging then
-             if Full (This) then
-               raise Overflow;
-             end if;
-           end if;
-           ...
-         end Push;
+* Certain advantage over explicit checks which are **harder** to disable
+
+   - Conditional compilation via global :ada:`constant Boolean`
+
+   .. code:: Ada
+
+      procedure Push (This : in out Stack;  Value : Content) is
+      begin
+        if Debugging then
+          if Full (This) then
+            raise Overflow;
+          end if;
+        end if;
 
 ========
 Lab
 ========
 
-.. include:: labs/spec_270_subprogram_contracts_ada95.lab.rst
+.. include:: labs/adv_270_subprogram_contracts.lab.rst
 
 =========
 Summary
@@ -735,6 +789,10 @@ Summary
 
 * Based on viewing source code as clients and suppliers with enforced obligations and guarantees
 * No run-time penalties unless enforced
+* OOP introduces the tricky issues
+
+   - Inheritance of preconditions and postconditions, for example
+
 * Note that pre/postconditions can be used on concurrency constructs too
 
  .. list-table::
