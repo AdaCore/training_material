@@ -30,5 +30,5 @@ D. | :answermono:`type Acc is access Lim;`
 
 .. container:: animate
 
-    A. ``E`` has limited type, partial view of ``Priv`` must be :ada:`private limited`
-    C. ``F`` has limited type, partial view of ``Priv`` must be :ada:`private limited`
+    A. ``E`` has limited type, partial view of ``Priv`` must be :ada:`limited private`
+    C. ``F`` has limited type, partial view of ``Priv`` must be :ada:`limited private`
