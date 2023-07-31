@@ -589,9 +589,9 @@ Strong Typing
 * What if we need stronger enforcement?
 
    * Number must be even
-   * Subet of non-consecutive enumerals
+   * Subset of non-consecutive enumerals
    * Array should always be sorted
-   * Type invariant are only checked on external boundaries
+   * Type invariants are only checked on external boundaries
 
 * **Type Invariant**
 
@@ -1001,7 +1001,7 @@ Summary
 Working with Type Invariants
 ------------------------------
 
-* They are not fully foolproof
+* They are not completely foolproof
 
    - External corruption is possible
    - Requires dubious usage
@@ -1042,4 +1042,4 @@ Contract-Based Programming Benefits
 * Facilitates tool-based analysis
 
    - Compiler checks conformance to obligations
-   - Static analyzers (e.g., SPARK, CodePeer) can verify explicit precondition and postconditions
+   - Static analyzers (e.g., SPARK, CodePeer) can verify explicit preconditions and postconditions
