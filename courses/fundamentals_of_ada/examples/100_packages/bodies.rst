@@ -2,12 +2,12 @@
     :class: ada-syntax-only
 
    package Body_Not_Allowed is
-      type Real is digits 12;
+      type My_Float is digits 12;
       type Device_Coordinates is record
          X, Y : Integer;
       end record;
       type Normalized_Coordinates is record
-         X, Y : Real range 0.0 .. 1.0;
+         X, Y : My_Float range 0.0 .. 1.0;
       end record;
       -- nothing to implement, so no body allowed
    end Body_Not_Allowed;
