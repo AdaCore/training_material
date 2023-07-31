@@ -270,9 +270,6 @@ Examples
 
 .. include:: examples/adv_270_subprogram_contracts/preconditions_and_postconditions.rst
 
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_270_subprogram_contracts.html#preconditions-and-postconditions`
-
 ---------------
 Preconditions
 ---------------
@@ -612,9 +609,6 @@ Examples
 
 .. include:: examples/adv_275_type_contracts/type_invariants.rst
 
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_275_type_contracts.html#type-invariants`
-
 ------------------------------
 Type Invariant Verifications
 ------------------------------
@@ -757,9 +751,6 @@ Examples
 ----------
 
 .. include:: examples/adv_275_type_contracts/subtype_predicates.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_275_type_contracts.html#subtype-predicates`
 
 ----------------
 **Predicates**
