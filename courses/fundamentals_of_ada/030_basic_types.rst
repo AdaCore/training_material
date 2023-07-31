@@ -827,17 +827,17 @@ Floating Point Type Attributes
 
    .. code:: Ada
 
-      type Real is digits N;  -- N static
+      type My_Float is digits N;  -- N static
 
-   - :ada:`Real'Digits`
+   - :ada:`My_Float'Digits`
 
       + Number of digits **requested** (N)
 
-   - :ada:`Real'Base'Digits`
+   - :ada:`My_Float'Base'Digits`
 
       + Number of **actual** digits
 
-   - :ada:`Real'Rounding (X)`
+   - :ada:`My_Float'Rounding (X)`
 
       + Integral value nearest to :ada:`X`
       + *Note* :ada:`Float'Rounding (0.5) = 1` and :ada:`Float'Rounding (-0.5) = -1`
@@ -858,7 +858,7 @@ Numeric Types Conversion
 * Special rule: can always convert between numeric types
 
     - Explicitly
-    - :ada:`Real` |rightarrow| :ada:`Integer` causes **rounding**
+    - :ada:`Float` |rightarrow| :ada:`Integer` causes **rounding**
 
 .. code:: Ada
 
