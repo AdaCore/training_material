@@ -30,7 +30,7 @@
          type Index_T is (<>);
          type Array_T is array (Index_T range <>) of Access_Item_T;
       package Combination is
-         procedure Add (List  : in out Array_T;
+         procedure Add (Vector  : in out Array_T;
                         Index : in     Index_T;
                         Item  : in     Item_T);
       end Combination;
@@ -68,11 +68,11 @@
       end Parameter_Properties;
    
       package body Combination is
-         procedure Add (List  : in out Array_T;
+         procedure Add (Vector  : in out Array_T;
                         Index : in     Index_T;
                         Item  : in     Item_T) is
          begin
-            List (Index) := new Item_T'(Item);
+            Vector (Index) := new Item_T'(Item);
          end Add;
       end Combination;
    end Generic_Data;

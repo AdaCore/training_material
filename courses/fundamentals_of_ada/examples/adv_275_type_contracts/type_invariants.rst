@@ -6,20 +6,20 @@
       function Consistent_Balance (This : Account_T) return Boolean;
       procedure Open (This : in out Account_T; Initial_Deposit : Currency_T);
    private
-      type List_T is array (1 .. 100) of Currency_T;
-      type Transaction_List_T is record
-         Values : List_T;
+      type Vector_T is array (1 .. 100) of Currency_T;
+      type Transaction_Vector_T is record
+         Values : Vector_T;
          Count  : Natural := 0;
       end record;
       type Account_T is record -- initial state MUST satisfy invariant
          Current_Balance : Currency_T := 0.0;
-         Withdrawals     : Transaction_List_T;
-         Deposits        : Transaction_List_T;
+         Withdrawals     : Transaction_Vector_T;
+         Deposits        : Transaction_Vector_T;
       end record;
    end Bank;
 
    package body Bank is
-      function Total (This : Transaction_List_T) return Currency_T is
+      function Total (This : Transaction_Vector_T) return Currency_T is
          Result : Currency_T := 0.0;
       begin
          for I in 1 .. This.Count loop -- no iteration if list empty

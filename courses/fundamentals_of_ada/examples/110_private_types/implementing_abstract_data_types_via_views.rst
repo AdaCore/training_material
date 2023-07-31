@@ -7,9 +7,9 @@
       procedure Pop (This : in out Stack_T; Item : out Integer);
       function Is_Empty (This : Stack_T) return Boolean;
    private
-      type List_T is array (1 .. Max_Capacity) of Integer;
+      type Vector_T is array (1 .. Max_Capacity) of Integer;
       type Stack_T is record
-         List : List_T;
+         Vector : Vector_T;
          Top  : Integer range 0 .. Max_Capacity := 0;
       end record;
    end Bounded_Stack;
@@ -18,11 +18,11 @@
       procedure Push (This : in out Stack_T; Item : Integer) is
       begin
          This.Top             := This.Top + 1;
-         This.List (This.Top) := Item;
+         This.Vector (This.Top) := Item;
       end Push;
       procedure Pop (This : in out Stack_T; Item : out Integer) is
       begin
-         Item     := This.List (This.Top);
+         Item     := This.Vector (This.Top);
          This.Top := This.Top - 1;
       end Pop;
       function Is_Empty (This : Stack_T) return Boolean is (This.Top = 0);
