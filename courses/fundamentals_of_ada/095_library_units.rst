@@ -166,7 +166,7 @@ Objects In Non-library Packages
      package Inner is
        Z : Boolean; -- available while in Inner
      end Inner;
-     Y : Real; -- available while in P
+     Y : Float; -- available while in P
    begin
      ...
    end P;
