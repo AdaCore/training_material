@@ -401,7 +401,7 @@ Full Type Declaration
          type T is private;
          ...
        private
-         type List is array (1.. 10)
+         type Vector is array (1.. 10)
             of Integer;
          function Initial
             return List;
@@ -520,7 +520,7 @@ Designer View Sees Full Declaration
      ...
    private
      type Index is range 0 .. Capacity;
-     type List is array (Index range 1..Capacity) of Integer;
+     type Vector is array (Index range 1..Capacity) of Integer;
      type Stack is record
         Top : integer;
         ...

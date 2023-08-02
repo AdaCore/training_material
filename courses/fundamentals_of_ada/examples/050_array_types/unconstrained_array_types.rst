@@ -4,9 +4,9 @@
    package Unconstrained_Array_Types is
    
       type Index_T is range 1 .. 100;
-      type List_T is array (Index_T range <>) of Character;
-      Wrong : List_T (0 .. 10); -- runtime error
-      Right : List_T (11 .. 20);
+      type Vector_T is array (Index_T range <>) of Character;
+      Wrong : Vector_T (0 .. 10); -- runtime error
+      Right : Vector_T (11 .. 20);
    
       type Array_Of_Bits_T is array (Natural range <>) of Boolean;
       Bits8  : Array_Of_Bits_T (0 .. 7);

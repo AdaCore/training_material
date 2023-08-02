@@ -698,7 +698,7 @@ In Some Cases Neither Kind Is Allowed
 .. code:: Ada
 
    type Play is array (Weekend) of Integer; -- illegal
-   type List is array (Days range <>) of Integer;
+   type Vector is array (Days range <>) of Integer;
    L : List (Weekend); -- not legal
 
 -----------------------------------------

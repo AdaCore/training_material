@@ -112,7 +112,7 @@ User-Defined Equality Example
 
       Max : constant := 100;
       type Index is range 0 .. Max;
-      type List is array (Index range 1 .. Max) of Integer;
+      type Vector is array (Index range 1 .. Max) of Integer;
       type Stack is record
         Values : List;
         Top : Index := 0;

@@ -246,7 +246,13 @@ Defensive Programming
 Examples
 ----------
 
-.. include:: examples/adv_270_subprogram_contracts/preconditions_and_postconditions.rst
+.. code:: Ada
+
+   type Vector is array (1 .. 10) of Integer;
+   procedure Extract_and_Clear (From : in out Vector;
+                                K : integer;
+                                Value : out Integer)
+   pragma Post (if K in Vector'Range then From(K) = 0);
 
 .. TBD
    :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_270_subprogram_contracts.html#preconditions-and-postconditions`

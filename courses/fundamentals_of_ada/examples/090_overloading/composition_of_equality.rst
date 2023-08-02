@@ -8,10 +8,10 @@
       type Record_T is tagged record
          Field : My_Integer := 0;
       end record;
-      type Record_List is array (My_Integer range 1 .. 10) of Record_T;
+      type Record_Vector is array (My_Integer range 1 .. 10) of Record_T;
    
       I1, I2 : constant My_Integer  := 0;
-      R1, R2 : constant Record_List := (others => (Field => 0));
+      R1, R2 : constant Record_Vector := (others => (Field => 0));
    begin
       -- uses primitive "=" => False
       Put_Line (Boolean'Image (I1 = I2));

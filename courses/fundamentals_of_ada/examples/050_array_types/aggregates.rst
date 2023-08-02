@@ -9,7 +9,7 @@
       Start, Finish : Days_T;
    
       type Array_T is array (Days_T range <>) of Boolean;
-      List : Array_T (Mon .. Start) := (others => False);
+      Vector : Array_T (Mon .. Start) := (others => False);
    
    begin
    
