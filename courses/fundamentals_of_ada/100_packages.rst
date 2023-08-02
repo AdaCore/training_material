@@ -279,15 +279,15 @@ Example Spec That Cannot Have A Body
 .. code:: Ada
 
    package Graphics_Primitives is
-     type Real is digits 12;
+     type Coordinate is digits 12;
      type Device_Coordinates is record
        X, Y : Integer;
      end record;
      type Normalized_Coordinates is record
-       X, Y : Real range 0.0 .. 1.0;
+       X, Y : Coordinate range 0.0 .. 1.0;
      end record;
      type Offset is record
-       X, Y : Real range -1.0 .. 1.0;
+       X, Y : Coordinate range -1.0 .. 1.0;
      end record;
      -- nothing to implement, so no body allowed
    end Graphics_Primitives;
@@ -427,7 +427,7 @@ Executable Part Semantics
      Call_Count : Natural := 0;
      procedure Initialize (Seed1 : out Integer;
                            Seed2 : out Integer) is ...
-     function Number return Real is ...
+     function Number return Float is ...
    begin -- Random
      Initialize (Seed1, Seed2);
    end Random;
@@ -544,15 +544,15 @@ Named Collection of Declarations (2)
 .. code:: Ada
 
    package Equations_of_Motion is
-     Longitudinal_Velocity : Real := 0.0;
-     Longitudinal_Acceleration : Real := 0.0;
-     Lateral_Velocity  : Real := 0.0;
-     Lateral_Acceleration : Real := 0.0;
-     Vertical_Velocity : Real:= 0.0;
-     Vertical_Acceleration : Real:= 0.0;
-     Pitch_Attitude : Real:= 0.0;
-     Pitch_Rate : Real:= 0.0;
-     Pitch_Acceleration : Real:= 0.0;
+     Longitudinal_Velocity : Float := 0.0;
+     Longitudinal_Acceleration : Float := 0.0;
+     Lateral_Velocity  : Float := 0.0;
+     Lateral_Acceleration : Float := 0.0;
+     Vertical_Velocity : Float:= 0.0;
+     Vertical_Acceleration : Float:= 0.0;
+     Pitch_Attitude : Float:= 0.0;
+     Pitch_Rate : Float:= 0.0;
+     Pitch_Acceleration : Float:= 0.0;
    end Equations_of_Motion;
 
 --------------------------------
@@ -573,7 +573,7 @@ Group of Related Program Units
 .. code:: Ada
 
    package Linear_Algebra is
-     type Vector is array (Positive range <>) of Real;
+     type Vector is array (Positive range <>) of Float;
      function "+" (L,R : Vector) return Vector;
      function "*" (L,R : Vector) return Vector;
      ...

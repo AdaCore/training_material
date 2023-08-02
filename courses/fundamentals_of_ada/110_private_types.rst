@@ -690,7 +690,7 @@ When To Avoid Private Types
 
       .. code:: Ada
 
-        type Vector is array (Positive range <>) of Real;
+        type Vector is array (Positive range <>) of Float;
         V : Vector (1 .. 3);
         ...
         V (1) := Alpha;

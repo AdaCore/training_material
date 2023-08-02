@@ -169,13 +169,13 @@ No Meaning Changes
 .. code:: Ada
 
    package D is
-     T : Real;
+     T : Float;
    end D;
 
    with D;
    procedure P is
      procedure Q is
-       T, X : Real;
+       T, X : Float;
      begin
        ...
        declare

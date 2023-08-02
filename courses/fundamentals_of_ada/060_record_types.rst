@@ -437,7 +437,7 @@ Aggregates with `others`
 .. code:: Ada
 
    type Poly is record
-      A : Real;
+      A : Float;
       B, C, D : Integer;
    end record;
 
@@ -614,8 +614,8 @@ Component Default Values
 
    type Complex is
      record
-       Real : Real := 0.0;
-       Imaginary : Real := 0.0;
+       Real : Float := 0.0;
+       Imaginary : Float := 0.0;
      end record;
    -- all components use defaults
    Phasor : Complex;

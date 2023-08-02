@@ -237,8 +237,8 @@ Call Resolution
    function "+" (L, R : Complex) return Complex;
    A, B : Complex := some_value;
    C : Complex := A + B;
-   D : Real := A + B;  -- illegal!
-   E : Real := 1.0 + 2.0;
+   D : Float := A + B;  -- illegal!
+   E : Float := 1.0 + 2.0;
 
 -------------------------
 Profile Components Used

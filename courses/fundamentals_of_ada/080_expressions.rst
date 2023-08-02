@@ -209,7 +209,7 @@ Index Constraints
 
    .. code:: Ada
 
-      type Vector is array (Positive range <>) of Real;
+      type Vector is array (Positive range <>) of Float;
       subtype Position_Vector is Vector (1..3);
       V : Position_Vector;
 
