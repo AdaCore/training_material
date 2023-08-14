@@ -5,7 +5,7 @@ package Employee_Data is
    type Id_T is new Integer;          -- better implementation
 
    function Create
-     (Name : String;
+     (Name : Name_T;
       Rate : Hourly_Rate_T)
       return Employee_T;
    function Id
@@ -13,7 +13,7 @@ package Employee_Data is
       return Id_T;
    function Name
      (Employee : Employee_T)
-      return String;
+      return Name_T;
    function Rate
      (Employee : Employee_T)
       return Hourly_Rate_T;

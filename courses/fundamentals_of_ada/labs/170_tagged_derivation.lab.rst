@@ -15,7 +15,7 @@ Tagged Derivation Lab
 
 * Hints
 
-   - Use `overriding` and `not overriding` as appropriate
+   - Use `overriding` and `not overriding` as appropriate **(Ada 2005 and above)**
 
 -----------------------------------------------
 Tagged Derivation Lab Solution - Types (Spec)
@@ -23,11 +23,11 @@ Tagged Derivation Lab Solution - Types (Spec)
 
 .. container:: source_include labs/answers/170_tagged_derivation.txt :start-after:--Types_Spec :end-before:--Types_Spec :code:Ada
 
-----------------------------------------------------------
-Tagged Derivation Lab Solution - Types (Body - Incomplete)
-----------------------------------------------------------
+-------------------------------------------------------
+Tagged Derivation Lab Solution - Types (Partial Body)
+-------------------------------------------------------
 
-.. container:: source_include labs/answers/170_tagged_derivation.txt :start-after:--Types_Body_Partial :end-before:--Types_Body_Partial :code:Ada
+.. container:: source_include labs/answers/170_tagged_derivation.txt :start-after:--Types_Body :end-before:--Types_Body :code:Ada
 
 ---------------------------------------
 Tagged Derivation Lab Solution - Main
