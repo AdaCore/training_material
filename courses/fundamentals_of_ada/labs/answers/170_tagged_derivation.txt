@@ -1,147 +1,144 @@
 --Types_Spec
-with Ada.Calendar;
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 package Employee is
-  type Person_T is tagged private;
-  procedure Set_Name (O     : in out Person_T;
-                      Value :        String);
-  function Name (O : Person_T) return String;
-  procedure Set_Birth_Date (O     : in out Person_T;
-                            Value :        String);
-  function Birth_Date (O : Person_T) return String;
-  procedure Print (O : Person_T);
+   type Person_T is tagged private;
+   subtype Name_T is String (1 .. 6);
+   type Date_T is record
+      Year  : Positive;
+      Month : Positive;
+      Day   : Positive;
+   end record;
+   type Job_T is (Sales, Engineer, Bookkeeping);
 
-  type Employee_T is new Person_T with private;
-  not overriding procedure Set_Start_Date (O     : in out Employee_T;
-                                           Value :        String);
-  not overriding function Start_Date (O : Employee_T) return String;
-  overriding procedure Print (O : Employee_T);
+   procedure Set_Name (O     : in out Person_T;
+                       Value :        Name_T);
+   function Name (O : Person_T) return Name_T;
+   procedure Set_Birth_Date (O     : in out Person_T;
+                             Value :        Date_T);
+   function Birth_Date (O : Person_T) return Date_T;
+   procedure Print (O : Person_T);
 
-  type Position_T is new Employee_T with private;
-  not overriding procedure Set_Job (O     : in out Position_T;
-                                    Value :        String);
-  not overriding function Job (O : Position_T) return String;
-  overriding procedure Print (O : Position_T);
+   type Employee_T is new Person_T with private;
+   not overriding procedure Set_Start_Date (O     : in out Employee_T;
+                                            Value :        Date_T);
+   not overriding function Start_Date (O : Employee_T) return Date_T;
+   overriding procedure Print (O : Employee_T);
+
+   type Position_T is new Employee_T with private;
+   not overriding procedure Set_Job (O     : in out Position_T;
+                                     Value :        Job_T);
+   not overriding function Job (O : Position_T) return Job_T;
+   overriding procedure Print (O : Position_T);
 
 private
-  type Person_T is tagged record
-    Name       : Unbounded_String;
-    Birth_Date : Ada.Calendar.Time;
-  end record;
+   type Person_T is tagged record
+      The_Name       : Name_T;
+      The_Birth_Date : Date_T;
+   end record;
 
-  type Employee_T is new Person_T with record
-    Employee_Id : Positive;
-    Start_Date  : Ada.Calendar.Time;
-  end record;
+   type Employee_T is new Person_T with record
+      The_Employee_Id : Positive;
+      The_Start_Date  : Date_T;
+   end record;
 
-  type Position_T is new Employee_T with record
-    Job : Unbounded_String;
-  end record;
+   type Position_T is new Employee_T with record
+      The_Job : Job_T;
+   end record;
 end Employee;
 --Types_Spec
 
-with Ada.Calendar.Formatting;
+--Types_Body
 with Ada.Text_IO; use Ada.Text_IO;
 package body Employee is
 
-  subtype Month_T is String (1 .. 3);
-  Month_Name : constant array (Ada.Calendar.Month_Number) of Month_T :=
-   (1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun",
-    7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec");
+   function Image (Date : Date_T) return String is
+     (Date.Year'Image & " -" & Date.Month'Image & " -" & Date.Day'Image);
 
---Types_Body_Partial
-  function To_String (T : Ada.Calendar.Time) return String is
-  begin
-    return Month_Name (Ada.Calendar.Month (T)) &
-     Integer'Image (Ada.Calendar.Day (T)) & "," &
-     Integer'Image (Ada.Calendar.Year (T));
-  end To_String;
+   procedure Set_Name (O     : in out Person_T;
+                       Value :        Name_T) is
+   begin
+      O.The_Name := Value;
+   end Set_Name;
+   function Name (O : Person_T) return Name_T is (O.The_Name);
 
-  function From_String (S : String) return Ada.Calendar.Time is
-    Date : constant String := S & " 12:00:00";
-  begin
-    return Ada.Calendar.Formatting.Value (Date);
-  end From_String;
+   procedure Set_Birth_Date (O     : in out Person_T;
+                             Value :        Date_T) is
+   begin
+      O.The_Birth_Date := Value;
+   end Set_Birth_Date;
+   function Birth_Date (O : Person_T) return Date_T is (O.The_Birth_Date);
 
-  procedure Set_Name (O     : in out Person_T;
-                     Value :        String) is
-  begin
-    O.Name := To_Unbounded_String (Value);
-  end Set_Name;
-  function Name (O : Person_T) return String is (To_String (O.Name));
+   procedure Print (O : Person_T) is
+   begin
+      Put_Line ("Name: " & O.Name);
+      Put_Line ("Birthdate: " & Image (O.Birth_Date));
+   end Print;
 
-  procedure Set_Birth_Date (O     : in out Person_T;
-                            Value :        String) is
-  begin
-    O.Birth_Date := From_String (Value);
-  end Set_Birth_Date;
-  function Birth_Date (O : Person_T) return String is (To_String (O.Birth_Date));
-  procedure Print (O : Person_T) is
-  begin
-    Put_Line ("Name: " & Name (O));
-    Put_Line ("Birthdate: " & Birth_Date (O));
-  end Print;
+   not overriding procedure Set_Start_Date (O     : in out Employee_T;
+                                            Value :        Date_T) is
+   begin
+      O.The_Start_Date := Value;
+   end Set_Start_Date;
+   not overriding function Start_Date (O : Employee_T) return Date_T is
+      (O.The_Start_Date);
 
-  not overriding procedure Set_Start_Date (O     : in out Employee_T;
-                                           Value :        String) is
-  begin
-    O.Start_Date := From_String (Value);
-  end Set_Start_Date;
-  not overriding function Start_Date (O : Employee_T) return String is (To_String (O.Start_Date));
-  overriding procedure Print (O : Employee_T) is
-  begin
-    Put_Line ("Name: " & Name (O));
-    Put_Line ("Birthdate: " & Birth_Date (O));
-    Put_Line ("Startdate: " & Start_Date (O));
-  end Print;
---Types_Body_Partial
+   overriding procedure Print (O : Employee_T) is
+   begin
+      Put_Line ("Name: " & Name (O));
+      Put_Line ("Birthdate: " & Image (O.Birth_Date));
+      Put_Line ("Startdate: " & Image (O.Start_Date));
+   end Print;
 
-  not overriding procedure Set_Job (O     : in out Position_T;
-                                    Value :        String) is
-  begin
-    O.Job := To_Unbounded_String (Value);
-  end Set_Job;
-  not overriding function Job (O : Position_T) return String is (To_String (O.Job));
-  overriding procedure Print (O : Position_T) is
-  begin
-    Put_Line ("Name: " & Name (O));
-    Put_Line ("Birthdate: " & Birth_Date (O));
-    Put_Line ("Startdate: " & Start_Date (O));
-    Put_Line ("Job: " & Job (O));
-  end Print;
+--Types_Body
+   not overriding procedure Set_Job (O     : in out Position_T;
+                                     Value :        Job_T) is
+   begin
+      O.The_Job := Value;
+   end Set_Job;
+   not overriding function Job (O : Position_T) return Job_T is (O.The_Job);
+
+   overriding procedure Print (O : Position_T) is
+   begin
+      Put_Line ("Name: " & O.Name);
+      Put_Line ("Birthdate: " & Image (O.Birth_Date));
+      Put_Line ("Startdate: " & Image (O.Start_Date));
+      Put_Line ("Job: " & O.Job'Image);
+   end Print;
 
 end Employee;
---Types_Body
+
 --Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Employee;
 procedure Main is
-  function Read (Prompt : String) return String is
-  begin
-    Put (Prompt & "> ");
-    return Get_Line;
-  end Read;
-  function Read_Date (Prompt : String) return String is (Read (Prompt & " (YYYY-MM-DD)"));
-
-  Applicant : Employee.Person_T;
-  Employ    : Employee.Employee_T;
-  Staff     : Employee.Position_T;
+   Applicant : Employee.Person_T;
+   Employ    : Employee.Employee_T;
+   Staff     : Employee.Position_T;
 
 begin
-  Applicant.Set_Name (Read ("Applicant name"));
-  Applicant.Set_Birth_Date (Read_Date ("   Birth Date"));
+   Applicant.Set_Name ("Wilma ");
+   Applicant.Set_Birth_Date ((Year  => 1_234,
+                              Month => 12,
+                              Day   => 1));
 
-  Employ.Set_Name (Read ("Employee name"));
-  Employ.Set_Birth_Date (Read_Date ("   Birth Date"));
-  Employ.Set_Start_Date (Read_Date ("   Start Date"));
+   Employ.Set_Name ("Betty ");
+   Employ.Set_Birth_Date ((Year  => 2_345,
+                           Month => 11,
+                           Day   => 2));
+   Employ.Set_Start_Date ((Year  => 3_456,
+                           Month => 10,
+                           Day   => 3));
 
-  Staff.Set_Name (Read ("Staff name"));
-  Staff.Set_Birth_Date (Read_Date ("   Birth Date"));
-  Staff.Set_Start_Date (Read_Date ("   Start Date"));
-  Staff.Set_Job (Read ("   Job"));
+   Staff.Set_Name ("Bambam");
+   Staff.Set_Birth_Date ((Year  => 4_567,
+                          Month => 9,
+                          Day   => 4));
+   Staff.Set_Start_Date ((Year  => 5_678,
+                          Month => 8,
+                          Day   => 5));
+   Staff.Set_Job (Employee.Engineer);
 
-  Applicant.Print;
-  Employ.Print;
-  Staff.Print;
+   Applicant.Print;
+   Employ.Print;
+   Staff.Print;
 end Main;
 --Main

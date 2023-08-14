@@ -6,7 +6,7 @@ Limited Types Lab
 
    - Create an employee record data type consisting of a name, ID, hourly pay rate
 
-      + ID should be unique for every record
+      + ID should be a unique value generated for every record
 
    - Create a timecard record data type consisting of an employee record, hours worked, and total pay
    - Create a main program that generates timecards and prints their contents

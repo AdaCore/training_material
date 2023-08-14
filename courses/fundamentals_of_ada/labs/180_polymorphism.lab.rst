@@ -16,9 +16,9 @@ Polymorphism Lab
       + Number of sides
       + Perimeter
 
-   - Create a main program to print information about multiple shapes
+   - Create a main program that has multiple shapes
 
-      + Create a nested subprogram that takes a shape and prints all relevant information
+      + Create a nested subprogram that takes any shape and prints all appropriate information
 
 * Hints
 

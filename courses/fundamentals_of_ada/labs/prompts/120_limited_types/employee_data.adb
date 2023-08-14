@@ -1,7 +1,7 @@
 package body Employee_Data is
 
    function Create
-     (Name : String;
+     (Name : Name_T;
       Rate : Hourly_Rate_T)
       return Employee_T is
    begin
@@ -19,7 +19,7 @@ package body Employee_Data is
 
    function Name
      (Employee : Employee_T)
-      return String is
+      return Name_T is
    begin
       -- return Name member of record
       return "";
