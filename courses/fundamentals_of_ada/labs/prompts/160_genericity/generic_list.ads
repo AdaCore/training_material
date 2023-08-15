@@ -1,19 +1,21 @@
 generic
-   -- generic parameters for:
-   --    List element
+   type Element_T is private;
+   --  Add other parameters for:
    --    Maximum size of list
-   --    Subprogram to compare list elements
+   --    Compare to elements
+   --    Convert element to string
 package Generic_List is
 
-   type List_T is tagged private;
+   type List_T is private;
 
-   -- Need a subprogram to add items to the list
-   --  procedure Add (This : in out List_T;
-   --                 Item : in     ?
-
+   procedure Add
+     (This : in out List_T;
+      Item : in     Element_T);
    procedure Sort (This : in out List_T);
+   procedure Print (List : List_T);
 
 private
-   -- Finish implementation of List_T
-   type List_T is tagged null record;
+   --  Update List_T to be a collection of Element_T
+   type List_T is null record;
+
 end Generic_List;

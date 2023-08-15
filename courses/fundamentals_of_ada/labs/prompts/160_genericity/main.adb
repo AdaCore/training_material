@@ -1,25 +1,18 @@
-with Ada.Text_IO; use Ada.Text_IO;
 with Data_Type;
 with Generic_List;
-with Generic_List.Output;
-
 procedure Main is
+   package List is new Generic_List (Element_T => Data_Type.Record_T);
+   --  Need to add formal parameters as necessary
 
-   -- Create instance of generic list package
-   -- Create instance of generic list output package
-
-   --  My_List : List.List_T; -- Object of generic list type
-
+   My_List : List.List_T;
    Element : Data_Type.Record_T;
 
 begin
-   null;
-   --  loop
-     -- Query user to populate Element object
-     -- Add Element object to My_List
-  --  end loop;
+   --  Add some items to the list
+   List.Add (My_List, Element);
+   List.Add (My_List, Element);
+   List.Add (My_List, Element);
 
-   -- Sort My_List
-   -- Print My_List;
-
+   List.Sort (My_List);
+   List.Print (My_List);
 end Main;
