@@ -410,7 +410,7 @@ Quiz
       function F1 (V : Grandchild) return Integer is (301);
    end P;
 
-   with P1; use P1;
+   with P; use P;
    procedure Main is
       Z : Root'Class := Grandchild'(others => <>);
 

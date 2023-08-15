@@ -402,8 +402,8 @@ Quiz
 
       A. Although :ada:`(A - C)` is not in the range of :ada:`natural`, the range is only checked on assignment, which is after the addition of :ada:`B`, so :ada:`One` is never printed
       B. Correct
-      C. If we reach :ada:`Two`, the assignment on line 10 will cause :ada:`Three` to be reached
-      D. Divide by 0 on line 14 causes an exception, so :ada:`Two` must be called
+      C. If we reach :ada:`Two`, the assignment on line 16 will cause :ada:`Three` to be reached
+      D. Divide by 0 on line 13 causes an exception, so :ada:`Two` must be called
 
 =============================================
 Implicitly and Explicitly Raised Exceptions

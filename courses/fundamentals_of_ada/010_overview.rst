@@ -203,7 +203,8 @@ Strongly-Typed vs Weakly-Typed Languages
 
 .. code:: C++
 
-   typedef enum { north, south, east, west } direction ;
+   typedef enum {north, south, east, west} direction;
+   typedef enum {sun, mon, tue, wed, thu, fri, sat} days;
    direction heading = north;
 
    heading = 1 + 3 * south/sun;// what?
@@ -215,7 +216,8 @@ Strongly-Typed vs Weakly-Typed Languages
 
 .. code:: Ada
 
-   type Directions is ( North, South, East, West );
+   type Directions is (North, South, East, West);
+   type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
    Heading : Directions := North;
    ...
    Heading := 1 + 3 * South/Sun; --  Compile Error
@@ -323,6 +325,10 @@ Packages
 ----------
 
 * Grouping of related entities
+
+   - Subsystems like *Fire Control* and *Navigation*
+   - Common processing like *HMI* and *Operating System*
+
 * Separation of concerns
 
    - Definition :math:`\neq` usage

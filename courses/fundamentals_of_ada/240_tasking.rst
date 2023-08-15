@@ -217,9 +217,9 @@ Protected: Functions and Procedures
 
    - **No** concurrent call to either :ada:`procedure` or :ada:`function`
 
-* In case of concurrency, other callers get **blocked**
+   - In case of concurrency, other callers get **blocked**
 
-    - Until call finishes
+      - Until call finishes
 
 ======
 Delays

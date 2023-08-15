@@ -49,10 +49,6 @@ Advanced Expressions
 
       + Equivalent to C's ``A ? B : C`` and even more elaborate
 
-   - Universal / Existential checks
-
-      + Ability to easily determine if one or all of a set match a condition
-
 ==================
 Membership Tests
 ==================
@@ -99,7 +95,7 @@ Testing Constraints via Membership
    Day : Calendar_Days := Today;
    ...
    if Day in Mon .. Fri then ...
-   if Day in Weekdays then ... - same as above
+   if Day in Weekdays then ... -- same as above
 
 -----------------------------------
 Testing Non-Contiguous Membership

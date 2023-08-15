@@ -84,7 +84,7 @@ Pragma Import / Export (1/2)
        .. code:: Ada
 
           procedure Some_Procedure;
-          pragma Export (C, SomeProcedure, "ada_some_procedure");
+          pragma Export (C, Some_Procedure, "ada_some_procedure");
           procedure Some_Procedure is
           begin
            -- some code
@@ -145,7 +145,7 @@ Parameter Passing to/from C
 
    - The type of the parameter
    - The mode of the parameter
-   - The Convention applied on the Ada side of the subprogram declaration.
+   - The Convention applied on the Ada side of the subprogram declaration
 
 * The exact meaning of *Convention C*, for example, is documented in *LRM* B.1 - B.3, and in the *GNAT User's Guide* section 3.11.
 
@@ -157,7 +157,7 @@ Passing Scalar Data as Parameters
 * Ada types are implementation-defined
 * GNAT standard types are compatible with C types
 
-   - Implementation choice, use carefully.
+   - Implementation choice, use carefully
 
 * At the interface level, scalar types must be either constrained with representation clauses, or coming from Interfaces.C
 * Ada view

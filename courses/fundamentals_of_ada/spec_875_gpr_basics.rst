@@ -638,7 +638,7 @@ Default Configuration Files
 
    - If -autoconf specified, new configuration file is automatically generated
 
-      + Based on specified target and languages specified in projects.
+      + Based on specified target and languages specified in projects
 
 ------------------------------
 Creating Configuration Files
@@ -655,13 +655,13 @@ Creating Configuration Files
       + --RTS=
 
    - Compilers not in the path (or not first in the path)
-   - autoconfiguration does not give the expected results.
+   - Autoconfiguration does not give the expected results
 
 * Default method
 
    - Simple interactive mode lists all known compilers for all known languages
    - Select a compiler for each of the languages
-   - Compatible compilers for other languages are proposed.
+   - Compatible compilers for other languages are proposed
 
 -------------------------
 Examples of "gprconfig"
@@ -685,11 +685,11 @@ Examples of "gprconfig"
 
    - :command:`gprconfig --config=Ada --config=C --batch`
 
-      + Generates at default location using first native Ada and C compilers on path.
+      + Generates at default location using first native Ada and C compilers on path
 
    - :command:`gprconfig --target=leon-elf --config=Ada,,hi --config=C --batch -o x.cgpr`
 
-      + Generates configuration file named x.cgpr for cross-compiling Ada with a run-time called hi and using C for the LEON processor.
+      + Generates configuration file named x.cgpr for cross-compiling Ada with a run-time called hi and using C for the LEON processor
 
 ===================
 GPRCONFIG Options
@@ -701,7 +701,7 @@ Command line arguments
 
 * *--target=platform*
 
-   - Indicates target computer on which your application will run.
+   - Indicates target computer on which your application will run
    - Example: **--target=ppc-elf**
    - Special target "all" to display all targets on path
    - Default target is host machine

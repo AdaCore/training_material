@@ -1059,8 +1059,8 @@ Quiz
          with Default_Component_Value => 1;
       A : Array_T;
    begin
-      for I in Index_T range 2 .. 3 loop
-         for J in Index_T range 2 .. 3 loop
+      for I in 2 .. 3 loop
+         for J in 2 .. 3 loop
             A (I, J) := I * 10 + J;
          end loop;
       end loop;
@@ -1334,7 +1334,7 @@ Named Format Aggregate Rules
 
    type Float_Arr is array (Integer range <>) of Float;
    Ages : Float_Arr (1 .. 10) := (1 .. 3 => X, 4 .. 10 => Y);
-   -- illegal: 3 appears twice
+   -- illegal: 3 and 4 appear twice
    Overlap : Float_Arr (1 .. 10) := (1 .. 4 => X, 3 .. 10 => Y);
    N, M, K, L : Integer;
    -- illegal: cannot determine if

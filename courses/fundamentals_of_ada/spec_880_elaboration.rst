@@ -441,4 +441,4 @@ Summary
 * If it can't, it's possible to manually place elaboration pragmas
 * Better to avoid elaboration constraints as much as possible
 * Use dynamic elaboration (gnat binder switch -E) as last resort
-* See *Elaboration Order Handling in GNAT* annex in GNAT Pro User's Guide.
+* See *Elaboration Order Handling in GNAT* annex in GNAT Pro User's Guide

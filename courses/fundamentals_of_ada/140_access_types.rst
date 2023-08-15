@@ -39,7 +39,7 @@ Introduction
 Access Types Design
 ---------------------
 
-* Memory addresses objects are called :dfn:`access types`
+* Memory-addressed objects are called :dfn:`access types`
 * Objects are associated to :dfn:`pools` of memory
 
   - With different allocation / deallocation policies
@@ -64,7 +64,7 @@ Access Types Design
 
      type Integer_General_Access
        is access all Integer;
-     G : aliased Integer
+     G : aliased Integer;
      G_A : Integer_General_Access := G'access;
 
  .. container:: column
@@ -774,7 +774,7 @@ Summary
 * Access types are the same as C/C++ pointers
 * There are usually better ways of memory management
 
-   - Language has its own ways with dealing with large objects passed as parameters
+   - Language has its own ways of dealing with large objects passed as parameters
    - Language has libraries dedicated to memory allocation / deallocation
 
 * At a minimum, create your own generics to do allocation / deallocation

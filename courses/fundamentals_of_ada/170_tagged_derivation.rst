@@ -139,7 +139,7 @@ Type Extension
       type Child is new Root with null record;
       type Child is new Root; -- illegal
 
-* Conversions is only allowed from **child to parent**
+* Conversion is only allowed from **child to parent**
 
    .. code:: Ada
 
