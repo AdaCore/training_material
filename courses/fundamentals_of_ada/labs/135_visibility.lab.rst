@@ -4,27 +4,21 @@ Visibility Lab
 
 * Requirements
 
-   - Create a types package for calculating speed in miles per hour
+   - Create two types packages for two different shapes. Each package should have the following components:
 
-      + At least two different distance measurements (e.g. feet, kilometers)
-      + At least two different time measurements (e.g. seconds, minutes)
-      + Overloaded operators and/or primitives to handle calculations
+      + :ada:`Number_of_Sides` - indicates how many sides in the shape
+      + :ada:`Side_T` - numeric value for length
+      + :ada:`Shape_T` - array of :ada:`Side_T` elements whose length is :ada:`Number_of_Sides`
 
-   - Create a types child package for converting distance, time, and mph into a string
+   - Create a main program that will
 
-      + Use :code:`Ada.Text_IO.Float_IO` package to convert floating point to string
-      + Create visible global objects to set **Exp** and **Aft** parameters for :code:`Put`
-
-   - Create a main program to enter distance and time and then print speed value
+      + Create an object of each :ada:`Shape_T`
+      + Set the values for each element in :ada:`Shape_T`
+      + Add all the elements in each object and print the total
 
 * Hints
 
-   - :code:`use` to get full visibility to `Ada.Text_IO`
-   - :code:`use type` to get access to calculations
-
-      + :code:` use all type` if calculations are primitives
-
-   - :code:`renames` to make using **Exp** and **Aft** easier
+   - There are multiple ways to resolve this!
 
 ----------------------------------------
 Visibility Lab Solution - Types
@@ -32,14 +26,14 @@ Visibility Lab Solution - Types
 
 .. container:: source_include labs/answers/135_visibility.txt :start-after:--Types :end-before:--Types :code:Ada
 
-------------------------------------------------
-Visibility Lab Solution - Types.Strings
-------------------------------------------------
+-----------------------------------
+Visibility Lab Solution - Main #1
+-----------------------------------
 
-.. container:: source_include labs/answers/135_visibility.txt :start-after:--Strings :end-before:--Strings :code:Ada
+.. container:: source_include labs/answers/135_visibility.txt :start-after:--Main1 :end-before:--Main1 :code:Ada
 
---------------------------------
-Visibility Lab Solution - Main
---------------------------------
+-----------------------------------
+Visibility Lab Solution - Main #2
+-----------------------------------
 
-.. container:: source_include labs/answers/135_visibility.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/135_visibility.txt :start-after:--Main2 :end-before:--Main2 :code:Ada
