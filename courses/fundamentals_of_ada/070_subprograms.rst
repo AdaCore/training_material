@@ -1181,7 +1181,6 @@ Summary
 
 * :ada:`procedure` is abstraction for actions
 * :ada:`function` is abstraction for value computations
-* A :ada:`function` may return values of variable size
 * Separate declarations are sometimes necessary
 
    - Mutual recursion
