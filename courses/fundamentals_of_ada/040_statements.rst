@@ -101,7 +101,7 @@ Parameter Associations In Calls
 
 .. code:: Ada
 
-   Activate ( Idle, Wait => True ); -- named then positional
+   Activate ( Idle, Wait => True ); -- positional then named
 
 * But positional following named is a compile error
 

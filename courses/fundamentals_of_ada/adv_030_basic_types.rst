@@ -283,7 +283,7 @@ Base Ranges
 
 * Actual **hardware-supported** numeric type used
 
-   - GNAT makes consistent and predictable choices on all major platforms.
+   - GNAT makes consistent and predictable choices on all major platforms
 
 * **Predefined** operators
 
@@ -476,7 +476,7 @@ Package **Interfaces**
 
     - Dealing with hardware registers
 
-* Note: Shorter may not be faster for integer maths.
+* Note: Shorter may not be faster for integer maths
 
     - Modern 64-bit machines are not efficient at 8-bit maths
 

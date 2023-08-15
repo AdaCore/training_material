@@ -766,7 +766,7 @@ System.Storage_Pools
 
 * Mechanism to allow coder control over allocation/deallocation process
 
-  * Uses :ada:`Ada.Finalization.Limited_Controlled` to implement customized memory allocation and deallocation.
+  * Uses :ada:`Ada.Finalization.Limited_Controlled` to implement customized memory allocation and deallocation
   * Must be specified for each access type being controlled
 
     .. code:: Ada

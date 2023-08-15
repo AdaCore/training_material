@@ -57,7 +57,7 @@ Reference Manual
    - This means *Section 4.5.3, paragraph 10*
    - Have a look at the table of contents
 
-       * Knowing that chapter 5 is *Statements* is useful.
+       * Knowing that chapter 5 is *Statements* is useful
 
    - Index is very long, but very good!
 
@@ -112,7 +112,7 @@ Need More Help?
 
    - Find out your customer number #XXXX
 
-* Open a "TN" via the GNAT Tracker web interface and/or email.
+* Open a "TN" via the GNAT Tracker web interface and/or email
 
    - Send to: `support@gnat.com <mailto:support@gnat.com>`_
    - Subject should read: #XXXX - (descriptive text)

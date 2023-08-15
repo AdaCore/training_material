@@ -61,7 +61,7 @@ Operators and Primitives
 
 * :dfn:`Operators`
 
-   - Constructs which behave generally like functions but which differ syntactically or semantically.
+   - Constructs which behave generally like functions but which differ syntactically or semantically
    - Typically arithmetic, comparison, and logical
 
 * **Primitive operation**

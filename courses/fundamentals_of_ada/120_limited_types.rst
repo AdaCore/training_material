@@ -443,7 +443,11 @@ Function Extended Return Statements
 Extended Return Statements Example
 ----------------------------------
 
-   .. code:: Ada
+.. admonition:: Language Variant
+
+   Ada 2005
+
+.. code:: Ada
 
        --  Implicitly limited array
        type Spin_Lock_Array (Positive range <>) of Spin_Lock;

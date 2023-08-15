@@ -69,10 +69,6 @@ String Literals
 ----------------
 .. |rightarrow| replace:: :math:`\rightarrow`
 
-.. code::
-
-   string_literal ::= "<string content>"
-
 .. code:: Ada
 
    A_Null_String : constant string := "";

@@ -406,7 +406,7 @@ Volatile
 ----------
 
 * The `Volatile` property can be set using an aspect (in Ada2012 only) or a pragma
-* Ada also allows volatile types as well as objects.
+* Ada also allows volatile types as well as objects
 
    .. code:: Ada
 
@@ -414,11 +414,11 @@ Volatile
       pragma Volatile(Volatile_U16);
       type Volatile_U32 is mod 2**32 with Volatile; -- Ada 2012
 
-* The exact sequence of reads and writes from the source code must appear in the generated code.
+* The exact sequence of reads and writes from the source code must appear in the generated code
 
    - No optimization of reads and writes
 
-* Volatile types are passed by-reference.
+* Volatile types are passed by-reference
 
 ---------------------
 Ada Address Example
@@ -464,7 +464,7 @@ Aliasing Detection
 Unchecked Conversion
 ----------------------
 
-* `Unchecked_Conversion` allows an unchecked *bitwise* conversion of data between two types.
+* `Unchecked_Conversion` allows an unchecked *bitwise* conversion of data between two types
 * Needs to be explicitly instantiated
 
    .. code:: Ada
@@ -478,6 +478,7 @@ Unchecked Conversion
 * Avoid conversion if the sizes don't match
 
    - Not defined by the standard
+   - Many compilers will warn if the type sizes do not match
 
 =================
 Inline Assembly
@@ -611,7 +612,7 @@ Volatile and Clobber ASM Parameters
 
    - ``memory`` if the memory is accessed
 
-      + Compiler won't use memory cache in registers across the instruction.
+      + Compiler won't use memory cache in registers across the instruction
 
    - ``cc`` if flags might have changed
 

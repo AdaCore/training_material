@@ -243,9 +243,9 @@ Completion Examples
       function Less_Than ( X, Y : Person) return boolean is
       begin
          return X.Age < Y.Age;
-      endf Less_Than
+      end Less_Than;
 
-      function Min (X, Y : Person) return Person;
+      function Min (X, Y : Person) return Person is
       begin
          if Less_Than ( X, Y ) then
             return X;
