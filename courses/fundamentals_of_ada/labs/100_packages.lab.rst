@@ -18,7 +18,7 @@ Packages Lab
 
       1. minimum/maximum integer values and maximum number of items in list
       2. User input (ensure value is in range)
-      3. List ADT
+      3. List Abstract Data Machine
 
    - Remember: :code:`with package_name;` gives access to :code:`package_name`
 
