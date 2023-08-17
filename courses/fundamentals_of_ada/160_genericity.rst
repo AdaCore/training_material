@@ -87,34 +87,41 @@ Ada Generic Compared to C++ Template
 
  .. container:: column
 
-   * Ada Generic
+  Ada Generic
 
-   .. code:: Ada
+  .. container:: latex_environment scriptsize
+
+    .. code:: Ada
 
       -- specification
       generic
-      type T is private;
-      procedure Swap
-        (L, R : in out T);
+        type T is private;
+      procedure Swap (L, R : in out T);
+
       -- implementation
-      procedure Swap
-        (L, R : in out T) is
+      procedure Swap (L, R : in out T) is
          Tmp : T := L
       begin
          L := R;
          R := Tmp;
       end Swap;
+
       -- instance
       procedure Swap_F is new Swap (Float);
 
  .. container:: column
 
-   * C++ Template
+  C++ Template
 
-   .. code:: C++
+  .. container:: latex_environment scriptsize
 
+    .. code:: C++
+
+      // prototype
       template <class T>
       void Swap (T & L, T & R);
+
+      // implementation
       template <class T>
       void Swap (T & L, T & R) {
          T Tmp = L;
@@ -122,7 +129,9 @@ Ada Generic Compared to C++ Template
          R = Tmp;
       }
 
-.
+      // instance
+      int x, y;
+      Swap<int>(x,y);
 
 ===================
 Creating Generics
@@ -151,7 +160,7 @@ What Can Be Made Generic?
 
       generic
       package Stack.Utilities is
-         procedure Print is
+         procedure Print (S : Stack_T);
 
 ---------------------------
 How Do You Use A Generic?
@@ -165,20 +174,12 @@ How Do You Use A Generic?
    package Integer_Stack_Utils is
        new Integer_Stack.Utilities;
    ...
-   Integer_Stack.Push ( 1 );
-   Integer_Stack_Utils.Print;
+   Integer_Stack.Push (S, 1);
+   Integer_Stack_Utils.Print (S);
 
 ==============
 Generic Data
 ==============
-
-----------
-Examples
-----------
-
-.. include:: examples/160_genericity/generic_data.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/160_genericity.html#generic-data`
 
 --------------------------------
 Generic Types Parameters (1/2)
@@ -190,56 +191,85 @@ Generic Types Parameters (1/2)
    .. code:: Ada
 
       generic
-         type T1 is private; -- should have properties
-                             -- of private type (assignment,
-                             -- comparison, able to declare
-                             -- variables on the stack...)
-         type T2 (<>) is private;    -- can be unconstrained
-         type T3 is limited private; -- can be limited
-      package Parent is [...]
+         type T1 is private;
+         type T2 (<>) is private;
+         type T3 is limited private;
+      package Parent is
 
-* The actual parameter must provide at least as many properties as the :dfn:`generic contract`
+* The actual parameter must be no more restrictive then the :dfn:`generic contract`
+
+---------------------------------------
+Generic Types Parameters (2/3)
+---------------------------------------
+
+* Generic formal parameter tells generic what it is allowed to do with the type
+
+.. container:: latex_environment tiny
+
+  .. list-table::
+
+    * - :ada:`type T1 is (<>);`
+
+      - Discrete type; :ada:`'First`, :ada:`'Succ`, etc available
+
+    * - :ada:`type T2 is range <>;`
+
+      - Signed integer type; appropriate mathematic operations allowed
+
+    * - :ada:`type T3 is digits <>;`
+
+      - Floating point type; appropriate mathematic operations allowed
+
+    * - :ada:`type T4 (<>);`
+
+      - Indefinite type; can only be used as target of :ada:`access`
+
+    * - :ada:`type T5 is tagged;`
+
+      - :ada:`tagged` type; can extend the type
+
+    * - :ada:`type T6 is private;`
+
+      - No knowledge about the type other than assignment, comparison, object creation allowed
+
+    * - :ada:`type T7 (<>) is private;`
+
+      - :ada:`(<>)` indicates type can be unconstrained, so any object has to be initialized
 
 --------------------------------
-Generic Types Parameters (2/2)
+Generic Types Parameters (3/3)
 --------------------------------
 
 * The usage in the generic has to follow the contract
 
-.. code:: Ada
+  * Generic Subprogram
 
-   generic
-      type T (<>) is private;
-   procedure P (V : T);
-   procedure P (V : T) is
-      X1 : T := V; -- OK, can constrain by initialization
-      X2 : T;      -- Compilation error, no constraint to this
-   begin
-   ...
-   type L_T is limited null record;
-   ...
-   -- unconstrained types are accepted
-   procedure P1 is new P (String);
-   -- type is already constrained
-   procedure P2 is new P (Integer);
-   -- Illegal: the type can't be limited because the generic
-   -- is allowed to make copies
-   procedure P3 is new P (L_T);
+    .. code:: Ada
 
----------------------------------------
-Possible Properties for Generic Types
----------------------------------------
+       generic
+          type T (<>) is private;
+       procedure P (V : T);
+       procedure P (V : T) is
+          X1 : T := V; -- OK, can constrain by initialization
+          X2 : T;      -- Compilation error, no constraint to this
+       begin
 
-.. code:: Ada
+  * Instantiations
 
-   type T1 is (<>); -- discrete
-   type T2 is range <>; -- integer
-   type T3 is digits <>; -- float
-   type T4 (<>); -- indefinite
-   type T5 is tagged;
-   type T6 is array ( Boolean ) of Integer;
-   type T7 is access integer;
-   type T8 (<>) is [limited] private;
+    .. code:: Ada
+
+       type Limited_T is limited null record;
+
+       -- unconstrained types are accepted
+       procedure P1 is new P (String);
+
+       -- type is already constrained
+       -- (but generic will still always initialize objects)
+       procedure P2 is new P (Integer);
+
+       -- Illegal: the type can't be limited because the generic
+       -- thinks it can make copies
+       procedure P3 is new P (Limited_T);
 
 ------------------------------------
 Generic Parameters Can Be Combined
@@ -250,17 +280,19 @@ Generic Parameters Can Be Combined
 .. code:: Ada
 
    generic
-      type T (<>) is limited private;
+      type T (<>) is private;
       type Acc is access all T;
       type Index is (<>);
       type Arr is array (Index range <>) of Acc;
-   procedure P;
+   function Element (Source   : Arr;
+                     Position : Index )
+                     return T;
 
    type String_Ptr is access all String;
    type String_Array is array (Integer range <>)
        of String_Ptr;
 
-   procedure P_String is new P
+   procedure String_Element is new Element
       (T     => String,
        Acc   => String_Ptr,
        Index => Integer,
@@ -272,41 +304,9 @@ Quiz
 
 .. include:: quiz/generic_subp_syntax/quiz.rst
 
-------
-Quiz
-------
-
-.. code:: Ada
-
-   generic
-      type T1 is (<>);
-      type T2 (<>) is private;
-   procedure G
-     (A : T1;
-      B : T2);
-
-Which is an illegal instantiation?
-
-   A. :answermono:`procedure A is new G (String, Character);`
-   B. ``procedure B is new G (Character, Integer);``
-   C. ``procedure C is new G (Integer, Boolean);``
-   D. ``procedure D is new G (Boolean, String);``
-
-.. container:: animate
-
-   :ada:`T1` must be discrete - so an integer or an enumeration. :ada:`T2` can be any type
-
 =====================
 Generic Formal Data
 =====================
-
-----------
-Examples
-----------
-
-.. include:: examples/160_genericity/generic_formal_data.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/160_genericity.html#generic-formal-data`
 
 --------------------------------------------
 Generic Constants/Variables as Parameters
@@ -326,20 +326,29 @@ Generic Constants/Variables as Parameters
 
  .. container:: column
 
-    .. code:: Ada
+   .. container:: latex_environment tiny
 
-       generic
-          type T is private;
-          X1 : Integer;  -- constant
-          X2 : in out T; -- variable
-       procedure P;
+     * Generic package
 
-       V : Float;
+       .. code:: Ada
 
-       procedure P_I is new P
-          (T  => Float,
-           X1 => 42,
-           X2 => V);
+          generic
+            type Element_T is private;
+            Array_Size     : Positive;
+            High_Watermark : in out Element_T;
+          package Repository is
+
+     * Generic instance
+
+       .. code:: Ada
+
+         V   : Float;
+         Max : Float;
+
+         procedure My_Repository is new Repository
+           (Element_T      => Float,
+            Array_size     => 10,
+            High_Watermark => Max);
 
 -------------------------------
 Generic Subprogram Parameters
@@ -351,14 +360,22 @@ Generic Subprogram Parameters
    .. code:: Ada
 
       generic
-         with procedure Callback;
-      procedure P;
-      procedure P is
+         type T is private;
+         with function Less_Than ( L, R : T ) return boolean;
+      function Max ( L, R : T ) return T;
+
+      function Max ( L, R : T ) return T is
       begin
-         Callback;
-      end P;
-      procedure Something;
-      procedure P_I is new P (Something);
+         if Less_Than (L, R) then
+            return R;
+         else
+            return L;
+         end if;
+      end Max;
+
+      type Something_T is null record;
+      function Less_Than ( L, R : Something_T ) return boolean;
+      procedure My_Max is new Max (Something_T, Less_Than);
 
 ----------------------------------------
 Generic Subprogram Parameters Defaults
@@ -376,47 +393,22 @@ Generic Subprogram Parameters Defaults
    .. code:: Ada
 
       generic
-        with procedure Callback1 is <>;
-        with procedure Callback2 is null;
-      procedure P;
-      procedure Callback1;
-      procedure P_I is new P;
-      -- takes Callback1 and null
+        type T is private;
+        with function Is_Valid (P : T) return boolean is <>;
+        with procedure Error_Message (P : T) is null;
+      procedure Validate (P : T);
 
-----------------------------
-Generic Package Parameters
-----------------------------
+      function Is_Valid_Record (P : Record_T) return boolean;
 
-* A generic unit can depend on the instance of another generic unit
-* Parameters of the instantiation can be constrained partially or completely
-
-.. code:: Ada
-
-   generic
-      type T1 is private;
-      type T2 is private;
-   package Base is [...]
-
-   generic
-      with package B is new Base (Integer, <>);
-      V : B.T2;
-   package Other [...]
-
-   package Base_I is new Base (Integer, Float);
-
-   package Other_I is new Other (Base_I, 56.7);
+      procedure My_Validate is new Validate (Record_T);
+      -- Is_Valid maps to Is_Valid_Record
+      -- Error_Message maps to a null subprogram
 
 ------
 Quiz
 ------
 
 .. include:: quiz/genericity_type_and_variable/quiz.rst
-
-------
-Quiz
-------
-
-.. include:: quiz/genericity_limited_type/quiz.rst
 
 ------
 Quiz
@@ -435,44 +427,40 @@ Quiz
    .. code:: Ada
       :number-lines: 1
 
-      procedure P1 (X : in out Integer); -- add 100 to X
-      procedure P2 (X : in out Integer); -- add 20 to X
-      procedure P3 (X : in out Integer); -- add 3 to X
+      procedure Double (X : in out Integer);
+      procedure Square (X : in out Integer);
+      procedure Half (X : in out Integer);
       generic
-         with procedure P1 (X : in out Integer) is <>;
-         with procedure P2 (X : in out Integer) is null;
-      procedure G ( P : integer );
-      procedure G ( P : integer ) is
-         X : integer := P;
+         with procedure Double (X : in out Integer) is <>;
+         with procedure Square (X : in out Integer) is null;
+      procedure Math ( P : in out integer );
+      procedure Math ( P : in out integer ) is
       begin
-         P1(X);
-         P2(X);
-         Ada.Text_IO.Put_Line ( X'Image );
-      end G;
-      procedure Instance is new G ( P1 => P3 );
+         Double(P);
+         Square(P);
+      end Math;
+      procedure Instance is new Math ( Double => Half );
+      Value : integer := 10;
 
  .. container:: column
 
   .. container:: latex_environment scriptsize
 
-   What is printed when :ada:`Instance` is called?
+   What is the value of Value after calling :ada:`Instance (Value)`
 
-   A. 100
-   B. 120
-   C. :answer:`3`
-   D. 103
+   A. 20
+   B. 400
+   C. :answer:`5`
+   D. 10
 
-   .. container:: animate
+.. container:: animate
 
       Explanations
 
-      A. | Wrong - result for
-         | :ada:`procedure Instance is new G;`
-      B. | Wrong - result for
-         | :ada:`procedure Instance is new G(P1,P2);`
-      C. :ada:`P1` at line 12 is mapped to :ada:`P3` at line 3, and :ada:`P2` at line 14 wasn't specified so it defaults to :ada:`null`
-      D. | Wrong - result for
-         | :ada:`procedure Instance is new G(P2=>P3);`
+      A. Wrong - result for :ada:`procedure Instance is new Math;`
+      B. Wrong - result for :ada:`procedure Instance is new Math (Double, Square);`
+      C. :ada:`Double` at line 10 is mapped to :ada:`Half` at line 3, and :ada:`Square` at line 11 wasn't specified so it defaults to :ada:`null`
+      D. Wrong - result for :ada:`procedure Instance is new Math (Square => Half);`
 
 ====================
 Generic Completion

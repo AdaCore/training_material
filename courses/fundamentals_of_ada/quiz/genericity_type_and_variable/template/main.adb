@@ -3,31 +3,35 @@
 procedure Main is
    --$ begin question
    generic
-      type T is (<>);
-      G_A : in out T;
-   procedure G_P;
+      type Element_T is (<>);
+      Last : in out Element_T;
+   procedure Write (P : Element_T);
 
-   type I is new Integer;
-   type E is (OK, NOK);
-   type F is new Float;
-   X : I;
-   Y : E;
-   Z : F;
+   Numeric        : Integer;
+   Enumerated     : Boolean;
+   Floating_Point : Float;
    --$ end question
 
-   procedure G_P is
+   procedure Write (P : Element_T) is
    begin
-      null;
-   end G_P;
+      Last := P;
+   end Write;
 
    --$ line cut
-   procedure P is new G_P (I, X);
+   procedure Write_A is new Write (Integer, Numeric);
    --$ line cut
-   procedure P is new G_P (E, Y);
+   procedure Write_B is new Write (Boolean, Enumerated);
    --$ line cut
-   procedure P is new G_P (I, E'Pos (Y));
+   procedure Write_C is new Write (Integer, Integer'Pos (Enumerated));
    --$ line cut
-   procedure P is new G_P (F, Z);
+   procedure Write_D is new Write (Float, Floating_Point);
+
+   --$ begin answer
+   -- A. Legal
+   -- B. Legal
+   -- C. The second generic parameter has to be a variable
+   -- D. The first generic parameter has to be discrete
+   --$ end answer
 
 begin
    null;
