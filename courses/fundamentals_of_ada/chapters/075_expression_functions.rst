@@ -31,14 +31,6 @@
 Expression Functions
 ======================
 
-----------
-Examples
-----------
-
-.. include:: ../examples/070_subprograms/expression_functions.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#expression-functions`
-
 ----------------------
 Expression Functions
 ----------------------

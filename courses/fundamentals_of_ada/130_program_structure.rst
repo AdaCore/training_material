@@ -75,7 +75,7 @@ Library Units Review
    - What happens when two units need to depend on each other?
 
 =========================
-"limited with" Clauses
+Circular Dependencies
 =========================
 
 ----------
@@ -125,6 +125,9 @@ Resulting Design Problem
 * One solution is to combine them in one package, even though conceptually distinct
 
    - Poor software engineering
+   - May be only choice, depending on language version
+
+     - Best choice would be to implement both parts in a new package
 
 ----------------------------------------
 Illegal Package Declaration Dependency

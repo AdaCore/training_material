@@ -24,3 +24,10 @@ D. | ``type T1 is tagged null record;``
    | ``procedure G_P (O : T);``
    | ``procedure G_P (O : T) is null;``
    | ``procedure P is new G_P (T1);``
+
+.. container:: animate
+
+   A. Primitive (same scope)
+   B. Primitive (T1 is not yet frozen)
+   C. T1 is frozen by its use in the instantiation
+   D. Instantiations are not primitives

@@ -196,11 +196,7 @@ Abstract Types Ada vs C++
 Relation to Primitives
 ------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
-* Warning: Subprograms with parameter of type `T'Class` are not primitives of `T`
+Warning: Subprograms with parameter of type `T'Class` are not primitives of `T`
 
       .. code:: Ada
 
@@ -210,9 +206,21 @@ Relation to Primitives
          -- This does not override P!
          overriding procedure P (V : Child'Class);
 
-* Prefix notation rules apply when the first parameter is of a class wide type
+----------------------------
+'Class and Prefix Notation
+----------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2012
+
+Prefix notation rules apply when the first parameter is of a class wide type
 
       .. code:: Ada
+
+         type Root is tagged null record;
+         procedure P (V : Root'Class);
+         type Child is new Root with null record;
 
          V1 : Root;
          V2 : Root'Class := Root'(others => <>);
@@ -221,10 +229,6 @@ Relation to Primitives
          P (V2);
          V1.P;
          V2.P;
-
-.. container:: speakernote
-
-   Overriding procedure parameter must be derived from Root'class, not 'class of something derived from Root
 
 ===============================
 Dispatching and Redispatching
@@ -552,7 +556,7 @@ Controlling result (2/2)
      V1 : Root'Class := Root'(F);  -- Static call to Root primitive
      V2 : Root'Class := V1;
      V3 : Root'Class := Child'(F); -- Static call to Child primitive
-     V4 : Root'Class := F;         -- What is the tag of V4?
+     V4 : Root'Class := F;         -- Error - ambiguous expression
      ...
      V1 := F; -- Dispatching call to Root primitive
      V2 := F; -- Dispatching call to Root primitive

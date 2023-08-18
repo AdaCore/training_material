@@ -30,9 +30,8 @@ procedure Main is
       --$ end cut
       
       --$ begin cut
-      type Acc is access Lim;
       type Priv is record
-         F : Acc;
+         Field : integer := Lim'Size;
       end record;
       --$ end cut
 

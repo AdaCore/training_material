@@ -396,6 +396,12 @@ Implicit vs. Explicit Declarations
       function "/" ( Left, Right : Counter ) return Counter;
       ...
 
+   * Compiler creates appropriate operators based on the underlying type
+
+      * Numeric types get standard math operators
+      * Array types get concatenation operator
+      * Most types get assignment operator
+
 -------------
 Elaboration
 -------------

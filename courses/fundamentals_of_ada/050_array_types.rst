@@ -423,6 +423,8 @@ Bounds Must Satisfy Type Constraints
    - `Wide_String`, with `Wide_Character` as component
    - `Wide_Wide_String`, with `Wide_Wide_Character` as component
 
+     - Ada 2005 and later
+
 * Can be defined by applications too
 
 ----------------------------------
@@ -656,18 +658,14 @@ Attributes' Benefits
 
       declare
          type Int_Arr is array (5 .. 15) of Integer;
-         L : Int_Arr;
-         Int_Arr_Index : Integer range Int_Arr'Range := Int_Arr'First;
-         Count : Integer range  0 .. Int_Arr'Length := 0;
+         List : Int_Arr;
       begin
          ...
-         for K in L'Range loop
-            L (K) := K * 2;
+         for Idx in L'Range loop
+            List (Idx) := Idx * 2;
          end loop;
 
-.. container:: speakernote
-
-   K will always be a valid index
+  * Compiler understands :ada:`Idx` has to be a valid index for :ada:`List`, so no runtime checks are necessary
 
 --------------------------------
 Nth Dimension Array Attributes
