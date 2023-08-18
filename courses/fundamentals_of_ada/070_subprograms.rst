@@ -835,34 +835,12 @@ Multiple Return Statements Versus One
      return Result;
    end Truncated;
 
---------------------------------
-Composite Result Types Allowed
---------------------------------
-
-.. code:: Ada
-
-   function Identity (Order : Positive := 3) return Matrix is
-     Result : Matrix (1 .. Order, 1 .. Order);
-   begin
-     for K in 1 .. Order loop
-       for J in 1 .. Order loop
-         if K = J then
-           Result (K,J) := 1.0;
-         else
-           Result (K,J) := 0.0;
-         end if;
-       end loop;
-     end loop;
-     return Result;
-   end Identity;
-
 -------------------------------
 Function Dynamic-Size Results
 -------------------------------
 
 .. code:: Ada
 
- is
     function Char_Mult (C : Character; L : Natural)
       return String is
        R : String (1 .. L) := (others => C);
@@ -871,6 +849,9 @@ Function Dynamic-Size Results
     end Char_Mult;
 
     X : String := Char_Mult ('x', 4);
+
+.. code:: Ada
+
  begin
     -- OK
     pragma Assert (X'Length = 4 and X = "xxxx");

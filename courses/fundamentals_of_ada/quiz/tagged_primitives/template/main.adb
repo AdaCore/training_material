@@ -33,6 +33,13 @@ procedure Main is
       procedure P is new G_P (T1);
       --$ end cut
 
+      --$ begin answer
+      -- A. Primitive (same scope)
+      -- B. Primitive (T1 is not yet frozen)
+      -- C. T1 is frozen by its use in the instantiation
+      -- D. Instantiations are not primitives
+      --$ end answer
+
       type T_Child is new T1 with null record;
       O : T_Child; 
    end Pkg;

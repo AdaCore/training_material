@@ -473,13 +473,19 @@ Simple case Statements
    Direction : Directions;
    ...
    case Direction is
-     when Forward =>  Go_Forward (1);
-     when Backward => Go_Backward (1);
-     when Left =>  Go_Left (1);
-     when Right => Go_Right (1);
+     when Forward =>
+       Set_Mode (Drive);
+       Go_Forward (1);
+     when Backward =>
+       Set_Mode (Reverse);
+       Go_Backward (1);
+     when Left =>
+       Go_Left (1);
+     when Right =>
+       Go_Right (1);
    end case;
 
-* *Note*: No fall-through between cases
+*Note*: No fall-through between cases
 
 ----------------------
 Case Statement Rules
@@ -818,14 +824,37 @@ Low-Level For-loop Parameter Type
    - As long as it is clear for the compiler
    - Warning: same name can belong to several enums
 
+.. container:: latex_environment scriptsize
+
+    .. code:: Ada
+      :number-lines: 1
+
+      procedure Main is
+         type Color_T is (Red, White, Blue);
+         type Rgb_T is (Red, Green, Blue);
+      begin
+         for Color in Red .. Blue loop  -- which Red and Blue?
+            null;
+         end loop;
+         for Color in Rgb_T'(Red) .. Blue loop -- OK
+            null;
+         end loop;
+
+    ::
+
+      main.adb:5:21: error: ambiguous bounds in range of iteration
+      main.adb:5:21: error: possible interpretations:
+      main.adb:5:21: error: type "Rgb_T" defined at line 3
+      main.adb:5:21: error: type "Color_T" defined at line 2
+      main.adb:5:21: error: ambiguous bounds in discrete range
+
+* If bounds are `universal_integer`, then type is :ada:`Integer` unless otherwise specified
+
    .. code:: Ada
 
-      -- Error if Red and Green in Color_T and Stoplight_T
-      for Color in Red .. Green loop
+      for Idx in 1 .. 3 loop -- Idx is Integer
 
-* Type `Integer` by default
-
-   - Each bound must be a `universal_integer`
+      for Idx in Short range 1 .. 3 loop -- Idx is Short
 
 -------------
 Null Ranges
