@@ -29,22 +29,22 @@ Discriminated Record Types Lab
 Discriminated Record Types Lab Solution - Vstring
 ---------------------------------------------------
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Strings :end-before:--Strings :code:Ada
+.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Strings :end-before:--Strings :code:Ada :number-lines:1
 
 ----------------------------------------------------------
 Discriminated Record Types Lab Solution - Employee (Spec)
 ----------------------------------------------------------
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Employee_Spec :end-before:--Employee_Spec :code:Ada
+.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Employee_Spec :end-before:--Employee_Spec :code:Ada :number-lines:1
 
 ----------------------------------------------------------
 Discriminated Record Types Lab Solution - Employee (Body)
 ----------------------------------------------------------
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Employee_Body :end-before:--Employee_Body :code:Ada
+.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Employee_Body :end-before:--Employee_Body :code:Ada :number-lines:1
 
 -------------------------------------------------
 Discriminated Record Types Lab Solution - Main
 -------------------------------------------------
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1

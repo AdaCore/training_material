@@ -24,10 +24,10 @@ Expressions Lab
 Expressions Lab Solution - Checks
 -----------------------------------
 
-.. container:: source_include labs/answers/080_expressions.txt :start-after:--Checks :end-before:--Checks :code:Ada
+.. container:: source_include labs/answers/080_expressions.txt :start-after:--Checks :end-before:--Checks :code:Ada :number-lines:4
 
 ---------------------------------
 Expressions Lab Solution - Main
 ---------------------------------
 
-.. container:: source_include labs/answers/080_expressions.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/080_expressions.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:52

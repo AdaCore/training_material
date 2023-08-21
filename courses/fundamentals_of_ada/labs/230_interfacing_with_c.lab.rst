@@ -34,7 +34,7 @@ To compile/link the C file into the Ada executable:
 Interfacing with C Lab Solution - Ada
 -----------------------------------------
 
-.. container:: source_include labs/answers/230_interfacing_with_c.txt :start-after:--Ada :end-before:--Ada :code:Ada
+.. container:: source_include labs/answers/230_interfacing_with_c.txt :start-after:--Ada :end-before:--Ada :code:Ada :number-lines:1
 
 ---------------------------------------
 Interfacing with C Lab Solution - C

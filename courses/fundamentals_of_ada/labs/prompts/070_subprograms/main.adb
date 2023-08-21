@@ -1,36 +1,30 @@
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
-   type List_T is array (Integer range <>) of Integer;
+   type List_T is array (Positive range <>) of Integer;
 
-   -- Is_Found will search a list for an item and will
-   -- return True if the item is found in the list
-   -- function Is_Found ( ?
+   --  Search should return the index where the item
+   --  should be placed in the list
+   function Search return Positive is
+   begin
+      return 1;
+   end Search;
 
-   -- Sort will sort a list
-   -- procedure Sort ( ?
-
-   -- Fill will ask the user for values to place in the list
-   -- procedure Fill ( ?
-
-   Number : Integer;
+   --  Add will add an item to the appropriate spot in the list
+   procedure Add is
+   begin
+      null;
+   end Add;
 
 begin
 
-   Put ("Enter number of elements in list: ");
-   Number := Integer'value (Get_Line);
+   --  Add some items to the list
+   --  (make sure they're not already in order!)
 
-   declare
-      List : List_T (1 .. Number);
-   begin
-      -- Fill the list with data
-      -- Sort the list
-      loop
-         Put ("Enter number to look for: ");
-         Number := Integer'value (Get_Line);
-         exit when Number < 0;
-         -- Print True/False based on whether Number is in List
-      end loop;
-   end;
+   --  Sort the list (if not already sorted)
+
+   --  Print the list
+
+   null;
 
 end Main;

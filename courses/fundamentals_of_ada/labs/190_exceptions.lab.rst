@@ -6,39 +6,25 @@ Exceptions Lab
 
   * Overview
 
-    * Create an application that allows users to enter integer values
+    * Create an application that converts strings to numeric values
 
-  * Goal
+  * Requirements
 
-    * Application should read data from a string and return the numeric value (or raise an exception)
+    * Create a package to define your numeric type
+    * Define a primitive to convert a string to your numeric type
 
-----------------------
-Project Requirements
-----------------------
+      * The primitive should raise your own exceptions; one for out-of-range and one for illegal string
 
-* Exception Tracking
+    * Main program should run multiple tests on the primitive
 
-  * Non-numeric data should raise a different exception than out-of-range data
-  * Exceptions should not stop the application
+-----------------------------------------
+Exceptions Lab Solution - Numeric Types
+-----------------------------------------
 
-* Extra Credit
-
-  * Handle values with exponents (e.g 123E4)
-
----------------------------------
-Exceptions Lab Solution - Types
----------------------------------
-
-.. container:: source_include labs/answers/190_exceptions.txt :start-after:--Types :end-before:--Types :code:Ada
-
--------------------------------------
-Exceptions Lab Solution - Converter
--------------------------------------
-
-.. container:: source_include labs/answers/190_exceptions.txt :start-after:--Converter :end-before:--Converter :code:Ada
+.. container:: source_include labs/answers/190_exceptions.txt :start-after:--Numeric_Types :end-before:--Numeric_Types :code:Ada :number-lines:1
 
 --------------------------------
 Exceptions Lab Solution - Main
 --------------------------------
 
-.. container:: source_include labs/answers/190_exceptions.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/190_exceptions.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1

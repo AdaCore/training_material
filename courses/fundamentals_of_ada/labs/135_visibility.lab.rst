@@ -24,16 +24,16 @@ Visibility Lab
 Visibility Lab Solution - Types
 ----------------------------------------
 
-.. container:: source_include labs/answers/135_visibility.txt :start-after:--Types :end-before:--Types :code:Ada
+.. container:: source_include labs/answers/135_visibility.txt :start-after:--Types :end-before:--Types :code:Ada :number-lines:1
 
 -----------------------------------
 Visibility Lab Solution - Main #1
 -----------------------------------
 
-.. container:: source_include labs/answers/135_visibility.txt :start-after:--Main1 :end-before:--Main1 :code:Ada
+.. container:: source_include labs/answers/135_visibility.txt :start-after:--Main1 :end-before:--Main1 :code:Ada :number-lines:1
 
 -----------------------------------
 Visibility Lab Solution - Main #2
 -----------------------------------
 
-.. container:: source_include labs/answers/135_visibility.txt :start-after:--Main2 :end-before:--Main2 :code:Ada
+.. container:: source_include labs/answers/135_visibility.txt :start-after:--Main2 :end-before:--Main2 :code:Ada :number-lines:1

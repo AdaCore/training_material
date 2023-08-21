@@ -27,53 +27,53 @@ Multiple Inheritance Lab
 Inheritance Lab Solution - Data Types
 ---------------------------------------
 
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Types :end-before:--Types :code:Ada
+.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Types :end-before:--Types :code:Ada :number-lines:1
 
 ---------------------------------------
 Inheritance Lab Solution - Shapes
 ---------------------------------------
 
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Shapes :end-before:--Shapes :code:Ada
+.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Shapes :end-before:--Shapes :code:Ada :number-lines:1
    
 -------------------------------------------
 Inheritance Lab Solution - Drawing (Spec)
 -------------------------------------------
 
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Drawing_Spec :end-before:--Drawing_Spec :code:Ada
+.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Drawing_Spec :end-before:--Drawing_Spec :code:Ada :number-lines:1
    
 -------------------------------------------
 Inheritance Lab Solution - Drawing (Body)
 -------------------------------------------
 
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Drawing_Body :end-before:--Drawing_Body :code:Ada
+.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Drawing_Body :end-before:--Drawing_Body :code:Ada :number-lines:1
    
 --------------------------------------------
 Inheritance Lab Solution - Graphics (Spec)
 --------------------------------------------
 
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Graphics_Spec :end-before:--Graphics_Spec :code:Ada
+.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Graphics_Spec :end-before:--Graphics_Spec :code:Ada :number-lines:1
    
 --------------------------------------------
 Inheritance Lab Solution - Graphics (Body)
 --------------------------------------------
 
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Graphics_Body :end-before:--Graphics_Body :code:Ada
+.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Graphics_Body :end-before:--Graphics_Body :code:Ada :number-lines:1
    
 ---------------------------------------------
 Inheritance Lab Solution - Printable Object
 ---------------------------------------------
 
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Printable_Object :end-before:--Printable_Object :code:Ada
+.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Printable_Object :end-before:--Printable_Object :code:Ada :number-lines:1
    
 ---------------------------------------------
 Inheritance Lab Solution - Rectangle
 ---------------------------------------------
 
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Rectangle :end-before:--Rectangle :code:Ada
+.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Rectangle :end-before:--Rectangle :code:Ada :number-lines:1
    
 ---------------------------------------------
 Inheritance Lab Solution - Main
 ---------------------------------------------
 
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
    

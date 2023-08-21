@@ -18,8 +18,8 @@ procedure Main is
    Semicolons : Natural := 0;
 
    Colon : Natural;
-
 --declarations
+
 --extra_credit
    function Hide_Strings
      (Str : String)
