@@ -2,31 +2,37 @@
 Access Types Lab
 ------------------
 
+* Overview
+
+  - Create a (really simple) Password Manager
+
+    * The Password Manager should store the password and a counter for each of some number of logins
+    * As it's a Password Manager, you want to modify the data directly (not pass the information around)
+
 * Requirements
 
-   - Create a datastore containing an array of records
+   - Create a Password Manager package
 
-      * Each record contains an array to store strings
-      * Interface to the array consists *only* of functions that return an element of the array (Input parameter would be the array index)
+      * Create a record to store the password string and the counter
+      * Create an array of these records indexed by the login identifier
+      * The user should be able to retrieve a pointer to the record, either for modification or for viewing
 
-   - Main program should allow the user to specify an index and a string
+   - Main program should:
 
-      + String gets appended to end of string pointer array
-      + When data entry is complete, print only the elements of the array that have data
+      + Set passwords and initial counter values for many logins
+      + Print password and counter value for each login
 
-* Hints
+* Hint
 
-   - Interface functions need to pass back pointer to array element
+   - Password is a string of varying length
 
-      + For safety, create a function to return a modifiable pointer and another to return a read-only pointer
+      - Easiest way to do this is a pointer to a string that gets initialized to the correct length
 
-   - Cannot create array of variable length strings, so use pointers
+----------------------------------------------
+Access Types Lab Solution - Password Manager
+----------------------------------------------
 
----------------------------------------
-Access Types Lab Solution - Datastore
----------------------------------------
-
-.. container:: source_include labs/answers/140_access_types.txt :start-after:--Datastore :end-before:--Datastore :code:Ada :number-lines:1
+.. container:: source_include labs/answers/140_access_types.txt :start-after:--Password :end-before:--Password :code:Ada
 
 ----------------------------------
 Access Types Lab Solution - Main
