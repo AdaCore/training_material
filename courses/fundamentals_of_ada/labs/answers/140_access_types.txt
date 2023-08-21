@@ -1,70 +1,55 @@
---Datastore
-package Datastore is
-  type String_Ptr_T is access String;
-  type History_T is array (1 .. 10) of String_Ptr_T;
-  type Element_T is record
-    History : History_T;
-  end record;
-  type Reference_T is access all Element_T;
-  type Constant_Reference_T is access constant Element_T;
+--Password
+package Password_Manager is
 
-  subtype Index_T is Integer range 1 .. 100;
-  function Object (Index : Index_T) return Reference_T;
-  function View (Index : Index_T) return Constant_Reference_T;
+   type Login_T is (Email, Banking, Amazon, Streaming);
+   type Password_T is record
+      Count    : Natural;
+      Password : access String;
+   end record;
 
-end Datastore;
+   type Modifiable_T is access all Password_T;
+   type Viewable_T is access constant Password_T;
 
-package body Datastore is
-  type Array_T is array (Index_T) of aliased Element_T;
-  Global_Data : aliased Array_T;
+   function Update (Login : Login_T) return Modifiable_T;
+   function View (Login : Login_T) return Viewable_T;
 
-  function Object (Index : Index_T) return Reference_T is
-     (Global_Data (Index)'Access);
+end Password_Manager;
 
-  function View (Index : Index_T) return Constant_Reference_T is
-     (Global_Data (Index)'Access);
-end Datastore;
---Datastore
+package body Password_Manager is
+
+   Passwords : array (Login_T) of aliased Password_T;
+
+   function Update (Login : Login_T) return Modifiable_T is
+      (Passwords (Login)'Access);
+   function View (Login : Login_T) return Viewable_T is
+      (Passwords (Login)'Access);
+
+end Password_Manager;
+--Password
+
 --Main
-with Ada.Text_IO; use Ada.Text_IO;
-with Datastore;   use Datastore;
+with Ada.Text_IO;      use Ada.Text_IO;
+with Password_Manager; use Password_Manager;
 procedure Main is
-  function Get (Prompt : String) return String is
-  begin
-    Put ("   " & Prompt & "> ");
-    return Get_Line;
-  end Get;
 
-  procedure Add (History : in out Datastore.History_T;
-                 Text    : in     String) is
-  begin
-    for Event of History loop
-      if Event = null then
-        Event := new String'(Text);
-        exit;
-      end if;
-    end loop;
-  end Add;
-
-  Index  : Integer;
-  Object : Datastore.Constant_Reference_T;
+   procedure Update (Which : Password_Manager.Login_T;
+                     Pw    : String;
+                     Count : Natural) is
+   begin
+      Update (Which).Password := new String'(Pw);
+      Update (Which).Count    := Count;
+   end Update;
 
 begin
-  loop
-    Index := Integer'Value (Get ("Enter index"));
-    exit when Index not in Datastore.Index_T'Range;
-    Add (Datastore.Object (Index).History, Get ("Text"));
-  end loop;
+   Update (Email, "QWE!@#", 1);
+   Update (Banking, "asd123", 22);
+   Update (Amazon, "098poi", 333);
+   Update (Streaming, ")(*LKJ", 444);
 
-  for I in Index_T'Range loop
-    Object := Datastore.View (I);
-    if Object.History (1) /= null then
-      Put_Line (Integer'Image (I) & ">");
-      for Item of Object.History loop
-        exit when Item = null;
-        Put_Line ("  " & Item.all);
-      end loop;
-    end if;
-  end loop;
+   for Login in Login_T'Range loop
+      Put_Line
+        (Login'Image & " => " & View (Login).Password.all &
+         View (Login).Count'Image);
+   end loop;
 end Main;
 --Main
