@@ -4,41 +4,28 @@ Subprograms Lab
 
 * Requirements
 
-   - Allow the user to fill a list with values and then check to see if a value is in the list
-   - Create at least two subprograms:
+   - Build a list of sorted unique integers
 
-      + Sort a list of items
-      + Search a list of items and return TRUE if found
-      + You can create additional subprograms if desired
-   
+      * Do not add an integer to the list if it is already there
+
+   - Print the list
+
 * Hints
 
    - Subprograms can be nested inside other subprograms
 
-      + Like inside `main`
+      * Like inside `main`
 
-   - Try a binary search algorithm if you want to use recursion
-
-      - Unconstrained arrays may be needed
-
-.. container:: speakernote
-
-   Nothing wrong with using brute force (e.g. for searching)
+   - Build a Search subprogram to find the correct insertion point in the list
 
 -----------------------------------
 Subprograms Lab Solution - Search
 -----------------------------------
 
-.. container:: source_include labs/answers/070_subprograms.txt :start-after:--Search :end-before:--Search :code:Ada
-
------------------------------------
-Subprograms Lab Solution - Sort
------------------------------------
-
-.. container:: source_include labs/answers/070_subprograms.txt :start-after:--Sort :end-before:--Sort :code:Ada
+.. container:: source_include labs/answers/070_subprograms.txt :start-after:--Search :end-before:--Search :code:Ada :number-lines:4
 
 -----------------------------------
 Subprograms Lab Solution - Main
 -----------------------------------
 
-.. container:: source_include labs/answers/070_subprograms.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/070_subprograms.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:25

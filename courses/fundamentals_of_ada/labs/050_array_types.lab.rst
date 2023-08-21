@@ -35,10 +35,10 @@ Multiple Dimensions
 Array Lab Solution - Declarations
 -----------------------------------
 
-.. container:: source_include labs/answers/050_array_types.txt :start-after:--Declarations :end-before:--Declarations :code:Ada
+.. container:: source_include labs/answers/050_array_types.txt :start-after:--Declarations :end-before:--Declarations :code:Ada :number-lines:1
 
 -------------------------------------
 Array Lab Solution - Implementation
 -------------------------------------
 
-.. container:: source_include labs/answers/050_array_types.txt :start-after:--Implementation :end-before:--Implementation :code:Ada
+.. container:: source_include labs/answers/050_array_types.txt :start-after:--Implementation :end-before:--Implementation :code:Ada :number-lines:15

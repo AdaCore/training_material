@@ -26,16 +26,16 @@ Ada.Strings Lab
 Ada.Strings Lab Solution (Declarations)
 -----------------------------------------
 
-.. container:: source_include labs/answers/spec_892_ada_strings.txt :start-after:--declarations --:end-before:--declarations :code:Ada
+.. container:: source_include labs/answers/spec_892_ada_strings.txt :start-after:--declarations --:end-before:--declarations :code:Ada :number-lines:1
  
 ---------------------------------
 Ada.Strings Lab Solution (Main)
 ---------------------------------
 
-.. container:: source_include labs/answers/spec_892_ada_strings.txt :start-after:--main --:end-before:--main :code:Ada
+.. container:: source_include labs/answers/spec_892_ada_strings.txt :start-after:--main --:end-before:--main :code:Ada :number-lines:39
  
 -----------------------------------------
 Ada.Strings Lab Solution (Extra Credit)
 -----------------------------------------
 
-.. container:: source_include labs/answers/spec_892_ada_strings.txt :start-after:--extra_credit --:end-before:--extra_credit :code:Ada
+.. container:: source_include labs/answers/spec_892_ada_strings.txt :start-after:--extra_credit --:end-before:--extra_credit :code:Ada :number-lines:21

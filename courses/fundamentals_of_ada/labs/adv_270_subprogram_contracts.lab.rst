@@ -30,16 +30,16 @@ Subprogram Contracts Lab
 Subprogram Contracts Lab Solution - Queue (Spec)
 --------------------------------------------------
 
-.. container:: source_include labs/answers/adv_270_subprogram_contracts.txt :start-after:--Queue_Spec :end-before:--Queue_Spec :code:Ada
+.. container:: source_include labs/answers/adv_270_subprogram_contracts.txt :start-after:--Queue_Spec :end-before:--Queue_Spec :code:Ada :number-lines:1
 
 --------------------------------------------------
 Subprogram Contracts Lab Solution - Queue (Body)
 --------------------------------------------------
 
-.. container:: source_include labs/answers/adv_270_subprogram_contracts.txt :start-after:--Queue_Body :end-before:--Queue_Body :code:Ada
+.. container:: source_include labs/answers/adv_270_subprogram_contracts.txt :start-after:--Queue_Body :end-before:--Queue_Body :code:Ada :number-lines:1
 
 -------------------------------------------
 Subprograms Contracts Lab Solution - Main
 -------------------------------------------
 
-.. container:: source_include labs/answers/adv_270_subprogram_contracts.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/adv_270_subprogram_contracts.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1

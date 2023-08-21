@@ -20,16 +20,16 @@ Tasking Lab
 Tasking Lab Solution - Protected Object
 -----------------------------------------
 
-.. container:: source_include labs/answers/240_tasking.txt :start-after:--Protected :end-before:--Protected :code:Ada
+.. container:: source_include labs/answers/240_tasking.txt :start-after:--Protected :end-before:--Protected :code:Ada :number-lines:1
 
 ----------------------------------
 Tasking Lab Solution - Task Type
 ----------------------------------
 
-.. container:: source_include labs/answers/240_tasking.txt :start-after:--Task :end-before:--Task :code:Ada
+.. container:: source_include labs/answers/240_tasking.txt :start-after:--Task :end-before:--Task :code:Ada :number-lines:1
 
 ----------------------------
 Tasking Lab Solution - Main
 ----------------------------
 
-.. container:: source_include labs/answers/240_tasking.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/240_tasking.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1

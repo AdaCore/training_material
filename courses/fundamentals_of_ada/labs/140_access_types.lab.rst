@@ -26,10 +26,10 @@ Access Types Lab
 Access Types Lab Solution - Datastore
 ---------------------------------------
 
-.. container:: source_include labs/answers/140_access_types.txt :start-after:--Datastore :end-before:--Datastore :code:Ada
+.. container:: source_include labs/answers/140_access_types.txt :start-after:--Datastore :end-before:--Datastore :code:Ada :number-lines:1
 
 ----------------------------------
 Access Types Lab Solution - Main
 ----------------------------------
 
-.. container:: source_include labs/answers/140_access_types.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/140_access_types.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1

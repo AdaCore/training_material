@@ -284,6 +284,8 @@ def language_variant_admonition(contents):
          (if "start-after" is specified, only look for <string> after starting)
       :code:<language>
          Language to format code insertion
+      :number-lines:<number>
+         Add line numbers starting at <number>
 """
 
 
@@ -350,10 +352,16 @@ def source_include(classes, contents):
             if len(pieces) == 3:
                 keywords[pieces[1]] = pieces[2]
 
+    code = [ keywords["code"] ]
+    startfrom = []
+    if "number-lines" in keywords.keys():
+        code.append ( "numberLines" )
+        startfrom = [ [ 'startFrom', keywords["number-lines"] ] ]
+
     value0 = {}
     value0["t"] = "CodeBlock"
     value0["c"] = [
-        ["", [keywords["code"]], []],
+        ["", code, startfrom],
         source_file_contents(filename, keywords),
     ]
     value = [value0]

@@ -23,16 +23,16 @@ Advanced Tasking Lab
 Advanced Tasking Lab Solution - Datastore
 --------------------------------------------
 
-.. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Datastore :end-before:--Datastore :code:Ada
+.. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Datastore :end-before:--Datastore :code:Ada :number-lines:1
 
 -----------------------------------------------------
 Advanced Tasking Lab Solution - Monitor Task Type
 -----------------------------------------------------
 
-.. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Task :end-before:--Task :code:Ada
+.. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Task :end-before:--Task :code:Ada :number-lines:1
 
 --------------------------------------
 Advanced Tasking Lab Solution - Main
 --------------------------------------
 
-.. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1

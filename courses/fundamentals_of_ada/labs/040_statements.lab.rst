@@ -32,4 +32,4 @@ Statements Lab Extra Credit
 Statements Lab Solution
 -------------------------
 
-.. container:: source_include labs/answers/040_statements.txt :start-after:--Statements :end-before:--Statements :code:Ada
+.. container:: source_include labs/answers/040_statements.txt :start-after:--Statements :end-before:--Statements :code:Ada :number-lines:1

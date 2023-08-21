@@ -103,8 +103,8 @@ package body Database_List is
    begin
       return List.Current.Content;
    end Current;
-
 --Database_List_Helpers
+
 --Database_List_Substance
    procedure Insert (List    : in out List_T;
                     Element :        Database_T) is

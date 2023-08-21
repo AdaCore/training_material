@@ -28,16 +28,16 @@ Genericity Lab
 Genericity Lab Solution - Generic (Spec)
 ------------------------------------------
 
-.. container:: source_include labs/answers/160_genericity.txt :start-after:--Generic_List_Spec :end-before:--Generic_List_Spec :code:Ada
+.. container:: source_include labs/answers/160_genericity.txt :start-after:--Generic_List_Spec :end-before:--Generic_List_Spec :code:Ada :number-lines:1
 
 ------------------------------------------
 Genericity Lab Solution - Generic (Body)
 ------------------------------------------
 
-.. container:: source_include labs/answers/160_genericity.txt :start-after:--Generic_List_Body :end-before:--Generic_List_Body :code:Ada
+.. container:: source_include labs/answers/160_genericity.txt :start-after:--Generic_List_Body :end-before:--Generic_List_Body :code:Ada :number-lines:1
 
 -----------------------------------
 Genericity Lab Solution - Main
 -----------------------------------
 
-.. container:: source_include labs/answers/160_genericity.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/160_genericity.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1

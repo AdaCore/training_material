@@ -875,8 +875,6 @@ Function Dynamic-Size Results
     -- OK
     pragma Assert (X'Length = 4 and X = "xxxx");
 
-.. include:: chapters/075_expression_functions.rst
-
 ====================
 Potential Pitfalls
 ====================

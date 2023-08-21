@@ -29,10 +29,10 @@ Advanced Expressions Lab
 Advanced Expressions Lab Solution - Checks
 --------------------------------------------
 
-.. container:: source_include labs/answers/adv_080_expressions.txt :start-after:--Checks :end-before:--Checks :code:Ada
+.. container:: source_include labs/answers/adv_080_expressions.txt :start-after:--Checks :end-before:--Checks :code:Ada :number-lines:4
 
 ------------------------------------------
 Advanced Expressions Lab Solution - Main
 ------------------------------------------
 
-.. container:: source_include labs/answers/adv_080_expressions.txt :start-after:--Main :end-before:--Main :code:Ada
+.. container:: source_include labs/answers/adv_080_expressions.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:37

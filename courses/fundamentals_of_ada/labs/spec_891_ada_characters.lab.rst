@@ -17,5 +17,5 @@ Ada.Characters Lab
 Ada.Characters Lab Solution
 -----------------------------
 
-.. container:: source_include labs/answers/spec_891_ada_characters.txt :code:Ada
+.. container:: source_include labs/answers/spec_891_ada_characters.txt :code:Ada :number-lines:1
 
