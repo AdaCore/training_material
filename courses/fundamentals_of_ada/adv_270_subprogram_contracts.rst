@@ -263,15 +263,6 @@ Defensive Programming
       Acquire (P);
    end;
 
-----------
-Examples
-----------
-
-.. include:: examples/adv_270_subprogram_contracts/preconditions_and_postconditions.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_270_subprogram_contracts.html#preconditions-and-postconditions`
-
 -----------------------------
 Pre/Postcondition Semantics
 -----------------------------
