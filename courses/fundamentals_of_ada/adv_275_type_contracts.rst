@@ -67,15 +67,6 @@ Strong Typing
 Type Invariants
 =================
 
-----------
-Examples
-----------
-
-.. include:: examples/adv_275_type_contracts/type_invariants.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_275_type_contracts.html#type-invariants`
-
 -----------------
 Type Invariants
 -----------------
@@ -316,15 +307,6 @@ Quiz
 ====================
 Subtype Predicates
 ====================
-
-----------
-Examples
-----------
-
-.. include:: examples/adv_275_type_contracts/subtype_predicates.rst
-
-.. TBD
-   :url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/adv_275_type_contracts.html#subtype-predicates`
 
 ----------------------------
 Subtype Predicates Concept
