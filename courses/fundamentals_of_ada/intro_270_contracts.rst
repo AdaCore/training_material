@@ -723,7 +723,7 @@ Quiz
          end Do_Something;
          function Counter (I : Integer)
                            return Boolean is
-            ( True );
+            (True);
       end P;
 
  .. container:: column

@@ -820,7 +820,7 @@ Exception ID
 
 .. code:: Ada
 
-    Foo : constant Integer := ( case X is
+    Foo : constant Integer := (case X is
                                 when 1 => 10,
                                 when 2 => 20,
                                 when others => raise Error);

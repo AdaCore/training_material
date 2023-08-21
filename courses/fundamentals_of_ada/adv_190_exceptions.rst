@@ -73,7 +73,7 @@ Exceptions Raised In Exception Handlers
            declare
              New_Data : Some_Type;
            begin
-             P( New_Data );
+             P(New_Data);
              ...
            exception
              when ...
@@ -235,7 +235,7 @@ Typical Partial Handling Example
        Display_Error ("File must be opened prior to use");
        raise Error;
      when others =>
-       Display_Error ( "Error in Get(Integer) from file" );
+       Display_Error ("Error in Get(Integer) from file");
        raise;
    end Get;
 
@@ -313,8 +313,8 @@ Quiz
             when others => raise Known_Problem;
          end P;
       begin
-         P ( Input_Value );
-         Put_Line ( "Success" );
+         P (Input_Value);
+         Put_Line ("Success");
       exception
          when Known_Problem => Put_Line ("Known problem");
          when others => Put_Line ("Unknown problem");
@@ -447,8 +447,8 @@ Exception Identity
         ...
         type Exception_Id is private;
         ...
-        procedure Raise_Exception( E : in Exception_Id;
-                                   Message : in String := "" );
+        procedure Raise_Exception(E : in Exception_Id;
+                                   Message : in String := "");
         ...
       end Ada.Exceptions;
 
@@ -597,7 +597,7 @@ Allow Clients To Avoid Exceptions
    .. code:: Ada
 
       if not Stack.Empty then
-        Stack.Pop( ... );  -- will not raise Underflow
+        Stack.Pop(...);  -- will not raise Underflow
 
 ----------------------------------
 You Can Suppress Run-Time Checks
@@ -607,7 +607,7 @@ You Can Suppress Run-Time Checks
 
    .. code:: Ada
 
-      pragma Suppress ( check-name [, [On =>] name] );
+      pragma Suppress (check-name [, [On =>] name]);
 
 * Language-defined checks emitted by compiler
 * Compiler may ignore request if unable to comply

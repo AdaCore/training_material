@@ -349,7 +349,7 @@ Quiz
 
    package P is
       Object_One : Integer;
-      procedure One ( P : out Integer );
+      procedure One (P : out Integer);
    end P;
 
 Which is a valid completion of package P?
@@ -357,17 +357,17 @@ Which is a valid completion of package P?
    A. No completion needed
 
    B. | ``package body P is``
-      |   ``procedure One ( P : out Integer ) is null;``
+      |   ``procedure One (P : out Integer) is null;``
       | ``end P;``
    C. | ``package body P is``
       |   ``Object_One : integer;``
-      |   ``procedure One ( P : out Integer ) is``
+      |   ``procedure One (P : out Integer) is``
       |   ``begin``
       |      ``P := Object_One;``
       |   ``end One;``
       | ``end P;``
    D. | :answermono:`package body P is`
-      |   :answermono:`procedure One ( P : out Integer ) is`
+      |   :answermono:`procedure One (P : out Integer) is`
       |   :answermono:`begin`
       |      :answermono:`P := Object_One;`
       |   :answermono:`end One;`

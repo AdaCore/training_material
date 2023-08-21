@@ -133,8 +133,8 @@ Procedure Specification Syntax (Simplified)
 
    procedure_specification ::=
       procedure program_unit_name
-        ( parameter_specification
-        { ; parameter_specification} );
+        (parameter_specification
+        { ; parameter_specification});
 
    parameter_specification ::=
       identifier_list : mode subtype_mark [ := expression ]
@@ -160,8 +160,8 @@ Function Specification Syntax (Simplified)
 
       function_specification ::=
          function designator
-           ( parameter_specification
-           { ; parameter_specification} )
+           (parameter_specification
+           { ; parameter_specification})
            return result_type;
 
       designator ::= program_unit_name | operator_symbol
@@ -240,14 +240,14 @@ Completion Examples
       end Swap;
 
       -- Completion as specification
-      function Less_Than ( X, Y : Person) return boolean is
+      function Less_Than (X, Y : Person) return boolean is
       begin
          return X.Age < Y.Age;
       end Less_Than;
 
       function Min (X, Y : Person) return Person is
       begin
-         if Less_Than ( X, Y ) then
+         if Less_Than (X, Y) then
             return X;
          else
             return Y;
@@ -305,10 +305,10 @@ Quiz
 
 Which profile is semantically different from the others?
 
-   A. ``procedure P ( A : Integer; B : Integer );``
-   B. ``procedure P ( A, B : Integer );``
-   C. :answermono:`procedure P ( B : Integer; A : Integer );`
-   D. ``procedure P ( A : in Integer; B : in Integer );``
+   A. ``procedure P (A : Integer; B : Integer);``
+   B. ``procedure P (A, B : Integer);``
+   C. :answermono:`procedure P (B : Integer; A : Integer);`
+   D. ``procedure P (A : in Integer; B : in Integer);``
 
 .. container:: animate
 
@@ -686,7 +686,7 @@ Null Procedure Summary
 
 .. code:: Ada
 
-   procedure Do_Something ( P : in     integer ) is null;
+   procedure Do_Something (P : in     integer) is null;
 
 =====================
 Nested Subprograms
@@ -988,7 +988,7 @@ Easy Cases Detected and Not Legal
 
 .. code:: Ada
 
-   procedure Example ( A : in out Positive ) is
+   procedure Example (A : in out Positive) is
       function Increment (This : Integer) return Integer is
       begin
          A := A + This;
@@ -1103,7 +1103,7 @@ Set Example
 
    Null_Set : constant Set := (Set'Range => False);
    RGB      : Set := Make (
-              Set_Literal'( Red, Blue, Green));
+              Set_Literal'(Red, Blue, Green));
    Domain   : Set := Make (Green);
 
    if Is_Member (Red, Of_Set => RGB) then ...
@@ -1137,7 +1137,7 @@ Set Example (Implementation)
      return Result;
    end Make;
 
-   function Is_Member ( C: Color;
+   function Is_Member (C: Color;
                         Of_Set: Set)
                         return Boolean is
    begin

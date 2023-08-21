@@ -15,7 +15,7 @@
          (Left.Field * Right.Field);
       overriding function "=" (Left  : Child_T; Right : Child_T) return Boolean is
          (Right.Field in Left.Field - 1 .. Left.Field + 1);
-      -- function Constructor ( I : Integer := 0 ) return child_T; -- inherited from Root_t
+      -- function Constructor (I : Integer := 0) return child_T; -- inherited from Root_t
    
       type Child2_T is new Root_T with record
          Field2 : Integer;

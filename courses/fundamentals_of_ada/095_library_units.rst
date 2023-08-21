@@ -84,8 +84,8 @@ Library Units
 .. code:: Ada
 
    package Operating_System is
-     procedure Foo( ... );
-     procedure Bar( ... );
+     procedure Foo(...);
+     procedure Bar(...);
      package Process_Manipulation is
        ...
      end Process_Manipulation;
@@ -262,7 +262,7 @@ Main Subprograms
    with Ada.Text_IO;
    procedure Hello is
    begin
-     Ada.Text_IO.Put( "Hello World" );
+     Ada.Text_IO.Put("Hello World");
    end Hello;
 
 ================

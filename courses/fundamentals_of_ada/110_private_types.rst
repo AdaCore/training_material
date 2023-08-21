@@ -217,11 +217,11 @@ Users Declare Objects of the Type
 
    X, Y, Z : Stack;
    ...
-   Push ( 42, X );
+   Push (42, X);
    ...
-   if Empty ( Y ) then
+   if Empty (Y) then
    ...
-   Pop ( Counter, Z );
+   Pop (Counter, Z);
 
 ------------------------------------
 Compile-Time Visibility Protection
@@ -360,19 +360,19 @@ Declarative Regions
 
    package Foo is
       type Private_T is private;
-      procedure X ( B : in out Private_T );
+      procedure X (B : in out Private_T);
    private
       -- Y and Hidden_T are not visible to users
-      procedure Y ( B : in out Private_T );
+      procedure Y (B : in out Private_T);
       type Hidden_T is ...;
-      type Private_T is array ( 1 .. 3 ) of Hidden_T;
+      type Private_T is array (1 .. 3) of Hidden_T;
    end Foo;
 
    package body Foo is
       -- Z is not visible to users
-      procedure Z ( B : in out Private_T ) is ...
-      procedure Y ( B : in out Private_T ) is ...
-      procedure X ( B : in out Private_T ) is ...
+      procedure Z (B : in out Private_T) is ...
+      procedure Y (B : in out Private_T) is ...
+      procedure X (B : in out Private_T) is ...
     end Foo;
 
 -----------------------
@@ -447,7 +447,7 @@ Quiz
    package P is
       type Private_T is private;
       Object_A : Private_T;
-      procedure Proc ( Param : in out Private_T );
+      procedure Proc (Param : in out Private_T);
    private
       type Private_T is new integer;
       Object_B : Private_T;
@@ -455,10 +455,10 @@ Quiz
 
    package body P is
       Object_C : Private_T;
-      procedure Proc ( Param : in out Private_T ) is null;
+      procedure Proc (Param : in out Private_T) is null;
    end P;
 
-Which object definition is illegal?
+Which object definition is **not** legal?
 
    A. :answermono:`Object_A`
    B. ``Object_B``

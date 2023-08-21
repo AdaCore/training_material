@@ -51,12 +51,12 @@ Views
    Variable : Integer := 0;
    ...
    -- P's view of X prevents modification
-   procedure P( X :  in  Integer ) is
+   procedure P(X :  in  Integer) is
    begin
        ...
    end P;
    ...
-   P( Variable );
+   P(Variable);
 
 -------------------------------
 Limited Type Views' Semantics
@@ -90,7 +90,7 @@ Inappropriate Copying Example
    F1, F2 : File;
    ...
    Open (F1);
-   Write ( F1, "Hello" );
+   Write (F1, "Hello");
    -- What is this assignment really trying to do?
    F2 := F1;
 
@@ -104,7 +104,7 @@ Intended Effects of Copying
    F1, F2 : File;
    ...
    Open (F1);
-   Write ( F1, "Hello" );
+   Write (F1, "Hello");
    Copy (Source => F1, Target => F2);
 
 ==============

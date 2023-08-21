@@ -12,7 +12,7 @@ package body Protected_Objects is
       procedure Set (Caller : Character; V : Integer) is
       begin
          Local := V;
-         Put_Line ( "Task-" & Caller & " Object-" & Id & " => " & V'Image );
+         Put_Line ("Task-" & Caller & " Object-" & Id & " => " & V'Image);
       end Set;
 
       function Get return Integer is

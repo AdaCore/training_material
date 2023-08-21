@@ -282,7 +282,7 @@ Contract with Quantified Expression
 
 .. code:: Ada
 
-   type Status_Flag is ( Power, Locked, Running );
+   type Status_Flag is (Power, Locked, Running);
 
    procedure Clear_All_Status (
        Unit : in out Controller)

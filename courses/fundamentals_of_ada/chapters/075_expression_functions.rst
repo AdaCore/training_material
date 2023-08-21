@@ -48,7 +48,7 @@ Expression Functions
 
 .. code:: Ada
 
-   function function_specification is ( expression );
+   function function_specification is (expression);
 
 NB: Parentheses around expression are **required**
 

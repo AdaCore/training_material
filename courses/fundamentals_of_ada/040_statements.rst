@@ -61,7 +61,7 @@ Procedure Calls (Overview)
 
     .. code:: Ada
 
-       procedure Activate ( This : in out Foo; Wait : in Boolean);
+       procedure Activate (This : in out Foo; Wait : in Boolean);
 
     * Traditional call notation
 
@@ -87,7 +87,7 @@ Parameter Associations In Calls
 
 .. code:: Ada
 
-   Activate ( Idle, True ); -- positional
+   Activate (Idle, True); -- positional
 
 * :dfn:`Named association` also allowed
 
@@ -95,19 +95,19 @@ Parameter Associations In Calls
 
 .. code:: Ada
 
-   Activate ( This => Idle, Wait => True ); -- named
+   Activate (This => Idle, Wait => True); -- named
 
 * Both can be used together
 
 .. code:: Ada
 
-   Activate ( Idle, Wait => True ); -- positional then named
+   Activate (Idle, Wait => True); -- positional then named
 
 * But positional following named is a compile error
 
 .. code:: Ada
 
-   Activate ( This => Idle, True ); -- ERROR
+   Activate (This => Idle, True); -- ERROR
 
 ==================
 Block Statements
@@ -236,7 +236,7 @@ Assignment Statements, Not Expressions
 
 * No assignment in conditionals
 
-   - E.g. :ada:`if ( a == 1 )` compared to :ada:`if ( a = 1 )`
+   - E.g. :ada:`if (a == 1)` compared to :ada:`if (a = 1)`
 
 ------------------
 Assignable Views
@@ -353,7 +353,7 @@ Quiz
 
   .. container:: column
 
-   Which block is illegal?
+   Which block is **not** legal?
 
    A. | ``X := A;``
       | ``Y := A;``
@@ -604,11 +604,11 @@ Which choice needs to be modified to make a valid :ada:`case` block
    case A is
 
 A. | ``when Sun =>``
-   |    ``Put_Line ( "Day Off" );``
+   |    ``Put_Line ("Day Off");``
 B. | ``when Mon | Fri =>``
-   |    ``Put_Line ( "Short Day" );``
+   |    ``Put_Line ("Short Day");``
 C. | ``when Tue .. Thu =>``
-   |    ``Put_Line ( "Long Day" );``
+   |    ``Put_Line ("Long Day");``
 D. | :answermono:`end case;`
 
 .. container:: animate
@@ -989,7 +989,7 @@ Quiz
 
    A, B : Integer := 123;
 
-Which loop block is illegal?
+Which loop block is **not** legal?
 
   A. | :answermono:`for A in 1 .. 10 loop`
      |    :answermono:`A := A + 1;`

@@ -173,7 +173,7 @@ Semantics
 
       Pat  : Person(Student); -- May select Pat.GPA, not Pat.Pubs
       Prof : Person(Faculty); -- May select Prof.Pubs, not Prof.GPA
-      Soph : Person := ( Group  => Student,
+      Soph : Person := (Group  => Student,
                          Name => "John Jones",
                          GPA  => 3.2,
                          Year => 2);
@@ -210,8 +210,8 @@ Implementation
                end case;
             end record;
          -- parameters can be unconstrained (constraint comes from caller)
-         procedure Put ( Item : in Person );
-         procedure Get ( Item : in out Person );
+         procedure Put (Item : in Person);
+         procedure Get (Item : in out Person);
       end Person_Pkg;
 
 ----------------
@@ -222,17 +222,17 @@ Primitives
 
    .. code:: Ada
 
-      procedure Put ( Item : in Person ) is
+      procedure Put (Item : in Person) is
       begin
         Put_Line("Group:" & Person_Group'Image(Item.Group));
-        Put_Line("Name: " & Item.Name );
+        Put_Line("Name: " & Item.Name);
         -- Group specified by caller
         case Item.Group is
           when Student =>
             Put_Line("GPA:" & Float'Image(Item.GPA));
-            Put_Line("Year:" & Integer'Image(Item.Year) );
+            Put_Line("Year:" & Integer'Image(Item.Year));
           when Faculty =>
-            Put_Line("Pubs:" & Integer'Image(Item.Pubs) );
+            Put_Line("Pubs:" & Integer'Image(Item.Pubs));
         end case;
       end Put;
 
@@ -240,7 +240,7 @@ Primitives
 
    .. code:: Ada
 
-      procedure Get ( Item : in out Person ) is
+      procedure Get (Item : in out Person) is
       begin
         -- Group specified by caller
         case Item.Group is
@@ -275,8 +275,8 @@ Usage
        begin
          Get(Someone);
          case Someone.Group is
-           when Student => Student_Do_Something ( Someone );
-           when Faculty => Faculty_Do_Something ( Someone );
+           when Student => Student_Do_Something (Someone);
+           when Faculty => Faculty_Do_Something (Someone);
          end case;
          Put(Someone);
        end;
@@ -313,7 +313,7 @@ Unconstrained Discriminated Record Example
 .. code:: Ada
 
    declare
-      type Mutant( Group : Person_Group := Faculty ) is
+      type Mutant(Group : Person_Group := Faculty) is
          record
             Name : String(1..10);
             case Group is
@@ -325,8 +325,8 @@ Unconstrained Discriminated Record Example
             end case;
          end record;
 
-      Pat  : Mutant( Student ); -- Constrained
-      Doc  : Mutant( Faculty ); -- Constrained
+      Pat  : Mutant(Student); -- Constrained
+      Doc  : Mutant(Faculty); -- Constrained
       Zork : Mutant; -- Unconstrained (Zork.Group = Faculty)
 
    begin
@@ -361,7 +361,7 @@ Varying Lengths of Array Objects
    .. code:: Ada
 
       S : String(1..80);
-      A : array ( M .. K*L ) of Integer;
+      A : array (M .. K*L) of Integer;
 
 * We would like an object with a maximum length, but current length is variable
 
@@ -414,7 +414,7 @@ Varying Length Array via Discriminated Records
 
 .. code:: Ada
 
-   type VString ( Max_Length : Natural := 0 ) is
+   type VString (Max_Length : Natural := 0) is
      record
        Data   : String(1..Max_Length) := (others => ' ');
      end record;
@@ -444,12 +444,6 @@ Varying Length Array via Discriminated Records and Subtypes
 
    function Make (S : String) return VString is
       ((Size => S'Length, Data => S));
-
-------
-Quiz
-------
-
-.. include:: quiz/unconstrained_arrays_declaration/quiz.rst
 
 ------
 Quiz

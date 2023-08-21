@@ -176,7 +176,7 @@ Universal Quantifier Illustration
 
    Ultimate_Answer : constant := 42; -- to everything...
    Answers : constant array (1 .. 10)
-       of Integer := ( ... );
+       of Integer := (...);
    All_Correct_1 : constant Boolean :=
       (for all Component of Answers =>
          Component = Ultimate_Answer);
@@ -194,7 +194,7 @@ Universal Quantifier Real-World Example
 
 .. code:: Ada
 
-   type DMA_Status_Flag is ( ... );
+   type DMA_Status_Flag is (...);
    function Status_Indicated (
      Flag : DMA_Status_Flag)
      return Boolean;
@@ -244,7 +244,7 @@ Existential Quantifier Illustration
 
    Ultimate_Answer : constant := 42; -- to everything...
    Answers : constant array (1 .. 10)
-       of Integer := ( ... );
+       of Integer := (...);
    Any_Correct_1 : constant Boolean :=
       (for some Component of Answers =>
          Component = Ultimate_Answer);

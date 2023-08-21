@@ -108,7 +108,7 @@ Pragma Import / Export (2/2)
       .. code:: Ada
 
          My_Var : integer_type;
-         Pragma Import ( C, My_Var, "my_var" );
+         Pragma Import (C, My_Var, "my_var");
 
    - C implementation
 
@@ -201,12 +201,12 @@ Passing Structures as Parameters
    .. code:: Ada
 
      type Enum is (E1, E2, E3);
-     Pragma Convention ( C, Enum );
+     Pragma Convention (C, Enum);
      type Rec is record
        A, B : int;
        C : Enum;
      end record;
-     Pragma Convention ( C, Rec );
+     Pragma Convention (C, Rec);
 
 * Using Ada 2012 aspects
 

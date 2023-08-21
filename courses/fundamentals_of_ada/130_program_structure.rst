@@ -138,7 +138,7 @@ Illegal Package Declaration Dependency
    with Department;
    package Personnel is
      type Employee is private;
-     procedure Assign ( This : in Employee;
+     procedure Assign (This : in Employee;
                         To : in out Department.Section);
    private
      type Employee is record
@@ -149,7 +149,7 @@ Illegal Package Declaration Dependency
    with Personnel;
    package Department is
      type Section is private;
-     procedure Choose_Manager ( This : in out Section;
+     procedure Choose_Manager (This : in out Section;
                                 Who : in Personnel.Employee);
    private
      type Section is record
@@ -229,7 +229,7 @@ Legal Package Declaration Dependency
    limited with Department;
    package Personnel is
      type Employee is private;
-     procedure Assign ( This : in Employee;
+     procedure Assign (This : in Employee;
                         To : in out Department.Section);
    private
      type Employee is record
@@ -240,7 +240,7 @@ Legal Package Declaration Dependency
    limited with Personnel;
    package Department is
      type Section is private;
-     procedure Choose_Manager ( This : in out Section;
+     procedure Choose_Manager (This : in out Section;
                                 Who : in Personnel.Employee);
    private
      type Section is record
@@ -339,10 +339,10 @@ Programming By Extension
 
       package Complex is
         type Number is private;
-        function "*" ( Left, Right : Number ) return Number;
-        function "/" ( Left, Right : Number ) return Number;
-        function "+" ( Left, Right : Number ) return Number;
-        function "-" ( Left, Right : Number ) return Number;
+        function "*" (Left, Right : Number) return Number;
+        function "/" (Left, Right : Number) return Number;
+        function "+" (Left, Right : Number) return Number;
+        function "-" (Left, Right : Number) return Number;
       ...
       private
         type Number is record
@@ -370,16 +370,16 @@ Extension Can See Private Section
 
    with Ada.Text_IO;
    package body Complex.Utils is
-     procedure Put( C : in Number ) is
+     procedure Put(C : in Number) is
      begin
-       Ada.Text_IO.Put( As_String(C) );
+       Ada.Text_IO.Put(As_String(C));
      end Put;
-     function As_String( C : Number ) return String is
+     function As_String(C : Number) return String is
      begin
        -- Real_Part and Imaginary_Part are
        -- visible to child's body
-       return "( " & Float'Image(C.Real_Part) & ", " &
-              Float'Image(C.Imaginary_Part) & " )";
+       return "(" & Float'Image(C.Real_Part) & ", " &
+              Float'Image(C.Imaginary_Part) & ")";
      end As_String;
    ...
    end Complex.Utils;
@@ -398,16 +398,16 @@ Subsystem Approach
 
    package OS.Mem_Mgmt is
      ...
-     procedure Dump ( File               : File_Descriptor;
+     procedure Dump (File               : File_Descriptor;
                       Requested_Location : System.Address;
-                      Requested_Size     : Interfaces.C.Size_T );
+                      Requested_Size     : Interfaces.C.Size_T);
      ...
    end OS.Mem_Mgmt;
 
    package OS.Files is
      ...
-     function Open ( Device : Interfaces.C.char_array;
-                     Permission : Permissions := S_IRWXO )
+     function Open (Device : Interfaces.C.char_array;
+                     Permission : Permissions := S_IRWXO)
                      return File_Descriptor;
      ...
    end OS.Files;
@@ -679,7 +679,7 @@ Children Can Break Abstraction
    package Stack is
       ...
    private
-      Values : array (1 .. N ) of Foo;
+      Values : array (1 .. N) of Foo;
       Top : Natural range 0 .. N := 0;
    end Stack;
 
@@ -750,7 +750,7 @@ Quiz
 
   .. container:: column
 
-   Which return statement would be illegal in P.Child.X?
+   Which return statement would **not** be legal in P.Child.X?
 
       A.  ``return Object_A;``
       B.  ``return Object_B;``

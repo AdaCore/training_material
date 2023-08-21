@@ -174,7 +174,7 @@ Pragmas
 .. code:: Ada
 
    pragma Page;
-   pragma Optimize ( Off );
+   pragma Optimize (Off);
 
 ------
 Quiz
@@ -390,10 +390,10 @@ Implicit vs. Explicit Declarations
 
    .. code:: Ada
 
-      function "+" ( Left, Right : Counter ) return Counter;
-      function "-" ( Left, Right : Counter ) return Counter;
-      function "*" ( Left, Right : Counter ) return Counter;
-      function "/" ( Left, Right : Counter ) return Counter;
+      function "+" (Left, Right : Counter) return Counter;
+      function "-" (Left, Right : Counter) return Counter;
+      function "*" (Left, Right : Counter) return Counter;
+      function "/" (Left, Right : Counter) return Counter;
       ...
 
    * Compiler creates appropriate operators based on the underlying type
@@ -434,7 +434,7 @@ Elaboration
 Quiz
 ------
 
-Which block is illegal?
+Which block is **not** legal?
 
    A. ``A, B, C : integer;``
    B. ``Integer : Standard.Integer;``
@@ -751,9 +751,9 @@ Quiz
             M : Integer := 2;
          begin
             M := M + 2;
-            Print ( M );
+            Print (M);
          end;
-         Print ( M );
+         Print (M);
       end;
 
  .. container:: column

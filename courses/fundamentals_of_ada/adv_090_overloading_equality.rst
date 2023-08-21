@@ -88,7 +88,7 @@ User-Defined `=` Returning Boolean
    .. code:: Ada
 
       if X /= Y then
-      if not ( X = Y ) then
+      if not (X = Y) then
       if X not = Y then
 
 * No explicit declaration of ``/=`` returning Boolean

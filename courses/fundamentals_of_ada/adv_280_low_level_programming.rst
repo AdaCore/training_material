@@ -542,9 +542,9 @@ Mapping Inputs / Outputs on Temporaries
 .. code:: Ada
 
   Asm (<script referencing $<input> >,
-       Inputs  => ({<type>'Asm_Input ( <constraint>,
+       Inputs  => ({<type>'Asm_Input (<constraint>,
                                        <variable>)}),
-       Outputs => ({<type>'Asm_Output ( <constraint>,
+       Outputs => ({<type>'Asm_Output (<constraint>,
                                         <variable>)});
 
 * **assembly script** containing assembly instructions + references to registers and temporaries

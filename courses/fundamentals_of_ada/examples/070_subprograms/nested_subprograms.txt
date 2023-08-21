@@ -36,8 +36,8 @@ begin
       procedure Print (I : Natural) is
       begin
          Put_Line
-           (I'Image & " => ( " & Lines (I).X'Image & ", " & Lines (I).Y'Image &
-            " )");
+           (I'Image & " => (" & Lines (I).X'Image & ", " & Lines (I).Y'Image &
+            ")");
       end Print;
    begin
       for I in Lines'Range

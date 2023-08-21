@@ -513,10 +513,10 @@ Bit-Oriented Operations Example
    with Interfaces;
    use Interfaces;
    ...
-   procedure Swap( X : in out Unsigned_16 ) is
+   procedure Swap(X : in out Unsigned_16) is
    begin
-     X := ( Shift_Left(X,8) and 16#FF00# ) or
-          ( Shift_Right(X,8) and 16#00FF# );
+     X := (Shift_Left(X,8) and 16#FF00#) or
+          (Shift_Right(X,8) and 16#00FF#);
    end Swap;
 
 ---------------------------------
@@ -643,14 +643,14 @@ Order Attributes For All Discrete Types
 
 .. code:: Ada
 
-   type Days is ( Sun, Mon, Tue, Wed, Thu, Fri, Sat ); -- 0 .. 6
+   type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat); -- 0 .. 6
    Today    : Days := Some_Value;
    Position : Integer;
    ...
-   Position := Days'Pos( Today );
+   Position := Days'Pos(Today);
    ...
-   Get( Position );
-   Today := Days'Val( Position );
+   Get(Position);
+   Today := Days'Val(Position);
 
 .. container:: speakernote
 

@@ -130,7 +130,7 @@ Quiz
    subtype Weekdays_T is Days_T range Mon .. Fri;
    Today : Days_T;
 
-Which condition is illegal?
+Which condition is **not** legal?
 
    A. :answermono:`if Today = Mon or Wed or Fri then`
    B. ``if Today in Days_T then``
@@ -488,10 +488,10 @@ Quiz
    F : Float;
    B : Boolean;
 
-Which statement is illegal?
+Which statement is **not** legal?
 
    A. :answermono:`F := if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X);`
-   B. ``F := Sqrt( if X < 0.0 then -1.0 * X else X );``
+   B. ``F := Sqrt(if X < 0.0 then -1.0 * X else X);``
    C. ``B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0 else True);``
    D. ``B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0);``
 
