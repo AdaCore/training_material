@@ -380,23 +380,23 @@ Integer Type (Signed and Modular) Literals
 String Attributes For All Scalars
 -----------------------------------
 
-* :ada:`T'Image( input )`
+* :ada:`T'Image(input)`
 
    - Converts :ada:`T` |rightarrow| :ada:`String`
 
-* :ada:`T'Value( input )`
+* :ada:`T'Value(input)`
 
    - Converts :ada:`String` |rightarrow| :ada:`T`
 
 .. code:: Ada
 
    Number : Integer := 12345;
-   Input  : String( 1 .. N );
+   Input  : String(1 .. N);
    ...
-   Put_Line( Integer'Image(Number) );
+   Put_Line(Integer'Image(Number));
    ...
-   Get( Input );
-   Number := Integer'Value( Input );
+   Get(Input);
+   Number := Integer'Value(Input);
 
 ----------------------------------
 Range Attributes For All Scalars
@@ -441,9 +441,9 @@ Neighbor Attributes For All Scalars
    Signed   : Signed_T := -1;
    Unsigned : Unsigned_T := 0;
    ...
-   Signed := Signed_T'Succ( Signed ); -- Signed = 0
+   Signed := Signed_T'Succ(Signed); -- Signed = 0
    ...
-   Unsigned := Unsigned_T'Pred( Unsigned ); -- Signed = 255
+   Unsigned := Unsigned_T'Pred(Unsigned); -- Signed = 255
 
 ------------------------------------
 Min/Max Attributes For All Scalars
@@ -523,7 +523,7 @@ Enumeration Types
 
    .. code:: Ada
 
-      type <identifier> is ( <identifier-list> ) ;
+      type <identifier> is (<identifier-list>) ;
 
 * Literals
 
@@ -551,8 +551,8 @@ Enumeration Type Operations
 
 .. code:: Ada
 
-   type Directions is ( North, South, East, West );
-   type Days is ( Mon, Tue, Wed, Thu, Fri, Sat, Sun );
+   type Directions is (North, South, East, West);
+   type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
    Heading : Directions;
    Today, Tomorrow : Days;
    ...
@@ -580,7 +580,7 @@ Character Types
 
    .. code:: Ada
 
-      type EBCDIC is ( nul, ..., 'a' , ..., 'A', ..., del );
+      type EBCDIC is (nul, ..., 'a' , ..., 'A', ..., del);
       Control : EBCDIC := 'A';
       Nullo : EBCDIC := nul;
 
@@ -592,7 +592,7 @@ Language-Defined Type Boolean
 
    .. code:: Ada
 
-      type Boolean is ( False, True );
+      type Boolean is (False, True);
 
 * Supports assignment, relational operators, attributes
 
@@ -607,7 +607,7 @@ Language-Defined Type Boolean
 
    .. code:: Ada
 
-      A := B or ( not C ); -- For A, B, C boolean
+      A := B or (not C); -- For A, B, C boolean
 
 ------------------------------------
 Why Boolean Isn't Just An Integer?
@@ -698,7 +698,7 @@ Quiz
 
 .. code:: Ada
 
-   type Enum_T is ( Able, Baker, Charlie );
+   type Enum_T is (Able, Baker, Charlie);
 
 Which statement will generate an error?
 
@@ -881,8 +881,8 @@ What is the output of this code?
       F : Float := 7.6;
       I : Integer := 10;
    begin
-      F := Float ( Integer(F) / I );
-      Put_Line ( Float'Image ( F ) );
+      F := Float (Integer(F) / I);
+      Put_Line (Float'Image (F));
    end;
 
 A. 7.6

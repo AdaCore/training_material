@@ -72,7 +72,7 @@ procedure Main is
 
    procedure Move (Body_To_Move : in out Body_T; Bodies : Bodies_Array_T);
 
-   --  procedure Draw_Body( taking 2 parameters of your choice.......
+   --  procedure Draw_Body(taking 2 parameters of your choice.......
 
 begin
 

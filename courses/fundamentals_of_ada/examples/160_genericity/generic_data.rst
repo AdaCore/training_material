@@ -13,7 +13,7 @@
          type Private_T is private;
          type Unconstrained_T (<>) is private;
       package Parameter_Properties is
-         procedure Do_Something ( Discrete_Param      : Discrete_T;
+         procedure Do_Something (Discrete_Param      : Discrete_T;
                                   Integer_Param       : Integer_T;
                                   Float_Param         : Float_T;
                                   Indefinite_Param    : access Indefinite_T;
@@ -56,7 +56,7 @@
 
    package body Generic_Data is
       package body Parameter_Properties is
-         procedure Do_Something ( Discrete_Param      : Discrete_T;
+         procedure Do_Something (Discrete_Param      : Discrete_T;
                                   Integer_Param       : Integer_T;
                                   Float_Param         : Float_T;
                                   Indefinite_Param    : access Indefinite_T;

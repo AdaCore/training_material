@@ -38,8 +38,8 @@
       Put_Line ("Child: " & Primitive_2 (Child));
       Root := Root_T (Child);
       Put_Line ("Root from Child: " & Primitive_2 (Root));
-      -- Child := Child_T ( Root ); -- illegal
-      -- Put_Line ( "Child from Root: " & Primitive_2 ( Child ) ); -- illegal
+      -- Child := Child_T (Root); -- illegal
+      -- Put_Line ("Child from Root: " & Primitive_2 (Child)); -- illegal
       Child := (Root with Child_Field => 999);
       Put_Line ("Child from Root via aggregate: " & Primitive_2 (Child));
    end Test_Tagged_Derivation;

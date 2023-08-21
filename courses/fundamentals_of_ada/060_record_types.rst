@@ -63,7 +63,7 @@ Syntax and Examples
 
    .. code:: Ada
 
-      type T ( Size : Natural := 0 ) is record
+      type T (Size : Natural := 0) is record
          Text : String (1 .. Size);
       end record;
 
@@ -392,7 +392,7 @@ Nested Aggregates
 
 .. code:: Ada
 
-  type Months_T is ( January, February, ..., December);
+  type Months_T is (January, February, ..., December);
   type Date is record
      Day   : Integer range 1 .. 31;
      Month : Months_T;
@@ -402,9 +402,9 @@ Nested Aggregates
      Born : Date;
      Hair : Color;
   end record;
-  John : Person    := ( (21, November, 1990), Brown );
-  Julius : Person  := ( (2, August, 1995), Blond );
-  Heather : Person := ( (2, March, 1989), Hair => Blond );
+  John : Person    := ((21, November, 1990), Brown);
+  Julius : Person  := ((2, August, 1995), Blond);
+  Heather : Person := ((2, March, 1989), Hair => Blond);
   Megan : Person   := (Hair => Blond,
                        Born => (16, December, 2001));
 
@@ -474,7 +474,7 @@ D. Runtime error
 
 .. container:: animate
 
-   The aggregate is incomplete. The aggregate must specify all components, you could use box notation :ada:`(A => 1, others => <>)`
+   The aggregate is incomplete. The aggregate must specify all components. You could use box notation :ada:`(A => 1, others => <>)`
 
 ------
 Quiz
@@ -509,63 +509,6 @@ D. Runtime error
 Quiz
 ------
 
-What is the result of building and running this code?
-
-.. code:: Ada
-
-   procedure Main is
-      type My_Integer is new Integer;
-      type Record_T is record
-         A, B, C : Integer := 0;
-         D : My_Integer := 0;
-      end record;
-
-      V : Record_T := (others => <>);
-   begin
-      Put_Line (Integer'Image (V.A));
-   end Main;
-
-A. :answermono:`0`
-B. ``1``
-C. Compilation error
-D. Runtime error
-
-.. container:: animate
-
-   :ada:`<>` is an exception to the rule for :ada:`others`, it can apply to several components of a different type.
-
-------
-Quiz
-------
-
-What is the result of building and running this code?
-
-.. code:: Ada
-
-   procedure Main is
-      type My_Integer is new Integer;
-      type Record_T is record
-         A : Integer := 0;
-      end record;
-
-      V : Record_T := (1);
-   begin
-      Put_Line (Integer'Image (V.A));
-   end Main;
-
-A. ``0``
-B. ``1``
-C. :answer:`Compilation error`
-D. Runtime error
-
-.. container:: animate
-
-    Single-valued aggregate must use named association.
-
-------
-Quiz
-------
-
 .. code:: Ada
 
    type Nested_T is record
@@ -580,7 +523,7 @@ Quiz
    X, Y : Record_T;
    Z    : constant Nested_T := (others => -1);
 
-Which assignment(s) is(are) illegal?
+Which assignment(s) is(are) **not** legal?
 
 A. :answermono:`X := (1, '2', Three => 3, Four => (6))`
 B. ``X := (Two => '2', Four => Z, others => 5)``
@@ -790,7 +733,7 @@ Semantics
 
       Pat  : Person(Student); -- No Pat.Pubs
       Prof : Person(Faculty); -- No Prof.GPA
-      Soph : Person := ( Group  => Student,
+      Soph : Person := (Group  => Student,
                          Name => "John Jones",
                          GPA  => 3.2);
       X : Person;  -- Illegal: must specify discriminant

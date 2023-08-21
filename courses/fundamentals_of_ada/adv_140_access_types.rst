@@ -368,7 +368,7 @@ Getting Around Accessibility Checks
       begin
          G := V'Unchecked_Access;
          ...
-         Do_Something ( G.all ); -- This is "reasonable"
+         Do_Something (G.all); -- This is "reasonable"
       end P;
 
 -----------------------------------------

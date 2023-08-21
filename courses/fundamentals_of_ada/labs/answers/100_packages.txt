@@ -79,7 +79,7 @@ package body List is
       end loop;
    end Print;
 
-   function Length return Natural is ( Last );
+   function Length return Natural is (Last);
 end List;
 --List
 

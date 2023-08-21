@@ -23,7 +23,7 @@ procedure Main is
 
    --$ begin answer
    -- :ada:`T2` can be almost anything, so it's not the issue
-   -- :ada:`T`` must be discrete, so it cannot be :ada:`String`
+   -- :ada:`T` must be discrete, so it cannot be :ada:`String`
    --$ end answer
 
 begin

@@ -28,7 +28,7 @@
          return Result;
       end Total;
       function Consistent_Balance (This : Account_T) return Boolean is
-         ( Total (This.Deposits) - Total (This.Withdrawals) = This.Current_Balance );
+         (Total (This.Deposits) - Total (This.Withdrawals) = This.Current_Balance);
       procedure Open (This : in out Account_T; Initial_Deposit : Currency_T) is
       begin
          This.Current_Balance := Initial_Deposit;

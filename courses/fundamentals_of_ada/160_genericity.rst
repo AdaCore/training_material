@@ -43,7 +43,7 @@ The Notion of a Pattern
 
    .. code:: Ada
 
-      procedure Swap_Int ( Left, Right : in out Integer) is
+      procedure Swap_Int (Left, Right : in out Integer) is
         V : Integer;
       begin
          V := Left;
@@ -151,7 +151,7 @@ What Can Be Made Generic?
       generic
          type T is private;
       package Stack is
-         procedure Push ( Item : T );
+         procedure Push (Item : T);
          ...
 
 * Children of generic units have to be generic themselves
@@ -170,7 +170,7 @@ How Do You Use A Generic?
 
 .. code:: Ada
 
-   package Integer_stack is new Stack ( Integer );
+   package Integer_stack is new Stack (Integer);
    package Integer_Stack_Utils is
        new Integer_Stack.Utilities;
    ...
@@ -285,7 +285,7 @@ Generic Parameters Can Be Combined
       type Index is (<>);
       type Arr is array (Index range <>) of Acc;
    function Element (Source   : Arr;
-                     Position : Index )
+                     Position : Index)
                      return T;
 
    type String_Ptr is access all String;
@@ -303,6 +303,30 @@ Quiz
 ------
 
 .. include:: quiz/generic_subp_syntax/quiz.rst
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+   generic
+      type T1 is (<>);
+      type T2 (<>) is private;
+   procedure G
+     (A : T1;
+      B : T2);
+
+Which is **not** a legal instantiation?
+
+   A. :answermono:`procedure A is new G (String, Character);`
+   B. ``procedure B is new G (Character, Integer);``
+   C. ``procedure C is new G (Integer, Boolean);``
+   D. ``procedure D is new G (Boolean, String);``
+
+.. container:: animate
+
+   :ada:`T1` must be discrete - so an integer or an enumeration. :ada:`T2` can be any type
 
 =====================
 Generic Formal Data
@@ -361,10 +385,10 @@ Generic Subprogram Parameters
 
       generic
          type T is private;
-         with function Less_Than ( L, R : T ) return boolean;
-      function Max ( L, R : T ) return T;
+         with function Less_Than (L, R : T) return boolean;
+      function Max (L, R : T) return T;
 
-      function Max ( L, R : T ) return T is
+      function Max (L, R : T) return T is
       begin
          if Less_Than (L, R) then
             return R;
@@ -374,7 +398,7 @@ Generic Subprogram Parameters
       end Max;
 
       type Something_T is null record;
-      function Less_Than ( L, R : Something_T ) return boolean;
+      function Less_Than (L, R : Something_T) return boolean;
       procedure My_Max is new Max (Something_T, Less_Than);
 
 ----------------------------------------
@@ -433,20 +457,20 @@ Quiz
       generic
          with procedure Double (X : in out Integer) is <>;
          with procedure Square (X : in out Integer) is null;
-      procedure Math ( P : in out integer );
-      procedure Math ( P : in out integer ) is
+      procedure Math (P : in out integer);
+      procedure Math (P : in out integer) is
       begin
          Double(P);
          Square(P);
       end Math;
-      procedure Instance is new Math ( Double => Half );
-      Value : integer := 10;
+      procedure Instance is new Math (Double => Half);
+      Number : integer := 10;
 
  .. container:: column
 
   .. container:: latex_environment scriptsize
 
-   What is the value of Value after calling :ada:`Instance (Value)`
+   What is the value of Number after calling :ada:`Instance (Number)`
 
    A. 20
    B. 400

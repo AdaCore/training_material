@@ -102,7 +102,7 @@ package body Radar_Internals is
             E_T_A_S : Integer
               := Integer (Float'Rounding (Time_To_Arrival)) mod 60;
          begin
-         Put (  Integer'Image (E_T_A_H) & "h"
+         Put ( Integer'Image (E_T_A_H) & "h"
                      & Integer'Image (E_T_A_M) & "m"
                      & Integer'Image (E_T_A_S) & "s");
          end;

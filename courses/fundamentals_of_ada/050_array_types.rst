@@ -89,7 +89,7 @@ Array Type Index Constraints
 .. code:: Ada
 
    type Schedule is array (Days range Mon .. Fri) of Float;
-   type Flags_T is array ( -10 .. 10 ) of Boolean;
+   type Flags_T is array (-10 .. 10) of Boolean;
    -- this may or may not be null range
    type Dynamic is array (1 .. N) of Integer;
 
@@ -162,8 +162,8 @@ Constrained Array Type Declarations
 
          constrained_array_definition ::=
             array index_constraint of subtype_indication
-         index_constraint ::= ( discrete_subtype_definition
-            {, discrete_subtype_indication} )
+         index_constraint ::= (discrete_subtype_definition
+            {, discrete_subtype_indication})
          discrete_subtype_definition ::=
             discrete_subtype_indication | range
          subtype_indication ::= subtype_mark [constraint]
@@ -303,8 +303,8 @@ Quiz
 
 .. code:: Ada
 
-   type Array1_T is array ( 1 .. 8 ) of boolean;
-   type Array2_T is array ( 0 .. 7 ) of boolean;
+   type Array1_T is array (1 .. 8) of boolean;
+   type Array2_T is array (0 .. 7) of boolean;
    X1, Y1 : Array1_T;
    X2, Y2 : Array2_T;
 
@@ -354,8 +354,8 @@ Unconstrained Array Type Declarations
    .. code:: Ada
 
       unconstrained_array_definition ::=
-         array ( index_subtype_definition
-            {, index_subtype_definition} )
+         array (index_subtype_definition
+            {, index_subtype_definition})
             of subtype_indication
       index_subtype_definition ::= subtype_mark range <>
 
@@ -525,7 +525,7 @@ Quiz
 
  .. container:: column
 
-   Which statement is illegal?
+   Which statement is **not** legal?
 
    A. :answermono:`X (1) := Y (1);`
    B. ``Y (1) := Z (1);``
@@ -572,7 +572,7 @@ Quiz
 
 .. code:: Ada
 
-    type My_Array is array (Integer range <>) of Boolean;
+    type My_Array is array (Positive range <>) of Boolean;
 
     O : My_Array (0 .. -1) := (others => True);
 
@@ -585,30 +585,8 @@ D. None: Runtime error
 
 .. container:: animate
 
-    Valid index for empty array, and :ada:`others` initialization allowed for empty range.
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-    type I_0 is range 0 .. 0;
-
-    type My_Array is array (I_0 range <>) of Boolean;
-
-How to declare an **empty** object of type :ada:`My_Array` ?
-
-A. ``O : My_Array (null);``
-B. ``O : My_Array (I_0'First .. I_0'First);``
-C. :answermono:`O : My_Array (I_0'First + 1 .. I_0'First);`
-D. ``O : My_Array (I_0'Last .. I_0'First);``
-
-.. container:: animate
-
-    For initializing empty arrays, index values out of the range are allowed.
-
-    NB: for enumerated index type, this may be impossible.
+    When the second index is less than the first index, this is an empty array.
+    For empty arrays, the index can be out of range for the index type.
 
 ============
 Attributes
@@ -754,7 +732,7 @@ Object-Level Operations
 
    .. code:: Ada
 
-      C := Foo ( B );
+      C := Foo (B);
 
    - Component types must be the same type
    - Index types must be the same or convertible
@@ -873,7 +851,7 @@ Quiz
    A : ThreeD_T;
    B : OneD_T;
 
-Which statement is illegal?
+Which statement is **not** legal?
 
    A. ``B(1) := A(1,2,3)(1) or A(4,3,2)(1);``
    B. ``B := A(2,3,4) and A(4,3,2);``
@@ -1258,7 +1236,7 @@ Nested Aggregates
    Mat_4x2 : Matrix (1..4, 1..2) := (1 =>  (2.5, 3.0),
                                      2 =>  (1.5, 0.0),
                                      3 =>  (2.1, 0.0),
-                                     4 =>  (9.0, 0.0) );
+                                     4 =>  (9.0, 0.0));
 
 -----------------------------
 Tic-Tac-Toe Winners Example
@@ -1273,7 +1251,7 @@ Tic-Tac-Toe Winners Example
    type Required_Positions   is range 1 .. 3;
    Winning : constant array (Winning_Combinations,
                              Required_Positions) of
-      Move_Number := ( -- rows
+      Move_Number := (-- rows
                        1 => (1, 2, 3),
                        2 => (4, 5, 6),
                        3 => (7, 8, 9),
@@ -1283,7 +1261,7 @@ Tic-Tac-Toe Winners Example
                        6 => (3, 6, 9),
                        -- diagonals
                        7 => (1, 5, 9),
-                       8 => (3, 5, 7)  );
+                       8 => (3, 5, 7) );
 
 ----------------------------------
 Defaults Within Array Aggregates
@@ -1383,7 +1361,7 @@ Anonymous Array Types
 
        .. code:: Ada
 
-          A : array ( 1 .. 3 ) of B;
+          A : array (1 .. 3) of B;
 
     * Without a type name, no object-level operations
 

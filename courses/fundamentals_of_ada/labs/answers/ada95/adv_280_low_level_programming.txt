@@ -54,8 +54,8 @@ package Messages is
                     return Message_T;
    function Get_Crc (Message : Message_T) return Crc_T;
    procedure Write (Message : Message_T);
-   procedure Read ( Message : out Message_T;
-                    valid : out boolean );
+   procedure Read (Message : out Message_T;
+                    valid : out boolean);
    procedure Print (Message : Message_T);
 private
    type U32_T is mod 2**32;
@@ -93,7 +93,7 @@ procedure Main is
    function Command return Messages.Command_T is
    begin
       loop
-         Put ("Command ( ");
+         Put ("Command (");
          for E in Messages.Command_T
          loop
             Put (Messages.Command_T'image (E) & " ");
@@ -139,8 +139,8 @@ procedure Main is
    procedure Read is
       Valid : Boolean;
    begin
-      Messages.Read ( Message, Valid );
-      Ada.Text_IO.Put_Line("Message valid: " & Boolean'Image ( Valid ));
+      Messages.Read (Message, Valid);
+      Ada.Text_IO.Put_Line("Message valid: " & Boolean'Image (Valid));
    end read;
 begin
    loop

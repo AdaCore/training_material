@@ -563,7 +563,7 @@ External and Conditional References
 * Allow project file content to depend on value of environment variables and command-line arguments
 * Reference to external values is by function
 
-   - **external( name [, default] )** returns value of name as supplied on the command line or as environment variable
+   - **external(name [, default])** returns value of name as supplied on the command line or as environment variable
    - If name is undefined, return default (if supplied) or ""
 
 * Set via command line switch (for example)

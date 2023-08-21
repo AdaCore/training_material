@@ -23,7 +23,7 @@
         (False);
       -- Illegal:
       -- overriding function Action_On_Access (V : access_child_t_t)
-      --                                       return boolean is ( false );
+      --                                       return boolean is (false);
    end Primitives_And_Access_Type;
 
    with Ada.Text_IO; use Ada.Text_IO;

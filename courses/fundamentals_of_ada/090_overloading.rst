@@ -120,9 +120,9 @@ Benefits and Risk of Overloading
 
    .. code:: Ada
 
-      function "+" ( L, R : Integer ) return String is
+      function "+" (L, R : Integer) return String is
       begin
-         return Integer'Image ( L - R );
+         return Integer'Image (L - R);
       end "+";
 
 =========================
@@ -203,7 +203,7 @@ Parameters for Overloaded Operators
 
    .. code:: Ada
 
-      X := "*" ( Left => 2, Right => 3 );
+      X := "*" (Left => 2, Right => 3);
 
 =================
 Call Resolution
@@ -294,7 +294,7 @@ Overloading Example
    function "+" (Left : Position; Right : Offset)
      return Position is
    begin
-      return Position'( Left.Row + Right.Row, Left.Column + Right.Col);
+      return Position'(Left.Row + Right.Row, Left.Column + Right.Col);
    end "+";
 
    function Acceptable (P : Position) return Boolean;

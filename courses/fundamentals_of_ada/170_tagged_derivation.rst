@@ -252,7 +252,7 @@ Overriding Indicators
       -- We want to _change_ the behavior of Set_Name
       overriding procedure Set_Name (P : in out Point_T);
       -- We want to _add_ a new primitive
-      not overriding Origin ( P : Point_T ) return Point_T;
+      not overriding Origin (P : Point_T) return Point_T;
       -- We get "Name" for free
 
 -----------------

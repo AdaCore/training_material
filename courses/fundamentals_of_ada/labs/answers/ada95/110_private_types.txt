@@ -213,7 +213,7 @@ package body Input is
    function Get return Colors.Color_Set_T is
       Ret_Val : Colors.Color_Set_T;
    begin
-      Put ("Enter color(s) ( ");
+      Put ("Enter color(s) (");
       for C in Colors.Color_T loop
          Put (Colors.Color_T'Image (C) & " ");
       end loop;

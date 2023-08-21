@@ -285,7 +285,7 @@ Quiz
          end Do_Something;
          function Counter (I : Integer)
                            return Boolean is
-            ( True );
+            (True);
       end P;
 
  .. container:: column
@@ -810,7 +810,7 @@ Enabling/Disabling Contract Verification
          pragma Assertion_Policy (policy_name);
          pragma Assertion_Policy (
             assertion_name => policy_name
-            {, assertion_name => policy_name} );
+            {, assertion_name => policy_name});
 
 * Vendors may define additional policies (GNAT does)
 * Default, without pragma, is implementation-defined

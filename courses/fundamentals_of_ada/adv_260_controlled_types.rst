@@ -205,16 +205,16 @@ Unbounded String Implementation
         (String, String_Ref);
 
       function "=" (L, R : Ustring_T) return Boolean is
-         ( L.Ref.all = R.Ref.all );
+         (L.Ref.all = R.Ref.all);
 
       function To_Ustring_T (Item : String) return Ustring_T is
-         ( Controlled with Ref => new String'(Item) );
+         (Controlled with Ref => new String'(Item));
 
       function To_String (Item : Ustring_T) return String is
-         ( Item.Ref.all );
+         (Item.Ref.all);
 
       function Length (Item : Ustring_T) return Natural is
-         ( Item.Ref.all'Length );
+         (Item.Ref.all'Length);
 
       function "&" (L, R : Ustring_T) return Ustring_T is
          (Controlled with Ref => new String'(L.Ref.all & R.Ref.all);

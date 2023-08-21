@@ -43,7 +43,7 @@ The Notion of a Pattern
 
    .. code:: Ada
 
-      procedure Swap_Int ( Left, Right : in out Integer) is
+      procedure Swap_Int (Left, Right : in out Integer) is
         V : Integer;
       begin
          V := Left;
@@ -227,7 +227,7 @@ Definitions
       Unc => String,  -- uses "unconstrained" constraint
       Lim => Float,   -- does not use "limited" constraint
       Disc => Boolean, -- has capability of discrete
-   );
+  );
 
 ------------------
 Syntax (partial)
@@ -286,7 +286,7 @@ Quiz
      (A : T1;
       B : T2);
 
-Which is an illegal instantiation?
+Which is **not** a legal instantiation?
 
    A. :answermono:`procedure A is new G (String, Character);`
    B. ``procedure B is new G (Character, Integer);``

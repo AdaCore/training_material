@@ -514,7 +514,7 @@ Getting Around Accessibility Checks
       begin
          G := V'Unchecked_Access;
          ...
-         Do_Something ( G.all ); -- This is "reasonable"
+         Do_Something (G.all); -- This is "reasonable"
       end P;
 
 .. container:: speakernote
@@ -552,7 +552,7 @@ Quiz
       Local_Object  : aliased Integer;
    begin
 
-Which assignment is illegal?
+Which assignment is **not** legal?
 
 A. ``Global_Pointer := Global_Object'Access;``
 B. :answermono:`Global_Pointer := Local_Object'Access;`
@@ -754,8 +754,8 @@ Anonymous Access Constants
 
    .. code:: Ada
 
-      procedure Bar ( V1 : access constant integer);
-      procedure Foo ( V1 : not null access integer); -- Ada 2005
+      procedure Bar (V1 : access constant integer);
+      procedure Foo (V1 : not null access integer); -- Ada 2005
 
 ========
 Lab

@@ -7,10 +7,10 @@ procedure Main is
      (Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine);
 
    -- functions to convert between Digit_T, Digit_Name_T, and input values
-   -- function Convert ( ?
+   -- function Convert (?
 
    -- functions to compare across types
-   --  function "=" ( ?
+   --  function "=" (?
 
    Last_Entry : Digit_T := 0;
 

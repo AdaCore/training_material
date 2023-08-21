@@ -122,7 +122,7 @@ package body Timecards is
       Pay_S : constant String := Pay_T'Image (Timecard.Pay);
    begin
       return
-        Name_S & " ( " & Id_S & " ) => " & Hours_S & " hours * " & Rate_S &
+        Name_S & " (" & Id_S & ") => " & Hours_S & " hours * " & Rate_S &
         "/hour = " & Pay_S;
    end Image;
 end Timecards;

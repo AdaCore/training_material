@@ -113,7 +113,7 @@ Standard Input / Output
       S : constant string := Get_Line;
       -- ...
       -- writes to default output file
-      Put_Line ( S );
+      Put_Line (S);
 
 * At initialization, default input and output refer to the console
 
@@ -248,7 +248,7 @@ Ada.Text_IO.Enumeration_IO
 .. code:: Ada
 
    declare
-      type Enumeration_T is ( Red, Yellow, Green );
+      type Enumeration_T is (Red, Yellow, Green);
       package Io is new Ada.Text_IO.Enumeration_IO (Enumeration_T);
       E : Enumeration_T;
    begin

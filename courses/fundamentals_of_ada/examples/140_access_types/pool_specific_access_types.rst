@@ -6,7 +6,7 @@
       Object : Access_T := new Pointed_To_T;
    
       type Other_Access_T is access Pointed_To_T;
-      -- Other_Object : Other_Access_T := Other_Access_T ( Object ); -- illegal
+      -- Other_Object : Other_Access_T := Other_Access_T (Object); -- illegal
    
       type String_Access_T is access String;
    end Pool_Specific;

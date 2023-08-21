@@ -45,13 +45,13 @@ Improving Readability
 
       Messages.Queue.Diagnostics.Inject_Fault (
          Fault    => Messages.Queue.Diagnostics.CRC_Failure,
-         Position => Messages.Queue.Front );
+         Position => Messages.Queue.Front);
 
 * Operators treated as functions defeat the purpose of overloading
 
    .. code::
 
-      Complex1 := Complex_Types."+" ( Complex2, Complex3 );
+      Complex1 := Complex_Types."+" (Complex2, Complex3);
 
 * Ada has mechanisms to simplify hierarchies
 
@@ -97,8 +97,8 @@ Examples
 .. code:: Ada
 
    package Ada.Text_IO is
-     procedure Put_Line( ... );
-     procedure New_Line( ... );
+     procedure Put_Line(...);
+     procedure New_Line(...);
      ...
    end Ada.Text_IO;
 
@@ -106,9 +106,9 @@ Examples
    procedure Hello is
      use Ada.Text_IO;
    begin
-     Put_Line( "Hello World" );
+     Put_Line("Hello World");
      New_Line(3);
-     Ada.Text_IO.Put_Line ( "Good bye" );
+     Ada.Text_IO.Put_Line ("Good bye");
    end Hello;
 
 ---------------------
@@ -156,7 +156,7 @@ Examples
 
    package body P is
      -- all of Pkg_A and Pkg_B is visible here
-     function F return Integer is ( Constant_A + Constant_B );
+     function F return Integer is (Constant_A + Constant_B);
    end P;
 
 --------------------
@@ -259,8 +259,8 @@ No Ambiguity Introduction
    package P is
      type Int is range Lower .. Upper;
      -- implicit declarations
-     -- function "+"( Left, Right : Int ) return Int;
-     -- function "="( Left, Right : Int ) return Boolean;
+     -- function "+"(Left, Right : Int) return Int;
+     -- function "="(Left, Right : Int) return Boolean;
    end P;
 
    with P;
@@ -319,8 +319,8 @@ Examples
    package P is
      type Int is range Lower .. Upper;
      -- implicit declarations
-     -- function "+"( Left, Right : Int ) return Int;
-     -- function "="( Left, Right : Int ) return Boolean;
+     -- function "+"(Left, Right : Int) return Int;
+     -- function "="(Left, Right : Int) return Boolean;
    end P;
    with P;
    procedure Test is
@@ -349,8 +349,8 @@ Examples
      type Speed_T is digits 6;
      -- "use type" on any of Miles_T, Hours_T, Speed_T
      -- makes operator visible
-     function "/"( Left : Miles_T;
-                   Right : Hours_T )
+     function "/"(Left : Miles_T;
+                   Right : Hours_T)
                    return Speed_T;
    end P;
 
@@ -367,10 +367,10 @@ Multiple `use type` Clauses
      type T1 is range 1 .. 10;
      type T2 is range 1 .. 10;
      -- implicit
-     -- function "+"( Left : T2; Right : T2 ) return T2;
+     -- function "+"(Left : T2; Right : T2) return T2;
      type T3 is range 1 .. 10;
      -- explicit
-     function "+"( Left : T1; Right : T2 ) return T3;
+     function "+"(Left : T1; Right : T2) return T3;
    end P;
 
    with P;
@@ -426,8 +426,8 @@ Examples
    package Complex is
      type Number is private;
      function "+" (Left, Right : Number) return Number;
-     procedure Make ( C : out Number;
-                      From_Real, From_Imag : Float );
+     procedure Make (C : out Number;
+                      From_Real, From_Imag : Float);
    ...
 
 .. code:: Ada
@@ -436,7 +436,7 @@ Examples
    use all type Complex.Number;
    procedure Demo is
      A, B, C : Complex.Number;
-     procedure Non_Primitive ( X : Complex.Number ) is null;
+     procedure Non_Primitive (X : Complex.Number) is null;
    begin
      -- "use all type" makes these available
      Make (A, From_Real => 1.0, From_Imag => 0.0);
