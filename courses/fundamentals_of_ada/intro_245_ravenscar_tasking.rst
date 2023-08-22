@@ -67,11 +67,11 @@ What Is the Jorvik profile?
 
   + Defined in the RM D.13 (Ada 2022)
 
-* Remove some constraints
+* Removes some constraints
 
   - Scheduling analysis may be harder to perform
 
-* Subset of Ravenscars' requirements
+* Subset of Ravenscar's requirements
 * This class is about the more widespread Ravenscar
 
   + But some of Jorvik's differences are indicated
@@ -91,7 +91,7 @@ What are GNAT runtimes?
 * Standard runtime
 
   - Full runtime support
-  - "Full-fledged" OS target (Linux, WxWorks...)
+  - "Full-fledged" OS target (Linux, VxWorks...)
   - Large memory footprint
   - Full tasking (not shown in this class)
 
@@ -410,7 +410,7 @@ Task Activation
 Scheduling
 ------------
 
-* Priority based
+* Priority-based
 * No time slicing (quantum)
 * A task executes until ...
 
@@ -627,7 +627,7 @@ Execution Time Clocks
 
 * Measures the task's total execution time
     
-    - Including calls to libraries, O/S services...
+    - Including calls to libraries, OS services...
     - But not including time in a blocked or suspended state
 
 * System and runtime also execute code
