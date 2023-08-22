@@ -347,4 +347,4 @@ Containers Review
 
 * Availability depends on language-version and runtime
 
-    - Typically not available on certified runtimes (e.g. ravenscar)
+    - Typically not available on certified runtimes (e.g. Ravenscar)
