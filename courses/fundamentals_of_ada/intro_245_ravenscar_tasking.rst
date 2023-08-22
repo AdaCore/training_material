@@ -100,7 +100,7 @@ What are GNAT runtimes?
   - Baremetal and RTOS targets
   - Reduced memory footprint
   - Most of runtime, except I/O and networking
-  - Ravenscar/Jorvik tasking
+  - Ravenscar / Jorvik tasking
 
 * Light runtime
 
@@ -148,7 +148,7 @@ Two Ada Synchronization Models
    - Rendezvous
    - **Client / Server** model
 
-* In ravenscar: only **passive**
+* In Ravenscar: only **passive**
 
 =======
 Tasks
@@ -172,7 +172,7 @@ Task Declaration
 
     - For example with :ada:`delay until`
     - Or also a **protected entry guard** (see later)
-    - Because of **ravenscar scheduling** (see later)
+    - Because of **Ravenscar scheduling** (see later)
 
 -------------------------------------
 Ravenscar Tasks Declaration Example
@@ -225,7 +225,7 @@ Delay keyword
 - :ada:`delay` keyword part of tasking
 - Blocks for a time
 - Absolute: Blocks until a given :ada:`Ada.Real_Time.Time`
-- Relative: exists, but forbidden in ravenscar
+- Relative: exists, but forbidden in Ravenscar
 
 .. code:: Ada
 
@@ -338,9 +338,9 @@ Protected entries
 
    - Calling task **blocks** on the guard until it is lifted
 
-       + At most one task blocked (in ravenscar)
+       + At most one task blocked (in Ravenscar)
    
-   - At most one entry per protected type (in ravenscar)
+   - At most one entry per protected type (in Ravenscar)
 
 .. code:: Ada
 
@@ -550,8 +550,8 @@ Queue
 * **Mutual exclusion** section
 * Other tasks trying to enter
 
-    - Are forbidden (ravenscar)
-    - Or are **queued** (jorvik)
+    - Are forbidden (Ravenscar)
+    - Or are **queued** (Jorvik)
 
         + In **First-In First-Out** (FIFO) by default
 
