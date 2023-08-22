@@ -553,16 +553,12 @@ Guaranteed final control flow execution
    function X return Integer is
       V : Integer_Access := new Integer;
    begin
-      declare
-        -- At this point V exists, do some work
-
-        return V.all;
-       exception
-          when others => return 0;
-       finally
-          Free (V);
-       end;
-    end X;
+      return V.all;
+   exception
+      when others => return 0;
+   finally
+      Free (V);
+   end X;
 
 
 ====================================
@@ -572,6 +568,10 @@ New / Enhanced Programming Paradigms
 ---------------------------
 Case Pattern Matching (1/3)
 ---------------------------
+
+.. admonition:: Language Variant
+
+   In discussion
 
 * Inspired by ML-style languages (Haskell, OCaml)
 
@@ -599,6 +599,10 @@ Case Pattern Matching (1/3)
 Case Pattern Matching (2/3)
 ---------------------------
 
+.. admonition:: Language Variant
+
+   In discussion
+
 .. code:: Ada
 
    type Shape is tagged record
@@ -625,6 +629,10 @@ Case Pattern Matching (2/3)
 ---------------------------
 Case Pattern Matching (3/3)
 ---------------------------
+
+.. admonition:: Language Variant
+
+   In discussion
 
 Pattern matching allows to bind specific values and use them
 
