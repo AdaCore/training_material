@@ -6,7 +6,7 @@ package Timecards is
    type Timecard_T is limited private;
 
    function Create
-     (Name  : Name_T;
+     (Name  : Employee_Data.Name_T;
       Rate  : Employee_Data.Hourly_Rate_T;
       Hours : Hours_Worked_T)
       return Timecard_T;
@@ -16,7 +16,7 @@ package Timecards is
       return Employee_Data.Id_T;
    function Name
      (Timecard : Timecard_T)
-      return Name_T;
+      return Employee_Data.Name_T;
    function Rate
      (Timecard : Timecard_T)
       return Employee_Data.Hourly_Rate_T;
