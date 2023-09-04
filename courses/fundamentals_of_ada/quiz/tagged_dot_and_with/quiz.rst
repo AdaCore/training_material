@@ -4,23 +4,23 @@
 
 .. code:: Ada
 
-    with Pkg1; -- Defines tagged type Tag1, with primitive P
-    with Pkg2; use Pkg2; -- Defines tagged type Tag2, with primitive P
-    with Pkg3; -- Defines tagged type Tag3, with primitive P
-    use type Pkg3.Tag3;
+    with Shapes; -- Defines tagged type Shape, with primitive P
+    with Colors; use Colors; -- Defines tagged type Color, with primitive P
+    with Weights; -- Defines tagged type Weight, with primitive P
+    use type Weights.Weight;
     
     procedure Main is
-       O1 : Pkg1.Tag1;
-       O2 : Pkg2.Tag2;
-       O3 : Pkg3.Tag3;
+       The_Shape : Shapes.Shape;
+       The_Color : Colors.Color;
+       The_Weight : Weights.Weight;
 
 Which statement(s) is(are) valid?
 
-A. :answermono:`O1.P`
-B. ``P (O1)``
-C. :answermono:`P (O2)`
-D. ``P (O3)``
+A. :answermono:`The_Shape.P`
+B. ``P (The_Shape)``
+C. :answermono:`P (The_Color)`
+D. ``P (The_Weight)``
 
 .. container:: animate
 
-    D. Only operators are :ada:`use`d, should have been :ada:`use all`
+    D. :ada:'use type' only gives visibility to operators; needs to be :ada:'use all type'
