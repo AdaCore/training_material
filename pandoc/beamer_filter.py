@@ -352,11 +352,11 @@ def source_include(classes, contents):
             if len(pieces) == 3:
                 keywords[pieces[1]] = pieces[2]
 
-    code = [ keywords["code"] ]
+    code = [keywords["code"]]
     startfrom = []
     if "number-lines" in keywords.keys():
-        code.append ( "numberLines" )
-        startfrom = [ [ 'startFrom', keywords["number-lines"] ] ]
+        code.append("numberLines")
+        startfrom = [["startFrom", keywords["number-lines"]]]
 
     value0 = {}
     value0["t"] = "CodeBlock"
