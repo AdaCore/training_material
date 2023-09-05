@@ -8,7 +8,6 @@ package body Generic_List is
    end Add;
 
    procedure Sort (This : in out List_T) is
-      Temp : Element_T;
       --  Set length to number of elements in list
       Length : constant Integer := 0;
    begin

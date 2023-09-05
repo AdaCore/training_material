@@ -4,25 +4,25 @@
 
 .. code:: Ada
 
-   generic
-      type Element_T is (<>);
-      Last : in out Element_T;
-   procedure Write (P : Element_T);
-
-   Numeric        : Integer;
-   Enumerated     : Boolean;
-   Floating_Point : Float;
+       generic
+          type Element_T is (<>);
+          Last : in out Element_T;
+       procedure Write (P : Element_T);
+    
+       Numeric        : Integer;
+       Enumerated     : Boolean;
+       Floating_Point : Float;
 
 Which of the following piece(s) of code is(are) legal?
 
-A. :answermono:`procedure P is new G_P (I, X)`
-B. :answermono:`procedure P is new G_P (E, Y)`
-C. ``procedure P is new G_P (I, E'Pos (Y))``
-D. ``procedure P is new G_P (F, Z)``
+A. :answermono:`procedure Write_A is new Write (Integer, Numeric)`
+B. :answermono:`procedure Write_B is new Write (Boolean, Enumerated)`
+C. ``procedure Write_C is new Write (Integer, Integer'Pos (Enumerated))``
+D. ``procedure Write_D is new Write (Float, Floating_Point)``
 
 .. container:: animate
 
-  A. Legal
-  B. Legal
-  C. The second generic parameter has to be a variable
-  D. The first generic parameter has to be discrete
+    A. Legal
+    B. Legal
+    C. The second generic parameter has to be a variable
+    D. The first generic parameter has to be discrete

@@ -22,8 +22,8 @@ procedure Main is
    procedure Do_D is new Do_Something (Boolean, Boolean);
 
    --$ begin answer
-   -- :ada:`T2` can be almost anything, so it's not the issue
-   -- :ada:`T` must be discrete, so it cannot be :ada:`String`
+   -- * :ada:`T2` can be almost anything, so it's not the issue
+   -- * :ada:`T` must be discrete, so it cannot be :ada:`String`
    --$ end answer
 
 begin

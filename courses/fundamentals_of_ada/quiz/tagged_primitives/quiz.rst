@@ -27,7 +27,7 @@ D. | ``type T1 is tagged null record;``
 
 .. container:: animate
 
-   A. Primitive (same scope)
-   B. Primitive (T1 is not yet frozen)
-   C. T1 is frozen by its use in the instantiation
-   D. Instantiations are not primitives
+    A. Primitive (same scope)
+    B. Primitive (T1 is not yet frozen)
+    C. T1 is frozen by its use in the instantiation
+    D. Instantiations are not primitives
