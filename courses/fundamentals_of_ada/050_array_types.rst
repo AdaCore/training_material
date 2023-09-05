@@ -144,14 +144,6 @@ Kinds of Array Types
 Constrained Array Types
 =========================
 
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/constrained_array_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#constrained-array-types`
-
 -------------------------------------
 Constrained Array Type Declarations
 -------------------------------------
@@ -333,14 +325,6 @@ Quiz
 ===========================
 Unconstrained Array Types
 ===========================
-
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/unconstrained_array_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#unconstrained-array-types`
 
 ---------------------------------------
 Unconstrained Array Type Declarations
@@ -592,14 +576,6 @@ D. None: Runtime error
 Attributes
 ============
 
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/attributes.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#attributes`
-
 ------------------
 Array Attributes
 ------------------
@@ -704,14 +680,6 @@ Which comparison is False?
 Operations
 ============
 
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/operations.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#operations`
-
 -------------------------
 Object-Level Operations
 -------------------------
@@ -760,14 +728,6 @@ Extra Object-Level Operations
 * Slicing
 
    - Portion of array
-
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/slices.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#slices`
 
 ---------
 Slicing
@@ -870,14 +830,6 @@ Which statement is **not** legal?
 ==============================
 Operations Added for Ada2012
 ==============================
-
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/operations_added_for_ada2012.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#operations-added-for-ada2012`
 
 ----------------------------------------
 Default Initialization for Array Types
@@ -1072,14 +1024,6 @@ NB: Without :ada:`Default_Component_Value`, init. values are random
 ============
 Aggregates
 ============
-
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/aggregates.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#aggregates`
 
 ------------
 Aggregates

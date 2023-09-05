@@ -100,14 +100,6 @@ Tagged Derivation Ada vs C++
 Tagged Derivation
 =================
 
-----------
-Examples
-----------
-
-.. include:: examples/170_tagged_derivation/tagged_derivation.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/170_tagged_derivation.html#tagged-derivation`
-
 ---------------------------------
 Difference with Simple Derivation
 ---------------------------------

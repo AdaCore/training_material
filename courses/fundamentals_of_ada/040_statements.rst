@@ -188,14 +188,6 @@ Null Statements
 Assignment Statements
 =======================
 
-----------
-Examples
-----------
-
-.. include:: examples/040_statements/assignment_statements.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/040_statements.html#assignment-statements`
-
 -----------------------
 Assignment Statements
 -----------------------
@@ -211,14 +203,16 @@ Assignment Statements
 
    - Rejected at compile-time otherwise
 
-.. code:: Ada
+.. container:: latex_environment small
 
-   type Miles_T is range 0 .. Max_Miles;
-   type Km_T is range 0 .. Max_Kilometers
-   ...
-   M : Miles_T := 2; -- universal integer legal for any integer
-   K : Km_T := 2; -- universal integer legal for any integer
-   M := K; -- compile error
+  .. code:: Ada
+
+     type Miles_T is range 0 .. Max_Miles;
+     type Km_T is range 0 .. Max_Kilometers
+     ...
+     M : Miles_T := 2; -- universal integer legal for any integer
+     K : Km_T := 2; -- universal integer legal for any integer
+     M := K; -- compile error
 
 ----------------------------------------
 Assignment Statements, Not Expressions
@@ -375,14 +369,6 @@ Quiz
 ========================
 Conditional Statements
 ========================
-
-----------
-Examples
-----------
-
-.. include:: examples/040_statements/conditional_statements.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/040_statements.html#conditional-statements`
 
 -------------------------
 If-then-else Statements
@@ -621,14 +607,6 @@ D. | :answermono:`end case;`
 =================
 Loop Statements
 =================
-
-----------
-Examples
-----------
-
-.. include:: examples/040_statements/loop_statements.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/040_statements.html#loop-statements`
 
 ------------------------
 Basic Loops and Syntax

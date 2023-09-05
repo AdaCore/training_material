@@ -172,14 +172,6 @@ Null Values
 Pool-Specific Access Types
 ===========================
 
-----------
-Examples
-----------
-
-.. include:: examples/140_access_types/pool_specific_access_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/140_access_types.html#pool-specific-access-types`
-
 ---------------------------
 Pool-Specific Access Type
 ---------------------------

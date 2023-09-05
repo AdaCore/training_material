@@ -78,14 +78,6 @@ Library Units Review
 Circular Dependencies
 =========================
 
-----------
-Examples
-----------
-
-.. include:: examples/130_program_structure/limited_with_clauses.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/130_program_structure.html#limited-with-clauses`
-
 ------------------------------
 Handling Cyclic Dependencies
 ------------------------------
@@ -278,14 +270,6 @@ Full `with` Clause On the Package Body
 ============================
 Hierarchical Library Units
 ============================
-
-----------
-Examples
-----------
-
-.. include:: examples/130_program_structure/hierarchical_library_units.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/130_program_structure.html#hierarchical-library-units`
 
 ----------------------------------
 Problem: Packages Are Not Enough
@@ -566,14 +550,6 @@ Which is not a legal initialization of Child_Object?
 Visibility Limits
 ===================
 
-----------
-Examples
-----------
-
-.. include:: examples/130_program_structure/visibility_limits.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/130_program_structure.html#visibility-limits`
-
 -------------------------------------
 Parents Do Not Know Their Children!
 -------------------------------------
@@ -769,14 +745,6 @@ Quiz
 ===================
 Private Children
 ===================
-
-----------
-Examples
-----------
-
-.. include:: examples/130_program_structure/private_children.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/130_program_structure.html#private-children`
 
 ------------------
 Private Children
