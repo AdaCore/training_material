@@ -52,14 +52,6 @@ Classes of Types
 ==================
 
 ----------
-Examples
-----------
-
-.. include:: examples/180_polymorphism/classes_of_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/180_polymorphism.html#classes-of-types`
-
-----------
 Classes
 ----------
 
@@ -233,14 +225,6 @@ Prefix notation rules apply when the first parameter is of a class wide type
 ===============================
 Dispatching and Redispatching
 ===============================
-
-----------
-Examples
-----------
-
-.. include:: examples/180_polymorphism/dispatching_and_redispatching.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/180_polymorphism.html#dispatching-and-redispatching`
 
 ---------------------------------
 Calls on class-wide types (1/3)
@@ -437,14 +421,6 @@ What is the value returned by :ada:`F1 (Child'Class (Z));`?
 ===============================
 Exotic Dispatching Operations
 ===============================
-
-----------
-Examples
-----------
-
-.. include:: examples/180_polymorphism/exotic_dispatching_operations.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/180_polymorphism.html#exotic-dispatching-operations`
 
 -------------------------------
 Multiple dispatching operands

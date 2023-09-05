@@ -53,14 +53,6 @@ Advanced Expressions
 Membership Tests
 ==================
 
-----------
-Examples
-----------
-
-.. include:: examples/080_expressions/membership_tests.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#membership-tests`
-
 -------------------------
  "Membership" Operation
 -------------------------
@@ -220,14 +212,6 @@ Index Constraints
 =========================
 Conditional Expressions
 =========================
-
-----------
-Examples
-----------
-
-.. include:: examples/080_expressions/conditional_expressions.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#conditional-expressions`
 
 -------------------------
 Conditional Expressions

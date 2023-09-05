@@ -188,14 +188,6 @@ D. :answer:`Generics instances can create new tasks`
 Generic Contracts
 ===================
 
-----------
-Examples
-----------
-
-.. include:: examples/160_genericity/generic_data.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/160_genericity.html#generic-data`
-
 -------------
 Definitions
 -------------
@@ -300,14 +292,6 @@ Which is **not** a legal instantiation?
 =====================
 Generic Formal Data
 =====================
-
-----------
-Examples
-----------
-
-.. include:: examples/160_genericity/generic_formal_data.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/160_genericity.html#generic-formal-data`
 
 --------------------------------------------
 Generic Constants and Variables Parameters

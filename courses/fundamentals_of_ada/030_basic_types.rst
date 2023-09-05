@@ -182,14 +182,6 @@ Attributes
 Discrete Numeric Types
 ========================
 
------------
-Examples
------------
-
-.. include:: examples/030_basic_types/discrete_numeric_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/030_basic_types.html#discrete-numeric-types`
-
 ----------------------
 Signed Integer Types
 ----------------------
@@ -503,14 +495,6 @@ D. Unknown - depends on the compiler
 Enumeration Types
 ====================
 
------------
-Examples
------------
-
-.. include:: examples/030_basic_types/discrete_enumeration_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/030_basic_types.html#discrete-enumeration-types`
-
 -------------------
 Enumeration Types
 -------------------
@@ -719,14 +703,6 @@ D. :answermono:`V4 : Enum_T := Enum_T'Value ("Able Baker Charlie");`
 ============
 Real Types
 ============
-
------------
-Examples
------------
-
-.. include:: examples/030_basic_types/real_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/030_basic_types.html#real-types`
 
 ------------
 Real Types
@@ -987,14 +963,6 @@ Simple Static Type Derivation
 ==========
 Subtypes
 ==========
-
-----------
-Examples
-----------
-
-.. include:: examples/030_basic_types/subtypes.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/080_expressions.html#subtypes`
 
 ----------
 Subtype

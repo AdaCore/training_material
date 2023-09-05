@@ -71,14 +71,6 @@ Syntax and Examples
 Components Rules
 ==================
 
-----------
-Examples
-----------
-
-.. include:: examples/060_record_types/components_rules.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#components-rules`
-
 -------------------------------
 Characteristics of Components
 -------------------------------
@@ -167,14 +159,6 @@ B. :answer:`No`
 Operations
 ============
 
-----------
-Examples
-----------
-
-.. include:: examples/060_record_types/operations.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#operations`
-
 ----------------------
 Available Operations
 ----------------------
@@ -256,14 +240,6 @@ Limited Types - Quick Intro
 ============
 Aggregates
 ============
-
-----------
-Examples
-----------
-
-.. include:: examples/060_record_types/aggregates.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#aggregates`
 
 ------------
 Aggregates
@@ -540,14 +516,6 @@ D. ``X := (1, '2', 4, (others => 5))``
 ================
 Default Values
 ================
-
-----------
-Examples
-----------
-
-.. include:: examples/060_record_types/default_values.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#default-values`
 
 --------------------------
 Component Default Values

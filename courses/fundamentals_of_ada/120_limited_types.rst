@@ -111,14 +111,6 @@ Intended Effects of Copying
 Declarations
 ==============
 
-----------
-Examples
-----------
-
-.. include:: examples/120_limited_types/declarations.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/120_limited_types.html#declarations`
-
 ---------------------------
 Limited Type Declarations
 ---------------------------
@@ -268,14 +260,6 @@ Which assignment is legal?
 Creating Values
 =================
 
-----------
-Examples
-----------
-
-.. include:: examples/120_limited_types/creating_values.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/120_limited_types.html#creating-values`
-
 -----------------
 Creating Values
 -----------------
@@ -408,14 +392,6 @@ D. ``return Zero;``
 Extended Return Statements
 ============================
 
-----------
-Examples
-----------
-
-.. include:: examples/120_limited_types/extended_return_statements.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/120_limited_types.html#extended-return-statements`
-
 -------------------------------------
 Function Extended Return Statements
 -------------------------------------
@@ -523,14 +499,6 @@ Quiz
 =====================================
 Combining Limited and Private Views
 =====================================
-
-----------
-Examples
-----------
-
-.. include:: examples/120_limited_types/combining_limited_and_private_views.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/120_limited_types.html#combining-limited-and-private-views`
 
 -----------------------
 Limited Private Types

@@ -319,14 +319,6 @@ Which profile is semantically different from the others?
 Parameters
 ============
 
-----------
-Examples
-----------
-
-.. include:: examples/070_subprograms/parameters.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#parameters`
-
 ----------------------------------
 Subprogram Parameter Terminology
 ----------------------------------
@@ -859,14 +851,6 @@ Function Dynamic-Size Results
 ====================
 Potential Pitfalls
 ====================
-
-----------
-Examples
-----------
-
-.. include:: examples/070_subprograms/potential_pitfalls.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/070_subprograms.html#potential-pitfalls`
 
 -----------------------------
 Mode `out` Risk for Scalars
