@@ -1,6 +1,7 @@
 package Employee_Data is
 
    type Employee_T is limited private;
+   type Name_T is new String;         -- better implementation
    type Hourly_Rate_T is new Integer; -- better implementation
    type Id_T is new Integer;          -- better implementation
 

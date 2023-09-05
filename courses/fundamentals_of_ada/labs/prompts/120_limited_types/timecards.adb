@@ -1,7 +1,7 @@
 package body Timecards is
 
    function Create
-     (Name  : Name_T;
+     (Name  : Employee_Data.Name_T;
       Rate  : Employee_Data.Hourly_Rate_T;
       Hours : Hours_Worked_T)
       return Timecard_T is
@@ -18,7 +18,7 @@ package body Timecards is
 
    function Name
      (Timecard : Timecard_T)
-      return Name_T is
+      return Employee_Data.Name_T is
    begin
       return "";
    end Name;
