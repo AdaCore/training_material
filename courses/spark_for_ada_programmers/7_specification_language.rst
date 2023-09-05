@@ -46,13 +46,13 @@ Simple Expressions
 
     .. code:: ada
 
-       I in T'Range
+          I in T'Range
 
     is better than:
 
     .. code:: ada
 
-       I >= T'First and I <= T'Last
+          I >= T'First and I <= T'Last
 
   - Conjunctions and disjunctions
 
@@ -409,7 +409,7 @@ Expression Functions
 
 * Convenient shorthand for **repeated** subexpression
 
-  - Somewhat similar goal as delta expressions
+  - Somewhat similar goal as declare expressions
   - But visible in a **larger** scope
 
 * Simple query functions used in contracts

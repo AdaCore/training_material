@@ -217,7 +217,9 @@ Abstract Interpretation
   - If the values of :ada:`Table`, :ada:`A`, :ada:`B` are precise enough,
     AbsInt can deduce that :ada:`Idx in Table'Range`
 
-  - Otherwise, an :dfn:`alarm` is emitted (for sound analysis)
+  - Otherwise, an **alarm** is emitted (for sound analysis)
+
+|
 
 * Initialization and value of individual array cells is **not** tracked
 
@@ -238,7 +240,9 @@ Symbolic Execution and Bounded Model Checking
   - If the values of :ada:`A` and :ada:`B` are *close enough*, SymExe/BMC can
     analyze all loop iterations and deduce that :ada:`Idx in Table'Range`
 
-  - Otherwise, an alarm is emitted (for sound analysis)
+  - Otherwise, an **alarm** is emitted (for sound analysis)
+
+|
 
 * Analysis of loops is limited to few iterations (same for recursion)
 
@@ -256,7 +260,7 @@ Deductive Verification
 
   - Predicate defined by the user which restricts the calling context
   - Proof checks if the precondition entails :ada:`Idx in Table'Range`
-  - Otherwise, an alarm is emitted
+  - Otherwise, an **alarm** is emitted
 
 * Initialization and value of individual array cells is tracked
 * Analysis of loops is based on user-provided :dfn:`loop invariants`
@@ -314,6 +318,8 @@ SPARK is a Language Subset
     + e.g. arbitrary aliasing of pointers, dispatching calls in
       OOP
 
+|
+
 * SPARK hits the **sweet spot** for proof
 
   - Based on strongly typed feature-rich Ada programming language
@@ -322,6 +328,8 @@ SPARK is a Language Subset
     1. Simplify user's effort for annotating the code
 
     2. Simplify the job of automatic provers
+
+|
 
 * "SPARK" originally stands for "SPADE Ada Ratiocinative Kernel"
 
@@ -335,12 +343,15 @@ History of SPARK
   - SPARK 95 based on Ada 95
   - SPARK 2005 based on Ada 2005
 
+|
+
 * Since 2014, *SPARK* is updated annually
 
   - OO programming added in 2015
   - Concurrency added in 2016
   - Type invariants added in 2017
   - Pointers added in 2019
+  - Exceptions added in 2023
 
 ============================
 Applying SPARK in Practice
@@ -351,6 +362,9 @@ Levels of Software Assurance
 ------------------------------
 
 * Various reasons for using SPARK
+
+|
+
 * Levels of software assurance
 
   1. **Stone level** - valid SPARK
@@ -363,7 +377,12 @@ Levels of Software Assurance
 
   5. **Platinum level** - full functional proof of requirements
 
+|
+
 * Higher levels are more costly to achieve
+
+|
+
 * Higher levels build on lower levels
 
   - Project can decide to move to higher level later

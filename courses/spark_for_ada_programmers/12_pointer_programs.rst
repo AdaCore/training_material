@@ -45,7 +45,11 @@ Absence of Interferences
   - Between a parameter and a global variable
   - ... when that may lead to interferences
 
+|
+
 * Interferences when one of the variables is written
+
+|
 
 * Many features avoid direct use of pointers
 
@@ -53,6 +57,8 @@ Absence of Interferences
   - By-reference parameter passing mode
   - Address specifications :ada:`X : Integer with Address => ...`
   - Generics (avoid C-style :code:`void*` genericity)
+
+|
 
 * What about pointers?
 
@@ -64,10 +70,14 @@ Pointers and Aliasing
 
   - This violates SPARK principle of absence of interferences
 
+|
+
 * Rust programming language popularized :dfn:`ownership`
 
   - Only one pointer (the *owner*) at any time has read-write access
   - Assigning a pointer transfers its ownership
+
+|
 
 * Work on ownership in SPARK started in 2017
 
@@ -250,9 +260,13 @@ Access to Constant Data
   - Pointers in that data inherit the same property
   - This is specific to SPARK: in Ada only designated data is constant
 
+|
+
 * Also applies to constants and input parameters of composite types containing pointers
 
   - Different from constants and input parameters of access-to-variable type
+
+|
 
 * Aliasing is allowed
 
@@ -265,9 +279,15 @@ Access to Data on the Stack
   - Not allowed on global variable which would remain visible
   - Result of general access type with :ada:`access all` syntax
 
+|
+
 * :ada:`Constant'Access` of access-to-constant type
 
+|
+
 * :ada:`Variable'Access` of access-to-variable type
+
+|
 
 * Variable is *moved* and cannot be referenced anymore
 
@@ -297,14 +317,20 @@ Useful Tips
 
 * No cycles or sharing inside mutable data structures
 
+|
+
 * Global objects can also be moved temporarily
 
   - Procedure must restore some value (or null) before returning
+
+|
 
 * Allocation function returns a new object of access-to-variable type
 
   - Similar to initialized allocator with :ada:`new T'(Value)`
   - Some special *traversal functions* give access to part of an object
+
+|
 
 * Deallocation procedure simply nullifies in-out access parameter
 
@@ -358,7 +384,6 @@ Pointers and Recursion
   .. code:: ada
 
      function All_List_Zero ... with
-       Annotate => (GNATprove, Always_Return),
        Subprogram_Variant => (Structural => L);
 
 --------------------
@@ -438,6 +463,8 @@ Pointers with Aliasing (1/2)
   - :ada:`SPARK.Pointers.Pointers_With_Aliasing_Separate_Memory`
   - Only generic parameter is any type :ada:`Object`
 
+|
+
 * Both allow aliasing pointers
 
   - Type :ada:`Pointer` is private
@@ -448,7 +475,7 @@ Pointers with Aliasing (1/2)
   - All accesses through API check validity of pointer
 
 ------------------------------
-Pointers with Aliasing (1/2)
+Pointers with Aliasing (2/2)
 ------------------------------
 
 * Shared API to create, free, access pointers

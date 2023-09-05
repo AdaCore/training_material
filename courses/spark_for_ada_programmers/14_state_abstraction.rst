@@ -76,9 +76,15 @@ Dependency Contracts and Information Hiding
   - In data dependencies with aspect :ada:`Global`
   - In flow dependencies with aspect :ada:`Depends`
 
+|
+
 * These variables need to be visible
 
+|
+
 * Information hiding forbids exposing variables
+
+|
 
 * Solution is to use :dfn:`state abstraction`
 
@@ -340,7 +346,11 @@ Dependency Refinement
     + Aspect :ada:`Refined_Global` for data dependencies
     + Aspect :ada:`Refined_Depends` for flow dependencies
 
+|
+
 * :toolname:`GNATprove` verifies these specifications when present
+
+|
 
 * :toolname:`GNATprove` generates those refined contracts otherwise
 

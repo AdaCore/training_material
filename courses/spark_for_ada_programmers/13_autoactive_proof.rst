@@ -1,5 +1,5 @@
 *******************
-Auto-active Proof
+Auto-Active Proof
 *******************
 
 ..
@@ -450,10 +450,14 @@ Ghost Functions
 
 * Most common ghost entities
 
+|
+
 * Ghost functions express properties used in contracts
 
   - Typically as expression functions
   - Complete the existing API with queries only for verification
+
+|
 
 * Ghost functions can be very costly in running time
 

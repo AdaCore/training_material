@@ -42,7 +42,7 @@ Styles
 * :dfn:`This` is a definition
 * :filename:`this/is/a.path`
 * :ada:`code is highlighted`
-* :command:`commands are emphasised --like-this`
+* :command:`commands are emphasized --like-this`
 * :menu:`This` |rightarrow| :menu:`Is` |rightarrow| :menu:`An IDE Menu`
 
 ==================
@@ -123,6 +123,8 @@ Formal Verification Goals
   - Modular (analyzes modules in parallel)
   - Constructive (works on incomplete programs)
 
+|
+
 * SPARK is designed with these goals in mind. Since the eighties!
 
   - But the language and tools have evolved considerably...
@@ -201,7 +203,7 @@ Course Outline
     * Advanced topics
 
        - Pointer Programs
-       - Auto-active Proof
+       - Auto-Active Proof
        - State Abstraction
 
     * SPARK Boundary

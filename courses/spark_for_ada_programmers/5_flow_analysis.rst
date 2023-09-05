@@ -277,6 +277,8 @@ Generation of Data Dependency Contracts
   - Using either specified or generated contracts for calls
   - More precise generation for SPARK code than for Ada code
 
+|
+
 * Generated contract may be imprecise
 
   - Output may be computed as both input and output
@@ -374,7 +376,8 @@ Analysis of Array Initialization (1/2)
 
      type T is array (1 .. 10) of Boolean;
 
-     procedure Init_Array (A : out T) is -- Initialization check fails
+     -- Initialization check fails
+     procedure Init_Array (A : out T) is
      begin
         A (1) := True;
         A (2 .. 10) := (others => False);

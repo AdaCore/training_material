@@ -420,7 +420,12 @@ Contextual Analysis of Local Subprograms
   - Without contracts: no :ada:`Global`, :ada:`Pre`, :ada:`Post`, etc.
   - Additional conditions, details in the SPARK User's Guide
 
+|
+
 * Benefit: no need to add a contract
+
+|
+
 * Possible cost: proof of caller may become more complex
 
   - Add explicit contract like :ada:`Pre => True` to disable inlining of a
@@ -614,7 +619,8 @@ Dealing with False Alarms
 
   - :ada:`Reason` is a string literal for reviews
 
-    + Reason is repeated in analysis summary file :filename:`gnatprove.out`
+    + Reason is repeated in output with switch :command:`--report=all` and in
+      analysis summary file :filename:`gnatprove.out`
 
 * Justification inserted immediately after the check message location
 
