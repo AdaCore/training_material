@@ -1,0 +1,98 @@
+--declarations
+with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Strings.Fixed;
+with Ada.Strings.Unbounded;
+procedure Main is
+
+   -- hard-coded filename
+   Filename : constant String := "main.adb";
+
+   File : File_Type;
+   Line : String (1 .. 100);
+   Last : Natural;
+
+   Objects      : array (1 .. 100) of Ada.Strings.Unbounded.Unbounded_String;
+   Object_Count : Natural := 0;
+
+   Comments   : Natural := 0;
+   Semicolons : Natural := 0;
+
+   Colon : Natural;
+--declarations
+
+--extra_credit
+   function Hide_Strings
+     (Str : String)
+      return String is
+      First : Natural;
+      Last  : Natural;
+   begin
+      First := Ada.Strings.Fixed.Index (Str, """");
+      if First in Str'range then
+         Last := Ada.Strings.Fixed.Index
+             (Source  => Str (First + 1 .. Str'last),
+              Pattern => """");
+         if Last in Str'range then
+            return Ada.Strings.Fixed.Replace_Slice
+               (Str, First, Last, "");
+         end if;
+      end if;
+      return Str;
+   end Hide_Strings;
+--extra_credit
+
+--main
+begin
+
+   Open (File, In_File, Filename);
+   while not End_Of_File (File) loop
+      Get_Line (File, Line, Last);
+      declare
+         Stripped_Line : constant String := Hide_Strings (Line (1 .. Last));
+      begin
+         Comments := Comments + Ada.Strings.Fixed.Count
+             (Source  => Stripped_Line,
+              Pattern => "--");
+         Semicolons := Semicolons + Ada.Strings.Fixed.Count
+             (Source  => Stripped_Line,
+              Pattern => ";");
+
+         Colon := Ada.Strings.Fixed.Index
+             (Source  => Stripped_Line,
+              Pattern => " : ");
+         if Colon in Stripped_Line'range then
+            Object_Count           := Object_Count + 1;
+            Objects (Object_Count) :=
+              Ada.Strings.Unbounded.To_Unbounded_String
+                (Stripped_Line (1 .. Colon));
+            Ada.Strings.Unbounded.Trim
+              (Objects (Object_Count), Ada.Strings.Both);
+         end if;
+      end;
+   end loop;
+   Close (File);
+
+   Put_Line ("Comments: " & Integer'image (Comments));
+   Put_Line ("Semi-colons: " & Integer'image (Semicolons));
+
+   declare
+      Hold : Ada.Strings.Unbounded.Unbounded_String;
+      use type Ada.Strings.Unbounded.Unbounded_String;
+   begin
+      for I in 1 .. Object_Count loop
+         for J in 1 .. Object_Count - 1 loop
+            if Objects (J) > Objects (J + 1) then
+               Hold            := Objects (J);
+               Objects (J)     := Objects (J + 1);
+               Objects (J + 1) := Hold;
+            end if;
+         end loop;
+      end loop;
+   end;
+
+   Put_Line ("Objects: ");
+   for I in 1 .. Object_Count loop
+      Put_Line ("  " & Ada.Strings.Unbounded.To_String (Objects (I)));
+   end loop;
+end Main;
+--main

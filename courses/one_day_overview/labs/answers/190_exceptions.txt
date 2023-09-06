@@ -1,0 +1,63 @@
+--Numeric_Types
+package Numeric_Types is
+   Illegal_String : exception;
+   Out_Of_Range   : exception;
+
+   Max_Int : constant := 2**15;
+   type Integer_T is range -(Max_Int) .. Max_Int - 1;
+
+   function Value (Str : String) return Integer_T;
+end Numeric_Types;
+
+package body Numeric_Types is
+
+   function Legal (C : Character) return Boolean is
+   begin
+      return
+        C in '0' .. '9' or C = '+' or C = '-' or C = '_' or C = 'e' or C = 'E';
+   end Legal;
+
+   function Value (Str : String) return Integer_T is
+   begin
+      for I in Str'Range loop
+         if not Legal (Str (I)) then
+            raise Illegal_String;
+         end if;
+      end loop;
+      return Numeric_Types.Integer_T'Value (Str);
+   exception
+      when Constraint_Error =>
+         raise Out_Of_Range;
+   end Value;
+
+end Numeric_Types;
+--Numeric_Types
+
+--Main
+with Ada.Text_IO;
+with Numeric_Types;
+procedure Main is
+
+   procedure Print_Value (Str : String) is
+      Value : Numeric_Types.Integer_T;
+   begin
+      Ada.Text_IO.Put (Str & " => ");
+      Value := Numeric_Types.Value (Str);
+      Ada.Text_IO.Put_Line (Numeric_Types.Integer_T'Image (Value));
+   exception
+      when Numeric_Types.Out_Of_Range =>
+         Ada.Text_IO.Put_Line ("Out of range");
+      when Numeric_Types.Illegal_String =>
+         Ada.Text_IO.Put_Line ("Illegal entry");
+   end Print_Value;
+
+begin
+   Print_Value ("123");
+   Print_Value ("2_3_4");
+   Print_Value ("-345");
+   Print_Value ("+456");
+   Print_Value ("1234567890");
+   Print_Value ("123abc");
+   Print_Value ("12e3");
+end Main;
+--Main

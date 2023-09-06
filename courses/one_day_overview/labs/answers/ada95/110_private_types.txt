@@ -1,0 +1,269 @@
+--Colors
+package Colors is
+   type Color_T is (Red, Yellow, Green, Blue, Black);
+   type Color_Set_T is private;
+
+   Empty_Set : constant Color_Set_T;
+
+   procedure Add (Set   : in out Color_Set_T;
+                  Color :        Color_T);
+   procedure Remove (Set   : in out Color_Set_T;
+                     Color :        Color_T);
+   function Image (Set : Color_Set_T) return String;
+private
+   type Color_Set_Array_T is array (Color_T) of Boolean;
+   type Color_Set_T is record
+      Values : Color_Set_Array_T := (others => False);
+   end record;
+   Empty_Set : constant Color_Set_T := (Values => (others => False));
+end Colors;
+
+package body Colors is
+   procedure Add (Set   : in out Color_Set_T;
+                  Color :        Color_T) is
+   begin
+      Set.Values (Color) := True;
+   end Add;
+   procedure Remove (Set   : in out Color_Set_T;
+                     Color :        Color_T) is
+   begin
+      Set.Values (Color) := False;
+   end Remove;
+
+   function Image (Set   : Color_Set_T;
+                   First : Color_T;
+                   Last  : Color_T)
+                   return String is
+      function Image (Color : Color_T) return String is
+      begin
+         if Set.Values (Color) then
+            return Color_T'Image (Color);
+         else
+            return "";
+         end if;
+      end Image;
+      Str : constant String := Image (First);
+   begin
+      if First = Last then
+         return Str;
+      else
+         return Str & " " & Image (Set, Color_T'Succ (First), Last);
+      end if;
+   end Image;
+   function Image (Set : Color_Set_T) return String is
+   begin
+      return Image (Set, Color_T'First, Color_T'Last);
+   end Image;
+end Colors;
+--Colors
+
+--Flags_Spec
+with Colors;
+package Flags is
+   type Key_T is (USA, England, France, Italy);
+   type Map_Element_T is private;
+   type Map_T is private;
+
+   procedure Add (Map         : in out Map_T;
+                  Key         :        Key_T;
+                  Description :        Colors.Color_Set_T;
+                  Success     :    out Boolean);
+   procedure Remove (Map     : in out Map_T;
+                     Key     :        Key_T;
+                     Success :    out Boolean);
+   procedure Modify (Map         : in out Map_T;
+                     Key         :        Key_T;
+                     Description :        Colors.Color_Set_T;
+                     Success     :    out Boolean);
+
+   function Exists (Map : Map_T; Key : Key_T) return Boolean;
+   function Get (Map : Map_T; Key : Key_T) return Map_Element_T;
+   function Image (Item : Map_Element_T) return String;
+   function Image (Flag : Map_T) return String;
+private
+   type Map_Element_T is record
+      Key         : Key_T := Key_T'First;
+      Description : Colors.Color_Set_T := Colors.Empty_Set;
+   end record;
+   type Map_Array_T is array (1 .. 100) of Map_Element_T;
+   type Map_T is record
+      Values : Map_Array_T;
+      Length : Natural := 0;
+   end record;
+end Flags;
+--Flags_Spec
+
+package body Flags is
+
+--Flags_Body_1
+   procedure Add (Map         : in out Map_T;
+                  Key         :        Key_T;
+                  Description :        Colors.Color_Set_T;
+                  Success     :    out Boolean) is
+   begin
+      Success := True;
+      for I in 1 .. Map.Length loop
+         if Map.Values (I).Key = Key then
+            Success := False;
+            exit;
+         end if;
+      end loop;
+      if Success then
+         declare
+            New_Item : constant Map_Element_T :=
+              (Key => Key, Description => Description);
+         begin
+            Map.Length              := Map.Length + 1;
+            Map.Values (Map.Length) := New_Item;
+         end;
+      end if;
+   end Add;
+   procedure Remove (Map     : in out Map_T;
+                     Key     :        Key_T;
+                     Success :    out Boolean) is
+   begin
+      Success := False;
+      for I in 1 .. Map.Length loop
+         if Map.Values (I).Key = Key then
+            Map.Values
+              (I .. Map.Length - 1) := Map.Values
+                (I + 1 .. Map.Length);
+            Success := True;
+            exit;
+         end if;
+      end loop;
+   end Remove;
+--Flags_Body_1
+--Flags_Body_2
+   procedure Modify (Map         : in out Map_T;
+                     Key         :        Key_T;
+                     Description :        Colors.Color_Set_T;
+                     Success     :    out Boolean) is
+   begin
+      Success := False;
+      for I in 1 .. Map.Length loop
+         if Map.Values (I).Key = Key then
+            Map.Values (I).Description := Description;
+            Success                    := True;
+            exit;
+         end if;
+      end loop;
+   end Modify;
+   function Exists (Map : Map_T; Key : Key_T) return Boolean is
+   begin
+      for I in 1 .. Map.Length loop
+         if Map.Values (I).Key = Key then
+            return True;
+         end if;
+      end loop;
+      return False;
+   end Exists;
+   function Get (Map : Map_T; Key : Key_T) return Map_Element_T is
+      Ret_Val : Map_Element_T;
+   begin
+      for I in 1 .. Map.Length loop
+         if Map.Values (I).Key = Key then
+            Ret_Val := Map.Values (I);
+            exit;
+         end if;
+      end loop;
+      return Ret_Val;
+   end Get;
+   function Image (Item : Map_Element_T) return String is
+   begin
+      return Key_T'Image (Item.Key) & " => " & Colors.Image (Item.Description);
+   end Image;
+   function Image (Flag : Map_T) return String is
+      Ret_Val : String (1 .. 1_000);
+      Next    : Integer := Ret_Val'First;
+   begin
+      for I in 1 .. Flag.Length loop
+         declare
+            Item : constant Map_Element_T   := Flag.Values (I);
+            Str : constant String := Image (Item);
+         begin
+            Ret_Val (Next .. Next + Str'Length) := Image (Item) & ASCII.LF;
+            Next                                := Next + Str'Length + 1;
+         end;
+      end loop;
+      return Ret_Val (1 .. Next - 1);
+   end Image;
+--Flags_Body_2
+
+end Flags;
+
+--Input
+with Colors;
+package Input is
+   function Get return Colors.Color_Set_T;
+   function Get_Line return String;
+end Input;
+
+with Ada.Text_IO; use Ada.Text_IO;
+package body Input is
+
+   function Get_Line return String is
+      S : String (1 .. 100);
+      L : Integer;
+   begin
+      Get_Line (S, L);
+      return S (1 .. L);
+   end Get_Line;
+
+   function Get return Colors.Color_Set_T is
+      Ret_Val : Colors.Color_Set_T;
+   begin
+      Put ("Enter color(s) (");
+      for C in Colors.Color_T loop
+         Put (Colors.Color_T'Image (C) & " ");
+      end loop;
+      Put_Line ("): ");
+      loop
+         declare
+            Str : constant String := Get_Line;
+         begin
+            exit when Str'Length = 0;
+            Colors.Add (Ret_Val, Colors.Color_T'Value (Str));
+         end;
+      end loop;
+      return Ret_Val;
+   end Get;
+
+end Input;
+--Input
+
+--Main
+with Ada.Text_IO; use Ada.Text_IO;
+with Colors;
+with Flags;
+with Input;
+procedure Main is
+   Map : Flags.Map_T;
+begin
+
+   loop
+      Put ("Enter country name (");
+      for Key in Flags.Key_T loop
+         Put (Flags.Key_T'Image (Key) & " ");
+      end loop;
+      Put ("): ");
+      declare
+         Str         : constant String := Input.Get_Line;
+         Key         : Flags.Key_T;
+         Description : Colors.Color_Set_T;
+         Success     : Boolean;
+      begin
+         exit when Str'Length = 0;
+         Key         := Flags.Key_T'Value (Str);
+         Description := Input.Get;
+         if Flags.Exists (Map, Key) then
+            Flags.Modify (Map, Key, Description, Success);
+         else
+            Flags.Add (Map, Key, Description, Success);
+         end if;
+      end;
+   end loop;
+
+   Put_Line (Flags.Image (Map));
+end Main;
+--Main

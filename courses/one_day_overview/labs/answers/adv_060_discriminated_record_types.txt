@@ -1,0 +1,164 @@
+--Strings
+package Vstring is
+   Max_String_Length : constant := 1_000;
+   type Vstring_T is private;
+   function To_Vstring (Str : String) return Vstring_T;
+   function To_String (Vstr : Vstring_T) return String;
+   function "&" (L, R : Vstring_T) return Vstring_T;
+   function "&" (L : String; R : Vstring_T) return Vstring_T;
+   function "&" (L : Vstring_T; R : String) return Vstring_T;
+private
+   subtype Index_T is Integer range 0 .. Max_String_Length;
+   type Vstring_T (Length : Index_T := 0) is record
+      Text : String (1 .. Length);
+   end record;
+end Vstring;
+
+package body Vstring is
+   function To_Vstring (Str : String) return Vstring_T is
+      ((Length => Str'Length, Text => Str));
+   function To_String (Vstr : Vstring_T) return String is
+      (Vstr.Text);
+   function "&" (L, R : Vstring_T) return Vstring_T is
+      Ret_Val : constant String := L.Text & R.Text;
+   begin
+      return (Length => Ret_Val'Length, Text => Ret_Val);
+   end "&";
+
+   function "&" (L : String; R : Vstring_T) return Vstring_T is
+      Ret_Val : constant String := L & R.Text;
+   begin
+      return (Length => Ret_Val'Length, Text => Ret_Val);
+   end "&";
+
+   function "&" (L : Vstring_T; R : String) return Vstring_T is
+      Ret_Val : constant String := L.Text & R;
+   begin
+      return (Length => Ret_Val'Length, Text => Ret_Val);
+   end "&";
+end Vstring;
+--Strings
+
+--Employee_Spec
+with Vstring;     use Vstring;
+package Employee is
+
+   type Category_T is (Staff, Supervisor, Manager);
+   type Pay_T is delta 0.01 range 0.0 .. 1_000.00;
+
+   type Employee_T (Category : Category_T := Staff) is record
+      Last_Name   : Vstring.Vstring_T;
+      First_Name  : Vstring.Vstring_T;
+      Hourly_Rate : Pay_T;
+      case Category is
+         when Staff =>
+            null;
+         when Supervisor =>
+            Project : Vstring.Vstring_T;
+         when Manager =>
+            Department  : Vstring.Vstring_T;
+            Staff_Count : Natural;
+      end case;
+   end record;
+
+   function Get_Staff return Employee_T;
+   function Get_Supervisor return Employee_T;
+   function Get_Manager return Employee_T;
+
+end Employee;
+--Employee_Spec
+
+--Employee_Body
+with Ada.Text_IO; use Ada.Text_IO;
+package body Employee is
+   function Read (Prompt : String) return String is
+   begin
+      Put (Prompt & " > ");
+      return Get_Line;
+   end Read;
+
+   function Get_Staff return Employee_T is
+      Ret_Val : Employee_T (Staff);
+   begin
+      Ret_Val.Last_Name   := To_Vstring (Read ("Last name"));
+      Ret_Val.First_Name  := To_Vstring (Read ("First name"));
+      Ret_Val.Hourly_Rate := Pay_T'Value (Read ("Hourly rate"));
+      return Ret_Val;
+   end Get_Staff;
+
+   function Get_Supervisor return Employee_T is
+      Ret_Val : Employee_T (Supervisor);
+   begin
+      Ret_Val.Last_Name   := To_Vstring (Read ("Last name"));
+      Ret_Val.First_Name  := To_Vstring (Read ("First name"));
+      Ret_Val.Hourly_Rate := Pay_T'Value (Read ("Hourly rate"));
+      Ret_Val.Project     := To_Vstring (Read ("Project"));
+      return Ret_Val;
+   end Get_Supervisor;
+
+   function Get_Manager return Employee_T is
+      Ret_Val : Employee_T (Manager);
+   begin
+      Ret_Val.Last_Name   := To_Vstring (Read ("Last name"));
+      Ret_Val.First_Name  := To_Vstring (Read ("First name"));
+      Ret_Val.Hourly_Rate := Pay_T'Value (Read ("Hourly rate"));
+      Ret_Val.Department  := To_Vstring (Read ("Department"));
+      Ret_Val.Staff_Count := Integer'Value (Read ("Staff count"));
+      return Ret_Val;
+   end Get_Manager;
+end Employee;
+--Employee_Body
+
+--Main
+with Ada.Text_IO; use Ada.Text_IO;
+with Employee;
+with Vstring; use Vstring;
+procedure Main is
+   procedure Print (Member : Employee.Employee_T) is
+      First_Line : constant Vstring.Vstring_T :=
+        Member.First_Name & " " & Member.Last_Name & " " &
+        Member.Hourly_Rate'Image;
+   begin
+      Put_Line (Vstring.To_String (First_Line));
+      case Member.Category is
+         when Employee.Supervisor =>
+            Put_Line ("   Project: " & Vstring.To_String (Member.Project));
+         when Employee.Manager =>
+            Put_Line ("   Overseeing " & Member.Staff_Count'Image & " in " &
+                      Vstring.To_String (Member.Department));
+         when others => null;
+      end case;
+   end Print;
+
+   List  : array (1 .. 1_000) of Employee.Employee_T;
+   Count : Natural := 0;
+begin
+   loop
+      Put_Line ("E => Employee");
+      Put_Line ("S => Supervisor");
+      Put_Line ("M => Manager");
+      Put ("E/S/M (any other to stop): ");
+      declare
+         Choice : constant String := Get_Line;
+      begin
+         case Choice (1) is
+            when 'E' | 'e' =>
+               Count        := Count + 1;
+               List (Count) := Employee.Get_Staff;
+            when 'S' | 's' =>
+               Count        := Count + 1;
+               List (Count) := Employee.Get_Supervisor;
+            when 'M' | 'm' =>
+               Count        := Count + 1;
+               List (Count) := Employee.Get_Manager;
+            when others =>
+               exit;
+         end case;
+      end;
+   end loop;
+
+   for Item of List (1 .. Count) loop
+      Print (Item);
+   end loop;
+end Main;
+--Main

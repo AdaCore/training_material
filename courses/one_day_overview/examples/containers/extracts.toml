@@ -1,0 +1,36 @@
+[extract.decl_vector]
+source = "src/integer_vectors.ads"
+cut = 1
+
+[extract.decl_set]
+source = "src/string_id_sets.ads"
+cut = 1
+
+[extract.decl_map]
+source = "src/named_constants_maps.ads"
+cut = 1
+
+[extract.decl_instances]
+source = "src/main.adb"
+cut = 1
+
+[extract.insert]
+source = "src/main.adb"
+cut = 2
+
+[extract.iterate]
+source = "src/main.adb"
+cut = 3
+
+[extract.compare]
+source = "src/main.adb"
+cut = 4
+
+[extract.sort]
+source = "src/integer_vectors.adb"
+cut = 1
+
+[extract.search]
+source = "src/main.adb"
+cut = 5
+

@@ -1,0 +1,12 @@
+.PHONY: compile
+
+MODE ?= "Question"
+
+compile:
+	gprbuild -p --target=arm-elf --RTS=light-tasking-zynq7000 -XMode=$(MODE)
+
+test:
+	@echo ""
+	@echo "Press Ctrl+A then X to exit Qemu"
+	@echo ""
+	arm-eabi-gnatemu --board=zynq7000 obj/main

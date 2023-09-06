@@ -1,0 +1,112 @@
+project Mini_Cinema is
+
+   type Mode_T is ("Question_Sprites",
+                   "Question_Display",
+                   "Question_Format",
+                   "Question_Movie",
+                   "Question_Server",
+                   "Question_Mini_Cinema",
+                   "Answer");
+   Mode : Mode_T := external ("Mode", "Question_Sprites");
+
+   type Main_T is ("UT_Sprites",
+                   "UT_Display",
+                   "Static_Image_Display_Test",
+                   "Movie_Test",
+                   "Server_Test",
+                   "Mini_Cinema");
+   Main : Main_T := external ("Main", "UT_Sprites");
+
+   Sprites_Dir := "";
+   case Mode is
+      when "Question_Sprites" =>
+         Sprites_Dir := "src/sprites";
+      when others =>
+         Sprites_Dir := "answer/sprites";
+   end case;
+
+   Display_Dir := "";
+   case Mode is
+      when "Question_Sprites"
+         | "Question_Display" =>
+         Display_Dir := "src/display";
+      when others =>
+         Display_Dir := "answer/display";
+   end case;
+
+   Format_Dir := "";
+   case Mode is
+      when "Question_Sprites"
+         | "Question_Display"
+         | "Question_Format" =>
+         Format_Dir := "src/format";
+      when others =>
+         Format_Dir := "answer/format";
+   end case;
+
+   Movie_Dir := "";
+   case Mode is
+      when "Question_Sprites"
+         | "Question_Display"
+         | "Question_Format"
+         | "Question_Movie" =>
+         Movie_Dir := "src/movie";
+      when others =>
+         Movie_Dir := "answer/movie";
+   end case;
+
+   Server_Dir := "";
+   case Mode is
+      when "Question_Sprites"
+         | "Question_Display"
+         | "Question_Format"
+         | "Question_Movie"
+         | "Question_Server" =>
+         Server_Dir := "src/server";
+      when others =>
+         Server_Dir := "answer/server";
+   end case;
+
+   Mini_Cinema_Dir := "";
+   case Mode is
+      when "Question_Sprites"
+         | "Question_Display"
+         | "Question_Format"
+         | "Question_Movie"
+         | "Question_Server"
+         | "Question_Mini_Cinema" =>
+         Mini_Cinema_Dir := "src/mini_cinema";
+      when others =>
+         Mini_Cinema_Dir := "answer/mini_cinema";
+   end case;
+
+   for Source_Dirs use (Mini_Cinema_Dir,
+                        Server_Dir,
+                        Movie_Dir,
+                        Format_Dir,
+                        Display_Dir,
+                        Sprites_Dir,
+                        "include",
+                        "logs", "tests", "testsuite");
+   for Object_Dir use "obj";
+
+   case Main is
+      when "UT_Sprites" =>
+         for Main use ("run_test_sprites.adb");
+      when "UT_Display" =>
+         for Main use ("run_test_display.adb");
+      when "Static_Image_Display_Test" =>
+         for Main use ("static_image_display.adb");
+      when "Movie_Test" =>
+         for Main use ("simple_movie_play.adb");
+      when "Server_Test" =>
+         for Main use ("movie_server_test.adb");
+      when others =>
+         for Main use ("mini_cinema.adb");
+   end case;
+
+   package Compiler is
+      for Default_Switches ("Ada") use ("-gnata", "-gnat2022", "-gnatwa", "-Wall", "-pedantic");
+      for Local_Configuration_Pragmas use "mini_cinema.adc";
+   end Compiler;
+end Mini_Cinema;
