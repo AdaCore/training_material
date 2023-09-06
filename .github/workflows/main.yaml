@@ -63,26 +63,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Radar - Package
-        run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/radar && unzip out/radar/radar.zip -d out/radar/pkg
-
-      - name: Radar - Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: Radar labs
-          path: out/radar/pkg/*
-          if-no-files-found: error
-
-      - name: Solar System - Package
-        run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/labs/solar_system && unzip out/solar_system/solar_system.zip -d out/solar_system/pkg
-
-      - name: Solar System - Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: Solar System labs
-          path: out/solar_system/pkg/*
-          if-no-files-found: error
-
       - name: CodePeer - Package
         run: python3 contrib/ci/package_labs.py courses/codepeer/labs/ && mv out/labs out/codepeer_labs && unzip out/codepeer_labs/labs.zip -d out/codepeer_labs/pkg
 
@@ -129,16 +109,13 @@ jobs:
       - name: Update base system
         run: |
           apt update
-          apt install -y libsdl2-dev libglu1-mesa-dev freeglut3-dev libsdl2-ttf-dev python3
+          apt install -y python3
 
       - name: Install GNAT & GPRbuild
         run: |
             alr toolchain --install gnat_native=12.2.1 gprbuild=22.0.1
 
       - name: Solution build for Ada Fundamentals
-        env:
-            GNAT_SDL: extern/gnat_sdl
-            GAME_SUPPORT: extern/game_support
         run: |
             . contrib/ci/lab_env.profile
             python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada/labs

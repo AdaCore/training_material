@@ -42,11 +42,6 @@ their enclosing courses is to be able to generate "Lab Manuals" as separate
 course materials. You can also create subfolders here to store lab answers
 and supporting files.
 
-### Using the Labs
-
-Some labs will work right away, but for `solar_system` labs you will need to install
-the SDL library and wrappers first. See [`extern/README.md`](extern/README.md).
-
 ## Images
 
 All images used in any of the courses should be stored here. This allows
@@ -65,8 +60,3 @@ This folder contains files that may be useful for multiple presentation formats.
 ## Contrib
 
 This folder contains scripts that are used for generating the docs or packages.
-
-## Extern
-
-This folder contains sources that are used in support of labs (as frameworks), and are
-standalone.
