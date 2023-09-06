@@ -325,6 +325,32 @@ Contract Cases (2/2)
   - Runtime check that exactly one guard holds on entry
   - Runtime check that the corresponding consequence hold on exit
 
+-------------------
+Exceptional Cases
+-------------------
+
+* Needed when exception propagation is expected
+
+  .. code:: ada
+
+     Exceptional_Cases => (Constraint_Error => Status = Error);
+     Exceptional_Cases => (others => True); -- most general form
+
+* Different exceptions can be grouped by cases
+
+  .. code:: ada
+
+     Exceptional_Cases =>
+       (Contraint_Error | Numerical_Error => Post1,
+        Program_Error                     => Post2);
+
+* :toolname:`GNATprove` checks that **each** case holds
+
+  - When exception is raised, consequence holds on exit
+  - Attribute :ada:`Old` allowed in consequence
+
+* No runtime effect
+
 ==========================
 Contracts and Refinement
 ==========================
