@@ -239,6 +239,8 @@ Attribute :ada:`Old`
 
   - Forbidden on :ada:`limited` types
 
+|
+
 * Evaluation for the copy may raise runtime errors
 
   - Not allowed by default inside *potentially unevaluated expressions*
@@ -253,6 +255,8 @@ Attribute :ada:`Old`
          with Post =>
            (if J in A'Range then V = A (J)'Old); -- Illegal
 
+  |
+
   - Use :ada:`pragma Unevaluated_Use_Of_Old (Allow)` to allow
 
     + :toolname:`GNATprove` **checks** that this is safe
@@ -264,6 +268,8 @@ Special Cases for Attribute :ada:`Old`
 * Simple component access :ada:`X.C'Old` equivalent to :ada:`X'Old.C`
 
   - Although one may be more efficient at runtime
+
+|
 
 * Function call in the prefix of :ada:`Old` is evaluated at subprogram entry
 
@@ -316,9 +322,13 @@ Contract Cases (2/2)
   - Note: guards are evaluated **on entry**
   - Attributes :ada:`Old` and :ada:`Result` allowed in consequence
 
+|
+
 * :toolname:`GNATprove` checks that cases are **disjoint** and **complete**
 
   - All inputs allowed by the precondition are covered by a single case
+
+|
 
 * When enabled at runtime:
 
@@ -505,13 +515,14 @@ What's wrong with the following code?
 Terminating Functions
 -----------------------
 
-* **All** functions should terminate
+* Functions should **always** terminate
 
-  - Specific annotation to require proof of termination
+* Specific contract to require proof of termination of procedures
 
   .. code:: ada
 
-     Annotate => (GNATprove, Always_Return)
+     procedure P
+       with Always_Terminates => Condition;
 
 * Flow analysis proves termination in **simple cases**
 

@@ -126,6 +126,8 @@ Debugging SPARK Code
 
   - Code should be compiled with :command:`-g -O0`
 
+|
+
 * Assertions can be debugged **too**!
 
   - Code should be compiled with :command:`-gnata`
@@ -231,6 +233,8 @@ Adapting the Project File for Analysis
 Structure of :toolname:`GNATprove`
 ------------------------------------
 
+|
+
 .. image:: spark_structure.png
 
 .. container:: speakernote
@@ -308,8 +312,8 @@ Categories of Messages
 * :dfn:`Check messages` start with severity :command:`high:`,
   :command:`medium:` or :command:`low:`
 
-  - With switch :command:`--checks-as-errors`, :toolname:`GNATprove` exits with
-    error status
+  - With switch :command:`--checks-as-errors=on`, :toolname:`GNATprove` exits
+    with error status
 
 * :dfn:`Warnings` start with :command:`warning:`
 

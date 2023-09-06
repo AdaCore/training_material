@@ -76,11 +76,15 @@ Going Beyond Basic Proof
   - Ability to partially initialize variables
   - Proof deals with initialization of such variables
 
+|
+
 * Loop pragmas
 
   - Specialized pragmas to deal with loops in proof
   - Loop invariants provide the necessary help
   - Loop variants deal with loop termination
+
+|
 
 * SPARK formal containers
 
@@ -98,6 +102,8 @@ Limitations of the Initialization Policy
 
   - Forces useless initialization of unread components
 
+|
+
 * Arrays must be initialized from an aggregate
 
   - Otherwise flow analysis cannot check initialization
@@ -105,6 +111,8 @@ Limitations of the Initialization Policy
   - Except in some special cases when a heuristic works
 
     + e.g. fully initialize an array with a *for loop*
+
+|
 
 * All outputs must be fully initialized when returning
 
@@ -372,11 +380,15 @@ Loop Frame Condition (1/2)
   - All information on modified variables is lost
   - Except information preserved in the loop invariant
 
+|
+
 * This is true for the :dfn:`loop frame condition`
 
   - Variables that are not modified
   - Parts of modified variables that are preserved
   - Similar to frame condition on subprogram calls
+
+|
 
 * :toolname:`GNATprove` generates part of the frame condition
 
@@ -426,6 +438,8 @@ Classical Loop Invariants
   - Maximize loops - search element that maximizes a property
   - Update loops - update each element of the collection
 
+|
+
 * SPARK User's Guide gives detailed loop invariants
 
   - See section *7.9.2 Loop Examples*
@@ -468,15 +482,21 @@ Loop Variants (1/2)
   - Executed specially at runtime
   - Interpreted specially in proof
 
+|
+
 * Dynamic checks inserted by GNAT
 
   - When using switch :command:`-gnata`
   - Or pragma :ada:`Assertion_Policy (Loop_Variant => Check)`
   - Check that expression varies as indicated at each iteration
 
+|
+
 * Only one loop variant is needed to prove loop termination
 
   - And only on *while loop* or *plain loop*, not on *for loop*
+
+|
 
 * Same placement as for loop invariants
 
@@ -518,8 +538,9 @@ Formal Containers in SPARKlib
 * Available from SPARK Library
 
   - Distributed with SPARK Pro
-  - To use, add :code:`with "sparklib";` in project file
-  - Also need to define env var :code:`SPARKLIB_OBJECT_DIR`
+  - Copy :filename:`sparklib.gpr` or :filename:`sparklib_light.gpr` locally
+  - Set value of :code:`Object_Dir` in the copied project file
+  - To use, add :code:`with "sparklib[_light]";` in your project file
 
 * Reminder: four kinds of formal containers
 
@@ -612,6 +633,8 @@ Loop Invariants Over Formal Containers
 
   - Use scalar index :ada:`J` to access vector at :ada:`V.Element (J)`
 
+|
+
 * Iteration over positions
 
   - For vectors, same as range-based iteration (cursor is index)
@@ -620,6 +643,8 @@ Loop Invariants Over Formal Containers
     + Functional model of the container
     + Mapping from cursors to positions
     + Sequence of elements/keys of the container
+
+|
 
 * Iteration over elements
 
@@ -667,11 +692,15 @@ Difficulties With Loops Over Formal Containers
 
 * :toolname:`GNATprove` does not unroll such loops
 
+|
+
 * :toolname:`GNATprove` does not generate a frame condition
 
   - Contrary to loops over arrays
   - Need to explicitly state the frame condition using attribute
     :ada:`Loop_Entry`
+
+|
 
 * Container structure may be modified in the loop
 
@@ -723,7 +752,7 @@ Advanced Proof
 
 * Use relaxed initialization when needed
 
-  - Some variable are partially initialized
+  - Some variables are partially initialized
   - Some array variables are initialized in a loop
   - More annotations are needed with attribute :ada:`Initialized`
 

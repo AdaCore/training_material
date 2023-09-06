@@ -102,6 +102,8 @@ Richer Type Contracts
 
   - Using the aspect syntax for :ada:`Predicate` and :ada:`Type_Invariant`
 
+|
+
 * Language support goes **much beyond** contracts-as-a-library
 
   - Constraint expressed once and verified *everywhere*
@@ -111,6 +113,8 @@ Richer Type Contracts
 
        pragma Assertion_Policy (Predicate => Check);
        pragma Assertion_Policy (Type_Invariant => Ignore);
+
+|
 
 * :toolname:`GNATprove` analysis based on contracts
 
@@ -165,14 +169,20 @@ Static vs Dynamic Predicate
   - Usable mostly on scalar and enumeration types
   - That does **not** mean statically checked by the compiler
 
+|
+
 * **Dynamic** predicates are **arbitrary** boolean expressions
 
   - Applicable to array and record types
+
+|
 
 * Types with static predicates are allowed in more contexts
 
   - Used as range in a *for loop*
   - Used as choice in *case statement* or *case expression*
+
+|
 
 * Aspect :ada:`Predicate` is GNAT name for:
 
@@ -294,9 +304,11 @@ Restrictions in Usage
     + Use instead attributes :ada:`First_Valid` and :ada:`Last_Valid`
     + Not allowed on type with dynamic predicate
 
+|
+
 * Type with dynamic predicate further restricted
 
-  - Not allowed as range in a :ada:`for in ... loop`
+  - Not allowed as range in a *for loop*
   - Not allowed as choice in *case statement* or *case expression*
 
 --------------------------------
@@ -308,16 +320,22 @@ Dynamic Checking of Predicates
   - When using switch :command:`-gnata`
   - Or pragma :ada:`Assertion_Policy (Predicate => Check)`
 
+|
+
 * Placement of checks **similar** as for type constraints
 
   - On assignment and initialization
   - On conversion :ada:`T(...)` and qualification :ada:`T'(...)`
   - On parameter passing in a call
 
+|
+
 * No checks where not needed
 
   - On uninitialized objects
   - On references to an object
+
+|
 
 * No checks where that would be too expensive
 
@@ -331,15 +349,21 @@ Static Checking of Predicates
 
   - Always (independent of the choice of switches or pragmas)
 
+|
+
 * Placement of checks as for dynamic checks
 
   - Plus assignment on part of the object
   - :toolname:`GNATprove` checks objects **always** satisfy their predicate
 
+|
+
 * No checks only where not needed
 
   - On uninitialized objects
   - On references to an object
+
+|
 
 * :toolname:`GNATprove` can assume that all initialized objects satisfy their
   type constraints and predicates
@@ -381,7 +405,7 @@ Type Invariants
 What is a Type Invariant?
 ---------------------------
 
-* :ada:`Boolean` property that should always hold of objects of the type
+* Boolean property that should always hold of objects of the type
 
   - ...**outside** of its unit
   - Same use of name of the type and component names as in predicates

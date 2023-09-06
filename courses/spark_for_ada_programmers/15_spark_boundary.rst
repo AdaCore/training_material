@@ -44,10 +44,14 @@ Modelling the System
   - Usually marked as volatile for the compiler
   - This prevents compiler optimizations
 
+|
+
 * :toolname:`GNATprove` needs to model these interactions
 
   - Both in flow analysis and proof
   - Distinction between different kinds of interactions
+
+|
 
 * This modelling is used as assumptions by :toolname:`GNATprove`
 
@@ -63,9 +67,15 @@ Integrating SPARK Code
   - Some services (logging, input/output) may not be in SPARK
   - Only a core part may be in SPARK
 
+|
+
 * User needs to specify the boundary of SPARK code
 
+|
+
 * :toolname:`GNATprove` needs to model interactions with non-SPARK code
+
+|
 
 * GNAT needs to compile SPARK and non-SPARK code together
 
@@ -134,6 +144,8 @@ Volatility Properties
   - :ada:`Effective_Reads` - reading the variable changes its value
   - :ada:`Effective_Writes` - writing the variable changes its value
 
+|
+
 * Each is a Boolean aspect of volatile variables
 
   - By default a volatile variable has all four set to :ada:`True`
@@ -147,14 +159,20 @@ Volatility Properties - Examples
 
   - :ada:`Async_Writers => True`
 
+|
+
 * An actuator (program output) has aspect
 
   - :ada:`Async_Readers => True`
+
+|
 
 * A machine register (single data) has aspects
 
   - :ada:`Effective_Reads => False`
   - :ada:`Effective_Writes => False`
+
+|
 
 * A serial port (stream of data) has aspects
 
@@ -192,6 +210,8 @@ External State
 
   - Abstract state needs to have aspect :ada:`External`
 
+|
+
 * An external state is subject to the four volatility properties
 
   - All volatility properties set to :ada:`True` by default
@@ -200,6 +220,8 @@ External State
 
     + Non-volatile constituents
     + Volatile constituents with :ada:`Prop` set to :ada:`False`
+
+|
 
 * Special case for external state always initialized
 
@@ -264,12 +286,18 @@ Identifying SPARK Code
 * SPARK code is identified by pragma/aspect :ada:`SPARK_Mode` with value
   :ada:`On`
 
+|
+
 * Other values: :ada:`Off` or :ada:`Auto`
 
   - :ada:`Off` to exclude code
   - :ada:`Auto` to include only SPARK-compatible declarations (not bodies)
 
+|
+
 * Default is :ada:`On` when using :ada:`SPARK_Mode` without value
+
+|
 
 * Default is :ada:`Auto` when :ada:`SPARK_Mode` not specified
 
@@ -284,12 +312,16 @@ Sections with :ada:`SPARK_Mode`
   - :ada:`SPARK_Mode` can be :ada:`On` for spec then :ada:`On` or
     :ada:`Off` for body
 
+|
+
 * Packages can have between 1 and 4 sections:
 
   - package spec visible and private parts, package body declarations and
     statements
   - :ada:`SPARK_Mode` can be :ada:`On` for some sections then :ada:`On` or
     :ada:`Off` for the remaining sections
+
+|
 
 * :ada:`SPARK_Mode` **cannot** be :ada:`Off` for a section
 
@@ -304,6 +336,8 @@ Inheritance for :ada:`SPARK_Mode` on Subprogram
 
   - Nested subprogram or package can have :ada:`SPARK_Mode` with value
     :ada:`Off`
+
+|
 
 * Value for subprogram spec **not** inherited for subprogram body
 
@@ -440,9 +474,15 @@ Integrating SPARK and Ada Code
 
 * SPARK code has :ada:`SPARK_Mode` with value :ada:`On`
 
+|
+
 * Ada code has no :ada:`SPARK_Mode` or with value :ada:`Off`
 
+|
+
 * GNAT compiles all code together
+
+|
 
 * Contracts on Ada subprograms must be correct
 
@@ -544,10 +584,14 @@ Modelling an API
   - Implementation may be in Ada, C, Rust...
   - Implementation may be in the Operating System
 
+|
+
 * Relevant global data should be modelled
 
   - As abstract states when not accessed concurrently
   - As external states when accessed concurrently
+
+|
 
 * API subprogram contracts model actual behavior
 

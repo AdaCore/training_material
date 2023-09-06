@@ -152,14 +152,13 @@ Excluded Ada Features
 
   - Can create loops, which require a specific treatment in formal verification
 
+|
+
 * Controlled types
 
   - Creates complex control flow with implicit calls
 
-* Exception handlers
-
-  - Creates complex control flow across calls
-  - **Raising** exceptions is **allowed**
+|
 
 * Tasking features: :ada:`accept` statement (aka :dfn:`rendezvous`),
   :ada:`requeue` statement, :ada:`select` statement, etc
@@ -175,6 +174,9 @@ Support for Generics
 ----------------------
 
 * Only **instances** of generics are analyzed
+
+|
+
 * Analysis of generics themselves would require:
 
   - Extending the SPARK language with new specifications
@@ -183,6 +185,8 @@ Support for Generics
     + To add dependency contracts to formal subprogram parameters
 
   - More efforts from users to annotate programs
+
+|
 
 * **No restrictions** regarding use of generics
 
@@ -265,6 +269,8 @@ Functions Without Side-Effects
   - Writing to an :ada:`out` or :ada:`in out` parameter
   - Reading a volatile variable
 
+|
+
 * But :dfn:`volatile functions` can read a volatile variable
 
   - Details discussed in the course on SPARK Boundary
@@ -301,9 +307,13 @@ Benefits of Functions Without Side-Effects
   - **Unambiguous** evaluation of expressions
   - Simplifies both flow analysis and proof
 
+|
+
 * Specifications and assertions have no side-effects
 
   - As specifications and assertions are expressions
+
+|
 
 * SPARK functions are **mathematical functions** from inputs to a result
 
@@ -319,10 +329,14 @@ Absence of Interferences
   - and the code writes to :ada:`A`, then reads :ada:`B`
   - or the code writes to :ada:`A` and to :ada:`B`
 
+|
+
 * Interferences are caused by passing parameters
 
   - Parameter and global variable may designate the same object
   - Two parameters may designate the same object
+
+|
 
 * Thus no interferences on function calls!
 
@@ -390,11 +404,15 @@ Benefits of Absence of Interferences
 
   - **Simplifies** both flow analysis and proof
 
+|
+
 * No need for users to add specifications about separation
 
   - Between parameters and global variables
   - Between parameters themselves
   - Between parts of objects (one could be a part of another)
+
+|
 
 * Program behavior does not depend on parameter-passing mechanism
 

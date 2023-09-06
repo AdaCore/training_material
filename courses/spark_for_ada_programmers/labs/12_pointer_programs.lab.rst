@@ -6,9 +6,7 @@ Pointer Programs Lab
 
    + You can copy it locally, or work with it in-place
 
-- Define variable :code:`SPARKLIB_OBJECT_DIR` to have value :code:`\$PWD/obj` in the environment
-
-  - For example with bash/zsh: :command:`export SPARKLIB_OBJECT_DIR=\$PWD/obj`
+- Copy locally :finename:`sparklib.gpr` from your SPARK install and set :code:`Object_Dir`
 
 - In that directory, open the project :filename:`lab.gpr` in :toolname:`GNAT Studio`
 
