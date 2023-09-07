@@ -109,9 +109,9 @@ Ada Type Model
     - User-defined
     - Checked at compilation and run-time
 
-----------------------------------------
+------------------------------------------
 Strongly-Typed vs Weakly-Typed Languages
-----------------------------------------
+------------------------------------------
 
 * Weakly-typed:
 
@@ -347,9 +347,9 @@ Contract-Based Programming
 
       type Table is private with Invariant => Sorted (Table); -- Guarantee
 
---------------------------
+----------------------------
 Language-Based Concurrency
---------------------------
+----------------------------
 
 * **Expressive**
 
@@ -368,9 +368,9 @@ Language-Based Concurrency
    - People
    - OS & Vendors
 
------------------------
+------------------------
 Concurrency Mechanisms
------------------------
+------------------------
 
 * Task
 
