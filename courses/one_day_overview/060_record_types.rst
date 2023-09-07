@@ -373,14 +373,6 @@ D. ``X := (1, '2', 4, (others => 5))``
 Default Values
 ================
 
-----------
-Examples
-----------
-
-.. include:: examples/060_record_types/default_values.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/060_record_types.html#default-values`
-
 --------------------------
 Component Default Values
 --------------------------

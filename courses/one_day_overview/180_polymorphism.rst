@@ -40,14 +40,6 @@ Classes of Types
 ==================
 
 ----------
-Examples
-----------
-
-.. include:: examples/180_polymorphism/classes_of_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/180_polymorphism.html#classes-of-types`
-
-----------
 Classes
 ----------
 
