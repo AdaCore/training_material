@@ -144,14 +144,6 @@ Kinds of Array Types
 Constrained Array Types
 =========================
 
-----------
-Examples
-----------
-
-.. include:: examples/050_array_types/constrained_array_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/050_array_types.html#constrained-array-types`
-
 -------------------------------------
 Constrained Array Type Declarations
 -------------------------------------

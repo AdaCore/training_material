@@ -117,14 +117,6 @@ Attributes
 Discrete Numeric Types
 ========================
 
------------
-Examples
------------
-
-.. include:: examples/030_basic_types/discrete_numeric_types.rst
-
-:url:`https://learn.adacore.com/training_examples/fundamentals_of_ada/030_basic_types.html#discrete-numeric-types`
-
 ----------------------
 Signed Integer Types
 ----------------------
