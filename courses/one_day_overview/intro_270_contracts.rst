@@ -379,6 +379,7 @@ Invariants Don't Apply Internally
      -- invariant is now true
    end Open;
 
+====================
 Subtype Predicates
 ====================
 
