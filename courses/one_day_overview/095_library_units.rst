@@ -31,10 +31,6 @@ Library Units
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-==============
-Introduction
-==============
-
 ===============
 Library Units
 ===============
@@ -71,52 +67,6 @@ Objects In Library Packages
      X : Integer; -- valid object for life of application
      Y : Float;    -- valid object for life of application
    end Named_Common;
-
----------------------------------
-Objects In Non-library Packages
----------------------------------
-
-* Exist as long as region enclosing the package
-
-.. code:: Ada
-
-   procedure P is
-     X : Integer; -- available while in P and Inner
-     package Inner is
-       Z : Boolean; -- available while in Inner
-     end Inner;
-     Y : Float; -- available while in P
-   begin
-     ...
-   end P;
-
---------------------------
-Library Unit Subprograms
---------------------------
-
-* Recall: separate declarations are optional
-
-   - Body can act as declaration if no declaration provided
-
-* Separate declaration provides usual benefits
-
-   - Changes/recompilation to body only require relinking clients
-
-* File 1 (p.ads for GNAT)
-
-   .. code:: Ada
-
-      procedure P (F : in Integer);
-
-* File 2 (p.adb for GNAT)
-
-   .. code:: Ada
-
-      procedure P (F : in Integer) is
-      begin
-        ...
-      end P;
-
 --------------------------
 Library Unit Subprograms
 --------------------------

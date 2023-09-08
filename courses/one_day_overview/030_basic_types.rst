@@ -50,21 +50,6 @@ Ada Type Model
    - **Explicit** conversion for "related" types
    - **Unchecked** conversions possible
 
----------------
-Strong Typing
----------------
-
-* Definition of :dfn:`type`
-
-   - Applicable **values**
-   - Applicable :dfn:`primitive` **operations**
-
-* Compiler-enforced
-
-   - **Check** of values and operations
-   - Easy for a computer
-   - Developer can focus on **earlier** phase: requirement
-
 -------------------------
 Ada "Named Typing"
 -------------------------
@@ -145,16 +130,6 @@ Signed Integer Types
          ...
       end;
 
---------------------------------
-Specifying Integer Type Bounds
---------------------------------
-
-* Must be **static**
-
-   - Compiler selects **base type**
-   - Hardware-supported integer type
-   - Compilation **error** if not possible
-
 -----------------
 Integer Overflows
 -----------------
@@ -174,6 +149,8 @@ Integer Overflows
 
    =======================
     2#1000_0000_0000_0000#  = -32,768
+
+* Ada will raise an exception instead of allowing an overflow
 
 ----------------------------------
 Range Attributes For All Scalars
@@ -397,25 +374,3 @@ Floating Point Type Attributes
 
    - Advanced machine representation of the floating-point type
    - Mantissa, strict mode
-
----------------------------
-Numeric Types Conversion
----------------------------
-
-* Ada's integer and real are :dfn:`numeric`
-
-    - Holding a numeric value
-
-* Special rule: can always convert between numeric types
-
-    - Explicitly
-    - :ada:`Float` |rightarrow| :ada:`Integer` causes **rounding**
-
-.. code:: Ada
-
-   declare
-      N : Integer := 0;
-      F : Float := 1.5;
-   begin
-      N := Integer (F); -- N = 2
-      F := Float (N); -- F = 2.0

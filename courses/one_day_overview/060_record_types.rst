@@ -117,7 +117,7 @@ Aggregates
       (Pos_1_Value,
        Pos_2_Value,
        Component_3 => Pos_3_Value,
-       Component_4 => <>, -- Default value (Ada 2005)
+       Component_4 => <>,
        others => Remaining_Value)
 
 ---------------------------
@@ -145,49 +145,6 @@ Record Aggregate Examples
    begin
       Phase := (Real => 5.6, Imaginary => 7.8);
    end;
-
-------------------------
-Aggregate Completeness
-------------------------
-
-.. container:: columns
-
- .. container:: column
-
-    * All component values must be accounted for
-
-       - Including defaults via ``box``
-
-    * Allows compiler to check for missed components
-    * Type definition
-
-       .. code:: Ada
-
-          type Struct is record
-              A : Integer;
-              B : Integer;
-              C : Integer;
-              D : Integer;
-            end record;
-          S : Struct;
-
- .. container:: column
-
-    * Compiler will not catch the missing component
-
-       .. code:: Ada
-
-          S.A := 10;
-          S.B := 20;
-          S.C := 12;
-          Send (S);
-
-    * Aggregate must be complete - compiler error
-
-       .. code:: Ada
-
-          S := (10, 20, 12);
-          Send (S);
 
 --------------------
 Named Associations
@@ -239,135 +196,6 @@ Nested Aggregates
   Heather : Person := ((2, March, 1989), Hair => Blond);
   Megan : Person   := (Hair => Blond,
                        Born => (16, December, 2001));
-
-------------------------------------
-Aggregates with Only One Component
-------------------------------------
-
-* **Must** use named form
-* Same reason as array aggregates
-
-.. code:: Ada
-
-   type Singular is record
-      A : Integer;
-   end record;
-
-   S : Singular := (3);          -- illegal
-   S : Singular := (3 + 1);      -- illegal
-   S : Singular := (A => 3 + 1); -- required
-
---------------------------
-Aggregates with `others`
---------------------------
-
-* Indicates all components not yet specified (like arrays)
-* All :ada:`others` get the same value
-
-  - They must be the **exact same** type
-
-.. code:: Ada
-
-   type Poly is record
-      A : Float;
-      B, C, D : Integer;
-   end record;
-
-   P : Poly := (2.5, 3, others => 0);
-
-   type Homogeneous is record
-      A, B, C : Integer;
-   end record;
-
-   Q : Homogeneous := (others => 10);
-
-------
-Quiz
-------
-
-What is the result of building and running this code?
-
-.. code:: Ada
-
-   procedure Main is
-      type Record_T is record
-         A, B, C : Integer := 0;
-      end record;
-
-      V : Record_T := (A => 1);
-   begin
-      Put_Line (Integer'Image (V.A));
-   end Main;
-
-A. ``0``
-B. ``1``
-C. :answer:`Compilation error`
-D. Runtime error
-
-.. container:: animate
-
-   The aggregate is incomplete. The aggregate must specify all components. You could use box notation :ada:`(A => 1, others => <>)`
-
-------
-Quiz
-------
-
-What is the result of building and running this code?
-
-.. code:: Ada
-
-   procedure Main is
-      type My_Integer is new Integer;
-      type Record_T is record
-         A, B, C : Integer := 0;
-         D : My_Integer := 0;
-      end record;
-
-      V : Record_T := (others => 1);
-   begin
-      Put_Line (Integer'Image (V.A));
-   end Main;
-
-A. ``0``
-B. ``1``
-C. :answer:`Compilation error`
-D. Runtime error
-
-.. container:: animate
-
-   All components associated to a value using :ada:`others` must be of the same :ada:`type`.
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-   type Nested_T is record
-      Field : Integer := 1_234;
-   end record;
-   type Record_T is record
-      One   : Integer := 1;
-      Two   : Character;
-      Three  : Integer := -1;
-      Four  : Nested_T;
-   end record;
-   X, Y : Record_T;
-   Z    : constant Nested_T := (others => -1);
-
-Which assignment(s) is(are) **not** legal?
-
-A. :answermono:`X := (1, '2', Three => 3, Four => (6))`
-B. ``X := (Two => '2', Four => Z, others => 5)``
-C. ``X := Y``
-D. ``X := (1, '2', 4, (others => 5))``
-
-.. container:: animate
-
-   A. :ada:`Four` **must** use named association
-   B. :ada:`others` valid: :ada:`One` and :ada:`Three` are :ada:`Integer`
-   C. Valid but :ada:`Two` is not initialized
-   D. Positional for all components
 
 ================
 Default Values

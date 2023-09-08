@@ -35,23 +35,6 @@ Private Types
 Implementing Abstract Data Types via Views
 ============================================
 
----------------------------------------------
-Package Visible and Private Parts for Views
----------------------------------------------
-
-* Declarations in visible part are exported to users
-* Declarations in private part are hidden from users
-
-   - No compilable references to type's actual representation
-
-.. code:: Ada
-
-   package name is
-   ... exported declarations of types, variables, subprograms ...
-   private
-   ... hidden declarations of types, variables, subprograms ...
-   end name;
-
 -----------------------------------
 Declaring Private Types for Views
 -----------------------------------
@@ -84,43 +67,6 @@ Declaring Private Types for Views
    private
      type Valve is ...
    end Control;
-
----------------------------------
-Partial and Full Views of Types
----------------------------------
-
-* Private type declaration defines a :dfn:`partial view`
-
-   - The type name is visible
-   - Only designer's operations and some predefined operations
-   - No references to full type representation
-
-* Full type declaration defines the :dfn:`full view`
-
-   - Fully defined as a record type, scalar, imported type, etc...
-   - Just an ordinary type within the package
-
-* Operations available depend upon one's view
-
----------------------------------
-Software Engineering Principles
----------------------------------
-
-* Encapsulation and abstraction enforced by views
-
-   - Compiler enforces view effects
-
-* Same protection as hiding in a package body
-
-   - Recall "Abstract Data Machines" idiom
-
-* Additional flexibility of types
-
-   - Unlimited number of objects possible
-   - Passed as parameters
-   - Components of array and record types
-   - Dynamically allocated
-   - et cetera
 
 -----------------------------------
 Users Declare Objects of the Type
@@ -212,48 +158,6 @@ Private Part Location
             ...
           end User;
 
---------------------------------
-Private Part and Recompilation
---------------------------------
-
-* Private part is part of the specification
-
-   - Compiler needs info from private part for users' code, e.g., storage layouts for private-typed objects
-
-* Thus changes to private part require user recompilation
-* Some vendors avoid "unnecessary" recompilation
-
-   - Comment additions or changes
-   - Additions which nobody yet references
-
----------------------
-Declarative Regions
----------------------
-
-* Declarative region of the spec extends to the body
-
-   - Anything declared there is visible from that point down
-   - Thus anything declared in specification is visible in body
-
-.. code:: Ada
-
-   package Foo is
-      type Private_T is private;
-      procedure X (B : in out Private_T);
-   private
-      -- Y and Hidden_T are not visible to users
-      procedure Y (B : in out Private_T);
-      type Hidden_T is ...;
-      type Private_T is array (1 .. 3) of Hidden_T;
-   end Foo;
-
-   package body Foo is
-      -- Z is not visible to users
-      procedure Z (B : in out Private_T) is ...
-      procedure Y (B : in out Private_T) is ...
-      procedure X (B : in out Private_T) is ...
-    end Foo;
-
 -----------------------
 Full Type Declaration
 -----------------------
@@ -296,38 +200,6 @@ Full Type Declaration
 =================
 View Operations
 =================
-
------------------
-View Operations
------------------
-
-* A matter of inside versus outside the package
-
-   - Inside the package the view is that of the designer
-   - Outside the package the view is that of the user
-
-.. container:: latex_environment footnotesize
-
- .. container:: columns
-
-  .. container:: column
-
-    * **User** of package has **Partial** view
-
-       - Operations exported by package
-       - Basic operations
-
-  .. container:: column
-
-    * **Designer** of package has **Full** view
-
-       - **Once** completion is reached
-       - All operations based upon full definition of type
-       - Indexed components for arrays
-       - components for records
-       - Type-specific attributes
-       - Numeric manipulation for numerics
-       - et cetera
 
 -------------------------------------
 Designer View Sees Full Declaration

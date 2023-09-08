@@ -31,58 +31,6 @@ Declarations
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-==============
-Introduction
-==============
-
----------------------
-Identifiers
----------------------
-
-.. image:: identifier_flow.png
-   :width: 60%
-
-.. container:: columns
-
- .. container:: column
-
-   * Legal identifiers
-
-      .. code:: Ada
-
-         Phase2
-         A
-         Space_Person
-
- .. container:: column
-
-   * Not legal identifiers
-
-      .. code:: Ada
-
-         Phase2__1
-         A_
-         _space_person
-
-----------------
-String Literals
-----------------
-.. |rightarrow| replace:: :math:`\rightarrow`
-
-.. code:: Ada
-
-   A_Null_String : constant string := "";
-      -- two double quotes with nothing inside
-   String_Of_Length_One : constant string := "A";
-   Embedded_Single_Quotes : constant string :=
-                            "Embedded 'single' quotes";
-   Embedded_Double_Quotes : constant string :=
-                            "Embedded ""double"" quotes";
-
-.. container:: speakernote
-
-   Note that the last example literal (that has embedded double quotes) is not an example of concatenation!
-
 ====================================
 Identifiers, Comments, and Pragmas
 ====================================
@@ -126,8 +74,11 @@ Pragmas
 
 * Compiler directives
 
-   - Compiler action *not part of* Ada grammar
-   - Only **suggestions**, may be **ignored**
+   - Compiler action
+   - Serve various roles
+      - May suggest or modify compiler behavior
+      - May restrict feature usage
+      - May generate specfic code
    - Either standard or implementation-defined
 
 * Unrecognized pragmas

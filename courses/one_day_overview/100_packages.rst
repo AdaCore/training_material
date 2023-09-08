@@ -32,52 +32,6 @@ Packages
 .. |checkmark| replace:: :math:`\checkmark`
 
 ==============
-Introduction
-==============
-
-----------
-Packages
-----------
-
-* Enforce separation of client from implementation
-
-   - In terms of compile-time visibility
-   - For data
-   - For type representation, when combined with :ada:`private` types
-
-      + Abstract Data Types
-
-* Provide basic namespace control
-* Directly support software engineering principles
-
-   - Especially in combination with :ada:`private` types
-   - Modularity
-   - Information Hiding (Encapsulation)
-   - Abstraction
-   - Separation of Concerns
-
------------------------------------------
-Separating Interface and Implementation
------------------------------------------
-
-* :dfn:`Implementation` and :dfn:`specification` are textually distinct from each other
-
-   - Typically in separate files
-
-* Clients can compile their code before body exists
-
-   - All they need is the package specification
-   - Full client/interface consistency is guaranteed
-
-.. code:: Ada
-
-   package Float_Stack is
-     Max : constant := 100;
-     procedure Push (X : in Float);
-     procedure Pop (X : out Float);
-   end Float_Stack;
-
-==============
 Declarations
 ==============
 

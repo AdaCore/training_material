@@ -92,13 +92,9 @@ Parameter Associations In Calls
 
    Activate (This => Idle, True); -- ERROR
 
-==================
+------------------
 Block Statements
-==================
-
---------------------------
-Block Statements Example
---------------------------
+------------------
 
 .. code:: Ada
 
@@ -118,10 +114,6 @@ Block Statements Example
       Print (U);
       Print (V);
    end;
-
-=================
-Null Statements
-=================
 
 -----------------
 Null Statements
@@ -144,10 +136,6 @@ Null Statements
      when Saturday .. Sunday =>
        null;
    end case;
-
-=======================
-Assignment Statements
-=======================
 
 -----------------------
 Assignment Statements
@@ -238,7 +226,6 @@ If-then-elsif Statements
  .. container:: column
 
   .. code:: Ada
-     :number-lines: 1
 
      if Valve(N) /= Closed then
        Isolate (Valve(N));
@@ -252,7 +239,6 @@ If-then-elsif Statements
  .. container:: column
 
   .. code:: Ada
-     :number-lines: 1
 
      if Valve(N) /= Closed then
        Isolate (Valve(N));
