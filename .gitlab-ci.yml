@@ -1,0 +1,6 @@
+check-lint:
+  services:
+    - image:ada-trainings
+  stage: build
+  script:
+      - python3 contrib/fix_broken_titles.py --check
