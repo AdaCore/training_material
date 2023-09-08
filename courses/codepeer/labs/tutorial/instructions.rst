@@ -45,6 +45,7 @@ The filters only apply to the locations view.
 Understanding Messages
 **********************
 
+======
 Checks
 ======
 
@@ -129,6 +130,7 @@ indeed returned when the first character read on line
 * Re-run CodePeer by selecting the menu :menuselection:`CodePeer -> Analyze All`.
 * Notice that the error on :file:`tokens.adb` has disappeared.
 
+========
 Warnings
 ========
 
@@ -189,6 +191,7 @@ such preconditions.
 
 The two messages in files :file:`stack.adb` and :file:`values.adb` should no longer be present.
 
+==============
 False Positive
 ==============
 
@@ -240,6 +243,7 @@ points within the bounds of `Line`. This is not as easy as it seems!
 Understanding Annotations
 *************************
 
+=================
 Basic Annotations
 =================
 
@@ -279,6 +283,7 @@ states that the output value of `Last` will be in the range 1..200::
 
 We will explain the last postcondition in the next section.
 
+========================
 More Complex Annotations
 ========================
 
