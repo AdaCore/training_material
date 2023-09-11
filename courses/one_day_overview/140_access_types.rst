@@ -31,9 +31,9 @@ Access Types
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-==============
-Introduction
-==============
+==========================
+Access Types
+==========================
 
 ---------------------
 Access Types Design
@@ -64,10 +64,6 @@ Access Types Design
      int * P_CPP = new int;
      int * G_C = &Some_Int;
 .
-
-==========================
-Access Types
-==========================
 
 ----------------------
 Declaration Location
@@ -117,27 +113,6 @@ Null Values
       end if
       V := new Integer'(0);
       V := null; -- semantically correct, but memory leak
-
----------------------------
-Access Types and Primitives
----------------------------
-
-* Subprogram using an access type are primitive of the **access type**
-
-    - **Not** the type of the accessed object
-
-   .. code:: Ada
-
-         type A_T is access all T;
-         procedure Proc (V : A_T); -- Primitive of A_T, not T
-
-* Primitive of the type can be created with the :ada:`access` mode
-
-    - **Anonymous** access type
-
-   .. code:: Ada
-
-         procedure Proc (V : access T); -- Primitive of T
 
 ------------------------
 Dereferencing Pointers

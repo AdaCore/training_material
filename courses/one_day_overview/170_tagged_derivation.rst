@@ -166,10 +166,6 @@ Primitives
 Overriding Indicators
 ---------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * Optional :ada:`overriding` and :ada:`not overriding` indicators
 
    .. code:: Ada
@@ -196,10 +192,6 @@ Overriding Indicators
 -----------------
 Prefix Notation
 -----------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Tagged types primitives can be called as usual
 * The call can use prefixed notation

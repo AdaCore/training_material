@@ -35,29 +35,9 @@ Program Structure
 Hierarchical Library Units
 ============================
 
-----------------------------------
-Problem: Packages Are Not Enough
-----------------------------------
-
-* Extensibility is a problem for private types
-
-   - Provide excellent encapsulation and abstraction
-   - But one has either complete visibility or essentially none
-   - New functionality must be added to same package for sake of compile-time visibility to representation
-   - Thus enhancements require editing/recompilation/retesting
-
-* Should be something "bigger" than packages
-
-   - Subsystems
-   - Directly relating library items in one name-space
-
-      + One big package has too many disadvantages
-
-   - Avoiding name clashes among independently-developed code
-
---------------------------------------
-Solution: Hierarchical Library Units
---------------------------------------
+----------------------------
+Hierarchical Library Units
+---------------------------
 
 .. container:: columns
 

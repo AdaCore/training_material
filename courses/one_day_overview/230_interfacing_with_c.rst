@@ -31,27 +31,6 @@ Interfacing with C
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-==============
-Introduction
-==============
-
---------------
-Introduction
---------------
-
-* Lots of C code out there already
-
-   - Maybe even a lot of reusable code in your own repositories
-
-* Need a way to interface Ada code with existing C libraries
-
-   - Built-in mechanism to define ability to import objects from C or export Ada objects
-
-* Passing data between languages can cause issues
-
-   - Sizing requirements
-   - Passing mechanisms (by reference, by copy)
-
 =================
 Import / Export
 =================
@@ -119,18 +98,6 @@ Pragma Import / Export (2/2)
 ===================
 Parameter Passing
 ===================
-
------------------------------
-Parameter Passing to/from C
------------------------------
-
-* The mechanism used to pass formal subprogram parameters and function results depends on:
-
-   - The type of the parameter
-   - The mode of the parameter
-   - The Convention applied on the Ada side of the subprogram declaration
-
-* The exact meaning of *Convention C*, for example, is documented in *LRM* B.1 - B.3, and in the *GNAT User's Guide* section 3.11.
 
 -----------------------------------
 Passing Scalar Data as Parameters

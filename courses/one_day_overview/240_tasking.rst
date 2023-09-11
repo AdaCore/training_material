@@ -430,27 +430,3 @@ Non-blocking Accept or Entry
    else
       Put_Line ("Receive message not called");
    end select;
-
-------
-Queue
-------
-
-* Protected :ada:`entry` or :ada:`procedure` and tasks :ada:`entry` are activated by **one** task at a time
-* **Mutual exclusion** section
-* Other tasks trying to enter are **queued**
-
-    - In **First-In First-Out** (FIFO) by default
-
-* When the server task **terminates**, tasks still queued receive :ada:`Tasking_Error`
-
-----------------
-Advanced Tasking
-----------------
-
-Other constructions are available
-
-* **Guard condition** on :ada:`accept`
-* :ada:`requeue` to **defer** handling of an :ada:`entry` call
-* :ada:`terminate` the task when no :ada:`entry` call can happen anymore
-* :ada:`abort` to stop a task immediately
-* :ada:`select ... then abort` some other task

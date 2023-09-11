@@ -55,29 +55,6 @@ Introduction
        - Guarantees supplier's conditions are met
        - Requires result to follow the subprogram's guarantees
 
----------------
-Ada Contracts
----------------
-
-* Ada contracts include enforcement
-
-   - At compile-time: specific constructs, features, and rules
-   - At run-time: language-defined and user-defined exceptions
-
-* Facilities prior to Ada 2012
-
-   - Range specifications
-   - Parameter modes
-   - Generic contracts
-   - OOP :ada:`interface` types (Ada 2005)
-   - Work well, but on a restricted set of use-cases
-
-* Contracts aspects are explicitly added in **Ada 2012**
-
-   - Carried by subprograms
-   - ... or by types (seen later)
-   - Can have **arbitrary** conditions, more **versatile**
-
 ------------------
 :dfn:`Assertion`
 ------------------
@@ -170,55 +147,6 @@ Subprogram-based Assertions
              Post => not Empty (This)
                      and Top (This) = Value;
 
----------------
-Preconditions
----------------
-
-* Define obligations on client for successful call
-
-   - Precondition specifies required conditions
-   - Clients must meet precondition for supplier to succeed
-
-* Boolean expressions
-
-   - Arbitrary complexity
-   - Specified via aspect name :ada:`Pre`
-
-* Checked prior to call by client
-
-   - :ada:`Assertion_Error` raised if false
-
-.. code:: Ada
-
-   procedure Push (This : in out Stack;  Value : Content)
-     with Pre => not Full (This);
-
-----------------
-Postconditions
-----------------
-
-* Define obligations on supplier
-
-   - Specify guaranteed conditions after call
-
-* Boolean expressions (same as preconditions)
-
-   - Specified via aspect name :ada:`Post`
-
-* Content as for preconditions, plus some extras
-* Checked after corresponding subprogram call
-
-   - :ada:`Assertion_Error` raised if false
-
-.. code:: Ada
-
-   procedure Push (This : in out Stack;  Value : Content)
-     with Pre  => not Full (This),
-          Post => not Empty (This) and Top (This) = Value;
-   ...
-   function Top (This : Stack) return Content
-     with Pre => not Empty (This);
-
 -------------------------------------
 Postcondition :ada:`'Old` Attribute
 -------------------------------------
@@ -254,19 +182,6 @@ Function Postcondition :ada:`'Result` Attribute
           Post =>  Is_GCD (A, B,
                            Greatest_Common_Denominator'Result);
 
-------------------------------------------
-Preconditions and Postconditions Example
-------------------------------------------
-
-* Multiple aspects separated by commas
-
-.. code:: Ada
-
-     procedure Push (This : in out Stack;
-                     Value : Content)
-       with Pre  => not Full (This),
-            Post => not Empty (This) and Top (This) = Value;
-
 ================
 Type Invariants
 ================
@@ -299,38 +214,6 @@ Strong Typing
 
    * Property of type that is always true, unconditionally
    * Can add arbitrary constraints to a type, unlike the "basic" type system
-
-------------------------------
-Type Invariant Verifications
-------------------------------
-
-* Automatically inserted by compiler
-* Evaluated as postcondition of creation, evaluation, or return object
-
-   - When objects first created
-   - Assignment by clients
-   - Type conversions
-
-      * Creates new instances
-
-* Not evaluated on internal state changes
-
-   - Internal routine calls
-   - Internal assignments
-
-* Remember - these are abstract data types
-
-.. image:: black_box_flow.png
-
-----------------------------------------
-Invariant Over Object Lifetime (Calls)
-----------------------------------------
-
-.. image:: type_invariant_check_flow.png
-
-.. container:: speakernote
-
-   Note that other actions also invoke the checks!
 
 ------------------------
 Example Type Invariant
@@ -402,58 +285,6 @@ Subtype Predicates
    - **Dynamic Predicates**
 
       + Specified via aspect named :ada:`Dynamic_Predicate`
-
--------------------------------------
-``type`` and ``subtype`` Predicates
--------------------------------------
-
-* Applicable to both
-* Applied via aspect clauses in both cases
-* Syntax
-
-   .. code:: Ada
-
-      type name is type_definition
-         with aspect_mark [ => expression] { ,
-                   aspect_mark [ => expression] }
-
-      subtype defining_identifier is subtype_indication
-         with aspect_mark [ => expression] { ,
-                   aspect_mark [ => expression] }
-
---------------------------
-Why Two Predicate Forms?
---------------------------
-
- .. list-table::
-   :header-rows: 1
-   :stub-columns: 1
-   :width: 90%
-
-   * -
-
-     - Static
-     - Dynamic
-
-   * - Content
-
-     - More Restricted
-     - Less Restricted
-
-   * - Placement
-
-     - Less Restricted
-     - More Restricted
-
-* Static predicates can be used in more contexts
-
-   - More restrictions on content
-   - Can be used in places Dynamic Predicates cannot
-
-* Dynamic predicates have more expressive power
-
-   - Fewer restrictions on content
-   - Not as widely available
 
 ----------------------------
 Subtype Predicate Examples

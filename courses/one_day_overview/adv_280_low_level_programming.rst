@@ -88,26 +88,6 @@ Data Representation vs Requirements
       type T2 is range 1 .. 4
          with Size => 3;
 
------------------------------
-Object Size (GNAT-Specific)
------------------------------
-
-* `Object_Size` represents the size of the object in memory
-* It must be a multiple of `Alignment * Storage_Unit (8)`, and at least equal to `Size`
-
-   .. code:: Ada
-
-      type T1 is range 1 .. 4;
-      for T1'Value_Size use 3;
-      for T1'Object_Size use 8;
-
-      -- using Ada 2012 aspects
-      type T2 is range 1 .. 4
-         with Value_Size  => 3,
-              Object_Size => 8;
-
-* Object size is the *default* size of an object, can be changed if specific representations are given
-
 -----------
 Alignment
 -----------
@@ -276,20 +256,6 @@ Endianness Specification
 Address Clauses and Overlays
 ==============================
 
----------
-Address
----------
-
-* Ada distinguishes the notions of
-
-   - A reference to an object
-   - An abstract notion of address (`System.Address`)
-   - The integer representation of an address
-
-* Safety is preserved by letting the developer manipulate the right level of abstraction
-* Conversion between pointers, integers and addresses are possible
-* The address of an object can be specified through the `Address` aspect
-
 -----------------
 Address Clauses
 -----------------
@@ -324,32 +290,6 @@ Address Clauses
    - In particular the address doesn't need to be constant
    - But must match alignment
 
-----------------
-Address Values
-----------------
-
-* The type `Address` is declared in `System`
-
-   - But this is a :ada:`private` type
-   - You cannot use a number
-
-* Ada standard way to set constant addresses:
-
-   - Use `System.Storage_Elements` which allows arithmetic on address
-
-   .. code:: Ada
-
-      for V'Address use
-          System.Storage_Elements.To_Address (16#120#);
-
-* GNAT specific attribute `'To_Address`
-
-   - Handy but not portable
-
-   .. code:: Ada
-
-      for V'Address use System'To_Address (16#120#);
-
 ----------
 Volatile
 ----------
@@ -368,20 +308,6 @@ Volatile
    - No optimization of reads and writes
 
 * Volatile types are passed by-reference
-
---------------------
-Aliasing Detection
---------------------
-
-* :dfn:`Aliasing`: multiple objects are accessing the same address
-
-   - Types can be different
-   - Two pointers pointing to the same address
-   - Two references onto the same address
-   - Two objects at the same address
-
-* :ada:`Var1'Has_Same_Storage (Var2)` checks if two objects occupy exactly the same space
-* :ada:`Var'Overlaps_Storage (Var2)` checks if two object are partially or fully overlapping
 
 ----------------------
 Unchecked Conversion

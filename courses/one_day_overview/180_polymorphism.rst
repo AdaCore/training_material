@@ -31,10 +31,6 @@ Polymorphism
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-==============
-Introduction
-==============
-
 ==================
 Classes of Types
 ==================
