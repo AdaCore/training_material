@@ -1,3 +1,4 @@
+#! /usr/bin/env bash
 set -ex
 
 $ADACUT -c=1 src/main.adb > extracts/put_line.adb
