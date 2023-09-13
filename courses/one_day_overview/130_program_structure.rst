@@ -35,7 +35,7 @@ Program Structure
 Hierarchical Library Units
 ============================
 
-----------------------------
+---------------------------
 Hierarchical Library Units
 ---------------------------
 

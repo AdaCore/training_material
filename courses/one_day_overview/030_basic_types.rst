@@ -130,9 +130,9 @@ Signed Integer Types
          ...
       end;
 
------------------
+------------------
 Integer Overflows
------------------
+------------------
 
 * Finite binary representation
 * Common source of bugs

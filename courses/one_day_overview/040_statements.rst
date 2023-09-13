@@ -251,9 +251,9 @@ If-then-elsif Statements
 
    Spelled that way on purpose, as was done in Python for example (differently, "elif")
 
-----------------------
+-----------------------
 Simple case Statements
-----------------------
+-----------------------
 
 .. code:: Ada
 
@@ -383,9 +383,9 @@ While-loop Statements
         Display (Count);
       end loop;
 
------------------
+------------------
 For in Statements
------------------
+------------------
 
 * Successive values of a **discrete** type
 

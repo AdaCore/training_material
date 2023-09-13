@@ -67,6 +67,7 @@ Objects In Library Packages
      X : Integer; -- valid object for life of application
      Y : Float;    -- valid object for life of application
    end Named_Common;
+
 --------------------------
 Library Unit Subprograms
 --------------------------
