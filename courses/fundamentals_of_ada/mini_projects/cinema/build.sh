@@ -1,3 +1,4 @@
+#! /usr/bin/env bash
 set -e
 ADACUT="python3 $WORKSPACE/training_material/contrib/adacut.py"
 

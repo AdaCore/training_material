@@ -1,6 +1,22 @@
-check-lint:
+lint-rst:
   services:
     - image:ada-trainings
   stage: build
   script:
       - python3 contrib/fix_broken_titles.py --check
+      - python3 contrib/ci/fix_prelude.py
+
+lint-python:
+  services:
+    - image:ada-trainings
+  stage: build
+  script:
+    - python3 -m black --check $(find contrib -name '*.py')
+    - python3 -m black --check $(find pandoc -name '*.py')
+
+lint-shell:
+  services:
+    - image:e3
+  stage: build
+  script:
+    - shellcheck -S error $(find -name '*.sh' -o -name '*.profile')

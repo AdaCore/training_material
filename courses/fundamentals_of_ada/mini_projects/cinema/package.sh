@@ -1,3 +1,4 @@
+#! /usr/bin/env bash
 set -ex
 
 root=$(dirname $(readlink -e $0))
