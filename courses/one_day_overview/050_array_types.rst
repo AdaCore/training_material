@@ -35,23 +35,6 @@ Array Types
 Introduction
 ==============
 
---------------
-Introduction
---------------
-
-* Traditional array concept supported to any dimension
-
-.. code:: Ada
-
-   declare
-      type Hours is digits 6;
-      type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
-      type Schedule is array (Days) of Hours;
-      Workdays : Schedule;
-   begin
-      ...
-      Workdays (Mon) := 8.5;
-
 -------------
 Terminology
 -------------
@@ -251,21 +234,6 @@ Supplying Index Constraints for Objects
       type Schedule is array (Days range <>) of Float;
       Work : Schedule (Mon .. Fri);
       All_Days : Schedule (Days);
-
----------------------------------------
-Bounds Must Satisfy Type Constraints
----------------------------------------
-
-* Must be somewhere in the range of possible values specified by the type declaration
-* :ada:`Constraint_Error` otherwise
-
-.. code:: Ada
-
-   type Index is range 1 .. 100;
-   type Char_Arr is array (Index range <>) of Character;
-   ...
-   Wrong : Char_Arr (0 .. 10);  -- runtime error
-   OK : Char_Arr (50 .. 75);
 
 ----------------
 "String" Types

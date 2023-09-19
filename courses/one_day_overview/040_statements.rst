@@ -35,6 +35,78 @@ Statements
 Introduction
 ==============
 
+
+-----------------------
+Assignment Statements
+-----------------------
+
+* Syntax
+
+   .. code:: Ada
+
+      <variable> := <expression>;
+
+* Value of expression is copied to target variable
+* The type of the RHS must be same as the LHS
+
+   - Rejected at compile-time otherwise
+
+.. code:: Ada
+
+   type Miles_T is range 0 .. Max_Miles;
+   type Km_T is range 0 .. Max_Kilometers
+   ...
+   M : Miles_T := 2; -- universal integer legal for any integer
+   K : Km_T := 2; -- universal integer legal for any integer
+   M := K; -- compile error
+
+----------------------------------------
+Assignment Statements, Not Expressions
+----------------------------------------
+
+* Separate from expressions
+
+   - No Ada equivalent for these:
+
+      .. code:: C++
+
+         int a = b = c = 1;
+         while (line = readline(file))
+            { ...do something with line... }
+
+* No assignment in conditionals
+
+   - E.g. :ada:`if (a == 1)` compared to :ada:`if (a = 1)`
+
+------------------------------------
+Implicit Range Constraint Checking
+------------------------------------
+
+* The following code
+
+   .. code:: Ada
+
+      procedure Demo is
+        K : Integer;
+        P : Integer range 0 .. 100;
+      begin
+        ...
+        P := K;
+        ...
+      end Demo;
+
+* Generates assignment checks similar to
+
+   .. code:: Ada
+
+      if K < 0 or K > 100 then
+        raise Constraint_Error;
+      else
+        P := K;
+      end if;
+
+* Run-time performance impact
+
 ----------------------------
 Procedure Calls (Overview)
 ----------------------------
@@ -136,77 +208,6 @@ Null Statements
      when Saturday .. Sunday =>
        null;
    end case;
-
------------------------
-Assignment Statements
------------------------
-
-* Syntax
-
-   .. code:: Ada
-
-      <variable> := <expression>;
-
-* Value of expression is copied to target variable
-* The type of the RHS must be same as the LHS
-
-   - Rejected at compile-time otherwise
-
-.. code:: Ada
-
-   type Miles_T is range 0 .. Max_Miles;
-   type Km_T is range 0 .. Max_Kilometers
-   ...
-   M : Miles_T := 2; -- universal integer legal for any integer
-   K : Km_T := 2; -- universal integer legal for any integer
-   M := K; -- compile error
-
-----------------------------------------
-Assignment Statements, Not Expressions
-----------------------------------------
-
-* Separate from expressions
-
-   - No Ada equivalent for these:
-
-      .. code:: C++
-
-         int a = b = c = 1;
-         while (line = readline(file))
-            { ...do something with line... }
-
-* No assignment in conditionals
-
-   - E.g. :ada:`if (a == 1)` compared to :ada:`if (a = 1)`
-
-------------------------------------
-Implicit Range Constraint Checking
-------------------------------------
-
-* The following code
-
-   .. code:: Ada
-
-      procedure Demo is
-        K : Integer;
-        P : Integer range 0 .. 100;
-      begin
-        ...
-        P := K;
-        ...
-      end Demo;
-
-* Generates assignment checks similar to
-
-   .. code:: Ada
-
-      if K < 0 or K > 100 then
-        raise Constraint_Error;
-      else
-        P := K;
-      end if;
-
-* Run-time performance impact
 
 ========================
 Conditional Statements

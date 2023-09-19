@@ -48,15 +48,6 @@ Styles
 Introduction
 ==============
 
---------------
-Introduction
---------------
-
-* This is a 1 day crash course on Ada
-* Full content goes over 2 weeks
-* Full content on `github <https://github.com/AdaCore/training_material/tree/master/courses/fundamentals_of_ada>`_
-* See also `Learn.adacore.com <https://learn.adacore.com/>`_
-
 -------------------------
 *Core* Language Content
 -------------------------

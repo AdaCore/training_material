@@ -92,7 +92,7 @@ Declaration Location
 * Nesting adds non-trivial issues
 
    - Creates a nested pool with a nested accessibility
-   - Don't do that unless you know what you are doing! (see later)
+   - Don't do that unless you know what you are doing!
 
 -------------
 Null Values
@@ -250,30 +250,3 @@ Referencing The Stack
       A : Int_Access := V'Access;
 
    - :ada:`'Unchecked_Access` does it **without checks**
-
-----------------------------
-`Aliased` Objects Examples
-----------------------------
-
-.. code:: Ada
-
-   type Acc is access all Integer;
-   V, G : Acc;
-   I : aliased Integer;
-   ...
-   V := I'Access;
-   V.all := 5; -- Same a I := 5
-   ...
-   procedure P1 is
-      I : aliased Integer;
-   begin
-      G := I'Unchecked_Access;
-      P2;
-   end P1;
-
-   procedure P2 is
-   begin
-      -- OK when P2 called from P1.
-      -- What if P2 is called from elsewhere?
-      G.all := 5;
-   end P2;

@@ -35,26 +35,6 @@ Tagged Derivation
 Introduction
 ==============
 
----------------------------------------------
-Object-Oriented Programming With Tagged Types
----------------------------------------------
-
-* For :ada:`record` types
-
-    .. code:: Ada
-
-       type T is tagged record
-       ...
-
-* Child types can add new components (*attributes*)
-* Object of a child type can be **substituted** for base type
-* Primitive (*method*) can :dfn:`dispatch` **at runtime** depending on the type at call-site
-* Types can be **extended** by other packages
-
-    - Casting and qualification to base type is allowed
-
-* Private data is encapsulated through **privacy**
-
 ------------------------------
 Tagged Derivation Ada vs C++
 ------------------------------
@@ -155,12 +135,12 @@ Primitives
    .. code:: Ada
 
       type Root1 is tagged null record;
+
+      procedure P1 (V1 : Root1);
+
       type Root2 is tagged null record;
 
-      procedure P1 (V1 : Root1;
-                    V2 : Root1);
-      procedure P2 (V1 : Root1;
-                    V2 : Root2); -- illegal
+      procedure P1 (V1 : Root2);
 
 ---------------------
 Overriding Indicators
@@ -181,7 +161,7 @@ Overriding Indicators
       -- Derive "Point" from Shape_T
       type Point is new Shape_T with record
          Origin : Coord_T;
-      end Point;
+      end record;
 
       -- We want to _change_ the behavior of Set_Name
       overriding procedure Set_Name (P : in out Point_T);

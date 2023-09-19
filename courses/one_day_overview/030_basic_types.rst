@@ -61,11 +61,11 @@ Ada "Named Typing"
    .. code:: Ada
 
       type Yen is range 0 .. 100_000_000;
-      type Ruble is range 0 .. 100_000_000;
-      Mine : Yen;
-      Yours : Ruble;
+      type Kilometers is range 0 .. 100_000_000;
+      Money : Yen;
+      Distance : Kilometers;
       ...
-      Mine := Yours; -- not legal
+      Money := Distance; -- not legal
 
 ---------------------
 Categories of Types
@@ -86,7 +86,7 @@ Attributes
     - *May* be implementation-defined
     - **Built-in**
     - Cannot be user-defined
-    - Cannot be modified
+    - Some can be overridden
 
 * See RM K.2 *Language-Defined Attributes*
 * Syntax
@@ -369,8 +369,3 @@ Floating Point Type Attributes
 
       + Integral value nearest to :ada:`X`
       + *Note* :ada:`Float'Rounding (0.5) = 1` and :ada:`Float'Rounding (-0.5) = -1`
-
-* Model-oriented attributes
-
-   - Advanced machine representation of the floating-point type
-   - Mantissa, strict mode

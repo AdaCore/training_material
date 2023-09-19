@@ -146,35 +146,6 @@ Record Aggregate Examples
       Phase := (Real => 5.6, Imaginary => 7.8);
    end;
 
---------------------
-Named Associations
---------------------
-
-* **Any** order of associations
-* Provides more information to the reader
-
-   - Can mix with positional
-
-* Restriction
-
-   - Must stick with named associations **once started**
-
-.. code:: Ada
-
-   type Complex is record
-       Real : Float;
-       Imaginary : Float;
-     end record;
-   Phase : Complex := (0.0, 0.0);
-   ...
-   Phase := (10.0, Imaginary => 2.5);
-   Phase := (Imaginary => 12.5, Real => 0.212);
-   Phase := (Imaginary => 12.5, 0.212); -- illegal
-
-.. container:: speakernote
-
-   No positional notation after named notation
-
 -------------------
 Nested Aggregates
 -------------------
@@ -217,35 +188,9 @@ Component Default Values
    -- all components must be specified
    I : constant Complex := (0.0, 1.0);
 
-------------------------------------
-Default Component Value Evaluation
-------------------------------------
-
-* Occurs when object is elaborated
-
-   - Not when the type is elaborated
-
-* Not evaluated if explicitly overridden
-
-.. code:: Ada
-
-   type Structure is
-     record
-       A : Integer;
-       R : Time := Clock;
-     end record;
-   -- Clock is called for S1
-   S1 : Structure;
-   -- Clock is not called for S2
-   S2 : Structure := (A => 0, R => Yesterday);
-
 -----------------------------------
 Defaults Within Record Aggregates
 -----------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 * Specified via the :dfn:`box` notation
 * Value for the component is thus taken as for a stand-alone object declaration
@@ -268,23 +213,6 @@ Defaults Within Record Aggregates
 =======================
 Discriminated Records
 =======================
-
-----------------------------
-Discriminated Record Types
-----------------------------
-
-* :dfn:`Discriminated record` type
-
-   + Different **objects** may have **different** components
-   + All object **still** share the same type
-
-* Kind of :dfn:`storage overlay`
-
-   + Similar to :C:`union` in C
-   + But preserves **type checking**
-   + And object size **is related to** discriminant
-
-* Aggregate assignment is allowed
 
 ---------------
 Discriminants

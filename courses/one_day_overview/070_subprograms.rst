@@ -61,28 +61,6 @@ Syntax (Simplified)
 Parameters
 ============
 
-----------------------------------
-Subprogram Parameter Terminology
-----------------------------------
-
-* :dfn:`Actual parameters` are values passed to a call
-
-   - Variables, constants, expressions
-
-* :dfn:`Formal parameters` are defined by specification
-
-   - Receive the values passed from the actual parameters
-   - Specify the types required of the actual parameters
-   - Type **cannot** be anonymous
-
-   .. code:: Ada
-
-      procedure Something (Formal1 : in Integer);
-
-      ActualX : Integer;
-      ...
-      Something (ActualX);
-
 ---------------------------------
 Parameter Associations In Calls
 ---------------------------------

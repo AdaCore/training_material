@@ -62,22 +62,6 @@ Visibility
      Ada.Text_IO.Put_Line ("Good bye");
    end Hello;
 
----------------------
-`use` Clause Syntax
----------------------
-
-* May have several, like :ada:`with` clauses
-* Can refer to any visible package (including nested packages)
-* Syntax
-
-   .. code:: Ada
-
-      use_package_clause ::= use package_name {, package_name};
-
-* Can only :ada:`use` a package
-
-   - Subprograms have no contents to :ada:`use`
-
 --------------------
 `use` Clause Scope
 --------------------

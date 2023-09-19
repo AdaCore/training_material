@@ -179,3 +179,4 @@ Object Declarations
       Count : Integer range 0 .. Max := 0;
       -- dynamic initial value via function call
       Root : Tree := F(X);
+      A, B : Integer := G(X); -- Will call G(X) twice, for each variable
