@@ -615,7 +615,7 @@ Attributes' Benefits
          List : Int_Arr;
       begin
          ...
-         for Idx in L'Range loop
+         for Idx in List'Range loop
             List (Idx) := Idx * 2;
          end loop;
 
