@@ -651,3 +651,24 @@ Canonical First Program
    - Shortcut is the :math:`\blacktriangleright` in the icons bar
 
 * Result should appear in the bottom pane labeled *Run: say_hello.exe*
+
+--------------------------------------
+Note on GNAT File Naming Conventions
+--------------------------------------
+
+* GNAT compiler assumes one compilable entity per file
+
+  * Package specification, subprogram body, etc
+  * So the body for :ada:`say_hello` should be the only thing in the file
+
+* Filenames should match the name of the compilable entity
+
+  * Replacing "." with "-"
+  * File extension is ".ads" for specifications and ".adb" for bodies
+  * So the body for :ada:`say_hello` will be in :filename:`say_hello.adb`
+
+    * If there was a specification for the subprogram, it would be in :filename:`say_hello.ads`
+
+* This is the **default** behavior. There are ways around both of these rules
+
+  * For further information, see Section 3.3 *File Naming Topics and Utilities* in the **GNAT User's Guide**
