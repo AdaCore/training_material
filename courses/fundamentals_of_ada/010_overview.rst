@@ -501,7 +501,7 @@ Low Level Programming
     - C
     - C++
     - Assembly
-    - ect...
+    - etc...
 
 * Explicit specifications
 
@@ -527,7 +527,7 @@ Standardized common API
        - Fixed-point
        - Boolean
        - Characters, Strings, Unicode
-       - ect...
+       - etc...
 
     * Math
 
