@@ -201,7 +201,7 @@ Decimal Numeric Literals
    .. code::
 
       decimal_literal ::=
-        numeral [.num] E [+numeral|-numeral]
+        numeral [.numeral] E [+numeral|-numeral]
       numeral ::= digit {[underline] digit}
 
 * Underscore is not significant
@@ -653,13 +653,15 @@ Name Hiding
       declare
         M : Integer;
       begin
-        ... -- M here is an INTEGER
+        M := 123;
         declare
           M : Float;
         begin
-          ... -- M here is a FLOAT
+          M := 12.34; -- OK
+          M := 0;     -- compile error: M is a Float
         end;
-        ... -- M here is an INTEGER
+        M := 0.0; -- compile error: M is an integer
+        M := 0;   -- OK
       end;
 
 -------------------
@@ -679,13 +681,13 @@ Overcoming Hiding
    Outer : declare
      M : Integer;
    begin
-     ...
+     M := 123;
      declare
        M : Float;
      begin
-       Outer.M := Integer(M); -- Prefixed
+       M := 12.34;
+       Outer.M := Integer(M);  -- reference "hidden" integer M
      end;
-     ...
    end Outer;
 
 ------
