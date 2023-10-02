@@ -780,7 +780,7 @@ Variable and Sequence of Values
    - No assignment or update possible
 
 * Initialized as :ada:`'First`, incremented as :ada:`'Succ`
-* Syntaxic sugar: several forms allowed
+* Syntactic sugar: several forms allowed
 
 .. code:: Ada
 
