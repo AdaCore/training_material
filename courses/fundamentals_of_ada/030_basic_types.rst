@@ -895,13 +895,14 @@ Miscellaneous
 
 * Functional syntax
 
-   - Function named :ada:`Target_Type`
+   - Function named using destination type name
+
+      .. code:: Ada
+
+         Target_Float := Float (Source_Integer);
+
    - Implicitly defined
    - **Must** be explicitly called
-
-.. code:: Ada
-
-   Target_Float := Float (Source_Integer);
 
 -------------
 Default Value
@@ -1002,7 +1003,7 @@ Subtype Example
 Kinds of Constraints
 ----------------------
 
-* Range constraints on discrete types
+* Range constraints on scalar types
 
    .. code:: Ada
 
