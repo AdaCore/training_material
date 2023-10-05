@@ -56,58 +56,28 @@ Statement Kinds
 Procedure Calls (Overview)
 ----------------------------
 
-    * Procedure calls are statements as shown here
-    * More details in "Subprograms" section
+* Procedures must be defined before they are called
+
+  .. code:: Ada
+
+     procedure Activate (This : in out Foo;
+                         Flag :        Boolean);  
+
+* Procedure calls are statements
+
+  * Traditional call notation
 
     .. code:: Ada
 
-       procedure Activate (This : in out Foo; Wait : in Boolean);
+      Activate (Idle, True);
 
-    * Traditional call notation
+  * "Distinguished Receiver" notation
 
-      .. code:: Ada
+    .. code:: Ada
 
-        Activate (Idle, True);
+      Idle.Activate (True);
 
-    * "Distinguished Receiver" notation
-
-        - For :ada:`tagged` types
-
-      .. code:: Ada
-
-         Idle.Activate (True);
-
----------------------------------
-Parameter Associations In Calls
----------------------------------
-
-* Traditional :dfn:`positional association` is allowed
-
-   - Nth actual parameter goes to nth formal parameter
-
-.. code:: Ada
-
-   Activate (Idle, True); -- positional
-
-* :dfn:`Named association` also allowed
-
-   - Name of formal parameter is explicit
-
-.. code:: Ada
-
-   Activate (This => Idle, Wait => True); -- named
-
-* Both can be used together
-
-.. code:: Ada
-
-   Activate (Idle, Wait => True); -- positional then named
-
-* But positional following named is a compile error
-
-.. code:: Ada
-
-   Activate (This => Idle, True); -- ERROR
+* More details in "Subprograms" section
 
 ==================
 Block Statements
@@ -460,15 +430,15 @@ Simple case Statements
    ...
    case Direction is
      when Forward =>
-       Set_Mode (Drive);
-       Go_Forward (1);
+       Set_Mode (Forward);
+       Move (1);
      when Backward =>
-       Set_Mode (Reverse);
-       Go_Backward (1);
+       Set_Mode (Backup);
+       Move (-1);
      when Left =>
-       Go_Left (1);
+       Turn (1);
      when Right =>
-       Go_Right (1);
+       Turn (-1);
    end case;
 
 *Note*: No fall-through between cases
