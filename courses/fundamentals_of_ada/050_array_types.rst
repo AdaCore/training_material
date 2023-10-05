@@ -84,17 +84,19 @@ Array Type Index Constraints
    - Defines an empty array
    - Meaningful when bounds are computed at run-time
 
-* Can be applied on :ada:`type` or :ada:`subtype`
+* Used to define constrained array types
 
-.. code:: Ada
+   .. code:: Ada
 
-   type Schedule is array (Days range Mon .. Fri) of Float;
-   type Flags_T is array (-10 .. 10) of Boolean;
-   -- this may or may not be null range
-   type Dynamic is array (1 .. N) of Integer;
+      type Schedule is array (Days range Mon .. Fri) of Float;
+      type Flags_T is array (-10 .. 10) of Boolean;
 
-   subtype Line is String (1 .. 80);
-   subtype Translation is Matrix (1..3, 1..3);
+* Or to constrain unconstrained array types
+
+   .. code:: Ada
+
+      subtype Line is String (1 .. 80);
+      subtype Translation is Matrix (1..3, 1..3);
 
 -------------------------
 Run-Time Index Checking
@@ -384,6 +386,30 @@ Bounds Must Satisfy Type Constraints
    ...
    Wrong : Char_Arr (0 .. 10);  -- runtime error
    OK : Char_Arr (50 .. 75);
+
+------------------
+Null Index Range
+------------------
+
+* When :ada:`'Last` of the range is smaller than :ada:`'First`
+
+  * Array is empty - no elements
+
+* When using literals, the compiler will allow out-of-range numbers to indicate empty range
+
+  * Provided values are within the index's base type
+
+  .. code:: Ada
+
+   type Index_T is range 1 .. 100;
+
+   type Array_T is array (Index_T range <>) of Integer;
+
+   Typical_Empty_Array : Array_T (1 .. 0);
+   Weird_Empty_Array   : Array_T (123 .. -5);
+   Illegal_Empty_Array : Array_T (999 .. 0);
+
+* When the index type is a single-valued enumerated type, no empty array is possible
 
 ----------------
 "String" Types
@@ -779,7 +805,8 @@ Slicing With Named Subtypes for Indexes
 
    procedure Test is
      subtype First_Name is Positive range 1 .. 10;
-     subtype Last_Name is Positive range 11 .. 20;
+     subtype Last_Name is
+         Positive range First_Name'Last .. 20;
      Full_Name : String(First_Name'First..Last_Name'Last);
    begin
      Put_Line(Full_Name(First_Name)); -- Full_Name(1..10)
@@ -846,10 +873,12 @@ Default Initialization for Array Types
 
 * Uses aspect `Default_Component_Value`
 
-.. code:: Ada
+   .. code:: Ada
 
-   type Vector is array (Positive range <>) of Float
-      with Default_Component_Value => 0.0;
+      type Vector is array (Positive range <>) of Float
+         with Default_Component_Value => 0.0;
+
+   - Note that creating a large object of type :ada:`Vector` might incur a run-time cost during initialization
 
 -------------------------------
 Two High-Level For-Loop Kinds
@@ -1119,9 +1148,9 @@ Aggregates Are True Literal Values
    ...
    Work := (8.5, 8.5, 8.5, 8.5, 6.0);
    ...
-   if Work = Normal then ...
+   if Work = Normal then
    ...
-   if Work = (10.0, 10.0, 10.0, 10.0, 0.0) then -- 4-day week ...
+   if Work = (10.0, 10.0, 10.0, 10.0, 0.0) then -- 4-day week
 
 -----------------------------
 Aggregate Consistency Rules
