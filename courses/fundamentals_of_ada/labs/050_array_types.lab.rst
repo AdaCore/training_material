@@ -8,7 +8,7 @@ Array Lab
    - Create two objects of the array type, one of which is constant
    - Perform the following operations
 
-      + Copy the constant object to the non-constant object and 
+      + Copy the constant object to the non-constant object
       + Print the contents of the non-constant object
       + Use an array aggregate to initialize the non-constant object
       + For each element of the array, print the array index and the value
