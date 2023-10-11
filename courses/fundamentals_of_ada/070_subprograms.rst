@@ -264,18 +264,18 @@ Direct Recursion - No Declaration Needed
 
 .. code:: Ada
 
-   type Vector is array (Natural range <>) of Integer;
-   Empty_List : constant List (1 .. 0) := (others => 0);
+   type Vector_T is array (Natural range <>) of Integer;
+   Empty_Vector : constant Vector_T (1 .. 0) := (others => 0);
 
-   function Get_List return List is
+   function Get_Vector return Vector_T is
      Next : Integer;
    begin
      Get (Next);
 
      if Next = 0 then
-       return Empty_List;
+       return Empty_Vector;
      else
-       return Get_List & Next;
+       return Get_Vector & Next;
      end if;
    end Input;
 
@@ -706,7 +706,7 @@ Nested Subprogram Example
 
       function Read (Prompt : String) return Types.Line_T is
       begin
-         Put ("> ");
+         Put (Prompt & "> ");
          return Types.Line_T'Value (Get_Line);
       end Read;
 
@@ -721,7 +721,7 @@ Procedure Specifics
 =====================
 
 -----------------------------------
-`Return` Statements In Procedures
+Return Statements In Procedures
 -----------------------------------
 
 .. container:: columns

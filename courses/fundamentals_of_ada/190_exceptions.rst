@@ -575,7 +575,7 @@ Propagation Demo
          end Unhandled;
          procedure Handled is
          begin
-           R;
+           Unhandled;
            Maybe_Raise(2);
          exception
            when Error =>
@@ -704,7 +704,7 @@ But You Can Treat Them As Objects
    end Ada.Exceptions;
 
 ---------------------
-Exception Occurence
+Exception Occurrence
 ---------------------
 
 * Syntax associates an object with active exception
@@ -719,8 +719,8 @@ Exception Occurence
    .. code:: Ada
 
       exception
-        when Catched_Exception : others =>
-          Put (Exception_Name (Catched_Exception));
+        when Caught_Exception : others =>
+          Put (Exception_Name (Caught_Exception));
 
 ----------------------------------------
 `Exception_Occurrence` Query Functions

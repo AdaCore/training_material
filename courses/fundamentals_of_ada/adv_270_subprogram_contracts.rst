@@ -557,7 +557,7 @@ Pre/Postconditions: To Be or Not To Be
    - Consequences of violations **propagation**
    - Time and space **cost** of the contracts
 
-* Typically production settings favour telemetry and off-line analysis
+* Typically production settings favor telemetry and off-line analysis
 
 -------------------------------------
 No Secret Precondition Requirements
