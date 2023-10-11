@@ -114,7 +114,7 @@ Need More Help?
 
 * Open a "TN" via the GNAT Tracker web interface and/or email
 
-   - Send to: `support@gnat.com <mailto:support@gnat.com>`_
+   - Send to: `report@adacore.com <mailto:report@adacore.com>`_
    - Subject should read: #XXXX - (descriptive text)
 
       * Where XXXX is your customer number

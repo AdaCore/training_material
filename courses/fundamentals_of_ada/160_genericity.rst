@@ -292,7 +292,7 @@ Generic Parameters Can Be Combined
    type String_Array is array (Integer range <>)
        of String_Ptr;
 
-   procedure String_Element is new Element
+   function String_Element is new Element
       (T     => String,
        Acc   => String_Ptr,
        Index => Integer,
