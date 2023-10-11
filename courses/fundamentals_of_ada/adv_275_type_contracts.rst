@@ -50,7 +50,7 @@ Strong Typing
 * But what if we need stronger enforcement?
 
    * Number must be even
-   * Subet of non-consecutive enumerals
+   * Subset of non-consecutive enumerals
    * Array should always be sorted
 
 * **Type Invariant**
@@ -402,7 +402,7 @@ Why Two Predicate Forms?
    - Not as widely available
 
 ----------------------------
-Subtype Predicate Examples
+(Sub)Type Predicate Examples
 ----------------------------
 
 * Dynamic Predicate
@@ -437,7 +437,7 @@ Predicate Checking
 
    - Same as language-defined constraint checks
 
-* Associated variable is unchanged when violation is detected
+   - Associated variable is unchanged when violation is detected
 
 ----------------------------
 Predicate Checks Placement

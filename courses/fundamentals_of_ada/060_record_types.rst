@@ -817,7 +817,7 @@ D. None: Runtime error
 
 .. container:: animate
 
-    The variant part cannot be followed by a component declaration (:ada:`i2 : integer` there)
+    The variant part cannot be followed by a component declaration (:ada:`I2 : Integer` there)
 
 
 ========
