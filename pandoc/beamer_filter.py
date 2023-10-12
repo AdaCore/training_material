@@ -134,8 +134,28 @@ def latex_answer(text):
     return "\\textit<2>{\\textbf<2>{\\textcolor<2>{green!65!black}{" + text + "}}}"
 
 
+def latex_monoconvert(text):
+    # Taken from Pandoc's stringToLatex
+    replacements = {
+        "'": "\\textquotesingle",
+        "`": "\\textasciigrave",
+        "{": "\\{",
+        "}": "\\}",
+        "&": "\\&",
+        "<": "\\textless",
+        ">": "\\textgreater",
+        " ": "\\ ",
+    }
+
+    r = ""
+    for c in text:
+        r += replacements.get(c, c)
+
+    return r
+
+
 def latex_answermono(text):
-    return latex_monospace(latex_answer(text))
+    return latex_monospace(latex_answer(latex_monoconvert(text)))
 
 
 def latex_animate(text):
