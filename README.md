@@ -60,3 +60,11 @@ This folder contains files that may be useful for multiple presentation formats.
 ## Contrib
 
 This folder contains scripts that are used for generating the docs or packages.
+
+# Testing
+
+This folder contains some automated test for the various tools that we use, you can run them by typing
+
+```
+pytest
+```
