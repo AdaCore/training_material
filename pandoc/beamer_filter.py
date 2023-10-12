@@ -144,7 +144,7 @@ def latex_monoconvert(text):
         "&": "\\&",
         "<": "\\textless",
         ">": "\\textgreater",
-        " ": "\\ "
+        " ": "\\ ",
     }
 
     r = ""

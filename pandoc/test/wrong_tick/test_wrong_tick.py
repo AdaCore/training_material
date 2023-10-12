@@ -12,6 +12,7 @@ EXPECTED = CURDIR / "output.tex"
 
 pandoc_fe = epycs.subprocess.cmd.python.arg(PANDOC_FE).with_default_kw(cwd=ROOT)
 
+
 def test_tex_generation_with_backtick():
     with tempfile.NamedTemporaryFile(suffix=".tex") as tout:
         OUTPUT = Path(tout.name)
