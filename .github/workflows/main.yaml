@@ -148,7 +148,7 @@ jobs:
       - name: Update base system
         run: |
             apt update
-            apt install -y python3 python3-pip
+            apt install -y python3 python3-pip pandoc
 
       - name: Install GNAT & GPRbuild
         run: |
