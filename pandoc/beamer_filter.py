@@ -136,20 +136,26 @@ def latex_answer(text):
 
 def latex_monoconvert(text):
     # Taken from Pandoc's stringToLatex
-    replacements = {
-        "'": "\\textquotesingle",
-        "`": "\\textasciigrave",
-        "{": "\\{",
-        "}": "\\}",
-        "&": "\\&",
-        "<": "\\textless",
-        ">": "\\textgreater",
-        " ": "\\ ",
-    }
+    replacements = [
+        {
+            "{": "\\{",
+            "}": "\\}",
+        },
+        {
+            "'": "\\textquotesingle{}",
+            "`": "\\textasciigrave{}",
+            "&": "\\&",
+            "<": "\\textless{}",
+            ">": "\\textgreater{}",
+            " ": "\\ ",
+        },
+    ]
 
-    r = ""
-    for c in text:
-        r += replacements.get(c, c)
+    for rs in replacements:
+        r = ""
+        for c in text:
+            r += rs.get(c, c)
+        text = r
 
     return r
 
