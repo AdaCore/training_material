@@ -155,7 +155,7 @@ jobs:
             alr toolchain --install gnat_native=12.2.1 gprbuild=22.0.1
 
       - name: Setup Python
-        run: python3 -m pip install pytest epycs
+        run: python3 -m pip install pytest epycs pandocfilters
 
       - name: Run PyTest
         run: pytest --ignore=cached_gnat --ignore=courses/fundamentals_of_ada/labs/radar/test_all.py
