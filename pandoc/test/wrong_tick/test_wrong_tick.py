@@ -20,8 +20,12 @@ def test_tex_generation_with_backtick():
         with open(tout.name, "rt") as ftout:
             actual = ftout.read()
     with open(EXPECTED_LINES, "rt") as ftexp:
-        expected_lines = [line.split() for line in ftexp.readlines()]
+        expected_lines = [line.strip() for line in ftexp.readlines()]
 
-    actual_lines = [line.split() for line in actual.splitlines()]
+    actual_lines = [line.strip() for line in actual.splitlines()]
+    errors = []
     for line in expected_lines:
-        assert line in actual_lines, f"{line!r} not found"
+        if line not in actual_lines:
+            errors.append(line)
+
+    assert not errors, f"lines {errors!r} not in {actual}"
