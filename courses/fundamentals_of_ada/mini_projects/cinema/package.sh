@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 set -ex
 
-root=$(dirname $(readlink -e $0))
+root=$(dirname $(readlink -e "$0"))
 out="$root/pkg/$(basename $root)"
 zip="$1"
 test ! -z "$zip"
