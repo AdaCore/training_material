@@ -1,3 +1,7 @@
+stages:
+  - test
+  - build
+
 lint-rst:
   services:
     - image:ada-trainings
@@ -6,17 +10,17 @@ lint-rst:
       - python3 contrib/fix_broken_titles.py --check
       - python3 contrib/ci/fix_prelude.py
 
-lint-python:
+check_syntax:
+  stage: test
   services:
-    - image:ada-trainings
-  stage: build
-  script:
-    - python3 -m black --check $(find contrib -name '*.py')
-    - python3 -m black --check $(find pandoc -name '*.py')
+    - image:lint
 
-lint-shell:
-  services:
-    - image:e3
-  stage: build
   script:
-    - shellcheck -S error $(find -name '*.sh' -o -name '*.profile')
+    - autolint --check --output-code-climate-report=code_quality_report.json .
+
+  allow_failure: true
+
+  artifacts:
+    when: always
+    reports:
+      codequality: code_quality_report.json
