@@ -379,6 +379,8 @@ Full Type Declaration
 
  .. container:: column
 
+   .. container:: latex_environment small
+
     .. code:: Ada
 
        package P is

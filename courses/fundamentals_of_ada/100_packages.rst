@@ -329,43 +329,6 @@ Quiz
 
 .. include:: quiz/package_subprogram_completion/quiz.rst
 
-.. code:: Ada
-
-   package P is
-      Object_One : Integer;
-      procedure One (P : out Integer);
-   end P;
-
-Which is a valid completion of package P?
-
-   A. No completion needed
-
-   B. | ``package body P is``
-      |   ``procedure One (P : out Integer) is null;``
-      | ``end P;``
-   C. | ``package body P is``
-      |   ``Object_One : integer;``
-      |   ``procedure One (P : out Integer) is``
-      |   ``begin``
-      |      ``P := Object_One;``
-      |   ``end One;``
-      | ``end P;``
-   D. | :answermono:`package body P is`
-      |   :answermono:`procedure One (P : out Integer) is`
-      |   :answermono:`begin`
-      |      :answermono:`P := Object_One;`
-      |   :answermono:`end One;`
-      | :answermono:`end P;`
-
-.. container:: animate
-
-   Explanations
-
-   A. Procedure :ada:`One` must have a body
-   B. No assignment of a value to :ada:`out` parameter
-   C. Cannot duplicate :ada:`Object_One`
-   D. Correct
-
 ==================
 Executable Parts
 ==================
@@ -497,8 +460,8 @@ Named Collection of Declarations
      Polar_Radius_in_feet	: constant := 20_856_010.51;
      Equatorial_Radius_in_feet : constant := 20_926_469.20;
      Earth_Diameter_in_feet : constant := 2.0 *
-          ((Polar_Radius_in_feet + Equatorial_Radius_in_feet)/2.0);
-     Sea_Level_Air_Density : constant := 0.002378; --slugs/foot**3
+        ((Polar_Radius_in_feet + Equatorial_Radius_in_feet)/2.0);
+     Sea_Level_Air_Density : constant := 0.00239; --slugs/foot**3
      Altitude_Of_Tropopause_in_feet : constant := 36089.0;
      Tropopause_Temperature_in_celsius : constant := -56.5;
    end Physical_Constants;

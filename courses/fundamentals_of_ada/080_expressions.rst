@@ -195,6 +195,8 @@ Index Constraints
 
 * Specify bounds for unconstrained array types
 
+  .. container:: latex_environment small
+
    .. code:: Ada
 
       type Vector is array (Positive range <>) of Float;
@@ -202,6 +204,8 @@ Index Constraints
       V : Position_Vector;
 
 * Index constraints must not already be specified
+
+  .. container:: latex_environment  small
 
    .. code:: Ada
 
@@ -321,9 +325,15 @@ The `else` Part When Result Is Boolean
 
 * Redundant because the default result is True
 
-   - :ada:`(if P then Q else True)`
+  .. container:: latex_environment  small
+
+   .. code:: Ada
+
+      (if P then Q else True)
 
 * So for convenience and elegance it can be omitted
+
+  .. container:: latex_environment  small
 
    .. code:: Ada
 

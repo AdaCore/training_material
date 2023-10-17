@@ -20,6 +20,6 @@ begin
    P (The_Color);
    --$ begin cut
    P (The_Weight);
-   -- :ada:'use type' only gives visibility to operators; needs to be :ada:'use all type'
+   -- :ada:`use type` only gives visibility to operators; needs to be :ada:`use all type`
    --$ end cut
 end Main;

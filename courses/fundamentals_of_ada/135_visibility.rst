@@ -431,22 +431,25 @@ Multiple `use type` Clauses
    Ada 2012
 
 .. code:: Ada
+   :number-lines: 1
 
    with Complex;   use type Complex.Number;
    procedure Demo is
-     A, B, C : Complex.Number;
-   Begin
-     -- these are always allowed
-     Complex.Make (A, From_Real => 1.0, From_Imag => 0.0);
-     Complex.Make (B, From_Real => 1.0, From_Imag => 0.0);
-     -- "use type" does not give access to these
-     Make (A, 1.0, 0.0); -- not visible
-     Make (B, 1.0, 0.0); -- not visible
-     -- but this is good
-     C := A + B;
-     Complex.Put (C);
-     -- this is not allowed
-     Put (C); -- not visible
+      A, B, C : Complex.Number;
+   begin
+      -- these are always allowed
+      Complex.Make (A, From_Real => 1.0, From_Imag => 0.0);
+      Complex.Make (B, From_Real => 1.0, From_Imag => 0.0);
+      -- "use type" does not give access to primitive operations
+      Make (A, 1.0, 0.0); -- Compile error here
+      -- but does give access to operators
+      C := A + B;
+      declare
+         -- but if we add "use all type" we get more visibility
+         use all type Complex.Number;
+      begin
+         Make (A, 1.0, 0.0); -- Not a compile error
+      end;
    end Demo;
 
 ===================

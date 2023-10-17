@@ -426,6 +426,8 @@ Example for Attribute :ada:`'Old`
 
       Global : String := Init_Global;
       ...
+      -- In Global, move character at Index to the left one position,
+      -- and then increment the Index
       procedure Shift_And_Advance (Index : in out Integer) is
       begin
          Global (Index) := Global (Index + 1);
@@ -437,14 +439,14 @@ Example for Attribute :ada:`'Old`
    .. code:: Ada
 
       procedure Shift_And_Advance (Index : in out Integer) with Post =>
-         -- call At_Index before call
+         -- Global(Index) before call (so Global and Index are original)
          Global (Index)'Old
-            -- look at Index position in Global before call
+            -- Original Global and Original Index
             = Global'Old (Index'Old)
          and
-         -- call At_Index after call with original Index
+         -- Global after call and Index befor call
          Global (Index'Old)
-            -- look at Index position in Global after call
+            -- Global and Index after call
             = Global (Index);
 
 ------------------------------------------------
@@ -457,12 +459,12 @@ Error on conditional Evaluation of :ada:`'Old`
 
   procedure Clear_Character (In_String : in out String;
                              At_Position : Positive)
-     with Post => (if Found_At in In_String'Range
-                   then In_String (Found_At)'Old = ' ');
+     with Post => (if At_Position in In_String'Range
+                   then In_String (At_Position)'Old = ' ');
 
-* Copies :ada:`In_String (Found_At)` on entry
+* Copies :ada:`In_String (At_Position)` on entry
 
-   - Will raise an exception on entry if :ada:`Found_At not in In_String'Range`
+   - Will raise an exception on entry if :ada:`At_Position not in In_String'Range`
    - The postcondition's :ada:`if` check is not sufficient
 
 * Solution requires a full copy of :ada:`In_String`
@@ -471,8 +473,8 @@ Error on conditional Evaluation of :ada:`'Old`
 
   procedure Clear_Character (In_String : in out String;
                              At_Position : Positive)
-     with Post => (if Found_At in In_String'Range
-                   then In_String'Old (Found_At) = ' ');
+     with Post => (if At_Position in In_String'Range
+                   then In_String'Old (At_Position) = ' ');
 
 -------------------------------------------
 Postcondition Usage of Function Results
@@ -514,7 +516,7 @@ of the call :ada:`Set_And_Move (-1, 10)`
      - :animate:`11`
      - :animate:`Use new index in copy of original Database`
 
-   * - ``Database (Index`Old)``
+   * - ``Database (Index'Old)``
 
      - :animate:`-1`
      - :animate:`Use copy of original index in current Database`
@@ -524,9 +526,9 @@ of the call :ada:`Set_And_Move (-1, 10)`
      - :animate:`10`
      - :animate:`Evaluation of Database (Index) before call`
 
-----------
-Examples
-----------
+-------------------------------------
+Stack Example (Spec With Contracts)
+-------------------------------------
 
 .. include:: examples/adv_270_subprogram_contracts/special_attributes.rst
 
@@ -624,10 +626,11 @@ Postcondition Compared to Their Body: Example
 
 .. code:: Ada
 
-   function Greatest_Common_Denominator (A, B : Integer)
+   function Greatest_Common_Denominator (A, B : Natural)
      return Integer with
-     Pre  =>  A > 0 and B > 0,
-     Post =>  Is_GCD (A, B, Greatest_Common_Denominator'Result);
+     Post =>  Is_GCD (A,
+                      B,
+                      Greatest_Common_Denominator'Result);
 
    function Is_GCD (A, B, Candidate : Integer)
        return Boolean is
@@ -744,7 +747,7 @@ Assertion Policy
 
 * Fine **granularity** over assertion kinds and policy identifiers
 
-:url:`https://docs.adacore.com/gnat_rm-docs/html/gnat_rm/gnat_rm/implementation_defined_pragmas.html#pragma-assertion-policy`
+   :url:`https://docs.adacore.com/gnat_rm-docs/html/gnat_rm/gnat_rm/implementation_defined_pragmas.html#pragma-assertion-policy`
 
 
 * Certain advantage over explicit checks which are **harder** to disable

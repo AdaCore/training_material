@@ -302,12 +302,6 @@ Generic Parameters Can Be Combined
 Quiz
 ------
 
-.. include:: quiz/generic_subp_syntax/quiz.rst
-
-------
-Quiz
-------
-
 .. code:: Ada
 
    generic
@@ -424,7 +418,8 @@ Generic Subprogram Parameters Defaults
 
       function Is_Valid_Record (P : Record_T) return boolean;
 
-      procedure My_Validate is new Validate (Record_T);
+      procedure My_Validate is new Validate (Record_T,
+                                             Is_Valid_Record);
       -- Is_Valid maps to Is_Valid_Record
       -- Error_Message maps to a null subprogram
 

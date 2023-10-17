@@ -642,7 +642,7 @@ Quiz
       when Program_Error    => Put_Line ("Program Error");
       when others           => Put_Line ("Unknown problem");
 
-What will get printed if :ada:`Input_Value` on line 19 is :ada:`Integer'Last`?
+What will get printed if :ada:`Input_Value` on line 13 is :ada:`Integer'Last`?
 
 A. ``Unknown Problem``
 B. ``Success``
@@ -653,7 +653,7 @@ D. ``Program Error``
 
   Explanations
 
-  A. ``"Unknown problem"`` is printed by the :ada:`when others` due to the raise on line 8 when :ada:`P` is 0
+  A. ``"Unknown Problem"`` is printed by the :ada:`when others` due to the raise on line 9 when :ada:`P` is 0
   B. ``"Success"`` is printed when  0 < :ada:`P` < :ada:`Integer'Last`
   C. Trying to add 1 to :ada:`P` on line 7 generates a :ada:`Constraint_Error`
   D. :ada:`Program_Error` will be raised by :ada:`F` if :ada:`P` < 0 (no :ada:`return` statement found)
@@ -810,6 +810,10 @@ Relying On Exception Raising Is Risky
 ---------------------------------------
 
 * They may be **suppressed**
+   
+   * By runtime environment
+   * By build switches
+
 * Not recommended
 
    .. code:: Ada
