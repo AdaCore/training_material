@@ -559,7 +559,7 @@ Parents Do Not Know Their Children!
    - May be created well after parent
    - Parent doesn't know if/when child packages will exist
 
-* Alternative is to grant access when declared
+* Alternatively, language *could have* been designed to grant access when declared
 
    - Like ``friend`` units in C++
    - But would have to be prescient!

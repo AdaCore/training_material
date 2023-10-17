@@ -153,7 +153,7 @@ Example Type Invariant Implementation
          return Currency is
        Result : Currency := 0.0;
      begin
-       for Value of This loop -- no iteration if list empty
+       for Value of This loop
          Result := Result + Value;
        end loop;
        return Result;

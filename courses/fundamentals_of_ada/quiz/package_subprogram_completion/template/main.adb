@@ -16,7 +16,7 @@ procedure Main is
    package body P is
       procedure One (P : out Integer) is null;
    end P;
-   -- Parameter P is :ada:`out` but not assigned
+   -- Parameter P is :ada:`out` but not assigned (legal but not a good idea)
    --$ end cut
 
    --$ begin cut
@@ -37,6 +37,7 @@ procedure Main is
          P := Object_One;
       end One;
    end P;
+   -- Correct
    --$ end cut
 
 begin

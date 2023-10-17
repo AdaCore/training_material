@@ -32,5 +32,6 @@ D. | :answermono:`package body P is`
 .. container:: animate
 
     A. Procedure One must have a body
-    B. Parameter P is :ada:`out` but not assigned
+    B. Parameter P is :ada:`out` but not assigned (legal but not a good idea)
     C. Redeclaration of Object_One
+    D. Correct

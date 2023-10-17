@@ -79,8 +79,37 @@ Characteristics of Components
 * Referenced **by name**
 * May be no components, for **empty records**
 * **No** anonymous types (e.g., arrays) allowed
+
+   .. code:: Ada
+
+      type Record_1 is record
+         This_Is_Not_Legal : array (1 .. 3) of integer;
+      end record;
+
 * **No** constant components
+
+   .. code:: Ada
+
+      type Record_2 is record
+         This_Is_Not_Legal : constant integer := 123;
+      end record;
+
 * **No** recursive definitions
+
+   .. code:: Ada
+
+      type Record_3 is record
+         This_Is_Not_Legal : Record_3;
+      end record;
+
+* **No** unconstrained types
+
+   .. code:: Ada
+
+      type Record_5 is record
+         This_Is_Not_Legal : String;
+         But_This_Is_Legal : String (1 .. 10);
+      end record;
 
 ------------------------
 Components Declarations
@@ -665,6 +694,8 @@ Discriminants
 ---------------
 
 .. code:: Ada
+   :number-lines: 2
+
 
   type Person_Group is (Student, Faculty);
   type Person (Group : Person_Group) is record
@@ -677,7 +708,7 @@ Discriminants
      end case;
   end record;
 
-* :ada:`Group` is the :dfn:`discriminant`
+* :ada:`Group` (on line 3) is the :dfn:`discriminant`
 * Run-time check for component **consistency**
 
    + eg :ada:`A_Person.Pubs := 1` checks :ada:`A_Person.Group = Faculty`
@@ -686,6 +717,13 @@ Discriminants
 * Discriminant is **constant**
 
    + Unless object is **mutable**
+
+* Discrminant can be used in :dfn:`variant part` (line 5)
+
+   + Similar to case statements (all values must be covered)
+   + Fields listed will only be visible if choice matches discriminant
+   + Field names need to be unique (even across discriminants)
+   + Variant part must be end of record (hence only one variant part allowed)
 
 -----------
 Semantics

@@ -23,4 +23,4 @@ D. ``P (The_Weight)``
 
 .. container:: animate
 
-    D. :ada:'use type' only gives visibility to operators; needs to be :ada:'use all type'
+    D. :ada:`use type` only gives visibility to operators; needs to be :ada:`use all type`
