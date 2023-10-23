@@ -260,7 +260,7 @@ Limited Types - Quick Intro
         A, B : Integer;
     end record;
 
-    L1, L2 : Lim := (1, 2); -- Initial value OK
+    L1, L2 : Lim := Create_Lim (1, 2); -- Initial value OK
 
     L1 := L2; -- Illegal
     if L1 /= L2 then -- Illegal
@@ -464,7 +464,7 @@ What is the result of building and running this code?
 
    procedure Main is
       type Record_T is record
-         A, B, C : Integer := 0;
+         A, B, C : Integer;
       end record;
 
       V : Record_T := (A => 1);
@@ -492,8 +492,8 @@ What is the result of building and running this code?
    procedure Main is
       type My_Integer is new Integer;
       type Record_T is record
-         A, B, C : Integer := 0;
-         D : My_Integer := 0;
+         A, B, C : Integer;
+         D : My_Integer;
       end record;
 
       V : Record_T := (others => 1);
@@ -517,12 +517,12 @@ Quiz
 .. code:: Ada
 
    type Nested_T is record
-      Field : Integer := 1_234;
+      Field : Integer;
    end record;
    type Record_T is record
-      One   : Integer := 1;
+      One   : Integer;
       Two   : Character;
-      Three  : Integer := -1;
+      Three  : Integer;
       Four  : Nested_T;
    end record;
    X, Y : Record_T;
