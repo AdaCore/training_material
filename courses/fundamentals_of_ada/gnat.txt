@@ -8,7 +8,7 @@ chapters/075_expression_functions.rst
 adv_080_quantified_expressions.rst
 spec_870_gnat_options.rst
 070_subprograms.rst
-065_type_derivation.rst
+075_type_derivation.rst
 090_overloading.rst
 095_library_units.rst
 100_packages.rst

@@ -205,7 +205,7 @@ Dispatching
 
 * Primitives dispatch, but not only them
 
-.. include:: examples/adv_065_primitives/dispatching.1.rst
+.. include:: examples/adv_075_primitives/dispatching.1.rst
 
 * :ada:`Prim` is a primitive
 * :ada:`Not_Prim` is **not** a primitive
@@ -213,7 +213,7 @@ Dispatching
     + Won't be inherited
     + But dispatches dynamically!
 
-.. include:: examples/adv_065_primitives/dispatching.2.rst
+.. include:: examples/adv_075_primitives/dispatching.2.rst
 
 ------------------------------
 Tagged Primitive Declaration
@@ -222,7 +222,7 @@ Tagged Primitive Declaration
 * :ada:`tagged` types primitives **must** be declared in a :ada:`package` specification
 * Not a :ada:`declare` block or the declarative part of a subprogram
 
-.. include:: examples/adv_065_primitives/subprogram_primitive_declaration.rst
+.. include:: examples/adv_075_primitives/subprogram_primitive_declaration.rst
 
 -----------------------------
 Primitive of Multiple Types
