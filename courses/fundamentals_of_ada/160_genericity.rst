@@ -441,7 +441,6 @@ Quiz
 
  .. container:: column
 
-  .. container:: latex_environment tiny
 
    .. code:: Ada
       :number-lines: 1
@@ -452,18 +451,18 @@ Quiz
       generic
          with procedure Double (X : in out Integer) is <>;
          with procedure Square (X : in out Integer) is null;
-      procedure Math (P : in out integer);
-      procedure Math (P : in out integer) is
+      procedure Math (P : in out Integer);
+      procedure Math (P : in out Integer) is
       begin
          Double(P);
          Square(P);
       end Math;
       procedure Instance is new Math (Double => Half);
-      Number : integer := 10;
+      Number : Integer := 10;
 
  .. container:: column
 
-  .. container:: latex_environment scriptsize
+ .. container:: column
 
    What is the value of Number after calling :ada:`Instance (Number)`
 
@@ -474,12 +473,40 @@ Quiz
 
 .. container:: animate
 
-      Explanations
+  A. Would be correct for :ada:`procedure Instance is new Math;`
+
+  B. Would be correct for either :ada:`procedure Instance is new Math (Double, Square);` *or* :ada:`procedure Instance is new Math (Square => Square);`
+
+  C. Correct
+
+    * We call formal parameter :ada:`Double`, which has been assigned to actual subprogram :ada:`Half`, so :ada:`P`, which is 10, is halved.
+
+    * Then we call formal parameter :ada:`Square`, which has no actual subprogram, so it defaults to :ada:`null`, so nothing happens to :ada:`P`
+
+  D. Would be correct for either :ada:`procedure Instance is new Math (Double, Half);` *or* :ada:`procedure Instance is new Math (Square => Half);`
+
+----------------------
+Quiz Answer In Depth
+----------------------
 
       A. Wrong - result for :ada:`procedure Instance is new Math;`
       B. Wrong - result for :ada:`procedure Instance is new Math (Double, Square);`
       C. :ada:`Double` at line 10 is mapped to :ada:`Half` at line 3, and :ada:`Square` at line 11 wasn't specified so it defaults to :ada:`null`
       D. Wrong - result for :ada:`procedure Instance is new Math (Square => Half);`
+
+.. container:: animate
+
+  .. container:: latex_environment tiny
+
+    :ada:`Math` is going to call two subprograms in order, :ada:`Double` and :ada:`Square`, but both of those come from the formal data.
+
+    Whatever is used for :ada:`Double`, will be called by the :ada:`Math` instance. If nothing is passed in, the compiler tries to find a subprogram named :ada:`Double` and use that. If it doesn't, that's a compile error.
+
+    Whatever is used for :ada:`Square`, will be called by the :ada:`Math` instance. If nothing is passed in, the compiler will treat this as a null call.
+
+    In our case, :ada:`Half` is passed in for the first subprogram, but nothing is passed in for the second, so that call will just be null.
+
+    So the final answer should be 5 (hence letter C).
 
 ====================
 Generic Completion
