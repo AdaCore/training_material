@@ -83,8 +83,7 @@ package body Employee is
 
    overriding procedure Print (O : Employee_T) is
    begin
-      Put_Line ("Name: " & Name (O));
-      Put_Line ("Birthdate: " & Image (O.Birth_Date));
+      Print (Person_T (O)); --  Use parent "Print"
       Put_Line ("Startdate: " & Image (O.Start_Date));
    end Print;
 
