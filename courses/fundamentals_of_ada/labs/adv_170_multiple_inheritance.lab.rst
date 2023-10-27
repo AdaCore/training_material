@@ -47,18 +47,6 @@ Inheritance Lab Solution - Drawing (Body)
 
 .. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Drawing_Body :end-before:--Drawing_Body :code:Ada :number-lines:1
    
---------------------------------------------
-Inheritance Lab Solution - Graphics (Spec)
---------------------------------------------
-
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Graphics_Spec :end-before:--Graphics_Spec :code:Ada :number-lines:1
-   
---------------------------------------------
-Inheritance Lab Solution - Graphics (Body)
---------------------------------------------
-
-.. container:: source_include labs/answers/adv_170_multiple_inheritance.txt :start-after:--Graphics_Body :end-before:--Graphics_Body :code:Ada :number-lines:1
-   
 ---------------------------------------------
 Inheritance Lab Solution - Printable Object
 ---------------------------------------------

@@ -1,12 +1,12 @@
 --Schedule_Spec
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 package Schedule is
    Maximum_Classes : constant := 24;
+   subtype Name_T is String (1 .. 10);
    type Days_T is (Mon, Tue, Wed, Thu, Fri, None);
    type Time_T is delta 0.5 range 0.0 .. 23.5;
    type Classes_T is tagged private;
    procedure Add_Class (Classes    : in out Classes_T;
-                        Name       :        String;
+                        Name       :        Name_T;
                         Day        :        Days_T;
                         Start_Time :        Time_T;
                         End_Time   :        Time_T) with
@@ -17,10 +17,10 @@ private
    subtype Short_Class_T is Days_T with Static_Predicate => Short_Class_T in Mon | Wed | Fri;
    subtype Long_Class_T is Days_T with Static_Predicate => Long_Class_T in Tue | Thu;
    type Class_T is tagged record
-      Name       : Unbounded_String := Null_Unbounded_String;
-      Day        : Days_T           := None;
-      Start_Time : Time_T           := 0.0;
-      End_Time   : Time_T           := 0.0;
+      Name       : Name_T := (others => ' ');
+      Day        : Days_T := None;
+      Start_Time : Time_T := 0.0;
+      End_Time   : Time_T := 0.0;
    end record;
    subtype Class_Size_T is Natural range 0 .. Maximum_Classes;
    subtype Class_Index_T is Class_Size_T range 1 .. Class_Size_T'Last;
@@ -46,14 +46,14 @@ package body Schedule is
 
    procedure Add_Class
      (Classes    : in out Classes_T;
-      Name       :        String;
+      Name       :        Name_T;
       Day        :        Days_T;
       Start_Time :        Time_T;
       End_Time   :        Time_T) is
    begin
       Classes.Size                := Classes.Size + 1;
       Classes.List (Classes.Size) :=
-        (Name       => To_Unbounded_String (Name), Day => Day,
+        (Name       => Name, Day => Day,
          Start_Time => Start_Time, End_Time => End_Time);
    end Add_Class;
 
@@ -62,7 +62,7 @@ package body Schedule is
       for Index in 1 .. Classes.Size loop
          Put_Line
            (Days_T'Image (Classes.List (Index).Day) & ": " &
-            To_String (Classes.List (Index).Name) & " (" &
+            Classes.List (Index).Name & " (" &
             Time_T'Image (Classes.List (Index).Start_Time) & " -" &
             Time_T'Image (Classes.List (Index).End_Time) & " )");
       end loop;
@@ -78,21 +78,21 @@ with Schedule;       use Schedule;
 procedure Main is
    Classes : Classes_T;
 begin
-   Classes.Add_Class (Name       => "Calculus",
+   Classes.Add_Class (Name       => "Calculus  ",
                       Day        => Mon,
                       Start_Time => 10.0,
                       End_Time   => 11.0);
-   Classes.Add_Class (Name       => "History",
+   Classes.Add_Class (Name       => "History   ",
                       Day        => Tue,
                       Start_Time => 11.0,
                       End_Time   => 12.5);
-   Classes.Add_Class (Name       => "Biology",
+   Classes.Add_Class (Name       => "Biology   ",
                       Day        => Wed,
                       Start_Time => 13.0,
                       End_Time   => 14.0);
    Classes.Print;
    begin
-      Classes.Add_Class (Name       => "Biology",
+      Classes.Add_Class (Name       => "Chemistry ",
                          Day        => Thu,
                          Start_Time => 13.0,
                          End_Time   => 14.0);

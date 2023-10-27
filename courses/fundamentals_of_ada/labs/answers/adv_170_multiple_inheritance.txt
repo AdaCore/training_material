@@ -1,245 +1,149 @@
 --Types
 package Base_Types is
+
    type Coordinate_T is record
       X_Coord : Integer;
       Y_Coord : Integer;
    end record;
+   function Image (Coord : Coordinate_T) return String is
+     ("(" & Coord.X_Coord'Image & "," &
+            Coord.Y_Coord'Image & " )");
 
    type Line_T is array (1 .. 2) of Coordinate_T;
-   -- convert Line_T so lowest X value is first
-   function Ordered (Line : Line_T) return Line_T;
    type Lines_T is array (Natural range <>) of Line_T;
 
-   type Color_Range_T is mod 255;
-   type Color_T is record
-      Red   : Color_Range_T;
-      Green : Color_Range_T;
-      Blue  : Color_Range_T;
-   end record;
+   type Color_T is mod 256;
+   type Width_T is range 1 .. 10;
 
-private
-   function Ordered (Line : Line_T) return Line_T is
-     (if Line (1).X_Coord > Line (2).X_Coord then (Line (2), Line (1)) else Line);
 end Base_Types;
 --Types
 
 --Shapes
 with Base_Types;
 package Geometry is
+
+   -- Create a tagged type to define shapes
    type Object_T is abstract tagged private;
 
+   -- Create accessor functions for some common component
+   function Origin (Object : Object_T'Class) return Base_Types.Coordinate_T;
+
 private
+
    type Object_T is abstract tagged record
-      Origin : Base_Types.Coordinate_T;
+      The_Origin : Base_Types.Coordinate_T;
    end record;
-   function Origin (Object : Object_T'Class)
-                    return Base_Types.Coordinate_T is
-      (Object.Origin);
+
+   function Origin (Object : Object_T'Class) return Base_Types.Coordinate_T is
+      (Object.The_Origin);
+
 end Geometry;
 --Shapes
 
 --Drawing_Spec
 with Base_Types;
 package Line_Draw is
+
    type Object_T is interface;
+
+   -- Create accessor functions for some line attributes
    procedure Set_Color (Object : in out Object_T;
-                        Color  :        Base_Types.Color_T)
-                        is abstract;
-   function Color (Object : Object_T)
-                   return Base_Types.Color_T
-                   is abstract;
-   procedure Set_Pen (Object : in out Object_T;
-                      Size   :        Positive)
-                      is abstract;
-   function Pen (Object : Object_T)
-                 return Positive
-                 is abstract;
-   function Convert (Object : Object_T)
-                     return Base_Types.Lines_T
-                     is abstract;
+                        Color  : in     Base_Types.Color_T)
+         is abstract;
+   function Color (Object : Object_T) return Base_Types.Color_T
+         is abstract;
+
+   procedure Set_Pen_Width (Object : in out Object_T;
+                            Width  : in     Base_Types.Width_T)
+         is abstract;
+   function Pen_Width (Object : Object_T) return Base_Types.Width_T
+         is abstract;
+
+   function Convert (Object : Object_T) return Base_Types.Lines_T
+         is abstract;
+
    procedure Print (Object : Object_T'Class);
+
 end Line_Draw;
 --Drawing_Spec
 
 --Drawing_Body
 with Ada.Text_IO;
-with Line_Draw.Graph;
 package body Line_Draw is
-   procedure Fill_Matrix (Matrix : in out Graph.Matrix_T;
-                          Line   : in     Base_Types.Line_T) is
-      M, B     : Float;
-      Vertical : Boolean;
-   begin
-      Graph.Find_Slope_And_Intercept (Line, M, B, Vertical);
-      if Vertical then
-         for Y in Integer'Min (Line (1).Y_Coord, Line (2).Y_Coord) ..
-                  Integer'Max (Line (1).Y_Coord, Line (2).Y_Coord) loop
-            Matrix (Line (1).X_Coord, Y) := 'X';
-         end loop;
-      elsif Graph.Rise (Line) > Graph.Run (Line) then
-         Graph.Fill_Matrix_Vary_Y (Matrix, Line, M, B);
-      else
-         Graph.Fill_Matrix_Vary_X (Matrix, Line, M, B);
-      end if;
-   end Fill_Matrix;
 
    procedure Print (Object : Object_T'Class) is
-      Lines        : constant Base_Types.Lines_T := Object.Convert;
-      Max_X, Max_Y : Integer                     := Integer'First;
-      Min_X, Min_Y : Integer                     := Integer'Last;
+      Lines : constant Base_Types.Lines_T := Object.Convert;
    begin
-      for Line of Lines loop
-         for Coord of Line loop
-            Max_X := Integer'Max (Max_X, Coord.X_Coord);
-            Min_X := Integer'Min (Min_X, Coord.X_Coord);
-            Max_Y := Integer'Max (Max_Y, Coord.Y_Coord);
-            Min_Y := Integer'Min (Min_Y, Coord.Y_Coord);
-         end loop;
+      for Index in Lines'Range loop
+         Ada.Text_IO.Put_Line ("Line" & Index'Image);
+         Ada.Text_IO.Put_Line
+           ("  From: " & Base_Types.Image (Lines (Index) (1)));
+         Ada.Text_IO.Put_Line
+           ("    To: " & Base_Types.Image (Lines (Index) (2)));
       end loop;
-      declare
-         Matrix : Graph.Matrix_T (Min_X .. Max_X, Min_Y .. Max_Y) := (others => (others => ' '));
-      begin
-         for Line of Lines loop
-            Fill_Matrix (Matrix, Base_Types.Ordered (Line));
-         end loop;
-         for Y in Matrix'Range (2) loop
-            for X in Matrix'Range (1) loop
-               Ada.Text_IO.Put (Matrix (X, Y));
-            end loop;
-            Ada.Text_IO.New_Line;
-         end loop;
-      end;
    end Print;
+
 end Line_Draw;
 --Drawing_Body
-
---Graphics_Spec
-package Line_Draw.Graph is
-   type Matrix_T is array (Integer range <>, Integer range <>) of Character;
-
-   procedure Find_Slope_And_Intercept
-     (Line     : in     Base_Types.Line_T;
-      M        :    out Float;
-      B        :    out Float;
-      Vertical :    out Boolean);
-
-   function Rise (Line : Base_Types.Line_T) return Float;
-   function Run (Line : Base_Types.Line_T) return Float;
-
-   procedure Fill_Matrix_Vary_X
-     (Matrix : in out Matrix_T;
-      Line   : in     Base_Types.Line_T;
-      M      : in     Float;
-      B      : in     Float);
-   procedure Fill_Matrix_Vary_Y
-     (Matrix : in out Matrix_T;
-      Line   : in     Base_Types.Line_T;
-      M      : in     Float;
-      B      : in     Float);
-end Line_Draw.Graph;
---Graphics_Spec
-
---Graphics_Body
-package body Line_Draw.Graph is
-   function Rise (Line : Base_Types.Line_T) return Float is
-      (Float (Line (2).Y_Coord - Line (1).Y_Coord));
-   function Run (Line : Base_Types.Line_T) return Float is
-      (Float (Line (2).X_Coord - Line (1).X_Coord));
-
-   procedure Fill_Matrix_Vary_Y (Matrix : in out Matrix_T;
-                                 Line   : in     Base_Types.Line_T;
-                                 M      : in     Float;
-                                 B      : in     Float) is
-                                 X : Integer;
-   begin
-      for Y in Line (1).Y_Coord .. Line (2).Y_Coord loop
-         X             := Integer ((Float (Y) - B) / M);
-         Matrix (X, Y) := 'X';
-      end loop;
-   end Fill_Matrix_Vary_Y;
-
-   procedure Fill_Matrix_Vary_X (Matrix : in out Matrix_T;
-                                 Line   : in     Base_Types.Line_T;
-                                 M      : in     Float;
-                                 B      : in     Float) is
-      Y : Integer;
-   begin
-      for X in Line (1).X_Coord .. Line (2).X_Coord loop
-         Y             := Integer (M * Float (X) + B);
-         Matrix (X, Y) := 'X';
-      end loop;
-   end Fill_Matrix_Vary_X;
-
-   procedure Find_Slope_And_Intercept (Line     : in     Base_Types.Line_T;
-                                       M        :    out Float;
-                                       B        :    out Float;
-                                       Vertical :    out Boolean) is
-   begin
-      if Run (Line) = 0.0 then
-         M        := 0.0;
-         B        := 0.0;
-         Vertical := True;
-      else
-         M        := Rise (Line) / Run (Line);
-         B        := Float (Line (1).Y_Coord) - M * Float (Line (1).X_Coord);
-         Vertical := False;
-      end if;
-   end Find_Slope_And_Intercept;
-
-end Line_Draw.Graph;
---Graphics_Body
 
 --Printable_Object
 with Geometry;
 with Line_Draw;
 with Base_Types;
 package Printable_Object is
-   type Object_T is abstract new Geometry.Object_T and Line_Draw.Object_T with private;
+   type Object_T is
+     abstract new Geometry.Object_T and Line_Draw.Object_T with private;
    procedure Set_Color (Object : in out Object_T;
                         Color  :        Base_Types.Color_T);
    function Color (Object : Object_T) return Base_Types.Color_T;
-   procedure Set_Pen (Object : in out Object_T;
-                      Size   :        Positive);
-   function Pen (Object : Object_T) return Positive;
+
+   procedure Set_Pen_Width (Object : in out Object_T;
+                            Width  :        Base_Types.Width_T);
+   function Pen_Width (Object : Object_T) return Base_Types.Width_T;
 private
-   type Object_T is abstract new Geometry.Object_T and Line_Draw.Object_T with
-   record
-      Color    : Base_Types.Color_T := (0, 0, 0);
-      Pen_Size : Positive           := 1;
+   type Object_T is
+   abstract new Geometry.Object_T and Line_Draw.Object_T with record
+      The_Color     : Base_Types.Color_T := 0;
+      The_Pen_Width : Base_Types.Width_T := 1;
    end record;
 end Printable_Object;
 
 package body Printable_Object is
-
    procedure Set_Color (Object : in out Object_T;
                         Color  :        Base_Types.Color_T) is
    begin
-      Object.Color := Color;
+      Object.The_Color := Color;
    end Set_Color;
-   function Color (Object : Object_T) return Base_Types.Color_T is (Object.Color);
+   function Color (Object : Object_T) return Base_Types.Color_T is (Object.The_Color);
 
-   procedure Set_Pen (Object : in out Object_T;
-                      Size   :        Positive) is
+   procedure Set_Pen_Width (Object : in out Object_T;
+                            Width  :        Base_Types.Width_T) is
    begin
-      Object.Pen_Size := Size;
-   end Set_Pen;
-   function Pen (Object : Object_T) return Positive is (Object.Pen_Size);
+      Object.The_Pen_Width := Width;
+   end Set_Pen_Width;
+   function Pen_Width (Object : Object_T) return Base_Types.Width_T is (Object.The_Pen_Width);
 end Printable_Object;
 --Printable_Object
 
 --Rectangle
 with Base_Types;
 with Printable_Object;
+
 package Rectangle is
    subtype Lines_T is Base_Types.Lines_T (1 .. 4);
+
    type Object_T is new Printable_Object.Object_T with private;
+
    procedure Set_Lines (Object : in out Object_T;
                         Lines  :        Lines_T);
    function Lines (Object : Object_T) return Lines_T;
+
 private
+
    type Object_T is new Printable_Object.Object_T with record
       Lines : Lines_T;
    end record;
+
    function Convert (Object : Object_T) return Base_Types.Lines_T is
       (Object.Lines);
 end Rectangle;
@@ -261,12 +165,15 @@ with Rectangle;
 procedure Main is
 
    Object : Rectangle.Object_T;
-   Line1  : constant Base_Types.Line_T := ((1, 1), (1, 10));
-   Line2  : constant Base_Types.Line_T := ((6, 6), (6, 15));
-   Line3  : constant Base_Types.Line_T := ((1, 1), (6, 6));
-   Line4  : constant Base_Types.Line_T := ((1, 10), (6, 15));
+   Line1  : constant Base_Types.Line_T :=
+            ((1, 1), (1, 10));
+   Line2  : constant Base_Types.Line_T :=
+            ((6, 6), (6, 15));
+   Line3  : constant Base_Types.Line_T :=
+            ((1, 1), (6, 6));
+   Line4  : constant Base_Types.Line_T :=
+            ((1, 10), (6, 15));
 begin
    Object.Set_Lines ((Line1, Line2, Line3, Line4));
    Object.Print;
 end Main;
---Main
