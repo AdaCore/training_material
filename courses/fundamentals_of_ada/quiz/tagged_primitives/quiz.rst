@@ -11,23 +11,17 @@ B. | :answermono:`type T0 is tagged null record;`
    | :answermono:`type T2 is new T0 with null record;`
    | :answermono:`procedure P (O : T1) is null;`
 C. | ``type T1 is tagged null record;``
-   | ``generic``
-   |    ``type T is tagged private;``
-   | ``package G_Pkg is``
-   |    ``type T2 is new T with null record;``
-   | ``end G_Pkg;``
-   | ``package Pkg is new G_Pkg (T1);``
+   | ``Object1 : T1;``
    | ``procedure P (O : T1) is null;``
-D. | ``type T1 is tagged null record;``
-   | ``generic``
-   |    ``type T;``
-   | ``procedure G_P (O : T);``
-   | ``procedure G_P (O : T) is null;``
-   | ``procedure P is new G_P (T1);``
+D. | ``package Nested is``
+   | ``   type T1 is tagged null record;``
+   | ``end Nested;``
+   | ``use Nested;``
+   | ``procedure P (O : T1) is null;``
 
 .. container:: animate
 
     A. Primitive (same scope)
     B. Primitive (T1 is not yet frozen)
-    C. T1 is frozen by its use in the instantiation
-    D. Instantiations are not primitives
+    C. T1 is frozen by the object declaration
+    D. Primitive must be declared in same scope as type
