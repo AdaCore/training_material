@@ -1,125 +1,145 @@
 --Database_Spec
-with Ada.Containers.Bounded_Vectors;
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Containers.Vectors;
 package City_Trivia is
 
-  package Strings_Vector is new Ada.Containers.Bounded_Vectors
-   (Index_Type => Natural, Element_Type => Unbounded_String);
-  subtype Strings_Vector_T is Strings_Vector.Vector (100);
+   subtype City_Name_T is String (1 .. 10);
+   subtype Information_T is String (1 .. 30);
 
-  procedure Add_Trivia
-   (City        : String;
-    Information : String);
+   package City_List is new Ada.Containers.Vectors
+     (Index_Type   => Natural, Element_Type => City_Name_T);
 
-  function Get_Trivia
-   (City : String)
-    return Strings_Vector_T;
-  function Get_Keys return Strings_Vector_T;
+   package Information_List is new Ada.Containers.Vectors
+     (Index_Type   => Natural, Element_Type => Information_T);
 
-  package Sort is new Strings_Vector.Generic_Sorting;
+   procedure Add_Trivia (City        : String;
+                         Information : String);
+
+   function Get_Trivia (City : String) return Information_List.Vector;
+
+   function Get_Cities return City_List.Vector;
+
+   package City_Sort is new City_List.Generic_Sorting;
+   package Information_Sort is new Information_List.Generic_Sorting;
 
 end City_Trivia;
 --Database_Spec
---Database_Body
-with Ada.Containers.Bounded_Ordered_Maps;
+
+--Database_Body_1
+with Ada.Containers.Ordered_Maps;
 package body City_Trivia is
-  use type Strings_Vector_T;
-  package Maps is new Ada.Containers.Bounded_Ordered_Maps
-   (Key_Type => Unbounded_String, Element_Type => Strings_Vector_T);
-  use type Maps.Cursor;
-  Map : Maps.Map (100);
+   use type Information_List.Vector;
+   package Maps is new Ada.Containers.Ordered_Maps
+     (Key_Type     => City_Name_T,
+      Element_Type => Information_List.Vector);
+   use type Maps.Cursor;
+   Map : Maps.Map;
 
-  procedure Add_Trivia (City        : String;
-                       Information : String) is
-    Key    : constant Unbounded_String := To_Unbounded_String (City);
-    Info   : constant Unbounded_String := To_Unbounded_String (Information);
-    Cursor : Maps.Cursor;
-    Vector : Strings_Vector_T;
-  begin
-    Cursor := Map.Find (Key);
-    if Cursor = Maps.No_Element then
-        Vector.Append (Info);
-        Map.Insert (Key      => Key,
-                    New_Item => Vector);
-    else
-        Vector := Maps.Element (Cursor);
-        Vector.Append (Info);
-        Map.Replace_Element (Position => Cursor,
-                             New_Item => Vector);
-    end if;
-  end Add_Trivia;
+   function Pad (Str    : String;
+                 Length : Natural)
+                 return String is
+      Retval : String (1 .. Length) := (others => ' ');
+   begin
+      if Str'Length > Length then
+         Retval := Str (Str'First .. Str'First + Length - 1);
+      else
+         Retval (1 .. Str'Length) := Str;
+      end if;
+      return Retval;
+   end Pad;
 
-  function Get_Trivia (City : String) return Strings_Vector_T is
-    Ret_Val : Strings_Vector_T;
-    Key     : constant Unbounded_String := To_Unbounded_String (City);
-    Cursor  : Maps.Cursor;
-  begin
-    Cursor := Map.Find (Key);
-    if Cursor /= Maps.No_Element then
-      Ret_Val := Maps.Element (Cursor);
-    end if;
-    Sort.Sort (Ret_Val);
-    return Ret_Val;
-  end Get_Trivia;
+   procedure Add_Trivia (City        : String;
+                         Information : String) is
+      Key    : constant City_Name_T   := Pad (City, City_Name_T'Length);
+      Info : constant Information_T := Pad (Information, Information_T'Length);
+      Cursor : Maps.Cursor;
+      List   : Information_List.Vector;
+   begin
+      Cursor := Map.Find (Key);
+      if Cursor = Maps.No_Element then
+         List.Append (Info);
+         Map.Insert
+           (Key      => Key,
+            New_Item => List);
+      else
+         List := Maps.Element (Cursor);
+         List.Append (Info);
+         Map.Replace_Element
+           (Position => Cursor,
+            New_Item => List);
+      end if;
+   end Add_Trivia;
+--Database_Body_1
 
-  function Get_Keys return Strings_Vector_T is
-    Ret_Val : Strings_Vector_T;
-    Cursor  : Maps.Cursor := Map.First;
-    To_Append : Unbounded_String;
-  begin
-    while Cursor /= Maps.No_Element loop
-      To_Append := Maps.Key (Cursor);
-      Ret_Val.Append (To_Append);
-      exit when Cursor = Map.Last;
-      Cursor := Maps.Next (Cursor);
-    end loop;
-    return Ret_Val;
-  end Get_Keys;
+--Database_Body_2
+   function Get_Trivia (City : String) return Information_List.Vector is
+      Ret_Val : Information_List.Vector;
+      Key     : constant City_Name_T := Pad (City, City_Name_T'Length);
+      Cursor  : Maps.Cursor;
+   begin
+      Cursor := Map.Find (Key);
+      if Cursor /= Maps.No_Element then
+         Ret_Val := Maps.Element (Cursor);
+      end if;
+      Information_Sort.Sort (Ret_Val);
+      return Ret_Val;
+   end Get_Trivia;
+
+   function Get_Cities return City_List.Vector is
+      Ret_Val   : City_List.Vector;
+      Cursor    : Maps.Cursor := Map.First;
+      To_Append : City_Name_T;
+   begin
+      while Cursor /= Maps.No_Element loop
+         To_Append := Maps.Key (Cursor);
+         Ret_Val.Append (Pad (To_Append, City_Name_T'Length));
+         exit when Cursor = Map.Last;
+         Cursor := Maps.Next (Cursor);
+      end loop;
+      City_Sort.Sort (Ret_Val);
+      return Ret_Val;
+   end Get_Cities;
 end City_Trivia;
---Database_Body
+--Database_Body_2
+
 --Main
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-with Ada.Text_IO;           use Ada.Text_IO;
+with Ada.Text_IO; use Ada.Text_IO;
 with City_Trivia;
 procedure Main is
-  Trivia : City_Trivia.Strings_Vector_T;
-  Keys   : City_Trivia.Strings_Vector_T;
+   Trivia : City_Trivia.Information_List.Vector;
+   Cities : City_Trivia.City_List.Vector;
 
-  function Get (Prompt : String) return String is
-  begin
-    Put (Prompt & "> ");
-    return Get_Line;
-  end Get;
+   function Get (Prompt : String) return String is
+   begin
+      Put (Prompt & "> ");
+      return Get_Line;
+   end Get;
 
 begin
 
-  Outer_Loop :
-  loop
-    declare
-      City : constant String := Get ("City name");
-    begin
-      exit Outer_Loop when City'Length = 0;
-      Inner_Loop :
-      loop
-        declare
-          Info : constant String := Get ("  Trivia");
-        begin
-          exit Inner_Loop when Info'Length = 0;
-          City_Trivia.Add_Trivia (City        => City,
-                                  Information => Info);
-        end;
-      end loop Inner_Loop;
-    end;
-  end loop Outer_Loop;
+   Outer_Loop : loop
+      declare
+         City : constant String := Get ("City name");
+      begin
+         exit Outer_Loop when City'Length = 0;
+         Inner_Loop : loop
+            declare
+               Info : constant String := Get ("  Trivia");
+            begin
+               exit Inner_Loop when Info'Length = 0;
+               City_Trivia.Add_Trivia (City        => City,
+                                       Information => Info);
+            end;
+         end loop Inner_Loop;
+      end;
+   end loop Outer_Loop;
 
-  Keys := City_Trivia.Get_Keys;
-  City_Trivia.Sort.Sort (Keys);
-  for Key of Keys loop
-    Trivia := City_Trivia.Get_Trivia (To_String (Key));
-    Put_Line (To_String (Key));
-    for Info of Trivia loop
-      Put_Line ("   " & To_String (Info));
-    end loop;
-  end loop;
+   Cities := City_Trivia.Get_Cities;
+   for City of Cities loop
+      Trivia := City_Trivia.Get_Trivia (City);
+      Put_Line (City);
+      for Info of Trivia loop
+         Put_Line ("   " & Info);
+      end loop;
+   end loop;
 end Main;
 --Main
