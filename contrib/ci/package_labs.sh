@@ -9,4 +9,7 @@ if [ ! -f "$orig/package.sh" ]; then
 else
     (cd "$orig" && bash package.sh "$ar")
 fi
-(cd "$OUT" && zip "$ar" *.pdf || true)
+(
+ set +e
+ cd "$OUT" && zip "$ar" *.pdf
+)
