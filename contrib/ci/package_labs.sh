@@ -11,5 +11,5 @@ else
 fi
 (
  set +e
- cd "$OUT" && zip "$ar" *.pdf
+ cd "$OUT" && zip "$ar" ./*.pdf
 )
