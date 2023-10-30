@@ -2,7 +2,7 @@
 set -ex
 
 root=$(dirname $(readlink -e "$0"))
-out="$root/pkg/$(basename $root)"
+out="$root/pkg/$(basename "$root")"
 zip="$1"
 test ! -z "$zip"
 
@@ -15,8 +15,8 @@ for sub in src answer mini_cinema.gpr mini_cinema.adc include logs resources tes
 done
 
 (
-cd $(dirname $out)
+cd $(dirname "$out")
 
 rm -f "$zip" 2>/dev/null
-zip -r "$zip" "$(basename $out)"
+zip -r "$zip" "$(basename "$out")"
 )

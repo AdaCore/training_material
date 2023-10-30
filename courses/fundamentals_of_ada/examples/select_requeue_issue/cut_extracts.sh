@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 set -e
-FWD=$(dirname $0)
+FWD=$(dirname "$0")
 ADACUT=$FWD/../../../../contrib/adacut.py
 
 (
