@@ -29,4 +29,5 @@ linker_display_search_path() {
         | grep -vE '^$'
 }
 
+# shellcheck disable=SC1090 # constant: parent dir
 . "$CONTRIB_CI_DIR/alr_gnat_env.profile"
