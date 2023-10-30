@@ -7,7 +7,7 @@ zip="$1"
 test ! -z "$zip"
 
 test -d "$out" || mkdir -p "$out"
-rm -rf "$out/*"
+rm -rf "${out:?}/*"
 
 for sub in src answer mini_cinema.gpr mini_cinema.adc include logs resources tests testsuite README.md; do
     test -f "$root/$sub" -o -d "$root/$sub"
