@@ -511,7 +511,20 @@ of the call :ada:`Set_And_Move (-1, 10)`
 Examples
 ----------
 
-.. include:: examples/adv_270_subprogram_contracts/special_attributes.rst
+
+.. container:: columns
+
+  .. container:: column
+
+    .. container:: latex_environment tiny
+
+      .. include:: examples/adv_270_subprogram_contracts/special_attributes_spec.rst
+
+  .. container:: column
+
+    .. container:: latex_environment tiny
+
+      .. include:: examples/adv_270_subprogram_contracts/special_attributes_body.rst
 
 =============
 In Practice
