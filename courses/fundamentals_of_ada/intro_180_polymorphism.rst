@@ -1,6 +1,6 @@
-**************
-Polymorphism
-**************
+******************
+Class-Wide Types
+******************
 
 ..
     Coding language
