@@ -7,7 +7,7 @@ if [ "$GITHUB_WORKSPACE" != "" ]; then
     ROOTDIR=$GITHUB_WORKSPACE
 else
     # Be smart, and dangerous
-    if [ "$(basename "$sourced_from")" == "sh" ]; then
+    if [ -n "$sourced_from" ] && [ "$(basename "$sourced_from")" == "sh" ]; then
         echo "In order to source this script from sh you must set GITHUB_WORKSPACE">&2
         exit 2
     fi
@@ -29,5 +29,5 @@ linker_display_search_path() {
         | grep -vE '^$'
 }
 
-# shellcheck disable=SC1090 # constant: parent dir
+# shellcheck disable=SC1091
 . "$CONTRIB_CI_DIR/alr_gnat_env.profile"
