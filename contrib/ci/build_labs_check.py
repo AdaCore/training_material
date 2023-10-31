@@ -34,7 +34,7 @@ if __name__ == "__main__":
             print("Success")
         except subprocess.CalledProcessError:
             failures += 1
-            print("Failed", file=sys.stderr)
+            print("\033[31mFailed\033[0m", file=sys.stderr)
 
     if run:
         print(f"{run} run, {failures} errors")
