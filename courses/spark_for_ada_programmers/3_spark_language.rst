@@ -241,12 +241,16 @@ Language Restrictions
 Main Language Restrictions
 ----------------------------
 
-* Functions **without side-effects**
+* Regular functions **without side-effects**
 
   - Thus expressions are also without side-effects
+  - Aspect :ada:`Side_Effects` to signal function with side-effects
 
 * Memory **ownership** policy (like in Rust)
 * Absence of interferences
+
+  - No problematic aliasing between variables
+
 * Termination of subprograms
 
   - Functions must **always** terminate normally
@@ -268,12 +272,21 @@ Functions Without Side-Effects
   - Writing to a global variable
   - Writing to an :ada:`out` or :ada:`in out` parameter
   - Reading a volatile variable
+  - Raising an exception
+  - Not terminating
 
 |
 
 * But :dfn:`volatile functions` can read a volatile variable
 
   - Details discussed in the course on SPARK Boundary
+
+|
+
+* Only :dfn:`functions with side-effects` can have side-effects
+
+  - Signaled with aspect :ada:`Side_Effects`
+  - Restricted to appear only as right-hand side of assignments
 
 ----------------------------
 Side-Effects and Ambiguity
@@ -430,7 +443,7 @@ Migrating from Ada to SPARK
 * First goal is to reach **Stone level**: Valid SPARK
 * Violation: functions with side-effects
 
-  - Fix: transform :ada:`function` into :ada:`procedure`
+  - Fix: add aspect :ada:`Side_Effects` to functions, move calls to assignments
 
 * Violation: pointers do not respect ownership
 
@@ -504,7 +517,7 @@ SPARK Language
 * **Soundness** is key!
 
   - No language ambiguities
-  - Hence functions without side-effects
+  - Hence regular functions without side-effects
   - Hence absence of interferences
 
 * Still, SPARK subset is most of Ada 2022
