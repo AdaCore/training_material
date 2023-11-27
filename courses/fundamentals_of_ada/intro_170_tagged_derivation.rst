@@ -118,6 +118,19 @@ Difference with Simple Derivation
          F2 : Integer;
       end record;
 
+--------------
+Type Extension
+--------------
+
+* A tagged derivation **has** to be a type extension
+
+    - Use :ada:`with null record` if there are no additional components
+
+   .. code:: Ada
+
+      type Child is new Root with null record;
+      type Child is new Root; -- illegal
+
 * Conversion is only allowed from **child to parent**
 
    .. code:: Ada
@@ -127,6 +140,8 @@ Difference with Simple Derivation
       ...
       V1 := Root (V2);
       V2 := Child (V1); -- illegal
+
+`Click here for more information on extending private types <Private Tagged Types_>`_
 
 ------------
 Primitives
@@ -174,6 +189,36 @@ Freeze Point For Tagged Types
    V : Child; --  freeze child
 
    procedure Prim3 (V : Child); -- illegal
+
+------------------
+Tagged Aggregate
+------------------
+
+* At initialization, all fields (including **inherited**) must have a **value**
+
+   .. code:: Ada
+
+       type Root is tagged record
+           F1 : Integer;
+       end record;
+
+       type Child is new Root with record
+           F2 : Integer;
+       end record;
+
+       V : Child := (F1 => 0, F2 => 0);
+
+* For **private types** use :dfn:`aggregate extension`
+
+    - Copy of a parent instance
+    - Use :ada:`with null record` absent new fields
+
+   .. code:: Ada
+
+      V2 : Child := (Parent_Instance with F2 => 0);
+      V3 : Empty_Child := (Parent_Instance with null record);
+
+`Click here for more information on aggregates of private extensions <Aggregates with Private Tagged Types_>`_
 
 ---------------------
 Overriding Indicators
@@ -286,9 +331,33 @@ Which code block is legal?
    C. Components must have distinct names
    D. Types derived from a tagged type must have an extension
 
-========================
-Extending Tagged Types
-========================
+========
+Lab
+========
+
+.. include:: labs/intro_170_tagged_derivation.lab.rst
+
+=========
+Summary
+=========
+
+---------
+Summary
+---------
+
+* Tagged derivation
+
+   - Building block for OOP types in Ada
+
+* Primitives rules for tagged types are trickier
+
+    - Primitives **forbidden** below freeze point
+    - **Unique** controlling parameter
+    - Tip: Keep the number of tagged type per package low
+
+=================================================
+Additional Information - Extending Tagged Types
+=================================================
 
 ----------------------------------
 How Do You Extend A Tagged Type?
@@ -322,9 +391,9 @@ How Do You Extend A Tagged Type?
       end record;
     end Canines;
 
-------------------
-Tagged Aggregate
-------------------
+-------------------
+Tagged Aggregates
+-------------------
 
 * At initialization, all fields (including **inherited**) must have a **value**
 
@@ -400,6 +469,8 @@ Private Extensions
       end record;
     end Mammals;
 
+`Click here to go back to Type Extension <Type Extension_>`_
+
 --------------------------------------
 Aggregates with Private Tagged Types
 --------------------------------------
@@ -448,6 +519,8 @@ Null Extensions
     Dog1 : Dog_T := C; -- Compile Error
     Dog2 : Dog_T := (C with null record);
 
+`Click here to go back to Tagged Aggregate <Tagged Aggregate_>`_
+
 ------
 Quiz
 ------
@@ -489,27 +562,3 @@ Which completion(s) of C is/are valid?
    B. Cannot use :ada:`others` to complete private part of an aggregate
    C. Aggregate has no visibility to :ada:`Id` field, so cannot assign
    D. Correct - :ada:`P` is a :ada:`Parent_T`
-
-========
-Lab
-========
-
-.. include:: labs/170_tagged_derivation.lab.rst
-
-=========
-Summary
-=========
-
----------
-Summary
----------
-
-* Tagged derivation
-
-   - Building block for OOP types in Ada
-
-* Primitives rules for tagged types are trickier
-
-    - Primitives **forbidden** below freeze point
-    - **Unique** controlling parameter
-    - Tip: Keep the number of tagged type per package low
