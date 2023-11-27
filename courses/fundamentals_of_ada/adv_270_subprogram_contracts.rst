@@ -362,6 +362,37 @@ Quiz
 
 .. code:: Ada
 
+   --  Convert string to integer
+   function From_String ( S : string ) return integer
+      with Pre => S'length > 0;
+
+   procedure Do_Something is
+      I : integer := From_String ("");
+   begin
+      Put_Line (I'image);
+   end Do_Something;
+
+Assuming :ada:`From_String` is defined somewhere, what happens
+when :ada:`Do_Something` is run?
+
+   A. "0" is printed
+   B. Constraint Error exception
+   C. :answer:`Assertion Error exception`
+   D. Undefined behavior
+
+.. container:: animate
+
+   Explanations
+
+   The call to :ada:`From_String` will fail its precondition, which is considered
+   an :ada:`Assertion_Error` exception.
+
+------
+Quiz
+------
+
+.. code:: Ada
+
    function Area (L : Positive; H : Positive) return Positive is
       (L * H)
    with Pre => ?
@@ -379,7 +410,7 @@ all values :ada:`L` and :ada:`H`
    Explanations
 
    A. Parameters are :ada:`Positive`, so this is unnecessary
-   B. :ada:`L = Positive'Last and H = Positive'Last` will cause an overflow
+   B. :ada:`L = Positive'Last-1 and H = Positive'Last-1` will still cause an overflow
    C. Classic trap: the check itself may cause an overflow!
 
    Preventing an overflow requires using the expression :ada:`Integer'Last / L <= H`
@@ -744,6 +775,30 @@ Preconditions Or Explicit Checks?
 
    - For the implementation, preconditions are a **guarantee**
    - A subprogram body should **never** test them
+
+-----------------------------
+Raising Specific Exceptions
+-----------------------------
+
+* In the Exceptions module, we show how user-defined exceptions are better than pre-defined
+
+   * Stack :ada:`Push` raising :ada:`Overflow_Error` rather than :ada:`Constraint_Error`
+
+* *Default* behavior for a preconditon failure is :ada:`Assertion_Error`
+
+   * But it doesn't have to be!
+
+* Use *raise expression* in a precondition to get a different exception
+
+   .. code:: Ada
+
+      procedure Push (This : in out Stack;
+                      Value : Content) with
+        Pre  => not Full (This) or else Overflow_Error;
+
+* *Note: Postcondition failure only ever makes sense as an Assertion_Error*
+
+  * It's the supplier's fault, not the client's
 
 ------------------
 Assertion Policy

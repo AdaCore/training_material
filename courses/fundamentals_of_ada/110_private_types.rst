@@ -142,6 +142,8 @@ Declaring Private Types for Views
    - Only partial information on the type
    - Users can reference the type name
 
+      - But cannot create an object of that type until after the full type declaration
+
 * Full type declaration must appear in private part
 
    - Completion is the :dfn:`Full view`
