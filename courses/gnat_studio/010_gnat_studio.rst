@@ -250,7 +250,7 @@ Integration with External Tools
 
 + Common GUI for version control systems
 
-  + Predefined support for Git , Subversion, CVS, Rational Clearcase
+  + Predefined support for many version control systems
   + Manual integration allowed for other tools
 
 + GNAT-specific tools, if installed
@@ -554,6 +554,85 @@ User Guides and Examples
 --------------------------
 
 .. image:: gnat_studio/users_guides_and_examples.jpg
+
+===============================
+Using Version Control Systems
+===============================
+
+-------------------------
+What is version control
+-------------------------
+
++ System that records changes
+
+  + to a file or set of files
+  + over time
+  + recall specific versions later 
+  + revert selected files back to a previous state
+  + compare changes over time
+  + who introduced an issue, and when
+
++ GNAT Studio Supports many Version Control Systems (VCS)
+
+  + Git 
+  + Subversion
+  + CVS
+  + Rational Clearcase
+  + Mercurial
+
+-------------
+What is Git
+-------------
+
++ A VCS
+
+  + Used to demo the GNAT Studio VCS Features
+
++ Distributed
+
+  + No single database of reference
+  + Most operations don't require a server
+
++ Integrity checks
++ 3 states
+
+.. image:: gnat_studio/git_3_states.png
+
+-----------------------------------
+GNAT Studio interface for Staging
+-----------------------------------
+
+.. image:: gnat_studio/vcs_staging.png
+
++ Tip: Renaming = Removing a file and creating a new file with the same content
+
+.. image:: gnat_studio/vcs_staging_showing_changes.png
+
+-----------
+File Diff
+-----------
+
++ Clicking on a file opens a diff
+
+.. image:: gnat_studio/vcs_diff.png
+
+-----------------------------
+Actions on the staging area
+-----------------------------
+
+.. image:: gnat_studio/vcs_actions.png
+
++ Local
+
+  + Undo local change(s)
+  + Commit
+  + Merge
+
++ Distant
+
+  + Push
+  + Fetch
+  + Pull = Fetch + Merge
 
 ========
 Lab
