@@ -1,9 +1,1 @@
 010_gnat_studio.rst
-../fundamentals_of_ada/240_tasking.rst
-../fundamentals_of_ada/spec_870_gnat_options.rst
-../gnat_project_facility/010_overview.rst
-../gnat_project_facility/020_building_with_gprbuild.rst
-../gnat_project_facility/030_project_properties.rst
-../gnat_project_facility/040_structuring_your_application.rst
-../gnat_project_facility/050_advanced_capabilities.rst
-../gnat_project_facility/060_summary.rst
