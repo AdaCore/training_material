@@ -100,7 +100,7 @@ Project Import Notation
 
   + But uses strings
 
-  *with <literal string> {, <literal  string>};*
+:ada:`with <literal string> {, <literal  string>};`
 
 + String literals are path names of project files
 
