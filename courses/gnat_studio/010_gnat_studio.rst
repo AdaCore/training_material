@@ -267,7 +267,7 @@ Integration with External Tools
 
 + GNAT-specific tools, if installed
 
-  + :toolname:`CodePeer`
+  + :toolname:`GNAT SAS`
   + :toolname:`SPARK`
   + :toolname:`GNATtest`
   + :toolname:`GNATcoverage`
@@ -554,7 +554,7 @@ About :toolname:`GNAT Studio` Help
 + Information on other tools and capabilities
 
   + GNAT
-  + :toolname:`CodePeer`
+  + :toolname:`GNAT SAS`
   + GNU tools
   + GNAT Runtime
   + Python Extensions
