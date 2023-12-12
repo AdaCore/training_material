@@ -220,6 +220,7 @@ Packages Correspond to Tools
 
   .. column::
 
+    * Analyzer
     * Binder
     * Builder
     * Check
