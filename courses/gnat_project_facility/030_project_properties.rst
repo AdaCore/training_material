@@ -373,7 +373,7 @@ Individual (Arbitrary) File Naming
 
 + Has distinct attributes for specs and bodies
 
-   *for Spec ("<unit name>") use "<filename>";*
+:ada:`for Spec ("<unit name>") use "<filename>"`
 
    :ada:`for Spec ("MyPack.MyChild") use "MMS1AF32.A";`
 
@@ -438,7 +438,7 @@ External and Conditional References
 
 + Command line switch
 
-  *gprbuild -P... -Xname=value ...*
+:command:`gprbuild -P... -Xname=value ...`
 
   .. container:: latex_environment footnotesize
 
