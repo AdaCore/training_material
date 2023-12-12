@@ -11,7 +11,7 @@ GNAT Studio
 -------------
 
 + Our flagship IDE
-+ Available on Linux, Windows, macOS
++ Available on Linux, Windows
 + Supports native, cross, and bare-board development
 
   + Same look-and-feel
