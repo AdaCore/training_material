@@ -202,6 +202,12 @@ Supports Source Navigation
 
 + "Tool-tips" pop up to show semantic information
 
+------------
+Outline view
+------------
+
+.. image:: gnat_studio/outline_view.jpg
+
 -------------------------------------
 Editor's Contextual Navigation Menu
 -------------------------------------
@@ -219,6 +225,12 @@ Viewing Predefined and GNAT Source Files
 ------------------------------------------
 
 .. image:: gnat_studio/help_gnat_runtime.jpg
+
+-----------
+Call tree
+-----------
+
+.. image:: gnat_studio/call_trees.png
 
 ======================
 Running Applications
