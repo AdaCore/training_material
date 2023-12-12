@@ -220,6 +220,7 @@ Packages Correspond to Tools
 
   .. column::
 
+    * Analyzer
     * Binder
     * Builder
     * Check
@@ -241,6 +242,7 @@ Packages Correspond to Tools
     * Naming
     * Pretty_Printer
     * Remote
+    * Reporter
     * Stack
     * Synchronize
 
