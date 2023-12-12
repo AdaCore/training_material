@@ -11,7 +11,7 @@ GNAT Studio
 -------------
 
 + Our flagship IDE
-+ Available on Linux, Windows, macOS
++ Available on Linux, Windows
 + Supports native, cross, and bare-board development
 
   + Same look-and-feel
@@ -202,6 +202,12 @@ Supports Source Navigation
 
 + "Tool-tips" pop up to show semantic information
 
+------------
+Outline view
+------------
+
+.. image:: gnat_studio/outline_view.jpg
+
 -------------------------------------
 Editor's Contextual Navigation Menu
 -------------------------------------
@@ -219,6 +225,12 @@ Viewing Predefined and GNAT Source Files
 ------------------------------------------
 
 .. image:: gnat_studio/help_gnat_runtime.jpg
+
+-----------
+Call tree
+-----------
+
+.. image:: gnat_studio/call_trees.png
 
 ======================
 Running Applications
@@ -255,7 +267,7 @@ Integration with External Tools
 
 + GNAT-specific tools, if installed
 
-  + :toolname:`CodePeer`
+  + :toolname:`GNAT SAS`
   + :toolname:`SPARK`
   + :toolname:`GNATtest`
   + :toolname:`GNATcoverage`
@@ -542,7 +554,7 @@ About :toolname:`GNAT Studio` Help
 + Information on other tools and capabilities
 
   + GNAT
-  + :toolname:`CodePeer`
+  + :toolname:`GNAT SAS`
   + GNU tools
   + GNAT Runtime
   + Python Extensions
