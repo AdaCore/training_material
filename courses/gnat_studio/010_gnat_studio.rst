@@ -206,7 +206,7 @@ Supports Source Navigation
 Outline view
 ------------
 
-.. image:: gnat_studio/outline_view.jpg
+.. image:: gnat_studio/outline_view.png
 
 -------------------------------------
 Editor's Contextual Navigation Menu
