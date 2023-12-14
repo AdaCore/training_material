@@ -646,6 +646,12 @@ Actions on the staging area
   + Fetch
   + Pull = Fetch + Merge
 
+---------------------
+Commit a local change
+---------------------
+
+.. image:: gnat_studio/commits_view_add_commit.png
+
 ========
 Lab
 ========
