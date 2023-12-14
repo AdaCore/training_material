@@ -57,11 +57,11 @@ Understanding the GNAT Build Steps
 Targets and Runtimes
 ----------------------
 
-* Most tools have a "native" name (gcc, gnat, gnatcheck, etc.)
+* Most tools have a "native" name (gcc, gnat, etc.)
 * The name of the tool for the target is "**target**-**toolname**"
 
    - powerpc-wrs-vxworksae-gcc
-   - powerpc-wrs-vxworksae-gnatcheck
+   - arm-elf-eabi-gnat
 
 * Exceptions: gnatstack, gprbuild, gnatstudio
 * The runtime is introduced with the **--RTS=** switch
@@ -246,7 +246,6 @@ Inlining
 * Must be activated through **-gnatn**
 * Subprograms are selected through :ada:`pragma Inline`
 * Dependencies need visibility on the body (inlining works cross unit)
-* **gnatcheck** can flag wrong (too complex) inlining
 
 =========
 Summary
