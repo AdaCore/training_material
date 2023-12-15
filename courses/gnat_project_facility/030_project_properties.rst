@@ -195,7 +195,7 @@ Executable Directory
    .. code:: Ada
 
       project Release is
-         for Exec _Dir use "executables";
+         for Exec_Dir use "executables";
          ...
       end Release;
 
