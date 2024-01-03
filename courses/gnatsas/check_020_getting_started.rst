@@ -179,9 +179,9 @@ Specifying Rules File
 
     .. container:: column
 
-      ::
+      .. code:: GPRbuild
 
-        Project Simple is
+        project Simple is
            for Source_Dirs use ("./include", "./src");
            for Main use ("diners");
            for Object_Dir use "./obj";
