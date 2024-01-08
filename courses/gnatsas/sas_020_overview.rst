@@ -44,13 +44,13 @@ GNAT SAS In A Nutshell (1/2)
 + Modular
 
   + Analyze entire project or a single file
-  + Configure strictiness level
+  + Configure for speed or depth
 
 + Review of analysis report
 
   + Filtering messages by category, severity, package...
   + Comparative analysis between runs
-  + Shareable reviews database
+  + Maintain historical comments
 
 ------------------------------
 GNAT SAS In A Nutshell (2/2)
@@ -58,8 +58,10 @@ GNAT SAS In A Nutshell (2/2)
 
 + Large Ada support
 
-  + Usable with Ada 83, 95, 2005, 2012
-  + No vendor lock-in, supports GNAT, Apex, GHS, ObjectAda, VADS
+  + Usable with Ada83 through Ada2022
+  + No vendor lock-in
+
+    + Supports GNAT, Apex, GHS, ObjectAda, VADS
 
 + Bundled with a Coding Standards Checker and a Metrics Tool
 
@@ -67,10 +69,10 @@ GNAT SAS In A Nutshell (2/2)
 
 + Detects runtime and logic errors exhaustively
 
-  + Initialization errors, run-time errors and assertion failures (16 rules)
-  + Race condition errors: unprotected access to globals (3 rules)
+  + Initialization errors, run-time errors and assertion failures
+  + Race condition errors: unprotected access to globals
 
-+ Warns on dead or suspicious code (21 rules)
++ Warns on dead or suspicious code
 
 ----------------------
 GNAT SAS Integration
@@ -82,14 +84,33 @@ GNAT SAS Integration
 + Integration with Jenkins (continuous builder)
 + Integration with :toolname:`SonarQube` (continuous inspection of code quality)
 
--------------------------------
-:toolname:`infer` Integration
--------------------------------
+-----------------------------
+Integrated Analysis Engines
+-----------------------------
 
-+ :toolname:`infer` for Ada on top of main analysis
-+ Based on Facebook's :toolname:`infer` engine
-+ Adds **lightweight** checks
-+ Disable with ``--no-infer`` switch
++ Inspector
+
+  + Excels in detecting possibly failing run-time checks as well as wide range of logical errors
+  + Determines preconditions on the inputs necessary to preclude run-time failures
+  + Makes presumptions about return values of external subprograms
+  + Identifies postconditions that characterize the range of outputs
+
++ Infer
+
+  + https://fbinfer.com/
+  + Specialized to Ada by AdaCore
+  + Fast analysis with low false positive rate
+  + Especially good in detecting problems occurring on certain program paths, such as null-pointer dereferences or memory leaks
+
++ GNAT Warnings
+
+  + Provides warning issued by GNAT compiler frontend
+  + Detects things like suspicious constructs and warnings when the compiler is sure an exception will be raised at run-time
+
++ GNATcheck
+
+  + Tool used to check for suspicious code constructs and compliance with specified coding standard rules
+  + Fully integrated with GNAT SAS
 
 -----------------------------
 Typical Users And Use Cases
