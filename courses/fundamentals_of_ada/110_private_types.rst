@@ -266,10 +266,10 @@ Quiz
 
 Which component is legal?
 
-   A. ``Field_A : integer := Private_T'Pos (Private_T'First);``
+   A. ``Field_A : Integer := Private_T'Pos (Private_T'First);``
    B. ``Field_B : Private_T := null;``
    C. ``Field_C : Private_T := 0;``
-   D. :answermono:`Field_D : integer := Private_T'Size;`
+   D. :answermono:`Field_D : Integer := Private_T'Size;`
 
       .. code:: Ada
 
@@ -437,7 +437,7 @@ Quiz
       Object_A : Private_T;
       procedure Proc (Param : in out Private_T);
    private
-      type Private_T is new integer;
+      type Private_T is new Integer;
       Object_B : Private_T;
    end package P;
 
@@ -510,7 +510,7 @@ Designer View Sees Full Declaration
      type Index is range 0 .. Capacity;
      type Vector is array (Index range 1..Capacity) of Integer;
      type Stack is record
-        Top : integer;
+        Top : Integer;
         ...
    end Bounded_Stacks;
 

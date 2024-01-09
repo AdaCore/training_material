@@ -706,8 +706,8 @@ Anonymous Access Constants
 
    .. code:: Ada
 
-      procedure Bar (V1 : access constant integer);
-      procedure Foo (V1 : not null access integer); -- Ada 2005
+      procedure Bar (V1 : access constant Integer);
+      procedure Foo (V1 : not null access Integer); -- Ada 2005
 
 ========
 Lab

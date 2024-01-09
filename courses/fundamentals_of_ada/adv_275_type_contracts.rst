@@ -335,7 +335,7 @@ Subtype Predicates Concept
 
    - When true, said to "hold"
 
-* Expressed as any legal boolean expression in Ada
+* Expressed as any legal Boolean expression in Ada
 
    - Quantified and conditional expressions
    - Boolean function calls
@@ -581,7 +581,7 @@ Allowed Static Predicate Content (3)
 Dynamic Predicate Expression Content
 --------------------------------------
 
-* Any arbitrary boolean expression
+* Any arbitrary Boolean expression
 
    - Hence all allowed static predicates' content
 

@@ -5,7 +5,7 @@
       procedure Push (Item : in Integer);
       procedure Pop (Item : out Integer);
    private
-      Object : array (1 .. 100) of integer;
+      Object : array (1 .. 100) of Integer;
       Top    : Natural := 0;
    end Stack;
 

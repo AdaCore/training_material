@@ -297,8 +297,8 @@ Quiz
 
 .. code:: Ada
 
-   type Array1_T is array (1 .. 8) of boolean;
-   type Array2_T is array (0 .. 7) of boolean;
+   type Array1_T is array (1 .. 8) of Boolean;
+   type Array2_T is array (0 .. 7) of Boolean;
    X1, Y1 : Array1_T;
    X2, Y2 : Array2_T;
 
@@ -475,7 +475,7 @@ Specifying Constraints via Initial Value
        of Character;
    ...
    M : Another_String := "Hello World!";
-   -- M'first is integer'first
+   -- M'first is Integer'first
 
 ----------------------------------
 No Unconstrained Component Types
@@ -849,7 +849,7 @@ Which statement is **not** legal?
 
    Explanations
 
-   A. All three objects are just boolean values
+   A. All three objects are just Boolean values
    B. An element of :ada:`A` is the same type as :ada:`B`
    C. No slicing of multi-dimensional arrays
    D. Slicing allowed on single-dimension arrays

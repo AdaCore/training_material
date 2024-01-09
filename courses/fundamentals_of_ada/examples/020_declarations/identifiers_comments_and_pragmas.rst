@@ -4,9 +4,9 @@
    package Identifiers_Comments_And_Pragmas is
    
       Spaceperson : Integer;
-      --SPACEPERSON : integer; -- identifier is a duplicate
+      --SPACEPERSON : Integer; -- identifier is a duplicate
       Space_Person : Integer;
-      --Null : integer := 0; -- identifier is a reserved word
+      --Null : Integer := 0; -- identifier is a reserved word
       pragma Unreferenced (Spaceperson);
       pragma Unreferenced (Space_Person);
    

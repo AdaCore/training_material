@@ -693,7 +693,7 @@ Tricks
 Package Interfaces
 --------------------
 
-* Package `Interfaces` provide integer and unsigned types for many sizes
+* Package `Interfaces` provide Integer and unsigned types for many sizes
 
    - `Integer_8`, `Integer_16`, `Integer_32`, `Integer_64`
    - `Unsigned_8`, `Unsigned_16`, `Unsigned_32`, `Unsigned_64`

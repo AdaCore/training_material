@@ -351,7 +351,7 @@ Rationale for Parentheses Requirement
 
    .. code:: Ada
 
-      X : integer := if condition then A else B + 1;
+      X : Integer := if condition then A else B + 1;
 
 * Does that mean
 

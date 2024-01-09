@@ -60,8 +60,8 @@ Example Discriminated Record Description
 
    + Person is either a student or a faculty member (discriminant)
    + Person has a name (string)
-   + Each student has a GPA (floating point) and a graduation year (non-negative integer)
-   + Each faculty has a count of publications (non-negative integer)
+   + Each student has a GPA (floating point) and a graduation year (non-negative Integer)
+   + Each faculty has a count of publications (non-negative Integer)
 
 ----------------------
 Example Defined in C
