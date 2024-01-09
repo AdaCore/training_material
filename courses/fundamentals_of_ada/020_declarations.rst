@@ -177,7 +177,7 @@ Which statement is legal?
    A. ``Function : constant := 1;``
    B. :answermono:`Fun_ction : constant := 1;`
    C. ``Fun_ction : constant := --initial value-- 1;``
-   D. ``integer Fun_ction;``
+   D. ``Integer Fun_ction;``
 
 .. container:: animate
 
@@ -412,18 +412,18 @@ Quiz
 
 Which block is **not** legal?
 
-   A. ``A, B, C : integer;``
+   A. ``A, B, C : Integer;``
    B. ``Integer : Standard.Integer;``
-   C. :answermono:`Null : integer := 0;`
-   D. | ``A : integer := 123;``
-      | ``B : integer := A * 3;``
+   C. :answermono:`Null : Integer := 0;`
+   D. | ``A : Integer := 123;``
+      | ``B : Integer := A * 3;``
 
 .. container:: animate
 
    Explanations
 
    A. Multiple objects can be created in one statement
-   B. :ada:`integer` is *predefined* so it can be overridden
+   B. :ada:`Integer` is *predefined* so it can be overridden
    C. :ada:`null` is *reserved* so it can **not** be overridden
    D. Elaboration happens in order, so :ada:`B` will be 369
 
@@ -472,7 +472,7 @@ Numeric Literals Are Universally Typed
 Literals Must Match "Class" of Context
 ----------------------------------------
 
-* `universal_integer` literals |rightarrow| **integer**
+* `universal_integer` literals |rightarrow| **Integer**
 * `universal_real` literals |rightarrow| **fixed** or **floating** point
 * Legal
 
@@ -660,7 +660,7 @@ Name Hiding
           M := 12.34; -- OK
           M := 0;     -- compile error: M is a Float
         end;
-        M := 0.0; -- compile error: M is an integer
+        M := 0.0; -- compile error: M is an Integer
         M := 0;   -- OK
       end;
 
@@ -686,7 +686,7 @@ Overcoming Hiding
        M : Float;
      begin
        M := 12.34;
-       Outer.M := Integer(M);  -- reference "hidden" integer M
+       Outer.M := Integer(M);  -- reference "hidden" Integer M
      end;
    end Outer;
 

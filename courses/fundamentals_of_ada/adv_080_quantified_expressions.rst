@@ -238,7 +238,7 @@ Existential Quantifier Illustration
    Ada 2012
 
 * "There is at least one member of the set for which the predicate holds"
-* Given set of integer answers to a quiz, there is at least one answer that is 42
+* Given set of Integer answers to a quiz, there is at least one answer that is 42
 
 .. code:: Ada
 
@@ -260,7 +260,7 @@ Index-Based vs Component-Based Indexing
 
    Ada 2012
 
-* Given an array of integers
+* Given an array of Integers
 
    .. code:: Ada
 

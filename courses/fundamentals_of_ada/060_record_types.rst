@@ -55,8 +55,8 @@ Syntax and Examples
    .. code:: Ada
 
       type Record1_T is record
-         Field1 : integer;
-         Field2 : boolean;
+         Field1 : Integer;
+         Field2 : Boolean;
       end record;
 
 * Records can be **discriminated** as well
@@ -83,7 +83,7 @@ Characteristics of Components
    .. code:: Ada
 
       type Record_1 is record
-         This_Is_Not_Legal : array (1 .. 3) of integer;
+         This_Is_Not_Legal : array (1 .. 3) of Integer;
       end record;
 
 * **No** constant components
@@ -91,7 +91,7 @@ Characteristics of Components
    .. code:: Ada
 
       type Record_2 is record
-         This_Is_Not_Legal : constant integer := 123;
+         This_Is_Not_Legal : constant Integer := 123;
       end record;
 
 * **No** recursive definitions

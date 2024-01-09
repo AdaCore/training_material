@@ -494,7 +494,7 @@ Example of Visibility As If Nested
        private
          B : Integer := Parent.A;
          -- no dot-notation needed
-         C : integer := A;
+         C : Integer := A;
        end Parent.Child;
 
 -------------------------------------------

@@ -362,12 +362,12 @@ Quiz
 
 .. code:: Ada
 
-   --  Convert string to integer
-   function From_String ( S : string ) return integer
+   --  Convert string to Integer
+   function From_String ( S : string ) return Integer
       with Pre => S'length > 0;
 
    procedure Do_Something is
-      I : integer := From_String ("");
+      I : Integer := From_String ("");
    begin
       Put_Line (I'image);
    end Do_Something;

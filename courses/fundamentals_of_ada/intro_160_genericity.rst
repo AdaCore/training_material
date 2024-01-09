@@ -228,7 +228,7 @@ Syntax (partial)
 .. code:: Ada
 
    type T1 is (<>); -- discrete
-   type T2 is range <>; -- integer
+   type T2 is range <>; -- Integer
    type T3 is digits <>; -- float
    type T4 is private; -- indefinite
    type T5 (<>) is private; -- indefinite

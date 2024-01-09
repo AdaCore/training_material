@@ -146,7 +146,7 @@ Package Declarations
    end Float_Stack;
 
    package Data is
-      Object : integer;
+      Object : Integer;
    end Data;
 
 ---------------------------------

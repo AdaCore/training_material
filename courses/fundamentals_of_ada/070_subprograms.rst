@@ -240,7 +240,7 @@ Completion Examples
       end Swap;
 
       -- Completion as specification
-      function Less_Than (X, Y : Person) return boolean is
+      function Less_Than (X, Y : Person) return Boolean is
       begin
          return X.Age < Y.Age;
       end Less_Than;
@@ -678,7 +678,7 @@ Null Procedure Summary
 
 .. code:: Ada
 
-   procedure Do_Something (P : in     integer) is null;
+   procedure Do_Something (P : in     Integer) is null;
 
 =====================
 Nested Subprograms

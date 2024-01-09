@@ -2066,9 +2066,9 @@ New Objects
       X := new Integer;
    end;
    -- alloc.adb:2: (post)- alloc.create:X =
-   --     new integer(in alloc.create)#1'Address
+   --     new Integer(in alloc.create)#1'Address
    -- alloc.adb:2: (post)- alloc.create:
-   --     new integer(in alloc.create)#1.<num objects> = 1
+   --     new Integer(in alloc.create)#1.<num objects> = 1
 
 ============================
 External Tools Integration
@@ -2638,7 +2638,7 @@ Project Specialization For :toolname:`CodePeer`
             ("-gnatI",
              -- ignore representation clauses confusing analysis
              "-gnateT=" & My_Project'Project_Dir & "/target.atp",
-             -- specify target platform for integer sizes, alignment, ...
+             -- specify target platform for Integer sizes, alignment, ...
              "--RTS=kernel");
              -- specify runtime library
 

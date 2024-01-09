@@ -43,7 +43,7 @@ Introduction
 * Historically, only done as part of the language **implementation**
 
    - Eg. on operators
-   - Float vs integer vs pointers arithmetic
+   - Float vs Integer vs pointers arithmetic
 
 * Several languages allow **user-defined** overloading
 
