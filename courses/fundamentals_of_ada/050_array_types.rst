@@ -939,8 +939,8 @@ Array Component For-Loop Example
 
    .. code:: Ada
 
-        Primes : constant array (1 .. 5) of Integer :=
-           (2, 3, 5, 7, 11);
+        type T is array (Positive range <>) of Integer;
+        Primes : T := (2, 3, 5, 7, 11);
 
 * Component-based looping would look like
 
