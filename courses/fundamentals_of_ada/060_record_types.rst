@@ -692,12 +692,12 @@ Discriminants
 
   type Person_Group is (Student, Faculty);
   type Person (Group : Person_Group) is record
-     Name : String (1 .. 10);
+     Age : Positive;
      case Group is
         when Student => -- 1st variant
            Gpa  : Float range 0.0 .. 4.0;
         when Faculty => -- 2nd variant
-           Pubs : Integer;
+           Pubs : Positive;
      end case;
   end record;
 
@@ -730,11 +730,11 @@ Semantics
 
    .. code:: Ada
 
-      Pat  : Person(Student); -- No Pat.Pubs
-      Prof : Person(Faculty); -- No Prof.GPA
+      Pat  : Person (Student); -- No Pat.Pubs
+      Prof : Person (Faculty); -- No Prof.GPA
       Soph : Person := (Group  => Student,
-                         Name => "John Jones",
-                         GPA  => 3.2);
+                        Age => 21,
+                        GPA  => 3.2);
       X : Person;  -- Illegal: must specify discriminant
 
    .. code:: Ada
@@ -765,8 +765,8 @@ Mutable Discriminated Record
   --  even if Student is also the default
   S2 : Person (Group => Student);
   ...
-  S := (Group => Student, Gpa => 0.0);
-  S := (Group => Faculty, Pubs => 10);
+  S := (Group => Student, Age => 22, Gpa => 0.0);
+  S := (Group => Faculty, Age => 35, Pubs => 10);
 
 ------
 Quiz
