@@ -33,9 +33,9 @@ project Sdc is
       for Switches ("ada") use ("-static");
    end Binder;
 
-   package CodePeer is
-      for Switches use ("-level", "3");
-   end CodePeer;
+   package Analyzer is
+      for Switches ("analyze") use ("--infer", "--inspector", "--gnatcheck");
+   end Analyzer;
 
 end Sdc;
 
