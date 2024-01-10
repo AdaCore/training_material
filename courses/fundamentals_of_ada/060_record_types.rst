@@ -111,25 +111,26 @@ Characteristics of Components
          But_This_Is_Legal : String (1 .. 10);
       end record;
 
-------------------------
-Components Declarations
-------------------------
+-----------------------
+Multiple Declarations
+-----------------------
 
 * Multiple declarations are allowed (like objects)
 
    .. code:: Ada
 
       type Several is record
-         A, B, C : Integer;
+         A, B, C : Integer := F;
       end record;
 
-* Recursive definitions are not allowed
+* Equivalent to
 
    .. code:: Ada
 
-      type Not_Legal is record
-        A, B : Some_Type;
-        C : Not_Legal;
+      type Several is record
+         A : Integer := F;
+         B : Integer := F;
+         C : Integer := F;
       end record;
 
 -----------------------------------------
