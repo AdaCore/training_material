@@ -282,7 +282,7 @@ Declarations
     - Subprograms
     - et cetera
 
-* Declaration **must precede** use
+* :dfn:`Declaration` **must precede** use
 * **Some** implicit declarations
 
     - **Standard** types and operations
@@ -292,12 +292,13 @@ Declarations
 Object Declarations
 ---------------------
 
-* Variables and constants
+* An :ada:`object` is either :dfn:`variable` or :dfn:`constant`
 * Basic Syntax
 
    .. code:: Ada
 
-      <name> : subtype_indication [:= <initial value>];
+      <name> : <subtype> [:= <initial value>];
+      <name> : constant <subtype> [:= <initial value>];
 
 * Examples
 
@@ -356,13 +357,13 @@ Predefined Declarations
 Implicit vs. Explicit Declarations
 ------------------------------------
 
-* Explicit |rightarrow| in the source
+* :dfn:`Explicit` |rightarrow| in the source
 
    .. code:: Ada
 
       type Counter is range 0 .. 1000;
 
-* Implicit |rightarrow| **automatically** by the compiler
+* :dfn:`Implicit` |rightarrow| **automatically** by the compiler
 
    .. code:: Ada
 
@@ -378,9 +379,9 @@ Implicit vs. Explicit Declarations
       * Array types get concatenation operator
       * Most types get assignment operator
 
--------------
-Elaboration
--------------
+--------------------
+:dfn:`Elaboration`
+--------------------
 
 * Effects of the declaration
 
