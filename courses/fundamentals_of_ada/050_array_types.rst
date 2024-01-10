@@ -749,8 +749,11 @@ Extra Object-Level Operations
       C : constant String_Type := A & B;
       -- C now contains "foobar"
 
-* Relational (for discrete component types)
-* Logical (for Boolean component type)
+* Comparison (for discrete component types)
+
+   * Not for all scalars
+
+* Logical (for :ada:`Boolean` component type)
 * Slicing
 
    - Portion of array
