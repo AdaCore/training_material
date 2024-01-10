@@ -711,7 +711,7 @@ Discriminants
 
    + Unless object is **mutable**
 
-* Discrminant can be used in :dfn:`variant part` (line 5)
+* Discriminant can be used in :dfn:`variant part` (line 5)
 
    + Similar to case statements (all values must be covered)
    + Fields listed will only be visible if choice matches discriminant
