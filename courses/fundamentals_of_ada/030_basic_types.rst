@@ -353,21 +353,6 @@ Predefined Modular Types
    type Unsigned_8 is mod 2 ** 8;
    type Unsigned_16 is mod 2 ** 16;
 
----------------------------------------------
-Integer Type (Signed and Modular) Literals
----------------------------------------------
-
-* **Must not** contain a **fractional** part
-* **No** silent promotion/demotion
-* **Conversion** can be used
-
-.. code:: Ada
-
-   type Counter_T is range 0 .. 40_000; -- integer type
-   OK : Counter_T := 0; -- Right type, legal
-   Bad : Counter_T := 0.0 ; -- Promotion, compile error
-   Legal : Counter_T := Counter_T (0.0); -- Conversion, legal
-
 -----------------------------------
 String Attributes For All Scalars
 -----------------------------------
