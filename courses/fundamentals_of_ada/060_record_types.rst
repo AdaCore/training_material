@@ -207,14 +207,6 @@ Available Operations
 
          A := B;
 
-   - Component-level operations
-
-      + Based on components' types
-
-         .. code:: Ada
-
-            if A.component < B.component then
-
 * User-defined
 
    - Subprograms
