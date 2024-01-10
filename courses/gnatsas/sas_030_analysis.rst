@@ -1,0 +1,141 @@
+================
+Analyzing Code
+================
+
+..
+    Coding language
+
+.. role:: ada(code)
+    :language: Ada
+
+.. role:: C(code)
+    :language: C
+
+.. role:: cpp(code)
+    :language: C++
+
+..
+    Math symbols
+
+.. |rightarrow| replace:: :math:`\rightarrow`
+.. |forall| replace:: :math:`\forall`
+.. |exists| replace:: :math:`\exists`
+.. |equivalent| replace:: :math:`\iff`
+.. |le| replace:: :math:`\le`
+.. |ge| replace:: :math:`\ge`
+.. |lt| replace:: :math:`<`
+.. |gt| replace:: :math:`>`
+
+..
+    Miscellaneous symbols
+
+.. |checkmark| replace:: :math:`\checkmark`
+
+------------------
+Running GNAT SAS
+------------------
+
++ From the command line
+
+  + Typically used for simple testing or automation
+
+  :command:`gnatsas analyze -Psdc`
+
++ From :toolname:`GNAT Studio`
+
+  :menu:`GNATSAS` |rightarrow| :menu:`Analyze All`
+
++ Internal files generated:
+
+  + :dfn:`Static Analysis Messages` - contains all messages generated ruring run, plus age and last review
+  + :dfn:`Review File` - User reviews for all runs
+
+------------------
+Results (in GUI)
+------------------
+
+* Messages displayed in report based on filters
+
+  * *Message Ranking* controls level of messages displayed
+  * Other filters control types of messages and categories
+
+.. image:: gnatsas/sas_report.png
+
+*Report with* **Low,** **Medium,** *and* **High** *ranking messages*
+
+==========
+Analysis
+==========
+
+----------------
+Analysis Modes
+----------------
+
+* Deals solely with *Inspector* engine
+
+* :dfn:`Fast mode` 
+
+  * Analyze each library unit separately
+  * Allows for *incremental* analysis
+
+    * Only units that change will be re-inspected
+
+* :dfn:`Deep mode`
+
+  * Analyzes groups of unit
+
+    * Partitioning options to determine size of group
+
+  * Analysis always starts from scratch
+
+* Each mode has its own :dfn:`baseline`
+
+-----------
+Timelines
+-----------
+
+* Default: Separate baselines for comparing *deep* or *fast* runs
+
+* Custom timelines available
+
+  * :command:`timeline <name>` switch to create custom baseline
+  * First execution becomes baseline for that name
+  * Allows creating specialized timelines based on switches
+
+    * Such as :command:`no-subprojects` which might drastically change number of messages
+
+-------------------
+Analysis Settings
+-------------------
+
+* Filters can remove uninteresting messages
+
+  * e.g. :command:`show` to control messages to be displayed
+
+* Skip problematic source files
+
+  * *Excluded_Source_Files* project attribute
+  * :ada:`pragma Annotate (GNATSAS, Skip_Analysis);` embedded in code
+
+----------------------
+Performance Settings
+----------------------
+
+* Simplistic methods
+
+  * Disable specific analysis engine(s)
+  * :command:`-j0` jobs switch
+  * High-performance machines (multiple cores, etc)
+
+* Identifying problematic units
+
+  * For *Inspector*, examine output for units taking a long time
+
+    | ``analyzed main.scil in 0.05 seconds``
+    | ``analyzed main__body.scil in 620.31 seconds`` :math:`\leftarrow`
+    | ``analyzed pack1__body.scil in 20.02 seconds``
+    | ``analyzed pack2__body.scil in 5.13 seconds``
+
+  * For *Infer*, use progress bar to see where the process is slow
+
+    :command:`-Q --progress-bar-style multiline`
