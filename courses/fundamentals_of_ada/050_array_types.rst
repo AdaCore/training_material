@@ -308,9 +308,9 @@ Quiz
 
    Which statement is not legal?
 
-   A. ``X1(1) := Y1(1);``
+   A. ``X1 (1) := Y1 (1);``
    B. ``X1 := Y1;``
-   C. ``X1(1) := X2(1);``
+   C. ``X1 (1) := X2 (1);``
    D. :answermono:`X2 := X1;`
 
  .. container:: column
