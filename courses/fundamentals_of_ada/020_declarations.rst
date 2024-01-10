@@ -95,7 +95,7 @@ Identifiers
 
    .. code::
 
-      identifier ::= letter {[underline] letter_or_digit}
+      identifier ::= letter {['_'] letter_or_digit}
 
 * Character set **Unicode** 4.0
 
@@ -202,7 +202,7 @@ Decimal Numeric Literals
 
       decimal_literal ::=
         numeral [.numeral] E [+numeral|-numeral]
-      numeral ::= digit {[underline] digit}
+      numeral ::= digit {['_'] digit}
 
 * Underscore is not significant
 * **E** (exponent) must always be integer
