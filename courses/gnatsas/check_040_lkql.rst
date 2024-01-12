@@ -113,10 +113,10 @@ LKQL features (general purpose subset)
   .. code:: lkql
 
      val complex = {
-     val part = 40;
-     val other_part = 2;
-     print("LOGGING");
-     part * other_part
+        val part = 40;
+        val other_part = 2;
+        print("LOGGING");
+        part * other_part
      }
 
 ------------------------------
@@ -150,8 +150,8 @@ LKQL features (query subset)
   .. code:: lkql
 
      val test = select b@BinOp(f_op is OpEq)
-     when b.f_left.text == "0" and
-     b.f_right is Identifier
+                when b.f_left.text == "0" and
+                     b.f_right is Identifier
 
 ----------------------------
 Testing LKQL with its REPL
@@ -485,6 +485,12 @@ Configuring a GNATcheck Run with LKQL
 * Example :toolname:`GNATcheck` call configured via :filename:`config.lkql`
 
    :command:`gnatcheck -P prj.gpr -rules -from-lkql=config.lkql`
+
+=====
+Lab
+=====
+
+.. include:: labs/check_040_lkql.lab.rst
 
 =========
 Summary
