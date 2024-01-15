@@ -67,6 +67,7 @@ Separating Interface and Implementation
 * Clients can compile their code before body exists
 
    - All they need is the package specification
+   - Clients have **no** visibility over the body
    - Full client/interface consistency is guaranteed
 
 .. code:: Ada
