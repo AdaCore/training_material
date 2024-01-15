@@ -189,30 +189,6 @@ Testing Constraints via Qualification
        Leave_Early;
    end case; -- no 'others' because all subtype values covered
 
--------------------
-Index Constraints
--------------------
-
-* Specify bounds for unconstrained array types
-
-  .. container:: latex_environment small
-
-   .. code:: Ada
-
-      type Vector is array (Positive range <>) of Float;
-      subtype Position_Vector is Vector (1..3);
-      V : Position_Vector;
-
-* Index constraints must not already be specified
-
-  .. container:: latex_environment  small
-
-   .. code:: Ada
-
-      type String is array (Positive range <>) of Character;
-      subtype Full_Name is String(1 .. Max);
-      subtype First_Name is Full_Name(1 .. N); -- compile error
-
 =========================
 Conditional Expressions
 =========================
