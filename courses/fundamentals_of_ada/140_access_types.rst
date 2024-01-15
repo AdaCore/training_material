@@ -158,7 +158,7 @@ Null Values
 -------------
 
 * A pointer that does not point to any actual data has a :ada:`null` value
-* Without an initialization, a pointer is :ada:`null` by default
+* Access types have a default value of :ada:`null`
 * :ada:`null` can be used in assignments and comparisons
 
 .. code:: Ada
@@ -194,9 +194,9 @@ Access Types and Primitives
 
          procedure Proc (V : access T); -- Primitive of T
 
-------------------------
-Dereferencing Pointers
-------------------------
+--------------------------
+Dereferencing Access Types
+--------------------------
 
 * :ada:`.all` does the access dereference
 
@@ -278,7 +278,7 @@ Deallocations
    - Memory corruptions
    - Access to deallocated objects
 
-* As soon as you use them, you lose the safety of your pointers
+* As soon as you use them, you lose the safety of your access
 * But sometimes, you have to do what you have to do ...
 
    - There's no simple way of doing it
@@ -489,9 +489,9 @@ Getting Around Accessibility Checks
 
    Not the best way to write code
 
------------------------------------------
-Using Pointers For Recursive Structures
------------------------------------------
+-------------------------------------------
+Using Access Types For Recursive Structures
+-------------------------------------------
 
 * It is not possible to declare recursive structure
 * But there can be an access to the enclosing type
