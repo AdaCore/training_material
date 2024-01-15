@@ -383,7 +383,10 @@ Parameter Modes and Return
 
 * Mode :ada:`in`
 
-   - Actual parameter is :ada:`constant`
+   - Formal parameter is :ada:`constant`
+
+     * So actual is not modified either
+
    - Can have **default**, used when **no value** is provided
 
     .. code:: Ada
