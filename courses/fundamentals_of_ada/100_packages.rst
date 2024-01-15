@@ -480,11 +480,11 @@ Named Collection of Declarations (2)
      Longitudinal_Acceleration : Float := 0.0;
      Lateral_Velocity  : Float := 0.0;
      Lateral_Acceleration : Float := 0.0;
-     Vertical_Velocity : Float:= 0.0;
-     Vertical_Acceleration : Float:= 0.0;
-     Pitch_Attitude : Float:= 0.0;
-     Pitch_Rate : Float:= 0.0;
-     Pitch_Acceleration : Float:= 0.0;
+     Vertical_Velocity : Float := 0.0;
+     Vertical_Acceleration : Float := 0.0;
+     Pitch_Attitude : Float := 0.0;
+     Pitch_Rate : Float := 0.0;
+     Pitch_Acceleration : Float := 0.0;
    end Equations_of_Motion;
 
 --------------------------------

@@ -441,7 +441,7 @@ When To Use *If Expressions*
    ...
    -- initialize array
    for M in Months loop
-     End_Of_Month (M):=
+     End_Of_Month (M) :=
         (case M is
          when Sep | Apr | Jun | Nov => 30,
          when Feb => (if Leap then 29 else 28),
