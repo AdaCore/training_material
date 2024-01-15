@@ -547,7 +547,7 @@ Named Number Benefit
   .. code:: Ada
 
     Named_Number   : constant :=       1.0 / 3.0;
-    Typed_Constant : constant float := 1.0 / 3.0;
+    Typed_Constant : constant Float := 1.0 / 3.0;
 
 .. container:: latex_environment footnotesize
 
