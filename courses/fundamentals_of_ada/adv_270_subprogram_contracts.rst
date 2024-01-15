@@ -653,7 +653,7 @@ Postcondition Compared to Their Body
    - Search: :ada:`Can_Exit (Path_To_Exit'Result, Maze)`
    - Cryptography: :ada:`Match (Signer (Sign_Certificate'Result), Key.Public_Part)`
 
-* Bad fit for poorly-defined or self-defining programs
+* Bad fit for poorly-defined or self-defining subprograms
 
 .. code:: Ada
 
