@@ -170,7 +170,7 @@ How Do You Use A Generic?
 
 .. code:: Ada
 
-   package Integer_stack is new Stack (Integer);
+   package Integer_Stack is new Stack (Integer);
    package Integer_Stack_Utils is
        new Integer_Stack.Utilities;
    ...

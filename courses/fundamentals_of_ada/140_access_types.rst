@@ -451,7 +451,7 @@ Introduction to Accessibility Checks (2/2)
          type T1 is access all Integer;
          A1 : T1;
          V1 : aliased Integer;
-      Begin
+      begin
          A0 := V0'Access;
          A0 := V1'Access; -- illegal
          A0 := V1'Unchecked_Access;
