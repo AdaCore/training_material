@@ -515,9 +515,8 @@ Postcondition Usage of Function Results
 
 .. code:: Ada
 
-  function Greatest_Common_Denominator (A, B : Integer)
-    return Integer with
-      Pre  =>  A > 0 and B > 0,
+  function Greatest_Common_Denominator (A, B : Positive)
+    return Positive with
       Post =>  Is_GCD (A, B,
                        Greatest_Common_Denominator'Result);
 
