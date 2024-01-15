@@ -191,7 +191,7 @@ Parameters for Overloaded Operators
 
 * Named parameter associations allowed but ugly
 
-   - Requires prefix notion for call
+   - Requires prefix notation for call
 
    .. code:: Ada
 
