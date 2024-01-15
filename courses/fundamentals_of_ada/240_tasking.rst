@@ -335,7 +335,7 @@ Waiting On Multiple Entries
     select
       accept Receive_Message (V : String)
       do
-        Put_Line ("Message : " & String);
+        Put_Line ("Message : " & V);
       end Receive_Message;
     or
       accept Stop;
@@ -364,7 +364,7 @@ Waiting With a Delay
   loop
     select
       accept Receive_Message (V : String) do
-        Put_Line ("Message : " & String);
+        Put_Line ("Message : " & V);
       end Receive_Message;
     or
       delay 50.0;
