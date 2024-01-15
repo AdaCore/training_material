@@ -114,7 +114,7 @@ User-Defined Equality Example
       type Index is range 0 .. Max;
       type Vector is array (Index range 1 .. Max) of Integer;
       type Stack is record
-        Values : List;
+        Values : Vector;
         Top : Index := 0;
       end record;
 
@@ -197,7 +197,7 @@ Composition vs Non-Composition
 
 .. container:: speakernote
 
-   Equality for IntegerList doesn't compose because Integer is not a record type.
+   Equality for Array1_T doesn't compose because Integer is not a record type.
 
 -------------------------------------
 Enclosing Equality Function Example
