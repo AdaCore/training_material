@@ -651,7 +651,7 @@ Contracts Code Reuse
 
       procedure Withdraw (This   : in out Account;
                           Amount :        Currency);
-      pragma Pre (Open (This) and Funds_Available (This, Amount));
+      pragma Pre (Open (This) and then Funds_Available (This, Amount));
       pragma Post (Balance (This) = Balance (This)'Old - Amount);
       ...
       function Funds_Available (This   : Account;
