@@ -114,7 +114,7 @@ Stack vs Heap
 
 .. code:: Ada
 
-  I : Access_Int:= new Integer'(0);
+  I : Access_Int := new Integer'(0);
   J : Access_Str := new String'("Some Long String");
 
 .. image:: stack_pointing_to_heap.png
