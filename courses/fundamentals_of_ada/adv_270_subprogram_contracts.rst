@@ -702,7 +702,7 @@ Contracts Code Reuse
 
       procedure Withdraw (This   : in out Account;
                           Amount :        Currency) with
-        Pre  => Open (This) and Funds_Available (This, Amount),
+        Pre  => Open (This) and then Funds_Available (This, Amount),
         Post => Balance (This) = Balance (This)'Old - Amount;
       ...
       function Funds_Available (This   : Account;
