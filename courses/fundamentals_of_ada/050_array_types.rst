@@ -638,14 +638,14 @@ Attributes' Benefits
 
       declare
          type Int_Arr is array (5 .. 15) of Integer;
-         List : Int_Arr;
+         Vector : Int_Arr;
       begin
          ...
-         for Idx in List'Range loop
-            List (Idx) := Idx * 2;
+         for Idx in Vector'Range loop
+            Vector (Idx) := Idx * 2;
          end loop;
 
-  * Compiler understands :ada:`Idx` has to be a valid index for :ada:`List`, so no runtime checks are necessary
+  * Compiler understands :ada:`Idx` has to be a valid index for :ada:`Vector`, so no runtime checks are necessary
 
 --------------------------------
 Nth Dimension Array Attributes

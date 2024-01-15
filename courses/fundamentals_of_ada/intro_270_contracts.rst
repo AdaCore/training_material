@@ -682,8 +682,8 @@ Invariants Don't Apply Internally
      This.Owner := To_Unbounded_String (Name);
      This.Current_Balance := Initial_Deposit;
      -- invariant would be false here!
-     This.Withdrawals := Transactions.Empty_List;
-     This.Deposits := Transactions.Empty_List;
+     This.Withdrawals := Transactions.Empty_Vector;
+     This.Deposits := Transactions.Empty_Vector;
      This.Deposits.Append (Initial_Deposit);
      -- invariant is now true
    end Open;

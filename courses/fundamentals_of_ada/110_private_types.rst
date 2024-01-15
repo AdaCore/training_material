@@ -392,15 +392,15 @@ Full Type Declaration
          type Vector is array (1.. 10)
             of Integer;
          function Initial
-            return List;
+            return Vector;
          type T is record
-           A, B : List := Initial;
+           A, B : Vector := Initial;
          end record;
        end P;
 
 .. container:: speakernote
 
-   List and Initial are not visible to callers
+   Vector and Initial are not visible to callers
 
 --------------------
 Deferred Constants
