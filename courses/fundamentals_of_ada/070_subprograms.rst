@@ -240,7 +240,7 @@ Completion Examples
       end Swap;
 
       -- Completion as specification
-      function Less_Than (X, Y : Person) return boolean is
+      function Less_Than (X, Y : Person) return Boolean is
       begin
          return X.Age < Y.Age;
       end Less_Than;
@@ -383,7 +383,10 @@ Parameter Modes and Return
 
 * Mode :ada:`in`
 
-   - Actual parameter is :ada:`constant`
+   - Formal parameter is :ada:`constant`
+
+     * So actual is not modified either
+
    - Can have **default**, used when **no value** is provided
 
     .. code:: Ada
@@ -678,7 +681,7 @@ Null Procedure Summary
 
 .. code:: Ada
 
-   procedure Do_Something (P : in     integer) is null;
+   procedure Do_Something (P : in     Integer) is null;
 
 =====================
 Nested Subprograms

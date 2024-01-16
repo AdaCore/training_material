@@ -67,6 +67,7 @@ Separating Interface and Implementation
 * Clients can compile their code before body exists
 
    - All they need is the package specification
+   - Clients have **no** visibility over the body
    - Full client/interface consistency is guaranteed
 
 .. code:: Ada
@@ -146,7 +147,7 @@ Package Declarations
    end Float_Stack;
 
    package Data is
-      Object : integer;
+      Object : Integer;
    end Data;
 
 ---------------------------------
@@ -479,11 +480,11 @@ Named Collection of Declarations (2)
      Longitudinal_Acceleration : Float := 0.0;
      Lateral_Velocity  : Float := 0.0;
      Lateral_Acceleration : Float := 0.0;
-     Vertical_Velocity : Float:= 0.0;
-     Vertical_Acceleration : Float:= 0.0;
-     Pitch_Attitude : Float:= 0.0;
-     Pitch_Rate : Float:= 0.0;
-     Pitch_Acceleration : Float:= 0.0;
+     Vertical_Velocity : Float := 0.0;
+     Vertical_Acceleration : Float := 0.0;
+     Pitch_Attitude : Float := 0.0;
+     Pitch_Rate : Float := 0.0;
+     Pitch_Acceleration : Float := 0.0;
    end Equations_of_Motion;
 
 --------------------------------

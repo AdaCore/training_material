@@ -114,7 +114,7 @@ User-Defined Equality Example
       type Index is range 0 .. Max;
       type Vector is array (Index range 1 .. Max) of Integer;
       type Stack is record
-        Values : List;
+        Values : Vector;
         Top : Index := 0;
       end record;
 
@@ -175,7 +175,7 @@ Composition vs Non-Composition
       X_A, Y_A : Array1_T := (others => 123);
       X_B, Y_B : Array2_T := (others => 123);
 
-      -- When comparing integers, this forces False result
+      -- When comparing Integers, this forces False result
       function "=" (L, R : Integer) return Boolean is
       begin
          return False;
@@ -187,7 +187,7 @@ Composition vs Non-Composition
       end "=";
 
    begin
-      -- Use "=" on line 11 for integer comparison
+      -- Use "=" on line 11 for Integer comparison
       Put_Line (Boolean'Image (X_A (2) = Y_A (2)));
       -- Comparison using predefined operator: "=" on line 11 is ignored
       Put_Line (Boolean'Image (X_A = Y_A));
@@ -197,7 +197,7 @@ Composition vs Non-Composition
 
 .. container:: speakernote
 
-   Equality for IntegerList doesn't compose because Integer is not a record type.
+   Equality for Array1_T doesn't compose because Integer is not a record type.
 
 -------------------------------------
 Enclosing Equality Function Example
@@ -217,7 +217,7 @@ Enclosing Equality Function Example
    begin
      -- User-defined "=" for Foo
      return Left.Value = Right.Value
-        -- predefined "=" for integer
+        -- predefined "=" for Integer
         and Left.Id = Right.Id;
    end "=";
 

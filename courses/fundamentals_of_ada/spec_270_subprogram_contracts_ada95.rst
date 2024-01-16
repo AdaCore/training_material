@@ -464,10 +464,8 @@ Postcondition Usage of Function Results
 
 .. code:: Ada
 
-  function Greatest_Common_Denominator (A, B : Integer)
-    return Integer;
-  pragma Pre
-    (A > 0 and B > 0);
+  function Greatest_Common_Denominator (A, B : Positive)
+    return Positive;
   pragma Post
     (Is_GCD (A, B, Greatest_Common_Denominator'Result));
 
@@ -605,7 +603,7 @@ Postcondition Compared to Their Body
    - Search: :ada:`Can_Exit (Path_To_Exit'Result, Maze)`
    - Cryptography: :ada:`Match (Signer (Sign_Certificate'Result), Key.Public_Part)`
 
-* Bad fit for poorly-defined or self-defining programs
+* Bad fit for poorly-defined or self-defining subprograms
 
 .. code:: Ada
 
@@ -620,9 +618,8 @@ Postcondition Compared to Their Body: Example
 
 .. code:: Ada
 
-   function Greatest_Common_Denominator (A, B : Integer)
-     return Integer;
-   pragma Pre (A > 0 and B > 0);
+   function Greatest_Common_Denominator (A, B : Positive)
+     return Positive;
    pragma Post
       (Is_GCD (A, B, Greatest_Common_Denominator'Result));
 
@@ -654,7 +651,7 @@ Contracts Code Reuse
 
       procedure Withdraw (This   : in out Account;
                           Amount :        Currency);
-      pragma Pre (Open (This) and Funds_Available (This, Amount));
+      pragma Pre (Open (This) and then Funds_Available (This, Amount));
       pragma Post (Balance (This) = Balance (This)'Old - Amount);
       ...
       function Funds_Available (This   : Account;

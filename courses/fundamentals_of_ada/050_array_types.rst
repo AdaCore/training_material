@@ -297,8 +297,8 @@ Quiz
 
 .. code:: Ada
 
-   type Array1_T is array (1 .. 8) of boolean;
-   type Array2_T is array (0 .. 7) of boolean;
+   type Array1_T is array (1 .. 8) of Boolean;
+   type Array2_T is array (0 .. 7) of Boolean;
    X1, Y1 : Array1_T;
    X2, Y2 : Array2_T;
 
@@ -308,9 +308,9 @@ Quiz
 
    Which statement is not legal?
 
-   A. ``X1(1) := Y1(1);``
+   A. ``X1 (1) := Y1 (1);``
    B. ``X1 := Y1;``
-   C. ``X1(1) := X2(1);``
+   C. ``X1 (1) := X2 (1);``
    D. :answermono:`X2 := X1;`
 
  .. container:: column
@@ -475,7 +475,7 @@ Specifying Constraints via Initial Value
        of Character;
    ...
    M : Another_String := "Hello World!";
-   -- M'first is integer'first
+   -- M'first is Integer'first
 
 ----------------------------------
 No Unconstrained Component Types
@@ -638,14 +638,14 @@ Attributes' Benefits
 
       declare
          type Int_Arr is array (5 .. 15) of Integer;
-         List : Int_Arr;
+         Vector : Int_Arr;
       begin
          ...
-         for Idx in List'Range loop
-            List (Idx) := Idx * 2;
+         for Idx in Vector'Range loop
+            Vector (Idx) := Idx * 2;
          end loop;
 
-  * Compiler understands :ada:`Idx` has to be a valid index for :ada:`List`, so no runtime checks are necessary
+  * Compiler understands :ada:`Idx` has to be a valid index for :ada:`Vector`, so no runtime checks are necessary
 
 --------------------------------
 Nth Dimension Array Attributes
@@ -749,8 +749,11 @@ Extra Object-Level Operations
       C : constant String_Type := A & B;
       -- C now contains "foobar"
 
-* Relational (for discrete component types)
-* Logical (for Boolean component type)
+* Comparison (for discrete component types)
+
+   * Not for all scalars
+
+* Logical (for :ada:`Boolean` component type)
 * Slicing
 
    - Portion of array
@@ -849,7 +852,7 @@ Which statement is **not** legal?
 
    Explanations
 
-   A. All three objects are just boolean values
+   A. All three objects are just Boolean values
    B. An element of :ada:`A` is the same type as :ada:`B`
    C. No slicing of multi-dimensional arrays
    D. Slicing allowed on single-dimension arrays
@@ -936,8 +939,8 @@ Array Component For-Loop Example
 
    .. code:: Ada
 
-        Primes : constant array (1 .. 5) of Integer :=
-           (2, 3, 5, 7, 11);
+        type T is array (Positive range <>) of Integer;
+        Primes : T := (2, 3, 5, 7, 11);
 
 * Component-based looping would look like
 

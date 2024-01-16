@@ -108,7 +108,7 @@ Rendezvous Definitions
             Put_Line ("start");
 
             accept Receive_Message (S : String) do
-               Put_Line (S);
+               Put_Line ("receive " & S);
             end Receive_Message;
          end loop;
       end Msg_Box_T;
@@ -137,7 +137,7 @@ Rendezvous Entry Calls
       calling start
       start             -- May switch place with line below
       calling receive 1 -- May switch place with line above
-      Receive 1
+      receive 1
       calling receive 2
       -- Blocked until another task calls Start
 
@@ -158,36 +158,6 @@ Accepting a Rendezvous
    - Can be **not blocking** if no entry call waiting
    - Can **terminate** if no clients can **possibly** make entry call
    - Can **conditionally** accept a rendezvous based on a **guard expression**
-
-------------------------
-Rendezvous Calls
-------------------------
-
-* When calling an **entry**, the caller waits until the task is ready to be called
-
-   .. code:: Ada
-
-      Put_Line ("calling start");
-      T.Start;
-      Put_Line ("calling receive 1");
-      T.Receive_Message ("1");
-      Put_Line ("calling receive 2");
-      --  Locks until somebody calls Start
-      T.Receive_Message ("2");
-
-* Results in an output like:
-
-   .. code:: Ada
-
-      calling start
-      start
-      calling receive 1
-      Receive 1
-      calling receive 2
-
-.. container:: speakernote
-
-   The loop requires Accept and ReceiveMessage to be called one followed by other
 
 ------------------------
 Accepting a Rendezvous
@@ -622,7 +592,7 @@ Waiting On Different Entries
    select
      accept Receive_Message (V : String)
      do
-       Put_Line ("Message : " & String);
+       Put_Line ("Message : " & V);
      end Receive_Message;
    or
      accept Stop;
@@ -775,7 +745,7 @@ Waiting With a Delay
 
    select
      accept Receive_Message (V:String) do
-       Put_Line ("Message : " & String);
+       Put_Line ("Message : " & V);
      end Receive_Message;
    or
      delay 50.0;

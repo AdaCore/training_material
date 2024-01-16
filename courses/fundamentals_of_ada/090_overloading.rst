@@ -43,7 +43,7 @@ Introduction
 * Historically, only done as part of the language **implementation**
 
    - Eg. on operators
-   - Float vs integer vs pointers arithmetic
+   - Float vs Integer vs pointers arithmetic
 
 * Several languages allow **user-defined** overloading
 
@@ -191,7 +191,7 @@ Parameters for Overloaded Operators
 
 * Named parameter associations allowed but ugly
 
-   - Requires prefix notion for call
+   - Requires prefix notation for call
 
    .. code:: Ada
 

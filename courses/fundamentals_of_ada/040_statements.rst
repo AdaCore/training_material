@@ -523,8 +523,8 @@ Quiz
 
 .. code:: Ada
 
-   A : integer := 100;
-   B : integer := 200;
+   A : Integer := 100;
+   B : Integer := 200;
 
 Which choice needs to be modified to make a valid :ada:`if` block
 

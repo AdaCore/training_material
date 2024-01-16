@@ -219,7 +219,7 @@ Library Unit Subprograms
 
       .. code:: Ada
 
-         procedure P (F : in integer);
+         procedure P (F : in Integer);
 
       + Body for P
 

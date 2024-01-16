@@ -114,7 +114,7 @@ Stack vs Heap
 
 .. code:: Ada
 
-  I : Access_Int:= new Integer'(0);
+  I : Access_Int := new Integer'(0);
   J : Access_Str := new String'("Some Long String");
 
 .. image:: stack_pointing_to_heap.png
@@ -158,7 +158,7 @@ Null Values
 -------------
 
 * A pointer that does not point to any actual data has a :ada:`null` value
-* Without an initialization, a pointer is :ada:`null` by default
+* Access types have a default value of :ada:`null`
 * :ada:`null` can be used in assignments and comparisons
 
 .. code:: Ada
@@ -194,9 +194,9 @@ Access Types and Primitives
 
          procedure Proc (V : access T); -- Primitive of T
 
-------------------------
-Dereferencing Pointers
-------------------------
+--------------------------
+Dereferencing Access Types
+--------------------------
 
 * :ada:`.all` does the access dereference
 
@@ -278,7 +278,7 @@ Deallocations
    - Memory corruptions
    - Access to deallocated objects
 
-* As soon as you use them, you lose the safety of your pointers
+* As soon as you use them, you lose the safety of your access
 * But sometimes, you have to do what you have to do ...
 
    - There's no simple way of doing it
@@ -451,7 +451,7 @@ Introduction to Accessibility Checks (2/2)
          type T1 is access all Integer;
          A1 : T1;
          V1 : aliased Integer;
-      Begin
+      begin
          A0 := V0'Access;
          A0 := V1'Access; -- illegal
          A0 := V1'Unchecked_Access;
@@ -482,16 +482,17 @@ Getting Around Accessibility Checks
       begin
          G := V'Unchecked_Access;
          ...
-         Do_Something (G.all); -- This is "reasonable"
+         Do_Something (G.all);
+         G := null; -- This is "reasonable"
       end P;
 
 .. container:: speakernote
 
    Not the best way to write code
 
------------------------------------------
-Using Pointers For Recursive Structures
------------------------------------------
+-------------------------------------------
+Using Access Types For Recursive Structures
+-------------------------------------------
 
 * It is not possible to declare recursive structure
 * But there can be an access to the enclosing type
@@ -706,8 +707,8 @@ Anonymous Access Constants
 
    .. code:: Ada
 
-      procedure Bar (V1 : access constant integer);
-      procedure Foo (V1 : not null access integer); -- Ada 2005
+      procedure Bar (V1 : access constant Integer);
+      procedure Foo (V1 : not null access Integer); -- Ada 2005
 
 ========
 Lab

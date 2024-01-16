@@ -149,7 +149,7 @@ Example Type Invariant Implementation
 
    package body Bank is
    ...
-     function Total (This : Transaction_List)
+     function Total (This : Transaction_Vector)
          return Currency is
        Result : Currency := 0.0;
      begin
@@ -185,8 +185,8 @@ Invariants Don't Apply Internally
      This.Owner := To_Unbounded_String (Name);
      This.Current_Balance := Initial_Deposit;
      -- invariant would be false here!
-     This.Withdrawals := Transactions.Empty_List;
-     This.Deposits := Transactions.Empty_List;
+     This.Withdrawals := Transactions.Empty_Vector;
+     This.Deposits := Transactions.Empty_Vector;
      This.Deposits.Append (Initial_Deposit);
      -- invariant is now true
    end Open;
@@ -335,7 +335,7 @@ Subtype Predicates Concept
 
    - When true, said to "hold"
 
-* Expressed as any legal boolean expression in Ada
+* Expressed as any legal Boolean expression in Ada
 
    - Quantified and conditional expressions
    - Boolean function calls
@@ -581,7 +581,7 @@ Allowed Static Predicate Content (3)
 Dynamic Predicate Expression Content
 --------------------------------------
 
-* Any arbitrary boolean expression
+* Any arbitrary Boolean expression
 
    - Hence all allowed static predicates' content
 
@@ -681,7 +681,7 @@ In Some Cases Neither Kind Is Allowed
 
    type Play is array (Weekend) of Integer; -- illegal
    type Vector is array (Days range <>) of Integer;
-   L : List (Weekend); -- not legal
+   L : Vector (Weekend); -- not legal
 
 -----------------------------------------
 Special Attributes for Predicated Types

@@ -55,8 +55,8 @@ Syntax and Examples
    .. code:: Ada
 
       type Record1_T is record
-         Field1 : integer;
-         Field2 : boolean;
+         Field1 : Integer;
+         Field2 : Boolean;
       end record;
 
 * Records can be **discriminated** as well
@@ -83,7 +83,7 @@ Characteristics of Components
    .. code:: Ada
 
       type Record_1 is record
-         This_Is_Not_Legal : array (1 .. 3) of integer;
+         This_Is_Not_Legal : array (1 .. 3) of Integer;
       end record;
 
 * **No** constant components
@@ -91,7 +91,7 @@ Characteristics of Components
    .. code:: Ada
 
       type Record_2 is record
-         This_Is_Not_Legal : constant integer := 123;
+         This_Is_Not_Legal : constant Integer := 123;
       end record;
 
 * **No** recursive definitions
@@ -111,25 +111,26 @@ Characteristics of Components
          But_This_Is_Legal : String (1 .. 10);
       end record;
 
-------------------------
-Components Declarations
-------------------------
+-----------------------
+Multiple Declarations
+-----------------------
 
 * Multiple declarations are allowed (like objects)
 
    .. code:: Ada
 
       type Several is record
-         A, B, C : Integer;
+         A, B, C : Integer := F;
       end record;
 
-* Recursive definitions are not allowed
+* Equivalent to
 
    .. code:: Ada
 
-      type Not_Legal is record
-        A, B : Some_Type;
-        C : Not_Legal;
+      type Several is record
+         A : Integer := F;
+         B : Integer := F;
+         C : Integer := F;
       end record;
 
 -----------------------------------------
@@ -205,14 +206,6 @@ Available Operations
       .. code:: Ada
 
          A := B;
-
-   - Component-level operations
-
-      + Based on components' types
-
-         .. code:: Ada
-
-            if A.component < B.component then
 
 * User-defined
 
@@ -699,12 +692,12 @@ Discriminants
 
   type Person_Group is (Student, Faculty);
   type Person (Group : Person_Group) is record
-     Name : String (1 .. 10);
+     Age : Positive;
      case Group is
         when Student => -- 1st variant
            Gpa  : Float range 0.0 .. 4.0;
         when Faculty => -- 2nd variant
-           Pubs : Integer;
+           Pubs : Positive;
      end case;
   end record;
 
@@ -718,7 +711,7 @@ Discriminants
 
    + Unless object is **mutable**
 
-* Discrminant can be used in :dfn:`variant part` (line 5)
+* Discriminant can be used in :dfn:`variant part` (line 5)
 
    + Similar to case statements (all values must be covered)
    + Fields listed will only be visible if choice matches discriminant
@@ -737,11 +730,11 @@ Semantics
 
    .. code:: Ada
 
-      Pat  : Person(Student); -- No Pat.Pubs
-      Prof : Person(Faculty); -- No Prof.GPA
+      Pat  : Person (Student); -- No Pat.Pubs
+      Prof : Person (Faculty); -- No Prof.GPA
       Soph : Person := (Group  => Student,
-                         Name => "John Jones",
-                         GPA  => 3.2);
+                        Age => 21,
+                        GPA  => 3.2);
       X : Person;  -- Illegal: must specify discriminant
 
    .. code:: Ada
@@ -772,8 +765,8 @@ Mutable Discriminated Record
   --  even if Student is also the default
   S2 : Person (Group => Student);
   ...
-  S := (Group => Student, Gpa => 0.0);
-  S := (Group => Faculty, Pubs => 10);
+  S := (Group => Student, Age => 22, Gpa => 0.0);
+  S := (Group => Faculty, Age => 35, Pubs => 10);
 
 ------
 Quiz

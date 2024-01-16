@@ -362,12 +362,12 @@ Quiz
 
 .. code:: Ada
 
-   --  Convert string to integer
-   function From_String ( S : string ) return integer
+   --  Convert string to Integer
+   function From_String ( S : string ) return Integer
       with Pre => S'length > 0;
 
    procedure Do_Something is
-      I : integer := From_String ("");
+      I : Integer := From_String ("");
    begin
       Put_Line (I'image);
    end Do_Something;
@@ -515,9 +515,8 @@ Postcondition Usage of Function Results
 
 .. code:: Ada
 
-  function Greatest_Common_Denominator (A, B : Integer)
-    return Integer with
-      Pre  =>  A > 0 and B > 0,
+  function Greatest_Common_Denominator (A, B : Positive)
+    return Positive with
       Post =>  Is_GCD (A, B,
                        Greatest_Common_Denominator'Result);
 
@@ -654,7 +653,7 @@ Postcondition Compared to Their Body
    - Search: :ada:`Can_Exit (Path_To_Exit'Result, Maze)`
    - Cryptography: :ada:`Match (Signer (Sign_Certificate'Result), Key.Public_Part)`
 
-* Bad fit for poorly-defined or self-defining programs
+* Bad fit for poorly-defined or self-defining subprograms
 
 .. code:: Ada
 
@@ -703,7 +702,7 @@ Contracts Code Reuse
 
       procedure Withdraw (This   : in out Account;
                           Amount :        Currency) with
-        Pre  => Open (This) and Funds_Available (This, Amount),
+        Pre  => Open (This) and then Funds_Available (This, Amount),
         Post => Balance (This) = Balance (This)'Old - Amount;
       ...
       function Funds_Available (This   : Account;

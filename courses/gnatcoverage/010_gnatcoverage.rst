@@ -86,7 +86,7 @@ Statement Coverage
         procedure Test_Statement
           (A, B, C :     Integer;
            Z       : out Integer) is
-           Local : integer := A;
+           Local : Integer := A;
         begin
            Local := Local * 10;
            Local := Local + B * 100;
@@ -532,7 +532,7 @@ Coverage Is Not Testing!
 
     .. code:: Ada
 
-      function Abs_Val ( Number : integer ) return integer is
+      function Abs_Val ( Number : Integer ) return Integer is
       begin
         if Number <= 0 then
           return Number;

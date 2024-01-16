@@ -227,13 +227,14 @@ No Ambiguity Introduction
      PC1 : Integer;
    end Parent.Child;
 
-   with Parent.Child;
+   with Parent;
+   with Parent.Child; use Parent.Child;
    procedure Demo is
      D1 : Integer := Parent.P1;
      D2 : Integer := Parent.Child.PC1;
      use Parent;
-     D3 : Integer := P1;
-     D4 : Integer := Child.PC1;
+     D3 : Integer := P1; -- illegal
+     D4 : Integer := PC1;
      ...
 
 .. container:: speakernote
@@ -260,7 +261,7 @@ No Ambiguity Introduction
      A, B, C : P.Int := some_value;
    begin
      C := A + B; -- illegal reference to operator
-     C:= P."+" (A,B);
+     C := P."+" (A,B);
      declare
        use P;
      begin

@@ -170,7 +170,7 @@ How Do You Use A Generic?
 
 .. code:: Ada
 
-   package Integer_stack is new Stack (Integer);
+   package Integer_Stack is new Stack (Integer);
    package Integer_Stack_Utils is
        new Integer_Stack.Utilities;
    ...
@@ -214,7 +214,7 @@ Generic Types Parameters (2/3)
 
     * - :ada:`type T2 is range <>;`
 
-      - Signed integer type; appropriate mathematic operations allowed
+      - Signed Integer type; appropriate mathematic operations allowed
 
     * - :ada:`type T3 is digits <>;`
 
@@ -379,7 +379,7 @@ Generic Subprogram Parameters
 
       generic
          type T is private;
-         with function Less_Than (L, R : T) return boolean;
+         with function Less_Than (L, R : T) return Boolean;
       function Max (L, R : T) return T;
 
       function Max (L, R : T) return T is
@@ -392,7 +392,7 @@ Generic Subprogram Parameters
       end Max;
 
       type Something_T is null record;
-      function Less_Than (L, R : Something_T) return boolean;
+      function Less_Than (L, R : Something_T) return Boolean;
       procedure My_Max is new Max (Something_T, Less_Than);
 
 ----------------------------------------
@@ -412,11 +412,11 @@ Generic Subprogram Parameters Defaults
 
       generic
         type T is private;
-        with function Is_Valid (P : T) return boolean is <>;
+        with function Is_Valid (P : T) return Boolean is <>;
         with procedure Error_Message (P : T) is null;
       procedure Validate (P : T);
 
-      function Is_Valid_Record (P : Record_T) return boolean;
+      function Is_Valid_Record (P : Record_T) return Boolean;
 
       procedure My_Validate is new Validate (Record_T,
                                              Is_Valid_Record);

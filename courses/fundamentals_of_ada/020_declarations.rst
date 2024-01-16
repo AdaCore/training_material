@@ -95,7 +95,7 @@ Identifiers
 
    .. code::
 
-      identifier ::= letter {[underline] letter_or_digit}
+      identifier ::= letter {['_'] letter_or_digit}
 
 * Character set **Unicode** 4.0
 
@@ -177,7 +177,7 @@ Which statement is legal?
    A. ``Function : constant := 1;``
    B. :answermono:`Fun_ction : constant := 1;`
    C. ``Fun_ction : constant := --initial value-- 1;``
-   D. ``integer Fun_ction;``
+   D. ``Integer Fun_ction;``
 
 .. container:: animate
 
@@ -202,7 +202,7 @@ Decimal Numeric Literals
 
       decimal_literal ::=
         numeral [.numeral] E [+numeral|-numeral]
-      numeral ::= digit {[underline] digit}
+      numeral ::= digit {['_'] digit}
 
 * Underscore is not significant
 * **E** (exponent) must always be integer
@@ -282,7 +282,7 @@ Declarations
     - Subprograms
     - et cetera
 
-* Declaration **must precede** use
+* :dfn:`Declaration` **must precede** use
 * **Some** implicit declarations
 
     - **Standard** types and operations
@@ -292,12 +292,13 @@ Declarations
 Object Declarations
 ---------------------
 
-* Variables and constants
+* An :ada:`object` is either :dfn:`variable` or :dfn:`constant`
 * Basic Syntax
 
    .. code:: Ada
 
-      <name> : subtype_indication [:= <initial value>];
+      <name> : <subtype> [:= <initial value>];
+      <name> : constant <subtype> [:= <initial value>];
 
 * Examples
 
@@ -356,13 +357,13 @@ Predefined Declarations
 Implicit vs. Explicit Declarations
 ------------------------------------
 
-* Explicit |rightarrow| in the source
+* :dfn:`Explicit` |rightarrow| in the source
 
    .. code:: Ada
 
       type Counter is range 0 .. 1000;
 
-* Implicit |rightarrow| **automatically** by the compiler
+* :dfn:`Implicit` |rightarrow| **automatically** by the compiler
 
    .. code:: Ada
 
@@ -378,21 +379,22 @@ Implicit vs. Explicit Declarations
       * Array types get concatenation operator
       * Most types get assignment operator
 
--------------
+-----------
 Elaboration
--------------
+-----------
 
-* Effects of the declaration
+* :dfn:`Elaboration` has several aspects:
+* **Initial value** calculation
 
-    - **Initial value** calculations
-    - *Execution* at **run-time** (if at all)
+    - Evaluation of the expression
+    - Done at **run-time** (unless static)
 
-* Objects
+* Object creation
 
    - Memory **allocation**
-   - Initial value
+   - Initial value assignment (and type checks)
 
-* Linear elaboration
+* Runs in linear order
 
    - Follows the program text
    - Top to bottom
@@ -412,18 +414,18 @@ Quiz
 
 Which block is **not** legal?
 
-   A. ``A, B, C : integer;``
+   A. ``A, B, C : Integer;``
    B. ``Integer : Standard.Integer;``
-   C. :answermono:`Null : integer := 0;`
-   D. | ``A : integer := 123;``
-      | ``B : integer := A * 3;``
+   C. :answermono:`Null : Integer := 0;`
+   D. | ``A : Integer := 123;``
+      | ``B : Integer := A * 3;``
 
 .. container:: animate
 
    Explanations
 
    A. Multiple objects can be created in one statement
-   B. :ada:`integer` is *predefined* so it can be overridden
+   B. :ada:`Integer` is *predefined* so it can be overridden
    C. :ada:`null` is *reserved* so it can **not** be overridden
    D. Elaboration happens in order, so :ada:`B` will be 369
 
@@ -472,7 +474,7 @@ Numeric Literals Are Universally Typed
 Literals Must Match "Class" of Context
 ----------------------------------------
 
-* `universal_integer` literals |rightarrow| **integer**
+* `universal_integer` literals |rightarrow| **Integer**
 * `universal_real` literals |rightarrow| **fixed** or **floating** point
 * Legal
 
@@ -546,7 +548,7 @@ Named Number Benefit
   .. code:: Ada
 
     Named_Number   : constant :=       1.0 / 3.0;
-    Typed_Constant : constant float := 1.0 / 3.0;
+    Typed_Constant : constant Float := 1.0 / 3.0;
 
 .. container:: latex_environment footnotesize
 
@@ -660,7 +662,7 @@ Name Hiding
           M := 12.34; -- OK
           M := 0;     -- compile error: M is a Float
         end;
-        M := 0.0; -- compile error: M is an integer
+        M := 0.0; -- compile error: M is an Integer
         M := 0;   -- OK
       end;
 
@@ -686,7 +688,7 @@ Overcoming Hiding
        M : Float;
      begin
        M := 12.34;
-       Outer.M := Integer(M);  -- reference "hidden" integer M
+       Outer.M := Integer(M);  -- reference "hidden" Integer M
      end;
    end Outer;
 

@@ -494,7 +494,7 @@ Example of Visibility As If Nested
        private
          B : Integer := Parent.A;
          -- no dot-notation needed
-         C : integer := A;
+         C : Integer := A;
        end Parent.Child;
 
 -------------------------------------------
@@ -942,25 +942,6 @@ Combining Private and Limited Withs
    private
      X : access Parent.Private_Child.T;
    end Parent.Public_Child;
-
---------------------------------
-Completely Hidden Declarations
---------------------------------
-
-* Anything in a package body is completely hidden
-
-   - Children have no access to package bodies
-
-* Precludes extension using the entity
-
-   - Must know that children will never need it
-
-.. code:: Ada
-
-   package body Skippy is
-     X : Integer := 0;
-     ...
-   end Skippy;
 
 -------------------
 Child Subprograms
