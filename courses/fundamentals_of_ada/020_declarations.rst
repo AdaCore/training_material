@@ -379,21 +379,22 @@ Implicit vs. Explicit Declarations
       * Array types get concatenation operator
       * Most types get assignment operator
 
---------------------
-:dfn:`Elaboration`
---------------------
+-----------
+Elaboration
+-----------
 
-* Effects of the declaration
+* :dfn:`Elaboration` has several aspects:
+* **Initial value** calculation
 
-    - **Initial value** calculations
-    - *Execution* at **run-time** (if at all)
+    - Evaluation of the expression
+    - Done at **run-time** (unless static)
 
-* Objects
+* Object creation
 
    - Memory **allocation**
-   - Initial value
+   - Initial value assignment (and type checks)
 
-* Linear elaboration
+* Runs in linear order
 
    - Follows the program text
    - Top to bottom
