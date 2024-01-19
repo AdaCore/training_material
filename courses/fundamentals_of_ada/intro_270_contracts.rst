@@ -470,7 +470,7 @@ Separations of Concerns
     - a team (Clients) could be in charge of reviewing the interface part
     - another team (Suppliers) could be in charge of reviewing the implementation part
     - both would use the contracts as a common understanding
-    - Tools can do an automated review / validation: :toolname:`CodePeer`, :toolname:`SPARK`
+    - Tools can do an automated review / validation: :toolname:`GNAT Static Analysis Suite`, :toolname:`SPARK`
 
 -------------------------------------
 No Secret Precondition Requirements
@@ -1042,4 +1042,4 @@ Contract-Based Programming Benefits
 * Facilitates tool-based analysis
 
    - Compiler checks conformance to obligations
-   - Static analyzers (e.g., SPARK, CodePeer) can verify explicit preconditions and postconditions
+   - Static analyzers (e.g., SPARK, GNAT Static Analysis Suite) can verify explicit preconditions and postconditions

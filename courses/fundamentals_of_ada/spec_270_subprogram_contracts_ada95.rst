@@ -782,7 +782,7 @@ Contract-Based Programming Benefits
 * Facilitates tool-based analysis
 
    - Compiler checks conformance to obligations
-   - Static analyzers (e.g., SPARK, CodePeer) can verify explicit precondition and postconditions
+   - Static analyzers (e.g., SPARK, GNAT Static Analysis Suite) can verify explicit precondition and postconditions
 
 ---------
 Summary

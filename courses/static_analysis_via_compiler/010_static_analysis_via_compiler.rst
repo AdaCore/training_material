@@ -61,7 +61,7 @@ Introduction
 + GNAT's analysis is extensive, but not without limitations
 
   + A compiler rather than a static analyzer
-  + :toolname:`CodePeer` will be used as a counter-example
+  + :toolname:`GNAT Static Analysis Suite` will be used as a counter-example
 
 ===============
 GNAT Warnings
@@ -1334,13 +1334,13 @@ Viewing Data Representations Example
          Id at 2 range  0 ..  7;
       end record;
 
-======================
-GNAT versus CodePeer
-======================
+========================================
+GNAT versus GNAT Static Analysis Suite
+========================================
 
-----------
-CodePeer
-----------
+----------------------------
+GNAT Static Analysis Suite
+----------------------------
 
 + A static analyzer
 
@@ -1367,9 +1367,9 @@ Why Not Just Use the Compiler?
 
 + The compiler does generate useful warnings
 
-  + But :toolname:`CodePeer` far exceeds the compiler's analyses
+  + But :toolname:`GNAT Static Analysis Suite` far exceeds the compiler's analyses
 
-+ :toolname:`CodePeer`
++ :toolname:`GNAT Static Analysis Suite`
 
   + Does much more thorough job
   + Finds problems compiler doesn't look for
@@ -1415,7 +1415,7 @@ Flow Tracing
 
     example.adb:2:04: warning: variable "A" is read but never assigned [-gnatwv]
 
-+ :toolname:`CodePeer` results
++ :toolname:`GNAT Static Analysis Suite` results
 
   ::
 
@@ -1450,7 +1450,7 @@ Value Tracing
 
     example.adb:5:14: warning: condition is always True
 
-+ :toolname:`CodePeer` does full value tracing
++ :toolname:`GNAT Static Analysis Suite` does full value tracing
 
   ::
 
@@ -1482,7 +1482,7 @@ Value Tracing
 
       example.adb:6:13: warning: division by zero [enabled by default]
 
-+ :toolname:`CodePeer` does whole-program analysis
++ :toolname:`GNAT Static Analysis Suite` does whole-program analysis
 
   .. container:: latex_environment scriptsize
 
@@ -1491,9 +1491,9 @@ Value Tracing
       example.adb:6:11: high: divide by zero fails here
       example.adb:7:11: high: divide by zero fails here: requires (zero'Result) /= 0
 
------------------------------------------------
-CodePeer's Capabilities Beyond the Compiler's
------------------------------------------------
+-----------------------------------------------------------------
+GNAT Static Analysis Suite's Capabilities Beyond the Compiler's
+-----------------------------------------------------------------
 
 + Detecting race conditions in tasking code
 + Incremental analysis
@@ -1526,7 +1526,7 @@ Summary
   + Language subset definitions
 
 + See the docs: we did not examine every possibility
-+ :toolname:`CodePeer` can do much better, and much more
++ :toolname:`GNAT Static Analysis Suite` can do much better, and much more
 
   + And analysis is sound
 

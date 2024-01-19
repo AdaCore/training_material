@@ -31,6 +31,7 @@ GNAT Static Analysis Suite (GNAT SAS)
 
 .. |checkmark| replace:: :math:`\checkmark`
 
+
 ==========================
 Advanced Static Analysis
 ==========================
