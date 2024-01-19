@@ -1,6 +1,6 @@
-================
+****************
 Analyzing Code
-================
+****************
 
 ..
     Coding language
@@ -31,28 +31,30 @@ Analyzing Code
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-------------------
+==================
 Running GNAT SAS
-------------------
+==================
 
-+ From the command line
+-------------------------------
+Running from the Command Line
+-------------------------------
 
-  + Typically used for simple testing or automation
++ Typically used for simple testing or automation
 
   :command:`gnatsas analyze -Psdc`
+
++ Internal files generated:
+
+  + :dfn:`Static Analysis Messages` - contains all messages generated during run, plus age and last review
+  + :dfn:`Review File` - User reviews for all runs
+
+----------------------
+Running from the GUI
+----------------------
 
 + From :toolname:`GNAT Studio`
 
   :menu:`GNATSAS` |rightarrow| :menu:`Analyze All`
-
-+ Internal files generated:
-
-  + :dfn:`Static Analysis Messages` - contains all messages generated ruring run, plus age and last review
-  + :dfn:`Review File` - User reviews for all runs
-
-------------------
-Results (in GUI)
-------------------
 
 * Messages displayed in report based on filters
 
@@ -103,6 +105,10 @@ Timelines
   * Allows creating specialized timelines based on switches
 
     * Such as :command:`no-subprojects` which might drastically change number of messages
+
+==========
+Settings
+==========
 
 -------------------
 Analysis Settings
