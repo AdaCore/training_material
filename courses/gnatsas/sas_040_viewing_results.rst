@@ -1,6 +1,6 @@
-=================
+*****************
 Viewing Results
-=================
+*****************
 
 ..
     Coding language
@@ -30,6 +30,10 @@ Viewing Results
     Miscellaneous symbols
 
 .. |checkmark| replace:: :math:`\checkmark`
+
+================
+Report Command
+================
 
 ---------------------
 Generating a Report
@@ -243,9 +247,13 @@ Switches for Filtering Messages by Category
 
 *Note:* **none** matches those messages that do not have corresponding information attached (e.g., no CWE or no review)
 
--------------------------
+=========================
 Comparing GNAT SAS Runs
--------------------------
+=========================
+
+--------------------
+Using History Data
+--------------------
 
 * :dfn:`Baseline run` is first run performed at appropriate mode
 
@@ -276,6 +284,10 @@ Classifying Message Changes
 * If all the above matches multiple messages, :toolname:`GNAT SAS` uses order of appearance in code
 
 *Note: default behavior is to not mention removed messages and to call out specifically new messages*
+
+=============
+GUI Reports
+=============
 
 ---------------------------------
 Viewing Reports via GNAT Studio
