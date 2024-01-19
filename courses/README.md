@@ -88,3 +88,7 @@ Course on using compiler capabilities to improve code behavior and maintainabili
   * Producing representation information
 
 Duration: 1/2 day
+
+### GNATSAS
+
+Course on the GNAT Static Analysis Suite - GNAT Metric, GNATcheck, GNAT SAS

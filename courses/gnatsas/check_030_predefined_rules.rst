@@ -31,6 +31,7 @@ Predefined Rules
 
 .. |checkmark| replace:: :math:`\checkmark`
 
+
 ==============
 Introduction
 ==============
