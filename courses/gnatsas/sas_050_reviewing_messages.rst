@@ -1,3 +1,7 @@
+**************************************
+Reviewing Results and Improving Code
+**************************************
+
 ====================
 Reviewing Messages
 ====================
@@ -148,6 +152,10 @@ Resulting in an updated **Manual review** dialog
 
   .. image:: gnatsas/sas_manual_review_custom.png
     :width: 20%
+
+==================================
+Code Annotations via GNAT Studio
+==================================
 
 --------------------------------
 Understanding Code Annotations
