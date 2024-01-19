@@ -5,13 +5,6 @@ Writing Your Own Rules
 ..
     Coding language
 
-.. role:: python(code)
-    :language: python
-
-.. role:: lkql(code)
-    :language: lkql
-
-.. role:: C(code)
 .. role:: ada(code)
     :language: Ada
 
@@ -19,7 +12,7 @@ Writing Your Own Rules
     :language: C
 
 .. role:: cpp(code)
-    :language: C**
+    :language: C++
 
 ..
     Math symbols
@@ -37,6 +30,7 @@ Writing Your Own Rules
     Miscellaneous symbols
 
 .. |checkmark| replace:: :math:`\checkmark`
+
 
 ==============
 Introduction

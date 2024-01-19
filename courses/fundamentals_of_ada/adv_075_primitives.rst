@@ -189,7 +189,7 @@ Liskov's Substitution Principle
         - But fits nicely with Ada's OOP design
 
     + Avoids numerous issues
-    + Can be verified by tools eg. :toolname:`CodePeer`
+    + Can be verified by tools eg. :toolname:`GNAT Static Analysis Suite (GNAT SAS)`
 
 * *Objects of a parent type shall be replaceable by objects of its child types*
 
