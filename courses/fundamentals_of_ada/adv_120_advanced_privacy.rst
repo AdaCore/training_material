@@ -98,7 +98,7 @@ Unknown Constraint
 --------------------
 
 * It is possible to establish that the type is unconstrained without any more information
-* Constrained and unconstrained types can complete the private declaration
+* Definite and indefinite types can complete the private declaration
 
 .. code:: Ada
 
