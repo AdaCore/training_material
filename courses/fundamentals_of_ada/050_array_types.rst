@@ -477,6 +477,25 @@ Specifying Constraints via Initial Value
    M : Another_String := "Hello World!";
    -- M'first is Integer'first
 
+----------------
+Indefinite Types
+----------------
+
+* :dfn:`Indefinite types` do not provide enough information to be instanciated
+
+    - Size
+    - Representation
+
+* Unconstrained arrays types are indefinite
+
+    - They do not have a definite :ada:`'Size`
+
+* Other indefinite types exist (seen later)
+
+.. container:: speakernote
+
+   Defined at RM 3-3 (23/5)
+
 ----------------------------------
 No Unconstrained Component Types
 ----------------------------------
@@ -484,6 +503,7 @@ No Unconstrained Component Types
 * Arrays: consecutive elements of the exact **same type**
 * Component size must be **defined**
 
+    - No indefinite types
     - No unconstrained types
     - Constrained subtypes allowed
 
