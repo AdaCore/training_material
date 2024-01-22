@@ -496,9 +496,9 @@ Indefinite Types
 
    Defined at RM 3-3 (23/5)
 
-----------------------------------
-No Unconstrained Component Types
-----------------------------------
+-------------------------------
+No Indefinite Component Types
+-------------------------------
 
 * Arrays: consecutive elements of the exact **same type**
 * Component size must be **defined**
