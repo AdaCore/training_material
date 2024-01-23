@@ -481,7 +481,7 @@ Specifying Constraints via Initial Value
 Indefinite Types
 ----------------
 
-* :dfn:`Indefinite types` do not provide enough information to be instanciated
+* :dfn:`Indefinite types` do not provide enough information to be instantiated
 
     - Size
     - Representation
