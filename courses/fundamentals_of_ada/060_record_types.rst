@@ -102,7 +102,7 @@ Characteristics of Components
          This_Is_Not_Legal : Record_3;
       end record;
 
-* **No** unconstrained types
+* **No** indefinite types
 
    .. code:: Ada
 
@@ -724,6 +724,7 @@ Semantics
 
 * :ada:`Person` objects are **constrained** by their discriminant
 
+   + They are **indefinite**
    + **Unless** mutable
    + Assignment from same variant **only**
    + **Representation** requirements
@@ -750,6 +751,7 @@ Mutable Discriminated Record
 
    + Objects instantiated **using the default** are **mutable**
    + Objects specifying an **explicit** value are **not** mutable
+   + Type is now **definite**
 
 * Mutable records have **variable** discriminants
 * Use **same** storage for **several** variant
