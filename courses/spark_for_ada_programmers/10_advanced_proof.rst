@@ -159,6 +159,28 @@ Specifying Initialized Parts
   - All scalar subcomponents are dynamically checked to be valid values of
     their type
 
+---------------------------------------
+Relaxed Initialization and Predicates
+---------------------------------------
+
+* Ghost attribute :ada:`Initialized` cannot be used in predicate
+
+  - Rationale: predicate is part of membership tests
+
+* Use instead special :ada:`Ghost_Predicate`
+
+  - Membership tests are not allowed for such types
+
+  - Otherwise subject to same rules as other predicates
+
+  .. code:: Ada
+
+     type Stack is record
+        Top     : Index;
+        Content : Content_Table;
+     end record
+        with Ghost_Predicate => Content (1 .. Top)'Initialized;
+
 ----------------------------------
 Verifying Relaxed Initialization
 ----------------------------------
