@@ -142,7 +142,7 @@ Specifying Relaxed Initialization
 Specifying Initialized Parts
 ------------------------------
 
-* Attribute :ada:`Initialized` is used to specify initialized objects
+* Ghost attribute :ada:`Initialized` is used to specify initialized objects
 
   .. code:: Ada
 
@@ -469,7 +469,7 @@ What's wrong with the following code?
    * :toolname:`GNATprove` implements defense in depth
 
      - Non-terminating loop causes enclosing subprogram to also not terminate
-     - Switch :command:`--proof-warnings` can detect dead code
+     - Switch :command:`--proof-warnings=on` can detect dead code
      - Proof of loop termination based on loop variants
 
 ---------------------
@@ -716,11 +716,12 @@ Functional Containers
 
 * Available from SPARK Library
 
-* Four kinds of functional containers
+* Five kinds of functional containers
 
   - infinite sequences
   - vectors
   - sets
+  - multisets
   - maps
 
 * Simple containers close to mathematical structures
@@ -754,7 +755,7 @@ Advanced Proof
 
   - Some variables are partially initialized
   - Some array variables are initialized in a loop
-  - More annotations are needed with attribute :ada:`Initialized`
+  - More annotations are needed with ghost attribute :ada:`Initialized`
 
 * Proof of loops requires more work
 

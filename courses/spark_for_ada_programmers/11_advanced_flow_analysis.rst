@@ -147,6 +147,29 @@ Basic Data Dependency Contracts
      with
        Depends => (Func'Result => (X, Y, Z));
 
+-----------------------------------
+Some Outputs May Appear as Inputs
+-----------------------------------
+
+* Parts of outputs are in fact inputs:
+
+  - Bounds of arrays
+
+  - Discriminants of records
+
+  - Tags of tagged records
+
+* These output objects will appear as inputs in `Depends` when
+  bounds/discriminants/tags not implied by the object subtype
+
+  .. code:: Ada
+
+     procedure Proc (Tab : out Table)
+     with
+       Global => (Output => Glob),
+       Depends => (Tab  => Tab,
+                   Glob => Glob);
+
 ---------------
 Special Cases
 ---------------
