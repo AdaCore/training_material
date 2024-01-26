@@ -343,8 +343,8 @@ Exceptional Cases
 
   .. code:: ada
 
-     Exceptional_Cases => (Constraint_Error => Status = Error);
-     Exceptional_Cases => (others => True); -- most general form
+     Exceptional_Cases => (Constraint_Error => Res = Error);
+     Exceptional_Cases => (others => True); -- most general
 
 * Different exceptions can be grouped by cases
 
@@ -502,7 +502,7 @@ Unfeasible Contracts
 
     + Unless switch :command:`--function-sandboxing=off` is used
 
-  - Switch :command:`--proof-warnings` can detect inconsistencies
+  - Switch :command:`--proof-warnings=on` can detect inconsistencies
   - Proof of subprogram will detect contract unfeasibility
 
     + **Except** when subprogram does not terminate

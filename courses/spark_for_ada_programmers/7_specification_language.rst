@@ -89,6 +89,7 @@ Richer Expressions
   - *delta aggregates* express the value of an updated composite object
   - *iterated component associations* express array aggregates where the
     expression depends on the **index**
+  - *container aggregates* give the value of a container
 
 * Structuring expressions
 
@@ -375,6 +376,41 @@ Iterated Component Associations
 
   - Can be used in **any** aggregate
   - Can be mixed with regular component associations :ada:`Idx => Val`
+
+----------------------
+Container Aggregates
+----------------------
+
+.. admonition:: Language Variant
+
+   Ada 2022
+
+* Available for all functional and formal containers
+
+* Vectors, lists and sets use the positional syntax:
+
+  .. code:: Ada
+
+     V : Vector := [1, 2, 3];
+     L : List := [1, 2, 3];
+     S : Set := [1, 2, 3];
+
+* Maps use the named syntax:
+
+  .. code:: Ada
+
+     M : Map := [1 => 8, 4 => 3, 42 => 127];
+
+* General mechanism using the :ada:`Container_Aggregates` annotation
+
+  - Three predefined patterns :ada:`Predefined_Sequences`,
+    :ada:`Predefined_Sets` and :ada:`Predefined_Maps` require specific API
+    (used for functional containers)
+
+  - :ada:`From_Model` only requires `Model` function returning the above
+    (used for formal containers)
+
+  - consistency checked by :toolname:`GNATprove`
 
 =========================
 Structuring Expressions
