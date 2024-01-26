@@ -522,7 +522,7 @@ Contracts on Access-to-subprogram Types
 
 * Very often using `not null access procedure/function` (for parameters)
 
-* Implicit `Global => null, Always_Terminates => False` on type
+* Implicit `Global => null` on type
 
 * Creating a value of access-to-subprogram type with attribute :ada:`Access`
 
@@ -573,6 +573,8 @@ Interrupt Handlers
 --------------------
 
 * Handler can be called asynchronously outside SPARK program
+
+  - But not called from SPARK code
 
 * Handler declared with access-to-subprogram type
 

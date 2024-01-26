@@ -688,7 +688,7 @@ Dealing with Equality
 
   - Or use annotation :ada:`Logical_Equal` on equality function
 
-    - Extra care needed to avoid unsoundness
+    - :toolname:`GNATprove` checks that this is sound
 
 ------------------------
 Computing with Provers
