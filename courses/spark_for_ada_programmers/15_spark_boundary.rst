@@ -658,7 +658,7 @@ Modelling an API to Manage a Resource
     + Similar to treatment of pointers in SPARK
     + :toolname:`GNATprove` checks absence of aliasing
 
-  - Possibility to specify a reclamation function, predicate or value
+  - Possibility to specify a reclamation function, predicate, or value
 
     + :toolname:`GNATprove` checks absence of resource leaks
 
