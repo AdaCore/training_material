@@ -202,7 +202,12 @@ Modified Condition/Decision Coverage
   * Similarly for rows 5 and 7 for :ada:`B` and rows 5 and 6 for :ada:`C`
   * There can be multiple pairs of rows depending on the expression
 
-* So, to prove MC/DC for subcondition A, coverage results must show that **both** rows 2 and 6 have been executed
+* So, to prove MCDC for subcondition A, coverage results must show that **both** rows 2 and 6 have been executed
+
+* Note that there are two types of MCDC coverage implementations
+
+  * Unique Cause MCDC, where every subcondition must be shown to affect the outcome of the result
+  * Masking MCDC, which allows conditions to be grouped, necessary with coupled conditions
 
 ----------------------------------------------
 Modified Condition/Decision Coverage Example
@@ -214,6 +219,6 @@ Modified Condition/Decision Coverage Example
 * Call :ada:`Test_Mcdc` with :ada:`(1, 0, 0)`, :ada:`(0, 1, 0)`, and :ada:`(1, 1, 0)`
 
    * Better test results, but we need more tests
-   * In general, if there are N subconditions, need N+1 sets of data to get complete MC/DC coverage
+   * In general, if there are N subconditions, need N+1 sets of data to get complete MCDC coverage
 
    .. image:: gnatdas/cover_mcdc_expanded.png
