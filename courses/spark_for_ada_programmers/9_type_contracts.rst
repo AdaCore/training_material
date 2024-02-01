@@ -311,6 +311,12 @@ Restrictions in Usage
   - Not allowed as range in a *for loop*
   - Not allowed as choice in *case statement* or *case expression*
 
+|
+
+* Special aspect :ada:`Ghost_Predicate` for referring to ghost entities
+
+  - Type cannot be used in membership tests
+
 --------------------------------
 Dynamic Checking of Predicates
 --------------------------------

@@ -251,15 +251,14 @@ Legality Checking
 * Error messages on violations
 
   - Need to fix to go beyond this step
-  - Ex: :command:`<expr> cannot depend on variable input <var>` |rightarrow|
-    declare a constant :ada:`value` to get the value of :ada:`var` and use
-    :ada:`value` inside :ada:`expr`
 
-  - Ex: :command:`uninitialized allocator is not allowed` |rightarrow| use
-    :ada:`new T'(Value)` instead of :ada:`new T`
+  - Ex: :command:`<expr> cannot depend on variable input <var>`
 
-  - Ex: :command:`<such-and-such> not allowed` |rightarrow| rewrite code
-    without such-and-such construct
+  - May include fix: :command:`use instead a constant initialized to the
+    expression with variable input` |rightarrow| apply the suggested fix
+
+  - May include *explain code*: :command:`[E0007]` |rightarrow| launch
+    :command:`gnatprove --explain=E0007` for more information
 
 * Includes ownership checking, detailed in course on Pointer Programs
 

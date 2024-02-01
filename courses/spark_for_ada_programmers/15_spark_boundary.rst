@@ -197,6 +197,7 @@ Volatile Functions
 
   - When :ada:`Effective_Reads` is set to :ada:`True`
   - A read is a side-effect, which is forbidding in SPARK functions
+  - Unless the function has aspect :ada:`Side_Effects`
 
 * A call to a volatile function must appear in a non-interfering context
 
@@ -657,7 +658,7 @@ Modelling an API to Manage a Resource
     + Similar to treatment of pointers in SPARK
     + :toolname:`GNATprove` checks absence of aliasing
 
-  - Possibility to specify a reclamation function or predicate
+  - Possibility to specify a reclamation function, predicate, or value
 
     + :toolname:`GNATprove` checks absence of resource leaks
 
