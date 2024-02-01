@@ -73,14 +73,14 @@ Semantics Overview
 
 * May be several occurrences active at same time
 
-   - One per thread of control
+   - One per task of control
 
 * Normal execution abandoned when they occur
 
    - Error processing takes over in response
    - Response specified by :dfn:`exception handlers`
    - *Handling the exception* means taking action in response
-   - Other threads need not be affected
+   - Other tasks need not be affected
 
 ----------------------------
 Semantics Example: Raising
