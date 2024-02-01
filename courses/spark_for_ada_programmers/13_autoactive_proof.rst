@@ -625,15 +625,15 @@ Reducing the Proof Context
 
 * SPARK Library :ada:`SPARK.Cut_Operations`
 
-  - Functions `By` and `So` to chain assertions
+  - Functions ``By`` and ``So`` to chain assertions
 
-  - :ada:`By(A,B)` requires proving `B`, then `A` from `B`, and leaves only `A`
+  - :ada:`By (A, B)` requires proving ``B``, then ``A`` from ``B``, and leaves only ``A``
     in proof context
 
-  - :ada:`So(A,B)` requires proving `A`, then `B` from `A`, and leaves both in
+  - :ada:`So (A,B)` requires proving ``A``, then ``B`` from ``A``, and leaves both in
     proof context
 
-  - Note: :ada:`A and then B` requires proving separately `A` and `B`
+  - Note: :ada:`A and then B` requires proving separately ``A`` and ``B``
 
 * Annotation :ada:`Hide_Info` and :ada:`Unhide_Info` used to hide/expose
   expression function
@@ -646,10 +646,10 @@ Triggering Provers
 
   - A trigger is a ground term usually appearing in the axiom
 
-  - E.g. :toolname:`GNATprove` generates trigger `f args` for axiom defining
+  - E.g. :toolname:`GNATprove` generates trigger ``f args`` for axiom defining
     function `f` on arguments `args`
 
-* Annotation `Inline_For_Proof` avoids definition of axiom
+* Annotation ``Inline_For_Proof`` avoids definition of axiom
 
   - Instead direct definition given for function
 
@@ -682,7 +682,7 @@ Dealing with Equality
 
 * Predefined equality on arrays ignores value of bounds
 
-* In general, :ada:`A = B` does not imply `F(A) = F(B)`
+* In general, :ada:`A = B` does not imply ``F (A) = F (B)``
 
   - Possible to state a lemma proving this property
 
