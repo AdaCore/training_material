@@ -1017,7 +1017,7 @@ Effects of Constraints
    .. code:: Ada
 
       subtype Positive is Integer range 1 .. Integer'Last;
-      P : Positive;
+      P : Positive := 1;
       X : Integer := P; -- X and P are the same type
 
 ---------------------------------
