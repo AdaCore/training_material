@@ -587,7 +587,7 @@ Interrupt Handlers
      type No_Param_Proc is access procedure with
        Annotate => (GNATprove, Handler);
 
-* Can take `Access` on subprogram that reads or writes global
+* Can take ``Access`` on subprogram that reads or writes global
 
   .. code:: ada
 
