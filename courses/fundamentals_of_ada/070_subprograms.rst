@@ -540,6 +540,8 @@ Correct Implementation
       Result : Vector (Left'Range);
       Offset : constant Integer := Right'First - Result'First;
    begin
+      pragma Assert (Left'Length = Right'Length);
+      ...
       for K in Result'Range loop
         Result (K) := Left (K) - Right (K + Offset);
       end loop;
