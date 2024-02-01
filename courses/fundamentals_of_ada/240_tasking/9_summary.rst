@@ -6,8 +6,9 @@ Summary
 Summary
 ---------
 
-* Tasks are **language-based** multi-tasking mechanisms
+* Tasks are **language-based** concurrency mechanisms
 
+   - Typically implemented as threads
    - Not necessarily for **truly** parallel operations
    - Originally for task-switching / time-slicing
 
