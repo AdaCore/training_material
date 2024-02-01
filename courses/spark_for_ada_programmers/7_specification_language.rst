@@ -407,7 +407,7 @@ Container Aggregates
     :ada:`Predefined_Sets` and :ada:`Predefined_Maps` require specific API
     (used for functional containers)
 
-  - :ada:`From_Model` only requires `Model` function returning the above
+  - :ada:`From_Model` only requires ``Model`` function returning the above
     (used for formal containers)
 
   - consistency checked by :toolname:`GNATprove`

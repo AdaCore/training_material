@@ -509,7 +509,7 @@ Access-to-subprogram Values
 Contracts on Access-to-subprogram Types
 -----------------------------------------
 
-* Access-to-subprogram values not submitted to ownership
+* Access-to-subprogram values not subject to ownership
 
 * Only preconditions and postconditions are allowed
 
@@ -520,7 +520,7 @@ Contracts on Access-to-subprogram Types
        Pre  => ...
        Post => ...
 
-* Very often using `not null access procedure/function` (for parameters)
+* Very often using :ada:`not null access procedure/function` (for parameters)
 
 * Implicit `Global => null` on type
 
@@ -531,7 +531,7 @@ Contracts on Access-to-subprogram Types
      procedure P (...);
      Acc : Proc := P'Access;
 
-* GNATprove checks conditions for refinement
+* :toolname:`GNATprove` checks conditions for refinement
 
   - Pre of type implies pre of subprogram
 
@@ -552,19 +552,19 @@ Higher Order Specialization
         F : not null access function (N : Natural) return Natural)
         return Nat_Array;
 
-* Function `F` above cannot read global variables
+* Function ``F`` above cannot read global variables
 
-* Annotation `Higher_Order_Specialization` allowed on `Map`
+* Annotation ``Higher_Order_Specialization`` allowed on `Map`
 
-  - Call to `Map (A, Func'Access)` specialized for `Func`
+  - Call to ``Map (A, Func'Access)`` specialized for ``Func``
 
-  - `Func` is allowed to read global variables
+  - ``Func`` is allowed to read global variables
 
-  - `Func` can have a precondition and postcondition
+  - ``Func`` can have a precondition and postcondition
 
 * Used in SPARK Higher Order Library
 
-  - Associated lemmmas also use annotation `Higher_Order_Specialization`
+  - Associated lemmmas also use annotation ``Higher_Order_Specialization``
 
   - Lemmas specialized when calls are specialized
 
@@ -580,7 +580,7 @@ Interrupt Handlers
 
 * Handler may read or write global data
 
-* Annotation `Handler` on access-to-subprogram type
+* Annotation ``Handler`` on access-to-subprogram type
 
   .. code:: ada
 

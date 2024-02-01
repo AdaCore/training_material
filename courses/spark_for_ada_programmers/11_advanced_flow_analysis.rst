@@ -159,7 +159,7 @@ Some Outputs May Appear as Inputs
 
   - Tags of tagged records
 
-* These output objects will appear as inputs in `Depends` when
+* These output objects will appear as inputs in ``Depends`` when
   bounds/discriminants/tags not implied by the object subtype
 
   .. code:: Ada
