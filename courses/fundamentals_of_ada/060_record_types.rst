@@ -633,7 +633,7 @@ Quiz
 
 .. admonition:: Language Variant
 
-   Ada 2012
+   Ada 2005
 
 .. code:: Ada
 
