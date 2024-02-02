@@ -647,7 +647,7 @@ Triggering Provers
   - A trigger is a ground term usually appearing in the axiom
 
   - E.g. :toolname:`GNATprove` generates trigger ``f args`` for axiom defining
-    function `f` on arguments `args`
+    function ``f`` on arguments ``args``
 
 * Annotation ``Inline_For_Proof`` avoids definition of axiom
 
