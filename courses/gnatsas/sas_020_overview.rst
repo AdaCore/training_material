@@ -63,15 +63,15 @@ GNAT SAS In A Nutshell (2/2)
 + Large Ada support
 
   + Usable with Ada83 through Ada2022
-  + No vendor lock-in
+  + Compiler agnostic
 
     + Supports GNAT, Apex, GHS, ObjectAda, VADS
 
-+ Bundled with a Coding Standards Checker and a Metrics Tool
++ Bundled with a Coding Standards Checker and a Metrics Calculation Tool
 
   + :toolname:`GNATcheck` and :toolname:`GNATmetric`
 
-+ Detects runtime and logic errors exhaustively
++ Detects runtime and logic errors
 
   + Initialization errors, run-time errors and assertion failures
   + Race condition errors: unprotected access to globals
@@ -82,10 +82,13 @@ GNAT SAS In A Nutshell (2/2)
 GNAT SAS Integration
 ----------------------
 
-+ Output: textual, XML, CSV, HTML
-+ Command-line tool (uses GNAT project files)
-+ Interactive use in :toolname:`GNAT Studio` and :toolname:`GNATbench` IDEs
-+ Integration with Jenkins (continuous builder)
++ Output: textual, XML, CSV, HTML, SARIF, CodeClimate
++ Integrated with :toolname:`GPRbuild`
+  
+  - Tool configuration can be source controlled
+
++ Scriptable command-line tool for easy deployment in CI/CD technologies (e.g. GitLab, Jenkins)
++ Interactive use in :toolname:`GNAT Studio`
 + Integration with :toolname:`SonarQube` (continuous inspection of code quality)
 
 -----------------------------
@@ -104,7 +107,7 @@ Integrated Analysis Engines
   + https://fbinfer.com/
   + Specialized to Ada by AdaCore
   + Fast analysis with low false positive rate
-  + Especially good in detecting problems occurring on certain program paths, such as null-pointer dereferences or memory leaks
+  + Especially good in detecting problems occurring for certain execution paths, such as null-pointer dereferences or memory leaks
 
 + GNAT Warnings
 
