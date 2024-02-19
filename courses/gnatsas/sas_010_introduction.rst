@@ -71,7 +71,7 @@ Why Static Analysis Saves Money
 Why Use :toolname:`GNAT SAS`?
 -------------------------------
 
-+ Efficient, potentially exhaustive code reviewer
++ Efficient automated code reviewer
 
   + Identifies run-time errors with a **level of certainty**
 
