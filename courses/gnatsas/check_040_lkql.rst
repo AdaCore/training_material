@@ -119,7 +119,7 @@ LKQL features (query subset)
 
 * LKQL allows you to write queries to fetch all nodes which satisfy a given pattern
 
-  * LKQL also provides a selector logic (e.g. **any children**)
+  * LKQL also provides selector operations (e.g. **any children**)
 
   .. code:: lkql
 
@@ -128,7 +128,7 @@ LKQL features (query subset)
 
 * You can define a selector to express a tree traversal logic and use it later as a function or in a pattern
 
-  * This will yield every children but will not traverse the **if statements** children:
+  * This will yield every child but will not recurse for the **if statement** children:
 
     .. code:: lkql
 
@@ -155,7 +155,7 @@ Testing LKQL with its REPL
 
   * Test your ideas and explore available properties and node kinds with auto-completion
 
-* Start the LKQL REPL on an :filename:`example.gpr` project by running the :command:`lkql_repl.py` Python script
+* Start the LKQL REPL on a project named :filename:`example.gpr` by running the Python script :command:`lkql_repl.py`
 
   :command:`lkql_repl.py -P example.gpr`
 
