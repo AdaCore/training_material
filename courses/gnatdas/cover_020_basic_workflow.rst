@@ -274,3 +274,10 @@ Viewing the Report
     **+** means covered line
 
     **-** means uncovered line
+
+=====
+Lab
+=====
+
+.. include:: labs/cover_020_basic_workflow.lab.rst
+
