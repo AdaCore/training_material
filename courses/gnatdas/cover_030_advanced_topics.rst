@@ -203,7 +203,7 @@ What About Separates?
             end case;
          end Naming;
 
-* As a :ada:`separate` is not a unit, how do we prevent instrumentation of this subprogram in when ``DEBUG`` is set?
+* As a :ada:`separate` is not a unit, how do we prevent instrumentation of this subprogram when ``DEBUG`` is set?
 
    .. code:: gpr
 
@@ -402,3 +402,10 @@ Coverage Report With Exemptions
    No non-exempted DECISION violation.
    1 exempted region, 2 exempted violations.
    ** END OF REPORT **
+
+
+=====
+Lab
+=====
+
+.. include:: labs/cover_030_advanced_topics.lab.rst

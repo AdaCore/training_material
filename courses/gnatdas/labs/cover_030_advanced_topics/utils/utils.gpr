@@ -1,0 +1,17 @@
+with "../io/io.gpr";
+project Utils is
+
+   for Languages use ("ada");
+   for Source_Dirs use ("src");
+   for Object_Dir use "obj";
+
+   package Compiler is
+      for Switches ("ada") use ("-gnatwe", "-gnato", "-g");
+   end Compiler;
+
+   package Builder is
+      for Switches ("ada") use ("-g");
+   end Builder;
+
+end Utils;
+
