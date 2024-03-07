@@ -458,6 +458,41 @@ Other constructions are available
 * :ada:`abort` to stop a task immediately
 * :ada:`select ... then abort` some other task
 
+=======================
+Example Protected Stack
+=======================
+
+.. code:: Ada
+
+   type Element is new Integer;
+   type Elements_Arr is array (1 .. 10) of Element;
+
+   protected type Stack is
+      entry Push (V : Element);
+      entry Pop (V : out Element);
+   private
+      Length : Natural := 0;
+      Arr : Elements_Arr;
+   end Stack;
+
+   protected body Stack is
+      entry Push (V : Element)
+        when Length < Arr'Length
+        is
+      begin
+         Length := Length + 1;
+         Arr (Length) := V;
+      end Push;
+
+      entry Pop (V : out Element)
+        when Length /= 0
+        is
+      begin
+         V := Arr (Length);
+         Length := Length - 1;
+      end Pop;
+   end Stack;
+
 ========
 Lab
 ========
