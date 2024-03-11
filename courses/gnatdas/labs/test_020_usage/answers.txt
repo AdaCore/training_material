@@ -1,0 +1,62 @@
+
+      -- Push
+      Reset;
+      declare
+         Pushed : constant integer := 123;
+      begin
+         Push (Pushed);
+         AUnit.Assertions.Assert ((not Empty) and then Top = Pushed and then Count = 1,
+                                  "Push test failed");
+      end;
+
+      while not Full loop
+         Push (234);
+      end loop;
+      Push (345);
+      AUnit.Assertions.Assert (Full and then Top = 234,
+                               "Push to a full stack failed");
+
+      -- Pop
+      Reset;
+      declare
+         Pushed : constant integer := 234;
+	 Popped : integer;
+      begin
+         Push (Pushed);
+	 Popped := Pop;
+         AUnit.Assertions.Assert (Pushed = Popped and then Empty and then Count = 0,
+                                  "Pop test failed");
+      end;
+
+      -- Empty
+      Reset;
+      AUnit.Assertions.Assert (Empty, "Stack not empty");
+
+      -- Full
+      while not Full loop
+         Push (567);
+      end loop;
+      Push (999);
+      AUnit.Assertions.Assert (Full and then Top = 567,
+                               "Full check failed");
+
+      -- Top
+      Reset;
+      declare
+         Pushed : constant integer := 234;
+      begin
+         Push (Pushed);
+         AUnit.Assertions.Assert (Pushed = Top,
+                                  "Top test failed");
+      end;
+
+      -- Count
+      Reset;
+      Push (111);
+      AUnit.Assertions.Assert (Count = 1,
+                               "Count test failed");
+
+      -- Reset
+      Reset;
+      AUnit.Assertions.Assert (Count = 0 and then Empty,
+                               "Reset test failed");
