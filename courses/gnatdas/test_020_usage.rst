@@ -173,3 +173,10 @@ Test Implementation
      simple.ads:3:4: info: corresponding test PASSED
      simple.ads:7:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:66)
      2 tests run: 1 passed; 1 failed; 0 crashed.
+
+=====
+Lab
+=====
+
+.. include:: labs/test_020_usage.lab.rst
+
