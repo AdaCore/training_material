@@ -57,7 +57,7 @@ Setting Coverage Type
 
    * This allows us to generate a **Statement** report even if we've instrumented for **Statement** and **Decision**
 
-* For :toolname:`GNAT Studio`, we simplify for using the same coverage type for all steps
+* For :toolname:`GNAT Studio`, we simplify by using the same coverage type for all steps
 
    * :menu:`Edit` |rightarrow| :menu:`Project Properties`
 
@@ -182,3 +182,9 @@ Updating Coverage when Code Changes
    * Build
    * Run
    * Generate Report
+
+=====
+Lab
+=====
+
+.. include:: labs/cover_040_gnatstudio.lab.rst
