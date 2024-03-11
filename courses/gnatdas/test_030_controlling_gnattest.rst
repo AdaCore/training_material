@@ -197,9 +197,14 @@ Common Switches
 :command:`-ignore=<filename>`
    Ignore files listed in *filename*
 
+:command:`--passed-tests=val`
+   *val* can be either *show* or *hide* to either display (or not display) passed tests
+
 :command:`--separate-drivers[=val]`
    Generate separate test driver for each unit or test. (*val* can be either *unit* or *test*, defaulting to *unit*)
 
+=====
+Lab
+=====
 
-
-   
+.. include:: labs/test_030_controlling_gnattest.lab.rst
