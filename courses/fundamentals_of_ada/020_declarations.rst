@@ -67,7 +67,6 @@ Identifiers
 ----------------
 String Literals
 ----------------
-.. |rightarrow| replace:: :math:`\rightarrow`
 
 .. code:: Ada
 
