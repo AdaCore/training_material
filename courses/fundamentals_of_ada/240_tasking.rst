@@ -458,9 +458,13 @@ Other constructions are available
 * :ada:`abort` to stop a task immediately
 * :ada:`select ... then abort` some other task
 
-=======================
-Example Protected Stack
-=======================
+=======
+Example
+=======
+
+---------------
+Protected Stack
+---------------
 
 .. code:: Ada
 
