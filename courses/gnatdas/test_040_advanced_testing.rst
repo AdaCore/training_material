@@ -338,3 +338,8 @@ Setting Stub Return Data
       end Read;
       --  end read only
    
+=====
+Lab
+=====
+
+.. include:: labs/test_040_advanced_testing.lab.rst
