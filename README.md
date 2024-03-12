@@ -68,3 +68,14 @@ This folder contains some automated test for the various tools that we use, you 
 ```
 pytest
 ```
+
+# CI Specific
+
+You can specify a single course (or course directory) to build by adding the following
+file to your directory:
+
+`DO_NOT_MERGE.SINGLE_COURSE`
+
+This should contain the path to the course directory or txt file to build.
+
+This should **not** be merged back to master.
