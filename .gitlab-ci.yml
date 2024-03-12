@@ -9,6 +9,19 @@ lint-rst:
   script:
       - python3 contrib/fix_broken_titles.py --check
       - python3 contrib/ci/fix_prelude.py
+  rules:
+    - if: $CI_COMMIT_BRANCH == ""
+    - if: $CI_COMMIT_BRANCH != ""
+
+check_main_is_properly_setup:
+  services:
+    - image:e3
+  stage: test
+  script:
+    - test ! -e DO_NOT_COMMIT.*
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "master"
 
 check_syntax:
   stage: test
@@ -24,3 +37,7 @@ check_syntax:
     when: always
     reports:
       codequality: code_quality_report.json
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == ""
+    - if: $CI_COMMIT_BRANCH != ""
