@@ -465,7 +465,7 @@ Expression Functions
      function Is_Sorted (T : Table) return Boolean
        with Post => Is_Sorted'Result = (for all J in T'Range => ...);
 
-* Pre and posconditions can be specified **after** the expression
+* Pre and postconditions can be specified **after** the expression
 
   .. code:: Ada
 
