@@ -293,7 +293,7 @@ Bronze Level
 --------------
 
 * Check that each object read has been initialized
-* Check that code respects data dependency contrats
+* Check that code respects data dependency contracts
 
   .. code:: Ada
 
