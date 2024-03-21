@@ -112,12 +112,16 @@ Need More Help?
 
    - Find out your customer number #XXXX
 
-* Open a "Case" via the GNAT Tracker web interface and/or email
+* Open a "Case" via the GNATtracker web interface and/or email
 
-   - Send to: `support@adacore.com <mailto:support@adacore.com>`_
-   - Subject should read: #XXXX - (descriptive text)
+   - GNATtracker
+      * Select "Create A New Case" from the main landing page
 
-      * Where XXXX is your customer number
+   - Email:
+      * Send to: `support@adacore.com <mailto:support@adacore.com>`_
+      * Subject should read: #XXXX - (descriptive text)
+
+         - Where XXXX is your customer number
 
 * Not just for "bug reports"
 
