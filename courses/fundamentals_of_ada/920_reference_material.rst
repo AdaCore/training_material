@@ -117,7 +117,7 @@ Need More Help?
    - GNATtracker
       * Select "Create A New Case" from the main landing page
 
-   - Email:
+   - Email
       * Send to: `support@adacore.com <mailto:support@adacore.com>`_
       * Subject should read: #XXXX - (descriptive text)
 
