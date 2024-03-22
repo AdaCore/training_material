@@ -17,6 +17,7 @@ adv_080_quantified_expressions.rst
 140_access_types.rst
 intro_160_genericity.rst
 intro_170_tagged_derivation.rst
+adv_280_low_level_programming.rst
 intro_245_ravenscar_tasking.rst
 spec_901_ada_2022_specific.rst
 intro_270_contracts.rst
