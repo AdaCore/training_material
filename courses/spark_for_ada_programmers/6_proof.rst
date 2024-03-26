@@ -148,12 +148,12 @@ Functional Contracts
 * Precondition introduced by aspect :ada:`Pre`
 
   - Boolean expression stating **constraint on the caller**
-  - Contraint on the value of inputs
+  - Constraint on the value of inputs
 
 * Postcondition introduced by aspect :ada:`Post`
 
   - Boolean expression stating **constraint on the subprogram**
-  - Contraint on the value of inputs and outputs
+  - Constraint on the value of inputs and outputs
 
 * On the first declaration of a subprogram
 
@@ -175,7 +175,7 @@ Silver/Gold/Platinum Levels
 
 * Check absence of runtime errors (AoRTE)
 * Check that assertions are always true
-* Check that code respects functional contrats
+* Check that code respects functional contracts
 
   .. code:: Ada
 
