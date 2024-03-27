@@ -999,41 +999,77 @@ Kinds of Constraints
           Float range -1.0 .. +1.0;
 
 * Other kinds, discussed later
+* Constraints apply only to values
+* Representation and set of operations are **kept**
 
-------------------------
-Effects of Constraints
-------------------------
+---------------------------
+Subtype Constraint Checks
+---------------------------
 
-* Constraints only on values
+* Constraints are checked
 
-   .. code:: Ada
+   - At initial value assignment
+   - At assignment
+   - At subprogram call
+   - Upon return from subprograms
 
-      type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
-      subtype Weekdays is Days range Mon .. Fri;
-      subtype Weekend is Days range Sat .. Sun;
+* Invalid constraints
 
-* Functionalities are **kept**
+   - Will cause :ada:`Constraint_Error` to be raised
+   - May be detected at compile time
 
-   .. code:: Ada
-
-      subtype Positive is Integer range 1 .. Integer'Last;
-      P : Positive;
-      X : Integer := P; -- X and P are the same type
-
----------------------------------
-Assignment Respects Constraints
----------------------------------
-
-* RHS values must satisfy type constraints
-* :ada:`Constraint_Error` otherwise
+      + If values are **static**
+      + Initial value :rightarrow: error
+      + ... else :rightarrow: warning
 
 .. code:: Ada
 
-   Q : Integer  := some_value;
-   P : Positive := Q; -- runtime error if Q <= 0
-   N : Natural  := Q; -- runtime error if Q < 0
-   J : Integer  := P; -- always legal
-   K : Integer  := N; -- always legal
+   Max : Integer range 1 .. 100 := 0; -- compile error
+   ...
+   Max := 0; -- run-time error
+
+--------------------------------------------
+Performance Impact of Constraints Checking
+--------------------------------------------
+
+* Constraint checks have run-time performance impact
+* The following code
+
+   .. code:: Ada
+
+      procedure Demo is
+        K : Integer := F;
+        P : Integer range 0 .. 100;
+      begin
+        P := K;
+
+* Generates assignment checks, similar to
+
+   .. code:: Ada
+
+      if K < 0 or K > 100 then
+        raise Constraint_Error;
+      else
+        P := K;
+      end if;
+
+* These checks can be disabled with :command:`-gnatp`
+
+------------------------------------
+Optimizations of Constraint Checks
+------------------------------------
+
+* Checks happen only if necessary
+* Variables are considered to be **initialized**
+* So this code generates **no check**
+
+   .. code:: Ada
+
+      procedure Demo is
+        P, K : Integer range 0 .. 100;
+      begin
+        P := K;
+        --  But K is not initialized!
 
 ---------------------------
 Range Constraint Examples
