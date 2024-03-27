@@ -264,8 +264,8 @@ Quiz
 
      A. Legal - :ada:`A` is an untyped constant
      B. Legal - :ada:`B, C` are correctly typed
-     C. Illegal - C must be cast by itself
-     D. Legal - Values are typecast appropriately
+     C. Illegal - No such "+" operator: do e.g. :ada:`One_T (C)`
+     D. Legal - Correct conversion and types
 
 ========================
 Conditional Statements
