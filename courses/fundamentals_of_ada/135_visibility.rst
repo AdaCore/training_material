@@ -316,9 +316,9 @@ No Ambiguity Introduction
      C := A + B; -- operator is visible
    end Test;
 
---------------------------------------
-`use Type` Clauses and Multiple Types
---------------------------------------
+---------------------------------------
+``use type`` Clauses and Multiple Types
+---------------------------------------
 
 * One clause can make ops for several types visible
 
