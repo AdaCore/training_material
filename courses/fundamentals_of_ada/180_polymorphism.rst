@@ -414,7 +414,7 @@ What is the value returned by :ada:`F1 (Child'Class (Z));`?
    Explanations
 
    A. Correct
-   B. Would be correct if the cast was :ada:`Child` - :ada:`Child'Class` leaves the object as :ada:`Grandchild`
+   B. Would be correct if Z was a :ada:`Child` - :ada:`Child'Class` leaves the object as :ada:`Grandchild`
    C. Object is initialized to something in :ada:`Root'class`, but it doesn't have to be :ada:`Root`
    D. Would be correct if function parameter types were :ada:`'Class`
 
