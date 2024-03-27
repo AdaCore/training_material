@@ -71,6 +71,8 @@ pytest
 
 # CI Specific
 
+## Building a given course only
+
 You can specify a single course (or course directory) to build by adding the following
 file to your directory:
 
@@ -79,3 +81,13 @@ file to your directory:
 This should contain the path to the course directory or txt file to build.
 
 This should **not** be merged back to master.
+
+## Mirrored (Protected) branches
+
+Branch that have names that follow the globs
+
+- `training/*`
+- `experimental/*`
+- `slides/*`
+
+Will be **protected** and **mirrored**, so they will be built by the CI.
