@@ -709,15 +709,15 @@ Quiz
    .. code:: Ada
 
       package P is
-         procedure Initialize;
          Object_A : Integer;
       private
          Object_B : Integer;
+         procedure Dummy_For_Body;
       end P;
 
       package body P is
          Object_C : Integer;
-         procedure Initialize is null;
+         procedure Dummy_For_Body is null;
       end P;
 
       package P.Child is
