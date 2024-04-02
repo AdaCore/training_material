@@ -141,6 +141,7 @@ The below table lists what files/packages may trigger such prompts:
 | bigintcalc.sty     | bigintcalc     |
 | bitset.sty         | bitset         |
 | bookmark.sty       | bookmark       |
+| fancyvrb.sty       | fancyvrb.sty   |
 | geometry.sty       | geometry       |
 | gettitlestring.sty | gettitlestring |
 | hycolor.sty        | hycolor        |
