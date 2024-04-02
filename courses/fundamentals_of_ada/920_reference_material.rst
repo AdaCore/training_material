@@ -115,13 +115,13 @@ Need More Help?
 * Open a "Case" via the GNATtracker web interface and/or email
 
    - GNATtracker
+
       * Select "Create A New Case" from the main landing page
 
    - Email
+   
       * Send to: `support@adacore.com <mailto:support@adacore.com>`_
       * Subject should read: #XXXX - (descriptive text)
-
-         - Where XXXX is your customer number
 
 * Not just for "bug reports"
 
