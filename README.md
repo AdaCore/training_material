@@ -8,14 +8,14 @@ courses are written in ReStructured Text (RST) format, making them easy to
 convert into word processing documents, slides, or any other formats as needed.
 The most common conversion tool is Pandoc, and there is a folder that contains
 some artifacts that can be used with the tool. (Artifacts for other tools
-may be added in the future). Each of the folders at this level are described
+may be added in the future) Each of the folders at this level are described
 below.
 
 # Download
 
-You can download the PDF by going to [the actions page](http://github.com/adacore/training_material/actions).
+You can download the material PDFs by going to [the actions page](http://github.com/adacore/training_material/actions).
 
-**NB: You need to be connected to GitHub.**
+**NB: You need to be logged in to GitHub.**
 
 Click on the build you want. You probably want to take one from the **master** branch.
 
@@ -69,7 +69,7 @@ This folder contains some automated test for the various tools that we use, you 
 pytest
 ```
 
-# CI Specific
+# CI-Specific
 
 ## Building a given course only
 
@@ -91,3 +91,73 @@ Branch that have names that follow the globs
 - `slides/*`
 
 Will be **protected** and **mirrored**, so they will be built by the CI.
+
+# Building Locally
+
+PDFs of the course material can be generated locally (on your machine). To do this, you'll need to configure your environment appropriately, then execute the build command.
+
+## Windows Setup
+
+**Note:** Use **Command Prompt** (as opposed to PowerShell), as paths will be configured correctly by default with the following installers.
+
+1. Install latest version of Pandoc (https://pandoc.org/)
+
+2. Install latest version of Miktext (https://miktex.org/)
+    * Set “Preferred Paper” size as “Letter”
+
+3. Install latest version of Python (available thru Microsoft Store)
+    * Verified to work with: 3.12
+
+4. Install pandocfilters for python:
+    * `pip install pandocfilters`
+
+## Building Slide Content
+
+The following command will generate a PDF for a specific slide:
+
+```
+python [LOCAL_PATH]\training_material\pandoc\pandoc_fe.py --source ./[RST_FILE] --output [OUTPUT_FILE] --extension pdf --directories [LOCAL_PATH]\images,[LOCAL_PATH]\training_material\support_files  --theme adacore --color adacore  --filter [LOCAL_PATH]\training_material\pandoc\beamer_filter.py
+```
+
+In the above command:
+
+* **[LOCAL_PATH]** should be replaced with the full path containing the “training_material” source folder
+
+* **[RST_FILE]** should be replaced with the full name of the .rst file containing the source that will be generated as slide content (name should include file extension)
+
+* **[OUTPUT_FILE]** should be replaced with the desired name of the generated PDF (minus the file extension)
+
+### First Time Run
+
+Upon running the script for the first time, a **Package Installation** window may appear, prompting for installation of various packages for specific files. Don't be alarmed...just click through to **Install** each one, as they are required to generate the slide content.
+
+The below table lists what files/packages may trigger such prompts:
+
+| File               | Package        |
+| ------------------ | -------------- |
+| amsthm.sty         | amscls         |
+| auxhook.sty        | auxhook        |
+| beamer.cls         | beamer         |
+| bigintcalc.sty     | bigintcalc     |
+| bitset.sty         | bitset         |
+| bookmark.sty       | bookmark       |
+| fancyvrb.sty       | fancyvrb.sty   |
+| geometry.sty       | geometry       |
+| gettitlestring.sty | gettitlestring |
+| hycolor.sty        | hycolor        |
+| infwarerr.sty      | infwarerr      |
+| intcalc.sty        | intcalc        |
+| kvdefinekeys.sty   | kvdefinekeys   |
+| kvoptions.sty      | kvoptions      |
+| kvsetkeys.sty      | kvsetkeys      |
+| ltxcmds.sty        | ltxcmds        |
+| microtype.sty      | microtype      |
+| parskip.sty        | parskip        |
+| pdfescape.sty      | pdfescape      |
+| rerunfilecheck.sty | rerunfilecheck |
+| sansmathaccent.sty | sansmathaccent |
+| scrlfile.sty       | koma-script    |
+| translator.sty     | translator     |
+| uniquecounter.sty  | uniquecounter  |
+| upquote.sty        | upquote        |
+| xurl.sty           | xurl           |
