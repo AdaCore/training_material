@@ -1043,7 +1043,7 @@ Performance Impact of Constraints Checking
       begin
         P := K;
 
-* Generates assignment checks, similar to
+* Generates assignment checks similar to
 
    .. code:: Ada
 
