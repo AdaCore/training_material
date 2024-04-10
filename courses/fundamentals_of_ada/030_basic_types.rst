@@ -1060,7 +1060,7 @@ Optimizations of Constraint Checks
 ------------------------------------
 
 * Checks happen only if necessary
-* Variables are considered to be **initialized**
+* Compiler assumes variables to be **initialized**
 * So this code generates **no check**
 
    .. code:: Ada
