@@ -804,7 +804,9 @@ Result: ``We love Ada!``
 Example: Slicing With Explicit Indexes
 ----------------------------------------
 
-* Imagine a requirement to have a name with two parts: first and last
+* Imagine a requirement to have a ISO date
+
+  - Year, month, and day with a specific format
 
 .. code:: Ada
 
