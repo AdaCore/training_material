@@ -264,7 +264,7 @@ Quiz
 
      A. Legal - :ada:`A` is an untyped constant
      B. Legal - :ada:`B, C` are correctly typed
-     C. Illegal - No such "+" operator: do e.g. :ada:`One_T (C)`
+     C. Illegal - No such "+" operator: must convert operand individually
      D. Legal - Correct conversion and types
 
 ========================
