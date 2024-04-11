@@ -226,75 +226,6 @@ Assignable Views
    ...
    Max := 200; -- illegal
 
----------------------------------------
-Target Variable Constraint Violations
----------------------------------------
-
-* Prevent update to target value
-
-   - Target is not changed at all
-
-* May compile but will raise error at runtime
-
-   - Predefined exception :ada:`Constraint_Error` is raised
-
-* May be detected by compiler
-
-   - Static value
-   - Value is outside base range of type
-
-.. code:: Ada
-
-   Max : Integer range 1 .. 100 := 100;
-   ...
-   Max := 0; -- run-time error
-
-------------------------------------
-Implicit Range Constraint Checking
-------------------------------------
-
-* The following code
-
-   .. code:: Ada
-
-      procedure Demo is
-        K : Integer;
-        P : Integer range 0 .. 100;
-      begin
-        ...
-        P := K;
-        ...
-      end Demo;
-
-* Generates assignment checks similar to
-
-   .. code:: Ada
-
-      if K < 0 or K > 100 then
-        raise Constraint_Error;
-      else
-        P := K;
-      end if;
-
-* Run-time performance impact
-
----------------------------------
-Not All Assignments Are Checked
----------------------------------
-
-* Compilers assume variables of a subtype have appropriate values
-* No check generated in this code
-
-   .. code:: Ada
-
-      procedure Demo is
-        P, K : Integer range 0 .. 100;
-      begin
-        ...
-        P := K;
-        ...
-      end Demo;
-
 ------
 Quiz
 ------
@@ -333,8 +264,8 @@ Quiz
 
      A. Legal - :ada:`A` is an untyped constant
      B. Legal - :ada:`B, C` are correctly typed
-     C. Illegal - C must be cast by itself
-     D. Legal - Values are typecast appropriately
+     C. Illegal - No such "+" operator: must convert operand individually
+     D. Legal - Correct conversion and types
 
 ========================
 Conditional Statements

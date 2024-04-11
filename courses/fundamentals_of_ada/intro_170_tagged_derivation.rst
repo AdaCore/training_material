@@ -51,7 +51,7 @@ Object-Oriented Programming With Tagged Types
 * Primitive (*method*) can :dfn:`dispatch` **at runtime** depending on the type at call-site
 * Types can be **extended** by other packages
 
-    - Casting and qualification to base type is allowed
+    - Conversion and qualification to base type is allowed
 
 * Private data is encapsulated through **privacy**
 

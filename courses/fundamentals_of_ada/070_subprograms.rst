@@ -360,23 +360,6 @@ Parameter Associations In Calls
    -- Compilation Error
    Something (Formal1 => ActualX, ActualY);
 
----------------------------------------
-Actual Parameters Respect Constraints
----------------------------------------
-
-* Must satisfy any constraints of formal parameters
-* :ada:`Constraint_Error` otherwise
-
-.. code:: Ada
-
-   declare
-     Q : Integer := ...
-     P : Positive := ...
-     procedure Foo (This : Positive);
-   begin
-     Foo (Q); -- runtime error if Q <= 0
-     Foo (P);
-
 ----------------------------
 Parameter Modes and Return
 ----------------------------

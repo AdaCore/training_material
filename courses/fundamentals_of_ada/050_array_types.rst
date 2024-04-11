@@ -402,6 +402,7 @@ Null Index Range
   .. code:: Ada
 
    type Index_T is range 1 .. 100;
+   --  Index_T'Size = 8
 
    type Array_T is array (Index_T range <>) of Integer;
 
@@ -799,24 +800,27 @@ Slicing
 
 Result: ``We love Ada!``
 
--------------------------------
-Slicing With Explicit Indexes
--------------------------------
+----------------------------------------
+Example: Slicing With Explicit Indexes
+----------------------------------------
 
-* Imagine a requirement to have a name with two parts: first and last
+* Imagine a requirement to have a ISO date
+
+  - Year, month, and day with a specific format
 
 .. code:: Ada
 
    declare
-      Full_Name : String (1 .. 20);
+      Iso_Date : String (1 .. 10) := "2024-03-27";
    begin
-      Put_Line (Full_Name);
-      Put_Line (Full_Name (1..10));  -- first half of name
-      Put_Line (Full_Name (11..20)); -- second half of name
+      Put_Line (Iso_Date);
+      Put_Line (Iso_Date (1 .. 4));  --  year
+      Put_Line (Iso_Date (6 .. 7));  --  month
+      Put_Line (Iso_Date (9 .. 10)); --  day
 
------------------------------------------
-Slicing With Named Subtypes for Indexes
------------------------------------------
+-----------------------------------
+Idiom: Named Subtypes for Indexes
+-----------------------------------
 
 * Subtype name indicates the slice index range
 
@@ -827,13 +831,20 @@ Slicing With Named Subtypes for Indexes
 .. code:: Ada
 
    procedure Test is
-     subtype First_Name is Positive range 1 .. 10;
-     subtype Last_Name is
-         Positive range First_Name'Last .. 20;
-     Full_Name : String(First_Name'First..Last_Name'Last);
+     subtype Iso_Index is Positive range 1 .. 10;
+     subtype Year is Positive
+        range Iso_Index'First .. Iso_Index'First + 4;
+     subtype Month is
+        Iso_Index range Year'Last + 2 .. Year'Last + 4;
+     subtype Day is
+        Iso_Index range Month'Last + 2 .. Month'Last + 4;
+     Iso_Date : String (Iso_Index)
+       := "2024-03-27";
    begin
-     Put_Line(Full_Name(First_Name)); -- Full_Name(1..10)
-     if Full_Name (Last_Name) = SomeString then ...
+     Put_Line (Iso_Date (Year));  --  2024
+     Put_Line (Iso_Date (Month)); --  03
+     Put_Line (Iso_Date (Day));   --  27
+
 
 ------------------------------------
 Dynamic Subtype Constraint Example
