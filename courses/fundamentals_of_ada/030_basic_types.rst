@@ -210,9 +210,9 @@ Signed Integer Types
          ...
       end;
 
---------------------------------
-Specifying Integer Type Bounds
---------------------------------
+---------------------
+Signed Integer Bounds
+---------------------
 
 * Must be **static**
 
@@ -220,9 +220,9 @@ Specifying Integer Type Bounds
    - Hardware-supported integer type
    - Compilation **error** if not possible
 
---------------------------
-Predefined Integer Types
---------------------------
+-------------------------------
+Predefined Signed Integer Types
+-------------------------------
 
 * :ada:`Integer` **>= 16 bits** wide
 * Other **probably** available
@@ -235,9 +235,9 @@ Predefined Integer Types
 
    - But may be difficult to avoid
 
---------------------------------
-Operators for Any Integer Type
---------------------------------
+---------------------------------
+Operators for Signed Integer Type
+---------------------------------
 
 * By increasing precedence
 
@@ -249,14 +249,14 @@ Operators for Any Integer Type
 
 * *Note*: for exponentiation :ada:`**`
 
-   - Result will be :ada:`Integer`
+   - Result will be a signed integer
    - So power **must** be :ada:`Integer` ``>= 0``
 
 * Division by zero |rightarrow| :ada:`Constraint_Error`
 
------------------
-Integer Overflows
------------------
+------------------------
+Signed Integer Overflows
+------------------------
 
 * Finite binary representation
 * Common source of bugs
@@ -274,9 +274,9 @@ Integer Overflows
    =======================
     2#1000_0000_0000_0000#  = -32,768
 
--------------------------------
-Integer Overflow: Ada vs others
--------------------------------
+--------------------------------------
+Signed Integer Overflow: Ada vs others
+--------------------------------------
 
 * Ada
 
