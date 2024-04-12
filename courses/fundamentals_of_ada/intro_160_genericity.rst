@@ -342,7 +342,7 @@ Generic Subprogram Parameters
       begin
          Callback;
       end P;
-      procedure Something;
+      procedure Something is null;
       procedure P_I is new P (Something);
 
 ------
