@@ -35,9 +35,27 @@ Declarations
 Introduction
 ==============
 
----------------------
+------------
+Declarations
+------------
+
+* :dfn:`Declaration` associates a :dfn:`name` to an :dfn:`entity`
+
+    - Objects
+    - Types
+    - Subprograms
+    - et cetera
+
+* N is usually an :dfn:`identifier`
+* Declaration **must precede** use
+* **Some** implicit declarations
+
+    - **Standard** types and operations
+    - **Implementation**-defined
+
+-----------
 Identifiers
----------------------
+-----------
 
 .. image:: identifier_flow.png
    :width: 60%
@@ -269,23 +287,6 @@ Which statement is legal?
 =====================
 Object Declarations
 =====================
-
---------------
-Declarations
---------------
-
-* Associate a :dfn:`name` to an :dfn:`entity`
-
-    - Objects
-    - Types
-    - Subprograms
-    - et cetera
-
-* :dfn:`Declaration` **must precede** use
-* **Some** implicit declarations
-
-    - **Standard** types and operations
-    - **Implementation**-defined
 
 ---------------------
 Object Declarations
