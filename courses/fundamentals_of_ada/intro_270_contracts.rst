@@ -543,7 +543,7 @@ Contracts Code Reuse
 Assertion Policy
 ------------------
 
-* Assertions checks can be controled with :ada:`pragma Assertion_Policy`
+* Assertions checks can be controlled with :ada:`pragma Assertion_Policy`
 
    .. code:: Ada
       
