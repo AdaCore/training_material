@@ -395,7 +395,7 @@ all values :ada:`L` and :ada:`H`?
 
    The correct precondition would be
 
-         :ada:`L > 0 and then H > 0 and then Integer'Last / L <= H`
+         :ada:`Integer'Last / L <= H`
 
    to prevent overflow errors on the range check.
 
