@@ -521,12 +521,12 @@ Quiz
    X, Y : Record_T;
    Z    : constant Nested_T := (others => -1);
 
-Which assignment(s) is(are) **not** legal?
+Which assignment(s) is(are) legal?
 
-A. :answermono:`X := (1, '2', Three => 3, Four => (6))`
-B. ``X := (Two => '2', Four => Z, others => 5)``
-C. ``X := Y``
-D. ``X := (1, '2', 4, (others => 5))``
+A. ``X := (1, '2', Three => 3, Four => (6))``
+B. :answermono:`X := (Two => '2', Four => Z, others => 5)`
+C. :answermono:`X := Y`
+D. :answermono:`X := (1, '2', 4, (others => 5))`
 
 .. container:: animate
 
