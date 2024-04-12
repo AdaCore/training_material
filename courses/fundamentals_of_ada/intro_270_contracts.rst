@@ -591,7 +591,6 @@ Strong Typing
    * Number must be even
    * Subset of non-consecutive enumerals
    * Array should always be sorted
-   * Type invariants are only checked on external boundaries
 
 * **Type Invariant**
 
@@ -609,11 +608,11 @@ Examples
 
 .. include:: examples/adv_275_type_contracts/type_invariants.rst
 
-------------------------------
-Type Invariant Verifications
-------------------------------
+----------------
+Type Invariant
+----------------
 
-* Automatically inserted by compiler
+* Applied to :ada:`private` types
 * Evaluated as postcondition of creation, evaluation, or return object
 
    - When objects first created
@@ -772,23 +771,7 @@ Examples
 
       + Specified via aspect named :ada:`Dynamic_Predicate`
 
--------------------------------------
-``type`` and ``subtype`` Predicates
--------------------------------------
-
-* Applicable to both
-* Applied via aspect clauses in both cases
-* Syntax
-
-   .. code:: Ada
-
-      type name is type_definition
-         with aspect_mark [ => expression] { ,
-                   aspect_mark [ => expression] }
-
-      subtype defining_identifier is subtype_indication
-         with aspect_mark [ => expression] { ,
-                   aspect_mark [ => expression] }
+* Can apply to :ada:`type` or :ada:`subtype`
 
 --------------------------
 Why Two Predicate Forms?
