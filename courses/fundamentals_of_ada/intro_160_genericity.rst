@@ -174,13 +174,13 @@ Quiz
 Which of the following statement is true?
 
 A. Generic instances must be nested inside a non-generic package
-B. Generic instances must be created at compile-time
+B. Generic instances must be instantiated at compile-time
 C. :answer:`Generics instances can create new tagged types`
 D. :answer:`Generics instances can create new tasks`
 
 .. container:: animate
 
-    Generic instances can be created at any point, at a cost, and
+    Generic instances can be instantiated at any point, at a cost, and
     can do anything a package or subprogram can do, which make them
     versatile **but** potentially complex to use.
 
