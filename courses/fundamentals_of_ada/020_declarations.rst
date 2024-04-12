@@ -298,7 +298,11 @@ Object Declarations
    .. code:: Ada
 
       <name> : <subtype> [:= <initial value>];
-      <name> : constant <subtype> [:= <initial value>];
+      <name> : constant <subtype> := <initial value>;
+
+* Constant should have a value
+
+   - Except for privacy (seen later)
 
 * Examples
 
