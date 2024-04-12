@@ -692,7 +692,7 @@ Overcoming Hiding
        M : Float;
      begin
        M := 12.34;
-       Outer.M := Integer(M);  -- reference "hidden" Integer M
+       Outer.M := Integer (M);  -- reference "hidden" Integer M
      end;
    end Outer;
 
