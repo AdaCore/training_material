@@ -46,7 +46,7 @@ Overview of GNAT Metrics Tool :toolname:`gnatmetric`
   + Lines
   + Complexity
   + Contract
-  + Syntax elements
+  + Syntax elements (e.g. nesting levels, number of parameters)
   + Coupling
 
 + Configurable scope of analysis
@@ -407,6 +407,8 @@ Line Metrics Explained
   * -
 
     - comments
+
+:dfn:`Code line` is a non-blank line that is not a comment
 
 ---------------------------
 Line Metrics Code Example
