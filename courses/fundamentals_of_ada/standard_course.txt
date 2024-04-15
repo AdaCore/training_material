@@ -19,6 +19,6 @@
 intro_170_tagged_derivation.rst
 190_exceptions.rst
 adv_280_low_level_programming.rst
-240_tasking.rst
+adv_245_ravenscar_tasking.rst
 900_ada_version_comparison.rst
 920_reference_material.rst
