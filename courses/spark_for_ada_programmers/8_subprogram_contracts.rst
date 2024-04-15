@@ -343,16 +343,20 @@ Exceptional Cases
 
   .. code:: ada
 
-     Exceptional_Cases => (Constraint_Error => Status = Error);
-     Exceptional_Cases => (others => True); -- most general form
+     -- Constraint error in specific case
+     Exceptional_Cases => 
+        (Constraint_Error => Status = Error);
+    
+     -- All exceptions (most general form)
+     Exceptional_Cases => (others => True);
 
 * Different exceptions can be grouped by cases
 
   .. code:: ada
 
      Exceptional_Cases =>
-       (Contraint_Error | Numerical_Error => Post1,
-        Program_Error                     => Post2);
+       (Constraint_Error | Numerical_Error => Post1,
+        Program_Error                      => Post2);
 
 * :toolname:`GNATprove` checks that **each** case holds
 
