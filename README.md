@@ -89,6 +89,7 @@ Branch that have names that follow the globs
 - `training/*`
 - `experimental/*`
 - `slides/*`
+- `build/*`
 
 Will be **protected** and **mirrored**, so they will be built by the CI.
 
