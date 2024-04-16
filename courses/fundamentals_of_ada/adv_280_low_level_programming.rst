@@ -480,9 +480,84 @@ Unchecked Conversion
    - Not defined by the standard
    - Many compilers will warn if the type sizes do not match
 
-=================
-Inline Assembly
-=================
+========
+Tricks
+========
+
+--------------------
+Package Interfaces
+--------------------
+
+* Package `Interfaces` provide Integer and unsigned types for many sizes
+
+   - `Integer_8`, `Integer_16`, `Integer_32`, `Integer_64`
+   - `Unsigned_8`, `Unsigned_16`, `Unsigned_32`, `Unsigned_64`
+
+* With shift/rotation functions for unsigned types
+
+------------------------------
+Fat/Thin pointers for Arrays
+------------------------------
+
+* Unconstrained array access is a fat pointer
+
+   .. code:: Ada
+
+      type String_Acc is access String;
+      Msg : String_Acc;
+      -- array bounds stored outside array pointer
+
+* Use a size representation clause for a thin pointer
+
+   .. code:: Ada
+
+      type String_Acc is access String;
+      for String_Acc'size use 32;
+      -- array bounds stored as part of array pointer
+
+-------------
+Flat Arrays
+-------------
+
+* A constrained array access is a thin pointer
+
+   - No need to store bounds
+
+   .. code:: Ada
+
+      type Line_Acc is access String (1 .. 80);
+
+* You can use big flat array to index memory
+
+   - See `GNAT.Table`
+   - Not portable
+
+   .. code:: Ada
+
+      type Char_array is array (natural) of Character;
+      type C_String_Acc is access Char_Array;
+
+========
+Lab
+========
+
+.. include:: labs/adv_280_low_level_programming.lab.rst
+
+=========
+Summary
+=========
+
+---------
+Summary
+---------
+
+* Like C, Ada allows access to assembly-level programming
+* Unlike C, Ada imposes some more restrictions to maintain some level of safety
+* Ada also supplies language constructs and libraries to make low level programming easier
+
+==================================
+Supplementary Resource: Inline ASM
+==================================
 
 -----------------------
 Calling Assembly Code
@@ -684,78 +759,3 @@ Writing a Machine Register (ppc)
            Inputs => (Natural'Asm_Input ("K", Spr),
                       Unsigned_32'Asm_Input ("r", V)));
    end Set_Spr;
-
-========
-Tricks
-========
-
---------------------
-Package Interfaces
---------------------
-
-* Package `Interfaces` provide Integer and unsigned types for many sizes
-
-   - `Integer_8`, `Integer_16`, `Integer_32`, `Integer_64`
-   - `Unsigned_8`, `Unsigned_16`, `Unsigned_32`, `Unsigned_64`
-
-* With shift/rotation functions for unsigned types
-
-------------------------------
-Fat/Thin pointers for Arrays
-------------------------------
-
-* Unconstrained array access is a fat pointer
-
-   .. code:: Ada
-
-      type String_Acc is access String;
-      Msg : String_Acc;
-      -- array bounds stored outside array pointer
-
-* Use a size representation clause for a thin pointer
-
-   .. code:: Ada
-
-      type String_Acc is access String;
-      for String_Acc'size use 32;
-      -- array bounds stored as part of array pointer
-
--------------
-Flat Arrays
--------------
-
-* A constrained array access is a thin pointer
-
-   - No need to store bounds
-
-   .. code:: Ada
-
-      type Line_Acc is access String (1 .. 80);
-
-* You can use big flat array to index memory
-
-   - See `GNAT.Table`
-   - Not portable
-
-   .. code:: Ada
-
-      type Char_array is array (natural) of Character;
-      type C_String_Acc is access Char_Array;
-
-========
-Lab
-========
-
-.. include:: labs/adv_280_low_level_programming.lab.rst
-
-=========
-Summary
-=========
-
----------
-Summary
----------
-
-* Like C, Ada allows access to assembly-level programming
-* Unlike C, Ada imposes some more restrictions to maintain some level of safety
-* Ada also supplies language constructs and libraries to make low level programming easier
