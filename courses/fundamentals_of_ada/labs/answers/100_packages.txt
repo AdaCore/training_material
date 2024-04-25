@@ -92,7 +92,7 @@ procedure Main is
 begin
 
    loop
-      Put ("(A)dd | (R)emove | (P)rint | Q(uit) : ");
+      Put ("(A)dd | (R)emove | (P)rint | (Q)uit : ");
       declare
          Str : constant String := Get_Line;
       begin
