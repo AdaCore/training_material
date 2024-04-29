@@ -88,7 +88,8 @@ Miscellaneous (1/2)
 
     .. code:: Ada
 
-        type E is (A => 10, B => 20);
+        type E is (A, B);
+        for E use (A => 10, B => 20);
         ...
         E'Enum_Rep (A); -- 10
         E'Enum_Val (10); -- A

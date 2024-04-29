@@ -169,7 +169,7 @@ Null Values
    begin
       if V = null then
          --  will go here
-      end if
+      end if;
       V := new Integer'(0);
       V := null; -- semantically correct, but memory leak
 
