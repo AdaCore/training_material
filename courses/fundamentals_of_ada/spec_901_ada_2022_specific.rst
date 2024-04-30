@@ -129,7 +129,7 @@ Miscellaneous (2/2)
 .. code:: Ada
 
     A : Integer;
-    B renames A; -- B type is infered
+    B renames A; -- B type is inferred
 
 ====================
 Image and Literals
