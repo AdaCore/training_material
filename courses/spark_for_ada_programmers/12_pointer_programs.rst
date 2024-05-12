@@ -499,7 +499,7 @@ Pointers with Aliasing (2/2)
 
   - Need to maintain validity of pointers at all times
   - Need to maintain separation of pointers at all times
-  - This comes from free with the ownership policy
+  - This comes for free with the ownership policy
 
 =============================
 Access-to-subprogram Values
@@ -520,9 +520,11 @@ Contracts on Access-to-subprogram Types
        Pre  => ...
        Post => ...
 
-* Very often using :ada:`not null access procedure/function` (for parameters)
+* Very often using :ada:`not null access` (for parameters)
 
 * Implicit `Global => null` on type
+
+* :toolname:`GNATprove` checks feasibility of contract 
 
 * Creating a value of access-to-subprogram type with attribute :ada:`Access`
 

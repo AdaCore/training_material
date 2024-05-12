@@ -438,7 +438,7 @@ Contracts for OOP
        Pre'Class  => Precond (X),
        Post'Class => Postcond (X'Old, X);
 
-* :toolname:`GNATprove` checks refinement on :ada:`overriding` subprograms
+* :toolname:`GNATprove` checks refinement on **overriding** subprograms
 
   .. code:: ada
 
