@@ -357,6 +357,28 @@ Delta Aggregates
   - Avoids the introduction of **explicit** quantifiers
   - Can have **overlapping** and **dynamic** choices (values or ranges)
 
+-----------------------------
+Extension of Delta Aggregates
+-----------------------------
+
+.. admonition:: Language Variant
+
+   GNAT Extension
+
+* GNAT extension allowed using either
+
+  - switch :command:`-gnatX0`, or
+  - pragma :ada:`Extensions_Allowed(All)`
+    
+* Choice can be a subcomponent of the record or array
+
+  .. code:: Ada
+
+     (Rec with delta Comp1.Sub1 => Val1,
+                     Comp2.Sub2.Subsub => Val2)
+     (Arr with delta (1).Sub => True,
+                     (42).Subarr(4) => False)
+
 ---------------------------------
 Iterated Component Associations
 ---------------------------------
