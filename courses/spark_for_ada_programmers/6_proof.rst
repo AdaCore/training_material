@@ -84,7 +84,7 @@ Which one of these is **invalid**?
    A. ``{ X >= 3 } Y := X – 1 { Y >= 0 }``
    B. ``{ X >= 3 } Y := X – 1 { Y = X – 1 }``
    C. ``{ False } Y := X – 1 { Y = X }``
-   D. :answermono:`\{ X >= 3 \} Y := X – 1 \{ Y >= 3 \}`
+   D. :answermono:`{ X >= 3 } Y := X – 1 { Y >= 3 }`
    E. ``{ X >= 3 } Y := X – 1 { True }``
 
 .. container:: animate
@@ -124,8 +124,8 @@ Which one of these has a **Strongest Postcondition**?
    A. ``{ X >= 3 } Y := X – 1 { Y >= 0 }``
    B. ``{ X >= 3 } Y := X – 1 { Y = X – 1 }``
    C. ``{ X >= 3 } Y := X – 1 { Y >= 2 }``
-   D. :answermono:`\{ X >= 3 \} Y := X – 1 \{ Y = X – 1 and Y >= 2 \}`
-   E. :answermono:`\{ X >= 3 \} Y := X – 1 \{ Y = X – 1 and X >= 3 \}`
+   D. :answermono:`{ X >= 3 } Y := X – 1 { Y = X – 1 and Y >= 2 }`
+   E. :answermono:`{ X >= 3 } Y := X – 1 { Y = X – 1 and X >= 3 }`
 
 .. container:: animate
 
@@ -580,7 +580,8 @@ Limitations of Automatic Provers - Proof Context
 
     + Pragma :ada:`Assert_And_Cut`
     + SPARK Library :ada:`SPARK.Cut_Operations`
-
+    + SPARK annotation :ada:`Hide_Info`
+      
 -----------------------
 Cost/Benefit Analysis
 -----------------------

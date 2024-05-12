@@ -179,7 +179,8 @@ Relaxed Initialization and Predicates
         Top     : Index;
         Content : Content_Table;
      end record
-        with Ghost_Predicate => Content (1 .. Top)'Initialized;
+        with Ghost_Predicate =>
+	   Content (1 .. Top)'Initialized;
 
 ----------------------------------
 Verifying Relaxed Initialization

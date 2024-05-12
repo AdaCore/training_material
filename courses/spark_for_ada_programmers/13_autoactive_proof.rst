@@ -393,8 +393,8 @@ Ghost Code
 
 * :dfn:`Ghost code` is code meant only for verification
 
-  - Intermediate assertions are a special case of ghost code
-  - Contracts are also part of ghost code
+  - Intermediate assertions can refer to ghost entities
+  - Contracts can also refer to ghost entities
 
 * Special aspect :ada:`Ghost` used to identify ghost entities
 
@@ -506,7 +506,7 @@ Ghost Procedures
 
   - Also called :dfn:`lemma`
   - Isolates the proof that the precondition implies the postcondition
-  - Proof of lemma can be full automatic
+  - Proof of lemma might be full automatic
 
     .. code:: Ada
 
@@ -630,13 +630,13 @@ Reducing the Proof Context
   - :ada:`By (A, B)` requires proving ``B``, then ``A`` from ``B``, and leaves only ``A``
     in proof context
 
-  - :ada:`So (A,B)` requires proving ``A``, then ``B`` from ``A``, and leaves both in
+  - :ada:`So (A, B)` requires proving ``A``, then ``B`` from ``A``, and leaves both in
     proof context
 
   - Note: :ada:`A and then B` requires proving separately ``A`` and ``B``
 
 * Annotation :ada:`Hide_Info` and :ada:`Unhide_Info` used to hide/expose
-  expression function
+  expression function or private part of package
 
 --------------------
 Triggering Provers

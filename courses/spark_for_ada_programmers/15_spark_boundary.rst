@@ -440,9 +440,11 @@ Typical Use Cases
   - Some subprograms inside have :ada:`SPARK_Mode` with value :ada:`Off` on
     spec and body
 
-------------------------
-Multiple Levels of Use
-------------------------
+------------------------------
+Multiple Levels of Use (1/2)
+------------------------------
+
+* Level 1: :ada:`SPARK_Mode` as a configuration pragma
 
 * :ada:`SPARK_Mode` can be specified in a global/local configuration pragmas
   file
@@ -458,6 +460,12 @@ Multiple Levels of Use
   - Can be used with explicit value :ada:`Auto`
 
     + Useful when configuration pragmas file has value :ada:`On`
+
+------------------------------
+Multiple Levels of Use (2/2)
+------------------------------
+
+* Level 2: :ada:`SPARK_Mode` as a program unit pragma
 
 * :ada:`SPARK_Mode` can be specified on top-level subprogram or package
 
@@ -494,9 +502,9 @@ Integrating SPARK and Ada Code
 
     + This may require introducing abstract states for Ada units
 
-------------------------------
-Integrating SPARK and C Code
-------------------------------
+------------------------------------
+Integrating SPARK and C Code (1/2)
+------------------------------------
 
 * GNAT data layout follows C ABI by default
 
@@ -515,12 +523,24 @@ Integrating SPARK and C Code
   - Ada record/array |rightarrow| C pointer
   - Ada scalar |rightarrow| C scalar
 
-* Standard library unit
+------------------------------------
+Integrating SPARK and C Code (2/2)
+------------------------------------
 
+* Standard library units
+
+  - :ada:`Interfaces` defines fixed-size scalar types
   - :ada:`Interfaces.C` defines C standard scalar types
   - :ada:`Interfaces.C.Strings` defines character and string conversion
     functions between Ada and C
 
+* SPARK Library units    
+
+  - :ada:`SPARK.C.Strings` defines wrapper on :ada:`Interfaces.C.Strings` for
+    mutable strings based on ownership
+  - :ada:`SPARK.C.Constant_Strings` defines wrapper on
+    :ada:`Interfaces.C.Strings` for read-only strings (aliasing **is** allowed)
+  
 ---------------------------------------------------
 Integrating SPARK and Other Programming Languages
 ---------------------------------------------------
@@ -545,8 +565,6 @@ Integrating SPARK and Other Programming Languages
     + Thin binding may be auto-generated (e.g. using :command:`gcc
       -fdump-ada-spec`)
     + Thick binding defines wrappers around thin binding
-    + Function with side-effects in thin binding |rightarrow| procedure in
-      thick binding
 
 --------------------------------------------
 Integrating With Main Procedure not in Ada
@@ -626,11 +644,11 @@ Modelling an API - Example
         Pre      => not Is_Open (File),
         Post     => Is_Open (File) and then ...
         Global   => (In_Out => File_System),
-        Annotate => (GNATprove, Might_Not_Return);
+	Exceptional_Cases =>
+	  (Name_Error | Use_Error => Standard.True);
 
       function Is_Open (File : File_Type) return Boolean with
-        Global   => null,
-        Annotate => (GNATprove, Always_Return);
+        Global => null;
 
 ---------------------------------------
 Modelling an API to Manage a Resource
@@ -670,7 +688,7 @@ Modelling an API to Manage a Resource - Example
 
    package Text_IO with
      SPARK_Mode,
-     Annotate => (GNATprove, Always_Return)
+     Always_Terminates
    is
       type File_Descriptor is limited private with
         Default_Initial_Condition => not Is_Open (File_Descriptor),
