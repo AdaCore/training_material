@@ -411,7 +411,7 @@ Volatile
    .. code:: Ada
 
       type Volatile_U16 is mod 2**16;
-      pragma Volatile(Volatile_U16);
+      pragma Volatile (Volatile_U16);
       type Volatile_U32 is mod 2**32 with Volatile; -- Ada 2012
 
 * The exact sequence of reads and writes from the source code must appear in the generated code
