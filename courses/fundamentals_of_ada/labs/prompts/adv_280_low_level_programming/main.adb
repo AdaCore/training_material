@@ -10,8 +10,8 @@ begin
       declare
          Command : constant String := Get_Line;
       begin
-         exit when Command'length = 0;
-         case Command (Command'first) is
+         exit when Command'Length = 0;
+         case Command (Command'First) is
             when 'c' | 'C' =>
                Message := Messages.Create ("Hello", True, '1');
             when 'w' | 'W' =>

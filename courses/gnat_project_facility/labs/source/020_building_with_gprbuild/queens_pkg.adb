@@ -25,7 +25,7 @@ package body Queens_Pkg is
         (Column : Integer)
          return Boolean is
       begin
-         for Row in Board'range (1)
+         for Row in Board'Range (1)
          loop
             if Test (Row, Column)
             then
@@ -44,10 +44,10 @@ package body Queens_Pkg is
       then
          raise Program_Error;
       end if;
-      for I in Board'range (1)
+      for I in Board'Range (1)
       loop
-         Put (Integer'image (Count + 1 - I));
-         for J in Board'range (2)
+         Put (Integer'Image (Count + 1 - I));
+         for J in Board'Range (2)
          loop
             if Board (I, J)
             then

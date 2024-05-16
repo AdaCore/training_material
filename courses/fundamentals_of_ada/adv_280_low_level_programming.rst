@@ -512,7 +512,7 @@ Fat/Thin pointers for Arrays
    .. code:: Ada
 
       type String_Acc is access String;
-      for String_Acc'size use 32;
+      for String_Acc'Size use 32;
       -- array bounds stored as part of array pointer
 
 -------------

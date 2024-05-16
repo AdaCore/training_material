@@ -8,7 +8,7 @@ package body Counter is
          Delay_Time : Duration);
       delay 0.0;
       Datastore.Write
-        (Register => Datastore.Register_T'first,
+        (Register => Datastore.Register_T'First,
          Value    => 0);
    end Counter_T;
 end Counter;

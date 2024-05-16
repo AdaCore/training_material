@@ -8,8 +8,8 @@ begin
       declare
          Str : constant String := Get_Line;
       begin
-         exit when Str'length = 0;
-         case Str (Str'first) is
+         exit when Str'Length = 0;
+         case Str (Str'First) is
             when 'A' =>
                -- Ask user for a legal value and add it to the list
                null;

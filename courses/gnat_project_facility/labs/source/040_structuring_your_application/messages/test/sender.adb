@@ -6,8 +6,8 @@ package body Sender is
    procedure Send (Message : Speed_Message_T) is
    begin
       Ada.Text_Io.Put_Line
-        ("Sender.Send: Time =>" & Seconds (Message.Time)'image &
-         " | Value =>" & Message.Value'image);
+        ("Sender.Send: Time =>" & Seconds (Message.Time)'Image &
+         " | Value =>" & Message.Value'Image);
    end Send;
 
 end Sender;

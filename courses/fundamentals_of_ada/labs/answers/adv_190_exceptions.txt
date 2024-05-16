@@ -4,7 +4,7 @@ package body Calculator is
      (Str : String)
       return Integer_T is
    begin
-      return Integer_T'value (Str);
+      return Integer_T'Value (Str);
    exception
       when Constraint_Error =>
          raise Formatting_Error;
@@ -84,7 +84,7 @@ package body Debug_Pkg is
             Flag : Character := ' ';
          begin
             if Ada.Exceptions.Exception_Identity (E) =
-              Constraint_Error'identity
+              Constraint_Error'Identity
             then
                Flag := '*';
             end if;
@@ -115,8 +115,8 @@ package body Input is
          declare
             Retval : constant String := Get_String (Prompt);
          begin
-            if Retval'length > 0 then
-               return Integer_T'value (Retval);
+            if Retval'Length > 0 then
+               return Integer_T'Value (Retval);
             else
                raise Input_Canceled;
             end if;
@@ -134,8 +134,8 @@ package body Input is
          declare
             Retval : constant String := Get_String (Prompt);
          begin
-            if Retval'length > 0 then
-               return Float_T'value (Retval);
+            if Retval'Length > 0 then
+               return Float_T'Value (Retval);
             else
                raise Input_Canceled;
             end if;
@@ -149,18 +149,18 @@ package body Input is
      (Prompt : String)
       return Enum_T is
    begin
-      for E in Enum_T'range loop
+      for E in Enum_T'Range loop
          Put_Line
-           (Integer'image (1 + Enum_T'pos (E)) & "> " & Enum_T'image (E));
+           (Integer'Image (1 + Enum_T'Pos (E)) & "> " & Enum_T'image (E));
       end loop;
       loop
          declare
             I : constant String := Get_String (Prompt);
          begin
-            if I'length = 0 then
+            if I'Length = 0 then
                raise Input_Canceled;
             end if;
-            return Enum_T'val (Natural'value (I) - 1);
+            return Enum_T'Val (Natural'value (I) - 1);
          exception
             when Input_Canceled =>
                raise Input_Canceled;
@@ -225,23 +225,23 @@ procedure Main is
       Left     : out Unbounded_String;
       Operator : out Unbounded_String;
       Right    : out Unbounded_String) is
-      I : Integer := Str'first;
+      I : Integer := Str'First;
    begin
-      while I <= Str'length and then Str (I) /= ' ' loop
+      while I <= Str'Length and then Str (I) /= ' ' loop
          Left := Left & Str (I);
          I    := I + 1;
       end loop;
-      while I <= Str'length and then Str (I) = ' ' loop
+      while I <= Str'Length and then Str (I) = ' ' loop
          I := I + 1;
       end loop;
-      while I <= Str'length and then Str (I) /= ' ' loop
+      while I <= Str'Length and then Str (I) /= ' ' loop
          Operator := Operator & Str (I);
          I        := I + 1;
       end loop;
-      while I <= Str'length and then Str (I) = ' ' loop
+      while I <= Str'Length and then Str (I) = ' ' loop
          I := I + 1;
       end loop;
-      while I <= Str'length and then Str (I) /= ' ' loop
+      while I <= Str'Length and then Str (I) /= ' ' loop
          Right := Right & Str (I);
          I     := I + 1;
       end loop;
@@ -252,27 +252,27 @@ begin
          Left, Operator, Right : Unbounded_String;
          Input                 : constant String := Get_String ("Sequence");
       begin
-         exit when Input'length = 0;
+         exit when Input'Length = 0;
          Parser (Input, Left, Operator, Right);
          case Element (Operator, 1) is
             when '+' =>
                Put_Line
                  ("  => " &
-                  Integer_T'image (Add (To_String (Left), To_String (Right))));
+                  Integer_T'Image (Add (To_String (Left), To_String (Right))));
             when '-' =>
                Put_Line
                  ("  => " &
-                  Integer_T'image
+                  Integer_T'Image
                     (Subtract (To_String (Left), To_String (Right))));
             when '*' =>
                Put_Line
                  ("  => " &
-                  Integer_T'image
+                  Integer_T'Image
                     (Multiply (To_String (Left), To_String (Right))));
             when '/' =>
                Put_Line
                  ("  => " &
-                  Integer_T'image
+                  Integer_T'Image
                     (Divide (To_String (Left), To_String (Right))));
             when others =>
                raise Illegal_Operator;

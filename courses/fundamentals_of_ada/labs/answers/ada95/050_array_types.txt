@@ -17,25 +17,25 @@ procedure Main is
 --Implementation
 begin
    Array_Var := Const_Arr;
-   for Index in Array_Var'range loop
-      Put_Line (Natural'image (Array_Var (Index)));
+   for Index in Array_Var'Range loop
+      Put_Line (Natural'Image (Array_Var (Index)));
    end loop;
    New_Line;
 
    Array_Var :=
      (Mon => 111, Tue => 222, Wed => 333, Thu => 444, Fri => 555, Sat => 666,
       Sun => 777);
-   for Index in Array_Var'range loop
+   for Index in Array_Var'Range loop
       Put_Line
-        (Days_Of_Week_T'image (Index) & " => " &
-         Natural'image (Array_Var (Index)));
+        (Days_Of_Week_T'Image (Index) & " => " &
+         Natural'Image (Array_Var (Index)));
    end loop;
    New_Line;
 
    Array_Var (Mon .. Wed) := Const_Arr (Wed .. Fri);
-   Array_Var (Wed .. Fri) := (others => Natural'first);
-   for Index in Array_Var'range loop
-      Put_Line (Natural'image (Array_Var (Index)));
+   Array_Var (Wed .. Fri) := (others => Natural'First);
+   for Index in Array_Var'Range loop
+      Put_Line (Natural'Image (Array_Var (Index)));
    end loop;
    New_Line;
 
@@ -44,9 +44,9 @@ begin
       Wed    => ("closed", "closed", "closed"),
       others => ("Pinky ", "Inky  ", "Blinky"));
 
-   for Day in Weekly_Staff'range (1) loop
-      Put_Line (Days_Of_Week_T'image (Day));
-      for Staff in Weekly_Staff'range (2) loop
+   for Day in Weekly_Staff'Range (1) loop
+      Put_Line (Days_Of_Week_T'Image (Day));
+      for Staff in Weekly_Staff'Range (2) loop
          Put_Line ("  " & String (Weekly_Staff (Day, Staff)));
       end loop;
    end loop;

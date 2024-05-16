@@ -11,7 +11,7 @@ procedure Main is
    procedure Add is
       Value : constant String := Get_String ("Add");
    begin
-      if Value'length > 0 then
+      if Value'Length > 0 then
          Element := Database.To_Database (Value);
          Database_List.Insert (List, Element);
       end if;
@@ -20,7 +20,7 @@ procedure Main is
    procedure Delete is
       Value : constant String := Get_String ("Delete");
    begin
-      if Value'length > 0 then
+      if Value'Length > 0 then
          Element := Database.To_Database (Value);
          Database_List.Delete (List, Element);
       end if;

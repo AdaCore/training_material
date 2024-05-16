@@ -18,21 +18,21 @@ package body Loading_Dock is
             Line      : constant String := Ada.Text_IO.Get_Line (File);
             Separator : Integer         := Asf.Index (Line, "|");
          begin
-            if Separator not in Line'range
+            if Separator not in Line'Range
             then
                Console.Print ("Illegal entry: " & Line);
             else
                declare
                   Item : constant String :=
                     Asf.Trim
-                      (Line (Line'first .. Separator - 1), Ada.Strings.Both);
+                      (Line (Line'First .. Separator - 1), Ada.Strings.Both);
                   Count : constant String :=
                     Asf.Trim
-                      (Line (Separator + 1 .. Line'last), Ada.Strings.Both);
+                      (Line (Separator + 1 .. Line'Last), Ada.Strings.Both);
                begin
-                  if Item'length > 0 and then Count'length > 0
+                  if Item'Length > 0 and then Count'Length > 0
                   then
-                     Inventory.Add (Item, Positive'value (Count));
+                     Inventory.Add (Item, Positive'Value (Count));
                   end if;
                exception
                   when The_Err : others =>

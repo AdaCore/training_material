@@ -381,7 +381,7 @@ Which pre-condition is necessary for :ada:`Area` to calculate the correct result
 all values :ada:`L` and :ada:`H`?
 
    A. ``L > 0 and H > 0``
-   B. ``L < Positive'last and H < Positive'last``
+   B. ``L < Positive'Last and H < Positive'Last``
    C. ``L * H in Positive``
    D. :answer:`None of the above`
 

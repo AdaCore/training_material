@@ -59,7 +59,7 @@ package body Room is
        Windows.Open ((17, 41), 7, 30));
 
 
-    for Which_Window in Phil_Windows'range loop
+    for Which_Window in Phil_Windows'Range loop
       Windows.Borders (Phil_Windows(Which_Window), '+', '|', '-');
     end loop;
 

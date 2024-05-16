@@ -28,11 +28,11 @@ procedure Main is
       Last  : Natural;
    begin
       First := Ada.Strings.Fixed.Index (Str, """");
-      if First in Str'range then
+      if First in Str'Range then
          Last := Ada.Strings.Fixed.Index
-             (Source  => Str (First + 1 .. Str'last),
+             (Source  => Str (First + 1 .. Str'Last),
               Pattern => """");
-         if Last in Str'range then
+         if Last in Str'Range then
             return Ada.Strings.Fixed.Replace_Slice
                (Str, First, Last, "");
          end if;
@@ -60,7 +60,7 @@ begin
          Colon := Ada.Strings.Fixed.Index
              (Source  => Stripped_Line,
               Pattern => " : ");
-         if Colon in Stripped_Line'range then
+         if Colon in Stripped_Line'Range then
             Object_Count           := Object_Count + 1;
             Objects (Object_Count) :=
               Ada.Strings.Unbounded.To_Unbounded_String
@@ -72,8 +72,8 @@ begin
    end loop;
    Close (File);
 
-   Put_Line ("Comments: " & Integer'image (Comments));
-   Put_Line ("Semi-colons: " & Integer'image (Semicolons));
+   Put_Line ("Comments: " & Integer'Image (Comments));
+   Put_Line ("Semi-colons: " & Integer'Image (Semicolons));
 
    declare
       Hold : Ada.Strings.Unbounded.Unbounded_String;

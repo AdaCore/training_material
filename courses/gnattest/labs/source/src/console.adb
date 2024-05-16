@@ -5,7 +5,7 @@ package body Console is
      (S        : String  := "";
       New_Line : Boolean := True) is
    begin
-      if S'length > 0
+      if S'Length > 0
       then
          Ada.Text_Io.Put (S);
       end if;

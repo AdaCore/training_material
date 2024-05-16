@@ -18,8 +18,8 @@ package body Input is
          declare
             Retval : constant String := Get_String (Prompt);
          begin
-            if Retval'length > 0 then
-               return Integer_T'value (Retval);
+            if Retval'Length > 0 then
+               return Integer_T'Value (Retval);
             else
                raise Input_Canceled;
             end if;
@@ -37,8 +37,8 @@ package body Input is
          declare
             Retval : constant String := Get_String (Prompt);
          begin
-            if Retval'length > 0 then
-               return Float_T'value (Retval);
+            if Retval'Length > 0 then
+               return Float_T'Value (Retval);
             else
                raise Input_Canceled;
             end if;
@@ -52,18 +52,18 @@ package body Input is
      (Prompt : String)
       return Enum_T is
    begin
-      for E in Enum_T'range loop
+      for E in Enum_T'Range loop
          Put_Line
-           (Integer'image (1 + Enum_T'pos (E)) & "> " & Enum_T'image (E));
+           (Integer'Image (1 + Enum_T'Pos (E)) & "> " & Enum_T'Image (E));
       end loop;
       loop
          declare
             I : constant String := Get_String (Prompt);
          begin
-            if I'length = 0 then
+            if I'Length = 0 then
                raise Input_Canceled;
             end if;
-            return Enum_T'val (Natural'value (I) - 1);
+            return Enum_T'Val (Natural'Value (I) - 1);
          exception
             when Input_Canceled =>
                raise Input_Canceled;

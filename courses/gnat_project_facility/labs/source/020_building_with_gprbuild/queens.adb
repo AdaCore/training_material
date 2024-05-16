@@ -6,7 +6,7 @@ begin
    if Ada.Command_Line.Argument_Count > 0
    then
       begin
-         Count := Positive'value (Ada.Command_Line.Argument (1));
+         Count := Positive'Value (Ada.Command_Line.Argument (1));
       exception
          when others =>
             Count := 9;

@@ -5,16 +5,16 @@ package body Numbers is
    function Convert
      (Number : Quantity_T)
       return String is
-      Retval : constant String := Number'image;
+      Retval : constant String := Number'Image;
    begin
-      return Retval (2 .. Retval'last);
+      return Retval (2 .. Retval'Last);
    end Convert;
 
    function Convert
      (Number : String)
       return Quantity_T is
    begin
-      return Quantity_T'value (Number);
+      return Quantity_T'Value (Number);
    end Convert;
 
    package IO is new Ada.Text_IO.Float_IO (Cost_T);
@@ -31,7 +31,7 @@ package body Numbers is
      (Number : String)
       return Cost_T is
    begin
-      return Cost_T'value (Number);
+      return Cost_T'Value (Number);
    end Convert;
 
 end Numbers;

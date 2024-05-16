@@ -470,13 +470,13 @@ Specifying Constraints via Initial Value
        of Character;
    ...
    M : String := "Hello World!";
-   -- M'first is positive'first (1)
+   -- M'First is positive'First (1)
 
    type Another_String is array (Integer range <>)
        of Character;
    ...
    M : Another_String := "Hello World!";
-   -- M'first is Integer'first
+   -- M'First is Integer'First
 
 ----------------
 Indefinite Types
@@ -985,7 +985,7 @@ Array Component For-Loop Example
 
    .. code:: Ada
 
-      for P in Primes'range loop
+      for P in Primes'Range loop
          Put_Line (Integer'Image (Primes(P)));
       end loop;
 

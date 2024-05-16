@@ -24,8 +24,8 @@ begin
    end loop;
    Close (File);
 
-   Put_Line ("Comments: " & Integer'image (Comments));
-   Put_Line ("Semi-colons: " & Integer'image (Semicolons));
+   Put_Line ("Comments: " & Integer'Image (Comments));
+   Put_Line ("Semi-colons: " & Integer'Image (Semicolons));
    Put_Line ("Objects: ");
    -- Print objects
 end Main;

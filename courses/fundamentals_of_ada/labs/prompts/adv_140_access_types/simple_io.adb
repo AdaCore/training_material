@@ -19,7 +19,7 @@ package body Simple_Io is
       return Integer is
       Str : constant String := Get_String (Prompt);
    begin
-      return Integer'value (Str);
+      return Integer'Value (Str);
    end Get_Number;
 
    function Get_Character
@@ -27,7 +27,7 @@ package body Simple_Io is
       return Character is
       Str : constant String := Get_String (Prompt);
    begin
-      return Str (Str'first);
+      return Str (Str'First);
    end Get_Character;
 
    procedure Print_String (Str : String) is
@@ -36,11 +36,11 @@ package body Simple_Io is
    end Print_String;
    procedure Print_Number (Num : Integer) is
    begin
-      Ada.Text_IO.Put_Line (Integer'image (Num));
+      Ada.Text_IO.Put_Line (Integer'Image (Num));
    end Print_Number;
    procedure Print_Character (Char : Character) is
    begin
-      Ada.Text_IO.Put_Line (Character'image (Char));
+      Ada.Text_IO.Put_Line (Character'Image (Char));
    end Print_Character;
 
    function Get_String

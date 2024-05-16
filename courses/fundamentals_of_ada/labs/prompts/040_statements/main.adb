@@ -11,7 +11,7 @@ begin
    -- For each day in the Days_Of_Week_T loop
       -- Print prompt indicating which day we're asking for
       -- Loop "forever"
-         Hours_Today := Hours_Worked'value (Get_Line);
+         Hours_Today := Hours_Worked'Value (Get_Line);
          -- exit the main loop if hours worked < 0
          if Hours_Today > 24.0 then
             Put_Line ("I don't believe you");
@@ -27,5 +27,5 @@ begin
          -- Saturday - hours worked * 1.5
          -- Sunday - hours worked * 2
 
-   Put_Line (Hours_Worked'image (Total_Worked));
+   Put_Line (Hours_Worked'Image (Total_Worked));
 end Main;

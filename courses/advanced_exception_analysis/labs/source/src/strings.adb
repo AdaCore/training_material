@@ -15,10 +15,10 @@ package body Strings is
       Sep  : constant Integer := Index (Str, Separator);
       This : String_T;
    begin
-      if Sep in Str'range
+      if Sep in Str'Range
       then
-         This := new String'(Str (Str'first .. Sep - 1));
-         return This & Split (Str (Sep + 1 .. Str'last), Separator);
+         This := new String'(Str (Str'First .. Sep - 1));
+         return This & Split (Str (Sep + 1 .. Str'Last), Separator);
       else
          This := new String'(Str);
          declare

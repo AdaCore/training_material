@@ -147,8 +147,8 @@ Implement Our Second Real Test
          Result := Query (Item);
          Aunit.Assertions.Assert
            (Query (Item) = Count,
-            "Query returned" & Result'image & " should have returned" &
-            Count'image);
+            "Query returned" & Result'Image & " should have returned" &
+            Count'Image);
       end;
 
 * Run the testcase

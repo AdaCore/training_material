@@ -2,7 +2,7 @@
 with System;
 package Crc is
    type Crc_T is mod 2**32;
-   for Crc_T'size use 32;
+   for Crc_T'Size use 32;
    function Generate
      (Address : System.Address;
       Size : Natural)
@@ -27,9 +27,9 @@ package body Crc is
          end if;
          declare
             Overlay : Array_T (1 .. Word_Count);
-            for Overlay'address use Address;
+            for Overlay'Address use Address;
          begin
-            for I in Overlay'range
+            for I in Overlay'Range
             loop
                Retval := Retval + Overlay (I);
             end loop;
@@ -47,7 +47,7 @@ package Messages is
    type Command_T is (Noop, Direction, Ascend, Descend, Speed);
    for Command_T use
      (Noop => 0, Direction => 1, Ascend => 2, Descend => 4, Speed => 8);
-   for Command_T'size use 8;
+   for Command_T'Size use 8;
    function Create (Command : Command_T;
                     Value   : Positive;
                     Text    : String := "")
@@ -59,15 +59,15 @@ package Messages is
    procedure Print (Message : Message_T);
 private
    type U32_T is mod 2**32;
-   for U32_T'size use 32;
+   for U32_T'Size use 32;
    Max_Text_Length : constant := 20;
    type Text_Index_T is new Integer range 0 .. Max_Text_Length;
-   for Text_Index_T'size use 8;
+   for Text_Index_T'Size use 8;
    type Text_T is record
       Text : String (1 .. Max_Text_Length);
       Last : Text_Index_T;
    end record;
-   for Text_T'size use Max_Text_Length * 8 + Text_Index_T'size;
+   for Text_T'Size use Max_Text_Length * 8 + Text_Index_T'size;
    type Message_T is record
       Unique_Id : U32_T;
       Command   : Command_T;
@@ -89,11 +89,11 @@ procedure Main is
          Put ("Command (");
          for E in Messages.Command_T
          loop
-            Put (Messages.Command_T'image (E) & " ");
+            Put (Messages.Command_T'Image (E) & " ");
          end loop;
          Put ("): ");
          begin
-            return Messages.Command_T'value (Get_Line);
+            return Messages.Command_T'Value (Get_Line);
          exception
             when others =>
                Put_Line ("Illegal");
@@ -105,7 +105,7 @@ procedure Main is
       loop
          Put ("Value: ");
          begin
-            return Positive'value (Get_Line);
+            return Positive'Value (Get_Line);
          exception
             when others =>
                Put_Line ("Illegal");
@@ -141,8 +141,8 @@ begin
       declare
          Command : constant String := Get_Line;
       begin
-         exit when Command'length = 0;
-         case Command (Command'first) is
+         exit when Command'Length = 0;
+         case Command (Command'First) is
             when 'c' | 'C' =>
                Create;
             when 'w' | 'W' =>
@@ -165,13 +165,13 @@ with Unchecked_Conversion;
 package body Messages is
    Global_Unique_Id : U32_T := 0;
    function To_Text (Str : String) return Text_T is
-      Length : Integer := Str'length;
+      Length : Integer := Str'Length;
       Retval : Text_T  := (Text => (others => ' '), Last => 0);
    begin
-      if Str'length > Retval.Text'length then
-         Length := Retval.Text'length;
+      if Str'Length > Retval.Text'length then
+         Length := Retval.Text'Length;
       end if;
-      Retval.Text (1 .. Length) := Str (Str'first .. Str'first + Length - 1);
+      Retval.Text (1 .. Length) := Str (Str'First .. Str'first + Length - 1);
       Retval.Last               := Text_Index_T (Length);
       return Retval;
    end To_Text;
@@ -188,7 +188,7 @@ package body Messages is
       Clean : Message_T := Original;
    begin
       Clean.Crc := 0;
-      return Crc.Generate (Clean'address, Clean'size) = Original.Crc;
+      return Crc.Generate (Clean'Address, Clean'Size) = Original.Crc;
    end Validate;
 --Messages_Helpers
 --Messages_Body
@@ -202,12 +202,12 @@ package body Messages is
       Retval           :=
         (Unique_Id => Global_Unique_Id, Command => Command,
          Value     => U32_T (Value), Text => To_Text (Text), Crc => 0);
-      Retval.Crc := Crc.Generate (Retval'address, Retval'size);
+      Retval.Crc := Crc.Generate (Retval'Address, Retval'Size);
       return Retval;
    end Create;
    type Char is new Character;
-   for Char'size use 8;
-   type Overlay_T is array (1 .. Message_T'size / 8) of Char;
+   for Char'Size use 8;
+   type Overlay_T is array (1 .. Message_T'Size / 8) of Char;
    function Convert is new Unchecked_Conversion (Message_T, Overlay_T);
    function Convert is new Unchecked_Conversion (Overlay_T, Message_T);
    Const_Filename : constant String := "message.txt";
@@ -216,7 +216,7 @@ package body Messages is
       File    : Ada.Text_IO.File_Type;
    begin
       Ada.Text_IO.Create (File, Ada.Text_IO.Out_File, Const_Filename);
-      for I in Overlay'range loop
+      for I in Overlay'Range loop
          Ada.Text_IO.Put (File, Character (Overlay (I)));
       end loop;
       Ada.Text_IO.New_Line (File);
@@ -233,7 +233,7 @@ package body Messages is
          Str : constant String := Ada.Text_IO.Get_Line (File);
       begin
          Ada.Text_IO.Close (File);
-         for I in Str'range loop
+         for I in Str'Range loop
             Overlay (I) := Char (Str (I));
          end loop;
          Message := Convert (Overlay);
@@ -242,9 +242,9 @@ package body Messages is
    end Read;
    procedure Print (Message : Message_T) is
    begin
-      Ada.Text_IO.Put_Line ("Message" & U32_T'image (Message.Unique_Id));
-      Ada.Text_IO.Put_Line ("  " & Command_T'image (Message.Command) & " =>" &
-                            U32_T'image (Message.Value));
+      Ada.Text_IO.Put_Line ("Message" & U32_T'Image (Message.Unique_Id));
+      Ada.Text_IO.Put_Line ("  " & Command_T'Image (Message.Command) & " =>" &
+                            U32_T'Image (Message.Value));
       Ada.Text_IO.Put_Line ("  Additional Info: " & From_Text (Message.Text));
    end Print;
 end Messages;

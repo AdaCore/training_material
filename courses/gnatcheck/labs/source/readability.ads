@@ -7,8 +7,8 @@ package Readability is
    type Integer_Access_Type is access Integer;
 
    type T_Tagged_Type is tagged null record;
-   type A_Class_Access is access T_Tagged_Type'class;
-   type Access_Class_Type is access T_Tagged_Type'class;
+   type A_Class_Access is access T_Tagged_Type'Class;
+   type Access_Class_Type is access T_Tagged_Type'Class;
 
    Number : constant := 1_234;
    object : integer;
