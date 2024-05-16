@@ -652,6 +652,7 @@ Subprogram Contracts
   - The precondition with aspect :ada:`Pre`
   - The postcondition with aspect :ada:`Post`
   - The contract cases with aspect :ada:`Contract_Cases`
+  - The exceptional cases with aspect :ada:`Exceptional_Cases`
 
 * Postcondition may be imprecise
 
