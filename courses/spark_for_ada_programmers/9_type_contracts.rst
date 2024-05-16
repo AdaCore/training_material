@@ -249,7 +249,7 @@ Useful Dynamic Predicates (1/2)
        with Dynamic_Predicate => Length in 0 .. Capacity;
 
 ---------------------------------
-Useful Dynamic Predicates (1/2)
+Useful Dynamic Predicates (2/2)
 ---------------------------------
 
 * Array type with ordered content
