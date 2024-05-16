@@ -121,13 +121,13 @@ Resulting Design Problem
 
      - Best choice would be to implement both parts in a new package
 
-----------------------------------------
-Illegal Package Declaration Dependency
-----------------------------------------
+-------------------------------------------
+Circular Dependency in Package Declaration
+-------------------------------------------
 
 .. code:: Ada
 
-   with Department;
+   with Department; --  Circular dependency
    package Personnel is
      type Employee is private;
      procedure Assign (This : in Employee;
@@ -138,15 +138,12 @@ Illegal Package Declaration Dependency
      end record;
    end Personnel;
 
-   with Personnel;
+   with Personnel; --  Circular dependency
    package Department is
      type Section is private;
      procedure Choose_Manager (This : in out Section;
                                 Who : in Personnel.Employee);
-   private
-     type Section is record
-       Manager : Personnel.Employee;
-     end record;
+   [...]
    end Department;
 
 ------------------------
