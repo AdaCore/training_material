@@ -89,27 +89,6 @@ Library Units
 * `Operating_System` is library unit
 * `Foo`, `Bar`, etc - not library units
 
----------------------------
-No 'Object' Library Items
----------------------------
-
-.. code:: Ada
-
-   package Library_Package is
-     ...
-   end Library_Package;
-
-   -- Illegal: no such thing as "file scope"
-   Library_Object : Integer;
-
-   procedure Library_Procedure;
-
-   function Library_Function (Formal : in out Integer) is
-     Local : Integer;
-   begin
-     ...
-   end Library_Function;
-
 -----------------------------
 Declared Object "Lifetimes"
 -----------------------------
@@ -117,6 +96,7 @@ Declared Object "Lifetimes"
 * Same as their enclosing declarative region
 
    - Objects are always declared within some declarative region
+   - Objects can not be library items
 
 * No ``static`` etc. directives as in C
 * Objects declared within any subprogram
