@@ -167,7 +167,7 @@ How Did We Get Here? - Solution
          ("Convert(Quantity_T): " & Number & "> " &
           Gnat.Traceback.Symbolic.Symbolic_Traceback_No_Hex
             (Gnat.Traceback.Call_Chain (3, 2)));
-       return Quantity_T'value (Number);
+       return Quantity_T'Value (Number);
     end Convert;
 
 -------------------------------

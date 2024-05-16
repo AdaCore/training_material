@@ -34,7 +34,7 @@ procedure Main is
      (for some Date of List => not Is_Valid (Date));
 
    function Same_Year return Boolean is
-     (for all I in List'range => List (I).Year = List (List'first).Year);
+     (for all I in List'Range => List (I).Year = List (List'First).Year);
    --Checks
 
    --Main
@@ -54,8 +54,8 @@ begin
       List (I)   := Item;
    end loop;
 
-   Put_Line ("Any invalid: " & Boolean'image (Any_Invalid));
-   Put_Line ("Same Year: " & Boolean'image (Same_Year));
+   Put_Line ("Any invalid: " & Boolean'Image (Any_Invalid));
+   Put_Line ("Same Year: " & Boolean'Image (Same_Year));
 
 end Main;
 --Main

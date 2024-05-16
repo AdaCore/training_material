@@ -65,7 +65,7 @@ Access Types Design
      type Integer_General_Access
        is access all Integer;
      G : aliased Integer;
-     G_A : Integer_General_Access := G'access;
+     G_A : Integer_General_Access := G'Access;
 
  .. container:: column
 
@@ -653,11 +653,11 @@ Anonymous Access Parameters
 
    type Acc is access all Integer;
    Aliased_Integer : aliased Integer;
-   Access_Object   : Acc := Aliased_Integer'access;
+   Access_Object   : Acc := Aliased_Integer'Access;
    procedure P1 (Anon_Access : access Integer) is null;
    procedure P2 (Access_Parameter : access Integer) is
    begin
-      P1 (Aliased_Integer'access);
+      P1 (Aliased_Integer'Access);
       P1 (Access_Object);
       P1 (Access_Parameter);
    end P2;

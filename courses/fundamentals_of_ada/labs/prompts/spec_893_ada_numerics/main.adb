@@ -14,7 +14,7 @@ begin
       -- Set the indexed element as specified
    end loop;
 
-   for I in Index_T'range loop
+   for I in Index_T'Range loop
       -- Print index, number of values added, and average of total
       New_Line;
    end loop;

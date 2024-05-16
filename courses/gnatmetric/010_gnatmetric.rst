@@ -256,12 +256,12 @@ Syntax Element Metrics Example
          (S : String)
           return String_T is
           L      : constant Natural :=
-                   Integer'min (S'length, Maximum_Length);
+                   Integer'min (S'Length, Maximum_Length);
           Retval : String_T;
        begin
           Retval.Length        := L;
           Retval.Text (1 .. L) :=
-              S (S'first .. S'first + L - 1);
+              S (S'First .. S'First + L - 1);
           return Retval;
        end From_String;
 

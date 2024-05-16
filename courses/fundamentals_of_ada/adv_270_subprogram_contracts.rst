@@ -364,12 +364,12 @@ Quiz
 
    --  Convert string to Integer
    function From_String ( S : string ) return Integer
-      with Pre => S'length > 0;
+      with Pre => S'Length > 0;
 
    procedure Do_Something is
       I : Integer := From_String ("");
    begin
-      Put_Line (I'image);
+      Put_Line (I'Image);
    end Do_Something;
 
 Assuming :ada:`From_String` is defined somewhere, what happens

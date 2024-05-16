@@ -71,11 +71,11 @@ package body Inventory is
          if With_Count
          then
             Retval (Count) :=
-              Retval (Count) & " (" & Maps.Element (Cursor)'image & " )";
+              Retval (Count) & " (" & Maps.Element (Cursor)'Image & " )";
          end if;
       end Add;
    begin
-      Maps.Iterate (Database, Add'access);
+      Maps.Iterate (Database, Add'Access);
       return Retval;
    end List;
 

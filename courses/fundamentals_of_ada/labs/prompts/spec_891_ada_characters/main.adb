@@ -15,5 +15,5 @@ procedure Main is
 begin
    Put ("Enter ASCII value: ");
    Get_Line (Input, Last);
-   Print (Character'val (Integer'value (Input (1 .. Last))));
+   Print (Character'Val (Integer'Value (Input (1 .. Last))));
 end Main;

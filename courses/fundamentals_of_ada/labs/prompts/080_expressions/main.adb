@@ -36,7 +36,7 @@ procedure Main is
       return Positive is
    begin
       Put (Prompt & "> ");
-      return Positive'value (Get_Line);
+      return Positive'Value (Get_Line);
    end Number;
 
    function Any_Invalid return Boolean is (False);
@@ -44,7 +44,7 @@ procedure Main is
 
 begin
 
-   for I in List'range loop
+   for I in List'Range loop
       Item.Year  := Number ("Year");
       Item.Month := Number ("Month");
       Item.Day   := Number ("Day");
@@ -52,8 +52,8 @@ begin
    end loop;
 
    -- Print True/False if any date in the list is not valid
-   Put_Line ("Any invalid: " & Boolean'image (Any_Invalid));
+   Put_Line ("Any invalid: " & Boolean'Image (Any_Invalid));
    -- Print True/False if all dates in the list are in the same year
-   Put_Line ("Same Year: " & Boolean'image (Same_Year));
+   Put_Line ("Same Year: " & Boolean'Image (Same_Year));
 
 end Main;

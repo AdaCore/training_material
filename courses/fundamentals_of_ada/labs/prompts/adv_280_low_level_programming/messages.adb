@@ -8,7 +8,7 @@ package body Messages is
    begin
       return
         (Unique_Id => 0, Text => (others => ' '), Field3 => Field3,
-         Field4    => Field4, Crc => Crc_T'first);
+         Field4    => Field4, Crc => Crc_T'First);
    end Create;
 
    -------------

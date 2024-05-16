@@ -14,7 +14,7 @@ package body Employee_Data is
       return Id_T is
    begin
       -- return ID member of record
-      return Id_T'first;
+      return Id_T'First;
    end Id;
 
    function Name
@@ -30,7 +30,7 @@ package body Employee_Data is
       return Hourly_Rate_T is
    begin
       -- return Rate member of record;
-      return Hourly_Rate_T'first;
+      return Hourly_Rate_T'First;
    end Rate;
 
 end Employee_Data;

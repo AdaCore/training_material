@@ -22,9 +22,9 @@ package body Program_Practice is
       end case;
    exception
       when Constraint_Error =>
-         return Character'first;
+         return Character'First;
       when others =>
-         return Character'last;
+         return Character'Last;
    end Test;
 
 end Program_Practice;

@@ -14,8 +14,8 @@ begin
          Description : Colors.Color_Set_T;
          Success     : Boolean;
       begin
-         exit when Str'length = 0;
-         Key         := Flags.Key_T'value (Str);
+         exit when Str'Length = 0;
+         Key         := Flags.Key_T'Value (Str);
          Description := Input.Get;
          if Flags.Exists (Map, Key) then
             Flags.Modify (Map, Key, Description, Success);

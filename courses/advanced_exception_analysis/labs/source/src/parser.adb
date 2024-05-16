@@ -41,7 +41,7 @@ package body Parser is
    begin
       for Element of Database (1 .. Database_Count)
       loop
-         Put (Element.Line_Number'image & ": ");
+         Put (Element.Line_Number'Image & ": ");
          Put (Element.Description.all & " (");
          Put (Convert (Element.Category) & ") ");
          Put (Convert (Element.Quantity) & " at $");

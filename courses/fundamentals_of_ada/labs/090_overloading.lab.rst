@@ -19,7 +19,7 @@ Overloading Lab
 
    - You can use enumerals for the text representation
 
-      + Then use *'image* / *'value* where needed
+      + Then use *'Image* / *'Value* where needed
 
    - Use an equivalence function two compare different types
 
