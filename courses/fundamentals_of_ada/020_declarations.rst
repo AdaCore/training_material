@@ -458,6 +458,8 @@ Universal Types
 
      X : Integer64 := 2;
      Y : Integer8 := 2;
+     F : Float := 2.0;
+     D : Long_Float := 2.0;
 
 ----------------------------------------
 Numeric Literals Are Universally Typed
