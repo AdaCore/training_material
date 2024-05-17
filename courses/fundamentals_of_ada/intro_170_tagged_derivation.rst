@@ -238,7 +238,7 @@ Overriding Indicators
 
       -- primitives of "Shape_T"
       procedure Set_Name (S : in out Shape_T);
-      function Name (S : Shape_T) return string;
+      function Name (S : Shape_T) return String;
 
       -- Derive "Point" from Shape_T
       type Point is new Shape_T with record

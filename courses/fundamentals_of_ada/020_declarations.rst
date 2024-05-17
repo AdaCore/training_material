@@ -90,12 +90,12 @@ String Literals
 
 .. code:: Ada
 
-   A_Null_String : constant string := "";
+   A_Null_String : constant String := "";
       -- two double quotes with nothing inside
-   String_Of_Length_One : constant string := "A";
-   Embedded_Single_Quotes : constant string :=
+   String_Of_Length_One : constant String := "A";
+   Embedded_Single_Quotes : constant String :=
                             "Embedded 'single' quotes";
-   Embedded_Double_Quotes : constant string :=
+   Embedded_Double_Quotes : constant String :=
                             "Embedded ""double"" quotes";
 
 .. container:: speakernote
