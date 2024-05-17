@@ -86,6 +86,8 @@ Identifiers
 String Literals
 ----------------
 
+* A :dfn:`literal` is a *textual* representation of a value in the code
+
 .. code:: Ada
 
    A_Null_String : constant string := "";
