@@ -175,6 +175,7 @@ Language Structure (Ada95 and Onward)
 Ada Type Model
 ----------------
 
+* Each :dfn:`object` is associated a :dfn:`type`
 * **Static** Typing
 
    - Object type **cannot change**
