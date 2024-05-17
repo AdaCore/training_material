@@ -202,7 +202,7 @@ Comparing Techniques on a Simple Code
       end loop;
    end;
 
-* :ada:`T(Idx)` is safe |equivalent| :ada:`Idx in Table'Range`
+* :ada:`T(Idx)` is safe |equivalent| :ada:`Idx in T'Range`
 * As a result of calling :ada:`Reset`:
 
   - Array :ada:`T` is initialized between indexes :ada:`A` and :ada:`B`
@@ -215,7 +215,7 @@ Abstract Interpretation
 * :ada:`Reset` is analyzed in the context of each of its calls
 
   - If the values of :ada:`Table`, :ada:`A`, :ada:`B` are precise enough,
-    AbsInt can deduce that :ada:`Idx in Table'Range`
+    AbsInt can deduce that :ada:`Idx in T'Range`
 
   - Otherwise, an **alarm** is emitted (for sound analysis)
 
@@ -238,7 +238,7 @@ Symbolic Execution and Bounded Model Checking
 * :ada:`Reset` is analyzed in the context of **program traces**
 
   - If the values of :ada:`A` and :ada:`B` are *close enough*, SymExe/BMC can
-    analyze all loop iterations and deduce that :ada:`Idx in Table'Range`
+    analyze all loop iterations and deduce that :ada:`Idx in T'Range`
 
   - Otherwise, an **alarm** is emitted (for sound analysis)
 
@@ -259,7 +259,7 @@ Deductive Verification
 * :ada:`Reset` is analyzed in the context of a :dfn:`precondition`
 
   - Predicate defined by the user which restricts the calling context
-  - Proof checks if the precondition entails :ada:`Idx in Table'Range`
+  - Proof checks if the precondition entails :ada:`Idx in T'Range`
   - Otherwise, an **alarm** is emitted
 
 * Initialization and value of individual array cells is tracked

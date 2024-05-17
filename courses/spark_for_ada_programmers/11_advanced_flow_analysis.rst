@@ -115,7 +115,7 @@ Self-Dependency on Array Assignment
 
   .. code:: ada
 
-     A (1 .. 2) := True;
+     A (1 .. 2) := (True, False);
      -- final value of A seen as dependent on original value
 
 ===========================
