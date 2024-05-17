@@ -446,9 +446,9 @@ Universal Types
 * Implicitly defined
 * Entire *classes* of numeric types
 
-   - `universal_integer`
-   - `universal_real`
-   - `universal_fixed`
+   - :ada:`universal_integer`
+   - :ada:`universal_real`
+   - :ada:`universal_fixed` (not seen here)
 
 * Match any integer / real type respectively
 
