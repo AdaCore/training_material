@@ -9,7 +9,7 @@ begin
       Put_Line ("Usage: " & Command_Name & " <positive count>");
    else
       begin
-         Limit := Positive'value (Argument (1));
+         Limit := Positive'Value (Argument (1));
       exception
          when others =>
             Put_Line ("<positive count> was not legal");

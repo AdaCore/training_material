@@ -22,7 +22,7 @@ package body Database is
    function To_Database (Value : String) return Database_T is
       Retval : Database_T;
    begin
-      Retval.Length                     := Value'length;
+      Retval.Length                     := Value'Length;
       Retval.Value (1 .. Retval.Length) := Value;
       return Retval;
    end To_Database;
@@ -182,7 +182,7 @@ procedure Main is
    procedure Add is
       Value : constant String := Get_String ("Add");
    begin
-      if Value'length > 0 then
+      if Value'Length > 0 then
          Element := Database.To_Database (Value);
          Database_List.Insert (List, Element);
       end if;
@@ -191,7 +191,7 @@ procedure Main is
    procedure Delete is
       Value : constant String := Get_String ("Delete");
    begin
-      if Value'length > 0 then
+      if Value'Length > 0 then
          Element := Database.To_Database (Value);
          Database_List.Delete (List, Element);
       end if;
@@ -254,13 +254,13 @@ package body Simple_Io is
    function Get_Number (Prompt : String) return Integer is
       Str : constant String := Get_String (Prompt);
    begin
-      return Integer'value (Str);
+      return Integer'Value (Str);
    end Get_Number;
 
    function Get_Character (Prompt : String) return Character is
       Str : constant String := Get_String (Prompt);
    begin
-      return Str (Str'first);
+      return Str (Str'First);
    end Get_Character;
 
    procedure Print_String (Str : String) is
@@ -269,11 +269,11 @@ package body Simple_Io is
    end Print_String;
    procedure Print_Number (Num : Integer) is
    begin
-      Ada.Text_IO.Put_Line (Integer'image (Num));
+      Ada.Text_IO.Put_Line (Integer'Image (Num));
    end Print_Number;
    procedure Print_Character (Char : Character) is
    begin
-      Ada.Text_IO.Put_Line (Character'image (Char));
+      Ada.Text_IO.Put_Line (Character'Image (Char));
    end Print_Character;
 
    function Get_String (Prompt : String) return Unbounded_String is
@@ -367,7 +367,7 @@ package body Memory_Mgmt is
       return Index_T is
       Consecutive : Storage_Count := 0;
    begin
-      for I in Memory_Used'range loop
+      for I in Memory_Used'Range loop
          if Memory_Used (I) then
             Consecutive := 0;
          else
@@ -389,7 +389,7 @@ package body Memory_Mgmt is
       Alignment                :        Storage_Count) is
       Index : Storage_Count := Find_Free_Block (Size_In_Storage_Elements);
    begin
-      Storage_Address := Memory_Block (Index)'address;
+      Storage_Address := Memory_Block (Index)'Address;
       Set_In_Use (Index, Size_In_Storage_Elements, True);
    end Allocate;
 
@@ -399,8 +399,8 @@ package body Memory_Mgmt is
       Size_In_Storage_Elements :        Storage_Count;
       Alignment                :        Storage_Count) is
    begin
-      for I in Memory_Block'range loop
-         if Memory_Block (I)'address = Storage_Address then
+      for I in Memory_Block'Range loop
+         if Memory_Block (I)'Address = Storage_Address then
             Set_In_Use (I, Size_In_Storage_Elements, False);
          end if;
       end loop;
@@ -416,9 +416,9 @@ package body Memory_Mgmt is
    procedure Print_Info is
    begin
       Ada.Text_IO.Put_Line
-        ("Current Water Mark: " & Storage_Count'image (Current_Water_Mark));
+        ("Current Water Mark: " & Storage_Count'Image (Current_Water_Mark));
       Ada.Text_IO.Put_Line
-        ("High Water Mark: " & Storage_Count'image (High_Water_Mark));
+        ("High Water Mark: " & Storage_Count'Image (High_Water_Mark));
    end Print_Info;
 
 end Memory_Mgmt;

@@ -13,7 +13,7 @@ package body Timecards is
      (Timecard : Timecard_T)
       return Employee_Data.Id_T is
    begin
-      return Employee_Data.Id_T'first;
+      return Employee_Data.Id_T'First;
    end Id;
 
    function Name
@@ -27,14 +27,14 @@ package body Timecards is
      (Timecard : Timecard_T)
       return Employee_Data.Hourly_Rate_T is
    begin
-      return Employee_Data.Hourly_Rate_T'first;
+      return Employee_Data.Hourly_Rate_T'First;
    end Rate;
 
    function Pay
      (Timecard : Timecard_T)
       return Pay_T is
    begin
-      return Pay_T'first;
+      return Pay_T'First;
    end Pay;
 
    function Image

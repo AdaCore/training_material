@@ -343,7 +343,7 @@ Definite and class wide views
 
 .. container:: speakernote
 
-   P1 operates on ROOT, not ROOT'class
+   P1 operates on ROOT, not ROOT'Class
 
 ---------------
 Redispatching
@@ -415,7 +415,7 @@ What is the value returned by :ada:`F1 (Child'Class (Z));`?
 
    A. Correct
    B. Would be correct if Z was a :ada:`Child` - :ada:`Child'Class` leaves the object as :ada:`Grandchild`
-   C. Object is initialized to something in :ada:`Root'class`, but it doesn't have to be :ada:`Root`
+   C. Object is initialized to something in :ada:`Root'Class`, but it doesn't have to be :ada:`Root`
    D. Would be correct if function parameter types were :ada:`'Class`
 
 ===============================

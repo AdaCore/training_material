@@ -24,7 +24,7 @@ procedure Main is
             when CR  => Put ("CR");
             when NEL => Put ("NEL");
             when others =>
-               Put ("Missed one: " & Integer'image (Character'pos (Char)));
+               Put ("Missed one: " & Integer'Image (Character'Pos (Char)));
          end case;
       else
          Put ("unprintable");
@@ -35,5 +35,5 @@ procedure Main is
 begin
    Put ("Enter ASCII value: ");
    Get_Line (Input, Last);
-   Print (Character'val (Integer'value (Input (1 .. Last))));
+   Print (Character'Val (Integer'value (Input (1 .. Last))));
 end Main;

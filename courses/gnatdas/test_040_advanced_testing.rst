@@ -310,7 +310,7 @@ Setting Stub Return Data
       Check (Sensor.Speed, Value, Status);
       AUnit.Assertions.Assert
         (Value in 0..99 and Status,
-         "Valid speed not detected" & value'image & " " & status'image);
+         "Valid speed not detected" & value'Image & " " & status'Image);
 
       -- Test 2
       Set_Stub_Read_cac9ed_9101fc (Read_Result => 234);

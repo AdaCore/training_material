@@ -181,7 +181,7 @@ Universal Quantifier Illustration
       (for all Component of Answers =>
          Component = Ultimate_Answer);
    All_Correct_2 : constant Boolean :=
-      (for all K in Answers'range =>
+      (for all K in Answers'Range =>
          Answers(K) = Ultimate_Answer);
 
 -----------------------------------------
@@ -249,7 +249,7 @@ Existential Quantifier Illustration
       (for some Component of Answers =>
          Component = Ultimate_Answer);
    Any_Correct_2 : constant Boolean :=
-      (for some K in Answers'range =>
+      (for some K in Answers'Range =>
          Answers(K) = Ultimate_Answer);
 
 -----------------------------------------
@@ -279,7 +279,7 @@ Index-Based vs Component-Based Indexing
 
       Is_Sorted : constant Boolean :=
         (for all I in Values'Range =>
-          I = Values'first or else Values(I) >= Values(I-1));
+          I = Values'First or else Values(I) >= Values(I-1));
 
 ---------------------------------------
 "Pop Quiz" for Quantified Expressions
@@ -310,7 +310,7 @@ Index-Based vs Component-Based Indexing
 
           Ascending_Order : constant Boolean := (
              for all K in Table'Range =>
-                K = Table'first or else Table (K - 1) <= Table (K));
+                K = Table'First or else Table (K - 1) <= Table (K));
 
 ---------------------------
  When The Set Is Empty...

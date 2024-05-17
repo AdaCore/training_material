@@ -4,7 +4,7 @@ package body Numeric_Types is
      (Str : String)
       return Integer_T is
    begin
-      return Integer_T'first;
+      return Integer_T'First;
    end Value;
 
 end Numeric_Types;

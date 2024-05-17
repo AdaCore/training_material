@@ -9,7 +9,7 @@ begin
       declare
          Input                 : constant String := Get_String ("Sequence");
       begin
-         exit when Input'length = 0;
+         exit when Input'Length = 0;
          -- Parse Input to get the the operator and operands
          --   (handle exceptions as appropriate)
          -- Perform appropriate operation

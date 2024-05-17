@@ -395,7 +395,7 @@ Notifications of Deleted Conditional Code
       if False then
          Put_Line ("Commented out for now");
       else
-         Put_Line (A'image);
+         Put_Line (A'Image);
       end if;
    end Test;
 
@@ -656,7 +656,7 @@ Layout and Presentation Example
      --  Go up the tree until we find what we are looking for
      Search_Loop:
      While not Parent.Is_Null loop
-        exit Search_Loop when Names.Map_Size = Natural'last;
+        exit Search_Loop when Names.Map_Size = Natural'Last;
         if Parent.Kind = Lalco.Ada_Defining_Name then
            if Valid_Length (Qualified_Name) then
              Names.Add_Name (Qualified_Name);
@@ -1009,11 +1009,11 @@ Quiz
         pragma Restrictions (No_Dispatching_Calls);
 
         with Definition; use Definition;
-        procedure Demo (O : T'class) is
-           N : Natural := O'size;
-           C : T'class := O;
+        procedure Demo (O : T'Class) is
+           N : Natural := O'Size;
+           C : T'Class := O;
         begin
-           if O in Dt'class then
+           if O in Dt'Class then
               Q (Dt (O));
            else
               P (O);

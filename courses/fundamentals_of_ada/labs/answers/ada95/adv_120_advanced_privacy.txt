@@ -32,7 +32,7 @@ package body Messages is
    end Content;
    function Image (Message : Message_T) return String is
    begin
-      return "**" & Message_Content_T'image (Message.all);
+      return "**" & Message_Content_T'Image (Message.all);
    end Image;
 end Messages;
 --Messages

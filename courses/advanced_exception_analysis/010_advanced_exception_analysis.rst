@@ -66,18 +66,18 @@ Sample Code
   with Ada.Text_IO;      use Ada.Text_IO;
   procedure Main is
      type Short_T is range -1_000 .. 1_000;
-     Input : Short_T := Short_T'value (Ada.Command_Line.Argument (1));
+     Input : Short_T := Short_T'Value (Ada.Command_Line.Argument (1));
      function One (Num : Short_T) return Short_T;
 
      function Three (Num : Short_T) return Short_T is
-       (if Num < Short_T'last then One (Num + 300) else Num);
+       (if Num < Short_T'Last then One (Num + 300) else Num);
      function Two (Num : Short_T) return Short_T is
-       (if Num < Short_T'last then Three (Num + 200) else Num);
+       (if Num < Short_T'Last then Three (Num + 200) else Num);
      function One (Num : Short_T) return Short_T is
-       (if Num < Short_T'last then Two (Num + 100) else Num);
+       (if Num < Short_T'Last then Two (Num + 100) else Num);
 
   begin
-     Put_Line (Input'image & " => " & Short_T'image (Three (Input)));
+     Put_Line (Input'Image & " => " & Short_T'Image (Three (Input)));
   end Main;
 
 =============================
@@ -97,7 +97,7 @@ Typical Exception Occurrence
 
     procedure Main is
        type Short_T is range -1_000 .. 1_000;
-       Input : Short_T := Short_T'value (Ada.Command_Line.Argument (1));
+       Input : Short_T := Short_T'Value (Ada.Command_Line.Argument (1));
 
 ::
 
@@ -206,7 +206,7 @@ Ada.Exceptions
     :number-lines: 17
 
     ...
-      Put_Line (Input'image & " => " & Short_T'image (Three (Input)));
+      Put_Line (Input'Image & " => " & Short_T'Image (Three (Input)));
     exception
        when The_Err : others =>
           Put_Line ("FAILED: " & Exception_Information (The_Err));
@@ -301,7 +301,7 @@ Ada.Exceptions.Traceback
   :number-lines: 19
 
   ...
-     Put_Line (Input'image & " => " & Short_T'image (Three (Input)));
+     Put_Line (Input'Image & " => " & Short_T'Image (Three (Input)));
   exception
      when The_Err : others =>
         declare
@@ -354,7 +354,7 @@ GNAT.Traceback
     Put_Line ("ONE: " &
               GNAT.Traceback.Symbolic.Symbolic_Traceback
                (GNAT.Traceback.Call_Chain (10)));
-    if Num < Short_T'last then
+    if Num < Short_T'Last then
       return Two (Num + 100);
     else
       return Num;

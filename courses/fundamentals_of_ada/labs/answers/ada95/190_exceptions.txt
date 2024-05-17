@@ -26,12 +26,12 @@ package body Converter is
 
    function Convert (Str : String) return Types.Integer_T is
    begin
-      for I in Str'range loop
+      for I in Str'Range loop
          if not Legal (Str (I)) then
             raise Illegal_String;
          end if;
       end loop;
-      return Types.Integer_T'value (Str);
+      return Types.Integer_T'Value (Str);
    exception
       when Constraint_Error =>
          raise Out_Of_Range;
@@ -51,7 +51,7 @@ procedure Main is
    begin
       Ada.Text_IO.Put (Str & " => ");
       Value := Converter.Convert (Str);
-      Ada.Text_IO.Put_Line (Types.Integer_T'image (Value));
+      Ada.Text_IO.Put_Line (Types.Integer_T'Image (Value));
    exception
       when Converter.Out_Of_Range =>
          Ada.Text_IO.Put_Line ("Out of range");

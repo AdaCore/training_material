@@ -7,7 +7,7 @@ package body Point_Of_Sale is
    procedure Catalog (With_Count : Boolean := False) is
       List : Inventory.List_T := Inventory.List (With_Count);
    begin
-      if List'length = 0
+      if List'Length = 0
       then
          Console.Print ("Inventory is completely empty");
       else

@@ -42,8 +42,8 @@ procedure Main is
 
    function Same_Year return Boolean is
    begin
-      for Index in List'range loop
-         if List (Index).Year /= List (List'first).Year then
+      for Index in List'Range loop
+         if List (Index).Year /= List (List'First).Year then
             return False;
          end if;
       end loop;
@@ -68,8 +68,8 @@ begin
       List (I)   := Item;
    end loop;
 
-   Put_Line ("Any invalid: " & Boolean'image (Any_Invalid));
-   Put_Line ("Same Year: " & Boolean'image (Same_Year));
+   Put_Line ("Any invalid: " & Boolean'Image (Any_Invalid));
+   Put_Line ("Same Year: " & Boolean'Image (Same_Year));
 
 end Main;
 --Main

@@ -18,16 +18,16 @@ procedure Main is
       return Positive is
       Retval : constant String := Get (Prompt);
    begin
-      return Positive'value (Retval);
+      return Positive'Value (Retval);
    end Get;
 
    type Command_Type is (L_Oad, P_Rint, S_Ell, R_Eturn, Q_Uit);
 begin
 
    loop
-      for C in Command_Type'range
+      for C in Command_Type'Range
       loop
-         Put (C'image & " ");
+         Put (C'Image & " ");
       end loop;
       Put ("? ");
       begin

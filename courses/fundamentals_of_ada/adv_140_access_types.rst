@@ -572,7 +572,7 @@ Simplistic Linked List
         Put ("Enter String: ");
         Get_Line (Line, Last);
         exit when Last = 0;
-        Line (Last + 1 .. Line'last) := (others => ' ');
+        Line (Last + 1 .. Line'Last) := (others => ' ');
         Item                         := new Some_Record_T;
         Item.all                     := (Line, Head);
         Head                         := Item;
@@ -857,7 +857,7 @@ System.Storage_Pools Example (Partial)
       Alignment                :        Storage_Count) is
       Index : Storage_Count := Find_Free_Block (Size_In_Storage_Elements);
    begin
-      Storage_Address := Memory_Block (Index)'address;
+      Storage_Address := Memory_Block (Index)'Address;
       Set_In_Use (Index, Size_In_Storage_Elements, True);
    end Allocate;
 
@@ -867,8 +867,8 @@ System.Storage_Pools Example (Partial)
       Size_In_Storage_Elements :        Storage_Count;
       Alignment                :        Storage_Count) is
    begin
-      for I in Memory_Block'range loop
-         if Memory_Block (I)'address = Storage_Address then
+      for I in Memory_Block'Range loop
+         if Memory_Block (I)'Address = Storage_Address then
             Set_In_Use (I, Size_In_Storage_Elements, False);
          end if;
       end loop;
