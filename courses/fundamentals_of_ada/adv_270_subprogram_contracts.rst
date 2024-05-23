@@ -363,7 +363,7 @@ Quiz
 .. code:: Ada
 
    --  Convert string to Integer
-   function From_String ( S : string ) return Integer
+   function From_String ( S : String ) return Integer
       with Pre => S'Length > 0;
 
    procedure Do_Something is

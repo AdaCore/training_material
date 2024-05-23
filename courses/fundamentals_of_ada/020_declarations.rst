@@ -86,14 +86,16 @@ Identifiers
 String Literals
 ----------------
 
+* A :dfn:`literal` is a *textual* representation of a value in the code
+
 .. code:: Ada
 
-   A_Null_String : constant string := "";
+   A_Null_String : constant String := "";
       -- two double quotes with nothing inside
-   String_Of_Length_One : constant string := "A";
-   Embedded_Single_Quotes : constant string :=
+   String_Of_Length_One : constant String := "A";
+   Embedded_Single_Quotes : constant String :=
                             "Embedded 'single' quotes";
-   Embedded_Double_Quotes : constant string :=
+   Embedded_Double_Quotes : constant String :=
                             "Embedded ""double"" quotes";
 
 .. container:: speakernote
@@ -444,9 +446,9 @@ Universal Types
 * Implicitly defined
 * Entire *classes* of numeric types
 
-   - `universal_integer`
-   - `universal_real`
-   - `universal_fixed`
+   - :ada:`universal_integer`
+   - :ada:`universal_real`
+   - :ada:`universal_fixed` (not seen here)
 
 * Match any integer / real type respectively
 
@@ -456,6 +458,8 @@ Universal Types
 
      X : Integer64 := 2;
      Y : Integer8 := 2;
+     F : Float := 2.0;
+     D : Long_Float := 2.0;
 
 ----------------------------------------
 Numeric Literals Are Universally Typed

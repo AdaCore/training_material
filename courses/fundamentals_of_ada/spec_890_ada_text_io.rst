@@ -42,8 +42,8 @@ Ada.Text_IO
 * Most common I/O library unit - works with normal text I/O
 * Works with `string` types
 
-   - `Ada.Wide_Text_IO` for `wide_string`
-   - `Ada.Wide_Wide_Text_IO` for `wide_wide_string`
+   - `Ada.Wide_Text_IO` for `Wide_String`
+   - `Ada.Wide_Wide_Text_IO` for `Wide_Wide_String`
 
 * Other I/O packages (not discussed in this module):
 
@@ -110,7 +110,7 @@ Standard Input / Output
    .. code:: Ada
 
       -- reads from default input file
-      S : constant string := Get_Line;
+      S : constant String := Get_Line;
       -- ...
       -- writes to default output file
       Put_Line (S);
