@@ -368,7 +368,7 @@ Extension of Delta Aggregates
 * GNAT extension allowed using either
 
   - switch :command:`-gnatX0`, or
-  - pragma :ada:`Extensions_Allowed(All)`
+  - pragma :ada:`Extensions_Allowed (All)`
     
 * Choice can be a subcomponent of the record or array
 

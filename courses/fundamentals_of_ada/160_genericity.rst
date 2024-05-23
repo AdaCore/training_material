@@ -44,17 +44,15 @@ The Notion of a Pattern
    .. code:: Ada
 
       procedure Swap_Int (Left, Right : in out Integer) is
-        V : Integer;
+        V : Integer := Left;
       begin
-         V := Left;
          Left := Right;
          Right := V;
       end Swap_Int;
 
       procedure Swap_Bool (Left, Right : in out Boolean) is
-         V : Boolean;
+         V : Boolean := Left;
       begin
-         V := Left;
          Left := Right;
          Right := V;
       end Swap_Bool;
@@ -64,9 +62,8 @@ The Notion of a Pattern
    .. code:: Ada
 
       procedure Swap (Left, Right : in out (Integer | Boolean)) is
-        V : (Integer | Boolean);
+        V : (Integer | Boolean) := Left;
       begin
-         V := Left;
          Left := Right;
          Right := V;
       end Swap;
@@ -100,7 +97,7 @@ Ada Generic Compared to C++ Template
 
       -- implementation
       procedure Swap (L, R : in out T) is
-         Tmp : T := L
+         Tmp : T := L;
       begin
          L := R;
          R := Tmp;
