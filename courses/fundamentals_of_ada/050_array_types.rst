@@ -470,7 +470,7 @@ Specifying Constraints via Initial Value
        of Character;
    ...
    M : String := "Hello World!";
-   -- M'First is positive'First (1)
+   -- M'First is Positive'First (1)
 
    type Another_String is array (Integer range <>)
        of Character;
