@@ -84,7 +84,7 @@ LKQL features (general purpose subset)
 
   * All functions are first class citizens
 
-    .. code:: lkql
+    .. code:: graphql
 
        fun add(x, y) = x * y
        fun sub(x, y) = x - y
@@ -97,14 +97,14 @@ LKQL features (general purpose subset)
 
 * LKQL supports list comprehensions with the same syntax as Python
 
-  .. code:: lkql
+  .. code:: graphql
 
      val odds = [num for num in [1, 2, 3, 4, 5] if is_odd(num)]
      val ids = [node for node in nodes if node is Identifier]
 
 * You can use LKQL block expressions to declare local values and add some sequentiality
 
-  .. code:: lkql
+  .. code:: graphql
 
      val complex = {
         val part = 40;
@@ -121,7 +121,7 @@ LKQL features (query subset)
 
   * LKQL also provides selector operations (e.g. **any children**)
 
-  .. code:: lkql
+  .. code:: graphql
 
      val ids = from nodes select Identifier
      val if_id_child = select IfStmt(any children is Identifier)
@@ -130,7 +130,7 @@ LKQL features (query subset)
 
   * This will yield every child but will not recurse for the **if statement** children:
 
-    .. code:: lkql
+    .. code:: graphql
 
        selector children_until_if
        | IfStmt  => this
@@ -141,11 +141,27 @@ LKQL features (query subset)
 
   * For more information see the LKQL reference manual
 
-  .. code:: lkql
+  .. code:: graphql
 
      val test = select b@BinOp(f_op is OpEq)
                 when b.f_left.text == "0" and
                      b.f_right is Identifier
+
+---------------------
+LKQL API References
+---------------------
+
+* LKQL API can be found at :url:`https://docs.adacore.com/live/wave/lkql/html/gnatcheck_rm/gnatcheck_rm/lkql_language_reference.html#lkql-api`
+
+* Contains sections on
+
+  * Libadalang API (found at :url:`https://docs.adacore.com/live/wave/libadalang/html/libadalang_ug/python_api_ref.html`)
+
+    * Includes definitions of all functions like ``IfStmt`` that we saw above
+
+  * Standard library
+
+    * Includes definitions of typical functions like ``print`` and ``children``
 
 ----------------------------
 Testing LKQL with its REPL
@@ -198,7 +214,7 @@ Mapping Python API to LKQL API
 
     .. container:: latex_environment small
 
-       .. code:: lkql
+       .. code:: graphql
 
           val expr_types = [node.p_expression_type() for node in select Expr]
 
@@ -243,7 +259,7 @@ Boolean Rules
 
     * Function should be in :filename:`bodies.lkql`
 
-    .. code:: lkql
+    .. code:: graphql
 
        @check
        fun bodies(node) = node is BodyNode
@@ -261,7 +277,7 @@ Example of Boolean Rules
 
       * Flag every :ada:`goto` and :ada:`if` statemnt
 
-        .. code:: lkql
+        .. code:: graphql
 
            @check
            fun goto_and_if(node) =
@@ -272,7 +288,7 @@ Example of Boolean Rules
 
       * Flag every :lkql:`Identifier` called :ada:`dummy` (case-insensitive)
 
-        .. code:: lkql
+        .. code:: graphql
 
            @check
            fun dummy_id(node) =
@@ -281,7 +297,7 @@ Example of Boolean Rules
 
       * Flags every *Binary Operator* with any child a *Numeric Literal*
 
-        .. code:: lkql
+        .. code:: graphql
 
            @check
            fun op_with_num(node) =
@@ -341,7 +357,7 @@ Example of Unit Rules
 
 *Flag every* :ada:`goto` *statement and give target label line in associated message*
 
-   .. code:: lkql
+   .. code:: graphql
 
       @unit_check
       fun goto_line(unit) = [
@@ -411,7 +427,7 @@ You configure an LKQL rule behavior with annotation arguments
 
 *Example of an LKQL rule with rule arguments*
 
-   .. code:: lkql
+   .. code:: graphql
 
       @check(
          message: "There is a body node",
@@ -438,7 +454,7 @@ Rule Function Parameters
 
    * Flag all *Identifier* nodes with too many characters according to given threshold
 
-   .. code:: lkql
+   .. code:: graphql
 
       @check
       fun too_long_id(node, threshold=15) =
@@ -447,7 +463,7 @@ Rule Function Parameters
 
 * Flag all *Identifier* nodes with more than 42 characters using :lkql:`too_long_id` rule
 
-   :command:`gnatcheck -P prj.gpr -- rules-dir=. -rules +Rtoo_long_id:42`
+   :command:`gnatcheck -P prj.gpr --rules-dir=. -rules +Rtoo_long_id:42`
 
 ---------------------------------------
 Configuring a GNATcheck Run with LKQL
@@ -461,7 +477,7 @@ Configuring a GNATcheck Run with LKQL
 
 * Example LKQL configuration file
 
-  .. code:: lkql
+  .. code:: graphql
 
      val rules = @{
         identifier_suffixes: [

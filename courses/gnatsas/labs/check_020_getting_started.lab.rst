@@ -19,10 +19,13 @@ Preparing the Command Line
 
 2. Type :command:`gnatcheck` and press :menu:`Enter` to verify tool is on your path
 
-    * If not, you need to add the folder to your path
-    * On Windows, typically ``C:\GNATSAS\<version>\bin`` where version is the GNAT SAS version number
+    * If you see :command:`gnatcheck: No existing file to process`, you can go to the next step
 
-      ``set PATH=C:\GNATSAS\24.0\bin;%PATH%``
+    * If you see something like :command:`'gnatcheck' is not recognized as an internal or external command`
+
+       Add the appropriate folder to your path (On Windows, typically ``C:\GNATSAS\<version>\bin`` where version is the GNAT SAS version number)
+
+       ``set PATH=C:\GNATSAS\24.0\bin;%PATH%``
 
 3. Type :command:`gnatcheck -h` and press :menu:`Enter` to show list of predefined rules
 
