@@ -459,7 +459,7 @@ String Interpolation
       procedure Test_Interpolation is
          X : Integer := 12;
          Y : Integer := 15;
-         Name : String := ”Leo”;
+         Name : String := "Leo";
       begin
          Put_Line ("Name is " & Name &
                    " and Sum is " &
@@ -513,7 +513,7 @@ Conditional "when" Constructs
       return True when I = 0;
       goto Cleanup when Flags (1);
       raise Error when Imported_C_Func /= 0;
-      raise Error with ”Unix Error”
+      raise Error with "Unix Error"
          when Imported_C_Func /= 0;
 
 -------------------------
@@ -620,10 +620,10 @@ Case Pattern Matching (2/3)
    S : Shape'Class := ...;
 
    case S is
-      when Circle'Class'(Radius => 0, others => <>) => Put_Line (”point”);
-      when Circle'Class => Put_Line (”circle”);
-      when Line'Class => Put_Line (”line”);
-      when <> => Put_Line (”other shape”);
+      when Circle'Class'(Radius => 0, others => <>) => Put_Line ("point");
+      when Circle'Class => Put_Line ("circle");
+      when Line'Class => Put_Line ("line");
+      when <> => Put_Line ("other shape");
    end case;
 
 ---------------------------
