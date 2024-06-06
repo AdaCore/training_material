@@ -81,11 +81,45 @@ Common Pre-/Post-Test Behavior
 
       * Allows adding checks for global state
 
-* Type :ada:`Test` is a tagged record where you can add your own fields
+* Found in :filename:`<unit>-test_data.adb`
 
-   * Parameter of type :ada:`Test` is passed to :ada:`Set_Up` and :ada:`Tear_Down` and every test
+   .. code:: Ada
 
-      * Allows passing of any user-defined data
+      procedure Set_Up (Gnattest_T : in out Test) is
+         pragma Unreferenced (Gnattest_T);
+      begin
+         --  Clear stack before running test
+         Simple_Stack.Reset;
+      end Set_Up;
+
+      procedure Tear_Down (Gnattest_T : in out Test) is
+         pragma Unreferenced (Gnattest_T);
+      begin
+         Ada.Text_IO.Put_Line ("Count:" & Simple.Stack.Count'Image);
+      end Tear_Down;
+
+----------------------------
+Passing Data Between Tests
+----------------------------
+
+* Notice that :ada:`Set_Up` and :ada:`Tear_Down` (in addition to each **Test** procedure) pass parameter :ada:`Gnattest_T` of type :ada:`Test`
+
+   * Defined in **<unit>.Test_Data**
+
+      .. code:: Ada
+
+         package Simple_Stack.Test_Data is
+
+         --  begin read only
+            type Test is new AUnit.Test_Fixtures.Test_Fixture
+         --  end read only
+            with null record;
+
+   * Note that the completion of the record type is outside of the *read only* block allowing you to modify it as you see fit
+
+* Parameter of type :ada:`Test` is passed to :ada:`Set_Up` and :ada:`Tear_Down` and every test
+
+   * Allows passing of any user-defined data
 
 ---------------------------------
 Changes to Original Source Code
@@ -191,10 +225,10 @@ Common Switches
 :command:`--no-subprojects`
    Only process base project
 
-:command:`-files=<filename>`
+:command:`--files=<filename>`
    Process files listed in *filename* (switch may appear multiple times)
 
-:command:`-ignore=<filename>`
+:command:`--ignore=<filename>`
    Ignore files listed in *filename*
 
 :command:`--passed-tests=val`
