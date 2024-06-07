@@ -662,7 +662,7 @@ Why Allow Types with Static Predicates?
             when sat =>
               exit;
             when others =>
-              w := weekend'succ(w);
+              w := weekend'succ (w);
           end case;
         end loop;
       end;
@@ -735,7 +735,7 @@ Subtype Predicates Aren't Bullet-Proof
        -- array should always be sorted
        with Dynamic_Predicate =>
          (for all K in Table'Range =>
-           (K = Table'First or else Table(K-1) <= Table(K)));
+           (K = Table'First or else Table (K-1) <= Table (K)));
      Values : Table := (1, 3, 5, 7, 9);
    begin
      ...

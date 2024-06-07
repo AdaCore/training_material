@@ -313,8 +313,8 @@ Required Body Example
      procedure Move_Cursor (To : in Position) is
      begin
        Text_IO.Put (ASCII.Esc & 'I' &
-                    Unsigned(To.Row) & ';' &
-                    Unsigned(To.Col) & 'H');
+                    Unsigned (To.Row) & ';' &
+                    Unsigned (To.Col) & 'H');
      end Move_Cursor;
      procedure Home is
      begin
@@ -402,7 +402,7 @@ Requiring/Rejecting Bodies Justification
          ...
        begin
          for K in Data'Range loop
-           Data(K) := ...
+           Data (K) := ...
          end loop;
        end P;
 
@@ -435,7 +435,7 @@ Forcing A Package Body To be Required
          ...
        begin
          for K in Data'Range loop
-           Data(K) := ...
+           Data (K) := ...
          end loop;
        end P;
 

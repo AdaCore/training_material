@@ -357,23 +357,23 @@ Predefined Modular Types
 String Attributes For All Scalars
 -----------------------------------
 
-* :ada:`T'Image(input)`
+* :ada:`T'Image (input)`
 
    - Converts :ada:`T` |rightarrow| :ada:`String`
 
-* :ada:`T'Value(input)`
+* :ada:`T'Value (input)`
 
    - Converts :ada:`String` |rightarrow| :ada:`T`
 
 .. code:: Ada
 
    Number : Integer := 12345;
-   Input  : String(1 .. N);
+   Input  : String (1 .. N);
    ...
-   Put_Line(Integer'Image(Number));
+   Put_Line (Integer'Image (Number));
    ...
-   Get(Input);
-   Number := Integer'Value(Input);
+   Get (Input);
+   Number := Integer'Value (Input);
 
 ----------------------------------
 Range Attributes For All Scalars
@@ -418,9 +418,9 @@ Neighbor Attributes For All Scalars
    Signed   : Signed_T := -1;
    Unsigned : Unsigned_T := 0;
    ...
-   Signed := Signed_T'Succ(Signed); -- Signed = 0
+   Signed := Signed_T'Succ (Signed); -- Signed = 0
    ...
-   Unsigned := Unsigned_T'Pred(Unsigned); -- Signed = 255
+   Unsigned := Unsigned_T'Pred (Unsigned); -- Signed = 255
 
 ------------------------------------
 Min/Max Attributes For All Scalars
@@ -778,7 +778,7 @@ Floating Point Type Operators
    - Power must be :ada:`Integer`
 
       + Not possible to ask for root
-      + :ada:`X**0.5` |rightarrow| :ada:`sqrt(x)`
+      + :ada:`X**0.5` |rightarrow| :ada:`sqrt (x)`
 
 --------------------------------
 Floating Point Type Attributes
@@ -842,7 +842,7 @@ What is the output of this code?
       F : Float := 7.6;
       I : Integer := 10;
    begin
-      F := Float (Integer(F) / I);
+      F := Float (Integer (F) / I);
       Put_Line (Float'Image (F));
    end;
 
@@ -855,7 +855,7 @@ D. :answer:`0.0`
 
    Explanations
 
-   A. Result of :ada:`F := F / Float(I);`
+   A. Result of :ada:`F := F / Float (I);`
    B. Result of :ada:`F := F / I;`
    C. Result of :ada:`F := Float (Integer (F)) / Float (I);`
    D. Integer value of :ada:`F` is 8. Integer result of dividing that by 10 is 0. Converting to float still gives us 0

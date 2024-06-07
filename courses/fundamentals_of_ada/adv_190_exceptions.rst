@@ -235,7 +235,7 @@ Typical Partial Handling Example
        Display_Error ("File must be opened prior to use");
        raise Error;
      when others =>
-       Display_Error ("Error in Get(Integer) from file");
+       Display_Error ("Error in Get (Integer) from file");
        raise;
    end Get;
 
@@ -447,7 +447,7 @@ Exception Identity
         ...
         type Exception_Id is private;
         ...
-        procedure Raise_Exception(E : in Exception_Id;
+        procedure Raise_Exception (E : in Exception_Id;
                                    Message : in String := "");
         ...
       end Ada.Exceptions;
@@ -597,7 +597,7 @@ Allow Clients To Avoid Exceptions
    .. code:: Ada
 
       if not Stack.Empty then
-        Stack.Pop(...);  -- will not raise Underflow
+        Stack.Pop (...);  -- will not raise Underflow
 
 ----------------------------------
 You Can Suppress Run-Time Checks

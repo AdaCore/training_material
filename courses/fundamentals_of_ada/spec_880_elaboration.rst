@@ -117,16 +117,16 @@ Elaboration Order
    .. code:: Ada
 
       package P1 is
-         V_Spec : Integer := Call(1);
+         V_Spec : Integer := Call (1);
       end P1;
       package body P1 is
-         V_Body : Integer := Call(2);
+         V_Body : Integer := Call (2);
       end P1;
       package P2 is
-         V_Spec : Integer := Call('A');
+         V_Spec : Integer := Call ('A');
       end P1;
       package body P2 is
-         V_Body : Integer := Call('B');
+         V_Body : Integer := Call ('B');
       end P1;
 
 * The binder (GNAT: gnatbind) is responsible for finding an elaboration order

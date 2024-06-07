@@ -315,8 +315,8 @@ If-then-elsif Statements
   .. code:: Ada
      :number-lines: 1
 
-     if Valve(N) /= Closed then
-       Isolate (Valve(N));
+     if Valve (N) /= Closed then
+       Isolate (Valve (N));
        Failure (Valve (N));
      else
        if System = Off then
@@ -329,8 +329,8 @@ If-then-elsif Statements
   .. code:: Ada
      :number-lines: 1
 
-     if Valve(N) /= Closed then
-       Isolate (Valve(N));
+     if Valve (N) /= Closed then
+       Isolate (Valve (N));
        Failure (Valve (N));
      elsif System = Off then
        Failure (Valve (N));
@@ -855,11 +855,11 @@ For-Loop with Exit Statement Example
    Found := False;
    -- iterate over Table
    Search : for Index in Table'Range loop
-     if Table(Index) = Key then
+     if Table (Index) = Key then
        Found := True;
        Position := Index;
        exit Search;
-     elsif Table(Index) > Key then
+     elsif Table (Index) > Key then
        -- no point in continuing
        exit Search;
      end if;
