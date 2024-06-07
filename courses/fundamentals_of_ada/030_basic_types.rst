@@ -308,7 +308,7 @@ Modular Types
       type <identifier> is mod <modulus>;
 
 * Modulus must be **static**
-* Resulting range is  0 .. modulus-1
+* Resulting range is  :ada:`0 .. modulus - 1`
 
    .. code:: Ada
 
