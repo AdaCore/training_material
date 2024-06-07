@@ -1019,8 +1019,8 @@ Subtype Constraint Checks
    - May be detected at compile time
 
       + If values are **static**
-      + Initial value :rightarrow: error
-      + ... else :rightarrow: warning
+      + Initial value |rightarrow| error
+      + ... else |rightarrow| warning
 
 .. code:: Ada
 
