@@ -202,7 +202,7 @@ Signed Integer Types
 
       -- 12-bit device
       type Analog_Conversions is range 0 .. 4095;
-      Count : Analog_Conversions;
+      Count : Analog_Conversions := 0;
       ...
       begin
          ...
