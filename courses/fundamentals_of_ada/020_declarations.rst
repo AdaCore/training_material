@@ -597,7 +597,7 @@ Scope and Visibility
 
    - Where the name is **actually** available
    - Defined by **visibility rules**
-   - **Hidden** |rightarrow| *in scope* but **not visible**
+   - **Hidden** |rightarrow| *in scope* but not **directly** visible
 
 ------------------------------
 Introducing Block Statements
