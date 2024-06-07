@@ -217,22 +217,44 @@ Workflow Three - Excluding Source Code
            null;
       pragma Annotate (Xcov, Exempt_Off);
 
-   * When you look look at :filename:`sdc.adb.xcov` you'll notices the exempted lines are marked with ``*``
+   * Now run your code and generate a summary report
 
-   ::
+--------------------------------------
+Workflow Three - Exemption Reporting
+--------------------------------------
 
-      29 .:      begin
-      30 .: 
-      31 +:         Process (Next);
-      32 .:         --  Read the next Token from the input and process it.
-      33 .: 
-      34 *:      pragma Annotate (Xcov, Exempt_On, "Exception Handler");
-      35 *:      exception
-      36 *:         when Stack.Underflow =>
-      37 *:            Error_Msg ("Not enough values in the Stack.");
-      38 *: 
-      39 *:         when Stack.Overflow =>
-      40 *:           null;
-      41 *:      pragma Annotate (Xcov, Exempt_Off);
-      42 .:      end;
+* When you look look at :filename:`sdc.adb.xcov` you'll notices the exempted lines are marked with ``*``
 
+::
+
+   29 .:      begin
+   30 .: 
+   31 +:         Process (Next);
+   32 .:         --  Read the next Token from the input and process it.
+   33 .: 
+   34 *:      pragma Annotate (Xcov, Exempt_On, "Exception Handler");
+   35 *:      exception
+   36 *:         when Stack.Underflow =>
+   37 *:            Error_Msg ("Not enough values in the Stack.");
+   38 *: 
+   39 *:         when Stack.Overflow =>
+   40 *:           null;
+   41 *:      pragma Annotate (Xcov, Exempt_Off);
+   42 .:      end;
+
+* While the summary report contains a description of the exemption region
+
+::
+
+   =========================
+   == 3. EXEMPTED REGIONS ==
+   =========================
+
+   sdc.adb:34:7-41:7: 2 exempted violations, justification:
+   "Exception Handler"
+
+   Exempted violations:
+   sdc.adb:37:13: statement not executed
+   sdc.adb:40:13: statement not executed
+
+   1 exempted region, 2 exempted violations.
