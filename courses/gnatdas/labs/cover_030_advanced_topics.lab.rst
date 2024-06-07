@@ -20,6 +20,61 @@ Advanced Topics Lab
 
 *Note: Many of the following pages use animation to first give you a task and then show you how to do it.* :menu:`Page Down` *does not always go to the next page!*
 
+-------------------------------
+Quick Note on The Application
+-------------------------------
+
+* **SDC** stands for *Simple Desktop Calculator*
+
+* The input is a list of operands an operators in programmatic order, not mathematic
+
+   * The calculator does have a simple memory
+
+* Example: To add **11** to **22** you would enter :command:`11 22 +`
+
+   * To multiply that by **10**, the next line might be :command:`10 *`
+
+* In additon to numbers, you have the commands **Clear**, **Print**, and **Quit**
+
+  Example run :command:`sdc.exe`
+
+  .. list-table::
+     :header-rows: 1
+
+     * - Display
+       - Description
+
+     * - Welcome to SDC. Go ahead type your commands ...
+
+     * - 100 20 +
+       - User Input
+
+     * - 100 20 +
+       - Command echo
+
+     * - 3 +
+       - User Input
+
+     * - 3 +
+       - Command echo
+
+     * - print
+       - User Input
+
+     * - print
+       - Command echo
+
+     * - ->  123
+       - Result of **Print**
+
+     * - quit
+       - User Input
+
+     * - quit
+       - Command echo
+
+     * - Thank you for using SDC.
+
 ----------------
 Initialization
 ----------------
