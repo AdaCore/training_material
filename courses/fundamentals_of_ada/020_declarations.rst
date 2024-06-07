@@ -325,14 +325,14 @@ Multiple Object Declarations
 
    .. code:: Ada
 
-      A, B : Integer := Next_Available(X);
+      A, B : Integer := Next_Available (X);
 
 * Identical to series of single declarations
 
    .. code:: Ada
 
-      A : Integer := Next_Available(X);
-      B : Integer := Next_Available(X);
+      A : Integer := Next_Available (X);
+      B : Integer := Next_Available (X);
 
 * Warning: may get different value
 

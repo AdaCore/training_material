@@ -709,10 +709,10 @@ Quiz
 
 Which comparison is False?
 
-   A. ``X'Last(2) = Index2_T'Last``
-   B. :answermono:`X'Last(1)*X'Last(2) = X'Length(1)*X'Length(2)`
-   C. ``X'Length(1) = X'Length(2)``
-   D. ``X'Last(1) = 7``
+   A. ``X'Last (2) = Index2_T'Last``
+   B. :answermono:`X'Last (1)*X'Last (2) = X'Length (1)*X'Length (2)`
+   C. ``X'Length (1) = X'Length (2)``
+   D. ``X'Last (1) = 7``
 
 .. container:: animate
 
@@ -986,7 +986,7 @@ Array Component For-Loop Example
    .. code:: Ada
 
       for P in Primes'Range loop
-         Put_Line (Integer'Image (Primes(P)));
+         Put_Line (Integer'Image (Primes (P)));
       end loop;
 
 ----------------------------------------
@@ -1036,7 +1036,7 @@ For-Loops with Multidimensional Arrays
                  (0.0, 0.0, 1.0));
        begin
          for C of Identity loop
-           Put_Line (Float'Image(C));
+           Put_Line (Float'Image (C));
          end loop;
 
 ------

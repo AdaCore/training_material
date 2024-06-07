@@ -290,7 +290,7 @@ Overloading Example
      Test   : Position;
    begin
      for K in Offsets'Range loop
-       Test := Current + Offsets(K);
+       Test := Current + Offsets (K);
        if Acceptable (Test) then
          Count := Count + 1;
          Result (Count) := Test;

@@ -188,7 +188,7 @@ Overriding Indicators
    .. code:: Ada
 
       type Shape_T is tagged record
-         Name : String(1..10);
+         Name : String (1..10);
       end record;
 
       -- primitives of "Shape_T"

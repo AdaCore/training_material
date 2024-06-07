@@ -571,15 +571,15 @@ Propagation Demo
          Error : exception;
          procedure Unhandled is
          begin
-           Maybe_Raise(1);
+           Maybe_Raise (1);
          end Unhandled;
          procedure Handled is
          begin
            Unhandled;
-           Maybe_Raise(2);
+           Maybe_Raise (2);
          exception
            when Error =>
-             Print("Handle 1 or 2");
+             Print ("Handle 1 or 2");
          end Handled;
 
  .. container:: column
@@ -588,11 +588,11 @@ Propagation Demo
       :number-lines: 16
 
        begin -- Do_Something
-         Maybe_Raise(3);
+         Maybe_Raise (3);
          Handled;
        exception
          when Error =>
-           Print("Handle 3");
+           Print ("Handle 3");
        end Do_Something;
 
 -------------------
@@ -760,7 +760,7 @@ Exception ID
    ...
    exception
       when Occurrence : others =>
-         if Exception_Identity(Occurrence) = Mine'Identity
+         if Exception_Identity (Occurrence) = Mine'Identity
          then
             ...
 

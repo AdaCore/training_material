@@ -89,8 +89,8 @@ Operators and Primitives
 .. code:: Ada
 
    package Ada.Text_IO is
-     procedure Put_Line(...);
-     procedure New_Line(...);
+     procedure Put_Line (...);
+     procedure New_Line (...);
      ...
    end Ada.Text_IO;
 
@@ -98,8 +98,8 @@ Operators and Primitives
    procedure Hello is
      use Ada.Text_IO;
    begin
-     Put_Line("Hello World");
-     New_Line(3);
+     Put_Line ("Hello World");
+     New_Line (3);
      Ada.Text_IO.Put_Line ("Good bye");
    end Hello;
 

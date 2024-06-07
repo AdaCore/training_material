@@ -470,7 +470,7 @@ Example for Attribute :ada:`'Old`
    .. code:: Ada
 
       procedure Shift_And_Advance (Index : in out Integer) with Post =>
-         -- Global(Index) before call (so Global and Index are original)
+         -- Global (Index) before call (so Global and Index are original)
          Global (Index)'Old
             -- Original Global and Original Index
             = Global'Old (Index'Old)

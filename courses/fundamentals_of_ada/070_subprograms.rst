@@ -1113,7 +1113,7 @@ Set Example (Implementation)
                         Of_Set: Set)
                         return Boolean is
    begin
-     return Of_Set(C);
+     return Of_Set (C);
    end Is_Member;
 
 ========

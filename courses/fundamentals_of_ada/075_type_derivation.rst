@@ -84,7 +84,7 @@ Primitive Operations
    .. code:: Ada
 
       type T is new Integer;
-      procedure Attrib_Function(Value : T);
+      procedure Attrib_Function (Value : T);
 
 ------------------------------
 General Rule For a Primitive

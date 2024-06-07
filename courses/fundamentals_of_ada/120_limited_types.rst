@@ -137,7 +137,7 @@ Approximate Analog In C++
 
    class Stack {
    public:
-     Stack();
+     Stack ();
      void Push (int X);
      void Pop (int& X);
      ...

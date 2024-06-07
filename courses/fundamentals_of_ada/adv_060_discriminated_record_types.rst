@@ -93,7 +93,7 @@ Example Defined in Ada
    type Person_Group is (Student, Faculty);
    type Person (Group : Person_Group) is -- Group is the discriminant
       record
-         Name : String(1..10); -- Always present
+         Name : String (1..10); -- Always present
          case Group is
             when Student => -- 1st variant
                GPA  : Float range 0.0 .. 4.0;
@@ -171,8 +171,8 @@ Semantics
 
    .. code:: Ada
 
-      Pat  : Person(Student); -- May select Pat.GPA, not Pat.Pubs
-      Prof : Person(Faculty); -- May select Prof.Pubs, not Prof.GPA
+      Pat  : Person (Student); -- May select Pat.GPA, not Pat.Pubs
+      Prof : Person (Faculty); -- May select Prof.Pubs, not Prof.GPA
       Soph : Person := (Group  => Student,
                          Name => "John Jones",
                          GPA  => 3.2,
@@ -200,7 +200,7 @@ Implementation
          type Person_Group is (Student, Faculty);
          type Person (Group : Person_Group) is
             record
-               Name : String(1..10);
+               Name : String (1..10);
                case Group is
                   when Student =>
                      GPA  : Float range 0.0 .. 4.0;
@@ -224,15 +224,15 @@ Primitives
 
       procedure Put (Item : in Person) is
       begin
-        Put_Line("Group:" & Person_Group'Image(Item.Group));
-        Put_Line("Name: " & Item.Name);
+        Put_Line ("Group:" & Person_Group'Image (Item.Group));
+        Put_Line ("Name: " & Item.Name);
         -- Group specified by caller
         case Item.Group is
           when Student =>
-            Put_Line("GPA:" & Float'Image(Item.GPA));
-            Put_Line("Year:" & Integer'Image(Item.Year));
+            Put_Line ("GPA:" & Float'Image (Item.GPA));
+            Put_Line ("Year:" & Integer'Image (Item.Year));
           when Faculty =>
-            Put_Line("Pubs:" & Integer'Image(Item.Pubs));
+            Put_Line ("Pubs:" & Integer'Image (Item.Pubs));
         end case;
       end Put;
 
@@ -262,23 +262,23 @@ Usage
    with Ada.Text_IO; use Ada.Text_IO;
    procedure Person_Test is
      Group   : Person_Group;
-     Line  : String(1..80);
+     Line  : String (1..80);
      Index : Natural;
    begin
      loop
-       Put("Group (Student or Faculty, empty line to quit): ");
-       Get_Line(Line, Index);
+       Put ("Group (Student or Faculty, empty line to quit): ");
+       Get_Line (Line, Index);
        exit when Index=0;
-       Group := Person_Group'Value(Line(1..Index));
+       Group := Person_Group'Value (Line (1..Index));
        declare
-         Someone : Person(Group);
+         Someone : Person (Group);
        begin
-         Get(Someone);
+         Get (Someone);
          case Someone.Group is
            when Student => Student_Do_Something (Someone);
            when Faculty => Faculty_Do_Something (Someone);
          end case;
-         Put(Someone);
+         Put (Someone);
        end;
      end loop;
    end Person_Test;
@@ -313,9 +313,9 @@ Unconstrained Discriminated Record Example
 .. code:: Ada
 
    declare
-      type Mutant(Group : Person_Group := Faculty) is
+      type Mutant (Group : Person_Group := Faculty) is
          record
-            Name : String(1..10);
+            Name : String (1..10);
             case Group is
                when Student =>
                   GPA  : Float range 0.0 .. 4.0;
@@ -325,8 +325,8 @@ Unconstrained Discriminated Record Example
             end case;
          end record;
 
-      Pat  : Mutant(Student); -- Constrained
-      Doc  : Mutant(Faculty); -- Constrained
+      Pat  : Mutant (Student); -- Constrained
+      Doc  : Mutant (Faculty); -- Constrained
       Zork : Mutant; -- Unconstrained (Zork.Group = Faculty)
 
    begin
@@ -360,7 +360,7 @@ Varying Lengths of Array Objects
 
    .. code:: Ada
 
-      S : String(1..80);
+      S : String (1..80);
       A : array (M .. K*L) of Integer;
 
 * We would like an object with a maximum length, but current length is variable
@@ -416,7 +416,7 @@ Varying Length Array via Discriminated Records
 
    type VString (Max_Length : Natural := 0) is
      record
-       Data   : String(1..Max_Length) := (others => ' ');
+       Data   : String (1..Max_Length) := (others => ' ');
      end record;
 
 * Discriminant default value?

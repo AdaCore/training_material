@@ -340,7 +340,7 @@ Rationale for Parentheses Requirement
 
       .. code:: Ada
 
-         Subprogram_Call(if A then B else C);
+         Subprogram_Call (if A then B else C);
 
 ------------------------------
 When To Use *If Expressions*
@@ -361,7 +361,7 @@ When To Use *If Expressions*
 
 * Static named numbers
 
-   - Can be much cleaner than using Boolean'Pos(condition)
+   - Can be much cleaner than using Boolean'Pos (condition)
 
 ---------------------------------------
 *If Expression* Example for Constants
@@ -379,7 +379,7 @@ When To Use *If Expressions*
         if Leap (Today.Year) then -- adjust for leap year
           End_of_Month (Feb) := 29;
         end if;
-        if Today.Day = End_of_Month(Today.Month) then
+        if Today.Day = End_of_Month (Today.Month) then
       ...
 
 * Using if-expression to call :ada:`Leap (Year)` as needed
@@ -392,7 +392,7 @@ When To Use *If Expressions*
                     then 29 else 28),
             others => 31);
       begin
-        if Today.Day /= End_of_Month(Today.Month) then
+        if Today.Day /= End_of_Month (Today.Month) then
       ...
 
 ---------------------
@@ -461,7 +461,7 @@ Quiz
 Which statement is **not** legal?
 
    A. :answermono:`F := if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X);`
-   B. ``F := Sqrt(if X < 0.0 then -1.0 * X else X);``
+   B. ``F := Sqrt (if X < 0.0 then -1.0 * X else X);``
    C. ``B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0 else True);``
    D. ``B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0);``
 

@@ -168,7 +168,7 @@ Variables
    project Build is
       type Targets is ("release", "test");
       -- typed variable
-      Target : Targets := external("target", "test");
+      Target : Targets := external ("target", "test");
       -- untyped string variable
       Var := "foo";
       -- untyped string list variable
@@ -563,7 +563,7 @@ External and Conditional References
 * Allow project file content to depend on value of environment variables and command-line arguments
 * Reference to external values is by function
 
-   - **external(name [, default])** returns value of name as supplied on the command line or as environment variable
+   - **external (name [, default])** returns value of name as supplied on the command line or as environment variable
    - If name is undefined, return default (if supplied) or ""
 
 * Set via command line switch (for example)
@@ -581,7 +581,7 @@ External/Conditional Reference Example
 
    project Build is
       type Targets is ("release", "test");
-      Target : Targets := external("target", "test");
+      Target : Targets := external ("target", "test");
       case Target is -- project attributes
          when "release" =>
             for Object_Dir use "release";
