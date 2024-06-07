@@ -39,18 +39,27 @@ Introduction
 Statement Kinds
 -----------------
 
-.. code::
+* Simple
 
-   simple_statement ::=
-     null | assignment | exit |
-     goto | delay | raise |
-     procedure_call | return |
-     requeue | entry_call |
-     abort | code
+  - :ada:`null`
+  - Assignments :ada:`A := B`
+  - :ada:`exit`
+  - :ada:`goto`
+  - :ada:`delay`
+  - :ada:`raise`
+  - Procedure call :ada:`P (A, B)`
+  - :ada:`return`
+  - Tasking-related: :ada:`requeue`, entry call :ada:`T.E (A, B)`, :ada:`abort`
 
-   compound_statement ::=
-     if | case | loop |
-     block | accept | select
+* Compound
+
+  - :ada:`if`
+  - :ada:`case`
+  - :ada:`loop` (and variants)
+  - :ada:`declare`
+  - Tasking-related: :ada:`accept`, :ada:`select`
+
+* Tasking-related are seen in the tasking chapter
 
 ----------------------------
 Procedure Calls (Overview)
