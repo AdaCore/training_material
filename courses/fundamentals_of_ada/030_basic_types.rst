@@ -878,9 +878,9 @@ Miscellaneous
 
    - Unsafe **Unchecked_Conversion** available
 
-* Functional syntax
+* Called as if it was a function
 
-   - Function named using destination type name
+   - Named using destination type name
 
       .. code:: Ada
 
