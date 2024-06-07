@@ -22,7 +22,7 @@
       Class_Object1 : Child1_T'Class := Child_Object;
       Class_Object2 : Root_T'Class   := Class_Object1;
       Class_Object3 : Root_T'Class   := Child_Object;
-      -- Class_Object4 : Root_T'class; -- illegal
+      -- Class_Object4 : Root_T'Class; -- illegal
    
       procedure Do_Something (Object : in out Root_T'Class) is
       begin
