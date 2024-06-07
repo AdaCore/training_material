@@ -46,7 +46,7 @@ Declarations
     - Subprograms
     - et cetera
 
-* N is usually an :dfn:`identifier`
+* ``N`` is usually an :dfn:`identifier`
 * Declaration **must precede** use
 * **Some** implicit declarations
 
