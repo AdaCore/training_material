@@ -59,7 +59,7 @@ Statement Kinds
   - :ada:`declare`
   - Tasking-related: :ada:`accept`, :ada:`select`
 
-* Tasking-related are seen in the tasking chapter
+*Tasking-related are seen in the tasking chapter*
 
 ----------------------------
 Procedure Calls (Overview)
