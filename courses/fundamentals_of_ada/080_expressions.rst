@@ -361,7 +361,7 @@ When To Use *If Expressions*
 
 * Static named numbers
 
-   - Can be much cleaner than using Boolean'Pos (condition)
+   - Can be much cleaner than using Boolean'Pos (Condition)
 
 ---------------------------------------
 *If Expression* Example for Constants
