@@ -48,7 +48,9 @@ Declarations
 
 * In a :dfn:`declarative part`
 * Example: :ada:`N : Type := Value;`
-* ``N`` is usually an :dfn:`identifier`
+
+    - ``N`` is usually an :dfn:`identifier`
+
 * Declaration **must precede** use
 * **Some** implicit declarations
 

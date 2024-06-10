@@ -42,12 +42,12 @@ Statement Kinds
 * Simple
 
   - :ada:`null`
-  - Assignments :ada:`A := B`
+  - :ada:`A := B` (assignments)
   - :ada:`exit`
   - :ada:`goto`
   - :ada:`delay`
   - :ada:`raise`
-  - Procedure call :ada:`P (A, B)`
+  - :ada:`P (A, B)` (procedure calls)
   - :ada:`return`
   - Tasking-related: :ada:`requeue`, entry call :ada:`T.E (A, B)`, :ada:`abort`
 
