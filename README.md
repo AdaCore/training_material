@@ -27,6 +27,8 @@ Scroll at the bottom
 
 ![Artifact examples](images/github/artifacts_3.png)
 
+# Content
+
 ## Courses
 
 Each folder contains a collection of RST files that make up modules within
@@ -91,7 +93,7 @@ Branch that have names that follow the globs
 - `slides/*`
 - `build/*`
 
-Will be **protected** and **mirrored**, so they will be built by the CI.
+Will be **protected** and **mirrored**, so they will be built by the CI if you manually create a Pull Request for the GitHub branch.
 
 # Building Locally
 
