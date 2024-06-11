@@ -223,7 +223,7 @@ Workflow Three - Excluding Source Code
 Workflow Three - Exemption Reporting
 --------------------------------------
 
-* When you look look at :filename:`sdc.adb.xcov` you'll notices the exempted lines are marked with ``*``
+* When you look look at :filename:`sdc.adb.xcov` you'll notice the exempted lines are marked with ``*``
 
 ::
 
