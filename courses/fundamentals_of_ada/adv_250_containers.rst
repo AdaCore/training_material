@@ -94,10 +94,6 @@ Data Structures (1/2)
 Data Structures (2/2)
 ----------------------
 
-.. admonition:: Language Variant
-
-    Ada 2012
-
 * Tree
 
     - Similar to list
@@ -108,6 +104,9 @@ Data Structures (2/2)
     - Wraps around an indefinite (unconstrained, classwide, incomplete...)
     - Resulting type is definite
     - Single element, no iteration or cursor
+
+..
+  language_version 2012
 
 -----------------------
 Implementations (1/2)
@@ -145,15 +144,14 @@ Implementations (1/2)
 Implementations (2/2)
 -----------------------
 
-.. admonition:: Language Variant
-
-    Ada 2012
-
 * :dfn:`Indefinite`
 
     - Element can be indefinite
     - Size of element is unknown
     - :ada:`Indefinite_XXX_<Structure>`
+
+..
+  language_version 2012
 
 -----------------------
 Example of Containers
