@@ -35,10 +35,6 @@ Expression Functions
 Expression Functions
 ----------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Functions whose implementations are pure expressions
 
    - No other completion is allowed
@@ -60,13 +56,12 @@ NB: Parentheses around expression are **required**
    function Squared (X : Integer) return Integer is
       (X ** 2);
 
+..
+  language_version 2012
+
 ------------------------------
 Expression Functions Example
 ------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Expression function
 
@@ -82,6 +77,9 @@ Expression Functions Example
    begin
       return X ** 2;
    end Square;
+
+..
+  language_version 2012
 
 ------
 Quiz
