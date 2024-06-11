@@ -90,6 +90,9 @@ Data Structures (1/2)
     - Only ordered access
     - For multi-tasking operations
 
+..
+  language_version 2012
+
 ----------------------
 Data Structures (2/2)
 ----------------------
