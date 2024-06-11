@@ -125,7 +125,7 @@ Testing the type of an object
                     -- Parent_Class_1'Tag = Parent'Tag
    Parent_Class_2 : Parent'Class := Child_Obj;
                     -- Parent_Class_2'Tag = Child'Tag
-   Child_Class    : Child'Class := Child(Parent_Class_2);
+   Child_Class    : Child'Class := Child (Parent_Class_2);
                     -- Child_Class'Tag  = Child'Tag
 
    B1 : Boolean := Parent_Class_1 in Parent'Class;       -- True

@@ -128,7 +128,7 @@ User-Defined Equality Example
           return False;
         else -- compare values
           for K in 1 .. Left.Top loop
-            if Left.Values(K) /= Right.Values(K) then
+            if Left.Values (K) /= Right.Values (K) then
               return False;
             end if;
           end loop;

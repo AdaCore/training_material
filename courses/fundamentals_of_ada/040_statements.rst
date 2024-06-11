@@ -39,18 +39,27 @@ Introduction
 Statement Kinds
 -----------------
 
-.. code::
+* Simple
 
-   simple_statement ::=
-     null | assignment | exit |
-     goto | delay | raise |
-     procedure_call | return |
-     requeue | entry_call |
-     abort | code
+  - :ada:`null`
+  - :ada:`A := B` (assignments)
+  - :ada:`exit`
+  - :ada:`goto`
+  - :ada:`delay`
+  - :ada:`raise`
+  - :ada:`P (A, B)` (procedure calls)
+  - :ada:`return`
+  - Tasking-related: :ada:`requeue`, entry call :ada:`T.E (A, B)`, :ada:`abort`
 
-   compound_statement ::=
-     if | case | loop |
-     block | accept | select
+* Compound
+
+  - :ada:`if`
+  - :ada:`case`
+  - :ada:`loop` (and variants)
+  - :ada:`declare`
+  - Tasking-related: :ada:`accept`, :ada:`select`
+
+*Tasking-related are seen in the tasking chapter*
 
 ----------------------------
 Procedure Calls (Overview)
@@ -177,12 +186,14 @@ Assignment Statements
 
   .. code:: Ada
 
-     type Miles_T is range 0 .. Max_Miles;
-     type Km_T is range 0 .. Max_Kilometers
-     ...
-     M : Miles_T := 2; -- universal integer legal for any integer
-     K : Km_T := 2; -- universal integer legal for any integer
-     M := K; -- compile error
+     declare
+        type Miles_T is range 0 .. Max_Miles;
+        type Km_T is range 0 .. Max_Kilometers
+
+        M : Miles_T := 2; -- universal integer legal for any integer
+        K : Km_T := 2; -- universal integer legal for any integer
+     begin
+        M := K; -- compile error
 
 ----------------------------------------
 Assignment Statements, Not Expressions
@@ -306,8 +317,8 @@ If-then-elsif Statements
   .. code:: Ada
      :number-lines: 1
 
-     if Valve(N) /= Closed then
-       Isolate (Valve(N));
+     if Valve (N) /= Closed then
+       Isolate (Valve (N));
        Failure (Valve (N));
      else
        if System = Off then
@@ -320,8 +331,8 @@ If-then-elsif Statements
   .. code:: Ada
      :number-lines: 1
 
-     if Valve(N) /= Closed then
-       Isolate (Valve(N));
+     if Valve (N) /= Closed then
+       Isolate (Valve (N));
        Failure (Valve (N));
      elsif System = Off then
        Failure (Valve (N));
@@ -846,11 +857,11 @@ For-Loop with Exit Statement Example
    Found := False;
    -- iterate over Table
    Search : for Index in Table'Range loop
-     if Table(Index) = Key then
+     if Table (Index) = Key then
        Found := True;
        Position := Index;
        exit Search;
-     elsif Table(Index) > Key then
+     elsif Table (Index) > Key then
        -- no point in continuing
        exit Search;
      end if;

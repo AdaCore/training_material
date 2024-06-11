@@ -182,7 +182,7 @@ Universal Quantifier Illustration
          Component = Ultimate_Answer);
    All_Correct_2 : constant Boolean :=
       (for all K in Answers'Range =>
-         Answers(K) = Ultimate_Answer);
+         Answers (K) = Ultimate_Answer);
 
 -----------------------------------------
 Universal Quantifier Real-World Example
@@ -250,7 +250,7 @@ Existential Quantifier Illustration
          Component = Ultimate_Answer);
    Any_Correct_2 : constant Boolean :=
       (for some K in Answers'Range =>
-         Answers(K) = Ultimate_Answer);
+         Answers (K) = Ultimate_Answer);
 
 -----------------------------------------
 Index-Based vs Component-Based Indexing
@@ -279,7 +279,7 @@ Index-Based vs Component-Based Indexing
 
       Is_Sorted : constant Boolean :=
         (for all I in Values'Range =>
-          I = Values'First or else Values(I) >= Values(I-1));
+          I = Values'First or else Values (I) >= Values (I-1));
 
 ---------------------------------------
 "Pop Quiz" for Quantified Expressions
@@ -350,7 +350,7 @@ Not Just Arrays: Any "Iterable" Objects
    package Characters is new
       Ada.Containers.Vectors (Positive, Character);
    use Characters;
-   Alphabet  : constant Vector := To_Vector('A',1) & 'B' & 'C';
+   Alphabet  : constant Vector := To_Vector ('A',1) & 'B' & 'C';
    Any_Zed   : constant Boolean :=
               (for some C of Alphabet => C = 'Z');
    All_Lower : constant Boolean :=

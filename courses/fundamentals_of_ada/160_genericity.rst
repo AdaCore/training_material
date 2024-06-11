@@ -451,8 +451,8 @@ Quiz
       procedure Math (P : in out Integer);
       procedure Math (P : in out Integer) is
       begin
-         Double(P);
-         Square(P);
+         Double (P);
+         Square (P);
       end Math;
       procedure Instance is new Math (Double => Half);
       Number : Integer := 10;

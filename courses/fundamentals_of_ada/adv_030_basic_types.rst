@@ -513,10 +513,10 @@ Bit-Oriented Operations Example
    with Interfaces;
    use Interfaces;
    ...
-   procedure Swap(X : in out Unsigned_16) is
+   procedure Swap (X : in out Unsigned_16) is
    begin
-     X := (Shift_Left(X,8) and 16#FF00#) or
-          (Shift_Right(X,8) and 16#00FF#);
+     X := (Shift_Left (X,8) and 16#FF00#) or
+          (Shift_Right (X,8) and 16#00FF#);
    end Swap;
 
 ---------------------------------
@@ -647,10 +647,10 @@ Order Attributes For All Discrete Types
    Today    : Days := Some_Value;
    Position : Integer;
    ...
-   Position := Days'Pos(Today);
+   Position := Days'Pos (Today);
    ...
-   Get(Position);
-   Today := Days'Val(Position);
+   Get (Position);
+   Today := Days'Val (Position);
 
 .. container:: speakernote
 
@@ -728,7 +728,7 @@ Character Oriented Packages
      FF  : constant Character := Character'Val (12);
      CR  : constant Character := Character'Val (13);
      ...
-     Commercial_At  : constant Character := '@';  -- Character'Val(64)
+     Commercial_At  : constant Character := '@';  -- Character'Val (64)
      ...
      LC_A : constant Character := 'a';  -- Character'Val (97)
      LC_B : constant Character := 'b';  -- Character'Val (98)

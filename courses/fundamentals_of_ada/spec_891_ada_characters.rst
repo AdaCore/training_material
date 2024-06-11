@@ -62,11 +62,11 @@ Package Contents (Partial)
     EOT          : constant Character := Character'Val (4);
     ENQ          : constant Character := Character'Val (5);
     -- ...
-    Space        : constant Character := ' ';  -- Character'Val(32)
-    Exclamation  : constant Character := '!';  -- Character'Val(33)
-    Quotation    : constant Character := '"';  -- Character'Val(34)
-    Number_Sign  : constant Character := '#';  -- Character'Val(35)
-    Dollar_Sign  : constant Character := '$';  -- Character'Val(36)
+    Space        : constant Character := ' ';  -- Character'Val (32)
+    Exclamation  : constant Character := '!';  -- Character'Val (33)
+    Quotation    : constant Character := '"';  -- Character'Val (34)
+    Number_Sign  : constant Character := '#';  -- Character'Val (35)
+    Dollar_Sign  : constant Character := '$';  -- Character'Val (36)
     -- ...
     LC_A         : constant Character := 'a';  -- Character'Val (97)
     LC_B         : constant Character := 'b';  -- Character'Val (98)

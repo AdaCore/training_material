@@ -351,16 +351,16 @@ Extension Can See Private Section
 
    with Ada.Text_IO;
    package body Complex.Utils is
-     procedure Put(C : in Number) is
+     procedure Put (C : in Number) is
      begin
-       Ada.Text_IO.Put(As_String(C));
+       Ada.Text_IO.Put (As_String (C));
      end Put;
-     function As_String(C : Number) return String is
+     function As_String (C : Number) return String is
      begin
        -- Real_Part and Imaginary_Part are
        -- visible to child's body
-       return "(" & Float'Image(C.Real_Part) & ", " &
-              Float'Image(C.Imaginary_Part) & ")";
+       return "(" & Float'Image (C.Real_Part) & ", " &
+              Float'Image (C.Imaginary_Part) & ")";
      end As_String;
    ...
    end Complex.Utils;
