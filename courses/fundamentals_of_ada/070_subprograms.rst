@@ -507,6 +507,7 @@ Naive Implementation
 
 * **Assumes** bounds are the same everywhere
 * Fails when :ada:`Left'First /= Right'First`
+* Fails when :ada:`Left'Length /= Right'Length`
 * Fails when :ada:`Left'First /= 1`
 
   .. code:: Ada
@@ -530,13 +531,16 @@ Correct Implementation
 .. code:: Ada
 
    function Subtract (Left, Right : Vector) return Vector is
+      pragma Assert (Left'Length = Right'Length);
+
       Result : Vector (Left'Range);
       Offset : constant Integer := Right'First - Result'First;
    begin
-      ...
       for K in Result'Range loop
         Result (K) := Left (K) - Right (K + Offset);
       end loop;
+      return Result;
+   end Subtract;
 
 ------
 Quiz
