@@ -63,5 +63,3 @@ if __name__ == "__main__":
     output.close()
     shutil.copyfile(tempfile_name, args.filename)
     os.remove(tempfile_name)
-
-
