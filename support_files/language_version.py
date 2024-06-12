@@ -9,10 +9,11 @@ def tempname():
     temp.close()
     return temp.name
 
+
 def process_one_file(in_filename):
 
     lines = []
-    with open(in_filename)as f:
+    with open(in_filename) as f:
         lines = f.read().splitlines()
 
     while True:
@@ -20,9 +21,10 @@ def process_one_file(in_filename):
         if not found:
             break
 
-    with open(in_filename, "w")as fp:
+    with open(in_filename, "w") as fp:
         for item in lines:
             fp.write(item + "\n")
+
 
 if __name__ == "__main__":
 
@@ -34,7 +36,7 @@ if __name__ == "__main__":
         "--version",
         help="most recent language version supported "
         + "(e.g. '95' if training does not support 2005/2012/2022)",
-        required=True
+        required=True,
     )
 
     args = parser.parse_args()
@@ -51,7 +53,7 @@ if __name__ == "__main__":
             version = int(line.strip().split()[1])
             if version > compare_to:
                 output.write(
-                    "*This functionality unsupported before Ada " + str(version)+ "*\n"
+                    "*This functionality unsupported before Ada " + str(version) + "*\n"
                 )
             else:
                 output.write(line)
