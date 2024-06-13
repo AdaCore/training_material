@@ -51,11 +51,11 @@ When running the analysis, the tool maintains data files to store messages, incl
 Running from the Command Line
 -------------------------------
 
-+ Typically used for simple testing or automation
++ This command only performs the analysis (typically used for simple testing or automation)
 
   :command:`gnatsas analyze -Psdc`
 
-+ This command only performs the analysis - to view the results, you need to generate a report
++ To view results of analysis, you need to generate a report
 
   :command:`gnatsas report -Psdc`
 
