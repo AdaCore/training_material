@@ -377,10 +377,6 @@ Multiple `use type` Clauses
 `use all type` Clauses
 -------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Makes all primitive operations for the type visible
 
    - Not just operators
@@ -390,13 +386,12 @@ Multiple `use type` Clauses
 
    - Typically exceptions
 
+..
+  language_version 2012
+
 -------------------------------
 `use all type` Clause Example
 -------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 .. code:: Ada
 
@@ -423,13 +418,12 @@ Multiple `use type` Clauses
      Non_Primitive (0);
    end Demo;
 
+..
+  language_version 2012
+
 --------------------------------------
 `use all type` v. `use type` Example
 --------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 .. code:: Ada
    :number-lines: 1
@@ -452,6 +446,9 @@ Multiple `use type` Clauses
          Make (A, 1.0, 0.0); -- Not a compile error
       end;
    end Demo;
+
+..
+  language_version 2012
 
 ===================
 Renaming Entities
@@ -581,10 +578,6 @@ Summary
 ---------
 Summary
 ---------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * :ada:`use` clauses are not evil but can be abused
 

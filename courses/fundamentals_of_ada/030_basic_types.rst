@@ -893,10 +893,6 @@ Miscellaneous
 Default Value
 -------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Not defined by language for **scalars**
 * Can be done with an **aspect clause**
 
@@ -916,6 +912,9 @@ Default Value
          with Default_Value => Neither;
       Implicit : Tertiary_Switch; -- Implicit = Neither
       Explicit : Tertiary_Switch := Neither;
+
+..
+  language_version 2012
 
 -------------------------------
 Simple Static Type Derivation

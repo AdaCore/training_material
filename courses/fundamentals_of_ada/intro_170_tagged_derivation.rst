@@ -224,10 +224,6 @@ Tagged Aggregate
 Overriding Indicators
 ---------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * Optional :ada:`overriding` and :ada:`not overriding` indicators
 
    .. code:: Ada
@@ -251,13 +247,12 @@ Overriding Indicators
       not overriding Origin (P : Point_T) return Point_T;
       -- We get "Name" for free
 
+..
+  language_version 2005
+
 -----------------
 Prefix Notation
 -----------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Tagged types primitives can be called as usual
 * The call can use prefixed notation
@@ -275,6 +270,9 @@ Prefix Notation
       begin
          Prim1 (X);
       end;
+
+..
+  language_version 2012
 
 ------
 Quiz

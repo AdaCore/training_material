@@ -159,10 +159,6 @@ Subtypes Don't Cause Overloading
 Subtypes and Default Initialization
 -------------------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Not allowed: Defaults on new :ada:`type` only
 
     - :ada:`subtype` is still the same type
@@ -180,6 +176,9 @@ Subtypes and Default Initialization
        range Off .. On;
    Safe : Toggle_Switch := Off;
    Implicit : Toggle_Switch; -- compile error: out of range
+
+..
+  language_version 2012
 
 ----------------------------------------
 Attributes Reflect the Underlying Type

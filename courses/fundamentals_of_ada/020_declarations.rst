@@ -753,10 +753,6 @@ Aspect Clauses
 Aspect Clauses
 ----------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Define **additional** properties of an entity
 
     - Representation (eg. :ada:`with Pack`)
@@ -778,13 +774,12 @@ Aspect Clauses
       with aspect_mark [ => expression]
            {, aspect_mark [ => expression] }
 
+..
+  language_version 2012
+
 --------------------------------
 Aspect Clause Example: Objects
 --------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Updated **object syntax**
 
@@ -808,13 +803,12 @@ Aspect Clause Example: Objects
       for CR2'Size use 8;
       for CR2'Address use To_Address (16#DEAD_BEEF#);
 
+..
+  language_version 2012
+
 ------------------------
 Boolean Aspect Clauses
 ------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * **Boolean** aspects only
 * Longhand
@@ -836,6 +830,9 @@ Boolean Aspect Clauses
      procedure Foo; -- Inline is False
 
   - Original form!
+
+..
+  language_version 2012
 
 =========
 Summary

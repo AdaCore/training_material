@@ -120,10 +120,6 @@ Pragma Import / Export (2/2)
 Import / Export in Ada 2012
 -----------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * In Ada 2012, :ada:`Import` and :ada:`Export` can also be done using aspects:
 
    .. code:: Ada
@@ -132,6 +128,9 @@ Import / Export in Ada 2012
         with Import,
              Convention    => C,
              External_Name => "c_proc";
+
+..
+  language_version 2012
 
 ===================
 Parameter Passing

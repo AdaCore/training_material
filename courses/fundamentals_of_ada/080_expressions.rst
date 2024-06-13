@@ -93,10 +93,6 @@ Testing Constraints via Membership
 Testing Non-Contiguous Membership
 -----------------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Uses vertical bar "choice" syntax
 
 .. code:: Ada
@@ -111,6 +107,9 @@ Testing Non-Contiguous Membership
      else
        Put_Line ("30 days in this month");
      end if;
+
+..
+  language_version 2012
 
 ------
 Quiz
@@ -197,10 +196,6 @@ Conditional Expressions
 Conditional Expressions
 -------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Ultimate value depends on a controlling condition
 * Allowed wherever an expression is allowed
 
@@ -217,13 +212,12 @@ Conditional Expressions
    - *If expressions*
    - *Case expressions*
 
+..
+  language_version 2012
+
 ------------------
 *If Expressions*
 ------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Syntax looks like an if-statement without :ada:`end if`
 
@@ -240,6 +234,9 @@ Conditional Expressions
       .. code:: Ada
 
          (if Today > Wednesday then 1 else 0)
+
+..
+  language_version 2012
 
 -----------------------------------------
 Result Must Be Compatible with Context
@@ -399,10 +396,6 @@ When To Use *If Expressions*
  *Case Expressions*
 ---------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 .. container:: latex_environment footnotesize
 
  * Syntax similar to :ada:`case` statements
@@ -426,6 +419,9 @@ When To Use *If Expressions*
         when Mon .. Thurs => 9,
         when Fri          => 4,
         when Sat | Sun    => 0);
+
+..
+  language_version 2012
 
 ---------------------------
 *Case Expression* Example
