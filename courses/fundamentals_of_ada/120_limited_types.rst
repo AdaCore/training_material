@@ -396,10 +396,6 @@ Extended Return Statements
 Function Extended Return Statements
 -------------------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * :dfn:`Extended return`
 * Result is expressed as an object
 * More expressive than aggregates
@@ -415,13 +411,12 @@ Function Extended Return Statements
          sequence_of_statements ...
        end return];
 
+..
+  language_version 2005
+
 ----------------------------------
 Extended Return Statements Example
 ----------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 .. code:: Ada
 
@@ -435,13 +430,12 @@ Extended Return Statements Example
          end return;
        end F;
 
+..
+  language_version 2005
+
 ------------------------------------
 Expression / Statements Are Optional
 ------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 * Without sequence (returns default if any)
 
@@ -463,13 +457,12 @@ Expression / Statements Are Optional
         return Result : Spin_Lock := (Flag => X);
       end F;
 
+..
+  language_version 2005
+
 -----------------------
 Statements Restrictions
 -----------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 * **No** nested extended return
 * **Simple** return statement **allowed**
@@ -489,6 +482,9 @@ Statements Restrictions
        Result.Flag := 0;
      end return; --  Implicit return
    end F;
+
+..
+  language_version 2005
 
 ------
 Quiz
