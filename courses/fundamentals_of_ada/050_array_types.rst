@@ -896,10 +896,6 @@ Operations Added for Ada2012
 Default Initialization for Array Types
 ----------------------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Supports constrained and unconstrained array types
 * Supports arrays of any dimensionality
 
@@ -914,13 +910,12 @@ Default Initialization for Array Types
 
    - Note that creating a large object of type :ada:`Vector` might incur a run-time cost during initialization
 
+..
+  language_version 2012
+
 -------------------------------
 Two High-Level For-Loop Kinds
 -------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * For arrays and containers
 
@@ -938,13 +933,12 @@ Two High-Level For-Loop Kinds
 * User-defined iterators too
 * We focus on the arrays/containers form for now
 
+..
+  language_version 2012
+
 ---------------------------
 Array/Container For-Loops
 ---------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Work in terms of elements within an object
 * Syntax hides indexing/iterator controls
@@ -958,13 +952,12 @@ Array/Container For-Loops
 * Starts with "first" element unless you reverse it
 * Loop parameter name is a constant if iterating over a constant, a variable otherwise
 
+..
+  language_version 2012
+
 ----------------------------------
 Array Component For-Loop Example
 ----------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Given an array
 
@@ -989,13 +982,12 @@ Array Component For-Loop Example
          Put_Line (Integer'Image (Primes (P)));
       end loop;
 
+..
+  language_version 2012
+
 ----------------------------------------
 For-Loops with Multidimensional Arrays
 ----------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 .. container:: columns
 
@@ -1038,6 +1030,9 @@ For-Loops with Multidimensional Arrays
          for C of Identity loop
            Put_Line (Float'Image (C));
          end loop;
+
+..
+  language_version 2012
 
 ------
 Quiz
@@ -1274,10 +1269,6 @@ Tic-Tac-Toe Winners Example
 Defaults Within Array Aggregates
 ----------------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * Specified via the ``box`` notation
 * Value for component is thus taken as for stand-alone object declaration
 
@@ -1299,6 +1290,9 @@ Defaults Within Array Aggregates
 
       type Int_Arr is array (1 .. N) of Integer;
       Primes : Int_Arr := (1 => 2, 2 .. N => <>);
+
+..
+  language_version 2005
 
 ------------------------------
 Named Format Aggregate Rules

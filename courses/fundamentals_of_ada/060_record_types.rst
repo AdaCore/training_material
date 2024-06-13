@@ -581,10 +581,6 @@ Default Component Value Evaluation
 Defaults Within Record Aggregates
 -----------------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * Specified via the :dfn:`box` notation
 * Value for the component is thus taken as for a stand-alone object declaration
 
@@ -603,13 +599,12 @@ Defaults Within Record Aggregates
      end record;
    Phase := (42.0, Imaginary => <>);
 
+..
+  language_version 2005
+
 ------------------------------------------
 Default Initialization Via Aspect Clause
 ------------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Not definable for entire record type
 * Components of scalar types take type's default if no explicit default value specified by record type
@@ -627,13 +622,12 @@ Default Initialization Via Aspect Clause
    C : Controller; -- Override => off, Enable => On
    D : Controller := (On, Off); -- All defaults replaced
 
+..
+  language_version 2012
+
 ------
 Quiz
 ------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 .. code:: Ada
 
@@ -660,6 +654,9 @@ D. (100, 101, 102)
  B. Multiple declaration calls :ada:`Next` twice
  C. Correct
  D. :ada:`C => 100` has no effect on :ada:`A` and :ada:`B`
+
+..
+  language_version 2012
 
 =======================
 Discriminated Records

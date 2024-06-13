@@ -39,10 +39,6 @@ Quantified Expressions
 Introduction
 -------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Expressions that have a Boolean value
 * The value indicates something about a set of objects
 
@@ -60,6 +56,9 @@ Introduction
 
    - Indicate whether predicate holds for at least one component
 
+..
+  language_version 2012
+
 ----------
 Examples
 ----------
@@ -69,10 +68,6 @@ Examples
 -----------------------------------------
 Semantics Are As If You Wrote This Code
 -----------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 .. code:: Ada
 
@@ -96,13 +91,12 @@ Semantics Are As If You Wrote This Code
      return False;
    end Existential;
 
+..
+  language_version 2012
+
 -------------------------------
 Quantified Expressions Syntax
 -------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Four :ada:`for` variants
 
@@ -118,13 +112,12 @@ Quantified Expressions Syntax
     (for some Value of Container_Obj => Predicate (Value))
     (for all Value of Container_Obj => Predicate (Value))
 
+..
+  language_version 2012
+
 -----------------
 Simple Examples
 -----------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 .. code:: Ada
 
@@ -134,13 +127,12 @@ Simple Examples
    Are_All_Even : constant Boolean :=
       (for all V of Values => V mod 2 = 0);
 
+..
+  language_version 2012
+
 ----------------------
 Universal Quantifier
 ----------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * In logic, denoted by |forall| (inverted 'A', for "all")
 * "There is no member of the set for which the predicate does not hold"
@@ -161,13 +153,12 @@ Universal Quantifier
         return True;
       end Universal;
 
+..
+  language_version 2012
+
 -----------------------------------
 Universal Quantifier Illustration
 -----------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * "There is no member of the set for which the predicate does not hold"
 * Given a set of integer answers to a quiz, there are no answers that are not 42 (i.e., all are 42)
@@ -184,13 +175,12 @@ Universal Quantifier Illustration
       (for all K in Answers'Range =>
          Answers (K) = Ultimate_Answer);
 
+..
+  language_version 2012
+
 -----------------------------------------
 Universal Quantifier Real-World Example
 -----------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 .. code:: Ada
 
@@ -202,13 +192,12 @@ Universal Quantifier Real-World Example
      for all Flag in DMA_Status_Flag =>
        not Status_Indicated (Flag));
 
+..
+  language_version 2012
+
 ------------------------
 Existential Quantifier
 ------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * In logic, denoted by |exists| (rotated 'E', for "exists")
 * "There is at least one member of the set for which the predicate holds"
@@ -229,13 +218,12 @@ Existential Quantifier
         return False;
       end Existential;
 
+..
+  language_version 2012
+
 -------------------------------------
 Existential Quantifier Illustration
 -------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * "There is at least one member of the set for which the predicate holds"
 * Given set of Integer answers to a quiz, there is at least one answer that is 42
@@ -252,13 +240,12 @@ Existential Quantifier Illustration
       (for some K in Answers'Range =>
          Answers (K) = Ultimate_Answer);
 
+..
+  language_version 2012
+
 -----------------------------------------
 Index-Based vs Component-Based Indexing
 -----------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Given an array of Integers
 
@@ -281,13 +268,12 @@ Index-Based vs Component-Based Indexing
         (for all I in Values'Range =>
           I = Values'First or else Values (I) >= Values (I-1));
 
+..
+  language_version 2012
+
 ---------------------------------------
 "Pop Quiz" for Quantified Expressions
 ---------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 .. container:: latex_environment small
 
@@ -312,13 +298,12 @@ Index-Based vs Component-Based Indexing
              for all K in Table'Range =>
                 K = Table'First or else Table (K - 1) <= Table (K));
 
+..
+  language_version 2012
+
 ---------------------------
  When The Set Is Empty...
 ---------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Universally quantified expressions are True
 
@@ -333,13 +318,12 @@ Index-Based vs Component-Based Indexing
 * If the set is empty, there is no such member, so False
 * Common convention in set theory, arbitrary but settled
 
+..
+  language_version 2012
+
 -----------------------------------------
 Not Just Arrays: Any "Iterable" Objects
 -----------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Those that can be iterated over
 * Language-defined, such as the containers
@@ -356,13 +340,12 @@ Not Just Arrays: Any "Iterable" Objects
    All_Lower : constant Boolean :=
                (for all C of Alphabet => Is_Lower (C));
 
+..
+  language_version 2012
+
 -------------------------------------------
 Conditional / Quantified Expression Usage
 -------------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Use them when a function would be too heavy
 * Don't over-use them!
@@ -382,6 +365,9 @@ Conditional / Quantified Expression Usage
          if At_Least_One_Answered (Answers) then
 
 * Even in pre/postconditions, use functions containing quantified expressions for abstraction
+
+..
+  language_version 2012
 
 ------
 Quiz
