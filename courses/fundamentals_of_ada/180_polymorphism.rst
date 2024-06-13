@@ -202,10 +202,6 @@ Warning: Subprograms with parameter of type `T'Class` are not primitives of `T`
 'Class and Prefix Notation
 ----------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 Prefix notation rules apply when the first parameter is of a class wide type
 
       .. code:: Ada
@@ -221,6 +217,9 @@ Prefix notation rules apply when the first parameter is of a class wide type
          P (V2);
          V1.P;
          V2.P;
+
+..
+  language_version 2012
 
 ===============================
 Dispatching and Redispatching

@@ -179,10 +179,6 @@ Freeze Point For Tagged Types
 Overriding Indicators
 ---------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * Optional :ada:`overriding` and :ada:`not overriding` indicators
 
    .. code:: Ada
@@ -206,13 +202,12 @@ Overriding Indicators
       -- We want to _add_ a new primitive
       not overriding procedure Set_Origin (P : in out Point_T);
 
+..
+  language_version 2005
+
 -----------------
 Prefix Notation
 -----------------
-
-.. admonition:: Language Variant
-
-   Ada 2012
 
 * Tagged types primitives can be called as usual
 * The call can use prefixed notation
@@ -230,6 +225,9 @@ Prefix Notation
       begin
          Prim1 (X);
       end;
+
+..
+  language_version 2012
 
 ------
 Quiz

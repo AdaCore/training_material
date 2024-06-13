@@ -179,10 +179,6 @@ Simple Derivation and Type Structure
 Overriding Indications
 ------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * **Optional** indications
 * Checked by compiler
 
@@ -209,6 +205,9 @@ Overriding Indications
    .. code:: Ada
 
       overriding procedure Prim (V : Child) is abstract;
+
+..
+  language_version 2005
 
 ------
 Quiz

@@ -150,10 +150,6 @@ Circular Dependency in Package Declaration
 `limited with` Clauses
 ------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * Solve the cyclic declaration dependency problem
 
    - Controlled cycles are now permitted
@@ -186,6 +182,9 @@ Circular Dependency in Package Declaration
 
    Note that the names of nested packages are of course visible, otherwise we could not reference the names of types declared within them.
 
+..
+  language_version 2005
+
 ------------------------
 Using Incomplete Types
 ------------------------
@@ -208,10 +207,6 @@ Using Incomplete Types
 --------------------------------------
 Legal Package Declaration Dependency
 --------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 .. code:: Ada
 
@@ -237,13 +232,12 @@ Legal Package Declaration Dependency
      end record;
    end Department;
 
+..
+  language_version 2005
+
 ----------------------------------------
 Full `with` Clause On the Package Body
 ----------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 * Even though declaration has a :ada:`limited with` clause
 * Typically necessary since body does the work
@@ -263,6 +257,9 @@ Full `with` Clause On the Package Body
       package body Department is
       ...
       end Department;
+
+..
+  language_version 2005
 
 ============================
 Hierarchical Library Units
@@ -864,10 +861,6 @@ Solution 1: Move Type To Parent Package
 Solution 2: Partially Import Private Unit
 -------------------------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * Via :ada:`private with` clause
 * Syntax
 
@@ -884,13 +877,12 @@ Solution 2: Partially Import Private Unit
 
    - But why bother otherwise
 
+..
+  language_version 2005
+
 ------------------------
 `private with` Example
 ------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 .. code:: Ada
 
@@ -914,13 +906,12 @@ Solution 2: Partially Import Private Unit
      end record;
    end OS.Serial;
 
+..
+  language_version 2005
+
 -------------------------------------
 Combining Private and Limited Withs
 -------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 * Cyclic declaration dependencies allowed
 * A public unit can :ada:`with` a private unit
@@ -939,6 +930,9 @@ Combining Private and Limited Withs
    private
      X : access Parent.Private_Child.T;
    end Parent.Public_Child;
+
+..
+  language_version 2005
 
 -------------------
 Child Subprograms

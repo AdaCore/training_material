@@ -772,10 +772,6 @@ Exception ID
 *Raise Expressions*
 -----------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * **Expression** raising specified exception **at run-time**
 
 .. code:: Ada
@@ -784,6 +780,9 @@ Exception ID
                                 when 1 => 10,
                                 when 2 => 20,
                                 when others => raise Error);
+
+..
+  language_version 2012
 
 =============
 In Practice

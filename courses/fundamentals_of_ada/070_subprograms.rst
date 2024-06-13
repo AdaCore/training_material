@@ -576,10 +576,6 @@ Null Procedures
 Null Procedure Declarations
 -----------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * Shorthand for a procedure body that does nothing
 * Longhand form
 
@@ -599,13 +595,12 @@ Null Procedure Declarations
 * The :ada:`null` statement is present in both cases
 * Explicitly indicates nothing to be done, rather than an accidental removal of statements
 
+..
+  language_version 2005
+
 --------------------------------
 Null Procedures As Completions
 --------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 * Completions for a distinct, prior declaration
 
@@ -628,26 +623,24 @@ Null Procedures As Completions
         null;
       end NOP;
 
+..
+  language_version 2005
+
 --------------------------------------
 Typical Use for Null Procedures: OOP
 --------------------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 * When you want a method to be concrete, rather than abstract, but don't have anything for it to do
 
    - The method is then always callable, including places where an abstract routine would not be callable
    - More convenient than full null-body definition
 
+..
+  language_version 2005
+
 ------------------------
 Null Procedure Summary
 ------------------------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 * Allowed where you can have a full body
 
@@ -665,6 +658,9 @@ Null Procedure Summary
 .. code:: Ada
 
    procedure Do_Something (P : in     Integer) is null;
+
+..
+  language_version 2005
 
 =====================
 Nested Subprograms
@@ -938,10 +934,6 @@ Parameter Aliasing
 Functions' Parameter Modes
 ----------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2012
-
 * Can be mode :ada:`in out` and :ada:`out` too
 * **Note:** operator functions can only have mode :ada:`in`
 
@@ -953,6 +945,9 @@ Functions' Parameter Modes
    - No side effects: should be like mathematical functions
    - But side effects are still possible via globals
    - So worst possible case: side effects are possible and necessarily hidden!
+
+..
+  language_version 2012
 
 ----------------------------------
 Easy Cases Detected and Not Legal

@@ -396,10 +396,6 @@ Generic Subprogram Parameters
 Generic Subprogram Parameters Defaults
 ----------------------------------------
 
-.. admonition:: Language Variant
-
-   Ada 2005
-
 * :ada:`is <>` - matching subprogram is taken by default
 * :ada:`is null` - null subprogram is taken by default
 
@@ -420,6 +416,9 @@ Generic Subprogram Parameters Defaults
       -- Is_Valid maps to Is_Valid_Record
       -- Error_Message maps to a null subprogram
 
+..
+  language_version 2005
+
 ------
 Quiz
 ------
@@ -429,10 +428,6 @@ Quiz
 ------
 Quiz
 ------
-
-.. admonition:: Language Variant
-
-   Ada 2005
 
 .. container:: columns
 
@@ -481,6 +476,9 @@ Quiz
     * Then we call formal parameter :ada:`Square`, which has no actual subprogram, so it defaults to :ada:`null`, so nothing happens to :ada:`P`
 
   D. Would be correct for either :ada:`procedure Instance is new Math (Double, Half);` *or* :ada:`procedure Instance is new Math (Square => Half);`
+
+..
+  language_version 2005
 
 ----------------------
 Quiz Answer In Depth
