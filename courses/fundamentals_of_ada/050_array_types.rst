@@ -1423,7 +1423,7 @@ Defining the 'Image Attribute
          Value  :        Array_T);
 
    * Which uses the :ada:`Ada.Strings.Text_Buffers.Root_Buffer_Type` as an output buffer
-   * (No need to go into detail here other than knowing you do :ada:`Output.Put` to add the the buffer)
+   * (No need to go into detail here other than knowing you do :ada:`Output.Put` to add to the buffer)
 
 * And then we define it
 
