@@ -210,14 +210,14 @@ Legal Package Declaration Dependency
 
 .. code:: Ada
 
-   limited with Department;
+   with Department;
    package Personnel is
      type Employee is private;
      procedure Assign (This : in Employee;
                         To : in out Department.Section);
    private
      type Employee is record
-       Assigned_To : access Department.Section;
+       Assigned_To : Department.Section;
      end record;
    end Personnel;
 
