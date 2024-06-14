@@ -190,19 +190,26 @@ Circular Dependency in Package Declaration
 Using Incomplete Types
 ------------------------
 
-* Anywhere that the compiler doesn't yet need to know how they are really represented
+* A type is :dfn:`incomplete` when its representation is completely unknown
 
-   - Access types designating them
-   - Access parameters designating them
-   - Anonymous access components designating them
-   - As formal parameters and function results
+   - Address can still manipulated through an :ada:`access`
+   - Can be a formal parameter or function result's type
 
-      + As long as compiler knows them at the point of the call
+      + Subprogram's completion need the complete type
+      + Actual parameter need the complete type
 
-   - As generic formal type parameters
-   - As introductions of private types
+   - Can be a generic formal type parameters
+   - If :ada:`tagged`, may also use `'Class`
 
-* If :ada:`tagged`, may also use `'Class`
+.. code:: Ada
+
+   type T;
+
+* Can be declared in a **private** part of a package
+
+  - And completed in its body
+  - Used to implement opaque pointers
+
 * Thus typically involves some advanced features
 
 --------------------------------------
