@@ -367,12 +367,13 @@ Referencing The Stack
    begin
       G := I'Unchecked_Access;
       P2;
+      --  Necessary to avoid corruption
+      --  Watch out for any of G's copies!
+      G := null;
    end P1;
 
    procedure P2 is
    begin
-      -- OK when P2 called from P1.
-      -- What if P2 is called from elsewhere?
       G.all := 5;
    end P2;
 
