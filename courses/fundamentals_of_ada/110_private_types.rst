@@ -290,41 +290,11 @@ Which component is legal?
 Private Part Construction
 ===========================
 
------------------------
-Private Part Location
------------------------
-
-* Must be in package specification, not body
-* Body usually compiled separately after declaration
-* Users can compile their code before the package body is compiled or even written
-
-   * Package definition
-
-      .. code:: Ada
-
-          package Bounded_Stacks is
-            type Stack is private;
-            ...
-          private
-            type Stack is ...
-          end Bounded_Stacks;
-
-   * Package reference
-
-      .. code:: Ada
-
-          with Bounded_Stacks;
-          procedure User is
-            S : Bounded_Stacks.Stack;
-          ...
-          begin
-            ...
-          end User;
-
 --------------------------------
 Private Part and Recompilation
 --------------------------------
 
+* Users can compile their code before the package body is compiled or even written
 * Private part is part of the specification
 
    - Compiler needs info from private part for users' code, e.g., storage layouts for private-typed objects
