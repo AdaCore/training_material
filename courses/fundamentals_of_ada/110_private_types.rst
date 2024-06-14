@@ -439,10 +439,7 @@ View Operations
 View Operations
 -----------------
 
-* A matter of inside versus outside the package
-
-   - Inside the package the view is that of the designer
-   - Outside the package the view is that of the user
+* Reminder: view is the *interface* you have on the type
 
 .. container:: latex_environment footnotesize
 
@@ -452,65 +449,14 @@ View Operations
 
     * **User** of package has **Partial** view
 
-       - Operations exported by package
-       - Basic operations
+       - Operations **exported** by package
 
   .. container:: column
 
     * **Designer** of package has **Full** view
 
        - **Once** completion is reached
-       - All operations based upon full definition of type
-       - Indexed components for arrays
-       - components for records
-       - Type-specific attributes
-       - Numeric manipulation for numerics
-       - et cetera
-
--------------------------------------
-Designer View Sees Full Declaration
--------------------------------------
-
-.. code:: Ada
-
-   package Bounded_Stacks is
-     Capacity : constant := 100;
-     type Stack is private;
-     procedure Push (Item : in Integer; Onto : in out Stack);
-     ...
-   private
-     type Index is range 0 .. Capacity;
-     type Vector is array (Index range 1..Capacity) of Integer;
-     type Stack is record
-        Top : Integer;
-        ...
-   end Bounded_Stacks;
-
-.. container:: speakernote
-
-   Inside BoundedStacks, STACK is just a normal record
-
---------------------------------------
-Designer View Allows All Operations
---------------------------------------
-
-.. code:: Ada
-
-   package body Bounded_Stacks is
-     procedure Push (Item : in Integer;
-                     Onto : in out Stack) is
-     begin
-        Onto.Top := Onto.Top + 1;
-        ...
-     end Push;
-
-     procedure Pop (Item : out Integer;
-                    From : in out Stack) is
-     begin
-        Onto.Top := Onto.Top - 1;
-        ...
-     end Pop;
-   end Bounded_Stacks;
+       - All operations based upon **full definition** of type
 
 -----------------------------
 Users Have the Partial View
