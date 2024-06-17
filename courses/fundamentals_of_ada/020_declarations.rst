@@ -158,6 +158,18 @@ Pragmas
    pragma Page;
    pragma Optimize (Off);
 
+----------------------------------------------
+Declaring Constants / Variables (simplified)
+----------------------------------------------
+
+* An :dfn:`expression` is a piece of Ada code that returns a **value**.
+
+.. code:: Ada
+
+   <identifier> : constant := <expression>;
+   <identifier> : <type> := <expression>;
+   <identifier> : constant <type> := <expression>;
+
 ------
 Quiz
 ------
