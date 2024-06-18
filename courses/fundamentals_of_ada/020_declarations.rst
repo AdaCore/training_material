@@ -136,26 +136,6 @@ Comments
       -- line comment
       A : B; -- this is an end-of-line comment
 
-----------------
-String Literals
-----------------
-
-* A :dfn:`literal` is a *textual* representation of a value in the code
-
-.. code:: Ada
-
-   A_Null_String : constant String := "";
-      -- two double quotes with nothing inside
-   String_Of_Length_One : constant String := "A";
-   Embedded_Single_Quotes : constant String :=
-                            "Embedded 'single' quotes";
-   Embedded_Double_Quotes : constant String :=
-                            "Embedded ""double"" quotes";
-
-.. container:: speakernote
-
-   Note that the last example literal (that has embedded double quotes) is not an example of concatenation!
-
 ---------
 Pragmas
 ---------
@@ -178,6 +158,18 @@ Pragmas
    pragma Page;
    pragma Optimize (Off);
 
+----------------------------------------------
+Declaring Constants / Variables (simplified)
+----------------------------------------------
+
+* An :dfn:`expression` is a piece of Ada code that returns a **value**.
+
+.. code:: Ada
+
+   <identifier> : constant := <expression>;
+   <identifier> : <type> := <expression>;
+   <identifier> : constant <type> := <expression>;
+
 ------
 Quiz
 ------
@@ -198,9 +190,29 @@ Which statement is legal?
    C. Cannot have inline comments
    D. C-style declaration not allowed
 
-==================
-Numeric Literals
-==================
+==========
+Literals
+==========
+
+-----------------
+String Literals
+-----------------
+
+* A :dfn:`literal` is a *textual* representation of a value in the code
+
+.. code:: Ada
+
+   A_Null_String : constant String := "";
+      -- two double quotes with nothing inside
+   String_Of_Length_One : constant String := "A";
+   Embedded_Single_Quotes : constant String :=
+                            "Embedded 'single' quotes";
+   Embedded_Double_Quotes : constant String :=
+                            "Embedded ""double"" quotes";
+
+.. container:: speakernote
+
+   Note that the last example literal (that has embedded double quotes) is not an example of concatenation!
 
 --------------------------
 Decimal Numeric Literals

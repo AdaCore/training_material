@@ -6,8 +6,8 @@
          type Discrete_T is (<>);
          type Integer_T is range <>;
          type Float_T is digits <>;
-         type Indefinite_T;
-         type Tagged_T is tagged;
+         type Incomplete_T;
+         type Tagged_T is tagged private;
          type Array_T is array (Boolean) of Integer;
          type Access_T is access all Integer;
          type Private_T is private;

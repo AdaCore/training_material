@@ -232,7 +232,7 @@ Syntax (partial)
    type T3 is digits <>; -- float
    type T4 is private; -- indefinite
    type T5 (<>) is private; -- indefinite
-   type T6 is tagged;
+   type T6 is tagged private;
    type T7 is array (Boolean) of Integer;
    type T8 is access Integer;
    type T9 is limited private;
