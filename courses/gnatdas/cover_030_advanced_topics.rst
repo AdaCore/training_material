@@ -290,6 +290,31 @@ Coverage Exemption Region
 Coverage Exemption Reporting
 ------------------------------
 
+* Coverage reports can be generated in multiple ways
+
+  ``gnatcov coverage --level=stmt+decision --annotate=``**<form>**`` *trace* -P default.gpr``
+
+  where *<form>* is one of the following:
+
+report
+   Summary that lists all coverage violations
+
+xcov
+   For each source file, the **xcov** file contains a global summary of assessment results followed by annotated source lines
+
+xcov+
+   Same as **xcov** except it provides extra details below lines with improperly satisfied obligations
+
+html
+   Web-based reporting mechanism to show coverage data for the project
+   
+xml
+   XML database containing all necessary coverage information
+
+----------------------
+**xcov** Output File
+----------------------
+
 :filename:`utils.adb.xcov`
 
 .. container:: columns
@@ -352,9 +377,11 @@ Coverage Exemption Reporting
               17 .: 
               18 .: end Utils;
 
----------------------------------
-Coverage Report With Exemptions
----------------------------------
+         *Note different coverage indicator for exempted code*
+
+------------------------
+**report** Output File
+------------------------
 
 * Exemptions appear in the coverage summary report
 
