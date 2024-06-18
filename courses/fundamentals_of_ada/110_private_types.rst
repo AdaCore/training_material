@@ -152,14 +152,16 @@ Declaring Private Types for Views
 
 .. code:: Ada
 
-   package Control is
-     type Valve is private;
-     procedure Open (V : in out Valve);
-     procedure Close (V : in out Valve);
-     ...
-   private
-     type Valve is ...
-   end Control;
+    package Bounded_Stacks is
+      type Stack is private;
+      procedure Push (Item : in Integer; Onto : in out Stack);
+      ...
+    private
+      ...
+      type Stack is record
+         Top : Positive;
+         ...
+    end Bounded_Stacks;
 
 ---------------------------------
 Partial and Full Views of Types
@@ -209,7 +211,7 @@ Users Declare Objects of the Type
 
 .. code:: Ada
 
-   X, Y, Z : Stack;
+   X, Y, Z : Bounded_Stacks.Stack;
    ...
    Push (42, X);
    ...
@@ -288,41 +290,11 @@ Which component is legal?
 Private Part Construction
 ===========================
 
------------------------
-Private Part Location
------------------------
-
-* Must be in package specification, not body
-* Body usually compiled separately after declaration
-* Users can compile their code before the package body is compiled or even written
-
-   * Package definition
-
-      .. code:: Ada
-
-          package Bounded_Stacks is
-            type Stack is private;
-            ...
-          private
-            type Stack is ...
-          end Bounded_Stacks;
-
-   * Package reference
-
-      .. code:: Ada
-
-          with Bounded_Stacks;
-          procedure User is
-            S : Bounded_Stacks.Stack;
-          ...
-          begin
-            ...
-          end User;
-
 --------------------------------
 Private Part and Recompilation
 --------------------------------
 
+* Users can compile their code before the package body is compiled or even written
 * Private part is part of the specification
 
    - Compiler needs info from private part for users' code, e.g., storage layouts for private-typed objects
@@ -467,10 +439,7 @@ View Operations
 View Operations
 -----------------
 
-* A matter of inside versus outside the package
-
-   - Inside the package the view is that of the designer
-   - Outside the package the view is that of the user
+* Reminder: view is the *interface* you have on the type
 
 .. container:: latex_environment footnotesize
 
@@ -480,65 +449,14 @@ View Operations
 
     * **User** of package has **Partial** view
 
-       - Operations exported by package
-       - Basic operations
+       - Operations **exported** by package
 
   .. container:: column
 
     * **Designer** of package has **Full** view
 
        - **Once** completion is reached
-       - All operations based upon full definition of type
-       - Indexed components for arrays
-       - components for records
-       - Type-specific attributes
-       - Numeric manipulation for numerics
-       - et cetera
-
--------------------------------------
-Designer View Sees Full Declaration
--------------------------------------
-
-.. code:: Ada
-
-   package Bounded_Stacks is
-     Capacity : constant := 100;
-     type Stack is private;
-     procedure Push (Item : in Integer; Onto : in out Stack);
-     ...
-   private
-     type Index is range 0 .. Capacity;
-     type Vector is array (Index range 1..Capacity) of Integer;
-     type Stack is record
-        Top : Integer;
-        ...
-   end Bounded_Stacks;
-
-.. container:: speakernote
-
-   Inside BoundedStacks, STACK is just a normal record
-
---------------------------------------
-Designer View Allows All Operations
---------------------------------------
-
-.. code:: Ada
-
-   package body Bounded_Stacks is
-     procedure Push (Item : in Integer;
-                     Onto : in out Stack) is
-     begin
-        Onto.Top := Onto.Top + 1;
-        ...
-     end Push;
-
-     procedure Pop (Item : out Integer;
-                    From : in out Stack) is
-     begin
-        Onto.Top := Onto.Top - 1;
-        ...
-     end Pop;
-   end Bounded_Stacks;
+       - All operations based upon **full definition** of type
 
 -----------------------------
 Users Have the Partial View
