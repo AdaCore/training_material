@@ -192,11 +192,11 @@ Using Incomplete Types
 
 * A type is :dfn:`incomplete` when its representation is completely unknown
 
-   - Address can still manipulated through an :ada:`access`
+   - Address can still be manipulated through an :ada:`access`
    - Can be a formal parameter or function result's type
 
-      + Subprogram's completion need the complete type
-      + Actual parameter need the complete type
+      + Subprogram's completion needs the complete type
+      + Actual parameter needs the complete type
 
    - Can be a generic formal type parameters
    - If :ada:`tagged`, may also use `'Class`
