@@ -237,7 +237,8 @@ Fixing Our Problem
 
       if Word = "" then
          declare
-            Temp : Token := (Kind => Val, Val => Values.Read (""));
+            Temp : Token := (Kind => Val,
+                             Val  => Values.Read (""));
          begin
             return Temp;
          end;
