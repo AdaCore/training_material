@@ -37,4 +37,5 @@ Tasking
 .. include:: 240_tasking/41_delays.rst
 .. include:: 240_tasking/51_task_types.rst
 .. include:: 240_tasking/61_advanced_concepts_for_intro.rst
+.. include:: labs/240_tasking.lab.rst
 .. include:: 240_tasking/91_summary.rst
