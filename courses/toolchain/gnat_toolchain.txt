@@ -1,0 +1,3 @@
+gnat_options.rst
+gpr_basics.rst
+elaboration.rst

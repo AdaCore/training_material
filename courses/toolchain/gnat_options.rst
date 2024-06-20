@@ -1,6 +1,6 @@
-**********************
-Annex - GNAT options
-**********************
+**************
+GNAT options
+**************
 
 ..
     Coding language
@@ -30,6 +30,10 @@ Annex - GNAT options
     Miscellaneous symbols
 
 .. |checkmark| replace:: :math:`\checkmark`
+
+==============
+Introduction
+==============
 
 ------------------------------------
 Understanding the GNAT Build Steps
@@ -63,6 +67,10 @@ Targets and Runtimes
 * The runtime is introduced with the **--RTS=** switch
 
    - powerpc-wrs-vxworksae-gcc --RTS=zfp
+
+==============
+GNAT Options
+==============
 
 ---------------------------
 Some useful GNAT switches
@@ -135,6 +143,8 @@ Intermediate representation
 
  .. container:: column
 
+  .. container:: latex_environment small
+
    * ``-gnatR#`` displays representations of
 
       .. list-table::
@@ -158,6 +168,8 @@ Intermediate representation
       * Helps optimizing data structures
 
  .. container:: column
+
+  .. container:: latex_environment small
 
    * ``-gnatR1``
 
@@ -185,6 +197,8 @@ Intermediate representation (cont)
 
  .. container:: column
 
+  .. container:: latex_environment small
+
    * ``-gnatR2``
 
       .. code:: Ada
@@ -203,6 +217,8 @@ Intermediate representation (cont)
          end record;
 
  .. container:: column
+
+  .. container:: latex_environment small
 
    * ``-gnatR3``
 
@@ -231,6 +247,10 @@ Inlining
 * Subprograms are selected through :ada:`pragma Inline`
 * Dependencies need visibility on the body (inlining works cross unit)
 * **gnatcheck** can flag wrong (too complex) inlining
+
+=========
+Summary
+=========
 
 -----------------------
 Some Additional Tools
