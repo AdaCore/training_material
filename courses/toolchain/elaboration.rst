@@ -408,7 +408,7 @@ Elaboration Control
 Lab
 ========
 
-.. include:: labs/spec_880_elaboration.lab.rst
+.. include:: labs/elaboration.lab.rst
 
 =========
 Summary
