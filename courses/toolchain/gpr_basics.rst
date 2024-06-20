@@ -1,6 +1,6 @@
-********************
-Annex - GPR Basics
-********************
+************
+GPR Basics
+************
 
 ..
     Coding language
@@ -340,7 +340,9 @@ Source Files
 
    .. code:: Ada
 
-      for Source_Files use ("main.adb","pack1.ads","pack2.adb");
+      for Source_Files use ("main.adb",
+                            "pack1.ads",
+                            "pack2.adb");
 
 * Can specify an external file containing source names
 
@@ -571,7 +573,7 @@ External and Conditional References
 .. code:: console
 
    gprbuild -P... -Xname=value  ...
-   gprbuild -P/common/build.gpr -Xtarget=test  /common/main.adb
+   gprbuild -Pbuild.gpr -Xtarget=test  /common/main.adb
 
 ----------------------------------------
 External/Conditional Reference Example
