@@ -1,6 +1,0 @@
-Planes | 3
-
-Trains | 44
-
--- Comment
-Automobiles | 555
