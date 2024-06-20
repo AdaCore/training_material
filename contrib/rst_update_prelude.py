@@ -8,7 +8,13 @@ CWD = Path(sys.argv[0]).resolve().parents[1]
 
 
 def section_start(l):
-    return len(l) > 2 and l[0] == l[1] and l[1] == l[2] and l[0] in "*-=+"
+    # Section/Chapter/Slide separator
+    if len(l) > 2 and l[0] == l[1] and l[1] == l[2] and l[0] in "*-=+":
+        return True
+    # include another file
+    elif "include::" in l:
+        return True
+    return False
 
 
 if __name__ == "__main__":
