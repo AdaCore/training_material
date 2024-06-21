@@ -6,7 +6,7 @@
 chapters/075_expression_functions.rst
 080_expressions.rst
 adv_080_quantified_expressions.rst
-spec_870_gnat_options.rst
+../toolchain/gnat_options.rst
 070_subprograms.rst
 075_type_derivation.rst
 090_overloading.rst
