@@ -712,13 +712,15 @@ Quiz
               Ok := True;
            end P;
         end O;
+
+        Protected_Instance : O;
     begin
-        O.P;
+        Protected_Instance.P;
     end Main;
 
 What is the result of compiling and running this code?
 
-A. :ada:`Ok = True`
+A. :ada:`O.Ok = True`
 B. Nothing
 C. :answer:`Compilation error`
 D. Runtime error
