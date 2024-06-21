@@ -84,7 +84,7 @@ Elaboration
 * The Rule: "an entity has to be elaborated before use"
 
    - Subprograms have to be elaborated before being called
-   - Variables have to be elaborated before being referenced
+   - Objects have to be elaborated before being referenced
 
 * Such elaboration issues typically arise due to:
 
