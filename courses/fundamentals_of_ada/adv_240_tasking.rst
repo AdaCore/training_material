@@ -1252,7 +1252,7 @@ Summary
 Summary
 ---------
 
-* Tasks are language-based multithreading mechanisms
+* Tasks are language-based multitasking mechanisms
 
    - Not necessarily designed to be operated in parallel
    - Original design assumed task-switching / time-slicing
