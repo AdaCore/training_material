@@ -284,9 +284,11 @@ Quiz
             end loop;
             Put_Line ("Finished");
          end T;
+
+         Task_Instance : T;
       begin
-         T.Hello;
-         T.Goodbye;
+         Task_Instance.Hello;
+         Task_Instance.Goodbye;
          Put_Line ("Done");
       end Main;
 
@@ -1204,7 +1206,7 @@ Quiz
     procedure Main is
         Ok : Boolean := False
 
-        protected O is
+        protected type O is
            entry P;
         end O;
 
@@ -1214,8 +1216,9 @@ Quiz
               Put_Line ("OK");
            end P;
         end O;
+        Object_Instance : O;
     begin
-        O.P;
+        Object_Instance.P;
     end Main;
 
 What is the result of compiling and running this code?
