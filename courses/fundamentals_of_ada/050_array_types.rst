@@ -1346,6 +1346,109 @@ Which statement is correct?
    C. Dynamic values must be the only choice. (This could be fixed by making :ada:`J` a constant.)
    D. Overlapping index values (3 appears more than once)
 
+------------------------
+Aggregates in Ada 2022
+------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2022
+
+* Ada 2022 allows us to use square brackets **"[...]"** in defining aggregates
+
+   .. code:: Ada
+
+      type Array_T is array (positive range <>) of Integer;
+
+   * So common aggregates can use either square brackets or parentheses
+
+      .. code:: Ada
+
+         Ada2012 : Array_T := (1, 2, 3);
+         Ada2022 : Array_T := [1, 2, 3];
+
+* But square brackets help in more problematic situations
+
+   * Empty array
+
+      .. code:: Ada
+
+         Ada2012 : Array_T := (1..0 => 0);
+         Illegal : Array_T := ();
+         Ada2022 : Array_T := [];
+
+   * Single element array
+
+      .. code:: Ada
+
+         Ada2012 : Array_T := (1 => 5);
+         Illegal : Array_T := (5);
+         Ada2022 : Array_T := [5];
+
+--------------------------------
+Iterated Component Association
+--------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2022
+
+* With Ada 2022, we can create aggregates with :dfn:`iterators`
+
+   * Basically, an inline looping mechanism
+
+* Index-based iterator
+
+   .. code:: Ada
+
+      type Array_T is array (positive range <>) of Integer;
+      Object1 : Array_T(1..5) := (for J in 1 .. 5 => J * 2);
+      Object2 : Array_T(1..5) := (for J in 2 .. 3 => J,
+                                  5 => -1,
+                                  others => 0);
+
+   * :ada:`Object1` will get initialized to the squares of 1 to 5
+   * :ada:`Object2` will give the equivalent of :ada:`(0, 2, 3, 0, -1)`
+
+* Component-based iterator
+
+   .. code:: Ada
+
+      Object2 := [for Item of Object => Item * 2];
+
+   * :ada:`Object2` will have each element doubled
+
+-------------------------------
+More Information on Iterators
+-------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2022
+
+* You can nest iterators for multiple-dimensioned arrays
+
+   .. code:: Ada
+
+      Matrix : array (1 .. 3, 1 .. 3) of Positive :=
+         [for J in 1 .. 3 =>
+            [for K in 1 .. 3 => J * 10 + K]];
+
+* You can even use multiple iterators for a single dimension array
+
+   .. code:: Ada
+
+      Ada2012 : Array_T(1..5) := 
+         [for I in 1 .. 2 => -1,
+          for J in 4 ..5 => 1,
+          others => 0];
+
+* Restrictions
+
+   * You cannot mix index-based iterators and component-based iterators in the same aggregate
+
+   * You still cannot have overlaps or missing values
+
 ===================================
 Detour - 'Image For Complex Types
 ===================================
