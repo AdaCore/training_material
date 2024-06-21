@@ -46,6 +46,7 @@ A Simple Task
 
       procedure Main is
          task type T;
+         
          task body T is
          begin
             loop
@@ -53,6 +54,8 @@ A Simple Task
                Put_Line ("T");
             end loop;
          end T;
+
+         Task_Instance : T;
       begin
          loop
             delay 1.0;
@@ -1012,9 +1015,11 @@ Abort Statements
                Put_Line ("A");
             end loop;
          end T;
+
+         Task_Instance : T;
       begin
          delay 10.0;
-         abort T;
+         abort Task_Instance;
       end;
 
 -----------------------------------
