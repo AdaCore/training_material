@@ -31,7 +31,6 @@ Getting Started
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-
 =============
 Basic Usage
 =============

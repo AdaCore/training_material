@@ -31,7 +31,6 @@ GNAT Metrics Tool
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-
 ==============
 Introduction
 ==============

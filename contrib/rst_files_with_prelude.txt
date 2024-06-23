@@ -1,10 +1,8 @@
 courses/fundamentals_of_ada/*.rst
 courses/spark_for_ada_programmers/*.rst
 courses/advanced_exception_analysis/*.rst
-courses/gnatcheck/*.rst
-courses/codepeer/*.rst
+courses/gnatsas/*.rst
 courses/static_analysis_suite/*.rst
 courses/static_analysis_via_compiler/*.rst
-courses/gnattest/*.rst
+courses/gnatdas/*.rst
 courses/gnat_project_facility/*.rst
-courses/gnatcoverage/*.rst

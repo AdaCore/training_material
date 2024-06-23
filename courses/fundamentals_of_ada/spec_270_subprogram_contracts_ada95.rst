@@ -250,7 +250,7 @@ Pre/Postcondition Semantics
 
 |
 
-.. image:: pre_and_post_insertion_flow.png
+.. image:: pre_and_post_insertion_flow.svg
    :width: 90%
 
 -------------------------------------
