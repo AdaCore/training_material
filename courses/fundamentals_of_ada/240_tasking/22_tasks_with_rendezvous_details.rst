@@ -32,6 +32,8 @@ Rendezvous Definitions
          end loop;
       end Msg_Box_T;
 
+      T : Msg_Box_T;
+
 ------------------------
 Rendezvous Entry Calls
 ------------------------
@@ -200,9 +202,10 @@ Quiz
             end loop;
             Put_Line ("Finished");
          end T;
+         Task_Instance : T;
       begin
-         T.Hello;
-         T.Goodbye;
+         Task_Instance.Hello;
+         Task_Instance.Goodbye;
          Put_Line ("Done");
       end Main;
 

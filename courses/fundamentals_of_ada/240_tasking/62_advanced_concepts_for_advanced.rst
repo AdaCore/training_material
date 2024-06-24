@@ -291,9 +291,11 @@ Abort Statements
                Put_Line ("A");
             end loop;
          end T;
+
+         Task_Instance : T;
       begin
          delay 10.0;
-         abort T;
+         abort Task_Instance;
       end;
 
 -----------------------------------
@@ -476,7 +478,7 @@ Quiz
     procedure Main is
         Ok : Boolean := False
 
-        protected O is
+        protected type O is
            entry P;
         end O;
 
@@ -486,14 +488,17 @@ Quiz
               Put_Line ("OK");
            end P;
         end O;
+
+        Protected_Instance : O;
+         
     begin
-        O.P;
+        Protected_Instance.P;
     end Main;
 
 What is the result of compiling and running this code?
 
-A. "OK"
-B. :answer:`Nothing`
+A. :ada:`OK = True`
+B. Nothing
 C. Compilation error
 D. Runtime error
 

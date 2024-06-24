@@ -6,7 +6,7 @@ Introduction
 A Simple Task
 ---------------
 
-* Parallel code execution via **task**
+* Concurrent code execution via **task**
 * :ada:`limited` types (No copies allowed)
 
    .. code:: Ada

@@ -32,6 +32,8 @@ Rendezvous Definitions
          end loop;
       end Msg_Box_T;
 
+      T : Msg_Box_T;
+
 ------------------------
 Rendezvous Entry Calls
 ------------------------
