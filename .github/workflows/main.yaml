@@ -63,14 +63,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: CodePeer - Package
-        run: python3 contrib/ci/package_labs.py courses/codepeer/labs/ && mv out/labs out/codepeer_labs && unzip out/codepeer_labs/labs.zip -d out/codepeer_labs/pkg
+      - name: GNAT SAS - Package
+        run: python3 contrib/ci/package_labs.py courses/gnatsas/labs/ && mv out/labs out/gnatsas_labs && unzip out/gnatsas_labs/labs.zip -d out/gnatsas_labs/pkg
 
-      - name: CodePeer - Upload
+      - name: GNAT SAS - Upload
         uses: actions/upload-artifact@v4
         with:
-          name: CodePeer labs
-          path: out/codepeer_labs/pkg/*
+          name: GNAT SAS labs
+          path: out/gnatsas_labs/pkg/*
           if-no-files-found: error
 
       - name: GNAT Project Facility - Package
