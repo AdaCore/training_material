@@ -60,7 +60,7 @@ Import / Export
 Pragma Import / Export (1/2)
 ------------------------------
 
-* :ada:`Pragma Import` allows a C implementation to complete an Ada specification
+* :ada:`pragma Import` allows a C implementation to complete an Ada specification
 
    - Ada view
 
@@ -77,7 +77,7 @@ Pragma Import / Export (1/2)
              // some code
           }
 
-* :ada:`Pragma Export` allows an Ada implementation to complete a C specification
+* :ada:`pragma Export` allows an Ada implementation to complete a C specification
 
    - Ada implementation
 

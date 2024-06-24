@@ -248,7 +248,7 @@ Elaboration Control
 =====================
 
 -----------------------
-`Pragma Preelaborate`
+`pragma Preelaborate`
 -----------------------
 
 * Adds restrictions on a unit to ease elaboration
@@ -277,7 +277,7 @@ Elaboration Control
       end P1;
 
 ---------------
-`Pragma Pure`
+`pragma Pure`
 ---------------
 
 * Adds more restrictions on a unit to ease elaboration
@@ -307,7 +307,7 @@ Elaboration Control
       end P2;
 
 -------------------------
-`Pragma Elaborate_Body`
+`pragma Elaborate_Body`
 -------------------------
 
 * Forces the elaboration of a body just after a specification
@@ -340,10 +340,10 @@ Elaboration Control
    If global value is set in body elaboration, without elaborate body it's possible to reference global value before it has been set
 
 --------------------
-`Pragma Elaborate`
+`pragma Elaborate`
 --------------------
 
-* :ada:`Pragma Elaborate` forces the elaboration of a dependency body
+* :ada:`pragma Elaborate` forces the elaboration of a dependency body
 * It does not force the elaboration of transitive dependencies
 
 .. code:: Ada
@@ -372,10 +372,10 @@ Elaboration Control
    end P3;
 
 ------------------------
-`Pragma Elaborate_All`
+`pragma Elaborate_All`
 ------------------------
 
-* :ada:`Pragma Elaborate_All` forces the elaboration of a dependency body and all transitive dependencies
+* :ada:`pragma Elaborate_All` forces the elaboration of a dependency body and all transitive dependencies
 * May introduce unwanted cycles
 * Safer than `Elaborate`
 

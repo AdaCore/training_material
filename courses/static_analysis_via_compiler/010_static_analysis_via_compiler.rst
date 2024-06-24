@@ -873,7 +873,7 @@ Definition of Language Subsets
   + Certification restrictions compliance
   + Compiler/target portability
 
-+ Restrictions can also be added by setting up a runtime profile via :ada:`Pragma Profile(<runtime>)` which enables all restrictions implemented in the specified runtime
++ Restrictions can also be added by setting up a runtime profile via :ada:`pragma Profile (<runtime>)` which enables all restrictions implemented in the specified runtime
 
 -----------------------------------------
 Example Restriction & Violation Message
