@@ -62,7 +62,7 @@ Preparing the GUI
 
 2. Set the coding standards for the project to :filename:`coding_standard.rules`
 
-   :menu:`Edit` |rightarrow| :menu:`Project Properties` |rightarrow| :menu:`Switches` |rightarrow| :menu:`GNATcheck`
+   :menu:`Edit` -> :menu:`Project Properties` -> :menu:`Switches` -> :menu:`GNATcheck`
 
 ----------------------
 Running from the GUI
@@ -75,7 +75,7 @@ Running from the GUI
     1. Perform Coding Analysis on the project
 
        |
-       | :menu:`Analyze` |rightarrow| :menu:`Coding Standard` |rightarrow| :menu:`Check Root Project`
+       | :menu:`Analyze` -> :menu:`Coding Standard` -> :menu:`Check Root Project`
        |
        |
 
