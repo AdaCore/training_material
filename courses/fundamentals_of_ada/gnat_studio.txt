@@ -1,2 +1,0 @@
-240_tasking.rst
-toolchain/gnat_options.rst
