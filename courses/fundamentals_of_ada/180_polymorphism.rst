@@ -553,7 +553,7 @@ Summary
 Summary
 ---------
 
-* `'Class` operator
+* :ada:`'Class` attribute
 
    - Allows subprograms to be used for multiple versions of a type
 
