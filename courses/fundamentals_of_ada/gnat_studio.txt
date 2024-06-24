@@ -1,2 +1,2 @@
 240_tasking.rst
-spec_870_gnat_options.rst
+toolchain/gnat_options.rst
