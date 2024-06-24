@@ -73,7 +73,7 @@ Semantics Overview
 
 * May be several occurrences active at same time
 
-   - One per task of control
+   - One per task
 
 * Normal execution abandoned when they occur
 
