@@ -31,10 +31,10 @@ Tasking
 
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. include:: 240_tasking/11_intro.rst
-.. include:: 240_tasking/22_tasks_with_rendezvous_details.rst
-.. include:: 240_tasking/32_protected_objects_in_depth.rst
-.. include:: 240_tasking/41_delays.rst
-.. include:: 240_tasking/52_task_types_and_entries.rst
-.. include:: 240_tasking/62_advanced_concepts_for_advanced.rst
-.. include:: 240_tasking/91_summary.rst
+.. include:: 240_tasking/1_intro.rst
+.. include:: 240_tasking/2_tasks_in_depth.rst
+.. include:: 240_tasking/3_protected_objects_in_depth.rst
+.. include:: 240_tasking/4_delays.rst
+.. include:: 240_tasking/5_task_types_in_depth.rst
+.. include:: 240_tasking/6_advanced_concepts_in_depth.rst
+.. include:: 240_tasking/9_summary.rst
