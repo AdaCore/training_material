@@ -26,7 +26,7 @@ GNATmetric Lab - GUI Part 1
 
 * Perform metrics analysis to get all line metrics on this file
 
-  * :menu:`Analyze` |rightarrow| :menu:`Metrics` |rightarrow| :menu:`Compute Metrics on Current File`
+  * :menu:`Analyze` -> :menu:`Metrics` -> :menu:`Compute Metrics on Current File`
   * Select **All line metrics** and press :menu:`Execute`
 
 .. container:: animate 1-
@@ -75,7 +75,7 @@ Perform metrics analysis to get all complexity metrics in the project
 
 .. container:: animate 2-
 
-  * :menu:`Analyze` |rightarrow| :menu:`Metrics` |rightarrow| :menu:`Compute Metrics on Current Project`
+  * :menu:`Analyze` -> :menu:`Metrics` -> :menu:`Compute Metrics on Current Project`
   * Select **All complexity metrics** and press :menu:`Execute`
 
 .. container:: animate 3-
