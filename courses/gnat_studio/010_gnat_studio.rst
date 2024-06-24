@@ -650,7 +650,7 @@ Actions on the staging area
 Commit a local change
 ---------------------
 
-.. image:: gnat_studio/commits_view_add_commit.png
+.. image:: gnat_studio/commits_view_add_commit.svg
 
 ========
 Lab
