@@ -95,8 +95,6 @@ Uncontrolled Visibility Problem
 Basic Syntax and Nomenclature
 -------------------------------
 
-.. code:: Ada
-
 * Spec
 
    - Basic declarative items **only**
