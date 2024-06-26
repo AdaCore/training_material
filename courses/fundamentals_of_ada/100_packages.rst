@@ -95,15 +95,13 @@ Uncontrolled Visibility Problem
 Basic Syntax and Nomenclature
 -------------------------------
 
-.. code:: Ada
-
-   package_declaration ::= package_specification;
-
 * Spec
+
+   - Basic declarative items **only**
+   - e.g. no subprogram body
 
       .. code:: Ada
 
-         package_specification ::=
             package name is
                {basic_declarative_item}
             end [name];
@@ -112,7 +110,6 @@ Basic Syntax and Nomenclature
 
       .. code:: Ada
 
-         package_body ::=
             package body name is
                declarative_part
             end [name];

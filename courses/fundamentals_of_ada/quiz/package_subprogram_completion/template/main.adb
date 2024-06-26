@@ -3,7 +3,7 @@ procedure Main is
    --$ begin question
    package P is
       Object_One : Integer;
-      procedure One (P : out Integer);
+      procedure One (V : out Integer);
    end P;
    --$ end question
    
@@ -14,17 +14,17 @@ procedure Main is
    
    --$ begin cut
    package body P is
-      procedure One (P : out Integer) is null;
+      procedure One (V : out Integer) is null;
    end P;
-   -- Parameter P is :ada:`out` but not assigned (legal but not a good idea)
+   -- Parameter V is :ada:`out` but not assigned (legal but not a good idea)
    --$ end cut
 
    --$ begin cut
    package body P is
       Object_One : Integer;
-      procedure One (P : out Integer) is
+      procedure One (V : out Integer) is
       begin
-         P := Object_One;
+         V := Object_One;
       end One;
    end P;
    -- Redeclaration of Object_One
@@ -32,9 +32,9 @@ procedure Main is
 
    --$ begin cut
    package body P is
-      procedure One (P : out Integer) is
+      procedure One (V : out Integer) is
       begin
-         P := Object_One;
+         V := Object_One;
       end One;
    end P;
    -- Correct
