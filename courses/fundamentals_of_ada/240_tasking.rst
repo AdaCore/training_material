@@ -39,7 +39,7 @@ Introduction
 A Simple Task
 ---------------
 
-* Parallel code execution via **task**
+* Concurrent code execution via **task**
 * :ada:`limited` types (No copies allowed)
 
    .. code:: Ada
@@ -111,6 +111,8 @@ Rendezvous Definitions
             end Receive_Message;
          end loop;
       end Msg_Box_T;
+
+      T : Msg_Box_T;
 
 ------------------------
 Rendezvous Entry Calls
@@ -511,7 +513,7 @@ Summary
 Summary
 ---------
 
-* Tasks are **language-based** multi-threading mechanisms
+* Tasks are **language-based** multi-tasking mechanisms
 
    - Not necessarily for **truly** parallel operations
    - Originally for task-switching / time-slicing

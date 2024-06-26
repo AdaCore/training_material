@@ -60,7 +60,7 @@ Import / Export
 Pragma Import / Export (1/2)
 ------------------------------
 
-* :ada:`Pragma Import` allows a C implementation to complete an Ada specification
+* :ada:`pragma Import` allows a C implementation to complete an Ada specification
 
    - Ada view
 
@@ -77,7 +77,7 @@ Pragma Import / Export (1/2)
              // some code
           }
 
-* :ada:`Pragma Export` allows an Ada implementation to complete a C specification
+* :ada:`pragma Export` allows an Ada implementation to complete a C specification
 
    - Ada implementation
 
@@ -406,7 +406,7 @@ Interfaces.C Hierarchy
 * Ada supplies a subsystem to deal with Ada/C interactions
 * :ada:`Interfaces.C` - contains typical C types and constants, plus some simple Ada string to/from C character array conversion routines
 
-   - :ada:`Interfaces.C.Extensions` - some additonal C/C++ types
+   - :ada:`Interfaces.C.Extensions` - some additional C/C++ types
    - :ada:`Interfaces.C.Pointers` - generic package to simulate C pointers (pointer as an unconstrained array, pointer arithmetic, etc)
    - :ada:`Interfaces.C.Strings` - types / functions to deal with C "char \*"
 

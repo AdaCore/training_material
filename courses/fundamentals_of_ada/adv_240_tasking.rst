@@ -39,13 +39,14 @@ Introduction
 A Simple Task
 ---------------
 
-* Parallel code execution via **task**
+* Concurrent code execution via **task**
 * :ada:`limited` types (No copies allowed)
 
    .. code:: Ada
 
       procedure Main is
          task type T;
+         
          task body T is
          begin
             loop
@@ -53,6 +54,8 @@ A Simple Task
                Put_Line ("T");
             end loop;
          end T;
+
+         Task_Instance : T;
       begin
          loop
             delay 1.0;
@@ -281,9 +284,11 @@ Quiz
             end loop;
             Put_Line ("Finished");
          end T;
+
+         Task_Instance : T;
       begin
-         T.Hello;
-         T.Goodbye;
+         Task_Instance.Hello;
+         Task_Instance.Goodbye;
          Put_Line ("Done");
       end Main;
 
@@ -709,13 +714,15 @@ Quiz
               Ok := True;
            end P;
         end O;
+
+        Protected_Instance : O;
     begin
-        O.P;
+        Protected_Instance.P;
     end Main;
 
 What is the result of compiling and running this code?
 
-A. :ada:`Ok = True`
+A. :ada:`O.Ok = True`
 B. Nothing
 C. :answer:`Compilation error`
 D. Runtime error
@@ -1012,9 +1019,11 @@ Abort Statements
                Put_Line ("A");
             end loop;
          end T;
+
+         Task_Instance : T;
       begin
          delay 10.0;
-         abort T;
+         abort Task_Instance;
       end;
 
 -----------------------------------
@@ -1197,7 +1206,7 @@ Quiz
     procedure Main is
         Ok : Boolean := False
 
-        protected O is
+        protected type O is
            entry P;
         end O;
 
@@ -1207,8 +1216,9 @@ Quiz
               Put_Line ("OK");
            end P;
         end O;
+        Object_Instance : O;
     begin
-        O.P;
+        Object_Instance.P;
     end Main;
 
 What is the result of compiling and running this code?
@@ -1252,7 +1262,7 @@ Summary
 Summary
 ---------
 
-* Tasks are language-based multithreading mechanisms
+* Tasks are language-based multitasking mechanisms
 
    - Not necessarily designed to be operated in parallel
    - Original design assumed task-switching / time-slicing

@@ -219,7 +219,7 @@ Prefix notation rules apply when the first parameter is of a class wide type
          V2.P;
 
 ..
-  language_version 2012
+  language_version 2005
 
 ===============================
 Dispatching and Redispatching
@@ -553,7 +553,7 @@ Summary
 Summary
 ---------
 
-* `'Class` operator
+* :ada:`'Class` attribute
 
    - Allows subprograms to be used for multiple versions of a type
 
