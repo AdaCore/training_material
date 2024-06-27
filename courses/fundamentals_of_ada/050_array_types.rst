@@ -1472,6 +1472,8 @@ Delta Aggregates
             New_Location : Coordinate_T := Location;
          begin
             New_Location(3) := 0.0;
+            -- OR
+            New_Location := (3 => 0.0, others => <>);
          end;
 
 * Ada 2022 introduces a :dfn:`delta aggregate`

@@ -535,6 +535,43 @@ D. :answermono:`X := (1, '2', 4, (others => 5))`
    C. Valid but :ada:`Two` is not initialized
    D. Positional for all components
 
+------------------
+Delta Aggregates
+------------------
+
+.. admonition:: Language Variant
+
+   Ada 2022
+
+* A Record can use a :dfn:`delta aggregate` just like an array
+
+   .. code:: Ada
+
+      type Coordinate_T is record
+         X, Y, Z : Float;
+      end record;
+      Location : constant Coordinate_T := (1.0, 2.0, 3.0);
+
+* Prior to Ada 2022, you would copy and then modify
+
+   .. code:: Ada
+
+      declare
+         New_Location : Coordinate_T := Location;
+      begin
+         New_Location.Z := 0.0;
+         -- OR
+         New_Location := (Z => 0.0, others => <>);
+      end;
+
+* Now in Ada 2022 we can just specify the change during the copy
+
+   .. code:: Ada
+
+      New_Location : Coordinate_T := [Location with delta Z => 0.0];
+
+   *Note for record delta aggregates you must use named notation*
+
 ================
 Default Values
 ================
