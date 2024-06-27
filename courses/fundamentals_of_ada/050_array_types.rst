@@ -1449,6 +1449,46 @@ More Information on Iterators
 
    * You still cannot have overlaps or missing values
 
+------------------
+Delta Aggregates
+------------------
+
+.. admonition:: Language Variant
+
+   Ada 2022
+
+.. code:: Ada
+
+   type Coordinate_T is array (1 .. 3) of Float;
+   Location : constant Coordinate_T := (1.0, 2.0, 3.0);
+
+* Sometimes you want to copy an array with minor modifications
+
+   * Prior to Ada 2022, it would require two steps
+
+      .. code:: Ada
+
+         declare
+            New_Location : Coordinate_T := Location;
+         begin
+            New_Location(3) := 0.0;
+         end;
+
+* Ada 2022 introduces a :dfn:`delta aggregate`
+
+   * Aggregate indicates an object plus the values changed - the *delta*
+
+      .. code:: Ada
+
+         New_Location : Coordinate_T := [Location with delta 3 => 0.0];
+
+* Notes
+
+   * You can use square brackets or parentheses
+   * Only allowed for single dimension arrays
+
+*This works for records as well (see that chapter)*
+
 ===================================
 Detour - 'Image For Complex Types
 ===================================
