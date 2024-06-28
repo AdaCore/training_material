@@ -6,7 +6,7 @@ package Pixels is
       is new Integer;
    
    type Pixel_T is record
-      -- TODO: At least R, G, B pixel components 
+      -- TODO: R, G, B, A pixel components
       --      replace those dummy variables with the proper name and type
       DUMMY1, DUMMY2, DUMMY3, DUMMY4 : Integer;
    end record;

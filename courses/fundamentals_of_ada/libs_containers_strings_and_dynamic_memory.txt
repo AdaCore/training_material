@@ -1,6 +1,0 @@
-adv_250_containers.rst
-spec_880_elaboration.rst
-adv_260_controlled_types.rst
-spec_890_ada_text_io.rst
-spec_891_ada_characters.rst
-spec_892_ada_strings.rst

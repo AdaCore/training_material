@@ -20,6 +20,61 @@ Advanced Topics Lab
 
 *Note: Many of the following pages use animation to first give you a task and then show you how to do it.* :menu:`Page Down` *does not always go to the next page!*
 
+-------------------------------
+Quick Note on The Application
+-------------------------------
+
+* **SDC** stands for *Simple Desktop Calculator*
+
+* The input is a list of operands an operators in programmatic order, not mathematic
+
+   * The calculator does have a simple memory
+
+* Example: To add **11** to **22** you would enter :command:`11 22 +`
+
+   * To multiply that by **10**, the next line might be :command:`10 *`
+
+* In additon to numbers, you have the commands **Clear**, **Print**, and **Quit**
+
+  Example run :command:`sdc.exe`
+
+  .. list-table::
+     :header-rows: 1
+
+     * - Display
+       - Description
+
+     * - Welcome to SDC. Go ahead type your commands ...
+
+     * - 100 20 +
+       - User Input
+
+     * - 100 20 +
+       - Command echo
+
+     * - 3 +
+       - User Input
+
+     * - 3 +
+       - Command echo
+
+     * - print
+       - User Input
+
+     * - print
+       - Command echo
+
+     * - ->  123
+       - Result of **Print**
+
+     * - quit
+       - User Input
+
+     * - quit
+       - Command echo
+
+     * - Thank you for using SDC.
+
 ----------------
 Initialization
 ----------------
@@ -162,22 +217,44 @@ Workflow Three - Excluding Source Code
            null;
       pragma Annotate (Xcov, Exempt_Off);
 
-   * When you look look at :filename:`sdc.adb.xcov` you'll notices the exempted lines are marked with ``*``
+   * Now run your code and generate a summary report
 
-   ::
+--------------------------------------
+Workflow Three - Exemption Reporting
+--------------------------------------
 
-      29 .:      begin
-      30 .: 
-      31 +:         Process (Next);
-      32 .:         --  Read the next Token from the input and process it.
-      33 .: 
-      34 *:      pragma Annotate (Xcov, Exempt_On, "Exception Handler");
-      35 *:      exception
-      36 *:         when Stack.Underflow =>
-      37 *:            Error_Msg ("Not enough values in the Stack.");
-      38 *: 
-      39 *:         when Stack.Overflow =>
-      40 *:           null;
-      41 *:      pragma Annotate (Xcov, Exempt_Off);
-      42 .:      end;
+* When you look look at :filename:`sdc.adb.xcov` you'll notice the exempted lines are marked with ``*``
 
+::
+
+   29 .:      begin
+   30 .: 
+   31 +:         Process (Next);
+   32 .:         --  Read the next Token from the input and process it.
+   33 .: 
+   34 *:      pragma Annotate (Xcov, Exempt_On, "Exception Handler");
+   35 *:      exception
+   36 *:         when Stack.Underflow =>
+   37 *:            Error_Msg ("Not enough values in the Stack.");
+   38 *: 
+   39 *:         when Stack.Overflow =>
+   40 *:           null;
+   41 *:      pragma Annotate (Xcov, Exempt_Off);
+   42 .:      end;
+
+* While the summary report contains a description of the exemption region
+
+::
+
+   =========================
+   == 3. EXEMPTED REGIONS ==
+   =========================
+
+   sdc.adb:34:7-41:7: 2 exempted violations, justification:
+   "Exception Handler"
+
+   Exempted violations:
+   sdc.adb:37:13: statement not executed
+   sdc.adb:40:13: statement not executed
+
+   1 exempted region, 2 exempted violations.

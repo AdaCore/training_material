@@ -179,7 +179,7 @@ Generic Data
 ==============
 
 --------------------------------
-Generic Types Parameters (1/2)
+Generic Types Parameters (1/3)
 --------------------------------
 
 * A generic parameter is a template
@@ -217,11 +217,11 @@ Generic Types Parameters (2/3)
 
       - Floating point type; appropriate mathematic operations allowed
 
-    * - :ada:`type T4 (<>);`
+    * - :ada:`type T4;`
 
-      - Indefinite type; can only be used as target of :ada:`access`
+      - Incomplete type; can only be used as target of :ada:`access`
 
-    * - :ada:`type T5 is tagged;`
+    * - :ada:`type T5 is tagged private;`
 
       - :ada:`tagged` type; can extend the type
 

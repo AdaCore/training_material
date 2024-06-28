@@ -405,7 +405,7 @@ Address Values
 Volatile
 ----------
 
-* The `Volatile` property can be set using an aspect (in Ada2012 only) or a pragma
+* The `Volatile` property can be set using an aspect (in Ada 2012 or later) or a pragma
 * Ada also allows volatile types as well as objects
 
    .. code:: Ada
