@@ -269,75 +269,76 @@ No Ambiguity Introduction
      end;
    end Test;
 
-====================
-"use type" Clauses
-====================
+===========================================
+``use type`` and ``use all type`` Clauses
+===========================================
 
----------------------
-`use type` Clauses
----------------------
+-----------------------------------
+``use type`` and ``use all type``
+-----------------------------------
 
-* Syntax
+* Clauses can give visibility to subprogams using the specified type
+
+* :ada:`use type`
 
    .. code:: Ada
 
       use_type_clause ::= use type subtype_mark
-                                         {, subtype_mark};
+                                  {, subtype_mark};
 
-* Makes operators directly visible for specified type
+   * Makes **primitive operators** directly visible for specified type
 
-   - Implicit and explicit operator function declarations
-   - Only those that mention the type in the profile
+      - Implicit and explicit operator function declarations
 
-      + Parameters and/or result type
+* :ada:`use all type`
+
+   .. code:: Ada
+
+      use_all_type_clause ::= use all type subtype_mark
+                                          {, subtype_mark};
+
+
+   * Makes primitive operators **and all other operations** directly visible for specified type
+   * *(Only available in Ada 2012 or later)*
 
 * More specific alternative to :ada:`use` clauses
 
    - Especially useful when multiple :ada:`use` clauses introduce ambiguity
 
----------------------------
-`use type` Clause Example
----------------------------
+--------------
+Example Code
+--------------
 
 .. code:: Ada
 
-   package P is
-     type Int is range Lower .. Upper;
-     -- implicit declarations
-     -- function "+"(Left, Right : Int) return Int;
-     -- function "="(Left, Right : Int) return Boolean;
-   end P;
-   with P;
-   procedure Test is
-     A, B, C : P.Int := some_value;
-     use type P.Int;
-     D : Int; -- not legal
-   begin
-     C := A + B; -- operator is visible
-   end Test;
+   package Types is
+     type Distance_T is range 0 .. Integer'Last;
 
----------------------------------------
-``use type`` Clauses and Multiple Types
----------------------------------------
+     -- explicit declaration (we don't want a negative distance)
+     function "-" (Left, Right : Distance_T) return Distance_T;
 
-* One clause can make ops for several types visible
+     -- implicit declarations (we get the equality operator for "free")
+     -- (we show it for completness)
+     -- function "=" (Left, Right : Distance_T) return Distance_T;
 
-   - When multiple types are in the profiles
+     -- primitive operation
+     function Min (A, B : Distance_T) return Distance_T;
 
-* No need for multiple clauses in that case
+     type Height_T is new Distance_T;
 
-.. code:: Ada
+     -- This is not a primitive because it occurs after Distance_T
+     -- has been "frozen" due to the creation of Height_T;
+     function Max (A, B : Distance_T) return Distance_T;
 
-   package P is
-     type Miles_T is digits 6;
-     type Hours_T is digits 6;
-     type Speed_T is digits 6;
-     -- "use type" on any of Miles_T, Hours_T, Speed_T
-     -- makes operator visible
-     function "/"(Left : Miles_T;
-                   Right : Hours_T)
-                   return Speed_T;
-   end P;
+   end Types;
+
+----------------------------
+``use`` Clauses Comparison
+----------------------------
+
+.. image:: use_clause_comparison.png
+
+*Where blue indicates the specified clause, and red indicates the compile error(s) with that particular clause*
 
 -----------------------------
 Multiple `use type` Clauses
@@ -368,87 +369,6 @@ Multiple `use type` Clauses
      X3 := X1 + X2; -- operator visible because it uses T1
      X2 := X2 + X2; -- operator not visible
    end UseType;
-
-========================
-"use all type" Clauses
-========================
-
--------------------------
-`use all type` Clauses
--------------------------
-
-* Makes all primitive operations for the type visible
-
-   - Not just operators
-   - Especially, subprograms that are not operators
-
-* Still need a :ada:`use` clause for other entities
-
-   - Typically exceptions
-
-..
-  language_version 2012
-
--------------------------------
-`use all type` Clause Example
--------------------------------
-
-.. code:: Ada
-
-   package Complex is
-     type Number is private;
-     function "+" (Left, Right : Number) return Number;
-     procedure Make (C : out Number;
-                      From_Real, From_Imag : Float);
-   ...
-
-.. code:: Ada
-
-   with Complex;
-   use all type Complex.Number;
-   procedure Demo is
-     A, B, C : Complex.Number;
-     procedure Non_Primitive (X : Complex.Number) is null;
-   begin
-     -- "use all type" makes these available
-     Make (A, From_Real => 1.0, From_Imag => 0.0);
-     Make (B, From_Real => 1.0, From_Imag => 0.0);
-     C := A + B;
-     -- but not this one
-     Non_Primitive (0);
-   end Demo;
-
-..
-  language_version 2012
-
---------------------------------------
-`use all type` v. `use type` Example
---------------------------------------
-
-.. code:: Ada
-   :number-lines: 1
-
-   with Complex;   use type Complex.Number;
-   procedure Demo is
-      A, B, C : Complex.Number;
-   begin
-      -- these are always allowed
-      Complex.Make (A, From_Real => 1.0, From_Imag => 0.0);
-      Complex.Make (B, From_Real => 1.0, From_Imag => 0.0);
-      -- "use type" does not give access to primitive operations
-      Make (A, 1.0, 0.0); -- Compile error here
-      -- but does give access to operators
-      C := A + B;
-      declare
-         -- but if we add "use all type" we get more visibility
-         use all type Complex.Number;
-      begin
-         Make (A, 1.0, 0.0); -- Not a compile error
-      end;
-   end Demo;
-
-..
-  language_version 2012
 
 ===================
 Renaming Entities
