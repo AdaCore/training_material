@@ -318,7 +318,7 @@ Example Code
      function "-" (Left, Right : Distance_T) return Distance_T;
 
      -- implicit declarations (we get the equality operator for "free")
-     -- (we show it for completness)
+     -- (we show it for completeness)
      -- function "=" (Left, Right : Distance_T) return Distance_T;
 
      -- primitive operation
