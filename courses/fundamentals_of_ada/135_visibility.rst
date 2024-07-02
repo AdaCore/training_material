@@ -315,9 +315,9 @@ Example Code
      -- explicit declaration (we don't want a negative distance)
      function "-" (Left, Right : Distance_T) return Distance_T;
 
-     -- implicit declarations (we get the equality operator for "free")
+     -- implicit declarations (we get the division operator for "free")
      -- (we show it for completeness)
-     -- function "=" (Left, Right : Distance_T) return Distance_T;
+     -- function "/" (Left, Right : Distance_T) return Distance_T;
 
      -- primitive operation
      function Min (A, B : Distance_T) return Distance_T;
