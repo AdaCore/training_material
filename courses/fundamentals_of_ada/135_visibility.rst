@@ -290,16 +290,14 @@ No Ambiguity Introduction
 
       - Implicit and explicit operator function declarations
 
-* :ada:`use all type`
+* :ada:`use all type` *(Only available in Ada 2012 or later)*
 
    .. code:: Ada
 
       use_all_type_clause ::= use all type subtype_mark
                                           {, subtype_mark};
 
-
    * Makes primitive operators **and all other operations** directly visible for specified type
-   * *(Only available in Ada 2012 or later)*
 
 * More specific alternative to :ada:`use` clauses
 
