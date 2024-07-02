@@ -76,9 +76,9 @@ Operators and Primitives
 "use" Clauses
 ===============
 
-----------------
- `use` Clauses
-----------------
+---------------
+"use" Clauses
+---------------
 
 * Provide direct visibility into packages' exported items
 
@@ -104,7 +104,7 @@ Operators and Primitives
    end Hello;
 
 ---------------------
-`use` Clause Syntax
+"use" Clause Syntax
 ---------------------
 
 * May have several, like :ada:`with` clauses
@@ -120,7 +120,7 @@ Operators and Primitives
    - Subprograms have no contents to :ada:`use`
 
 --------------------
-`use` Clause Scope
+"use" Clause Scope
 --------------------
 
 * Applies to end of body, from first occurrence
@@ -209,7 +209,7 @@ No Ambiguity Introduction
    For declarations in different packages that would not be directly visible in the absence of a "use" clause, none with the same identifier will be directly visible in the presence of such a clause, unless both are overloadable (i.e., enumeration literals and subprogram declarations)
 
 ------------------------------
-`use` Clauses and Child Units
+"use" Clauses and Child Units
 ------------------------------
 
 * A clause for a child does **not** imply one for its parent
@@ -242,7 +242,7 @@ No Ambiguity Introduction
    D4 has access to CHILD because PARENT is "use"d
 
 ----------------------------------------
-`use` Clause and Implicit Declarations
+"use" Clause and Implicit Declarations
 ----------------------------------------
 
 * Visibility rules apply to implicit declarations too
@@ -269,13 +269,13 @@ No Ambiguity Introduction
      end;
    end Test;
 
-===========================================
-``use type`` and ``use all type`` Clauses
-===========================================
+=======================================
+"use type" and "use all type" Clauses
+=======================================
 
------------------------------------
-``use type`` and ``use all type``
------------------------------------
+-------------------------------
+"use type" and "use all type"
+-------------------------------
 
 * Clauses can give visibility to subprogams using the specified type
 
@@ -326,16 +326,16 @@ Example Code
 
    end Types;
 
-----------------------------
-``use`` Clauses Comparison
-----------------------------
+--------------------------
+"use" Clauses Comparison
+--------------------------
 
 .. image:: use_clause_comparison.png
 
 *Where blue indicates the specified clause, and red indicates the compile error(s) with that particular clause*
 
 -----------------------------
-Multiple `use type` Clauses
+Multiple "use type" Clauses
 -----------------------------
 
 * May be necessary
@@ -423,7 +423,7 @@ Writing Readable Code - Part 1
 * We want the ability to refer to certain entities by another name (like an alias) with full read/write access (unlike temporary variables)
 
 -----------------------
-The `renames` Keyword
+The "renames" Keyword
 -----------------------
 
 * Certain entities can be renamed within a declarative region
