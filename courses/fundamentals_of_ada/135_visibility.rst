@@ -330,8 +330,6 @@ Example Code
 
 .. image:: use_clause_comparison.png
 
-*Where blue indicates the specified clause, and red indicates the compile error(s) with that particular clause*
-
 -----------------------------
 Multiple "use type" Clauses
 -----------------------------
