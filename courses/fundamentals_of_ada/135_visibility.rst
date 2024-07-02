@@ -324,12 +324,6 @@ Example Code
      -- primitive operation
      function Min (A, B : Distance_T) return Distance_T;
 
-     type Height_T is new Distance_T;
-
-     -- This is not a primitive because it occurs after Distance_T
-     -- has been "frozen" due to the creation of Height_T;
-     function Max (A, B : Distance_T) return Distance_T;
-
    end Types;
 
 ----------------------------
