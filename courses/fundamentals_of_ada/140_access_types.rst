@@ -381,7 +381,7 @@ Referencing The Stack
 `Aliased` Parameters
 ----------------------
 
-* To ensure subprogram parameter is always referenceable through an access value, define it as :ada:`aliased`
+* To ensure a subprogram parameter is always referenceable through an access value, define it as :ada:`aliased`
 
 .. code:: Ada
 
