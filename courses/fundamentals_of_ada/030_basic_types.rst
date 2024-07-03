@@ -157,26 +157,39 @@ Discrete Types
 Attributes
 -----------
 
-* Functions *associated* with a type
+* Properties of entities that can be queried like a function
 
    - May take input parameters
 
-* Some are language-defined
+* Defined by the language and/or compiler
 
+    - Language-defined attributes found in RM K.2
     - *May* be implementation-defined
-    - **Built-in**
-    - Cannot be user-defined
-    - Cannot be modified
 
-* See RM K.2 *Language-Defined Attributes*
-* Syntax
+       * GNAT defined attributes found in GNAT Reference Manual
+
+    - Cannot be user-defined
+
+* Attribute behavior is generally pre-defined
+
+  - :ada:`Type_T'Digits` gives number of digits used in :ada:`Type_T` definition
+
+* Some attributes can be modified by coding behavior
+
+  - :ada:`Typemark'Size` gives the size of :ada:`Typemark`
+
+    - Determined by compiler **OR** by using a representation clause
+
+  - :ada:`Object'Image` gives a string representation of :ada:`Object`
+
+    - Default behavior which can be replaced by aspect :ada:`Put_Image`
+
+* Examples
 
   .. code:: Ada
 
-    Type_Name'Attribute_Name;
-    Type_Name'Attribute_With_Param (Param);
-
-* **'** often named *tick*
+    J := Object'Size;
+    K := Array_Object'First(2);
 
 ========================
 Discrete Numeric Types
