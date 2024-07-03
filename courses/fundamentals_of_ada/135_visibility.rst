@@ -312,15 +312,19 @@ Example Code
    package Types is
      type Distance_T is range 0 .. Integer'Last;
 
-     -- explicit declaration (we don't want a negative distance)
-     function "-" (Left, Right : Distance_T) return Distance_T;
+     -- explicit declaration
+     -- (we don't want a negative distance)
+     function "-" (Left, Right : Distance_T)
+                   return Distance_T;
 
-     -- implicit declarations (we get the division operator for "free")
-     -- (we show it for completeness)
-     -- function "/" (Left, Right : Distance_T) return Distance_T;
+     -- implicit declarations (we get the division operator
+     -- for "free", showing it for completeness)
+     -- function "/" (Left, Right : Distance_T) return
+     --               Distance_T;
 
      -- primitive operation
-     function Min (A, B : Distance_T) return Distance_T;
+     function Min (A, B : Distance_T)
+                   return Distance_T;
 
    end Types;
 
