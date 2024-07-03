@@ -458,6 +458,10 @@ By-Copy vs By-Reference Types
 
 * :ada:`private` depends on its full definition
 
+* Note that the parameter mode :ada:`aliased` will force pass-by-reference
+
+  * This mode is discussed in the **Access Types** module
+
 ------------------------------------------
 Unconstrained Formal Parameters or Return
 ------------------------------------------
