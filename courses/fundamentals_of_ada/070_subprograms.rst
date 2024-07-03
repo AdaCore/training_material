@@ -372,7 +372,7 @@ Parameter Modes and Return
 
    - Can have **default**, used when **no value** is provided
 
-    .. code:: Ada
+   .. code:: Ada
 
        procedure P (N : in Integer := 1; M : in Positive);
        [...]
