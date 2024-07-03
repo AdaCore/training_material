@@ -166,7 +166,7 @@ Attributes
     - Language-defined attributes found in RM K.2
     - *May* be implementation-defined
 
-       * GNAT defined attributes found in GNAT Reference Manual
+       * GNAT-defined attributes found in GNAT Reference Manual
 
     - Cannot be user-defined
 
