@@ -377,6 +377,31 @@ Referencing The Stack
       G.all := 5;
    end P2;
 
+----------------------
+`Aliased` Parameters
+----------------------
+
+* To ensure a subprogram parameter is always referenceable through an access value, define it as :ada:`aliased`
+
+.. code:: Ada
+
+   procedure Example (Param : aliased Integer);
+
+   Object1 : aliased Integer;
+   Object2 : Integer;
+
+.. code:: Ada
+
+   -- This is OK
+   Example (Object1);
+
+   -- Compile error: Object2 could be optimized away
+   -- or stored in a register
+   Example (Object2);
+
+   -- Compile error: No address available for parameter
+   Example (123);
+
 ------
 Quiz
 ------
