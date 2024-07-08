@@ -80,9 +80,10 @@ Operators and Primitives
 "use" Clauses
 ---------------
 
-* Provide direct visibility into packages' exported items
+* :ada:`use Pkg;` provides direct visibility into public items in :ada:`Pkg`
 
    + :dfn:`Direct Visibility` - as if object was referenced from within package being used
+   + :dfn:`Public Items` - any entity defined in package spec public section
 
 * May still use expanded name
 
