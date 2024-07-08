@@ -568,7 +568,7 @@ Delta Aggregates
 
    .. code:: Ada
 
-      New_Location : Coordinate_T := [Location with delta Z => 0.0];
+      New_Location : Coordinate_T := (Location with delta Z => 0.0);
 
    *Note for record delta aggregates you must use named notation*
 
