@@ -1,0 +1,29 @@
+#! /usr/bin/bash
+
+DEFAULT_COURSE="courses/fundamentals_of_ada"
+
+usage() {
+    echo "$0 [course_path]"
+    echo "$0 -h"
+    echo
+    echo "List all the definitions in the course_path (default $DEFAULT_COURSE)"
+    echo "in the CSV format and ordered."
+    echo
+    echo "The following format is used"
+    echo
+    echo "  definition,file_name,line_number"
+    echo
+    echo "OPTIONS"
+    echo
+    echo "-h     Displays this help"
+}
+
+if [ "$1" == "-h" ]; then
+    usage
+    exit 0
+fi
+
+course=${1:-$DEFAULT_COURSE}
+
+# shellcheck disable=SC2016
+grep -rn :dfn: "$course" | sed -n 's/\(.*\):\([0-9][0-9]*\).*:dfn:`\(.*\)`.*/\l\3,\1,\2/p' | sort
