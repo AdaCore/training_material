@@ -80,9 +80,10 @@ Operators and Primitives
 "use" Clauses
 ---------------
 
-* Provide direct visibility into packages' exported items
+* :ada:`use Pkg;` provides direct visibility into public items in :ada:`Pkg`
 
    + :dfn:`Direct Visibility` - as if object was referenced from within package being used
+   + :dfn:`Public Items` - any entity defined in package spec public section
 
 * May still use expanded name
 
@@ -277,31 +278,31 @@ No Ambiguity Introduction
 "use type" and "use all type"
 -------------------------------
 
-* Clauses can give visibility to subprogams using the specified type
+* :ada:`use type` makes **primitive operators** directly visible for specified type
 
-* :ada:`use type`
+   - Implicit and explicit operator function declarations
 
    .. code:: Ada
 
       use_type_clause ::= use type subtype_mark
                                   {, subtype_mark};
 
-   * Makes **primitive operators** directly visible for specified type
 
-      - Implicit and explicit operator function declarations
 
-* :ada:`use all type` *(Only available in Ada 2012 or later)*
+* :ada:`use all type` makes primitive operators **and all other operations** directly visible for specified type
+
 
    .. code:: Ada
 
       use_all_type_clause ::= use all type subtype_mark
                                           {, subtype_mark};
 
-   * Makes primitive operators **and all other operations** directly visible for specified type
 
 * More specific alternative to :ada:`use` clauses
 
    - Especially useful when multiple :ada:`use` clauses introduce ambiguity
+
+*Note that* :ada:`use all type` *was introduced in Ada 2012*
 
 --------------
 Example Code
@@ -426,7 +427,7 @@ Writing Readable Code - Part 1
 The "renames" Keyword
 -----------------------
 
-* Certain entities can be renamed within a declarative region
+* :ada:`renames` declaration creates an alias to an entity
 
    - Packages
 
