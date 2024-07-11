@@ -721,7 +721,7 @@ Variant Record Types
 Immutable Variant Record
 --------------------------
 
-* Discriminant is set at creation time and cannot be modified
+* Discriminant must be set at creation time and cannot be modified
 
 .. code:: Ada
    :number-lines: 2
@@ -770,11 +770,11 @@ Immutable Variant Record Example
 
     procedure Do_Something (Param : in out Person) is
     begin
-      Param.Age := P.Age + 1;
-      Param.Pubs := P.Pubs + 1;
+      Param.Age := Param.Age + 1;
+      Param.Pubs := Param.Pubs + 1;
     end Do_Something;
 
-  * :ada:`Pat.Pubs := 3;` generates a compile warning because compiler knows :ada:`Pat` is a :ada:`Student`
+  * :ada:`Pat.Pubs := 3;` would generate a compile warning because compiler knows :ada:`Pat` is a :ada:`Student`
 
     * ``warning: Constraint_Error will be raised at run time``
 
@@ -806,15 +806,15 @@ Mutable Variant Record
 
 * :ada:`Pat : Person;` is mutable, but :ada:`Sam : Person(Faculty);` is not
 
-  * Defining object with discriminant value adds a *constraint*
+  * Defining object with discriminant value enforces the *constraint*
 
 * We can change the discriminant of a mutable object
 
   * But only via a copy / aggregate assignment
 
-----------------------------------
-Immutable Variant Record Example
-----------------------------------
+--------------------------------
+Mutable Variant Record Example
+--------------------------------
 
 * Each object of :ada:`Person` has three fields, but it depends on :ada:`Group`
 
@@ -823,7 +823,7 @@ Immutable Variant Record Example
     Pat : Person := (Student, 19, 3.9);
     Sam : Person(Faculty);
 
-* You can change :ada:`Pat` via an aggregate assignment or a copy
+* You can change the discriminant of :ada:`Pat` via an aggregate assignment or a copy
 
   .. code:: Ada
 
@@ -891,7 +891,7 @@ D. None: Runtime error
 
 .. container:: animate
 
-    The variant part cannot be followed by a component declaration (:ada:`Flag : Character` there)
+    The variant part cannot be followed by a component declaration (:ada:`Flag : Character` here)
 
 ========
 Lab
