@@ -36,7 +36,7 @@ Advanced Static Analysis
 ==========================
 
 --------------------------
-What is Static Analysis?
+What Is Static Analysis?
 --------------------------
 
 + **Symbolic** interpretation of **source code**

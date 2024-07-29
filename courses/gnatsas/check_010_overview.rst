@@ -57,7 +57,7 @@ Required by DO-178
    .. image:: gnatcheck/do178_table_a5.jpg
 
 -----------------------------------------------
-Conformance To Standards Requirement - DO-178
+Conformance to Standards Requirement - DO-178
 -----------------------------------------------
 
 .. container:: latex_environment beamercolorbox {blueonorange}

@@ -119,7 +119,7 @@ Command Line Example Run
    *These messages are coming from rules specified in* :filename:`coding_standard.rules`
 
 --------------------------------------------------------------
-:toolname:`GNATcheck` from :toolname:`GNAT Studio` Main Menu
+:toolname:`GNATcheck` From :toolname:`GNAT Studio` Main Menu
 --------------------------------------------------------------
 
 :menu:`Analyze` |rightarrow| :menu:`Coding Standard` |rightarrow| :menu:`Check Root Project`
@@ -127,7 +127,7 @@ Command Line Example Run
 .. image:: gnatcheck/gnatstudio_menu.png
 
 ----------------------------------------------------------------
-:toolname:`GNATcheck` from :toolname:`GNAT Studio` Right-Click
+:toolname:`GNATcheck` From :toolname:`GNAT Studio` Right-Click
 ----------------------------------------------------------------
 
 .. container:: latex_environment scriptsize
