@@ -24,7 +24,7 @@ Basic Types Lab
     - Set the color object to the value right before the last possible value
 
 -------------------------------
-Using The "Prompts" Directory
+Using the "Prompts" Directory
 -------------------------------
 
 * Course material should have a link to a :filename:`Prompts` folder

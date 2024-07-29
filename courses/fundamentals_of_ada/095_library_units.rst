@@ -113,7 +113,7 @@ Declared Object "Lifetimes"
           end Library_Subprogram;
 
 -----------------------------
-Objects In Library Packages
+Objects in Library Packages
 -----------------------------
 
 * Exist as long as program executes (i.e., "forever")
@@ -126,7 +126,7 @@ Objects In Library Packages
    end Named_Common;
 
 ---------------------------------
-Objects In Non-library Packages
+Objects in Non-library Packages
 ---------------------------------
 
 * Exist as long as region enclosing the package
@@ -279,7 +279,7 @@ Dependencies
       + Mostly because of no overloading
 
 ----------------
-What To Import
+What to Import
 ----------------
 
 * Need only name direct dependencies

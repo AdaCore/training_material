@@ -268,7 +268,7 @@ General Access Types
       V2 : T_Access_2 := T_Access_2 (V); -- legal
 
 -----------------------
-Referencing The Stack
+Referencing the Stack
 -----------------------
 
 * By default, stack-allocated objects cannot be referenced - and can even be optimized into a register by the compiler
@@ -391,7 +391,7 @@ Getting Around Accessibility Checks
       end P;
 
 -----------------------------------------
-Using Pointers For Recursive Structures
+Using Pointers for Recursive Structures
 -----------------------------------------
 
 * It is not possible to declare recursive structure
@@ -488,7 +488,7 @@ Common Memory Problems (3/3)
       + Might slow down the program if too many page faults
 
 -----------------------------
-How To Fix Memory Problems?
+How to Fix Memory Problems?
 -----------------------------
 
 * There is no language-defined solution

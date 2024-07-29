@@ -79,7 +79,7 @@ What Is the Jorvik profile?
 * :ada:`pragma Profile (Jorvik)`
 
 -------------------------
-What are GNAT runtimes?
+What Are GNAT runtimes?
 -------------------------
 
 * The :dfn:`runtime` is an embedded library
@@ -219,7 +219,7 @@ Delays
 ======
 
 -------------
-Delay keyword
+Delay Keyword
 -------------
 
 - :ada:`delay` keyword part of tasking
@@ -326,7 +326,7 @@ Protected: Functions and Procedures
     - Until call finishes
 
 -------------------
-Protected entries
+Protected Entries
 -------------------
 
 * A :ada:`entry` is equivalent to a procedure but

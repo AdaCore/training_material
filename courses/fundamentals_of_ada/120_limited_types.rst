@@ -130,7 +130,7 @@ Limited Type Declarations
    - More in a moment...
 
 ---------------------------
-Approximate Analog In C++
+Approximate Analog in C++
 ---------------------------
 
 .. code:: C++

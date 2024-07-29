@@ -139,7 +139,7 @@ Example
 =========
 
 ----------------------------------
-Unbounded String via Access Type
+Unbounded String Via Access Type
 ----------------------------------
 
 * Type contains a pointer to a string type

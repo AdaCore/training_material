@@ -87,7 +87,7 @@ Primitive Operations
       procedure Attrib_Function (Value : T);
 
 ------------------------------
-General Rule For a Primitive
+General Rule for a Primitive
 ------------------------------
 
 * Primitives are subprograms

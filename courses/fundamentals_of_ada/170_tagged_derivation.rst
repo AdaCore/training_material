@@ -36,7 +36,7 @@ Introduction
 ==============
 
 ---------------------------------------------
-Object-Oriented Programming With Tagged Types
+Object-Oriented Programming with Tagged Types
 ---------------------------------------------
 
 * For :ada:`record` types
@@ -56,7 +56,7 @@ Object-Oriented Programming With Tagged Types
 * Private data is encapsulated through **privacy**
 
 ------------------------------
-Tagged Derivation Ada vs C++
+Tagged Derivation Ada Vs C++
 ------------------------------
 
 .. container:: columns
@@ -150,7 +150,7 @@ Primitives
                     V2 : Root2); -- illegal
 
 -------------------------------
-Freeze Point For Tagged Types
+Freeze Point for Tagged Types
 -------------------------------
 
 * Freeze point definition does not change
@@ -289,7 +289,7 @@ Extending Tagged Types
 ========================
 
 ----------------------------------
-How Do You Extend A Tagged Type?
+How Do You Extend a Tagged Type?
 ----------------------------------
 
 * Premise of a tagged type is to :dfn:`extend` an existing type

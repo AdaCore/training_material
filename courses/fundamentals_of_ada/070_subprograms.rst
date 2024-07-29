@@ -342,7 +342,7 @@ Subprogram Parameter Terminology
       Something (ActualX);
 
 ---------------------------------
-Parameter Associations In Calls
+Parameter Associations in Calls
 ---------------------------------
 
 * Associate formal parameters with actuals
@@ -435,7 +435,7 @@ Parameter Passing Mechanisms
    - Compiler determines the mechanism
 
 -------------------------------
-By-Copy vs By-Reference Types
+By-Copy Vs By-Reference Types
 -------------------------------
 
 * By-Copy
@@ -676,7 +676,7 @@ Nested Subprograms
 =====================
 
 --------------------------------
-Subprograms within Subprograms
+Subprograms Within Subprograms
 --------------------------------
 
 * Subprograms can be placed in any declarative block
@@ -712,7 +712,7 @@ Procedure Specifics
 =====================
 
 -----------------------------------
-Return Statements In Procedures
+Return Statements in Procedures
 -----------------------------------
 
 .. container:: columns
@@ -744,7 +744,7 @@ Function Specifics
 ====================
 
 --------------------------------
-Return Statements In Functions
+Return Statements in Functions
 --------------------------------
 
 * Must have at least one
@@ -766,7 +766,7 @@ Return Statements In Functions
         end designator;
 
 ---------------------------------------
-No Path Analysis Required By Compiler
+No Path Analysis Required by Compiler
 ---------------------------------------
 
 * Running to the end of a function without hitting a :ada:`return` statement raises :ada:`Program_Error`
@@ -892,7 +892,7 @@ Mode `out` Risk for Scalars
    end F;
 
 ---------------------------------------
-Order-Dependent Code And Side Effects
+Order-Dependent Code and Side Effects
 ---------------------------------------
 
 .. |rightarrow| replace:: :math:`\rightarrow`

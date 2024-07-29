@@ -173,7 +173,7 @@ Compile-Time Visibility Control
       end name;
 
 ---------------------------------
-Example of Exporting To Clients
+Example of Exporting to Clients
 ---------------------------------
 
 * Variables, types, exception, subprograms, etc.
@@ -255,7 +255,7 @@ Bodies Are Never Optional
 * A (nasty) justification example will be shown later
 
 --------------------------------------
-Example Spec That Cannot Have A Body
+Example Spec That Cannot Have a Body
 --------------------------------------
 
 .. code:: Ada
@@ -275,7 +275,7 @@ Example Spec That Cannot Have A Body
    end Graphics_Primitives;
 
 ---------------------------------------
-Example Spec Requiring A Package Body
+Example Spec Requiring a Package Body
 ---------------------------------------
 
 .. code:: Ada
@@ -404,7 +404,7 @@ Requiring/Rejecting Bodies Justification
        end P;
 
 ---------------------------------------
-Forcing A Package Body To be Required
+Forcing a Package Body to Be Required
 ---------------------------------------
 
 .. container:: columns

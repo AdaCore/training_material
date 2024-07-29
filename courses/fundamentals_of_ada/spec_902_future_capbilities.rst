@@ -73,7 +73,7 @@ Embedded Programming
 ====================
 
 ---------------------------------------
-Fixed Lower bound For Array Types (1/3)
+Fixed Lower Bound for Array Types (1/3)
 ---------------------------------------
 
 * Ada arrays carry 3 pieces of information
@@ -96,7 +96,7 @@ Fixed Lower bound For Array Types (1/3)
       end P;
 
 ---------------------------------------
-Fixed Lower bound For Array Types (2/3)
+Fixed Lower Bound for Array Types (2/3)
 ---------------------------------------
 
 * Ada arrays can have fixed lower bound (FLB)
@@ -121,7 +121,7 @@ Fixed Lower bound For Array Types (2/3)
       P (V (6 .. 10)); -- A is 0 .. 4
 
 ---------------------------------------
-Fixed Lower bound For Array Types (3/3)
+Fixed Lower Bound for Array Types (3/3)
 ---------------------------------------
 
 * FLB can be used for matrixes
@@ -203,7 +203,7 @@ Storage Models (2/2)
         Host_Array.all := Device_Array.all;
 
 --------------------------------------------
-Constant Size For Variable Objects (1/3)
+Constant Size for Variable Objects (1/3)
 --------------------------------------------
 
 .. admonition:: Language Variant
@@ -231,7 +231,7 @@ Constant Size For Variable Objects (1/3)
 * We're extending this mechanism to arrays and tagged types
 
 --------------------------------------------
-Constant Size For Variable Objects (2/3)
+Constant Size for Variable Objects (2/3)
 --------------------------------------------
 
 .. admonition:: Language Variant
@@ -262,7 +262,7 @@ Constant Size For Variable Objects (2/3)
    Arr : Foo_Array := (Foo'(null record), Baz'(12, 15));
 
 --------------------------------------------
-Constant Size For Variable Objects (3/3)
+Constant Size for Variable Objects (3/3)
 --------------------------------------------
 
 .. admonition:: Language Variant
@@ -374,7 +374,7 @@ Quality of Life
 ===============
 
 ------------------------------------------------
-Dot Calls For Primitives of Untagged Types (1/2)
+Dot Calls for Primitives of Untagged Types (1/2)
 ------------------------------------------------
 
 * Ada 2012 introduces prefix notation
@@ -399,7 +399,7 @@ Dot Calls For Primitives of Untagged Types (1/2)
 * Some users introduce tagged types JUST for the purpose of using prefixed notation
 
 ------------------------------------------------
-Dot Calls For Primitives of Untagged Types (2/2)
+Dot Calls for Primitives of Untagged Types (2/2)
 ------------------------------------------------
 
 * All primitives can now be accessed through prefix notation
@@ -425,7 +425,7 @@ Dot Calls For Primitives of Untagged Types (2/2)
       VI.Op2;
 
 ------------------------------------
-Default for generic formal functions
+Default for Generic Formal Functions
 ------------------------------------
 
 * Generic can already be given a default matching function
@@ -537,7 +537,7 @@ Deep Delta Aggregates
       (X with delta A.B => 42)
 
 -------------------------------------------
-Guaranteed final control flow execution
+Guaranteed Final Control Flow Execution
 -------------------------------------------
 
 .. admonition:: Language Variant
@@ -768,7 +768,7 @@ Redesign of Object Orientation (2/2)
     end P;
 
 -----------------------------
-Other Topics On The Stove
+Other Topics on the Stove
 -----------------------------
 
 .. admonition:: Language Variant
