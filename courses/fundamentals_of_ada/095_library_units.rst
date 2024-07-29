@@ -156,7 +156,7 @@ Program "Lifetime"
 
 * Main program's declarative part is elaborated
 * Main program's sequence of statements executes
-* Program executes until all threads terminate
+* Program executes until all tasks terminate
 * All objects in library packages cease to exist
 * Run-time library shuts down
 

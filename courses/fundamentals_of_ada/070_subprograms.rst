@@ -543,6 +543,7 @@ Correct Implementation
       for K in Result'Range loop
         Result (K) := Left (K) - Right (K + Offset);
       end loop;
+
       return Result;
    end Subtract;
 

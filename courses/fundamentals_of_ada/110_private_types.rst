@@ -544,7 +544,7 @@ Limited Private
 .. code:: Ada
 
     declare
-       A, B := UART.Get_Next_Available;
+       A, B : UART.Instance := UART.Get_Next_Available;
     begin
        if A = B -- Illegal
        then
