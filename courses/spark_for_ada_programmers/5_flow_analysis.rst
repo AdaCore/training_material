@@ -36,7 +36,7 @@ Introduction
 ==============
 
 ------------------------
-What is Flow Analysis?
+What Is Flow Analysis?
 ------------------------
 
 * **First** static analysis performed by :toolname:`GNATprove`

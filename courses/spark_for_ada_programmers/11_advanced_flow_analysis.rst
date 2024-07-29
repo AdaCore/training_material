@@ -148,7 +148,7 @@ Basic Data Dependency Contracts
        Depends => (Func'Result => (X, Y, Z));
 
 -----------------------------------
-Some Outputs May Appear as Inputs
+Some Outputs May Appear As Inputs
 -----------------------------------
 
 * Parts of outputs are in fact inputs:

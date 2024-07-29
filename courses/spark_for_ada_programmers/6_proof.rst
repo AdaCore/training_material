@@ -36,7 +36,7 @@ Introduction
 ==============
 
 ----------------
-What is Proof?
+What Is Proof?
 ----------------
 
 * **Second** static analysis performed by :toolname:`GNATprove`

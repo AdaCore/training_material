@@ -215,7 +215,7 @@ Array-based Form
 * Note: always in **parentheses**!
 
 ----------------------------------
-Range-based vs Array-based Forms
+Range-based Vs Array-based Forms
 ----------------------------------
 
 * Array-based form only possible if :ada:`Property` does **not** refer to the
