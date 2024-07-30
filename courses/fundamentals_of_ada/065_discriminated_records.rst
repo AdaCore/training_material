@@ -82,112 +82,91 @@ Variant Records
 What is a Variant Record?
 ---------------------------
 
-* :dfn:`Variant record` uses the discriminant to determine which fields are currently *active*
+* A :dfn:`variant record` uses the discriminant to determine which fields are currently accessible
 
-.. code:: Ada
+   .. code:: Ada
 
-   type Category_T is (Applicant, Employee, Contractor);
-   type Employee_T (Kind : Category_T) is record
-      Name : String_T;
-      DOB  : Date_T;
-      case Kind is
-         when Applicant =>
-            null;
-         when Employee =>
-            Pay_Rate  : Pay_T;
-         when Contractor =>
-            Hourly_Rate : Contractor_Rate_T;
-   end record;
+      type Category_T is (Applicant, Employee, Contractor);
+      type Employee_T (Kind : Category_T) is record
+         Name : String_T;
+         DOB  : Date_T;
+         case Kind is
+            when Applicant =>
+               null;
+            when Employee =>
+               Pay_Rate  : Pay_T;
+            when Contractor =>
+               Hourly_Rate : Contractor_Rate_T;
+         end case;
+      end record;
 
-   Pat : Employee_T (Applicant);
-   Sam : Employee_T (Contractor);
-
-* Each object is of the same type, but has access to different fields
-
-   * :ada:`Pat` contains the fields :ada:`Name` and :ada:`DOB`
-   * :ada:`Sam` contains the fields :ada:`Name`, :ada:`DOB`, and :ada:`Hourly_Rate`
+      An_Employee     : Employee_T (Applicant);
+      Some_Contractor : Employee_T (Contractor);
 
 * Note that the :ada:`case` block must be the last part of the record definition
 
-   * Hence only one per record
+   * Therefore only one per record
 
----------------------------
-Uses of a Variant Record
----------------------------
+* Variant records are considered the same type
 
-* By allowing the record content to be "flexible", it allows a parameter to have different behavior for the same record type
+   * So you can have
 
-   .. code:: Ada
+      .. code:: Ada
 
-      procedure Print (Item : Employee_T) is
-      begin
-         Put_Line (To_String(Item.Name) & " " & To_String(Item.DOB));
-         case Item.Kind is
-         when Applicant =>
-            null;
-         when Employee =>
-            Put_Line (To_String(Pay_Rate));
-         when Contractor  =>
-            Put_Line (To_String(Item.Hourly_Rate));
-         end case;
-      end Print;
+         procedure Print (Item : Employee_T);
 
-* Which allows more flexible programming idioms
-
-   .. code:: Ada
-
-      Employees : array (1..2) of Employee_T := (Pat, Sam);
-
-   .. Code:: Ada
-
-      for Employee of Employees loop
-         Print (Employee);
-      end loop;
+         Print (An_Employee);
+         Print (Some_Contractor);
 
 --------------------------
 Immutable Variant Record
 --------------------------
 
-* In an :dfn:`immutable variant record` the discriminant is set at creation and cannot be modified
+* In an :dfn:`immutable variant record` the discriminant has no default value
+
+   * It is an :dfn:`indefinite type`, similar to an unconstrained array
+
+     * So you must add a constraint (discriminant) when creating an object
+     * But it can be unconstrained when used as a parameter
+
+* For example
+
+   .. code:: Ada
+      :number-lines: 24
+
+      Pat     : Employee_T (Applicant);
+      Sam     : Employee_T :=
+         (Kind        => Contractor,
+          Name        => From_String("Sam"),
+          DOB         => "2000/01/01",
+          Hourly_Rate => 123.45);
+      Illegal : Employee_T;  -- indefinite
+
+--------------------------------
+Immutable Variant Record Usage
+--------------------------------
+
+* Compiler can detect some problems
 
    .. code:: Ada
 
-      Pat : Employee_T (Applicant);
-      Sam : Employee_T := (Kind        => Contractor,
-                           Name        => From_String("Sam"),
-                           DOB         => "2000/01/01",
-                           Hourly_Rate => 123.45);
+      begin
+         Pat.Hourly_Rate := 12.3;
+      end;
 
-* Discriminant is treated as any other field
+   ``warning: component not present in subtype of "Employee_T" defined at line 24``
 
-  * But with :ada:`Employee_T` it cannot be changed
+* But more often clashes are run-time errors
 
-* :ada:`Employee_T` is an :ada:`indefinite type`, similar to an unconstrained array
+   .. code:: Ada
+     :number-lines: 32
 
-  * So you must add a constraint (discriminant) when creating an object
-  * But it can be unconstrained when used as a parameter or array element
+     procedure Print (Item : Employee_T) is
+     begin
+       Print (Item.Pay_Rate);
 
-----------------------------------
-Immutable Variant Record Example
-----------------------------------
-
-* Compiler can detect some problems, but more often clashes are run-time errors
-
-  * :ada:`Pat.Hourly_Rate := 12.3;` would generate a compile warning because compiler knows :ada:`Pat` is a :ada:`Applicant`
-
-    * ``warning: Constraint_Error will be raised at run time``
-
-  .. code:: Ada
-
-    procedure Do_Something (Param : in out Employee_T) is
-    begin
-      Param.Hourly_Rate := Param.Hourly_Rate * 1.03;
-    end Do_Something;
-
-  * :ada:`Do_Something (Pat);` generates a run-time error, because only at run-time is the discriminant for :ada:`Param` known
-
-    * ``raised CONSTRAINT_ERROR : discriminant check failed``
-
+   ``raised CONSTRAINT_ERROR : print.adb:34 discriminant check failed``
+  
 * :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
 
 ------------------------
@@ -447,6 +426,70 @@ Simplifying Operations
 
          Object3 := (Object1.Length + Object2.Length,
                      Object1.Data & Object2.Data);
+
+====================
+Interfacing with C
+====================
+
+------------------
+Ada-to-C Mapping
+------------------
+
+* Ada allows creating equivalent types between Ada and C
+
+   * Used when calling between languages
+
+.. code:: C
+
+   struct Struct_T {
+      int Field1;
+      char Field2;
+      float Field3;
+   };
+
+.. code:: Ada
+
+   type Struct_T is record
+      Field1 : int;
+      Field2 : char;
+      Field3 : C_Float;
+   end record;
+   pragma Convention(C_Pass_By_Copy, Struct_T);
+
+* These types will be binary-equivalent (due to the :ada:`pragma Convention`)
+
+-------------------------
+Mapping Ada to C Unions
+-------------------------
+
+* As mentioned before, discriminant records are similar to C's :c:`union`, but with a limitation
+
+   * Only one part of the :c:`union` is available at any time
+
+* So, you create the equivalent of this C :c:`union`
+
+   .. code:: C
+
+      union Union_T {
+         int Field1;
+         char Field2;
+         float Field3;
+      };
+
+* By using a discriminant and :ada:`pragma Unchecked_Union`
+
+   .. code:: Ada
+
+      type Union_T(Discr : Interfaces.C.Unsigned := 0 ) is record
+         case Discr is
+         when 0 => Field1 : int;
+         when 1 => Field2 : char;
+         when 2 => Field3 : C_Float;
+         when others => null;
+         end case;
+      end record;
+      pragma Convention (C_Pass_By_Copy, Union_T);
+      pragma Unchecked_Union (Union_T);
 
 ========
 Lab
