@@ -451,40 +451,62 @@ Quiz
 Interfacing with C
 ====================
 
-------------------
-Ada-to-C Mapping
-------------------
+-----------------------------------
+Passing Records Between Ada and C
+-----------------------------------
 
-* Ada allows creating equivalent types between Ada and C
+* Your Ada code needs to call C that looks like this:
 
-   * Used when calling between languages
+   .. code:: C
 
-.. code:: C
+      struct Struct_T {
+         int Field1;
+         char Field2;
+         float Field3;
+      };
 
-   struct Struct_T {
-      int Field1;
-      char Field2;
-      float Field3;
-   };
+      int DoSomething (struct Struct_T);
 
-.. code:: Ada
+* Ada has mechanisms that will allow you to 
 
-   type Struct_T is record
-      Field1 : int;
-      Field2 : char;
-      Field3 : C_Float;
-   end record;
-   pragma Convention(C_Pass_By_Copy, Struct_T);
+   * Call :C:`DoSomething`
+   * Build a record that is binary-compatible to :C:`Struct_T`
 
-* These types will be binary-equivalent (due to the :ada:`pragma Convention`)
+--------------------------------
+Building a C-Compatible Record
+--------------------------------
+
+* To build an Ada record for :C:`Struct_T`, start with a regular record:
+
+   .. code:: Ada
+
+      type Struct_T is record
+         Field1 : Interfaces.C.int;
+         Field2 : Interfaces.C.char;
+         Field3 : Interfaces.C.C_Float;
+      end record;
+
+   * We use types from :ada:`Interfaces.C` to map directly to the C types
+
+* But the Ada compiler needs to know that the record layout must match C
+
+   * So we add an aspect to enforce it
+
+   .. code:: Ada
+
+      type Struct_T is record
+         Field1 : Interfaces.C.int;
+         Field2 : Interfaces.C.char;
+         Field3 : Interfaces.C.C_Float;
+      end record with Convention => C_Pass_By_Copy;
 
 -------------------------
 Mapping Ada to C Unions
 -------------------------
 
-* As mentioned before, discriminant records are similar to C's :c:`union`, but with a limitation
+* Discriminant records are similar to C's :c:`union`, but with a limitation
 
-   * Only one part of the :c:`union` is available at any time
+   * Only one part of the record is available at any time
 
 * So, you create the equivalent of this C :c:`union`
 
@@ -496,20 +518,21 @@ Mapping Ada to C Unions
          float Field3;
       };
 
-* By using a discriminant and :ada:`pragma Unchecked_Union`
+* By using a discriminant and adding the aspect :ada:`Unchecked_Union`
 
    .. code:: Ada
 
-      type Union_T(Discr : Interfaces.C.Unsigned := 0 ) is record
+      type Union_T (Discr : Interfaces.C.Unsigned := 0) is record
          case Discr is
          when 0 => Field1 : int;
          when 1 => Field2 : char;
          when 2 => Field3 : C_Float;
          when others => null;
          end case;
-      end record;
-      pragma Convention (C_Pass_By_Copy, Union_T);
-      pragma Unchecked_Union (Union_T);
+      end record with Convention => C_Pass_By_Copy,
+                      Unchecked_Union;
+
+   * This tells the compiler not to reserve space in the record for the discriminant
 
 ========
 Lab
