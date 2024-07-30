@@ -178,7 +178,7 @@ Mutable Variant Record
    .. code:: Ada
 
       type Category_T is (Applicant, Employee, Contractor);
-      type Employee_T (Kind : Category_T := Employee) is record
+      type Mutable_Employee_T (Kind : Category_T := Employee) is record
          Name : String_T;
          DOB  : Date_T;
          case Kind is
@@ -190,26 +190,22 @@ Mutable Variant Record
                Hourly_Rate : Contractor_Rate_T;
       end record;
 
-* :ada:`Pat : Employee_T;` is mutable, but :ada:`Sam : Employee_T(Contractor);` is not
+      Pat : Mutable_Employee_T;
+      Sam : Mutable_Employee_T(Contractor);
 
-  * Defining object with discriminant value enforces the *constraint*
+* Making the variant mutable creates a definite type
 
-* We can change the discriminant of a mutable object
-
-  * But only via a copy / aggregate assignment
+   * An object can be created without a constraint (:ada:`Pat`)
+   * Or we can create in immutable object where the discriminant cannot change (:ada:`Sam`)
+   * And we can create an array whose element is mutable
 
 --------------------------------
 Mutable Variant Record Example
 --------------------------------
 
-* Each object of :ada:`Employee_T` has some common fields and some unique fields
+* We can change the discriminant of a mutable object
 
-  .. code:: Ada
-
-    Pat : Employee_T := (Employee, "2000/01/01", 12.34);
-    Sam : Employee_T(Contractor);
-
-* You can change the discriminant of :ada:`Pat` via an aggregate assignment or a copy
+  * But only via a copy / aggregate assignment
 
   .. code:: Ada
 
@@ -224,6 +220,8 @@ Mutable Variant Record Example
   .. code:: Ada
 
     Pat.Kind := Contractor; -- compile error
+
+  ``error: assignment to discriminant not allowed``
     
 * And you cannot change the discriminant of :ada:`Sam`
 
@@ -261,29 +259,42 @@ Quiz
 ------
 
 .. code:: Ada
+   :number-lines: 2
 
-    type Variant_T (Floating : Boolean := False) is record
-        case Floating is
-            when False =>
-                I : Integer;
-            when True =>
-                F : Float;
-        end case;
-        Flag : Character;
-    end record;
+   type Coord_T is record
+      X, Y : Float;
+   end record;
 
-    Variant_Object : Variant_T (True);
+   type Kind_T is (Circle, Line);
+   type Shape_T (Kind : Kind_T := Line) is record
+      Origin : Coord_T;
+      case Kind is
+         when Line =>
+            End_Point : Coord_T;
+         when Circle =>
+            End_Point : Coord_T;
+      end case;
+   end record;
 
-Which component does :ada:`Variant_Object` contain?
+   A_Circle : Shape_T       :=
+     (Circle, (1.0, 2.0), (3.0, 4.0));
+   A_Line   : Shape_T(Line) :=
+     (Circle, (1.0, 2.0), (3.0, 4.0));
 
-A. :ada:`Variant_Object.F, Variant_Object.Flag`
-B. :ada:`Variant_Object.F`
-C. :answer:`None: Compilation error`
-D. None: Runtime error
+What happens when you try to build and run this code?
+
+A. Runtime error
+B. Compilation error on an object
+C. :answer:`Compilation error on a type`
+D. No problems
 
 .. container:: animate
 
-    The variant part cannot be followed by a component declaration (:ada:`Flag : Character` here)
+   * Explanations
+
+      A. Runtime error - If the field name on line 11 or 13 is changed, then line 18 will raise a constraint error
+      B. Compilation error on an object - only a warning on line 18
+      C. Each field name has to be unique across the entire record
 
 ======================================
 Discriminant Record Array Size Idiom
@@ -302,6 +313,7 @@ Varying Lengths of Array Objects
 
 * We would like an object with a maximum length, but current length is variable
 
+   + Like a string or a stack
    + Need two pieces of data
 
       * Array contents
@@ -313,8 +325,10 @@ Varying Lengths of Array Objects
    + Index for last valid element
 
 -----------------------------
-Simple Unconstrained Array
+Simple Varying Length Array
 -----------------------------
+
+* Not unconstrained - we have to define a maximum length to make it a :dfn:`definite type`
 
 .. code:: Ada
 
@@ -365,18 +379,18 @@ Varying Length Array via Discriminated Records
           Data   : String (1..Length) := (others => ' ');
         end record;
 
-* Discriminant default value?
+* Mutable objects vs immutable objects
 
-   + With default discriminant value, objects can be copied even if lengths are different
-   + With no default discriminant value, objects of different lengths cannot be copied
+   + With default discriminant value (mutable), objects can be copied even if lengths are different
+   + With no default discriminant value (immutable), objects of different lengths cannot be copied (and we can't change the length)
 
 -----------------
 Object Creation
 -----------------
 
-* When an object is created with the default value (mutable) runtime assumes largest possible value
+* When a mutable object is created, runtime assumes largest possible value
 
-   + So this is a problem
+   + So this example is a problem
 
       .. code:: Ada
 
@@ -384,12 +398,12 @@ Object Creation
             Data   : String (1..Length) := (others => ' ');
          end record;
 
-         Good : Simple_Vstring(10);
-         Bad  : Simple_Vstring;
+         Good : Vstring(10);
+         Bad  : Vstring;
 
-   + Compile warning: ``warning: creation of "Bad" object may raise Storage_Error``
+      + Compile warning: ``warning: creation of "VString" object may raise Storage_Error``
 
-   + Runtime error: ``raised STORAGE_ERROR : EXCEPTION_STACK_OVERFLOW`` 
+      + Runtime error: ``raised STORAGE_ERROR : EXCEPTION_STACK_OVERFLOW`` 
 
 * Better implementation
 
@@ -400,8 +414,8 @@ Object Creation
          Data   : String (1..Length) := (others => ' ');
       end record;
 
-      Good      : Simple_Vstring(10);
-      Also_Good : Simple_Vstring;
+      Good      : Vstring(10);
+      Also_Good : Vstring;
 
 ------------------------
 Simplifying Operations
