@@ -441,6 +441,12 @@ Simplifying Operations
          Object3 := (Object1.Length + Object2.Length,
                      Object1.Data & Object2.Data);
 
+------
+Quiz
+------
+
+.. include:: quiz/mutable_with_array/quiz.rst
+
 ====================
 Interfacing with C
 ====================
