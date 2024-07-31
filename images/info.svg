@@ -71,16 +71,13 @@
     <ellipse
        style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
        id="path2"
-       cx="50.666668"
-       cy="26.333334"
+       cx="50.833336"
+       cy="29"
        rx="12"
        ry="11.833334" />
-    <rect
-       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="rect2"
-       width="23.333334"
-       height="38"
-       x="39"
-       y="46.499996" />
+    <path
+       d="m 57.144316,47.87253 c -0.527236,-0.129555 -1.07603,-0.205672 -1.644344,-0.205672 h -9.833509 c -0.45757,0 -0.90339,0.04629 -1.335319,0.131258 l -5.497855,25.289929 v 3.578593 c 0,3.785663 3.047511,6.833175 6.833174,6.833175 h 9.833509 c 3.785662,0 6.833174,-3.047512 6.833174,-6.833175 v -4.209045 z"
+       style="fill:#0000ff;stroke:#000000;stroke-width:1.5;stroke-dasharray:none"
+       id="path4" />
   </g>
 </svg>
