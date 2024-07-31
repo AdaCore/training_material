@@ -351,7 +351,7 @@ def source_file_contents(filename, keywords):
 
 
 NOTE_FORMAT = {
-    "warn": ("alertblock", "warn.pdf", r" Warning"),
+    "warn": ("alertblock", "warn.pdf", r"Warning"),
     "info": ("block", "info.pdf", "Info"),
     "tip": ("exampleblock", "lightbulb.pdf", "Tip"),
 }
