@@ -572,9 +572,9 @@ def format_note(classes, contents):
             + "}{"
             + r"\includegraphics[height=1.2em]{"
             + logo
-            + "} "
+            + r"} \textbf{"
             + name
-            + "}"
+            + "}}"
         )
         .beamer_contents(contents)
         .latex(r"\end{" + block + "}")
