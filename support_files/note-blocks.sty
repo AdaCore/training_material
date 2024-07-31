@@ -12,6 +12,9 @@
 
 \newcommand\beamerboxesframed[2][]{%
   \global\let\beamer@firstlineitemizeunskip=\relax%
+  \begin{columns}%
+  \begin{column}{0.1\textwidth}\end{column}%
+  \begin{column}{0.8\textwidth}%
   \vbox\bgroup%
   \setkeys{beamerboxes}{upper=block title,lower=block body,width=\textwidth}%
   \setkeys{beamerboxes}{#1}%
@@ -119,7 +122,11 @@
   }%
   \vskip2bp%
   \egroup% of \vbox\bgroup
+  \end{column}%
+  \begin{column}{0.1\textwidth}\end{column}%
+  \end{columns}%
 }
+
 \makeatother
 
 \defbeamertemplate{block begin}{framed}[1][]
@@ -131,7 +138,9 @@
     \usebeamerfont{block body}%
 }
 \defbeamertemplate{block end}{framed}[1][]
-{\end{beamerboxesframed}\vskip\smallskipamount}
+{
+    \end{beamerboxesframed}\vskip\smallskipamount%
+}
 
 \defbeamertemplate{block alerted begin}{framed}[1][]
 {
