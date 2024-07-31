@@ -50,6 +50,11 @@ All images used in any of the courses should be stored here. This allows
 sharing of images across courses without duplication. The filename should be
 as descriptive as possible.
 
+For SVG logos, you'll need to convert them manually to PDF (pandoc does that only
+for `\image` but we're using them with another command). Do that through
+
+`rsvg-convert images/$LOGO.svg images/$LOGO.pdf`
+
 ## Pandoc
 
 This folder contains artifacts useful in running Pandoc to generate any output
