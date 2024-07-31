@@ -19,7 +19,7 @@ procedure Main is
    --$ end cut
 
    --$ begin answer
-   -- Choices **A** and **B** are mutable, so the runtime assumes :ada:`Size`
+   -- Choices **A** and **B** are mutable: the runtime assumes :ada:`Size`
    -- can be :ada:`Positive'Last`, so field :ada:`S` will cause a runtime error.
    -- Choice **D** tries to copy a 5-character string into a 6-character string,
    -- also generating a runtime error.

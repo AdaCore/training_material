@@ -1,6 +1,6 @@
-****************************
-Discriminated Record Types
-****************************
+***********************
+Discriminated Records
+***********************
 
 ..
     Coding language
@@ -67,12 +67,14 @@ Defining a Discriminated Record
 
 * Sample definitions (completions appear later in this module)
 
+.. container:: latex_environment small
+
    .. code:: Ada
 
       type Employee_T (Kind : Category_T) is record ...
-      type Student_T (Grad : Boolean := False) is record ...
-      type Stack_T (Max_Size : positive) is record ...
-      type C_Union_T (View : integer) is record ...
+      type Mutable_T (Kind : Category_T := Employee) is record ...
+      type VString (Last : Natural := 0) is record ...
+      type C_Union_T (View : natural := 0) is record ...
 
 =================
 Variant Records
@@ -86,13 +88,11 @@ What is a Variant Record?
 
    .. code:: Ada
 
-      type Category_T is (Applicant, Employee, Contractor);
+      type Category_T is (Employee, Contractor);
       type Employee_T (Kind : Category_T) is record
          Name : String_T;
          DOB  : Date_T;
          case Kind is
-            when Applicant =>
-               null;
             when Employee =>
                Pay_Rate  : Pay_T;
             when Contractor =>
@@ -100,7 +100,7 @@ What is a Variant Record?
          end case;
       end record;
 
-      An_Employee     : Employee_T (Applicant);
+      An_Employee     : Employee_T (Employee);
       Some_Contractor : Employee_T (Contractor);
 
 * Note that the :ada:`case` block must be the last part of the record definition
@@ -134,7 +134,7 @@ Immutable Variant Record
    .. code:: Ada
       :number-lines: 24
 
-      Pat     : Employee_T (Applicant);
+      Pat     : Employee_T (Employee);
       Sam     : Employee_T :=
          (Kind        => Contractor,
           Name        => From_String("Sam"),
@@ -177,21 +177,18 @@ Mutable Variant Record
 
    .. code:: Ada
 
-      type Category_T is (Applicant, Employee, Contractor);
-      type Mutable_Employee_T (Kind : Category_T := Employee) is record
+      type Mutable_T (Kind : Category_T := Employee) is record
          Name : String_T;
          DOB  : Date_T;
          case Kind is
-            when Applicant =>
-               null;
             when Employee =>
                Pay_Rate  : Pay_T;
             when Contractor =>
                Hourly_Rate : Contractor_Rate_T;
       end record;
 
-      Pat : Mutable_Employee_T;
-      Sam : Mutable_Employee_T(Contractor);
+      Pat : Mutable_T;
+      Sam : Mutable_T(Contractor);
 
 * Making the variant mutable creates a definite type
 
@@ -209,7 +206,7 @@ Mutable Variant Record Example
 
   .. code:: Ada
 
-    if Pat.Kind = Applicant then
+    if Pat.Kind = Contractor then
       Pat := (Employee, Pat.Name, Pat.Age, 12.34);
     else
       Pat := Sam;
@@ -334,37 +331,34 @@ Simple Varying Length Array
 
    type Simple_VString is
       record
-         Length : Natural range 0 .. Max_Length := 0;
-         Data   : String (1 .. Max_Length) := (others => ' ');
+         Last : Natural range 0 .. Max_Length := 0;
+         Data : String (1 .. Max_Length) := (others => ' ');
       end record;
 
-   Object1 : Simple_Vstring := ( 0, (others => ' '));
-   Object2 : Simple_Vstring := ( 0, (others => '.'));
-   Object3 : Simple_Vstring;
+   Obj1 : Simple_Vstring := ( 0, (others => '-'));
+   Obj2 : Simple_Vstring := ( 0, (others => '+'));
+   Obj3 : Simple_Vstring;
 
-* Issue - Operations need to consider :ada:`Length` field
+* Issue - Operations need to consider :ada:`Last` field
 
-   * :ada:`Object1 = Object2` will be false
+   * :ada:`Obj1 = Obj2` will be false
    * Can redefine :ada:`=` to be something like
 
       .. code:: Ada
 
-         if Object1.Data(1..Object1.Length) =
-            Object2.Data(1..Object2.Length)
-         then
+         if Obj1.Data(1..Obj1.Last) = Obj2.Data(1..Obj2.Last)
 
    * Same thing with concatentation
 
       .. code:: Ada
 
-         Object3.Length := Object1.Length + Object2.Length;
-         Object3.Data(1..Object3.Length) :=
-               Object1.Data(1..Object1.Length) &
-               Object2.Data(1..Object2.Length)
+         Obj3.Last := Obj1.Last + Obj2.Last;
+         Obj3.Data(1..Obj3.Last) := Obj1.Data(1..Obj1.Last) &
+                                    Obj2.Data(1..Obj2.Last)
 * Other Issues
 
    + Every object has same maximum length
-   + ``Length`` needs to be maintained by program logic
+   + ``Last`` needs to be maintained by program logic
 
 ------------------------------------------------
 Varying Length Array via Discriminated Records
@@ -374,9 +368,9 @@ Varying Length Array via Discriminated Records
 
    .. code:: Ada
 
-      type VString (Length : Natural := 0) is
+      type VString (Last : Natural := 0) is
         record
-          Data   : String (1..Length) := (others => ' ');
+          Data   : String (1..Last) := (others => ' ');
         end record;
 
 * Mutable objects vs immutable objects
@@ -394,8 +388,8 @@ Object Creation
 
       .. code:: Ada
 
-         type VString (Length : Natural := 0) is record
-            Data   : String (1..Length) := (others => ' ');
+         type VString (Last : Natural := 0) is record
+            Data   : String (1..Last) := (others => ' ');
          end record;
 
          Good : Vstring(10);
@@ -410,8 +404,8 @@ Object Creation
    .. code:: Ada
 
       subtype Length_T is natural range 0 .. 1_000;
-      type VString (Length : Length_T := 0) is record
-         Data   : String (1..Length) := (others => ' ');
+      type VString (Last : Length_T := 0) is record
+         Data   : String (1..Last) := (others => ' ');
       end record;
 
       Good      : Vstring(10);
@@ -425,21 +419,21 @@ Simplifying Operations
 
    .. code:: Ada
 
-      Object1 : Simple_Vstring := ( 5, "Hello");
-      Object2 : Simple_Vstring := ( 6, " World");
-      Object3 : Simple_Vstring;
+      Obj1 : Simple_Vstring := ( 5, "Hello");
+      Obj2 : Simple_Vstring := ( 6, " World");
+      Obj3 : Simple_Vstring;
 
-   * Equality: :ada:`Object1 = Object2`
+   * Equality: :ada:`Obj1 = Obj2`
 
       * :ada:`Data` is exactly the correct length
-      * if :ada:`Data` or :ada:`Length` is different, equality fails
+      * if :ada:`Data` or :ada:`Last` is different, equality fails
 
    * Concatentation
 
       .. code:: Ada
 
-         Object3 := (Object1.Length + Object2.Length,
-                     Object1.Data & Object2.Data);
+         Obj3 := (Obj1.Last + Obj2.Last,
+                  Obj1.Data & Obj2.Data);
 
 ------
 Quiz
@@ -518,12 +512,12 @@ Mapping Ada to C Unions
          float Field3;
       };
 
-* By using a discriminant and adding the aspect :ada:`Unchecked_Union`
+* By using a discriminant record and adding aspect :ada:`Unchecked_Union`
 
    .. code:: Ada
 
-      type Union_T (Discr : Interfaces.C.Unsigned := 0) is record
-         case Discr is
+      type C_Union_T (View : natural := 0) is record
+         case View is
          when 0 => Field1 : int;
          when 1 => Field2 : char;
          when 2 => Field3 : C_Float;
@@ -538,7 +532,7 @@ Mapping Ada to C Unions
 Lab
 ========
 
-.. include:: labs/adv_060_discriminated_record_types.lab.rst
+.. include:: labs/065_discriminated_records.lab.rst
 
 =========
 Summary

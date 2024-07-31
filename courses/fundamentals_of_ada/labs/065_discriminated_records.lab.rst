@@ -1,13 +1,10 @@
---------------------------------
-Discriminated Record Types Lab
---------------------------------
+---------------------------
+Discriminated Records Lab
+---------------------------
    
 * Requirements for a simplistic employee database
    
    - Create a package to handle varying length strings using variant records
-
-      * The string type **must** be `private`!
-      * The variant can appear on the partial definition or the full
 
    - Create a package to create employee data in a variant record
 
@@ -25,26 +22,26 @@ Discriminated Record Types Lab
    - Create concatenation functions for your varying length string type
    - Is it easier to create an input function for each employee category, or a common one?
  
----------------------------------------------------
-Discriminated Record Types Lab Solution - Vstring
----------------------------------------------------
+----------------------------------------------
+Discriminated Records Lab Solution - Vstring
+----------------------------------------------
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Strings :end-before:--Strings :code:Ada :number-lines:1
+.. container:: source_include labs/answers/065_discriminated_records.txt :start-after:--Strings :end-before:--Strings :code:Ada :number-lines:1
 
-----------------------------------------------------------
-Discriminated Record Types Lab Solution - Employee (Spec)
-----------------------------------------------------------
+------------------------------------------------------
+Discriminated Records Lab Solution - Employee (Spec)
+------------------------------------------------------
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Employee_Spec :end-before:--Employee_Spec :code:Ada :number-lines:1
+.. container:: source_include labs/answers/065_discriminated_records.txt :start-after:--Employee_Spec :end-before:--Employee_Spec :code:Ada :number-lines:1
 
-----------------------------------------------------------
-Discriminated Record Types Lab Solution - Employee (Body)
-----------------------------------------------------------
+-----------------------------------------------------
+Discriminated Records Lab Solution - Employee (Body)
+-----------------------------------------------------
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Employee_Body :end-before:--Employee_Body :code:Ada :number-lines:1
+.. container:: source_include labs/answers/065_discriminated_records.txt :start-after:--Employee_Body :end-before:--Employee_Body :code:Ada :number-lines:1
 
--------------------------------------------------
-Discriminated Record Types Lab Solution - Main
--------------------------------------------------
+-------------------------------------------
+Discriminated Records Lab Solution - Main
+-------------------------------------------
 
-.. container:: source_include labs/answers/adv_060_discriminated_record_types.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include labs/answers/065_discriminated_records.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
