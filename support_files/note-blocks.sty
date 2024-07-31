@@ -1,0 +1,161 @@
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+
+% taken from https://tex.stackexchange.com/a/11481
+
+\mode<presentation>
+
+\newcommand\beamerboxesframed[2][]{%
+  \global\let\beamer@firstlineitemizeunskip=\relax%
+  \vbox\bgroup%
+  \setkeys{beamerboxes}{upper=block title,lower=block body,width=\textwidth}%
+  \setkeys{beamerboxes}{#1}%
+  {%
+    \usebeamercolor{\bmb@lower}%
+    \globalcolorstrue%
+    \colorlet{lower.bg}{bg}%
+  }%
+  {%
+    \usebeamercolor{\bmb@upper}%
+    \globalcolorstrue%
+    \colorlet{upper.bg}{bg}%
+  }%
+  %
+  % Typeset head
+  %
+  \vskip4bp
+  \setbox\bmb@box=\hbox{%
+    \begin{minipage}[b]{\bmb@width}%
+      \usebeamercolor[fg]{\bmb@upper}%
+      #2%
+    \end{minipage}}%
+  \ifdim\wd\bmb@box=0pt%
+    \setbox\bmb@box=\hbox{}%
+    \ht\bmb@box=0pt%
+    \bmb@prevheight=-4.5pt%
+  \else%
+    \wd\bmb@box=\bmb@width%
+    \bmb@temp=\dp\bmb@box%
+    \ifdim\bmb@temp<1.5pt%
+      \bmb@temp=1.5pt%
+    \fi%
+    \setbox\bmb@box=\hbox{\raise\bmb@temp\hbox{\box\bmb@box}}%
+    \dp\bmb@box=0pt%
+    \bmb@prevheight=\ht\bmb@box%
+  \fi%
+  \bmb@temp=\bmb@width%
+  \bmb@dima=\bmb@temp\advance\bmb@dima by2.2bp%
+  \bmb@dimb=\bmb@temp\advance\bmb@dimb by4bp%
+  \hbox{%
+    \begin{pgfpicture}{0bp}{+-\ht\bmb@box}{0bp}{+-\ht\bmb@box}
+      \ifdim\wd\bmb@box=0pt%
+        \color{lower.bg}%
+      \else%
+        \color{upper.bg}%
+      \fi%
+      \pgfpathqmoveto{-4bp}{-1bp}
+      \pgfpathqcurveto{-4bp}{1.2bp}{-2.2bp}{3bp}{0bp}{3bp}
+      \pgfpathlineto{\pgfpoint{\bmb@temp}{3bp}}
+      \pgfpathcurveto%
+      {\pgfpoint{\bmb@dima}{3bp}}%
+      {\pgfpoint{\bmb@dimb}{1.2bp}}%
+      {\pgfpoint{\bmb@dimb}{-1bp}}%
+      \bmb@dima=-\ht\bmb@box%
+      \advance\bmb@dima by-2pt%
+      \pgfpathlineto{\pgfpoint{\bmb@dimb}{\bmb@dima}}
+      \pgfpathlineto{\pgfpoint{-4bp}{\bmb@dima}}
+      \pgfpathclose
+      \pgfsetstrokecolor{black}\pgfusepath{stroke, fill}
+    \end{pgfpicture}%
+    \copy\bmb@box%
+  }%
+  \nointerlineskip%
+  \ifdim\wd\bmb@box=0pt
+  \else
+    \vskip2.4pt%
+  \fi%
+  \nointerlineskip%
+  \setbox\bmb@colorbox=\hbox{{\pgfpicturetrue\pgfsetcolor{lower.bg}}}%
+  \setbox\bmb@box=\hbox\bgroup\begin{minipage}[b]{\bmb@width}%
+    \vskip2pt%
+    \usebeamercolor[fg]{\bmb@lower}%
+    \colorlet{beamerstructure}{upper.bg}%
+    \colorlet{structure}{upper.bg}%
+    %\color{.}%
+}
+\def\endbeamerboxesframed{%
+  \end{minipage}\egroup%
+  \wd\bmb@box=\bmb@width%
+  \bmb@temp=\dp\bmb@box%
+  \advance\bmb@temp by.5pt%
+  \setbox\bmb@box=\hbox{\raise\bmb@temp\hbox{\box\bmb@box}}%
+  \dp\bmb@box=0pt%
+  \bmb@temp=\wd\bmb@box%
+  \bmb@dima=\bmb@temp\advance\bmb@dima by2.2bp%
+  \bmb@dimb=\bmb@temp\advance\bmb@dimb by4bp%
+  \hbox{%
+    \begin{pgfpicture}{0bp}{0bp}{0bp}{0bp}
+      \unhbox\bmb@colorbox%
+      \pgfpathmoveto{\pgfpoint{-4bp}{\ht\bmb@box}}
+      \pgfpathlineto{\pgfpoint{-4bp}{1bp}}
+      \pgfpathqcurveto{-4bp}{-1.2bp}{-2.2bp}{-3bp}{0bp}{-3bp}
+      \pgfpathlineto{\pgfpoint{\the\bmb@temp}{-3bp}}
+      \pgfpathcurveto%
+      {\pgfpoint{\the\bmb@dima}{-3bp}}%
+      {\pgfpoint{\the\bmb@dimb}{-1.2bp}}%
+      {\pgfpoint{\the\bmb@dimb}{1bp}}%
+      {
+      \bmb@dima=\ht\bmb@box%
+      \pgfpathlineto{\pgfpoint{\bmb@dimb}{\bmb@dima}}
+      \pgfsetstrokecolor{black}\pgfusepath{stroke, fill}
+      }
+    \end{pgfpicture}%
+    \box\bmb@box%
+  }%
+  \vskip2bp%
+  \egroup% of \vbox\bgroup
+}
+\makeatother
+
+\defbeamertemplate{block begin}{framed}[1][]
+{
+  \par\vskip\smallskipamount%
+  \begin{beamerboxesframed}[upper=block title,lower=block body,#1]%
+    {\raggedright\usebeamerfont*{block title}\insertblocktitle}%
+    \raggedright%
+    \usebeamerfont{block body}%
+}
+\defbeamertemplate{block end}{framed}[1][]
+{\end{beamerboxesframed}\vskip\smallskipamount}
+
+\defbeamertemplate{block alerted begin}{framed}[1][]
+{
+  \par\vskip\smallskipamount%
+  \begin{beamerboxesframed}[upper=block title alerted,lower=block body alerted,#1]%
+    {\raggedright\usebeamerfont*{block title alerted}\insertblocktitle}%
+    \raggedright%
+    \usebeamerfont{block body alerted}%
+}%
+\defbeamertemplate{block alerted end}{framed}[1][]
+{\end{beamerboxesframed}\vskip\smallskipamount}
+
+\defbeamertemplate{block example begin}{framed}[1][]
+{
+  \par\vskip\smallskipamount%
+  \begin{beamerboxesframed}[upper=block title example,lower=block body example,#1]
+    {\raggedright\usebeamerfont*{block title example}\insertblocktitle}%
+    \raggedright%
+    \usebeamerfont{block body alerted}%
+}%
+\defbeamertemplate{block example end}{framed}[1][]
+{\end{beamerboxesframed}\vskip\smallskipamount}
+
+\setbeamertemplate{blocks}[framed]
+
+\mode
+<all>
