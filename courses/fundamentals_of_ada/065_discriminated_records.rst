@@ -73,7 +73,7 @@ Defining a Discriminated Record
 
       type Employee_T (Kind : Category_T) is record ...
       type Mutable_T (Kind : Category_T := Employee) is record ...
-      type VString (Last : Natural := 0) is record ...
+      type Vstring (Last : Natural := 0) is record ...
       type C_Union_T (View : natural := 0) is record ...
 
 =================
@@ -255,44 +255,60 @@ D. None: Runtime error
 Quiz
 ------
 
-.. code:: Ada
-   :number-lines: 2
+.. container:: columns
 
-   type Coord_T is record
-      X, Y : Float;
-   end record;
+  .. container:: column
 
-   type Kind_T is (Circle, Line);
-   type Shape_T (Kind : Kind_T := Line) is record
-      Origin : Coord_T;
-      case Kind is
-         when Line =>
-            End_Point : Coord_T;
-         when Circle =>
-            End_Point : Coord_T;
-      end case;
-   end record;
+    .. container:: latex_environment tiny
 
-   A_Circle : Shape_T       :=
-     (Circle, (1.0, 2.0), (3.0, 4.0));
-   A_Line   : Shape_T(Line) :=
-     (Circle, (1.0, 2.0), (3.0, 4.0));
+      .. code:: Ada
+         :number-lines: 2
 
-What happens when you try to build and run this code?
+         type Coord_T is record
+            X, Y : Float;
+         end record;
 
-A. Runtime error
-B. Compilation error on an object
-C. :answer:`Compilation error on a type`
-D. No problems
+         type Kind_T is (Circle, Line);
+         type Shape_T (Kind : Kind_T := Line) is record
+            Origin : Coord_T;
+            case Kind is
+               when Line =>
+                  End_Point : Coord_T;
+               when Circle =>
+                  End_Point : Coord_T;
+            end case;
+         end record;
+
+         A_Circle : Shape_T       :=
+           (Circle, (1.0, 2.0), (3.0, 4.0));
+         A_Line   : Shape_T(Line) :=
+           (Circle, (1.0, 2.0), (3.0, 4.0));
+
+  .. container:: column
+
+    .. container:: latex_environment small
+
+      What happens when you try to build and run this code?
+
+      A. Runtime error
+      B. Compilation error on an object
+      C. :answer:`Compilation error on a type`
+      D. No problems
 
 .. container:: animate
 
-   * Explanations
+  .. container:: latex_environment footnotesize
 
-      A. Runtime error - If the field name on line 11 or 13 is changed, then line 18 will raise a constraint error
-      B. Compilation error on an object - only a warning on line 18
-      C. Each field name has to be unique across the entire record
+   * If you fix the compilation error (by changing the name of one of the :ada:`End_Point` fields), then
 
+      * You would get a warning on line 20 (because :ada:`A_Line` is constrained to be a :ada:`Line`
+
+         ``incorrect value for discriminant "Kind"``
+
+      * If you then ran the executable, you would get an exception 
+
+         ``CONSTRAINT_ERROR : test.adb:20 discriminant check failed``
+   
 ======================================
 Discriminant Record Array Size Idiom
 ======================================
@@ -329,7 +345,7 @@ Simple Varying Length Array
 
 .. code:: Ada
 
-   type Simple_VString is
+   type Simple_Vstring is
       record
          Last : Natural range 0 .. Max_Length := 0;
          Data : String (1 .. Max_Length) := (others => ' ');
@@ -368,7 +384,7 @@ Varying Length Array via Discriminated Records
 
    .. code:: Ada
 
-      type VString (Last : Natural := 0) is
+      type Vstring (Last : Natural := 0) is
         record
           Data   : String (1..Last) := (others => ' ');
         end record;
@@ -388,14 +404,14 @@ Object Creation
 
       .. code:: Ada
 
-         type VString (Last : Natural := 0) is record
+         type Vstring (Last : Natural := 0) is record
             Data   : String (1..Last) := (others => ' ');
          end record;
 
          Good : Vstring(10);
          Bad  : Vstring;
 
-      + Compile warning: ``warning: creation of "VString" object may raise Storage_Error``
+      + Compile warning: ``warning: creation of "Vstring" object may raise Storage_Error``
 
       + Runtime error: ``raised STORAGE_ERROR : EXCEPTION_STACK_OVERFLOW`` 
 
@@ -404,7 +420,7 @@ Object Creation
    .. code:: Ada
 
       subtype Length_T is natural range 0 .. 1_000;
-      type VString (Last : Length_T := 0) is record
+      type Vstring (Last : Length_T := 0) is record
          Data   : String (1..Last) := (others => ' ');
       end record;
 
@@ -551,8 +567,3 @@ Properties of Discriminated Record Types
 
    - Typical processing is via a case statement that "dispatches" based on discriminant
    - This centralized functional processing is in contrast to decentralized object-oriented approach
-
-* Flexibility
-
-   - Variant parts may be nested, if some components common to a set of variants
-

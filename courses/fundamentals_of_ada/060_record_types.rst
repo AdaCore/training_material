@@ -729,8 +729,10 @@ Immutable Variant Record
   type Person_Group is (Student, Faculty);
   type Person (Group : Person_Group) is
   record
+     --  Fields common across all discriminants
+     --  (must appear before variant part)
      Age : Positive;
-     case Group is
+     case Group is --  Variant part of record
         when Student => -- 1st variant
            Gpa  : Float range 0.0 .. 4.0;
         when Faculty => -- 2nd variant
@@ -764,7 +766,7 @@ Immutable Variant Record Example
   * :ada:`Sam` has :ada:`Group`, :ada:`Age`, and :ada:`Pubs`
   * Aggregate specifies all fields, including the discriminant
 
-* Compiler can detect some problems, but more often clashes are run-time errors
+* Compiler can detect some problems, but more often clashes are runtime errors
 
   .. code:: Ada
 
@@ -778,7 +780,7 @@ Immutable Variant Record Example
 
     * ``warning: Constraint_Error will be raised at run time``
 
-  * :ada:`Do_Something (Pat);` generates a run-time error, because only at run-time is the discriminant for :ada:`Param` known
+  * :ada:`Do_Something (Pat);` generates a runtime error, because only at runtime is the discriminant for :ada:`Param` known
 
     * ``raised CONSTRAINT_ERROR : discriminant check failed``
 
@@ -787,6 +789,8 @@ Immutable Variant Record Example
 ------------------------
 Mutable Variant Record
 ------------------------
+
+* To add flexibility, we can make the type :dfn:`mutable` by specifying a default value for the discriminant
 
 .. code:: Ada
    :number-lines: 2
@@ -802,11 +806,11 @@ Mutable Variant Record
            Pubs : Positive;
      end case;
   end record;
-  subtype Faculty is Person(Faculty);
 
-* :ada:`Pat : Person;` is mutable, but :ada:`Sam : Person(Faculty);` is not
+* :ada:`Pat : Person;` is **mutable**
+* :ada:`Sam : Person(Faculty);` is **not mutable**
 
-  * Defining object with discriminant value enforces the *constraint*
+  * Defining object with discriminant value (:ada:`Faculty`) enforces the *constraint*
 
 * We can change the discriminant of a mutable object
 
