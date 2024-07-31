@@ -335,8 +335,8 @@ Simple Varying Length Array
          Data : String (1 .. Max_Length) := (others => ' ');
       end record;
 
-   Obj1 : Simple_Vstring := ( 0, (others => '-'));
-   Obj2 : Simple_Vstring := ( 0, (others => '+'));
+   Obj1 : Simple_Vstring := (0, (others => '-'));
+   Obj2 : Simple_Vstring := (0, (others => '+'));
    Obj3 : Simple_Vstring;
 
 * Issue - Operations need to consider :ada:`Last` field
@@ -419,8 +419,8 @@ Simplifying Operations
 
    .. code:: Ada
 
-      Obj1 : Simple_Vstring := ( 5, "Hello");
-      Obj2 : Simple_Vstring := ( 6, " World");
+      Obj1 : Simple_Vstring := (5, "Hello");
+      Obj2 : Simple_Vstring := (6, " World");
       Obj3 : Simple_Vstring;
 
    * Equality: :ada:`Obj1 = Obj2`
@@ -454,8 +454,8 @@ Passing Records Between Ada and C
    .. code:: C
 
       struct Struct_T {
-         int Field1;
-         char Field2;
+         int   Field1;
+         char  Field2;
          float Field3;
       };
 
@@ -518,9 +518,9 @@ Mapping Ada to C Unions
 
       type C_Union_T (View : natural := 0) is record
          case View is
-         when 0 => Field1 : int;
-         when 1 => Field2 : char;
-         when 2 => Field3 : C_Float;
+         when 0 => Field1 : Interfaces.C.int;
+         when 1 => Field2 : Interfaces.C.char;
+         when 2 => Field3 : Interfaces.C.C_Float;
          when others => null;
          end case;
       end record with Convention => C_Pass_By_Copy,
