@@ -570,7 +570,7 @@ def format_note(classes, contents):
             r"\begin{"
             + block
             + "}{"
-            + r"\includegraphics[height=1.2em]{"
+            + r"\includegraphics[height=0.8em]{"
             + logo
             + r"} \textbf{"
             + name
