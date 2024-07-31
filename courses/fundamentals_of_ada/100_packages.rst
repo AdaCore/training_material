@@ -56,6 +56,29 @@ Packages
    - Abstraction
    - Separation of Concerns
 
+-------------------------------
+Basic Syntax and Nomenclature
+-------------------------------
+
+* Spec
+
+   - Basic declarative items **only**
+   - e.g. no subprogram bodies
+
+      .. code:: Ada
+
+            package name is
+               {basic_declarative_item}
+            end [name];
+
+* Body
+
+      .. code:: Ada
+
+            package body name is
+               declarative_part
+            end [name];
+
 -----------------------------------------
 Separating Interface and Implementation
 -----------------------------------------
@@ -90,29 +113,6 @@ Uncontrolled Visibility Problem
 * Changes force clients to recode and retest
 * Manual enforcement is not sufficient
 * Why fixing bugs introduces new bugs!
-
--------------------------------
-Basic Syntax and Nomenclature
--------------------------------
-
-* Spec
-
-   - Basic declarative items **only**
-   - e.g. no subprogram body
-
-      .. code:: Ada
-
-            package name is
-               {basic_declarative_item}
-            end [name];
-
-* Body
-
-      .. code:: Ada
-
-            package body name is
-               declarative_part
-            end [name];
 
 ==============
 Declarations
@@ -155,10 +155,10 @@ Compile-Time Visibility Control
 
    .. code:: Ada
 
-      package name  is
+      package Some_Package is
         -- exported declarations of
         --   types, variables, subprograms ...
-      end name;
+      end Some_Package;
 
 * Items in the body are never externally visible
 
@@ -166,11 +166,11 @@ Compile-Time Visibility Control
 
    .. code:: Ada
 
-      package body name  is
+      package body Some_Package is
         -- hidden declarations of
         --   types, variables, subprograms ...
         -- implementations of exported subprograms etc.
-      end name;
+      end Some_Package;
 
 ---------------------------------
 Example of Exporting To Clients
@@ -193,6 +193,33 @@ Example of Exporting To Clients
          ...
    end P;
 
+============================
+Referencing Other Packages
+============================
+
+----------------
+ `with` Clause
+----------------
+
+* When package :ada:`Client` needs access to package :ada:`Server`, it uses a :ada:`with` clause
+
+   - Specify the library units that :ada:`Client` depends upon
+   - The "context" in which the unit is compiled
+
+* Syntax (simplified)
+
+   .. code:: Ada
+
+      context_clause ::= { context_item }
+      context_item ::= with_clause | use_clause
+      with_clause ::= with library_unit_name
+                      { , library_unit_name };
+
+.. code:: Ada
+
+   with Server; -- dependency
+   procedure Client is
+
 ----------------------------
 Referencing Exported Items
 ----------------------------
@@ -203,7 +230,6 @@ Referencing Exported Items
    .. code:: Ada
 
       package Float_Stack is
-        Max : constant := 100;
         procedure Push (X : in Float);
         procedure Pop (X : out Float);
       end Float_Stack;
@@ -218,7 +244,52 @@ Referencing Exported Items
       begin
          Float_Stack.Pop (X);
          Float_Stack.Push (12.0);
-         if Count < Float_Stack.Max then ...
+         ...
+
+----------------------
+`with` Clause Syntax
+----------------------
+
+* A library unit is a package or subprogram that is not enclosed within another unit
+
+* Only library units may appear in a :ada:`with` statement
+
+   * Can be a package or a standalone subprogram
+
+* Due to the :ada:`with` syntax, library units cannot be overloaded
+
+   - If overloading allowed, which `P` would :ada:`with P;` refer to?
+
+----------------
+What To Import
+----------------
+
+* Need only name direct dependencies
+
+   - Those actually referenced in the corresponding unit
+
+* Will not cause compilation of referenced units
+
+   - Unlike "include directives" of some languages
+
+.. code:: Ada
+
+   package A is
+     type Something is ...
+   end A;
+
+   with A;
+   package B is
+     type Something is record
+       Field : A.Something;
+     end record;
+   end B;
+
+   with B; -- no "with" of A
+   procedure Foo is
+     X : B.Something;
+   begin
+     X.Field := ...
 
 ========
 Bodies
