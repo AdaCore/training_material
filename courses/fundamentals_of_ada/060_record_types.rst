@@ -774,7 +774,7 @@ Immutable Variant Record Example
       Param.Pubs := Param.Pubs + 1;
     end Do_Something;
 
-  * :ada:`Pat.Pubs := 3;` would generate a compile warning because compiler knows :ada:`Pat` is a :ada:`Student`
+  * :ada:`Pat.Pubs := 3;` would generate a compiler warning because compiler knows :ada:`Pat` is a :ada:`Student`
 
     * ``warning: Constraint_Error will be raised at run time``
 
