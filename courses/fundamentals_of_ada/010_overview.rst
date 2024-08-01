@@ -72,7 +72,7 @@ The Name
    - **First** computer program
    - On **Babbage's Analytical Engine**
 
-.. warn::
+.. tip::
 
     Writing **ADA** is like writing **CPLUSPLUS**
 
