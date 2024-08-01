@@ -47,6 +47,9 @@ Discriminated Record Types
 * Similar to :C:`union` in C
 
    + But preserves **type checking**
+
+      * Except in the case of an :ada:`Unchecked_Union` (seen later)
+
    + And object size **is related to** discriminant
     
 * Aggregate assignment is allowed
@@ -137,7 +140,7 @@ Immutable Variant Record
       Pat     : Employee_T (Employee);
       Sam     : Employee_T :=
          (Kind        => Contractor,
-          Name        => From_String("Sam"),
+          Name        => From_String ("Sam"),
           DOB         => "2000/01/01",
           Hourly_Rate => 123.45);
       Illegal : Employee_T;  -- indefinite
@@ -188,7 +191,7 @@ Mutable Variant Record
       end record;
 
       Pat : Mutable_T;
-      Sam : Mutable_T(Contractor);
+      Sam : Mutable_T (Contractor);
 
 * Making the variant mutable creates a definite type
 
@@ -281,7 +284,7 @@ Quiz
 
          A_Circle : Shape_T       :=
            (Circle, (1.0, 2.0), (3.0, 4.0));
-         A_Line   : Shape_T(Line) :=
+         A_Line   : Shape_T (Line) :=
            (Circle, (1.0, 2.0), (3.0, 4.0));
 
   .. container:: column
@@ -313,9 +316,9 @@ Quiz
 Discriminant Record Array Size Idiom
 ======================================
 
-----------------------------------
-Varying Lengths of Array Objects
-----------------------------------
+----------------------------
+Vectors of Varying Lengths
+----------------------------
 
 * In Ada, array objects have to be fixed length
 
@@ -324,9 +327,9 @@ Varying Lengths of Array Objects
       S : String (1..80);
       A : array (M .. K*L) of Integer;
 
-* We would like an object with a maximum length, but current length is variable
+* We would like an object with a maximum length and a variable current length
 
-   + Like a string or a stack
+   + Like a queue or a stack
    + Need two pieces of data
 
       * Array contents
@@ -337,9 +340,9 @@ Varying Lengths of Array Objects
    + Maximum size array for contents
    + Index for last valid element
 
------------------------------
-Simple Varying Length Array
------------------------------
+---------------------------------
+Simple Vector of Varying Length
+---------------------------------
 
 * Not unconstrained - we have to define a maximum length to make it a :dfn:`definite type`
 
@@ -362,15 +365,15 @@ Simple Varying Length Array
 
       .. code:: Ada
 
-         if Obj1.Data(1..Obj1.Last) = Obj2.Data(1..Obj2.Last)
+         if Obj1.Data (1..Obj1.Last) = Obj2.Data (1..Obj2.Last)
 
    * Same thing with concatentation
 
       .. code:: Ada
 
          Obj3.Last := Obj1.Last + Obj2.Last;
-         Obj3.Data(1..Obj3.Last) := Obj1.Data(1..Obj1.Last) &
-                                    Obj2.Data(1..Obj2.Last)
+         Obj3.Data (1..Obj3.Last) := Obj1.Data (1..Obj1.Last) &
+                                     Obj2.Data (1..Obj2.Last)
 * Other Issues
 
    + Every object has same maximum length
@@ -408,7 +411,7 @@ Object Creation
             Data   : String (1..Last) := (others => ' ');
          end record;
 
-         Good : Vstring(10);
+         Good : Vstring (10);
          Bad  : Vstring;
 
       + Compile warning: ``warning: creation of "Vstring" object may raise Storage_Error``
@@ -424,7 +427,7 @@ Object Creation
          Data   : String (1..Last) := (others => ' ');
       end record;
 
-      Good      : Vstring(10);
+      Good      : Vstring (10);
       Also_Good : Vstring;
 
 ------------------------
@@ -435,9 +438,15 @@ Simplifying Operations
 
    .. code:: Ada
 
-      Obj1 : Simple_Vstring := (5, "Hello");
-      Obj2 : Simple_Vstring := (6, " World");
-      Obj3 : Simple_Vstring;
+      Obj : Simple_Vstring;
+      Obj1 : Simple_Vstring := (6, " World");
+
+   * Creation
+
+      .. code:: Ada
+
+         function Make (S : String) return Vstring is (S'length, S);
+         Obj2 : Simple_Vstring := Make ("Hello");
 
    * Equality: :ada:`Obj1 = Obj2`
 
@@ -448,8 +457,8 @@ Simplifying Operations
 
       .. code:: Ada
 
-         Obj3 := (Obj1.Last + Obj2.Last,
-                  Obj1.Data & Obj2.Data);
+         Obj := (Obj1.Last + Obj2.Last,
+                 Obj1.Data & Obj2.Data);
 
 ------
 Quiz

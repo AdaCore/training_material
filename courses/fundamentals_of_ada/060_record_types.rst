@@ -703,7 +703,7 @@ Variant Records
 Variant Record Types
 ----------------------
 
-* :dfn:`Variant record` can use a **discriminant** to control access to certain fields
+* :dfn:`Variant record` can use a **discriminant** to specify alternative lists of components
 
    + Also called :dfn:`discriminated record` type
    + Different **objects** may have **different** components
@@ -740,7 +740,7 @@ Immutable Variant Record
      end case;
   end record;
 
-* Discriminant can be used in :dfn:`variant part` (line 6)
+* In a variant record, a discriminant can be used to specify the :dfn:`variant part` (line 6)
 
    + Similar to case statements (all values must be covered)
    + Fields listed will only be visible if choice matches discriminant
@@ -750,6 +750,8 @@ Immutable Variant Record
 * Discriminant is treated as any other field
 
   * But is a constant in an immutable variant record
+
+*Note that discriminants can be used for other purposes than the variant part*
 
 ----------------------------------
 Immutable Variant Record Example
@@ -790,7 +792,7 @@ Immutable Variant Record Example
 Mutable Variant Record
 ------------------------
 
-* To add flexibility, we can make the type :dfn:`mutable` by specifying a default value for the discriminant
+* Type will become :dfn:`mutable` if its discriminant has a *default value* **and** we instantiate the object without specifying a discriminant
 
 .. code:: Ada
    :number-lines: 2
@@ -808,9 +810,9 @@ Mutable Variant Record
   end record;
 
 * :ada:`Pat : Person;` is **mutable**
-* :ada:`Sam : Person(Faculty);` is **not mutable**
+* :ada:`Sam : Person (Faculty);` is **not mutable**
 
-  * Defining object with discriminant value (:ada:`Faculty`) enforces the *constraint*
+  * Declaring an object with an **explicit** discriminant value (:ada:`Faculty`) makes it immutable
 
 * We can change the discriminant of a mutable object
 
@@ -825,9 +827,11 @@ Mutable Variant Record Example
   .. code:: Ada
 
     Pat : Person := (Student, 19, 3.9);
-    Sam : Person(Faculty);
+    Sam : Person (Faculty);
 
-* You can change the discriminant of :ada:`Pat` via an aggregate assignment or a copy
+* You can only change the discriminant of :ada:`Pat` by modifying the entire record
+
+  * Aggregate assignment, object copy mechanism, etc.
 
   .. code:: Ada
 
@@ -836,6 +840,7 @@ Mutable Variant Record Example
     else
       Pat := Sam;
     end if;
+    Update (Pat);
     
 * But you cannot change the discriminant of :ada:`Sam`
 
