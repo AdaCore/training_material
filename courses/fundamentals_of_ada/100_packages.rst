@@ -593,6 +593,26 @@ Uncontrolled Data Visibility Problem
 
     .. image:: subprograms_accessing_global.png
 
+-------------------------
+Packages and "Lifetime"
+-------------------------
+
+* Like a subprogram, objects declared directly in a package exist while the package is "in scope"
+
+   * Whether the object is in the package spec or body
+
+* Packages defined at the library level (not inside a subprogram) are always "in scope"
+
+  * Including packages nested inside a package
+
+* So package objects are considered "global data"
+
+  * Putting variables in the spec exposes them to clients
+
+    * Usually - in another module we talk about data hiding in the spec
+
+  * Variables in the body can only be accessed from within the package body
+
 --------------------------------------------
 Controlling Data Visibility Using Packages
 --------------------------------------------
