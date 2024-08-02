@@ -160,7 +160,7 @@ Examples
       * **Not** the one you just defined
 
 --------------------------------
-Composition vs Non-Composition
+Composition Vs Non-Composition
 --------------------------------
 
 .. code:: Ada

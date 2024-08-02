@@ -361,9 +361,9 @@ Case Statements
       choice ::= <expression> | <discrete range>
                 | others { "|" <other choice> }
 
-----------------------
-Simple case Statements
-----------------------
+------------------------
+Simple "case" Statements
+------------------------
 
 .. code:: Ada
 

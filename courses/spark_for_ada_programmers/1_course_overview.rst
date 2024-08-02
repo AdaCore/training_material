@@ -142,7 +142,7 @@ SPARK
 =======
 
 ----------------
-What is SPARK?
+What Is SPARK?
 ----------------
 
 * SPARK is
@@ -154,7 +154,7 @@ What is SPARK?
 * All of the above!
 
 ----------------
-What is SPARK?
+What Is SPARK?
 ----------------
 
 * Programming language - relationship with Ada:

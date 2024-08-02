@@ -32,7 +32,7 @@ GNAT SAS Overview
 .. |checkmark| replace:: :math:`\checkmark`
 
 ===================
-What is GNAT SAS?
+What Is GNAT SAS?
 ===================
 
 ..
@@ -65,7 +65,7 @@ What is GNAT SAS?
 .. |checkmark| replace:: :math:`\checkmark`
 
 ------------------------------
-GNAT SAS In A Nutshell (1/2)
+GNAT SAS in a Nutshell (1/2)
 ------------------------------
 
 + :toolname:`GNAT SAS` is a static analysis tool
@@ -86,7 +86,7 @@ GNAT SAS In A Nutshell (1/2)
   + Maintain historical comments
 
 ------------------------------
-GNAT SAS In A Nutshell (2/2)
+GNAT SAS in a Nutshell (2/2)
 ------------------------------
 
 + Large Ada support
@@ -149,7 +149,7 @@ Integrated Analysis Engines
   + Fully integrated with GNAT SAS
 
 -----------------------------
-Typical Users And Use Cases
+Typical Users and Use Cases
 -----------------------------
 
 + Developers, during code-writing

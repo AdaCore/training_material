@@ -436,7 +436,7 @@ Migrating to SPARK
 ====================
 
 -----------------------------
-Migrating from Ada to SPARK
+Migrating From Ada to SPARK
 -----------------------------
 
 * Analyzing the Ada code will point to SPARK violations
@@ -481,7 +481,7 @@ Adoption Guidance Document
        :width: 100%
 
 ---------------------------
-Migrating from C to SPARK
+Migrating From C to SPARK
 ---------------------------
 
 * Same recommendations as when migrating from C to Ada

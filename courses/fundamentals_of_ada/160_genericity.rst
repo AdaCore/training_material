@@ -160,7 +160,7 @@ What Can Be Made Generic?
          procedure Print (S : Stack_T);
 
 ---------------------------
-How Do You Use A Generic?
+How Do You Use a Generic?
 ---------------------------
 
 * Generic instantiation is creating new set of data where a generic package contains library-level variables:
@@ -324,7 +324,7 @@ Generic Formal Data
 =====================
 
 --------------------------------------------
-Generic Constants/Variables as Parameters
+Generic Constants/Variables As Parameters
 --------------------------------------------
 
 .. container:: columns
@@ -481,7 +481,7 @@ Quiz
   language_version 2005
 
 ----------------------
-Quiz Answer In Depth
+Quiz Answer in Depth
 ----------------------
 
       A. Wrong - result for :ada:`procedure Instance is new Math;`
@@ -578,7 +578,7 @@ Summary
 =========
 
 -------------------------------------
-Generic Routines vs Common Routines
+Generic Routines Vs Common Routines
 -------------------------------------
 
 .. code:: Ada

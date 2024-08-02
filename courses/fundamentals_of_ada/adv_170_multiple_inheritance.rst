@@ -36,7 +36,7 @@ Introduction
 ==============
 
 ------------------------------------------
-Multiple Inheritance Is Forbidden In Ada
+Multiple Inheritance Is Forbidden in Ada
 ------------------------------------------
 
 * There are potential conflicts with multiple inheritance
@@ -149,7 +149,7 @@ Interface Derivation
       type R2 is new R1 and I1 and I2 ...
 
 ------------------------
-Interfaces And Privacy
+Interfaces and Privacy
 ------------------------
 
 * If the partial view of the type is tagged, then both the partial and the full view must expose the same interfaces
@@ -166,7 +166,7 @@ Interfaces And Privacy
          type R is new I1 with record ...
 
 -------------------------------------
-Limited Tagged Types And Interfaces
+Limited Tagged Types and Interfaces
 -------------------------------------
 
 * When a tagged type is limited in the hierarchy, the whole hierarchy has to be limited

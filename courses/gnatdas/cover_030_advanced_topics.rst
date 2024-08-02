@@ -139,7 +139,7 @@ Indicating Projects of Interest
        ``gnatcov instrument -Psdc.gpr --projects=sdc --projects=io --level=stmt``
 
 ----------------------------------------------
-Indicating Units of Interest within Projects
+Indicating Units of Interest Within Projects
 ----------------------------------------------
 
 * By default, all units within project(s) of interest are considered *units of interest*

@@ -84,7 +84,7 @@ Getting Around Accessibility Checks
    Not the best way to write code
 
 -------------------------------------------
-Using Access Types For Recursive Structures
+Using Access Types for Recursive Structures
 -------------------------------------------
 
 * It is not possible to declare recursive structure

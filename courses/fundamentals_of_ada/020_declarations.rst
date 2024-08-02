@@ -255,7 +255,7 @@ Based Numeric Literals
       8#10#E+3          => 4096 (8 * 8**3)
 
 --------------------------------------------
-Comparison To C's Based Literals
+Comparison to C's Based Literals
 --------------------------------------------
 
 * Design in reaction to C issues
@@ -363,7 +363,7 @@ Predefined Declarations
 * Also, implementation specific extensions
 
 ------------------------------------
-Implicit vs. Explicit Declarations
+Implicit Vs Explicit Declarations
 ------------------------------------
 
 * :dfn:`Explicit` |rightarrow| in the source

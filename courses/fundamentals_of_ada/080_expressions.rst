@@ -76,7 +76,7 @@ Membership Tests
    C : Boolean := X not in 0..5; -- also "not (X in 0..5)"
 
 ------------------------------------
-Testing Constraints via Membership
+Testing Constraints Via Membership
 ------------------------------------
 
 .. code:: Ada
@@ -164,7 +164,7 @@ Qualification
    - Enhancing readability via explicitness
 
 ---------------------------------------
-Testing Constraints via Qualification
+Testing Constraints Via Qualification
 ---------------------------------------
 
 * Asserts value is compatible with subtype
@@ -340,7 +340,7 @@ Rationale for Parentheses Requirement
          Subprogram_Call (if A then B else C);
 
 ------------------------------
-When To Use *If Expressions*
+When to Use *If Expressions*
 ------------------------------
 
 * When you need computation to be done prior to sequence of statements

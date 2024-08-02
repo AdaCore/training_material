@@ -94,7 +94,7 @@ Views
    - Abstract Data Types
 
 ============================================
-Implementing Abstract Data Types via Views
+Implementing Abstract Data Types Via Views
 ============================================
 
 ----------------------------------
@@ -552,11 +552,11 @@ Limited Private
        end if;
 
 ====================================
-When To Use or Avoid Private Types
+When to Use or Avoid Private Types
 ====================================
 
 ---------------------------
-When To Use Private Types
+When to Use Private Types
 ---------------------------
 
 * Implementation may change
@@ -581,7 +581,7 @@ When To Use Private Types
    - Based upon expected usage
 
 -----------------------------
-When To Avoid Private Types
+When to Avoid Private Types
 -----------------------------
 
 * If the abstraction is too simple to justify the effort

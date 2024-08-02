@@ -56,7 +56,7 @@ Data Representation
 =====================
 
 -------------------------------------
-Data Representation vs Requirements
+Data Representation Vs Requirements
 -------------------------------------
 
 * Developer usually defines requirements on a type
@@ -496,7 +496,7 @@ Package Interfaces
 * With shift/rotation functions for unsigned types
 
 ------------------------------
-Fat/Thin pointers for Arrays
+Fat/Thin Pointers for Arrays
 ------------------------------
 
 * Unconstrained array access is a fat pointer

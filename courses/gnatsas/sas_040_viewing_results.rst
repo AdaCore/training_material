@@ -290,7 +290,7 @@ GUI Reports
 =============
 
 ---------------------------------
-Viewing Reports via GNAT Studio
+Viewing Reports Via GNAT Studio
 ---------------------------------
 
 * To view report from within :toolname:`GNAT Studio`

@@ -33,7 +33,7 @@ Preparing the Command Line
     * The keyword at the end (*Easy*, *Medium*, *Major*) indicates the difficulty in remediating the issue
 
 -------------------------------
-Running from the Command Line
+Running From the Command Line
 -------------------------------
 
 .. container:: latex_environment scriptsize
@@ -65,7 +65,7 @@ Preparing the GUI
    :menu:`Edit` -> :menu:`Project Properties` -> :menu:`Switches` -> :menu:`GNATcheck`
 
 ----------------------
-Running from the GUI
+Running From the GUI
 ----------------------
 
 .. container:: columns
