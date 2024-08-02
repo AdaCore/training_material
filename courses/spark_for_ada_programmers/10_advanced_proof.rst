@@ -710,7 +710,7 @@ Formal Model of Formal Containers
     + :ada:`Keys` for maps
 
 ------------------------------------------------
-Difficulties With Loops Over Formal Containers
+Difficulties with Loops Over Formal Containers
 ------------------------------------------------
 
 * :toolname:`GNATprove` does not unroll such loops

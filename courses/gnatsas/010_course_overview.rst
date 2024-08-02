@@ -49,7 +49,7 @@ GNAT Static Analysis Suite (GNAT SAS)
 =======================================
 
 --------------------------
-What is Static Analysis?
+What Is Static Analysis?
 --------------------------
 
 + **Symbolic** interpretation of **source code**

@@ -746,7 +746,7 @@ Subtype Predicates Aren't Bullet-Proof
    end Demo;
 
 ------------------------------------------
-Beware Accidental Recursion In Predicate
+Beware Accidental Recursion in Predicate
 ------------------------------------------
 
 * Involves functions because predicates are expressions
@@ -883,7 +883,7 @@ Working with Type Invariants
 * However, reasonable designs will be foolproof
 
 -------------------------------
-Type Invariants vs Predicates
+Type Invariants Vs Predicates
 -------------------------------
 
 * Type Invariants are valid at external boundary

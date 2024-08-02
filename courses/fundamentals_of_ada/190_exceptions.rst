@@ -194,7 +194,7 @@ Exception Handlers Syntax
       exception_choice ::= exception_name | others
 
 -------------------------------
-Similarity To Case Statements
+Similarity to Case Statements
 -------------------------------
 
 * Both structure and meaning
@@ -245,7 +245,7 @@ Handlers Don't "Fall Through"
    end;
 
 -----------------------------
-When An Exception Is Raised
+When an Exception Is Raised
 -----------------------------
 
 .. container:: columns
@@ -659,7 +659,7 @@ D. ``Program Error``
   D. :ada:`Program_Error` will be raised by :ada:`F` if :ada:`P` < 0 (no :ada:`return` statement found)
 
 =======================
-Exceptions as Objects
+Exceptions As Objects
 =======================
 
 ----------------------------
@@ -805,7 +805,7 @@ Exceptions Are Not Always Appropriate
     .. image:: airbag_exception_handler.png
 
 ---------------------------------------
-Relying On Exception Raising Is Risky
+Relying on Exception Raising Is Risky
 ---------------------------------------
 
 * They may be **suppressed**

@@ -76,7 +76,7 @@ LKQL
 ======
 
 ----------------------------------------
-LKQL features (general purpose subset)
+LKQL Features (General Purpose Subset)
 ----------------------------------------
 
 * You can easily define a function in LKQL
@@ -113,7 +113,7 @@ LKQL features (general purpose subset)
      }
 
 ------------------------------
-LKQL features (query subset)
+LKQL Features (Query Subset)
 ------------------------------
 
 * LKQL allows you to write queries to fetch all nodes which satisfy a given pattern
@@ -163,7 +163,7 @@ LKQL API References
     * Includes definitions of typical functions like ``print`` and ``children``
 
 ----------------------------
-Testing LKQL with its REPL
+Testing LKQL with Its REPL
 ----------------------------
 
 * LKQL has an interactive REPL *(Read-Eval-Print-Loop)*
@@ -506,7 +506,7 @@ Summary
 =========
 
 ---------------------------
-Future evolutions of LKQL
+Future Evolutions of LKQL
 ---------------------------
 
 * Adding a custom LAL API documentation for LKQL (for now user can rely on the LAL Python API documentation )

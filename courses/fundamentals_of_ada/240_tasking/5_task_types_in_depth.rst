@@ -81,7 +81,7 @@ Task Scope
       end P;
 
 ------------------------------
-Waiting On Different Entries
+Waiting on Different Entries
 ------------------------------
 
 * It is convenient to be able to accept several entries

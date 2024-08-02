@@ -23,7 +23,7 @@ General Access Types
       V2 : T_Access_2 := T_Access_2 (V); -- legal
 
 -----------------------
-Referencing The Stack
+Referencing the Stack
 -----------------------
 
 * By default, stack-allocated objects cannot be referenced - and can even be optimized into a register by the compiler

@@ -457,7 +457,7 @@ Application-Defined String Types
    Orwellian : constant Roman_Number := "MCMLXXXIV";
 
 ------------------------------------------
-Specifying Constraints via Initial Value
+Specifying Constraints Via Initial Value
 ------------------------------------------
 
 * Lower bound is :ada:`Index_subtype'First`
@@ -801,7 +801,7 @@ Slicing
 Result: ``We love Ada!``
 
 ----------------------------------------
-Example: Slicing With Explicit Indexes
+Example: Slicing with Explicit Indexes
 ----------------------------------------
 
 * Imagine a requirement to have a ISO date
@@ -1492,7 +1492,7 @@ Delta Aggregates
 *This works for records as well (see that chapter)*
 
 ===================================
-Detour - 'Image For Complex Types
+Detour - 'Image for Complex Types
 ===================================
 
 ------------------

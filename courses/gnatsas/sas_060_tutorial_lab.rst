@@ -348,7 +348,7 @@ False Positive
 ================
 
 ----------------------------------------
-Messages For Something That is Correct
+Messages for Something That Is Correct
 ----------------------------------------
 
 * Not all messages reported by :toolname:`GNAT SAS` are actual errors

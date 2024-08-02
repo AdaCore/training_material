@@ -127,7 +127,7 @@ Type Predicates
 =================
 
 ---------------------------
-What is a Type Predicate?
+What Is a Type Predicate?
 ---------------------------
 
 * Boolean property that should **always hold** for objects of the type
@@ -160,7 +160,7 @@ What is a Type Predicate?
 * Like a type constraint, part of membership test :ada:`X in T`
 
 -----------------------------
-Static vs Dynamic Predicate
+Static Vs Dynamic Predicate
 -----------------------------
 
 * **Static** predicates are **more restricted**
@@ -375,7 +375,7 @@ Static Checking of Predicates
   type constraints and predicates
 
 --------------------------------
-Beware Recursion In Predicates
+Beware Recursion in Predicates
 --------------------------------
 
 * Infinite recursion when calling inside the predicate a function taking the
@@ -408,7 +408,7 @@ Type Invariants
 =================
 
 ---------------------------
-What is a Type Invariant?
+What Is a Type Invariant?
 ---------------------------
 
 * Boolean property that should always hold of objects of the type
@@ -486,7 +486,7 @@ Static Checking of Type Invariants
   - An expression function deferred to the body can be used to perform an abstraction
 
 -------------------------------------
-Beware Recursion In Type Invariants
+Beware Recursion in Type Invariants
 -------------------------------------
 
 * Infinite recursion when calling inside the type invariant a *boundary

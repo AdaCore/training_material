@@ -48,7 +48,7 @@ When running the analysis, the tool maintains data files to store messages, incl
     *Static Analysis Review* file containing user-specified message reviews
 
 -------------------------------
-Running from the Command Line
+Running From the Command Line
 -------------------------------
 
 + This command only performs the analysis (typically used for simple testing or automation)
@@ -62,7 +62,7 @@ Running from the Command Line
   + More information in next section
 
 ----------------------
-Running from the GUI
+Running From the GUI
 ----------------------
 
 + From :toolname:`GNAT Studio`

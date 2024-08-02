@@ -244,7 +244,7 @@ Existential Quantifier Illustration
   language_version 2012
 
 -----------------------------------------
-Index-Based vs Component-Based Indexing
+Index-Based Vs Component-Based Indexing
 -----------------------------------------
 
 * Given an array of Integers
@@ -302,7 +302,7 @@ Index-Based vs Component-Based Indexing
   language_version 2012
 
 ---------------------------
- When The Set Is Empty...
+ When the Set Is Empty...
 ---------------------------
 
 * Universally quantified expressions are True

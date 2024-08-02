@@ -567,7 +567,7 @@ Integrating SPARK and Other Programming Languages
     + Thick binding defines wrappers around thin binding
 
 --------------------------------------------
-Integrating With Main Procedure not in Ada
+Integrating with Main Procedure Not in Ada
 --------------------------------------------
 
 * GNAT compiler generates startup and closing code

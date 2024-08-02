@@ -368,7 +368,7 @@ Real Base Decimal Precision
    - :ada:`My_Type` will have 12 **or** 24 digits of precision
 
 ---------------------------------
-Floating Point Division By Zero
+Floating Point Division by Zero
 ---------------------------------
 
 * Language-defined do as the machine does
@@ -440,7 +440,7 @@ Modular Range Must Be Respected
    end P_Unsigned;
 
 --------------------------------------
-Safely Converting Signed To Unsigned
+Safely Converting Signed to Unsigned
 --------------------------------------
 
 * Conversion may raise :ada:`Constraint_Error`
@@ -628,7 +628,7 @@ Enumeration Representation Values
       + Ada 2022 attributes :ada:`T'Enum_Rep`, :ada:`T'Enum_Val`
 
 -----------------------------------------
-Order Attributes For All Discrete Types
+Order Attributes for All Discrete Types
 -----------------------------------------
 
 * **All discrete** types, mostly useful for enumerated types

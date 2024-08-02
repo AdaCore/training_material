@@ -408,7 +408,7 @@ Final Result
       test_pkg.ads:31:09: Integer type could be replaced by an enumeration
 
 -------------------------------
-Improving The Behavior Part 1
+Improving the Behavior Part 1
 -------------------------------
 
 * Speed of the rule as written is slow
@@ -432,7 +432,7 @@ Improving The Behavior Part 1
              UnOp(f_op is OpAbs or OpMinus or OpPlus or OpNot)].to_list
 
 -------------------------------
-Improving The Behavior Part 2
+Improving the Behavior Part 2
 -------------------------------
 
 * Take advantage of conditional short circuiting

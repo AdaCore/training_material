@@ -36,7 +36,7 @@ Type Views
 ============
 
 ---------------------------------------
-Capabilities / Constraints Of A Type
+Capabilities / Constraints of a Type
 ---------------------------------------
 
 * :dfn:`Constraints` in a type declaration
@@ -53,7 +53,7 @@ Capabilities / Constraints Of A Type
     - Tagged extensions
 
 --------------------------------
-Partial Vs Full View Of A Type
+Partial Vs Full View of a Type
 --------------------------------
 
 * If the partial view declares **capabilities**, the full view **must provide** them
@@ -260,7 +260,7 @@ Incomplete Types
    - As formal parameter of generics accepting an incomplete type
 
 -------------------------------------
-How To Get An Incomplete Type View?
+How to Get an Incomplete Type View?
 -------------------------------------
 
 * From an explicit declaration
@@ -286,7 +286,7 @@ How To Get An Incomplete Type View?
       end P;
 
 --------------------------------------
-Type Completion Deferred To The Body
+Type Completion Deferred to the Body
 --------------------------------------
 
 * In the private part of a package, it is possible to defer the completion of an incomplete type to the body
@@ -325,7 +325,7 @@ Private Library Units
 =======================
 
 -------------------------
-Child Units And Privacy
+Child Units and Privacy
 -------------------------
 
 * Normally, a child public part cannot view a parent private part
@@ -397,7 +397,7 @@ Importing a Private Child
         end Main;
 
 ----------------------------------
-Private Children And :ada:`with`
+Private Children and :ada:`with`
 ----------------------------------
 
 .. code:: Ada
@@ -452,7 +452,7 @@ Private Children And :ada:`with`
 * Clients of :ada:`Root.Child2` don't have any visibility on :ada:`Root.Child1`
 
 ------------------------------------------------------------
-Children "Inherit" From Private Properties Of Parent
+Children "Inherit" From Private Properties of Parent
 ------------------------------------------------------------
 
 * Private property always refers to the direct parent
