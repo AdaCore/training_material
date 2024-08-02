@@ -553,6 +553,44 @@ Mapping Ada to C Unions
 
    * This tells the compiler not to reserve space in the record for the discriminant
 
+------
+Quiz
+------
+
+.. code:: C
+
+   union Union_T {
+      struct Record_T field1;
+      char            field2[11];
+      float           field3;
+   };
+
+.. code:: Ada
+
+    type C_Union_T (Flag : Natural := 1) is record
+        case Sign is
+        when 1 =>
+            One   : Record_T;
+        when 2 =>
+            Two   : String(1..11);
+        when 3 =>
+            Three : Float;
+        end case;
+    end record;
+
+    C_Object : C_Union_T;
+
+Which component does :ada:`C_Object` contain?
+
+   A. :ada:`C_Object.One`
+   B. :ada:`C_Object.Two`
+   C. :answer:`None: Compilation error`
+   D. None: Runtime error
+
+.. container:: animate
+
+    The variant :ada:`case` must cover all the possible values of :ada:`Natural`.
+
 ========
 Lab
 ========

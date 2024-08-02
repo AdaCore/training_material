@@ -829,9 +829,7 @@ Mutable Variant Record Example
     Pat : Person := (Student, 19, 3.9);
     Sam : Person (Faculty);
 
-* You can only change the discriminant of :ada:`Pat` by modifying the entire record
-
-  * Aggregate assignment, object copy mechanism, etc.
+* You can only change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
 
   .. code:: Ada
 
