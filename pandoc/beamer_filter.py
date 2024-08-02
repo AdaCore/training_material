@@ -350,6 +350,13 @@ def source_file_contents(filename, keywords):
         return filename
 
 
+NOTE_FORMAT = {
+    "warn": ("alertblock", "warn.pdf", r"Warning"),
+    "info": ("block", "info.pdf", "Info"),
+    "tip": ("exampleblock", "lightbulb.pdf", "Tip"),
+}
+
+
 SUPPORTED_CLASSES = [
     "container",
     "source_include",
@@ -360,7 +367,7 @@ SUPPORTED_CLASSES = [
     "column",
     "latex_environment",
     "footnotesize",
-]
+] + list(NOTE_FORMAT.keys())
 
 
 def source_include(classes, contents):
@@ -504,6 +511,75 @@ def latex_environment(classes, contents):
 
     else:
         return contents
+
+
+###########
+## NOTES ##
+###########
+
+"""
+   Support for notes, such as tip, warn, info
+"""
+
+
+class BeamerFilteredResult:
+    def __init__(self):
+        self.value = []
+
+    def copy(self):
+        r = BeamerFilteredResult()
+        r.value = self.value[:]
+        return r
+
+    def plus(self, d: dict):
+        r = self.copy()
+        r.value.append(d)
+        return r
+
+    def RawBlock(self, t, c):
+        return self.plus({"t": "RawBlock", "c": [t, c]})
+
+    def latex(self, content):
+        return self.RawBlock("latex", content)
+
+    def beamer_content(self, content):
+        return self.plus(content)
+
+    def beamer_contents(self, contents):
+        r = self.copy()
+
+        for c in contents:
+            r = r.plus(c)
+
+        return r
+
+
+def is_note(classes):
+    return any(note_type in classes for note_type in NOTE_FORMAT.keys())
+
+
+def format_note(classes, contents):
+    note_types = [c for c in classes if c in NOTE_FORMAT.keys()]
+    assert len(note_types) == 1, "note must be of a single type at a time"
+    note_type = note_types[0]
+    block, logo, name = NOTE_FORMAT[note_type]
+
+    return (
+        BeamerFilteredResult()
+        .latex(
+            r"\begin{"
+            + block
+            + "}{"
+            + r"\includegraphics[height=0.8em]{"
+            + logo
+            + r"} \textbf{"
+            + name
+            + "}}"
+        )
+        .beamer_contents(contents)
+        .latex(r"\end{" + block + "}")
+        .value
+    )
 
 
 #####################
@@ -733,6 +809,9 @@ def perform_filter(key, value, format, meta):
             # language variant admonition
             elif admonition_type(classes, contents) == "language variant":
                 return language_variant_admonition(contents)
+
+            elif is_note(classes):
+                return format_note(classes, contents)
 
 
 if __name__ == "__main__":

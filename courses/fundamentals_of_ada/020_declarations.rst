@@ -151,12 +151,15 @@ Pragmas
    - **No effect**
    - Cause **warning** (standard mode)
 
-* Malformed pragmas are **illegal**
-
 .. code:: Ada
 
    pragma Page;
    pragma Optimize (Off);
+
+.. warn::
+
+   Malformed pragmas are **illegal**
+   e.g. :ada:`pragma Malformed Would_Needs_Parentheses;`
 
 ----------------------------------------------
 Declaring Constants / Variables (simplified)
