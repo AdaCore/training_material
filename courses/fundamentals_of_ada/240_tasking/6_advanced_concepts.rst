@@ -54,7 +54,7 @@ Waiting With a Delay
     end select;
   end loop;
 
-*Task will wait up to 50 seconds for* :ada:`Receive_Message`, *print a message, and then enter the loop. Without the* :ada:`exit` *it will print the message and wait another 50 seconds, and so on*
+*Task will wait up to 50 seconds for* :ada:`Receive_Message`. *If no message is received, it will write to the console, and then restart the loop. (If the* :ada:`exit` *wasn't there, the loop would exit the first time no message was received.)*
 
 ------------------------------------------
 Calling an Entry With a Delay Protection
