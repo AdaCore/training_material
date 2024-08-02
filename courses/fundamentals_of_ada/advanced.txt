@@ -5,7 +5,7 @@ adv_075_primitives.rst
 adv_080_quantified_expressions.rst
 120_limited_types.rst
 adv_120_advanced_privacy.rst
-adv_140_access_types.rst
+140_access_types-advanced.rst
 160_genericity.rst
 170_tagged_derivation.rst
 adv_170_multiple_inheritance.rst
