@@ -205,6 +205,8 @@ Referencing Other Packages
 
    - Specify the library units that :ada:`Client` depends upon
    - The "context" in which the unit is compiled
+   - :ada:`Client`'s code gets **visibility** over :ada:`Server`'s specification
+
 
 * Syntax (simplified)
 
@@ -250,7 +252,11 @@ Referencing Exported Items
 `with` Clause Syntax
 ----------------------
 
-* A library unit is a package or subprogram that is not enclosed within another unit
+* A library unit is a package or subprogram that is not nested within another unit
+
+   - Typically in its own file(s)
+
+     - e.g. for package :ada:`Test`, GNAT defaults to expect the spec in :filename:`test.ads` and body in :filename:`test.adb`)
 
 * Only library units may appear in a :ada:`with` statement
 

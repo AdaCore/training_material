@@ -747,9 +747,9 @@ Main Subprograms
 
   * Not nested inside another subprogram
 
-* No special program unit name required
-* Can be many per program library
-* Always can be procedures
+* No special subprogram unit name required
+* Can be many per project
+* Can always be procedures
 * Can be functions if implementation allows it
 
    - Execution environment must know how to handle result
