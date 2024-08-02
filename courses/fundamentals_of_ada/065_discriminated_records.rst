@@ -159,7 +159,7 @@ Immutable Variant Record Usage
 
    ``warning: component not present in subtype of "Employee_T" defined at line 24``
 
-* But more often clashes are run-time errors
+* But more often clashes are runtime errors
 
    .. code:: Ada
      :number-lines: 32
@@ -203,17 +203,16 @@ Mutable Variant Record
 Mutable Variant Record Example
 --------------------------------
 
-* We can change the discriminant of a mutable object
-
-  * But only via a copy / aggregate assignment
+* You can only change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
 
   .. code:: Ada
 
-    if Pat.Kind = Contractor then
-      Pat := (Employee, Pat.Name, Pat.Age, 12.34);
+    if Pat.Group = Student then
+      Pat := (Faculty, Pat.Age, 1);
     else
       Pat := Sam;
     end if;
+    Update (Pat);
 
 * But you cannot change the discriminant like a regular field
 
@@ -320,11 +319,11 @@ Discriminant Record Array Size Idiom
 Vectors of Varying Lengths
 ----------------------------
 
-* In Ada, array objects have to be fixed length
+* In Ada, array objects must be fixed length
 
    .. code:: Ada
 
-      S : String (1..80);
+      S : String (1 .. 80);
       A : array (M .. K*L) of Integer;
 
 * We would like an object with a maximum length and a variable current length
@@ -365,23 +364,23 @@ Simple Vector of Varying Length
 
       .. code:: Ada
 
-         if Obj1.Data (1..Obj1.Last) = Obj2.Data (1..Obj2.Last)
+         if Obj1.Data (1 .. Obj1.Last) = Obj2.Data (1 .. Obj2.Last)
 
    * Same thing with concatentation
 
       .. code:: Ada
 
          Obj3.Last := Obj1.Last + Obj2.Last;
-         Obj3.Data (1..Obj3.Last) := Obj1.Data (1..Obj1.Last) &
-                                     Obj2.Data (1..Obj2.Last)
+         Obj3.Data (1 .. Obj3.Last) := Obj1.Data (1 .. Obj1.Last) &
+                                       Obj2.Data (1 .. Obj2.Last)
 * Other Issues
 
    + Every object has same maximum length
    + ``Last`` needs to be maintained by program logic
 
-------------------------------------------------
-Varying Length Array via Discriminated Records
-------------------------------------------------
+----------------------------------------------------
+Vector of Varying Length via Discriminated Records
+----------------------------------------------------
 
 * Discriminant can serve as bound of array component
 
@@ -389,7 +388,7 @@ Varying Length Array via Discriminated Records
 
       type Vstring (Last : Natural := 0) is
         record
-          Data   : String (1..Last) := (others => ' ');
+          Data   : String (1 .. Last) := (others => ' ');
         end record;
 
 * Mutable objects vs immutable objects
@@ -408,15 +407,19 @@ Object Creation
       .. code:: Ada
 
          type Vstring (Last : Natural := 0) is record
-            Data   : String (1..Last) := (others => ' ');
+            Data   : String (1 .. Last) := (others => ' ');
          end record;
 
          Good : Vstring (10);
          Bad  : Vstring;
 
-      + Compile warning: ``warning: creation of "Vstring" object may raise Storage_Error``
+      + Compiler warning
 
-      + Runtime error: ``raised STORAGE_ERROR : EXCEPTION_STACK_OVERFLOW`` 
+         ``warning: creation of "Vstring" object may raise Storage_Error``
+
+      + Runtime error
+
+         ``raised STORAGE_ERROR : EXCEPTION_STACK_OVERFLOW`` 
 
 * Better implementation
 
@@ -424,7 +427,7 @@ Object Creation
 
       subtype Length_T is natural range 0 .. 1_000;
       type Vstring (Last : Length_T := 0) is record
-         Data   : String (1..Last) := (others => ' ');
+         Data   : String (1 .. Last) := (others => ' ');
       end record;
 
       Good      : Vstring (10);
@@ -445,7 +448,8 @@ Simplifying Operations
 
       .. code:: Ada
 
-         function Make (S : String) return Vstring is (S'length, S);
+         function Make (S : String)
+           return Vstring is (S'length, S);
          Obj2 : Simple_Vstring := Make ("Hello");
 
    * Equality: :ada:`Obj1 = Obj2`
@@ -572,7 +576,7 @@ Quiz
         when 1 =>
             One   : Record_T;
         when 2 =>
-            Two   : String(1..11);
+            Two   : String(1 .. 11);
         when 3 =>
             Three : Float;
         end case;
