@@ -739,6 +739,29 @@ Return Statements In Procedures
          ...
        end P; -- automatic return
 
+------------------
+Main Subprograms
+------------------
+
+* Must be library subprograms
+
+  * Not nested inside another subprogram
+
+* No special subprogram unit name required
+* Can be many per project
+* Can always be procedures
+* Can be functions if implementation allows it
+
+   - Execution environment must know how to handle result
+
+.. code:: Ada
+
+   with Ada.Text_IO;
+   procedure Hello is
+   begin
+     Ada.Text_IO.Put ("Hello World");
+   end Hello;
+
 ====================
 Function Specifics
 ====================
