@@ -49,7 +49,7 @@ GNAT Dynamic Analysis Suite (GNAT DAS)
 ========================================
 
 ---------------------------
-What is Dynamic Analysis?
+What Is Dynamic Analysis?
 ---------------------------
 
 + Process of testing and evaluating an application while it is running

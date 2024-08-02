@@ -280,7 +280,7 @@ SPARK
 =======
 
 --------------------------
-SPARK is a Formal Method
+SPARK Is a Formal Method
 --------------------------
 
 * **Soundness** is the most important requirement (no missing alarms)
@@ -302,7 +302,7 @@ SPARK is a Formal Method
   - Then :ada:`Integer'Last - X` cannot overflow
 
 ----------------------------
-SPARK is a Language Subset
+SPARK Is a Language Subset
 ----------------------------
 
 * Static analysis is **very tied** to the programming language

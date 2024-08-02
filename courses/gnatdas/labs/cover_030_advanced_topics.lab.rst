@@ -21,7 +21,7 @@ Advanced Topics Lab
 *Note: Many of the following pages use animation to first give you a task and then show you how to do it.* :menu:`Page Down` *does not always go to the next page!*
 
 -------------------------------
-Quick Note on The Application
+Quick Note on the Application
 -------------------------------
 
 * **SDC** stands for *Simple Desktop Calculator*

@@ -165,7 +165,7 @@ Generalized :ada:`'Image`
 .
 
 ---------------------------
-User-defined :ada:`Image`
+User-Defined :ada:`Image`
 ---------------------------
 
 * User-defined types can have a :ada:`Image` attribute
@@ -188,7 +188,7 @@ User-defined :ada:`Image`
 * Using the new package :ada:`Text_Buffers`
 
 ------------------------------------
-User-defined :ada:`'Image` example
+User-Defined :ada:`'Image` Example
 ------------------------------------
 
 * :filename:`custom_image.ads`
@@ -202,7 +202,7 @@ User-defined :ada:`'Image` example
    :code: Ada
 
 -----------------------
-User-defined literals
+User-Defined Literals
 -----------------------
 
 * User-defined types can accept literals as inputs
@@ -245,7 +245,7 @@ Square Bracket Array Aggregates
     :code: Ada
 
 -------------------
-Iteration filters
+Iteration Filters
 -------------------
 
 * For any iteration
@@ -261,7 +261,7 @@ Iteration filters
     :code: Ada
 
 ----------------------
-Container aggregates
+Container Aggregates
 ----------------------
 
 * Using :ada:`with Aggregate => (<Args>)`
@@ -282,7 +282,7 @@ Container aggregates
 * Implemented on standard lib's containers
 
 ------------------
-Delta aggregates
+Delta Aggregates
 ------------------
 
 * Can build an object from another one

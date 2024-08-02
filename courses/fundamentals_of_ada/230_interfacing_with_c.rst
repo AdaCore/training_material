@@ -149,7 +149,7 @@ Parameter Passing to/from C
 * The exact meaning of *Convention C*, for example, is documented in *LRM* B.1 - B.3, and in the *GNAT User's Guide* section 3.11.
 
 -----------------------------------
-Passing Scalar Data as Parameters
+Passing Scalar Data As Parameters
 -----------------------------------
 
 * C types are defined by the Standard
@@ -177,7 +177,7 @@ Passing Scalar Data as Parameters
      }
 
 -----------------------------------
-Passing Structures as Parameters
+Passing Structures As Parameters
 -----------------------------------
 
 * An Ada record that is mapping on a C struct must:
@@ -218,7 +218,7 @@ Passing Structures as Parameters
      end record with Convention => C;
 
 -----------------
-Parameter modes
+Parameter Modes
 -----------------
 
 * :ada:`in` scalar parameters passed by copy
@@ -319,7 +319,7 @@ Arrays Interfacing
 * Only Ada constrained arrays can be interfaced with C
 
 ----------------------
-Arrays from Ada to C
+Arrays From Ada to C
 ----------------------
 
 * An Ada array is a composite data structure containing 2 elements: Bounds and Elements
@@ -343,7 +343,7 @@ Arrays from Ada to C
       }
 
 ----------------------
-Arrays from C to Ada
+Arrays From C to Ada
 ----------------------
 
 * There are no boundaries to C types, the only Ada arrays that can be bound must have static bounds

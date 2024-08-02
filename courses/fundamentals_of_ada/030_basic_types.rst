@@ -288,7 +288,7 @@ Signed Integer Overflows
     2#1000_0000_0000_0000#  = -32,768
 
 --------------------------------------
-Signed Integer Overflow: Ada vs others
+Signed Integer Overflow: Ada Vs Others
 --------------------------------------
 
 * Ada
@@ -367,7 +367,7 @@ Predefined Modular Types
    type Unsigned_16 is mod 2 ** 16;
 
 -----------------------------------
-String Attributes For All Scalars
+String Attributes for All Scalars
 -----------------------------------
 
 * :ada:`T'Image (input)`
@@ -389,7 +389,7 @@ String Attributes For All Scalars
    Number := Integer'Value (Input);
 
 ----------------------------------
-Range Attributes For All Scalars
+Range Attributes for All Scalars
 ----------------------------------
 
 * :ada:`T'First`
@@ -411,7 +411,7 @@ Range Attributes For All Scalars
    Largest  : Signed_T := Signed_T'Last;  -- 100
 
 -------------------------------------
-Neighbor Attributes For All Scalars
+Neighbor Attributes for All Scalars
 -------------------------------------
 
 * :ada:`T'Pred (Input)`
@@ -436,7 +436,7 @@ Neighbor Attributes For All Scalars
    Unsigned := Unsigned_T'Pred (Unsigned); -- Signed = 255
 
 ------------------------------------
-Min/Max Attributes For All Scalars
+Min/Max Attributes for All Scalars
 ------------------------------------
 
 * :ada:`T'Min (Value_A, Value_B)`
@@ -592,7 +592,7 @@ Language-Defined Type Boolean
       A := B or (not C); -- For A, B, C boolean
 
 ------------------------------------
-Why Boolean Isn't Just An Integer?
+Why Boolean Isn't Just an Integer?
 ------------------------------------
 
 .. container:: columns
@@ -613,7 +613,7 @@ Why Boolean Isn't Just An Integer?
     .. image:: hete-2_satellite.jpeg
 
 ------------------------------------
-Why Boolean Isn't Just An Integer!
+Why Boolean Isn't Just an Integer!
 ------------------------------------
 
 * **Initially** variable with paddles' state

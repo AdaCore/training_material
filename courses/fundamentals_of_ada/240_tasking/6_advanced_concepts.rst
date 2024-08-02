@@ -3,7 +3,7 @@ Some Advanced Concepts
 ========================
 
 ---------------------------
-Waiting On Multiple Entries
+Waiting on Multiple Entries
 ---------------------------
 
 * :ada:`select` can wait on multiple entries
@@ -29,7 +29,7 @@ Waiting On Multiple Entries
   T.Stop;
 
 ----------------------
-Waiting With a Delay
+Waiting with a Delay
 ----------------------
 
 * A :ada:`select` statement may **time-out** using :ada:`delay` or :ada:`delay until`
@@ -57,7 +57,7 @@ Waiting With a Delay
 *Task will wait up to 50 seconds for* :ada:`Receive_Message', *print a message, and then enter the loop. Without the* :ada:`exit' *it will print the message and wait another 50 seconds, and so on*
 
 ------------------------------------------
-Calling an Entry With a Delay Protection
+Calling an Entry with a Delay Protection
 ------------------------------------------
 
 * A call to :ada:`entry` **blocks** the task until the entry is :ada:`accept` 'ed

@@ -70,7 +70,7 @@ Build and Execute Test Harness
       * Unlike the monolithic driver, skipped tests are not reported
 
 ---------------------------
-Build One Test With Stubs
+Build One Test with Stubs
 ---------------------------
 
 * Build and run test for :ada:`Simple.Read` that 

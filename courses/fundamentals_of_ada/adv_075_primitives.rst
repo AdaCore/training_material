@@ -59,7 +59,7 @@ Freeze Point
    procedure Prim3 (V : Child); -- Not a primitive
 
 -------------------
-Debug type freeze
+Debug Type Freeze
 -------------------
 
 * Freeze |rightarrow| Type **completely** defined
@@ -138,7 +138,7 @@ Implicit Primitive Operations
       end Main;
 
 -------------------------
-Type derivation: Review
+Type Derivation: Review
 -------------------------
 
 * For all types
@@ -247,7 +247,7 @@ Primitive of Multiple Types
     procedure P2_Incorrect (V1 : Root1; V2 : Root2); -- FAIL
 
 ----------------------------
-Tagged inheritance: Review
+Tagged Inheritance: Review
 ----------------------------
 
 * :ada:`tagged` types are Ada's OOP

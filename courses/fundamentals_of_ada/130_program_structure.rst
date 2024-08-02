@@ -45,11 +45,11 @@ Introduction
 * How to define subsystems
 
 ===================
-Building A System
+Building a System
 ===================
 
 -------------------
-What is a System?
+What Is a System?
 -------------------
 
 * Also called Application or Program or ...
@@ -243,7 +243,7 @@ Legal Package Declaration Dependency
   language_version 2005
 
 ----------------------------------------
-Full `with` Clause On the Package Body
+Full `with` Clause on the Package Body
 ----------------------------------------
 
 * Even though declaration has a :ada:`limited with` clause
@@ -315,7 +315,7 @@ Solution: Hierarchical Library Units
     .. image:: hierarchical_library_units.png
 
 --------------------------
-Programming By Extension
+Programming by Extension
 --------------------------
 
 * :dfn:`Parent unit`
@@ -466,7 +466,7 @@ Example of Visibility As If Nested
    end Complex;
 
 -------------------------------------------
-`with` Clauses for Ancestors are Implicit
+`with` Clauses for Ancestors Are Implicit
 -------------------------------------------
 
 .. container:: columns
@@ -499,7 +499,7 @@ Example of Visibility As If Nested
        end Parent.Child;
 
 -------------------------------------------
- `with` Clauses for Siblings are Required
+ `with` Clauses for Siblings Are Required
 -------------------------------------------
 
 * If references are intended
@@ -834,7 +834,7 @@ Some Public Children Are Trustworthy
    end OS.Serial;
 
 -----------------------------------------
-Solution 1: Move Type To Parent Package
+Solution 1: Move Type to Parent Package
 -----------------------------------------
 
 .. code:: Ada

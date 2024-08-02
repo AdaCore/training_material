@@ -52,7 +52,7 @@ Handlers
 ==========
 
 -----------------------------------------
-Exceptions Raised In Exception Handlers
+Exceptions Raised in Exception Handlers
 -----------------------------------------
 
 .. container:: columns
@@ -355,7 +355,7 @@ What will get printed for these values of Input_Value?
       B/C |rightarrow| When the creation of :ada:`A` fails (due to :ada:`Program_Error` from passing :ada:`F` a negative number or :ada:`Storage_Error` from passing :ada:`F` a large number), then :ada:`P` raises an exception during elaboration, which is propagated to :ada:`Main`
 
 =======================
-Exceptions as Objects
+Exceptions As Objects
 =======================
 
 ------------------
@@ -547,7 +547,7 @@ In Practice
 =============
 
 ---------------------------------------
-Fulfill Interface Promises To Clients
+Fulfill Interface Promises to Clients
 ---------------------------------------
 
 * If handled and not re-raised, normal processing continues at point of client's call
@@ -576,7 +576,7 @@ Fulfill Interface Promises To Clients
    end Foo;
 
 -----------------------------------
-Allow Clients To Avoid Exceptions
+Allow Clients to Avoid Exceptions
 -----------------------------------
 
 * Callee

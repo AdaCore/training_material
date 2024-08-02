@@ -183,7 +183,7 @@ Resulting in an updated **Manual review** dialog
     :width: 20%
 
 ==================================
-Code Annotations via GNAT Studio
+Code Annotations Via GNAT Studio
 ==================================
 
 --------------------------------

@@ -66,7 +66,7 @@ Visibility and Scope
    - Remember this is forbidden for "usual" declarations
 
 ------------------------------
-Overloadable Entities In Ada
+Overloadable Entities in Ada
 ------------------------------
 
 * Identifiers for subprograms

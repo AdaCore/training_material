@@ -3,7 +3,7 @@ Some Advanced Concepts
 ========================
 
 ----------------------
-Waiting With a Delay
+Waiting with a Delay
 ----------------------
 
 * A :ada:`select` statement may **time-out** using :ada:`delay` or :ada:`delay until`
@@ -31,7 +31,7 @@ Waiting With a Delay
 *Task will wait up to 50 seconds for* :ada:`Receive_Message', *print a message, and then enter the loop. Without the* :ada:`exit' *it will print the message and wait another 50 seconds, and so on*
 
 ------------------------------------------
-Calling an Entry With a Delay Protection
+Calling an Entry with a Delay Protection
 ------------------------------------------
 
 * A call to :ada:`entry` **blocks** the task until the entry is :ada:`accept` 'ed
@@ -57,7 +57,7 @@ Calling an Entry With a Delay Protection
 *Procedure will wait up to 50 seconds for* :ada:`Receive_Message` *to be accepted before it gives up*
 
 ----------------------------
-The Delay Is Not A Timeout
+The Delay Is Not a Timeout
 ----------------------------
 
 * The time spent by the client is actually **not bounded**
@@ -103,7 +103,7 @@ Non-blocking Accept or Entry
 * :ada:`delay` is **not** allowed in this case
 
 -----------------------------------
-Issues With "Double Non-Blocking"
+Issues with "Double Non-Blocking"
 -----------------------------------
 
 * For :ada:`accept ... else` the server **peeks** into the queue
@@ -145,7 +145,7 @@ Terminate Alternative
    end select;
 
 -------------------------------------
-Select On Protected Objects Entries
+Select on Protected Objects Entries
 -------------------------------------
 
 * Same as :ada:`select` but on task entries

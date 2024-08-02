@@ -3,7 +3,7 @@ Delays
 ======
 
 -------------
-Delay keyword
+Delay Keyword
 -------------
 
 - :ada:`delay` keyword part of tasking

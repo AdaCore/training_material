@@ -368,7 +368,7 @@ Special Attributes
 ====================
 
 --------------------------------------------
-Evaluate An Expression on Subprogram Entry
+Evaluate an Expression on Subprogram Entry
 --------------------------------------------
 
 * Post-conditions may require knowledge of a subprogram's **entry context**
@@ -428,7 +428,7 @@ Example for Attribute :ada:`'Old`
             = Global (Index));
 
 ------------------------------------------------
-Error on conditional Evaluation of :ada:`'Old`
+Error on Conditional Evaluation of :ada:`'Old`
 ------------------------------------------------
 
 * This code is **incorrect**
@@ -529,7 +529,7 @@ In Practice
 =============
 
 ----------------------------------------
-Pre/Postconditions: To Be or Not To Be
+Pre/Postconditions: to Be or Not to Be
 ----------------------------------------
 
 * **Preconditions** are reasonable **default** for runtime checks
@@ -690,7 +690,7 @@ Subprogram Contracts on Private Types
    end P;
 
 -----------------------------------
-Preconditions Or Explicit Checks?
+Preconditions or Explicit Checks?
 -----------------------------------
 
 * Any requirement from the spec should be a pre-condition

@@ -46,7 +46,7 @@ Coverage Integrated with IDE
   * Edit source code from coverage view
 
 =======================================
-Generating Coverage from GNAT Studio
+Generating Coverage From GNAT Studio
 =======================================
 
 -----------------------
@@ -158,7 +158,7 @@ Typical Development Process
 * How does this process integrate with coverage instrumentation?
 
 -------------------------------------
-Updating Coverage when Code Changes
+Updating Coverage When Code Changes
 -------------------------------------
 
 * Coverage executable is different from normal executable

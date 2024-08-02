@@ -194,7 +194,7 @@ Ada Type Model
     - Checked at compilation and run-time
 
 ----------------------------------------
-Strongly-Typed vs Weakly-Typed Languages
+Strongly-Typed Vs Weakly-Typed Languages
 ----------------------------------------
 
 * Weakly-typed:

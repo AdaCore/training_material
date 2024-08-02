@@ -201,7 +201,7 @@ Example
 =========
 
 -------------------
-Code To Be Tested
+Code to Be Tested
 -------------------
 
 .. code:: Ada

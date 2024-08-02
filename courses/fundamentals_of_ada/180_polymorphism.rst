@@ -76,7 +76,7 @@ Classes
    - Primitives of `T`
 
 -----------------
-Indefinite type
+Indefinite Type
 -----------------
 
 * A class wide type is an indefinite type
@@ -107,7 +107,7 @@ Indefinite type
    end Main;
 
 -------------------------------
-Testing the type of an object
+Testing the Type of an Object
 -------------------------------
 
 * The tag of an object denotes its type
@@ -145,7 +145,7 @@ Abstract Types
    - Non-abstract derivation of an abstract type must override and implement abstract subprograms
 
 ---------------------------
-Abstract Types Ada vs C++
+Abstract Types Ada Vs C++
 ---------------------------
 
 * Ada
@@ -226,7 +226,7 @@ Dispatching and Redispatching
 ===============================
 
 ---------------------------------
-Calls on class-wide types (1/3)
+Calls on Class-Wide Types (1/3)
 ---------------------------------
 
 * Any subprogram expecting a T object can be called with a :ada:`T'Class` object
@@ -246,7 +246,7 @@ Calls on class-wide types (1/3)
       P (V2);
 
 ---------------------------------
-Calls on class-wide types (2/3)
+Calls on Class-Wide Types (2/3)
 ---------------------------------
 
 * The *actual* type of the object is not known at compile time
@@ -281,7 +281,7 @@ Calls on class-wide types (2/3)
          V2->P ();
 
 ---------------------------------
-Calls on class-wide types (3/3)
+Calls on Class-Wide Types (3/3)
 ---------------------------------
 
 * It is still possible to force a call to be static using a conversion of view
@@ -315,7 +315,7 @@ Calls on class-wide types (3/3)
       ((Root) *V2).P ();
 
 -------------------------------
-Definite and class wide views
+Definite and Class Wide Views
 -------------------------------
 
 * In C++, dispatching occurs only on pointers
@@ -422,7 +422,7 @@ Exotic Dispatching Operations
 ===============================
 
 -------------------------------
-Multiple dispatching operands
+Multiple Dispatching Operands
 -------------------------------
 
 * Primitives with multiple dispatching operands are allowed if all operands are of the same type
@@ -452,7 +452,7 @@ Multiple dispatching operands
       P (Root'Class (R1), Cl1); -- dynamic: ok
 
 ---------------------------
-Special case for equality
+Special Case for Equality
 ---------------------------
 
 * Overriding the default equality for a :ada:`tagged` type involves the use of a function with multiple controlling operands
@@ -476,7 +476,7 @@ Special case for equality
    if Cl1 = Cl3 then [...] -- returns false
 
 --------------------------
-Controlling result (1/2)
+Controlling Result (1/2)
 --------------------------
 
 * The controlling operand may be the return type
@@ -511,7 +511,7 @@ Controlling result (1/2)
          function F (V : Integer) return Root is abstract;
 
 --------------------------
-Controlling result (2/2)
+Controlling Result (2/2)
 --------------------------
 
 * Primitives returning :ada:`tagged` types can be used in a static context

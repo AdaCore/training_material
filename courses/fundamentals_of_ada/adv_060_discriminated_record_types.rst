@@ -407,7 +407,7 @@ Simple Unconstrained Array
    + Need to define "="
 
 -------------------------------------------------
-Varying Length Array via Discriminated Records
+Varying Length Array Via Discriminated Records
 -------------------------------------------------
 
 * Discriminant can serve as bound of array component
@@ -425,7 +425,7 @@ Varying Length Array via Discriminated Records
    + With no default discriminant value, objects of different lengths cannot be copied
 
 -------------------------------------------------------------
-Varying Length Array via Discriminated Records and Subtypes
+Varying Length Array Via Discriminated Records and Subtypes
 -------------------------------------------------------------
 
 * Discriminant can serve as bound of array component

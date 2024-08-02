@@ -79,7 +79,7 @@ What Is the Jorvik profile?
 * :ada:`pragma Profile (Jorvik)`
 
 -------------------------
-What are GNAT runtimes?
+What Are GNAT runtimes?
 -------------------------
 
 * The :dfn:`runtime` is an embedded library

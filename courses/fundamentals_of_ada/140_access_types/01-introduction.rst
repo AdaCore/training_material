@@ -68,7 +68,7 @@ Access Types Can Be Dangerous
 * Only use them when needed
 
 ---------------
-Stack vs Heap
+Stack Vs Heap
 ---------------
 
 .. code:: Ada

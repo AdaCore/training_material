@@ -87,7 +87,7 @@ Legal Ada Code
   + Whether or not they are to be analyzed themselves
 
 ----------------
-Based On AUnit
+Based on AUnit
 ----------------
 
 + Unit test framework based on :toolname:`CppUnit for C++`
