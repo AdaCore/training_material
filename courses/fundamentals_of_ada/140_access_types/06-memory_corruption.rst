@@ -80,7 +80,7 @@ Common Memory Problems (3/3)
       + Might slow down the program if too many page faults
 
 -----------------------------
-How To Fix Memory Problems?
+How to Fix Memory Problems?
 -----------------------------
 
 * There is no language-defined solution
