@@ -814,10 +814,6 @@ Mutable Variant Record
 
   * Declaring an object with an **explicit** discriminant value (:ada:`Faculty`) makes it immutable
 
-* We can change the discriminant of a mutable object
-
-  * But only via a copy / aggregate assignment
-
 --------------------------------
 Mutable Variant Record Example
 --------------------------------
