@@ -115,7 +115,7 @@ Ada Evolution Highlights
     **Ada 2022**
        | :ada:`'Image` for all types
        | Target name symbol
-       | Support for C varidics
+       | Support for C variadics
        | Declare expression
        | Simplified :ada:`renames`
 

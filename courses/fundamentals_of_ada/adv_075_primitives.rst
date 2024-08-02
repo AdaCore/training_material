@@ -223,6 +223,7 @@ Tagged Primitive Declaration
 * Not a :ada:`declare` block or the declarative part of a subprogram
 
 .. include:: examples/adv_075_primitives/subprogram_primitive_declaration.rst
+   :code: Ada
 
 -----------------------------
 Primitive of Multiple Types

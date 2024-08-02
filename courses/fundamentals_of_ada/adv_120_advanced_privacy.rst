@@ -280,7 +280,7 @@ How To Get An Incomplete Type View?
 
       generic
          type T;
-         procedure Proc (V:T);
+         with procedure Proc (V : T);
       package P is
          ...
       end P;
@@ -331,8 +331,6 @@ Child Units And Privacy
 * Normally, a child public part cannot view a parent private part
 
   .. container:: columns
-
-    .. container:: column
 
     .. container:: column
 
@@ -406,30 +404,45 @@ Private Children And :ada:`with`
       type T is range 1 .. 10;
    end Root.Child1;
 
-* Public package spec cannot :ada:`with` a private package
+.. container:: columns
 
-   .. code:: Ada
+  .. container:: column
 
-      with Root.Child1; -- illegal
-      package Root.Child2 is
-         X1 : Root.Child1.T; -- illegal
-      private
-         X2 : Root.Child1.T; -- illegal
-      end Root.Child2;
+    .. container:: latex_environment scriptsize
 
-* Child packages can :ada:`with` a sibling private package
+      *Public package spec cannot* :ada:`with` *a private package*
 
-    + From their body only
+      .. code:: Ada
+         :number-lines: 1
 
-   .. code:: Ada
+         with Root.Private_Child;
+         package Root.Bad_Child is
+            Object1 : Root.Private_Child.T;
+            procedure Proc2;
+         private
+            Object2 : Root.Private_Child.T;
+         end Root.Bad_Child;
 
-      with Root.Child1;
-      private package Root.Child2 is
-         X1 : Root.Child1.T;
-      private
-         X2 : Root.Child1.T;
-      end Root.Child2;
+      ``root-bad_child.ads:1:06: error: current unit must also be private descendant of "Root"``
 
+  .. container:: column
+
+    .. container:: latex_environment scriptsize
+
+      *But it can* :ada:`with` *a sibling private package from its body*
+
+      .. code:: Ada
+
+         package Root.Good_Child is
+            procedure Proc2;
+         end Root.Good_Child;
+
+         with Root.Private_Child;
+         package body Root.Good_Child is
+            Object1 : Root.Private_Child.T;
+            Object2 : Root.Private_Child.T;
+            procedure Proc2 is null;
+         end Root.Good_Child;
 
 ---------------------
 :ada:`private with`

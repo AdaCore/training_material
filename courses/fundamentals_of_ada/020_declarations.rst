@@ -247,7 +247,7 @@ Based Numeric Literals
 * Base can be 2 .. 16
 * Exponent is always a base 10 integer
 
-   .. code:: Ada
+   ::
 
       16#FFF#           => 4095
       2#1111_1111_1111# => 4095 -- With underline
