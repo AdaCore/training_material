@@ -35,29 +35,28 @@ Introduction to Accessibility Checks (1/2)
 Introduction to Accessibility Checks (2/2)
 --------------------------------------------
 
-.. code:: Ada
+* Issues with nesting
 
-   package body P is
-      type T0 is access all Integer;
-      A0 : T0;
-      V0 : aliased Integer;
-      procedure Proc is
-         type T1 is access all Integer;
-         A1 : T1;
-         V1 : aliased Integer;
-      begin
-         A0 := V0'Access;
-         A0 := V1'Access; -- illegal
-         A0 := V1'Unchecked_Access;
-         A1 := V0'Access;
-         A1 := V1'Access;
-         A1 := T1 (A0);
-         A1 := new Integer;
-         A0 := T0 (A1); -- illegal
-     end Proc;
-   end P;
+.. include:: ../examples/140_access_types/nesting_issues/src/p.adb
+    :code: Ada
 
 * To avoid having to face these issues, avoid nested access types
+
+------------------------------
+Dynamic Accessibility Checks
+------------------------------
+
+* Following the same rules
+
+    - Performed dynamically by the runtime
+
+* Lots of possible cases
+
+    - New compiler versions may detect more cases
+    - Using access always requires proper debugging and reviewing
+
+.. include:: ../examples/140_access_types/dynamic_accessibility_check/src/main.adb
+    :code: Ada
 
 -------------------------------------
 Getting Around Accessibility Checks
@@ -107,27 +106,27 @@ Quiz
 .. code:: Ada
 
    type Global_Access_T is access all Integer;
-   Global_Pointer : Global_Access_T;
+   Global_Access  : Global_Access_T;
    Global_Object  : aliased Integer;
    procedure Proc_Access is
       type Local_Access_T is access all Integer;
-      Local_Pointer : Local_Access_T;
+      Local_Access  : Local_Access_T;
       Local_Object  : aliased Integer;
    begin
 
 Which assignment is **not** legal?
 
-A. ``Global_Pointer := Global_Object'Access;``
-B. :answermono:`Global_Pointer := Local_Object'Access;`
-C. ``Local_Pointer  := Global_Object'Access;``
-D. ``Local_Pointer  := Local_Object'Access;``
+A. ``Global_Access := Global_Object'Access;``
+B. :answermono:`Global_Access := Local_Object'Access;`
+C. ``Local_Access  := Global_Object'Access;``
+D. ``Local_Access  := Local_Object'Access;``
 
 .. container:: animate
 
    Explanations
 
-   A. Pointer type has same depth as object
-   B. Pointer type is not allowed to have higher level than pointed-to object
-   C. Pointer type has lower depth than pointed-to object
-   D. Pointer type has same depth as object
+   A. Access type has same depth as object
+   B. Access type is not allowed to have higher level than accessed object
+   C. Access type has lower depth than accessed object
+   D. Access type has same depth as object
 

@@ -66,7 +66,9 @@ Access Types and Primitives
 
 * Primitive of the type can be created with the :ada:`access` mode
 
-    - **Anonymous** access type
+   - **Anonymous** access type
+
+     - Details elsewhere
 
    .. code:: Ada
 
@@ -108,4 +110,3 @@ Dereference Examples
    V_String (1) := 'z'; -- similar to V_String.all (1) := 'z';
    V_R.all := (0, 0);
    V_R.F1 := 1; -- similar to V_R.all.F1 := 1;
-
