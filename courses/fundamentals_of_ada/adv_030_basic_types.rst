@@ -557,7 +557,8 @@ Shift/Rotate for User-Defined Types
 
       function Shift_Left
         (Value  : T;
-        Amount : Natural) return T with Import, Convention => Intrinsic;
+        Amount : Natural) return T with Import,
+                                        Convention => Intrinsic;
 
 ------
 Quiz
