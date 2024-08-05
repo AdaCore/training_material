@@ -17,6 +17,7 @@ D. ``V : R (6) := (6, S => "Hello")``
 
 .. container:: animate
 
-    When V is declared without specifying its size, it becomes mutable,
-    at this point the :ada:`S'Length = Positive'Last`, causing a Runtime_Error.
-    Furthermore the length of "Hello" is 5, it cannot be stored in a String of Length 6.
+    Choices **A** and **B** are mutable: the runtime assumes :ada:`Size`
+    can be :ada:`Positive'Last`, so field :ada:`S` will cause a runtime error.
+    Choice **D** tries to copy a 5-character string into a 6-character string,
+    also generating a runtime error.

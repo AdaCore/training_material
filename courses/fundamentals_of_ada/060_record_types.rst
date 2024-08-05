@@ -695,18 +695,19 @@ D. (100, 101, 102)
 ..
   language_version 2012
 
-=======================
-Discriminated Records
-=======================
+=================
+Variant Records
+=================
 
-----------------------------
-Discriminated Record Types
-----------------------------
+----------------------
+Variant Record Types
+----------------------
 
-* :dfn:`Discriminated record` type
+* :dfn:`Variant record` can use a **discriminant** to specify alternative lists of components
 
+   + Also called :dfn:`discriminated record` type
    + Different **objects** may have **different** components
-   + All object **still** share the same type
+   + All objects **still** share the same type
 
 * Kind of :dfn:`storage overlay`
 
@@ -716,18 +717,22 @@ Discriminated Record Types
 
 * Aggregate assignment is allowed
 
----------------
-Discriminants
----------------
+--------------------------
+Immutable Variant Record
+--------------------------
+
+* Discriminant must be set at creation time and cannot be modified
 
 .. code:: Ada
    :number-lines: 2
 
-
   type Person_Group is (Student, Faculty);
-  type Person (Group : Person_Group) is record
+  type Person (Group : Person_Group) is
+  record
+     --  Fields common across all discriminants
+     --  (must appear before variant part)
      Age : Positive;
-     case Group is
+     case Group is --  Variant part of record
         when Student => -- 1st variant
            Gpa  : Float range 0.0 .. 4.0;
         when Faculty => -- 2nd variant
@@ -735,74 +740,107 @@ Discriminants
      end case;
   end record;
 
-* :ada:`Group` (on line 3) is the :dfn:`discriminant`
-* Run-time check for component **consistency**
-
-   + eg :ada:`A_Person.Pubs := 1` checks :ada:`A_Person.Group = Faculty`
-   + :ada:`Constraint_Error` if check fails
-
-* Discriminant is **constant**
-
-   + Unless object is **mutable**
-
-* Discriminant can be used in :dfn:`variant part` (line 5)
+* In a variant record, a discriminant can be used to specify the :dfn:`variant part` (line 6)
 
    + Similar to case statements (all values must be covered)
    + Fields listed will only be visible if choice matches discriminant
    + Field names need to be unique (even across discriminants)
    + Variant part must be end of record (hence only one variant part allowed)
 
------------
-Semantics
------------
+* Discriminant is treated as any other field
 
-* :ada:`Person` objects are **constrained** by their discriminant
+  * But is a constant in an immutable variant record
 
-   + They are **indefinite**
-   + **Unless** mutable
-   + Assignment from same variant **only**
-   + **Representation** requirements
+*Note that discriminants can be used for other purposes than the variant part*
 
-   .. code:: Ada
+----------------------------------
+Immutable Variant Record Example
+----------------------------------
 
-      Pat  : Person (Student); -- No Pat.Pubs
-      Prof : Person (Faculty); -- No Prof.GPA
-      Soph : Person := (Group  => Student,
-                        Age => 21,
-                        GPA  => 3.2);
-      X : Person;  -- Illegal: must specify discriminant
+* Each object of :ada:`Person` has three fields, but it depends on :ada:`Group`
 
-   .. code:: Ada
+    .. code:: Ada
 
-      Pat  := Soph; -- OK
-      Soph := Prof; -- Constraint_Error at run time
+      Pat : Person (Student);
+      Sam : Person := (Faculty, 33, 5);
 
-------------------------------
-Mutable Discriminated Record
-------------------------------
+  * :ada:`Pat` has :ada:`Group`, :ada:`Age`, and :ada:`Gpa`
+  * :ada:`Sam` has :ada:`Group`, :ada:`Age`, and :ada:`Pubs`
+  * Aggregate specifies all fields, including the discriminant
 
-* When discriminant has a **default value**
+* Compiler can detect some problems, but more often clashes are runtime errors
 
-   + Objects instantiated **using the default** are **mutable**
-   + Objects specifying an **explicit** value are **not** mutable
-   + Type is now **definite**
+  .. code:: Ada
 
-* Mutable records have **variable** discriminants
-* Use **same** storage for **several** variant
+    procedure Do_Something (Param : in out Person) is
+    begin
+      Param.Age := Param.Age + 1;
+      Param.Pubs := Param.Pubs + 1;
+    end Do_Something;
+
+  * :ada:`Pat.Pubs := 3;` would generate a compiler warning because compiler knows :ada:`Pat` is a :ada:`Student`
+
+    * ``warning: Constraint_Error will be raised at run time``
+
+  * :ada:`Do_Something (Pat);` generates a runtime error, because only at runtime is the discriminant for :ada:`Param` known
+
+    * ``raised CONSTRAINT_ERROR : discriminant check failed``
+
+* :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
+
+------------------------
+Mutable Variant Record
+------------------------
+
+* Type will become :dfn:`mutable` if its discriminant has a *default value* **and** we instantiate the object without specifying a discriminant
 
 .. code:: Ada
+   :number-lines: 2
 
-  -- Potentially mutable
-  type Person (Group : Person_Group := Student) is record
+  type Person_Group is (Student, Faculty);
+  type Person (Group : Person_Group := Student) is -- default value
+  record
+     Age : Positive;
+     case Group is
+        when Student =>
+           Gpa  : Float range 0.0 .. 4.0;
+        when Faculty =>
+           Pubs : Positive;
+     end case;
+  end record;
 
-  --  Use default value: mutable
-  S : Person;
-  --  Explicit value: *not* mutable
-  --  even if Student is also the default
-  S2 : Person (Group => Student);
-  ...
-  S := (Group => Student, Age => 22, Gpa => 0.0);
-  S := (Group => Faculty, Age => 35, Pubs => 10);
+* :ada:`Pat : Person;` is **mutable**
+* :ada:`Sam : Person (Faculty);` is **not mutable**
+
+  * Declaring an object with an **explicit** discriminant value (:ada:`Faculty`) makes it immutable
+
+--------------------------------
+Mutable Variant Record Example
+--------------------------------
+
+* Each object of :ada:`Person` has three fields, but it depends on :ada:`Group`
+
+  .. code:: Ada
+
+    Pat : Person := (Student, 19, 3.9);
+    Sam : Person (Faculty);
+
+* You can only change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
+
+  .. code:: Ada
+
+    if Pat.Group = Student then
+      Pat := (Faculty, Pat.Age, 1);
+    else
+      Pat := Sam;
+    end if;
+    Update (Pat);
+    
+* But you cannot change the discriminant of :ada:`Sam`
+
+  * :ada:`Sam := Pat;` will give you a runtime error if :ada:`Pat.Group` is not :ada:`Faculty`
+
+    * And the compiler will not warn about this!
 
 ------
 Quiz
@@ -810,7 +848,7 @@ Quiz
 
 .. code:: Ada
 
-    type T (Sign : Integer) is record
+    type Variant_T (Sign : Integer) is record
         case Sign is
         when Integer'First .. -1 =>
             I : Integer;
@@ -820,12 +858,12 @@ Quiz
         end case;
     end record;
 
-    O : T (1);
+    Variant_Object : Variant_T (1);
 
-Which component does :ada:`O` contain?
+Which component(s) does :ada:`Variant_Object` contain?
 
-A. :ada:`O.I, O.B`
-B. :answermono:`O.N`
+A. :ada:`Variant_Object.I, Variant_Object.B`
+B. :answermono:`Variant_Object.N`
 C. None: Compilation error
 D. None: Runtime error
 
@@ -835,57 +873,28 @@ Quiz
 
 .. code:: Ada
 
-    type T (Floating : Integer) is record
-        case Floating is
-            when 0 =>
-                I : Integer;
-            when 1 =>
-                F : Float;
-        end case;
-    end record;
-
-    O : T (1);
-
-Which component does :ada:`O` contain?
-
-A. :ada:`O.F, O.I`
-B. :ada:`O.F`
-C. :answer:`None: Compilation error`
-D. None: Runtime error
-
-.. container:: animate
-
-    The variant :ada:`case` must cover all the possible values of :ada:`Integer`.
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-    type T (Floating : Boolean) is record
+    type Variant_T (Floating : Boolean := False) is record
         case Floating is
             when False =>
                 I : Integer;
             when True =>
                 F : Float;
         end case;
-        I2 : Integer;
+        Flag : Character;
     end record;
 
-    O : T (True);
+    Variant_Object : Variant_T (True);
 
-Which component does :ada:`O` contain?
+Which component does :ada:`Variant_Object` contain?
 
-A. :ada:`O.F, O.I2`
-B. :ada:`O.F`
+A. :ada:`Variant_Object.F, Variant_Object.Flag`
+B. :ada:`Variant_Object.F`
 C. :answer:`None: Compilation error`
 D. None: Runtime error
 
 .. container:: animate
 
-    The variant part cannot be followed by a component declaration (:ada:`I2 : Integer` there)
-
+    The variant part cannot be followed by a component declaration (:ada:`Flag : Character` here)
 
 ========
 Lab
