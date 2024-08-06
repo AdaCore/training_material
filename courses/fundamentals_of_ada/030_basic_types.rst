@@ -759,6 +759,14 @@ Declaring Floating Point Types
   - May be **more** accurate, but not less
   - If none available |rightarrow| declaration is **rejected**
 
+* :ada:`System.Max_Digits` - constant specifying maximum digits of precision available for runtime
+
+  .. code:: Ada
+
+    type Very_Precise_T is digits System.Max_Digits;
+
+  *Need to do* :ada:`with System;` *to get visibility*
+
 ---------------------------------
 Predefined Floating Point Types
 ---------------------------------
