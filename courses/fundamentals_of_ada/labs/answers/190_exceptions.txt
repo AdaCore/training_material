@@ -24,7 +24,7 @@ package body Numeric_Types is
             raise Illegal_String;
          end if;
       end loop;
-      return Numeric_Types.Integer_T'Value (Str);
+      return Integer_T'Value (Str);
    exception
       when Constraint_Error =>
          raise Out_Of_Range;

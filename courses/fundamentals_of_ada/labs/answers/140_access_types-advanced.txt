@@ -1,5 +1,4 @@
 --Database
-with Ada.Strings.Unbounded;
 package Database is
    type Database_T is private;
    function "=" (L, R : Database_T) return Boolean;
@@ -14,7 +13,6 @@ private
 end Database;
 
 package body Database is
-   use Ada.Strings.Unbounded;
    function "=" (L, R : Database_T) return Boolean is
    begin
       return L.Value (1 .. L.Length) = R.Value (1 .. R.Length);
