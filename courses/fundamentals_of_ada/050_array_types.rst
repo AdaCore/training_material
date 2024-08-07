@@ -356,11 +356,25 @@ Unconstrained Array Type Declarations
 Supplying Index Constraints for Objects
 -----------------------------------------
 
+.. code:: Ada
+
+   type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+   type Schedule is array (Days range <>) of Float;
+
 * Bounds set by:
 
    - Object declaration
-   - Constant's value
-   - Variable's initial value
+
+      .. code:: Ada
+
+         Weekdays : Schedule(Mon..Fri);
+
+   - Object (or constant) initialization
+
+      .. code:: Ada
+
+         Weekend : Schedule := (Sat => 4.0, Sun => 0.0);
+
    - Further type definitions (shown later)
    - Actual parameter to subprogram (shown later)
 
@@ -368,9 +382,8 @@ Supplying Index Constraints for Objects
 
    .. code:: Ada
 
-      type Schedule is array (Days range <>) of Float;
-      Work : Schedule (Mon .. Fri);
-      All_Days : Schedule (Days);
+      Weekdays(Sat) := 0.0; --  Compiler error
+      Weekend(Mon)  := 0.0; --  Compiler error
 
 ---------------------------------------
 Bounds Must Satisfy Type Constraints
@@ -832,19 +845,18 @@ Idiom: Named Subtypes for Indexes
 
    procedure Test is
      subtype Iso_Index is Positive range 1 .. 10;
-     subtype Year is Positive
-        range Iso_Index'First .. Iso_Index'First + 4;
-     subtype Month is
-        Iso_Index range Year'Last + 2 .. Year'Last + 4;
-     subtype Day is
-        Iso_Index range Month'Last + 2 .. Month'Last + 4;
-     Iso_Date : String (Iso_Index)
-       := "2024-03-27";
+     subtype Year is Iso_Index
+        range Iso_Index'First .. Iso_Index'First + 3;
+     subtype Month is Iso_Index
+        range Year'Last + 2 .. Year'Last + 3;
+     subtype Day is Iso_Index
+        range Month'Last + 2 .. Month'Last + 3;
+     Iso_Date : String (Iso_Index) := "2024-03-27";
+
    begin
      Put_Line (Iso_Date (Year));  --  2024
      Put_Line (Iso_Date (Month)); --  03
      Put_Line (Iso_Date (Day));   --  27
-
 
 ------------------------------------
 Dynamic Subtype Constraint Example

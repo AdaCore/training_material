@@ -80,8 +80,11 @@ Recognizing Procedures and Functions
         Get (Next_Char, From => Source);
         if Found (Next_Char, Within => Buffer) then
           Display (Next_Char);
+          Increment;
         end if;
       end loop;
+
+  * Note that a subprogram without parameters (:ada:`Increment` on line 15) does not allow an empty set of parentheses
 
 ----------------------------------
 A Little "Preaching" About Names
