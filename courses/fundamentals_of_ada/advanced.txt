@@ -1,6 +1,6 @@
 adv_030_basic_types.rst
 060_record_types.rst
-adv_060_discriminated_record_types.rst
+065_discriminated_records.rst
 adv_075_primitives.rst
 adv_080_quantified_expressions.rst
 120_limited_types.rst
