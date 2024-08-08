@@ -1,4 +1,4 @@
-adv_030_basic_types.rst
+030_basic_types_extras.rst
 060_record_types.rst
 adv_060_discriminated_record_types.rst
 adv_075_primitives.rst
