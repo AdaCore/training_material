@@ -258,7 +258,7 @@ Aliasing the Assignment Target
    .. code:: Ada
 
       Total := Total + Value;
-      -- becoms
+      -- becomes
       Total := @ + Value;
 
 * Benefit
