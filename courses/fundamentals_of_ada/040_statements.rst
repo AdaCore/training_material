@@ -237,6 +237,55 @@ Assignable Views
    ...
    Max := 200; -- illegal
 
+--------------------------------
+Aliasing the Assignment Target
+--------------------------------
+
+.. admonition:: Language Variant
+
+   Ada 2022
+
+* C allows you to simplify assignments when the target is used in the expression. This avoids duplicating (possibly long) names.
+
+   .. code:: C
+
+      total = total + value;
+      // becomes
+      total += value;
+
+* Ada 2022 implements this by using the target name symbol **@**
+
+   .. code:: Ada
+
+      Total := Total + Value;
+      -- becoms
+      Total := @ + Value;
+
+* Benefit
+
+   * Symbol can be used multiple times in expression
+
+      .. code:: Ada
+
+         Value := (if @ > 0 then @ else -(@));
+
+* Limitation
+
+   * Symbol is read-only (so it can't change during evaluation)
+
+      .. code:: Ada
+
+         function Update (X : in out Integer) return Integer;
+         function Increment (X: Integer) return Integer;
+
+      .. code:: Ada
+         :number-lines: 13
+
+            Value := Update (@);
+            Value := Increment (@);
+
+      ``example.adb:13:21: error: actual for "X" must be a variable``
+
 ------
 Quiz
 ------
