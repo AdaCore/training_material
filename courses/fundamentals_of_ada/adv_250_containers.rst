@@ -222,6 +222,7 @@ Common Operations
 * Comparison
 * Sort
 * Search
+* Aggregates
 
 -----------
 Insertion
@@ -283,6 +284,38 @@ Search
 
 .. include:: examples/containers/extracts/search.adb
     :code: Ada
+
+------------
+Aggregates
+------------
+
+.. admonition:: Language Variant
+
+    Ada 2022
+
+* In Ada 2022, containers can be initialized with aggregates
+
+   * Similar to arrays an records
+   * Container aggregates use square brackets **[..]**
+
+* Maps required named notation, all other containers use positional notation
+
+.. code:: Ada
+
+   package Int_Vectors is new Ada.Containers.Vectors
+     (Positive, Integer);
+
+   X : constant Int_Vectors.Vector := [1, 2, 3];
+
+   type Key_T is (Height, Width, Depth);
+   package Float_Maps is new Ada.Containers.Ordered_Maps
+     (Key_T, Float);
+
+   Y : constant Float_Maps.Map := [Height => 1.0,
+                                   Width => 2.5,
+                                   Depth => 5.51];
+
+*Note that if you create your own container types, you will need to use the aspect* :ada:`Aggregate` *to enable this functionality.*
 
 ===========
 Reference
