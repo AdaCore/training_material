@@ -295,7 +295,7 @@ Aggregates
 
 * In Ada 2022, containers can be initialized with aggregates
 
-   * Similar to arrays an records
+   * Similar to arrays and records
    * Container aggregates use square brackets **[..]**
 
 * Maps required named notation, all other containers use positional notation
