@@ -40,5 +40,5 @@ Tasking
 .. include:: 240_tasking/05_task_types_in_depth.rst
 .. include:: 240_tasking/06_advanced_concepts_in_depth.rst
 .. include:: 240_tasking/13_light_tasking_behavior.rst
-.. include:: 240_tasking/14_tasking_contgrol.rst
+.. include:: 240_tasking/14_tasking_control.rst
 .. include:: 240_tasking/99_summary.rst
