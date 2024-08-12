@@ -6,14 +6,14 @@ Light-Tasking Behavior
 Ravenscar Patterns
 --------------------
 
-* Periodic tasks (cyclic tasks / time triggered)
+* Periodic tasks (cyclic tasks / time-triggered)
 
    - Sensor data acquisition
    - System monitoring
    - Control loops
    - Display update
 
-* Event driven tasks
+* Event-driven tasks
 
    - Alarm, Timeout
    - Interrupt
@@ -163,26 +163,36 @@ Scheduling
 Ceiling Locking
 -----------------
 
-* Example of priority inversion
+.. container:: columns
 
-.. code::
+  .. container:: column
 
-   L : Lock;
+    .. container:: latex_environment scriptsize
 
-   T1 : Task (Priority => 1);
-   T2 : Task (Priority => 2);
-   T3 : Task (Priority => 3);
+      * Example of priority inversion
 
-   T1 locks L
-   T3 starts, get scheduled (T3 > T1)
-   T3 tries to get L, blocks
-   T2 starts, get scheduled (T2 > T1)
+        .. code::
 
-   Result: T2 running, T1 blocked, T3 blocked through L (but T3 > T2!)
+          L : Lock;
+
+          T1 : Task (Priority => 1);
+          T2 : Task (Priority => 2);
+          T3 : Task (Priority => 3);
+
+  .. container:: column
+
+    .. container:: latex_environment scriptsize
+
+      * T1 locks L
+      * T3 starts, gets scheduled (T3 > T1)
+      * T3 tries to get L, blocks
+      * T2 starts, gets scheduled (T2 > T1)
+
+      Result: T2 running, T1 blocked, T3 blocked through L (but T3 > T2!)
 
 * Solved with ceiling locking
 
-    - Increase the priority of a task when it uses a protected
+    - Increase the priority of a task when it uses a protected object
 
 * Task priority is increased within a protected object
 

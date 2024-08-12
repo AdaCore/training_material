@@ -34,7 +34,7 @@ What Is the Jorvik profile?
 
   + Defined in the RM D.13 (Ada 2022)
 
-* Remove some constraints
+* Removes some constraints
 
   - Scheduling analysis may be harder to perform
 
@@ -58,7 +58,7 @@ What Are GNAT runtimes?
 * Standard runtime
 
   - Full runtime support
-  - "Full-fledged" OS target (Linux, WxWorks...)
+  - "Full-fledged" OS target (Linux, VxWorks...)
   - Large memory footprint
   - Full tasking (not shown in this class)
 
