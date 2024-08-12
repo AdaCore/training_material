@@ -17,7 +17,7 @@ Supplementary Ada labs are also available through Alire, with the crates
 - [`labs_solar_system`](https://alire.ada.dev/crates/labs_solar_system)
 - [`labs_standalone`](https://alire.ada.dev/crates/labs_standalone)
 
-## Naming Scheme
+## Original Naming Scheme
 
 The naming scheme uses a 3-digit prefix, followed by an underscore and
 then the description of the module (all lower case, words
@@ -57,3 +57,14 @@ way to give students a central location for finding answers to simple Ada questi
 These prefixes should be used by the "spec_" courses. New modules should use the
 highest available number (leaving everything below for normal courses)
 
+## New Naming Scheme
+
+Under the new naming scheme being introduced via epic https://gitlab.adacore-it.com/groups/feng/training/-/epics/43,
+we will treat every concept as a module, and variations on the concept
+(intro/advanced/etc) will have its variation tagged onto the end of the module name.
+So, for example, the "Basic Types" module will be appear in the directory as follows
+
+   * ``030_basic_types`` - folder where all the subsections are stored
+   * ``030_basic_types.rst`` - the most common collection of subsections (used for *standard_course.txt* and *opat.txt*)
+   * ``030_basic_types-in_depth`` - the dash separates the module from the modifier. In this case, **in_depth** should mean a deep-dive replacement for the original module
+   * ``030_basic_types-extras`` - hopefully, the **extras** modifier should be an indication that this is *in addition to* the base module
