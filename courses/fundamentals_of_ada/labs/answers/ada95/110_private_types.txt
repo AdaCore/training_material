@@ -121,9 +121,9 @@ package body Flags is
               (Key         => Key,
                Description => Description);
          begin
-            Map.Length              := Map.Length + 1;
+            Map.Length := Map.Length + 1;
+            Success    := True;
             Map.Values (Map.Length) := New_Item;
-            Success                 := True;
          end;
       end if;
    end Add;
@@ -135,9 +135,9 @@ package body Flags is
    begin
       Success := False;
       if Index in Map.Values'Range then
+         Success := True;
          Map.Values (Index .. Map.Length - 1) :=
            Map.Values (Index + 1 .. Map.Length);
-         Success                              := True;
       end if;
    end Remove;
 --Flags_Body_1
@@ -189,7 +189,7 @@ package body Flags is
             Str  : constant String        := Image (Item);
          begin
             Ret_Val (Next .. Next + Str'Length) := Image (Item) & ASCII.LF;
-            Next                                := Next + Str'Length + 1;
+            Next := Next + Str'Length + 1;
          end;
       end loop;
       return Ret_Val (1 .. Next - 1);
