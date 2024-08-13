@@ -732,13 +732,27 @@ Aspects
 Pragmas
 ---------
 
-* Originated as a compiler directive
+* Originated as a compiler directive for things like
 
-   - Things like specifying the type of optimization (:ada:`pragma Optimize (Space);`) or how to construct calls (:ada:`pragma Inline (Some_Procedure);`)
+   - Specifying the type of optimization
+
+     .. code:: Ada
+
+        pragma Optimize (Space);
+
+   - Inlining of code
+
+     .. code:: Ada
+
+        pragma Inline (Some_Procedure);
 
 * Appearance in code
 
-   * Unrecognized pragmas (:ada:`pragma My_Own_Pragma;`)
+   * Unrecognized pragmas
+
+      .. code:: Ada
+
+         pragma My_Own_Pragma;
 
       - **No effect**
       - Cause **warning** (standard mode)
