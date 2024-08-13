@@ -24,7 +24,9 @@ What Is the Ravenscar Profile?
    - Execution efficiency and small footprint
    - Certification
 
-* :ada:`pragma Profile (Ravenscar)`
+.. code:: Ada
+
+   pragma Profile (Ravenscar);
 
 -----------------------------
 What Is the Jorvik profile?
@@ -38,12 +40,14 @@ What Is the Jorvik profile?
 
   - Scheduling analysis may be harder to perform
 
+.. code:: Ada
+
+   pragma Profile (Jorvik);
+
 * Subset of Ravenscars' requirements
-* This class is about the more widespread Ravenscar
 
-  + But some of Jorvik's differences are indicated
-
-* :ada:`pragma Profile (Jorvik)`
+  * This class is about the more widespread Ravenscar
+  * But some of Jorvik's differences are indicated
 
 -------------------------
 What Are GNAT runtimes?
