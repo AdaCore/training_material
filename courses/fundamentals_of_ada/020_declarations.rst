@@ -370,13 +370,14 @@ Implicit Vs Explicit Declarations
 Elaboration
 -----------
 
-* :dfn:`Elaboration` has several aspects:
-* **Initial value** calculation
+* :dfn:`Elaboration` has several facets:
+
+  * **Initial value** calculation
 
     - Evaluation of the expression
     - Done at **run-time** (unless static)
 
-* Object creation
+  * Object creation
 
    - Memory **allocation**
    - Initial value assignment (and type checks)
@@ -765,7 +766,6 @@ Aspect Clauses
 * Usage close to pragmas
 
     - More **explicit**, **typed**
-    - **Cannot** be ignored
     - **Recommended** over pragmas
 
 * Syntax
