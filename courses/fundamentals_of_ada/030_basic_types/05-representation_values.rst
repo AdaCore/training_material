@@ -6,6 +6,10 @@ Representation Values
 Enumeration Representation Values
 -----------------------------------
 
+.. admonition:: Language Variant
+
+   Ada 2022
+
 * Numeric **representation** of enumerals
 
     - Position, unless redefined
@@ -16,17 +20,22 @@ Enumeration Representation Values
          type Enum_T is (Able, Baker, Charlie, Dog, Easy, Fox);
          for Enum_T use (1, 2, 4, 8, Easy => 16, Fox => 32);
 
-* No manipulation *in language standard*
+* Prior to Ada 2022
 
-   - Standard is **logical** ordering
-   - Ignores **representation** value
+   - Enumerals are ordered **logically** (not by value)
+   - Only way to get value is through :ada:`Unchecked_Conversion`
 
-* Still accessible
+* New attributes in Ada 2022 
 
-   - **Unchecked** conversion
-   - **Implementation**-defined facility
+   * :ada:`'Enum_Rep` to get representation value
 
-      + Ada 2022 attributes :ada:`T'Enum_Rep`, :ada:`T'Enum_Val`
+      :ada:`Charlie'Enum_Rep` |rightarrow| 4
+
+   * :ada:`'Enum_Val` to convert integer to enumeral (if possible)
+
+      :ada:`Enum_T'Enum_Val (8)` |rightarrow| :ada:`Dog`
+
+      :ada:`Enum_T'Enum_Val (9)` |rightarrow| raise :ada:`Constraint_Error`
 
 -----------------------------------------
 Order Attributes for All Discrete Types
