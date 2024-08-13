@@ -13,14 +13,26 @@ Enumeration Representation Values
 
       .. code:: Ada
 
-         type Enum_T is (Able, Baker, Charlie, Dog, Easy, Fox);
-         for Enum_T use (1, 2, 4, 8, Easy => 16, Fox => 32);
+        type Enum_T is (Able, Baker, Charlie, David);
+        for Enum_T use
+          (Able => 3, Baker => 15, Charlie => 63, David => 255);
 
    - Enumerals are ordered **logically** (not by value)
 
 * Prior to Ada 2022
 
    - Only way to get value is through :ada:`Unchecked_Conversion`
+
+      .. code:: Ada
+
+         function Value is new Ada.Unchecked_Conversion
+            (Enum_T, Integer_8);
+         I : Integer_8;
+
+      .. code:: Ada
+
+         begin
+            I := Value (Charlie);
 
 * New attributes in Ada 2022 
 
