@@ -765,7 +765,7 @@ Pragmas
          pragma Optimize (Off); -- with parameter
          pragma Illegal One;    -- compile error
 
-* Pragmas are typically used to define properties (:dfn:`aspects`) of something.
+* Pragmas are typically used to define properties (:dfn:`aspects`) of something
 
 ----------------
 Aspect Clauses
