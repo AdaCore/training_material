@@ -109,7 +109,7 @@ Quiz
 
 Which of the following proposition(s) is(are) true
 
-A. The code fails at runtime
+A. The code fails at run-time
 B. ``Obj'Length = 3``
 C. :answermono:`Obj (1) = 'C'`
 D. :answermono:`Obj (3) = A`

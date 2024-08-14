@@ -114,7 +114,7 @@ Run-Time Index Checking
    begin
      A := (others => 0);
      K := FOO;
-     A (K) := 42; -- runtime error if Foo returns < 1 or > 10
+     A (K) := 42; -- run-time error if Foo returns < 1 or > 10
      Put_Line (A(K)'Image);
    end Test;
 
@@ -397,7 +397,7 @@ Bounds Must Satisfy Type Constraints
    type Index is range 1 .. 100;
    type Char_Arr is array (Index range <>) of Character;
    ...
-   Wrong : Char_Arr (0 .. 10);  -- runtime error
+   Wrong : Char_Arr (0 .. 10);  -- run-time error
    OK : Char_Arr (50 .. 75);
 
 ------------------
@@ -602,7 +602,7 @@ What is the value of :ada:`O (True)`?
 A. :ada:`False`
 B. :ada:`True`
 C. None: Compilation error
-D. :answer:`None: Runtime error`
+D. :answer:`None: Run-time error`
 
 .. container:: animate
 
@@ -625,7 +625,7 @@ What is the value of :ada:`O'Length`?
 A. 1
 B. :answer:`0`
 C. None: Compilation error
-D. None: Runtime error
+D. None: Run-time error
 
 .. container:: animate
 
@@ -679,7 +679,7 @@ Attributes' Benefits
             Vector (Idx) := Idx * 2;
          end loop;
 
-  * Compiler understands :ada:`Idx` has to be a valid index for :ada:`Vector`, so no runtime checks are necessary
+  * Compiler understands :ada:`Idx` has to be a valid index for :ada:`Vector`, so no run-time checks are necessary
 
 --------------------------------
 Nth Dimension Array Attributes

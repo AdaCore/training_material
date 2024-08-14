@@ -172,8 +172,8 @@ Attributes Reflect the Underlying Type
 
    .. code:: Ada
 
-      Shade : Color range Red .. Blue := Brown; -- runtime error
-      Hue : Rainbow := Rainbow'Succ (Blue);     -- runtime error
+      Shade : Color range Red .. Blue := Brown; -- run-time error
+      Hue : Rainbow := Rainbow'Succ (Blue);     -- run-time error
 
 ------
 Quiz
@@ -214,7 +214,7 @@ What is the value of :ada:`S'Succ (S (9))`?
 
 A. 9
 B. :answer:`10`
-C. None, this fails at runtime
+C. None, this fails at run-time
 D. None, this does not compile
 
 .. container:: animate
@@ -236,6 +236,6 @@ What is the result of :ada:`Obj := S'Last + 1`?
 
 A. 0
 B. 11
-C. :answer:`None, this fails at runtime`
+C. :answer:`None, this fails at run-time`
 D. None, this does not compile
 

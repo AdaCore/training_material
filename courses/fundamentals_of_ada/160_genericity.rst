@@ -625,4 +625,4 @@ Summary
 * Generic instantiations are best done at compile time
 
    - At the package level
-   - Can be run-time expensive when done in subprogram scope
+   - Can be run time expensive when done in subprogram scope

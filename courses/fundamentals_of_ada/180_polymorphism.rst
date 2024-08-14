@@ -45,7 +45,7 @@ Introduction
    - Abstract types
    - Abstract subprograms
 
-* Run-time call dispatch vs compile-time call dispatching
+* Runtime call dispatch vs compile-time call dispatching
 
 ==================
 Classes of Types
@@ -250,7 +250,7 @@ Calls on Class-Wide Types (2/3)
 ---------------------------------
 
 * The *actual* type of the object is not known at compile time
-* The *right* type will be selected at runtime
+* The *right* type will be selected at run-time
 
 .. container:: columns
 
@@ -564,8 +564,8 @@ Summary
 
       + Need an implementation for each abstract type referenced
 
-* Run-time call dispatch vs compile-time call dispatching
+* Runtime call dispatch vs compile-time call dispatching
 
    - Compiler resolves appropriate call where it can
-   - Run-time resolves appropriate call where it can
+   - Runtime resolves appropriate call where it can
    - If not resolved, exception

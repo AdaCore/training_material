@@ -221,7 +221,7 @@ What is the result of compiling and running this code?
 A. :ada:`Ok = True`
 B. Nothing
 C. :answer:`Compilation error`
-D. Runtime error
+D. Run-time error
 
 .. container:: animate
 

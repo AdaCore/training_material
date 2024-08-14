@@ -176,7 +176,7 @@ Testing Constraints Via Qualification
    subtype Weekdays is Days range Mon .. Fri;
    This_Day : Days;
    ...
-   case Weekdays'(This_Day) is --runtime error if out of range
+   case Weekdays'(This_Day) is -- run-time error if out of range
      when Mon =>
        Arrive_Late;
        Leave_Early;

@@ -468,7 +468,7 @@ What is the result of building and running this code?
 A. ``0``
 B. ``1``
 C. :answer:`Compilation error`
-D. Runtime error
+D. Run-time error
 
 .. container:: animate
 
@@ -497,7 +497,7 @@ What is the result of building and running this code?
 A. ``0``
 B. ``1``
 C. :answer:`Compilation error`
-D. Runtime error
+D. Run-time error
 
 .. container:: animate
 
@@ -768,7 +768,7 @@ Immutable Variant Record Example
   * :ada:`Sam` has :ada:`Group`, :ada:`Age`, and :ada:`Pubs`
   * Aggregate specifies all fields, including the discriminant
 
-* Compiler can detect some problems, but more often clashes are runtime errors
+* Compiler can detect some problems, but more often clashes are run-time errors
 
   .. code:: Ada
 
@@ -782,7 +782,7 @@ Immutable Variant Record Example
 
     * ``warning: Constraint_Error will be raised at run time``
 
-  * :ada:`Do_Something (Pat);` generates a runtime error, because only at runtime is the discriminant for :ada:`Param` known
+  * :ada:`Do_Something (Pat);` generates a run-time error, because only at runtime is the discriminant for :ada:`Param` known
 
     * ``raised CONSTRAINT_ERROR : discriminant check failed``
 
@@ -838,7 +838,7 @@ Mutable Variant Record Example
     
 * But you cannot change the discriminant of :ada:`Sam`
 
-  * :ada:`Sam := Pat;` will give you a runtime error if :ada:`Pat.Group` is not :ada:`Faculty`
+  * :ada:`Sam := Pat;` will give you a run-time error if :ada:`Pat.Group` is not :ada:`Faculty`
 
     * And the compiler will not warn about this!
 
@@ -865,7 +865,7 @@ Which component(s) does :ada:`Variant_Object` contain?
 A. :ada:`Variant_Object.I, Variant_Object.B`
 B. :answermono:`Variant_Object.N`
 C. None: Compilation error
-D. None: Runtime error
+D. None: Run-time error
 
 ------
 Quiz
@@ -890,7 +890,7 @@ Which component does :ada:`Variant_Object` contain?
 A. :ada:`Variant_Object.F, Variant_Object.Flag`
 B. :ada:`Variant_Object.F`
 C. :answer:`None: Compilation error`
-D. None: Runtime error
+D. None: Run-time error
 
 .. container:: animate
 

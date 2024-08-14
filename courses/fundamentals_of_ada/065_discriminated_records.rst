@@ -159,7 +159,7 @@ Immutable Variant Record Usage
 
    ``warning: component not present in subtype of "Employee_T" defined at line 24``
 
-* But more often clashes are runtime errors
+* But more often clashes are run-time errors
 
    .. code:: Ada
      :number-lines: 32
@@ -224,7 +224,7 @@ Mutable Variant Record Example
     
 * And you cannot change the discriminant of :ada:`Sam`
 
-  * :ada:`Sam := Pat;` will give you a runtime error if :ada:`Pat.Kind` is not :ada:`Contractor`
+  * :ada:`Sam := Pat;` will give you a run-time error if :ada:`Pat.Kind` is not :ada:`Contractor`
 
     * And the compiler will not warn about this!
 
@@ -251,7 +251,7 @@ Which component(s) does :ada:`Variant_Object` contain?
 A. :ada:`Variant_Object.I, Variant_Object.B`
 B. :answermono:`Variant_Object.N`
 C. None: Compilation error
-D. None: Runtime error
+D. None: Run-time error
 
 ------
 Quiz
@@ -292,7 +292,7 @@ Quiz
 
       What happens when you try to build and run this code?
 
-      A. Runtime error
+      A. Run-time error
       B. Compilation error on an object
       C. :answer:`Compilation error on a type`
       D. No problems
@@ -417,7 +417,7 @@ Object Creation
 
          ``warning: creation of "Vstring" object may raise Storage_Error``
 
-      + Runtime error
+      + Run-time error
 
          ``raised STORAGE_ERROR : EXCEPTION_STACK_OVERFLOW`` 
 
@@ -589,7 +589,7 @@ Which component does :ada:`C_Object` contain?
    A. :ada:`C_Object.One`
    B. :ada:`C_Object.Two`
    C. :answer:`None: Compilation error`
-   D. None: Runtime error
+   D. None: Run-time error
 
 .. container:: animate
 

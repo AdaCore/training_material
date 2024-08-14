@@ -50,7 +50,7 @@ What Is the Jorvik profile?
   * But some of Jorvik's differences are indicated
 
 -------------------------
-What Are GNAT runtimes?
+What Are GNAT Runtimes?
 -------------------------
 
 * The :dfn:`runtime` is an embedded library
