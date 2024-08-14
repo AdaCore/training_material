@@ -1,5 +1,9 @@
+========
+Lab
+========
+
 -----------------------
-Advanced Tasking Lab
+Tasking In Depth Lab
 -----------------------
 
 * Requirements
@@ -20,19 +24,19 @@ Advanced Tasking Lab
    - One task per register is easier than one task trying to maintain multiple update frequencies
 
 --------------------------------------------
-Advanced Tasking Lab Solution - Datastore
+Tasking In Depth Lab Solution - Datastore
 --------------------------------------------
 
-.. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Datastore :end-before:--Datastore :code:Ada :number-lines:1
+.. container:: source_include labs/answers/240_tasking_in_depth.txt :start-after:--Datastore :end-before:--Datastore :code:Ada :number-lines:1
 
 -----------------------------------------------------
-Advanced Tasking Lab Solution - Monitor Task Type
+Tasking In Depth Lab Solution - Monitor Task Type
 -----------------------------------------------------
 
-.. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Task :end-before:--Task :code:Ada :number-lines:1
+.. container:: source_include labs/answers/240_tasking_in_depth.txt :start-after:--Task :end-before:--Task :code:Ada :number-lines:1
 
 --------------------------------------
-Advanced Tasking Lab Solution - Main
+Tasking In Depth Lab Solution - Main
 --------------------------------------
 
-.. container:: source_include labs/answers/adv_240_tasking.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include labs/answers/240_tasking_in_depth.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
