@@ -57,9 +57,9 @@ Declarations
     - **Standard** types and operations
     - **Implementation**-defined
 
-====================================
-Identifiers, Comments, and Pragmas
-====================================
+==========================
+Identifiers and Comments
+==========================
 
 -----------
 Identifiers
@@ -135,28 +135,6 @@ Comments
       -- This is a multi-
       -- line comment
       A : B; -- this is an end-of-line comment
-
----------
-Pragmas
----------
-
-* Compiler directives
-
-   - Compiler action *not part of* Ada grammar
-   - Only **suggestions**, may be **ignored**
-   - Either standard or implementation-defined
-
-* Unrecognized pragmas
-
-   - **No effect**
-   - Cause **warning** (standard mode)
-
-* Malformed pragmas are **illegal**
-
-.. code:: Ada
-
-   pragma Page;
-   pragma Optimize (Off);
 
 ----------------------------------------------
 Declaring Constants / Variables (simplified)
@@ -392,16 +370,17 @@ Implicit Vs Explicit Declarations
 Elaboration
 -----------
 
-* :dfn:`Elaboration` has several aspects:
-* **Initial value** calculation
+* :dfn:`Elaboration` has several facets:
+
+  * **Initial value** calculation
 
     - Evaluation of the expression
     - Done at **run-time** (unless static)
 
-* Object creation
+  * Object creation
 
-   - Memory **allocation**
-   - Initial value assignment (and type checks)
+    - Memory **allocation**
+    - Initial value assignment (and type checks)
 
 * Runs in linear order
 
@@ -745,9 +724,48 @@ Quiz
       * Inner :ada:`M` gets printed first. It is initialized to 2 and incremented by 2
       * Outer :ada:`M` gets printed second. It is initialized to 1 and incremented by 1
 
-================
-Aspect Clauses
-================
+=========
+Aspects
+=========
+
+---------
+Pragmas
+---------
+
+* Originated as a compiler directive for things like
+
+   - Specifying the type of optimization
+
+     .. code:: Ada
+
+        pragma Optimize (Space);
+
+   - Inlining of code
+
+     .. code:: Ada
+
+        pragma Inline (Some_Procedure);
+
+* Appearance in code
+
+   * Unrecognized pragmas
+
+      .. code:: Ada
+
+         pragma My_Own_Pragma;
+
+      - **No effect**
+      - Cause **warning** (standard mode)
+
+   * Must follow correct syntax
+
+      .. code:: Ada
+
+         pragma Page;           -- parameterless
+         pragma Optimize (Off); -- with parameter
+         pragma Illegal One;    -- compile error
+
+* Pragmas are typically used to define properties (:dfn:`aspects`) of something
 
 ----------------
 Aspect Clauses
@@ -762,7 +780,6 @@ Aspect Clauses
 * Usage close to pragmas
 
     - More **explicit**, **typed**
-    - **Cannot** be ignored
     - **Recommended** over pragmas
 
 * Syntax
