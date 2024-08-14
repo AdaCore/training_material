@@ -38,7 +38,7 @@ Enumeration Representation Values
 
    * :ada:`'Enum_Rep` to get representation value
 
-      :ada:`Charlie'Enum_Rep` |rightarrow| 4
+      :ada:`Charlie'Enum_Rep` |rightarrow| 63
 
    * :ada:`'Enum_Val` to convert integer to enumeral (if possible)
 
