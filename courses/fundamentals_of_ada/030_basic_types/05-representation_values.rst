@@ -42,9 +42,9 @@ Enumeration Representation Values
 
    * :ada:`'Enum_Val` to convert integer to enumeral (if possible)
 
-      :ada:`Enum_T'Enum_Val (8)` |rightarrow| :ada:`Dog`
+      :ada:`Enum_T'Enum_Val (15)` |rightarrow| :ada:`Baker`
 
-      :ada:`Enum_T'Enum_Val (9)` |rightarrow| raise :ada:`Constraint_Error`
+      :ada:`Enum_T'Enum_Val (16)` |rightarrow| raise :ada:`Constraint_Error`
 
 -----------------------------------------
 Order Attributes for All Discrete Types
