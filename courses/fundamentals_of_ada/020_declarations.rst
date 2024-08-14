@@ -379,8 +379,8 @@ Elaboration
 
   * Object creation
 
-   - Memory **allocation**
-   - Initial value assignment (and type checks)
+    - Memory **allocation**
+    - Initial value assignment (and type checks)
 
 * Runs in linear order
 
