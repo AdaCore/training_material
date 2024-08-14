@@ -39,7 +39,7 @@ Introduction
 A Simple Task
 ---------------
 
-* Parallel code execution via **task**
+* Concurrent code execution via :ada:`task`
 * :ada:`limited` types (No copies allowed)
 
    .. code:: Ada
@@ -61,6 +61,9 @@ A Simple Task
             Put_Line ("Main");
          end loop;
       end;
+
+* A task is started when its declaration scope is **elaborated**
+* Its enclosing scope exits when **all tasks** have finished
 
 --------------------------
 Two Synchronization Models
@@ -111,6 +114,8 @@ Rendezvous Definitions
             end Receive_Message;
          end loop;
       end Msg_Box_T;
+
+      T : Msg_Box_T;
 
 ------------------------
 Rendezvous Entry Calls
@@ -177,19 +182,18 @@ Protected Objects
 
   .. code:: Ada
 
-   protected type
-     Protected_Value is
+   protected type Some_Value is
       procedure Set (V : Integer);
       function Get return Integer;
    private
       Value : Integer;
-   end Protected_Value;
+   end Some_Value;
 
  .. container:: column
 
   .. code:: Ada
 
-   protected body Protected_Value is
+   protected body Some_Value is
       procedure Set (V : Integer) is
       begin
          Value := V;
@@ -199,7 +203,7 @@ Protected Objects
       begin
          return Value;
       end Get;
-   end Protected_Value;
+   end Some_Value;
 
 .
 
@@ -233,6 +237,17 @@ Delay keyword
 - Blocks for a time
 - Relative: Blocks for at least :ada:`Duration`
 - Absolute: Blocks until a given :ada:`Calendar.Time` or :ada:`Real_Time.Time`
+
+.. code:: Ada
+
+   procedure Main is
+      Relative : Duration := 1.0;
+      Absolute : Calendar.Time
+        := Calendar.Time_Of (2030, 10, 01);
+   begin
+      delay Relative;
+      delay until Absolute;
+   end Main;
 
 ==========================
 Task and Protected Types
@@ -370,10 +385,7 @@ Waiting With a Delay
     end select;
   end loop;
 
-.. container:: speakernote
-
-   Task will wait up to 50 seconds for "Receive_Message", print a message, and then enter the loop
-   Without the "exit" it will print the message and wait another 50 seconds, and so on
+*Task will wait up to 50 seconds for* :ada:`Receive_Message`. *If no message is received, it will write to the console, and then restart the loop. (If the* :ada:`exit` *wasn't there, the loop would exit the first time no message was received.)*
 
 ------------------------------------------
 Calling an Entry With a Delay Protection
@@ -399,9 +411,7 @@ Calling an Entry With a Delay Protection
       end select;
    end Main;
 
-.. container:: speakernote
-
-   Procedure will wait up to 50 seconds for "Receive_Message" to be accepted before it gives up
+*Procedure will wait up to 50 seconds for* :ada:`Receive_Message` *to be accepted before it gives up*
 
 ----------------------------
 Non-blocking Accept or Entry

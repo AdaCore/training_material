@@ -59,14 +59,16 @@ Declaring Private Types for Views
 
 .. code:: Ada
 
-   package Control is
-     type Valve is private;
-     procedure Open (V : in out Valve);
-     procedure Close (V : in out Valve);
-     ...
+   package Bounded_Stacks is
+      type Stack is private;
+      procedure Push (Item : in Integer; Onto : in out Stack);
+      ...
    private
-     type Valve is ...
-   end Control;
+      ...
+      type Stack is record
+          Top : Positive;
+          ...
+    end Bounded_Stacks;
 
 -----------------------------------
 Users Declare Objects of the Type

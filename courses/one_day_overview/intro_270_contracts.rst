@@ -203,7 +203,6 @@ Strong Typing
    * Number must be even
    * Subset of non-consecutive enumerals
    * Array should always be sorted
-   * Type invariants are only checked on external boundaries
 
 * **Type Invariant**
 
@@ -285,6 +284,8 @@ Subtype Predicates
    - **Dynamic Predicates**
 
       + Specified via aspect named :ada:`Dynamic_Predicate`
+
+* Can apply to :ada:`type` or :ada:`subtype`
 
 ----------------------------
 Subtype Predicate Examples

@@ -130,7 +130,7 @@ Based Numeric Literals
 * Base can be 2 .. 16
 * Exponent is always a base 10 integer
 
-   .. code:: Ada
+   ::
 
       16#FFF#           => 4095
       2#1111_1111_1111# => 4095 -- With underline
@@ -179,4 +179,5 @@ Object Declarations
       Count : Integer range 0 .. Max := 0;
       -- dynamic initial value via function call
       Root : Tree := F(X);
-      A, B : Integer := G(X); -- Will call G(X) twice, for each variable
+      -- Will call G(X) twice, once per variable
+      A, B : Integer := G(X);

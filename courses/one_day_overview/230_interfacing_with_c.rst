@@ -35,18 +35,20 @@ Interfacing with C
 Import / Export
 =================
 
-------------------------------
-Pragma Import / Export (1/2)
-------------------------------
+-------------------------------
+Import / Export Aspects (1/2)
+-------------------------------
 
-* :ada:`Pragma Import` allows a C implementation to complete an Ada specification
+* Aspect :ada:`Import` allows a C implementation to complete an Ada specification
 
    - Ada view
 
       .. code:: Ada
 
-         procedure C_Proc;
-         pragma Import (C, C_Proc, "SomeProcedure");
+         procedure C_Proc
+            with Import,
+                 Convention    => C,
+                 External_Name => "c_proc";
 
    - C implementation
 
@@ -56,14 +58,17 @@ Pragma Import / Export (1/2)
              // some code
           }
 
-* :ada:`Pragma Export` allows an Ada implementation to complete a C specification
+* Aspect :ada:`Export` allows an Ada implementation to complete a C specification
 
    - Ada implementation
 
        .. code:: Ada
 
-          procedure Some_Procedure;
-          pragma Export (C, Some_Procedure, "ada_some_procedure");
+          procedure Some_Procedure
+             with Export,
+                  Convention    => C,
+                  External_Name => "ada_some_procedure");
+
           procedure Some_Procedure is
           begin
            -- some code
@@ -75,9 +80,9 @@ Pragma Import / Export (1/2)
 
           extern void ada_some_procedure (void);
 
-------------------------------
-Pragma Import / Export (2/2)
-------------------------------
+-------------------------------
+Import / Export Aspects (2/2)
+-------------------------------
 
 * You can also import/export variables
 
@@ -86,8 +91,10 @@ Pragma Import / Export (2/2)
 
       .. code:: Ada
 
-         My_Var : integer_type;
-         Pragma Import (C, My_Var, "my_var");
+         My_Var : Integer_Type
+            with Import,
+                 Convention    => C,
+                 External_Name => "my_var");
 
    - C implementation
 
@@ -116,8 +123,10 @@ Passing Scalar Data as Parameters
 
       with Interfaces.C;
       function C_Proc (I : Interfaces.C.Int)
-          return Interfaces.C.Int;
-      pragma Import (C, C_Proc, "c_proc");
+          return Interfaces.C.Int
+          with Import,
+               Convention    => C,
+               External_Name => "c_proc");
 
 * C view
 
@@ -147,18 +156,6 @@ Passing Structures as Parameters
      };
 
 * Ada View
-
-   .. code:: Ada
-
-     type Enum is (E1, E2, E3);
-     Pragma Convention (C, Enum);
-     type Rec is record
-       A, B : int;
-       C : Enum;
-     end record;
-     Pragma Convention (C, Rec);
-
-* Using Ada 2012 aspects
 
    .. code:: Ada
 

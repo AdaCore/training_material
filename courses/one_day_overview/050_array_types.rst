@@ -219,11 +219,25 @@ Unconstrained Array Type Declarations
 Supplying Index Constraints for Objects
 -----------------------------------------
 
+.. code:: Ada
+
+   type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+   type Schedule is array (Days range <>) of Float;
+
 * Bounds set by:
 
-   - Object declaration
-   - Constant's value
-   - Variable's initial value
+     - Object declaration
+
+      .. code:: Ada
+
+         Weekdays : Schedule(Mon..Fri);
+
+   - Object (or constant) initialization
+
+      .. code:: Ada
+
+         Weekend : Schedule := (Sat => 4.0, Sun => 0.0);
+
    - Further type definitions (shown later)
    - Actual parameter to subprogram (shown later)
 
@@ -231,9 +245,8 @@ Supplying Index Constraints for Objects
 
    .. code:: Ada
 
-      type Schedule is array (Days range <>) of Float;
-      Work : Schedule (Mon .. Fri);
-      All_Days : Schedule (Days);
+      Weekdays(Sat) := 0.0; --  Compiler error
+      Weekend(Mon)  := 0.0; --  Compiler error
 
 ----------------
 "String" Types
@@ -334,7 +347,7 @@ Extra Object-Level Operations
       -- C now contains "foobar"
 
 * Relational (for discrete component types)
-* Logical (for Boolean component type)
+* Logical (for :ada:`Boolean` component type)
 * Slicing
 
    - Portion of array

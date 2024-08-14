@@ -72,10 +72,10 @@ Compile-Time Visibility Control
 
    .. code:: Ada
 
-      package name  is
+      package Some_Package is
         -- exported declarations of
         --   types, variables, subprograms ...
-      end name;
+      end Some_Package;
 
 * Items in the body are never externally visible
 
@@ -83,11 +83,11 @@ Compile-Time Visibility Control
 
    .. code:: Ada
 
-      package body name  is
+      package body Some_Package is
         -- hidden declarations of
         --   types, variables, subprograms ...
         -- implementations of exported subprograms etc.
-      end name;
+      end Some_Package;
 
 ---------------------------------
 Example of Exporting To Clients

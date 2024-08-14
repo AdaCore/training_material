@@ -294,14 +294,14 @@ Address Clauses
 Volatile
 ----------
 
-* The `Volatile` property can be set using an aspect (in Ada2012 only) or a pragma
+* The `Volatile` property can be set using an aspect (in Ada2012 or later) or a pragma
 * Ada also allows volatile types as well as objects
 
    .. code:: Ada
 
       type Volatile_U16 is mod 2**16;
-      pragma Volatile(Volatile_U16);
-      type Volatile_U32 is mod 2**32 with Volatile; -- Ada 2012
+      pragma Volatile (Volatile_U16);
+      type Volatile_U32 is mod 2**32 with Volatile; 
 
 * The exact sequence of reads and writes from the source code must appear in the generated code
 

@@ -89,10 +89,10 @@ Parameter Modes and Return
    - Actual parameter is :ada:`constant`
    - Can have **default**, used when **no value** is provided
 
-    .. code:: Ada
+   .. code:: Ada
 
        procedure P (N : in Integer := 1; M : in Positive);
-       [...]
+       ...
        P (M => 2);
 
 * Mode :ada:`out`
