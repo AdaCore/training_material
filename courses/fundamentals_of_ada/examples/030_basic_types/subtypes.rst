@@ -25,11 +25,11 @@
       pragma Unreferenced (Safe);
    
    begin
-      Also_Weekday := Day;  -- runtime error if Day is Sat or Sun
+      Also_Weekday := Day;  -- run-time error if Day is Sat or Sun
       Put_Line (Also_Weekday'Image);
       Day := Weekday;  -- always legal
       I   := I - 1;
-      Takes_Positive (I); -- runtime error if I <= 0
+      Takes_Positive (I); -- run-time error if I <= 0
    
       Weekday := Weekdays_T'Last;
       Day     := Days_T'Last;

@@ -49,7 +49,7 @@ Protected: Limitations
 
 * May raise :ada:`Program_Error` or deadlocks
 * **Will** cause performance and portability issues
-* :ada:`pragma Detect_Blocking` forces a proactive runtime detection
+* :ada:`pragma Detect_Blocking` forces a proactive run-time detection
 * Solve by deferring blocking operations
 
    - Using eg. a FIFO
@@ -118,7 +118,7 @@ What is the result of compiling and running this code?
 
 A. No error
 B. :answer:`Compilation error`
-C. Runtime error
+C. Run-time error
 
 .. container:: animate
 

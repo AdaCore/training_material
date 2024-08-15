@@ -10,7 +10,7 @@ procedure Main is
 
 begin
    --$ begin cut
-   -- The code fails at runtime
+   -- The code fails at run-time
    This_Should_Not_Compile;
    --$ end cut
    

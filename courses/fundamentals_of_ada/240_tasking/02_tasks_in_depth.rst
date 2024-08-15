@@ -141,7 +141,7 @@ Quiz
 What happens when :ada:`My_Task.Go` is called?
 
 A. Compilation error
-B. Runtime error
+B. Run-time error
 C. :answer:`The calling task hangs`
 D. :answer:`My_Task hangs`
 
@@ -168,7 +168,7 @@ Quiz
 What happens when :ada:`My_Task.Go` is called?
 
 A. Compilation error
-B. Runtime error
+B. Run-time error
 C. The calling task hangs
 D. :answer:`My_Task hangs`
 

@@ -19,7 +19,7 @@ GNAT.Debug_Pools
       type Linked_List_Ptr_T is access all Linked_List_T;
       for Linked_List_Ptr_T'storage_pool use Memory_Mgmt.Storage_Pool;
 
-* GNAT uses this mechanism in the run-time package :ada:`GNAT.Debug_Pools` to track allocation/deallocation
+* GNAT uses this mechanism in the runtime package :ada:`GNAT.Debug_Pools` to track allocation/deallocation
 
   .. container:: latex_environment footnotesize
 

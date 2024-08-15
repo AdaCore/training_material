@@ -345,7 +345,7 @@ What is the result of compiling and running this code?
 A. :ada:`T.E1` is called
 B. Nothing
 C. :answer:`Compilation error`
-D. Runtime error
+D. Run-time error
 
 .. container:: animate
 
@@ -390,7 +390,7 @@ Quiz
   A. "AAAAA..."
   B. :answer:`Nothing`
   C. Compilation error
-  D. Runtime error
+  D. Run-time error
 
   .. container:: animate
 
@@ -431,7 +431,7 @@ What is the output of this code?
 A. "Terminated"
 B. :answer:`Nothing`
 C. Compilation error
-D. Runtime error
+D. Run-time error
 
 .. container:: animate
 
@@ -463,7 +463,7 @@ A. "A"
 B. "AAAA..."
 C. :answer:`"AB"`
 D. Compilation error
-E. Runtime error
+E. Run-time error
 
 .. container:: animate
 
@@ -500,7 +500,7 @@ What is the result of compiling and running this code?
 A. :ada:`OK = True`
 B. Nothing
 C. Compilation error
-D. Runtime error
+D. Run-time error
 
 .. container:: animate
 
