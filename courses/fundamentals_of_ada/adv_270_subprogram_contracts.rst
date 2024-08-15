@@ -154,7 +154,7 @@ Which of the following statements is/are correct?
     A. :answer:`Defensive coding is a good practice`
     B. Contracts can replace all defensive code
     C. Contracts are executable constructs
-    D. Having exhaustive contracts will prevent runtime errors
+    D. Having exhaustive contracts will prevent run-time errors
 
 .. container:: animate
 
@@ -163,7 +163,7 @@ Which of the following statements is/are correct?
     A. Principles are sane, contracts extend those
     B. See previous slide example
     C. e.g. generic contracts are resolved at compile-time
-    D. A failing contract **will cause** a runtime error, only extensive (dynamic / static) analysis of contracted code may provide confidence in the absence of runtime errors (AoRTE)
+    D. A failing contract **will cause** a run-time error, only extensive (dynamic / static) analysis of contracted code may provide confidence in the absence of runtime errors (AoRTE)
 
 ===================================
 Preconditions and Postconditions
@@ -582,7 +582,7 @@ In Practice
 Pre/Postconditions: to Be or Not to Be
 ----------------------------------------
 
-* **Preconditions** are reasonable **default** for runtime checks
+* **Preconditions** are reasonable **default** for run-time checks
 * **Postconditions** advantages can be **comparatively** low
 
    - Use of :ada:`'Old` and :ada:`'Result` with (maybe deep) copy

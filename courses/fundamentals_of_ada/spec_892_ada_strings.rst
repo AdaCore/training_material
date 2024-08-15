@@ -80,7 +80,7 @@ Predefined Type :ada:`String`
 
 * Not a generic package
 
-  * No maximum length (except run-time limits!)
+  * No maximum length (except runtime limits!)
 
 * String length is maintained internally
 

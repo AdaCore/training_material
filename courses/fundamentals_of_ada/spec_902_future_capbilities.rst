@@ -145,7 +145,7 @@ Storage Models (1/2)
 
 * Ada offers :ada:`Storage_Pools` to override allocation/deallocation for access types
 
-* Not usable in small run-time context
+* Not usable in small runtime context
 
   * Requires finalization
 
@@ -302,7 +302,7 @@ Embed Data From Binary File
    In progress
 
 * Statically embed content at compile time, as part of the binary
-* Avoid either painful encoding of data as aggregates, or impractical (or even impossible in embedded contexts) loading of assets at runtime
+* Avoid either painful encoding of data as aggregates, or impractical (or even impossible in embedded contexts) loading of assets at run-time
 
 .. code:: Ada
 

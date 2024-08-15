@@ -11,7 +11,7 @@ those that compile and run without error will be considered correct answers.
 There are 3 kinds of errors that can be detected
 
 1. Project does not compile
-2. Project does compile but raises a runtime error
+2. Project does compile but raises a run-time error
 3. Project does compile but raises a user error (`-gnata`)
 
 NB: For the case of user errors, the `-gnata` flag will need to be provided in the

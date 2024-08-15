@@ -34,7 +34,7 @@ Modular Range Must Be Respected
      ...
      B := -256;       -- compile error
      SB := -1;
-     B := Byte (SB);  -- runtime error
+     B := Byte (SB);  -- run-time error
      ...
    end P_Unsigned;
 

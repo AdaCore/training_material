@@ -286,7 +286,7 @@ D. Unknown - depends on the compiler
 
    Explanations
 
-   - 2:superscript:`1024` too big for most run-times BUT
+   - 2:superscript:`1024` too big for most runtimes BUT
    - :ada:`C1`, :ada:`C2`, and :ada:`C3` are named numbers, not typed constants
 
       - Compiler uses unbounded precision for named numbers
