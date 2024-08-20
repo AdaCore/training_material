@@ -350,8 +350,8 @@ def source_file_contents(filename, keywords):
         return filename
 
 
-NOTE_FORMAT = {
-    "warning": ("alertblock", "warning.pdf", r"Warning"),
+ADMONITION_FORMAT = {
+    "warning": ("alertblock", "warning.pdf", "Warning"),
     "note": ("block", "note.pdf", "Note"),
     "tip": ("exampleblock", "lightbulb.pdf", "Tip"),
 }
@@ -367,7 +367,7 @@ SUPPORTED_CLASSES = [
     "column",
     "latex_environment",
     "footnotesize",
-] + list(NOTE_FORMAT.keys())
+] + list(ADMONITION_FORMAT.keys())
 
 
 def source_include(classes, contents):
@@ -555,14 +555,26 @@ class BeamerFilteredResult:
 
 
 def is_note(classes):
-    return any(note_type in classes for note_type in NOTE_FORMAT.keys())
+    return any(
+        admonition_type in classes for admonition_type in ADMONITION_FORMAT.keys()
+    )
 
 
 def format_note(classes, contents):
-    note_types = [c for c in classes if c in NOTE_FORMAT.keys()]
-    assert len(note_types) == 1, "note must be of a single type at a time"
-    note_type = note_types[0]
-    block, logo, name = NOTE_FORMAT[note_type]
+    admonition_type = [c for c in classes if c in ADMONITION_FORMAT.keys()]
+    assert len(admonition_type) == 1, "note must be of a single type at a time"
+    admonition_type = admonition_type[0]
+    block, logo, name = ADMONITION_FORMAT[admonition_type]
+
+    def remove_title(c):
+        # pandoc adds a title element for some admonitions. Remove it.
+        if isinstance(c, list) and len(c) > 0:
+            with open("toto.py", "at") as f:
+                print(repr(c), file=f)
+            if c[0]["t"] == "Div":
+                if c[0]["c"][0][1][0] == "title":
+                    del c[0]
+        return c
 
     return (
         BeamerFilteredResult()
@@ -576,7 +588,7 @@ def format_note(classes, contents):
             + name
             + "}}"
         )
-        .beamer_contents(contents)
+        .beamer_contents(remove_title(contents))
         .latex(r"\end{" + block + "}")
         .value
     )
