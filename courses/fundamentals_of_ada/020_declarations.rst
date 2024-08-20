@@ -790,13 +790,14 @@ Aspect Clauses
 
 * Syntax
 
-    - *Note:* always part of a **declaration**
+    .. code:: Ada
 
-   .. code:: Ada
-
-      with aspect_mark [ => expression]
+       with aspect_mark [ => expression]
            {, aspect_mark [ => expression] }
 
+.. info::
+
+   Aspect clauses always follow a **declaration**
 ..
   language_version 2012
 
