@@ -763,9 +763,15 @@ Pragmas
 
          pragma Page;           -- parameterless
          pragma Optimize (Off); -- with parameter
-         pragma Illegal One;    -- compile error
 
-* Pragmas are typically used to define properties (:dfn:`aspects`) of something
+.. warn::
+
+   Malformed pragmas are **illegal**
+   e.g. :ada:`pragma Illegal One;    -- compile error`
+
+.. tip::
+
+   Pragmas are typically used to define properties (:dfn:`aspects`) of something
 
 ----------------
 Aspect Clauses
