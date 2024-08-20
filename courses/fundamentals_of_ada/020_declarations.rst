@@ -315,7 +315,7 @@ Multiple Object Declarations
       A : Integer := Next_Available (X);
       B : Integer := Next_Available (X);
 
-* Warning: may get different value
+.. warning:: may get different value
 
    .. code:: Ada
 
@@ -764,14 +764,11 @@ Pragmas
          pragma Page;           -- parameterless
          pragma Optimize (Off); -- with parameter
 
-.. warn::
+.. warning:: Malformed pragmas are **illegal**
 
-   Malformed pragmas are **illegal**
    e.g. :ada:`pragma Illegal One;    -- compile error`
 
-.. tip::
-
-   Pragmas are typically used to define properties (:dfn:`aspects`) of something
+.. tip:: Pragmas are typically used to define properties (:dfn:`aspects`) of something
 
 ----------------
 Aspect Clauses
@@ -795,9 +792,7 @@ Aspect Clauses
        with aspect_mark [ => expression]
            {, aspect_mark [ => expression] }
 
-.. info::
-
-   Aspect clauses always follow a **declaration**
+.. note:: Aspect clauses always follow a **declaration**
 ..
   language_version 2012
 

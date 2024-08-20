@@ -44,17 +44,9 @@ Styles
 * :ada:`code is highlighted`
 * :command:`commands are emphasised --like-this`
 
-.. warn::
-
-   This is a warning
-
-.. info::
-
-   This is an important piece of info
-
-.. tip::
-
-   This is a tip
+.. warning:: This is a warning
+.. note:: This is an important piece of info
+.. tip:: This is a tip
 
 ==================
 A Little History
