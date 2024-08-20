@@ -1,0 +1,14 @@
+project Mach_Calculator is
+
+   for Source_Dirs use (".");
+   for Object_Dir use "obj";
+   for Create_Missing_Dirs use "True";
+
+   package Compiler is
+      for Switches ("Ada") use
+        ("-g", "-O0",           --  Debug info, no optimisation
+         "-gnatf",  "-gnatwa",  --  Full errors, all warnings
+         "-gnat2022");          --  Ada 2022
+   end Compiler;
+
+end Mach_Calculator;

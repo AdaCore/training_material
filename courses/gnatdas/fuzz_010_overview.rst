@@ -82,8 +82,8 @@ What is Fuzz-Testing?
 
    * :toolname:`GNATfuzz` uses Grey box testing
 
-------------------------
-Four Tools of GNATfuzz
-------------------------
+-------------------------------
+Four Operating Modes GNATfuzz
+-------------------------------
 
 .. image:: gnatdas/fuzz_overview.png
