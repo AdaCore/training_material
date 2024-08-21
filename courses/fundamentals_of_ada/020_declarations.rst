@@ -315,7 +315,7 @@ Multiple Object Declarations
       A : Integer := Next_Available (X);
       B : Integer := Next_Available (X);
 
-.. warning:: may get different value
+.. warning:: May get different value!
 
    .. code:: Ada
 
@@ -766,7 +766,7 @@ Pragmas
 
 .. warning:: Malformed pragmas are **illegal**
 
-   e.g. :ada:`pragma Illegal One;    -- compile error`
+   :ada:`pragma Illegal One;    -- compile error`
 
 .. tip:: Pragmas are typically used to define properties (:dfn:`aspects`) of something
 
