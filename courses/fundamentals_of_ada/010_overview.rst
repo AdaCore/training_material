@@ -64,13 +64,11 @@ The Name
    - **First** computer program
    - On **Babbage's Analytical Engine**
 
-.. tip::
-
-    Writing **ADA** is like writing **CPLUSPLUS**
-
 * International Standards Organization standard
 
    - Updated about every 10 years
+
+* Writing **ADA** is like writing **CPLUSPLUS**
 
 --------------------------
 Ada Evolution Highlights
