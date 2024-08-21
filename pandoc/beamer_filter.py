@@ -350,6 +350,13 @@ def source_file_contents(filename, keywords):
         return filename
 
 
+ADMONITION_FORMAT = {
+    "warning": ("alertblock", "warning.pdf", "Warning"),
+    "note": ("block", "note.pdf", "Note"),
+    "tip": ("exampleblock", "lightbulb.pdf", "Tip"),
+}
+
+
 SUPPORTED_CLASSES = [
     "container",
     "source_include",
@@ -360,7 +367,7 @@ SUPPORTED_CLASSES = [
     "column",
     "latex_environment",
     "footnotesize",
-]
+] + list(ADMONITION_FORMAT.keys())
 
 
 def source_include(classes, contents):
@@ -504,6 +511,87 @@ def latex_environment(classes, contents):
 
     else:
         return contents
+
+
+###########
+## NOTES ##
+###########
+
+"""
+   Support for notes, such as tip, warn, info
+"""
+
+
+class BeamerFilteredResult:
+    def __init__(self):
+        self.value = []
+
+    def copy(self):
+        r = BeamerFilteredResult()
+        r.value = self.value[:]
+        return r
+
+    def plus(self, d: dict):
+        r = self.copy()
+        r.value.append(d)
+        return r
+
+    def RawBlock(self, t, c):
+        return self.plus({"t": "RawBlock", "c": [t, c]})
+
+    def latex(self, content):
+        return self.RawBlock("latex", content)
+
+    def beamer_content(self, content):
+        return self.plus(content)
+
+    def beamer_contents(self, contents):
+        r = self.copy()
+
+        for c in contents:
+            r = r.plus(c)
+
+        return r
+
+
+def is_note(classes):
+    return any(
+        admonition_type in classes for admonition_type in ADMONITION_FORMAT.keys()
+    )
+
+
+def format_note(classes, contents):
+    admonition_type = [c for c in classes if c in ADMONITION_FORMAT.keys()]
+    assert len(admonition_type) == 1, "note must be of a single type at a time"
+    admonition_type = admonition_type[0]
+    block, logo, name = ADMONITION_FORMAT[admonition_type]
+
+    def remove_title(c):
+        # pandoc adds a title element for some admonitions. Remove it.
+        if isinstance(c, list) and len(c) > 0:
+            with open("toto.py", "at") as f:
+                print(repr(c), file=f)
+            if c[0]["t"] == "Div":
+                if c[0]["c"][0][1][0] == "title":
+                    del c[0]
+        return c
+
+    return (
+        BeamerFilteredResult()
+        .latex(
+            r"\begin{"
+            + block
+            + "}{"
+            + r"\includegraphics[height=0.8em]{"
+            + logo
+            + r"} \textbf{"
+            + name
+            + "}}"
+        )
+        .beamer_contents(remove_title(contents))
+        .latex(r"\end{" + block + "}")
+        .value
+    )
 
 
 #####################
@@ -733,6 +821,9 @@ def perform_filter(key, value, format, meta):
             # language variant admonition
             elif admonition_type(classes, contents) == "language variant":
                 return language_variant_admonition(contents)
+
+            elif is_note(classes):
+                return format_note(classes, contents)
 
 
 if __name__ == "__main__":

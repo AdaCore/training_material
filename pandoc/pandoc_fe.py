@@ -214,11 +214,19 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
 
     input_file = args.title or source_or_source_list
 
+    extension = args.extension
+    if extension is None:
+        spl = args.output.rsplit(".", 1)
+        if spl:
+            extension = spl[-1]
+        else:
+            extension = "pdf"
+
     # Output default value is input file name
     output_file = output_file_name(
         input_file,
         n if len(args.source) > 1 else None,
-        args.extension,
+        extension,
         title=args.title,
         output_dir=args.output_dir,
         output_file=args.output,
@@ -251,7 +259,7 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
         color,
         "--fail-if-warnings",
         "-f rst",
-        "-t " + output_format(args.extension.lower()),
+        "-t " + output_format(extension.lower()),
         "-o " + output_file,
         *source_list,
     )
@@ -307,7 +315,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--extension",
         help='Output file extension. "PDF" => Beamer, "TEX" => LaTeX, "DOCX" => Word, "PPTX" => PowerPoint',
-        default="pdf",
+        default=None,
         required=False,
     )
 

@@ -44,6 +44,10 @@ Styles
 * :ada:`code is highlighted`
 * :command:`commands are emphasised --like-this`
 
+.. warning:: This is a warning
+.. note:: This is an important piece of info
+.. tip:: This is a tip
+
 ==================
 A Little History
 ==================
@@ -60,15 +64,15 @@ The Name
    - **First** computer program
    - On **Babbage's Analytical Engine**
 
-* Writing **ADA** is like writing **CPLUSPLUS**
 * International Standards Organization standard
 
    - Updated about every 10 years
 
+* Writing **ADA** is like writing **CPLUSPLUS**
+
 --------------------------
 Ada Evolution Highlights
 --------------------------
-
 
 .. container:: columns
 
