@@ -1,11 +1,22 @@
 #!/usr/bin/env python3
+script_description = """
+Find and download the latest build for the given branch, and the given course.
+Downloads it and opens it in a viewer for review.
+
+If the course is in the process of being built, then the script waits for it to
+be over (this behaviour can be disabled through the command-line switches).
+"""
+
+requirements = """
+You should have the `gh` GitHub CLI installed (https://cli.github.com/)
+"""
+
 from epycs.subprocess import cmd, ShellProgramFilters
 from argparse import ArgumentParser
 from pathlib import Path
 import json
 import shutil
 import time
-
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "out"
@@ -24,7 +35,16 @@ def gh_run(*a, **kw):
 
 
 def gh_latest_run(
-    branch, fields=["status", "createdAt", "name", "headBranch", "databaseId", "url", "conclusion"]
+    branch,
+    fields=[
+        "status",
+        "createdAt",
+        "name",
+        "headBranch",
+        "databaseId",
+        "url",
+        "conclusion",
+    ],
 ):
     js = json.loads(gh_run("list", "--json", ",".join(fields)))
 
@@ -47,7 +67,7 @@ def gh_run_watch(run_id):
 
 
 def main():
-    ap = ArgumentParser()
+    ap = ArgumentParser(description=script_description)
     ap.add_argument("course", nargs="?", default=DEFAULT_COURSE_DOWNLOAD)
     ap.add_argument("branch", nargs="?")
     ap.add_argument(
