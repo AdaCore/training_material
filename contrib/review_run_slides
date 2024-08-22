@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+from epycs.subprocess import cmd, ShellProgramFilters
+from argparse import ArgumentParser
+from pathlib import Path
+import json
+import shutil
+import time
+
+
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "out"
+
+DEFAULT_COURSE_DOWNLOAD = "Fundamentals Of Ada - Standard Course"
+
+
+def get_current_git_branch():
+    return cmd.git("rev-parse", "--abbrev-ref", "HEAD", out_filter=str)[:-1]
+
+
+def gh_run(*a, **kw):
+    ckw = {"out_filter": str}
+    ckw.update(kw)
+    return cmd.gh("run", *a, **ckw)
+
+
+def gh_latest_run(
+    branch, fields=["status", "createdAt", "name", "headBranch", "databaseId", "url", "conclusion"]
+):
+    js = json.loads(gh_run("list", "--json", ",".join(fields)))
+
+    def find_first_by_headBranch(runs, branch):
+        for run in runs:
+            if run["headBranch"] == branch:
+                return run
+        else:
+            raise Exception(f"no build found for branch {branch}")
+
+    return find_first_by_headBranch(js, branch)
+
+
+def gh_run_download(run_id, name, directory):
+    gh_run("download", run_id, "-n", name, "-D", directory, out_filter=None)
+
+
+def gh_run_watch(run_id):
+    cmd.gh("watch", run_id)
+
+
+def main():
+    ap = ArgumentParser()
+    ap.add_argument("course", nargs="?", default=DEFAULT_COURSE_DOWNLOAD)
+    ap.add_argument("branch", nargs="?")
+    ap.add_argument(
+        "-W",
+        "--do-not-wait",
+        action="store_true",
+        help="do not wait for completion of the run",
+    )
+    args = ap.parse_args()
+
+    branch = args.branch
+    if branch is None:
+        branch = get_current_git_branch()
+
+    latest_run = gh_latest_run(branch)
+    latest_run_id = latest_run["databaseId"]
+    print(f"latest run for {branch} is {latest_run_id}")
+
+    if latest_run["status"] != "completed":
+        if args.do_not_wait:
+            raise Exception(
+                f"latest run for {branch} is {latest_run['status']!r} != 'completed'"
+            )
+        else:
+            print(f"wait for completion [{latest_run['url']}]...")
+            gh_run_watch(latest_run["databaseId"])
+            latest_run = gh_latest_run(branch)
+
+    if latest_run["conclusion"] != "success":
+        raise Exception(f"latest run concluded in {latest_run['conclusion']}")
+
+    downloaded_dir = OUT / args.course
+    print(f"download to {downloaded_dir}")
+    if downloaded_dir.exists():
+        shutil.rmtree(downloaded_dir)
+    gh_run_download(latest_run_id, args.course, downloaded_dir)
+    all_pdf = list(downloaded_dir.glob("*.pdf"))
+    print(", ".join([p.name for p in all_pdf]))
+    if len(all_pdf) == 0:
+        print("no slide found")
+    elif len(all_pdf) > 1:
+        print("multiple slide sets found")
+    else:
+        cmd.open(all_pdf[0])
+
+
+if __name__ == "__main__":
+    main()
