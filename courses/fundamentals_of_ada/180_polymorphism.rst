@@ -56,8 +56,8 @@ Classes
 ----------
 
 * In Ada, a Class denotes an inheritance subtree
-* Class of `T` is the class of `T` and all its children
-* Type :ada:`T'Class` can designate any object typed after type of class of `T`
+* Class of `Root` is the class of `Root` and all its children
+* Type :ada:`Root'Class` can designate any object typed after type of class of `Root`
 
    .. code:: Ada
 
@@ -70,10 +70,10 @@ Classes
       -- Child2'Class = {Child2}
       -- Grand_Child1'Class = {Grand_Child1}
 
-* Objects of type :ada:`T'Class` have at least the properties of T
+* Objects of type :ada:`Root'Class` have at least the properties of `Root`
 
-   - Fields of `T`
-   - Primitives of `T`
+   - Fields of `Root`
+   - Primitives of `Root`
 
 -----------------
 Indefinite Type
@@ -91,19 +91,19 @@ Indefinite Type
 .. code:: Ada
 
    procedure Main is
-      type T is tagged null record;
-      type D is new T with null record;
-      procedure P (X : in out T'Class) is null;
-      Obj : D;
-      Dc  : D'Class := Obj;
-      Tc1 : T'Class := Dc;
-      Tc2 : T'Class := Obj;
+      type Root_Type is tagged null record;
+      type Derived_Type is new Root_Type with null record;
+      procedure Some_Procedure (X : in out Root_Type'Class) is null;
+      Obj : Derived_Type;
+      Derived_Class  : Derived_Type'Class := Obj;
+      Root_Class_1 : Root_Type'Class := Derived_Class;
+      Root_Class_2 : Root_Type'Class := Obj;
       -- initialization required in class-wide declaration
-      Tc3 : T'Class; -- compile error
-      Dc2 : D'Class; -- compile error
+      Root_Class_3 : Root_Type'Class;       -- compile error
+      Derived_Class_2 : Derived_Type'Class; -- compile error
    begin
-      P (Dc);
-      P (Obj);
+      Some_Procedure (Derived_Class);
+      Some_Procedure (Obj);
    end Main;
 
 -------------------------------
@@ -128,10 +128,10 @@ Testing the Type of an Object
    Child_Class    : Child'Class := Child (Parent_Class_2);
                     -- Child_Class'Tag  = Child'Tag
 
-   B1 : Boolean := Parent_Class_1 in Parent'Class;       -- True
+   B1 : Boolean := Parent_Class_1 in Parent'Class; -- True
    B2 : Boolean := Parent_Class_1'Tag = Child'Tag; -- False
    B3 : Boolean := Child_Class'Tag = Parent'Tag;   -- False
-   B4 : Boolean := Child_Class in Child'Class;           -- True
+   B4 : Boolean := Child_Class in Child'Class;     -- True
 
 ----------------
 Abstract Types
@@ -153,15 +153,15 @@ Abstract Types Ada Vs C++
     .. code:: Ada
 
        type Root is abstract tagged record
-          F : Integer;
+          Field : Integer;
        end record;
-       procedure P1 (V : Root) is abstract;
-       procedure P2 (V : Root);
+       procedure P1 (The_Record : Root) is abstract;
+       procedure P2 (The_Record : Root);
        type Child is abstract new Root with null record;
        type Grand_Child is new Child with null record;
 
        overriding  -- Ada 2005 and later
-       procedure P1 (V : Grand_Child);
+       procedure P1 (The_Record : Grand_Child);
 
 * C++
 
@@ -169,7 +169,7 @@ Abstract Types Ada Vs C++
 
        class Root {
           public:
-             int F;
+             int Field;
              virtual void P1 (void) = 0;
              virtual void P2 (void);
        };
@@ -188,15 +188,15 @@ Abstract Types Ada Vs C++
 Relation to Primitives
 ------------------------
 
-Warning: Subprograms with parameter of type `T'Class` are not primitives of `T`
+Warning: Subprograms with parameter of type `Root'Class` are not primitives of `Root`
 
       .. code:: Ada
 
          type Root is tagged null record;
-         procedure P (V : Root'Class);
+         procedure Some_Procedure (Some_Param : Root'Class);
          type Child is new Root with null record;
-         -- This does not override P!
-         overriding procedure P (V : Child'Class);
+         -- This does not override Some_Procedure!
+         overriding procedure Some_Procedure (Some_Param : Child'Class);
 
 ----------------------------
 'Class and Prefix Notation
@@ -207,16 +207,16 @@ Prefix notation rules apply when the first parameter is of a class wide type
       .. code:: Ada
 
          type Root is tagged null record;
-         procedure P (V : Root'Class);
+         procedure Some_Procedure (Some_Param : Root'Class);
          type Child is new Root with null record;
 
-         V1 : Root;
-         V2 : Root'Class := Root'(others => <>);
+         Var_1 : Root;
+         Var_2 : Root'Class := Root'(others => <>);
          ...
-         P (V1);
-         P (V2);
-         V1.P;
-         V2.P;
+         Some_Procedure (Var_1);
+         Some_Procedure (Var_2);
+         Var_1.Some_Procedure;
+         Var_2.Some_Procedure;
 
 ..
   language_version 2005
@@ -229,21 +229,21 @@ Dispatching and Redispatching
 Calls on Class-Wide Types (1/3)
 ---------------------------------
 
-* Any subprogram expecting a T object can be called with a :ada:`T'Class` object
+* Any subprogram expecting a `Root` object can be called with a :ada:`Root'Class` object
 
 .. code:: Ada
 
    type Root is tagged null record;
-   procedure P (V : Root);
+   procedure Some_Procedure (The_Record : Root);
 
    type Child is new Root with null record;
-   procedure P (V : Child);
+   procedure Some_Procedure (The_Record : Child);
 
-      V1 : Root'Class := [...]
-      V2 : Child'Class := [...]
+      Var_1 : Root'Class := [...]
+      Var_2 : Child'Class := [...]
    begin
-      P (V1);
-      P (V2);
+      Some_Procedure (Var_1);
+      Some_Procedure (Var_2);
 
 ---------------------------------
 Calls on Class-Wide Types (2/3)
@@ -261,13 +261,13 @@ Calls on Class-Wide Types (2/3)
       .. code:: Ada
 
          declare
-           V1 : Root'Class :=
+           Var_1 : Root'Class :=
                 Root'(others => <>);
-           V2 : Root'Class :=
+           Var_2 : Root'Class :=
                 Child'(others => <>);
          begin
-           V1.P; -- calls P of Root
-           V2.P; -- calls P of Child
+           Var_1.Some_Procedure; -- calls Some_Procedure of Root
+           Var_2.Some_Procedure; -- calls Some_Procedure of Child
 
  .. container:: column
 
@@ -275,10 +275,10 @@ Calls on Class-Wide Types (2/3)
 
       .. code:: C++
 
-         Root * V1 = new Root ();
-         Root * V2 = new Child ();
-         V1->P ();
-         V2->P ();
+         Root * Var_1 = new Root ();
+         Root * Var_2 = new Child ();
+         Var_1->Some_Procedure ();
+         Var_2->Some_Procedure ();
 
 ---------------------------------
 Calls on Class-Wide Types (3/3)
@@ -295,13 +295,13 @@ Calls on Class-Wide Types (3/3)
    .. code:: Ada
 
       declare
-        V1 : Root'Class :=
+        Var_1 : Root'Class :=
              Root'(others => <>);
-        V2 : Root'Class :=
+        Var_2 : Root'Class :=
              Child'(others => <>);
       begin
-        Root (V1).P; -- calls P of Root
-        Root (V2).P; -- calls P of Root
+        Root (Var_1).Some_Procedure; -- calls Some_Procedure of Root
+        Root (Var_2).Some_Procedure; -- calls Some_Procedure of Root
 
  .. container:: column
 
@@ -309,10 +309,10 @@ Calls on Class-Wide Types (3/3)
 
    .. code:: C++
 
-      Root * V1 = new Root ();
-      Root * V2 = new Child ();
-      ((Root) *V1).P ();
-      ((Root) *V2).P ();
+      Root * Var_1 = new Root ();
+      Root * Var_2 = new Child ();
+      ((Root) *Var_1).Some_Procedure ();
+      ((Root) *Var_2).Some_Procedure ();
 
 -------------------------------
 Definite and Class Wide Views
@@ -324,25 +324,25 @@ Definite and Class Wide Views
 .. code:: Ada
 
    type Root is tagged null record;
-   procedure P1 (V : Root);
-   procedure P2 (V : Root);
+   procedure Primitive_1 (The_Record : Root);
+   procedure Primitive_2 (The_Record : Root);
    type Child is new Root with null record;
-   overriding procedure P2 (V : Child);
-   procedure P1 (V : Root) is
+   overriding procedure Primitive_2 (The_Record : Child);
+   procedure Primitive_1 (The_Record : Root) is
    begin
-      P2 (V); -- always calls P2 from Root
-   end P1;
+      Primitive_2 (The_Record); -- always calls Primitive_2 from Root
+   end Primitive_1;
    procedure Main is
-      V1 : Root'Class :=
+      A_Record : Root'Class :=
            Child'(others => <>);
    begin
-      -- Calls P1 from the implicitly overridden subprogram
-      -- Calls P2 from Root!
-      V1.P1;
+      -- Calls Primitive_1 from the implicitly overridden subprogram
+      -- Calls Primitive_2 from Root!
+      A_Record.Primitive_1;
 
 .. container:: speakernote
 
-   P1 operates on ROOT, not ROOT'Class
+   Primitive_1 operates on ROOT, not ROOT'Class
 
 ---------------
 Redispatching
@@ -357,10 +357,10 @@ Redispatching
 .. code:: Ada
 
    type Root is tagged null record;
-   procedure P1 (V : Root);
-   procedure P2 (V : Root);
+   procedure Primitive_1 (The_Record : Root);
+   procedure Primitive_2 (The_Record : Root);
    type Child is new Root with null record;
-   overriding procedure P2 (V : Child);
+   overriding procedure Primitive_2 (The_Record : Child);
 
 -----------------------
 Redispatching Example
@@ -368,19 +368,19 @@ Redispatching Example
 
 .. code:: Ada
 
-   procedure P1 (V : Root) is
+   procedure Primitive_1 (The_Record : Root) is
       V_Class : Root'Class renames
-                Root'Class (V); -- naming of a view
+                Root'Class (The_Record);     -- naming of a view
    begin
-      P2 (V);              -- static: uses the definite view
-      P2 (Root'Class (V)); -- dynamic: (redispatching)
-      P2 (V_Class);        -- dynamic: (redispatching)
+      Primitive_2 (The_Record);              -- static: uses the definite view
+      Primitive_2 (Root'Class (The_Record)); -- dynamic: (redispatching)
+      Primitive_2 (V_Class);                 -- dynamic: (redispatching)
 
       -- Ada 2005 "distinguished receiver" syntax
-      V.P2;                -- static: uses the definite view
-      Root'Class (V).P2;   -- dynamic: (redispatching)
-      V_Class.P2;          -- dynamic: (redispatching)
-   end P1;
+      The_Record.Primitive_2;                -- static: uses the definite view
+      Root'Class (The_Record).Primitive_2;   -- dynamic: (redispatching)
+      V_Class.Primitive_2;                   -- dynamic: (redispatching)
+   end Primitive_1;
 
 ------
 Quiz
@@ -388,20 +388,20 @@ Quiz
 
 .. code::Ada
 
-   package P is
+   package The_Package is
       type Root is tagged null record;
-      function F1 (V : Root) return Integer is (101);
+      function Function_1 (The_Record : Root) return Integer is (101);
       type Child is new Root with null record;
-      function F1 (V : Child) return Integer is (201);
+      function Function_1 (The_Record : Child) return Integer is (201);
       type Grandchild is new Child with null record;
-      function F1 (V : Grandchild) return Integer is (301);
-   end P;
+      function Function_1 (The_Record : Grandchild) return Integer is (301);
+   end The_Package;
 
-   with P; use P;
+   with The_Package; use The_Package;
    procedure Main is
-      Z : Root'Class := Grandchild'(others => <>);
+      Record_Object : Root'Class := Grandchild'(others => <>);
 
-What is the value returned by :ada:`F1 (Child'Class (Z));`?
+What is the value returned by :ada:`F1 (Child'Class (Record_Object));`?
 
    A. :answer:`301`
    B. 201
@@ -413,7 +413,7 @@ What is the value returned by :ada:`F1 (Child'Class (Z));`?
    Explanations
 
    A. Correct
-   B. Would be correct if Z was a :ada:`Child` - :ada:`Child'Class` leaves the object as :ada:`Grandchild`
+   B. Would be correct if Record_Object was a :ada:`Child` - :ada:`Child'Class` leaves the object as :ada:`Grandchild`
    C. Object is initialized to something in :ada:`Root'Class`, but it doesn't have to be :ada:`Root`
    D. Would be correct if function parameter types were :ada:`'Class`
 
@@ -430,26 +430,26 @@ Multiple Dispatching Operands
    .. code:: Ada
 
       type Root is tagged null record;
-      procedure P (Left : Root; Right : Root);
+      procedure Root_Proc (Left : Root; Right : Root);
       type Child is new Root with null record;
-      overriding procedure P (Left : Child; Right : Child);
+      overriding procedure Root_Proc (Left : Child; Right : Child);
 
 * At call time, all actual parameters' tags have to match, either statically or dynamically
 
    .. code:: Ada
 
-      R1, R2 : Root;
-      C1, C2 : Child;
-      Cl1 : Root'Class := R1;
-      Cl2 : Root'Class := R2;
-      Cl3 : Root'Class := C1;
+      Root_1, Root_2   : Root;
+      Child_1, Child_2 : Child;
+      Class_Wide_1 : Root'Class := Root_1;
+      Class_Wide_2 : Root'Class := Root_2;
+      Class_Wide_3 : Root'Class := Child_1;
       ...
-      P (R1, R2);               -- static:  ok
-      P (R1, C1);               -- static:  error
-      P (Cl1, Cl2);             -- dynamic: ok
-      P (Cl1, Cl3);             -- dynamic: error
-      P (R1, Cl1);              -- static:  error
-      P (Root'Class (R1), Cl1); -- dynamic: ok
+      Root_Proc (Root_1, Root_2);                     -- static:  ok
+      Root_Proc (Root_1, Child_1);                    -- static:  error
+      Root_Proc (Class_Wide_1, Class_Wide_2);         -- dynamic: ok
+      Root_Proc (Class_Wide_1, Class_Wide_3);         -- dynamic: error
+      Root_Proc (Root_1, Class_Wide_1);               -- static:  error
+      PRoot_Proc (Root'Class (Root_1), Class_Wide_1); -- dynamic: ok
 
 ---------------------------
 Special Case for Equality
@@ -462,18 +462,18 @@ Special Case for Equality
 .. code:: Ada
 
    type Root is tagged null record;
-   function "=" (L : Root; R : Root) return Boolean;
+   function "=" (Left : Root; Right : Root) return Boolean;
    type Child is new Root with null record;
-   overriding function "=" (L : Child; R : Child) return Boolean;
-   R1, R2 : Root;
-   C1, C2 : Child;
-   Cl1 : Root'Class := R1;
-   Cl2 : Root'Class := R2;
-   Cl3 : Root'Class := C1;
+   overriding function "=" (Left : Child; Right : Child) return Boolean;
+   Root_1, Root_2   : Root;
+   Child_1, Child_2 : Child;
+   Class_Wide_1 : Root'Class := Root_1;
+   Class_Wide_2 : Root'Class := Root_2;
+   Class_Wide_3 : Root'Class := Child_1;
    ...
    -- overridden "=" called via dispatching
-   if Cl1 = Cl2 then [...]
-   if Cl1 = Cl3 then [...] -- returns false
+   if Class_Wide_1 = Class_Wide_2 then [...]
+   if Class_Wide_1 = Class_Wide_3 then [...] -- returns false
 
 --------------------------
 Controlling Result (1/2)
@@ -486,29 +486,29 @@ Controlling Result (1/2)
       .. code:: Ada
 
          type Root is tagged null record;
-         function F (V : Integer) return Root;
+         function Root_Function (Some_Var : Integer) return Root;
 
 * If the child adds fields, all such subprograms have to be overridden
 
       .. code:: Ada
 
          type Root is tagged null record;
-         function F (V : Integer) return Root;
+         function Root_Function (Some_Var : Integer) return Root;
 
          type Child is new Root with null record;
-         --  OK, F is implicitly inherited
+         --  OK, Root_Function is implicitly inherited
 
          type Child1 is new Root with record
-            X : Integer;
+            Field : Integer;
          end record;
-         --  ERROR no implicitly inherited function F
+         --  ERROR no implicitly inherited function Root_Function
 
 * Primitives returning abstract types have to be abstract
 
       .. code:: Ada
 
          type Root is abstract tagged null record;
-         function F (V : Integer) return Root is abstract;
+         function Root_Function (Some_Var : Integer) return Root is abstract;
 
 --------------------------
 Controlling Result (2/2)
@@ -519,23 +519,23 @@ Controlling Result (2/2)
    .. code:: Ada
 
       type Root is tagged null record;
-      function F return Root;
+      function Root_Function return Root;
       type Child is new Root with null record;
-      function F return Child;
-      V : Root := F;
+      function Root_Function return Child;
+      Static_Record : Root := Root_Function;
 
 * In a dynamic context, the type has to be known to correctly dispatch
 
    .. code:: Ada
 
-     V1 : Root'Class := Root'(F);  -- Static call to Root primitive
-     V2 : Root'Class := V1;
-     V3 : Root'Class := Child'(F); -- Static call to Child primitive
-     V4 : Root'Class := F;         -- Error - ambiguous expression
+     Static_Rec_1  : Root'Class := Root'(Root_Function);  -- Static call to Root primitive
+     Static_Rec_2  : Root'Class := Static_Rec_1;
+     Static_Rec_3  : Root'Class := Child'(Root_Function); -- Static call to Child primitive
+     Broken_Record : Root'Class := Root_Function;         -- Error - ambiguous expression
      ...
-     V1 := F; -- Dispatching call to Root primitive
-     V2 := F; -- Dispatching call to Root primitive
-     V3 := F; -- Dispatching call to Child primitive
+     Static_Rec_1 := Root_Function; -- Dispatching call to Root primitive
+     Static_Rec_2 := Root_Function; -- Dispatching call to Root primitive
+     Static_Rec_3 := Root_Function; -- Dispatching call to Child primitive
 
 * No dispatching is possible when returning access types
 
