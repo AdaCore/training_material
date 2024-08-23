@@ -152,32 +152,32 @@ Abstract Types Ada Vs C++
 
     .. code:: Ada
 
-       type Root is abstract tagged record
-          Field : Integer;
+       type Animal is abstract tagged record
+          Number_Of_Eyes : Integer;
        end record;
-       procedure P1 (The_Record : Root) is abstract;
-       procedure P2 (The_Record : Root);
-       type Child is abstract new Root with null record;
-       type Grand_Child is new Child with null record;
+       procedure Feed (The_Animal : Animal) is abstract;
+       procedure Pet (The_Animal : Animal);
+       type Dog is abstract new Animal with null record;
+       type Bulldog is new Dog with null record;
 
        overriding  -- Ada 2005 and later
-       procedure P1 (The_Record : Grand_Child);
+       procedure Feed (The_Animal : Bulldog);
 
 * C++
 
     .. code:: Ada
 
-       class Root {
+       class Animal {
           public:
-             int Field;
-             virtual void P1 (void) = 0;
-             virtual void P2 (void);
+             int Number_Of_Eyes;
+             virtual void Feed (void) = 0;
+             virtual void Pet (void);
        };
-       class Child : public Root {
+       class Dog : public Animal {
        };
-       class Grand_Child {
+       class Bulldog {
           public:
-             virtual void P1 (void);
+             virtual void Feed (void);
        };
 
 .. container:: speakernote
@@ -487,30 +487,30 @@ Controlling Result (1/2)
 
       .. code:: Ada
 
-         type Root is tagged null record;
-         function Root_Function (Some_Var : Integer) return Root;
+         type Animal is tagged null record;
+         function Feed_Treats (Number_Of_Treats : Integer) return Animal;
 
 * If the child adds fields, all such subprograms have to be overridden
 
       .. code:: Ada
 
-         type Root is tagged null record;
-         function Root_Function (Some_Var : Integer) return Root;
+         type Animal is tagged null record;
+         function Feed_Treats (Number_Of_Treats : Integer) return Animal;
 
-         type Child is new Root with null record;
-         --  OK, Root_Function is implicitly inherited
+         type Dog is new Animal with null record;
+         --  OK, Feed_Treats is implicitly inherited
 
-         type Child1 is new Root with record
-            Field : Integer;
+         type Bulldog is new Animal with record
+            Has_Underbite : Boolean;
          end record;
-         --  ERROR no implicitly inherited function Root_Function
+         --  ERROR no implicitly inherited function Feed_Treats
 
 * Primitives returning abstract types have to be abstract
 
       .. code:: Ada
 
-         type Root is abstract tagged null record;
-         function Root_Function (Some_Var : Integer) return Root is abstract;
+         type Animal is abstract tagged null record;
+         function Feed_Treats (Number_Of_Treats : Integer) return Animal is abstract;
 
 --------------------------
 Controlling Result (2/2)
