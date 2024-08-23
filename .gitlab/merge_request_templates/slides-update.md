@@ -6,7 +6,8 @@
 
 - [ ] As, the **Assignee**, I verify that the affected generated slides have been reviewed and are free of defects (<!-- insert github link to slide set here -->)
 
-Check that automatically with
+Note: you can get quick access to the slides with the following command
+
 ```
 contrib/review_run_slides "Fundamentals Of Ada - Standard Course" %{source_branch}
 ```
