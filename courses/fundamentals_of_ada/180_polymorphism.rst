@@ -275,7 +275,8 @@ Calls on Class-Wide Types (2/3)
 
       .. code:: C++
 
-         Animal * Stray = new Animal ();
+         Animal * Stray = 
+                     new Animal ();
          Animal * My_Dog = new Dog ();
          Stray->Feed ();
          My_Dog->Feed ();
@@ -309,7 +310,8 @@ Calls on Class-Wide Types (3/3)
 
    .. code:: C++
 
-      Animal * Stray = new Animal ();
+      Animal * Stray = 
+                  new Animal ();
       Animal * My_Dog = new Dog ();
       ((Animal) *Stray).Feed ();
       ((Animal) *My_Dog).Feed ();
@@ -372,12 +374,12 @@ Redispatching Example
       Fish : Animal'Class renames
                 Animal'Class (Anml); -- naming of a view
    begin
-      Pet (Anml);                -- static: uses the definite view
+      Pet (Anml); -- static: uses the definite view
       Pet (Animal'Class (Anml)); -- dynamic: (redispatching)
       Pet (Fish);                -- dynamic: (redispatching)
 
       -- Ada 2005 "distinguished receiver" syntax
-      Anml.Pet;                -- static: uses the definite view
+      Anml.Pet; -- static: uses the definite view
       Animal'Class (Anml).Pet; -- dynamic: (redispatching)
       Fish.Pet;                -- dynamic: (redispatching)
    end Feed;
@@ -529,7 +531,7 @@ Controlling Result (2/2)
    .. code:: Ada
      
      Fed_Animal : Animal'Class := 
-                           Animal'(Feed); -- Static call to Animal primitive
+                           Animal'(Feed);    -- Static call to Animal primitive
      Another_Fed_Animal : Animal'Class := Fed_Animal;
      Fed_Dog : Animal'Class := Dog'(Feed);   -- Static call to Dog primitive
      Starving_Animal : Animal'Class := Feed; -- Error - ambiguous expression
