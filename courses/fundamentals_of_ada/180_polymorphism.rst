@@ -261,13 +261,13 @@ Calls on Class-Wide Types (2/3)
       .. code:: Ada
 
          declare
-           Stray_Animal : Animal'Class :=
+           Stray : Animal'Class :=
                 Animal'(others => <>);
            My_Dog : Animal'Class :=
                 Dog'(others => <>);
          begin
-           Stray_Animal.Feed; -- calls Feed of Animal
-           My_Dog.Feed;       -- calls Feed of Dog
+           Stray.Feed;  -- calls Feed of Animal
+           My_Dog.Feed; -- calls Feed of Dog
 
  .. container:: column
 
@@ -275,9 +275,9 @@ Calls on Class-Wide Types (2/3)
 
       .. code:: C++
 
-         Animal * Stray_Animal = new Animal ();
+         Animal * Stray = new Animal ();
          Animal * My_Dog = new Dog ();
-         Stray_Animal->Feed ();
+         Stray->Feed ();
          My_Dog->Feed ();
 
 ---------------------------------
@@ -295,13 +295,13 @@ Calls on Class-Wide Types (3/3)
    .. code:: Ada
 
       declare
-        Stray_Animal : Animal'Class :=
+        Stray : Animal'Class :=
              Animal'(others => <>);
         My_Dog : Animal'Class :=
              Dog'(others => <>);
       begin
-        Animal (Stray_Animal).Feed; -- calls Feed of Animal
-        Animal (My_Dog).Feed;       -- calls Feed of Animal
+        Animal (Stray).Feed;  -- calls Feed of Animal
+        Animal (My_Dog).Feed; -- calls Feed of Animal
 
  .. container:: column
 
@@ -309,9 +309,9 @@ Calls on Class-Wide Types (3/3)
 
    .. code:: C++
 
-      Animal * Stray_Animal = new Animal ();
+      Animal * Stray = new Animal ();
       Animal * My_Dog = new Dog ();
-      ((Animal) *Stray_Animal).Feed ();
+      ((Animal) *Stray).Feed ();
       ((Animal) *My_Dog).Feed ();
 
 -------------------------------
@@ -368,18 +368,18 @@ Redispatching Example
 
 .. code:: Ada
 
-   procedure Feed (The_Animal : Animal) is
-      Some_Animal : Animal'Class renames
-                Animal'Class (The_Animal);     -- naming of a view
+   procedure Feed (Anml : Animal) is
+      Fish : Animal'Class renames
+                Animal'Class (Anml); -- naming of a view
    begin
-      Pet (The_Animal);                -- static: uses the definite view
-      Pet (Animal'Class (The_Animal)); -- dynamic: (redispatching)
-      Pet (Some_Animal);               -- dynamic: (redispatching)
+      Pet (Anml);                -- static: uses the definite view
+      Pet (Animal'Class (Anml)); -- dynamic: (redispatching)
+      Pet (Fish);                -- dynamic: (redispatching)
 
       -- Ada 2005 "distinguished receiver" syntax
-      The_Animal.Pet;                  -- static: uses the definite view
-      Animal'Class (The_Animal).Pet;   -- dynamic: (redispatching)
-      Some_Animal.Pet;                 -- dynamic: (redispatching)
+      Anml.Pet;                -- static: uses the definite view
+      Animal'Class (Anml).Pet; -- dynamic: (redispatching)
+      Fish.Pet;                -- dynamic: (redispatching)
    end Feed;
 
 ------
@@ -527,11 +527,12 @@ Controlling Result (2/2)
 * In a dynamic context, the type has to be known to correctly dispatch
 
    .. code:: Ada
-
-     Fed_Animal  : Animal'Class := Animal'(Feed); -- Static call to Animal primitive
-     Another_Fed_Animal  : Animal'Class := Fed_Animal;
-     Fed_Dog  : Animal'Class := Dog'(Feed);       -- Static call to Dog primitive
-     Starving_Animal : Animal'Class := Feed;      -- Error - ambiguous expression
+     
+     Fed_Animal : Animal'Class := 
+                           Animal'(Feed); -- Static call to Animal primitive
+     Another_Fed_Animal : Animal'Class := Fed_Animal;
+     Fed_Dog : Animal'Class := Dog'(Feed);   -- Static call to Dog primitive
+     Starving_Animal : Animal'Class := Feed; -- Error - ambiguous expression
      ...
      Fed_Animal := Feed;         -- Dispatching call to Animal primitive
      Another_Fed_Animal := Feed; -- Dispatching call to Animal primitive
