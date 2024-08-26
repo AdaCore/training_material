@@ -26,10 +26,10 @@ Conditional Expressions
   language_version 2012
 
 ------------------
-*If Expressions*
+If Expressions
 ------------------
 
-* Syntax looks like an if-statement without :ada:`end if`
+* Syntax looks like an *if statement* without :ada:`end if`
 
    .. code:: Ada
 
@@ -60,7 +60,7 @@ Result Must Be Compatible with Context
        (if Day_Of_Week (Clock) > Wednesday then 1 else 0);
 
 -------------------------
-*If Expression* Example
+"If Expression" Example
 -------------------------
 
 .. code:: Ada
@@ -81,14 +81,14 @@ Result Must Be Compatible with Context
 
    Nostromo - ship from the original Alien :)
 
-------------------------
-Boolean If-Expressions
-------------------------
+--------------------------
+Boolean "If Expressions"
+--------------------------
 
 * Return a value of either True or False
 
    - :ada:`(if P then Q)` - assuming `P` and `Q` are `Boolean`
-   - "If P is True then the result of the if-expression is the value of Q"
+   - "If P is True then the result of the *if expression* is the value of Q"
 
 * But what is the overall result if all conditions are False?
 * Answer: the default result value is True
@@ -103,7 +103,7 @@ Boolean If-Expressions
    If P is false, we don't know anything, so, for mathematical purposes, we assume the statement is true
 
 ----------------------------------------
-The `else` Part When Result Is Boolean
+The "else" Part When Result Is Boolean
 ----------------------------------------
 
 * Redundant because the default result is True
@@ -150,7 +150,7 @@ Rationale for Parentheses Requirement
          Subprogram_Call (if A then B else C);
 
 ------------------------------
-When to Use *If Expressions*
+When to Use If Expressions
 ------------------------------
 
 * When you need computation to be done prior to sequence of statements
@@ -171,7 +171,7 @@ When to Use *If Expressions*
    - Can be much cleaner than using Boolean'Pos (Condition)
 
 ---------------------------------------
-*If Expression* Example for Constants
+"If Expression" Example for Constants
 ---------------------------------------
 
 * Starting from
@@ -189,7 +189,7 @@ When to Use *If Expressions*
         if Today.Day = End_of_Month (Today.Month) then
       ...
 
-* Using if-expression to call :ada:`Leap (Year)` as needed
+* Using *if expression* to call :ada:`Leap (Year)` as needed
 
    .. code:: Ada
 
@@ -203,12 +203,12 @@ When to Use *If Expressions*
       ...
 
 ---------------------
- *Case Expressions*
+Case Expressions
 ---------------------
 
 .. container:: latex_environment footnotesize
 
- * Syntax similar to :ada:`case` statements
+ * Syntax similar to *case statements*
 
     - Lighter: no closing `end case`
     - Commas between choices
@@ -234,7 +234,7 @@ When to Use *If Expressions*
   language_version 2012
 
 ---------------------------
-*Case Expression* Example
+"Case Expression" Example
 ---------------------------
 
 .. code:: Ada

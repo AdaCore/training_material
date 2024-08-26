@@ -55,7 +55,7 @@ Examples
       Put_Line ("Is_Sorted " & Boolean'Image (Is_Sorted));
       Put_Line ("Duplicate " & Boolean'Image (Duplicate));
    end Quantified_Expressions;
-.. include:: examples/080_expressions/quantified_expressions.rst
+.. include:: ../examples/080_expressions/quantified_expressions.rst
 
 -----------------------------------------
 Semantics Are As If You Wrote This Code
@@ -258,7 +258,8 @@ Index-Based Vs Component-Based Indexing
 
       Is_Sorted : constant Boolean :=
         (for all I in Values'Range =>
-          I = Values'First or else Values (I) >= Values (I-1));
+          I = Values'First or else
+          Values (I) >= Values (I-1));
 
 ..
   language_version 2012
@@ -326,9 +327,10 @@ Not Just Arrays: Any "Iterable" Objects
    package Characters is new
       Ada.Containers.Vectors (Positive, Character);
    use Characters;
-   Alphabet  : constant Vector := To_Vector ('A',1) & 'B' & 'C';
+   Alphabet  : constant Vector :=
+               To_Vector ('A',1) & 'B' & 'C';
    Any_Zed   : constant Boolean :=
-              (for some C of Alphabet => C = 'Z');
+               (for some C of Alphabet => C = 'Z');
    All_Lower : constant Boolean :=
                (for all C of Alphabet => Is_Lower (C));
 
@@ -365,57 +367,13 @@ Conditional / Quantified Expression Usage
 Quiz
 ------
 
-..
-    This file is auto-generated from the quiz template, it should not be modified
-    directly. Read README.md for more information.
-
-Which declaration(s) is(are) legal?
-
-A. | :answermono:`function F (S : String) return Boolean is`
-   |   :answermono:`(for all C of S => C /= ' ');`
-B. | ``function F (S : String) return Boolean is``
-   |   ``(not for some C of S => C = ' ');``
-C. | ``function F (S : String) return String is``
-   |   ``(for all C of S => C);``
-D. | :answermono:`function F (S : String) return String is`
-   |   :answermono:`(if (for all C of S => C /= ' ') then "OK"`
-   |    :answermono:`else "NOK");`
-
-.. container:: animate
-
-    B. Parentheses required around the quantified expression
-    C. Must return a :ada:`Boolean`
-.. include:: quiz/quantified_expr_syntax/quiz.rst
+.. include:: ../quiz/quantified_expr_syntax/quiz.rst
 
 ------
 Quiz
 ------
 
-..
-    This file is auto-generated from the quiz template, it should not be modified
-    directly. Read README.md for more information.
-
-.. code:: Ada
-
-    type T1 is array (1 .. 3) of Integer;
-    type T2 is array (1 .. 3) of Integer;
-
-Which piece(s) of code correctly perform(s) equality check on A and B?
-
-A. | :answermono:`function "=" (A : T1; B : T2) return Boolean is`
-   |   :answermono:`(A = T1 (B));`
-B. | ``function "=" (A : T1; B : T2) return Boolean is``
-   |   ``(for all E1 of A => (for all E2 of B => E1 = E2));``
-C. | ``function "=" (A : T1; B : T2) return Boolean is``
-   |   ``(for some E1 of A => (for some E2 of B => E1 = E2));``
-D. | :answermono:`function "=" (A : T1; B : T2) return Boolean is`
-   |   :answermono:`(for all J in A'Range => A (J) = B (J));`
-
-.. container:: animate
-
-    B. Counterexample: ``A = B = (0, 1, 0)`` returns :ada:`False`
-    C. Counterexample: ``A = (0, 0, 1) and B = (0, 1, 1)`` returns :ada:`True`
-.. include:: quiz/quantified_expr_equality/quiz.rst
+.. include:: ../quiz/quantified_expr_equality/quiz.rst
 
 ------
 Quiz
