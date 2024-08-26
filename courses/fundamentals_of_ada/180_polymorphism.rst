@@ -56,8 +56,8 @@ Classes
 ----------
 
 * In Ada, a Class denotes an inheritance subtree
-* Class of `T` is the class of `T` and all its children
-* Type :ada:`T'Class` can designate any object typed after type of class of `T`
+* Class of `Root` is the class of `Root` and all its children
+* Type :ada:`Root'Class` can designate any object typed after type of class of `Root`
 
    .. code:: Ada
 
@@ -70,10 +70,10 @@ Classes
       -- Child2'Class = {Child2}
       -- Grand_Child1'Class = {Grand_Child1}
 
-* Objects of type :ada:`T'Class` have at least the properties of T
+* Objects of type :ada:`Root'Class` have at least the properties of `Root`
 
-   - Fields of `T`
-   - Primitives of `T`
+   - Fields of `Root`
+   - Primitives of `Root`
 
 -----------------
 Indefinite Type
@@ -91,19 +91,19 @@ Indefinite Type
 .. code:: Ada
 
    procedure Main is
-      type T is tagged null record;
-      type D is new T with null record;
-      procedure P (X : in out T'Class) is null;
-      Obj : D;
-      Dc  : D'Class := Obj;
-      Tc1 : T'Class := Dc;
-      Tc2 : T'Class := Obj;
+      type Animal is tagged null record;
+      type Dog is new Animal with null record;
+      procedure Handle_Animal (Some_Animal : in out Animal'Class) is null;
+      My_Dog     : Dog;
+      Pet        : Dog'Class    := My_Dog;
+      Pet_Animal : Animal'Class := Pet;
+      Pet_Dog    : Animal'Class := My_Dog;
       -- initialization required in class-wide declaration
-      Tc3 : T'Class; -- compile error
-      Dc2 : D'Class; -- compile error
+      Bad_Animal : Animal'Class; -- compile error
+      Bad_Dog    : Dog'Class;    -- compile error
    begin
-      P (Dc);
-      P (Obj);
+      Handle_Animal (Pet);
+      Handle_Animal (My_Dog);
    end Main;
 
 -------------------------------
@@ -128,10 +128,10 @@ Testing the Type of an Object
    Child_Class    : Child'Class := Child (Parent_Class_2);
                     -- Child_Class'Tag  = Child'Tag
 
-   B1 : Boolean := Parent_Class_1 in Parent'Class;       -- True
+   B1 : Boolean := Parent_Class_1 in Parent'Class; -- True
    B2 : Boolean := Parent_Class_1'Tag = Child'Tag; -- False
    B3 : Boolean := Child_Class'Tag = Parent'Tag;   -- False
-   B4 : Boolean := Child_Class in Child'Class;           -- True
+   B4 : Boolean := Child_Class in Child'Class;     -- True
 
 ----------------
 Abstract Types
@@ -152,32 +152,32 @@ Abstract Types Ada Vs C++
 
     .. code:: Ada
 
-       type Root is abstract tagged record
-          F : Integer;
+       type Animal is abstract tagged record
+          Number_Of_Eyes : Integer;
        end record;
-       procedure P1 (V : Root) is abstract;
-       procedure P2 (V : Root);
-       type Child is abstract new Root with null record;
-       type Grand_Child is new Child with null record;
+       procedure Feed (The_Animal : Animal) is abstract;
+       procedure Pet (The_Animal : Animal);
+       type Dog is abstract new Animal with null record;
+       type Bulldog is new Dog with null record;
 
        overriding  -- Ada 2005 and later
-       procedure P1 (V : Grand_Child);
+       procedure Feed (The_Animal : Bulldog);
 
 * C++
 
     .. code:: Ada
 
-       class Root {
+       class Animal {
           public:
-             int F;
-             virtual void P1 (void) = 0;
-             virtual void P2 (void);
+             int Number_Of_Eyes;
+             virtual void Feed (void) = 0;
+             virtual void Pet (void);
        };
-       class Child : public Root {
+       class Dog : public Animal {
        };
-       class Grand_Child {
+       class Bulldog {
           public:
-             virtual void P1 (void);
+             virtual void Feed (void);
        };
 
 .. container:: speakernote
@@ -188,15 +188,15 @@ Abstract Types Ada Vs C++
 Relation to Primitives
 ------------------------
 
-Warning: Subprograms with parameter of type `T'Class` are not primitives of `T`
+Warning: Subprograms with parameter of type `Root'Class` are not primitives of `Root`
 
       .. code:: Ada
 
          type Root is tagged null record;
-         procedure P (V : Root'Class);
+         procedure Not_A_Primitive (Param : Root'Class);
          type Child is new Root with null record;
-         -- This does not override P!
-         overriding procedure P (V : Child'Class);
+         -- This does not override Not_A_Primitive!
+         overriding procedure Not_A_Primitive (Param : Child'Class);
 
 ----------------------------
 'Class and Prefix Notation
@@ -206,17 +206,17 @@ Prefix notation rules apply when the first parameter is of a class wide type
 
       .. code:: Ada
 
-         type Root is tagged null record;
-         procedure P (V : Root'Class);
-         type Child is new Root with null record;
+         type Animal is tagged null record;
+         procedure Handle_Animal (Some_Animal : Animal'Class);
+         type Cat is new Animal with null record;
 
-         V1 : Root;
-         V2 : Root'Class := Root'(others => <>);
+         Stray_Animal : Animal;
+         Pet_Animal   : Animal'Class := Animal'(others => <>);
          ...
-         P (V1);
-         P (V2);
-         V1.P;
-         V2.P;
+         Handle_Animal (Stray_Animal);
+         Handle_Animal (Pet_Animal);
+         Stray_Animal.Handle_Animal;
+         Pet_Animal.Handle_Animal;
 
 ..
   language_version 2005
@@ -229,21 +229,21 @@ Dispatching and Redispatching
 Calls on Class-Wide Types (1/3)
 ---------------------------------
 
-* Any subprogram expecting a T object can be called with a :ada:`T'Class` object
+* Any subprogram expecting a `Root` object can be called with a :ada:`Animal'Class` object
 
 .. code:: Ada
 
-   type Root is tagged null record;
-   procedure P (V : Root);
+   type Animal is tagged null record;
+   procedure Feed (The_Animal : Animal);
 
-   type Child is new Root with null record;
-   procedure P (V : Child);
+   type Dog is new Animal with null record;
+   procedure Feed (The_Dog : Dog);
 
-      V1 : Root'Class := [...]
-      V2 : Child'Class := [...]
+      Stray_Dog : Animal'Class := [...]
+      My_Dog    : Dog'Class := [...]
    begin
-      P (V1);
-      P (V2);
+      Feed (Stray_Dog);
+      Feed (My_Dog);
 
 ---------------------------------
 Calls on Class-Wide Types (2/3)
@@ -261,13 +261,13 @@ Calls on Class-Wide Types (2/3)
       .. code:: Ada
 
          declare
-           V1 : Root'Class :=
-                Root'(others => <>);
-           V2 : Root'Class :=
-                Child'(others => <>);
+           Stray : Animal'Class :=
+                Animal'(others => <>);
+           My_Dog : Animal'Class :=
+                Dog'(others => <>);
          begin
-           V1.P; -- calls P of Root
-           V2.P; -- calls P of Child
+           Stray.Feed;  -- calls Feed of Animal
+           My_Dog.Feed; -- calls Feed of Dog
 
  .. container:: column
 
@@ -275,10 +275,11 @@ Calls on Class-Wide Types (2/3)
 
       .. code:: C++
 
-         Root * V1 = new Root ();
-         Root * V2 = new Child ();
-         V1->P ();
-         V2->P ();
+         Animal * Stray = 
+                     new Animal ();
+         Animal * My_Dog = new Dog ();
+         Stray->Feed ();
+         My_Dog->Feed ();
 
 ---------------------------------
 Calls on Class-Wide Types (3/3)
@@ -295,13 +296,13 @@ Calls on Class-Wide Types (3/3)
    .. code:: Ada
 
       declare
-        V1 : Root'Class :=
-             Root'(others => <>);
-        V2 : Root'Class :=
-             Child'(others => <>);
+        Stray : Animal'Class :=
+             Animal'(others => <>);
+        My_Dog : Animal'Class :=
+             Dog'(others => <>);
       begin
-        Root (V1).P; -- calls P of Root
-        Root (V2).P; -- calls P of Root
+        Animal (Stray).Feed;  -- calls Feed of Animal
+        Animal (My_Dog).Feed; -- calls Feed of Animal
 
  .. container:: column
 
@@ -309,10 +310,11 @@ Calls on Class-Wide Types (3/3)
 
    .. code:: C++
 
-      Root * V1 = new Root ();
-      Root * V2 = new Child ();
-      ((Root) *V1).P ();
-      ((Root) *V2).P ();
+      Animal * Stray = 
+                  new Animal ();
+      Animal * My_Dog = new Dog ();
+      ((Animal) *Stray).Feed ();
+      ((Animal) *My_Dog).Feed ();
 
 -------------------------------
 Definite and Class Wide Views
@@ -323,26 +325,26 @@ Definite and Class Wide Views
 
 .. code:: Ada
 
-   type Root is tagged null record;
-   procedure P1 (V : Root);
-   procedure P2 (V : Root);
-   type Child is new Root with null record;
-   overriding procedure P2 (V : Child);
-   procedure P1 (V : Root) is
+   type Animal is tagged null record;
+   procedure Groom (The_Animal : Animal);
+   procedure Give_Treat (The_Animal : Animal);
+   type Dog is new Animal with null record;
+   overriding procedure Give_Treat (The_Dog : Dog);
+   procedure Groom (The_Animal : Animal) is
    begin
-      P2 (V); -- always calls P2 from Root
-   end P1;
+      Give_Treat (The_Animal); -- always calls Give_Treat from Animal
+   end Groom;
    procedure Main is
-      V1 : Root'Class :=
-           Child'(others => <>);
+      My_Dog : Animal'Class :=
+           Dog'(others => <>);
    begin
-      -- Calls P1 from the implicitly overridden subprogram
-      -- Calls P2 from Root!
-      V1.P1;
+      -- Calls Groom from the implicitly overridden subprogram
+      -- Calls Give_Treat from Animal!
+      My_Dog.Groom;
 
 .. container:: speakernote
 
-   P1 operates on ROOT, not ROOT'Class
+   Groom operates on Animal, not Animal'Class
 
 ---------------
 Redispatching
@@ -356,11 +358,11 @@ Redispatching
 
 .. code:: Ada
 
-   type Root is tagged null record;
-   procedure P1 (V : Root);
-   procedure P2 (V : Root);
-   type Child is new Root with null record;
-   overriding procedure P2 (V : Child);
+   type Animal is tagged null record;
+   procedure Feed (An_Animal : Animal);
+   procedure Pet (An_Animal : Animal);
+   type Cat is new Animal with null record;
+   overriding procedure Pet (A_Cat : Cat);
 
 -----------------------
 Redispatching Example
@@ -368,19 +370,19 @@ Redispatching Example
 
 .. code:: Ada
 
-   procedure P1 (V : Root) is
-      V_Class : Root'Class renames
-                Root'Class (V); -- naming of a view
+   procedure Feed (Anml : Animal) is
+      Fish : Animal'Class renames
+                Animal'Class (Anml); -- naming of a view
    begin
-      P2 (V);              -- static: uses the definite view
-      P2 (Root'Class (V)); -- dynamic: (redispatching)
-      P2 (V_Class);        -- dynamic: (redispatching)
+      Pet (Anml); -- static: uses the definite view
+      Pet (Animal'Class (Anml)); -- dynamic: (redispatching)
+      Pet (Fish);                -- dynamic: (redispatching)
 
       -- Ada 2005 "distinguished receiver" syntax
-      V.P2;                -- static: uses the definite view
-      Root'Class (V).P2;   -- dynamic: (redispatching)
-      V_Class.P2;          -- dynamic: (redispatching)
-   end P1;
+      Anml.Pet; -- static: uses the definite view
+      Animal'Class (Anml).Pet; -- dynamic: (redispatching)
+      Fish.Pet;                -- dynamic: (redispatching)
+   end Feed;
 
 ------
 Quiz
@@ -388,20 +390,20 @@ Quiz
 
 .. code::Ada
 
-   package P is
-      type Root is tagged null record;
-      function F1 (V : Root) return Integer is (101);
-      type Child is new Root with null record;
-      function F1 (V : Child) return Integer is (201);
-      type Grandchild is new Child with null record;
-      function F1 (V : Grandchild) return Integer is (301);
-   end P;
+   package Robots is
+      type Robot is tagged null record;
+      function Service_Code (The_Bot : Robot) return Integer is (101);
+      type Appliance_Robot is new Robot with null record;
+      function Service_Code (The_Bot : Appliance_Robot) return Integer is (201);
+      type Vacuum_Robot is new Appliance_Robot with null record;
+      function Service_Code (The_Bot : Vacuum_Robot) return Integer is (301);
+   end Robots;
 
-   with P; use P;
+   with Robots; use Robots;
    procedure Main is
-      Z : Root'Class := Grandchild'(others => <>);
+      Robot_Object : Robot'Class := Vacuum_Robot'(others => <>);
 
-What is the value returned by :ada:`F1 (Child'Class (Z));`?
+What is the value returned by :ada:`Service_Code (Appliance_Robot'Class (Robot_Object));`?
 
    A. :answer:`301`
    B. 201
@@ -413,8 +415,8 @@ What is the value returned by :ada:`F1 (Child'Class (Z));`?
    Explanations
 
    A. Correct
-   B. Would be correct if Z was a :ada:`Child` - :ada:`Child'Class` leaves the object as :ada:`Grandchild`
-   C. Object is initialized to something in :ada:`Root'Class`, but it doesn't have to be :ada:`Root`
+   B. Would be correct if :ada:`Robot_Object` was a :ada:`Appliance_Robot` - :ada:`Appliance_Robot'Class` leaves the object as :ada:`Vacuum_Robot`
+   C. Object is initialized to something in :ada:`Robot'Class`, but it doesn't have to be :ada:`Robot`
    D. Would be correct if function parameter types were :ada:`'Class`
 
 ===============================
@@ -429,27 +431,27 @@ Multiple Dispatching Operands
 
    .. code:: Ada
 
-      type Root is tagged null record;
-      procedure P (Left : Root; Right : Root);
-      type Child is new Root with null record;
-      overriding procedure P (Left : Child; Right : Child);
+      type Animal is tagged null record;
+      procedure Interact (Left : Animal; Right : Animal);
+      type Dog is new Animal with null record;
+      overriding procedure Interact (Left : Dog; Right : Dog);
 
 * At call time, all actual parameters' tags have to match, either statically or dynamically
 
    .. code:: Ada
 
-      R1, R2 : Root;
-      C1, C2 : Child;
-      Cl1 : Root'Class := R1;
-      Cl2 : Root'Class := R2;
-      Cl3 : Root'Class := C1;
+      Animal_1, Animal_2   : Animal;
+      Dog_1, Dog_2 : Dog;
+      Any_Animal_1 : Animal'Class := Animal_1;
+      Any_Animal_2 : Animal'Class := Animal_2;
+      Dog_Animal : Animal'Class := Dog_1;
       ...
-      P (R1, R2);               -- static:  ok
-      P (R1, C1);               -- static:  error
-      P (Cl1, Cl2);             -- dynamic: ok
-      P (Cl1, Cl3);             -- dynamic: error
-      P (R1, Cl1);              -- static:  error
-      P (Root'Class (R1), Cl1); -- dynamic: ok
+      Interact (Animal_1, Animal_2);                    -- static:  ok
+      Interact (Animal_1, Dog_1);                       -- static:  error
+      Interact (Any_Animal_1, Any_Animal_2);            -- dynamic: ok
+      Interact (Any_Animal_1, Dog_Animal);              -- dynamic: error
+      Interact (Animal_1, Any_Animal_1);                -- static:  error
+      Interact (Animal'Class (Animal_1), Any_Animal_1); -- dynamic: ok
 
 ---------------------------
 Special Case for Equality
@@ -461,19 +463,19 @@ Special Case for Equality
 
 .. code:: Ada
 
-   type Root is tagged null record;
-   function "=" (L : Root; R : Root) return Boolean;
-   type Child is new Root with null record;
-   overriding function "=" (L : Child; R : Child) return Boolean;
-   R1, R2 : Root;
-   C1, C2 : Child;
-   Cl1 : Root'Class := R1;
-   Cl2 : Root'Class := R2;
-   Cl3 : Root'Class := C1;
+   type Animal is tagged null record;
+   function "=" (Left : Animal; Right : Animal) return Boolean;
+   type Dog is new Animal with null record;
+   overriding function "=" (Left : Dog; Right : Dog) return Boolean;
+   Animal_1, Animal_2 : Animal;
+   Dog_1, Dog_2 : Child;
+   Any_Animal_1 : Animal'Class := Animal_1;
+   Any_Animal_2 : Animal'Class := Animal_2;
+   Dog_Animal   : Animal'Class := Dog_1;
    ...
    -- overridden "=" called via dispatching
-   if Cl1 = Cl2 then [...]
-   if Cl1 = Cl3 then [...] -- returns false
+   if Any_Animal_1 = Any_Animal_2 then [...]
+   if Any_Animal_1 = Dog_Animal then [...] -- returns false
 
 --------------------------
 Controlling Result (1/2)
@@ -485,30 +487,30 @@ Controlling Result (1/2)
 
       .. code:: Ada
 
-         type Root is tagged null record;
-         function F (V : Integer) return Root;
+         type Animal is tagged null record;
+         function Feed_Treats (Number_Of_Treats : Integer) return Animal;
 
 * If the child adds fields, all such subprograms have to be overridden
 
       .. code:: Ada
 
-         type Root is tagged null record;
-         function F (V : Integer) return Root;
+         type Animal is tagged null record;
+         function Feed_Treats (Number_Of_Treats : Integer) return Animal;
 
-         type Child is new Root with null record;
-         --  OK, F is implicitly inherited
+         type Dog is new Animal with null record;
+         --  OK, Feed_Treats is implicitly inherited
 
-         type Child1 is new Root with record
-            X : Integer;
+         type Bulldog is new Animal with record
+            Has_Underbite : Boolean;
          end record;
-         --  ERROR no implicitly inherited function F
+         --  ERROR no implicitly inherited function Feed_Treats
 
 * Primitives returning abstract types have to be abstract
 
       .. code:: Ada
 
-         type Root is abstract tagged null record;
-         function F (V : Integer) return Root is abstract;
+         type Animal is abstract tagged null record;
+         function Feed_Treats (Number_Of_Treats : Integer) return Animal is abstract;
 
 --------------------------
 Controlling Result (2/2)
@@ -518,24 +520,25 @@ Controlling Result (2/2)
 
    .. code:: Ada
 
-      type Root is tagged null record;
-      function F return Root;
-      type Child is new Root with null record;
-      function F return Child;
-      V : Root := F;
+      type Animal is tagged null record;
+      function Feed return Animal;
+      type Dog is new Animal with null record;
+      function Feed return Dog;
+      Fed_Animal : Animal := Feed;
 
 * In a dynamic context, the type has to be known to correctly dispatch
 
    .. code:: Ada
-
-     V1 : Root'Class := Root'(F);  -- Static call to Root primitive
-     V2 : Root'Class := V1;
-     V3 : Root'Class := Child'(F); -- Static call to Child primitive
-     V4 : Root'Class := F;         -- Error - ambiguous expression
+     
+     Fed_Animal : Animal'Class := 
+                           Animal'(Feed);    -- Static call to Animal primitive
+     Another_Fed_Animal : Animal'Class := Fed_Animal;
+     Fed_Dog : Animal'Class := Dog'(Feed);   -- Static call to Dog primitive
+     Starving_Animal : Animal'Class := Feed; -- Error - ambiguous expression
      ...
-     V1 := F; -- Dispatching call to Root primitive
-     V2 := F; -- Dispatching call to Root primitive
-     V3 := F; -- Dispatching call to Child primitive
+     Fed_Animal := Feed;         -- Dispatching call to Animal primitive
+     Another_Fed_Animal := Feed; -- Dispatching call to Animal primitive
+     Fed_Dog := Feed;            -- Dispatching call to Dog primitive
 
 * No dispatching is possible when returning access types
 
