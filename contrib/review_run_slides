@@ -10,7 +10,7 @@ be over (this behaviour can be disabled through the command-line switches).
 requirements = """
 You should have the `gh` GitHub CLI installed (https://cli.github.com/)
 You should then run attach the repo to the github URL through:
-`git repo set-url github git@github.com:AdaCore/training_material.git`
+`git remote set-url github git@github.com:AdaCore/training_material.git`
 
 On WSL: To get the PDF view to open, mailcap must be set up for PDFs. This can be done via:
 `echo "application/pdf; wslview %s" >> ~/.mailcap`
