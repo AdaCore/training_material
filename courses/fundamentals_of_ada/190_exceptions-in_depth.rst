@@ -1,6 +1,6 @@
-************
-Exceptions
-************
+*********************
+Exceptions In-Depth
+*********************
 
 ..
     Coding language
@@ -34,9 +34,12 @@ Exceptions
 .. include:: 190_exceptions/01-introduction.rst
 .. include:: 190_exceptions/02-handlers.rst
 .. include:: 190_exceptions/03-implicitly_and_explicitly_raised_exceptions.rst
+.. include:: 190_exceptions/04-language_defined_exceptions.rst
 .. include:: 190_exceptions/05-user_defined_exceptions.rst
 .. include:: 190_exceptions/06-propagation.rst
-.. include:: 190_exceptions/08-exceptions_as_objects.rst
+.. include:: 190_exceptions/07-partial_and_nested_handlers.rst
+.. include:: 190_exceptions/08-exceptions_as_objects-in_depth.rst
 .. include:: 190_exceptions/09-raise_expressions.rst
-.. include:: labs/190_exceptions.lab.rst
-.. include:: 190_exceptions/99-summary.rst
+.. include:: 190_exceptions/10-in_practice.rst
+.. include:: labs/190_exceptions-in_depth.lab.rst
+.. include:: 190_exceptions/99-summary-in_depth.rst
