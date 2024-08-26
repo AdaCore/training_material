@@ -1,5 +1,9 @@
+========
+Lab
+========
+
 -------------------------
-Advanced Exceptions Lab
+Exceptions In-Depth Lab
 -------------------------
 
 (Simplified) Calculator
@@ -35,26 +39,26 @@ Project Requirements
   * Allow multiple operations on a line
 
 ------------------------------------------------------
-Advanced Exceptions Lab Solution - Calculator (Spec)
+Exceptions In-Depth Lab Solution - Calculator (Spec)
 ------------------------------------------------------
 
-.. container:: source_include labs/answers/adv_190_exceptions.txt :start-after:--Calculator_Spec :end-before:--Calculator_Spec :code:Ada :number-lines:1
+.. container:: source_include labs/answers/190_exceptions-in_depth.txt :start-after:--Calculator_Spec :end-before:--Calculator_Spec :code:Ada :number-lines:1
 
 -----------------------------------------
-Advanced Exceptions Lab Solution - Main
+Exceptions In-Depth Lab Solution - Main
 -----------------------------------------
 
-.. container:: source_include labs/answers/adv_190_exceptions.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include labs/answers/190_exceptions-in_depth.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
 
 ------------------------------------------------------
-Advanced Exceptions Lab Solution - Calculator (Body)
+Exceptions In-Depth Lab Solution - Calculator (Body)
 ------------------------------------------------------
 
-.. container:: source_include labs/answers/adv_190_exceptions.txt :start-after:--Calculator_Body :end-before:--Calculator_Body :code:Ada :number-lines:1
+.. container:: source_include labs/answers/190_exceptions-in_depth.txt :start-after:--Calculator_Body :end-before:--Calculator_Body :code:Ada :number-lines:1
 
 ------------------------------------------
-Advanced Exceptions Lab Solution - Debug
+Exceptions In-Depth Lab Solution - Debug
 ------------------------------------------
 
-.. container:: source_include labs/answers/adv_190_exceptions.txt :start-after:--Debug :end-before:--Debug :code:Ada :number-lines:1
+.. container:: source_include labs/answers/190_exceptions-in_depth.txt :start-after:--Debug :end-before:--Debug :code:Ada :number-lines:1
 
