@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 script_description = """
-Find and download the latest build for the given branch, and the given course.
+Finds and downloads the latest build for the given branch, and the given course.
 Downloads it and opens it in a viewer for review.
 
 If the course is in the process of being built, then the script waits for it to
