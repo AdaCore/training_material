@@ -79,6 +79,8 @@ def main():
     if latest_run["conclusion"] != "success":
         raise Exception(f"latest run concluded in {latest_run['conclusion']}")
 
+    print(f"job URL is at {latest_run['url']}")
+
     downloaded_dir = OUT / args.course
     print(f"download to {downloaded_dir}")
     if downloaded_dir.exists():
