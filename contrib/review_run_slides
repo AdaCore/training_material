@@ -69,7 +69,7 @@ def gh_run_download(run_id, name, directory):
 
 
 def gh_run_watch(run_id):
-    cmd.gh("watch", run_id)
+    cmd.gh("run", "watch", run_id)
 
 
 def main():
