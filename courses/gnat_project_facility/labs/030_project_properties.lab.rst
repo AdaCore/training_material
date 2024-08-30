@@ -41,9 +41,9 @@ Directories Solution
 
       raised CONSTRAINT_ERROR : fibonacci.adb:16 overflow check failed
 
-------------------------------------
-Project Properties Lab - Switches
-------------------------------------
+---------------------------------------
+Project Properties Lab (1/3) - Switches
+---------------------------------------
 
 * Modify project file to disable overflow checking
 
@@ -96,9 +96,9 @@ Switches Solution
          50  -1109825406
          ...
 
----------------------------------
-Project Properties Lab - Naming
----------------------------------
+---------------------------------------
+Project Properties Lab (2/3) - Naming
+---------------------------------------
 
 * Modify project file to use naming conventions from a different compiler
 
@@ -152,9 +152,9 @@ Naming Solution
          96  -8612576878699335103
          ...
 
---------------------------------------
-Project Properties Lab - Conditional
---------------------------------------
+--------------------------------------------
+Project Properties Lab (3/3) - Conditional
+--------------------------------------------
 
 * Modify project file to select precision via compiler switch
 
