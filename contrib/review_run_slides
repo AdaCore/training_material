@@ -22,6 +22,7 @@ from pathlib import Path
 import json
 import shutil
 import time
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "out"
@@ -58,7 +59,7 @@ def gh_latest_run(
             if run["headBranch"] == branch:
                 return run
         else:
-            raise Exception(f"no build found for branch {branch}")
+            return None
 
     return find_first_by_headBranch(js, branch)
 
@@ -68,7 +69,7 @@ def gh_run_download(run_id, name, directory):
 
 
 def gh_run_watch(run_id):
-    cmd.gh("watch", run_id)
+    cmd.gh("run", "watch", run_id)
 
 
 def main():
@@ -87,7 +88,17 @@ def main():
     if branch is None:
         branch = get_current_git_branch()
 
+    VALID_BRANCH_PREFIX = ("build/", "slides/", "training/", "experimental/")
+    if not any(branch.startswith(prefix)
+               for prefix in VALID_BRANCH_PREFIX):
+        print(f"branch name must start with one of {VALID_BRANCH_PREFIX}", file=sys.stderr)
+        print(f"you can create it with `git checkout -b build/{branch} {branch}`")
+        sys.exit(1)
+
     latest_run = gh_latest_run(branch)
+    if latest_run is None:
+        print(f"no run found for {branch}")
+        sys.exit(1)
     latest_run_id = latest_run["databaseId"]
     print(f"latest run for {branch} is {latest_run_id}")
 
