@@ -920,7 +920,7 @@ Solution 2: Partially Import Private Unit
 Combining Private and Limited Withs
 -------------------------------------
 
-* Cyclic declaration dependencies allowed
+* Cyclic :ada:`limited with` clauses allowed
 * A public unit can :ada:`with` a private unit
 * With-ed unit only visible in the private part
 
