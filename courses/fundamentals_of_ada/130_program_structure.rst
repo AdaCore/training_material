@@ -55,7 +55,7 @@ What Is a System?
 * Also called Application or Program or ...
 * Collection of :dfn:`library units`
 
-   - Which are a collection of packages, subprograms, objects
+   - Which are a collection of packages or subprograms
 
 ----------------------
 Library Units Review
