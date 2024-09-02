@@ -397,7 +397,7 @@ Generic Subprogram Parameters Defaults
 ----------------------------------------
 
 * :ada:`is <>` - matching subprogram is taken by default
-* :ada:`is null` - null subprogram is taken by default
+* :ada:`is null` - null procedure is taken by default
 
    - Only available in Ada 2005 and later
 
@@ -414,7 +414,7 @@ Generic Subprogram Parameters Defaults
       procedure My_Validate is new Validate (Record_T,
                                              Is_Valid_Record);
       -- Is_Valid maps to Is_Valid_Record
-      -- Error_Message maps to a null subprogram
+      -- Error_Message maps to a null procedure
 
 ..
   language_version 2005
