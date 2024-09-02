@@ -532,12 +532,12 @@ Quiz
       Child_Object : Integer := ? ;
    end Parent.Child;
 
-Which is not a legal initialization of Child_Object?
+Which is(are) legal initialization(s) of ``Child_Object``?
 
-   A. ``Parent.Parent_Object + Parent.Sibling.Sibling_Object``
-   B. ``Parent_Object + Sibling.Sibling_Object``
-   C. ``Parent_Object + Sibling_Object``
-   D. :answer:`All of the above`
+   A. :answermono:`Parent.Parent_Object + Parent.Sibling.Sibling_Object`
+   B. :answermono:`Parent_Object + Sibling.Sibling_Object`
+   C. :answermono:`Parent_Object + Sibling_Object`
+   D. ``None of the above``
 
 .. container:: animate
 
@@ -727,11 +727,11 @@ Quiz
 
   .. container:: column
 
-   Which return statement would **not** be legal in P.Child.X?
+   Which return statement would be legal in ``P.Child.X?``
 
-      A.  ``return Object_A;``
-      B.  ``return Object_B;``
-      C.  :answermono:`return Object_C;`
+      A.  :answermono:`return Object_A;`
+      B.  :answermono:`return Object_B;`
+      C.  ``return Object_C;``
       D.  None of the above
 
    .. container:: animate
