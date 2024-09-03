@@ -100,7 +100,7 @@ Body-Level Cross Dependencies Are OK
 * The bodies only depend on other packages' declarations
 * The declarations are already elaborated by the time the bodies are elaborated
 
-.. image:: mutual_dependencies.png
+.. image:: mutual_dependencies.svg
    :width: 70%
    :align: center
 
