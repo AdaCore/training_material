@@ -308,12 +308,12 @@ Quiz
      (A : T1;
       B : T2);
 
-Which is **not** a legal instantiation?
+Which is(are) legal instantiation(s)?
 
-   A. :answermono:`procedure A is new G (String, Character);`
-   B. ``procedure B is new G (Character, Integer);``
-   C. ``procedure C is new G (Integer, Boolean);``
-   D. ``procedure D is new G (Boolean, String);``
+   A. ``procedure A is new G (String, Character);``
+   B. :answermono:`procedure B is new G (Character, Integer);`
+   C. :answermono:`procedure C is new G (Integer, Boolean);`
+   D. :answermono:`procedure D is new G (Boolean, String);`
 
 .. container:: animate
 
