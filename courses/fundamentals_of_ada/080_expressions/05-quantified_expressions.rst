@@ -1,36 +1,3 @@
-************************
-Quantified Expressions
-************************
-
-..
-    Coding language
-
-.. role:: ada(code)
-    :language: Ada
-
-.. role:: C(code)
-    :language: C
-
-.. role:: cpp(code)
-    :language: C++
-
-..
-    Math symbols
-
-.. |rightarrow| replace:: :math:`\rightarrow`
-.. |forall| replace:: :math:`\forall`
-.. |exists| replace:: :math:`\exists`
-.. |equivalent| replace:: :math:`\iff`
-.. |le| replace:: :math:`\le`
-.. |ge| replace:: :math:`\ge`
-.. |lt| replace:: :math:`<`
-.. |gt| replace:: :math:`>`
-
-..
-    Miscellaneous symbols
-
-.. |checkmark| replace:: :math:`\checkmark`
-
 ========================
 Quantified Expressions
 ========================
@@ -63,7 +30,32 @@ Introduction
 Examples
 ----------
 
-.. include:: examples/080_expressions/quantified_expressions.rst
+.. code:: ada
+
+   with GNAT.Random_Numbers; use GNAT.Random_Numbers;
+   with Ada.Text_IO;         use Ada.Text_IO;
+   procedure Quantified_Expressions is
+      Gen    : Generator;
+      Values : constant array (1 .. 10) of Integer := (others => Random (Gen));
+   
+      Any_Even : constant Boolean := (for some N of Values => N mod 2 = 0);
+      All_Odd  : constant Boolean := (for all N of reverse Values => N mod 2 = 1);
+   
+      function Is_Sorted return Boolean is
+        (for all K in Values'Range =>
+           K = Values'First or else Values (K - 1) <= Values (K));
+   
+      function Duplicate return Boolean is
+        (for some I in Values'Range =>
+           (for some J in I + 1 .. Values'Last => Values (I) = Values (J)));
+   
+   begin
+      Put_Line ("Any Even: " & Boolean'Image (Any_Even));
+      Put_Line ("All Odd: " & Boolean'Image (All_Odd));
+      Put_Line ("Is_Sorted " & Boolean'Image (Is_Sorted));
+      Put_Line ("Duplicate " & Boolean'Image (Duplicate));
+   end Quantified_Expressions;
+.. include:: ../examples/080_expressions/quantified_expressions.rst
 
 -----------------------------------------
 Semantics Are As If You Wrote This Code
@@ -266,7 +258,8 @@ Index-Based Vs Component-Based Indexing
 
       Is_Sorted : constant Boolean :=
         (for all I in Values'Range =>
-          I = Values'First or else Values (I) >= Values (I-1));
+          I = Values'First or else
+          Values (I) >= Values (I-1));
 
 ..
   language_version 2012
@@ -334,9 +327,10 @@ Not Just Arrays: Any "Iterable" Objects
    package Characters is new
       Ada.Containers.Vectors (Positive, Character);
    use Characters;
-   Alphabet  : constant Vector := To_Vector ('A',1) & 'B' & 'C';
+   Alphabet  : constant Vector :=
+               To_Vector ('A',1) & 'B' & 'C';
    Any_Zed   : constant Boolean :=
-              (for some C of Alphabet => C = 'Z');
+               (for some C of Alphabet => C = 'Z');
    All_Lower : constant Boolean :=
                (for all C of Alphabet => Is_Lower (C));
 
@@ -373,13 +367,13 @@ Conditional / Quantified Expression Usage
 Quiz
 ------
 
-.. include:: quiz/quantified_expr_syntax/quiz.rst
+.. include:: ../quiz/quantified_expr_syntax/quiz.rst
 
 ------
 Quiz
 ------
 
-.. include:: quiz/quantified_expr_equality/quiz.rst
+.. include:: ../quiz/quantified_expr_equality/quiz.rst
 
 ------
 Quiz
@@ -410,20 +404,3 @@ D. | ``(for all El of A => (for some Idx in 2 .. 3 =>``
  C. Correct
  D. Will be :ada:`True` if every element has two consecutive increasing values
 
-========
-Lab
-========
-
-.. include:: labs/adv_080_expressions.lab.rst
-
-=========
-Summary
-=========
-
----------
-Summary
----------
-
-* Quantified expressions are general purpose but especially useful with pre/postconditions
-
-   - Consider hiding them behind expressive function names
