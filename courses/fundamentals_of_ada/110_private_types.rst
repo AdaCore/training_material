@@ -418,7 +418,7 @@ Quiz
       procedure Proc (Param : in out Private_T) is null;
    end P;
 
-Which object definition(s) is(are) legal?
+Which object definition(s) is (are) legal?
 
    A. ``Object_A``
    B. :answermono:`Object_B`

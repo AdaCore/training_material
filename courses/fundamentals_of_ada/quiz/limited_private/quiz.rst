@@ -11,7 +11,7 @@
        -- Complete Here
     end P;
 
-Which of the following piece(s) of code is(are) legal?
+Which of the following piece(s) of code is (are) legal?
 
 A. | ``type Priv is record``
    |    ``E : Lim;``

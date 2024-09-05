@@ -1,4 +1,4 @@
--- Which completion(s) is(are) correct for :ada:`package P`?
+-- Which completion(s) is (are) correct for :ada:`package P`?
 procedure Main is
    --$ begin question
    package P is

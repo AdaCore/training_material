@@ -1,4 +1,4 @@
---  Which declaration(s) is(are) legal for this piece of code?
+--  Which declaration(s) is (are) legal for this piece of code?
 --$ begin question
 procedure Main is
    type Shape_Kind is (Circle, Line);

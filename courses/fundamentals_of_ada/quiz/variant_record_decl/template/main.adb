@@ -1,4 +1,4 @@
---  Which declaration(s) is(are) legal?
+--  Which declaration(s) is (are) legal?
 procedure Main is
    --$ begin question
    type Shape_Kind is (Circle, Line);

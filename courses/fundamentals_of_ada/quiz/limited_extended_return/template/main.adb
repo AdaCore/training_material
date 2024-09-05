@@ -1,4 +1,4 @@
--- Which declaration(s) of ``F`` is(are) valid?
+-- Which declaration(s) of ``F`` is (are) valid?
 procedure Main is
    --$ begin question
    type T is limited record

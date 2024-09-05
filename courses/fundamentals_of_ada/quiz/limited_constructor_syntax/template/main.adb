@@ -1,4 +1,4 @@
--- Which piece(s) of code is(are) a legal constructor for :ada:`T`?
+-- Which piece(s) of code is (are) a legal constructor for :ada:`T`?
 
 procedure Main is
    --$ begin question

@@ -1,4 +1,4 @@
--- Which statement(s) is(are) legal?
+-- Which statement(s) is (are) legal?
 
 procedure Main is
    --$ begin question

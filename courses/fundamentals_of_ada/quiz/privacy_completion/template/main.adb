@@ -1,4 +1,4 @@
--- Which completion(s) is(are) correct for the type :ada:`T`?
+-- Which completion(s) is (are) correct for the type :ada:`T`?
 procedure Main is
    package Pkg is
       --$ line question

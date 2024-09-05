@@ -400,7 +400,7 @@ Elaboration
 Quiz
 ------
 
-Which block(s) is(are) legal?
+Which block(s) is (are) legal?
 
    A. :answermono:`A, B, C : Integer;`
    B. :answermono:`Integer : Standard.Integer;`

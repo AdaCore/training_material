@@ -9,7 +9,7 @@
        type T2 (<>) is private;
     procedure Do_Something (A : T1; B : T2);
 
-Which declaration(s) is(are) legal?
+Which declaration(s) is (are) legal?
 
 A. ``procedure Do_A is new Do_Something (String, String)``
 B. ``procedure Do_B is new Do_Something (Character, Character)``

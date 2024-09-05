@@ -6,7 +6,7 @@
 
     type T;
 
-In the same scope, which of the following types is(are) legal?
+In the same scope, which of the following types is (are) legal?
 
 A. :answermono:`type Acc is access T`
 B. ``type Arr is array (1 .. 10) of T``
