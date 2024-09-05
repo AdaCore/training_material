@@ -68,8 +68,57 @@ def gh_run_download(run_id, name, directory):
     gh_run("download", run_id, "-n", name, "-D", directory, out_filter=None)
 
 
-def gh_run_watch(run_id):
-    cmd.gh("run", "watch", run_id)
+def run_watch(run_id, course):
+    def gh_run_view_filter(s):
+        STATUS, JOBS, ANNOTATIONS, ARTIFACTS = range(4)
+        state = STATUS
+
+        run = {"jobs": [], "annotations": [], "artifacts": []}
+        for l in s.splitlines():
+            if l:
+                if state == STATUS:
+                    if l == "JOBS":
+                        state = JOBS
+                    elif "status" not in run:
+                        run["status"] = l
+
+                elif state == JOBS:
+                    if l == "ANNOTATIONS":
+                        state = ANNOTATIONS
+                    elif l == "ARTIFACTS":
+                        state = ARTIFACTS
+                    else:
+                        run["jobs"].append(l)
+
+                elif state == ANNOTATIONS:
+                    if l == "ARTIFACTS":
+                        state = ARTIFACTS
+                    else:
+                        run["annotations"].append(l)
+
+                elif state == ARTIFACTS:
+                    run["artifacts"].append(l)
+        return run
+
+    None_Running, None_Finished, Artifact = range(3)
+
+    def gh_run_has_artifact(run_id, artifact):
+        run = cmd.gh("run", "view", run_id, out_filter=gh_run_view_filter)
+        if artifact in run["artifacts"]:
+            return Artifact
+        elif run["status"][0] == "✓":
+            return None_Finished
+        else:
+            return None_Running
+
+    r = gh_run_has_artifact(run_id, course)
+    while r == None_Running:
+        print(".", end="")
+        sys.stdout.flush()
+        time.sleep(1)
+        r = gh_run_has_artifact(run_id, course)
+
+    return r == Artifact
 
 
 def main():
@@ -88,12 +137,15 @@ def main():
     if branch is None:
         branch = get_current_git_branch()
 
-    VALID_BRANCH_PREFIX = ("build/", "slides/", "training/", "experimental/")
-    if not any(branch.startswith(prefix)
-               for prefix in VALID_BRANCH_PREFIX):
-        print(f"branch name must start with one of {VALID_BRANCH_PREFIX}", file=sys.stderr)
-        print(f"you can create it with `git checkout -b build/{branch} {branch}`")
-        sys.exit(1)
+    if branch != "master":
+        VALID_BRANCH_PREFIX = ("build/", "slides/", "training/", "experimental/")
+        if not any(branch.startswith(prefix) for prefix in VALID_BRANCH_PREFIX):
+            print(
+                f"branch name must start with one of {VALID_BRANCH_PREFIX}",
+                file=sys.stderr,
+            )
+            print(f"you can create it with `git checkout -b build/{branch} {branch}`")
+            sys.exit(1)
 
     latest_run = gh_latest_run(branch)
     if latest_run is None:
@@ -101,6 +153,7 @@ def main():
         sys.exit(1)
     latest_run_id = latest_run["databaseId"]
     print(f"latest run for {branch} is {latest_run_id}")
+    print(f"job URL is at {latest_run['url']}")
 
     if latest_run["status"] != "completed":
         if args.do_not_wait:
@@ -109,13 +162,9 @@ def main():
             )
         else:
             print(f"wait for completion [{latest_run['url']}]...")
-            gh_run_watch(latest_run["databaseId"])
-            latest_run = gh_latest_run(branch)
-
-    if latest_run["conclusion"] != "success":
+            run_watch(latest_run["databaseId"], args.course)
+    elif latest_run["conclusion"] != "success":
         raise Exception(f"latest run concluded in {latest_run['conclusion']}")
-
-    print(f"job URL is at {latest_run['url']}")
 
     downloaded_dir = OUT / args.course
     print(f"download to {downloaded_dir}")
