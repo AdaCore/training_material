@@ -143,7 +143,7 @@ Defensive Programming
 Quiz
 ------
 
-Which of the following statements is/are correct?
+Which of the following statements is (are) correct?
 
     A. Contract principles apply only to Ada 2012
     B. :answer:`Contract should hold even for unique conditions and corner cases`
@@ -163,7 +163,7 @@ Which of the following statements is/are correct?
 Quiz
 ------
 
-Which of the following statements is/are correct?
+Which of the following statements is (are) correct?
 
     A. :answer:`Assertions can be used in declarations`
     B. Assertions can be used in expressions
@@ -183,7 +183,7 @@ Which of the following statements is/are correct?
 Quiz
 ------
 
-Which of the following statements is/are correct?
+Which of the following statements is (are) correct?
 
     A. :answer:`Defensive coding is a good practice`
     B. Contracts can replace all defensive code

@@ -108,7 +108,7 @@ Ada Contracts
 Quiz
 ------
 
-Which of the following statements is/are correct?
+Which of the following statements is (are) correct?
 
     A. :answer:`Assertions can be used in declarations`
     B. Assertions can be used in expressions
@@ -128,7 +128,7 @@ Which of the following statements is/are correct?
 Quiz
 ------
 
-Which of the following statements is/are correct?
+Which of the following statements is (are) correct?
 
     A. :answer:`Defensive coding is a good practice`
     B. Contracts can replace all defensive code
