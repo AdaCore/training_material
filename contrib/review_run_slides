@@ -137,13 +137,15 @@ def main():
     if branch is None:
         branch = get_current_git_branch()
 
-    VALID_BRANCH_PREFIX = ("build/", "slides/", "training/", "experimental/")
-    if not any(branch.startswith(prefix) for prefix in VALID_BRANCH_PREFIX):
-        print(
-            f"branch name must start with one of {VALID_BRANCH_PREFIX}", file=sys.stderr
-        )
-        print(f"you can create it with `git checkout -b build/{branch} {branch}`")
-        sys.exit(1)
+    if branch != "master":
+        VALID_BRANCH_PREFIX = ("build/", "slides/", "training/", "experimental/")
+        if not any(branch.startswith(prefix) for prefix in VALID_BRANCH_PREFIX):
+            print(
+                f"branch name must start with one of {VALID_BRANCH_PREFIX}",
+                file=sys.stderr,
+            )
+            print(f"you can create it with `git checkout -b build/{branch} {branch}`")
+            sys.exit(1)
 
     latest_run = gh_latest_run(branch)
     if latest_run is None:
