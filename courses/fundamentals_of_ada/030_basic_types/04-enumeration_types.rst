@@ -191,12 +191,12 @@ Quiz
 
    type Enum_T is (Able, Baker, Charlie);
 
-Which statement will generate an error?
+Which statement(s) is (are) legal?
 
-A. ``V1 :  Enum_T := Enum_T'Value ("Able");``
-B. ``V2 :  Enum_T := Enum_T'Value ("BAKER");``
-C. ``V3 :  Enum_T := Enum_T'Value (" charlie ");``
-D. :answermono:`V4 : Enum_T := Enum_T'Value ("Able Baker Charlie");`
+A. :answermono:`V1 :  Enum_T := Enum_T'Value ("Able");`
+B. :answermono:`V2 :  Enum_T := Enum_T'Value ("BAKER");`
+C. :answermono:`V3 :  Enum_T := Enum_T'Value (" charlie ");`
+D. ``V4 : Enum_T := Enum_T'Value ("Able Baker Charlie");``
 
 .. container:: animate
 

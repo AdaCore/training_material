@@ -70,12 +70,12 @@ Quiz
    subtype Weekdays_T is Days_T range Mon .. Fri;
    Today : Days_T;
 
-Which condition is **not** legal?
+Which condition(s) is (are) legal?
 
-   A. :answermono:`if Today = Mon or Wed or Fri then`
-   B. ``if Today in Days_T then``
-   C. ``if Today not in Weekdays_T then``
-   D. ``if Today in Tue | Thu then``
+   A. ``if Today = Mon or Wed or Fri then``
+   B. :answermono:`if Today in Days_T then`
+   C. :answermono:`if Today not in Weekdays_T then`
+   D. :answermono:`if Today in Tue | Thu then`
 
 .. container:: animate
 

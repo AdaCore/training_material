@@ -308,15 +308,15 @@ Quiz
 
   .. container:: column
 
-   Which block is **not** legal?
+   Which block(s) is (are) legal?
 
-   A. | ``X := A;``
-      | ``Y := A;``
-   B. | ``X := B;``
-      | ``Y := C;``
-   C. | :answermono:`X := One_T(X + C);`
-   D. | ``X := One_T(Y);``
-      | ``Y := Two_T(X);``
+   A. | :answermono:`X := A;`
+      | :answermono:`Y := A;`
+   B. | :answermono:`X := B;`
+      | :answermono:`Y := C;`
+   C. | ``X := One_T(X + C);``
+   D. | :answermono:`X := One_T(Y);`
+      | :answermono:`Y := Two_T(X);`
 
    .. container:: animate
 
@@ -928,20 +928,20 @@ Quiz
 
    A, B : Integer := 123;
 
-Which loop block is **not** legal?
+Which loop block(s) is (are) legal?
 
-  A. | :answermono:`for A in 1 .. 10 loop`
-     |    :answermono:`A := A + 1;`
+  A. | ``for A in 1 .. 10 loop``
+     |    ``A := A + 1;``
+     | ``end loop;``
+  B. | :answermono:`for B in 1 .. 10 loop`
+     |    :answermono:`Put_Line (Integer'Image (B));`
      | :answermono:`end loop;`
-  B. | ``for B in 1 .. 10 loop``
-     |    ``Put_Line (Integer'Image (B));``
-     | ``end loop;``
-  C. | ``for C in reverse 1 .. 10 loop``
-     |    ``Put_Line (Integer'Image (C));``
-     | ``end loop;``
-  D. | ``for D in 10 .. 1 loop``
-     |    ``Put_Line (Integer'Image (D));``
-     | ``end loop;``
+  C. | :answermono:`for C in reverse 1 .. 10 loop`
+     |    :answermono:`Put_Line (Integer'Image (C));`
+     | :answermono:`end loop;`
+  D. | :answermono:`for D in 10 .. 1 loop`
+     |    :answermono:`Put_Line (Integer'Image (D));`
+     | :answermono:`end loop;`
 
 .. container:: animate
 
