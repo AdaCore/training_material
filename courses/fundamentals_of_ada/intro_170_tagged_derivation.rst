@@ -290,7 +290,7 @@ Quiz
 Quiz
 ------
 
-Which code block is legal?
+Which code block(s) is (are) legal?
 
 .. container:: columns
 

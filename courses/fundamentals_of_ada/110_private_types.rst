@@ -266,7 +266,7 @@ Quiz
 
       type Record_T is record
 
-Which component is legal?
+Which component(s) is (are) legal?
 
    A. ``Field_A : Integer := Private_T'Pos (Private_T'First);``
    B. ``Field_B : Private_T := null;``

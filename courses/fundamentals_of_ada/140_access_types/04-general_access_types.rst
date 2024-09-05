@@ -111,7 +111,7 @@ Quiz
    One : One_T;
    Two : Two_T;
 
-Which assignment is legal?
+Which assignment(s) is (are) legal?
 
 A. ``One := B'Access;``
 B. :answermono:`One := A'Access;`
