@@ -55,7 +55,7 @@ What Is a System?
 * Also called Application or Program or ...
 * Collection of :dfn:`library units`
 
-   - Which are a collection of packages, subprograms, objects
+   - Which are a collection of packages or subprograms
 
 ----------------------
 Library Units Review
@@ -100,7 +100,7 @@ Body-Level Cross Dependencies Are OK
 * The bodies only depend on other packages' declarations
 * The declarations are already elaborated by the time the bodies are elaborated
 
-.. image:: mutual_dependencies.png
+.. image:: mutual_dependencies.svg
    :width: 70%
    :align: center
 
@@ -532,12 +532,12 @@ Quiz
       Child_Object : Integer := ? ;
    end Parent.Child;
 
-Which is not a legal initialization of Child_Object?
+Which is(are) legal initialization(s) of ``Child_Object``?
 
-   A. ``Parent.Parent_Object + Parent.Sibling.Sibling_Object``
-   B. ``Parent_Object + Sibling.Sibling_Object``
-   C. ``Parent_Object + Sibling_Object``
-   D. :answer:`All of the above`
+   A. :answermono:`Parent.Parent_Object + Parent.Sibling.Sibling_Object`
+   B. :answermono:`Parent_Object + Sibling.Sibling_Object`
+   C. :answermono:`Parent_Object + Sibling_Object`
+   D. ``None of the above``
 
 .. container:: animate
 
@@ -727,11 +727,11 @@ Quiz
 
   .. container:: column
 
-   Which return statement would **not** be legal in P.Child.X?
+   Which return statement would be legal in ``P.Child.X?``
 
-      A.  ``return Object_A;``
-      B.  ``return Object_B;``
-      C.  :answermono:`return Object_C;`
+      A.  :answermono:`return Object_A;`
+      B.  :answermono:`return Object_B;`
+      C.  ``return Object_C;``
       D.  None of the above
 
    .. container:: animate
@@ -920,7 +920,7 @@ Solution 2: Partially Import Private Unit
 Combining Private and Limited Withs
 -------------------------------------
 
-* Cyclic declaration dependencies allowed
+* Cyclic :ada:`limited with` clauses allowed
 * A public unit can :ada:`with` a private unit
 * With-ed unit only visible in the private part
 

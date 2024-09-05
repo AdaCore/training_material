@@ -308,12 +308,12 @@ Quiz
      (A : T1;
       B : T2);
 
-Which is **not** a legal instantiation?
+Which is(are) legal instantiation(s)?
 
-   A. :answermono:`procedure A is new G (String, Character);`
-   B. ``procedure B is new G (Character, Integer);``
-   C. ``procedure C is new G (Integer, Boolean);``
-   D. ``procedure D is new G (Boolean, String);``
+   A. ``procedure A is new G (String, Character);``
+   B. :answermono:`procedure B is new G (Character, Integer);`
+   C. :answermono:`procedure C is new G (Integer, Boolean);`
+   D. :answermono:`procedure D is new G (Boolean, String);`
 
 .. container:: animate
 
@@ -397,7 +397,7 @@ Generic Subprogram Parameters Defaults
 ----------------------------------------
 
 * :ada:`is <>` - matching subprogram is taken by default
-* :ada:`is null` - null subprogram is taken by default
+* :ada:`is null` - null procedure is taken by default
 
    - Only available in Ada 2005 and later
 
@@ -414,7 +414,7 @@ Generic Subprogram Parameters Defaults
       procedure My_Validate is new Validate (Record_T,
                                              Is_Valid_Record);
       -- Is_Valid maps to Is_Valid_Record
-      -- Error_Message maps to a null subprogram
+      -- Error_Message maps to a null procedure
 
 ..
   language_version 2005

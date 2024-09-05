@@ -93,7 +93,7 @@ Data Representation Vs Requirements
 `Value_Size / Size`
 ---------------------
 
-* `Value_Size` (or `Size` in the Ada Reference Manual) is the minimal number of bits required to represent data
+* :ada:`Value_Size` (or :ada:`Size` in the Ada Reference Manual) is the minimal number of bits required to represent data
 
    - For example, :ada:`Boolean'Size = 1`
 
@@ -112,8 +112,8 @@ Data Representation Vs Requirements
 Object Size (GNAT-Specific)
 -----------------------------
 
-* `Object_Size` represents the size of the object in memory
-* It must be a multiple of `Alignment * Storage_Unit (8)`, and at least equal to `Size`
+* :ada:`Object_Size` represents the size of the object in memory
+* It must be a multiple of :ada:`Alignment * Storage_Unit (8)`, and at least equal to :ada:`Size`
 
    .. code:: Ada
 
@@ -177,7 +177,7 @@ Record Types
 Pack Aspect
 -------------
 
-* `pack` aspect (or pragma) applies to composite types (record and array)
+* :ada:`Pack` aspect (or pragma) applies to composite types (record and array)
 * Compiler optimizes data for size no matter performance impact
 * Unpacked
 
@@ -266,12 +266,12 @@ Array Representation Clauses
 Endianness Specification
 --------------------------
 
-* `Bit_Order` for a type's endianness
-* `Scalar_Storage_Order` for composite types
+* :ada:`Bit_Order` for a type's endianness
+* :ada:`Scalar_Storage_Order` for composite types
 
     - Endianess of components' ordering
     - GNAT-specific
-    - Must be consistent with `Bit_Order`
+    - Must be consistent with :ada:`Bit_Order`
 
 * Compiler will peform needed bitwise transformations when performing operations
 
@@ -334,12 +334,12 @@ Address
 * Ada distinguishes the notions of
 
    - A reference to an object
-   - An abstract notion of address (`System.Address`)
+   - An abstract notion of address (:ada:`System.Address`)
    - The integer representation of an address
 
 * Safety is preserved by letting the developer manipulate the right level of abstraction
 * Conversion between pointers, integers and addresses are possible
-* The address of an object can be specified through the `Address` aspect
+* The address of an object can be specified through the :ada:`Address` aspect
 
 -----------------
 Address Clauses
@@ -379,21 +379,21 @@ Address Clauses
 Address Values
 ----------------
 
-* The type `Address` is declared in `System`
+* The type :ada:`Address` is declared in :ada:`System`
 
    - But this is a :ada:`private` type
    - You cannot use a number
 
 * Ada standard way to set constant addresses:
 
-   - Use `System.Storage_Elements` which allows arithmetic on address
+   - Use :ada:`System.Storage_Elements` which allows arithmetic on address
 
    .. code:: Ada
 
       for V'Address use
           System.Storage_Elements.To_Address (16#120#);
 
-* GNAT specific attribute `'To_Address`
+* GNAT specific attribute :ada:`'To_Address`
 
    - Handy but not portable
 
@@ -405,7 +405,7 @@ Address Values
 Volatile
 ----------
 
-* The `Volatile` property can be set using an aspect (in Ada 2012 or later) or a pragma
+* The :ada:`Volatile` property can be set using an aspect (in Ada 2012 or later) or a pragma
 * Ada also allows volatile types as well as objects
 
    .. code:: Ada
@@ -464,7 +464,7 @@ Aliasing Detection
 Unchecked Conversion
 ----------------------
 
-* `Unchecked_Conversion` allows an unchecked *bitwise* conversion of data between two types
+* :ada:`Unchecked_Conversion` allows an unchecked *bitwise* conversion of data between two types
 * Needs to be explicitly instantiated
 
    .. code:: Ada
@@ -488,10 +488,10 @@ Tricks
 Package Interfaces
 --------------------
 
-* Package `Interfaces` provide Integer and unsigned types for many sizes
+* Package :ada:`Interfaces` provide Integer and unsigned types for many sizes
 
-   - `Integer_8`, `Integer_16`, `Integer_32`, `Integer_64`
-   - `Unsigned_8`, `Unsigned_16`, `Unsigned_32`, `Unsigned_64`
+   - :ada:`Integer_8`, :ada:`Integer_16`, :ada:`Integer_32`, :ada:`Integer_64`
+   - :ada:`Unsigned_8`, :ada:`Unsigned_16`, :ada:`Unsigned_32`, :ada:`Unsigned_64`
 
 * With shift/rotation functions for unsigned types
 
@@ -529,7 +529,7 @@ Flat Arrays
 
 * You can use big flat array to index memory
 
-   - See `GNAT.Table`
+   - See :ada:`GNAT.Table`
    - Not portable
 
    .. code:: Ada
@@ -564,7 +564,7 @@ Calling Assembly Code
 -----------------------
 
 * Calling assembly code is a vendor-specific extension
-* GNAT allows passing assembly with `System.Machine_Code.ASM`
+* GNAT allows passing assembly with :ada:`System.Machine_Code.ASM`
 
    - Handled by the linker directly
 
@@ -584,7 +584,7 @@ Simple Statement
 
       Asm ("halt", Volatile => True);
 
-   - You may specify `Volatile` to avoid compiler optimizations
+   - You may specify :ada:`Volatile` to avoid compiler optimizations
    - In general, keep it False unless it created issues
 
 * You can group several instructions
@@ -605,7 +605,7 @@ Operands
 
 * It is often useful to have inputs or outputs...
 
-   - `Asm_Input` and `Asm_Output` attributes on types
+   - :ada:`Asm_Input` and :ada:`Asm_Output` attributes on types
 
 .. image:: annotated_assembly_statement.png
    :width: 85%

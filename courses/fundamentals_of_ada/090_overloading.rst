@@ -315,12 +315,12 @@ Quiz
    function "*" (V : Vertical_T; H : Horizontal_T) return Positive;
    P : Positive;
 
-Which statement is not legal?
+Which statement(s) is(are) legal?
 
-   A. ``P := Horizontal_T'(Middle) * Middle;``
-   B. ``P := Top * Right;``
-   C. ``P := "*" (Middle, Top);``
-   D. :answermono:`P := "*" (H => Middle, V => Top);`
+   A. :answermono:`P := Horizontal_T'(Middle) * Middle;`
+   B. :answermono:`P := Top * Right;`
+   C. :answermono:`P := "*" (Middle, Top);`
+   D. ``P := "*" (H => Middle, V => Top);``
 
 .. container:: animate
 

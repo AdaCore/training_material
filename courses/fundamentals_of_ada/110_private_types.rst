@@ -418,11 +418,11 @@ Quiz
       procedure Proc (Param : in out Private_T) is null;
    end P;
 
-Which object definition is **not** legal?
+Which object definition(s) is(are) legal?
 
-   A. :answermono:`Object_A`
-   B. ``Object_B``
-   C. ``Object_C``
+   A. ``Object_A``
+   B. :answermono:`Object_B`
+   C. :answermono:`Object_C`
    D. None of the above
 
 .. container:: animate

@@ -400,13 +400,13 @@ Elaboration
 Quiz
 ------
 
-Which block is **not** legal?
+Which block(s) is(are) legal?
 
-   A. ``A, B, C : Integer;``
-   B. ``Integer : Standard.Integer;``
-   C. :answermono:`Null : Integer := 0;`
-   D. | ``A : Integer := 123;``
-      | ``B : Integer := A * 3;``
+   A. :answermono:`A, B, C : Integer;`
+   B. :answermono:`Integer : Standard.Integer;`
+   C. ``Null : Integer := 0;``
+   D. | :answermono:`A : Integer := 123;`
+      | :answermono:`B : Integer := A * 3;`
 
 .. container:: animate
 
