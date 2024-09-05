@@ -73,7 +73,7 @@ def run_watch(run_id, course):
         STATUS, JOBS, ANNOTATIONS, ARTIFACTS = range(4)
         state = STATUS
 
-        run = {"jobs" : [], "annotations": [], "artifacts" : []}
+        run = {"jobs": [], "annotations": [], "artifacts": []}
         for l in s.splitlines():
             if l:
                 if state == STATUS:
@@ -101,6 +101,7 @@ def run_watch(run_id, course):
         return run
 
     None_Running, None_Finished, Artifact = range(3)
+
     def gh_run_has_artifact(run_id, artifact):
         run = cmd.gh("run", "view", run_id, out_filter=gh_run_view_filter)
         if artifact in run["artifacts"]:
@@ -109,10 +110,10 @@ def run_watch(run_id, course):
             return None_Finished
         else:
             return None_Running
-    
+
     r = gh_run_has_artifact(run_id, course)
     while r == None_Running:
-        print(".", end='')
+        print(".", end="")
         sys.stdout.flush()
         time.sleep(1)
         r = gh_run_has_artifact(run_id, course)
@@ -137,9 +138,10 @@ def main():
         branch = get_current_git_branch()
 
     VALID_BRANCH_PREFIX = ("build/", "slides/", "training/", "experimental/")
-    if not any(branch.startswith(prefix)
-               for prefix in VALID_BRANCH_PREFIX):
-        print(f"branch name must start with one of {VALID_BRANCH_PREFIX}", file=sys.stderr)
+    if not any(branch.startswith(prefix) for prefix in VALID_BRANCH_PREFIX):
+        print(
+            f"branch name must start with one of {VALID_BRANCH_PREFIX}", file=sys.stderr
+        )
         print(f"you can create it with `git checkout -b build/{branch} {branch}`")
         sys.exit(1)
 
