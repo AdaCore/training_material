@@ -290,7 +290,7 @@ Quiz
 Quiz
 ------
 
-Which code block is legal?
+Which code block(s) is (are) legal?
 
 .. container:: columns
 
@@ -545,7 +545,7 @@ Given the following code:
       function Create (C : Natural) return Child_T;
     end Children;
 
-Which completion(s) of Create is/are valid?
+Which completion(s) of Create is (are) valid?
 
   A. :answermono:`function Create return Child_T is (Parents.Create with Count => 0);`
   B. ``function Create return Child_T is (others => <>);``

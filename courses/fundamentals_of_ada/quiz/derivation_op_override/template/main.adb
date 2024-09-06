@@ -1,4 +1,4 @@
--- Which proposition(s) is(are) legal and running without error?
+-- Which proposition(s) is (are) legal and running without error?
 
 procedure Main is
    --$ begin question

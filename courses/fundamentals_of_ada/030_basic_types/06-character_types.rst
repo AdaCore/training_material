@@ -107,7 +107,7 @@ Quiz
     type T2 is array (Positive range <>) of T1;
     Obj : T2 := "CC" & A & NUL;
 
-Which of the following proposition(s) is(are) true
+Which of the following proposition(s) is (are) true
 
 A. The code fails at run-time
 B. ``Obj'Length = 3``

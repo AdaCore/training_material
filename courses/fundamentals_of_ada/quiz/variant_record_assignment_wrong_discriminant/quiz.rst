@@ -20,7 +20,7 @@
     begin
        V := V2;
 
-Which declaration(s) is(are) legal for this piece of code?
+Which declaration(s) is (are) legal for this piece of code?
 
 A. | ``V : Shape := (Circle, others => 0.0)``
    | ``V2 : Shape (Line);``

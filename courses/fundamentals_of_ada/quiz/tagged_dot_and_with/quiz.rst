@@ -14,7 +14,7 @@
        The_Color : Colors.Color;
        The_Weight : Weights.Weight;
 
-Which statement(s) is(are) valid?
+Which statement(s) is (are) valid?
 
 A. :answermono:`The_Shape.P`
 B. ``P (The_Shape)``

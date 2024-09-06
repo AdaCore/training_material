@@ -315,7 +315,7 @@ Quiz
    function "*" (V : Vertical_T; H : Horizontal_T) return Positive;
    P : Positive;
 
-Which statement(s) is(are) legal?
+Which statement(s) is (are) legal?
 
    A. :answermono:`P := Horizontal_T'(Middle) * Middle;`
    B. :answermono:`P := Top * Right;`

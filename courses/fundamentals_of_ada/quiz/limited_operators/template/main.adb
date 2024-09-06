@@ -1,4 +1,4 @@
--- Which  of the following declaration(s) is(are) legal?
+-- Which  of the following declaration(s) is (are) legal?
 procedure Main is
    --$ begin question
    type T is limited record

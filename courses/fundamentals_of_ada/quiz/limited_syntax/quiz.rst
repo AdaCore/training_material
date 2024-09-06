@@ -11,7 +11,7 @@
        L1, L2 : T;
        B : Boolean;
 
-Which statement(s) is(are) legal?
+Which statement(s) is (are) legal?
 
 A. :answermono:`L1.I := 1`
 B. ``L1 := L2``

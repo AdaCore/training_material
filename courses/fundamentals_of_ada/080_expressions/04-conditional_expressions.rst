@@ -264,12 +264,12 @@ Quiz
    F : Float;
    B : Boolean;
 
-Which statement is **not** legal?
+Which statement(s) is (are) legal?
 
-   A. :answermono:`F := if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X);`
-   B. ``F := Sqrt (if X < 0.0 then -1.0 * X else X);``
-   C. ``B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0 else True);``
-   D. ``B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0);``
+   A. ``F := if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X);``
+   B. :answermono:`F := Sqrt (if X < 0.0 then -1.0 * X else X);`
+   C. :answermono:`B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0 else True);`
+   D. :answermono:`B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0);`
 
 .. container:: animate
 

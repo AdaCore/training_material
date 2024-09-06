@@ -306,12 +306,12 @@ Quiz
 
  .. container:: column
 
-   Which statement is not legal?
+   Which statement(s) is (are) legal?
 
-   A. ``X1 (1) := Y1 (1);``
-   B. ``X1 := Y1;``
-   C. ``X1 (1) := X2 (1);``
-   D. :answermono:`X2 := X1;`
+   A. :answermono:`X1 (1) := Y1 (1);`
+   B. :answermono:`X1 := Y1;`
+   C. :answermono:`X1 (1) := X2 (1);`
+   D. ``X2 := X1;``
 
  .. container:: column
 
@@ -569,12 +569,12 @@ Quiz
 
  .. container:: column
 
-   Which statement is **not** legal?
+   Which statement(s) is (are) legal?
 
-   A. :answermono:`X (1) := Y (1);`
-   B. ``Y (1) := Z (1);``
-   C. ``Y := X;``
-   D. ``Z := X;``
+   A. ``X (1) := Y (1);``
+   B. :answermono:`Y (1) := Z (1);`
+   C. :answermono:`Y := X;`
+   D. :answermono:`Z := X;`
 
  .. container:: column
 
@@ -884,12 +884,12 @@ Quiz
    A : ThreeD_T;
    B : OneD_T;
 
-Which statement is **not** legal?
+Which statement(s) is (are) legal?
 
-   A. ``B(1) := A(1,2,3)(1) or A(4,3,2)(1);``
-   B. ``B := A(2,3,4) and A(4,3,2);``
-   C. :answermono:`A(1,2,3..4) := A(2,3,4..5);`
-   D. ``B(3..4) := B(4..5)``
+   A. :answermono:`B(1) := A(1,2,3)(1) or A(4,3,2)(1);`
+   B. :answermono:`B := A(2,3,4) and A(4,3,2);`
+   C. ``A(1,2,3..4) := A(2,3,4..5);``
+   D. :answermono:`B(3..4) := B(4..5)`
 
 .. container:: animate
 

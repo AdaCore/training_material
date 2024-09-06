@@ -114,12 +114,12 @@ Quiz
       Local_Object  : aliased Integer;
    begin
 
-Which assignment is **not** legal?
+Which assignment(s) is (are) legal?
 
-A. ``Global_Access := Global_Object'Access;``
-B. :answermono:`Global_Access := Local_Object'Access;`
-C. ``Local_Access  := Global_Object'Access;``
-D. ``Local_Access  := Local_Object'Access;``
+A. :answermono:`Global_Access := Global_Object'Access;`
+B. ``Global_Access := Local_Object'Access;``
+C. :answermono:`Local_Access  := Global_Object'Access;`
+D. :answermono:`Local_Access  := Local_Object'Access;`
 
 .. container:: animate
 

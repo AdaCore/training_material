@@ -1,4 +1,4 @@
--- Which of the following piece(s) of code is(are) legal?
+-- Which of the following piece(s) of code is (are) legal?
 procedure Main is
    --$ begin question
    package P is
