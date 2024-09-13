@@ -19,5 +19,4 @@ intro_170_tagged_derivation.rst
 240_tasking.rst
 adv_270_subprogram_contracts.rst
 adv_275_type_contracts.rst
-900_ada_version_comparison.rst
 920_reference_material.rst
