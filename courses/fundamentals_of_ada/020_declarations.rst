@@ -492,7 +492,7 @@ Named Numbers
 
    - Used as **constant**
    - `universal_integer`, or `universal_real`
-   - compatible with integer / real respectively
+   - Compatible with integer / real respectively
    - Expression must be **static**
 
 * Syntax
