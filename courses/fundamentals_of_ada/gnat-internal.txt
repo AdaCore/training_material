@@ -1,6 +1,3 @@
-070_subprograms.rst
-075_type_derivation.rst
-080_expressions.rst
 010_overview.rst
 020_declarations.rst
 030_basic_types.rst
