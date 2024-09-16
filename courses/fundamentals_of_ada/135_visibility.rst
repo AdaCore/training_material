@@ -288,7 +288,7 @@ No Ambiguity Introduction
 
 * :ada:`use all type` makes primitive operators **and all other operations** directly visible for specified type
 
-   - An **enumerated type values** will also be directly visible
+   - All **enumerated type values** will also be directly visible
 
    .. code:: Ada
 
