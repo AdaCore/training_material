@@ -254,6 +254,43 @@ Idiom: Partition
          when Lights_Commands_T => Execute_Light_Command (C);
    ...
 
+--------------------------------------
+Idiom: Subtypes as Local Constraints
+--------------------------------------
+
+* Can replace defensive code
+* Can be very useful in some identified cases
+* Subtypes accept dynamic bounds, unlike types
+* Checks happens through type-system
+
+    - Can be disabled with :command:`-gnatp`, unlike conditionals
+    - Can also be a disadvantage
+
+.. warning::
+
+   Do not use for checks that should **always** happen, even in production.
+
+.. code:: Ada
+
+   subtype Incrementable_Integer is Integer
+      range Integer'First .. Integer'Last - 1;
+
+   function Increment (I : Incrementable_Integer) return Integer;
+
+.. code:: Ada
+
+   subtype Valid_Fingers_T is Integer
+      range 1 .. 5;
+   Fingers : Valid_Fingers_T
+      := Prompt_And_Get_Integer ("Give me the number of a finger");
+
+.. code:: Ada
+
+   function Read_Index_And_Manipulate_Char (S : String) is
+      subtype S_Index is Positive range S'Range;
+      I : constant S_Index := Read_Positive;
+      C : Character renames S (I);
+
 ------
 Quiz
 ------
