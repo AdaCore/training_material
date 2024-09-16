@@ -1,6 +1,3 @@
-070_subprograms.rst
-075_type_derivation.rst
-080_expressions.rst
 010_overview.rst
 020_declarations.rst
 030_basic_types.rst
@@ -24,7 +21,7 @@ adv_170_multiple_inheritance.rst
 160_genericity.rst
 adv_280_low_level_programming.rst
 230_interfacing_with_c.rst
-adv_270_subprogram_contracts.rst
-adv_275_type_contracts.rst
+273_subprogram_contracts.rst
+276_type_contracts.rst
 # +SPARK
 240_tasking.rst
