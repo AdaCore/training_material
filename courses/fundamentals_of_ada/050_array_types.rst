@@ -1547,7 +1547,7 @@ Overriding the 'Image Attribute
 
    Ada 2022
 
-* But we don't always want to rely on the compiler defining how we print a complex object
+* We don't always want to rely on the compiler defining how we print a complex object
 
 * So we now have the ability to define the :ada:`'Image` functionality by attaching a procedure to the :ada:`Put_Image` aspect
 
