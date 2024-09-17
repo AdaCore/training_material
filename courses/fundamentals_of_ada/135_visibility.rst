@@ -284,19 +284,15 @@ No Ambiguity Introduction
 
    .. code:: Ada
 
-      use_type_clause ::= use type subtype_mark
-                                  {, subtype_mark};
-
-
+      use type subtype_mark {, subtype_mark};
 
 * :ada:`use all type` makes primitive operators **and all other operations** directly visible for specified type
 
+   - All **enumerated type values** will also be directly visible
 
    .. code:: Ada
 
-      use_all_type_clause ::= use all type subtype_mark
-                                          {, subtype_mark};
-
+      use all type subtype_mark {, subtype_mark};
 
 * More specific alternative to :ada:`use` clauses
 
