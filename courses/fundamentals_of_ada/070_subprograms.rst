@@ -163,8 +163,8 @@ Function Specification Syntax (Simplified)
 
       function_specification ::=
          function designator
-           (parameter_specification
-           { ; parameter_specification})
+           { (parameter_specification
+               ; parameter_specification) }
            return result_type;
 
       designator ::= program_unit_name | operator_symbol
