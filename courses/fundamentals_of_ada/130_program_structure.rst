@@ -532,7 +532,7 @@ Quiz
       Child_Object : Integer := ? ;
    end Parent.Child;
 
-Which is (are) legal initialization(s) of ``Child_Object``?
+Which is (are) *NOT* legal initialization(s) of ``Child_Object``?
 
    A. :answermono:`Parent.Parent_Object + Parent.Sibling.Sibling_Object`
    B. :answermono:`Parent_Object + Sibling.Sibling_Object`
