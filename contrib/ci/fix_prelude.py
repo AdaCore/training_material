@@ -15,6 +15,7 @@ PRELUDE_RST = PROJECT / "support_files" / "prelude.rst"
 ROLES = None
 SYMBOLS = None
 
+
 def load_prelude():
     global ROLES
     global SYMBOLS
