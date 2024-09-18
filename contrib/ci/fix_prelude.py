@@ -10,33 +10,28 @@ import hashlib
 
 PROJECT = Path(sys.argv[0]).resolve().parents[2]
 CONTRIB = PROJECT / "contrib"
+PRELUDE_RST = PROJECT / "support_files" / "prelude.rst"
 
-ROLES = (
-    ".. role:: ada(code)\n"
-    + "    :language: Ada\n"
-    + "\n"
-    + ".. role:: C(code)\n"
-    + "    :language: C\n"
-    + "\n"
-    + ".. role:: cpp(code)\n"
-    + "    :language: C++\n"
-    + "\n"
-    + ".."
-)
+ROLES = None
+SYMBOLS = None
 
-SYMBOLS = (
-    ".. |rightarrow| replace:: :math:`\\rightarrow`\n"
-    + ".. |forall| replace:: :math:`\\forall`\n"
-    + ".. |exists| replace:: :math:`\\exists`\n"
-    + ".. |equivalent| replace:: :math:`\\iff`\n"
-    + ".. |le| replace:: :math:`\\le`\n"
-    + ".. |ge| replace:: :math:`\\ge`\n"
-    + ".. |lt| replace:: :math:`<`\n"
-    + ".. |gt| replace:: :math:`>`\n"
-    + ".. |checkmark| replace:: :math:`\\checkmark`\n"
-    + "\n"
-    + ".."
-)
+def load_prelude():
+    global ROLES
+    global SYMBOLS
+
+    with open(PRELUDE_RST, "r") as file:
+        content = file.read()
+        pieces = content.split("PRELUDE: ")
+        for section in pieces:
+            stripped = section.strip()
+            try:
+                name, content = section.split("\n", 1)
+                if name == "ROLES":
+                    ROLES = content.strip()
+                elif name == "SYMBOLS":
+                    SYMBOLS = content.strip()
+            except:
+                pass
 
 
 def validate_roles(content):
@@ -76,6 +71,9 @@ def compare_content(title, actual_str, expected_str):
 
 
 def process_one_file(filename, interactive):
+    global ROLES
+    global SYMBOLS
+
     failures = None
 
     sections_needed = ["BEGIN", "ROLES", "SYMBOLS", "REQUIRES", "PROVIDES", "END"]
@@ -98,21 +96,21 @@ def process_one_file(filename, interactive):
             if name == "ROLES":
                 if not validate_roles(content):
                     if interactive:
-                        failures.extend(compare_content("Roles", content, ROLES))
+                        failures.extend(compare_content("ROLES", content, ROLES))
                     else:
-                        failures = failures + " Roles"
+                        failures = failures + " ROLES"
             elif name == "SYMBOLS":
                 if not validate_symbols(content):
                     if interactive:
-                        failures.extend(compare_content("Symbols", content, SYMBOLS))
+                        failures.extend(compare_content("SYMBOLS", content, SYMBOLS))
                     else:
-                        failures = failures + " Roles"
+                        failures = failures + " SYMBOLS"
             elif name == "PROVIDES":
                 if not validate_provides(content):
                     if interactive:
-                        failures.append("Provides section is empty")
+                        failures.append("PROVIDES section is empty")
                     else:
-                        failures = failures + " Provides"
+                        failures = failures + " PROVIDES"
     if len(sections_needed) > 0:
         if interactive:
             failures.append("Missing Section(s)")
@@ -134,6 +132,7 @@ if __name__ == "__main__":
     args = ap.parse_args()
 
     total_failures = 0
+    load_prelude()
 
     with open(args.files_to_check, "rt") as f:
         files_with_prelude_glob = f.read().splitlines()
