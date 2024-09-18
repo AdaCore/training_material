@@ -47,6 +47,10 @@ def validate_symbols(content):
     return content == SYMBOLS
 
 
+def validate_provides(content):
+    return True
+
+
 def compare_content(title, actual_str, expected_str):
     retval = []
     actual = actual_str.split("\n")
@@ -73,6 +77,16 @@ def compare_content(title, actual_str, expected_str):
 
 def process_one_file(filename, interactive):
     failures = None
+
+    sections_needed = [
+        "BEGIN",
+        "ROLES",
+        "SYMBOLS",
+        "REQUIRES",
+        "PROVIDES",
+        "END"
+    ]
+
     if interactive:
         failures = []
     else:
@@ -83,6 +97,10 @@ def process_one_file(filename, interactive):
         for section in pieces:
             stripped = section.strip()
             name, content = section.split("\n", 1)
+            try:
+                sections_needed.remove(name)
+            except:
+                pass
             content = content.strip()
             if name == "ROLES":
                 if not validate_roles(content):
@@ -96,6 +114,21 @@ def process_one_file(filename, interactive):
                         failures.extend(compare_content("Symbols", content, SYMBOLS))
                     else:
                         failures = failures + " Roles"
+            elif name == "PROVIDES":
+                if not validate_provides(content):
+                    if interactive:
+                        failures.append ("Provides section is empty")
+                    else:
+                        failures = failures + " Provides"
+    if len(sections_needed) > 0:
+        if interactive:
+            failures.append ("Missing Section(s)")
+            for section in sections_needed:
+                failures.append ("   " + section)
+        else:
+            for section in sections_needed:
+                failures = failures + " " + section
+
     return failures
 
 
