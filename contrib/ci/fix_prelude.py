@@ -78,14 +78,7 @@ def compare_content(title, actual_str, expected_str):
 def process_one_file(filename, interactive):
     failures = None
 
-    sections_needed = [
-        "BEGIN",
-        "ROLES",
-        "SYMBOLS",
-        "REQUIRES",
-        "PROVIDES",
-        "END"
-    ]
+    sections_needed = ["BEGIN", "ROLES", "SYMBOLS", "REQUIRES", "PROVIDES", "END"]
 
     if interactive:
         failures = []
@@ -117,14 +110,14 @@ def process_one_file(filename, interactive):
             elif name == "PROVIDES":
                 if not validate_provides(content):
                     if interactive:
-                        failures.append ("Provides section is empty")
+                        failures.append("Provides section is empty")
                     else:
                         failures = failures + " Provides"
     if len(sections_needed) > 0:
         if interactive:
-            failures.append ("Missing Section(s)")
+            failures.append("Missing Section(s)")
             for section in sections_needed:
-                failures.append ("   " + section)
+                failures.append("   " + section)
         else:
             for section in sections_needed:
                 failures = failures + " " + section
