@@ -38,6 +38,7 @@ SYMBOLS = (
     + ".."
 )
 
+
 def validate_roles(content):
     return content == ROLES
 
