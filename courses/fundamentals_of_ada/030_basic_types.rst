@@ -7,7 +7,7 @@ Basic Types
 .. PRELUDE: ROLES
 
 .. role:: ada(code)
-    :language: Ad
+    :language: Ada
 
 .. role:: C(code)
     :language: C
