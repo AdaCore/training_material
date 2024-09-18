@@ -11,21 +11,6 @@ import hashlib
 PROJECT = Path(sys.argv[0]).resolve().parents[2]
 CONTRIB = PROJECT / "contrib"
 
-
-def rst_update_prelude(files):
-    subprocess.check_call(
-        str(s)
-        for s in [sys.executable, CONTRIB / "rst_update_prelude.py", "-i"] + files
-    )
-
-
-def files_digest(files):
-    h = hashlib.sha256()
-    for f in sorted(files):
-        with open(f, "rb") as frd:
-            h.update(frd.read())
-    return h.digest()
-
 ROLES = (
     ".. role:: ada(code)\n"
     + "    :language: Ada\n"
@@ -36,7 +21,8 @@ ROLES = (
     + ".. role:: cpp(code)\n"
     + "    :language: C++\n"
     + "\n"
-    + "..")
+    + ".."
+)
 
 SYMBOLS = (
     ".. |rightarrow| replace:: :math:`\\rightarrow`\n"
@@ -49,7 +35,8 @@ SYMBOLS = (
     + ".. |gt| replace:: :math:`>`\n"
     + ".. |checkmark| replace:: :math:`\\checkmark`\n"
     + "\n"
-    + "..")
+    + ".."
+)
 
 def validate_roles(content):
     return content == ROLES
@@ -81,6 +68,7 @@ def compare_content(title, actual_str, expected_str):
         for idx in range(l_expected, l_actual):
             retval.append("    " + actual[idx])
     return retval
+
 
 def process_one_file(filename, interactive):
     failures = None
