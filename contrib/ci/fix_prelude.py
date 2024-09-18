@@ -26,17 +26,97 @@ def files_digest(files):
             h.update(frd.read())
     return h.digest()
 
+ROLES = (".. role:: ada(code)\n" +
+         "    :language: Ada\n" +
+         "\n" +
+         ".. role:: C(code)\n" +
+         "    :language: C\n" +
+         "\n" +
+         ".. role:: cpp(code)\n" +
+         "    :language: C++\n" +
+         "\n" +
+         "..")
+
+SYMBOLS = (".. |rightarrow| replace:: :math:`\\rightarrow`\n" +
+           ".. |forall| replace:: :math:`\\forall`\n" +
+           ".. |exists| replace:: :math:`\\exists`\n" +
+           ".. |equivalent| replace:: :math:`\\iff`\n" +
+           ".. |le| replace:: :math:`\\le`\n" +
+           ".. |ge| replace:: :math:`\\ge`\n" +
+           ".. |lt| replace:: :math:`<`\n" +
+           ".. |gt| replace:: :math:`>`\n" +
+           ".. |checkmark| replace:: :math:`\\checkmark`\n" +
+           "\n" +
+           "..")
+
+def validate_roles(content):
+    return content == ROLES
+    
+def validate_symbols(content):
+    return content == SYMBOLS
+
+def compare_content(title, actual_str, expected_str):
+    retval = []
+    actual = actual_str.split('\n')
+    expected = expected_str.split('\n')
+    l_actual = len(actual)
+    l_expected = len(expected)
+    length = min ([l_actual, l_expected])
+    for idx in range(0, length):
+        if actual[idx] != expected[idx]:
+            retval.append("In " + title)
+            retval.append("  Line " + str(idx+1))
+            retval.append("    Actual  : " + actual[idx])
+            retval.append("    Expected: " + expected[idx])
+    if len(retval) == 0 and l_actual < l_expected:
+        retval.append("In " + title + " missing:")
+        for idx in range (l_actual, l_expected):
+            retval.append("    " + expected[idx])
+    elif len(retval) == 0 and l_actual > l_expected:
+        retval.append("In " + title + " extra:")
+        for idx in range (l_expected, l_actual):
+            retval.append("    " + actual[idx])
+    return retval
+
+def process_one_file(filename, interactive):
+    failures = None
+    if interactive:
+        failures = []
+    else:
+        failures = ""
+    with open(filename, 'r') as file:
+        content = file.read()
+        pieces = content.split('PRELUDE: ')
+        for section in pieces:
+            stripped = section.strip()
+            name, content = section.split('\n', 1)
+            content = content.strip()
+            if name == "ROLES":
+                if not validate_roles(content):
+                    if interactive:
+                        failures.extend(compare_content("Roles", content, ROLES))
+                    else:
+                        failures = failures + " Roles"
+            elif name == "SYMBOLS":
+                if not validate_symbols(content):
+                    if interactive:
+                        failures.extend(compare_content("Symbols", content, SYMBOLS))
+                    else:
+                        failures = failures + " Roles"
+    return failures
+            
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument(
-        "--files-to-check", type=Path, default=CONTRIB / "rst_files_with_prelude.txt"
+        "--files-to-check",
+        type=Path,
+        default=CONTRIB / "rst_files_with_prelude.txt"
     )
-    ap.add_argument("--no-digests-check", "-C", action="store_true")
+    ap.add_argument("--interactive", action="store_true")
     args = ap.parse_args()
 
-    check_digest = not args.no_digests_check
-    digests_have_changed = False
+    total_failures = 0
 
     with open(args.files_to_check, "rt") as f:
         files_with_prelude_glob = f.read().splitlines()
@@ -46,15 +126,15 @@ if __name__ == "__main__":
         if not f_prel:
             continue
 
-        print(glob)
-        if check_digest:
-            before = files_digest(f_prel)
+        for one in f_prel:
+            failures = process_one_file(one, args.interactive)
+            if len(failures) > 0:
+                total_failures = total_failures + 1
+                if args.interactive:
+                    print("FAIL: " + str(one))
+                    for line in failures:
+                        print ("  " + line)
+                else:
+                    print("FAIL: " + str(one) + failures)
 
-        rst_update_prelude(f_prel)
-        if check_digest and before != files_digest(f_prel):
-            print(f"{glob}: files didn't have the proper prelude", file=sys.stderr)
-            print(f"run {Path(sys.argv[0]).name} locally and commit the results to fix")
-            digests_have_changed = True
-
-    if check_digest:
-        sys.exit(0 if not digests_have_changed else 1)
+    sys.exit(0 if total_failures == 0 else 1)
