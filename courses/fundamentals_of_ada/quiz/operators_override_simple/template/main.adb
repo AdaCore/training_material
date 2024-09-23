@@ -1,4 +1,4 @@
--- Which operator(s) definition(s) is legal?
+-- Which operator(s) definition(s) is (are) legal?
 procedure Main is
    --$ line question
    type T is new Integer;

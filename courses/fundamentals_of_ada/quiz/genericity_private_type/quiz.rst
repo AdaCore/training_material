@@ -15,7 +15,7 @@
        -- Complete here
     end G_P;
 
-Which of the following statement(s) is(are) legal for ``G_P``'s body?
+Which of the following statement(s) is (are) legal for ``G_P``'s body?
 
 A. :answermono:`pragma Assert (A1 /= null)`
 B. ``pragma Assert (A1.all'Size > 32)``

@@ -9,7 +9,7 @@
     private
        -- Declarations Here
 
-Which of the following declaration(s) is(are) valid?
+Which of the following declaration(s) is (are) valid?
 
 A. ``type T is array (Positive range <>) of Integer``
 B. :answermono:`type T is tagged null record`

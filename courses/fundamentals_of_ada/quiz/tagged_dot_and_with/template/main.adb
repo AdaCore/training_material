@@ -1,4 +1,4 @@
--- Which statement(s) is(are) valid?
+-- Which statement(s) is (are) valid?
 
 --$ begin question
 with Shapes; -- Defines tagged type Shape, with primitive P

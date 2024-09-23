@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120mm"
+   height="60mm"
+   viewBox="0 0 120 60"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="mutual_dependencies.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.245064"
+     inkscape:cx="240.08224"
+     inkscape:cy="89.752452"
+     inkscape:window-width="1920"
+     inkscape:window-height="1129"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="marker12"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path12" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#b50004;fill-opacity:1;stroke:#ab0100;stroke-width:0.758;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="M 39.228692,35.697047 C 62.091812,23.086976 62.091812,23.086976 62.091812,23.086976"
+       id="path6" />
+    <path
+       style="fill:#b50004;fill-opacity:1;stroke:#ab0100;stroke-width:0.758;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="M 66.956091,11.884601 H 54.289423"
+       id="path8" />
+    <rect
+       style="fill:#4a66ac;fill-opacity:1;stroke:#001ba2;stroke-width:0.358;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1"
+       width="45.774082"
+       height="19.980328"
+       x="5.6581173"
+       y="1.9969606" />
+    <path
+       style="fill:#b50004;fill-opacity:1;stroke:#ab0100;stroke-width:0.758;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="M 26.289424,37.384602 V 24.467935"
+       id="path9" />
+    <rect
+       style="fill:#4a66ac;fill-opacity:1;stroke:#001ba2;stroke-width:0.358;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-6"
+       width="45.774082"
+       height="19.980328"
+       x="64.325729"
+       y="1.997124" />
+    <path
+       style="fill:#b50004;fill-opacity:1;stroke:#ab0100;stroke-width:0.758;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker12)"
+       d="M 86.039423,37.301267 V 25.134602"
+       id="path11" />
+    <rect
+       style="fill:#4a66ac;fill-opacity:1;stroke:#001ba2;stroke-width:0.358;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-1"
+       width="45.774082"
+       height="19.980328"
+       x="5.4561129"
+       y="34.810497" />
+    <rect
+       style="fill:#4a66ac;fill-opacity:1;stroke:#001ba2;stroke-width:0.358;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-6-5"
+       width="45.774082"
+       height="19.980328"
+       x="63.790401"
+       y="34.727329" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.499999;stroke-miterlimit:1;stroke-opacity:0.384774"
+       x="7.45609"
+       y="5.3012676"
+       id="text2"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="7.45609"
+         y="5.3012676">package Personnel is</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="7.45609"
+         y="8.8290424"
+         id="tspan13" /><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="7.45609"
+         y="12.356818"
+         id="tspan14">...</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="7.45609"
+         y="15.884593"
+         id="tspan15" /><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="7.45609"
+         y="19.412369"
+         id="tspan16">end Personnel;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.499999;stroke-miterlimit:1;stroke-opacity:0.384774"
+       x="66.395752"
+       y="5.2294636"
+       id="text2-6"><tspan
+         sodipodi:role="line"
+         id="tspan2-1"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="66.395752"
+         y="5.2294636">with Personnel;</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="66.395752"
+         y="8.7572384"
+         id="tspan25">package Department is</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="66.395752"
+         y="12.285014"
+         id="tspan26">...</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="66.395752"
+         y="15.812789"
+         id="tspan27" /><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="66.395752"
+         y="19.340565"
+         id="tspan28">end Department;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.499999;stroke-miterlimit:1;stroke-opacity:0.384774"
+       x="7.2207537"
+       y="38.026264"
+       id="text2-62"><tspan
+         sodipodi:role="line"
+         id="tspan2-2"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="7.2207537"
+         y="38.026264">with Department;</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="7.2207537"
+         y="41.554039"
+         id="tspan17">package body Personnel is</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="7.2207537"
+         y="45.081814"
+         id="tspan18">...</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="7.2207537"
+         y="48.609589"
+         id="tspan19" /><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="7.2207537"
+         y="52.137363"
+         id="tspan20">end Personnel;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.499999;stroke-miterlimit:1;stroke-opacity:0.384774"
+       x="65.743752"
+       y="37.621128"
+       id="text2-6-5"><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="65.743752"
+         y="37.621128"
+         id="tspan3-6">package body Department is</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="65.743752"
+         y="41.148903"
+         id="tspan21" /><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="65.743752"
+         y="44.676678"
+         id="tspan22">...</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="65.743752"
+         y="48.204453"
+         id="tspan23" /><tspan
+         sodipodi:role="line"
+         style="font-size:2.82222px;fill:#ffffff;fill-opacity:0.8107;stroke:none;stroke-width:0.5"
+         x="65.743752"
+         y="51.732227"
+         id="tspan24">end Department;</tspan></text>
+    <rect
+       style="fill:#ffeeaa;fill-opacity:1;stroke:none;stroke-width:0.807136;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect12"
+       width="18.141605"
+       height="4.1666665"
+       x="5.4612617"
+       y="22.134604" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.758;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       x="5.9560909"
+       y="24.80127"
+       id="text12"><tspan
+         sodipodi:role="line"
+         id="tspan12"
+         style="font-style:italic;font-size:2.11667px;fill:#000000;fill-opacity:1;stroke-width:0.758"
+         x="5.9560909"
+         y="24.80127">personnel.ads</tspan></text>
+    <rect
+       style="fill:#ffeeaa;fill-opacity:1;stroke:none;stroke-width:0.807136;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect12-5"
+       width="18.141605"
+       height="4.1666665"
+       x="5.4174576"
+       y="54.831573" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.758;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       x="5.9174576"
+       y="57.498238"
+       id="text12-4"><tspan
+         sodipodi:role="line"
+         id="tspan12-5"
+         style="font-style:italic;font-size:2.11667px;fill:#000000;fill-opacity:1;stroke-width:0.758"
+         x="5.9174576"
+         y="57.498238">personnel.adb</tspan></text>
+    <rect
+       style="fill:#ffeeaa;fill-opacity:1;stroke:none;stroke-width:0.807136;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect12-9"
+       width="18.141605"
+       height="4.1666665"
+       x="64.24575"
+       y="22.127886" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.758;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       x="64.707108"
+       y="24.735626"
+       id="text12-48"><tspan
+         sodipodi:role="line"
+         id="tspan12-8"
+         style="font-style:italic;font-size:2.11667px;fill:#000000;fill-opacity:1;stroke-width:0.758"
+         x="64.707108"
+         y="24.735626">department.ads</tspan></text>
+    <rect
+       style="fill:#ffeeaa;fill-opacity:1;stroke:none;stroke-width:0.807136;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       id="rect12-9-4"
+       width="18.141605"
+       height="4.1666665"
+       x="63.690807"
+       y="54.863365" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.758;stroke-miterlimit:1;stroke-dasharray:none;stroke-opacity:1"
+       x="64.217674"
+       y="57.471104"
+       id="text12-48-9"><tspan
+         sodipodi:role="line"
+         id="tspan12-8-0"
+         style="font-style:italic;font-size:2.11667px;fill:#000000;fill-opacity:1;stroke-width:0.758"
+         x="64.217674"
+         y="57.471104">department.adb</tspan></text>
+  </g>
+</svg>

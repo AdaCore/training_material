@@ -1,4 +1,4 @@
--- In the same scope, which of the following types is(are) legal?
+-- In the same scope, which of the following types is (are) legal?
 
 procedure Main is
    --$ line question

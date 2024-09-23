@@ -6,9 +6,8 @@
 060_record_types.rst
 070_subprograms.rst
 075_type_derivation.rst
-080_expressions.rst
+080_expressions-with_quantified.rst
 090_overloading.rst
-adv_080_quantified_expressions.rst
 100_packages.rst
 110_private_types.rst
 130_program_structure.rst
@@ -20,5 +19,4 @@ intro_170_tagged_derivation.rst
 240_tasking.rst
 adv_270_subprogram_contracts.rst
 adv_275_type_contracts.rst
-900_ada_version_comparison.rst
 920_reference_material.rst

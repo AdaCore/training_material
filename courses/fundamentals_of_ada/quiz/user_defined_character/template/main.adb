@@ -1,4 +1,4 @@
--- Which of the following proposition(s) is(are) true
+-- Which of the following proposition(s) is (are) true
 procedure Main is
 
    --$ begin question

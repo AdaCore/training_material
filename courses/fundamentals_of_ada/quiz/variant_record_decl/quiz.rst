@@ -12,7 +12,7 @@
                 X, Y : Float;
                 X2, Y2 : Float;
 
-Which declaration(s) is(are) legal?
+Which declaration(s) is (are) legal?
 
 A. | ``when Circle =>``
    |    ``Cord : Shape (Line);``

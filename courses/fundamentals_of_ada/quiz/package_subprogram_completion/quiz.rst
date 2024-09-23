@@ -9,7 +9,7 @@
        procedure One (V : out Integer);
     end P;
 
-Which completion(s) is(are) correct for :ada:`package P`?
+Which completion(s) is (are) correct for :ada:`package P`?
 
 A. ``No completion is needed``
 B. | :answermono:`package body P is`

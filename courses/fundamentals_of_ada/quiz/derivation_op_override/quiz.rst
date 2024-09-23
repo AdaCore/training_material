@@ -14,7 +14,7 @@
        O2 : T2;
        O3 : T3;
 
-Which proposition(s) is(are) legal and running without error?
+Which proposition(s) is (are) legal and running without error?
 
 A. :answermono:`pragma Assert (+O1 = 0)`
 B. :answermono:`pragma Assert (+O2 = 0)`
