@@ -17,6 +17,6 @@ intro_170_tagged_derivation.rst
 140_access_types.rst
 160_genericity.rst
 240_tasking.rst
-adv_270_subprogram_contracts.rst
-adv_275_type_contracts.rst
+273_subprogram_contracts.rst
+276_type_contracts.rst
 920_reference_material.rst
