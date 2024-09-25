@@ -175,6 +175,85 @@ Attributes Reflect the Underlying Type
       Shade : Color range Red .. Blue := Brown; -- run-time error
       Hue : Rainbow := Rainbow'Succ (Blue);     -- run-time error
 
+------------------------
+Idiom: Extended Ranges
+------------------------
+
+* ``Count`` / ``Positive_Count``
+
+   - Sometimes as ``Type_Ext`` (extended) / ``Type``
+   - For counting vs indexing
+    
+      + An index goes from 1 to max length
+      + A count goes from 0 to max length
+
+   .. code:: Ada
+   
+      -- ARM A.10.1
+      package Text_IO is
+         ...
+         type Count is range 0 .. implementation-defined;
+         subtype Positive_Count is Count range 1 .. Count'Last;
+
+---------------------
+Idiom: Option Types
+---------------------
+
+* **Great** use case for the ``Default_Value`` aspect
+  
+.. code:: Ada
+
+   declare
+      type Maybe_Result_T is (None, Greater, Smaller)
+         with Default_Value => None;
+      subtype Result_T is Maybe_Result_T range Greater .. Smaller;
+
+      function Get_Result return Result_T;
+      procedure Display_Result (R : Result_T);
+
+      R : Result_T; --  run-time error and GNAT warning
+      Maybe_R : Maybe_Result_T; -- default "None" value
+   begin
+      Display_Result (Maybe_R); -- run-time error
+      --  Ok
+      Maybe_R := Get_Result;
+      Display_Result (Maybe_R);
+
+------------------
+Idiom: Partition
+------------------
+
+* Useful for splitting-up large enums
+
+.. warning::
+
+   Be careful about checking that the partition is complete when
+   items are added removed.
+   Using at least a single :ada:`case` will check that for you.
+
+.. tip::
+
+   Can have non-consecutive values with the :ada:`Predicate` aspect.
+
+.. code:: Ada
+
+   type Commands_T is (Lights_On, Lights_Off, Read, Write, Accelerate, Stop);
+   --  Complete partition of the commands
+   subtype IO_Commands_T is Commands_T range Read .. Write;
+   subtype Lights_Commands_T is Commands_T range Lights_On .. Lights_Off;
+   subtype Movement_Commands_T is Commands_T range Accelerate .. Stop;
+
+   subtype Physical_Commands_T is Commands_T
+      with Predicate => Physical_Commands_T in Lights_Commands_T | Movement_Commands_T; 
+
+   procedure Execute_Light_Command (C : Lights_Commands_T);
+
+   procedure Execute_Command (C : Commands_T) is
+   begin
+      case C in --  partition must be exhaustive
+         when Lights_Commands_T => Execute_Light_Command (C);
+   ...
+
 ------
 Quiz
 ------
