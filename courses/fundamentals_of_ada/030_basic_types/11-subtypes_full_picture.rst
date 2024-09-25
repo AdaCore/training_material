@@ -199,7 +199,7 @@ Idiom: Extended Ranges
       package Text_IO is
          ...
          type Count is range 0 .. implementation-defined;
-         subtype Positive_Count is Count range 1 .. Count'Last;
+         subtype Pos_Count is Count range 1 .. Count'Last;
 
 ------------------
 Idiom: Partition
