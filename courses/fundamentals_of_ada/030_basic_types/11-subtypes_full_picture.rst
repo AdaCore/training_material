@@ -229,7 +229,7 @@ Idiom: Partition
 
    Be careful about checking that the partition is complete when
    items are added removed.
-   Using at least a single :ada:`case` will check that for you.
+   Using at least one :ada:`case` will check that for you.
 
 .. tip::
 
@@ -286,7 +286,7 @@ Idiom: Subtypes as Local Constraints
 
 .. code:: Ada
 
-   function Read_Index_And_Manipulate_Char (S : String) is
+   procedure Read_Index_And_Manipulate_Char (S : String) is
       subtype S_Index is Positive range S'Range;
       I : constant S_Index := Read_Positive;
       C : Character renames S (I);
