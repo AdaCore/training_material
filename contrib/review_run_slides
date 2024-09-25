@@ -20,6 +20,7 @@ from epycs.subprocess import cmd, ShellProgramFilters
 from argparse import ArgumentParser
 from pathlib import Path
 import json
+import toml
 import shutil
 import time
 import sys
@@ -123,7 +124,8 @@ def run_watch(run_id, course):
 
 def main():
     ap = ArgumentParser(description=script_description)
-    ap.add_argument("course", nargs="?", default=DEFAULT_COURSE_DOWNLOAD)
+    ap.add_argument("course", nargs="?",
+                help="Course to download, can be the full name of the artifact, or the path to a txt or rst that should be downloaded. It can also be unset, in which case the script will try to guess it from your current repository state (it's not too smart at it though).")
     ap.add_argument("branch", nargs="?")
     ap.add_argument(
         "-W",
@@ -132,6 +134,60 @@ def main():
         help="do not wait for completion of the run",
     )
     args = ap.parse_args()
+
+    """
+    We have four options
+    1. course is set to the name of an artifact: in which case nothing to change
+    2. course is set to the name of a local file:
+       2a. If the file is a txt: download the associated course by knowing its name from the config file
+       2b. If the file is a rst: download the bundle from github (just the name of the course), and look at the associated pdf.
+    3. course is unset, and there is a DO_NOT_MERGE.SINGLE_COURSE: use it as the name of a file (see above for how to handle it)
+    4. else, download DEFAULT_COURSE_DOWNLOAD
+    """
+    course = args.course
+    if course is None:
+        single = ROOT / "DO_NOT_MERGE.SINGLE_COURSE"
+        if single.is_file():
+            # option 4: we read the course as if it was provided from the command line
+            #           falling back to option 1 or 2
+            with open(single, "rt") as f:
+                course = f.readlines()[0]
+
+    def artifact_to_downloaded_dir(artifact_name):
+        return OUT / artifact_name
+
+    def course_file_to_artifact(p : Path):
+        with open(p.parent / "course.toml", "rt") as f:
+            return toml.load(f)["name"]
+
+    def course_file_to_pdf_name(downloaded_dir : Path, p : Path):
+        return downloaded_dir / p.with_suffix(".pdf").name
+
+    if course is not None:
+        # course is set: option 1, 2
+        cpath = ROOT / course
+        if cpath.is_file():
+            # 2. course is the name of a file
+            artifact_name = course_file_to_artifact(cpath)
+            if cpath.suffix == ".txt": 
+                # 2a. the artifact has a single PDF, because the file is a txt
+                pdf_name = None
+            else:
+                # 2b. artifact has several PDF, we can know which one to read,
+                #     from the name of the rst course provided
+                assert cpath.suffix == ".rst", f"{cpath} is neither a rst nor a txt?"
+
+                downloaded_dir = artifact_to_downloaded_dir(artifact_name)
+                pdf_name = course_file_to_pdf_name(downloaded_dir, cpath)
+        else:
+            # 1. course is assumed to be the name of the artifact
+            #    which is expected to contain a single PDF
+            artifact_name = course
+            pdf_name = None
+    else:
+        # course is unset: option 4
+        artifact_name = DEFAULT_COURSE_DOWNLOAD
+        pdf_name = None
 
     branch = args.branch
     if branch is None:
@@ -154,6 +210,10 @@ def main():
     latest_run_id = latest_run["databaseId"]
     print(f"latest run for {branch} is {latest_run_id}")
     print(f"job URL is at {latest_run['url']}")
+    if pdf_name is not None:
+        print(f"download artifact {artifact_name!r} and open {pdf_name!r}")
+    else:
+        print(f"download artifact {artifact_name!r}")
 
     if latest_run["status"] != "completed":
         if args.do_not_wait:
@@ -162,24 +222,27 @@ def main():
             )
         else:
             print(f"wait for completion [{latest_run['url']}]...")
-            run_watch(latest_run["databaseId"], args.course)
+            run_watch(latest_run["databaseId"], artifact_name)
     elif latest_run["conclusion"] != "success":
         raise Exception(f"latest run concluded in {latest_run['conclusion']}")
 
-    downloaded_dir = OUT / args.course
+    downloaded_dir = artifact_to_downloaded_dir(artifact_name)
     print(f"download to {downloaded_dir}")
+
     if downloaded_dir.exists():
         shutil.rmtree(downloaded_dir)
-    gh_run_download(latest_run_id, args.course, downloaded_dir)
+    gh_run_download(latest_run_id, artifact_name, downloaded_dir)
     all_pdf = list(downloaded_dir.glob("*.pdf"))
-    print(", ".join([p.name for p in all_pdf]))
-    if len(all_pdf) == 0:
-        print("no slide found")
-    elif len(all_pdf) > 1:
-        print("multiple slide sets found")
+    if pdf_name is None:
+        print(", ".join([p.name for p in all_pdf]))
+        if len(all_pdf) == 0:
+            print("no slide found")
+        elif len(all_pdf) > 1:
+            print("multiple slide sets found")
+        else:
+            cmd.open(all_pdf[0])
     else:
-        cmd.open(all_pdf[0])
-
+        cmd.open(pdf_name)
 
 if __name__ == "__main__":
     main()
