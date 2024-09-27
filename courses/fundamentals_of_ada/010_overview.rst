@@ -175,58 +175,6 @@ Language Structure (Ada95 and Onward)
     * Concurrent programming
     * Contract-Based Programming
 
-----------------
-Ada Type Model
-----------------
-
-* Each :dfn:`object` is associated a :dfn:`type`
-* **Static** Typing
-
-   - Object type **cannot change**
-   - ... but run-time polymorphism available (OOP)
-
-* **Strong** Typing
-
-   - **Compiler-enforced** operations and values
-   - **Explicit** conversions for "related" types
-   - **Unchecked** conversions possible
-
-* Predefined types
-* Application-specific types
-
-    - User-defined
-    - Checked at compilation and run-time
-
-----------------------------------------
-Strongly-Typed Vs Weakly-Typed Languages
-----------------------------------------
-
-* Weakly-typed:
-
-    - Conversions are **unchecked**
-    - Type errors are easy
-
-.. code:: C++
-
-   typedef enum {north, south, east, west} direction;
-   typedef enum {sun, mon, tue, wed, thu, fri, sat} days;
-   direction heading = north;
-
-   heading = 1 + 3 * south/sun;// what?
-
-* Strongly-typed:
-
-    - Conversions are **checked**
-    - Type errors are hard
-
-.. code:: Ada
-
-   type Directions is (North, South, East, West);
-   type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
-   Heading : Directions := North;
-   ...
-   Heading := 1 + 3 * South/Sun; --  Compile Error
-
 --------------------------
 The Type Model Saves Money
 --------------------------
@@ -238,44 +186,6 @@ The Type Model Saves Money
 
 .. image:: relative_cost_to_fix_bugs.jpg
    :height: 50%
-
----------------------------
-Type Model Run-Time Costs
----------------------------
-
-* Checks at compilation **and** run-time
-* **Same performance** for identical programs
-
-   - Run-time type checks can be disabled
-   - Compile-time check is *free*
-
-.. container:: columns
-
- .. container:: column
-
-   **C**
-
-   .. code:: C++
-
-      int X;
-      int Y; // range 1 .. 10
-      ...
-      if (X > 0 && X < 11)
-        Y = X;
-      else
-        // signal a failure
-
- .. container:: column
-
-   **Ada**
-
-   .. code:: Ada
-
-      X : Integer;
-      Y, Z : Integer range 1 .. 10;
-      ...
-      Y := X;
-      Z := Y; -- no check required
 
 -------------
 Subprograms

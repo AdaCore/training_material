@@ -2,21 +2,6 @@
 Introduction
 ================
 
-----------------
-Ada Type Model
-----------------
-
-* :dfn:`Static` Typing
-
-   - Object type **cannot change**
-
-* :dfn:`Strong` Typing
-
-   - By **name**
-   - **Compiler-enforced** operations and values
-   - **Explicit** conversion for "related" types
-   - **Unchecked** conversions possible
-
 ---------------
 Strong Typing
 ---------------
@@ -31,6 +16,36 @@ Strong Typing
    - **Check** of values and operations
    - Easy for a computer
    - Developer can focus on **earlier** phase: requirement
+
+----------------------------------------
+Strongly-Typed Vs Weakly-Typed Languages
+----------------------------------------
+
+* Weakly-typed:
+
+    - Conversions are **unchecked**
+    - Type errors are easy
+
+.. code:: C++
+
+   typedef enum {north, south, east, west} direction;
+   typedef enum {sun, mon, tue, wed, thu, fri, sat} days;
+   direction heading = north;
+
+   heading = 1 + 3 * south/sun;// what?
+
+* Strongly-typed:
+
+    - Conversions are **checked**
+    - Type errors are hard
+
+.. code:: Ada
+
+   type Directions is (North, South, East, West);
+   type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+   Heading : Directions := North;
+   ...
+   Heading := 1 + 3 * South/Sun; --  Compile Error
 
 ----------------------
 A Little Terminology
@@ -157,4 +172,42 @@ Attributes
 
     J := Object'Size;
     K := Array_Object'First(2);
+
+---------------------------
+Type Model Run-Time Costs
+---------------------------
+
+* Checks at compilation **and** run-time
+* **Same performance** for identical programs
+
+   - Run-time type checks can be disabled
+   - Compile-time check is *free*
+
+.. container:: columns
+
+ .. container:: column
+
+   **C**
+
+   .. code:: C++
+
+      int X;
+      int Y; // range 1 .. 10
+      ...
+      if (X > 0 && X < 11)
+        Y = X;
+      else
+        // signal a failure
+
+ .. container:: column
+
+   **Ada**
+
+   .. code:: Ada
+
+      X : Integer;
+      Y, Z : Integer range 1 .. 10;
+      ...
+      Y := X;
+      Z := Y; -- no check required
 
