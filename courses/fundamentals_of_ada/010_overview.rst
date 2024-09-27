@@ -236,7 +236,7 @@ Packages
 
 * Separation of concerns
 
-   - Definition :math:`\neq` usage
+   - Specification :math:`\neq` Implementation
    - Single definition by **designer**
    - Multiple use by **users**
 
@@ -244,41 +244,6 @@ Packages
 
    - Compiler-enforced **visibility**
    - Powerful **privacy** system
-
--------------------
-Package Structure
--------------------
-
-* Declaration view
-
-    - **Can** be referenced by user code
-    - Exported types, variables...
-
-* Private view
-
-    - **Cannot** be referenced by user code
-    - Exported **representations**
-
-* Implementation view
-
-    - Not exported
-
----------------------------
-Abstract Data Types (ADT)
----------------------------
-
-* **Variables** of the **type** encapsulate the **state**
-* Classic definition of an ADT
-
-   - Set of **values**
-   - Set of **operations**
-   - **Hidden** compile-time **representation**
-
-* Compiler-enforced
-
-   - Check of values and operation
-   - Easy for a computer
-   - Developer can focus on **earlier** phase: requirements
 
 ------------
 Exceptions
@@ -316,11 +281,6 @@ Generic Units
 -----------------------------
 Object-Oriented Programming
 -----------------------------
-
-* Extension of ADT
-
-    - Sub-types
-    - Run-time flexibility
 
 * Inheritance
 * Run-time polymorphism

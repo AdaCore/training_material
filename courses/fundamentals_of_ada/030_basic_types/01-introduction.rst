@@ -70,6 +70,23 @@ A Little Terminology
 
 * :dfn:`Representation` is the memory-layout of an **object** of the type
 
+---------------------------
+Abstract Data Types (ADT)
+---------------------------
+
+* **Variables** of the **type** encapsulate the **state**
+* Classic definition of an ADT
+
+   - Set of **values**
+   - Set of **operations**
+   - **Hidden** compile-time **representation**
+
+* Compiler-enforced
+
+   - Check of values and operation
+   - Easy for a computer
+   - Developer can focus on **earlier** phase: requirements
+
 -------------------------
 Ada "Named Typing"
 -------------------------
