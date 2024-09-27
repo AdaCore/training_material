@@ -90,8 +90,6 @@ Ada Evolution Highlights
 
     **Ada 95**
        | OOP
-       | Efficient synchronization
-       | Better Access Types
        | Child Packages
        | Annexes
     |
@@ -99,8 +97,6 @@ Ada Evolution Highlights
     **Ada 2005**
        | Multiple Inheritance
        | Containers
-       | Better Limited Types
-       | More Real-Time
        | Ravenscar
 
  .. container:: column
@@ -111,17 +107,11 @@ Ada Evolution Highlights
        | Contracts
        | Iterators
        | Flexible Expressions
-       | More containers
-       | Multi-processor Support
-       | More Real-Time
     |
 
     **Ada 2022**
        | :ada:`'Image` for all types
-       | Target name symbol
-       | Support for C variadics
        | Declare expression
-       | Simplified :ada:`renames`
 
 =============
 Big Picture
