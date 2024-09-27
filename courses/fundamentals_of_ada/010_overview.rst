@@ -329,29 +329,6 @@ Language-Based Concurrency
    - OS & Vendors
 
 -----------------------
-Concurrency Mechanisms
------------------------
-
-* Task
-
-   - **Active**
-   - **Rich** API
-   - OS threads
-
-* Protected object
-
-   - **Passive**
-   - *Monitors* protected data
-   - **Restricted** set of operations
-   - No thread overhead
-   - Very portable
-
-* Object-Oriented
-
-   - Synchronized interfaces
-   - Protected objects inheritance
-
------------------------
 Low Level Programming
 -----------------------
 
