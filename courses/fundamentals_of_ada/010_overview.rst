@@ -90,8 +90,6 @@ Ada Evolution Highlights
 
     **Ada 95**
        | OOP
-       | Efficient synchronization
-       | Better Access Types
        | Child Packages
        | Annexes
     |
@@ -99,8 +97,6 @@ Ada Evolution Highlights
     **Ada 2005**
        | Multiple Inheritance
        | Containers
-       | Better Limited Types
-       | More Real-Time
        | Ravenscar
 
  .. container:: column
@@ -111,17 +107,11 @@ Ada Evolution Highlights
        | Contracts
        | Iterators
        | Flexible Expressions
-       | More containers
-       | Multi-processor Support
-       | More Real-Time
     |
 
     **Ada 2022**
        | :ada:`'Image` for all types
-       | Target name symbol
-       | Support for C variadics
        | Declare expression
-       | Simplified :ada:`renames`
 
 =============
 Big Picture
@@ -175,58 +165,6 @@ Language Structure (Ada95 and Onward)
     * Concurrent programming
     * Contract-Based Programming
 
-----------------
-Ada Type Model
-----------------
-
-* Each :dfn:`object` is associated a :dfn:`type`
-* **Static** Typing
-
-   - Object type **cannot change**
-   - ... but run-time polymorphism available (OOP)
-
-* **Strong** Typing
-
-   - **Compiler-enforced** operations and values
-   - **Explicit** conversions for "related" types
-   - **Unchecked** conversions possible
-
-* Predefined types
-* Application-specific types
-
-    - User-defined
-    - Checked at compilation and run-time
-
-----------------------------------------
-Strongly-Typed Vs Weakly-Typed Languages
-----------------------------------------
-
-* Weakly-typed:
-
-    - Conversions are **unchecked**
-    - Type errors are easy
-
-.. code:: C++
-
-   typedef enum {north, south, east, west} direction;
-   typedef enum {sun, mon, tue, wed, thu, fri, sat} days;
-   direction heading = north;
-
-   heading = 1 + 3 * south/sun;// what?
-
-* Strongly-typed:
-
-    - Conversions are **checked**
-    - Type errors are hard
-
-.. code:: Ada
-
-   type Directions is (North, South, East, West);
-   type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
-   Heading : Directions := North;
-   ...
-   Heading := 1 + 3 * South/Sun; --  Compile Error
-
 --------------------------
 The Type Model Saves Money
 --------------------------
@@ -238,44 +176,6 @@ The Type Model Saves Money
 
 .. image:: relative_cost_to_fix_bugs.jpg
    :height: 50%
-
----------------------------
-Type Model Run-Time Costs
----------------------------
-
-* Checks at compilation **and** run-time
-* **Same performance** for identical programs
-
-   - Run-time type checks can be disabled
-   - Compile-time check is *free*
-
-.. container:: columns
-
- .. container:: column
-
-   **C**
-
-   .. code:: C++
-
-      int X;
-      int Y; // range 1 .. 10
-      ...
-      if (X > 0 && X < 11)
-        Y = X;
-      else
-        // signal a failure
-
- .. container:: column
-
-   **Ada**
-
-   .. code:: Ada
-
-      X : Integer;
-      Y, Z : Integer range 1 .. 10;
-      ...
-      Y := X;
-      Z := Y; -- no check required
 
 -------------
 Subprograms
@@ -336,7 +236,7 @@ Packages
 
 * Separation of concerns
 
-   - Definition :math:`\neq` usage
+   - Specification :math:`\neq` Implementation
    - Single definition by **designer**
    - Multiple use by **users**
 
@@ -344,41 +244,6 @@ Packages
 
    - Compiler-enforced **visibility**
    - Powerful **privacy** system
-
--------------------
-Package Structure
--------------------
-
-* Declaration view
-
-    - **Can** be referenced by user code
-    - Exported types, variables...
-
-* Private view
-
-    - **Cannot** be referenced by user code
-    - Exported **representations**
-
-* Implementation view
-
-    - Not exported
-
----------------------------
-Abstract Data Types (ADT)
----------------------------
-
-* **Variables** of the **type** encapsulate the **state**
-* Classic definition of an ADT
-
-   - Set of **values**
-   - Set of **operations**
-   - **Hidden** compile-time **representation**
-
-* Compiler-enforced
-
-   - Check of values and operation
-   - Easy for a computer
-   - Developer can focus on **earlier** phase: requirements
 
 ------------
 Exceptions
@@ -416,11 +281,6 @@ Generic Units
 -----------------------------
 Object-Oriented Programming
 -----------------------------
-
-* Extension of ADT
-
-    - Sub-types
-    - Run-time flexibility
 
 * Inheritance
 * Run-time polymorphism
@@ -467,29 +327,6 @@ Language-Based Concurrency
    - Source code
    - People
    - OS & Vendors
-
------------------------
-Concurrency Mechanisms
------------------------
-
-* Task
-
-   - **Active**
-   - **Rich** API
-   - OS threads
-
-* Protected object
-
-   - **Passive**
-   - *Monitors* protected data
-   - **Restricted** set of operations
-   - No thread overhead
-   - Very portable
-
-* Object-Oriented
-
-   - Synchronized interfaces
-   - Protected objects inheritance
 
 -----------------------
 Low Level Programming
