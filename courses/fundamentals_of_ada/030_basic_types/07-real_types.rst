@@ -122,7 +122,7 @@ Floating Point Type Attributes
    - :ada:`My_Float'Rounding (X)`
 
       + Integral value nearest to :ada:`X`
-      + *Note* :ada:`Float'Rounding (0.5) = 1` and :ada:`Float'Rounding (-0.5) = -1`
+      + *Note:* :ada:`Float'Rounding (0.5) = 1` and :ada:`Float'Rounding (-0.5) = -1`
 
 * Model-oriented attributes
 
