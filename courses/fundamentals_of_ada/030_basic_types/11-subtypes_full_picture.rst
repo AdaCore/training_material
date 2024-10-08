@@ -122,9 +122,9 @@ Subtypes Don't Cause Overloading
       function F return A is (0);
       function F return B is (1);
 
--------------------------------------
-Subtypes and Default Initialization
--------------------------------------
+-------------------------------
+Default Values and Option Types
+-------------------------------
 
 * Not allowed: Defaults on new :ada:`type` only
 
@@ -143,6 +143,12 @@ Subtypes and Default Initialization
        range Off .. On;
    Safe : Toggle_Switch := Off;
    Implicit : Toggle_Switch; -- compile error: out of range
+
+.. tip
+
+   Using a meaningless value (:ada:`Neither` there) to extend
+   the range of the type, is turning it into :dfn:`option type`.
+   This idiom is very rich and allows for e.g. "in-flow" errors handling.
 
 ..
   language_version 2012
@@ -194,30 +200,6 @@ Idiom: Extended Ranges
          ...
          type Count is range 0 .. implementation-defined;
          subtype Positive_Count is Count range 1 .. Count'Last;
-
----------------------
-Idiom: Option Types
----------------------
-
-* **Great** use case for the ``Default_Value`` aspect
-  
-.. code:: Ada
-
-   declare
-      type Maybe_Result_T is (None, Greater, Smaller)
-         with Default_Value => None;
-      subtype Result_T is Maybe_Result_T range Greater .. Smaller;
-
-      function Get_Result return Result_T;
-      procedure Display_Result (R : Result_T);
-
-      R : Result_T; --  run-time error and GNAT warning
-      Maybe_R : Maybe_Result_T; -- default "None" value
-   begin
-      Display_Result (Maybe_R); -- run-time error
-      --  Ok
-      Maybe_R := Get_Result;
-      Display_Result (Maybe_R);
 
 ------------------
 Idiom: Partition
