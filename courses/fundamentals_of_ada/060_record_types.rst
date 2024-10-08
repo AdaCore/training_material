@@ -740,7 +740,7 @@ Immutable Variant Record
      end case;
   end record;
 
-* In a variant record, a discriminant can be used to specify the :dfn:`variant part` (line 6)
+* In a variant record, a discriminant can be used to specify the :dfn:`variant part` (line 8)
 
    + Similar to case statements (all values must be covered)
    + Fields listed will only be visible if choice matches discriminant

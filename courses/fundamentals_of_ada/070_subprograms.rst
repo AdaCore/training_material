@@ -136,8 +136,8 @@ Procedure Specification Syntax (Simplified)
 
    procedure_specification ::=
       procedure program_unit_name
-        (parameter_specification
-        { ; parameter_specification});
+         { (parameter_specification
+             ; parameter_specification)};
 
    parameter_specification ::=
       identifier_list : mode subtype_mark [ := expression ]
@@ -163,8 +163,8 @@ Function Specification Syntax (Simplified)
 
       function_specification ::=
          function designator
-           (parameter_specification
-           { ; parameter_specification})
+           { (parameter_specification
+               ; parameter_specification) }
            return result_type;
 
       designator ::= program_unit_name | operator_symbol

@@ -45,7 +45,7 @@ Using the "Prompts" Directory
 * To load prompt, either
 
   * From within :toolname:`GNAT Studio`, select :menu:`File` :math:`\rightarrow` :menu:`Open Project` and navigate to and open the appropriate :filename:`default.gpr` **OR**
-  * From a command prompt, enter :command:`gnastudio -P <full path to GPR file>`
+  * From a command prompt, enter :command:`gnatstudio -P <full path to GPR file>`
 
     * If you are in the appropriate directory, and there is only one GPR file, entering :command:`gnatstudio` will start the tool and open that project
 
