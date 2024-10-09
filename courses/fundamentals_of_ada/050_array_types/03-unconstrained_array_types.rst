@@ -303,6 +303,6 @@ D. None: Run-time error
 
 .. container:: animate
 
-    When the second index is less than the first index, this is an empty array.
+    When the upper bound is less than the lower bound, this is an empty array.
     For empty arrays, the index can be out of range for the index type.
 

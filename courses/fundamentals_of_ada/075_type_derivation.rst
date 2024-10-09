@@ -263,7 +263,7 @@ Summary
 
 * :dfn:`Primitive` of a type
 
-   - Subprogram above **freeze-point** that takes or return the type
+   - Subprogram above **freeze-point** that takes or returns the type
    - Can be a primitive for **multiple types**
 
 * Freeze point rules can be tricky
