@@ -122,9 +122,9 @@ Subtypes Don't Cause Overloading
       function F return A is (0);
       function F return B is (1);
 
--------------------------------------
-Subtypes and Default Initialization
--------------------------------------
+-------------------------------
+Default Values and Option Types
+-------------------------------
 
 * Not allowed: Defaults on new :ada:`type` only
 
@@ -143,6 +143,12 @@ Subtypes and Default Initialization
        range Off .. On;
    Safe : Toggle_Switch := Off;
    Implicit : Toggle_Switch; -- compile error: out of range
+
+.. tip::
+
+   Using a meaningless value (:ada:`Neither`) to extend
+   the range of the type is turning it into an :dfn:`option type`.
+   This idiom is very rich and allows for e.g. "in-flow" errors handling.
 
 ..
   language_version 2012
@@ -174,6 +180,101 @@ Attributes Reflect the Underlying Type
 
       Shade : Color range Red .. Blue := Brown; -- run-time error
       Hue : Rainbow := Rainbow'Succ (Blue);     -- run-time error
+
+------------------------
+Idiom: Extended Ranges
+------------------------
+
+* ``Count`` / ``Positive_Count``
+
+   - Sometimes as ``Type_Ext`` (extended) / ``Type``
+   - For counting vs indexing
+    
+      + An index goes from 1 to max length
+      + A count goes from 0 to max length
+
+   .. code:: Ada
+   
+      -- ARM A.10.1
+      package Text_IO is
+         ...
+         type Count is range 0 .. implementation-defined;
+         subtype Pos_Count is Count range 1 .. Count'Last;
+
+------------------
+Idiom: Partition
+------------------
+
+* Useful for splitting-up large enums
+
+.. warning::
+
+   Be careful about checking that the partition is complete when
+   items are added/removed.
+
+   With a :ada:`case`, the compiler automatically checks that for you.
+
+.. tip::
+
+   Can have non-consecutive values with the :ada:`Predicate` aspect.
+
+.. code:: Ada
+
+   type Commands_T is (Lights_On, Lights_Off, Read, Write, Accelerate, Stop);
+   --  Complete partition of the commands
+   subtype IO_Commands_T is Commands_T range Read .. Write;
+   subtype Lights_Commands_T is Commands_T range Lights_On .. Lights_Off;
+   subtype Movement_Commands_T is Commands_T range Accelerate .. Stop;
+
+   subtype Physical_Commands_T is Commands_T
+      with Predicate => Physical_Commands_T in Lights_Commands_T | Movement_Commands_T; 
+
+   procedure Execute_Light_Command (C : Lights_Commands_T);
+
+   procedure Execute_Command (C : Commands_T) is
+   begin
+      case C in --  partition must be exhaustive
+         when Lights_Commands_T => Execute_Light_Command (C);
+   ...
+
+--------------------------------------
+Idiom: Subtypes as Local Constraints
+--------------------------------------
+
+* Can replace defensive code
+* Can be very useful in some identified cases
+* Subtypes accept dynamic bounds, unlike types
+* Checks happen through type-system
+
+    - Can be disabled with :command:`-gnatp`, unlike conditionals
+    - Can also be a disadvantage
+
+.. warning::
+
+   Do not use for checks that should **always** happen, even in production.
+
+* Constrain input range
+
+.. code:: Ada
+
+   subtype Incrementable_Integer is Integer range Integer'First .. Integer'Last - 1;
+   function Increment (I : Incrementable_Integer) return Integer;
+
+* Constrain output range
+
+.. code:: Ada
+
+   subtype Valid_Fingers_T is Integer range 1 .. 5;
+   Fingers : Valid_Fingers_T := Prompt_And_Get_Integer ("Give me the number of a finger");
+
+* Constrain array index
+
+.. code:: Ada
+
+   procedure Read_Index_And_Manipulate_Char (S : String) is
+      subtype S_Index is Positive range S'Range;
+      I : constant S_Index := Read_Positive;
+      C : Character renames S (I);
 
 ------
 Quiz
