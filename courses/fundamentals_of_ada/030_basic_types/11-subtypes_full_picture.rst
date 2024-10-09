@@ -146,8 +146,8 @@ Default Values and Option Types
 
 .. tip
 
-   Using a meaningless value (:ada:`Neither` there) to extend
-   the range of the type, is turning it into :dfn:`option type`.
+   Using a meaningless value (:ada:`Neither`) to extend
+   the range of the type is turning it into an :dfn:`option type`.
    This idiom is very rich and allows for e.g. "in-flow" errors handling.
 
 ..
@@ -210,7 +210,7 @@ Idiom: Partition
 .. warning::
 
    Be careful about checking that the partition is complete when
-   items are added removed.
+   items are added/removed.
    Using at least one :ada:`case` will check that for you.
 
 .. tip::
@@ -243,7 +243,7 @@ Idiom: Subtypes as Local Constraints
 * Can replace defensive code
 * Can be very useful in some identified cases
 * Subtypes accept dynamic bounds, unlike types
-* Checks happens through type-system
+* Checks happen through type-system
 
     - Can be disabled with :command:`-gnatp`, unlike conditionals
     - Can also be a disadvantage
