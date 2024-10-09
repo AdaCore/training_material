@@ -144,7 +144,7 @@ Default Values and Option Types
    Safe : Toggle_Switch := Off;
    Implicit : Toggle_Switch; -- compile error: out of range
 
-.. tip
+.. tip::
 
    Using a meaningless value (:ada:`Neither`) to extend
    the range of the type is turning it into an :dfn:`option type`.
@@ -211,7 +211,8 @@ Idiom: Partition
 
    Be careful about checking that the partition is complete when
    items are added/removed.
-   Using at least one :ada:`case` will check that for you.
+
+   With a :ada:`case`, the compiler automatically checks that for you.
 
 .. tip::
 
