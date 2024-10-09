@@ -253,19 +253,21 @@ Idiom: Subtypes as Local Constraints
 
    Do not use for checks that should **always** happen, even in production.
 
+* Constrain input range
+
 .. code:: Ada
 
-   subtype Incrementable_Integer is Integer
-      range Integer'First .. Integer'Last - 1;
-
+   subtype Incrementable_Integer is Integer range Integer'First .. Integer'Last - 1;
    function Increment (I : Incrementable_Integer) return Integer;
 
+* Constrain output range
+
 .. code:: Ada
 
-   subtype Valid_Fingers_T is Integer
-      range 1 .. 5;
-   Fingers : Valid_Fingers_T
-      := Prompt_And_Get_Integer ("Give me the number of a finger");
+   subtype Valid_Fingers_T is Integer range 1 .. 5;
+   Fingers : Valid_Fingers_T := Prompt_And_Get_Integer ("Give me the number of a finger");
+
+* Constrain array index
 
 .. code:: Ada
 
