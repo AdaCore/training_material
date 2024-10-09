@@ -170,9 +170,9 @@ The Type Model Saves Money
 --------------------------
 
 * Shifts fixes and costs to **early phases**
-* **Cheaper**
 
-    - Cost of an error *during a flight*?
+
+* Cost of an error *during a flight*?
 
 .. image:: relative_cost_to_fix_bugs.jpg
    :height: 50%
