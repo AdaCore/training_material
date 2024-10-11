@@ -50,14 +50,14 @@ The Company
 
 * Roots in Open Source software movement
 
-    - GNAT compiler is part of GNU Compilers' Collection (GCC)
+    - GNAT compiler is part of GNU Compiler Collection (GCC)
 
 ===================
 About This Training
 ===================
 
 --------------------------
-Who is/are your trainer(s)
+Your Trainer
 --------------------------
 
 * Experience in software development
