@@ -115,7 +115,7 @@ Course Presentation
 
     - Hands-on practice
     - Recommended setup: latest GNAT Studio
-    - Class restitution after some labs
+    - Class reflection after some labs
 
 * Demos
 
