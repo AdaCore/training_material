@@ -790,7 +790,7 @@ Pragmas
 
 .. warning:: Malformed pragmas are **illegal**
 
-   :ada:`pragma Illegal One;    -- compile error`
+   :ada:`pragma Illegal-One;    -- compile error`
 
 ----------------
 Aspect Clauses
