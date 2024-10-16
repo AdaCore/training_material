@@ -838,8 +838,10 @@ Aspect Clause Example: Objects
          Size    => 8,
          Address => To_Address (16#DEAD_BEEF#);
 
-      -- Prior to Ada 2012
-      -- using *representation clauses*
+* Prior to Ada 2012: :dfn:`representation clauses`
+
+   .. code:: Ada
+
       CR2 : Control_Register;
       for CR2'Size use 8;
       for CR2'Address use To_Address (16#DEAD_BEEF#);
