@@ -138,8 +138,8 @@ Rationale for Parentheses Requirement
 
 * Does that mean
 
-   - If condition, then `X := A + 1`, else `X := B + 1` **OR**
-   - If condition, then `X := A`, else `X := B + 1`
+   - If condition, then ``X := A + 1``, else ``X := B + 1`` **OR**
+   - If condition, then ``X := A``, else ``X := B + 1``
 
 * But not required if parentheses already present
 
