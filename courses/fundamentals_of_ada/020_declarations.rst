@@ -814,7 +814,7 @@ Aspect Clauses
        with aspect_mark [ => expression]
            {, aspect_mark [ => expression] }
 
-.. note:: Aspect clauses always part of a **declaration**
+.. note:: Aspect clauses are always part of a **declaration**
 ..
   language_version 2012
 
