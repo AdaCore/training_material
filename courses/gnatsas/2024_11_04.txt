@@ -1,9 +1,9 @@
 010_course_overview.rst
+metric_010_overview.rst
 check_010_overview.rst
 check_020_getting_started.rst
 check_030_predefined_rules.rst
 check_040_lkql.rst
-metric_010_overview.rst
 sas_010_introduction.rst
 sas_020_overview.rst
 sas_030_analysis.rst
