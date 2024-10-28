@@ -2,6 +2,32 @@
 Introduction
 ==============
 
+-----------------------
+Concurrency Mechanisms
+-----------------------
+
+* Task
+
+   - **Active**
+   - Rendezvous: **Client / Server** model
+   - Server **entries**
+   - Client **entry calls**
+   - Typically maps to OS threads
+
+* Protected object
+
+   - **Passive**
+   - *Monitors* protected data
+   - **Restricted** set of operations
+   - Concurrency-safe **semantics**
+   - No thread overhead
+   - Very portable
+
+* Object-Oriented
+
+   - :ada:`Synchronized` interfaces
+   - Protected objects inheritance
+
 ---------------
 A Simple Task
 ---------------
@@ -31,19 +57,3 @@ A Simple Task
 
 * A task is started when its declaration scope is **elaborated**
 * Its enclosing scope exits when **all tasks** have finished
-
---------------------------
-Two Synchronization Models
---------------------------
-
-* Active
-
-   - Rendezvous
-   - **Client / Server** model
-   - Server **entries**
-   - Client **entry calls**
-
-* Passive
-
-   - **Protected objects** model
-   - Concurrency-safe **semantics**

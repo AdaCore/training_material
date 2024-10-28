@@ -194,9 +194,9 @@ Overriding Indicators
       procedure Set_Name (S : in out Shape_T);
 
       -- Derive "Point" from Shape_T
-      type Point is new Shape_T with record
+      type Point_T is new Shape_T with record
          Origin : Coord_T;
-      end Point;
+      end Point_T;
 
       -- Get_Name is inherited
       -- We want to _change_ the behavior of Set_Name

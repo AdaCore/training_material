@@ -1,3 +1,4 @@
+005_introduction.rst
 030_basic_types-extras.rst
 060_record_types.rst
 065_discriminated_records.rst
@@ -12,6 +13,6 @@ adv_170_multiple_inheritance.rst
 180_polymorphism.rst
 190_exceptions-in_depth.rst
 240_tasking_in_depth.rst
-adv_270_subprogram_contracts.rst
-adv_275_type_contracts.rst
+273_subprogram_contracts.rst
+276_type_contracts.rst
 adv_280_low_level_programming.rst

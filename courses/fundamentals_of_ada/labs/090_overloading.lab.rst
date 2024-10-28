@@ -1,3 +1,7 @@
+========
+Lab
+========
+
 -----------------
 Overloading Lab
 -----------------
@@ -10,7 +14,7 @@ Overloading Lab
 
       + One routine should take text and return the digit (e.g. **two** would return **2**)
 
-   - Query the user to enter text or a digit and print it's equivalent
+   - Query the user to enter text or a digit and print its equivalent
    - If the user enters consecutive entries that are equivalent, print a message
 
       + e.g. **4** followed by **four** should get the message
@@ -21,7 +25,7 @@ Overloading Lab
 
       + Then use *'Image* / *'Value* where needed
 
-   - Use an equivalence function two compare different types
+   - Use an equivalence function to compare different types
 
 -------------------------------------------------
 Overloading Lab Solution - Conversion Functions
