@@ -247,6 +247,30 @@ Record Representation Clauses
            D at 5 range 0 ..  2;
         end record;
 
+------------------
+Unchecked Unions
+------------------
+
+* Allows using **discriminated** records as C's :c:`union`
+* Discriminant is **not stored**
+* No discriminant check
+* Object must be **mutable**
+
+.. code:: Ada
+
+    type R (Is_Float : Boolean := False) is record
+        case Is_Float is
+        when True =>
+            F : Float;
+        when False =>
+            I : Integer;
+        end case;
+    end record
+        with Unchecked_Union;
+
+    O : R := (Is_Float => False, I => 1);
+    F : Float := R.F; --  no check!
+
 ------------------------------
 Array Representation Clauses
 ------------------------------
