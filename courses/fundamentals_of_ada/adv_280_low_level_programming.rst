@@ -209,6 +209,21 @@ Pack Aspect
       -- Rec'Size is 36, Ar'Size is 1000
 
 -------------------------------
+Enum Representation Clauses
+-------------------------------
+
+* Can specify representation for each value
+* Representation must have increasing number
+
+.. code:: Ada
+
+   type E is (A, B, C);
+   for E use (A => 2, B => 4, C => 8);
+
+* Can use :ada:`E'Enum_Rep (A) = 2`
+* Can use :ada:`E'Enum_Val (2) = A`
+
+-------------------------------
 Record Representation Clauses
 -------------------------------
 
