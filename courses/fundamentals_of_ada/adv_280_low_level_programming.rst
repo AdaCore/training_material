@@ -266,7 +266,7 @@ Record Representation Clauses
 Unchecked Unions
 ------------------
 
-* Allows using **discriminated** records as C's :c:`union`
+* Allows replicating C's :c:`union` with **discriminated** records
 * Discriminant is **not stored**
 * No discriminant check
 * Object must be **mutable**
