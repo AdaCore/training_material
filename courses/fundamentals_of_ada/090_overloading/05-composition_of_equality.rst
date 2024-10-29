@@ -91,8 +91,8 @@ User-Defined Equality Composition
 
 * No issue for all language-defined types in all versions of Ada
 * An issue for user-defined types
-* Only automatic for :ada:`record` types in Ada 2012
-* Only automatic for :ada:`tagged record` types in Ada 2005
+* Became automatic for :ada:`record` types in Ada 2012
+* Became automatic for :ada:`tagged record` types in Ada 2005
 
    - Otherwise need explicit equality function for enclosing type
 
