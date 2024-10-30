@@ -978,7 +978,7 @@ Functions' Parameter Modes
    - Including those you overload
    - Keeps readers sane
 
-* Justification for only mode :ada:`in` prior to Ada 2012
+* Justification for only mode :ada:`in` in earlier versions of the language
 
    - No side effects: should be like mathematical functions
    - But side effects are still possible via globals
