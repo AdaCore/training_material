@@ -294,11 +294,9 @@ No Ambiguity Introduction
 
       use all type subtype_mark {, subtype_mark};
 
-* More specific alternative to :ada:`use` clauses
+* More specific alternatives to :ada:`use` clauses
 
    - Especially useful when multiple :ada:`use` clauses introduce ambiguity
-
-*Note that* :ada:`use all type` *was introduced in Ada 2012*
 
 --------------
 Example Code
@@ -495,8 +493,6 @@ Summary
    - Can make it difficult for others to understand code
 
 * :ada:`use all type` clauses are more likely in practice than :ada:`use type` clauses
-
-   - Only available in Ada 2012 and later
 
 * :ada:`Renames` allow us to alias entities to make code easier to read
 
