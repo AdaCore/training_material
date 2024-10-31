@@ -377,7 +377,7 @@ Quality of Life
 Dot Calls for Primitives of Untagged Types (1/2)
 ------------------------------------------------
 
-* Ada 2012 introduces prefix notation
+* Ada 2012 introduced prefix notation
 
    .. code:: Ada
 
