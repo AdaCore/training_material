@@ -64,15 +64,15 @@ Ada Contracts
    - At compile-time: specific constructs, features, and rules
    - At run-time: language-defined and user-defined exceptions
 
-* Facilities prior to Ada 2012
+* Facilities as part of the language definition
 
    - Range specifications
    - Parameter modes
    - Generic contracts
-   - OOP :ada:`interface` types (Ada 2005)
+   - OOP :ada:`interface` types
    - Work well, but on a restricted set of use-cases
 
-* Contracts aspects are explicitly added in **Ada 2012**
+* Contract aspects to be more expressive
 
    - Carried by subprograms
    - ... or by types (seen later)
@@ -111,7 +111,7 @@ Quiz
 
 Which of the following statements is (are) correct?
 
-    A. Contract principles apply only to Ada 2012
+    A. Contract principles apply only to newer versions of the language
     B. :answer:`Contract should hold even for unique conditions and corner cases`
     C. Contract principles were first implemented in Ada
     D. You cannot be both supplier and client
@@ -120,7 +120,7 @@ Which of the following statements is (are) correct?
 
     Explanations
 
-    A. No, but design-by-contract **aspects** are fully integrated to Ada 2012 design
+    A. No, but design-by-contract **aspects** were fully integrated into Ada 2012
     B. Yes, special case should be included in the contract
     C. No, in eiffel, in 1986!
     D. No, in fact you are always **both**, even the :ada:`Main` has a caller!

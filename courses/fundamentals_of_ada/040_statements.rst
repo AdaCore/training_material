@@ -601,10 +601,6 @@ Basic Loops and Syntax
         Rinse (Hair);
       end loop Wash_Hair;
 
-.. container:: speakernote
-
-    Loop Iterator Specification available in Ada2012 and later
-
 --------------------
 Loop Exit Statements
 --------------------
@@ -698,7 +694,6 @@ For-loop Statements
 
 * Two high-level forms
 
-   - Ada 2012
    - Focused on objects
    - Seen later with Arrays
 
