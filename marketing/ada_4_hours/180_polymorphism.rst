@@ -74,7 +74,7 @@ Abstract Types
 'Class and Prefix Notation
 ----------------------------
 
-Prefix notation rules apply when the first parameter is of a class wide type
+Prefix notation rules apply when the first parameter is of a class-wide type
 
 .. code:: Ada
 

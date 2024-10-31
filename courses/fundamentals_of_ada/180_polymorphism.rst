@@ -79,7 +79,7 @@ Classes
 Indefinite Type
 -----------------
 
-* A class wide type is an indefinite type
+* A class-wide type is an indefinite type
 
    - Just like an unconstrained array or a record with a discriminant
 
@@ -202,7 +202,7 @@ Warning: Subprograms with parameter of type `Root'Class` are not primitives of `
 'Class and Prefix Notation
 ----------------------------
 
-Prefix notation rules apply when the first parameter is of a class wide type
+Prefix notation rules apply when the first parameter is of a class-wide type
 
       .. code:: Ada
 
@@ -317,11 +317,11 @@ Calls on Class-Wide Types (3/3)
       ((Animal) *My_Dog).Feed ();
 
 -------------------------------
-Definite and Class Wide Views
+Definite and Class-Wide Views
 -------------------------------
 
 * In C++, dispatching occurs only on pointers
-* In Ada, dispatching occurs only on class wide views
+* In Ada, dispatching occurs only on class-wide views
 
 .. code:: Ada
 
