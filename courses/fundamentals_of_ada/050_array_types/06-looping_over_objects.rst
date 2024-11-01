@@ -1,15 +1,16 @@
 ==============================
-Operations Added for Ada2012
+Looping Over Array Components
 ==============================
 
-----------------------------------------
-Default Initialization for Array Types
-----------------------------------------
+------------------------------------------------
+Note on Default Initialization for Array Types
+------------------------------------------------
 
-* Supports constrained and unconstrained array types
-* Supports arrays of any dimensionality
+* In Ada, objects are not initialized by default
+* To initialize an array, you can initialize each element
 
-   - No matter how many dimensions, there is only one component type
+   * But if the array type is used in multiple places, it would be better to initialize at the type level
+   * No matter how many dimensions, there is only one component type
 
 * Uses aspect `Default_Component_Value`
 

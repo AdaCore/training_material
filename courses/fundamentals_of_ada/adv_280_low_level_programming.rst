@@ -71,18 +71,19 @@ Data Representation Vs Requirements
 
    - In GNAT, can be consulted using ``-gnatR2`` switch
 
-      .. code:: Ada
+.. code:: Ada
 
-         type My_Int is range 1 .. 10;
-         for My_Int'Object_Size use 8;
-         for My_Int'Value_Size  use 4;
-         for My_Int'Alignment   use 1;
+   -- with aspects
+   type Some_Integer_T is range 1 .. 10
+      with Object_Size => 8,
+           Value_Size  => 4,
+           Alignment   => 1;
 
-         -- using Ada 2012 aspects
-         type Ada2012_Int is range 1 .. 10
-            with Object_Size => 8,
-                 Value_Size  => 4,
-                 Alignment   => 1;
+   -- with representation clauses
+   type Another_Integer_T is range 1 .. 10;
+   for Another_Integer_T'Object_Size use 8;
+   for Another_Integer_T'Value_Size  use 4;
+   for Another_Integer_T'Alignment   use 1;
 
 * These values can be explicitly set, the compiler will check their consistency
 * They can be queried as attributes if needed
@@ -92,7 +93,7 @@ Data Representation Vs Requirements
       X : Integer := My_Int'Alignment;
 
 ---------------------
-`Value_Size / Size`
+Value_Size / Size
 ---------------------
 
 * :ada:`Value_Size` (or :ada:`Size` in the Ada Reference Manual) is the minimal number of bits required to represent data
@@ -101,14 +102,15 @@ Data Representation Vs Requirements
 
 * The compiler is allowed to use larger size to represent an actual object, but will check that the minimal size is enough
 
-   .. code:: Ada
+.. code:: Ada
 
-      type T1 is range 1 .. 4;
-      for T1'Size use 3;
+   -- with aspect
+   type Small_T is range 1 .. 4
+      with Size => 3;
 
-      -- using Ada 2012 aspects
-      type T2 is range 1 .. 4
-         with Size => 3;
+   -- with representation clause
+   type Another_Small_T is range 1 .. 4;
+   for Another_Small_T'Size use 3;
 
 -----------------------------
 Object Size (GNAT-Specific)
@@ -117,16 +119,17 @@ Object Size (GNAT-Specific)
 * :ada:`Object_Size` represents the size of the object in memory
 * It must be a multiple of :ada:`Alignment * Storage_Unit (8)`, and at least equal to :ada:`Size`
 
-   .. code:: Ada
+.. code:: Ada
 
-      type T1 is range 1 .. 4;
-      for T1'Value_Size use 3;
-      for T1'Object_Size use 8;
+   -- with aspects
+   type Some_T is range 1 .. 4
+      with Value_Size  => 3,
+           Object_Size => 8;
 
-      -- using Ada 2012 aspects
-      type T2 is range 1 .. 4
-         with Value_Size  => 3,
-              Object_Size => 8;
+   -- with representation clauses
+   type Another_T is range 1 .. 4;
+   for Another_T'Value_Size use 3;
+   for Another_T'Object_Size use 8;
 
 * Object size is the *default* size of an object, can be changed if specific representations are given
 
@@ -138,16 +141,17 @@ Alignment
 * Some alignment may be more efficient than others in terms of speed (e.g. boundaries of words (4, 8))
 * Some alignment may be more efficient than others in terms of memory usage
 
-   .. code:: Ada
+.. code:: Ada
 
-      type T1 is range 1 .. 4;
-      for T1'Size use 4;
-      for T1'Alignment use 8;
+   -- with aspects
+   type Aligned_T is range 1 .. 4
+      with Size      => 4,
+           Alignment => 8;
 
-      -- using Ada 2012 aspects
-      type T2 is range 1 .. 4
-         with Size      => 4,
-              Alignment => 8;
+   -- with representation clauses
+   type Another_Aligned_T is range 1 .. 4;
+   for Another_Aligned_T'Size use 4;
+   for Another_Aligned_T'Alignment use 8;
 
 --------------
 Record Types
@@ -257,12 +261,13 @@ Array Representation Clauses
 
 .. code:: Ada
 
-   type Ar1 is array (1 .. 1000) of Boolean;
-   for Ar1'Component_Size use 2;
-
-   -- using Ada 2012 aspects
-   type Ar2 is array (1 .. 1000) of Boolean
+   -- with aspect
+   type Array_T is array (1 .. 1000) of Boolean
        with Component_Size => 2;
+
+   -- with representation clause
+   type Another_Array_T is array (1 .. 1000) of Boolean;
+   for Another_Array_T'Component_Size use 2;
 
 --------------------------
 Endianness Specification
@@ -279,20 +284,21 @@ Endianness Specification
 
 .. code:: Ada
 
-   type Rec is record
+   -- with aspect
+   type Array_T is array (1 .. 1000) of Boolean with
+     Scalar_Storage_Order => System.Low_Order_First;
+
+   -- with representation clauses
+   type Record_T is record
       A : Integer;
       B : Boolean;
    end record;
-   for Rec use record
+   for Record_T use record
       A at 0 range 0 .. 31;
       B at 0 range 32 .. 33;
    end record;
-   for Rec'Bit_Order use System.High_Order_First;
-   for Rec'Scalar_Storage_Order use System.High_Order_First;
-
-   -- using Ada 2012 aspects
-   type Ar is array (1 .. 1000) of Boolean with
-     Scalar_Storage_Order => System.Low_Order_First;
+   for Record_T'Bit_Order use System.High_Order_First;
+   for Record_T'Scalar_Storage_Order use System.High_Order_First;
 
 --------------------------
 Change of Representation
@@ -351,8 +357,11 @@ Address Clauses
 
    .. code:: Ada
 
-      Var : Unsigned_32;
-      for Var'Address use ... ;
+      Use_Aspect     : Unsigned_32 with
+         Address => 16#1234_ABCD#;
+
+      Use_Rep_Clause : Unsigned_32;
+      for Use_Rep_Clause'Address use 16#5678_1234#;
 
 * Very useful to declare I/O registers
 
@@ -360,16 +369,20 @@ Address Clauses
 
    .. code:: Ada
 
-      pragma Volatile (Var);
+      Use_Aspect     : Unsigned_32 with
+         Volatile,
+         Address => 16#1234_ABCD#;
+
+      Use_Rep_And_Pragma : Unsigned_32;
+      for Use_Rep_And_Pragma'Address use 16#5678_1234#;
+      pragma Volatile (Use_Rep_And_Pragma);
 
 * Useful to read a value anywhere
 
    .. code:: Ada
 
       function Get_Byte (Addr : Address) return Unsigned_8 is
-        V : Unsigned_8;
-        for V'Address use Addr;
-        pragma Import (Ada, V);
+        V : Unsigned_8 with Address => Addr, Volatile;
       begin
         return V;
       end;
@@ -392,8 +405,9 @@ Address Values
 
    .. code:: Ada
 
-      for V'Address use
-          System.Storage_Elements.To_Address (16#120#);
+      V : Unsigned_32 with
+          Address =>
+              System.Storage_Elements.To_Address (16#120#);
 
 * GNAT specific attribute :ada:`'To_Address`
 
@@ -401,20 +415,21 @@ Address Values
 
    .. code:: Ada
 
-      for V'Address use System'To_Address (16#120#);
+      V : Unsigned_32 with
+          Address => System'To_Address (16#120#);
 
 ----------
 Volatile
 ----------
 
-* The :ada:`Volatile` property can be set using an aspect (in Ada 2012 or later) or a pragma
+* The :ada:`Volatile` property can be set using an aspect or a pragma
 * Ada also allows volatile types as well as objects
 
    .. code:: Ada
 
+      type Volatile_U32 is mod 2**32 with Volatile;
       type Volatile_U16 is mod 2**16;
       pragma Volatile (Volatile_U16);
-      type Volatile_U32 is mod 2**32 with Volatile; -- Ada 2012
 
 * The exact sequence of reads and writes from the source code must appear in the generated code
 
@@ -428,25 +443,23 @@ Ada Address Example
 
 .. code:: Ada
 
-   type Bitfield is array (Integer range <>) of Boolean;
-   pragma Component_Size (1);
+   type Bit_Array_T is array (Integer range <>) of Boolean
+      with Component_Size => 1;
 
-   V  : aliased Integer; -- object can be referenced elsewhere
-   pragma Volatile (V);  -- may be updated at any time
+   -- objects can be referenced elsewhere
+   Object  : aliased Integer with Volatile;
+   Object2 : aliased Integer with Volatile;
 
-   V2 : aliased Integer;
-   pragma Volatile (V2);
+   Object_A : System.Address := Object'Address;
+   Object_I : Integer_Address := To_Integer (Object_A);
 
-   V_A : System.Address := V'Address;
-   V_I : Integer_Address := To_Integer (V_A);
+   --  This overlays Bit_Array_Object onto Object in memory
+   Bit_Array_Object : aliased Bit_Array_T (1 .. Object'Size)
+      with Address => Object_A;
 
-   --  This maps directly on to the bits of V
-   V3 : aliased Bitfield (1 .. V'Size);
-   for V3'Address use V_A; -- overlay
-
-   V4 : aliased Integer;
-   --  Trust me, I know what I'm doing, this is V2
-   for V4'Address use To_Address (V_I - 4);
+   Object2_Alias : aliased Integer
+      --  Trust me, I know what I'm doing, this is Object2
+      with Address => To_Address (Object_I - 4);
 
 --------------------
 Aliasing Detection

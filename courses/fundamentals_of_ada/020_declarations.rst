@@ -836,12 +836,12 @@ Aspect Clause Example: Objects
 
    .. code:: Ada
 
+      -- using aspects
       CR1 : Control_Register with
          Size    => 8,
          Address => To_Address (16#DEAD_BEEF#);
 
-      -- Prior to Ada 2012
-      -- using *representation clauses*
+      -- using representation clauses
       CR2 : Control_Register;
       for CR2'Size use 8;
       for CR2'Address use To_Address (16#DEAD_BEEF#);

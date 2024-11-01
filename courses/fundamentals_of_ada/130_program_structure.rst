@@ -982,7 +982,7 @@ Summary
 
    - Direct support for subsystems
    - Extension without recompilation
-   - Separation of concerns with controlled sharing of visibility (Ada 2012)
+   - Separation of concerns with controlled sharing of visibility
 
 * Parents should document assumptions for children
 

@@ -964,8 +964,11 @@ Parameter Aliasing
 
    procedure Update (Doubled, Tripled : in out Integer);
    ...
-   Update (Doubled => A,
-           Tripled => A);  -- illegal in Ada 2012
+   Update (Doubled => A, Tripled => A);
+
+.. container:: latex_environment footnotesize
+
+   :command:`error: writable actual for "Doubled" overlaps with actual for "Tripled"`
 
 ----------------------------
 Functions' Parameter Modes
@@ -977,7 +980,7 @@ Functions' Parameter Modes
    - Including those you overload
    - Keeps readers sane
 
-* Justification for only mode :ada:`in` prior to Ada 2012
+* Justification for only mode :ada:`in` in earlier versions of the language
 
    - No side effects: should be like mathematical functions
    - But side effects are still possible via globals
@@ -1046,13 +1049,6 @@ Tic-Tac-Toe Winners Example (Spec)
 
         - :subscript:`8` N
         - :subscript:`9` N
-
-.. container:: speakernote
-
-   Prior to Ada2012 use:
-   type Game is record
-     Board : Moves := (others ``=>`` Nobody);
-   end record;
 
 ------------------------------------
 Tic-Tac-Toe Winners Example (Body)

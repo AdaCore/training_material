@@ -58,49 +58,50 @@ Introduction
 Import / Export
 =================
 
-------------------------------
-Pragma Import / Export (1/2)
-------------------------------
+-------------------------------
+Import / Export Aspects (1/2)
+-------------------------------
 
-* :ada:`pragma Import` allows a C implementation to complete an Ada specification
+* Aspects :ada:`Import` and :ada:`Export` allow Ada and C to interact
 
-   - Ada view
+   * :ada:`Import` indicates a subprogram imported into Ada
+   * :ada:`Export` indicates a subprogram exported from Ada
 
-      .. code:: Ada
+* Need aspects definining calling convention and external name
 
-         procedure C_Proc;
-         pragma Import (C, C_Proc, "SomeProcedure");
+  * :ada:`Convention => C` tells linker to use C-style calling convention
+  * :ada:`External_Name => "<name>"` defines object name for linker
 
-   - C implementation
+* Ada implementation
 
-       .. code:: C
+   .. code:: Ada
 
-          void SomeProcedure (void) {
-             // some code
-          }
+      procedure Imported_From_C with
+         Import,
+         Convention    => C, 
+         External_Name => "SomeProcedureInC";
 
-* :ada:`pragma Export` allows an Ada implementation to complete a C specification
+      procedure Exported_To_C with
+         Export,
+         Convention    => C, 
+         External_Name => "some_ada_procedure;
 
-   - Ada implementation
+* C implementation
 
-       .. code:: Ada
+    .. code:: C
 
-          procedure Some_Procedure;
-          pragma Export (C, Some_Procedure, "ada_some_procedure");
-          procedure Some_Procedure is
-          begin
-           -- some code
-          end Some_Procedure;
+       void SomeProcedureInC (void) {
+          // some code
+       }
 
-   - C view
+       extern void ada_some_procedure (void);
 
-       .. code:: C
+..
+  language_version 2012
 
-          extern void ada_some_procedure (void);
-
-------------------------------
-Pragma Import / Export (2/2)
-------------------------------
+-------------------------------
+Import / Export Aspects (2/2)
+-------------------------------
 
 * You can also import/export variables
 
@@ -109,7 +110,10 @@ Pragma Import / Export (2/2)
 
       .. code:: Ada
 
-         My_Var : integer_type;
+         My_Var : Integer_Type with 
+            Import,
+            Convention    => C,
+            External_Name => "my_var";
          Pragma Import (C, My_Var, "my_var");
 
    - C implementation
@@ -118,21 +122,22 @@ Pragma Import / Export (2/2)
 
          int my_var;
 
------------------------------
-Import / Export in Ada 2012
------------------------------
+..
+  language_version 2012
 
-* In Ada 2012, :ada:`Import` and :ada:`Export` can also be done using aspects:
+------------------------------
+Import / Export with Pragmas
+------------------------------
+
+* You can also use :ada:`pragma` to import/export entities
 
    .. code:: Ada
 
-      procedure C_Proc
-        with Import,
-             Convention    => C,
-             External_Name => "c_proc";
+      procedure C_Some_Procedure;
+      pragma Import (C, C_Some_Procedure, "SomeProcedure");
 
-..
-  language_version 2012
+      procedure Some_Procedure;
+      pragma Export (C, Some_Procedure, "ada_some_procedure");
 
 ===================
 Parameter Passing
@@ -200,6 +205,15 @@ Passing Structures As Parameters
 * Ada View
 
    .. code:: Ada
+     type Enum is (E1, E2, E3) with Convention => C;
+     type Rec is record
+       A, B : int;
+       C : Enum;
+     end record with Convention => C;
+
+* This can also be done with pragmas
+
+   .. code:: Ada
 
      type Enum is (E1, E2, E3);
      Pragma Convention (C, Enum);
@@ -209,15 +223,8 @@ Passing Structures As Parameters
      end record;
      Pragma Convention (C, Rec);
 
-* Using Ada 2012 aspects
-
-   .. code:: Ada
-
-     type Enum is (E1, E2, E3) with Convention => C;
-     type Rec is record
-       A, B : int;
-       C : Enum;
-     end record with Convention => C;
+..
+  language_version 2012
 
 -----------------
 Parameter Modes
