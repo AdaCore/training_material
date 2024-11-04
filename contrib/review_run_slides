@@ -122,10 +122,25 @@ def run_watch(run_id, course):
     return r == Artifact
 
 
+def capitalize_words(s):
+    upper = True
+    r = ""
+    for c in s:
+        if upper:
+            r += c.upper()
+        else:
+            r += c.lower()
+        upper = c == " "
+    return r
+
+
 def main():
     ap = ArgumentParser(description=script_description)
-    ap.add_argument("course", nargs="?",
-                help="Course to download, can be the full name of the artifact, or the path to a txt or rst that should be downloaded. It can also be unset, in which case the script will try to guess it from your current repository state (it's not too smart at it though).")
+    ap.add_argument(
+        "course",
+        nargs="?",
+        help="Course to download, can be the full name of the artifact, or the path to a txt or rst that should be downloaded. It can also be unset, in which case the script will try to guess it from your current repository state (it's not too smart at it though).",
+    )
     ap.add_argument("branch", nargs="?")
     ap.add_argument(
         "-W",
@@ -151,16 +166,17 @@ def main():
             # option 4: we read the course as if it was provided from the command line
             #           falling back to option 1 or 2
             with open(single, "rt") as f:
-                course = f.readlines()[0]
+                course = Path("courses") / f.read().splitlines()[0]
 
     def artifact_to_downloaded_dir(artifact_name):
         return OUT / artifact_name
 
-    def course_file_to_artifact(p : Path):
+    def course_file_to_artifact(p: Path):
+        ext_name = capitalize_words(p.with_suffix("").name.replace("_", " "))
         with open(p.parent / "course.toml", "rt") as f:
-            return toml.load(f)["name"]
+            return toml.load(f)["name"] + f" - {ext_name}"
 
-    def course_file_to_pdf_name(downloaded_dir : Path, p : Path):
+    def course_file_to_pdf_name(downloaded_dir: Path, p: Path):
         return downloaded_dir / p.with_suffix(".pdf").name
 
     if course is not None:
@@ -169,7 +185,7 @@ def main():
         if cpath.is_file():
             # 2. course is the name of a file
             artifact_name = course_file_to_artifact(cpath)
-            if cpath.suffix == ".txt": 
+            if cpath.suffix == ".txt":
                 # 2a. the artifact has a single PDF, because the file is a txt
                 pdf_name = None
             else:
@@ -243,6 +259,7 @@ def main():
             cmd.open(all_pdf[0])
     else:
         cmd.open(pdf_name)
+
 
 if __name__ == "__main__":
     main()
