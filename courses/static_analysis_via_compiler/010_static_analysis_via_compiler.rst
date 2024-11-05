@@ -971,14 +971,14 @@ OOP Restrictions
   + Allows
 
     + Record extensions
-    + Classwide membership tests
-    + Other classwide features
+    + Class-wide membership tests
+    + Other class-wide features
 
   + Does not allow involving implicit dispatching
 
   + Comparable to :ada:`No_Dispatch`
 
-    + Except allows all classwide constructs that do not imply dispatching
+    + Except allows all class-wide constructs that do not imply dispatching
 
 ------
 Quiz

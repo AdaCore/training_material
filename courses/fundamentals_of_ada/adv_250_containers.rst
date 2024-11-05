@@ -104,7 +104,7 @@ Data Structures (2/2)
 
 * Holder
 
-    - Wraps around an indefinite (unconstrained, classwide ...)
+    - Wraps around an indefinite (unconstrained, class-wide ...)
     - Resulting type is definite
     - Single element, no iteration or cursor
 
