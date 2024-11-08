@@ -713,7 +713,7 @@ Understanding McCabe Complexity
 
   v(G) = E - N + 2 * P
 
-+ Aimed a measuring the complexity of execution paths
++ Aimed at measuring the complexity of execution paths
 + Needs to be adapted for each language
 
 ----------------

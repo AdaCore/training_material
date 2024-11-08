@@ -64,7 +64,7 @@ What Is Static Analysis?
 + *May* be exhaustive
 
   + All possible errors are reported
-  + No false negatives; there may be false positives
+  + No false negatives; there *may* be false positives
 
     + If the analyzer does not report a problem, there is no problem
 
@@ -96,7 +96,7 @@ What Is GNAT SAS?
   + Numeric overflows
   + Numeric wraparounds
   + Improper use of Application Programming Interfaces (APIs)
-  + and more
+  + ...and more
 
 ------------------------
 What Does GNAT SAS Do?

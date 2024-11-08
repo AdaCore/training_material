@@ -159,7 +159,7 @@ Typical Users and Use Cases
 + Reviewers
 
   + **Annotate** code with analysis of potential problems
-  + **Analyse** specific CWE issues
+  + **Analyze** specific CWE issues
 
 + Project managers and quality engineers
 

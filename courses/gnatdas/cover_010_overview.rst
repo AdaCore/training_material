@@ -58,7 +58,7 @@ Coverage Data Gathering
 
   * :dfn:`Binary traces`
 
-    * Produced by instrumented execution environment with unmodifed version of program.
+    * Produced by instrumented execution environment with unmodifed version of program
     * Traces contain low level information about executed blocks of machine instructions
 
   * :dfn:`Source traces`
