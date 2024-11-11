@@ -2,9 +2,9 @@
 GNATcoverage From GNAT Studio
 *******************************
 
-.. PRELUDE: BEGIN
+.. PRELUDE:: BEGIN
 
-.. PRELUDE: ROLES
+.. PRELUDE:: ROLES
 
 .. role:: ada(code)
     :language: Ada
@@ -15,7 +15,7 @@ GNATcoverage From GNAT Studio
 .. role:: cpp(code)
     :language: C++
 
-.. PRELUDE: SYMBOLS
+.. PRELUDE:: SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 .. |forall| replace:: :math:`\forall`
@@ -27,11 +27,11 @@ GNATcoverage From GNAT Studio
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. PRELUDE: REQUIRES
+.. PRELUDE:: REQUIRES
 
-.. PRELUDE: PROVIDES
+.. PRELUDE:: PROVIDES
 
-.. PRELUDE: END
+.. PRELUDE:: END
 
 ==============
 Introduction

@@ -8,6 +8,7 @@ import argparse
 import hashlib
 
 
+PRELUDE_FLAG = "PRELUDE:: "
 PROJECT = Path(sys.argv[0]).resolve().parents[2]
 CONTRIB = PROJECT / "contrib"
 PRELUDE_RST = PROJECT / "support_files" / "prelude.rst"
@@ -22,7 +23,7 @@ def load_prelude():
 
     with open(PRELUDE_RST, "r") as file:
         content = file.read()
-        pieces = content.split("PRELUDE: ")
+        pieces = content.split(PRELUDE_FLAG)
         for section in pieces:
             stripped = section.strip()
             try:
@@ -85,7 +86,7 @@ def process_one_file(filename, interactive):
         failures = ""
     with open(filename, "r") as file:
         content = file.read()
-        pieces = content.split("PRELUDE: ")
+        pieces = content.split(PRELUDE_FLAG)
         for section in pieces:
             stripped = section.strip()
             name, content = section.split("\n", 1)

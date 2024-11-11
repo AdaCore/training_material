@@ -2,9 +2,9 @@
 Expressions
 *************
 
-.. PRELUDE: BEGIN
+.. PRELUDE:: BEGIN
 
-.. PRELUDE: ROLES
+.. PRELUDE:: ROLES
 
 .. role:: ada(code)
     :language: Ada
@@ -15,7 +15,7 @@ Expressions
 .. role:: cpp(code)
     :language: C++
 
-.. PRELUDE: SYMBOLS
+.. PRELUDE:: SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 .. |forall| replace:: :math:`\forall`
@@ -27,11 +27,11 @@ Expressions
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. PRELUDE: REQUIRES
+.. PRELUDE:: REQUIRES
 
-.. PRELUDE: PROVIDES
+.. PRELUDE:: PROVIDES
 
-.. PRELUDE: END
+.. PRELUDE:: END
 
 .. include:: 080_expressions/01-introduction.rst
 .. include:: 080_expressions/02-membership_tests.rst
