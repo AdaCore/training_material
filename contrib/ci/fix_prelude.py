@@ -8,23 +8,111 @@ import argparse
 import hashlib
 
 
+PRELUDE_FLAG = "container:: PRELUDE "
 PROJECT = Path(sys.argv[0]).resolve().parents[2]
 CONTRIB = PROJECT / "contrib"
+PRELUDE_RST = PROJECT / "support_files" / "prelude.rst"
+
+EXPECTED = {}
+ROLES = None
+SYMBOLS = None
+
+VALIDATORS = {
+    "ROLES": "validate_content",
+    "SYMBOLS": "validate_content",
+    "PROVIDES": "validate_provides",
+}
 
 
-def rst_update_prelude(files):
-    subprocess.check_call(
-        str(s)
-        for s in [sys.executable, CONTRIB / "rst_update_prelude.py", "-i"] + files
-    )
+def load_prelude():
+    global EXPECTED
+
+    with open(PRELUDE_RST, "r") as file:
+        content = file.read()
+        pieces = content.split(PRELUDE_FLAG)
+        for section in pieces:
+            stripped = section.strip()
+            try:
+                name, content = section.split("\n", 1)
+                EXPECTED[name] = content.strip()
+            except:
+                pass
 
 
-def files_digest(files):
-    h = hashlib.sha256()
-    for f in sorted(files):
-        with open(f, "rb") as frd:
-            h.update(frd.read())
-    return h.digest()
+def validate_content(name, content):
+    global EXPECTED
+    return content == EXPECTED[name]
+
+
+def validate_provides(name, content):
+    global EXPECTED
+    return True
+
+
+def compare_content(title, actual_str):
+    global EXPECTED
+    retval = []
+    actual = actual_str.split("\n")
+    expected = EXPECTED[title].split("\n")
+    l_actual = len(actual)
+    l_expected = len(expected)
+    length = min([l_actual, l_expected])
+    for idx in range(0, length):
+        if actual[idx] != expected[idx]:
+            retval.append("In " + title)
+            retval.append("  Line " + str(idx + 1))
+            retval.append("    Actual  : " + actual[idx])
+            retval.append("    Expected: " + expected[idx])
+    if len(retval) == 0 and l_actual < l_expected:
+        retval.append("In " + title + " missing:")
+        for idx in range(l_actual, l_expected):
+            retval.append("    " + expected[idx])
+    elif len(retval) == 0 and l_actual > l_expected:
+        retval.append("In " + title + " extra:")
+        for idx in range(l_expected, l_actual):
+            retval.append("    " + actual[idx])
+    return retval
+
+
+def process_one_file(filename, interactive):
+    global VALIDATORS
+
+    failures = None
+
+    sections_needed = ["BEGIN", "ROLES", "SYMBOLS", "REQUIRES", "PROVIDES", "END"]
+
+    if interactive:
+        failures = []
+    else:
+        failures = ""
+    with open(filename, "r") as file:
+        content = file.read()
+        pieces = content.split(PRELUDE_FLAG)
+        for section in pieces:
+            stripped = section.strip()
+            name, content = section.split("\n", 1)
+            try:
+                sections_needed.remove(name)
+            except:
+                pass
+            content = content.strip()
+            if name in VALIDATORS.keys():
+                validator = VALIDATORS[name]
+                if not globals()[validator](name, content):
+                    if interactive:
+                        failures.extend(compare_content(name, content))
+                    else:
+                        failures = failures + " " + name
+    if len(sections_needed) > 0:
+        if interactive:
+            failures.append("Missing Section(s)")
+            for section in sections_needed:
+                failures.append("   " + section)
+        else:
+            for section in sections_needed:
+                failures = failures + " " + section
+
+    return failures
 
 
 if __name__ == "__main__":
@@ -32,11 +120,11 @@ if __name__ == "__main__":
     ap.add_argument(
         "--files-to-check", type=Path, default=CONTRIB / "rst_files_with_prelude.txt"
     )
-    ap.add_argument("--no-digests-check", "-C", action="store_true")
+    ap.add_argument("--interactive", action="store_true")
     args = ap.parse_args()
 
-    check_digest = not args.no_digests_check
-    digests_have_changed = False
+    total_failures = 0
+    load_prelude()
 
     with open(args.files_to_check, "rt") as f:
         files_with_prelude_glob = f.read().splitlines()
@@ -46,15 +134,15 @@ if __name__ == "__main__":
         if not f_prel:
             continue
 
-        print(glob)
-        if check_digest:
-            before = files_digest(f_prel)
+        for one in f_prel:
+            failures = process_one_file(one, args.interactive)
+            if len(failures) > 0:
+                total_failures = total_failures + 1
+                if args.interactive:
+                    print("FAIL: " + str(one))
+                    for line in failures:
+                        print("  " + line)
+                else:
+                    print("FAIL: " + str(one) + failures)
 
-        rst_update_prelude(f_prel)
-        if check_digest and before != files_digest(f_prel):
-            print(f"{glob}: files didn't have the proper prelude", file=sys.stderr)
-            print(f"run {Path(sys.argv[0]).name} locally and commit the results to fix")
-            digests_have_changed = True
-
-    if check_digest:
-        sys.exit(0 if not digests_have_changed else 1)
+    sys.exit(0 if total_failures == 0 else 1)

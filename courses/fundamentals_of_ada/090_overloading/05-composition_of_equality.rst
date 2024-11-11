@@ -135,4 +135,3 @@ D. ``function "=" (L, R : Coord_3D_T) return Boolean is (L = R);``
    We are looking to use our own equality operator (that compares absolute
    values) so the only time that happens is when we examine each
    :ada:`Range_T` component individually
-
