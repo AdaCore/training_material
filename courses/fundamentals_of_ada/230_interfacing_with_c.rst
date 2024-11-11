@@ -2,9 +2,9 @@
 Interfacing with C
 **********************
 
-.. PRELUDE:: BEGIN
+.. container:: PRELUDE BEGIN
 
-.. PRELUDE:: ROLES
+.. container:: PRELUDE ROLES
 
 .. role:: ada(code)
     :language: Ada
@@ -15,7 +15,7 @@ Interfacing with C
 .. role:: cpp(code)
     :language: C++
 
-.. PRELUDE:: SYMBOLS
+.. container:: PRELUDE SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 .. |forall| replace:: :math:`\forall`
@@ -27,11 +27,11 @@ Interfacing with C
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. PRELUDE:: REQUIRES
+.. container:: PRELUDE REQUIRES
 
-.. PRELUDE:: PROVIDES
+.. container:: PRELUDE PROVIDES
 
-.. PRELUDE:: END
+.. container:: PRELUDE END
 
 ==============
 Introduction

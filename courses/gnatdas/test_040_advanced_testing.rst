@@ -2,9 +2,9 @@
 Advanced Testing Techniques
 *****************************
 
-.. PRELUDE:: BEGIN
+.. container:: PRELUDE BEGIN
 
-.. PRELUDE:: ROLES
+.. container:: PRELUDE ROLES
 
 .. role:: ada(code)
     :language: Ada
@@ -15,7 +15,7 @@ Advanced Testing Techniques
 .. role:: cpp(code)
     :language: C++
 
-.. PRELUDE:: SYMBOLS
+.. container:: PRELUDE SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 .. |forall| replace:: :math:`\forall`
@@ -27,11 +27,11 @@ Advanced Testing Techniques
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. PRELUDE:: REQUIRES
+.. container:: PRELUDE REQUIRES
 
-.. PRELUDE:: PROVIDES
+.. container:: PRELUDE PROVIDES
 
-.. PRELUDE:: END
+.. container:: PRELUDE END
 
 ==========
 Overview

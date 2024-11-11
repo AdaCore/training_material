@@ -8,7 +8,7 @@ import argparse
 import hashlib
 
 
-PRELUDE_FLAG = "PRELUDE:: "
+PRELUDE_FLAG = "container:: PRELUDE "
 PROJECT = Path(sys.argv[0]).resolve().parents[2]
 CONTRIB = PROJECT / "contrib"
 PRELUDE_RST = PROJECT / "support_files" / "prelude.rst"

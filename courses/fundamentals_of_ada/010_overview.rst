@@ -2,9 +2,9 @@
 Overview
 **********
 
-.. PRELUDE:: BEGIN
+.. container:: PRELUDE BEGIN
 
-.. PRELUDE:: ROLES
+.. container:: PRELUDE ROLES
 
 .. role:: ada(code)
     :language: Ada
@@ -15,7 +15,7 @@ Overview
 .. role:: cpp(code)
     :language: C++
 
-.. PRELUDE:: SYMBOLS
+.. container:: PRELUDE SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 .. |forall| replace:: :math:`\forall`
@@ -27,11 +27,11 @@ Overview
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. PRELUDE:: REQUIRES
+.. container:: PRELUDE REQUIRES
 
-.. PRELUDE:: PROVIDES
+.. container:: PRELUDE PROVIDES
 
-.. PRELUDE:: END
+.. container:: PRELUDE END
 
 ==================
 A Little History

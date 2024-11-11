@@ -2,9 +2,9 @@
 Reviewing Results and Improving Code
 **************************************
 
-.. PRELUDE:: BEGIN
+.. container:: PRELUDE BEGIN
 
-.. PRELUDE:: ROLES
+.. container:: PRELUDE ROLES
 
 .. role:: ada(code)
     :language: Ada
@@ -15,7 +15,7 @@ Reviewing Results and Improving Code
 .. role:: cpp(code)
     :language: C++
 
-.. PRELUDE:: SYMBOLS
+.. container:: PRELUDE SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 .. |forall| replace:: :math:`\forall`
@@ -27,11 +27,11 @@ Reviewing Results and Improving Code
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. PRELUDE:: REQUIRES
+.. container:: PRELUDE REQUIRES
 
-.. PRELUDE:: PROVIDES
+.. container:: PRELUDE PROVIDES
 
-.. PRELUDE:: END
+.. container:: PRELUDE END
 
 ====================
 Reviewing Messages

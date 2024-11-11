@@ -2,9 +2,9 @@
 Advanced Access Types
 ***********************
 
-.. PRELUDE:: BEGIN
+.. container:: PRELUDE BEGIN
 
-.. PRELUDE:: ROLES
+.. container:: PRELUDE ROLES
 
 .. role:: ada(code)
     :language: Ada
@@ -15,7 +15,7 @@ Advanced Access Types
 .. role:: cpp(code)
     :language: C++
 
-.. PRELUDE:: SYMBOLS
+.. container:: PRELUDE SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 .. |forall| replace:: :math:`\forall`
@@ -27,11 +27,11 @@ Advanced Access Types
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. PRELUDE:: REQUIRES
+.. container:: PRELUDE REQUIRES
 
-.. PRELUDE:: PROVIDES
+.. container:: PRELUDE PROVIDES
 
-.. PRELUDE:: END
+.. container:: PRELUDE END
 
 .. include:: 140_access_types/01-introduction.rst
 .. include:: 140_access_types/02-access_types.rst
