@@ -365,6 +365,7 @@ SUPPORTED_CLASSES = [
     "speakernote",
     "columns",
     "column",
+    "PRELUDE",
     "latex_environment",
     "footnotesize",
 ] + list(ADMONITION_FORMAT.keys())
@@ -511,6 +512,26 @@ def latex_environment(classes, contents):
 
     else:
         return contents
+
+
+#############
+## PRELUDE ##
+#############
+
+"""
+   We are using containers to store the PRELUDE keywords
+   for parsing data required to be in each RST file.
+   We are just going to return the contents (which should
+   be empty anyways)
+"""
+
+
+def is_prelude(classes):
+    return ("container" in classes) and ("PRELUDE" in classes)
+
+
+def prelude(classes, contents):
+    return contents
 
 
 ###########
@@ -817,6 +838,9 @@ def perform_filter(key, value, format, meta):
 
             if is_latex_environment(classes):
                 return latex_environment(classes, contents)
+
+            if is_prelude(classes):
+                return prelude(classes, contents)
 
             # language variant admonition
             elif admonition_type(classes, contents) == "language variant":
