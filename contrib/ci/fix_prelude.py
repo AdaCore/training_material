@@ -18,9 +18,9 @@ ROLES = None
 SYMBOLS = None
 
 VALIDATORS = {
-   "ROLES": "validate_content",
-   "SYMBOLS": "validate_content",
-   "PROVIDES": "validate_provides",
+    "ROLES": "validate_content",
+    "SYMBOLS": "validate_content",
+    "PROVIDES": "validate_provides",
 }
 
 
