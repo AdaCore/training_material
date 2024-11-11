@@ -13,13 +13,19 @@ PROJECT = Path(sys.argv[0]).resolve().parents[2]
 CONTRIB = PROJECT / "contrib"
 PRELUDE_RST = PROJECT / "support_files" / "prelude.rst"
 
+EXPECTED = {}
 ROLES = None
 SYMBOLS = None
 
+VALIDATORS = {
+   "ROLES": "validate_content",
+   "SYMBOLS": "validate_content",
+   "PROVIDES": "validate_provides",
+}
+
 
 def load_prelude():
-    global ROLES
-    global SYMBOLS
+    global EXPECTED
 
     with open(PRELUDE_RST, "r") as file:
         content = file.read()
@@ -28,30 +34,26 @@ def load_prelude():
             stripped = section.strip()
             try:
                 name, content = section.split("\n", 1)
-                if name == "ROLES":
-                    ROLES = content.strip()
-                elif name == "SYMBOLS":
-                    SYMBOLS = content.strip()
+                EXPECTED[name] = content.strip()
             except:
                 pass
 
 
-def validate_roles(content):
-    return content == ROLES
+def validate_content(name, content):
+    global EXPECTED
+    return content == EXPECTED[name]
 
 
-def validate_symbols(content):
-    return content == SYMBOLS
-
-
-def validate_provides(content):
+def validate_provides(name, content):
+    global EXPECTED
     return True
 
 
-def compare_content(title, actual_str, expected_str):
+def compare_content(title, actual_str):
+    global EXPECTED
     retval = []
     actual = actual_str.split("\n")
-    expected = expected_str.split("\n")
+    expected = EXPECTED[title].split("\n")
     l_actual = len(actual)
     l_expected = len(expected)
     length = min([l_actual, l_expected])
@@ -73,8 +75,7 @@ def compare_content(title, actual_str, expected_str):
 
 
 def process_one_file(filename, interactive):
-    global ROLES
-    global SYMBOLS
+    global VALIDATORS
 
     failures = None
 
@@ -95,24 +96,13 @@ def process_one_file(filename, interactive):
             except:
                 pass
             content = content.strip()
-            if name == "ROLES":
-                if not validate_roles(content):
+            if name in VALIDATORS.keys():
+                validator = VALIDATORS[name]
+                if not globals()[validator](name, content):
                     if interactive:
-                        failures.extend(compare_content("ROLES", content, ROLES))
+                        failures.extend(compare_content(name, content))
                     else:
-                        failures = failures + " ROLES"
-            elif name == "SYMBOLS":
-                if not validate_symbols(content):
-                    if interactive:
-                        failures.extend(compare_content("SYMBOLS", content, SYMBOLS))
-                    else:
-                        failures = failures + " SYMBOLS"
-            elif name == "PROVIDES":
-                if not validate_provides(content):
-                    if interactive:
-                        failures.append("PROVIDES section is empty")
-                    else:
-                        failures = failures + " PROVIDES"
+                        failures = failures + " " + name
     if len(sections_needed) > 0:
         if interactive:
             failures.append("Missing Section(s)")
