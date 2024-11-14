@@ -20,14 +20,28 @@ Object-Level Operations
 
 * Conversions
 
-   .. code:: Ada
-
-      C := Foo (B);
-
    - Component types must be the same type
    - Index types must be the same or convertible
    - Dimensionality must be the same
    - Bounds must be compatible (not necessarily equal)
+
+   .. code:: Ada
+
+      declare
+         type Index1_T is range 1 .. 2;
+         type Index2_T is range 101 .. 102;
+         type Array1_T is array (Index1_T) of Integer;
+         type Array2_T is array (Index2_T) of Integer;
+         type Array3_T is array (Boolean) of Integer;
+
+         One   : Array1_T;
+         Two   : Array2_T;
+         Three : Array3_T;
+
+      begin
+
+         One := Array1_T (Two);    -- OK
+         Two := Array2_T (Three);  -- Illegal (indices not convertible)
 
 -------------------------------
 Extra Object-Level Operations
