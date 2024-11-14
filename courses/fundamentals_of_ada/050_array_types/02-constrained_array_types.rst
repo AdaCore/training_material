@@ -6,28 +6,35 @@ Constrained Array Types
 Constrained Array Type Declarations
 -------------------------------------
 
-* Syntax
+* Syntax (simplified)
 
-      .. code:: Ada
-
-         constrained_array_definition ::=
-            array index_constraint of subtype_indication
-         index_constraint ::= (discrete_subtype_definition
-            {, discrete_subtype_indication})
-         discrete_subtype_definition ::=
-            discrete_subtype_indication | range
-         subtype_indication ::= subtype_mark [constraint]
-         range ::= range_attribute_reference |
-            simple_expression .. simple_expression
-
-* Examples
+.. container:: latex_environment footnotesize
 
    .. code:: Ada
 
-      type Full_Week_T is array (Days) of Float;
-      type Work_Week_T is array (Days range Mon .. Fri) of Float;
-      type Weekdays is array (Mon .. Fri) of Float;
-      type Workdays is array (Weekdays'Range) of Float;
+      type <typename> is array (<index constraint>) of <constrained type>;
+
+   * where
+
+      **typename**
+         is an identifier
+
+      **index constraint**
+         is a discrete range or type
+
+      **constrained type**
+         is a typemark with a size known at compile time
+
+* Examples
+
+.. container:: latex_environment footnotesize
+
+   .. code:: Ada
+
+      type Integer_Array_T is array (1 .. 3) of Integer;
+      type Boolean_Array_T is array (Boolean) of Integer;
+      type Character_Array_T is array (character range 'a' .. 'z') of Boolean;
+      type Copycat_T is array (Boolean_Array_T'Range) of Integer;
 
 ------
 Quiz
