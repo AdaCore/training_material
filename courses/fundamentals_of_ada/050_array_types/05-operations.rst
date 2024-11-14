@@ -142,23 +142,23 @@ Quiz
 
    type Index_T is range 1 .. 10;
    type OneD_T is array (Index_T) of Boolean;
-   type ThreeD_T is array (Index_T, Index_T, Index_T) of OneD_T;
-   A : ThreeD_T;
+   type TwoD_T is array (Index_T) of OneD_T;
+   A : TwoD_T;
    B : OneD_T;
 
 Which statement(s) is (are) legal?
 
-   A. :answermono:`B(1) := A(1,2,3)(1) or A(4,3,2)(1);`
-   B. :answermono:`B := A(2,3,4) and A(4,3,2);`
-   C. ``A(1,2,3..4) := A(2,3,4..5);``
+   A. :answermono:`B(1) := A(1,2) or A(4,3);`
+   B. :answermono:`B := A(2) and A(4);`
+   C. ``A(1..2)(4) := A(5..6)(8);``
    D. :answermono:`B(3..4) := B(4..5)`
 
 .. container:: animate
 
    Explanations
 
-   A. All three objects are just Boolean values
+   A. All objects are just Boolean values
    B. An element of :ada:`A` is the same type as :ada:`B`
-   C. No slicing of multi-dimensional arrays
+   C. Slice must be of outermost array
    D. Slicing allowed on single-dimension arrays
 
