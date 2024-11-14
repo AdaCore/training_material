@@ -213,6 +213,21 @@ Pack Aspect
       -- Rec'Size is 36, Ar'Size is 1000
 
 -------------------------------
+Enum Representation Clauses
+-------------------------------
+
+* Can specify representation for each value
+* Representation must have increasing number
+
+.. code:: Ada
+
+   type E is (A, B, C);
+   for E use (A => 2, B => 4, C => 8);
+
+* Can use :ada:`E'Enum_Rep (A) = 2`
+* Can use :ada:`E'Enum_Val (2) = A`
+
+-------------------------------
 Record Representation Clauses
 -------------------------------
 
@@ -250,6 +265,30 @@ Record Representation Clauses
            -- unused space here
            D at 5 range 0 ..  2;
         end record;
+
+------------------
+Unchecked Unions
+------------------
+
+* Allows replicating C's :c:`union` with **discriminated** records
+* Discriminant is **not stored**
+* No discriminant check
+* Object must be **mutable**
+
+.. code:: Ada
+
+    type R (Is_Float : Boolean := False) is record
+        case Is_Float is
+        when True =>
+            F : Float;
+        when False =>
+            I : Integer;
+        end case;
+    end record
+        with Unchecked_Union;
+
+    O : R := (Is_Float => False, I => 1);
+    F : Float := R.F; --  no check!
 
 ------------------------------
 Array Representation Clauses
