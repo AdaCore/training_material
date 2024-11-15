@@ -48,6 +48,7 @@ Supplying Index Constraints for Objects
       .. code:: Ada
 
          Weekend : Schedule := (Sat => 4.0, Sun => 0.0);
+         -- (Note this is an array aggregate, explained later)
 
    - Further type definitions (shown later)
    - Actual parameter to subprogram (shown later)
@@ -232,23 +233,19 @@ Quiz
 
 .. code:: Ada
 
-   type Array_T is array (Integer range <>) of Integer;
-   subtype Array1_T is Array_T (1 .. 4);
-   subtype Array2_T is Array_T (0 .. 3);
-   X : Array_T  := (1, 2, 3, 4);
-   Y : Array1_T := (1, 2, 3, 4);
-   Z : Array2_T := (1, 2, 3, 4);
+   type Bit_T is range 0 .. 1;
+   type Bit_Array_T is array (Positive range <>) of Bit_T;
 
 .. container:: columns
 
  .. container:: column
 
-   Which statement(s) is (are) legal?
+   Which declaration(s) is (are) legal?
 
-   A. ``X (1) := Y (1);``
-   B. :answermono:`Y (1) := Z (1);`
-   C. :answermono:`Y := X;`
-   D. :answermono:`Z := X;`
+   A. ``AAA : Array_T (0..99);``
+   B. :answermono:`BBB : Array_T (1..32);`
+   C. :answermono:`CCC : Array_T (17..16);`
+   D. ``DDD : Array_T;``
 
  .. container:: column
 
@@ -256,53 +253,7 @@ Quiz
 
    Explanations
 
-   A. :ada:`Array_T` starts at :ada:`Integer'First` not :ada:`1`
-   B. OK, both in range
-   C. OK, same type and size
-   D. OK, same type and size
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-    type My_Array is array (Boolean range <>) of Boolean;
-
-    O : My_Array (False .. False) := (others => True);
-
-What is the value of :ada:`O (True)`?
-
-A. :ada:`False`
-B. :ada:`True`
-C. None: Compilation error
-D. :answer:`None: Run-time error`
-
-.. container:: animate
-
-    :ada:`True` is not a valid index for :ada:`O`.
-
-    NB: GNAT will emit a warning by default.
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-    type My_Array is array (Positive range <>) of Boolean;
-
-    O : My_Array (0 .. -1) := (others => True);
-
-What is the value of :ada:`O'Length`?
-
-A. 1
-B. :answer:`0`
-C. None: Compilation error
-D. None: Run-time error
-
-.. container:: animate
-
-    When the upper bound is less than the lower bound, this is an empty array.
-    For empty arrays, the index can be out of range for the index type.
-
+   A. :ada:`Array_T` index is :ada:`Positive` which starts at 1
+   B. OK, indices are in range
+   C. OK, indicates a zero-length array
+   D. Object must be constrained

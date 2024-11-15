@@ -96,55 +96,6 @@ Array Component For-Loop Example
 ..
   language_version 2012
 
-----------------------------------------
-For-Loops with Multidimensional Arrays
-----------------------------------------
-
-.. container:: columns
-
- .. container:: column
-
-    * Same syntax, regardless of number of dimensions
-    * As if a set of nested loops, one per dimension
-
-       - Last dimension is in innermost loop, so changes fastest
-
-    * In low-level format looks like
-
-    .. code::
-
-       for each row loop
-          for each column loop
-             print Identity (
-                row, column)
-          end loop
-       end loop
-
- .. container:: column
-
-   .. container:: latex_environment small
-
-    .. code:: Ada
-
-       declare
-         subtype Rows is Positive;
-         subtype Columns is Positive;
-         type Matrix is array
-            (Rows range <>,
-             Columns range <>) of Float;
-           Identity : constant Matrix
-              (1..3, 1..3) :=
-                ((1.0, 0.0, 0.0),
-                 (0.0, 1.0, 0.0),
-                 (0.0, 0.0, 1.0));
-       begin
-         for C of Identity loop
-           Put_Line (Float'Image (C));
-         end loop;
-
-..
-  language_version 2012
-
 ------
 Quiz
 ------
@@ -152,14 +103,12 @@ Quiz
 .. code:: Ada
 
    declare
-      type Array_T is array (1..3, 1..3) of Integer
+      type Array_T is array (1..5) of Integer
          with Default_Component_Value => 1;
       A : Array_T;
    begin
-      for I in 2 .. 3 loop
-         for J in 2 .. 3 loop
-            A (I, J) := I * 10 + J;
-         end loop;
+      for I in A'First + 1 .. A'Last - 1 loop
+         A (I) := I * A'Length;
       end loop;
       for I of reverse A loop
          Put (I'Image);
@@ -172,10 +121,10 @@ Quiz
 
    Which output is correct?
 
-      A. 1 1 1 1 22 23 1 32 33
-      B. :answer:`33 32 1 23 22 1 1 1 1`
-      C. 0 0 0 0 22 23 0 32 33
-      D. 33 32 0 23 22 0 0 0 0
+      A. 1 10 15 20 1
+      B. :answer:`1 20 15 10 1`
+      C. 0 10 15 20 0
+      D. 25 20 15 10 5
 
  .. container:: column
 
