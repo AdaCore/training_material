@@ -2,14 +2,9 @@
 GNATmetric Lab Setup
 ----------------------
 
-* Copy the :filename:`tutorial` folder from the course materials location
+* Copy the :filename:`metric_010_overview` folder from the course materials location
 
-* Contents of the tutorial folder:
-
-  * :filename:`sdc.gpr` - project file
-  * :filename:`common` - source directory
-  * :filename:`struct` - source directory
-  * :filename:`obj` - object file (and metrics results) directory 
+  * This folder contains a project file (:filename:`default.gpr`) and some Ada source files
 
 * From a command prompt, type :command:`gnatmetric --help` to verify your path is set correctly
 
@@ -20,9 +15,9 @@ GNATmetric Lab Setup
 GNATmetric Lab - GUI Part 1
 -----------------------------
 
-* Use :toolname:`GNAT Studio` to open the project :filename:`sdc.gpr`
+* Use :toolname:`GNAT Studio` to open the project :filename:`default.gpr`
 
-* Select :filename:`instructions.adb` in the :filename:`struct` folder
+* Open :filename:`line_metrics_example.adb`
 
 * Perform metrics analysis to get all line metrics on this file
 
@@ -31,41 +26,19 @@ GNATmetric Lab - GUI Part 1
 
 .. container:: animate 1-
 
-  Question 1
+  * Question 1: How many lines in the file? In subprogram :ada:`Example`?
 
-.. container:: columns
+.. container:: animate 2-
 
-  .. container:: column
-
-    .. container:: animate 1-
-
-      * How many lines in the file? In subprogram :ada:`Process`?
-
-  .. container:: column
-
-    .. container:: animate 2-
-
-        59 lines in the file
-
-        20 lines in Process
+  19 lines in the file, 8 lines in :ada:`Example`
 
 .. container:: animate 3-
 
-  Question 2
+  * Question 2: Is there any information for the package spec?
 
-.. container:: columns
+.. container:: animate 4-
 
-  .. container:: column
-
-    .. container:: animate 3-
-
-      * Is there any information for the package spec?
-
-  .. container:: column
-
-    .. container:: animate 4-
-
-      No - :menu:`Current File` means actual file, not package
+  No - :menu:`Current File` means actual file, not package
 
 -----------------------------
 GNATmetric Lab - GUI Part 2
@@ -80,41 +53,19 @@ Perform metrics analysis to get all complexity metrics in the project
 
 .. container:: animate 3-
 
-  Question 1
+  * Question 1: What is the average complexity for project?  :ada:`complexity_metrics_example.adb`?
 
-.. container:: columns
+.. container:: animate 4-
 
-  .. container:: column
-
-    .. container:: animate 3-
-
-      * What is the average complexity for the project? :ada:`stack.adb`?
-
-  .. container:: column
-
-    .. container:: animate 4-
-
-        2.3
-
-        1.7
+  1.3 for the project, 2 for the file
 
 .. container:: animate 5-
 
-  Question 2
+  * Question 2: Which file has an statement complexity of 1.5?
 
-.. container:: columns
+.. container:: animate 6-
 
-  .. container:: column
-
-    .. container:: animate 5-
-
-      * Which file has an essential complexity of 1?
-
-  .. container:: column
-
-    .. container:: animate 6-
-
-      :filename:`sdc.adb`
+  :filename:`line_metrics_example.adb`
 
 -----------------------------
 GNATmetric Lab - CLI Part 1
@@ -122,49 +73,25 @@ GNATmetric Lab - CLI Part 1
 
 * Use the command line to generate syntax elements metrics for the project
 
-  :command:`gnatmetric -Psdc.gpr -U --syntax-all`
+  :command:`gnatmetric -Pdefault.gpr -U --syntax-all`
 
 .. container:: animate 1-
 
-  Question 1
+  * Question 1: How many total statements in the project? Declarations?
 
-.. container:: columns
+.. container:: animate 2-
 
-  .. container:: column
-
-    .. container:: animate 1-
-
-      * How many total statements and declarations in the project?
-
-  .. container:: column
-
-    .. container:: animate 2-
-
-        Statements - 160
-
-        Declarations - 195
+  16 statements, 70 declarations
 
 .. container:: animate 3-
 
-  Question 2
+  * Question 2: What are the number of statements and declarations for :ada:`From_String` in package :ada:`Syntax_Metrics_Example`?
 
-.. container:: columns
+.. container:: animate 4-
 
-  .. container:: column
+  3 statements, 4 declarations
 
-    .. container:: animate 3-
-
-      * What are the number of statements and declarations for procedure :ada:`Push` in package :ada:`Stack`?
-
-  .. container:: column
-
-    .. container:: animate 4-
-
-      Statements - 5
-
-      Declarations - 2
-
-      You need to open the file ``obj\stack.adb.metrix`` to get the data
+  You need to open the file ``obj\syntax_metrics_example.adb.metrix`` to get the data
 
 -----------------------------
 GNATmetric Lab - CLI Part 2
@@ -174,22 +101,12 @@ Generate a local version of the combined XML metrics file for coupling metrics w
 
 .. container:: animate 2-
 
-  ``gnatmetric -Psdc.gpr -U --coupling-all --no-text-output --xml-file-name=.\local.xml``
+  ``gnatmetric -Pdefault.gpr -U --coupling-all --no-text-output --xml-file-name=.\local.xml``
 
 .. container:: animate 3-
 
-  Question
+  * Question: How many total lines in the generated XML file?
 
-.. container:: columns
+.. container:: animate 4-
 
-  .. container:: column
-
-    .. container:: animate 3-
-
-      * How many total lines in the generated XML file?
-
-  .. container:: column
-
-    .. container:: animate 4-
-
-        118
+  100
