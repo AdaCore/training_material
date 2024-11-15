@@ -6,7 +6,7 @@ Constrained Array Types
 Constrained Array Type Declarations
 -------------------------------------
 
-* Syntax (simplified)
+Syntax (simplified)
 
 .. container:: latex_environment footnotesize
 
@@ -14,18 +14,17 @@ Constrained Array Type Declarations
 
       type <typename> is array (<index constraint>) of <constrained type>;
 
-   * where
+where
 
-      **typename**
-         is an identifier
+.. container:: latex_environment quote
 
-      **index constraint**
-         is a discrete range or type
+      **typename** - identifier
 
-      **constrained type**
-         is a typemark with a size known at compile time
+      **index constraint** - discrete range or type
 
-* Examples
+      **constrained type** - type with size known at compile time
+
+Examples
 
 .. container:: latex_environment footnotesize
 
