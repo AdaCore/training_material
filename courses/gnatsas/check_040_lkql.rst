@@ -2,8 +2,9 @@
 Writing Your Own Rules
 ************************
 
-..
-    Coding language
+.. container:: PRELUDE BEGIN
+
+.. container:: PRELUDE ROLES
 
 .. role:: ada(code)
     :language: Ada
@@ -14,8 +15,7 @@ Writing Your Own Rules
 .. role:: cpp(code)
     :language: C++
 
-..
-    Math symbols
+.. container:: PRELUDE SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 .. |forall| replace:: :math:`\forall`
@@ -25,11 +25,13 @@ Writing Your Own Rules
 .. |ge| replace:: :math:`\ge`
 .. |lt| replace:: :math:`<`
 .. |gt| replace:: :math:`>`
-
-..
-    Miscellaneous symbols
-
 .. |checkmark| replace:: :math:`\checkmark`
+
+.. container:: PRELUDE REQUIRES
+
+.. container:: PRELUDE PROVIDES
+
+.. container:: PRELUDE END
 
 ==============
 Introduction
