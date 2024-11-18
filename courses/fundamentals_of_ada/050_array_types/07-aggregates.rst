@@ -147,42 +147,15 @@ Aggregate Consistency Rules
 Nested Aggregates
 -------------------
 
-* For multiple dimensions
 * For arrays of composite component types
 
 .. code:: Ada
 
-   type Matrix is array (Positive range <>,
-                         Positive range <>) of Float;
-   Mat_4x2 : Matrix (1..4, 1..2) := (1 =>  (2.5, 3.0),
-                                     2 =>  (1.5, 0.0),
-                                     3 =>  (2.1, 0.0),
-                                     4 =>  (9.0, 0.0));
-
------------------------------
-Tic-Tac-Toe Winners Example
------------------------------
-
-.. code:: Ada
-
-   type Move_Number is range 1 .. 9;
-   -- 8 ways to win
-   type Winning_Combinations is range 1 .. 8;
-   -- need 3 places to win
-   type Required_Positions   is range 1 .. 3;
-   Winning : constant array (Winning_Combinations,
-                             Required_Positions) of
-      Move_Number := (-- rows
-                       1 => (1, 2, 3),
-                       2 => (4, 5, 6),
-                       3 => (7, 8, 9),
-                       -- columns
-                       4 => (1, 4, 7),
-                       5 => (2, 5, 8),
-                       6 => (3, 6, 9),
-                       -- diagonals
-                       7 => (1, 5, 9),
-                       8 => (3, 5, 7) );
+   type Col_T is array (1 .. 3) of Float;
+   type Matrix_T is array (1 .. 3) of Col_T;
+   Matrix : Matrix_T := (1 =>  (1.2, 1.3, 1.4),
+                         2 =>  (2.5, 2.6, 2.7),
+                         3 =>  (3.8, 3.9, 3.0));
 
 ----------------------------------
 Defaults Within Array Aggregates
@@ -345,11 +318,13 @@ More Information on Iterators
 
    Ada 2022
 
-* You can nest iterators for multiple-dimensioned arrays
+* You can nest iterators for arrays of arrays
 
    .. code:: Ada
 
-      Matrix : array (1 .. 3, 1 .. 3) of Positive :=
+      type Col_T is array (1 .. 3) of Integer;
+      type Matrix_T is array (1 .. 3) of Col_T;
+      Matrix : Matrix_T :=
          [for J in 1 .. 3 =>
             [for K in 1 .. 3 => J * 10 + K]];
 

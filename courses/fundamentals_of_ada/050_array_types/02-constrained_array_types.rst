@@ -6,146 +6,34 @@ Constrained Array Types
 Constrained Array Type Declarations
 -------------------------------------
 
-* Syntax
+Syntax (simplified)
 
-      .. code:: Ada
-
-         constrained_array_definition ::=
-            array index_constraint of subtype_indication
-         index_constraint ::= (discrete_subtype_definition
-            {, discrete_subtype_indication})
-         discrete_subtype_definition ::=
-            discrete_subtype_indication | range
-         subtype_indication ::= subtype_mark [constraint]
-         range ::= range_attribute_reference |
-            simple_expression .. simple_expression
-
-* Examples
+.. container:: latex_environment footnotesize
 
    .. code:: Ada
 
-      type Full_Week_T is array (Days) of Float;
-      type Work_Week_T is array (Days range Mon .. Fri) of Float;
-      type Weekdays is array (Mon .. Fri) of Float;
-      type Workdays is array (Weekdays'Range) of Float;
+      type <typename> is array (<index constraint>) of <constrained type>;
 
-----------------------------------
-Multiple-Dimensioned Array Types
-----------------------------------
+where
 
-.. container:: columns
+.. container:: latex_environment quote
 
- .. container:: column
+      **typename** - identifier
 
-    * Declared with more than one index definition
+      **index constraint** - discrete range or type
 
-       - Constrained array types
-       - Unconstrained array types
+      **constrained type** - type with size known at compile time
 
-    * Components accessed by giving value for each index
+Examples
 
- .. container:: column
+.. container:: latex_environment footnotesize
 
-   .. container:: latex_environment small
+   .. code:: Ada
 
-    .. code:: Ada
-
-       type Three_Dimensioned is
-         array (
-           Boolean,
-           12 .. 50,
-           Character range 'a' .. 'z')
-           of Integer;
-         TD : Three_Dimensioned;
-         ...
-       begin
-         TD (True, 42, 'b') := 42;
-         TD (Flag, Count, Char) := 42;
-
------------------------------
-Tic-Tac-Toe Winners Example
------------------------------
-
-.. container:: columns
-
- .. container:: column
-
-    .. code:: Ada
-
-       -- 9 positions on a board
-       type Move_Number is range 1 .. 9;
-       -- 8 ways to win
-       type Winning_Combinations is
-          range 1 .. 8;
-       -- need 3 positions to win
-       type Required_Positions is
-          range 1 .. 3;
-       Winning : constant array (
-          Winning_Combinations,
-          Required_Positions)
-          of Move_Number := (1 => (1,2,3),
-                             2 => (1,4,7),
-                             ...
-
- .. container:: column
-
-    .. list-table::
-       :width: 55%
-
-      * - :superscript:`1` **X**
-
-        - :superscript:`2` **X**
-        - :superscript:`3` **X**
-
-      * - :superscript:`4`
-
-        - :superscript:`5`
-        - :superscript:`6`
-
-      * - :superscript:`7`
-
-        - :superscript:`8`
-        - :superscript:`9`
-
-      * -
-
-        -
-        -
-
-      * - :superscript:`1` **X**
-
-        - :superscript:`2`
-        - :superscript:`3`
-
-      * - :superscript:`4` **X**
-
-        - :superscript:`5`
-        - :superscript:`6`
-
-      * - :superscript:`7` **X**
-
-        - :superscript:`8`
-        - :superscript:`9`
-
-      * -
-
-        -
-        -
-
-      * - :superscript:`1` **X**
-
-        - :superscript:`2`
-        - :superscript:`3`
-
-      * - :superscript:`4`
-
-        - :superscript:`5` **X**
-        - :superscript:`6`
-
-      * - :superscript:`7`
-
-        - :superscript:`8`
-        - :superscript:`9` **X**
+      type Integer_Array_T is array (1 .. 3) of Integer;
+      type Boolean_Array_T is array (Boolean) of Integer;
+      type Character_Array_T is array (character range 'a' .. 'z') of Boolean;
+      type Copycat_T is array (Boolean_Array_T'Range) of Integer;
 
 ------
 Quiz
