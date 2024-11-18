@@ -16,6 +16,19 @@ To flag those type declarations we must define a criteria list:
 
 We're going to see how to express those criteria using LKQL.
 
+-----------------
+Example Project
+-----------------
+
+* Copy the :filename:`check_40_lkql` folder from the course materials location
+
+* Contents of the folder:
+
+  * :filename:`default.gpr` - project file
+  * :filename:`src` - source directory
+
+    * Contains package :ada:`test_pkg` with some example integer-based definitions (as seen on the next two slides)
+
 ---------------------------
 Source Code Specification
 ---------------------------
@@ -98,7 +111,7 @@ Step 1 - Flag All Integers
 
 3. Test it out - see what happens when you run the rule::
 
-      gnatcheck -P prj.gpr --rules-dir=. -rules +Renum_for_integer
+      gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
 
    * This gives us the output::
 
@@ -184,7 +197,7 @@ Step 4 - Use First Criteria in Rule
 
 2. Test it out - see what happens when you run the rule::
 
-      gnatcheck -P prj.gpr --rules-dir=. -rules +Renum_for_integer
+      gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
 
    * This gives us the output::
 
@@ -249,7 +262,7 @@ Step 6 - Improve Types Filter
 
 2. Test it out - see what happens when you run the rule::
 
-      gnatcheck -P prj.gpr --rules-dir=. -rules +Renum_for_integer
+      gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
 
    * This gives us the output::
 
@@ -284,7 +297,7 @@ Step 7 - Implement Third Criteria
 
 2. And once again test it out
 
-      gnatcheck -P prj.gpr --rules-dir=. -rules +Renum_for_integer
+      gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
 
    * This gives us the output::
 
@@ -396,7 +409,7 @@ Final Result
 
 * One more run to get the "correct" result
 
-   gnatcheck -P prj.gpr --rules-dir=. -rules +Renum_for_integer
+   gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
 
 * This gives us the output
 
