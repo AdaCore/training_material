@@ -25,9 +25,9 @@ Array Lab
    - Slices are how you access part of an array
    - Use aggregates (either named or positional) to initialize data
 
----------------------
-Multiple Dimensions
----------------------
+------------------
+Arrays of Arrays
+------------------
 
 * Requirements
 
