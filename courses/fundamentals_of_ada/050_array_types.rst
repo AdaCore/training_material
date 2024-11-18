@@ -2,8 +2,9 @@
 Array Types
 *************
 
-..
-    Coding language
+.. container:: PRELUDE BEGIN
+
+.. container:: PRELUDE ROLES
 
 .. role:: ada(code)
     :language: Ada
@@ -14,8 +15,7 @@ Array Types
 .. role:: cpp(code)
     :language: C++
 
-..
-    Math symbols
+.. container:: PRELUDE SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
 .. |forall| replace:: :math:`\forall`
@@ -25,11 +25,13 @@ Array Types
 .. |ge| replace:: :math:`\ge`
 .. |lt| replace:: :math:`<`
 .. |gt| replace:: :math:`>`
-
-..
-    Miscellaneous symbols
-
 .. |checkmark| replace:: :math:`\checkmark`
+
+.. container:: PRELUDE REQUIRES
+
+.. container:: PRELUDE PROVIDES
+
+.. container:: PRELUDE END
 
 .. include:: 050_array_types/01-introduction.rst
 .. include:: 050_array_types/02-constrained_array_types.rst

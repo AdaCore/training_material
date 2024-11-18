@@ -11,7 +11,8 @@ procedure Main is
    Array_Var : Unconstrained_Array_T (Days_Of_Week_T);
 
    type Name_T is array (1 .. 6) of Character;
-   Weekly_Staff : array (Days_Of_Week_T, 1 .. 3) of Name_T;
+   type Names_T is array (1 .. 3) of Name_T;
+   Weekly_Staff : array (Days_Of_Week_T) of Names_T;
 --Declarations
 
 --Implementation
@@ -41,10 +42,10 @@ begin
                     Wed    => ("closed", "closed", "closed"),
                     others => ("Pinky ", "Inky  ", "Blinky"));
 
-   for Day in Weekly_Staff'Range (1) loop
+   for Day in Weekly_Staff'Range loop
       Put_Line (Day'Image);
-      for Staff in Weekly_Staff'Range (2) loop
-         Put_Line ("  " & String (Weekly_Staff (Day, Staff)));
+      for Staff of Weekly_Staff(Day) loop
+         Put_Line ("  " & String (Staff));
       end loop;
    end loop;
 end Main;
