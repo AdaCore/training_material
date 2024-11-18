@@ -2,7 +2,7 @@
 GNATcheck Getting Started Lab
 -------------------------------
 
-* Copy the :filename:`getting_started` folder from the course materials location
+* Copy the :filename:`check_020_getting_started` folder from the course materials location
 
 * Contents of the folder:
 
@@ -15,7 +15,7 @@ GNATcheck Getting Started Lab
 Preparing the Command Line
 ----------------------------
 
-1. Open a command prompt window and navigate to the :filename:`getting_started` folder
+1. Open a command prompt window and navigate to the :filename:`check_020_getting_started` folder
 
 2. Type :command:`gnatcheck` and press :menu:`Enter` to verify tool is on your path
 
