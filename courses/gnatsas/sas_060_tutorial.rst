@@ -72,14 +72,15 @@ Getting Started
 
 * This module is a lab-based version of the *GNAT SAS Tutorial* found `here <https://docs.adacore.com/live/wave/gnatsas/html/tutorial/index.html>`_
 
-* Copy the :filename:`tutorial` folder from the course materials location
+* Copy the :filename:`sas_060_tutorial` folder from the course materials location
 
-* Contents of the tutorial folder:
+* Contents of the folder:
 
   * :filename:`sdc.gpr` - project file
   * :filename:`common` - source directory
   * :filename:`struct` - source directory
   * :filename:`obj` - object file (and metrics results) directory
+  * :filename:`input.txt` - example input for application
 
 ----------------------
 Starting GNAT Studio
