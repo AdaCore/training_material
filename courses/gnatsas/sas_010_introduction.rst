@@ -74,7 +74,7 @@ Why Use :toolname:`GNAT SAS`?
 
 + Efficient automated code reviewer
 
-  + Identifies run-time errors with a **level of certainty**
+  + Identifies runtime errors with a **level of certainty**
 
     + E.g. buffer overflows, division by zero
 
