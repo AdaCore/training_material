@@ -104,7 +104,7 @@ GNAT SAS in a Nutshell (2/2)
 
 + Detects runtime and logic errors
 
-  + Initialization errors, run-time errors and assertion failures
+  + Initialization errors, runtime errors and assertion failures
   + Race condition errors: unprotected access to globals
 
 + Warns on dead or suspicious code
@@ -128,8 +128,8 @@ Integrated Analysis Engines
 
 + Inspector
 
-  + Excels in detecting possibly failing run-time checks as well as wide range of logical errors
-  + Determines preconditions on the inputs necessary to preclude run-time failures
+  + Excels in detecting possibly failing runtime checks as well as wide range of logical errors
+  + Determines preconditions on the inputs necessary to preclude runtime failures
   + Makes presumptions about return values of external subprograms
   + Identifies postconditions that characterize the range of outputs
 
@@ -143,7 +143,7 @@ Integrated Analysis Engines
 + GNAT Warnings
 
   + Provides warning issued by GNAT compiler frontend
-  + Detects things like suspicious constructs and warnings when the compiler is sure an exception will be raised at run-time
+  + Detects things like suspicious constructs and warnings when the compiler is sure an exception will be raised at runtime
 
 + GNATcheck
 

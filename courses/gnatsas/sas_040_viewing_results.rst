@@ -105,7 +105,7 @@ Message Kinds
 * Message kinds fall into one of the following categories
 
   * Warning - compilation warnings issued by GNAT front end
-  * Check - possible run-time check failures
+  * Check - possible runtime check failures
   * Informational - extra information about a message
   * Race Condition - messages about synchronization objects
   * Annotation - Information about a subprogram determined by analysis
