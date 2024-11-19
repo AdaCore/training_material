@@ -24,4 +24,7 @@ package Test_Pkg is
    type Generic_Instantiaion_T is range 0 .. 100;
    package IO is new Ada.Text_IO.Integer_IO (Generic_Instantiaion_T);
 
+   type Non_Integer_T is digits 6 range 0.0 .. 100.0;
+   function Supplier7 (X : Non_Integer_T) return Non_Integer_T;
+
 end Test_Pkg;

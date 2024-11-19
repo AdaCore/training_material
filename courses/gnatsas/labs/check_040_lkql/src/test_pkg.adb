@@ -18,4 +18,7 @@ package body Test_Pkg is
    function Supplier6 (X : Derived_T) return Derived_T is
      (X);
 
+   function Supplier7 (X : Non_Integer_T) return Non_Integer_T is
+     (X);
+
 end Test_Pkg;
