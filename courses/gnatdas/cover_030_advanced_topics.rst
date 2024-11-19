@@ -352,7 +352,6 @@ xml
       .. container:: latex_environment tiny
 
          With exemptions
-
          ::
 
             60% of 5 lines covered
