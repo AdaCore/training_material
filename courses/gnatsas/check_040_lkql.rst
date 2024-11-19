@@ -219,8 +219,6 @@ Mapping Python API to LKQL API
 
           val expr_types = [node.p_expression_type() for node in select Expr]
 
-In the future LKQL will have its own LAL API documentation.
-
 -------------------------------
 Integrating LKQL in GNATcheck
 -------------------------------

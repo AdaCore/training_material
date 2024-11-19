@@ -57,9 +57,7 @@ Build Harness for One Unit
 Create Tests
 --------------
 
-* Re-write or copy the test answers from the *Usage* lab (or use these)
-
-.. container:: latex_environment tiny
+* Re-write or copy the test answers from the *Usage* lab (here are some examples)
 
    .. code:: Ada
 
@@ -95,35 +93,6 @@ Create Tests
       -- Empty
       Reset;
       AUnit.Assertions.Assert (Empty, "Stack not empty");
-
-      -- Full
-      while not Full loop
-         Push (567);
-      end loop;
-      Push (999);
-      AUnit.Assertions.Assert (Full and then Top = 567,
-                               "Full check failed");
-
-      -- Top
-      Reset;
-      declare
-         Pushed : constant integer := 234;
-      begin
-         Push (Pushed);
-         AUnit.Assertions.Assert (Pushed = Top,
-                                  "Top test failed");
-      end;
-
-      -- Count
-      Reset;
-      Push (111);
-      AUnit.Assertions.Assert (Count = 1,
-                               "Count test failed");
-
-      -- Reset
-      Reset;
-      AUnit.Assertions.Assert (Count = 0 and then Empty,
-                               "Reset test failed");
 
 -----------------------------------
 Ensure Every Test Starts the Same

@@ -65,7 +65,7 @@ What Is Dynamic Analysis?
 What Is GNAT DAS?
 -------------------
 
-+ Two tools that can work together to analyze code execution
++ Tools that can work together to analyze code execution
 
   + :toolname:`GNATcoverage`
 
@@ -74,3 +74,7 @@ What Is GNAT DAS?
   + :toolname:`GNATtest`
 
     + Creates framework to build software tests for your codebase
+
+  + :toolname:`GNATfuzz`
+
+    + Automates dynamic testing by generating and executing test cases to discover software vulnerabilities

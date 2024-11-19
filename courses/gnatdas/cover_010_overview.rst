@@ -85,7 +85,7 @@ Statement Coverage
   .. image:: gnatdas/cover_statement.png
     :width: 75%
 
-* Call :ada:`Test_Statement` with :ada:`(1, 2, Integer'Last)`
+* Call :ada:`Test_Statement` with :ada:`(1, 2, Integer'Last, X)`
 
    * Congratulations: 100% Statement Coverage! But...
 
@@ -109,7 +109,7 @@ Decision Coverage
 
 .. image:: gnatdas/cover_decision.png
 
-* Call :ada:`Test_Decision` with :ada:`(0, 0, 0)` and :ada:`(1, 1, Integer'Last)`
+* Call :ada:`Test_Decision` with :ada:`(0, 0, 0, X)` and :ada:`(1, 1, Integer'Last, X)`
 
    * Congratulations: 100% Decision Coverage! But...
 
@@ -218,7 +218,7 @@ Modified Condition/Decision Coverage Example
 .. image:: gnatdas/cover_mcdc.png
   :width: 75%
 
-* Call :ada:`Test_Mcdc` with :ada:`(1, 0, 0)`, :ada:`(0, 1, 0)`, and :ada:`(1, 1, 0)`
+* Call :ada:`Test_Mcdc` with :ada:`(1, 0, 0, X)`, :ada:`(0, 1, 0, X)`, and :ada:`(1, 1, 0, X)`
 
    * Better test results, but we need more tests
    * In general, if there are N subconditions, need N+1 sets of data to get complete MCDC coverage
