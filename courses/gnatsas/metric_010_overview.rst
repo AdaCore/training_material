@@ -740,7 +740,7 @@ McCabe Example
 
   .. column::
 
-     .. image:: ../../images/gnatmetric/cyclomatic_complexity_edges_and_nodes.jpg
+     .. image:: ../../images/gnatmetric/cyclomatic_complexity_edges_and_nodes.svg
 
      9 edges - 7 nodes + 2 * 1 exit = complexity 4
 
