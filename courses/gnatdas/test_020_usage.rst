@@ -69,6 +69,8 @@ Building a Test Harness
 
 * To run the driver, build and run the executable in the :filename:`obj/driver` folder
 
+   * Executable is called :command:`test_runner`
+
 .. container:: latex_environment tiny
 
   ::
@@ -77,7 +79,7 @@ Building a Test Harness
     gprbuild -P test_driver
     test_runner
 
-  Gives the result::
+  *Gives the result* ::
 
      simple.ads:3:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:44)
      simple.ads:7:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:65)
