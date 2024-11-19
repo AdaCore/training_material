@@ -18,7 +18,7 @@ check_main_is_properly_setup:
     - image:e3
   stage: test
   script:
-    - test ! -e DO_NOT_COMMIT.*
+    - test ! -e DO_NOT_MERGE.*
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == "master"
