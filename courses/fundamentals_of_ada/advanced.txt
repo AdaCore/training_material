@@ -7,12 +7,12 @@ adv_075_primitives.rst
 120_limited_types.rst
 adv_120_advanced_privacy.rst
 140_access_types-advanced.rst
+adv_260_controlled_types.rst
 160_genericity.rst
 170_tagged_derivation.rst
-adv_170_multiple_inheritance.rst
 180_polymorphism.rst
+adv_170_multiple_inheritance.rst
 190_exceptions-in_depth.rst
 240_tasking_in_depth.rst
 273_subprogram_contracts.rst
 276_type_contracts.rst
-adv_280_low_level_programming.rst
