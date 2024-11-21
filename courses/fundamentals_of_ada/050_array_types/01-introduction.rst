@@ -6,28 +6,28 @@ Introduction
 What Is an Array?
 -------------------
 
-* Terminology
-
-   * :dfn:`Index type`
-
-      - Specifies the values to be used to access the array components
-
-   * :dfn:`Component type`
-
-      - Specifies the type of values contained by objects of the array type
-      - All components are of this same type
-
 .. container:: columns
 
    .. container:: column
 
-      .. code:: Ada
+      * Terminology
 
-         type Array_T is array (Index_T) of Component_T;
+         * :dfn:`Index type`
+
+            - Specifies the values to be used to access the array components
+
+         * :dfn:`Component type`
+
+            - Specifies the type of values contained by objects of the array type
+            - All components are of this same type
 
    .. container:: column
 
       .. image:: array_diagram.svg
+
+.. code:: Ada
+
+   type Array_T is array (Index_T) of Component_T;
 
 ---------------
 Arrays in Ada
