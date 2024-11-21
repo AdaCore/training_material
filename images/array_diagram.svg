@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="109.99093mm"
+   height="186.59961mm"
+   viewBox="0 0 109.99093 186.59961"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.73890575"
-     inkscape:cx="-183.37927"
-     inkscape:cy="435.10285"
+     inkscape:cx="-326.83465"
+     inkscape:cy="275.40725"
      inkscape:window-width="2560"
      inkscape:window-height="1369"
      inkscape:window-x="-8"
@@ -36,39 +36,39 @@
      id="defs1">
     <rect
        x="554.19788"
-       y="305.85768"
+       y="305.85767"
        width="215.85973"
        height="102.17812"
        id="rect11" />
     <rect
        x="306.53436"
-       y="274.0539"
+       y="274.05389"
        width="238.86673"
        height="113.00494"
        id="rect10" />
     <rect
-       x="129.24517"
-       y="273.37722"
+       x="129.24516"
+       y="273.37723"
        width="144.13205"
-       height="52.104074"
+       height="52.104073"
        id="rect9" />
     <rect
        x="125.36239"
        y="155.02829"
-       width="55.503957"
-       height="52.633063"
+       width="55.503956"
+       height="52.633064"
        id="rect6" />
     <rect
        x="133.97507"
-       y="164.59794"
+       y="164.59795"
        width="36.364662"
-       height="28.708943"
+       height="28.708942"
        id="rect5" />
     <rect
-       x="88.997724"
+       x="88.997726"
        y="137.80293"
-       width="491.8799"
-       height="491.8799"
+       width="491.87991"
+       height="491.87991"
        id="rect2" />
     <rect
        x="88.997726"
@@ -122,7 +122,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-37.978647,-42.199265)">
     <text
        xml:space="preserve"
        style="font-size:4.23333px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.3"
@@ -147,7 +148,9 @@
        id="text4"><tspan
          sodipodi:role="line"
          id="tspan4"
-         style="stroke-width:0.3"></tspan></text>
+         style="stroke-width:0.3"
+         x="37.726341"
+         y="46.588234"></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,47.040012,69.003861)"
@@ -346,7 +349,7 @@
        xml:space="preserve"
        transform="matrix(0.0684792,-0.25556787,0.25556787,0.0684792,-36.412,116.31106)"
        id="text9"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Arial;-inkscape-font-specification:'Arial Italic';text-align:center;white-space:pre;shape-inside:url(#rect9);fill:#000000;stroke:#000000;stroke-width:1.13386;stroke-opacity:1"><tspan
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Arial;-inkscape-font-specification:'Arial Italic';text-align:center;white-space:pre;shape-inside:url(#rect9);display:inline;fill:#000000;stroke:#000000;stroke-width:1.13386;stroke-opacity:1"><tspan
          x="175.21781"
          y="292.64484"
          id="tspan21">Index</tspan></text>
@@ -354,7 +357,7 @@
        xml:space="preserve"
        transform="matrix(0.0684792,-0.25556787,0.25556787,0.0684792,-12.394535,166.42066)"
        id="text10"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Arial;-inkscape-font-specification:'Arial Italic';text-align:center;white-space:pre;shape-inside:url(#rect10);fill:#000000;stroke:#000000;stroke-width:1.13386;stroke-opacity:1"><tspan
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Arial;-inkscape-font-specification:'Arial Italic';text-align:center;white-space:pre;shape-inside:url(#rect10);display:inline;fill:#000000;stroke:#000000;stroke-width:1.13386;stroke-opacity:1"><tspan
          x="370.82203"
          y="293.32258"
          id="tspan22">Component
@@ -366,7 +369,7 @@
        xml:space="preserve"
        transform="matrix(0.0684792,-0.25556787,0.25556787,0.0684792,5.5475415,214.83609)"
        id="text11"
-       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Arial;-inkscape-font-specification:'Arial Italic';text-align:center;white-space:pre;shape-inside:url(#rect11);fill:#000000;stroke:#000000;stroke-width:1.13386;stroke-opacity:1"><tspan
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Arial;-inkscape-font-specification:'Arial Italic';text-align:center;white-space:pre;shape-inside:url(#rect11);display:inline;fill:#000000;stroke:#000000;stroke-width:1.13386;stroke-opacity:1"><tspan
          x="565.28336"
          y="325.12531"
          id="tspan24">Component Address
