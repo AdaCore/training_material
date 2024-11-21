@@ -17,15 +17,15 @@ What Is an Array?
       - Specifies the type of values contained by objects of the array type
       - All components are of this same type
 
-.. columns::
+.. container:: columns::
 
-   .. column::
+   .. container:: column::
 
       .. code:: Ada
 
          type Array_T is array (Index_T) of Component_T;
 
-   .. column::
+   .. container:: column::
 
       .. image:: array_diagram.svg
 
