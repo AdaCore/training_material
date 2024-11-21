@@ -6,28 +6,28 @@ Introduction
 What Is an Array?
 -------------------
 
-.. container:: columns
+* Definition: collection of elements of the same type, stored in contiguous memory, and indexed using a discrete range
 
-   .. container:: column
+* Syntax (simplified):
 
-      * Terminology
+   ``type <typename> is array (<index type>) is of <component type>``
 
-         * :dfn:`Index type`
+where
 
-            - Specifies the values to be used to access the array components
+   * :dfn:`Index type`
 
-         * :dfn:`Component type`
+      - Discrete range of values to be used to access the array components
 
-            - Specifies the type of values contained by objects of the array type
-            - All components are of this same type
+   * :dfn:`Component type`
 
-   .. container:: column
+      - Type of values stored in the array
+      - All components are of this same type and size
 
-      .. image:: array_diagram.svg
+.. image:: array_diagram.svg
 
 .. code:: Ada
 
-   type Array_T is array (Index_T) of Component_T;
+   type Array_T is array (0 .. 3) of Interfaces.Integer_32;
 
 ---------------
 Arrays in Ada
