@@ -6,19 +6,21 @@ Introduction
 What Is an Array?
 -------------------
 
-* Definition: collection of elements of the same type, stored in contiguous memory, and indexed using a discrete range
+* Definition: collection of components of the same type, stored in contiguous memory, and indexed using a discrete range
 
 * Syntax (simplified):
 
-   ``type <typename> is array (<index type>) of <component type>``
+.. container:: latex_environment small
+
+   :ada:`type <typename> is array (Index_Type) of Component_Type;`
 
 where
 
-   * :dfn:`Index type`
+   * :dfn:`Index_Type`
 
       - Discrete range of values to be used to access the array components
 
-   * :dfn:`Component type`
+   * :dfn:`Component_Type`
 
       - Type of values stored in the array
       - All components are of this same type and size
