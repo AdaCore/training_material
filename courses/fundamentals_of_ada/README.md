@@ -59,8 +59,7 @@ highest available number (leaving everything below for normal courses)
 
 ## New Naming Scheme
 
-Under the new naming scheme being introduced via epic https://gitlab.adacore-it.com/groups/feng/training/-/epics/43,
-we will treat every concept as a module, and variations on the concept
+A new naming scheme is in work, which will treat every concept as a module, and variations on the concept
 (intro/advanced/etc) will have its variation tagged onto the end of the module name.
 So, for example, the "Basic Types" module will be appear in the directory as follows
 
