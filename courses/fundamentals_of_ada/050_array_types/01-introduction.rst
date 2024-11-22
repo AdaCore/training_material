@@ -10,7 +10,7 @@ What Is an Array?
 
 * Syntax (simplified):
 
-   ``type <typename> is array (<index type>) is of <component type>``
+   ``type <typename> is array (<index type>) of <component type>``
 
 where
 
@@ -23,11 +23,11 @@ where
       - Type of values stored in the array
       - All components are of this same type and size
 
-.. image:: array_diagram.svg
-
 .. code:: Ada
 
    type Array_T is array (0 .. 3) of Interfaces.Integer_32;
+
+.. image:: array_diagram.svg
 
 ---------------
 Arrays in Ada
