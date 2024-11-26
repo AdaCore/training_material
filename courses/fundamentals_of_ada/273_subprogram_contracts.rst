@@ -539,7 +539,7 @@ Quiz
 Given the following expressions, what is their value if they are evaluated in the postcondition
 of the call :ada:`Set_And_Move ('X', 4)`
 
-.. containers:: columns
+.. container:: columns
 
   .. container:: column
 
@@ -559,7 +559,7 @@ of the call :ada:`Set_And_Move ('X', 4)`
 
   .. container:: column
 
-    .. image:: pre_and_post_insertion_flow.svg
+    .. image:: subprogram_contracts_special_attributes.svg
 
 -------------------------------------
 Stack Example (Spec with Contracts)
