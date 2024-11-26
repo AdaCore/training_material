@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="71.712936mm"
+   height="42.701271mm"
+   viewBox="0 0 71.712936 42.701271"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -24,55 +24,55 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="2.0899411"
-     inkscape:cx="588.77258"
-     inkscape:cy="393.55177"
+     inkscape:cx="201.68033"
+     inkscape:cy="110.76867"
      inkscape:window-width="2544"
      inkscape:window-height="1353"
-     inkscape:window-x="184"
-     inkscape:window-y="17"
+     inkscape:window-x="848"
+     inkscape:window-y="48"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1" />
   <defs
      id="defs1">
     <rect
        x="517.4787"
-       y="304.55404"
+       y="304.55405"
        width="136.36748"
-       height="32.05832"
+       height="32.058319"
        id="rect17" />
     <rect
-       x="381.11122"
+       x="381.11121"
        y="445.4671"
        width="182.30179"
        height="44.977345"
        id="rect14" />
     <rect
-       x="493.55458"
-       y="361.49345"
+       x="493.55457"
+       y="361.49344"
        width="122.01301"
        height="30.622873"
        id="rect13" />
     <rect
        x="354.55545"
-       y="303.35784"
+       y="303.35785"
        width="133.0181"
        height="29.187426"
        id="rect12" />
     <rect
-       x="74.643253"
-       y="635.42461"
-       width="521.5458"
-       height="318.66927"
+       x="74.64325"
+       y="635.42462"
+       width="521.54578"
+       height="318.66928"
        id="rect3" />
     <rect
-       x="47.848239"
+       x="47.84824"
        y="339.7225"
        width="526.33063"
        height="224.88672"
        id="rect2" />
     <rect
-       x="45.934309"
-       y="95.696478"
+       x="45.934307"
+       y="95.69648"
        width="514.84705"
        height="195.22081"
        id="rect1" />
@@ -92,7 +92,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-102.40824,-74.845475)">
     <rect
        style="fill:#ffff00;stroke:#000000;stroke-width:0.0647185"
        id="rect4-8-7"
