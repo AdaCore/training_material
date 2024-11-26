@@ -562,6 +562,7 @@ of the call :ada:`Set_And_Move ('X', 4)`
     .. container:: animate
 
       .. image:: subprogram_contracts_special_attributes.svg
+         :width: 50%
 
 -------------------------------------
 Stack Example (Spec with Contracts)
