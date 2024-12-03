@@ -440,6 +440,10 @@ def is_animate(classes):
     return ("container" in classes) and ("animate" in classes)
 
 
+def is_overlay(classes):
+    return ("container" in classes) and ("overlay" in classes)
+
+
 def animate(classes, contents):
     slide_number = 2
     dash = "-"
@@ -458,6 +462,29 @@ def animate(classes, contents):
         "c": ["latex", "\\begin{visibleenv}<" + slide_number + ">"],
     }
     last = {"t": "RawBlock", "c": ["latex", "\\end{visibleenv}"]}
+
+    value = []
+    value.append(first)
+    for c in contents:
+        value.append(c)
+    value.append(last)
+
+    return value
+
+
+def overlay(classes, contents):
+    slide_number = 2
+    if len(classes) > 2:
+        requested = classes[2]
+        if len(requested) > 0:
+            slide_number = int(requested)
+    slide_number = str(slide_number)
+
+    first = {
+        "t": "RawBlock",
+        "c": ["latex", "\\begin{onlyenv}<" + slide_number + ">"],
+    }
+    last = {"t": "RawBlock", "c": ["latex", "\\end{onlyenv}"]}
 
     value = []
     value.append(first)
@@ -835,6 +862,9 @@ def perform_filter(key, value, format, meta):
 
             if is_animate(classes):
                 return animate(classes, contents)
+
+            if is_overlay(classes):
+                return overlay(classes, contents)
 
             if is_latex_environment(classes):
                 return latex_environment(classes, contents)
