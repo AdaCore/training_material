@@ -362,6 +362,7 @@ SUPPORTED_CLASSES = [
     "source_include",
     "admonition",
     "animate",
+    "overlay",
     "speakernote",
     "columns",
     "column",
