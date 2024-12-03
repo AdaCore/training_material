@@ -539,29 +539,32 @@ Quiz
 Given the following expressions, what is their value if they are evaluated in the postcondition
 of the call :ada:`Set_And_Move ('X', 4)`
 
-.. container:: animate 1
+.. container:: animate 1-
 
    * - ``Database'Old (Index)``
 
-.. container:: animate 2
+.. container:: animate 2-
 
    .. image:: subprogram_contracts_special_attributes-answer1.svg
+      :width: 60%
 
-.. container:: animate 1
+.. container:: animate 1-
 
    * - ``Database (Index'Old)``
 
-.. container:: animate 3
+.. container:: animate 3-
 
    .. image:: subprogram_contracts_special_attributes-answer2.svg
+      :width: 60%
 
-.. container:: animate 1
+.. container:: animate 1-
 
    * - ``Database (Index)'Old``
 
-.. container:: animate 4
+.. container:: animate 4-
 
    .. image:: subprogram_contracts_special_attributes-answer3.svg
+      :width: 60%
 
 -------------------------------------
 Stack Example (Spec with Contracts)
