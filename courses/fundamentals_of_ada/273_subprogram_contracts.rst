@@ -541,10 +541,8 @@ of the call :ada:`Set_And_Move ('X', 4)`
 
 .. raw:: latex
 
-   \begin{frame}{Show three images sequentially.}
        \includegraphics<1>{subprogram_contracts_special_attributes-quiz.svg)
        \includegraphics<2>{subprogram_contracts_special_attributes-answer.svg)
-   \end{frame}
 
 -------------------------------------
 Stack Example (Spec with Contracts)
