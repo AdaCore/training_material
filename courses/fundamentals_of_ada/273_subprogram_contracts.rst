@@ -539,15 +539,12 @@ Quiz
 Given the following expressions, what is their value if they are evaluated in the postcondition
 of the call :ada:`Set_And_Move ('X', 4)`
 
-.. container:: overlay 1
+.. raw:: latex
 
-   .. image:: subprogram_contracts_special_attributes-quiz.svg
-      :width: 200%
-
-.. container:: overlay 2
-
-   .. image:: subprogram_contracts_special_attributes-answer.svg
-      :width: 200%
+   \begin{frame}{Show three images sequentially.}
+       \includegraphics<1>{subprogram_contracts_special_attributes-quiz.svg)
+       \includegraphics<2>{subprogram_contracts_special_attributes-answer.svg)
+   \end{frame}
 
 -------------------------------------
 Stack Example (Spec with Contracts)
