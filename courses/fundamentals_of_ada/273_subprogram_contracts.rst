@@ -539,9 +539,12 @@ Quiz
 Given the following expressions, what is their value if they are evaluated in the postcondition
 of the call :ada:`Set_And_Move ('X', 4)`
 
-.. raw:: latex
+.. container:: animate 1
 
        \includegraphics<1>{subprogram_contracts_special_attributes-quiz.svg)
+
+.. container:: animate 2
+
        \includegraphics<2>{subprogram_contracts_special_attributes-answer.svg)
 
 -------------------------------------
