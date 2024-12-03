@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="subprogram_contracts_special_attributes.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.4778115"
+     inkscape:cx="-49.735707"
+     inkscape:cy="260.85871"
+     inkscape:window-width="2560"
+     inkscape:window-height="1369"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="50.719133"
+       y="76.557182"
+       width="468.91274"
+       height="241.15512"
+       id="rect1" />
+    <rect
+       x="50.719131"
+       y="76.557182"
+       width="468.91275"
+       height="241.15512"
+       id="rect1-5" />
+    <rect
+       x="50.719131"
+       y="76.557182"
+       width="468.91275"
+       height="241.15512"
+       id="rect1-57" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g22"
+       transform="translate(1.3290229)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,0.14513034,-0.10648818)"
+         id="text1"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1);fill:#ffcc00;stroke:#ffcc00;stroke-width:0.196535"><tspan
+           x="205.92188"
+           y="90.968711"
+           id="tspan17">Database'Old <tspan
+   style="fill:#44aa00"
+   id="tspan7">(Index)
+</tspan></tspan><tspan
+           x="136.54688"
+           y="110.96871"
+           id="tspan22">Database before the call: ABCDEFGHIJ<tspan
+   style="fill:#44aa00"
+   id="tspan21">
+</tspan></tspan><tspan
+           x="205.59375"
+           y="130.96871"
+           id="tspan25"><tspan
+             style="stroke:#44aa00"
+             id="tspan23">Index after the call: 5</tspan><tspan
+             style="fill:#44aa00"
+             id="tspan24">
+</tspan></tspan><tspan
+           x="254.05078"
+           y="150.96871"
+           id="tspan28"><tspan
+             style="fill:#000000"
+             id="tspan26">Value: E</tspan><tspan
+             style="fill:#44aa00"
+             id="tspan27">
+</tspan></tspan><tspan
+           x="285.17578"
+           y="170.96871"
+           id="tspan30"><tspan
+             style="fill:#44aa00"
+             id="tspan29">
+</tspan></tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.59969;stroke-dasharray:none"
+         id="rect22"
+         width="81.834923"
+         height="24.865606"
+         x="34.661823"
+         y="17.950827" />
+    </g>
+    <g
+       id="g23"
+       transform="translate(0.04475932,-3.9388199)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,1.429394,28.740876)"
+         id="text1-3"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1-5);fill:#ffcc00;stroke:#ffcc00;stroke-width:0.196535"><tspan
+           x="205.92188"
+           y="90.968711"
+           id="tspan33"><tspan
+   style="fill:#44aa00;stroke:#44aa00"
+   id="tspan31">Database</tspan> (Index'Old)<tspan
+   style="fill:#44aa00"
+   id="tspan32">
+</tspan></tspan><tspan
+           x="144.09766"
+           y="110.96871"
+           id="tspan36"><tspan
+             style="stroke:#44aa00"
+             id="tspan34">Database after the call: ABCXEFGHIJ</tspan><tspan
+             style="fill:#44aa00"
+             id="tspan35">
+</tspan></tspan><tspan
+           x="198.48438"
+           y="130.96871"
+           id="tspan39"><tspan
+             style="fill:#ffd42a;stroke:#ffd42a"
+             id="tspan37">Index before the call: 4</tspan><tspan
+             style="fill:#44aa00"
+             id="tspan38">
+</tspan></tspan><tspan
+           x="254.05078"
+           y="150.96871"
+           id="tspan42"><tspan
+             style="fill:#000000"
+             id="tspan40">Value: X</tspan><tspan
+             style="fill:#44aa00"
+             id="tspan41">
+</tspan></tspan><tspan
+           x="285.17578"
+           y="170.96871"
+           id="tspan44"><tspan
+             style="fill:#44aa00"
+             id="tspan43">
+</tspan></tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.59969;stroke-dasharray:none"
+         id="rect22-2"
+         width="81.834923"
+         height="24.865606"
+         x="35.946087"
+         y="46.798191" />
+    </g>
+    <g
+       id="g24"
+       transform="translate(0.361486,-5.8634705)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,1.1126673,55.589047)"
+         id="text1-5"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1-57);display:inline;fill:#ffcc00;stroke:#ffcc00;stroke-width:0.196535"><tspan
+           x="205.92188"
+           y="90.968711"
+           id="tspan46">Database (Index)'Old<tspan
+   style="fill:#44aa00"
+   id="tspan45">
+</tspan></tspan><tspan
+           x="136.54688"
+           y="110.96871"
+           id="tspan48">Database before the call: ABCDEFGHIJ<tspan
+   style="fill:#44aa00"
+   id="tspan47">
+</tspan></tspan><tspan
+           x="198.48438"
+           y="130.96871"
+           id="tspan51"><tspan
+             style="fill:#ffd42a;stroke:#ffd42a"
+             id="tspan49">Index before the call: 5</tspan><tspan
+             style="fill:#44aa00"
+             id="tspan50">
+</tspan></tspan><tspan
+           x="253.60938"
+           y="150.96871"
+           id="tspan54"><tspan
+             style="fill:#000000"
+             id="tspan52">Value: D</tspan><tspan
+             style="fill:#44aa00"
+             id="tspan53">
+</tspan></tspan><tspan
+           x="285.17578"
+           y="170.96871"
+           id="tspan56"><tspan
+             style="fill:#44aa00"
+             id="tspan55">
+</tspan></tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.59969;stroke-dasharray:none"
+         id="rect22-7"
+         width="81.834923"
+         height="24.865606"
+         x="35.62936"
+         y="73.646362" />
+    </g>
+  </g>
+</svg>
