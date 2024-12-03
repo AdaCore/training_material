@@ -528,35 +528,24 @@ Quiz
 
 .. code:: Ada
 
-   type Index_T is range 1 .. 100;
-   -- Database initialized such that value for element at I = I
-   Database : array (Index_T) of Integer;
+   Database : String (1 .. 10) := "ABCDEFGHIJ";
    -- Set the value for element Index to Value and
    -- then increment Index by 1
-   function Set_And_Move (Value :        Integer;
+   function Set_And_Move (Value :        Character;
                           Index : in out Index_T)
                           return Boolean
       with Post => ...
 
 Given the following expressions, what is their value if they are evaluated in the postcondition
-of the call :ada:`Set_And_Move (-1, 10)`
+of the call :ada:`Set_And_Move ('X', 4)`
 
-.. list-table::
+.. container:: overlay 1
 
-   * - ``Database'Old (Index)``
+   .. image:: subprogram_contracts_special_attributes-quiz.svg}
 
-     - :animate:`11`
-     - :animate:`Use new index in copy of original Database`
+.. container:: overlay 2
 
-   * - ``Database (Index'Old)``
-
-     - :animate:`-1`
-     - :animate:`Use copy of original index in current Database`
-
-   * - ``Database (Index)'Old``
-
-     - :animate:`10`
-     - :animate:`Evaluation of Database (Index) before call`
+   .. image:: subprogram_contracts_special_attributes-answer.svg}
 
 -------------------------------------
 Stack Example (Spec with Contracts)
