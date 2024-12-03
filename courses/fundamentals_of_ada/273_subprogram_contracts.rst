@@ -541,11 +541,11 @@ of the call :ada:`Set_And_Move ('X', 4)`
 
 .. container:: animate 1
 
-       \includegraphics<1>{subprogram_contracts_special_attributes-quiz.svg)
+   .. image:: ../images/subprogram_contracts_special_attributes-quiz.svg
 
 .. container:: animate 2
 
-       \includegraphics<2>{subprogram_contracts_special_attributes-answer.svg)
+   .. image:: ../images/subprogram_contracts_special_attributes-answer.svg
 
 -------------------------------------
 Stack Example (Spec with Contracts)
