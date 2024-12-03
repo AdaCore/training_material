@@ -542,12 +542,12 @@ of the call :ada:`Set_And_Move ('X', 4)`
 .. container:: overlay 1
 
    .. image:: subprogram_contracts_special_attributes-quiz.svg
-      :width: 50%
+      :width: 100%
 
 .. container:: overlay 2
 
    .. image:: subprogram_contracts_special_attributes-answer.svg
-      :width: 50%
+      :width: 100%
 
 -------------------------------------
 Stack Example (Spec with Contracts)
