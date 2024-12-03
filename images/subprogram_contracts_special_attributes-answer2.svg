@@ -25,7 +25,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.4778115"
-     inkscape:cx="-335.2931"
+     inkscape:cx="-334.61642"
      inkscape:cy="-73.419377"
      inkscape:window-width="2560"
      inkscape:window-height="1369"
@@ -66,48 +66,41 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1-5);fill:#ffcc00;stroke:#ffcc00;stroke-width:0.196535"><tspan
          x="205.92188"
          y="90.968711"
-         id="tspan3"><tspan
+         id="tspan17"><tspan
    style="fill:#44aa00;stroke:#44aa00"
-   id="tspan1">Database</tspan> (Index'Old)<tspan
+   id="tspan15">Database</tspan> (Index'Old)<tspan
    style="fill:#44aa00"
-   id="tspan2">
+   id="tspan16">
 </tspan></tspan><tspan
          x="144.09766"
          y="110.96871"
-         id="tspan6"><tspan
+         id="tspan20"><tspan
            style="fill:#44aa00;stroke:#44aa00"
-           id="tspan4">Database after the call: ABCXEFGHIJ</tspan><tspan
+           id="tspan18">Database after the call: ABCXEFGHIJ</tspan><tspan
            style="fill:#44aa00"
-           id="tspan5">
+           id="tspan19">
 </tspan></tspan><tspan
          x="198.48438"
          y="130.96871"
-         id="tspan9"><tspan
+         id="tspan23"><tspan
            style="fill:#ffd42a;stroke:#ffd42a"
-           id="tspan7">Index before the call: 4</tspan><tspan
+           id="tspan21">Index before the call: 4</tspan><tspan
            style="fill:#44aa00"
-           id="tspan8">
+           id="tspan22">
 </tspan></tspan><tspan
          x="254.05078"
          y="150.96871"
-         id="tspan12"><tspan
-           style="fill:#000000"
-           id="tspan10">Value: X</tspan><tspan
+         id="tspan26"><tspan
+           style="fill:#000000;stroke:#000000"
+           id="tspan24">Value: X</tspan><tspan
            style="fill:#44aa00"
-           id="tspan11">
+           id="tspan25">
 </tspan></tspan><tspan
          x="285.17578"
          y="170.96871"
-         id="tspan14"><tspan
+         id="tspan28"><tspan
            style="fill:#44aa00"
-           id="tspan13">
+           id="tspan27">
 </tspan></tspan></text>
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:0.59969;stroke-dasharray:none"
-       id="rect22-2"
-       width="81.834923"
-       height="24.865606"
-       x="35.990845"
-       y="42.859371" />
   </g>
 </svg>

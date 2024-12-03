@@ -547,19 +547,19 @@ of the call :ada:`Set_And_Move ('X', 4)`
 
    .. image:: subprogram_contracts_special_attributes-answer1.svg
 
-.. container:: animate 3
+.. container:: animate 1
 
    * - ``Database (Index'Old)``
 
-.. container:: animate 4
+.. container:: animate 3
 
    .. image:: subprogram_contracts_special_attributes-answer2.svg
 
-.. container:: animate 5
+.. container:: animate 1
 
    * - ``Database (Index)'Old``
 
-.. container:: animate 6
+.. container:: animate 4
 
    .. image:: subprogram_contracts_special_attributes-answer3.svg
 
