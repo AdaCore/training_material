@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="82.434616mm"
+   width="109.435mm"
    height="25.465296mm"
-   viewBox="0 0 82.434616 25.465296"
+   viewBox="0 0 109.435 25.465296"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -66,39 +66,39 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1);fill:#ffcc00;stroke:#ffcc00;stroke-width:0.196535"><tspan
          x="205.92188"
          y="90.968711"
-         id="tspan4">Database'Old <tspan
+         id="tspan16">Database'Old <tspan
    style="fill:#44aa00;stroke:#44aa00"
-   id="tspan2">(Index)</tspan><tspan
+   id="tspan1">(Index)</tspan><tspan
    style="fill:#44aa00"
-   id="tspan3">
+   id="tspan7">
 </tspan></tspan><tspan
          x="136.54688"
          y="110.96871"
-         id="tspan6">Database before the call: ABCDEFGHIJ<tspan
+         id="tspan18">Database before the call: ABCDEFGHIJ<tspan
    style="fill:#44aa00"
-   id="tspan5">
+   id="tspan17">
 </tspan></tspan><tspan
          x="205.59375"
          y="130.96871"
-         id="tspan10"><tspan
+         id="tspan21"><tspan
            style="fill:#44aa00;stroke:#44aa00"
-           id="tspan8">Index after the call: 5</tspan><tspan
+           id="tspan19">Index after the call: 5</tspan><tspan
            style="fill:#44aa00"
-           id="tspan9">
+           id="tspan20">
 </tspan></tspan><tspan
          x="254.05078"
          y="150.96871"
-         id="tspan13"><tspan
+         id="tspan24"><tspan
            style="fill:#000000;stroke:#000000"
-           id="tspan11">Value: E</tspan><tspan
+           id="tspan22">Value: E</tspan><tspan
            style="fill:#44aa00"
-           id="tspan12">
+           id="tspan23">
 </tspan></tspan><tspan
          x="285.17578"
          y="170.96871"
-         id="tspan15"><tspan
+         id="tspan26"><tspan
            style="fill:#44aa00"
-           id="tspan14">
+           id="tspan25">
 </tspan></tspan></text>
   </g>
 </svg>

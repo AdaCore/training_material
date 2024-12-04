@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="82.434616mm"
+   width="109.435mm"
    height="25.465296mm"
-   viewBox="0 0 82.434616 25.465296"
+   viewBox="0 0 109.435 25.465296"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -25,7 +25,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.4778115"
-     inkscape:cx="-334.61642"
+     inkscape:cx="-117.40334"
      inkscape:cy="-73.419377"
      inkscape:window-width="2560"
      inkscape:window-height="1369"
@@ -66,41 +66,41 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1-5);fill:#ffcc00;stroke:#ffcc00;stroke-width:0.196535"><tspan
          x="205.92188"
          y="90.968711"
-         id="tspan17"><tspan
+         id="tspan3"><tspan
    style="fill:#44aa00;stroke:#44aa00"
-   id="tspan15">Database</tspan> (Index'Old)<tspan
+   id="tspan1">Database</tspan> (Index'Old)<tspan
    style="fill:#44aa00"
-   id="tspan16">
+   id="tspan2">
 </tspan></tspan><tspan
          x="144.09766"
          y="110.96871"
-         id="tspan20"><tspan
+         id="tspan6"><tspan
            style="fill:#44aa00;stroke:#44aa00"
-           id="tspan18">Database after the call: ABCXEFGHIJ</tspan><tspan
+           id="tspan4">Database after the call: ABCXEFGHIJ</tspan><tspan
            style="fill:#44aa00"
-           id="tspan19">
+           id="tspan5">
 </tspan></tspan><tspan
          x="198.48438"
          y="130.96871"
-         id="tspan23"><tspan
+         id="tspan9"><tspan
            style="fill:#ffd42a;stroke:#ffd42a"
-           id="tspan21">Index before the call: 4</tspan><tspan
+           id="tspan7">Index before the call: 4</tspan><tspan
            style="fill:#44aa00"
-           id="tspan22">
+           id="tspan8">
 </tspan></tspan><tspan
          x="254.05078"
          y="150.96871"
-         id="tspan26"><tspan
+         id="tspan12"><tspan
            style="fill:#000000;stroke:#000000"
-           id="tspan24">Value: X</tspan><tspan
+           id="tspan10">Value: X</tspan><tspan
            style="fill:#44aa00"
-           id="tspan25">
+           id="tspan11">
 </tspan></tspan><tspan
          x="285.17578"
          y="170.96871"
-         id="tspan28"><tspan
+         id="tspan14"><tspan
            style="fill:#44aa00"
-           id="tspan27">
+           id="tspan13">
 </tspan></tspan></text>
   </g>
 </svg>
