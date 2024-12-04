@@ -541,7 +541,7 @@ of the call :ada:`Set_And_Move ('X', 4)`
 
 .. container:: animate 1-
 
-   * - ``Database'Old (Index)``
+   * ``Database'Old (Index)``
 
 .. container:: animate 2-
 
@@ -550,7 +550,7 @@ of the call :ada:`Set_And_Move ('X', 4)`
 
 .. container:: animate 1-
 
-   * - ``Database (Index'Old)``
+   * ``Database (Index'Old)``
 
 .. container:: animate 3-
 
@@ -559,7 +559,7 @@ of the call :ada:`Set_And_Move ('X', 4)`
 
 .. container:: animate 1-
 
-   * - ``Database (Index)'Old``
+   * ``Database (Index)'Old``
 
 .. container:: animate 4-
 
