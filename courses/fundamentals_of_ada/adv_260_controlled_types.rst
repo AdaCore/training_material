@@ -232,6 +232,33 @@ Unbounded String Implementation
       end Adjust;
    end Unbounded_String_Pkg;
 
+------------------
+Finalizable Aspect
+------------------
+
+* Uses the GNAT-specific :ada:`with Finalizable` aspect
+
+.. code:: Ada
+
+   type Ctrl is record
+      Id : Natural := 0;
+   end record
+     with Finalizable => (Initialize           => Initialize,
+                          Adjust               => Adjust,
+                          Finalize             => Finalize,
+                          Relaxed_Finalization => True);
+
+   procedure Adjust     (Obj : in out Ctrl);
+   procedure Finalize   (Obj : in out Ctrl);
+   procedure Initialize (Obj : in out Ctrl);
+
+* :ada:`Initialize`, :ada:`Adjust` same definition as previously
+* :ada:`Finalize` has the :ada:`No_Raise` aspect: it cannot raise exceptions
+* :ada:`Relaxed_Finalization`
+
+    * Performance on-par with C++'s destructor
+    * No automatic finalization of **heap-allocated** objects
+
 ========
 Lab
 ========
