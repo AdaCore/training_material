@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="109.435mm"
-   height="25.465296mm"
-   viewBox="0 0 109.435 25.465296"
+   width="187.51132mm"
+   height="42.68269mm"
+   viewBox="0 0 187.51132 42.68269"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.4778115"
-     inkscape:cx="-117.40334"
-     inkscape:cy="-73.419377"
+     inkscape:zoom="1.0449705"
+     inkscape:cx="394.74799"
+     inkscape:cy="11.005095"
      inkscape:window-width="2560"
      inkscape:window-height="1369"
      inkscape:window-x="-8"
@@ -36,73 +36,62 @@
   <defs
      id="defs1">
     <rect
-       x="50.719131"
-       y="76.557182"
-       width="468.91275"
-       height="241.15512"
+       x="18.182331"
+       y="22.010189"
+       width="739.73376"
+       height="243.06905"
+       id="rect2" />
+    <rect
+       x="38.278591"
+       y="51.676098"
+       width="497.62167"
+       height="295.70212"
        id="rect1" />
     <rect
-       x="50.719131"
-       y="76.557182"
-       width="468.91275"
-       height="241.15512"
-       id="rect1-5" />
+       x="18.182331"
+       y="22.010189"
+       width="739.73376"
+       height="243.06905"
+       id="rect2-3" />
     <rect
-       x="50.719131"
-       y="76.557182"
-       width="468.91275"
-       height="241.15512"
-       id="rect1-57" />
+       x="18.182331"
+       y="22.010189"
+       width="739.73376"
+       height="243.06905"
+       id="rect2-0" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-35.691,-42.559526)">
+     transform="translate(-0.40242404,-53.688248)">
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,1.4741533,24.802056)"
-       id="text1-3"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1-5);fill:#e07c00;stroke:#e07c00;stroke-width:0.196535"><tspan
-         x="205.92188"
-         y="90.968711"
+       transform="matrix(0.26458333,0,0,0.26458333,20.778072,53.544296)"
+       id="text1-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:start;white-space:pre;shape-inside:url(#rect2-3);display:inline;fill:#000000;stroke:#000000;stroke-width:2.46425"><tspan
+         x="18.181641"
+         y="43.364427"
          id="tspan3"><tspan
    style="fill:#55ddff;stroke:#55ddff"
-   id="tspan1">Database</tspan> (Index'Old)<tspan
-   style="fill:#55ddff"
-   id="tspan2">
-</tspan></tspan><tspan
-         x="143.80078"
-         y="110.96871"
-         id="tspan8"><tspan
-           style="fill:#55ddff;stroke:#55ddff"
-           id="tspan4">Database after the call: </tspan><tspan
-           style="fill:#000000;stroke:#000000"
-           id="tspan5">ABCXEFGHIJ</tspan><tspan
-           style="fill:#55ddff"
-           id="tspan6">
-</tspan></tspan><tspan
-         x="198.48438"
-         y="130.96871"
-         id="tspan11">Index before the call: <tspan
-   style="fill:#000000;stroke:#000000"
-   id="tspan9">4</tspan><tspan
-   style="fill:#55ddff"
-   id="tspan10">
-</tspan></tspan><tspan
-         x="254.05078"
-         y="150.96871"
-         id="tspan14"><tspan
-           style="fill:#000000;stroke:#000000"
-           id="tspan12">Value: X</tspan><tspan
-           style="fill:#55ddff"
-           id="tspan13">
-</tspan></tspan><tspan
-         x="285.17578"
-         y="170.96871"
-         id="tspan17"><tspan
-           style="fill:#55ddff"
-           id="tspan16">
-</tspan></tspan></text>
+   id="tspan1">Database</tspan> (<tspan
+   style="fill:#e07c00;stroke:#e07c00"
+   id="tspan2">Index'Old</tspan>)
+</tspan><tspan
+         x="18.181641"
+         y="73.364427"
+         id="tspan5"><tspan
+   style="fill:#55ddff;stroke:#55ddff"
+   id="tspan4">Database after the call</tspan> : ABCXEFGHIJ
+</tspan><tspan
+         x="18.181641"
+         y="103.36443"
+         id="tspan7"><tspan
+   style="fill:#e07c00;stroke:#e07c00"
+   id="tspan6">Index before the call</tspan>   : 4
+</tspan><tspan
+         x="18.181641"
+         y="133.36443"
+         id="tspan8">Value                   : X</tspan></text>
   </g>
 </svg>

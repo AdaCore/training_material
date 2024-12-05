@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="54.821999mm"
-   height="13.715248mm"
-   viewBox="0 0 54.821999 13.715248"
+   width="187.51132mm"
+   height="42.68269mm"
+   viewBox="0 0 187.51132 42.68269"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -23,76 +23,67 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
+     showgrid="false"
      inkscape:zoom="1.0449705"
-     inkscape:cx="228.23611"
-     inkscape:cy="345.94278"
+     inkscape:cx="393.79102"
+     inkscape:cy="554.56111"
      inkscape:window-width="2560"
      inkscape:window-height="1369"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
-     showgrid="false" />
+     inkscape:current-layer="layer1" />
   <defs
      id="defs1">
     <rect
-       x="108.13702"
-       y="126.31935"
-       width="264.12228"
-       height="56.460922"
+       x="18.182331"
+       y="22.010189"
+       width="739.73376"
+       height="243.06905"
+       id="rect2" />
+    <rect
+       x="38.278591"
+       y="51.676098"
+       width="497.62167"
+       height="295.70212"
        id="rect1" />
     <rect
-       x="50.719131"
-       y="76.557182"
-       width="468.91275"
-       height="241.15512"
-       id="rect1-9" />
+       x="18.182331"
+       y="22.010189"
+       width="739.73376"
+       height="243.06905"
+       id="rect2-3" />
+    <rect
+       x="18.182331"
+       y="22.010189"
+       width="739.73376"
+       height="243.06905"
+       id="rect2-0" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-44.439664,-56.937093)">
+     transform="translate(-0.6867882,-1.6995759)">
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-11.45857,30.632928)"
+       transform="matrix(0.26458333,0,0,0.26458333,21.062436,1.5556235)"
        id="text1"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1-9);display:inline;fill:#e07600;stroke:#e07600;stroke-width:0.196535"><tspan
-         x="285.17578"
-         y="90.968711"
-         id="tspan1">
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:start;white-space:pre;shape-inside:url(#rect2);display:inline;fill:#000000;stroke:#000000;stroke-width:2.46425"><tspan
+         x="18.181641"
+         y="43.364427"
+         id="tspan1">Legend
 </tspan><tspan
-         x="256.73047"
-         y="110.96871"
-         id="tspan9"><tspan
-   style="fill:#000000;stroke:#000000"
-   id="tspan6">Legend</tspan>
+         x="18.181641"
+         y="73.364427"
+         id="tspan3"><tspan
+   style="fill:#e07c00;stroke:#e07c00"
+   id="tspan2">Value on call entry</tspan>
 </tspan><tspan
-         x="214.92578"
-         y="130.96871"
-         id="tspan13">Value on call entry<tspan
-   style="fill:#55ddff"
-   id="tspan11">
-</tspan></tspan><tspan
-         x="211.375"
-         y="150.96871"
-         id="tspan20"><tspan
+         x="18.181641"
+         y="103.36443"
+         id="tspan5"><tspan
            style="fill:#55ddff;stroke:#55ddff"
-           id="tspan18">Value on call return</tspan><tspan
-           style="fill:#55ddff"
-           id="tspan19">
-</tspan></tspan><tspan
-         x="285.17578"
-         y="170.96871"
-         id="tspan22"><tspan
-           style="fill:#55ddff"
-           id="tspan21">
-</tspan></tspan><tspan
-         x="285.17578"
-         y="190.96871"
-         id="tspan24"><tspan
-           style="fill:#55ddff"
-           id="tspan23">
-</tspan></tspan></text>
+           id="tspan4">Value on call return</tspan></tspan></text>
   </g>
 </svg>
