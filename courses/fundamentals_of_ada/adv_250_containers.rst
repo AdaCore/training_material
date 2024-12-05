@@ -172,7 +172,7 @@ Example of Containers
 * :ada:`Ordered_Set`
 
     - Unique elements
-    - Differenciated by :ada:`<` and :ada:`=`
+    - Differentiated by :ada:`<` and :ada:`=`
     - Manipulated in order
 
 * :ada:`Bounded_Doubly_Linked_List`
