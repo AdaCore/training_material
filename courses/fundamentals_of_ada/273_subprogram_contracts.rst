@@ -529,20 +529,20 @@ Quiz
 .. code:: Ada
 
    Database : String (1 .. 10) := "ABCDEFGHIJ";
-   -- Set the value for element Index to Value and
-   -- then increment Index by 1
+   -- Set the value for the element at position Index in
+   -- array Database to Value and then increment Index by 1
    function Set_And_Move (Value :        Character;
                           Index : in out Index_T)
                           return Boolean
       with Post => ...
 
 Given the following expressions, what is their value if they are evaluated in the postcondition
-of the call :ada:`Set_And_Move ('X', 4)`
+of the call :ada:`Set_And_Move ('X', 4)`?
 
 .. container:: animate 2-
 
    .. image:: subprogram_contracts_special_attributes-legend.svg
-      :width: 40%
+      :width: 60%
 
 .. container:: animate 1-
 
