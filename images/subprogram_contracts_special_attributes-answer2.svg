@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="187.51132mm"
+   height="42.68269mm"
+   viewBox="0 0 187.51132 42.68269"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="subprogram_contracts_special_attributes-answer2.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0449705"
+     inkscape:cx="394.74799"
+     inkscape:cy="11.005095"
+     inkscape:window-width="2560"
+     inkscape:window-height="1369"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="18.182331"
+       y="22.010189"
+       width="739.73376"
+       height="243.06905"
+       id="rect2" />
+    <rect
+       x="38.278591"
+       y="51.676098"
+       width="497.62167"
+       height="295.70212"
+       id="rect1" />
+    <rect
+       x="18.182331"
+       y="22.010189"
+       width="739.73376"
+       height="243.06905"
+       id="rect2-3" />
+    <rect
+       x="18.182331"
+       y="22.010189"
+       width="739.73376"
+       height="243.06905"
+       id="rect2-0" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-0.40242404,-53.688248)">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,20.778072,53.544296)"
+       id="text1-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:start;white-space:pre;shape-inside:url(#rect2-3);display:inline;fill:#000000;stroke:none;stroke-width:2.46425"><tspan
+         x="18.181641"
+         y="43.364427"
+         id="tspan3"><tspan
+   style="fill:#00aad4;stroke:none"
+   id="tspan1">Database</tspan> (<tspan
+   style="fill:#e07c00;stroke:none"
+   id="tspan2">Index'Old</tspan>)
+</tspan><tspan
+         x="18.181641"
+         y="73.364427"
+         id="tspan5"><tspan
+   style="fill:#00aad4;stroke:none"
+   id="tspan4">Database after the call</tspan> : ABCXEFGHIJ
+</tspan><tspan
+         x="18.181641"
+         y="103.36443"
+         id="tspan7"><tspan
+   style="fill:#e07c00;stroke:none"
+   id="tspan6">Index before the call</tspan>   : 4
+</tspan><tspan
+         x="18.181641"
+         y="133.36443"
+         id="tspan8">Value                   : X</tspan></text>
+  </g>
+</svg>
