@@ -66,35 +66,39 @@
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1-57);display:inline;fill:#e07c00;stroke:#e07c00;stroke-width:0.196535"><tspan
          x="205.92188"
          y="90.968711"
-         id="tspan2">Database (Index)'Old<tspan
+         id="tspan15">Database (Index)'Old<tspan
    style="fill:#44cc00"
-   id="tspan1">
+   id="tspan14">
 </tspan></tspan><tspan
-         x="136.54688"
+         x="136.25"
          y="110.96871"
-         id="tspan4">Database before the call: ABCDEFGHIJ<tspan
+         id="tspan18">Database before the call: <tspan
+   style="fill:#000000;stroke:#000000"
+   id="tspan16">ABCDEFGHIJ</tspan><tspan
    style="fill:#44cc00"
-   id="tspan3">
+   id="tspan17">
 </tspan></tspan><tspan
          x="198.48438"
          y="130.96871"
-         id="tspan6">Index before the call: 4<tspan
+         id="tspan21">Index before the call: <tspan
+   style="fill:#000000;stroke:#000000"
+   id="tspan19">4</tspan><tspan
    style="fill:#44aa00"
-   id="tspan5">
+   id="tspan20">
 </tspan></tspan><tspan
          x="253.60938"
          y="150.96871"
-         id="tspan9"><tspan
+         id="tspan24"><tspan
            style="fill:#000000;stroke:#000000"
-           id="tspan7">Value: D</tspan><tspan
+           id="tspan22">Value: D</tspan><tspan
            style="fill:#44aa00"
-           id="tspan8">
+           id="tspan23">
 </tspan></tspan><tspan
          x="285.17578"
          y="170.96871"
-         id="tspan11"><tspan
+         id="tspan26"><tspan
            style="fill:#44aa00"
-           id="tspan10">
+           id="tspan25">
 </tspan></tspan></text>
   </g>
 </svg>

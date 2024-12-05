@@ -539,6 +539,11 @@ Quiz
 Given the following expressions, what is their value if they are evaluated in the postcondition
 of the call :ada:`Set_And_Move ('X', 4)`
 
+.. container:: animate 2-
+
+   .. image:: subprogram_contracts_special_attributes-legend.svg
+      :width: 60%
+
 .. container:: animate 1-
 
    * ``Database'Old (Index)``

@@ -72,35 +72,37 @@
    style="fill:#55ddff"
    id="tspan2">
 </tspan></tspan><tspan
-         x="144.09766"
+         x="143.80078"
          y="110.96871"
-         id="tspan6"><tspan
+         id="tspan8"><tspan
            style="fill:#55ddff;stroke:#55ddff"
-           id="tspan4">Database after the call: ABCXEFGHIJ</tspan><tspan
+           id="tspan4">Database after the call: </tspan><tspan
+           style="fill:#000000;stroke:#000000"
+           id="tspan5">ABCXEFGHIJ</tspan><tspan
            style="fill:#55ddff"
-           id="tspan5">
+           id="tspan6">
 </tspan></tspan><tspan
          x="198.48438"
          y="130.96871"
-         id="tspan9"><tspan
-           style="fill:#e07c00;stroke:#e07c00"
-           id="tspan7">Index before the call: 4</tspan><tspan
-           style="fill:#55ddff"
-           id="tspan8">
+         id="tspan11">Index before the call: <tspan
+   style="fill:#000000;stroke:#000000"
+   id="tspan9">4</tspan><tspan
+   style="fill:#55ddff"
+   id="tspan10">
 </tspan></tspan><tspan
          x="254.05078"
          y="150.96871"
-         id="tspan12"><tspan
+         id="tspan14"><tspan
            style="fill:#000000;stroke:#000000"
-           id="tspan10">Value: X</tspan><tspan
+           id="tspan12">Value: X</tspan><tspan
            style="fill:#55ddff"
-           id="tspan11">
+           id="tspan13">
 </tspan></tspan><tspan
          x="285.17578"
          y="170.96871"
-         id="tspan14"><tspan
+         id="tspan17"><tspan
            style="fill:#55ddff"
-           id="tspan13">
+           id="tspan16">
 </tspan></tspan></text>
   </g>
 </svg>

@@ -63,26 +63,30 @@
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,1.4741532,-0.10648818)"
        id="text1"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1);fill:#e07600;stroke:#e07600;stroke-width:0.196535"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;white-space:pre;shape-inside:url(#rect1);display:inline;fill:#e07600;stroke:#e07600;stroke-width:0.196535"><tspan
          x="205.92188"
          y="90.968711"
-         id="tspan16">Database'Old <tspan
+         id="tspan4">Database'Old <tspan
    style="fill:#55ddff;stroke:#55ddff"
    id="tspan1">(Index)</tspan><tspan
    style="fill:#55ddff"
-   id="tspan7">
+   id="tspan2">
 </tspan></tspan><tspan
-         x="136.54688"
+         x="136.25"
          y="110.96871"
-         id="tspan18">Database before the call: ABCDEFGHIJ<tspan
+         id="tspan17">Database before the call: <tspan
+   style="fill:#000000;stroke:#000000"
+   id="tspan7">ABCDEFGHIJ</tspan><tspan
    style="fill:#55ddff"
-   id="tspan17">
+   id="tspan16">
 </tspan></tspan><tspan
          x="205.59375"
          y="130.96871"
          id="tspan21"><tspan
            style="fill:#55ddff;stroke:#55ddff"
-           id="tspan19">Index after the call: 5</tspan><tspan
+           id="tspan18">Index after the call: </tspan><tspan
+           style="fill:#000000;stroke:#000000"
+           id="tspan19">5</tspan><tspan
            style="fill:#55ddff"
            id="tspan20">
 </tspan></tspan><tspan
