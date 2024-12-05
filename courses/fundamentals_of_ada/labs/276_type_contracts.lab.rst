@@ -1,3 +1,7 @@
+========
+Lab
+========
+
 --------------------
 Type Contracts Lab
 --------------------
@@ -30,16 +34,16 @@ Type Contracts Lab
 Type Contracts Lab Solution - Schedule (Spec)
 -----------------------------------------------
 
-.. container:: source_include labs/answers/adv_275_type_contracts.txt :start-after:--Schedule_Spec :end-before:--Schedule_Spec :code:Ada :number-lines:1
+.. container:: source_include labs/answers/276_type_contracts.txt :start-after:--Schedule_Spec :end-before:--Schedule_Spec :code:Ada :number-lines:1
    
 -----------------------------------------------
 Type Contracts Lab Solution - Schedule (Body)
 -----------------------------------------------
 
-.. container:: source_include labs/answers/adv_275_type_contracts.txt :start-after:--Schedule_Body :end-before:--Schedule_Body :code:Ada :number-lines:1
+.. container:: source_include labs/answers/276_type_contracts.txt :start-after:--Schedule_Body :end-before:--Schedule_Body :code:Ada :number-lines:1
    
 ------------------------------------
 Type Contracts Lab Solution - Main
 ------------------------------------
 
-.. container:: source_include labs/answers/adv_275_type_contracts.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include labs/answers/276_type_contracts.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
