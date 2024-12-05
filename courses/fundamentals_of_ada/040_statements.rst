@@ -26,6 +26,7 @@ Statements
 .. |lt| replace:: :math:`<`
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
+.. |at_sign| replace:: :math:`@`    
 
 .. container:: PRELUDE REQUIRES
 
