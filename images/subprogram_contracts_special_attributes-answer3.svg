@@ -69,23 +69,23 @@
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,21.594596,105.61028)"
        id="text1-0"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:start;white-space:pre;shape-inside:url(#rect2-0);display:inline;fill:#000000;stroke:#000000;stroke-width:2.46425"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:start;white-space:pre;shape-inside:url(#rect2-0);display:inline;fill:#000000;stroke:none;stroke-width:2.46425"><tspan
          x="18.181641"
          y="43.364427"
          id="tspan2"><tspan
-   style="fill:#e07c00;stroke:#e07c00"
+   style="fill:#e07c00;stroke:none"
    id="tspan1">Database (Index)'Old</tspan>
 </tspan><tspan
          x="18.181641"
          y="73.364427"
          id="tspan4"><tspan
-   style="fill:#e07c00;stroke:#e07c00"
+   style="fill:#e07c00;stroke:none"
    id="tspan3">Database before the call</tspan>: ABCDEFGHIJ
 </tspan><tspan
          x="18.181641"
          y="103.36443"
          id="tspan6"><tspan
-   style="fill:#e07c00;stroke:#e07c00"
+   style="fill:#e07c00;stroke:none"
    id="tspan5">Index before the call</tspan>   : 4
 </tspan><tspan
          x="18.181641"

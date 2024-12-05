@@ -69,7 +69,7 @@
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,21.062436,1.5556235)"
        id="text1"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:start;white-space:pre;shape-inside:url(#rect2);display:inline;fill:#000000;stroke:#000000;stroke-width:2.46425"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:start;white-space:pre;shape-inside:url(#rect2);display:inline;fill:#000000;stroke:none;stroke-width:2.46425"><tspan
          x="18.181641"
          y="43.364427"
          id="tspan1">Legend
@@ -77,13 +77,13 @@
          x="18.181641"
          y="73.364427"
          id="tspan3"><tspan
-   style="fill:#e07c00;stroke:#e07c00"
+   style="fill:#e07c00;stroke:none"
    id="tspan2">Value on call entry</tspan>
 </tspan><tspan
          x="18.181641"
          y="103.36443"
          id="tspan5"><tspan
-           style="fill:#55ddff;stroke:#55ddff"
+           style="fill:#00aad4;stroke:none"
            id="tspan4">Value on call return</tspan></tspan></text>
   </g>
 </svg>
