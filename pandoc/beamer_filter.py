@@ -590,8 +590,6 @@ def format_note(classes, contents):
     def remove_title(c):
         # pandoc adds a title element for some admonitions. Remove it.
         if isinstance(c, list) and len(c) > 0:
-            with open("toto.py", "at") as f:
-                print(repr(c), file=f)
             if c[0]["t"] == "Div":
                 if c[0]["c"][0][1][0] == "title":
                     del c[0]
