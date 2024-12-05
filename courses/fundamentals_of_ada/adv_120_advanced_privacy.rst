@@ -174,8 +174,10 @@ Private Primitives
 
     package P is
         type T is private;
-        procedure Execute (Obj : T) is abstract; -- abstract must be public
-        function Make return T; -- constructor must be public
+        -- abstract must be public
+        procedure Execute (Obj : T) is abstract;
+        -- constructor must be public
+        function Make return T;
     private
         procedure Internal_Reset (Obj : T); -- can be private
     end package P;
