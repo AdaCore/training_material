@@ -168,6 +168,20 @@ def latex_animate(text):
     return "\\onslide<2->{" + text + "}"
 
 
+"""
+latex_colorize will take a color and apply it to text.
+This is used by the "color-*" role, and uses the LaTeX "xcolor" package.
+For now, color should be assumed to be any string that xcolor allows, but
+it's only been tested with the predefined color names:
+   black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta,
+   olive, orange, pink, purple, red, teal, violet, white, yellow
+"""
+   
+
+def latex_colorize(color, text):
+    return latex_inline("\\textcolor{" + color + "}{" + latex_escape(text) + "}")
+
+
 #############################
 ## PANDOC HELPER FUNCTIONS ##
 #############################
@@ -683,6 +697,15 @@ literal text.
 
 def perform_role(role, literal_text, format):
     function_name = role_format_functions.get(role, None)
+
+    # This allows us to define roles for color on the fly,
+    # just by prefixing the color we want with "color-".
+    # So to write "This is a red word" where 'red' is actually
+    # red you would write:
+    #    This is a :color-red:`red` word
+    if role.startswith ("color-"):
+        return latex_colorize(role[6:], literal_text)
+
     if function_name == None:
         return function_name
     elif function_name in dir(pandocfilters):
