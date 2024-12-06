@@ -41,9 +41,7 @@ Some Language-Defined Exceptions
 Explicitly-Raised Exceptions
 ------------------------------
 
-.. container:: latex_environment scriptsize
-
- .. container:: columns
+.. container:: columns
 
   .. container:: column
 
@@ -53,19 +51,23 @@ Explicitly-Raised Exceptions
 
     * Syntax
 
+      .. container:: latex_environment footnotesize
+
        .. code:: Ada
 
           raise_statement ::= raise; |
              raise exception_name
              [with string_expression];
 
-       - :ada:`with string_expression` only available in Ada 2005 and later
+       *Note "with string_expression" only available in Ada 2005 and later*
 
     * A :ada:`raise` by itself is only allowed in handlers
 
   .. container:: column
 
-    .. code:: Ada
+    .. container:: latex_environment footnotesize
+
+      .. code:: Ada
 
        if Unknown (User_ID) then
          raise Invalid_User;
@@ -76,4 +78,3 @@ Explicitly-Raised Exceptions
             with "Attempt by " &
                  Image (User_ID);
        end if;
-
