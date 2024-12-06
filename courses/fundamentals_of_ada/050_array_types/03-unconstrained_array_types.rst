@@ -57,8 +57,8 @@ Supplying Index Constraints for Objects
 
    .. code:: Ada
 
-      Weekdays(Sat) := 0.0; --  Compiler error
-      Weekend(Mon)  := 0.0; --  Compiler error
+      Weekdays(Sat) := 0.0; --  Constraint error
+      Weekend(Mon)  := 0.0; --  Constraint error
 
 ---------------------------------------
 Bounds Must Satisfy Type Constraints

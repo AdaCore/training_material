@@ -69,7 +69,18 @@ Basic Types Lab Hints
    .. code:: Ada
 
       <typemark>'Image (Object)
-      Object'Image
+      Object'Image   
+
+--------------------------
+Basic Types Extra Credit
+--------------------------
+
+* See what happens when your data is invalid / illegal
+
+   - Number of tests = 0
+   - Assign a very large number to the test score total
+   - Color type only has one value
+   - Add a number larger than 360 to the circle value
 
 ----------------------------------------
 Basic Types Lab Solution - Declarations
@@ -82,15 +93,4 @@ Basic Types Lab Solution - Implementation
 ------------------------------------------
   
 .. container:: source_include labs/answers/030_basic_types.txt :start-after:--Implementation :end-before:--Implementation :code:Ada :number-lines:18
-
---------------------------
-Basic Types Extra Credit
---------------------------
-
-* See what happens when your data is invalid / illegal
-
-   - Number of tests = 0
-   - Assign a very large number to the test score total
-   - Color type only has one value
-   - Add a number larger than 360 to the circle value
 
