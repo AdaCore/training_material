@@ -177,20 +177,21 @@ Quiz
 Quiz
 ------
 
-.. container:: latex_environment footnotesize
 
- .. container:: columns
+.. container:: columns
 
   .. container:: column
 
-   .. code:: Ada
+    .. container:: latex_environment tiny
 
-      package P is
+      .. code:: Ada
+
+       package P is
          type L1_T is limited private;
          type L2_T is limited private;
          type P1_T is private;
          type P2_T is private;
-      private
+       private
          type L1_T is limited record
             Field : Integer;
          end record;
@@ -203,22 +204,23 @@ Quiz
          type P2_T is record
             Field : L2_T;
          end record;
-      end P;
+       end P;
 
   .. container:: column
 
-   What will happen when the above code is compiled?
+   .. container:: latex_environment footnotesize
 
-   A. :answer:`Type P1_T will generate a compile error`
-   B. Type P2_T will generate a compile error
-   C. Both type P1_T and type P2_T will generate compile errors
-   D. The code will compile successfully
+     What will happen when the above code is compiled?
+
+     A. :answer:`Type P1_T will generate a compile error`
+     B. Type P2_T will generate a compile error
+     C. Both type P1_T and type P2_T will generate compile errors
+     D. The code will compile successfully
 
    .. container:: animate
 
-      The full definition of type :ada:`P1_T` adds additional
-      restrictions, which is not allowed. Although :ada:`P2_T`
+      Full definition of :ada:`P1_T` adds 
+      restrictions, which is not allowed. :ada:`P2_T`
       contains a component whose visible view is :ada:`limited`,
       the internal view is not :ada:`limited` so :ada:`P2_T` is
       not :ada:`limited`.
-
