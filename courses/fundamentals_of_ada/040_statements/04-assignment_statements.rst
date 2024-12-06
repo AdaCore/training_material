@@ -88,13 +88,13 @@ Aliasing the Assignment Target
       // becomes
       total += value;
 
-* Ada 2022 implements this by using the target name symbol |at_sign|
+* Ada 2022 implements this by using the target name symbol :ada:`@`
 
    .. code:: Ada
 
       Total := Total + Value;
       -- becomes
-      Total := |at_sign| + Value;
+      Total := @ + Value;
 
 * Benefit
 
@@ -102,7 +102,7 @@ Aliasing the Assignment Target
 
       .. code:: Ada
 
-         Value := (if |at_sign| > 0 then |at_sign| else -(|at_sign|));
+         Value := (if @ > 0 then @ else -(@));
 
 * Limitation
 
@@ -116,8 +116,8 @@ Aliasing the Assignment Target
       .. code:: Ada
          :number-lines: 13
 
-            Value := Update (|at_sign|);
-            Value := Increment (|at_sign|);
+            Value := Update (@);
+            Value := Increment (@);
 
       ``example.adb:13:21: error: actual for "X" must be a variable``
 
