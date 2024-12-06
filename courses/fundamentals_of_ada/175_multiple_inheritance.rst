@@ -183,7 +183,7 @@ Limited Tagged Types and Interfaces
 Lab
 ========
 
-.. include:: labs/adv_170_multiple_inheritance.lab.rst
+.. include:: labs/175_multiple_inheritance.lab.rst
 
 =========
 Summary
