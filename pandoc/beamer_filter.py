@@ -176,7 +176,7 @@ it's only been tested with the predefined color names:
    black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta,
    olive, orange, pink, purple, red, teal, violet, white, yellow
 """
-   
+
 
 def latex_colorize(color, text):
     return latex_inline("\\textcolor{" + color + "}{" + latex_escape(text) + "}")
@@ -703,7 +703,7 @@ def perform_role(role, literal_text, format):
     # So to write "This is a red word" where 'red' is actually
     # red you would write:
     #    This is a :color-red:`red` word
-    if role.startswith ("color-"):
+    if role.startswith("color-"):
         return latex_colorize(role[6:], literal_text)
 
     if function_name == None:
