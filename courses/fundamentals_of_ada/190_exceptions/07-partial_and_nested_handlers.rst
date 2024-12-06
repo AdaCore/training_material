@@ -1,6 +1,6 @@
-=============
-Propagation
-=============
+=============================
+Partial and Nested Handlers
+=============================
 
 -------------------------------
 Partially Handling Exceptions
