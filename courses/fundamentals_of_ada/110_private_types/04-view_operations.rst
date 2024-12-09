@@ -8,9 +8,7 @@ View Operations
 
 * Reminder: view is the *interface* you have on the type
 
-.. container:: latex_environment footnotesize
-
- .. container:: columns
+.. container:: columns
 
   .. container:: column
 
