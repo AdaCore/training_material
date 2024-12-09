@@ -88,7 +88,7 @@ Aliasing the Assignment Target
       // becomes
       total += value;
 
-* Ada 2022 implements this by using the target name symbol **@**
+* Ada 2022 implements this by using the target name symbol :ada:`@`
 
    .. code:: Ada
 

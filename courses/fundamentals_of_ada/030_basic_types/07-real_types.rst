@@ -167,9 +167,9 @@ What is the output of this code?
       Put_Line (Float'Image (F));
    end;
 
-A. 7.6
+A. 7.6E-01
 B. Compile Error
-C. 8.0
+C. 8.0E-01
 D. :answer:`0.0`
 
 .. container:: animate
