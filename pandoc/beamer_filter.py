@@ -362,6 +362,7 @@ SUPPORTED_CLASSES = [
     "source_include",
     "admonition",
     "animate",
+    "overlay",
     "speakernote",
     "columns",
     "column",
@@ -458,6 +459,57 @@ def animate(classes, contents):
         "c": ["latex", "\\begin{visibleenv}<" + slide_number + ">"],
     }
     last = {"t": "RawBlock", "c": ["latex", "\\end{visibleenv}"]}
+
+    value = []
+    value.append(first)
+    for c in contents:
+        value.append(c)
+    value.append(last)
+
+    return value
+
+
+##############
+## OVERLAYS ##
+##############
+
+"""
+   We are going to use a container to actually overlay one
+   container with another. This will be most useful when
+   you want to overlay one image with another image to
+   show image animation.
+   The format of the directive is:
+
+      .. container:: overlay <slide #>
+      
+   Slide number is the "slide" to display the contents.
+   (Unlike "animate", whatever you overlay will get replaced
+   by the next overlay - it's not actual layers)
+   A number will appear on the specific overlay.
+   NOTE: We use "onlyenv" to make the block appear, so if the blocks (images)
+   are not the same size, there will probably be some resizing, makeing things
+   look bad.
+"""
+
+
+def is_overlay(classes):
+    return ("container" in classes) and ("overlay" in classes)
+
+
+def overlay(classes, contents):
+    slide_number = 1
+    dash = "-"
+    if len(classes) > 2:
+        requested = classes[2]
+        if len(requested) > 0:
+            slide_number = int(requested)
+
+    slide_number = str(slide_number)
+    first = {
+        "t": "RawBlock",
+        "c": ["latex", "\\begin{onlyenv}<" + slide_number + ">"],
+    }
+    last = {"t": "RawBlock", "c": ["latex", "\\end{onlyenv}"]}
 
     value = []
     value.append(first)
@@ -835,6 +887,9 @@ def perform_filter(key, value, format, meta):
 
             if is_animate(classes):
                 return animate(classes, contents)
+
+            if is_overlay(classes):
+                return overlay(classes, contents)
 
             if is_latex_environment(classes):
                 return latex_environment(classes, contents)
