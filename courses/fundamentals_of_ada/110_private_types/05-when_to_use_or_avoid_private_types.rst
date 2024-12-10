@@ -46,5 +46,5 @@ When to Avoid Private Types
         type Vector is array (Positive range <>) of Float;
         V : Vector (1 .. 3);
         ...
-        V (1) := Alpha;
+        V (1) := Alpha; -- Illegal since Vector is private
 
