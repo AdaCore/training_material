@@ -49,32 +49,9 @@ Type Derivation
 
     - Tagged derivation **is** OOP in Ada
 
--------------------------------------
-Ada Mechanisms for Type Inheritance
--------------------------------------
-
-* :dfn:`Primitive` operations on types
-
-   - Standard operations like **+** and **-**
-   - Any operation that acts on the type
-
-* Type derivation
-
-   - Define types from other types that can add limitations
-   - Can add operations to the type
-
-* Tagged derivation
-
-   - **This** is OOP in Ada
-   - Seen in other chapter
-
-============
-Primitives
-============
-
---------------------
-Primitive Operations
---------------------
+---------------------------
+Reminder: What is a Type?
+---------------------------
 
 * A type is characterized by two elements
 
@@ -83,39 +60,15 @@ Primitive Operations
 
 * The operations are called **primitive operations** in Ada
 
+.. container:: latex_environment small
+
    .. code:: Ada
 
-      type T is new Integer;
-      procedure Attrib_Function (Value : T);
-
-------------------------------
-General Rule for a Primitive
-------------------------------
-
-* Primitives are subprograms
-* `S` is a primitive of type `T` iff
-
-   - `S` is declared in the scope of `T`
-   - `S` "uses" type `T`
-
-        + As a parameter
-        + As its return type (for :ada:`function`)
-
-   - `S` is above :dfn:`freeze-point`
-
-* Rule of thumb
-
-    - Primitives must be declared **right after** the type itself
-    - In a scope, declare at most a **single** type with primitives
-
-      .. code:: Ada
-
-         package P is
-            type T is range 1 .. 10;
-            procedure P1 (V : T);
-            procedure P2 (V1 : Integer; V2 : T);
-            function F return T;
-         end P;
+      package Types is
+         type Integer_T is range -(2**63) .. 2**63-1 with Size => 64; 
+         procedure Increment_With_Truncation (Val : in out Integer_T);
+         procedure Increment_With_Rounding (Val : in out Integer_T);
+     end Types;
 
 ===================
 Simple Derivation
@@ -129,25 +82,32 @@ Simple Type Derivation
 
   .. code:: Ada
 
-    type Child is new Parent;
+    type Natural_T is new Integer_T range 0 .. Integer_T'Last;
 
-* Child inherits from:
+* :ada:`Positive_T` inherits from:
 
    - The data **representation** of the parent
+
+      * Integer based, 64 bits
+
    - The **primitives** of the parent
 
-* Conversions are possible from child to parent
+      * :ada:`Increment_With_Truncation` and :ada:`Increment_With_Rounding`
+
+* The types are not the same
 
    .. code:: Ada
 
-     type Parent is range 1 .. 10;
-     procedure Prim (V : Parent);
-     type Child is new Parent;  -- Freeze Parent
-     procedure Not_A_Primitive (V : Parent);
-     C : Child;
-     ...
-     Prim (C);  -- Implicitly declared
-     Not_A_Primitive (Parent (C));
+      I_Obj : Integer_T := 0;
+      N_Obj : Natural_T := 0;
+
+   * :ada:`I_Obj := N_Obj;` generates a compile error
+
+      :color-red:`expected type "Integer_T" defined at line 2`
+
+   * But a child can be converted to the parent
+
+      * :ada:`I_Obj := Integer_T (N_Obj);`
 
 --------------------------------------
 Simple Derivation and Type Structure
@@ -163,19 +123,100 @@ Simple Derivation and Type Structure
 
    .. code:: Ada
 
-      type Tiny_Int is range -100 .. 100;
-      type Tiny_Positive is new Tiny_Int range 1 .. 100;
+      type Positive_T is new Natural_T range 1 .. Natural_T'Last;
 
 * Unconstrained types can be constrained
 
    .. code:: Ada
 
-      type Arr is array (Integer range <>) of Integer;
-      type Ten_Elem_Arr is new Arr (1 .. 10);
-      type Rec (Size : Integer) is record
-         Elem : Arr (1 .. Size);
+      type Arr_T is array (Integer range <>) of Integer;
+      type Ten_Elem_Arr_T is new Arr_T (1 .. 10);
+      type Rec_T (Size : Integer) is record
+         Elem : Arr_T (1 .. Size);
       end record;
-      type Ten_Elem_Rec is new Rec (10);
+      type Ten_Elem_Rec_T is new Rec_T (10);
+
+============
+Primitives
+============
+
+--------------------
+Primitive Operations
+--------------------
+
+* Primitive Operations are those subprograms associated with a type
+
+.. code:: Ada
+
+   type Integer_T is range -(2**63) .. 2**63-1 with Size => 64; 
+   procedure Increment_With_Truncation (Val : in out Integer_T);
+   procedure Increment_With_Rounding (Val : in out Integer_T);
+
+* Note most scalars have some primitive operations defined by the language
+
+   * e.g. :ada:`+` and :ada:`*` for numeric types, etc
+
+* A primitive operation can be used on a child type with no conversion
+
+   .. code:: Ada
+
+      declare
+         N_Obj : Natural_T := 1234;
+      begin
+         Increment_With_Truncation (N_Obj);
+      end;
+
+---------------------------------------
+General Rule for Defining a Primitive
+---------------------------------------
+
+* Primitives are subprograms
+* Subprogram :ada:`S` is a primitive of type :ada:`T` if and only if:
+
+   - :ada:`S` is declared in the scope of :ada:`T`
+   - :ada:`S` uses type :ada:`T`
+
+        + As a parameter
+        + As its return type (for a :ada:`function`)
+
+   - :ada:`S` is above :dfn:`freeze-point` (see next section)
+
+* Standard practice
+
+    - Primitives should be declared **right after** the type itself
+    - In a scope, declare at most a **single** type with primitives
+
+      .. code:: Ada
+
+         package P is
+            type T is range 1 .. 10;
+            procedure P1 (V : T);
+            procedure P2 (V1 : Integer; V2 : T);
+            function F return T;
+         end P;
+
+----------------------------------
+Creating Primitives for Children
+----------------------------------
+
+* Just because we can inherit a primitive from out parent doesn't mean we want to
+
+* Create a new primitive (with the same name as the parent) for the child
+
+   * Very similar to overloaded subprograms
+   * But added benefit of visibility to grandchildren
+
+.. code:: Ada
+
+   type Integer_T is range -(2**63) .. 2**63-1; 
+   procedure Increment_With_Truncation (Val : in out Integer_T);
+   procedure Increment_With_Rounding (Val : in out Integer_T);
+   
+   type Child_T is new Integer_T range -1000 .. 1000;
+   procedure Increment_With_Truncation (Val : in out Child_T);
+   
+   type Grandchild_T is new Child_T range -100 .. 100;
+   procedure Increment_With_Rounding (Val : in out Grandchild_T);
 
 ------------------------
 Overriding Indications
@@ -184,63 +225,150 @@ Overriding Indications
 * **Optional** indications
 * Checked by compiler
 
-   .. code:: Ada
+   .. container:: latex_environment footnotesize
 
-      type Root is range 1 .. 100;
-      procedure Prim (V : Root);
-      type Child is new Root;
+      .. code:: Ada
+
+         type Child_T is new Integer_T range -1000 .. 1000;
+         procedure Increment_With_Truncation
+            (Val : in out Child_T);
+         procedure Just_For_Child
+            (Val : in out Child_T);
 
 * **Replacing** a primitive: :ada:`overriding` indication
 
-   .. code:: Ada
+   .. container:: latex_environment footnotesize
 
-      overriding procedure Prim (V : Child);
+      .. code:: Ada
+
+         overriding procedure Increment_With_Truncation
+            (Val : in out Child_T);
 
 * **Adding** a primitive: :ada:`not overriding` indication
 
-   .. code:: Ada
+   .. container:: latex_environment footnotesize
 
-      not overriding procedure Prim2 (V : Child);
+      .. code:: Ada
+
+         not overriding procedure Just_For_Child
+            (Val : in out Child_T);
 
 * **Removing** a primitive: :ada:`overriding` as :ada:`abstract`
 
-   .. code:: Ada
+   .. container:: latex_environment footnotesize
 
-      overriding procedure Prim (V : Child) is abstract;
+      .. code:: Ada
+
+         overriding procedure Just_For_Child
+            (Val : in out Grandchild_T) is abstract;
 
 ..
   language_version 2005
+
+==============
+Freeze Point
+==============
+
+-----------------------------
+What is the "Freeze Point"?
+-----------------------------
+
+* Ada doesn't explicitly identify the end of the "scope" of a type
+
+   * The compiler needs to know it for determining primitive operations
+   * Also needed for other situations (described elsewhere)
+
+* This end is the implicit **freeze point** occurring whenever:
+
+   - A **variable** of the type is **declared**
+   - The type is **derived**
+   - The **end of the scope** is reached
+
+* Subprograms past this "freeze point" are not primitive operations
+
+.. code:: Ada
+
+   type Parent is Integer;
+   procedure Prim (V : Parent);
+
+   type Child is new Parent;
+
+   -- Parent has been derived, so it is frozen.
+   -- Prim2 is not a primitive
+   procedure Prim2 (V : Parent);
+
+   V : Child;
+
+   -- Child used in an object declaration, so it is frozen
+   -- Prim3 is not a primitive
+   procedure Prim3 (V : Child);
+
+-----------------------
+Debugging Type Freeze
+-----------------------
+
+* Freeze |rightarrow| Type **completely** defined
+* Compiler does **need** to determine the freeze point
+
+    - To instantiate, derive, get info on the type (:ada:`'Size`)...
+    - Freeze rules are a guide to place it
+    - Actual choice is more technical
+
+        + May contradict the standard
+
+* :command:`-gnatDG` to get **expanded** source
+
+    - **Pseudo-Ada** debug information
+
+:filename:`pkg.ads`
+
+   .. code:: Ada
+
+       type Up_To_Eleven is range 0 .. 11;
+
+:filename:`<obj>/pkg.ads.dg`
+
+.. container:: latex_environment tiny
+        
+   ::
+
+      type example__up_to_eleven_t is range 0 .. 11;              -- type declaration
+      [type example__Tup_to_eleven_tB is new short_short_integer] -- representation
+      freeze example__Tup_to_eleven_tB []                         -- freeze representation
+      freeze example__up_to_eleven_t []                           -- freeze representation
 
 ------
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment tiny
 
-   type T1 is range 1 .. 100;
-   procedure Proc_A (X : in out T1);
+   .. code:: Ada
 
-   type T2 is new T1 range 2 .. 99;
-   procedure Proc_B (X : in out T1);
-   procedure Proc_B (X : in out T2);
+      type Parent is range 1 .. 100;
+      procedure Proc_A (X : in out Parent);
 
-   -- Other scope
-   procedure Proc_C (X : in out T2);
+      type Child is new Parent range 2 .. 99;
+      procedure Proc_B (X : in out Parent);
+      procedure Proc_B (X : in out Child);
 
-   type T3 is new T2 range 3 .. 98;
+      -- Other scope
+      procedure Proc_C (X : in out Child);
 
-   procedure Proc_C (X : in out T3);
+      type Grandchild is new Child range 3 .. 98;
+
+      procedure Proc_C (X : in out Grandchild);
 
 .. container:: columns
 
  .. container:: column
 
-  Which are :ada:`T1`'s primitives
+  Which are :ada:`Parent`'s primitives
 
      A. :answermono:`Proc_A`
      B. ``Proc_B``
      C. ``Proc_C``
-     D. No primitives of :ada:`T1`
+     D. No primitives of :ada:`Parent`
 
  .. container:: column
 
@@ -249,11 +377,10 @@ Quiz
    Explanations
 
    A. Correct
-   B. Freeze: :ada:`T1` has been derived
+   B. Freeze: :ada:`Parent` has been derived
    C. Freeze: scope change
    D. Incorrect
 
-.
 
 =========
 Summary
