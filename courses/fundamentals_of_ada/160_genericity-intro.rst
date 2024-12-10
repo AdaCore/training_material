@@ -35,8 +35,6 @@ Genericity
 
 .. include:: 160_genericity/01-introduction.rst
 .. include:: 160_genericity/02-creating_generics.rst
-.. include:: 160_genericity/03-generic_data_in_depth.rst
-.. include:: 160_genericity/04-generic_formal_data_in_depth.rst
-.. include:: 160_genericity/05-generic_completion.rst
-.. include:: labs/160_genericity.lab.rst
+.. include:: 160_genericity/03-generic_data.rst
+.. include:: 160_genericity/04-generic_formal_data.rst
 .. include:: 160_genericity/99-summary.rst
