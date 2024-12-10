@@ -1,6 +1,6 @@
-*****************
-Tagged Derivation
-*****************
+**********************
+Multiple Inheritance
+**********************
 
 .. container:: PRELUDE BEGIN
 
@@ -33,8 +33,7 @@ Tagged Derivation
 
 .. container:: PRELUDE END
 
-.. include:: 170_tagged_derivation/01-introduction.rst
-.. include:: 170_tagged_derivation/02-tagged_derivation.rst
-.. include:: 170_tagged_derivation/03-extending_tagged_types.rst
-.. include:: labs/170_tagged_derivation.lab.rst
-.. include:: 170_tagged_derivation/99-summary.rst
+.. include:: 175_multiple_inheritance/01-introduction.rst
+.. include:: 175_multiple_inheritance/02-interfaces.rst
+.. include:: labs/175_multiple_inheritance.lab.rst
+.. include:: 175_multiple_inheritance/99-summary.rst
