@@ -13,7 +13,7 @@
 110_private_types.rst
 130_program_structure.rst
 135_visibility.rst
-intro_170_tagged_derivation.rst
+170_tagged_derivation-intro.rst
 190_exceptions.rst
 140_access_types.rst
 160_genericity.rst
