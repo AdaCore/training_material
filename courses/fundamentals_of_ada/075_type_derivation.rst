@@ -84,7 +84,7 @@ Simple Type Derivation
 
     type Natural_T is new Integer_T range 0 .. Integer_T'Last;
 
-* :ada:`Positive_T` inherits from:
+* :ada:`Natural_T` inherits from:
 
    - The data **representation** of the parent
 
@@ -101,7 +101,7 @@ Simple Type Derivation
       I_Obj : Integer_T := 0;
       N_Obj : Natural_T := 0;
 
-   * :ada:`I_Obj := N_Obj;` generates a compile error
+   * :ada:`I_Obj := N_Obj;` |rightarrow| generates a compile error
 
       :color-red:`expected type "Integer_T" defined at line 2`
 
@@ -152,11 +152,11 @@ Primitive Operations
    procedure Increment_With_Truncation (Val : in out Integer_T);
    procedure Increment_With_Rounding (Val : in out Integer_T);
 
-* Note most scalars have some primitive operations defined by the language
+* Most types have some primitive operations defined by the language
 
-   * e.g. :ada:`+` and :ada:`*` for numeric types, etc
+   * e.g. equality operators for most types, numeric operators for integers and floats
 
-* A primitive operation can be used on a child type with no conversion
+* A primitive operation on the parent can receive an object of a child type with no conversion
 
    .. code:: Ada
 
@@ -195,16 +195,43 @@ General Rule for Defining a Primitive
             function F return T;
          end P;
 
+------------------------------
+Primitive of Multiple Types
+------------------------------
+
+A subprogram can be a primitive of several types
+
+   .. code:: Ada
+
+      package P is
+         type Distance_T is range 0 .. 9999;
+         type Percentage_T is digits 2 range 0.0 .. 1.0;
+         type Units_T is (Meters, Feet, Furlongs);
+
+         procedure Convert (Value  : in out Distance_T; 
+                            Source :        Units_T;
+                            Result :        Units_T;
+         procedure Shrink (Value   : in out Distance_T;
+                           Percent :        Percentage_T);
+
+      end P;
+
+* :ada:`Convert` and :ada:`Shrink` are primitives for :ada:`Distance_T`
+* :ada:`Convert` is also a primitive of :ada:`Units_T`
+* :ada:`Shrink` is also a primitive of :ada:`Percentage_T`
+
 ----------------------------------
 Creating Primitives for Children
 ----------------------------------
 
 * Just because we can inherit a primitive from out parent doesn't mean we want to
 
-* Create a new primitive (with the same name as the parent) for the child
+* We can create a new primitive (with the same name as the parent) for the child
 
    * Very similar to overloaded subprograms
    * But added benefit of visibility to grandchildren
+
+* We can also remove a primitive (see next slide)
 
 .. code:: Ada
 
@@ -262,8 +289,16 @@ Overriding Indications
          overriding procedure Just_For_Child
             (Val : in out Grandchild_T) is abstract;
 
+* Using :ada:`overriding` or :ada:`not overriding` incorrectly will generate a compile error
+
 ..
   language_version 2005
+
+------
+Quiz
+------
+
+.. include:: quiz/operators_override_simple/quiz.rst
 
 ==============
 Freeze Point
