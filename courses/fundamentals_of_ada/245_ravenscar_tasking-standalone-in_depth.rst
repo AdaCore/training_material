@@ -37,6 +37,7 @@ Ravenscar Tasking
 .. include:: 245_ravenscar_tasking/02-tasks.rst
 .. include:: 245_ravenscar_tasking/03-delays.rst
 .. include:: 245_ravenscar_tasking/04-protected_objects.rst
-.. include:: 245_ravenscar_tasking/06-ravenscar_scheduling.rst
-.. include:: 245_ravenscar_tasking/07-some_advanced_concepts.rst
+.. include:: 245_ravenscar_tasking/05-differences_from_standard_tasking.rst
+.. include:: 245_ravenscar_tasking/06-tasking_behavior.rst
+.. include:: 245_ravenscar_tasking/07-tasking_control.rst
 .. include:: 245_ravenscar_tasking/99-summary.rst
