@@ -398,7 +398,7 @@ Quiz
 
  .. container:: column
 
-  Which are :ada:`Parent`'s primitives
+  Which are :ada:`Parent`'s primitives?
 
      A. :answermono:`Proc_A`
      B. ``Proc_B``
