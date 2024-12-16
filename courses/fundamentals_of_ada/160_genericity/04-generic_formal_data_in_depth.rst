@@ -108,77 +108,46 @@ Quiz
 Quiz
 ------
 
-.. container:: columns
+Given the following generic function:
 
- .. container:: column
+.. code:: Ada
 
+   generic
+      type Some_T is private;
+      with function "+" (L : Some_T; R : Integer) return Some_T is <>;
+   function Incr (Param : Some_T) return Some_T;
 
-   .. code:: Ada
-      :number-lines: 1
+   function Incr (Param : Some_T) return Some_T is
+   begin
+      return Param + 1;
+   end Incr;
 
-      procedure Double (X : in out Integer);
-      procedure Square (X : in out Integer);
-      procedure Half (X : in out Integer);
-      generic
-         with procedure Double (X : in out Integer) is <>;
-         with procedure Square (X : in out Integer) is null;
-      procedure Math (P : in out Integer);
-      procedure Math (P : in out Integer) is
-      begin
-         Double (P);
-         Square (P);
-      end Math;
-      procedure Instance is new Math (Double => Half);
-      Number : Integer := 10;
+And the following declarations:
 
- .. container:: column
+.. code:: Ada
 
- .. container:: column
+   type Record_T is record
+      Field : Integer;
+   end record;
+   function Add (L : Record_T; I : Integer) return Record_T is
+      ((Field => L.Field + I))
+   function Weird (L : Integer; R : Integer) return Integer is (0);
 
-   What is the value of Number after calling :ada:`Instance (Number)`
+Which of the following instantiation(s) is/are **not** legal?
 
-   A. 20
-   B. 400
-   C. :answer:`5`
-   D. 10
+A. ``function IncrA is new Incr (Integer, Weird);``
+B. ``function IncrB is new Incr (Record_T, Add);``
+C. :answermono:`function IncrC is new Incr (Record_T);`
+D. ``function IncrD is new Incr (Integer);``
 
 .. container:: animate
 
-  A. Would be correct for :ada:`procedure Instance is new Math;`
+   :ada:`with function "+" (L : Some_T; R : Integer) return Some_T is <>;` indicates that if no function for :ada:`+` is passed in, find (if possible) a matching definition at the point of instantiation.
 
-  B. Would be correct for either :ada:`procedure Instance is new Math (Double, Square);` *or* :ada:`procedure Instance is new Math (Square => Square);`
-
-  C. Correct
-
-    * We call formal parameter :ada:`Double`, which has been assigned to actual subprogram :ada:`Half`, so :ada:`P`, which is 10, is halved.
-
-    * Then we call formal parameter :ada:`Square`, which has no actual subprogram, so it defaults to :ada:`null`, so nothing happens to :ada:`P`
-
-  D. Would be correct for either :ada:`procedure Instance is new Math (Double, Half);` *or* :ada:`procedure Instance is new Math (Square => Half);`
+   A. :ada:`Weird` matches the subprogram profile, so :ada:`Incr` will use :ada:`Weird` when doing addition for :ada:`Integer`
+   B. :ada:`Add` matches the subprogram profile, so :ada:`Incr` will use :ada:`Add` when doing the addition for :ada:`Record_T`
+   C. There is no matching :ada:`+` operation for :ada:`Record_T`, so that instantiation fails to compile
+   D. Because there is no parameter for the generic formal parameter :ada:`+`, the compiler will look for one in the scope of the instantiation. Because the instantiating type is numeric, the inherited :ada:`+` operator is found
 
 ..
   language_version 2005
-
-----------------------
-Quiz Answer in Depth
-----------------------
-
-      A. Wrong - result for :ada:`procedure Instance is new Math;`
-      B. Wrong - result for :ada:`procedure Instance is new Math (Double, Square);`
-      C. :ada:`Double` at line 10 is mapped to :ada:`Half` at line 3, and :ada:`Square` at line 11 wasn't specified so it defaults to :ada:`null`
-      D. Wrong - result for :ada:`procedure Instance is new Math (Square => Half);`
-
-.. container:: animate
-
-  .. container:: latex_environment tiny
-
-    :ada:`Math` is going to call two subprograms in order, :ada:`Double` and :ada:`Square`, but both of those come from the formal data.
-
-    Whatever is used for :ada:`Double`, will be called by the :ada:`Math` instance. If nothing is passed in, the compiler tries to find a subprogram named :ada:`Double` and use that. If it doesn't, that's a compile error.
-
-    Whatever is used for :ada:`Square`, will be called by the :ada:`Math` instance. If nothing is passed in, the compiler will treat this as a null call.
-
-    In our case, :ada:`Half` is passed in for the first subprogram, but nothing is passed in for the second, so that call will just be null.
-
-    So the final answer should be 5 (hence letter C).
-
