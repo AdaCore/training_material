@@ -2,136 +2,142 @@
 Extended Example
 ===================
 
-------------------------------------
-Tic-Tac-Toe Winners Example (Spec)
-------------------------------------
+-----------------------------
+Implementing a Simple "Set"
+-----------------------------
 
-.. container:: columns
+* We want to indicate which colors of the rainbow are in a **set**
 
- .. container:: column
+   * If you remember from the *Basic Types* module, a type is made up of values and primitive operations
 
-    .. code:: Ada
+* Our values will be
 
-       package TicTacToe is
-         type Players is (Nobody, X, O);
-         type Move is range 1 .. 9;
-         type Game is array (Move) of
-           Players;
-         function Winner (This : Game)
-           return Players;
-         ...
-       end TicTacToe;
+   * Type indicating colors of the rainbow
+   * Type to group colors
+   * Mechanism to indicate which color is in our set
 
- .. container:: column
+* Our primitive operations will be
 
-    .. list-table::
+   * Create a set
+   * Add a color to the set
+   * Remove a color from the set
+   * Check if color is in set
 
-      * - :subscript:`1` N
+--------------------
+Values for the Set
+--------------------
 
-        - :subscript:`2` N
-        - :subscript:`3` N
+* Colors of the rainbow
 
-      * - :subscript:`4` N
+   .. code:: Ada
 
-        - :subscript:`5` N
-        - :subscript:`6` N
+      type Color_T is (Red, Orange, Yellow, Green,
+                       Blue, Indigo, Violet,
+                       White, Black);
 
-      * - :subscript:`7` N
+* Group of colors
 
-        - :subscript:`8` N
-        - :subscript:`9` N
+   .. code:: Ada
 
-------------------------------------
-Tic-Tac-Toe Winners Example (Body)
-------------------------------------
+      type Group_Of_Colors_T is
+         array (Positive range <>) of Color_T;
+
+* Mechanism indicating which color is in the set
+
+   .. code:: Ada
+
+      type Set_T is array (Color_T) of Boolean;
+      --  if array component at Color is True,
+      --  the color is in the set
+
+----------------------------------
+Primitive Operations for the Set
+----------------------------------
+
+* Create a set
+
+   .. code:: Ada
+
+      function Make (Colors : Group_Of_Colors_T) return Set_T;
+
+* Add a color to the set
+
+   .. code:: Ada
+
+      procedure Add (Set    : in out Set_T;
+                     Color  :        Color_T);
+
+* Remove a color from the set
+
+   .. code:: Ada
+
+      procedure Remove (Set    : in out Set_T;
+                        Color  :        Color_T);
+
+* Check if color is in set
+
+   .. code:: Ada
+
+      function Contains (Set   : Set_T;
+                         Color : Color_T)
+                         return Boolean;
+
+--------------------------------------------
+Implementation of the Primitive Operations
+--------------------------------------------
+
+* Implementation of the primitives is easy
+
+   * We could do operations directly on :ada:`Set_T`, but that's not flexible
 
 .. code:: Ada
 
-   function Winner (This : Game) return Players is
-     type Winning_Combinations is range 1 .. 8;
-     type Required_Positions   is range 1 .. 3;
-     Winning : constant array
-       (Winning_Combinations, Required_Positions)
-         of Move := (-- rows
-                     (1, 2, 3), (4, 5, 6), (7, 8, 9),
-                     -- columns
-                     (1, 4, 7), (2, 5, 8), (3, 6, 9),
-                     -- diagonals
-                     (1, 5, 9), (3, 5, 7));
-
+   function Make (Colors : Group_Of_Colors_T) return Set_T is
+      Set : Set_T := (others => False);
    begin
-     for K in Winning_Combinations loop
-       if This (Winning (K, 1)) /= Nobody and then
-         (This (Winning (K, 1)) = This (Winning (K, 2)) and
-          This (Winning (K, 2)) = This (Winning (K, 3)))
-       then
-         return This (Winning (K, 1));
-       end if;
-     end loop;
-     return Nobody;
-   end Winner;
-
--------------
-Set Example
--------------
-
-.. code:: Ada
-
-   -- some colors
-   type Color is (Red, Orange, Yellow, Green, Blue, Violet);
-   -- truth table for each color
-   type Set is array (Color) of Boolean;
-   -- unconstrained array of colors
-   type Set_Literal is array (Positive range <>) of Color;
-
-   -- Take an array of colors and set table value to True
-   -- for each color in the array
-   function Make (Values : Set_Literal) return Set;
-   -- Take a color and return table with color value set to true
-   function Make (Base : Color) return Set;
-   -- Return True if the color has the truth value set
-   function Is_Member (C : Color; Of_Set: Set) return Boolean;
-
-   Null_Set : constant Set := (Set'Range => False);
-   RGB      : Set := Make (
-              Set_Literal'(Red, Blue, Green));
-   Domain   : Set := Make (Green);
-
-   if Is_Member (Red, Of_Set => RGB) then ...
-
-   -- Type supports operations via Boolean operations,
-   -- as Set is a one-dimensional array of Boolean
-   S1, S2 : Set := Make (....);
-   Union : Set := S1 or S2;
-   Intersection : Set := S1 and S2;
-   Difference : Set := S1 xor S2;
-
-------------------------------
-Set Example (Implementation)
-------------------------------
-
-.. code:: Ada
-
-   function Make (Base : Color) return Set is
-     Result : Set := Null_Set;
-   begin
-      Result (Base) := True;
-      return Result;
+      for Color of Colors loop
+         Set (Color) := True;
+      end loop;
+      return Set;
    end Make;
 
-   function Make (Values : Set_Literal) return Set is
-     Result : Set := Null_Set;
+   procedure Add (Set   : in out Set_T;
+                  Color :        Color_T) is
    begin
-     for K in Values'Range loop
-       Result (Values (K)) := True;
-     end loop;
-     return Result;
-   end Make;
+      Set (Color) := True;
+   end Add;
 
-   function Is_Member (C: Color;
-                        Of_Set: Set)
-                        return Boolean is
+   procedure Remove (Set   : in out Set_T;
+                     Color :        Color_T) is
    begin
-     return Of_Set (C);
-   end Is_Member;
+      Set (Color) := False;
+   end Remove;
 
+   function Contains (Set   : Set_T; Color : Color_T) return Boolean is
+      (Set (Color));
+
+-------------------------
+Using our Set Construct
+-------------------------
+
+.. code:: Ada
+
+   Rgb   : Set_T := Make ((Red, Green, Blue));
+   Light : Set_T := Make ((Red, Yellow, Green));
+
+.. code:: Ada
+
+   if Contains (Rgb, Black) then
+      Remove (Rgb, Black);
+   else
+      Add (Rgb, Black);
+   end if;
+
+* In addition, because of the operations available to arrays of Boolean,
+we can easily implement union and intersection
+
+.. code:: Ada
+
+   Union         : Set_T := Rgb or Light;
+   Intersection  : Set_T := Rgb and Light;
+   Difference    : Set_T := Rgb xor Light;
