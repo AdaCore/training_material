@@ -12,12 +12,10 @@ from pathlib import Path
 import shutil
 
 SCRIPTS = Path(__file__).parent
-ADACUT_PY = SCRIPTS / "adacut.py"
-assert ADACUT_PY.is_file()
 
 debug = False
 
-adacut = cmd.python.arg(ADACUT_PY)
+adacut = cmd.adacut
 gprbuild = cmd.gprbuild.arg("-p")
 
 
