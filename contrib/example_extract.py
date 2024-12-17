@@ -5,7 +5,7 @@ import epycs.subprocess as esubp
 import difflib
 
 scripts_dir = Path(__file__).parent
-adacut = esubp.cmd.python.arg(scripts_dir / "adacut.py")
+adacut = esubp.cmd.adacut
 
 esubp.verbose = True
 

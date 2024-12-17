@@ -165,7 +165,7 @@ The commands available for the ref implementation are:
 
 # Updating the question / answer code
 
-Since, the question code is extracted from the answers code using adacut.py (present in this repository).
+Since, the question code is extracted from the answers code using adacut (installed from pip)
 You will need to update the code from the `template/` directory then use the `build.sh` script to generate
 the `src/` and `answers/` directories.
 
