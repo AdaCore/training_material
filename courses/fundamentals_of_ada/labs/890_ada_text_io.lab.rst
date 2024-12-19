@@ -25,5 +25,5 @@ Ada.Text_IO Lab
 Ada.Text_IO Lab Solution
 ----------------------------------------------
 
-.. container:: source_include labs/answers/spec_890_ada_text_io.txt :code:Ada :number-lines:1
+.. container:: source_include labs/answers/890_ada_text_io.txt :code:Ada :number-lines:1
 
