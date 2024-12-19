@@ -42,6 +42,6 @@ Subprograms
 .. include:: 070_subprograms/07-function_specifics.rst
 .. include:: 070_subprograms/08-expression_functions.rst
 .. include:: 070_subprograms/09-potential_pitfalls.rst
-.. include:: 070_subprograms/10-extended_examples.rst
+.. include:: 070_subprograms/10-extended_example.rst
 .. include:: labs/070_subprograms.lab.rst
 .. include:: 070_subprograms/99-summary.rst
