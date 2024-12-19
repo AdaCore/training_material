@@ -113,7 +113,9 @@ Implementation of the Primitive Operations
       Set (Color) := False;
    end Remove;
 
-   function Contains (Set   : Set_T; Color : Color_T) return Boolean is
+   function Contains (Set   : Set_T;
+                      Color : Color_T)
+                      return Boolean is
       (Set (Color));
 
 -------------------------
@@ -133,8 +135,7 @@ Using our Set Construct
       Add (Rgb, Black);
    end if;
 
-* In addition, because of the operations available to arrays of Boolean,
-we can easily implement union and intersection
+*In addition, because of the operations available to arrays of Boolean, we can easily implement set operations*
 
 .. code:: Ada
 
