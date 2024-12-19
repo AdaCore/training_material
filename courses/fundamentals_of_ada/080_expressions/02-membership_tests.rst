@@ -42,20 +42,29 @@ Testing Constraints Via Membership
 Testing Non-Contiguous Membership
 -----------------------------------
 
-* Uses vertical bar "choice" syntax
+* We use :ada:`in` to indicate membership in a range of values
 
-.. code:: Ada
+   .. code:: Ada
 
-   declare
-    M : Month_Number := Month (Clock);
-   begin
-     if M in 9 | 4 | 6 | 11 then
-       Put_Line ("31 days in this month");
-     elsif M = 2 then
-       Put_Line ("It's February, who knows?");
-     else
-       Put_Line ("30 days in this month");
-     end if;
+      if Color in Red .. Green then
+      if Index in List'Range then
+
+* But what if the values are not contiguous?
+
+   * We could use a Boolean conjunction
+
+      .. code:: Ada
+
+         if Index = 1 or Index = 3 or Index = 5 then
+
+   * Or we could simplify it by specifying a collection (or set)
+
+      .. code:: Ada
+
+         if Index in 1 | 3 | 5 then
+
+      * **|** is used to separate members
+      * So :ada:`1 | 3 | 5` is the set for which we are verifying membership
 
 ..
   language_version 2012
