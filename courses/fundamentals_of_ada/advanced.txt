@@ -4,7 +4,7 @@
 065_discriminated_records.rst
 080_expressions-with_quantified.rst
 120_limited_types.rst
-adv_120_advanced_privacy.rst
+290_advanced_data_hiding.rst
 140_access_types-advanced.rst
 160_genericity.rst
 170_tagged_derivation.rst

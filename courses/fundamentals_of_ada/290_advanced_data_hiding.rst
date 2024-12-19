@@ -66,7 +66,7 @@ Partial Vs Full View of a Type
 
    - Partial view may declare supplementary constraint that the full view doesn't have
 
-.. include:: examples/adv_120_advanced_privacy/capabilities_and_constraints.adb
+.. include:: examples/290_advanced_data_hiding/capabilities_and_constraints.adb
     :code: Ada
 
 ---------------
@@ -505,7 +505,7 @@ Children "Inherit" From Private Properties of Parent
 Lab
 ========
 
-.. include:: labs/adv_120_advanced_privacy.lab.rst
+.. include:: labs/290_advanced_data_hiding.lab.rst
 
 =========
 Summary
