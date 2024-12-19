@@ -90,7 +90,7 @@ Which condition(s) is (are) legal?
 
    Explanations
 
-   A. To use :ada:`or`, both sides of the comparison must be duplicated (e.g. :ada:`Today = Mon or Today = Wed`)
+   A. :ada:`Wed` and :ada:`Fri` are not Boolean expressions - need to compare each of them to :ada:`Today`
    B. Legal - should always return :ada:`True`
    C. Legal - returns :ada:`True` if :ada:`Today` is :ada:`Sat` or :ada:`Sun`
    D. Legal - returns :ada:`True` if :ada:`Today` is :ada:`Tue` or :ada:`Thu`
