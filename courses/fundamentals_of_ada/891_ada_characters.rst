@@ -163,7 +163,7 @@ Character Transformation
 Lab
 ========
 
-.. include:: labs/spec_891_ada_characters.lab.rst
+.. include:: labs/891_ada_characters.lab.rst
 
 =========
 Summary

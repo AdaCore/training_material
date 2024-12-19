@@ -362,7 +362,7 @@ Standard ``Ada.Containers`` Packages
 Lab
 ========
 
-.. include:: labs/adv_250_containers.lab.rst
+.. include:: labs/894_ada_containers.lab.rst
 
 =========
 Summary

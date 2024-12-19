@@ -216,7 +216,7 @@ Randon Number Usage
 Lab
 ========
 
-.. include:: labs/spec_893_ada_numerics.lab.rst
+.. include:: labs/893_ada_numerics.lab.rst
 
 =========
 Summary
