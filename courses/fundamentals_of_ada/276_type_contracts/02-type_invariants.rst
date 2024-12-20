@@ -203,12 +203,11 @@ Quiz
       private
          function Check_Threshold (Value : Integer) 
                                        return Boolean;
-
          type Counter_T is new Integer with
             Type_Invariant => Check_Threshold 
                               (Integer (Counter_T));
       end Counter_Package;
-
+      
       package body Counter_Package is
          function Increment_Helper (C : Counter_T)
                                       return Counter_T is
@@ -216,13 +215,11 @@ Quiz
          begin
             return Next_Value;
          end Local_Do_Something;
-
          procedure Increment (C : in out Counter_T) is
          begin
             C := C + 1;
             C := Increment_Helper (C);
          end Increment;
-
          function Check_Threshold (Value : Integer)
                                           return Boolean is
             (Value <= 100); --  check against constraint
