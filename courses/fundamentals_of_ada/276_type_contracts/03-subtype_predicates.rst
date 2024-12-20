@@ -428,8 +428,8 @@ Subtype Predicates Aren't Bullet-Proof
      type Table is array (1 .. 5) of Integer
        -- array should always be sorted
        with Dynamic_Predicate =>
-         (for all Index in Table'Range =>
-           (Index = Table'First or else Table (Index-1) <= Table (Index)));
+         (for all Idx in Table'Range =>
+           (Idx = Table'First or else Table (Idx-1) <= Table (Idx)));
      Values : Table := (1, 3, 5, 7, 9);
    begin
      ...

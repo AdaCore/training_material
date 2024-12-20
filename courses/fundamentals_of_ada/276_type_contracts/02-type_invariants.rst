@@ -201,10 +201,12 @@ Quiz
          type Counter_T is private;
          procedure Increment (C : in out Counter_T);
       private
-         function Check_Threshold (Value : Integer) return Boolean;
+         function Check_Threshold (Value : Integer) 
+                                       return Boolean;
 
          type Counter_T is new Integer with
-            Type_Invariant => Check_Threshold (Integer (Counter_T));
+            Type_Invariant => Check_Threshold 
+                              (Integer (Counter_T));
       end Counter_Package;
 
       package body Counter_Package is
@@ -222,8 +224,8 @@ Quiz
          end Increment;
 
          function Check_Threshold (Value : Integer)
-                           return Boolean is
-            (Value <= 100); --  check against threshold constraint
+                                          return Boolean is
+            (Value <= 100); --  check against constraint
       end Counter_Package;
 
  .. container:: column
