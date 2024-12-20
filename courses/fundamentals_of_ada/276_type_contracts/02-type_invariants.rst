@@ -236,8 +236,6 @@ Quiz
 
     .. container:: animate
 
-       Type Invariants are only evaluated on entry into and exit from
+       Type Invariants are only evaluated on entry into/exit from
        externally visible subprograms. So :ada:`Check_Threshold` is called when
-       entering and exiting :ada:`Increment` - not :ada:`Increment_Helper`,
-       even though a new instance of :ada:`Counter_T` is created
-
+       entering/exiting :ada:`Increment` - not :ada:`Increment_Helper`
