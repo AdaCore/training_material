@@ -207,7 +207,7 @@ Quiz
             Type_Invariant => Check_Threshold 
                               (Integer (Counter_T));
       end Counter_Package;
-      
+
       package body Counter_Package is
          function Increment_Helper (C : Counter_T)
                                       return Counter_T is
@@ -238,7 +238,6 @@ Quiz
 
        Type Invariants are only evaluated on entry into and exit from
        externally visible subprograms. So :ada:`Check_Threshold` is called when
-         function Increment_Helper (C : Counter_T)
        entering and exiting :ada:`Increment` - not :ada:`Increment_Helper`,
        even though a new instance of :ada:`Counter_T` is created
 
