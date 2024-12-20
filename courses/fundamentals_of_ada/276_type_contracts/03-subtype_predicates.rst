@@ -156,28 +156,28 @@ References Are Not Checked
 .. code:: Ada
 
    with Ada.Text_IO;   use Ada.Text_IO;
-   procedure Test is
+   procedure Even_Number_Test is
      subtype Even is Integer with Dynamic_Predicate => Even mod 2 = 0;
-     J, K : Even;
+     Current_Value, Next_Value : Even;
    begin
      -- predicates are not checked here
-     Put_Line ("K is" & K'Image);
-     Put_Line ("J is" & J'Image);
+     Put_Line ("Current_Value is" & Current_Value'Image);
+     Put_Line ("Next_Value is" & Next_Value'Image);
      -- predicate is checked here
-     K := J; -- assertion failure here
-     Put_Line ("K is" & K'Image);
-     Put_Line ("J is" & J'Image);
-   end Test;
+     Current_Value := Next_Value; -- assertion failure here
+     Put_Line ("Current_Value is" & Current_Value'Image);
+     Put_Line ("Next_Value is" & Next_Value'Image);
+   end Even_Number_Test;
 
 * Output would look like
 
     .. code:: Ada
 
-       K is 1969492223
-       J is 4220029
+       Current_Value is 1969492223
+       Next_Value is 4220029
 
        raised SYSTEM.ASSERTIONS.ASSERT_FAILURE:
-       Dynamic_Predicate failed at test.adb:9
+       Dynamic_Predicate failed at even_number_test.adb:9
 
 ------------------------------
 Predicate Expression Content
@@ -189,7 +189,7 @@ Predicate Expression Content
 
       subtype Even is Integer
         with Dynamic_Predicate => Even mod 2 = 0;
-      J, K : Even := 42;
+      Current_Value, Next_Value : Even := 42;
 
 * Any visible object or function in scope
 
@@ -309,7 +309,7 @@ Types Controlling For-Loops
            with Dynamic_Predicate => Even mod 2 = 0;
          ...
          -- not legal - how many iterations?
-         for K in Even loop
+         for A_Number in Even loop
            ...
          end loop;
 
@@ -321,8 +321,8 @@ Types Controlling For-Loops
       subtype Weekend is Days
         with Static_Predicate => Weekend in Sat | Sun;
       -- Loop uses "Days", and only enters loop when in Weekend
-      -- So "Sun" is first value for K
-      for K in Weekend loop
+      -- So "Sun" is first value for A_Day
+      for A_Day in Weekend loop
          ...
       end loop;
 
@@ -337,8 +337,8 @@ Why Allow Types with Static Predicates?
       type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
       subtype Weekend is Days with Static_Predicate => Weekend in Sat | Sun;
       ...
-      for W in Weekend loop
-        GNAT.IO.Put_Line (W'Image);
+      for A_Day in Weekend loop
+        GNAT.IO.Put_Line (A_Day'Image);
       end loop;
 
 * :ada:`for` loop generates code like
@@ -346,17 +346,17 @@ Why Allow Types with Static Predicates?
    .. code:: Ada
 
       declare
-        w : weekend := sun;
+        a_day : weekend := sun;
       begin
         loop
-          gnat__io__put_line__2 (w'Image);
-          case w is
+          gnat__io__put_line__2 (a_day'Image);
+          case a_day is
             when sun =>
-              w := sat;
+              a_day := sat;
             when sat =>
               exit;
             when others =>
-              w := weekend'succ (w);
+              a_day := weekend'succ (a_day);
           end case;
         end loop;
       end;
@@ -375,7 +375,7 @@ In Some Cases Neither Kind Is Allowed
 
    type Play is array (Weekend) of Integer; -- illegal
    type Vector is array (Days range <>) of Integer;
-   L : Vector (Weekend); -- not legal
+   Not_Legal : Vector (Weekend); -- not legal
 
 -----------------------------------------
 Special Attributes for Predicated Types
@@ -409,7 +409,7 @@ Initial Values Can Be Problematic
 
          subtype Even is Integer
            with Dynamic_Predicate => Even mod 2 = 0;
-         K : Even;  -- unknown (invalid?) initial value
+         Some_Number : Even;  -- unknown (invalid?) initial value
 
 * The predicate is not checked on a declaration when no initial value is given
 * So can reference such junk values before assigned
@@ -428,8 +428,8 @@ Subtype Predicates Aren't Bullet-Proof
      type Table is array (1 .. 5) of Integer
        -- array should always be sorted
        with Dynamic_Predicate =>
-         (for all K in Table'Range =>
-           (K = Table'First or else Table (K-1) <= Table (K)));
+         (for all Idx in Table'Range =>
+           (Idx = Table'First or else Table (Idx-1) <= Table (Idx)));
      Values : Table := (1, 3, 5, 7, 9);
    begin
      ...
@@ -460,9 +460,9 @@ Beware Accidental Recursion in Predicate
 
       type Sorted_Table is array (1 .. N) of Integer with
          Dynamic_Predicate =>
-         (for all K in Sorted_Table'Range =>
-            (K = Sorted_Table'First
-             or else Sorted_Table (K - 1) <= Sorted_Table (K)));
+         (for all Index in Sorted_Table'Range =>
+            (Index = Sorted_Table'First
+             or else Sorted_Table (Index - 1) <= Sorted_Table (Index)));
 
 * Type-based example
 
@@ -526,20 +526,20 @@ Quiz
 .. code:: Ada
 
    type Days_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
-   function Is_Weekday (D : Days_T) return Boolean is
-      (D /= Sun and then D /= Sat);
+   function Is_Weekday (Day : Days_T) return Boolean is
+      (Day /= Sun and then Day /= Sat);
 
 Which of the following is a valid subtype predicate?
 
-A. | :answermono:`subtype T is Days_T with`
-   |    :answermono:`Static_Predicate => T in Sun | Sat;`
-B. | ``subtype T is Days_T with Static_Predicate =>``
-   |    ``(if T = Sun or else T = Sat then True else False);``
-C. | ``subtype T is Days_T with``
-   |    ``Static_Predicate => not Is_Weekday (T);``
-D. | ``subtype T is Days_T with``
+A. | :answermono:`subtype Sub_Day is Days_T with`
+   |    :answermono:`Static_Predicate => Sub_Day in Sun | Sat;`
+B. | ``subtype Sub_Day is Days_T with Static_Predicate =>``
+   |    ``(if Sub_Day = Sun or else Sub_Day = Sat then True else False);``
+C. | ``subtype Sub_Day is Days_T with``
+   |    ``Static_Predicate => not Is_Weekday (Sub_Day);``
+D. | ``subtype Sub_Day is Days_T with``
    |    ``Static_Predicate =>``
-   |       ``case T is when Sat | Sun => True,``
+   |       ``case Sub_Day is when Sat | Sun => True,``
    |                 ``when others => False;``
 
 .. container:: animate
