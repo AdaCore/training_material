@@ -92,18 +92,18 @@ Postcondition Compared to Their Body: Example
 
 .. code:: Ada
 
-   function Greatest_Common_Denominator (Num_1, Num_2 : Natural)
+   function Greatest_Common_Denominator (Num1, Num2 : Natural)
      return Integer with
-     Post =>  Is_GCD (Num_1,
-                      Num_2,
+     Post =>  Is_GCD (Num1,
+                      Num2,
                       Greatest_Common_Denominator'Result);
 
-   function Is_GCD (Num_1, Num_2, Candidate : Integer)
+   function Is_GCD (Num1, Num2, Candidate : Integer)
        return Boolean is
-     (Num_1 rem Candidate = 0 and
-      Num_2 rem Candidate = 0 and
-      (for all K in 1 .. Integer'Min (Num_1,Num_2) =>
-         (if (Num_1 rem K = 0 and Num_2 rem K = 0)
+     (Num1 rem Candidate = 0 and
+      Num2 rem Candidate = 0 and
+      (for all K in 1 .. Integer'Min (Num1,Num2) =>
+         (if (Num1 rem K = 0 and Num2 rem K = 0)
           then K <= Candidate)));
 
 ----------------------
