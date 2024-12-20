@@ -36,12 +36,12 @@ No Secret Precondition Requirements
 
 .. code:: Ada
 
-   package P is
+   package Some_Package is
      function Foo return Bar
        with Pre => Hidden; -- illegal private reference
    private
      function Hidden return Boolean;
-   end P;
+   end Some_Package;
 
 ---------------------------------------
 Postconditions Are Good Documentation
@@ -92,18 +92,18 @@ Postcondition Compared to Their Body: Example
 
 .. code:: Ada
 
-   function Greatest_Common_Denominator (A, B : Natural)
+   function Greatest_Common_Denominator (Num_1, Num_2 : Natural)
      return Integer with
-     Post =>  Is_GCD (A,
-                      B,
+     Post =>  Is_GCD (Num_1,
+                      Num_2,
                       Greatest_Common_Denominator'Result);
 
-   function Is_GCD (A, B, Candidate : Integer)
+   function Is_GCD (Num_1, Num_2, Candidate : Integer)
        return Boolean is
-     (A rem Candidate = 0 and
-      B rem Candidate = 0 and
-      (for all K in 1 .. Integer'Min (A,B) =>
-         (if (A rem K = 0 and B rem K = 0)
+     (Num_1 rem Candidate = 0 and
+      Num_2 rem Candidate = 0 and
+      (for all K in 1 .. Integer'Min (Num_1,Num_2) =>
+         (if (Num_1 rem K = 0 and Num_2 rem K = 0)
           then K <= Candidate)));
 
 ----------------------
@@ -145,24 +145,24 @@ Subprogram Contracts on Private Types
 
 .. code:: Ada
 
-   package P is
-     type T is private;
-     procedure Q (This : T) with
-       Pre => This.Total > 0; -- not legal
+   package Bank is
+     type Account is private;
+     procedure Process_Transaction (This : Account) with
+       Pre => This.Balance > 0; -- not legal
      ...
-     function Current_Total (This : T) return Integer;
+     function Current_Balance (This : Account) return Integer;
      ...
-     procedure R (This : T) with
-       Pre => Current_Total (This) > 0; -- legal
+     procedure R (This : Account) with
+       Pre => Current_Balance (This) > 0; -- legal
      ...
    private
-     type T is record
-       Total : Natural ;
+     type Account is record
+       Balance : Natural;
        ...
      end record;
-     function Current_Total (This : T) return Integer is
-         (This.Total);
-   end P;
+     function Current_Balance (This : Account) return Integer is
+         (This.Balance);
+   end Bank;
 
 -----------------------------------
 Preconditions or Explicit Checks?
