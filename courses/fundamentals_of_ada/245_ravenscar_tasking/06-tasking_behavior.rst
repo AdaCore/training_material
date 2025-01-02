@@ -199,17 +199,17 @@ Ceiling Locking Example
 
  .. code:: Ada
 
-     protected Protected_Obj with Priority => 5 is
+     protected P with Priority => 5 is
         procedure Set (Val : Integer);
 
  .. code:: Ada
 
-     task Some_Task with Priority => 4 is
+     task T with Priority => 4 is
        ...
 
-     task body Some_Task is
+     task body T is
        ...
-       Protected_Obj.Set (1);
+       ProtectePd_Obj.Set (1);
 
 .. image:: ravenscar_ceiling_locking.png
    :width: 45%
