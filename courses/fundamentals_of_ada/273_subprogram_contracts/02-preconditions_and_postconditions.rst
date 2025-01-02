@@ -200,7 +200,7 @@ Quiz
       with Pre => S'Length > 0;
 
    procedure Print_Something is
-      I : Integer := From_String ("");
+      I : Integer := To_Integer ("");
    begin
       Put_Line (I'Image);
    end Print_Something;
