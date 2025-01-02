@@ -112,7 +112,7 @@ Predicate Expression Content
 
       subtype Even is Integer
         with Dynamic_Predicate => Even mod 2 = 0;
-      J, K : Even := 42;
+      Even_Num, Also_Even_Num : Even := 42;
 
 * Any visible object or function in scope
 
@@ -180,7 +180,7 @@ Beware Accidental Recursion in Predicate
       type Sorted_Table is array (1 .. N) of Integer with
          Dynamic_Predicate => Sorted (Sorted_Table);
       -- on call, predicate is checked!
-      function Sorted (T : Sorted_Table) return Boolean;
+      function Sorted (A_Table : Sorted_Table) return Boolean;
 
 * Non-recursive example
 
@@ -188,18 +188,18 @@ Beware Accidental Recursion in Predicate
 
       type Sorted_Table is array (1 .. N) of Integer with
          Dynamic_Predicate =>
-         (for all K in Sorted_Table'Range =>
-            (K = Sorted_Table'First
-             or else Sorted_Table (K - 1) <= Sorted_Table (K)));
+         (for all Rows in Sorted_Table'Range =>
+            (Row = Sorted_Table'First
+             or else Sorted_Table (Row - 1) <= Sorted_Table (Row)));
 
 * Type-based example
 
    .. code:: Ada
 
-      type Table is array (1 .. N) of Integer;
-      subtype Sorted_Table is Table with
+      type Table_Type is array (1 .. N) of Integer;
+      subtype Sorted_Table is Table_Type with
            Dynamic_Predicate => Sorted (Sorted_Table);
-      function Sorted (T : Table) return Boolean;
+      function Sorted (A_Table : Table_Type) return Boolean;
 
 ------
 Quiz
@@ -208,20 +208,20 @@ Quiz
 .. code:: Ada
 
    type Days_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
-   function Is_Weekday (D : Days_T) return Boolean is
-      (D /= Sun and then D /= Sat);
+   function Is_Weekday (The_Day : Days_T) return Boolean is
+      (The_Day /= Sun and then The_Day /= Sat);
 
 Which of the following is a valid subtype predicate?
 
-A. | :answermono:`subtype T is Days_T with`
-   |    :answermono:`Static_Predicate => T in Sun | Sat;`
-B. | ``subtype T is Days_T with Static_Predicate =>``
-   |    ``(if T = Sun or else T = Sat then True else False);``
-C. | ``subtype T is Days_T with``
-   |    ``Static_Predicate => not Is_Weekday (T);``
-D. | ``subtype T is Days_T with``
+A. | :answermono:`subtype Wknd is Days_T with`
+   |    :answermono:`Static_Predicate => Wknd in Sun | Sat;`
+B. | ``subtype Wknd is Days_T with Static_Predicate =>``
+   |    ``(if Wknd = Sun or else Wknd = Sat then True else False);``
+C. | ``subtype Wknd is Days_T with``
+   |    ``Static_Predicate => not Is_Weekday (Wknd);``
+D. | ``subtype Wknd is Days_T with``
    |    ``Static_Predicate =>``
-   |       ``case T is when Sat | Sun => True,``
+   |       ``case Wknd is when Sat | Sun => True,``
    |                 ``when others => False;``
 
 .. container:: animate
