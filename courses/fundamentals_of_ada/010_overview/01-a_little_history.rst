@@ -63,3 +63,9 @@ Ada Evolution Highlights
        | :ada:`'Image` for all types
        | Declare expression
 
+Ada was created to be a
+
+   * **Compiled**, **multi-paradigm** language
+
+   * With a **static** and **strong** type model
+
