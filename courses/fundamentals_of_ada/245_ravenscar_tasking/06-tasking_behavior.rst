@@ -209,7 +209,7 @@ Ceiling Locking Example
 
      task body T is
        ...
-       ProtectePd_Obj.Set (1);
+       P.Set (1);
 
 .. image:: ravenscar_ceiling_locking.png
    :width: 45%
