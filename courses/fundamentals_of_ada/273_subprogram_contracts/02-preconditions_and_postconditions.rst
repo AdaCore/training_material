@@ -71,12 +71,12 @@ Defensive Programming
 
 .. code:: Ada
 
-   procedure Push (S : Stack) is
-      Entry_Length : constant Positive := Length (S);
+   procedure Push (The_Stack : Stack) is
+      Entry_Length : constant Positive := Length (The_Stack);
    begin
-      pragma Assert (not Is_Full (S)); -- entry condition
+      pragma Assert (not Is_Full (The_Stack)); -- entry condition
       [...]
-      pragma Assert (Length (S) = Entry_Length + 1); -- exit condition
+      pragma Assert (Length (The_Stack) = Entry_Length + 1); -- exit condition
    end Push;
 
 * Subprogram contracts are an **assertion** mechanism
@@ -85,15 +85,15 @@ Defensive Programming
 
 .. code:: Ada
 
-   procedure Force_Acquire (P : Peripheral) is
+   procedure Force_Acquire (Resource : Peripheral) is
    begin
-      if not Available (P) then
+      if not Available (Resource) then
          -- Corrective action
-         Force_Release (P);
-         pragma Assert (Available (P));
+         Force_Release (Resource);
+         pragma Assert (Available (Resource));
       end if;
 
-      Acquire (P);
+      Acquire (Resource);
    end;
 
 -----------------------------
@@ -196,17 +196,17 @@ Quiz
 .. code:: Ada
 
    --  Convert string to Integer
-   function From_String ( S : String ) return Integer
+   function To_Integer ( S : String ) return Integer
       with Pre => S'Length > 0;
 
-   procedure Do_Something is
-      I : Integer := From_String ("");
+   procedure Print_Something is
+      I : Integer := To_Integer ("");
    begin
       Put_Line (I'Image);
-   end Do_Something;
+   end Print_Something;
 
-Assuming :ada:`From_String` is defined somewhere, what happens
-when :ada:`Do_Something` is run?
+Assuming :ada:`To_Integer` is defined somewhere, what happens
+when :ada:`Print_Something` is run?
 
    A. "0" is printed
    B. Constraint Error exception
@@ -217,7 +217,7 @@ when :ada:`Do_Something` is run?
 
    Explanations
 
-   The call to :ada:`From_String` will fail its precondition, which is considered
+   The call to :ada:`To_Integer` will fail its precondition, which is considered
    an :ada:`Assertion_Error` exception.
 
 ------
@@ -226,16 +226,16 @@ Quiz
 
 .. code:: Ada
 
-   function Area (L : Positive; H : Positive) return Positive is
-      (L * H)
+   function Area (Length : Positive; Height : Positive) return Positive is
+      (Length * Height)
    with Pre => ?
 
 Which pre-condition is necessary for :ada:`Area` to calculate the correct result for
 all values :ada:`L` and :ada:`H`
 
-   A. ``L > 0 and H > 0``
-   B. ``L < Positive'Last and H < Positive'Last``
-   C. ``L * H in Positive``
+   A. ``Length > 0 and Height > 0``
+   B. ``Length < Positive'Last and Height < Positive'Last``
+   C. ``Length * Height in Positive``
    D. :answer:`None of the above`
 
 .. container:: animate
@@ -243,8 +243,8 @@ all values :ada:`L` and :ada:`H`
    Explanations
 
    A. Parameters are :ada:`Positive`, so this is unnecessary
-   B. :ada:`L = Positive'Last-1 and H = Positive'Last-1` will still cause an overflow
+   B. :ada:`Length = Positive'Last-1 and Height = Positive'Last-1` will still cause an overflow
    C. Classic trap: the check itself may cause an overflow!
 
-   Preventing an overflow requires using the expression :ada:`Integer'Last / L <= H`
+   Preventing an overflow requires using the expression :ada:`Integer'Last / Length <= Height`
 
