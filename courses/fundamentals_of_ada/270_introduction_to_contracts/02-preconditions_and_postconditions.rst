@@ -242,8 +242,8 @@ Separations of Concerns
 
 .. code:: Ada
 
-   function Get_Validated_Value return Integer
-    with Post => Get_Validated_Value'Result /= 0
+   function Validated_Value return Integer
+    with Post => Validated_Value'Result /= 0
    is (if Raw_Value > 0 then Raw_Value else 1);
 
    procedure Process (Input_Value : Integer)
@@ -252,7 +252,7 @@ Separations of Concerns
 
    [...]
 
-   Process (Val);
+   Process (Validated_Value);
 
 * Review of interface: guaranteed to work
 
