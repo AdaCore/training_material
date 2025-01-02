@@ -33,8 +33,8 @@ Ravenscar Tasks Declaration Example
     package My_Tasks is
         task type Printer;
 
-        P1 : Printer;
-        P2 : Printer;
+        Printer_Task_1 : Printer;
+        Printer_Task_2 : Printer;
     end My_Tasks;
 
 :filename:`my_tasks.adb`
@@ -45,7 +45,7 @@ Ravenscar Tasks Declaration Example
     with Ada.Real_Time; use Ada.Real_Time;
 
     package body My_Tasks is
-        P3 : Printer; --  correct
+        Printer_Task_3 : Printer; --  correct
 
         task body Printer is
             Period : Time_Span := Milliseconds (100);

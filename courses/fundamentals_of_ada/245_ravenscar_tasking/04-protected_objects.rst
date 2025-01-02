@@ -19,7 +19,7 @@ Protected Objects
 
    protected type
      Protected_Value is
-      procedure Set (V : Integer);
+      procedure Set (Some_Value : Integer);
       function Get return Integer;
    private
       Value : Integer;
@@ -30,9 +30,9 @@ Protected Objects
   .. code:: Ada
 
    protected body Protected_Value is
-      procedure Set (V : Integer) is
+      procedure Set (Some_Value : Integer) is
       begin
-         Value := V;
+         Value := Some_Value;
       end Set;
 
       function Get return Integer is
