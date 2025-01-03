@@ -32,7 +32,7 @@ Core Language Content (1/3)
   * Language-defined types, including string
   * User-defined types
   * Static types keep things consistent
-  * Strong types enforces constraints
+  * Strong types enforce constraints
 
 * Subprograms
 
