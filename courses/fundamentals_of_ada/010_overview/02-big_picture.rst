@@ -8,20 +8,20 @@ Language Structure (Ada95 and Onward)
 
 * **Required** :dfn:`Core` implementation
 
-   - Reference Manual (RM) sections 1 :math:`\rightarrow` 13
-   - Predefined Language Environment (Annex A)
-   - Interface to Other Languages (Annex B)
-   - Obsolescent Features (Annex J)
+  * Always present in each compiler/run-time
+
+    - Basic language contents (types, subprograms, packages, etc.)
+    - Interface to Other Languages
 
 * Optional :dfn:`Specialized Needs Annexes`
 
-   - No additional syntax
-   - Systems Programming (C)
-   - Real-Time Systems (D)
-   - Distributed Systems (E)
-   - Information Systems (F)
-   - Numerics (G)
-   - High-Integrity Systems (H)
+  * No additional syntax
+  * May be present or not depending on compiler/run-time
+
+    - Real-Time Systems
+    - Distributed Systems
+    - Numerics
+    - High-Integrity Systems
 
 -----------------------------
 Core Language Content (1/3)
@@ -102,7 +102,6 @@ Core Language Content (3/3)
 Language Examination Summary
 ------------------------------
 
-* Unique capabilities
 * Three main goals
 
    - **Reliability**, maintainability
