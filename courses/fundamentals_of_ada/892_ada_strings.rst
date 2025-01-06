@@ -260,7 +260,7 @@ Unique Subprograms
 Lab
 ========
 
-.. include:: labs/spec_892_ada_strings.lab.rst
+.. include:: labs/892_ada_strings.lab.rst
 
 =========
 Summary

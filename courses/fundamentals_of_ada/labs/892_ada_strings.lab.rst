@@ -26,7 +26,7 @@ Ada.Strings Lab
 Ada.Strings Lab Solution (Declarations)
 -----------------------------------------
 
-.. container:: source_include labs/answers/spec_892_ada_strings.txt :start-after:--declarations --:end-before:--declarations :code:Ada :number-lines:1
+.. container:: source_include labs/answers/892_ada_strings.txt :start-after:--declarations --:end-before:--declarations :code:Ada :number-lines:1
  
 ---------------------------------
 Ada.Strings Lab Solution (Main)
