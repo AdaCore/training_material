@@ -595,7 +595,7 @@ Flat Arrays
 Lab
 ========
 
-.. include:: labs/adv_280_low_level_programming.lab.rst
+.. include:: labs/280_low_level_programming.lab.rst
 
 =========
 Summary

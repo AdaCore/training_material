@@ -28,16 +28,16 @@ Controlled Types Lab
 Controlled Types Lab Solution - Keys (Spec)
 ----------------------------------------------
 
-.. container:: source_include labs/answers/adv_260_controlled_types.txt :start-after:--Spec :end-before:--Spec :code:Ada :number-lines:1
+.. container:: source_include labs/answers/260_controlled_types.txt :start-after:--Spec :end-before:--Spec :code:Ada :number-lines:1
 
 ------------------------------------------------
 Controlled Types Lab Solution - Keys (Body)
 ------------------------------------------------
 
-.. container:: source_include labs/answers/adv_260_controlled_types.txt :start-after:--Body :end-before:--Body :code:Ada :number-lines:1
+.. container:: source_include labs/answers/260_controlled_types.txt :start-after:--Body :end-before:--Body :code:Ada :number-lines:1
 
 ----------------------------------------------
 Controlled Types Lab Solution - Main
 ----------------------------------------------
 
-.. container:: source_include labs/answers/adv_260_controlled_types.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include labs/answers/260_controlled_types.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
