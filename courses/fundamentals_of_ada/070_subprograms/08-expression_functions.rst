@@ -60,14 +60,29 @@ Which statement is True?
 
    A. Expression functions cannot be nested functions.
    B. Expression functions require a specification and a body.
-   C. Expression functions must have at least one "return" statement.
+   C. Expression functions must have at least one :ada:`return` statement.
    D. :answer:`Expression functions can have "out" parameters.`
 
 .. container:: animate
 
-   Explanations
+   Explanation
 
-   A. False, they can be declared just like regular function
-   B. False, an expression function cannot have a body
-   C. False, expression functions cannot contain a no :ada:`return`
-   D. Correct, but it can assign to :ada:`out` parameters only by calling another function.
+   A. They **can** be nested subprograms (just like any other subprogram)
+   B. As in other subprograms, the implementation can serve as the specification
+   C. Because they are expressions, the :ada:`return` statement is not allowed
+   D. An expression function does not allow assignment statements, but it can call another function that is **not** an expression function.
+
+      .. code:: Ada
+
+         function Normal_Fun (Input  :     Character;
+                              Output : out Integer)
+                              return Boolean is
+         begin
+            Output := Character'Pos (Input);
+            return True;
+         end Normal_Fun;
+
+         function Expr_Fun (Input  :     Character;
+                            Output : out Integer)
+                            return Boolean is
+            (Normal_Fun (Character'Succ (Input), Output));
