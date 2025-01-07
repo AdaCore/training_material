@@ -45,6 +45,48 @@ Access Types Design
      int * G_C = &Some_Int;
 .
 
+-----------------------------------------
+Access Types - General vs Pool-Specific
+-----------------------------------------
+
+.. container:: latex_environment small
+
+   .. list-table::
+      :header-rows: 1
+
+      * - General Access Type
+        - Pool-Specific Access Type
+
+      * - Point to any object of
+        - Tightly coupled to
+
+      * - designated type
+        - dynamically allocated objects
+
+      * -
+
+      * - Useful for creating aliases
+        - Used with Ada's controlled
+
+      * - to existing objects
+        - memory management (pools)
+
+      * -
+
+      * - Point to existing object via
+        - Can only point to object
+
+      * - :ada:`'Access` **or** created by :ada:`new`
+        - created by :ada:`new`
+
+      * -
+
+      * - No automatic
+        - Memory management tied
+
+      * - memory management
+        - to specific storage pool
+
 -------------------------------
 Access Types Can Be Dangerous
 -------------------------------

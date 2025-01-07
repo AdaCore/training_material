@@ -1,5 +1,5 @@
 ***********************
-Access Types In-Depth
+Access Types In Depth
 ***********************
 
 .. container:: PRELUDE BEGIN
