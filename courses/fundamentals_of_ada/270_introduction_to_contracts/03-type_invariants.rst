@@ -62,7 +62,7 @@ Type Invariant
 Invariant Over Object Lifetime (Calls)
 ----------------------------------------
 
-.. image:: type_invariant_check_flow.png
+.. image:: type_invariant_check_flow.svg
 
 .. container:: speakernote
 
