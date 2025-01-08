@@ -5,7 +5,7 @@
 080_expressions-with_quantified.rst
 120_limited_types.rst
 290_advanced_data_hiding.rst
-140_access_types-advanced.rst
+140_access_types-in_depth.rst
 160_genericity.rst
 170_tagged_derivation.rst
 175_multiple_inheritance.rst
