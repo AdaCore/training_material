@@ -228,3 +228,13 @@ Type Model Run-Time Costs
       Y := X;
       Z := Y; -- no check required
 
+--------------------------
+The Type Model Saves Money
+--------------------------
+
+* Shifts fixes and costs to **early phases**
+
+* Cost of an error *during a flight*?
+
+.. image:: relative_cost_to_fix_bugs.jpg
+   :height: 50%
