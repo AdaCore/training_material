@@ -199,7 +199,7 @@ Quiz
 
       package Counter_Package is
          type Counter_T is private;
-         procedure Increment (C : in out Counter_T);
+         procedure Increment (Val : in out Counter_T);
       private
          function Check_Threshold (Value : Integer) 
                                        return Boolean;
@@ -209,16 +209,16 @@ Quiz
       end Counter_Package;
 
       package body Counter_Package is
-         function Increment_Helper (C : Counter_T)
+         function Increment_Helper (Helper_Val : Counter_T)
                                       return Counter_T is
-            Next_Value : Counter_T := C + 1;
+            Next_Value : Counter_T := Helper_Val + 1;
          begin
             return Next_Value;
-         end Local_Do_Something;
-         procedure Increment (C : in out Counter_T) is
+         end Increment_Helper;
+         procedure Increment (Val : in out Counter_T) is
          begin
-            C := C + 1;
-            C := Increment_Helper (C);
+            Val := Val + 1;
+            Val := Increment_Helper (Val);
          end Increment;
          function Check_Threshold (Value : Integer)
                                           return Boolean is
