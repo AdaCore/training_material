@@ -199,8 +199,6 @@ If/else
        }
    }
 
----
-
 --------------------------
 If/else as an expression
 --------------------------
@@ -212,8 +210,6 @@ If/else as an expression
 
        let error = if true { 5 } else { "six" };
    }
-
----
 
 ------------------
 Match expression
