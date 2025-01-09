@@ -135,20 +135,20 @@ Default Type Initialization for Invariants
 
 .. code:: Ada
 
-   package P is
+   package Operations is
      -- Type is private, so we can't use Default_Value here
-     type T is private with Type_Invariant => Zero (T);
-     procedure Op (This : in out T);
-     function Zero (This : T) return Boolean;
+     type Private_T is private with Type_Invariant => Zero (Private_T);
+     procedure Op (This : in out Private_T);
+     function Zero (This : Private_T) return Boolean;
    private
      -- Type is not a record, so we need to use aspect
      -- (A record could use default values for its components)
-     type T is new Integer with Default_Value => 0;
-     function Zero (This : T) return Boolean is
+     type Private_T is new Integer with Default_Value => 0;
+     function Zero (This : Private_T) return Boolean is
      begin
         return (This = 0);
      end Zero;
-   end P;
+   end Operations;
 
 ---------------------------------
 Type Invariant Clause Placement
@@ -158,14 +158,14 @@ Type Invariant Clause Placement
 
    .. code:: Ada
 
-      package P is
-        type T is private;
-        procedure Op (This : in out T);
+      package Operations is
+        type Private_T is private;
+        procedure Op (This : in out Private_T);
       private
-        type T is new Integer with
-          Type_Invariant => T = 0,
+        type Private_T is new Integer with
+          Type_Invariant => Private_T = 0,
           Default_Value => 0;
-      end P;
+      end Operations;
 
 * It is really an implementation aspect
 
@@ -197,35 +197,37 @@ Quiz
 
    .. code:: Ada
 
-      package P is
-         type Some_T is private;
-         procedure Do_Something (X : in out Some_T);
+      package Counter_Package is
+         type Counter_T is private;
+         procedure Increment (Val : in out Counter_T);
       private
-         function Counter (I : Integer) return Boolean;
-         type Some_T is new Integer with
-            Type_Invariant => Counter (Integer (Some_T));
-      end P;
+         function Check_Threshold (Value : Integer) 
+                                       return Boolean;
+         type Counter_T is new Integer with
+            Type_Invariant => Check_Threshold 
+                              (Integer (Counter_T));
+      end Counter_Package;
 
-      package body P is
-         function Local_Do_Something (X : Some_T)
-                                      return Some_T is
-            Z : Some_T := X + 1;
+      package body Counter_Package is
+         function Increment_Helper (Helper_Val : Counter_T)
+                                      return Counter_T is
+            Next_Value : Counter_T := Helper_Val + 1;
          begin
-            return Z;
-         end Local_Do_Something;
-         procedure Do_Something (X : in out Some_T) is
+            return Next_Value;
+         end Increment_Helper;
+         procedure Increment (Val : in out Counter_T) is
          begin
-            X := X + 1;
-            X := Local_Do_Something (X);
-         end Do_Something;
-         function Counter (I : Integer)
-                           return Boolean is
-            (True);
-      end P;
+            Val := Val + 1;
+            Val := Increment_Helper (Val);
+         end Increment;
+         function Check_Threshold (Value : Integer)
+                                          return Boolean is
+            (Value <= 100); --  check against constraint
+      end Counter_Package;
 
  .. container:: column
 
-    If `Do_Something` is called from outside of P, how many times is `Counter` called?
+    If `Increment` is called from outside of Counter_Package, how many times is `Check_Threshold` called?
 
        A. 1
        B. :answer:`2`
@@ -234,8 +236,6 @@ Quiz
 
     .. container:: animate
 
-       Type Invariants are only evaluated on entry into and exit from
-       externally visible subprograms. So :ada:`Counter` is called when
-       entering and exiting :ada:`Do_Something` - not :ada:`Local_Do_Something`,
-       even though a new instance of :ada:`Some_T` is created
-
+       Type Invariants are only evaluated on entry into/exit from
+       externally visible subprograms. So :ada:`Check_Threshold` is called when
+       entering/exiting :ada:`Increment` - not :ada:`Increment_Helper`
