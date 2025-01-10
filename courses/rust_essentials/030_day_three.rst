@@ -60,13 +60,13 @@ Macro example
 Macros
 --------
 
-* Macros allow you to extend your language's syntax and semantics, by extending
-  what it's able to do at compile time.
+* Macros allow you to extend your language's syntax and semantics, by extending what it's able to do at compile time.
 
 * Bad macros work on text (like C-like macros)
 
 * Good macros work on structured input
-    - In lisp, it worked on lists
+
+    - In LISP, it worked on lists
     - In Rust, it works on ASTs, token trees, or token streams.
 
 --------------------
@@ -81,24 +81,23 @@ But seriously though
 ----------------------
 
 * Macros are used to:
+
     - Abstract common repetitive programming patterns
     - Embed domain specific languages
     - Provide lazy evaluation
 
-* Generally: Macros are a last resort. Anything that you can solve another way
-  shouldn't be fixed with macros.
-
+* Generally: Macros are a last resort. Anything that you can solve another way shouldn't be fixed with macros.
 
 ---------------------------
 The rust parsing pipeline
 ---------------------------
 
-First, tokenization: Turn string into tokens.
+* First, tokenization: Turn string into tokens.
 
-From there, Rust can either:
+* From there, Rust can either:
 
-1. Produce a syntax tree from tokens
-2. Produce a token tree that your macro can match upon
+   1. Produce a syntax tree from tokens
+   2. Produce a token tree that your macro can match upon
 
 --------------------
 Declarative macros
@@ -111,7 +110,6 @@ Declarative macros
 ------------------------
 Declarative macros (2)
 ------------------------
-
 
 .. code:: Rust
 

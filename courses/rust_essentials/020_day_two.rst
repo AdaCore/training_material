@@ -265,8 +265,7 @@ Some built-in traits
 ----------------------
 
 * Rust has a lot of built-in traits that are part of the standard library
-* Some of those are derivable: The compiler can provide an implementation for
-  you automatically.
+* Some of those are derivable: The compiler can provide an implementation for you automatically.
 
 * `Debug`: use to display a value using the `{:?}` formatter
 * Ordering traits like `Eq`, `Ord` are used to compare values
@@ -287,11 +286,9 @@ To derive:
 Copy & Clone
 --------------
 
-* The `Clone` trait adds a `clone` function on your type, that allows you to
-  clone an instance of it.
+* The `Clone` trait adds a `clone` function on your type, that allows you to clone an instance of it.
 
-* The `Copy` trait, on the other hand, gives full copy semantics to your type
-  (like you have by default on scalar types).
+* The `Copy` trait, on the other hand, gives full copy semantics to your type (like you have by default on scalar types).
 
 .. code:: Rust
 
@@ -312,8 +309,7 @@ Copy & Clone
 Dyn trait objects
 -------------------
 
-* You can store any object implementing a trait via the `dyn` qualifier,
-  creating a trait object
+* You can store any object implementing a trait via the `dyn` qualifier, creating a trait object
 
 .. code:: Rust
 
@@ -336,8 +332,7 @@ Ownership is a combination of three things:
 
 * Basic rules of ownership (one owner, N borrowers, etc)
 * Lifetimes for every value. For the moment, all lifetimes were infered.
-* The borrow checker: checks that borrows don't outlive the lifetime of the
-  value they borrow
+* The borrow checker: checks that borrows don't outlive the lifetime of the value they borrow
 
 Turns out you can actually specify lifetimes yourself, allowing you to express
 things that weren't possible before:
@@ -379,10 +374,8 @@ Lifetimes (2)
 Lifetimes (3)
 ---------------
 
-* Lifetimes are generic parameters, so functions using lifetimes are actually
-  generic functions
-* Structs using lifetimes are also generic types. If you want to use a
-  reference in a struct, you need to annotate lifetimes
+* Lifetimes are generic parameters, so functions using lifetimes are actually generic functions
+* Structs using lifetimes are also generic types. If you want to use a reference in a struct, you need to annotate lifetimes
 
 .. code:: Rust
 
@@ -404,11 +397,9 @@ Lifetime elision
 
 * Each parameter gets its own lifetime (input lifetimes)
 
-* If there is one input lifetime and one output lifetime, the output lifetime
-  gets assigned to the input lifetime
+* If there is one input lifetime and one output lifetime, the output lifetime gets assigned to the input lifetime
 
-* If there are multiple params, but one of them is &self or &mut self, then the
-  output lifetime gets assigned this lifetime
+* If there are multiple params, but one of them is &self or &mut self, then the output lifetime gets assigned this lifetime
 
 =======
 Quiz
@@ -435,7 +426,6 @@ Quiz 1: Is there a compilation error
 ---------------------------------------
 Quiz 2: Is there a compilation error
 ---------------------------------------
-
 
 .. code:: Rust
 
@@ -512,8 +502,7 @@ Modularity (1)
 * Rust's compilation model is different from C/C++
 * Also very different from Ada
 * Rust's compilation unit is the crate
-* A crate can span several files, and is usually much bigger than an Ada or C
-  compilation unit (C++ is different because of templates)
+* A crate can span several files, and is usually much bigger than an Ada or C compilation unit (C++ is different because of templates)
 
 Consequence is that parallel compilation is hampered in Rust.
 
@@ -524,12 +513,12 @@ Modularity (2)
 ----------------
 
 * Two types of crates: Binary crates and library crates
+
     - Entry point for binary crates: main.rs
     - Entry point for library crates: lib.rs
     - Both can be redefined
 
-* Generally, a library = a crate (but a Cargo package can contain one or more
-  crates)
+* Generally, a library = a crate (but a Cargo package can contain one or more crates)
 
 * A crate can be subdivided in modules
 
@@ -541,8 +530,10 @@ A crate can be further subdivided into modules
 
 * Modules provide scoping, organization, and encapsulation
 * A module can be defined:
+
     - Inline
     - In a file corresponding to the module name
+
 * By default, a module is private
 * By default, items in a module are private
 
@@ -605,8 +596,7 @@ Functional programming: Closures
 ----------------------------------
 
 * In Rust, functions and closures are different
-* Closures can be nested in functions, and can capture functions from their
-  environment, which regular functions cannot
+* Closures can be nested in functions, and can capture functions from their environment, which regular functions cannot
 
 .. code:: Rust
 
@@ -779,8 +769,7 @@ PANIC
 Backtraces
 ------------
 
-When your program panics, running it with `RUST_BACKTRACE=1` will show you a
-backtrace:
+When your program panics, running it with `RUST_BACKTRACE=1` will show you a backtrace:
 
 ::
 
@@ -859,8 +848,7 @@ Smart pointer types
 Box
 -----
 
-Box is a simple reference. Used when you want to *store* a reference, rather
-than just *borrow* it (see the expression evaluator exercise).
+Box is a simple reference. Used when you want to *store* a reference, rather than just *borrow* it (see the expression evaluator exercise).
 
 .. code:: Rust
 
@@ -899,7 +887,7 @@ Rc
    enum List {
        Cons(i32, Rc<List>),
        Nil,
-}
+   }
 
    use crate::List::{Cons, Nil};
    use std::rc::Rc;

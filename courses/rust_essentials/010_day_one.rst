@@ -71,8 +71,7 @@ Rust today
 In the safety critical market
 -------------------------------
 
-* Rust making forays into the critical markets. Big players are assessing the
-  use of Rust in their codebases.
+* Rust making forays into the critical markets. Big players are assessing the use of Rust in their codebases.
 * But lacking industrial support for now
 * Will probably become mainstream in the coming decade
 
@@ -95,13 +94,16 @@ First, a note about philosophy
 --------------------------------
 
 * In C/C++, very weak distinction between statements and expressions
+
     - You can use exprs as statements
 
 * In Ada, strong distinction between statements and expressions
+
     - Statements are statements, expressions are expressions, not interchangeable
     - Procedures and functions are distinct
 
 * In Rust, everything is an expression (and you generally cannot ignore their value)
+
     - Simpler than Ada, (much) safer than C/C++
     - But not always obvious what an expression returns
     - Complex type system tricks to make it work (what's the type of a loop?)
@@ -256,11 +258,11 @@ Quiz 2: Is there a compilation error?
 
 .. code:: Rust
 
-fn main() {
-    let a = for n in 1..11 {
-        println!("Pouet");
-    };
-}
+   fn main() {
+       let a = for n in 1..11 {
+           println!("Pouet");
+       };
+   }
 
 ----------------------------------------
 Quiz 3: Is there a compilation error?
@@ -382,8 +384,10 @@ Numeric types
 ---------------
 
 * Set of built-in types:
+
     - Integer types: `i8`, `i16`, `i32`, `i64`, `i128`
     - Unsigned types: `u8`, `u16`, `u32`, `u64`, `u128`
+
 * No way to define custom integer types
 * Statically/strongly typed
 * Two floating point types: `f32` and `f64`
@@ -476,8 +480,7 @@ Vectors
 Slices
 --------
 
-* Slices are a bit like arrays, but they just a view into a sequence. The type
-  is written `[T]`, but is not used directly, but rather through pointers.
+* Slices are a bit like arrays, but they just a view into a sequence. The type is written `[T]`, but is not used directly, but rather through pointers.
 
 .. code:: Rust
 
@@ -507,6 +510,7 @@ Strings
 There are two main string types in Rust
 
 * `String` is similar to a `Vec<u8>`, except:
+
     - It always points to a valid utf-8 sequence
     - You cannot index it
 
@@ -638,8 +642,7 @@ Functions
 Functions (2)
 ---------------
 
-* Functions contain a (possibly empty) sequence of statements, followed by an
-  optional expression
+* Functions contain a (possibly empty) sequence of statements, followed by an optional expression
 
 * Expression is used as the return value
 
@@ -689,10 +692,8 @@ Ownership
 
 * Defining concept of Rust. Academic concept: Linear/Affine types
 * By default, a value cannot be copied, only moved
-* If you want to use it you either move it (as in the above example) or
-  *borrow* it
-* Two types of borrows: Mutable (only one at a time), and immutable (N at a
-  time)
+* If you want to use it you either move it (as in the above example) or *borrow* it
+* Two types of borrows: Mutable (only one at a time), and immutable (N at a time)
 
 .. code:: Rust
 
@@ -724,13 +725,11 @@ Ownership: mutable references
 Ownership is complicated
 --------------------------
 
-* In many case you want to manipulate your data by reference but you can't use
-  references
+* In many case you want to manipulate your data by reference but you can't use references
 
-* In those cases you want to use a managed pointer type: either `Box` (owned)
-  or `Rc` (shared).
+* In those cases you want to use a managed pointer type: either `Box` (owned) or `Rc` (shared).
 
-* More details in next class
+* More details later
 
 ----------------------------------------
 Quiz 1: Is there a compilation error?
