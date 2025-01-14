@@ -3,7 +3,7 @@ Procedural language
 =====================
 
 --------------------------------
-First, a note about philosophy
+First, a Note About Philosophy
 --------------------------------
 
 * In C/C++, very weak distinction between statements and expressions
@@ -22,7 +22,7 @@ First, a note about philosophy
     - Complex type system tricks to make it work (what's the type of a loop?)
 
 -----------
-For loops
+For Loops
 -----------
 
 .. code:: Rust
@@ -35,7 +35,7 @@ For loops
    }
 
 -------------
-While loops
+While Loops
 -------------
 
 .. code:: Rust
@@ -52,7 +52,7 @@ While loops
    }
 
 ----------------
-Infinite loops
+Infinite Loops
 ----------------
 
 .. code:: Rust
@@ -71,9 +71,9 @@ Infinite loops
        }
    }
 
--------------------------------
-Infinite loop w. return value
--------------------------------
+---------------------------------
+Infinite Loop with Return Value
+---------------------------------
 
 .. code:: Rust
 
@@ -96,7 +96,7 @@ Infinite loop w. return value
    }
 
 ---------
-If/else
+If/Else
 ---------
 
 .. code:: Rust
@@ -115,7 +115,7 @@ If/else
    }
 
 --------------------------
-If/else as an expression
+If/Else As an Expression
 --------------------------
 
 .. code:: Rust
@@ -127,7 +127,7 @@ If/else as an expression
    }
 
 ------------------
-Match expression
+Match Expression
 ------------------
 
 .. code:: Rust

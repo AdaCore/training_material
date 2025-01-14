@@ -3,7 +3,7 @@ Traits And Generics Quizzes
 =============================
 
 ---------------------------------------
-Quiz 1: Is there a compilation error
+Quiz 1: Is There a Compilation Error?
 ---------------------------------------
 
 .. code:: Rust
@@ -21,7 +21,7 @@ Quiz 1: Is there a compilation error
    }
 
 ---------------------------------------
-Quiz 2: Is there a compilation error
+Quiz 2: Is There a Compilation Error?
 ---------------------------------------
 
 .. code:: Rust
@@ -43,7 +43,7 @@ Quiz 2: Is there a compilation error
    }
 
 ---------------------------------------
-Quiz 3: Is there a compilation error
+Quiz 3: Is There a Compilation Error?
 ---------------------------------------
 
 .. code:: Rust
@@ -66,7 +66,7 @@ Quiz 3: Is there a compilation error
    }
 
 ---------------------------------------
-Quiz 4: Is there a compilation error
+Quiz 4: Is There a Compilation Error?
 ---------------------------------------
 
 .. code:: Rust

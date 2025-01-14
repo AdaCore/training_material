@@ -3,7 +3,7 @@ Macros
 ========
 
 ---------------
-Macro example
+Macro Example
 ---------------
 
 .. code:: Rust
@@ -35,14 +35,14 @@ Macros
     - In Rust, it works on ASTs, token trees, or token streams.
 
 --------------------
-When to use macros
+When to Use Macros
 --------------------
 
 * Never
 * Never
 
 ----------------------
-But seriously though
+But Seriously Though
 ----------------------
 
 * Macros are used to:
@@ -54,7 +54,7 @@ But seriously though
 * Generally: Macros are a last resort. Anything that you can solve another way shouldn't be fixed with macros.
 
 ---------------------------
-The rust parsing pipeline
+The Rust Parsing Pipeline
 ---------------------------
 
 * First, tokenization: Turn string into tokens.
@@ -65,7 +65,7 @@ The rust parsing pipeline
    2. Produce a token tree that your macro can match upon
 
 --------------------
-Declarative macros
+Declarative Macros
 --------------------
 
 * Like the `vec` one.
@@ -73,7 +73,7 @@ Declarative macros
 * Used to provide function-like macros
 
 ------------------------
-Declarative macros (2)
+Declarative Macros (2)
 ------------------------
 
 .. code:: Rust
@@ -97,7 +97,7 @@ Declarative macros (2)
    }
 
 -----------------------------------------
-Declarative macros - Variadic arguments
+Declarative Macros - Variadic Arguments
 -----------------------------------------
 
 .. code:: Rust
@@ -160,7 +160,7 @@ Hygiene and Rust
    let four = using_a!(a / 10); // Won't work
 
 -------------------
-Procedural macros
+Procedural Macros
 -------------------
 
 .. code:: Rust

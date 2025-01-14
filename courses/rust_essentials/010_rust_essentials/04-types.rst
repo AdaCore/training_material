@@ -3,7 +3,7 @@ Types
 =======
 
 ---------------
-Numeric types
+Numeric Types
 ---------------
 
 * Set of built-in types:
@@ -16,7 +16,7 @@ Numeric types
 * Two floating point types: `f32` and `f64`
 
 --------------------
-Other scalar types
+Other Scalar Types
 --------------------
 
 * Boolean: Named `bool`, either `true` or `false`. Not an enum!
@@ -24,7 +24,7 @@ Other scalar types
 * All in all, less powerful than Ada, but also much simpler.
 
 -------------------
-Overflow checking
+Overflow Checking
 -------------------
 
 * In debug builds: raises an error
@@ -32,7 +32,7 @@ Overflow checking
 * Heritage of C++'s zero-cost abstraction mentality
 
 ------------
-Tuple type
+Tuple Type
 ------------
 
 * Most basic composite type
@@ -53,7 +53,7 @@ Tuple type
    }
 
 ------------
-Array type
+Array Type
 ------------
 
 * Homogeneous array type

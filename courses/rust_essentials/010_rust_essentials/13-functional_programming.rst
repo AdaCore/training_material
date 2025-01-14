@@ -1,9 +1,9 @@
 ========================
-Functional programming
+Functional Programming
 ========================
 
 ----------------------------------
-Functional programming: Closures
+Functional Programming: Closures
 ----------------------------------
 
 * In Rust, functions and closures are different
@@ -18,7 +18,7 @@ Functional programming: Closures
    }
 
 ----------------------------------
-Functional programming: Closures
+Functional Programming: Closures
 ----------------------------------
 
 * External variables are captured via borrow, so regular borrow rules apply!
@@ -38,7 +38,7 @@ Functional programming: Closures
    }
 
 ------------------------------------------------
-Functional programming: Closures and iterators
+Functional Programming: Closures and iterators
 ------------------------------------------------
 
 .. code:: Rust
@@ -60,7 +60,7 @@ Functional programming: Closures and iterators
 * Rust has *many* methods like this on iterators
 
 ------------------------------------------------
-Functional programming: Closures and iterators
+Functional Programming: Closures and Iterators
 ------------------------------------------------
 
 .. code:: Rust

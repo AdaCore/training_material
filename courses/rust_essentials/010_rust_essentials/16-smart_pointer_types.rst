@@ -1,5 +1,5 @@
 =====================
-Smart pointer types
+Smart Pointer Types
 =====================
 
 -----

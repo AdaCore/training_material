@@ -26,7 +26,7 @@ Pattern matching
    }
 
 ------------------
-Pattern matching
+Pattern Matching
 ------------------
 
 .. code:: Rust
@@ -49,7 +49,7 @@ Pattern matching
    }
 
 -------------
-Option type
+Option Type
 -------------
 
 .. code:: Rust
@@ -72,7 +72,7 @@ Option type
 * Will be found everywhere
 
 -------------
-Result type
+Result Type
 -------------
 
 * Generic type
@@ -87,7 +87,7 @@ Result type
    }
 
 -----------------
-Result type (2)
+Result Type (2)
 -----------------
 
 .. code:: Rust
@@ -113,7 +113,7 @@ Result type (2)
    }
 
 -------------------------
-Pattern matching: loops
+Pattern Matching: Loops
 -------------------------
 
 .. code:: Rust
@@ -133,9 +133,9 @@ Pattern matching: loops
        }
    }
 
------------------------------------
-Pattern matching: let & functions
------------------------------------
+---------------------------------------
+Pattern Matching: "let" and Functions
+---------------------------------------
 
 .. code:: Rust
 

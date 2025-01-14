@@ -14,7 +14,7 @@ History
 * Nowadays, maintained and evolved by the Rust foundation
 
 -------------------
-High level vision
+High Level Vision
 -------------------
 
 * Safer alternative to C/C++ for systems programming
@@ -23,7 +23,7 @@ High level vision
   (memory safety being the most valued kind of safety)
 
 ------------
-Rust today
+Rust Today
 ------------
 
 * Use of Rust is spreading like wildfire
@@ -33,16 +33,16 @@ Rust today
 * Big list of industrial users here: https://www.rust-lang.org/production/users
 
 -------------------------------
-In the safety critical market
+In the Safety Critical Market
 -------------------------------
 
 * Rust making forays into the critical markets. Big players are assessing the use of Rust in their codebases.
 * But lacking industrial support for now
 * Will probably become mainstream in the coming decade
 
-------------------
-Rust hello world
-------------------
+--------------------
+Rust "Hello World"
+--------------------
 
 .. code:: Rust
 

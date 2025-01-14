@@ -2,9 +2,9 @@
 Functional Programming Quizzes
 ================================
 
-----------------------------
-Quiz 1: Does this compile
-----------------------------
+--------------------------------------
+Quiz 1: Is This a Compilation Error?
+--------------------------------------
 
 .. code:: Rust
 
@@ -15,9 +15,9 @@ Quiz 1: Does this compile
        println!("{}", adder(12));
    }
 
-----------------------------
-Quiz 2: Does this compile
-----------------------------
+--------------------------------------
+Quiz 2: Is This a Compilation Error?
+--------------------------------------
 
 .. code:: Rust
 
@@ -30,9 +30,9 @@ Quiz 2: Does this compile
        println!("{}", adder(12));
    }
 
-----------------------------
-Quiz 3: Does this compile
-----------------------------
+--------------------------------------
+Quiz 3: Is This a Compilation Error?
+--------------------------------------
 
 .. code:: Rust
 
@@ -52,9 +52,9 @@ Quiz 3: Does this compile
        println!("{}", *v.borrow());
    }
 
-----------------------------
-Quiz 4: Does this compile
-----------------------------
+--------------------------------------
+Quiz 4: Is This a Compilation Error?
+--------------------------------------
 
 .. code:: Rust
 

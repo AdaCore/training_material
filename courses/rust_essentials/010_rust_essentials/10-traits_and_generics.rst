@@ -57,7 +57,7 @@ Traits
    }
 
 -----------------------------------------
-Shorthand for trait bounds in functions
+Shorthand for Trait Bounds in Functions
 -----------------------------------------
 
 .. code:: Rust
@@ -74,7 +74,7 @@ Shorthand for trait bounds in functions
    // This function is a GENERIC function
 
 ----------------------
-Some built-in traits
+Some Built-In Traits
 ----------------------
 
 * Rust has a lot of built-in traits that are part of the standard library
@@ -95,9 +95,9 @@ To derive:
    }
    // This struct is now hashable and displayable via the Debug trait
 
---------------
-Copy & Clone
---------------
+----------------
+Copy and Clone
+----------------
 
 * The `Clone` trait adds a `clone` function on your type, that allows you to clone an instance of it.
 
@@ -118,9 +118,9 @@ Copy & Clone
        // WHAT IS THIS SORCERY
    }
 
--------------------
-Dyn trait objects
--------------------
+---------------------
+"Dyn" Trait Objects
+---------------------
 
 * You can store any object implementing a trait via the `dyn` qualifier, creating a trait object
 
@@ -198,7 +198,7 @@ Lifetimes (3)
    }
 
 ------------------
-Lifetime elision
+Lifetime Elision
 ------------------
 
 .. code:: Rust
