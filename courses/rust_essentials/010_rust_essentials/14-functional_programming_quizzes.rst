@@ -7,19 +7,27 @@ Quiz 1: Is This a Compilation Error?
 --------------------------------------
 
 .. code:: Rust
+   :number-lines: 2
 
    fn main() {
        let mut y = 12;
        let adder = |x| x + y;
-       y = 15
+       y = 15;
        println!("{}", adder(12));
    }
+
+.. container:: animate
+
+   :color-red:`error[E0506]: cannot assign to 'y' because it is borrowed --> src/quiz.rs:5:8`
+
+   TBD
 
 --------------------------------------
 Quiz 2: Is This a Compilation Error?
 --------------------------------------
 
 .. code:: Rust
+   :number-lines: 2
 
    use std::cell::RefCell;
 
@@ -30,11 +38,16 @@ Quiz 2: Is This a Compilation Error?
        println!("{}", adder(12));
    }
 
+.. container:: animate
+
+   :color-green:`No error`
+
 --------------------------------------
 Quiz 3: Is This a Compilation Error?
 --------------------------------------
 
 .. code:: Rust
+   :number-lines: 2
 
    use std::cell::RefCell;
 
@@ -52,11 +65,20 @@ Quiz 3: Is This a Compilation Error?
        println!("{}", *v.borrow());
    }
 
+.. container:: animate
+
+   :color-red:`error[E0597]: 'val' does not live long enough --> src/quiz.rs:9:43`
+
+   :color-red:`error[E0382]: borrow of moved value: 'v' --> src/quiz.rs:15:24`
+
+   TBD
+
 --------------------------------------
 Quiz 4: Is This a Compilation Error?
 --------------------------------------
 
 .. code:: Rust
+   :number-lines: 2
 
    use std::cell::RefCell;
    use std::rc::Rc;
@@ -77,3 +99,6 @@ Quiz 4: Is This a Compilation Error?
        println!("{}", (adder.adder_fn)(12));
    }
 
+.. container:: animate
+
+   :color-green:`No error`

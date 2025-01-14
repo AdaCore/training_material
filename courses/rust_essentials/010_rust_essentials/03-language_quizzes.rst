@@ -7,6 +7,7 @@ Quiz 1: Is There a Compilation Error?
 ----------------------------------------
 
 .. code:: Rust
+   :number-lines: 2
 
    fn main() {
        let a = loop {
@@ -15,24 +16,36 @@ Quiz 1: Is There a Compilation Error?
 
        let b: u32 = a;
    }
+
+.. container:: animate
+
+   :color-green:`No error`
+
+   *But you may get a warning that line 7 is unreachable*
 
 ----------------------------------------
 Quiz 2: Is There a Compilation Error?
 ----------------------------------------
 
 .. code:: Rust
+   :number-lines: 2
 
    fn main() {
        let a = for n in 1..11 {
            println!("Pouet");
        };
    }
+
+.. container:: animate
+
+   :color-green:`No error`
 
 ----------------------------------------
 Quiz 3: Is There a Compilation Error?
 ----------------------------------------
 
 .. code:: Rust
+   :number-lines: 2
 
    fn main() {
        let a = for n in 1..11 {
@@ -42,31 +55,18 @@ Quiz 3: Is There a Compilation Error?
        let b: u32 = a;
    }
 
+.. container:: animate
+
+   :color-red:`error[E0308]: mismatched types --> src/quiz.rs:7:21`
+
+   Types of :rust:`a` and :rust:`b` are not the same
+
 ----------------------------------------
 Quiz 4: Is There a Compilation Error?
 ----------------------------------------
 
 .. code:: Rust
-
-   fn main() {
-       let mut i = 1;
-
-       let a = loop {
-           println!("Pouet");
-
-           if i > 12 { break; }
-
-           i +=1;
-       };
-
-       let b: u32 = a;
-   }
-
-----------------------------------------
-Quiz 5: Is There a Compilation Error?
-----------------------------------------
-
-.. code:: Rust
+   :number-lines: 2
 
    fn main() {
        let mut i = 1;
@@ -81,11 +81,16 @@ Quiz 5: Is There a Compilation Error?
        };
    }
 
+.. container:: animate
+
+   :color-green:`No error`
+
 ----------------------------------------
-Quiz 6: Is There a Compilation Error?
+Quiz 5: Is There a Compilation Error?
 ----------------------------------------
 
 .. code:: Rust
+   :number-lines: 2
 
    fn main() {
        let mut i = 1;
@@ -101,11 +106,18 @@ Quiz 6: Is There a Compilation Error?
        };
    }
 
+.. container:: animate
+
+   :color-red:`error[E0317]: 'if' may be missing an 'else' clause --> src/quiz.rs:9:21`
+
+   :rust:`if` expressions without :rust:`else` evaluate to :rust:`()` which is not a valid value for :rust:`println`
+
 ----------------------------------------
-Quiz 7: Is There a Compilation Error?
+Quiz 6: Is There a Compilation Error?
 ----------------------------------------
 
 .. code:: Rust
+   :number-lines: 2
 
    fn main() {
        let mut i = 100;
@@ -118,24 +130,8 @@ Quiz 7: Is There a Compilation Error?
 
    }
 
-----------------------------------------
-Quiz 8: Is There a Compilation Error?
-----------------------------------------
+.. container:: animate
 
-.. code:: Rust
+   :color-red:`error[E0308]: mismatched types --> src/quiz.rs:5:14`
 
-   fn main() {
-       let mut i = 1;
-
-       loop {
-           match i {
-               1..=5  => println!("i in 1..=5"),
-           //  ^ This is a PATTERN
-               5 | 12 => break,
-               7 | 9 => break,
-           }
-
-           i += 1;
-       }
-   }
-
+   :rust:`while` condition expects a boolean value, but :rust:`i` is an integer
