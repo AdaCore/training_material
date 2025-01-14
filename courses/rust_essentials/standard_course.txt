@@ -1,3 +1,1 @@
-010_day_one.rst
-020_day_two.rst
-030_day_three.rst
+010_rust_essentials.rst
