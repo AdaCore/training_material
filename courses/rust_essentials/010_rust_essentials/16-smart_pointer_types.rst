@@ -40,18 +40,20 @@ Box (2)
 Rc
 ----
 
-.. code:: Rust
+.. container:: latex_environment small
 
-   enum List {
-       Cons(i32, Rc<List>),
-       Nil,
-   }
+   .. code:: Rust
 
-   use crate::List::{Cons, Nil};
-   use std::rc::Rc;
+      enum List {
+          Cons(i32, Rc<List>),
+          Nil,
+      }
 
-   fn main() {
-       let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
-       let b = Cons(3, Rc::clone(&a));
-       let c = Cons(4, Rc::clone(&a));
-   }
+      use crate::List::{Cons, Nil};
+      use std::rc::Rc;
+
+      fn main() {
+          let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
+          let b = Cons(3, Rc::clone(&a));
+          let c = Cons(4, Rc::clone(&a));
+      }

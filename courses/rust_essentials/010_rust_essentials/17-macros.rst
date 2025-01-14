@@ -76,25 +76,27 @@ Declarative Macros
 Declarative Macros (2)
 ------------------------
 
-.. code:: Rust
+.. container:: latex_environment tiny
 
-   macro_rules! ok_or_return {
-       ($e:expr, $err:expr) => {
-           {
-               match $e {
-                   Ok(value) => value,
-                   Err(_) => return Err($err)
-               }
-           }
-       }
-   }
+   .. code:: Rust
 
-   fn main() -> Result<(), &'static str> {
-       let mut line = String::new();
-       ok_or_return!(std::io::stdin().read_line(&mut line), "Cannot read line"); // including '\n'
-       let a = ok_or_return!(line.trim().parse::<i32>(), "Cannot parse string");
-       Ok(())
-   }
+      macro_rules! ok_or_return {
+          ($e:expr, $err:expr) => {
+              {
+                  match $e {
+                      Ok(value) => value,
+                      Err(_) => return Err($err)
+                  }
+              }
+          }
+      }
+
+      fn main() -> Result<(), &'static str> {
+          let mut line = String::new();
+          ok_or_return!(std::io::stdin().read_line(&mut line), "Cannot read line"); // including '\n'
+          let a = ok_or_return!(line.trim().parse::<i32>(), "Cannot parse string");
+          Ok(())
+      }
 
 -----------------------------------------
 Declarative Macros - Variadic Arguments

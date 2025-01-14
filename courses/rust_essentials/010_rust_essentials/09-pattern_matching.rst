@@ -52,21 +52,23 @@ Pattern Matching
 Option Type
 -------------
 
-.. code:: Rust
+.. container:: latex_environment small
 
-   use std::option::Option;
-   fn get_data() -> Vec<i32> { ...  }
+   .. code:: Rust
 
-   fn main() {
-       let a = get_data();
-       let val: Option<i32> = a.pop();
-       //                     ^ Get last element of vec
+      use std::option::Option;
+      fn get_data() -> Vec<i32> { ...  }
 
-       match val {
-           Some(val) => println!("Got a value out of vector: {}", val),
-           None => println!("No value")
-       }
-   }
+      fn main() {
+          let a = get_data();
+          let val: Option<i32> = a.pop();
+          //                     ^ Get last element of vec
+
+          match val {
+              Some(val) => println!("Got value out of vector: {}", val),
+              None => println!("No value")
+          }
+      }
 
 * **Extremely** common type to represent possibility of a value
 * Will be found everywhere

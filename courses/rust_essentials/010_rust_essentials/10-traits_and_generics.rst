@@ -93,7 +93,7 @@ To derive:
    struct Point {
        x: i32, y: i32
    }
-   // This struct is now hashable and displayable via the Debug trait
+   // Point is now hashable and displayable via Debug trait
 
 ----------------
 Copy and Clone
@@ -166,22 +166,24 @@ things that weren't possible before:
 Lifetimes (2)
 ---------------
 
-.. code:: Rust
+.. container:: latex_environment scriptsize
 
-   fn smallest <'a> (a: &'a str, b: &'a str) -> &'a str {
-       if a < b { a } else { b }
-   }
+   .. code:: Rust
 
-   fn main() {
-       let a = String::from("hello");     // <-| Lifetime for a
-       let c;                             //   |
-       {                                  //   |
-           let b = String::from("world"); //   | <-| Lifetime for b (and hence for c)
-           c = smallest(&b, &a);          //   |   |
-           println!("{}", c);             //   | <-|
-       }                                  //   |
-       println!("{}", c);                 // <--
-   }
+      fn smallest <'a> (a: &'a str, b: &'a str) -> &'a str {
+        if a < b { a } else { b }
+      }
+
+      fn main() {
+        let a = String::from("abc");   // <-| Lifetime for a
+        let c;                         //   |
+        {                              //   |
+          let b = String::from("123"); //   | <-| Lifetime for b (and hence for c)
+          c = smallest(&b, &a);        //   |   |
+          println!("{}", c);           //   | <-|
+        }                              //   |
+        println!("{}", c);             // <-|
+      }
 
 ---------------
 Lifetimes (3)
