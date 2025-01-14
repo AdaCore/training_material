@@ -68,7 +68,7 @@ The Rust Parsing Pipeline
 Declarative Macros
 --------------------
 
-* Like the `vec` one.
+* Like the :rust:`vec` one.
 * You use a form of pattern-matching on the arguments
 * Used to provide function-like macros
 

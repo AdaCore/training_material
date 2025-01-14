@@ -6,7 +6,7 @@ Functions and Ownership
 Functions
 -----------
 
-* Main is always called `main`
+* Main is always called :rust:`main`
 * You can put other functions at the top-level in your main source file
 * Order doesn't matter
 
@@ -29,7 +29,7 @@ Functions (2)
 
 * Expression is used as the return value
 
-* An expression followed by a semicolon *is a statement*
+* An expression followed by a semicolon is a :dfn:`statement`
 
 .. code:: Rust
 
@@ -76,7 +76,7 @@ Ownership
 * Defining concept of Rust. Academic concept: Linear/Affine types
 * By default, a value cannot be copied, only moved
 * If you want to use it you either move it (as in the above example) or *borrow* it
-* Two types of borrows: Mutable (only one at a time), and immutable (N at a time)
+* Two types of :dfn:`borrow`: Mutable (only one at a time), and immutable (N at a time)
 
 .. code:: Rust
 
@@ -110,6 +110,6 @@ Ownership Is Complicated
 
 * In many case you want to manipulate your data by reference but you can't use references
 
-* In those cases you want to use a managed pointer type: either `Box` (owned) or `Rc` (shared).
+* In those cases you want to use a managed pointer type: either :rust:`Box` (owned) or :rust:`Rc` (shared).
 
 * More details later

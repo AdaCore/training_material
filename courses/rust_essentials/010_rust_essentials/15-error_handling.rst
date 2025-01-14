@@ -7,7 +7,7 @@ PANIC
 -------
 
 * Rust has no exceptions
-* The closest thing it has is unrecoverable errors (via `panic!`)
+* The closest thing it has is unrecoverable errors (via :rust:`panic!`)
 * Obviously not a solution for robust applications
 
 .. code:: Rust
@@ -22,7 +22,7 @@ PANIC
 Backtraces
 ------------
 
-When your program panics, running it with `RUST_BACKTRACE=1` will show you a backtrace:
+When your program panics, running it with :command:`RUST_BACKTRACE=1` will show you a backtrace:
 
 .. container:: latex_environment tiny
 
@@ -52,9 +52,9 @@ When your program panics, running it with `RUST_BACKTRACE=1` will show you a bac
 Result
 --------
 
-* Proper way to handle errors is via the `Result<T>` type (shown earlier).
-* TIP: Main can return a `Result` (but only with () as an OK type):
-* Rust provides the `?` operator for easy(er) error handling
+* Proper way to handle errors is via the :rust:`Result<T>` type (shown earlier).
+* TIP: Main can return a :rust:`Result` (but only with () as an OK type):
+* Rust provides the :rust:`?` operator for easy(er) error handling
 
 .. container:: latex_environment footnotesize
 

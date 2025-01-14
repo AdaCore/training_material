@@ -80,10 +80,10 @@ Some Built-In Traits
 * Rust has a lot of built-in traits that are part of the standard library
 * Some of those are derivable: The compiler can provide an implementation for you automatically.
 
-* `Debug`: use to display a value using the `{:?}` formatter
-* Ordering traits like `Eq`, `Ord` are used to compare values
-* `Copy` and `Clone`, allow different copy semantics for your type.
-* `Hash` computes a hash for your type
+* :rust:`Debug`: use to display a value using the :rust:`{:?}` formatter
+* Ordering traits like :rust:`Eq`, :rust:`Ord` are used to compare values
+* :rust:`Copy` and :rust:`Clone`, allow different copy semantics for your type.
+* :rust:`Hash` computes a hash for your type
 
 To derive:
 
@@ -99,9 +99,9 @@ To derive:
 Copy and Clone
 ----------------
 
-* The `Clone` trait adds a `clone` function on your type, that allows you to clone an instance of it.
+* The :rust:`Clone` trait adds a :rust:`clone` function on your type, that allows you to clone an instance of it.
 
-* The `Copy` trait, on the other hand, gives full copy semantics to your type (like you have by default on scalar types).
+* The :rust:`Copy` trait, on the other hand, gives full copy semantics to your type (like you have by default on scalar types).
 
 .. code:: Rust
 
@@ -122,7 +122,7 @@ Copy and Clone
 "Dyn" Trait Objects
 ---------------------
 
-* You can store any object implementing a trait via the `dyn` qualifier, creating a trait object
+* You can store any object implementing a trait via the :rust:`dyn` qualifier, creating a trait object
 
 .. code:: Rust
 

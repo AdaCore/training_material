@@ -29,24 +29,26 @@ Pattern matching
 Pattern Matching
 ------------------
 
-.. code:: Rust
+.. container:: latex_environment scriptsize
 
-   struct Point {
-       x: i32, y: i32
-   }
+   .. code:: Rust
 
-   // Pattern matching on a struct (kind of useless, gives warning used like that)
-   match p {
-       Point {x, y} => ...
-   }
+      struct Point {
+          x: i32, y: i32
+      }
 
-   // Irrefutable pattern inside let
-   let Point {x, y} = p
+      // Pattern matching on a struct (kind of useless, gives warning used like that)
+      match p {
+          Point {x, y} => ...
+      }
 
-   // Will only enter the body of the if if the match worked.
-   if let Expr::BinOp(l, op, r) = expr {
-       ...
-   }
+      // Irrefutable pattern inside let
+      let Point {x, y} = p
+
+      // Will only enter the body of the "if" if the match worked.
+      if let Expr::BinOp(l, op, r) = expr {
+          ...
+      }
 
 -------------
 Option Type

@@ -1,3 +1,6 @@
+.. role:: rust(code)
+    :language: rust
+
 ======================
 Introduction to Rust
 ======================

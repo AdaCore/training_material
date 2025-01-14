@@ -8,19 +8,19 @@ Numeric Types
 
 * Set of built-in types:
 
-    - Integer types: `i8`, `i16`, `i32`, `i64`, `i128`
-    - Unsigned types: `u8`, `u16`, `u32`, `u64`, `u128`
+    - Integer types: :rust:`i8`, :rust:`i16`, :rust:`i32`, :rust:`i64`, :rust:`i128`
+    - Unsigned types: :rust:`u8`, :rust:`u16`, :rust:`u32`, :rust:`u64`, :rust:`u128`
 
 * No way to define custom integer types
 * Statically/strongly typed
-* Two floating point types: `f32` and `f64`
+* Two floating point types: :rust:`f32` and :rust:`f64`
 
 --------------------
 Other Scalar Types
 --------------------
 
-* Boolean: Named `bool`, either `true` or `false`. Not an enum!
-* Character: Named `char`, can be any valid Unicode value.
+* Boolean: Named :rust:`bool`, either :rust:`true` or :rust:`false`. Not an enum!
+* Character: Named :rust:`char`, can be any valid Unicode value.
 * All in all, less powerful than Ada, but also much simpler.
 
 -------------------
@@ -75,7 +75,7 @@ Vectors
 ---------
 
 * As we said before, arrays in Rust are mostly useless
-* In most cases you'll want to use vectors ('Vec<T>')
+* In most cases you'll want to use vectors (:rust:`Vec<T>`)
 * Vectors can be variable size, and are growable, *but*, they're always heap
   allocated
 
@@ -103,7 +103,7 @@ Vectors
 Slices
 --------
 
-* Slices are a bit like arrays, but they just a view into a sequence. The type is written `[T]`, but is not used directly, but rather through pointers.
+* Slices are a bit like arrays, but they just a view into a sequence. The type is written :rust:`[T]`, but is not used directly, but rather through pointers.
 
 .. code:: Rust
 
@@ -132,14 +132,14 @@ Strings
 
 There are two main string types in Rust
 
-* `String` is similar to a `Vec<u8>`, except:
+* :rust:`String` is similar to a :rust:`Vec<u8>`, except:
 
     - It always points to a valid utf-8 sequence
     - You cannot index it
 
-* `str` is a slice type. It is always used through a reference (`&str`)
+* :rust:`str` is a slice type. It is always used through a reference (:rust:`&str`)
 
-* An array of characters is *not* a String
+* An array of characters is *not* a :rust:`String`
 
 .. code:: Rust
 
