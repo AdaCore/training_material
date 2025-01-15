@@ -31,6 +31,14 @@ Record Types
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Components Rules
+   Operations
+   Aggregates
+   Default Values
+   Variant Records
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 060_record_types/01-introduction.rst

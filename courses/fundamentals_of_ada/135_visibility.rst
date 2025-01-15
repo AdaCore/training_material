@@ -31,6 +31,12 @@ Visibility
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Use Clauses
+   Use Type And Use All Type Clauses
+   Renaming Entities
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 135_visibility/01-introduction.rst

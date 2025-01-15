@@ -31,6 +31,10 @@ Overview
 
 .. container:: PRELUDE PROVIDES
 
+   A Little History
+   Big Picture
+   Setup
+
 .. container:: PRELUDE END
 
 .. include:: 010_overview/01-a_little_history.rst

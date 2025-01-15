@@ -31,6 +31,13 @@ Overloading
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Enumerals And Operators
+   Call Resolution
+   User Defined Equality
+   Composition Of Equality
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 090_overloading/01-introduction.rst

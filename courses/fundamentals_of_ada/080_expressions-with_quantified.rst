@@ -31,6 +31,13 @@ Expressions
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Membership Tests
+   Qualified Names
+   Conditional Expressions
+   Quantified Expressions
+   Summary-with Quantified
+
 .. container:: PRELUDE END
 
 .. include:: 080_expressions/01-introduction.rst

@@ -31,6 +31,19 @@ Basic Types
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Discrete Numeric Types
+   Modular Types
+   Enumeration Types
+   Representation Values
+   Character Types
+   Real Types
+   Base Type
+   Miscellaneous
+   Subtypes
+   Subtypes Full Picture
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 030_basic_types/01-introduction.rst

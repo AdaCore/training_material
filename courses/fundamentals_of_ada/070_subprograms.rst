@@ -31,6 +31,18 @@ Subprograms
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Syntax
+   Parameters
+   Null Procedures
+   Nested Subprograms
+   Procedure Specifics
+   Function Specifics
+   Expression Functions
+   Potential Pitfalls
+   Extended Example
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 070_subprograms/01-introduction.rst

@@ -31,6 +31,11 @@ Tagged Derivation
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Tagged Derivation-simple
+   Summary
+   Extending Tagged Types
+
 .. container:: PRELUDE END
 
 .. include:: 170_tagged_derivation/01-introduction.rst

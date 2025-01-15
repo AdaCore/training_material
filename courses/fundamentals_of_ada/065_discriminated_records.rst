@@ -31,6 +31,12 @@ Discriminated Records
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Variant Records
+   Discriminant Record Array Size Idiom
+   Interfacing With C
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 065_discriminated_records/01-introduction.rst

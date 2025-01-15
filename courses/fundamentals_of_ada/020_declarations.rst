@@ -31,6 +31,16 @@ Declarations
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Identifiers And Comments
+   Literals
+   Object Declarations
+   Universal Types
+   Named Numbers
+   Scope And Visibility
+   Aspects
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 020_declarations/01-introduction.rst

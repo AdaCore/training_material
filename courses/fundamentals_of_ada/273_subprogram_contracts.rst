@@ -31,6 +31,12 @@ Subprogram Contracts
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Preconditions And Postconditions
+   Special Attributes
+   In Practice
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 273_subprogram_contracts/01-introduction.rst

@@ -31,6 +31,14 @@ Program Structure
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Building A System
+   Circular Dependencies
+   Hierarchical Library Units
+   Visibility Limits
+   Private Children
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 130_program_structure/01-introduction.rst

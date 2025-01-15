@@ -31,6 +31,12 @@ Polymorphism
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Classes Of Types
+   Dispatching And Redispatching
+   Exotic Dispatching Operations
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 180_polymorphism/01-introduction.rst

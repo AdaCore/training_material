@@ -31,6 +31,12 @@ Ada Contracts
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Preconditions And Postconditions
+   Type Invariants
+   Subtype Predicates
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 270_introduction_to_contracts/01-introduction.rst

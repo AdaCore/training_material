@@ -31,6 +31,12 @@ Type Derivation
 
 .. container:: PRELUDE PROVIDES
 
+   Introduction
+   Simple Derivation
+   Primitives
+   Freeze Point
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 075_type_derivation/01-introduction.rst

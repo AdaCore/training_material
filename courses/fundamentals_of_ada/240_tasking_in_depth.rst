@@ -31,6 +31,14 @@ Tasking
 
 .. container:: PRELUDE PROVIDES
 
+   Intro
+   Tasks In Depth
+   Protected Objects In Depth
+   Delays
+   Task Types In Depth
+   Advanced Concepts In Depth
+   Summary
+
 .. container:: PRELUDE END
 
 .. include:: 240_tasking/01_intro.rst
