@@ -175,11 +175,19 @@ For now, color should be assumed to be any string that xcolor allows, but
 it's only been tested with the predefined color names:
    black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta,
    olive, orange, pink, purple, red, teal, violet, white, yellow
+
+Note: Some of the named colors don't stand out very well on a white background.
+To fix that, you can darken them by mixing them with black.
+For now, these colors will be called out specifically. If you want your color
+darkened, add it to the "if" statement
 """
 
 
 def latex_colorize(color, text):
-    return latex_inline("\\textcolor{" + color + "}{" + latex_escape(text) + "}")
+    actual_color = color
+    if actual_color == "green":
+        actual_color = actual_color + "!65!black"
+    return latex_inline("\\textcolor{" + actual_color + "}{" + latex_escape(text) + "}")
 
 
 #############################
