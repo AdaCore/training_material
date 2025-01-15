@@ -1,44 +1,9 @@
-***********
-Day Three
-***********
-
-.. container:: PRELUDE BEGIN
-
-.. container:: PRELUDE ROLES
-
-.. role:: ada(code)
-    :language: Ada
-
-.. role:: C(code)
-    :language: C
-
-.. role:: cpp(code)
-    :language: C++
-
-.. container:: PRELUDE SYMBOLS
-
-.. |rightarrow| replace:: :math:`\rightarrow`
-.. |forall| replace:: :math:`\forall`
-.. |exists| replace:: :math:`\exists`
-.. |equivalent| replace:: :math:`\iff`
-.. |le| replace:: :math:`\le`
-.. |ge| replace:: :math:`\ge`
-.. |lt| replace:: :math:`<`
-.. |gt| replace:: :math:`>`
-.. |checkmark| replace:: :math:`\checkmark`
-
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-.. container:: PRELUDE END
-
-=============
-Rust macros
-=============
+========
+Macros
+========
 
 ---------------
-Macro example
+Macro Example
 ---------------
 
 .. code:: Rust
@@ -70,14 +35,14 @@ Macros
     - In Rust, it works on ASTs, token trees, or token streams.
 
 --------------------
-When to use macros
+When to Use Macros
 --------------------
 
 * Never
 * Never
 
 ----------------------
-But seriously though
+But Seriously Though
 ----------------------
 
 * Macros are used to:
@@ -89,7 +54,7 @@ But seriously though
 * Generally: Macros are a last resort. Anything that you can solve another way shouldn't be fixed with macros.
 
 ---------------------------
-The rust parsing pipeline
+The Rust Parsing Pipeline
 ---------------------------
 
 * First, tokenization: Turn string into tokens.
@@ -100,39 +65,41 @@ The rust parsing pipeline
    2. Produce a token tree that your macro can match upon
 
 --------------------
-Declarative macros
+Declarative Macros
 --------------------
 
-* Like the `vec` one.
+* Like the :rust:`vec` one.
 * You use a form of pattern-matching on the arguments
 * Used to provide function-like macros
 
 ------------------------
-Declarative macros (2)
+Declarative Macros (2)
 ------------------------
 
-.. code:: Rust
+.. container:: latex_environment tiny
 
-   macro_rules! ok_or_return {
-       ($e:expr, $err:expr) => {
-           {
-               match $e {
-                   Ok(value) => value,
-                   Err(_) => return Err($err)
-               }
-           }
-       }
-   }
+   .. code:: Rust
 
-   fn main() -> Result<(), &'static str> {
-       let mut line = String::new();
-       ok_or_return!(std::io::stdin().read_line(&mut line), "Cannot read line"); // including '\n'
-       let a = ok_or_return!(line.trim().parse::<i32>(), "Cannot parse string");
-       Ok(())
-   }
+      macro_rules! ok_or_return {
+          ($e:expr, $err:expr) => {
+              {
+                  match $e {
+                      Ok(value) => value,
+                      Err(_) => return Err($err)
+                  }
+              }
+          }
+      }
+
+      fn main() -> Result<(), &'static str> {
+          let mut line = String::new();
+          ok_or_return!(std::io::stdin().read_line(&mut line), "Cannot read line"); // including '\n'
+          let a = ok_or_return!(line.trim().parse::<i32>(), "Cannot parse string");
+          Ok(())
+      }
 
 -----------------------------------------
-Declarative macros - Variadic arguments
+Declarative Macros - Variadic Arguments
 -----------------------------------------
 
 .. code:: Rust
@@ -195,7 +162,7 @@ Hygiene and Rust
    let four = using_a!(a / 10); // Won't work
 
 -------------------
-Procedural macros
+Procedural Macros
 -------------------
 
 .. code:: Rust
