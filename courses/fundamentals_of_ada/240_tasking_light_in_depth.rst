@@ -31,17 +31,14 @@ Tasking
 
 .. container:: PRELUDE PROVIDES
 
-   Intro
-   Tasks In Depth
+   Tasks
    Light Tasking
-   Protected Objects In Depth
+   Protected Objects
    Comparing Standard And Light Tasking
    Delays
-   Task Types In Depth
-   Advanced Concepts In Depth
+   Task Types
    Light Tasking Behavior
    Tasking Control
-   Summary
 
 .. container:: PRELUDE END
 

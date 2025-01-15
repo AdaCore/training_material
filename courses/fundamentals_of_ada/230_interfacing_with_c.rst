@@ -31,12 +31,10 @@ Interfacing with C
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
-   Import  Export
+   Import / Export
    Parameter Passing
    Complex Data Types
-   Interfacesc
-   Summary
+   Interfaces.C
 
 .. container:: PRELUDE END
 

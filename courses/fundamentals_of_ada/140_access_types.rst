@@ -31,14 +31,12 @@ Access Types
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Access Types
    Pool Specific Access Types
    General Access Types
    Accessibility Checks
    Memory Corruption
    Anonymous Access Types
-   Summary
 
 .. container:: PRELUDE END
 

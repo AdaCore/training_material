@@ -31,7 +31,6 @@ Advanced Access Types
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Access Types
    Pool Specific Access Types
    General Access Types
@@ -41,7 +40,6 @@ Advanced Access Types
    Memory Management
    Memory Debugging
    Memory Control
-   Summary With Pools
 
 .. container:: PRELUDE END
 

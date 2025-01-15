@@ -31,7 +31,6 @@ Basic Types
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Discrete Numeric Types
    Modular Types
    Enumeration Types
@@ -39,10 +38,7 @@ Basic Types
    Character Types
    Real Types
    Base Type
-   Miscellaneous
    Subtypes
-   Subtypes Full Picture
-   Summary
 
 .. container:: PRELUDE END
 

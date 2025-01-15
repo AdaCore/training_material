@@ -31,17 +31,14 @@ Exceptions In-Depth
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Handlers
    Implicitly And Explicitly Raised Exceptions
    Language Defined Exceptions
    User Defined Exceptions
    Propagation
    Partial And Nested Handlers
-   Exceptions As Objects-in Depth
+   Exceptions As Objects
    Raise Expressions
-   In Practice
-   Summary-in Depth
 
 .. container:: PRELUDE END
 

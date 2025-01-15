@@ -35,7 +35,7 @@ Basic Types
    Representation Values
    Character Types
    Real Types
-   Subtypes Full Picture
+   Subtypes
 
 .. container:: PRELUDE END
 

@@ -31,11 +31,9 @@ Expressions
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Membership Tests
    Qualified Names
    Conditional Expressions
-   Summary
 
 .. container:: PRELUDE END
 

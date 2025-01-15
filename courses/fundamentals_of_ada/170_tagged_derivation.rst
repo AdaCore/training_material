@@ -31,10 +31,8 @@ Tagged Derivation
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Tagged Derivation
    Extending Tagged Types
-   Summary
 
 .. container:: PRELUDE END
 

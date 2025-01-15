@@ -31,7 +31,6 @@ Declarations
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Identifiers And Comments
    Literals
    Object Declarations
@@ -39,7 +38,6 @@ Declarations
    Named Numbers
    Scope And Visibility
    Aspects
-   Summary
 
 .. container:: PRELUDE END
 

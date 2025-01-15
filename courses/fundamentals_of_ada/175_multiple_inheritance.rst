@@ -31,9 +31,7 @@ Multiple Inheritance
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Interfaces
-   Summary
 
 .. container:: PRELUDE END
 

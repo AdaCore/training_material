@@ -31,12 +31,10 @@ Overloading
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Enumerals And Operators
    Call Resolution
    User Defined Equality
    Composition Of Equality
-   Summary
 
 .. container:: PRELUDE END
 

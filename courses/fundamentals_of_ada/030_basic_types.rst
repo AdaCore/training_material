@@ -31,13 +31,10 @@ Basic Types
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Discrete Numeric Types With Mod
    Enumeration Types
    Real Types
-   Miscellaneous
    Subtypes
-   Summary
 
 .. container:: PRELUDE END
 

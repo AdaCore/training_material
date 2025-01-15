@@ -33,7 +33,6 @@ Overview
 
    A Little History
    Big Picture
-   Setup
 
 .. container:: PRELUDE END
 

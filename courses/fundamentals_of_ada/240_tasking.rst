@@ -31,13 +31,10 @@ Tasking
 
 .. container:: PRELUDE PROVIDES
 
-   Intro
    Tasks
    Protected Objects
    Delays
    Task Types
-   Advanced Concepts
-   Summary
 
 .. container:: PRELUDE END
 

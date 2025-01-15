@@ -31,13 +31,10 @@ Private Types
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Implementing Abstract Data Types Via Views
    Private Part Construction
    View Operations
    When To Use Or Avoid Private Types
-   Idioms
-   Summary
 
 .. container:: PRELUDE END
 

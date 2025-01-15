@@ -31,12 +31,10 @@ Genericity
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Creating Generics
-   Generic Data In Depth
-   Generic Formal Data In Depth
+   Generic Data
+   Generic Formal Data
    Generic Completion
-   Summary
 
 .. container:: PRELUDE END
 

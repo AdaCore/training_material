@@ -31,17 +31,11 @@ Subprograms
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
-   Syntax
+   Subprogram Syntax
    Parameters
    Null Procedures
    Nested Subprograms
-   Procedure Specifics
-   Function Specifics
    Expression Functions
-   Potential Pitfalls
-   Extended Example
-   Summary
 
 .. container:: PRELUDE END
 

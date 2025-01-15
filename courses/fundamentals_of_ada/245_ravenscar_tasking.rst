@@ -31,11 +31,9 @@ Ravenscar Tasking
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Differences From Standard Tasking
    Tasking Behavior
    Tasking Control
-   Summary
 
 .. container:: PRELUDE END
 

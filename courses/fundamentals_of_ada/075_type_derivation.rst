@@ -31,11 +31,9 @@ Type Derivation
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Simple Derivation
    Primitives
    Freeze Point
-   Summary
 
 .. container:: PRELUDE END
 

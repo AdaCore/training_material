@@ -31,11 +31,8 @@ Subprogram Contracts
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Preconditions And Postconditions
    Special Attributes
-   In Practice
-   Summary
 
 .. container:: PRELUDE END
 

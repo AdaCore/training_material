@@ -31,14 +31,12 @@ Exceptions
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Handlers
    Implicitly And Explicitly Raised Exceptions
    User Defined Exceptions
    Propagation
    Exceptions As Objects
    Raise Expressions
-   Summary
 
 .. container:: PRELUDE END
 

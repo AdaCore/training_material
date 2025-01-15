@@ -31,13 +31,11 @@ Record Types
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Components Rules
    Operations
    Aggregates
    Default Values
    Variant Records
-   Summary
 
 .. container:: PRELUDE END
 

@@ -31,14 +31,12 @@ Statements
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Block Statements
    Null Statements
    Assignment Statements
    Conditional Statements
    Loop Statements
    Goto Statements
-   Summary
 
 .. container:: PRELUDE END
 

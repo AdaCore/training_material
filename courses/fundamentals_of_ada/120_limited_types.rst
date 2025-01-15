@@ -31,12 +31,10 @@ Limited Types
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Declarations
    Creating Values
    Extended Return Statements
    Combining Limited And Private Views
-   Summary
 
 .. container:: PRELUDE END
 

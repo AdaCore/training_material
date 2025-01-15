@@ -31,14 +31,12 @@ Ravenscar Tasking
 
 .. container:: PRELUDE PROVIDES
 
-   Introduction
    Tasks
    Delays
    Protected Objects
    Differences From Standard Tasking
    Tasking Behavior
    Tasking Control
-   Summary
 
 .. container:: PRELUDE END
 
