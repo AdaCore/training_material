@@ -37,3 +37,4 @@ Expert Resource Management
 .. container:: PRELUDE END
 
 .. include:: 110_private_types/07-limited-private.rst
+.. include:: 260_controlled_types/10-idiom_refcounting.rst
