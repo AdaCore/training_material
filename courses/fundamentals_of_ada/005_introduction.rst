@@ -31,6 +31,7 @@ Introduction
 
 .. container:: PRELUDE PROVIDES
 
+..
    About Adacore
    About This Training
 

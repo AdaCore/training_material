@@ -31,6 +31,7 @@ Record Types
 
 .. container:: PRELUDE PROVIDES
 
+..
    Components Rules
    Operations
    Aggregates

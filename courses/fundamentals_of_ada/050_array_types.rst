@@ -31,6 +31,7 @@ Array Types
 
 .. container:: PRELUDE PROVIDES
 
+..
    Constrained Array Types
    Unconstrained Array Types
    Attributes

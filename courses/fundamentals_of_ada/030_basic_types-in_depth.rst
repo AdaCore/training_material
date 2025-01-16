@@ -31,6 +31,7 @@ Basic Types
 
 .. container:: PRELUDE PROVIDES
 
+..
    Discrete Numeric Types
    Modular Types
    Enumeration Types

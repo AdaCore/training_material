@@ -31,6 +31,7 @@ Basic Types
 
 .. container:: PRELUDE PROVIDES
 
+..
    Discrete Numeric Types With Mod
    Enumeration Types
    Real Types

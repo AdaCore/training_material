@@ -31,6 +31,7 @@ Genericity
 
 .. container:: PRELUDE PROVIDES
 
+..
    Creating Generics
    Generic Data
    Generic Formal Data

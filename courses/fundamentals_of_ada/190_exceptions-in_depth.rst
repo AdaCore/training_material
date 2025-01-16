@@ -31,6 +31,7 @@ Exceptions In-Depth
 
 .. container:: PRELUDE PROVIDES
 
+..
    Handlers
    Implicitly And Explicitly Raised Exceptions
    Language Defined Exceptions

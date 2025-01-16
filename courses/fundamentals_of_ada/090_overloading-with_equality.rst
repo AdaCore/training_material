@@ -31,6 +31,7 @@ Overloading
 
 .. container:: PRELUDE PROVIDES
 
+..
    Enumerals And Operators
    Call Resolution
    User Defined Equality

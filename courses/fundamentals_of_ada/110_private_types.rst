@@ -31,6 +31,7 @@ Private Types
 
 .. container:: PRELUDE PROVIDES
 
+..
    Implementing Abstract Data Types Via Views
    Private Part Construction
    View Operations

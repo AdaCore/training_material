@@ -31,6 +31,7 @@ Type Contracts
 
 .. container:: PRELUDE PROVIDES
 
+..
    Type Invariants
    Subtype Predicates
 

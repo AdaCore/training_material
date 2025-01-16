@@ -31,6 +31,7 @@ Discriminated Records
 
 .. container:: PRELUDE PROVIDES
 
+..
    Variant Records
    Discriminant Record Array Size Idiom
    Interfacing With C

@@ -31,6 +31,7 @@ Exceptions
 
 .. container:: PRELUDE PROVIDES
 
+..
    Handlers
    Implicitly And Explicitly Raised Exceptions
    User Defined Exceptions

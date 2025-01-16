@@ -31,6 +31,7 @@ Subprogram Contracts
 
 .. container:: PRELUDE PROVIDES
 
+..
    Preconditions And Postconditions
    Special Attributes
 
