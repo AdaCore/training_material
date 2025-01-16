@@ -9,3 +9,4 @@ courses/static_analysis_via_compiler/*.rst
 courses/gnattest/*.rst
 courses/gnat_project_facility/*.rst
 courses/gnatcoverage/*.rst
+courses/rust_essentials/*.rst

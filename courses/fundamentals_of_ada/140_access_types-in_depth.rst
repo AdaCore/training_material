@@ -1,5 +1,5 @@
 ***********************
-Advanced Access Types
+Access Types In Depth
 ***********************
 
 .. container:: PRELUDE BEGIN
@@ -53,5 +53,5 @@ Advanced Access Types
 .. include:: 140_access_types/08-memory_management.rst
 .. include:: 140_access_types/09-memory_debugging.rst
 .. include:: 140_access_types/10-memory_control.rst
-.. include:: labs/140_access_types-advanced.lab.rst
+.. include:: labs/140_access_types-in_depth.lab.rst
 .. include:: 140_access_types/99-summary_with_pools.rst

@@ -3,7 +3,7 @@ Lab
 ========
 
 ---------------------------
-Advanced Access Types Lab
+Access Types In Depth Lab
 ---------------------------
    
 * Build an application that adds / removes items from a linked list
@@ -41,64 +41,64 @@ Extra Credit
 Lab Solution - Database
 -------------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Database :end-before:--Database :code:Ada :number-lines:1
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Database :end-before:--Database :code:Ada :number-lines:1
 
 -------------------------------------
 Lab Solution - Database_List (Spec)
 -------------------------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Database_List_Spec :end-before:--Database_List_Spec :code:Ada :number-lines:1
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Database_List_Spec :end-before:--Database_List_Spec :code:Ada :number-lines:1
 
 -----------------------------------------------
 Lab Solution - Database_List (Helper Objects)
 -----------------------------------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Database_List_Helpers :end-before:--Database_List_Helpers :code:Ada :number-lines:1
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Database_List_Helpers :end-before:--Database_List_Helpers :code:Ada :number-lines:1
 
 -----------------------------------------------
 Lab Solution - Database_List (Insert/Delete)
 -----------------------------------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Database_List_Substance :end-before:--Database_List_Substance :code:Ada :number-lines:35
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Database_List_Substance :end-before:--Database_List_Substance :code:Ada :number-lines:35
 
 ---------------------
 Lab Solution - Main
 ---------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
 
 ---------------------------------
 Lab Solution - Simple_IO (Spec)
 ---------------------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Simple_IO_Spec :end-before:--Simple_IO_Spec :code:Ada :number-lines:1
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Simple_IO_Spec :end-before:--Simple_IO_Spec :code:Ada :number-lines:1
 
 ---------------------------------
 Lab Solution - Simple_IO (Body)
 ---------------------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Simple_IO_Body :end-before:--Simple_IO_Body :code:Ada :number-lines:1
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Simple_IO_Body :end-before:--Simple_IO_Body :code:Ada :number-lines:1
 
 ------------------------------------------
 Lab Solution - Memory_Mgmt (Debug Pools)
 ------------------------------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Memory_Mgmt_Debug :end-before:--Memory_Mgmt_Debug :code:Ada :number-lines:1
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Memory_Mgmt_Debug :end-before:--Memory_Mgmt_Debug :code:Ada :number-lines:1
 
 -------------------------------------------------
 Lab Solution - Memory_Mgmt (Storage Pools Spec)
 -------------------------------------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Memory_Mgmt_Spec :end-before:--Memory_Mgmt_Spec :code:Ada :number-lines:1
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Memory_Mgmt_Spec :end-before:--Memory_Mgmt_Spec :code:Ada :number-lines:1
 
 ------------------------------------------------
 Lab Solution - Memory_Mgmt (Storage Pools 1/2)
 ------------------------------------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Memory_Mgmt_Helpers :end-before:--Memory_Mgmt_Helpers :code:Ada :number-lines:1
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Memory_Mgmt_Helpers :end-before:--Memory_Mgmt_Helpers :code:Ada :number-lines:1
 
 ------------------------------------------------
 Lab Solution - Memory_Mgmt (Storage Pools 2/2)
 ------------------------------------------------
 
-.. container:: source_include labs/answers/140_access_types-advanced.txt :start-after:--Memory_Mgmt_Substance :end-before:--Memory_Mgmt_Substance :code:Ada :number-lines:49
+.. container:: source_include labs/answers/140_access_types-in_depth.txt :start-after:--Memory_Mgmt_Substance :end-before:--Memory_Mgmt_Substance :code:Ada :number-lines:49
