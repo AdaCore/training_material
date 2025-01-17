@@ -122,6 +122,8 @@ For any other extension, assume the extension and the format are the same
 def output_format(extension):
     if extension == "pdf" or extension == "tex":
         return "beamer"
+    elif extension == "md":
+        return "markdown"
     else:
         return extension
 
