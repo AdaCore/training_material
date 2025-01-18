@@ -31,6 +31,12 @@ Genericity
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Creating Generics
+   Generic Data
+   Generic Formal Data
+   Generic Completion
+
 .. container:: PRELUDE END
 
 .. include:: 160_genericity/01-introduction.rst

@@ -31,6 +31,16 @@ Array Types
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Constrained Array Types
+   Unconstrained Array Types
+   Attributes
+   Operations
+   Looping Over Objects
+   Aggregates
+   Image For Complex Types
+   Anonymous Array Types
+
 .. container:: PRELUDE END
 
 .. include:: 050_array_types/01-introduction.rst

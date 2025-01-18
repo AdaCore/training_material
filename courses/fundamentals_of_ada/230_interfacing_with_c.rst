@@ -31,6 +31,12 @@ Interfacing with C
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Import / Export
+   Parameter Passing
+   Complex Data Types
+   Interfaces.C
+
 .. container:: PRELUDE END
 
 .. include:: 230_interfacing_with_c/01-introduction.rst

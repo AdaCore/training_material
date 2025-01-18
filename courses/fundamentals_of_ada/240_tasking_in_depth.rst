@@ -31,6 +31,12 @@ Tasking
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Tasks
+   Protected Objects
+   Delays
+   Task Types
+
 .. container:: PRELUDE END
 
 .. include:: 240_tasking/01_intro.rst

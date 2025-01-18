@@ -31,6 +31,16 @@ Tasking
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Tasks
+   Light Tasking
+   Protected Objects
+   Comparing Standard And Light Tasking
+   Delays
+   Task Types
+   Light Tasking Behavior
+   Tasking Control
+
 .. container:: PRELUDE END
 
 .. include:: 240_tasking/01_intro.rst
