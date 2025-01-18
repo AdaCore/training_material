@@ -31,6 +31,9 @@ Multiple Inheritance
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Interfaces
+
 .. container:: PRELUDE END
 
 .. include:: 175_multiple_inheritance/01-introduction.rst

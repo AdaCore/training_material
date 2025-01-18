@@ -31,6 +31,13 @@ Basic Types
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Modular Types
+   Representation Values
+   Character Types
+   Real Types
+   Subtypes
+
 .. container:: PRELUDE END
 
 .. include:: 030_basic_types/03-modular_types.rst

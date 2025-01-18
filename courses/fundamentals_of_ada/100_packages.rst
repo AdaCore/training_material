@@ -31,6 +31,12 @@ Packages
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Declarations
+   Referencing Other Packages
+   Bodies
+   Executable Parts
+
 .. container:: PRELUDE END
 
 .. include:: 100_packages/01-introduction.rst

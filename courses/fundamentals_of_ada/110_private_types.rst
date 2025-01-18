@@ -31,6 +31,12 @@ Private Types
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Implementing Abstract Data Types Via Views
+   Private Part Construction
+   View Operations
+   When To Use Or Avoid Private Types
+
 .. container:: PRELUDE END
 
 .. include:: 110_private_types/01-introduction.rst

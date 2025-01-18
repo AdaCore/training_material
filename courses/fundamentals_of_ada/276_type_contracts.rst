@@ -31,6 +31,10 @@ Type Contracts
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Type Invariants
+   Subtype Predicates
+
 .. container:: PRELUDE END
 
 .. include:: 276_type_contracts/01-introduction.rst

@@ -31,6 +31,12 @@ Basic Types
 
 .. container:: PRELUDE PROVIDES
 
+..
+   Discrete Numeric Types With Mod
+   Enumeration Types
+   Real Types
+   Subtypes
+
 .. container:: PRELUDE END
 
 .. include:: 030_basic_types/01-introduction.rst

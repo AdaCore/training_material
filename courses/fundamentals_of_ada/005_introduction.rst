@@ -31,6 +31,10 @@ Introduction
 
 .. container:: PRELUDE PROVIDES
 
+..
+   About Adacore
+   About This Training
+
 .. container:: PRELUDE END
 
 .. include:: 005_introduction/01-about_adacore.rst
