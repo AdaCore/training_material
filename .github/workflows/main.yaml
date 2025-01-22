@@ -58,7 +58,7 @@ jobs:
 
   Labs-Slides:
     runs-on: ubuntu-latest
-    container: sawertyu/pandoc_beamer:latest
+    container: public.ecr.aws/w0s6m4g9/pandoc-beamer:latest
 
     steps:
       - uses: actions/checkout@v4
@@ -101,7 +101,7 @@ jobs:
         os: [ubuntu-latest] #windows-latest TODO
 
     runs-on: ${{ matrix.os }}
-    container: sawertyu/alr:latest
+    container: public.ecr.aws/adacore-public/alr:latest
 
     steps:
       - uses: actions/checkout@v4
