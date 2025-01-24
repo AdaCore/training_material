@@ -23,7 +23,7 @@ The ``crate`` root is in:
 -  ``src/main.rs`` (for a binary crate)
 
 Modules defined in files can be documented, too, using "inner doc
-comments". These document the item that contains them TBD in this case, a
+comments". These document the item that contains them - in this case, a
 module.
 
 .. code:: rust,editable,compile_fail
@@ -64,10 +64,10 @@ Details
    .. code:: ignore
 
       src/
-      TBDTBDTBD main.rs
-      TBDTBDTBD top_module.rs
-      TBDTBDTBD top_module/
-          TBDTBDTBD sub_module.rs
+      |-- main.rs
+      |-- top_module.rs
+      |-- top_module/
+          |-- sub_module.rs
 
 -  The place rust will look for modules can be changed with a compiler
    directive:

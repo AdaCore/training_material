@@ -18,9 +18,9 @@ Standard hash map with protection against HashDoS attacks:
        page_counts.insert("Grimms' Fairy Tales", 751);
        page_counts.insert("Pride and Prejudice", 303);
 
-       if !page_counts.contains_key("Les MisTBDrables") {
+       if !page_counts.contains_key("Les Miserables") {
            println!(
-               "We know about {} books, but not Les MisTBDrables.",
+               "We know about {} books, but not Les Miserables.",
                page_counts.len()
            );
        }

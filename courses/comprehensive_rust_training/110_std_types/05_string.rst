@@ -21,7 +21,7 @@ is a growable UTF-8 encoded string:
        s2.push('!');
        println!("s2: len = {}, capacity = {}", s2.len(), s2.capacity());
 
-       let s3 = String::from("TBDTBD");
+       let s3 = String::from("a z");
        println!("s3: len = {}, number of chars = {}", s3.len(), s3.chars().count());
    }
 

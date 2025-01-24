@@ -39,7 +39,7 @@ Details
    ``return``).
 -  Some functions have no return value, and return the 'unit type',
    ``()``. The compiler will infer this if the return type is omitted.
--  Overloading is not supported TBD each function has a single
+-  Overloading is not supported - each function has a single
    implementation.
 
    -  Always takes a fixed number of parameters. Default arguments are

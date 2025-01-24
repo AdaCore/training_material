@@ -90,7 +90,7 @@ variant which repeatedly tests a value against a pattern:
 .. code:: rust,editable
 
    fn main() {
-       let mut name = String::from("Comprehensive Rust TBD");
+       let mut name = String::from("Comprehensive Rust");
        while let Some(c) = name.pop() {
            println!("character: {c}");
        }

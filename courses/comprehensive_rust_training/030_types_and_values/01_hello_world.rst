@@ -12,7 +12,7 @@ World program:
 .. code:: rust,editable
 
    fn main() {
-       println!("Hello TBD!");
+       println!("Hello World!");
    }
 
 What you see:

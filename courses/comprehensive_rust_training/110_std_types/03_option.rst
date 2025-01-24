@@ -14,8 +14,8 @@ returns an ``Option<usize>``.
 .. code:: rust,editable,should_panic
 
    fn main() {
-       let name = "LTBDwe TBDTBD LTBDopard Gepardi";
-       let mut position: Option<usize> = name.find('TBD');
+       let name = "Alexander the Great";
+       let mut position: Option<usize> = name.find('e');
        println!("find returned {position:?}");
        assert_eq!(position.unwrap(), 14);
        position = name.find('Z');

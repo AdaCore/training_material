@@ -20,7 +20,7 @@ with ``as``. These generally follow C semantics where those are defined.
 
 The results of ``as`` are *always* defined in Rust and consistent across
 platforms. This might not match your intuition for changing sign or
-casting to a smaller type TBD check the docs, and comment for clarity.
+casting to a smaller type - check the docs, and comment for clarity.
 
 Casting with ``as`` is a relatively sharp tool that is easy to use
 incorrectly, and can be a source of subtle bugs as future maintenance

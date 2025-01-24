@@ -17,15 +17,25 @@ What is the type of this variable?
 Use an array such as the above to write a function ``transpose`` which
 will transpose a matrix (turn rows into columns):
 
-.. raw:: html
+Transpose
 
-   <!-- mdbook-xgettext: skip -->
+.. math::
 
-.. code:: bob
+   \begin{bmatrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6 \\
+      7 & 8 & 9
+   \end{bmatrix}
 
-              TBDTBD1 2 3TBDTBD      TBD1 4 7TBD
-   "transpose"TBDTBD4 5 6TBDTBD  "=="TBD2 5 8TBD
-              TBDTBD7 8 9TBDTBD      TBD3 6 9TBD
+into
+
+.. math::
+
+   \begin{bmatrix}
+      1 & 4 & 7 \\
+      2 & 5 & 8 \\
+      3 & 6 & 9
+   \end{bmatrix}
 
 Copy the code below to https://play.rust-lang.org/ and implement the
 function. This function only operates on 3x3 matrices.
