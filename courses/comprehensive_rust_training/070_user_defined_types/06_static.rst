@@ -17,8 +17,8 @@ and therefore will not move:
        println!("{BANNER}");
    }
 
-As noted in the `Rust RFC
-Book <https://rust-lang.github.io/rfcs/0246-const-vs-static.html>`__,
+As noted in the
+`Rust RFC Book <https://rust-lang.github.io/rfcs/0246-const-vs-static.html>`__,
 these are not inlined upon use and have an actual associated memory
 location. This is useful for unsafe and embedded code, and the variable
 lives through the entirety of the program execution. When a
@@ -45,7 +45,7 @@ More to Explore
 
 Because ``static`` variables are accessible from any thread, they must
 be ``Sync``. Interior mutability is possible through a
-```Mutex`` <https://doc.rust-lang.org/std/sync/struct.Mutex.html>`__,
+`Mutex <https://doc.rust-lang.org/std/sync/struct.Mutex.html>`__,
 atomic or similar.
 
 It is common to use ``OnceLock`` in a static as a way to support

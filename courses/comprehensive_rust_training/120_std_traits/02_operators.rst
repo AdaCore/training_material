@@ -7,7 +7,7 @@ Operators
 -----------
 
 Operator overloading is implemented via traits in
-```std::ops`` <https://doc.rust-lang.org/std/ops/index.html>`__:
+`std::ops <https://doc.rust-lang.org/std/ops/index.html>`__:
 
 .. code:: rust,editable
 

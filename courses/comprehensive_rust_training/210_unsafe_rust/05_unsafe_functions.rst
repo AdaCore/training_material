@@ -100,8 +100,8 @@ things with pointers which might violate Rust's memory model, but in
 general any C function might have undefined behaviour under any
 arbitrary circumstances.
 
-The ``"C"`` in this example is the ABI; `other ABIs are available
-too <https://doc.rust-lang.org/reference/items/external-blocks.html>`__.
+The ``"C"`` in this example is the ABI;
+`other ABIs are available too <https://doc.rust-lang.org/reference/items/external-blocks.html>`__.
 
 .. _writing-unsafe-functions-1:
 

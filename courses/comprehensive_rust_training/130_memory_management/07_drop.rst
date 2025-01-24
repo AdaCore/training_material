@@ -7,7 +7,7 @@ The ``Drop`` Trait
 --------------------
 
 Values which implement
-```Drop`` <https://doc.rust-lang.org/std/ops/trait.Drop.html>`__ can
+`Drop <https://doc.rust-lang.org/std/ops/trait.Drop.html>`__ can
 specify code to run when they go out of scope:
 
 .. code:: rust,editable

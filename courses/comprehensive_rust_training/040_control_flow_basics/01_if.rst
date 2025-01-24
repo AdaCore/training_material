@@ -6,8 +6,8 @@
 ``if`` expressions
 --------------------
 
-You use ```if``
-expressions <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-expressions>`__
+You use
+`if expressions <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-expressions>`__
 exactly like ``if`` statements in other languages:
 
 .. code:: rust,editable

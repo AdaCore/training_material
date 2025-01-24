@@ -39,9 +39,8 @@ Details
 ---------
 
 -  The ``From`` trait will be covered later in the course, but its
-   `definition in the ``std``
-   docs <https://doc.rust-lang.org/std/convert/trait.From.html>`__ is
-   simple.
+   `definition in the std docs <https://doc.rust-lang.org/std/convert/trait.From.html>`__
+   is simple.
 
 -  Implementations of the trait do not need to cover all possible type
    parameters. Here, ``Foo::from("hello")`` would not compile because

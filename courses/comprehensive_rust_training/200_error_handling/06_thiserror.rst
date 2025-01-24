@@ -6,7 +6,7 @@
 ``thiserror``
 ---------------
 
-The ```thiserror`` <https://docs.rs/thiserror/>`__ crate provides macros
+The `thiserror <https://docs.rs/thiserror/>`__ crate provides macros
 to help avoid boilerplate when defining error types. It provides derive
 macros that assist in implementing ``From<T>``, ``Display``, and the
 ``Error`` trait.

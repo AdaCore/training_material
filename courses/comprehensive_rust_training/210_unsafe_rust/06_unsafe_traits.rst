@@ -11,8 +11,7 @@ implementation must guarantee particular conditions to avoid undefined
 behaviour.
 
 For example, the ``zerocopy`` crate has an unsafe trait that looks
-`something like
-this <https://docs.rs/zerocopy/latest/zerocopy/trait.IntoBytes.html>`__:
+`something like this <https://docs.rs/zerocopy/latest/zerocopy/trait.IntoBytes.html>`__:
 
 .. code:: rust,editable
 

@@ -7,9 +7,9 @@
 -------------
 
 The
-```collect`` <https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect>`__
+`collect <https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect>`__
 method lets you build a collection from an
-```Iterator`` <https://doc.rust-lang.org/std/iter/trait.Iterator.html>`__.
+`Iterator <https://doc.rust-lang.org/std/iter/trait.Iterator.html>`__.
 
 .. code:: rust,editable
 
@@ -46,7 +46,7 @@ More to Explore
 -----------------
 
 -  If students are curious about how this works, you can bring up the
-   ```FromIterator`` <https://doc.rust-lang.org/std/iter/trait.FromIterator.html>`__
+   `FromIterator <https://doc.rust-lang.org/std/iter/trait.FromIterator.html>`__
    trait, which defines how each type of collection gets built from an
    iterator.
 -  In addition to the basic implementations of ``FromIterator`` for

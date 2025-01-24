@@ -7,8 +7,8 @@
 -----------------------
 
 Types implement
-```From`` <https://doc.rust-lang.org/std/convert/trait.From.html>`__ and
-```Into`` <https://doc.rust-lang.org/std/convert/trait.Into.html>`__ to
+`From <https://doc.rust-lang.org/std/convert/trait.From.html>`__ and
+`Into <https://doc.rust-lang.org/std/convert/trait.Into.html>`__ to
 facilitate type conversions. Unlike ``as``, these traits correspond to
 lossless, infallible conversions.
 
@@ -22,9 +22,9 @@ lossless, infallible conversions.
        println!("{s}, {addr}, {one}, {bigger}");
    }
 
-```Into`` <https://doc.rust-lang.org/std/convert/trait.Into.html>`__ is
+`Into <https://doc.rust-lang.org/std/convert/trait.Into.html>`__ is
 automatically implemented when
-```From`` <https://doc.rust-lang.org/std/convert/trait.From.html>`__ is
+`From <https://doc.rust-lang.org/std/convert/trait.From.html>`__ is
 implemented:
 
 .. code:: rust,editable

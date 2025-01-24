@@ -39,8 +39,8 @@ wherever they are used:
        println!("digest: {digest:?}");
    }
 
-According to the `Rust RFC
-Book <https://rust-lang.github.io/rfcs/0246-const-vs-static.html>`__
+According to the
+`Rust RFC Book <https://rust-lang.github.io/rfcs/0246-const-vs-static.html>`__
 these are inlined upon use.
 
 Only functions marked ``const`` can be called at compile time to

@@ -98,8 +98,8 @@ Key Points:
       be used to refer to individual fields.
    -  This might be a good time to demonstrate how the ``&self`` differs
       from ``self`` by trying to run ``finish`` twice.
-   -  Beyond variants on ``self``, there are also `special wrapper
-      types <https://doc.rust-lang.org/reference/special-types-and-traits.html>`__
+   -  Beyond variants on ``self``, there are also
+     `special wrapper types <https://doc.rust-lang.org/reference/special-types-and-traits.html>`__
       allowed to be receiver types, such as ``Box<Self>``.
 
 .. raw:: html

@@ -8,7 +8,7 @@ Exercise: Iterator Method Chaining
 
 In this exercise, you will need to find and use some of the provided
 methods in the
-```Iterator`` <https://doc.rust-lang.org/std/iter/trait.Iterator.html>`__
+`Iterator <https://doc.rust-lang.org/std/iter/trait.Iterator.html>`__
 trait to implement a complex calculation.
 
 Copy the following code to https://play.rust-lang.org/ and make the

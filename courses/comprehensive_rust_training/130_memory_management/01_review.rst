@@ -59,10 +59,10 @@ Details
    heap.
 
 -  If students ask about it, you can mention that the underlying memory
-   is heap allocated using the `System
-   Allocator <https://doc.rust-lang.org/std/alloc/struct.System.html>`__
-   and custom allocators can be implemented using the `Allocator
-   API <https://doc.rust-lang.org/std/alloc/index.html>`__
+   is heap allocated using the
+   `System Allocator <https://doc.rust-lang.org/std/alloc/struct.System.html>`__
+   and custom allocators can be implemented using the
+   `Allocator API <https://doc.rust-lang.org/std/alloc/index.html>`__
 
 -----------------
 More to Explore

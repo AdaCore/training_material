@@ -97,8 +97,8 @@ Details
    data is on the heap. The two vector elements are *fat pointers*:
 
    -  A fat pointer is a double-width pointer. It has two components: a
-      pointer to the actual object and a pointer to the `virtual method
-      table <https://en.wikipedia.org/wiki/Virtual_method_table>`__
+      pointer to the actual object and a pointer to the
+      `virtual method table <https://en.wikipedia.org/wiki/Virtual_method_table>`__
       (vtable) for the ``Pet`` implementation of that particular object.
    -  The data for the ``Dog`` named Fido is the ``name`` and ``age``
       fields. The ``Cat`` has a ``lives`` field.

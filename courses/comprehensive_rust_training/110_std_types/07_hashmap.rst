@@ -68,7 +68,7 @@ Details
    macro.
 
    -  Although, since Rust 1.56, HashMap implements
-      ```From<[(K, V); N]>`` <https://doc.rust-lang.org/std/collections/hash_map/struct.HashMap.html#impl-From%3C%5B(K,+V);+N%5D%3E-for-HashMap%3CK,+V,+RandomState%3E>`__,
+      `From<[(K, V); N]> <https://doc.rust-lang.org/std/collections/hash_map/struct.HashMap.html#impl-From%3C%5B(K,+V);+N%5D%3E-for-HashMap%3CK,+V,+RandomState%3E>`__,
       which allows us to easily initialize a hash map from a literal
       array:
 

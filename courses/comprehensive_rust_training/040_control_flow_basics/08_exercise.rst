@@ -6,8 +6,8 @@ Exercise: Collatz Sequence
 Exercise: Collatz Sequence
 ----------------------------
 
-The `Collatz
-Sequence <https://en.wikipedia.org/wiki/Collatz_conjecture>`__ is
+The
+`Collatz Sequence <https://en.wikipedia.org/wiki/Collatz_conjecture>`__ is
 defined as follows, for an arbitrary n1 greater than zero:
 
 -  If *ni* is 1, then the sequence terminates at *ni*.

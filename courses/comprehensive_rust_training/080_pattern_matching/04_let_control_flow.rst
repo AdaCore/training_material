@@ -21,8 +21,8 @@ languages. They are used for pattern matching:
 ``if let`` expressions
 ------------------------
 
-The ```if let``
-expression <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-let-expressions>`__
+The
+`if let expression <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-let-expressions>`__
 lets you execute different code depending on whether a value matches a
 pattern:
 
@@ -52,7 +52,7 @@ pattern:
 
 For the common case of matching a pattern and returning from the
 function, use
-```let else`` <https://doc.rust-lang.org/rust-by-example/flow_control/let_else.html>`__.
+`let else <https://doc.rust-lang.org/rust-by-example/flow_control/let_else.html>`__.
 The "else" case must diverge (``return``, ``break``, or panic - anything
 but falling off the end of the block).
 
@@ -80,7 +80,7 @@ but falling off the end of the block).
    }
 
 Like with ``if let``, there is a
-```while let`` <https://doc.rust-lang.org/reference/expressions/loop-expr.html#predicate-pattern-loops>`__
+`while let <https://doc.rust-lang.org/reference/expressions/loop-expr.html#predicate-pattern-loops>`__
 variant which repeatedly tests a value against a pattern:
 
 .. raw:: html
@@ -98,7 +98,7 @@ variant which repeatedly tests a value against a pattern:
    }
 
 Here
-```String::pop`` <https://doc.rust-lang.org/stable/std/string/struct.String.html#method.pop>`__
+`String::pop <https://doc.rust-lang.org/stable/std/string/struct.String.html#method.pop>`__
 returns ``Some(c)`` until the string is empty, after which it will
 return ``None``. The ``while let`` lets us keep iterating through all
 items.

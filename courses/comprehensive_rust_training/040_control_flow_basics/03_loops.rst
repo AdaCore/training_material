@@ -13,8 +13,8 @@ There are three looping keywords in Rust: ``while``, ``loop``, and
 ``while``
 -----------
 
-The ```while``
-keyword <https://doc.rust-lang.org/reference/expressions/loop-expr.html#predicate-loops>`__
+The
+`while keyword <https://doc.rust-lang.org/reference/expressions/loop-expr.html#predicate-loops>`__
 works much like in other languages, executing the loop body as long as
 the condition is true.
 

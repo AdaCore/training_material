@@ -8,7 +8,7 @@ Exercise: Generic ``min``
 
 In this short exercise, you will implement a generic ``min`` function
 that determines the minimum of two values, using the
-```Ord`` <https://doc.rust-lang.org/stable/std/cmp/trait.Ord.html>`__
+`Ord <https://doc.rust-lang.org/stable/std/cmp/trait.Ord.html>`__
 trait.
 
 .. code:: rust,compile_fail
@@ -26,9 +26,9 @@ Details
 ---------
 
 -  Show students the
-   ```Ord`` <https://doc.rust-lang.org/stable/std/cmp/trait.Ord.html>`__
+   `Ord <https://doc.rust-lang.org/stable/std/cmp/trait.Ord.html>`__
    trait and
-   ```Ordering`` <https://doc.rust-lang.org/stable/std/cmp/enum.Ordering.html>`__
+   `Ordering <https://doc.rust-lang.org/stable/std/cmp/enum.Ordering.html>`__
    enum.
 
 .. raw:: html
