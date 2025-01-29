@@ -181,6 +181,37 @@ Attributes Reflect the Underlying Type
       Shade : Color range Red .. Blue := Brown; -- run-time error
       Hue : Rainbow := Rainbow'Succ (Blue);     -- run-time error
 
+---------------
+Valid attribute
+---------------
+
+* :ada:`T'Valid` is a :ada:`Boolean`
+* :ada:`True` |rightarrow| the current representation for the given scalar is valid
+
+.. code:: Ada
+
+    procedure Main is
+       type Small_Odd is new Integer range 0 .. 5
+          with Predicate => Small_Odd mod 2 = 1;
+       O : aliased Small_Odd;
+       O_Alias : aliased Integer with Address => O'Address;
+    begin
+       for I in 0 .. 10 loop
+          O_Alias := I;
+          Ada.Text_IO.Put_Line (Boolean'Image (O'Valid));
+       end loop;
+    end Main;
+
+.. code::
+
+    FALSE
+    TRUE
+    FALSE
+    TRUE
+    FALSE
+    TRUE
+    FALSE
+
 ------------------------
 Idiom: Extended Ranges
 ------------------------
