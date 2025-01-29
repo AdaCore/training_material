@@ -15,7 +15,7 @@ Annex - Reference Materials
 .. role:: cpp(code)
     :language: C++
 
-.. role:: Rust(code)
+.. role:: rust(code)
     :language: Rust
 
 .. container:: PRELUDE SYMBOLS

@@ -14,9 +14,9 @@ Discriminated Records
 
 .. role:: cpp(code)
     :language: C++
-.. role:: Rust(code)
-    :language: Rust
 
+.. role:: rust(code)
+    :language: Rust
 
 .. container:: PRELUDE SYMBOLS
 
