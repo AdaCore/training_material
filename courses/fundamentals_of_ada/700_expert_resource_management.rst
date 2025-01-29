@@ -36,5 +36,7 @@ Expert Resource Management
 
 .. container:: PRELUDE END
 
-.. include:: 110_private_types/07-limited-private.rst
+.. include:: 110_private_types/07-limited_private.rst
+.. include:: 140_access_types/11-idiom_constant_pointer.rst
 .. include:: 260_controlled_types/10-idiom_refcounting.rst
+.. include:: 240_tasking/21-gnat_semaphores.rst
