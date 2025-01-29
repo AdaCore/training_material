@@ -15,7 +15,7 @@ Ada.Characters
 .. role:: cpp(code)
     :language: C++
 
-.. role:: rust(code)
+.. role:: Rust(code)
     :language: Rust
 
 .. container:: PRELUDE SYMBOLS
