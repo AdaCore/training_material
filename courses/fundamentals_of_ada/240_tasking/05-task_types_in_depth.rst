@@ -158,6 +158,40 @@ Protected Object Entries
       ...
    end Object;
 
+-------------------------------------
+Discriminated Protected or Task types
+-------------------------------------
+
+* Discriminant can be an :ada:`access` or discrete type
+* Resulting type is indefinite
+
+    - Unless mutable
+
+* Example: counter shared between tasks
+
+.. code:: Ada
+
+   protected type Counter_T is
+      procedure Increment;
+   end Counter_T
+
+   task type My_Task (Counter : not null access Counter_T) is [...]
+
+   task body My_Task is
+   begin
+      Counter.Increment;
+      [...]
+
+----------------------------------------
+Using discriminant for Real-Time aspects
+----------------------------------------
+
+.. code:: Ada
+
+   protected type Protected_With_Priority (Prio : System.Priority)
+      with Priority => Prio
+   is
+
 ------------------------------------------
 Example: Protected Objects - Declaration
 ------------------------------------------
