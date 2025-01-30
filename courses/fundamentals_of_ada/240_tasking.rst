@@ -39,11 +39,11 @@ Tasking
 
 .. container:: PRELUDE END
 
-.. include:: 240_tasking/01_intro.rst
-.. include:: 240_tasking/02_tasks.rst
-.. include:: 240_tasking/03_protected_objects.rst
-.. include:: 240_tasking/04_delays.rst
-.. include:: 240_tasking/05_task_types.rst
-.. include:: 240_tasking/06_advanced_concepts.rst
+.. include:: 240_tasking/01-intro.rst
+.. include:: 240_tasking/02-tasks.rst
+.. include:: 240_tasking/03-protected_objects.rst
+.. include:: 240_tasking/04-delays.rst
+.. include:: 240_tasking/05-task_types.rst
+.. include:: 240_tasking/06-advanced_concepts.rst
 .. include:: labs/240_tasking.lab.rst
-.. include:: 240_tasking/99_summary.rst
+.. include:: 240_tasking/99-summary.rst
