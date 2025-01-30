@@ -24,14 +24,14 @@ if __name__ == "__main__":
     ap.add_argument("files", nargs="+")
     args = ap.parse_args()
 
-    with open(args.prelude, "r") as pf:
+    with open(args.prelude, "rt") as pf:
         prelude_content = pf.read()
 
     if prelude_content.endswith(os.linesep):
         prelude_content = prelude_content[:-1]
 
     for f in args.files:
-        with open(f, "r") as ff:
+        with open(f, "rt") as ff:
             file_lines = ff.read().splitlines()
 
         f_out = open(f, "w") if args.in_place else sys.stdout
