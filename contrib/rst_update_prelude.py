@@ -34,7 +34,7 @@ if __name__ == "__main__":
         with open(f, "rt") as ff:
             file_lines = ff.read().splitlines()
 
-        f_out = open(f, "w") if args.in_place else sys.stdout
+        f_out = open(f, "wt") if args.in_place else sys.stdout
 
         def print_out(*a, **kw):
             kw.setdefault("file", f_out)
