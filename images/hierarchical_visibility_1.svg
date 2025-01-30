@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="206.39053mm"
+   height="143.77419mm"
+   viewBox="0 0 206.39053 143.77419"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="hierarchical_visibility_1.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.77326038"
+     inkscape:cx="-20.044994"
+     inkscape:cy="3.8796763"
+     inkscape:window-width="1920"
+     inkscape:window-height="1112"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="false" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="RoundedArrow-9"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="m -0.21114562,-4.1055728 6.42229122,3.21114561 a 1,1 90 0 1 0,1.78885438 L -0.21114562,4.1055728 A 1.236068,1.236068 31.717474 0 1 -2,3 v -6 a 1.236068,1.236068 148.28253 0 1 1.78885438,-1.1055728 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path8-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="RoundedArrow-8-7"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="m -0.21114562,-4.1055728 6.42229122,3.21114561 a 1,1 90 0 1 0,1.78885438 L -0.21114562,4.1055728 A 1.236068,1.236068 31.717474 0 1 -2,3 v -6 a 1.236068,1.236068 148.28253 0 1 1.78885438,-1.1055728 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path8-5-9" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0.54549998,-109.63191)">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.10318;stroke-dasharray:none"
+       id="rect1-4"
+       width="51.031952"
+       height="68.824585"
+       x="9.4004555"
+       y="173.11121" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.651999"
+       x="34.693192"
+       y="180.23325"
+       id="text3-3"><tspan
+         sodipodi:role="line"
+         id="tspan3-12"
+         style="font-style:italic;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Light Italic';stroke-width:0.652"
+         x="34.693192"
+         y="180.23325">Our_Unit</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.649034"
+       id="rect2-3"
+       width="50.93298"
+       height="10.527695"
+       x="9.4467373"
+       y="184.5688" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.651999"
+       x="34.961288"
+       y="191.96275"
+       id="text3-1-4"><tspan
+         sodipodi:role="line"
+         id="tspan3-1-11"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Light';fill:none;stroke-width:0.652"
+         x="34.961288"
+         y="191.96275">Visible Part</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.649034"
+       id="rect2-8-8"
+       width="50.93298"
+       height="10.527695"
+       x="9.6423101"
+       y="207.06857" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.651999"
+       x="34.942921"
+       y="214.36021"
+       id="text3-1-6-7"><tspan
+         sodipodi:role="line"
+         id="tspan3-1-1-4"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Light';fill:none;stroke-width:0.652"
+         x="34.942921"
+         y="214.36021">Private Part</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.59448;stroke-opacity:1;marker-start:url(#RoundedArrow-9)"
+       d="m 34.403183,197.93544 v 8.81817"
+       id="path5-2" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.59448;stroke-opacity:1;marker-start:url(#RoundedArrow-8-7)"
+       d="m 34.698049,220.61154 v 8.81818"
+       id="path5-6-7" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.649034"
+       id="rect2-5-9"
+       width="50.93298"
+       height="10.527695"
+       x="9.3875608"
+       y="229.3792" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.651999"
+       x="34.641663"
+       y="236.23209"
+       id="text3-1-6-2-3"><tspan
+         sodipodi:role="line"
+         id="tspan3-1-1-2-1"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Light';fill:none;stroke-width:0.652"
+         x="34.641663"
+         y="236.23209">Body</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:6.35px;font-family:Calibri;-inkscape-font-specification:'Calibri Light';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.651999"
+       x="102.55671"
+       y="127.28915"
+       id="text3-3-7"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Light';text-align:center;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.652"
+         x="102.55671"
+         y="127.28915"
+         id="tspan2">In a package, the body sees everything the private part sees,</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Light';text-align:center;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.652"
+         x="102.55671"
+         y="135.22665"
+         id="tspan3">and the private part sees everything the visible part sees.</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.09203;stroke-linejoin:miter"
+       id="rect6"
+       width="186.41977"
+       height="17.661163"
+       x="9.3948803"
+       y="120.83206" />
+  </g>
+</svg>
