@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (86a8ad7, 2024-10-11)"
-   sodipodi:docname="hierarchical_visibility_2.svg"
+   sodipodi:docname="hierarchical_visibility_3.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,14 +23,14 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="3.0930416"
-     inkscape:cx="-35.078739"
-     inkscape:cy="290.0058"
-     inkscape:window-width="1904"
-     inkscape:window-height="1096"
-     inkscape:window-x="24"
-     inkscape:window-y="1518"
-     inkscape:window-maximized="0"
+     inkscape:zoom="2.1871107"
+     inkscape:cx="376.98138"
+     inkscape:cy="281.1929"
+     inkscape:window-width="1920"
+     inkscape:window-height="1112"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      showgrid="false" />
   <defs
@@ -130,6 +130,25 @@
          style="fill:context-stroke;fill-rule:evenodd;stroke:none"
          id="path8-5-9-2" />
     </marker>
+    <marker
+       style="overflow:visible"
+       id="RoundedArrow-1"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="m -0.21114562,-4.1055728 6.42229122,3.21114561 a 1,1 90 0 1 0,1.78885438 L -0.21114562,4.1055728 A 1.236068,1.236068 31.717474 0 1 -2,3 v -6 a 1.236068,1.236068 148.28253 0 1 1.78885438,-1.1055728 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path8-5" />
+    </marker>
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -137,7 +156,7 @@
      id="layer1"
      transform="translate(0.54549998,-109.63191)">
     <rect
-       style="fill:#ffb380;stroke:#ffb380;stroke-width:1.09203;stroke-linejoin:miter"
+       style="fill:#ccffaa;stroke:none;stroke-width:1.09203;stroke-linejoin:miter"
        id="rect6-1"
        width="186.41977"
        height="17.661163"
@@ -153,16 +172,24 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle;fill:#000000;stroke:#000000;stroke-width:0.052;stroke-dasharray:none"
          x="102.64819"
          y="148.44214"
-         id="tspan2-7">Another <tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:Calibri;-inkscape-font-specification:'Calibri Bold'"
-   id="tspan8">package</tspan> can see our <tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:Calibri;-inkscape-font-specification:'Calibri Bold'"
-   id="tspan9">visible part </tspan>(depending</tspan><tspan
+         id="tspan2-7">Our <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold'"
+   id="tspan8">child</tspan>'s <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold'"
+   id="tspan9">visible part</tspan> can see our <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold'"
+   id="tspan10">visible part</tspan>,</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:center;text-anchor:middle;fill:#000000;stroke:#000000;stroke-width:0.052;stroke-dasharray:none"
          x="102.64819"
          y="155.4977"
-         id="tspan3-9">on where the &quot;with&quot; is), but nothing else.</tspan></text>
+         id="tspan3-9">and its <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold'"
+   id="tspan11">private part</tspan> (and <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold'"
+   id="tspan12">body</tspan>) can see our <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold'"
+   id="tspan13">private part</tspan></tspan></text>
     <rect
        style="fill:none;stroke:#000000;stroke-width:1.10318;stroke-dasharray:none"
        id="rect1-4"
@@ -182,12 +209,12 @@
          x="34.693192"
          y="180.23325">Our_Unit</tspan></text>
     <rect
-       style="fill:#ffccaa;stroke:#000000;stroke-width:0.64736"
+       style="fill:#ccffaa;stroke:#000000;stroke-width:0.646401"
        id="rect2-3"
-       width="50.662464"
-       height="10.529369"
-       x="9.5668736"
-       y="184.56796" />
+       width="50.507904"
+       height="10.530328"
+       x="9.7020464"
+       y="184.56747" />
     <text
        xml:space="preserve"
        style="font-size:6.35px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;stroke:#000000;stroke-width:0.052;stroke-dasharray:none"
@@ -200,12 +227,12 @@
          x="34.961288"
          y="191.96275">Visible Part</tspan></text>
     <rect
-       style="fill:none;stroke:#000000;stroke-width:0.649034"
+       style="fill:#ccffaa;stroke:#000000;stroke-width:0.646928"
        id="rect2-8-8"
-       width="50.93298"
-       height="10.527695"
-       x="9.6423101"
-       y="207.06857" />
+       width="50.592918"
+       height="10.5298"
+       x="9.6412573"
+       y="207.06752" />
     <text
        xml:space="preserve"
        style="font-size:6.35px;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;stroke:#000000;stroke-width:0.052;stroke-dasharray:none"
@@ -244,7 +271,7 @@
          x="34.641663"
          y="236.23209">Body</tspan></text>
     <rect
-       style="fill:#ffccaa;stroke:#000000;stroke-width:1.10318;stroke-dasharray:none"
+       style="fill:#ccffaa;stroke:#000000;stroke-width:1.10318;stroke-dasharray:none"
        id="rect1-4-5"
        width="51.031952"
        height="68.824585"
@@ -266,7 +293,7 @@
        id="rect2-3-1"
        width="50.93298"
        height="10.527695"
-       x="144.76219"
+       x="144.91341"
        y="184.83339" />
     <text
        xml:space="preserve"
@@ -324,9 +351,21 @@
          x="170.10832"
          y="236.49667">Body</tspan></text>
     <path
-       style="fill:#c87137;stroke:#c87137;stroke-width:1.05124;stroke-linejoin:miter;marker-end:url(#RoundedArrow)"
-       d="m 144.33294,190.13834 c -77.673649,0 -78.78554,0 -78.78554,0"
+       style="fill:#66ff00;stroke:#66ff00;stroke-width:1.04841;stroke-linejoin:miter;marker-end:url(#RoundedArrow)"
+       d="m 144.3485,190.18111 c -77.255682,0 -78.361589,0 -78.361589,0"
        id="path1" />
+    <path
+       style="fill:#66ff00;stroke:#66ff00;stroke-width:1.04848;stroke-linejoin:miter;marker-end:url(#RoundedArrow-1)"
+       d="m 144.35971,211.84945 c -77.266701,0 -78.372767,0 -78.372767,0"
+       id="path1-7" />
+    <path
+       style="fill:#66ff00;stroke:#66ff00;stroke-width:1.03968;stroke-linejoin:miter;stroke-dasharray:none"
+       d="m 144.34975,235.89753 c -21.37997,0 -21.68602,0 -21.68602,0"
+       id="path1-2" />
+    <path
+       style="fill:#66ff00;stroke:#66ff00;stroke-width:1.0985;stroke-linejoin:miter;stroke-dasharray:none"
+       d="m 123.23916,236.28087 c 0,-23.86783 0,-24.2095 0,-24.2095"
+       id="path1-2-1" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:5.64444px;font-family:Calibri;-inkscape-font-specification:'Calibri Light';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;stroke:#000000;stroke-width:0.052;stroke-dasharray:none"

@@ -52,6 +52,18 @@ Visibility Across a Hierarchy
       :width: 70%
       :align: center
 
+.. container:: overlay 3
+
+   .. image:: hierarchical_visibility_3.svg
+      :width: 70%
+      :align: center
+
+.. container:: overlay 4
+
+   .. image:: hierarchical_visibility_4.svg
+      :width: 70%
+      :align: center
+
 --------------------------
 Programming by Extension
 --------------------------
