@@ -40,5 +40,6 @@ Expert Resource Management
 .. include:: 140_access_types/11-idiom_constant_pointer.rst
 .. include:: 260_controlled_types/10-idiom_refcounting.rst
 .. include:: 260_controlled_types/11-example_logger.rst
+.. include:: 230_interfacing_with_c/10-example_refcount_wrap.rst
 .. include:: 240_tasking/21-gnat_semaphores.rst
 .. include:: 240_tasking/22-task_safe_interfaces.rst

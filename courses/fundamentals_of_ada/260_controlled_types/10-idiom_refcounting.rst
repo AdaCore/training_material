@@ -13,7 +13,7 @@ Global Overview
     - Efficient
     - All :ada:`access` must then be using it
 
-* A refcounted type derives from :ada:`Refcounted`
+* Any refcounted type **must** derive from :ada:`Refcounted`
 
     - Tagged
     - Get a :ada:`Ref` through :ada:`Set`
@@ -45,14 +45,19 @@ Global Overview
 Implementation Details
 ----------------------
 
-* :ada:`Set` is safe
-    
+.. code:: Ada
+
+    procedure Set (Self : in out Ref; Data : Refcounted'Class)
+
+.. tip::
+
+    This procedure is safe
+        
     - :ada:`Ref` default value is :ada:`null`
     - Clears up any previously used :ada:`Ref`
 
 .. code:: Ada
-
-    procedure Set (Self : in out Ref; Data : Refcounted'Class) is
+    is
       D : constant Refcounted_Access := new Refcounted'Class'(Data);
     begin
       if Self.Data /= null then
@@ -63,12 +68,23 @@ Implementation Details
       Adjust (Self);  -- increment reference count (set to 1)
     end Set;
 
-* :ada:`Adjust` called for all new references
+.. code:: Ada
+
+    overriding procedure Adjust (P : in out Ref)
+
+.. note::
+
+    Called for all new references
+
+.. warning::
+
+    :ada:`Data` might be :ada:`null`
 
 .. code:: Ada
 
-    overriding procedure Adjust (P : in out Ref) is
+    is
     begin
+
        if P.Data /= null then
           P.Data.Refcount := P.Data.Refcount + 1;
        end if;
