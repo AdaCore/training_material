@@ -34,7 +34,7 @@ Controlled Types
 .. container:: PRELUDE END
 
 .. include:: 260_controlled_types/01-introduction.rst
-.. include:: 260_controlled_types/02-adafinalization.rst
+.. include:: 260_controlled_types/02-ada_finalization.rst
 .. include:: 260_controlled_types/03-example.rst
 .. include:: labs/260_controlled_types.lab.rst
 .. include:: 260_controlled_types/99-summary.rst
