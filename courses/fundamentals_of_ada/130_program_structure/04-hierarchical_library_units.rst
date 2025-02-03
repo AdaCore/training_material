@@ -26,10 +26,6 @@ Problem: Packages Are Not Enough
 Solution: Hierarchical Library Units
 --------------------------------------
 
-.. container:: columns
-
- .. container:: column
-
     * Address extensibility issue
 
        - Can extend packages with visibility to parent private part
@@ -40,9 +36,33 @@ Solution: Hierarchical Library Units
 
        - Extensions all have the same ancestor *root* name
 
- .. container:: column
+-------------------------------
+Visibility Across a Hierarchy
+-------------------------------
 
-    .. image:: hierarchical_library_units.png
+.. container:: overlay 1
+
+   .. image:: hierarchical_visibility_1.svg
+      :width: 70%
+      :align: center
+
+.. container:: overlay 2
+
+   .. image:: hierarchical_visibility_2.svg
+      :width: 70%
+      :align: center
+
+.. container:: overlay 3
+
+   .. image:: hierarchical_visibility_3.svg
+      :width: 70%
+      :align: center
+
+.. container:: overlay 4
+
+   .. image:: hierarchical_visibility_4.svg
+      :width: 70%
+      :align: center
 
 --------------------------
 Programming by Extension
