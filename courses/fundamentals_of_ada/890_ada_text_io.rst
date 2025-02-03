@@ -34,7 +34,7 @@ Ada.Text_IO
 .. container:: PRELUDE END
 
 .. include:: 890_ada_text_io/01-introduction.rst
-.. include:: 890_ada_text_io/02-file_inputoutput.rst
+.. include:: 890_ada_text_io/02-file_input_output.rst
 .. include:: 890_ada_text_io/03-type_specific_io.rst
 .. include:: 890_ada_text_io/04-exceptions.rst
 .. include:: labs/890_ada_text_io.lab.rst
