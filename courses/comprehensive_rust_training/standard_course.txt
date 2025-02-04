@@ -1,3 +1,4 @@
+010_introduction.rst
 020_hello_world.rst
 030_types_and_values.rst
 040_control_flow_basics.rst
