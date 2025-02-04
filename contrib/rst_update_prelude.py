@@ -1,4 +1,4 @@
-'''
+"""
 Currently, every module needs to contain a 'prelude' that
 is expected to have the same content across every module.
 This script is designed to "fix" the prelude when
@@ -27,7 +27,7 @@ module-specific).
 After comparison, the sections are written out in the
 same order they were read in (either to stdout or
 back to the original file).
-'''
+"""
 
 import os
 import sys
@@ -37,22 +37,23 @@ from pathlib import Path
 
 CWD = Path(sys.argv[0]).resolve().parents[1]
 
-'''
+"""
 Flag used to split file into pieces
-'''
+"""
 PRELUDE_FLAG = "container:: PRELUDE "
 
-FIRST_KEY = '000'
+FIRST_KEY = "000"
 
-'''
+"""
 Dictionary used to store expected prelude pieces
-'''
+"""
 EXPECTED = {}
 
 
-'''
+"""
 Populate the expected values from the predefined prelude
-'''
+"""
+
 
 def load_prelude(filename):
     global EXPECTED
@@ -66,10 +67,11 @@ def load_prelude(filename):
             EXPECTED[name] = content
 
 
-'''
+"""
 Compare 'filename' contents to the expected contents.
 If no changes are necessary, the file is not modified
-'''
+"""
+
 
 def process_file(filename, in_place):
 
@@ -88,21 +90,21 @@ def process_file(filename, in_place):
     for key in ACTUAL.keys():
         if not key in EXPECTED.keys():
             if in_place:
-                print ("   removing " + key)
+                print("   removing " + key)
             del ACTUAL[key]
             update_required = True
 
-        elif key == 'BEGIN' or key == 'ROLES' or key == 'SYMBOLS':
+        elif key == "BEGIN" or key == "ROLES" or key == "SYMBOLS":
             if ACTUAL[key] != EXPECTED[key]:
                 if in_place:
-                    print ("   updating " + key)
+                    print("   updating " + key)
                 ACTUAL[key] = EXPECTED[key]
                 update_required = True
 
     for key in EXPECTED.keys():
         if not key in ACTUAL.keys():
             if in_place:
-                print ("   adding " + key)
+                print("   adding " + key)
             ACTUAL[key] = EXPECTED[key]
             update_required = True
 
@@ -110,9 +112,10 @@ def process_file(filename, in_place):
         f_out = open(filename, "wt") if in_place else sys.stdout
         for key in ACTUAL.keys():
             if key == FIRST_KEY:
-                f_out.write (ACTUAL[key])
+                f_out.write(ACTUAL[key])
             else:
-                f_out.write (PRELUDE_FLAG + key + "\n" + ACTUAL[key])
+                f_out.write(PRELUDE_FLAG + key + "\n" + ACTUAL[key])
+
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
