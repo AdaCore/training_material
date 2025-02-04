@@ -1,3 +1,7 @@
+=======
+Lab
+=======
+
 -----------------
 Ada.Strings Lab
 -----------------
@@ -32,10 +36,10 @@ Ada.Strings Lab Solution (Declarations)
 Ada.Strings Lab Solution (Main)
 ---------------------------------
 
-.. container:: source_include labs/answers/spec_892_ada_strings.txt :start-after:--main --:end-before:--main :code:Ada :number-lines:39
+.. container:: source_include labs/answers/892_ada_strings.txt :start-after:--main --:end-before:--main :code:Ada :number-lines:39
  
 -----------------------------------------
 Ada.Strings Lab Solution (Extra Credit)
 -----------------------------------------
 
-.. container:: source_include labs/answers/spec_892_ada_strings.txt :start-after:--extra_credit --:end-before:--extra_credit :code:Ada :number-lines:21
+.. container:: source_include labs/answers/892_ada_strings.txt :start-after:--extra_credit --:end-before:--extra_credit :code:Ada :number-lines:21

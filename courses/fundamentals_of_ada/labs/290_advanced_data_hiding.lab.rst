@@ -1,6 +1,10 @@
-----------------------
-Advanced Privacy Lab
-----------------------
+=======
+Lab
+=======
+
+--------------------------
+Advanced Data Hiding Lab
+--------------------------
    
 * Requirements
    
@@ -24,27 +28,27 @@ Advanced Privacy Lab
 
    - You will need to employ some (but not necessarily all) of the techniques discussed in this module
  
-----------------------------------------------
-Advanced Privacy Lab Solution - Message Type
-----------------------------------------------
+--------------------------------------------------
+Advanced Data Hiding Lab Solution - Message Type
+--------------------------------------------------
 
 .. container:: source_include labs/answers/290_advanced_data_hiding.txt :start-after:--Messages :end-before:--Messages :code:Ada :number-lines:1
 
----------------------------------------------------
-Advanced Privacy Lab Solution - Message List Type
----------------------------------------------------
+-------------------------------------------------------
+Advanced Data Hiding Lab Solution - Message List Type
+-------------------------------------------------------
 
 .. container:: source_include labs/answers/290_advanced_data_hiding.txt :start-after:--List_Types :end-before:--List_Types :code:Ada :number-lines:1
  
----------------------------------------------------------
-Advanced Privacy Lab Solution - Message List Operations
----------------------------------------------------------
+-------------------------------------------------------------
+Advanced Data Hiding Lab Solution - Message List Operations
+-------------------------------------------------------------
 
 .. container:: source_include labs/answers/290_advanced_data_hiding.txt :start-after:--Operations :end-before:--Operations :code:Ada :number-lines:1
 
---------------------------------------
-Advanced Privacy Lab Solution - Main
---------------------------------------
+------------------------------------------
+Advanced Data Hiding Lab Solution - Main
+------------------------------------------
 
 .. container:: source_include labs/answers/290_advanced_data_hiding.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
 

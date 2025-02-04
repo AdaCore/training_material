@@ -15,6 +15,9 @@ Tasking
 .. role:: cpp(code)
     :language: C++
 
+.. role:: rust(code)
+    :language: Rust
+
 .. container:: PRELUDE SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
@@ -43,14 +46,14 @@ Tasking
 
 .. container:: PRELUDE END
 
-.. include:: 240_tasking/01_intro.rst
-.. include:: 240_tasking/02_tasks_in_depth.rst
-.. include:: 240_tasking/11_light_tasking.rst
-.. include:: 240_tasking/03_protected_objects_in_depth.rst
-.. include:: 240_tasking/12_comparing_standard_and_light_tasking.rst
-.. include:: 240_tasking/04_delays.rst
-.. include:: 240_tasking/05_task_types_in_depth.rst
-.. include:: 240_tasking/06_advanced_concepts_in_depth.rst
-.. include:: 240_tasking/13_light_tasking_behavior.rst
-.. include:: 240_tasking/14_tasking_control.rst
-.. include:: 240_tasking/99_summary.rst
+.. include:: 240_tasking/01-intro.rst
+.. include:: 240_tasking/02-tasks_in_depth.rst
+.. include:: 240_tasking/11-light_tasking.rst
+.. include:: 240_tasking/03-protected_objects_in_depth.rst
+.. include:: 240_tasking/12-comparing_standard_and_light_tasking.rst
+.. include:: 240_tasking/04-delays.rst
+.. include:: 240_tasking/05-task_types_in_depth.rst
+.. include:: 240_tasking/06-advanced_concepts_in_depth.rst
+.. include:: 240_tasking/13-light_tasking_behavior.rst
+.. include:: 240_tasking/14-tasking_control.rst
+.. include:: 240_tasking/99-summary.rst
