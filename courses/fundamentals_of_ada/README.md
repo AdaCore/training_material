@@ -17,53 +17,41 @@ Supplementary Ada labs are also available through Alire, with the crates
 - [`labs_solar_system`](https://alire.ada.dev/crates/labs_solar_system)
 - [`labs_standalone`](https://alire.ada.dev/crates/labs_standalone)
 
-## Original Naming Scheme
+## Naming Scheme
 
-The naming scheme uses a 3-digit prefix, followed by an underscore and
-then the description of the module (all lower case, words
-separated by "\_").
+The naming scheme uses a 3-digit prefix of all modules to indicate the general
+order that modules should be presented. The module name consists of the
+3-digit prefix, followed by an underscore, and the description of the module
+(all lower case, words separated by an underscore.
 
-When the filename starts with the 3-digit prefix, this prefix specifies
-the expected order of teaching the modules.
+For most module (exceptions described under "Prefix Grouping") the module
+base name can be found as a subfolder (containing chapters for content) and
+an RST file that uses the ".. include::" construct to list the chapters
+to be included in the module. Many modules also include other versions
+of this RST file, to indicate different presentations of the content.
+The names of these RST files will start with the prefix and description,
+followed by a hyphen and then another short description.
 
-Files that are prefaced by "intro_" are introductory courses. When the prefix
-matches a fundamental course prefix, then the introductory topic is a lightweight
-version the fundamental course (or a portion thereof).
-When the prefix does not match a fundamental course prefix, then the
-course is just an introduction to an Ada topic that was not covered in
-the fundamental course.
+For example, the **240_tasking** module has four different presentations:
 
-Files that are prefaced by "adv_" are advanced courses. When the prefix
-matches a fundamental course prefix, then the advanced topic is an
-in-depth version the fundamental course (or a portion thereof).
-When the prefix does not match a fundamental course prefix, then the
-advanced topic is just an advanced Ada topic that was not covered in
-the fundamental course.
-
-Files that are prefaced by "spec_" are courses that were created at
-the request of a customer, and may or may not be useful to other customers.
+   * 240_tasking.rst *(basic module)*
+   * 240_tasking-in_depth.rst *(add in-depth descriptions)*
+   * 240_tasking-light.rst *(basic module for light tasking)*
+   * 240_tasking-light_in_depth.rst **add in-depth descriptions to light tasking)*
 
 ### Prefix Grouping
 
-The numeric value of the file prefix should be grouped as follows:
+All modules below 800 should be considered "normal" content. 800 and above are described below.
 
-#### Prefixes 900 - 999
+* Prefixes 800 - 899
 
-These prefixes should indicate reference materials. Typically, these modules would be a
-way to give students a central location for finding answers to simple Ada questions.
+   These prefixes should be used for content related to run-time packages (e.g. Ada.Text_IO).
+   These are usually created for a specific customer training class, and are kept here for
+   any future reference.
 
-#### Prefixes 890 and below
+* Prefixes 900 - 999
 
-These prefixes should be used by the "spec_" courses. New modules should use the
-highest available number (leaving everything below for normal courses)
+   These prefixes should indicate reference materials. Typically, these modules would be a
+   way to give students a central location for finding answers to simple Ada questions.
 
-## New Naming Scheme
-
-A new naming scheme is in work, which will treat every concept as a module, and variations on the concept
-(intro/advanced/etc) will have its variation tagged onto the end of the module name.
-So, for example, the "Basic Types" module will be appear in the directory as follows
-
-   * ``030_basic_types`` - folder where all the subsections are stored
-   * ``030_basic_types.rst`` - the most common collection of subsections (used for *standard_course.txt* and *opat.txt*)
-   * ``030_basic_types-in_depth`` - the dash separates the module from the modifier. In this case, **in_depth** should mean a deep-dive replacement for the original module
-   * ``030_basic_types-extras`` - hopefully, the **extras** modifier should be an indication that this is *in addition to* the base module
+   **Note: These modules are simple RST files - there are no folders containing their contents**
