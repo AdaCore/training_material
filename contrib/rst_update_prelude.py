@@ -4,7 +4,7 @@ is expected to have the same content across every module.
 This script is designed to "fix" the prelude when
 a required content is updated / added.
 
-To better organized this content, the default prelude
+To better organize this content, the default prelude
 file uses RST containers to indicate where each specific
 content begins. These sections are as follows:
    BEGIN - any beginning matter
