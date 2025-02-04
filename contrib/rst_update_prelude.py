@@ -21,8 +21,8 @@ the module into sections and use the prelude section
 name as the key. Anything appearing before BEGIN
 will use FIRST_KEY as the key. We then compare the
 actual to expected content only for BEGIN, SYMBOLS,
-and ROLES).  If there is a difference, the actual
-content is updated. (The remaing sections are considered
+and ROLES). If there is a difference, the actual
+content is updated. (The remaining sections are considered
 module-specific).
 After comparison, the sections are written out in the
 same order they were read in (either to stdout or
