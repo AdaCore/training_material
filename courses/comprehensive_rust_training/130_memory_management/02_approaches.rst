@@ -30,8 +30,6 @@ Rust offers a new mix:
 
 It does this with an explicit ownership concept.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -39,12 +37,12 @@ Details
 This slide is intended to help students coming from other languages to
 put Rust in context.
 
--  C must manage heap manually with ``malloc`` and ``free``. Common
-   errors include forgetting to call ``free``, calling it multiple times
+-  C must manage heap manually with :cpp:`malloc` and :cpp:`free`. Common
+   errors include forgetting to call :cpp:`free`, calling it multiple times
    for the same pointer, or dereferencing a pointer after the memory it
    points to has been freed.
 
--  C++ has tools like smart pointers (``unique_ptr``, ``shared_ptr``)
+-  C++ has tools like smart pointers (:cpp:`unique_ptr`, :cpp:`shared_ptr`)
    that take advantage of language guarantees about calling destructors
    to ensure memory is freed when a function returns. It is still quite
    easy to mis-use these tools and create similar bugs to C.
@@ -61,6 +59,3 @@ are required - zero cost. It also provides tools similar to C++'s smart
 pointers. When required, other options such as reference counting are
 available, and there are even crates available to support runtime
 garbage collection (not covered in this class).
-
-.. raw:: html
-

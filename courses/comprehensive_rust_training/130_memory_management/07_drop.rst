@@ -1,16 +1,16 @@
 ====================
-The ``Drop`` Trait
+The "Drop" Trait
 ====================
 
 --------------------
-The ``Drop`` Trait
+The "Drop" Trait
 --------------------
 
 Values which implement
 `Drop <https://doc.rust-lang.org/std/ops/trait.Drop.html>`__ can
 specify code to run when they go out of scope:
 
-.. code:: rust,editable
+.. code:: rust
 
    struct Droppable {
        name: &'static str,
@@ -37,37 +37,32 @@ specify code to run when they go out of scope:
        println!("Exiting main");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
--  Note that ``std::mem::drop`` is not the same as
-   ``std::ops::Drop::drop``.
+-  Note that :rust:`std::mem::drop` is not the same as
+   :rust:`std::ops::Drop::drop`.
 -  Values are automatically dropped when they go out of scope.
--  When a value is dropped, if it implements ``std::ops::Drop`` then its
-   ``Drop::drop`` implementation will be called.
+-  When a value is dropped, if it implements :rust:`std::ops::Drop` then its
+   :rust:`Drop::drop` implementation will be called.
 -  All its fields will then be dropped too, whether or not it implements
-   ``Drop``.
--  ``std::mem::drop`` is just an empty function that takes any value.
+   :rust:`Drop`.
+-  :rust:`std::mem::drop` is just an empty function that takes any value.
    The significance is that it takes ownership of the value, so at the
    end of its scope it gets dropped. This makes it a convenient way to
    explicitly drop values earlier than they would otherwise go out of
    scope.
 
-   -  This can be useful for objects that do some work on ``drop``:
+   -  This can be useful for objects that do some work on :rust:`drop`:
       releasing locks, closing files, etc.
 
 Discussion points:
 
--  Why doesn't ``Drop::drop`` take ``self``?
+-  Why doesn't :rust:`Drop::drop` take :rust:`self`?
 
-   -  Short-answer: If it did, ``std::mem::drop`` would be called at the
-      end of the block, resulting in another call to ``Drop::drop``, and
+   -  Short-answer: If it did, :rust:`std::mem::drop` would be called at the
+      end of the block, resulting in another call to :rust:`Drop::drop`, and
       a stack overflow!
 
--  Try replacing ``drop(a)`` with ``a.drop()``.
-
-.. raw:: html
-
+-  Try replacing :rust:`drop(a)` with :rust:`a.drop()`.
