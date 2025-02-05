@@ -1,19 +1,15 @@
 ===========
-``const``
+"const"
 ===========
 
 -----------
-``const``
+"const"
 -----------
 
 Constants are evaluated at compile time and their values are inlined
 wherever they are used:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
-.. code:: rust,editable
+.. code:: rust
 
    const DIGEST_SIZE: usize = 3;
    const FILL_VALUE: u8 = calculate_fill_value();
@@ -43,18 +39,13 @@ According to the
 `Rust RFC Book <https://rust-lang.github.io/rfcs/0246-const-vs-static.html>`__
 these are inlined upon use.
 
-Only functions marked ``const`` can be called at compile time to
-generate ``const`` values. ``const`` functions can however be called at
+Only functions marked :rust:`const` can be called at compile time to
+generate :rust:`const` values. :rust:`const` functions can however be called at
 runtime.
-
-.. raw:: html
 
 ---------
 Details
 ---------
 
--  Mention that ``const`` behaves semantically similar to C++'s
-   ``constexpr``
-
-.. raw:: html
-
+-  Mention that :rust:`const` behaves semantically similar to C++'s
+   :c:`constexpr`

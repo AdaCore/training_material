@@ -1,9 +1,3 @@
-.. raw:: html
-
-   <!-- NOTES:
-   Tuple structs, newtype wrappers, unit-like structs, including initialization syntax
-   -->
-
 ===============
 Tuple Structs
 ===============
@@ -14,7 +8,7 @@ Tuple Structs
 
 If the field names are unimportant, you can use a tuple struct:
 
-.. code:: rust,editable
+.. code:: rust
 
    struct Point(i32, i32);
 
@@ -23,9 +17,9 @@ If the field names are unimportant, you can use a tuple struct:
        println!("({}, {})", p.0, p.1);
    }
 
-This is often used for single-field wrappers (called newtypes):
+This is often used for single-field wrappers (called :dfn:`newtypes`):
 
-.. code:: rust,editable,compile_fail
+.. code:: rust
 
    struct PoundsOfForce(f64);
    struct Newtons(f64);
@@ -43,8 +37,6 @@ This is often used for single-field wrappers (called newtypes):
        set_thruster_force(force);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -52,13 +44,13 @@ Details
 -  Newtypes are a great way to encode additional information about the
    value in a primitive type, for example:
 
-   -  The number is measured in some units: ``Newtons`` in the example
+   -  The number is measured in some units: :rust:`Newtons` in the example
       above.
    -  The value passed some validation when it was created, so you no
       longer have to validate it again at every use:
-      ``PhoneNumber(String)`` or ``OddNumber(u32)``.
+      :rust:`PhoneNumber(String)` or :rust:`OddNumber(u32)`.
 
--  Demonstrate how to add a ``f64`` value to a ``Newtons`` type by
+-  Demonstrate how to add a :rust:`f64` value to a :rust:`Newtons` type by
    accessing the single field in the newtype.
 
    -  Rust generally doesn't like inexplicit things, like automatic
@@ -68,6 +60,3 @@ Details
 -  The example is a subtle reference to the
    `Mars Climate Orbiter <https://en.wikipedia.org/wiki/Mars_Climate_Orbiter>`__
    failure.
-
-.. raw:: html
-
