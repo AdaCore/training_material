@@ -7,7 +7,7 @@ Matching Values
 -----------------
 
 The :rust:`match` keyword lets you match a value against one or more
-*patterns*. The patterns can be simple values, similarly to :c:`switch`
+*patterns*. The patterns can be simple values, similarly to :cpp:`switch`
 in C and C++, but they can also be used to express more complex
 conditions:
 

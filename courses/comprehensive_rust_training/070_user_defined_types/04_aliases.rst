@@ -31,4 +31,4 @@ Details
    since it creates a distinct type. Prefer
    :rust:`struct InventoryCount(usize)` to :rust:`type InventoryCount = usize`.
 
--  C programmers will recognize this as similar to a :c:`typedef`.
+-  C programmers will recognize this as similar to a :cpp:`typedef`.

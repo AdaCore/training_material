@@ -48,4 +48,4 @@ Details
 ---------
 
 -  Mention that :rust:`const` behaves semantically similar to C++'s
-   :c:`constexpr`
+   :cpp:`constexpr`
