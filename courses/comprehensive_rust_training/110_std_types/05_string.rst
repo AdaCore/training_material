@@ -9,7 +9,7 @@ String
 `String <https://doc.rust-lang.org/std/string/struct.String.html>`__
 is a growable UTF-8 encoded string:
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let mut s1 = String::new();
@@ -25,52 +25,47 @@ is a growable UTF-8 encoded string:
        println!("s3: len = {}, number of chars = {}", s3.len(), s3.chars().count());
    }
 
-``String`` implements
+:rust:`String` implements
 `Deref<Target = str> <https://doc.rust-lang.org/std/string/struct.String.html#deref-methods-str>`__,
-which means that you can call all ``str`` methods on a ``String``.
-
-.. raw:: html
+which means that you can call all :rust:`str` methods on a :rust:`String`.
 
 ---------
 Details
 ---------
 
--  ``String::new`` returns a new empty string, use
-   ``String::with_capacity`` when you know how much data you want to
+-  :rust:`String::new` returns a new empty string, use
+   :rust:`String::with_capacity` when you know how much data you want to
    push to the string.
--  ``String::len`` returns the size of the ``String`` in bytes (which
+-  :rust:`String::len` returns the size of the :rust:`String` in bytes (which
    can be different from its length in characters).
--  ``String::chars`` returns an iterator over the actual characters.
-   Note that a ``char`` can be different from what a human will consider
+-  :rust:`String::chars` returns an iterator over the actual characters.
+   Note that a :rust:`char` can be different from what a human will consider
    a "character" due to
    `grapheme clusters <https://docs.rs/unicode-segmentation/latest/unicode_segmentation/struct.Graphemes.html>`__.
 -  When people refer to strings they could either be talking about
-   ``&str`` or ``String``.
--  When a type implements ``Deref<Target = T>``, the compiler will let
-   you transparently call methods from ``T``.
+   :rust:`&str` or :rust:`String`.
+-  When a type implements :rust:`Deref<Target = T>`, the compiler will let
+   you transparently call methods from :rust:`T`.
 
-   -  We haven't discussed the ``Deref`` trait yet, so at this point
+   -  We haven't discussed the :rust:`Deref` trait yet, so at this point
       this mostly explains the structure of the sidebar in the
       documentation.
-   -  ``String`` implements ``Deref<Target = str>`` which transparently
-      gives it access to ``str``\ 's methods.
-   -  Write and compare ``let s3 = s1.deref();`` and ``let s3 = &*s1;``.
+   -  :rust:`String` implements :rust:`Deref<Target = str>` which transparently
+      gives it access to :rust:`str` methods.
+   -  Write and compare :rust:`let s3 = s1.deref();` and :rust:`let s3 = &*s1;`.
 
--  ``String`` is implemented as a wrapper around a vector of bytes, many
+-  :rust:`String` is implemented as a wrapper around a vector of bytes, many
    of the operations you see supported on vectors are also supported on
-   ``String``, but with some extra guarantees.
--  Compare the different ways to index a ``String``:
+   :rust:`String`, but with some extra guarantees.
+-  Compare the different ways to index a :rust:`String`:
 
-   -  To a character by using ``s3.chars().nth(i).unwrap()`` where ``i``
+   -  To a character by using :rust:`s3.chars().nth(i).unwrap()` where :rust:`i`
       is in-bound, out-of-bounds.
-   -  To a substring by using ``s3[0..4]``, where that slice is on
+   -  To a substring by using :rust:`s3[0..4]`, where that slice is on
       character boundaries or not.
 
 -  Many types can be converted to a string with the
    `to_string <https://doc.rust-lang.org/std/string/trait.ToString.html#tymethod.to_string>`__
    method. This trait is automatically implemented for all types that
-   implement ``Display``, so anything that can be formatted can also be
+   implement :rust:`Display`, so anything that can be formatted can also be
    converted to a string.
-
-.. raw:: html
-
