@@ -8,7 +8,7 @@ Generic Data Types
 
 You can use generics to abstract over the concrete field type:
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug)]
    struct Point<T> {
@@ -33,27 +33,22 @@ You can use generics to abstract over the concrete field type:
        println!("coords: {:?}", integer.coords());
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
--  *Q:* Why ``T`` is specified twice in ``impl<T> Point<T> {}``? Isn't
+-  *Q:* Why :rust:`T` is specified twice in :rust:`impl<T> Point<T> {}`? Isn't
    that redundant?
 
    -  This is because it is a generic implementation section for generic
       type. They are independently generic.
-   -  It means these methods are defined for any ``T``.
-   -  It is possible to write ``impl Point<u32> { .. }``.
+   -  It means these methods are defined for any :rust:`T`.
+   -  It is possible to write :rust:`impl Point<u32> { .. }`.
 
-      -  ``Point`` is still generic and you can use ``Point<f64>``, but
+      -  :rust:`Point` is still generic and you can use :rust:`Point<f64>`, but
          methods in this block will only be available for
-         ``Point<u32>``.
+         :rust:`Point<u32>`.
 
--  Try declaring a new variable ``let p = Point { x: 5, y: 10.0 };``.
+-  Try declaring a new variable :rust:`let p = Point { x: 5, y: 10.0 };`.
    Update the code to allow points that have elements of different
-   types, by using two type variables, e.g., ``T`` and ``U``.
-
-.. raw:: html
-
+   types, by using two type variables, e.g., :rust:`T` and :rust:`U`.
