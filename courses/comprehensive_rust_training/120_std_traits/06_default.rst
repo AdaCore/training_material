@@ -1,15 +1,15 @@
 =======================
-The ``Default`` Trait
+The "Default" Trait
 =======================
 
 -----------------------
-The ``Default`` Trait
+The "Default" Trait
 -----------------------
 
 `Default <https://doc.rust-lang.org/std/default/trait.Default.html>`__
 trait produces a default value for a type.
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug, Default)]
    struct Derived {
@@ -39,26 +39,21 @@ trait produces a default value for a type.
        println!("{:#?}", nothing.unwrap_or_default());
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
 -  It can be implemented directly or it can be derived via
-   ``#[derive(Default)]``.
+   :rust:`#[derive(Default)]`.
 -  A derived implementation will produce a value where all fields are
    set to their default values.
 
-   -  This means all types in the struct must implement ``Default`` too.
+   -  This means all types in the struct must implement :rust:`Default` too.
 
--  Standard Rust types often implement ``Default`` with reasonable
-   values (e.g. ``0``, ``""``, etc).
+-  Standard Rust types often implement :rust:`Default` with reasonable
+   values (e.g. :rust:`0`, :rust:`""`, etc).
 -  The partial struct initialization works nicely with default.
 -  The Rust standard library is aware that types can implement
-   ``Default`` and provides convenience methods that use it.
--  The ``..`` syntax is called
-  `struct update syntax <https://doc.rust-lang.org/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax>`__.
-
-.. raw:: html
-
+   :rust:`Default` and provides convenience methods that use it.
+-  The :rust:`..` syntax is called
+   `struct update syntax <https://doc.rust-lang.org/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax>`__.
