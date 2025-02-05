@@ -6,11 +6,7 @@ Functions
 Functions
 -----------
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
-.. code:: rust,editable
+.. code:: rust
 
    fn gcd(a: u32, b: u32) -> u32 {
        if b > 0 {
@@ -24,8 +20,6 @@ Functions
        println!("gcd: {}", gcd(143, 52));
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -33,12 +27,12 @@ Details
 -  Declaration parameters are followed by a type (the reverse of some
    programming languages), then a return type.
 -  The last expression in a function body (or any block) becomes the
-   return value. Simply omit the ``;`` at the end of the expression. The
-   ``return`` keyword can be used for early return, but the "bare value"
-   form is idiomatic at the end of a function (refactor ``gcd`` to use a
-   ``return``).
--  Some functions have no return value, and return the 'unit type',
-   ``()``. The compiler will infer this if the return type is omitted.
+   return value. Simply omit the :rust:`;` at the end of the expression. The
+   :rust:`return` keyword can be used for early return, but the "bare value"
+   form is idiomatic at the end of a function (refactor :rust:`gcd` to use a
+   :rust:`return`).
+-  Some functions have no return value, and return the *unit type*,
+   :rust:`()`. The compiler will infer this if the return type is omitted.
 -  Overloading is not supported - each function has a single
    implementation.
 
@@ -46,6 +40,3 @@ Details
       not supported. Macros can be used to support variadic functions.
    -  Always takes a single set of parameter types. These types can be
       generic, which will be covered later.
-
-.. raw:: html
-

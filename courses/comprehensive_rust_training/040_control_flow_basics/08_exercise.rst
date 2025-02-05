@@ -26,9 +26,9 @@ For example, beginning with *n1* = 3:
 -  the sequence terminates.
 
 Write a function to calculate the length of the collatz sequence for a
-given initial ``n``.
+given initial :rust:`n`.
 
-.. code:: rust,editable,should_panic
+.. code:: rust
 
    {{#include exercise.rs:collatz_length}}
      todo!("Implement this")
