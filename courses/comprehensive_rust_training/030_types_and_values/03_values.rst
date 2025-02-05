@@ -32,12 +32,10 @@ each type.
 
 The types have widths as follows:
 
--  ``iN``, ``uN``, and ``fN`` are *N* bits wide,
--  ``isize`` and ``usize`` are the width of a pointer,
--  ``char`` is 32 bits wide,
--  ``bool`` is 8 bits wide.
-
-.. raw:: html
+-  :rust:`iN`, :rust:`uN`, and :rust:`fN` are *N* bits wide,
+-  :rust:`isize` and :rust:`usize` are the width of a pointer,
+-  :rust:`char` is 32 bits wide,
+-  :rust:`bool` is 8 bits wide.
 
 ---------
 Details
@@ -46,8 +44,5 @@ Details
 There are a few syntaxes which are not shown above:
 
 -  All underscores in numbers can be left out, they are for legibility
-   only. So ``1_000`` can be written as ``1000`` (or ``10_00``), and
-   ``123_i64`` can be written as ``123i64``.
-
-.. raw:: html
-
+   only. So :rust:`1_000` can be written as :rust:`1000` (or :rust:`10_00`), and
+   :rust:`123_i64` can be written as :rust:`123i64`.
