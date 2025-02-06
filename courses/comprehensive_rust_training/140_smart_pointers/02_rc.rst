@@ -1,9 +1,9 @@
 ========
-:rust:`Rc`
+"Rc"
 ========
 
 --------
-:rust:`Rc`
+"Rc"
 --------
 
 `Rc <https://doc.rust-lang.org/std/rc/struct.Rc.html>`__ is a

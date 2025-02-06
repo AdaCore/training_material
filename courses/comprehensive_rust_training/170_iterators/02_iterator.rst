@@ -1,9 +1,9 @@
 ====================
-:rust:`Iterator` Trait
+"Iterator" Trait
 ====================
 
 --------------------
-:rust:`Iterator` Trait
+"Iterator" Trait
 --------------------
 
 The

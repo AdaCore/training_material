@@ -1,9 +1,9 @@
 ===============
-:rust:`dyn Trait`
+"dyn Trait"
 ===============
 
 ---------------
-:rust:`dyn Trait`
+"dyn Trait"
 ---------------
 
 In addition to using traits for static dispatch via generics, Rust also

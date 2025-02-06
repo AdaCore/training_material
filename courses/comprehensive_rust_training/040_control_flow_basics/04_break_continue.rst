@@ -1,9 +1,9 @@
 ============================
-:rust:`break` and :rust:`continue`
+"break" and "continue"
 ============================
 
 ----------------------------
-:rust:`break` and :rust:`continue`
+"break" and "continue"
 ----------------------------
 
 If you want to immediately start the next iteration use

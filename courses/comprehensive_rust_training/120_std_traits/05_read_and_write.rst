@@ -1,9 +1,9 @@
 ========================
-:rust:`Read` and :rust:`Write`
+"Read" and "Write"
 ========================
 
 ------------------------
-:rust:`Read` and :rust:`Write`
+"Read" and "Write"
 ------------------------
 
 Using `Read <https://doc.rust-lang.org/std/io/trait.Read.html>`__

@@ -1,9 +1,9 @@
 ====================
-:rust:`if` expressions
+"if" expressions
 ====================
 
 --------------------
-:rust:`if` expressions
+"if" expressions
 --------------------
 
 You use

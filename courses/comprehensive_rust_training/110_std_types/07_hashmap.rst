@@ -1,9 +1,9 @@
 =============
-:rust:`HashMap`
+"HashMap"
 =============
 
 -------------
-:rust:`HashMap`
+"HashMap"
 -------------
 
 Standard hash map with protection against HashDoS attacks:

@@ -10,7 +10,7 @@ There are three looping keywords in Rust: :rust:`while`, :rust:`loop`, and
 :rust:`for`:
 
 -----------
-:rust:`while`
+"while"
 -----------
 
 The

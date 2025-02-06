@@ -14,11 +14,11 @@ languages. They are used for pattern matching:
 -  :rust:`while let` expressions
 
 ========================
-:rust:`if let` expressions
+"if let" expressions
 ========================
 
 ------------------------
-:rust:`if let` expressions
+"if let" expressions
 ------------------------
 
 The
@@ -43,11 +43,11 @@ pattern:
    }
 
 ==========================
-:rust:`let else` expressions
+"let else" expressions
 ==========================
 
 --------------------------
-:rust:`let else` expressions
+"let else" expressions
 --------------------------
 
 For the common case of matching a pattern and returning from the

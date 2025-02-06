@@ -1,9 +1,9 @@
 =======================
-:rust:`From` and :rust:`Into`
+"From" and "Into"
 =======================
 
 -----------------------
-:rust:`From` and :rust:`Into`
+"From" and "Into"
 -----------------------
 
 Types implement

@@ -1,9 +1,9 @@
 ============
-:rust:`Result`
+"Result"
 ============
 
 ------------
-:rust:`Result`
+"Result"
 ------------
 
 Our primary mechanism for error handling in Rust is the

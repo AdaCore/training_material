@@ -1,9 +1,9 @@
 ============
-:rust:`anyhow`
+"anyhow"
 ============
 
 ------------
-:rust:`anyhow`
+"anyhow"
 ------------
 
 The `anyhow <https://docs.rs/anyhow/>`__ crate provides a rich error

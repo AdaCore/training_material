@@ -1,9 +1,9 @@
 ================
-:rust:`impl Trait`
+"impl Trait"
 ================
 
 ----------------
-:rust:`impl Trait`
+"impl Trait"
 ----------------
 
 Similar to trait bounds, an :rust:`impl Trait` syntax can be used in
