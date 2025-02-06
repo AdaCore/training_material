@@ -1,9 +1,9 @@
 =======================
-The :rust:`Default` Trait
+The "Default" Trait
 =======================
 
 -----------------------
-The :rust:`Default` Trait
+The "Default" Trait
 -----------------------
 
 `Default <https://doc.rust-lang.org/std/default/trait.Default.html>`__
