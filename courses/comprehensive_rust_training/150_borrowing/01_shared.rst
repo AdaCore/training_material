@@ -9,11 +9,7 @@ Borrowing a Value
 As we saw before, instead of transferring ownership when calling a
 function, you can let a function *borrow* the value:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug)]
    struct Point(i32, i32);
@@ -29,10 +25,8 @@ function, you can let a function *borrow* the value:
        println!("{p1:?} + {p2:?} = {p3:?}");
    }
 
--  The ``add`` function *borrows* two points and returns a new point.
+-  The :rust:`add` function *borrows* two points and returns a new point.
 -  The caller retains ownership of the inputs.
-
-.. raw:: html
 
 ---------
 Details
@@ -51,7 +45,7 @@ More to Explore
 
 Notes on stack returns and inlining:
 
--  Demonstrate that the return from ``add`` is cheap because the
+-  Demonstrate that the return from :rust:`add` is cheap because the
    compiler can eliminate the copy operation, by inlining the call to
    add into main. Change the above code to print stack addresses and run
    it on the
@@ -60,11 +54,7 @@ Notes on stack returns and inlining:
    In the "DEBUG" optimization level, the addresses should change, while
    they stay the same when changing to the "RELEASE" setting:
 
-   .. raw:: html
-
-      <!-- mdbook-xgettext: skip -->
-
-   .. code:: rust,editable
+   .. code:: rust
 
       #[derive(Debug)]
       struct Point(i32, i32);
@@ -84,13 +74,10 @@ Notes on stack returns and inlining:
       }
 
 -  The Rust compiler can do automatic inlining, that can be disabled on
-   a function level with ``#[inline(never)]``.
+   a function level with :rust:`#[inline(never)]`.
 
 -  Once disabled, the printed address will change on all optimization
    levels. Looking at Godbolt or Playground, one can see that in this
    case, the return of the value depends on the ABI, e.g. on amd64 the
    two i32 that is making up the point will be returned in 2 registers
    (eax and edx).
-
-.. raw:: html
-
