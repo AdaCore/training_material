@@ -2,18 +2,14 @@
 Unsafe Functions
 ==================
 
-------------------
-Unsafe Functions
-------------------
-
 --------------------------
 Calling Unsafe Functions
 --------------------------
 
-A function or method can be marked ``unsafe`` if it has extra
+A function or method can be marked :rust:`unsafe` if it has extra
 preconditions you must uphold to avoid undefined behaviour:
 
-.. code:: rust,editable
+.. code:: rust
 
    extern "C" {
        fn abs(input: i32) -> i32;
@@ -52,10 +48,10 @@ preconditions you must uphold to avoid undefined behaviour:
 Writing Unsafe Functions
 --------------------------
 
-You can mark your own functions as ``unsafe`` if they require particular
+You can mark your own functions as :rust:`unsafe` if they require particular
 conditions to avoid undefined behaviour.
 
-.. code:: rust,editable
+.. code:: rust
 
    /// Swaps the values pointed to by the given pointers.
    ///
@@ -80,8 +76,6 @@ conditions to avoid undefined behaviour.
        println!("a = {}, b = {}", a, b);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -92,15 +86,15 @@ Details
 Calling Unsafe Functions
 --------------------------
 
-``get_unchecked``, like most ``_unchecked`` functions, is unsafe,
-because it can create UB if the range is incorrect. ``abs`` is unsafe
+:rust:`get_unchecked`, like most :rust:`_unchecked` functions, is unsafe,
+because it can create UB if the range is incorrect. :rust:`abs` is unsafe
 for a different reason: it is an external function (FFI). Calling
 external functions is usually only a problem when those functions do
 things with pointers which might violate Rust's memory model, but in
 general any C function might have undefined behaviour under any
 arbitrary circumstances.
 
-The ``"C"`` in this example is the ABI;
+The :rust:`"C"` in this example is the ABI;
 `other ABIs are available too <https://doc.rust-lang.org/reference/items/external-blocks.html>`__.
 
 .. _writing-unsafe-functions-1:
@@ -109,13 +103,10 @@ The ``"C"`` in this example is the ABI;
 Writing Unsafe Functions
 --------------------------
 
-We wouldn't actually use pointers for a ``swap`` function - it can be
+We wouldn't actually use pointers for a :rust:`swap` function - it can be
 done safely with references.
 
 Note that unsafe code is allowed within an unsafe function without an
-``unsafe`` block. We can prohibit this with
-``#[deny(unsafe_op_in_unsafe_fn)]``. Try adding it and see what happens.
+:rust:`unsafe` block. We can prohibit this with
+:rust:`#[deny(unsafe_op_in_unsafe_fn)]`. Try adding it and see what happens.
 This will likely change in a future Rust edition.
-
-.. raw:: html
-

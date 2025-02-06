@@ -6,9 +6,9 @@ Dereferencing Raw Pointers
 Dereferencing Raw Pointers
 ----------------------------
 
-Creating pointers is safe, but dereferencing them requires ``unsafe``:
+Creating pointers is safe, but dereferencing them requires :rust:`unsafe`:
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let mut s = String::from("careful!");
@@ -35,14 +35,12 @@ Creating pointers is safe, but dereferencing them requires ``unsafe``:
        */
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
 It is good practice (and required by the Android Rust style guide) to
-write a comment for each ``unsafe`` block explaining how the code inside
+write a comment for each :rust:`unsafe` block explaining how the code inside
 it satisfies the safety requirements of the unsafe operations it is
 doing.
 
@@ -62,9 +60,6 @@ i.e.:
 In most cases the pointer must also be properly aligned.
 
 The "NOT SAFE" section gives an example of a common kind of UB bug:
-``*r1`` has the ``'static`` lifetime, so ``r3`` has type
-``&'static String``, and thus outlives ``s``. Creating a reference from
+:rust:`*r1` has the :rust:`'static` lifetime, so :rust:`r3` has type
+:rust:`&'static String`, and thus outlives :rust:`s`. Creating a reference from
 a pointer requires *great care*.
-
-.. raw:: html
-
