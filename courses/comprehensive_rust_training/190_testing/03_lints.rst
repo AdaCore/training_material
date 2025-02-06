@@ -21,8 +21,6 @@ even more lints, organized into groups that can be enabled per-project.
        println!("X probably fits in a u16, right? {}", x as u16);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -34,6 +32,3 @@ default-deny lints) all the time.
 
 Note that errors or warnings with :rust:`help: ...` can be fixed with
 :rust:`cargo fix` or via your editor.
-
-.. raw:: html
-

@@ -57,8 +57,6 @@ by the :rust:`for` loop.
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -92,6 +90,3 @@ The same problem can occur for standard library types:
 iterate over owned elements from that vector. Use
 :rust:`for e in &some_vector` instead, to iterate over references to
 elements of :rust:`some_vector`.
-
-.. raw:: html
-

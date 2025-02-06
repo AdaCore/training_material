@@ -25,6 +25,3 @@ for :rust:`eval`.
    exercise's solution: We've added in an explicit panic to show
    students where the error case is. Point this out if students get
    confused.
-
-.. raw:: html
-

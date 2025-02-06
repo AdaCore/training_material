@@ -27,8 +27,6 @@ Rust is a new programming language which had its `1.0 release in
    -  desktops,
    -  servers.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -41,6 +39,3 @@ Rust fits in the same area as C++:
    microcontrollers.
 -  Has no runtime or garbage collection.
 -  Focuses on reliability and safety without sacrificing performance.
-
-.. raw:: html
-

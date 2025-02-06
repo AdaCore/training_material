@@ -18,8 +18,6 @@ with :rust:`let`:
        // println!("x: {x}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -35,6 +33,3 @@ Details
 -  The :rust:`i32` here is the type of the variable. This must be known at
    compile time, but type inference (covered later) allows the
    programmer to omit it in many cases.
-
-.. raw:: html
-

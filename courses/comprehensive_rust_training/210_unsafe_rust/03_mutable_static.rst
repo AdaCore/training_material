@@ -39,8 +39,6 @@ mutable static variables:
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -53,6 +51,3 @@ Details
 -  Using a mutable static is generally a bad idea, but there are some
    cases where it might make sense in low-level :rust:`no_std` code, such as
    implementing a heap allocator or working with some C APIs.
-
-.. raw:: html
-

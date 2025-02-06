@@ -12,8 +12,6 @@ Like tuples, Struct can also be destructured by matching:
 
    {{#include ../../third_party/rust-by-example/destructuring-structs.rs}}
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -25,6 +23,3 @@ Details
    hard to spot. Try changing the :rust:`2` in the second arm to a variable,
    and see that it subtly doesn't work. Change it to a :rust:`const` and see
    it working again.
-
-.. raw:: html
-

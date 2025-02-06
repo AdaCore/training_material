@@ -48,8 +48,6 @@ dynamically sized data, the actual string, on the heap:
    :                           :     :                               :
    `- - - - - - - - - - - - - -'     `- - - - - - - - - - - - - - - -'
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -85,6 +83,3 @@ should point out that this is rightfully unsafe!
            println!("capacity = {capacity}, ptr = {ptr:#x}, len = {len}");
        }
    }
-
-.. raw:: html
-

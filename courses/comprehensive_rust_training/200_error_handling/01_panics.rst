@@ -29,8 +29,6 @@ Rust will trigger a panic if a fatal error happens at runtime:
 -  Use non-panicking APIs (such as :rust:`Vec::get`) if crashing is not
    acceptable.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -58,6 +56,3 @@ caught:
    single request crashes.
 -  This does not work if :rust:`panic = 'abort'` is set in your
    :rust:`Cargo.toml`.
-
-.. raw:: html
-

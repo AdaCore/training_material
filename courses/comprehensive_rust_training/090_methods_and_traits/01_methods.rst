@@ -70,8 +70,6 @@ acts on. There are several common receivers for a method:
 -  No receiver: this becomes a static method on the struct. Typically
    used to create constructors which are called :rust:`new` by convention.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -101,6 +99,3 @@ Key Points:
    -  Beyond variants on :rust:`self`, there are also
      `special wrapper types <https://doc.rust-lang.org/reference/special-types-and-traits.html>`__
       allowed to be receiver types, such as :rust:`Box<Self>`.
-
-.. raw:: html
-

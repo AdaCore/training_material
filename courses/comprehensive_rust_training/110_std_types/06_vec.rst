@@ -37,8 +37,6 @@ standard resizable heap-allocated buffer:
 `Deref<Target = [T]> <https://doc.rust-lang.org/std/vec/struct.Vec.html#deref-methods-%5BT%5D>`__,
 which means that you can call slice methods on a :rust:`Vec`.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -58,6 +56,3 @@ Details
 -  Slices are covered on day 3. For now, students only need to know that
    a value of type :rust:`Vec` gives access to all of the documented slice
    methods, too.
-
-.. raw:: html
-

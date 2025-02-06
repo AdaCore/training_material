@@ -37,8 +37,6 @@ specify code to run when they go out of scope:
        println!("Exiting main");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -68,6 +66,3 @@ Discussion points:
       a stack overflow!
 
 -  Try replacing :rust:`drop(a)` with :rust:`a.drop()`.
-
-.. raw:: html
-

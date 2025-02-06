@@ -31,8 +31,6 @@ Operator overloading is implemented via traits in
        println!("{p1:?} + {p2:?} = {:?}", p1 + p2);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -61,6 +59,3 @@ The :rust:`Not` trait (:rust:`!` operator) is notable because it does not
 "boolify" like the same operator in C-family languages; instead, for
 integer types it negates each bit of the number, which arithmetically is
 equivalent to subtracting it from -1: :rust:`!5 == -6`.
-
-.. raw:: html
-

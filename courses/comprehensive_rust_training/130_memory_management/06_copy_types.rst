@@ -9,10 +9,6 @@ Copy Types
 While move semantics are the default, certain types are copied by
 default:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn main() {
@@ -25,10 +21,6 @@ default:
 These types implement the :rust:`Copy` trait.
 
 You can opt-in your own types to use copy semantics:
-
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
 
 .. code:: rust
 
@@ -44,8 +36,6 @@ You can opt-in your own types to use copy semantics:
 
 -  After the assignment, both :rust:`p1` and :rust:`p2` own their own data.
 -  We can also use :rust:`p1.clone()` to explicitly copy the data.
-
-.. raw:: html
 
 ---------
 Details
@@ -81,6 +71,3 @@ More to Explore
    This is because Rust requires that mutable references be exclusive,
    so while it's valid to make a copy of a shared reference, creating a
    copy of a mutable reference would violate Rust's borrowing rules.
-
-.. raw:: html
-

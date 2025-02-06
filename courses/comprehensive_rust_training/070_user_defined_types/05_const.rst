@@ -9,10 +9,6 @@
 Constants are evaluated at compile time and their values are inlined
 wherever they are used:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    const DIGEST_SIZE: usize = 3;
@@ -47,14 +43,9 @@ Only functions marked :rust:`const` can be called at compile time to
 generate :rust:`const` values. :rust:`const` functions can however be called at
 runtime.
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
 -  Mention that :rust:`const` behaves semantically similar to C++'s
    :rust:`constexpr`
-
-.. raw:: html
-

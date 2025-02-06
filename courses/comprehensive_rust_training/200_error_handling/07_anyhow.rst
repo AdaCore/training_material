@@ -46,8 +46,6 @@ trait impls explicitly for custom error types.
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -78,6 +76,3 @@ More to Explore
    :rust:`std::any::Any`; the specific error type stored inside can be
    extracted for examination if desired with
    `Error::downcast <https://docs.rs/anyhow/latest/anyhow/struct.Error.html#method.downcast>`__.
-
-.. raw:: html
-

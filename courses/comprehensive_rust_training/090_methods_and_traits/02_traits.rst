@@ -19,8 +19,6 @@ interfaces:
        fn greet(&self);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -30,6 +28,3 @@ Details
 
 -  In the "Generics" segment, next, we will see how to build
    functionality that is generic over all types implementing a trait.
-
-.. raw:: html
-

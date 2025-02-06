@@ -83,10 +83,6 @@ Like with :rust:`if let`, there is a
 `while let <https://doc.rust-lang.org/reference/expressions/loop-expr.html#predicate-pattern-loops>`__
 variant which repeatedly tests a value against a pattern:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn main() {
@@ -102,8 +98,6 @@ Here
 returns :rust:`Some(c)` until the string is empty, after which it will
 return :rust:`None`. The :rust:`while let` lets us keep iterating through all
 items.
-
-.. raw:: html
 
 ---------
 Details
@@ -162,6 +156,3 @@ while-let
    if statement that breaks when there is no value to unwrap for
    :rust:`name.pop()`. The :rust:`while let` provides syntactic sugar for the
    above scenario.
-
-.. raw:: html
-

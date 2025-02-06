@@ -42,8 +42,6 @@ macros that assist in implementing :rust:`From<T>`, :rust:`Display`, and the
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -55,6 +53,3 @@ Details
 -  Note that the (:rust:`thiserror::`)\ :rust:`Error` derive macro, while it has
    the effect of implementing the (:rust:`std::error::`)\ :rust:`Error` trait,
    is not the same this; traits and macros do not share a namespace.
-
-.. raw:: html
-

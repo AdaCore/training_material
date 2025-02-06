@@ -6,10 +6,6 @@ Tuples
 Tuples
 --------
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn main() {
@@ -17,8 +13,6 @@ Tuples
        println!("t.0: {}", t.0);
        println!("t.1: {}", t.1);
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -34,6 +28,3 @@ Details
 -  The empty tuple :rust:`()` is referred to as the "unit type" and
    signifies absence of a return value, akin to :rust:`void` in other
    languages.
-
-.. raw:: html
-

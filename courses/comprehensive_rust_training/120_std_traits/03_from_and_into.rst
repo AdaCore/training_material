@@ -37,8 +37,6 @@ implemented:
        println!("{s}, {addr}, {one}, {bigger}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -49,6 +47,3 @@ Details
    be converted into a :rust:`String`", the rule is opposite, you should use
    :rust:`Into`. Your function will accept types that implement :rust:`From` and
    those that *only* implement :rust:`Into`.
-
-.. raw:: html
-

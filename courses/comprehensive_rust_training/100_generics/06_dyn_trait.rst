@@ -56,8 +56,6 @@ supports using them for type-erased, dynamic dispatch via trait objects:
        dynamic(&dog);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -90,6 +88,3 @@ Details
 
 -  A :rust:`dyn Trait` is considered to be "type-erased", because we no
    longer have compile-time knowledge of what the concrete type is.
-
-.. raw:: html
-

@@ -40,8 +40,6 @@ Modules are a privacy boundary:
        outer::public();
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -57,6 +55,3 @@ scope of public visibility.
 -  Less commonly, you can give visibility to a specific path.
 -  In any case, visibility must be granted to an ancestor module (and
    all of its descendants).
-
-.. raw:: html
-

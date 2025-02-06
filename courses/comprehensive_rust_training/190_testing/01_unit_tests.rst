@@ -44,13 +44,8 @@ tests.
 -  The :rust:`#[cfg(test)]` attribute is only active when you run
    :rust:`cargo test`.
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
 Run the tests in the playground in order to show their results.
-
-.. raw:: html
-

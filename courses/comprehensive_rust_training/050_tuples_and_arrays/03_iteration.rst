@@ -19,8 +19,6 @@ The :rust:`for` statement supports iterating over arrays (but not tuples).
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -31,6 +29,3 @@ covered that yet.
 The :rust:`assert_ne!` macro is new here. There are also :rust:`assert_eq!` and
 :rust:`assert!` macros. These are always checked, while debug-only variants
 like :rust:`debug_assert!` compile to nothing in release builds.
-
-.. raw:: html
-

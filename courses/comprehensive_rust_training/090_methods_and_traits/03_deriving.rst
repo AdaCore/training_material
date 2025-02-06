@@ -26,8 +26,6 @@ as follows:
        println!("{p1:?} vs. {p2:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -36,6 +34,3 @@ Derivation is implemented with macros, and many crates provide useful
 derive macros to add useful functionality. For example, :rust:`serde` can
 derive serialization support for a struct using
 :rust:`#[derive(Serialize)]`.
-
-.. raw:: html
-

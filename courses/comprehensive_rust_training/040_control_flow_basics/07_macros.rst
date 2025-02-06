@@ -40,8 +40,6 @@ end. The Rust standard library includes an assortment of useful macros.
        println!("{n}! = {}", factorial(n));
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -52,6 +50,3 @@ expand to, is not especially critical.
 
 The course does not cover defining macros, but a later section will
 describe use of derive macros.
-
-.. raw:: html
-

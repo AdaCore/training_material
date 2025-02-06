@@ -32,8 +32,6 @@ enum, which we briefly saw when discussing standard library types.
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -91,6 +89,3 @@ Error Numbers
 -  Depending on the language it may be possible to forget to check the
    error value, in which case you may be accessing an uninitialized or
    otherwise invalid success value.
-
-.. raw:: html
-

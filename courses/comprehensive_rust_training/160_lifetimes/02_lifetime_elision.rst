@@ -46,8 +46,6 @@ is not inference - it is just a syntactic shorthand.
        println!("{:?}", nearest(points, &Point(0, 2)));
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -73,6 +71,3 @@ lifetimes. Most of the time, elision and type inference mean these don't
 need to be written out. In more complicated cases, lifetime annotations
 can help resolve ambiguity. Often, especially when prototyping, it's
 easier to just work with owned data by cloning values where necessary.
-
-.. raw:: html
-

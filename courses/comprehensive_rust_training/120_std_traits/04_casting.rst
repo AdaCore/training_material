@@ -34,8 +34,6 @@ For infallible casts (e.g. :rust:`u32` to :rust:`u64`), prefer using :rust:`From
 fallible casts, :rust:`TryFrom` and :rust:`TryInto` are available when you want
 to handle casts that fit differently from those that don't.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -47,6 +45,3 @@ data might be lost is generally discouraged, or at least deserves an
 explanatory comment.
 
 This is common in casting integers to :rust:`usize` for use as an index.
-
-.. raw:: html
-

@@ -41,8 +41,6 @@ elements of a slice it might look something like this:
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -73,6 +71,3 @@ More to Explore
 
 -  You can also demonstrate adding a generic parameter to :rust:`SliceIter`
    to allow it to work with any kind of slice (not just :rust:`&[i32]`).
-
-.. raw:: html
-

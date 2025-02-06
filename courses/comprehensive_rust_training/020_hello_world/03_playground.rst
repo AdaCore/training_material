@@ -21,8 +21,6 @@ starts with. It comes with a few handy features:
 -  If you're interested, use "ASM" under "..." to see the generated
    assembly code.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -32,6 +30,3 @@ playground and experiment a little. Encourage them to keep the tab open
 and try things out during the rest of the course. This is particularly
 helpful for advanced students who want to know more about Rust's
 optimizations or generated assembly.
-
-.. raw:: html
-

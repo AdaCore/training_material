@@ -19,8 +19,6 @@ trait.
 
    {{#include exercise.rs:main}}
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -30,6 +28,3 @@ Details
    trait and
    `Ordering <https://doc.rust-lang.org/stable/std/cmp/enum.Ordering.html>`__
    enum.
-
-.. raw:: html
-

@@ -41,8 +41,6 @@ Standard hash map with protection against HashDoS attacks:
        println!("{page_counts:#?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -86,6 +84,3 @@ Details
    :rust:`std::collections::hash_map::Keys`. These types often appear in
    searches of the Rust docs. Show students the docs for this type, and
    the helpful link back to the :rust:`keys` method.
-
-.. raw:: html
-

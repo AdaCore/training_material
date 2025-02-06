@@ -32,8 +32,6 @@ this on the next slide.
 A match guard causes the arm to match only if the condition is true. If
 the condition is false the match will continue checking later cases.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -85,6 +83,3 @@ More To Explore
    :rust:`Some(inner)` expression, so it contains the full
    :rust:`Option::Some(123)`. This is rarely used but can be useful in more
    complex patterns.
-
-.. raw:: html
-

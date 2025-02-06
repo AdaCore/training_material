@@ -39,8 +39,6 @@ Here we have used the arms to *destructure* the :rust:`Result` value. In the
 first arm, :rust:`half` is bound to the value inside the :rust:`Ok` variant. In
 the second arm, :rust:`msg` is bound to the error message.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -56,6 +54,3 @@ Details
 -  Demonstrate what happens when the search is inexhaustive. Note the
    advantage the Rust compiler provides by confirming when all cases are
    handled.
-
-.. raw:: html
-

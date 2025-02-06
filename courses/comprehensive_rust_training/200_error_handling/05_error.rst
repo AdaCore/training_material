@@ -32,8 +32,6 @@ can contain any error.
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -49,6 +47,3 @@ display the error message somewhere.
 
 Make sure to implement the :rust:`std::error::Error` trait when defining a
 custom error type so it can be boxed.
-
-.. raw:: html
-

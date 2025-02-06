@@ -25,8 +25,6 @@ lives through the entirety of the program execution. When a
 globally-scoped value does not have a reason to need object identity,
 :rust:`const` is generally preferred.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -53,6 +51,3 @@ initialization on first use. :rust:`OnceCell` is not :rust:`Sync` and thus
 cannot be used in this context.
 
 Thread-local data can be created with the macro :rust:`std::thread_local`.
-
-.. raw:: html
-

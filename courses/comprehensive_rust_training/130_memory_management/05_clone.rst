@@ -21,8 +21,6 @@ accomplishes this.
        say_hello(name);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -40,6 +38,3 @@ Details
 
 -  The behavior for :rust:`clone` is user-defined, so it can perform custom
    cloning logic if needed.
-
-.. raw:: html
-

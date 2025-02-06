@@ -35,8 +35,6 @@ Creating pointers is safe, but dereferencing them requires :rust:`unsafe`:
        */
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -65,6 +63,3 @@ The "NOT SAFE" section gives an example of a common kind of UB bug:
 :rust:`*r1` has the :rust:`'static` lifetime, so :rust:`r3` has type
 :rust:`&'static String`, and thus outlives :rust:`s`. Creating a reference from
 a pointer requires *great care*.
-
-.. raw:: html
-

@@ -30,8 +30,6 @@ Rust offers a new mix:
 
 It does this with an explicit ownership concept.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -61,6 +59,3 @@ are required - zero cost. It also provides tools similar to C++'s smart
 pointers. When required, other options such as reference counting are
 available, and there are even crates available to support runtime
 garbage collection (not covered in this class).
-
-.. raw:: html
-

@@ -25,8 +25,6 @@ You can do this with :rust:`T: Trait`:
        println!("{pair:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -56,6 +54,3 @@ Details
 -  Note that Rust does not (yet) support specialization. For example,
    given the original :rust:`duplicate`, it is invalid to add a specialized
    :rust:`duplicate(a: u32)`.
-
-.. raw:: html
-

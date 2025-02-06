@@ -8,10 +8,6 @@ Slices
 
 A slice gives you a view into a larger collection:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn main() {
@@ -24,8 +20,6 @@ A slice gives you a view into a larger collection:
    }
 
 -  Slices borrow data from the sliced type.
-
-.. raw:: html
 
 ---------
 Details
@@ -50,6 +44,3 @@ Details
 
 -  Slices always borrow from another object. In this example, :rust:`a` has
    to remain 'alive' (in scope) for at least as long as our slice.
-
-.. raw:: html
-

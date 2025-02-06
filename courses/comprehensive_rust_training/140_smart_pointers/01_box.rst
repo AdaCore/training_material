@@ -65,8 +65,6 @@ indirection:
    :                            :     :                                                 :
    '- - - - - - - - - - - - - - '     '- - - - - - - - - - - - - - - - - - - - - - - - -'
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -100,6 +98,3 @@ Details
    empty/null. This makes :rust:`Box` one of the types that allow the
    compiler to optimize storage of some enums (the "niche
    optimization").
-
-.. raw:: html
-

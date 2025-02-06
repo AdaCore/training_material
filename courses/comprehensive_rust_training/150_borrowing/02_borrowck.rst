@@ -10,10 +10,6 @@ Rust's *borrow checker* puts constraints on the ways you can borrow
 values. We've already seen that a reference cannot *outlive* the value
 it borrows:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn main() {
@@ -30,10 +26,6 @@ There's also a second main rule that the borrow checker enforces: The
 -  You can have one or more shared references to the value, *or*
 -  You can have exactly one exclusive reference to the value.
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn main() {
@@ -48,8 +40,6 @@ There's also a second main rule that the borrow checker enforces: The
        println!("a: {a}");
        println!("b: {b}");
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -78,6 +68,3 @@ Details
    at the same time. But, there are some situations where it doesn't
    quite "get it" and this often results in "fighting with the borrow
    checker."
-
-.. raw:: html
-

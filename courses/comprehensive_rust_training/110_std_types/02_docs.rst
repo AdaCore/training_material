@@ -46,14 +46,9 @@ To document an item from inside the item (such as inside a module), use
 
    //! This module contains functionality relating to divisibility of integers.
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
 -  Show students the generated docs for the :rust:`rand` crate at
    https://docs.rs/rand.
-
-.. raw:: html
-

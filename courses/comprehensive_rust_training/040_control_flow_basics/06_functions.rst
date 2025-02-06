@@ -6,10 +6,6 @@ Functions
 Functions
 -----------
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn gcd(a: u32, b: u32) -> u32 {
@@ -23,8 +19,6 @@ Functions
    fn main() {
        println!("gcd: {}", gcd(143, 52));
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -46,6 +40,3 @@ Details
       not supported. Macros can be used to support variadic functions.
    -  Always takes a single set of parameter types. These types can be
       generic, which will be covered later.
-
-.. raw:: html
-

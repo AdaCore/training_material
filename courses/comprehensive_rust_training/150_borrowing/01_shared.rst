@@ -9,10 +9,6 @@ Borrowing a Value
 As we saw before, instead of transferring ownership when calling a
 function, you can let a function *borrow* the value:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    #[derive(Debug)]
@@ -31,8 +27,6 @@ function, you can let a function *borrow* the value:
 
 -  The :rust:`add` function *borrows* two points and returns a new point.
 -  The caller retains ownership of the inputs.
-
-.. raw:: html
 
 ---------
 Details
@@ -59,10 +53,6 @@ Notes on stack returns and inlining:
    or look at the assembly in `Godbolt <https://rust.godbolt.org/>`__.
    In the "DEBUG" optimization level, the addresses should change, while
    they stay the same when changing to the "RELEASE" setting:
-
-   .. raw:: html
-
-      <!-- mdbook-xgettext: skip -->
 
    .. code:: rust
 
@@ -91,6 +81,3 @@ Notes on stack returns and inlining:
    case, the return of the value depends on the ABI, e.g. on amd64 the
    two i32 that is making up the point will be returned in 2 registers
    (eax and edx).
-
-.. raw:: html
-

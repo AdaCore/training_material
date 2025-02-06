@@ -74,8 +74,6 @@ Example
        println!("username or error: {username:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -98,6 +96,3 @@ arbitrary :rust:`T` and :rust:`U` types.
 A function that returns :rust:`Result` cannot use :rust:`?` on :rust:`Option` and
 vice versa. However, :rust:`Option::ok_or` converts :rust:`Option` to :rust:`Result`
 whereas :rust:`Result::ok` turns :rust:`Result` into :rust:`Option`.
-
-.. raw:: html
-

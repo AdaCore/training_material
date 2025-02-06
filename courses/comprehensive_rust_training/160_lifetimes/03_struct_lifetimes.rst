@@ -27,8 +27,6 @@ lifetime:
        println!("{dog:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -47,6 +45,3 @@ Details
    describe lifetime relationships between the references themselves, in
    addition to the lifetime of the struct itself. Those are very
    advanced use cases.
-
-.. raw:: html
-

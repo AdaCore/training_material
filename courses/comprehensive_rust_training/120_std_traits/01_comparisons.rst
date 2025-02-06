@@ -60,8 +60,6 @@ operators.
 
 :rust:`Ord` is a total ordering, with :rust:`cmp` returning :rust:`Ordering`.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -83,6 +81,3 @@ cannot, because it is reflexive:
 
 In practice, it's common to derive these traits, but uncommon to
 implement them.
-
-.. raw:: html
-

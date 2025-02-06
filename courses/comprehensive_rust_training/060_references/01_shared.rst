@@ -10,10 +10,6 @@ A reference provides a way to access another value without taking
 ownership of the value, and is also called "borrowing". Shared
 references are read-only, and the referenced data cannot change.
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn main() {
@@ -28,8 +24,6 @@ references are read-only, and the referenced data cannot change.
 A shared reference to a type :rust:`T` has type :rust:`&T`. A reference value is
 made with the :rust:`&` operator. The :rust:`*` operator "dereferences" a
 reference, yielding its value.
-
-.. raw:: html
 
 ---------
 Details
@@ -70,6 +64,3 @@ Details
    be deallocated when the function returns, so this will not compile.
 
 -  We will talk more about borrowing when we get to ownership.
-
-.. raw:: html
-

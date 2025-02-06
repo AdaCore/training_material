@@ -37,8 +37,6 @@ traits:
        apply_and_log(multiply_sum, "multiply_sum", 3);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -87,6 +85,3 @@ forces capture by value.
        let hi = make_greeter("Hi".to_string());
        hi("Greg");
    }
-
-.. raw:: html
-

@@ -51,8 +51,6 @@ We can use this to simplify our error handling code:
        println!("username or error: {username:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -69,6 +67,3 @@ Key points:
    implements :rust:`std::process::Termination`. In practice, this means
    that :rust:`E` implements :rust:`Debug`. The executable will print the
    :rust:`Err` variant and return a nonzero exit status on error.
-
-.. raw:: html
-

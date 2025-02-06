@@ -30,8 +30,6 @@ Paths are resolved as follows:
    -  :rust:`crate::foo` refers to :rust:`foo` in the root of the current crate,
    -  :rust:`bar::foo` refers to :rust:`foo` in the :rust:`bar` crate.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -58,6 +56,3 @@ Details
 -  The :rust:`use` statement can have a wildcard: :rust:`use std::io::*`. This
    is discouraged because it is not clear which items are imported, and
    those might change over time.
-
-.. raw:: html
-

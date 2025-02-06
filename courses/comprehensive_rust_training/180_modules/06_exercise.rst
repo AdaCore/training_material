@@ -39,8 +39,6 @@ Here's the single-module implementation of the GUI library:
 
    {{#include exercise.rs:single-module}}
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -48,6 +46,3 @@ Details
 Encourage students to divide the code in a way that feels natural for
 them, and get accustomed to the required :rust:`mod`, :rust:`use`, and :rust:`pub`
 declarations. Afterward, discuss what organizations are most idiomatic.
-
-.. raw:: html
-

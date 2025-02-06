@@ -45,8 +45,6 @@ module.
        todo!()
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -80,6 +78,3 @@ Details
    This is useful, for example, if you would like to place tests for a
    module in a file named :rust:`some_module_test.rs`, similar to the
    convention in Go.
-
-.. raw:: html
-

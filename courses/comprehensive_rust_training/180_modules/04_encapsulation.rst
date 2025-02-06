@@ -46,8 +46,6 @@ externally.
        // println!("Is {} big? {}", foo.val, foo.is_big);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -85,6 +83,3 @@ More to Explore
 -  Module privacy still applies when there are :rust:`impl` blocks in other
    modules
    `(example in the playground) <https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=3e61f43c88de12bcdf69c1d6df9ab3da>`__.
-
-.. raw:: html
-

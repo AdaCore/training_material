@@ -19,8 +19,6 @@ build customized iterators.
 
    println!("The sum of squares of even numbers from 1 to 10 is: {}", result);
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -47,6 +45,3 @@ More to Explore
 -  Rust's iterators are extremely efficient and highly optimizable. Even
    complex iterators made by combining many adapter methods will still
    result in code as efficient as equivalent imperative implementations.
-
-.. raw:: html
-

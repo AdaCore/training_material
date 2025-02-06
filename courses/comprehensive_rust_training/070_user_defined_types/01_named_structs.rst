@@ -35,8 +35,6 @@ Like C and C++, Rust has support for custom structs:
        describe(&jackie);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -63,6 +61,3 @@ Key Points:
 -  The syntax :rust:`..avery` allows us to copy the majority of the fields
    from the old struct without having to explicitly type it all out. It
    must always be the last element.
-
-.. raw:: html
-

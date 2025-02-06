@@ -23,8 +23,6 @@ interchangeably.
    use std::sync::{Arc, RwLock};
    type PlayerInventory = RwLock<Vec<Arc<RefCell<Item>>>>;
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -34,6 +32,3 @@ Details
    :rust:`struct InventoryCount(usize)` to :rust:`type InventoryCount = usize`.
 
 -  C programmers will recognize this as similar to a :rust:`typedef`.
-
-.. raw:: html
-

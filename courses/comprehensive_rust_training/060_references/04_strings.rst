@@ -1,9 +1,3 @@
-.. raw:: html
-
-   <!-- NOTES:
-   Including `&str` as a way of representing a slice of valid utf-8
-   -->
-
 =========
 Strings
 =========
@@ -17,8 +11,6 @@ We can now understand the two string types in Rust:
 -  :rust:`&str` is a slice of UTF-8 encoded bytes, similar to :rust:`&[u8]`.
 -  :rust:`String` is an owned buffer of UTF-8 encoded bytes, similar to
    :rust:`Vec<T>`.
-
-.. raw:: html
 
    <!-- Avoid using fixed integers when slicing since this breaks
    translations. Using the length of s1 and s2 is safe. -->
@@ -37,8 +29,6 @@ We can now understand the two string types in Rust:
        let s3: &str = &s2[s2.len() - s1.len()..];
        println!("s3: {s3}");
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -74,10 +64,6 @@ Details
 
 -  Byte strings literals allow you to create a :rust:`&[u8]` value directly:
 
-   .. raw:: html
-
-      <!-- mdbook-xgettext: skip -->
-
    .. code:: rust
 
       fn main() {
@@ -89,16 +75,9 @@ Details
    disabled: :rust:`r"\n" == "\\n"`. You can embed double-quotes by using an
    equal amount of :rust:`#` on either side of the quotes:
 
-   .. raw:: html
-
-      <!-- mdbook-xgettext: skip -->
-
    .. code:: rust
 
       fn main() {
           println!(r#"<a href="link.html">link</a>"#);
           println!("<a href=\"link.html\">link</a>");
       }
-
-.. raw:: html
-

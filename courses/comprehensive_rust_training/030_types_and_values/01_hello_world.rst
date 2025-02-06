@@ -23,8 +23,6 @@ What you see:
 -  Rust has hygienic macros, :rust:`println!` is an example of this.
 -  Rust strings are UTF-8 encoded and can contain any Unicode character.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -56,6 +54,3 @@ Key points:
    while it is not a functional language, it includes a range of
    `functional
    concepts <https://doc.rust-lang.org/book/ch13-00-functional-features.html>`__.
-
-.. raw:: html
-

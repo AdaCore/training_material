@@ -28,8 +28,6 @@ larger value into its constituent parts:
        println!("left: {left}, right: {right}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -45,6 +43,3 @@ Details
    This form of pattern matching will be discussed in more detail later.
 -  Edit the examples above to show the compiler error when the pattern
    doesn't match the value being matched on.
-
-.. raw:: html
-

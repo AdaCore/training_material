@@ -29,8 +29,6 @@ different variants:
        println!("On this turn: {player_move:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -62,10 +60,6 @@ Key Points:
 
    -  You can control the discriminant if needed (e.g., for
       compatibility with C):
-
-      .. raw:: html
-
-         <!-- mdbook-xgettext: skip -->
 
       .. code:: rust
 
@@ -101,10 +95,6 @@ space.
    provides no guarantees regarding this representation, therefore this
    is totally unsafe.
 
-   .. raw:: html
-
-      <!-- mdbook-xgettext: skip -->
-
    .. code:: rust
 
       use std::mem::transmute;
@@ -137,6 +127,3 @@ space.
               dbg_bits!(Some(&0i32), usize);
           }
       }
-
-.. raw:: html
-

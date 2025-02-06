@@ -26,8 +26,6 @@ In a C-style for loop you declare these things directly:
 In Rust we bundle this state and logic together into an object known as
 an "iterator".
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -68,6 +66,3 @@ end.
 If students ask, you can point out that this is how Rust's slice and
 array iterators work under the hood (though implemented as a Rust
 iterator).
-
-.. raw:: html
-

@@ -77,8 +77,6 @@ function parameter. This transfers ownership:
        // say_hello(name);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -190,6 +188,3 @@ Key points:
 
 -  Unlike Rust, :rust:`=` in C++ can run arbitrary code as determined by the
    type which is being copied or moved.
-
-.. raw:: html
-

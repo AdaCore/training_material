@@ -32,8 +32,6 @@ parameters get concrete types when it is used.
        println!("{from_int:?}, {from_bool:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -55,6 +53,3 @@ Details
    heuristic for choosing the "most specific" match. There is work on
    adding this support, called
    `specialization <https://rust-lang.github.io/rfcs/1210-impl-specialization.html>`__.
-
-.. raw:: html
-

@@ -33,8 +33,6 @@ You can use generics to abstract over the concrete field type:
        println!("coords: {:?}", integer.coords());
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -54,6 +52,3 @@ Details
 -  Try declaring a new variable :rust:`let p = Point { x: 5, y: 10.0 };`.
    Update the code to allow points that have elements of different
    types, by using two type variables, e.g., :rust:`T` and :rust:`U`.
-
-.. raw:: html
-

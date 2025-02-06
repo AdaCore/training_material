@@ -30,8 +30,6 @@ function arguments and return values:
        println!("debuggable: {debuggable:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -57,6 +55,3 @@ meaning of :rust:`impl Trait` is a bit different in the different positions.
 
 What is the type of :rust:`debuggable`? Try :rust:`let debuggable: () = ..` to
 see what the error message shows.
-
-.. raw:: html
-

@@ -8,10 +8,6 @@ Type Inference
 
 Rust will look at how the variable is *used* to determine the type:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn takes_u32(x: u32) {
@@ -30,8 +26,6 @@ Rust will look at how the variable is *used* to determine the type:
        takes_i8(y);
        // takes_u32(y);
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -58,6 +52,3 @@ Similarly, floating-point literals default to :rust:`f64`.
        assert_eq!(x, y);
        // ERROR: no implementation for `{float} == {integer}`
    }
-
-.. raw:: html
-

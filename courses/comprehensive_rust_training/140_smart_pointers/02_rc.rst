@@ -29,8 +29,6 @@ same data from multiple places:
    `Weak <https://doc.rust-lang.org/std/rc/struct.Weak.html>`__
    pointer to create cycles that will get dropped.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -47,6 +45,3 @@ Details
 -  :rust:`Rc::downgrade` gives you a *weakly reference-counted* object to
    create cycles that will be dropped properly (likely in combination
    with :rust:`RefCell`).
-
-.. raw:: html
-

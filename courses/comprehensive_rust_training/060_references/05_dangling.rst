@@ -11,10 +11,6 @@ safe to use. One rule is that references can never be :rust:`null`, making
 them safe to use without :rust:`null` checks. The other rule we'll look at
 for now is that references can't *outlive* the data they point to.
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn main() {
@@ -24,8 +20,6 @@ for now is that references can't *outlive* the data they point to.
        };
        println!("x: {x_ref}");
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -46,6 +40,3 @@ More to Explore
    used to make any type "nullable" (not just references/pointers). We
    haven't yet introduced enums or pattern matching, though, so try not
    to go into too much detail about this here.
-
-.. raw:: html
-

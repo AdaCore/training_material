@@ -9,10 +9,6 @@ Exclusive References
 Exclusive references, also known as mutable references, allow changing
 the value they refer to. They have type :rust:`&mut T`.
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn main() {
@@ -21,8 +17,6 @@ the value they refer to. They have type :rust:`&mut T`.
        *x_coord = 20;
        println!("point: {point:?}");
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -40,6 +34,3 @@ Key points:
    :rust:`let x_coord: &mut i32`. The first one represents a shared
    reference which can be bound to different values, while the second
    represents an exclusive reference to a mutable value.
-
-.. raw:: html
-

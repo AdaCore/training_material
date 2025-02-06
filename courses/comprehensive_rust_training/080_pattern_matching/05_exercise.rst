@@ -11,10 +11,6 @@ Let's write a simple recursive evaluator for arithmetic expressions.
 An example of a small arithmetic expression could be :rust:`10 + 20`, which
 evaluates to :rust:`30`. We can represent the expression as a tree:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: bob
 
                .-------.
@@ -28,10 +24,6 @@ evaluates to :rust:`30`. We can represent the expression as a tree:
 A bigger and more complex expression would be
 :rust:`(10 * 9) + ((3 - 4) * 5)`, which evaluate to :rust:`85`. We represent
 this as a much bigger tree:
-
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
 
 .. code:: bob
 

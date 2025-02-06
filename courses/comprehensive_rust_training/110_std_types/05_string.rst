@@ -29,8 +29,6 @@ is a growable UTF-8 encoded string:
 `Deref<Target = str> <https://doc.rust-lang.org/std/string/struct.String.html#deref-methods-str>`__,
 which means that you can call all :rust:`str` methods on a :rust:`String`.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -71,6 +69,3 @@ Details
    method. This trait is automatically implemented for all types that
    implement :rust:`Display`, so anything that can be formatted can also be
    converted to a string.
-
-.. raw:: html
-

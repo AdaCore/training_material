@@ -33,8 +33,6 @@ generic: :rust:`Result<T, E>` where :rust:`T` is used in the :rust:`Ok` variant 
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -49,6 +47,3 @@ Details
    methods and functions that help functional-style programming.
 -  :rust:`Result` is the standard type to implement error handling as we
    will see on Day 4.
-
-.. raw:: html
-

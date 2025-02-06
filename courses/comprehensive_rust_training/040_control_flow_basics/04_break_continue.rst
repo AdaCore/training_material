@@ -30,8 +30,6 @@ value of the :rust:`loop` expression.
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -40,6 +38,3 @@ Note that :rust:`loop` is the only looping construct which can return a
 non-trivial value. This is because it's guaranteed to only return at a
 :rust:`break` statement (unlike :rust:`while` and :rust:`for` loops, which can also
 return when the condition fails).
-
-.. raw:: html
-

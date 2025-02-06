@@ -23,11 +23,6 @@ solution.
 Lifetimes become more complicated when considering passing values to and
 returning values from functions.
 
-.. raw:: html
-
-   <!-- The multi-line formatting by rustfmt in left_most is apparently
-        intentional: https://github.com/rust-lang/rustfmt/issues/1908 -->
-
 .. code:: rust
 
    #[derive(Debug)]
@@ -47,8 +42,6 @@ returning values from functions.
        let p3 = left_most(&p1, &p2); // What is the lifetime of p3?
        println!("p3: {p3:?}");
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -71,6 +64,3 @@ lives for at least :rust:`'a`.
 
 In common cases, lifetimes can be elided, as described on the next
 slide.
-
-.. raw:: html
-

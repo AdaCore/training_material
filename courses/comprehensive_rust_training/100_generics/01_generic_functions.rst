@@ -26,8 +26,6 @@ stored.
        println!("picked a string: {:?}", pick(28, "dog", "cat"));
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -57,6 +55,3 @@ Details
 -  Generic code is turned into non-generic code based on the call sites.
    This is a zero-cost abstraction: you get exactly the same result as
    if you had hand-coded the data structures without the abstraction.
-
-.. raw:: html
-

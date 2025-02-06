@@ -19,8 +19,6 @@ method lets you build a collection from an
        println!("prime_squares: {prime_squares:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -56,6 +54,3 @@ More to Explore
 -  The reason type annotations are often needed with :rust:`collect` is
    because it's generic over its return type. This makes it harder for
    the compiler to infer the correct type in a lot of cases.
-
-.. raw:: html
-

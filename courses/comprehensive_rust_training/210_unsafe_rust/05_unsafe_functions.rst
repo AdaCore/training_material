@@ -80,8 +80,6 @@ conditions to avoid undefined behaviour.
        println!("a = {}, b = {}", a, b);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -116,6 +114,3 @@ Note that unsafe code is allowed within an unsafe function without an
 :rust:`unsafe` block. We can prohibit this with
 :rust:`#[deny(unsafe_op_in_unsafe_fn)]`. Try adding it and see what happens.
 This will likely change in a future Rust edition.
-
-.. raw:: html
-

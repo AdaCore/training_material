@@ -1,9 +1,3 @@
-.. raw:: html
-
-   <!-- NOTES:
-   Tuple structs, newtype wrappers, unit-like structs, including initialization syntax
-   -->
-
 ===============
 Tuple Structs
 ===============
@@ -43,8 +37,6 @@ This is often used for single-field wrappers (called newtypes):
        set_thruster_force(force);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -68,6 +60,3 @@ Details
 -  The example is a subtle reference to the
    `Mars Climate Orbiter <https://en.wikipedia.org/wiki/Mars_Climate_Orbiter>`__
    failure.
-
-.. raw:: html
-

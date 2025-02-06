@@ -15,8 +15,6 @@ behind a shared reference. The standard library provides several ways to
 do this, all while still ensuring safety, typically by performing a
 runtime check.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -25,6 +23,3 @@ The main thing to take away from this slide is that Rust provides *safe*
 ways to modify data behind a shared reference. There are a variety of
 ways to ensure that safety, and the next sub-slides present a few of
 them.
-
-.. raw:: html
-

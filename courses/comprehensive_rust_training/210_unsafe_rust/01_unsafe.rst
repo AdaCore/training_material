@@ -31,8 +31,6 @@ see
 `Chapter 19.1 in the Rust Book <https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html>`__ and
 the `Rustonomicon <https://doc.rust-lang.org/nomicon/>`__.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -41,6 +39,3 @@ Unsafe Rust does not mean the code is incorrect. It means that
 developers have turned off some compiler safety features and have to
 write correct code by themselves. It means the compiler no longer
 enforces Rust's memory-safety rules.
-
-.. raw:: html
-

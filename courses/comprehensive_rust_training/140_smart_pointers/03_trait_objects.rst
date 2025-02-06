@@ -80,8 +80,6 @@ Memory layout after allocating :rust:`pets`:
                                          :                                             :
                                          '- - - - - - - - - - - - - - - - - - - - - - -'
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -111,6 +109,3 @@ Details
       println!("{} {}", std::mem::size_of::<&Dog>(), std::mem::size_of::<&Cat>());
       println!("{}", std::mem::size_of::<&dyn Pet>());
       println!("{}", std::mem::size_of::<Box<dyn Pet>>());
-
-.. raw:: html
-

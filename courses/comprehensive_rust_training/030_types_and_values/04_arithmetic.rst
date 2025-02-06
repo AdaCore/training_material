@@ -16,8 +16,6 @@ Arithmetic
        println!("result: {}", interproduct(120, 100, 248));
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -40,6 +38,3 @@ are accessed with method syntax, e.g.,
 
 In fact, the compiler will detect overflow of constant expressions,
 which is why the example requires a separate function.
-
-.. raw:: html
-

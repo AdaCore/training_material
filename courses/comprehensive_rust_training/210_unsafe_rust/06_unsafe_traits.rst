@@ -31,8 +31,6 @@ For example, the :rust:`zerocopy` crate has an unsafe trait that looks
    // SAFETY: `u32` has a defined representation and no padding.
    unsafe impl IntoBytes for u32 {}
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -44,6 +42,3 @@ The actual safety section for :rust:`IntoBytes` is rather longer and more
 complicated.
 
 The built-in :rust:`Send` and :rust:`Sync` traits are unsafe.
-
-.. raw:: html
-

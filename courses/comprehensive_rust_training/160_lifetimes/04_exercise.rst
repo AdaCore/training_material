@@ -78,10 +78,6 @@ those callbacks.
 What remains for you is to implement the :rust:`parse_field` function and
 the :rust:`ProtoMessage` trait for :rust:`Person` and :rust:`PhoneNumber`.
 
-.. raw:: html
-
-   <!-- compile_fail because the stubbed out code has type inference errors. -->
-
 .. code:: rust
 
    {{#include exercise.rs:preliminaries }}
@@ -103,8 +99,6 @@ the :rust:`ProtoMessage` trait for :rust:`Person` and :rust:`PhoneNumber`.
 
    {{#include exercise.rs:main }}
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -115,6 +109,3 @@ Details
    with the :rust:`Result` enum, but for simplicity in this exercise we
    panic if any errors are encountered. On day 4 we'll cover error
    handling in Rust in more detail.
-
-.. raw:: html
-

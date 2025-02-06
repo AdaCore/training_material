@@ -39,8 +39,6 @@ trait produces a default value for a type.
        println!("{:#?}", nothing.unwrap_or_default());
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -59,6 +57,3 @@ Details
    :rust:`Default` and provides convenience methods that use it.
 -  The :rust:`..` syntax is called
   `struct update syntax <https://doc.rust-lang.org/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax>`__.
-
-.. raw:: html
-

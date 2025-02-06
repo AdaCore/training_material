@@ -6,10 +6,6 @@ Arrays
 Arrays
 --------
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
 .. code:: rust
 
    fn main() {
@@ -17,8 +13,6 @@ Arrays
        a[5] = 0;
        println!("a: {a:?}");
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -44,6 +38,3 @@ Details
 
 -  Adding :rust:`#`, eg :rust:`{a:#?}`, invokes a "pretty printing" format,
    which can be easier to read.
-
-.. raw:: html
-

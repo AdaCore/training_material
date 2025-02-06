@@ -29,8 +29,6 @@ Similarly, :rust:`mod` lets us namespace types and functions:
        bar::do_something();
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -41,6 +39,3 @@ Details
    executable and a library crate compiles to a library.
 -  Modules define organization, scope, and are the focus of this
    section.
-
-.. raw:: html
-

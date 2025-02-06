@@ -23,8 +23,6 @@ returns an :rust:`Option<usize>`.
        assert_eq!(position.expect("Character not found"), 0);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -44,6 +42,3 @@ Details
    a valid value of T. For example, a reference cannot be NULL, so
    :rust:`Option<&T>` automatically uses NULL to represent the :rust:`None`
    variant, and thus can be stored in the same memory as :rust:`&T`.
-
-.. raw:: html
-

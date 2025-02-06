@@ -35,8 +35,6 @@ Like :rust:`if` expressions, :rust:`match` can also return a value;
        println!("The value of {flag} is {val}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -80,6 +78,3 @@ More to Explore
    the match arm should be taken. However talking about match guards
    requires explaining about pattern matching, which we're trying to
    avoid on this slide.
-
-.. raw:: html
-
