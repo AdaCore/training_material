@@ -12,7 +12,7 @@ methods in the
 trait to implement a complex calculation.
 
 Copy the following code to https://play.rust-lang.org/ and make the
-tests pass. Use an iterator expression and ``collect`` the result to
+tests pass. Use an iterator expression and :rust:`collect` the result to
 construct the return value.
 
 .. code:: rust

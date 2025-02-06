@@ -10,9 +10,9 @@ Like tuples, enums can also be destructured by matching:
 
 Patterns can also be used to bind variables to parts of your values.
 This is how you inspect the structure of your types. Let us start with a
-simple ``enum`` type:
+simple :rust:`enum` type:
 
-.. code:: rust,editable
+.. code:: rust
 
    enum Result {
        Ok(i32),
@@ -35,9 +35,9 @@ simple ``enum`` type:
        }
    }
 
-Here we have used the arms to *destructure* the ``Result`` value. In the
-first arm, ``half`` is bound to the value inside the ``Ok`` variant. In
-the second arm, ``msg`` is bound to the error message.
+Here we have used the arms to *destructure* the :rust:`Result` value. In the
+first arm, :rust:`half` is bound to the value inside the :rust:`Ok` variant. In
+the second arm, :rust:`msg` is bound to the error message.
 
 .. raw:: html
 
@@ -45,8 +45,8 @@ the second arm, ``msg`` is bound to the error message.
 Details
 ---------
 
--  The ``if``/``else`` expression is returning an enum that is later
-   unpacked with a ``match``.
+-  The :rust:`if`/:rust:`else` expression is returning an enum that is later
+   unpacked with a :rust:`match`.
 -  You can try adding a third variant to the enum definition and
    displaying the errors when running the code. Point out the places
    where your code is now inexhaustive and how the compiler tries to

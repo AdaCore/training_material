@@ -9,7 +9,7 @@ Traits
 Rust lets you abstract over types with traits. They're similar to
 interfaces:
 
-.. code:: rust,editable
+.. code:: rust
 
    trait Pet {
        /// Return a sentence from this pet.

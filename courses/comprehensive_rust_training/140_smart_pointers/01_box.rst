@@ -1,15 +1,15 @@
 ============
-``Box<T>``
+:rust:`Box<T>`
 ============
 
 ------------
-``Box<T>``
+:rust:`Box<T>`
 ------------
 
 `Box <https://doc.rust-lang.org/std/boxed/struct.Box.html>`__ is an
 owned pointer to data on the heap:
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let five = Box::new(5);
@@ -29,14 +29,14 @@ owned pointer to data on the heap:
    :             :     :             :
    `- - - - - - -'     `- - - - - - -'
 
-``Box<T>`` implements ``Deref<Target = T>``, which means that you can
+:rust:`Box<T>` implements :rust:`Deref<Target = T>`, which means that you can
 `call methods from T directly on a Box<T> <https://doc.rust-lang.org/std/ops/trait.Deref.html#more-on-deref-coercion>`__.
 
 Recursive data types or data types with dynamic sizes cannot be stored
-inline without a pointer indirection. ``Box`` accomplishes that
+inline without a pointer indirection. :rust:`Box` accomplishes that
 indirection:
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug)]
    enum List<T> {
@@ -71,33 +71,33 @@ indirection:
 Details
 ---------
 
--  ``Box`` is like ``std::unique_ptr`` in C++, except that it's
+-  :rust:`Box` is like :rust:`std::unique_ptr` in C++, except that it's
    guaranteed to be not null.
 
--  A ``Box`` can be useful when you:
+-  A :rust:`Box` can be useful when you:
 
    -  have a type whose size can't be known at compile time, but the
       Rust compiler wants to know an exact size.
    -  want to transfer ownership of a large amount of data. To avoid
       copying large amounts of data on the stack, instead store the data
-      on the heap in a ``Box`` so only the pointer is moved.
+      on the heap in a :rust:`Box` so only the pointer is moved.
 
--  If ``Box`` was not used and we attempted to embed a ``List`` directly
-   into the ``List``, the compiler would not be able to compute a fixed
-   size for the struct in memory (the ``List`` would be of infinite
+-  If :rust:`Box` was not used and we attempted to embed a :rust:`List` directly
+   into the :rust:`List`, the compiler would not be able to compute a fixed
+   size for the struct in memory (the :rust:`List` would be of infinite
    size).
 
--  ``Box`` solves this problem as it has the same size as a regular
-   pointer and just points at the next element of the ``List`` in the
+-  :rust:`Box` solves this problem as it has the same size as a regular
+   pointer and just points at the next element of the :rust:`List` in the
    heap.
 
--  Remove the ``Box`` in the List definition and show the compiler
+-  Remove the :rust:`Box` in the List definition and show the compiler
    error. We get the message "recursive without indirection", because
-   for data recursion, we have to use indirection, a ``Box`` or
+   for data recursion, we have to use indirection, a :rust:`Box` or
    reference of some kind, instead of storing the value directly.
 
--  Though ``Box`` looks like ``std::unique_ptr`` in C++, it cannot be
-   empty/null. This makes ``Box`` one of the types that allow the
+-  Though :rust:`Box` looks like :rust:`std::unique_ptr` in C++, it cannot be
+   empty/null. This makes :rust:`Box` one of the types that allow the
    compiler to optimize storage of some enums (the "niche
    optimization").
 

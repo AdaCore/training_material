@@ -13,7 +13,7 @@ function, you can let a function *borrow* the value:
 
    <!-- mdbook-xgettext: skip -->
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug)]
    struct Point(i32, i32);
@@ -29,7 +29,7 @@ function, you can let a function *borrow* the value:
        println!("{p1:?} + {p2:?} = {p3:?}");
    }
 
--  The ``add`` function *borrows* two points and returns a new point.
+-  The :rust:`add` function *borrows* two points and returns a new point.
 -  The caller retains ownership of the inputs.
 
 .. raw:: html
@@ -51,7 +51,7 @@ More to Explore
 
 Notes on stack returns and inlining:
 
--  Demonstrate that the return from ``add`` is cheap because the
+-  Demonstrate that the return from :rust:`add` is cheap because the
    compiler can eliminate the copy operation, by inlining the call to
    add into main. Change the above code to print stack addresses and run
    it on the
@@ -64,7 +64,7 @@ Notes on stack returns and inlining:
 
       <!-- mdbook-xgettext: skip -->
 
-   .. code:: rust,editable
+   .. code:: rust
 
       #[derive(Debug)]
       struct Point(i32, i32);
@@ -84,7 +84,7 @@ Notes on stack returns and inlining:
       }
 
 -  The Rust compiler can do automatic inlining, that can be disabled on
-   a function level with ``#[inline(never)]``.
+   a function level with :rust:`#[inline(never)]`.
 
 -  Once disabled, the printed address will change on all optimization
    levels. Looking at Godbolt or Playground, one can see that in this

@@ -10,7 +10,7 @@ Functions
 
    <!-- mdbook-xgettext: skip -->
 
-.. code:: rust,editable
+.. code:: rust
 
    fn gcd(a: u32, b: u32) -> u32 {
        if b > 0 {
@@ -33,12 +33,12 @@ Details
 -  Declaration parameters are followed by a type (the reverse of some
    programming languages), then a return type.
 -  The last expression in a function body (or any block) becomes the
-   return value. Simply omit the ``;`` at the end of the expression. The
-   ``return`` keyword can be used for early return, but the "bare value"
-   form is idiomatic at the end of a function (refactor ``gcd`` to use a
-   ``return``).
+   return value. Simply omit the :rust:`;` at the end of the expression. The
+   :rust:`return` keyword can be used for early return, but the "bare value"
+   form is idiomatic at the end of a function (refactor :rust:`gcd` to use a
+   :rust:`return`).
 -  Some functions have no return value, and return the 'unit type',
-   ``()``. The compiler will infer this if the return type is omitted.
+   :rust:`()`. The compiler will infer this if the return type is omitted.
 -  Overloading is not supported - each function has a single
    implementation.
 

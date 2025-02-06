@@ -1,16 +1,16 @@
 ====================
-``if`` expressions
+:rust:`if` expressions
 ====================
 
 --------------------
-``if`` expressions
+:rust:`if` expressions
 --------------------
 
 You use
 `if expressions <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-expressions>`__
-exactly like ``if`` statements in other languages:
+exactly like :rust:`if` statements in other languages:
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let x = 10;
@@ -23,10 +23,10 @@ exactly like ``if`` statements in other languages:
        }
    }
 
-In addition, you can use ``if`` as an expression. The last expression of
-each block becomes the value of the ``if`` expression:
+In addition, you can use :rust:`if` as an expression. The last expression of
+each block becomes the value of the :rust:`if` expression:
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let x = 10;
@@ -40,14 +40,14 @@ each block becomes the value of the ``if`` expression:
 Details
 ---------
 
-Because ``if`` is an expression and must have a particular type, both of
+Because :rust:`if` is an expression and must have a particular type, both of
 its branch blocks must have the same type. Show what happens if you add
-``;`` after ``"small"`` in the second example.
+:rust:`;` after :rust:`"small"` in the second example.
 
-An ``if`` expression should be used in the same way as the other
-expressions. For example, when it is used in a ``let`` statement, the
-statement must be terminated with a ``;`` as well. Remove the ``;``
-before ``println!`` to see the compiler error.
+An :rust:`if` expression should be used in the same way as the other
+expressions. For example, when it is used in a :rust:`let` statement, the
+statement must be terminated with a :rust:`;` as well. Remove the :rust:`;`
+before :rust:`println!` to see the compiler error.
 
 .. raw:: html
 

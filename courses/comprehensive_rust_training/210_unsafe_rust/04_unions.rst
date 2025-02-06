@@ -8,7 +8,7 @@ Unions
 
 Unions are like enums, but you need to track the active field yourself:
 
-.. code:: rust,editable
+.. code:: rust
 
    #[repr(C)]
    union MyUnion {

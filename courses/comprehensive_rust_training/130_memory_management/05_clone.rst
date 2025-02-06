@@ -6,10 +6,10 @@ Clone
 Clone
 -------
 
-Sometimes you *want* to make a copy of a value. The ``Clone`` trait
+Sometimes you *want* to make a copy of a value. The :rust:`Clone` trait
 accomplishes this.
 
-.. code:: rust,editable
+.. code:: rust
 
    fn say_hello(name: String) {
        println!("Hello {name}")
@@ -27,18 +27,18 @@ accomplishes this.
 Details
 ---------
 
--  The idea of ``Clone`` is to make it easy to spot where heap
-   allocations are occurring. Look for ``.clone()`` and a few others
-   like ``vec!`` or ``Box::new``.
+-  The idea of :rust:`Clone` is to make it easy to spot where heap
+   allocations are occurring. Look for :rust:`.clone()` and a few others
+   like :rust:`vec!` or :rust:`Box::new`.
 
 -  It's common to "clone your way out" of problems with the borrow
    checker, and return later to try to optimize those clones away.
 
--  ``clone`` generally performs a deep copy of the value, meaning that
+-  :rust:`clone` generally performs a deep copy of the value, meaning that
    if you e.g. clone an array, all of the elements of the array are
    cloned as well.
 
--  The behavior for ``clone`` is user-defined, so it can perform custom
+-  The behavior for :rust:`clone` is user-defined, so it can perform custom
    cloning logic if needed.
 
 .. raw:: html

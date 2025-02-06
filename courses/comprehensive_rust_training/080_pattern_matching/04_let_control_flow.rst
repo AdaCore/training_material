@@ -9,16 +9,16 @@ Let Control Flow
 Rust has a few control flow constructs which differ from other
 languages. They are used for pattern matching:
 
--  ``if let`` expressions
--  ``let else`` expressions
--  ``while let`` expressions
+-  :rust:`if let` expressions
+-  :rust:`let else` expressions
+-  :rust:`while let` expressions
 
 ========================
-``if let`` expressions
+:rust:`if let` expressions
 ========================
 
 ------------------------
-``if let`` expressions
+:rust:`if let` expressions
 ------------------------
 
 The
@@ -26,7 +26,7 @@ The
 lets you execute different code depending on whether a value matches a
 pattern:
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::time::Duration;
 
@@ -43,20 +43,20 @@ pattern:
    }
 
 ==========================
-``let else`` expressions
+:rust:`let else` expressions
 ==========================
 
 --------------------------
-``let else`` expressions
+:rust:`let else` expressions
 --------------------------
 
 For the common case of matching a pattern and returning from the
 function, use
 `let else <https://doc.rust-lang.org/rust-by-example/flow_control/let_else.html>`__.
-The "else" case must diverge (``return``, ``break``, or panic - anything
+The "else" case must diverge (:rust:`return`, :rust:`break`, or panic - anything
 but falling off the end of the block).
 
-.. code:: rust,editable
+.. code:: rust
 
    fn hex_or_die_trying(maybe_string: Option<String>) -> Result<u32, String> {
        // TODO: The structure of this code is difficult to follow -- rewrite it with let-else!
@@ -79,7 +79,7 @@ but falling off the end of the block).
        println!("result: {:?}", hex_or_die_trying(Some(String::from("foo"))));
    }
 
-Like with ``if let``, there is a
+Like with :rust:`if let`, there is a
 `while let <https://doc.rust-lang.org/reference/expressions/loop-expr.html#predicate-pattern-loops>`__
 variant which repeatedly tests a value against a pattern:
 
@@ -87,7 +87,7 @@ variant which repeatedly tests a value against a pattern:
 
    <!-- mdbook-xgettext: skip -->
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let mut name = String::from("Comprehensive Rust");
@@ -99,8 +99,8 @@ variant which repeatedly tests a value against a pattern:
 
 Here
 `String::pop <https://doc.rust-lang.org/stable/std/string/struct.String.html#method.pop>`__
-returns ``Some(c)`` until the string is empty, after which it will
-return ``None``. The ``while let`` lets us keep iterating through all
+returns :rust:`Some(c)` until the string is empty, after which it will
+return :rust:`None`. The :rust:`while let` lets us keep iterating through all
 items.
 
 .. raw:: html
@@ -113,18 +113,18 @@ Details
 if-let
 --------
 
--  Unlike ``match``, ``if let`` does not have to cover all branches.
-   This can make it more concise than ``match``.
--  A common usage is handling ``Some`` values when working with
-   ``Option``.
--  Unlike ``match``, ``if let`` does not support guard clauses for
+-  Unlike :rust:`match`, :rust:`if let` does not have to cover all branches.
+   This can make it more concise than :rust:`match`.
+-  A common usage is handling :rust:`Some` values when working with
+   :rust:`Option`.
+-  Unlike :rust:`match`, :rust:`if let` does not support guard clauses for
    pattern matching.
 
 ----------
 let-else
 ----------
 
-``if-let``\ s can pile up, as shown. The ``let-else`` construct supports
+:rust:`if-let`\ s can pile up, as shown. The :rust:`let-else` construct supports
 flattening this nested code. Rewrite the awkward version for students,
 so they can see the transformation.
 
@@ -156,11 +156,11 @@ while-let
 while-let
 -----------
 
--  Point out that the ``while let`` loop will keep going as long as the
+-  Point out that the :rust:`while let` loop will keep going as long as the
    value matches the pattern.
--  You could rewrite the ``while let`` loop as an infinite loop with an
+-  You could rewrite the :rust:`while let` loop as an infinite loop with an
    if statement that breaks when there is no value to unwrap for
-   ``name.pop()``. The ``while let`` provides syntactic sugar for the
+   :rust:`name.pop()`. The :rust:`while let` provides syntactic sugar for the
    above scenario.
 
 .. raw:: html

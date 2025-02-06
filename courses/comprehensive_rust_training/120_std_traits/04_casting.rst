@@ -7,9 +7,9 @@ Casting
 ---------
 
 Rust has no *implicit* type conversions, but does support explicit casts
-with ``as``. These generally follow C semantics where those are defined.
+with :rust:`as`. These generally follow C semantics where those are defined.
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let value: i64 = 1000;
@@ -18,20 +18,20 @@ with ``as``. These generally follow C semantics where those are defined.
        println!("as u8: {}", value as u8);
    }
 
-The results of ``as`` are *always* defined in Rust and consistent across
+The results of :rust:`as` are *always* defined in Rust and consistent across
 platforms. This might not match your intuition for changing sign or
 casting to a smaller type - check the docs, and comment for clarity.
 
-Casting with ``as`` is a relatively sharp tool that is easy to use
+Casting with :rust:`as` is a relatively sharp tool that is easy to use
 incorrectly, and can be a source of subtle bugs as future maintenance
 work changes the types that are used or the ranges of values in types.
 Casts are best used only when the intent is to indicate unconditional
-truncation (e.g. selecting the bottom 32 bits of a ``u64`` with
-``as u32``, regardless of what was in the high bits).
+truncation (e.g. selecting the bottom 32 bits of a :rust:`u64` with
+:rust:`as u32`, regardless of what was in the high bits).
 
-For infallible casts (e.g. ``u32`` to ``u64``), prefer using ``From`` or
-``Into`` over ``as`` to confirm that the cast is in fact infallible. For
-fallible casts, ``TryFrom`` and ``TryInto`` are available when you want
+For infallible casts (e.g. :rust:`u32` to :rust:`u64`), prefer using :rust:`From` or
+:rust:`Into` over :rust:`as` to confirm that the cast is in fact infallible. For
+fallible casts, :rust:`TryFrom` and :rust:`TryInto` are available when you want
 to handle casts that fit differently from those that don't.
 
 .. raw:: html
@@ -42,11 +42,11 @@ Details
 
 Consider taking a break after this slide.
 
-``as`` is similar to a C++ static cast. Use of ``as`` in cases where
+:rust:`as` is similar to a C++ static cast. Use of :rust:`as` in cases where
 data might be lost is generally discouraged, or at least deserves an
 explanatory comment.
 
-This is common in casting integers to ``usize`` for use as an index.
+This is common in casting integers to :rust:`usize` for use as an index.
 
 .. raw:: html
 

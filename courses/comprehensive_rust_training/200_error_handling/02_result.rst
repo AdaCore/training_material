@@ -1,16 +1,16 @@
 ============
-``Result``
+:rust:`Result`
 ============
 
 ------------
-``Result``
+:rust:`Result`
 ------------
 
 Our primary mechanism for error handling in Rust is the
 `Result <https://doc.rust-lang.org/stable/std/result/enum.Result.html>`__
 enum, which we briefly saw when discussing standard library types.
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::fs::File;
    use std::io::Read;
@@ -38,17 +38,17 @@ enum, which we briefly saw when discussing standard library types.
 Details
 ---------
 
--  ``Result`` has two variants: ``Ok`` which contains the success value,
-   and ``Err`` which contains an error value of some kind.
+-  :rust:`Result` has two variants: :rust:`Ok` which contains the success value,
+   and :rust:`Err` which contains an error value of some kind.
 
 -  Whether or not a function can produce an error is encoded in the
-   function's type signature by having the function return a ``Result``
+   function's type signature by having the function return a :rust:`Result`
    value.
 
--  Like with ``Option``, there is no way to forget to handle an error:
+-  Like with :rust:`Option`, there is no way to forget to handle an error:
    You cannot access either the success value or the error value without
-   first pattern matching on the ``Result`` to check which variant you
-   have. Methods like ``unwrap`` make it easier to write quick-and-dirty
+   first pattern matching on the :rust:`Result` to check which variant you
+   have. Methods like :rust:`unwrap` make it easier to write quick-and-dirty
    code that doesn't do robust error handling, but means that you can
    always see in your source code where proper error handling is being
    skipped.
@@ -77,7 +77,7 @@ Exceptions
    throw an exception or not.
 
 -  Exceptions generally unwind the call stack, propagating upward until
-   a ``try`` block is reached. An error originating deep in the call
+   a :rust:`try` block is reached. An error originating deep in the call
    stack may impact an unrelated function further up.
 
 ---------------

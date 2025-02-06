@@ -14,7 +14,7 @@ Some unique selling points of Rust:
    -  No uninitialized variables.
    -  No double-frees.
    -  No use-after-free.
-   -  No ``NULL`` pointers.
+   -  No :rust:`NULL` pointers.
    -  No forgotten locked mutexes.
    -  No data races between threads.
    -  No iterator invalidation.

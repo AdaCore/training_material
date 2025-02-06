@@ -9,7 +9,7 @@ Deriving
 Supported traits can be automatically implemented for your custom types,
 as follows:
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug, Clone, Default)]
    struct Player {
@@ -33,9 +33,9 @@ Details
 ---------
 
 Derivation is implemented with macros, and many crates provide useful
-derive macros to add useful functionality. For example, ``serde`` can
+derive macros to add useful functionality. For example, :rust:`serde` can
 derive serialization support for a struct using
-``#[derive(Serialize)]``.
+:rust:`#[derive(Serialize)]`.
 
 .. raw:: html
 

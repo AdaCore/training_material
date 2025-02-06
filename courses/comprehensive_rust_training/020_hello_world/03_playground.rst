@@ -11,7 +11,7 @@ way to run short Rust programs, and is the basis for the examples and
 exercises in this course. Try running the "hello-world" program it
 starts with. It comes with a few handy features:
 
--  Under "Tools", use the ``rustfmt`` option to format your code in the
+-  Under "Tools", use the :rust:`rustfmt` option to format your code in the
    "standard" way.
 
 -  Rust has two main "profiles" for generating code: Debug (extra

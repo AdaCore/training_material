@@ -15,9 +15,9 @@ is not inference - it is just a syntactic shorthand.
 -  If there is only one argument lifetime, it is given to all
    un-annotated return values.
 -  If there are multiple argument lifetimes, but the first one is for
-   ``self``, that lifetime is given to all un-annotated return values.
+   :rust:`self`, that lifetime is given to all un-annotated return values.
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug)]
    struct Point(i32, i32);
@@ -52,14 +52,14 @@ is not inference - it is just a syntactic shorthand.
 Details
 ---------
 
-In this example, ``cab_distance`` is trivially elided.
+In this example, :rust:`cab_distance` is trivially elided.
 
-The ``nearest`` function provides another example of a function with
+The :rust:`nearest` function provides another example of a function with
 multiple references in its arguments that requires explicit annotation.
 
 Try adjusting the signature to "lie" about the lifetimes returned:
 
-.. code:: rust,ignore
+.. code:: rust
 
    fn nearest<'a, 'q>(points: &'a [Point], query: &'q Point) -> Option<&'q Point> {
 

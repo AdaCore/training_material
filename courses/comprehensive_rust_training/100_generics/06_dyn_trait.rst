@@ -1,15 +1,15 @@
 ===============
-``dyn Trait``
+:rust:`dyn Trait`
 ===============
 
 ---------------
-``dyn Trait``
+:rust:`dyn Trait`
 ---------------
 
 In addition to using traits for static dispatch via generics, Rust also
 supports using them for type-erased, dynamic dispatch via trait objects:
 
-.. code:: rust,editable
+.. code:: rust
 
    struct Dog {
        name: String,
@@ -62,33 +62,33 @@ supports using them for type-erased, dynamic dispatch via trait objects:
 Details
 ---------
 
--  Generics, including ``impl Trait``, use monomorphization to create a
+-  Generics, including :rust:`impl Trait`, use monomorphization to create a
    specialized instance of the function for each different type that the
    generic is instantiated with. This means that calling a trait method
    from within a generic function still uses static dispatch, as the
    compiler has full type information and can resolve which type's trait
    implementation to use.
 
--  When using ``dyn Trait``, it instead uses dynamic dispatch through a
+-  When using :rust:`dyn Trait`, it instead uses dynamic dispatch through a
    `virtual method table <https://en.wikipedia.org/wiki/Virtual_method_table>`__
-   (vtable). This means that there's a single version of ``fn dynamic``
-   that is used regardless of what type of ``Pet`` is passed in.
+   (vtable). This means that there's a single version of :rust:`fn dynamic`
+   that is used regardless of what type of :rust:`Pet` is passed in.
 
--  When using ``dyn Trait``, the trait object needs to be behind some
+-  When using :rust:`dyn Trait`, the trait object needs to be behind some
    kind of indirection. In this case it's a reference, though smart
-   pointer types like ``Box`` can also be used (this will be
+   pointer types like :rust:`Box` can also be used (this will be
    demonstrated on day 3).
 
--  At runtime, a ``&dyn Pet`` is represented as a "fat pointer", i.e. a
+-  At runtime, a :rust:`&dyn Pet` is represented as a "fat pointer", i.e. a
    pair of two pointers: One pointer points to the concrete object that
-   implements ``Pet``, and the other points to the vtable for the trait
-   implementation for that type. When calling the ``talk`` method on
-   ``&dyn Pet`` the compiler looks up the function pointer for ``talk``
+   implements :rust:`Pet`, and the other points to the vtable for the trait
+   implementation for that type. When calling the :rust:`talk` method on
+   :rust:`&dyn Pet` the compiler looks up the function pointer for :rust:`talk`
    in the vtable and then invokes the function, passing the pointer to
-   the ``Dog`` or ``Cat`` into that function. The compiler doesn't need
-   to know the concrete type of the ``Pet`` in order to do this.
+   the :rust:`Dog` or :rust:`Cat` into that function. The compiler doesn't need
+   to know the concrete type of the :rust:`Pet` in order to do this.
 
--  A ``dyn Trait`` is considered to be "type-erased", because we no
+-  A :rust:`dyn Trait` is considered to be "type-erased", because we no
    longer have compile-time knowledge of what the concrete type is.
 
 .. raw:: html
