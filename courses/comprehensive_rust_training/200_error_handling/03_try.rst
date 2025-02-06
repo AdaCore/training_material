@@ -7,11 +7,11 @@ Try Operator
 --------------
 
 Runtime errors like connection-refused or file-not-found are handled
-with the ``Result`` type, but matching this type on every call can be
-cumbersome. The try-operator ``?`` is used to return errors to the
+with the :rust:`Result` type, but matching this type on every call can be
+cumbersome. The try-operator :rust:`?` is used to return errors to the
 caller. It lets you turn the common
 
-.. code:: rust,ignore
+.. code:: rust
 
    match some_expression {
        Ok(value) => value,
@@ -20,13 +20,13 @@ caller. It lets you turn the common
 
 into the much simpler
 
-.. code:: rust,ignore
+.. code:: rust
 
    some_expression?
 
 We can use this to simplify our error handling code:
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::io::Read;
    use std::{fs, io};
@@ -51,24 +51,19 @@ We can use this to simplify our error handling code:
        println!("username or error: {username:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
-Simplify the ``read_username`` function to use ``?``.
+Simplify the :rust:`read_username` function to use :rust:`?`.
 
 Key points:
 
--  The ``username`` variable can be either ``Ok(string)`` or
-   ``Err(error)``.
--  Use the ``fs::write`` call to test out the different scenarios: no
+-  The :rust:`username` variable can be either :rust:`Ok(string)` or
+   :rust:`Err(error)`.
+-  Use the :rust:`fs::write` call to test out the different scenarios: no
    file, empty file, file with username.
--  Note that ``main`` can return a ``Result<(), E>`` as long as it
-   implements ``std::process::Termination``. In practice, this means
-   that ``E`` implements ``Debug``. The executable will print the
-   ``Err`` variant and return a nonzero exit status on error.
-
-.. raw:: html
-
+-  Note that :rust:`main` can return a :rust:`Result<(), E>` as long as it
+   implements :rust:`std::process::Termination`. In practice, this means
+   that :rust:`E` implements :rust:`Debug`. The executable will print the
+   :rust:`Err` variant and return a nonzero exit status on error.
