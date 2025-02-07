@@ -67,21 +67,19 @@ missing functions and methods:
    // TODO: remove this when you're done with your implementation.
    #![allow(unused_imports, unused_variables, dead_code)]
 
-   {{#include exercise.rs:ffi}}
+   #include exercise.rs:ffi}}
 
-   {{#include exercise.rs:DirectoryIterator}}
+   #include exercise.rs:DirectoryIterator}}
+           unimplemented!()
+
+   #include exercise.rs:Iterator
            unimplemented!()
        }
    }
 
-   {{#include exercise.rs:Iterator}}
+   #include exercise.rs:Drop
            unimplemented!()
        }
    }
 
-   {{#include exercise.rs:Drop}}
-           unimplemented!()
-       }
-   }
-
-   {{#include exercise.rs:main}}
+   #include exercise.rs:main

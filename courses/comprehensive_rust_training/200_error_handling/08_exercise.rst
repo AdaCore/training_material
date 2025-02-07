@@ -15,11 +15,11 @@ for :rust:`eval`.
 
 .. code:: rust
 
-   {{#include exercise.rs:types}}
+   #include exercise.rs:types
 
-   {{#include exercise.rs:eval}}
+   #include exercise.rs:eval
 
-   {{#include exercise.rs:tests}}
+   #include exercise.rs:tests
 
 -  The starting code here isn't exactly the same as the previous
    exercise's solution: We've added in an explicit panic to show
