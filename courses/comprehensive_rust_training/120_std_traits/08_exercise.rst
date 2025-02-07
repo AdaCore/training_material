@@ -11,7 +11,7 @@ In this example, you will implement the classic
 playground, and implement the missing bits. Only rotate ASCII alphabetic
 characters, to ensure the result is still valid UTF-8.
 
-.. code:: rust
+::
 
    {{#include exercise.rs:head }}
 

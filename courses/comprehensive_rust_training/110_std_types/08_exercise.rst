@@ -21,7 +21,7 @@ If you finish early, try using the
 method to halve the number of hash lookups required to implement the
 :rust:`count` method.
 
-.. code:: rust
+::
 
    use std::collections::HashMap;
 

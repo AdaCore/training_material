@@ -31,7 +31,7 @@ Copy the code below to https://play.rust-lang.org/ and write additional
 tests to uncover bugs in the provided implementation, fixing any bugs
 you find.
 
-.. code:: rust
+::
 
    {{#include exercise.rs:luhn}}
 

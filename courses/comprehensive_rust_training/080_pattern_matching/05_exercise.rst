@@ -45,7 +45,7 @@ this as a much bigger tree:
 
 In code, we will represent the tree with two types:
 
-.. code:: rust
+::
 
    {{#include exercise.rs:Operation}}
 
@@ -67,7 +67,7 @@ a test temporarily with :rust:`#[ignore]`:
    #[ignore]
    fn test_value() { .. }
 
-.. code:: rust
+::
 
    {{#include exercise.rs:Operation}}
 

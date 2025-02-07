@@ -15,7 +15,7 @@ Copy the following code to https://play.rust-lang.org/ and make the
 tests pass. Use an iterator expression and :rust:`collect` the result to
 construct the return value.
 
-.. code:: rust
+::
 
    {{#include exercise.rs:offset_differences}}
        unimplemented!()

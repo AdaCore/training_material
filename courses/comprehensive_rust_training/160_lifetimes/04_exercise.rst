@@ -78,7 +78,7 @@ those callbacks.
 What remains for you is to implement the :rust:`parse_field` function and
 the :rust:`ProtoMessage` trait for :rust:`Person` and :rust:`PhoneNumber`.
 
-.. code:: rust
+::
 
    {{#include exercise.rs:preliminaries }}
 

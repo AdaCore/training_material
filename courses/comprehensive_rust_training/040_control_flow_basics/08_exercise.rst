@@ -28,7 +28,7 @@ For example, beginning with *n1* = 3:
 Write a function to calculate the length of the collatz sequence for a
 given initial :rust:`n`.
 
-.. code:: rust
+::
 
    {{#include exercise.rs:collatz_length}}
      todo!("Implement this")

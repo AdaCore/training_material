@@ -13,7 +13,7 @@ handling to handle this error case and return an error when it occurs.
 We provide a simple :rust:`DivideByZeroError` type to use as the error type
 for :rust:`eval`.
 
-.. code:: rust
+::
 
    #include exercise.rs:types
 

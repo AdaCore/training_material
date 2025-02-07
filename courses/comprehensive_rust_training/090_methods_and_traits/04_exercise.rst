@@ -20,7 +20,7 @@ This is a common pattern: a struct wrapping a trait implementation and
 implementing that same trait, adding behavior in the process. What other
 kinds of wrappers might be useful in a logging utility?
 
-.. code:: rust
+::
 
    {{#include exercise.rs:setup}}
 

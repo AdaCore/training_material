@@ -11,7 +11,7 @@ that determines the minimum of two values, using the
 `Ord <https://doc.rust-lang.org/stable/std/cmp/trait.Ord.html>`__
 trait.
 
-.. code:: rust
+::
 
    use std::cmp::Ordering;
 

@@ -35,7 +35,7 @@ Source
 
 Here's the single-module implementation of the GUI library:
 
-.. code:: rust
+::
 
    {{#include exercise.rs:single-module}}
 

@@ -13,7 +13,7 @@ n-2'th Fibonacci numbers.
 Write a function :rust:`fib(n)` that calculates the n'th Fibonacci number.
 When will this function panic?
 
-.. code:: rust
+::
 
    {{#include exercise.rs:fib}}
        if n < 2 {

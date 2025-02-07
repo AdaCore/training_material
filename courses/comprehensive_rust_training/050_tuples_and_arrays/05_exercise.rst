@@ -40,7 +40,7 @@ into
 Copy the code below to https://play.rust-lang.org/ and implement the
 function. This function only operates on 3x3 matrices.
 
-.. code:: rust
+::
 
    // TODO: remove this when you're done with your implementation.
    #![allow(unused_variables, dead_code)]

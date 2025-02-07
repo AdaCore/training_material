@@ -10,7 +10,7 @@ We will create a few utility functions for 3-dimensional geometry,
 representing a point as :rust:`[f64;3]`. It is up to you to determine the
 function signatures.
 
-.. code:: rust
+::
 
    // Calculate the magnitude of a vector by summing the squares of its coordinates
    // and taking the square root. Use the `sqrt()` method to calculate the square
