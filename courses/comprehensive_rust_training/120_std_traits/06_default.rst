@@ -56,4 +56,4 @@ Details
 -  The Rust standard library is aware that types can implement
    :rust:`Default` and provides convenience methods that use it.
 -  The :rust:`..` syntax is called
-  `struct update syntax <https://doc.rust-lang.org/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax>`__.
+   `struct update syntax <https://doc.rust-lang.org/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax>`__.

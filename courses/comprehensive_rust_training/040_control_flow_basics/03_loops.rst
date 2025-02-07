@@ -51,7 +51,7 @@ iterates over ranges of values or the items in a collection:
 "for" Details
 ---------------
 
--  Under the hood :rust:`for` loops use a concept called ?iterators? to
+-  Under the hood :rust:`for` loops use a concept called :dfn:`iterators` to
    handle iterating over different kinds of ranges/collections.
    Iterators will be discussed in more detail later.
 -  Note that the first :rust:`for` loop only iterates to :rust:`4`. Show the

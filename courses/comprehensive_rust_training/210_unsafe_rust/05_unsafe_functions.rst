@@ -76,12 +76,6 @@ conditions to avoid undefined behaviour.
        println!("a = {}, b = {}", a, b);
    }
 
----------
-Details
----------
-
-.. _calling-unsafe-functions-1:
-
 --------------------------
 Calling Unsafe Functions
 --------------------------

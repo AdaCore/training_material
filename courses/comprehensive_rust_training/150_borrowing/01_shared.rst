@@ -35,10 +35,6 @@ Details
 This slide is a review of the material on references from day 1,
 expanding slightly to include function arguments and return values.
 
-=================
-More to Explore
-=================
-
 -----------------
 More to Explore
 -----------------

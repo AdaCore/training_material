@@ -94,7 +94,7 @@ escape.
 "RefCell" Details
 -------------------
 
--  :rust:`RefCell` enforces Rust?s usual borrowing rules (either multiple
+-  :rust:`RefCell` enforces Rust's usual borrowing rules (either multiple
    shared references or a single exclusive reference) with a runtime
    check. In this case, all borrows are very short and never overlap, so
    the checks always succeed.

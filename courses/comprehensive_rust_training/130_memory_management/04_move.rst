@@ -109,14 +109,6 @@ In the :rust:`say_hello` example:
    making move semantics the default, and by forcing programmers to make
    clones explicit.
 
-=================
-More to Explore
-=================
-
------------------
-More to Explore
------------------
-
 --------------------------------
 Defensive Copies in Modern C++
 --------------------------------

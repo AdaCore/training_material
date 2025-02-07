@@ -64,10 +64,6 @@ Details
    :rust:`Result` and :rust:`Option` types. :rust:`use anyhow::Context` is necessary
    to enable :rust:`.context()` and :rust:`.with_context()` on those types.
 
-=================
-More to Explore
-=================
-
 -----------------
 More to Explore
 -----------------

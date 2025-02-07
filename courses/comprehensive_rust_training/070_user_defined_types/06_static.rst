@@ -33,10 +33,6 @@ Details
 -  :rust:`static` provides object identity: an address in memory and state
    as required by types with interior mutability such as :rust:`Mutex<T>`.
 
-=================
-More to Explore
-=================
-
 -----------------
 More to Explore
 -----------------

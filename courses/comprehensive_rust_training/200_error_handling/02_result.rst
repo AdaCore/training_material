@@ -51,10 +51,6 @@ Details
    always see in your source code where proper error handling is being
    skipped.
 
-=================
-More to Explore
-=================
-
 -----------------
 More to Explore
 -----------------

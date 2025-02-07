@@ -57,10 +57,6 @@ Key Points:
 -  The condition defined in the guard applies to every expression in a
    pattern with an :rust:`|`.
 
-=================
-More To Explore
-=================
-
 -----------------
 More To Explore
 -----------------

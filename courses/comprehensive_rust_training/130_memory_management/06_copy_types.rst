@@ -59,10 +59,6 @@ In the above example, try the following:
    now in the :rust:`println!` for :rust:`p1`.
 -  Show that it works if you clone :rust:`p1` instead.
 
-=================
-More to Explore
-=================
-
 -----------------
 More to Explore
 -----------------
