@@ -13,10 +13,6 @@ languages. They are used for pattern matching:
 -  :rust:`let else` expressions
 -  :rust:`while let` expressions
 
-========================
-"if let" expressions
-========================
-
 ------------------------
 "if let" expressions
 ------------------------
@@ -41,10 +37,6 @@ pattern:
        sleep_for(-10.0);
        sleep_for(0.8);
    }
-
-==========================
-"let else" expressions
-==========================
 
 --------------------------
 "let else" expressions
@@ -99,10 +91,6 @@ returns :rust:`Some(c)` until the string is empty, after which it will
 return :rust:`None`. The :rust:`while let` lets us keep iterating through all
 items.
 
----------
-Details
----------
-
 --------
 if-let
 --------
@@ -141,10 +129,6 @@ The rewritten version is:
 
        return Ok(digit);
    }
-
-===========
-while-let
-===========
 
 -----------
 while-let
