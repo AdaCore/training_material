@@ -30,7 +30,7 @@ What about integer overflow? In C and C++ overflow of *signed* integers
 is actually undefined, and might do unknown things at runtime. In Rust,
 it's defined.
 
-Change the :rust:`i32`\ 's to :rust:`i16` to see an integer overflow, which
+Change the :rust:`i32` to :rust:`i16` to see an integer overflow, which
 panics (checked) in a debug build and wraps in a release build. There
 are other options, such as overflowing, saturating, and carrying. These
 are accessed with method syntax, e.g.,

@@ -48,7 +48,7 @@ Details
    crates with a convenient, short path.
 
 -  For the most part, only items that appear in a module need to be
-   :rust:`use`\ 'd. However, a trait must be in scope to call any methods on
+   :rust:`use`. However, a trait must be in scope to call any methods on
    that trait, even if a type implementing that trait is already in
    scope. For example, to use the :rust:`read_to_string` method on a type
    implementing the :rust:`Read` trait, you need to :rust:`use std::io::Read`.

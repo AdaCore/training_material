@@ -51,7 +51,7 @@ Details
       this mostly explains the structure of the sidebar in the
       documentation.
    -  :rust:`String` implements :rust:`Deref<Target = str>` which transparently
-      gives it access to :rust:`str`\ 's methods.
+      gives it access to :rust:`str` methods.
    -  Write and compare :rust:`let s3 = s1.deref();` and :rust:`let s3 = &*s1;`.
 
 -  :rust:`String` is implemented as a wrapper around a vector of bytes, many

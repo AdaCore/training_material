@@ -50,6 +50,6 @@ Details
    of useful attributes to help define error types in a compact way.
 -  The message from :rust:`#[error]` is used to derive the :rust:`Display`
    trait.
--  Note that the (:rust:`thiserror::`)\ :rust:`Error` derive macro, while it has
-   the effect of implementing the (:rust:`std::error::`)\ :rust:`Error` trait,
+-  Note that the (:rust:`thiserror::`) :rust:`Error` derive macro, while it has
+   the effect of implementing the (:rust:`std::error::`) :rust:`Error` trait,
    is not the same this; traits and macros do not share a namespace.

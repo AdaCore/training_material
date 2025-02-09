@@ -38,7 +38,7 @@ Details
 -  To easily create a slice of the full array, we can therefore use
    :rust:`&a[..]`.
 
--  :rust:`s` is a reference to a slice of :rust:`i32`\ s. Notice that the type
+-  :rust:`s` is a reference to a slice of :rust:`i32`. Notice that the type
    of :rust:`s` (:rust:`&[i32]`) no longer mentions the array length. This
    allows us to perform computation on slices of different sizes.
 

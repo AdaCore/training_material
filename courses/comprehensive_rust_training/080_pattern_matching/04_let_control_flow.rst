@@ -106,7 +106,7 @@ if-let
 let-else
 ----------
 
-:rust:`if-let`\ s can pile up, as shown. The :rust:`let-else` construct supports
+:rust:`if-let` can pile up, as shown. The :rust:`let-else` construct supports
 flattening this nested code. Rewrite the awkward version for students,
 so they can see the transformation.
 

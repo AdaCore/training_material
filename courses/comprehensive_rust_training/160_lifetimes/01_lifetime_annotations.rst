@@ -49,7 +49,7 @@ Details
 
 In this example, the compiler does not know what lifetime to infer for
 :rust:`p3`. Looking inside the function body shows that it can only safely
-assume that :rust:`p3`\ 's lifetime is the shorter of :rust:`p1` and :rust:`p2`. But
+assume that :rust:`p3` lifetime is the shorter of :rust:`p1` and :rust:`p2`. But
 just like types, Rust requires explicit annotations of lifetimes on
 function arguments and return values.
 
