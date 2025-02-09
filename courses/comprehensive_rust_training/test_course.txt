@@ -1,3 +1,2 @@
 100_generics.rst
 110_std_types.rst
-120_std_traits.rst
