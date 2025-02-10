@@ -1,6 +1,7 @@
-120_std_traits.rst
-130_memory_management.rst
 140_smart_pointers.rst
 150_borrowing.rst
+160_lifetimes.rst
+170_iterators.rst
+
 
 
