@@ -1,2 +1,0 @@
-140_smart_pointers.rst
-180_modules.rst
