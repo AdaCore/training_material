@@ -1,3 +1,2 @@
 140_smart_pointers.rst
-150_borrowing.rst
 180_modules.rst
