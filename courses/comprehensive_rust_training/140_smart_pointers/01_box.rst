@@ -1,9 +1,9 @@
 ============
-"Box<T>"
+"Box"
 ============
 
 ------------
-"Box<T>"
+"Box"
 ------------
 
 `Box <https://doc.rust-lang.org/std/boxed/struct.Box.html>`__ is an
