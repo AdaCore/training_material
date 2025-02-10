@@ -3,7 +3,6 @@
 030_types_and_values.rst
 040_control_flow_basics.rst
 050_tuples_and_arrays.rst
-060_references.rst
 070_user_defined_types.rst
 080_pattern_matching.rst
 090_methods_and_traits.rst
