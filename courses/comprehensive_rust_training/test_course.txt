@@ -1,3 +1,4 @@
-160_lifetimes.rst
-170_iterators.rst
 180_modules.rst
+190_testing.rst
+200_error_handling.rst
+210_unsafe_rust.rst
