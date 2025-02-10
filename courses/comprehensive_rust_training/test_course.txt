@@ -1,4 +1,10 @@
-180_modules.rst
-190_testing.rst
-200_error_handling.rst
-210_unsafe_rust.rst
+010_introduction.rst
+020_hello_world.rst
+030_types_and_values.rst
+040_control_flow_basics.rst
+050_tuples_and_arrays.rst
+060_references.rst
+070_user_defined_types.rst
+080_pattern_matching.rst
+090_methods_and_traits.rst
+100_generics.rst
