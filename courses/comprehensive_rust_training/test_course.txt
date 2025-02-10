@@ -1,7 +1,3 @@
-140_smart_pointers.rst
-150_borrowing.rst
 160_lifetimes.rst
 170_iterators.rst
-
-
-
+180_modules.rst
