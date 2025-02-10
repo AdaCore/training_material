@@ -37,4 +37,3 @@ Smart Pointers
 .. container:: PRELUDE END
 
 .. include:: 140_smart_pointers/01_box.rst
-.. include:: 140_smart_pointers/02_rc.rst
