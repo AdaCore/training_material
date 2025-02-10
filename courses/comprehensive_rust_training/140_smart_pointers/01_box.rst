@@ -64,3 +64,23 @@ indirection:
    :                            :     :                                                 :
    :                            :     :                                                 :
    '- - - - - - - - - - - - - - '     '- - - - - - - - - - - - - - - - - - - - - - - - -'
+
+---------
+Details
+---------
+
+-  :rust:`Box` is like :rust:`std::unique_ptr` in C++, except that it's
+   guaranteed to be not null.
+
+-  A :rust:`Box` can be useful when you:
+
+   -  have a type whose size can't be known at compile time, but the
+      Rust compiler wants to know an exact size.
+   -  want to transfer ownership of a large amount of data. To avoid
+      copying large amounts of data on the stack, instead store the data
+      on the heap in a :rust:`Box` so only the pointer is moved.
+
+-  If :rust:`Box` was not used and we attempted to embed a :rust:`List` directly
+   into the :rust:`List`, the compiler would not be able to compute a fixed
+   size for the struct in memory (the :rust:`List` would be of infinite
+   size).
