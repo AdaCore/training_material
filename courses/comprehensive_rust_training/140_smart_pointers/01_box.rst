@@ -16,19 +16,6 @@ owned pointer to data on the heap:
        println!("five: {}", *five);
    }
 
-.. code:: bob
-
-    Stack                     Heap
-   .- - - - - - -.     .- - - - - - -.
-   :             :     :             :
-   :    five     :     :             :
-   :   +-----+   :     :   +-----+   :
-   :   | o---|---+-----+-->|  5  |   :
-   :   +-----+   :     :   +-----+   :
-   :             :     :             :
-   :             :     :             :
-   `- - - - - - -'     `- - - - - - -'
-
 :rust:`Box<T>` implements :rust:`Deref<Target = T>`, which means that you can
 `call methods from T directly on a Box<T> <https://doc.rust-lang.org/std/ops/trait.Deref.html#more-on-deref-coercion>`__.
 
