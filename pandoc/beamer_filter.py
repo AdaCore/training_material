@@ -785,27 +785,30 @@ def format_menu(literal_text):
 
 """
 "url" role
-Pretty-print URL
+Convert text to a LaTeX-based hyperlink.
+If the text is in the format of `some text <some link>` then we will use
+a LaTeX "href" where "some text" is displayed and links to <some link>.
+Otherwise, we will use "url" where the whole string is used
+NOTE: For some reason, href's are not clickable in the PDF. For now,
+we'll use a parenthesized link (which is clickable) rather than a
+hidden one
 """
 
 
 def format_url(literal_text):
-    # white text on box of color
-    url = latex_escape(literal_text)
 
-    # shrink based on length of actual (not escaped) text
-    url_text = ""
-    if len(literal_text) <= 60:
-        url_text = "\\normalsize{" + url + "}"
-    elif len(literal_text) <= 67:
-        url_text = "\\small{" + url + "}"
-    elif len(literal_text) <= 71:
-        url_text = "\\footnotesize{" + url + "}"
-    elif len(literal_text) <= 80:
-        url_text = "\\scriptsize{" + url + "}"
-    else:
-        url_text = "\\tiny{" + url + "}"
-    return latex_inline("{" + latex_box(latex_color(url_text, "adacore1")) + "}")
+    # href
+    # if literal_text.endswith(">"):
+    #    first = literal_text.rfind("<")
+    #    if first > 0:
+    #        url = literal_text[first+1:len(literal_text)-1]
+    #        text = literal_text[0:first-1].strip()
+    #        if len(text) > 0:
+    #            text = latex_escape(text)
+    #            return latex_inline("\\href{" + url + "}{" + text + "}")
+    #
+    # anything else
+    return latex_inline("\\url{" + literal_text + "}")
 
 
 """
