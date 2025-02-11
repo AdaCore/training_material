@@ -7,7 +7,7 @@ Exercise: Protobuf Parsing
 ----------------------------
 
 In this exercise, you will build a parser for the
-`protobuf binary encoding <https://protobuf.dev/programming-guides/encoding/>`__. Don't
+:url:`protobuf binary encoding <https://protobuf.dev/programming-guides/encoding/>`. Don't
 worry, it's simpler than it seems! This illustrates a common parsing
 pattern, passing slices of data. The underlying data itself is never
 copied.

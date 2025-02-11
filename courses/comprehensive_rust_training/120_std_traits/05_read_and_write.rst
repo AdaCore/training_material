@@ -6,9 +6,9 @@
 ``Read`` and ``Write``
 ------------------------
 
-Using `Read <https://doc.rust-lang.org/std/io/trait.Read.html>`__
+Using :url:`Read <https://doc.rust-lang.org/std/io/trait.Read.html>`
 and
-`BufRead <https://doc.rust-lang.org/std/io/trait.BufRead.html>`__,
+:url:`BufRead <https://doc.rust-lang.org/std/io/trait.BufRead.html>`,
 you can abstract over ``u8`` sources:
 
 .. code:: rust,editable
@@ -30,7 +30,7 @@ you can abstract over ``u8`` sources:
    }
 
 Similarly,
-`Write <https://doc.rust-lang.org/std/io/trait.Write.html>`__ lets
+:url:`Write <https://doc.rust-lang.org/std/io/trait.Write.html>` lets
 you abstract over ``u8`` sinks:
 
 .. code:: rust,editable

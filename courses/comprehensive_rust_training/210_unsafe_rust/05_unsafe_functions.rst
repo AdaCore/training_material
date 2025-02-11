@@ -101,7 +101,7 @@ general any C function might have undefined behaviour under any
 arbitrary circumstances.
 
 The ``"C"`` in this example is the ABI;
-`other ABIs are available too <https://doc.rust-lang.org/reference/items/external-blocks.html>`__.
+:url:`other ABIs are available too <https://doc.rust-lang.org/reference/items/external-blocks.html>`.
 
 .. _writing-unsafe-functions-1:
 

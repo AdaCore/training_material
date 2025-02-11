@@ -7,7 +7,7 @@
 --------------------
 
 The
-`Iterator <https://doc.rust-lang.org/std/iter/trait.Iterator.html>`__
+:url:`Iterator <https://doc.rust-lang.org/std/iter/trait.Iterator.html>`
 trait defines how an object can be used to produce a sequence of values.
 For example, if we wanted to create an iterator that can produce the
 elements of a slice it might look something like this:
@@ -63,7 +63,7 @@ More to Explore
 -----------------
 
 -  The "real" version of ``SliceIter`` is the
-   `slice::Iter <https://doc.rust-lang.org/stable/std/slice/struct.Iter.html>`__
+   :url:`slice::Iter <https://doc.rust-lang.org/stable/std/slice/struct.Iter.html>`
    type in the standard library, however the real version uses pointers
    under the hood instead of an index in order to eliminate bounds
    checks.

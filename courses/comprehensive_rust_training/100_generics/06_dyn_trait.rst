@@ -70,7 +70,7 @@ Details
    implementation to use.
 
 -  When using ``dyn Trait``, it instead uses dynamic dispatch through a
-   `virtual method table <https://en.wikipedia.org/wiki/Virtual_method_table>`__
+   :url:`virtual method table <https://en.wikipedia.org/wiki/Virtual_method_table>`
    (vtable). This means that there's a single version of ``fn dynamic``
    that is used regardless of what type of ``Pet`` is passed in.
 

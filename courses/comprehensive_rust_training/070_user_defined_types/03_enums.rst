@@ -93,7 +93,7 @@ Rust has several optimizations it can employ to make enums take up less
 space.
 
 -  Null pointer optimization: For
-   `some types <https://doc.rust-lang.org/std/option/#representation>`__, Rust
+   :url:`some types <https://doc.rust-lang.org/std/option/#representation>`, Rust
    guarantees that ``size_of::<T>()`` equals ``size_of::<Option<T>>()``.
 
    Example code if you want to show how the bitwise representation *may*

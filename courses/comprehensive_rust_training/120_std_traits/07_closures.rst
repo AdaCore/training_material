@@ -8,9 +8,9 @@ Closures
 
 Closures or lambda expressions have types which cannot be named.
 However, they implement special
-`Fn <https://doc.rust-lang.org/std/ops/trait.Fn.html>`__,
-`FnMut <https://doc.rust-lang.org/std/ops/trait.FnMut.html>`__, and
-`FnOnce <https://doc.rust-lang.org/std/ops/trait.FnOnce.html>`__
+:url:`Fn <https://doc.rust-lang.org/std/ops/trait.Fn.html>`,
+:url:`FnMut <https://doc.rust-lang.org/std/ops/trait.FnMut.html>`, and
+:url:`FnOnce <https://doc.rust-lang.org/std/ops/trait.FnOnce.html>`
 traits:
 
 .. code:: rust,editable

@@ -13,12 +13,12 @@ directory.
 
 You will want to consult the manual pages:
 
--  `opendir(3) <https://man7.org/linux/man-pages/man3/opendir.3.html>`__
--  `readdir(3) <https://man7.org/linux/man-pages/man3/readdir.3.html>`__
--  `closedir(3) <https://man7.org/linux/man-pages/man3/closedir.3.html>`__
+-  :url:`opendir(3) <https://man7.org/linux/man-pages/man3/opendir.3.html>`
+-  :url:`readdir(3) <https://man7.org/linux/man-pages/man3/readdir.3.html>`
+-  :url:`closedir(3) <https://man7.org/linux/man-pages/man3/closedir.3.html>`
 
 You will also want to browse the
-`std::ffi <https://doc.rust-lang.org/std/ffi/>`__ module. There you
+:url:`std::ffi <https://doc.rust-lang.org/std/ffi/>` module. There you
 find a number of string types which you need for the exercise:
 
 .. list-table::
@@ -28,15 +28,15 @@ find a number of string types which you need for the exercise:
      - Encoding
      - Use
 
-   * - `str <https://doc.rust-lang.org/std/primitive.str.html>`__ and `String <https://doc.rust-lang.org/std/string/struct.String.html>`__
+   * - :url:`str <https://doc.rust-lang.org/std/primitive.str.html>` and :url:`String <https://doc.rust-lang.org/std/string/struct.String.html>`
      - UTF-8
      - Text processing in Rust
 
-   * - `CStr <https://doc.rust-lang.org/std/ffi/struct.CStr.html>`__ and `CString <https://doc.rust-lang.org/std/ffi/struct.CString.html>`__
+   * - :url:`CStr <https://doc.rust-lang.org/std/ffi/struct.CStr.html>` and :url:`CString <https://doc.rust-lang.org/std/ffi/struct.CString.html>`
      - NUL-terminated
      - Communicating with C functions
 
-   * - `OsStr <https://doc.rust-lang.org/std/ffi/struct.OsStr.html>`__ and `OsString <https://doc. rust-lang.org/std/ffi/struct.OsString.html>`__
+   * - :url:`OsStr <https://doc.rust-lang.org/std/ffi/struct.OsStr.html>` and :url:`OsString <https://doc. rust-lang.org/std/ffi/struct.OsString.html>`
      - OS-specific
      - Communicating with the OS
 
@@ -51,12 +51,12 @@ You will convert between all these types:
    for "some unknown data",
 -  ``&[u8]`` to ``&OsStr``: ``&OsStr`` is a step towards ``OsString``,
    use
-   `OsStrExt <https://doc.rust-lang.org/std/os/unix/ffi/trait.OsStrExt.html>`__
+   :url:`OsStrExt <https://doc.rust-lang.org/std/os/unix/ffi/trait.OsStrExt.html>`
    to create it,
 -  ``&OsStr`` to ``OsString``: you need to clone the data in ``&OsStr``
    to be able to return it and call ``readdir`` again.
 
-The `Nomicon <https://doc.rust-lang.org/nomicon/ffi.html>`__ also has a
+The :url:`Nomicon <https://doc.rust-lang.org/nomicon/ffi.html>` also has a
 very useful chapter about FFI.
 
 Copy the code below to https://play.rust-lang.org/ and fill in the

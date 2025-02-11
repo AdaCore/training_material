@@ -40,7 +40,7 @@ wherever they are used:
    }
 
 According to the
-`Rust RFC Book <https://rust-lang.github.io/rfcs/0246-const-vs-static.html>`__
+:url:`Rust RFC Book <https://rust-lang.github.io/rfcs/0246-const-vs-static.html>`
 these are inlined upon use.
 
 Only functions marked ``const`` can be called at compile time to

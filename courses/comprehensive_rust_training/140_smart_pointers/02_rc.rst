@@ -6,7 +6,7 @@
 ``Rc``
 --------
 
-`Rc <https://doc.rust-lang.org/std/rc/struct.Rc.html>`__ is a
+:url:`Rc <https://doc.rust-lang.org/std/rc/struct.Rc.html>` is a
 reference-counted shared pointer. Use this when you need to refer to the
 same data from multiple places:
 
@@ -22,11 +22,11 @@ same data from multiple places:
        println!("b: {b}");
    }
 
--  See ```Arc`` <../concurrency/shared-state/arc.md>`__ and
-   `Mutex <https://doc.rust-lang.org/std/sync/struct.Mutex.html>`__
+-  See ```Arc`:url:` <../concurrency/shared-state/arc.md>` and
+   :url:`Mutex <https://doc.rust-lang.org/std/sync/struct.Mutex.html>`
    if you are in a multi-threaded context.
 -  You can *downgrade* a shared pointer into a
-   `Weak <https://doc.rust-lang.org/std/rc/struct.Weak.html>`__
+   :url:`Weak <https://doc.rust-lang.org/std/rc/struct.Weak.html>`
    pointer to create cycles that will get dropped.
 
 .. raw:: html

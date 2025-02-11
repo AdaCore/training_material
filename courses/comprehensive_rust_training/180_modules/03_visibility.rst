@@ -52,7 +52,7 @@ Additionally, there are advanced ``pub(...)`` specifiers to restrict the
 scope of public visibility.
 
 -  See the
-  `Rust Reference <https://doc.rust-lang.org/reference/visibility-and-privacy.html#pubin-path-pubcrate-pubsuper-and-pubself>`__.
+  :url:`Rust Reference <https://doc.rust-lang.org/reference/visibility-and-privacy.html#pubin-path-pubcrate-pubsuper-and-pubself>`.
 -  Configuring ``pub(crate)`` visibility is a common pattern.
 -  Less commonly, you can give visibility to a specific path.
 -  In any case, visibility must be granted to an ancestor module (and
