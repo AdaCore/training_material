@@ -128,6 +128,11 @@ if __name__ == "__main__":
         help="Give details as to why a file failed the check",
         action="store_true",
     )
+    ap.add_argument(
+        "--update",
+        help="Run 'rst_update_prelude' script to fix errors",
+        action="store_true",
+    )
     args = ap.parse_args()
 
     total_failures = 0
@@ -145,7 +150,16 @@ if __name__ == "__main__":
             failures = process_one_file(one, args.explain)
             if len(failures) > 0:
                 total_failures = total_failures + 1
-                if args.explain:
+                if args.update:
+                    subprocess.check_call(
+                        str(sys.executable)
+                        + " "
+                        + str(os.path.join(CONTRIB, "rst_update_prelude.py"))
+                        + " "
+                        + "-i "
+                        + str(one)
+                    )
+                elif args.explain:
                     print("FAIL: " + str(one))
                     for line in failures:
                         print("  " + line)
