@@ -118,12 +118,16 @@ def process_one_file(filename, explain):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument(
-        "--files-to-check", type=Path, default=CONTRIB / "rst_files_with_prelude.txt",
-        help="Contains list of files (wildcards allowed) relative to " + str(PROJECT)
+        "--files-to-check",
+        type=Path,
+        default=CONTRIB / "rst_files_with_prelude.txt",
+        help="Contains list of files (wildcards allowed) relative to " + str(PROJECT),
     )
-    ap.add_argument("--explain",
-                    help="Give details as to why a file failed the check",
-                    action="store_true")
+    ap.add_argument(
+        "--explain",
+        help="Give details as to why a file failed the check",
+        action="store_true",
+    )
     args = ap.parse_args()
 
     total_failures = 0
