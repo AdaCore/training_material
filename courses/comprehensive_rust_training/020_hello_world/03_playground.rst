@@ -6,7 +6,7 @@ Playground
 Playground
 ------------
 
-The `Rust Playground <https://play.rust-lang.org/>`__ provides an easy
+The :url:`Rust Playground <https://play.rust-lang.org/>` provides an easy
 way to run short Rust programs, and is the basis for the examples and
 exercises in this course. Try running the "hello-world" program it
 starts with. It comes with a few handy features:

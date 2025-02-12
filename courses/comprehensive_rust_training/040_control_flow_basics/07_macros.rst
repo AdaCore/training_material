@@ -12,7 +12,7 @@ end. The Rust standard library includes an assortment of useful macros.
 
 -  ``println!(format, ..)`` prints a line to standard output, applying
    formatting described in
-   `std::fmt <https://doc.rust-lang.org/std/fmt/index.html>`__.
+   :url:`std::fmt <https://doc.rust-lang.org/std/fmt/index.html>`.
 -  ``format!(format, ..)`` works just like ``println!`` but returns the
    result as a string.
 -  ``dbg!(expression)`` logs the value of the expression and returns it.

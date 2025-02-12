@@ -7,7 +7,7 @@
 ------------
 
 Our primary mechanism for error handling in Rust is the
-`Result <https://doc.rust-lang.org/stable/std/result/enum.Result.html>`__
+:url:`Result <https://doc.rust-lang.org/stable/std/result/enum.Result.html>`
 enum, which we briefly saw when discussing standard library types.
 
 .. code:: rust,editable

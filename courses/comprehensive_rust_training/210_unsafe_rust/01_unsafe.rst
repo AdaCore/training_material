@@ -28,8 +28,8 @@ Unsafe Rust gives you access to five new capabilities:
 
 We will briefly cover unsafe capabilities next. For full details, please
 see
-`Chapter 19.1 in the Rust Book <https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html>`__ and
-the `Rustonomicon <https://doc.rust-lang.org/nomicon/>`__.
+:url:`Chapter 19.1 in the Rust Book <https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html>` and
+the :url:`Rustonomicon <https://doc.rust-lang.org/nomicon/>`.
 
 .. raw:: html
 

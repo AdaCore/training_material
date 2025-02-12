@@ -6,7 +6,7 @@ String
 String
 --------
 
-`String <https://doc.rust-lang.org/std/string/struct.String.html>`__
+:url:`String <https://doc.rust-lang.org/std/string/struct.String.html>`
 is a growable UTF-8 encoded string:
 
 .. code:: rust,editable
@@ -26,7 +26,7 @@ is a growable UTF-8 encoded string:
    }
 
 ``String`` implements
-`Deref<Target = str> <https://doc.rust-lang.org/std/string/struct.String.html#deref-methods-str>`__,
+:url:`Deref<Target = str> <https://doc.rust-lang.org/std/string/struct.String.html#deref-methods-str>`,
 which means that you can call all ``str`` methods on a ``String``.
 
 .. raw:: html
@@ -43,7 +43,7 @@ Details
 -  ``String::chars`` returns an iterator over the actual characters.
    Note that a ``char`` can be different from what a human will consider
    a "character" due to
-   `grapheme clusters <https://docs.rs/unicode-segmentation/latest/unicode_segmentation/struct.Graphemes.html>`__.
+   :url:`grapheme clusters <https://docs.rs/unicode-segmentation/latest/unicode_segmentation/struct.Graphemes.html>`.
 -  When people refer to strings they could either be talking about
    ``&str`` or ``String``.
 -  When a type implements ``Deref<Target = T>``, the compiler will let
@@ -67,7 +67,7 @@ Details
       character boundaries or not.
 
 -  Many types can be converted to a string with the
-   `to_string <https://doc.rust-lang.org/std/string/trait.ToString.html#tymethod.to_string>`__
+   :url:`to_string <https://doc.rust-lang.org/std/string/trait.ToString.html#tymethod.to_string>`
    method. This trait is automatically implemented for all types that
    implement ``Display``, so anything that can be formatted can also be
    converted to a string.
