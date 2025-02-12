@@ -74,14 +74,14 @@ def compare_content(title, actual_str):
     return retval
 
 
-def process_one_file(filename, interactive):
+def process_one_file(filename, explain):
     global VALIDATORS
 
     failures = None
 
     sections_needed = ["BEGIN", "ROLES", "SYMBOLS", "REQUIRES", "PROVIDES", "END"]
 
-    if interactive:
+    if explain:
         failures = []
     else:
         failures = ""
@@ -99,12 +99,12 @@ def process_one_file(filename, interactive):
             if name in VALIDATORS.keys():
                 validator = VALIDATORS[name]
                 if not globals()[validator](name, content):
-                    if interactive:
+                    if explain:
                         failures.extend(compare_content(name, content))
                     else:
                         failures = failures + " " + name
     if len(sections_needed) > 0:
-        if interactive:
+        if explain:
             failures.append("Missing Section(s)")
             for section in sections_needed:
                 failures.append("   " + section)
@@ -118,9 +118,12 @@ def process_one_file(filename, interactive):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument(
-        "--files-to-check", type=Path, default=CONTRIB / "rst_files_with_prelude.txt"
+        "--files-to-check", type=Path, default=CONTRIB / "rst_files_with_prelude.txt",
+        help="Contains list of files (wildcards allowed) relative to " + str(PROJECT)
     )
-    ap.add_argument("--interactive", action="store_true")
+    ap.add_argument("--explain",
+                    help="Give details as to why a file failed the check",
+                    action="store_true")
     args = ap.parse_args()
 
     total_failures = 0
@@ -135,10 +138,10 @@ if __name__ == "__main__":
             continue
 
         for one in f_prel:
-            failures = process_one_file(one, args.interactive)
+            failures = process_one_file(one, args.explain)
             if len(failures) > 0:
                 total_failures = total_failures + 1
-                if args.interactive:
+                if args.explain:
                     print("FAIL: " + str(one))
                     for line in failures:
                         print("  " + line)
