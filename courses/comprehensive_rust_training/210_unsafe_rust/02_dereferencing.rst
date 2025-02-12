@@ -47,7 +47,7 @@ it satisfies the safety requirements of the unsafe operations it is
 doing.
 
 In the case of pointer dereferences, this means that the pointers must
-be `valid <https://doc.rust-lang.org/std/ptr/index.html#safety>`__,
+be :url:`valid <https://doc.rust-lang.org/std/ptr/index.html#safety>`,
 i.e.:
 
 -  The pointer must be non-null.

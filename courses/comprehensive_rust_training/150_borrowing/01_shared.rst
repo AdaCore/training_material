@@ -55,8 +55,8 @@ Notes on stack returns and inlining:
    compiler can eliminate the copy operation, by inlining the call to
    add into main. Change the above code to print stack addresses and run
    it on the
-   `Playground <https://play.rust-lang.org/?version=stable&mode=release&edition=2021&gist=0cb13be1c05d7e3446686ad9947c4671>`__
-   or look at the assembly in `Godbolt <https://rust.godbolt.org/>`__.
+   :url:`Playground <https://play.rust-lang.org/?version=stable&mode=release&edition=2021&gist=0cb13be1c05d7e3446686ad9947c4671>`
+   or look at the assembly in :url:`Godbolt <https://rust.godbolt.org/>`.
    In the "DEBUG" optimization level, the addresses should change, while
    they stay the same when changing to the "RELEASE" setting:
 

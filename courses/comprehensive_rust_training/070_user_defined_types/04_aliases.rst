@@ -29,7 +29,7 @@ interchangeably.
 Details
 ---------
 
--  A `newtype <tuple-structs.html>`__ is often a better alternative
+-  A :url:`newtype <tuple-structs.html>` is often a better alternative
    since it creates a distinct type. Prefer
    ``struct InventoryCount(usize)`` to ``type InventoryCount = usize``.
 

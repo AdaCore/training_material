@@ -66,7 +66,7 @@ Details
    -  Operator overloading is discussed on Day 3 (generics).
 
 -  The example is a subtle reference to the
-   `Mars Climate Orbiter <https://en.wikipedia.org/wiki/Mars_Climate_Orbiter>`__
+   :url:`Mars Climate Orbiter <https://en.wikipedia.org/wiki/Mars_Climate_Orbiter>`
    failure.
 
 .. raw:: html

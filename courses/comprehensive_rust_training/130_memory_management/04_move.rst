@@ -181,7 +181,7 @@ Key points:
    a double-free when either string goes out of scope.
 
 -  C++ also has
-   `std::move <https://en.cppreference.com/w/cpp/utility/move>`__,
+   :url:`std::move <https://en.cppreference.com/w/cpp/utility/move>`,
    which is used to indicate when a value may be moved from. If the
    example had been ``s2 = std::move(s1)``, no heap allocation would
    take place. After the move, ``s1`` would be in a valid but

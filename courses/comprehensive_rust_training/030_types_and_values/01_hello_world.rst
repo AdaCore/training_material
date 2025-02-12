@@ -43,7 +43,7 @@ Key points:
 
 -  Rust uses macros for situations where you want to have a variable
    number of arguments (no function
-   `overloading <../control-flow-basics/functions.md>`__).
+   :url:`overloading <../control-flow-basics/functions.md>`).
 
 -  Macros being 'hygienic' means they don't accidentally capture
    identifiers from the scope they are used in. Rust macros are actually

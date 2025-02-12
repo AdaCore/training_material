@@ -6,7 +6,7 @@ The ``Default`` Trait
 The ``Default`` Trait
 -----------------------
 
-`Default <https://doc.rust-lang.org/std/default/trait.Default.html>`__
+:url:`Default <https://doc.rust-lang.org/std/default/trait.Default.html>`
 trait produces a default value for a type.
 
 .. code:: rust,editable
@@ -58,7 +58,7 @@ Details
 -  The Rust standard library is aware that types can implement
    ``Default`` and provides convenience methods that use it.
 -  The ``..`` syntax is called
-  `struct update syntax <https://doc.rust-lang.org/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax>`__.
+  :url:`struct update syntax <https://doc.rust-lang.org/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax>`.
 
 .. raw:: html
 

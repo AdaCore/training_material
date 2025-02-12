@@ -8,7 +8,7 @@
 
 The ``Iterator`` trait tells you how to *iterate* once you have created
 an iterator. The related trait
-`IntoIterator <https://doc.rust-lang.org/std/iter/trait.IntoIterator.html>`__
+:url:`IntoIterator <https://doc.rust-lang.org/std/iter/trait.IntoIterator.html>`
 defines how to create an iterator for a type. It is used automatically
 by the ``for`` loop.
 
