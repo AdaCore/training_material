@@ -1,9 +1,9 @@
 =========
-:rust:`Vec`
+"Vec"
 =========
 
 ---------
-:rust:`Vec`
+"Vec"
 ---------
 
 :url:`Vec <https://doc.rust-lang.org/std/vec/struct.Vec.html>` is the

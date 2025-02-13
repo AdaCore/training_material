@@ -1,9 +1,9 @@
 ========
-:rust:`Rc`
+"Rc"
 ========
 
 --------
-:rust:`Rc`
+"Rc"
 --------
 
 :url:`Rc <https://doc.rust-lang.org/std/rc/struct.Rc.html>` is a

@@ -1,9 +1,9 @@
 =============================
-:rust:`Iterator` Helper Methods
+"Iterator" Helper Methods
 =============================
 
 -----------------------------
-:rust:`Iterator` Helper Methods
+"Iterator" Helper Methods
 -----------------------------
 
 In addition to the :rust:`next` method that defines how an iterator behaves,

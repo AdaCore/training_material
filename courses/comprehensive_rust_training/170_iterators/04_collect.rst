@@ -1,9 +1,9 @@
 =============
-:rust:`collect`
+"collect"
 =============
 
 -------------
-:rust:`collect`
+"collect"
 -------------
 
 The

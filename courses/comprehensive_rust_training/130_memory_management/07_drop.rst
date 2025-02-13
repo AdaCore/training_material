@@ -1,9 +1,9 @@
 ====================
-The :rust:`Drop` Trait
+The "Drop" Trait
 ====================
 
 --------------------
-The :rust:`Drop` Trait
+The "Drop" Trait
 --------------------
 
 Values which implement

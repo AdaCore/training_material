@@ -1,9 +1,9 @@
 ===============
-:rust:`thiserror`
+"thiserror"
 ===============
 
 ---------------
-:rust:`thiserror`
+"thiserror"
 ---------------
 
 The :url:`thiserror <https://docs.rs/thiserror/>` crate provides macros

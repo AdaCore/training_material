@@ -1,9 +1,9 @@
 ===========================
-Exercise: Generic :rust:`min`
+Exercise: Generic "min"
 ===========================
 
 ---------------------------
-Exercise: Generic :rust:`min`
+Exercise: Generic "min"
 ---------------------------
 
 In this short exercise, you will implement a generic :rust:`min` function

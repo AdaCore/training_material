@@ -1,9 +1,9 @@
 ==================
-:rust:`IntoIterator`
+"IntoIterator"
 ==================
 
 ------------------
-:rust:`IntoIterator`
+"IntoIterator"
 ------------------
 
 The :rust:`Iterator` trait tells you how to *iterate* once you have created

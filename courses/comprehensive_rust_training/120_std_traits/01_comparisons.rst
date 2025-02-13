@@ -10,7 +10,7 @@ These traits support comparisons between values. All traits can be
 derived for types containing fields that implement these traits.
 
 --------------------------
-:rust:`PartialEq` and :rust:`Eq`
+"PartialEq" and "Eq"
 --------------------------
 
 :rust:`PartialEq` is a partial equivalence relation, with required method
@@ -34,7 +34,7 @@ transitive) and implies :rust:`PartialEq`. Functions that require full
 equivalence will use :rust:`Eq` as a trait bound.
 
 ----------------------------
-:rust:`PartialOrd` and :rust:`Ord`
+"PartialOrd" and "Ord"
 ----------------------------
 
 :rust:`PartialOrd` defines a partial ordering, with a :rust:`partial_cmp`
