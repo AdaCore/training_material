@@ -121,7 +121,9 @@ if __name__ == "__main__":
         "--files-to-check",
         type=Path,
         default=CONTRIB / "rst_files_with_prelude.txt",
-        help="Contains list of files (wildcards allowed) relative to " + str(PROJECT),
+        help=("File containing list of files (wildcards allowed). " +
+              "Can be relative to the repository (" + str(PROJECT) + ") "
+              "or current directory (if no matches in the repository)")
     )
     ap.add_argument(
         "--explain",
