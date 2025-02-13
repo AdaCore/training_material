@@ -168,14 +168,13 @@ if __name__ == "__main__":
             if len(failures) > 0:
                 total_failures = total_failures + 1
                 if args.update:
-                    subprocess.check_call(
-                        str(sys.executable)
-                        + " "
-                        + str(os.path.join(CONTRIB, "rst_update_prelude.py"))
-                        + " "
-                        + "-i "
-                        + str(one)
-                    )
+                    command = [
+                        str(sys.executable),
+                        os.path.join(CONTRIB, "rst_update_prelude.py"),
+                        "--in-place",
+                        one,
+                    ]
+                    subprocess.check_call(command)
                 elif args.explain:
                     print("FAIL: " + str(one))
                     for line in failures:
