@@ -1,18 +1,18 @@
 =======================
-``From`` and ``Into``
+:rust:`From` and :rust:`Into`
 =======================
 
 -----------------------
-``From`` and ``Into``
+:rust:`From` and :rust:`Into`
 -----------------------
 
 Types implement
 :url:`From <https://doc.rust-lang.org/std/convert/trait.From.html>` and
 :url:`Into <https://doc.rust-lang.org/std/convert/trait.Into.html>` to
-facilitate type conversions. Unlike ``as``, these traits correspond to
+facilitate type conversions. Unlike :rust:`as`, these traits correspond to
 lossless, infallible conversions.
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let s = String::from("hello");
@@ -27,7 +27,7 @@ automatically implemented when
 :url:`From <https://doc.rust-lang.org/std/convert/trait.From.html>` is
 implemented:
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let s: String = "hello".into();
@@ -43,12 +43,12 @@ implemented:
 Details
 ---------
 
--  That's why it is common to only implement ``From``, as your type will
-   get ``Into`` implementation too.
+-  That's why it is common to only implement :rust:`From`, as your type will
+   get :rust:`Into` implementation too.
 -  When declaring a function argument input type like "anything that can
-   be converted into a ``String``", the rule is opposite, you should use
-   ``Into``. Your function will accept types that implement ``From`` and
-   those that *only* implement ``Into``.
+   be converted into a :rust:`String`", the rule is opposite, you should use
+   :rust:`Into`. Your function will accept types that implement :rust:`From` and
+   those that *only* implement :rust:`Into`.
 
 .. raw:: html
 

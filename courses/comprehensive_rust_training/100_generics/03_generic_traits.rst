@@ -9,7 +9,7 @@ Generic Traits
 Traits can also be generic, just like types and functions. A trait's
 parameters get concrete types when it is used.
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug)]
    struct Foo(String);
@@ -38,13 +38,13 @@ parameters get concrete types when it is used.
 Details
 ---------
 
--  The ``From`` trait will be covered later in the course, but its
+-  The :rust:`From` trait will be covered later in the course, but its
    :url:`definition in the std docs <https://doc.rust-lang.org/std/convert/trait.From.html>`
    is simple.
 
 -  Implementations of the trait do not need to cover all possible type
-   parameters. Here, ``Foo::from("hello")`` would not compile because
-   there is no ``From<&str>`` implementation for ``Foo``.
+   parameters. Here, :rust:`Foo::from("hello")` would not compile because
+   there is no :rust:`From<&str>` implementation for :rust:`Foo`.
 
 -  Generic traits take types as "input", while associated types are a
    kind of "output" type. A trait can have multiple implementations for

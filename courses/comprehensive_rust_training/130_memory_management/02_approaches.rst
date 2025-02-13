@@ -39,12 +39,12 @@ Details
 This slide is intended to help students coming from other languages to
 put Rust in context.
 
--  C must manage heap manually with ``malloc`` and ``free``. Common
-   errors include forgetting to call ``free``, calling it multiple times
+-  C must manage heap manually with :rust:`malloc` and :rust:`free`. Common
+   errors include forgetting to call :rust:`free`, calling it multiple times
    for the same pointer, or dereferencing a pointer after the memory it
    points to has been freed.
 
--  C++ has tools like smart pointers (``unique_ptr``, ``shared_ptr``)
+-  C++ has tools like smart pointers (:rust:`unique_ptr`, :rust:`shared_ptr`)
    that take advantage of language guarantees about calling destructors
    to ensure memory is freed when a function returns. It is still quite
    easy to mis-use these tools and create similar bugs to C.

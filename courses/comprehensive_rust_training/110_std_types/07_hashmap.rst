@@ -1,14 +1,14 @@
 =============
-``HashMap``
+:rust:`HashMap`
 =============
 
 -------------
-``HashMap``
+:rust:`HashMap`
 -------------
 
 Standard hash map with protection against HashDoS attacks:
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::collections::HashMap;
 
@@ -47,7 +47,7 @@ Standard hash map with protection against HashDoS attacks:
 Details
 ---------
 
--  ``HashMap`` is not defined in the prelude and needs to be brought
+-  :rust:`HashMap` is not defined in the prelude and needs to be brought
    into scope.
 
 -  Try the following lines of code. The first line will see if a book is
@@ -55,7 +55,7 @@ Details
    line will insert the alternative value in the hashmap if the book is
    not found.
 
-   .. code:: rust,ignore
+   .. code:: rust
 
       let pc1 = page_counts
           .get("Harry Potter and the Sorcerer's Stone")
@@ -64,7 +64,7 @@ Details
           .entry("The Hunger Games")
           .or_insert(374);
 
--  Unlike ``vec!``, there is unfortunately no standard ``hashmap!``
+-  Unlike :rust:`vec!`, there is unfortunately no standard :rust:`hashmap!`
    macro.
 
    -  Although, since Rust 1.56, HashMap implements
@@ -72,20 +72,20 @@ Details
       which allows us to easily initialize a hash map from a literal
       array:
 
-      .. code:: rust,ignore
+      .. code:: rust
 
          let page_counts = HashMap::from([
            ("Harry Potter and the Sorcerer's Stone".to_string(), 336),
            ("The Hunger Games".to_string(), 374),
          ]);
 
--  Alternatively HashMap can be built from any ``Iterator`` which yields
+-  Alternatively HashMap can be built from any :rust:`Iterator` which yields
    key-value tuples.
 
 -  This type has several "method-specific" return types, such as
-   ``std::collections::hash_map::Keys``. These types often appear in
+   :rust:`std::collections::hash_map::Keys`. These types often appear in
    searches of the Rust docs. Show students the docs for this type, and
-   the helpful link back to the ``keys`` method.
+   the helpful link back to the :rust:`keys` method.
 
 .. raw:: html
 

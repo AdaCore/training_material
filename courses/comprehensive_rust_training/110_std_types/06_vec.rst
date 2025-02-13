@@ -1,15 +1,15 @@
 =========
-``Vec``
+:rust:`Vec`
 =========
 
 ---------
-``Vec``
+:rust:`Vec`
 ---------
 
 :url:`Vec <https://doc.rust-lang.org/std/vec/struct.Vec.html>` is the
 standard resizable heap-allocated buffer:
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let mut v1 = Vec::new();
@@ -33,9 +33,9 @@ standard resizable heap-allocated buffer:
        println!("{v3:?}");
    }
 
-``Vec`` implements
+:rust:`Vec` implements
 :url:`Deref<Target = [T]> <https://doc.rust-lang.org/std/vec/struct.Vec.html#deref-methods-%5BT%5D>`,
-which means that you can call slice methods on a ``Vec``.
+which means that you can call slice methods on a :rust:`Vec`.
 
 .. raw:: html
 
@@ -43,20 +43,20 @@ which means that you can call slice methods on a ``Vec``.
 Details
 ---------
 
--  ``Vec`` is a type of collection, along with ``String`` and
-   ``HashMap``. The data it contains is stored on the heap. This means
+-  :rust:`Vec` is a type of collection, along with :rust:`String` and
+   :rust:`HashMap`. The data it contains is stored on the heap. This means
    the amount of data doesn't need to be known at compile time. It can
    grow or shrink at runtime.
--  Notice how ``Vec<T>`` is a generic type too, but you don't have to
-   specify ``T`` explicitly. As always with Rust type inference, the
-   ``T`` was established during the first ``push`` call.
--  ``vec![...]`` is a canonical macro to use instead of ``Vec::new()``
+-  Notice how :rust:`Vec<T>` is a generic type too, but you don't have to
+   specify :rust:`T` explicitly. As always with Rust type inference, the
+   :rust:`T` was established during the first :rust:`push` call.
+-  :rust:`vec![...]` is a canonical macro to use instead of :rust:`Vec::new()`
    and it supports adding initial elements to the vector.
--  To index the vector you use ``[`` ``]``, but they will panic if out
-   of bounds. Alternatively, using ``get`` will return an ``Option``.
-   The ``pop`` function will remove the last element.
+-  To index the vector you use :rust:`[` :rust:`]`, but they will panic if out
+   of bounds. Alternatively, using :rust:`get` will return an :rust:`Option`.
+   The :rust:`pop` function will remove the last element.
 -  Slices are covered on day 3. For now, students only need to know that
-   a value of type ``Vec`` gives access to all of the documented slice
+   a value of type :rust:`Vec` gives access to all of the documented slice
    methods, too.
 
 .. raw:: html

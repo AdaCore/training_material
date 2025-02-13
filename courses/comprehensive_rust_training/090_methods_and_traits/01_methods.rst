@@ -7,9 +7,9 @@ Methods
 ---------
 
 Rust allows you to associate functions with your new types. You do this
-with an ``impl`` block:
+with an :rust:`impl` block:
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug)]
    struct CarRace {
@@ -54,21 +54,21 @@ with an ``impl`` block:
        // race.add_lap(42);
    }
 
-The ``self`` arguments specify the "receiver" - the object the method
+The :rust:`self` arguments specify the "receiver" - the object the method
 acts on. There are several common receivers for a method:
 
--  ``&self``: borrows the object from the caller using a shared and
+-  :rust:`&self`: borrows the object from the caller using a shared and
    immutable reference. The object can be used again afterwards.
--  ``&mut self``: borrows the object from the caller using a unique and
+-  :rust:`&mut self`: borrows the object from the caller using a unique and
    mutable reference. The object can be used again afterwards.
--  ``self``: takes ownership of the object and moves it away from the
+-  :rust:`self`: takes ownership of the object and moves it away from the
    caller. The method becomes the owner of the object. The object will
    be dropped (deallocated) when the method returns, unless its
    ownership is explicitly transmitted. Complete ownership does not
    automatically mean mutability.
--  ``mut self``: same as above, but the method can mutate the object.
+-  :rust:`mut self`: same as above, but the method can mutate the object.
 -  No receiver: this becomes a static method on the struct. Typically
-   used to create constructors which are called ``new`` by convention.
+   used to create constructors which are called :rust:`new` by convention.
 
 .. raw:: html
 
@@ -82,25 +82,25 @@ Key Points:
    functions.
 
    -  Methods are called on an instance of a type (such as a struct or
-      enum), the first parameter represents the instance as ``self``.
+      enum), the first parameter represents the instance as :rust:`self`.
    -  Developers may choose to use methods to take advantage of method
       receiver syntax and to help keep them more organized. By using
       methods we can keep all the implementation code in one predictable
       place.
 
--  Point out the use of the keyword ``self``, a method receiver.
+-  Point out the use of the keyword :rust:`self`, a method receiver.
 
-   -  Show that it is an abbreviated term for ``self: Self`` and perhaps
+   -  Show that it is an abbreviated term for :rust:`self: Self` and perhaps
       show how the struct name could also be used.
-   -  Explain that ``Self`` is a type alias for the type the ``impl``
+   -  Explain that :rust:`Self` is a type alias for the type the :rust:`impl`
       block is in and can be used elsewhere in the block.
-   -  Note how ``self`` is used like other structs and dot notation can
+   -  Note how :rust:`self` is used like other structs and dot notation can
       be used to refer to individual fields.
-   -  This might be a good time to demonstrate how the ``&self`` differs
-      from ``self`` by trying to run ``finish`` twice.
-   -  Beyond variants on ``self``, there are also
+   -  This might be a good time to demonstrate how the :rust:`&self` differs
+      from :rust:`self` by trying to run :rust:`finish` twice.
+   -  Beyond variants on :rust:`self`, there are also
      :url:`special wrapper types <https://doc.rust-lang.org/reference/special-types-and-traits.html>`
-      allowed to be receiver types, such as ``Box<Self>``.
+      allowed to be receiver types, such as :rust:`Box<Self>`.
 
 .. raw:: html
 

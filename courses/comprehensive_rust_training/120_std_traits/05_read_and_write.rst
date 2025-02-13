@@ -1,17 +1,17 @@
 ========================
-``Read`` and ``Write``
+:rust:`Read` and :rust:`Write`
 ========================
 
 ------------------------
-``Read`` and ``Write``
+:rust:`Read` and :rust:`Write`
 ------------------------
 
 Using :url:`Read <https://doc.rust-lang.org/std/io/trait.Read.html>`
 and
 :url:`BufRead <https://doc.rust-lang.org/std/io/trait.BufRead.html>`,
-you can abstract over ``u8`` sources:
+you can abstract over :rust:`u8` sources:
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::io::{BufRead, BufReader, Read, Result};
 
@@ -31,9 +31,9 @@ you can abstract over ``u8`` sources:
 
 Similarly,
 :url:`Write <https://doc.rust-lang.org/std/io/trait.Write.html>` lets
-you abstract over ``u8`` sinks:
+you abstract over :rust:`u8` sinks:
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::io::{Result, Write};
 

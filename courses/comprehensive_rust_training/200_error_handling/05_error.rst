@@ -8,10 +8,10 @@ Dynamic Error Types
 
 Sometimes we want to allow any type of error to be returned without
 writing our own enum covering all the different possibilities. The
-``std::error::Error`` trait makes it easy to create a trait object that
+:rust:`std::error::Error` trait makes it easy to create a trait object that
 can contain any error.
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::error::Error;
    use std::fs;
@@ -38,16 +38,16 @@ can contain any error.
 Details
 ---------
 
-The ``read_count`` function can return ``std::io::Error`` (from file
-operations) or ``std::num::ParseIntError`` (from ``String::parse``).
+The :rust:`read_count` function can return :rust:`std::io::Error` (from file
+operations) or :rust:`std::num::ParseIntError` (from :rust:`String::parse`).
 
 Boxing errors saves on code, but gives up the ability to cleanly handle
 different error cases differently in the program. As such it's generally
-not a good idea to use ``Box<dyn Error>`` in the public API of a
+not a good idea to use :rust:`Box<dyn Error>` in the public API of a
 library, but it can be a good option in a program where you just want to
 display the error message somewhere.
 
-Make sure to implement the ``std::error::Error`` trait when defining a
+Make sure to implement the :rust:`std::error::Error` trait when defining a
 custom error type so it can be boxed.
 
 .. raw:: html

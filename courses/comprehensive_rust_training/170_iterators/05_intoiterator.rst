@@ -1,18 +1,18 @@
 ==================
-``IntoIterator``
+:rust:`IntoIterator`
 ==================
 
 ------------------
-``IntoIterator``
+:rust:`IntoIterator`
 ------------------
 
-The ``Iterator`` trait tells you how to *iterate* once you have created
+The :rust:`Iterator` trait tells you how to *iterate* once you have created
 an iterator. The related trait
 :url:`IntoIterator <https://doc.rust-lang.org/std/iter/trait.IntoIterator.html>`
 defines how to create an iterator for a type. It is used automatically
-by the ``for`` loop.
+by the :rust:`for` loop.
 
-.. code:: rust,editable
+.. code:: rust
 
    struct Grid {
        x_coords: Vec<u32>,
@@ -63,35 +63,35 @@ by the ``for`` loop.
 Details
 ---------
 
--  ``IntoIterator`` is the trait that makes for loops work. It is
-   implemented by collection types such as ``Vec<T>`` and references to
-   them such as ``&Vec<T>`` and ``&[T]``. Ranges also implement it. This
+-  :rust:`IntoIterator` is the trait that makes for loops work. It is
+   implemented by collection types such as :rust:`Vec<T>` and references to
+   them such as :rust:`&Vec<T>` and :rust:`&[T]`. Ranges also implement it. This
    is why you can iterate over a vector with
-   ``for i in some_vec { .. }`` but ``some_vec.next()`` doesn't exist.
+   :rust:`for i in some_vec { .. }` but :rust:`some_vec.next()` doesn't exist.
 
-Click through to the docs for ``IntoIterator``. Every implementation of
-``IntoIterator`` must declare two types:
+Click through to the docs for :rust:`IntoIterator`. Every implementation of
+:rust:`IntoIterator` must declare two types:
 
--  ``Item``: the type to iterate over, such as ``i8``,
--  ``IntoIter``: the ``Iterator`` type returned by the ``into_iter``
+-  :rust:`Item`: the type to iterate over, such as :rust:`i8`,
+-  :rust:`IntoIter`: the :rust:`Iterator` type returned by the :rust:`into_iter`
    method.
 
-Note that ``IntoIter`` and ``Item`` are linked: the iterator must have
-the same ``Item`` type, which means that it returns ``Option<Item>``
+Note that :rust:`IntoIter` and :rust:`Item` are linked: the iterator must have
+the same :rust:`Item` type, which means that it returns :rust:`Option<Item>`
 
 The example iterates over all combinations of x and y coordinates.
 
-Try iterating over the grid twice in ``main``. Why does this fail? Note
-that ``IntoIterator::into_iter`` takes ownership of ``self``.
+Try iterating over the grid twice in :rust:`main`. Why does this fail? Note
+that :rust:`IntoIterator::into_iter` takes ownership of :rust:`self`.
 
-Fix this issue by implementing ``IntoIterator`` for ``&Grid`` and
-storing a reference to the ``Grid`` in ``GridIter``.
+Fix this issue by implementing :rust:`IntoIterator` for :rust:`&Grid` and
+storing a reference to the :rust:`Grid` in :rust:`GridIter`.
 
 The same problem can occur for standard library types:
-``for e in some_vector`` will take ownership of ``some_vector`` and
+:rust:`for e in some_vector` will take ownership of :rust:`some_vector` and
 iterate over owned elements from that vector. Use
-``for e in &some_vector`` instead, to iterate over references to
-elements of ``some_vector``.
+:rust:`for e in &some_vector` instead, to iterate over references to
+elements of :rust:`some_vector`.
 
 .. raw:: html
 

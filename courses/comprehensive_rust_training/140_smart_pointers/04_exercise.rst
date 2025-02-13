@@ -17,7 +17,7 @@ Implement the following types, so that the given tests pass.
 Extra Credit: implement an iterator over a binary tree that returns the
 values in order.
 
-.. code:: rust,editable,ignore
+.. code:: rust
 
    {{#include exercise.rs:types}}
 

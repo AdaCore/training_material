@@ -6,23 +6,23 @@ Try Conversions
 Try Conversions
 -----------------
 
-The effective expansion of ``?`` is a little more complicated than
+The effective expansion of :rust:`?` is a little more complicated than
 previously indicated:
 
-.. code:: rust,ignore
+.. code:: rust
 
    expression?
 
 works the same as
 
-.. code:: rust,ignore
+.. code:: rust
 
    match expression {
        Ok(value) => value,
        Err(err)  => return Err(From::from(err)),
    }
 
-The ``From::from`` call here means we attempt to convert the error type
+The :rust:`From::from` call here means we attempt to convert the error type
 to the type returned by the function. This makes it easy to encapsulate
 errors into higher-level errors.
 
@@ -30,7 +30,7 @@ errors into higher-level errors.
 Example
 ---------
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::error::Error;
    use std::io::Read;
@@ -80,24 +80,24 @@ Example
 Details
 ---------
 
-The ``?`` operator must return a value compatible with the return type
-of the function. For ``Result``, it means that the error types have to
-be compatible. A function that returns ``Result<T, ErrorOuter>`` can
-only use ``?`` on a value of type ``Result<U, ErrorInner>`` if
-``ErrorOuter`` and ``ErrorInner`` are the same type or if ``ErrorOuter``
-implements ``From<ErrorInner>``.
+The :rust:`?` operator must return a value compatible with the return type
+of the function. For :rust:`Result`, it means that the error types have to
+be compatible. A function that returns :rust:`Result<T, ErrorOuter>` can
+only use :rust:`?` on a value of type :rust:`Result<U, ErrorInner>` if
+:rust:`ErrorOuter` and :rust:`ErrorInner` are the same type or if :rust:`ErrorOuter`
+implements :rust:`From<ErrorInner>`.
 
-A common alternative to a ``From`` implementation is
-``Result::map_err``, especially when the conversion only happens in one
+A common alternative to a :rust:`From` implementation is
+:rust:`Result::map_err`, especially when the conversion only happens in one
 place.
 
-There is no compatibility requirement for ``Option``. A function
-returning ``Option<T>`` can use the ``?`` operator on ``Option<U>`` for
-arbitrary ``T`` and ``U`` types.
+There is no compatibility requirement for :rust:`Option`. A function
+returning :rust:`Option<T>` can use the :rust:`?` operator on :rust:`Option<U>` for
+arbitrary :rust:`T` and :rust:`U` types.
 
-A function that returns ``Result`` cannot use ``?`` on ``Option`` and
-vice versa. However, ``Option::ok_or`` converts ``Option`` to ``Result``
-whereas ``Result::ok`` turns ``Result`` into ``Option``.
+A function that returns :rust:`Result` cannot use :rust:`?` on :rust:`Option` and
+vice versa. However, :rust:`Option::ok_or` converts :rust:`Option` to :rust:`Result`
+whereas :rust:`Result::ok` turns :rust:`Result` into :rust:`Option`.
 
 .. raw:: html
 

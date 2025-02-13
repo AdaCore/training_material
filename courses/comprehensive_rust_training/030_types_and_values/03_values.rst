@@ -12,30 +12,30 @@ each type.
 +---------------+-------------------------------+---------------------+
 |               | Types                         | Literals            |
 +===============+===============================+=====================+
-| Signed        | ``i8``, ``i16``, ``i32``,     | ``-10``, ``0``,     |
-| integers      | ``i64``, ``i128``, ``isize``  | ``1_000``,          |
-|               |                               | ``123_i64``         |
+| Signed        | :rust:`i8`, :rust:`i16`, :rust:`i32`,     | :rust:`-10`, :rust:`0`,     |
+| integers      | :rust:`i64`, :rust:`i128`, :rust:`isize`  | :rust:`1_000`,          |
+|               |                               | :rust:`123_i64`         |
 +---------------+-------------------------------+---------------------+
-| Unsigned      | ``u8``, ``u16``, ``u32``,     | ``0``, ``123``,     |
-| integers      | ``u64``, ``u128``, ``usize``  | ``10_u16``          |
+| Unsigned      | :rust:`u8`, :rust:`u16`, :rust:`u32`,     | :rust:`0`, :rust:`123`,     |
+| integers      | :rust:`u64`, :rust:`u128`, :rust:`usize`  | :rust:`10_u16`          |
 +---------------+-------------------------------+---------------------+
-| Floating      | ``f32``, ``f64``              | ``3.14``,           |
-| point numbers |                               | ``-10.0e20``,       |
-|               |                               | ``2_f32``           |
+| Floating      | :rust:`f32`, :rust:`f64`              | :rust:`3.14`,           |
+| point numbers |                               | :rust:`-10.0e20`,       |
+|               |                               | :rust:`2_f32`           |
 +---------------+-------------------------------+---------------------+
-| Unicode       | ``char``                      | ``'a'``,            |
+| Unicode       | :rust:`char`                      | :rust:`'a'`,            |
 | scalar values |                               | ':math:`\alpha`',   |
 |               |                               | ':math:`\infty`'    |
 +---------------+-------------------------------+---------------------+
-| Booleans      | ``bool``                      | ``true``, ``false`` |
+| Booleans      | :rust:`bool`                      | :rust:`true`, :rust:`false` |
 +---------------+-------------------------------+---------------------+
 
 The types have widths as follows:
 
--  ``iN``, ``uN``, and ``fN`` are *N* bits wide,
--  ``isize`` and ``usize`` are the width of a pointer,
--  ``char`` is 32 bits wide,
--  ``bool`` is 8 bits wide.
+-  :rust:`iN`, :rust:`uN`, and :rust:`fN` are *N* bits wide,
+-  :rust:`isize` and :rust:`usize` are the width of a pointer,
+-  :rust:`char` is 32 bits wide,
+-  :rust:`bool` is 8 bits wide.
 
 .. raw:: html
 
@@ -46,8 +46,8 @@ Details
 There are a few syntaxes which are not shown above:
 
 -  All underscores in numbers can be left out, they are for legibility
-   only. So ``1_000`` can be written as ``1000`` (or ``10_00``), and
-   ``123_i64`` can be written as ``123i64``.
+   only. So :rust:`1_000` can be written as :rust:`1000` (or :rust:`10_00`), and
+   :rust:`123_i64` can be written as :rust:`123i64`.
 
 .. raw:: html
 

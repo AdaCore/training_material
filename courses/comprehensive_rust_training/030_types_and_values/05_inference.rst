@@ -12,7 +12,7 @@ Rust will look at how the variable is *used* to determine the type:
 
    <!-- mdbook-xgettext: skip -->
 
-.. code:: rust,editable
+.. code:: rust
 
    fn takes_u32(x: u32) {
        println!("u32: {x}");
@@ -47,10 +47,10 @@ declaration of a type. The compiler does the job for us and helps us
 write more concise code.
 
 When nothing constrains the type of an integer literal, Rust defaults to
-``i32``. This sometimes appears as ``{integer}`` in error messages.
-Similarly, floating-point literals default to ``f64``.
+:rust:`i32`. This sometimes appears as :rust:`{integer}` in error messages.
+Similarly, floating-point literals default to :rust:`f64`.
 
-.. code:: rust,compile_fail
+.. code:: rust
 
    fn main() {
        let x = 3.14;

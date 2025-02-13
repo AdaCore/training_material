@@ -6,12 +6,12 @@ Matching Values
 Matching Values
 -----------------
 
-The ``match`` keyword lets you match a value against one or more
-*patterns*. The patterns can be simple values, similarly to ``switch``
+The :rust:`match` keyword lets you match a value against one or more
+*patterns*. The patterns can be simple values, similarly to :rust:`switch`
 in C and C++, but they can also be used to express more complex
 conditions:
 
-.. code:: rust,editable
+.. code:: rust
 
    #[rustfmt::skip]
    fn main() {
@@ -25,7 +25,7 @@ conditions:
        }
    }
 
-A variable in the pattern (``key`` in this example) will create a
+A variable in the pattern (:rust:`key` in this example) will create a
 binding that can be used within the match arm. We will learn more about
 this on the next slide.
 
@@ -43,21 +43,21 @@ Key Points:
 -  You might point out how some specific characters are being used when
    in a pattern
 
-   -  ``|`` as an ``or``
-   -  ``..`` can expand as much as it needs to be
-   -  ``1..=5`` represents an inclusive range
-   -  ``_`` is a wild card
+   -  :rust:`|` as an :rust:`or`
+   -  :rust:`..` can expand as much as it needs to be
+   -  :rust:`1..=5` represents an inclusive range
+   -  :rust:`_` is a wild card
 
 -  Match guards as a separate syntax feature are important and necessary
    when we wish to concisely express more complex ideas than patterns
    alone would allow.
--  They are not the same as separate ``if`` expression inside of the
-   match arm. An ``if`` expression inside of the branch block (after
-   ``=>``) happens after the match arm is selected. Failing the ``if``
+-  They are not the same as separate :rust:`if` expression inside of the
+   match arm. An :rust:`if` expression inside of the branch block (after
+   :rust:`=>`) happens after the match arm is selected. Failing the :rust:`if`
    condition inside of that block won't result in other arms of the
-   original ``match`` expression being considered.
+   original :rust:`match` expression being considered.
 -  The condition defined in the guard applies to every expression in a
-   pattern with an ``|``.
+   pattern with an :rust:`|`.
 
 =================
 More To Explore
@@ -67,7 +67,7 @@ More To Explore
 More To Explore
 -----------------
 
--  Another piece of pattern syntax you can show students is the ``@``
+-  Another piece of pattern syntax you can show students is the :rust:`@`
    syntax which binds a part of a pattern to a variable. For example:
 
    .. code:: rust
@@ -80,10 +80,10 @@ More To Explore
           None => {}
       }
 
-   In this example ``inner`` has the value 123 which it pulled from the
-   ``Option`` via destructuring, ``outer`` captures the entire
-   ``Some(inner)`` expression, so it contains the full
-   ``Option::Some(123)``. This is rarely used but can be useful in more
+   In this example :rust:`inner` has the value 123 which it pulled from the
+   :rust:`Option` via destructuring, :rust:`outer` captures the entire
+   :rust:`Some(inner)` expression, so it contains the full
+   :rust:`Option::Some(123)`. This is rarely used but can be useful in more
    complex patterns.
 
 .. raw:: html

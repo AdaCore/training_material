@@ -6,11 +6,11 @@ Loops
 Loops
 -------
 
-There are three looping keywords in Rust: ``while``, ``loop``, and
-``for``:
+There are three looping keywords in Rust: :rust:`while`, :rust:`loop`, and
+:rust:`for`:
 
 -----------
-``while``
+:rust:`while`
 -----------
 
 The
@@ -18,7 +18,7 @@ The
 works much like in other languages, executing the loop body as long as
 the condition is true.
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let mut x = 200;

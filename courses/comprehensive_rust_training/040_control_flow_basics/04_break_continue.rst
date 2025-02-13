@@ -1,9 +1,9 @@
 ============================
-``break`` and ``continue``
+:rust:`break` and :rust:`continue`
 ============================
 
 ----------------------------
-``break`` and ``continue``
+:rust:`break` and :rust:`continue`
 ----------------------------
 
 If you want to immediately start the next iteration use
@@ -11,10 +11,10 @@ If you want to immediately start the next iteration use
 
 If you want to exit any kind of loop early, use
 :url:`break <https://doc.rust-lang.org/reference/expressions/loop-expr.html#break-expressions>`.
-With ``loop``, this can take an optional expression that becomes the
-value of the ``loop`` expression.
+With :rust:`loop`, this can take an optional expression that becomes the
+value of the :rust:`loop` expression.
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let mut i = 0;
@@ -36,9 +36,9 @@ value of the ``loop`` expression.
 Details
 ---------
 
-Note that ``loop`` is the only looping construct which can return a
+Note that :rust:`loop` is the only looping construct which can return a
 non-trivial value. This is because it's guaranteed to only return at a
-``break`` statement (unlike ``while`` and ``for`` loops, which can also
+:rust:`break` statement (unlike :rust:`while` and :rust:`for` loops, which can also
 return when the condition fails).
 
 .. raw:: html
