@@ -148,6 +148,10 @@ if __name__ == "__main__":
         files_with_prelude_glob = f.read().splitlines()
 
     for glob in files_with_prelude_glob:
+        if len(glob) == 0:
+            print("WARN: empty line found in " + str(args.files_to_check))
+            continue
+
         f_prel = list(PROJECT.glob(glob))
         if not f_prel:
             continue
