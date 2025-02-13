@@ -85,32 +85,39 @@ def process_one_file(filename, explain):
         failures = []
     else:
         failures = ""
-    with open(filename, "r") as file:
-        content = file.read()
-        pieces = content.split(PRELUDE_FLAG)
-        for section in pieces:
-            stripped = section.strip()
-            name, content = section.split("\n", 1)
-            try:
-                sections_needed.remove(name)
-            except:
-                pass
-            content = content.strip()
-            if name in VALIDATORS.keys():
-                validator = VALIDATORS[name]
-                if not globals()[validator](name, content):
-                    if explain:
-                        failures.extend(compare_content(name, content))
-                    else:
-                        failures = failures + " " + name
-    if len(sections_needed) > 0:
-        if explain:
-            failures.append("Missing Section(s)")
-            for section in sections_needed:
-                failures.append("   " + section)
-        else:
-            for section in sections_needed:
-                failures = failures + " " + section
+
+    if not os.path.isfile(filename):
+        return failures
+
+    try:
+        with open(filename, "r") as file:
+            content = file.read()
+            pieces = content.split(PRELUDE_FLAG)
+            for section in pieces:
+                stripped = section.strip()
+                name, content = section.split("\n", 1)
+                try:
+                    sections_needed.remove(name)
+                except:
+                    pass
+                content = content.strip()
+                if name in VALIDATORS.keys():
+                    validator = VALIDATORS[name]
+                    if not globals()[validator](name, content):
+                        if explain:
+                            failures.extend(compare_content(name, content))
+                        else:
+                            failures = failures + " " + name
+        if len(sections_needed) > 0:
+            if explain:
+                failures.append("Missing Section(s)")
+                for section in sections_needed:
+                    failures.append("   " + section)
+            else:
+                for section in sections_needed:
+                    failures = failures + " " + section
+    except:
+        print("WARN: unable to process " + str(filename))
 
     return failures
 
