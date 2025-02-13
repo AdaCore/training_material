@@ -12,7 +12,7 @@ Integration Tests
 
 If you want to test your library as a client, use an integration test.
 
-Create a :rust:`.rs` file under :rust:`tests/`:
+Create a :filename:`.rs` file under :filename:`tests/`:
 
 .. code:: rust
 
@@ -46,7 +46,7 @@ Rust has built-in support for documentation tests:
    }
 
 -  Code blocks in :rust:`///` comments are automatically seen as Rust code.
--  The code will be compiled and executed as part of :rust:`cargo test`.
+-  The code will be compiled and executed as part of :command:`cargo test`.
 -  Adding :rust:`#` in the code will hide it from the docs, but will still
    compile/run it.
 -  Test the above code on the

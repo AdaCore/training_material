@@ -17,7 +17,7 @@ Rust comes with extensive documentation. For example:
    or
    :url:`BinaryHeap <https://doc.rust-lang.org/stable/std/collections/struct.BinaryHeap.html>`.
 
-Use :rust:`rustup doc --std` or https://std.rs to view the documentation.
+Use :filename:`rustup doc --std` or https://std.rs to view the documentation.
 
 In fact, you can document your own code:
 

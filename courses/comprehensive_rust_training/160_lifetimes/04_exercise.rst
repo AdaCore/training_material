@@ -14,7 +14,7 @@ copied.
 
 Fully parsing a protobuf message requires knowing the types of the
 fields, indexed by their field numbers. That is typically provided in a
-:rust:`proto` file. In this exercise, we'll encode that information into
+:filename:`proto` file. In this exercise, we'll encode that information into
 :rust:`match` statements in functions that get called for each field.
 
 We'll use the following proto:

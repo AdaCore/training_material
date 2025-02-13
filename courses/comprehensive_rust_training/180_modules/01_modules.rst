@@ -35,7 +35,7 @@ Similarly, :rust:`mod` lets us namespace types and functions:
 Details
 ---------
 
--  Packages provide functionality and include a :rust:`Cargo.toml` file that
+-  Packages provide functionality and include a :filename:`Cargo.toml` file that
    describes how to build a bundle of 1+ crates.
 -  Crates are a tree of modules, where a binary crate creates an
    executable and a library crate compiles to a library.

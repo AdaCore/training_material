@@ -42,7 +42,7 @@ tests.
 
 -  This lets you unit test private helpers.
 -  The :rust:`#[cfg(test)]` attribute is only active when you run
-   :rust:`cargo test`.
+   :command:`cargo test`.
 
 .. raw:: html
 

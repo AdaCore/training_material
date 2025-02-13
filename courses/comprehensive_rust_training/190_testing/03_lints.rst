@@ -33,7 +33,7 @@ extensive documentation of its lints, and adds new lints (including
 default-deny lints) all the time.
 
 Note that errors or warnings with :rust:`help: ...` can be fixed with
-:rust:`cargo fix` or via your editor.
+:command:`cargo fix` or via your editor.
 
 .. raw:: html
 

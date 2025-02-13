@@ -188,7 +188,7 @@ Key points:
    unspecified state. Unlike Rust, the programmer is allowed to keep
    using :rust:`s1`.
 
--  Unlike Rust, :rust:`=` in C++ can run arbitrary code as determined by the
+-  Unlike Rust, :cpp:`=` in C++ can run arbitrary code as determined by the
    type which is being copied or moved.
 
 .. raw:: html

@@ -26,8 +26,8 @@ Cargo project on your local filesystem:
    cd gui-modules
    cargo run
 
-Edit the resulting :rust:`src/main.rs` to add :rust:`mod` statements, and add
-additional files in the :rust:`src` directory.
+Edit the resulting :filename:`src/main.rs` to add :rust:`mod` statements, and add
+additional files in the :filename:`src` directory.
 
 --------
 Source

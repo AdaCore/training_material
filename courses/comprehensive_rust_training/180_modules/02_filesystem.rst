@@ -14,13 +14,13 @@ file:
    mod garden;
 
 This tells Rust that the :rust:`garden` module content is found at
-:rust:`src/garden.rs`. Similarly, a :rust:`garden::vegetables` module can be
-found at :rust:`src/garden/vegetables.rs`.
+:filename:`src/garden.rs`. Similarly, a :rust:`garden::vegetables` module can be
+found at :filename:`src/garden/vegetables.rs`.
 
 The :rust:`crate` root is in:
 
--  :rust:`src/lib.rs` (for a library crate)
--  :rust:`src/main.rs` (for a binary crate)
+-  :filename:`src/lib.rs` (for a library crate)
+-  :filename:`src/main.rs` (for a binary crate)
 
 Modules defined in files can be documented, too, using "inner doc
 comments". These document the item that contains them - in this case, a
@@ -51,12 +51,12 @@ module.
 Details
 ---------
 
--  Before Rust 2018, modules needed to be located at :rust:`module/mod.rs`
-   instead of :rust:`module.rs`, and this is still a working alternative for
+-  Before Rust 2018, modules needed to be located at :filename:`module/mod.rs`
+   instead of :filename:`module.rs`, and this is still a working alternative for
    editions after 2018.
 
--  The main reason to introduce :rust:`filename.rs` as alternative to
-   :rust:`filename/mod.rs` was because many files named :rust:`mod.rs` can be
+-  The main reason to introduce :filename:`filename.rs` as alternative to
+   :filename:`filename/mod.rs` was because many files named :filename:`mod.rs` can be
    hard to distinguish in IDEs.
 
 -  Deeper nesting can use folders, even if the main module is a file:
@@ -78,7 +78,7 @@ Details
       mod some_module;
 
    This is useful, for example, if you would like to place tests for a
-   module in a file named :rust:`some_module_test.rs`, similar to the
+   module in a file named :filename:`some_module_test.rs`, similar to the
    convention in Go.
 
 .. raw:: html
