@@ -191,26 +191,24 @@ Valid attribute
 .. code:: Ada
 
     procedure Main is
-       type Small_Odd is new Integer range 0 .. 5
-          with Predicate => Small_Odd mod 2 = 1;
-       O : aliased Small_Odd;
-       O_Alias : aliased Integer with Address => O'Address;
+       subtype Small_T is Integer range 1 .. 3;
+       Big   : aliased Integer := 0;
+       Small : Small_T with Address => Big'Address;
     begin
-       for I in 0 .. 10 loop
-          O_Alias := I;
-          Ada.Text_IO.Put_Line (Boolean'Image (O'Valid));
+       for V in 0 .. 5 loop
+          Big := V;
+          Put_Line (Big'Image & " => " & Boolean'Image (Small'Valid));
        end loop;
     end Main;
 
 .. code::
 
-    FALSE
-    TRUE
-    FALSE
-    TRUE
-    FALSE
-    TRUE
-    FALSE
+    0 => FALSE
+    1 => TRUE
+    2 => TRUE
+    3 => TRUE
+    4 => FALSE
+    5 => FALSE
 
 ------------------------
 Idiom: Extended Ranges
