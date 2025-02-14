@@ -80,7 +80,7 @@ Standard Library Queues Implementations
 
 .. tip::
 
-    Better than rolling-out one's own queue implementation
+    Recommended over rolling-out one's own queue implementation
 
 * Synchronized implementations
 
