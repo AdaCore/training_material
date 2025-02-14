@@ -57,6 +57,7 @@ Implementation Details
     - Clears up any previously used :ada:`Ref`
 
 .. code:: Ada
+
     is
       D : constant Refcounted_Access := new Refcounted'Class'(Data);
     begin
@@ -84,7 +85,6 @@ Implementation Details
 
     is
     begin
-
        if P.Data /= null then
           P.Data.Refcount := P.Data.Refcount + 1;
        end if;
