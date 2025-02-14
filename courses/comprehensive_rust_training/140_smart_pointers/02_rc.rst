@@ -22,7 +22,7 @@ same data from multiple places:
        println!("b: {b}");
    }
 
--  See :rust:`Arc`:url:` <../concurrency/shared-state/arc.md>` and
+-  See :url:`Arc <https://doc.rust-lang.org/std/sync/struct.Arc.html>` and
    :url:`Mutex <https://doc.rust-lang.org/std/sync/struct.Mutex.html>`
    if you are in a multi-threaded context.
 -  You can *downgrade* a shared pointer into a

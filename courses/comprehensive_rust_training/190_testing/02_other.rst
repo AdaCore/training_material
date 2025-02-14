@@ -36,11 +36,11 @@ Rust has built-in support for documentation tests:
 
    /// Shortens a string to the given length.
    ///
-   /// :rust:`
+   /// ```
    /// # use playground::shorten_string;
    /// assert_eq!(shorten_string("Hello World", 5), "Hello");
    /// assert_eq!(shorten_string("Hello World", 20), "Hello World");
-   /// :rust:`
+   /// ```
    pub fn shorten_string(s: &str, length: usize) -> &str {
        &s[..std::cmp::min(length, s.len())]
    }
