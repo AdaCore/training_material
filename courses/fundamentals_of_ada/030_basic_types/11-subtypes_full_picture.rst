@@ -185,7 +185,7 @@ Attributes Reflect the Underlying Type
 Valid attribute
 ---------------
 
-* :ada:`T'Valid` is a :ada:`Boolean`
+* :ada:`The_Type'Valid` is a :ada:`Boolean`
 * :ada:`True` |rightarrow| the current representation for the given scalar is valid
 
 .. code:: Ada
