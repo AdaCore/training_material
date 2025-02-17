@@ -7,19 +7,19 @@ Elaboration-Only Dynamic Allocation
 -----------------------------------
 
 * Common in critical contexts
-* Rationale
+* Rationale:
 
-1. We (might) need dynamically allocated date
+    1. We (might) need dynamically allocated date
 
-    - e.g. loading configuration data of unknown size
+        - e.g. loading configuration data of unknown size
 
-2. Deallocations can cause leaks, corruption
+    2. Deallocations can cause leaks, corruption
 
-    - |rightarrow| **Disallow** them entirely
+        - |rightarrow| **Disallow** them entirely
 
-3. A dynamically allocated object will needs deallocation
+    3. A dynamically allocated object will needs deallocation
 
-    - |rightarrow| Unless it never goes out of **scope**
+        - |rightarrow| Unless it never goes out of **scope**
 
 * |rightarrow| Allow only allocation onto globals
 
