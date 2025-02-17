@@ -113,9 +113,9 @@ Example: A String Holder (1/2)
     package String_Holders is
        type Info is limited private;
 
-       function Contains (I : Info; S : String) return Boolean
+       function Contains (Obj : Info; Str : String) return Boolean
           with Ghost;
-       function Equals (A, B : Info) return Boolean
+       function Equals (Left, Right : Info) return Boolean
           with Ghost;
 
 .. tip::
@@ -124,7 +124,7 @@ Example: A String Holder (1/2)
 
 .. code:: Ada
 
-       function To_Info (S : String) return Info
+       function To_Info (Str : String) return Info
           with Post => Contains (To_Info'Result, S);
 
        function To_String (Obj : Info)
@@ -136,7 +136,7 @@ Example: A String Holder (1/2)
           with Post => Equals (To, From);
 
        procedure Append (Obj : in out Info;
-                         S   : String)
+                         Str : String)
           with Post => Contains (Obj, To_String (Obj)'Old & S);
 
        procedure Destroy (Obj : in out Info);
@@ -150,15 +150,15 @@ Example: A String Holder (2/2)
     private
        type Info is access String;
 
-       function To_String_Internal (I : Info) return String
-          is (if I = null then "" else I.all);
+       function To_String_Internal (Obj : Info) return String
+          is (if Obj = null then "" else Obj.all);
 .. tip::
 
     This can be used by contracts implementation below, and child packages
 
 .. code:: Ada
 
-       function Contains (I : Info; S : String) return Boolean
-          is (I /= null and then I.all = S);
-       function Equals (A, B : Info) return Boolean
-          is (To_String_Internal (A) = To_String_Internal (B));
+       function Contains (Obj : Info; Str : String) return Boolean
+          is (Obj /= null and then Obj.all = Str);
+       function Equals (Left, Right : Info) return Boolean
+          is (To_String_Internal (Left) = To_String_Internal (Right));
