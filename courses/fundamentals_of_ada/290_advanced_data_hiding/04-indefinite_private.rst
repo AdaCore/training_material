@@ -161,4 +161,5 @@ Example: A String Holder (2/2)
        function Contains (Obj : Info; Str : String) return Boolean
           is (Obj /= null and then Obj.all = Str);
        function Equals (Left, Right : Info) return Boolean
-          is (To_String_Internal (Left) = To_String_Internal (Right));
+          is (To_String_Internal (Left)
+            = To_String_Internal (Right));
