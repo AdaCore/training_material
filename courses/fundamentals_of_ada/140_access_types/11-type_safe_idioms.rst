@@ -17,7 +17,7 @@ Elaboration-Only Dynamic Allocation
 
         - |rightarrow| **Disallow** them entirely
 
-    3. A dynamically allocated object will needs deallocation
+    3. A dynamically allocated object will need deallocation
 
         - |rightarrow| Unless it never goes out of **scope**
 
