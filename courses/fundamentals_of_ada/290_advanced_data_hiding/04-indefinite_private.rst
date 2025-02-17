@@ -1,6 +1,6 @@
-================
-Advanced Private
-================
+==================
+Indefinite Private
+==================
 
 ---------------
 Limited Private
