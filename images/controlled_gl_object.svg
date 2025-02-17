@@ -25,15 +25,35 @@
      inkscape:document-units="mm"
      inkscape:zoom="0.57260471"
      inkscape:cx="593.77786"
-     inkscape:cy="529.16085"
-     inkscape:window-width="953"
-     inkscape:window-height="1120"
-     inkscape:window-x="-7"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="layer1" />
+     inkscape:cy="530.03406"
+     inkscape:window-width="1920"
+     inkscape:window-height="1129"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="false" />
   <defs
      id="defs1">
+    <marker
+       style="overflow:visible"
+       id="Diamond"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Diamond"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.45)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
+         id="path19" />
+    </marker>
     <marker
        style="overflow:visible"
        id="marker13"
@@ -71,26 +91,6 @@
          d="M 0,0 5,-5 -12.5,0 5,5 Z"
          transform="scale(-0.5)"
          id="path6" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="ArrowWide"
-       refX="0"
-       refY="0"
-       orient="auto-start-reverse"
-       inkscape:stockid="Wide arrow"
-       markerWidth="1"
-       markerHeight="1"
-       viewBox="0 0 1 1"
-       inkscape:isstock="true"
-       inkscape:collect="always"
-       preserveAspectRatio="xMidYMid">
-      <path
-         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
-         d="M 3,-3 0,0 3,3"
-         transform="rotate(180,0.125,0)"
-         sodipodi:nodetypes="ccc"
-         id="path1" />
     </marker>
   </defs>
   <g
@@ -185,8 +185,8 @@
          y="44.333576"
          id="tspan10">+ Is_Owner: Boolean</tspan></text>
     <path
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.7;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-opacity:1;marker-end:url(#ArrowWide)"
-       d="m 153.22635,70.646737 c 23.36455,-1.641636 21.18837,25.260908 21.18837,25.260908"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.7;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-opacity:1;marker-end:url(#Diamond)"
+       d="m 153.22635,70.646737 c 23.36455,-1.641636 20.7263,21.56435 20.7263,21.56435"
        id="path10"
        sodipodi:nodetypes="cc" />
     <rect
@@ -209,7 +209,7 @@
          y="114.64071">Shader</tspan></text>
     <path
        style="fill:#010200;fill-opacity:1;stroke:#000000;stroke-width:1.7;stroke-linejoin:bevel;stroke-miterlimit:1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#DartArrow)"
-       d="M 189.57859,97.832391 V 58.135189"
+       d="M 213.60622,97.832391 V 58.135189"
        id="path11"
        sodipodi:nodetypes="cc" />
     <path
@@ -239,5 +239,38 @@
          style="font-size:6.35px;fill:#010200;fill-opacity:1;stroke:none;stroke-width:1.7"
          x="9.3262997"
          y="120.87419">+ ....</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:roboto;-inkscape-font-specification:roboto;fill:#000000;fill-opacity:1;stroke-width:1.7;stroke-linejoin:bevel;stroke-miterlimit:1"
+       x="47.131119"
+       y="100.73122"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="font-style:italic;fill:#000000;stroke-width:1.7"
+         x="47.131119"
+         y="100.73122">inherits</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:roboto;-inkscape-font-specification:roboto;fill:#000000;fill-opacity:1;stroke-width:1.7;stroke-linejoin:bevel;stroke-miterlimit:1"
+       x="162.64856"
+       y="67.924263"
+       id="text2"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="font-style:italic;stroke-width:1.7"
+         x="162.64856"
+         y="67.924263">contains</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:roboto;-inkscape-font-specification:roboto;fill:#000000;fill-opacity:1;stroke-width:1.7;stroke-linejoin:bevel;stroke-miterlimit:1"
+       x="219.02107"
+       y="80.862213"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-style:italic;stroke-width:1.7"
+         x="219.02107"
+         y="80.862213">accesses</tspan></text>
   </g>
 </svg>
