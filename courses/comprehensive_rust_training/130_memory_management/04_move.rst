@@ -83,10 +83,6 @@ In the ``say_hello`` example:
 More to Explore
 =================
 
------------------
-More to Explore
------------------
-
 --------------------------------
 Defensive Copies in Modern C++
 --------------------------------
@@ -95,7 +91,7 @@ Modern C++ solves this differently:
 
 .. code:: cpp
 
-   std::string s1 = "Cpp";
+   std::string s1 = "Hello";
    std::string s2 = s1;  // Duplicate the data in s1.
 
 -  The heap data from ``s1`` is duplicated and ``s2`` gets its own
@@ -105,42 +101,11 @@ Modern C++ solves this differently:
 
 Before copy-assignment:
 
-.. code:: bob
-
-    Stack                             Heap
-   .- - - - - - - - - - - - - -.     .- - - - - - - - - - - -.
-   :                           :     :                       :
-   :    s1                     :     :                       :
-   :   +-----------+-------+   :     :   +----+----+----+    :
-   :   | ptr       |   o---+---+--+--+-->| C  | p  | p  |    :
-   :   | len       |     3 |   :     :   +----+----+----+    :
-   :   | capacity  |     3 |   :     :                       :
-   :   +-----------+-------+   :     :                       :
-   :                           :     `- - - - - - - - - - - -'
-   `- - - - - - - - - - - - - -'
+.. image:: comprehensive_rust_training/review_of_program_memory.svg
 
 After copy-assignment:
 
-.. code:: bob
-
-    Stack                             Heap
-   .- - - - - - - - - - - - - -.     .- - - - - - - - - - - -.
-   :                           :     :                       :
-   :    s1                     :     :                       :
-   :   +-----------+-------+   :     :   +----+----+----+    :
-   :   | ptr       |   o---+---+--+--+-->| C  | p  | p  |    :
-   :   | len       |     3 |   :     :   +----+----+----+    :
-   :   | capacity  |     3 |   :     :                       :
-   :   +-----------+-------+   :     :                       :
-   :                           :     :                       :
-   :    s2                     :     :                       :
-   :   +-----------+-------+   :     :   +----+----+----+    :
-   :   | ptr       |   o---+---+-----+-->| C  | p  | p  |    :
-   :   | len       |     3 |   :     :   +----+----+----+    :
-   :   | capacity  |     3 |   :     :                       :
-   :   +-----------+-------+   :     :                       :
-   :                           :     `- - - - - - - - - - - -'
-   `- - - - - - - - - - - - - -'
+.. image:: comprehensive_rust_training/copy_assignment_2.svg
 
 Key points:
 
