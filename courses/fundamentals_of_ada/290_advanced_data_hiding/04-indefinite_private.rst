@@ -87,7 +87,7 @@ Indefinite Private
 Opaque Pointers
 ---------------
 
-* User can instatiate 
+* User can instantiate 
 * Completion is an :ada:`access`
 * Concrete type being pointed to is **incomplete**
 * Implementation is done entirely within the body
