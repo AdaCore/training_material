@@ -15,15 +15,8 @@ evaluates to ``30``. We can represent the expression as a tree:
 
    <!-- mdbook-xgettext: skip -->
 
-.. code:: bob
-
-               .-------.
-       .------ |   +   | ------.
-       |       '-------'       |
-       v                       v
-   .--------.              .--------.
-   |   10   |              |   20   |
-   '--------'              '--------'
+.. image:: comprehensive_rust_training/pattern_matching_exercise_1.svg
+   :width: 40%
 
 A bigger and more complex expression would be
 ``(10 * 9) + ((3 - 4) * 5)``, which evaluate to ``85``. We represent
@@ -33,23 +26,7 @@ this as a much bigger tree:
 
    <!-- mdbook-xgettext: skip -->
 
-.. code:: bob
-
-                                 .-----.
-               .---------------- |  +  | ----------------.
-               |                 '-----'                 |
-               v                                         v
-            .-----.                                   .-----.
-      .---- |  *  | ----.                       .---- |  *  | ----.
-      |     '-----'     |                       |     '-----'     |
-      v                 v                       v                 v
-   .------.          .-----.                 .-----.           .-----.
-   |  10  |          |  9  |           .---- |  "-"| ----.     |  5  |
-   '------'          '-----'           |     '-----'     |     '-----'
-                                       v                 v
-                                    .-----.           .-----.
-                                    |  3  |           |  4  |
-                                    '-----'           '-----'
+.. image:: comprehensive_rust_training/pattern_matching_exercise_2.svg
 
 In code, we will represent the tree with two types:
 
