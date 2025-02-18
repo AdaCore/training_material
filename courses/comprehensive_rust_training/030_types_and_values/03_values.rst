@@ -9,26 +9,32 @@ Values
 Here are some basic built-in types, and the syntax for literal values of
 each type.
 
-+---------------+-------------------------------+---------------------+
-|               | Types                         | Literals            |
-+===============+===============================+=====================+
-| Signed        | ``i8``, ``i16``, ``i32``,     | ``-10``, ``0``,     |
-| integers      | ``i64``, ``i128``, ``isize``  | ``1_000``,          |
-|               |                               | ``123_i64``         |
-+---------------+-------------------------------+---------------------+
-| Unsigned      | ``u8``, ``u16``, ``u32``,     | ``0``, ``123``,     |
-| integers      | ``u64``, ``u128``, ``usize``  | ``10_u16``          |
-+---------------+-------------------------------+---------------------+
-| Floating      | ``f32``, ``f64``              | ``3.14``,           |
-| point numbers |                               | ``-10.0e20``,       |
-|               |                               | ``2_f32``           |
-+---------------+-------------------------------+---------------------+
-| Unicode       | ``char``                      | ``'a'``,            |
-| scalar values |                               | ':math:`\alpha`',   |
-|               |                               | ':math:`\infty`'    |
-+---------------+-------------------------------+---------------------+
-| Booleans      | ``bool``                      | ``true``, ``false`` |
-+---------------+-------------------------------+---------------------+
+.. list-table::
+   :header-rows: 1
+
+   * -
+     - Types
+     - Literals
+
+   * - Signed integers
+     - :rust:`i8`, :rust:`i16`, :rust:`i32`, :rust:`i64`, :rust:`i128`, :rust:`isize`
+     - :rust:`-10`, :rust:`0`, :rust:`1_000`, :rust:`123_i64`
+
+   * - Unsigned integers
+     - :rust:`u8`, :rust:`u16`, :rust:`u32`, :rust:`u64`, :rust:`u128`, :rust:`usize`
+     - :rust:`0`, :rust:`123`, :rust:`10_u16`
+
+   * - Floating point numbers
+     - :rust:`f32`, :rust:`f64`
+     - :rust:`3.14`, :rust:`-10.0e20`, :rust:`2_f32`
+
+   * - Unicode scalar values
+     - :rust:`char`
+     - :rust:`'a'`, ':math:`\alpha`', ':math:`\infty`'
+
+   * - Booleans
+     - :rust:`bool`
+     - :rust:`true`, :rust:`false`
 
 The types have widths as follows:
 
