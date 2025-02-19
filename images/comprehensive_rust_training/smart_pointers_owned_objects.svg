@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.0396254"
-     inkscape:cx="565.10741"
-     inkscape:cy="504.50866"
+     inkscape:zoom="2.9405046"
+     inkscape:cx="602.44762"
+     inkscape:cy="328.34501"
      inkscape:window-width="2560"
      inkscape:window-height="1369"
      inkscape:window-x="-8"
@@ -421,9 +421,9 @@
     <rect
        style="fill:none;stroke:#000000;stroke-width:1.065;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4.3;stroke-dasharray:2.13, 1.065;stroke-dashoffset:0"
        id="rect6-3"
-       width="77.745964"
+       width="84.764435"
        height="50.231514"
-       x="31.012777"
+       x="31.01276"
        y="65.627609"
        ry="6.8171344" />
     <text
@@ -662,7 +662,7 @@
          id="tspan23">age</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,173.7035,83.566614)"
+       transform="matrix(0.26458333,0,0,0.26458333,169.88602,83.566614)"
        id="text1-6-6-2-9"
        style="font-size:21.3333px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-0-9-3-7);display:inline;fill:#000000;stroke:none;stroke-width:4.0252"
        x="22.526003"
@@ -692,13 +692,14 @@
            id="tspan28">data: Dog</tspan></tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linejoin:round;stroke-miterlimit:4.3;marker-start:url(#Dot-8-9);marker-end:url(#RoundedArrow)"
-       d="M 222.45281,115.25147 V 98.803807 h -25.13066 v -6.157836"
+       d="M 218.99348,115.25147 V 98.803807 h -21.70271 v -6.157836"
        id="path18"
        sodipodi:nodetypes="cccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-linejoin:round;stroke-miterlimit:4.3;marker-start:url(#Dot-8-9);marker-end:url(#marker20)"
-       d="m 67.729044,86.224614 h 45.822136 v 31.672566 h 22.17873"
-       id="path19" />
+       d="m 67.729044,86.224614 h 54.145186 l -0.045,31.672566 h 13.90067"
+       id="path19"
+       sodipodi:nodetypes="cccc" />
     <rect
        style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-linejoin:miter;stroke-miterlimit:4.3"
        id="rect7-08"
@@ -771,7 +772,7 @@
        id="path25" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-linejoin:round;stroke-miterlimit:4.3;marker-start:url(#Dot-8-9);marker-end:url(#marker27)"
-       d="m 161.86103,117.87628 h 23.17903"
+       d="m 161.81805,117.87628 h 21.58522"
        id="path26" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-linejoin:round;stroke-miterlimit:4.3"
