@@ -88,8 +88,6 @@ escape.
        println!("{cell:?}");
    }
 
-.. raw:: html
-
 -------------------
 "RefCell" Details
 -------------------
