@@ -31,6 +31,6 @@ They are occasionally needed for interacting with C library APIs.
 
 If you just want to reinterpret bytes as a different type, you probably
 want
-`std::mem::transmute <https://doc.rust-lang.org/stable/std/mem/fn.transmute.html>`__
+:url:`std::mem::transmute <https://doc.rust-lang.org/stable/std/mem/fn.transmute.html>`
 or a safe wrapper such as the
-`zerocopy <https://crates.io/crates/zerocopy>`__ crate.
+:url:`zerocopy <https://crates.io/crates/zerocopy>` crate.

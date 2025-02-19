@@ -97,5 +97,5 @@ Key Points:
    -  This might be a good time to demonstrate how the :rust:`&self` differs
       from :rust:`self` by trying to run :rust:`finish` twice.
    -  Beyond variants on :rust:`self`, there are also
-      `special wrapper types <https://doc.rust-lang.org/reference/special-types-and-traits.html>`__
+     :url:`special wrapper types <https://doc.rust-lang.org/reference/special-types-and-traits.html>`
       allowed to be receiver types, such as :rust:`Box<Self>`.

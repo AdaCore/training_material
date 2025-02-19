@@ -6,13 +6,13 @@
 "anyhow"
 ------------
 
-The `anyhow <https://docs.rs/anyhow/>`__ crate provides a rich error
+The :url:`anyhow <https://docs.rs/anyhow/>` crate provides a rich error
 type with support for carrying additional contextual information, which
 can be used to provide a semantic trace of what the program was doing
 leading up to the error.
 
 This can be combined with the convenience macros from
-`thiserror <https://docs.rs/thiserror/>`__ to avoid writing out
+:url:`thiserror <https://docs.rs/thiserror/>` to avoid writing out
 trait impls explicitly for custom error types.
 
 .. code:: rust
@@ -71,4 +71,4 @@ More to Explore
 -  :rust:`anyhow::Error` has support for downcasting, much like
    :rust:`std::any::Any`; the specific error type stored inside can be
    extracted for examination if desired with
-   `Error::downcast <https://docs.rs/anyhow/latest/anyhow/struct.Error.html#method.downcast>`__.
+   :url:`Error::downcast <https://docs.rs/anyhow/latest/anyhow/struct.Error.html#method.downcast>`.

@@ -6,7 +6,7 @@
 "Vec"
 ---------
 
-`Vec <https://doc.rust-lang.org/std/vec/struct.Vec.html>`__ is the
+:url:`Vec <https://doc.rust-lang.org/std/vec/struct.Vec.html>` is the
 standard resizable heap-allocated buffer:
 
 .. code:: rust
@@ -34,7 +34,8 @@ standard resizable heap-allocated buffer:
    }
 
 :rust:`Vec` implements
-:rust:`Deref<Target = [T]>`
+:url:`Deref<Target = [T]> <https://doc.rust-lang.org/std/vec/struct.Vec.html#deref-methods-%5BT%5D>`,
+which means that you can call slice methods on a :rust:`Vec`.
 
 .. 
    https://doc.rust-lang.org/std/vec/struct.Vec.html#deref-methods-%5BT%5D

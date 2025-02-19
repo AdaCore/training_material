@@ -7,7 +7,7 @@ Compiler Lints and Clippy
 ---------------------------
 
 The Rust compiler produces fantastic error messages, as well as helpful
-built-in lints. `Clippy <https://doc.rust-lang.org/clippy/>`__ provides
+built-in lints. :url:`Clippy <https://doc.rust-lang.org/clippy/>` provides
 even more lints, organized into groups that can be enabled per-project.
 
 .. code:: rust

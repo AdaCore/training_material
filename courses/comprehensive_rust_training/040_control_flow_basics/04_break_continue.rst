@@ -7,10 +7,10 @@
 ----------------------------
 
 If you want to immediately start the next iteration use
-`continue <https://doc.rust-lang.org/reference/expressions/loop-expr.html#continue-expressions>`__.
+:url:`continue <https://doc.rust-lang.org/reference/expressions/loop-expr.html#continue-expressions>`.
 
 If you want to exit any kind of loop early, use
-`break <https://doc.rust-lang.org/reference/expressions/loop-expr.html#break-expressions>`__.
+:url:`break <https://doc.rust-lang.org/reference/expressions/loop-expr.html#break-expressions>`.
 With :rust:`loop`, this can take an optional expression that becomes the
 value of the :rust:`loop` expression.
 

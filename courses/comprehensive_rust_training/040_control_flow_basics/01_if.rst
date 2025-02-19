@@ -7,7 +7,7 @@
 --------------------
 
 You use
-`if expressions <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-expressions>`__
+:url:`if expressions <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-expressions>`
 exactly like :rust:`if` statements in other languages:
 
 .. code:: rust

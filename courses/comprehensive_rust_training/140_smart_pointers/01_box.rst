@@ -6,7 +6,7 @@
 "Box<T>"
 ------------
 
-`Box <https://doc.rust-lang.org/std/boxed/struct.Box.html>`__ is an
+:url:`Box <https://doc.rust-lang.org/std/boxed/struct.Box.html>` is an
 owned pointer to data on the heap:
 
 .. code:: rust
@@ -30,8 +30,7 @@ owned pointer to data on the heap:
    `- - - - - - -'     `- - - - - - -'
 
 :rust:`Box<T>` implements :rust:`Deref<Target = T>`, which means that you can
-`call methods from T directly <https://doc.rust-lang.org/std/ops/trait.Deref.html#more-on-deref-coercion>`__.
-on a :rust:`Box<T>`
+:url:`call methods from T directly on a Box<T> <https://doc.rust-lang.org/std/ops/trait.Deref.html#more-on-deref-coercion>`.
 
 Recursive data types or data types with dynamic sizes cannot be stored
 inline without a pointer indirection. :rust:`Box` accomplishes that

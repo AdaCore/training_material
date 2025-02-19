@@ -4,7 +4,9 @@
 
 # Acceptance Criteria
 
-- [ ] As, the **Assignee**, I verify that the affected generated slides have been reviewed and are free of defects (<!-- insert github link to slide set here -->)
+- [ ] As, the **Assignee**, I verify that the affected generated slides have been reviewed and are free of defects
+
+  * <!-- github link -->
 
 Note: you can get quick access to the slides with the following command
 

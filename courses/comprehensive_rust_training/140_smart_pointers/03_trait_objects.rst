@@ -96,7 +96,7 @@ Details
 
    -  A fat pointer is a double-width pointer. It has two components: a
       pointer to the actual object and a pointer to the
-      `virtual method table <https://en.wikipedia.org/wiki/Virtual_method_table>`__
+      :url:`virtual method table <https://en.wikipedia.org/wiki/Virtual_method_table>`
       (vtable) for the :rust:`Pet` implementation of that particular object.
    -  The data for the :rust:`Dog` named Fido is the :rust:`name` and :rust:`age`
       fields. The :rust:`Cat` has a :rust:`lives` field.

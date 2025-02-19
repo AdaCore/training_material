@@ -8,7 +8,7 @@ Lifetimes in Function Calls
 
 Lifetimes for function arguments and return values must be fully
 specified, but Rust allows lifetimes to be elided in most cases with
-`a few simple rules <https://doc.rust-lang.org/nomicon/lifetime-elision.html>`__. This
+:url:`a few simple rules <https://doc.rust-lang.org/nomicon/lifetime-elision.html>`. This
 is not inference - it is just a syntactic shorthand.
 
 -  Each argument which does not have a lifetime annotation is given one.

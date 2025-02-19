@@ -8,7 +8,7 @@ Option
 
 We have already seen some use of :rust:`Option<T>`. It stores either a value
 of type :rust:`T` or nothing. For example,
-`String::find <https://doc.rust-lang.org/stable/std/string/struct.String.html#method.find>`__
+:url:`String::find <https://doc.rust-lang.org/stable/std/string/struct.String.html#method.find>`
 returns an :rust:`Option<usize>`.
 
 .. code:: rust

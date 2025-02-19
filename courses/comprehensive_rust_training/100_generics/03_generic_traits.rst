@@ -37,7 +37,7 @@ Details
 ---------
 
 -  The :rust:`From` trait will be covered later in the course, but its
-   `definition in the std docs <https://doc.rust-lang.org/std/convert/trait.From.html>`__
+   :url:`definition in the std docs <https://doc.rust-lang.org/std/convert/trait.From.html>`
    is simple.
 
 -  Implementations of the trait do not need to cover all possible type
@@ -52,4 +52,4 @@ Details
    match for any type T. Unlike some other languages, Rust has no
    heuristic for choosing the "most specific" match. There is work on
    adding this support, called
-   `specialization <https://rust-lang.github.io/rfcs/1210-impl-specialization.html>`__.
+   :url:`specialization <https://rust-lang.github.io/rfcs/1210-impl-specialization.html>`.

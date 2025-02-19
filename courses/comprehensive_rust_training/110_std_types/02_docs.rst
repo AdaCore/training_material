@@ -9,13 +9,13 @@ Documentation
 Rust comes with extensive documentation. For example:
 
 -  All of the details about
-   `loops <https://doc.rust-lang.org/stable/reference/expressions/loop-expr.html>`__.
+   :url:`loops <https://doc.rust-lang.org/stable/reference/expressions/loop-expr.html>`.
 -  Primitive types like
-   `u8 <https://doc.rust-lang.org/stable/std/primitive.u8.html>`__.
+   :url:`u8 <https://doc.rust-lang.org/stable/std/primitive.u8.html>`.
 -  Standard library types like
-   `Option <https://doc.rust-lang.org/stable/std/option/enum.Option.html>`__
+   :url:`Option <https://doc.rust-lang.org/stable/std/option/enum.Option.html>`
    or
-   `BinaryHeap <https://doc.rust-lang.org/stable/std/collections/struct.BinaryHeap.html>`__.
+   :url:`BinaryHeap <https://doc.rust-lang.org/stable/std/collections/struct.BinaryHeap.html>`.
 
 Use :rust:`rustup doc --std` or https://std.rs to view the documentation.
 
@@ -34,8 +34,8 @@ In fact, you can document your own code:
    }
 
 The contents are treated as Markdown. All published Rust library crates
-are automatically documented at `docs.rs <https://docs.rs>`__ using
-the `rustdoc <https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html>`__
+are automatically documented at :url:`docs.rs <https://docs.rs>` using
+the :url:`rustdoc <https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html>`
 tool. It is idiomatic to document all public items in an API using this
 pattern.
 
