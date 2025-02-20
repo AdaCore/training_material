@@ -81,12 +81,12 @@ Defensive Programming
 
 .. code:: Ada
 
-   procedure Push (S : Stack) is
-      Entry_Length : constant Positive := Length (S);
+   procedure Push (Stack : Stack_Type) is
+      Entry_Length : constant Positive := Length (Stack);
    begin
-      pragma Assert (not Is_Full (S)); -- entry condition
+      pragma Assert (not Is_Full (Stack)); -- entry condition
       [...]
-      pragma Assert (Length (S) = Entry_Length + 1); -- exit condition
+      pragma Assert (Length (Stack) = Entry_Length + 1); -- exit condition
    end Push;
 
 * Subprogram contracts are an **assertion** mechanism
@@ -95,15 +95,15 @@ Defensive Programming
 
 .. code:: Ada
 
-   procedure Force_Acquire (P : Peripheral) is
+   procedure Force_Acquire (Resource : Shared_Resource) is
    begin
-      if not Available (P) then
+      if not Available (Resource) then
          -- Corrective action
-         Force_Release (P);
-         pragma Assert (Available (P));
+         Force_Release (Resource);
+         pragma Assert (Available (Resource));
       end if;
 
-      Acquire (P);
+      Acquire (Resource);
    end;
 
 ------
