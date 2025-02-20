@@ -7,13 +7,9 @@ Exclusive References
 ----------------------
 
 Exclusive references, also known as mutable references, allow changing
-the value they refer to. They have type ``&mut T``.
+the value they refer to. They have type :rust:`&mut T`.
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let mut point = (1, 2);
@@ -21,8 +17,6 @@ the value they refer to. They have type ``&mut T``.
        *x_coord = 20;
        println!("point: {point:?}");
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -33,13 +27,10 @@ Key points:
 -  "Exclusive" means that only this reference can be used to access the
    value. No other references (shared or exclusive) can exist at the
    same time, and the referenced value cannot be accessed while the
-   exclusive reference exists. Try making an ``&point.0`` or changing
-   ``point.0`` while ``x_coord`` is alive.
+   exclusive reference exists. Try making an :rust:`&point.0` or changing
+   :rust:`point.0` while :rust:`x_coord` is alive.
 
--  Be sure to note the difference between ``let mut x_coord: &i32`` and
-   ``let x_coord: &mut i32``. The first one represents a shared
+-  Be sure to note the difference between :rust:`let mut x_coord: &i32` and
+   :rust:`let x_coord: &mut i32`. The first one represents a shared
    reference which can be bound to different values, while the second
    represents an exclusive reference to a mutable value.
-
-.. raw:: html
-

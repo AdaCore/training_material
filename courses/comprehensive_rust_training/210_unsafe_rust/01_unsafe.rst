@@ -22,16 +22,14 @@ Unsafe Rust gives you access to five new capabilities:
 
 -  Dereference raw pointers.
 -  Access or modify mutable static variables.
--  Access ``union`` fields.
--  Call ``unsafe`` functions, including ``extern`` functions.
--  Implement ``unsafe`` traits.
+-  Access :rust:`union` fields.
+-  Call :rust:`unsafe` functions, including :rust:`extern` functions.
+-  Implement :rust:`unsafe` traits.
 
 We will briefly cover unsafe capabilities next. For full details, please
 see
 :url:`Chapter 19.1 in the Rust Book <https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html>` and
 the :url:`Rustonomicon <https://doc.rust-lang.org/nomicon/>`.
-
-.. raw:: html
 
 ---------
 Details
@@ -41,6 +39,3 @@ Unsafe Rust does not mean the code is incorrect. It means that
 developers have turned off some compiler safety features and have to
 write correct code by themselves. It means the compiler no longer
 enforces Rust's memory-safety rules.
-
-.. raw:: html
-

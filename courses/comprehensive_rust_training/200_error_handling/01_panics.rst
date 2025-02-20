@@ -10,7 +10,7 @@ Rust handles fatal errors with a "panic".
 
 Rust will trigger a panic if a fatal error happens at runtime:
 
-.. code:: rust,editable,should_panic
+.. code:: rust
 
    fn main() {
        let v = vec![10, 20, 30];
@@ -21,15 +21,13 @@ Rust will trigger a panic if a fatal error happens at runtime:
 
    -  Panics are symptoms of bugs in the program.
    -  Runtime failures like failed bounds checks can panic
-   -  Assertions (such as ``assert!``) panic on failure
-   -  Purpose-specific panics can use the ``panic!`` macro.
+   -  Assertions (such as :rust:`assert!`) panic on failure
+   -  Purpose-specific panics can use the :rust:`panic!` macro.
 
 -  A panic will "unwind" the stack, dropping values just as if the
    functions had returned.
--  Use non-panicking APIs (such as ``Vec::get``) if crashing is not
+-  Use non-panicking APIs (such as :rust:`Vec::get`) if crashing is not
    acceptable.
-
-.. raw:: html
 
 ---------
 Details
@@ -38,7 +36,7 @@ Details
 By default, a panic will cause the stack to unwind. The unwinding can be
 caught:
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::panic;
 
@@ -53,11 +51,8 @@ caught:
    }
 
 -  Catching is unusual; do not attempt to implement exceptions with
-   ``catch_unwind``!
+   :rust:`catch_unwind`!
 -  This can be useful in servers which should keep running even if a
    single request crashes.
--  This does not work if ``panic = 'abort'`` is set in your
-   ``Cargo.toml``.
-
-.. raw:: html
-
+-  This does not work if :rust:`panic = 'abort'` is set in your
+   :rust:`Cargo.toml`.

@@ -12,16 +12,16 @@ generic. It uses a
 to keep track of which values have been seen and how many times each one
 has appeared.
 
-The initial version of ``Counter`` is hard coded to only work for
-``u32`` values. Make the struct and its methods generic over the type of
-value being tracked, that way ``Counter`` can track any type of value.
+The initial version of :rust:`Counter` is hard coded to only work for
+:rust:`u32` values. Make the struct and its methods generic over the type of
+value being tracked, that way :rust:`Counter` can track any type of value.
 
 If you finish early, try using the
 :url:`entry <https://doc.rust-lang.org/stable/std/collections/struct.HashMap.html#method.entry>`
 method to halve the number of hash lookups required to implement the
-``count`` method.
+:rust:`count` method.
 
-.. code:: rust,compile_fail,editable
+::
 
    use std::collections::HashMap;
 

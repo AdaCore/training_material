@@ -11,7 +11,7 @@ Rust is a new programming language which had its `1.0 release in
 
 -  Rust is a statically compiled language in a similar role as C++
 
-   -  ``rustc`` uses LLVM as its backend.
+   -  :rust:`rustc` uses LLVM as its backend.
 
 -  Rust supports many `platforms and
    architectures <https://doc.rust-lang.org/nightly/rustc/platform-support.html>`__:
@@ -27,8 +27,6 @@ Rust is a new programming language which had its `1.0 release in
    -  desktops,
    -  servers.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -41,6 +39,3 @@ Rust fits in the same area as C++:
    microcontrollers.
 -  Has no runtime or garbage collection.
 -  Focuses on reliability and safety without sacrificing performance.
-
-.. raw:: html
-

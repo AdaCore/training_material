@@ -14,7 +14,7 @@ Some unique selling points of Rust:
    -  No uninitialized variables.
    -  No double-frees.
    -  No use-after-free.
-   -  No ``NULL`` pointers.
+   -  No :rust:`NULL` pointers.
    -  No forgotten locked mutexes.
    -  No data races between threads.
    -  No iterator invalidation.
@@ -37,8 +37,6 @@ Some unique selling points of Rust:
    -  Built-in support for testing.
    -  Excellent Language Server Protocol support.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -60,6 +58,3 @@ Depending on the answer you can highlight different features of Rust:
    language feeling. In addition you get fast and predictable
    performance like C and C++ (no garbage collector) as well as access
    to low-level hardware (should you need it).
-
-.. raw:: html
-

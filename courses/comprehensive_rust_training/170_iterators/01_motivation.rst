@@ -17,7 +17,7 @@ define:
 
 In a C-style for loop you declare these things directly:
 
-.. code:: c,editable
+.. code:: c
 
    for (int i = 0; i < array_len; i += 1) {
        int elem = array[i];
@@ -26,22 +26,20 @@ In a C-style for loop you declare these things directly:
 In Rust we bundle this state and logic together into an object known as
 an "iterator".
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
 -  This slide provides context for what Rust iterators do under the
-   hood. We use the (hopefully) familiar construct of a C-style ``for``
+   hood. We use the (hopefully) familiar construct of a C-style :rust:`for`
    loop to show how iteration requires some state and some logic, that
    way on the next slide we can show how an iterator bundles these
    together.
 
--  Rust doesn't have a C-style ``for`` loop, but we can express the same
-   thing with ``while``:
+-  Rust doesn't have a C-style :rust:`for` loop, but we can express the same
+   thing with :rust:`while`:
 
-   .. code:: rust,editable
+   .. code:: rust
 
       let array = [2, 4, 6, 8];
       let mut i = 0;
@@ -54,12 +52,12 @@ Details
 More to Explore
 -----------------
 
-There's another way to express array iteration using ``for`` in C and
+There's another way to express array iteration using :rust:`for` in C and
 C++: You can use a pointer to the front and a pointer to the end of the
 array and then compare those pointers to determine when the loop should
 end.
 
-.. code:: c,editable
+.. code:: c
 
    for (int *ptr = array; ptr < array + len; ptr += 1) {
        int elem = *ptr;
@@ -68,6 +66,3 @@ end.
 If students ask, you can point out that this is how Rust's slice and
 array iterators work under the hood (though implemented as a Rust
 iterator).
-
-.. raw:: html
-

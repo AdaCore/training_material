@@ -6,14 +6,14 @@ Implementing Unsafe Traits
 Implementing Unsafe Traits
 ----------------------------
 
-Like with functions, you can mark a trait as ``unsafe`` if the
+Like with functions, you can mark a trait as :rust:`unsafe` if the
 implementation must guarantee particular conditions to avoid undefined
 behaviour.
 
-For example, the ``zerocopy`` crate has an unsafe trait that looks
+For example, the :rust:`zerocopy` crate has an unsafe trait that looks
 :url:`something like this <https://docs.rs/zerocopy/latest/zerocopy/trait.IntoBytes.html>`:
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::{mem, slice};
 
@@ -31,19 +31,14 @@ For example, the ``zerocopy`` crate has an unsafe trait that looks
    // SAFETY: `u32` has a defined representation and no padding.
    unsafe impl IntoBytes for u32 {}
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
-There should be a ``# Safety`` section on the Rustdoc for the trait
+There should be a :rust:`# Safety` section on the Rustdoc for the trait
 explaining the requirements for the trait to be safely implemented.
 
-The actual safety section for ``IntoBytes`` is rather longer and more
+The actual safety section for :rust:`IntoBytes` is rather longer and more
 complicated.
 
-The built-in ``Send`` and ``Sync`` traits are unsafe.
-
-.. raw:: html
-
+The built-in :rust:`Send` and :rust:`Sync` traits are unsafe.
