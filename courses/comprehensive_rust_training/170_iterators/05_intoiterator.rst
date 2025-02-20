@@ -1,10 +1,10 @@
-==================
-"IntoIterator"
-==================
+======================
+:rust:`IntoIterator`
+======================
 
-------------------
-"IntoIterator"
-------------------
+----------------------
+:rust:`IntoIterator`
+----------------------
 
 The :rust:`Iterator` trait tells you how to *iterate* once you have created
 an iterator. The related trait

@@ -1,10 +1,10 @@
-============================
-"break" and "continue"
-============================
+====================================
+:rust:`break` and :rust:`continue`
+====================================
 
-----------------------------
-"break" and "continue"
-----------------------------
+------------------------------------
+:rust:`break` and :rust:`continue`
+------------------------------------
 
 If you want to immediately start the next iteration use
 :url:`continue <https://doc.rust-lang.org/reference/expressions/loop-expr.html#continue-expressions>`.

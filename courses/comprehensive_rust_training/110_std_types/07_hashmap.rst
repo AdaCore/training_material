@@ -1,10 +1,10 @@
-=============
-"HashMap"
-=============
+=================
+:rust:`HashMap`
+=================
 
--------------
-"HashMap"
--------------
+-----------------
+:rust:`HashMap`
+-----------------
 
 Standard hash map with protection against HashDoS attacks:
 

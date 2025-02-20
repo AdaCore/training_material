@@ -13,9 +13,9 @@ languages. They are used for pattern matching:
 -  :rust:`let else` expressions
 -  :rust:`while let` expressions
 
-------------------------
-"if let" expressions
-------------------------
+----------------------------
+:rust:`if let` expressions
+----------------------------
 
 The
 :url:`if let expression <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-let-expressions>`
@@ -38,9 +38,9 @@ pattern:
        sleep_for(0.8);
    }
 
---------------------------
-"let else" expressions
---------------------------
+------------------------------
+:rust:`let else` expressions
+------------------------------
 
 For the common case of matching a pattern and returning from the
 function, use
@@ -91,9 +91,9 @@ returns :rust:`Some(c)` until the string is empty, after which it will
 return :rust:`None`. The :rust:`while let` lets us keep iterating through all
 items.
 
---------
-if-let
---------
+----------------
+:rust:`if-let`
+----------------
 
 -  Unlike :rust:`match`, :rust:`if let` does not have to cover all branches.
    This can make it more concise than :rust:`match`.
@@ -102,9 +102,9 @@ if-let
 -  Unlike :rust:`match`, :rust:`if let` does not support guard clauses for
    pattern matching.
 
-----------
-let-else
-----------
+------------------
+:rust:`let-else`
+------------------
 
 :rust:`if-let` can pile up, as shown. The :rust:`let-else` construct supports
 flattening this nested code. Rewrite the awkward version for students,
@@ -130,9 +130,9 @@ The rewritten version is:
        return Ok(digit);
    }
 
------------
-while-let
------------
+-------------------
+:rust:`while-let`
+-------------------
 
 -  Point out that the :rust:`while let` loop will keep going as long as the
    value matches the pattern.

@@ -1,10 +1,10 @@
-====================
-"if" expressions
-====================
+========================
+:rust:`if` expressions
+========================
 
---------------------
-"if" expressions
---------------------
+------------------------
+:rust:`if` expressions
+------------------------
 
 You use
 :url:`if expressions <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-expressions>`

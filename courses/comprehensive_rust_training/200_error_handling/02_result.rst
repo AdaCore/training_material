@@ -1,10 +1,10 @@
-============
-"Result"
-============
+================
+:rust:`Result`
+================
 
-------------
-"Result"
-------------
+----------------
+:rust:`Result`
+----------------
 
 Our primary mechanism for error handling in Rust is the
 :url:`Result <https://doc.rust-lang.org/stable/std/result/enum.Result.html>`

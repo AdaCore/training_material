@@ -25,7 +25,7 @@ ways to ensure that safety, and the next sub-slides present a few of
 them.
 
 --------------
-"Cell"
+:rust:`Cell"
 --------------
 
 :rust:`Cell` wraps a value and allows getting or setting the value using
@@ -45,16 +45,16 @@ rules cannot be broken.
        println!("{}", cell.get());
    }
 
-----------------
-"Cell" Details
-----------------
+----------------------
+:rust:`Cell` Details
+----------------------
 
 -  :rust:`Cell` is a simple means to ensure safety: it has a :rust:`set` method
    that takes :rust:`&self`. This needs no runtime check, but requires
    moving values, which can have its own cost.
 
 -----------------
-"RefCell"
+:rust:`RefCell`
 -----------------
 
 :rust:`RefCell` allows accessing and mutating a wrapped value by providing
@@ -88,9 +88,9 @@ escape.
        println!("{cell:?}");
    }
 
--------------------
-"RefCell" Details
--------------------
+-------------------------
+:rust:`RefCell` Details
+-------------------------
 
 -  :rust:`RefCell` enforces Rust's usual borrowing rules (either multiple
    shared references or a single exclusive reference) with a runtime

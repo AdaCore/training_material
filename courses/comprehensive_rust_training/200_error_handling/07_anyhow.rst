@@ -1,10 +1,10 @@
-============
-"anyhow"
-============
+================
+:rust:`anyhow`
+================
 
-------------
-"anyhow"
-------------
+----------------
+:rust:`anyhow`
+----------------
 
 The :url:`anyhow <https://docs.rs/anyhow/>` crate provides a rich error
 type with support for carrying additional contextual information, which

@@ -1,10 +1,10 @@
-=============================
-"Iterator" Helper Methods
-=============================
+=================================
+:rust:`Iterator` Helper Methods
+=================================
 
------------------------------
-"Iterator" Helper Methods
------------------------------
+---------------------------------
+:rust:`Iterator` Helper Methods
+---------------------------------
 
 In addition to the :rust:`next` method that defines how an iterator behaves,
 the :rust:`Iterator` trait provides 70+ helper methods that can be used to

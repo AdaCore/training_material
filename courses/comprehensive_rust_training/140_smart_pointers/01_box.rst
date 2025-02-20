@@ -1,10 +1,10 @@
-============
-"Box<T>"
-============
+================
+:rust:`Box<T>`
+================
 
-------------
-"Box<T>"
-------------
+----------------
+:rust:`Box<T>`
+----------------
 
 :url:`Box <https://doc.rust-lang.org/std/boxed/struct.Box.html>` is an
 owned pointer to data on the heap:
