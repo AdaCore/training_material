@@ -7,7 +7,7 @@ Shared References
 -------------------
 
 A reference provides a way to access another value without taking
-ownership of the value, and is also called "borrowing". Shared
+ownership of the value, and is also called :dfn:`borrowing`. Shared
 references are read-only, and the referenced data cannot change.
 
 .. code:: rust
@@ -22,7 +22,7 @@ references are read-only, and the referenced data cannot change.
    }
 
 A shared reference to a type :rust:`T` has type :rust:`&T`. A reference value is
-made with the :rust:`&` operator. The :rust:`*` operator "dereferences" a
+made with the :rust:`&` operator. The :rust:`*` operator :dfn:`dereferences` a
 reference, yielding its value.
 
 ---------
@@ -32,9 +32,9 @@ Details
 -  References can never be null in Rust, so null checking is not
    necessary.
 
--  A reference is said to "borrow" the value it refers to, and this is a
+-  A reference is said to **borrow** the value it refers to, and this is a
    good model for students not familiar with pointers: code can use the
-   reference to access the value, but is still "owned" by the original
+   reference to access the value, but is still **owned** by the original
    variable. The course will get into more detail on ownership in day 3.
 
 -  References are implemented as pointers, and a key advantage is that

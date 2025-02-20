@@ -24,7 +24,7 @@ Details
 
 Key points:
 
--  "Exclusive" means that only this reference can be used to access the
+-  :dfn:`Exclusive` means that only this reference can be used to access the
    value. No other references (shared or exclusive) can exist at the
    same time, and the referenced value cannot be accessed while the
    exclusive reference exists. Try making an :rust:`&point.0` or changing

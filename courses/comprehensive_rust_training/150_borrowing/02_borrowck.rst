@@ -45,7 +45,7 @@ There's also a second main rule that the borrow checker enforces: The
 Details
 ---------
 
--  The "outlives" rule was demonstrated previously when we first looked
+-  The :dfn:`outlives` rule was demonstrated previously when we first looked
    at references. We review it here to show students that the borrow
    checking is following a few different rules to validate borrowing.
 -  Note that the requirement is that conflicting references not *exist*
@@ -57,7 +57,7 @@ Details
    introduces :rust:`c` to make the code compile.
 -  After that change, the compiler realizes that :rust:`b` is only ever used
    before the new mutable borrow of :rust:`a` through :rust:`c`. This is a
-   feature of the borrow checker called "non-lexical lifetimes".
+   feature of the borrow checker called :dfn:`non-lexical lifetimes`.
 -  The exclusive reference constraint is quite strong. Rust uses it to
    ensure that data races do not occur. Rust also *relies* on this
    constraint to optimize code. For example, a value behind a shared

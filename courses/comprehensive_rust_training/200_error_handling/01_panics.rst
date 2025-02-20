@@ -6,7 +6,7 @@ Panics
 Panics
 --------
 
-Rust handles fatal errors with a "panic".
+Rust handles fatal errors with a :dfn:`panic`.
 
 Rust will trigger a panic if a fatal error happens at runtime:
 
@@ -24,7 +24,7 @@ Rust will trigger a panic if a fatal error happens at runtime:
    -  Assertions (such as :rust:`assert!`) panic on failure
    -  Purpose-specific panics can use the :rust:`panic!` macro.
 
--  A panic will "unwind" the stack, dropping values just as if the
+-  A panic will :dfn:`unwind` the stack, dropping values just as if the
    functions had returned.
 -  Use non-panicking APIs (such as :rust:`Vec::get`) if crashing is not
    acceptable.

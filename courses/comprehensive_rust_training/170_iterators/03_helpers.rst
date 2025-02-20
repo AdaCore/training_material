@@ -29,8 +29,8 @@ Details
    about them.
 
 -  Many of these helper methods take the original iterator and produce a
-   new iterator with different behavior. These are know as "iterator
-   adapter methods".
+   new iterator with different behavior. These are know as
+   :dfn:`iterator adapter methods`.
 
 -  Some methods, like :rust:`sum` and :rust:`count`, consume the iterator and
    pull all of the elements out of it.

@@ -90,11 +90,10 @@ Details
    heap.
 
 -  Remove the :rust:`Box` in the List definition and show the compiler
-   error. We get the message "recursive without indirection", because
+   error. We get the message :command:`recursive without indirection`, because
    for data recursion, we have to use indirection, a :rust:`Box` or
    reference of some kind, instead of storing the value directly.
 
 -  Though :rust:`Box` looks like :rust:`std::unique_ptr` in C++, it cannot be
    empty/null. This makes :rust:`Box` one of the types that allow the
-   compiler to optimize storage of some enums (the "niche
-   optimization").
+   compiler to optimize storage of some enums (the :dfn:`niche optimization`).

@@ -10,7 +10,7 @@ There are three looping keywords in Rust: :rust:`while`, :rust:`loop`, and
 :rust:`for`:
 
 ---------------
-:rust:while`
+:rust:`while`
 ---------------
 
 The
@@ -29,7 +29,7 @@ the condition is true.
    }
 
 -----------------
-:rust:for`
+:rust:`for`
 -----------------
 
 The :rust:`for` `loop <https://doc.rust-lang.org/std/keyword.for.html>`__
@@ -48,7 +48,7 @@ iterates over ranges of values or the items in a collection:
    }
 
 -------------------
-:rust:for` Details
+:rust:`for` Details
 -------------------
 
 -  Under the hood :rust:`for` loops use a concept called :dfn:`iterators` to
@@ -58,7 +58,7 @@ iterates over ranges of values or the items in a collection:
    :rust:`1..=5` syntax for an inclusive range.
 
 ------------------
-:rust:loop`
+:rust:`loop`
 ------------------
 
 The :rust:`loop`
@@ -79,7 +79,7 @@ loops forever, until a :rust:`break`.
    }
 
 --------------------
-:rust:loop` Details
+:rust:`loop` Details
 --------------------
 
 -  The :rust:`loop` statement works like a :rust:`while true` loop. Use it for

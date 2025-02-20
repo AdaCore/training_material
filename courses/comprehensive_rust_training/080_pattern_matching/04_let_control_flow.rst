@@ -45,7 +45,7 @@ pattern:
 For the common case of matching a pattern and returning from the
 function, use
 :url:`let else <https://doc.rust-lang.org/rust-by-example/flow_control/let_else.html>`.
-The "else" case must diverge (:rust:`return`, :rust:`break`, or panic - anything
+The :rust:`else` case must diverge (:rust:`return`, :rust:`break`, or panic - anything
 but falling off the end of the block).
 
 .. code:: rust

@@ -6,7 +6,7 @@ Lifetime Annotations
 Lifetime Annotations
 ----------------------
 
-A reference has a *lifetime*, which must not "outlive" the value it
+A reference has a *lifetime*, which must not :dfn:`outlive` the value it
 refers to. This is verified by the borrow checker.
 
 The lifetime can be implicit - this is what we have seen so far.
@@ -60,7 +60,7 @@ Add :rust:`'a` appropriately to :rust:`left_most`:
    fn left_most<'a>(p1: &'a Point, p2: &'a Point) -> &'a Point {
 
 This says, "given p1 and p2 which both outlive :rust:`'a`, the return value
-lives for at least :rust:`'a`.
+lives for at least :rust:`'a`."
 
 In common cases, lifetimes can be elided, as described on the next
 slide.
