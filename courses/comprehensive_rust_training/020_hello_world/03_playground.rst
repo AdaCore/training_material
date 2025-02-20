@@ -11,7 +11,7 @@ way to run short Rust programs, and is the basis for the examples and
 exercises in this course. Try running the "hello-world" program it
 starts with. It comes with a few handy features:
 
--  Under "Tools", use the ``rustfmt`` option to format your code in the
+-  Under "Tools", use the :rust:`rustfmt` option to format your code in the
    "standard" way.
 
 -  Rust has two main "profiles" for generating code: Debug (extra
@@ -20,8 +20,6 @@ starts with. It comes with a few handy features:
 
 -  If you're interested, use "ASM" under "..." to see the generated
    assembly code.
-
-.. raw:: html
 
 ---------
 Details
@@ -32,6 +30,3 @@ playground and experiment a little. Encourage them to keep the tab open
 and try things out during the rest of the course. This is particularly
 helpful for advanced students who want to know more about Rust's
 optimizations or generated assembly.
-
-.. raw:: html
-

@@ -9,7 +9,7 @@ Type Aliases
 A type alias creates a name for another type. The two types can be used
 interchangeably.
 
-.. code:: rust,editable
+.. code:: rust
 
    enum CarryableConcreteItem {
        Left,
@@ -23,17 +23,12 @@ interchangeably.
    use std::sync::{Arc, RwLock};
    type PlayerInventory = RwLock<Vec<Arc<RefCell<Item>>>>;
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
 -  A :url:`newtype <tuple-structs.html>` is often a better alternative
    since it creates a distinct type. Prefer
-   ``struct InventoryCount(usize)`` to ``type InventoryCount = usize``.
+   :rust:`struct InventoryCount(usize)` to :rust:`type InventoryCount = usize`.
 
--  C programmers will recognize this as similar to a ``typedef``.
-
-.. raw:: html
-
+-  C programmers will recognize this as similar to a :rust:`typedef`.

@@ -14,8 +14,8 @@ copied.
 
 Fully parsing a protobuf message requires knowing the types of the
 fields, indexed by their field numbers. That is typically provided in a
-``proto`` file. In this exercise, we'll encode that information into
-``match`` statements in functions that get called for each field.
+:rust:`proto` file. In this exercise, we'll encode that information into
+:rust:`match` statements in functions that get called for each field.
 
 We'll use the following proto:
 
@@ -38,17 +38,17 @@ Messages
 
 A proto message is encoded as a series of fields, one after the next.
 Each is implemented as a "tag" followed by the value. The tag contains a
-field number (e.g., ``2`` for the ``id`` field of a ``Person`` message)
+field number (e.g., :rust:`2` for the :rust:`id` field of a :rust:`Person` message)
 and a wire type defining how the payload should be determined from the
 byte stream. These are combined into a single integer, as decoded in
-``unpack_tag`` below.
+:rust:`unpack_tag` below.
 
 --------
 Varint
 --------
 
 Integers, including the tag, are represented with a variable-length
-encoding called VARINT. Luckily, ``parse_varint`` is defined for you
+encoding called VARINT. Luckily, :rust:`parse_varint` is defined for you
 below.
 
 ------------
@@ -58,31 +58,27 @@ Wire Types
 Proto defines several wire types, only two of which are used in this
 exercise.
 
-The ``Varint`` wire type contains a single varint, and is used to encode
-proto values of type ``int32`` such as ``Person.id``.
+The :rust:`Varint` wire type contains a single varint, and is used to encode
+proto values of type :rust:`int32` such as :rust:`Person.id`.
 
-The ``Len`` wire type contains a length expressed as a varint, followed
+The :rust:`Len` wire type contains a length expressed as a varint, followed
 by a payload of that number of bytes. This is used to encode proto
-values of type ``string`` such as ``Person.name``. It is also used to
-encode proto values containing sub-messages such as ``Person.phones``,
+values of type :rust:`string` such as :rust:`Person.name`. It is also used to
+encode proto values containing sub-messages such as :rust:`Person.phones`,
 where the payload contains an encoding of the sub-message.
 
 ----------
 Exercise
 ----------
 
-The given code also defines callbacks to handle ``Person`` and
-``PhoneNumber`` fields, and to parse a message into a series of calls to
+The given code also defines callbacks to handle :rust:`Person` and
+:rust:`PhoneNumber` fields, and to parse a message into a series of calls to
 those callbacks.
 
-What remains for you is to implement the ``parse_field`` function and
-the ``ProtoMessage`` trait for ``Person`` and ``PhoneNumber``.
+What remains for you is to implement the :rust:`parse_field` function and
+the :rust:`ProtoMessage` trait for :rust:`Person` and :rust:`PhoneNumber`.
 
-.. raw:: html
-
-   <!-- compile_fail because the stubbed out code has type inference errors. -->
-
-.. code:: rust,editable,compile_fail
+::
 
    {{#include exercise.rs:preliminaries }}
 
@@ -103,18 +99,13 @@ the ``ProtoMessage`` trait for ``Person`` and ``PhoneNumber``.
 
    {{#include exercise.rs:main }}
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
 -  In this exercise there are various cases where protobuf parsing might
-   fail, e.g. if you try to parse an ``i32`` when there are fewer than 4
+   fail, e.g. if you try to parse an :rust:`i32` when there are fewer than 4
    bytes left in the data buffer. In normal Rust code we'd handle this
-   with the ``Result`` enum, but for simplicity in this exercise we
+   with the :rust:`Result` enum, but for simplicity in this exercise we
    panic if any errors are encountered. On day 4 we'll cover error
    handling in Rust in more detail.
-
-.. raw:: html
-

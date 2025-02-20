@@ -7,15 +7,11 @@ Reference Validity
 --------------------
 
 Rust enforces a number of rules for references that make them always
-safe to use. One rule is that references can never be ``null``, making
-them safe to use without ``null`` checks. The other rule we'll look at
+safe to use. One rule is that references can never be :rust:`null`, making
+them safe to use without :rust:`null` checks. The other rule we'll look at
 for now is that references can't *outlive* the data they point to.
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
-.. code:: rust,editable,compile_fail
+.. code:: rust
 
    fn main() {
        let x_ref = {
@@ -24,8 +20,6 @@ for now is that references can't *outlive* the data they point to.
        };
        println!("x: {x_ref}");
    }
-
-.. raw:: html
 
 ---------
 Details
@@ -42,10 +36,7 @@ Details
 More to Explore
 -----------------
 
--  Rust's equivalent of nullability is the ``Option`` type, which can be
+-  Rust's equivalent of nullability is the :rust:`Option` type, which can be
    used to make any type "nullable" (not just references/pointers). We
    haven't yet introduced enums or pattern matching, though, so try not
    to go into too much detail about this here.
-
-.. raw:: html
-

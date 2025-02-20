@@ -11,7 +11,7 @@ In this example, you will implement the classic
 playground, and implement the missing bits. Only rotate ASCII alphabetic
 characters, to ensure the result is still valid UTF-8.
 
-.. code:: rust,compile_fail
+::
 
    {{#include exercise.rs:head }}
 
@@ -19,5 +19,5 @@ characters, to ensure the result is still valid UTF-8.
 
    {{#include exercise.rs:main }}
 
-What happens if you chain two ``RotDecoder`` instances together, each
+What happens if you chain two :rust:`RotDecoder` instances together, each
 rotating by 13 characters?

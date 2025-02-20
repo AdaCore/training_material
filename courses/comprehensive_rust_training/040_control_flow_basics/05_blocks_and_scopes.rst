@@ -2,19 +2,15 @@
 Blocks and Scopes
 ===================
 
--------------------
-Blocks and Scopes
--------------------
-
 --------
 Blocks
 --------
 
 A block in Rust contains a sequence of expressions, enclosed by braces
-``{}``. Each block has a value and a type, which are those of the last
+:rust:`{}`. Each block has a value and a type, which are those of the last
 expression of the block:
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let z = 13;
@@ -26,10 +22,8 @@ expression of the block:
        println!("x: {x}");
    }
 
-If the last expression ends with ``;``, then the resulting value and
-type is ``()``.
-
-.. raw:: html
+If the last expression ends with :rust:`;`, then the resulting value and
+type is :rust:`()`.
 
 ---------
 Details
@@ -37,7 +31,4 @@ Details
 
 -  You can show how the value of the block changes by changing the last
    line in the block. For instance, adding/removing a semicolon or using
-   a ``return``.
-
-.. raw:: html
-
+   a :rust:`return`.

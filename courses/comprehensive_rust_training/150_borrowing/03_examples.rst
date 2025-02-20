@@ -10,7 +10,7 @@ As a concrete example of how these borrowing rules prevent memory
 errors, consider the case of modifying a collection while there are
 references to its elements:
 
-.. code:: rust,editable,compile_fail
+.. code:: rust
 
    fn main() {
        let mut vec = vec![1, 2, 3, 4, 5];
@@ -21,7 +21,7 @@ references to its elements:
 
 Similarly, consider the case of iterator invalidation:
 
-.. code:: rust,editable,compile_fail
+.. code:: rust
 
    fn main() {
        let mut vec = vec![1, 2, 3, 4, 5];
@@ -30,8 +30,6 @@ Similarly, consider the case of iterator invalidation:
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -39,6 +37,3 @@ Details
 -  In both of these cases, modifying the collection by pushing new
    elements into it can potentially invalidate existing references to
    the collection's elements if the collection has to reallocate.
-
-.. raw:: html
-

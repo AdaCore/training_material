@@ -7,21 +7,20 @@ Macros
 --------
 
 Macros are expanded into Rust code during compilation, and can take a
-variable number of arguments. They are distinguished by a ``!`` at the
+variable number of arguments. They are distinguished by a :rust:`!` at the
 end. The Rust standard library includes an assortment of useful macros.
 
--  ``println!(format, ..)`` prints a line to standard output, applying
+-  :rust:`println!(format, ..)` prints a line to standard output, applying
    formatting described in
    :url:`std::fmt <https://doc.rust-lang.org/std/fmt/index.html>`.
--  ``format!(format, ..)`` works just like ``println!`` but returns the
    result as a string.
--  ``dbg!(expression)`` logs the value of the expression and returns it.
--  ``todo!()`` marks a bit of code as not-yet-implemented. If executed,
+-  :rust:`dbg!(expression)` logs the value of the expression and returns it.
+-  :rust:`todo!()` marks a bit of code as not-yet-implemented. If executed,
    it will panic.
--  ``unreachable!()`` marks a bit of code as unreachable. If executed,
+-  :rust:`unreachable!()` marks a bit of code as unreachable. If executed,
    it will panic.
 
-.. code:: rust,editable
+.. code:: rust
 
    fn factorial(n: u32) -> u32 {
        let mut product = 1;
@@ -40,8 +39,6 @@ end. The Rust standard library includes an assortment of useful macros.
        println!("{n}! = {}", factorial(n));
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -52,6 +49,3 @@ expand to, is not especially critical.
 
 The course does not cover defining macros, but a later section will
 describe use of derive macros.
-
-.. raw:: html
-

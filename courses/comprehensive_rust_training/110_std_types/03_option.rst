@@ -6,12 +6,12 @@ Option
 Option
 --------
 
-We have already seen some use of ``Option<T>``. It stores either a value
-of type ``T`` or nothing. For example,
+We have already seen some use of :rust:`Option<T>`. It stores either a value
+of type :rust:`T` or nothing. For example,
 :url:`String::find <https://doc.rust-lang.org/stable/std/string/struct.String.html#method.find>`
-returns an ``Option<usize>``.
+returns an :rust:`Option<usize>`.
 
-.. code:: rust,editable,should_panic
+.. code:: rust
 
    fn main() {
        let name = "Alexander the Great";
@@ -23,27 +23,22 @@ returns an ``Option<usize>``.
        assert_eq!(position.expect("Character not found"), 0);
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
--  ``Option`` is widely used, not just in the standard library.
--  ``unwrap`` will return the value in an ``Option``, or panic.
-   ``expect`` is similar but takes an error message.
+-  :rust:`Option` is widely used, not just in the standard library.
+-  :rust:`unwrap` will return the value in an :rust:`Option`, or panic.
+   :rust:`expect` is similar but takes an error message.
 
    -  You can panic on None, but you can't "accidentally" forget to
       check for None.
-   -  It's common to ``unwrap``/``expect`` all over the place when
+   -  It's common to :rust:`unwrap`/:rust:`expect` all over the place when
       hacking something together, but production code typically handles
-      ``None`` in a nicer fashion.
+      :rust:`None` in a nicer fashion.
 
--  The "niche optimization" means that ``Option<T>`` often has the same
-   size in memory as ``T``, if there is some representation that is not
+-  The "niche optimization" means that :rust:`Option<T>` often has the same
+   size in memory as :rust:`T`, if there is some representation that is not
    a valid value of T. For example, a reference cannot be NULL, so
-   ``Option<&T>`` automatically uses NULL to represent the ``None``
-   variant, and thus can be stored in the same memory as ``&T``.
-
-.. raw:: html
-
+   :rust:`Option<&T>` automatically uses NULL to represent the :rust:`None`
+   variant, and thus can be stored in the same memory as :rust:`&T`.

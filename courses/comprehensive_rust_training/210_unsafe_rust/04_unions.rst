@@ -8,7 +8,7 @@ Unions
 
 Unions are like enums, but you need to track the active field yourself:
 
-.. code:: rust,editable
+.. code:: rust
 
    #[repr(C)]
    union MyUnion {
@@ -22,8 +22,6 @@ Unions are like enums, but you need to track the active field yourself:
        println!("bool: {}", unsafe { u.b }); // Undefined behavior!
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -36,6 +34,3 @@ want
 :url:`std::mem::transmute <https://doc.rust-lang.org/stable/std/mem/fn.transmute.html>`
 or a safe wrapper such as the
 :url:`zerocopy <https://crates.io/crates/zerocopy>` crate.
-
-.. raw:: html
-

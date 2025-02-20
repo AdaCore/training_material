@@ -14,7 +14,7 @@ Arrays can contain other arrays:
 
 What is the type of this variable?
 
-Use an array such as the above to write a function ``transpose`` which
+Use an array such as the above to write a function :rust:`transpose` which
 will transpose a matrix (turn rows into columns):
 
 Transpose
@@ -40,7 +40,7 @@ into
 Copy the code below to https://play.rust-lang.org/ and implement the
 function. This function only operates on 3x3 matrices.
 
-.. code:: rust,should_panic
+::
 
    // TODO: remove this when you're done with your implementation.
    #![allow(unused_variables, dead_code)]

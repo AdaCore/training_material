@@ -17,10 +17,10 @@ Implement the following types, so that the given tests pass.
 Extra Credit: implement an iterator over a binary tree that returns the
 values in order.
 
-.. code:: rust,editable,ignore
+::
 
-   {{#include exercise.rs:types}}
+   include exercise.rs:types
 
-   // Implement `new`, `insert`, `len`, and `has` for `Subtree`.
+    Implement new, insert, len, and has for Subtree.
 
-   {{#include exercise.rs:tests}}
+   include exercise.rs:tests
