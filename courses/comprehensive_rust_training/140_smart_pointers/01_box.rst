@@ -16,18 +16,8 @@ owned pointer to data on the heap:
        println!("five: {}", *five);
    }
 
-.. code:: bob
-
-    Stack                     Heap
-   .- - - - - - -.     .- - - - - - -.
-   :             :     :             :
-   :    five     :     :             :
-   :   +-----+   :     :   +-----+   :
-   :   | o---|---+-----+-->|  5  |   :
-   :   +-----+   :     :   +-----+   :
-   :             :     :             :
-   :             :     :             :
-   `- - - - - - -'     `- - - - - - -'
+.. image:: comprehensive_rust_training/smart_pointers_box_1.svg
+   :width: 50%
 
 :rust:`Box<T>` implements :rust:`Deref<Target = T>`, which means that you can
 :url:`call methods from T directly on a Box<T> <https://doc.rust-lang.org/std/ops/trait.Deref.html#more-on-deref-coercion>`.
@@ -52,18 +42,7 @@ indirection:
        println!("{list:?}");
    }
 
-.. code:: bob
-
-    Stack                           Heap
-   .- - - - - - - - - - - - - - .     .- - - - - - - - - - - - - - - - - - - - - - - - -.
-   :                            :     :                                                 :
-   :    list                    :     :                                                 :
-   :   +---------+----+----+    :     :    +---------+----+----+    +------+----+----+  :
-   :   | Element | 1  | o--+----+-----+--->| Element | 2  | o--+--->| Nil  | // | // |  :
-   :   +---------+----+----+    :     :    +---------+----+----+    +------+----+----+  :
-   :                            :     :                                                 :
-   :                            :     :                                                 :
-   '- - - - - - - - - - - - - - '     '- - - - - - - - - - - - - - - - - - - - - - - - -'
+.. image:: comprehensive_rust_training/smart_pointers_box_2.svg
 
 ---------
 Details
