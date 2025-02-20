@@ -9,11 +9,7 @@ Ownership
 All variable bindings have a *scope* where they are valid and it is an
 error to use a variable outside its scope:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
-.. code:: rust,editable,compile_fail
+.. code:: rust
 
    struct Point(i32, i32);
 
@@ -31,8 +27,6 @@ precisely one owner at all times.
 At the end of the scope, the variable is *dropped* and the data is
 freed. A destructor can run here to free up resources.
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -40,6 +34,3 @@ Details
 Students familiar with garbage-collection implementations will know that
 a garbage collector starts with a set of "roots" to find all reachable
 memory. Rust's "single owner" principle is a similar idea.
-
-.. raw:: html
-

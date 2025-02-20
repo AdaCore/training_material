@@ -8,7 +8,7 @@ Mutable Static Variables
 
 It is safe to read an immutable static variable:
 
-.. code:: rust,editable
+.. code:: rust
 
    static HELLO_WORLD: &str = "Hello, world!";
 
@@ -19,7 +19,7 @@ It is safe to read an immutable static variable:
 However, since data races can occur, it is unsafe to read and write
 mutable static variables:
 
-.. code:: rust,editable
+.. code:: rust
 
    static mut COUNTER: u32 = 0;
 
@@ -39,20 +39,15 @@ mutable static variables:
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
 -  The program here is safe because it is single-threaded. However, the
    Rust compiler is conservative and will assume the worst. Try removing
-   the ``unsafe`` and see how the compiler explains that it is undefined
+   the :rust:`unsafe` and see how the compiler explains that it is undefined
    behavior to mutate a static from multiple threads.
 
 -  Using a mutable static is generally a bad idea, but there are some
-   cases where it might make sense in low-level ``no_std`` code, such as
+   cases where it might make sense in low-level :rust:`no_std` code, such as
    implementing a heap allocator or working with some C APIs.
-
-.. raw:: html
-

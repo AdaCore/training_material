@@ -6,10 +6,10 @@ Enums
 Enums
 -------
 
-The ``enum`` keyword allows the creation of a type which has a few
+The :rust:`enum` keyword allows the creation of a type which has a few
 different variants:
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug)]
    enum Direction {
@@ -29,8 +29,6 @@ different variants:
        println!("On this turn: {player_move:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -38,11 +36,11 @@ Details
 Key Points:
 
 -  Enumerations allow you to collect a set of values under one type.
--  ``Direction`` is a type with variants. There are two values of
-   ``Direction``: ``Direction::Left`` and ``Direction::Right``.
--  ``PlayerMove`` is a type with three variants. In addition to the
+-  :rust:`Direction` is a type with variants. There are two values of
+   :rust:`Direction`: :rust:`Direction::Left` and :rust:`Direction::Right`.
+-  :rust:`PlayerMove` is a type with three variants. In addition to the
    payloads, Rust will store a discriminant so that it knows at runtime
-   which variant is in a ``PlayerMove`` value.
+   which variant is in a :rust:`PlayerMove` value.
 -  This might be a good time to compare structs and enums:
 
    -  In both, you can have a simple version without fields (unit
@@ -57,17 +55,13 @@ Key Points:
 
    -  If the allowed variant values do not cover all bit patterns, it
       will use invalid bit patterns to encode the discriminant (the
-      "niche optimization"). For example, ``Option<&u8>`` stores either
-      a pointer to an integer or ``NULL`` for the ``None`` variant.
+      "niche optimization"). For example, :rust:`Option<&u8>` stores either
+      a pointer to an integer or :rust:`NULL` for the :rust:`None` variant.
 
    -  You can control the discriminant if needed (e.g., for
       compatibility with C):
 
-      .. raw:: html
-
-         <!-- mdbook-xgettext: skip -->
-
-      .. code:: rust,editable
+      .. code:: rust
 
          #[repr(u32)]
          enum Bar {
@@ -82,7 +76,7 @@ Key Points:
              println!("C: {}", Bar::C as u32);
          }
 
-      Without ``repr``, the discriminant type takes 2 bytes, because
+      Without :rust:`repr`, the discriminant type takes 2 bytes, because
       10001 fits 2 bytes.
 
 -----------------
@@ -94,18 +88,14 @@ space.
 
 -  Null pointer optimization: For
    :url:`some types <https://doc.rust-lang.org/std/option/#representation>`, Rust
-   guarantees that ``size_of::<T>()`` equals ``size_of::<Option<T>>()``.
+   guarantees that :rust:`size_of::<T>()` equals :rust:`size_of::<Option<T>>()`.
 
    Example code if you want to show how the bitwise representation *may*
    look like in practice. It's important to note that the compiler
    provides no guarantees regarding this representation, therefore this
    is totally unsafe.
 
-   .. raw:: html
-
-      <!-- mdbook-xgettext: skip -->
-
-   .. code:: rust,editable
+   .. code:: rust
 
       use std::mem::transmute;
 
@@ -137,6 +127,3 @@ space.
               dbg_bits!(Some(&0i32), usize);
           }
       }
-
-.. raw:: html
-

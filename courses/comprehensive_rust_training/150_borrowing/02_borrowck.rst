@@ -10,11 +10,7 @@ Rust's *borrow checker* puts constraints on the ways you can borrow
 values. We've already seen that a reference cannot *outlive* the value
 it borrows:
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
-.. code:: rust,editable,compile_fail
+.. code:: rust
 
    fn main() {
        let x_ref = {
@@ -30,11 +26,7 @@ There's also a second main rule that the borrow checker enforces: The
 -  You can have one or more shared references to the value, *or*
 -  You can have exactly one exclusive reference to the value.
 
-.. raw:: html
-
-   <!-- mdbook-xgettext: skip -->
-
-.. code:: rust,editable,compile_fail
+.. code:: rust
 
    fn main() {
        let mut a: i32 = 10;
@@ -49,8 +41,6 @@ There's also a second main rule that the borrow checker enforces: The
        println!("b: {b}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
@@ -61,12 +51,12 @@ Details
 -  Note that the requirement is that conflicting references not *exist*
    at the same point. It does not matter where the reference is
    dereferenced.
--  The above code does not compile because ``a`` is borrowed as mutable
-   (through ``c``) and as immutable (through ``b``) at the same time.
--  Move the ``println!`` statement for ``b`` before the scope that
-   introduces ``c`` to make the code compile.
--  After that change, the compiler realizes that ``b`` is only ever used
-   before the new mutable borrow of ``a`` through ``c``. This is a
+-  The above code does not compile because :rust:`a` is borrowed as mutable
+   (through :rust:`c`) and as immutable (through :rust:`b`) at the same time.
+-  Move the :rust:`println!` statement for :rust:`b` before the scope that
+   introduces :rust:`c` to make the code compile.
+-  After that change, the compiler realizes that :rust:`b` is only ever used
+   before the new mutable borrow of :rust:`a` through :rust:`c`. This is a
    feature of the borrow checker called "non-lexical lifetimes".
 -  The exclusive reference constraint is quite strong. Rust uses it to
    ensure that data races do not occur. Rust also *relies* on this
@@ -78,6 +68,3 @@ Details
    at the same time. But, there are some situations where it doesn't
    quite "get it" and this often results in "fighting with the borrow
    checker."
-
-.. raw:: html
-

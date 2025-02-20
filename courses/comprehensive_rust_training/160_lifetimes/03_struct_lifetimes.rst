@@ -9,7 +9,7 @@ Lifetimes in Data Structures
 If a data type stores borrowed data, it must be annotated with a
 lifetime:
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug)]
    struct Highlight<'doc>(&'doc str);
@@ -27,17 +27,15 @@ lifetime:
        println!("{dog:?}");
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
--  In the above example, the annotation on ``Highlight`` enforces that
-   the data underlying the contained ``&str`` lives at least as long as
-   any instance of ``Highlight`` that uses that data.
--  If ``text`` is consumed before the end of the lifetime of ``fox`` (or
-   ``dog``), the borrow checker throws an error.
+-  In the above example, the annotation on :rust:`Highlight` enforces that
+   the data underlying the contained :rust:`&str` lives at least as long as
+   any instance of :rust:`Highlight` that uses that data.
+-  If :rust:`text` is consumed before the end of the lifetime of :rust:`fox` (or
+   :rust:`dog`), the borrow checker throws an error.
 -  Types with borrowed data force users to hold on to the original data.
    This can be useful for creating lightweight views, but it generally
    makes them somewhat harder to use.
@@ -47,6 +45,3 @@ Details
    describe lifetime relationships between the references themselves, in
    addition to the lifetime of the struct itself. Those are very
    advanced use cases.
-
-.. raw:: html
-

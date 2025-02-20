@@ -6,9 +6,9 @@ Array Iteration
 Array Iteration
 -----------------
 
-The ``for`` statement supports iterating over arrays (but not tuples).
+The :rust:`for` statement supports iterating over arrays (but not tuples).
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let primes = [2, 3, 5, 7, 11, 13, 17, 19];
@@ -19,18 +19,13 @@ The ``for`` statement supports iterating over arrays (but not tuples).
        }
    }
 
-.. raw:: html
-
 ---------
 Details
 ---------
 
-This functionality uses the ``IntoIterator`` trait, but we haven't
+This functionality uses the :rust:`IntoIterator` trait, but we haven't
 covered that yet.
 
-The ``assert_ne!`` macro is new here. There are also ``assert_eq!`` and
-``assert!`` macros. These are always checked, while debug-only variants
-like ``debug_assert!`` compile to nothing in release builds.
-
-.. raw:: html
-
+The :rust:`assert_ne!` macro is new here. There are also :rust:`assert_eq!` and
+:rust:`assert!` macros. These are always checked, while debug-only variants
+like :rust:`debug_assert!` compile to nothing in release builds.

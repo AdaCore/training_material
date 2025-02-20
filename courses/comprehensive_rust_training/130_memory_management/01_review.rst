@@ -25,10 +25,10 @@ Programs allocate memory in two ways:
 Example
 ---------
 
-Creating a ``String`` puts fixed-sized metadata on the stack and
+Creating a :rust:`String` puts fixed-sized metadata on the stack and
 dynamically sized data, the actual string, on the heap:
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let s1 = String::from("Hello");
@@ -40,7 +40,7 @@ dynamically sized data, the actual string, on the heap:
 Details
 ---------
 
--  Mention that a ``String`` is backed by a ``Vec``, so it has a
+-  Mention that a :rust:`String` is backed by a :rust:`Vec`, so it has a
    capacity and length and can grow if mutable via reallocation on the
    heap.
 
@@ -54,10 +54,10 @@ Details
 More to Explore
 -----------------
 
-We can inspect the memory layout with ``unsafe`` Rust. However, you
+We can inspect the memory layout with :rust:`unsafe` Rust. However, you
 should point out that this is rightfully unsafe!
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let mut s1 = String::from("Hello");
@@ -71,6 +71,3 @@ should point out that this is rightfully unsafe!
            println!("capacity = {capacity}, ptr = {ptr:#x}, len = {len}");
        }
    }
-
-.. raw:: html
-
