@@ -1,17 +1,17 @@
 ===========================
-Exercise: Generic ``min``
+Exercise: Generic "min"
 ===========================
 
 ---------------------------
-Exercise: Generic ``min``
+Exercise: Generic "min"
 ---------------------------
 
-In this short exercise, you will implement a generic ``min`` function
+In this short exercise, you will implement a generic :rust:`min` function
 that determines the minimum of two values, using the
 :url:`Ord <https://doc.rust-lang.org/stable/std/cmp/trait.Ord.html>`
 trait.
 
-.. code:: rust,compile_fail
+.. code:: rust
 
    use std::cmp::Ordering;
 

@@ -8,7 +8,7 @@ Named Structs
 
 Like C and C++, Rust has support for custom structs:
 
-.. code:: rust,editable
+.. code:: rust
 
    struct Person {
        name: String,
@@ -52,7 +52,7 @@ Key Points:
 -  This may be a good time to let people know there are different types
    of structs.
 
-   -  Zero-sized structs (e.g. ``struct Foo;``) might be used when
+   -  Zero-sized structs (e.g. :rust:`struct Foo;`) might be used when
       implementing a trait on some type but don't have any data that you
       want to store in the value itself.
    -  The next slide will introduce Tuple structs, used when the field
@@ -60,7 +60,7 @@ Key Points:
 
 -  If you already have variables with the right names, then you can
    create the struct using a shorthand.
--  The syntax ``..avery`` allows us to copy the majority of the fields
+-  The syntax :rust:`..avery` allows us to copy the majority of the fields
    from the old struct without having to explicitly type it all out. It
    must always be the last element.
 

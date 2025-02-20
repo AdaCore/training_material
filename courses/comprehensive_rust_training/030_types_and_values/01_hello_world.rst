@@ -9,7 +9,7 @@ Hello, World
 Let us jump into the simplest possible Rust program, a classic Hello
 World program:
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        println!("Hello World!");
@@ -17,10 +17,10 @@ World program:
 
 What you see:
 
--  Functions are introduced with ``fn``.
+-  Functions are introduced with :rust:`fn`.
 -  Blocks are delimited by curly braces like in C and C++.
--  The ``main`` function is the entry point of the program.
--  Rust has hygienic macros, ``println!`` is an example of this.
+-  The :rust:`main` function is the entry point of the program.
+-  Rust has hygienic macros, :rust:`println!` is an example of this.
 -  Rust strings are UTF-8 encoded and can contain any Unicode character.
 
 .. raw:: html

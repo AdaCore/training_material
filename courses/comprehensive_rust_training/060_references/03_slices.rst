@@ -12,7 +12,7 @@ A slice gives you a view into a larger collection:
 
    <!-- mdbook-xgettext: skip -->
 
-.. code:: rust,editable
+.. code:: rust
 
    fn main() {
        let a: [i32; 6] = [10, 20, 30, 40, 50, 60];
@@ -31,24 +31,24 @@ A slice gives you a view into a larger collection:
 Details
 ---------
 
--  We create a slice by borrowing ``a`` and specifying the starting and
+-  We create a slice by borrowing :rust:`a` and specifying the starting and
    ending indexes in brackets.
 
 -  If the slice starts at index 0, Rust's range syntax allows us to drop
-   the starting index, meaning that ``&a[0..a.len()]`` and
-   ``&a[..a.len()]`` are identical.
+   the starting index, meaning that :rust:`&a[0..a.len()]` and
+   :rust:`&a[..a.len()]` are identical.
 
--  The same is true for the last index, so ``&a[2..a.len()]`` and
-   ``&a[2..]`` are identical.
+-  The same is true for the last index, so :rust:`&a[2..a.len()]` and
+   :rust:`&a[2..]` are identical.
 
 -  To easily create a slice of the full array, we can therefore use
-   ``&a[..]``.
+   :rust:`&a[..]`.
 
--  ``s`` is a reference to a slice of ``i32``\ s. Notice that the type
-   of ``s`` (``&[i32]``) no longer mentions the array length. This
+-  :rust:`s` is a reference to a slice of :rust:`i32`\ s. Notice that the type
+   of :rust:`s` (:rust:`&[i32]`) no longer mentions the array length. This
    allows us to perform computation on slices of different sizes.
 
--  Slices always borrow from another object. In this example, ``a`` has
+-  Slices always borrow from another object. In this example, :rust:`a` has
    to remain 'alive' (in scope) for at least as long as our slice.
 
 .. raw:: html

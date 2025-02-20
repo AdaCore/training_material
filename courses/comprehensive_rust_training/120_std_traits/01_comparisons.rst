@@ -10,14 +10,14 @@ These traits support comparisons between values. All traits can be
 derived for types containing fields that implement these traits.
 
 --------------------------
-``PartialEq`` and ``Eq``
+"PartialEq" and "Eq"
 --------------------------
 
-``PartialEq`` is a partial equivalence relation, with required method
-``eq`` and provided method ``ne``. The ``==`` and ``!=`` operators will
+:rust:`PartialEq` is a partial equivalence relation, with required method
+:rust:`eq` and provided method :rust:`ne`. The :rust:`==` and :rust:`!=` operators will
 call these methods.
 
-.. code:: rust,editable
+.. code:: rust
 
    struct Key {
        id: u32,
@@ -29,19 +29,19 @@ call these methods.
        }
    }
 
-``Eq`` is a full equivalence relation (reflexive, symmetric, and
-transitive) and implies ``PartialEq``. Functions that require full
-equivalence will use ``Eq`` as a trait bound.
+:rust:`Eq` is a full equivalence relation (reflexive, symmetric, and
+transitive) and implies :rust:`PartialEq`. Functions that require full
+equivalence will use :rust:`Eq` as a trait bound.
 
 ----------------------------
-``PartialOrd`` and ``Ord``
+"PartialOrd" and "Ord"
 ----------------------------
 
-``PartialOrd`` defines a partial ordering, with a ``partial_cmp``
-method. It is used to implement the ``<``, ``<=``, ``>=``, and ``>``
+:rust:`PartialOrd` defines a partial ordering, with a :rust:`partial_cmp`
+method. It is used to implement the :rust:`<`, :rust:`<=`, :rust:`>=`, and :rust:`>`
 operators.
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::cmp::Ordering;
    #[derive(Eq, PartialEq)]
@@ -58,7 +58,7 @@ operators.
        }
    }
 
-``Ord`` is a total ordering, with ``cmp`` returning ``Ordering``.
+:rust:`Ord` is a total ordering, with :rust:`cmp` returning :rust:`Ordering`.
 
 .. raw:: html
 
@@ -66,10 +66,10 @@ operators.
 Details
 ---------
 
-``PartialEq`` can be implemented between different types, but ``Eq``
+:rust:`PartialEq` can be implemented between different types, but :rust:`Eq`
 cannot, because it is reflexive:
 
-.. code:: rust,editable
+.. code:: rust
 
    struct Key {
        id: u32,

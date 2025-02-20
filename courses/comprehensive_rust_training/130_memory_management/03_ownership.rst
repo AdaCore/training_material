@@ -13,7 +13,7 @@ error to use a variable outside its scope:
 
    <!-- mdbook-xgettext: skip -->
 
-.. code:: rust,editable,compile_fail
+.. code:: rust
 
    struct Point(i32, i32);
 

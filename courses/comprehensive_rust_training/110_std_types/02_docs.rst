@@ -17,11 +17,11 @@ Rust comes with extensive documentation. For example:
    or
    :url:`BinaryHeap <https://doc.rust-lang.org/stable/std/collections/struct.BinaryHeap.html>`.
 
-Use ``rustup doc --std`` or https://std.rs to view the documentation.
+Use :filename:`rustup doc --std` or https://std.rs to view the documentation.
 
 In fact, you can document your own code:
 
-.. code:: rust,editable
+.. code:: rust
 
    /// Determine whether the first argument is divisible by the second argument.
    ///
@@ -40,9 +40,9 @@ tool. It is idiomatic to document all public items in an API using this
 pattern.
 
 To document an item from inside the item (such as inside a module), use
-``//!`` or ``/*! .. */``, called "inner doc comments":
+:rust:`//!` or :rust:`/*! .. */`, called "inner doc comments":
 
-.. code:: rust,editable
+.. code:: rust
 
    //! This module contains functionality relating to divisibility of integers.
 
@@ -52,7 +52,7 @@ To document an item from inside the item (such as inside a module), use
 Details
 ---------
 
--  Show students the generated docs for the ``rand`` crate at
+-  Show students the generated docs for the :rust:`rand` crate at
    https://docs.rs/rand.
 
 .. raw:: html

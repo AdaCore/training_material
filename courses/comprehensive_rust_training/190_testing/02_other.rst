@@ -12,9 +12,9 @@ Integration Tests
 
 If you want to test your library as a client, use an integration test.
 
-Create a ``.rs`` file under ``tests/``:
+Create a :filename:`.rs` file under :filename:`tests/`:
 
-.. code:: rust,ignore
+.. code:: rust
 
    // tests/my_library.rs
    use my_library::init;
@@ -45,9 +45,9 @@ Rust has built-in support for documentation tests:
        &s[..std::cmp::min(length, s.len())]
    }
 
--  Code blocks in ``///`` comments are automatically seen as Rust code.
--  The code will be compiled and executed as part of ``cargo test``.
--  Adding ``#`` in the code will hide it from the docs, but will still
+-  Code blocks in :rust:`///` comments are automatically seen as Rust code.
+-  The code will be compiled and executed as part of :command:`cargo test`.
+-  Adding :rust:`#` in the code will hide it from the docs, but will still
    compile/run it.
 -  Test the above code on the
    :url:`Rust Playground <https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=3ce2ad13ea1302f6572cb15cd96becf0>`.

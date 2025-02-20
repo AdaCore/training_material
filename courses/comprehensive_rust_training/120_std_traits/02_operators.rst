@@ -9,7 +9,7 @@ Operators
 Operator overloading is implemented via traits in
 :url:`std::ops <https://doc.rust-lang.org/std/ops/index.html>`:
 
-.. code:: rust,editable
+.. code:: rust
 
    #[derive(Debug, Copy, Clone)]
    struct Point {
@@ -39,28 +39,28 @@ Details
 
 Discussion points:
 
--  You could implement ``Add`` for ``&Point``. In which situations is
+-  You could implement :rust:`Add` for :rust:`&Point`. In which situations is
    that useful?
 
-   -  Answer: ``Add:add`` consumes ``self``. If type ``T`` for which you
-      are overloading the operator is not ``Copy``, you should consider
-      overloading the operator for ``&T`` as well. This avoids
+   -  Answer: :rust:`Add:add` consumes :rust:`self`. If type :rust:`T` for which you
+      are overloading the operator is not :rust:`Copy`, you should consider
+      overloading the operator for :rust:`&T` as well. This avoids
       unnecessary cloning on the call site.
 
--  Why is ``Output`` an associated type? Could it be made a type
+-  Why is :rust:`Output` an associated type? Could it be made a type
    parameter of the method?
 
    -  Short answer: Function type parameters are controlled by the
-      caller, but associated types (like ``Output``) are controlled by
+      caller, but associated types (like :rust:`Output`) are controlled by
       the implementer of a trait.
 
--  You could implement ``Add`` for two different types, e.g.
-   ``impl Add<(i32, i32)> for Point`` would add a tuple to a ``Point``.
+-  You could implement :rust:`Add` for two different types, e.g.
+   :rust:`impl Add<(i32, i32)> for Point` would add a tuple to a :rust:`Point`.
 
-The ``Not`` trait (``!`` operator) is notable because it does not
+The :rust:`Not` trait (:rust:`!` operator) is notable because it does not
 "boolify" like the same operator in C-family languages; instead, for
 integer types it negates each bit of the number, which arithmetically is
-equivalent to subtracting it from -1: ``!5 == -6``.
+equivalent to subtracting it from -1: :rust:`!5 == -6`.
 
 .. raw:: html
 

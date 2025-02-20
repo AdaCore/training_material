@@ -12,7 +12,7 @@ value piece-by-piece, using convenience functions.
 
 Fill in the missing pieces.
 
-.. code:: rust,should_panic,editable
+.. code:: rust
 
    {{#include exercise.rs:Package}}
    {{#include exercise.rs:as_dependency}}

@@ -1,16 +1,16 @@
 ========
-``Rc``
+"Rc"
 ========
 
 --------
-``Rc``
+"Rc"
 --------
 
 :url:`Rc <https://doc.rust-lang.org/std/rc/struct.Rc.html>` is a
 reference-counted shared pointer. Use this when you need to refer to the
 same data from multiple places:
 
-.. code:: rust,editable
+.. code:: rust
 
    use std::rc::Rc;
 
@@ -22,7 +22,7 @@ same data from multiple places:
        println!("b: {b}");
    }
 
--  See ```Arc`:url:` <../concurrency/shared-state/arc.md>` and
+-  See :url:`Arc <https://doc.rust-lang.org/std/sync/struct.Arc.html>` and
    :url:`Mutex <https://doc.rust-lang.org/std/sync/struct.Mutex.html>`
    if you are in a multi-threaded context.
 -  You can *downgrade* a shared pointer into a
@@ -35,18 +35,18 @@ same data from multiple places:
 Details
 ---------
 
--  ``Rc``\ 's count ensures that its contained value is valid for as
+-  :rust:`Rc`\ 's count ensures that its contained value is valid for as
    long as there are references.
--  ``Rc`` in Rust is like ``std::shared_ptr`` in C++.
--  ``Rc::clone`` is cheap: it creates a pointer to the same allocation
+-  :rust:`Rc` in Rust is like :rust:`std::shared_ptr` in C++.
+-  :rust:`Rc::clone` is cheap: it creates a pointer to the same allocation
    and increases the reference count. Does not make a deep clone and can
    generally be ignored when looking for performance issues in code.
--  ``make_mut`` actually clones the inner value if necessary
+-  :rust:`make_mut` actually clones the inner value if necessary
    ("clone-on-write") and returns a mutable reference.
--  Use ``Rc::strong_count`` to check the reference count.
--  ``Rc::downgrade`` gives you a *weakly reference-counted* object to
+-  Use :rust:`Rc::strong_count` to check the reference count.
+-  :rust:`Rc::downgrade` gives you a *weakly reference-counted* object to
    create cycles that will be dropped properly (likely in combination
-   with ``RefCell``).
+   with :rust:`RefCell`).
 
 .. raw:: html
 

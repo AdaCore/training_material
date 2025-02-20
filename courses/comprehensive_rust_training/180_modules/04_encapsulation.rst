@@ -12,7 +12,7 @@ Private fields are likewise visible within the rest of the module
 details of struct, controlling what data and functionality is visible
 externally.
 
-.. code:: rust,editable
+.. code:: rust
 
    use outer::Foo;
 
@@ -58,10 +58,10 @@ Details
    behaves differently while showing how we can still achieve
    encapsulation.
 
--  Note how the ``is_big`` field is fully controlled by ``Foo``,
-   allowing ``Foo`` to control how it's initialized and enforce any
-   invariants it needs to (e.g. that ``is_big`` is only ``true`` if
-   ``val > 100``).
+-  Note how the :rust:`is_big` field is fully controlled by :rust:`Foo`,
+   allowing :rust:`Foo` to control how it's initialized and enforce any
+   invariants it needs to (e.g. that :rust:`is_big` is only :rust:`true` if
+   :rust:`val > 100`).
 
 -  Point out how helper functions can be defined in the same module
    (including child modules) in order to get access to the type's
@@ -79,10 +79,10 @@ More to Explore
 -----------------
 
 -  If students want more information about privacy (or lack thereof) in
-   enums, you can bring up ``#[doc_hidden]`` and ``#[non_exhaustive]``
+   enums, you can bring up :rust:`#[doc_hidden]` and :rust:`#[non_exhaustive]`
    and show how they're used to limit what can be done with an enum.
 
--  Module privacy still applies when there are ``impl`` blocks in other
+-  Module privacy still applies when there are :rust:`impl` blocks in other
    modules
    :url:`(example in the playground) <https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=3e61f43c88de12bcdf69c1d6df9ab3da>`.
 
