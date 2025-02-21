@@ -2,7 +2,7 @@ package Password_Manager is
 
    type Login_T is (Email, Banking, Amazon, Streaming);
    type Password_T is null record;
-   --  Need fields for count and password string
+   --  Need components for count and password string
 
    --  These aren't right, but they compile!
    function Update

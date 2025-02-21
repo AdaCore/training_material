@@ -127,10 +127,10 @@ And the following declarations:
 .. code:: Ada
 
    type Record_T is record
-      Field : Integer;
+      Component : Integer;
    end record;
    function Add (L : Record_T; I : Integer) return Record_T is
-      ((Field => L.Field + I))
+      ((Component => L.Component + I))
    function Weird (L : Integer; R : Integer) return Integer is (0);
 
 Which of the following instantiation(s) is/are **not** legal?

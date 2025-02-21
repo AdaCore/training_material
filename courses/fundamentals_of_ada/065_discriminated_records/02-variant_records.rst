@@ -6,7 +6,7 @@ Variant Records
 What is a Variant Record?
 ---------------------------
 
-* A :dfn:`variant record` uses the discriminant to determine which fields are currently accessible
+* A :dfn:`variant record` uses the discriminant to determine which components are currently accessible
 
    .. code:: Ada
 
@@ -133,7 +133,7 @@ Mutable Variant Record Example
     end if;
     Update (Pat);
 
-* But you cannot change the discriminant like a regular field
+* But you cannot change the discriminant like a regular component
 
   .. code:: Ada
 
@@ -220,7 +220,7 @@ Quiz
 
   .. container:: latex_environment footnotesize
 
-   * If you fix the compilation error (by changing the name of one of the :ada:`End_Point` fields), then
+   * If you fix the compilation error (by changing the name of one of the :ada:`End_Point` components), then
 
       * You would get a warning on line 20 (because :ada:`A_Line` is constrained to be a :ada:`Line`
 

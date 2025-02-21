@@ -1,5 +1,5 @@
 package Data_Type is
-   type Record_T is null record;  -- Add at least two fields
+   type Record_T is null record;  -- Add at least two components
 
    function ">"
      (L, R : Record_T)

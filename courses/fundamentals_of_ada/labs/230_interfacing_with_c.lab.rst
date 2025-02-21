@@ -17,7 +17,7 @@ Interfacing with C Lab
 
 * Hints
 
-   - Structure contains the following fields
+   - Structure contains the following components
 
       + Distance (floating point)
       + Distance Type (enumeral)

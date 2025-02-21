@@ -249,7 +249,7 @@ Quiz
 .. code:: Ada
 
    type Nested_T is record
-      Field : Integer;
+      Component : Integer;
    end record;
    type Record_T is record
       One   : Integer;
