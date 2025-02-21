@@ -25,6 +25,6 @@ Details
 -  Fields of a tuple can be accessed by the period and the index of the
    value, e.g. :rust:`t.0`, :rust:`t.1`.
 
--  The empty tuple :rust:`()` is referred to as the "unit type" and
+-  The empty tuple :rust:`()` is referred to as the :dfn:`unit type` and
    signifies absence of a return value, akin to :rust:`void` in other
    languages.

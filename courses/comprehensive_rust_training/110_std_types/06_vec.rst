@@ -1,10 +1,10 @@
-=========
-"Vec"
-=========
+=============
+:rust:`Vec`
+=============
 
----------
-"Vec"
----------
+-------------
+:rust:`Vec`
+-------------
 
 :url:`Vec <https://doc.rust-lang.org/std/vec/struct.Vec.html>` is the
 standard resizable heap-allocated buffer:

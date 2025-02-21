@@ -1,10 +1,10 @@
-=======================
-"From" and "Into"
-=======================
+===============================
+:rust:`From` and :rust:`Into`
+===============================
 
------------------------
-"From" and "Into"
------------------------
+-------------------------------
+:rust:`From` and :rust:`Into`
+-------------------------------
 
 Types implement
 :url:`From <https://doc.rust-lang.org/std/convert/trait.From.html>` and

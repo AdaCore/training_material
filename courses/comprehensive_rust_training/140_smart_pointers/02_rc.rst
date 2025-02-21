@@ -1,10 +1,10 @@
-========
-"Rc"
-========
+============
+:rust:`Rc`
+============
 
---------
-"Rc"
---------
+------------
+:rust:`Rc`
+------------
 
 :url:`Rc <https://doc.rust-lang.org/std/rc/struct.Rc.html>` is a
 reference-counted shared pointer. Use this when you need to refer to the

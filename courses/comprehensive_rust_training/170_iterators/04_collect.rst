@@ -1,10 +1,10 @@
-=============
-"collect"
-=============
+=================
+:rust:`collect`
+=================
 
--------------
-"collect"
--------------
+-----------------
+:rust:`collect`
+-----------------
 
 The
 :url:`collect <https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect>`

@@ -1,10 +1,10 @@
-=======================
-The "Default" Trait
-=======================
+===========================
+The :rust:`Default` Trait
+===========================
 
------------------------
-The "Default" Trait
------------------------
+---------------------------
+The :rust:`Default` Trait
+---------------------------
 
 :url:`Default <https://doc.rust-lang.org/std/default/trait.Default.html>`
 trait produces a default value for a type.

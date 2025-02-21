@@ -9,9 +9,9 @@ Loops
 There are three looping keywords in Rust: :rust:`while`, :rust:`loop`, and
 :rust:`for`:
 
------------
-"while"
------------
+---------------
+:rust:`while`
+---------------
 
 The
 :url:`while keyword <https://doc.rust-lang.org/reference/expressions/loop-expr.html#predicate-loops>`
@@ -28,9 +28,9 @@ the condition is true.
        println!("Final x: {x}");
    }
 
--------------
-"for"
--------------
+-----------------
+:rust:`for`
+-----------------
 
 The :rust:`for` `loop <https://doc.rust-lang.org/std/keyword.for.html>`__
 iterates over ranges of values or the items in a collection:
@@ -47,9 +47,9 @@ iterates over ranges of values or the items in a collection:
        }
    }
 
----------------
-"for" Details
----------------
+-------------------
+:rust:`for` Details
+-------------------
 
 -  Under the hood :rust:`for` loops use a concept called :dfn:`iterators` to
    handle iterating over different kinds of ranges/collections.
@@ -57,9 +57,9 @@ iterates over ranges of values or the items in a collection:
 -  Note that the first :rust:`for` loop only iterates to :rust:`4`. Show the
    :rust:`1..=5` syntax for an inclusive range.
 
---------------
-"loop"
---------------
+------------------
+:rust:`loop`
+------------------
 
 The :rust:`loop`
 `statement <https://doc.rust-lang.org/std/keyword.loop.html>`__ just
@@ -78,9 +78,9 @@ loops forever, until a :rust:`break`.
        }
    }
 
-----------------
-"loop" Details
-----------------
+--------------------
+:rust:`loop` Details
+--------------------
 
 -  The :rust:`loop` statement works like a :rust:`while true` loop. Use it for
    things like servers which will serve connections forever.

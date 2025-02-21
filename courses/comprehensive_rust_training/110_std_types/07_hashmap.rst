@@ -1,10 +1,10 @@
-=============
-"HashMap"
-=============
+=================
+:rust:`HashMap`
+=================
 
--------------
-"HashMap"
--------------
+-----------------
+:rust:`HashMap`
+-----------------
 
 Standard hash map with protection against HashDoS attacks:
 
@@ -80,7 +80,7 @@ Details
 -  Alternatively HashMap can be built from any :rust:`Iterator` which yields
    key-value tuples.
 
--  This type has several "method-specific" return types, such as
+-  This type has several *method-specific* return types, such as
    :rust:`std::collections::hash_map::Keys`. These types often appear in
    searches of the Rust docs. Show students the docs for this type, and
    the helpful link back to the :rust:`keys` method.

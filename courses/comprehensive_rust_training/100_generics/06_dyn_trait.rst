@@ -1,10 +1,10 @@
-===============
-"dyn Trait"
-===============
+===================
+:rust:`dyn Trait`
+===================
 
----------------
-"dyn Trait"
----------------
+-------------------
+:rust:`dyn Trait`
+-------------------
 
 In addition to using traits for static dispatch via generics, Rust also
 supports using them for type-erased, dynamic dispatch via trait objects:
@@ -77,7 +77,7 @@ Details
    pointer types like :rust:`Box` can also be used (this will be
    demonstrated on day 3).
 
--  At runtime, a :rust:`&dyn Pet` is represented as a "fat pointer", i.e. a
+-  At runtime, a :rust:`&dyn Pet` is represented as a :dfn:`fat pointer`, i.e. a
    pair of two pointers: One pointer points to the concrete object that
    implements :rust:`Pet`, and the other points to the vtable for the trait
    implementation for that type. When calling the :rust:`talk` method on
@@ -86,5 +86,5 @@ Details
    the :rust:`Dog` or :rust:`Cat` into that function. The compiler doesn't need
    to know the concrete type of the :rust:`Pet` in order to do this.
 
--  A :rust:`dyn Trait` is considered to be "type-erased", because we no
+-  A :rust:`dyn Trait` is considered to be :dfn:`type-erased`, because we no
    longer have compile-time knowledge of what the concrete type is.

@@ -54,7 +54,7 @@ with an :rust:`impl` block:
        // race.add_lap(42);
    }
 
-The :rust:`self` arguments specify the "receiver" - the object the method
+The :rust:`self` arguments specify the :dfn:`receiver` - the object the method
 acts on. There are several common receivers for a method:
 
 -  :rust:`&self`: borrows the object from the caller using a shared and

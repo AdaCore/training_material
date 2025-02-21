@@ -26,7 +26,7 @@ Traits Details
 -  A trait defines a number of methods that types must have in order to
    implement the trait.
 
--  In the "Generics" segment, next, we will see how to build
+-  In the *Generics* segment, next, we will see how to build
    functionality that is generic over all types implementing a trait.
 
 ---------------------

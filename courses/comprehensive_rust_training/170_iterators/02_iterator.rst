@@ -1,10 +1,10 @@
-====================
-"Iterator" Trait
-====================
+========================
+:rust:`Iterator` Trait
+========================
 
---------------------
-"Iterator" Trait
---------------------
+------------------------
+:rust:`Iterator` Trait
+------------------------
 
 The
 :url:`Iterator <https://doc.rust-lang.org/std/iter/trait.Iterator.html>`

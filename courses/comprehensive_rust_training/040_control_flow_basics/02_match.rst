@@ -1,10 +1,10 @@
-=======================
-"match" Expressions
-=======================
+===========================
+:rust:`match` Expressions
+===========================
 
------------------------
-"match" Expressions
------------------------
+---------------------------
+:rust:`match` Expressions
+---------------------------
 
 :rust:`match` can be used to check a value against one or more options:
 

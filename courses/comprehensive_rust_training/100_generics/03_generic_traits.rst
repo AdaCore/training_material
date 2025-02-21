@@ -44,8 +44,8 @@ Details
    parameters. Here, :rust:`Foo::from("hello")` would not compile because
    there is no :rust:`From<&str>` implementation for :rust:`Foo`.
 
--  Generic traits take types as "input", while associated types are a
-   kind of "output" type. A trait can have multiple implementations for
+-  Generic traits take types as *input*, while associated types are a
+   kind of *output* type. A trait can have multiple implementations for
    different input types.
 
 -  In fact, Rust requires that at most one implementation of a trait
