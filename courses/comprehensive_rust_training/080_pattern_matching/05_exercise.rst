@@ -11,37 +11,14 @@ Let's write a simple recursive evaluator for arithmetic expressions.
 An example of a small arithmetic expression could be :rust:`10 + 20`, which
 evaluates to :rust:`30`. We can represent the expression as a tree:
 
-.. code:: bob
-
-               .-------.
-       .------ |   +   | ------.
-       |       '-------'       |
-       v                       v
-   .--------.              .--------.
-   |   10   |              |   20   |
-   '--------'              '--------'
+.. image:: comprehensive_rust_training/pattern_matching_exercise_1.svg
+   :width: 40%
 
 A bigger and more complex expression would be
 :rust:`(10 * 9) + ((3 - 4) * 5)`, which evaluate to :rust:`85`. We represent
 this as a much bigger tree:
 
-.. code:: bob
-
-                                 .-----.
-               .---------------- |  +  | ----------------.
-               |                 '-----'                 |
-               v                                         v
-            .-----.                                   .-----.
-      .---- |  *  | ----.                       .---- |  *  | ----.
-      |     '-----'     |                       |     '-----'     |
-      v                 v                       v                 v
-   .------.          .-----.                 .-----.           .-----.
-   |  10  |          |  9  |           .---- |  "-"| ----.     |  5  |
-   '------'          '-----'           |     '-----'     |     '-----'
-                                       v                 v
-                                    .-----.           .-----.
-                                    |  3  |           |  4  |
-                                    '-----'           '-----'
+.. image:: comprehensive_rust_training/pattern_matching_exercise_2.svg
 
 In code, we will represent the tree with two types:
 
