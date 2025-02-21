@@ -34,19 +34,7 @@ dynamically sized data, the actual string, on the heap:
        let s1 = String::from("Hello");
    }
 
-.. code:: bob
-
-    Stack
-   .- - - - - - - - - - - - - -.      Heap
-   :                           :     .- - - - - - - - - - - - - - - -.
-   :    s1                     :     :                               :
-   :   +-----------+-------+   :     :                               :
-   :   | capacity  |     5 |   :     :   +----+----+----+----+----+  :
-   :   | ptr       |     o-+---+-----+-->| H  | e  | l  | l  | o  |  :
-   :   | len       |     5 |   :     :   +----+----+----+----+----+  :
-   :   +-----------+-------+   :     :                               :
-   :                           :     :                               :
-   `- - - - - - - - - - - - - -'     `- - - - - - - - - - - - - - - -'
+.. image:: comprehensive_rust_training/review_of_program_memory.svg
 
 ---------
 Details

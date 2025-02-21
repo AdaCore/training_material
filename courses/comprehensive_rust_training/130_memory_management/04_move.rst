@@ -11,7 +11,7 @@ An assignment will transfer *ownership* between variables:
 .. code:: rust
 
    fn main() {
-       let s1: String = String::from("Hello!");
+       let s1: String = String::from("Hello");
        let s2: String = s1;
        println!("s2: {s2}");
        // println!("s1: {s1}");
@@ -24,43 +24,11 @@ An assignment will transfer *ownership* between variables:
 
 Before move to :rust:`s2`:
 
-.. code:: bob
-
-    Stack                             Heap
-   .- - - - - - - - - - - - - -.     .- - - - - - - - - - - - - - - - - - -.
-   :                           :     :                                     :
-   :    s1                     :     :                                     :
-   :   +-----------+-------+   :     :   +----+----+----+----+----+----+   :
-   :   | ptr       |   o---+---+-----+-->| H  | e  | l  | l  | o  | !  |   :
-   :   | len       |     6 |   :     :   +----+----+----+----+----+----+   :
-   :   | capacity  |     6 |   :     :                                     :
-   :   +-----------+-------+   :     :                                     :
-   :                           :     `- - - - - - - - - - - - - - - - - - -'
-   :                           :
-   `- - - - - - - - - - - - - -'
+.. image:: comprehensive_rust_training/review_of_program_memory.svg
 
 After move to :rust:`s2`:
 
-.. code:: bob
-
-    Stack                             Heap
-   .- - - - - - - - - - - - - -.     .- - - - - - - - - - - - - - - - - - -.
-   :                           :     :                                     :
-   :    s1 "(inaccessible)"    :     :                                     :
-   :   +-----------+-------+   :     :   +----+----+----+----+----+----+   :
-   :   | ptr       |   o---+---+--+--+-->| H  | e  | l  | l  | o  | !  |   :
-   :   | len       |     6 |   :  |  :   +----+----+----+----+----+----+   :
-   :   | capacity  |     6 |   :  |  :                                     :
-   :   +-----------+-------+   :  |  :                                     :
-   :                           :  |  `- - - - - - - - - - - - - - - - - - -'
-   :    s2                     :  |
-   :   +-----------+-------+   :  |
-   :   | ptr       |   o---+---+--'
-   :   | len       |     6 |   :
-   :   | capacity  |     6 |   :
-   :   +-----------+-------+   :
-   :                           :
-   `- - - - - - - - - - - - - -'
+.. image:: comprehensive_rust_training/move_semantics_2.svg
 
 When you pass a value to a function, the value is assigned to the
 function parameter. This transfers ownership:
@@ -109,6 +77,10 @@ In the :rust:`say_hello` example:
    making move semantics the default, and by forcing programmers to make
    clones explicit.
 
+=================
+More to Explore
+=================
+
 --------------------------------
 Defensive Copies in Modern C++
 --------------------------------
@@ -117,7 +89,7 @@ Modern C++ solves this differently:
 
 .. code:: cpp
 
-   std::string s1 = "Cpp";
+   std::string s1 = "Hello";
    std::string s2 = s1;  // Duplicate the data in s1.
 
 -  The heap data from :rust:`s1` is duplicated and :rust:`s2` gets its own
@@ -127,42 +99,11 @@ Modern C++ solves this differently:
 
 Before copy-assignment:
 
-.. code:: bob
-
-    Stack                             Heap
-   .- - - - - - - - - - - - - -.     .- - - - - - - - - - - -.
-   :                           :     :                       :
-   :    s1                     :     :                       :
-   :   +-----------+-------+   :     :   +----+----+----+    :
-   :   | ptr       |   o---+---+--+--+-->| C  | p  | p  |    :
-   :   | len       |     3 |   :     :   +----+----+----+    :
-   :   | capacity  |     3 |   :     :                       :
-   :   +-----------+-------+   :     :                       :
-   :                           :     `- - - - - - - - - - - -'
-   `- - - - - - - - - - - - - -'
+.. image:: comprehensive_rust_training/review_of_program_memory.svg
 
 After copy-assignment:
 
-.. code:: bob
-
-    Stack                             Heap
-   .- - - - - - - - - - - - - -.     .- - - - - - - - - - - -.
-   :                           :     :                       :
-   :    s1                     :     :                       :
-   :   +-----------+-------+   :     :   +----+----+----+    :
-   :   | ptr       |   o---+---+--+--+-->| C  | p  | p  |    :
-   :   | len       |     3 |   :     :   +----+----+----+    :
-   :   | capacity  |     3 |   :     :                       :
-   :   +-----------+-------+   :     :                       :
-   :                           :     :                       :
-   :    s2                     :     :                       :
-   :   +-----------+-------+   :     :   +----+----+----+    :
-   :   | ptr       |   o---+---+-----+-->| C  | p  | p  |    :
-   :   | len       |     3 |   :     :   +----+----+----+    :
-   :   | capacity  |     3 |   :     :                       :
-   :   +-----------+-------+   :     :                       :
-   :                           :     `- - - - - - - - - - - -'
-   `- - - - - - - - - - - - - -'
+.. image:: comprehensive_rust_training/copy_assignment_2.svg
 
 Key points:
 
