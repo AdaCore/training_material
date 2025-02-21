@@ -10,7 +10,7 @@ Interfaces - Rules
 
    - Abstract primitives
    - Null primitives
-   - No fields
+   - No components
 
 * Null subprograms provide default empty bodies to primitives that can be overridden
 

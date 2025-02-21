@@ -31,7 +31,7 @@ Defining a Discriminated Record
 
    * **Discriminant** controls behavior of the record
    * Part of record definition
-   * Can be read as any other field
+   * Can be read as any other component
 
       * But can only be modified by object assignment (sometimes)
 

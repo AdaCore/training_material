@@ -22,8 +22,8 @@ Syntax and Examples
    .. code:: Ada
 
       type Record1_T is record
-         Field1 : Integer;
-         Field2 : Boolean;
+         Component1 : Integer;
+         Component2 : Boolean;
       end record;
 
 * Records can be **discriminated** as well

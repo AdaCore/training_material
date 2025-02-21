@@ -31,7 +31,7 @@ procedure Main is
       
       --$ begin cut
       type Priv is record
-         Field : Integer := Lim'Size;
+         Component : Integer := Lim'Size;
       end record;
       --$ end cut
 

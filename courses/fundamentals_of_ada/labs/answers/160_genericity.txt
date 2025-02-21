@@ -1,20 +1,20 @@
 package Data_Type is
    type Record_T is record
-      Integer_Field   : Integer;
-      Character_Field : Character;
+      Integer_Component   : Integer;
+      Character_Component : Character;
    end record;
 
    function ">"
      (L, R : Record_T)
       return Boolean is
-     (if L.Character_Field > R.Character_Field then True
-      elsif L.Character_Field < R.Character_Field then False
-      else L.Integer_Field > R.Integer_Field);
+     (if L.Character_Component > R.Character_Component then True
+      elsif L.Character_Component < R.Character_Component then False
+      else L.Integer_Component > R.Integer_Component);
 
    function Image
      (Element : Record_T)
       return String is
-     (Element.Character_Field & " =>" & Integer'Image (Element.Integer_Field));
+     (Element.Character_Component & " =>" & Integer'Image (Element.Integer_Component));
 
 end Data_Type;
 
@@ -92,22 +92,22 @@ procedure Main is
    Element : Data_Type.Record_T;
 
 begin
-   List.Add (My_List, (Integer_Field   => 111,
-                       Character_Field => 'a'));
-   List.Add (My_List, (Integer_Field    => 111,
-                       Character_Field => 'z'));
-   List.Add (My_List, (Integer_Field    => 111,
-                       Character_Field => 'A'));
-   List.Add (My_List, (Integer_Field    => 999,
-                       Character_Field => 'B'));
-   List.Add (My_List, (Integer_Field    => 999,
-                       Character_Field => 'Y'));
-   List.Add (My_List, (Integer_Field    => 999,
-                       Character_Field => 'b'));
-   List.Add (My_List, (Integer_Field    => 112,
-                       Character_Field => 'a'));
-   List.Add (My_List, (Integer_Field    => 998,
-                       Character_Field => 'z'));
+   List.Add (My_List, (Integer_Component   => 111,
+                       Character_Component => 'a'));
+   List.Add (My_List, (Integer_Component   => 111,
+                       Character_Component => 'z'));
+   List.Add (My_List, (Integer_Component   => 111,
+                       Character_Component => 'A'));
+   List.Add (My_List, (Integer_Component   => 999,
+                       Character_Component => 'B'));
+   List.Add (My_List, (Integer_Component   => 999,
+                       Character_Component => 'Y'));
+   List.Add (My_List, (Integer_Component   => 999,
+                       Character_Component => 'b'));
+   List.Add (My_List, (Integer_Component   => 112,
+                       Character_Component => 'a'));
+   List.Add (My_List, (Integer_Component   => 998,
+                       Character_Component => 'z'));
 
    List.Sort (My_List);
    List.Print (My_List);

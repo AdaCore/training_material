@@ -32,7 +32,7 @@ Immutable Variant Record
   type Person_Group is (Student, Faculty);
   type Person (Group : Person_Group) is
   record
-     --  Fields common across all discriminants
+     --  Components common across all discriminants
      --  (must appear before variant part)
      Age : Positive;
      case Group is --  Variant part of record
@@ -46,11 +46,11 @@ Immutable Variant Record
 * In a variant record, a discriminant can be used to specify the :dfn:`variant part` (line 8)
 
    + Similar to case statements (all values must be covered)
-   + Fields listed will only be visible if choice matches discriminant
-   + Field names need to be unique (even across discriminants)
+   + Components listed will only be visible if choice matches discriminant
+   + Component names need to be unique (even across discriminants)
    + Variant part must be end of record (hence only one variant part allowed)
 
-* Discriminant is treated as any other field
+* Discriminant is treated as any other component
 
   * But is a constant in an immutable variant record
 
@@ -60,7 +60,7 @@ Immutable Variant Record
 Immutable Variant Record Example
 ----------------------------------
 
-* Each object of :ada:`Person` has three fields, but it depends on :ada:`Group`
+* Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
 
     .. code:: Ada
 
@@ -69,7 +69,7 @@ Immutable Variant Record Example
 
   * :ada:`Pat` has :ada:`Group`, :ada:`Age`, and :ada:`Gpa`
   * :ada:`Sam` has :ada:`Group`, :ada:`Age`, and :ada:`Pubs`
-  * Aggregate specifies all fields, including the discriminant
+  * Aggregate specifies all components, including the discriminant
 
 * Compiler can detect some problems, but more often clashes are run-time errors
 
@@ -121,7 +121,7 @@ Mutable Variant Record
 Mutable Variant Record Example
 --------------------------------
 
-* Each object of :ada:`Person` has three fields, but it depends on :ada:`Group`
+* Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
 
   .. code:: Ada
 

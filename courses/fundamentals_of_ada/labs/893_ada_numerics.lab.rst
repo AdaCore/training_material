@@ -20,9 +20,9 @@ Ada.Numerics Lab
   * For each iteration of the loop, pick a random element in the array
   * For the selected element
 
-    * Increment the counter field
+    * Increment the counter component
     * Find a random floating point number between 1_000 and 9_999
-    * Add the square root of the number to the floating point field
+    * Add the square root of the number to the floating point component
 
 * For each index in the array
 

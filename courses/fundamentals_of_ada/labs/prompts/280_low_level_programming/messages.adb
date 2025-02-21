@@ -1,14 +1,14 @@
 package body Messages is
 
    function Create
-     (Text   : String;
-      Field3 : Boolean;
-      Field4 : Character)
+     (Text       : String;
+      Component3 : Boolean;
+      Component4 : Character)
       return Message_T is
    begin
       return
-        (Unique_Id => 0, Text => (others => ' '), Field3 => Field3,
-         Field4    => Field4, Crc => Crc_T'First);
+        (Unique_Id => 0, Text => (others => ' '), Component3 => Component3,
+         Component4    => Component4, Crc => Crc_T'First);
    end Create;
 
    -------------

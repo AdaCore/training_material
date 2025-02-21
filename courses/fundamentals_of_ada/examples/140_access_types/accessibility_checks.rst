@@ -12,8 +12,8 @@
       type Recursive_Record_T;
       type Global_Access_T is access all Recursive_Record_T;
       type Recursive_Record_T is record
-         Field : Integer;
-         Next  : Global_Access_T := null;
+         Component : Integer;
+         Next      : Global_Access_T := null;
       end record;
       Global_Pointer : Global_Access_T;
       Global_Object  : aliased Recursive_Record_T;
@@ -23,16 +23,16 @@
          Local_Object  : aliased Recursive_Record_T;
       begin
          Global_Pointer := Global_Object'Access;
-         Put_Line (Integer'Image (Global_Pointer.Field));
+         Put_Line (Integer'Image (Global_Pointer.Component));
          -- Global_Pointer := Local_Object'Access; -- illegal
          Global_Pointer := Local_Object'Unchecked_Access;
-         Put_Line (Integer'Image (Global_Pointer.Field));
+         Put_Line (Integer'Image (Global_Pointer.Component));
          Local_Pointer := Global_Object'Access;
-         Put_Line (Integer'Image (Local_Pointer.Field));
+         Put_Line (Integer'Image (Local_Pointer.Component));
          Local_Pointer := Local_Object'Access;
-         Put_Line (Integer'Image (Local_Pointer.Field));
+         Put_Line (Integer'Image (Local_Pointer.Component));
          Local_Pointer := Local_Access_T (Global_Pointer);
-         Put_Line (Integer'Image (Local_Pointer.Field));
+         Put_Line (Integer'Image (Local_Pointer.Component));
          -- Global_Pointer := Global_Access_T (Local_Pointer); -- illegal
       end Proc_Access;
    

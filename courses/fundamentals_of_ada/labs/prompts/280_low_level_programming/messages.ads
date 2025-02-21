@@ -2,9 +2,9 @@ with Crc; use Crc;
 package Messages is
    type Message_T is private;
    function Create
-     (Text   : String;
-      Field3 : Boolean;
-      Field4 : Character)
+     (Text       : String;
+      Component3 : Boolean;
+      Component4 : Character)
       return Message_T;
    function Get_Crc
      (Message : Message_T)
@@ -16,10 +16,10 @@ package Messages is
    procedure Print (Message : Message_T);
 private
    type Message_T is record
-      Unique_Id : Integer;
-      Text      : String (1 .. 9);
-      Field3    : Boolean;
-      Field4    : Character;
-      Crc       : Crc_T;
+      Unique_Id  : Integer;
+      Text       : String (1 .. 9);
+      Component3 : Boolean;
+      Component4 : Character;
+      Crc        : Crc_T;
    end record;
 end Messages;

@@ -44,7 +44,7 @@ Simple Vector of Varying Length
    Obj2 : Simple_Vstring := (0, (others => '+'));
    Obj3 : Simple_Vstring;
 
-* Issue - Operations need to consider :ada:`Last` field
+* Issue - Operations need to consider :ada:`Last` component
 
    * :ada:`Obj1 = Obj2` will be false
    * Can redefine :ada:`=` to be something like
