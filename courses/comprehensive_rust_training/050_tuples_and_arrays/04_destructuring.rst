@@ -32,7 +32,7 @@ larger value into its constituent parts:
 Details
 ---------
 
--  The patterns used here are "irrefutable", meaning that the compiler
+-  The patterns used here are :dfn:`irrefutable`, meaning that the compiler
    can statically verify that the value on the right of :rust:`=` has the
    same structure as the pattern.
 -  A variable name is an irrefutable pattern that always matches any

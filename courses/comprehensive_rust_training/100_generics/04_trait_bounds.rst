@@ -49,7 +49,7 @@ Details
    -  It has additional features making it more powerful.
 
       -  If someone asks, the extra feature is that the type on the left
-         of ":" can be arbitrary, like :rust:`Option<T>`.
+         of :rust:`:` can be arbitrary, like :rust:`Option<T>`.
 
 -  Note that Rust does not (yet) support specialization. For example,
    given the original :rust:`duplicate`, it is invalid to add a specialized

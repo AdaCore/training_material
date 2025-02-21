@@ -52,7 +52,7 @@ In code, we will represent the tree with two types:
    {{#include exercise.rs:Expression}}
 
 The :rust:`Box` type here is a smart pointer, and will be covered in detail
-later in the course. An expression can be "boxed" with :rust:`Box::new` as
+later in the course. An expression can be :dfn:`boxed` with :rust:`Box::new` as
 seen in the tests. To evaluate a boxed expression, use the deref
 operator (:rust:`*`) to "unbox" it: :rust:`eval(*boxed_expr)`.
 

@@ -34,7 +34,7 @@ Paths are resolved as follows:
 Details
 ---------
 
--  It is common to "re-export" symbols at a shorter path. For example,
+-  It is common to *re-export* symbols at a shorter path. For example,
    the top-level :rust:`lib.rs` in a crate might have
 
    .. code:: rust

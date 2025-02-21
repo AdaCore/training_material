@@ -9,9 +9,9 @@ Comparisons
 These traits support comparisons between values. All traits can be
 derived for types containing fields that implement these traits.
 
---------------------------
-"PartialEq" and "Eq"
---------------------------
+----------------------------------
+:rust:`PartialEq` and :rust:`Eq`
+----------------------------------
 
 :rust:`PartialEq` is a partial equivalence relation, with required method
 :rust:`eq` and provided method :rust:`ne`. The :rust:`==` and :rust:`!=` operators will
@@ -33,9 +33,9 @@ call these methods.
 transitive) and implies :rust:`PartialEq`. Functions that require full
 equivalence will use :rust:`Eq` as a trait bound.
 
-----------------------------
-"PartialOrd" and "Ord"
-----------------------------
+------------------------------------
+:rust:`PartialOrd` and :rust:`Ord`
+------------------------------------
 
 :rust:`PartialOrd` defines a partial ordering, with a :rust:`partial_cmp`
 method. It is used to implement the :rust:`<`, :rust:`<=`, :rust:`>=`, and :rust:`>`

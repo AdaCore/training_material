@@ -40,7 +40,7 @@ tool. It is idiomatic to document all public items in an API using this
 pattern.
 
 To document an item from inside the item (such as inside a module), use
-:rust:`//!` or :rust:`/*! .. */`, called "inner doc comments":
+:rust:`//!` or :rust:`/*! .. */`, called :dfn:`inner doc comments`:
 
 .. code:: rust
 

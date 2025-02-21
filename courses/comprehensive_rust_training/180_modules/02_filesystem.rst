@@ -22,8 +22,8 @@ The :rust:`crate` root is in:
 -  :rust:`src/lib.rs` (for a library crate)
 -  :rust:`src/main.rs` (for a binary crate)
 
-Modules defined in files can be documented, too, using "inner doc
-comments". These document the item that contains them - in this case, a
+Modules defined in files can be documented, too, using :dfn:`inner doc comments`.
+These document the item that contains them - in this case, a
 module.
 
 .. code:: rust

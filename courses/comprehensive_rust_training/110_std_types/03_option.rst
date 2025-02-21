@@ -37,7 +37,7 @@ Details
       hacking something together, but production code typically handles
       :rust:`None` in a nicer fashion.
 
--  The "niche optimization" means that :rust:`Option<T>` often has the same
+-  The :dfn:`niche optimization` means that :rust:`Option<T>` often has the same
    size in memory as :rust:`T`, if there is some representation that is not
    a valid value of T. For example, a reference cannot be NULL, so
    :rust:`Option<&T>` automatically uses NULL to represent the :rust:`None`

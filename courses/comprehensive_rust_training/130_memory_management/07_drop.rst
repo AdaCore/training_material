@@ -1,10 +1,10 @@
-====================
-The "Drop" Trait
-====================
+========================
+The :rust:`Drop` Trait
+========================
 
---------------------
-The "Drop" Trait
---------------------
+------------------------
+The :rust:`Drop` Trait
+------------------------
 
 Values which implement
 :url:`Drop <https://doc.rust-lang.org/std/ops/trait.Drop.html>` can

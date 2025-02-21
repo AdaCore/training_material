@@ -1,10 +1,10 @@
-============
-"static"
-============
+================
+:rust:`static`
+================
 
-------------
-"static"
-------------
+----------------
+:rust:`static`
+----------------
 
 Static variables will live during the whole execution of the program,
 and therefore will not move:

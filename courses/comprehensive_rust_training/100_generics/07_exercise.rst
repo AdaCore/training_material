@@ -1,10 +1,10 @@
-===========================
-Exercise: Generic "min"
-===========================
+===============================
+Exercise: Generic :rust:`min`
+===============================
 
----------------------------
-Exercise: Generic "min"
----------------------------
+-------------------------------
+Exercise: Generic :rust:`min`
+-------------------------------
 
 In this short exercise, you will implement a generic :rust:`min` function
 that determines the minimum of two values, using the

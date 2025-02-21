@@ -24,7 +24,7 @@ In a C-style for loop you declare these things directly:
    }
 
 In Rust we bundle this state and logic together into an object known as
-an "iterator".
+an :dfn:`iterator`.
 
 ---------
 Details

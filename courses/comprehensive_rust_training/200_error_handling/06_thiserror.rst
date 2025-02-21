@@ -1,10 +1,10 @@
-===============
-"thiserror"
-===============
+===================
+:rust:`thiserror`
+===================
 
----------------
-"thiserror"
----------------
+-------------------
+:rust:`thiserror`
+-------------------
 
 The :url:`thiserror <https://docs.rs/thiserror/>` crate provides macros
 to help avoid boilerplate when defining error types. It provides derive

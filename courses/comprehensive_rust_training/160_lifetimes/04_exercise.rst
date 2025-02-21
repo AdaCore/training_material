@@ -37,7 +37,7 @@ Messages
 ----------
 
 A proto message is encoded as a series of fields, one after the next.
-Each is implemented as a "tag" followed by the value. The tag contains a
+Each is implemented as a :dfn:`tag` followed by the value. The tag contains a
 field number (e.g., :rust:`2` for the :rust:`id` field of a :rust:`Person` message)
 and a wire type defining how the payload should be determined from the
 byte stream. These are combined into a single integer, as decoded in
