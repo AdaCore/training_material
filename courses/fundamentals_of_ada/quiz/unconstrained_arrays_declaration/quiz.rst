@@ -6,7 +6,7 @@
 
     type My_Array is array (Integer range <>) of Boolean;
 
-How to declare an array of two elements?
+How to declare an array of two components?
 
 A. ``O : My_Array (2)``
 B. :answermono:`O : My_Array (1 .. 2)`

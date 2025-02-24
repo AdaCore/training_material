@@ -68,7 +68,7 @@ The "renames" Keyword
 
          package Trig renames Math.Trigonometry
 
-   - Objects (or elements of objects)
+   - Objects (or components of objects)
 
       .. code:: Ada
 

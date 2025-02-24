@@ -278,7 +278,7 @@ Constant Size for Variable Objects (3/3)
 
 * Used size of the array can varry over time.
 
-* `'Capacity` will return maximum number of elements of an array
+* `'Capacity` will return maximum number of components of an array
 
 .. code:: Ada
 
@@ -369,7 +369,7 @@ Creation of Ada Array From Memory
       <stuff coming from either C or some memory buffer>.
 
    V : A := X'From_Address (S, 0, 10);
-   -- Create a fat pointer of 11 elements
+   -- Create a fat pointer of 11 components
    --   first = 0, last = 10, pointed to by S.
 
 * This also requires GNAT redesign of so-called fat pointers
