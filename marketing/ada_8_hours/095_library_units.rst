@@ -168,7 +168,7 @@ What To Import
    with A;
    package B is
      type Something is record
-       Field : A.Something;
+       Component : A.Something;
      end record;
    end B;
 
@@ -176,5 +176,5 @@ What To Import
    procedure Foo is
      X : B.Something;
    begin
-     X.Field := ...
+     X.Component := ...
 

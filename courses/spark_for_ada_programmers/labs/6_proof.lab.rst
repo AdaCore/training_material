@@ -67,7 +67,7 @@ Functional Specifications (2/2)
   (depending on the value of the discriminant) is 1.
 
 - Add similarly a postcondition to procedures :ada:`Init_The_Table` and
-  :ada:`Init_Table` stating that the value of the first and last elements
+  :ada:`Init_Table` stating that the value of the first and last components
   are 1 and 2.
 
    + Hint: you may have to strengthen the precondition of :ada:`Init_Table`.

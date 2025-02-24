@@ -78,4 +78,4 @@ Formal Container Loops
 - Add a loop invariant in :ada:`Init_List`
 
    + Hint: the position of cursor :ada:`Cu` in :ada:`L` is :ada:`Positions (L).Get (Cu)`
-   + Hint: the sequence of elements for :ada:`L` is :ada:`Model (L)`
+   + Hint: the sequence of components for :ada:`L` is :ada:`Model (L)`
