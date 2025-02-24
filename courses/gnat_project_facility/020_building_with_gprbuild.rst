@@ -71,7 +71,7 @@ Command Line
 GPRbuild Command Line
 -----------------------
 
-* Made up of three elements
+* Made up of three components
 
   * Main project file (required)
   * Switches (optional)
