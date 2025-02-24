@@ -80,7 +80,7 @@
    package Types is
       type Hidden_T;
       type Tagged_Record_T is tagged record
-         Field : access Hidden_T;
+         Component : access Hidden_T;
       end record;
       type Hidden_T is private;
       type Boolean_Array_Of_Integers_T is array (Boolean) of Integer;

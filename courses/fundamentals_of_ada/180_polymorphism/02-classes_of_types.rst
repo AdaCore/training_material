@@ -23,7 +23,7 @@ Classes
 
 * Objects of type :ada:`Root'Class` have at least the properties of `Root`
 
-   - Fields of `Root`
+   - Components of `Root`
    - Primitives of `Root`
 
 -----------------

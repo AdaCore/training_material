@@ -193,16 +193,16 @@ Quiz
          type P2_T is private;
        private
          type L1_T is limited record
-            Field : Integer;
+            Component : Integer;
          end record;
          type L2_T is record
-            Field : Integer;
+            Component : Integer;
          end record;
          type P1_T is limited record
-            Field : L1_T;
+            Component : L1_T;
          end record;
          type P2_T is record
-            Field : L2_T;
+            Component : L2_T;
          end record;
        end P;
 

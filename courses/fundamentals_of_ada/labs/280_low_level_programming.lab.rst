@@ -28,8 +28,8 @@ Project Requirements
   * Message should at least contain:
 
     * Unique Identifier
-    * (Constrained) string field
-    * Two other fields
+    * (Constrained) string component
+    * Two other components
     * CRC value
 
 * "Send" / "Receive"

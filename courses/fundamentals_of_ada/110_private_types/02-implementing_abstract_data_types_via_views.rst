@@ -173,10 +173,10 @@ Quiz
 
 Which component(s) is (are) legal?
 
-   A. ``Field_A : Integer := Private_T'Pos (Private_T'First);``
-   B. ``Field_B : Private_T := null;``
-   C. ``Field_C : Private_T := 0;``
-   D. :answermono:`Field_D : Integer := Private_T'Size;`
+   A. ``Component_A : Integer := Private_T'Pos (Private_T'First);``
+   B. ``Component_B : Private_T := null;``
+   C. ``Component_C : Private_T := 0;``
+   D. :answermono:`Component_D : Integer := Private_T'Size;`
 
       .. code:: Ada
 

@@ -24,7 +24,7 @@ C. | ``type A is array (1 .. 10) of Lim;``
    |    ``F : A;``
    | ``end record;``
 D. | :answermono:`type Priv is record`
-   |    :answermono:`Field : Integer := Lim'Size;`
+   |    :answermono:`Component : Integer := Lim'Size;`
    | :answermono:`end record;`
 
 .. container:: animate

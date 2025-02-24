@@ -187,7 +187,7 @@ Record Representation Clauses
 
        - Driver mapped on the address space, communication protocol...
 
-    * Fields represented as
+    * Components represented as
 
       .. code:: Ada
 
@@ -294,15 +294,15 @@ Change of Representation
 .. code:: Ada
 
     type Rec_T is record
-         Field1 : Unsigned_8;
-         Field2 : Unsigned_16;
-         Field3 : Unsigned_8;
+         Component1 : Unsigned_8;
+         Component2 : Unsigned_16;
+         Component3 : Unsigned_8;
     end record;
     type Packed_Rec_T is new Rec_T;
     for Packed_Rec_T use record
-       Field1 at 0 range  0 ..  7;
-       Field2 at 0 range  8 .. 23;
-       Field3 at 0 range 24 .. 31;
+       Component1 at 0 range  0 ..  7;
+       Component2 at 0 range  8 .. 23;
+       Component3 at 0 range 24 .. 31;
     end record;
     R : Rec_T;
     P : Packed_Rec_T;

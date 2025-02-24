@@ -11,9 +11,9 @@ Passing Records Between Ada and C
    .. code:: C
 
       struct Struct_T {
-         int   Field1;
-         char  Field2;
-         float Field3;
+         int   Component1;
+         char  Component2;
+         float Component3;
       };
 
       int DoSomething (struct Struct_T);
@@ -32,9 +32,9 @@ Building a C-Compatible Record
    .. code:: Ada
 
       type Struct_T is record
-         Field1 : Interfaces.C.int;
-         Field2 : Interfaces.C.char;
-         Field3 : Interfaces.C.C_Float;
+         Component1 : Interfaces.C.int;
+         Component2 : Interfaces.C.char;
+         Component3 : Interfaces.C.C_Float;
       end record;
 
    * We use types from :ada:`Interfaces.C` to map directly to the C types
@@ -46,9 +46,9 @@ Building a C-Compatible Record
    .. code:: Ada
 
       type Struct_T is record
-         Field1 : Interfaces.C.int;
-         Field2 : Interfaces.C.char;
-         Field3 : Interfaces.C.C_Float;
+         Component1 : Interfaces.C.int;
+         Component2 : Interfaces.C.char;
+         Component3 : Interfaces.C.C_Float;
       end record with Convention => C_Pass_By_Copy;
 
 -------------------------
@@ -64,9 +64,9 @@ Mapping Ada to C Unions
    .. code:: C
 
       union Union_T {
-         int Field1;
-         char Field2;
-         float Field3;
+         int Component1;
+         char Component2;
+         float Component3;
       };
 
 * By using a discriminant record and adding aspect :ada:`Unchecked_Union`
@@ -75,9 +75,9 @@ Mapping Ada to C Unions
 
       type C_Union_T (View : natural := 0) is record
          case View is
-         when 0 => Field1 : Interfaces.C.int;
-         when 1 => Field2 : Interfaces.C.char;
-         when 2 => Field3 : Interfaces.C.C_Float;
+         when 0 => Component1 : Interfaces.C.int;
+         when 1 => Component2 : Interfaces.C.char;
+         when 2 => Component3 : Interfaces.C.C_Float;
          when others => null;
          end case;
       end record with Convention => C_Pass_By_Copy,
@@ -92,9 +92,9 @@ Quiz
 .. code:: C
 
    union Union_T {
-      struct Record_T field1;
-      char            field2[11];
-      float           field3;
+      struct Record_T component1;
+      char            component2[11];
+      float           component3;
    };
 
 .. code:: Ada

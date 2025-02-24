@@ -69,7 +69,7 @@ Controlling Result (1/2)
          type Animal is tagged null record;
          function Feed_Treats (Number_Of_Treats : Integer) return Animal;
 
-* If the child adds fields, all such subprograms have to be overridden
+* If the child adds components, all such subprograms have to be overridden
 
       .. code:: Ada
 
