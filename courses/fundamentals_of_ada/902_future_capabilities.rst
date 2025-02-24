@@ -724,7 +724,7 @@ Redesign of Object Orientation (1/2)
 * Ada OOP model contains syntactical oddities
 
    - Relation between type and methods is difficult to track
-   - No way to selectively hide/show fields
+   - No way to selectively hide/show components
    - No proper constructor/destructor
    - Calls are not dispatching by default
    - Access type can only access one type in hierarchy by default

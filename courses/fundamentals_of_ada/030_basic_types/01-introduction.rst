@@ -114,7 +114,7 @@ Categories of Types
 Scalar Types
 --------------
 
-* Indivisible: No components
+* Indivisible: No :dfn:`components` (also known as *fields* or *elements*)
 * **Relational** operators defined (``<``,  ``=``, ...)
 
     - **Ordered**

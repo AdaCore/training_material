@@ -4,7 +4,7 @@ Genericity Lab
 
 * Requirements
 
-   - Create a record structure containing multiple fields
+   - Create a record structure containing multiple components
 
       - Need subprograms to convert the record to a string, and compare the order of two records
       - Lab prompt package :ada:`Data_Type` contains a framework

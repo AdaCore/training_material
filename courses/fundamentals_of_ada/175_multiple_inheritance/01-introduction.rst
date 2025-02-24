@@ -28,7 +28,7 @@ Multiple Inheritance Is Forbidden in Ada
 Multiple Inheritance - Safe Case
 ----------------------------------
 
-* If only one type has concrete operations and fields, this is fine
+* If only one type has concrete operations and components, this is fine
 
    .. code:: Ada
 

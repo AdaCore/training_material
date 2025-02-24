@@ -18,6 +18,6 @@ D. ``V : R (6) := (6, S => "Hello")``
 .. container:: animate
 
     Choices **A** and **B** are mutable: the runtime assumes :ada:`Size`
-    can be :ada:`Positive'Last`, so field :ada:`S` will cause a run-time error.
+    can be :ada:`Positive'Last`, so component :ada:`S` will cause a run-time error.
     Choice **D** tries to copy a 5-character string into a 6-character string,
     also generating a run-time error.

@@ -40,11 +40,11 @@ Incomplete Types
    type Unconstrained_Record_Access_T is access all Unconstrained_Record_T;
 
    type Some_Record_T is record
-      Field : String (1 .. 10);
+      Component : String (1 .. 10);
    end record;
 
    type Unconstrained_Record_T (Size : Index_T) is record
-      Field : String (1 .. Size);
+      Component : String (1 .. Size);
    end record;
    
 --------------------
@@ -56,14 +56,14 @@ Linked List in Ada
 .. code:: Ada
 
    type Some_Record_T is record
-      Field : String (1 .. 10);
-      Next  : Some_Record_Access_T;
+      Component : String (1 .. 10);
+      Next      : Some_Record_Access_T;
    end record;
 
    type Unconstrained_Record_T (Size : Index_T) is record
-      Field    : String (1 .. Size);
-      Next     : Unconstrained_Record_Access_T;
-      Previous : Unconstrained_Record_Access_T;
+      Component    : String (1 .. Size);
+      Next         : Unconstrained_Record_Access_T;
+      Previous     : Unconstrained_Record_Access_T;
    end record;
 
 ------------------------
@@ -78,8 +78,8 @@ Simplistic Linked List
      type Some_Record_T;
      type Some_Record_Access_T is access all Some_Record_T;
      type Some_Record_T is record
-        Field : String (1 .. 10);
-        Next  : Some_Record_Access_T;
+        Component : String (1 .. 10);
+        Next      : Some_Record_Access_T;
      end record;
   
      Head : Some_Record_Access_T := null;
@@ -105,7 +105,7 @@ Simplistic Linked List
   
      Put_Line ("List");
      while Head /= null loop
-        Put_Line ("  " & Head.Field);
+        Put_Line ("  " & Head.Component);
         Head := Head.Next;
      end loop;
 

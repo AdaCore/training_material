@@ -8,9 +8,9 @@ How Do You Extend a Tagged Type?
 
 * Premise of a tagged type is to :dfn:`extend` an existing type
 
-* In general, that means we want to add more fields
+* In general, that means we want to add more components
 
-  * We can extend a :ada:`tagged` type by adding fields
+  * We can extend a :ada:`tagged` type by adding components
 
   .. code:: Ada
 
@@ -38,7 +38,7 @@ How Do You Extend a Tagged Type?
 Tagged Aggregate
 ------------------
 
-* At initialization, all fields (including **inherited**) must have a **value**
+* At initialization, all components (including **inherited**) must have a **value**
 
    .. code:: Ada
 
@@ -98,7 +98,7 @@ Private Tagged Types
 Private Extensions
 --------------------
 
-* In the previous slide, we exposed the fields for :ada:`Mammal_T`!
+* In the previous slide, we exposed the components for :ada:`Mammal_T`!
 
 * Better would be to make the extension itself private
 
@@ -143,7 +143,7 @@ Aggregates with Private Tagged Types
 Null Extensions
 -----------------
 
-* To create a new type with no additional fields
+* To create a new type with no additional components
 
   * We still need to "extend" the record - we just do it with an empty record
 
@@ -152,7 +152,7 @@ Null Extensions
       type Dog_T is new Canine_T with null record;
 
 
-* We still need to specify the "added" fields in an aggregate
+* We still need to specify the "added" components in an aggregate
 
   .. code:: Ada
 
@@ -199,6 +199,6 @@ Which completion(s) of Create is (are) valid?
 
    A. Correct - :ada:`Parents.Create` returns :ada:`Parent_T`
    B. Cannot use :ada:`others` to complete private part of an aggregate
-   C. Aggregate has no visibility to :ada:`Id` field, so cannot assign
+   C. Aggregate has no visibility to :ada:`Id` component, so cannot assign
    D. Correct - :ada:`P` is a :ada:`Parent_T`
 
