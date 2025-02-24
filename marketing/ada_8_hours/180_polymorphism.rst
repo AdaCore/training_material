@@ -56,7 +56,7 @@ Classes
 
 * Objects of type :ada:`T'Class` have at least the properties of T
 
-   - Fields of `T`
+   - Components of `T`
    - Primitives of `T`
 
 -----------------
