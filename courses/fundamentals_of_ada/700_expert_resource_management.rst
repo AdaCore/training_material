@@ -1,6 +1,6 @@
-*********
-Tasking
-*********
+**************************
+Expert Resource Management
+**************************
 
 .. container:: PRELUDE BEGIN
 
@@ -34,20 +34,11 @@ Tasking
 
 .. container:: PRELUDE PROVIDES
 
-..
-   Tasks
-   Protected Objects
-   Delays
-   Task Types
-
 .. container:: PRELUDE END
 
-.. include:: 240_tasking/01-intro.rst
-.. include:: 240_tasking/02-tasks_in_depth.rst
-.. include:: 240_tasking/03-protected_objects_in_depth.rst
-.. include:: 240_tasking/04-delays.rst
-.. include:: 240_tasking/05-task_types_in_depth.rst
-.. include:: 240_tasking/06-advanced_concepts_in_depth.rst
-.. include:: 240_tasking/14-tasking_control.rst
-.. include:: labs/240_tasking_in_depth.lab.rst
-.. include:: 240_tasking/99-summary.rst
+.. include:: 290_advanced_data_hiding/04-indefinite_private.rst
+.. include:: 260_controlled_types/10-idiom_refcounting.rst
+.. include:: 260_controlled_types/11-example_logger.rst
+.. include:: 230_interfacing_with_c/10-example_refcount_wrap.rst
+.. include:: 240_tasking/21-gnat_semaphores.rst
+.. include:: 240_tasking/22-task_safe_interfaces.rst

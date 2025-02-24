@@ -57,5 +57,6 @@ Access Types In Depth
 .. include:: 140_access_types/08-memory_management.rst
 .. include:: 140_access_types/09-memory_debugging.rst
 .. include:: 140_access_types/10-memory_control.rst
+.. include:: 140_access_types/11-type_safe_idioms.rst
 .. include:: labs/140_access_types-in_depth.lab.rst
 .. include:: 140_access_types/99-summary_with_pools.rst
