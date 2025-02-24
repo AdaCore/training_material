@@ -8,7 +8,7 @@ package body Flags is
    begin
       Success := False;
       -- If the key is not already in the map then
-      --    Create a map element and add it to the map
+      --    Create a map component and add it to the map
    end Add;
 
    procedure Remove
@@ -17,7 +17,7 @@ package body Flags is
       Success :    out Boolean) is
    begin
       Success := False;
-      -- Remove the element specified by the key from the map
+      -- Remove the component specified by the key from the map
    end Remove;
 
    procedure Modify
@@ -27,7 +27,7 @@ package body Flags is
       Success     :    out Boolean) is
    begin
       Success := False;
-      -- Update the element at the key location with the new data
+      -- Update the component at the key location with the new data
    end Modify;
 
    function Exists
@@ -42,18 +42,18 @@ package body Flags is
    function Get
      (Map : Map_T;
       Key : Key_T)
-      return Map_Element_T is
-      Ret_Val : Map_Element_T;
+      return Map_Component_T is
+      Ret_Val : Map_Component_T;
    begin
-      -- Return the map element specified by key
+      -- Return the map component specified by key
       return Ret_Val;
    end Get;
 
    function Image
-     (Item : Map_Element_T)
+     (Item : Map_Component_T)
       return String is
    begin
-      -- return a string representation of the element
+      -- return a string representation of the component
       return "";
    end Image;
 

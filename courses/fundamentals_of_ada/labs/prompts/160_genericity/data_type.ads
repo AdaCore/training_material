@@ -6,7 +6,7 @@ package Data_Type is
       return Boolean is (True);  --  Update to Return True when L < R
 
    function Image
-     (Element : Record_T)
+     (Component : Record_T)
       return String is
      ("");  -- Update to return string representation of Record_T;
 

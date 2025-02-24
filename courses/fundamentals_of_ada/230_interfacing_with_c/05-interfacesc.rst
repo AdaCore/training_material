@@ -107,21 +107,21 @@ Interfaces.C.Pointers
 
    generic
       type Index is (<>);
-      type Element is private;
-      type Element_Array is array (Index range <>) of aliased Element;
-      Default_Terminator : Element;
+      type Component is private;
+      type Component_Array is array (Index range <>) of aliased Component;
+      Default_Terminator : Component;
 
    package Interfaces.C.Pointers is
 
-      type Pointer is access all Element;
+      type Pointer is access all Component;
       for Pointer'Size use System.Parameters.ptr_bits;
 
       function Value (Ref        : Pointer;
-                      Terminator : Element := Default_Terminator)
-                      return Element_Array;
+                      Terminator : Component := Default_Terminator)
+                      return Component_Array;
       function Value (Ref    : Pointer;
                       Length : ptrdiff_t)
-                      return Element_Array;
+                      return Component_Array;
 
       Pointer_Error : exception;
 

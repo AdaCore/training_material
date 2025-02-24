@@ -2,14 +2,14 @@ package body Generic_List is
 
    procedure Add
      (This : in out List_T;
-      Item : in     Element_T) is
+      Item : in     Component_T) is
    begin
       null;
    end Add;
 
    procedure Sort (This : in out List_T) is
-      Temp : Element_T;
-      --  Set length to number of elements in list
+      Temp : Component_T;
+      --  Set length to number of components in list
       Length : constant Integer := 0;
    begin
       for I in 1 .. Length
@@ -25,7 +25,7 @@ package body Generic_List is
 
    procedure Print (List : List_T) is
    begin
-      null;  --  Print each element in list
+      null;  --  Print each component in list
    end Print;
 
 end Generic_List;

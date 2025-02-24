@@ -8,14 +8,14 @@ Array Lab
 
 * Requirements
 
-   - Create an array type whose index is days of the week and each element is a number
+   - Create an array type whose index is days of the week and each component is a number
    - Create two objects of the array type, one of which is constant
    - Perform the following operations
 
       + Copy the constant object to the non-constant object
       + Print the contents of the non-constant object
       + Use an array aggregate to initialize the non-constant object
-      + For each element of the array, print the array index and the value
+      + For each component of the array, print the array index and the value
       + Move part ("source") of the non-constant object to another part ("destination"), and then clear the source location
       + Print the contents of the non-constant object
 

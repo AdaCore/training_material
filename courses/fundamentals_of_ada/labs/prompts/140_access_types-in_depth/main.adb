@@ -5,15 +5,15 @@ with Simple_Io; use Simple_Io;
 with Database;
 with Database_List;
 procedure Main is
-   List    : Database_List.List_T;
-   Element : Database.Database_T;
+   List      : Database_List.List_T;
+   Component : Database.Database_T;
 
    procedure Add is
       Value : constant String := Get_String ("Add");
    begin
       if Value'Length > 0 then
-         Element := Database.To_Database (Value);
-         Database_List.Insert (List, Element);
+         Component := Database.To_Database (Value);
+         Database_List.Insert (List, Component);
       end if;
    end Add;
 
@@ -21,8 +21,8 @@ procedure Main is
       Value : constant String := Get_String ("Delete");
    begin
       if Value'Length > 0 then
-         Element := Database.To_Database (Value);
-         Database_List.Delete (List, Element);
+         Component := Database.To_Database (Value);
+         Database_List.Delete (List, Component);
       end if;
    end Delete;
 
@@ -31,8 +31,8 @@ procedure Main is
       Database_List.First (List);
       Simple_Io.Print_String ("List");
       while not Database_List.End_Of_List (List) loop
-         Element := Database_List.Current (List);
-         Print_String ("  " & Database.From_Database (Element));
+         Component := Database_List.Current (List);
+         Print_String ("  " & Database.From_Database (Component));
          Database_List.Next (List);
       end loop;
    end Print;

@@ -3,16 +3,16 @@
 procedure Main is
    --$ begin question
    generic
-      type Element_T is (<>);
-      Last : in out Element_T;
-   procedure Write (P : Element_T);
+      type Component_T is (<>);
+      Last : in out Component_T;
+   procedure Write (P : Component_T);
 
    Numeric        : Integer;
    Enumerated     : Boolean;
    Floating_Point : Float;
    --$ end question
 
-   procedure Write (P : Element_T) is
+   procedure Write (P : Component_T) is
    begin
       Last := P;
    end Write;

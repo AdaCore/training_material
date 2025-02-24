@@ -12,13 +12,13 @@ Visibility Lab
 
       + :ada:`Number_of_Sides` - indicates how many sides in the shape
       + :ada:`Side_T` - numeric value for length
-      + :ada:`Shape_T` - array of :ada:`Side_T` elements whose length is :ada:`Number_of_Sides`
+      + :ada:`Shape_T` - array of :ada:`Side_T` components whose length is :ada:`Number_of_Sides`
 
    - Create a main program that will
 
       + Create an object of each :ada:`Shape_T`
-      + Set the values for each element in :ada:`Shape_T`
-      + Add all the elements in each object and print the total
+      + Set the values for each component in :ada:`Shape_T`
+      + Add all the components in each object and print the total
 
 * Hints
 
