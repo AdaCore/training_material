@@ -218,11 +218,11 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
 
     extension = args.extension
     if extension is None:
-        spl = args.output.rsplit(".", 1)
-        if spl:
-            extension = spl[-1]
-        else:
-            extension = "pdf"
+        extension = "pdf"  # Default
+        if args.output is not None:
+            spl = args.output.rsplit(".", 1)
+            if spl:
+                extension = spl[-1]
 
     # Output default value is input file name
     output_file = output_file_name(
