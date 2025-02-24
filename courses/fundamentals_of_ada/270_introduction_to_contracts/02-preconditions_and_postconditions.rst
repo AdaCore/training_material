@@ -205,9 +205,9 @@ Quiz
 .. code:: Ada
 
    type Index_T is range 1 .. 100;
-   -- Database initialized such that value for element at I = I
+   -- Database initialized such that value for component at I = I
    Database : array (Index_T) of Integer;
-   -- Set the value for element Index to Value and
+   -- Set the value for component Index to Value and
    -- then increment Index by 1
    function Set_And_Move (Value :        Integer;
                           Index : in out Index_T)

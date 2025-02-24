@@ -9,19 +9,19 @@ Language-Defined Character Types
 * :ada:`Character`
 
    - 8-bit Latin-1
-   - Base element of :ada:`String`
+   - Base component of :ada:`String`
    - Uses attributes :ada:`'Image` / :ada:`'Value`
 
 * :ada:`Wide_Character`
 
    - 16-bit Unicode
-   - Base element of :ada:`Wide_Strings`
+   - Base component of :ada:`Wide_Strings`
    - Uses attributes :ada:`'Wide_Image` / :ada:`'Wide_Value`
 
 * :ada:`Wide_Wide_Character`
 
    - 32-bit Unicode
-   - Base element of :ada:`Wide_Wide_Strings`
+   - Base component of :ada:`Wide_Wide_Strings`
    - Uses attributes :ada:`'Wide_Wide_Image` / :ada:`'Wide_Wide_Value`
 
 -----------------------------

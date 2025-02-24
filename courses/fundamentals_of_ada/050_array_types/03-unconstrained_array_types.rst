@@ -81,7 +81,7 @@ Null Index Range
 
 * When :ada:`'Last` of the range is smaller than :ada:`'First`
 
-  * Array is empty - no elements
+  * Array is empty - no components
 
 * When using literals, the compiler will allow out-of-range numbers to indicate empty range
 
@@ -189,7 +189,7 @@ Indefinite Types
 No Indefinite Component Types
 -------------------------------
 
-* Arrays: consecutive elements of the exact **same type**
+* Arrays: consecutive components of the exact **same type**
 * Component size must be **defined**
 
     - No indefinite types

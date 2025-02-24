@@ -16,7 +16,7 @@ Ada.Text_IO
 
    - `Ada.Sequential_IO` and `Ada.Direct_IO`
 
-      * Operations on binary files for elements of a given type
+      * Operations on binary files for components of a given type
 
    - `Ada.Storage_IO`
 

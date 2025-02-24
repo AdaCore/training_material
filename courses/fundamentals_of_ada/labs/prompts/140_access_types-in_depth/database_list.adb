@@ -33,15 +33,15 @@ package body Database_List is
    end Current;
 
    procedure Insert
-     (List    : in out List_T;
-      Element :        Database_T) is
+     (List      : in out List_T;
+      Component :        Database_T) is
    begin
       null;
    end Insert;
 
    procedure Delete
-     (List    : in out List_T;
-      Element :        Database_T) is
+     (List      : in out List_T;
+      Component :        Database_T) is
    begin
       null;
    end Delete;

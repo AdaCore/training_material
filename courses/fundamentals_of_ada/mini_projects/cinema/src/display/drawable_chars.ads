@@ -13,16 +13,16 @@ package Drawable_Chars is
    type Drawable_Charset_T
      is array (Positive range <>) of Drawable_Char_Access_T;
    -- Set of unique Drawable_Char_T that form together
-   -- a coherent set of primitive drawing elements.
+   -- a coherent set of primitive drawing components.
    
    type Drawable_Char_Characteristic_T is new Integer;
-   -- Characteristic attached to every elements of a Drawable_Charset_T
+   -- Characteristic attached to every components of a Drawable_Charset_T
    -- e.g. how much of that drawing primitive is black
-   -- This is then used to map those elements to pixels based on
+   -- This is then used to map those components to pixels based on
    -- e.g. luminosity information
 
    type Sorted_Charset_T is private;
-   -- Set of sorted drawable elements, this is a palette,
+   -- Set of sorted drawable components, this is a palette,
    -- from which images can be rendered to console.
 
    function Empty (SC : Sorted_Charset_T) return Boolean;

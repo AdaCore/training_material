@@ -12,30 +12,30 @@ package Data_Type is
       else L.Integer_Component > R.Integer_Component);
 
    function Image
-     (Element : Record_T)
+     (Component : Record_T)
       return String is
-     (Element.Character_Component & " =>" & Integer'Image (Element.Integer_Component));
+     (Component.Character_Component & " =>" & Integer'Image (Component.Integer_Component));
 
 end Data_Type;
 
 --Generic_List_Spec
 generic
-   type Element_T is private;
+   type Component_T is private;
    Max_Size : Natural;
-   with function ">" (L, R : Element_T) return Boolean is <>;
-   with function Image (Element : Element_T) return String;
+   with function ">" (L, R : Component_T) return Boolean is <>;
+   with function Image (Component : Component_T) return String;
 package Generic_List is
 
    type List_T is private;
 
    procedure Add (This : in out List_T;
-                  Item : in     Element_T);
+                  Item : in     Component_T);
    procedure Sort (This : in out List_T);
    procedure Print (List : List_T);
 
 private
    subtype Index_T is Natural range 0 .. Max_Size;
-   type List_Array_T is array (1 .. Index_T'Last) of Element_T;
+   type List_Array_T is array (1 .. Index_T'Last) of Component_T;
 
    type List_T is record
       Values : List_Array_T;
@@ -49,14 +49,14 @@ with Ada.Text_io; use Ada.Text_IO;
 package body Generic_List is
 
    procedure Add (This : in out List_T;
-                  Item : in     Element_T) is
+                  Item : in     Component_T) is
    begin
       This.Length               := This.Length + 1;
       This.Values (This.Length) := Item;
    end Add;
 
    procedure Sort (This : in out List_T) is
-      Temp : Element_T;
+      Temp : Component_T;
    begin
       for I in 1 .. This.Length loop
          for J in 1 .. This.Length - I loop
@@ -83,13 +83,13 @@ end Generic_List;
 with Data_Type;
 with Generic_List;
 procedure Main is
-   package List is new Generic_List (Element_T => Data_Type.Record_T,
+   package List is new Generic_List (Component_T => Data_Type.Record_T,
                                      Max_Size  => 20,
                                      ">"       => Data_Type.">",
                                      Image => Data_Type.Image);
 
    My_List : List.List_T;
-   Element : Data_Type.Record_T;
+   Component : Data_Type.Record_T;
 
 begin
    List.Add (My_List, (Integer_Component   => 111,

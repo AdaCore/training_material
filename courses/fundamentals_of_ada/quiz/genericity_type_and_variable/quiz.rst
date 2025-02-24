@@ -5,9 +5,9 @@
 .. code:: Ada
 
        generic
-          type Element_T is (<>);
-          Last : in out Element_T;
-       procedure Write (P : Element_T);
+          type Component_T is (<>);
+          Last : in out Component_T;
+       procedure Write (P : Component_T);
     
        Numeric        : Integer;
        Enumerated     : Boolean;
