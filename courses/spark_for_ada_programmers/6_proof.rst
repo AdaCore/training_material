@@ -219,8 +219,8 @@ Run-Time Errors Are Pervasive
 
     * ``I+J`` might overflow the base type of the index range's subtype
     * ``I+J`` might be outside the index range's subtype
-    * ``P/Q`` might overflow the base type of the element type
-    * ``P/Q`` might be outside the element subtype
+    * ``P/Q`` might overflow the base type of the component type
+    * ``P/Q`` might be outside the component subtype
     * ``Q`` might be zero
 
 -------------------------------
@@ -593,7 +593,7 @@ Cost/Benefit Analysis
 
 * Not all provable properties are worth proving!
 * Difficulty of proof (cost) not correlated with benefit
-* e.g. proving that a sorting algorithm preserves the elements
+* e.g. proving that a sorting algorithm preserves the components
 
    - Trivial by review if the only operation is :ada:`Swap`
    - May require many **annotations** for proof

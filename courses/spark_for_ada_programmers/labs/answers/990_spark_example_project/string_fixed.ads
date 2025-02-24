@@ -341,7 +341,7 @@ is
       Post => "*"'Result'Length = Left
       and then (for all E of "*"'Result => E = Right);
       --  This function replicates a character a specified number of times. It
-      --  returns a string whose length is Left and each of whose elements is
+      --  returns a string whose length is Left and each of whose components is
       --  Right.
 
 end String_Fixed;
