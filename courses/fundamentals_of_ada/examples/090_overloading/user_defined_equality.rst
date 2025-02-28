@@ -16,7 +16,7 @@
          else
             for I in 1 .. L.Count loop
                if L.Vector (I) /= R.Vector (I) then
-                  Put_Line ("elements don't match");
+                  Put_Line ("components don't match");
                   return False;
                end if;
             end loop;

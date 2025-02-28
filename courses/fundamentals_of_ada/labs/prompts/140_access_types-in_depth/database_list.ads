@@ -10,11 +10,11 @@ package Database_List is
      (List : List_T)
       return Database_T;
    procedure Insert
-     (List    : in out List_T;
-      Element :        Database_T);
+     (List      : in out List_T;
+      Component :        Database_T);
    procedure Delete
-     (List    : in out List_T;
-      Element :        Database_T);
+     (List      : in out List_T;
+      Component :        Database_T);
    function Is_Empty
      (List : List_T)
       return Boolean;

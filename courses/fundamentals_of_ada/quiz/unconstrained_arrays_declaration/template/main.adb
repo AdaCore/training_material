@@ -1,4 +1,4 @@
---  How to declare an array of two elements?
+--  How to declare an array of two components?
 procedure Main is
    --$ line question
    type My_Array is array (Integer range <>) of Boolean;

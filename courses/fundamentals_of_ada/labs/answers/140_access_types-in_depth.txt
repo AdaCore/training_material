@@ -46,10 +46,10 @@ package Database_List is
    procedure Next (List : in out List_T);
    function End_Of_List (List : List_T) return Boolean;
    function Current (List : List_T) return Database_T;
-   procedure Insert (List    : in out List_T;
-                    Element :        Database_T);
-   procedure Delete (List    : in out List_T;
-                     Element :        Database_T);
+   procedure Insert (List      : in out List_T;
+                     Component :        Database_T);
+   procedure Delete (List      : in out List_T;
+                     Component :        Database_T);
    function Is_Empty (List : List_T) return Boolean;
 private
    type Linked_List_T;
@@ -104,28 +104,28 @@ package body Database_List is
 --Database_List_Helpers
 
 --Database_List_Substance
-   procedure Insert (List    : in out List_T;
-                    Element :        Database_T) is
-      New_Element : Linked_List_Ptr_T :=
-        new Linked_List_T'(Next => null, Content => Element);
+   procedure Insert (List      : in out List_T;
+                     Component :        Database_T) is
+      New_Component : Linked_List_Ptr_T :=
+        new Linked_List_T'(Next => null, Content => Component);
    begin
       if Is_Empty (List) then
-         List.Current := New_Element;
-         List.Head    := New_Element;
-      elsif Element < List.Head.Content then
-         New_Element.Next := List.Head;
-         List.Current     := New_Element;
-         List.Head        := New_Element;
+         List.Current := New_Component;
+         List.Head    := New_Component;
+      elsif Component < List.Head.Content then
+         New_Component.Next := List.Head;
+         List.Current       := New_Component;
+         List.Head          := New_Component;
       else
          declare
             Current : Linked_List_Ptr_T := List.Head;
          begin
-            while Current.Next /= null and then Current.Next.Content < Element
+            while Current.Next /= null and then Current.Next.Content < Component
             loop
                Current := Current.Next;
             end loop;
-            New_Element.Next := Current.Next;
-            Current.Next     := New_Element;
+            New_Component.Next := Current.Next;
+            Current.Next       := New_Component;
          end;
       end if;
       -- Uncomment next line when using debug/storage pools
@@ -135,12 +135,12 @@ package body Database_List is
    procedure Free is new Unchecked_Deallocation
      (Linked_List_T, Linked_List_Ptr_T);
    procedure Delete
-     (List    : in out List_T;
-      Element :        Database_T) is
+     (List      : in out List_T;
+      Component :        Database_T) is
       To_Delete : Linked_List_Ptr_T := null;
    begin
       if not Is_Empty (List) then
-         if List.Head.Content = Element then
+         if List.Head.Content = Component then
             To_Delete    := List.Head;
             List.Head    := List.Head.Next;
             List.Current := List.Head;
@@ -150,7 +150,7 @@ package body Database_List is
                Current  : Linked_List_Ptr_T := List.Head.Next;
             begin
                while Current /= null loop
-                  if Current.Content = Element then
+                  if Current.Content = Component then
                      To_Delete     := Current;
                      Previous.Next := Current.Next;
                   end if;
@@ -175,14 +175,14 @@ with Database;
 with Database_List;
 procedure Main is
    List    : Database_List.List_T;
-   Element : Database.Database_T;
+   Component : Database.Database_T;
 
    procedure Add is
       Value : constant String := Get_String ("Add");
    begin
       if Value'Length > 0 then
-         Element := Database.To_Database (Value);
-         Database_List.Insert (List, Element);
+         Component := Database.To_Database (Value);
+         Database_List.Insert (List, Component);
       end if;
    end Add;
 
@@ -190,8 +190,8 @@ procedure Main is
       Value : constant String := Get_String ("Delete");
    begin
       if Value'Length > 0 then
-         Element := Database.To_Database (Value);
-         Database_List.Delete (List, Element);
+         Component := Database.To_Database (Value);
+         Database_List.Delete (List, Component);
       end if;
    end Delete;
 
@@ -200,8 +200,8 @@ procedure Main is
       Database_List.First (List);
       Simple_Io.Print_String ("List");
       while not Database_List.End_Of_List (List) loop
-         Element := Database_List.Current (List);
-         Print_String ("  " & Database.From_Database (Element));
+         Component := Database_List.Current (List);
+         Print_String ("  " & Database.From_Database (Component));
          Database_List.Next (List);
       end loop;
    end Print;
@@ -301,7 +301,7 @@ end Memory_Mgmt;
 --Memory_Mgmt_Debug
 
 --Memory_Mgmt_Spec
-with System.Storage_Elements;
+with System.Storage_Components;
 with System.Storage_Pools;
 package Memory_Mgmt is
 
@@ -313,16 +313,16 @@ package Memory_Mgmt is
    procedure Allocate
      (Pool                     : in out Storage_Pool_T;
       Storage_Address          :    out System.Address;
-      Size_In_Storage_Elements :        System.Storage_Elements.Storage_Count;
-      Alignment                :        System.Storage_Elements.Storage_Count);
+      Size_In_Storage_Components :        System.Storage_Components.Storage_Count;
+      Alignment                :        System.Storage_Components.Storage_Count);
    procedure Deallocate
      (Pool                     : in out Storage_Pool_T;
       Storage_Address          :        System.Address;
-      Size_In_Storage_Elements :        System.Storage_Elements.Storage_Count;
-      Alignment                :        System.Storage_Elements.Storage_Count);
+      Size_In_Storage_Components :        System.Storage_Components.Storage_Count;
+      Alignment                :        System.Storage_Components.Storage_Count);
    function Storage_Size
      (Pool : Storage_Pool_T)
-      return System.Storage_Elements.Storage_Count;
+      return System.Storage_Components.Storage_Count;
 
    Storage_Pool : Storage_Pool_T;
 
@@ -333,7 +333,7 @@ end Memory_Mgmt;
 with Ada.Text_IO;
 with Interfaces;
 package body Memory_Mgmt is
-   use System.Storage_Elements;
+   use System.Storage_Components;
    use type System.Address;
 
    subtype Index_T is Storage_Count range 1 .. 1_000;
@@ -383,30 +383,30 @@ package body Memory_Mgmt is
    procedure Allocate
      (Pool                     : in out Storage_Pool_T;
       Storage_Address          :    out System.Address;
-      Size_In_Storage_Elements :        Storage_Count;
+      Size_In_Storage_Components :        Storage_Count;
       Alignment                :        Storage_Count) is
-      Index : Storage_Count := Find_Free_Block (Size_In_Storage_Elements);
+      Index : Storage_Count := Find_Free_Block (Size_In_Storage_Components);
    begin
       Storage_Address := Memory_Block (Index)'Address;
-      Set_In_Use (Index, Size_In_Storage_Elements, True);
+      Set_In_Use (Index, Size_In_Storage_Components, True);
    end Allocate;
 
    procedure Deallocate
      (Pool                     : in out Storage_Pool_T;
       Storage_Address          :        System.Address;
-      Size_In_Storage_Elements :        Storage_Count;
+      Size_In_Storage_Components :        Storage_Count;
       Alignment                :        Storage_Count) is
    begin
       for I in Memory_Block'Range loop
          if Memory_Block (I)'Address = Storage_Address then
-            Set_In_Use (I, Size_In_Storage_Elements, False);
+            Set_In_Use (I, Size_In_Storage_Components, False);
          end if;
       end loop;
    end Deallocate;
 
    function Storage_Size
      (Pool : Storage_Pool_T)
-      return System.Storage_Elements.Storage_Count is
+      return System.Storage_Components.Storage_Count is
    begin
       return 0;
    end Storage_Size;

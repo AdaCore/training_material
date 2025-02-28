@@ -61,7 +61,7 @@ end Colors;
 with Colors;
 package Flags is
    type Key_T is (USA, England, France, Italy);
-   type Map_Element_T is private;
+   type Map_Component_T is private;
    type Map_T is private;
 
    procedure Add (Map         : in out Map_T;
@@ -77,15 +77,15 @@ package Flags is
                      Success     :    out Boolean);
 
    function Exists (Map : Map_T; Key : Key_T) return Boolean;
-   function Get (Map : Map_T; Key : Key_T) return Map_Element_T;
-   function Image (Item : Map_Element_T) return String;
+   function Get (Map : Map_T; Key : Key_T) return Map_Component_T;
+   function Image (Item : Map_Component_T) return String;
    function Image (Flag : Map_T) return String;
 private
-   type Map_Element_T is record
+   type Map_Component_T is record
       Key         : Key_T := Key_T'First;
       Description : Colors.Color_Set_T := Colors.Empty_Set;
    end record;
-   type Map_Array_T is array (1 .. 100) of Map_Element_T;
+   type Map_Array_T is array (1 .. 100) of Map_Component_T;
    type Map_T is record
       Values : Map_Array_T;
       Length : Natural := 0;
@@ -117,7 +117,7 @@ package body Flags is
       Success := False;
       if Index not in Map.Values'Range then
          declare
-            New_Item : constant Map_Element_T :=
+            New_Item : constant Map_Component_T :=
               (Key         => Key,
                Description => Description);
          begin
@@ -164,9 +164,9 @@ package body Flags is
    
    function Get (Map : Map_T;
                  Key : Key_T)
-                 return Map_Element_T is
+                 return Map_Component_T is
       Index   : constant Integer := Find (Map, Key);
-      Ret_Val : Map_Element_T;
+      Ret_Val : Map_Component_T;
    begin
       if Index in Map.Values'Range then
          Ret_Val := Map.Values (Index);
@@ -174,7 +174,7 @@ package body Flags is
       return Ret_Val;
    end Get;
    
-   function Image (Item : Map_Element_T) return String is
+   function Image (Item : Map_Component_T) return String is
    begin
       return Key_T'Image (Item.Key) & " => " & Colors.Image (Item.Description);
    end Image;
@@ -185,7 +185,7 @@ package body Flags is
    begin
       for I in 1 .. Flag.Length loop
          declare
-            Item : constant Map_Element_T := Flag.Values (I);
+            Item : constant Map_Component_T := Flag.Values (I);
             Str  : constant String        := Image (Item);
          begin
             Ret_Val (Next .. Next + Str'Length) := Image (Item) & ASCII.LF;

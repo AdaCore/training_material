@@ -269,7 +269,7 @@ Aggregates in Ada 2022
          Illegal : Array_T := ();
          Ada2022 : Array_T := [];
 
-   * Single element array
+   * Single component array
 
       .. code:: Ada
 
@@ -308,7 +308,7 @@ Iterated Component Association
 
       Object2 := [for Item of Object => Item * 2];
 
-   * :ada:`Object2` will have each element doubled
+   * :ada:`Object2` will have each component doubled
 
 -------------------------------
 More Information on Iterators

@@ -19,12 +19,12 @@ Vectors of Varying Lengths
    + Need two pieces of data
 
       * Array contents
-      * Location of last valid element
+      * Location of last valid component
 
 * For common usage, we want this to be a type (probably a record)
 
    + Maximum size array for contents
-   + Index for last valid element
+   + Index for last valid component
 
 ---------------------------------
 Simple Vector of Varying Length

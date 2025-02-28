@@ -21,8 +21,8 @@ Genericity Lab
 
 * Hints
 
-   - Sort routine will need to know how to compare elements
-   - Print routine will need to know how to print one element
+   - Sort routine will need to know how to compare components
+   - Print routine will need to know how to print one component
 
 ------------------------------------------
 Genericity Lab Solution - Generic (Spec)

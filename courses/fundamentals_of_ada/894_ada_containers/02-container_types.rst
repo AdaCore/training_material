@@ -21,7 +21,7 @@ Data Structures (1/2)
     - Containers matching Key -> Element
     - Not a one-to-one relationship
 
-        + Can have several keys for a single element
+        + Can have several keys for a single component
 
 * Set
 
@@ -49,7 +49,7 @@ Data Structures (2/2)
 
     - Wraps around an indefinite (unconstrained, class-wide ...)
     - Resulting type is definite
-    - Single element, no iteration or cursor
+    - Single component, no iteration or cursor
 
 ..
   language_version 2012
@@ -61,7 +61,7 @@ Implementations (1/2)
 * :dfn:`Bounded`
 
     - Maximal storage is bounded
-    - Constant :dfn:`capacity` and element size
+    - Constant :dfn:`capacity` and component size
     - Only static allocation
     - :ada:`Bounded_<Structure>`
 
@@ -73,14 +73,14 @@ Implementations (1/2)
 
 * :dfn:`Ordered`
 
-    - Elements are sorted in order
+    - Components are sorted in order
     - Must provide :ada:`<` and :ada:`=` operators
     - Not hashed
     - :ada:`XXX_Ordered_<Structure>`
 
 * :dfn:`Hashed`
 
-    - Elements are hashed
+    - Components are hashed
     - Must provide :ada:`Hash` function and :ada:`=` operator
     - Not ordered
     - Some hash functions are provided (e.g. :ada:`Ada.Strings.Hash`)
@@ -92,8 +92,8 @@ Implementations (2/2)
 
 * :dfn:`Indefinite`
 
-    - Element can be indefinite
-    - Size of element is unknown
+    - Component can be indefinite
+    - Size of component is unknown
     - :ada:`Indefinite_XXX_<Structure>`
 
 ..
@@ -107,18 +107,18 @@ Example of Containers
 * :ada:`Indefinite_Vector`
 
     - Static capacity
-    - Dynamically sized (indefinite elements)
+    - Dynamically sized (indefinite components)
     - Random access in ``O(1)``
 
 * :ada:`Ordered_Set`
 
-    - Unique elements
+    - Unique components
     - Differentiated by :ada:`<` and :ada:`=`
     - Manipulated in order
 
 * :ada:`Bounded_Doubly_Linked_List`
 
-    - Static size of container and elements
+    - Static size of container and components
     - Insertions and deletions in ``O(1)``
 
 -------------
