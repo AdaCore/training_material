@@ -88,7 +88,7 @@ GPRbuild Command Line
 Common Options Passed To Tools
 --------------------------------
 
-* :command:`-cargs options`
+:command:`-cargs options`
 
   * Options passed to all compilers
   * Example:
@@ -98,7 +98,7 @@ Common Options Passed To Tools
       -cargs -g
 
 
-* :command:`-cargs:<language> options`
+:command:`-cargs:<language> options`
 
   * Options passed to compiler for specific language
   * Examples:
@@ -109,11 +109,11 @@ Common Options Passed To Tools
       -cargs:C -E
 
 
-* :command:`-bargs options`
+:command:`-bargs options`
 
   * Options passed to all binder drivers
 
-* :command:`-bargs:<language> options`
+:command:`-bargs:<language> options`
 
   * Options passed to binder driver for specific language
   * Examples:
@@ -124,7 +124,7 @@ Common Options Passed To Tools
       -bargs:C++ c_compiler_name=ccppc
 
 
-* :command:`-largs options`
+:command:`-largs options`
 
   * Options passed to linker for generating executable
 
