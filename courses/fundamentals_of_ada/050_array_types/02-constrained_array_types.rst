@@ -63,8 +63,8 @@ Quiz
 
     Explanations
 
-    A. Legal - elements are :ada:`Boolean`
+    A. Legal - components are :ada:`Boolean`
     B. Legal - object types match
-    C. Legal - elements are :ada:`Boolean`
-    D. Although the sizes are the same and the elements are the same, the type is different
+    C. Legal - components are :ada:`Boolean`
+    D. Although the sizes are the same and the components are the same, the type is different
 

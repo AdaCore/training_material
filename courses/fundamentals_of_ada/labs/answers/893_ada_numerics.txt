@@ -7,11 +7,11 @@ procedure Main is
    package Io is new Float_IO (Float);
 
    type Index_T is range 1 .. 10;
-   type Element_T is record
+   type Component_T is record
       Count : Natural := 0;
       Total : Float   := 0.0;
    end record;
-   Values : array (Index_T) of Element_T;
+   Values : array (Index_T) of Component_T;
    Index  : Index_T;
 
    package I_Random is new Ada.Numerics.Discrete_Random (Index_T);

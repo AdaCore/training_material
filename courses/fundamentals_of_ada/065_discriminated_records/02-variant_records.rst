@@ -116,7 +116,7 @@ Mutable Variant Record
 
    * An object can be created without a constraint (:ada:`Pat`)
    * Or we can create in immutable object where the discriminant cannot change (:ada:`Sam`)
-   * And we can create an array whose element is mutable
+   * And we can create an array whose component is mutable
 
 --------------------------------
 Mutable Variant Record Example

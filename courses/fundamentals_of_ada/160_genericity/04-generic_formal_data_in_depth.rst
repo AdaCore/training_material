@@ -27,9 +27,9 @@ Generic Constants/Variables As Parameters
        .. code:: Ada
 
           generic
-            type Element_T is private;
+            type Component_T is private;
             Array_Size     : Positive;
-            High_Watermark : in out Element_T;
+            High_Watermark : in out Component_T;
           package Repository is
 
      * Generic instance
@@ -40,7 +40,7 @@ Generic Constants/Variables As Parameters
          Max : Float;
 
          procedure My_Repository is new Repository
-           (Element_T      => Float,
+           (Component_T    => Float,
             Array_size     => 10,
             High_Watermark => Max);
 

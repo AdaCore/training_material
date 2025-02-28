@@ -273,8 +273,8 @@ Container Aggregates
 * Args are
 
     - :ada:`Empty` init function (or else default)
-    - :ada:`Add_Named` named aggregate element
-    - :ada:`Add_Unnamed` positional aggregate element
+    - :ada:`Add_Named` named aggregate component
+    - :ada:`Add_Unnamed` positional aggregate component
 
 * You **cannot** mix named and unnamed
 

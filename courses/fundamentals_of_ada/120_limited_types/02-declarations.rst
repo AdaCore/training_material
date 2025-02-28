@@ -79,7 +79,7 @@ Composites with Limited Types
 
 * Composite containing a limited type becomes limited as well
 
-   * Example: Array of limited elements
+   * Example: Array of limited components
 
       - Array becomes a limited type
 

@@ -9,7 +9,7 @@ Ada.Numerics Lab
 * Create an array
 
   * Size of at least 5
-  * Element is a record containing
+  * Component is a record containing
 
     * Integer counter
     * Floating point total
@@ -17,8 +17,8 @@ Ada.Numerics Lab
 * Populate the array as follows
 
   * Loop some (large) number of times
-  * For each iteration of the loop, pick a random element in the array
-  * For the selected element
+  * For each iteration of the loop, pick a random component in the array
+  * For the selected component
 
     * Increment the counter component
     * Find a random floating point number between 1_000 and 9_999
@@ -27,7 +27,7 @@ Ada.Numerics Lab
 * For each index in the array
 
   * Print out the array index
-  * Print out the element counter
+  * Print out the component counter
   * Print out the average of the square roots
 
 * Observation
