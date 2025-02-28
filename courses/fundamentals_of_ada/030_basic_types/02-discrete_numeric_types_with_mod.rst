@@ -51,9 +51,11 @@ Predefined Signed Integer Types
    - Guaranteed ranges: :ada:`Short_Integer` ``<=`` :ada:`Integer` ``<=`` :ada:`Long_Integer`
    - Ranges are all **implementation-defined**
 
-* Portability not guaranteed
+.. warning::
 
-   - But may be difficult to avoid
+    Portability not guaranteed
+
+       - But may be difficult to avoid
 
 ---------------------------------
 Operators for Signed Integer Type
@@ -67,12 +69,13 @@ Operators for Signed Integer Type
    :multiplying operator: :ada:`* | / | mod | rem`
    :highest precedence operator: :ada:`** | abs`
 
-* *Note*: for exponentiation :ada:`**`
+.. note::
 
-   - Result will be a signed integer
-   - So power **must** be :ada:`Integer` ``>= 0``
+    Exponentiation :ada:`**` result will be a signed integer
 
-* Division by zero |rightarrow| :ada:`Constraint_Error`
+       - |rightarrow| power **must** be :ada:`Integer` ``>= 0``
+
+.. warning:: Division by zero |rightarrow| :ada:`Constraint_Error`
 
 ------------------------
 Signed Integer Overflows
@@ -119,7 +122,7 @@ Modular Types
 * **Unsigned** values
 * Adds operations and attributes
 
-    * Typically **bit-wise** manipulation
+.. note:: Typically **bit-wise** manipulation
 
 * Syntax
 
