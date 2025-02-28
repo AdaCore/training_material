@@ -15,7 +15,8 @@ Strong Typing
 
    - **Check** of values and operations
    - Easy for a computer
-   - Developer can focus on **earlier** phase: requirement
+
+.. tip:: Developer can focus on **earlier** phase: requirement
 
 ----------------------------------------
 Strongly-Typed Vs Weakly-Typed Languages
@@ -198,7 +199,8 @@ Type Model Run-Time Costs
 * **Same performance** for identical programs
 
    - Run-time type checks can be disabled
-   - Compile-time check is *free*
+
+.. note:: Compile-time check is *free*
 
 .. container:: columns
 
