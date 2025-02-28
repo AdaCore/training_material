@@ -34,12 +34,12 @@ Numeric Literals Are Universally Typed
 
 * Compiler handles typing
 
-   - No bugs with precision
+.. tip:: No bugs with precision
 
-  .. code:: Ada
+.. code:: Ada
 
-     X : Unsigned_Long := 0;
-     Y : Unsigned_Short := 0;
+   X : Unsigned_Long := 0;
+   Y : Unsigned_Short := 0;
 
 ----------------------------------------
 Literals Must Match "Class" of Context

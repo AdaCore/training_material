@@ -61,9 +61,8 @@ Scope and "Lifetime"
 ----------------------
 
 * Object in scope |rightarrow| exists
-* No *scoping* keywords
 
-    - C's :c:`static`, :c:`auto` etc...
+.. warning:: No *scoping* keywords (C's :c:`static`, :c:`auto` etc...)
 
 .. image:: block_scope_example.jpeg
     :height: 50%
@@ -101,9 +100,11 @@ Overcoming Hiding
 
    - Needs named scope
 
-* Homographs are a *code smell*
+.. warning::
 
-    - May need **refactoring**...
+    * Homographs are a *code smell*
+
+        - May need **refactoring**...
 
 .. code:: Ada
 

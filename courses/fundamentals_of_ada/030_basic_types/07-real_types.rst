@@ -77,10 +77,12 @@ Predefined Floating Point Types
    - :ada:`Long_Float` ``>= 11`` digits
 
 * General-purpose
-* Best to **avoid** predefined types
 
-   - Loss of **portability**
-   - Easy to avoid
+.. tip::
+
+    It is best, and easy, to **avoid** predefined types
+
+       - Loss of **portability**
 
 -------------------------------
 Floating Point Type Operators
@@ -140,7 +142,8 @@ Numeric Types Conversion
 * Special rule: can always convert between numeric types
 
     - Explicitly
-    - :ada:`Float` |rightarrow| :ada:`Integer` causes **rounding**
+
+.. warning:: :ada:`Float` |rightarrow| :ada:`Integer` causes **rounding**
 
 .. code:: Ada
 

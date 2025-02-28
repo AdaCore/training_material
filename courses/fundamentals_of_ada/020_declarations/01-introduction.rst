@@ -40,7 +40,8 @@ Declarations
 
     - ``N`` is usually an :dfn:`identifier`
 
-* Declaration **must precede** use
+.. warning:: Declaration **must precede** use
+
 * **Some** implicit declarations
 
     - **Standard** types and operations

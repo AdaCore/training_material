@@ -37,7 +37,7 @@ Identifiers
    - `SpacePerson` |equivalent| `SPACEPERSON`
    - ...but **different** from `Space_Person`
 
-* Reserved words are **forbidden**
+.. warning:: Reserved words are **forbidden**
 
 ----------------
 Reserved Words

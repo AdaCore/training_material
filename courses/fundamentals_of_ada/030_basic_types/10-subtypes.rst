@@ -16,7 +16,7 @@ Subtype
 
    - :ada:`Type_Name` is an existing :ada:`type` or :ada:`subtype`
 
-* If no constraint |rightarrow| type alias
+.. note:: If no constraint |rightarrow| type alias
 
 -----------------
 Subtype Example

@@ -34,7 +34,8 @@ Decimal Numeric Literals
         numeral [.numeral] E [+numeral|-numeral]
       numeral ::= digit {['_'] digit}
 
-* Underscore is not significant
+.. tip:: Underscore is **not** significant and used for grouping
+
 * **E** (exponent) must always be integer
 * Examples
 
