@@ -48,3 +48,8 @@ Styles
 * :filename:`this/is/a.path`
 * :ada:`code is highlighted`
 * :command:`commands are emphasised --like-this`
+
+.. warning:: This is a warning
+.. note:: This is an important piece of info
+.. tip:: This is a tip
+
