@@ -52,7 +52,7 @@ Named Number Benefit
 
     - As if **used directly** in the code
 
-.. tip:: They have **perfect** accuracy
+.. tip:: Useful due to their **perfect** accuracy
 
 .. code:: Ada
 

@@ -34,7 +34,7 @@ Numeric Literals Are Universally Typed
 
 * Compiler handles typing
 
-.. tip:: No bugs with precision
+.. note:: No bugs with precision
 
 .. code:: Ada
 

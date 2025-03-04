@@ -62,7 +62,7 @@ Scope and "Lifetime"
 
 * Object in scope |rightarrow| exists
 
-.. warning:: No *scoping* keywords (C's :c:`static`, :c:`auto` etc...)
+.. note:: No *scoping* keywords (C's :c:`static`, :c:`auto` etc...)
 
 .. image:: block_scope_example.jpeg
     :height: 50%
