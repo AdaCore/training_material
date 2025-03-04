@@ -82,7 +82,7 @@ Predefined Floating Point Types
 
     It is best, and easy, to **avoid** predefined types
 
-       - Loss of **portability**
+       - To keep **portability**
 
 -------------------------------
 Floating Point Type Operators
@@ -96,9 +96,11 @@ Floating Point Type Operators
    :multiplying operator: :ada:`* | /`
    :highest precedence operator: :ada:`** | abs`
 
-* *Note* on floating-point exponentiation ``**``
+.. note::
 
-   - Power must be :ada:`Integer`
+   Exponentiation (:ada:`**`) result will be real
+
+   - So power must be :ada:`Integer`
 
       + Not possible to ask for root
       + :ada:`X**0.5` |rightarrow| :ada:`sqrt (x)`

@@ -55,7 +55,7 @@ Predefined Signed Integer Types
 
     Portability not guaranteed
 
-       - But may be difficult to avoid
+       - But usage may be difficult to avoid
 
 ---------------------------------
 Operators for Signed Integer Type
@@ -71,9 +71,9 @@ Operators for Signed Integer Type
 
 .. note::
 
-    Exponentiation :ada:`**` result will be a signed integer
+    Exponentiation (:ada:`**`) result will be a signed integer
 
-       - |rightarrow| power **must** be :ada:`Integer` ``>= 0``
+       - So power **must** be :ada:`Integer` ``>= 0``
 
 .. warning:: Division by zero |rightarrow| :ada:`Constraint_Error`
 
