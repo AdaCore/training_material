@@ -51,12 +51,13 @@ Named Number Benefit
 * Evaluation at **compile time**
 
     - As if **used directly** in the code
-    - **Perfect** accuracy
 
-  .. code:: Ada
+.. tip:: Useful due to their **perfect** accuracy
 
-    Named_Number   : constant :=       1.0 / 3.0;
-    Typed_Constant : constant Float := 1.0 / 3.0;
+.. code:: Ada
+
+   Named_Number   : constant :=       1.0 / 3.0;
+   Typed_Constant : constant Float := 1.0 / 3.0;
 
 .. container:: latex_environment footnotesize
 

@@ -36,13 +36,14 @@ Declarations
     - et cetera
 
 * In a :dfn:`declarative part`
+
 * Example: :ada:`N : Type := Value;`
 
     - ``N`` is usually an :dfn:`identifier`
 
-* Declaration **must precede** use
 * **Some** implicit declarations
 
     - **Standard** types and operations
     - **Implementation**-defined
 
+.. warning:: Declaration **must precede** use
