@@ -73,7 +73,7 @@ where :filename:`{filename}` can be a package spec or body
 
   * For any subprogram defined as :ada:`separate` in the package body, a file will be created containing a body for the subprogram
 
-    * Need to specify :command:`--subunits` switch
+.. note:: Need to specify :command:`--subunits` switch
 
 ----------------------
 Example Package Spec
@@ -156,7 +156,8 @@ Controlling Behavior When Called
 * You can disable the exception in procedures
 
    * Switch :command:`--no-exception`
-   * Functions still need a return statement, so :ada:`raise` expression is still present
+
+.. warning:: Functions still need a return statement, so :ada:`raise` expression is still present
 
 ---------------------------
 Formatting Comment Blocks
