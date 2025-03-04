@@ -53,6 +53,17 @@ Body Stub Generator
 
   * It means you did not create a "real" body
 
+------------------------
+Why Do You Need Stubs?
+------------------------
+
+Sometimes we want to establish code structure quickly
+
+  * Start  prototyping code architecture first
+  * Worry about implementation details later
+
+    * Don't want to get caught in compilation details/behavior in early development
+
 ==============================
 Running :toolname:`GNATstub`
 ==============================
@@ -205,5 +216,47 @@ Other Common Switches
 
    Maximum length of line in generated body. Default is 79, maximum is 32767
 
+=====
+Lab
+=====
+
 .. include:: labs/100_gnatstub/lab.rst
 
+=========
+Summary
+=========
+
+-----------------------------------
+Improving on :toolname:`GNATstub`
+-----------------------------------
+
+* Sometimes empty code stubs aren't enough
+
+  * Not only don't they do anything useful, they actively raise compiler warnings and run-time exceptions!
+
+* "Smart" stubs are useful for testing
+
+  * Replace code not available for testing
+  * Control/replace external interfaces when testing natively
+
+    * Read sensors
+    * Write to a console
+
+* You can modify the generated stub(s) do implement all this
+
+-----------------------------
+Beyond :toolname:`GNATstub`
+-----------------------------
+
+* User-created "Smart" stubs are great for testing
+
+   * But there's a lot of repetition in building the stubs
+   * And maintenance can be difficult
+
+* Use :toolname:`GNATtest` to create more advanced unit tests
+
+   * Expands on stubbing capabilities
+   * Adds test driver generation
+   * Adds automation capabilities
+
+For more information, go to :url:`GNATtest <https://www.adacore.com/dynamic-analysis/gnattest>`
