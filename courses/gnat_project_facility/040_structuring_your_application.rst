@@ -120,7 +120,7 @@ Project Import Notation
      end MyApp;
 
 -----------------------
-GPRBuild search paths
+GPRbuild search paths
 -----------------------
 
 GPR with **relative** paths are searched
@@ -135,9 +135,8 @@ GPR with **relative** paths are searched
     * List of directories, separated by PATH-like (``:``, ``;``) separator
 
         + ``GPR_PROJECT_PATH``
-        + ``ADA_PROJECT_PATH`` (deprecated)
 
-- From the current toolchain's install dir
+- From the current toolchain's installation directory
 
     * Can be target-specific
     * Can be runtime-specific
@@ -223,13 +222,13 @@ Referencing Imported Content
 
    + Project P uses all the compiler switches in project Foo and adds ``-gnatwa``
 
-   + *Note: in GPR files, "&" can be used to concatenate string lists and string*
+.. note:: in GPR files, "&" can be used to concatenate string lists and strings
 
 ----------
 Renaming
 ----------
 
-+ Packages can rename (imported) packages
++ Packages can rename imported packages
 + Effect is as if the package is declared locally
 
   + Much like the Ada language
@@ -257,14 +256,12 @@ Project Source Code Dependencies
       with Hmi.Controls;
       package body Nav.Engine is
          Global_Speed : Speed_T := 0.0;
-         procedure Increase_Speed (Change : Speed_Delta_T) is
-            Max_Change : Speed_T := Global_Speed * 0.10;
+         procedure Increase
+            (Change : Speed_Delta_T) is
          begin
-            Global_Speed :=
-              Global_Speed + Speed_T'max (Speed_T (Change),
-                                          Max_Change);
-            Hmi.Controls.Display_Speed (Global_Speed);
-         end Increase_Speed;
+            Global_Speed := Global_Speed + Change;
+            Hmi.Controls.Display (Global_Speed);
+         end Increase;
       end Nav.Engine;
 
   + In the :ada:`HMI` project
@@ -272,14 +269,16 @@ Project Source Code Dependencies
     .. code:: Ada
 
       package body Hmi.Controls is
-         procedure Display_Speed (Speed : Nav.Engine.Speed_T) is
+         procedure Display
+            (Speed : Nav.Engine.Speed_T) is
          begin
-            Display_Speed_On_Console (Speed);
-         end Display_Speed;
-         procedure Change_Speed (Speed_Change : Nav.Engine.Speed_Delta_T) is
+            Display_On_Console (Speed);
+         end Display;
+         procedure Change
+            (Speed_Change : Nav.Engine.Speed_Delta_T) is
          begin
-            Nav.Engine.Increase_Speed (Speed_Change);
-         end Change_Speed;
+            Nav.Engine.Increase (Speed_Change);
+         end Change;
       end Hmi.Controls;
 
 ----------------------
@@ -393,6 +392,26 @@ Extending Projects
   + Inherited properties may be overridden with new versions
 
 + Hierarchies permitted
+
+-------------------
+Project Extension
+-------------------
+
+.. code:: Ada
+
+   project Child extends "parent.gpr" is 
+
++ New project :ada:`Child` inherits everything from :ada:`Parent`
+
+  + Except whatever new source/properties are specified in :ada:`Child`
+
++ When compiling project :ada:`Child`
+
+  + Source files in :ada:`Child` get compiled into its object directory
+  + For source files in :ada:`Parent` that are not overridden in :ada:`Child`
+
+    + If the source file is compiled into the :ada:`Parent` object directory, that file is considered compiled
+    + If the source file is not compiled into the :ada:`Parent` object directory, that file will be compiled into the :ada:`Child` object directory
 
 ------------------------------
 Limits on Extending Projects
