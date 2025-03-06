@@ -6,7 +6,7 @@ Dispatching and Redispatching
 Calls on Class-Wide Types (1/3)
 ---------------------------------
 
-* Any subprogram expecting a `Root` object can be called with a :ada:`Animal'Class` object
+* Any subprogram expecting a :ada:`Root` object can be called with a :ada:`Animal'Class` object
 
 .. code:: Ada
 
