@@ -27,7 +27,8 @@ Calls on Class-Wide Types (2/3)
 ---------------------------------
 
 * The *actual* type of the object is not known at compile time
-* The *right* type will be selected at run-time
+
+     - It will be selected at run-time
 
 .. container:: columns
 
