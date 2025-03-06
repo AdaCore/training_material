@@ -141,13 +141,13 @@ Relation to Primitives
 
 .. warning:: Subprograms with parameter of type :ada:`Root'Class` are not primitives of :ada:`Root`
 
-      .. code:: Ada
+.. code:: Ada
 
-         type Root is tagged null record;
-         procedure Not_A_Primitive (Param : Root'Class);
-         type Child is new Root with null record;
-         -- This does not override Not_A_Primitive!
-         overriding procedure Not_A_Primitive (Param : Child'Class);
+   type Root is tagged null record;
+   procedure Not_A_Primitive (Param : Root'Class);
+   type Child is new Root with null record;
+   -- This does not override Not_A_Primitive!
+   overriding procedure Not_A_Primitive (Param : Child'Class);
 
 ----------------------------
 'Class and Prefix Notation
