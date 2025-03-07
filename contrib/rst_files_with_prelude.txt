@@ -11,3 +11,4 @@ courses/gnat_project_facility/*.rst
 courses/gnatcoverage/*.rst
 courses/rust_essentials/*.rst
 courses/comprehensive_rust_training/*.rst
+courses/misc_tools/*.rst
