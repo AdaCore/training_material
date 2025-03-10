@@ -17,7 +17,7 @@ package body String_Fixed with SPARK_Mode is
           when Inside => Belongs'Result = Is_In (Element, Set),
           when Outside => Belongs'Result = not Is_In (Element, Set));
    pragma Inline (Belongs);
-   --  Determines if the given element is in (Test = Inside) or not in
+   --  Determines if the given component is in (Test = Inside) or not in
    --  (Test = Outside) the given character set.
 
    -------------

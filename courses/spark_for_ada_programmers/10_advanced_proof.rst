@@ -459,12 +459,12 @@ Classical Loop Invariants
 * Known best loop invariants for some loops
 
   - Initialization loops - initialize the collection
-  - Mapping loops - map each element of the collection
-  - Validation loops - check each element of the collection
-  - Counting loops - count elements with a property
-  - Search loops - search element with a property
-  - Maximize loops - search element that maximizes a property
-  - Update loops - update each element of the collection
+  - Mapping loops - map each component of the collection
+  - Validation loops - check each component of the collection
+  - Counting loops - count components with a property
+  - Search loops - search component with a property
+  - Maximize loops - search component that maximizes a property
+  - Update loops - update each component of the collection
 
 |
 
@@ -596,11 +596,11 @@ Bounded Formal Containers
 
   - Discriminant :ada:`Capacity` fixes maximum size
 
-* Element type must have known size (:dfn:`definite` type)
+* Component type must have known size (:dfn:`definite` type)
 
 * Container type itself is definite
 
-  - Bounded container can be element of another formal container
+  - Bounded container can be component of another formal container
 
 -----------------------------
 Unbounded Formal Containers
@@ -612,16 +612,16 @@ Unbounded Formal Containers
 
 * Use dynamic memory allocation
 
-  - For each element in the container
+  - For each component in the container
   - For growing the container
 
 * Use controlled types for dynamic memory reclamation
 
-* Element type may have unknown size (:dfn:`indefinite` type)
+* Component type may have unknown size (:dfn:`indefinite` type)
 
 * Container type itself is definite
 
-  - Unbounded container can be element of another formal container
+  - Unbounded container can be component of another formal container
 
 ------------------------------
 Loops Over Formal Containers
@@ -645,7 +645,7 @@ Loops Over Formal Containers
         V.Replace_Element (J, 0);
      end loop;
 
-* Iteration over elements (no update!)
+* Iteration over components (no update!)
 
   .. code:: ada
 
@@ -670,13 +670,13 @@ Loop Invariants Over Formal Containers
 
     + Functional model of the container
     + Mapping from cursors to positions
-    + Sequence of elements/keys of the container
+    + Sequence of components/keys of the container
 
 |
 
-* Iteration over elements
+* Iteration over components
 
-  - Impossible to access previous elements
+  - Impossible to access previous components
   - Use iteration over positions instead
 
 -----------------------------------
@@ -696,16 +696,16 @@ Formal Model of Formal Containers
   - Given by function :ada:`Model`
   - Returns a different type
 
-    + A sequence of elements for formal lists
-    + A set of elements for formal sets
-    + A map from keys to elements for maps
+    + A sequence of components for formal lists
+    + A set of components for formal sets
+    + A map from keys to components for maps
 
 * Mapping from cursors to positions
 
   - Given by function :ada:`Positions`
   - Positions in the iteration sequence
 
-* Sequence of elements/keys of the container
+* Sequence of components/keys of the container
 
   - Corresponds to the iteration sequence
   - Given by different functions
@@ -732,7 +732,7 @@ Difficulties with Loops Over Formal Containers
 
 * Container structure may be modified in the loop
 
-  - When inserting or deleting elements
+  - When inserting or deleting components
   - In general, need to know position of corresponding cursor
 
     + Relative to current cursor: e.g. previous/next cursor
@@ -756,7 +756,7 @@ Functional Containers
 
   - No bounds on cardinality
   - No cursors for iteration
-  - No order of elements in sets and maps
+  - No order of components in sets and maps
   - Functional: cannot modify them, rather create a new one
 
 * They are easy to handle for proof
