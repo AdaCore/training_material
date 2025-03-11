@@ -42,4 +42,4 @@ User Defined Types
 .. include:: 070_user_defined_types/04_aliases.rst
 .. include:: 070_user_defined_types/05_const.rst
 .. include:: 070_user_defined_types/06_static.rst
-.. include:: 070_user_defined_types/07_exercise.rst
+.. include:: 070_user_defined_types/99_lab.rst
