@@ -3,7 +3,7 @@ Exercise: Collatz Sequence
 ============================
 
 ----------------------------
-Exercise: Collatz Sequence
+Collatz Sequence Problem
 ----------------------------
 
 The
@@ -28,12 +28,37 @@ For example, beginning with ``n1`` = 3:
 Write a function to calculate the length of the collatz sequence for a
 given initial :rust:`n`.
 
-::
+.. code:: rust
 
-   {{#include exercise.rs:collatz_length}}
+   /// Determine the length of the
+   /// collatz sequence beginning at `n`.
+   fn collatz_length(mut n: i32) -> u32 {
      todo!("Implement this")
    }
 
-   {{#include exercise.rs:tests}}
+   fn main() {
+       // should be 15
+       println!("Length: {}", collatz_length(11));
+   }
 
-   {{#include exercise.rs:main}}
+----------------------------
+Collatz Sequence Solution
+----------------------------
+
+.. code:: rust
+
+   /// Determine the length of the
+   /// collatz sequence beginning at `n`.
+   fn collatz_length(mut n: i32) -> u32 {
+       let mut len = 1;
+       while n > 1 {
+           n = if n % 2 == 0 { n / 2 } else { 3 * n + 1 };
+           len += 1;
+       }
+       len
+   }
+
+   fn main() {
+       // should be 15
+       println!("Length: {}", collatz_length(11));
+   }
