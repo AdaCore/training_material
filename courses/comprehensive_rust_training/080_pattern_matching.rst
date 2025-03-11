@@ -40,4 +40,4 @@ Pattern Matching
 .. include:: 080_pattern_matching/02_destructuring_structs.rst
 .. include:: 080_pattern_matching/03_destructuring_enums.rst
 .. include:: 080_pattern_matching/04_let_control_flow.rst
-.. include:: 080_pattern_matching/05_exercise.rst
+.. include:: 080_pattern_matching/99_lab.rst
