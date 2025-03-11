@@ -41,4 +41,4 @@ References
 .. include:: 060_references/03_slices.rst
 .. include:: 060_references/04_strings.rst
 .. include:: 060_references/05_dangling.rst
-.. include:: 060_references/06_exercise.rst
+.. include:: 060_references/99_lab.rst
