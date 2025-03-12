@@ -3,7 +3,7 @@ Exercise: Nested Arrays
 =========================
 
 -------------------------
-Nested Arrays Problem
+Nested Arrays Setup
 -------------------------
 
 Arrays can contain other arrays:
@@ -37,6 +37,10 @@ into
       3 & 6 & 9
    \end{bmatrix}
 
+-------------------------
+Nested Arrays Problem
+-------------------------
+
 Copy the code below to https://play.rust-lang.org/ and implement the
 function. This function only operates on 3x3 matrices.
 
@@ -46,42 +50,10 @@ function. This function only operates on 3x3 matrices.
        todo!()
    }
 
-   fn main() {
-       let matrix = [
-           [101, 102, 103], //  comment makes rustfmt add newline
-           [201, 202, 203],
-           [301, 302, 303],
-       ];
-
-       dbg!(matrix);
-       let transposed = transpose(matrix);
-       dbg!(transposed);
-   }
+.. container:: source_include 050_tuples_and_arrays/src/050_tuples_and_arrays.rs :start-after://ANCHOR-main :code:rust
 
 -------------------------
 Nested Arrays Solution
 -------------------------
 
-.. code:: rust
-
-   fn transpose(matrix: [[i32; 3]; 3]) -> [[i32; 3]; 3] {
-       let mut result = [[0; 3]; 3];
-       for i in 0..3 {
-           for j in 0..3 {
-               result[j][i] = matrix[i][j];
-           }
-       }
-       result
-   }
-
-   fn main() {
-       let matrix = [
-           [101, 102, 103], //  comment makes rustfmt add newline
-           [201, 202, 203],
-           [301, 302, 303],
-       ];
-
-       dbg!(matrix);
-       let transposed = transpose(matrix);
-       dbg!(transposed);
-   }
+.. container:: source_include 050_tuples_and_arrays/src/050_tuples_and_arrays.rs :start-after://ANCHOR-solution :code:rust :end-before://ANCHOR-tests

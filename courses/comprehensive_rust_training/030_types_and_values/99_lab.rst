@@ -25,6 +25,8 @@ When will this function panic?
        }
    }
 
+.. container:: source_include 030_types_and_values/src/030_types_and_values.rs :start-after://ANCHOR-main :code:rust
+
    fn main() {
        let n = 20;
        println!("fib({n}) = {}", fib(n));
@@ -34,17 +36,4 @@ When will this function panic?
 Fibonacci Solution
 ---------------------
 
-.. code:: rust
-
-   fn fib(n: u32) -> u32 {
-       if n < 2 {
-           return n;
-       } else {
-           return fib(n - 1) + fib(n - 2);
-       }
-   }
-
-   fn main() {
-       let n = 20;
-       println!("fib({n}) = {}", fib(n));
-   }
+.. container:: source_include 030_types_and_values/src/030_types_and_values.rs :start-after://ANCHOR-fib :end-before://ANCHOR-main :code:rust

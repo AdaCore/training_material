@@ -3,7 +3,7 @@ Exercise: Logger Trait
 ========================
 
 ------------------------
-Logger Trait Problem
+Logger Trait Setup
 ------------------------
 
 Let's design a simple logging utility, using a trait :rust:`Logger` with a
@@ -20,45 +20,20 @@ This is a common pattern: a struct wrapping a trait implementation and
 implementing that same trait, adding behavior in the process. What other
 kinds of wrappers might be useful in a logging utility?
 
+------------------------
+Logger Trait Problem
+------------------------
+
+.. container:: source_include 090_methods_and_traits/src/090_methods_and_traits.rs :start-after://ANCHOR-setup :end-before://ANCHOR-solution :code:rust
+
 .. code:: rust
 
-   trait Logger {
-       /// Log a message at the given verbosity level.
-       fn log(&self, verbosity: u8, message: &str);
-   }
+   // Implement the Logger trait for VerbosityFilter
 
-   struct StderrLogger;
-
-   impl Logger for StderrLogger {
-       fn log(&self, verbosity: u8, message: &str) {
-           eprintln!("verbosity={verbosity}: {message}");
-       }
-   }
-
-   /// Only log messages up to the given verbosity level.
-   struct VerbosityFilter {
-       max_verbosity: u8,
-       inner: StderrLogger,
-   }
-
-   // TODO: Define and implement `VerbosityFilter`.
-
-   fn main() {
-       let logger = VerbosityFilter { max_verbosity: 3, inner: StderrLogger };
-       logger.log(5, "FYI");
-       logger.log(2, "Uhoh");
-   }
+.. container:: source_include 090_methods_and_traits/src/090_methods_and_traits.rs :start-after://ANCHOR-main :code:rust
 
 ------------------------
 Logger Trait Solution
 ------------------------
 
-.. code:: rust
-
-   impl Logger for VerbosityFilter {
-       fn log(&self, verbosity: u8, message: &str) {
-           if verbosity <= self.max_verbosity {
-               self.inner.log(verbosity, message);
-           }
-       }
-   }
+.. container:: source_include 090_methods_and_traits/src/090_methods_and_traits.rs :start-after://ANCHOR-solution :end-before://ANCHOR-main :code:rust

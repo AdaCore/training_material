@@ -36,29 +36,10 @@ given initial :rust:`n`.
      todo!("Implement this")
    }
 
-   fn main() {
-       // should be 15
-       println!("Length: {}", collatz_length(11));
-   }
+.. container:: source_include 040_control_flow_basics/src/040_control_flow_basics.rs :start-after://ANCHOR-main :code:rust
 
 ----------------------------
 Collatz Sequence Solution
 ----------------------------
 
-.. code:: rust
-
-   /// Determine the length of the
-   /// collatz sequence beginning at `n`.
-   fn collatz_length(mut n: i32) -> u32 {
-       let mut len = 1;
-       while n > 1 {
-           n = if n % 2 == 0 { n / 2 } else { 3 * n + 1 };
-           len += 1;
-       }
-       len
-   }
-
-   fn main() {
-       // should be 15
-       println!("Length: {}", collatz_length(11));
-   }
+.. container:: source_include 040_control_flow_basics/src/040_control_flow_basics.rs :start-after://ANCHOR-solution :end-before://ANCHOR-tests :code:rust
