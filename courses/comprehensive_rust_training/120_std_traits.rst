@@ -43,4 +43,4 @@ Std Traits
 .. include:: 120_std_traits/05_read_and_write.rst
 .. include:: 120_std_traits/06_default.rst
 .. include:: 120_std_traits/07_closures.rst
-.. include:: 120_std_traits/08_exercise.rst
+.. include:: 120_std_traits/99_lab.rst
