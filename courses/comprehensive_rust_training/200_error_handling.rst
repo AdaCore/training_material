@@ -43,4 +43,4 @@ Error Handling
 .. include:: 200_error_handling/05_error.rst
 .. include:: 200_error_handling/06_thiserror.rst
 .. include:: 200_error_handling/07_anyhow.rst
-.. include:: 200_error_handling/08_exercise.rst
+.. include:: 200_error_handling/99_lab.rst

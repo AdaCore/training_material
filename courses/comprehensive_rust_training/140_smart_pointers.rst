@@ -39,4 +39,4 @@ Smart Pointers
 .. include:: 140_smart_pointers/01_box.rst
 .. include:: 140_smart_pointers/02_rc.rst
 .. include:: 140_smart_pointers/03_trait_objects.rst
-.. include:: 140_smart_pointers/04_exercise.rst
+.. include:: 140_smart_pointers/99_lab.rst

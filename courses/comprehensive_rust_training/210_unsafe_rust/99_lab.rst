@@ -1,10 +1,10 @@
-==================
-Safe FFI Wrapper
-==================
+============================
+Exercise: Safe FFI Wrapper
+============================
 
-------------------
-Safe FFI Wrapper
-------------------
+-----------------------------
+Safe FFI Wrapper Background
+-----------------------------
 
 Rust has great support for calling functions through a *foreign function
 interface* (FFI). We will use this to build a safe wrapper for the
@@ -59,27 +59,57 @@ You will convert between all these types:
 The :url:`Nomicon <https://doc.rust-lang.org/nomicon/ffi.html>` also has a
 very useful chapter about FFI.
 
-Copy the code below to https://play.rust-lang.org/ and fill in the
-missing functions and methods:
+-----------------------------
+Safe FFI Wrapper Setup
+-----------------------------
 
-::
+Copy the code below to https://play.rust-lang.org/.  The **TBD** section is detailed on the next page.
 
-   // TODO: remove this when you're done with your implementation.
-   #![allow(unused_imports, unused_variables, dead_code)]
+.. container:: source_include 210_unsafe_rust/src/210_unsafe_rust.rs :start-after://ANCHOR-ffi :end-before://ANCHOR-solution :code:rust
 
-   #include exercise.rs:ffi}}
+.. code:: rust
 
-   #include exercise.rs:DirectoryIterator}}
-           unimplemented!()
+   // TBD
 
-   #include exercise.rs:Iterator
-           unimplemented!()
+-----------------------------
+Safe FFI Wrapper Main
+-----------------------------
+
+.. container:: source_include 210_unsafe_rust/src/210_unsafe_rust.rs :start-after://ANCHOR-main :code:rust
+
+-----------------------------
+Safe FFI Wrapper Problem
+-----------------------------
+
+Fill in the missing functions and methods in place of **TBD** in the code
+
+.. code:: rust
+
+   impl DirectoryIterator {
+       fn new(path: &str) -> Result<DirectoryIterator, String> {
+           // Call opendir and return a Ok value if that worked,
+           // otherwise return Err with a message.
+           todo!()
        }
    }
 
-   #include exercise.rs:Drop
-           unimplemented!()
+   impl Iterator for DirectoryIterator {
+       type Item = OsString;
+       fn next(&mut self) -> Option<OsString> {
+           // Keep calling readdir until we get a NULL pointer back.
+           todo!()
        }
    }
 
-   #include exercise.rs:main
+   impl Drop for DirectoryIterator {
+       fn drop(&mut self) {
+           // Call closedir as needed.
+           todo!()
+       }
+   }
+
+-----------------------------
+Safe FFI Wrapper Solution
+-----------------------------
+
+.. container:: source_include 210_unsafe_rust/src/210_unsafe_rust.rs :start-after://ANCHOR-solution :end-before://ANCHOR-main :code:rust
