@@ -3,7 +3,7 @@ Exercise: Counter
 ===================
 
 -------------------
-Exercise: Counter
+Counter Problem
 -------------------
 
 In this exercise you will take a very simple data structure and make it
@@ -53,4 +53,15 @@ method to halve the number of hash lookups required to implement the
        }
    }
 
-   {{#include exercise.rs:main}}
+------------------------
+Counter - Main Program
+------------------------
+
+.. container:: source_include 110_std_types/src/110_std_types.rs :start-after://ANCHOR-main :code:rust :number-lines:1
+
+-------------------
+Counter Solution
+-------------------
+
+.. container:: source_include 110_std_types/src/110_std_types.rs :start-after://ANCHOR-solution :end-before://ANCHOR-main :code:rust :number-lines:1
+
