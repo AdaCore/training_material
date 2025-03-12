@@ -43,4 +43,4 @@ Memory Management
 .. include:: 130_memory_management/05_clone.rst
 .. include:: 130_memory_management/06_copy_types.rst
 .. include:: 130_memory_management/07_drop.rst
-.. include:: 130_memory_management/08_exercise.rst
+.. include:: 130_memory_management/99_lab.rst
