@@ -756,7 +756,7 @@ Sound Engineering Example
       type Tagged_T is tagged null record;
       procedure Primitive (R : in Tagged_T);
       type Child_T is new Tagged_T with record
-         Field : Natural;
+         Component : Natural;
       end record;
       procedure Primitive (R : in Child_T);
    end Example;
@@ -770,7 +770,7 @@ Sound Engineering Example
       begin
          Lup :
          while (Count > 0) and (Count < 100) loop
-            Count := Count + R.Field;
+            Count := Count + R.Component;
             exit when Count = 50;
          end loop Lup;
       end Primitive;
@@ -1129,10 +1129,10 @@ GNAT Initialization Restrictions
     pragma Restrictions (No_Default_Initialization);
     procedure Demo is
        type Record_T is record
-          Field : Integer := 42;
+          Component : Integer := 42;
        end record;
        Bad  : Record_T;
-       Good : Record_T := (Field => 42);
+       Good : Record_T := (Component => 42);
 
   .. container:: latex_environment tiny
 

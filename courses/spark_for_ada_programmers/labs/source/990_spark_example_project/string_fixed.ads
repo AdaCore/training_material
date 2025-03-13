@@ -137,7 +137,7 @@ package String_Fixed with SPARK_Mode is
      (Left  : Natural;
       Right : Character) return String;
    --  This function replicates a character a specified number of times. It
-   --  returns a string whose length is Left and each of whose elements is
+   --  returns a string whose length is Left and each of whose components is
    --  Right.
 
 end String_Fixed;

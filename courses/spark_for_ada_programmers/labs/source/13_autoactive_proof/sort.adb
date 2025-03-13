@@ -10,7 +10,7 @@ package body Sort is
       Values (Y) := Temp;
    end Swap;
 
-   -- Finds the index of the smallest element in the slice Values (From .. To)
+   -- Finds the index of the smallest component in the slice Values (From .. To)
    function Index_Of_Minimum (Values : Nat_Array; From, To : Index) return Index is
       Min : Index := From;
    begin

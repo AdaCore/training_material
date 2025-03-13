@@ -55,8 +55,8 @@ Syntax and Examples
    .. code:: Ada
 
       type Record1_T is record
-         Field1 : integer;
-         Field2 : boolean;
+         Component1 : integer;
+         Component2 : boolean;
       end record;
 
 * Records can be **discriminated** as well

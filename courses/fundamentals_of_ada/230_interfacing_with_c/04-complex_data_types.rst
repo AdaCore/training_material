@@ -66,7 +66,7 @@ Arrays Interfacing
 Arrays From Ada to C
 ----------------------
 
-* An Ada array is a composite data structure containing 2 components: Bounds and Components
+* An Ada array is a composite data structure containing 2 parts: Bounds and Components
 
    - **Fat pointers**
 
