@@ -2,7 +2,7 @@
 :toolname:`GNATstub` Lab
 --------------------------
 
-* We are going implement a simple math package that does addition and subtraction
+* We are going to implement a simple math package that does addition and subtraction
 
    * The exectuable takes 3 numbers on the command line - adds the first two, subtracts the third, and prints the result
 

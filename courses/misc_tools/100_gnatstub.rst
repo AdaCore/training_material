@@ -78,7 +78,7 @@ where :filename:`{filename}` can be a package spec or body
 
 * Package spec
 
-  * :toolname:`GNATstub` will generate a package body containing "dummy" bodies for subprograms defined not completed in the spec
+  * :toolname:`GNATstub` will generate a package body containing "dummy" bodies for subprograms defined but not completed in the spec
 
 * Package body
 
@@ -206,7 +206,7 @@ Other Common Switches
 
 :command:`--force`
 
-   Overwrite any existing file (without this, :toolname:`GNATstub` will flag as an error
+   Overwrite any existing file (without this, :toolname:`GNATstub` will flag as an error)
 
 :command:`--output-dir=<directory>`
 
@@ -242,7 +242,7 @@ Improving on :toolname:`GNATstub`
     * Read sensors
     * Write to a console
 
-* You can modify the generated stub(s) do implement all this
+* You can modify the generated stub(s) to implement all this
 
 -----------------------------
 Beyond :toolname:`GNATstub`
