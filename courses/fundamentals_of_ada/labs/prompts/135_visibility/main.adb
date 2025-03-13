@@ -13,11 +13,11 @@ procedure Main is
 begin
 
    null;
-   -- for each element in Quad
+   -- for each component in Quad
    --    add Side to Total
    -- Print total
 
-   -- for each element in Triangle
+   -- for each component in Triangle
    --    add Side to Total
    -- Print total
 

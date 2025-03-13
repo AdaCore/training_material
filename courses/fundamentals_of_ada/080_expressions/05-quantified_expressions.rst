@@ -354,8 +354,8 @@ Quiz
    type Array2_T is array (1 .. 3) of Array1_T;
    A : Array2_T;
 
-The above describes an array A whose elements are arrays of three elements.
-Which expression would one use to determine if at least one of A's elements are sorted?
+The above describes an array A whose components are arrays of three components.
+Which expression would one use to determine if at least one of A's components are sorted?
 
 A. | ``(for some El of A => (for some Idx in 2 .. 3 =>``
    |     ``El (Idx) >= El (Idx - 1)));``
@@ -368,8 +368,8 @@ D. | ``(for all El of A => (for some Idx in 2 .. 3 =>``
 
 .. container:: animate
 
- A. Will be :ada:`True` if any element has two consecutive increasing values
- B. Will be :ada:`True` if every element is sorted
+ A. Will be :ada:`True` if any component has two consecutive increasing values
+ B. Will be :ada:`True` if every component is sorted
  C. Correct
- D. Will be :ada:`True` if every element has two consecutive increasing values
+ D. Will be :ada:`True` if every component has two consecutive increasing values
 

@@ -11,7 +11,7 @@ Private Types Lab
    - Implement a program to create a map such that
 
       + Map key is a description of a flag
-      + Map element content is the set of colors in the flag
+      + Map component content is the set of colors in the flag
 
    - Operations on the map should include: Add, Remove, Modify, Get, Exists, Image
    - Main program should print out the entire map before exiting
@@ -24,7 +24,7 @@ Private Types Lab
 
    - Should implement a **set** ADT (to keep track of the colors)
 
-      + This **set** will be the description of the map element
+      + This **set** will be the description of the map component
 
    - Each ADT should be its own package
    - At a minimum, the **map** and **set** type should be `private`

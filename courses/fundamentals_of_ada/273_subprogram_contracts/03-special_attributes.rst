@@ -110,7 +110,7 @@ Quiz
 .. code:: Ada
 
    Database : String (1 .. 10) := "ABCDEFGHIJ";
-   -- Set the value for the element at position Index in
+   -- Set the value for the component at position Index in
    -- array Database to Value and then increment Index by 1
    function Set_And_Move (Value :        Character;
                           Index : in out Index_T)

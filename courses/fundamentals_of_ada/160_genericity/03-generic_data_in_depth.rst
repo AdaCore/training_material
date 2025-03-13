@@ -105,15 +105,15 @@ Generic Parameters Can Be Combined
       type Acc is access all T;
       type Index is (<>);
       type Arr is array (Index range <>) of Acc;
-   function Element (Source   : Arr;
-                     Position : Index)
-                     return T;
+   function Component (Source   : Arr;
+                       Position : Index)
+                       return T;
 
    type String_Ptr is access all String;
    type String_Array is array (Integer range <>)
        of String_Ptr;
 
-   function String_Element is new Element
+   function String_Component is new Component
       (T     => String,
        Acc   => String_Ptr,
        Index => Integer,
