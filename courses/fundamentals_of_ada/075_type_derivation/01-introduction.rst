@@ -18,7 +18,7 @@ Type Derivation
 Reminder: What is a Type?
 ---------------------------
 
-* A type is characterized by two elements
+* A type is characterized by two components
 
    - Its data structure
    - The set of operations that applies to it

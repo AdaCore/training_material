@@ -210,7 +210,7 @@ def main():
         branch = get_current_git_branch()
 
     if branch != "master":
-        VALID_BRANCH_PREFIX = ("build/", "slides/", "training/", "experimental/")
+        VALID_BRANCH_PREFIX = ("mr/", "build/", "slides/", "training/", "experimental/")
         if not any(branch.startswith(prefix) for prefix in VALID_BRANCH_PREFIX):
             print(
                 f"branch name must start with one of {VALID_BRANCH_PREFIX}",

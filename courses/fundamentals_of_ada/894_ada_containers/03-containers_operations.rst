@@ -24,7 +24,7 @@ Insertion
 
 * May be in order :ada:`Append` or :ada:`Prepend`
 * May be :ada:`Insert` (at random or at given index)
-* May :ada:`Replace` an existing element
+* May :ada:`Replace` an existing component
 
 .. code:: Ada
 
@@ -45,7 +45,7 @@ Iteration
 
 * Container has a :ada:`Cursor` type
 
-    - Points to an element in a container
+    - Points to a component in a container
     - Can be used for advanced iterations
 
 .. code:: Ada

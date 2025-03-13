@@ -172,7 +172,7 @@ package body Flags is
       for I in 1 .. Flag.Length loop
          declare
             Item : constant Map_Component_T := Flag.Values (I);
-            Str  : constant String        := Image (Item);
+            Str  : constant String          := Image (Item);
          begin
             Ret_Val (Next .. Next + Str'Length) := Image (Item) & ASCII.LF;
             Next                                := Next + Str'Length + 1;

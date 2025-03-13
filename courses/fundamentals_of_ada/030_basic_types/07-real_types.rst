@@ -77,10 +77,12 @@ Predefined Floating Point Types
    - :ada:`Long_Float` ``>= 11`` digits
 
 * General-purpose
-* Best to **avoid** predefined types
 
-   - Loss of **portability**
-   - Easy to avoid
+.. tip::
+
+    It is best, and easy, to **avoid** predefined types
+
+       - To keep **portability**
 
 -------------------------------
 Floating Point Type Operators
@@ -94,9 +96,11 @@ Floating Point Type Operators
    :multiplying operator: :ada:`* | /`
    :highest precedence operator: :ada:`** | abs`
 
-* *Note* on floating-point exponentiation ``**``
+.. note::
 
-   - Power must be :ada:`Integer`
+   Exponentiation (:ada:`**`) result will be real
+
+   - So power must be :ada:`Integer`
 
       + Not possible to ask for root
       + :ada:`X**0.5` |rightarrow| :ada:`sqrt (x)`
@@ -140,7 +144,8 @@ Numeric Types Conversion
 * Special rule: can always convert between numeric types
 
     - Explicitly
-    - :ada:`Float` |rightarrow| :ada:`Integer` causes **rounding**
+
+.. warning:: :ada:`Float` |rightarrow| :ada:`Integer` causes **rounding**
 
 .. code:: Ada
 

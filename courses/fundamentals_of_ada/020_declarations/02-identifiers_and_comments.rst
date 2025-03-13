@@ -31,13 +31,13 @@ Identifiers
          A_
          _space_person
 
+.. warning:: Reserved words are **forbidden**
+
 * Character set **Unicode** 4.0
 * Case **not significant**
 
    - `SpacePerson` |equivalent| `SPACEPERSON`
    - ...but **different** from `Space_Person`
-
-* Reserved words are **forbidden**
 
 ----------------
 Reserved Words
