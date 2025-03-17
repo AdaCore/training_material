@@ -206,11 +206,7 @@ Other Common Switches
 
 :command:`--force`
 
-<<<<<<< HEAD
-   Overwrite any existing file (without this, :toolname:`GNATstub` will flag as an error
-=======
    Overwrite any existing file (without this, :toolname:`GNATstub` will flag as an error)
->>>>>>> origin/master
 
 :command:`--output-dir=<directory>`
 
@@ -246,11 +242,7 @@ Improving on :toolname:`GNATstub`
     * Read sensors
     * Write to a console
 
-<<<<<<< HEAD
-* You can modify the generated stub(s) do implement all this
-=======
 * You can modify the generated stub(s) to implement all this
->>>>>>> origin/master
 
 -----------------------------
 Beyond :toolname:`GNATstub`
