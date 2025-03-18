@@ -95,24 +95,6 @@ Optional Analysis Outputs
 Running :toolname:`GNATstack`
 ===============================
 
--------------------------------
-Running :toolname:`GNATstack`
--------------------------------
-
-:command:`gnatstack [switches] {filename}`
-
-where :filename:`{filename}` can be a package spec or body
-
-* Package spec
-
-  * :toolname:`GNATstack` will generate a package body containing "dummy" bodies for subprograms defined but not completed in the spec
-
-* Package body
-
-  * For any subprogram defined as :ada:`separate` in the package body, a file will be created containing a body for the subprogram
-
-.. note:: Need to specify :command:`--subunits` switch
-
 ----------------------
 Example Subprogram
 ----------------------
@@ -139,6 +121,37 @@ Example Subprogram
    begin
       Result := Inverse (Data);
    end Main_Unit;
+
+--------------------------------------------
+Getting Started with :toolname:`GNATstack`
+--------------------------------------------
+
+Two parts of performing stack analysis
+
+1. Generation of stack consumption and call-graph information
+
+   :command:`gprbuild --RTS=light main_unit.adb -cargs -fcallgraph-info=su`
+
+   *We use the light runtime to avoid issues with things like the secondary stack*
+
+2. Analysis and report generation
+
+   :command:`gnatstack *.ci`
+
+Which generates the following report:
+
+.. container:: latex_environment scriptsize
+
+      ::
+
+         Worst case analysis is *not* accurate because of external calls. Use -Wa for details.
+
+         Accumulated stack usage information for entry points
+
+         main : total 224 bytes
+          +-> main
+          +-> main_unit
+          +-> main_unit.inverse
 
 ================================
 :toolname:`GNATstack` Switches
