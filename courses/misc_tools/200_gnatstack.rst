@@ -132,7 +132,7 @@ Two parts of performing stack analysis
 
    :command:`gprbuild --RTS=light main_unit.adb -cargs -fcallgraph-info=su`
 
-   *We use the light runtime to avoid issues with things like the secondary stack*
+   *We use the light runtime to avoid including things like the secondary stack*
 
 2. Analysis and report generation
 
@@ -153,21 +153,44 @@ Which generates the following report:
           +-> main_unit
           +-> main_unit.inverse
 
+*Note that the actual stack usage can depend on things like runtime, operating system, and compiler version.*
+
 ================================
 :toolname:`GNATstack` Switches
 ================================
 
-----------------------------------
-Controlling Behavior When Called
-----------------------------------
+----------------------------
+Execution-Related Switches
+----------------------------
 
-* TBD
+:command:`-e main1[,main2[,...]` |rightarrow| Use list of subprograms as entry points
 
----------------------------
-TBD
----------------------------
+:command:`-a` |rightarrow| Use all subprograms as entry points
 
-* TBD
+:command:`-f filename` |rightarrow| Store callgraph in :filename:`filename`
+
+   * If not specified, stored in :filename:`graph.vcg`
+
+:command:`-P project` |rightarrow| Use GPR file :filename:`project` to find :filename:`*.ci` files
+
+------------------------
+Commonly Used Switches
+------------------------
+
+:command:`-v` |rightarrow| verbose
+
+   * Show source location for subprogam
+
+:command:`-o=\{a,s\}` |rightarrow| order for displaying call graphs
+
+   * **a** sort alphabetically
+   * **s** sort by stack usage (default)
+
+:command:`-t=\{i,d,a\}` - print target for indirect/dispatching calls
+
+   * **i** for indirect calls only
+   * **d** for dispatching calls only
+   * **a** for both indirect and dispatching calls
 
 =====
 Lab
