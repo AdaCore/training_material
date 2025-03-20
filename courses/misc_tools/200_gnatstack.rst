@@ -196,11 +196,7 @@ Commonly Used Switches
 Lab
 =====
 
----------------------------
-TBD
----------------------------
-
-* include:: labs/200_gnatstack/lab.rst
+.. include:: labs/200_gnatstack/lab.rst
 
 =========
 Summary
