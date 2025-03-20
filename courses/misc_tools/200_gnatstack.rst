@@ -206,4 +206,25 @@ Summary
 Improving on :toolname:`GNATstack`
 ------------------------------------
 
-* TBD
+* When static analysis doesn't have enough information, user can provide via switches
+
+   * :command:`-c <size>` - use **size** number of bytes for cycle entry
+   * :command:`-d <size>` - use **size** number of bytes for dynamic (unbounded) calls
+   * :command:`-u <size>` - use **size** number of bytes for external (unknown) calls
+
+* Limitations due to call stack begin non-deterministic
+
+   * Recursive calls - how deep is the recursion?
+   * Indirect calls - subprogram pointers
+   * Dispatching calls - subprogram dispatching
+
+------------------------------
+Beyond :toolname:`GNATstack`
+------------------------------
+
+:toolname:`GNAT Static Analysis Suite` (SAS)
+
+   * In-depth static analysis tool
+   * Defect and vulnerability analysis
+   * Code metrics
+   * Coding standards verification
