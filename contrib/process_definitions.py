@@ -85,10 +85,14 @@ def find_all_definitions():
 
     global GLOBAL_filenames
 
+    output = []
     for filename in sorted(GLOBAL_filenames):
         definitions = find_definitions(filename)
         for one in definitions:
-            print(one + " => " + filename)
+            output.append(one + " => " + filename)
+
+    for d in sorted(output):
+        print(d)
 
 
 if __name__ == "__main__":
