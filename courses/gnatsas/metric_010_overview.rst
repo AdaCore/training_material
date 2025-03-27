@@ -879,7 +879,7 @@ Coupling Metrics Code Example
       function Add (A, B : Record_T) return Record_T;
    private
       type Record_T is tagged record
-         Field1, Field2 : Integer;
+         Component1, Component2 : Integer;
       end record;
    end Coupling_Metrics_Dependency;
 

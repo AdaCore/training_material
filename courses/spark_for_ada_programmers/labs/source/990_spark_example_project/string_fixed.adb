@@ -13,7 +13,7 @@ package body String_Fixed with SPARK_Mode is
       Set     : Maps.Character_Set;
       Test    : Membership) return Boolean;
    pragma Inline (Belongs);
-   --  Determines if the given element is in (Test = Inside) or not in
+   --  Determines if the given component is in (Test = Inside) or not in
    --  (Test = Outside) the given character set.
 
    -------------
