@@ -45,7 +45,7 @@ package body Sort is
       Prove_Perm;
    end Swap;
 
-   -- Finds the index of the smallest element in the array
+   -- Finds the index of the smallest component in the array
    function Index_Of_Minimum (Values : Nat_Array; From, To : Index) return Index
    with
      Pre  => To in From .. Values'Last,

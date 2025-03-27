@@ -73,7 +73,7 @@ Simple Expressions
        Pre  => T'Length > 0,
        Post => -- if T is of length 1 ...
                -- else if T is of length 2 ...
-               -- else for all elements ...
+               -- else for all components ...
 
 --------------------
 Richer Expressions
@@ -86,8 +86,8 @@ Richer Expressions
 
 * Expressions over a **collection** (range or array or...)
 
-  - *universally quantified expression* for properties over **all** elements
-  - *existentially quantified expression* for properties over **one** element
+  - *universally quantified expression* for properties over **all** components
+  - *existentially quantified expression* for properties over **one** component
 
 * New forms of **aggregates**
 
@@ -255,7 +255,7 @@ General Iteration Mechanism
      type Container is private with
        Iterable => (First       => First,
                     Next        => Next,
-                    Has_Element => Has_Element
+                    Has_Element => Element
                     Element     => Element);
 
 * :dfn:`Iteration over positions` uses :ada:`for .. in` syntax
@@ -263,10 +263,10 @@ General Iteration Mechanism
  - Uses cursor type with :ada:`First`, :ada:`Next` and :ada:`Has_Element`
  - Function :ada:`Element` is **not** required
 
-* :dfn:`Iteration over elements` uses :ada:`for .. of` syntax
+* :dfn:`Iteration over components` uses :ada:`for .. of` syntax
 
   - Based on the previous iteration
-  - Function :ada:`Element` retrieves the **element** for a given cursor
+  - Function :ada:`Element` retrieves the **component** for a given cursor
 
 ----------------------------------
 Iteration Over Formal Containers
@@ -286,14 +286,14 @@ Iteration Over Formal Containers
 
 * Iteration over positions
 
-  - Access to **element** through function :ada:`Element`
+  - Access to **component** through function :ada:`Element`
   - For maps, access to **key** through function :ada:`Key`
 
-* Iteration over elements
+* Iteration over components
 
   - For maps, really an iteration over **keys**
 
-    - Use another function :ada:`Element` to get **element**
+    - Use another function :ada:`Element` to get **component**
 
 -------------------------------
 Iteration Over Formal Vectors
@@ -308,7 +308,7 @@ Iteration Over Formal Vectors
         V.Replace_Element (J, 0);
      end loop;
      pragma Assert
-       (for all J in V.First_Index .. V.Last_Index => V.Element (J) = 0);
+       (for all J in V.First_Index .. V.Last_Index => V.Component (J) = 0);
 
 * Iteration over positions
 
@@ -319,7 +319,7 @@ Iteration Over Formal Vectors
      end loop;
      pragma Assert (for all J in V => V.Element (J) = 0);
 
-* Iteration over elements (**no update**!)
+* Iteration over components (**no update**!)
 
   .. code:: ada
 
