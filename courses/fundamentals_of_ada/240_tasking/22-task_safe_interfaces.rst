@@ -92,7 +92,7 @@ Standard Library Queues Implementations
 * Priority implementations
 
     - :ada:`Unbounded_Priority_Queues`
-    - :ada:`Bounded_Priotiry_Queues`
+    - :ada:`Bounded_Priority_Queues`
     - As :ada:`protected` types
     - Elements provide :ada:`Get_Priority`
 
