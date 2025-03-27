@@ -140,15 +140,15 @@ How Did We Get Here? - Solution
     loop
        declare
           Pieces  : Strings_T := Split (Get_Line (File));
-          Element : Element_T;
+          Component : Component_T;
        begin
-          Element.Line_Number       := Integer (Line (File) - 1);
-          Element.Category          := Convert (Pieces (1).all);
-          Element.Description       := Pieces (2);
-          Element.Quantity          := Convert (Pieces (3).all);
-          Element.Cost              := Convert (Pieces (4).all);
-          Database_Count            := Database_Count + 1;
-          Database (Database_Count) := Element;
+          Component.Line_Number       := Integer (Line (File) - 1);
+          Component.Category          := Convert (Pieces (1).all);
+          Component.Description       := Pieces (2);
+          Component.Quantity          := Convert (Pieces (3).all);
+          Component.Cost              := Convert (Pieces (4).all);
+          Database_Count              := Database_Count + 1;
+          Database (Database_Count)   := Component;
        exception
           when The_Err : others =>
              Put_Line ("Load failure: " & Exception_Name (The_Err));

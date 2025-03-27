@@ -181,7 +181,7 @@ Record Representation Clauses
 
        - Driver mapped on the address space, communication protocol...
 
-    * Fields represented as
+    * Components represented as
 
       .. code:: Ada
 
