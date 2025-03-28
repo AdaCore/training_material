@@ -283,7 +283,7 @@ Constants with Variable Input
        Refined_State => (The_Stack => (Content, Top, Max))
      is
        Max     : constant Natural := External_Variable;
-       Content : Element_Array (1 .. Max);
+       Content : Component_Array (1 .. Max);
        Top     : Natural;
        --  Max has variable input. It must appear as a
        --  constituent of The_Stack
@@ -308,14 +308,14 @@ Data Dependencies
    package Stack with
       Abstract_State => (Top_State, Content_State)
    is
-      procedure Pop  (E : out Element) with
+      procedure Pop  (E : out Component) with
         Global => (Input  => Content_State,
                    In_Out => Top_State);
 
    package Stack with
      Abstract_State => The_Stack
    is
-      procedure Pop  (E : out Element) with
+      procedure Pop  (E : out Component) with
         Global => (In_Out => The_Stack);
 
 -------------------
@@ -329,14 +329,14 @@ Flow Dependencies
    package Stack with
       Abstract_State => (Top_State, Content_State)
    is
-      procedure Pop  (E : out Element) with
+      procedure Pop  (E : out Component) with
         Depends => (Top_State => Top_State,
                     E         => (Content_State, Top_State));
 
    package Stack with
       Abstract_State => The_Stack
    is
-       procedure Pop  (E : out Element) with
+       procedure Pop  (E : out Component) with
          Depends => ((The_Stack, E) => The_Stack);
 
 -----------------------
