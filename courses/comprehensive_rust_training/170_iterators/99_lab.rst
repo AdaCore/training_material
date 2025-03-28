@@ -31,4 +31,13 @@ construct the return value.
 Iterator Method Chaining Solution
 ------------------------------------
 
+.. raw:: latex
+
+   \begin{scriptsize}
+
 .. container:: source_include 170_iterators/src/170_iterators.rs :start-after://ANCHOR-solution :end-before://ANCHOR-unit_tests :code:rust
+
+.. raw:: latex
+
+   \end{scriptsize}
+
