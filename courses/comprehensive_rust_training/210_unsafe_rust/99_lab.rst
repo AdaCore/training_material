@@ -63,13 +63,9 @@ very useful chapter about FFI.
 Safe FFI Wrapper Setup
 -----------------------------
 
-Copy the code below to https://play.rust-lang.org/.  The **TBD** section is detailed on the next page.
+Copy the code on the next two pages to https://play.rust-lang.org/.
 
 .. container:: source_include 210_unsafe_rust/src/210_unsafe_rust.rs :start-after://ANCHOR-ffi :end-before://ANCHOR-solution :code:rust
-
-.. code:: rust
-
-   // TBD
 
 -----------------------------
 Safe FFI Wrapper Main

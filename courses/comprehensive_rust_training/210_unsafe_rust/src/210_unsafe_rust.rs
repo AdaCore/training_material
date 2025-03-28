@@ -25,9 +25,7 @@ mod ffi {
         _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
     }
 
-    // Layout according to the Linux man page for readdir(3), where ino_t and
-    // off_t are resolved according to the definitions in
-    // /usr/include/x86_64-linux-gnu/{sys/types.h, bits/typesizes.h}.
+    // Layout according to the Linux man page for readdir(3)
     #[cfg(not(target_os = "macos"))]
     #[repr(C)]
     pub struct dirent {
@@ -52,19 +50,13 @@ mod ffi {
 
     unsafe extern "C" {
         pub unsafe fn opendir(s: *const c_char) -> *mut DIR;
-
         #[cfg(not(all(target_os = "macos", target_arch = "x86_64")))]
         pub unsafe fn readdir(s: *mut DIR) -> *const dirent;
-
         // See https://github.com/rust-lang/libc/issues/414 and the section on
         // _DARWIN_FEATURE_64_BIT_INODE in the macOS man page for stat(2).
-        //
-        // "Platforms that existed before these updates were available" refers
-        // to macOS (as opposed to iOS / wearOS / etc.) on Intel and PowerPC.
         #[cfg(all(target_os = "macos", target_arch = "x86_64"))]
         #[link_name = "readdir$INODE64"]
         pub unsafe fn readdir(s: *mut DIR) -> *const dirent;
-
         pub unsafe fn closedir(s: *mut DIR) -> c_int;
     }
 }
