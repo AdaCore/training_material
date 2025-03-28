@@ -54,14 +54,20 @@ To see where the total number of bytes comes from, run the analysis in :dfn:`ver
 
    :command:`gnatstack -v *.ci`
 
+---------------------
+Verbose Mode Output
+---------------------
+
+Verbose mode also shows full path to the source
+
+.. container:: latex_environment small
+
    ::
 
       +-> main at main:b__main_unit.adb:20:4 : 64 bytes
       +-> main_unit at Main_Unit:L:\\main_unit.adb:1:1,
           ada_main_program:b__main_unit.adb:17:14 : 96 bytes
       +-> main_unit.inverse at Inverse:L:\\main_unit.adb:4:4 : 64 bytes
-
-.. note:: Verbose mode also shows full path to the source
 
 -----------------------------
 Working with Multiple Mains
@@ -72,7 +78,7 @@ Working with Multiple Mains
 2. Examine the GNAT Project file and notice the following:
 
    * The :command:`-fcallgraph-info=su` switch is specified in the :ada:`Compiler` package
-   * All main subprograma are specified using :ada:`for Main`
+   * All main subprograms are specified using :ada:`for Main`
 
       * Otherwise :command:`gprbuild` does not know what executables to build
 
@@ -206,7 +212,7 @@ Investigating Indirect Calls
 
    ::
 
-      Worst case analysis is *not* accurate because of external calls, indirect calls. Use -Wa for details.
+      Worst case analysis is not accurate because of external calls, indirect calls. Use -Wa for details.
 
       Accumulated stack usage information for entry points
 
