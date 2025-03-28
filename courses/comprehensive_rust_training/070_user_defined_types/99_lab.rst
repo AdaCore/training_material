@@ -59,7 +59,15 @@ cover getting data out of these structures.
 Main Program
 ---------------------------
 
+.. raw:: latex
+
+   \begin{scriptsize}
+
 .. container:: source_include 070_user_defined_types/src/070_user_defined_types.rs :start-after://ANCHOR-main :code:rust
+
+.. raw:: latex
+
+   \end{scriptsize}
 
 ----------------------------------
 Elevator Events Solution - Types
