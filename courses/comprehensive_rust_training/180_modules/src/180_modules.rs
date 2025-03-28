@@ -97,6 +97,7 @@ impl Widget for Window {
     }
 }
 
+//ANCHOR-single_module_3
 impl Widget for Button {
     fn width(&self) -> usize {
         self.label.width() + 8 // add a bit of padding

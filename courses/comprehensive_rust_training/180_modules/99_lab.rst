@@ -30,7 +30,7 @@ Edit the resulting :filename:`src/main.rs` to add :rust:`mod` statements, and ad
 additional files in the :filename:`src` directory.
 
 -----------------
-Source (1 of 2)
+Source (1 of 3)
 -----------------
 
 Here's the single-module implementation of the GUI library:
@@ -38,10 +38,16 @@ Here's the single-module implementation of the GUI library:
 .. container:: source_include 180_modules/src/180_modules.rs :start-after://ANCHOR-single_module_1 :end-before://ANCHOR-single_module_2 :code:rust
 
 -----------------
-Source (2 of 2)
+Source (2 of 3)
 -----------------
 
-.. container:: source_include 180_modules/src/180_modules.rs :start-after://ANCHOR-single_module_2 :code:rust
+.. container:: source_include 180_modules/src/180_modules.rs :start-after://ANCHOR-single_module_2 :end-before://ANCHOR-single_module_3 :code:rust
+
+-----------------
+Source (3 of 3)
+-----------------
+
+.. container:: source_include 180_modules/src/180_modules.rs :start-after://ANCHOR-single_module_3 :code:rust
 
 ----------
 Solution
@@ -62,7 +68,15 @@ Directory structure should look like:
 Solution - Module main.rs
 ---------------------------
 
+.. raw:: latex
+
+   \begin{scriptsize}
+
 .. container:: source_include 180_modules/src/180_modules-main.rs :code:rust
+
+.. raw:: latex
+
+   \end{scriptsize}
 
 -------------------------------------
 Solution - Module widgets/button.rs
