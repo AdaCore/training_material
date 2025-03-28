@@ -24,7 +24,15 @@ ROT13 Main
 ROT13 Solution
 -----------------
 
+.. raw:: latex
+
+   \begin{scriptsize}
+
 .. container:: source_include 120_std_traits/src/120_std_traits.rs :start-after://ANCHOR-solution :end-before://ANCHOR-main :code:rust :number-lines:1
+
+.. raw:: latex
+
+   \end{scriptsize}
 
 What happens if you chain two :rust:`RotDecoder` instances together, each
 rotating by 13 characters?
