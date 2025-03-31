@@ -93,6 +93,7 @@ This should **not** be merged back to master.
 
 Branch that have names that follow the globs
 
+- `mr/*`
 - `training/*`
 - `experimental/*`
 - `slides/*`
@@ -100,6 +101,9 @@ Branch that have names that follow the globs
 
 Will be **protected** and **mirrored**, so they will be built by the CI if you manually
 [create a Pull Request](https://github.com/AdaCore/training_material/compare) for the GitHub branch.
+
+NB: MR created through GitLab "Create Merge Request" button are automatically named `mr/nnn-slug` so
+they are mirrored automatically.
 
 # Building Locally
 
