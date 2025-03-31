@@ -769,7 +769,7 @@ Functional Containers
 Lab
 =====
 
-.. include:: labs/10_advanced_proof.lab.rst
+.. include:: labs/100_advanced_proof.lab.rst
 
 =========
 Summary

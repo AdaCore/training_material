@@ -721,7 +721,7 @@ Computing with Provers
 Lab
 =====
 
-.. include:: labs/13_autoactive_proof.lab.rst
+.. include:: labs/130_autoactive_proof.lab.rst
 
 =========
 Summary

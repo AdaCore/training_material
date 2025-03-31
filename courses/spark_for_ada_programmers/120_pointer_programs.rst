@@ -605,7 +605,7 @@ Interrupt Handlers
 Lab
 =====
 
-.. include:: labs/12_pointer_programs.lab.rst
+.. include:: labs/120_pointer_programs.lab.rst
 
 =========
 Summary

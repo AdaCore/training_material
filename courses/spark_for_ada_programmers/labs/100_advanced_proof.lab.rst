@@ -2,7 +2,7 @@
 Advanced Proof Lab
 --------------------
 
-- Find the :filename:`10_advanced_proof` sub-directory in :filename:`source`
+- Find the :filename:`010_advanced_proof` sub-directory in :filename:`source`
 
    + You can copy it locally, or work with it in-place
 

@@ -528,7 +528,7 @@ Use of Expression Functions
 Lab
 =====
 
-.. include:: labs/7_specification_language.lab.rst
+.. include:: labs/070_specification_language.lab.rst
 
 =========
 Summary

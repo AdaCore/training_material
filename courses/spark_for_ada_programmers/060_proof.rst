@@ -639,7 +639,7 @@ Dealing with False Alarms
 Lab
 =====
 
-.. include:: labs/6_proof.lab.rst
+.. include:: labs/060_proof.lab.rst
 
 =========
 Summary

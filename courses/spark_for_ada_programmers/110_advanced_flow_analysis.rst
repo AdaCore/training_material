@@ -280,7 +280,7 @@ From Flow Dependencies
 Lab
 =====
 
-.. include:: labs/11_advanced_flow_analysis.lab.rst
+.. include:: labs/110_advanced_flow_analysis.lab.rst
 
 =========
 Summary
