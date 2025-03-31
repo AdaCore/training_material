@@ -4,10 +4,6 @@ Python filter for generating 'beamer' output from Pandoc
 
 Special handling done by this filter:
    + Role translations
-      - toolname => small caps
-      - menu => colored box with white text
-      - command => black box with monospaced white text
-      - filename => bold monospaced on light yellow background
    + Search TEXINPUTS environment variable for paths to find images
    + Slides are vertically aligned to the top, with the 'shrink' attribute
      so everything fits one the page
@@ -29,16 +25,18 @@ from pandocfilters import toJSONFilter, Strong, Str, SmallCaps, Emph, Para
 ## CONFIGURATION INFORMATION HERE
 ##
 
-# Control wether sub-bullets appear one at a time in a 'beamer' presentation
+# Control whether sub-bullets appear one at a time in a 'beamer' presentation
 # (False indicates everything appears at once)
 bullet_point_animation = False
 
 # Decorators to apply to slide frames in beamer (except title slides)
-# Typical decorators are 't' for top-alignment, and 'shrink' for shrink-to-fit
+# Typical decorators are 't' for top-alignment, and 'shrink' for shrink-to-fit.
+# If we don't shrink-to-fit, slides will almost always exceed page size
+# If we don't do top-alignment, slide titles will not line up after shrinking
 slide_decorators = ["t", "shrink"]
 
 
-# This dictionary defines the function (dictionary value) that should
+# "role_format_functions" dictionary defines the function (dictionary value) that should
 # be called to provide the formatting for an RST 'role' (dictionary key).
 # If the function name is found in 'pandocfilters', the caller must supply
 # the parameter as an AST string node.
@@ -55,6 +53,33 @@ role_format_functions = {
     "filename": "format_filename",
     "default": "Strong",
 }
+
+# This dictionary describes information necessary to create a
+# colorized rounded rectangle with a title and content
+ADMONITION_FORMAT = {
+    "warning": ("alertblock", "warning.pdf", "Warning"),
+    "note": ("block", "note.pdf", "Note"),
+    "tip": ("exampleblock", "lightbulb.pdf", "Tip"),
+}
+
+
+# SUPPORTED_CLASSES names all of the RST constructs
+# we have added to the default class names
+SUPPORTED_CLASSES = [
+    "container",
+    "source_include",
+    "admonition",
+    "animate",
+    "overlay",
+    "speakernote",
+    "columns",
+    "column",
+    "PRELUDE",
+    "latex_environment",
+    "footnotesize",
+] + list(ADMONITION_FORMAT.keys())
+
+
 ##
 ## END CONFIGURATION INFORMATION
 #############################################################################
@@ -120,8 +145,17 @@ def latex_monospace(text):
     return "\\texttt{" + text + "}"
 
 
-def latex_escape(text):
+"""
+When converting text to LaTeX, we need to escape certain characters that
+cause issues with LaTex: underscore, ampersand, hash tag
+In addition, two consecutive dashes would normally be converted to a
+single hyphen - but because that is a comment in Ada, we need a way
+to prevent that (found at this link:
     # For "--": https://tex.stackexchange.com/questions/9813/how-can-i-stop-latex-from-converting-two-hyphens-to-a-single-hyphen-when-loading
+"""
+
+
+def latex_escape(text):
     return (
         text.replace("_", "\\_")
         .replace("&", "\\&")
@@ -130,8 +164,20 @@ def latex_escape(text):
     )
 
 
+"""
+A quiz answer should appear in black on the quiz slide and
+green on the second slide (using animation)
+"""
+
+
 def latex_answer(text):
     return "\\textit<2>{\\textbf<2>{\\textcolor<2>{green!65!black}{" + text + "}}}"
+
+
+"""
+When using monspace font, we're definitily in a "code" mode, so make sure
+we use standard/escaped characters
+"""
 
 
 def latex_monoconvert(text):
@@ -162,6 +208,11 @@ def latex_monoconvert(text):
 
 def latex_answermono(text):
     return latex_monospace(latex_answer(latex_monoconvert(text)))
+
+
+"""
+Text will appear on the second slide of the sequence
+"""
 
 
 def latex_animate(text):
@@ -199,7 +250,11 @@ def Space():
     return ret_val
 
 
-# convert a text string to an AST list
+"""
+Convert a text string to an AST list
+"""
+
+
 def literal_to_AST_node(text):
     ret_val = []
     pieces = text.split(" ")
@@ -334,6 +389,9 @@ def language_variant_admonition(contents):
          Language to format code insertion
       :number-lines:<number>
          Add line numbers starting at <number>
+
+source_file_contents returns the appropriate content for the file
+source_include processes the actual beamer input
 """
 
 
@@ -370,28 +428,6 @@ def source_file_contents(filename, keywords):
         return retval
     else:
         return filename
-
-
-ADMONITION_FORMAT = {
-    "warning": ("alertblock", "warning.pdf", "Warning"),
-    "note": ("block", "note.pdf", "Note"),
-    "tip": ("exampleblock", "lightbulb.pdf", "Tip"),
-}
-
-
-SUPPORTED_CLASSES = [
-    "container",
-    "source_include",
-    "admonition",
-    "animate",
-    "overlay",
-    "speakernote",
-    "columns",
-    "column",
-    "PRELUDE",
-    "latex_environment",
-    "footnotesize",
-] + list(ADMONITION_FORMAT.keys())
 
 
 def source_include(classes, contents):
@@ -442,7 +478,7 @@ def is_source_include(classes):
       
    Slide number is the overlay(s) to display the contents.
    A number will appear on the specific overlay.
-   A number followed by a "-" will appear on the specific overlay an all subsequent.
+   A number followed by a "-" will appear on the specific overlay and all subsequent.
    So, in pseudocode:
       AAA
       animate 2
@@ -509,8 +545,10 @@ def animate(classes, contents):
    by the next overlay - it's not actual layers)
    A number will appear on the specific overlay.
    NOTE: We use "onlyenv" to make the block appear, so if the blocks (images)
-   are not the same size, there will probably be some resizing, makeing things
+   are not the same size, there will probably be some resizing, making things
    look bad.
+   The best way to use this is draw the final image, and then remove the
+   parts you don't want for the previous image, and so on.
 """
 
 
