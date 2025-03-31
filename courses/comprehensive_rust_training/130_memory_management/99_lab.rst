@@ -67,7 +67,15 @@ Fill in the missing pieces.
 Builder Type Main
 ------------------------
 
+.. raw:: latex
+
+   \begin{tiny}
+
 .. container:: source_include 130_memory_management/src/130_memory_management.rs :start-after://ANCHOR-main :code:rust
+
+.. raw:: latex
+
+   \end{tiny}
 
 ------------------------
 Builder Type Solution
