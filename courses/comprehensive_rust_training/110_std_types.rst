@@ -43,4 +43,4 @@ Std Types
 .. include:: 110_std_types/05_string.rst
 .. include:: 110_std_types/06_vec.rst
 .. include:: 110_std_types/07_hashmap.rst
-.. include:: 110_std_types/08_exercise.rst
+.. include:: 110_std_types/99_lab.rst

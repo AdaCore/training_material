@@ -39,4 +39,4 @@ Methods And Traits
 .. include:: 090_methods_and_traits/01_methods.rst
 .. include:: 090_methods_and_traits/02_traits.rst
 .. include:: 090_methods_and_traits/03_deriving.rst
-.. include:: 090_methods_and_traits/04_exercise.rst
+.. include:: 090_methods_and_traits/99_lab.rst

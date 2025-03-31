@@ -42,4 +42,4 @@ Generics
 .. include:: 100_generics/04_trait_bounds.rst
 .. include:: 100_generics/05_impl_trait.rst
 .. include:: 100_generics/06_dyn_trait.rst
-.. include:: 100_generics/07_exercise.rst
+.. include:: 100_generics/99_lab.rst

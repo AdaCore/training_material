@@ -39,4 +39,4 @@ Testing
 .. include:: 190_testing/01_unit_tests.rst
 .. include:: 190_testing/02_other.rst
 .. include:: 190_testing/03_lints.rst
-.. include:: 190_testing/04_exercise.rst
+.. include:: 190_testing/99_lab.rst
