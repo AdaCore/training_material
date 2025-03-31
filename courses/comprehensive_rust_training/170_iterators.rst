@@ -41,4 +41,4 @@ Iterators
 .. include:: 170_iterators/03_helpers.rst
 .. include:: 170_iterators/04_collect.rst
 .. include:: 170_iterators/05_intoiterator.rst
-.. include:: 170_iterators/06_exercise.rst
+.. include:: 170_iterators/99_lab.rst

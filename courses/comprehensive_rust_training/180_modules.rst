@@ -41,4 +41,4 @@ Modules
 .. include:: 180_modules/03_visibility.rst
 .. include:: 180_modules/04_encapsulation.rst
 .. include:: 180_modules/05_paths.rst
-.. include:: 180_modules/06_exercise.rst
+.. include:: 180_modules/99_lab.rst

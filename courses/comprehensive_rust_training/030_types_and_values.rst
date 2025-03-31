@@ -41,4 +41,4 @@ Types And Values
 .. include:: 030_types_and_values/03_values.rst
 .. include:: 030_types_and_values/04_arithmetic.rst
 .. include:: 030_types_and_values/05_inference.rst
-.. include:: 030_types_and_values/06_exercise.rst
+.. include:: 030_types_and_values/99_lab.rst

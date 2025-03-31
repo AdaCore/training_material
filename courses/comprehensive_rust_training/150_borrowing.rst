@@ -40,4 +40,4 @@ Borrowing
 .. include:: 150_borrowing/02_borrowck.rst
 .. include:: 150_borrowing/03_examples.rst
 .. include:: 150_borrowing/04_interior_mutability.rst
-.. include:: 150_borrowing/05_exercise.rst
+.. include:: 150_borrowing/99_lab.rst
