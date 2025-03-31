@@ -1,0 +1,10 @@
+project Default is
+
+   package Compiler is
+      for Default_Switches ("Ada") use ("-fcallgraph-info=su");
+   end Compiler;
+
+   for Runtime ("ada") use "light";
+
+end Default;
+
