@@ -40,4 +40,4 @@ Tuples And Arrays
 .. include:: 050_tuples_and_arrays/02_tuples.rst
 .. include:: 050_tuples_and_arrays/03_iteration.rst
 .. include:: 050_tuples_and_arrays/04_destructuring.rst
-.. include:: 050_tuples_and_arrays/05_exercise.rst
+.. include:: 050_tuples_and_arrays/99_lab.rst

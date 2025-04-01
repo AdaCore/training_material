@@ -39,4 +39,4 @@ Lifetimes
 .. include:: 160_lifetimes/01_lifetime_annotations.rst
 .. include:: 160_lifetimes/02_lifetime_elision.rst
 .. include:: 160_lifetimes/03_struct_lifetimes.rst
-.. include:: 160_lifetimes/04_exercise.rst
+.. include:: 160_lifetimes/99_lab.rst
