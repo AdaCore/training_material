@@ -2,7 +2,7 @@
 Flow Analysis Lab
 -------------------
 
-- Find the :filename:`5_flow_analysis` sub-directory in :filename:`source`
+- Find the :filename:`050_flow_analysis` sub-directory in :filename:`source`
 
    + You can copy it locally, or work with it in-place
 

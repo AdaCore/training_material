@@ -2,7 +2,7 @@
 Specification Language Lab
 ----------------------------
 
-- Find the :filename:`7_specification_language` sub-directory in :filename:`source`
+- Find the :filename:`070_specification_language` sub-directory in :filename:`source`
 
    + You can copy it locally, or work with it in-place
 

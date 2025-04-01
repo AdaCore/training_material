@@ -2,7 +2,7 @@
 Auto-active Proof Lab
 -----------------------
 
-- Find the :filename:`13_autoactive_proof` sub-directory in :filename:`source`
+- Find the :filename:`130_autoactive_proof` sub-directory in :filename:`source`
 
    + You can copy it locally, or work with it in-place
 

@@ -524,7 +524,7 @@ Beware Recursion in Type Invariants
 Lab
 =====
 
-.. include:: labs/9_type_contracts.lab.rst
+.. include:: labs/090_type_contracts.lab.rst
 
 =========
 Summary

@@ -2,7 +2,7 @@
 Pointer Programs Lab
 ----------------------
 
-- Find the :filename:`12_pointer_programs` sub-directory in :filename:`source`
+- Find the :filename:`120_pointer_programs` sub-directory in :filename:`source`
 
    + You can copy it locally, or work with it in-place
 

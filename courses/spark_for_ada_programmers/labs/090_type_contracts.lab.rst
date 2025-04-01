@@ -2,7 +2,7 @@
 Type Contracts Lab
 --------------------
 
-- Find the :filename:`9_type_contracts` sub-directory in :filename:`source`
+- Find the :filename:`090_type_contracts` sub-directory in :filename:`source`
 
    + You can copy it locally, or work with it in-place
 
