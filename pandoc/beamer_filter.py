@@ -147,10 +147,10 @@ def latex_monospace(text):
 
 """
 When converting text to LaTeX, we need to escape certain characters that
-cause issues with LaTex: underscore, ampersand, hash tag
+cause issues with LaTeX: underscore, ampersand, hash tag
 In addition, two consecutive dashes would normally be converted to a
 single hyphen - but because that is a comment in Ada, we need a way
-to prevent that (found at this link:
+to prevent that. Found at this link:
     # For "--": https://tex.stackexchange.com/questions/9813/how-can-i-stop-latex-from-converting-two-hyphens-to-a-single-hyphen-when-loading
 """
 
@@ -175,7 +175,7 @@ def latex_answer(text):
 
 
 """
-When using monspace font, we're definitily in a "code" mode, so make sure
+When using monsopace font, we're definitely in a "code" mode, so make sure
 we use standard/escaped characters
 """
 
@@ -547,7 +547,7 @@ def animate(classes, contents):
    NOTE: We use "onlyenv" to make the block appear, so if the blocks (images)
    are not the same size, there will probably be some resizing, making things
    look bad.
-   The best way to use this is draw the final image, and then remove the
+   The best way to use this is to draw the final image, and then remove the
    parts you don't want for the previous image, and so on.
 """
 
