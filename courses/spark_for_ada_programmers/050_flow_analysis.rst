@@ -442,7 +442,7 @@ Dealing with False Alarms
 Lab
 =====
 
-.. include:: labs/5_flow_analysis.lab.rst
+.. include:: labs/050_flow_analysis.lab.rst
 
 =========
 Summary

@@ -779,7 +779,7 @@ Tool Assumptions
 Lab
 =====
 
-.. include:: labs/15_spark_boundary.lab.rst
+.. include:: labs/150_spark_boundary.lab.rst
 
 =========
 Summary
