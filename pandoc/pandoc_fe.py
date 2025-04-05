@@ -37,6 +37,7 @@ def extend_texinputs_path_list(unique, paths):
         if abspath not in unique:
             unique.append(abspath)
 
+
 """
 Typically, the "source" argument is a list of files. When this
 script is run, the assumption is that the files are relative to
@@ -60,7 +61,7 @@ def add_module_directories(texinputs, input_files):
                 filename = filename.replace("\\", "/")
             paths.append(os.path.dirname(filename))
         elif os.path.isfile(input_file):
-            with open (input_file) as f:
+            with open(input_file) as f:
                 filenames = f.read().splitlines()
                 for one in filenames:
                     filename = one
