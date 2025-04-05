@@ -37,6 +37,40 @@ def extend_texinputs_path_list(unique, paths):
         if abspath not in unique:
             unique.append(abspath)
 
+"""
+Typically, the "source" argument is a list of files. When this
+script is run, the assumption is that the files are relative to
+the current directory. That is not true when building a multi-course
+document. This procedure will add the directories of all modules
+to the TEXINPUTS list (if they weren't already there).
+NOTE: This means the files in the list must either be absolute
+paths, or relative to the current directory.
+"""
+
+
+def add_module_directories(texinputs, input_files):
+
+    paths = []
+    for input_file in input_files:
+        if input_file.lower().endswith(".rst"):
+            filename = input_file
+            if windows():
+                filename = filename.replace("/", "\\")
+            else:
+                filename = filename.replace("\\", "/")
+            paths.append(os.path.dirname(filename))
+        elif os.path.isfile(input_file):
+            with open (input_file) as f:
+                filenames = f.read().splitlines()
+                for one in filenames:
+                    filename = one
+                    if windows():
+                        filename = filename.replace("/", "\\")
+                    else:
+                        filename = filename.replace("\\", "/")
+                    paths.append(os.path.dirname(filename))
+                extend_texinputs_path_list(texinputs, paths)
+
 
 """
 Set the TEXINPUTS environment variable based on the directories specified
@@ -45,7 +79,7 @@ and Beamer theme files
 """
 
 
-def set_texinputs(new_directories):
+def set_texinputs(new_directories, source_file):
     # initialize list of directories
     unique = list()
 
@@ -65,6 +99,7 @@ def set_texinputs(new_directories):
 
     # add current TEXINPUTS paths
     extend_texinputs_path_list(unique, current.split(separator))
+    add_module_directories(unique, source_file)
 
     # when TEXINPUTS ends w/ a separator it means to append to standard TeX paths
     texinputs_append = len(current) and current[-1] == separator
@@ -214,6 +249,8 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
     if args.title:
         pandoc_title_arg = ' -V title="' + args.title.replace("_", " ") + '"'
 
+    # if title is specified, use it as the input file
+    # otherwise use the source file/list argument
     input_file = args.title or source_or_source_list
 
     extension = args.extension
@@ -243,7 +280,7 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
         filter = " --filter " + filter
 
     # build list of search directories
-    texinputs = set_texinputs(args.directories)
+    texinputs = set_texinputs(args.directories, args.source)
     if not args.hush:
         print(f"TEXINPUTS={os.environ['TEXINPUTS']}")
 
@@ -360,8 +397,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--do-not-strip-extension",
         help="Do not strip the original extension from the title of "
-        "the output file.\nLegacy behaviour\n"
-        "Eg. 'foo.rst.pdf' will become 'foo.pdf'.",
+        "the output file. If set, '--output foo.txt' will generate an "
+        "output file 'foo.txt.pdf'. If not set, output file will be "
+        "'foo.pdf",
         action="store_true",
     )
 
