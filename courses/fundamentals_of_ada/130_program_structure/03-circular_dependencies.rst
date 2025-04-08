@@ -81,7 +81,7 @@ Circular Dependency in Package Declaration
 * Provide a :dfn:`limited view` of the specified package
 
    - Only type names are visible (including in nested packages)
-   - Types are viewed as :dfn:`incomplete types`
+   - Types are viewed as an :dfn:`incomplete type`
 
 * Normal view
 
