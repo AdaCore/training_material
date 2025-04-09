@@ -7,6 +7,7 @@ Arrays
 --------
 
 .. code:: rust
+   :number-lines: 2
 
    fn main() {
        let mut a: [i8; 10] = [42; 10];
@@ -14,27 +15,48 @@ Arrays
        println!("a: {a:?}");
    }
 
----------
-Details
----------
+-------------------
+Array Description
+-------------------
 
--  A value of the array type :rust:`[T; N]` holds :rust:`N` (a compile-time
-   constant) elements of the same type :rust:`T`. Note that the length of
-   the array is *part of its type*, which means that :rust:`[u8; 3]` and
-   :rust:`[u8; 4]` are considered two different types. Slices, which have a
-   size determined at runtime, are covered later.
+- Value of array type :rust:`[T; N]` holds :rust:`N` elements of type :rust:`T`.
 
--  Try accessing an out-of-bounds array element. Array accesses are
-   checked at runtime. Rust can usually optimize these checks away, and
-   they can be avoided using unsafe Rust.
+  - :rust:`N` is a compile-time constant
 
--  We can use literals to assign values to arrays.
+- Length of array is **part of its type**
 
--  The :rust:`println!` macro asks for the debug implementation with the
-   :rust:`?` format parameter: :rust:`{}` gives the default output, :rust:`{:?}`
-   gives the debug output. Types such as integers and strings implement
-   the default output, but arrays only implement the debug output. This
-   means that we must use debug output here.
+  - :rust:`[u8; 3]` and :rust:`[u8; 4]` are two different types
+  - Slices, whose size is determined at runtime, are covered later.
 
--  Adding :rust:`#`, eg :rust:`{a:#?}`, invokes a "pretty printing" format,
-   which can be easier to read.
+- Out of bounds elements are compile errors (if possible) otherwise *panic*
+
+  .. code:: rust
+    :number-lines: 4
+
+    a[99] = 0;
+
+  ::
+
+    index out of bounds: the length is 10 but the index is 99
+
+  .. code:: rust
+    :number-lines: 4
+
+    a[b] = 0;
+
+  ::
+
+    thread 'main' panicked at src/main.rs:4:4:
+
+-------------------
+Printing an Array
+-------------------
+    
+- :rust:`println!` macro asks for the debug implementation via :rust:`?` format parameter
+
+  - :rust:`{}` gives the default output
+  - :rust:`{:?}` gives the debug output.
+  - Types such as integers and strings implement the default output, but arrays only implement tdebug output.
+    means that we must use debug output here.
+
+- Adding :rust:`#`, eg :rust:`{a:#?}`, invokes a "pretty printing" format, which can be easier to read.
