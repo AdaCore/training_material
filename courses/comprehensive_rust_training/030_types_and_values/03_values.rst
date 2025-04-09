@@ -43,12 +43,11 @@ The types have widths as follows:
 -  :rust:`char` is 32 bits wide,
 -  :rust:`bool` is 8 bits wide.
 
----------
-Details
----------
+------------------------
+Readability of Numbers
+------------------------
 
-There are a few syntaxes which are not shown above:
+- Underscores in numbers can be left out - they are for legibility only
 
--  All underscores in numbers can be left out, they are for legibility
-   only. So :rust:`1_000` can be written as :rust:`1000` (or :rust:`10_00`), and
-   :rust:`123_i64` can be written as :rust:`123i64`.
+  - :rust:`1_000` can be written as :rust:`1000` (or :rust:`10_00`)
+  - :rust:`123_i64` can be written as :rust:`123i64`.
