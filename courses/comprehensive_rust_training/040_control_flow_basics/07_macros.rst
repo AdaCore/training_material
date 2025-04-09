@@ -39,13 +39,11 @@ end. The Rust standard library includes an assortment of useful macros.
        println!("{n}! = {}", factorial(n));
    }
 
----------
-Details
----------
+.. container:: speakernote
 
-The takeaway from this section is that these common conveniences exist,
-and how to use them. Why they are defined as macros, and what they
-expand to, is not especially critical.
+   The takeaway from this section is that these common conveniences exist,
+   and how to use them. Why they are defined as macros, and what they
+   expand to, is not especially critical.
 
-The course does not cover defining macros, but a later section will
-describe use of derive macros.
+   The course does not cover defining macros, but a later section will
+   describe use of derive macros.
