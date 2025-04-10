@@ -30,39 +30,34 @@ We can now understand the two string types in Rust:
        println!("s3: {s3}");
    }
 
----------
-Details
----------
+-----------------------------
+More Information on Strings
+-----------------------------
 
--  :rust:`&str` introduces a string slice, which is an immutable reference
-   to UTF-8 encoded string data stored in a block of memory. String
-   literals (:rust:`"Hello"`), are stored in the program's binary.
+- :rust:`&str` introduces a string slice
 
--  Rust's :rust:`String` type is a wrapper around a vector of bytes. As with
-   a :rust:`Vec<T>`, it is owned.
+  -Immutable reference to UTF-8 encoded string data stored in a block of memory
+  - String literals (:rust:`"Hello"`) are stored in the program's binary.
 
--  As with many other types :rust:`String::from()` creates a string from a
-   string literal; :rust:`String::new()` creates a new empty string, to
-   which string data can be added using the :rust:`push()` and
-   :rust:`push_str()` methods.
+- :rust:`String` type is a wrapper around a vector of bytes
 
--  The :rust:`format!()` macro is a convenient way to generate an owned
-   string from dynamic values. It accepts the same format specification
-   as :rust:`println!()`.
+  -  As with a :rust:`Vec<T>`, it is owned.
 
--  You can borrow :rust:`&str` slices from :rust:`String` via :rust:`&` and
-   optionally range selection. If you select a byte range that is not
-   aligned to character boundaries, the expression will panic. The
-   :rust:`chars` iterator iterates over characters and is preferred over
-   trying to get character boundaries right.
+- :rust:`String::from()` creates a string from a string literal
 
--  For C++ programmers: think of :rust:`&str` as :rust:`std::string_view` from
-   C++, but the one that always points to a valid string in memory. Rust
-   :rust:`String` is a rough equivalent of :rust:`std::string` from C++ (main
-   difference: it can only contain UTF-8 encoded bytes and will never
-   use a small-string optimization).
+  - :rust:`String::new()` creates a new empty string
 
--  Byte strings literals allow you to create a :rust:`&[u8]` value directly:
+  - String data can be added using :rust:`push()` and :rust:`push_str()` methods.
+
+- :rust:`format!()` macro is an easy way to generate owned string from dynamic values
+
+  - Accepts same format specification as :rust:`println!()`.
+
+------------------
+Building Strings
+------------------
+
+- Byte strings literals allow you to create a :rust:`&[u8]` value directly:
 
    .. code:: rust
 
@@ -71,9 +66,9 @@ Details
           println!("{:?}", &[97, 98, 99]);
       }
 
--  Raw strings allow you to create a :rust:`&str` value with escapes
-   disabled: :rust:`r"\n" == "\\n"`. You can embed double-quotes by using an
-   equal amount of :rust:`#` on either side of the quotes:
+- Raw strings allow you to create a :rust:`&str` value with escapes disabled: :rust:`r"\n" == "\\n"`.
+
+  - You can embed double-quotes by using an equal amount of :rust:`#` on either side of the quotes:
 
    .. code:: rust
 
@@ -81,3 +76,18 @@ Details
           println!(r#"<a href="link.html">link</a>"#);
           println!("<a href=\"link.html\">link</a>");
       }
+
+.. container:: speakernote
+
+   -  You can borrow :rust:`&str` slices from :rust:`String` via :rust:`&` and
+      optionally range selection. If you select a byte range that is not
+      aligned to character boundaries, the expression will panic. The
+      :rust:`chars` iterator iterates over characters and is preferred over
+      trying to get character boundaries right.
+
+   -  For C++ programmers: think of :rust:`&str` as :rust:`std::string_view` from
+      C++, but the one that always points to a valid string in memory. Rust
+      :rust:`String` is a rough equivalent of :rust:`std::string` from C++ (main
+      difference: it can only contain UTF-8 encoded bytes and will never
+      use a small-string optimization).
+

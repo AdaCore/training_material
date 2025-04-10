@@ -18,19 +18,22 @@ the value they refer to. They have type :rust:`&mut T`.
        println!("point: {point:?}");
    }
 
----------
-Details
----------
+---------------------------------
+More About Exclusive References
+---------------------------------
 
-Key points:
+- :dfn:`Exclusive` means that only this reference can be used to access the value
 
--  :dfn:`Exclusive` means that only this reference can be used to access the
-   value. No other references (shared or exclusive) can exist at the
-   same time, and the referenced value cannot be accessed while the
-   exclusive reference exists. Try making an :rust:`&point.0` or changing
-   :rust:`point.0` while :rust:`x_coord` is alive.
+  - No other references (shared or exclusive) can exist at the same time
+  - Referenced value cannot be accessed while the exclusive reference exists
 
--  Be sure to note the difference between :rust:`let mut x_coord: &i32` and
-   :rust:`let x_coord: &mut i32`. The first one represents a shared
-   reference which can be bound to different values, while the second
-   represents an exclusive reference to a mutable value.
+- Note difference between these two statements
+
+  .. code:: Rust
+     :number-lines: 1
+
+     let mut x_coord: &i32
+     let y_coord: &mut i32
+
+  - Line 1 represents a shared reference which can be bound to different values
+  - Line 2 represents an exclusive reference to a mutable value.

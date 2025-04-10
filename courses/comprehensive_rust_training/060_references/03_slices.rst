@@ -21,26 +21,30 @@ A slice gives you a view into a larger collection:
 
 -  Slices borrow data from the sliced type.
 
----------
-Details
----------
+-------------------
+More About Slices
+-------------------
 
--  We create a slice by borrowing :rust:`a` and specifying the starting and
-   ending indexes in brackets.
+- Create a slice by borrowing :rust:`a` and specifying starting and ending indices in brackets.
 
--  If the slice starts at index 0, Rust's range syntax allows us to drop
-   the starting index, meaning that :rust:`&a[0..a.len()]` and
-   :rust:`&a[..a.len()]` are identical.
+- Indexing shortcuts
 
--  The same is true for the last index, so :rust:`&a[2..a.len()]` and
-   :rust:`&a[2..]` are identical.
+  - If first index is 0, range syntax allows us to drop the starting index
 
--  To easily create a slice of the full array, we can therefore use
-   :rust:`&a[..]`.
+    - :rust:`&a[0..a.len()]` and :rust:`&a[..a.len()]` are identical.
 
--  :rust:`s` is a reference to a slice of :rust:`i32`. Notice that the type
-   of :rust:`s` (:rust:`&[i32]`) no longer mentions the array length. This
-   allows us to perform computation on slices of different sizes.
+  - Same is true for the last index
 
--  Slices always borrow from another object. In this example, :rust:`a` has
-   to remain 'alive' (in scope) for at least as long as our slice.
+    - :rust:`&a[2..a.len()]` and :rust:`&a[2..]` are identical.
+
+  - So a slice of the full array can be specified as :rust:`&a[..]`.
+
+- :rust:`s` is a reference to a slice of :rust:`i32`
+
+  - Type of :rust:`s` does not mention array length
+
+    - Allows us to perform computation on slices of different sizes.
+
+- Slices always borrow from another object
+
+  - In the example, :rust:`a` has to remain 'alive' (in scope) for at least as long as our slice.

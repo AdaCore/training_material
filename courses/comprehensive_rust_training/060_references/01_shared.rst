@@ -25,42 +25,42 @@ A shared reference to a type :rust:`T` has type :rust:`&T`. A reference value is
 made with the :rust:`&` operator. The :rust:`*` operator :dfn:`dereferences` a
 reference, yielding its value.
 
----------
-Details
----------
+------------------------------
+More About Shared References
+------------------------------
 
--  References can never be null in Rust, so null checking is not
-   necessary.
+- References can never be null in Rust so null checking not necessary
 
--  A reference is said to **borrow** the value it refers to, and this is a
-   good model for students not familiar with pointers: code can use the
-   reference to access the value, but is still **owned** by the original
-   variable. The course will get into more detail on ownership in day 3.
+- Reference **borrows** value it refers to
 
--  References are implemented as pointers, and a key advantage is that
-   they can be much smaller than the thing they point to. Students
-   familiar with C or C++ will recognize references as pointers. Later
-   parts of the course will cover how Rust prevents the memory-safety
-   bugs that come from using raw pointers.
+  - Code uses the reference to **access** the value
+  - Original variable still **owns** the reference
 
--  Rust does not automatically create references for you - the :rust:`&` is
-   always required.
+- References are implemented as pointers
 
--  Rust will auto-dereference in some cases, in particular when invoking
-   methods (try :rust:`r.is_ascii()`). There is no need for an :rust:`->`
-   operator like in C++.
+  - So they are usually much smaller than what they point to
 
--  In this example, :rust:`r` is mutable so that it can be reassigned
-   (:rust:`r = &b`). Note that this re-binds :rust:`r`, so that it refers to
-   something else. This is different from C++, where assignment to a
-   reference changes the referenced value.
+- Rust does not automatically create references for you
 
--  A shared reference does not allow modifying the value it refers to,
-   even if that value was mutable. Try :rust:`*r = 'X'`.
+  - :rust:`&` is always required.
 
--  Rust is tracking the lifetimes of all references to ensure they live
-   long enough. Dangling references cannot occur in safe Rust.
-   :rust:`x_axis` would return a reference to :rust:`point`, but :rust:`point` will
-   be deallocated when the function returns, so this will not compile.
+- Rust will auto-dereference in some cases
 
--  We will talk more about borrowing when we get to ownership.
+  - In particular when invoking methods (e.g. :rust:`r.is_ascii()`)
+  - No need for an :rust:`->` operator like in C++.
+
+- Shared reference does not allow modifying the value it refers to
+
+  - Even if that value was mutable
+
+.. container:: speakernote
+
+   - In this example, :rust:`r` is mutable so that it can be reassigned
+     (:rust:`r = &b`). Note that this re-binds :rust:`r`, so that it refers to
+     something else. This is different from C++, where assignment to a
+     reference changes the referenced value.
+
+   - Rust is tracking the lifetimes of all references to ensure they live
+     long enough. Dangling references cannot occur in safe Rust.
+     :rust:`x_axis` would return a reference to :rust:`point`, but :rust:`point` will
+     be deallocated when the function returns, so this will not compile.
