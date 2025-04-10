@@ -32,30 +32,31 @@ this on the next slide.
 A match guard causes the arm to match only if the condition is true. If
 the condition is false the match will continue checking later cases.
 
----------
-Details
----------
+------------
+Key Points
+------------
 
-Key Points:
 
--  You might point out how some specific characters are being used when
-   in a pattern
+- Tokens used in patterns
 
-   -  :rust:`|` as an :rust:`or`
-   -  :rust:`..` can expand as much as it needs to be
-   -  :rust:`1..=5` represents an inclusive range
-   -  :rust:`_` is a wild card
+   - :rust:`|` as an :rust:`or`
+   - :rust:`..` can expand as much as it needs to be
+   - :rust:`1..=5` represents an inclusive range
+   - :rust:`_` is a wild card
 
--  Match guards as a separate syntax feature are important and necessary
-   when we wish to concisely express more complex ideas than patterns
-   alone would allow.
--  They are not the same as separate :rust:`if` expression inside of the
-   match arm. An :rust:`if` expression inside of the branch block (after
-   :rust:`=>`) happens after the match arm is selected. Failing the :rust:`if`
-   condition inside of that block won't result in other arms of the
-   original :rust:`match` expression being considered.
--  The condition defined in the guard applies to every expression in a
-   pattern with an :rust:`|`.
+- Match guards as a separate syntax feature are important and necessary
+
+  - Concisely express more complex ideas than patterns alone allow.
+
+  - Not the same as separate :rust:`if` expression inside of match arm.
+
+    - :rust:`if` expression inside of branch block (after :rust:`=>`) happens **after**
+      the match arm is selected.
+    - Failing the :rust:`if` condition inside block won't result in other arms of
+      :rust:`match` expression being considered.
+
+  - The condition defined in the guard applies to every expression in a
+    pattern with an :rust:`|`.
 
 -----------------
 More To Explore
