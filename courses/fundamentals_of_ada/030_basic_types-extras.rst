@@ -40,6 +40,7 @@ Basic Types
    Character Types
    Real Types
    Subtypes
+   Big Numbers
 
 .. container:: PRELUDE END
 
@@ -48,3 +49,4 @@ Basic Types
 .. include:: 030_basic_types/06-character_types.rst
 .. include:: 030_basic_types/07-real_types.rst
 .. include:: 030_basic_types/11-subtypes_full_picture.rst
+.. include:: 030_basic_types/12-big_numbers.rst

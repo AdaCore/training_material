@@ -17,40 +17,32 @@ World program:
 
 What you see:
 
--  Functions are introduced with :rust:`fn`.
--  Blocks are delimited by curly braces like in C and C++.
--  The :rust:`main` function is the entry point of the program.
--  Rust has hygienic macros, :rust:`println!` is an example of this.
--  Rust strings are UTF-8 encoded and can contain any Unicode character.
+- Functions are introduced with :rust:`fn`.
+- Blocks are delimited by curly braces like in C and C++.
+- The :rust:`main` function is the entry point of the program.
+- Rust has hygienic macros, :rust:`println!` is an example of this.
+- Rust strings are UTF-8 encoded and can contain any Unicode character.
 
----------
-Details
----------
+-------------------------------
+Things To Consider About Rust
+-------------------------------
 
-This slide tries to make the students comfortable with Rust code. They
-will see a ton of it over the next four days so we start small with
-something familiar.
+- Very much like other languages in the C/C++/Java tradition.
 
-Key points:
+  - Imperative
+  - No reinventing things unless absolutely necessary.
 
--  Rust is very much like other languages in the C/C++/Java tradition.
-   It is imperative and it doesn't try to reinvent things unless
-   absolutely necessary.
+- Modern with full support for things like Unicode.
+- Uses macros for situations where you want to have a variable number of arguments
 
--  Rust is modern with full support for things like Unicode.
+  - (no function :url:`overloading <../control-flow-basics/functions.md>`).
 
--  Rust uses macros for situations where you want to have a variable
-   number of arguments (no function
-   :url:`overloading <../control-flow-basics/functions.md>`).
+- Macros being 'hygienic' means
 
--  Macros being 'hygienic' means they don't accidentally capture
-   identifiers from the scope they are used in. Rust macros are actually
-   only `partially
-   hygienic <https://veykril.github.io/tlborm/decl-macros/minutiae/hygiene.html>`__.
+  - Don't accidentally capture identifiers from the scope they are used in
+  - Macros are actually only :url:`partially hygienic <https://veykril.github.io/tlborm/decl-macros/minutiae/hygiene.html>`
 
--  Rust is multi-paradigm. For example, it has powerful `object-oriented
-   programming
-   features <https://doc.rust-lang.org/book/ch17-00-oop.html>`__, and,
-   while it is not a functional language, it includes a range of
-   `functional
-   concepts <https://doc.rust-lang.org/book/ch13-00-functional-features.html>`__.
+- Multi-paradigm
+
+  - Powerful :url:`object-oriented programming features <https://doc.rust-lang.org/book/ch17-00-oop.html>`
+  - Not a function language, but includes a range of :url:`functional concepts <https://doc.rust-lang.org/book/ch13-00-functional-features.html>`

@@ -18,18 +18,20 @@ with :rust:`let`:
        // println!("x: {x}");
    }
 
----------
-Details
----------
+-------------------
+Things To Explore
+-------------------
 
--  Uncomment the :rust:`x = 20` to demonstrate that variables are immutable
-   by default. Add the :rust:`mut` keyword to allow changes.
+- Uncomment :rust:`x = 20` to show variables are immutable by default
 
--  Warnings are enabled for this slide, such as for unused variables or
-   unnecessary :rust:`mut`. These are omitted in most slides to avoid
-   distracting warnings. Try removing the mutation but leaving the
-   :rust:`mut` keyword in place.
+  - Add the :rust:`mut` keyword to allow changes.
 
--  The :rust:`i32` here is the type of the variable. This must be known at
-   compile time, but type inference (covered later) allows the
-   programmer to omit it in many cases.
+- Warnings are enabled for this slide, such as for unused variables or unnecessary :rust:`mut`.
+
+  - These are omitted in most slides to avoid distracting warnings.
+  - Try removing the mutation but leaving the :rust:`mut` keyword in place.
+
+- :rust:`i32` is the type of the variable.
+
+  - Must be known at compile time
+  - Type inference (covered later) allows the programmer to omit it in many cases.

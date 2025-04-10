@@ -37,24 +37,22 @@ Some unique selling points of Rust:
    -  Built-in support for testing.
    -  Excellent Language Server Protocol support.
 
----------
-Details
----------
+----------------------
+Rust Compared to ...
+----------------------
 
-Do not spend much time here. All of these points will be covered in more
-depth later.
+- C or C++
 
-Make sure to ask the class which languages they have experience with.
-Depending on the answer you can highlight different features of Rust:
+  - Eliminates a whole class of *runtime errors* via the borrow checker
 
--  Experience with C or C++: Rust eliminates a whole class of *runtime
-   errors* via the borrow checker. You get performance like in C and
-   C++, but you don't have the memory unsafety issues. In addition, you
-   get a modern language with constructs like pattern matching and
-   built-in dependency management.
+    - Performance without memory safety issues
 
--  Experience with Java, Go, Python, JavaScript...: You get the same
-   memory safety as in those languages, plus a similar high-level
-   language feeling. In addition you get fast and predictable
-   performance like C and C++ (no garbage collector) as well as access
-   to low-level hardware (should you need it).
+  - Constructs like pattern matching and built-in dependency management.
+
+- Java, Go, Python, JavaScript
+
+  - Same memory safety
+  - Fast and predictable performance like C and C++
+
+    - No garbage collector
+    - Access to low-level hardware (should you need it).

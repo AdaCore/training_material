@@ -47,15 +47,18 @@ iterates over ranges of values or the items in a collection:
        }
    }
 
--------------------
-:rust:`for` Details
--------------------
+-----------------------------
+:rust:`for` Range Iteration
+-----------------------------
 
--  Under the hood :rust:`for` loops use a concept called :dfn:`iterators` to
-   handle iterating over different kinds of ranges/collections.
-   Iterators will be discussed in more detail later.
--  Note that the first :rust:`for` loop only iterates to :rust:`4`. Show the
-   :rust:`1..=5` syntax for an inclusive range.
+- :rust:`for x in 1..5` is similar to C's :cpp:`for (i=1;i<5;i++)`
+
+  - Both versions only have four iterations
+  - In the C version, it's more explicit that the limit (:rust:`5`) is **not** included
+
+- For an inclusive loop, you add :rust:`=` before the limit
+
+  - :rust:`for x in 1..=5` will generate 5 iterations
 
 ------------------
 :rust:`loop`
@@ -77,10 +80,3 @@ loops forever, until a :rust:`break`.
            }
        }
    }
-
---------------------
-:rust:`loop` Details
---------------------
-
--  The :rust:`loop` statement works like a :rust:`while true` loop. Use it for
-   things like servers which will serve connections forever.

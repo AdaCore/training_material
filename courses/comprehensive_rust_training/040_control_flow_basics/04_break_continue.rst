@@ -30,14 +30,14 @@ value of the :rust:`loop` expression.
        }
    }
 
----------
-Details
----------
+-------------------------
+Loops Returning a Value
+-------------------------
 
-Note that :rust:`loop` is the only looping construct which can return a
-non-trivial value. This is because it's guaranteed to only return at a
-:rust:`break` statement (unlike :rust:`while` and :rust:`for` loops, which can also
-return when the condition fails).
+- :rust:`loop` is the looping construct which can return a non-trivial value.
+
+  - Guaranteed to only return at a :rust:`break` statement
+  - Unlike :rust:`while` and :rust:`for` loops, which can return when condition fails
 
 --------
 Labels
@@ -63,9 +63,9 @@ which is used to break out of nested loops:
        print!("elements searched: {elements_searched}");
    }
 
----------
-Details
----------
+--------------
+Block Labels
+--------------
 
 -  Labeled break also works on arbitrary blocks, e.g.
 
@@ -75,4 +75,3 @@ Details
           break 'label;
           println!("This line gets skipped");
       }
-
