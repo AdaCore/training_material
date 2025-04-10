@@ -43,9 +43,4 @@ Only functions marked :rust:`const` can be called at compile time to
 generate :rust:`const` values. :rust:`const` functions can however be called at
 runtime.
 
----------
-Details
----------
-
--  Mention that :rust:`const` behaves semantically similar to C++'s
-   :rust:`constexpr`
+:rust:`const` behaves semantically similar to C++'s :rust:`constexpr`

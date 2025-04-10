@@ -29,37 +29,47 @@ different variants:
        println!("On this turn: {player_move:?}");
    }
 
----------
-Details
----------
+------------
+Key Points
+------------
 
-Key Points:
+- Enumerations allow you to collect a set of values under one type.
 
--  Enumerations allow you to collect a set of values under one type.
--  :rust:`Direction` is a type with variants. There are two values of
-   :rust:`Direction`: :rust:`Direction::Left` and :rust:`Direction::Right`.
--  :rust:`PlayerMove` is a type with three variants. In addition to the
-   payloads, Rust will store a discriminant so that it knows at runtime
-   which variant is in a :rust:`PlayerMove` value.
--  This might be a good time to compare structs and enums:
+- :rust:`Direction` is a type with two simple variants: :rust:`Direction::Left` and :rust:`Direction::Right`.
 
-   -  In both, you can have a simple version without fields (unit
-      struct) or one with different types of fields (variant payloads).
-   -  You could even implement the different variants of an enum with
-      separate structs but then they wouldn't be the same type as they
-      would if they were all defined in an enum.
+- :rust:`PlayerMove` is a type with three variants.
 
--  Rust uses minimal space to store the discriminant.
+  - Simple variant: :rust:`Pass`
+  - Tuple variant: :rust:`Run(Direction)`
+  - Struct variant: :rust:`Teleport { x: u32, y: u32 }`
 
-   -  If necessary, it stores an integer of the smallest required size
+- Rust stores a discriminant to know at runtime which variant is in a :rust:`PlayerMove` value.
 
-   -  If the allowed variant values do not cover all bit patterns, it
-      will use invalid bit patterns to encode the discriminant (the
-      "niche optimization"). For example, :rust:`Option<&u8>` stores either
+----------------------------------------------------
+Difference Between :rust:`struct` and :rust:`enum`
+----------------------------------------------------
+
+- Both can have 
+
+  - Simple version without fields (unit struct) 
+  - Version with different types of fields (variant payloads).
+
+- You could implement the different variants of an enum with separate structs
+
+  - But then they wouldn't be the same type
+
+- Rust uses minimal space to store the discriminant.
+
+  - If necessary, stores an integer of smallest required size
+
+  - If the allowed variant values do not cover all bit patterns, it
+    will use invalid bit patterns to encode the discriminant
+
+    - Example, :rust:`Option<&u8>` stores either
       a pointer to an integer or :rust:`NULL` for the :rust:`None` variant.
 
-   -  You can control the discriminant if needed (e.g., for
-      compatibility with C):
+   - You can control discriminant if needed (e.g., for
+     compatibility with C):
 
       .. code:: rust
 

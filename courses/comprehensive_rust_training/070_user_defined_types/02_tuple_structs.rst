@@ -41,22 +41,25 @@ This is often used for single-field wrappers (called newtypes):
 Details
 ---------
 
--  Newtypes are a great way to encode additional information about the
-   value in a primitive type, for example:
+- Newtypes allow you to encode additional information about the value in a primitive type
 
-   -  The number is measured in some units: :rust:`Newtons` in the example
-      above.
-   -  The value passed some validation when it was created, so you no
-      longer have to validate it again at every use:
-      :rust:`PhoneNumber(String)` or :rust:`OddNumber(u32)`.
+  - Number is measured in some units
 
--  Demonstrate how to add a :rust:`f64` value to a :rust:`Newtons` type by
-   accessing the single field in the newtype.
+    - :rust:`Newtons` in the example above.
 
-   -  Rust generally doesn't like inexplicit things, like automatic
-      unwrapping or for instance using booleans as integers.
-   -  Operator overloading is discussed on Day 3 (generics).
+  - Value passed some validation when it was created, so no need to re-validate
 
--  The example is a subtle reference to the
-   :url:`Mars Climate Orbiter <https://en.wikipedia.org/wiki/Mars_Climate_Orbiter>`
-   failure.
+    - :rust:`PhoneNumber(String)` or :rust:`OddNumber(u32)`.
+
+.. container:: speakernote
+
+  -  Demonstrate how to add a :rust:`f64` value to a :rust:`Newtons` type by
+     accessing the single field in the newtype.
+
+     -  Rust generally doesn't like inexplicit things, like automatic
+        unwrapping or for instance using booleans as integers.
+     -  Operator overloading is discussed on Day 3 (generics).
+
+  -  The example is a subtle reference to the
+     :url:`Mars Climate Orbiter <https://en.wikipedia.org/wiki/Mars_Climate_Orbiter>`
+     failure.

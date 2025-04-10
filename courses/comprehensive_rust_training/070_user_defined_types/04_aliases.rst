@@ -23,12 +23,9 @@ interchangeably.
    use std::sync::{Arc, RwLock};
    type PlayerInventory = RwLock<Vec<Arc<RefCell<Item>>>>;
 
----------
-Details
----------
+- A :url:`newtype <tuple-structs.html>` is often a better alternative
+  since it creates a distinct type.
 
--  A :url:`newtype <tuple-structs.html>` is often a better alternative
-   since it creates a distinct type. Prefer
-   :rust:`struct InventoryCount(usize)` to :rust:`type InventoryCount = usize`.
+  - Prefer :rust:`struct InventoryCount(usize)` to :rust:`type InventoryCount = usize`.
 
--  C programmers will recognize this as similar to a :rust:`typedef`.
+- C programmers will recognize this as similar to a :cppt:`typedef`.

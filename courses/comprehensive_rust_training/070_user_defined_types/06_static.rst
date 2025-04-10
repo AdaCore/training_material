@@ -25,13 +25,10 @@ lives through the entirety of the program execution. When a
 globally-scoped value does not have a reason to need object identity,
 :rust:`const` is generally preferred.
 
----------
-Details
----------
+:rust:`static` is similar to mutable global variables in C++.
 
--  :rust:`static` is similar to mutable global variables in C++.
--  :rust:`static` provides object identity: an address in memory and state
-   as required by types with interior mutability such as :rust:`Mutex<T>`.
+:rust:`static` provides object identity: an address in memory and state
+as required by types with interior mutability such as :rust:`Mutex<T>`.
 
 -----------------
 More to Explore
