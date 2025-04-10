@@ -20,13 +20,3 @@ starts with. It comes with a few handy features:
 
 -  If you're interested, use :menu:`ASM` under :menu:`...` to see the generated
    assembly code.
-
----------
-Details
----------
-
-As students head into the break, encourage them to open up the
-playground and experiment a little. Encourage them to keep the tab open
-and try things out during the rest of the course. This is particularly
-helpful for advanced students who want to know more about Rust's
-optimizations or generated assembly.

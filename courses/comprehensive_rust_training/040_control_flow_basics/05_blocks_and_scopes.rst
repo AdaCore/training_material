@@ -25,10 +25,8 @@ expression of the block:
 If the last expression ends with :rust:`;`, then the resulting value and
 type is :rust:`()`.
 
----------
-Details
----------
+.. container:: speakernote
 
--  You can show how the value of the block changes by changing the last
-   line in the block. For instance, adding/removing a semicolon or using
-   a :rust:`return`.
+  You can show how the value of the block changes by changing the last
+  line in the block. For instance, adding/removing a semicolon or using
+  a :rust:`return`.
