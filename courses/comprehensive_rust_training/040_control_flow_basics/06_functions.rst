@@ -20,23 +20,32 @@ Functions
        println!("gcd: {}", gcd(143, 52));
    }
 
----------
-Details
----------
+-----------------
+Function Syntax
+-----------------
 
--  Declaration parameters are followed by a type (the reverse of some
-   programming languages), then a return type.
--  The last expression in a function body (or any block) becomes the
-   return value. Simply omit the :rust:`;` at the end of the expression. The
-   :rust:`return` keyword can be used for early return, but the "bare value"
-   form is idiomatic at the end of a function (refactor :rust:`gcd` to use a
-   :rust:`return`).
--  Some functions have no return value, and return the 'unit type',
-   :rust:`()`. The compiler will infer this if the return type is omitted.
--  Overloading is not supported - each function has a single
-   implementation.
+- Declaration parameters are followed by a type (like Ada, unlike C/C+) then a return type.
+- Last expression in a function body (or any block) becomes the return value.
 
-   -  Always takes a fixed number of parameters. Default arguments are
-      not supported. Macros can be used to support variadic functions.
-   -  Always takes a single set of parameter types. These types can be
-      generic, which will be covered later.
+  - Omit the :rust:`;` at the end of the expression.
+
+- :rust:`return` keyword can be used for early return
+
+  - *Bare value* form is idiomatic at the end of a function
+
+- Some functions have no return value
+
+  - Return 'unit type' :rust:`()`
+
+    - Compiler will infer this if return type is omitted.
+
+- Overloading is not supported - each function has a single implementation.
+
+  - Always takes a fixed number of parameters
+
+    - Default arguments are not supported
+    - Macros can be used to support variadic functions.
+
+  - Always takes a single set of parameter types
+
+    - These types can be generic, which will be covered later.

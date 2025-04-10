@@ -27,9 +27,9 @@ Rust is a new programming language which had its `1.0 release in
    -  desktops,
    -  servers.
 
----------
-Details
----------
+--------------------------------
+What Kind of Language is Rust?
+--------------------------------
 
 Rust fits in the same area as C++:
 
