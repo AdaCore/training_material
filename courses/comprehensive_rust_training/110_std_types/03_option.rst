@@ -23,9 +23,9 @@ returns an :rust:`Option<usize>`.
        assert_eq!(position.expect("Character not found"), 0);
    }
 
----------
-Details
----------
+------------
+Key Points
+------------
 
 -  :rust:`Option` is widely used, not just in the standard library.
 -  :rust:`unwrap` will return the value in an :rust:`Option`, or panic.

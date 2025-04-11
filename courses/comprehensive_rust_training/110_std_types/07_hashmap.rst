@@ -41,26 +41,12 @@ Standard hash map with protection against HashDoS attacks:
        println!("{page_counts:#?}");
    }
 
----------
-Details
----------
+----------------------------
+More About :rust:`HashMap`
+----------------------------
 
 -  :rust:`HashMap` is not defined in the prelude and needs to be brought
    into scope.
-
--  Try the following lines of code. The first line will see if a book is
-   in the hashmap and if not return an alternative value. The second
-   line will insert the alternative value in the hashmap if the book is
-   not found.
-
-   .. code:: rust
-
-      let pc1 = page_counts
-          .get("Harry Potter and the Sorcerer's Stone")
-          .unwrap_or(&336);
-      let pc2 = page_counts
-          .entry("The Hunger Games")
-          .or_insert(374);
 
 -  Unlike :rust:`vec!`, there is unfortunately no standard :rust:`hashmap!`
    macro.

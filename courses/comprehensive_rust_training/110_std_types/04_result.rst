@@ -33,9 +33,9 @@ generic: :rust:`Result<T, E>` where :rust:`T` is used in the :rust:`Ok` variant 
        }
    }
 
----------
-Details
----------
+------------
+Key Points
+------------
 
 -  As with :rust:`Option`, the successful value sits inside of :rust:`Result`,
    forcing the developer to explicitly extract it. This encourages error
@@ -45,5 +45,4 @@ Details
 -  :rust:`Result` documentation is a recommended read. Not during the
    course, but it is worth mentioning. It contains a lot of convenience
    methods and functions that help functional-style programming.
--  :rust:`Result` is the standard type to implement error handling as we
-   will see on Day 4.
+-  :rust:`Result` is the standard type to implement error handling (shown later)

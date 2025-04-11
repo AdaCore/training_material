@@ -34,9 +34,9 @@ which means that you can call all :rust:`str` methods on a :rust:`String`.
 
 which means that you can call all :rust:`str` methods on a :rust:`String`.
 
----------
-Details
----------
+--------------------
+More About Strings
+--------------------
 
 -  :rust:`String::new` returns a new empty string, use
    :rust:`String::with_capacity` when you know how much data you want to
@@ -49,16 +49,6 @@ Details
    :url:`grapheme clusters <https://docs.rs/unicode-segmentation/latest/unicode_segmentation/struct.Graphemes.html>`.
 -  When people refer to strings they could either be talking about
    :rust:`&str` or :rust:`String`.
--  When a type implements :rust:`Deref<Target = T>`, the compiler will let
-   you transparently call methods from :rust:`T`.
-
-   -  We haven't discussed the :rust:`Deref` trait yet, so at this point
-      this mostly explains the structure of the sidebar in the
-      documentation.
-   -  :rust:`String` implements :rust:`Deref<Target = str>` which transparently
-      gives it access to :rust:`str` methods.
-   -  Write and compare :rust:`let s3 = s1.deref();` and :rust:`let s3 = &*s1;`.
-
 -  :rust:`String` is implemented as a wrapper around a vector of bytes, many
    of the operations you see supported on vectors are also supported on
    :rust:`String`, but with some extra guarantees.
@@ -74,3 +64,16 @@ Details
    method. This trait is automatically implemented for all types that
    implement :rust:`Display`, so anything that can be formatted can also be
    converted to a string.
+
+.. container:: speakernote
+
+-  When a type implements :rust:`Deref<Target = T>`, the compiler will let
+   you transparently call methods from :rust:`T`.
+
+   -  We haven't discussed the :rust:`Deref` trait yet, so at this point
+      this mostly explains the structure of the sidebar in the
+      documentation.
+   -  :rust:`String` implements :rust:`Deref<Target = str>` which transparently
+      gives it access to :rust:`str` methods.
+   -  Write and compare :rust:`let s3 = s1.deref();` and :rust:`let s3 = &*s1;`.
+

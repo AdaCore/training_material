@@ -42,9 +42,9 @@ which means that you can call slice methods on a :rust:`Vec`.
 
 which means that you can call slice methods on a :rust:`Vec`.
 
----------
-Details
----------
+------------------------
+More About :rust:`Vec`
+------------------------
 
 -  :rust:`Vec` is a type of collection, along with :rust:`String` and
    :rust:`HashMap`. The data it contains is stored on the heap. This means
@@ -58,6 +58,9 @@ Details
 -  To index the vector you use :rust:`[` :rust:`]`, but they will panic if out
    of bounds. Alternatively, using :rust:`get` will return an :rust:`Option`.
    The :rust:`pop` function will remove the last element.
--  Slices are covered on day 3. For now, students only need to know that
-   a value of type :rust:`Vec` gives access to all of the documented slice
-   methods, too.
+
+.. container:: speakernote
+
+   -  Slices are covered on day 3. For now, students only need to know that
+      a value of type :rust:`Vec` gives access to all of the documented slice
+      methods, too.
