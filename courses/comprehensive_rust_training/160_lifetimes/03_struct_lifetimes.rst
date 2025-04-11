@@ -9,27 +9,29 @@ Lifetimes in Data Structures
 If a data type stores borrowed data, it must be annotated with a
 lifetime:
 
-.. code:: rust
+.. container:: latex_environment footnotesize
 
-   #[derive(Debug)]
-   struct Highlight<'doc>(&'doc str);
+   .. code:: rust
 
-   fn erase(text: String) {
-       println!("Bye {text}!");
-   }
+      #[derive(Debug)]
+      struct Highlight<'doc>(&'doc str);
 
-   fn main() {
-       let text = String::from("The quick brown fox jumps over the lazy dog.");
-       let fox = Highlight(&text[4..19]);
-       let dog = Highlight(&text[35..43]);
-       // erase(text);
-       println!("{fox:?}");
-       println!("{dog:?}");
-   }
+      fn erase(text: String) {
+          println!("Bye {text}!");
+      }
 
----------
-Details
----------
+      fn main() {
+          let text = String::from("The quick brown fox jumps over the lazy dog.");
+          let fox = Highlight(&text[4..19]);
+          let dog = Highlight(&text[35..43]);
+          // erase(text);
+          println!("{fox:?}");
+          println!("{dog:?}");
+      }
+
+-----------------------------------------
+More About Lifetimes in Data Structures
+-----------------------------------------
 
 -  In the above example, the annotation on :rust:`Highlight` enforces that
    the data underlying the contained :rust:`&str` lives at least as long as

@@ -18,6 +18,7 @@ is not inference - it is just a syntactic shorthand.
    :rust:`self`, that lifetime is given to all un-annotated return values.
 
 .. code:: rust
+   :number-lines: 1
 
    #[derive(Debug)]
    struct Point(i32, i32);
@@ -46,28 +47,36 @@ is not inference - it is just a syntactic shorthand.
        println!("{:?}", nearest(points, &Point(0, 2)));
    }
 
----------
-Details
----------
+----------------------------------------
+More About Lifetimes In Function Calls
+----------------------------------------
 
-In this example, :rust:`cab_distance` is trivially elided.
+- In this example, :rust:`cab_distance` is trivially elided.
 
-The :rust:`nearest` function provides another example of a function with
-multiple references in its arguments that requires explicit annotation.
+- The :rust:`nearest` function provides another example of a function with
+  multiple references in its arguments that requires explicit annotation.
 
-Try adjusting the signature to "lie" about the lifetimes returned:
+- What happens if we "lie" about the lifetimes returned?
 
-.. code:: rust
+.. container:: latex_environment footnotesize
 
-   fn nearest<'a, 'q>(points: &'a [Point], query: &'q Point) -> Option<&'q Point> {
+  .. code:: rust
+     :number-lines: 8
 
-This won't compile, demonstrating that the annotations are checked for
-validity by the compiler. Note that this is not the case for raw
-pointers (unsafe), and this is a common source of errors with unsafe
-Rust.
+     fn nearest<'a, 'q>(points: &'a [Point], query: &'q Point) -> Option<&'q Point> {
 
-Students may ask when to use lifetimes. Rust borrows *always* have
-lifetimes. Most of the time, elision and type inference mean these don't
-need to be written out. In more complicated cases, lifetime annotations
-can help resolve ambiguity. Often, especially when prototyping, it's
-easier to just work with owned data by cloning values where necessary.
+.. container:: latex_environment small
+
+   This won't compile, demonstrating that the annotations are checked for
+   validity by the compiler. Note that this is not the case for raw
+   pointers (unsafe), and this is a common source of errors with unsafe
+   Rust.
+
+- When do we use lifetimes?
+
+  - Rust borrows *always* have lifetimes. Most of the time, elision and type inference mean these don't
+    need to be written out.
+
+    - In more complicated cases, lifetime annotations can help resolve ambiguity.
+
+    - Often, especially when prototyping, it's easier to just work with owned data by cloning values where necessary.

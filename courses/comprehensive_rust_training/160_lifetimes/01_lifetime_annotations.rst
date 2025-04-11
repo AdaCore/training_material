@@ -24,6 +24,7 @@ Lifetimes become more complicated when considering passing values to and
 returning values from functions.
 
 .. code:: rust
+   :number-lines: 1
 
    #[derive(Debug)]
    struct Point(i32, i32);
@@ -43,9 +44,13 @@ returning values from functions.
        println!("p3: {p3:?}");
    }
 
----------
-Details
----------
+.. warning::
+
+   This code generates a compile error!
+
+-----------------------------
+Adding Lifetime Annotations
+-----------------------------
 
 In this example, the compiler does not know what lifetime to infer for
 :rust:`p3`. Looking inside the function body shows that it can only safely
@@ -55,12 +60,14 @@ function arguments and return values.
 
 Add :rust:`'a` appropriately to :rust:`left_most`:
 
-.. code:: rust
+.. container:: latex_environment small
 
-   fn left_most<'a>(p1: &'a Point, p2: &'a Point) -> &'a Point {
+   .. code:: rust
+      :number-lines: 4
+
+      fn left_most<'a>(p1: &'a Point, p2: &'a Point) -> &'a Point {
 
 This says, "given p1 and p2 which both outlive :rust:`'a`, the return value
 lives for at least :rust:`'a`."
 
-In common cases, lifetimes can be elided, as described on the next
-slide.
+In common cases, lifetimes can be elided, as described next
