@@ -60,9 +60,9 @@ operators.
 
 :rust:`Ord` is a total ordering, with :rust:`cmp` returning :rust:`Ordering`.
 
----------
-Details
----------
+----------------------------------
+Equality Between Different Types
+----------------------------------
 
 :rust:`PartialEq` can be implemented between different types, but :rust:`Eq`
 cannot, because it is reflexive:

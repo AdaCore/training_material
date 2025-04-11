@@ -31,11 +31,9 @@ Operator overloading is implemented via traits in
        println!("{p1:?} + {p2:?} = {:?}", p1 + p2);
    }
 
----------
-Details
----------
-
-Discussion points:
+-------------------
+Discussion Points
+-------------------
 
 -  You could implement :rust:`Add` for :rust:`&Point`. In which situations is
    that useful?

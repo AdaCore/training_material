@@ -39,9 +39,9 @@ trait produces a default value for a type.
        println!("{:#?}", nothing.unwrap_or_default());
    }
 
----------
-Details
----------
+----------------------------
+More about :rust:`Default`
+----------------------------
 
 -  It can be implemented directly or it can be derived via
    :rust:`#[derive(Default)]`.
@@ -56,4 +56,4 @@ Details
 -  The Rust standard library is aware that types can implement
    :rust:`Default` and provides convenience methods that use it.
 -  The :rust:`..` syntax is called
-  :url:`struct update syntax <https://doc.rust-lang.org/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax>`.
+   :url:`struct update syntax <https://doc.rust-lang.org/book/ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax>`.

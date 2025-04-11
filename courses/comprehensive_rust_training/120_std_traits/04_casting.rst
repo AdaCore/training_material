@@ -34,11 +34,9 @@ For infallible casts (e.g. :rust:`u32` to :rust:`u64`), prefer using :rust:`From
 fallible casts, :rust:`TryFrom` and :rust:`TryInto` are available when you want
 to handle casts that fit differently from those that don't.
 
----------
-Details
----------
-
-Consider taking a break after this slide.
+-------------------
+Comparison to C++
+-------------------
 
 :rust:`as` is similar to a C++ static cast. Use of :rust:`as` in cases where
 data might be lost is generally discouraged, or at least deserves an

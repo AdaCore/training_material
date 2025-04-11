@@ -37,11 +37,11 @@ implemented:
        println!("{s}, {addr}, {one}, {bigger}");
    }
 
----------
-Details
----------
+----------------------------------
+:rust:`From` versus :rust:`Into`
+----------------------------------
 
--  That's why it is common to only implement :rust:`From`, as your type will
+-  This is why it is common to only implement :rust:`From`, as your type will
    get :rust:`Into` implementation too.
 -  When declaring a function argument input type like "anything that can
    be converted into a :rust:`String`", the rule is opposite, you should use

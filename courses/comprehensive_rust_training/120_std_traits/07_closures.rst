@@ -37,19 +37,19 @@ traits:
        apply_and_log(multiply_sum, "multiply_sum", 3);
    }
 
----------
-Details
----------
+-------------------------------------------------------
+:rust:`Fn` versus :rust:`FnMut` versus :rust:`FnOnce`
+-------------------------------------------------------
 
-An :rust:`Fn` (e.g. :rust:`add_3`) neither consumes nor mutates captured values.
+:rust:`Fn` (e.g. :rust:`add_3`) neither consumes nor mutates captured values.
 It can be called needing only a shared reference to the closure, which
 means the closure can be executed repeatedly and even concurrently.
 
-An :rust:`FnMut` (e.g. :rust:`accumulate`) might mutate captured values. The
+:rust:`FnMut` (e.g. :rust:`accumulate`) might mutate captured values. The
 closure object is accessed via exclusive reference, so it can be called
 repeatedly but not concurrently.
 
-If you have an :rust:`FnOnce` (e.g. :rust:`multiply_sum`), you may only call it
+If you have :rust:`FnOnce` (e.g. :rust:`multiply_sum`), you may only call it
 once. Doing so consumes the closure and any values captured by move.
 
 :rust:`FnMut` is a subtype of :rust:`FnOnce`. :rust:`Fn` is a subtype of :rust:`FnMut`
