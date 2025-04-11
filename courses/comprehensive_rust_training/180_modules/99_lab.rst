@@ -102,10 +102,9 @@ Solution - Module widgets.rs
 
 .. container:: source_include 180_modules/src/180_modules-widgets.rs :code:rust
 
----------
-Details
----------
+-------
+Hints
+-------
 
-Encourage students to divide the code in a way that feels natural for
-them, and get accustomed to the required :rust:`mod`, :rust:`use`, and :rust:`pub`
-declarations. Afterward, discuss what organizations are most idiomatic.
+- Divide the code in a way that feels natural for you
+- Get accustomed to the required :rust:`mod`, :rust:`use`, and :rust:`pub` declarations

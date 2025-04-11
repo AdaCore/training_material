@@ -24,13 +24,12 @@ Rewriting with Result Tests
 .. container:: source_include 200_error_handling/src/200_error_handling.rs :start-after://ANCHOR-tests :code:rust
 
 ---------------------------------
-Details
+Hint
 ---------------------------------
 
--  The starting code here isn't exactly the same as the previous
-   exercise's solution: We've added in an explicit panic to show
-   students where the error case is. Point this out if students get
-   confused.
+The starting code here isn't exactly the same as the previous
+exercise's solution: We've added in an explicit panic to show
+where the error case is.
 
 ---------------------------------
 Rewriting with Result Solution
