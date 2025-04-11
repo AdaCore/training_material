@@ -70,23 +70,22 @@ acts on. There are several common receivers for a method:
 -  No receiver: this becomes a static method on the struct. Typically
    used to create constructors which are called :rust:`new` by convention.
 
----------
-Details
----------
+------------
+Key Points
+------------
 
-Key Points:
+- Methods are similar to functions
 
--  It can be helpful to introduce methods by comparing them to
-   functions.
+  - Methods are called on an instance of a type
+  
+    - First parameter represents the instance as :rust:`self`.
 
-   -  Methods are called on an instance of a type (such as a struct or
-      enum), the first parameter represents the instance as :rust:`self`.
-   -  Developers may choose to use methods to take advantage of method
-      receiver syntax and to help keep them more organized. By using
-      methods we can keep all the implementation code in one predictable
-      place.
+  - Benefits of methods
 
--  Point out the use of the keyword :rust:`self`, a method receiver.
+    - Take advantage of *receiver syntax*
+    - Keep all the implementation code in one predictable place.
+
+.. container:: speakernote
 
    -  Show that it is an abbreviated term for :rust:`self: Self` and perhaps
       show how the struct name could also be used.

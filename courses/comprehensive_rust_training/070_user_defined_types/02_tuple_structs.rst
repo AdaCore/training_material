@@ -37,9 +37,9 @@ This is often used for single-field wrappers (called newtypes):
        set_thruster_force(force);
    }
 
----------
-Details
----------
+------------
+Key Points
+------------
 
 - Newtypes allow you to encode additional information about the value in a primitive type
 

@@ -19,15 +19,7 @@ interfaces:
        fn greet(&self);
    }
 
-----------------
-Traits Details
-----------------
-
--  A trait defines a number of methods that types must have in order to
-   implement the trait.
-
--  In the *Generics* segment, next, we will see how to build
-   functionality that is generic over all types implementing a trait.
+A trait defines a number of methods that types must have in order to implement the trait.
 
 ---------------------
 Implementing Traits
@@ -59,20 +51,23 @@ Implementing Traits
        fido.greet();
    }
 
-----------------------
-Implementing Details
-----------------------
+-----------------------------
+More on Implementing Traits
+-----------------------------
 
--  To implement :rust:`Trait` for :rust:`Type`, you use an
-   :rust:`impl Trait for Type { .. }` block.
+- To implement :rust:`Trait` for :rust:`Type`, you use an
+  :rust:`impl Trait for Type { .. }` block.
 
--  Unlike Go interfaces, just having matching methods is not enough: a
-   :rust:`Cat` type with a :rust:`talk()` method would not automatically satisfy
-   :rust:`Pet` unless it is in an :rust:`impl Pet` block.
+- Having matching methods is not enough
 
--  Traits may provide default implementations of some methods. Default
-   implementations can rely on all the methods of the trait. In this
-   case, :rust:`greet` is provided, and relies on :rust:`talk`.
+  - :rust:`Cat` type with a :rust:`talk()` method would not automatically satisfy :rust:`Pet`
+
+    - unless it is in an :rust:`impl Pet` block.
+
+- Traits may provide default implementations of some methods. Default
+  implementations can rely on all the methods of the trait.
+
+  - In the example, :rust:`greet` is provided, and relies on :rust:`talk`.
 
 -------------
 Supertraits
@@ -111,13 +106,10 @@ implement :rust:`Animal`.
        println!("{} has {} legs", puppy.name(), puppy.leg_count());
    }
 
----------------------
-Supertraits Details
----------------------
+.. note::
 
-This is sometimes called *trait inheritance* but students should not
-expect this to behave like OO inheritance. It just specifies an
-additional requirement on implementations of a trait.
+   This is sometimes called *trait inheritance* but it does not behave like object-oriented
+   inheritance. It just specifies an additional requirement on implementations of a trait.
 
 ------------------
 Associated Types
@@ -149,9 +141,9 @@ implementation.
        println!("{:?}", Meters(10).multiply(&Meters(20)));
    }
 
----------
-Details
----------
+-------------------------------
+More Info on Associated Types
+-------------------------------
 
 -  Associated types are sometimes also called *output types*. The key
    observation is that the implementer, not the caller, chooses this
