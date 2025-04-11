@@ -37,9 +37,9 @@ specify code to run when they go out of scope:
        println!("Exiting main");
    }
 
----------
-Details
----------
+--------------------------------
+What Happens with :rust:`Drop`
+--------------------------------
 
 -  Note that :rust:`std::mem::drop` is not the same as
    :rust:`std::ops::Drop::drop`.
@@ -57,12 +57,12 @@ Details
    -  This can be useful for objects that do some work on :rust:`drop`:
       releasing locks, closing files, etc.
 
-Discussion points:
+.. container:: speakernote
 
--  Why doesn't :rust:`Drop::drop` take :rust:`self`?
+   -  Why doesn't :rust:`Drop::drop` take :rust:`self`?
 
-   -  Short-answer: If it did, :rust:`std::mem::drop` would be called at the
-      end of the block, resulting in another call to :rust:`Drop::drop`, and
-      a stack overflow!
+      -  Short-answer: If it did, :rust:`std::mem::drop` would be called at the
+         end of the block, resulting in another call to :rust:`Drop::drop`, and
+         a stack overflow!
 
--  Try replacing :rust:`drop(a)` with :rust:`a.drop()`.
+   -  Try replacing :rust:`drop(a)` with :rust:`a.drop()`.

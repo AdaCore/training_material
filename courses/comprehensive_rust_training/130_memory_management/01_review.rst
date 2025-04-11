@@ -36,19 +36,11 @@ dynamically sized data, the actual string, on the heap:
 
 .. image:: comprehensive_rust_training/review_of_program_memory.svg
 
----------
-Details
----------
+.. note::
 
--  Mention that a :rust:`String` is backed by a :rust:`Vec`, so it has a
+   :rust:`String` is backed by a :rust:`Vec`, so it has a
    capacity and length and can grow if mutable via reallocation on the
    heap.
-
--  If students ask about it, you can mention that the underlying memory
-   is heap allocated using the
-   :url:`System Allocator <https://doc.rust-lang.org/std/alloc/struct.System.html>`
-   and custom allocators can be implemented using the
-   :url:`Allocator API <https://doc.rust-lang.org/std/alloc/index.html>`
 
 -----------------
 More to Explore
@@ -57,17 +49,19 @@ More to Explore
 We can inspect the memory layout with :rust:`unsafe` Rust. However, you
 should point out that this is rightfully unsafe!
 
-.. code:: rust
+.. container:: latex_environment scriptsize
 
-   fn main() {
-       let mut s1 = String::from("Hello");
-       s1.push(' ');
-       s1.push_str("world");
-       // DON'T DO THIS AT HOME! For educational purposes only.
-       // String provides no guarantees about its layout, so this could lead to
-       // undefined behavior.
-       unsafe {
-           let (capacity, ptr, len): (usize, usize, usize) = std::mem::transmute(s1);
-           println!("capacity = {capacity}, ptr = {ptr:#x}, len = {len}");
-       }
-   }
+   .. code:: rust
+
+      fn main() {
+          let mut s1 = String::from("Hello");
+          s1.push(' ');
+          s1.push_str("world");
+          // DON'T DO THIS AT HOME! For educational purposes only.
+          // String provides no guarantees about its layout, so this could lead to
+          // undefined behavior.
+          unsafe {
+             let (capacity, ptr, len): (usize, usize, usize) = std::mem::transmute(s1);
+             println!("capacity = {capacity}, ptr = {ptr:#x}, len = {len}");
+          }
+      }

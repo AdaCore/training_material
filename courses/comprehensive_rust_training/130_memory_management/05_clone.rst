@@ -21,9 +21,9 @@ accomplishes this.
        say_hello(name);
    }
 
----------
-Details
----------
+----------------
+Why Use Clone?
+----------------
 
 -  The idea of :rust:`Clone` is to make it easy to spot where heap
    allocations are occurring. Look for :rust:`.clone()` and a few others

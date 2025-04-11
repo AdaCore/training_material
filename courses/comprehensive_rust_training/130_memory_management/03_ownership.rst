@@ -27,10 +27,7 @@ precisely one owner at all times.
 At the end of the scope, the variable is *dropped* and the data is
 freed. A destructor can run here to free up resources.
 
----------
-Details
----------
+.. note::
 
-Students familiar with garbage-collection implementations will know that
-a garbage collector starts with a set of *roots* to find all reachable
-memory. Rust's :dfn:`single owner` principle is a similar idea.
+   A garbage collector starts with a set of *roots* to find all reachable
+   memory. Rust's :dfn:`single owner` principle is a similar idea.

@@ -45,11 +45,11 @@ function parameter. This transfers ownership:
        // say_hello(name);
    }
 
----------
-Details
----------
+--------------------
+Ownership Behavior
+--------------------
 
--  Mention that this is the opposite of the defaults in C++, which
+-  This is the opposite of the defaults in C++, which
    copies by value unless you use :rust:`std::move` (and the move
    constructor is defined!).
 
@@ -62,7 +62,10 @@ Details
 
 -  In Rust, clones are explicit (by using :rust:`clone`).
 
-In the :rust:`say_hello` example:
+
+-------------------
+About the Example
+-------------------
 
 -  With the first call to :rust:`say_hello`, :rust:`main` gives up ownership of
    :rust:`name`. Afterwards, :rust:`name` cannot be used anymore within

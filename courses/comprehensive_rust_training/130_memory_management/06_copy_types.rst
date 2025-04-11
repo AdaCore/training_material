@@ -37,9 +37,9 @@ You can opt-in your own types to use copy semantics:
 -  After the assignment, both :rust:`p1` and :rust:`p2` own their own data.
 -  We can also use :rust:`p1.clone()` to explicitly copy the data.
 
----------
-Details
----------
+------------------------
+Copying versus Cloning
+------------------------
 
 Copying and cloning are not the same thing:
 
@@ -51,13 +51,15 @@ Copying and cloning are not the same thing:
    behavior by implementing the :rust:`Clone` trait.
 -  Copying does not work on types that implement the :rust:`Drop` trait.
 
-In the above example, try the following:
+.. container:: speakernote
 
--  Add a :rust:`String` field to :rust:`struct Point`. It will not compile
-   because :rust:`String` is not a :rust:`Copy` type.
--  Remove :rust:`Copy` from the :rust:`derive` attribute. The compiler error is
-   now in the :rust:`println!` for :rust:`p1`.
--  Show that it works if you clone :rust:`p1` instead.
+   In the above example, try the following:
+
+   -  Add a :rust:`String` field to :rust:`struct Point`. It will not compile
+      because :rust:`String` is not a :rust:`Copy` type.
+   -  Remove :rust:`Copy` from the :rust:`derive` attribute. The compiler error is
+      now in the :rust:`println!` for :rust:`p1`.
+   -  Show that it works if you clone :rust:`p1` instead.
 
 -----------------
 More to Explore
