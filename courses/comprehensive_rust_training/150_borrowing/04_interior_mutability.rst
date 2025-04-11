@@ -15,14 +15,11 @@ behind a shared reference. The standard library provides several ways to
 do this, all while still ensuring safety, typically by performing a
 runtime check.
 
----------
-Details
----------
+.. note::
 
-The main thing to take away from this slide is that Rust provides *safe*
-ways to modify data behind a shared reference. There are a variety of
-ways to ensure that safety, and the next sub-slides present a few of
-them.
+   Rust provides *safe* ways to modify data behind a shared reference.
+   There are a variety of ways to ensure that safety, and the next few
+   slides present a few of them.
 
 --------------
 :rust:`Cell`
@@ -45,13 +42,9 @@ rules cannot be broken.
        println!("{}", cell.get());
    }
 
-----------------------
-:rust:`Cell` Details
-----------------------
-
--  :rust:`Cell` is a simple means to ensure safety: it has a :rust:`set` method
-   that takes :rust:`&self`. This needs no runtime check, but requires
-   moving values, which can have its own cost.
+:rust:`Cell` is a simple means to ensure safety: it has a :rust:`set` method
+that takes :rust:`&self`. This needs no runtime check, but requires
+moving values, which can have its own cost.
 
 -----------------
 :rust:`RefCell`
@@ -88,9 +81,9 @@ escape.
        println!("{cell:?}");
    }
 
--------------------------
-:rust:`RefCell` Details
--------------------------
+----------------------------
+More About :rust:`RefCell`
+----------------------------
 
 -  :rust:`RefCell` enforces Rust's usual borrowing rules (either multiple
    shared references or a single exclusive reference) with a runtime
@@ -107,5 +100,5 @@ More to Explore
 
 There are also :rust:`OnceCell` and :rust:`OnceLock`, which allow initialization
 on first use. Making these useful requires some more knowledge than
-students have at this time.
+this class will cover.
 

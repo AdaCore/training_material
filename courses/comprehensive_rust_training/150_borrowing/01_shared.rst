@@ -28,13 +28,6 @@ function, you can let a function *borrow* the value:
 -  The :rust:`add` function *borrows* two points and returns a new point.
 -  The caller retains ownership of the inputs.
 
----------
-Details
----------
-
-This slide is a review of the material on references from day 1,
-expanding slightly to include function arguments and return values.
-
 -----------------
 More to Explore
 -----------------

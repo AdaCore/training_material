@@ -30,10 +30,6 @@ Similarly, consider the case of iterator invalidation:
        }
    }
 
----------
-Details
----------
-
--  In both of these cases, modifying the collection by pushing new
-   elements into it can potentially invalidate existing references to
-   the collection's elements if the collection has to reallocate.
+In both of these cases, modifying the collection by pushing new
+elements into it can potentially invalidate existing references to
+the collection's elements if the collection has to reallocate.

@@ -41,28 +41,36 @@ There's also a second main rule that the borrow checker enforces: The
        println!("b: {b}");
    }
 
----------
-Details
----------
+----------------------------
+More About Borrow Checking
+----------------------------
 
--  The :dfn:`outlives` rule was demonstrated previously when we first looked
-   at references. We review it here to show students that the borrow
-   checking is following a few different rules to validate borrowing.
+-  :dfn:`outlives` rule was demonstrated previously when we first looked
+   at references.
+
+   - Borrow checking is following a few different rules to validate borrowing.
+
 -  Note that the requirement is that conflicting references not *exist*
    at the same point. It does not matter where the reference is
    dereferenced.
 -  The above code does not compile because :rust:`a` is borrowed as mutable
    (through :rust:`c`) and as immutable (through :rust:`b`) at the same time.
--  Move the :rust:`println!` statement for :rust:`b` before the scope that
-   introduces :rust:`c` to make the code compile.
--  After that change, the compiler realizes that :rust:`b` is only ever used
-   before the new mutable borrow of :rust:`a` through :rust:`c`. This is a
-   feature of the borrow checker called :dfn:`non-lexical lifetimes`.
+
+   -  Move the :rust:`println!` statement for :rust:`b` before the scope that
+      introduces :rust:`c` to make the code compile.
+
+   -  After that change, the compiler realizes that :rust:`b` is only ever used
+      before the new mutable borrow of :rust:`a` through :rust:`c`.
+
+      - This is a feature of the borrow checker called :dfn:`non-lexical lifetimes`.
+
 -  The exclusive reference constraint is quite strong. Rust uses it to
    ensure that data races do not occur. Rust also *relies* on this
-   constraint to optimize code. For example, a value behind a shared
-   reference can be safely cached in a register for the lifetime of that
-   reference.
+   constraint to optimize code.
+
+   - Example: a value behind a shared reference can be safely cached in a register
+     for the lifetime of that reference.
+
 -  The borrow checker is designed to accommodate many common patterns,
    such as taking exclusive references to different fields in a struct
    at the same time. But, there are some situations where it doesn't
