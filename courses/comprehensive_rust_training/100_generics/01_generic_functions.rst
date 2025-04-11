@@ -26,9 +26,9 @@ stored.
        println!("picked a string: {:?}", pick(28, "dog", "cat"));
    }
 
----------
-Details
----------
+-------------------------
+Using Generic Functions
+-------------------------
 
 -  Rust infers a type for T based on the types of the arguments and
    return value.
@@ -45,12 +45,13 @@ Details
 
       pick(123, Foo { val: 7 }, Foo { val: 456 });
 
--  This is similar to C++ templates, but Rust partially compiles the
-   generic function immediately, so that function must be valid for all
-   types matching the constraints. For example, try modifying :rust:`pick`
-   to return :rust:`even + odd` if :rust:`n == 0`. Even if only the :rust:`pick`
-   instantiation with integers is used, Rust still considers it invalid.
-   C++ would let you do this.
+-  Similar to C++ templates, but Rust does a partial compilation
+
+   - Function must be valid for all types matching the constraints
+
+     - Example: modify :rust:`pick` to return :rust:`even + odd` if :rust:`n == 0`
+     - Compiler complains because there is no guarantee type used supports :rust:`+`
+     - A C++ template would not generate a compile error
 
 -  Generic code is turned into non-generic code based on the call sites.
    This is a zero-cost abstraction: you get exactly the same result as

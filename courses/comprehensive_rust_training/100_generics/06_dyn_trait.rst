@@ -56,9 +56,9 @@ supports using them for type-erased, dynamic dispatch via trait objects:
        dynamic(&dog);
    }
 
----------
-Details
----------
+------------
+Key Points
+------------
 
 -  Generics, including :rust:`impl Trait`, use monomorphization to create a
    specialized instance of the function for each different type that the

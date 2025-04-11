@@ -30,9 +30,9 @@ function arguments and return values:
        println!("debuggable: {debuggable:?}");
    }
 
----------
-Details
----------
+------------
+Key Points
+------------
 
 :rust:`impl Trait` allows you to work with types which you cannot name. The
 meaning of :rust:`impl Trait` is a bit different in the different positions.
@@ -52,6 +52,3 @@ meaning of :rust:`impl Trait` is a bit different in the different positions.
    caller may need to choose one, such as with
    :rust:`let x: Vec<_> = foo.collect()` or with the turbofish,
    :rust:`foo.collect::<Vec<_>>()`.
-
-What is the type of :rust:`debuggable`? Try :rust:`let debuggable: () = ..` to
-see what the error message shows.
