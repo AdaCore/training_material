@@ -50,9 +50,9 @@ Memory layout after allocating :rust:`pets`:
 
 .. image:: comprehensive_rust_training/smart_pointers_owned_objects.svg
 
----------
-Details
----------
+--------------------------------
+More About Owned Trait Objects
+--------------------------------
 
 -  Types that implement a given trait may be of different sizes. This
    makes it impossible to have things like :rust:`Vec<dyn Pet>` in the

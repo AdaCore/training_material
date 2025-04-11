@@ -44,20 +44,21 @@ indirection:
 
 .. image:: comprehensive_rust_training/smart_pointers_box_2.svg
 
----------
-Details
----------
+---------------------------
+More About :rust:`Box<T>`
+---------------------------
 
--  :rust:`Box` is like :rust:`std::unique_ptr` in C++, except that it's
+-  :rust:`Box` is like :cpp:`std::unique_ptr` in C++, except that it's
    guaranteed to be not null.
 
 -  A :rust:`Box` can be useful when you:
 
-   -  have a type whose size can't be known at compile time, but the
+   -  Have a type whose size can't be known at compile time, but the
       Rust compiler wants to know an exact size.
-   -  want to transfer ownership of a large amount of data. To avoid
-      copying large amounts of data on the stack, instead store the data
-      on the heap in a :rust:`Box` so only the pointer is moved.
+   -  Want to transfer ownership of a large amount of data.
+
+      - To avoid copying large amounts of data on the stack, store the data
+        on the heap in a :rust:`Box` so only the pointer is moved.
 
 -  If :rust:`Box` was not used and we attempted to embed a :rust:`List` directly
    into the :rust:`List`, the compiler would not be able to compute a fixed
@@ -67,12 +68,3 @@ Details
 -  :rust:`Box` solves this problem as it has the same size as a regular
    pointer and just points at the next element of the :rust:`List` in the
    heap.
-
--  Remove the :rust:`Box` in the List definition and show the compiler
-   error. We get the message :command:`recursive without indirection`, because
-   for data recursion, we have to use indirection, a :rust:`Box` or
-   reference of some kind, instead of storing the value directly.
-
--  Though :rust:`Box` looks like :rust:`std::unique_ptr` in C++, it cannot be
-   empty/null. This makes :rust:`Box` one of the types that allow the
-   compiler to optimize storage of some enums (the :dfn:`niche optimization`).
