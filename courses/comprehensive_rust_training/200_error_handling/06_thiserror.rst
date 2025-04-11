@@ -7,7 +7,7 @@
 -------------------
 
 The :url:`thiserror <https://docs.rs/thiserror/>` crate provides macros
-to help avoid boilerplate when defining error types. It provides derive
+to help avoid boilerplate when defining error types. It provides :rust:`derive`
 macros that assist in implementing :rust:`From<T>`, :rust:`Display`, and the
 :rust:`Error` trait.
 
@@ -42,9 +42,9 @@ macros that assist in implementing :rust:`From<T>`, :rust:`Display`, and the
        }
    }
 
----------
-Details
----------
+-------------------------
+Using :rust:`thiserror`
+-------------------------
 
 -  The :rust:`Error` derive macro is provided by :rust:`thiserror`, and has lots
    of useful attributes to help define error types in a compact way.

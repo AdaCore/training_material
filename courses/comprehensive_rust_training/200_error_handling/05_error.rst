@@ -32,9 +32,9 @@ can contain any error.
        }
    }
 
----------
-Details
----------
+---------------------------
+Using Dynamic Error Types
+---------------------------
 
 The :rust:`read_count` function can return :rust:`std::io::Error` (from file
 operations) or :rust:`std::num::ParseIntError` (from :rust:`String::parse`).

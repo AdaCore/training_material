@@ -32,9 +32,9 @@ enum, which we briefly saw when discussing standard library types.
        }
    }
 
----------
-Details
----------
+-----------------------------
+Dealing with :rust:`Result`
+-----------------------------
 
 -  :rust:`Result` has two variants: :rust:`Ok` which contains the success value,
    and :rust:`Err` which contains an error value of some kind.

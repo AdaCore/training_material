@@ -46,9 +46,9 @@ trait impls explicitly for custom error types.
        }
    }
 
----------
-Details
----------
+---------------------------
+More About :rust:`anyhow`
+---------------------------
 
 -  :rust:`anyhow::Error` is essentially a wrapper around :rust:`Box<dyn Error>`.
    As such it's again generally not a good choice for the public API of

@@ -51,18 +51,12 @@ We can use this to simplify our error handling code:
        println!("username or error: {username:?}");
    }
 
----------
-Details
----------
-
-Simplify the :rust:`read_username` function to use :rust:`?`.
-
-Key points:
+------------------------
+Using the Try Operator
+------------------------
 
 -  The :rust:`username` variable can be either :rust:`Ok(string)` or
    :rust:`Err(error)`.
--  Use the :rust:`fs::write` call to test out the different scenarios: no
-   file, empty file, file with username.
 -  Note that :rust:`main` can return a :rust:`Result<(), E>` as long as it
    implements :rust:`std::process::Termination`. In practice, this means
    that :rust:`E` implements :rust:`Debug`. The executable will print the

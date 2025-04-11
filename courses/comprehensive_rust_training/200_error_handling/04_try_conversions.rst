@@ -74,9 +74,9 @@ Example
        println!("username or error: {username:?}");
    }
 
----------
-Details
----------
+----------------------------------------------------------
+Try Operator Versus :rust:`Option` Versus :rust:`Result`
+----------------------------------------------------------
 
 The :rust:`?` operator must return a value compatible with the return type
 of the function. For :rust:`Result`, it means that the error types have to

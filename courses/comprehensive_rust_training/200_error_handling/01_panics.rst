@@ -29,9 +29,9 @@ Rust will trigger a panic if a fatal error happens at runtime:
 -  Use non-panicking APIs (such as :rust:`Vec::get`) if crashing is not
    acceptable.
 
----------
-Details
----------
+-----------------
+Catching Panics
+-----------------
 
 By default, a panic will cause the stack to unwind. The unwinding can be
 caught:
