@@ -31,9 +31,9 @@ For example, the :rust:`zerocopy` crate has an unsafe trait that looks
    // SAFETY: `u32` has a defined representation and no padding.
    unsafe impl IntoBytes for u32 {}
 
----------
-Details
----------
+---------------------------
+Documenting Unsafe Traits
+---------------------------
 
 There should be a :rust:`# Safety` section on the Rustdoc for the trait
 explaining the requirements for the trait to be safely implemented.

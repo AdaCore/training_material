@@ -22,9 +22,9 @@ Unions are like enums, but you need to track the active field yourself:
        println!("bool: {}", unsafe { u.b }); // Undefined behavior!
    }
 
----------
-Details
----------
+---------------------
+Use Case for Unions
+---------------------
 
 Unions are very rarely needed in Rust as you can usually use an enum.
 They are occasionally needed for interacting with C library APIs.

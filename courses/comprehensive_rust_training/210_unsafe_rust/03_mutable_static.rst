@@ -39,14 +39,27 @@ mutable static variables:
        }
    }
 
----------
-Details
----------
+------------------------------
+Dealing With Race Conditions
+------------------------------
 
 -  The program here is safe because it is single-threaded. However, the
-   Rust compiler is conservative and will assume the worst. Try removing
-   the :rust:`unsafe` and see how the compiler explains that it is undefined
-   behavior to mutate a static from multiple threads.
+   Rust compiler is conservative and will assume the worst.
+
+.. container:: latex_environment footnotesize
+
+   ::
+
+     error: creating a shared reference to mutable static is discouraged
+
+
+-  If you remove the :rust:`unsafe` compiler complains:
+
+.. container:: latex_environment footnotesize
+
+   ::
+
+      error[E0133]: use of mutable static is unsafe and requires unsafe block
 
 -  Using a mutable static is generally a bad idea, but there are some
    cases where it might make sense in low-level :rust:`no_std` code, such as

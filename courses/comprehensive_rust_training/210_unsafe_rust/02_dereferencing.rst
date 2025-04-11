@@ -35,9 +35,9 @@ Creating pointers is safe, but dereferencing them requires :rust:`unsafe`:
        */
    }
 
----------
-Details
----------
+-----------------------------------------
+Good Coding Practice for :rust:`unsafe`
+-----------------------------------------
 
 It is good practice (and required by the Android Rust style guide) to
 write a comment for each :rust:`unsafe` block explaining how the code inside
@@ -60,6 +60,8 @@ i.e.:
 In most cases the pointer must also be properly aligned.
 
 The *NOT SAFE* section gives an example of a common kind of UB bug:
-:rust:`*r1` has the :rust:`'static` lifetime, so :rust:`r3` has type
-:rust:`&'static String`, and thus outlives :rust:`s`. Creating a reference from
-a pointer requires *great care*.
+
+   - :rust:`*r1` has the :rust:`'static` lifetime
+   - So :rust:`r3` has type :rust:`&'static String`
+   - And thus outlives :rust:`s`.
+   - Creating a reference from a pointer requires *great care*.
