@@ -10,18 +10,20 @@ In addition to the :rust:`next` method that defines how an iterator behaves,
 the :rust:`Iterator` trait provides 70+ helper methods that can be used to
 build customized iterators.
 
-.. code:: rust
+.. container:: latex_environment footnotesize
 
-   let result: i32 = (1..=10) // Create a range from 1 to 10
-       .filter(|&x| x % 2 == 0) // Keep only even numbers
-       .map(|x| x * x) // Square each number
-       .sum(); // Sum up all the squared numbers
+   .. code:: rust
 
-   println!("The sum of squares of even numbers from 1 to 10 is: {}", result);
+      let result: i32 = (1..=10) // Create a range from 1 to 10
+          .filter(|&x| x % 2 == 0) // Keep only even numbers
+          .map(|x| x * x) // Square each number
+          .sum(); // Sum up all the squared numbers
 
----------
-Details
----------
+      println!("The sum of squares of even numbers from 1 to 10 is: {}", result);
+
+--------------------------------------------
+More About :rust:`Iterator` Helper Methods
+--------------------------------------------
 
 -  The :rust:`Iterator` trait implements many common functional programming
    operations over collections (e.g. :rust:`map`, :rust:`filter`, :rust:`reduce`,

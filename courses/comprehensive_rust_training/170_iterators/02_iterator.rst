@@ -41,16 +41,16 @@ elements of a slice it might look something like this:
        }
    }
 
----------
-Details
----------
+------------------------
+Dealing with Iterators
+------------------------
 
 -  The :rust:`SliceIter` example implements the same logic as the C-style
-   :rust:`for` loop demonstrated on the last slide.
+   :cpp:`for` loop we just saw
 
--  Point out to the students that iterators are lazy: Creating the
-   iterator just initializes the struct but does not otherwise do any
-   work. No work happens until the :rust:`next` method is called.
+-  Iterators are lazy: Creating the iterator just initializes the struct
+   but does not otherwise do any work. No work happens until the
+   :rust:`next` method is called.
 
 -  Iterators don't need to be finite! It's entirely valid to have an
    iterator that will produce values forever. For example, a half open

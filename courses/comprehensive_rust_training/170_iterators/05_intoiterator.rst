@@ -57,9 +57,9 @@ by the :rust:`for` loop.
        }
    }
 
----------
-Details
----------
+---------------------------------
+More About :rust:`IntoIterator`
+---------------------------------
 
 -  :rust:`IntoIterator` is the trait that makes for loops work. It is
    implemented by collection types such as :rust:`Vec<T>` and references to
@@ -79,14 +79,16 @@ the same :rust:`Item` type, which means that it returns :rust:`Option<Item>`
 
 The example iterates over all combinations of x and y coordinates.
 
-Try iterating over the grid twice in :rust:`main`. Why does this fail? Note
-that :rust:`IntoIterator::into_iter` takes ownership of :rust:`self`.
+.. container:: speakernote
 
-Fix this issue by implementing :rust:`IntoIterator` for :rust:`&Grid` and
-storing a reference to the :rust:`Grid` in :rust:`GridIter`.
+   Try iterating over the grid twice in :rust:`main`. Why does this fail? Note
+   that :rust:`IntoIterator::into_iter` takes ownership of :rust:`self`.
 
-The same problem can occur for standard library types:
-:rust:`for e in some_vector` will take ownership of :rust:`some_vector` and
-iterate over owned elements from that vector. Use
-:rust:`for e in &some_vector` instead, to iterate over references to
-elements of :rust:`some_vector`.
+   Fix this issue by implementing :rust:`IntoIterator` for :rust:`&Grid` and
+   storing a reference to the :rust:`Grid` in :rust:`GridIter`.
+
+   The same problem can occur for standard library types:
+   :rust:`for e in some_vector` will take ownership of :rust:`some_vector` and
+   iterate over owned elements from that vector. Use
+   :rust:`for e in &some_vector` instead, to iterate over references to
+   elements of :rust:`some_vector`.

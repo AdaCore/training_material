@@ -11,33 +11,37 @@ The
 method lets you build a collection from an
 :url:`Iterator <https://doc.rust-lang.org/std/iter/trait.Iterator.html>`.
 
-.. code:: rust
+.. container:: latex_environment scriptsize
 
-   fn main() {
-       let primes = vec![2, 3, 5, 7];
-       let prime_squares = primes.into_iter().map(|p| p * p).collect::<Vec<_>>();
-       println!("prime_squares: {prime_squares:?}");
-   }
+   .. code:: rust
 
----------
-Details
----------
+      fn main() {
+          let primes = vec![2, 3, 5, 7];
+          let prime_squares = primes.into_iter().map(|p| p * p).collect::<Vec<_>>();
+          println!("prime_squares: {prime_squares:?}");
+      }
+
+----------------------------
+Collections from Iterators
+----------------------------
 
 -  Any iterator can be collected in to a :rust:`Vec`, :rust:`VecDeque`, or
    :rust:`HashSet`. Iterators that produce key-value pairs (i.e. a
    two-element tuple) can also be collected into :rust:`HashMap` and
    :rust:`BTreeMap`.
 
-Show the students the definition for :rust:`collect` in the standard library
-docs. There are two ways to specify the generic type :rust:`B` for this
-method:
+.. container:: speakernote
 
--  With the "turbofish": :rust:`some_iterator.collect::<COLLECTION_TYPE>()`,
-   as shown. The :rust:`_` shorthand used here lets Rust infer the type of
-   the :rust:`Vec` elements.
--  With type inference:
-   :rust:`let prime_squares: Vec<_> = some_iterator.collect()`. Rewrite the
-   example to use this form.
+   Show the students the definition for :rust:`collect` in the standard library
+   docs. There are two ways to specify the generic type :rust:`B` for this
+   method:
+
+   -  With the "turbofish": :rust:`some_iterator.collect::<COLLECTION_TYPE>()`,
+      as shown. The :rust:`_` shorthand used here lets Rust infer the type of
+      the :rust:`Vec` elements.
+   -  With type inference:
+      :rust:`let prime_squares: Vec<_> = some_iterator.collect()`. Rewrite the
+      example to use this form.
 
 -----------------
 More to Explore

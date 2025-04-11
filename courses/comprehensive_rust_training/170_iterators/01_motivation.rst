@@ -26,17 +26,13 @@ In a C-style for loop you declare these things directly:
 In Rust we bundle this state and logic together into an object known as
 an :dfn:`iterator`.
 
----------
-Details
----------
+------------------------------------
+Rust's Implementation of Iterators
+------------------------------------
 
--  This slide provides context for what Rust iterators do under the
-   hood. We use the (hopefully) familiar construct of a C-style :rust:`for`
-   loop to show how iteration requires some state and some logic, that
-   way on the next slide we can show how an iterator bundles these
-   together.
+-  A C-style :cpp:`for` loop shows how iteration requires some state and some logic
 
--  Rust doesn't have a C-style :rust:`for` loop, but we can express the same
+-  Rust doesn't have a C-style :cpp:`for` loop, but we can express the same
    thing with :rust:`while`:
 
    .. code:: rust
@@ -52,7 +48,7 @@ Details
 More to Explore
 -----------------
 
-There's another way to express array iteration using :rust:`for` in C and
+There's another way to express array iteration using :cpp:`for` in C and
 C++: You can use a pointer to the front and a pointer to the end of the
 array and then compare those pointers to determine when the loop should
 end.
@@ -63,6 +59,5 @@ end.
        int elem = *ptr;
    }
 
-If students ask, you can point out that this is how Rust's slice and
-array iterators work under the hood (though implemented as a Rust
-iterator).
+This is how Rust's slice and array iterators work under the hood
+(though implemented as a Rust iterator).
