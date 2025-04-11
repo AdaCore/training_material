@@ -45,9 +45,9 @@ module.
        todo!()
    }
 
----------
-Details
----------
+---------------------------
+Modules in the Filesystem
+---------------------------
 
 -  Before Rust 2018, modules needed to be located at :rust:`module/mod.rs`
    instead of :rust:`module.rs`, and this is still a working alternative for

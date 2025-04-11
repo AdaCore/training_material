@@ -29,9 +29,9 @@ Similarly, :rust:`mod` lets us namespace types and functions:
        bar::do_something();
    }
 
----------
-Details
----------
+--------------------
+Modules and Crates
+--------------------
 
 -  Packages provide functionality and include a :rust:`Cargo.toml` file that
    describes how to build a bundle of 1+ crates.

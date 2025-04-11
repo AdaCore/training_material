@@ -13,6 +13,7 @@ details of struct, controlling what data and functionality is visible
 externally.
 
 .. code:: rust
+   :number-lines: 1
 
    use outer::Foo;
 
@@ -46,28 +47,50 @@ externally.
        // println!("Is {} big? {}", foo.val, foo.is_big);
    }
 
----------
-Details
----------
+---------------------------
+Privacy and Encapsulation
+---------------------------
 
--  This slide demonstrates how privacy in structs is module-based.
-   Students coming from object oriented languages may be used to types
-   being the encapsulation boundary, so this demonstrates how Rust
-   behaves differently while showing how we can still achieve
-   encapsulation.
+-  Privacy in structs is module-based.
+
+   - In some languages, types are the enpsulation boundary
+   - Rust behaves differently
+
+     - But can still achieve encapsulation.
 
 -  Note how the :rust:`is_big` field is fully controlled by :rust:`Foo`,
    allowing :rust:`Foo` to control how it's initialized and enforce any
    invariants it needs to (e.g. that :rust:`is_big` is only :rust:`true` if
    :rust:`val > 100`).
 
--  Point out how helper functions can be defined in the same module
+-  Helper functions can be defined in the same module
    (including child modules) in order to get access to the type's
    private fields/methods.
 
--  The first commented out line demonstrates that you cannot initialize
-   a struct with private fields. The second one demonstrates that you
-   also can't directly access private fields.
+-  Commented-out lines are compiler errors
+
+   - You cannot initialize a struct with private fields
+
+      .. code:: rust
+         :number-lines: 27
+
+         let foo = Foo { val: 42, is_big: true };
+
+      ::
+
+         error[E0451]: field `is_big` of struct `Foo` is private
+
+
+   - You cannot directly access private fields
+
+      .. code:: rust
+         :number-lines: 30
+
+         println!("Is {} big? {}", foo.val, foo.is_big);
+
+      ::
+
+         error[E0616]: field `is_big` of struct `Foo` is private
 
 -  Enums do not support privacy: Variants and data within those variants
    is always public.

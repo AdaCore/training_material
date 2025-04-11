@@ -40,9 +40,9 @@ Modules are a privacy boundary:
        outer::public();
    }
 
----------
-Details
----------
+-----------------------
+Public Versus Private
+-----------------------
 
 -  Use the :rust:`pub` keyword to make modules public.
 
@@ -50,7 +50,7 @@ Additionally, there are advanced :rust:`pub(...)` specifiers to restrict the
 scope of public visibility.
 
 -  See the
-  :url:`Rust Reference <https://doc.rust-lang.org/reference/visibility-and-privacy.html#pubin-path-pubcrate-pubsuper-and-pubself>`.
+   :url:`Rust Reference <https://doc.rust-lang.org/reference/visibility-and-privacy.html#pubin-path-pubcrate-pubsuper-and-pubself>`.
 -  Configuring :rust:`pub(crate)` visibility is a common pattern.
 -  Less commonly, you can give visibility to a specific path.
 -  In any case, visibility must be granted to an ancestor module (and

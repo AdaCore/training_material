@@ -20,19 +20,19 @@ Paths
 
 Paths are resolved as follows:
 
-1. As a relative path:
+- As a relative path:
 
    -  :rust:`foo` or :rust:`self::foo` refers to :rust:`foo` in the current module,
    -  :rust:`super::foo` refers to :rust:`foo` in the parent module.
 
-2. As an absolute path:
+- As an absolute path:
 
    -  :rust:`crate::foo` refers to :rust:`foo` in the root of the current crate,
    -  :rust:`bar::foo` refers to :rust:`foo` in the :rust:`bar` crate.
 
----------
-Details
----------
+---------------------------
+Referencing Other Modules
+---------------------------
 
 -  It is common to *re-export* symbols at a shorter path. For example,
    the top-level :rust:`lib.rs` in a crate might have
