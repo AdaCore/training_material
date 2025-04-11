@@ -10,25 +10,50 @@ The Rust compiler produces fantastic error messages, as well as helpful
 built-in lints. :url:`Clippy <https://doc.rust-lang.org/clippy/>` provides
 even more lints, organized into groups that can be enabled per-project.
 
-.. code:: rust
+.. container:: latex_environment small
 
-   #[deny(clippy::cast_possible_truncation)]
-   fn main() {
-       let mut x = 3;
-       while (x < 70000) {
-           x *= 2;
-       }
-       println!("X probably fits in a u16, right? {}", x as u16);
-   }
+   .. code:: rust
+      :number-lines: 1
 
----------
-Details
----------
+      #[deny(clippy::cast_possible_truncation)]
+      fn main() {
+          let mut x = 3;
+          while (x < 70000) {
+              x *= 2;
+          }
+          println!("X probably fits in a u16, right? {}", x as u16);
+      }
 
-There are compiler lints visible here, but not clippy lints. Run
-:rust:`clippy` on the playground site to show clippy warnings. Clippy has
-extensive documentation of its lints, and adds new lints (including
+---------------
+Lint Messages
+---------------
+
+- Compiler lints
+
+.. container:: latex_environment small
+
+   .. code:: rust
+      :number-lines: 4
+
+      while (x < 70000) {
+
+
+   ::
+
+      warning: unnecessary parentheses around `while` condition
+
+- Clippy lints
+
+.. container:: latex_environment small
+
+   .. code:: rust
+      :number-lines: 7
+
+      println!("X probably fits in a u16, right? {}", x as u16);
+
+   ::
+
+      error: casting `i32` to `u16` may truncate the value
+
+Clippy has extensive documentation of its lints, and adds new lints (including
 default-deny lints) all the time.
-
-Note that errors or warnings with :rust:`help: ...` can be fixed with
-:rust:`cargo fix` or via your editor.

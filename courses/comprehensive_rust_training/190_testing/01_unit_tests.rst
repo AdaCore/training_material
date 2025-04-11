@@ -43,9 +43,3 @@ tests.
 -  This lets you unit test private helpers.
 -  The :rust:`#[cfg(test)]` attribute is only active when you run
    :rust:`cargo test`.
-
----------
-Details
----------
-
-Run the tests in the playground in order to show their results.
