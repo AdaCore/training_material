@@ -8,21 +8,24 @@ Language-Defined Character Types
 
 * :ada:`Character`
 
-   - 8-bit Latin-1
+   - 8-bit Latin-1 (ASCII subset of Unicode)
    - Base component of :ada:`String`
    - Uses attributes :ada:`'Image` / :ada:`'Value`
+   - Part of original Ada language
 
 * :ada:`Wide_Character`
 
-   - 16-bit Unicode
+   - 16-bit Unicode (*BMP* - Basic Multilingual Plane)
    - Base component of :ada:`Wide_Strings`
    - Uses attributes :ada:`'Wide_Image` / :ada:`'Wide_Value`
+   - Added in Ada95
 
 * :ada:`Wide_Wide_Character`
 
-   - 32-bit Unicode
+   - 32-bit Unicode (full Unicode support)
    - Base component of :ada:`Wide_Wide_Strings`
    - Uses attributes :ada:`'Wide_Wide_Image` / :ada:`'Wide_Wide_Value`
+   - Added in Ada05
 
 -----------------------------
 Character Oriented Packages
