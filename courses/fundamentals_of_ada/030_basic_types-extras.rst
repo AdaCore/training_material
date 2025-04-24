@@ -1,6 +1,6 @@
-*************
-Basic Types
-*************
+*********************************
+Basic Types: Additional Content
+*********************************
 
 .. container:: PRELUDE BEGIN
 

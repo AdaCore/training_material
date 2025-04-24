@@ -1,6 +1,6 @@
-*********
-Tasking
-*********
+*********************************
+Tasking: Light Runtime In-Depth
+*********************************
 
 .. container:: PRELUDE BEGIN
 
