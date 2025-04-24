@@ -1,6 +1,6 @@
-*********
-Tasking
-*********
+******************
+Tasking In-Depth
+******************
 
 .. container:: PRELUDE BEGIN
 
