@@ -18,14 +18,14 @@ Language-Defined Character Types
    - 16-bit Unicode (*BMP* - Basic Multilingual Plane)
    - Base component of :ada:`Wide_Strings`
    - Uses attributes :ada:`'Wide_Image` / :ada:`'Wide_Value`
-   - Added in Ada95
+   - Added in Ada 95
 
 * :ada:`Wide_Wide_Character`
 
    - 32-bit Unicode (full Unicode support)
    - Base component of :ada:`Wide_Wide_Strings`
    - Uses attributes :ada:`'Wide_Wide_Image` / :ada:`'Wide_Wide_Value`
-   - Added in Ada05
+   - Added in Ada 2005
 
 -----------------------------
 Character Oriented Packages
