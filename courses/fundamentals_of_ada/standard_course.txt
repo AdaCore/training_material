@@ -1,7 +1,7 @@
 005_introduction.rst
 010_overview.rst
 020_declarations.rst
-030_basic_types.rst
+030_basic_types-in_depth.rst
 040_statements.rst
 050_array_types.rst
 060_record_types.rst
