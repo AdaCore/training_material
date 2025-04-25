@@ -3,7 +3,7 @@ Lab
 ========
 
 ---------------------------
-Access Types In Depth Lab
+Access Types In-Depth Lab
 ---------------------------
    
 * Build an application that adds / removes items from a linked list
