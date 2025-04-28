@@ -1,6 +1,6 @@
-*************
-Basic Types
-*************
+***********************
+Basic Types: In-Depth
+***********************
 
 .. container:: PRELUDE BEGIN
 

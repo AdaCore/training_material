@@ -1,6 +1,6 @@
-*************
-Expressions
-*************
+***********************
+Expressions: In-Depth
+***********************
 
 .. container:: PRELUDE BEGIN
 
