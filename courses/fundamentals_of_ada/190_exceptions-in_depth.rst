@@ -1,6 +1,6 @@
-*********************
-Exceptions In-Depth
-*********************
+**********************
+Exceptions: In-Depth
+**********************
 
 .. container:: PRELUDE BEGIN
 

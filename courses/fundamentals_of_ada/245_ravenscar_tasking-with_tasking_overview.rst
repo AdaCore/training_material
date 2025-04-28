@@ -1,6 +1,6 @@
-*******************
-Ravenscar Tasking
-*******************
+*****************************
+Ravenscar Tasking: In-Depth
+*****************************
 
 .. container:: PRELUDE BEGIN
 

@@ -1,6 +1,6 @@
-************
-Genericity
-************
+*****************************
+Genericity: An Introduction
+*****************************
 
 .. container:: PRELUDE BEGIN
 

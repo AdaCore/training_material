@@ -1,6 +1,6 @@
-*************
-Overloading
-*************
+***********************
+Overloading: In-Depth
+***********************
 
 .. container:: PRELUDE BEGIN
 
