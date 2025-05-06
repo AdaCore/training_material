@@ -44,7 +44,7 @@ Identifiers vs Names
 ----------------------
 
 *identifier*
-  Syntactic form such used for typically to introduce entities when are declared
+  Syntactic form used typically to introduce entities when declared
 
 *name*
   Typically starts with an identifier and can be followed by one or more suffixes to help indicate something more specific, such as a record component or an array slice

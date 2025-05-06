@@ -12,7 +12,7 @@ Limited Type Declarations
 
    .. code:: Ada
 
-      type <defining_identifier> is limited record
+      type <identifier> is limited record
           <component_list>
       end record;
 
