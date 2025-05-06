@@ -12,7 +12,7 @@ Subtype
 
    .. code:: Ada
 
-      subtype Defining_Identifier is Type_Name [constraints];
+      subtype <identifier> is Type_Name [constraints];
 
    - :ada:`Type_Name` is an existing :ada:`type` or :ada:`subtype`
 

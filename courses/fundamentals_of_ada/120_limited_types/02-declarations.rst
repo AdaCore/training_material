@@ -12,8 +12,8 @@ Limited Type Declarations
 
    .. code:: Ada
 
-      type defining_identifier is limited record
-          component_list
+      type <defining_identifier> is limited record
+          <component_list>
       end record;
 
 * Are always record types unless also private

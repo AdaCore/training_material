@@ -18,7 +18,7 @@ Limited Private Types
 
    .. code:: Ada
 
-      type defining_identifier is limited private;
+      type <identifier> is limited private;
 
 ------------------------------------
 Limited Private Type Rationale (1)

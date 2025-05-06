@@ -14,9 +14,9 @@ Function Extended Return Statements
 
    .. code:: Ada
 
-      return identifier : subtype [:= expression];
+      return <identifier> : <subtype> [:= expression];
 
-      return identifier : subtype
+      return <identifier> : <subtype>
       [do
          sequence_of_statements ...
        end return];

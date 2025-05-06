@@ -15,7 +15,7 @@ Advanced Data Hiding Lab
 
    - Create another package that defines the types needed for a linked list of messages
 
-      - Each message in the list should have an identifier not visible to any clients
+      - Each message in the list should have an identification not visible to any clients
 
    - Create a package containing simple operations on the list
 

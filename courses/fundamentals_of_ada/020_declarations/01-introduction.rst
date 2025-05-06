@@ -28,7 +28,7 @@ Ada Type Model
 Declarations
 ------------
 
-* :dfn:`Declaration` associates a :dfn:`name` to an :dfn:`entity`
+* :dfn:`Declaration` associates an :dfn:`identifier` to an :dfn:`entity`
 
     - Objects
     - Types
@@ -37,9 +37,9 @@ Declarations
 
 * In a :dfn:`declarative part`
 
-* Example: :ada:`N : Type := Value;`
+* Example: :ada:`Something : Typemark := Value;`
 
-    - ``N`` is usually an :dfn:`identifier`
+    - ``Something`` is an :dfn:`identifier`
 
 * **Some** implicit declarations
 
