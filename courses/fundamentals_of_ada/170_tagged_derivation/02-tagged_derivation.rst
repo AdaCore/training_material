@@ -93,16 +93,16 @@ Overriding Indicators
       function Get_Name (S : Shape_T) return String;
       procedure Set_Name (S : in out Shape_T);
 
-      -- Derive "Point" from Shape_T
+      -- Derive "Point_T" from Shape_T
       type Point_T is new Shape_T with record
          Origin : Coord_T;
-      end Point_T;
+      end record;
 
-      -- Get_Name is inherited
       -- We want to _change_ the behavior of Set_Name
       overriding procedure Set_Name (P : in out Point_T);
       -- We want to _add_ a new primitive
       not overriding procedure Set_Origin (P : in out Point_T);
+      -- We get "Get_Name" for free
 
 ..
   language_version 2005

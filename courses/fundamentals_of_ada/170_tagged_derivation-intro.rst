@@ -41,7 +41,7 @@ Tagged Derivation: An Introduction
 .. container:: PRELUDE END
 
 .. include:: 170_tagged_derivation/01-introduction.rst
-.. include:: 170_tagged_derivation/02-tagged_derivation-simple.rst
-.. include:: labs/170_tagged_derivation-simple.lab.rst
+.. include:: 170_tagged_derivation/02-tagged_derivation-intro.rst
+.. include:: labs/170_tagged_derivation-intro.lab.rst
 .. include:: 170_tagged_derivation/99-summary.rst
 .. include:: 170_tagged_derivation/03-extending_tagged_types.rst

@@ -135,19 +135,19 @@ Overriding Indicators
       end record;
 
       -- primitives of "Shape_T"
+      function Get_Name (S : Shape_T) return String;
       procedure Set_Name (S : in out Shape_T);
-      function Name (S : Shape_T) return String;
 
-      -- Derive "Point" from Shape_T
-      type Point is new Shape_T with record
+      -- Derive "Point_T" from Shape_T
+      type Point_T is new Shape_T with record
          Origin : Coord_T;
-      end Point;
+      end record;
 
       -- We want to _change_ the behavior of Set_Name
       overriding procedure Set_Name (P : in out Point_T);
       -- We want to _add_ a new primitive
-      not overriding Origin (P : Point_T) return Point_T;
-      -- We get "Name" for free
+      not overriding procedure Set_Origin (P : in out Point_T);
+      -- We get "Get_Name" for free
 
 ..
   language_version 2005
@@ -174,7 +174,7 @@ Prefix Notation
       end;
 
 ..
-  language_version 2012
+  language_version 2005
 
 ------
 Quiz
