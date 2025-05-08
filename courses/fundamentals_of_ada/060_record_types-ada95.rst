@@ -1,6 +1,6 @@
-*************
-Array Types
-*************
+**************
+Record Types
+**************
 
 .. container:: PRELUDE BEGIN
 
@@ -35,22 +35,19 @@ Array Types
 .. container:: PRELUDE PROVIDES
 
 ..
-   Constrained Array Types
-   Unconstrained Array Types
-   Attributes
+   Components Rules
    Operations
-   Looping Over Objects
    Aggregates
-   Anonymous Array Types
+   Default Values
+   Variant Records
 
 .. container:: PRELUDE END
 
-.. include:: 050_array_types/01-introduction.rst
-.. include:: 050_array_types/02-constrained_array_types.rst
-.. include:: 050_array_types/03-unconstrained_array_types.rst
-.. include:: 050_array_types/04-attributes.rst
-.. include:: 050_array_types/05-operations.rst
-.. include:: 050_array_types/07-aggregates-ada95.rst
-.. include:: 050_array_types/09-anonymous_array_types.rst
-.. include:: labs/050_array_types.lab.rst
-.. include:: 050_array_types/99-summary.rst
+.. include:: 060_record_types/01-introduction.rst
+.. include:: 060_record_types/02-components_rules.rst
+.. include:: 060_record_types/03-operations.rst
+.. include:: 060_record_types/04-aggregates-ada95.rst
+.. include:: 060_record_types/05-default_values-ada95.rst
+.. include:: 060_record_types/06-variant_records.rst
+.. include:: labs/060_record_types.lab.rst
+.. include:: 060_record_types/99-summary.rst

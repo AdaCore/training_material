@@ -1,6 +1,6 @@
-*************
-Array Types
-*************
+**************
+Polymorphism
+**************
 
 .. container:: PRELUDE BEGIN
 
@@ -35,22 +35,15 @@ Array Types
 .. container:: PRELUDE PROVIDES
 
 ..
-   Constrained Array Types
-   Unconstrained Array Types
-   Attributes
-   Operations
-   Looping Over Objects
-   Aggregates
-   Anonymous Array Types
+   Classes Of Types
+   Dispatching And Redispatching
+   Exotic Dispatching Operations
 
 .. container:: PRELUDE END
 
-.. include:: 050_array_types/01-introduction.rst
-.. include:: 050_array_types/02-constrained_array_types.rst
-.. include:: 050_array_types/03-unconstrained_array_types.rst
-.. include:: 050_array_types/04-attributes.rst
-.. include:: 050_array_types/05-operations.rst
-.. include:: 050_array_types/07-aggregates-ada95.rst
-.. include:: 050_array_types/09-anonymous_array_types.rst
-.. include:: labs/050_array_types.lab.rst
-.. include:: 050_array_types/99-summary.rst
+.. include:: 180_polymorphism/01-introduction.rst
+.. include:: 180_polymorphism/02-classes_of_types-ada95.rst
+.. include:: 180_polymorphism/03-dispatching_and_redispatching.rst
+.. include:: 180_polymorphism/04-exotic_dispatching_operations.rst
+.. include:: labs/180_polymorphism.lab.rst
+.. include:: 180_polymorphism/99-summary.rst

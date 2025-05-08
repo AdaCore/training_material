@@ -1,6 +1,6 @@
-*************
-Array Types
-*************
+************
+Genericity
+************
 
 .. container:: PRELUDE BEGIN
 
@@ -35,22 +35,17 @@ Array Types
 .. container:: PRELUDE PROVIDES
 
 ..
-   Constrained Array Types
-   Unconstrained Array Types
-   Attributes
-   Operations
-   Looping Over Objects
-   Aggregates
-   Anonymous Array Types
+   Creating Generics
+   Generic Data
+   Generic Formal Data
+   Generic Completion
 
 .. container:: PRELUDE END
 
-.. include:: 050_array_types/01-introduction.rst
-.. include:: 050_array_types/02-constrained_array_types.rst
-.. include:: 050_array_types/03-unconstrained_array_types.rst
-.. include:: 050_array_types/04-attributes.rst
-.. include:: 050_array_types/05-operations.rst
-.. include:: 050_array_types/07-aggregates-ada95.rst
-.. include:: 050_array_types/09-anonymous_array_types.rst
-.. include:: labs/050_array_types.lab.rst
-.. include:: 050_array_types/99-summary.rst
+.. include:: 160_genericity/01-introduction.rst
+.. include:: 160_genericity/02-creating_generics.rst
+.. include:: 160_genericity/03-generic_data_in_depth.rst
+.. include:: 160_genericity/04-generic_formal_data_in_depth-ada95.rst
+.. include:: 160_genericity/05-generic_completion.rst
+.. include:: labs/160_genericity.lab.rst
+.. include:: 160_genericity/99-summary.rst

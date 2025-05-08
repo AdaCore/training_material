@@ -37,7 +37,6 @@ Subprograms
 ..
    Subprogram Syntax
    Parameters
-   Null Procedures
    Nested Subprograms
    Expression Functions
 
@@ -46,7 +45,6 @@ Subprograms
 .. include:: 070_subprograms/01-introduction.rst
 .. include:: 070_subprograms/02-syntax.rst
 .. include:: 070_subprograms/03-parameters.rst
-.. include:: 070_subprograms/04-null_procedures.rst
 .. include:: 070_subprograms/05-nested_subprograms.rst
 .. include:: 070_subprograms/06-procedure_specifics.rst
 .. include:: 070_subprograms/07-function_specifics.rst
