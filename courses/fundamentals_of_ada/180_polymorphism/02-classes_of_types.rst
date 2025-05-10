@@ -7,8 +7,8 @@ Classes
 ----------
 
 * In Ada, a Class denotes an inheritance subtree
-* Class of `Root` is the class of `Root` and all its children
-* Type :ada:`Root'Class` can designate any object typed after type of class of `Root`
+* Class of :ada:`Root` is the class of :ada:`Root` and all its children
+* Type :ada:`Root'Class` can designate any object typed after type of class of :ada:`Root`
 
    .. code:: Ada
 
@@ -21,10 +21,10 @@ Classes
       -- Child2'Class = {Child2}
       -- Grand_Child1'Class = {Grand_Child1}
 
-* Objects of type :ada:`Root'Class` have at least the properties of `Root`
+* Objects of type :ada:`Root'Class` have at least the properties of :ada:`Root`
 
-   - Components of `Root`
-   - Primitives of `Root`
+   - Components of :ada:`Root`
+   - Primitives of :ada:`Root`
 
 -----------------
 Indefinite Type
@@ -62,7 +62,7 @@ Testing the Type of an Object
 -------------------------------
 
 * The tag of an object denotes its type
-* It can be accessed through the `'Tag` attribute
+* It can be accessed through the :ada:`'Tag` attribute
 * Applies to both objects and types
 * Membership operator is available to check the type against a hierarchy
 
@@ -139,15 +139,15 @@ Abstract Types Ada Vs C++
 Relation to Primitives
 ------------------------
 
-Warning: Subprograms with parameter of type `Root'Class` are not primitives of `Root`
+.. warning:: Subprograms with parameter of type :ada:`Root'Class` are not primitives of :ada:`Root`
 
-      .. code:: Ada
+.. code:: Ada
 
-         type Root is tagged null record;
-         procedure Not_A_Primitive (Param : Root'Class);
-         type Child is new Root with null record;
-         -- This does not override Not_A_Primitive!
-         overriding procedure Not_A_Primitive (Param : Child'Class);
+   type Root is tagged null record;
+   procedure Not_A_Primitive (Param : Root'Class);
+   type Child is new Root with null record;
+   -- This does not override Not_A_Primitive!
+   overriding procedure Not_A_Primitive (Param : Child'Class);
 
 ----------------------------
 'Class and Prefix Notation
