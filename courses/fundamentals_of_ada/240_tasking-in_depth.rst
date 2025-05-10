@@ -48,5 +48,6 @@ Tasking: In-Depth
 .. include:: 240_tasking/04-delays.rst
 .. include:: 240_tasking/05-task_types_in_depth.rst
 .. include:: 240_tasking/06-advanced_concepts_in_depth.rst
+.. include:: 240_tasking/14-tasking_control.rst
 .. include:: labs/240_tasking_in_depth.lab.rst
 .. include:: 240_tasking/99-summary.rst
