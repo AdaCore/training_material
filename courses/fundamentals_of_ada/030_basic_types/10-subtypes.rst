@@ -146,12 +146,12 @@ Quiz
 
 .. code:: Ada
 
-   type Enum_T is (Sat, Sun, Mon, Tue, Wed, Thu, Fri);
-   subtype Enum_Sub_T is Enum_T range Mon .. Fri;
+   type Days_Of_Week_T is (Sat, Sun, Mon, Tue, Wed, Thu, Fri);
+   subtype Weekdays_T is Days_Of_Week_T range Mon .. Fri;
 
 Which subtype definition is valid?
 
-   A. ``subtype A is Enum_Sub_T range Enum_Sub_T'Pred (Enum_Sub_T'First) .. Enum_Sub_T'Last;``
+   A. ``subtype A is Weekdays_T range Weekdays_T'Pred (Weekdays_T'First) .. Weekdays_T'Last;``
    B. ``subtype B is range Sat .. Mon;``
    C. :answermono:`subtype C is Integer;`
    D. ``subtype D is digits 6;``
@@ -160,7 +160,7 @@ Which subtype definition is valid?
 
    Explanations
 
-   A. This generates a run-time error because the first enumeral specified is not in the range of :ada:`Enum_Sub_T`
+   A. This generates a run-time error because the first enumeral specified is not in the range of :ada:`Weekdays_T`
    B. Compile error - no type specified
    C. Correct - standalone subtype
    D. :ada:`Digits 6` is used for a type definition, not a subtype
