@@ -10,14 +10,14 @@ Implicit Subtype
 
    .. code:: Ada
 
-      type My_Type is range Lower_Bound .. Upper_Bound;
+      type My_Type is range Lower .. Upper;
 
 * Is short-hand for
 
    .. code:: Ada
 
       type <Anon> is new Predefined_Integer_Type;
-      subtype My_Type is <Anon> range Lower_Bound .. Upper_Bound;
+      subtype My_Type is <Anon> range Lower .. Upper;
 
 * :ada:`<Anon>` is the :dfn:`Base` type of :ada:`My_Type`
 
@@ -30,10 +30,10 @@ Implicit Subtype Explanation
 .. code:: Ada
 
    type <Anon> is new Predefined_Integer_Type;
-   subtype My_Type is <Anon> range Lower_Bound .. Upper_Bound;
+   subtype My_Type is <Anon> range Lower .. Upper;
 
 * Compiler chooses a standard integer type that includes 
-  :ada:`Lower_Bound .. Upper_Bound`
+  :ada:`Lower .. Upper`
 
    - :ada:`Integer`, :ada:`Short_Integer`, :ada:`Long_Integer`, etc.
    - **Implementation-defined** choice, non-portable
@@ -41,7 +41,7 @@ Implicit Subtype Explanation
 * New anonymous type ``<Anon>`` is derived from the predefined type
 * ``<Anon>`` inherits the type's operations (``+``, ``-`` ...)
 * ``My_Type``, subtype of ``<Anon>`` is created with 
-  :ada:`range Lower_Bound .. Upper_Bound`
+  :ada:`range Lower .. Upper`
 * :ada:`My_Type'Base` will return the type ``<Anon>``
 
 -----------------------------
