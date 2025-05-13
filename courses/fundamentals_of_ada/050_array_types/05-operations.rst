@@ -165,7 +165,7 @@ Which statement(s) is (are) legal?
    A. :answermono:`B(1) := A(1,2) or A(4,3);`
    B. :answermono:`B := A(2) and A(4);`
    C. ``A(1..2)(4) := A(5..6)(8);``
-   D. :answermono:`B(3..4) := B(4..5)`
+   D. :answermono:`B(3..4) := B(4..5);`
 
 .. container:: animate
 
