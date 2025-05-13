@@ -106,9 +106,9 @@ No Meaning Changes
        ...
      end Q;
 
----------------------------
-No Ambiguity Introduction
----------------------------
+--------------
+No Ambiguity 
+--------------
 
 .. code:: Ada
 
