@@ -175,11 +175,11 @@ Variable and Sequence of Values
 
    -- All values of a type or subtype
    for Day in Days_T loop
-   for Day in Days_T range Mon .. Fri -- anonymous subtype
+   for Day in Days_T range Mon .. Fri loop -- anonymous subtype
    -- Constant and variable range
    for Day in Mon .. Fri loop
-   Today, Tomorrow : Days_T;
    ...
+   Today, Tomorrow : Days_T; -- assume some assignment...
    for Day in Today .. Tomorrow loop
 
 -----------------------------------
