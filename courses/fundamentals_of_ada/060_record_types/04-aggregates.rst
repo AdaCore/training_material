@@ -271,7 +271,7 @@ D. :answermono:`X := (1, '2', 4, (others => 5))`
 
    A. :ada:`Four` **must** use named association
    B. :ada:`others` valid: :ada:`One` and :ada:`Three` are :ada:`Integer`
-   C. Valid but :ada:`Two` is not initialized
+   C. Valid but :ada:`Y` is not initialized
    D. Positional for all components
 
 ------------------
