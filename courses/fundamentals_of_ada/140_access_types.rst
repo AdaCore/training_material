@@ -1,3 +1,7 @@
+.. raw:: latex
+
+   \usepackage{color}
+
 **************
 Access Types
 **************
@@ -17,6 +21,12 @@ Access Types
 
 .. role:: rust(code)
     :language: Rust
+
+.. role:: white(raw)
+    :format: html latex
+
+    <span style="color: white;">%s</span>
+    \textcolor{white}{%s}
 
 .. container:: PRELUDE SYMBOLS
 
