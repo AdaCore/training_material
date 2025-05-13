@@ -43,6 +43,7 @@ Access Types Design
      int * P_C = malloc (sizeof (int));
      int * P_CPP = new int;
      int * G_C = &Some_Int;
+:color-white:.
 
 -----------------------------------------
 Access Types - General vs Pool-Specific
