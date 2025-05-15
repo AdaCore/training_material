@@ -352,10 +352,9 @@ Quiz
 
    type Array1_T is array (1 .. 3) of Integer;
    type Array2_T is array (1 .. 3) of Array1_T;
-   A : Array2_T;
+   A : Array2_T; -- array of arrays (of 3 components each)
 
-The above describes an array A whose components are arrays of three components.
-Which expression would one use to determine if at least one of A's components are sorted?
+Which expression could be used to determine if at least one of :ada:`A`'s components are sorted?
 
 A. | ``(for some El of A => (for some Idx in 2 .. 3 =>``
    |     ``El (Idx) >= El (Idx - 1)));``

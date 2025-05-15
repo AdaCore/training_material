@@ -9,7 +9,7 @@ Contract-Based Programming Benefits
 * Facilitates building software with reliability built-in
 
    - Software cannot work well unless "well" is carefully defined
-   - Clarifies design by defining obligations/benefits
+   - Clarifies design by defining requirements/guarantees
 
 * Enhances readability and understandability
 
@@ -19,14 +19,14 @@ Contract-Based Programming Benefits
 * Aids in debugging
 * Facilitates tool-based analysis
 
-   - Compiler checks conformance to obligations
+   - Compiler checks conformance to requirements
    - Static analyzers (e.g., SPARK, GNAT Static Analysis Suite) can verify explicit precondition and postconditions
 
 ---------
 Summary
 ---------
 
-* Based on viewing source code as clients and suppliers with enforced obligations and guarantees
+* Based on viewing source code as clients and suppliers with enforced requirements and guarantees
 * No run-time penalties unless enforced
 * OOP introduces the tricky issues
 
@@ -46,10 +46,10 @@ Summary
 
   * - Preconditions
 
-    - Obligation
+    - Requirement
     - Guarantee
 
   * - Postconditions
 
     - Guarantee
-    - Obligation
+    - Requirement

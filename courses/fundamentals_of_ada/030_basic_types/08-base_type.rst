@@ -107,9 +107,9 @@ Floating Point Division by Zero
 * User-defined types always raise :ada:`Constraint_Error`
 
  .. code:: Ada
-
-    subtype MyFloat is Float range Float'First .. Float'Last;
-    type MyFloat is new Float range Float'First .. Float'Last;
+    
+    type My_Float is new Float range Float'First .. Float'Last;
+    subtype Sub_Float is Float range Float'First .. Float'Last;
 
 -----------------------------------------
 Using Equality for Floating Point Types

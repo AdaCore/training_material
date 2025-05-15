@@ -72,11 +72,11 @@ Package **Interfaces**
       pragma Assert (My_Base_Integer'First = -2**31);
       pragma Assert (My_Base_Integer'Last = 2**31-1);
 
-    - Dealing with hardware registers
+* Dealing with hardware registers
 
-* Note: Shorter may not be faster for integer maths
+   * Note: Shorter may not be faster for integer maths
 
-    - Modern 64-bit machines are not efficient at 8-bit maths
+      - Modern 64-bit machines are not efficient at 8-bit maths
 
 .. code:: Ada
 
