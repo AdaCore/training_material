@@ -228,7 +228,7 @@ Allowed Static Predicate Content (1)
 
    .. code:: Ada
 
-      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
+      type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
        -- only way to create subtype of non-contiguous values
       subtype Weekend is Days
         with Static_Predicate => Weekend in Sat | Sun;

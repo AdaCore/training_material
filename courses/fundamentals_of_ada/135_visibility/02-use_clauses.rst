@@ -106,9 +106,9 @@ No Meaning Changes
        ...
      end Q;
 
----------------------------
-No Ambiguity Introduction
----------------------------
+--------------
+No Ambiguity 
+--------------
 
 .. code:: Ada
 
@@ -160,7 +160,7 @@ No Ambiguity Introduction
      D1 : Integer := Parent.P1;
      D2 : Integer := Parent.Child.PC1;
      use Parent;
-     D3 : Integer := P1; -- illegal
+     D3 : Integer := P1;
      D4 : Integer := PC1;
      ...
 

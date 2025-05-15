@@ -50,7 +50,7 @@ Based Numeric Literals
 
 .. code::
 
-   based_literal ::= base # numeral [.numeral] # exponent
+   based_literal ::= base # numeral [.numeral] # [exponent]
    numeral ::= base_digit { '_' base_digit }
 
 * Base can be 2 .. 16

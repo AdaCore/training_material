@@ -6,7 +6,7 @@ Introduction
 Ada Type Model
 ----------------
 
-* Each :dfn:`object` is associated a :dfn:`type`
+* Each :dfn:`object` is associated with a :dfn:`type`
 * **Static** Typing
 
    - Object type **cannot change**

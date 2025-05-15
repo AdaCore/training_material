@@ -7,7 +7,7 @@ procedure Main is
    function "+" (V : T) return Boolean is (V /= 0);
    --$ begin cut
    function "+" (A, B : T) return T is (A + B);
-   -- Infinite recursion
+   -- Infinite recursion (will result in Storage_Error at run-time)
    --$ end cut
    --$ begin cut
    function "=" (A, B : T) return T is (A - B);
