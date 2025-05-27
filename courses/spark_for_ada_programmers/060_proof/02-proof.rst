@@ -38,11 +38,19 @@ Silver/Gold/Platinum Levels
 * Check that assertions are always true
 * Check that code respects functional contracts
 
+  *basics.ads*
+
   .. code:: Ada
+     :number-lines: 3
 
      procedure Swap (X, Y : in out Integer)
      with
-       Post => X = Y'Old and Y = X'Old; -- Wrong
+       Post => X = Y'Old and Y = X'Old;
+
+  *basics.adb*
+
+  .. code:: Ada
+     :number-lines: 5
 
      procedure Swap (X, Y : in out Integer) is
      begin
@@ -51,9 +59,9 @@ Silver/Gold/Platinum Levels
         Y := Temp;
      end Swap;
 
-* Warn on dead code with switch :command:`--proof-warnings`
+  :command:`basics.ads:3:20: warning: unused initial value of "X"`
 
-  - More powerful than the detection by flow analysis
+  :command:`basics.ads:5:30: medium: postcondition might fail, cannot prove Y = X'Old`
 
 -------------------------------
 Run-Time Errors Are Pervasive
