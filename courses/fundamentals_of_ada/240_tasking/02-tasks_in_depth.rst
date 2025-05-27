@@ -115,26 +115,34 @@ Accepting a Rendezvous
    - Terminate if no clients can possibly call its entries
    - Conditionally accept a rendezvous based on a guard expression
 
----------------------------
-Example: Task - Declaration
----------------------------
+----------------------
+Full Working Example
+----------------------
 
-.. include:: ../examples/task_very_simple/src/tasks.ads
-    :code: Ada
+.. container:: columns
 
---------------------
-Example: Task - Body
---------------------
+  .. container:: column
 
-.. include:: ../examples/task_very_simple/src/tasks.adb
-    :code: Ada
+    .. container:: latex_environment tiny
 
----------------
-Example: Main
----------------
+       *Package spec including task specification*
 
-.. include:: ../examples/task_very_simple/src/main.adb
-    :code: Ada
+       .. include:: ../examples/task_very_simple/src/tasks.ads
+           :code: Ada
+
+       *Package body including task implementation*
+
+       .. include:: ../examples/task_very_simple/src/tasks.adb
+           :code: Ada
+
+  .. container:: column
+
+    .. container:: latex_environment tiny
+
+       *Main program to interact with the task*
+
+       .. include:: ../examples/task_very_simple/src/main.adb
+           :code: Ada
 
 ------
 Quiz
