@@ -16,7 +16,7 @@ Fulfill Interface Promises to Clients
      ...
      Reading := New_Value;
      ...
-   exceptions
+   exception
      when Some_Error =>
        Reading := Default_Value;
    end Get;
