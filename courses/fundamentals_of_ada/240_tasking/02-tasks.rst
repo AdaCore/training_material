@@ -79,7 +79,7 @@ Assume the client can rendezvous with a task with the following entry points:
 
 * When :ada:`Acknowledge` is called, the task immediately releases the caller, and then continues on to the :ada:`Put_Line` statement
 
-* When :ada:`Wait_Until_Completion` is called, the task performs everythin between :ada:`do` and end of the block before releasing the caller
+* When :ada:`Wait_Until_Completion` is called, the task performs everything between :ada:`do` and end of the block before releasing the caller
 
 ------------------------
 Rendezvous with a Task
