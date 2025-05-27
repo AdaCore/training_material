@@ -217,7 +217,7 @@ Raising Specific Exceptions
 
       procedure Push (This : in out Stack;
                       Value : Content) with
-        Pre  => not Full (This) or else Overflow_Error;
+        Pre  => not Full (This) or else raise Overflow_Error;
 
 * *Note: Postcondition failure only ever makes sense as an Assertion_Error*
 
