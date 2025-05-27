@@ -58,6 +58,25 @@ Expression Functions
      function Is_Sorted (T : Table) return Boolean is (...)
        with Pre => T'Length > 0;
 
+---------------------------------------------
+Expression Functions Without Postconditions
+---------------------------------------------
+
+An expression function without a specified postcondition uses the expression as proof.
+
+.. code:: Ada
+
+   function Add (X, Y : Integer) return Integer is
+      (X + Y);
+
+is equivalent to 
+
+.. code:: Ada
+
+   function Add (X, Y : Integer) return Integer is
+      (X + Y)
+   with Post => Add'Result = (X + Y);
+
 -----------------------------
 Use of Expression Functions
 -----------------------------
