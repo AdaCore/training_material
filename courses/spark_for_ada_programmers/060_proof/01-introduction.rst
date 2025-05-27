@@ -82,6 +82,10 @@ VC Generation - Strongest Postcondition
   - Information is **propagated** from the precondition
   - VCs are generated each time a **check** is encountered
 
+.. note::
+
+   In this case **strong** indicates *more strict*
+
 --------------------------------
 Quiz - Strongest Postcondition
 --------------------------------
