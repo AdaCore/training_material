@@ -90,7 +90,7 @@ VC Generation - Strongest Postcondition
 Quiz - Strongest Postcondition
 --------------------------------
 
-Which one of these has a **Strongest Postcondition**?
+Which one(s) of these has a **Strongest Postcondition**?
 
    A. ``{ X >= 3 } Y := X – 1 { Y >= 0 }``
    B. ``{ X >= 3 } Y := X – 1 { Y = X – 1 }``
