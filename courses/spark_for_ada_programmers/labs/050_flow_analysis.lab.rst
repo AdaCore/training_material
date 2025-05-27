@@ -57,7 +57,7 @@ Data Dependencies
 
   + The objective is to get no messages when running :toolname:`GNATprove`.
 
-- Rerun :toolname:`GNATprove` with checkbox :menu:`Report check proved` selected.
+- Rerun :toolname:`GNATprove` with checkbox :menu:`Report checks proved` selected.
 
   + Review the info messages and make sure you understand them.
 
