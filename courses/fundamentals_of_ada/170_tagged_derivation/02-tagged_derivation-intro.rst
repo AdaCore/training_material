@@ -20,6 +20,9 @@ Difference with Simple Derivation
          F2 : Integer;
       end record;
 
+      Root_Object  : Root := (F1 => 101);
+      Child_Object : Child := (F1 => 201, F2 => 202);
+
 --------------
 Type Extension
 --------------
