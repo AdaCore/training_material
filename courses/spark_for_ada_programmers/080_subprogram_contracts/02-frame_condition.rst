@@ -48,6 +48,13 @@ What is a Frame Condition?
    * Postcondition indicates what is happening to :ada:`P.X` ...
    * ... But when proving the caller, the prover has no information on the state of :ada:`P.Y`
 
+* :toolname:`GNATprove` can sometimes determine the *frame condition* 
+
+  * More likely for arrays where indices are easy to determine
+  * Less likely for records where entire object is modified through assignment or procedure call
+
+* Many of the proof "assistants" can help determine frame condition (:ada:`pragma Loop_Invariant`, :ada:`pragma Assert`, etc)
+
 ---------------------------
 Frame Condition - Records
 ---------------------------
