@@ -60,7 +60,7 @@ package body Basics is
       if Cond then
          Init_Rec (R);
       else
-         Init_Rec (R);
+         R := (1, 2);
       end if;
    end Strange_Init_Rec;
 
