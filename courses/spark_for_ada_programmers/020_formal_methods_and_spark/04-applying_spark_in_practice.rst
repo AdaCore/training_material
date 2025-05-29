@@ -72,10 +72,6 @@ Project Scenarios
 
   - Requires migration to SPARK of a part of the codebase
   - Fine-grain control over parts in SPARK or in Ada
-  - Migration guide available
-
-:url:`https://www.adacore.com/books/implementation-guidance-spark`
-
   - Can progressively move to higher assurance levels
 
 * New developments in SPARK

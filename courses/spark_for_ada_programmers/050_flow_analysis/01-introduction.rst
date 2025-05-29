@@ -56,19 +56,26 @@ Control Flow Graph (CFG)
 Program Dependence Graph (PDG)
 --------------------------------
 
-* **Extension** of the CFG with information on **data flows**
-* Control Dependence Graph
+* Control Dependence Graph (CDG) - control dependencies in a program
 
-  - Compute post-dominators nodes: a node z is said to post-dominate a node n
-    if **all** paths to the exit node of the graph starting at n must go through z
+  - **Nodes** - statements or blocks
+  - **Edges** - represent execution of one node is dependent on another
 
-* Data Dependence Graph
+* Data Dependence Graph (DDG) - models data flow where edges represent
 
-  - Compute def-use chains rooted at variable definitions
+   - **True dependency** - read after write
+   - **Anti-dependency** - write after read
+   - **Output dependency** - write after write
 
-* Transitive Dependence Graph
+* Program Dependence Graph (PDG) - combination of CDG and DDG
 
-  - Compute how outputs of a call depend on its inputs
+   - **Nodes** - statements or operations
+   - **Edges** - data dependency edges and control dependency edges
+
+* Transitive Dependence Graph (TDG) - adds transitive edges to PDG
+
+   - If **A** |rightarrow| **B** and **B** |rightarrow| **C** ...
+   - ... the TDG adds the edge **A** |rightarrow| **C**
 
 * Flow analysis checks are translated into **queries** on the PDG
 

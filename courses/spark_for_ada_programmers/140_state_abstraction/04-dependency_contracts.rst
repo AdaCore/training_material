@@ -15,18 +15,18 @@ Data Dependencies
 
 .. code:: Ada
 
-   package Stack with
+   package Queue with
       Abstract_State => (Top_State, Content_State)
    is
       procedure Pop  (E : out Component) with
         Global => (Input  => Content_State,
                    In_Out => Top_State);
 
-   package Stack with
-     Abstract_State => The_Stack
+   package Queue with
+     Abstract_State => The_Queue
    is
       procedure Pop  (E : out Component) with
-        Global => (In_Out => The_Stack);
+        Global => (In_Out => The_Queue);
 
 -------------------
 Flow Dependencies
@@ -36,18 +36,18 @@ Flow Dependencies
 
 .. code:: Ada
 
-   package Stack with
+   package Queue with
       Abstract_State => (Top_State, Content_State)
    is
       procedure Pop  (E : out Component) with
         Depends => (Top_State => Top_State,
                     E         => (Content_State, Top_State));
 
-   package Stack with
-      Abstract_State => The_Stack
+   package Queue with
+      Abstract_State => The_Queue
    is
        procedure Pop  (E : out Component) with
-         Depends => ((The_Stack, E) => The_Stack);
+         Depends => ((The_Queue, E) => The_Queue);
 
 -----------------------
 Dependency Refinement

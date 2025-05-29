@@ -26,7 +26,7 @@ Aliasing and Initialization
    + These examples illustrate the basic forms of flow analysis in SPARK.
 
 - Use :menu:`SPARK` |rightarrow| :menu:`Examine File...` to analyse the body of package `Basics`.
-- Click on the "Locations" tab to see the messages organised by unit.
+- Click on the "Locations" tab to see the messages organiszd by unit.
 - Make sure you understand the check messages that :toolname:`GNATprove` produces.
 
   + Discuss these with the course instructor.

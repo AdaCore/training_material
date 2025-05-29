@@ -120,11 +120,20 @@ Legality Checking
 
   - Ex: :command:`<expr> cannot depend on variable input <var>`
 
-  - May include fix: :command:`use instead a constant initialized to the
-    expression with variable input` |rightarrow| apply the suggested fix
+  - May include fix:
 
-  - May include *explain code*: :command:`[E0007]` |rightarrow| launch
-    :command:`gnatprove --explain=E0007` for more information
+    .. container:: latex_environment tiny
+
+       :color-red:`use instead a constant initialized to the
+       expression with variable input`
+
+    |rightarrow| apply the suggested fix
+
+  - May include *explain code*:
+
+    :color-red:`[E0007]`
+
+    |rightarrow| run :command:`gnatprove --explain=E0007` for more information
 
 * Includes ownership checking, detailed in course on Pointer Programs
 

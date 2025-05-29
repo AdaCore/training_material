@@ -32,8 +32,12 @@ From Flow Dependencies
 
 * Data dependencies are generated
 
-  - Items that only get written to (LHS of assignment, :ada:`out` parameter of subprogram call) are considered *outputs*
-  - Items that only get read (not on LHS of assignment, not used as :ada:`out` or :ada:`in out` parameter) are considered *inputs*
+  - Items that only get written to are considered *outputs*
+    - LHS of assignment, :ada:`out` parameter of subprogram call
+
+  - Items that only get read are considered *inputs*
+    - Not on LHS of assignment, only :ada:`in` parameter
+
   - All other variables are both inputs and outputs
 
 |

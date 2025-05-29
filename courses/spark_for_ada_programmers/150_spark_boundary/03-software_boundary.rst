@@ -317,7 +317,7 @@ Integrating with Main Procedure Not in Ada
     + This code is executed at library loading (depends on platform support)
 
 ------------------
-Modelling an API
+Modeling an API
 ------------------
 
 * API may be modelled in SPARK
@@ -343,7 +343,7 @@ Modelling an API
     + Ghost function may be marked :ada:`Import` when not implementable
 
 ----------------------------
-Modelling an API - Example
+Modeling an API - Example
 ----------------------------
 
 * Standard unit :ada:`Ada.Text_IO` is modelled in SPARK
@@ -373,7 +373,7 @@ Modelling an API - Example
         Global => null;
 
 ---------------------------------------
-Modelling an API to Manage a Resource
+Modeling an API to Manage a Resource
 ---------------------------------------
 
 * Managing a resource may require
@@ -403,7 +403,7 @@ Modelling an API to Manage a Resource
     + :toolname:`GNATprove` checks absence of resource leaks
 
 -------------------------------------------------
-Modelling an API to Manage a Resource - Example
+Modeling an API to Manage a Resource - Example
 -------------------------------------------------
 
 .. code:: ada

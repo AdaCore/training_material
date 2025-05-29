@@ -21,7 +21,7 @@ Volatile Variables (1/2)
    Object  : Integer := 42 with Volatile;
    Value1  : Integer := Object;
    Value2  : Integer := Object;
-   pragma Assert (Value1 = 42);   -- unprovable
+   pragma Assert (Value1 = 42);     -- unprovable
    pragma Assert (Value1 = Value2); -- unprovable
 
 --------------------------
