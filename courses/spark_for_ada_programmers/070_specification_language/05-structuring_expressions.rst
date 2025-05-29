@@ -62,14 +62,14 @@ Expression Functions
 Expression Functions Without Postconditions
 ---------------------------------------------
 
-An expression function without a specified postcondition uses the expression as proof.
+**An expression function without a specified postcondition uses the expression as proof so that:**
 
 .. code:: Ada
 
    function Add (X, Y : Integer) return Integer is
       (X + Y);
 
-is equivalent to 
+**is equivalent to:**
 
 .. code:: Ada
 
