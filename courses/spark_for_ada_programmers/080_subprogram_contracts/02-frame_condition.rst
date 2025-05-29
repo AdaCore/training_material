@@ -34,11 +34,11 @@ What is a Frame Condition?
 
 * A :dfn:`frame condition` defines which part of the data is unchanged in a block of code
 
-  * For subprogram parameter (or global data) that is a composite, it is the part of the object that will be the same value on output as on input
+  * For a **subprogram parameter** (or **global data**) that is a composite, it is the part of the object that will be the same value on output as on input
 
-  * For a loop, it would be the data (parameter, local variable, global objects) that is unchanged during loop iteration
+  * For a **loop**, it would be the data (parameter, local variable, global objects) that is unchanged during loop iteration
 
-* Using the previous example
+* Using the previous example:
 
    .. code:: Ada
 
