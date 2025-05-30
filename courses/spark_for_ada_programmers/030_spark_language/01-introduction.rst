@@ -6,14 +6,7 @@ Introduction
 Design Goals for SPARK
 ------------------------
 
-* Support formal analysis that is
-
-  - Deep - it tells you something **useful**
-  - Sound - it has **no** missing alarms
-  - Precise - it has **few** false alarms
-  - Fast - it can run as part of development
-  - Modular - it analyzes modules in **parallel**
-  - Constructive - it works on **incomplete programs**
+* Same goals as any formal verification process: deep, sound, precise, fast, modular, constructive
 
 * Combine tool automation and user interaction
 
@@ -40,7 +33,7 @@ Excluding Ambiguity
     - Cases where the compiler makes a choice: e.g. order of evaluation of
       parameters in a call
 
-  - Limit :dfn:`implementation defined` features from Ada Reference Manual
+  - Limit :dfn:`implementation-defined` features from Ada Reference Manual
 
     - Cases where the choice of the compiler is documented: e.g. size of
       standard integer types

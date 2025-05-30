@@ -20,7 +20,7 @@ Which statement is correct?
    A. Formal methods can also apply to requirements, models, data, etc.
    B. Correct
    C. To achieve soundness, it may be impossible to avoid false alarms.
-   D. Not all three at the same time.
+   D. Pick any two!
 
 --------------
 Quiz - SPARK

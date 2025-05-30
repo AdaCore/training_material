@@ -3,7 +3,7 @@ Introduction
 ==============
 
 ----------------------
-Modelling the System
+Modeling the System
 ----------------------
 
 * Special variables used to interact with the system
@@ -20,7 +20,7 @@ Modelling the System
 
 |
 
-* This modelling is used as assumptions by :toolname:`GNATprove`
+* This modeling is used as assumptions by :toolname:`GNATprove`
 
   - These assumptions need to be reviewed
 

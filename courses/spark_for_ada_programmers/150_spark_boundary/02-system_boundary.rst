@@ -18,11 +18,11 @@ Volatile Variables (1/2)
 
 .. code:: ada
 
-   Var  : Integer := 42 with Volatile;
-   Val1 : Integer := Var;
-   Val2 : Integer := Var;
-   pragma Assert (Val1 = 42);   -- unprovable
-   pragma Assert (Val1 = Val2); -- unprovable
+   Object  : Integer := 42 with Volatile;
+   Value1  : Integer := Object;
+   Value2  : Integer := Object;
+   pragma Assert (Value1 = 42);     -- unprovable
+   pragma Assert (Value1 = Value2); -- unprovable
 
 --------------------------
 Volatile Variables (2/2)
@@ -32,7 +32,7 @@ Volatile Variables (2/2)
 
   .. code:: ada
 
-     Var : T with
+     Object : T with
        Volatile,
        Address =>
          System.Storage_Elements.To_Address (16#CAFECAFE#);
@@ -47,10 +47,10 @@ Volatile Variables (2/2)
 
   .. code:: ada
 
-     Var := Var + 1; -- illegal
+     Object := Object + 1; -- illegal
 
-     Tmp : Integer := Var;
-     Var := Tmp + 1; -- legal
+     Tmp : Integer := Object;
+     Object := Tmp + 1; -- legal
 
 -----------------------
 Volatility Properties
@@ -158,11 +158,11 @@ Effect of Volatility on Flow Analysis
 
   .. code:: ada
 
-     Var : Integer := 42 with Volatile, Effective_Reads;
+     Object : Integer := 42 with Volatile, Effective_Reads;
      if Cond then
-        Val := Var;
+        Value := Object;
      end if;
-     -- value of Var here depends on Cond
+     -- value of Object here depends on Cond
 
 * A variable with :ada:`Effective_Writes` set to :ada:`True`
 
@@ -170,8 +170,8 @@ Effect of Volatility on Flow Analysis
 
   .. code:: ada
 
-     Var : Integer := 42 with Volatile, Effective_Writes;
-     Var := 1; -- previous assignment is not useless
+     Object : Integer := 42 with Volatile, Effective_Writes;
+     Object := 1; -- previous assignment is not useless
 
 -------------------------------
 Effect of Volatility on Proof
@@ -188,10 +188,10 @@ Effect of Volatility on Proof
 
 .. code:: ada
 
-   Var : Integer := 42 with Volatile, Async_Readers;
-   pragma Assert (Var = 42); -- proved
+   Object : Integer := 42 with Volatile, Async_Readers;
+   pragma Assert (Object = 42); -- proved
 
-   Var : Integer := 42 with Volatile, Async_Writers;
-   Val : Integer := Var;
-   pragma Assert (Val = 42); -- unprovable
+   Object : Integer := 42 with Volatile, Async_Writers;
+   Value  : Integer := Object;
+   pragma Assert (Value = 42); -- unprovable
 

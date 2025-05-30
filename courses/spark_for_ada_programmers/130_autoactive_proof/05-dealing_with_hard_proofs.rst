@@ -20,7 +20,7 @@ Reducing the Proof Context
 
   - All variables in context are havoc'ed
 
-  - Proof context may still be large, but fewer ground terms
+  - Proof context may still be large, but fewer ground terms (expression with no variables)
 
 * SPARK Library :ada:`SPARK.Cut_Operations`
 

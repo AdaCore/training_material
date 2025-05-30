@@ -3,7 +3,7 @@ Migrating to SPARK
 ====================
 
 -----------------------------
-Migrating From Ada to SPARK
+Migrating from Ada to SPARK
 -----------------------------
 
 * Analyzing the Ada code will point to SPARK violations
@@ -24,28 +24,6 @@ Migrating From Ada to SPARK
 * Define a SPARK interface for a unit in Ada
 
   - Details discussed in the course on SPARK Boundary
-
-----------------------------
-Adoption Guidance Document
-----------------------------
-
-.. container:: columns
-
- .. container:: column
-
-    * Based on adoption experience
-    * Proposes adoption levels
-    * For every level, presents:
-
-       - Benefits, impact on process, costs, and limitations
-       - Setup and tool **usage**
-       - **Messages** issued by the tool
-       - **Remediation** solutions
-
- .. container:: column
-
-    .. image:: thales_adoption_manual.png
-       :width: 100%
 
 ---------------------------
 Migrating From C to SPARK

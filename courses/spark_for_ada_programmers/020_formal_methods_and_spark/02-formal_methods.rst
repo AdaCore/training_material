@@ -101,7 +101,7 @@ Capabilities of Static Analysis of Programs
   - Modular analysis with no missing alarms is better for :dfn:`formal verification`
 
 ---------------------------------------
-Comparing Techniques on a Simple Code
+Comparing Techniques on Simple Code
 ---------------------------------------
 
 * Consider a simple loop-based procedure
