@@ -28,6 +28,18 @@ Unrolling Loops
   - Globally with switch :command:`--no-loop-unrolling`
   - On a specific loop with a loop invariant
 
+-------------------------------
+Loop Invariant - a Definition
+-------------------------------
+
+* Property of a loop that is true before each iteration
+
+  * Logical assertion, usually verified by a code assertion
+
+* Proofs need it to understand *effect* of loop
+
+  * Because proof doesn't have a history
+
 -----------------
 Loop Invariants
 -----------------

@@ -82,11 +82,15 @@ VC Generation - Strongest Postcondition
   - Information is **propagated** from the precondition
   - VCs are generated each time a **check** is encountered
 
+.. note::
+
+   In this case **strong** indicates *more strict*
+
 --------------------------------
 Quiz - Strongest Postcondition
 --------------------------------
 
-Which one of these has a **Strongest Postcondition**?
+Which one(s) of these has a **Strongest Postcondition**?
 
    A. ``{ X >= 3 } Y := X – 1 { Y >= 0 }``
    B. ``{ X >= 3 } Y := X – 1 { Y = X – 1 }``

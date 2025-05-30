@@ -69,7 +69,7 @@ Side-Effects and Ambiguity
    Var : Integer := 0;
    function Fun return Integer is
    begin
-      Var := Var + 1
+      Var := Var + 1;
       return Var;
    end Fun;
    pragma Assert (Fun = Var); -- Ambiguous evaluation
@@ -158,7 +158,9 @@ Interferences and Ambiguity (2/2)
 
 .. code:: Ada
 
-   type Int is record Value : Integer; end record;
+   type Int is record
+      Value : Integer;
+   end record;
    Var : Int := (Value => 0);
    procedure Proc (A : out Int) is
    begin

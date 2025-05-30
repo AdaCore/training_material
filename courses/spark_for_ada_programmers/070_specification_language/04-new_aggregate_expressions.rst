@@ -40,9 +40,9 @@ Extension of Delta Aggregates
 
    GNAT Extension
 
-* GNAT extension allowed using either
+* GNAT extension allowed using either one of
 
-  - switch :command:`-gnatX0`, or
+  - switch :command:`-gnatX0`
   - pragma :ada:`Extensions_Allowed (All)`
     
 * Choice can be a subcomponent of the record or array
@@ -107,5 +107,5 @@ Container Aggregates
   - :ada:`From_Model` only requires ``Model`` function returning the above
     (used for formal containers)
 
-  - consistency checked by :toolname:`GNATprove`
+  - Consistency checked by :toolname:`GNATprove`
 

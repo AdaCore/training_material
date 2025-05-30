@@ -28,11 +28,38 @@ What is the problem with this postcondition?
         P.Set_X (42);
         pragma Assert (P.Y = 2); -- unproved
 
+----------------------------
+What is a Frame Condition?
+----------------------------
+
+* A :dfn:`frame condition` defines which part of the data is unchanged in a block of code
+
+  * For a **subprogram parameter** (or **global data**) that is a composite, it is the part of the object that will be the same value on output as on input
+
+  * For a **loop**, it would be the data (parameter, local variable, global objects) that is unchanged during loop iteration
+
+* Using the previous example:
+
+   .. code:: Ada
+
+      procedure Set_X (P : in out Pair; Value : Integer)
+        with Post => P.X = Value;
+
+   * Postcondition indicates what is happening to :ada:`P.X` ...
+   * ... But when proving the caller, the prover has no information on the state of :ada:`P.Y`
+
+* :toolname:`GNATprove` can sometimes determine the *frame condition* 
+
+  * More likely for arrays where indices are easy to determine
+  * Less likely for records where entire object is modified through assignment or procedure call
+
+* Many of the proof "assistants" can help determine frame condition (:ada:`pragma Loop_Invariant`, :ada:`pragma Assert`, etc)
+
 ---------------------------
 Frame Condition - Records
 ---------------------------
 
-* Simpler solution is to state which components are **preserved**
+* Better solution is to also state which components are **preserved**
 
   .. code:: ada
 

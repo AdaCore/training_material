@@ -2,9 +2,9 @@
 IDEs for SPARK
 ================
 
----------------------------------------
-Three Available IDEs Supporting SPARK
----------------------------------------
+---------------------------------
+Available IDEs Supporting SPARK
+---------------------------------
 
 * :toolname:`GNAT Studio`
 
@@ -14,10 +14,6 @@ Three Available IDEs Supporting SPARK
     + Most interaction capabilities
     + Specialized display of rich messages
     + Display of traces and counterexamples
-
-* GNATbench for Eclipse
-
-   - If you are already using Eclipse
 
 * Ada/SPARK extension for Visual Studio Code
 

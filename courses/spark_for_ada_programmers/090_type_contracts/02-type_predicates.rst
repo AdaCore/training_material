@@ -76,7 +76,7 @@ Useful Static Predicates
      type Count is new Natural
        with Static_Predicate => Count /= 10;
 
-     subtype Normal_Float is Float with
+     subtype Normal_Float is Float
        with Static_Predicate =>
          Normal_Float <= -2.0**(-126) or
          Normal_Float = 0.0 or
@@ -95,7 +95,7 @@ Useful Static Predicates
   .. code:: ada
 
      subtype Weekend is Day
-       with Static_Predicate => Day in Saturday | Sunday;
+       with Static_Predicate => Weekend in Saturday | Sunday;
 
 ---------------------------------
 Useful Dynamic Predicates (1/2)

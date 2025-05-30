@@ -26,7 +26,7 @@ Absence of Runtime Errors
    + These examples illustrate the basic forms of proof in SPARK.
 
 - Use :menu:`SPARK` |rightarrow| :menu:`Prove File...` to analyse the body of package `Basics`.
-- Click on the "Locations" tab to see the messages organised by unit.
+- Click on the "Locations" tab to see the messages organized by unit.
 - Make sure you understand the check messages that :toolname:`GNATprove` produces.
 
    + Discuss these with the course instructor.

@@ -53,6 +53,8 @@ Limitations of Automatic Provers - Quantifiers
    - Need to exhibit a :dfn:`witness` that satisfies the property
    - Solution: define a function that computes the witness
 
+     - i.e. a function that checks :ada:`T(X) /= 0`
+
 * Provers cannot **reason inductively**
 
    - Inductive reasoning deduces a property over integer :ada:`I`

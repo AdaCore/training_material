@@ -33,18 +33,46 @@ Proof Levels
 
 * Switch :command:`--level` bundles lower-level switches
 
-  - :command:`--level=0` uses 1 prover and 1sec timeout
-  - :command:`--level=1` uses 3 provers and 1sec timeout
-  - :command:`--level=2` uses 3 provers and 5sec timeout
-  - :command:`--level=3` uses 3 provers and 20sec timeout
-  - :command:`--level=4` uses 3 provers and 60sec timeout
+  .. container:: latex_environment scriptsize
 
-* Level 2 is the recommended one to start
+    .. list-table::
+      :header-rows: 1
 
-  - Activation of counterexamples also starts at level 2
+      * - **--level=**
+        - --prover=
+        - --timeout= *(seconds)*
+        - --memlimit= *(MB)*
+        - --counterexamples=
 
-* Levels do not use steps (:command:`--steps=0`) and increase memory limit
-  (:command:`--memlimit`)
+      * - **0**
+        - cvc5
+        - 1
+        - 1000
+        - off
+      * - **1**
+        - cvc5,z3,altergo
+        - 1
+        - 1000
+        - off
+      * - **2**
+        - cvc5,z3,altergo
+        - 5
+        - 1000
+        - on
+      * - **3**
+        - cvc5,z3,altergo
+        - 20
+        - 2000
+        - on
+      * - **4**
+        - cvc5,z3,altergo
+        - 60
+        - 2000
+        - on
+
+* Level 2 is the recommended one to start (enables counterexamples)
+
+* Levels do not use steps (:command:`--steps=0`) but do increase memory limit
 
 * Specific values for lower-level switches take precedence
 
