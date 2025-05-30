@@ -122,18 +122,18 @@ Legality Checking
 
   - May include fix:
 
-    .. container:: latex_environment tiny
+    .. container:: latex_environment footnotesize
 
        :color-red:`use instead a constant initialized to the
        expression with variable input`
 
-    |rightarrow| apply the suggested fix
+    *apply the suggested fix*
 
   - May include *explain code*:
 
     :color-red:`[E0007]`
 
-    |rightarrow| run :command:`gnatprove --explain=E0007` for more information
+    *run* :command:`gnatprove --explain=E0007` *for more information*
 
 * Includes ownership checking, detailed in course on Pointer Programs
 
