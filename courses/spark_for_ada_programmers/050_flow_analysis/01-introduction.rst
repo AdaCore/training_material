@@ -59,7 +59,7 @@ Program Dependence Graph (PDG)
 * Control Dependence Graph (CDG) - control dependencies in a program
 
   - **Nodes** - statements or blocks
-  - **Edges** - represent execution of one node is dependent on another
+  - **Edges** - represent that execution of one node is dependent on another
 
 * Data Dependence Graph (DDG) - models data flow where edges represent
 
