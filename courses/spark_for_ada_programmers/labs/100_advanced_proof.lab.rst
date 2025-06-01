@@ -9,12 +9,20 @@ Advanced Proof Lab
 - Find the :filename:`010_advanced_proof` sub-directory in :filename:`source`
 
    + You can copy it locally, or work with it in-place
+   + Open a command prompt in that directory
 
-- Copy locally :finename:`sparklib.gpr` from your SPARK install and set :code:`Object_Dir`
+- From the command line, run the :filename:`gpr_project_path.bat` file to set up your project path
 
-- In that directory, open the project :filename:`lab.gpr` in :toolname:`GNAT Studio`
+   + The file resides in the :filename:`source` folder you installed
+   + Pass in the version of SPARK you have installed (e.g. :command:`gpr_project_path 25.1`)
+   + This only needs to be done once per command prompt window
 
-   + Or, on the command-line, do :command:`gnatstudio -P lab.gpr`
+.. note::
+
+   For Linux users, the install location for SPARK varies greatly, so instead there is
+   a shell script :filename:`gpr_project_path.sh` which gives you directions
+
+- From the command-line, run :command:`gnatstudio -P lab.gpr`
 
 - Unfold the source code directory (.) in the project pane
 
