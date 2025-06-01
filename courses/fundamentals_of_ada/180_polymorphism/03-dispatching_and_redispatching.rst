@@ -6,7 +6,7 @@ Dispatching and Redispatching
 Calls on Class-Wide Types (1/3)
 ---------------------------------
 
-* Any subprogram expecting a `Root` object can be called with a :ada:`Animal'Class` object
+* Any subprogram expecting a :ada:`Root` object can be called with a :ada:`Animal'Class` object
 
 .. code:: Ada
 
@@ -27,7 +27,8 @@ Calls on Class-Wide Types (2/3)
 ---------------------------------
 
 * The *actual* type of the object is not known at compile time
-* The *right* type will be selected at run-time
+
+     - It will be selected at run-time
 
 .. container:: columns
 
