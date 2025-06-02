@@ -13,7 +13,7 @@ project Lab is
    end Builder;
 
    package Prove is
-      for Proof_Switches ("Ada") use ("-j0");
+      for Proof_Switches ("ada") use ("--no-subprojects");
    end Prove;
 
 end Lab;
