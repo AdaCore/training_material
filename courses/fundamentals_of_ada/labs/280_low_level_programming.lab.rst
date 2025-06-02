@@ -27,7 +27,7 @@ Project Requirements
 
   * Message should at least contain:
 
-    * Unique Identifier
+    * Unique Identification
     * (Constrained) string component
     * Two other components
     * CRC value

@@ -39,6 +39,20 @@ Identifiers
    - `SpacePerson` |equivalent| `SPACEPERSON`
    - ...but **different** from `Space_Person`
 
+----------------------
+Identifiers vs Names
+----------------------
+
+:dfn:`identifier`
+  Syntactic form used typically to introduce entities when declared
+
+:dfn:`name`
+  Typically starts with an identifier and can be followed by one or more suffixes to help indicate something more specific, such as a record component or an array slice
+
+.. tip::
+
+  An **identifier** is used to *define* an entity, and a **name** is used to *refer to* an entity (or part of one)
+
 ----------------
 Reserved Words
 ----------------

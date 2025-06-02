@@ -193,7 +193,7 @@ Queuing Policy
 
    pragma Queuing_Policy (<policy_identifier>);
 
-* The following policy_identifier are available
+* The following are available for *policy_identifier*
 
    - FIFO_Queuing (default)
    - Priority_Queuing
