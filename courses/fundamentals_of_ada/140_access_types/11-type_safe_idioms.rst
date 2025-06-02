@@ -9,7 +9,7 @@ Elaboration-Only Dynamic Allocation
 * Common in critical contexts
 * Rationale:
 
-    1. We (might) need dynamically allocated date
+    1. We (might) need dynamically allocated data
 
         - e.g. loading configuration data of unknown size
 

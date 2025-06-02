@@ -149,8 +149,7 @@ Nested Aggregates
 Aggregates with Only One Component
 ------------------------------------
 
-* **Must** use named form
-* Same reason as array aggregates
+**Must** use named form
 
 .. code:: Ada
 

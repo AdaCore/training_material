@@ -12,7 +12,7 @@ Tagged Derivation Lab
 
       - A **person** has some defining characteristics
       - An **employee** is a *person* with some employment information
-      - A **staff member** is an *employee* with specific job information
+      - A **position** is an *employee* with specific job information
 
    - Create primitive operations to read and print the objects
    - Create a main program to test the objects and operations

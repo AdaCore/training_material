@@ -70,29 +70,29 @@ Subtypes Localize Dependencies
 * Relationships captured in code
 * No subtypes
 
-.. code:: Ada
+   .. code:: Ada
 
-   type Vector is array (1 .. 12) of Some_Type;
+      type Vector is array (1 .. 12) of Some_Type;
 
-   K : Integer range 0 .. 12 := 0; -- anonymous subtype
-   Values : Vector;
-   ...
-   if K in 1 .. 12 then ...
-   for J in Integer range 1 .. 12 loop ...
+      K : Integer range 0 .. 12 := 0; -- anonymous subtype
+      Values : Vector;
+      ...
+      if K in 1 .. 12 then ...
+      for J in Integer range 1 .. 12 loop ...
 
 * Subtypes
 
-.. code:: Ada
+   .. code:: Ada
 
-   type Counter is range 0 .. 12;
-   subtype Index is Counter range 1 .. Counter'Last;
-   type Vector is array (Index) of Some_Type;
+      type Counter is range 0 .. 12;
+      subtype Index is Counter range 1 .. Counter'Last;
+      type Vector is array (Index) of Some_Type;
 
-   K : Counter := 0;
-   Values : Vector;
-   ...
-   if K in Index then ...
-   for J in Index loop ...
+      K : Counter := 0;
+      Values : Vector;
+      ...
+      if K in Index then ...
+      for J in Index loop ...
 
 ----------------------------------
 Subtypes May Enhance Performance
@@ -187,7 +187,7 @@ Attributes Reflect the Underlying Type
 Valid attribute
 ---------------
 
-* :ada:`The_Type'Valid` is a :ada:`Boolean`
+* :ada:`An_Object'Valid` is a :ada:`Boolean`
 * :ada:`True` |rightarrow| the current representation for the given scalar is valid
 
 .. code:: Ada

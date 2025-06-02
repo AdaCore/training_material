@@ -62,6 +62,31 @@ Rendezvous Entry Calls
       calling receive 2
       -- Blocked until another task calls Start
 
+---------------------------
+Accept Statement vs Block
+---------------------------
+
+Assume the client can rendezvous with a task with the following entry points:
+
+.. code:: Ada
+
+   accept Acknowledge;
+   Put_Line ("acknowledge");
+
+   accept Wait_Until_Completion (S : String) do
+      Put_Line ("receive " & S);
+   end Receive_Message;
+
+* When :ada:`Acknowledge` is called ...
+
+   * Task immediately releases the caller
+   * ... then continues on to the :ada:`Put_Line` statement
+
+* When :ada:`Wait_Until_Completion` is called ...
+
+   * Task performs everything between :ada:`do` and end of the block
+   * ... then releases the caller
+
 ------------------------
 Rendezvous with a Task
 ------------------------

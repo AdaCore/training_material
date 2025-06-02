@@ -317,7 +317,7 @@ Types Controlling For-Loops
 
    .. code:: Ada
 
-      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
+      type Days is (Sun, Mon, Tues, Wed, Thu, Fri, Sat);
       subtype Weekend is Days
         with Static_Predicate => Weekend in Sat | Sun;
       -- Loop uses "Days", and only enters loop when in Weekend
