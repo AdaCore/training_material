@@ -11,7 +11,7 @@ Pointer Programs Lab
    + You can copy it locally, or work with it in-place
    + Open a command prompt in that directory
 
-- From the command line, run the :filename:`gpr_project_path.bat` file to set up your project path
+- Windows: From the command line, run the :filename:`gpr_project_path.bat` file to set up your project path
 
    + The file resides in the :filename:`source` folder you installed
    + Pass in the version of SPARK you have installed (e.g. :command:`gpr_project_path 25.1`)

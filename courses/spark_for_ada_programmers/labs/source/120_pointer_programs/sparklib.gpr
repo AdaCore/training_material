@@ -5,10 +5,10 @@ project SPARKlib extends "sparklib_internal" is
    -- (This was copied from version 25.1).
 
    -- This file is designed to work with the appropriate labs in the
-   -- "SPARK for Ada Programmers" course, but will probably work
+   -- "SPARK Essentials" course, but will probably work
    -- anywhere you need the SPARK packages.
 
-   -- Note: for this to work, you will need to setup your
+   -- Note: for this to work, you will need to set your
    -- GPR_PROJECT_PATH environment variable to point to:
    --   <SPARK install>/lib/gnat
    --   <GNAT install>/share/gpr
