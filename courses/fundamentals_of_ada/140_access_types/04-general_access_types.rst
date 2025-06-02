@@ -102,25 +102,24 @@ Quiz
 
 .. code:: Ada
 
-   type One_T is access all Integer;
-   type Two_T is access Integer;
+   type General_T is access all Integer;
+   type Pool_T is access Integer;
 
-   A : aliased Integer;
-   B : Integer;
+   Aliased_Object : aliased Integer;
+   Random_Object  : Integer;
 
-   One : One_T;
-   Two : Two_T;
+   General_Ptr       : General_T;
+   Pool_Specific_Ptr : Pool_T;
 
 Which assignment(s) is (are) legal?
 
-A. ``One := B'Access;``
-B. :answermono:`One := A'Access;`
-C. ``Two := B'Access;``
-D. ``Two := A'Access;``
+A. ``General_Ptr := Random_Object'Access;``
+B. :answermono:`General_Ptr := Aliased_Object'Access;`
+C. ``Pool_Specific_Ptr := Random_Object'Access;``
+D. ``Pool_Specific_Ptr := Aliased_Object'Access;``
 
 .. container:: animate
 
    :ada:`'Access` is only allowed for general access types
-   (:ada:`One_T`). To use :ada:`'Access` on an object, the
-   object must be :ada:`aliased`.
-
+   (:ada:`General_T`). To use :ada:`'Access` on an object, the
+   object **must** be :ada:`aliased`.

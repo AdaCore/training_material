@@ -100,7 +100,7 @@ Quiz
 .. code:: Ada
 
     type C_Union_T (Flag : Natural := 1) is record
-        case Sign is
+        case Flag is
         when 1 =>
             One   : Record_T;
         when 2 =>
@@ -108,7 +108,7 @@ Quiz
         when 3 =>
             Three : Float;
         end case;
-    end record;
+    end record with Convention => C_Pass_By_Copy;
 
     C_Object : C_Union_T;
 

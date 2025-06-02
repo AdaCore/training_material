@@ -36,12 +36,12 @@ Generic Constants/Variables As Parameters
 
        .. code:: Ada
 
-         V   : Float;
+         V   : Positive := 10;
          Max : Float;
 
          procedure My_Repository is new Repository
            (Component_T    => Float,
-            Array_size     => 10,
+            Array_size     => V,
             High_Watermark => Max);
 
 -------------------------------

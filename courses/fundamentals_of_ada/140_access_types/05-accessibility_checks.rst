@@ -55,8 +55,9 @@ Dynamic Accessibility Checks
     - New compiler versions may detect more cases
     - Using access always requires proper debugging and reviewing
 
-.. include:: ../examples/140_access_types/dynamic_accessibility_check/src/main.adb
-    :code: Ada
+.. container:: source_include examples/140_access_types/dynamic_accessibility_check/src/main.adb :start-after:--start_snippet :end-before:--end_snippet :code:Ada :number-lines:3
+
+:command:`raised PROGRAM_ERROR : main.adb:9 accessibility check failed`
 
 -------------------------------------
 Getting Around Accessibility Checks

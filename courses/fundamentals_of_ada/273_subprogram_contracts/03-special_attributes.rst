@@ -110,6 +110,7 @@ Quiz
 .. code:: Ada
 
    Database : String (1 .. 10) := "ABCDEFGHIJ";
+   Index    : Integer := 4;
    -- Set the value for the component at position Index in
    -- array Database to Value and then increment Index by 1
    function Set_And_Move (Value :        Character;
@@ -118,7 +119,7 @@ Quiz
       with Post => ...
 
 Given the following expressions, what is their value if they are evaluated in the postcondition
-of the call :ada:`Set_And_Move ('X', 4)`?
+of the call :ada:`Set_And_Move ('X', Index)`?
 
 .. container:: animate 2-
 

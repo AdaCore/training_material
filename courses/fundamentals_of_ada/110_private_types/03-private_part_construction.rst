@@ -12,10 +12,6 @@ Private Part and Recompilation
    - Compiler needs info from private part for users' code, e.g., storage layouts for private-typed objects
 
 * Thus changes to private part require user recompilation
-* Some vendors avoid "unnecessary" recompilation
-
-   - Comment additions or changes
-   - Additions which nobody yet references
 
 ---------------------
 Declarative Regions

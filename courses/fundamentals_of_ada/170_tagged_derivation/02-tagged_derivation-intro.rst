@@ -20,6 +20,9 @@ Difference with Simple Derivation
          F2 : Integer;
       end record;
 
+      Root_Object  : Root := (F1 => 101);
+      Child_Object : Child := (F1 => 201, F2 => 202);
+
 --------------
 Type Extension
 --------------
@@ -198,29 +201,37 @@ Which code block(s) is (are) legal?
 
   .. container:: column
 
-    A. | ``type A1 is record``
-       |    ``Component1 : Integer;``
-       | ``end record;``
-       | ``type A2 is new A1 with null record;``
-    B. | :answermono:`type B1 is tagged record`
-       |    :answermono:`Component2 : Integer;`
-       | :answermono:`end record;`
-       | :answermono:`type B2 is new B1 with record`
-       |    :answermono:`Component2b : Integer;`
-       | :answermono:`end record;`
+    .. container:: latex_environment tiny
+
+       A. | ``type A1 is record``
+          |    ``Component1 : Integer;``
+          | ``end record;``
+          | ``type A2 is new A1 with null record;``
+          |
+          |
+       B. | :answermono:`type B1 is tagged record`
+          |    :answermono:`Component2 : Integer;`
+          | :answermono:`end record;`
+          | :answermono:`type B2 is new B1 with record`
+          |    :answermono:`Component2b : Integer;`
+          | :answermono:`end record;`
 
   .. container:: column
 
-    C. | ``type C1 is tagged record``
-       |    ``Component3 : Integer;``
-       | ``end record;``
-       | ``type C2 is new C1 with record``
-       |    ``Component3 : Integer;``
-       | ``end record;``
-    D. | ``type D1 is tagged record``
-       |    ``Component1 : Integer;``
-       | ``end record;``
-       | ``type D2 is new D1;``
+    .. container:: latex_environment tiny
+
+       C. | ``type C1 is tagged record``
+          |    ``Component3 : Integer;``
+          | ``end record;``
+          | ``type C2 is new C1 with record``
+          |    ``Component3 : Integer;``
+          | ``end record;``
+          |
+          |
+       D. | ``type D1 is tagged record``
+          |    ``Component1 : Integer;``
+          | ``end record;``
+          | ``type D2 is new D1;``
 
 .. container:: animate
 
