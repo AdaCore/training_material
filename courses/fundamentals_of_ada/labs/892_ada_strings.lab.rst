@@ -17,7 +17,7 @@ Ada.Strings Lab
 
 * Hints
 
-   - Object name will be identifier before a standalone ":"
+   - Object name will be an identifier before a standalone ":"
    - Object list will need varying length strings
 
 * Extra Credit (if you have time):

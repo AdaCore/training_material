@@ -39,7 +39,7 @@ Declaring Private Types for Views
 
    .. code:: Ada
 
-      type defining_identifier is private;
+      type <identifier> is private;
 
 * Private type declaration must occur in visible part
 

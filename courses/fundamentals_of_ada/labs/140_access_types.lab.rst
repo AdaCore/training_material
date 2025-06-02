@@ -18,7 +18,7 @@ Access Types Lab
    - Create a Password Manager package
 
       * Create a record to store the password string and the counter
-      * Create an array of these records indexed by the login identifier
+      * Create an array of these records indexed by the login identification
       * The user should be able to retrieve a pointer to the record, either for modification or for viewing
 
    - Main program should:

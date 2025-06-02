@@ -10,7 +10,7 @@ User-Defined Exceptions
 
    .. code:: Ada
 
-      defining_identifier_list : exception;
+      <identifier_list> : exception;
 
 * Behave like predefined exceptions
 
