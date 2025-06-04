@@ -139,7 +139,8 @@ Array Mapping Loop
 
    ::
 
-      loop_init.adb:16:62: medium: loop invariant might not be preserved by an arbitrary iteration
+      loop_init.adb:16:62: medium: loop invariant might not be preserved
+         by an arbitrary iteration
       loop_init.adb:16:62: cannot prove T(K) = T'Loop_Entry(K) + 1
 
    5. We need to add a frame condition (things that haven't changed)
