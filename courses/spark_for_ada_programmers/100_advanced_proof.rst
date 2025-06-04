@@ -38,7 +38,6 @@ Advanced Proof
 
 .. include:: 100_advanced_proof/01-introduction.rst
 .. include:: 100_advanced_proof/03-loops.rst
-.. include:: 100_advanced_proof/02-relaxed_initialization.rst
 .. include:: 100_advanced_proof/04-formal_containers.rst
 .. include:: labs/100_advanced_proof.lab.rst
 .. include:: 100_advanced_proof/99-summary.rst
