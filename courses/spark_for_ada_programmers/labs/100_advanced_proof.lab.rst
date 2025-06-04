@@ -40,9 +40,9 @@ Array Initialization Loop
 
 .. container:: animate 2-
 
-   3. Loop is unrolled because it's size is small
+   3. Loop is unrolled because its size is small
 
-      + You can see that by turning on :menu:`Output info messages` switch in the dialog
+      + You can see that by turning on the :menu:`Output info messages` switch in the dialog
 
 .. container:: animate 3-
 
@@ -66,9 +66,9 @@ Helping Prove the Loop
 
 .. container:: animate 1-
 
-   1. Add a loop invariant in :ada:`Init_Table`.
+   1. Add a loop invariant in :ada:`Init_Table`
 
-      + Hint: take inspiration in the postcondition.
+      + Hint: take inspiration in the postcondition
 
 .. container:: animate 2-
 
@@ -102,7 +102,7 @@ Helping Prove the Loop
       pragma Loop_Invariant
          (for all K in T'First .. J => T(K)'Initialized);
 
-   5. And now your subprogram will prove.
+   5. And now your subprogram will prove!
 
 --------------------
 Array Mapping Loop
@@ -119,7 +119,7 @@ Array Mapping Loop
 
 .. container:: animate 2-
 
-   2. Add a loop invariant in :ada:`Bump_Table`.
+   2. Add a loop invariant in :ada:`Bump_Table`
 
       * Hint: use attribute :ada:`Loop_Entry`
       * Can you prove the subprogram without a loop frame condition?
@@ -133,7 +133,7 @@ Array Mapping Loop
       pragma Loop_Invariant
          (for all K in T'First .. J => T(K) = T'Loop_Entry(K) + 1);
 
-   4. Change the assignment inside the loop into :ada:`T(J + 0) := T (J) + 1;` and try to prove
+   4. Change the assignment inside the loop into the following, and try to prove: :ada:`T(J + 0) := T (J) + 1;` 
 
 .. container:: animate 4-
 
