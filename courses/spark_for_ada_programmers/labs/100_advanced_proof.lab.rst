@@ -108,32 +108,46 @@ Helping Prove the Loop
 Array Mapping Loop
 --------------------
 
-- Run :toolname:`GNATprove` to prove the subprogram :ada:`Bump_Table`
+.. container:: animate 1-
 
-- Add a loop invariant in :ada:`Bump_Table`.
+   1. Run :toolname:`GNATprove` to prove the subprogram :ada:`Bump_Table`
 
-   + Hint: use attribute :ada:`Loop_Entry`
-   + Can you prove the subprogram without a loop frame condition?
+   ::
 
-- Change the assignment inside the loop into :ada:`T(J + 0) := T (J) + 1;`
+      loop_init.adb:14:24: info: cannot unroll loop (too many loop iterations)
+      loop_init.ads:19:39: medium: postcondition might fail
 
-   + Can you still prove the subprogram without a loop frame condition?
-   + Discuss this with the course instructor.
-   + Complete the loop invariant with a frame condition to prove :ada:`Bump_Table`
+.. container:: animate 2-
 
-------------------------
-Formal Container Loops
-------------------------
+   2. Add a loop invariant in :ada:`Bump_Table`.
 
-- Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_Vector`
+      * Hint: use attribute :ada:`Loop_Entry`
+      * Can you prove the subprogram without a loop frame condition?
 
-- Add a loop invariant in :ada:`Init_Vector`
+.. container:: animate 3-
 
-   + Hint: you need to state that :ada:`V.Last_Index` is preserved
+   3. No frame condition in this case
 
-- Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_List`
+   .. code:: Ada
 
-- Add a loop invariant in :ada:`Init_List`
+      pragma Loop_Invariant
+         (for all K in T'First .. J => T(K) = T'Loop_Entry(K) + 1);
 
-   + Hint: the position of cursor :ada:`Cu` in :ada:`L` is :ada:`Positions (L).Get (Cu)`
-   + Hint: the sequence of components for :ada:`L` is :ada:`Model (L)`
+   4. Change the assignment inside the loop into :ada:`T(J + 0) := T (J) + 1;` and try to prove
+
+.. container:: animate 4-
+
+   ::
+
+      loop_init.adb:16:62: medium: loop invariant might not be preserved by an arbitrary iteration
+      loop_init.adb:16:62: cannot prove T(K) = T'Loop_Entry(K) + 1
+
+   5. We need to add a frame condition (things that haven't changed)
+
+.. container:: animate 6-
+
+   .. code:: Ada
+
+      pragma Loop_Invariant
+         (for all K in J .. T'Last =>
+             (if K > J then T(K) = T'Loop_Entry(K)));
