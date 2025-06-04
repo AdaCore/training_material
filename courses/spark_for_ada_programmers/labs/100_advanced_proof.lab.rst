@@ -6,7 +6,7 @@ Lab
 Advanced Proof Lab
 --------------------
 
-- Find the :filename:`010_advanced_proof` sub-directory in :filename:`source`
+- Find the :filename:`100_advanced_proof` sub-directory in :filename:`source`
 
    + You can copy it locally, or work with it in-place
    + Open a command prompt in that directory
@@ -30,64 +30,125 @@ Advanced Proof Lab
 Array Initialization Loop
 ---------------------------
 
-- Find and open the files :filename:`loop_init.ads` and :filename:`loop_init.adb` in :toolname:`GNAT Studio`
+.. container:: animate 1-
 
-- Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_Table`
+   1. Find and open the files :filename:`loop_init.ads` and :filename:`loop_init.adb` in :toolname:`GNAT Studio`
 
-  + Can you explain why :ada:`Init_Table` is proved?
-  + Confirm this by rerunning :toolname:`GNATprove` with switch :command:`--info`
+   2. Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_Table`
 
-- Change the type :ada:`Table` to be an unconstrained array:
+     + Can you explain why :ada:`Init_Table` is proved?
 
-  .. code:: ada
+.. container:: animate 2-
 
-     type Table is array (Index range <>) of Integer;
+   3. Loop is unrolled because its size is small
 
-- Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_Table`
+      + You can see that by turning on the :menu:`Output info messages` switch in the dialog
 
-  + Can you explain why the postcondition is not proved?
-  + Confirm this by rerunning :toolname:`GNATprove` with switch :command:`--info`
+.. container:: animate 3-
 
-- Add a loop invariant in :ada:`Init_Table`.
+   4. Change the type :ada:`Table` to be an unconstrained array
 
-  + Hint: take inspiration in the postcondition.
-  + Subprogram :ada:`Init_Table` should be proved except for initialization checks.
+   .. code:: ada
 
-- Mark parameter :ada:`T` as having relaxed initialization.
+      type Table is array (Index range <>) of Integer;
 
-  + Rerun :toolname:`GNATprove`.
-  + Add the necessary loop invariant to complete the proof of :ada:`Init_Table`.
+   5. Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_Table`
+
+     + Prover cannot prove the postcondition. Why?
+
+.. container:: animate 4-
+
+   6. Loop cannot be unrolled because size is unknown
+
+------------------------
+Helping Prove the Loop
+------------------------
+
+.. container:: animate 1-
+
+   1. Add a loop invariant in :ada:`Init_Table`
+
+      + Hint: take inspiration in the postcondition
+
+.. container:: animate 2-
+
+   .. code:: Ada
+
+      pragma Loop_Invariant (for all K in T'First .. J => T(K) = 0);                                  
+
+   2. Postcondition :ada:`Init_Table` now proves but ...
+
+      + Prover still not sure about initialization of the object
+
+.. container:: animate 3-
+
+   3. First you need to *relax* the initialization requirement for **T**
+
+.. container:: animate 4-
+
+   .. code:: Ada
+
+      procedure Init_Table (T : out Table)
+      with
+        Relaxed_Initialization => T,
+        Post => (for all J in T'Range => T(J) = 0);
+
+   4. Then you need to add a loop invariant to prove initialization
+
+.. container:: animate 5-
+
+   .. code:: Ada
+
+      pragma Loop_Invariant
+         (for all K in T'First .. J => T(K)'Initialized);
+
+   5. And now your subprogram will prove!
 
 --------------------
 Array Mapping Loop
 --------------------
 
-- Run :toolname:`GNATprove` to prove the subprogram :ada:`Bump_Table`
+.. container:: animate 1-
 
-- Add a loop invariant in :ada:`Bump_Table`.
+   1. Run :toolname:`GNATprove` to prove the subprogram :ada:`Bump_Table`
 
-   + Hint: use attribute :ada:`Loop_Entry`
-   + Can you prove the subprogram without a loop frame condition?
+   ::
 
-- Change the assignment inside the loop into :ada:`T(J + 0) := T (J) + 1;`
+      loop_init.adb:14:24: info: cannot unroll loop (too many loop iterations)
+      loop_init.ads:19:39: medium: postcondition might fail
 
-   + Can you still prove the subprogram without a loop frame condition?
-   + Discuss this with the course instructor.
-   + Complete the loop invariant with a frame condition to prove :ada:`Bump_Table`
+.. container:: animate 2-
 
-------------------------
-Formal Container Loops
-------------------------
+   2. Add a loop invariant in :ada:`Bump_Table`
 
-- Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_Vector`
+      * Hint: use attribute :ada:`Loop_Entry`
+      * Can you prove the subprogram without a loop frame condition?
 
-- Add a loop invariant in :ada:`Init_Vector`
+.. container:: animate 3-
 
-   + Hint: you need to state that :ada:`V.Last_Index` is preserved
+   3. No frame condition in this case
 
-- Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_List`
+   .. code:: Ada
 
-- Add a loop invariant in :ada:`Init_List`
+      pragma Loop_Invariant
+         (for all K in T'First .. J => T(K) = T'Loop_Entry(K) + 1);
 
-   + Hint: the position of cursor :ada:`Cu` in :ada:`L` is :ada:`Positions (L).Get (Cu)`
-   + Hint: the sequence of components for :ada:`L` is :ada:`Model (L)`
+   4. Change the assignment inside the loop into the following, and try to prove: :ada:`T(J + 0) := T (J) + 1;` 
+
+.. container:: animate 4-
+
+   ::
+
+      loop_init.adb:16:62: medium: loop invariant might not be preserved
+         by an arbitrary iteration
+      loop_init.adb:16:62: cannot prove T(K) = T'Loop_Entry(K) + 1
+
+   5. We need to add a frame condition (things that haven't changed)
+
+.. container:: animate 6-
+
+   .. code:: Ada
+
+      pragma Loop_Invariant
+         (for all K in J .. T'Last =>
+             (if K > J then T(K) = T'Loop_Entry(K)));
