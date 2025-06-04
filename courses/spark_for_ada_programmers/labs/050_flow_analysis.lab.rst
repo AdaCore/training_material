@@ -16,24 +16,68 @@ Flow Analysis Lab
 
 - Unfold the source code directory (.) in the project pane
 
------------------------------
-Aliasing and Initialization
------------------------------
+----------------------------------------
+Aliasing and Initialization - Messages
+----------------------------------------
 
-- Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
-- Study the code and see if you can predict what's wrong.
+.. container:: animate 1-
 
-   + These examples illustrate the basic forms of flow analysis in SPARK.
+   - Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
+   - Study the code and see if you can predict what's wrong.
 
-- Use :menu:`SPARK` |rightarrow| :menu:`Examine File...` to analyse the body of package `Basics`.
-- Click on the "Locations" tab to see the messages organized by unit.
-- Make sure you understand the check messages that :toolname:`GNATprove` produces.
+      + These examples illustrate the basic forms of flow analysis in SPARK.
 
-  + Discuss these with the course instructor.
+   - Use :menu:`SPARK` |rightarrow| :menu:`Examine File...` to analyze the body of package `Basics`.
+   - Click on the :menu:`Locations` tab to see the messages (organized by unit).
+   - Make sure you understand the check messages that :toolname:`GNATprove` produces.
 
-- Either change the code or justify the message with pragma :ada:`Annotate`.
+.. container:: animate 2-
 
-  + The objective is to get no messages when running :toolname:`GNATprove`.
+   ::
+
+      basics.adb:17:13: medium: formal parameters "X" and "Y" might be aliased (SPARK RM 6.4.2)
+      basics.ads:25:26: medium: "T" might not be initialized in "Init_Table"
+
+   * We want to fix the code, or add an annotation to prevent the messages
+
+      * We do not want any messages from our analysis.
+
+-------------------------------------
+Aliasing and Initialization - Fixes
+-------------------------------------
+
+.. container:: animate 1-
+
+   * Problem 1 - ``formal parameters "X" and "Y" might be aliased``
+
+      * Hint: if we prevent **Swap** from being called when **I** and **J** are equal,
+        we can safely add an anotation indicating this is a false positive
+
+.. container:: animate 2-
+
+   .. code:: Ada
+
+      if I /= J then
+         Swap (T (I), T (J));
+         pragma Annotate (GNATprove, False_Positive,
+                          "formal parameters * might be aliased",
+                          "I /= J so T(I) and T(J) cannot alias");
+      end if;
+
+.. container:: animate 1-
+
+   * Problem 2 - ``"T" might not be initialized in "Init_Table"``
+
+      * Hint: We need to initialize the array in a way that the analysis
+        knows the entire array was initialized
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      T := (others => 0);
+      T (T'First) := 1;
+      T (T'Last) := 2;
 
 -------------------
 Data Dependencies
