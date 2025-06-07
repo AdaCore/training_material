@@ -183,7 +183,7 @@ Attribute :ada:`Old`
 
 |
 
-* Evaluation for the copy may raise runtime errors
+* Evaluation for the copy may raise run-time errors
 
   - Not allowed by default inside *potentially unevaluated expressions*
 
@@ -209,7 +209,7 @@ Special Cases for Attribute :ada:`Old`
 
 * Simple component access :ada:`X.C'Old` equivalent to :ada:`X'Old.C`
 
-  - Although one may be more efficient at runtime
+  - Although one may be more efficient at run-time
 
 |
 
