@@ -16,25 +16,67 @@ Proof Lab
 
 - Unfold the source code directory (.) in the project pane
 
----------------------------
-Absence of Runtime Errors
----------------------------
+-------------------------------
+Understanding Run-time Errors
+-------------------------------
 
-- Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
-- Study the code and see if you can predict what's wrong.
+.. container:: animate 1-
 
-   + These examples illustrate the basic forms of proof in SPARK.
+   - Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
+   - Study the code and see if you can predict what's "wrong".
 
-- Use :menu:`SPARK` |rightarrow| :menu:`Prove File...` to analyse the body of package `Basics`.
-- Click on the "Locations" tab to see the messages organized by unit.
-- Make sure you understand the check messages that :toolname:`GNATprove` produces.
+      + These examples illustrate the basic forms of proof in SPARK.
 
-   + Discuss these with the course instructor.
+   - Use :menu:`SPARK` |rightarrow| :menu:`Prove File...` to analyse the body of package `Basics`.
+   - Click on the "Locations" tab to see the messages organized by unit.
+   - Make sure you understand the check messages that :toolname:`GNATprove` produces.
 
-- Add preconditions to avoid runtime errors in subprograms
+.. container:: animate 2-
+
+   :color-red:`basics.adb:14:24: medium: overflow check might fail`
+
+   :color-red:`basics.adb:14:24: cannot prove upper bound for R.A + 1`
+
+      Nothing prevents :ada:`R.A` from being :ada:`Integer'Last` which would cause a run-time error
+
+   :color-red:`basics.adb:23:19: medium: array index check might fail`
+
+   :color-red:`basics.adb:23:19: reason for check: value must be a valid index into the array`
+
+      **T** is an unconstrained array, so there are no guarantees that **I** and **J** are valid
+
+----------------------------
+Absence of Run-time Errors
+----------------------------
+
+.. container:: animate 1-
+
+- Add preconditions to avoid runtime errors in the subprograms
+
+.. container:: animate 2-
 
    + Hint: use function :ada:`Value_Rec` for procedures :ada:`Bump_Rec` and :ada:`Bump_The_Rec`
    + The objective is to get no messages when running :toolname:`GNATprove`.
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      procedure Bump_Rec (R : in out Rec)
+      with
+        Pre => Value_Rec (R) < Integer'Last;
+
+      procedure Swap_Table (T : in out Table; I, J : Index)
+      with
+        Pre => I in T'Range and then J in T'Range;
+
+      procedure Init_Table (T : out Table)
+      with
+        Pre => T'Length >= 2;
+
+      procedure Bump_The_Rec
+      with
+        Pre => Value_Rec (The_Rec) < Integer'Last;
 
 ---------------------------------
 Functional Specifications (1/2)
