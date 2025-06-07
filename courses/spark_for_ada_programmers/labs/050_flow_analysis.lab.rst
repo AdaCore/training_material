@@ -23,13 +23,13 @@ Aliasing and Initialization - Messages
 .. container:: animate 1-
 
    - Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
-   - Study the code and see if you can predict what's wrong.
+   - Study the code and see if you can predict what's wrong
 
-      + These examples illustrate the basic forms of flow analysis in SPARK.
+      + These examples illustrate the basic forms of flow analysis in SPARK
 
-   - Use :menu:`SPARK` |rightarrow| :menu:`Examine File` to analyze the body of package `Basics`.
-   - Click on the :menu:`Locations` tab to see the messages (organized by unit).
-   - Make sure you understand the check messages that :toolname:`GNATprove` produces.
+   - Use :menu:`SPARK` |rightarrow| :menu:`Examine File` to analyze the body of package `Basics`
+   - Click on the :menu:`Locations` tab to see the messages (organized by unit)
+   - Make sure you understand the check messages that :toolname:`GNATprove` produces
 
 .. container:: animate 2-
 
@@ -40,7 +40,7 @@ Aliasing and Initialization - Messages
 
    * We want to fix the code, or add an annotation to prevent the messages
 
-      * We do not want any messages from our analysis.
+      * We do not want any messages from our analysis
 
 -------------------------------------
 Aliasing and Initialization - Fixes
@@ -88,9 +88,9 @@ Generated Global Contracts
    - Now that you've performed flow analysis, you can examine the generated global contracts
 
       * Right-click in the package spec and select :menu:`SPARK` |rightarrow| :menu:`Globals`
-        |rightarrow| :menu:`Show generated Global contracts`.
+        |rightarrow| :menu:`Show generated Global contracts`
 
-   - Study the generated contracts and make sure you understand them.
+   - Study the generated contracts and make sure you understand them
 
 .. container:: animate 2-
 
@@ -112,7 +112,7 @@ Adding Our Own Global Contracts
 
    - Add a null data dependency contract to all subprograms
 
-      - This isn't correct, but we're proving a point.
+      - This isn't correct, but we're proving a point
 
 .. container:: animate 2-
 
@@ -134,7 +134,7 @@ Adding Our Own Global Contracts
       high: "The_Rec" must be listed in the Global aspect of "Init_The_Rec"
       high: "The_Table" must be listed in the Global aspect of "Init_The_Table"
 
-   * Analysis shows global data has been modified in these subprograms.
+   * Analysis shows global data has been modified in these subprograms
 
       * Add the appropriate contracts
 
