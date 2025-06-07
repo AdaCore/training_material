@@ -27,7 +27,7 @@ Understanding Run-time Errors
 
       + These examples illustrate the basic forms of proof in SPARK.
 
-   - Use :menu:`SPARK` |rightarrow| :menu:`Prove File...` to analyse the body of package `Basics`.
+   - Use :menu:`SPARK` |rightarrow| :menu:`Prove File...` to analyze the body of package `Basics`.
    - Click on the "Locations" tab to see the messages organized by unit.
    - Make sure you understand the check messages that :toolname:`GNATprove` produces.
 
@@ -72,56 +72,88 @@ Absence of Run-time Errors
 
       procedure Init_Table (T : out Table)
       with
-        Pre => T'Length >= 2;
+        Pre => T'Length > 0;
 
       procedure Bump_The_Rec
       with
         Pre => Value_Rec (The_Rec) < Integer'Last;
 
----------------------------------
-Functional Specifications (1/2)
----------------------------------
+------------------------
+Proving the Code Works
+------------------------
 
-- Add a postcondition to procedure :ada:`Swap_The_Table` stating that the
-  values at indexes :ada:`I` and :ada:`J` have been exchanged.
+.. container:: animate 1-
 
-- Run proof. Make sure you understand the check messages that
-  :toolname:`GNATprove` produces.
+   - Add a postcondition to procedure :ada:`Swap_The_Table` stating that the
+     values at indexes :ada:`I` and :ada:`J` have been exchanged.
 
-   + Study the generated contracts and make sure you understand them.
+.. container:: animate 2-
 
-- Add a postcondition to procedure :ada:`Swap_Table` stating that the
-  values at indexes :ada:`I` and :ada:`J` have been exchanged.
+   .. code:: Ada
 
-- Run proof.
+      procedure Swap_The_Table (I, J : Index)
+      with
+        Post => The_Table (I) = The_Table (J)'Old
+          and then The_Table (J) = The_Table (I)'Old;
 
-   + The postcondition on procedure :ada:`Swap_The_Table` should be proved now.
-   + Add a postcondition to procedure :ada:`Swap` to complete the proof.
+   - Run proof. What happens?
 
-- Add similarly a postcondition to procedures :ada:`Bump_The_Rec` and
-  :ada:`Bump_Rec` stating that the value of component :ada:`A` or :ada:`B`
-  (depending on the value of the discriminant) has been incremented
+.. container:: animate 3-
 
-   + Hint: use again function :ada:`Value_Rec`
+   :color-red:`basics.ads:39:14: medium: postcondition might fail`
 
----------------------------------
-Functional Specifications (2/2)
----------------------------------
+   :color-red:`basics.ads:39:14: cannot prove The_Table (I) = The_Table (J)'Old`
 
-- Add similarly a postcondition to procedures :ada:`Init_The_Rec` and
-  :ada:`Init_Rec` stating that the value of component :ada:`A` or :ada:`B`
-  (depending on the value of the discriminant) is 1.
+      The prover can't verify the result because it has no knowledge of the result to the call to :ada:`Swap_Table`
 
-- Add similarly a postcondition to procedures :ada:`Init_The_Table` and
-  :ada:`Init_Table` stating that the value of the first and last components
-  are 1 and 2.
+   - Add a postcondition to :ada:`Swap_Table` 
 
-   + Hint: you may have to strengthen the precondition of :ada:`Init_Table`.
+.. container:: animate 4-
 
-- Rerun :toolname:`GNATprove` with checkbox :menu:`Report check proved` selected.
+   .. code:: Ada
 
-   + Review the info messages and make sure you understand them.
+      procedure Swap_Table (T : in out Table; I, J : Index)
+      with
+        Pre  => I in T'Range and then J in T'Range,
+        Post => T (I) = T (J)'Old and then T (J) = T (I)'Old;
 
-- Modify the code or contracts and check that :toolname:`GNATprove` detects
-  mismatches between them. Make sure you understand the check messages that
-  :toolname:`GNATprove` produces.
+------------------------------------
+Proving the Code Works (Continued)
+------------------------------------
+
+.. container:: animate 1-
+
+   - Run proof. What happens now?
+
+.. container:: animate 2-
+
+   - :ada:`Swap_The_Table` now proves
+
+      - Prover assumes a postcondition in a called subprogram is True
+
+   - :ada:`Swap_Table` now fails to prove
+
+      - Prover doesn't know anything about :ada:`Swap`
+
+   - Add a postcondition for :ada:`Swap`
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      procedure Swap (X, Y : in out Integer)
+      with Post => X = Y'Old and then Y = X'Old;
+
+---------------------------
+Functional Specifications 
+---------------------------
+
+- In the time left, add postconditions to the remaining subprograms
+
+- Some hints
+
+   - :ada:`Init_Table` precondition is insufficient
+   - :ada:`Value_Rec` is easier to use than always checking the discriminant value
+   - Running the prover with checkbox :menu:`Report checks proved` selected shows which subprograms have proven postconditions
+
+- Full answers can be found in the course material
