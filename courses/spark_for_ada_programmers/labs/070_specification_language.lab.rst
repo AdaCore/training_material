@@ -16,28 +16,89 @@ Specification Language Lab
 
 - Unfold the source code directory (.) in the project pane
 
---------------------
-Richer Expressions
---------------------
+----------------------------------------
+Demonstrating Richer Expressions (1/3)
+----------------------------------------
 
-- Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
+- This part of the lab is showing how to use some newer language constructs in pre-/postconditions
 
-   + After each modification, check that the code is still proved by :tooname:`GNATprove`
+   + The unit proves correctly already
+   + After each modification, check that the code is still proved
 
-- Use a *declare expression* to introduce names :ada:`X_Old` for :ada:`X'Old`
-  and :ada:`Y_Old` for :ada:`Y'Old` in the postcondition of :ada:`Swap`
+- Use a *declare expression* to introduce names :ada:`X_Old` annd :ada:`Y'Old` in the postcondition of :ada:`Swap`
+
+.. container:: animate 2-
+
+   .. code:: Ada
+
+      procedure Swap (X, Y : in out Integer)
+        with Post =>
+          (declare
+             X_Old : constant Integer := X'Old;
+             Y_Old : constant Integer := Y'Old;
+           begin
+             X = Y_Old and then Y = X_Old);
+
+.. container:: animate 1-
+
+   *Verify the unit still proves correctly*
+
+----------------------------------------
+Demonstrating Richer Expressions (2/3)
+----------------------------------------
 
 - Use *delta aggregates* to state the new value of :ada:`R` in the
   postcondition of :ada:`Bump_Rec`
 
+.. container:: animate 2-
+
    + Hint: use an *if expression* testing the value of the discriminant
 
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      procedure Bump_Rec (R : in out Rec)
+       with
+         Pre  => Value_Rec (R) < Integer'Last,
+         Post =>
+           (if R.Disc then
+              R = (R'Old with delta A => Value_Rec (R)'Old + 1)
+            else
+              R = (R'Old with delta B => Value_Rec (R)'Old + 1));
+
+.. container:: animate 1-
+
+   *Verify the unit still proves correctly*
+
+----------------------------------------
+Demonstrating Richer Expressions (3/3)
+----------------------------------------
+
 - Use a *quantified expression* to state that all values in array :ada:`T` are
-  preserved after the call to :ada:`Swap_Table`, except for those at indexes
-  :ada:`I` and :ada:`J`
+  preserved after the call to :ada:`Swap_Table`
+
+   + Except for those at indexes :ada:`I` and :ada:`J`
+
+.. container:: animate 2-
 
    + Hint: use a membership test for "being different from :ada:`I` and :ada:`J`"
    + Hint: notice that :ada:`T'Old(K)` may be allowed even if :ada:`T(K)'Old` is not
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      procedure Swap_Table (T : in out Table; I, J : Index)
+      with
+        Pre  => I in T'Range and then J in T'Range,
+        Post => T (I) = T (J)'Old and then T (J) = T (I)'Old
+          and then (for all K in T'Range =>
+                      (if K not in I | J then T (K) = T'Old (K)));
+
+.. container:: animate 1-
+
+   *Verify the unit still proves correctly*
 
 ----------------------
 Expression Functions
