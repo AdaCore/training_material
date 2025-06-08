@@ -100,46 +100,173 @@ Demonstrating Richer Expressions (3/3)
 
    *Verify the unit still proves correctly*
 
-----------------------
-Expression Functions
-----------------------
+----------------------------------
+Using Expression Functions (1/3)
+----------------------------------
 
-- Define an expression function :ada:`Value_Rec_Is_One` to express the
-  condition in the postcondition of :ada:`Init_Rec`
+.. container:: animate 1-
 
-- Use :ada:`Value_Rec_Is_One` in the postcondition of :ada:`Init_Rec`
+   - Define an expression function :ada:`Value_Rec_Is_One` to express the
+     condition in the postcondition of :ada:`Init_Rec`
 
-   + Check that the code is still proved
+      + :ada:`Init_Rec` is supposed to set the active field to 1
 
-- Keep the declaration of :ada:`Value_Rec_Is_One` in the spec file, but move
-  the expression function in the body file.
+.. container:: animate 2-
 
-   + Is the code still proved?
+   .. code:: Ada
 
-- Turn the expression function of :ada:`Value_Rec_Is_One` into a regular
-  function body.
+      function Value_Rec_Is_One (R : Rec) return Boolean is
+        (Value_Rec (R) = 1);
 
-   + Is the code still proved?
 
-- Add a postcondition to the declaration of :ada:`Value_Rec_Is_One` into a regular
-  function body.
+   - Use :ada:`Value_Rec_Is_One` in the postcondition of :ada:`Init_Rec`
 
-   + Is the code proved again?
+.. container:: animate 3-
 
-- Discuss these with the course instructor.
+   .. code:: Ada
 
---------------
-All Together
---------------
+      procedure Init_Rec (R : out Rec)
+        with Post => Value_Rec_Is_One (R);
 
-- Define a function :ada:`Constant_Value` that returns :ada:`True` if an
-  array :ada:`T` has value :ada:`Value` between indexes :ada:`Start` and
-  :ada:`Stop`
+.. container:: animate 1-
 
-   + Hint: add a precondition to exclude incorrect parameter values
+   *Verify the unit still proves correctly*
 
-- Use :ada:`Constant_Value` in the postcondition of :ada:`Init_Table` to
-  express that the table has value zero at all indexes except the first and
-  last ones.
+----------------------------------
+Using Expression Functions (2/3)
+----------------------------------
 
-- Check that the code is still proved.
+.. container:: animate 1-
+
+   - Keep the declaration of :ada:`Value_Rec_Is_One` in the spec file, but move
+     the expression function to the body file.
+
+.. container:: animate 2-
+
+   - In spec
+
+      .. code:: Ada
+
+         function Value_Rec_Is_One (R : Rec) return Boolean;
+
+         procedure Init_Rec (R : out Rec)
+           with Post => Value_Rec_Is_One (R);
+
+   - In body
+
+      .. code:: Ada
+
+         function Value_Rec_Is_One (R : Rec) return Boolean is
+           (Value_Rec (R) = 1);
+
+         procedure Init_Rec (R : out Rec) is
+         begin
+            case R.Disc is
+            ...
+
+.. container: animate 1-
+
+   *Verify the unit still proves correctly*
+
+----------------------------------
+Using Expression Functions (3/3)
+----------------------------------
+
+.. container:: animate 1-
+
+   - Turn the expression function of :ada:`Value_Rec_Is_One` into a regular
+     function body.
+
+.. container:: animate 2-
+
+   .. code:: Ada
+
+      function Value_Rec_Is_One (R : Rec) return Boolean is
+      begin
+         return Value_Rec (R) = 1;
+      end Value_Rec_Is_One;
+
+   **Does** *the unit still prove correctly?*
+
+.. container:: animate 3-
+
+   - No! We have lost the "free" postcondition of an expression function
+
+   - Add a postcondition to the declaration of :ada:`Value_Rec_Is_One`
+
+.. container:: animate 4-
+
+   .. code:: Ada
+
+      function Value_Rec_Is_One (R : Rec) return Boolean
+        with Post =>
+          Value_Rec_Is_One'Result = (Value_Rec (R) = 1);
+
+   *Verify the unit still proves correctly*
+
+------------------------
+If You Have Time (1/2)
+------------------------
+
+.. container:: animate 1-
+
+   - Implement the expression function :ada:`Constant_Value`
+
+      .. code:: Ada
+
+         function Constant_Value
+            (T : Table; Start, Stop : Index; Value : Integer)
+             return Boolean
+
+      + Such that for every index between :ada:`Start` and :ada:`Stop` (inclusive), the
+        element at that index is :ada:`Value`
+
+.. container:: animate 2-
+
+   - Hint: Use a precondition to make sure input parameters make sense
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      function Constant_Value
+        (T : Table; Start, Stop : Index; Value : Integer)
+         return Boolean
+      is
+        (for all J in Start .. Stop => T (J) = Value)
+      with
+        Pre => Start > Stop or else (Start in T'Range and then Stop in T'Range);
+
+   *Zero length arrays are defined as* :ada:`'First` *being larger than* :ada:`'Last`.
+   *So our precondition verifes that* :ada:`Start` *and* :ada:`Stop` *are valid indices*
+   *into the array*
+
+------------------------
+If You Have Time (2/2)
+------------------------
+
+.. container:: animate 1-
+
+   - Using :ada:`Constant_Value`, write a postcondition for :ada:`Init_Table` where
+
+      + The first and last elements have the correct values of "1" and "2"
+      + All other elements are set to "0"
+
+.. container:: animate 2-
+
+   .. code:: Ada
+
+      procedure Init_Table (T : out Table)
+        with
+          Pre  => T'Length >= 2,
+          Post => T (T'First) = 1
+                  and then T (T'Last) = 2
+                  and then Constant_Value
+                          (T     => T,
+                           Start => T'First + 1,
+                           Stop  => T'Last - 1,
+                           Value => 0);
+
+.. container:: animate 1-
+
+   *Verify the unit still proves correctly*
