@@ -109,5 +109,5 @@ Computing with Provers
 
   - Define lemmas for shared proofs
 
-* Alternative is to execute these assertions at runtime
+* Alternative is to execute these assertions at run-time
 

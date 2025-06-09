@@ -42,10 +42,10 @@ Contract Cases (2/2)
 
 |
 
-* When enabled at runtime:
+* When enabled at run-time:
 
-  - Runtime check that exactly one guard holds on entry
-  - Runtime check that the corresponding consequence hold on exit
+  - Run-time check that exactly one guard holds on entry
+  - Run-time check that the corresponding consequence hold on exit
 
 -------------------
 Exceptional Cases
@@ -75,5 +75,5 @@ Exceptional Cases
   - When exception is raised, consequence holds on exit
   - Attribute :ada:`Old` allowed in consequence
 
-* No runtime effect
+* No run-time effect
 

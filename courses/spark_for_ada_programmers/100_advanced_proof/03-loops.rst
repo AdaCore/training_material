@@ -47,7 +47,7 @@ Loop Invariants
 * A :dfn:`loop invariant` is a special assertion
 
   - Placed inside loops
-  - Executed like an assertion at runtime
+  - Executed like an assertion at run-time
   - Interpreted specially in proof
   - Slightly different from classical Hoare loop invariant
 
@@ -307,7 +307,7 @@ Loop Variants (1/2)
 * A :dfn:`loop variant` is a special assertion
 
   - Placed inside loops
-  - Executed specially at runtime
+  - Executed specially at run-time
   - Interpreted specially in proof
 
 |

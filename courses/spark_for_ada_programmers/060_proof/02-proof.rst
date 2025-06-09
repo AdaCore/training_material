@@ -34,7 +34,7 @@ Functional Contracts
 Silver/Gold/Platinum Levels
 -----------------------------
 
-* Check absence of runtime errors (AoRTE)
+* Check absence of run-time errors (AoRTE)
 * Check that assertions are always true
 * Check that code respects functional contracts
 
@@ -133,7 +133,7 @@ Consider the following declarations:
    R : Rec := ...;
    X : Integer;
 
-Which of the following *cannot* cause a runtime error:
+Which of the following *cannot* cause a run-time error:
 
    A. ``X := T (T'First)``
    B. ``X := X / (-1);``
@@ -143,7 +143,7 @@ Which of the following *cannot* cause a runtime error:
 
 .. container:: animate
 
-   Explanations: **all** of then can cause a runtime error!
+   Explanations: **all** of then can cause a run-time error!
 
    A. Index check fails if :ada:`T` is empty.
    B. Overflow check fails if :ada:`X = Integer'First`
@@ -188,7 +188,7 @@ Levels of Software Assurance
 
 * Silver level
 
-  - Goal is **absence** of runtime errors
+  - Goal is **absence** of run-time errors
   - Functional contracts added to support that goal
 
     + Typically a few preconditions only

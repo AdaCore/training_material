@@ -23,7 +23,7 @@ Assertions in SPARK
 * Assertions in Ada are just :ada:`Boolean` expressions
 
   - They can be executed
-  - Thus they can raise runtime errors (to be checked in SPARK)
+  - Thus they can raise run-time errors (to be checked in SPARK)
 
 * Low-level assertions
 
