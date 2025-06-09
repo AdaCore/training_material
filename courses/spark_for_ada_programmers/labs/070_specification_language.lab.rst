@@ -22,8 +22,10 @@ Demonstrating Richer Expressions (1/3)
 
 - This part of the lab is showing how to use some newer language constructs in pre-/postconditions
 
-   + The unit proves correctly already
-   + After each modification, check that the code is still proved
+.. note::
+
+   The unit already proves correctly already - we want to make sure
+   that after each modification, the unit still proves correctly
 
 - Use a *declare expression* to introduce names :ada:`X_Old` annd :ada:`Y'Old` in the postcondition of :ada:`Swap`
 
@@ -41,7 +43,6 @@ Demonstrating Richer Expressions (1/3)
 
 .. container:: animate 1-
 
-   *Verify the unit still proves correctly*
 
 ----------------------------------------
 Demonstrating Richer Expressions (2/3)
@@ -66,10 +67,6 @@ Demonstrating Richer Expressions (2/3)
               R = (R'Old with delta A => Value_Rec (R)'Old + 1)
             else
               R = (R'Old with delta B => Value_Rec (R)'Old + 1));
-
-.. container:: animate 1-
-
-   *Verify the unit still proves correctly*
 
 ----------------------------------------
 Demonstrating Richer Expressions (3/3)
@@ -96,20 +93,15 @@ Demonstrating Richer Expressions (3/3)
           and then (for all K in T'Range =>
                       (if K not in I | J then T (K) = T'Old (K)));
 
-.. container:: animate 1-
-
-   *Verify the unit still proves correctly*
-
 ----------------------------------
 Using Expression Functions (1/3)
 ----------------------------------
 
-.. container:: animate 1-
+- Define an expression function :ada:`Value_Rec_Is_One` to express the
+  condition in the postcondition of :ada:`Init_Rec`
 
-   - Define an expression function :ada:`Value_Rec_Is_One` to express the
-     condition in the postcondition of :ada:`Init_Rec`
-
-      + :ada:`Init_Rec` is supposed to set the active field to 1
+   + :ada:`Init_Rec` is supposed to set the active field to 1
+   + After modification, verify the unit still proves correctly
 
 .. container:: animate 2-
 
@@ -128,18 +120,14 @@ Using Expression Functions (1/3)
       procedure Init_Rec (R : out Rec)
         with Post => Value_Rec_Is_One (R);
 
-.. container:: animate 1-
-
-   *Verify the unit still proves correctly*
-
 ----------------------------------
 Using Expression Functions (2/3)
 ----------------------------------
 
-.. container:: animate 1-
+- Keep the declaration of :ada:`Value_Rec_Is_One` in the spec file, but move
+  the expression function to the body file.
 
-   - Keep the declaration of :ada:`Value_Rec_Is_One` in the spec file, but move
-     the expression function to the body file.
+   + After modification, verify the unit still proves correctly
 
 .. container:: animate 2-
 
@@ -164,18 +152,12 @@ Using Expression Functions (2/3)
             case R.Disc is
             ...
 
-.. container: animate 1-
-
-   *Verify the unit still proves correctly*
-
 ----------------------------------
 Using Expression Functions (3/3)
 ----------------------------------
 
-.. container:: animate 1-
-
-   - Turn the expression function of :ada:`Value_Rec_Is_One` into a regular
-     function body.
+- Turn the expression function of :ada:`Value_Rec_Is_One` into a regular
+  function body.
 
 .. container:: animate 2-
 
@@ -202,24 +184,22 @@ Using Expression Functions (3/3)
         with Post =>
           Value_Rec_Is_One'Result = (Value_Rec (R) = 1);
 
-   *Verify the unit still proves correctly*
+   **Now** the unit should prove correctly
 
 ------------------------
 If You Have Time (1/2)
 ------------------------
 
-.. container:: animate 1-
+- Implement the expression function :ada:`Constant_Value`
 
-   - Implement the expression function :ada:`Constant_Value`
+   .. code:: Ada
 
-      .. code:: Ada
+      function Constant_Value
+         (T : Table; Start, Stop : Index; Value : Integer)
+          return Boolean
 
-         function Constant_Value
-            (T : Table; Start, Stop : Index; Value : Integer)
-             return Boolean
-
-      + Such that for every index between :ada:`Start` and :ada:`Stop` (inclusive), the
-        element at that index is :ada:`Value`
+   + Such that for every index between :ada:`Start` and :ada:`Stop` (inclusive), the
+     element at that index is :ada:`Value`
 
 .. container:: animate 2-
 
@@ -245,12 +225,11 @@ If You Have Time (1/2)
 If You Have Time (2/2)
 ------------------------
 
-.. container:: animate 1-
+- Using :ada:`Constant_Value`, write a postcondition for :ada:`Init_Table` where
 
-   - Using :ada:`Constant_Value`, write a postcondition for :ada:`Init_Table` where
-
-      + The first and last elements have the correct values of "1" and "2"
-      + All other elements are set to "0"
+   + The first and last elements have the correct values of "1" and "2"
+   + All other elements are set to "0"
+   + Verify the unit still proves correctly
 
 .. container:: animate 2-
 
@@ -266,7 +245,3 @@ If You Have Time (2/2)
                            Start => T'First + 1,
                            Stop  => T'Last - 1,
                            Value => 0);
-
-.. container:: animate 1-
-
-   *Verify the unit still proves correctly*
