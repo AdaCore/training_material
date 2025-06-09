@@ -125,7 +125,7 @@ Using Expression Functions (2/3)
 ----------------------------------
 
 - Keep the declaration of :ada:`Value_Rec_Is_One` in the spec file, but move
-  the expression function to the body file.
+  the expression function to the body file
 
    + After modification, verify the unit still proves correctly
 
@@ -157,7 +157,7 @@ Using Expression Functions (3/3)
 ----------------------------------
 
 - Turn the expression function of :ada:`Value_Rec_Is_One` into a regular
-  function body.
+  function body
 
 .. container:: animate 2-
 
@@ -217,7 +217,7 @@ If You Have Time (1/2)
       with
         Pre => Start > Stop or else (Start in T'Range and then Stop in T'Range);
 
-   *Zero length arrays are defined as* :ada:`'First` *being larger than* :ada:`'Last`.
+   **Note:** *Zero length arrays are defined as* :ada:`'First` *being larger than* :ada:`'Last`.
    *So our precondition verifes that* :ada:`Start` *and* :ada:`Stop` *are valid indices*
    *into the array*
 
