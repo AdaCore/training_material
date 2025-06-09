@@ -33,7 +33,7 @@ Investigating Unproved Checks
 
 * Need to investigate unproved checks
 
-  - Easiest way is to get runtime failure in spec or code
+  - Easiest way is to get run-time failure in spec or code
 
     + Test the code+spec with assertions enabled!
     + Then debug with the usual debugging tools

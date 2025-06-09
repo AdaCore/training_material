@@ -17,7 +17,7 @@ Proof Lab
 - Unfold the source code directory (.) in the project pane
 
 ---------------------------
-Absence of Runtime Errors
+Absence of Run-time Errors
 ---------------------------
 
 - Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
@@ -31,7 +31,7 @@ Absence of Runtime Errors
 
    + Discuss these with the course instructor.
 
-- Add preconditions to avoid runtime errors in subprograms
+- Add preconditions to avoid run-time errors in subprograms
 
    + Hint: use function :ada:`Value_Rec` for procedures :ada:`Bump_Rec` and :ada:`Bump_The_Rec`
    + The objective is to get no messages when running :toolname:`GNATprove`.

@@ -19,13 +19,13 @@ Range-based Form
 
   - Express that property holds for **all** values in the range
   - True if the range is empty (:math:`\forall` in logic)
-  - At runtime, executed as a loop which stops at first value where the property is not satisfied
+  - At run-time, executed as a loop which stops at first value where the property is not satisfied
 
 * Existentially quantified expression :ada:`(for some J in A .. B => Property)`
 
   - Express that property holds for **at least one** value in the range
   - False if the range is empty (:math:`\exists` in logic)
-  - At runtime, executed as a loop which stops at first value where the property is satisfied
+  - At run-time, executed as a loop which stops at first value where the property is satisfied
 
 ------------------
 Array-based Form
