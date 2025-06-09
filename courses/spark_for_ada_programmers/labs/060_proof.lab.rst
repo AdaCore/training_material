@@ -23,13 +23,13 @@ Understanding Run-time Errors
 .. container:: animate 1-
 
    - Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
-   - Study the code and see if you can predict what's "wrong".
+   - Study the code and see if you can predict what's "wrong"
 
-      + These examples illustrate the basic forms of proof in SPARK.
+      + These examples illustrate the basic forms of proof in SPARK
 
-   - Use :menu:`SPARK` |rightarrow| :menu:`Prove File...` to analyze the body of package `Basics`.
-   - Click on the "Locations" tab to see the messages organized by unit.
-   - Make sure you understand the check messages that :toolname:`GNATprove` produces.
+   - Use :menu:`SPARK` |rightarrow| :menu:`Prove File...` to analyze the body of package `Basics`
+   - Click on the "Locations" tab to see the messages organized by unit
+   - Make sure you understand the check messages that :toolname:`GNATprove` produces
 
 .. container:: animate 2-
 
@@ -51,12 +51,12 @@ Absence of Run-time Errors
 
 .. container:: animate 1-
 
-- Add preconditions to avoid runtime errors in the subprograms
+- Add preconditions to avoid run-time errors in the subprograms
 
 .. container:: animate 2-
 
    + Hint: use function :ada:`Value_Rec` for procedures :ada:`Bump_Rec` and :ada:`Bump_The_Rec`
-   + The objective is to get no messages when running :toolname:`GNATprove`.
+   + The objective is to get no messages when running :toolname:`GNATprove`
 
 .. container:: animate 3-
 
@@ -85,7 +85,7 @@ Proving the Code Works
 .. container:: animate 1-
 
    - Add a postcondition to procedure :ada:`Swap_The_Table` stating that the
-     values at indexes :ada:`I` and :ada:`J` have been exchanged.
+     values at indexes :ada:`I` and :ada:`J` have been exchanged
 
 .. container:: animate 2-
 
@@ -104,7 +104,7 @@ Proving the Code Works
 
    :color-red:`basics.ads:39:14: cannot prove The_Table (I) = The_Table (J)'Old`
 
-      The prover can't verify the result because it has no knowledge of the result to the call to :ada:`Swap_Table`
+      The prover can't verify the result because it has no knowledge of the result for the call to :ada:`Swap_Table`
 
    - Add a postcondition to :ada:`Swap_Table` 
 
