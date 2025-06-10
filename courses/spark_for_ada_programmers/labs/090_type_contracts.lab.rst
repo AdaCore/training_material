@@ -31,7 +31,7 @@ Type Predicates (1/2)
 
 .. container:: animate 1-
 
-   - Can you understand the messages?
+   - Look at the **predicate check** messages
    - How would you "help" the prover?
 
 .. container:: animate 2-
@@ -42,15 +42,7 @@ Type Predicates (1/2)
 
    :color-red:`basics.ads:10:1: possible fix: subprogram at basics.ads:10 should mention P in a precondition`
 
-   :color-red:`basics.adb:38:8: medium: invariant check might fail`
-
-   :color-red:`basics.ads:19:1: medium: for T before the call at basics.ads:19`
-
-   :color-red:`basics.ads:19:14: medium: invariant check might fail`
-
-   :color-red:`basics.ads:19:1: medium: for T at the end of Swap_Triplet at basics.ads:19`
-
-   :color-red:`basics.ads:39:9: medium: invariant check might fail on default value`
+   *(Ignore remaining messages for now)*
 
 -----------------------
 Type Predicates (2/2)
@@ -104,34 +96,97 @@ Type Predicates (2/2)
             P := Base;
          end Swap_Pair;
 
------------------
-Type Invariants
------------------
+-----------------------
+Type Invariants (1/4)
+-----------------------
 
-- Run :toolname:`GNATprove` to prove the unit
+.. container:: animate 1-
 
-   + Look at unproved invariant checks, can you explain them?
-   + Does it make a difference that :ada:`Swap_Triplet` is public and
-     :ada:`Bump_Triplet` is private?
+   - Run :toolname:`GNATprove` to prove the unit
+
+      - Predicate check messages should be gone
+
+   - Look at the **invariant check** messages
+   - How would you "help" the prover?
+
+.. container:: animate 2-
+
+   :color-red:`basics.adb:39:8: medium: invariant check might fail`
+
+   :color-red:`basics.ads:21:1: medium: for T before the call at basics.ads:21`
+
+   :color-red:`basics.ads:21:14: medium: invariant check might fail`
+
+   :color-red:`basics.ads:21:1: medium: for T at the end of Swap_Triplet at basics.ads:21`
+
+   :color-red:`basics.ads:41:9: medium: invariant check might fail on default value`
+
+-----------------------
+Type Invariants (2/4)
+-----------------------
 
 - Fix the invariant check failure on the default value for :ada:`Triplet`
 
+.. container:: animate 2-
+
+   *Hint: Need to ensure default value satisfies the invariant*
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      type Triplet is record
+         A : Integer := 0;
+         B : Integer := 1;
+         C : Integer := 2;
+      end record
+        with Invariant => All_Different (Triplet);
+
+-----------------------
+Type Invariants (3/4)
+-----------------------
+
 - Fix the invariant check failure in :ada:`Swap_Triplet`
 
-   + Hint: the intent is for the value of all components to rotate
+.. container:: animate 2-
+
+   *Hint: the intent is for the value of all components to rotate*
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      procedure Swap_Triplet (T : in out Triplet) is
+      begin
+         T := (A => T.B, B => T.C, C => T.A);
+      end Swap_Triplet;
+
+-----------------------
+Type Invariants (4/4)
+-----------------------
 
 - Fix the invariant check failure in :ada:`Bump_And_Swap_Triplet`
 
-   + Hint: look also at :ada:`Bump_Triplet`
-   + Hint: you will need to add a postcondition to :ada:`Bump_Triplet`
+.. container:: animate 2-
 
---------------
-All Together
---------------
+   + Hint: look also at :ada:`Bump_Triplet` - the prover needs to
+     know the result of that call
+   
+.. container:: animate 3-
 
-- Run :toolname:`GNATprove` to prove the unit and display all proved checks
+   .. code:: Ada
 
-- Can you explain the presence of predicate checks and invariant checks?
+      procedure Bump_Triplet (T : in out Triplet)
+      with
+        Pre  => T.A < Integer'Last and
+                T.B < Integer'Last and
+                T.C < Integer'Last,
+        Post => T.A = T.A'Old + 1 and
+                T.B = T.B'Old + 1 and
+                T.C = T.C'Old + 1;
 
-   + How about the absence of checks in :ada:`Bump_And_Swap_Pair`?
-   + How about the checks in :ada:`Bump_And_Swap_Triplet`?
+   * But this isn't enough! We know what is *supposed* to happen, but
+     it isn't what actually happens!
+
+     * The prover has found a bug!
+     * Fix the code for :ada:`Bump_Triplet`
