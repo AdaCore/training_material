@@ -16,24 +16,93 @@ Type Contracts Lab
 
 - Unfold the source code directory (.) in the project pane
 
------------------
-Type Predicates
------------------
+-----------------------
+Type Predicates (1/2)
+-----------------------
 
-- Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
+.. container:: animate 1-
 
-- Run :toolname:`GNATprove` to prove the unit
+   - Run :toolname:`GNATprove` to prove the unit
 
-   + Look at unproved predicate checks, can you explain them?
-   + Does it make a difference that :ada:`Swap_Pair` is public and
-     :ada:`Bump_Pair` is private?
+.. container:: animate 2-
 
-- Fix the predicate check failure in :ada:`Bump_Pair`
+   From inside :filename:`basic.ads` right-click and select
+   :menu:`SPARK` |rightarrow| :menu:`Prove File`
 
-   + Hint: use an aggregate assignment
+.. container:: animate 1-
 
-- Fix the predicate check failure in :ada:`Swap_Pair` by using a base type
-  without predicate for :ada:`Pair`
+   - Can you understand the messages?
+   - How would you "help" the prover?
+
+.. container:: animate 2-
+
+   :color-red:`basics.adb:5:8: medium: predicate check might fail`
+
+   :color-red:`basics.adb:12:8: medium: predicate check might fail`
+
+   :color-red:`basics.ads:10:1: possible fix: subprogram at basics.ads:10 should mention P in a precondition`
+
+   :color-red:`basics.adb:38:8: medium: invariant check might fail`
+
+   :color-red:`basics.ads:19:1: medium: for T before the call at basics.ads:19`
+
+   :color-red:`basics.ads:19:14: medium: invariant check might fail`
+
+   :color-red:`basics.ads:19:1: medium: for T at the end of Swap_Triplet at basics.ads:19`
+
+   :color-red:`basics.ads:39:9: medium: invariant check might fail on default value`
+
+-----------------------
+Type Predicates (2/2)
+-----------------------
+
+.. container:: animate 1-
+
+   - Fix the predicate check failure in :ada:`Bump_Pair`
+
+.. container:: animate 2-
+
+   *Hint: use an aggregate assignment*
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      procedure Bump_Pair (P : in out Pair) is
+      begin
+         P := Pair'(X => P.X + 1, Y => P.Y + 1);
+      end Bump_Pair;
+
+.. container:: animate 1-
+
+   - Fix the predicate check failure in :ada:`Swap_Pair` by making :ada:`Pair`
+     a subtype of a type without a predicate
+
+.. container:: animate 4-
+
+   - Update the spec
+
+      .. code:: Ada
+
+         type Base_Pair is record
+            X, Y : Integer;
+         end record;
+
+         subtype Pair is Base_Pair
+           with Predicate => Pair.X /= Pair.Y;
+
+   - Update the body
+
+      .. code:: Ada
+
+         procedure Swap_Pair (P : in out Pair) is
+            Base : Base_Pair := P;
+            Tmp  : Integer := P.X;
+         begin
+            Base.X := Base.Y;
+            Base.Y := Tmp;
+            P := Base;
+         end Swap_Pair;
 
 -----------------
 Type Invariants
