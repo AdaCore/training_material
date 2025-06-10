@@ -31,7 +31,7 @@ Unfeasible Contracts
 * All contracts **should** be feasible
 
   - There exists a correct implementation
-  - This includes absence of runtime errors
+  - This includes absence of run-time errors
 
 * Contract of :ada:`Double` also leads to **unsoundness**
 
