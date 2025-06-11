@@ -71,18 +71,76 @@ Flow Dependencies (2/2)
         with Global => null,
              Depends => (T => +null);
 
------------------------------
-Imprecise Flow Dependencies
------------------------------
+-----------------------------------
+Imprecise Flow Dependencies (1/2)
+-----------------------------------
 
-- Copy the flow dependencies of :ada:`Init_Rec` and :ada:`Init_Table` for
-  respectively :ada:`Strange_Init_Rec` and :ada:`Strange_Init_Table`
+.. container:: animate 1-
 
-- Run :toolname:`GNATprove` in flow analysis mode
+   - Copy the flow dependencies of :ada:`Init_Rec` to :ada:`Strange_Init_Rec`
+   - Perform flow analysis and examine the result
 
-   + Understand the error messages and add the suggested dependencies.
+.. container:: animate 2-
 
-- Run :toolname:`GNATprove` in flow analysis mode
+   :color-red:`basics.ads:51:11: error: parameter "Cond" is missing from input dependence list`
 
-   + Do you understand the reason for the check messages?
-   + Either adapt the flow dependencies or justify the messages with pragma :ada:`Annotate`
+   :color-red:`basics.ads:51:11: error: add "null => Cond" dependency to ignore this input`
+
+   **Cond** *is a parameter, so it must be added to the dependency contract*
+
+   - Fix the dependency contract and rerun flow analysis
+
+.. container:: animate 3-
+
+   :color-red:`basics.ads:51:18: medium: missing dependency "R => Cond"`
+
+   :color-red:`basics.ads:52:26: medium: incorrect dependency "null => Cond"`
+
+   *Initialization of parameter* **R** *is path-dependent, and that path is*
+   *controlled by* **Cond** *- so it must be listed as a dependency of* **R**
+
+   - Fix the dependency contract and rerun flow analysis
+
+.. container:: animate 4-
+
+   *Note that by adding* **Cond** *as a dependency of* **R**, *we no longer*
+   *need an entry specifically for* **Cond**
+
+   .. code:: Ada
+
+      procedure Strange_Init_Rec (R : out Rec; Cond : Boolean)
+        with Global => null,
+             Depends => (R => Cond);
+
+-----------------------------------
+Imprecise Flow Dependencies (2/2)
+-----------------------------------
+
+.. container:: animate 1-
+
+   - Copy the flow dependencies of :ada:`Init_Table` to :ada:`Strange_Init_Table`
+   - Perform flow analysis and examine the result
+
+.. container:: animate 2-
+
+   *Same problem as before - missing a dependency contract for* **Val**.
+
+   - Fix the dependency contract and rerun flow analysis
+
+.. container:: animate 3-
+
+   :color-red:`basics.ads:55:18: medium: missing dependency "T => Val"`
+
+   :color-red:`basics.ads:56:25: medium: incorrect dependency "null => Val"`
+
+   *Remember, even though we can see that* **T (T'First)** *doesn't actually depend on*
+   **Val,** *flow analysis does not look at array index values - so it assumes*
+   *there is a dependency*
+
+.. container:: animate 4-
+
+   .. code:: Ada
+
+      procedure Strange_Init_Table (T : out Table; Val : Integer)
+      with Global => null,
+        Depends => (T => +Val);
