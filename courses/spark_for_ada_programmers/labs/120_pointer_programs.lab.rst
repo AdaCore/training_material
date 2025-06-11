@@ -120,38 +120,31 @@ Allocation and Deallocation
 Recursion and Loops
 ---------------------
 
-- Examine :ada:`List_Cell` and :ada:`List_Acc` and the subprograms that use them
+.. container:: animate 1-
 
-   - Comments in code should be enough documentation
+   - Examine :ada:`List_Cell` and :ada:`List_Acc` and the subprograms that use them
 
-   - :ada:`List_Acc` - pointer to an item in a list
-   - :ada:`List_Cell` - record for a linked list (contains :ada:`Value` and pointer
-     to next item in list (:ada:`List_Acc`)
-   - :ada:`All_List_Zero` - recursive subprogram to determine if every item in list is 0
+      - Comments in code should be enough documentation
 
-      - :ada:`Subprogram_Variant` - indicate recursion based on parameter :ada:`L`
+   - Run :menu:`SPARK` |rightarrow| :menu:`Prove File`
 
-   - :ada:`Init_List_Zero` - initializes every element in list :ada:`L`
+.. container:: animate 2-
 
-      - Postcondition uses :ada:`All_List_Zero` 
+   :color-red:`pointers.ads:47:19: medium: postcondition might fail`
 
-   + Discuss with the course instructor.
+   - Add :ada:`Loop_Invariant` to help prover verify postcondition
 
-- Run :toolname:`GNATprove` to prove the complete unit.
+      - Hint: as we traverse the list, we want to check the values in
+        the list match the values of the borrowed pointer when we
+        are done with the borrow
 
-- Add a loop invariant in procedure :ada:`Init_List_Zero`
+.. container:: animate 3-
 
-   + The postcondition of :ada:`Init_List_Zero` should be proved
+   .. code:: Ada
 
-- Add a loop variant in procedure :ada:`Init_List_Zero`
-
-   + First using the structural loop variant
-   + Next using a numerical loop variant, by defining a recusrive function
-     :ada:`Length`
-
-     |
-
-     .. code:: Ada
-
-        function Length
-          (L : access constant List_Cell) return Big_Natural;
+      while B /= null loop
+         pragma Loop_Invariant
+           (if All_List_Zero (At_End (B)) then All_List_Zero (At_End (L)));
+         B.Value := 0;
+         B := B.Next;
+      end loop;

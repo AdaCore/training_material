@@ -35,6 +35,15 @@ package Pointers is
       Next  : List_Acc; --  pointer to next item in list
    end record;
 
+   function At_End
+     (L : access constant List_Cell) return access constant List_Cell
+   is (L)
+   with
+     Ghost,
+     Annotate => (GNATprove, At_End_Borrow);
+   --  Ghost code (only used for proof)
+   --  During proof, refers to value of L when the borrow is finished
+
    function All_List_Zero (L : access constant List_Cell) return Boolean
    is
      (L = null or else (L.Value = 0 and then All_List_Zero (L.Next)))
