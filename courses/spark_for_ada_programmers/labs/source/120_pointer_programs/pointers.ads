@@ -39,7 +39,6 @@ package Pointers is
    is
      (L = null or else (L.Value = 0 and then All_List_Zero (L.Next)))
    with
-     Annotate => (GNATprove, Always_Return),
      Subprogram_Variant => (Structural => L);
 
    procedure Init_List_Zero (L : access List_Cell)
