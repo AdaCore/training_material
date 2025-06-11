@@ -16,19 +16,60 @@ Advanced Flow Analysis Lab
 
 - Unfold the source code directory (.) in the project pane
 
--------------------
-Flow Dependencies
--------------------
+------------------------
+Flow Dependencies (1/2)
+------------------------
 
-- Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
+.. container:: animate 1-
 
-- Run :toolname:`GNATprove` in flow analysis mode
+   - Find and open the files :filename:`basics.ads` and :filename:`basics.adb` in :toolname:`GNAT Studio`
 
-- Add flow dependency contracts to all subprograms except
-  :ada:`Strange_Init_Rec` and :ada:`Strange_Init_Table`
+   - Run :menu:`SPARK` |rightarrow| :menu:`Examine File`
 
-   + Rerun :toolname:`GNATprove` in flow analysis mode
-   + Discuss the correct flow dependencies of :ada:`Init_Table` with the instructor.
+      + Nothing exciting. No data dependencies have been specified.
+
+   - Add flow dependency contracts to all subprograms except
+     :ada:`Strange_Init_Rec` and :ada:`Strange_Init_Table`
+
+.. container:: animate 2-
+
+   *Example*
+
+   .. code:: Ada
+
+      procedure Swap (X, Y : in out Integer)
+        with Global => null,
+             Depends => (X => Y, Y => X);
+
+------------------------
+Flow Dependencies (2/2)
+------------------------
+
+.. container:: animate 1-
+
+   - Rerun :menu:`SPARK` |rightarrow| :menu:`Examine File`
+
+   - Fix any mistakes and repeat until analysis is successful
+
+.. container:: animate 2-
+
+   *Sample mistake*
+
+   .. code:: Ada
+
+      procedure Init_Table (T : out Table)
+        with Global => null,
+             Depends => (T => null);
+
+   :color-red:`basics.ads:39:23: medium: missing self-dependency "T => T" (array bounds are preserved)`
+
+   *Correct dependency*
+
+   .. code:: Ada
+
+      procedure Init_Table (T : out Table)
+        with Global => null,
+             Depends => (T => +null);
 
 -----------------------------
 Imprecise Flow Dependencies
