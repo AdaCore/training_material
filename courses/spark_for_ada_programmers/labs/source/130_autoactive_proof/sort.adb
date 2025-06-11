@@ -26,6 +26,8 @@ package body Sort is
    procedure Selection_Sort (Values : in out Nat_Array) is
       Smallest : Index;  -- Index of the smallest value in the unsorted part
    begin
+      --  Selection sort: find the index of the smallest remaining
+      --  values and swap the value there with the current value
       for Current in 1 .. Values'Last - 1 loop
          Smallest := Index_Of_Minimum (Values, Current, Values'Last);
 

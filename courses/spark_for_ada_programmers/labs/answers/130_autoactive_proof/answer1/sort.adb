@@ -1,6 +1,5 @@
 package body Sort is
 
-   -- Swap the values of Values (X) and Values (Y)
    procedure Swap (Values : in out Nat_Array; X, Y : Index)
    with
      Pre  => X /= Y,
@@ -9,7 +8,19 @@ package body Sort is
                          Y => Values'Old (X))
        and then Permutation = (Permutation'Old with delta
                                  X => Permutation'Old (Y),
-                                 Y => Permutation'Old (X))
+                                 Y => Permutation'Old (X));
+   --  Swap the values of Values (X) and Values (Y).
+   --  Also update the ghost object.
+
+   function Index_Of_Minimum (Values : Nat_Array; From, To : Index) return Index
+   with
+     Pre  => To in From .. Values'Last,
+     Post => Index_Of_Minimum'Result in From .. To and then
+       (for all I in From .. To =>
+          Values (Index_Of_Minimum'Result) <= Values (I));
+   -- Finds the index of the smallest component in the slice Values (From .. To)
+
+   procedure Swap (Values : in out Nat_Array; X, Y : Index)
    is
       Temp        : Integer;
       Temp_Index  : Index with Ghost;
@@ -23,13 +34,7 @@ package body Sort is
       Permutation (Y) := Temp_Index;
    end Swap;
 
-   -- Finds the index of the smallest component in the slice Values (From .. To)
    function Index_Of_Minimum (Values : Nat_Array; From, To : Index) return Index
-   with
-     Pre  => To in From .. Values'Last,
-     Post => Index_Of_Minimum'Result in From .. To and then
-       (for all I in From .. To =>
-          Values (Index_Of_Minimum'Result) <= Values (I))
    is
       Min : Index := From;
    begin
@@ -48,8 +53,11 @@ package body Sort is
    procedure Selection_Sort (Values : in out Nat_Array) is
       Smallest : Index;  -- Index of the smallest value in the unsorted part
    begin
+      --  Initialize ghost object with all indexes
       Permutation := (for J in Index => J);
 
+      --  Selection sort: find the index of the smallest remaining
+      --  values and swap the value there with the current value
       for Current in 1 .. Values'Last - 1 loop
          Smallest := Index_Of_Minimum (Values, Current, Values'Last);
 
