@@ -25,10 +25,14 @@ package Pointers is
      Post => X.all = X.all'Old;
 
    type List_Cell;
+   --  Forward declaration for record used in list
+
    type List_Acc is access List_Cell;
+   --  Pointer used for linked list of List_Cell
+
    type List_Cell is record
-      Value : Integer;
-      Next  : List_Acc;
+      Value : Integer;  --  value for cell
+      Next  : List_Acc; --  pointer to next item in list
    end record;
 
    function All_List_Zero (L : access constant List_Cell) return Boolean
@@ -36,14 +40,13 @@ package Pointers is
      (L = null or else (L.Value = 0 and then All_List_Zero (L.Next)))
    with
      Subprogram_Variant => (Structural => L);
-
-   function Length (L : access constant List_Cell) return Big_Natural
-   is
-     (if L = null then 0 else 1 + Length (L.Next))
-   with
-     Subprogram_Variant => (Structural => L);
+   --  Return True if every item in list L has a value of 0.
+   --  Uses recursion to traverse the list, so we need a subprogram_variant
+   --  to indicate what object we are recursing on.
 
    procedure Init_List_Zero (L : access List_Cell)
      with Post => All_List_Zero (L);
+   --  Initialize value of every element in list L to 0.
+   --  Use All_List_Zero in a postcondtion to state the behavior;
 
 end Pointers;
