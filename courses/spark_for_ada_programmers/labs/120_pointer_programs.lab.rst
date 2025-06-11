@@ -92,14 +92,29 @@ Swapping Pointers (2/2)
 Allocation and Deallocation
 -----------------------------
 
-- Run :toolname:`GNATprove` to prove procedure :ada:`Realloc`
+.. container:: animate 1-
 
-   + Understand the memory leak message and fix it.
-   + Hint: you need to add a postcondition to :ada:`Dealloc`
+   - Run :menu:`SPARK` |rightarrow| :menu:`Prove Subprogram` for :ada:`Realloc`
 
-- Understand what makes :ada:`Alloc` and :ada:`Dealloc` special
+      + Select :menu:`Report checks proved` option to show all proofs
+      + Understand the memory leak message and fix it.
 
-   + Discuss with the course instructor.
+.. container:: animate 2-
+
+   *Hint: you need to add a postcondition to* :ada:`Dealloc` *so the prover*
+   *knows that you are not overwriting a pointer*
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      procedure Dealloc (X : in out Int_Acc)
+      with Depends => (X => null, null => X),
+           Post => X = null;
+
+   *Note the message verifying no memory leak*
+
+   :color-red:`pointers.adb:29:9: info: absence of resource or memory leak proved`
 
 ---------------------
 Recursion and Loops
