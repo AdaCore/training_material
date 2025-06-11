@@ -27,7 +27,7 @@ Demonstrating Richer Expressions (1/3)
    The unit already proves correctly - we want to make sure
    that after each modification, the unit still proves correctly
 
-- Use a *declare expression* to introduce names :ada:`X_Old` and :ada:`Y'Old` in the postcondition of :ada:`Swap`
+- Use a *declare expression* to introduce names :ada:`X_Old` and :ada:`Y_Old` in the postcondition of :ada:`Swap`
 
 .. container:: animate 2-
 
