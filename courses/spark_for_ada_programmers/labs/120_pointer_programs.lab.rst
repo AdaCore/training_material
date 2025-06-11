@@ -120,7 +120,20 @@ Allocation and Deallocation
 Recursion and Loops
 ---------------------
 
-- Review the rest of the code manipulating types :ada:`List_Cell` and :ada:`List_Acc`
+- Examine :ada:`List_Cell` and :ada:`List_Acc` and the subprograms that use them
+
+   - Comments in code should be enough documentation
+
+   - :ada:`List_Acc` - pointer to an item in a list
+   - :ada:`List_Cell` - record for a linked list (contains :ada:`Value` and pointer
+     to next item in list (:ada:`List_Acc`)
+   - :ada:`All_List_Zero` - recursive subprogram to determine if every item in list is 0
+
+      - :ada:`Subprogram_Variant` - indicate recursion based on parameter :ada:`L`
+
+   - :ada:`Init_List_Zero` - initializes every element in list :ada:`L`
+
+      - Postcondition uses :ada:`All_List_Zero` 
 
    + Discuss with the course instructor.
 
