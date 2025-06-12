@@ -96,10 +96,44 @@ Proving the Utilities
                    Values (Min) <= Values (I)));
       end loop;
 
+-----------------------------
+Intermission - Permutations
+-----------------------------
 
------------------------
-Proving the Utilities 
------------------------
+.. code:: Ada
+
+   function Is_Sorted (Values : Nat_Array; From, To : Index) return Boolean is
+     (for all I in From .. To - 1 => Values (I) <= Values (I + 1))
+   with
+     Ghost;
+
+- This code is correct - an array is sorted if all elements are less than or
+  equal to the next element.
+
+   - So the function will return True for all of these arrays:
+     ``[1, 2, 3]``, ``[1, 1, 1]``, ``[1, 1, 3]``, ``[123, 231, 312]``
+
+- For **proof**, when we sort an array, we need to know the contents of the array
+  are the same but reordered.
+
+   - For input array ``[3, 2, 1]``, only ``[1, 2, 3]`` should be correct.
+   - So we need more than :ada:`Is_Sorted` - we need a way of making sure
+     (prove) we have all the original elements and no new elements.
+
+- A **permutation** of a set is a rearrangement of the set where each element
+  appears only once and no new elements are introduced.
+
+   - For this lab, there are two ways of implementing permutations.
+
+      - They can be found in sub-directories :filename:`answer1` and :filename:`answer2`.
+      - The following slides use :filename:`answer1`, but feel free to try
+        :filename:`answer2` instead (or later).
+
+   - Both methods can be considered "safe" for use in our proofs
+
+-----------------------------
+Selection Sort - Variations
+-----------------------------
 
 
 - Start by proving that :ada:`Values` is sorted when returning from procedure
