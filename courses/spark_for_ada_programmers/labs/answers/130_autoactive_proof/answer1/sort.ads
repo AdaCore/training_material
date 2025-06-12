@@ -25,10 +25,10 @@ package Sort is
      (for all J in Index => Right (J) = Left (Permutation (J))))
    with
      Ghost;
-   --  Ghost object Permutation is actually a map of indices
+   --  Ghost object Permutation is actually a map of indexes
    --  between Left and Right. I.e., if Permutation(3) is 5, then
    --  the value at Right(3) is the same value as Left(5).
-   --  This function verifies that, for all indices in Right,
+   --  This function verifies that, for all indexes in Right,
    --  the value at the index in Right is the same as the value
    --  at the mapped index.
 

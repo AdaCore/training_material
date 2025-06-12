@@ -6,12 +6,12 @@ Lab
 Auto-active Proof Lab
 -----------------------
 
-- Find the :filename:`130_autoactive_proof` sub-directory in :filename:`source`.
+- Find the :filename:`130_autoactive_proof` sub-directory in :filename:`source`
 
-   + You can copy it locally, or work with it in-place.
-   + Open a command prompt in that directory.
+   + You can copy it locally, or work with it in-place
+   + Open a command prompt in that directory
 
-- Windows: From the command line, run the :filename:`gpr_project_path.bat` file to set up your project path.
+- Windows: From the command line, run the :filename:`gpr_project_path.bat` file to set up your project path
 
    + The file resides in the :filename:`source` folder you installed.
    + Pass in the version of SPARK you have installed (e.g. :command:`gpr_project_path 25.1`).
@@ -34,7 +34,7 @@ Selection Sort
 
 - Examine the code - especially the comments!
 
-   - Understand the how the utility functions :ada:`Swap` and :ada:`Index_Of_Minimum`
+   - Understand how the utility functions :ada:`Swap` and :ada:`Index_Of_Minimum`
      are used to perform the sort.
 
    - Understand how the helper functions :ada:`Is_Permutation_Array`, :ada:`Is_Perm`,
