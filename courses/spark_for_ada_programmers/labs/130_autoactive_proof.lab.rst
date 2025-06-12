@@ -32,15 +32,75 @@ Selection Sort
 
 - Find and open the files :filename:`sort_types.ads`, :filename:`sort.ads` and :filename:`sort.adb` in :toolname:`GNAT Studio`
 
-   + Study the specification of procedure :ada:`Selection_Sort`. Is it a full
-     functional specification?
+- Examine the code - especially the comments!
 
-   + Study the implementation of procedure :ada:`Selection_Sort`. Does it
-     implement selection sort algorithm?
+   - Understand the how the utility functions :ada:`Swap` and :ada:`Index_Of_Minimum`
+     are used to perform the sort
 
-- Add a full functional contract to procedure :ada:`Swap` and prove it
+   - Understand how the helper functions :ada:`Is_Permutation_Array`, :ada:`Is_Perm`,
+     and :ada:`Is_Sorted` will help prove :ada:`Selection_Sort`
 
-- Add a full functional contract to procedure :ada:`Index_Of_Minimum` and prove it
+-----------------------
+Proving the Utilities 
+-----------------------
+
+.. container:: animate 1-
+
+   - Add a full functional contract to procedure :ada:`Swap` and prove it
+
+.. container:: animate 2-
+
+   .. code:: Ada
+
+      procedure Swap (Values : in out Nat_Array; X, Y : Index)
+        with
+          Pre  => X /= Y,
+          Post => Values = (Values'Old with delta
+                              X => Values'Old (Y),
+                              Y => Values'Old (X));
+
+.. container:: animate 1-
+
+   - Add a full functional contract to function :ada:`Index_Of_Minimum` and prove it
+
+.. container:: animate 3-
+
+   *Hint:* :ada:`Index_Of_Minimum` *contains a loop, so the prover is going to need help!*
+
+.. container:: animate 4-
+
+   .. code:: Ada
+
+      function Index_Of_Minimum (Values : Nat_Array;
+                                 From, To : Index)
+                                 return Index
+        with
+          Pre  => To in From .. Values'Last,
+          Post => Index_Of_Minimum'Result in From .. To and then
+          (for all I in From .. To =>
+             Values (Index_Of_Minimum'Result) <= Values (I));
+
+   *This is not enough - you need to add a* :ada:`Loop_Invariant` *to the body*
+
+.. container:: animate 5-
+
+   .. code:: Ada
+
+      for Index in From .. To loop
+         if Values (Index) < Values (Min) then
+            Min := Index;
+         end if;
+         pragma Loop_Invariant
+           (Min in From .. To and then
+              (for all I in From .. Index =>
+                   Values (Min) <= Values (I)));
+      end loop;
+
+
+-----------------------
+Proving the Utilities 
+-----------------------
+
 
 - Start by proving that :ada:`Values` is sorted when returning from procedure
   :ada:`Selection_Sort`
