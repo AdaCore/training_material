@@ -26,7 +26,7 @@ Flow Dependencies (1/2)
 
    - Run :menu:`SPARK` |rightarrow| :menu:`Examine File`
 
-      + Nothing exciting. No data dependencies have been specified.
+      + Nothing exciting. No data dependencies have been specified
 
    - Add flow dependency contracts to all subprograms except
      :ada:`Strange_Init_Rec` and :ada:`Strange_Init_Table`
@@ -123,7 +123,7 @@ Imprecise Flow Dependencies (2/2)
 
 .. container:: animate 2-
 
-   *Same problem as before - missing a dependency contract for* **Val**.
+   *Same problem as before - missing a dependency contract for* **Val**
 
    - Fix the dependency contract and rerun flow analysis
 
