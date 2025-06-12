@@ -56,6 +56,6 @@ package Pointers is
    procedure Init_List_Zero (L : access List_Cell)
      with Post => All_List_Zero (L);
    --  Initialize value of every element in list L to 0.
-   --  Use All_List_Zero in a postcondtion to state the behavior;
+   --  Use All_List_Zero in a postcondition to state the behavior;
 
 end Pointers;
