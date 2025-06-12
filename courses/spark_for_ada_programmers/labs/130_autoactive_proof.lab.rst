@@ -6,39 +6,39 @@ Lab
 Auto-active Proof Lab
 -----------------------
 
-- Find the :filename:`130_autoactive_proof` sub-directory in :filename:`source`
+- Find the :filename:`130_autoactive_proof` sub-directory in :filename:`source`.
 
-   + You can copy it locally, or work with it in-place
-   + Open a command prompt in that directory
+   + You can copy it locally, or work with it in-place.
+   + Open a command prompt in that directory.
 
-- Windows: From the command line, run the :filename:`gpr_project_path.bat` file to set up your project path
+- Windows: From the command line, run the :filename:`gpr_project_path.bat` file to set up your project path.
 
-   + The file resides in the :filename:`source` folder you installed
-   + Pass in the version of SPARK you have installed (e.g. :command:`gpr_project_path 25.1`)
-   + This only needs to be done once per command prompt window
+   + The file resides in the :filename:`source` folder you installed.
+   + Pass in the version of SPARK you have installed (e.g. :command:`gpr_project_path 25.1`).
+   + This only needs to be done once per command prompt window.
 
 .. note::
 
    For Linux users, the install location for SPARK varies greatly, so instead there is
-   a shell script :filename:`gpr_project_path.sh` which gives you directions
+   a shell script :filename:`gpr_project_path.sh` which gives you directions.
 
-- From the command-line, run :command:`gnatstudio -P lab.gpr`
+- From the command-line, run :command:`gnatstudio -P lab.gpr`.
 
-- Unfold the source code directory (.) in the project pane
+- Unfold the source code directory (.) in the project pane.
 
 ----------------
 Selection Sort
 ----------------
 
-- Find and open the files :filename:`sort_types.ads`, :filename:`sort.ads` and :filename:`sort.adb` in :toolname:`GNAT Studio`
+- Find and open the files :filename:`sort_types.ads`, :filename:`sort.ads` and :filename:`sort.adb` in :toolname:`GNAT Studio`.
 
 - Examine the code - especially the comments!
 
    - Understand the how the utility functions :ada:`Swap` and :ada:`Index_Of_Minimum`
-     are used to perform the sort
+     are used to perform the sort.
 
    - Understand how the helper functions :ada:`Is_Permutation_Array`, :ada:`Is_Perm`,
-     and :ada:`Is_Sorted` will help prove :ada:`Selection_Sort`
+     and :ada:`Is_Sorted` will help prove :ada:`Selection_Sort`.
 
 -----------------------
 Proving the Utilities 
@@ -46,7 +46,7 @@ Proving the Utilities
 
 .. container:: animate 1-
 
-   - Add a full functional contract to procedure :ada:`Swap` and prove it
+   - Add a full functional contract to procedure :ada:`Swap` and prove it.
 
 .. container:: animate 2-
 
@@ -61,7 +61,7 @@ Proving the Utilities
 
 .. container:: animate 1-
 
-   - Add a full functional contract to function :ada:`Index_Of_Minimum` and prove it
+   - Add a full functional contract to function :ada:`Index_Of_Minimum` and prove it.
 
 .. container:: animate 3-
 
@@ -80,7 +80,7 @@ Proving the Utilities
           (for all I in From .. To =>
              Values (Index_Of_Minimum'Result) <= Values (I));
 
-   *This is not enough - you need to add a* :ada:`Loop_Invariant` *to the body*
+   *This is not enough - you need to add a* :ada:`Loop_Invariant` *to the body.*
 
 .. container:: animate 5-
 
@@ -111,7 +111,7 @@ Intermission - Permutations
   equal to the next element.
 
    - So the function will return True for all of these arrays:
-     ``[1, 2, 3]``, ``[1, 1, 1]``, ``[1, 1, 3]``, ``[123, 231, 312]``
+     ``[1, 2, 3]``, ``[1, 1, 1]``, ``[1, 1, 3]``, ``[123, 231, 312]``.
 
 - For **proof**, when we sort an array, we need to know the contents of the array
   are the same but reordered.
@@ -129,62 +129,134 @@ Intermission - Permutations
       - The following slides use :filename:`answer1`, but feel free to try
         :filename:`answer2` instead (or later).
 
-   - Both methods can be considered "safe" for use in our proofs
+   - Both methods can be considered "safe" for use in our proofs.
 
------------------------------
-Selection Sort - Variations
------------------------------
+----------------------
+Selection Sort (1/3)
+----------------------
 
+.. container:: animate 1-
 
-- Start by proving that :ada:`Values` is sorted when returning from procedure
-  :ada:`Selection_Sort`
+   - Add a functional contract to :ada:`Selection_Sort`.
 
-   + Add a loop invariant to procedure :ada:`Selection_Sort`
+.. container:: animate 2-
 
-- Then prove that the output value of :ada:`Values` is a permutation of its input value
+   .. code:: Ada
 
-   + Hint: you need to update global ghost variable :ada:`Permutation`
+      procedure Selection_Sort (Values : in out Nat_Array)
+      with
+        Post => Is_Sorted (Values)
+          and then Is_Perm (Values'Old, Values);
+      --  Upon completion, Values are a sorted version of input array
 
-- Run :toolname:`GNATprove` to prove the file
+   *Again, this is not enough - we're dealing with loops.*
 
------------------------------
-Selection Sort - Variations
------------------------------
+.. container:: animate 3-
 
-- Find the :filename:`13_autoactive_proof` sub-directory in :filename:`answers`
+   + Add a loop invariant to procedure :ada:`Selection_Sort`.
 
-   + It contains two sub-directories :filename:`answer1` and :filename:`answer2`
+      - Actually two - one for the updated portion and one for the frame condition.
 
-- In directory :filename:`answer1`, open the project :filename:`lab.gpr` in
-  :toolname:`GNAT Studio`
+.. container:: animate 4-
 
-   + This solution follows the specification you worked on. Study it.
-   + Run :toolname:`GNATprove` to prove the file
+   .. code:: Ada
 
-- In directory :filename:`answer2`, open the project :filename:`lab.gpr` in
-  :toolname:`GNAT Studio`
+      pragma Loop_Invariant (Is_Sorted (Values, 1, Current));
+      pragma Loop_Invariant
+        (for all J in Current + 1 .. Values'Last =>
+           Values (Current) <= Values (J));
 
-   + This is another solution following a different specification for
-     permutations. It uses multisets from the SPARK Library. Study it.
-   + Run :toolname:`GNATprove` to prove the file
+   - And this isn't enough as well, because we're not taking care
+     of our permutation ghost code.
 
-- Compare the two solutions
+----------------------
+Selection Sort (2/3)
+----------------------
 
-   + Which specification is more readable to you?
-   + Which proof is easier for you?
+.. container:: animate 1-
 
-------------------
-Further Readings
-------------------
+   - Our permutation check inspects the ghost object :ada:`Permutation`.
 
-- The second solution is based on the example in subsection "A Concrete
-  Example: a Sort Algorithm" of section 7.9.3.2 of the SPARK User's Guide on
-  "Manual Proof Using User Lemmas".
+      - Whenever we swap values, we need to swap indexes in that object.
 
-   + Read it and discuss with the course instructor.
+   - Modify :ada:`Swap` to update :ada:`Permutation`
 
-- The blog post
-  :url:`https://blog.adacore.com/i-cant-believe-that-i-can-prove-that-it-can-sort`
-  presents 18 useful tips in the context of the proof of another sorting algorithm.
+.. container:: animate 2-
 
-   + Read it and discuss with the course instructor.
+   .. code:: Ada
+
+      procedure Swap (Values : in out Nat_Array; X, Y : Index)
+      is
+         Temp        : Integer;
+         Temp_Index  : Index with Ghost;
+      begin
+         Temp       := Values (X);
+         Values (X) := Values (Y);
+         Values (Y) := Temp;
+
+         Temp_Index := Permutation (X);
+         Permutation (X) := Permutation (Y);
+         Permutation (Y) := Temp_Index;
+      end Swap;
+
+   *Also should update the postcondition to make sure we didn't*
+   *break Permutation*
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      procedure Swap (Values : in out Nat_Array; X, Y : Index)
+      with
+        Pre  => X /= Y,
+        Post => Values = (Values'Old with delta
+                            X => Values'Old (Y),
+                            Y => Values'Old (X))
+          and then Permutation = (Permutation'Old with delta
+                                    X => Permutation'Old (Y),
+                                    Y => Permutation'Old (X));
+   
+----------------------
+Selection Sort (3/3)
+----------------------
+
+.. container:: animate 1-
+
+   * Now try to prove :ada:`Selection_Sort`.
+
+.. container:: animate 2-
+
+   :color-red:`sort.ads:27:17: medium: postcondition might fail`
+
+   :color-red:`sort.ads:27:17: cannot prove Is_Permutation_Array (Permutation)`
+
+   :color-red:`sort.adb:71:1: possible fix: loop invariant at sort.adb:71 should mention Permutation`
+
+   :color-red:`sort.ads:18:1: medium: in inlined expression function body at sort.ads:18`
+
+   * Add a loop invariant to verify the permutation
+
+      * Hint: It doesn't have to mention it directly - it can use :ada:`Is_Perm`
+        which will be inlined.
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      pragma Loop_Invariant (Is_Perm (Values'Loop_Entry, Values));
+
+   * Running the proof again fails because we can't verify the first time through the loop.
+
+      :color-red:`sort.adb:75:33: medium: loop invariant might fail in first iteration`
+
+   - We need to initialize :ada:`Permutation`.
+
+.. container:: animate 4-
+
+   .. code:: Ada
+
+      Permutation := (for J in Index => J);
+
+   - Try proving it again
+
+      - If it still doesn't prove, try increasing the :menu:`Proof level` in the dialog box.
