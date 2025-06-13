@@ -7,7 +7,7 @@ procedure Main is
      Import,
      Convention => C,
      Global => null,
-     Annotate => (GNATprove, Always_Return),
+     Always_Terminates,
      Post => X = Y'Old and then Y = X'Old;
 
    X : Integer := 1;
