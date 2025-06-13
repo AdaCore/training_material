@@ -80,7 +80,7 @@ Proving the Utilities
           (for all I in From .. To =>
              Values (Index_Of_Minimum'Result) <= Values (I));
 
-   *This is not enough - you need to add a* :ada:`Loop_Invariant` *to the body.*
+   *This is not enough - you need to add a* :ada:`Loop_Invariant` *to the body*
 
 .. container:: animate 5-
 
@@ -149,7 +149,7 @@ Selection Sort (1/3)
           and then Is_Perm (Values'Old, Values);
       --  Upon completion, Values are a sorted version of input array
 
-   *Again, this is not enough - we're dealing with loops.*
+   *Again, this is not enough - we're dealing with loops*
 
 .. container:: animate 3-
 
