@@ -13,32 +13,32 @@ Auto-active Proof Lab
 
 - Windows: From the command line, run the :filename:`gpr_project_path.bat` file to set up your project path
 
-   + The file resides in the :filename:`source` folder you installed.
-   + Pass in the version of SPARK you have installed (e.g. :command:`gpr_project_path 25.1`).
-   + This only needs to be done once per command prompt window.
+   + The file resides in the :filename:`source` folder you installed
+   + Pass in the version of SPARK you have installed (e.g. :command:`gpr_project_path 25.1`)
+   + This only needs to be done once per command prompt window
 
 .. note::
 
    For Linux users, the install location for SPARK varies greatly, so instead there is
-   a shell script :filename:`gpr_project_path.sh` which gives you directions.
+   a shell script :filename:`gpr_project_path.sh` which gives you directions
 
-- From the command-line, run :command:`gnatstudio -P lab.gpr`.
+- From the command-line, run :command:`gnatstudio -P lab.gpr`
 
-- Unfold the source code directory (.) in the project pane.
+- Unfold the source code directory (.) in the project pane
 
 ----------------
 Selection Sort
 ----------------
 
-- Find and open the files :filename:`sort_types.ads`, :filename:`sort.ads` and :filename:`sort.adb` in :toolname:`GNAT Studio`.
+- Find and open the files :filename:`sort_types.ads`, :filename:`sort.ads` and :filename:`sort.adb` in :toolname:`GNAT Studio`
 
 - Examine the code - especially the comments!
 
    - Understand how the utility functions :ada:`Swap` and :ada:`Index_Of_Minimum`
-     are used to perform the sort.
+     are used to perform the sort
 
    - Understand how the helper functions :ada:`Is_Permutation_Array`, :ada:`Is_Perm`,
-     and :ada:`Is_Sorted` will help prove :ada:`Selection_Sort`.
+     and :ada:`Is_Sorted` will help prove :ada:`Selection_Sort`
 
 -----------------------
 Proving the Utilities 
@@ -46,7 +46,7 @@ Proving the Utilities
 
 .. container:: animate 1-
 
-   - Add a full functional contract to procedure :ada:`Swap` and prove it.
+   - Add a full functional contract to procedure :ada:`Swap` and prove it
 
 .. container:: animate 2-
 
@@ -61,7 +61,7 @@ Proving the Utilities
 
 .. container:: animate 1-
 
-   - Add a full functional contract to function :ada:`Index_Of_Minimum` and prove it.
+   - Add a full functional contract to function :ada:`Index_Of_Minimum` and prove it
 
 .. container:: animate 3-
 
@@ -108,28 +108,28 @@ Intermission - Permutations
      Ghost;
 
 - This code is correct - an array is sorted if all elements are less than or
-  equal to the next element.
+  equal to the next element
 
    - So the function will return True for all of these arrays:
-     ``[1, 2, 3]``, ``[1, 1, 1]``, ``[1, 1, 3]``, ``[123, 231, 312]``.
+     ``[1, 2, 3]``, ``[1, 1, 1]``, ``[1, 1, 3]``, ``[123, 231, 312]``
 
 - For **proof**, when we sort an array, we need to know the contents of the array
-  are the same but reordered.
+  are the same but reordered
 
-   - For input array ``[3, 2, 1]``, only ``[1, 2, 3]`` should be correct.
+   - For input array ``[3, 2, 1]``, only ``[1, 2, 3]`` should be correct
    - So we need more than :ada:`Is_Sorted` - we need a way of making sure
-     (prove) we have all the original elements and no new elements.
+     (prove) we have all the original elements and no new elements
 
 - A **permutation** of a set is a rearrangement of the set where each element
-  appears only once and no new elements are introduced.
+  appears only once and no new elements are introduced
 
-   - For this lab, there are two ways of implementing permutations.
+   - For this lab, there are two ways of implementing permutations
 
-      - They can be found in sub-directories :filename:`answer1` and :filename:`answer2`.
+      - They can be found in sub-directories :filename:`answer1` and :filename:`answer2`
       - The following slides use :filename:`answer1`, but feel free to try
-        :filename:`answer2` instead (or later).
+        :filename:`answer2` instead (or later)
 
-   - Both methods can be considered "safe" for use in our proofs.
+   - Both methods can be considered "safe" for use in our proofs
 
 ----------------------
 Selection Sort (1/3)
@@ -137,7 +137,7 @@ Selection Sort (1/3)
 
 .. container:: animate 1-
 
-   - Add a functional contract to :ada:`Selection_Sort`.
+   - Add a functional contract to :ada:`Selection_Sort`
 
 .. container:: animate 2-
 
@@ -153,9 +153,9 @@ Selection Sort (1/3)
 
 .. container:: animate 3-
 
-   + Add a loop invariant to procedure :ada:`Selection_Sort`.
+   + Add a loop invariant to procedure :ada:`Selection_Sort`
 
-      - Actually two - one for the updated portion and one for the frame condition.
+      - Actually two - one for the updated portion and one for the frame condition
 
 .. container:: animate 4-
 
@@ -167,7 +167,7 @@ Selection Sort (1/3)
            Values (Current) <= Values (J));
 
    - And this isn't enough as well, because we're not taking care
-     of our permutation ghost code.
+     of our permutation ghost code
 
 ----------------------
 Selection Sort (2/3)
@@ -175,9 +175,9 @@ Selection Sort (2/3)
 
 .. container:: animate 1-
 
-   - Our permutation check inspects the ghost object :ada:`Permutation`.
+   - Our permutation check inspects the ghost object :ada:`Permutation`
 
-      - Whenever we swap values, we need to swap indexes in that object.
+      - Whenever we swap values, we need to swap indexes in that object
 
    - Modify :ada:`Swap` to update :ada:`Permutation`
 
@@ -200,7 +200,7 @@ Selection Sort (2/3)
       end Swap;
 
    *Also should update the postcondition to make sure we didn't*
-   *break Permutation*
+   *break* :ada:`Permutation`
 
 .. container:: animate 3-
 
@@ -222,7 +222,7 @@ Selection Sort (3/3)
 
 .. container:: animate 1-
 
-   * Now try to prove :ada:`Selection_Sort`.
+   * Now try to prove :ada:`Selection_Sort`
 
 .. container:: animate 2-
 
@@ -237,7 +237,7 @@ Selection Sort (3/3)
    * Add a loop invariant to verify the permutation
 
       * Hint: It doesn't have to mention it directly - it can use :ada:`Is_Perm`
-        which will be inlined.
+        which will be inlined
 
 .. container:: animate 3-
 
@@ -245,11 +245,11 @@ Selection Sort (3/3)
 
       pragma Loop_Invariant (Is_Perm (Values'Loop_Entry, Values));
 
-   * Running the proof again fails because we can't verify the first time through the loop.
+   * Running the proof again fails because we can't verify the first time through the loop
 
       :color-red:`sort.adb:75:33: medium: loop invariant might fail in first iteration`
 
-   - We need to initialize :ada:`Permutation`.
+   - We need to initialize :ada:`Permutation`
 
 .. container:: animate 4-
 
@@ -259,4 +259,4 @@ Selection Sort (3/3)
 
    - Try proving it again
 
-      - If it still doesn't prove, try increasing the :menu:`Proof level` in the dialog box.
+      - If it still doesn't prove, try increasing the :menu:`Proof level` in the dialog box
