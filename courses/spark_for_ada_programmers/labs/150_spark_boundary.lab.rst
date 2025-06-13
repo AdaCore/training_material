@@ -158,7 +158,6 @@ Abstract States at the Boundary (1/2)
                                Output_State => Status)
       is
 
-
 ---------------------------------------
 Abstract States at the Boundary (2/2)
 ---------------------------------------
@@ -194,87 +193,64 @@ Abstract States at the Boundary (2/2)
 Software Boundary
 -------------------
 
-- Find and open the files :filename:`random_numbers.ads` and :filename:`random_numbers.adb` in
-  :toolname:`GNAT Studio`
+.. container:: animate 1-
 
-- Run :toolname:`GNATprove` on the unit
+   - Find and open the files :filename:`random_numbers.ads` and :filename:`random_numbers.adb` in
+     :toolname:`GNAT Studio`
 
-  + Check that you understand the error message.
+   - Run :menu:`SPARK` |rightarrow| :menu:`Prove File`. What's the problem?
 
-- Add aspect :ada:`SPARK_Mode` to the package body with value :ada:`Off`
+.. container:: animate 2-
 
-- Run :toolname:`GNATprove` on the unit
+   :color-red:`random_numbers.adb:5:4: error: "Generator" is not allowed in SPARK (due to entity declared with SPARK_Mode Off)`
 
-  + Check that there are no messages.
-  + Is the spec compatible with SPARK?
+   :ada:`GNAT.Random` *is not in SPARK mode; we cannot call non-SPARK from SPARK*
 
-- Complete the spec so that it is compatible with SPARK
+   - Turn off SPARK mode for :ada:`Random_Numbers`
 
-----------------------------------------------
-Integration with Other Programming Languages
-----------------------------------------------
+.. container:: animate 3-
 
-- Find and open the file :filename:`main.adb` in :toolname:`GNAT Studio`
+   .. code:: Ada
 
-- Run :toolname:`GNATprove` on the unit
+      package body Random_Numbers
+        with SPARK_Mode => Off
+      is
 
-  + Fix the warnings with suitable annotations on the declaration of :ada:`Swap`
-
-- Add a suitable postcondition on :ada:`Swap`
-
-  + Check that you can prove after the call that the values of :ada:`X` and
-    :ada:`Y` have been swapped
-  + Hint: add a suitable assertion
-
-- Compile the code of :filename:`main.adb`
-
-  .. code:: console
-
-     gcc -c main.adb
+   *We only want the implementation to be out of SPARK. We*
+   *still want to be able to call* :ada:`Random_Numbers` *from SPARK*
 
 --------------------
 Integration with C
 --------------------
 
-- Compile a C implementation for swap in :filename:`swap.c`, link it with the
-  SPARK code, and run the executable
+.. container:: animate 1-
 
-  .. code:: console
+   - Find and open the file :filename:`main.adb` in :toolname:`GNAT Studio`
 
-     gcc -c swap.c
-     gnatbind main
-     gnatlink main swap.o
-     ./main
+   - Run :menu:`SPARK` |rightarrow| :menu:`Prove File`. What's the problem?
 
-- Or declare the main and languages used in the project file
+.. container:: animate 2-
 
-  .. code:: ada
+   :color-red:`main.adb:12:4: warning: no Global contract available for "Swap"`
 
-     for Main use ("main.adb");
-     for Languages use ("Ada", "C");
+   :color-red:`main.adb:12:4: warning: assuming "Swap" has no effect on global items`
 
-  and build the project with :toolname:`GPRbuild`
+   :color-red:`main.adb:12:4: warning: no Always_Terminates aspect available for "Swap"`
 
-- What assumptions did you make on the C implementation?
+   :color-red:`main.adb:12:4: warning: assuming "Swap" always terminates`
 
-  + Discuss these with the course instructor.
+   *Because the implementation of* :ada:`Swap` *is external, the prover*
+   *can not examine the body, so it has to make assumptions*
 
------------------------
-Integration with Rust
------------------------
+  - Fix the warnings with suitable annotations on the declaration of :ada:`Swap`
 
-- Compile a Rust implementation for swap in :filename:`swap.rs`, link it with the
-  SPARK code, and run the executable
+.. container:: animate 3-
 
-  .. code:: console
+   .. code:: Ada
 
-     rustc --crate-type=lib --emit=obj swap.rs
-     gnatbind main
-     gnatlink main swap.o
-     ./main
-
-- Or build a Rust library with cargo and link that library with the SPARK code
-
-- What assumptions did you make on the Rust implementation?
-
-  + Discuss these with the course instructor.
+      procedure Swap (X, Y : in out Integer)
+      with
+        Import,
+        Convention => C,
+        Global => null,
+        Always_Terminates;
