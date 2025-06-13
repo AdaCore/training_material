@@ -16,125 +16,241 @@ SPARK Boundary Lab
 
 - Unfold the source code directory (.) in the project pane
 
------------------
-System Boundary
------------------
+.. note::
 
-- Find and open the files :filename:`alarm.ads` and :filename:`alarm.adb` in
-  :toolname:`GNAT Studio`
+   The GPR file uses a configuration file to specify that SPARK mode defaults to
+   "On" for all units in this project. (So you won't see :ada:`with SPARK_Mode;`
+   in the source.)
 
-- Run :toolname:`GNATprove` on the unit
+-----------------------
+System Boundary (1/2)
+-----------------------
 
-  + Check that you understand the error messages.
+.. container:: animate 1-
 
-- Specify correct volatility properties for :ada:`Temperature` and
-  :ada:`Status`
+   - Find and open the files :filename:`alarm.ads` and :filename:`alarm.adb` in
+     :toolname:`GNAT Studio`
 
-  + :ada:`Temperature` is an input register
-  + :ada:`Status` is an output port
+   - Run :menu:`SPARK` |rightarrow| :menu:`Prove File`
 
-- Rerun :toolname:`GNATprove` on the unit
+.. container:: animate 2-
 
-  + Fix the SPARK violations in the implementation
-  + Hint: you need to mark one of the functions as a volatile function
+   *Lots of errors, including:*
 
-- Add an external state :ada:`State` with both :ada:`Temperature` and
-  :ada:`Status` as constituents
+   :color-red:`alarm.ads:6:13: error: function "Get_Temperature" with volatile input global "Temperature" with effective reads is not allowed in SPARK`
 
-  + What is the problem?
+   :color-red:`alarm.ads:8:13: error: function "Get_Status" with volatile input global "Status" with effective reads is not allowed in SPARK`
 
-- Add separate external states with suitable volatile properties for
-  :ada:`Temperature` and :ada:`Status`
+   *Without specifying volatility property,* :ada:`Effective_Reads` *is True (so*
+   *a function read could cause a state change, which is a side effect)*
 
-  + The unit should be fully proved
+   - Specify correct volatility properties for :ada:`Temperature` and :ada:`Status`
 
-- Review warnings and mark variables with aspect :ada:`Warnings => Off`
+     + :ada:`Temperature` can be written to at any time
+     + :ada:`Status` can be read at any time, so consecutive writes are expected
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      Temperature : Integer with
+        Address => System.Storage_Elements.To_Address (16#FFFF_FFF0#),
+        Volatile,
+        Async_Writers;
+
+      Status : Alarm_Status := Off with
+        Address => System.Storage_Elements.To_Address (16#FFFF_FFF4#),
+        Volatile,
+        Async_Readers,
+        Effective_Writes;
+
+   *Note: warnings about the address specification can be turned off*
+   *by setting the aspect* :ada:`Warnings => Off` *for these objects*
+
+-----------------------
+System Boundary (2/2)
+-----------------------
+
+.. container:: animate 1-
+
+   - Prove the file again and examine the errors
+
+.. container:: animate 2-
+
+   :color-red:`alarm.ads:6:13: error: nonvolatile function "Get_Temperature" with volatile input global "Temperature" is not allowed in SPARK [E0006]`
+
+   *When* :ada:`Get_Temperature` *is called, the result is volatile,*
+   *so successive calls can yield different results*
+
+   - Tell the prover that the result of :ada:`Get_Temperature` is volatile
+
+.. container:: animate 3-
+
+   .. code:: Ada
+
+      function Get_Temperature return Integer
+        with Volatile_Function;
+
+   - Run the prover again - should find one more problem!
+
+.. container:: animate 4-
+
+   :color-red:`alarm.adb:15:10: error: call to a volatile function in interfering context is not allowed in SPARK`
+
+   *Reads of volatile functions should be stored*
+
+   - Update :ada:`Set_Status` to use the volatile function in a "non-interfering context"
+
+.. container:: animate 5-
+
+   .. code:: Ada
+
+      procedure Set_Status is
+         Current : Integer := Get_Temperature;
+      begin
+         if Current > 100 then
+            Status := On;
+         end if;
+      end Set_Status;
+
+---------------------------------------
+Abstract States at the Boundary (1/2)
+---------------------------------------
+
+.. container:: animate 1-
+
+   - Add an external state :ada:`State` with both :ada:`Temperature` and
+     :ada:`Status` as constituents
+
+.. container:: animate 2-
+
+   *Hint: Global data needs to be part of the abstract state, and*
+   *the state will need to be refined to show the actual objects*
+
+.. container:: animate 3-
+
+   *Package spec*
+
+   .. code:: Ada
+
+      package Alarm
+          with Abstract_State => (Input_State, Output_State)
+      is
+
+   *Private section*
+
+   .. code:: Ada
+
+      Temperature : Integer with
+        Part_Of => Input_State,
+        ...
+
+      Status : Alarm_Status := Off with
+        Part_Of => Output_State,
+        ...
+
+   *Package body*
+
+   .. code:: Ada
+
+      package body Alarm
+        with Refined_State => (Input_State => Temperature,
+                               Output_State => Status)
+      is
+
+---------------------------------------
+Abstract States at the Boundary (2/2)
+---------------------------------------
+
+.. container:: animate 1-
+
+   - Examine the file again
+
+.. container:: animate 2-
+
+   :color-red:`alarm.adb:2:24: error: non-external state "Input_State" cannot contain external constituents in refinement`
+
+   :color-red:`alarm.adb:3:24: error: non-external state "Output_State" cannot contain external constituents in refinement`
+
+   *The state references external data - the prover must be made aware*
+
+.. container:: animate 3-
+
+   - Add indications of which states are external, and how they are used
+
+.. container:: animate 4-
+
+   .. code:: Ada
+
+      package Alarm
+        with Abstract_State =>
+          ((Input_State with External => Async_Writers),
+           (Output_State with External => (Async_Readers,
+                                           Effective_Writes)))
+      is
 
 -------------------
 Software Boundary
 -------------------
 
-- Find and open the files :filename:`random_numbers.ads` and :filename:`random_numbers.adb` in
-  :toolname:`GNAT Studio`
+.. container:: animate 1-
 
-- Run :toolname:`GNATprove` on the unit
+   - Find and open the files :filename:`random_numbers.ads` and :filename:`random_numbers.adb` in
+     :toolname:`GNAT Studio`
 
-  + Check that you understand the error message.
+   - Run :menu:`SPARK` |rightarrow| :menu:`Prove File`. What's the problem?
 
-- Add aspect :ada:`SPARK_Mode` to the package body with value :ada:`Off`
+.. container:: animate 2-
 
-- Run :toolname:`GNATprove` on the unit
+   :color-red:`random_numbers.adb:5:4: error: "Generator" is not allowed in SPARK (due to entity declared with SPARK_Mode Off)`
 
-  + Check that there are no messages.
-  + Is the spec compatible with SPARK?
+   :ada:`GNAT.Random` *is not in SPARK mode; we cannot call non-SPARK from SPARK*
 
-- Complete the spec so that it is compatible with SPARK
+   - Turn off SPARK mode for :ada:`Random_Numbers`
 
-----------------------------------------------
-Integration with Other Programming Languages
-----------------------------------------------
+.. container:: animate 3-
 
-- Find and open the file :filename:`main.adb` in :toolname:`GNAT Studio`
+   .. code:: Ada
 
-- Run :toolname:`GNATprove` on the unit
+      package body Random_Numbers
+        with SPARK_Mode => Off
+      is
 
-  + Fix the warnings with suitable annotations on the declaration of :ada:`Swap`
-
-- Add a suitable postcondition on :ada:`Swap`
-
-  + Check that you can prove after the call that the values of :ada:`X` and
-    :ada:`Y` have been swapped
-  + Hint: add a suitable assertion
-
-- Compile the code of :filename:`main.adb`
-
-  .. code:: console
-
-     gcc -c main.adb
+   *We only want the implementation to be out of SPARK. We*
+   *still want to be able to call* :ada:`Random_Numbers` *from SPARK*
 
 --------------------
 Integration with C
 --------------------
 
-- Compile a C implementation for swap in :filename:`swap.c`, link it with the
-  SPARK code, and run the executable
+.. container:: animate 1-
 
-  .. code:: console
+   - Find and open the file :filename:`main.adb` in :toolname:`GNAT Studio`
 
-     gcc -c swap.c
-     gnatbind main
-     gnatlink main swap.o
-     ./main
+   - Run :menu:`SPARK` |rightarrow| :menu:`Prove File`. What's the problem?
 
-- Or declare the main and languages used in the project file
+.. container:: animate 2-
 
-  .. code:: ada
+   :color-red:`main.adb:12:4: warning: no Global contract available for "Swap"`
 
-     for Main use ("main.adb");
-     for Languages use ("Ada", "C");
+   :color-red:`main.adb:12:4: warning: assuming "Swap" has no effect on global items`
 
-  and build the project with :toolname:`GPRbuild`
+   :color-red:`main.adb:12:4: warning: no Always_Terminates aspect available for "Swap"`
 
-- What assumptions did you make on the C implementation?
+   :color-red:`main.adb:12:4: warning: assuming "Swap" always terminates`
 
-  + Discuss these with the course instructor.
+   *Because the implementation of* :ada:`Swap` *is external, the prover*
+   *can not examine the body, so it has to make assumptions*
 
------------------------
-Integration with Rust
------------------------
+  - Fix the warnings with suitable annotations on the declaration of :ada:`Swap`
 
-- Compile a Rust implementation for swap in :filename:`swap.rs`, link it with the
-  SPARK code, and run the executable
+.. container:: animate 3-
 
-  .. code:: console
+   .. code:: Ada
 
-     rustc --crate-type=lib --emit=obj swap.rs
-     gnatbind main
-     gnatlink main swap.o
-     ./main
-
-- Or build a Rust library with cargo and link that library with the SPARK code
-
-- What assumptions did you make on the Rust implementation?
-
-  + Discuss these with the course instructor.
+      procedure Swap (X, Y : in out Integer)
+      with
+        Import,
+        Convention => C,
+        Global => null,
+        Always_Terminates;
