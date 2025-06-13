@@ -23,9 +23,9 @@ Creating an Abstract State
 .. container:: animate 1-
 
    - Define an abstract state called :ada:`State` to hold all of the state of
-     package :ada:`Basics`.
+     package :ada:`Basics`
 
-      - The "state" means all global data in the package.
+      - The "state" means all global data in the package
       - Don't forget to add :ada:`Refined_State` to list the content of the state
 
 .. container:: animate 2-
@@ -40,7 +40,7 @@ Creating an Abstract State
         with Refined_State => (State => (The_Rec, The_Table))
       is
 
-   - Run :menu:`SPARK` |rightarrow| :menu:`Examine All` to see what happens.
+   - Run :menu:`SPARK` |rightarrow| :menu:`Examine All` to see what happens
 
 .. container:: animate 3-
 
@@ -99,10 +99,10 @@ Using the Abstract State
       :color-red:`basics.ads:34:28: error: "The_Table" is undefined (more references follow)`
 
    - Update the global contracts to indicate that :ada:`State` is being modified, not
-     any particular object.
+     any particular object
 
       - Also need to update dependency contracts, because now data depends on the state,
-        not any particular object.
+        not any particular object
 
 .. container:: animate 2-
 
@@ -132,9 +132,9 @@ Initializing the State
 
    :color-red:`basics.ads:2:26: warning: no subprogram exists that can initialize abstract state "Basics.State"`
 
-   - We are not guaranteeing that the global data is initialized.
+   - We are not guaranteeing that the global data is initialized
 
-   - Write subprogram :ada:`Init_The_State` to initialize the global state.
+   - Write subprogram :ada:`Init_The_State` to initialize the global state
 
 .. container:: animate 3-
 
