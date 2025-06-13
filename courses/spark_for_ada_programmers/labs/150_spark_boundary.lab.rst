@@ -97,7 +97,7 @@ System Boundary (2/2)
 
    :color-red:`alarm.adb:15:10: error: call to a volatile function in interfering context is not allowed in SPARK`
 
-   *Reads of volatile functions should be stored.*
+   *Reads of volatile functions should be stored*
 
    - Update :ada:`Set_Status` to use the volatile function in a "non-interfering context"
 
