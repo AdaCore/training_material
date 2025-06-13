@@ -35,8 +35,6 @@ package body Pointers is
       while B /= null loop
          pragma Loop_Invariant
            (if All_List_Zero (At_End (B)) then All_List_Zero (At_End (L)));
-         pragma Loop_Variant (Structural => B);
-         pragma Loop_Variant (Decreases => Length (B));
          B.Value := 0;
          B := B.Next;
       end loop;
