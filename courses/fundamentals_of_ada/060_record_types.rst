@@ -36,8 +36,8 @@ Record Types
 
 ..
    Components Rules
-   Operations
-   Aggregates
+   Record Operations
+   Record Aggregates
    Default Values
    Variant Records
 

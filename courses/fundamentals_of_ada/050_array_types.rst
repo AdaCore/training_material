@@ -38,9 +38,9 @@ Array Types
    Constrained Array Types
    Unconstrained Array Types
    Attributes
-   Operations
+   Array Operations
    Looping Over Objects
-   Aggregates
+   Array Aggregates
    Image For Complex Types
    Anonymous Array Types
 
