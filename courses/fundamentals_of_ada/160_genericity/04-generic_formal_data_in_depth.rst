@@ -71,38 +71,103 @@ Generic Subprogram Parameters
       function Less_Than (L, R : Something_T) return Boolean;
       procedure My_Max is new Max (Something_T, Less_Than);
 
-----------------------------------------
-Generic Subprogram Parameters Defaults
-----------------------------------------
-
-* :ada:`is <>` - matching subprogram is taken by default
-* :ada:`is null` - null procedure is taken by default
-
-   - Only available in Ada 2005 and later
-
-   .. code:: Ada
-
-      generic
-        type T is private;
-        with function Is_Valid (P : T) return Boolean is <>;
-        with procedure Error_Message (P : T) is null;
-      procedure Validate (P : T);
-
-      function Is_Valid_Record (P : Record_T) return Boolean;
-
-      procedure My_Validate is new Validate (Record_T,
-                                             Is_Valid_Record);
-      -- Is_Valid maps to Is_Valid_Record
-      -- Error_Message maps to a null procedure
-
-..
-  language_version 2005
-
 ------
 Quiz
 ------
 
 .. include:: ../quiz/genericity_type_and_variable/quiz.rst
+
+------------------------------------------------------
+Generic Subprogram Parameters - Default Values (1/2)
+------------------------------------------------------
+
+.. code:: Ada
+
+   type Feet_T is digits 6;
+   type Area_T is digits 6;
+   function Times (L, R : Feet_T) return Area_T;
+
+   generic
+      with function "+" (L, R : Feet_T) return Feet_T is <>;
+      with function "*" (L, R : Feet_T) return Area_T is <>;
+   function Calculate (L1, L2 : Feet_T;
+                       W1, W2 : Feet_T)
+                       return Area_T;
+
+* :ada:`is <>`
+
+   - If no subprogram specified for instantiation, compiler will use a subprogram with:
+
+      - Same name
+      - Same parameter profile (types only, not parameter name)
+
+* Legal instances:
+
+   .. code:: Ada
+
+      -- Explicit specifications for "plus" and "multiply"
+      function Instance1 is new Calculate ("+", Times);
+      -- Implicit specification for "plus", explicit for "multiply"
+      function Instance2 is new Calculate ("*" => Times);
+
+* Illegal instance
+
+   .. code:: Ada
+
+      -- There is no implicit function for "times"
+      function Instance3 is new Calculate;
+
+* Adding an implicit function for times would make :ada:`Instance3` legal
+
+   .. code:: Ada
+
+      function "*" (L, R : Feet_T) return Area_T;
+      function Instance3 is new Calculate;
+
+..
+  language_version 2005
+
+------------------------------------------------------
+Generic Subprogram Parameters - Default Values (2/2)
+------------------------------------------------------
+
+.. code:: Ada
+
+   type Miles_T is digits 6;
+   procedure Clean (Miles : in out Miles_T) is
+   begin
+      Miles := (if Miles < 0.0 then 0.0 else Miles);
+   end Clean;
+
+   generic
+     with procedure Clean (Miles : in out Miles_T) is null;
+   procedure Print (Miles : in out Miles_T);
+
+   procedure Print (Miles : in out Miles_T) is
+   begin
+      Clean (Miles);
+      Put_Line (Miles'Image);
+   end Print;
+
+* :ada:`is null` (for procedures only)
+
+   - If no procedure is specified, a null procedure will be used
+
+*  Instances:
+
+   .. code:: Ada
+
+      Miles : Miles_T := -12.34;
+      procedure Instance1 is new Print;
+      procedure Instance2 is new Print (Clean);
+
+* Result of running 
+
+   * :ada:`Instance1 (Miles)` |rightarrow| **-12.34**
+   * :ada:`Instance2 (Miles)` |rightarrow| **0.0**
+
+..
+  language_version 2005
 
 ------
 Quiz
