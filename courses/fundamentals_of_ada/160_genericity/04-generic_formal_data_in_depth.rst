@@ -44,6 +44,12 @@ Generic Constants/Variables As Parameters
             Array_size     => V,
             High_Watermark => Max);
 
+------
+Quiz
+------
+
+.. include:: ../quiz/genericity_type_and_variable/quiz.rst
+
 -------------------------------
 Generic Subprogram Parameters
 -------------------------------
@@ -70,12 +76,6 @@ Generic Subprogram Parameters
       type Something_T is null record;
       function Less_Than (L, R : Something_T) return Boolean;
       procedure My_Max is new Max (Something_T, Less_Than);
-
-------
-Quiz
-------
-
-.. include:: ../quiz/genericity_type_and_variable/quiz.rst
 
 ------------------------------------------------------
 Generic Subprogram Parameters - Default Values (1/2)
@@ -165,54 +165,6 @@ Generic Subprogram Parameters - Default Values (2/2)
 
    * :ada:`Instance1 (Miles)` |rightarrow| **-12.34**
    * :ada:`Instance2 (Miles)` |rightarrow| **0.0**
-
-..
-  language_version 2005
-
-------
-Quiz
-------
-
-Given the following generic function:
-
-.. code:: Ada
-
-   generic
-      type Some_T is private;
-      with function "+" (L : Some_T; R : Integer) return Some_T is <>;
-   function Incr (Param : Some_T) return Some_T;
-
-   function Incr (Param : Some_T) return Some_T is
-   begin
-      return Param + 1;
-   end Incr;
-
-And the following declarations:
-
-.. code:: Ada
-
-   type Record_T is record
-      Component : Integer;
-   end record;
-   function Add (L : Record_T; I : Integer) return Record_T is
-      ((Component => L.Component + I))
-   function Weird (L : Integer; R : Integer) return Integer is (0);
-
-Which of the following instantiation(s) is/are **not** legal?
-
-A. ``function IncrA is new Incr (Integer, Weird);``
-B. ``function IncrB is new Incr (Record_T, Add);``
-C. :answermono:`function IncrC is new Incr (Record_T);`
-D. ``function IncrD is new Incr (Integer);``
-
-.. container:: animate
-
-   :ada:`with function "+" (L : Some_T; R : Integer) return Some_T is <>;` indicates that if no function for :ada:`+` is passed in, find (if possible) a matching definition at the point of instantiation.
-
-   A. :ada:`Weird` matches the subprogram profile, so :ada:`Incr` will use :ada:`Weird` when doing addition for :ada:`Integer`
-   B. :ada:`Add` matches the subprogram profile, so :ada:`Incr` will use :ada:`Add` when doing the addition for :ada:`Record_T`
-   C. There is no matching :ada:`+` operation for :ada:`Record_T`, so that instantiation fails to compile
-   D. Because there is no parameter for the generic formal parameter :ada:`+`, the compiler will look for one in the scope of the instantiation. Because the instantiating type is numeric, the inherited :ada:`+` operator is found
 
 ..
   language_version 2005
