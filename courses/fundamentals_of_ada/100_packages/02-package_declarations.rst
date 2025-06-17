@@ -1,6 +1,6 @@
-==============
-Declarations
-==============
+======================
+Package Declarations
+======================
 
 ----------------------
 Package Declarations
