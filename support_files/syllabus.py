@@ -30,6 +30,7 @@ import os
 import subprocess
 
 TITLE = "+++"
+BREAK = "---"
 MODULE = "***"
 SECTION = "==="
 
@@ -110,12 +111,12 @@ def process_one_file(fp, in_filename, short):
                 fp.write(header(title, SECTION))
 
 
-def create_syllabus(course, filename, short, title):
+def create_syllabus(course, rst_filename, short, title):
     """
     Main routine to create the syllabus document
     """
 
-    fp = open(filename, "w")
+    fp = open(rst_filename, "w")
 
     fp.write(header(title, TITLE))
 
@@ -124,7 +125,15 @@ def create_syllabus(course, filename, short, title):
         filenames = f.read().splitlines()
 
     for f in filenames:
-        process_one_file(fp, os.path.abspath(f), short)
+        if f.startswith("--"):
+           # If the line in the file starts with a comment,
+           # then this is a break (e.g. "-- Day 1" or "-- Monday AM")
+           title = f[2:].strip()
+           if len(title) > 0:
+               fp.write(header(title, BREAK))
+
+        else:
+            process_one_file(fp, os.path.abspath(f), short)
 
     fp.close()
 
