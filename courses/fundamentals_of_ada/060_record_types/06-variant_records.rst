@@ -43,12 +43,15 @@ Immutable Variant Record
      end case;
   end record;
 
+.. note::
+
+   :ada:`case` block must be last part of the definition - therefore only one per record
+
 * In a variant record, a discriminant can be used to specify the :dfn:`variant part` (line 8)
 
    + Similar to case statements (all values must be covered)
    + Components listed will only be visible if choice matches discriminant
    + Component names need to be unique (even across discriminants)
-   + Variant part must be end of record (hence only one variant part allowed)
 
 * Discriminant is treated as any other component
 
