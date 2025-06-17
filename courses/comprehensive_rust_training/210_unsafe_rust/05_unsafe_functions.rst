@@ -18,7 +18,7 @@ preconditions you must uphold to avoid undefined behaviour:
    fn main() {
        let emojis = "TBDTBDTBD";
 
-       // SAFETY: The indices are in the correct order, within the bounds of the
+       // SAFETY: The indexes are in the correct order, within the bounds of the
        // string slice, and lie on UTF-8 sequence boundaries.
        unsafe {
            println!("emoji: {}", emojis.get_unchecked(0..4));
