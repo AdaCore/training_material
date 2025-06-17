@@ -41,7 +41,7 @@ Object-Level Operations
       begin
 
          One := Array1_T (Two);    -- OK
-         Two := Array2_T (Three);  -- Illegal (indices not convertible)
+         Two := Array2_T (Three);  -- Illegal (indexes not convertible)
 
 -------------------------------
 Extra Object-Level Operations
