@@ -149,6 +149,32 @@ def generate_docx(modules, rst_filename, title):
     run_pandoc("docx", rst_filename)
 
 
+def generate_html(modules, rst_filename, left):
+
+    fp = open(rst_filename, "w")
+
+    fp.write(".. list-table::\n")
+    fp.write("   :header-rows: 1\n")
+    fp.write("\n")
+
+    fp.write("   * - " + left + "\n")
+    fp.write("     - Topic\n")
+
+    front = "     - | "
+    for module in modules:
+        name = module[0]
+        values = module[1]
+        if name.startswith("--"):
+            fp.write("   * - " + name[2:] + "\n")
+            front = "     - | "
+        else:
+            fp.write(front + name + "\n")
+            front = "       | "
+
+    fp.close()
+    run_pandoc("html", rst_filename)
+
+
 def load_one_module(module_filename, short):
 
     content = []
@@ -221,6 +247,12 @@ if __name__ == "__main__":
         default=DEFAULT_TITLE,
     )
 
+    parser.add_argument(
+        "--left",
+        help='Title of left column in table (default="Session")',
+        default="Session",
+    )
+
     args = parser.parse_args()
 
     rst_file = os.path.abspath(args.rst)
@@ -231,3 +263,7 @@ if __name__ == "__main__":
 
     if args.format.lower() == "docx":
         generate_docx(all_modules, args.rst, args.title)
+    elif args.format.lower() == "html":
+        generate_html(all_modules, args.rst, args.left)
+    else:
+        print("Format '" + args.format + "' not defined. Use 'docx' or 'html'")
