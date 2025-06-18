@@ -231,10 +231,16 @@ if __name__ == "__main__":
 
     parser.add_argument("--rst", help="RST file output", required=True)
 
-    parser.add_argument(
-        "--format",
-        help="'docx` for Word output, 'html' for HTML output (default)",
-        default="html",
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument(
+        "--html",
+        action="store_true",
+        help="Generate a table in an RST file for use in displaying a schedule",
+    )
+    group.add_argument(
+        "--docx",
+        action="store_true",
+        help="Generate an RST file (and convert to Word) for use in generating a syllabus",
     )
 
     parser.add_argument(
@@ -263,9 +269,7 @@ if __name__ == "__main__":
 
     all_modules = load_modules(args.course, args.short)
 
-    if args.format.lower() == "docx":
+    if args.docx:
         generate_docx(all_modules, args.rst, args.title)
-    elif args.format.lower() == "html":
+    elif args.html:
         generate_html(all_modules, args.rst, args.left)
-    else:
-        print("Format '" + args.format + "' not defined. Use 'docx' or 'html'")
