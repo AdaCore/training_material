@@ -3,6 +3,9 @@ This script is designed to create a syllabus based on a text
 file used to create slides from the material/courses repository
 (e.g. "standard_course.txt").
 
+(Note: If there are comments in the TXT file, they will be use
+to break the modules into sections.)
+
 It will generate an RST file, then uses pandoc to convert to a
 Word document. It uses a reference document that would use the
 same full path to this script, replacing ".py" with ".dotm".
@@ -11,17 +14,27 @@ Switches:
    --course => filename containing list of RST files in the
                current directory
    --rst    => name of the RST file that will contain the
-               text to convert to a WORD document
+               generated RST content
+   --docx   => RST file should be formatted for conversion
+               to a Word document (used for generating
+               a course syllabus)
+   --html   => RST file should be formatted for conversion
+               to a HTML text (used for generating
+               a course schedule)
+
+The following switches are only useful when selecting "--docx"
    --short  => If set, the output file will only contain
                module names. Default behavior is to create
                a file with module names and sections within
-               the module
+               the module (ignored when using
    --title  => Default course title is "Ada Essentials". Specify
                something else here if you want a different title.
 
-Due to limitations converting from RST to DOCX, the ouput document
-needs some editing. This script will print those steps at the
-end of processing.
+The following switch is only useful when selecting "--html"
+
+   --left   => Default column title for left column is "Session".
+               Specify something else here if you want a different
+               title. (Right column is always "Topic")
 """
 
 import argparse
@@ -38,6 +51,10 @@ DEFAULT_TITLE = "Ada Essentials"
 
 
 def run_pandoc(format, rst_file):
+    """
+    Run 'pandoc' to generate the specified format from the rst_file.
+    More useful for 'docx' than 'html'
+    """
 
     reference = ""
     output_filename = os.path.splitext(rst_file)[0] + "." + format
@@ -76,13 +93,13 @@ def run_pandoc(format, rst_file):
 
 def get_title(lines):
     """
-    Based on our RST formatting, a module or section title
-    uses a particular separator on on the line before and after
-    the title.
-    If the "lines" parameter follows this format, we return a
-    tuple of a flag indicating if we've found a module or a section, and
+    Based on our RST formatting, a module or section title uses a
+    particular separator on on the line before and after the title.
+    If the "lines" parameter follows this format, we return a tuple
+    of a flag indicating if we've found a module or a section, and
     the title of the module/section
     """
+
     if lines[2].startswith(MODULE) and lines[0].startswith(MODULE):
         return MODULE, lines[1]
     elif lines[2].startswith(SECTION) and lines[0].startswith(SECTION):
@@ -95,15 +112,17 @@ def want_section(title):
     """
     We don't want to include these sections in our syllabus
     """
+
     return title != "lab" and title != "introduction" and title != "summary"
 
 
 def header(title, which):
     """
-    Generate a header for the text. We use headers instead of lists because
-    they translate to "Heading #" styles in Word, which we can pre-format
-    in the reference document.
+    Generate a header for the text. We use headers instead of lists
+    because they translate to "Heading #" styles in Word, which we
+    can pre-format in the reference document.
     """
+
     separator = (2 + len(title)) * which[0]
     return title + "\n" + separator + "\n\n"
 
@@ -113,6 +132,7 @@ def read_content(in_filename, lines):
     Used to process the "include" directive in an RST file so that
     we just end up with one big file.
     """
+
     file = open(in_filename)
 
     while True:
@@ -131,6 +151,11 @@ def read_content(in_filename, lines):
 
 
 def generate_docx(modules, rst_filename, title):
+    """
+    Generate an RST file and a DOCX file from the list of modules.
+    User may want to edit the resulting DOCX file to make it look
+    nicer.
+    """
 
     fp = open(rst_filename, "w")
 
@@ -151,6 +176,11 @@ def generate_docx(modules, rst_filename, title):
 
 
 def generate_html(modules, rst_filename, left):
+    """
+    Generate an RST file and a HTML file from the list of modules.
+    Note the HTML file is just a sanity check. The RST file should
+    be the one added to the "public-training-website" repo.
+    """
 
     fp = open(rst_filename, "w")
 
@@ -178,6 +208,11 @@ def generate_html(modules, rst_filename, left):
 
 
 def load_one_module(module_filename, short):
+    """
+    Read the module (recursively to handle "include::" comments).
+    Return a tuple of the module title and a list of chapters.
+    (List of chapters will be empty if "short" is True).
+    """
 
     content = []
     read_content(module_filename, content)
