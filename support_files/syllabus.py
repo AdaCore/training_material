@@ -71,7 +71,7 @@ def run_pandoc(format, rst_file):
             print(text)
     process.wait()
 
-    os.system("start " + output_filename)
+    return output_filename
 
 
 def get_title(lines):
@@ -146,7 +146,8 @@ def generate_docx(modules, rst_filename, title):
                 fp.write(header(value, SECTION))
 
     fp.close()
-    run_pandoc("docx", rst_filename)
+    output_filename = run_pandoc("docx", rst_filename)
+    os.system("start " + output_filename)
 
 
 def generate_html(modules, rst_filename, left):
@@ -172,7 +173,8 @@ def generate_html(modules, rst_filename, left):
             front = "       | "
 
     fp.close()
-    run_pandoc("html", rst_filename)
+    html_filename = run_pandoc("html", rst_filename)
+    os.system("type " + rst_filename)
 
 
 def load_one_module(module_filename, short):
