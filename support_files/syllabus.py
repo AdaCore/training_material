@@ -37,6 +37,43 @@ SECTION = "==="
 DEFAULT_TITLE = "Ada Essentials"
 
 
+def run_pandoc(format, rst_file):
+
+    reference = ""
+    output_filename = os.path.splitext(rst_file)[0] + "." + format
+
+    if format == "docx":
+        reference = (
+            "--reference-doc "
+            + os.path.splitext(os.path.abspath(__file__))[0]
+            + ".dotm "
+        )
+
+    command = (
+        "pandoc -f rst -t "
+        + format
+        + " "
+        + "-o "
+        + output_filename
+        + " "
+        + reference
+        + rst_file
+    )
+
+    process = subprocess.Popen(command, shell=False, stdout=subprocess.PIPE)
+
+    while True:
+        output = process.stdout.readline()
+        if process.poll() is not None:
+            break
+        if output:
+            text = output.decode().strip()
+            print(text)
+    process.wait()
+
+    os.system("start " + output_filename)
+
+
 def get_title(lines):
     """
     Based on our RST formatting, a module or section title
@@ -71,7 +108,7 @@ def header(title, which):
     return title + "\n" + separator + "\n\n"
 
 
-def append_content(in_filename, lines):
+def read_content(in_filename, lines):
     """
     Used to process the "include" directive in an RST file so that
     we just end up with one big file.
@@ -87,55 +124,73 @@ def append_content(in_filename, lines):
         if inc > 0:
             included = line[13:]
             full_path = os.path.join(os.path.dirname(in_filename), included)
-            append_content(os.path.abspath(full_path), lines)
+            read_content(os.path.abspath(full_path), lines)
         lines.append(line)
 
     file.close()
 
 
-def process_one_file(fp, in_filename, short):
-    """
-    Read an RST file and print out the module title and,
-    if "short" is False, print out the section titles
-    """
-
-    lines = []
-    append_content(in_filename, lines)
-
-    for i in range(2, len(lines)):
-        flag, title = get_title(lines[i - 2 : i + 1])
-        if flag == MODULE:
-            fp.write(header(title, MODULE))
-        elif flag == SECTION:
-            if want_section(title.lower()) and not short:
-                fp.write(header(title, SECTION))
-
-
-def create_syllabus(course, rst_filename, short, title):
-    """
-    Main routine to create the syllabus document
-    """
+def generate_docx(modules, rst_filename, title):
 
     fp = open(rst_filename, "w")
 
     fp.write(header(title, TITLE))
+    for module in modules:
+        name = module[0]
+        values = module[1]
+        if name.startswith("--"):
+            fp.write(header(name[2:], BREAK))
+        else:
+            fp.write(header(name, MODULE))
+            for value in values:
+                fp.write(header(value, SECTION))
 
-    filenames = None
+    fp.close()
+    run_pandoc("docx", rst_filename)
+
+
+def load_one_module(module_filename, short):
+
+    content = []
+    read_content(module_filename, content)
+
+    title = ""
+    sections = []
+
+    for i in range(2, len(content)):
+        flag, name = get_title(content[i - 2 : i + 1])
+        if flag == MODULE:
+            title = name
+        elif flag == SECTION:
+            if want_section(name.lower()) and not short:
+                sections.append(name)
+
+    return (title, sections)
+
+
+def load_modules(course, short):
+    """
+    Load modules from course file.
+    Return a list of tuples, where the first element is the module
+    name and the second element is a list of chapters.
+    If "short" is True, the list of chapters will be empty
+    """
+
+    all_modules = []
     with open(course) as f:
         filenames = f.read().splitlines()
 
-    for f in filenames:
-        if f.startswith("--"):
-           # If the line in the file starts with a comment,
-           # then this is a break (e.g. "-- Day 1" or "-- Monday AM")
-           title = f[2:].strip()
-           if len(title) > 0:
-               fp.write(header(title, BREAK))
+        for f in filenames:
+            if f.startswith("--"):
+                separator = ("--" + f[2:].strip(), [])
+                all_modules.append(separator)
+            elif f.startswith("#"):
+                separator = ("--" + f[1:].strip(), [])
+                all_modules.append(separator)
+            else:
+                all_modules.append(load_one_module(os.path.abspath(f), short))
 
-        else:
-            process_one_file(fp, os.path.abspath(f), short)
-
-    fp.close()
+    return all_modules
 
 
 if __name__ == "__main__":
@@ -147,6 +202,12 @@ if __name__ == "__main__":
     )
 
     parser.add_argument("--rst", help="RST file output", required=True)
+
+    parser.add_argument(
+        "--format",
+        help="'docx` for Word output, 'html' for HTML output (default)",
+        default="html",
+    )
 
     parser.add_argument(
         "--short",
@@ -166,38 +227,7 @@ if __name__ == "__main__":
     docx_file = os.path.splitext(rst_file)[0] + ".docx"
     reference_dotm = os.path.splitext(os.path.abspath(__file__))[0] + ".dotm"
 
-    create_syllabus(args.course, args.rst, args.short, args.title)
+    all_modules = load_modules(args.course, args.short)
 
-    command = (
-        "pandoc -f rst -t docx "
-        + "-o "
-        + docx_file
-        + " "
-        + "--reference-doc "
-        + reference_dotm
-        + " "
-        + rst_file
-    )
-
-    process = subprocess.Popen(command, shell=False, stdout=subprocess.PIPE)
-
-    while True:
-        output = process.stdout.readline()
-        if process.poll() is not None:
-            break
-        if output:
-            text = output.decode().strip()
-            print(text)
-    process.wait()
-
-    os.system("start " + docx_file)
-    print("Output file is here: " + docx_file)
-    print("You still need to edit it as follows:")
-    print("  1) Click at the beginning of the first module and")
-    print("     create a new section by clicking")
-    print("     Layout => Breaks => Section Breaks => Continuous")
-    print("  2) Click somewhere after the break, and change to two columns")
-    print("     by clicking Layout => Columns => Two")
-    print("  3) You will need to insert column breaks immediately before any")
-    print("     module that spans multiple columns by clicking")
-    print("     by clicking Layout => Breaks => Column")
+    if args.format.lower() == "docx":
+        generate_docx(all_modules, args.rst, args.title)
