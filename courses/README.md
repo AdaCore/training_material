@@ -45,7 +45,7 @@ it can be added as needed, and a special TXT file can be created.
 
 Duration: 5 days
 
-### SPARK for Ada Programmers
+### SPARK Essentials
 
 This is a course designed to teach SPARK to students already familiar with
 Ada. Some modules are overviews of newer Ada functions (Ada 2012 and beyond),
