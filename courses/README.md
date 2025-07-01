@@ -35,7 +35,7 @@ It provides the "pretty" name of the course. The content should just be
 
 ## Course Overviews
 
-### Fundamentals of Ada
+### Ada Essentials
 
 This is the basic introduction class to Ada (or SPARK). This assumes no
 prior knowledge of the language. All modules should be written towards
