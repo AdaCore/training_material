@@ -1,4 +1,4 @@
-courses/fundamentals_of_ada/*.rst
+courses/ada_essentials/*.rst
 courses/spark_essentials/*.rst
 courses/advanced_exception_analysis/*.rst
 courses/gnatcheck/*.rst
