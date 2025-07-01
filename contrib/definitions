@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-DEFAULT_COURSE="courses/fundamentals_of_ada"
+DEFAULT_COURSE="courses/ada_essentials"
 
 usage() {
     echo "$0 [course_path]"
