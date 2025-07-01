@@ -80,7 +80,7 @@ jobs:
           if-no-files-found: error
 
       - name: Mini Cinema - Package
-        run: python3 contrib/ci/package_labs.py courses/fundamentals_of_ada/mini_projects/cinema && unzip out/cinema/cinema.zip -d out/cinema/pkg
+        run: python3 contrib/ci/package_labs.py courses/ada_essentials/mini_projects/cinema && unzip out/cinema/cinema.zip -d out/cinema/pkg
 
       - name: Mini Cinema - Upload
         uses: actions/upload-artifact@v4
@@ -114,7 +114,7 @@ jobs:
       - name: Solution build for Ada Fundamentals
         run: |
             . contrib/ci/lab_env.profile
-            python3 contrib/ci/build_labs_check.py courses/fundamentals_of_ada/labs
+            python3 contrib/ci/build_labs_check.py courses/ada_essentials/labs
 
   python-black:
     name: Python scripts black lint check
@@ -154,9 +154,9 @@ jobs:
         run: python3 -m pip install pytest epycs pandocfilters adacut
 
       - name: Run PyTest
-        run: pytest --ignore=cached_gnat --ignore=courses/fundamentals_of_ada/labs/radar/test_all.py
+        run: pytest --ignore=cached_gnat --ignore=courses/ada_essentials/labs/radar/test_all.py
 
       - name: Check Quizes
         run: |
             . contrib/ci/alr_gnat_env.profile
-            python3 contrib/quiz_update.py -v courses/fundamentals_of_ada/quiz/
+            python3 contrib/quiz_update.py -v courses/ada_essentials/quiz/
