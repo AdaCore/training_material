@@ -73,7 +73,7 @@ Operators for Signed Integer Type
 
     Exponentiation (:ada:`**`) result will be a signed integer
 
-       - So power **must** be :ada:`Integer` ``>= 0``
+       - Power **must** be :ada:`Integer` ``>= 0``
 
 .. warning:: Division by zero |rightarrow| :ada:`Constraint_Error`
 
@@ -243,7 +243,7 @@ Neighbor Attributes for All Scalars
    ...
    Signed := Signed_T'Succ (Signed); -- Signed = 0
    ...
-   Unsigned := Unsigned_T'Pred (Unsigned); -- Signed = 255
+   Unsigned := Unsigned_T'Pred (Unsigned); -- Unsigned = 255
 
 ------------------------------------
 Min/Max Attributes for All Scalars
