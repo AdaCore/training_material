@@ -27,7 +27,7 @@ where
 
 .. code:: Ada
 
-   type Array_T is array (0 .. 3) of Interfaces.Integer_32;
+   type Array_T is array (0 .. 3) of Interfaces.Integer_16;
 
 .. image:: array_diagram.svg
 
