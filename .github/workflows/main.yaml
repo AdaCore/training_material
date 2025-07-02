@@ -111,7 +111,7 @@ jobs:
         run: |
             alr toolchain --install gnat_native=12.2.1 gprbuild=22.0.1
 
-      - name: Solution build for Ada Fundamentals
+      - name: Solution build for Ada Essentials
         run: |
             . contrib/ci/lab_env.profile
             python3 contrib/ci/build_labs_check.py courses/ada_essentials/labs
