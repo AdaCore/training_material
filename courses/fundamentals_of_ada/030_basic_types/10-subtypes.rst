@@ -163,5 +163,5 @@ Which subtype definition is valid?
    A. This generates a run-time error because the first enumeral specified is not in the range of :ada:`Weekdays_T`
    B. Compile error - no type specified
    C. Correct - standalone subtype
-   D. :ada:`Digits 6` is used for a type definition, not a subtype
+   D. :ada:`digits 6` is used for a type definition, not a subtype
 

@@ -9,8 +9,8 @@ procedure Main is
    --  type Degrees_T is ?
    --  Angle : Degrees_T;
 
-   --  type Cymk_T is ?
-   --  Color : Cymk_T;
+   --  type Cmyk_T is ?
+   --  Color : Cmyk_T;
 
 begin
 

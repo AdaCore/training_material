@@ -20,11 +20,11 @@ procedure Main is
    Object_Feet : constant Data_T :=
      (Distance => 6_000.0,
       Distance_Type => Feet,
-      Seconds  => One_Minute_In_Seconds);
+      Seconds  => Interfaces.C.C_float(One_Minute_In_Seconds));
    Object_Meters : constant Data_T :=
      (Distance => 3_000.0,
       Distance_Type => Meters,
-      Seconds  => One_Hour_In_Seconds);
+      Seconds  => Interfaces.C.C_float(One_Hour_In_Seconds));
    Object_Miles : constant Data_T :=
      (Distance => 1.0,
       Distance_Type =>

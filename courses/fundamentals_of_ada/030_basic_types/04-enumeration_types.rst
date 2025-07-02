@@ -204,6 +204,6 @@ D. ``V4 : Enum_T := Enum_T'Value ("Able Baker Charlie");``
 
    A. Legal
    B. Legal - conversion is case-insensitive
-   C. Legal - leading/trailing blanks are ignored
+   C. Legal - leading/trailing whitespace is ignored
    D. :ada:`Value` tries to convert entire string, which will fail at run-time
 
