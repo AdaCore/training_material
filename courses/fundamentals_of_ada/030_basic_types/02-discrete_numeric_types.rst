@@ -181,7 +181,7 @@ Neighbor Attributes for All Scalars
    ...
    Signed := Signed_T'Succ (Signed); -- Signed = 0
    ...
-   Unsigned := Unsigned_T'Pred (Unsigned); -- Signed = 255
+   Unsigned := Unsigned_T'Pred (Unsigned); -- Unsigned = 255
 
 ------------------------------------
 Min/Max Attributes for All Scalars
