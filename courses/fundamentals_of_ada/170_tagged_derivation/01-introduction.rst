@@ -15,7 +15,7 @@ Object-Oriented Programming with Tagged Types
 
 * Child types can add new components
 * Object of a child type can be **substituted** for base type
-* Primitive (*method*) can :dfn:`dispatch` **at run-time** depending on the type at call-site
+* Primitive can :dfn:`dispatch` **at run-time** depending on the type at call-site
 * Types can be **extended** by other packages
 
     - Conversion and qualification to base type is allowed
