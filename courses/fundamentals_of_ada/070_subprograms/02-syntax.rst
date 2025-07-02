@@ -172,7 +172,7 @@ Direct Recursion - No Declaration Needed
      else
        return Get_Vector & Next;
      end if;
-   end Input;
+   end Get_Vector;
 
 ----------------------------
 Indirect Recursion Example
