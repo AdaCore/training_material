@@ -79,7 +79,7 @@ Controlling Result (1/2)
          type Dog is new Animal with null record;
          --  OK, Feed_Treats is implicitly inherited
 
-         type Bulldog is new Animal with record
+         type Bulldog is new Dog with record
             Has_Underbite : Boolean;
          end record;
          --  ERROR no implicitly inherited function Feed_Treats
