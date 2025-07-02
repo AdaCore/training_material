@@ -282,7 +282,7 @@ What happens when you try to compile/run this code?
 
 A. Compile error
 B. Run-time error
-C. :answer:`V is assigned to -10`
+C. :answer:`V is assigned the value -10`
 D. Unknown - depends on the compiler
 
 .. container:: animate
