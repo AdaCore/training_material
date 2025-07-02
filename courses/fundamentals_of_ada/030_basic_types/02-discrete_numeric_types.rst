@@ -73,7 +73,7 @@ Operators for Signed Integer Type
 
     Exponentiation (:ada:`**`) result will be a signed integer
 
-       - So power **must** be :ada:`Integer` ``>= 0``
+       - Power **must** be :ada:`Integer` ``>= 0``
 
 .. warning:: Division by zero |rightarrow| :ada:`Constraint_Error`
 
