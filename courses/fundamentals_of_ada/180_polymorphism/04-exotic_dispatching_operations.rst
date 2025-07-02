@@ -47,7 +47,7 @@ Special Case for Equality
    type Dog is new Animal with null record;
    overriding function "=" (Left : Dog; Right : Dog) return Boolean;
    Animal_1, Animal_2 : Animal;
-   Dog_1, Dog_2 : Child;
+   Dog_1, Dog_2 : Dog;
    Any_Animal_1 : Animal'Class := Animal_1;
    Any_Animal_2 : Animal'Class := Animal_2;
    Dog_Animal   : Animal'Class := Dog_1;
