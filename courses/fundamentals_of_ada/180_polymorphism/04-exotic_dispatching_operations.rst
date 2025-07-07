@@ -47,7 +47,7 @@ Special Case for Equality
    type Dog is new Animal with null record;
    overriding function "=" (Left : Dog; Right : Dog) return Boolean;
    Animal_1, Animal_2 : Animal;
-   Dog_1, Dog_2 : Child;
+   Dog_1, Dog_2 : Dog;
    Any_Animal_1 : Animal'Class := Animal_1;
    Any_Animal_2 : Animal'Class := Animal_2;
    Dog_Animal   : Animal'Class := Dog_1;
@@ -79,7 +79,7 @@ Controlling Result (1/2)
          type Dog is new Animal with null record;
          --  OK, Feed_Treats is implicitly inherited
 
-         type Bulldog is new Animal with record
+         type Bulldog is new Dog with record
             Has_Underbite : Boolean;
          end record;
          --  ERROR no implicitly inherited function Feed_Treats
