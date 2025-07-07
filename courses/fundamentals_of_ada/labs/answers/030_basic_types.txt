@@ -7,14 +7,14 @@ procedure Main is
 
    type Degrees_T is mod 360;
 
-   type Cymk_T is (Cyan, Magenta, Yellow, Black);
+   type Cmyk_T is (Cyan, Magenta, Yellow, Black);
 
    Number_Of_Tests  : Number_Of_Tests_T;
    Test_Score_Total : Test_Score_Total_T;
 
    Angle : Degrees_T;
 
-   Color : Cymk_T;
+   Color : Cmyk_T;
 --Declarations
 
 --Implementation
@@ -34,7 +34,7 @@ begin
    -- operations / attributes
    Test_Score_Total := Test_Score_Total / Test_Score_Total_T (Number_Of_Tests);
    Angle            := Angle + 359;
-   Color            := Cymk_T'Pred (Cymk_T'Last);
+   Color            := Cmyk_T'Pred (Cmyk_T'Last);
 
    Put_Line (Test_Score_Total'Image);
    Put_Line (Angle'Image);

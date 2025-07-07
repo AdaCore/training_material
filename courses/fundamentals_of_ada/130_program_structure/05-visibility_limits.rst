@@ -178,7 +178,7 @@ Quiz
 
   .. container:: column
 
-   Which return statement would be legal in ``P.Child.X?``
+   Which return statement(s) would be legal in ``P.Child.X?``
 
       A.  :answermono:`return Object_A;`
       B.  :answermono:`return Object_B;`

@@ -64,6 +64,7 @@ Passing Structures As Parameters
 * Ada View
 
    .. code:: Ada
+   
      type Enum is (E1, E2, E3) with Convention => C;
      type Rec is record
        A, B : int;

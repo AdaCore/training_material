@@ -12,7 +12,7 @@ What Is an Array?
 
 .. container:: latex_environment small
 
-   :ada:`type <typename> is array (Index_Type) of Component_Type;`
+   :ada:`type <identifier> is array (Index_Type) of Component_Type;`
 
 where
 
@@ -27,7 +27,7 @@ where
 
 .. code:: Ada
 
-   type Array_T is array (0 .. 3) of Interfaces.Integer_32;
+   type Array_T is array (0 .. 3) of Interfaces.Integer_16;
 
 .. image:: array_diagram.svg
 
