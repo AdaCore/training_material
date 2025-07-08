@@ -254,3 +254,22 @@ Assertion Policy
           end if;
         end if;
 
+------
+Quiz
+------
+
+Which of the following statements is (are) correct?
+
+    A. :answer:`Defensive coding is a good practice`
+    B. Contracts can replace all defensive code
+    C. Contracts are executable constructs
+    D. Having exhaustive contracts will prevent run-time errors
+
+.. container:: animate
+
+    Explanations
+
+    A. Principles are sane, contracts extend those
+    B. Contracts prevent interface issues, not processing problems
+    C. For example, generic contracts are resolved at compile-time
+    D. A failing contract will **cause** a run-time error; only extensive (dynamic/static) analysis of contracted code may provide confidence in the absence of runtime errors (AoRTE)
