@@ -242,10 +242,10 @@ Quiz
 
    Which declaration(s) is (are) legal?
 
-   A. ``AAA : Array_T (0..99);``
-   B. :answermono:`BBB : Array_T (1..32);`
-   C. :answermono:`CCC : Array_T (17..16);`
-   D. ``DDD : Array_T;``
+   A. ``AAA : Bit_Array_T (0..99);``
+   B. :answermono:`BBB : Bit_Array_T (1..32);`
+   C. :answermono:`CCC : Bit_Array_T (17..16);`
+   D. ``DDD : Bit_Array_T;``
 
  .. container:: column
 
@@ -253,7 +253,7 @@ Quiz
 
    Explanations
 
-   A. :ada:`Array_T` index is :ada:`Positive` which starts at 1
+   A. :ada:`Bit_Array_T` index is :ada:`Positive` which starts at 1
    B. OK, indexes are in range
    C. OK, indicates a zero-length array
    D. Object must be constrained

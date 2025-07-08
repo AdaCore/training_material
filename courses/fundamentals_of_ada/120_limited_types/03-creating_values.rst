@@ -70,7 +70,7 @@ Writing Limited Constructor Functions
    function F return Spin_Lock is
    begin
      ...
-     -- This is not legal staring with Ada2005
+     -- This is not legal starting with Ada2005
      return Global_X; -- this is a copy
    end F;
 
