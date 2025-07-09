@@ -105,19 +105,19 @@ Generic Subprogram Parameters - Default Values (1/2)
 
    .. code:: Ada
 
-      -- Explicit specifications for "plus" and "multiply"
+      -- Explicit specifications for "+" (plus) and "*" (multiply)
       function Instance1 is new Calculate ("+", Times);
-      -- Implicit specification for "plus", explicit for "multiply"
+      -- Implicit specification for "+" (plus), explicit for "*" (multiply)
       function Instance2 is new Calculate ("*" => Times);
 
 * Illegal instance
 
    .. code:: Ada
 
-      -- There is no implicit function for "times"
+      -- There is no implicit function for "Times"
       function Instance3 is new Calculate;
 
-* Adding an implicit function for times would make :ada:`Instance3` legal
+* Adding an implicit function for :ada:`Times` would make :ada:`Instance3` legal
 
    .. code:: Ada
 
