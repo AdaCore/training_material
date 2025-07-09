@@ -27,7 +27,7 @@ What is a Variant Record?
 
 .. note::
 
-   :ada:`case` block must be last part of the definition - therefore only one per record
+   :ada:`case` block must be **last** part of the definition - therefore only **one** per record
 
 * Variant records are considered the same type
 

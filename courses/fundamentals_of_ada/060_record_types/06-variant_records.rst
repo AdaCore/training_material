@@ -45,7 +45,7 @@ Immutable Variant Record
 
 .. note::
 
-   :ada:`case` block must be last part of the definition - therefore only one per record
+   :ada:`case` block must be **last** part of the definition - therefore only **one** per record
 
 * In a variant record, a discriminant can be used to specify the :dfn:`variant part` (line 8)
 
