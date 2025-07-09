@@ -18,7 +18,7 @@ The Name
 
    - Updated about every 10 years
 
-* Writing **ADA** is like writing **CPLUSPLUS**
+* It's **Ada**, not **ADA** (not an acronym)
 
 --------------------------
 Ada Evolution Highlights
