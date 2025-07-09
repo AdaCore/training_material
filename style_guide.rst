@@ -30,6 +30,10 @@ of the course.
 Modules
 =======
 
+A module is a self-contained unit within the course, focusing on a
+specific concept or set of related concepts. Each module is a complete
+topic in itself and typically contains several chapters.
+
 For each module in the course, the course folder should contain:
 
   * Module RST file that lists the chapters in the module
@@ -48,6 +52,14 @@ of the version. Examples:
 ========
 Chapters
 ========
+
+A chapter is a focused section within a module that delves into a
+specific sub-topic or a particular aspect of the module's broader
+concept. Chapters are designed to present information in a logical,
+step-by-step manner, often building upon preceding chapters within the
+same module to contribute to a complete understanding of the overall
+module topic. Think of chapters as individual lessons or specific
+themes that collectively form a comprehensive module.
 
 Each chapter will be in its own RST file in the module folder.
 
