@@ -189,6 +189,42 @@ Preconditions and Postconditions Example
              Post => (Result * Result) <= Input and
                      (Result + 1) * (Result + 1) > Input;
 
+--------------------------------------------
+Preventing Exceptions with ... Exceptions?
+--------------------------------------------
+
+.. code:: Ada
+
+   function Area (Length : Positive;
+                  Height : Positive)
+                  return Positive is
+      (Length * Height);
+
+* We want to prevent an exception when we calculate some area
+
+   * So we should make sure the multiplication doesn't overflow, right?
+
+   .. code:: Ada
+
+      function Area (Length : Positive;
+                     Height : Positive)
+                     return Positive is
+         (Length * Height)
+      with Pre => Length * Height <= Positive'Last;
+
+* But what happens when we verify the precondition?
+
+   * We do the math anyways, causing an exception!
+
+* Better solution
+
+   .. code:: Ada
+
+      function Area (Length : Positive;
+                     Height : Positive)
+                     return Positive is
+      with Pre => Positive'Last / Height <= Length;
+
 ------
 Quiz
 ------
@@ -219,32 +255,4 @@ when :ada:`Print_Something` is run?
 
    The call to :ada:`To_Integer` will fail its precondition, which is considered
    an :ada:`Assertion_Error` exception.
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-   function Area (Length : Positive; Height : Positive) return Positive is
-      (Length * Height)
-   with Pre => ?
-
-Which pre-condition is necessary for :ada:`Area` to calculate the correct result for
-all values :ada:`L` and :ada:`H`
-
-   A. ``Length > 0 and Height > 0``
-   B. ``Length < Positive'Last and Height < Positive'Last``
-   C. ``Length * Height in Positive``
-   D. :answer:`None of the above`
-
-.. container:: animate
-
-   Explanations
-
-   A. Parameters are :ada:`Positive`, so this is unnecessary
-   B. :ada:`Length = Positive'Last-1 and Height = Positive'Last-1` will still cause an overflow
-   C. Classic trap: the check itself may cause an overflow!
-
-   Preventing an overflow requires using the expression :ada:`Integer'Last / Length <= Height`
 
