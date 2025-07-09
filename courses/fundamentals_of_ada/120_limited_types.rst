@@ -35,7 +35,7 @@ Limited Types
 .. container:: PRELUDE PROVIDES
 
 ..
-   Declarations
+   Limited Type Declarations
    Creating Values
    Extended Return Statements
    Combining Limited And Private Views
@@ -43,7 +43,7 @@ Limited Types
 .. container:: PRELUDE END
 
 .. include:: 120_limited_types/01-introduction.rst
-.. include:: 120_limited_types/02-declarations.rst
+.. include:: 120_limited_types/02-limited_type_declarations.rst
 .. include:: 120_limited_types/03-creating_values.rst
 .. include:: 120_limited_types/04-extended_return_statements.rst
 .. include:: 120_limited_types/05-combining_limited_and_private_views.rst
