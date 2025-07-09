@@ -50,7 +50,7 @@ What is a Frame Condition?
 
 * :toolname:`GNATprove` can sometimes determine the *frame condition* 
 
-  * More likely for arrays where indices are easy to determine
+  * More likely for arrays where indexes are easy to determine
   * Less likely for records where entire object is modified through assignment or procedure call
 
 * Many of the proof "assistants" can help determine frame condition (:ada:`pragma Loop_Invariant`, :ada:`pragma Assert`, etc)

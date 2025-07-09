@@ -254,6 +254,6 @@ Quiz
    Explanations
 
    A. :ada:`Bit_Array_T` index is :ada:`Positive` which starts at 1
-   B. OK, indices are in range
+   B. OK, indexes are in range
    C. OK, indicates a zero-length array
    D. Object must be constrained
