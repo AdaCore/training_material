@@ -27,7 +27,7 @@ Aggregates
       array_aggregate ::= (
           {component_expr ,}                         -- Positional
         | {discrete_choice_list => component_expr,}) -- Named
-        -- Default "others" indices
+        -- Default "others" indexes
         [others => expression]
 
 -----------------------------
