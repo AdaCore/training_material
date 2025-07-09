@@ -1,6 +1,6 @@
-==============
-Declarations
-==============
+===========================
+Limited Type Declarations
+===========================
 
 ---------------------------
 Limited Type Declarations
