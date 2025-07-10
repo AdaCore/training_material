@@ -35,7 +35,7 @@ Packages
 .. container:: PRELUDE PROVIDES
 
 ..
-   Declarations
+   Package Declarations
    Referencing Other Packages
    Bodies
    Executable Parts
@@ -43,7 +43,7 @@ Packages
 .. container:: PRELUDE END
 
 .. include:: 100_packages/01-introduction.rst
-.. include:: 100_packages/02-declarations.rst
+.. include:: 100_packages/02-package_declarations.rst
 .. include:: 100_packages/03-referencing_other_packages.rst
 .. include:: 100_packages/04-bodies.rst
 .. include:: 100_packages/05-executable_parts.rst

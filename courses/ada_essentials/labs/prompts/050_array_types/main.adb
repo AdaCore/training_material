@@ -8,7 +8,7 @@ procedure Main is
 
    --  type Name_T is ? (array of characters)
    --  Weekly_Staff : ? (array if an array of Name_T 
-   --                    day and counter should be array indices)
+   --                    day and counter should be array indexes)
 
 begin
    Put_Line ("Array Types");

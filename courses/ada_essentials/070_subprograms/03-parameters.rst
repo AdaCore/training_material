@@ -185,7 +185,7 @@ Unconstrained Parameters Surprise
   V2 : Vector (15 .. 24); -- length = 10
   R : Vector (1 .. 10); -- length = 10
   ...
-  -- What are the indices returned by Subtract?
+  -- What are the indexes returned by Subtract?
   R := Subtract (V2, V1);
 
 ----------------------

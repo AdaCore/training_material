@@ -37,6 +37,9 @@ Each folder contains a collection of RST files that make up modules within
 the course. The file names for the modules should use a numbering scheme so
 users can quickly understand the typical order of presentation. 
 
+**Note: RST files under this folder should follow the guidelines set out
+in the** *style_guide.rst* **file at the top-level of the repository**
+
 ### Module Labs
 
 If the course is designed with laboratory exercises / examples, these RST
