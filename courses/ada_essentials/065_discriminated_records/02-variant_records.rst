@@ -25,9 +25,9 @@ What is a Variant Record?
       An_Employee     : Employee_T (Employee);
       Some_Contractor : Employee_T (Contractor);
 
-* Note that the :ada:`case` block must be the last part of the record definition
+.. note::
 
-   * Therefore only one per record
+   :ada:`case` block must be **last** part of the definition - therefore only **one** per record
 
 * Variant records are considered the same type
 
