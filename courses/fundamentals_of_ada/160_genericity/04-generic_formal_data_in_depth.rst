@@ -82,47 +82,44 @@ Generic Subprogram Parameters - Default Values (1/2)
 ------------------------------------------------------
 
 .. code:: Ada
-
-   type Feet_T is digits 6;
-   type Area_T is digits 6;
-   function Times (L, R : Feet_T) return Area_T;
+   :number-lines: 3
 
    generic
-      with function "+" (L, R : Feet_T) return Feet_T is <>;
-      with function "*" (L, R : Feet_T) return Area_T is <>;
-   function Calculate (L1, L2 : Feet_T;
-                       W1, W2 : Feet_T)
-                       return Area_T;
+      type Type_T is private;
+      with function "*" (L, R : Type_T) return Type_T is <>;
+   function Calculate (L, W : Type_T) return Type_T;
+
 
 * :ada:`is <>`
 
-   - If no subprogram specified for instantiation, compiler will use a subprogram with:
+   - If no subprogram specified for instance, compiler uses subprogram with **same**:
 
-      - Same name
-      - Same parameter profile (types only, not parameter name)
+      - Name
+      - Parameter profile (types only, not parameter name)
 
-* Legal instances:
-
-   .. code:: Ada
-
-      -- Explicit specifications for "+" (plus) and "*" (multiply)
-      function Instance1 is new Calculate ("+", Times);
-      -- Implicit specification for "+" (plus), explicit for "*" (multiply)
-      function Instance2 is new Calculate ("*" => Times);
-
-* Illegal instance
+* Instantiations
 
    .. code:: Ada
+      :number-lines: 4
 
-      -- There is no implicit function for "Times"
-      function Instance3 is new Calculate;
+      type Record_T is record
+         Field : Integer;
+      end record;
+      function Multiply (L, R : Record_T) return Record_T; 
+   
+      function Allow_Default is new Calculate (Integer);
+      function Specify_Operator is new Calculate (Record_T, Multiply);
+      function Need_Operator is new Calculate (Record_T);
 
-* Adding an implicit function for :ada:`Times` would make :ada:`Instance3` legal
+   * :ada:`Allow_Default` uses the implicit definition for :ada:`*`
+   * :ada:`Specify_Operator` passes in the appropriate definition via :ada:`Multiply`
+   * :ada:`Need_Operator` generates a compile error
 
-   .. code:: Ada
+      :color-red:`main.adb:11:4: error: instantiation error at gen.ads:5`
 
-      function "*" (L, R : Feet_T) return Area_T;
-      function Instance3 is new Calculate;
+      :color-red:`gen.ads:5:1: error: instantiation error at gen.ads:5`
+
+      :color-red:`main.adb:11:4: error: no visible subprogram matches the specification for "*"`
 
 ..
   language_version 2005
