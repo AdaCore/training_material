@@ -6,7 +6,7 @@ Simple Derivation
 Simple Type Derivation
 ------------------------
 
-* Any type (except :ada:`tagged`) can be derived
+* Most types can be derived
 
   .. code:: Ada
 
