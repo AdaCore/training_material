@@ -28,7 +28,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "out"
 
-DEFAULT_COURSE_DOWNLOAD = "Fundamentals Of Ada - Standard Course"
+DEFAULT_COURSE_DOWNLOAD = "Ada Essentials - Standard Course"
 
 
 def get_current_git_branch():

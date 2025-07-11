@@ -25,7 +25,7 @@ Scroll to the bottom to locate the **Artifacts**
 
 ![Bottom scroll](images/github/artifacts_2.png)
 
-Select the **Artifact** associated with the course you want ("standard" courses are "Fundamentals Of Ada - Standard Course" and "SPARK - Course," for example).
+Select the **Artifact** associated with the course you want ("standard" courses are "Ada Essentials - Standard Course" and "SPARK - Course," for example).
 
 ![Artifact examples](images/github/artifacts_3.png)
 
