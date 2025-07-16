@@ -119,8 +119,24 @@ Case Statement Rules
 
     - Must be known at **compile** time
 
+---------------------------
+"When" Block Alternatives
+---------------------------
+
+* Single value: :ada:`when Tuesday =>`
+
+   * Block is entered when :ada:`case` value is :ada:`Tuesday`
+
+* Set of values: :ada:`when Saturday | Sunday =>`
+
+   * Block is entered when :ada:`case` value is either :ada:`Saturday` or :ada:`Sunday`
+
+* Range of values: :ada:`when Tuesday .. Thursday =>`
+
+   * Block is entered when :ada:`case` value is between :ada:`Tuesday` and :ada:`Thursday` inclusive
+
 ------------------
- `Others` Choice
+"Others" Choice
 ------------------
 
 * Choice by default
@@ -134,7 +150,7 @@ Case Statement Rules
    case Today is   -- work schedule
      when Monday =>
        Go_To (Work, Arrive=>Late, Leave=>Early);
-     when Tuesday | Wednesday | Thursday => -- Several choices
+     when Tuesday | Wednesday | Thursday =>
        Go_To (Work, Arrive=>Early, Leave=>Late);
      when Friday =>
        Go_To (Work, Arrive=>Early, Leave=>Early);
@@ -143,22 +159,7 @@ Case Statement Rules
    end case;
 
 ------------------------------------
-Case Statements Range Alternatives
-------------------------------------
-
-.. code:: Ada
-
-   case Altitude_Ft is
-     when 0 .. 9 =>
-       Set_Flight_Indicator (Ground);
-     when 10 .. 40_000 =>
-       Set_Flight_Indicator (In_The_Air);
-     when others => -- Large altitude
-       Set_Flight_Indicator (Too_High);
-   end case;
-
-------------------------------------
-Dangers of *Others* Case Alternative
+Dangers of "Others" Case Alternative
 ------------------------------------
 
 * Maintenance issue: new value requiring a new alternative?
