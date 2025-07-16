@@ -21,7 +21,7 @@ What is the "Freeze Point"?
 
 .. code:: Ada
 
-   type Parent is Integer;
+   type Parent is new Integer;
    procedure Prim (V : Parent);
 
    type Child is new Parent;
