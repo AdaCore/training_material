@@ -23,7 +23,7 @@ Assignment Statements
 
      declare
         type Miles_T is range 0 .. Max_Miles;
-        type Km_T is range 0 .. Max_Kilometers
+        type Km_T is range 0 .. Max_Kilometers;
 
         M : Miles_T := 2; -- universal integer legal for any integer
         K : Km_T := 2; -- universal integer legal for any integer
@@ -145,8 +145,8 @@ Quiz
 
    Which block(s) is (are) legal?
 
-   A. | :answermono:`X := A;`
-      | :answermono:`Y := A;`
+   A. | ``X := A;``
+      | ``A := Y;``
    B. | :answermono:`X := B;`
       | :answermono:`Y := C;`
    C. | ``X := One_T(X + C);``
@@ -157,7 +157,7 @@ Quiz
 
      Explanations
 
-     A. Legal - :ada:`A` is an untyped constant
+     A. Illegal - :ada:`A` is a constant (cannot be assigned)
      B. Legal - :ada:`B, C` are correctly typed
      C. Illegal - No such "+" operator: must convert operand individually
      D. Legal - Correct conversion and types
