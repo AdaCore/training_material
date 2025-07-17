@@ -239,6 +239,8 @@ def load_modules(course, short):
     If "short" is True, the list of chapters will be empty
     """
 
+    course_folder = os.path.dirname(os.path.abspath(course))
+
     all_modules = []
     with open(course) as f:
         filenames = f.read().splitlines()
@@ -251,7 +253,11 @@ def load_modules(course, short):
                 separator = ("--" + f[1:].strip(), [])
                 all_modules.append(separator)
             else:
-                all_modules.append(load_one_module(os.path.abspath(f), short))
+                all_modules.append(
+                    load_one_module(
+                        os.path.abspath(os.path.join(course_folder, f)), short
+                    )
+                )
 
     return all_modules
 
