@@ -40,6 +40,7 @@ The following switch is only useful when selecting "--html"
 import argparse
 import copy
 import os
+import platform
 import subprocess
 
 TITLE = "+++"
@@ -76,8 +77,9 @@ def run_pandoc(format, rst_file):
         + reference
         + rst_file
     )
-
-    process = subprocess.Popen(command, shell=False, stdout=subprocess.PIPE)
+    cmd = command.split(" ")
+    process = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE)
+    print("Success")
 
     while True:
         output = process.stdout.readline()
@@ -150,6 +152,19 @@ def read_content(in_filename, lines):
     file.close()
 
 
+def show_output(output_filename):
+    """
+    On Windows, we ar going to display the filename and then open the file.
+    On Linux, there is no easy automatic way to open the file, so we will
+    just show the filename.
+    """
+
+    print("Created file: " + output_filename)
+    if platform.system() != "Linux":
+        print("Opening...")
+        os.system("start " + output_filename)
+
+
 def generate_docx(modules, rst_filename, title):
     """
     Generate an RST file and a DOCX file from the list of modules.
@@ -172,7 +187,8 @@ def generate_docx(modules, rst_filename, title):
 
     fp.close()
     output_filename = run_pandoc("docx", rst_filename)
-    os.system("start " + output_filename)
+
+    show_output(output_filename)
 
 
 def generate_html(modules, rst_filename, left):
@@ -203,8 +219,8 @@ def generate_html(modules, rst_filename, left):
             front = "       | "
 
     fp.close()
-    html_filename = run_pandoc("html", rst_filename)
-    os.system("type " + rst_filename)
+    output_filename = run_pandoc("html", rst_filename)
+    show_output(output_filename)
 
 
 def load_one_module(module_filename, short):
