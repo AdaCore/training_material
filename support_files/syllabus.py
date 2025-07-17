@@ -11,16 +11,19 @@ Word document. It uses a reference document that would use the
 same full path to this script, replacing ".py" with ".dotm".
 
 Switches:
-   --course => filename containing list of RST files in the
-               current directory
-   --rst    => name of the RST file that will contain the
-               generated RST content
-   --docx   => RST file should be formatted for conversion
-               to a Word document (used for generating
-               a course syllabus)
-   --html   => RST file should be formatted for conversion
-               to a HTML text (used for generating
-               a course schedule)
+   --course => filename containing list of RST files in the current
+               directory
+   --rst    => name of the RST file that will contain the generated
+               RST content
+   --docx   => RST file will be formatted for conversion to a Word
+               document (used for generating a course syllabus).
+               A ".docx" file will also be created - you will
+               probably need to clean it up before sending to the
+               customer.
+   --html   => RST file will be formatted to describe the course
+               schedule. This file should be added to the
+               "public-training-website" repository in the
+               appropriate location.
 
 The following switches are only useful when selecting "--docx"
    --short  => If set, the output file will only contain
@@ -283,21 +286,36 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "--course", help="file containing list of RST files in course", required=True
+        "--course",
+        required=True,
+        help="filename containing list of RST files in the current " + "directory",
     )
 
-    parser.add_argument("--rst", help="RST file output", required=True)
+    parser.add_argument(
+        "--rst",
+        required=True,
+        help="name of the RST file that will contain " + "the generated RST content",
+    )
 
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
         "--html",
         action="store_true",
-        help="Generate a table in an RST file for use in displaying a schedule",
+        help="RST file will be formatted to describe the course "
+        + "schedule. This file should be added to the "
+        + "'public-training-website' repository in the "
+        + "appropriate location.",
     )
     group.add_argument(
         "--docx",
         action="store_true",
-        help="Generate an RST file (and convert to Word) for use in generating a syllabus",
+        help=(
+            "RST file will be formatted for conversion to a Word "
+            + "document (used for generating a course syllabus). "
+            + "A '.docx' file will also be created - you will "
+            + "probably need to clean it up before sending to the "
+            + "customer."
+        ),
     )
 
     parser.add_argument(
