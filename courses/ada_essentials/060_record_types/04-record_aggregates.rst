@@ -268,7 +268,7 @@ D. :answermono:`X := (1, '2', 4, (others => 5))`
 
 .. container:: animate
 
-   A. :ada:`Four` **must** use named association
+   A. :ada:`Four` **must** use named association for its components : Four => (Component => 6)
    B. :ada:`others` valid: :ada:`One` and :ada:`Three` are :ada:`Integer`
    C. Valid but :ada:`Y` is not initialized
    D. Positional for all components
