@@ -6,7 +6,7 @@ Introduction
 Introduction
 --------------
 
-* :dfn:`Overloading` is the use of an already existing name to define a **new** entity
+* :dfn:`Overloading` is the use of an already existing identifier to define a **new** entity
 * Historically, only done as part of the language **implementation**
 
    - Eg. on operators
@@ -23,7 +23,7 @@ Visibility and Scope
 ----------------------
 
 * Overloading is **not** re-declaration
-* Both entities **share** the name
+* Both entities **share** the identifier
 
    - No hiding
    - Compiler performs **name resolution**
@@ -38,7 +38,7 @@ Overloadable Entities in Ada
 
 * Identifiers for subprograms
 
-   - Both procedure and function names
+   - Both procedure and function identifiers
 
 * Identifiers for enumeration values (enumerals)
 * Language-defined operators for functions
@@ -83,7 +83,7 @@ Benefits and Risk of Overloading
    - Linker will not simply take the first match and apply it globally
 
 * Safe: compiler will reject ambiguous calls
-* Sensible names are the programmer's job
+* Sensible identifiers are the programmer's job
 
    .. code:: Ada
 

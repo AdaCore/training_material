@@ -6,15 +6,15 @@ Scope and Visibility
 Scope and Visibility
 ----------------------
 
-* :dfn:`Scope` of a name
+* :dfn:`Scope` of an identifier
 
-   - Where the name is **potentially** available
+   - Where the identifier is **potentially** available
    - Determines **lifetime**
    - Scopes can be **nested**
 
-* :dfn:`Visibility` of a name
+* :dfn:`Visibility` of an identifier
 
-   - Where the name is **actually** available
+   - Where the identifier is **actually** available
    - Defined by **visibility rules**
    - **Hidden** |rightarrow| *in scope* but not **directly** visible
 
@@ -67,13 +67,13 @@ Scope and "Lifetime"
 .. image:: block_scope_example.jpeg
     :height: 50%
 
--------------
-Name Hiding
--------------
+-------------------
+Identifier Hiding
+-------------------
 
 * Caused by **homographs**
 
-    - **Identical** name
+    - **Identical** identifier
     - **Different** entity
 
    .. code:: Ada

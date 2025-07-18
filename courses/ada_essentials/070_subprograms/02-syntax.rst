@@ -27,7 +27,7 @@ Procedure Specification Syntax (Simplified)
 .. code:: Ada
 
    procedure_specification ::=
-      procedure program_unit_name
+      procedure program_unit_identifier
          { (parameter_specification
              ; parameter_specification)};
 
@@ -59,7 +59,7 @@ Function Specification Syntax (Simplified)
                ; parameter_specification) }
            return result_type;
 
-      designator ::= program_unit_name | operator_symbol
+      designator ::= program_unit_identifier | operator_symbol
 
 -------------
 Body Syntax
@@ -102,7 +102,7 @@ Completions
 * A declaration and its body must **fully** conform
 
    - Mostly **semantic** check
-   - But parameters **must** have same name
+   - But parameters **must** have same identifier
 
 .. code:: Ada
 
@@ -207,6 +207,6 @@ Which profile is semantically different from the others?
 
 .. container:: animate
 
-   Parameter names are important in Ada.  The other selections have
-   the names in the same order with the same mode and type.
+   Parameter identifiers are important in Ada.  The other selections have
+   the identifiers in the same order with the same mode and type.
 

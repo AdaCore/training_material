@@ -11,7 +11,7 @@ Syntax and Examples
    .. code:: Ada
 
       type T is record
-         Component_Name : Type [:= Default_Value];
+         Component_Identifier : Type [:= Default_Value];
          ...
       end record;
 

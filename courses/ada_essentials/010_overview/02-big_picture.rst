@@ -38,7 +38,7 @@ Core Language Content (1/3)
 
   * Syntax differs between *values* and *actions*
   * :ada:`function` for *value* and :ada:`procedure` for *action*
-  * Overloading of names allowed
+  * Overloading of identifiers allowed
 
 * Dynamic memory management
 

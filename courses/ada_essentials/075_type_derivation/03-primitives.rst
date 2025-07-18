@@ -88,7 +88,7 @@ Creating Primitives for Children
 
 * Just because we can inherit a primitive from our parent doesn't mean we want to
 
-* We can create a new primitive (with the same name as the parent) for the child
+* We can create a new primitive (with the same identifier as the parent) for the child
 
    * Very similar to overloaded subprograms
    * But added benefit of visibility to grandchildren

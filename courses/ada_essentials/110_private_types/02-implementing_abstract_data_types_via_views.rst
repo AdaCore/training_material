@@ -25,11 +25,11 @@ Package Visible and Private Parts for Views
 
 .. code:: Ada
 
-   package name is
+   package Some_Package is
    ... exported declarations of types, variables, subprograms ...
    private
    ... hidden declarations of types, variables, subprograms ...
-   end name;
+   end Some_Package;
 
 -----------------------------------
 Declaring Private Types for Views

@@ -6,7 +6,7 @@ Enumerals and Operators
 Overloading Enumerals
 -----------------------
 
-* Each is treated as if a function name (identifier)
+* Each is treated as if a function identifier
 * Thus same rules as for function identifier overloading
 
 .. code:: Ada

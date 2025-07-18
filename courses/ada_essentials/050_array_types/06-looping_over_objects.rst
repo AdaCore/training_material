@@ -56,12 +56,12 @@ Array/Container For-Loops
 
    .. code:: Ada
 
-      for name of [reverse] array_or_container_object loop
+      for identifier of [reverse] array_or_container_object loop
       ...
       end loop;
 
 * Starts with "first" component unless you reverse it
-* Loop parameter name is a constant if iterating over a constant, a variable otherwise
+* Loop parameter identifier is a constant if iterating over a constant, a variable otherwise
 
 ..
   language_version 2012

@@ -34,7 +34,7 @@ Basic Syntax and Nomenclature
 
       .. code:: Ada
 
-            package name is
+            package <identifier> is
                {basic_declarative_item}
             end [name];
 
@@ -42,9 +42,9 @@ Basic Syntax and Nomenclature
 
       .. code:: Ada
 
-            package body name is
+            package body <identifier> is
                declarative_part
-            end [name];
+            end [identifier];
 
 -----------------------------------------
 Separating Interface and Implementation

@@ -149,7 +149,7 @@ Shift/Rotate for User-Defined Types
 
 * Approach 3: use GNAT's intrinsic
 
-   - Conditions on function name and type representation
+   - Conditions on function identifier and type representation
    - See GNAT UG 8.11
 
    .. code:: Ada

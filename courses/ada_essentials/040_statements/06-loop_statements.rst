@@ -15,9 +15,9 @@ Basic Loops and Syntax
 
    .. code:: Ada
 
-     [<name> :] [iteration_scheme] loop
+     [<identifier> :] [iteration_scheme] loop
            <statements>
-      end loop [<name>];
+      end loop [<identifier>];
 
    .. code::
 
@@ -40,13 +40,13 @@ Loop Exit Statements
 
 * Leaves innermost loop
 
-   - Unless loop name is specified
+   - Unless loop identifier is specified
 
 * Syntax
 
    .. code:: Ada
 
-      exit [<loop name>] [when <boolean expression>];
+      exit [<loop identifier>] [when <boolean expression>];
 
 * :ada:`exit when` exits with condition
 
@@ -142,7 +142,7 @@ For in Statements
 
    .. code:: Ada
 
-      for name in [reverse] discrete_subtype_definition loop
+      for identifier in [reverse] discrete_subtype_definition loop
       ...
       end loop;
 
@@ -156,7 +156,7 @@ For in Statements
 
 .. container:: speakernote
 
-   Name - loop parameter object
+   identifier - loop parameter object
    Discrete subtype definition - loop parameter type and range of values
 
 -----------------------------------
@@ -189,7 +189,7 @@ Low-Level For-loop Parameter Type
 * The type can be implicit
 
    - As long as it is clear for the compiler
-   - Warning: same name can belong to several enums
+   - Warning: same identifier can belong to several enums
 
 .. container:: latex_environment scriptsize
 
@@ -271,12 +271,12 @@ For-Loop Parameter Visibility
         end loop;
       end;
 
---------------------------
-Referencing Hidden Names
---------------------------
+--------------------------------
+Referencing Hidden Identifiers
+--------------------------------
 
 * Must copy for-loop parameter to some other object if needed after the loop exits
-* Use dot notation with outer scope name when hiding occurs
+* Use dot notation with outer scope identifier when hiding occurs
 
 .. code:: Ada
 
@@ -302,9 +302,9 @@ Iterations Exit Statements
 
   .. code:: Ada
 
-        exit [<loop_name>] [when <condition>]
+        exit [<loop_identifier>] [when <condition>]
 
-* No name: Loop exited **entirely**
+* No identifier: Loop exited **entirely**
 
     - Not only current iteration
 
@@ -314,7 +314,7 @@ Iterations Exit Statements
         exit when K > F(K);
      end loop;
 
-* With name: Specified loop exited
+* With identifier: Specified loop exited
 
   .. code:: ada
 

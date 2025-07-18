@@ -51,7 +51,7 @@ Immutable Variant Record
 
    + Similar to case statements (all values must be covered)
    + Components listed will only be visible if choice matches discriminant
-   + Component names need to be unique (even across discriminants)
+   + Component identifiers need to be unique (even across discriminants)
 
 * Discriminant is treated as any other component
 

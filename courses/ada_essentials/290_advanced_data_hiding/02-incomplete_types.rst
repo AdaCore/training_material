@@ -8,7 +8,7 @@ Incomplete Types
 
 * An :dfn:`incomplete type` is a premature view on a type
 
-   - Does specify the type name
+   - Does specify the type identifier
    - Can specify the type discriminants
    - Can specify if the type is tagged
 

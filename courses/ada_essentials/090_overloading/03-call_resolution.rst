@@ -38,7 +38,7 @@ Profile Components Used
 
 * Insignificant components might not appear at call
 
-   - Formal parameter **names** are optional
+   - Formal parameter **identifiers** are optional
    - Formal parameter **modes** never appear
    - Formal parameter **subtypes** never appear
    - **Default** expressions never appear
@@ -56,7 +56,7 @@ Manually Disambiguating Calls
 * Qualification can be used
 * Named parameter association can be used
 
-   - Unless name is ambiguous
+   - Unless identifier is ambiguous
 
 .. code:: Ada
 
@@ -128,7 +128,7 @@ Which statement(s) is (are) legal?
    Explanations
 
    A. Qualifying one parameter resolves ambiguity
-   B. No overloaded names
+   B. No overloaded identifiers
    C. Use of :ada:`Top` resolves ambiguity
-   D. When overloading subprogram names, best to not just switch the order of parameters
+   D. When overloading subprogram identifiers, best to not just switch the order of parameters
 

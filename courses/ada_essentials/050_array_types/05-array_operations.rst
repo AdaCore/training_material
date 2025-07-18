@@ -111,7 +111,7 @@ Example: Slicing with Explicit Indexes
 Idiom: Named Subtypes for Indexes
 -----------------------------------
 
-* Subtype name indicates the slice index range
+* Subtype identifier indicates the slice index range
 
    - Names for constraints, in this case index constraints
 

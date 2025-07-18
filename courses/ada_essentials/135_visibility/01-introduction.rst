@@ -6,7 +6,7 @@ Introduction
 Improving Readability
 -----------------------
 
-* Descriptive names plus hierarchical packages makes for very long statements
+* Descriptive identifiers plus hierarchical packages makes for very long statements
 
    .. code::
 

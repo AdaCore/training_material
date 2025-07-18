@@ -194,6 +194,6 @@ Which code block(s) is (are) legal?
 
    A. Cannot extend a non-tagged type
    B. Correct
-   C. Components must have distinct names
+   C. Components must have distinct identifiers
    D. Types derived from a tagged type must have an extension
 

@@ -13,4 +13,4 @@ Summary
 
 * Quantified expressions are general purpose but especially useful with pre/postconditions
 
-   - Consider hiding them behind expressive function names
+   - Consider hiding them behind expressive function identifiers

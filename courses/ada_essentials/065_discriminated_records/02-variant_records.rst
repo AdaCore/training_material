@@ -220,7 +220,7 @@ Quiz
 
   .. container:: latex_environment footnotesize
 
-   * If you fix the compilation error (by changing the name of one of the :ada:`End_Point` components), then
+   * If you fix the compilation error (by changing the identifier of one of the :ada:`End_Point` components), then
 
       * You would get a warning on line 20 (because :ada:`A_Line` is constrained to be a :ada:`Line`
 

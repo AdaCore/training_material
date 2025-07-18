@@ -6,7 +6,7 @@ Named Numbers
 Named Numbers
 ---------------
 
-* Associate a **name** with an **expression**
+* Associate an **identifier** with an **expression**
 
    - Used as **constant**
    - `universal_integer`, or `universal_real`
@@ -17,7 +17,7 @@ Named Numbers
 
    .. code:: Ada
 
-     <name> : constant := <static_expression>;
+     <identifier> : constant := <static_expression>;
 
 * Example
 

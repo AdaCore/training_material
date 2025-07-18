@@ -18,11 +18,11 @@ Block Statements
 
        .. code:: Ada
 
-          [block-name :]
+          [block-identifier :]
           [declare <declarative part> ]
           begin
              <statements>
-          end [block-name];
+          end [block-identifier];
 
 --------------------------
 Block Statements Example

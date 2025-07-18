@@ -23,9 +23,9 @@ Simple Linked List
 Incomplete Types
 ------------------
 
-* In Ada, an :dfn:`incomplete type` is just the word :ada:`type` followed by the type name
+* In Ada, an :dfn:`incomplete type` is just the word :ada:`type` followed by the type identifier
 
-  * Optionally, the name may be followed by :ada:`(<>)` to indicate the full type may be unconstrained
+  * Optionally, the identifier may be followed by :ada:`(<>)` to indicate the full type may be unconstrained
 
 * Ada allows access types to point to an incomplete type
 

@@ -9,11 +9,11 @@ Optional Executable Part
 .. code:: Ada
 
    package_body ::=
-       package body name is
+       package body <identifier> is
           declarative_part
        [ begin
           handled_sequence_of_statements ]
-       end [ name ];
+       end [ <identifier> ];
 
 .. container:: speakernote
 

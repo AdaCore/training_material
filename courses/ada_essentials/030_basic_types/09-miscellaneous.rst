@@ -18,7 +18,7 @@ Miscellaneous
 
 * Called as if it was a function
 
-   - Named using destination type name
+   - Named using destination type identifier
 
       .. code:: Ada
 

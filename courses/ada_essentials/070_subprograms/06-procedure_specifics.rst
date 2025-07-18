@@ -38,7 +38,7 @@ Main Subprograms
 
   * Not nested inside another subprogram
 
-* No special subprogram unit name required
+* No special subprogram unit identifier required
 * Can be many per project
 * Can always be procedures
 * Can be functions if implementation allows it

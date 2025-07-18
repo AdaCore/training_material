@@ -9,7 +9,7 @@ Properties of Discriminated Record Types
 * Rules
 
    - Case choices for variants must partition possible values for discriminant
-   - Component names must be unique across all variants
+   - Component identifiers must be unique across all variants
 
 * Style
 

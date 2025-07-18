@@ -81,7 +81,7 @@ Preconditions
 * Boolean expressions
 
    - Arbitrary complexity
-   - Specified via aspect name :ada:`Pre`
+   - Specified via aspect identifier :ada:`Pre`
 
 * Checked prior to call by client
 
@@ -102,7 +102,7 @@ Postconditions
 
 * Boolean expressions (same as preconditions)
 
-   - Specified via aspect name :ada:`Post`
+   - Specified via aspect identifier :ada:`Post`
 
 * Content as for preconditions, plus some extras
 * Checked after corresponding subprogram call

@@ -44,9 +44,9 @@ Implicit Subtype Explanation
   :ada:`range Lower .. Upper`
 * :ada:`My_Type'Base` will return the type ``<Anon>``
 
------------------------------
-Stand-Alone (Sub)Type Names
------------------------------
+-----------------------------------
+Stand-Alone (Sub)Type Identifiers
+-----------------------------------
 
 * Denote all the values of the type or subtype
 

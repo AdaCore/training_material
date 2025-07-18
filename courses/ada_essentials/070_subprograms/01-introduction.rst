@@ -59,10 +59,10 @@ A Little "Preaching" About Names
 
 * Procedures are abstractions for actions
 * Functions are abstractions for values
-* Use names that reflect those facts!
+* Use identifiers that reflect those facts!
 
-   - Imperative verbs for procedure names
-   - Nouns for function names, as for mathematical functions
+   - Imperative verbs for procedure identifiers
+   - Nouns for function identifiers, as for mathematical functions
 
       + Questions work for boolean functions
 

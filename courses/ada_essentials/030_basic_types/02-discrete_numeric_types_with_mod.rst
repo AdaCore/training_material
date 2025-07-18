@@ -163,7 +163,7 @@ Predefined Modular Types
    - Need **explicit** import
 
 * **Fixed-size** numeric types
-* Common name **format**
+* Common identifier **format**
 
    - :ada:`Unsigned_n`
    - :ada:`Integer_n`

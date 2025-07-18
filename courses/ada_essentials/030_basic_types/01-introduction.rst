@@ -52,11 +52,11 @@ Strongly-Typed Vs Weakly-Typed Languages
 A Little Terminology
 ----------------------
 
-* **Declaration** creates a **type name**
+* **Declaration** creates a **type identifier**
 
    .. code:: Ada
 
-      type <name> is <type definition>;
+      type <identifier> is <type definition>;
 
 * **Type-definition** defines its structure
 

@@ -78,9 +78,9 @@ Aspect Clause Example: Objects
 
    .. code:: Ada
 
-      <name> : <subtype_indication> [:= <initial value>]
-                     with aspect_mark [ => expression]
-                     {, aspect_mark [ => expression] };
+      <identifier> : <subtype_indication> [:= <initial value>]
+                          with aspect_mark [ => expression]
+                          {, aspect_mark [ => expression] };
 
 * Usage
 
@@ -110,7 +110,7 @@ Boolean Aspect Clauses
 
      procedure Foo with Inline => True;
 
-* Aspect name only |rightarrow| **True**
+* Aspect identifier only |rightarrow| **True**
 
   .. code:: Ada
 

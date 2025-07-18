@@ -319,7 +319,7 @@ Conditional / Quantified Expression Usage
           Component = Ultimate_Answer)
       then
 
-* Function names enhance readability
+* Function identifiers enhance readability
 
    - So put the quantified expression in a function
 
