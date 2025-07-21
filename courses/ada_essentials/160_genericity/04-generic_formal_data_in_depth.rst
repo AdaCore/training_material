@@ -129,39 +129,41 @@ Generic Subprogram Parameters - Default Values (2/2)
 ------------------------------------------------------
 
 .. code:: Ada
+   :number-lines: 2
 
-   type Miles_T is digits 6;
-   procedure Clean (Miles : in out Miles_T) is
-   begin
-      Miles := (if Miles < 0.0 then 0.0 else Miles);
-   end Clean;
+   procedure Toggle (Switch : in out Boolean);
+   --  Toggle will flip Switch from True to False or
+   --  False to True
 
+   ---------------------------
+   -- Definition of Generic --
+   ---------------------------
    generic
-     with procedure Clean (Miles : in out Miles_T) is null;
-   procedure Print (Miles : in out Miles_T);
+     procedure Toggle (Switch : in out Boolean) is null;
+   procedure Print (Switch : in out Boolean);
 
-   procedure Print (Miles : in out Miles_T) is
+   -------------------------------
+   -- Implementation of Generic --
+   -------------------------------
+   procedure Print (Switch : in out Boolean) is
    begin
-      Clean (Miles);
-      Put_Line (Miles'Image);
+      Toggle (Switch);
+      Put_Line (Switch'Image);
    end Print;
 
 * :ada:`is null` (for procedures only)
 
    - If no procedure is specified, a null procedure will be used
 
-*  Instances:
+* :ada:`procedure Instance1 is new Print;`
 
-   .. code:: Ada
+   * Line 18 will call a null subprogram because generic formal parameter :ada:`Toggle`
+     is not specified, so line 10 forces it to be a null subprogram
 
-      Miles : Miles_T := -12.34;
-      procedure Instance1 is new Print;
-      procedure Instance2 is new Print (Clean);
+* :ada:`procedure Instance2 is new Print (Clean);`
 
-* Result of running 
-
-   * :ada:`Instance1 (Miles)` |rightarrow| **-12.34**
-   * :ada:`Instance2 (Miles)` |rightarrow| **0.0**
+   * Line 18 will call the implementation of the procedure defined on line 2, because
+     that procedure is passed as the generic formal parameter :ada:`Toggle`
 
 ..
   language_version 2005
