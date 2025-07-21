@@ -20,17 +20,19 @@ Nested Subprogram Example
 .. code:: Ada
    :number-lines: 1
 
-   procedure Main is
+   procedure Populate_Lines 
+      (Lines : in out Types.Lines_T;
+       Name  :        String) is
 
-      function Read (Prompt : String) return Types.Line_T is
+      function Read (Number : String) return Types.Line_T is
       begin
-         Put (Prompt & "> ");
+         Put (Name & " Line" & Number & "> ");
          return Types.Line_T'Value (Get_Line);
       end Read;
 
-      Lines : Types.Lines_T (1 .. 10);
    begin
       for J in Lines'Range loop
-         Lines (J) := Read ("Line " & J'Image);
+         Lines (J) := Read (J'Image);
       end loop;
+   end Populate_Lines;
 
