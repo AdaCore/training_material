@@ -90,11 +90,6 @@ one sub-point - rework the slide!
 Module / Slide Titles
 =====================
 
-There should be no in-line formatting in a slide title (e.g. emphasis, role, etc).
-This is to make it easier when we extract titles for syllabi or the like.
-
-Ada keywords in a slide title should be quoted - e.g. *Simple "case" Statements*
-
 Slide titles are surrounded (via line above and below) by a line of "-" characters. 
 The "-" characters should extend 2 characters past the end of the title string.
 Example:
