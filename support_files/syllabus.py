@@ -3,7 +3,7 @@ This script is designed to create a syllabus based on a text
 file used to create slides from the material/courses repository
 (e.g. "standard_course.txt").
 
-(Note: If there are comments in the TXT file, they will be use
+(Note: If there are comments in the TXT file, they will be used
 to break the modules into sections.)
 
 It will generate an RST file, then uses pandoc to convert to a
@@ -99,7 +99,7 @@ def run_pandoc(format, rst_file):
 def get_title(lines):
     """
     Based on our RST formatting, a module or section title uses a
-    particular separator on on the line before and after the title.
+    particular separator on the line before and after the title.
     If the "lines" parameter follows this format, we return a tuple
     of a flag indicating if we've found a module or a section, and
     the title of the module/section
@@ -157,7 +157,7 @@ def read_content(in_filename, lines):
 
 def show_output(output_filename):
     """
-    On Windows, we ar going to display the filename and then open the file.
+    On Windows, we are going to display the filename and then open the file.
     On Linux, there is no easy automatic way to open the file, so we will
     just show the filename.
     """
@@ -255,7 +255,7 @@ def load_modules(course, short):
     Load modules from course file.
     Return a list of tuples, where the first element is the module
     name and the second element is a list of chapters.
-    If "short" is True, the list of chapters will be empty
+    If "short" is True, the list of chapters will be empty.
     """
 
     course_folder = os.path.dirname(os.path.abspath(course))
