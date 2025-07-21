@@ -35,7 +35,7 @@ It provides the "pretty" name of the course. The content should just be
 
 ## Course Overviews
 
-### Fundamentals of Ada
+### Ada Essentials
 
 This is the basic introduction class to Ada (or SPARK). This assumes no
 prior knowledge of the language. All modules should be written towards
@@ -45,7 +45,7 @@ it can be added as needed, and a special TXT file can be created.
 
 Duration: 5 days
 
-### SPARK for Ada Programmers
+### SPARK Essentials
 
 This is a course designed to teach SPARK to students already familiar with
 Ada. Some modules are overviews of newer Ada functions (Ada 2012 and beyond),

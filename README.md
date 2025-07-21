@@ -25,7 +25,7 @@ Scroll to the bottom to locate the **Artifacts**
 
 ![Bottom scroll](images/github/artifacts_2.png)
 
-Select the **Artifact** associated with the course you want ("standard" courses are "Fundamentals Of Ada - Standard Course" and "SPARK - Course," for example).
+Select the **Artifact** associated with the course you want ("standard" courses are "Ada Essentials - Standard Course" and "SPARK - Course," for example).
 
 ![Artifact examples](images/github/artifacts_3.png)
 
@@ -36,6 +36,9 @@ Select the **Artifact** associated with the course you want ("standard" courses 
 Each folder contains a collection of RST files that make up modules within
 the course. The file names for the modules should use a numbering scheme so
 users can quickly understand the typical order of presentation. 
+
+**Note: RST files under this folder should follow the guidelines set out
+in the** *style_guide.rst* **file at the top-level of the repository**
 
 ### Module Labs
 
