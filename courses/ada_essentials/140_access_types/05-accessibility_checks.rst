@@ -12,19 +12,19 @@ Introduction to Accessibility Checks (1/2)
 
       package body P is
          --  Library level, depth 0
-         O0 : aliased Integer;
+         Object_0 : aliased Integer;
          procedure Proc is
             --  Library level subprogram, depth 1
             type Acc1 is access all Integer;
             procedure Nested is
                -- Nested subprogram, enclosing + 1, here 2
-               O2 : aliased Integer;
+               Object_2 : aliased Integer;
 
 * Objects can be referenced by access **types** that are at **same depth or deeper**
 
     - An **access scope** must be |le| the object scope
 
-* :ada:`type Acc1` (depth 1) can access :ada:`O0` (depth 0) but not `O2` (depth 2)
+* :ada:`type Acc1` (depth 1) can access :ada:`Object_0` (depth 0) but not :ada:`Object_2` (depth 2)
 * The compiler checks it statically
 
    - Removing checks is a workaround!
