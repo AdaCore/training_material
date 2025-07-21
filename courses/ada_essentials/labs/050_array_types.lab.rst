@@ -16,7 +16,8 @@ Array Lab
       + Print the contents of the non-constant object
       + Use an array aggregate to initialize the non-constant object
       + For each component of the array, print the array index and the value
-      + Move part ("source") of the non-constant object to another part ("destination"), and then clear the source location
+      + Move part ("source") of the constant object to part of the non-constant object ("destination")
+      + Clear the rest of the non-constant object 
       + Print the contents of the non-constant object
 
 * Hints
