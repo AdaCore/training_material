@@ -29,7 +29,7 @@ The following switches are only useful when selecting "--docx"
    --short  => If set, the output file will only contain
                module names. Default behavior is to create
                a file with module names and sections within
-               the module (ignored when using
+               the module.
    --title  => Default course title is "Ada Essentials". Specify
                something else here if you want a different title.
 
