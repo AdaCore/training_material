@@ -20,5 +20,5 @@ D. | :answermono:`function "=" (A : T1; B : T2) return Boolean is`
 
 .. container:: animate
 
-    B. Counterexample: ``A = B = (0, 1, 0)`` returns :ada:`False`
-    C. Counterexample: ``A = (0, 0, 1) and B = (0, 1, 1)`` returns :ada:`True`
+    B. Every element of :ada:`A` must match every element of :ada:`B`. This fails when :ada:`A` and :ada:`B` contain more than one distinct value, such as: ``(0, 1, 0)``
+    C. Returns :ada:`True` if any value in :ada:`A` matches any value in :ada:`B`, even if the arrays differ elsewhere - ``A = (0, 0, 1) and B = (0, 1, 1)`` returns :ada:`True`
