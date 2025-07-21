@@ -263,6 +263,7 @@ Quiz
    function Sqrt (X : Float) return Float;
    F : Float;
    B : Boolean;
+   X : Float := ...; -- assigned some Float value
 
 Which statement(s) is (are) legal?
 
