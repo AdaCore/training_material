@@ -145,20 +145,25 @@ Quiz
 
    Which block(s) is (are) legal?
 
-   A. | ``X := A;``
-      | ``A := Y;``
+   A. | :answermono:`X := A;`
+      | :answermono:`Y := A;`
    B. | :answermono:`X := B;`
       | :answermono:`Y := C;`
    C. | ``X := One_T(X + C);``
    D. | :answermono:`X := One_T(Y);`
       | :answermono:`Y := Two_T(X);`
+   E. | ``B := One_T(Y) + C;``
 
    .. container:: animate
 
      Explanations
 
-     A. Illegal - :ada:`A` is a constant (cannot be assigned)
+     A. Legal - :ada:`A` is an untyped constant so it can be used
+        for any integer-based object
      B. Legal - :ada:`B, C` are correctly typed
      C. Illegal - No such "+" operator: must convert operand individually
      D. Legal - Correct conversion and types
+     E. Illegal - Even though the right-hand side matches the type,
+        :ada:`B` is a constant and cannot be modified
+        
 
