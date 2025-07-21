@@ -152,7 +152,7 @@ Quiz
    C. | ``X := One_T(X + C);``
    D. | :answermono:`X := One_T(Y);`
       | :answermono:`Y := Two_T(X);`
-   E. | ``B := One_T(Y) + C;``
+   E. | ``B := One_T(Y) + X;``
 
    .. container:: animate
 
