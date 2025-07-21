@@ -2,9 +2,9 @@
 Introduction
 ==============
 
---------------------------
-:dfn:`Design-By-Contract`
---------------------------
+--------------------
+Design-By-Contract
+--------------------
 
 * Source code acting in roles of **client** and **supplier** under a binding **contract**
 
@@ -45,9 +45,9 @@ Ada Contracts
    - ... or by types (seen later)
    - Can have **arbitrary** conditions, more **versatile**
 
-------------------
-:dfn:`Assertion`
-------------------
+-----------
+Assertion
+-----------
 
 * Boolean expression expected to be :ada:`True`
 * Said *to hold* when :ada:`True`
