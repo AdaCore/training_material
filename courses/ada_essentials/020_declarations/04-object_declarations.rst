@@ -11,8 +11,8 @@ Object Declarations
 
    .. code:: Ada
 
-      <name> : <subtype> [:= <initial value>];
-      <name> : constant <subtype> := <value>;
+      <name> : <type> [:= <initial value>];
+      <name> : constant <type> := <value>;
 
 * Constant should have a value
 
