@@ -28,8 +28,10 @@ Procedure Specification Syntax (Simplified)
 
    procedure_specification ::=
       procedure program_unit_name
-         { (parameter_specification
-             ; parameter_specification)};
+         [ (parameter_specification
+             [; parameter_specification]...
+           )
+         ];
 
    parameter_specification ::=
       identifier_list : mode subtype_mark [ := expression ]
