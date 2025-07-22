@@ -103,7 +103,7 @@ Aspect Clause Example: Objects
 Boolean Aspect Clauses
 ------------------------
 
-* **Boolean** aspects only
+* **Boolean** values only
 * Longhand
 
   .. code:: Ada
