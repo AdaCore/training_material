@@ -154,9 +154,9 @@ Modular Type Semantics
    - **Bit shifts**
    - Values as **bit-sequences**
 
---------------------------
+--------------------------------
 Predefined Sized Numeric Types
---------------------------
+--------------------------------
 
 * In :ada:`Interfaces` package
 
