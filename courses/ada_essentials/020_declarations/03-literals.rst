@@ -34,7 +34,7 @@ Numeric Literals
    .. code::
 
       numeric_literal ::= numeral [.numeral] [exponent]
-      exponent ::= E [+ | - ] numeral
+      exponent ::= E [ + | - ] numeral
       numeral ::= digit {['_'] digit}
 
 .. tip:: Underscore is **not** significant and helpful for grouping
