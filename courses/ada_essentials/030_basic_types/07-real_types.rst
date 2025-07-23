@@ -100,7 +100,7 @@ Floating Point Type Operators
 
    Exponentiation (:ada:`**`) result will be real
 
-   - So power must be :ada:`Integer`
+   - Power must be :ada:`Integer`
 
       + Not possible to ask for root
       + :ada:`X**0.5` |rightarrow| :ada:`sqrt (x)`
