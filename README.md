@@ -134,14 +134,23 @@ PDFs of the course material can be generated locally (on your machine). To do th
 The following command will generate a PDF for a specific slide:
 
 ```
-python [LOCAL_PATH]\training_material\pandoc\pandoc_fe.py --source ./[RST_FILE] --output [OUTPUT_FILE] --extension pdf --directories [LOCAL_PATH]\images,[LOCAL_PATH]\training_material\support_files  --theme adacore --color adacore  --filter [LOCAL_PATH]\training_material\pandoc\beamer_filter.py
+python [LOCAL_PATH]\training_material\pandoc\pandoc_fe.py --source [FILENAME] --output [OUTPUT_FILE] --extension pdf --directories [LOCAL_PATH]\images,[LOCAL_PATH]\training_material\support_files  --theme adacore --color adacore  --filter [LOCAL_PATH]\training_material\pandoc\beamer_filter.py
 ```
 
 In the above command:
 
 * **[LOCAL_PATH]** should be replaced with the full path containing the “training_material” source folder
 
-* **[RST_FILE]** should be replaced with the full name of the .rst file containing the source that will be generated as slide content (name should include file extension)
+* **[FILENAME]** should be replaced with the path to either of the following:
+
+   * Name of the .rst file containing the source to generate the PDF file
+   * Name of a .txt file containing a list of RST files (one per line) for which a single PDF file will be generated
+
+   The filename needs to be a path (for Pandoc) so, if it's local, prepend it with "./" or ".\\" (depending on your OS).
+
+   For example, to build the standard course (in the repository as "standard_course.txt"), use **--source ./standard_course.txt**.
+   If you want a PDF of just the polymorphism module, use **--source ./180_polymorphism.rst**. You can also create your own
+   .txt file to build multiple modules at once (just don't check it in!).
 
 * **[OUTPUT_FILE]** should be replaced with the desired name of the generated PDF (minus the file extension)
 
