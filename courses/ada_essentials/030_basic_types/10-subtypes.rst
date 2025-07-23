@@ -14,7 +14,7 @@ Subtype
 
       subtype <identifier> is <type_name> [constraints];
 
-   - :ada:`Type_Name` is an existing :ada:`type` or :ada:`subtype`
+   - :ada:`type_name` is an existing :ada:`type` or :ada:`subtype`
 
 .. note:: If no constraint |rightarrow| type alias
 
