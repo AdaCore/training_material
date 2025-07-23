@@ -66,7 +66,7 @@ Operators for Signed Integer Type
    :relational operator: **=** | **/=** | **<** | **<=** | **>** | **>=**
    :binary adding operator: **+** | **-**
    :unary adding operator: **+** | **-**
-   :multiplying operator: ** :ada:'*' ** | **/** | **mod** | **rem**
+   :multiplying operator: ** \*\* ** | **/** | **mod** | **rem**
    :highest precedence operator: ** :ada:'**' ** | **abs**
 
 .. note::
