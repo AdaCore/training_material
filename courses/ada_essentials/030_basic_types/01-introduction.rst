@@ -92,7 +92,7 @@ Abstract Data Types (ADT)
 Ada "Named Typing"
 -------------------------
 
-* **Name** differentiate types
+* **Name** differentiates types
 * Structure does **not**
 * Identical structures may **not** be interoperable
 
