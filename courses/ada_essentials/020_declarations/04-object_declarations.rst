@@ -93,9 +93,9 @@ Implicit Vs Explicit Declarations
 
    * Compiler creates appropriate operators based on the underlying type
 
-      * Numeric types get standard math operators
-      * Array types get concatenation operator
-      * Most types get assignment operator
+      * **Numerics** - standard math operators
+      * **Arrays** - concatenation operator
+      * **Most types** - assignment operator
 
 -----------
 Elaboration
