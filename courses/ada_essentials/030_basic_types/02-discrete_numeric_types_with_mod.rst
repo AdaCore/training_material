@@ -143,7 +143,7 @@ Modular Type Semantics
 ------------------------
 
 * Standard :ada:`Integer` operators
-* **Wraps-around** in overflow
+* **Wraps around** on overflow
 
    - Like other languages' unsigned types
    - Attributes :ada:`'Pred` and :ada:`'Succ`
