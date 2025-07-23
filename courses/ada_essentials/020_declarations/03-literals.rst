@@ -25,21 +25,21 @@ String Literals
 
    Note that the last example literal (that has embedded double quotes) is not an example of concatenation!
 
---------------------------
-Decimal Numeric Literals
---------------------------
+------------------
+Numeric Literals
+------------------
 
 * Syntax
 
    .. code::
 
-      decimal_literal ::=
-        numeral [.numeral] E [+numeral|-numeral]
+      numeric_literal ::= numeral [.numeral] [exponent]
+      exponent ::= E [+ | - ] numeral
       numeral ::= digit {['_'] digit}
 
 .. tip:: Underscore is **not** significant and helpful for grouping
 
-* **E** (exponent) must always be integer
+* **E** (exponent) must always be an integer
 * Examples
 
    .. code:: Ada
