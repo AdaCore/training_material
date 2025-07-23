@@ -69,7 +69,7 @@ Predefined Declarations
    - About **half the RM** in size
 
 * "Specialized Needs Annexes" for *optional*
-* Also, implementation specific extensions
+* Also, implementation-specific extensions
 
 ------------------------------------
 Implicit Vs Explicit Declarations
