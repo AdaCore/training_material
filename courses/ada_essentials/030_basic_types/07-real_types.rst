@@ -154,7 +154,7 @@ Numeric Types Conversion
       F : Float := 1.5;
    begin
       N := Integer (F); -- N = 2
-      F := Float (N); -- F = 2.0
+      F := Float (N);   -- F = 2.0
 
 ------
 Quiz
