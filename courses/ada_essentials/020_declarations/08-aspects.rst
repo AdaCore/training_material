@@ -78,7 +78,7 @@ Aspect Clause Example: Objects
 
    .. code:: Ada
 
-      <name> : <subtype_indication> [:= <initial value>]
+      <name> : <type_indication> [:= <initial_value>]
                      with aspect_mark [ => expression]
                      {, aspect_mark [ => expression] };
 
