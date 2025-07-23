@@ -144,14 +144,15 @@ Postcondition :ada:`'Old` Attribute
 Function Postcondition :ada:`'Result` Attribute
 -------------------------------------------------
 
-* :ada:`function` result can be manipulated with :ada:`'Result`
+Function result can be manipulated with :ada:`'Result`
 
    .. code:: Ada
+
       function Greatest_Common_Denominator (A, B : Integer)
         return Integer with
-          Pre  =>  A > 0 and B > 0,
-          Post =>  Is_GCD (A, B,
-                           Greatest_Common_Denominator'Result);
+          Pre  => A > 0 and B > 0,
+          Post => Is_GCD (A, B,
+                          Greatest_Common_Denominator'Result);
 
 ------------------------------------------
 Preconditions and Postconditions Example
