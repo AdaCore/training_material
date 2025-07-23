@@ -202,6 +202,7 @@ Type Model Run-Time Costs
 
 .. note:: Compile-time check is *free*
 
+
 .. container:: columns
 
  .. container:: column
