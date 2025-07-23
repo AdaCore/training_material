@@ -76,7 +76,6 @@ Operators for Signed Integer Type
        - Power **must** be :ada:`Integer` ``>= 0``
 
 
-
 ------------------------
 Signed Integer Overflows
 ------------------------
