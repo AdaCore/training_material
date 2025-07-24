@@ -77,7 +77,7 @@ Function Operator Overloading Example
 Benefits and Risk of Overloading
 ----------------------------------
 
-* Management of the name space
+* Management of the namespace
 
    - Support for abstraction
    - Linker will not simply take the first match and apply it globally

@@ -36,11 +36,11 @@ Introducing Block Statements
 
        .. code:: Ada
 
-          [<block-name> :] declare
+          [<block-identifer> :] declare
              <declarative part>
           begin
              <statements>
-          end [block-name];
+          end [block-identifer];
 
  .. container:: column
 

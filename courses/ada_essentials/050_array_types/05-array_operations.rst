@@ -139,14 +139,14 @@ Dynamic Subtype Constraint Example
 ------------------------------------
 
 * Useful when constraints not known at compile-time
-* Example: remove file name extension
+* Example: remove filename extension
 
 .. code:: Ada
 
-    File_Name
-      (File_Name'First
+    Filename
+      (Filename'First
       ..
-      Index (File_Name, '.', Direction => Backward));
+      Index (Filename, '.', Direction => Backward));
 
 ------
 Quiz

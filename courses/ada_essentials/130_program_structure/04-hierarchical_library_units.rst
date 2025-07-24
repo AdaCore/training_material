@@ -16,7 +16,7 @@ Problem: Packages Are Not Enough
 * Should be something "bigger" than packages
 
    - Subsystems
-   - Directly relating library items in one name-space
+   - Directly relating library items in one namespace
 
       + One big package has too many disadvantages
 
