@@ -144,7 +144,7 @@ Postcondition :ada:`'Old` Attribute
 Function Postcondition :ada:`'Result` Attribute
 -------------------------------------------------
 
-Function result can be manipulated with :ada:`'Result`
+Function result can be referenced by :ada:`'Result` on the function name
 
    .. code:: Ada
 
