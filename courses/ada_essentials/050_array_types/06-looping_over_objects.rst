@@ -56,7 +56,7 @@ Array/Container For-Loops
 
    .. code:: Ada
 
-      for identifier of [reverse] array_or_container_object loop
+      for <identifier> of [reverse] <array_or_container_object> loop
       ...
       end loop;
 

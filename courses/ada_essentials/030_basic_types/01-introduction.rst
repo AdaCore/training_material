@@ -58,7 +58,7 @@ A Little Terminology
 
       type <identifier> is <type definition>;
 
-* **Type-definition** defines its structure
+* **Type definition** defines its structure
 
    - Characteristics, and operations
    - Base "class" of the type

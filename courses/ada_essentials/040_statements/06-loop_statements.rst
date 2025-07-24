@@ -46,7 +46,7 @@ Loop Exit Statements
 
    .. code:: Ada
 
-      exit [<loop identifier>] [when <boolean expression>];
+      exit [<loop_identifier>] [when <boolean expression>];
 
 * :ada:`exit when` exits with condition
 
@@ -142,7 +142,7 @@ For in Statements
 
    .. code:: Ada
 
-      for identifier in [reverse] discrete_subtype_definition loop
+      for <identifier> in [reverse] <discrete_subtype_definition> loop
       ...
       end loop;
 
