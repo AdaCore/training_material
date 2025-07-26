@@ -1,6 +1,6 @@
 TITLE:
-PRESENTER: Foo Bar
-DATE: 26 Jul 2025
+PRESENTER:
+DATE:
 OTHER:
 Copyright (C) 2018-2025, AdaCore under CC BY-SA
 

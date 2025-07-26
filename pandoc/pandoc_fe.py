@@ -10,30 +10,55 @@ from pathlib import Path
 Keys for content information in title page file.
 If no key is specified on a line in the file,
 the first item in this list will be used as the key.
+Uses:
+   COPYRIGHT - any line that does not start with a key will
+       be stored in the dictionary using this key
+   TITLE - Title of document
+   PRESENTER - Will be shown as "Presented by <value>"
+       right below the title
+   OTHER - if you want something else. Will appear after
+       PRESENTER
+   DATE - Usually the date. Appears right below OTHER
 """
-TITLE_KEYS = ["COPYRIGHT", "TITLE", "PRESENTER", "DATE", "OTHER"]
+TITLE_KEYS = ["COPYRIGHT", "TITLE", "PRESENTER", "OTHER", "DATE"]
 
+"""
+if TITLE_FILE_NAME is set, we are creating a deck that needs
+a title page. This object will have the name of the temporary
+file that contains the title page information, and that file
+will be deleted when the process is complete.
+"""
 TITLE_FILE_NAME = None
 
 
 def windows():
+    """
+    Return True if we're running on a Windows platform
+    """
+
     return sys.platform.startswith("win")
 
 
-"""
-When building a list of directories to search, we want them to be unique
-(so we don't end up searching directories twice). For Windows, case
-doesn't matter, so we are going to force it to lower case
-"""
-
-
 def fix_file_case(filename):
+    """
+    When building a list of directories to search, we want them to be unique
+    (so we don't end up searching directories twice). For Windows, case
+    doesn't matter, so we are going to force it to lower case
+    """
+
     if windows():
         return filename.lower()
     return filename
 
 
 def title_parse(line):
+    """
+    Parse a line that was read from the title page data file.
+    If the line starts with a keyword, a tuple of keyword and
+    content is returned. Otherwise, a tuple of "COPYRIGHT" and
+    content is returned.
+    """
+
     key = "COPYRIGHT"
     pieces = line.split(":", 1)
     if pieces[0] in TITLE_KEYS:
@@ -44,7 +69,7 @@ def title_parse(line):
 
 def default_title(source):
     """
-    If not title is specified, use the folder name to determine title
+    If no title is specified, use the folder name to determine title
     """
 
     title = os.path.basename(os.path.dirname(os.path.abspath(source)))
@@ -56,6 +81,14 @@ def default_title(source):
 
 
 def parse_title_file(args):
+    """
+    Read the title data file to generate information for the title page.
+    If the data file is not passed in as an argument, use the file
+    that exists in the same directory.
+    Note that "COPYRIGHT" returns a list of lines; all other keywords
+    are just a string.
+    """
+
     title_source = args.title.strip()
 
     retval = {}
@@ -70,7 +103,7 @@ def parse_title_file(args):
         if os.path.exists(title_source):
             fp = open(title_source, "r")
         else:
-            fp = open(os.path.join(os.path.dirname(__file__), "title_page.txt"), "r")
+            fp = open(os.path.join(os.path.dirname(__file__), "title_data.txt"), "r")
         for line in fp:
             key, content = title_parse(line.strip())
             if len(content) > 0 or key == "COPYRIGHT":
@@ -88,16 +121,22 @@ def parse_title_file(args):
     return retval
 
 
-def print_content(tfp, title_info, prefix=""):
-    if len(title_info) > 0:
-        if title_info is list:
-            for item in title_info:
+def print_content(tfp, content, prefix=""):
+    """
+    if content is not empty, it's either a list or a string.
+    For lists, print out each line separately, for a string,
+    print the prefix in italics and the content in bold.
+    """
+
+    if len(content) > 0:
+        if content is list:
+            for item in content:
                 tfp.write(
                     "   \\small{\\textit{" + prefix + "} \\textbf{" + item + "}}\n\n"
                 )
         else:
             tfp.write(
-                "   \\small{\\textit{" + prefix + "} \\textbf{" + title_info + "}}\n\n"
+                "   \\small{\\textit{" + prefix + "} \\textbf{" + content + "}}\n\n"
             )
 
 
@@ -109,7 +148,7 @@ def prepare_title_file(args):
     In that case, we want to build a title slide for the deck,
     consisting of the title for the course, possibly the presenter, date
     and/or other information, and then copyright information.
-    This information will come from the "title_page.txt" file in the
+    This information will come from the "title_data.txt" file in the
     "pandoc" folder OR from the "--title" option from the command line.
     """
 
@@ -148,8 +187,8 @@ def prepare_title_file(args):
             )
 
             print_content(tfp, title_info["PRESENTER"], prefix="Presented by")
-            print_content(tfp, title_info["DATE"])
             print_content(tfp, title_info["OTHER"])
+            print_content(tfp, title_info["DATE"])
 
             tfp.write("   \\end{center}\n\n")
 
@@ -163,6 +202,11 @@ def prepare_title_file(args):
 
 
 def to_texinputs_path(path):
+    """
+    Convert path to the correct form for the TEXINPUTS
+    environment variable.
+    """
+
     abspath = fix_file_case(os.path.abspath(path))
     if path.endswith("//"):
         # (texlive specific?) recursive path
@@ -171,20 +215,24 @@ def to_texinputs_path(path):
 
 
 def extend_texinputs_path_list(unique, paths):
+    """
+    Add paths to the TEXINPUTS environment variable needed for
+    Pandoc/LaTeX
+    """
+
     for path in paths:
         abspath = to_texinputs_path(path)
         if abspath not in unique:
             unique.append(abspath)
 
 
-"""
-Set the TEXINPUTS environment variable based on the directories specified
-on the command line. These directories will contain things like images
-and Beamer theme files
-"""
-
-
 def set_texinputs(new_directories):
+    """
+    Set the TEXINPUTS environment variable based on the directories specified
+    on the command line. These directories will contain things like images
+    and Beamer theme files
+    """
+
     # initialize list of directories
     unique = list()
 
@@ -214,11 +262,6 @@ def set_texinputs(new_directories):
     return texinputs_formated
 
 
-"""
-Chose and setup an output file full path based on various arguments received.
-"""
-
-
 def output_file_name(
     input_file,
     n,
@@ -228,6 +271,10 @@ def output_file_name(
     strip_extension=False,
     output_dir=None,
 ):
+    """
+    Chose and setup an output file full path based on various arguments received.
+    """
+
     if output_file:
         name = output_file
     elif title:
@@ -252,13 +299,12 @@ def output_file_name(
     return os.path.abspath(name)
 
 
-"""
-For PDF and TEX, we are producing slides, so use the 'beamer' format
-For any other extension, assume the extension and the format are the same
-"""
-
-
 def output_format(extension):
+    """
+    For PDF and TEX, we are producing slides, so use the 'beamer' format.
+    For any other extension, assume the extension and the format are the same.
+    """
+
     if extension == "pdf" or extension == "tex":
         return "beamer"
     elif extension == "md":
@@ -288,6 +334,7 @@ def parse_rst_list_file(dirname, f):
     > dress_your_salad.rst
 
     """
+
     files = list()
     for line in f:
         if "#" in line:
@@ -310,17 +357,20 @@ def parse_rst_list_file(dirname, f):
     return files
 
 
-"""
-If the source file is an RST file, then send it to Pandoc
-For any other type of file, assume it contains a list of
-files to parse
-NOTE: Pandoc treats multiple source files on the command
-line DIFFERENTLY than all the source files combined as one!
-(When multiple source files, each source file is its own section)
-"""
-
-
 def expand_source(source_file):
+    """
+    If the source file is an RST file, then send it to Pandoc
+    For any other type of file, assume it contains a list of
+    files to parse
+    NOTE: Pandoc treats multiple source files on the command
+    line DIFFERENTLY than all the source files combined as one!
+    (When multiple source files, each source file is its own section)
+
+    If this is a slide deck for presentation, we want to add a
+    title page to it, so just insert the title page RST file to the
+    front of the list.
+    """
+
     global TITLE_FILE_NAME
 
     if source_file.lower().endswith(".rst"):
