@@ -72,8 +72,6 @@ SUPPORTED_CLASSES = [
     "animate",
     "overlay",
     "speakernote",
-    "columns",
-    "column",
     "PRELUDE",
     "latex_environment",
     "footnotesize",
@@ -944,10 +942,6 @@ def perform_filter(key, value, format, meta):
         # looking like [<some string>, ['container', '<container name>'], [<some tuple]]
         elif key == "Div":
             [[ident, classes, kvs], contents] = value
-
-            assert all(
-                c in SUPPORTED_CLASSES for c in classes[:2]
-            ), f"unsupported: {', '.join(c for c in classes[:2] if c not in SUPPORTED_CLASSES)}"
 
             if is_speakernote(classes):
                 return speaker_note(contents)
