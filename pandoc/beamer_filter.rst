@@ -43,6 +43,32 @@ Use "Page Down" to see the differences
    * - animate
      - Standard font :animate:`appears without formatting`
 
+------------
+Color Role
+------------
+
+We do allow coloring text, using a role-like mechanism.
+
+The role is defined as "color-*", where "*" is replaced by the color you want.
+The color can be any string supported by the LaTeX "xcolor" package, but
+most likely one of the predefined names will be good enough
+
+   black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta,
+   olive, orange, pink, purple, red, teal, violet, white, yellow
+
+Some examples:
+
+.. list-table::
+
+   * - ``:color-magenta:``
+     - :color-magenta:`This is magenta`
+   
+   * - ``:color-olive:``
+     - :color-olive:`This is olive`
+
+Note that some colors do not show up well on a white background. Look for the
+"latex_colorize" function in beamer_filter.py for ways to fix that.
+
 ****************
 Warnings, etc.
 ****************
@@ -261,51 +287,6 @@ overlay Example
    Image plus some color
 
    .. image:: hierarchical_visibility_2.svg
-
-------------------
-columns / column
-------------------
-
-Columns are a nice way to show things side by side in your slide,
-and they are available through the filter.
-
-**However,** they are a pain to work with, and a lot of the formatting
-we try to do either doesn't work or doesn't work well, so be careful.
-
-You use the "columns" container to specify you want the indented content
-to be made into columns, and you use the "column" container (which must
-be indented inside the "columns" container) to indicate the beginning of
-a column.
-
---------------------------
-columns / column Example
---------------------------
-
-**This structure**
-
-::
-
-   .. container:: columns
-
-      .. container:: column
-
-         Left Column
-
-      .. container:: column
-
-         Right column
-
-**produces two columns as shown below**
-
-.. container:: columns
-
-   .. container:: column
-
-      Left Column
-
-   .. container:: column
-
-      Right column
 
 -------------------
 latex_environment
