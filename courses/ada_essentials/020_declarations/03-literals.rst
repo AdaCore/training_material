@@ -18,7 +18,7 @@ String Literals
    Embedded_Double_Quotes : constant String
                           := "Embedded ""double"" quotes";
 
-.. speakernote::
+.. container:: speakernote
 
    Note that the last example literal (that has embedded double quotes) is not an example of concatenation!
 
