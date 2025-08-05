@@ -1,3 +1,13 @@
+===============================
+beamer_filter.py User's Guide
+===============================
+
+..
+   This is a User's Guide for the capabilities of the "beamer_filter.py"
+   python file we use to generate slide decks for course material.
+   You can generate a slide deck for this RST file the same way you
+   would for any of the course material.
+
 *******
 Roles
 *******
@@ -8,22 +18,22 @@ Simple RST Roles
 
 .. list-table::
 
-   * - toolname
+   * - ``:toolname:``
      - :toolname:`GNATcheck`
 
-   * - url
+   * - ``:url:``
      - :url:`https://adacore.com`
 
-   * - menu
+   * - ``:menu:``
      - :menu:`File`
 
-   * - command
+   * - ``:command:``
      - :command:`ls -lrt`
 
-   * - dfn
+   * - ``:dfn:``
      - :dfn:`Polymorphism`
 
-   * - filename
+   * - ``:filename:``
      - :filename:`/mnt/c/Users/frank/gitlab/`
 
 ---------------------
@@ -34,13 +44,13 @@ Use "Page Down" to see the differences
 
 .. list-table::
 
-   * - answer
+   * - ``:answer:``
      - :answer:`Standard font changes to green and italic`
 
-   * - answermono
+   * - ``:answermono:``
      - :answermono:`Monospace font changes to green and italic`
 
-   * - animate
+   * - ``:animate:``
      - Standard font :animate:`appears without formatting`
 
 ------------
@@ -49,12 +59,31 @@ Color Role
 
 We do allow coloring text, using a role-like mechanism.
 
-The role is defined as "color-*", where "*" is replaced by the color you want.
-The color can be any string supported by the LaTeX "xcolor" package, but
-most likely one of the predefined names will be good enough
+The role is defined as "color-\*", where "\*" is replaced by the colord
+you want.  The color can be any string supported by the LaTeX "xcolor"
+package, but most likely one of the predefined names will be good enough.
 
-   black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta,
-   olive, orange, pink, purple, red, teal, violet, white, yellow
+.. list-table::
+
+   * - black
+     - blue
+     - brown
+     - cyan
+     - darkgray
+   * - gray
+     - green
+     - lightgray
+     - lime
+     - magenta
+   * - olive
+     - orange
+     - pink
+     - purple
+     - red
+   * - teal
+     - violet
+     - white
+     - yellow
 
 Some examples:
 
@@ -66,8 +95,8 @@ Some examples:
    * - ``:color-olive:``
      - :color-olive:`This is olive`
 
-Note that some colors do not show up well on a white background. Look for the
-"latex_colorize" function in beamer_filter.py for ways to fix that.
+Note that some colors do not show up well on a white background.  Look
+for the "latex_colorize" function in beamer_filter.py for ways to fix that.
 
 ****************
 Warnings, etc.
@@ -119,9 +148,9 @@ A **container** is RST's way of applying some process to a block of text.
 Some of them have built-in support within Pandoc, but we've created
 a lot to do things like simulate PowerPoint or to simplify our process.
 
-Containers are sometimes formatted as ``.. container:: <name> [options]``,
-and sometimes just as ``.. <name>:: [options]``. The content of the
-containers will be text that is indented under the container description.
+Containers are formatted as ``.. container:: <name> [options]``. The
+content of the containers will be text that is indented under the
+container description.
 
 .. note::
 
@@ -142,11 +171,12 @@ admonition
 
 ``.. admonition:: Language Variant``
 
-This particular admonition is used to add a subtitle to the slide title. In most cases,
-this is used to add the language version that the slide applies to when that version
-is not the "default" for the document. As our document default is Ada 2012, you should
-only see "Ada 2022" as the subtitle (as demonstrated on this slide), but you can
-use it for other reasons (as in the *Future Capabilities* module).
+This particular admonition is used to add a subtitle to the slide title.
+In most cases, this is used to add the language version that the slide
+applies to when that version is not the "default" for the document. As
+our document default is Ada 2012, you should only see "Ada 2022" as the
+subtitle (as demonstrated on this slide), but you can use it for other
+reasons (as in the *Future Capabilities* module).
 
 -------------
 speakernote
@@ -154,9 +184,10 @@ speakernote
 
 ``.. container:: speakernote``
 
-This is a way to add a speaker note to the slide. There is no easy way to show this
-to the presenter and not the audience, so most content that would be here are already
-in the slide, but they are nice to have for reference / review.
+This is a way to add a speaker note to the slide. There is no easy way to
+show this to the presenter and not the audience, so most content that would
+be here are already in the slide, but they are nice to have for reference /
+review.
 
 ----------------
 source_include
@@ -171,19 +202,21 @@ filename
    Name of source file being included (relative to including directory).
 
 start-after
-   Start inserting on line after **start_string** was found. If not specified,
-   start at beginning of file.
+   Start inserting on line after **start_string** was found. If not
+   specified, start at beginning of file.
 
 end-before
-   Stop inserting on the line before **end_string** was found. If *start-after* is
-   set, then the insertion doesn't take place until after that string was found.
-   If this value is not set, insertion goes until the end of the file
+   Stop inserting on the line before **end_string** was found. If
+   *start-after* is set, then the insertion doesn't take place until after
+   that string was found.  If this value is not set, insertion goes until
+   the end of the file
 
 code
    Language for the code block. Default to Ada if not set.
 
 number-lines
-   If specified, put line numbers on code block, starting with the number specified.
+   If specified, put line numbers on code block, starting with the number
+   specified.
 
 ------------------------
 source_include Example
@@ -201,21 +234,22 @@ source_include Example
 animate
 ---------
 
-This is used to have things appear one after another on the "same slide". Beamer
-does this by making each page look just like the previous page but with new content.
-(Page numbers won't change, but Page Down makes it look like something new "appeared.")
+This is used to have things appear one after another on the "same slide".
+Beamer does this by making each page look just like the previous page but
+with new content.  (Page numbers won't change, but Page Down makes it look
+like something new "appeared.")
 
 ``.. container:: animate [<slide_number>[-]]``
 
 slide_number
    This indicates which "page" of the set of pages the content will appear.
-   "1" means it will be there from the start (and, as such, you don't need a container
-   for it, although sometimes it makes the context easier to understand.)
-   The "-" after the number indicates that the content should remain for the remaining
-   slides.
+   "1" means it will be there from the start (and, as such, you don't need
+   a container for it, although sometimes it makes the context easier to
+   understand.) The "-" after the number indicates that the content should
+   remain for the following "pages".
 
-Note that "animate" will reserve space for all pages - otherwise the pages would
-keep resizing and defeat the purpose.
+Note that "animate" will reserve space for all pages - otherwise the pages
+would keep resizing and defeat the purpose.
 
 -----------------
 animate Example
@@ -292,24 +326,35 @@ overlay Example
 latex_environment
 -------------------
 
-Although RST does have a "backdoor" into the underlying mechanism to produce
-a document (the "raw" role), as our document is produced using LaTeX, we
-have created a container to simplify some of that interface.
+Although RST does have a "backdoor" into the underlying mechanism to
+produce a document (the "raw" role), as our document is produced using
+LaTeX, we have created a container to simplify some of that interface.
 
-The "latex_environment" container is useful when you want to enclose content
-in a LaTeX environment - something that starts with "\begin{environment}"
-and ends with "\end{environment}".
+The "latex_environment" container is useful when you want to enclose
+content in a LaTeX "environment" - something that starts with
+"\begin{environment}" and ends with "\end{environment}".
 
 The most common environment we use is for font sizes. RST has no direct way
 of indicating font sizes, and Pandoc generates LaTeX pages that get resized
 based on content. Wouldn't it be nice to make some text smaller or larger
-first? In LaTeX, font sizes are "environments" - so we can create a block of
-code to be the size we want (relatively). The available sizes can be found
-in any LaTeX documentation, but they are:
+first? In LaTeX, font sizes are "environments" - so we can create a block
+of code to be the size we want (relatively). The available sizes can be
+found in any LaTeX documentation, but they are:
 
-   tiny, scriptsize, footnotesize, small, normalsize, large, Large, LARGE, huge, Huge
+.. list-table::
 
-We sometimes use them to make things bigger, but more often they are used when
+   * - tiny
+     - scriptsize
+     - footnotesize
+     - small
+     - normalsize
+   * - large
+     - Large
+     - LARGE
+     - huge
+     - Huge
+
+We sometimes use them to emphasize things, but more often they are used when
 a code block does not resize correctly and we need to shrink it ourself.
 
 ---------------------------
@@ -324,10 +369,10 @@ We might have a code block that looks like this:
       Do_Something;
    end if;
 
-and we notice that it doesn't fit on the screen. If we insert it into a "latex_environment",
-we can shrink the font size of the code.
+and we notice that it doesn't fit on the screen. If we insert it into a
+"latex_environment", we can shrink the font size of the code.
 
-.. container:: latex_environment tiny
+.. container:: latex_environment scriptsize
 
    ::
 
@@ -347,5 +392,5 @@ we can shrink the font size of the code.
          Do_Something;
       end if;
 
-Make sure the size you use is the largest possible, because these are going to need
-to be seen from a distance!
+Make sure the size you use is the largest possible, because these are going
+to need to be seen from a distance!
