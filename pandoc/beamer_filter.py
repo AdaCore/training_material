@@ -68,14 +68,12 @@ ADMONITION_FORMAT = {
 SUPPORTED_CLASSES = [
     "container",
     "source_include",
-    "admonition",
     "animate",
     "overlay",
     "speakernote",
     "PRELUDE",
     "latex_environment",
-    "footnotesize",
-] + list(ADMONITION_FORMAT.keys())
+]
 
 
 ##
