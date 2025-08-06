@@ -42,7 +42,7 @@ rules cannot be broken.
        let cell = Cell::new(5);
 
        cell.set(123);
-       println!("{}", cell.get());
+       dbg!(cell.get());
    }
 
 ----------------------
@@ -82,7 +82,7 @@ escape.
 
            // This triggers an error at runtime.
            // let other = cell.borrow();
-           // println!("{}", *other);
+           // println!("{}", other);
        }
 
        println!("{cell:?}");
