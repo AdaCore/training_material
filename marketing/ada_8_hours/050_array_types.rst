@@ -83,7 +83,7 @@ Array Type Index Constraints
 Run-Time Index Checking
 -------------------------
 
-* Array indices are checked at run-time as needed
+* Array indexes are checked at run-time as needed
 * Invalid index values result in :ada:`Constraint_Error`
 
 .. code:: Ada

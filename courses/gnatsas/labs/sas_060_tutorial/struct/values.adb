@@ -30,8 +30,8 @@ package body Values is
       end if;
 
       return new Value_Info'(E => Int_Val);
-      --  Allocate a new Value_Info (which is a record with one field)
-      --  on the heap and initialize its only field "E" to be "Int_Val".
+      --  Allocate a new Value_Info (which is a record with one component)
+      --  on the heap and initialize its only component "E" to be "Int_Val".
       --  NOTE: the ' in Value_Info'(...) must be there.
    end Read;
 

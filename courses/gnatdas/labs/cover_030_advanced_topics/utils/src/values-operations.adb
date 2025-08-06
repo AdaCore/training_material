@@ -54,7 +54,7 @@ package body Values.Operations is
             Result := V1.E - V2.E;
       end case;
 
-      --  Create an integer Value by setting the field "E" of the record
+      --  Create an integer Value by setting the component "E" of the record
       --  to Result.
 
       Stack.Push (new Value_Info'(E => Result));

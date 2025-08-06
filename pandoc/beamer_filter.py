@@ -4,10 +4,6 @@ Python filter for generating 'beamer' output from Pandoc
 
 Special handling done by this filter:
    + Role translations
-      - toolname => small caps
-      - menu => colored box with white text
-      - command => black box with monospaced white text
-      - filename => bold monospaced on light yellow background
    + Search TEXINPUTS environment variable for paths to find images
    + Slides are vertically aligned to the top, with the 'shrink' attribute
      so everything fits one the page
@@ -29,16 +25,18 @@ from pandocfilters import toJSONFilter, Strong, Str, SmallCaps, Emph, Para
 ## CONFIGURATION INFORMATION HERE
 ##
 
-# Control wether sub-bullets appear one at a time in a 'beamer' presentation
+# Control whether sub-bullets appear one at a time in a 'beamer' presentation
 # (False indicates everything appears at once)
 bullet_point_animation = False
 
 # Decorators to apply to slide frames in beamer (except title slides)
-# Typical decorators are 't' for top-alignment, and 'shrink' for shrink-to-fit
+# Typical decorators are 't' for top-alignment, and 'shrink' for shrink-to-fit.
+# If we don't shrink-to-fit, slides will almost always exceed page size
+# If we don't do top-alignment, slide titles will not line up after shrinking
 slide_decorators = ["t", "shrink"]
 
 
-# This dictionary defines the function (dictionary value) that should
+# "role_format_functions" dictionary defines the function (dictionary value) that should
 # be called to provide the formatting for an RST 'role' (dictionary key).
 # If the function name is found in 'pandocfilters', the caller must supply
 # the parameter as an AST string node.
@@ -55,6 +53,29 @@ role_format_functions = {
     "filename": "format_filename",
     "default": "Strong",
 }
+
+# This dictionary describes information necessary to create a
+# colorized rounded rectangle with a title and content
+ADMONITION_FORMAT = {
+    "warning": ("alertblock", "warning.pdf", "Warning"),
+    "note": ("block", "note.pdf", "Note"),
+    "tip": ("exampleblock", "lightbulb.pdf", "Tip"),
+}
+
+
+# SUPPORTED_CLASSES names all of the RST constructs
+# we have added to the default class names
+SUPPORTED_CLASSES = [
+    "container",
+    "source_include",
+    "animate",
+    "overlay",
+    "speakernote",
+    "PRELUDE",
+    "latex_environment",
+]
+
+
 ##
 ## END CONFIGURATION INFORMATION
 #############################################################################
@@ -120,8 +141,17 @@ def latex_monospace(text):
     return "\\texttt{" + text + "}"
 
 
-def latex_escape(text):
+"""
+When converting text to LaTeX, we need to escape certain characters that
+cause issues with LaTeX: underscore, ampersand, hash tag
+In addition, two consecutive dashes would normally be converted to a
+single hyphen - but because that is a comment in Ada, we need a way
+to prevent that. Found at this link:
     # For "--": https://tex.stackexchange.com/questions/9813/how-can-i-stop-latex-from-converting-two-hyphens-to-a-single-hyphen-when-loading
+"""
+
+
+def latex_escape(text):
     return (
         text.replace("_", "\\_")
         .replace("&", "\\&")
@@ -130,8 +160,20 @@ def latex_escape(text):
     )
 
 
+"""
+A quiz answer should appear in black on the quiz slide and
+green on the second slide (using animation)
+"""
+
+
 def latex_answer(text):
     return "\\textit<2>{\\textbf<2>{\\textcolor<2>{green!65!black}{" + text + "}}}"
+
+
+"""
+When using monsopace font, we're definitely in a "code" mode, so make sure
+we use standard/escaped characters
+"""
 
 
 def latex_monoconvert(text):
@@ -164,6 +206,11 @@ def latex_answermono(text):
     return latex_monospace(latex_answer(latex_monoconvert(text)))
 
 
+"""
+Text will appear on the second slide of the sequence
+"""
+
+
 def latex_animate(text):
     return "\\onslide<2->{" + text + "}"
 
@@ -175,11 +222,19 @@ For now, color should be assumed to be any string that xcolor allows, but
 it's only been tested with the predefined color names:
    black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta,
    olive, orange, pink, purple, red, teal, violet, white, yellow
+
+Note: Some of the named colors don't stand out very well on a white background.
+To fix that, you can darken them by mixing them with black.
+For now, these colors will be called out specifically. If you want your color
+darkened, add it to the "if" statement
 """
 
 
 def latex_colorize(color, text):
-    return latex_inline("\\textcolor{" + color + "}{" + latex_escape(text) + "}")
+    actual_color = color
+    if actual_color == "green":
+        actual_color = actual_color + "!65!black"
+    return latex_inline("\\textcolor{" + actual_color + "}{" + latex_escape(text) + "}")
 
 
 #############################
@@ -191,7 +246,11 @@ def Space():
     return ret_val
 
 
-# convert a text string to an AST list
+"""
+Convert a text string to an AST list
+"""
+
+
 def literal_to_AST_node(text):
     ret_val = []
     pieces = text.split(" ")
@@ -326,6 +385,9 @@ def language_variant_admonition(contents):
          Language to format code insertion
       :number-lines:<number>
          Add line numbers starting at <number>
+
+source_file_contents returns the appropriate content for the file
+source_include processes the actual beamer input
 """
 
 
@@ -346,6 +408,7 @@ def source_file_contents(filename, keywords):
     if "end-before" in keywords.keys():
         end_before = keywords["end-before"]
 
+    # begin_ug
     if os.path.isfile(filename):
         with open(filename, "r") as the_file:
             for line in the_file:
@@ -360,30 +423,9 @@ def source_file_contents(filename, keywords):
                 else:
                     retval = retval + line
         return retval
+    # end_ug
     else:
         return filename
-
-
-ADMONITION_FORMAT = {
-    "warning": ("alertblock", "warning.pdf", "Warning"),
-    "note": ("block", "note.pdf", "Note"),
-    "tip": ("exampleblock", "lightbulb.pdf", "Tip"),
-}
-
-
-SUPPORTED_CLASSES = [
-    "container",
-    "source_include",
-    "admonition",
-    "animate",
-    "overlay",
-    "speakernote",
-    "columns",
-    "column",
-    "PRELUDE",
-    "latex_environment",
-    "footnotesize",
-] + list(ADMONITION_FORMAT.keys())
 
 
 def source_include(classes, contents):
@@ -434,7 +476,7 @@ def is_source_include(classes):
       
    Slide number is the overlay(s) to display the contents.
    A number will appear on the specific overlay.
-   A number followed by a "-" will appear on the specific overlay an all subsequent.
+   A number followed by a "-" will appear on the specific overlay and all subsequent.
    So, in pseudocode:
       AAA
       animate 2
@@ -501,8 +543,10 @@ def animate(classes, contents):
    by the next overlay - it's not actual layers)
    A number will appear on the specific overlay.
    NOTE: We use "onlyenv" to make the block appear, so if the blocks (images)
-   are not the same size, there will probably be some resizing, makeing things
+   are not the same size, there will probably be some resizing, making things
    look bad.
+   The best way to use this is to draw the final image, and then remove the
+   parts you don't want for the previous image, and so on.
 """
 
 
@@ -777,27 +821,30 @@ def format_menu(literal_text):
 
 """
 "url" role
-Pretty-print URL
+Convert text to a LaTeX-based hyperlink.
+If the text is in the format of `some text <some link>` then we will use
+a LaTeX "href" where "some text" is displayed and links to <some link>.
+Otherwise, we will use "url" where the whole string is used
+NOTE: For some reason, href's are not clickable in the PDF. For now,
+we'll use a parenthesized link (which is clickable) rather than a
+hidden one
 """
 
 
 def format_url(literal_text):
-    # white text on box of color
-    url = latex_escape(literal_text)
 
-    # shrink based on length of actual (not escaped) text
-    url_text = ""
-    if len(literal_text) <= 60:
-        url_text = "\\normalsize{" + url + "}"
-    elif len(literal_text) <= 67:
-        url_text = "\\small{" + url + "}"
-    elif len(literal_text) <= 71:
-        url_text = "\\footnotesize{" + url + "}"
-    elif len(literal_text) <= 80:
-        url_text = "\\scriptsize{" + url + "}"
-    else:
-        url_text = "\\tiny{" + url + "}"
-    return latex_inline("{" + latex_box(latex_color(url_text, "adacore1")) + "}")
+    # href
+    if literal_text.endswith(">"):
+        first = literal_text.rfind("<")
+        if first > 0:
+            url = literal_text[first + 1 : len(literal_text) - 1]
+            text = literal_text[0 : first - 1].strip()
+            if len(text) > 0:
+                text = latex_escape(text)
+                return latex_inline(text + " (\\url{" + url + "})")
+
+    # anything else
+    return latex_inline("\\url{" + literal_text + "}")
 
 
 """
@@ -895,10 +942,6 @@ def perform_filter(key, value, format, meta):
         # looking like [<some string>, ['container', '<container name>'], [<some tuple]]
         elif key == "Div":
             [[ident, classes, kvs], contents] = value
-
-            assert all(
-                c in SUPPORTED_CLASSES for c in classes[:2]
-            ), f"unsupported: {', '.join(c for c in classes[:2] if c not in SUPPORTED_CLASSES)}"
 
             if is_speakernote(classes):
                 return speaker_note(contents)
