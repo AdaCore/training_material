@@ -272,7 +272,7 @@ def output_file_name(
     output_dir=None,
 ):
     """
-    Chose and setup an output file full path based on various arguments received.
+    Choose and set up an output file full path based on various arguments received.
     """
 
     if output_file:
