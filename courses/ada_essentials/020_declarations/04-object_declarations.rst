@@ -11,7 +11,7 @@ Object Declarations
 
    .. code:: Ada
 
-      <name> : <type> [:= <initial value>];
+      <name> : <typemark> [:= <initial_value>];
       <name> : constant <type> := <value>;
 
 * Constant should have a value
