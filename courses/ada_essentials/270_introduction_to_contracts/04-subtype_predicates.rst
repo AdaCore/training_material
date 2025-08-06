@@ -177,7 +177,7 @@ Beware Accidental Recursion in Predicate
 
    .. code:: Ada
 
-      type Sorted_Table is array (1 .. N) of Integer with
+      type Sorted_Table is array (1 .. Max_Size) of Integer with
          Dynamic_Predicate => Sorted (Sorted_Table);
       -- on call, predicate is checked!
       function Sorted (A_Table : Sorted_Table) return Boolean;
@@ -186,7 +186,7 @@ Beware Accidental Recursion in Predicate
 
    .. code:: Ada
 
-      type Sorted_Table is array (1 .. N) of Integer with
+      type Sorted_Table is array (1 .. Max_Size) of Integer with
          Dynamic_Predicate =>
          (for all Rows in Sorted_Table'Range =>
             (Row = Sorted_Table'First
@@ -196,7 +196,7 @@ Beware Accidental Recursion in Predicate
 
    .. code:: Ada
 
-      type Table_Type is array (1 .. N) of Integer;
+      type Table_Type is array (1 .. Max_Size) of Integer;
       subtype Sorted_Table is Table_Type with
            Dynamic_Predicate => Sorted (Sorted_Table);
       function Sorted (A_Table : Table_Type) return Boolean;
