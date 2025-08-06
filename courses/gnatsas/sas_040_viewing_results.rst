@@ -15,6 +15,9 @@ Viewing Results
 .. role:: cpp(code)
     :language: C++
 
+.. role:: rust(code)
+    :language: Rust
+
 .. container:: PRELUDE SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`

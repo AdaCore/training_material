@@ -1,5 +1,5 @@
 --------------
-Start GPRBuild
+Start GPRbuild
 --------------
 
 * Open a command shell

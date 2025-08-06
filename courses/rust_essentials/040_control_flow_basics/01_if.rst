@@ -1,0 +1,58 @@
+========================
+:rust:`if` Expressions
+========================
+
+------------------------
+:rust:`if` Expressions
+------------------------
+
+You use
+:url:`if expressions <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-expressions>`
+exactly like :rust:`if` statements in other languages:
+
+.. code:: rust
+
+   fn main() {
+       let x = 10;
+       if x == 0 {
+           println!("zero!");
+       } else if x < 100 {
+           println!("biggish");
+       } else {
+           println!("huge");
+       }
+   }
+
+In addition, you can use :rust:`if` as an expression. The last expression of
+each block becomes the value of the :rust:`if` expression:
+
+.. code:: rust
+   :number-lines: 2
+
+   fn main() {
+       let x = 10;
+       let size = if x < 20 { "small" } else { "large" };
+       println!("number size: {}", size);
+   }
+
+---------------------------------
+:rust:`if` Expressions Contents
+---------------------------------
+
+- Both sides of an :rust:`if` expression must have the same type
+
+  - :rust:`small` and :rust:`large` are both strings
+  - Adding a :rust:`;` to one side makes the types different
+
+  .. code:: rust
+    :number-lines: 4
+
+     let size = if x < 20 { "small"; } else { "large" };
+
+  ::
+
+     error[E0308]: `if` and `else` have incompatible types
+
+- Other than that, an :rust:`if` expression is like any other expression
+
+  - The :ada:`let size` statement on line 2 must still end with :rust:`;`

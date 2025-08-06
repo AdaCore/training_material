@@ -15,6 +15,9 @@ Overview
 .. role:: cpp(code)
     :language: C++
 
+.. role:: rust(code)
+    :language: Rust
+
 .. container:: PRELUDE SYMBOLS
 
 .. |rightarrow| replace:: :math:`\rightarrow`
@@ -56,19 +59,19 @@ Origins and Purposes of Projects
 
 + Tools (metrics, documentation generator, etc)
 
-  + AdaCore Tools benefit from having knowledge of application structure
+  + AdaCore tools benefit from having knowledge of application structure
 
 ---------------------------------
 Subsystems of Subsystems of ...
 ---------------------------------
 
-+ Projects support incremental, modular project definition
++ Projects support incremental/modular project definition
 
   + Projects can import other projects containing needed files
   + Child projects can extend parent projects
 
     + Inheriting all attributes of parent
-    + Can optionally override source files and other attributes
+    + Allows override of source files and other attributes
 
 + Allows structuring of large development efforts into hierarchical subsystems
 
@@ -109,7 +112,7 @@ Configurable Properties
   + Ada / C / C++ are preconfigured
 
 + Source file naming conventions
-+ et cetera
++ And many more
 
 --------------------------
 The Minimal Project File
@@ -126,7 +129,8 @@ Specifying Main Subprogram(s)
 
 + Optional
 
-  + If not specified in file, must be specified on command-line
+  + Some projects do not build an executable
+  + If necessary and not specified in file, must be specified on command-line
 
 + Can have more than one file named
 + A project-level setting

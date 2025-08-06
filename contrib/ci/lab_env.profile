@@ -17,10 +17,7 @@ CONTRIB_CI_DIR=$ROOTDIR/contrib/ci
 
 test "$ROOTDIR" != ""
 
-EXTERN=$ROOTDIR/extern
-
 export LD_LIBRARY_PATH=/usr/lib
-export GPR_PROJECT_PATH=$EXTERN/gnat_sdl:$EXTERN/game_support
 
 linker_display_search_path() {
     gcc -m64 -Xlinker --verbose  2>/dev/null \

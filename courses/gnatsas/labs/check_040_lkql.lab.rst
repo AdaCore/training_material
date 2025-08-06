@@ -159,7 +159,7 @@ Step 3 - Implement First Criteria
 
 1. Implement the first criteria:  **No use of any arithmetic or bitwise operator on the type**.
 
-   a. Need to fetch all operators - use global :lkql:`select` with :lkql:`BinOp` and :lkql:`UnOp` node kind patterns. (Field :lkql:`f_op` contains the kind of the operator.)
+   a. Need to fetch all operators - use global :lkql:`select` with :lkql:`BinOp` and :lkql:`UnOp` node kind patterns. (Component :lkql:`f_op` contains the kind of the operator.)
 
       .. code:: lkql
 
@@ -247,9 +247,9 @@ Step 6 - Improve Types Filter
 
 1. Update the :lkql:`types` function to also return types used as source type in conversions
 
-   * LAL field **f_suffix**
+   * LAL component **f_suffix**
 
-      * Returns **ParamAssocList** with a single element - source expression
+      * Returns **ParamAssocList** with a single component - source expression
       * Use on type conversion nodes to get source of conversions
 
    .. code:: lkql

@@ -74,43 +74,50 @@ def compare_content(title, actual_str):
     return retval
 
 
-def process_one_file(filename, interactive):
+def process_one_file(filename, explain):
     global VALIDATORS
 
     failures = None
 
     sections_needed = ["BEGIN", "ROLES", "SYMBOLS", "REQUIRES", "PROVIDES", "END"]
 
-    if interactive:
+    if explain:
         failures = []
     else:
         failures = ""
-    with open(filename, "r") as file:
-        content = file.read()
-        pieces = content.split(PRELUDE_FLAG)
-        for section in pieces:
-            stripped = section.strip()
-            name, content = section.split("\n", 1)
-            try:
-                sections_needed.remove(name)
-            except:
-                pass
-            content = content.strip()
-            if name in VALIDATORS.keys():
-                validator = VALIDATORS[name]
-                if not globals()[validator](name, content):
-                    if interactive:
-                        failures.extend(compare_content(name, content))
-                    else:
-                        failures = failures + " " + name
-    if len(sections_needed) > 0:
-        if interactive:
-            failures.append("Missing Section(s)")
-            for section in sections_needed:
-                failures.append("   " + section)
-        else:
-            for section in sections_needed:
-                failures = failures + " " + section
+
+    if not os.path.isfile(filename):
+        return failures
+
+    try:
+        with open(filename, "r") as file:
+            content = file.read()
+            pieces = content.split(PRELUDE_FLAG)
+            for section in pieces:
+                stripped = section.strip()
+                name, content = section.split("\n", 1)
+                try:
+                    sections_needed.remove(name)
+                except:
+                    pass
+                content = content.strip()
+                if name in VALIDATORS.keys():
+                    validator = VALIDATORS[name]
+                    if not globals()[validator](name, content):
+                        if explain:
+                            failures.extend(compare_content(name, content))
+                        else:
+                            failures = failures + " " + name
+        if len(sections_needed) > 0:
+            if explain:
+                failures.append("Missing Section(s)")
+                for section in sections_needed:
+                    failures.append("   " + section)
+            else:
+                for section in sections_needed:
+                    failures = failures + " " + section
+    except:
+        print("WARN: unable to process " + str(filename))
 
     return failures
 
@@ -118,9 +125,27 @@ def process_one_file(filename, interactive):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument(
-        "--files-to-check", type=Path, default=CONTRIB / "rst_files_with_prelude.txt"
+        "--files-to-check",
+        type=Path,
+        default=CONTRIB / "rst_files_with_prelude.txt",
+        help=(
+            "File containing list of files (wildcards allowed). "
+            + "Can be relative to the repository ("
+            + str(PROJECT)
+            + ") "
+            "or current directory (if no matches in the repository)"
+        ),
     )
-    ap.add_argument("--interactive", action="store_true")
+    ap.add_argument(
+        "--explain",
+        help="Give details as to why a file failed the check",
+        action="store_true",
+    )
+    ap.add_argument(
+        "--update",
+        help="Run 'rst_update_prelude' script to fix errors",
+        action="store_true",
+    )
     args = ap.parse_args()
 
     total_failures = 0
@@ -130,15 +155,27 @@ if __name__ == "__main__":
         files_with_prelude_glob = f.read().splitlines()
 
     for glob in files_with_prelude_glob:
+        if len(glob) == 0:
+            print("WARN: empty line found in " + str(args.files_to_check))
+            continue
+
         f_prel = list(PROJECT.glob(glob))
         if not f_prel:
             continue
 
         for one in f_prel:
-            failures = process_one_file(one, args.interactive)
+            failures = process_one_file(one, args.explain)
             if len(failures) > 0:
                 total_failures = total_failures + 1
-                if args.interactive:
+                if args.update:
+                    command = [
+                        str(sys.executable),
+                        os.path.join(CONTRIB, "rst_update_prelude.py"),
+                        "--in-place",
+                        one,
+                    ]
+                    subprocess.check_call(command)
+                elif args.explain:
                     print("FAIL: " + str(one))
                     for line in failures:
                         print("  " + line)

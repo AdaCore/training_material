@@ -391,7 +391,7 @@ Data Window
 
   + Name of the expression or variable
 
-    + Components / elements can be expanded
+    + Components / components can be expanded
 
   + Value
   + Type (Ada type definition)

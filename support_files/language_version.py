@@ -11,7 +11,6 @@ def tempname():
 
 
 def process_one_file(in_filename):
-
     lines = []
     with open(in_filename) as f:
         lines = f.read().splitlines()
@@ -27,7 +26,6 @@ def process_one_file(in_filename):
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--filename", required=True)
