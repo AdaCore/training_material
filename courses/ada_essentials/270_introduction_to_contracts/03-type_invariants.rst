@@ -129,9 +129,11 @@ Quiz
 
       package Counter_System is
          type Counter_T is private;
-         procedure Increment (Val_To_Inc : in out Counter_T);
+         procedure Increment (Val_To_Inc : 
+                              in out Counter_T);
       private
-         function Is_Valid (Val_To_Check : Integer) return Boolean;
+         function Is_Valid (Val_To_Check : Integer) 
+            return Boolean;
          type Counter_T is new Integer with
             Type_Invariant => Is_Valid (Integer (Counter_T));
       end Counter_System;
@@ -143,7 +145,8 @@ Quiz
          begin
             return New_Val;
          end Increment_Helper;
-         procedure Increment (Val_To_Inc : in out Counter_T) is
+         procedure Increment (Val_To_Inc : 
+                              in out Counter_T) is
          begin
             Val_To_Inc := Val_To_Inc + 1;
             Val_To_Inc := Increment_Helper (Val_To_Inc);
