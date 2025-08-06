@@ -5,8 +5,7 @@
 # Acceptance Criteria
 
 - [ ] As, the **Assignee**, I verify that the affected generated slides have been reviewed and are free of defects
-
-  * <!-- github link -->
+  - **Link (to Actions page of last related commit):** <!-- github link -->
 
 Note: you can get quick access to the slides with the following command
 
