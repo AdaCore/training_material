@@ -127,35 +127,38 @@ Quiz
 
    .. code:: Ada
 
-      package P is
-         type Some_T is private;
-         procedure Do_Something (X : in out Some_T);
+      package Counter_System is
+         type Counter_T is private;
+         procedure Increment (Val_To_Inc : 
+                              in out Counter_T);
       private
-         function Counter (I : Integer) return Boolean;
-         type Some_T is new Integer with
-            Type_Invariant => Counter (Integer (Some_T));
-      end P;
+         function Is_Valid (Val_To_Check : Integer) 
+            return Boolean;
+         type Counter_T is new Integer with
+            Type_Invariant => Is_Valid (Integer (Counter_T));
+      end Counter_System;
 
-      package body P is
-         function Local_Do_Something (X : Some_T)
-                                      return Some_T is
-            Z : Some_T := X + 1;
+      package body Counter_System is
+         function Increment_Helper (Helper_Num : Counter_T)
+                                      return Counter_T is
+            New_Val : Counter_T := Helper_Num + 1;
          begin
-            return Z;
-         end Local_Do_Something;
-         procedure Do_Something (X : in out Some_T) is
+            return New_Val;
+         end Increment_Helper;
+         procedure Increment (Val_To_Inc : 
+                              in out Counter_T) is
          begin
-            X := X + 1;
-            X := Local_Do_Something (X);
-         end Do_Something;
-         function Counter (I : Integer)
+            Val_To_Inc := Val_To_Inc + 1;
+            Val_To_Inc := Increment_Helper (Val_To_Inc);
+         end Increment;
+         function Is_Valid (Val_To_Check : Integer)
                            return Boolean is
             (True);
-      end P;
+      end Counter_System;
 
  .. container:: column
 
-    If `Do_Something` is called from outside of P, how many times is `Counter` called?
+    If `Increment` is called from outside of Counter_System, how many times is `Is_Valid` called?
 
        A. 1
        B. :answer:`2`
@@ -165,7 +168,7 @@ Quiz
     .. container:: animate
 
        Type Invariants are only evaluated on entry into and exit from
-       externally visible subprograms. So :ada:`Counter` is called when
-       entering and exiting :ada:`Do_Something` - not :ada:`Local_Do_Something`,
-       even though a new instance of :ada:`Some_T` is created
+       externally visible subprograms. So :ada:`Is_Valid` is called when
+       entering and exiting :ada:`Increment` - not :ada:`Increment_Helper`,
+       even though a new instance of :ada:`Counter_T` is created
 
