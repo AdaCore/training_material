@@ -10,7 +10,7 @@ Interfacing with C Lab
 
    - Given a C function that calculates speed in MPH from some information, your application should
 
-      + Ask user for distance and time
+      + Provide some values for distance and time (consider hard-coding, or prompting for user input)
       + Populate the structure appropriately
       + Call C function to return speed
       + Print speed to console
