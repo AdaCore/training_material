@@ -36,7 +36,6 @@ Ada Contracts
    - Range specifications
    - Parameter modes
    - Generic contracts
-   - OOP :ada:`interface` types
    - Work well, but on a restricted set of use-cases
 
 * Contract aspects to be more expressive
