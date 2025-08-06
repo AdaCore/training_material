@@ -89,7 +89,7 @@ Access Types Can Be Dangerous
    - Arrays are not pointers
    - Parameters are implicitly passed by reference
 
-* Only use them when needed
+.. tip:: Only use them when needed
 
 ---------------
 Stack Vs Heap
