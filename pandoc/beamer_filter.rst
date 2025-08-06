@@ -255,7 +255,7 @@ would keep resizing and defeat the purpose.
 animate Example
 -----------------
 
-**The following construct generates the "animation" affect you will**
+**The following construct generates the "animation" effect you will**
 **see by pressing "Page Down" multiple times**
 
 ::
