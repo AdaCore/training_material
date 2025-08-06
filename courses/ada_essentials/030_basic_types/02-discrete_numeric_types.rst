@@ -63,11 +63,11 @@ Operators for Signed Integer Type
 
 * By increasing precedence
 
-   :relational operator: :ada:`= | /= | < | <= | > | >=`
-   :binary adding operator: :ada:`+ | -`
-   :unary adding operator: :ada:`+ | -`
-   :multiplying operator: :ada:`* | / | mod | rem`
-   :highest precedence operator: :ada:`** | abs`
+   :relational operator: **=** :nbsp:` ` **/=** :nbsp:` `   **<** :nbsp:` `   **<=** :nbsp:` `   **>** :nbsp:` `   **>=**
+   :binary adding operator: **+** :nbsp:` `   **-**
+   :unary adding operator: **+** :nbsp:` `   **-**
+   :multiplying operator: **\*** :nbsp:` `   **/** :nbsp:` `   :ada:`mod` :nbsp:` `   :ada:`rem`
+   :highest precedence operator: **\*\*** :nbsp:` `   :ada:`abs` 
 
 .. note::
 
@@ -75,7 +75,6 @@ Operators for Signed Integer Type
 
        - Power **must** be :ada:`Integer` ``>= 0``
 
-.. warning:: Division by zero |rightarrow| :ada:`Constraint_Error`
 
 ------------------------
 Signed Integer Overflows
