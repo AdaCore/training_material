@@ -263,14 +263,14 @@ Quiz
    function Sqrt (X : Float) return Float;
    F : Float;
    B : Boolean;
-   X : Float := ...; -- assigned some Float value
+   Z : Float := ...; -- assigned some Float value
 
 Which statement(s) is (are) legal?
 
-   A. ``F := if X < 0.0 then Sqrt (-1.0 * X) else Sqrt (X);``
-   B. :answermono:`F := Sqrt (if X < 0.0 then -1.0 * X else X);`
-   C. :answermono:`B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0 else True);`
-   D. :answermono:`B := (if X < 0.0 then Sqrt (-1.0 * X) < 10.0);`
+   A. ``F := if Z < 0.0 then Sqrt (-1.0 * Z) else Sqrt (Z);``
+   B. :answermono:`F := Sqrt (if Z < 0.0 then -1.0 * Z else Z);`
+   C. :answermono:`B := (if Z < 0.0 then Sqrt (-1.0 * Z) < 10.0 else True);`
+   D. :answermono:`B := (if Z < 0.0 then Sqrt (-1.0 * Z) < 10.0);`
 
 .. container:: animate
 
@@ -279,5 +279,5 @@ Which statement(s) is (are) legal?
    A. Missing parentheses around expression
    B. Legal - Expression is already enclosed in parentheses so you don't need to add more
    C. Legal - :ada:`else True` not needed but is allowed
-   D. Legal - :ada:`B` will be :ada:`True` if X >= 0.0
+   D. Legal - :ada:`B` will be :ada:`True` if Z >= 0.0
 
