@@ -153,6 +153,8 @@ def parse_rst_list_file(dirname, f):
     for line in f:
         if "#" in line:
             source = line[: line.index("#")].strip()
+        elif "--" in line:
+            source = line[: line.index("--")].strip()
         else:
             source = line.strip()
 

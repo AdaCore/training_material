@@ -44,6 +44,12 @@ Generic Constants/Variables As Parameters
             Array_size     => V,
             High_Watermark => Max);
 
+------
+Quiz
+------
+
+.. include:: ../quiz/genericity_type_and_variable/quiz.rst
+
 -------------------------------
 Generic Subprogram Parameters
 -------------------------------
@@ -71,83 +77,93 @@ Generic Subprogram Parameters
       function Less_Than (L, R : Something_T) return Boolean;
       procedure My_Max is new Max (Something_T, Less_Than);
 
-----------------------------------------
-Generic Subprogram Parameters Defaults
-----------------------------------------
+------------------------------------------------------
+Generic Subprogram Parameters - Default Values (1/2)
+------------------------------------------------------
 
-* :ada:`is <>` - matching subprogram is taken by default
-* :ada:`is null` - null procedure is taken by default
+.. code:: Ada
+   :number-lines: 3
 
-   - Only available in Ada 2005 and later
+   generic
+      type Type_T is private;
+      with function "*" (L, R : Type_T) return Type_T is <>;
+   function Calculate (L, W : Type_T) return Type_T;
+
+
+* :ada:`is <>`
+
+   - If no subprogram specified for instance, compiler uses subprogram with **same**:
+
+      - Name
+      - Parameter profile (types only, not parameter name)
+
+* Instantiations
 
    .. code:: Ada
+      :number-lines: 4
 
-      generic
-        type T is private;
-        with function Is_Valid (P : T) return Boolean is <>;
-        with procedure Error_Message (P : T) is null;
-      procedure Validate (P : T);
+      type Record_T is record
+         Field : Integer;
+      end record;
+      function Multiply (L, R : Record_T) return Record_T; 
+   
+      function Allow_Default is new Calculate (Integer);
+      function Specify_Operator is new Calculate (Record_T, Multiply);
+      function Need_Operator is new Calculate (Record_T);
 
-      function Is_Valid_Record (P : Record_T) return Boolean;
+   * :ada:`Allow_Default` uses the implicit definition for :ada:`*`
+   * :ada:`Specify_Operator` passes in the appropriate definition via :ada:`Multiply`
+   * :ada:`Need_Operator` generates a compile error
 
-      procedure My_Validate is new Validate (Record_T,
-                                             Is_Valid_Record);
-      -- Is_Valid maps to Is_Valid_Record
-      -- Error_Message maps to a null procedure
+      :color-red:`main.adb:11:4: error: instantiation error at gen.ads:5`
+
+      :color-red:`gen.ads:5:1: error: instantiation error at gen.ads:5`
+
+      :color-red:`main.adb:11:4: error: no visible subprogram matches the specification for "*"`
 
 ..
   language_version 2005
 
-------
-Quiz
-------
-
-.. include:: ../quiz/genericity_type_and_variable/quiz.rst
-
-------
-Quiz
-------
-
-Given the following generic function:
+------------------------------------------------------
+Generic Subprogram Parameters - Default Values (2/2)
+------------------------------------------------------
 
 .. code:: Ada
+   :number-lines: 2
 
+   procedure Toggle (Switch : in out Boolean);
+   --  Toggle will flip Switch from True to False or
+   --  False to True
+
+   ---------------------------
+   -- Definition of Generic --
+   ---------------------------
    generic
-      type Some_T is private;
-      with function "+" (L : Some_T; R : Integer) return Some_T is <>;
-   function Incr (Param : Some_T) return Some_T;
+     with procedure Toggle (Switch : in out Boolean) is null;
+   procedure Print (Switch : in out Boolean);
 
-   function Incr (Param : Some_T) return Some_T is
+   -------------------------------
+   -- Implementation of Generic --
+   -------------------------------
+   procedure Print (Switch : in out Boolean) is
    begin
-      return Param + 1;
-   end Incr;
+      Toggle (Switch);
+      Put_Line (Switch'Image);
+   end Print;
 
-And the following declarations:
+* :ada:`is null` (for procedures only)
 
-.. code:: Ada
+   - If no procedure is specified, a null procedure will be used
 
-   type Record_T is record
-      Component : Integer;
-   end record;
-   function Add (L : Record_T; I : Integer) return Record_T is
-      ((Component => L.Component + I))
-   function Weird (L : Integer; R : Integer) return Integer is (0);
+* :ada:`procedure Instance1 is new Print;`
 
-Which of the following instantiation(s) is/are **not** legal?
+   * Line 18 will call a null subprogram because generic formal parameter :ada:`Toggle`
+     is not specified, so line 10 forces it to be a null subprogram
 
-A. ``function IncrA is new Incr (Integer, Weird);``
-B. ``function IncrB is new Incr (Record_T, Add);``
-C. :answermono:`function IncrC is new Incr (Record_T);`
-D. ``function IncrD is new Incr (Integer);``
+* :ada:`procedure Instance2 is new Print (Toggle);`
 
-.. container:: animate
-
-   :ada:`with function "+" (L : Some_T; R : Integer) return Some_T is <>;` indicates that if no function for :ada:`+` is passed in, find (if possible) a matching definition at the point of instantiation.
-
-   A. :ada:`Weird` matches the subprogram profile, so :ada:`Incr` will use :ada:`Weird` when doing addition for :ada:`Integer`
-   B. :ada:`Add` matches the subprogram profile, so :ada:`Incr` will use :ada:`Add` when doing the addition for :ada:`Record_T`
-   C. There is no matching :ada:`+` operation for :ada:`Record_T`, so that instantiation fails to compile
-   D. Because there is no parameter for the generic formal parameter :ada:`+`, the compiler will look for one in the scope of the instantiation. Because the instantiating type is numeric, the inherited :ada:`+` operator is found
+   * Line 18 will call the implementation of the procedure defined on line 2, because
+     that procedure is passed as the generic formal parameter :ada:`Toggle`
 
 ..
   language_version 2005

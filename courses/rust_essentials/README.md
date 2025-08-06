@@ -1,16 +1,13 @@
-# Overview
+# What Is This?
 
-This folder is a collection of modules for teaching the Rust language.
+This folder contains AdaCore's version of Google's Comprehensive Rust course.
+The actual course can be found here:
 
-The file **standard_course.txt** contains a list of all the modules that
-we expect to find in a typical *Rust Essentials* course. If you need
-to modify the list of included modules, this is the file you would change.
+   https://google.github.io/comprehensive-rust/
 
-This course was copied from https://github.com/raph-amiard/LASY-epita
+The Git repository for the course can be found here:
 
-## Naming Scheme
+   https://github.com/google/comprehensive-rust
 
-The module naming scheme uses a 3-digit prefix, followed by an underscore and
-then the description of the module (all lower case, words separated by "\_").
-The file extension for all modules should be ".rst". The 3-digit prefix
-should be used to suggest the proper order for teaching the modules.
+The code is based on the repository version 3cca473
+

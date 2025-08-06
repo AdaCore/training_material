@@ -145,17 +145,13 @@ By-Copy Vs By-Reference Types
 
   * This mode is discussed in the **Access Types** module
 
-------------------------------------------
-Unconstrained Formal Parameters or Return
-------------------------------------------
+---------------------------------
+Unconstrained Formal Parameters
+---------------------------------
 
 * Unconstrained **formals** are allowed
 
     - Constrained by **actual**
-
-* Unconstrained :ada:`return` is allowed too
-
-    + Constrained by the **returned object**
 
 .. code:: Ada
 
@@ -169,6 +165,35 @@ Unconstrained Formal Parameters or Return
      Print (Phase);          -- Formal'Range is X .. Y
      Print (State);          -- Formal'Range is 1 .. 4
      Print (State (3 .. 4)); -- Formal'Range is 3 .. 4
+
+---------------------------
+Unconstrained Return Type
+---------------------------
+
+* When a function returns an unconstrained type, the caller needs
+  to be able to handle it
+
+   .. code:: Ada
+
+      function Pad (Length : Natural) return String is
+         Padding : String(1..Length) := (others => ' ');
+      begin
+         return Padding;
+      end Pad;
+
+* The client can call :ada:`Pad` to initialize an object, or to assign
+  to an object of the expected size, or pass to another unconstrained parameter
+
+   .. code:: Ada
+
+      declare
+         This_Is_OK      : String := Pad (3);
+         This_Is_Bad     : String(1..10) := Pad(5);  -- runtime error
+         OK_For_Length_4 : String(1..4);
+      begin
+         Put_Line (Pad(50) & "This will always be OK");
+         OK_For_Length_4:= Pad (4);  --  Yes, this is OK
+         OK_For_Length_4:= Pad (5);  --  No, runtime error
 
 -----------------------------------
 Unconstrained Parameters Surprise

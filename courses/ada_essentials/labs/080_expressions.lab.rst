@@ -20,9 +20,6 @@ Expressions Lab
 
    - Use subtype membership for range validation
    - You will need *conditional expressions* in your functions
-   - You *can* use component-based iterations for some checks
-
-      * But you *must* use indexed-based iterations for others
 
 -----------------------------------
 Expressions Lab Solution - Checks

@@ -189,89 +189,37 @@ Aggregates with `others`
 Quiz
 ------
 
-What is the result of building and running this code?
-
 .. code:: Ada
 
-   procedure Main is
-      type Record_T is record
-         A, B, C : Integer;
-      end record;
-
-      V : Record_T := (A => 1);
-   begin
-      Put_Line (Integer'Image (V.A));
-   end Main;
-
-A. ``0``
-B. ``1``
-C. :answer:`Compilation error`
-D. Run-time error
-
-.. container:: animate
-
-   The aggregate is incomplete. The aggregate must specify all components. You could use box notation :ada:`(A => 1, others => <>)`
-
-------
-Quiz
-------
-
-What is the result of building and running this code?
-
-.. code:: Ada
-
-   procedure Main is
-      type My_Integer is new Integer;
-      type Record_T is record
-         A, B, C : Integer;
-         D : My_Integer;
-      end record;
-
-      V : Record_T := (others => 1);
-   begin
-      Put_Line (Integer'Image (V.A));
-   end Main;
-
-A. ``0``
-B. ``1``
-C. :answer:`Compilation error`
-D. Run-time error
-
-.. container:: animate
-
-   All components associated to a value using :ada:`others` must be of the same :ada:`type`.
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-   type Nested_T is record
-      Component : Integer;
+   type Record1_T is record
+      Single : Integer;
    end record;
-   type Record_T is record
-      One   : Integer;
-      Two   : Character;
-      Three  : Integer;
-      Four  : Nested_T;
+   type Record2_T is record
+      One, Two : Integer;
+      Three    : Short_Integer;
+      Four     : Record1_T;
    end record;
-   X, Y : Record_T;
-   Z    : constant Nested_T := (others => -1);
+
+   Obj1 : Record2_T;
+   Obj2 : Record2_T;
 
 Which assignment(s) is (are) legal?
 
-A. ``X := (1, '2', Three => 3, Four => (6))``
-B. :answermono:`X := (Two => '2', Four => Z, others => 5)`
-C. :answermono:`X := Y`
-D. :answermono:`X := (1, '2', 4, (others => 5))`
+.. container:: latex_environment small
+
+    A. ``Obj2 := (Four => Obj1)``
+    B. ``Obj2 := (Four => Obj1, others => 123)``
+    C. :answermono:`Obj2 := (One => 1, Four => Obj1, Three => 3, Two => 2)`
+    D. ``Obj2 := (One => 1, Four => (4), Three => 3, Two => 2)``
 
 .. container:: animate
 
-   A. :ada:`Four` **must** use named association
-   B. :ada:`others` valid: :ada:`One` and :ada:`Three` are :ada:`Integer`
-   C. Valid but :ada:`Y` is not initialized
-   D. Positional for all components
+   A. Aggregate must be complete - missing values for :ada:`One, Two, Three`
+   B. All fields specified via :ada:`others` must be of the same type (even if the value is
+      a literal that is allowed for the fields)
+   C. Legal (order is irrelevant when using named notation)
+   D. Field :ada:`Four` has a single component, so its aggregate must use named notation e.g.
+      ``(One => 1, Four => (Single => 4), Three => 3, Two => 2)``
 
 ------------------
 Delta Aggregates
