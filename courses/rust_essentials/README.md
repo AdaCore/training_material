@@ -9,5 +9,7 @@ The Git repository for the course can be found here:
 
    https://github.com/google/comprehensive-rust
 
-The code is based on the repository version 3cca473
+The code is based on the repository version 7fbaa23a
+
+   (Use "git rev-parse --short main" to get the hash)
 
