@@ -243,7 +243,7 @@ Separations of Concerns
 
 .. code:: Ada
 
-   function Validated_Value return Integer
+   function Validated_Value (Raw_Value : Integer) return Integer
     with Post => Validated_Value'Result /= 0
    is (if Raw_Value > 0 then Raw_Value else 1);
 
