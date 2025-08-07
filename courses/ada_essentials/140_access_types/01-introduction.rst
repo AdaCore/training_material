@@ -79,7 +79,7 @@ Access Types Can Be Dangerous
 
 * Introduces potential random failures complicated to analyze
 * Increase the complexity of the data structures
-* May decrease the performances of the application
+* May decrease the performance of the application
 
    - Dereferences are slightly more expensive than direct access
    - Allocations are a lot more expensive than stacking objects
@@ -89,7 +89,7 @@ Access Types Can Be Dangerous
    - Arrays are not pointers
    - Parameters are implicitly passed by reference
 
-* Only use them when needed
+.. tip:: Only use them when needed
 
 ---------------
 Stack Vs Heap

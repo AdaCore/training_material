@@ -13,7 +13,7 @@ procedure Main is
       Distance      : Interfaces.C.C_float;
       Distance_Type : Distance_T;
       Seconds       : Interfaces.C.C_float;
-   end record with Convention => C;
+   end record with Convention => C_Pass_By_Copy;
    function C_Miles_Per_Hour (Data : Data_T) return Interfaces.C.C_float
       with Import, Convention => C, External_Name => "miles_per_hour";
 

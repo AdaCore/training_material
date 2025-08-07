@@ -26,7 +26,7 @@ Assignment Statements
         type Km_T is range 0 .. Max_Kilometers;
 
         M : Miles_T := 2; -- universal integer legal for any integer
-        K : Km_T := 2; -- universal integer legal for any integer
+        K : Km_T := 2;    -- universal integer legal for any integer
      begin
         M := K; -- compile error
 
