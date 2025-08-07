@@ -24,8 +24,8 @@ begin
 
    --  Put_Line (Number_Of_Tests_T'Image(Number_Of_Tests));
    --  Put_Line (Test_Score_Total_T'Image(Test_Score_Total));
-   --  Put_Line (Angle_T'Image(Angle));
-   --  Put_Line (Color_T'Image(Color));
+   --  Put_Line (Degrees_T'Image(Angle));
+   --  Put_Line (Cmyk_T'Image(Color));
 
    -- operations / attributes
    --  Test_Score_Total := ? -- Divide total score by number of tests

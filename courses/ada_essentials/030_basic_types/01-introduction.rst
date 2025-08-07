@@ -92,7 +92,7 @@ Abstract Data Types (ADT)
 Ada "Named Typing"
 -------------------------
 
-* **Name** differentiate types
+* **Name** differentiates types
 * Structure does **not**
 * Identical structures may **not** be interoperable
 
@@ -201,6 +201,7 @@ Type Model Run-Time Costs
    - Run-time type checks can be disabled
 
 .. note:: Compile-time check is *free*
+
 
 .. container:: columns
 

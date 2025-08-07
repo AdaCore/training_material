@@ -332,7 +332,7 @@ More Information on Iterators
 
    .. code:: Ada
 
-      Ada2012 : Array_T(1..5) := 
+      Ada2022 : Array_T(1..5) := 
          [for I in 1 .. 2 => -1,
           for J in 4 ..5 => 1,
           others => 0];

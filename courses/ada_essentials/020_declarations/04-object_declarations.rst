@@ -11,8 +11,8 @@ Object Declarations
 
    .. code:: Ada
 
-      <name> : <subtype> [:= <initial value>];
-      <name> : constant <subtype> := <value>;
+      <name> : <typemark> [:= <initial_value>];
+      <name> : constant <type> := <value>;
 
 * Constant should have a value
 
@@ -69,7 +69,7 @@ Predefined Declarations
    - About **half the RM** in size
 
 * "Specialized Needs Annexes" for *optional*
-* Also, implementation specific extensions
+* Also, implementation-specific extensions
 
 ------------------------------------
 Implicit Vs Explicit Declarations
@@ -93,9 +93,9 @@ Implicit Vs Explicit Declarations
 
    * Compiler creates appropriate operators based on the underlying type
 
-      * Numeric types get standard math operators
-      * Array types get concatenation operator
-      * Most types get assignment operator
+      * **Numerics** - standard math operators
+      * **Arrays** - concatenation operator
+      * **Most types** - assignment operator
 
 -----------
 Elaboration

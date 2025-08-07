@@ -95,7 +95,7 @@ Comments
 Declaring Constants / Variables (simplified)
 ----------------------------------------------
 
-* An :dfn:`expression` is a piece of Ada code that returns a **value**.
+* An :dfn:`expression` is a piece of Ada code that returns a **value**
 
 .. code:: Ada
 
