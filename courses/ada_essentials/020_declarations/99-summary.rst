@@ -6,7 +6,7 @@ Summary
 Summary
 ---------
 
-* Declarations of a **single** type, permanently
+* Defines a **single** type, permanently
 
    - OOP adds flexibility
 

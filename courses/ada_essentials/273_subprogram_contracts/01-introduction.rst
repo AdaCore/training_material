@@ -2,9 +2,9 @@
 Introduction
 ==============
 
---------------------------
-:dfn:`Design-By-Contract`
---------------------------
+--------------------
+Design-By-Contract
+--------------------
 
 * Source code acting in roles of **client** and **supplier** under a binding **contract**
 
@@ -36,7 +36,6 @@ Ada Contracts
    - Range specifications
    - Parameter modes
    - Generic contracts
-   - OOP :ada:`interface` types
    - Work well, but on a restricted set of use-cases
 
 * Contract aspects to be more expressive
@@ -45,9 +44,9 @@ Ada Contracts
    - ... or by types (seen later)
    - Can have **arbitrary** conditions, more **versatile**
 
-------------------
-:dfn:`Assertion`
-------------------
+-----------
+Assertion
+-----------
 
 * Boolean expression expected to be :ada:`True`
 * Said *to hold* when :ada:`True`

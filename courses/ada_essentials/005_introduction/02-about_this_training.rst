@@ -29,18 +29,7 @@ Roundtable
 
 * 5 minute exercise
 
-    - Write down your answers to the following
-    - Then share it with the room
-
 * Experience in software development
-
-    - Languages
-    - Methodology
-
-* Experience and interest with the syllabus
-
-    - Current and upcoming projects
-    - Curious for something?
 
 * Your personal goals for this training
 

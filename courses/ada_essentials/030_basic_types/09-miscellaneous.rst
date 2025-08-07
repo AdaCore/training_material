@@ -73,7 +73,7 @@ Simple Static Type Derivation
 
    .. code:: Ada
 
-      type <identifier> is new <base_type> [<constraints>]
+      type <identifier> is new <base_type> [<constraints>];
 
 * Example
 

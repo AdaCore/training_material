@@ -4,7 +4,7 @@ procedure Main is
    type Days_Of_Week_T is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
    --  type Unconstrained_Array_T is ?
    --  Constant_Array : ?
-   --  Array2 : ?
+   --  Array_Var : ?
 
    --  type Name_T is ? (array of characters)
    --  Weekly_Staff : ? (array if an array of Name_T 
@@ -12,17 +12,17 @@ procedure Main is
 
 begin
    Put_Line ("Array Types");
-   -- Copy Constant_Array to Array2
-   -- For every item of Array2
+   -- Copy Constant_Array to Array_Var
+   -- For every item of Array_Var
       -- Print the item
 
-   -- Initialize Array2 via aggregate
-   -- For every item of Array2
+   -- Initialize Array_Var via aggregate
+   -- For every item of Array_Var
       -- Print the array index and the item
 
-   -- Copy part of Constant_Array to part of Array2
-   -- Set another part of Array2 to a known value
-   -- For every item of Array2
+   -- Copy part of Constant_Array to part of Array_Var
+   -- Set another part of Array_Var to a known value
+   -- For every item of Array_Var
       -- Print the item
 
    -- Initialize Weekly_Staff using nested aggregates

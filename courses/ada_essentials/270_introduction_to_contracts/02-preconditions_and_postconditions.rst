@@ -144,14 +144,15 @@ Postcondition :ada:`'Old` Attribute
 Function Postcondition :ada:`'Result` Attribute
 -------------------------------------------------
 
-* :ada:`function` result can be manipulated with :ada:`'Result`
+Function result can be referenced by :ada:`'Result` on the function name
 
    .. code:: Ada
-      function Greatest_Common_Denominator (A, B : Integer)
+
+      function Greatest_Common_Denominator (Num1, Num2 : Integer)
         return Integer with
-          Pre  =>  A > 0 and B > 0,
-          Post =>  Is_GCD (A, B,
-                           Greatest_Common_Denominator'Result);
+          Pre  => Num1 > 0 and Num2 > 0,
+          Post => Is_GCD (Num1, Num2,
+                          Greatest_Common_Denominator'Result);
 
 ------------------------------------------
 Preconditions and Postconditions Example
@@ -172,16 +173,16 @@ Quiz
 
 .. code:: Ada
 
-   function Area (L : Positive; H : Positive) return Positive is
-      (L * H)
+   function Area (Length : Positive; Height : Positive) return Positive is
+      (Length * Height)
    with Pre => ?
 
 Which pre-condition is necessary for :ada:`Area` to calculate the correct result for
-all values :ada:`L` and :ada:`H`?
+all values :ada:`Length` and :ada:`Height`?
 
-   A. ``L > 0 and H > 0``
-   B. ``L < Positive'Last and H < Positive'Last``
-   C. ``L * H in Positive``
+   A. ``Length > 0 and Height > 0``
+   B. ``Length < Positive'Last and Height < Positive'Last``
+   C. ``Length * Height in Positive``
    D. :answer:`None of the above`
 
 .. container:: animate
@@ -194,7 +195,7 @@ all values :ada:`L` and :ada:`H`?
 
    The correct precondition would be
 
-         :ada:`Integer'Last / L <= H`
+         :ada:`Integer'Last / Length <= Height`
 
    to prevent overflow errors on the range check.
 
@@ -242,17 +243,17 @@ Separations of Concerns
 
 .. code:: Ada
 
-   function Val return Integer
-    with Post => F'Result /= 0
-   is (if Val_Raw > 0 then Val_Raw else 1);
+   function Validated_Value (Raw_Value : Integer) return Integer
+    with Post => Validated_Value'Result /= 0
+   is (if Raw_Value > 0 then Raw_Value else 1);
 
-   procedure Process (I : Integer)
-    with Pre => I /= 0
-   is (Set_Output (10 / I));
+   procedure Process (Input_Value : Integer)
+    with Pre => Input_Value /= 0
+   is (Set_Output (10 / Input_Value));
 
    [...]
 
-   Process (Val);
+   Process (Validated_Value);
 
 * Review of interface: guaranteed to work
 
@@ -280,12 +281,12 @@ No Secret Precondition Requirements
 
 .. code:: Ada
 
-   package P is
+   package Basic_Package is
      function Foo return Bar
        with Pre => Hidden; -- illegal private reference
    private
      function Hidden return Boolean;
-   end P;
+   end Basic_Package;
 
 ---------------------------------------
 Postconditions Are Good Documentation

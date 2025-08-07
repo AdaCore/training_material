@@ -78,7 +78,7 @@ Aspect Clause Example: Objects
 
    .. code:: Ada
 
-      <identifier> : <subtype_indication> [:= <initial value>]
+      <identifier> : <indication> [:= <initial value>]
                           with aspect_mark [ => expression]
                           {, aspect_mark [ => expression] };
 
@@ -103,7 +103,7 @@ Aspect Clause Example: Objects
 Boolean Aspect Clauses
 ------------------------
 
-* **Boolean** aspects only
+* **Boolean** values only
 * Longhand
 
   .. code:: Ada

@@ -2,17 +2,21 @@
 Introduction
 ==============
 
-----------------------
-Advanced Expressions
-----------------------
+---------------------------
+Beyond Simple Expressions
+---------------------------
 
 * Different categories of expressions above simple assignment and conditional statements
 
-   - Constraining types to sub-ranges to increase readability and flexibility
+* Can constrain types to sub-ranges 
+   
+   -  Allows for simple membership checks of values
 
-      + Allows for simple membership checks of values
+   - Increases readability and flexibility
 
-   - Embedded conditional assignments
+* Embedded conditional assignments
 
-      + Equivalent to C's ``A ? B : C`` and even more elaborate
+   - Equivalent to C's ``A ? B : C``
+
+   - ...and even more elaborate!
 

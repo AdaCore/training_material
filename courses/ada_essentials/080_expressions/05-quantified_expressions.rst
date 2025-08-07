@@ -2,9 +2,9 @@
 Quantified Expressions
 ========================
 
--------------
-Introduction
--------------
+------------------------
+Quantified Expressions
+------------------------
 
 * Expressions that have a Boolean value
 * The value indicates something about a set of objects

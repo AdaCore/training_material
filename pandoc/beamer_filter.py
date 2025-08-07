@@ -408,6 +408,7 @@ def source_file_contents(filename, keywords):
     if "end-before" in keywords.keys():
         end_before = keywords["end-before"]
 
+    # begin_ug
     if os.path.isfile(filename):
         with open(filename, "r") as the_file:
             for line in the_file:
@@ -422,6 +423,7 @@ def source_file_contents(filename, keywords):
                 else:
                     retval = retval + line
         return retval
+    # end_ug
     else:
         return filename
 

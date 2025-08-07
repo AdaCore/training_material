@@ -9,12 +9,15 @@ String Literals
 * A :dfn:`literal` is a *textual* representation of a value in the code
 
 .. code:: Ada
-
+   
+   -- two double quotes with nothing inside
    A_Null_String : constant String := "";
-      -- two double quotes with nothing inside
+
    String_Of_Length_One : constant String := "A";
+
    Embedded_Single_Quotes : constant String
                           := "Embedded 'single' quotes";
+                          
    Embedded_Double_Quotes : constant String
                           := "Embedded ""double"" quotes";
 
@@ -22,21 +25,21 @@ String Literals
 
    Note that the last example literal (that has embedded double quotes) is not an example of concatenation!
 
---------------------------
-Decimal Numeric Literals
---------------------------
+------------------
+Numeric Literals
+------------------
 
 * Syntax
 
    .. code::
 
-      decimal_literal ::=
-        numeral [.numeral] E [+numeral|-numeral]
+      numeric_literal ::= numeral [.numeral] [exponent]
+      exponent ::= E [ + | - ] numeral
       numeral ::= digit {['_'] digit}
 
 .. tip:: Underscore is **not** significant and helpful for grouping
 
-* **E** (exponent) must always be integer
+* **E** (exponent) must always be an integer
 * Examples
 
    .. code:: Ada
@@ -56,7 +59,7 @@ Based Numeric Literals
 * Base can be 2 .. 16
 * Exponent is always a base 10 integer
 
-   ::
+   .. code:: Ada
 
       16#FFF#           => 4095
       2#1111_1111_1111# => 4095 -- With underline
