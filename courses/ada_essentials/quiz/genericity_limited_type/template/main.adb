@@ -30,6 +30,13 @@ procedure Main is
    --$ line cut
    procedure P is new G_P (Int, Int);
 
+   --$ begin answer
+   -- Actual for formal :ada:`L` can be anything, so it's not a problem.
+   -- 
+   -- :ada:`Rec` contains a :ada:`limited` component, so it
+   -- is more restrictive than formal :ada:`P`
+   --$ end answer
+
 begin
    null;
 end Main;

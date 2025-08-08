@@ -21,3 +21,10 @@ A. :answermono:`pragma Assert (A1 /= null)`
 B. ``pragma Assert (A1.all'Size > 32)``
 C. :answermono:`pragma Assert (A2 = B2)`
 D. ``pragma Assert (A2 - B2 /= 0)``
+
+.. container:: animate
+
+   A. Can always check a n access for Null
+   B. T1 is incomplete, so we don't know its size
+   C. Comparison of private types is allowed
+   D. We do not know if :ada:`T2` allows math

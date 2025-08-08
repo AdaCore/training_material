@@ -61,22 +61,6 @@ Syntax (partial)
 Quiz
 ------
 
-Which of the following statement is true?
-
-A. Generic contracts define new types
-B. Generic contracts can express any type constraint
-C. :answer:`Generic contracts can express inheritance constraint`
-D. Generic contracts can require a type to be numeric (:ada:`Real` or :ada:`Integer`)
-
-.. container:: animate
-
-   A. No, the formal type and the actual type just have different views
-   B. Counter-example: representation clauses
-
-------
-Quiz
-------
-
 .. include:: ../quiz/generic_subp_syntax/quiz.rst
 
 ------

@@ -98,7 +98,46 @@ Writing Limited Constructor Functions
 Quiz
 ------
 
-.. include:: ../quiz/limited_constructor_syntax/quiz.rst
+.. code:: Ada
+
+   type T is limited record
+      I : Integer;
+   end record;
+
+Which piece(s) of code is (are) a legal constructor for :ada:`T`?
+
+.. container:: columns
+
+  .. container:: column
+
+    A. | :answermono:`function F return T is`
+       | :answermono:`begin`
+       | :answermono:`   return T'(I => 0);`
+       | :answermono:`end F;`
+    B. | :answermono:`function F return T is`
+       | :answermono:`   Val : Integer := 0;`
+       | :answermono:`begin`
+       | :answermono:`   return (I => Val);`
+       | :answermono:`end F;`
+
+  .. container:: column
+
+    C. | ``function F return T is``
+       | ``   Ret : T := (I => 0);``
+       | ``begin``
+       | ``   return Ret;``
+       | ``end F;``
+    D. | ``function F return T is``
+       | ``begin``
+       | ``   return (0);``
+       | ``end F;``
+
+.. container:: animate
+
+   A. Create an object using a qualifier
+   B. Create an object inline
+   C. Cannot copy an object
+   D. Single component record needs named notation
 
 ------
 Quiz

@@ -29,7 +29,7 @@ procedure Main is
       return R : T do
          R.I := 1;
       end return;
-      -- OK
+      -- Assign a value to a component of the extended return object
       --$ end cut
 
    --$ begin question

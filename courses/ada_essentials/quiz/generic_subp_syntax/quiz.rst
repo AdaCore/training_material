@@ -19,4 +19,5 @@ D. ``procedure Do_D is new Do_Something (Boolean, Boolean)``
 .. container:: animate
 
     :ada:`T2` can be almost anything, so it's not the issue
+
     :ada:`T` must be discrete, so it cannot be :ada:`String`
