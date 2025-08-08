@@ -28,7 +28,7 @@ Ada "Named Typing"
 Categories of Types
 ---------------------
 
-.. image:: types_tree.png
+.. image:: types_tree_complete.svg
 
 ---------------------------------
 Understanding Types vs Subtypes
