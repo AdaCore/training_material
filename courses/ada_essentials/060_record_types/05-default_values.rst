@@ -97,12 +97,12 @@ Quiz
    function Next return Natural; -- returns next number starting with 1
 
    type Record_T is record
-      A, B : Integer := Next;
-      C    : Integer := Next;
+      Height, Width : Integer := Next;
+      Color         : Integer := Next;
    end record;
-   R : Record_T := (C => 100, others => <>);
+   Shape : Record_T := (Color => 100, others => <>);
 
-What is the value of R?
+What is the value of Shape?
 
 A. (1, 2, 3)
 B. (1, 1, 100)
@@ -113,10 +113,11 @@ D. (100, 101, 102)
 
  Explanations
 
- A. :ada:`C => 100`
+ A. :ada:`Color => 100`
  B. Multiple declaration calls :ada:`Next` twice
- C. Correct
- D. :ada:`C => 100` has no effect on :ada:`A` and :ada:`B`
+ C. :ada:`Height` is first call to :ada:`Next` (1), :ada:`Width`
+    is second call to :ada:`Next` (2), :ada:`Color` initialized  to 100
+ D. :ada:`Color => 100` has no effect on :ada:`Height` and :ada:`Width`
 
 ..
   language_version 2012

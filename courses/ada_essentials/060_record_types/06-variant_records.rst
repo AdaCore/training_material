@@ -152,26 +152,48 @@ Mutable Variant Record Example
 Quiz
 ------
 
-.. code:: Ada
+.. container:: columns
 
-    type Variant_T (Sign : Integer) is record
-        case Sign is
-        when Integer'First .. -1 =>
-            I : Integer;
-            B : Boolean;
-        when others =>
-            N : Natural;
-        end case;
-    end record;
+  .. container:: column
 
-    Variant_Object : Variant_T (1);
+    .. container:: latex_environment tiny
 
-Which component(s) does :ada:`Variant_Object` contain?
+      .. code:: Ada
+        :number-lines: 2
 
-A. :ada:`Variant_Object.I, Variant_Object.B`
-B. :answermono:`Variant_Object.N`
-C. None: Compilation error
-D. None: Run-time error
+        type Variant_T (Valid : Integer) is record
+            case Valid is
+            when Integer'First .. -1 =>
+                Value : Integer;
+                State : Boolean;
+            when others =>
+                Number : Natural;
+            end case;
+        end record;
+
+        Variant_Object : Variant_T (1);
+
+  .. container:: column
+
+    Which component(s) does :ada:`Variant_Object` contain?
+
+    A. :ada:`Variant_Object.Value,`
+       :ada:`Variant_Object.State`
+    B. :answermono:`Variant_Object.Number`
+    C. None: Compilation error
+    D. None: Run-time error
+
+.. container:: animate
+
+  **Explanation**
+
+  * Variant block covers all possible values of :ada:`Valid`, so no
+    compilation error.
+
+  * Discriminant has a value 1, which is in range, so no run-time error.
+
+  * :ada:`Valid` is covered in :ada:`when` block on line 7, so
+    only field :ada:`Number` is valid.
 
 ------
 Quiz

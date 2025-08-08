@@ -90,3 +90,12 @@ B. :answermono:`T'Pos (V) = 0`
 C. ``T'Image (T'Pos (V)) = Left``
 D. ``T'Val (T'Pos (V) - 1) = Bottom``
 
+.. container:: animate
+
+   Explanations
+
+   A. :ada:`'Value` converts an image to a string
+   B. :ada:`'Pos` returns position in enumeration starting at 0
+   C. :ada:`'Image` returns a string
+   D. Argument of :ada:`'Val` must be in range - here it's -1
+

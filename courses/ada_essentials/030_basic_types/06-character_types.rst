@@ -99,7 +99,28 @@ Ada.Characters.Handling Sample Content
 Quiz
 ------
 
-.. include:: ../quiz/user_defined_character/quiz.rst
+.. code:: Ada
+
+    type Char_T is (NUL, A, B, 'C');
+    for Char_T use (NUL => 0, A => 1, B => 2, 'C' => 3);
+    type Str_T is array (Positive range <>) of Char_T;
+    Example : Str_T := "CC" & A & NUL;
+
+Which of the following proposition(s) is (are) true
+
+A. The code fails at run-time
+B. ``Example'Length = 3``
+C. :answermono:`Example (1) = 'C'`
+D. :answermono:`Example (3) = A`
+
+.. container:: animate
+
+   Explanations
+
+   A. Unconstrained string is initialized correctly
+   B. Null character in Ada is still a character, so length is 4
+   C. First element in :ada:`Example` is the character 'C'
+   D. Third element in :ada:`Example` is the enumeral :ada:`A`
 
 ------
 Quiz
@@ -118,3 +139,12 @@ A. ``NUL = 0``
 B. ``NUL = '\0'``
 C. :answermono:`Character'Pos (NUL) = 0`
 D. :answermono:`Is_Control (NUL)`
+
+.. container:: animate
+
+   Explanations
+
+   A. :ada:`NUL` is an enumeral - it has no "value
+   B. :ada:`NUL` cannot be treated as a C-style value
+   C. :ada:`NUL` is in the first position (0) of the character type
+   D. :ada:`Handling` considers :ada:`NUL` as a control character
