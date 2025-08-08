@@ -119,7 +119,7 @@ Which statement(s) is (are) legal?
    Explanations
 
    A. :ada:`function` is a reserved word
-   B. Correct
+   B. Correct - the underscore makes it just another name
    C. Cannot have inline comments
    D. C-style declaration not allowed
 
