@@ -178,6 +178,13 @@ B. Run-time error
 C. :answer:`The calling task hangs`
 D. :answer:`My_Task hangs`
 
+.. container:: animate
+
+    A. Syntax is correct
+    B. Code is doing what it is supposed to
+    C. Caller is waiting for :ada:`Go` block to finish
+    D. :ada:`Go` block is entered, but never completes
+
 ------
 Quiz
 ------
@@ -204,6 +211,13 @@ A. Compilation error
 B. Run-time error
 C. The calling task hangs
 D. :answer:`My_Task hangs`
+
+.. container:: animate
+
+    A. Syntax is correct
+    B. Code is doing what it is supposed to
+    C. :ada:`Go` block has completed, so Caller continues on
+    D. :ada:`My_Task` is stuck in an infinite loop
 
 ------
 Quiz

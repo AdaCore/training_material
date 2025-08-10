@@ -164,7 +164,7 @@ Which completion(s) of :ada:`P` is (are) illegal?
 
 .. container:: animate
 
-   A. Legal
+   A. Legal - Assignment to global object allowed in procedure
    B. Legal - subprograms do not need parameters
    C. Functions in a protected object cannot modify global objects
-   D. Legal
+   D. Legal - Reading of global object allowed in function

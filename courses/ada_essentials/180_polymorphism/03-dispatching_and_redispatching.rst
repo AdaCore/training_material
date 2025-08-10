@@ -191,7 +191,7 @@ What is the value returned by :ada:`Service_Code (Appliance_Robot'Class (Robot_O
 
    Explanations
 
-   A. Correct
+   A. Correct - :ada:`Robot_Object` is actually a :ada:`Vacuum_Robot`, so that is the version of :ada:`Service_Code` that is called
    B. Would be correct if :ada:`Robot_Object` was a :ada:`Appliance_Robot` - :ada:`Appliance_Robot'Class` leaves the object as :ada:`Vacuum_Robot`
    C. Object is initialized to something in :ada:`Robot'Class`, but it doesn't have to be :ada:`Robot`
    D. Would be correct if function parameter types were :ada:`'Class`

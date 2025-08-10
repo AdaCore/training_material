@@ -228,7 +228,7 @@ D. | ``subtype Wknd is Days_T with``
 
    Explanations
 
-   A. Correct
+   A. Static predicate is allowed when condition is a static membership test
    B. :ada:`If` statement not allowed in a predicate
    C. Function call not allowed in :ada:`Static_Predicate` (this would be OK for :ada:`Dynamic_Predicate`)
    D. Missing parentheses around :ada:`case` expression

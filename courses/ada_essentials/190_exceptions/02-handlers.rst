@@ -241,7 +241,8 @@ Quiz
       Explanations
 
       A. :ada:`One` is never printed, as although :ada:`(A - C)` is not in the range of :ada:`0 .. 100`, this is only checked on assignment (so after the addition of :ada:`B`).
-      B. Correct
+      B. Line 6 does not raise an exception, (so ``One`` is not printed), but Line 2 does - causing ``Two`` to be printed
+         But Line 16 also raises an exception, causing ``Three`` to be printed.
       C. If we reach :ada:`Two`, the assignment on line 16 will cause :ada:`Three` to be reached
       D. Divide by 0 on line 13 causes an exception, so :ada:`Two` must be called
 
