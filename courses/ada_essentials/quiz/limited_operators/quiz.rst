@@ -17,7 +17,7 @@ D. :answermono:`function "=" (A, B : T) return Boolean is (A.I = T'(I => B.I).I)
 
 .. container:: animate
 
-   A. Returning a copy of a limited object is not allowed
-   B. Creating a new object
-   C. No actual comparison happening
-   D. Comparing components is allowed
+    A. Returning a copy of a limited object is not allowed
+    B. Creating a new object
+    C. No actual comparison happening
+    D. Comparing components is allowed

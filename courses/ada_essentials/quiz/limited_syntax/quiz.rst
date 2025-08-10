@@ -20,7 +20,7 @@ D. :answermono:`B := (L1.I = L2.I)`
 
 .. container:: animate
 
-   A. Element is not limited
-   B. No copy of limited objects
-   C. No comparison of limited objects
-   D. Elements can be compared
+    A. Element is not limited
+    B. No copy of limited objects
+    C. No comparison of limited objects
+    D. Elements can be compared
