@@ -11,8 +11,8 @@
     use type Weights.Weight;
     
     procedure Main is
-       The_Shape : Shapes.Shape;
-       The_Color : Colors.Color;
+       The_Shape  : Shapes.Shape;
+       The_Color  : Colors.Color;
        The_Weight : Weights.Weight;
 
 Which statement(s) is (are) valid?

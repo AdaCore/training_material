@@ -26,7 +26,6 @@ D. :answermono:`procedure P is new G_P (Int, Int)`
 
 .. container:: animate
 
-    Actual for formal :ada:`L` can be anything, so it's not a problem.
-   
-    :ada:`Rec` contains a :ada:`limited` component, so it
-    is more restrictive than formal :ada:`P`
+    * Actual for formal :ada:`L` can be anything, so it's not a problem.
+    * :ada:`Rec` contains a :ada:`limited` component, so it
+      is more restrictive than formal :ada:`P`
