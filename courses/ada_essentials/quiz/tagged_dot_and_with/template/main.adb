@@ -26,7 +26,7 @@ begin
    -- :ada:`Set_Color` made visible by :ada:`use Colors`
    --$ end cut
    --$ begin cut
-   Set_Color (The_Weight);
+   Set_Weight (The_Weight);
    -- :ada:`use type Weights.Weight` only gives visibility to operators; needs to be :ada:`use all type`
    --$ end cut
 end Main;
