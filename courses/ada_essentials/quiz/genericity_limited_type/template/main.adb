@@ -32,8 +32,7 @@ procedure Main is
 
    --$ begin answer
    -- * Actual for formal :ada:`L` can be anything, so it's not a problem.
-   -- * :ada:`Rec` contains a :ada:`limited` component, so it
-   --   is more restrictive than formal :ada:`P`
+   -- * :ada:`Rec` contains a :ada:`limited` component, so it is more restrictive than formal :ada:`P`
    --$ end answer
 
 begin

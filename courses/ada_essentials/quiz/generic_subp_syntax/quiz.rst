@@ -14,7 +14,7 @@ Which declaration(s) is (are) legal?
 A. ``procedure Do_A is new Do_Something (String, String)``
 B. ``procedure Do_B is new Do_Something (Character, Character)``
 C. ``procedure Do_C is new Do_Something (Integer, Integer)``
-D. ``procedure Do_D is new Do_Something (Boolean, Boolean)``
+D. ``procedure Do_D is new Do_Something (Float, Boolean)``
 
 .. container:: animate
 
