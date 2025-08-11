@@ -16,35 +16,6 @@ Access Types Design
   - In the absence of :ada:`Unchecked_Deallocation`
   - And if pool-specific
 
-.. container:: columns
-
- .. container:: column
-
-  * Ada
-
-  .. code:: Ada
-
-     type Integer_Pool_Access
-       is access Integer;
-     P_A : Integer_Pool_Access
-       := new Integer;
-
-     type Integer_General_Access
-       is access all Integer;
-     G : aliased Integer;
-     G_A : Integer_General_Access := G'Access;
-
- .. container:: column
-
-  * C++
-
-  .. code:: C++
-
-     int * P_C = malloc (sizeof (int));
-     int * P_CPP = new int;
-     int * G_C = &Some_Int;
-.
-
 -----------------------------------------
 Access Types - General vs Pool-Specific
 -----------------------------------------
@@ -68,6 +39,16 @@ Access Types - General vs Pool-Specific
       * Used with Ada's controlled memory management (pools)
       * Can only point to object created by :ada:`new`
       * Memory management tied to specific storage pool
+
+
+.. note::
+
+   C/C++ uses the same syntax whether pointing to stack or heap
+
+   .. code:: C++
+
+     int * PointToHeap = malloc (sizeof (int));
+     int * PointToStack = &Some_Int;
 
 -------------------------------
 Access Types Can Be Dangerous
