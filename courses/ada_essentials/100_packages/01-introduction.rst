@@ -34,7 +34,7 @@ Basic Syntax and Nomenclature
 
       .. code:: Ada
 
-            package <name> is
+            package <identifier> is
                {basic_declarative_item}
             end [name];
 

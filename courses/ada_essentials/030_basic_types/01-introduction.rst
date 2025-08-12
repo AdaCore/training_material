@@ -56,7 +56,7 @@ A Little Terminology
 
    .. code:: Ada
 
-      type <identifier> is <type definition>;
+      type <identifier> is <type_definition>;
 
 * **Type definition** defines its structure
 

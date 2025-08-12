@@ -11,7 +11,7 @@ Import / Export Aspects (1/2)
    * :ada:`Import` indicates a subprogram imported into Ada
    * :ada:`Export` indicates a subprogram exported from Ada
 
-* Need aspects definining calling convention and external identifier
+* Need aspects defining calling convention and external identifier
 
   * :ada:`Convention => C` tells linker to use C-style calling convention
   * :ada:`External_Name => "<identifier>"` defines object identifier for linker

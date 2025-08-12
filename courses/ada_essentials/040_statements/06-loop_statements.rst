@@ -21,7 +21,7 @@ Basic Loops and Syntax
 
    .. code::
 
-      iteration_scheme ::= while <boolean expression>
+      iteration_scheme ::= while <boolean_expression>
                            | for <loop_parameter_specification>
                            | for <loop_iterator_specification>
 
@@ -46,7 +46,7 @@ Loop Exit Statements
 
    .. code:: Ada
 
-      exit [<loop_identifier>] [when <boolean expression>];
+      exit [<loop_identifier>] [when <boolean_expression>];
 
 * :ada:`exit when` exits with condition
 
