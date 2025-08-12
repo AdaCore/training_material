@@ -26,24 +26,6 @@ Named Numbers
       Pi : constant := 3.141592654;
       One_Third : constant := 1.0 / 3.0;
 
---------------------------------------
-A Sample Collection of Named Numbers
---------------------------------------
-
-.. code:: Ada
-
-   package Physical_Constants is
-     Polar_Radius : constant := 20_856_010.51;
-     Equatorial_Radius : constant := 20_926_469.20;
-     Earth_Diameter : constant :=
-       2.0 * ((Polar_Radius + Equatorial_Radius)/2.0);
-     Gravity : constant := 32.1740_4855_6430_4;
-     Sea_Level_Air_Density : constant :=
-       0.002378;
-     Altitude_Of_Tropopause : constant := 36089.0;
-     Tropopause_Temperature : constant := -56.5;
-   end Physical_Constants;
-
 ----------------------
 Named Number Benefit
 ----------------------

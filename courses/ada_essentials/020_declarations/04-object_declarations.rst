@@ -29,6 +29,36 @@ Object Declarations
       -- dynamic initial value via function call
       Root : Tree := F(X);
 
+-----------
+Elaboration
+-----------
+
+* :dfn:`Elaboration` has several facets:
+
+  * **Initial value** calculation
+
+    - Evaluation of the expression
+    - Done at **run-time** (unless static)
+
+  * Object creation
+
+    - Memory **allocation**
+    - Initial value assignment (and type checks)
+
+* Runs in linear order
+
+   - Follows the program text
+   - Top to bottom
+
+   .. code:: Ada
+
+      declare
+        First_One : Integer := 10;
+        Next_One : Integer := First_One;
+        Another_One : Integer := Next_One;
+      begin
+        ...
+
 ------------------------------
 Multiple Object Declarations
 ------------------------------
@@ -96,36 +126,6 @@ Implicit Vs Explicit Declarations
       * **Numerics** - standard math operators
       * **Arrays** - concatenation operator
       * **Most types** - assignment operator
-
------------
-Elaboration
------------
-
-* :dfn:`Elaboration` has several facets:
-
-  * **Initial value** calculation
-
-    - Evaluation of the expression
-    - Done at **run-time** (unless static)
-
-  * Object creation
-
-    - Memory **allocation**
-    - Initial value assignment (and type checks)
-
-* Runs in linear order
-
-   - Follows the program text
-   - Top to bottom
-
-   .. code:: Ada
-
-      declare
-        First_One : Integer := 10;
-        Next_One : Integer := First_One;
-        Another_One : Integer := Next_One;
-      begin
-        ...
 
 ------
 Quiz
