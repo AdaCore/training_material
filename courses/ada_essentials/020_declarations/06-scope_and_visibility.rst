@@ -28,33 +28,26 @@ Introducing Block Statements
    - Can be **nested**
    - Declarations **can hide** outer variables
 
-.. container:: columns
+* Syntax
 
- .. container:: column
+   .. code:: Ada
 
-    * Syntax
+      [<block-identifier>:] declare <declarative part>
+      begin
+         <statements>
+      end [block-identifier];
 
-       .. code:: Ada
+* Example
 
-          [<block-identifer> :] declare
-             <declarative part>
-          begin
-             <statements>
-          end [block-identifer];
+   .. code:: Ada
 
- .. container:: column
-
-    * Example
-
-       .. code:: Ada
-
-          Swap: declare
-            Temp : Integer;
-          begin
-            Temp := U;
-            U := V;
-            V := Temp;
-          end Swap;
+      Swap: declare
+        Temp : Integer;
+      begin
+        Temp := U;
+        U := V;
+        V := Temp;
+      end Swap;
 
 ----------------------
 Scope and "Lifetime"

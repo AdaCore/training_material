@@ -15,9 +15,9 @@ Basic Loops and Syntax
 
    .. code:: Ada
 
-     [<identifier> :] [iteration_scheme] loop
+     [<loop-identifier> :] [iteration_scheme] loop
            <statements>
-      end loop [<identifier>];
+      end loop [<loop-identifier>];
 
    .. code::
 
@@ -46,7 +46,7 @@ Loop Exit Statements
 
    .. code:: Ada
 
-      exit [<loop_identifier>] [when <boolean_expression>];
+      exit [<loop-identifier>] [when <boolean_expression>];
 
 * :ada:`exit when` exits with condition
 
@@ -140,15 +140,19 @@ For in Statements
 
 * Syntax
 
+.. container:: latex_environment footnotesize
+
    .. code:: Ada
 
       for <identifier> in [reverse] <discrete_subtype_definition> loop
-      ...
+         ...
       end loop;
 
 * Example
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+   .. code:: Ada
 
      for Day in Days_T loop
         Refresh_Planning (Day);
@@ -189,7 +193,10 @@ Low-Level For-loop Parameter Type
 * The type can be implicit
 
    - As long as it is clear for the compiler
-   - Warning: same identifier can belong to several enums
+
+.. warning::
+
+   Same identifier can belong to several enums
 
 .. container:: latex_environment scriptsize
 
@@ -302,7 +309,7 @@ Iterations Exit Statements
 
   .. code:: Ada
 
-        exit [<loop_identifier>] [when <condition>]
+        exit [<loop-identifier>] [when <condition>]
 
 * No identifier: Loop exited **entirely**
 

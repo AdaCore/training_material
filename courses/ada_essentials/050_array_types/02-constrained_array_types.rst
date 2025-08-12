@@ -12,13 +12,13 @@ Syntax (simplified)
 
    .. code:: Ada
 
-      type <typemark> is array (<index_constraint>) of <constrained_type>;
+      type <identifier> is array (<index_constraint>) of <constrained_type>;
 
 where
 
 .. container:: latex_environment quote
 
-      **typemark** - identifier
+      **identifier** - identifier we use for the typemark
 
       **index constraint** - discrete range or type
 

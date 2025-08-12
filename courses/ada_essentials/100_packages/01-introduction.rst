@@ -34,15 +34,15 @@ Basic Syntax and Nomenclature
 
       .. code:: Ada
 
-            package <identifier> is
+            package <name> is
                {basic_declarative_item}
-            end [identifier];
+            end [name];
 
 * Body
 
       .. code:: Ada
 
-            package body <identifier> is
+            package body <name> is
                declarative_part
             end [identifier];
 

@@ -54,6 +54,8 @@ Array/Container For-Loops
 * Work in terms of components within an object
 * Syntax hides indexing/iterator controls
 
+.. container:: latex_environment footnotesize
+
    .. code:: Ada
 
       for <identifier> of [reverse] <array_or_container_object> loop
