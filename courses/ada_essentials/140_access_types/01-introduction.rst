@@ -48,7 +48,7 @@ Access Types - General vs Pool-Specific
    .. code:: C++
 
      int * PointToHeap = malloc (sizeof (int));
-     int * PointToStack = &Some_Int;
+     int * PointToStack = &SomeInt;
 
 -------------------------------
 Access Types Can Be Dangerous
