@@ -36,7 +36,7 @@ Basic Syntax and Nomenclature
 
             package <identifier> is
                {basic_declarative_item}
-            end [name];
+            end [identifier];
 
 * Body
 
