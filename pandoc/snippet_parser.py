@@ -22,7 +22,7 @@ def source_file_contents(filename, start_after, end_before):
                 elif len(end_before) > 0 and end_before == line.strip():
                     break
                 # Do not echo lines with tags we're not looking for
-                elif line.strip().startswith ("--|"):
+                elif line.strip().startswith("--|"):
                     pass
                 # otherwise add this to the return value
                 else:
