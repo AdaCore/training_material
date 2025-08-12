@@ -398,11 +398,13 @@ source_file_contents returns the appropriate content for the file
 source_include processes the actual beamer input
 """
 
-def keyword_value (keywords, key):
+
+def keyword_value(keywords, key):
     if key in keywords.keys():
         return keywords[key]
     else:
         return ""
+
 
 def source_include(classes, contents):
     # useful for debugging
@@ -430,9 +432,11 @@ def source_include(classes, contents):
     value0["t"] = "CodeBlock"
     value0["c"] = [
         ["", code, startfrom],
-        source_file_contents(filename,
-                             keyword_value (keywords, 'start-after'),
-                             keyword_value (keywords, 'end-before'))
+        source_file_contents(
+            filename,
+            keyword_value(keywords, "start-after"),
+            keyword_value(keywords, "end-before"),
+        ),
     ]
     value = [value0]
 

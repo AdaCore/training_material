@@ -1,5 +1,6 @@
 import os
 
+
 def source_file_contents(filename, start_after, end_before):
     retval = ""
 
