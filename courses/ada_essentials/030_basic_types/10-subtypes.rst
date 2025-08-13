@@ -8,6 +8,9 @@ Subtype
 
 * May **constrain** an existing type
 * Still the **same** type
+
+   * So no conversion or casting necessary
+
 * Syntax
 
    .. code:: Ada
