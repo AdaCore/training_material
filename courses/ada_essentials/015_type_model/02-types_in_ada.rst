@@ -6,9 +6,9 @@ Types in Ada
 Ada's Strong Typing Model
 ---------------------------
 
-* Ada is strongly and statically typed
+* Ada is *strongly* and *statically* typed
 
-   * Types are checked at compile-time, not runtime
+   * Types are checked at compile-time, not run-time
 
 * Every object has a specific type
 
@@ -33,7 +33,7 @@ Strongly-Typed Vs Weakly-Typed Languages
    typedef enum {sun, mon, tue, wed, thu, fri, sat} days;
    direction heading = north;
 
-   heading = 1 + 3 * south/sun;// what?
+   heading = 1 + 3 * south/sun;  // what?
 
 * Strongly-typed:
 
@@ -53,12 +53,13 @@ Type Model Run-Time Costs
 ---------------------------
 
 * Checks at compilation **and** run-time
-* **Same performance** for identical programs
 
-   - Run-time type checks can be disabled
+* Good code requires ranges to be verified
 
-.. note:: Compile-time check is *free*
+   - By user writing the checks **OR**
+   - By compiler inserting them
 
+      - Sometimes compiler can even flag failures
 
 .. container:: columns
 
@@ -87,6 +88,11 @@ Type Model Run-Time Costs
       ...
       Y := X;
       Z := Y; -- no check required
+
+.. note::
+
+   Checks need to be made, so performance shouldn't be
+   affected by how the checks are inserted.
 
 ----------------------------
 The Type Model Saves Money

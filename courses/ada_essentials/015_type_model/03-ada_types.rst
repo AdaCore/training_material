@@ -22,7 +22,7 @@ Ada "Named Typing"
 .. note::
 
    Ada doesn't just *suggest* types - it enforces them like a
-   hall monitor with a ruler.
+   hall monitor with a ruler
 
 ---------------------
 Categories of Types
@@ -44,8 +44,6 @@ Understanding Types vs Subtypes
 
    type Temperature is range -273 .. 5000;
    subtype Celsius is Temperature range -273 .. 100;
-
-*You can convert between subtypes, but not between unrelated types without explicit casting*
 
 .. note::
 

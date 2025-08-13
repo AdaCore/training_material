@@ -9,7 +9,7 @@ Definiton of a Type
 * A :dfn:`type` classifies values and tells the compiler/interpreter
 
    * What they mean
-   * How to use them.
+   * How to use them
 
 * **Type** = label + rules:
 
@@ -24,7 +24,7 @@ Definiton of a Type
    
 .. note::
 
-   A type is like a container label: You can’t treat a box of oranges like a blender.
+   A **type** is a blueprint for data; you can't mistake the blueprint for a bicycle with the blueprint for a car
 
 ---------------------------
 Real Job of a Type System
