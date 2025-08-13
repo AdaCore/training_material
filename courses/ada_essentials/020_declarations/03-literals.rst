@@ -85,12 +85,12 @@ Comparison to C's Based Literals
 Quiz
 ------
 
-Which statement(s) is (are) legal?
+Which of the below are valid numeric literals?
 
-   A. :answermono:`I : constant := 0_1_2_3_4;`
-   B. ``F : constant := 12.;``
-   C. ``I : constant := 8#77#E+1.0;``
-   D. ``F : constant := 2#1111;``
+   A. :answermono:`0_1_2_3_4`
+   B. ``12.``
+   C. ``8#77#E+1.0``
+   D. ``2#1111``
 
 .. container:: animate
 
