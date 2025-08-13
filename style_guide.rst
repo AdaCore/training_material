@@ -157,3 +157,13 @@ Confusing Terms
    * **runtime** is basically the operating system
    * **run-time** means during execution
    * **run time** is how long the executable took
+
+----------------
+Spacing Issues
+----------------
+
+A good way to create a blank line is to write some text in white.
+
+:color-white:`This line will not appear in a PDF file`
+
+*If you see a blank space above, look at the original source!*

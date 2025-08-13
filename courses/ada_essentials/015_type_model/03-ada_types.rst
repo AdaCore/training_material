@@ -45,6 +45,8 @@ Understanding Types vs Subtypes
    type Temperature is range -273 .. 5000;
    subtype Celsius is Temperature range -273 .. 100;
 
+:color-white:`Blank space`
+
 .. note::
 
    Subtypes are Ada's way of saying, "Yes, but not all the values, please."
