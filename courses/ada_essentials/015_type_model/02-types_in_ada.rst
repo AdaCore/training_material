@@ -12,7 +12,7 @@ Ada's Strong Typing Model
 
 * Every object has a specific type
 
-   * Explicit conversions are rare
+   * Explicit conversions of similar types is allowed
 
 * Type safety is a core design goal
 
@@ -61,34 +61,34 @@ Type System Spectrum
      - Implicit Conversion
 
    * - Ada
-     - |checkmark|
-     - |checkmark|
+     - :math:`\textcolor{green!65!black}{\checkmark}`
+     - :math:`\textcolor{green!65!black}{\checkmark}`
      - :color-red:`X`
 
    * - C/C++
-     - |checkmark|
+     - :math:`\textcolor{green!65!black}{\checkmark}`
      - :color-red:`X`
-     - |checkmark|
+     - :math:`\textcolor{green!65!black}{\checkmark}`
 
    * - Python
      - :color-red:`X`
-     - |checkmark|
-     - |checkmark|
+     - :math:`\textcolor{green!65!black}{\checkmark}`
+     - :math:`\textcolor{green!65!black}{\checkmark}`
 
    * - Rust
-     - |checkmark|
-     - |checkmark|
+     - :math:`\textcolor{green!65!black}{\checkmark}`
+     - :math:`\textcolor{green!65!black}{\checkmark}`
      - :color-red:`X`
 
    * - Java
-     - |checkmark|
-     - |checkmark| (mostly)
+     - :math:`\textcolor{green!65!black}{\checkmark}`
+     - :math:`\textcolor{green!65!black}{\checkmark}` (mostly)
      - :color-red:`X`
 
    * - JavaScript
      - :color-red:`X`
      - :color-red:`X`
-     - |checkmark|
+     - :math:`\textcolor{green!65!black}{\checkmark}`
 
 ---------------------------
 Type Model Run-Time Costs
