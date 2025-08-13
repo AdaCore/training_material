@@ -12,7 +12,7 @@ Ada's Strong Typing Model
 
 * Every object has a specific type
 
-   * Explicit conversions of similar types is allowed
+   * Explicit conversions of similar types are allowed
 
 * Type safety is a core design goal
 
