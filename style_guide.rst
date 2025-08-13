@@ -147,3 +147,13 @@ Where reasonable, the names should be descriptive of the situation being explain
 Obviously, longer names may make the text harder to read on a slide. Try to
 balance expressiveness with brevity, and think about reformatting the code
 example as well.
+
+-----------------
+Confusing Terms
+-----------------
+
+* runtime / run-time / run time
+
+   * **runtime** is basically the operating system
+   * **run-time** means during execution
+   * **run time** is how long the executable took
