@@ -67,14 +67,14 @@ Multiple Object Declarations
 
    .. code:: Ada
 
-      Value_1, Value_2 : Some_Type := Next_Available (Some_Num);
+      Val_1, Val_2 : Some_Type := Next_Available (Some_Num);
 
 * Identical to series of single declarations
 
    .. code:: Ada
 
-      Value_1 : Some_Type := Next_Available (Some_Num);
-      Value_2 : Some_Type := Next_Available (Some_Num);
+      Val_1 : Some_Type := Next_Available (Some_Num);
+      Val_2 : Some_Type := Next_Available (Some_Num);
 
 .. warning:: May get different value!
 
