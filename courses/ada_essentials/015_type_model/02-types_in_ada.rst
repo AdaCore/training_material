@@ -12,7 +12,7 @@ Ada's Strong Typing Model
 
 * Every object has a specific type
 
-   * Implicit conversions are rare
+   * Explicit conversions are rare
 
 * Type safety is a core design goal
 
@@ -22,7 +22,7 @@ Ada's Strong Typing Model
 Strongly-Typed Vs Weakly-Typed Languages
 ------------------------------------------
 
-* Weakly-typed:
+* Weakly-typed
 
     - Conversions are **unchecked**
     - Type errors are easy
@@ -35,7 +35,7 @@ Strongly-Typed Vs Weakly-Typed Languages
 
    heading = 1 + 3 * south/sun;  // what?
 
-* Strongly-typed:
+* Strongly-typed
 
     - Conversions are **checked**
     - Type errors are hard
@@ -47,6 +47,48 @@ Strongly-Typed Vs Weakly-Typed Languages
    Heading : Directions := North;
    ...
    Heading := 1 + 3 * South/Sun; --  Compile Error
+
+----------------------
+Type System Spectrum
+----------------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Language
+     - Static Typing
+     - Strong Typing
+     - Implicit Conversion
+
+   * - Ada
+     - |checkmark|
+     - |checkmark|
+     - :color-red:`X`
+
+   * - C/C++
+     - |checkmark|
+     - :color-red:`X`
+     - |checkmark|
+
+   * - Python
+     - :color-red:`X`
+     - |checkmark|
+     - |checkmark|
+
+   * - Rust
+     - |checkmark|
+     - |checkmark|
+     - :color-red:`X`
+
+   * - Java
+     - |checkmark|
+     - |checkmark| (mostly)
+     - :color-red:`X`
+
+   * - JavaScript
+     - :color-red:`X`
+     - :color-red:`X`
+     - |checkmark|
 
 ---------------------------
 Type Model Run-Time Costs
