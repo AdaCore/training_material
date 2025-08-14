@@ -122,8 +122,6 @@ Boolean Aspect Clauses
 
      procedure Foo; -- Inline is False
 
-  - Original form!
-
 ..
   language_version 2012
 
