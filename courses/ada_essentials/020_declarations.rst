@@ -38,7 +38,6 @@ Declarations
    Identifiers And Comments
    Literals
    Object Declarations
-   Universal Types
    Named Numbers
    Scope And Visibility
    Aspects
@@ -49,8 +48,7 @@ Declarations
 .. include:: 020_declarations/02-identifiers_and_comments.rst
 .. include:: 020_declarations/03-literals.rst
 .. include:: 020_declarations/04-object_declarations.rst
-.. include:: 020_declarations/05-universal_types.rst
-.. include:: 020_declarations/06-named_numbers.rst
-.. include:: 020_declarations/07-scope_and_visibility.rst
-.. include:: 020_declarations/08-aspects.rst
+.. include:: 020_declarations/05-named_numbers.rst
+.. include:: 020_declarations/06-scope_and_visibility.rst
+.. include:: 020_declarations/07-aspects.rst
 .. include:: 020_declarations/99-summary.rst
