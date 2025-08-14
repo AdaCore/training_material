@@ -94,7 +94,7 @@ Quiz
 
 .. code:: Ada
 
-   function Next return Natural; -- returns next number starting with 1
+   function Next return Natural; -- returns next number (starts at 1)
 
    type Record_T is record
       Height, Width : Integer := Next;

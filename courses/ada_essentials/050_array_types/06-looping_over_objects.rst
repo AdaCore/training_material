@@ -138,7 +138,7 @@ Quiz
   * :ada:`Default_Component_Value` so all components intialized to 1
 
   * First :ada:`for` loop iterates over indexes :ada:`Ada'First + 1` (2)
-    through :ada:`Ada`Last - 1` (4) - so array now is 1, 10, 15, 20, 1
+    through :ada:`Ada'Last - 1` (4) - so array now is 1, 10, 15, 20, 1
 
   * Second :ada:`for` loop iterates over whole array backwards
     (:ada:`reverse`) giving the answer of **1 20 15 10 1**

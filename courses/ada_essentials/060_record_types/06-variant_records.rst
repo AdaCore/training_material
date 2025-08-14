@@ -188,12 +188,12 @@ Quiz
   **Explanation**
 
   * Variant block covers all possible values of :ada:`Valid`, so no
-    compilation error.
+    compilation error
 
-  * Discriminant has a value 1, which is in range, so no run-time error.
+  * Discriminant has a value (1) which is in range, so no run-time error
 
   * :ada:`Valid` is covered in :ada:`when` block on line 7, so
-    only field :ada:`Number` is valid.
+    only field :ada:`Number` is valid
 
 ------
 Quiz

@@ -18,7 +18,7 @@ procedure Main is
       --$ end cut
       --$ begin cut
       pragma Assert (A1.all'Size > 32);
-      -- T1 is incomplete, so we don't know its size
+      -- :ada:`T1` is incomplete, so we don't know its size
       --$ end cut
       --$ begin cut
       pragma Assert (A2 = B2);

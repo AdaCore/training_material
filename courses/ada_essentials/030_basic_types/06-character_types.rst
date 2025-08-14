@@ -144,7 +144,7 @@ D. :answermono:`Is_Control (NUL)`
 
    Explanations
 
-   A. :ada:`NUL` is an enumeral - it has no "value
+   A. :ada:`NUL` is an enumeral - it has no value
    B. :ada:`NUL` cannot be treated as a C-style value
    C. :ada:`NUL` is in the first position (0) of the character type
    D. :ada:`Handling` considers :ada:`NUL` as a control character

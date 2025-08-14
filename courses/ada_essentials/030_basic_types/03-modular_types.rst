@@ -179,10 +179,10 @@ D. :answermono:`Value := 255 + 1`
 
    Explanations
 
-   A. :ada:`Value` will just wraparound to be 0
+   A. :ada:`Value` will just wrap around to be 0
    B. Assigning to an in-range hex value
    C. Numeric literal must be in range of type
-   D. Math wraps to 0, which is assigned to :ada:`Value`
+   D. Math wraps around to 0, which is assigned to :ada:`Value`
 
 ------
 Quiz
@@ -213,5 +213,5 @@ E. ``V2 := T2'Mod (2.0)``
    A. **Rotate_** primitives are available for types derived from **Interfaces.Unsigned_**
    B. :ada:`Positive` is an integer type, so not compatible
    C. Logical operators are valid for modular types
-   D. **Rotate_** primitives would have to be defined for user-defined modular types
+   D. **Rotate_** primitives would need to be defined for user-defined modular types
    E. :ada:`'Mod` requires an integer parameter
