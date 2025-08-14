@@ -110,7 +110,7 @@ Issues with "Double Non-Blocking"
 
    - Server **does not** wait
 
-* For :ada:`<entry-call> ... else` the caller looks for a **waiting** server
+* For :ada:`<entry_call> ... else` the caller looks for a **waiting** server
 * If both use it, the entry will **never** be called
 * Server
 
