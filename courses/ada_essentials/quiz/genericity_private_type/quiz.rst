@@ -25,6 +25,6 @@ D. ``pragma Assert (A2 - B2 /= 0)``
 .. container:: animate
 
     A. Can always check a n access for :ada:`null`
-    B. T1 is incomplete, so we don't know its size
+    B. :ada:`T1` is incomplete, so we don't know its size
     C. Comparison of private types is allowed
     D. We do not know if :ada:`T2` allows math
