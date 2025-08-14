@@ -14,11 +14,11 @@ Function Extended Return Statements
 
    .. code:: Ada
 
-      return <identifier> : <typemark> [:= expression];
+      return <object_identifier> : <typemark> [:= expression];
 
-      return <identifier> : <typemark>
+      return <object_identifier> : <typemark>
       [do
-         sequence_of_statements ...
+         <sequence_of_statements>
        end return];
 
 ..

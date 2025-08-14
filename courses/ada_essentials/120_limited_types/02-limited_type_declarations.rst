@@ -12,7 +12,7 @@ Limited Type Declarations
 
    .. code:: Ada
 
-      type <identifier> is limited record
+      type <typemark> is limited record
           <component_list>
       end record;
 
