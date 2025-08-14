@@ -14,7 +14,7 @@ Enumeration Types
 
    .. code:: Ada
 
-      type <identifier> is (<identifier_list>) ;
+      type <typemark> is (<identifier_list>) ;
 
 * Literals
 

@@ -56,7 +56,9 @@ A Little Terminology
 
    .. code:: Ada
 
-      type <name> is <type definition>;
+      type <typemark> is <type_definition>;
+
+   where *<typemark>* is an identifier
 
 * **Type-definition** defines its structure
 
