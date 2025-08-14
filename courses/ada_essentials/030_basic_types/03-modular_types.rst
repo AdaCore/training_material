@@ -170,10 +170,10 @@ Quiz
 
 Which statement(s) is (are) legal?
 
-A. :answermono:`Value := Value + 1`
-B. :answermono:`Value := 16#ff#`
-C. ``Value := 256``
-D. :answermono:`Value := 255 + 11`
+A. :answermono:`Value := Value + 1;`
+B. :answermono:`Value := 16#ff#;`
+C. ``Value := 256;``
+D. :answermono:`Value := 255 + 11;`
 
 .. container:: animate
 

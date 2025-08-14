@@ -103,13 +103,13 @@ Quiz
     protected body Sensor is
        function Get return Integer is
        begin
-          Access_count := Access_Count + 1;
+          Access_Count := Access_Count + 1;
           return Val;
        end Get;
 
        procedure Set (V : Integer) is
        begin
-          Access_count := Access_Count + 1;
+          Access_Count := Access_Count + 1;
           Val := V;
        end Set;
     end Sensor;

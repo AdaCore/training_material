@@ -193,7 +193,7 @@ Quiz
   * Discriminant has a value (1) which is in range, so no run-time error
 
   * :ada:`Valid` is 1, so it enters the :ada:`when others` block on line 7.
-    The block only has component :ada:`Number`.
+    The block only contains component :ada:`Number`.
 
 ------
 Quiz

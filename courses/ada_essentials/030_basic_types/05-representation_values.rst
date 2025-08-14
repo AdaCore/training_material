@@ -87,8 +87,8 @@ Which of the following proposition(s) are true?
 
 A. ``Direction_T'Value (Dir) = 1``
 B. :answermono:`Direction_T'Pos (Dir) = 0`
-C. ``Direction_T'Image (T'Pos (Dir)) = Left``
-D. ``Direction_T'Val (T'Pos (Dir) - 1) = Bottom``
+C. ``Direction_T'Image (Direction_T'Pos (Dir)) = Left``
+D. ``Direction_T'Val (Direction_T'Pos (Dir) - 1) = Bottom``
 
 .. container:: animate
 
