@@ -191,7 +191,7 @@ Record Representation Clauses
 
       .. code:: Ada
 
-        <name> at <byte> range
+        <typemark> at <byte> range
            <starting-bit> ..
            <ending-bit>
 
