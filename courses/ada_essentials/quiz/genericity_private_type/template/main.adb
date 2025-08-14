@@ -14,7 +14,7 @@ procedure Main is
  
       --$ begin cut
       pragma Assert (A1 /= null);
-      -- Can always check a n access for Null
+      -- Can always check a n access for :ada:`null`
       --$ end cut
       --$ begin cut
       pragma Assert (A1.all'Size > 32);

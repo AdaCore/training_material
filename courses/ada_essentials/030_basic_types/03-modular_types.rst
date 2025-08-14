@@ -173,7 +173,7 @@ Which statement(s) is (are) legal?
 A. :answermono:`Value := Value + 1`
 B. :answermono:`Value := 16#ff#`
 C. ``Value := 256``
-D. :answermono:`Value := 255 + 1`
+D. :answermono:`Value := 255 + 11`
 
 .. container:: animate
 
@@ -182,7 +182,7 @@ D. :answermono:`Value := 255 + 1`
    A. :ada:`Value` will just wrap around to be 0
    B. Assigning to an in-range hex value
    C. Numeric literal must be in range of type
-   D. Math wraps around to 0, which is assigned to :ada:`Value`
+   D. :ada:`Value` will just wrap around to be 10
 
 ------
 Quiz
@@ -200,11 +200,11 @@ Quiz
 
 Which statement(s) is (are) legal?
 
-A. :answermono:`V1 := Rotate_Left (V1, 1)`
-B. ``V1 := Positive'First``
-C. :answermono:`V2 := 1 and V2`
-D. ``V2 := Rotate_Left (V2, 1)``
-E. ``V2 := T2'Mod (2.0)``
+A. :answermono:`Value_1 := Rotate_Left (Value_1, 1);`
+B. ``Value_1 := Positive'First;``
+C. :answermono:`Value_2 := 1 and Value_2;`
+D. ``Value_2 := Rotate_Left (Value_2, 1);``
+E. ``Value_2 := My_8_Bits'Mod (2.0);``
 
 .. container:: animate
 

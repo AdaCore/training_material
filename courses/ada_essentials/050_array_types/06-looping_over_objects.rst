@@ -111,7 +111,6 @@ Quiz
        type Array_T is array (1..5) of Integer
           with Default_Component_Value => 1;
        A : Array_T;
-       --
 
     .. code:: Ada
 

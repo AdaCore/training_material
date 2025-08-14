@@ -80,15 +80,15 @@ Quiz
 
 .. code:: Ada
 
-    type T is (Left, Top, Right, Bottom);
-    V : T := Left;
+    type Direction_T is (Left, Top, Right, Bottom);
+    Dir : Direction_T := Left;
 
 Which of the following proposition(s) are true?
 
-A. ``T'Value (V) = 1``
-B. :answermono:`T'Pos (V) = 0`
-C. ``T'Image (T'Pos (V)) = Left``
-D. ``T'Val (T'Pos (V) - 1) = Bottom``
+A. ``Direction_T'Value (Dir) = 1``
+B. :answermono:`Direction_T'Pos (Dir) = 0`
+C. ``Direction_T'Image (T'Pos (Dir)) = Left``
+D. ``Direction_T'Val (T'Pos (Dir) - 1) = Bottom``
 
 .. container:: animate
 
