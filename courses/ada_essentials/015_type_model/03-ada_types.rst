@@ -21,8 +21,8 @@ Ada "Named Typing"
 
 .. note::
 
-   Ada doesn't just *suggest* types - it enforces them like a
-   hall monitor with a ruler
+   In Ada, types are like airport security: if your bag doesn't match
+   the rules, you're not getting through.
 
 ---------------------
 Categories of Types
@@ -36,14 +36,17 @@ Understanding Types vs Subtypes
 
 * **Type** defines a distinct set of values and operations
 
-* :dfn:`Subtype` restricts the range of values from a base type
+* :dfn:`Subtype` (usually) restricts the range of values from a base type
 
    * Doesn't define a new type.
 
-.. code:: Ada
+   .. code:: Ada
 
-   type Temperature is range -273 .. 5000;
-   subtype Celsius is Temperature range -273 .. 100;
+      type Temperature is range -273 .. 5000;
+      subtype Celsius is Temperature range -273 .. 100;
+
+* Subtype that does not add a restriction (:ada:`subtype Distance_T is Meters_T`)
+  is generally refered to as an *alias*
 
 :color-white:`Blank space`
 

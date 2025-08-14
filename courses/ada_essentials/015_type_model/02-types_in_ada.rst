@@ -62,7 +62,7 @@ Type System Spectrum
 
    * - Ada
      - :math:`\textcolor{green!65!black}{\checkmark}`
-     - :math:`\textcolor{green!65!black}{\checkmark}`
+     - :math:`\textcolor{green!65!black}{\checkmark}` (very)
      - :color-red:`X`
 
    * - C/C++
