@@ -78,9 +78,11 @@ Aspect Clause Example: Objects
 
    .. code:: Ada
 
-      <name> : <type_indication> [:= <initial_value>]
-                     with aspect_mark [ => expression]
-                     {, aspect_mark [ => expression] };
+      <object_name> : <typemark> [:= <initial_value>]
+                      [with <aspect_mark> [ => expression]
+                       {, <aspect_mark> [ => expression] }];
+
+   where *<aspect_mark>* is one of the language-defined object aspects
 
 * Usage
 
