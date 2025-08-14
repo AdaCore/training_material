@@ -2,29 +2,6 @@
 Literals
 ==========
 
------------------
-String Literals
------------------
-
-* A :dfn:`literal` is a *textual* representation of a value in the code
-
-.. code:: Ada
-   
-   -- two double quotes with nothing inside
-   A_Null_String : constant String := "";
-
-   String_Of_Length_One : constant String := "A";
-
-   Embedded_Single_Quotes : constant String
-                          := "Embedded 'single' quotes";
-                          
-   Embedded_Double_Quotes : constant String
-                          := "Embedded ""double"" quotes";
-
-.. container:: speakernote
-
-   Note that the last example literal (that has embedded double quotes) is not an example of concatenation!
-
 ------------------
 Numeric Literals
 ------------------
