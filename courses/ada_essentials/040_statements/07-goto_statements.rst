@@ -10,8 +10,9 @@ GOTO Statements
 
    .. code:: Ada
 
-      goto_statement ::= goto label;
-      label ::= << identifier >>
+      goto << <label> >>;
+
+   where *<label>* is an identifier, and the ``<<`` and ``>>`` are part of the syntax
 
 * Rationale
 
