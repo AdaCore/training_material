@@ -165,15 +165,24 @@ Quiz
 
 .. code:: Ada
 
-    type T is mod 256;
-    V : T := 255;
+    type Eight_Bits is mod 256;
+    Value : Eight_Bits := 255;
 
 Which statement(s) is (are) legal?
 
-A. :answermono:`V := V + 1`
-B. :answermono:`V := 16#ff#`
-C. ``V := 256``
-D. :answermono:`V := 255 + 1`
+A. :answermono:`Value := Value + 1;`
+B. :answermono:`Value := 16#ff#;`
+C. ``Value := 256;``
+D. :answermono:`Value := 255 + 11;`
+
+.. container:: animate
+
+   Explanations
+
+   A. :ada:`Value` will just wrap around to be 0
+   B. Assigning to an in-range hex value
+   C. Numeric literal must be in range of type
+   D. :ada:`Value` will just wrap around to be 10
 
 ------
 Quiz
@@ -183,17 +192,26 @@ Quiz
 
     with Interfaces; use Interfaces;
 
-    type T1 is new Unsigned_8;
-    V1 : T1 := 255;
+    type Derived_8_Bits is new Unsigned_8;
+    Value_1 : Derived_8_Bits := 255;
 
-    type T2 is mod 256;
-    V2 : T2 := 255;
+    type My_8_Bits is mod 256;
+    Value_2 : My_8_Bits := 255;
 
 Which statement(s) is (are) legal?
 
-A. :answermono:`V1 := Rotate_Left (V1, 1)`
-B. ``V1 := Positive'First``
-C. :answermono:`V2 := 1 and V2`
-D. ``V2 := Rotate_Left (V2, 1)``
-E. ``V2 := T2'Mod (2.0)``
+A. :answermono:`Value_1 := Rotate_Left (Value_1, 1);`
+B. ``Value_1 := Positive'First;``
+C. :answermono:`Value_2 := 1 and Value_2;`
+D. ``Value_2 := Rotate_Left (Value_2, 1);``
+E. ``Value_2 := My_8_Bits'Mod (2.0);``
 
+.. container:: animate
+
+   Explanations
+
+   A. **Rotate_** primitives are available for types derived from **Interfaces.Unsigned_**
+   B. :ada:`Positive` is an integer type, so not compatible
+   C. Logical operators are valid for modular types
+   D. **Rotate_** primitives would need to be defined for user-defined modular types
+   E. :ada:`'Mod` requires an integer parameter

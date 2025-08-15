@@ -14,3 +14,10 @@ A. ``function "+" (A : T) return T is (A)``
 B. :answermono:`function "-" (A : T) return T is (I => -A.I)`
 C. :answermono:`function "=" (A, B : T) return Boolean is (True)`
 D. :answermono:`function "=" (A, B : T) return Boolean is (A.I = T'(I => B.I).I)`
+
+.. container:: animate
+
+    A. Returning a copy of a limited object is not allowed
+    B. Creating a new object
+    C. No actual comparison happening
+    D. Comparing components is allowed

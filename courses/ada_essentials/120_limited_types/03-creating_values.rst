@@ -98,7 +98,48 @@ Writing Limited Constructor Functions
 Quiz
 ------
 
-.. include:: ../quiz/limited_constructor_syntax/quiz.rst
+.. code:: Ada
+
+   type Limited_T is limited record
+      Field : Integer;
+   end record;
+
+Which piece(s) of code is (are) a legal constructor for :ada:`Limited_T`?
+
+.. container:: latex_environment tiny
+
+ .. container:: columns
+
+  .. container:: column
+
+    A. | :answermono:`function Create return Limited_T is`
+       | :answermono:`begin`
+       |    :answermono:`return Limited_T'(Field => 0);`
+       | :answermono:`end Create;`
+    B. | :answermono:`function Create return Limited_T is`
+       |    :answermono:`Val : Integer := 0;`
+       | :answermono:`begin`
+       |    :answermono:`return (Field => Val);`
+       | :answermono:`end Create;`
+
+  .. container:: column
+
+    C. | ``function Create return Limited_T is``
+       |    ``Ret : Limited_T := (Field => 0);``
+       | ``begin``
+       |    ``return Ret;``
+       | ``end Create;``
+    D. | ``function Create return Limited_T is``
+       | ``begin``
+       |    ``return (0);``
+       | ``end Create;``
+
+.. container:: animate
+
+   A. Create an object using a qualifier
+   B. Create an object inline
+   C. Cannot copy an object
+   D. Single component record needs named notation
 
 ------
 Quiz
@@ -106,18 +147,18 @@ Quiz
 
 .. code:: Ada
 
-   package P is
-      type T is limited record
-         F1 : Integer;
-         F2 : Character;
+   package Example is
+      type Limited_T is limited record
+         Field : Integer;
+         Flag  : Character;
       end record;
-      Zero : T := (0, ' ');
-      One : constant T := (1, 'a');
-      Two : T;
-      function F return T;
-   end P;
+      Zero : Limited_T := (0, ' ');
+      One : constant Limited_T := (1, 'a');
+      Two : Limited_T;
+      function Create return Limited_T;
+   end Example;
 
-Which is a correct completion of F?
+Which is a correct completion of Create?
 
 A. :answermono:`return (3, 'c');`
 B. | ``Two := (2, 'b');``

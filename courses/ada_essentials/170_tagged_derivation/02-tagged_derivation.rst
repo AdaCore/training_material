@@ -193,7 +193,7 @@ Which code block(s) is (are) legal?
    Explanations
 
    A. Cannot extend a non-tagged type
-   B. Correct
+   B. :ada:`B1` is a tagged type, and :ada:`B2` extends :ada:`B1`
    C. Components must have distinct names
    D. Types derived from a tagged type must have an extension
 

@@ -2,28 +2,10 @@
 Introduction
 ================
 
----------------------------
-Abstract Data Types (ADT)
----------------------------
-
-* **Variables** of the **type** encapsulate the **state**
-* Classic definition of an ADT
-
-   - Set of **values**
-   - Set of **operations**
-   - **Hidden** compile-time **representation**
-
-* Compiler-enforced
-
-   - Check of values and operation
-   - Easy for a computer
-   - Developer can focus on **earlier** phase: requirements
-
 --------------
 Scalar Types
 --------------
 
-* Indivisible: No :dfn:`components` (also known as *fields* or *elements*)
 * **Relational** operators defined (``<``,  ``=``, ...)
 
     - **Ordered**
