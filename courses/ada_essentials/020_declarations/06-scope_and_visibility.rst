@@ -136,16 +136,16 @@ Quiz
       :number-lines: 1
 
       declare
-         M : Integer := 1;
+         Value : Some_Type := 1;
       begin
-         M := M + 1;
+         Value := Value + 1;
          declare
-            M : Integer := 2;
+            Value : Some_Type := 2;
          begin
-            M := M + 2;
-            Print (M);
+            Value := Value + 2;
+            Print (Value);
          end;
-         Print (M);
+         Print (Value);
       end;
 
  .. container:: column
@@ -159,6 +159,6 @@ Quiz
 
       Explanation
 
-      * Inner :ada:`M` gets printed first. It is initialized to 2 and incremented by 2
-      * Outer :ada:`M` gets printed second. It is initialized to 1 and incremented by 1
+      * Inner :ada:`Value` gets printed first. It is initialized to 2 and incremented by 2
+      * Outer :ada:`Value` gets printed second. It is initialized to 1 and incremented by 1
 
