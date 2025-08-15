@@ -11,7 +11,7 @@ If-then-else Statements
 
    .. code:: Ada
 
-      if <boolean expression> then -- No parentheses
+      if <boolean_expression> then -- No parentheses
          <statements>;
       [else
          <statements>;]
@@ -78,8 +78,8 @@ Case Statements
 
    .. code::
 
-      choice ::= <expression> | <discrete range>
-                | others { "|" <other choice> }
+      choice ::= <expression> | <discrete_range>
+                | others { "|" <other_choice> }
 
 ------------------------
 Simple "case" Statements

@@ -54,10 +54,11 @@ Really, ``type`` and ``subtype`` Predicates
 
    .. code:: Ada
 
-      type <identifier> is <type_definition>
+      type <typemark> is <type_definition>
          with <aspect_mark> [ => <expression>] { ,
                    <aspect_mark> [ => <expression>] }
-      subtype <identifier> is <subtype_indication>
+
+      subtype <typemark> is <subtype_indication>
          with <aspect_mark> [ => <expression>] { ,
                    <aspect_mark> [ => <expression>] }
 

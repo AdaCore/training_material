@@ -39,7 +39,7 @@ Default Value
 
    .. code:: Ada
 
-      type Type_Name is <type_definition>
+      type <typemark> is <type_definition>
            with Default_Value => <value>;
 
 * Example
@@ -73,7 +73,9 @@ Simple Static Type Derivation
 
    .. code:: Ada
 
-      type <identifier> is new <base_type> [<constraints>];
+      type <typemark> is new <base_type> [<constraints>];
+
+   *where* **<typemark>** *will copy the behavior of* **<base_type>**, *with the optional addition of some constraints*
 
 * Example
 

@@ -10,15 +10,15 @@ Function Extended Return Statements
 * Result is expressed as an object
 * More expressive than aggregates
 * Handling of unconstrained types
-* Syntax (simplified):
+* Syntax
 
    .. code:: Ada
 
-      return <identifier> : <typemark> [:= expression];
+      return <object_identifier> : <typemark> [:= expression];
 
-      return <identifier> : <typemark>
+      return <object_identifier> : <typemark>
       [do
-         sequence_of_statements ...
+         <sequence_of_statements>
        end return];
 
 ..

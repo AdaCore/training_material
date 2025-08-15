@@ -6,11 +6,19 @@ Named Numbers
 Named Numbers
 ---------------
 
-* Associate a **name** with a **mathematical expression**
+* Associate an **identifier** with a **mathematical expression**
 
    - Used as **constant**
    - Compatible with integer / real
    - Expression must be **static**
+
+* Syntax
+
+   .. code:: Ada
+
+     <constant_name> : constant := <static_expression>;
+
+   *where* **<constant_name>** *is an identifier*
 
 * Examples
 
