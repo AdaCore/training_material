@@ -22,7 +22,7 @@ Ada "Named Typing"
 .. note::
 
    In Ada, types are like airport security: if your bag doesn't match
-   the rules, you're not getting through.
+   the rules, you're not getting through
 
 ---------------------
 Categories of Types
@@ -38,14 +38,14 @@ Understanding Types vs Subtypes
 
 * :dfn:`Subtype` (usually) restricts the range of values from a base type
 
-   * Doesn't define a new type.
+   * Doesn't define a new type
 
       .. code:: Ada
 
          type Temperature is range -273 .. 5000;
          subtype Celsius is Temperature range -273 .. 100;
 
-* Subtype that does not add a restriction is generally refered to as an *alias*
+* Subtype that does **not** add a restriction is generally refered to as an *alias*
 
    .. code:: Ada
 

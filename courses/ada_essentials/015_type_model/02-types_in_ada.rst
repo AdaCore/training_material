@@ -134,7 +134,7 @@ Type Model Run-Time Costs
 .. note::
 
    Checks need to be made, so performance shouldn't be
-   affected by how the checks are inserted.
+   affected by how the checks are inserted
 
 ----------------------------
 The Type Model Saves Money
