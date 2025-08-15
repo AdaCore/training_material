@@ -58,7 +58,7 @@ A Little Terminology
 
       type <typemark> is <type_definition>;
 
-   where *<typemark>* is an identifier
+   *where* **<typemark>** *is an identifier*
 
 * **Type-definition** defines its structure
 

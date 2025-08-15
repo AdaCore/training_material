@@ -42,7 +42,7 @@ Introducing Block Statements
              <statements>
           end [block_name];
 
-       where *<block_name>* is an identifier
+       *where* **<block_name>** *is an identifier*
 
  .. container:: column
 

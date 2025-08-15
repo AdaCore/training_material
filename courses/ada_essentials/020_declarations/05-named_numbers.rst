@@ -19,7 +19,7 @@ Named Numbers
 
      <constant_name> : constant := <static_expression>;
 
-   where *<constant_name>* is an identifier
+   *where* **<constant_name>** *is an identifier*
 
 * Example
 

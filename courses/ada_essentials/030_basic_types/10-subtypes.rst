@@ -14,7 +14,7 @@ Subtype
 
       subtype <typemark> is <subtype_mark> [constraints];
 
-   where *<subtype_mark>* is an existing :ada:`type` or :ada:`subtype`
+   *where* **<subtype_mark>** *is an existing* :ada:`type` *or* :ada:`subtype`
 
 .. note:: If no constraint |rightarrow| type alias
 

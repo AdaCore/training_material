@@ -82,7 +82,7 @@ Aspect Clause Example: Objects
                       [with <aspect_mark> [ => expression]
                        {, <aspect_mark> [ => expression] }];
 
-   where *<aspect_mark>* is one of the language-defined object aspects
+   *where* **<aspect_mark>** *is one of the language-defined object aspects*
 
 * Usage
 

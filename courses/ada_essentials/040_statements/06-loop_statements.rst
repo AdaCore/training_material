@@ -148,7 +148,7 @@ For in Statements
          <sequence_of_statements>
       end loop;
 
-   where *<loop_parameter>* is an identifier
+   *where* **<loop_parameter>** *is an identifier*
 
 * Example
 
