@@ -60,7 +60,7 @@ Introducing Block Statements
 Scope and "Lifetime"
 ----------------------
 
-* Object in scope |rightarrow| exists while its enclosing block is executing
+* Object in scope |rightarrow| exists while its enclosing block exists
 
 .. note:: No *scoping* keywords (C's :c:`static`, :c:`auto` etc...)
 
@@ -71,7 +71,7 @@ Scope and "Lifetime"
 Visibility in Action
 ----------------------
 
-* **Name hiding**: an inner declaration with the same name **hides** an outer one inside the inner scope
+* **Name hiding**: a name used in an *inner scope* can hide the same name visible in the *outer scope*
 
    .. code:: Ada
 
