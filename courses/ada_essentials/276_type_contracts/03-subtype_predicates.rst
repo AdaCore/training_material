@@ -57,6 +57,7 @@ Really, ``type`` and ``subtype`` Predicates
       type <typemark> is <type_definition>
          with <aspect_mark> [ => <expression>] { ,
                    <aspect_mark> [ => <expression>] }
+
       subtype <typemark> is <subtype_indication>
          with <aspect_mark> [ => <expression>] { ,
                    <aspect_mark> [ => <expression>] }

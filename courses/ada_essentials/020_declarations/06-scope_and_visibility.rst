@@ -37,7 +37,7 @@ Introducing Block Statements
        .. code:: Ada
 
           [<block_name> :] declare
-             <declarative part>
+             <declarative_part>
           begin
              <statements>
           end [block_name];

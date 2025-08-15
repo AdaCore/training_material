@@ -10,7 +10,7 @@ Function Extended Return Statements
 * Result is expressed as an object
 * More expressive than aggregates
 * Handling of unconstrained types
-* Syntax (simplified):
+* Syntax
 
    .. code:: Ada
 

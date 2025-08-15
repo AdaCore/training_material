@@ -19,7 +19,7 @@ Block Statements
        .. code:: Ada
 
           [block-name :]
-          [declare <declarative part> ]
+          [declare <declarative_part> ]
           begin
              <statements>
           end [block-name];

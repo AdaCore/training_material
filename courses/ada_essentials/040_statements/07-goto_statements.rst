@@ -12,7 +12,10 @@ GOTO Statements
 
       goto << <label> >>;
 
-   *where* **<label>** *is an identifier, and the* ``<<`` *and* ``>>`` *are part of the syntax*
+   * where
+
+      * **<label>** is an identifier
+      * ``<<`` and ``>>`` are part of the syntax
 
 * Rationale
 

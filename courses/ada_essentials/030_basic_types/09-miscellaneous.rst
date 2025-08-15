@@ -73,7 +73,9 @@ Simple Static Type Derivation
 
    .. code:: Ada
 
-      type <typemark> is new <parent_typemark> [<constraints>];
+      type <typemark> is new <base_type> [<constraints>];
+
+   *where* **<typemark>** *will copy the behavior of* **<base_type>**, *with the optional addition of some constraints*
 
 * Example
 
