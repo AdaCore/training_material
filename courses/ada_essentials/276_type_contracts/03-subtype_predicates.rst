@@ -547,8 +547,8 @@ D. | ``subtype Sub_Day is Days_T with``
 
    Explanations
 
-   A. Correct
-   B. :ada:`If` statement not allowed in a predicate
+   A. Static predicate is allowed when condition is a static membership test
+   B. :ada:`if` statement not allowed in a predicate
    C. Function call not allowed in :ada:`Static_Predicate` (this would be OK for :ada:`Dynamic_Predicate`)
    D. Missing parentheses around :ada:`case` expression
 

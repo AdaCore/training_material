@@ -369,6 +369,7 @@ D. | ``(for all El of A => (for some Idx in 2 .. 3 =>``
 
  A. Will be :ada:`True` if any component has two consecutive increasing values
  B. Will be :ada:`True` if every component is sorted
- C. Correct
+ C. Will be :ada:`True` if one (:ada:`some`) element of :ada:`A` where every (:ada:`all`)
+    element range 2 .. 3 is greater than the previous element
  D. Will be :ada:`True` if every component has two consecutive increasing values
 

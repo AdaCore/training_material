@@ -34,4 +34,4 @@ D. | :answermono:`package body P is`
     A. Procedure One must have a body
     B. Parameter V is :ada:`out` but not assigned (legal but not a good idea)
     C. Redeclaration of Object_One
-    D. Correct
+    D. Implementation of :ada:`One` is valid

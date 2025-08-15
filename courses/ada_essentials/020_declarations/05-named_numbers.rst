@@ -6,11 +6,10 @@ Named Numbers
 Named Numbers
 ---------------
 
-* Associate an **identifier** with an **expression**
+* Associate an **identifier** with an **mathematical expression**
 
    - Used as **constant**
-   - `universal_integer`, or `universal_real`
-   - Compatible with integer / real respectively
+   - Compatible with integer / real
    - Expression must be **static**
 
 * Syntax
@@ -21,26 +20,25 @@ Named Numbers
 
    *where* **<constant_name>** *is an identifier*
 
-* Example
+* Examples
 
    .. code:: Ada
 
       Pi : constant := 3.141592654;
       One_Third : constant := 1.0 / 3.0;
+      Radians_In_Circle : constant := 2.0 * Pi;
 
 ----------------------
 Named Number Benefit
 ----------------------
 
+* Named numbers are exact — they’re not limited by a type’s range or precision
+
 * Evaluation at **compile time**
-
-    - As if **used directly** in the code
-
-.. tip:: Useful due to their **perfect** accuracy
 
 .. code:: Ada
 
-   Named_Number   : constant :=       1.0 / 3.0;
+   Named_Number   : constant       := 1.0 / 3.0;
    Typed_Constant : constant Float := 1.0 / 3.0;
 
 .. container:: latex_environment footnotesize

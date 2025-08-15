@@ -27,12 +27,12 @@ Object Declarations
 
    .. code:: Ada
 
-      Z, Phase : Analog;
-      Max : constant Integer := 200;
+      An_Object : Some_Type;
+      Max : constant Some_Type := 200;
       -- variable with a constraint
-      Count : Integer range 0 .. Max := 0;
+      Count : Some_Type range 0 .. Max := 0;
       -- dynamic initial value via function call
-      Root : Tree := F(X);
+      Some_Object : Some_Type := Some_Function (Count);
 
 -----------
 Elaboration
@@ -58,9 +58,9 @@ Elaboration
    .. code:: Ada
 
       declare
-        First_One : Integer := 10;
-        Next_One : Integer := First_One;
-        Another_One : Integer := Next_One;
+        First_One : Some_Type := 10;
+        Next_One : Some_Type := First_One;
+        Another_One : Some_Type := Next_One;
       begin
         ...
 
@@ -72,14 +72,14 @@ Multiple Object Declarations
 
    .. code:: Ada
 
-      A, B : Integer := Next_Available (X);
+      Val_1, Val_2 : Some_Type := Next_Available (Some_Num);
 
 * Identical to series of single declarations
 
    .. code:: Ada
 
-      A : Integer := Next_Available (X);
-      B : Integer := Next_Available (X);
+      Val_1 : Some_Type := Next_Available (Some_Num);
+      Val_2 : Some_Type := Next_Available (Some_Num);
 
 .. warning:: May get different value!
 
@@ -131,25 +131,4 @@ Implicit Vs Explicit Declarations
       * **Numerics** - standard math operators
       * **Arrays** - concatenation operator
       * **Most types** - assignment operator
-
-------
-Quiz
-------
-
-Which block(s) is (are) legal?
-
-   A. :answermono:`A, B, C : Integer;`
-   B. :answermono:`Integer : Standard.Integer;`
-   C. ``Null : Integer := 0;``
-   D. | :answermono:`A : Integer := 123;`
-      | :answermono:`B : Integer := A * 3;`
-
-.. container:: animate
-
-   Explanations
-
-   A. Multiple objects can be created in one statement
-   B. :ada:`Integer` is *predefined* so it can be overridden
-   C. :ada:`null` is *reserved* so it can **not** be overridden
-   D. Elaboration happens in order, so :ada:`B` will be 369
 

@@ -62,36 +62,36 @@ Introducing Block Statements
 Scope and "Lifetime"
 ----------------------
 
-* Object in scope |rightarrow| exists
+* Object in scope |rightarrow| exists while its enclosing block exists
 
 .. note:: No *scoping* keywords (C's :c:`static`, :c:`auto` etc...)
 
 .. image:: block_scope_example.jpeg
     :height: 50%
 
--------------
-Name Hiding
--------------
+----------------------
+Visibility in Action
+----------------------
 
-* Caused by **homographs**
-
-    - **Identical** name
-    - **Different** entity
+* **Name hiding**: a name used in an *inner scope* can hide the same name visible in the *outer scope*
 
    .. code:: Ada
 
+      type Color is (Red, Green, Blue);
+      type Size  is (Small, Medium, Large);
+
       declare
-        M : Integer;
+        My_Obj : Color;     -- outer My_Obj
       begin
-        M := 123;
+        My_Obj := Green;    -- assigns to outer My_Obj (Color)
         declare
-          M : Float;
+          My_Obj : Size;    -- hides outer My_Obj
         begin
-          M := 12.34; -- OK
-          M := 0;     -- compile error: M is a Float
+          My_Obj := Medium; -- OK: inner My_Obj is Size
+          My_Obj := Red;    -- compile error: inner My_Obj is not Color
         end;
-        M := 0.0; -- compile error: M is an Integer
-        M := 0;   -- OK
+        My_Obj := Blue;     -- OK: outer My_Obj is Color
+        My_Obj := Small;    -- compile error: outer My_Obj is not Size
       end;
 
 -------------------
@@ -104,21 +104,24 @@ Overcoming Hiding
 
 .. warning::
 
-    * Homographs are a *code smell*
+    * Repeated name reuse is an indication of a *bigger problem*
 
-        - May need **refactoring**...
+        - May need refactoring...
 
 .. code:: Ada
 
+   type Color is (Red, Green, Blue);
+   type Size  is (Small, Medium, Large);
+
    Outer : declare
-     M : Integer;
+     My_Obj : Color;
    begin
-     M := 123;
+     My_Obj := Green;        -- outer (Color)
      declare
-       M : Float;
+       My_Obj : Size;        -- inner (Size) hides the outer one
      begin
-       M := 12.34;
-       Outer.M := Integer (M);  -- reference "hidden" Integer M
+       My_Obj := Small;      -- inner Size
+       Outer.My_Obj := Blue; -- apply prefix to use the hidden Color
      end;
    end Outer;
 
@@ -138,16 +141,16 @@ Quiz
       :number-lines: 1
 
       declare
-         M : Integer := 1;
+         Value : Some_Type := 1;
       begin
-         M := M + 1;
+         Value := Value + 1;
          declare
-            M : Integer := 2;
+            Value : Some_Type := 2;
          begin
-            M := M + 2;
-            Print (M);
+            Value := Value + 2;
+            Print (Value);
          end;
-         Print (M);
+         Print (Value);
       end;
 
  .. container:: column
@@ -161,6 +164,6 @@ Quiz
 
       Explanation
 
-      * Inner :ada:`M` gets printed first. It is initialized to 2 and incremented by 2
-      * Outer :ada:`M` gets printed second. It is initialized to 1 and incremented by 1
+      * Inner :ada:`Value` gets printed first. It is initialized to 2 and incremented by 2
+      * Outer :ada:`Value` gets printed second. It is initialized to 1 and incremented by 1
 

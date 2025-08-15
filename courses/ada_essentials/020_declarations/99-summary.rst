@@ -8,11 +8,7 @@ Summary
 
 * Defines a **single** type, permanently
 
-   - OOP adds flexibility
-
 * Named-numbers
-
-    - **Infinite** precision, **implicit** conversion
 
 * **Elaboration** concept
 
@@ -22,6 +18,5 @@ Summary
 
     - **Prefixing** solves **hiding** problems
 
-* Pragmas, Aspects
 * Detailed syntax definition in Annex P (using BNF)
 

@@ -90,4 +90,3 @@ Comments
       -- This is a multi-
       -- line comment
       A : B; -- this is an end-of-line comment
-

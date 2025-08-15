@@ -93,26 +93,26 @@ Quiz
 
 .. code:: Ada
 
-    protected O is
+    protected Sensor is
        function Get return Integer;
        procedure Set (V : Integer);
     private
        Val, Access_Count : Integer := 0;
-    end O;
+    end Sensor;
 
-    protected body O is
+    protected body Sensor is
        function Get return Integer is
        begin
-          Access_count := Access_Count + 1;
+          Access_Count := Access_Count + 1;
           return Val;
        end Get;
 
        procedure Set (V : Integer) is
        begin
-          Access_count := Access_Count + 1;
+          Access_Count := Access_Count + 1;
           Val := V;
        end Set;
-    end O;
+    end Sensor;
 
 What is the result of compiling and running this code?
 
@@ -132,16 +132,16 @@ Quiz
 
  .. code:: Ada
 
-   protected P is
+   protected Counter is
       procedure Initialize (V : Integer);
       procedure Increment;
       function Decrement return Integer;
       function Query return Integer;
    private
       Object : Integer := 0;
-   end P;
+   end Counter;
 
-Which completion(s) of :ada:`P` is (are) illegal?
+Which completion(s) of :ada:`Counter` is (are) illegal?
 
  .. container:: latex_environment footnotesize
 
@@ -164,7 +164,7 @@ Which completion(s) of :ada:`P` is (are) illegal?
 
 .. container:: animate
 
-   A. Legal
+   A. Legal - Assignment to global object allowed in procedure
    B. Legal - subprograms do not need parameters
    C. Functions in a protected object cannot modify global objects
-   D. Legal
+   D. Legal - Reading of global object allowed in function
