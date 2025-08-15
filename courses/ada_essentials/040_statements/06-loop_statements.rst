@@ -22,8 +22,8 @@ Basic Loops and Syntax
    .. code::
 
       iteration_scheme ::= while <boolean_expression>
-                           | for <loop_parameter_specification>
-                           | for <loop_iterator_specification>
+                           | for <loop_parameter>
+                           | for <loop_iterator>
 
 * Example
 

@@ -14,7 +14,10 @@ Object Declarations
       <object_name> : <typemark> [:= <initial_value>];
       <object_name> : constant <typemark> := <value>;
 
-   *where* **<object_name>** *is an identifier*
+   * where
+
+     * **<object_name>** is an identifier
+     * **<typemark>** is the name describing the type of the object
 
 * Constant should have a value
 
