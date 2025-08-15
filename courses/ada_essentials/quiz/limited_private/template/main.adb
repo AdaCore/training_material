@@ -19,6 +19,7 @@ procedure Main is
       type Priv is record
          E : Float;
       end record;
+      -- Regular private record type
       --$ end cut
       
       --$ begin cut
@@ -33,6 +34,7 @@ procedure Main is
       type Priv is record
          Component : Integer := Lim'Size;
       end record;
+      -- Regular private record type
       --$ end cut
 
    --$ line question

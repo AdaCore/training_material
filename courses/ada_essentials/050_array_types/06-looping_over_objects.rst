@@ -100,42 +100,44 @@ Array Component For-Loop Example
 Quiz
 ------
 
-.. code:: Ada
-
-   declare
-      type Array_T is array (1..5) of Integer
-         with Default_Component_Value => 1;
-      A : Array_T;
-   begin
-      for I in A'First + 1 .. A'Last - 1 loop
-         A (I) := I * A'Length;
-      end loop;
-      for I of reverse A loop
-         Put (I'Image);
-      end loop;
-   end;
-
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
-   Which output is correct?
+   .. container:: latex_environment tiny 
+
+    .. code:: Ada
+
+       type Array_T is array (1..5) of Integer
+          with Default_Component_Value => 1;
+       A : Array_T;
+
+    .. code:: Ada
+
+       for I in A'First + 1 .. A'Last - 1 loop
+          A (I) := I * A'Length;
+       end loop;
+       for I of reverse A loop
+          Put (I'Image);
+       end loop;
+
+  .. container:: column
+
+    Which output is correct?
 
       A. 1 10 15 20 1
       B. :answer:`1 20 15 10 1`
       C. 0 10 15 20 0
       D. 25 20 15 10 5
 
- .. container:: column
+.. container:: animate
 
-  .. container:: animate
+  **Explanation**
 
-     Explanations
+  * :ada:`Default_Component_Value` so all components intialized to 1
 
-     A. There is a :ada:`reverse`
-     B. Yes
-     C. Default value is 1
-     D. No
+  * First :ada:`for` loop iterates over indexes :ada:`Ada'First + 1` (2)
+    through :ada:`Ada'Last - 1` (4) - so array now is 1, 10, 15, 20, 1
 
-NB: Without :ada:`Default_Component_Value`, init. values are random
-
+  * Second :ada:`for` loop iterates over whole array backwards
+    (:ada:`reverse`) giving the answer of **1 20 15 10 1**

@@ -282,6 +282,7 @@ Which call(s) is (are) legal?
 
    A. :ada:`P4` is :ada:`out`, it **must** be a variable
    B. :ada:`P2` has no default value, it **must** be specified
-   C. Correct
+   C. :ada:`P1` can be a literal, :ada:`P2` must be an object,
+      :ada:`P3` can be a literal, :ada:`P4` must be an object
    D. :ada:`F` is a function, its :ada:`return` **must** be handled
 

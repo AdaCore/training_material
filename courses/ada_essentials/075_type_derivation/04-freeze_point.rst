@@ -109,9 +109,9 @@ Quiz
 
    Explanations
 
-   A. Correct
+   A. :ada:`Proc_A` appears immediately after type declaration
    B. Freeze: :ada:`Parent` has been derived
    C. Freeze: scope change
-   D. Incorrect
+   D. :ada:`Proc_A` is a primitive
 
 

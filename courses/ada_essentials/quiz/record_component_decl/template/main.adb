@@ -10,7 +10,7 @@ procedure Main is
       --$ end cut
       --$ begin cut
       Component_2, Component_3 : Integer;
-      -- Correct
+      -- Comma-separated list of components is allowed
       --$ end cut
       --$ begin cut
       Component_1 : Record_T;

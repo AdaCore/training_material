@@ -37,7 +37,7 @@ procedure Main is
          V := Object_One;
       end One;
    end P;
-   -- Correct
+   -- Implementation of :ada:`One` is valid
    --$ end cut
 
 begin
