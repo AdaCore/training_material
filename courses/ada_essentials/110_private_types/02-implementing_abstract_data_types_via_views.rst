@@ -39,7 +39,7 @@ Declaring Private Types for Views
 
    .. code:: Ada
 
-      type <identifier> is private;
+      type <typemark> is private;
 
 * Private type declaration must occur in visible part
 

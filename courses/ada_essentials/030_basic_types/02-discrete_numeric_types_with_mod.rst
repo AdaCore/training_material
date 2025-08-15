@@ -14,7 +14,7 @@ Signed Integer Types
 
    .. code:: Ada
 
-      type <identifier> is range  <lower> .. <upper>;
+      type <typemark> is range  <lower> .. <upper>;
 
 * Implicit numeric operators
 
@@ -127,7 +127,7 @@ Modular Types
 
    .. code:: Ada
 
-      type <identifier> is mod <modulus>;
+      type <typemark> is mod <modulus>;
 
 * Modulus must be **static**
 * Resulting range is  :ada:`0 .. modulus - 1`

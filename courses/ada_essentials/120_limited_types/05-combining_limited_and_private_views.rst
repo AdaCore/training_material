@@ -18,7 +18,7 @@ Limited Private Types
 
    .. code:: Ada
 
-      type <identifier> is limited private;
+      type <typemark> is limited private;
 
 ------------------------------------
 Limited Private Type Rationale (1)

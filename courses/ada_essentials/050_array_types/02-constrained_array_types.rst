@@ -12,17 +12,17 @@ Syntax (simplified)
 
    .. code:: Ada
 
-      type <typename> is array (<index constraint>) of <constrained type>;
+      type <typemark> is array (<index_constraint>) of <component_type>;
 
 where
 
 .. container:: latex_environment quote
 
-      **typename** - identifier
+      **typemark** - identifier
 
-      **index constraint** - discrete range or type
+      **index_constraint** - discrete range or type
 
-      **constrained type** - type with size known at compile time
+      **component_type** - type with size known at compile time
 
 Examples
 

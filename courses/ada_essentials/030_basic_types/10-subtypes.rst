@@ -15,9 +15,9 @@ Subtype
 
    .. code:: Ada
 
-      subtype <identifier> is <type_name> [constraints];
+      subtype <typemark> is <base_type> [constraints];
 
-   - :ada:`type_name` is an existing :ada:`type` or :ada:`subtype`
+   *where* **<base_type>** *is an existing* :ada:`type` *or* :ada:`subtype`
 
 .. note:: If no constraint |rightarrow| type alias
 

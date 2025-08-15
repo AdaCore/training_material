@@ -47,7 +47,7 @@ Declaring Floating Point Types
 
     .. code:: Ada
 
-       type <identifier> is
+       type <typemark> is
            digits <expression> [range constraint];
 
   - *digits* |rightarrow| **minimum** number of significant digits

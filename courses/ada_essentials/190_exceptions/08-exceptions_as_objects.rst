@@ -51,7 +51,7 @@ Exception Occurrence
 
    .. code:: Ada
 
-      when <identifier> : exception_name ... =>
+      when <exception_identifier> : <exception_name> ... =>
 
 * A constant view representing active exception
 * Used with operations defined for the type

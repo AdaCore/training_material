@@ -14,7 +14,7 @@ Signed Integer Types
 
    .. code:: Ada
 
-      type <identifier> is range  <lower> .. <upper>;
+      type <typemark> is range  <lower> .. <upper>;
 
 * Implicit numeric operators
 

@@ -65,7 +65,7 @@ Which one(s) of the following can be made generic?
 
     generic
        type T is private;
-    <code goes here>
+    <answer>
 
 A. :answermono:`package`
 B. ``record``

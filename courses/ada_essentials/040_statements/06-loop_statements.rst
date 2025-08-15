@@ -15,15 +15,15 @@ Basic Loops and Syntax
 
    .. code:: Ada
 
-     [<name> :] [iteration_scheme] loop
+     [<loop_identifier> :] [iteration_scheme] loop
            <statements>
-      end loop [<name>];
+      end loop [<loop_identifier>];
 
    .. code::
 
-      iteration_scheme ::= while <boolean expression>
-                           | for <loop_parameter_specification>
-                           | for <loop_iterator_specification>
+      iteration_scheme ::= while <boolean_expression>
+                           | for <loop_parameter>
+                           | for <loop_iterator>
 
 * Example
 
@@ -46,7 +46,7 @@ Loop Exit Statements
 
    .. code:: Ada
 
-      exit [<loop name>] [when <boolean expression>];
+      exit [<loop_identifier>] [when <boolean_expression>];
 
 * :ada:`exit when` exits with condition
 
@@ -93,8 +93,8 @@ While-loop Statements
 
    .. code:: Ada
 
-      while boolean_expression loop
-         sequence_of_statements
+      while <boolean_expression> loop
+         <sequence_of_statements>
       end loop;
 
 * Identical to
@@ -102,8 +102,8 @@ While-loop Statements
    .. code:: Ada
 
       loop
-         exit when not boolean_expression;
-         sequence_of_statements
+         exit when not <boolean_expression>;
+         <sequence_of_statements>
       end loop;
 
 * Example
@@ -140,11 +140,15 @@ For in Statements
 
 * Syntax
 
+.. container:: latex_environment footnotesize
+
    .. code:: Ada
 
-      for name in [reverse] discrete_subtype_definition loop
-      ...
+      for <loop_parameter> in [reverse] <discrete_subtype_definition> loop
+         <sequence_of_statements>
       end loop;
+
+   *where* **<loop_parameter>** *is an identifier*
 
 * Example
 
@@ -302,7 +306,7 @@ Iterations Exit Statements
 
   .. code:: Ada
 
-        exit [<loop_name>] [when <condition>]
+        exit [<loop_identifier>] [when <condition>]
 
 * No name: Loop exited **entirely**
 
