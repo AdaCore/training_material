@@ -30,4 +30,6 @@ D. | :answermono:`type Priv is record`
 .. container:: animate
 
     A. ``E`` has limited type, partial view of ``Priv`` must be :ada:`limited private`
+    B. Regular private record type
     C. ``F`` has limited type, partial view of ``Priv`` must be :ada:`limited private`
+    D. Regular private record type

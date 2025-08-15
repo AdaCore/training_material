@@ -18,6 +18,6 @@ D. ``Component_1 : constant Integer := 123``
 .. container:: animate
 
     A. Anonymous types not allowed
-    B. Correct
+    B. Comma-separated list of components is allowed
     C. No recursive definition
     D. No constant component

@@ -6,14 +6,22 @@ procedure Main is
    end record;
    --$ end question
 
-   --$ line cut
+   --$ begin cut
    function "+" (A : T) return T is (A);
-   --$ line cut
+   -- Returning a copy of a limited object is not allowed
+   --$ end cut
+   --$ begin cut
    function "-" (A : T) return T is (I => -A.I);
-   --$ line cut
+   -- Creating a new object
+   --$ end cut
+   --$ begin cut
    function "=" (A, B : T) return Boolean is (True);
-   --$ line cut
+   -- No actual comparison happening
+   --$ end cut
+   --$ begin cut
    function "=" (A, B : T) return Boolean is (A.I = T'(I => B.I).I);
+   -- Comparing components is allowed
+   --$ end cut
 begin
    null;
 end Main;

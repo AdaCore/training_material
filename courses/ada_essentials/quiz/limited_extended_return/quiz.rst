@@ -29,4 +29,4 @@ D. | :answermono:`return R : T do`
     A. Using :ada:`return` reserved keyword
     B. OK, default value
     C. Extended return must specify type
-    D. OK
+    D. Assign a value to a component of the extended return object

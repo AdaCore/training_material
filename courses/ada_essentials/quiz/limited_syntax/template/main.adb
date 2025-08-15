@@ -10,15 +10,23 @@ procedure Main is
    B : Boolean;
    --$ end question
 begin
-   --$ line cut
+   --$ begin cut
    L1.I := 1;
+   -- Element is not limited
+   --$ end cut
 
-   --$ line cut
+   --$ begin cut
    L1 := L2;
+   -- No copy of limited objects
+   --$ end cut
 
-   --$ line cut
+   --$ begin cut
    B := (L1 = L2);
+   -- No comparison of limited objects
+   --$ end cut
 
-   --$ line cut
+   --$ begin cut
    B := (L1.I = L2.I);
+   -- Elements can be compared
+   --$ end cut
 end Main;

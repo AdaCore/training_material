@@ -12,14 +12,22 @@ procedure Main is
       -- Complete here
    --$ end question
  
-      --$ line cut
+      --$ begin cut
       pragma Assert (A1 /= null);
-      --$ line cut
+      -- Can always check a n access for :ada:`null`
+      --$ end cut
+      --$ begin cut
       pragma Assert (A1.all'Size > 32);
-      --$ line cut
+      -- :ada:`T1` is incomplete, so we don't know its size
+      --$ end cut
+      --$ begin cut
       pragma Assert (A2 = B2);
-      --$ line cut
+      -- Comparison of private types is allowed
+      --$ end cut
+      --$ begin cut
       pragma Assert (A2 - B2 /= 0);
+      -- We do not know if :ada:`T2` allows math
+      --$ end cut
 
    --$ line question
    end G_P;

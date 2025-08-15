@@ -22,7 +22,7 @@ D. ``procedure Write_D is new Write (Float, Floating_Point)``
 
 .. container:: animate
 
-    A. Legal
-    B. Legal
+    A. :ada:`Integer` matches restrictions of :ada:`Component_T` and :ada:`Numeric` is the appropriate type
+    B. :ada:`Boolean` matches restrictions of :ada:`Component_T` and :ada:`Enumerated` is the appropriate type
     C. The second generic parameter has to be a variable
     D. The first generic parameter has to be discrete

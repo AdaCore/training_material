@@ -1,4 +1,4 @@
 package Shapes is
    type Shape is tagged null record;
-   procedure P (O : Shape) is null;
+   procedure Set_Shape (O : Shape) is null;
 end Shapes;

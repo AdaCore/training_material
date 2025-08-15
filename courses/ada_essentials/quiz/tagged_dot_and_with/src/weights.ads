@@ -1,4 +1,4 @@
 package Weights is
    type Weight is tagged null record;
-   procedure P (O : Weight) is null;
+   procedure Set_Weight (O : Weight) is null;
 end Weights;

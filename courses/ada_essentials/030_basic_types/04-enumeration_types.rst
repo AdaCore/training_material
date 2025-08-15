@@ -202,7 +202,7 @@ D. ``V4 : Enum_T := Enum_T'Value ("Able Baker Charlie");``
 
    Explanations
 
-   A. Legal
+   A. Legal - String matches an enumeral
    B. Legal - conversion is case-insensitive
    C. Legal - leading/trailing whitespace is ignored
    D. :ada:`Value` tries to convert entire string, which will fail at run-time
