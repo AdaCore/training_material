@@ -85,7 +85,7 @@ Comparison to C's Based Literals
 Quiz
 ------
 
-Which of the below are valid numeric literals?
+Which one of the below is a valid numeric literal?
 
    A. :answermono:`0_1_2_3_4`
    B. ``12.``
