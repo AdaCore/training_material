@@ -12,7 +12,7 @@ Object Declarations
    .. code:: Ada
 
       <object_name> : <typemark> [:= <initial_value>];
-      <object_name> : constant <typemark> := <value>;
+      <object_name> : constant [<typemark>] := <value>;
 
    * where
 

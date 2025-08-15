@@ -6,7 +6,7 @@ Named Numbers
 Named Numbers
 ---------------
 
-* Associate an **identifier** with an **mathematical expression**
+* Associate an **identifier** with a **mathematical expression**
 
    - Used as **constant**
    - Compatible with integer / real
