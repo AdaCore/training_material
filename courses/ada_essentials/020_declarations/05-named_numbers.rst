@@ -6,7 +6,7 @@ Named Numbers
 Named Numbers
 ---------------
 
-* Associate an **identfier** with an **expression**
+* Associate an **identifier** with an **expression**
 
    - Used as **constant**
    - `universal_integer`, or `universal_real`

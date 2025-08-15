@@ -192,8 +192,8 @@ Record Representation Clauses
       .. code:: Ada
 
         <typemark> at <byte> range
-           <starting-bit> ..
-           <ending-bit>
+           <starting_bit> ..
+           <ending_bit>
 
  .. container:: column
 

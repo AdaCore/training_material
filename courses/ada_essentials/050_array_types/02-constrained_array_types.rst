@@ -12,7 +12,7 @@ Syntax (simplified)
 
    .. code:: Ada
 
-      type <typemark> is array (<index constraint>) of <component_type>;
+      type <typemark> is array (<index_constraint>) of <component_type>;
 
 where
 
