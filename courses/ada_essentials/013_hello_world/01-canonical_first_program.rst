@@ -6,70 +6,35 @@ Introducing Ada
 Canonical First Program
 -------------------------
 
-Everyone's first program - written in Ada
+"Hello World" - written in Ada!
 
 .. container:: overlay 1
 
-   | 1 :color-white:`-`    ``with Ada.Text_IO;``
-   | 2 :color-white:`-`    ``-- Everyone's first program``
-   | 3 :color-white:`-`    ``procedure Hello_World is``
-   | 4 :color-white:`-`    ``begin``
-   | 5 :color-white:`----` ``Ada.Text_IO.Put_Line ("Hello, World!");``
-   | 6 :color-white:`-`    ``end Hello_World;``
+   .. image:: hello_world_0.svg
 
 .. container:: overlay 2
 
-   | 1 :color-white:`-`    :color-red:`with Ada.Text_IO;`
-   | 2 :color-white:`-`    ``-- Everyone's first program``
-   | 3 :color-white:`-`    ``procedure Hello_World is``
-   | 4 :color-white:`-`    ``begin``
-   | 5 :color-white:`----` ``Ada.Text_IO.Put_Line ("Hello, World!");``
-   | 6 :color-white:`-`    ``end Hello_World;``
+   .. image:: hello_world_1.svg
 
 .. container:: overlay 3
 
-   | 1 :color-white:`-`    ``with Ada.Text_IO;``
-   | 2 :color-white:`-`    :color-red:`-- Everyone's first program`
-   | 3 :color-white:`-`    ``procedure Hello_World is``
-   | 4 :color-white:`-`    ``begin``
-   | 5 :color-white:`----` ``Ada.Text_IO.Put_Line ("Hello, World!");``
-   | 6 :color-white:`-`    ``end Hello_World;``
+   .. image:: hello_world_2.svg
 
 .. container:: overlay 4
 
-   | 1 :color-white:`-`    ``with Ada.Text_IO;``
-   | 2 :color-white:`-`    ``-- Everyone's first program``
-   | 3 :color-white:`-`    :color-red:`procedure Hello_World is`
-   | 4 :color-white:`-`    ``begin``
-   | 5 :color-white:`----` ``Ada.Text_IO.Put_Line ("Hello, World!");``
-   | 6 :color-white:`-`    ``end Hello_World;``
+   .. image:: hello_world_3.svg
 
 .. container:: overlay 5
 
-   | 1 :color-white:`-`    ``with Ada.Text_IO;``
-   | 2 :color-white:`-`    ``-- Everyone's first program``
-   | 3 :color-white:`-`    ``procedure Hello_World is``
-   | 4 :color-white:`-`    :color-red:`begin`
-   | 5 :color-white:`----` ``Ada.Text_IO.Put_Line ("Hello, World!");``
-   | 6 :color-white:`-`    ``end Hello_World;``
+   .. image:: hello_world_4.svg
 
 .. container:: overlay 6
 
-   | 1 :color-white:`-`    ``with Ada.Text_IO;``
-   | 2 :color-white:`-`    ``-- Everyone's first program``
-   | 3 :color-white:`-`    ``procedure Hello_World is``
-   | 4 :color-white:`-`    ``begin``
-   | 5 :color-white:`----` :color-red:`Ada.Text_IO.Put_Line ("Hello, World!");`
-   | 6 :color-white:`-`    ``end Hello_World;``
+   .. image:: hello_world_5.svg
 
 .. container:: overlay 7
 
-   | 1 :color-white:`-`    ``with Ada.Text_IO;``
-   | 2 :color-white:`-`    ``-- Everyone's first program``
-   | 3 :color-white:`-`    ``procedure Hello_World is``
-   | 4 :color-white:`-`    ``begin``
-   | 5 :color-white:`----` ``Ada.Text_IO.Put_Line ("Hello, World!");``
-   | 6 :color-white:`-`    :color-red:`end Hello_World;`
+   .. image:: hello_world_6.svg
 
 .. container:: animate 2-
 
@@ -85,16 +50,16 @@ Everyone's first program - written in Ada
 
 .. container:: animate 5-
 
-   * ``begin`` - used to start a block of statements
+   * :ada:`begin` - used to start a block of statements
 
 .. container:: animate 6-
 
-   * ``Ada.Text_IO.Put_Line`` is a subprogram that prints a string (it's defined
+   * :ada:`Ada.Text_IO.Put_Line` is a subprogram that prints a string (it's defined
      in the package we specified on line 1)
 
 .. container:: animate 7-
 
-   * ``end`` - used to end a block of statements. It's optional to add the
+   * :ada:`end` - used to end a block of statements. It's optional to add the
      name of the block you are ending.
 
 --------------------------------------
