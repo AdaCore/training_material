@@ -58,5 +58,5 @@ Basic Types: In-Depth
 .. include:: 030_basic_types/10-subtypes.rst
 .. include:: 030_basic_types/11-subtypes_full_picture.rst
 .. include:: 030_basic_types/12-big_numbers.rst
-.. include:: labs/030_basic_types.lab.rst
+.. include:: 030_basic_types/88_basic_types.lab.rst
 .. include:: 030_basic_types/99-summary.rst
