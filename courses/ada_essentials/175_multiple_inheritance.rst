@@ -41,5 +41,5 @@ Multiple Inheritance
 
 .. include:: 175_multiple_inheritance/01-introduction.rst
 .. include:: 175_multiple_inheritance/02-interfaces.rst
-.. include:: labs/175_multiple_inheritance.lab.rst
+.. include:: 175_multiple_inheritance/88_multiple_inheritance.lab.rst
 .. include:: 175_multiple_inheritance/99-summary.rst

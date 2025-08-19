@@ -51,5 +51,5 @@ Access Types
 .. include:: 140_access_types/05-accessibility_checks.rst
 .. include:: 140_access_types/06-memory_corruption.rst
 .. include:: 140_access_types/07-anonymous_access_types.rst
-.. include:: labs/140_access_types.lab.rst
+.. include:: 140_access_types/88_access_types.lab.rst
 .. include:: 140_access_types/99-summary.rst

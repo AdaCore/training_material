@@ -51,5 +51,5 @@ Exceptions
 .. include:: 190_exceptions/06-propagation.rst
 .. include:: 190_exceptions/08-exceptions_as_objects.rst
 .. include:: 190_exceptions/09-raise_expressions.rst
-.. include:: labs/190_exceptions.lab.rst
+.. include:: 190_exceptions/88_exceptions.lab.rst
 .. include:: 190_exceptions/99-summary.rst

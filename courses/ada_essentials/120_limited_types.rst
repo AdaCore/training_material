@@ -47,5 +47,5 @@ Limited Types
 .. include:: 120_limited_types/03-creating_values.rst
 .. include:: 120_limited_types/04-extended_return_statements.rst
 .. include:: 120_limited_types/05-combining_limited_and_private_views.rst
-.. include:: labs/120_limited_types.lab.rst
+.. include:: 120_limited_types/88_limited_types.lab.rst
 .. include:: 120_limited_types/99-summary.rst

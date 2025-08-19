@@ -40,6 +40,6 @@ Low Level Programming
 .. include:: 280_low_level_programming/02-data_representation.rst
 .. include:: 280_low_level_programming/03-address_clauses_and_overlays.rst
 .. include:: 280_low_level_programming/04-tricks.rst
-.. include:: labs/280_low_level_programming.lab.rst
+.. include:: 280_low_level_programming/88_low_level_programming.lab.rst
 .. include:: 280_low_level_programming/99-summary.rst
 .. include:: 280_low_level_programming/07-supplementary_resource_inline_asm.rst

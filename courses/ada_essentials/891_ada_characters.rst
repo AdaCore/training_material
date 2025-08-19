@@ -39,5 +39,5 @@ Ada.Characters
 .. include:: 891_ada_characters/01-introduction.rst
 .. include:: 891_ada_characters/02-ada_characters_latin_1.rst
 .. include:: 891_ada_characters/03-ada_characters_handling.rst
-.. include:: labs/891_ada_characters.lab.rst
+.. include:: 891_ada_characters/88_ada_characters.lab.rst
 .. include:: 891_ada_characters/99-summary.rst

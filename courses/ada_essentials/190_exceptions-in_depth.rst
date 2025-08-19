@@ -56,5 +56,5 @@ Exceptions: In-Depth
 .. include:: 190_exceptions/08-exceptions_as_objects-in_depth.rst
 .. include:: 190_exceptions/09-raise_expressions.rst
 .. include:: 190_exceptions/10-in_practice.rst
-.. include:: labs/190_exceptions-in_depth.lab.rst
+.. include:: 190_exceptions/88_exceptions-in_depth.lab.rst
 .. include:: 190_exceptions/99-summary-in_depth.rst
