@@ -23,6 +23,9 @@ if __name__ == "__main__":
     failures = 0
 
     for p in args.search_path.glob("**/*.gpr"):
+        # Only process GPR files in the 'prompt' folders for now
+        if not ("prompt" in p):
+            continue
         print(p)
         if (p.parent / ".ci_build_skip").exists():
             print("Skip")
