@@ -114,7 +114,7 @@ jobs:
       - name: Solution build for Ada Essentials
         run: |
             . contrib/ci/lab_env.profile
-            python3 contrib/ci/build_labs_check.py courses/ada_essentials/labs
+            python3 contrib/ci/build_labs_check.py courses/ada_essentials
 
   python-black:
     name: Python scripts black lint check
