@@ -49,5 +49,5 @@ Program Structure
 .. include:: 130_program_structure/04-hierarchical_library_units.rst
 .. include:: 130_program_structure/05-visibility_limits.rst
 .. include:: 130_program_structure/06-private_children.rst
-.. include:: 130_program_structure/88_program_structure.lab.rst
+.. include:: 130_program_structure/88-program_structure.lab.rst
 .. include:: 130_program_structure/99-summary.rst

@@ -48,5 +48,5 @@ Private Types
 .. include:: 110_private_types/04-view_operations.rst
 .. include:: 110_private_types/05-when_to_use_or_avoid_private_types.rst
 .. include:: 110_private_types/06-idioms.rst
-.. include:: 110_private_types/88_private_types.lab.rst
+.. include:: 110_private_types/88-private_types.lab.rst
 .. include:: 110_private_types/99-summary.rst

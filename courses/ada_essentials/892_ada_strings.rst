@@ -38,5 +38,5 @@ Ada.Strings
 
 .. include:: 892_ada_strings/01-introduction.rst
 .. include:: 892_ada_strings/02-string_operations.rst
-.. include:: 892_ada_strings/88_ada_strings.lab.rst
+.. include:: 892_ada_strings/88-ada_strings.lab.rst
 .. include:: 892_ada_strings/99-summary.rst

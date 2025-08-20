@@ -48,5 +48,5 @@ Record Types
 .. include:: 060_record_types/03-record_operations.rst
 .. include:: 060_record_types/04-record_aggregates.rst
 .. include:: 060_record_types/05-default_values.rst
-.. include:: 060_record_types/88_record_types.lab.rst
+.. include:: 060_record_types/88-record_types.lab.rst
 .. include:: 060_record_types/99-summary.rst

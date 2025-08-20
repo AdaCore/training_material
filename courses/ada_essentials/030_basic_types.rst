@@ -48,5 +48,5 @@ Basic Types
 .. include:: 030_basic_types/07-real_types.rst
 .. include:: 030_basic_types/09-miscellaneous.rst
 .. include:: 030_basic_types/10-subtypes.rst
-.. include:: 030_basic_types/88_basic_types.lab.rst
+.. include:: 030_basic_types/88-basic_types.lab.rst
 .. include:: 030_basic_types/99-summary.rst

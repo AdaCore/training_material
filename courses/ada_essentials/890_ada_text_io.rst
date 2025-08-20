@@ -40,5 +40,5 @@ Ada.Text_IO
 .. include:: 890_ada_text_io/02-file_input_output.rst
 .. include:: 890_ada_text_io/03-type_specific_io.rst
 .. include:: 890_ada_text_io/04-exceptions.rst
-.. include:: 890_ada_text_io/88_ada_text_io.lab.rst
+.. include:: 890_ada_text_io/88-ada_text_io.lab.rst
 .. include:: 890_ada_text_io/99-summary.rst

@@ -44,5 +44,5 @@ Subprogram Contracts
 .. include:: 273_subprogram_contracts/02-preconditions_and_postconditions.rst
 .. include:: 273_subprogram_contracts/03-special_attributes.rst
 .. include:: 273_subprogram_contracts/04-in_practice.rst
-.. include:: 273_subprogram_contracts/88_subprogram_contracts.lab.rst
+.. include:: 273_subprogram_contracts/88-subprogram_contracts.lab.rst
 .. include:: 273_subprogram_contracts/99-summary.rst

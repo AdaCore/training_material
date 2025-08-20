@@ -39,5 +39,5 @@ Advanced Data Hiding
 .. include:: 290_advanced_data_hiding/01-type_views.rst
 .. include:: 290_advanced_data_hiding/02-incomplete_types.rst
 .. include:: 290_advanced_data_hiding/03-private_library_units.rst
-.. include:: 290_advanced_data_hiding/88_advanced_data_hiding.lab.rst
+.. include:: 290_advanced_data_hiding/88-advanced_data_hiding.lab.rst
 .. include:: 290_advanced_data_hiding/99-summary.rst

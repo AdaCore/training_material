@@ -40,5 +40,5 @@ Containers
 .. include:: 894_ada_containers/02-container_types.rst
 .. include:: 894_ada_containers/03-containers_operations.rst
 .. include:: 894_ada_containers/04-reference.rst
-.. include:: 894_ada_containers/88_ada_containers.lab.rst
+.. include:: 894_ada_containers/88-ada_containers.lab.rst
 .. include:: 894_ada_containers/99-summary.rst

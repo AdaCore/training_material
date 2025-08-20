@@ -45,5 +45,5 @@ Polymorphism
 .. include:: 180_polymorphism/02-classes_of_types.rst
 .. include:: 180_polymorphism/03-dispatching_and_redispatching.rst
 .. include:: 180_polymorphism/04-exotic_dispatching_operations.rst
-.. include:: 180_polymorphism/88_polymorphism.lab.rst
+.. include:: 180_polymorphism/88-polymorphism.lab.rst
 .. include:: 180_polymorphism/99-summary.rst

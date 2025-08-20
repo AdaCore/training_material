@@ -39,5 +39,5 @@ Ada.Numerics
 .. include:: 893_ada_numerics/01-introduction.rst
 .. include:: 893_ada_numerics/02-standard_mathematical_functions.rst
 .. include:: 893_ada_numerics/03-random_numbers.rst
-.. include:: 893_ada_numerics/88_ada_numerics.lab.rst
+.. include:: 893_ada_numerics/88-ada_numerics.lab.rst
 .. include:: 893_ada_numerics/99-summary.rst

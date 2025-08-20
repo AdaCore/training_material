@@ -51,5 +51,5 @@ Statements
 .. include:: 040_statements/05-conditional_statements.rst
 .. include:: 040_statements/06-loop_statements.rst
 .. include:: 040_statements/07-goto_statements.rst
-.. include:: 040_statements/88_statements.lab.rst
+.. include:: 040_statements/88-statements.lab.rst
 .. include:: 040_statements/99-summary.rst
