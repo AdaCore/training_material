@@ -85,7 +85,7 @@ module. A simple example would be
 If there is need for multiple versions of the module (introduction, in-depth),
 the chapters will be stored in the module folder, but there will be an
 additional module file using the prefix and module name, and then a
-hypen to describe the change from the base module.
+hyphen to describe the change from the base module.
 
    ``170_tagged_derivation-intro.rst``
    
