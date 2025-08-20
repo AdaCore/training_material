@@ -17,29 +17,11 @@ Supplementary Ada labs are also available through Alire, with the crates
 - [`labs_solar_system`](https://alire.ada.dev/crates/labs_solar_system)
 - [`labs_standalone`](https://alire.ada.dev/crates/labs_standalone)
 
-## Naming Scheme
+## Naming Conventions
 
-The naming scheme uses a 3-digit prefix of all modules to indicate the general
-order that modules should be presented. The module name consists of the
-3-digit prefix, followed by an underscore, and the description of the module
-(all lower case, words separated by an underscore.
-
-For most module (exceptions described under "Prefix Grouping") the module
-base name can be found as a subfolder (containing chapters for content) and
-an RST file that uses the ".. include::" construct to list the chapters
-to be included in the module. Many modules also include other versions
-of this RST file, to indicate different presentations of the content.
-The names of these RST files will start with the prefix and description,
-followed by a hyphen and then another short description.
-
-For example, the **240_tasking** module has four different presentations:
-
-   * 240_tasking.rst *(basic module)*
-   * 240_tasking-in_depth.rst *(add in-depth descriptions)*
-   * 240_tasking-light.rst *(basic module for light tasking)*
-   * 240_tasking-light_in_depth.rst **add in-depth descriptions to light tasking)*
-
-### Prefix Grouping
+The default naming conventions for modules are defined in the Style
+Guide at the top level of this repository. The following describe
+rules specific to this folder.
 
 All modules below 800 should be considered "normal" content. 800 and above are described below.
 

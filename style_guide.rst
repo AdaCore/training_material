@@ -34,9 +34,9 @@ to generate the document would be:
 
 (update paths as appropriate)
 
-=============
-File Layout
-=============
+==================
+Course Structure
+==================
 
 ---------
 Courses
@@ -44,10 +44,16 @@ Courses
 
 A course is stored in a directory in the **courses** folder of the
 repository. The course directory contains all of the module information
-and a **.txt** file that lists the modules in that course. 
+and a **standard_course.txt** file that contains a list of the modules
+most commonly taught in that course. If there is a need for a different
+course listing that is used consistently, it will also have the **.txt**
+extension.
 
-There may be more than one **.txt** file to indicate multiple versions
-of the course.
+The directory name for the course should be the course title, using
+underscores where blanks would be expected. We are using "<language>_essentials"
+for the three languages we support (Ada, SPARK, Rust) and then either the tool
+name (e.g. "gnatsas") or a brief description (e.g. "gnat_project_facility")
+for any other course.
 
 ---------
 Modules
@@ -59,18 +65,31 @@ topic in itself and typically contains several chapters.
 
 For each module in the course, the course folder should contain:
 
-  * Module RST file that lists the chapters in the module
+  * Base module RST file that lists the chapters typically taught
+    in the module
   * Folder with the same name as the RST file that contains
     the chapter RST files
 
-For multiple versions of the module (e.g. "intro" and "in_depth"), the
-filename would be the module name followed by "-" and then a description
-of the version. Examples:
+The module naming scheme uses a 3-digit prefix followed by the module
+name. This prefix should indicate the preferred order for teaching the
+module. A simple example would be
 
-  * 240_tasking-in_depth.rst
-  * 240_tasking-light.rst
-  * 240_tasking-light_in_depth.rst
-  * 240_tasking.rst
+   ``005_introduction.rst`` Introduction module file, containing a list of chapters
+
+   ``005_introduction`` Introduction module folder, containing an RST file for each chapter
+
+   ``010_overview.rst`` Overview module file, containing a list of chapters
+
+   ``010_overview`` Overview module folder, containing an RST file for each chapter
+
+If there is need for multiple versions of the module (introduction, in-depth),
+the chapters will be stored in the module folder, but there will be an
+additional module file using the prefix and module name, and then a
+hypen to describe the change from the base module.
+
+   ``170_tagged_derivation-intro.rst``
+   
+   ``195_exceptions-in_depth.rst``
 
 ----------
 Chapters
@@ -97,8 +116,8 @@ To simplify renaming if we decide to reorder chapters within a module,
 the summary chapter will always be **99-summary[-version].rst** and
 the lab will always be **88-<module_name>[-version].lab.rst**. Examples:
 
-  * 88_expressions-with_quantified.lab.rst
-  * 88_expressions.lab.rst
+  * 88-expressions-with_quantified.lab.rst
+  * 88-expressions.lab.rst
   * 99-summary-with_quantified.rst
   * 99-summary.rst
 
