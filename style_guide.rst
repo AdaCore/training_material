@@ -93,6 +93,15 @@ added to describe the differences. Not all chapters will be used by
 every module, but there should never be two versions of the same chapter
 in a module.
 
+To simplify renaming if we decide to reorder chapters within a module,
+the summary chapter will always be **99-summary[-version].rst** and
+the lab will always be **88-<module_name>[-version].lab.rst**. Examples:
+
+  * 88_expressions-with_quantified.lab.rst
+  * 88_expressions.lab.rst
+  * 99-summary-with_quantified.rst
+  * 99-summary.rst
+
 =============
 Style Rules
 =============
