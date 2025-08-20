@@ -1,0 +1,53 @@
+--|if_then_else_statements_begin
+if_statement ::= 
+    if condition then
+      sequence_of_statements
+   {elsif condition then
+      sequence_of_statements}
+   [else
+      sequence_of_statements]
+    end if;
+--|if_then_else_statements_end
+
+--|case_statements_begin
+case_statement ::= 
+   case selecting_expression is
+       case_statement_alternative
+      {case_statement_alternative}
+   end case;
+
+case_statement_alternative ::= 
+   when discrete_choice_list =>
+      sequence_of_statements
+
+discrete_choice_list ::= discrete_choice {'|' discrete_choice}
+
+discrete_choice ::= 
+   choice_expression | discrete_subtype_indication | range | others
+--|case_statements_end
+
+--|basic_loops_and_syntax_begin
+
+loop_statement ::= 
+   [loop_statement_identifier:]
+      [iteration_scheme] loop
+         sequence_of_statements
+       end loop [loop_identifier];
+
+iteration_scheme ::= while condition
+   | for loop_parameter_specification
+   | for iterator_specification
+
+loop_parameter_specification ::= 
+   defining_identifier in [reverse] discrete_subtype_definition
+     [iterator_filter]
+
+iterator_filter ::= when condition
+--|basic_loops_and_syntax_end
+
+--|loop_exit_statements_begin
+exit_statement ::= 
+   exit [loop_name] [when condition];
+--|loop_exit_statements_end
+
+
