@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language name="bnf" version="1.1">
+  <highlighting>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
+        <!-- Comments: (* ... *) -->
+        <Detect2Chars char="(" char1="*" context="Comment" attribute="Comment"/>
+        <!-- Single-line comments: -- ... -->
+        <RegExpr String="--.*$" attribute="Comment"/>
+        <!-- Strings: '...' or "..." -->
+        <RegExpr String="'([^'\\]|\\.)*'" attribute="String"/>
+        <RegExpr String="&quot;([^&quot;\\]|\\.)*&quot;" attribute="String"/>
+        <!-- Rule head: identifier followed by = -->
+        <RegExpr String="([A-Za-z_][A-Za-z0-9_]*)\s*(?==)" attribute="RuleHead"/>
+        <RegExpr String="([A-Za-z_][A-Za-z0-9_]*)\s*(?=::)" attribute="RuleHead2"/>
+        <!-- Operators and punctuation -->
+        <RegExpr String="[=|,;*+?()\[\]\{\}]" attribute="Operator"/>
+        <!-- Nonterminals elsewhere -->
+        <RegExpr String="[A-Za-z_][A-Za-z0-9_]*" attribute="Nonterminal"/>
+      </context>
+
+      <context name="Comment" attribute="Comment" lineEndContext="#stay">
+        <Detect2Chars char="*" char1=")" context="#pop" attribute="Comment"/>
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Comment" defStyleNum="dsComment"/>
+      <itemData name="String" defStyleNum="dsString"/>
+      <itemData name="Operator" defStyleNum="dsKeyword"/>
+      <itemData name="Nonterminal" defStyleNum="dsDataType"/>
+      <itemData name="RuleHead" defStyleNum="dsFunction"/> <!-- special style -->
+      <itemData name="RuleHead2" defStyleNum="dsFunction"/> <!-- special style -->
+    </itemDatas>
+  </highlighting>
+</language>
+
