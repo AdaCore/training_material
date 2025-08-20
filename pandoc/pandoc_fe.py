@@ -433,7 +433,7 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
     if os.path.isfile(filter):
         filter = " --filter " + filter
 
-    syntax = '--syntax-definition=' + os.path.join(os.path.dirname(__file__), 'ebnf.xml')
+    syntax = '--syntax-definition=' + os.path.join(os.path.dirname(__file__), 'bnf.xml')
 
     # build list of search directories
     texinputs = set_texinputs(args.directories)
