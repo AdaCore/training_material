@@ -1,4 +1,3 @@
---Constants
 package Constants is
 
    Lowest_Value  : constant := 100;

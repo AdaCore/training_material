@@ -1,5 +1,3 @@
---Datastore
---Task
 with Datastore;
 package Counter is
   task type Counter_T is

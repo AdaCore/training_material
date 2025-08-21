@@ -1,4 +1,3 @@
---Types_Spec
 package Employee is
    type Person_T is tagged private;
    subtype Name_T is String (1 .. 6);

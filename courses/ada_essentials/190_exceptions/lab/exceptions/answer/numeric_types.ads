@@ -1,4 +1,3 @@
---Numeric_Types
 package Numeric_Types is
    Illegal_String : exception;
    Out_Of_Range   : exception;

@@ -1,6 +1,3 @@
---Database
-
---Database_List_Spec
 with Database; use Database;
 -- Uncomment next line when using debug/storage pools
 -- with Memory_Mgmt;

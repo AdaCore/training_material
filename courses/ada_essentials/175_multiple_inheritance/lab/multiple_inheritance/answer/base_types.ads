@@ -1,4 +1,3 @@
---Types
 package Base_Types is
 
    type Coordinate_T is record

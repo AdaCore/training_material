@@ -1,6 +1,3 @@
---Operations
-
---Main
 with Ada.Text_IO;
 with Messages;
 with Messages.List_Types;
@@ -34,4 +31,3 @@ begin
    Add_One (9);
    Ada.Text_IO.Put_Line (Operations.Image (Head));
 end Main;
---Main

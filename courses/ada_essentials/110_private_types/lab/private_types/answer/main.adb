@@ -1,6 +1,3 @@
---Input
-
---Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Colors;
 with Flags;
@@ -34,4 +31,3 @@ begin
 
    Put_Line (Flags.Image (Map));
 end Main;
---Main

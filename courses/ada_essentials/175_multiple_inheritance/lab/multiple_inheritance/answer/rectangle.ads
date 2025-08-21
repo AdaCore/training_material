@@ -1,6 +1,3 @@
---Printable_Object
-
---Rectangle
 with Base_Types;
 with Printable_Object;
 

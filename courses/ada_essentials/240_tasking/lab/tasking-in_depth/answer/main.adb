@@ -1,6 +1,3 @@
---Task
-
---Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Counter;     use Counter;
 with Datastore;   use Datastore;

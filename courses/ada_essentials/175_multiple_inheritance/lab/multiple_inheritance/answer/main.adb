@@ -1,6 +1,3 @@
---Rectangle
-
---Main
 with Base_Types;
 with Rectangle;
 procedure Main is

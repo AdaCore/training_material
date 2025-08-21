@@ -1,6 +1,3 @@
---Protected
-
---Task
 package Task_Type is
    type Task_Id_T is range 1_000 .. 9_999;
    task type Task_T is

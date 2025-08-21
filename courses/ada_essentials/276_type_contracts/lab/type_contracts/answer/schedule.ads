@@ -1,4 +1,3 @@
---Schedule_Spec
 package Schedule is
    Maximum_Classes : constant := 24;
    subtype Name_T is String (1 .. 10);

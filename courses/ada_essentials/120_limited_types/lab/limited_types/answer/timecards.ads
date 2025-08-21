@@ -1,6 +1,3 @@
---Employee_Data_Body
-
---Timecards_Spec
 with Employee_Data;
 package Timecards is
 

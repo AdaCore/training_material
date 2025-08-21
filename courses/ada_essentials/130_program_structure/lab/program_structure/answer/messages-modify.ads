@@ -1,6 +1,3 @@
---Messages
-
---Messages_Modify
 package Messages.Modify is
 
    procedure Kind (Message   : in out Message_T;

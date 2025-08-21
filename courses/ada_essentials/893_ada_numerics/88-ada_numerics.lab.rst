@@ -38,5 +38,5 @@ Ada.Numerics Lab
 Ada.Numerics Lab Solution
 ----------------------------------------------
 
-.. container:: source_include labs/answers/893_ada_numerics.txt :code:Ada :number-lines:1
+.. container:: source_include 893_ada_numerics/lab/ada_numerics/answer/main.adb :code:Ada :number-lines:1
 

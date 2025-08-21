@@ -1,4 +1,3 @@
---Statements
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
    type Days_Of_Week_T is
@@ -35,4 +34,3 @@ begin
 
    Put_Line (Total_Worked'Image);
 end Main;
---Statements

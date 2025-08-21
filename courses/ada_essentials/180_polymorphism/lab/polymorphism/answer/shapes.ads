@@ -1,4 +1,3 @@
---Shapes_Spec
 package Shapes is
    type Length_T is new Natural;
    type Lengths_T is array (Positive range <>) of Length_T;

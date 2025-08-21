@@ -1,6 +1,3 @@
---Generic_List_Body
-
---Main
 with Data_Type;
 with Generic_List;
 procedure Main is
@@ -33,4 +30,3 @@ begin
    List.Sort (My_List);
    List.Print (My_List);
 end Main;
---Main

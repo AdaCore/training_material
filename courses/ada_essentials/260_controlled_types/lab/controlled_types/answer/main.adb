@@ -1,6 +1,3 @@
---Body
-
---Main
 with Keys_Pkg;
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
@@ -22,4 +19,3 @@ begin
    Put_Line ("In use: " & Integer'Image (Keys_Pkg.In_Use));
 
 end Main;
---Main

@@ -1,4 +1,3 @@
---Spec
 with Ada.Finalization;
 package Keys_Pkg is
 

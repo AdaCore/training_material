@@ -1,4 +1,3 @@
---Database_Spec
 with Ada.Containers.Vectors;
 package City_Trivia is
 

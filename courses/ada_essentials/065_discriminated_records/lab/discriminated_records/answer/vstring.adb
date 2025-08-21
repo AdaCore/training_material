@@ -1,4 +1,3 @@
-
 package body Vstring is
    function To_Vstring (Str : String) return Vstring_T is
       ((Length => Str'Length, Text => Str));

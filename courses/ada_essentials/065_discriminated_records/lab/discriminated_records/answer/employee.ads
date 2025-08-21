@@ -1,6 +1,3 @@
---Strings
-
---Employee_Spec
 with Vstring;     use Vstring;
 package Employee is
 

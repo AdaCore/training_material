@@ -1,6 +1,3 @@
---Queue_Body
-
---Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Priority_Queue;
 procedure Main is
@@ -28,4 +25,3 @@ begin
    end loop;
 
 end Main;
---Main

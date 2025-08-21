@@ -1,6 +1,3 @@
---Generic_List_Spec
-
---Generic_List_Body
 with Ada.Text_io; use Ada.Text_IO;
 package body Generic_List is
 

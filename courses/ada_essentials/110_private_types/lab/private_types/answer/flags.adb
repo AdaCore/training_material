@@ -1,5 +1,3 @@
---Flags_Spec
-
 package body Flags is
 
 --Flags_Body_1

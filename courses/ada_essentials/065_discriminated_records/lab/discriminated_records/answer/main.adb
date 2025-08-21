@@ -1,6 +1,3 @@
---Employee_Body
-
---Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Employee;
 with Vstring; use Vstring;
@@ -52,4 +49,3 @@ begin
       Print (Item);
    end loop;
 end Main;
---Main

@@ -1,6 +1,3 @@
---Shapes_Body
-
---Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Shapes;      use Shapes;
 procedure Main is
@@ -28,4 +25,3 @@ begin
    Describe (Triangle);
    Describe (Square);
 end Main;
---Main

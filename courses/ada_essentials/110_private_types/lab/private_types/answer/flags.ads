@@ -1,6 +1,3 @@
---Colors
-
---Flags_Spec
 with Colors;
 package Flags is
    type Key_T is (USA, England, France, Italy);

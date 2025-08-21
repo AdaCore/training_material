@@ -1,4 +1,3 @@
---Types_Spec
 package Employee is
    subtype Name_T is String (1 .. 6);
    type Date_T is record

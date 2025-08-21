@@ -1,5 +1,3 @@
-
---Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Employee;
 procedure Main is
@@ -34,4 +32,3 @@ begin
    Employ.Print;
    Staff.Print;
 end Main;
---Main

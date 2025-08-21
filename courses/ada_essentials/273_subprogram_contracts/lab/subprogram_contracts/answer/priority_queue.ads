@@ -1,4 +1,3 @@
---Queue_Spec
 package Priority_Queue is
    Overflow : exception;
    type Priority_T is (Low, Medium, High);

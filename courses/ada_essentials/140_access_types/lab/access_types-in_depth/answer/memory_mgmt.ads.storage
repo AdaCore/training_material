@@ -1,6 +1,3 @@
---Memory_Mgmt_Debug
-
---Memory_Mgmt_Spec
 with System.Storage_Components;
 with System.Storage_Pools;
 package Memory_Mgmt is

@@ -1,4 +1,3 @@
-
 package body Numeric_Types is
 
    function Legal (C : Character) return Boolean is

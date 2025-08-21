@@ -1,6 +1,3 @@
---Input
-
---List
 package List is
    procedure Add (Value : Integer);
    procedure Remove (Value : Integer);

@@ -1,4 +1,3 @@
---Calculator_Body
 package body Calculator is
    function Value
      (Str : String)

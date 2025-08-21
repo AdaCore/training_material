@@ -1,6 +1,3 @@
---Main
-
---Simple_IO_Spec
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 package Simple_Io is
    function Get_String (Prompt : String)

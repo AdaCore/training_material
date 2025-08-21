@@ -1,6 +1,3 @@
---Drawing_Body
-
---Printable_Object
 with Geometry;
 with Line_Draw;
 with Base_Types;

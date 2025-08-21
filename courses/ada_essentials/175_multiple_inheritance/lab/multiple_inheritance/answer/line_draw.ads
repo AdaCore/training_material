@@ -1,6 +1,3 @@
---Shapes
-
---Drawing_Spec
 with Base_Types;
 package Line_Draw is
 

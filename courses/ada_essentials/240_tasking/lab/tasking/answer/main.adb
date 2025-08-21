@@ -1,6 +1,3 @@
---Task
-
---Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Protected_Object;
 with Task_Type;
@@ -28,4 +25,3 @@ begin
    T3.Stop_Task;
 
 end Main;
---Main

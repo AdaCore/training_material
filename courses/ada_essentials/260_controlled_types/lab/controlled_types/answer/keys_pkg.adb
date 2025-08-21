@@ -1,6 +1,3 @@
---Spec
-
---Body
 package body Keys_Pkg is
    Global_In_Use : array (Character range 'a' .. 'z') of Boolean :=
      (others => False);

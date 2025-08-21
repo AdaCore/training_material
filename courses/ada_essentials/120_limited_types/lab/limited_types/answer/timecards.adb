@@ -1,6 +1,3 @@
---Timecards_Spec
-
---Timecards_Body
 package body Timecards is
 
    function Create (Name  : Employee_Data.Name_T;

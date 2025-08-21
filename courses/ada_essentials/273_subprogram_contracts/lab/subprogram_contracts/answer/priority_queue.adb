@@ -1,6 +1,3 @@
---Queue_Spec
-
---Queue_Body
 package body Priority_Queue is
 
    function Pad (Str : String) return String_T is

@@ -1,4 +1,3 @@
-
 package body Database is
    function "=" (L, R : Database_T) return Boolean is
    begin

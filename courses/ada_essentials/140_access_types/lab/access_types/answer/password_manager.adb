@@ -1,4 +1,3 @@
-
 package body Password_Manager is
 
    Passwords : array (Login_T) of aliased Password_T;

@@ -1,4 +1,3 @@
---Messages
 package Messages is
    type Message_T is private;
    type Kind_T is (Command, Query);

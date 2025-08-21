@@ -1,5 +1,3 @@
-
---Generic_List_Spec
 generic
    type Component_T is private;
    Max_Size : Natural;

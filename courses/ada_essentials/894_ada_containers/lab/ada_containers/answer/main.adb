@@ -1,6 +1,3 @@
---Database_Body_2
-
---Main
 with Ada.Text_IO; use Ada.Text_IO;
 with City_Trivia;
 procedure Main is
@@ -41,4 +38,3 @@ begin
       end loop;
    end loop;
 end Main;
---Main

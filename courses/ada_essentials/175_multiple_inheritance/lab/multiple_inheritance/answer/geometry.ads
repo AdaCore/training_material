@@ -1,6 +1,3 @@
---Types
-
---Shapes
 with Base_Types;
 package Geometry is
 

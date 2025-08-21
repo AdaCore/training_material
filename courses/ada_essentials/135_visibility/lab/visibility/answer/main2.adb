@@ -1,6 +1,3 @@
---Main1
-
---Main2
 with Ada.Text_IO; use Ada.Text_IO;
 with Quads;       use Quads;
 with Triangles;   use Triangles;

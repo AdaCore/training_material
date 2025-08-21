@@ -1,4 +1,3 @@
-
 package body Messages.Modify is
 
    procedure Kind (Message   : in out Message_T;

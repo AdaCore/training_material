@@ -1,6 +1,3 @@
---Crc
-
---Messages_Spec
 with Crc; use Crc;
 package Messages is
    type Message_T is private;

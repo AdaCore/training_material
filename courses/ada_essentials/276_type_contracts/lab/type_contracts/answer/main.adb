@@ -1,6 +1,3 @@
---Schedule_Body
-
---Main
 with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Text_IO;    use Ada.Text_IO;
 with Schedule;       use Schedule;
@@ -30,4 +27,3 @@ begin
          Put_Line (Exception_Information (The_Err));
    end;
 end Main;
---Main

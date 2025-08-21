@@ -1,5 +1,3 @@
---Messages
---List_Types
 package Messages.List_Types is
    type List_T is private;
 private

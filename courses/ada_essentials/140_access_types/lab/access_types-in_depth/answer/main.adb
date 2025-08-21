@@ -1,6 +1,3 @@
---Database_List_Substance
-
---Main
 with Simple_Io; use Simple_Io;
 with Database;
 with Database_List;

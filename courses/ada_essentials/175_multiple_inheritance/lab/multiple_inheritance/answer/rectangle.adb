@@ -1,4 +1,3 @@
-
 package body Rectangle is
    procedure Set_Lines (Object : in out Object_T;
                         Lines  :        Lines_T) is

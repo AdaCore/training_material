@@ -1,4 +1,3 @@
---Password
 package Password_Manager is
 
    type Login_T is (Email, Banking, Amazon, Streaming);

@@ -1,5 +1,3 @@
---Database_Spec
-
 --Database_Body_1
 with Ada.Containers.Ordered_Maps;
 package body City_Trivia is
@@ -74,4 +72,5 @@ package body City_Trivia is
       City_Sort.Sort (Ret_Val);
       return Ret_Val;
    end Get_Cities;
+--Database_Body_2
 end City_Trivia;

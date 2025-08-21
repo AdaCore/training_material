@@ -1,4 +1,3 @@
-
 package body Messages is
    type Message_Content_T is new Integer;
 

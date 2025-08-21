@@ -1,5 +1,3 @@
---Calculator_Body
---Calculator_Spec
 package Calculator is
    Formatting_Error : exception;
    Divide_By_Zero   : exception;

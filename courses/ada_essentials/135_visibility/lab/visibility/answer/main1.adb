@@ -1,6 +1,3 @@
---Types
-
---Main1
 with Ada.Text_IO; use Ada.Text_IO;
 with Quads;
 with Triangles;

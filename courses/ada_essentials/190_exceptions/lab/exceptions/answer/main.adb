@@ -1,6 +1,3 @@
---Numeric_Types
-
---Main
 with Ada.Text_IO;
 with Numeric_Types;
 procedure Main is
@@ -27,4 +24,3 @@ begin
    Print_Value ("123abc");
    Print_Value ("12e3");
 end Main;
---Main

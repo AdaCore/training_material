@@ -1,4 +1,3 @@
-
 package body Counter is
   task body Counter_T is
     O_Register  : Datastore.Register_T;

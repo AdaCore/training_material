@@ -1,4 +1,3 @@
-
 package body Printable_Object is
    procedure Set_Color (Object : in out Object_T;
                         Color  :        Base_Types.Color_T) is

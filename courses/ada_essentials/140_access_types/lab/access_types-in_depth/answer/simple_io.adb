@@ -1,6 +1,3 @@
---Simple_IO_Spec
-
---Simple_IO_Body
 with Ada.Text_IO;
 package body Simple_Io is
    function Get_String (Prompt : String) return String is

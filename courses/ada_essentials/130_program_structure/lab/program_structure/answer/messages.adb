@@ -1,4 +1,3 @@
-
 package body Messages is
 
    function Create (Kind    : Kind_T;

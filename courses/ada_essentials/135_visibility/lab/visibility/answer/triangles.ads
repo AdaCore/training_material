@@ -1,4 +1,3 @@
-
 package Triangles is
 
    Number_Of_Sides : constant Natural := 3;

@@ -1,6 +1,3 @@
---Employee_Data_Spec
-
---Employee_Data_Body
 package body Employee_Data is
 
    Last_Used_Id : Id_T := Id_T'First;

@@ -1,6 +1,3 @@
---Messages_Modify
-
---Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Messages;
 with Messages.Modify;
@@ -22,4 +19,3 @@ begin
                             New_Value => 98.76);
    Print;
 end Main;
---Main

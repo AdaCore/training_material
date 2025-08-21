@@ -1,4 +1,3 @@
-
 with Ada.Exceptions;
 with Ada.Text_IO;
 use type Ada.Exceptions.Exception_Id;

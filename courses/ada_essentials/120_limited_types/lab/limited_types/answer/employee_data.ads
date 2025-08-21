@@ -1,4 +1,3 @@
---Employee_Data_Spec
 package Employee_Data is
 
    subtype Name_T is String (1 .. 6);

@@ -1,6 +1,3 @@
---List
-
---Main
 with Ada.Text_IO; use Ada.Text_IO;
 with Input;
 with List;
@@ -30,4 +27,3 @@ begin
    end loop;
 
 end Main;
---Main

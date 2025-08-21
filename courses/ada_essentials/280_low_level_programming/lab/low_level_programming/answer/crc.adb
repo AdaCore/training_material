@@ -1,4 +1,3 @@
-
 package body Crc is
    type Array_T is array (Positive range <>) of Crc_T;
    function Generate

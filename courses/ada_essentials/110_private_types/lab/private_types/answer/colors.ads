@@ -1,4 +1,3 @@
---Colors
 package Colors is
    type Color_T is (Red, Yellow, Green, Blue, Black);
    type Color_Set_T is private;

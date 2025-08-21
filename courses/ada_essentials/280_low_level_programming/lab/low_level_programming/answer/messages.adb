@@ -1,5 +1,3 @@
---Main_Main
-
 --Messages_Helpers
 with Ada.Text_IO;
 with Unchecked_Conversion;
@@ -88,5 +86,5 @@ package body Messages is
                             U32_T'Image (Message.Value));
       Ada.Text_IO.Put_Line ("  Additional Info: " & From_Text (Message.Text));
    end Print;
-end Messages;
 --Messages_Body
+end Messages;

@@ -1,4 +1,3 @@
---Datastore
 package Datastore is
   type Register_T is (One, Two, Three);
 

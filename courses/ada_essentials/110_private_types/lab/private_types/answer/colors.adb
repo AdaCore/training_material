@@ -1,4 +1,3 @@
-
 package body Colors is
    procedure Add (Set   : in out Color_Set_T;
                   Color :        Color_T) is

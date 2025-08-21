@@ -1,4 +1,3 @@
---Types
 package Quads is
 
    Number_Of_Sides : constant Natural := 4;

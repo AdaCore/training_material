@@ -1,4 +1,3 @@
---Strings
 package Vstring is
    Max_String_Length : constant := 1_000;
    subtype Index_T is Integer range 0 .. Max_String_Length;

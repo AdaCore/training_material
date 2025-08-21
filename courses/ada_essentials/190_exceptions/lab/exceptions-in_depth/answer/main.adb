@@ -1,4 +1,3 @@
---Main
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 with Ada.Text_IO;           use Ada.Text_IO;
 with Calculator;            use Calculator;
@@ -70,4 +69,3 @@ begin
    end loop;
    Debug_Pkg.Print_Exceptions;
 end Main;
---Main

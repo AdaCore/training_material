@@ -1,6 +1,3 @@
---Drawing_Spec
-
---Drawing_Body
 with Ada.Text_IO;
 package body Line_Draw is
 

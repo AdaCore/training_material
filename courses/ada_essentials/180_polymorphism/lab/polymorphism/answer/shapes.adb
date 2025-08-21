@@ -1,6 +1,3 @@
---Shapes_Spec
-
---Shapes_Body
 package body Shapes is
 
    function Perimeter (Lengths : Lengths_T) return Length_T is

@@ -1,4 +1,3 @@
---Database
 package Database is
    type Database_T is private;
    function "=" (L, R : Database_T) return Boolean;
