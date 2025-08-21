@@ -43,5 +43,5 @@ Type Contracts
 .. include:: 276_type_contracts/01-introduction.rst
 .. include:: 276_type_contracts/02-type_invariants.rst
 .. include:: 276_type_contracts/03-subtype_predicates.rst
-.. include:: labs/276_type_contracts.lab.rst
+.. include:: 276_type_contracts/88-type_contracts.lab.rst
 .. include:: 276_type_contracts/99-summary.rst

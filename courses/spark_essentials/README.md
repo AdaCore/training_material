@@ -11,12 +11,5 @@ to modify the list of included modules, this is the file you would change
 
 ## Naming Scheme
 
-The naming scheme uses a 3-digit prefix of all modules to indicate the general
-order that modules should be presented. The module name consists of the
-3-digit prefix, followed by an underscore, and the description of the module
-(all lower case, words separated by an underscore.
-
-For most module (exceptions described under "Prefix Grouping") the module
-base name can be found as a subfolder (containing chapters for content) and
-an RST file that uses the ".. include::" construct to list the chapters
-to be included in the module.
+The naming scheme for the contents of this folder can be found
+in the Style Guide at the top level of this repository.
