@@ -45,5 +45,5 @@ Expressions
 .. include:: 080_expressions/02-membership_tests.rst
 .. include:: 080_expressions/03-qualified_names.rst
 .. include:: 080_expressions/04-conditional_expressions.rst
-.. include:: labs/080_expressions.lab.rst
+.. include:: 080_expressions/88-expressions.lab.rst
 .. include:: 080_expressions/99-summary.rst

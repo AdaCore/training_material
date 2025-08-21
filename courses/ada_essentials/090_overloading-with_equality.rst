@@ -47,5 +47,5 @@ Overloading: In-Depth
 .. include:: 090_overloading/03-call_resolution.rst
 .. include:: 090_overloading/04-user_defined_equality.rst
 .. include:: 090_overloading/05-composition_of_equality.rst
-.. include:: labs/090_overloading.lab.rst
+.. include:: 090_overloading/88-overloading.lab.rst
 .. include:: 090_overloading/99-summary.rst

@@ -48,5 +48,5 @@ Packages
 .. include:: 100_packages/04-bodies.rst
 .. include:: 100_packages/05-executable_parts.rst
 .. include:: 100_packages/06-idioms.rst
-.. include:: labs/100_packages.lab.rst
+.. include:: 100_packages/88-packages.lab.rst
 .. include:: 100_packages/99-summary.rst

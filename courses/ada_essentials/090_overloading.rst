@@ -45,5 +45,5 @@ Overloading
 .. include:: 090_overloading/02-enumerals_and_operators.rst
 .. include:: 090_overloading/03-call_resolution.rst
 .. include:: 090_overloading/04-user_defined_equality-brief.rst
-.. include:: labs/090_overloading.lab.rst
+.. include:: 090_overloading/88-overloading.lab.rst
 .. include:: 090_overloading/99-summary.rst

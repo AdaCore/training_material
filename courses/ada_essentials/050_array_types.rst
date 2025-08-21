@@ -55,5 +55,5 @@ Array Types
 .. include:: 050_array_types/07-array_aggregates.rst
 .. include:: 050_array_types/08-detour_image_for_complex_types.rst
 .. include:: 050_array_types/09-anonymous_array_types.rst
-.. include:: labs/050_array_types.lab.rst
+.. include:: 050_array_types/88-array_types.lab.rst
 .. include:: 050_array_types/99-summary.rst

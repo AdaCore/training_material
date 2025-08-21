@@ -47,5 +47,5 @@ Interfacing with C
 .. include:: 230_interfacing_with_c/03-parameter_passing.rst
 .. include:: 230_interfacing_with_c/04-complex_data_types.rst
 .. include:: 230_interfacing_with_c/05-interfacesc.rst
-.. include:: labs/230_interfacing_with_c.lab.rst
+.. include:: 230_interfacing_with_c/88-interfacing_with_c.lab.rst
 .. include:: 230_interfacing_with_c/99-summary.rst
