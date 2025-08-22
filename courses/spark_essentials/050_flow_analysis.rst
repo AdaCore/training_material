@@ -39,5 +39,5 @@ Flow Analysis
 .. include:: 050_flow_analysis/01-introduction.rst
 .. include:: 050_flow_analysis/02-flow_analysis.rst
 .. include:: 050_flow_analysis/03-limitations_of_flow_analysis.rst
-.. include:: labs/050_flow_analysis.lab.rst
+.. include:: 050_flow_analysis/88_flow_analysis.lab.rst
 .. include:: 050_flow_analysis/99-summary.rst

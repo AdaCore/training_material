@@ -40,5 +40,5 @@ SPARK Tools
 .. include:: 040_spark_tools/02-gnat_development_tools.rst
 .. include:: 040_spark_tools/03-spark_analysis_tools.rst
 .. include:: 040_spark_tools/04-ides_for_spark.rst
-.. include:: labs/040_spark_tools.lab.rst
+.. include:: 040_spark_tools/88_spark_tools.lab.rst
 .. include:: 040_spark_tools/99-summary.rst
