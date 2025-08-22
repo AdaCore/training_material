@@ -1,5 +1,5 @@
 005_introduction.rst
-030_basic_types-extras.rst
+030_scalar_types-extras.rst
 060_record_types.rst
 065_discriminated_records.rst
 080_expressions-with_quantified.rst
