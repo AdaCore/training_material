@@ -1,21 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language name="bnf" version="1.1">
+<language name="ebnf" version="1.2">
   <highlighting>
+
     <contexts>
       <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
-        <!-- Comments: (* ... *) -->
+        <!-- Comments -->
         <Detect2Chars char="(" char1="*" context="Comment" attribute="Comment"/>
-        <!-- Single-line comments: -- ... -->
         <RegExpr String="--.*$" attribute="Comment"/>
-        <!-- Strings: '...' or "..." -->
+
+        <!-- Strings -->
         <RegExpr String="'([^'\\]|\\.)*'" attribute="String"/>
         <RegExpr String="&quot;([^&quot;\\]|\\.)*&quot;" attribute="String"/>
-        <!-- Rule head: identifier followed by = -->
+
+        <!-- Rule head -->
         <RegExpr String="([A-Za-z_][A-Za-z0-9_]*)\s*(?==)" attribute="RuleHead"/>
         <RegExpr String="([A-Za-z_][A-Za-z0-9_]*)\s*(?=::)" attribute="RuleHead2"/>
-        <!-- Operators and punctuation -->
-        <RegExpr String="[=|,;*+?()\[\]\{\}]" attribute="Operator"/>
-        <!-- Nonterminals elsewhere -->
+
+        <!-- Structural brackets -->
+        <RegExpr String="[\{\}\(\)]" attribute="Group"/>
+
+        <!-- Operators/separators -->
+        <RegExpr String="[=;|,*+?]" attribute="Operator"/>
+
+        <!-- Ada keywords -->
+        <RegExpr String="\b(abort|abs|abstract|accept|access|aliased)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(all|and|array|at|begin|body|case|constant)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(declare|delay|delta|digits|do|else|elsif)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(end|entry|exception|exit|for|function|generic)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(goto|if|in|interface|is|limited|loop|mod)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(new|not|null|of|or|others|out|overriding)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(package|parallel|pragma|private|procedure)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(protected|raise|range|record|rem|renames)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(requeue|return|reverse|select|separate|some)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(subtype|synchronized|tagged|task|terminate)\b"
+                 attribute="Keyword"/>
+        <RegExpr String="\b(then|type|until|use|when|while|with|xor)\b"
+                 attribute="Keyword"/>
+
+        <!-- Nonterminals (fallback) -->
         <RegExpr String="[A-Za-z_][A-Za-z0-9_]*" attribute="Nonterminal"/>
       </context>
 
@@ -29,9 +60,11 @@
       <itemData name="Comment" defStyleNum="dsComment"/>
       <itemData name="String" defStyleNum="dsString"/>
       <itemData name="Operator" defStyleNum="dsKeyword"/>
+      <itemData name="Group" defStyleNum="dsOperator"/>
       <itemData name="Nonterminal" defStyleNum="dsDataType"/>
-      <itemData name="RuleHead" defStyleNum="dsFunction"/> <!-- special style -->
-      <itemData name="RuleHead2" defStyleNum="dsFunction"/> <!-- special style -->
+      <itemData name="RuleHead" defStyleNum="dsFunction"/>
+      <itemData name="RuleHead2" defStyleNum="dsFunction"/>
+      <itemData name="Keyword" defStyleNum="dsKeyword"/>
     </itemDatas>
   </highlighting>
 </language>
