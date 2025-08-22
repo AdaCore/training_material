@@ -1,6 +1,6 @@
-*************
-Basic Types
-*************
+**************
+Scalar Types
+**************
 
 ..
     Coding language
