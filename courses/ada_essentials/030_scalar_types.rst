@@ -1,6 +1,6 @@
-*************
-Basic Types
-*************
+**************
+Scalar Types
+**************
 
 .. container:: PRELUDE BEGIN
 
@@ -42,11 +42,11 @@ Basic Types
 
 .. container:: PRELUDE END
 
-.. include:: 030_basic_types/01-introduction.rst
-.. include:: 030_basic_types/02-discrete_numeric_types_with_mod.rst
-.. include:: 030_basic_types/04-enumeration_types.rst
-.. include:: 030_basic_types/07-real_types.rst
-.. include:: 030_basic_types/09-miscellaneous.rst
-.. include:: 030_basic_types/10-subtypes.rst
-.. include:: 030_basic_types/88-basic_types.lab.rst
-.. include:: 030_basic_types/99-summary.rst
+.. include:: 030_scalar_types/01-introduction.rst
+.. include:: 030_scalar_types/02-discrete_numeric_types_with_mod.rst
+.. include:: 030_scalar_types/04-enumeration_types.rst
+.. include:: 030_scalar_types/07-real_types.rst
+.. include:: 030_scalar_types/09-miscellaneous.rst
+.. include:: 030_scalar_types/10-subtypes.rst
+.. include:: labs/030_scalar_types.lab.rst
+.. include:: 030_scalar_types/99-summary.rst

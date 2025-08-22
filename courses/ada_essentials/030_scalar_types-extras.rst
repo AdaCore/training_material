@@ -1,6 +1,6 @@
-*********************************
-Basic Types: Additional Content
-*********************************
+**********************************
+Scalar Types: Additional Content
+**********************************
 
 .. container:: PRELUDE BEGIN
 
@@ -44,9 +44,9 @@ Basic Types: Additional Content
 
 .. container:: PRELUDE END
 
-.. include:: 030_basic_types/03-modular_types.rst
-.. include:: 030_basic_types/05-representation_values.rst
-.. include:: 030_basic_types/06-character_types.rst
-.. include:: 030_basic_types/07-real_types.rst
-.. include:: 030_basic_types/11-subtypes_full_picture.rst
-.. include:: 030_basic_types/12-big_numbers.rst
+.. include:: 030_scalar_types/03-modular_types.rst
+.. include:: 030_scalar_types/05-representation_values.rst
+.. include:: 030_scalar_types/06-character_types.rst
+.. include:: 030_scalar_types/07-real_types.rst
+.. include:: 030_scalar_types/11-subtypes_full_picture.rst
+.. include:: 030_scalar_types/12-big_numbers.rst
