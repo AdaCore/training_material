@@ -28,15 +28,20 @@ Program Structure Lab
 Program Structure Lab Solution - Messages
 ----------------------------------------------
 
-.. container:: source_include labs/answers/130_program_structure.txt :start-after:--Messages :end-before:--Messages :code:Ada :number-lines:1
+.. container:: source_include 130_program_structure/lab/program_structure/answer/messages.ads :code:Ada :number-lines:1
+
+.. container:: source_include 130_program_structure/lab/program_structure/answer/messages.adb :code:Ada :number-lines:1
 
 -------------------------------------------------------
 Program Structure Lab Solution - Message Modification
 -------------------------------------------------------
-.. container:: source_include labs/answers/130_program_structure.txt :start-after:--Messages_Modify :end-before:--Messages_Modify :code:Ada :number-lines:1
+
+.. container:: source_include 130_program_structure/lab/program_structure/answer/messages-modify.ads :code:Ada :number-lines:1
+
+.. container:: source_include 130_program_structure/lab/program_structure/answer/messages-modify.adb :code:Ada :number-lines:1
 
 ---------------------------------------
 Program Structure Lab Solution - Main
 ---------------------------------------
-.. container:: source_include labs/answers/130_program_structure.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
 
+.. container:: source_include 130_program_structure/lab/program_structure/answer/main.adb :code:Ada :number-lines:1

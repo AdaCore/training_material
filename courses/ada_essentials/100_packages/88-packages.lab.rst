@@ -44,7 +44,7 @@ Creating Packages in :toolname:`GNAT Studio`
 Packages Lab Solution - Constants
 -----------------------------------
 
-.. container:: source_include labs/answers/100_packages.txt :start-after:--Constants :end-before:--Constants :code:Ada :number-lines:1
+.. container:: source_include 100_packages/lab/packages/answer/constants.ads :code:Ada :number-lines:1
 
 .. container:: speakernote
 
@@ -54,16 +54,20 @@ Packages Lab Solution - Constants
 Packages Lab Solution - Input
 ------------------------------
 
-.. container:: source_include labs/answers/100_packages.txt :start-after:--Input :end-before:--Input :code:Ada :number-lines:1
+.. container:: source_include 100_packages/lab/packages/answer/input.ads :code:Ada :number-lines:1
+
+.. container:: source_include 100_packages/lab/packages/answer/input.adb :code:Ada :number-lines:1
 
 -----------------------------------
 Packages Lab Solution - List
 -----------------------------------
 
-.. container:: source_include labs/answers/100_packages.txt :start-after:--List :end-before:--List :code:Ada :number-lines:1
+.. container:: source_include 100_packages/lab/packages/answer/list.ads :code:Ada :number-lines:1
+
+.. container:: source_include 100_packages/lab/packages/answer/list.adb :code:Ada :number-lines:1
 
 ------------------------------
 Packages Lab Solution - Main
 ------------------------------
 
-.. container:: source_include labs/answers/100_packages.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include 100_packages/lab/packages/answer/main.adb :code:Ada :number-lines:1
