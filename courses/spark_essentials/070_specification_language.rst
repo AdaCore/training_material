@@ -41,5 +41,5 @@ Specification Language
 .. include:: 070_specification_language/03-quantified_expressions.rst
 .. include:: 070_specification_language/04-new_aggregate_expressions.rst
 .. include:: 070_specification_language/05-structuring_expressions.rst
-.. include:: labs/070_specification_language.lab.rst
+.. include:: 070_specification_language/88_specification_language.lab.rst
 .. include:: 070_specification_language/99-summary.rst

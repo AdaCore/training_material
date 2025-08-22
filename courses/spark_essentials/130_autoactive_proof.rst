@@ -41,5 +41,5 @@ Auto-Active Proof
 .. include:: 130_autoactive_proof/03-increasing_the_proof_effort.rst
 .. include:: 130_autoactive_proof/04-ghost_code.rst
 .. include:: 130_autoactive_proof/05-dealing_with_hard_proofs.rst
-.. include:: labs/130_autoactive_proof.lab.rst
+.. include:: 130_autoactive_proof/88_autoactive_proof.lab.rst
 .. include:: 130_autoactive_proof/99-summary.rst
