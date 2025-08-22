@@ -69,15 +69,15 @@ Note on GNAT File Naming Conventions
 * GNAT compiler assumes one compilable entity per file
 
   * Package specification, subprogram body, etc
-  * So the body for :ada:`say_hello` should be the only thing in the file
+  * So the body for :ada:`hello_world` should be the only thing in the file
 
 * Filenames should match the name of the compilable entity
 
   * Replacing "." with "-"
   * File extension is ".ads" for specifications and ".adb" for bodies
-  * So the body for :ada:`say_hello` will be in :filename:`say_hello.adb`
+  * So the body for :ada:`hello_world` will be in :filename:`hello_world.adb`
 
-    * If there was a specification for the subprogram, it would be in :filename:`say_hello.ads`
+    * If there was a specification for the subprogram, it would be in :filename:`hello_world.ads`
 
 * This is the **default** behavior. There are ways around both of these rules
 
