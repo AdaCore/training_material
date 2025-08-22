@@ -25,10 +25,12 @@ Exceptions Lab
 Exceptions Lab Solution - Numeric Types
 -----------------------------------------
 
-.. container:: source_include labs/answers/190_exceptions.txt :start-after:--Numeric_Types :end-before:--Numeric_Types :code:Ada :number-lines:1
+.. container:: source_include 190_exceptions/lab/exceptions/answer/numeric_types.ads :code:Ada :number-lines:1
+
+.. container:: source_include 190_exceptions/lab/exceptions/answer/numeric_types.adb :code:Ada :number-lines:1
 
 --------------------------------
 Exceptions Lab Solution - Main
 --------------------------------
 
-.. container:: source_include labs/answers/190_exceptions.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include 190_exceptions/lab/exceptions/answer/main.adb :code:Ada :number-lines:1

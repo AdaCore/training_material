@@ -32,23 +32,25 @@ Advanced Data Hiding Lab
 Advanced Data Hiding Lab Solution - Message Type
 --------------------------------------------------
 
-.. container:: source_include labs/answers/290_advanced_data_hiding.txt :start-after:--Messages :end-before:--Messages :code:Ada :number-lines:1
+.. container:: source_include 290_advanced_data_hiding/lab/advanced_data_hiding/answer/messages.ads :code:Ada :number-lines:1
 
 -------------------------------------------------------
 Advanced Data Hiding Lab Solution - Message List Type
 -------------------------------------------------------
 
-.. container:: source_include labs/answers/290_advanced_data_hiding.txt :start-after:--List_Types :end-before:--List_Types :code:Ada :number-lines:1
+.. container:: source_include 290_advanced_data_hiding/lab/advanced_data_hiding/answer/messages-list_types.ads :code:Ada :number-lines:1
  
 -------------------------------------------------------------
 Advanced Data Hiding Lab Solution - Message List Operations
 -------------------------------------------------------------
 
-.. container:: source_include labs/answers/290_advanced_data_hiding.txt :start-after:--Operations :end-before:--Operations :code:Ada :number-lines:1
+.. container:: source_include 290_advanced_data_hiding/lab/advanced_data_hiding/answer/messages-list_types-operations.ads :code:Ada :number-lines:1
+
+.. container:: source_include 290_advanced_data_hiding/lab/advanced_data_hiding/answer/messages-list_types-operations.adb :code:Ada :number-lines:1
 
 ------------------------------------------
 Advanced Data Hiding Lab Solution - Main
 ------------------------------------------
 
-.. container:: source_include labs/answers/290_advanced_data_hiding.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include 290_advanced_data_hiding/lab/advanced_data_hiding/answer/main.adb :code:Ada :number-lines:1
 
