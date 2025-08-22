@@ -41,5 +41,5 @@ State Abstraction
 .. include:: 140_state_abstraction/03-additional_states.rst
 .. include:: 140_state_abstraction/04-dependency_contracts.rst
 .. include:: 140_state_abstraction/05-package_initialization.rst
-.. include:: labs/140_state_abstraction.lab.rst
+.. include:: 140_state_abstraction/88_state_abstraction.lab.rst
 .. include:: 140_state_abstraction/99-summary.rst

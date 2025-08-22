@@ -40,5 +40,5 @@ SPARK Boundary
 .. include:: 150_spark_boundary/02-system_boundary.rst
 .. include:: 150_spark_boundary/03-software_boundary.rst
 .. include:: 150_spark_boundary/04-assumptions.rst
-.. include:: labs/150_spark_boundary.lab.rst
+.. include:: 150_spark_boundary/88_spark_boundary.lab.rst
 .. include:: 150_spark_boundary/99-summary.rst
