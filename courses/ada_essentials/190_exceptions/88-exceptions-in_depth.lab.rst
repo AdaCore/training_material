@@ -42,23 +42,25 @@ Project Requirements
 Exceptions In-Depth Lab Solution - Calculator (Spec)
 ------------------------------------------------------
 
-.. container:: source_include labs/answers/190_exceptions-in_depth.txt :start-after:--Calculator_Spec :end-before:--Calculator_Spec :code:Ada :number-lines:1
+.. container:: source_include 190_exceptions/lab/exceptions-in_depth/answer/calculator.ads :code:Ada :number-lines:1
 
 -----------------------------------------
 Exceptions In-Depth Lab Solution - Main
 -----------------------------------------
 
-.. container:: source_include labs/answers/190_exceptions-in_depth.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include 190_exceptions/lab/exceptions-in_depth/answer/main.adb :code:Ada :number-lines:1
 
 ------------------------------------------------------
 Exceptions In-Depth Lab Solution - Calculator (Body)
 ------------------------------------------------------
 
-.. container:: source_include labs/answers/190_exceptions-in_depth.txt :start-after:--Calculator_Body :end-before:--Calculator_Body :code:Ada :number-lines:1
+.. container:: source_include 190_exceptions/lab/exceptions-in_depth/answer/calculator.adb :code:Ada :number-lines:1
 
 ------------------------------------------
 Exceptions In-Depth Lab Solution - Debug
 ------------------------------------------
 
-.. container:: source_include labs/answers/190_exceptions-in_depth.txt :start-after:--Debug :end-before:--Debug :code:Ada :number-lines:1
+.. container:: source_include 190_exceptions/lab/exceptions-in_depth/answer/debug_pkg.ads :code:Ada :number-lines:1
+
+.. container:: source_include 190_exceptions/lab/exceptions-in_depth/answer/debug_pkg.adb :code:Ada :number-lines:1
 

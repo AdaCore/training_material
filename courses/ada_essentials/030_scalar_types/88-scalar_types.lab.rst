@@ -86,11 +86,11 @@ Scalar Types Extra Credit
 Scalar Types Lab Solution - Declarations
 ------------------------------------------
 
-.. container:: source_include labs/answers/030_scalar_types.txt :start-after:--Declarations :end-before:--Declarations :code:Ada :number-lines:1
+.. container:: source_include 030_scalar_types/lab/scalar_types/answer/main.adb :start-after:--Declarations :end-before:--Declarations :code:Ada :number-lines:1
 
 --------------------------------------------
 Scalar Types Lab Solution - Implementation
 --------------------------------------------
   
-.. container:: source_include labs/answers/030_scalar_types.txt :start-after:--Implementation :end-before:--Implementation :code:Ada :number-lines:18
+.. container:: source_include 030_scalar_types/lab/scalar_types/answer/main.adb :start-after:--Implementation :end-before:--Implementation :code:Ada :number-lines:18
 

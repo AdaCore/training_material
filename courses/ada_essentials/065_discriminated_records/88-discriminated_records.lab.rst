@@ -30,22 +30,24 @@ Discriminated Records Lab
 Discriminated Records Lab Solution - Vstring
 ----------------------------------------------
 
-.. container:: source_include labs/answers/065_discriminated_records.txt :start-after:--Strings :end-before:--Strings :code:Ada :number-lines:1
+.. container:: source_include 065_discriminated_records/lab/discriminated_records/answer/vstring.ads :code:Ada :number-lines:1
+
+.. container:: source_include 065_discriminated_records/lab/discriminated_records/answer/vstring.adb :code:Ada :number-lines:1
 
 ------------------------------------------------------
 Discriminated Records Lab Solution - Employee (Spec)
 ------------------------------------------------------
 
-.. container:: source_include labs/answers/065_discriminated_records.txt :start-after:--Employee_Spec :end-before:--Employee_Spec :code:Ada :number-lines:1
+.. container:: source_include 065_discriminated_records/lab/discriminated_records/answer/employee.ads :code:Ada :number-lines:1
 
 -----------------------------------------------------
 Discriminated Records Lab Solution - Employee (Body)
 -----------------------------------------------------
 
-.. container:: source_include labs/answers/065_discriminated_records.txt :start-after:--Employee_Body :end-before:--Employee_Body :code:Ada :number-lines:1
+.. container:: source_include 065_discriminated_records/lab/discriminated_records/answer/employee.adb :code:Ada :number-lines:1
 
 -------------------------------------------
 Discriminated Records Lab Solution - Main
 -------------------------------------------
 
-.. container:: source_include labs/answers/065_discriminated_records.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include 065_discriminated_records/lab/discriminated_records/answer/main.adb :code:Ada :number-lines:1
