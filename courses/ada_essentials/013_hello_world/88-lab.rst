@@ -25,19 +25,23 @@ Hello World Lab
 Step 1 - Copy the Prompt
 --------------------------
 
+* You should have downloaded (or received) a :filename:`labs`
+  folder
+
+   * This folder contains a directory for each module in the
+     class that has a lab
+
+* In each module directory, you should find a :filename:`prompt`
+  and :filename:`answer` folder
+
 * The :filename:`prompt` folder contains
 
    * Project file (:filename:`default.gpr`) that instructs
      the compilation system on how to build the application
    * Ada file(s) containing the source code for the application
 
-* This folder should reside in a directory provided by your
-  instructor or IT team. The name of the folder will contain
-  the name of the module. (There should be a folder for each
-  module in the class.)
-
-* Create a folder for this class, and then copy the :filename:`prompt`
-  folder into it
+* Create a folder for this class. As you do each lab, copy
+  the module directory into the class folder
 
 ---------------------------
 Step 2 - Open the Project
@@ -50,7 +54,9 @@ Using :toolname:`GNAT Studio`
       * Double-click the :filename:`default.gpr` project file
       * Run :command:`gnatstudio default.gpr` file from a command prompt in the correct folder
 
-   * Open the :toolname:`GNAT Studio` application and then :menu:`File` |rightarrow| :menu:`Open Project`
+   * Open the :toolname:`GNAT Studio` application
+
+      * :menu:`File` |rightarrow| :menu:`Open Project` to open the project file
 
 -------------------------------------
 Step 3 - Make the Necessary Changes

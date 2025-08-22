@@ -10,6 +10,6 @@ First Steps in Writing Ada
 
   * Semantics and Syntax may be different, but concepts are similar
 
-* Starting to learn some of the words we use in Ada to describe these concepts
+* We’ve taken the first step in speaking about these concepts in Ada’s own language
 
 * On to the real work!
