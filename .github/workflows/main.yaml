@@ -153,9 +153,6 @@ jobs:
       - name: Setup Python
         run: python3 -m pip install pytest epycs pandocfilters adacut
 
-      # - name: Run PyTest
-      #   run: pytest --ignore=cached_gnat --ignore=courses/ada_essentials/labs/radar/test_all.py
-
       - name: Check Quizes
         run: |
             . contrib/ci/alr_gnat_env.profile
