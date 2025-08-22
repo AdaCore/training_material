@@ -2,9 +2,9 @@
 Lab
 ========
 
------------------
-Basic Types Lab
------------------
+------------------
+Scalar Types Lab
+------------------
 
 * Create types to handle the following concepts
 
@@ -51,9 +51,9 @@ Using the "Prompts" Directory
 
 * These prompt folders should be available for most labs
 
------------------------
-Basic Types Lab Hints
------------------------
+------------------------
+Scalar Types Lab Hints
+------------------------
 
 * Understand the properties of the types
 
@@ -71,9 +71,9 @@ Basic Types Lab Hints
       <typemark>'Image (Object)
       Object'Image   
 
---------------------------
-Basic Types Extra Credit
---------------------------
+---------------------------
+Scalar Types Extra Credit
+---------------------------
 
 * See what happens when your data is invalid / illegal
 
@@ -82,15 +82,15 @@ Basic Types Extra Credit
    - Color type only has one value
    - Add a number larger than 360 to the circle value
 
-----------------------------------------
-Basic Types Lab Solution - Declarations
-----------------------------------------
-
-.. container:: source_include labs/answers/030_basic_types.txt :start-after:--Declarations :end-before:--Declarations :code:Ada :number-lines:1
-
 ------------------------------------------
-Basic Types Lab Solution - Implementation
+Scalar Types Lab Solution - Declarations
 ------------------------------------------
+
+.. container:: source_include labs/answers/030_scalar_types.txt :start-after:--Declarations :end-before:--Declarations :code:Ada :number-lines:1
+
+--------------------------------------------
+Scalar Types Lab Solution - Implementation
+--------------------------------------------
   
-.. container:: source_include labs/answers/030_basic_types.txt :start-after:--Implementation :end-before:--Implementation :code:Ada :number-lines:18
+.. container:: source_include labs/answers/030_scalar_types.txt :start-after:--Implementation :end-before:--Implementation :code:Ada :number-lines:18
 

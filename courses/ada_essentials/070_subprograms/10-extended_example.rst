@@ -8,7 +8,7 @@ Implementing a Simple "Set"
 
 * We want to indicate which colors of the rainbow are in a **set**
 
-   * If you remember from the *Basic Types* module, a type is made up of values and primitive operations
+   * If you remember from the *Scalar Types* module, a type is made up of values and primitive operations
 
 * Our values will be
 

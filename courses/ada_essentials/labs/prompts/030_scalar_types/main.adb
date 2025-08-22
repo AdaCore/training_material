@@ -14,7 +14,7 @@ procedure Main is
 
 begin
 
-   Put_Line ("Basic Types");
+   Put_Line ("Scalar Types");
 
    -- assignment
    --  Number_Of_Tests  := ?
