@@ -57,7 +57,7 @@ Step 3 - Make the Necessary Changes
 -------------------------------------
 
 * In the left pane (**Project** tab if it not selected), expand the triangles until you
-  see :filename:`hello_world.adb` - double-click it.
+  see :filename:`hello_world.adb` - double-click it
 
 * In our example, we want to follow the "prompt" comment on line 5
 
@@ -80,7 +80,7 @@ Step 5 - Compare Actual to Expected
 * If the actual results match the goal of the lab
 
    * Congratulations - you've done it!
-   * (In this lab, we should see :command:`Hello, World` in the :menu:`Run` tab)
+   * In this lab, we should see :command:`Hello, World` in the :menu:`Run` tab
 
 * If they don't, go back to Step 3
 

@@ -60,7 +60,7 @@ Canonical First Program
 .. container:: animate 7-
 
    * :ada:`end` - used to end a block of statements. It's optional to add the
-     name of the block you are ending.
+     name of the block you are ending
 
 --------------------------------------
 Note on GNAT File Naming Conventions
