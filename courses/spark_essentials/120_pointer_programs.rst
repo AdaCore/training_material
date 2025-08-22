@@ -41,5 +41,5 @@ Pointer Programs
 .. include:: 120_pointer_programs/03-loops_and_predicted_values.rst
 .. include:: 120_pointer_programs/04-spark_libraries.rst
 .. include:: 120_pointer_programs/05-access_to_subprogram_values.rst
-.. include:: labs/120_pointer_programs.lab.rst
+.. include:: 120_pointer_programs/88_pointer_programs.lab.rst
 .. include:: 120_pointer_programs/99-summary.rst

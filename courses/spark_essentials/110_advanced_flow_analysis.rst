@@ -40,5 +40,5 @@ Advanced Flow Analysis
 .. include:: 110_advanced_flow_analysis/02-information_flow_analysis.rst
 .. include:: 110_advanced_flow_analysis/03-flow_dependency_contracts.rst
 .. include:: 110_advanced_flow_analysis/04-automatic_generation.rst
-.. include:: labs/110_advanced_flow_analysis.lab.rst
+.. include:: 110_advanced_flow_analysis/88_advanced_flow_analysis.lab.rst
 .. include:: 110_advanced_flow_analysis/99-summary.rst

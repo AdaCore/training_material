@@ -39,5 +39,5 @@ Proof
 .. include:: 060_proof/01-introduction.rst
 .. include:: 060_proof/02-proof.rst
 .. include:: 060_proof/03-limitations_of_proof.rst
-.. include:: labs/060_proof.lab.rst
+.. include:: 060_proof/88_proof.lab.rst
 .. include:: 060_proof/99-summary.rst

@@ -39,5 +39,5 @@ Type Contracts
 .. include:: 090_type_contracts/01-introduction.rst
 .. include:: 090_type_contracts/02-type_predicates.rst
 .. include:: 090_type_contracts/03-type_invariants.rst
-.. include:: labs/090_type_contracts.lab.rst
+.. include:: 090_type_contracts/88_type_contracts.lab.rst
 .. include:: 090_type_contracts/99-summary.rst
