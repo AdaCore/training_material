@@ -27,16 +27,20 @@ Tasking In-Depth Lab
 Tasking In-Depth Lab Solution - Datastore
 --------------------------------------------
 
-.. container:: source_include labs/answers/240_tasking-in_depth.txt :start-after:--Datastore :end-before:--Datastore :code:Ada :number-lines:1
+.. container:: source_include 240_tasking/lab/tasking-in_depth/answer/datastore.ads :code:Ada :number-lines:1
+
+.. container:: source_include 240_tasking/lab/tasking-in_depth/answer/datastore.adb :code:Ada :number-lines:1
 
 -----------------------------------------------------
 Tasking In-Depth Lab Solution - Monitor Task Type
 -----------------------------------------------------
 
-.. container:: source_include labs/answers/240_tasking-in_depth.txt :start-after:--Task :end-before:--Task :code:Ada :number-lines:1
+.. container:: source_include 240_tasking/lab/tasking-in_depth/answer/counter.ads :code:Ada :number-lines:1
+
+.. container:: source_include 240_tasking/lab/tasking-in_depth/answer/counter.adb :code:Ada :number-lines:1
 
 --------------------------------------
 Tasking In-Depth Lab Solution - Main
 --------------------------------------
 
-.. container:: source_include labs/answers/240_tasking-in_depth.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include 240_tasking/lab/tasking-in_depth/answer/main.adb :code:Ada :number-lines:1

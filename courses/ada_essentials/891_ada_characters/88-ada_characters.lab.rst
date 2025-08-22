@@ -21,5 +21,5 @@ Ada.Characters Lab
 Ada.Characters Lab Solution
 -----------------------------
 
-.. container:: source_include labs/answers/891_ada_characters.txt :code:Ada :number-lines:1
+.. container:: source_include 891_ada_characters/lab/ada_characters/answer/main.adb :code:Ada :number-lines:1
 

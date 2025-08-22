@@ -38,10 +38,10 @@ To compile/link the C file into the Ada executable:
 Interfacing with C Lab Solution - Ada
 -----------------------------------------
 
-.. container:: source_include labs/answers/230_interfacing_with_c.txt :start-after:--Ada :end-before:--Ada :code:Ada :number-lines:1
+.. container:: source_include 230_interfacing_with_c/lab/interfacing_with_c/answer/main.adb :code:Ada :number-lines:1
 
 ---------------------------------------
 Interfacing with C Lab Solution - C
 ---------------------------------------
 
-.. container:: source_include labs/answers/230_interfacing_with_c.txt :start-after:--C :end-before:--C :code:C
+.. container:: source_include 230_interfacing_with_c/lab/interfacing_with_c/answer/c_file.c :code:C

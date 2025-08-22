@@ -36,16 +36,16 @@ Polymorphism Lab
 Polymorphism Lab Solution - Shapes (Spec)
 -------------------------------------------
 
-.. container:: source_include labs/answers/180_polymorphism.txt :start-after:--Shapes_Spec :end-before:--Shapes_Spec :code:Ada :number-lines:1
+.. container:: source_include 180_polymorphism/lab/polymorphism/answer/shapes.ads :code:Ada :number-lines:1
 
 -------------------------------------------
 Polymorphism Lab Solution - Shapes (Body)
 -------------------------------------------
 
-.. container:: source_include labs/answers/180_polymorphism.txt :start-after:--Shapes_Body :end-before:--Shapes_Body :code:Ada :number-lines:1
+.. container:: source_include 180_polymorphism/lab/polymorphism/answer/shapes.adb :code:Ada :number-lines:1
 
 ----------------------------------
 Polymorphism Lab Solution - Main
 ----------------------------------
 
-.. container:: source_include labs/answers/180_polymorphism.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include 180_polymorphism/lab/polymorphism/answer/main.adb :code:Ada :number-lines:1

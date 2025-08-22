@@ -36,10 +36,12 @@ Access Types Lab
 Access Types Lab Solution - Password Manager
 ----------------------------------------------
 
-.. container:: source_include labs/answers/140_access_types.txt :start-after:--Password :end-before:--Password :code:Ada
+.. container:: source_include 140_access_types/lab/access_types/answer/password_manager.ads :code:Ada
+
+.. container:: source_include 140_access_types/lab/access_types/answer/password_manager.adb :code:Ada
 
 ----------------------------------
 Access Types Lab Solution - Main
 ----------------------------------
 
-.. container:: source_include labs/answers/140_access_types.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include 140_access_types/lab/access_types/answer/main.adb :code:Ada

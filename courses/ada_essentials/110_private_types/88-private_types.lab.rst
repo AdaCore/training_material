@@ -33,28 +33,30 @@ Private Types Lab
 Private Types Lab Solution - Color Set
 ---------------------------------------------
 
-.. container:: source_include labs/answers/110_private_types.txt :start-after:--Colors :end-before:--Colors :code:Ada :number-lines:1
+.. container:: source_include 110_private_types/lab/private_types/answer/colors.ads ::code:Ada :number-lines:1
+
+.. container:: source_include 110_private_types/lab/private_types/answer/colors.adb ::code:Ada :number-lines:1
 
 ---------------------------------------------
 Private Types Lab Solution - Flag Map (Spec)
 ---------------------------------------------
 
-.. container:: source_include labs/answers/110_private_types.txt :start-after:--Flags_Spec :end-before:--Flags_Spec :code:Ada :number-lines:1
+.. container:: source_include 110_private_types/lab/private_types/answer/flags.ads :code:Ada :number-lines:1
 
 -----------------------------------------------------
 Private Types Lab Solution - Flag Map (Body - 1 of 2)
 -----------------------------------------------------
 
-.. container:: source_include labs/answers/110_private_types.txt :start-after:--Flags_Body_1 :end-before:--Flags_Body_1 :code:Ada :number-lines:3
+.. container:: source_include 110_private_types/lab/private_types/answer/flags.adb :start-after:--Flags_Body_1 :end-before:--Flags_Body_1 :code:Ada :number-lines:3
 
 -----------------------------------------------------
 Private Types Lab Solution - Flag Map (Body - 2 of 2)
 -----------------------------------------------------
 
-.. container:: source_include labs/answers/110_private_types.txt :start-after:--Flags_Body_2 :end-before:--Flags_Body_2 :code:Ada :number-lines:35
+.. container:: source_include 110_private_types/lab/private_types/answer/flags.adb :start-after:--Flags_Body_2 :end-before:--Flags_Body_2 :code:Ada :number-lines:35
 
 ---------------------------------------------------
 Private Types Lab Solution - Main
 ---------------------------------------------------
 
-.. container:: source_include labs/answers/110_private_types.txt :start-after:--Main :end-before:--Main :code:Ada :number-lines:1
+.. container:: source_include 110_private_types/lab/private_types/answer/main.adb :code:Ada :number-lines:1

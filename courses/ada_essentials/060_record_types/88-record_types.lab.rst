@@ -32,10 +32,10 @@ Record Types Lab
 Record Types Lab Solution - Declarations
 -----------------------------------------
 
-.. container:: source_include labs/answers/060_record_types.txt :start-after:--Declarations :end-before:--Declarations :code:Ada :number-lines:1
+.. container:: source_include 060_record_types/lab/record_types/answer/main.adb :start-after:--Declarations :end-before:--Declarations :code:Ada :number-lines:1
 
 --------------------------------------------
 Record Types Lab Solution - Implementation
 --------------------------------------------
 
-.. container:: source_include labs/answers/060_record_types.txt :start-after:--Implementation :end-before:--Implementation :code:Ada :number-lines:17
+.. container:: source_include 060_record_types/lab/record_types/answer/main.adb :start-after:--Implementation :end-before:--Implementation :code:Ada :number-lines:17
