@@ -21,11 +21,11 @@ procedure Main is
    F_Generator : F_Random.Generator;
 
    function Random_Float return Float is
-      R     : Float    := F_Random.Random (F_Generator);
+      Rand  : constant Float := F_Random.Random (F_Generator);
       First : constant := 1_000.0;
       Last  : constant := 9_999.0;
    begin
-      return R * (Last - First) + First;
+      return Rand * (Last - First) + First;
    end Random_Float;
 
 begin

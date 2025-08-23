@@ -39,7 +39,7 @@ begin
       begin
          exit when Input'Length = 0;
          Parser (Input, Left, Operator, Right);
-         case Component (Operator, 1) is
+         case Element (Operator, 1) is
             when '+' =>
                Put_Line
                  ("  => " &

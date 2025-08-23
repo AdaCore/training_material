@@ -1,4 +1,4 @@
-with Ada.Text_io; use Ada.Text_IO;
+with Ada.Text_IO; use Ada.Text_IO;
 package body Generic_List is
 
    procedure Add (This : in out List_T;

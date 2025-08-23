@@ -1,3 +1,4 @@
+pragma Warnings (Off, "anonymous access type");
 with Ada.Text_IO;      use Ada.Text_IO;
 with Password_Manager; use Password_Manager;
 procedure Main is
@@ -22,3 +23,4 @@ begin
          View (Login).Count'Image);
    end loop;
 end Main;
+pragma Warnings (On, "anonymous access type");
