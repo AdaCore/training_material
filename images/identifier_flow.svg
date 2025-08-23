@@ -24,14 +24,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="2.9405047"
-     inkscape:cx="250.29717"
+     inkscape:cx="250.46721"
      inkscape:cy="131.09994"
      inkscape:window-width="2560"
      inkscape:window-height="1369"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     showgrid="false" />
   <defs
      id="defs1">
     <rect
@@ -126,7 +127,7 @@
        d="m 81.619547,49.986627 v 7.721701"
        id="path9-06" />
     <rect
-       style="fill:#80e5ff;stroke:none;stroke-width:1.00012;stroke-linejoin:round;stroke-miterlimit:4.3"
+       style="fill:#aaeeff;stroke:none;stroke-width:1.00012;stroke-linejoin:round;stroke-miterlimit:4.3"
        id="rect2"
        width="20.875101"
        height="10.617508"
@@ -139,9 +140,9 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);display:inline;fill:#000000;stroke:none;stroke-width:3.78;stroke-linejoin:round;stroke-miterlimit:4.3"><tspan
          x="40.880859"
          y="69.235988"
-         id="tspan3">Letter</tspan></text>
+         id="tspan1">Letter</tspan></text>
     <rect
-       style="fill:#80e5ff;stroke:none;stroke-width:1.00012;stroke-linejoin:round;stroke-miterlimit:4.3"
+       style="fill:#aaeeff;stroke:none;stroke-width:1.00012;stroke-linejoin:round;stroke-miterlimit:4.3"
        id="rect2-6"
        width="20.875101"
        height="10.617508"
@@ -154,9 +155,9 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1-4);display:inline;fill:#000000;stroke:none;stroke-width:3.78;stroke-linejoin:round;stroke-miterlimit:4.3"><tspan
          x="40.880859"
          y="69.235988"
-         id="tspan4">Letter</tspan></text>
+         id="tspan2">Letter</tspan></text>
     <rect
-       style="fill:#2a7fff;stroke:none;stroke-width:1.00012;stroke-linejoin:round;stroke-miterlimit:4.3"
+       style="fill:#80b3ff;stroke:none;stroke-width:1.00012;stroke-linejoin:round;stroke-miterlimit:4.3"
        id="rect2-9"
        width="20.875101"
        height="10.617508"
@@ -169,9 +170,9 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1-5);display:inline;fill:#000000;stroke:none;stroke-width:3.78;stroke-linejoin:round;stroke-miterlimit:4.3"><tspan
          x="40.880859"
          y="69.235988"
-         id="tspan5">Digit</tspan></text>
+         id="tspan3">Digit</tspan></text>
     <rect
-       style="fill:#87aade;stroke:none;stroke-width:1.00012;stroke-linejoin:round;stroke-miterlimit:4.3"
+       style="fill:#afc6e9;stroke:none;stroke-width:1.00012;stroke-linejoin:round;stroke-miterlimit:4.3"
        id="rect2-1"
        width="20.875101"
        height="10.617508"
@@ -186,7 +187,7 @@
        y="0"><tspan
          x="54.73697"
          y="69.235988"
-         id="tspan6">_</tspan></text>
+         id="tspan4">_</tspan></text>
     <path
        sodipodi:type="star"
        style="fill:#000000;stroke:#000000;stroke-width:6.43356;stroke-linejoin:round;stroke-miterlimit:4.3;stroke-opacity:1"
