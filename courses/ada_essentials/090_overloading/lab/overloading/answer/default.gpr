@@ -2,6 +2,6 @@ project Default is
    for Main use ("main.adb");
    for Source_Dirs use (".");
    package Compiler is
-     for Switches ("ada") use ("-g","-gnata","-gnatyr");
+     for Switches ("ada") use ("-g","-gnata","-gnatyr","-gnatwa");
    end Compiler;
 end Default;
