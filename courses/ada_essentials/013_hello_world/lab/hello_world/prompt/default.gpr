@@ -1,0 +1,3 @@
+project Default is
+   for Main use ("hello_world.adb");
+end Default;

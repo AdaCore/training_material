@@ -42,4 +42,3 @@ Overview
 
 .. include:: 010_overview/01-a_little_history.rst
 .. include:: 010_overview/02-big_picture.rst
-.. include:: 010_overview/03-setup.rst
