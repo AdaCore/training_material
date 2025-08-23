@@ -1,5 +1,6 @@
 005_introduction.rst
 010_overview.rst
+013_hello_world.rst
 015_type_model.rst
 020_declarations.rst
 030_scalar_types.rst
