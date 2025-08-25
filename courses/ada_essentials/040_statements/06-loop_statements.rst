@@ -13,17 +13,7 @@ Basic Loops and Syntax
 
 * Syntax
 
-   .. code:: Ada
-
-     [<loop_identifier> :] [iteration_scheme] loop
-           <statements>
-      end loop [<loop_identifier>];
-
-   .. code::
-
-      iteration_scheme ::= while <boolean_expression>
-                           | for <loop_parameter>
-                           | for <loop_iterator>
+.. container:: source_include 040_statements/syntax.bnf :start-after:basic_loop_and_syntax_begin :end-before:basic_loop_and_syntax_end :code:bnf
 
 * Example
 
@@ -44,9 +34,7 @@ Loop Exit Statements
 
 * Syntax
 
-   .. code:: Ada
-
-      exit [<loop_identifier>] [when <boolean_expression>];
+.. container:: source_include 040_statements/syntax.bnf :start-after:loop_exit_statements_begin :end-before:loop_exit_statements_end :code:bnf
 
 * :ada:`exit when` exits with condition
 
@@ -91,7 +79,7 @@ While-loop Statements
 
 * Syntax
 
-   .. code:: Ada
+   .. code:: bnf
 
       while <boolean_expression> loop
          <sequence_of_statements>
@@ -99,7 +87,7 @@ While-loop Statements
 
 * Identical to
 
-   .. code:: Ada
+   .. code:: bnf
 
       loop
          exit when not <boolean_expression>;
@@ -142,7 +130,7 @@ For in Statements
 
 .. container:: latex_environment footnotesize
 
-   .. code:: Ada
+   .. code:: bnf
 
       for <loop_parameter> in [reverse] <discrete_subtype_definition> loop
          <sequence_of_statements>
@@ -304,7 +292,7 @@ Iterations Exit Statements
 * Early loop exit
 * Syntax
 
-  .. code:: Ada
+  .. code:: bnf
 
         exit [<loop_identifier>] [when <condition>]
 
