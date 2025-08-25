@@ -433,6 +433,8 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
     if os.path.isfile(filter):
         filter = " --filter " + filter
 
+    syntax = "--syntax-definition=" + os.path.join(os.path.dirname(__file__), "bnf.xml")
+
     # build list of search directories
     texinputs = set_texinputs(args.directories)
     if not args.hush:
@@ -447,6 +449,7 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
         "--resource-path",
         texinputs,
         filter,
+        syntax,
         theme,
         color,
         "--fail-if-warnings",
