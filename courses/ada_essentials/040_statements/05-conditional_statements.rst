@@ -9,13 +9,7 @@ If-then-else Statements
 * Control flow using Boolean expressions
 * Syntax
 
-   .. code:: Ada
-
-      if <boolean_expression> then -- No parentheses
-         <statements>;
-      [else
-         <statements>;]
-      end if;
+.. container:: source_include 040_statements/syntax.bnf :start-after:if_then_else_statements_begin :end-before:if_then_else_statements_end :code:bnf
 
 * At least one statement must be supplied
 
@@ -69,17 +63,7 @@ Case Statements
 * Exclusionary choice among alternatives
 * Syntax
 
-   .. code:: Ada
-
-      case <expression> is
-        when <choice> => <statements>;
-        { when <choice> => <statements>; }
-      end case;
-
-   .. code::
-
-      choice ::= <expression> | <discrete_range>
-                | others { "|" <other_choice> }
+.. container:: source_include 040_statements/syntax.bnf :start-after:case_statements_begin :end-before:case_statements_end :code:bnf
 
 ------------------------
 Simple "case" Statements
