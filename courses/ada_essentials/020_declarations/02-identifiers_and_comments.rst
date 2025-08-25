@@ -6,8 +6,7 @@ Identifiers and Comments
 Identifiers
 -----------
 
-.. image:: identifier_flow.png
-   :width: 60%
+.. image:: identifier_flow.svg
 
 .. container:: columns
 
