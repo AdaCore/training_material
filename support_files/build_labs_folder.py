@@ -18,12 +18,50 @@ Switches:
                     PDF and anything else already set up)
    --ada95       => If set, the answers will be the "Ada95" version
                     of the answers
+   --build       => If set, we will run 'gprbuild' on both the
+                    "prompt" and "answer" folders
 """
 
 import argparse
 import copy
 import os
 import shutil
+import subprocess
+
+
+def gprbuild(folder):
+    performed = False
+    printed = False
+    which = os.path.basename(folder)
+    process = subprocess.Popen(
+        ["gprbuild", os.path.join(folder, "default.gpr")],
+        shell=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+    )
+    while True:
+        output = process.stdout.readline()
+        if process.poll() is not None:
+            break
+        if output:
+            text = output.decode().strip()
+            if "Compile" in text:
+                performed = True
+            if "error:" in text:
+                if not printed:
+                    print("    " + which + " build not clean")
+                    printed = True
+                print("      " + text)
+            if "warning:" in text:
+                if not printed:
+                    print("    " + which + " build not clean")
+                    printed = True
+                print("      " + text)
+    process.wait()
+    if not performed:
+        print("    " + which + " build failed")
+    elif not printed:
+        print("    " + which + " build clean")
 
 
 def safe_copy(source, destination):
@@ -35,7 +73,7 @@ def safe_copy(source, destination):
         return False
 
 
-def build_folder(course, destination, ada95):
+def build_folder(course, destination, ada95, build):
 
     directory = os.path.dirname(course)
 
@@ -62,6 +100,7 @@ def build_folder(course, destination, ada95):
                 destination_folder = os.path.join(destination_folder, module[4:])
                 os.makedirs(destination_folder, exist_ok=True)
 
+                print("Processing " + module[4:])
                 if safe_copy(
                     os.path.join(source_folder, "prompt"),
                     os.path.join(destination_folder, "prompt"),
@@ -78,11 +117,15 @@ def build_folder(course, destination, ada95):
                             os.path.join(source_folder, "answer"),
                             os.path.join(destination_folder, "answer"),
                         )
+                    if build:
+                        gprbuild(os.path.join(destination_folder, "prompt"))
                     if not answer_copied:
-                        print("No answer folder for " + module[4:])
+                        print("   No answer folder")
+                    elif build:
+                        gprbuild(os.path.join(destination_folder, "answer"))
 
                 else:
-                    print("No prompt folder for " + module[4:])
+                    print("   No prompt folder")
 
 
 if __name__ == "__main__":
@@ -105,10 +148,14 @@ if __name__ == "__main__":
         "--ada95", action="store_true", help="set if class is focusing on Ada95"
     )
 
+    parser.add_argument(
+        "--build", action="store_true", help="run 'gprbuild' on the folders"
+    )
+
     args = parser.parse_args()
 
     course = os.path.abspath(args.course)
     if not os.path.isfile(course):
         print('"' + args.course + '" does not specify an existing file')
     else:
-        build_folder(course, os.path.abspath(args.destination), args.ada95)
+        build_folder(course, os.path.abspath(args.destination), args.ada95, args.build)
