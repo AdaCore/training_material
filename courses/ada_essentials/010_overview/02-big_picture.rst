@@ -18,85 +18,59 @@ Language Structure (Ada95 and Onward)
   * No additional syntax
   * May be present or not depending on compiler/run-time
 
-    - Real-Time Systems
-    - Distributed Systems
-    - Numerics
-    - High-Integrity Systems
+-----------------------
+Core Language Content
+-----------------------
 
------------------------------
-Core Language Content (1/3)
------------------------------
+* Types 
 
-* Types
-
-  * Language-defined types, including string
-  * User-defined types
-  * Static types keep things consistent
-  * Strong types enforce constraints
+   * Language- and user-defined type definitions
 
 * Subprograms
 
-  * Syntax differs between *values* and *actions*
-  * :ada:`function` for *value* and :ada:`procedure` for *action*
-  * Overloading of names allowed
-
-* Dynamic memory management
-
-  * :dfn:`access type` for abstraction of pointers
-  * Access to static memory, allocated objects, subprograms
-  * Accesses are **checked** (unless otherwise requested)
+   * Differentiate between :ada:`function` (values) and :ada:`procedure` (action)
 
 * Packages
 
-  * Grouping of related entities
-  * Separation of concerns
-  * Information hiding
-
------------------------------
-Core Language Content (2/3)
------------------------------
-
-* Exceptions
-
-  * Dealing with **errors**, **unexpected** events
-  * Separate error-handling code from logic
+   * Grouping of related entities
 
 * Generic Units
 
-    * Code templates
-    * Extensive parameterization for customization
-
-* Object-Oriented Programming
-
-  * Inheritance
-  * Run-time polymorphism
-  * Dynamic **dispatching**
-
-* Contract-Based Programming
-
-  * Pre- and post-conditions on subprograms
-
-    * Formalizes specifications
-
-  * Type invariants and predicates
-
-    * Complex contracts on type definitions
-
------------------------------
-Core Language Content (3/3)
------------------------------
+   * Code templates
 
 * Language-Based Concurrency
 
-  * Explicit interactions
-  * Run-time handling
-  * Portable
+   * Multi-tasking and synchronization
 
+* Exceptions
+
+   * Separation of error handling from logical flow
+
+* Dynamic memory management
+* Object-Oriented Programming
+* Contract-Based Programming
 * Low Level Programming
 
-  * Define representation of types
-  * Storage pools definition
-  * Foreign language integration
+---------------------------
+Specialized Needs Annexes
+---------------------------
+
+Ada compilers can also support 
+
+* Real-Time Systems
+
+   * Multi-tasking issues such as priority and timing
+
+* Distributed Systems
+
+   * Multiple partitions as part of a single Ada program
+
+* Numerics
+
+   * Complex arithmetic, improved floating point accuracy, and very large numbers
+
+* High-Integrity Systems
+* Information systems
 
 ------------------------------
 Language Examination Summary
