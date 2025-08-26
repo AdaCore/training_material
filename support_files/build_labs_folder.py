@@ -100,12 +100,13 @@ def build_folder(course, destination, ada95, build):
                 destination_folder = os.path.join(destination_folder, module[4:])
                 print("Processing " + module[4:])
 
-                prompt_source = os.path.join (source_folder, 'prompt')
-                if os.path.exists (prompt_source):
+                prompt_source = os.path.join(source_folder, "prompt")
+                if os.path.exists(prompt_source):
                     os.makedirs(destination_folder, exist_ok=True)
 
-                    shutil.copytree (prompt_source,
-                                        os.path.join(destination_folder, "prompt"))
+                    shutil.copytree(
+                        prompt_source, os.path.join(destination_folder, "prompt")
+                    )
                     if build:
                         gprbuild(os.path.join(destination_folder, "prompt"))
 
@@ -127,6 +128,7 @@ def build_folder(course, destination, ada95, build):
 
                 else:
                     print("   No prompt folder")
+
 
 if __name__ == "__main__":
 
