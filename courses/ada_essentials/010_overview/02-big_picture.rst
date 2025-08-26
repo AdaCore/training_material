@@ -2,25 +2,11 @@
 Big Picture
 =============
 
----------------------------------------
-Language Structure (Ada95 and Onward)
----------------------------------------
-
-* **Required** :dfn:`Core` implementation
-
-  * Always present in each compiler/run-time
-
-    - Basic language contents (types, subprograms, packages, etc.)
-    - Interface to Other Languages
-
-* Optional :dfn:`Specialized Needs Annexes`
-
-  * No additional syntax
-  * May be present or not depending on compiler/run-time
-
 -----------------------
 Core Language Content
 -----------------------
+
+All Ada compilers/run-times are required to support these "core concepts" of the language
 
 * Types 
 
@@ -50,12 +36,13 @@ Core Language Content
 * Object-Oriented Programming
 * Contract-Based Programming
 * Low Level Programming
+* Mixed-language applications
 
 ---------------------------
 Specialized Needs Annexes
 ---------------------------
 
-Ada compilers can also support 
+In addition to the "core concepts", Ada compilers can also support 
 
 * Real-Time Systems
 
@@ -71,6 +58,8 @@ Ada compilers can also support
 
 * High-Integrity Systems
 * Information systems
+
+They implement no additional syntax, and may be present or not depending on the compiler/run-time
 
 ------------------------------
 Language Examination Summary
