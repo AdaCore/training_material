@@ -1,6 +1,6 @@
-**********
-Overview
-**********
+*******************
+GNAT SAS Overview
+*******************
 
 .. container:: PRELUDE BEGIN
 
