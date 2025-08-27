@@ -66,7 +66,7 @@ Scope and "Lifetime"
 
 .. note:: No *scoping* keywords (C's :c:`static`, :c:`auto` etc...)
 
-.. image:: block_scope_example.jpeg
+.. image:: block_scope_example.svg
     :height: 50%
 
 ----------------------
