@@ -8,29 +8,22 @@ Statements Lab
 
 * Requirements
 
-   - Create a simple algorithm to count number of hours worked in a week
+   - Create a simple process to build a time tracking sheet for the week
+   
+      + For every day of the week, print a line indicating the time of day (in hours)
 
-      + Use `Ada.Text_IO.Get_Line` to ask user for hours worked on each day
-      + Any hours over 8 gets counted as 1.5 times number of hours (e.g. 10 hours worked will get counted as 11 hours towards total)
-      + Saturday hours get counted at 1.5 times number of hours
-      + Sunday hours get counted at 2 times number of hours
+   - Conditions for printing time
 
-   - Print total number of hours "worked"
+      + Only print times for "normal" working hours
+      + No working on Sunday, so no times printed
+      + Saturday is a half-day, so only print every other time slot
 
 * Hints
 
-   - Use `for` loop to iterate over days of week
-   - Use `if` statement to determine overtime hours
-   - Use `case` statement to determine weekend bonus
-
------------------------------
-Statements Lab Extra Credit
------------------------------
-
-* Use an inner loop when getting hours worked to check validity
-
-   - Less than 0 should exit outer loop
-   - More than 24 should not be allowed
+   - Use :ada:`for` loop to iterate over days of week and hours
+   - Use :ada:`case` statement to determine how start and end time
+   - Use :ada:`if` statement to determine if you are printing a time
+   - For simplicity, feel free to use a 24-hour clock
 
 -------------------------
 Statements Lab Solution
