@@ -8,7 +8,7 @@ Statements Lab
 
 * Requirements
 
-   - Create a simple process to build a time tracking sheet for the week
+   - Create a simple program to build a time tracking sheet for the week
    
       + For every day of the week, print a line indicating the time of day (in hours)
 
@@ -20,9 +20,9 @@ Statements Lab
 
 * Hints
 
-   - Use :ada:`for` loop to iterate over days of week and hours
-   - Use :ada:`case` statement to determine how start and end time
-   - Use :ada:`if` statement to determine if you are printing a time
+   - Use a :ada:`for` loop to iterate over days of week and hours
+   - Use a :ada:`case` statement to determine how start and end time
+   - Use an :ada:`if` statement to determine if you are printing a time
    - For simplicity, feel free to use a 24-hour clock
 
 -------------------------
