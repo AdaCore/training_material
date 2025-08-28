@@ -823,8 +823,9 @@ def format_url(literal_text):
             url = literal_text[first + 1 : len(literal_text) - 1]
             text = literal_text[0 : first - 1].strip()
             if len(text) > 0:
-                text = latex_escape(text)
-                return latex_inline(text + " (\\url{" + url + "})")
+                return latex_inline(
+                    "\\href{" + url + "}{" + latex_color(text, "orange") + "}"
+                )
 
     # anything else
     return latex_inline("\\url{" + literal_text + "}")
