@@ -6,60 +6,88 @@ File Naming Conventions
 Default File Naming Conventions
 ---------------------------------
 
+* GNAT compiler assumes one compilable entity per file
+
+   * Package specification, subprogram body, etc
+
+* File names should match the name of the compilable entity
+
+   * Replace **.** with **-**
+
+* File extensions describe the usage
+
+   * **.ads** |rightarrow| Specification / Interface
+   * **.adb** |rightarrow| Body / Implementation
+
+---------------------------------
+Example Filenames with Contents
+---------------------------------
+
 .. container:: columns
 
   .. container:: column
 
-    * GNAT compiler assumes one compilable entity per file
-
-      * Package specification, subprogram body, etc
-
-    * Filenames should match the name of the compilable entity
-
-      * Replacing **.** with **-**
-      * File extension is :filename:`.ads` for specifications and :filename:`.adb` for bodies
-
-  .. container:: column
-
     .. container:: latex_environment tiny
-
-      :filename:`some_types.ads`
 
       .. code:: Ada
 
          package Some_Types is
             type One_T is new Integer;
             type Two_T is new Character;
-            function Convert
-              (Src : One_T)
-               return Two_T;
+            function Convert (Src : One_T)
+                              return Two_T;
          end Some_Types;
 
-      :color-white:`blank line`
+  .. container:: column
 
-      :filename:`some_types.adb`
+    .. container:: latex_environment tiny
+
+      *Package specification for* :ada:`Some_Types` *is in file* :filename:`some_types.ads`
+
+.. container:: latex_environment tiny
+
+   :color-white:`blank line`
+
+.. container:: columns
+
+  .. container:: column
+
+    .. container:: latex_environment tiny
 
       .. code:: Ada
 
          package body Some_Types is
-            function Convert
-                (Src : One_T)
-                 return Two_T is
-              (Two_T'Val (Integer (Src)));
+            function Convert (Src : One_T)
+                              return Two_T is
+               (Two_T'Val (Integer (Src)));
          end Some_Types;
 
-      :color-white:`blank line`
+  .. container:: column
 
-      :filename:`some_types-child.adb`
+    .. container:: latex_environment tiny
+
+      *Package body for* :ada:`Some_Types` *is in file* :filename:`some_types.adb`
+
+.. container:: latex_environment tiny
+
+   :color-white:`blank line`
+
+.. container:: columns
+
+  .. container:: column
+
+    .. container:: latex_environment tiny
 
       .. code:: Ada
 
-         function Some_Types.Child
-           (Src : Two_T)
-            return One_T is
-         begin
-            return One_T (Two_T'Pos (Src));
-         end Some_Types.Child;
+         function Some_Types.Child (Src : Two_T)
+                                    return One_T;
+
+  .. container:: column
+
+    .. container:: latex_environment tiny
+
+      *Subprogram specification for function* :ada:`Child` *which is a child of* :ada:`Some_Types` *is in file* :filename:`some_types-child.ads`
 
 ---------------------------------------
 Converting to GNAT Naming Conventions
@@ -92,7 +120,7 @@ Using Other Naming Conventions
 
 * Controlled via package :ada:`Naming` in project file
 
-   * Example: your source files use :filename:`.1.ada` for specs and :filename:`.2.ada` for bodies
+   * **Example:** your source files use :filename:`.1.ada` for specs and :filename:`.2.ada` for bodies
 
       .. code:: Ada
 

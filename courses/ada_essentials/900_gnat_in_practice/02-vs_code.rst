@@ -6,14 +6,15 @@ Using VS Code with GNAT
 Setting up VS Code
 --------------------
 
+
 * Need to download and install *Ada & SPARK extensions for VS Code*
 
-   * https://marketplace.visualstudio.com/items?itemName=AdaCore.ada
+   * :url:`Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=AdaCore.ada>`
    * Search for **adacore** in VS Code Extensions (:menu:`Ctrl+Shift+X`)
 
 * Make sure GNAT is installed and on your path
 
-   * If not already downloaded, look here https://github.com/AdaCore/ada_language_server/tree/master/integration/vscode/ada#getting-additional-tools
+   * If not already downloaded, look on :url:`GitHub <https://github.com/AdaCore/ada_language_server/tree/master/integration/vscode/ada\#getting-additional-tools>`
 
 -----------------------------
 Using VS Code with the Labs
@@ -23,7 +24,7 @@ Using VS Code with the Labs
 
   * From a command prompt
 
-     * Navigate the the appropriate folder (:filename:`prompt` or :filename:`answer`)
+     * Navigate to the appropriate folder (:filename:`prompt` or :filename:`answer`)
      * Enter :command:`code .`
 
         * :menu:`Explorer` tree should show :filename:`default.gpr` and Ada file(s)
