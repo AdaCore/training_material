@@ -1,0 +1,4 @@
+cover_010_overview.rst
+cover_020_basic_workflow.rst
+cover_030_advanced_topics.rst
+cover_040_gnatstudio.rst
