@@ -107,7 +107,7 @@ def build_folder(course, destination, ada95, build):
 
                 prompt_source = os.path.join(source_folder, "prompt")
                 if not has_lab(os.path.join(directory, f)):
-                    print("   No lab")
+                    print("    No lab")
 
                 elif os.path.exists(prompt_source):
                     os.makedirs(destination_folder, exist_ok=True)
@@ -135,7 +135,7 @@ def build_folder(course, destination, ada95, build):
                         gprbuild(os.path.join(destination_folder, "answer"))
 
                 else:
-                    print("   No prompt folder")
+                    print("    No prompt folder")
 
 
 if __name__ == "__main__":
