@@ -4,12 +4,12 @@ with Triangles;   use Triangles;
 procedure Main2 is
    function Q_Image (S : Quads.Side_T) return String
       renames Quads.Side_T'Image;
-   Quad : Quads.Shape_T := (1, 2, 3, 4);
+   Quad       : constant Quads.Shape_T := (1, 2, 3, 4);
    Quad_Total : Quads.Side_T := 0;
 
    function T_Image (S : Triangles.Side_T) return String
       renames Triangles.Side_T'Image;
-   Triangle : Triangles.Shape_T := (1, 2, 3);
+   Triangle       : constant Triangles.Shape_T := (1, 2, 3);
    Triangle_Total : Triangles.Side_T := 0;
 
 begin

@@ -4,13 +4,13 @@ with Triangles;
 procedure Main1 is
 
    use type Quads.Side_T;
-   Q_Sides : Natural renames Quads.Number_Of_Sides;
-   Quad    : Quads.Shape_T := (1, 2, 3, 4);
+   Q_Sides    : Natural renames Quads.Number_Of_Sides;
+   Quad       : constant Quads.Shape_T := (1, 2, 3, 4);
    Quad_Total : Quads.Side_T := 0;
 
    use type Triangles.Side_T;
-   T_Sides  : Natural renames Triangles.Number_Of_Sides;
-   Triangle : Triangles.Shape_T := (1, 2, 3);
+   T_Sides        : Natural renames Triangles.Number_Of_Sides;
+   Triangle       : constant Triangles.Shape_T := (1, 2, 3);
    Triangle_Total : Triangles.Side_T := 0;
 
 begin

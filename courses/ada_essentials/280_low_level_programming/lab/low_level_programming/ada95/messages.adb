@@ -1,5 +1,5 @@
 with Ada.Text_IO;
-with Unchecked_Conversion;
+with Ada.Unchecked_Conversion;
 package body Messages is
    Global_Unique_Id : U32_T := 0;
    function To_Text (Str : String) return Text_T is
@@ -45,8 +45,8 @@ package body Messages is
    type Char is new Character;
    for Char'Size use 8;
    type Overlay_T is array (1 .. Message_T'Size / 8) of Char;
-   function Convert is new Unchecked_Conversion (Message_T, Overlay_T);
-   function Convert is new Unchecked_Conversion (Overlay_T, Message_T);
+   function Convert is new Ada.Unchecked_Conversion (Message_T, Overlay_T);
+   function Convert is new Ada.Unchecked_Conversion (Overlay_T, Message_T);
    Const_Filename : constant String := "message.txt";
    procedure Write (Message : Message_T) is
       Overlay : constant Overlay_T := Convert (Message);
