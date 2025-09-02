@@ -26,7 +26,7 @@ procedure Main is
    Length : Natural := 0;
 
    procedure Add (Item : Integer) is
-      Place : Natural := Search (List (1..Length), Item);
+      Place : constant Natural := Search (List (1..Length), Item);
    begin
       if List (Place) /= Item then
          Length                     := Length + 1;

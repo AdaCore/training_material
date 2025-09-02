@@ -29,7 +29,7 @@ procedure Main is
 
 --Main
    procedure Add (Item : Integer) is
-      Place : Natural := Search (List (1..Length), Item);
+      Place : constant Natural := Search (List (1..Length), Item);
    begin
       if List (Place) /= Item then
          Length                     := Length + 1;
