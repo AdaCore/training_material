@@ -1,4 +1,3 @@
-with Messages.List_Types;
 package Messages.List_Types.Operations is
    procedure Append (List : in out List_T;
                      Item :        Message_T);

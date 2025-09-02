@@ -1,4 +1,3 @@
-with Ada.Text_IO; use Ada.Text_IO;
 with Employee;
 procedure Main is
    Applicant : Employee.Person_T;

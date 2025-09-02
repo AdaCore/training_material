@@ -7,7 +7,6 @@ procedure Main is
                                      Image     => Data_Type.Image);
 
    My_List : List.List_T;
-   Component : Data_Type.Record_T;
 
 begin
    List.Add (My_List, (Integer_Component   => 111,

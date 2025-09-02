@@ -1,8 +1,6 @@
 --Database_List_Helpers
-with Interfaces;
-with Unchecked_Deallocation;
+with Ada.Unchecked_Deallocation;
 package body Database_List is
-   use type Database.Database_T;
 
    function Is_Empty (List : List_T) return Boolean is
    begin
@@ -37,7 +35,7 @@ package body Database_List is
 --Database_List_Substance
    procedure Insert (List      : in out List_T;
                      Component :        Database_T) is
-      New_Component : Linked_List_Ptr_T :=
+      New_Component : constant Linked_List_Ptr_T :=
         new Linked_List_T'(Next => null, Content => Component);
    begin
       if Is_Empty (List) then
@@ -63,7 +61,7 @@ package body Database_List is
       -- Memory_Mgmt.Print_Info;
    end Insert;
 
-   procedure Free is new Unchecked_Deallocation
+   procedure Free is new Ada.Unchecked_Deallocation
      (Linked_List_T, Linked_List_Ptr_T);
    procedure Delete
      (List      : in out List_T;
@@ -77,7 +75,7 @@ package body Database_List is
             List.Current := List.Head;
          else
             declare
-               Previous : Linked_List_Ptr_T := List.Head;
+               Previous : constant Linked_List_Ptr_T := List.Head;
                Current  : Linked_List_Ptr_T := List.Head.Next;
             begin
                while Current /= null loop
