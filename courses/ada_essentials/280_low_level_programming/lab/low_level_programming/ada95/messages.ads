@@ -12,7 +12,7 @@ package Messages is
    function Get_Crc (Message : Message_T) return Crc_T;
    procedure Write (Message : Message_T);
    procedure Read (Message : out Message_T;
-                    valid : out boolean);
+                   Valid : out boolean);
    procedure Print (Message : Message_T);
 private
    type U32_T is mod 2**32;

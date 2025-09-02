@@ -1,9 +1,7 @@
 project Default is
    for Main use ("main.adb");
-   package Pretty_Printer is
-     for Default_Switches ("ada") use ("-nM", "-A0", "-A2", "-A3", "-A4", "--no-separate-is", "--no-separate-loop-then", "--use-on-new-line", "-A1", "--par-threshold=1", "--call-threshold=1");
-   end Pretty_Printer;
+   for Source_Dirs use (".");
    package Compiler is
-     for Switches ("ada") use ("-gnata","-gnatwa" );
+     for Switches ("ada") use ("-g","-gnata","-gnatyr");
    end Compiler;
 end Default;

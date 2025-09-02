@@ -59,7 +59,7 @@ procedure Main is
    begin
       Messages.Read (Message, Valid);
       Ada.Text_IO.Put_Line("Message valid: " & Boolean'Image (Valid));
-   end read;
+   end Read;
 begin
    loop
       Put ("Create Write Read Print: ");
@@ -73,7 +73,7 @@ begin
             when 'w' | 'W' =>
                Messages.Write (Message);
             when 'r' | 'R' =>
-               read;
+               Read;
             when 'p' | 'P' =>
                Messages.Print (Message);
             when others =>
