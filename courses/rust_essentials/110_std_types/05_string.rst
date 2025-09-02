@@ -29,11 +29,6 @@ is a growable UTF-8 encoded string:
 :url:`Deref<Target = str> <https://doc.rust-lang.org/std/string/struct.String.html#deref-methods-str>`,
 which means that you can call all :rust:`str` methods on a :rust:`String`.
 
-..
-   https://doc.rust-lang.org/std/string/struct.String.html#deref-methods-str
-
-which means that you can call all :rust:`str` methods on a :rust:`String`.
-
 ---------
 Details
 ---------
