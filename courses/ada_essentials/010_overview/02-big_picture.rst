@@ -6,36 +6,28 @@ Big Picture
 Core Language Content
 -----------------------
 
-All Ada compilers/run-times are required to support these "core concepts" of the language
+All compilers/run-times support these "core concepts" of Ada
 
-* Types 
+* Types *(Language- and user-defined)*
 
-   * Language- and user-defined type definitions
+* Subprograms (:ada:`function` *and* :ada:`procedure`*)*
 
-* Subprograms
+* Packages *(grouping related entities)*
 
-   * Differentiate between :ada:`function` (values) and :ada:`procedure` (action)
+* Generic Units *(code templates)*
 
-* Packages
+* Language-Based Concurrency *(multi-tasking)*
 
-   * Grouping of related entities
-
-* Generic Units
-
-   * Code templates
-
-* Language-Based Concurrency
-
-   * Multi-tasking and synchronization
-
-* Exceptions
-
-   * Separation of error handling from logical flow
+* Exceptions *(handling unexpected errors)*
 
 * Dynamic memory management
+
 * Object-Oriented Programming
+
 * Contract-Based Programming
+
 * Low Level Programming
+
 * Mixed-language applications
 
 ---------------------------
@@ -59,7 +51,9 @@ In addition to the "core concepts", Ada compilers can also support
 * High-Integrity Systems
 * Information systems
 
-They implement no additional syntax, and may be present or not depending on the compiler/run-time
+.. note::
+
+   They implement no additional syntax, and may be present or not depending on the compiler/run-time
 
 ------------------------------
 Language Examination Summary
