@@ -824,9 +824,9 @@ def format_url(literal_text):
         if first > 0:
             url = literal_text[first + 1 : len(literal_text) - 1]
             url = "\\begin{tiny}(\\url{" + url + "})\\end{tiny}"
-            text = latex_escape (literal_text[0 : first - 1].strip())
+            text = latex_escape(literal_text[0 : first - 1].strip())
             if len(text) > 0:
-                return latex_inline (text + " " + url)
+                return latex_inline(text + " " + url)
 
     # anything else
     return latex_inline("\\url{" + literal_text + "}")
