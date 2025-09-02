@@ -73,6 +73,11 @@ def safe_copy(source, destination):
         return False
 
 
+def has_lab(filename):
+    with open(filename) as f:
+        return "lab.rst" in f.read()
+
+
 def build_folder(course, destination, ada95, build):
 
     directory = os.path.dirname(course)
@@ -101,7 +106,10 @@ def build_folder(course, destination, ada95, build):
                 print("Processing " + module[4:])
 
                 prompt_source = os.path.join(source_folder, "prompt")
-                if os.path.exists(prompt_source):
+                if not has_lab(os.path.join(directory, f)):
+                    print("   No lab")
+
+                elif os.path.exists(prompt_source):
                     os.makedirs(destination_folder, exist_ok=True)
 
                     shutil.copytree(
