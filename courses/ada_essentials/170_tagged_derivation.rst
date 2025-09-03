@@ -1,5 +1,5 @@
 ************************************
-Tagged Derivation: An Introduction
+Tagged Derivation
 ************************************
 
 .. container:: PRELUDE BEGIN

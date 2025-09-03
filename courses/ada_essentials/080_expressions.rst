@@ -1,5 +1,5 @@
 ***********************
-Expressions: In-Depth
+Expressions
 ***********************
 
 .. container:: PRELUDE BEGIN
