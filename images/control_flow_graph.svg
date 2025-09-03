@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="565" width="480" >
+<line fill="none" stroke="#000000" stroke-width="2" x1="180" y1="50.0" x2="180" y2="110.0" />
+<polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(225, 180, 111.0)" points="180,111.0 187.5,126.0 195,118.5 "/>
+<rect fill="#d7f4d7" stroke="none" stroke-width="1" rx="20.0" ry="20.0" height="40" width="110" x="125.0" y="10.0" />
+<text xml:space="preserve" fill="#000000" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='Courier New' font-weight="normal"  text-anchor="middle" x="180" y="33">Is_Positive</text>
+<line fill="none" stroke="#000000" stroke-width="2" x1="180" y1="150.0" x2="70" y2="210.0" />
+<polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(285, 69, 210.0)" points="69,210.0 76.5,225.0 84,217.5 "/>
+<text xml:space="preserve" transform="rotate(332, 122.0, 177.0)" fill="#00d400" stroke="none" stroke-width="1" text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  x="122.0" y="177.0">true</text>
+<line fill="none" stroke="#000000" stroke-width="2" x1="180" y1="150.0" x2="290" y2="210.0" />
+<polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(165, 291, 210.0)" points="291,210.0 298.5,225.0 306,217.5 "/>
+<text xml:space="preserve" transform="rotate(30, 238.0, 177.0)" fill="#ff0000" stroke="none" stroke-width="1" text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  x="238.0" y="177.0">false</text>
+<polygon fill="#d7d7f4" stroke="none" stroke-width="1" points="180,110.0 125.0,130 180,150.0 235.0,130 "/>
+<text xml:space="preserve" fill="#000000" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='Courier New' font-weight="normal"  text-anchor="middle" x="180" y="133">if x > 0</text>
+<line fill="none" stroke="#000000" stroke-width="2" x1="69" y1="249.0" x2="180" y2="310.0" />
+<polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(165, 180.5, 310.0)" points="180.5,310.0 188.0,325.0 195.5,317.5 "/>
+<rect fill="#ffeeaa" stroke="none" stroke-width="1" height="40" width="110" x="15.0" y="210.0" />
+<text xml:space="preserve" fill="#000000" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='Courier New' font-weight="normal"  text-anchor="middle" x="70" y="233">return True</text>
+<line fill="none" stroke="#000000" stroke-width="2" x1="292" y1="248.0" x2="180" y2="310.0" />
+<polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(285, 180.0, 310.0)" points="180.0,310.0 187.5,325.0 195.0,317.5 "/>
+<rect fill="#ffeeaa" stroke="none" stroke-width="1" height="40" width="110" x="235.0" y="210.0" />
+<text xml:space="preserve" fill="#000000" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='Courier New' font-weight="normal"  text-anchor="middle" x="290" y="233">return False</text>
+<line fill="none" stroke="#000000" stroke-width="2" x1="180" y1="350.0" x2="180" y2="410.0" />
+<polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(225, 180, 411.0)" points="180,411.0 187.5,426.0 195,418.5 "/>
+<rect fill="#f4d7d7" stroke="none" stroke-width="1" rx="20.0" ry="20.0" height="40" width="110" x="125.0" y="310.0" />
+<text xml:space="preserve" fill="#000000" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='Courier New' font-weight="normal"  text-anchor="middle" x="180" y="333">Is_Positive</text>
+<line fill="none" stroke="#000000" stroke-width="2" x1="180" y1="450.0" x2="180" y2="510.0" />
+<polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(225, 180, 511.0)" points="180,511.0 187.5,526.0 195,518.5 "/>
+<text xml:space="preserve" transform="rotate(90, 183.0, 470.0)" fill="#00d400" stroke="none" stroke-width="1" text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  x="183.0" y="470.0">true</text>
+<line fill="none" stroke="#000000" stroke-width="2" x1="232.0" y1="430" x2="345.0" y2="430" />
+<polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(135, 345.75, 430)" points="345.75,430 353.25,445 360.75,437.5 "/>
+<text xml:space="preserve" transform="rotate(0, 288.5, 427.0)" fill="#ff0000" stroke="none" stroke-width="1" text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  x="288.5" y="427.0">false</text>
+<polygon fill="#d7d7f4" stroke="none" stroke-width="1" points="180,410.0 125.0,430 180,450.0 235.0,430 "/>
+<text xml:space="preserve" fill="#000000" stroke="none" stroke-width="1" text-align="left" font-size="8px" font-family='Courier New' font-weight="normal"  text-anchor="middle" x="180" y="433">'Result = (X > 0)</text>
+<rect fill="#ffeeaa" stroke="none" stroke-width="1" height="40" width="110" x="345.0" y="410.0" />
+<text xml:space="preserve" fill="#000000" stroke="none" stroke-width="1" text-align="left" font-size="8px" font-family='Courier New' font-weight="normal"  text-anchor="middle" x="400" y="433">raise Assertion_Error</text>
+<rect fill="#ffeeaa" stroke="none" stroke-width="1" height="40" width="110" x="125.0" y="510.0" />
+<text xml:space="preserve" fill="#000000" stroke="none" stroke-width="1" text-align="left" font-size="8px" font-family='Courier New' font-weight="normal"  text-anchor="middle" x="180" y="533">return to caller</text>
+</svg>
