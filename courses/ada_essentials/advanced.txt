@@ -2,7 +2,7 @@
 030_scalar_types-extras.rst
 060_record_types.rst
 065_discriminated_records.rst
-080_expressions-with_quantified.rst
+080_expressions.rst
 120_limited_types.rst
 290_advanced_data_hiding.rst
 140_access_types-in_depth.rst
