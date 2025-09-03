@@ -7,7 +7,7 @@
 290_advanced_data_hiding.rst
 140_access_types-in_depth.rst
 160_genericity.rst
-170_tagged_derivation.rst
+170_tagged_derivation-in_depth.rst
 175_multiple_inheritance.rst
 180_polymorphism.rst
 190_exceptions-in_depth.rst
