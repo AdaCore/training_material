@@ -1,6 +1,6 @@
-*********************************
-Expressions: Without-Quantified
-*********************************
+******************************
+Expressions: An Introduction
+******************************
 
 .. container:: PRELUDE BEGIN
 
