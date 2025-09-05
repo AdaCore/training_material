@@ -1,14 +1,14 @@
 --Main_Helpers
 with Ada.Text_IO; use Ada.Text_IO;
 with Messages;
+
 procedure Main is
    Message : Messages.Message_T;
    function Command return Messages.Command_T is
    begin
       loop
          Put ("Command (");
-         for E in Messages.Command_T
-         loop
+         for E in Messages.Command_T loop
             Put (Messages.Command_T'Image (E) & " ");
          end loop;
          Put ("): ");
@@ -37,23 +37,20 @@ procedure Main is
       Put ("Text: ");
       return Get_Line;
    end Text;
---Main_Helpers
---Main_Main
+   --Main_Helpers
+   --Main_Main
    procedure Create is
       C : constant Messages.Command_T := Command;
-      V : constant Positive           := Value;
-      T : constant String             := Text;
+      V : constant Positive := Value;
+      T : constant String := Text;
    begin
-      Message := Messages.Create
-          (Command => C,
-           Value   => V,
-           Text    => T);
+      Message := Messages.Create (Command => C, Value => V, Text => T);
    end Create;
    procedure Read is
       Valid : Boolean;
    begin
       Messages.Read (Message, Valid);
-      Ada.Text_IO.Put_Line("Message valid: " & Boolean'Image (Valid));
+      Ada.Text_IO.Put_Line ("Message valid: " & Boolean'Image (Valid));
    end Read;
 begin
    loop
@@ -65,16 +62,21 @@ begin
          case Command (Command'First) is
             when 'c' | 'C' =>
                Create;
+
             when 'w' | 'W' =>
                Messages.Write (Message);
+
             when 'r' | 'R' =>
                Read;
+
             when 'p' | 'P' =>
                Messages.Print (Message);
+
             when others =>
                null;
          end case;
       end;
    end loop;
 end Main;
+
 --Main_Main

@@ -7,8 +7,7 @@ package Generic_List is
 
    type List_T is private;
 
-   procedure Add (This : in out List_T;
-                  Item : in     Component_T);
+   procedure Add (This : in out List_T; Item : in Component_T);
    procedure Sort (This : in out List_T);
    procedure Print (List : List_T);
 

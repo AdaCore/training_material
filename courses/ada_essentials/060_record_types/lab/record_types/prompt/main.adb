@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    type Name_T is array (1 .. 6) of Character;

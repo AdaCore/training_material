@@ -1,5 +1,6 @@
 --  Everyone's first program
 with Ada.Text_IO;
+
 procedure Hello_World is
 begin
    --  Replace '<something>' with 'Hello, World'

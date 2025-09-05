@@ -1,8 +1,7 @@
 package body Messages is
    type Message_Content_T is new Integer;
 
-   procedure Set_Content (Message : in out Message_T;
-                          Value   :        Integer) is
+   procedure Set_Content (Message : in out Message_T; Value : Integer) is
       New_Value : constant Message_Content_T := Message_Content_T (Value);
    begin
       if Message = null then

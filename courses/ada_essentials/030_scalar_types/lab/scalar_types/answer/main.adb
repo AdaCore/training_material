@@ -1,5 +1,6 @@
 --Declarations
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    type Number_Of_Tests_T is range 0 .. 100;
@@ -15,16 +16,16 @@ procedure Main is
    Angle : Degrees_T;
 
    Color : Cmyk_T;
---Declarations
+   --Declarations
 
---Implementation
+   --Implementation
 begin
 
    -- assignment
-   Number_Of_Tests  := 15;
+   Number_Of_Tests := 15;
    Test_Score_Total := 1_234.5;
-   Angle            := 180;
-   Color            := Magenta;
+   Angle := 180;
+   Color := Magenta;
 
    Put_Line (Number_Of_Tests'Image);
    Put_Line (Test_Score_Total'Image);
@@ -33,12 +34,13 @@ begin
 
    -- operations / attributes
    Test_Score_Total := Test_Score_Total / Test_Score_Total_T (Number_Of_Tests);
-   Angle            := Angle + 359;
-   Color            := Cmyk_T'Pred (Cmyk_T'Last);
+   Angle := Angle + 359;
+   Color := Cmyk_T'Pred (Cmyk_T'Last);
 
    Put_Line (Test_Score_Total'Image);
    Put_Line (Angle'Image);
    Put_Line (Color'Image);
 
 end Main;
+
 --Implementation

@@ -4,6 +4,7 @@
 with Simple_Io; use Simple_Io;
 with Database;
 with Database_List;
+
 procedure Main is
    List      : Database_List.List_T;
    Component : Database.Database_T;
@@ -42,12 +43,16 @@ begin
       case Get_Character ("A=Add D=Delete P=Print Q=Quit") is
          when 'a' | 'A' =>
             Add;
+
          when 'd' | 'D' =>
             Delete;
+
          when 'p' | 'P' =>
             Print;
+
          when 'q' | 'Q' =>
             exit;
+
          when others =>
             null;
       end case;

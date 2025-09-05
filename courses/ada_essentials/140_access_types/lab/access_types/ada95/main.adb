@@ -1,15 +1,14 @@
 pragma Warnings (Off, "anonymous access type");
 with Ada.Text_IO;      use Ada.Text_IO;
 with Password_Manager; use Password_Manager;
+
 procedure Main is
 
    procedure Update
-     (Which : Password_Manager.Login_T;
-      Pw    : String;
-      Count : Natural) is
+     (Which : Password_Manager.Login_T; Pw : String; Count : Natural) is
    begin
       Update (Which).Password := new String'(Pw);
-      Update (Which).Count    := Count;
+      Update (Which).Count := Count;
    end Update;
 
 begin
@@ -21,9 +20,12 @@ begin
 
    for Login in Login_T'Range loop
       Put_Line
-        (Login_T'Image (Login) & " => " & View (Login).Password.all &
-         Natural'Image (View (Login).Count));
+        (Login_T'Image (Login)
+         & " => "
+         & View (Login).Password.all
+         & Natural'Image (View (Login).Count));
    end loop;
 
 end Main;
+
 pragma Warnings (On, "anonymous access type");

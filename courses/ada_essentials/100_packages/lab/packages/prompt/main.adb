@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
 begin
@@ -13,14 +14,18 @@ begin
             when 'A' =>
                -- Ask user for a legal value and add it to the list
                null;
+
             when 'R' =>
                -- Ask user for a legal value and remove it from the list
                null;
+
             when 'P' =>
                -- Print the list
                null;
+
             when 'Q' =>
                exit;
+
             when others =>
                Put_Line ("Illegal entry");
          end case;

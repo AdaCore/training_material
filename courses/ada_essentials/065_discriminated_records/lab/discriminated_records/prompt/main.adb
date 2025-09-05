@@ -1,6 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Employee;
 with Vstring;     use Vstring;
+
 procedure Main is
    procedure Print (Member : Employee.Employee_T) is
    begin
@@ -20,14 +21,17 @@ begin
       begin
          case Choice (1) is
             when 'E' | 'e' =>
-               Count        := Count + 1;
+               Count := Count + 1;
                List (Count) := Employee.Get_Staff;
+
             when 'S' | 's' =>
-               Count        := Count + 1;
+               Count := Count + 1;
                List (Count) := Employee.Get_Supervisor;
+
             when 'M' | 'm' =>
-               Count        := Count + 1;
+               Count := Count + 1;
                List (Count) := Employee.Get_Manager;
+
             when others =>
                exit;
          end case;
@@ -38,4 +42,5 @@ begin
       Print (Item);
    end loop;
 end Main;
+
 --Main

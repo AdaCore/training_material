@@ -1,10 +1,11 @@
 with Data_Type;
 with Generic_List;
+
 procedure Main is
    package List is new Generic_List (Component_T => Data_Type.Record_T);
    --  Need to add formal parameters as necessary
 
-   My_List : List.List_T;
+   My_List   : List.List_T;
    Component : Data_Type.Record_T;
 
 begin

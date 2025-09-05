@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
    type Days_Of_Week_T is
      (Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday);
@@ -11,15 +12,17 @@ begin
    for Day in Days_Of_Week_T loop
       case Day is
          when Sunday =>
-            Start  := 1;
+            Start := 1;
             Finish := 0;
+
          when Saturday =>
-            Start     := 9;
-            Finish    := 13;
+            Start := 9;
+            Finish := 13;
             Big_Block := True;
+
          when Monday .. Friday =>
-            Start     := 9;
-            Finish    := 17;
+            Start := 9;
+            Finish := 17;
             Big_Block := False;
       end case;
       Put_Line (Days_Of_Week_T'Image (Day));

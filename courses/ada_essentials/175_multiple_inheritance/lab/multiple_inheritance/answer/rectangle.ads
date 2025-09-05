@@ -6,8 +6,7 @@ package Rectangle is
 
    type Object_T is new Printable_Object.Object_T with private;
 
-   procedure Set_Lines (Object : in out Object_T;
-                        Lines  :        Lines_T);
+   procedure Set_Lines (Object : in out Object_T; Lines : Lines_T);
    function Lines (Object : Object_T) return Lines_T;
 
 private
@@ -16,6 +15,6 @@ private
       Lines : Lines_T;
    end record;
 
-   function Convert (Object : Object_T) return Base_Types.Lines_T is
-      (Object.Lines);
+   function Convert (Object : Object_T) return Base_Types.Lines_T
+   is (Object.Lines);
 end Rectangle;

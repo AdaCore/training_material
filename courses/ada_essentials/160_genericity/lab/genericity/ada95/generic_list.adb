@@ -1,10 +1,10 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 package body Generic_List is
 
-   procedure Add (This : in out List_T;
-                  Item : in     Component_T) is
+   procedure Add (This : in out List_T; Item : in Component_T) is
    begin
-      This.Length               := This.Length + 1;
+      This.Length := This.Length + 1;
       This.Values (This.Length) := Item;
    end Add;
 
@@ -14,8 +14,8 @@ package body Generic_List is
       for I in 1 .. This.Length loop
          for J in 1 .. This.Length - I loop
             if This.Values (J) > This.Values (J + 1) then
-               Temp                := This.Values (J);
-               This.Values (J)     := This.Values (J + 1);
+               Temp := This.Values (J);
+               This.Values (J) := This.Values (J + 1);
                This.Values (J + 1) := Temp;
             end if;
          end loop;

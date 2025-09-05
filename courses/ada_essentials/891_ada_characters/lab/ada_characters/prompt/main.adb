@@ -1,6 +1,7 @@
 with Ada.Text_IO;             use Ada.Text_IO;
 with Ada.Characters.Handling; use Ada.Characters.Handling;
 with Ada.Characters.Latin_1;  use Ada.Characters.Latin_1;
+
 procedure Main is
    Input : String (1 .. 5);
    Last  : Natural;

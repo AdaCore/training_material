@@ -1,5 +1,6 @@
 --Declarations
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    type Name_T is array (1 .. 6) of Character;
@@ -12,11 +13,11 @@ procedure Main is
       Queue          : Queue_T := (others => (others => ' '));
    end record;
 
-   Queue : Fifo_Queue_T;
+   Queue  : Fifo_Queue_T;
    Choice : Integer;
---Declarations
+   --Declarations
 
---Implementation
+   --Implementation
 begin
 
    loop
@@ -25,13 +26,14 @@ begin
       if Choice = 1 then
          Put ("Enter name: ");
          Queue.Queue (Queue.Next_Available) := Name_T (Get_Line);
-         Queue.Next_Available               := Queue.Next_Available + 1;
+         Queue.Next_Available := Queue.Next_Available + 1;
       elsif Choice = 2 then
          if Queue.Next_Available = 1 then
             Put_Line ("Nobody in line");
          else
             Queue.Last_Served := Queue.Last_Served + 1;
-            Put_Line ("Now serving: " & String (Queue.Queue (Queue.Last_Served)));
+            Put_Line
+              ("Now serving: " & String (Queue.Queue (Queue.Last_Served)));
          end if;
       else
          exit;
@@ -45,4 +47,5 @@ begin
    end loop;
 
 end Main;
+
 --Implementation

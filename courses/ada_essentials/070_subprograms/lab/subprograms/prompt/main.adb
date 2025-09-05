@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    type List_T is array (Positive range <>) of Integer;

@@ -1,10 +1,9 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with City_Trivia;
+
 procedure Main is
 
-   function Get
-     (Prompt : String)
-      return String is
+   function Get (Prompt : String) return String is
    begin
       Put (Prompt & "> ");
       return Get_Line;
@@ -24,9 +23,7 @@ begin
                Info : constant String := Get ("  Trivia");
             begin
                exit Inner_Loop when Info'Length = 0;
-               City_Trivia.Add_Trivia
-                 (City        => City,
-                  Information => Info);
+               City_Trivia.Add_Trivia (City => City, Information => Info);
             end;
          end loop Inner_Loop;
       end;

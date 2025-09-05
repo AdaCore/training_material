@@ -1,6 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Input;
 with List;
+
 procedure Main is
 
 begin
@@ -14,12 +15,16 @@ begin
          case Str (Str'First) is
             when 'A' =>
                List.Add (Input.Get_Value ("Value to add"));
+
             when 'R' =>
                List.Remove (Input.Get_Value ("Value to remove"));
+
             when 'P' =>
                List.Print;
+
             when 'Q' =>
                exit;
+
             when others =>
                Put_Line ("Illegal entry");
          end case;

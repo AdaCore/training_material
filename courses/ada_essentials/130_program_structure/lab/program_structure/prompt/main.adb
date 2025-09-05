@@ -1,7 +1,9 @@
-with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Text_IO;
+use Ada.Text_IO;
 -- "with" your message packages
+
 procedure Main is
--- Declare your message object
+   -- Declare your message object
 begin
    -- Build a message
    -- Print message contents

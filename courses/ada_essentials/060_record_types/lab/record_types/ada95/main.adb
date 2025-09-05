@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    type Name_T is array (1 .. 6) of Character;
@@ -11,10 +12,10 @@ procedure Main is
       Queue          : Queue_T := (others => (others => ' '));
    end record;
 
-   Queue : Fifo_Queue_T;
+   Queue  : Fifo_Queue_T;
    Choice : Integer;
 
-   S : String(1..100);
+   S : String (1 .. 100);
    L : Integer;
 
 begin
@@ -22,18 +23,19 @@ begin
    loop
       Put ("1 = add to queue | 2 = remove from queue | others => done: ");
       Get_Line (S, L);
-      Choice := Integer'Value (S (1..L));
+      Choice := Integer'Value (S (1 .. L));
       if Choice = 1 then
          Put ("Enter name: ");
          Get_Line (S, L);
-         Queue.Queue (Queue.Next_Available) := Name_T (S (1..L));
-         Queue.Next_Available               := Queue.Next_Available + 1;
+         Queue.Queue (Queue.Next_Available) := Name_T (S (1 .. L));
+         Queue.Next_Available := Queue.Next_Available + 1;
       elsif Choice = 2 then
          if Queue.Next_Available = 1 then
             Put_Line ("Nobody in line");
          else
             Queue.Last_Served := Queue.Last_Served + 1;
-            Put_Line ("Now serving: " & String (Queue.Queue (Queue.Last_Served)));
+            Put_Line
+              ("Now serving: " & String (Queue.Queue (Queue.Last_Served)));
          end if;
       else
          exit;

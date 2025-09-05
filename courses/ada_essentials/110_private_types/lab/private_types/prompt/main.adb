@@ -2,6 +2,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Colors;
 with Flags;
 with Input;
+
 procedure Main is
    Map : Flags.Map_T;
 begin
@@ -15,7 +16,7 @@ begin
          Success     : Boolean;
       begin
          exit when Str'Length = 0;
-         Key         := Flags.Key_T'Value (Str);
+         Key := Flags.Key_T'Value (Str);
          Description := Input.Get;
          if Flags.Exists (Map, Key) then
             Flags.Modify (Map, Key, Description, Success);

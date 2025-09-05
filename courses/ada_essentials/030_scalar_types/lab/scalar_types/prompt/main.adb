@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    --  type Number_Of_Tests_T is ?
@@ -37,4 +38,5 @@ begin
    --  Put_Line (Color'Image);
 
 end Main;
+
 --Implementation

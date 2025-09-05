@@ -1,13 +1,13 @@
 with Protected_Object;
+
 package body Task_Type is
    task body Task_T is
       Wait_Time : Duration;
       Id        : Task_Id_T;
    begin
-      accept Start_Task (Task_Id        : Task_Id_T;
-                         Delay_Duration : Duration) do
+      accept Start_Task (Task_Id : Task_Id_T; Delay_Duration : Duration) do
          Wait_Time := Delay_Duration;
-         Id        := Task_Id;
+         Id := Task_Id;
       end Start_Task;
       loop
          select

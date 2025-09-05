@@ -1,5 +1,6 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Constants;
+
 package body List is
    Content : array (1 .. Constants.Maximum_Count) of Integer;
    Last    : Natural := 0;
@@ -7,7 +8,7 @@ package body List is
    procedure Add (Value : Integer) is
    begin
       if Last < Content'Last then
-         Last           := Last + 1;
+         Last := Last + 1;
          Content (Last) := Value;
       else
          Put_Line ("Full");
@@ -20,7 +21,7 @@ package body List is
       while I <= Last loop
          if Content (I) = Value then
             Content (I .. Last - 1) := Content (I + 1 .. Last);
-            Last                    := Last - 1;
+            Last := Last - 1;
          else
             I := I + 1;
          end if;

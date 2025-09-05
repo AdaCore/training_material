@@ -6,7 +6,7 @@ package body Database is
    function To_Database (Value : String) return Database_T is
       Retval : Database_T;
    begin
-      Retval.Length                     := Value'Length;
+      Retval.Length := Value'Length;
       Retval.Value (1 .. Retval.Length) := Value;
       return Retval;
    end To_Database;

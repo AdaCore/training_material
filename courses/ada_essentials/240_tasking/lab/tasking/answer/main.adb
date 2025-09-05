@@ -1,6 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Protected_Object;
 with Task_Type;
+
 procedure Main is
    T1, T2, T3       : Task_Type.Task_T;
    Last_Id, This_Id : Task_Type.Task_Id_T := Task_Type.Task_Id_T'Last;

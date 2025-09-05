@@ -1,6 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Quads;
 with Triangles;
+
 procedure Main1 is
 
    use type Quads.Side_T;

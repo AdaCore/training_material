@@ -1,4 +1,5 @@
-with Vstring;     use Vstring;
+with Vstring; use Vstring;
+
 package Employee is
 
    type Category_T is (Staff, Supervisor, Manager);
@@ -11,8 +12,10 @@ package Employee is
       case Category is
          when Staff =>
             null;
+
          when Supervisor =>
             Project : Vstring.Vstring_T;
+
          when Manager =>
             Department  : Vstring.Vstring_T;
             Staff_Count : Natural;

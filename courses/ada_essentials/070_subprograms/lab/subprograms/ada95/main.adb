@@ -1,12 +1,10 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    type List_T is array (Positive range <>) of Integer;
 
-   function Search
-     (List : List_T;
-      Item : Integer)
-      return Positive is
+   function Search (List : List_T; Item : Integer) return Positive is
    begin
       if List'Length = 0 then
          return 1;
@@ -26,12 +24,12 @@ procedure Main is
    Length : Natural := 0;
 
    procedure Add (Item : Integer) is
-      Place : constant Natural := Search (List (1..Length), Item);
+      Place : constant Natural := Search (List (1 .. Length), Item);
    begin
       if List (Place) /= Item then
-         Length                     := Length + 1;
+         Length := Length + 1;
          List (Place + 1 .. Length) := List (Place .. Length - 1);
-         List (Place)               := Item;
+         List (Place) := Item;
       end if;
    end Add;
 

@@ -1,5 +1,6 @@
 --Database_List_Helpers
 with Ada.Unchecked_Deallocation;
+
 package body Database_List is
 
    function Is_Empty (List : List_T) return Boolean is
@@ -30,48 +31,46 @@ package body Database_List is
    begin
       return List.Current.Content;
    end Current;
---Database_List_Helpers
+   --Database_List_Helpers
 
---Database_List_Substance
-   procedure Insert (List      : in out List_T;
-                     Component :        Database_T) is
+   --Database_List_Substance
+   procedure Insert (List : in out List_T; Component : Database_T) is
       New_Component : constant Linked_List_Ptr_T :=
         new Linked_List_T'(Next => null, Content => Component);
    begin
       if Is_Empty (List) then
          List.Current := New_Component;
-         List.Head    := New_Component;
+         List.Head := New_Component;
       elsif Component < List.Head.Content then
          New_Component.Next := List.Head;
-         List.Current       := New_Component;
-         List.Head          := New_Component;
+         List.Current := New_Component;
+         List.Head := New_Component;
       else
          declare
             Current : Linked_List_Ptr_T := List.Head;
          begin
-            while Current.Next /= null and then Current.Next.Content < Component
+            while Current.Next /= null
+              and then Current.Next.Content < Component
             loop
                Current := Current.Next;
             end loop;
             New_Component.Next := Current.Next;
-            Current.Next       := New_Component;
+            Current.Next := New_Component;
          end;
       end if;
       -- Uncomment next line when using debug/storage pools
       -- Memory_Mgmt.Print_Info;
    end Insert;
 
-   procedure Free is new Ada.Unchecked_Deallocation
-     (Linked_List_T, Linked_List_Ptr_T);
-   procedure Delete
-     (List      : in out List_T;
-      Component :        Database_T) is
+   procedure Free is new
+     Ada.Unchecked_Deallocation (Linked_List_T, Linked_List_Ptr_T);
+   procedure Delete (List : in out List_T; Component : Database_T) is
       To_Delete : Linked_List_Ptr_T := null;
    begin
       if not Is_Empty (List) then
          if List.Head.Content = Component then
-            To_Delete    := List.Head;
-            List.Head    := List.Head.Next;
+            To_Delete := List.Head;
+            List.Head := List.Head.Next;
             List.Current := List.Head;
          else
             declare
@@ -80,7 +79,7 @@ package body Database_List is
             begin
                while Current /= null loop
                   if Current.Content = Component then
-                     To_Delete     := Current;
+                     To_Delete := Current;
                      Previous.Next := Current.Next;
                   end if;
                   Current := Current.Next;
@@ -95,5 +94,5 @@ package body Database_List is
       -- Uncomment next line when using debug/storage pools
       -- Memory_Mgmt.Print_Info;
    end Delete;
---Database_List_Substance
+   --Database_List_Substance
 end Database_List;

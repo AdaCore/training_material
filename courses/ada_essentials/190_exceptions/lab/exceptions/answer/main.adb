@@ -1,5 +1,6 @@
 with Ada.Text_IO;
 with Numeric_Types;
+
 procedure Main is
 
    procedure Print_Value (Str : String) is

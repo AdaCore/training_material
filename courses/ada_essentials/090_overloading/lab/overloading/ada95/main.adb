@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    type Digit_T is range 0 .. 9;
@@ -17,33 +18,73 @@ procedure Main is
    function Convert (Value : Digit_Name_T) return Digit_T is
    begin
       case Value is
-         when Zero  => return 0;
-         when One   => return 1;
-         when Two   => return 2;
-         when Three => return 3;
-         when Four  => return 4;
-         when Five  => return 5;
-         when Six   => return 6;
-         when Seven => return 7;
-         when Eight => return 8;
-         when Nine  => return 9;
+         when Zero =>
+            return 0;
+
+         when One =>
+            return 1;
+
+         when Two =>
+            return 2;
+
+         when Three =>
+            return 3;
+
+         when Four =>
+            return 4;
+
+         when Five =>
+            return 5;
+
+         when Six =>
+            return 6;
+
+         when Seven =>
+            return 7;
+
+         when Eight =>
+            return 8;
+
+         when Nine =>
+            return 9;
       end case;
    end Convert;
 
    function Convert (Value : Character) return Digit_Name_T is
    begin
       case Value is
-         when '0' => return Zero;
-         when '1' => return One;
-         when '2' => return Two;
-         when '3' => return Three;
-         when '4' => return Four;
-         when '5' => return Five;
-         when '6' => return Six;
-         when '7' => return Seven;
-         when '8' => return Eight;
-         when '9' => return Nine;
-         when others => return Zero;
+         when '0' =>
+            return Zero;
+
+         when '1' =>
+            return One;
+
+         when '2' =>
+            return Two;
+
+         when '3' =>
+            return Three;
+
+         when '4' =>
+            return Four;
+
+         when '5' =>
+            return Five;
+
+         when '6' =>
+            return Six;
+
+         when '7' =>
+            return Seven;
+
+         when '8' =>
+            return Eight;
+
+         when '9' =>
+            return Nine;
+
+         when others =>
+            return Zero;
       end case;
    end Convert;
 

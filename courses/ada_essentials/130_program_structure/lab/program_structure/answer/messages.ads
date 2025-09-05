@@ -4,10 +4,8 @@ package Messages is
    type Request_T is digits 6;
    type Status_T is mod 255;
 
-   function Create (Kind    : Kind_T;
-                    Request : Request_T;
-                    Status  : Status_T)
-                    return Message_T;
+   function Create
+     (Kind : Kind_T; Request : Request_T; Status : Status_T) return Message_T;
 
    function Kind (Message : Message_T) return Kind_T;
    function Request (Message : Message_T) return Request_T;

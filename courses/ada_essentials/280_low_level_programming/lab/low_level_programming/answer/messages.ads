@@ -1,21 +1,20 @@
 with Crc; use Crc;
+
 package Messages is
    type Message_T is private;
    type Command_T is (Noop, Direction, Ascend, Descend, Speed);
    for Command_T use
      (Noop => 0, Direction => 1, Ascend => 2, Descend => 4, Speed => 8);
    for Command_T'Size use 8;
-   function Create (Command : Command_T;
-                    Value   : Positive;
-                    Text    : String := "")
-                    return Message_T;
+   function Create
+     (Command : Command_T; Value : Positive; Text : String := "")
+      return Message_T;
    function Get_Crc (Message : Message_T) return Crc_T;
    procedure Write (Message : Message_T);
-   procedure Read (Message : out Message_T;
-                   Valid : out boolean);
+   procedure Read (Message : out Message_T; Valid : out boolean);
    procedure Print (Message : Message_T);
 private
-   type U32_T is mod 2**32;
+   type U32_T is mod 2 ** 32;
    for U32_T'Size use 32;
    Max_Text_Length : constant := 20;
    type Text_Index_T is new Integer range 0 .. Max_Text_Length;

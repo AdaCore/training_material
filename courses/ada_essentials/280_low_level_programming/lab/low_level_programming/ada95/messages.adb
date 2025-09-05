@@ -1,16 +1,17 @@
 with Ada.Text_IO;
 with Ada.Unchecked_Conversion;
+
 package body Messages is
    Global_Unique_Id : U32_T := 0;
    function To_Text (Str : String) return Text_T is
       Length : Integer := Str'Length;
-      Retval : Text_T  := (Text => (others => ' '), Last => 0);
+      Retval : Text_T := (Text => (others => ' '), Last => 0);
    begin
       if Str'Length > Retval.Text'length then
          Length := Retval.Text'Length;
       end if;
       Retval.Text (1 .. Length) := Str (Str'First .. Str'first + Length - 1);
-      Retval.Last               := Text_Index_T (Length);
+      Retval.Last := Text_Index_T (Length);
       return Retval;
    end To_Text;
    function From_Text (Text : Text_T) return String is
@@ -29,16 +30,19 @@ package body Messages is
       return Crc.Generate (Clean'Address, Clean'Size) = Original.Crc;
    end Validate;
 
-   function Create (Command : Command_T;
-                    Value   : Positive;
-                    Text    : String := "")
-                    return Message_T is
+   function Create
+     (Command : Command_T; Value : Positive; Text : String := "")
+      return Message_T
+   is
       Retval : Message_T;
    begin
       Global_Unique_Id := Global_Unique_Id + 1;
-      Retval           :=
-        (Unique_Id => Global_Unique_Id, Command => Command,
-         Value     => U32_T (Value), Text => To_Text (Text), Crc => 0);
+      Retval :=
+        (Unique_Id => Global_Unique_Id,
+         Command   => Command,
+         Value     => U32_T (Value),
+         Text      => To_Text (Text),
+         Crc       => 0);
       Retval.Crc := Crc.Generate (Retval'Address, Retval'Size);
       return Retval;
    end Create;
@@ -59,10 +63,9 @@ package body Messages is
       Ada.Text_IO.New_Line (File);
       Ada.Text_IO.Close (File);
    end Write;
-   procedure Read (Message : out Message_T;
-                   Valid   : out Boolean) is
-                   Overlay : Overlay_T;
-                   File    : Ada.Text_IO.File_Type;
+   procedure Read (Message : out Message_T; Valid : out Boolean) is
+      Overlay : Overlay_T;
+      File    : Ada.Text_IO.File_Type;
    begin
       Valid := False;
       Ada.Text_IO.Open (File, Ada.Text_IO.In_File, Const_Filename);
@@ -76,14 +79,17 @@ package body Messages is
             Overlay (I) := Char (Str (I));
          end loop;
          Message := Convert (Overlay);
-         Valid   := Validate (Message);
+         Valid := Validate (Message);
       end;
    end Read;
    procedure Print (Message : Message_T) is
    begin
       Ada.Text_IO.Put_Line ("Message" & U32_T'Image (Message.Unique_Id));
-      Ada.Text_IO.Put_Line ("  " & Command_T'Image (Message.Command) & " =>" &
-                            U32_T'Image (Message.Value));
+      Ada.Text_IO.Put_Line
+        ("  "
+         & Command_T'Image (Message.Command)
+         & " =>"
+         & U32_T'Image (Message.Value));
       Ada.Text_IO.Put_Line ("  Additional Info: " & From_Text (Message.Text));
    end Print;
 end Messages;

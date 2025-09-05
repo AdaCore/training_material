@@ -1,6 +1,7 @@
 with Ada.Text_IO;             use Ada.Text_IO;
 with Ada.Characters.Handling; use Ada.Characters.Handling;
 with Ada.Characters.Latin_1;  use Ada.Characters.Latin_1;
+
 procedure Main is
    Input : String (1 .. 5);
    Last  : Natural;
@@ -18,11 +19,21 @@ procedure Main is
          Put (Char);
       elsif Is_Line_Terminator (Char) then
          case Char is
-            when LF  => Put ("LF");
-            when VT  => Put ("VT");
-            when FF  => Put ("FF");
-            when CR  => Put ("CR");
-            when NEL => Put ("NEL");
+            when LF =>
+               Put ("LF");
+
+            when VT =>
+               Put ("VT");
+
+            when FF =>
+               Put ("FF");
+
+            when CR =>
+               Put ("CR");
+
+            when NEL =>
+               Put ("NEL");
+
             when others =>
                Put ("Missed one: " & Integer'Image (Character'Pos (Char)));
          end case;

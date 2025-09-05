@@ -2,10 +2,9 @@
 
 --Simple_IO_Body
 with Ada.Text_IO;
+
 package body Simple_Io is
-   function Get_String
-     (Prompt : String)
-      return String is
+   function Get_String (Prompt : String) return String is
       Str  : String (1 .. 1_000);
       Last : Integer;
    begin
@@ -14,17 +13,13 @@ package body Simple_Io is
       return Str (1 .. Last);
    end Get_String;
 
-   function Get_Number
-     (Prompt : String)
-      return Integer is
+   function Get_Number (Prompt : String) return Integer is
       Str : constant String := Get_String (Prompt);
    begin
       return Integer'Value (Str);
    end Get_Number;
 
-   function Get_Character
-     (Prompt : String)
-      return Character is
+   function Get_Character (Prompt : String) return Character is
       Str : constant String := Get_String (Prompt);
    begin
       return Str (Str'First);
@@ -43,9 +38,7 @@ package body Simple_Io is
       Ada.Text_IO.Put_Line (Character'Image (Char));
    end Print_Character;
 
-   function Get_String
-     (Prompt : String)
-      return Unbounded_String is
+   function Get_String (Prompt : String) return Unbounded_String is
    begin
       return To_Unbounded_String (Get_String (Prompt));
    end Get_String;

@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    package Io is new Float_IO (Float);
@@ -8,7 +9,8 @@ procedure Main is
    Values : array (Index_T) of Component_T;
 
 begin
-   for I in 1 .. 100 loop -- bigger than 100 is good
+   for I in 1 .. 100 loop
+      -- bigger than 100 is good
       null;
       -- Find a random array index
       -- Set the indexed component as specified

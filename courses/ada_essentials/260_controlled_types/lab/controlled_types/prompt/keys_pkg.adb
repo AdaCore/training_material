@@ -21,9 +21,7 @@ package body Keys_Pkg is
       null;
    end Destroy;
 
-   function Image
-     (Key : Key_T)
-      return String is
+   function Image (Key : Key_T) return String is
    begin
       return "";
    end Image;

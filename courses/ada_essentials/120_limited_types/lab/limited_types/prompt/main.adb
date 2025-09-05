@@ -1,5 +1,6 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Timecards;
+
 procedure Main is
 
    -- populate these somehow
@@ -10,4 +11,5 @@ begin
    Put_Line (Timecards.Image (One));
    Put_Line (Timecards.Image (Two));
 end Main;
+
 --Main

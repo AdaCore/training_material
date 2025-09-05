@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
    type Days_Of_Week_T is
      (Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday);
@@ -10,7 +11,7 @@ begin
 
    --  Use a "case" statement to determine when the workday
    --  starts and ends based on the day of the week
-   Start  := 0;
+   Start := 0;
    Finish := 23;
 
    --  Print a header indicating what day of the week it is

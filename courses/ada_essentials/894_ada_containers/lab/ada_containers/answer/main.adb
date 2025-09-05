@@ -1,5 +1,6 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with City_Trivia;
+
 procedure Main is
    Trivia : City_Trivia.Information_List.Vector;
    Cities : City_Trivia.City_List.Vector;
@@ -12,18 +13,19 @@ procedure Main is
 
 begin
 
-   Outer_Loop : loop
+   Outer_Loop :
+   loop
       declare
          City : constant String := Get ("City name");
       begin
          exit Outer_Loop when City'Length = 0;
-         Inner_Loop : loop
+         Inner_Loop :
+         loop
             declare
                Info : constant String := Get ("  Trivia");
             begin
                exit Inner_Loop when Info'Length = 0;
-               City_Trivia.Add_Trivia (City        => City,
-                                       Information => Info);
+               City_Trivia.Add_Trivia (City => City, Information => Info);
             end;
          end loop Inner_Loop;
       end;

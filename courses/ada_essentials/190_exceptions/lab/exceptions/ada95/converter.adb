@@ -3,8 +3,13 @@ package body Converter is
    function Legal (C : Character) return Boolean is
    begin
       return
-        C in '0' .. '9' or C = '+' or C = '-' or C = '+' or C = '_' or
-        C = 'e' or C = 'E';
+        C in '0' .. '9'
+        or C = '+'
+        or C = '-'
+        or C = '+'
+        or C = '_'
+        or C = 'e'
+        or C = 'E';
    end Legal;
 
    function Convert (Str : String) return Types.Integer_T is

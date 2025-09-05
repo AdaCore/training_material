@@ -33,12 +33,12 @@ package body Keys_Pkg is
       Global_In_Use (Key.Value) := False;
    end Destroy;
 
-   function Image (Key : Key_T) return String is
-      ("KEY: " & Key.Value);
+   function Image (Key : Key_T) return String
+   is ("KEY: " & Key.Value);
 
    procedure Initialize (Key : in out Key_T) is
    begin
-      Key.Value                 := Next_Available;
+      Key.Value := Next_Available;
       Global_In_Use (Key.Value) := True;
    end Initialize;
 

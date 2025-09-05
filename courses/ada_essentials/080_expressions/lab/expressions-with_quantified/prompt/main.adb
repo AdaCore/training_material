@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    subtype Year_T is Positive range 1_900 .. 2_099;
@@ -12,43 +13,39 @@ procedure Main is
    end record;
 
    -- implement correctly as an expression function
-   function Is_Leap_Year
-     (Year : Positive)
-      return Boolean is (False);
+   function Is_Leap_Year (Year : Positive) return Boolean
+   is (False);
 
    -- implement correctly as an expression function
    -- (case expression would be helpful)
-   function Days_In_Month
-     (Month : Positive;
-      Year  : Positive)
-      return Positive is (1);
+   function Days_In_Month (Month : Positive; Year : Positive) return Positive
+   is (1);
 
    -- Implement correctly as an expression function
-   function Is_Valid
-     (Date : Date_T)
-      return Boolean is (False);
+   function Is_Valid (Date : Date_T) return Boolean
+   is (False);
 
    List : array (1 .. 5) of Date_T;
    Item : Date_T;
 
-   function Number
-     (Prompt : String)
-      return Positive is
+   function Number (Prompt : String) return Positive is
    begin
       Put (Prompt & "> ");
       return Positive'Value (Get_Line);
    end Number;
 
-   function Any_Invalid return Boolean is (False);
-   function Same_Year return Boolean is (False);
+   function Any_Invalid return Boolean
+   is (False);
+   function Same_Year return Boolean
+   is (False);
 
 begin
 
    for I in List'Range loop
-      Item.Year  := Number ("Year");
+      Item.Year := Number ("Year");
       Item.Month := Number ("Month");
-      Item.Day   := Number ("Day");
-      List (I)   := Item;
+      Item.Day := Number ("Day");
+      List (I) := Item;
    end loop;
 
    -- Print True/False if any date in the list is not valid

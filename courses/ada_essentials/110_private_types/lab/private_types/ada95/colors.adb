@@ -1,19 +1,16 @@
 package body Colors is
-   procedure Add (Set   : in out Color_Set_T;
-                  Color :        Color_T) is
+   procedure Add (Set : in out Color_Set_T; Color : Color_T) is
    begin
       Set.Values (Color) := True;
    end Add;
-   procedure Remove (Set   : in out Color_Set_T;
-                     Color :        Color_T) is
+   procedure Remove (Set : in out Color_Set_T; Color : Color_T) is
    begin
       Set.Values (Color) := False;
    end Remove;
 
-   function Image (Set   : Color_Set_T;
-                   First : Color_T;
-                   Last  : Color_T)
-                   return String is
+   function Image
+     (Set : Color_Set_T; First : Color_T; Last : Color_T) return String
+   is
       function Image (Color : Color_T) return String is
       begin
          if Set.Values (Color) then

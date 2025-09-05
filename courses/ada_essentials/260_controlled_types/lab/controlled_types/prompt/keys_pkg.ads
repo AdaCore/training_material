@@ -4,9 +4,7 @@ package Keys_Pkg is
    function Generate return Key_T;
    procedure Destroy (Key : Key_T);
    function In_Use return Natural;
-   function Image
-     (Key : Key_T)
-      return String;
+   function Image (Key : Key_T) return String;
 
 private
    type Key_T is null record;

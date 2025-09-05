@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    --Conversion_Functions
@@ -11,32 +12,51 @@ procedure Main is
    function Convert (Value : Character) return Digit_Name_T;
    function Convert (Value : String) return Digit_T;
 
-   function "=" (L : Digit_Name_T; R : Digit_T) return Boolean is (Convert (L) = R);
+   function "=" (L : Digit_Name_T; R : Digit_T) return Boolean
+   is (Convert (L) = R);
 
-   function Convert (Value : Digit_T) return Digit_Name_T is
-     (case Value is when 0 => Zero,  when 1 => One,
-                    when 2 => Two,   when 3 => Three,
-                    when 4 => Four,  when 5 => Five,
-                    when 6 => Six,   when 7 => Seven,
-                    when 8 => Eight, when 9 => Nine);
+   function Convert (Value : Digit_T) return Digit_Name_T
+   is (case Value is
+         when 0 => Zero,
+         when 1 => One,
+         when 2 => Two,
+         when 3 => Three,
+         when 4 => Four,
+         when 5 => Five,
+         when 6 => Six,
+         when 7 => Seven,
+         when 8 => Eight,
+         when 9 => Nine);
 
-   function Convert (Value : Digit_Name_T) return Digit_T is
-     (case Value is when Zero  => 0, when One => 1,
-                    when Two   => 2, when Three => 3,
-                    when Four  => 4, when Five => 5,
-                    when Six   => 6, when Seven => 7,
-                    when Eight => 8, when Nine => 9);
+   function Convert (Value : Digit_Name_T) return Digit_T
+   is (case Value is
+         when Zero => 0,
+         when One => 1,
+         when Two => 2,
+         when Three => 3,
+         when Four => 4,
+         when Five => 5,
+         when Six => 6,
+         when Seven => 7,
+         when Eight => 8,
+         when Nine => 9);
 
-   function Convert (Value : Character) return Digit_Name_T is
-     (case Value is when '0' => Zero,  when '1' => One,
-                    when '2' => Two,   when '3' => Three,
-                    when '4' => Four,  when '5' => Five,
-                    when '6' => Six,   when '7' => Seven,
-                    when '8' => Eight, when '9' => Nine,
-                    when others => Zero);
+   function Convert (Value : Character) return Digit_Name_T
+   is (case Value is
+         when '0' => Zero,
+         when '1' => One,
+         when '2' => Two,
+         when '3' => Three,
+         when '4' => Four,
+         when '5' => Five,
+         when '6' => Six,
+         when '7' => Seven,
+         when '8' => Eight,
+         when '9' => Nine,
+         when others => Zero);
 
-   function Convert (Value : String) return Digit_T is
-     (Convert (Digit_Name_T'Value (Value)));
+   function Convert (Value : String) return Digit_T
+   is (Convert (Digit_Name_T'Value (Value)));
    --Conversion_Functions
 
    --Main
@@ -77,4 +97,5 @@ begin
       end;
    end loop;
 end Main;
+
 --Main

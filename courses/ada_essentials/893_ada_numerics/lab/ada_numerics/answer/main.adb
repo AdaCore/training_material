@@ -1,7 +1,8 @@
 with Ada.Numerics.Discrete_Random;
 with Ada.Numerics.Float_Random;
 with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
-with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Text_IO;                       use Ada.Text_IO;
+
 procedure Main is
 
    package Io is new Float_IO (Float);
@@ -9,7 +10,7 @@ procedure Main is
    type Index_T is range 1 .. 10;
    type Component_T is record
       Count : Natural := 0;
-      Total : Float   := 0.0;
+      Total : Float := 0.0;
    end record;
    Values : array (Index_T) of Component_T;
    Index  : Index_T;
@@ -21,9 +22,9 @@ procedure Main is
    F_Generator : F_Random.Generator;
 
    function Random_Float return Float is
-      Rand  : constant Float := F_Random.Random (F_Generator);
+      Rand : constant Float := F_Random.Random (F_Generator);
       First : constant := 1_000.0;
-      Last  : constant := 9_999.0;
+      Last : constant := 9_999.0;
    begin
       return Rand * (Last - First) + First;
    end Random_Float;
@@ -32,7 +33,7 @@ begin
    I_Random.Reset (I_Generator);
    F_Random.Reset (F_Generator);
    for I in 1 .. 100 loop
-      Index          := I_Random.Random (I_Generator);
+      Index := I_Random.Random (I_Generator);
       Values (Index) :=
         (Values (Index).Count + 1, Values (Index).Total + Sqrt (Random_Float));
    end loop;
@@ -41,9 +42,7 @@ begin
       Put (Index_T'Image (I) & "> ");
       Put ("Count: " & Integer'Image (Values (I).Count) & " ");
       Put ("Average: ");
-      Io.Put
-        (Values (I).Total / Float (Values (I).Count),
-         Exp => 0);
+      Io.Put (Values (I).Total / Float (Values (I).Count), Exp => 0);
       New_Line;
    end loop;
 end Main;

@@ -1,20 +1,30 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Employee;
-with Vstring; use Vstring;
+with Vstring;     use Vstring;
+
 procedure Main is
    procedure Print (Member : Employee.Employee_T) is
       First_Line : constant Vstring.Vstring_T :=
-        Member.First_Name & " " & Member.Last_Name & " " &
-        Member.Hourly_Rate'Image;
+        Member.First_Name
+        & " "
+        & Member.Last_Name
+        & " "
+        & Member.Hourly_Rate'Image;
    begin
       Put_Line (Vstring.To_String (First_Line));
       case Member.Category is
          when Employee.Supervisor =>
             Put_Line ("   Project: " & Vstring.To_String (Member.Project));
+
          when Employee.Manager =>
-            Put_Line ("   Overseeing " & Member.Staff_Count'Image & " in " &
-                      Vstring.To_String (Member.Department));
-         when others => null;
+            Put_Line
+              ("   Overseeing "
+               & Member.Staff_Count'Image
+               & " in "
+               & Vstring.To_String (Member.Department));
+
+         when others =>
+            null;
       end case;
    end Print;
 
@@ -31,14 +41,17 @@ begin
       begin
          case Choice (1) is
             when 'E' | 'e' =>
-               Count        := Count + 1;
+               Count := Count + 1;
                List (Count) := Employee.Get_Staff;
+
             when 'S' | 's' =>
-               Count        := Count + 1;
+               Count := Count + 1;
                List (Count) := Employee.Get_Supervisor;
+
             when 'M' | 'm' =>
-               Count        := Count + 1;
+               Count := Count + 1;
                List (Count) := Employee.Get_Manager;
+
             when others =>
                exit;
          end case;

@@ -2,6 +2,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Strings.Fixed;
 with Ada.Strings.Unbounded;
+
 procedure Main is
 
    -- hard-coded filename
@@ -18,30 +19,27 @@ procedure Main is
    Semicolons : Natural := 0;
 
    Colon : Natural;
---declarations
+   --declarations
 
---extra_credit
-   function Hide_Strings
-     (Str : String)
-      return String is
+   --extra_credit
+   function Hide_Strings (Str : String) return String is
       First : Natural;
       Last  : Natural;
    begin
       First := Ada.Strings.Fixed.Index (Str, """");
       if First in Str'Range then
-         Last := Ada.Strings.Fixed.Index
-             (Source  => Str (First + 1 .. Str'Last),
-              Pattern => """");
+         Last :=
+           Ada.Strings.Fixed.Index
+             (Source => Str (First + 1 .. Str'Last), Pattern => """");
          if Last in Str'Range then
-            return Ada.Strings.Fixed.Replace_Slice
-               (Str, First, Last, "");
+            return Ada.Strings.Fixed.Replace_Slice (Str, First, Last, "");
          end if;
       end if;
       return Str;
    end Hide_Strings;
---extra_credit
+   --extra_credit
 
---main
+   --main
 begin
 
    Open (File, In_File, Filename);
@@ -50,18 +48,18 @@ begin
       declare
          Stripped_Line : constant String := Hide_Strings (Line (1 .. Last));
       begin
-         Comments := Comments + Ada.Strings.Fixed.Count
-             (Source  => Stripped_Line,
-              Pattern => "--");
-         Semicolons := Semicolons + Ada.Strings.Fixed.Count
-             (Source  => Stripped_Line,
-              Pattern => ";");
+         Comments :=
+           Comments
+           + Ada.Strings.Fixed.Count
+               (Source => Stripped_Line, Pattern => "--");
+         Semicolons :=
+           Semicolons
+           + Ada.Strings.Fixed.Count (Source => Stripped_Line, Pattern => ";");
 
-         Colon := Ada.Strings.Fixed.Index
-             (Source  => Stripped_Line,
-              Pattern => " : ");
+         Colon :=
+           Ada.Strings.Fixed.Index (Source => Stripped_Line, Pattern => " : ");
          if Colon in Stripped_Line'Range then
-            Object_Count           := Object_Count + 1;
+            Object_Count := Object_Count + 1;
             Objects (Object_Count) :=
               Ada.Strings.Unbounded.To_Unbounded_String
                 (Stripped_Line (1 .. Colon));
@@ -82,8 +80,8 @@ begin
       for I in 1 .. Object_Count loop
          for J in 1 .. Object_Count - 1 loop
             if Objects (J) > Objects (J + 1) then
-               Hold            := Objects (J);
-               Objects (J)     := Objects (J + 1);
+               Hold := Objects (J);
+               Objects (J) := Objects (J + 1);
                Objects (J + 1) := Hold;
             end if;
          end loop;
@@ -95,4 +93,5 @@ begin
       Put_Line ("  " & Ada.Strings.Unbounded.To_String (Objects (I)));
    end loop;
 end Main;
+
 --main

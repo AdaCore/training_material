@@ -13,8 +13,10 @@ package body Data_Type is
 
    function Image (Component : Record_T) return String is
    begin
-      return Component.Character_Component & " =>" &
-             Integer'Image (Component.Integer_Component);
+      return
+        Component.Character_Component
+        & " =>"
+        & Integer'Image (Component.Integer_Component);
    end Image;
 
 end Data_Type;

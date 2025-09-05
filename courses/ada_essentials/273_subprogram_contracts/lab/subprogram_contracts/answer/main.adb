@@ -1,5 +1,6 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Priority_Queue;
+
 procedure Main is
    Queue : Priority_Queue.Queue_T;
    Value : Priority_Queue.String_T;

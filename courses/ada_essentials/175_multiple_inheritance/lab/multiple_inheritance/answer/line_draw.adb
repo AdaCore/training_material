@@ -1,4 +1,5 @@
 with Ada.Text_IO;
+
 package body Line_Draw is
 
    procedure Print (Object : Object_T'Class) is

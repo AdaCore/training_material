@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 package body Input is
 
    function Get_Line return String is

@@ -1,4 +1,5 @@
 with Base_Types;
+
 package Geometry is
 
    -- Create a tagged type to define shapes
@@ -13,7 +14,7 @@ private
       The_Origin : Base_Types.Coordinate_T;
    end record;
 
-   function Origin (Object : Object_T'Class) return Base_Types.Coordinate_T is
-      (Object.The_Origin);
+   function Origin (Object : Object_T'Class) return Base_Types.Coordinate_T
+   is (Object.The_Origin);
 
 end Geometry;

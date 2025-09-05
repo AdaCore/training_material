@@ -7,8 +7,6 @@ package body Counter is
          Increment  : Integer;
          Delay_Time : Duration);
       delay 0.0;
-      Datastore.Write
-        (Register => Datastore.Register_T'First,
-         Value    => 0);
+      Datastore.Write (Register => Datastore.Register_T'First, Value => 0);
    end Counter_T;
 end Counter;

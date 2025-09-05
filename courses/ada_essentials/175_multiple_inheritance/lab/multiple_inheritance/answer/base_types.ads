@@ -4,9 +4,8 @@ package Base_Types is
       X_Coord : Integer;
       Y_Coord : Integer;
    end record;
-   function Image (Coord : Coordinate_T) return String is
-     ("(" & Coord.X_Coord'Image & "," &
-            Coord.Y_Coord'Image & " )");
+   function Image (Coord : Coordinate_T) return String
+   is ("(" & Coord.X_Coord'Image & "," & Coord.Y_Coord'Image & " )");
 
    type Line_T is array (1 .. 2) of Coordinate_T;
    type Lines_T is array (Natural range <>) of Line_T;

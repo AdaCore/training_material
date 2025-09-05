@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    --Conversion_Functions
@@ -30,4 +31,5 @@ begin
       end;
    end loop;
 end Main;
+
 --Main

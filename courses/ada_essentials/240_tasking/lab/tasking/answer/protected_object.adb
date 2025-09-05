@@ -4,6 +4,7 @@ package body Protected_Object is
       begin
          Value := Id;
       end Set;
-      function Get return Task_Type.Task_Id_T is (Value);
+      function Get return Task_Type.Task_Id_T
+      is (Value);
    end Monitor;
 end Protected_Object;

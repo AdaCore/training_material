@@ -1,6 +1,7 @@
 with Ada.Exceptions;
 with Ada.Text_IO;
 use type Ada.Exceptions.Exception_Id;
+
 package body Debug_Pkg is
    Exceptions     : array (1 .. 100) of Ada.Exceptions.Exception_Occurrence;
    Next_Available : Integer := 1;
@@ -16,8 +17,8 @@ package body Debug_Pkg is
             E    : Ada.Exceptions.Exception_Occurrence renames Exceptions (I);
             Flag : Character := ' ';
          begin
-            if Ada.Exceptions.Exception_Identity (E) =
-              Constraint_Error'Identity
+            if Ada.Exceptions.Exception_Identity (E)
+              = Constraint_Error'Identity
             then
                Flag := '*';
             end if;

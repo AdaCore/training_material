@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    --Checks
@@ -15,20 +16,19 @@ procedure Main is
    List : array (1 .. 5) of Date_T;
    Item : Date_T;
 
-   function Is_Leap_Year (Year : Positive)
-                          return Boolean is
-     (Year mod 400 = 0 or else (Year mod 4 = 0 and Year mod 100 /= 0));
+   function Is_Leap_Year (Year : Positive) return Boolean
+   is (Year mod 400 = 0 or else (Year mod 4 = 0 and Year mod 100 /= 0));
 
-   function Days_In_Month (Month : Positive;
-                           Year  : Positive)
-                           return Day_T is
-     (case Month is when 4 | 6 | 9 | 11 => 30,
-        when 2 => (if Is_Leap_Year (Year) then 29 else 28), when others => 31);
+   function Days_In_Month (Month : Positive; Year : Positive) return Day_T
+   is (case Month is
+         when 4 | 6 | 9 | 11 => 30,
+         when 2 => (if Is_Leap_Year (Year) then 29 else 28),
+         when others => 31);
 
-   function Is_Valid (Date : Date_T)
-                      return Boolean is
-     (Date.Year in Year_T and then Date.Month in Month_T
-      and then Date.Day <= Days_In_Month (Date.Month, Date.Year));
+   function Is_Valid (Date : Date_T) return Boolean
+   is (Date.Year in Year_T
+       and then Date.Month in Month_T
+       and then Date.Day <= Days_In_Month (Date.Month, Date.Year));
 
    function Any_Invalid return Boolean is
    begin
@@ -52,8 +52,7 @@ procedure Main is
    --Checks
 
    --Main
-   function Number (Prompt : String)
-                    return Positive is
+   function Number (Prompt : String) return Positive is
    begin
       Put (Prompt & "> ");
       return Positive'Value (Get_Line);
@@ -62,14 +61,15 @@ procedure Main is
 begin
 
    for I in List'Range loop
-      Item.Year  := Number ("Year");
+      Item.Year := Number ("Year");
       Item.Month := Number ("Month");
-      Item.Day   := Number ("Day");
-      List (I)   := Item;
+      Item.Day := Number ("Day");
+      List (I) := Item;
    end loop;
 
    Put_Line ("Any invalid: " & Boolean'Image (Any_Invalid));
    Put_Line ("Same Year: " & Boolean'Image (Same_Year));
 
 end Main;
+
 --Main

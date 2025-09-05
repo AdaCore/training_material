@@ -1,4 +1,5 @@
 with Ada.Text_IO;
+
 package body Simple_Io is
    function Get_String (Prompt : String) return String is
       Str  : String (1 .. 1_000);
