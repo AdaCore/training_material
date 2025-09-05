@@ -73,6 +73,10 @@ def default_title(source):
     """
 
     title = os.path.basename(os.path.dirname(os.path.abspath(source)))
+    if title.lower() == 'gnatdas':
+        return "GNAT DAS"
+    elif title.lower() == 'gnatsas':
+        return "GNAT SAS"
     pieces = title.split("_")
     title = ""
     for piece in pieces:
