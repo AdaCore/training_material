@@ -808,9 +808,11 @@ Convert text to a LaTeX-based hyperlink.
 If the text is in the format of `some text <some link>` then we will use
 a LaTeX "href" where "some text" is displayed and links to <some link>.
 Otherwise, we will use "url" where the whole string is used
-NOTE: For some reason, href's are not clickable in the PDF. For now,
-we'll use a parenthesized link (which is clickable) rather than a
-hidden one
+
+NOTE: href's behave very inconsistently with Pandoc/Beamer, so when
+we see a url in the form of 'shortcut <link>' we will convert it to
+'shortcut (link)'. If there is no shortcut, the link will be displayed
+without parentheses.
 """
 
 
@@ -821,10 +823,10 @@ def format_url(literal_text):
         first = literal_text.rfind("<")
         if first > 0:
             url = literal_text[first + 1 : len(literal_text) - 1]
-            text = literal_text[0 : first - 1].strip()
+            url = "\\begin{tiny}(\\url{" + url + "})\\end{tiny}"
+            text = latex_escape(literal_text[0 : first - 1].strip())
             if len(text) > 0:
-                text = latex_escape(text)
-                return latex_inline(text + " (\\url{" + url + "})")
+                return latex_inline(text + " " + url)
 
     # anything else
     return latex_inline("\\url{" + literal_text + "}")

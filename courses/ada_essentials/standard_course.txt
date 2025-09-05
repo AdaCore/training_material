@@ -24,3 +24,4 @@
 273_subprogram_contracts.rst
 276_type_contracts.rst
 920_reference_material.rst
+900_gnat_in_practice.rst
