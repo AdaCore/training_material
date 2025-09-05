@@ -61,24 +61,3 @@ Canonical First Program
 
    * :ada:`end` - used to end a block of statements. It's optional to add the
      name of the block you are ending
-
---------------------------------------
-Note on GNAT File Naming Conventions
---------------------------------------
-
-* GNAT compiler assumes one compilable entity per file
-
-  * Package specification, subprogram body, etc
-  * So the body for :ada:`hello_world` should be the only thing in the file
-
-* Filenames should match the name of the compilable entity
-
-  * Replacing "." with "-"
-  * File extension is ".ads" for specifications and ".adb" for bodies
-  * So the body for :ada:`hello_world` will be in :filename:`hello_world.adb`
-
-    * If there was a specification for the subprogram, it would be in :filename:`hello_world.ads`
-
-* This is the **default** behavior. There are ways around both of these rules
-
-  * For further information, see Section 3.3 *File Naming Topics and Utilities* in the **GNAT User's Guide**
