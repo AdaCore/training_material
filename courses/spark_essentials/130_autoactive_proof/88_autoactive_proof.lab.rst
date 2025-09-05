@@ -125,9 +125,9 @@ Intermission - Permutations
 
    - For this lab, there are two ways of implementing permutations
 
-      - They can be found in sub-directories :filename:`answer1` and :filename:`answer2`
-      - The following slides use :filename:`answer1`, but feel free to try
-        :filename:`answer2` instead (or later)
+      - They can be found in the :filename:`answer` folder and :filename:`another_answer` sub-folder
+      - The following slides use :filename:`answer`, but feel free to try
+        :filename:`another_another_answer` instead (or later)
 
    - Both methods can be considered "safe" for use in our proofs
 

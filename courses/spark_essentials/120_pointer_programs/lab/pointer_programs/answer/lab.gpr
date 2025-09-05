@@ -1,11 +1,9 @@
-with "sparklib";
-
 project Lab is
 
    for Object_Dir use "obj";
 
    package Compiler is
-      for Default_Switches ("Ada") use ("-g", "-O0", "-gnata", "-gnat2022", "-gnatX");
+      for Default_Switches ("Ada") use ("-g", "-O0", "-gnata", "-gnat2022", "-gnatX", "-gnatyr", "-gnatwa");
    end Compiler;
 
    package Builder is
