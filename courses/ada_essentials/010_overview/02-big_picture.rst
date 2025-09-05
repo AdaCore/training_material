@@ -2,101 +2,58 @@
 Big Picture
 =============
 
----------------------------------------
-Language Structure (Ada95 and Onward)
----------------------------------------
+-----------------------
+Core Language Content
+-----------------------
 
-* **Required** :dfn:`Core` implementation
+All compilers/run-times support these "core concepts" of Ada
 
-  * Always present in each compiler/run-time
+* Types *(Language- and user-defined)*
 
-    - Basic language contents (types, subprograms, packages, etc.)
-    - Interface to Other Languages
+* Subprograms (:ada:`function` *and* :ada:`procedure`*)*
 
-* Optional :dfn:`Specialized Needs Annexes`
+* Packages *(grouping related entities)*
 
-  * No additional syntax
-  * May be present or not depending on compiler/run-time
+* Generic Units *(code templates)*
 
-    - Real-Time Systems
-    - Distributed Systems
-    - Numerics
-    - High-Integrity Systems
+* Language-Based Concurrency *(multi-tasking)*
 
------------------------------
-Core Language Content (1/3)
------------------------------
-
-* Types
-
-  * Language-defined types, including string
-  * User-defined types
-  * Static types keep things consistent
-  * Strong types enforce constraints
-
-* Subprograms
-
-  * Syntax differs between *values* and *actions*
-  * :ada:`function` for *value* and :ada:`procedure` for *action*
-  * Overloading of names allowed
+* Exceptions *(handling unexpected errors)*
 
 * Dynamic memory management
 
-  * :dfn:`access type` for abstraction of pointers
-  * Access to static memory, allocated objects, subprograms
-  * Accesses are **checked** (unless otherwise requested)
-
-* Packages
-
-  * Grouping of related entities
-  * Separation of concerns
-  * Information hiding
-
------------------------------
-Core Language Content (2/3)
------------------------------
-
-* Exceptions
-
-  * Dealing with **errors**, **unexpected** events
-  * Separate error-handling code from logic
-
-* Generic Units
-
-    * Code templates
-    * Extensive parameterization for customization
-
 * Object-Oriented Programming
-
-  * Inheritance
-  * Run-time polymorphism
-  * Dynamic **dispatching**
 
 * Contract-Based Programming
 
-  * Pre- and post-conditions on subprograms
-
-    * Formalizes specifications
-
-  * Type invariants and predicates
-
-    * Complex contracts on type definitions
-
------------------------------
-Core Language Content (3/3)
------------------------------
-
-* Language-Based Concurrency
-
-  * Explicit interactions
-  * Run-time handling
-  * Portable
-
 * Low Level Programming
 
-  * Define representation of types
-  * Storage pools definition
-  * Foreign language integration
+* Mixed-language applications
+
+---------------------------
+Specialized Needs Annexes
+---------------------------
+
+In addition to the "core concepts", Ada compilers can also support 
+
+* Real-Time Systems
+
+   * Multi-tasking issues such as priority and timing
+
+* Distributed Systems
+
+   * Multiple partitions as part of a single Ada program
+
+* Numerics
+
+   * Complex arithmetic, improved floating point accuracy, and very large numbers
+
+* High-Integrity Systems
+* Information systems
+
+.. note::
+
+   They implement no additional syntax, and may be present or not depending on the compiler/run-time
 
 ------------------------------
 Language Examination Summary
