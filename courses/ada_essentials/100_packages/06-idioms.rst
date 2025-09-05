@@ -82,7 +82,7 @@ Uncontrolled Data Visibility Problem
 
  .. container:: column
 
-    .. image:: subprograms_accessing_global.png
+    .. image:: subprograms_accessing_global.svg
 
 -------------------------
 Packages and "Lifetime"
