@@ -127,7 +127,7 @@ Intermission - Permutations
 
       - They can be found in the :filename:`answer` folder and :filename:`another_answer` sub-folder
       - The following slides use :filename:`answer`, but feel free to try
-        :filename:`another_another_answer` instead (or later)
+        :filename:`another_answer` instead (or later)
 
    - Both methods can be considered "safe" for use in our proofs
 
