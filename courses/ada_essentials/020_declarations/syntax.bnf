@@ -1,0 +1,45 @@
+--|numeric_literals_begin
+decimal_literal ::= numeral [.numeral] [exponent]
+numeral ::= digit {[underline] digit}
+exponent ::= E [+] numeral | E - numeral
+--|numeric_literals_end
+
+--|based_numeric_literals_begin
+based_literal ::= 
+   base # based_numeral [.based_numeral] # [exponent]
+base ::= numeral
+based_numeral ::= 
+   extended_digit {[underline] extended_digit}
+--|based_numeric_literals_end
+
+--|object_declarations_begin
+object_declaration ::= 
+   identifier_list : [constant] typemark [:= expression];
+identifier_list ::= identifier {, identifier}
+--|object_declarations_end
+
+--|named_numbers_begin
+identifier ::= constant := static_expression;
+--|named_numbers_end
+
+--|introducing_block_statements_begin
+block_statement ::= 
+   [block_statement_identifier:]
+      [declare
+          declarative_part]
+      begin
+         sequence_of_statements
+      end [block_identifier];
+--|introducing_block_statements_end
+
+--|aspect_clauses_begin
+aspect_specification ::= 
+   with aspect_mark [=> aspect_definition] {,
+        aspect_mark [=> aspect_definition] }
+--|aspect_clauses_end
+
+--|aspect_clause_example_begin
+object_declaration ::= 
+   identifier_list : [constant] typemark
+      [:= expression] [aspect_specification];
+--|aspect_clause_example_end

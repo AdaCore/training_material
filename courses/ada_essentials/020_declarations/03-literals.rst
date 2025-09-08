@@ -6,13 +6,9 @@ Literals
 Numeric Literals
 ------------------
 
-* Syntax
+**Syntax**
 
-   .. code::
-
-      numeric_literal ::= numeral [.numeral] [exponent]
-      exponent ::= E [ + | - ] numeral
-      numeral ::= digit {['_'] digit}
+.. container:: source_include 020_declarations/syntax.bnf :start-after:numeric_literals_begin :end-before:numeric_literals_end :code:bnf
 
 .. tip:: Underscore is **not** significant and helpful for grouping
 
@@ -28,13 +24,13 @@ Numeric Literals
 Based Numeric Literals
 ------------------------
 
-.. code::
+**Syntax**
 
-   based_literal ::= base # numeral [.numeral] # [exponent]
-   numeral ::= base_digit { '_' base_digit }
+.. container:: source_include 020_declarations/syntax.bnf :start-after:based_numeric_literals_begin :end-before:based_numeric_literals_end :code:bnf
 
 * Base can be 2 .. 16
 * Exponent is always a base 10 integer
+* Examples
 
    .. code:: Ada
 
