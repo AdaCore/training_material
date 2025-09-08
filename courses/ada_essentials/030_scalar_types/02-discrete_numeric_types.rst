@@ -6,15 +6,13 @@ Discrete Numeric Types
 Signed Integer Types
 ----------------------
 
+**Syntax**
+
+.. container:: source_include 030_scalar_types/syntax.bnf :start-after:signed_integer_types_begin :end-before:signed_integer_types_end :code:bnf
+
 * Range of signed **whole** numbers
 
    - Symmetric about zero (-0 = +0)
-
-* Syntax
-
-   .. code:: Ada
-
-      type <typemark> is range  <lower> .. <upper>;
 
 * Implicit numeric operators
 
