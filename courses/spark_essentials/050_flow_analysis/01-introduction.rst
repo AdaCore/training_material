@@ -50,7 +50,8 @@ Control Flow Graph (CFG)
 
  .. container:: column
 
-    .. image:: control_flow_graph.jpg
+    .. image:: control_flow_graph.svg
+       :height: 65%
 
 --------------------------------
 Program Dependence Graph (PDG)
