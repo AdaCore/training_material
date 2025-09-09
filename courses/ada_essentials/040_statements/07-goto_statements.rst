@@ -6,16 +6,10 @@ GOTO Statements
 GOTO Statements
 -----------------
 
-* Syntax
+**Syntax**
 
-   .. code:: Ada
+.. container:: source_include 040_statements/syntax.bnf :start-after:goto_statements_begin :end-before:goto_statements_end :code:bnf
 
-      goto << <label> >>;
-
-   * where
-
-      * **<label>** is an identifier
-      * ``<<`` and ``>>`` are part of the syntax
 
 * Rationale
 
