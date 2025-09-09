@@ -35,7 +35,7 @@ Information Hiding
 
  .. container:: column
 
-    .. image:: interface_vs_implementation.png
+    .. image:: interface_vs_implementation.svg
        :width: 70%
 
 -------
