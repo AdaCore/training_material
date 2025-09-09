@@ -6,18 +6,11 @@ Introduction
 Syntax and Examples
 ---------------------
 
-* Syntax (simplified)
+**Syntax**
 
-   .. code:: Ada
+.. container:: source_include 060_record_types/syntax.bnf :start-after:syntax_and_examples_begin :end-before:syntax_and_examples_end :code:bnf
 
-      type T is record
-         Component_Name : Type [:= Default_Value];
-         ...
-      end record;
-
-      type T_Empty is null record;
-
-* Example
+**Example**
 
    .. code:: Ada
 
