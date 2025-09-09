@@ -9,17 +9,12 @@ Unconstrained Array Type Declarations
 * Do not specify bounds for objects
 * Thus different objects of the same type may have different bounds
 * Bounds cannot change once set
-* Syntax (with simplifications)
 
-   .. code:: Ada
+**Syntax**
 
-      unconstrained_array_definition ::=
-         array (index_subtype_definition
-            {, index_subtype_definition})
-            of subtype_indication
-      index_subtype_definition ::= subtype_mark range <>
+.. container:: source_include 050_array_types/syntax.bnf :start-after:unconstrained_array_type_declarations_begin :end-before:unconstrained_array_type_declarations_end :code:bnf
 
-* Examples
+**Examples**
 
    .. code:: Ada
 

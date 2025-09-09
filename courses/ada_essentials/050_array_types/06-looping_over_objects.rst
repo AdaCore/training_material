@@ -51,15 +51,10 @@ Two High-Level For-Loop Kinds
 Array/Container For-Loops
 ---------------------------
 
+.. container:: source_include 050_array_types/syntax.bnf :start-after:array_container_for_loops_begin :end-before:array_container_for_loops_end :code:bnf
+
 * Work in terms of components within an object
 * Syntax hides indexing/iterator controls
-
-   .. code:: Ada
-
-      for name of [reverse] array_or_container_object loop
-      ...
-      end loop;
-
 * Starts with "first" component unless you reverse it
 * Loop parameter name is a constant if iterating over a constant, a variable otherwise
 

@@ -8,28 +8,18 @@ What Is an Array?
 
 * Definition: collection of components of the same type, stored in contiguous memory, and indexed using a discrete range
 
-* Syntax
-
-.. container:: latex_environment small
-
-   .. code:: Ada
-
-      type <typemark> is array (<index_constraint>) of <component_type>;
-
-where
-
-   * :dfn:`index_constraint`
-
-      - Discrete range of values to be used to access the array components
-
-   * :dfn:`component_type`
-
-      - Type of values stored in the array
-      - All components are of this same type and size
+**Examples**
 
 .. code:: Ada
 
-   type Array_T is array (0 .. 3) of Interfaces.Integer_16;
+   type Array_One is array (1 .. 100) of Integer;
+
+   type Discrete_Subtype_Two is range (Able, Baker, Charlie);
+   type Array_Two is array (Discrete_Subtype_Two) of Float;
+
+   type Discrete_Subtype_Three is mod 64;
+   type Array_Three is array (Discrete_Subtype_Three range 0 .. 31)
+      of Interfaces.Integer_16;
 
 .. image:: array_diagram.svg
 

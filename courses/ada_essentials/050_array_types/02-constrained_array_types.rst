@@ -6,25 +6,13 @@ Constrained Array Types
 Constrained Array Type Declarations
 -------------------------------------
 
-Syntax (simplified)
+**Syntax**
 
-.. container:: latex_environment footnotesize
+.. container:: source_include 050_array_types/syntax.bnf :start-after:constrained_array_type_declarations_begin :end-before:constrained_array_type_declarations_end :code:bnf
 
-   .. code:: Ada
+*Note* ``component_definition`` *must specify a type whose size is known at compile time*
 
-      type <typemark> is array (<index_constraint>) of <component_type>;
-
-where
-
-.. container:: latex_environment quote
-
-      **typemark** - identifier
-
-      **index_constraint** - discrete range or type
-
-      **component_type** - type with size known at compile time
-
-Examples
+**Examples**
 
 .. container:: latex_environment footnotesize
 
