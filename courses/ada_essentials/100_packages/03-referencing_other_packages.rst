@@ -15,7 +15,7 @@ Referencing Other Packages
 
 **Syntax**
 
-.. container:: source_include 100_packages\syntax.bnf :start-after:with_clause_begin :end-before:with_clause_end :code:bnf
+.. container:: source_include 100_packages/syntax.bnf :start-after:with_clause_begin :end-before:with_clause_end :code:bnf
 
 **Example**
 
