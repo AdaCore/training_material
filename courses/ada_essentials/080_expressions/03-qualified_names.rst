@@ -6,13 +6,11 @@ Qualified Names
 Qualification
 ---------------
 
+**Syntax**
+
+.. container:: source_include 080_expressions/syntax.bnf :start-after:qualification_begin :end-before:qualification_end :code:bnf
+
 * Explicitly indicates the subtype of the value
-* Syntax
-
-   .. code:: Ada
-
-      qualified_expression ::= subtype_mark'(expression) |
-                               subtype_mark'aggregate
 
 * Similar to conversion syntax
 

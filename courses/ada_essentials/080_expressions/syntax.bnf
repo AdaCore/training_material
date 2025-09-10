@@ -1,0 +1,22 @@
+--|membership_operation_begin
+simple_expression [not] in membership_choice_list
+
+membership_choice_list ::= membership_choice
+                           { | membership_choice}
+
+membership_choice ::= expression | range | subtype_mark
+--|membership_operation_end
+
+--|qualification_begin
+qualified_expression ::= subtype_mark'(expression) |
+                         subtype_mark'aggregate
+--|qualification_end
+
+--|if_expressions_begin
+if_expression ::=
+   (if condition then dependent_expression
+   {elsif condition then dependent_expression}
+   [else dependent_expression])
+condition ::= boolean_expression
+--|if_expressions_end
+
