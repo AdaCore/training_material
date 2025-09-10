@@ -13,14 +13,11 @@ Referencing Other Packages
    - :ada:`Client`'s code gets **visibility** over :ada:`Server`'s specification
 
 
-* Syntax (simplified)
+**Syntax**
 
-   .. code:: Ada
+.. container:: source_include 100_packages\syntax.bnf :start-after:with_clause_begin :end-before:with_clause_end :code:bnf
 
-      context_clause ::= { context_item }
-      context_item ::= with_clause | use_clause
-      with_clause ::= with library_unit_name
-                      { , library_unit_name };
+**Example**
 
 .. code:: Ada
 
