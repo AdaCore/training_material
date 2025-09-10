@@ -12,17 +12,15 @@ Return Statements in Functions
    - Unless doing machine-code insertions
 
 * Returns a value of the specified (sub)type
-* Syntax
+
+* Example
 
    .. code:: Ada
 
-      function defining_designator [formal_part]
-           return subtype_mark is
-        declarative_part
-        begin
-           {statements}
-           return expression;
-        end designator;
+      function Add (Left, Right : Integer ) return Integer is
+      begin
+         return Left + Right;
+      end Add;
 
 ---------------------------------------
 No Path Analysis Required by Compiler

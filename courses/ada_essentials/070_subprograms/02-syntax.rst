@@ -20,48 +20,35 @@ Syntax
 Procedure Specification Syntax (Simplified)
 -------------------------------------------
 
+**Syntax**
+
+.. container:: source_include 070_subprograms/syntax.bnf :start-after:procedure_specification_syntax_begin :end-before:procedure_specification_syntax_end :code:bnf
+
+.. container:: source_include 070_subprograms/syntax.bnf :start-after:subprogram_specification_syntax_begin :end-before:subprogram_specification_syntax_end :code:bnf
+
+**Examples**
+
 .. code:: Ada
 
    procedure Swap (A, B : in out Integer);
-
-.. code:: Ada
-
-   procedure_specification ::=
-      procedure program_unit_name
-         [ (parameter_specification
-             [; parameter_specification]...
-           )
-         ];
-
-   parameter_specification ::=
-      identifier_list : mode subtype_mark [ := expression ]
-
-   mode ::= [in] | out | in out
+   procedure Clean (Force : Boolean := True);
 
 ------------------------------------------
 Function Specification Syntax (Simplified)
 ------------------------------------------
 
+**Syntax**
+
+.. container:: source_include 070_subprograms/syntax.bnf :start-after:function_specification_syntax_begin :end-before:function_specification_syntax_end :code:bnf
+
+.. container:: source_include 070_subprograms/syntax.bnf :start-after:subprogram_specification_syntax_begin :end-before:subprogram_specification_syntax_end :code:bnf
+
+**Example**
+
 .. code:: Ada
 
-   function F (X : Float) return Float;
-
-* Close to :ada:`procedure` specification syntax
-
-  + With :ada:`return`
-  + Can be an operator: :ada:`+ - * / mod rem` ...
-
-.. container:: latex_environment footnotesize
-
-   .. code:: Ada
-
-      function_specification ::=
-         function designator
-           { (parameter_specification
-               ; parameter_specification) }
-           return result_type;
-
-      designator ::= program_unit_name | operator_symbol
+   function Square (X : Float) return Float;
+   function Is_Open return Boolean;
 
 -------------
 Body Syntax
