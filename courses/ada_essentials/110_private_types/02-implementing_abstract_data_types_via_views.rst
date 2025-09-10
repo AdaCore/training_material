@@ -35,11 +35,9 @@ Package Visible and Private Parts for Views
 Declaring Private Types for Views
 -----------------------------------
 
-* Partial syntax
+**Syntax**
 
-   .. code:: Ada
-
-      type <typemark> is private;
+.. container:: source_include 110_private_types/syntax.bnf :start-after:declaring_private_types_for_views_begin :end-before:declaring_private_types_for_views_end :code:bnf
 
 * Private type declaration must occur in visible part
 
