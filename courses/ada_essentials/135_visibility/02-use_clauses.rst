@@ -36,11 +36,10 @@
 
 * May have several, like :ada:`with` clauses
 * Can refer to any visible package (including nested packages)
-* Syntax
 
-   .. code:: Ada
+**Syntax**
 
-      use_package_clause ::= use package_name {, package_name};
+.. container:: source_include 135_visibility/syntax.bnf :start-after:use_clause_syntax_begin :end-before:use_clause_syntax_end :code:bnf
 
 * Can only :ada:`use` a package
 
