@@ -7,7 +7,7 @@ will appear in the "PROVIDES" section of the module prefix).
 This script assumes that the modules are "chapterized" -
 meaning that the module only has the module prefix and
 "include" directives - no definitions should be in this
-file.  It will parse the "include" directives in 
+file.  It will parse the "include" directives in
 the module file looking for definitions in the chapter
 files - but this is not recursive (it will not search
 for "include" directives in the chapter files).
