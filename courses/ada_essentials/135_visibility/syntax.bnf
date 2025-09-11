@@ -1,0 +1,3 @@
+--|use_clause_syntax_begin
+use_package_clause ::= use package_name {, package_name};
+--|use_clause_syntax_end
