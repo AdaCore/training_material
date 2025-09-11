@@ -5,7 +5,7 @@ you don't have to specify everything it needs to be fully flexible.
     --course COURSE
         text file listing all RST modules to put in document
 
-    --output OUTPUT       
+    --output OUTPUT
         basename of output file (use course name if not specified)
 
     --extension EXTENSION
