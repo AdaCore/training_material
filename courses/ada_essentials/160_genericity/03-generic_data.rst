@@ -35,9 +35,9 @@ Definitions
       Disc => Boolean, -- has capability of discrete
   );
 
-------------------
-Syntax (partial)
-------------------
+-------------------------
+Representative Examples
+-------------------------
 
 .. code:: Ada
 
