@@ -14,15 +14,17 @@ Exception Handler Part
 * Starts with the reserved word :ada:`exception`
 * Optional
 
-   .. code:: Ada
+**Example**
 
-      begin
-        sequence_of_statements
-      [ exception
-          exception_handler
-          { exception handler } ]
-      end
+.. code:: Ada
 
+   begin
+     Counter := Counter + 1;
+   exception
+      when Constraint_Error =>
+         Log_Error ("Overflow");
+   end;
+   
 ---------------------------
 Exception Handlers Syntax
 ---------------------------
@@ -32,14 +34,11 @@ Exception Handlers Syntax
 
    - Associates statements with all other exceptions
 
-* Syntax
+**Syntax**
 
-   .. code:: Ada
+.. container:: source_include 190_exceptions/syntax.bnf :start-after:exception_handlers_syntax_begin :end-before:exception_handlers_syntax_end :code:bnf
 
-      exception_handler ::=
-        when exception_choice { | exception_choice } =>
-          sequence_of_statements
-      exception_choice ::= exception_name | others
+.. container:: source_include 190_exceptions/syntax.bnf :start-after:exception_handler_begin :end-before:exception_handler_end :code:bnf
 
 -------------------------------
 Similarity to Case Statements
