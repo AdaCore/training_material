@@ -1,7 +1,5 @@
 pragma Unevaluated_Use_Of_Old (Allow);
 
-with SPARK.Big_Integers; use SPARK.Big_Integers;
-
 package Pointers is
 
    type Int_Acc is access Integer;
