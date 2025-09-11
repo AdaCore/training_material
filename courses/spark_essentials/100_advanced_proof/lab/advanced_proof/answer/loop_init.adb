@@ -1,7 +1,10 @@
-with Ada.Containers; use Ada.Containers;
-with Loop_Types; use Loop_Types; use Loop_Types.Lists.Formal_Model;
-
 package body Loop_Init is
+
+   pragma Assertion_Policy (Ignore);
+   --  This is to avoid conflict between this package and the instance
+   --  of SPARK.Containers.Formal.Doubly_Linked_Lists
+
+   use Loop_Types.Lists.Formal_Model;
 
    procedure Init_Table (T : out Table) is
    begin
