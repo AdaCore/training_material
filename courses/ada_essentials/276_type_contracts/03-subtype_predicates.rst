@@ -50,17 +50,10 @@ Really, ``type`` and ``subtype`` Predicates
 
 * Applicable to both
 * Applied via aspect clauses in both cases
-* Syntax
 
-   .. code:: Ada
+**Syntax**
 
-      type <typemark> is <type_definition>
-         with <aspect_mark> [ => <expression>] { ,
-                   <aspect_mark> [ => <expression>] }
-
-      subtype <typemark> is <subtype_indication>
-         with <aspect_mark> [ => <expression>] { ,
-                   <aspect_mark> [ => <expression>] }
+.. container:: source_include 276_type_contracts/syntax.bnf :start-after:really_type_and_subtype_predicates_begin :end-before:really_type_and_subtype_predicates_end :code:bnf
 
 --------------------------
 Why Two Predicate Forms?
