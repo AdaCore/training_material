@@ -10,16 +10,10 @@ Function Extended Return Statements
 * Result is expressed as an object
 * More expressive than aggregates
 * Handling of unconstrained types
-* Syntax
 
-   .. code:: Ada
+**Syntax**
 
-      return <object_identifier> : <typemark> [:= expression];
-
-      return <object_identifier> : <typemark>
-      [do
-         <sequence_of_statements>
-       end return];
+.. container:: source_include 120_limited_types/syntax.bnf :start-after:function_extended_return_statements_begin :end-before:function_extended_return_statements_end :code:bnf
 
 ..
   language_version 2005
