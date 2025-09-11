@@ -1,6 +1,6 @@
-***********************
-Expressions: In-Depth
-***********************
+******************************
+Expressions: An Introduction
+******************************
 
 .. container:: PRELUDE BEGIN
 
@@ -38,7 +38,6 @@ Expressions: In-Depth
    Membership Tests
    Qualified Names
    Conditional Expressions
-   Quantified Expressions
 
 .. container:: PRELUDE END
 
@@ -46,6 +45,5 @@ Expressions: In-Depth
 .. include:: 080_expressions/02-membership_tests.rst
 .. include:: 080_expressions/03-qualified_names.rst
 .. include:: 080_expressions/04-conditional_expressions.rst
-.. include:: 080_expressions/05-quantified_expressions.rst
-.. include:: 080_expressions/88-expressions-with_quantified.lab.rst
-.. include:: 080_expressions/99-summary-with_quantified.rst
+.. include:: 080_expressions/88-expressions.lab.rst
+.. include:: 080_expressions/99-summary.rst
