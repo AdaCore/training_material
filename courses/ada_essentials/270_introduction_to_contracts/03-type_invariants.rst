@@ -56,7 +56,7 @@ Type Invariant
 
 * Remember - these are abstract data types
 
-.. image:: black_box_flow.png
+.. image:: black_box_flow.svg
 
 ----------------------------------------
 Invariant Over Object Lifetime (Calls)
