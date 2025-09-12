@@ -1,35 +1,31 @@
-with Ada.Text_IO; use Ada.Text_IO;
-with Vstring;     use Vstring;
+with Vstring; use Vstring;
 package Employee is
 
-   type Employee_T is private;
+   type Pay_T is new Integer; --  Needs refinement
 
-   function Get_Staff return Employee_T;
-   function Get_Supervisor return Employee_T;
-   function Get_Manager return Employee_T;
+   --  Create a type to distinguish regular employees
+   --  from supervisors and managers
+   --     Everyone has first and last name and pay rate
+   --     Supervisors adds a project to a regular employee
+   --     Managers add a department and number of employees
+   --        being managed to a regular employee
 
-   function Last_Name
-     (This : Employee_T)
-      return String;
-   function First_Name
-     (This : Employee_T)
-      return String;
-   function Hourly_Rate
-     (This : Employee_T)
-      return Float;
-   function Project
-     (This : Employee_T)
-      return String;
-   function Department
-     (This : Employee_T)
-      return String;
-   function Staff_Count
-     (This : Employee_T)
-      return String;
+   --  Make this a discriminated record
+   type Employee_T is null record;
 
-private
-
-   -- implement this as a variant record
-   type Employee_T is new Integer;
-
+   function Create_Staff (First_Name  : String;
+                          Last_Name   : String;
+                          Hourly_Rate : Pay_T)
+                          return Employee_T;
+   function Create_Supervisor (First_Name  : String;
+                               Last_Name   : String;
+                               Hourly_Rate : Pay_T;
+                               Project     : String)
+                               return Employee_T;
+   function Create_Manager (First_Name  : String;
+                            Last_Name   : String;
+                            Hourly_Rate : Pay_T;
+                            Department  : String;
+                            Staff_Count : Natural)
+                            return Employee_T;
 end Employee;

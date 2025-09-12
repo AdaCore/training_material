@@ -16,15 +16,14 @@ Discriminated Records Lab
       * Supervisors must also include the project they are supervising
       * Managers must also include the number of employees they are managing and the department name
 
-   - Main program should read employee information from the console
+   - Main program should build a list of employees
 
-      * Any number of any type of employees can be entered in any order
-      * When data entry is done, print out all appropriate information for each employee
+      * Any number of any type of employees can be added in any order
+      * Print all employees when done adding to the list
 
 * Hints
 
    - Create concatenation functions for your varying length string type
-   - Is it easier to create an input function for each employee category, or a common one?
  
 ----------------------------------------------
 Discriminated Records Lab Solution - Vstring
