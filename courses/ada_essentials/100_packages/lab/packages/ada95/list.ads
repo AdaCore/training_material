@@ -1,6 +1,15 @@
+with Types;
 package List is
-   procedure Add (Value : Integer);
-   procedure Remove (Value : Integer);
+
+   procedure Add
+     (Left     : Types.Numeric_T;
+      Operator : Character;
+      Right    : Types.Numeric_T);
+
    function Length return Natural;
-   procedure Print;
+
+   function Element
+     (Index : Integer)
+      return Types.Record_T;
+
 end List;
