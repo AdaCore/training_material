@@ -8,21 +8,20 @@ Packages Lab
 
 * Requirements
 
-   - Create a program to add and remove integer values from a list
+   - Create a program to build a list of simple mathematical equations and then
+     print out if, for each equation in the list, the result would be in range
 
-   - Program should allow user to do the following as many times as desired
-
-      - Add an integer in a pre-defined range to the list
-      - Remove all occurrences of an integer from the list
-      - Print the values in the list
+      - Equations are two floating point numbers and a simple operation (+, -, *, /)
 
 * Hints
 
-   - Create (at least) three packages
+   - You should create the following packages
 
-      1. minimum/maximum integer values and maximum number of items in list
-      2. User input (ensure value is in range)
-      3. List Abstract Data Machine
+      - Types package that creates a numeric range, an equation record type, and
+        a mechanism to convert the record to a string
+      - Validation package to verify that the equation result would be in range
+      - List package to store the list of equations, and a mechanism to retrieve
+        each item in the list
 
    - Remember: :code:`with package_name;` gives access to :code:`package_name`
 
@@ -40,23 +39,21 @@ Creating Packages in :toolname:`GNAT Studio`
    - Fill in name of Ada package
    - Check the box if you want to create the package body in addition to the package spec
 
------------------------------------
-Packages Lab Solution - Constants
------------------------------------
+-------------------------------
+Packages Lab Solution - Types
+-------------------------------
 
-.. container:: source_include 100_packages/lab/packages/answer/constants.ads :code:Ada :number-lines:1
+.. container:: source_include 100_packages/lab/packages/answer/types.ads :code:Ada :number-lines:1
 
-.. container:: speakernote
+.. container:: source_include 100_packages/lab/packages/answer/types.adb :code:Ada :number-lines:1
 
-   Could use functions where the value is stored in the body - less recompilation if the value changes (but then they cannot be universal integers)
+------------------------------------
+Packages Lab Solution - Validation
+------------------------------------
 
-------------------------------
-Packages Lab Solution - Input
-------------------------------
+.. container:: source_include 100_packages/lab/packages/answer/validator.ads :code:Ada :number-lines:1
 
-.. container:: source_include 100_packages/lab/packages/answer/input.ads :code:Ada :number-lines:1
-
-.. container:: source_include 100_packages/lab/packages/answer/input.adb :code:Ada :number-lines:1
+.. container:: source_include 100_packages/lab/packages/answer/validator.adb :code:Ada :number-lines:1
 
 -----------------------------------
 Packages Lab Solution - List
