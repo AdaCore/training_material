@@ -6,9 +6,17 @@ Introduction
 What Is an Array?
 -------------------
 
-* Definition: collection of components of the same type, stored in contiguous memory, and indexed using a discrete range
+* **Definition:** a collection of components
 
-**Examples**
+   * ... of the same type
+   * ... stored in contiguous memory
+   * ... indexed using a discrete range
+
+.. image:: array_diagram.svg
+
+----------------
+Array Examples
+----------------
 
 .. code:: Ada
 
@@ -21,7 +29,7 @@ What Is an Array?
    type Array_Three is array (Discrete_Subtype_Three range 0 .. 31)
       of Interfaces.Integer_16;
 
-.. image:: array_diagram.svg
+   type Multidimension_Array is (1 .. 10, 1 .. 10) of Boolean;
 
 ---------------
 Arrays in Ada

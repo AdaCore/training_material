@@ -19,11 +19,13 @@ Syntax and Examples
          Component2 : Boolean;
       end record;
 
-* Records can be **discriminated** as well
+:color-white:`Blank line`
+
+Records can be **discriminated** as well
 
    .. code:: Ada
 
-      type T (Size : Natural := 0) is record
+      type Varying_Length_String (Size : Natural := 0) is record
          Text : String (1 .. Size);
       end record;
 

@@ -16,7 +16,9 @@ Aggregates
     - Positional
     - Named
 
-**Syntax**
+------------------
+Aggregate Syntax
+------------------
 
 .. container:: source_include 050_array_types/syntax.bnf :start-after:aggregates_begin :end-before:aggregates_end :code:bnf
 
