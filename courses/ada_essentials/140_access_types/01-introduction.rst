@@ -88,6 +88,4 @@ Stack Vs Heap
   I : Access_Int := new Integer'(0);
   J : Access_Str := new String'("Some Long String");
 
-.. image:: stack_pointing_to_heap.png
-   :width: 50%
-
+.. image:: stack_pointing_to_heap.svg
