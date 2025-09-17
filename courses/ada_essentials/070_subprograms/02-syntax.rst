@@ -2,9 +2,9 @@
 Syntax
 ========
 
--------------------------
- Specification and Body
--------------------------
+------------------------
+Specification and Body
+------------------------
 
 * Subprogram specification is the external (user) **interface**
 
@@ -15,6 +15,10 @@ Syntax
    - eg. recursion
 
 * Subprogram body is the **implementation**
+
+**Syntax**
+
+.. container:: source_include 070_subprograms/syntax.bnf :start-after:specification_and_body_begin :end-before:specification_and_body_end :code:bnf
 
 -------------------------------------------
 Procedure Specification Syntax (Simplified)
@@ -43,7 +47,7 @@ Function Specification Syntax (Simplified)
 
 .. container:: source_include 070_subprograms/syntax.bnf :start-after:subprogram_specification_syntax_begin :end-before:subprogram_specification_syntax_end :code:bnf
 
-**Example**
+**Examples**
 
 .. code:: Ada
 
@@ -54,13 +58,11 @@ Function Specification Syntax (Simplified)
 Body Syntax
 -------------
 
-.. code:: Ada
+**Syntax**
 
-   subprogram_specification is
-      [declarations]
-   begin
-      sequence_of_statements
-   end [designator];
+.. container:: source_include 070_subprograms/syntax.bnf :start-after:body_syntax_begin :end-before:body_syntax_end :code:bnf
+
+**Examples**
 
 .. code:: Ada
 
