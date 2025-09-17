@@ -81,8 +81,7 @@ Stack Vs Heap
   I : Integer := 0;
   J : String := "Some Long String";
 
-.. image:: items_on_stack.png
-   :width: 50%
+.. image:: items_on_stack.svg
 
 .. code:: Ada
 
