@@ -26,16 +26,16 @@ Tagged Derivation Lab
 Tagged Derivation Lab Solution - Types (Spec)
 -----------------------------------------------
 
-.. container:: source_include 170_tagged_derivation/lab/tagged_derivation/answer/employee.ads :code:Ada :number-lines:1
+.. container:: source_include 170_tagged_derivation/lab/tagged_derivation-in_depth/answer/employee.ads :code:Ada :number-lines:1
 
 -------------------------------------------------------
 Tagged Derivation Lab Solution - Types (Partial Body)
 -------------------------------------------------------
 
-.. container:: source_include 170_tagged_derivation/lab/tagged_derivation/answer/employee.adb :start-after:--Types_Body :end-before:--Types_Body :code:Ada :number-lines:1
+.. container:: source_include 170_tagged_derivation/lab/tagged_derivation-in_depth/answer/employee.adb :start-after:--Types_Body :end-before:--Types_Body :code:Ada :number-lines:1
 
 ---------------------------------------
 Tagged Derivation Lab Solution - Main
 ---------------------------------------
 
-.. container:: source_include 170_tagged_derivation/lab/tagged_derivation/answer/main.adb :code:Ada :number-lines:1
+.. container:: source_include 170_tagged_derivation/lab/tagged_derivation-in_depth/answer/main.adb :code:Ada :number-lines:1

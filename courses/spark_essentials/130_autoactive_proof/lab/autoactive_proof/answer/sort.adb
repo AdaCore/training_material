@@ -54,7 +54,7 @@ package body Sort is
       Smallest : Index;  -- Index of the smallest value in the unsorted part
    begin
       --  Initialize ghost object with all indexes
-      Permutation := (for J in Index => J);
+      Permutation := [for J in Index => J];
 
       --  Selection sort: find the index of the smallest remaining
       --  values and swap the value there with the current value

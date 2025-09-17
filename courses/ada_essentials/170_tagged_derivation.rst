@@ -1,6 +1,6 @@
-*****************
+*******************
 Tagged Derivation
-*****************
+*******************
 
 .. container:: PRELUDE BEGIN
 
@@ -41,7 +41,7 @@ Tagged Derivation
 .. container:: PRELUDE END
 
 .. include:: 170_tagged_derivation/01-introduction.rst
-.. include:: 170_tagged_derivation/02-tagged_derivation.rst
-.. include:: 170_tagged_derivation/03-extending_tagged_types.rst
-.. include:: 170_tagged_derivation/88-tagged_derivation.lab.rst
+.. include:: 170_tagged_derivation/02-tagged_derivation-intro.rst
+.. include:: 170_tagged_derivation/88-tagged_derivation-intro.lab.rst
 .. include:: 170_tagged_derivation/99-summary.rst
+.. include:: 170_tagged_derivation/03-extending_tagged_types.rst
