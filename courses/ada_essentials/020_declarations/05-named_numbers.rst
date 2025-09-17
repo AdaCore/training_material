@@ -6,19 +6,15 @@ Named Numbers
 Named Numbers
 ---------------
 
+**Syntax**
+
+.. container:: source_include 020_declarations/syntax.bnf :start-after:named_numbers_begin :end-before:named_numbers_end :code:bnf
+
 * Associate an **identifier** with a **mathematical expression**
 
    - Used as **constant**
    - Compatible with integer / real
    - Expression must be **static**
-
-* Syntax
-
-   .. code:: Ada
-
-     <constant_name> : constant := <static_expression>;
-
-   *where* **<constant_name>** *is an identifier*
 
 * Examples
 

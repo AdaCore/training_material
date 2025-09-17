@@ -6,17 +6,15 @@ Object Declarations
 Object Declarations
 ---------------------
 
+**Syntax**
+
+.. container:: source_include 020_declarations/syntax.bnf :start-after:object_declarations_begin :end-before:object_declarations_end :code:bnf
+
 * An :ada:`object` is either :dfn:`variable` or :dfn:`constant`
-* Basic Syntax
-
-   .. code:: Ada
-
-      <object_name> : <typemark> [:= <initial_value>];
-      <object_name> : constant [<typemark>] := <value>;
 
    * where
 
-     * **<object_name>** is an identifier
+     * **<identifier>** is the defining name for the object
      * **<typemark>** is the name describing the type of the object
 
 * Constant should have a value

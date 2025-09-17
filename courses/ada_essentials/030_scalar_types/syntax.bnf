@@ -1,0 +1,41 @@
+--|signed_integer_types_begin
+signed_integer_type_definition ::= 
+   type identifier is
+      range static_simple_expression .. static_simple_expression;
+--|signed_integer_types_end
+
+--|modular_types_begin
+modular_type_definition ::=
+   type identifier is mod static_expression;
+--|modular_types_end
+
+--|enumeration_types_begin
+enumeration_type_definition ::= 
+  type identifier is (enumeration_literal_specification
+                        {, enumeration_literal_specification});
+enumeration_literal_specification ::= 
+   defining_identifier | defining_character_literal
+--|enumeration_types_end
+
+--|declaring_floating_point_types_begin
+floating_point_definition ::= 
+   type identifier is
+      digits static_expression [real_range_specification];
+real_range_specification ::= 
+   range static_simple_expression .. static_simple_expression
+--|declaring_floating_point_types_end
+
+--|simple_static_type_derivation_begin
+derived_type_definition ::=
+   type identifier is new parent_subtype_indication;
+parent_subtype_indication ::=
+   parent_subtype_mark [constraint]
+--|simple_static_type_derivation_end
+
+--|subtype_begin
+subtype_declaration ::= 
+   subtype defining_identifier is subtype_indication
+        [aspect_specification];
+subtype_indication ::=
+   [null_exclusion] subtype_mark [constraint]
+--|subtype_end

@@ -28,25 +28,21 @@ Introducing Block Statements
    - Can be **nested**
    - Declarations **can hide** outer variables
 
-.. container:: columns
+:color-white:`blank line`
 
- .. container:: column
+.. container:: latex_environment scriptsize
 
-    * Syntax
+  .. container:: columns
 
-       .. code:: Ada
+    .. container:: column
 
-          [<block_name> :] declare
-             <declarative_part>
-          begin
-             <statements>
-          end [block_name];
+      **Syntax**
 
-       *where* **<block_name>** *is an identifier*
+      .. container:: source_include 020_declarations/syntax.bnf :start-after:introducing_block_statements_begin :end-before:introducing_block_statements_end :code:bnf
 
- .. container:: column
+   .. container:: column
 
-    * Example
+     **Example**
 
        .. code:: Ada
 
