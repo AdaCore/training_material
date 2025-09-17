@@ -6,29 +6,29 @@ Enumeration Types
 Enumeration Types
 -------------------
 
+**Syntax**
+
+.. container:: source_include 030_scalar_types/syntax.bnf :start-after:enumeration_types_begin :end-before:enumeration_types_end :code:bnf
+
 * Enumeration of **logical** values
 
     - Integer value is an implementation detail
-
-* Syntax
-
-   .. code:: Ada
-
-      type <typemark> is (<identifier_list>) ;
 
 * Literals
 
    - Distinct, ordered
    - Can be in **multiple** enumerations
 
-   .. code:: Ada
+**Examples**
 
-      type Colors is (Red, Orange, Yellow, Green, Blue, Violet);
-      type Stop_Light is (Red, Yellow, Green);
-      ...
-      -- Red both a member of Colors and Stop_Light
-      Shade : Colors := Red;
-      Light : Stop_Light := Red;
+.. code:: Ada
+
+   type Colors is (Red, Orange, Yellow, Green, Blue, Violet);
+   type Stop_Light is (Red, Yellow, Green);
+   ...
+   -- Red both a member of Colors and Stop_Light
+   Shade : Colors := Red;
+   Light : Stop_Light := Red;
 
 -----------------------------
 Enumeration Type Operations

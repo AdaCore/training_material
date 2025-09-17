@@ -6,18 +6,15 @@ Subtypes
 Subtype
 ----------
 
-* May **constrain** an existing type
+**Syntax**
+
+.. container:: source_include 030_scalar_types/syntax.bnf :start-after:subtype_begin :end-before:subtype_end :code:bnf
+
+* **subtype_mark** *is an existing* :ada:`type` *or* :ada:`subtype`
+* **constraint** can add restrictions to the parent type
 * Still the **same** type
 
    * So no conversion or casting necessary
-
-* Syntax
-
-   .. code:: Ada
-
-      subtype <typemark> is <base_type> [constraints];
-
-   *where* **<base_type>** *is an existing* :ada:`type` *or* :ada:`subtype`
 
 .. note:: If no constraint |rightarrow| type alias
 

@@ -58,6 +58,13 @@ Default Value
 Simple Static Type Derivation
 -------------------------------
 
+**Syntax**
+
+.. container:: source_include 030_scalar_types/syntax.bnf :start-after:simple_static_type_derivation_begin :end-before:simple_static_type_derivation_end :code:bnf
+
+* **identifier** will copy the behavior of **parent_subtype_mark**
+* **constraint** optionally adds limitations to the parent type's behavior
+
 * New type from an existing type
 
   - **Limited** form of inheritance: operations
@@ -69,19 +76,11 @@ Simple Static Type Derivation
   - Only **explicit** conversion possible
   - eg. :code:`Meters` can't be set from a :code:`Feet` value
 
-* Syntax
 
-   .. code:: Ada
+**Example**
 
-      type <typemark> is new <base_type> [<constraints>];
+.. code:: Ada
 
-   *where* **<typemark>** *will copy the behavior of* **<base_type>**, *with the optional addition of some constraints*
-
-* Example
-
-   .. code:: Ada
-
-      type Measurement is digits 6;
-      type Distance is new Measurement
-            range 0.0 .. Measurement'Last;
-
+   type Measurement is digits 6;
+   type Distance is new Measurement
+         range 0.0 .. Measurement'Last;
