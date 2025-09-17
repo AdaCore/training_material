@@ -3,7 +3,7 @@ package body Alarm
                          Output_State => Status)
 is
    function Get_Temperature return Integer is
-      Current : Integer := Temperature;
+      Current : constant Integer := Temperature;
    begin
       return Current;
    end Get_Temperature;
@@ -14,7 +14,7 @@ is
    end Get_Status;
 
    procedure Set_Status is
-      Current : Integer := Get_Temperature;
+      Current : constant Integer := Get_Temperature;
    begin
       if Current > 100 then
          Status := On;

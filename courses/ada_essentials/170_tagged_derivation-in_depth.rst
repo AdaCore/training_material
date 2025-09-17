@@ -1,6 +1,6 @@
-*************
-Expressions
-*************
+*****************************
+Tagged Derivation: In-Depth
+*****************************
 
 .. container:: PRELUDE BEGIN
 
@@ -35,17 +35,13 @@ Expressions
 .. container:: PRELUDE PROVIDES
 
 ..
-   Membership Tests
-   Qualified Names
-   Conditional Expressions
-   Quantified Expressions
+   Tagged Derivation
+   Extending Tagged Types
 
 .. container:: PRELUDE END
 
-.. include:: 080_expressions/01-introduction.rst
-.. include:: 080_expressions/02-membership_tests.rst
-.. include:: 080_expressions/03-qualified_names.rst
-.. include:: 080_expressions/04-conditional_expressions.rst
-.. include:: 080_expressions/05-quantified_expressions.rst
-.. include:: 080_expressions/88-expressions-with_quantified.lab.rst
-.. include:: 080_expressions/99-summary-with_quantified.rst
+.. include:: 170_tagged_derivation/01-introduction.rst
+.. include:: 170_tagged_derivation/02-tagged_derivation.rst
+.. include:: 170_tagged_derivation/03-extending_tagged_types.rst
+.. include:: 170_tagged_derivation/88-tagged_derivation-in_depth.lab.rst
+.. include:: 170_tagged_derivation/99-summary.rst

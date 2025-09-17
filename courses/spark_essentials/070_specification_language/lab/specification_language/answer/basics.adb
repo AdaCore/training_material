@@ -39,7 +39,7 @@ package body Basics is
 
    procedure Init_Table (T : out Table) is
    begin
-      T := (others => 0);
+      T := [others => 0];
       T (T'First) := 1;
       T (T'Last) := 2;
    end Init_Table;
