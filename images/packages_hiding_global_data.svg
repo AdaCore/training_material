@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="140" width="435" >
+<rect fill="#87AADE" stroke="#214478" stroke-width="1" height="126.88" width="92.4" x="30" y="10" />
+<line fill="none" stroke="#657fa6" stroke-width="1" x1="50.0" y1="51.72" x2="76.2" y2="51.72" />
+<line fill="none" stroke="#657fa6" stroke-width="1" x1="50.0" y1="81.72" x2="76.2" y2="81.72" />
+<line fill="none" stroke="#657fa6" stroke-width="1" x1="76.2" y1="51.72" x2="76.2" y2="109.048" />
+<polygon fill="#657fa6" stroke="#657fa6" stroke-width="1" transform="rotate(225, 76.2, 106.048)" points="76.2,106.048 79.2,112.048 82.2,109.048 "/>
+<rect fill="#657fa6" stroke="#214478" stroke-width="1" height="20" width="40" x="10.0" y="41.72" />
+<rect fill="#657fa6" stroke="#214478" stroke-width="1" height="20" width="40" x="10.0" y="71.72" />
+<text xml:space="preserve" fill="#ffffff" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="76.2" y="30">Package</text>
+<path fill="#ffffff" stroke="#214478" stroke-width="1" d="M 108.0 117.848 A 3 3 0 0 1 104.77883832488648 121.568A 3 3 0 0 1 90.9 124.84548526257826A 3 3 0 0 1 76.2 125.928A 3 3 0 0 1 62.70000000000001 124.29122900415622A 3 3 0 0 1 51.77808361327884 121.448A 3 3 0 0 1 45.6 117.848A 3 3 0 0 1 51.25846837100816 114.048A 3 3 0 0 1 61.94999999999999 110.22697644669694A 3 3 0 0 1 76.2 109.048A 3 3 0 0 1 92.7 110.91979676972448A 3 3 0 0 1 99.58268590217983 114.088A 3 3 0 0 1 108.0 117.848"/><rect fill="#AADE87" stroke="#447821" stroke-width="1" height="126.88" width="92.4" x="180" y="10" />
+<line fill="none" stroke="#7fa665" stroke-width="1" x1="200.0" y1="51.72" x2="226.2" y2="51.72" />
+<line fill="none" stroke="#7fa665" stroke-width="1" x1="200.0" y1="81.72" x2="226.2" y2="81.72" />
+<line fill="none" stroke="#7fa665" stroke-width="1" x1="226.2" y1="51.72" x2="226.2" y2="109.048" />
+<polygon fill="#7fa665" stroke="#7fa665" stroke-width="1" transform="rotate(225, 226.2, 106.048)" points="226.2,106.048 229.2,112.048 232.2,109.048 "/>
+<rect fill="#7fa665" stroke="#447821" stroke-width="1" height="20" width="40" x="160.0" y="41.72" />
+<rect fill="#7fa665" stroke="#447821" stroke-width="1" height="20" width="40" x="160.0" y="71.72" />
+<text xml:space="preserve" fill="#ffffff" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="226.2" y="30">Package</text>
+<path fill="#ffffff" stroke="#447821" stroke-width="1" d="M 258.0 117.848 A 3 3 0 0 1 254.77883832488646 121.568A 3 3 0 0 1 240.9 124.84548526257826A 3 3 0 0 1 226.2 125.928A 3 3 0 0 1 212.7 124.29122900415622A 3 3 0 0 1 201.77808361327882 121.448A 3 3 0 0 1 195.6 117.848A 3 3 0 0 1 201.25846837100815 114.048A 3 3 0 0 1 211.95 110.22697644669694A 3 3 0 0 1 226.2 109.048A 3 3 0 0 1 242.7 110.91979676972448A 3 3 0 0 1 249.58268590217983 114.088A 3 3 0 0 1 258.0 117.848"/><rect fill="#DE87AA" stroke="#782144" stroke-width="1" height="126.88" width="92.4" x="330" y="10" />
+<line fill="none" stroke="#a6657f" stroke-width="1" x1="350.0" y1="51.72" x2="376.2" y2="51.72" />
+<line fill="none" stroke="#a6657f" stroke-width="1" x1="350.0" y1="81.72" x2="376.2" y2="81.72" />
+<line fill="none" stroke="#a6657f" stroke-width="1" x1="376.2" y1="51.72" x2="376.2" y2="109.048" />
+<polygon fill="#a6657f" stroke="#a6657f" stroke-width="1" transform="rotate(225, 376.2, 106.048)" points="376.2,106.048 379.2,112.048 382.2,109.048 "/>
+<rect fill="#a6657f" stroke="#782144" stroke-width="1" height="20" width="40" x="310.0" y="41.72" />
+<rect fill="#a6657f" stroke="#782144" stroke-width="1" height="20" width="40" x="310.0" y="71.72" />
+<text xml:space="preserve" fill="#ffffff" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="376.2" y="30">Package</text>
+<path fill="#ffffff" stroke="#782144" stroke-width="1" d="M 408.0 117.848 A 3 3 0 0 1 404.77883832488646 121.568A 3 3 0 0 1 390.9 124.84548526257826A 3 3 0 0 1 376.2 125.928A 3 3 0 0 1 362.7 124.29122900415622A 3 3 0 0 1 351.7780836132788 121.448A 3 3 0 0 1 345.59999999999997 117.848A 3 3 0 0 1 351.2584683710081 114.048A 3 3 0 0 1 361.95 110.22697644669694A 3 3 0 0 1 376.2 109.048A 3 3 0 0 1 392.7 110.91979676972448A 3 3 0 0 1 399.58268590217983 114.088A 3 3 0 0 1 408.0 117.848"/></svg>

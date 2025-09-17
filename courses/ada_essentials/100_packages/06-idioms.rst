@@ -119,8 +119,7 @@ Controlling Data Visibility Using Packages
 
 |
 
-.. image:: packages_hiding_global_data.png
-   :width: 85%
+.. image:: packages_hiding_global_data.svg
 
 ------------------------
 Abstract Data Machines
