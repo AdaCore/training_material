@@ -37,7 +37,7 @@ What is the problem with this code?
 
 .. container:: animate
 
-   .. code:: console
+  .. code:: console
 
       incr.adb:3:11: high: overflow check might fail
         cannot prove upper bound for X + 1

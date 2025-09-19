@@ -60,7 +60,7 @@ Absence of Run-time Errors
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Bump_Rec (R : in out Rec)
       with
@@ -89,14 +89,14 @@ Proving the Code Works
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap_The_Table (I, J : Index)
       with
         Post => The_Table (I) = The_Table (J)'Old
           and then The_Table (J) = The_Table (I)'Old;
 
-   - Run proof. What happens?
+  - Run proof. What happens?
 
 .. container:: animate 3-
 
@@ -110,7 +110,7 @@ Proving the Code Works
 
 .. container:: animate 4-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap_Table (T : in out Table; I, J : Index)
       with
@@ -139,7 +139,7 @@ Proving the Code Works (Continued)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap (X, Y : in out Integer)
       with Post => X = Y'Old and then Y = X'Old;
