@@ -74,9 +74,17 @@ def fix_codeblock_indentation(lines):
         # Detect code directive
         if line.lstrip().startswith(".. code::"):
 
-            if line.startswith(".. code::"):
+            this_indent = len(line) - len(line.strip())
+
+            if this_indent == 0:
                 # If the directive starts in the first column, we don't
                 # want to indent it under some list item.
+                new_code_indent = 0
+                original_code_indent = 0
+
+            elif this_indent == list_indent:
+                # The code block is indented at the same level as the
+                # last list bullet, so we want to leave it there.
                 new_code_indent = 0
                 original_code_indent = 0
 
@@ -105,6 +113,9 @@ def process_file(filename):
 
         lines = lines.split("\n")
         fixed_lines = fix_codeblock_indentation(lines)
+
+        if len(fixed_lines[-1].strip()) == 0:
+            fixed_lines = fixed_lines[:-1]
 
         with open(filename, "w") as f:
             for line in fixed_lines:
