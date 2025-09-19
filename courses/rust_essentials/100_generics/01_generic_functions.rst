@@ -37,7 +37,7 @@ Details
    for :rust:`T`, but we can use any type here, including user-defined
    types:
 
-   .. code:: rust
+  .. code:: rust
 
       struct Foo {
           val: u8,

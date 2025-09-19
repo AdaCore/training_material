@@ -36,7 +36,7 @@ Details
 -  Show a :rust:`where` clause, students will encounter it when reading
    code.
 
-   .. code:: rust
+  .. code:: rust
 
       fn duplicate<T>(a: T) -> (T, T)
       where
@@ -45,8 +45,8 @@ Details
           (a.clone(), a.clone())
       }
 
-   -  It declutters the function signature if you have many parameters.
-   -  It has additional features making it more powerful.
+  -  It declutters the function signature if you have many parameters.
+  -  It has additional features making it more powerful.
 
       -  If someone asks, the extra feature is that the type on the left
          of :rust:`:` can be arbitrary, like :rust:`Option<T>`.
