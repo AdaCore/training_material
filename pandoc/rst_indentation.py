@@ -52,10 +52,11 @@ def fix_codeblock_indentation(lines):
                     line = new_indent + line.lstrip()
                     new_code_indent = None
                     original_code_indent = None
-            else:
+            elif new_code_indent > original_code_indent:
                 # This is inside the code block.
-                # We need to shift everything the same amount that
-                # we shifted the code directive.
+                # If we shifted the directive left, then this is already
+                # nested so we won't bother shifting it.
+                # We're only shifting if it has to move right.
                 shift = (new_code_indent - original_code_indent) + this_indent
                 line = (shift * " ") + line.lstrip()
 
