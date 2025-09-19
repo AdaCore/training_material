@@ -1,38 +1,46 @@
-with Ada.Text_IO; use Ada.Text_IO;
 package body Employee is
-   function Read (Prompt : String) return String is
+   function Create_Staff (First_Name  : String;
+                          Last_Name   : String;
+                          Hourly_Rate : Pay_T)
+                          return Employee_T is
+      Ret_Val : Employee_T;
    begin
-      Put (Prompt & " > ");
-      return Get_Line;
-   end Read;
-
-   function Get_Staff return Employee_T is
-      Ret_Val : Employee_T (Staff);
-   begin
-      Ret_Val.Last_Name   := To_Vstring (Read ("Last name"));
-      Ret_Val.First_Name  := To_Vstring (Read ("First name"));
-      Ret_Val.Hourly_Rate := Pay_T'Value (Read ("Hourly rate"));
+      Ret_Val := (Staff,
+                  To_Vstring (Last_Name),
+                  To_Vstring (First_Name),
+                  Hourly_Rate);
       return Ret_Val;
-   end Get_Staff;
+   end Create_Staff;
 
-   function Get_Supervisor return Employee_T is
-      Ret_Val : Employee_T (Supervisor);
+   function Create_Supervisor
+     (First_Name  : String;
+      Last_Name   : String;
+      Hourly_Rate : Pay_T;
+      Project     : String)
+      return Employee_T is
+      Ret_Val : Employee_T;
    begin
-      Ret_Val.Last_Name   := To_Vstring (Read ("Last name"));
-      Ret_Val.First_Name  := To_Vstring (Read ("First name"));
-      Ret_Val.Hourly_Rate := Pay_T'Value (Read ("Hourly rate"));
-      Ret_Val.Project     := To_Vstring (Read ("Project"));
+      Ret_Val := (Category    => Supervisor,
+                  Last_Name   => To_Vstring (Last_Name),
+                  First_Name  => To_Vstring (First_Name),
+                  Hourly_Rate => Hourly_Rate,
+                  Project     => To_Vstring (Project));
       return Ret_Val;
-   end Get_Supervisor;
+   end Create_Supervisor;
 
-   function Get_Manager return Employee_T is
+   function Create_Manager (First_Name  : String;
+                            Last_Name   : String;
+                            Hourly_Rate : Pay_T;
+                            Department  : String;
+                            Staff_Count : Natural)
+                            return Employee_T is
       Ret_Val : Employee_T (Manager);
    begin
-      Ret_Val.Last_Name   := To_Vstring (Read ("Last name"));
-      Ret_Val.First_Name  := To_Vstring (Read ("First name"));
-      Ret_Val.Hourly_Rate := Pay_T'Value (Read ("Hourly rate"));
-      Ret_Val.Department  := To_Vstring (Read ("Department"));
-      Ret_Val.Staff_Count := Integer'Value (Read ("Staff count"));
+      Ret_Val.Last_Name   := To_Vstring (Last_Name);
+      Ret_Val.First_Name  := To_Vstring (First_Name);
+      Ret_Val.Hourly_Rate := Hourly_Rate;
+      Ret_Val.Department  := To_Vstring (Department);
+      Ret_Val.Staff_Count := Staff_Count;
       return Ret_Val;
-   end Get_Manager;
+   end Create_Manager;
 end Employee;
