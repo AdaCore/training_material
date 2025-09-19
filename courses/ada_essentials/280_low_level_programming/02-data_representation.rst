@@ -121,8 +121,8 @@ Record Types
 
  .. container:: column
 
-    .. image:: record_packing_examples.png
-       :width: 50%
+    .. image:: record_packing_examples.svg
+      :height: 75%
 
 -------------
 Pack Aspect
