@@ -84,7 +84,7 @@ Build One Test with Stubs
 
    * Test code inserted into :filename:`simple-test_data-tests.adb`
 
-      .. code:: Ada 
+     .. code:: Ada 
 
          declare
             Sensor_Value : constant := 12;
@@ -98,7 +98,7 @@ Build One Test with Stubs
                "Read positive test failed");
          end;
 
-   * Execution command
+  * Execution command
 
       ::
 
@@ -121,7 +121,7 @@ Build More Advanced Test
 
    * Test code inserted into :filename:`simple-test_data-tests.adb`
 
-      .. code:: Ada 
+     .. code:: Ada 
 
          declare
             Result : Integer := 0;
@@ -134,17 +134,17 @@ Build More Advanced Test
                "Read negative failed - status");
          end;
 
-   * Test code inserted into :filename:`logger.adb`
+  * Test code inserted into :filename:`logger.adb`
 
       * In :filename:`/gnattest_stub/stubs/default` folder
 
-      .. code:: Ada 
+        .. code:: Ada 
 
-         if Stub_Data_Log_Error_e35760_8432c2.Stub_Counter = 1 then
-            AUnit.Assertions.Assert
-              ( Message = "Invalid Speed",
-               "Read negative failed - Log_Error");
-         end if;
+           if Stub_Data_Log_Error_e35760_8432c2.Stub_Counter = 1 then
+              AUnit.Assertions.Assert
+                ( Message = "Invalid Speed",
+                 "Read negative failed - Log_Error");
+           end if;
 
       * There are more advanced ways of ensuring stub is checked for appropriate text, but they're outside the scope of this class
 
@@ -169,7 +169,7 @@ Extra Credit Answer
 
 * :filename:`gnattest_stub/stubs/default/logger-stub_data.ads`
 
-   .. code:: Ada
+  .. code:: Ada
 
       type Caller_T is (Speed, Heading, Altitude, Unknown);
       type Stub_Data_Type_Log_Error_e35760_8432c2 is record
@@ -180,7 +180,7 @@ Extra Credit Answer
 
 * :filename:`gnattest_stub/stubs/default/logger.adb`
 
-   .. code:: Ada
+  .. code:: Ada
 
       Stub_Data_Log_Error_e35760_8432c2.Stub_Counter :=
             Stub_Data_Log_Error_e35760_8432c2.Stub_Counter + 1;
@@ -192,7 +192,7 @@ Extra Credit Answer
 
 * :filename:`simple-test_data-tests.adb`
 
-   .. code:: Ada
+  .. code:: Ada
 
       Sensor.Stub_Data.Set_Stub_Read_cac9ed_9101fc(Read_Result => 1234);
       Logger.Stub_Data.Stub_Data_Log_Error_e35760_8432c2.Caller :=
