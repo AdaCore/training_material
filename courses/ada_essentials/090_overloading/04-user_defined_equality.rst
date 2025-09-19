@@ -30,11 +30,11 @@ User-Defined Equality
 
 * Non-Boolean result example:
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Fuzzy_Result is (Unknown, False, True);
-      function "=" (Left : Foo;  Right : Bar)
-          return Fuzzy_Result;
+     type Fuzzy_Result is (Unknown, False, True);
+     function "=" (Left : Foo;  Right : Bar)
+         return Fuzzy_Result;
 
 ------------------------------------
 User-Defined `=` Returning Boolean
@@ -43,20 +43,20 @@ User-Defined `=` Returning Boolean
 * Implicitly declares ``/=``
 * Thus negation has consistent meaning
 
-   .. code:: Ada
+  .. code:: Ada
 
-      if X /= Y then
-      if not (X = Y) then
-      if X not = Y then
+     if X /= Y then
+     if not (X = Y) then
+     if X not = Y then
 
 * No explicit declaration of ``/=`` returning Boolean
 
    - Returning values of other types is allowed
 
-      .. code:: Ada
+     .. code:: Ada
 
-         function "/=" (Left : Foo;  Right : Bar)
-             return Fuzzy_Result;
+        function "/=" (Left : Foo;  Right : Bar)
+            return Fuzzy_Result;
 
 -------------------------------
 User-Defined Equality Example
@@ -66,31 +66,31 @@ User-Defined Equality Example
 * Predefined ``=`` is bit-wise comparison over entire structure so may be inappropriate semantics
 * Given the following types:
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Max : constant := 100;
-      type Index is range 0 .. Max;
-      type Vector is array (Index range 1 .. Max) of Integer;
-      type Stack is record
-        Values : Vector;
-        Top : Index := 0;
-      end record;
+     Max : constant := 100;
+     type Index is range 0 .. Max;
+     type Vector is array (Index range 1 .. Max) of Integer;
+     type Stack is record
+       Values : Vector;
+       Top : Index := 0;
+     end record;
 
 * Equality function might look like:
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function "=" (Left, Right : Stack) return Boolean is
-      begin
-        if Left.Top /= Right.Top then -- not same size
-          return False;
-        else -- compare values
-          for K in 1 .. Left.Top loop
-            if Left.Values (K) /= Right.Values (K) then
-              return False;
-            end if;
-          end loop;
-        end if;
-        return True;
-      end "=";
+     function "=" (Left, Right : Stack) return Boolean is
+     begin
+       if Left.Top /= Right.Top then -- not same size
+         return False;
+       else -- compare values
+         for K in 1 .. Left.Top loop
+           if Left.Values (K) /= Right.Values (K) then
+             return False;
+           end if;
+         end loop;
+       end if;
+       return True;
+     end "=";
 

@@ -49,25 +49,25 @@ Discriminants
 
 * Discriminants with no default must be declared both on the partial and full view
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package P is
-         type T (V : Integer) is private;
-      private
-         type T (V : Integer) is null record;
-      end P;
+     package P is
+        type T (V : Integer) is private;
+     private
+        type T (V : Integer) is null record;
+     end P;
 
 * Discriminants with default (in the full view) may be omitted by the partial view
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package P is
-         type T1 (V : Integer := 0) is private;
-         type T2 is private;
-      private
-         type T1 (V : Integer := 0) is null record;
-         type T2 (V : Integer := 0) is null record;
-      end P;
+     package P is
+        type T1 (V : Integer := 0) is private;
+        type T2 is private;
+     private
+        type T1 (V : Integer := 0) is null record;
+        type T2 (V : Integer := 0) is null record;
+     end P;
 
 --------------------
 Unknown Constraint
@@ -116,17 +116,17 @@ Tagged
 * If the partial view is tagged, the full view has to be tagged
 * The partial view can hide the fact that the type is tagged in the full view
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package P is
-         type T1 is private;
-         type T2 is tagged private;
-         type T3 is tagged private;
-      private
-         type T1 is tagged null record;
-         type T2 is tagged null record;
-         type T3 is new T2 with null record;
-      end P;
+     package P is
+        type T1 is private;
+        type T2 is tagged private;
+        type T3 is tagged private;
+     private
+        type T1 is tagged null record;
+        type T2 is tagged null record;
+        type T3 is new T2 with null record;
+     end P;
 
 --------------------
 Private Primitives
@@ -182,15 +182,15 @@ Tagged Abstract
 * Partial view may be abstract even if Full view is not
 * If Full view is abstract, private view has to be so
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package P is
-         type T1 is abstract tagged private;
-         type T2 is abstract tagged private;
-      private
-         type T1 is abstract tagged null record;
-         type T2 is tagged null record;
-      end P;
+     package P is
+        type T1 is abstract tagged private;
+        type T2 is abstract tagged private;
+     private
+        type T1 is abstract tagged null record;
+        type T2 is tagged null record;
+     end P;
 
 * Abstract primitives have to be public (otherwise, clients couldn't derive)
 
@@ -200,14 +200,14 @@ Protection Idiom
 
 * It is possible to declare an object that can't be copied, and has to be initialized through a constructor function
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package P is
-         type T (<>) is limited private;
-         function F return T;
-      private
-         type T is null record;
-      end P;
+     package P is
+        type T (<>) is limited private;
+        function F return T;
+     private
+        type T is null record;
+     end P;
 
 * Helps keeping track of the object usage
 

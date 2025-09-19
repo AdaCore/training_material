@@ -70,22 +70,22 @@ Subtype Predicate Examples
 
 * Dynamic Predicate
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Even is Integer with Dynamic_Predicate =>
-         Even mod 2 = 0; -- Boolean expression
-         -- (Even indicates "current instance")
+     subtype Even is Integer with Dynamic_Predicate =>
+        Even mod 2 = 0; -- Boolean expression
+        -- (Even indicates "current instance")
 
 * Static Predicate
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Serial_Baud_Rate is range 110 .. 115200
-        with Static_Predicate => Serial_Baud_Rate  in
-          -- Non-contiguous range
-          110  | 300  | 600 | 1200 | 2400 | 4800 |
-          9600 | 14400 | 19200 | 28800 | 38400 | 56000 |
-          57600 | 115200;
+     type Serial_Baud_Rate is range 110 .. 115200
+       with Static_Predicate => Serial_Baud_Rate  in
+         -- Non-contiguous range
+         110  | 300  | 600 | 1200 | 2400 | 4800 |
+         9600 | 14400 | 19200 | 28800 | 38400 | 56000 |
+         57600 | 115200;
 
 --------------------
 Predicate Checking
@@ -108,11 +108,11 @@ Predicate Expression Content
 
 * Reference to value of type itself, i.e., "current instance"
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Even is Integer
-        with Dynamic_Predicate => Even mod 2 = 0;
-      Even_Num, Also_Even_Num : Even := 42;
+     subtype Even is Integer
+       with Dynamic_Predicate => Even mod 2 = 0;
+     Even_Num, Also_Even_Num : Even := 42;
 
 * Any visible object or function in scope
 
@@ -135,13 +135,13 @@ Static Predicates
 
 * Example
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Serial_Baud_Rate is range 110 .. 115200
-        with Static_Predicate => Serial_Baud_Rate in
-          -- Non-contiguous range
-          110   | 300   | 600   | 1200  | 2400  | 4800  | 9600 |
-          14400 | 19200 | 28800 | 38400 | 56000 | 57600 | 115200;
+     type Serial_Baud_Rate is range 110 .. 115200
+       with Static_Predicate => Serial_Baud_Rate in
+         -- Non-contiguous range
+         110   | 300   | 600   | 1200  | 2400  | 4800  | 9600 |
+         14400 | 19200 | 28800 | 38400 | 56000 | 57600 | 115200;
 
 --------------------------------------
 Dynamic Predicate Expression Content
@@ -153,14 +153,14 @@ Dynamic Predicate Expression Content
 
 * Plus additional operators, etc.
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Even is Integer
-        with Dynamic_Predicate => Even mod 2 = 0;
-      subtype Vowel is Character with Dynamic_Predicate =>
-        (case Vowel is
-         when 'A' | 'E' | 'I' | 'O' | 'U' => True,
-         when others => False); -- evaluated at run-time
+     subtype Even is Integer
+       with Dynamic_Predicate => Even mod 2 = 0;
+     subtype Vowel is Character with Dynamic_Predicate =>
+       (case Vowel is
+        when 'A' | 'E' | 'I' | 'O' | 'U' => True,
+        when others => False); -- evaluated at run-time
 
 * Plus calls to functions
 
@@ -175,31 +175,31 @@ Beware Accidental Recursion in Predicate
 * Caused by checks on function arguments
 * Infinitely recursive example
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Sorted_Table is array (1 .. Max_Size) of Integer with
-         Dynamic_Predicate => Sorted (Sorted_Table);
-      -- on call, predicate is checked!
-      function Sorted (A_Table : Sorted_Table) return Boolean;
+     type Sorted_Table is array (1 .. Max_Size) of Integer with
+        Dynamic_Predicate => Sorted (Sorted_Table);
+     -- on call, predicate is checked!
+     function Sorted (A_Table : Sorted_Table) return Boolean;
 
 * Non-recursive example
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Sorted_Table is array (1 .. Max_Size) of Integer with
-         Dynamic_Predicate =>
-         (for all Rows in Sorted_Table'Range =>
-            (Row = Sorted_Table'First
-             or else Sorted_Table (Row - 1) <= Sorted_Table (Row)));
+     type Sorted_Table is array (1 .. Max_Size) of Integer with
+        Dynamic_Predicate =>
+        (for all Rows in Sorted_Table'Range =>
+           (Row = Sorted_Table'First
+            or else Sorted_Table (Row - 1) <= Sorted_Table (Row)));
 
 * Type-based example
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Table_Type is array (1 .. Max_Size) of Integer;
-      subtype Sorted_Table is Table_Type with
-           Dynamic_Predicate => Sorted (Sorted_Table);
-      function Sorted (A_Table : Table_Type) return Boolean;
+     type Table_Type is array (1 .. Max_Size) of Integer;
+     subtype Sorted_Table is Table_Type with
+          Dynamic_Predicate => Sorted (Sorted_Table);
+     function Sorted (A_Table : Table_Type) return Boolean;
 
 ------
 Quiz

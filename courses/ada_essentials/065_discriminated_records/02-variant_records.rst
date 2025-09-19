@@ -8,22 +8,22 @@ What is a Variant Record?
 
 * A :dfn:`variant record` uses the discriminant to determine which components are currently accessible
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Category_T is (Employee, Contractor);
-      type Employee_T (Kind : Category_T) is record
-         Name : String_T;
-         DOB  : Date_T;
-         case Kind is
-            when Employee =>
-               Pay_Rate  : Pay_T;
-            when Contractor =>
-               Hourly_Rate : Contractor_Rate_T;
-         end case;
-      end record;
+     type Category_T is (Employee, Contractor);
+     type Employee_T (Kind : Category_T) is record
+        Name : String_T;
+        DOB  : Date_T;
+        case Kind is
+           when Employee =>
+              Pay_Rate  : Pay_T;
+           when Contractor =>
+              Hourly_Rate : Contractor_Rate_T;
+        end case;
+     end record;
 
-      An_Employee     : Employee_T (Employee);
-      Some_Contractor : Employee_T (Contractor);
+     An_Employee     : Employee_T (Employee);
+     Some_Contractor : Employee_T (Contractor);
 
 .. note::
 
@@ -33,12 +33,12 @@ What is a Variant Record?
 
    * So you can have
 
-      .. code:: Ada
+     .. code:: Ada
 
-         procedure Print (Item : Employee_T);
+        procedure Print (Item : Employee_T);
 
-         Print (An_Employee);
-         Print (Some_Contractor);
+        Print (An_Employee);
+        Print (Some_Contractor);
 
 --------------------------
 Immutable Variant Record
@@ -53,16 +53,16 @@ Immutable Variant Record
 
 * For example
 
-   .. code:: Ada
-      :number-lines: 24
+  .. code:: Ada
+     :number-lines: 24
 
-      Pat     : Employee_T (Employee);
-      Sam     : Employee_T :=
-         (Kind        => Contractor,
-          Name        => From_String ("Sam"),
-          DOB         => "2000/01/01",
-          Hourly_Rate => 123.45);
-      Illegal : Employee_T;  -- indefinite
+     Pat     : Employee_T (Employee);
+     Sam     : Employee_T :=
+        (Kind        => Contractor,
+         Name        => From_String ("Sam"),
+         DOB         => "2000/01/01",
+         Hourly_Rate => 123.45);
+     Illegal : Employee_T;  -- indefinite
 
 --------------------------------
 Immutable Variant Record Usage
@@ -70,24 +70,24 @@ Immutable Variant Record Usage
 
 * Compiler can detect some problems
 
-   .. code:: Ada
+  .. code:: Ada
 
-      begin
-         Pat.Hourly_Rate := 12.3;
-      end;
+     begin
+        Pat.Hourly_Rate := 12.3;
+     end;
 
-   ``warning: component not present in subtype of "Employee_T" defined at line 24``
+  ``warning: component not present in subtype of "Employee_T" defined at line 24``
 
 * But more often clashes are run-time errors
 
-   .. code:: Ada
-     :number-lines: 32
+  .. code:: Ada
+    :number-lines: 32
 
-     procedure Print (Item : Employee_T) is
-     begin
-       Print (Item.Pay_Rate);
+    procedure Print (Item : Employee_T) is
+    begin
+      Print (Item.Pay_Rate);
 
-   ``raised CONSTRAINT_ERROR : print.adb:34 discriminant check failed``
+  ``raised CONSTRAINT_ERROR : print.adb:34 discriminant check failed``
   
 * :ada:`Pat := Sam;` would be a compiler warning because the constraints do not match
 
@@ -97,20 +97,20 @@ Mutable Variant Record
 
 * To add flexibility, we can make the type :dfn:`mutable` by specifying a default value for the discriminant
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Mutable_T (Kind : Category_T := Employee) is record
-         Name : String_T;
-         DOB  : Date_T;
-         case Kind is
-            when Employee =>
-               Pay_Rate  : Pay_T;
-            when Contractor =>
-               Hourly_Rate : Contractor_Rate_T;
-      end record;
+     type Mutable_T (Kind : Category_T := Employee) is record
+        Name : String_T;
+        DOB  : Date_T;
+        case Kind is
+           when Employee =>
+              Pay_Rate  : Pay_T;
+           when Contractor =>
+              Hourly_Rate : Contractor_Rate_T;
+     end record;
 
-      Pat : Mutable_T;
-      Sam : Mutable_T (Contractor);
+     Pat : Mutable_T;
+     Sam : Mutable_T (Contractor);
 
 * Making the variant mutable creates a definite type
 

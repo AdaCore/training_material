@@ -16,17 +16,17 @@ Signed Integer Types
 
 * Implicit numeric operators
 
-   .. code:: Ada
+  .. code:: Ada
 
-      -- 12-bit device
-      type Analog_Conversions is range 0 .. 4095;
-      Count : Analog_Conversions := 0;
-      ...
-      begin
-         ...
-         Count := Count + 1;
-         ...
-      end;
+     -- 12-bit device
+     type Analog_Conversions is range 0 .. 4095;
+     Count : Analog_Conversions := 0;
+     ...
+     begin
+        ...
+        Count := Count + 1;
+        ...
+     end;
 
 ---------------------
 Signed Integer Bounds
@@ -128,10 +128,10 @@ Modular Types
 * Modulus must be **static**
 * Resulting range is  :ada:`0 .. modulus - 1`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Unsigned_Word is mod 2**16; -- 16 bits, 0..65535
-      type Byte is mod 256;            -- 8 bits, 0..255
+     type Unsigned_Word is mod 2**16; -- 16 bits, 0..65535
+     type Byte is mod 256;            -- 8 bits, 0..255
 
 ------------------------
 Modular Type Semantics

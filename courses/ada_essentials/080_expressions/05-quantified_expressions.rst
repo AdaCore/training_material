@@ -102,17 +102,17 @@ Universal Quantifier
 
 * Functional equivalent
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function Universal (Set : Components) return Boolean is
-      begin
-        for C of Set loop
-          if not Predicate (C) then
-             return False; -- Predicate must be true for all
-          end if;
-        end loop;
-        return True;
-      end Universal;
+     function Universal (Set : Components) return Boolean is
+     begin
+       for C of Set loop
+         if not Predicate (C) then
+            return False; -- Predicate must be true for all
+         end if;
+       end loop;
+       return True;
+     end Universal;
 
 ..
   language_version 2012
@@ -167,17 +167,17 @@ Existential Quantifier
 
 * Functional equivalent
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function Existential (Set : Components) return Boolean is
-      begin
-        for C of Set loop
-          if Predicate (C) then
-            return True; -- Need only be true for at least one
-          end if;
-        end loop;
-        return False;
-      end Existential;
+     function Existential (Set : Components) return Boolean is
+     begin
+       for C of Set loop
+         if Predicate (C) then
+           return True; -- Need only be true for at least one
+         end if;
+       end loop;
+       return False;
+     end Existential;
 
 ..
   language_version 2012
@@ -210,25 +210,25 @@ Index-Based Vs Component-Based Indexing
 
 * Given an array of Integers
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Values : constant array (1 .. 10) of Integer := (...);
+     Values : constant array (1 .. 10) of Integer := (...);
 
 * Component-based indexing is useful for checking individual values
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Contains_Negative_Number : constant Boolean :=
-         (for some N of Values => N < 0);
+     Contains_Negative_Number : constant Boolean :=
+        (for some N of Values => N < 0);
 
 * Index-based indexing is useful for comparing across values
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Is_Sorted : constant Boolean :=
-        (for all I in Values'Range =>
-          I = Values'First or else
-          Values (I) >= Values (I-1));
+     Is_Sorted : constant Boolean :=
+       (for all I in Values'Range =>
+         I = Values'First or else
+         Values (I) >= Values (I-1));
 
 ..
   language_version 2012
@@ -313,19 +313,19 @@ Conditional / Quantified Expression Usage
 * Use them when a function would be too heavy
 * Don't over-use them!
 
-   .. code:: Ada
+  .. code:: Ada
 
-      if (for some Component of Answers =>
-          Component = Ultimate_Answer)
-      then
+     if (for some Component of Answers =>
+         Component = Ultimate_Answer)
+     then
 
 * Function names enhance readability
 
    - So put the quantified expression in a function
 
-      .. code:: Ada
+     .. code:: Ada
 
-         if At_Least_One_Answered (Answers) then
+        if At_Least_One_Answered (Answers) then
 
 * Even in pre/postconditions, use functions containing quantified expressions for abstraction
 

@@ -174,25 +174,25 @@ Preconditions or Explicit Checks?
 
 * With pre-conditions
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Stack (Capacity : Positive) is tagged private;
-      procedure Push (This : in out Stack;
-                      Value : Content) with
-        Pre  => not Full (This);
+     type Stack (Capacity : Positive) is tagged private;
+     procedure Push (This : in out Stack;
+                     Value : Content) with
+       Pre  => not Full (This);
 
 * With defensive code, comments, and return values
 
-   .. code:: Ada
+  .. code:: Ada
 
-      -- returns True iff push is successful
-      function Try_Push (This : in out Stack;
-                         Value : Content) return Boolean
-      begin
-        if Full (This) then
-            return False;
-        end if;
-        ...
+     -- returns True iff push is successful
+     function Try_Push (This : in out Stack;
+                        Value : Content) return Boolean
+     begin
+       if Full (This) then
+           return False;
+       end if;
+       ...
 
 * But not both
 
@@ -213,11 +213,11 @@ Raising Specific Exceptions
 
 * Use *raise expression* in a precondition to get a different exception
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Push (This : in out Stack;
-                      Value : Content) with
-        Pre  => not Full (This) or else raise Overflow_Error;
+     procedure Push (This : in out Stack;
+                     Value : Content) with
+       Pre  => not Full (This) or else raise Overflow_Error;
 
 * *Note: Postcondition failure only ever makes sense as an Assertion_Error*
 
@@ -229,11 +229,11 @@ Assertion Policy
 
 * Pre/postconditions can be controlled with :ada:`pragma Assertion_Policy`
 
-   .. code:: Ada
+  .. code:: Ada
       
-      pragma Assertion_Policy
-           (Pre => Check,
-            Post => Ignore);
+     pragma Assertion_Policy
+          (Pre => Check,
+           Post => Ignore);
 
 * Fine **granularity** over assertion kinds and policy identifiers
 

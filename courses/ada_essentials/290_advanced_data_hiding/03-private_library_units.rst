@@ -131,14 +131,14 @@ Private Children and :ada:`with`
     + From anywhere
     + View given **stays** :ada:`private`
 
-   .. code:: Ada
+      .. code:: Ada
 
-      private with Root.Child1;
-      package Root.Child2 is
-         X1 : Root.Child1.T; -- illegal
-      private
-         X2 : Root.Child1.T;
-      end Root.Child2;
+         private with Root.Child1;
+         package Root.Child2 is
+            X1 : Root.Child1.T; -- illegal
+         private
+            X2 : Root.Child1.T;
+         end Root.Child2;
 
 * Clients of :ada:`Root.Child2` don't have any visibility on :ada:`Root.Child1`
 

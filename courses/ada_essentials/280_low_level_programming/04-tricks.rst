@@ -19,19 +19,19 @@ Fat/Thin Pointers for Arrays
 
 * Unconstrained array access is a fat pointer
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type String_Acc is access String;
-      Msg : String_Acc;
-      -- array bounds stored outside array pointer
+     type String_Acc is access String;
+     Msg : String_Acc;
+     -- array bounds stored outside array pointer
 
 * Use a size representation clause for a thin pointer
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type String_Acc is access String;
-      for String_Acc'Size use 32;
-      -- array bounds stored as part of array pointer
+     type String_Acc is access String;
+     for String_Acc'Size use 32;
+     -- array bounds stored as part of array pointer
 
 -------------
 Flat Arrays

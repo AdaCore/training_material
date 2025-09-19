@@ -49,18 +49,18 @@ Exception Occurrence
 
 * Syntax associates an object with active exception
 
-   .. code:: Ada
+  .. code:: Ada
 
-      when <exception_identifier> : <exception_name> ... =>
+     when <exception_identifier> : <exception_name> ... =>
 
 * A constant view representing active exception
 * Used with operations defined for the type
 
-   .. code:: Ada
+  .. code:: Ada
 
-      exception
-        when Caught_Exception : others =>
-          Put (Exception_Name (Caught_Exception));
+     exception
+       when Caught_Exception : others =>
+         Put (Exception_Name (Caught_Exception));
 
 ----------------------------------------
 `Exception_Occurrence` Query Functions

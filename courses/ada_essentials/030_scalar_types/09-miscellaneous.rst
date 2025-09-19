@@ -20,11 +20,11 @@ Miscellaneous
 
    - Named using destination type name
 
-      .. code:: Ada
+     .. code:: Ada
 
-         Target_Float := Float (Source_Integer);
+        Target_Float := Float (Source_Integer);
 
-   - Implicitly defined
+  - Implicitly defined
    - **Must** be explicitly called
 
 -------------
@@ -37,19 +37,19 @@ Default Value
   - Only during type declarations
   - :code:`<value>` must be static
 
-   .. code:: Ada
+    .. code:: Ada
 
-      type <typemark> is <type_definition>
-           with Default_Value => <value>;
+       type <typemark> is <type_definition>
+            with Default_Value => <value>;
 
 * Example
 
    .. code:: Ada
 
-      type Tertiary_Switch is (Off, On, Neither)
-         with Default_Value => Neither;
-      Implicit : Tertiary_Switch; -- Implicit = Neither
-      Explicit : Tertiary_Switch := Neither;
+       type Tertiary_Switch is (Off, On, Neither)
+          with Default_Value => Neither;
+       Implicit : Tertiary_Switch; -- Implicit = Neither
+       Explicit : Tertiary_Switch := Neither;
 
 ..
   language_version 2012

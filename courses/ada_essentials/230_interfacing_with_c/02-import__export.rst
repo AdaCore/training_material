@@ -18,27 +18,27 @@ Import / Export Aspects (1/2)
 
 * Ada implementation
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Imported_From_C with
-         Import,
-         Convention    => C, 
-         External_Name => "SomeProcedureInC";
+     procedure Imported_From_C with
+        Import,
+        Convention    => C, 
+        External_Name => "SomeProcedureInC";
 
-      procedure Exported_To_C with
-         Export,
-         Convention    => C, 
-         External_Name => "some_ada_procedure;
+     procedure Exported_To_C with
+        Export,
+        Convention    => C, 
+        External_Name => "some_ada_procedure;
 
 * C implementation
 
-    .. code:: C
+  .. code:: C
 
-       void SomeProcedureInC (void) {
-          // some code
-       }
+     void SomeProcedureInC (void) {
+        // some code
+     }
 
-       extern void ada_some_procedure (void);
+     extern void ada_some_procedure (void);
 
 ..
   language_version 2012
@@ -52,19 +52,19 @@ Import / Export Aspects (2/2)
    - Variables imported won't be initialized
    - Ada view
 
-      .. code:: Ada
+     .. code:: Ada
 
-         My_Var : Integer_Type with 
-            Import,
-            Convention    => C,
-            External_Name => "my_var";
-         Pragma Import (C, My_Var, "my_var");
+        My_Var : Integer_Type with 
+           Import,
+           Convention    => C,
+           External_Name => "my_var";
+        Pragma Import (C, My_Var, "my_var");
 
-   - C implementation
+  - C implementation
 
-      .. code:: C
+     .. code:: C
 
-         int my_var;
+        int my_var;
 
 ..
   language_version 2012
@@ -75,11 +75,11 @@ Import / Export with Pragmas
 
 * You can also use :ada:`pragma` to import/export entities
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure C_Some_Procedure;
-      pragma Import (C, C_Some_Procedure, "SomeProcedure");
+     procedure C_Some_Procedure;
+     pragma Import (C, C_Some_Procedure, "SomeProcedure");
 
-      procedure Some_Procedure;
-      pragma Export (C, Some_Procedure, "ada_some_procedure");
+     procedure Some_Procedure;
+     pragma Export (C, Some_Procedure, "ada_some_procedure");
 

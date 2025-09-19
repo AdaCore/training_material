@@ -9,15 +9,15 @@ Implicitly-Raised Exceptions
 * Correspond to language-defined checks
 * Can happen by statement execution
 
-   .. code:: Ada
+  .. code:: Ada
 
-      K := -10;  -- where K must be greater than zero
+     K := -10;  -- where K must be greater than zero
 
 * Can happen by declaration elaboration
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Doomed : array (Positive) of Big_Type;
+     Doomed : array (Positive) of Big_Type;
 
 ----------------------------------
 Some Language-Defined Exceptions
@@ -53,11 +53,11 @@ Explicitly-Raised Exceptions
 
       .. container:: latex_environment footnotesize
 
-       .. code:: Ada
+        .. code:: Ada
 
-          raise_statement ::= raise; |
-             raise exception_name
-             [with string_expression];
+           raise_statement ::= raise; |
+              raise exception_name
+              [with string_expression];
 
        *Note "with string_expression" only available in Ada 2005 and later*
 

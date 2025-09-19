@@ -8,29 +8,29 @@ Multiple Dispatching Operands
 
 * Primitives with multiple dispatching operands are allowed if all operands are of the same type
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Animal is tagged null record;
-      procedure Interact (Left : Animal; Right : Animal);
-      type Dog is new Animal with null record;
-      overriding procedure Interact (Left : Dog; Right : Dog);
+     type Animal is tagged null record;
+     procedure Interact (Left : Animal; Right : Animal);
+     type Dog is new Animal with null record;
+     overriding procedure Interact (Left : Dog; Right : Dog);
 
 * At call time, all actual parameters' tags have to match, either statically or dynamically
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Animal_1, Animal_2   : Animal;
-      Dog_1, Dog_2 : Dog;
-      Any_Animal_1 : Animal'Class := Animal_1;
-      Any_Animal_2 : Animal'Class := Animal_2;
-      Dog_Animal : Animal'Class := Dog_1;
-      ...
-      Interact (Animal_1, Animal_2);                    -- static:  ok
-      Interact (Animal_1, Dog_1);                       -- static:  error
-      Interact (Any_Animal_1, Any_Animal_2);            -- dynamic: ok
-      Interact (Any_Animal_1, Dog_Animal);              -- dynamic: error
-      Interact (Animal_1, Any_Animal_1);                -- static:  error
-      Interact (Animal'Class (Animal_1), Any_Animal_1); -- dynamic: ok
+     Animal_1, Animal_2   : Animal;
+     Dog_1, Dog_2 : Dog;
+     Any_Animal_1 : Animal'Class := Animal_1;
+     Any_Animal_2 : Animal'Class := Animal_2;
+     Dog_Animal : Animal'Class := Dog_1;
+     ...
+     Interact (Animal_1, Animal_2);                    -- static:  ok
+     Interact (Animal_1, Dog_1);                       -- static:  error
+     Interact (Any_Animal_1, Any_Animal_2);            -- dynamic: ok
+     Interact (Any_Animal_1, Dog_Animal);              -- dynamic: error
+     Interact (Animal_1, Any_Animal_1);                -- static:  error
+     Interact (Animal'Class (Animal_1), Any_Animal_1); -- dynamic: ok
 
 ---------------------------
 Special Case for Equality
@@ -64,32 +64,32 @@ Controlling Result (1/2)
 
    - This is known as the constructor pattern
 
-      .. code:: Ada
+     .. code:: Ada
 
-         type Animal is tagged null record;
-         function Feed_Treats (Number_Of_Treats : Integer) return Animal;
+        type Animal is tagged null record;
+        function Feed_Treats (Number_Of_Treats : Integer) return Animal;
 
 * If the child adds components, all such subprograms have to be overridden
 
-      .. code:: Ada
+     .. code:: Ada
 
-         type Animal is tagged null record;
-         function Feed_Treats (Number_Of_Treats : Integer) return Animal;
+        type Animal is tagged null record;
+        function Feed_Treats (Number_Of_Treats : Integer) return Animal;
 
-         type Dog is new Animal with null record;
-         --  OK, Feed_Treats is implicitly inherited
+        type Dog is new Animal with null record;
+        --  OK, Feed_Treats is implicitly inherited
 
-         type Bulldog is new Dog with record
-            Has_Underbite : Boolean;
-         end record;
-         --  ERROR no implicitly inherited function Feed_Treats
+        type Bulldog is new Dog with record
+           Has_Underbite : Boolean;
+        end record;
+        --  ERROR no implicitly inherited function Feed_Treats
 
 * Primitives returning abstract types have to be abstract
 
-      .. code:: Ada
+     .. code:: Ada
 
-         type Animal is abstract tagged null record;
-         function Feed_Treats (Number_Of_Treats : Integer) return Animal is abstract;
+        type Animal is abstract tagged null record;
+        function Feed_Treats (Number_Of_Treats : Integer) return Animal is abstract;
 
 --------------------------
 Controlling Result (2/2)
@@ -97,27 +97,27 @@ Controlling Result (2/2)
 
 * Primitives returning :ada:`tagged` types can be used in a static context
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Animal is tagged null record;
-      function Feed return Animal;
-      type Dog is new Animal with null record;
-      function Feed return Dog;
-      Fed_Animal : Animal := Feed;
+     type Animal is tagged null record;
+     function Feed return Animal;
+     type Dog is new Animal with null record;
+     function Feed return Dog;
+     Fed_Animal : Animal := Feed;
 
 * In a dynamic context, the type has to be known to correctly dispatch
 
-   .. code:: Ada
+  .. code:: Ada
      
-     Fed_Animal : Animal'Class := 
-                           Animal'(Feed);    -- Static call to Animal primitive
-     Another_Fed_Animal : Animal'Class := Fed_Animal;
-     Fed_Dog : Animal'Class := Dog'(Feed);   -- Static call to Dog primitive
-     Starving_Animal : Animal'Class := Feed; -- Error - ambiguous expression
-     ...
-     Fed_Animal := Feed;         -- Dispatching call to Animal primitive
-     Another_Fed_Animal := Feed; -- Dispatching call to Animal primitive
-     Fed_Dog := Feed;            -- Dispatching call to Dog primitive
+    Fed_Animal : Animal'Class := 
+                          Animal'(Feed);    -- Static call to Animal primitive
+    Another_Fed_Animal : Animal'Class := Fed_Animal;
+    Fed_Dog : Animal'Class := Dog'(Feed);   -- Static call to Dog primitive
+    Starving_Animal : Animal'Class := Feed; -- Error - ambiguous expression
+    ...
+    Fed_Animal := Feed;         -- Dispatching call to Animal primitive
+    Another_Fed_Animal := Feed; -- Dispatching call to Animal primitive
+    Fed_Dog := Feed;            -- Dispatching call to Dog primitive
 
 * No dispatching is possible when returning access types
 
