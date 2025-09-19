@@ -8,25 +8,23 @@ Record Types Lab
 
 * Requirements
 
-   - Create a simple First-In/First-Out (FIFO) queue record type and object
-   - Allow the user to:
+   - Create a record to measure distance in feet and inches
 
-      + Add ("push") items to the queue
-      + Remove ("pop") the next item to be serviced from the queue (Print this item to ensure the order is correct)
+   - Create two distances in feet and inches
 
-   - When the user is done manipulating the queue, print out the remaining items in the queue
+      + Make sure that the inch values when added together will be at least one foot
+     
+   - Add the two distances 
+
+   - Print all three values
 
 * Hints
 
-   - Queue record should at least contain:
+   - Feet and inches should be different types
 
-      + Array of items
-      + Index into array where next item will be added
+      + Does not makes sense to directly add inches to feet
 
-.. container:: speakernote
-
-   Queue could contain pointer to next item, or user could "slide" array down once an item has been removed
-   Sliding may be easier, but expensive for large arrays
+   - Consider what happens when adding inches overflows
 
 -----------------------------------------
 Record Types Lab Solution - Declarations
