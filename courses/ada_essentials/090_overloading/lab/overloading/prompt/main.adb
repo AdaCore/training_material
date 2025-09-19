@@ -1,33 +1,28 @@
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
-   --Conversion_Functions
-   type Digit_T is range 0 .. 9;
-   type Digit_Name_T is
-     (Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine);
+   --  Implement these types correctl
+   type Digit_T is new Integer;
+   type Digit_Name_T is new Integer;
 
-   -- functions to convert between Digit_T, Digit_Name_T, and input values
-   -- function Convert (?
+   --  One conversion function (not implemented!)
+   --  Create as many as you need
+   function Convert (Value : Digit_T) return Digit_Name_T is
+   begin
+      return Digit_Name_T'First;
+   end Convert;
 
-   -- functions to compare across types
-   --  function "=" (?
-
-   Last_Entry : Digit_T := 0;
+   --  Create operator functions to add objects of Digit_T
+   --  and Digit_Name_T and return an integer
 
 begin
-   loop
-      Put ("Input: ");
-      declare
-         Str : constant String := Get_Line;
-      begin
-         exit when Str'Length = 0;
-         -- If the string is a number
-         --    Convert the entry to a name and print it
-         --    if this input has the same value as the previous value, say so
-         -- Else (this is a name)
-         --    Convert the entry to a number and print it
-         --    if this input has the same value as the previous value, say so
-      end;
-   end loop;
+
+   null;
+
+   --  Print the result of resolving these additions
+
+   --  One + 2
+   --  3 + Four
+   --  Five + Six
+   --  7 + 8
 end Main;
---Main
