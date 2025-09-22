@@ -1,85 +1,77 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 package body Employee is
 
-   function Image
-     (Date : Date_T)
-      return String is
+   function Image (Date : Date_T) return String is
+      Temp_String : String := Date.Year'Image & " -" & Date.Month'Image & " -" & Date.Day'Image;
    begin
-      return
-        Positive'Image (Date.Year) & " -" & Positive'Image (Date.Month) &
-        " -" & Positive'Image (Date.Day);
+      return Temp_String;
    end Image;
 
-   procedure Set_Name
-     (Item  : in out Person_T;
-      Value :        Name_T) is
+   procedure Set_Name (O     : in out Person_T;
+                       Value :        Name_T) is
    begin
-      Item.The_Name := Value;
+      O.The_Name := Value;
    end Set_Name;
-   function Name
-     (Item : Person_T)
-      return Name_T is
+
+   function Name (O : Person_T) return Name_T is
    begin
-      return Item.The_Name;
+      return O.The_Name;
    end Name;
 
-   procedure Set_Birth_Date
-     (Item  : in out Person_T;
-      Value :        Date_T) is
+   procedure Set_Birth_Date (O     : in out Person_T;
+                             Value :        Date_T) is
    begin
-      Item.The_Birth_Date := Value;
+      O.The_Birth_Date := Value;
    end Set_Birth_Date;
-   function Birth_Date
-     (Item : Person_T)
-      return Date_T is
+
+   function Birth_Date (O : Person_T) return Date_T is
    begin
-      return Item.The_Birth_Date;
+      return O.The_Birth_Date;
    end Birth_Date;
 
-   procedure Print (Item : Person_T) is
+   procedure Print (O : Person_T) is
    begin
-      Put_Line ("Name: " & Name (Item));
-      Put_Line ("Birthdate: " & Image (Birth_Date (Item)));
+      Put_Line ("Name: " & O.Name);
+      Put_Line ("Birthdate: " & Image (O.Birth_Date));
    end Print;
 
    procedure Set_Start_Date
-     (Item  : in out Employee_T;
+     (O     : in out Employee_T;
       Value :        Date_T) is
    begin
-      Item.The_Start_Date := Value;
+      O.The_Start_Date := Value;
    end Set_Start_Date;
-   function Start_Date
-     (Item : Employee_T)
-      return Date_T is
+
+   function Start_Date (O : Employee_T) return Date_T is
    begin
-      return Item.The_Start_Date;
+      return O.The_Start_Date;
    end Start_Date;
 
-   procedure Print (Item : Employee_T) is
+   procedure Print (O : Employee_T) is
    begin
-      Print (Person_T (Item)); --  Use parent "Print"
-      Put_Line ("Startdate: " & Image (Start_Date (Item)));
+      Put_Line ("Name: " & Name (O));
+      Put_Line ("Birthdate: " & Image (O.Birth_Date));
+      Put_Line ("Startdate: " & Image (O.Start_Date));
    end Print;
 
-   procedure Set_Job
-     (Item  : in out Position_T;
-      Value :        Job_T) is
+   procedure Set_Job (O     : in out Position_T;
+                      Value :        Job_T) is
    begin
-      Item.The_Job := Value;
+      O.The_Job := Value;
    end Set_Job;
-   function Job
-     (Item : Position_T)
-      return Job_T is
+
+   function Job (O : Position_T) return Job_T is
    begin
-      return Item.The_Job;
+      return O.The_Job;
    end Job;
 
-   procedure Print (Item : Position_T) is
+   procedure Print (O : Position_T) is
    begin
-      Put_Line ("Name: " & Name (Item));
-      Put_Line ("Birthdate: " & Image (Birth_Date (Item)));
-      Put_Line ("Startdate: " & Image (Start_Date (Item)));
-      Put_Line ("Job: " & Job_T'Image (Job (Item)));
+      Put_Line ("Name: " & O.Name);
+      Put_Line ("Birthdate: " & Image (O.Birth_Date));
+      Put_Line ("Startdate: " & Image (O.Start_Date));
+      Put_Line ("Job: " & O.Job'Image);
    end Print;
 
 end Employee;

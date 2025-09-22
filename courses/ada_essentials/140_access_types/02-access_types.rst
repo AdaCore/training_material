@@ -8,23 +8,23 @@ Declaration Location
 
 * Can be at library level
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package P is
-        type String_Access is access String;
-      end P;
+     package P is
+       type String_Access is access String;
+     end P;
 
 * Can be nested in a procedure
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package body P is
-         procedure Proc is
-            type String_Access is access String;
-         begin
-            ...
-         end Proc;
-      end P;
+     package body P is
+        procedure Proc is
+           type String_Access is access String;
+        begin
+           ...
+        end Proc;
+     end P;
 
 * Nesting adds non-trivial issues
 
@@ -59,20 +59,20 @@ Access Types and Primitives
 
     - **Not** the type of the accessed object
 
-   .. code:: Ada
+      .. code:: Ada
 
-         type A_T is access all T;
-         procedure Proc (V : A_T); -- Primitive of A_T, not T
+            type A_T is access all T;
+            procedure Proc (V : A_T); -- Primitive of A_T, not T
 
 * Primitive of the type can be created with the :ada:`access` mode
 
    - **Anonymous** access type
 
-     - Details elsewhere
+        - Details elsewhere
 
    .. code:: Ada
 
-         procedure Proc (V : access T); -- Primitive of T
+            procedure Proc (V : access T); -- Primitive of T
 
 --------------------------
 Dereferencing Access Types

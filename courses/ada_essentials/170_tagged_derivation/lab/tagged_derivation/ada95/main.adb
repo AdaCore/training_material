@@ -1,43 +1,55 @@
+with Ada.Text_IO; use Ada.Text_IO;
 with Employee;
+
 procedure Main is
    Applicant : Employee.Person_T;
    Employ    : Employee.Employee_T;
    Staff     : Employee.Position_T;
 
+   Birth_Date_1 : constant Employee.Date_T :=
+     (Year  => 1_234,
+      Month => 12,
+      Day   => 1);
+   Birth_Date_2 : constant Employee.Date_T :=
+     (Year  => 2_345,
+      Month => 11,
+      Day   => 2);
+   Start_Date_2 : constant Employee.Date_T :=
+     (Year  => 3_456,
+      Month => 10,
+      Day   => 3);
+   Birth_Date_3 : constant Employee.Date_T :=
+     (Year  => 4_567,
+      Month => 9,
+      Day   => 4);
+   Start_Date_3 : constant Employee.Date_T :=
+     (Year  => 5_678,
+      Month => 8,
+      Day   => 5);
+
 begin
-   Employee.Set_Name (Applicant, "Wilma ");
-   Employee.Set_Birth_Date
-     (Applicant,
-     (Year   => 1_234,
-       Month => 12,
-       Day   => 1));
+   Applicant.Set_Name ("Wilma ");
+   Applicant.Set_Birth_Date (Birth_Date_1);
 
-   Employee.Set_Name (Employ, "Betty ");
-   Employee.Set_Birth_Date
-     (Employ,
-     (Year   => 2_345,
-       Month => 11,
-       Day   => 2));
-   Employee.Set_Start_Date
-     (Employ,
-     (Year   => 3_456,
-       Month => 10,
-       Day   => 3));
+   Employ.Set_Name ("Betty ");
+   Employ.Set_Birth_Date (Birth_Date_2);
+   Employ.Set_Start_Date (Start_Date_2);
 
-   Employee.Set_Name (Staff, "Bambam");
-   Employee.Set_Birth_Date
-     (Staff,
-     (Year   => 4_567,
-       Month => 9,
-       Day   => 4));
-   Employee.Set_Start_Date
-     (Staff,
-     (Year   => 5_678,
-       Month => 8,
-       Day   => 5));
-   Employee.Set_Job (Staff, Employee.Engineer);
+   Staff.Set_Name ("Bambam");
+   Staff.Set_Birth_Date (Birth_Date_3);
+   Staff.Set_Start_Date (Start_Date_3);
+   Staff.Set_Job (Employee.Engineer);
 
-   Employee.Print (Applicant);
-   Employee.Print (Employ);
-   Employee.Print (Staff);
+   Put_Line ("--- Applicant Details ---");
+   Applicant.Print;
+   New_Line;
+
+   Put_Line ("--- Employee Details ---");
+   Employ.Print;
+   New_Line;
+
+   Put_Line ("--- Staff Position Details ---");
+   Staff.Print;
+   New_Line;
+
 end Main;

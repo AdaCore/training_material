@@ -8,11 +8,11 @@ Declaration
 
 * Subprograms
 
-   .. code:: Ada
+  .. code:: Ada
 
-      generic
-         type T is private;
-      procedure Swap (L, R : in out T);
+     generic
+        type T is private;
+     procedure Swap (L, R : in out T);
 
 * Packages
 

@@ -6,17 +6,15 @@ Object Declarations
 Object Declarations
 ---------------------
 
+**Syntax**
+
+.. container:: source_include 020_declarations/syntax.bnf :start-after:object_declarations_begin :end-before:object_declarations_end :code:bnf
+
 * An :ada:`object` is either :dfn:`variable` or :dfn:`constant`
-* Basic Syntax
-
-   .. code:: Ada
-
-      <object_name> : <typemark> [:= <initial_value>];
-      <object_name> : constant [<typemark>] := <value>;
 
    * where
 
-     * **<object_name>** is an identifier
+     * **<identifier>** is the defining name for the object
      * **<typemark>** is the name describing the type of the object
 
 * Constant should have a value
@@ -25,14 +23,14 @@ Object Declarations
 
 * Examples
 
-   .. code:: Ada
+  .. code:: Ada
 
-      An_Object : Some_Type;
-      Max : constant Some_Type := 200;
-      -- variable with a constraint
-      Count : Some_Type range 0 .. Max := 0;
-      -- dynamic initial value via function call
-      Some_Object : Some_Type := Some_Function (Count);
+     An_Object : Some_Type;
+     Max : constant Some_Type := 200;
+     -- variable with a constraint
+     Count : Some_Type range 0 .. Max := 0;
+     -- dynamic initial value via function call
+     Some_Object : Some_Type := Some_Function (Count);
 
 -----------
 Elaboration
@@ -70,22 +68,22 @@ Multiple Object Declarations
 
 * Allowed for convenience
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Val_1, Val_2 : Some_Type := Next_Available (Some_Num);
+     Val_1, Val_2 : Some_Type := Next_Available (Some_Num);
 
 * Identical to series of single declarations
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Val_1 : Some_Type := Next_Available (Some_Num);
-      Val_2 : Some_Type := Next_Available (Some_Num);
+     Val_1 : Some_Type := Next_Available (Some_Num);
+     Val_2 : Some_Type := Next_Available (Some_Num);
 
 .. warning:: May get different value!
 
-   .. code:: Ada
+  .. code:: Ada
 
-      T1, T2 : Time := Current_Time;
+     T1, T2 : Time := Current_Time;
 
 -------------------------
 Predefined Declarations
@@ -112,21 +110,21 @@ Implicit Vs Explicit Declarations
 
 * :dfn:`Explicit` |rightarrow| in the source
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Counter is range 0 .. 1000;
+     type Counter is range 0 .. 1000;
 
 * :dfn:`Implicit` |rightarrow| **automatically** by the compiler
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function "+" (Left, Right : Counter) return Counter;
-      function "-" (Left, Right : Counter) return Counter;
-      function "*" (Left, Right : Counter) return Counter;
-      function "/" (Left, Right : Counter) return Counter;
-      ...
+     function "+" (Left, Right : Counter) return Counter;
+     function "-" (Left, Right : Counter) return Counter;
+     function "*" (Left, Right : Counter) return Counter;
+     function "/" (Left, Right : Counter) return Counter;
+     ...
 
-   * Compiler creates appropriate operators based on the underlying type
+  * Compiler creates appropriate operators based on the underlying type
 
       * **Numerics** - standard math operators
       * **Arrays** - concatenation operator

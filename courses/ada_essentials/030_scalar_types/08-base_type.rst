@@ -23,10 +23,10 @@ Base Ranges
 
 * Can be accessed with :ada:`'Base` attribute
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Foo is range -30_000 .. 30_000;
-      function "+" (Left, Right : Foo'Base) return Foo'Base;
+     type Foo is range -30_000 .. 30_000;
+     function "+" (Left, Right : Foo'Base) return Foo'Base;
 
 * Base range
 
@@ -87,11 +87,11 @@ Real Base Decimal Precision
    - Available: 6, 12, or 24 digits of precision
    - Type with **8 digits** of precision
 
-      .. code:: Ada
+     .. code:: Ada
 
-         type My_Type is digits 8;
+        type My_Type is digits 8;
 
-   - :ada:`My_Type` will have 12 **or** 24 digits of precision
+  - :ada:`My_Type` will have 12 **or** 24 digits of precision
 
 ---------------------------------
 Floating Point Division by Zero
@@ -106,10 +106,12 @@ Floating Point Division by Zero
 
 * User-defined types always raise :ada:`Constraint_Error`
 
- .. code:: Ada
+  .. container:: latex_environment small
+
+    .. code:: Ada
     
-    type My_Float is new Float range Float'First .. Float'Last;
-    subtype Sub_Float is Float range Float'First .. Float'Last;
+      type My_Float is new Float range Float'First .. Float'Last;
+      subtype Sub_Float is Float range Float'First .. Float'Last;
 
 -----------------------------------------
 Using Equality for Floating Point Types

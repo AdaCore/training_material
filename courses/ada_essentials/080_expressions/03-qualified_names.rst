@@ -9,10 +9,10 @@ Qualification
 * Explicitly indicates the subtype of the value
 * Syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      qualified_expression ::= subtype_mark'(expression) |
-                               subtype_mark'aggregate
+     qualified_expression ::= subtype_mark'(expression) |
+                              subtype_mark'aggregate
 
 * Similar to conversion syntax
 

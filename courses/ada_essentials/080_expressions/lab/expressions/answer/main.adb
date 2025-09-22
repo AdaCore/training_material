@@ -31,24 +31,10 @@ procedure Main is
       and then Date.Day <= Days_In_Month (Date.Month, Date.Year));
 
    function Any_Invalid return Boolean is
-   begin
-      for Date of List loop
-         if not Is_Valid (Date) then
-            return True;
-         end if;
-      end loop;
-      return False;
-   end Any_Invalid;
+     (for some Date of List => not Is_Valid (Date));
 
    function Same_Year return Boolean is
-   begin
-      for Index in List'Range loop
-         if List (Index).Year /= List (List'First).Year then
-            return False;
-         end if;
-      end loop;
-      return True;
-   end Same_Year;
+     (for all I in List'Range => List (I).Year = List (List'First).Year);
    --Checks
 
    --Main

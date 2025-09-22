@@ -27,20 +27,20 @@ Passing Scalar Data As Parameters
 * At the interface level, scalar types must be either constrained with representation clauses, or coming from Interfaces.C
 * Ada view
 
-   .. code:: Ada
+  .. code:: Ada
 
-      with Interfaces.C;
-      function C_Proc (I : Interfaces.C.Int)
-          return Interfaces.C.Int;
-      pragma Import (C, C_Proc, "c_proc");
+     with Interfaces.C;
+     function C_Proc (I : Interfaces.C.Int)
+         return Interfaces.C.Int;
+     pragma Import (C, C_Proc, "c_proc");
 
 * C view
 
-   .. code:: C
+  .. code:: C
 
-     int c_proc (int i) {
-       /* some code */
-     }
+    int c_proc (int i) {
+      /* some code */
+    }
 
 -----------------------------------
 Passing Structures As Parameters
@@ -53,35 +53,35 @@ Passing Structures As Parameters
 
 * C View
 
-   .. code:: C
+  .. code:: C
 
-     enum Enum {E1, E2, E3};
-     struct Rec {
-        int A, B;
-        Enum C;
-     };
+    enum Enum {E1, E2, E3};
+    struct Rec {
+       int A, B;
+       Enum C;
+    };
 
 * Ada View
 
-   .. code:: Ada
+  .. code:: Ada
    
-     type Enum is (E1, E2, E3) with Convention => C;
-     type Rec is record
-       A, B : int;
-       C : Enum;
-     end record with Convention => C;
+    type Enum is (E1, E2, E3) with Convention => C;
+    type Rec is record
+      A, B : int;
+      C : Enum;
+    end record with Convention => C;
 
 * This can also be done with pragmas
 
-   .. code:: Ada
+  .. code:: Ada
 
-     type Enum is (E1, E2, E3);
-     Pragma Convention (C, Enum);
-     type Rec is record
-       A, B : int;
-       C : Enum;
-     end record;
-     Pragma Convention (C, Rec);
+    type Enum is (E1, E2, E3);
+    Pragma Convention (C, Enum);
+    type Rec is record
+      A, B : int;
+      C : Enum;
+    end record;
+    Pragma Convention (C, Rec);
 
 ..
   language_version 2012
@@ -98,28 +98,28 @@ Parameter Modes
 
 * Ada View
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Type R1 is record
-         V : int;
-      end record
-      with Convention => C;
+     Type R1 is record
+        V : int;
+     end record
+     with Convention => C;
 
-      type R2 is record
-         V : int;
-      end record
-      with Convention => C_Pass_By_Copy;
+     type R2 is record
+        V : int;
+     end record
+     with Convention => C_Pass_By_Copy;
 
 * C View
 
-   .. code:: C
+  .. code:: C
 
-      struct R1{
-         int V;
-      };
-      struct R2 {
-         int V;
-      };
-      void f1 (R1 p);
-      void f2 (R2 p);
+     struct R1{
+        int V;
+     };
+     struct R2 {
+        int V;
+     };
+     void f1 (R1 p);
+     void f2 (R2 p);
 

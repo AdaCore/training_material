@@ -10,14 +10,14 @@ Ada "Named Typing"
 * Structure does **not**
 * Identical structures may **not** be interoperable
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Yen is range 0 .. 100_000_000;
-      type Ruble is range 0 .. 100_000_000;
-      Mine : Yen;
-      Yours : Ruble;
-      ...
-      Mine := Yours; -- not legal
+     type Yen is range 0 .. 100_000_000;
+     type Ruble is range 0 .. 100_000_000;
+     Mine : Yen;
+     Yours : Ruble;
+     ...
+     Mine := Yours; -- not legal
 
 .. note::
 
@@ -40,10 +40,10 @@ Understanding Types vs Subtypes
 
    * Doesn't define a new type
 
-      .. code:: Ada
+     .. code:: Ada
 
-         type Temperature is range -273 .. 5000;
-         subtype Celsius is Temperature range -273 .. 100;
+        type Temperature is range -273 .. 5000;
+        subtype Celsius is Temperature range -273 .. 100;
 
 * Subtype that does **not** add a restriction is generally refered to as an *alias*
 

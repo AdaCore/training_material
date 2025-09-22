@@ -21,13 +21,13 @@ Subprogram-based Assertions
 * Requirements and guarantees on both supplier and client
 * Syntax uses **aspects**
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Push (This : in out Stack_T;
-                      Value : Content_T)
-        with Pre  => not Full (This),
-             Post => not Empty (This)
-                     and Top (This) = Value;
+     procedure Push (This : in out Stack_T;
+                     Value : Content_T)
+       with Pre  => not Full (This),
+            Post => not Empty (This)
+                    and Top (This) = Value;
 
 ---------------------------------
 Requirements / Guarantees: Quiz
@@ -35,17 +35,17 @@ Requirements / Guarantees: Quiz
 
 * Given the following piece of code
 
-    .. code:: Ada
+  .. code:: Ada
 
-       procedure Start is
-       begin
-           ...
-           Turn_On;
-           ...
+     procedure Start is
+     begin
+         ...
+         Turn_On;
+         ...
 
-       procedure Turn_On
-        with Pre => Has_Power,
-             Post => Is_On;
+     procedure Turn_On
+      with Pre => Has_Power,
+           Post => Is_On;
 
 * Complete the table in terms of requirements and guarantees
 
@@ -140,15 +140,15 @@ Visibility for Subprogram Contracts
       - Must be declared in same scope
       - Different elaboration rules for expression functions
 
-  .. code:: Ada
+        .. code:: Ada
 
-     function Top (This : Stack) return Content
-       with Pre => not Empty (This);
-     function Empty (This : Stack) return Boolean;
+           function Top (This : Stack) return Content
+             with Pre => not Empty (This);
+           function Empty (This : Stack) return Boolean;
 
 * :ada:`Post` has access to special attributes
     
-    - See later
+          - See later
 
 ------------------------------------------
 Preconditions and Postconditions Example
@@ -169,25 +169,25 @@ Preconditions and Postconditions Example
 
 * Pre-condition
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Compute_Square_Root (Input : Integer;
-                                     Result : out Natural)
-        with Pre  => Input >= 0,
-             Post => (Result * Result) <= Input and
-                     (Result + 1) * (Result + 1) > Input;
+     procedure Compute_Square_Root (Input : Integer;
+                                    Result : out Natural)
+       with Pre  => Input >= 0,
+            Post => (Result * Result) <= Input and
+                    (Result + 1) * (Result + 1) > Input;
 
 * Subtype
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Compute_Square_Root (Input  : Natural;
-                                     Result : out Natural)
-         with
-             -- "Pre => Input >= 0" not needed
-             -- (Input can't be < 0)
-             Post => (Result * Result) <= Input and
-                     (Result + 1) * (Result + 1) > Input;
+     procedure Compute_Square_Root (Input  : Natural;
+                                    Result : out Natural)
+        with
+            -- "Pre => Input >= 0" not needed
+            -- (Input can't be < 0)
+            Post => (Result * Result) <= Input and
+                    (Result + 1) * (Result + 1) > Input;
 
 --------------------------------------------
 Preventing Exceptions with ... Exceptions?

@@ -10,7 +10,7 @@ Like tuples, Struct can also be destructured by matching:
 
 .. container:: latex_environment scriptsize
 
-   .. code:: rust
+  .. code:: rust
 
       struct Foo {
           x: (u32, u32),

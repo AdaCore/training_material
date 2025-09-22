@@ -6,29 +6,27 @@ Discrete Numeric Types
 Signed Integer Types
 ----------------------
 
+**Syntax**
+
+.. container:: source_include 030_scalar_types/syntax.bnf :start-after:signed_integer_types_begin :end-before:signed_integer_types_end :code:bnf
+
 * Range of signed **whole** numbers
 
    - Symmetric about zero (-0 = +0)
 
-* Syntax
-
-   .. code:: Ada
-
-      type <typemark> is range  <lower> .. <upper>;
-
 * Implicit numeric operators
 
-   .. code:: Ada
+  .. code:: Ada
 
-      -- 12-bit device
-      type Analog_Conversions is range 0 .. 4095;
-      Count : Analog_Conversions := 0;
-      ...
-      begin
-         ...
-         Count := Count + 1;
-         ...
-      end;
+     -- 12-bit device
+     type Analog_Conversions is range 0 .. 4095;
+     Count : Analog_Conversions := 0;
+     ...
+     begin
+        ...
+        Count := Count + 1;
+        ...
+     end;
 
 ---------------------
 Signed Integer Bounds
@@ -117,25 +115,23 @@ Signed Integer Overflow: Ada Vs Others
 Modular Types
 ---------------
 
+**Syntax**
+
+.. container:: source_include 030_scalar_types/syntax.bnf :start-after:modular_types_begin :end-before:modular_types_end :code:bnf
+
 * Integer type
 * **Unsigned** values
 * Adds operations and attributes
 
 .. note:: Typically **bit-wise** manipulation
 
-* Syntax
-
-   .. code:: Ada
-
-      type <typemark> is mod <modulus>;
-
 * Modulus must be **static**
 * Resulting range is  :ada:`0 .. modulus - 1`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Unsigned_Word is mod 2**16; -- 16 bits, 0..65535
-      type Byte is mod 256;            -- 8 bits, 0..255
+     type Unsigned_Word is mod 2**16; -- 16 bits, 0..65535
+     type Byte is mod 256;            -- 8 bits, 0..255
 
 ------------------------
 Modular Type Semantics

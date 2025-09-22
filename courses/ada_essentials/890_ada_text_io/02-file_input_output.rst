@@ -8,13 +8,13 @@ Standard Input / Output
 
 * `Ada.Text_IO` maintains *default* input and output files
 
-   .. code:: Ada
+  .. code:: Ada
 
-      -- reads from default input file
-      S : constant String := Get_Line;
-      -- ...
-      -- writes to default output file
-      Put_Line (S);
+     -- reads from default input file
+     S : constant String := Get_Line;
+     -- ...
+     -- writes to default output file
+     Put_Line (S);
 
 * At initialization, default input and output refer to the console
 

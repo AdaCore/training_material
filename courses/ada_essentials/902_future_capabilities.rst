@@ -106,24 +106,24 @@ Fixed Lower Bound for Array Types (2/3)
 
 * Ada arrays can have fixed lower bound (FLB)
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Arr is array (Integer range 0 .. <>) of Integer;
+     type Arr is array (Integer range 0 .. <>) of Integer;
 
 * Lower bound must be explicit at instantiation
 
-   .. code:: Ada
+  .. code:: Ada
 
-      V1 : Arr (0 .. 9); -- OK
-      V2 : Arr (1 .. 10); -- Constraint Error
+     V1 : Arr (0 .. 9); -- OK
+     V2 : Arr (1 .. 10); -- Constraint Error
 
 * Objects are automatically adjusted
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function P (A : Arr) return Character;
+     function P (A : Arr) return Character;
 
-      P (V (6 .. 10)); -- A is 0 .. 4
+     P (V (6 .. 10)); -- A is 0 .. 4
 
 ---------------------------------------
 Fixed Lower Bound for Array Types (3/3)
@@ -131,16 +131,16 @@ Fixed Lower Bound for Array Types (3/3)
 
 * FLB can be used for matrixes
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Matrix is array (Natural range 0 .. <>,
-                            Natural range 0 .. <>) of Integer;
+     type Matrix is array (Natural range 0 .. <>,
+                           Natural range 0 .. <>) of Integer;
 
 * FLB can be used for subtypes
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype String_1 is String (1 .. <>);
+     subtype String_1 is String (1 .. <>);
 
 * *Recommendation:* unless specifically needed, use FLB
 
@@ -217,21 +217,21 @@ Constant Size for Variable Objects (1/3)
 
 * Ada already allows some variable types to have a fixed size
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Rec (V : Boolean := True) is record
-         case V is
-            when True =>
-               X : Integer;
-             when False =>
-               Y, Z : Integer;
-         end case;
-       end record;
+     type Rec (V : Boolean := True) is record
+        case V is
+           when True =>
+              X : Integer;
+            when False =>
+              Y, Z : Integer;
+        end case;
+      end record;
 
-       V : Rec;
+      V : Rec;
 
-       V := (True, 1);
-       V := (False, 2, 3);
+      V := (True, 1);
+      V := (False, 2, 3);
 
 * We're extending this mechanism to arrays and tagged types
 
@@ -384,20 +384,20 @@ Dot Calls for Primitives of Untagged Types (1/2)
 
 * Ada 2012 introduced prefix notation
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type My_Record is tagged null record;
-      type Op1 (V : My_Record);
-      type Op2 (V : My_Record);
+     type My_Record is tagged null record;
+     type Op1 (V : My_Record);
+     type Op2 (V : My_Record);
 
-      ...
+     ...
 
-      X : My_Record;
+     X : My_Record;
 
-      ...
+     ...
 
-      X.Op1;
-      X.Op2;
+     X.Op1;
+     X.Op2;
 
 * Prefix notation is only available for tagged types
 
@@ -411,23 +411,23 @@ Dot Calls for Primitives of Untagged Types (2/2)
 
 * Requires the first parameter to be the type of the primitives
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type R is null record;
-      procedure Op1 (V : R);
+     type R is null record;
+     procedure Op1 (V : R);
 
-      type I is new Integer;
-      procedure Op2 (V : I);
+     type I is new Integer;
+     procedure Op2 (V : I);
 
-      ...
+     ...
 
-      VR : R;
-      VI : I;
+     VR : R;
+     VI : I;
 
-      ...
+     ...
 
-      VR.Op1;
-      VI.Op2;
+     VR.Op1;
+     VI.Op2;
 
 ------------------------------------
 Default for Generic Formal Functions
@@ -435,23 +435,23 @@ Default for Generic Formal Functions
 
 * Generic can already be given a default matching function
 
-   .. code:: Ada
+  .. code:: Ada
 
-      generic
-         type T is private;
-         with function Copy (Item : T) return T
-            is (<>); -- Defaults to Copy if any
-      package Stacks is
+     generic
+        type T is private;
+        with function Copy (Item : T) return T
+           is (<>); -- Defaults to Copy if any
+     package Stacks is
 
 * Generic can now be given a default expression function
 
-   .. code:: Ada
+  .. code:: Ada
 
-      generic
-         type T is private;
-         with function Copy (Item : T) return T
-           is (Item); -- Defaults to the Item value
-      package Stacks is
+     generic
+        type T is private;
+        with function Copy (Item : T) return T
+          is (Item); -- Defaults to the Item value
+     package Stacks is
 
 --------------------
 String Interpolation
@@ -459,23 +459,23 @@ String Interpolation
 
 * Constructing strings with expressions can be cumbersome
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Test_Interpolation is
-         X : Integer := 12;
-         Y : Integer := 15;
-         Name : String := "Leo";
-      begin
-         Put_Line ("Name is " & Name &
-                   " and Sum is " &
-                   Integer'Image (X + Y) & ".");
-      end;
+     procedure Test_Interpolation is
+        X : Integer := 12;
+        Y : Integer := 15;
+        Name : String := "Leo";
+     begin
+        Put_Line ("Name is " & Name &
+                  " and Sum is " &
+                  Integer'Image (X + Y) & ".");
+     end;
 
 * Simlar to other languages, Strings can now be interpolated
 
-   .. code:: Ada
+  .. code:: Ada
 
-       Put_Line (f"Name is {Name} and Sum is {X + Y}.");
+      Put_Line (f"Name is {Name} and Sum is {X + Y}.");
 
 --------------------------------------
 Declare Local Variables Without Blocks
@@ -503,23 +503,23 @@ Conditional "when" Constructs
 
 * Ada already support :ada:`exit when` structure shortening if-condititions
 
-   .. code:: Ada
+  .. code:: Ada
 
-      loop
-         I := I + 1;
-         exit when I > 20;
-      end loop;
+     loop
+        I := I + 1;
+        exit when I > 20;
+     end loop;
 
 * when is now expanded to a number of new constructs
 
-   .. code:: Ada
+  .. code:: Ada
 
-      return when Condition;
-      return True when I = 0;
-      goto Cleanup when Flags (1);
-      raise Error when Imported_C_Func /= 0;
-      raise Error with "Unix Error"
-         when Imported_C_Func /= 0;
+     return when Condition;
+     return True when I = 0;
+     goto Cleanup when Flags (1);
+     raise Error when Imported_C_Func /= 0;
+     raise Error with "Unix Error"
+        when Imported_C_Func /= 0;
 
 -------------------------
 Deep Delta Aggregates
@@ -531,15 +531,15 @@ Deep Delta Aggregates
 
 * Delta aggregate can be very verbose when describing sub components
 
-   .. code:: Ada
+  .. code:: Ada
 
-      (X with delta A => (X.A with delta B => 42))
+     (X with delta A => (X.A with delta B => 42))
 
 * Deep delta aggregates will allow to refer to subcomponents directly:
 
-   .. code:: Ada
+  .. code:: Ada
 
-      (X with delta A.B => 42)
+     (X with delta A.B => 42)
 
 -------------------------------------------
 Guaranteed Final Control Flow Execution
@@ -582,23 +582,23 @@ Case Pattern Matching (1/3)
 
 * Present in most languages nowadays
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Rec is record
-         F1, F2 : Integer;
-      end record;
+     type Rec is record
+        F1, F2 : Integer;
+     end record;
 
-      procedure Caser_1 (X : Rec) is
-      begin
-         case X is
-            when (F1 => Positive, F2 => Positive) =>
-               Do_This;
-            when (F1 => Natural, F2 => <>) | (F1 => <>, F2 => Natural) =>
-               Do_That;
-            when others =>
-               Do_The_Other_Thing;
-         end case;
-      end Caser_1;
+     procedure Caser_1 (X : Rec) is
+     begin
+        case X is
+           when (F1 => Positive, F2 => Positive) =>
+              Do_This;
+           when (F1 => Natural, F2 => <>) | (F1 => <>, F2 => Natural) =>
+              Do_That;
+           when others =>
+              Do_The_Other_Thing;
+        end case;
+     end Caser_1;
 
 ---------------------------
 Case Pattern Matching (2/3)

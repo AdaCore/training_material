@@ -6,18 +6,15 @@ Subtypes
 Subtype
 ----------
 
-* May **constrain** an existing type
+**Syntax**
+
+.. container:: source_include 030_scalar_types/syntax.bnf :start-after:subtype_begin :end-before:subtype_end :code:bnf
+
+* **subtype_mark** *is an existing* :ada:`type` *or* :ada:`subtype`
+* **constraint** can add restrictions to the parent type
 * Still the **same** type
 
    * So no conversion or casting necessary
-
-* Syntax
-
-   .. code:: Ada
-
-      subtype <typemark> is <base_type> [constraints];
-
-   *where* **<base_type>** *is an existing* :ada:`type` *or* :ada:`subtype`
 
 .. note:: If no constraint |rightarrow| type alias
 
@@ -27,17 +24,17 @@ Subtype Example
 
 * Enumeration type with :ada:`range` constraint
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Days is (Sun, Mon, Tues, Wed, Thurs, Fri, Sat);
-      subtype Weekdays is Days range Mon .. Fri;
-      Workday : Weekdays; -- type Days limited to Mon .. Fri
+     type Days is (Sun, Mon, Tues, Wed, Thurs, Fri, Sat);
+     subtype Weekdays is Days range Mon .. Fri;
+     Workday : Weekdays; -- type Days limited to Mon .. Fri
 
 * Equivalent to **anonymous** subtype
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Same_As_Workday : Days range Mon .. Fri;
+     Same_As_Workday : Days range Mon .. Fri;
 
 ----------------------
 Kinds of Constraints
@@ -45,13 +42,13 @@ Kinds of Constraints
 
 * Range constraints on scalar types
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Positive is Integer range 1 .. Integer'Last;
-      subtype Natural is Integer range 0 .. Integer'Last;
-      subtype Weekdays is Days range Mon .. Fri;
-      subtype Symmetric_Distribution is
-          Float range -1.0 .. +1.0;
+     subtype Positive is Integer range 1 .. Integer'Last;
+     subtype Natural is Integer range 0 .. Integer'Last;
+     subtype Weekdays is Days range Mon .. Fri;
+     subtype Symmetric_Distribution is
+         Float range -1.0 .. +1.0;
 
 * Other kinds, discussed later
 * Constraints apply only to values
@@ -90,23 +87,23 @@ Performance Impact of Constraints Checking
 * Constraint checks have run-time performance impact
 * The following code
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Demo is
-        K : Integer := F;
-        P : Integer range 0 .. 100;
-      begin
-        P := K;
+     procedure Demo is
+       K : Integer := F;
+       P : Integer range 0 .. 100;
+     begin
+       P := K;
 
 * Generates assignment checks similar to
 
-   .. code:: Ada
+  .. code:: Ada
 
-      if K < 0 or K > 100 then
-        raise Constraint_Error;
-      else
-        P := K;
-      end if;
+     if K < 0 or K > 100 then
+       raise Constraint_Error;
+     else
+       P := K;
+     end if;
 
 * These checks can be disabled with :command:`-gnatp`
 
@@ -118,13 +115,13 @@ Optimizations of Constraint Checks
 * Compiler assumes variables to be **initialized**
 * So this code generates **no check**
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Demo is
-        P, K : Integer range 0 .. 100;
-      begin
-        P := K;
-        --  But K is not initialized!
+     procedure Demo is
+       P, K : Integer range 0 .. 100;
+     begin
+       P := K;
+       --  But K is not initialized!
 
 ---------------------------
 Range Constraint Examples

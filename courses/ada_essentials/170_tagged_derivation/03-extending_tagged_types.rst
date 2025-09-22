@@ -40,14 +40,14 @@ Tagged Aggregate
 
 * At initialization, all components (including **inherited**) must have a **value**
 
-   .. code:: Ada
+  .. code:: Ada
 
-     Animal : Animal_T := (Age => 1);
-     Mammal : Mammal_T := (Age            => 2,
-                           Number_Of_Legs => 2);
-     Canine : Canine_T := (Age            => 2,
-                           Number_Of_Legs => 4,
-                           Domesticated   => True);
+    Animal : Animal_T := (Age => 1);
+    Mammal : Mammal_T := (Age            => 2,
+                          Number_Of_Legs => 2);
+    Canine : Canine_T := (Age            => 2,
+                          Number_Of_Legs => 4,
+                          Domesticated   => True);
 
 * But we can also "seed" the aggregate with a parent object
 

@@ -49,18 +49,18 @@ Simple Derivation and Type Structure
 * But can be **constrained** further
 * Scalar ranges can be reduced
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Positive_T is new Natural_T range 1 .. Natural_T'Last;
+     type Positive_T is new Natural_T range 1 .. Natural_T'Last;
 
 * Unconstrained types can be constrained
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Arr_T is array (Integer range <>) of Integer;
-      type Ten_Elem_Arr_T is new Arr_T (1 .. 10);
-      type Rec_T (Size : Integer) is record
-         Elem : Arr_T (1 .. Size);
-      end record;
-      type Ten_Elem_Rec_T is new Rec_T (10);
+     type Arr_T is array (Integer range <>) of Integer;
+     type Ten_Elem_Arr_T is new Arr_T (1 .. 10);
+     type Rec_T (Size : Integer) is record
+        Elem : Arr_T (1 .. Size);
+     end record;
+     type Ten_Elem_Rec_T is new Rec_T (10);
 

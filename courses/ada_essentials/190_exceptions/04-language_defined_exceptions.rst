@@ -9,13 +9,13 @@ Language-Defined Exceptions
 * Caused by violations of constraints on range, index, etc.
 * The most common exceptions encountered
 
-   .. code:: Ada
+  .. code:: Ada
 
-      K : Integer range 1 .. 10;
-      ...
-      K := -1;
+     K : Integer range 1 .. 10;
+     ...
+     K := -1;
 
-   .. code:: Ada
+  .. code:: Ada
 
       L : array (1 .. 100) of Some_Type;
       ...

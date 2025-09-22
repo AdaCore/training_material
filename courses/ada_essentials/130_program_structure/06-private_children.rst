@@ -126,9 +126,9 @@ Solution 2: Partially Import Private Unit
 * Via :ada:`private with` clause
 * Syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      private with package_name {, package_name} ;
+     private with package_name {, package_name} ;
 
 * Public declarations can then access private siblings
 

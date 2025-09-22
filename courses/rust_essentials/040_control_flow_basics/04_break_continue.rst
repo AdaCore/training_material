@@ -69,7 +69,7 @@ Block Labels
 
 -  Labeled break also works on arbitrary blocks, e.g.
 
-   .. code:: rust
+  .. code:: rust
 
       'label: {
           break 'label;

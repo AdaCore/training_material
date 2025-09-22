@@ -6,29 +6,27 @@ Discrete Numeric Types
 Signed Integer Types
 ----------------------
 
+**Syntax**
+
+.. container:: source_include 030_scalar_types/syntax.bnf :start-after:signed_integer_types_begin :end-before:signed_integer_types_end :code:bnf
+
 * Range of signed **whole** numbers
 
    - Symmetric about zero (-0 = +0)
 
-* Syntax
-
-   .. code:: Ada
-
-      type <typemark> is range  <lower> .. <upper>;
-
 * Implicit numeric operators
 
-   .. code:: Ada
+  .. code:: Ada
 
-      -- 12-bit device
-      type Analog_Conversions is range 0 .. 4095;
-      Count : Analog_Conversions := 0;
-      ...
-      begin
-         ...
-         Count := Count + 1;
-         ...
-      end;
+     -- 12-bit device
+     type Analog_Conversions is range 0 .. 4095;
+     Count : Analog_Conversions := 0;
+     ...
+     begin
+        ...
+        Count := Count + 1;
+        ...
+     end;
 
 ---------------------
 Signed Integer Bounds

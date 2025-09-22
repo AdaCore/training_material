@@ -20,20 +20,20 @@ Generic Constants and Variables Parameters
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       generic
-          type T is private;
-          X1 : Integer;  -- constant
-          X2 : in out T; -- variable
-       procedure P;
+      generic
+         type T is private;
+         X1 : Integer;  -- constant
+         X2 : in out T; -- variable
+      procedure P;
 
-       V : Float;
+      V : Float;
 
-       procedure P_I is new P
-          (T  => Float,
-           X1 => 42,
-           X2 => V);
+      procedure P_I is new P
+         (T  => Float,
+          X1 => 42,
+          X2 => V);
 
 -------------------------------
 Generic Subprogram Parameters
@@ -42,17 +42,17 @@ Generic Subprogram Parameters
 * Subprograms can be defined in the generic contract
 * Must be introduced by :ada:`with` to differ from the generic unit
 
-   .. code:: Ada
+  .. code:: Ada
 
-      generic
-         with procedure Callback;
-      procedure P;
-      procedure P is
-      begin
-         Callback;
-      end P;
-      procedure Something is null;
-      procedure P_I is new P (Something);
+     generic
+        with procedure Callback;
+     procedure P;
+     procedure P is
+     begin
+        Callback;
+     end P;
+     procedure Something is null;
+     procedure P_I is new P (Something);
 
 ------
 Quiz

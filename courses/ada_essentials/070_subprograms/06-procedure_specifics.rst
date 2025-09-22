@@ -19,16 +19,16 @@ Return Statements in Procedures
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       procedure P is
-       begin
-         ...
-         if Some_Condition then
-           return; -- early return
-         end if;
-         ...
-       end P; -- automatic return
+      procedure P is
+      begin
+        ...
+        if Some_Condition then
+          return; -- early return
+        end if;
+        ...
+      end P; -- automatic return
 
 ------------------
 Main Subprograms
