@@ -9,13 +9,13 @@ Language-Defined Exceptions
 * Caused by violations of constraints on range, index, etc.
 * The most common exceptions encountered
 
-   .. code:: Ada
+  .. code:: Ada
 
-      K : Integer range 1 .. 10;
-      ...
-      K := -1;
+     K : Integer range 1 .. 10;
+     ...
+     K := -1;
 
-   .. code:: Ada
+  .. code:: Ada
 
       L : array (1 .. 100) of Some_Type;
       ...
@@ -71,27 +71,27 @@ Explicitly-Raised Exceptions
 
     * Syntax
 
-       .. code:: Ada
+      .. code:: Ada
 
-          raise_statement ::= raise; |
-             raise exception_name
-             [with string_expression];
+         raise_statement ::= raise; |
+            raise exception_name
+            [with string_expression];
 
-       - :ada:`with string_expression` only available in Ada 2005 and later
+      - :ada:`with string_expression` only available in Ada 2005 and later
 
     * A :ada:`raise` by itself is only allowed in handlers (more later)
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       if Unknown (User_ID) then
-         raise Invalid_User;
-       end if;
+      if Unknown (User_ID) then
+        raise Invalid_User;
+      end if;
 
-       if Unknown (User_ID) then
-         raise Invalid_User
-            with "Attempt by " &
-                 Image (User_ID);
-       end if;
+      if Unknown (User_ID) then
+        raise Invalid_User
+           with "Attempt by " &
+                Image (User_ID);
+      end if;
 

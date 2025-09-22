@@ -23,36 +23,36 @@ Example Propagation Beyond Scope
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       package P is
-         procedure Q;
-       end P;
-       package body P is
-         Error : exception;
-         procedure Q is
-         begin
-           ...
-           raise Error;
-         end Q;
-       end P;
+      package P is
+        procedure Q;
+      end P;
+      package body P is
+        Error : exception;
+        procedure Q is
+        begin
+          ...
+          raise Error;
+        end Q;
+      end P;
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       with P;
-       procedure Client is
-       begin
-         P.Q;
-       exception
-         -- not visible
-         when P.Error =>
-            ...
-         -- captured here
-         when others =>
-            ...
-       end Client;
+      with P;
+      procedure Client is
+      begin
+        P.Q;
+      exception
+        -- not visible
+        when P.Error =>
+           ...
+        -- captured here
+        when others =>
+           ...
+      end Client;
 
 ------------------------------------------
 Mechanism to Treat Exceptions As Objects
@@ -88,18 +88,18 @@ Exception Occurrence
 
 * Syntax associates an object with active exception
 
-   .. code:: Ada
+  .. code:: Ada
 
-      when <exception_identifier> : <exception_name> ... =>
+     when <exception_identifier> : <exception_name> ... =>
 
 * A constant view representing active exception
 * Used with operations defined for the type
 
-   .. code:: Ada
+  .. code:: Ada
 
-      exception
-        when Caught_Exception : others =>
-          Put (Exception_Name (Caught_Exception));
+     exception
+       when Caught_Exception : others =>
+         Put (Exception_Name (Caught_Exception));
 
 ----------------------------------------
 `Exception_Occurrence` Query Functions
@@ -158,25 +158,25 @@ Exception Identity
 
 * Attribute 'Identity converts exceptions to the type
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Ada.Exceptions is
-        ...
-        type Exception_Id is private;
-        ...
-        procedure Raise_Exception (E : in Exception_Id;
-                                   Message : in String := "");
-        ...
-      end Ada.Exceptions;
+     package Ada.Exceptions is
+       ...
+       type Exception_Id is private;
+       ...
+       procedure Raise_Exception (E : in Exception_Id;
+                                  Message : in String := "");
+       ...
+     end Ada.Exceptions;
 
 * Primary use is raising exceptions procedurally
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Foo : exception;
-      ...
-      Ada.Exceptions.Raise_Exception (Foo'Identity,
-                                      Message => "FUBAR!");
+     Foo : exception;
+     ...
+     Ada.Exceptions.Raise_Exception (Foo'Identity,
+                                     Message => "FUBAR!");
 
 
 ------------------------------------
@@ -185,27 +185,27 @@ Re-Raising Exceptions Procedurally
 
 * Typical :ada:`raise` mechanism
 
-   .. code:: Ada
+  .. code:: Ada
 
-      begin
-        ...
-      exception
-        when others =>
-          Cleanup;
-          raise;
-      end;
+     begin
+       ...
+     exception
+       when others =>
+         Cleanup;
+         raise;
+     end;
 
 * Procedural :ada:`raise` mechanism
 
-   .. code:: Ada
+  .. code:: Ada
 
-      begin
-        ...
-      exception
-        when X : others =>
-          Cleanup;
-          Ada.Exceptions.Reraise_Occurrence (X);
-      end;
+     begin
+       ...
+     exception
+       when X : others =>
+         Cleanup;
+         Ada.Exceptions.Reraise_Occurrence (X);
+     end;
 
 ----------------------------------------
 Copying `Exception_Occurrence` Objects

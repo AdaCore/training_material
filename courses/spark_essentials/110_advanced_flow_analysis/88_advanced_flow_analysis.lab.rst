@@ -35,7 +35,7 @@ Flow Dependencies (1/2)
 
    *Example*
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap (X, Y : in out Integer)
         with Global => null,
@@ -55,17 +55,17 @@ Flow Dependencies (2/2)
 
    *Sample mistake*
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Init_Table (T : out Table)
         with Global => null,
              Depends => (T => null);
 
-   :color-red:`basics.ads:39:23: medium: missing self-dependency "T => T" (array bounds are preserved)`
+  :color-red:`basics.ads:39:23: medium: missing self-dependency "T => T" (array bounds are preserved)`
 
    *Correct dependency*
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Init_Table (T : out Table)
         with Global => null,
@@ -106,7 +106,7 @@ Imprecise Flow Dependencies (1/2)
    *Note that by adding* **Cond** *as a dependency of* **R**, *we no longer*
    *need an entry specifically for* **Cond**
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Strange_Init_Rec (R : out Rec; Cond : Boolean)
         with Global => null,
@@ -139,7 +139,7 @@ Imprecise Flow Dependencies (2/2)
 
 .. container:: animate 4-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Strange_Init_Table (T : out Table; Val : Integer)
       with Global => null,

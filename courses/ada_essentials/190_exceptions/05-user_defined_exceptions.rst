@@ -8,9 +8,9 @@ User-Defined Exceptions
 
 * Syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      <identifier_list> : exception;
+     <identifier_list> : exception;
 
 * Behave like predefined exceptions
 

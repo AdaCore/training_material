@@ -21,13 +21,13 @@ Subprogram-based Assertions
 * Requirements and guarantees on both supplier and client
 * Syntax uses **aspects**
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Push (This : in out Stack_T;
-                      Value : Content_T)
-        with Pre  => not Full (This),
-             Post => not Empty (This)
-                     and Top (This) = Value;
+     procedure Push (This : in out Stack_T;
+                     Value : Content_T)
+       with Pre  => not Full (This),
+            Post => not Empty (This)
+                    and Top (This) = Value;
 
 ---------------------------------
 Requirements / Guarantees: Quiz
@@ -35,17 +35,17 @@ Requirements / Guarantees: Quiz
 
 * Given the following piece of code
 
-    .. code:: Ada
+  .. code:: Ada
 
-       procedure Start is
-       begin
-           ...
-           Turn_On;
-           ...
+     procedure Start is
+     begin
+         ...
+         Turn_On;
+         ...
 
-       procedure Turn_On
-        with Pre => Has_Power,
-             Post => Is_On;
+     procedure Turn_On
+      with Pre => Has_Power,
+           Post => Is_On;
 
 * Complete the table in terms of requirements and guarantees
 
@@ -134,11 +134,11 @@ Postcondition :ada:`'Old` Attribute
 
         + Typically :ada:`out`, :ada:`in out` parameters and globals
 
-   .. code:: Ada
+          .. code:: Ada
 
-      procedure Increment (This : in out Integer) with
-          Pre  => This < Integer'Last,
-          Post => This = This'Old + 1;
+             procedure Increment (This : in out Integer) with
+                 Pre  => This < Integer'Last,
+                 Post => This = This'Old + 1;
 
 -------------------------------------------------
 Function Postcondition :ada:`'Result` Attribute
@@ -345,11 +345,11 @@ Assertion Policy
 
 * Assertions checks can be controlled with :ada:`pragma Assertion_Policy`
 
-   .. code:: Ada
+  .. code:: Ada
       
-      pragma Assertion_Policy
-           (Pre => Check,
-            Post => Ignore);
+     pragma Assertion_Policy
+          (Pre => Check,
+           Post => Ignore);
 
 * Fine **granularity** over assertion kinds and policy identifiers
 

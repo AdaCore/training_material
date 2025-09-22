@@ -14,14 +14,14 @@ Exception Handler Part
 * Starts with the reserved word :ada:`exception`
 * Optional
 
-   .. code:: Ada
+  .. code:: Ada
 
-      begin
-        sequence_of_statements
-      [ exception
-          exception_handler
-          { exception handler } ]
-      end
+     begin
+       sequence_of_statements
+     [ exception
+         exception_handler
+         { exception handler } ]
+     end
 
 ---------------------------
 Exception Handlers Syntax
@@ -34,12 +34,12 @@ Exception Handlers Syntax
 
 * Syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      exception_handler ::=
-        when exception_choice { | exception_choice } =>
-          sequence_of_statements
-      exception_choice ::= exception_name | others
+     exception_handler ::=
+       when exception_choice { | exception_choice } =>
+         sequence_of_statements
+     exception_choice ::= exception_name | others
 
 -------------------------------
 Similarity to Case Statements
@@ -48,26 +48,26 @@ Similarity to Case Statements
 * Both structure and meaning
 * Exception handler
 
-   .. code:: Ada
+  .. code:: Ada
 
-      ...
-      exception
-        when Constraint_Error | Storage_Error | Program_Error =>
-        ...
-        when others =>
-        ...
-      end;
+     ...
+     exception
+       when Constraint_Error | Storage_Error | Program_Error =>
+       ...
+       when others =>
+       ...
+     end;
 
 * Case statement
 
-   .. code:: Ada
+  .. code:: Ada
 
-      case exception_name is
-        when Constraint_Error | Storage_Error | Program_Error =>
-        ...
-        when others =>
-        ...
-      end case;
+     case exception_name is
+       when Constraint_Error | Storage_Error | Program_Error =>
+       ...
+       when others =>
+       ...
+     end case;
 
 -------------------------------
 Handlers Don't "Fall Through"
@@ -109,26 +109,26 @@ When an Exception Is Raised
 
     * Caller
 
-       .. code:: Ada
+      .. code:: Ada
 
-          ...
-          Joy_Ride;
-          Do_Something_At_Home;
-          ...
+         ...
+         Joy_Ride;
+         Do_Something_At_Home;
+         ...
 
-    * Callee
+   * Callee
 
-       .. code:: Ada
+      .. code:: Ada
 
-          procedure Joy_Ride is
-            ...
-          begin
-            ...
-            Drive_Home;
-          exception
-            when Fuel_Exhausted =>
-              Push_Home;
-          end Joy_Ride;
+         procedure Joy_Ride is
+           ...
+         begin
+           ...
+           Drive_Home;
+         exception
+           when Fuel_Exhausted =>
+             Push_Home;
+         end Joy_Ride;
 
 .. container:: speakernote
 
@@ -178,19 +178,19 @@ Exception Handler Content
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       begin
-         ...
-       exception
-         when Some_Error =>
-           declare
-             New_Data : Some_Type;
-           begin
-             P (New_Data);
-             ...
-           end;
-       end;
+      begin
+        ...
+      exception
+        when Some_Error =>
+          declare
+            New_Data : Some_Type;
+          begin
+            P (New_Data);
+            ...
+          end;
+      end;
 
 ------
 Quiz
@@ -202,30 +202,30 @@ Quiz
 
   .. container:: column
 
-   .. code:: Ada
-    :number-lines: 1
+    .. code:: Ada
+     :number-lines: 1
 
-      procedure Main is
-         A, B, C, D : Integer range 0 .. 100;
-      begin
-         A := 1; B := 2; C := 3; D := 4;
-         begin
-            D := A - C + B;
-         exception
-            when others => Put_Line ("One");
-                           D := 1;
-         end;
-         D := D + 1;
-         begin
-            D := D / (A - C + B);
-         exception
-            when others => Put_Line ("Two");
-                           D := -1;
-         end;
-      exception
-         when others =>
-            Put_Line ("Three");
-      end Main;
+       procedure Main is
+          A, B, C, D : Integer range 0 .. 100;
+       begin
+          A := 1; B := 2; C := 3; D := 4;
+          begin
+             D := A - C + B;
+          exception
+             when others => Put_Line ("One");
+                            D := 1;
+          end;
+          D := D + 1;
+          begin
+             D := D / (A - C + B);
+          exception
+             when others => Put_Line ("Two");
+                            D := -1;
+          end;
+       exception
+          when others =>
+             Put_Line ("Three");
+       end Main;
 
   .. container:: column
 

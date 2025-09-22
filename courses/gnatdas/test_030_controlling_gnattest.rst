@@ -88,7 +88,7 @@ Common Pre-/Post-Test Behavior
 
 * Found in :filename:`<unit>-test_data.adb`
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Set_Up (Gnattest_T : in out Test) is
          pragma Unreferenced (Gnattest_T);
@@ -111,7 +111,7 @@ Passing Data Between Tests
 
    * Defined in **<unit>.Test_Data**
 
-      .. code:: Ada
+     .. code:: Ada
 
          package Simple_Stack.Test_Data is
 
@@ -120,7 +120,7 @@ Passing Data Between Tests
          --  end read only
             with null record;
 
-   * Note that the completion of the record type is outside of the *read only* block allowing you to modify it as you see fit
+  * Note that the completion of the record type is outside of the *read only* block allowing you to modify it as you see fit
 
 * Parameter of type :ada:`Test` is passed to :ada:`Set_Up` and :ada:`Tear_Down` and every test
 

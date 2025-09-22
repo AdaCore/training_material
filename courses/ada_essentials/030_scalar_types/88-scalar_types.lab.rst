@@ -66,10 +66,10 @@ Scalar Types Lab Hints
 
 * Remember attribute `'Image` returns a `String`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      <typemark>'Image (Object)
-      Object'Image   
+     <typemark>'Image (Object)
+     Object'Image   
 
 ---------------------------
 Scalar Types Extra Credit

@@ -218,7 +218,7 @@ Mapping Python API to LKQL API
 
     .. container:: latex_environment small
 
-       .. code:: graphql
+      .. code:: graphql
 
           val expr_types = [node.p_expression_type() for node in select Expr]
 
@@ -310,7 +310,7 @@ Example of Boolean Rules
 
     .. container:: latex_environment tiny
 
-       .. code:: Ada
+      .. code:: Ada
           :number-lines: 1
 
           procedure Test is
@@ -325,7 +325,7 @@ Example of Boolean Rules
              <<label>>
           end Test;
 
-       Running :toolname:`GNATcheck` with these rules on this Ada source will produce:
+      Running :toolname:`GNATcheck` with these rules on this Ada source will produce:
 
           ::
 
@@ -429,15 +429,15 @@ You configure an LKQL rule behavior with annotation arguments
 
 *Example of an LKQL rule with rule arguments*
 
-   .. code:: graphql
+        .. code:: graphql
 
-      @check(
-         message: "There is a body node",
-         help: "This rule flags all body nodes",
-         follow_generic_instantiations: false,
-         remediation: "EASY"
-      )
-      fun bodies(node) = node is BodyNode
+           @check(
+              message: "There is a body node",
+              help: "This rule flags all body nodes",
+              follow_generic_instantiations: false,
+              remediation: "EASY"
+           )
+           fun bodies(node) = node is BodyNode
 
 --------------------------
 Rule Function Parameters

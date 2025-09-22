@@ -8,32 +8,32 @@ The Notion of a Pattern
 
 * Sometimes algorithms can be abstracted from types and subprograms
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Swap_Int (Left, Right : in out Integer) is
-        V : Integer := Left;
-      begin
-         Left := Right;
-         Right := V;
-      end Swap_Int;
+     procedure Swap_Int (Left, Right : in out Integer) is
+       V : Integer := Left;
+     begin
+        Left := Right;
+        Right := V;
+     end Swap_Int;
 
-      procedure Swap_Bool (Left, Right : in out Boolean) is
-         V : Boolean := Left;
-      begin
-         Left := Right;
-         Right := V;
-      end Swap_Bool;
+     procedure Swap_Bool (Left, Right : in out Boolean) is
+        V : Boolean := Left;
+     begin
+        Left := Right;
+        Right := V;
+     end Swap_Bool;
 
 * It would be nice to extract these properties in some common pattern, and then just replace the parts that need to be replaced
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Swap (Left, Right : in out (Integer | Boolean)) is
-        V : (Integer | Boolean) := Left;
-      begin
-         Left := Right;
-         Right := V;
-      end Swap;
+     procedure Swap (Left, Right : in out (Integer | Boolean)) is
+       V : (Integer | Boolean) := Left;
+     begin
+        Left := Right;
+        Right := V;
+     end Swap;
 
 --------------------
 Solution: Generics

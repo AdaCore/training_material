@@ -41,10 +41,10 @@ When to Avoid Private Types
    - Would otherwise be hidden by a private type
    - If `Vector` is private, indexing of components is annoying
 
-      .. code:: Ada
+     .. code:: Ada
 
-        type Vector is array (Positive range <>) of Float;
-        V : Vector (1 .. 3);
-        ...
-        V (1) := Alpha; -- Illegal since Vector is private
+       type Vector is array (Positive range <>) of Float;
+       V : Vector (1 .. 3);
+       ...
+       V (1) := Alpha; -- Illegal since Vector is private
 

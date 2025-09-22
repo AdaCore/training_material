@@ -52,15 +52,15 @@ Really, ``type`` and ``subtype`` Predicates
 * Applied via aspect clauses in both cases
 * Syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type <typemark> is <type_definition>
-         with <aspect_mark> [ => <expression>] { ,
-                   <aspect_mark> [ => <expression>] }
+     type <typemark> is <type_definition>
+        with <aspect_mark> [ => <expression>] { ,
+                  <aspect_mark> [ => <expression>] }
 
-      subtype <typemark> is <subtype_indication>
-         with <aspect_mark> [ => <expression>] { ,
-                   <aspect_mark> [ => <expression>] }
+     subtype <typemark> is <subtype_indication>
+        with <aspect_mark> [ => <expression>] { ,
+                  <aspect_mark> [ => <expression>] }
 
 --------------------------
 Why Two Predicate Forms?
@@ -102,22 +102,22 @@ Why Two Predicate Forms?
 
 * Dynamic Predicate
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Even is Integer with Dynamic_Predicate =>
-         Even mod 2 = 0; -- Boolean expression
-         -- (Even indicates "current instance")
+     subtype Even is Integer with Dynamic_Predicate =>
+        Even mod 2 = 0; -- Boolean expression
+        -- (Even indicates "current instance")
 
 * Static Predicate
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Serial_Baud_Rate is range 110 .. 115200
-        with Static_Predicate => Serial_Baud_Rate  in
-          -- Non-contiguous range
-          110  | 300  | 600 | 1200 | 2400 | 4800 |
-          9600 | 14400 | 19200 | 28800 | 38400 | 56000 |
-          57600 | 115200;
+     type Serial_Baud_Rate is range 110 .. 115200
+       with Static_Predicate => Serial_Baud_Rate  in
+         -- Non-contiguous range
+         110  | 300  | 600 | 1200 | 2400 | 4800 |
+         9600 | 14400 | 19200 | 28800 | 38400 | 56000 |
+         57600 | 115200;
 
 --------------------
 Predicate Checking
@@ -186,11 +186,11 @@ Predicate Expression Content
 
 * Reference to value of type itself, i.e., "current instance"
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Even is Integer
-        with Dynamic_Predicate => Even mod 2 = 0;
-      Current_Value, Next_Value : Even := 42;
+     subtype Even is Integer
+       with Dynamic_Predicate => Even mod 2 = 0;
+     Current_Value, Next_Value : Even := 42;
 
 * Any visible object or function in scope
 
@@ -217,22 +217,22 @@ Allowed Static Predicate Content (1)
 * Static membership test selected by current instance
 * Example 1
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Serial_Baud_Rate is range 110 .. 115200
-        with Static_Predicate => Serial_Baud_Rate in
-          -- Non-contiguous range
-          110   | 300   | 600   | 1200  | 2400  | 4800  | 9600 |
-          14400 | 19200 | 28800 | 38400 | 56000 | 57600 | 115200;
+     type Serial_Baud_Rate is range 110 .. 115200
+       with Static_Predicate => Serial_Baud_Rate in
+         -- Non-contiguous range
+         110   | 300   | 600   | 1200  | 2400  | 4800  | 9600 |
+         14400 | 19200 | 28800 | 38400 | 56000 | 57600 | 115200;
 
 * Example 2
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
-       -- only way to create subtype of non-contiguous values
-      subtype Weekend is Days
-        with Static_Predicate => Weekend in Sat | Sun;
+     type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+      -- only way to create subtype of non-contiguous values
+     subtype Weekend is Days
+       with Static_Predicate => Weekend in Sat | Sun;
 
 --------------------------------------
 Allowed Static Predicate Content (2)
@@ -240,24 +240,24 @@ Allowed Static Predicate Content (2)
 
 * Case expressions in which dependent expressions are static and selected by current instance
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
-      subtype Weekend is Days with Static_Predicate =>
-        (case Weekend is
-         when Sat | Sun => True,
-         when Mon .. Fri => False);
+     type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+     subtype Weekend is Days with Static_Predicate =>
+       (case Weekend is
+        when Sat | Sun => True,
+        when Mon .. Fri => False);
 
 * Note: if-expressions are disallowed, and not needed
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Drudge is Days with Static_Predicate =>
-        -- not legal
-        (if Drudge in Mon .. Fri then True else False);
-      -- should be
-      subtype Drudge is Days with Static_Predicate =>
-        Drudge in Mon .. Fri;
+     subtype Drudge is Days with Static_Predicate =>
+       -- not legal
+       (if Drudge in Mon .. Fri then True else False);
+     -- should be
+     subtype Drudge is Days with Static_Predicate =>
+       Drudge in Mon .. Fri;
 
 --------------------------------------
 Allowed Static Predicate Content (3)
@@ -282,14 +282,14 @@ Dynamic Predicate Expression Content
 
 * Plus additional operators, etc.
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Even is Integer
-        with Dynamic_Predicate => Even mod 2 = 0;
-      subtype Vowel is Character with Dynamic_Predicate =>
-        (case Vowel is
-         when 'A' | 'E' | 'I' | 'O' | 'U' => True,
-         when others => False); -- evaluated at run-time
+     subtype Even is Integer
+       with Dynamic_Predicate => Even mod 2 = 0;
+     subtype Vowel is Character with Dynamic_Predicate =>
+       (case Vowel is
+        when 'A' | 'E' | 'I' | 'O' | 'U' => True,
+        when others => False); -- evaluated at run-time
 
 * Plus calls to functions
 
@@ -304,15 +304,15 @@ Types Controlling For-Loops
 
    - Too expensive to implement
 
-      .. code:: Ada
+     .. code:: Ada
 
-         subtype Even is Integer
-           with Dynamic_Predicate => Even mod 2 = 0;
-         ...
-         -- not legal - how many iterations?
-         for A_Number in Even loop
-           ...
-         end loop;
+        subtype Even is Integer
+          with Dynamic_Predicate => Even mod 2 = 0;
+        ...
+        -- not legal - how many iterations?
+        for A_Number in Even loop
+          ...
+        end loop;
 
 * Types with static predicates can be used
 
@@ -333,34 +333,34 @@ Why Allow Types with Static Predicates?
 
 * Efficient code can be generated for usage
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
-      subtype Weekend is Days with Static_Predicate => Weekend in Sat | Sun;
-      ...
-      for A_Day in Weekend loop
-        GNAT.IO.Put_Line (A_Day'Image);
-      end loop;
+     type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
+     subtype Weekend is Days with Static_Predicate => Weekend in Sat | Sun;
+     ...
+     for A_Day in Weekend loop
+       GNAT.IO.Put_Line (A_Day'Image);
+     end loop;
 
 * :ada:`for` loop generates code like
 
-   .. code:: Ada
+  .. code:: Ada
 
-      declare
-        a_day : weekend := sun;
-      begin
-        loop
-          gnat__io__put_line__2 (a_day'Image);
-          case a_day is
-            when sun =>
-              a_day := sat;
-            when sat =>
-              exit;
-            when others =>
-              a_day := weekend'succ (a_day);
-          end case;
-        end loop;
-      end;
+     declare
+       a_day : weekend := sun;
+     begin
+       loop
+         gnat__io__put_line__2 (a_day'Image);
+         case a_day is
+           when sun =>
+             a_day := sat;
+           when sat =>
+             exit;
+           when others =>
+             a_day := weekend'succ (a_day);
+         end case;
+       end loop;
+     end;
 
 ---------------------------------------
 In Some Cases Neither Kind Is Allowed
@@ -406,11 +406,11 @@ Initial Values Can Be Problematic
    - No language guarantee of any specific value (random bits)
    - Example
 
-      .. code:: Ada
+     .. code:: Ada
 
-         subtype Even is Integer
-           with Dynamic_Predicate => Even mod 2 = 0;
-         Some_Number : Even;  -- unknown (invalid?) initial value
+        subtype Even is Integer
+          with Dynamic_Predicate => Even mod 2 = 0;
+        Some_Number : Even;  -- unknown (invalid?) initial value
 
 * The predicate is not checked on a declaration when no initial value is given
 * So can reference such junk values before assigned
@@ -448,31 +448,31 @@ Beware Accidental Recursion in Predicate
 * Caused by checks on function arguments
 * Infinitely recursive example
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Sorted_Table is array (1 .. N) of Integer with
-         Dynamic_Predicate => Sorted (Sorted_Table);
-      -- on call, predicate is checked!
-      function Sorted (T : Sorted_Table) return Boolean;
+     type Sorted_Table is array (1 .. N) of Integer with
+        Dynamic_Predicate => Sorted (Sorted_Table);
+     -- on call, predicate is checked!
+     function Sorted (T : Sorted_Table) return Boolean;
 
 * Non-recursive example
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Sorted_Table is array (1 .. N) of Integer with
-         Dynamic_Predicate =>
-         (for all Index in Sorted_Table'Range =>
-            (Index = Sorted_Table'First
-             or else Sorted_Table (Index - 1) <= Sorted_Table (Index)));
+     type Sorted_Table is array (1 .. N) of Integer with
+        Dynamic_Predicate =>
+        (for all Index in Sorted_Table'Range =>
+           (Index = Sorted_Table'First
+            or else Sorted_Table (Index - 1) <= Sorted_Table (Index)));
 
 * Type-based example
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Table is array (1 .. N) of Integer;
-      subtype Sorted_Table is Table with
-           Dynamic_Predicate => Sorted (Sorted_Table);
-      function Sorted (T : Table) return Boolean;
+     type Table is array (1 .. N) of Integer;
+     subtype Sorted_Table is Table with
+          Dynamic_Predicate => Sorted (Sorted_Table);
+     function Sorted (T : Table) return Boolean;
 
 ---------------------------------------
 GNAT-Specific Aspect Name *Predicate*
@@ -500,12 +500,12 @@ Enabling/Disabling Contract Verification
 
    - Syntax
 
-      .. code:: Ada
+     .. code:: Ada
 
-         pragma Assertion_Policy (policy_name);
-         pragma Assertion_Policy (
-            assertion_name => policy_name
-            {, assertion_name => policy_name});
+        pragma Assertion_Policy (policy_name);
+        pragma Assertion_Policy (
+           assertion_name => policy_name
+           {, assertion_name => policy_name});
 
 * Vendors may define additional policies (GNAT does)
 * Default, without pragma, is implementation-defined

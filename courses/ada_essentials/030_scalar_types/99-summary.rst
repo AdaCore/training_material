@@ -12,13 +12,13 @@ Summary
 
     - eg. constant with or with fractional part
 
-   .. code:: Ada
+      .. code:: Ada
 
-      type Yen is range 0 .. 1_000_000;
-      type Ruble is range 0 .. 1_000_000;
-      Mine : Yen := 1;
-      Yours : Ruble := 1;
-      Mine := Yours; -- illegal
+         type Yen is range 0 .. 1_000_000;
+         type Ruble is range 0 .. 1_000_000;
+         Mine : Yen := 1;
+         Yours : Ruble := 1;
+         Mine := Yours; -- illegal
 
 ------------------------------------
 User-Defined Numeric Type Benefits

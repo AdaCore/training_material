@@ -10,15 +10,15 @@ Available Operations
 
    - Equality (and thus inequality)
 
-      .. code:: Ada
+     .. code:: Ada
 
-         if A = B then
+        if A = B then
 
-   - Assignment
+  - Assignment
 
-      .. code:: Ada
+     .. code:: Ada
 
-         A := B;
+        A := B;
 
 * User-defined
 
