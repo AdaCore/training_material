@@ -34,18 +34,18 @@ Attributes' Benefits
 
 * Optimizer can identify redundant checks
 
-   .. code:: Ada
+  .. code:: Ada
 
-      declare
-         type Int_Arr is array (5 .. 15) of Integer;
-         Vector : Int_Arr;
-      begin
-         ...
-         for Idx in Vector'Range loop
-            Vector (Idx) := Idx * 2;
-         end loop;
+     declare
+        type Int_Arr is array (5 .. 15) of Integer;
+        Vector : Int_Arr;
+     begin
+        ...
+        for Idx in Vector'Range loop
+           Vector (Idx) := Idx * 2;
+        end loop;
 
-  * Compiler understands :ada:`Idx` has to be a valid index for :ada:`Vector`, so no run-time checks are necessary
+ * Compiler understands :ada:`Idx` has to be a valid index for :ada:`Vector`, so no run-time checks are necessary
 
 --------------------------------
 Nth Dimension Array Attributes

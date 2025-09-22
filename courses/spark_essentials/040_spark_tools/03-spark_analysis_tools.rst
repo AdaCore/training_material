@@ -37,14 +37,14 @@ SPARK Analysis Tools
     - For all files with value :ada:`"Ada"`
     - For specific file with its name
 
-  .. code:: Ada
+      .. code:: Ada
 
-     project Proj is
-       package Prove is
-         for Proof_Switches ("Ada") use ("--level=2");
-         for Proof_Switches ("file.adb") use ("--level=3");
-       end Prove;
-     end Proj;
+         project Proj is
+           package Prove is
+             for Proof_Switches ("Ada") use ("--level=2");
+             for Proof_Switches ("file.adb") use ("--level=3");
+           end Prove;
+         end Proj;
 
   - Use attribute :code:`Proof_Dir` to specify directory for session files
 

@@ -62,27 +62,27 @@ Defining the 'Image Attribute
 
 * Then we need to declare the procedure
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Array_T_Image
-        (Output : in out Ada.Strings.Text_Buffers.Root_Buffer_Type'Class;
-         Value  :        Array_T);
+     procedure Array_T_Image
+       (Output : in out Ada.Strings.Text_Buffers.Root_Buffer_Type'Class;
+        Value  :        Array_T);
 
-   * Which uses the :ada:`Ada.Strings.Text_Buffers.Root_Buffer_Type` as an output buffer
-   * (No need to go into detail here other than knowing you do :ada:`Output.Put` to add to the buffer)
+  * Which uses the :ada:`Ada.Strings.Text_Buffers.Root_Buffer_Type` as an output buffer
+  * (No need to go into detail here other than knowing you do :ada:`Output.Put` to add to the buffer)
 
 * And then we define it
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Array_T_Image
-        (Output : in out Ada.Strings.Text_Buffers.Root_Buffer_Type'Class;
-         Value  :        Array_T) is
-      begin
-         for Color in Value'Range loop
-            Output.Put (Color'Image & "=>" & Value (Color)'Image & ASCII.LF);
-         end loop;
-      end Array_T_Image;
+     procedure Array_T_Image
+       (Output : in out Ada.Strings.Text_Buffers.Root_Buffer_Type'Class;
+        Value  :        Array_T) is
+     begin
+        for Color in Value'Range loop
+           Output.Put (Color'Image & "=>" & Value (Color)'Image & ASCII.LF);
+        end loop;
+     end Array_T_Image;
 
 ----------------------------
 Using the 'Image Attribute

@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="45" width="450" >
+<polygon fill="none" stroke="#66aa66" stroke-width="2" points="36,10 126,10 100,36 10,36 "/>
+<text xml:space="preserve" fill="#66aa66" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='arial' font-weight="normal"  text-anchor="middle" x="68.0" y="27.0">Input</text>
+<polygon fill="none" stroke="#66aa66" stroke-width="2" points="351.0,10 441.0,10 415.0,36 325.0,36 "/>
+<text xml:space="preserve" fill="#66aa66" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='arial' font-weight="normal"  text-anchor="middle" x="383.0" y="27.0">Output</text>
+<rect fill="#000000" stroke="#000000" stroke-width="2" height="26" width="90" x="180.5" y="10" />
+<text xml:space="preserve" fill="#ffffff" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='arial' font-weight="normal"  text-anchor="middle" x="225.5" y="26.0">Black Box</text>
+<line fill="none" stroke="#66aa66" stroke-width="2" x1="113.0" y1="23.0" x2="175.5" y2="23.0" />
+<polygon fill="#66aa66" stroke="#66aa66" stroke-width="1" transform="rotate(135, 178.0, 23.0)" points="178.0,23.0 182.0,31.0 186.0,27.0 "/>
+<line fill="none" stroke="#66aa66" stroke-width="2" x1="271.5" y1="23.0" x2="335.0" y2="23.0" />
+<polygon fill="#66aa66" stroke="#66aa66" stroke-width="1" transform="rotate(135, 337.5, 23.0)" points="337.5,23.0 341.5,31.0 345.5,27.0 "/>
+</svg>

@@ -121,7 +121,7 @@ Test Case Format
 
 * Test example
 
-   .. code:: Ada
+  .. code:: Ada
      :number-lines: 33
 
       --  begin read only
@@ -144,10 +144,10 @@ Test Case Format
          end Test_Inc;
       --  end read only
 
-   * Line 33-39 - test declaration *(do not modify)*
-   * Line 41 - suppress unused parameter warning (if necessary)
-   * Line 45-47 - Test assertion (if first parameter is :ada:`False`, test fails - print second parameter)
-   * Line 49-51 - end of test *(do not modify)*
+  * Line 33-39 - test declaration *(do not modify)*
+  * Line 41 - suppress unused parameter warning (if necessary)
+  * Line 45-47 - Test assertion (if first parameter is :ada:`False`, test fails - print second parameter)
+  * Line 49-51 - end of test *(do not modify)*
 
 * By default, :ada:`Default_Assert_Value` is :ada:`False`, so that unimplemented tests fail
 
@@ -159,7 +159,7 @@ Test Implementation
 
 * For :ada:`Test_Inc`, we modify the test to verify that :ada:`Increment` succeeded
 
-   .. code:: Ada
+  .. code:: Ada
       :number-lines: 45
 
       AUnit.Assertions.Assert

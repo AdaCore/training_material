@@ -2,47 +2,52 @@
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
-   type Name_T is array (1 .. 6) of Character;
-   type Index_T is range 0 .. 1_000;
-   type Queue_T is array (Index_T range 1 .. 1_000) of Name_T;
+   Max_Feet   : constant := 100;
+   Max_Inches : constant := 12;
 
-   type Fifo_Queue_T is record
-      Next_Available : Index_T := 1;
-      Last_Served    : Index_T := 0;
-      Queue          : Queue_T := (others => (others => ' '));
+   type Feet_T is range 0 .. Max_Feet;
+   type Inches_T is range 0 .. Max_Inches - 1;
+
+   type Distance_T is record
+      Feet   : Feet_T;
+      Inches : Inches_T;
    end record;
 
-   Queue : Fifo_Queue_T;
-   Choice : Integer;
---Declarations
+   Point_1  : Distance_T;
+   Point_2  : Distance_T;
+   Distance : Distance_T;
+
+   Total : Integer;
+   --Declarations
 
 --Implementation
 begin
+   Point_1.Feet   := 12;
+   Point_1.Inches := 7;
 
-   loop
-      Put ("1 = add to queue | 2 = remove from queue | others => done: ");
-      Choice := Integer'Value (Get_Line);
-      if Choice = 1 then
-         Put ("Enter name: ");
-         Queue.Queue (Queue.Next_Available) := Name_T (Get_Line);
-         Queue.Next_Available               := Queue.Next_Available + 1;
-      elsif Choice = 2 then
-         if Queue.Next_Available = 1 then
-            Put_Line ("Nobody in line");
-         else
-            Queue.Last_Served := Queue.Last_Served + 1;
-            Put_Line ("Now serving: " & String (Queue.Queue (Queue.Last_Served)));
-         end if;
-      else
-         exit;
-      end if;
-      New_Line;
-   end loop;
+   Point_2 := (Feet   => 6,
+               Inches => 8);
 
-   Put_Line ("Remaining in line: ");
-   for Index in Queue.Last_Served + 1 .. Queue.Next_Available - 1 loop
-      Put_Line ("  " & String (Queue.Queue (Index)));
-   end loop;
+   Distance := (0, 0);
 
+   Total := Integer (Point_1.Inches) +
+            Integer (Point_2.Inches);
+   if Total > Max_Inches then
+      Distance.Inches := Inches_T (Total - Max_Inches);
+      Distance.Feet   := 1;
+   else
+      Distance.Inches := Point_1.Inches + Point_2.Inches;
+   end if;
+   Distance.Feet := Distance.Feet + Point_1.Feet + Point_2.Feet;
+
+   Put_Line ("Point 1: " &
+               Point_1.Feet'Image &
+               Point_1.Inches'Image);
+   Put_Line ("Point 2: " &
+               Point_2.Feet'Image &
+               Point_2.Inches'Image);
+   Put_Line ("Distance: " &
+               Distance.Feet'Image &
+               Distance.Inches'Image);
 end Main;
 --Implementation

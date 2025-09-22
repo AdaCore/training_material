@@ -1,33 +1,27 @@
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
-   type Name_T is array (1 .. 6) of Character;
-   type Index_T is range 0 .. 1_000;
-   type Queue_T is array (Index_T range 1 .. 1_000) of Name_T;
+   Max_Feet   : constant := 100;
+   Max_Inches : constant := 12;
 
-   -- type Fifo_Queue_T is ?
-   -- Queue : Fifo_Queue_T;
+   --  Create separate types for feet and inches
+   --  (Because adding inches to feet doesn't make sense)
 
-   Choice : Integer;
+   --  Distance_T should be a record with two fields
+   type Distance_T is new Integer;
+
+   Point_1  : Distance_T;
+   Point_2  : Distance_T;
+   Distance : Distance_T;
 
 begin
+   --  Set Point_1 to 12 feet 7 inches
+   --  Set Point_2 to 6 feet 8 inches
+   --  Add Point_1 and Point_2 together
+   --     (Hint: result should be 19 feet 3 inches!)
 
-   loop
-      Put ("1 = add to queue | 2 = remove from queue | others => done: ");
-      Choice := Integer'Value (Get_Line);
-      if Choice = 1 then
-         Put ("Enter name: ");
-         -- Use Ada.Text_IO.Get_Line to help put a name on the queue
-      elsif Choice = 2 then
-         -- Remove the appropriate item from the queue and print it
-         Put_Line ("TBD");
-      else
-         exit;
-      end if;
-      New_Line;
-   end loop;
-
-   Put_Line ("Remaining in line: ");
-   -- Print the remaining items in the queue
-
+   --  Print Point_1, Point_2, and Distance
+   Put_Line ("Point1: ?");
+   Put_Line ("Point2: ?");
+   Put_Line ("Distance: ?");
 end Main;

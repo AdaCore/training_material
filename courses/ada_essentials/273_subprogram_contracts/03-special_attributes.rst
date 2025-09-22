@@ -50,18 +50,18 @@ Example for Attribute :ada:`'Old`
 
 * Note the different uses of `'Old` in the postcondition
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Shift_And_Advance (Index : in out Integer) with Post =>
-         -- Global (Index) before call (so Global and Index are original)
-         Global (Index)'Old
-            -- Original Global and Original Index
-            = Global'Old (Index'Old)
-         and
-         -- Global after call and Index befor call
-         Global (Index'Old)
-            -- Global and Index after call
-            = Global (Index);
+     procedure Shift_And_Advance (Index : in out Integer) with Post =>
+        -- Global (Index) before call (so Global and Index are original)
+        Global (Index)'Old
+           -- Original Global and Original Index
+           = Global'Old (Index'Old)
+        and
+        -- Global after call and Index befor call
+        Global (Index'Old)
+           -- Global and Index after call
+           = Global (Index);
 
 ------------------------------------------------
 Error on Conditional Evaluation of :ada:`'Old`

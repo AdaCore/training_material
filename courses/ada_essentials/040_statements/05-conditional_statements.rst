@@ -28,29 +28,29 @@ If-then-elsif Statements
 
  .. container:: column
 
-  .. code:: Ada
-     :number-lines: 1
+   .. code:: Ada
+      :number-lines: 1
 
-     if Valve (N) /= Closed then
-       Isolate (Valve (N));
-       Failure (Valve (N));
-     else
-       if System = Off then
-         Failure (Valve (N));
-       end if;
-     end if;
+      if Valve (N) /= Closed then
+        Isolate (Valve (N));
+        Failure (Valve (N));
+      else
+        if System = Off then
+          Failure (Valve (N));
+        end if;
+      end if;
 
  .. container:: column
 
-  .. code:: Ada
-     :number-lines: 1
+   .. code:: Ada
+      :number-lines: 1
 
-     if Valve (N) /= Closed then
-       Isolate (Valve (N));
-       Failure (Valve (N));
-     elsif System = Off then
-       Failure (Valve (N));
-     end if;
+      if Valve (N) /= Closed then
+        Isolate (Valve (N));
+        Failure (Valve (N));
+      elsif System = Off then
+        Failure (Valve (N));
+      end if;
 
 .. container:: speakernote
 

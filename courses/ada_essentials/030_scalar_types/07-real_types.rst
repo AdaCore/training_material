@@ -43,12 +43,9 @@ Real Type (Floating and Fixed) Literals
 Declaring Floating Point Types
 --------------------------------
 
-* Syntax
+**Syntax**
 
-    .. code:: Ada
-
-       type <typemark> is
-           digits <expression> [range constraint];
+.. container:: source_include 030_scalar_types/syntax.bnf :start-after:declaring_floating_point_types_begin :end-before:declaring_floating_point_types_end :code:bnf
 
   - *digits* |rightarrow| **minimum** number of significant digits
   - **Decimal** digits, not bits
@@ -111,11 +108,11 @@ Floating Point Type Attributes
 
 * *Core* attributes
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type My_Float is digits N;  -- N static
+     type My_Float is digits N;  -- N static
 
-   - :ada:`My_Float'Digits`
+  - :ada:`My_Float'Digits`
 
       + Number of digits **requested** (N)
 

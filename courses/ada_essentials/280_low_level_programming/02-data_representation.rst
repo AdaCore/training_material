@@ -8,9 +8,9 @@ Data Representation Vs Requirements
 
 * Developer usually defines requirements on a type
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type My_Int is range 1 .. 10;
+     type My_Int is range 1 .. 10;
 
 * The compiler then generates a representation for this type that can accommodate requirements
 
@@ -121,8 +121,8 @@ Record Types
 
  .. container:: column
 
-    .. image:: record_packing_examples.png
-       :width: 50%
+    .. image:: record_packing_examples.svg
+      :height: 75%
 
 -------------
 Pack Aspect
@@ -132,32 +132,32 @@ Pack Aspect
 * Compiler optimizes data for size no matter performance impact
 * Unpacked
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Enum is (E1, E2, E3);
-      type Rec is record
-         A : Integer;
-         B : Boolean;
-         C : Boolean;
-         D : Enum;
-      end record;
-      type Ar is array (1 .. 1000) of Boolean;
-      -- Rec'Size is 56, Ar'Size is 8000
+     type Enum is (E1, E2, E3);
+     type Rec is record
+        A : Integer;
+        B : Boolean;
+        C : Boolean;
+        D : Enum;
+     end record;
+     type Ar is array (1 .. 1000) of Boolean;
+     -- Rec'Size is 56, Ar'Size is 8000
 
 * Packed
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Enum is (E1, E2, E3);
-      type Rec is record
-         A : Integer;
-         B : Boolean;
-         C : Boolean;
-         D : Enum;
-      end record with Pack;
-      type Ar is array (1 .. 1000) of Boolean;
-      pragma Pack (Ar);
-      -- Rec'Size is 36, Ar'Size is 1000
+     type Enum is (E1, E2, E3);
+     type Rec is record
+        A : Integer;
+        B : Boolean;
+        C : Boolean;
+        D : Enum;
+     end record with Pack;
+     type Ar is array (1 .. 1000) of Boolean;
+     pragma Pack (Ar);
+     -- Rec'Size is 36, Ar'Size is 1000
 
 -------------------------------
 Enum Representation Clauses
@@ -197,21 +197,21 @@ Record Representation Clauses
 
  .. container:: column
 
-      .. code:: Ada
+   .. code:: Ada
 
-        type Rec1 is record
-           A : Integer range 0 .. 4;
-           B : Boolean;
-           C : Integer;
-           D : Enum;
-        end record;
-        for Rec1 use record
-           A at 0 range 0 ..  2;
-           B at 0 range 3 ..  3;
-           C at 0 range 4 .. 35;
-           -- unused space here
-           D at 5 range 0 ..  2;
-        end record;
+     type Rec1 is record
+        A : Integer range 0 .. 4;
+        B : Boolean;
+        C : Integer;
+        D : Enum;
+     end record;
+     for Rec1 use record
+        A at 0 range 0 ..  2;
+        B at 0 range 3 ..  3;
+        C at 0 range 4 .. 35;
+        -- unused space here
+        D at 5 range 0 ..  2;
+     end record;
 
 ------------------
 Unchecked Unions

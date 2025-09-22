@@ -1,49 +1,39 @@
 with Ada.Text_IO; use Ada.Text_IO;
-with Employee;
-with Vstring; use Vstring;
+with Employee;    use Employee;
+with Vstring;     use Vstring;
 procedure Main is
-   procedure Print (Member : Employee.Employee_T) is
+   List  : array (1 .. 1_000) of Employee_T;
+   Count : Natural := 0;
+
+   procedure Print (Member : Employee_T) is
       First_Line : constant Vstring.Vstring_T :=
         Member.First_Name & " " & Member.Last_Name & " " &
         Member.Hourly_Rate'Image;
    begin
       Put_Line (Vstring.To_String (First_Line));
       case Member.Category is
-         when Employee.Supervisor =>
+         when Supervisor =>
             Put_Line ("   Project: " & Vstring.To_String (Member.Project));
-         when Employee.Manager =>
-            Put_Line ("   Overseeing " & Member.Staff_Count'Image & " in " &
-                      Vstring.To_String (Member.Department));
-         when others => null;
+         when Manager =>
+            Put_Line
+              ("   Overseeing " & Member.Staff_Count'Image & " in " &
+               Vstring.To_String (Member.Department));
+         when others =>
+            null;
       end case;
    end Print;
 
-   List  : array (1 .. 1_000) of Employee.Employee_T;
-   Count : Natural := 0;
+   procedure Add (Item : Employee_T) is
+   begin
+      Count        := Count + 1;
+      List (Count) := Item;
+   end Add;
+
 begin
-   loop
-      Put_Line ("E => Employee");
-      Put_Line ("S => Supervisor");
-      Put_Line ("M => Manager");
-      Put ("E/S/M (any other to stop): ");
-      declare
-         Choice : constant String := Get_Line;
-      begin
-         case Choice (1) is
-            when 'E' | 'e' =>
-               Count        := Count + 1;
-               List (Count) := Employee.Get_Staff;
-            when 'S' | 's' =>
-               Count        := Count + 1;
-               List (Count) := Employee.Get_Supervisor;
-            when 'M' | 'm' =>
-               Count        := Count + 1;
-               List (Count) := Employee.Get_Manager;
-            when others =>
-               exit;
-         end case;
-      end;
-   end loop;
+
+   Add (Create_Manager ("Wilma", "Flintstone", 1.23, "Payroll", 4));
+   Add (Create_Supervisor ("Christopher", "Pike", 5.67, "Starship"));
+   Add (Create_Staff ("Jamie", "Dutton", 8.90));
 
    for Item of List (1 .. Count) loop
       Print (Item);

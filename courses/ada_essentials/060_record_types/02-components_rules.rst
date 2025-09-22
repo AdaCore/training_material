@@ -11,36 +11,36 @@ Characteristics of Components
 * May be no components, for **empty records**
 * **No** anonymous types (e.g., arrays) allowed
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Record_1 is record
-         This_Is_Not_Legal : array (1 .. 3) of Integer;
-      end record;
+     type Record_1 is record
+        This_Is_Not_Legal : array (1 .. 3) of Integer;
+     end record;
 
 * **No** constant components
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Record_2 is record
-         This_Is_Not_Legal : constant Integer := 123;
-      end record;
+     type Record_2 is record
+        This_Is_Not_Legal : constant Integer := 123;
+     end record;
 
 * **No** recursive definitions
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Record_3 is record
-         This_Is_Not_Legal : Record_3;
-      end record;
+     type Record_3 is record
+        This_Is_Not_Legal : Record_3;
+     end record;
 
 * **No** indefinite types
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Record_5 is record
-         This_Is_Not_Legal : String;
-         But_This_Is_Legal : String (1 .. 10);
-      end record;
+     type Record_5 is record
+        This_Is_Not_Legal : String;
+        But_This_Is_Legal : String (1 .. 10);
+     end record;
 
 -----------------------
 Multiple Declarations
@@ -48,21 +48,21 @@ Multiple Declarations
 
 * Multiple declarations are allowed (like objects)
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Several is record
-         A, B, C : Integer := F;
-      end record;
+     type Several is record
+        A, B, C : Integer := F;
+     end record;
 
 * Equivalent to
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Several is record
-         A : Integer := F;
-         B : Integer := F;
-         C : Integer := F;
-      end record;
+     type Several is record
+        A : Integer := F;
+        B : Integer := F;
+        C : Integer := F;
+     end record;
 
 -----------------------------------------
 "Dot" Notation for Components Reference

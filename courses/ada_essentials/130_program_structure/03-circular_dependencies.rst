@@ -85,22 +85,22 @@ Circular Dependency in Package Declaration
 
 * Normal view
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Personnel is
-        type Employee is private;
-        procedure Assign ...
-      private
-        type Employee is ...
-      end Personnel;
+     package Personnel is
+       type Employee is private;
+       procedure Assign ...
+     private
+       type Employee is ...
+     end Personnel;
 
 * Implied limited view
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Personnel is
-        type Employee;
-      end Personnel;
+     package Personnel is
+       type Employee;
+     end Personnel;
 
 .. container:: speakernote
 
@@ -177,17 +177,17 @@ Full `with` Clause on the Package Body
 
 * Usual semantics from then on
 
-   .. code:: Ada
+  .. code:: Ada
 
-      limited with Personnel;
-      package Department is
-      ...
-      end Department;
+     limited with Personnel;
+     package Department is
+     ...
+     end Department;
 
-      with Personnel; -- normal view in body
-      package body Department is
-      ...
-      end Department;
+     with Personnel; -- normal view in body
+     package body Department is
+     ...
+     end Department;
 
 ..
   language_version 2005

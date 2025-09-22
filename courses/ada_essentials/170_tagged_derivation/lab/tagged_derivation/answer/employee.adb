@@ -25,8 +25,9 @@ package body Employee is
       Put_Line ("Birthdate: " & Image (O.Birth_Date));
    end Print;
 
-   not overriding procedure Set_Start_Date (O     : in out Employee_T;
-                                            Value :        Date_T) is
+   not overriding procedure Set_Start_Date
+     (O     : in out Employee_T;
+      Value :        Date_T) is
    begin
       O.The_Start_Date := Value;
    end Set_Start_Date;
@@ -35,7 +36,8 @@ package body Employee is
 
    overriding procedure Print (O : Employee_T) is
    begin
-      Print (Person_T (O)); --  Use parent "Print"
+      Put_Line ("Name: " & Name (O));
+      Put_Line ("Birthdate: " & Image (O.Birth_Date));
       Put_Line ("Startdate: " & Image (O.Start_Date));
    end Print;
 
@@ -45,7 +47,8 @@ package body Employee is
    begin
       O.The_Job := Value;
    end Set_Job;
-   not overriding function Job (O : Position_T) return Job_T is (O.The_Job);
+   not overriding function Job (O : Position_T) return Job_T is
+      (O.The_Job);
 
    overriding procedure Print (O : Position_T) is
    begin

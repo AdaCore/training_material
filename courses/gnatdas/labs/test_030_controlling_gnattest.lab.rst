@@ -59,7 +59,7 @@ Create Tests
 
 * Re-write or copy the test answers from the *Usage* lab (here are some examples)
 
-   .. code:: Ada
+  .. code:: Ada
 
       -- Push
       Reset;
@@ -144,7 +144,7 @@ Add "Global" Code
 
    :filename:`simple_stack-test_data.adb`
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Set_Up (Gnattest_T : in out Test) is
          pragma Unreferenced (Gnattest_T);
@@ -152,13 +152,13 @@ Add "Global" Code
          Reset;
       end Set_Up;
 
-   * For extra credit, add code to clear global data
+  * For extra credit, add code to clear global data
 
 .. container:: animate 3-
 
    :filename:`simple_stack-test_data.adb`
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Tear_Down (Gnattest_T : in out Test) is
          pragma Unreferenced (Gnattest_T);
@@ -166,4 +166,4 @@ Add "Global" Code
          Reset;
       end Tear_Down;
 
-   *This ensures the stack is reset when tests for other units are run*
+  *This ensures the stack is reset when tests for other units are run*

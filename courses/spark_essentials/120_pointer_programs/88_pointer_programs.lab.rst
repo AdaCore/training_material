@@ -54,7 +54,7 @@ Swapping Pointers (1/2)
 
 .. container:: animate 4-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap_Ptr (X, Y : in out not null Int_Acc) is
          Tmp : Int_Acc := X;
@@ -80,7 +80,7 @@ Swapping Pointers (2/2)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap (X, Y : not null Int_Acc)
         with Post => X.all = Y.all'Old and then Y.all = X.all'Old;
@@ -106,15 +106,15 @@ Allocation and Deallocation
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Dealloc (X : in out Int_Acc)
       with Depends => (X => null, null => X),
            Post => X = null;
 
-   *Note the message verifying no memory leak*
+  *Note the message verifying no memory leak*
 
-   :color-red:`pointers.adb:29:9: info: absence of resource or memory leak proved`
+  :color-red:`pointers.adb:29:9: info: absence of resource or memory leak proved`
 
 ---------------------
 Recursion and Loops
@@ -140,7 +140,7 @@ Recursion and Loops
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       while B /= null loop
          pragma Loop_Invariant

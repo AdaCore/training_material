@@ -72,17 +72,17 @@ Which statement is True?
    C. Because they are expressions, the :ada:`return` statement is not allowed
    D. An expression function does not allow assignment statements, but it can call another function that is **not** an expression function.
 
-      .. code:: Ada
+  .. code:: Ada
 
-         function Normal_Fun (Input  :     Character;
-                              Output : out Integer)
-                              return Boolean is
-         begin
-            Output := Character'Pos (Input);
-            return True;
-         end Normal_Fun;
+     function Normal_Fun (Input  :     Character;
+                          Output : out Integer)
+                          return Boolean is
+     begin
+        Output := Character'Pos (Input);
+        return True;
+     end Normal_Fun;
 
-         function Expr_Fun (Input  :     Character;
-                            Output : out Integer)
-                            return Boolean is
-            (Normal_Fun (Character'Succ (Input), Output));
+     function Expr_Fun (Input  :     Character;
+                        Output : out Integer)
+                        return Boolean is
+        (Normal_Fun (Character'Succ (Input), Output));

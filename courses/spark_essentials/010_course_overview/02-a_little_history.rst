@@ -9,7 +9,7 @@ Motivating Example
 * Consider these lines of code from the original release of the Tokeneer code
   (demonstrator for the NSA)
 
-   .. code:: Ada
+  .. code:: Ada
 
       if Success and then
         (RawDuration * 10 <= Integer(DurationT'Last) and
