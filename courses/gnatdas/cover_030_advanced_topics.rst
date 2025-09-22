@@ -68,7 +68,7 @@ Simple Instrumentation
 
 * As we saw before, it is easy to instrument a simple project
 
-   .. code:: gpr
+  .. code:: gpr
 
       project Default is
          for Source_Dirs use ("src");
@@ -76,13 +76,13 @@ Simple Instrumentation
          for Main use ("test_driver.adb");
       end Default;
 
-   ::
+  ::
 
       gnatcov instrument -Pdefault.gpr --level=stmt
 
 * But what happens in a more complicated build environment with multiple projects?
 
-   .. code:: gpr
+  .. code:: gpr
 
       with "io/io.gpr";
       with "utils/utils.gpr";
@@ -151,13 +151,13 @@ Indicating Units of Interest Within Projects
 
 * We can control units of interest from the project file's :ada:`Coverage` package
 
-   .. code:: gpr
+  .. code:: gpr
 
       package Coverage is
         for Units use ("instructions", "tokens");
       end Coverage;
 
-   * Note that **units** refer to the Ada name, not the source file name
+  * Note that **units** refer to the Ada name, not the source file name
 
       * So :ada:`package Naming` would have no affect
 
@@ -187,15 +187,15 @@ What About Separates?
 
 * Sometimes you build your application using a :ada:`separate` body for a package or subprogram
 
-   .. code:: Ada
+  .. code:: Ada
 
       package body Input is 
          procedure Read_New_Line is separate;
       end Input;
 
-   * Useful when your build process wants a different body based on various situations
+  * Useful when your build process wants a different body based on various situations
 
-      .. code:: gpr
+  .. code:: gpr
 
          package Naming is
             case Build is
@@ -210,7 +210,7 @@ What About Separates?
 
 * As a :ada:`separate` is not a unit, how do we prevent instrumentation of this subprogram when ``DEBUG`` is set?
 
-   .. code:: gpr
+  .. code:: gpr
 
       package Coverage is
         for Ignored_Source_Files use ("input-*.adb");
@@ -249,7 +249,7 @@ Coverage Exemptions
 
    * Typically for defensive coding purposes
 
-      .. code:: Ada
+     .. code:: Ada
          :number-lines: 1
 
          function My_New return Access_T is
@@ -272,7 +272,7 @@ Coverage Exemption Region
 
    * Use :ada:`pragma Annotate` to indicate source that should not be tracked
 
-      .. code:: Ada
+     .. code:: Ada
          :number-lines: 1
 
          function My_New return Access_T is
@@ -287,7 +287,7 @@ Coverage Exemption Region
             return Retval;
          end My_New;
 
-   * Note that we are turning on/off the *exemption*, not the *instrumentation*
+  * Note that we are turning on/off the *exemption*, not the *instrumentation*
 
       * That's why we start the block with :ada:`Exempt_On` on **line 5** and end with :ada:`Exempt_Off` on **line 9**
 

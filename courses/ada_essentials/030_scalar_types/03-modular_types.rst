@@ -48,16 +48,16 @@ Safely Converting Signed to Unsigned
    - :ada:`Universal_Integer` argument
    - So **any** integer type allowed
 
-  .. code:: Ada
+     .. code:: Ada
 
-     procedure Test is
-       type Byte is mod 2**8;  -- 0 .. 255
-       B : Byte;
-       type Signed_Byte is range -128 .. 127;
-       SB : Signed_Byte;
-     begin
-       SB := -1;
-       B := Byte'Mod (SB);  -- OK (255)
+        procedure Test is
+          type Byte is mod 2**8;  -- 0 .. 255
+          B : Byte;
+          type Signed_Byte is range -128 .. 127;
+          SB : Signed_Byte;
+        begin
+          SB := -1;
+          B := Byte'Mod (SB);  -- OK (255)
 
 -----------------------
 Package **Interfaces**
@@ -66,11 +66,11 @@ Package **Interfaces**
 * **Standard** package
 * Integer types with **defined bit length**
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type My_Base_Integer is new Integer;
-      pragma Assert (My_Base_Integer'First = -2**31);
-      pragma Assert (My_Base_Integer'Last = 2**31-1);
+     type My_Base_Integer is new Integer;
+     pragma Assert (My_Base_Integer'First = -2**31);
+     pragma Assert (My_Base_Integer'Last = 2**31-1);
 
 * Dealing with hardware registers
 

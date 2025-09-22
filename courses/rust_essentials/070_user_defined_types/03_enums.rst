@@ -61,7 +61,7 @@ Key Points:
    -  You can control the discriminant if needed (e.g., for
       compatibility with C):
 
-      .. code:: rust
+     .. code:: rust
 
          #[repr(u32)]
          enum Bar {
@@ -76,7 +76,7 @@ Key Points:
              println!("C: {}", Bar::C as u32);
          }
 
-      Without :rust:`repr`, the discriminant type takes 2 bytes, because
+     Without :rust:`repr`, the discriminant type takes 2 bytes, because
       10001 fits 2 bytes.
 
 -----------------
@@ -95,7 +95,7 @@ space.
    provides no guarantees regarding this representation, therefore this
    is totally unsafe.
 
-   .. code:: rust
+  .. code:: rust
 
       use std::mem::transmute;
 

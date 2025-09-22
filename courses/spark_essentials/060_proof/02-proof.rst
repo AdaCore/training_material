@@ -193,10 +193,10 @@ Levels of Software Assurance
 
     + Typically a few preconditions only
 
-  .. code:: ada
+      .. code:: ada
 
-     procedure Update (T : in out Table; X : Index; V : Value)
-       with Pre => X in T'Range;
+         procedure Update (T : in out Table; X : Index; V : Value)
+           with Pre => X in T'Range;
 
 * Gold level
 
@@ -205,9 +205,9 @@ Levels of Software Assurance
 
   .. code:: ada
 
-     procedure Update (T : in out Table; X : Index; V : Value)
-       with Pre  => X in T'Range,
-            Post => T (X) = V;
+         procedure Update (T : in out Table; X : Index; V : Value)
+           with Pre  => X in T'Range,
+                Post => T (X) = V;
 
 * Platinum level
 
@@ -216,9 +216,9 @@ Levels of Software Assurance
 
   .. code:: ada
 
-     procedure Update (T : in out Table; X : Index; V : Value)
-       with Pre  => X in T'Range,
-            Post => T = (T'Old with delta X => V);
+         procedure Update (T : in out Table; X : Index; V : Value)
+           with Pre  => X in T'Range,
+                Post => T = (T'Old with delta X => V);
 
 ---------------
 Preconditions

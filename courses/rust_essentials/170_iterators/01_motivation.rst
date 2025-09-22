@@ -39,7 +39,7 @@ Details
 -  Rust doesn't have a C-style :rust:`for` loop, but we can express the same
    thing with :rust:`while`:
 
-   .. code:: rust
+  .. code:: rust
 
       let array = [2, 4, 6, 8];
       let mut i = 0;

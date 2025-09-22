@@ -122,24 +122,24 @@ Using Other Naming Conventions
 
    * **Example:** your source files use :filename:`.1.ada` for specs and :filename:`.2.ada` for bodies
 
-      .. code:: Ada
+     .. code:: Ada
 
-         package Naming is
-            for Spec_Suffix ("Ada") use ".1.ada";
-            for Body_Suffix ("Ada") use ".2.ada";
-         end Naming;
+        package Naming is
+           for Spec_Suffix ("Ada") use ".1.ada";
+           for Body_Suffix ("Ada") use ".2.ada";
+        end Naming;
 
-   * Example: different implementations for different platforms
+  * Example: different implementations for different platforms
       
-      .. code:: Ada
+     .. code:: Ada
 
-         package Naming is
-            case Platform is
-               when "windows =>
-                  for Body ("My_IO") use "my_io.windows";
-               when "linux" =>
-                  for Body ("My_IO") use "my_io.linux";
-         end Naming;
+        package Naming is
+           case Platform is
+              when "windows =>
+                 for Body ("My_IO") use "my_io.windows";
+              when "linux" =>
+                 for Body ("My_IO") use "my_io.linux";
+        end Naming;
 
 ------------------
 More Information

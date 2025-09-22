@@ -37,23 +37,23 @@ Allow Clients to Avoid Exceptions
 
 * Callee
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Stack is
-        Overflow : exception;
-        Underflow : exception;
-        function Full return Boolean;
-        function Empty return Boolean;
-        procedure Push (Item : in Some_Type);
-        procedure Pop (Item : out Some_Type);
-      end Stack;
+     package Stack is
+       Overflow : exception;
+       Underflow : exception;
+       function Full return Boolean;
+       function Empty return Boolean;
+       procedure Push (Item : in Some_Type);
+       procedure Pop (Item : out Some_Type);
+     end Stack;
 
 * Caller
 
-   .. code:: Ada
+  .. code:: Ada
 
-      if not Stack.Empty then
-        Stack.Pop (...);  -- will not raise Underflow
+     if not Stack.Empty then
+       Stack.Pop (...);  -- will not raise Underflow
 
 ----------------------------------
 You Can Suppress Run-Time Checks
@@ -61,9 +61,9 @@ You Can Suppress Run-Time Checks
 
 * Syntax (could use a compiler switch instead)
 
-   .. code:: Ada
+  .. code:: Ada
 
-      pragma Suppress (check-name [, [On =>] name]);
+     pragma Suppress (check-name [, [On =>] name]);
 
 * Language-defined checks emitted by compiler
 * Compiler may ignore request if unable to comply

@@ -58,7 +58,7 @@ Type Predicates (2/2)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Bump_Pair (P : in out Pair) is
       begin
@@ -74,7 +74,7 @@ Type Predicates (2/2)
 
    - Update the spec
 
-      .. code:: Ada
+     .. code:: Ada
 
          type Base_Pair is record
             X, Y : Integer;
@@ -83,9 +83,9 @@ Type Predicates (2/2)
          subtype Pair is Base_Pair
            with Predicate => Pair.X /= Pair.Y;
 
-   - Update the body
+  - Update the body
 
-      .. code:: Ada
+     .. code:: Ada
 
          procedure Swap_Pair (P : in out Pair) is
             Base : Base_Pair := P;
@@ -133,7 +133,7 @@ Type Invariants (2/4)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       type Triplet is record
          A : Integer := 0;
@@ -154,7 +154,7 @@ Type Invariants (3/4)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap_Triplet (T : in out Triplet) is
       begin
@@ -174,7 +174,7 @@ Type Invariants (4/4)
    
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Bump_Triplet (T : in out Triplet)
       with
@@ -185,8 +185,8 @@ Type Invariants (4/4)
                 T.B = T.B'Old + 1 and
                 T.C = T.C'Old + 1;
 
-   * But this isn't enough! We know what is *supposed* to happen, but
-     it isn't what actually happens!
+  * But this isn't enough! We know what is *supposed* to happen, but
+    it isn't what actually happens!
 
      * The prover has found a bug!
      * Fix the code for :ada:`Bump_Triplet`

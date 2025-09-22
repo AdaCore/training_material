@@ -59,20 +59,20 @@ Requiring/Rejecting Bodies Justification
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       package P is
-         Data : array (L .. U) of
-             Integer;
-       end P;
+      package P is
+        Data : array (L .. U) of
+            Integer;
+      end P;
 
-       package body P is
-         ...
-       begin
-         for K in Data'Range loop
-           Data (K) := ...
-         end loop;
-       end P;
+      package body P is
+        ...
+      begin
+        for K in Data'Range loop
+          Data (K) := ...
+        end loop;
+      end P;
 
 ---------------------------------------
 Forcing a Package Body to Be Required
@@ -91,19 +91,19 @@ Forcing a Package Body to Be Required
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       package P is
-         pragma Elaborate_Body;
-         Data : array (L .. U) of
-             Integer;
-       end P;
+      package P is
+        pragma Elaborate_Body;
+        Data : array (L .. U) of
+            Integer;
+      end P;
 
-       package body P is
-         ...
-       begin
-         for K in Data'Range loop
-           Data (K) := ...
-         end loop;
-       end P;
+      package body P is
+        ...
+      begin
+        for K in Data'Range loop
+          Data (K) := ...
+        end loop;
+      end P;
 

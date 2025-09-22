@@ -11,20 +11,20 @@ Unconstrained Array Type Declarations
 * Bounds cannot change once set
 * Syntax (with simplifications)
 
-   .. code:: Ada
+  .. code:: Ada
 
-      unconstrained_array_definition ::=
-         array (index_subtype_definition
-            {, index_subtype_definition})
-            of subtype_indication
-      index_subtype_definition ::= subtype_mark range <>
+     unconstrained_array_definition ::=
+        array (index_subtype_definition
+           {, index_subtype_definition})
+           of subtype_indication
+     index_subtype_definition ::= subtype_mark range <>
 
 * Examples
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Index is range 1 .. Integer'Last;
-      type Char_Arr is array (Index range <>) of Character;
+     type Index is range 1 .. Integer'Last;
+     type Char_Arr is array (Index range <>) of Character;
 
 -----------------------------------------
 Supplying Index Constraints for Objects
@@ -114,10 +114,10 @@ Null Index Range
 
    - `String`, with `Character` as component
 
-      .. code:: Ada
+     .. code:: Ada
 
-         subtype Positive is Integer range 1 .. Integer'Last;
-         type String is array (Positive range <>) of Character;
+        subtype Positive is Integer range 1 .. Integer'Last;
+        type String is array (Positive range <>) of Character;
 
    - `Wide_String`, with `Wide_Character` as component
    - `Wide_Wide_String`, with `Wide_Wide_Character` as component

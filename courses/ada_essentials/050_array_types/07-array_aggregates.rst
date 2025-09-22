@@ -18,17 +18,17 @@ Aggregates
 
 * Syntax (simplified):
 
-   .. code:: Ada
+  .. code:: Ada
 
-      component_expr ::=
-        expression -- Defined value
-        | <>       -- Default value
+     component_expr ::=
+       expression -- Defined value
+       | <>       -- Default value
 
-      array_aggregate ::= (
-          {component_expr ,}                         -- Positional
-        | {discrete_choice_list => component_expr,}) -- Named
-        -- Default "others" indexes
-        [others => expression]
+     array_aggregate ::= (
+         {component_expr ,}                         -- Positional
+       | {discrete_choice_list => component_expr,}) -- Named
+       -- Default "others" indexes
+       [others => expression]
 
 -----------------------------
 Aggregate "Positional" Form
@@ -116,12 +116,12 @@ Aggregate Consistency Rules
 
 * Compiler rejects incomplete or inconsistent aggregates
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Week := (Sat => False,
-               Sun => False,
-               Mon .. Fri => True,
-               Wed => False);
+     Week := (Sat => False,
+              Sun => False,
+              Mon .. Fri => True,
+              Wed => False);
 
 .. container:: speakernote
 
@@ -172,16 +172,16 @@ Defaults Within Array Aggregates
 
 * Syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      discrete_choice_list => <>
+     discrete_choice_list => <>
 
 * Example
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Int_Arr is array (1 .. N) of Integer;
-      Primes : Int_Arr := (1 => 2, 2 .. N => <>);
+     type Int_Arr is array (1 .. N) of Integer;
+     Primes : Int_Arr := (1 => 2, 2 .. N => <>);
 
 ..
   language_version 2005
@@ -248,34 +248,34 @@ Aggregates in Ada 2022
 
 * Ada 2022 allows us to use square brackets **"[...]"** in defining aggregates
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Array_T is array (positive range <>) of Integer;
+     type Array_T is array (positive range <>) of Integer;
 
-   * So common aggregates can use either square brackets or parentheses
+  * So common aggregates can use either square brackets or parentheses
 
-      .. code:: Ada
+  .. code:: Ada
 
-         Ada2012 : Array_T := (1, 2, 3);
-         Ada2022 : Array_T := [1, 2, 3];
+     Ada2012 : Array_T := (1, 2, 3);
+     Ada2022 : Array_T := [1, 2, 3];
 
 * But square brackets help in more problematic situations
 
    * Empty array
 
-      .. code:: Ada
+     .. code:: Ada
 
-         Ada2012 : Array_T := (1..0 => 0);
-         Illegal : Array_T := ();
-         Ada2022 : Array_T := [];
+        Ada2012 : Array_T := (1..0 => 0);
+        Illegal : Array_T := ();
+        Ada2022 : Array_T := [];
 
-   * Single component array
+  * Single component array
 
-      .. code:: Ada
+     .. code:: Ada
 
-         Ada2012 : Array_T := (1 => 5);
-         Illegal : Array_T := (5);
-         Ada2022 : Array_T := [5];
+        Ada2012 : Array_T := (1 => 5);
+        Illegal : Array_T := (5);
+        Ada2022 : Array_T := [5];
 
 --------------------------------
 Iterated Component Association
@@ -291,24 +291,24 @@ Iterated Component Association
 
 * Index-based iterator
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Array_T is array (positive range <>) of Integer;
-      Object1 : Array_T(1..5) := (for J in 1 .. 5 => J * 2);
-      Object2 : Array_T(1..5) := (for J in 2 .. 3 => J,
-                                  5 => -1,
-                                  others => 0);
+     type Array_T is array (positive range <>) of Integer;
+     Object1 : Array_T(1..5) := (for J in 1 .. 5 => J * 2);
+     Object2 : Array_T(1..5) := (for J in 2 .. 3 => J,
+                                 5 => -1,
+                                 others => 0);
 
-   * :ada:`Object1` will get initialized to the squares of 1 to 5
-   * :ada:`Object2` will give the equivalent of :ada:`(0, 2, 3, 0, -1)`
+  * :ada:`Object1` will get initialized to the squares of 1 to 5
+  * :ada:`Object2` will give the equivalent of :ada:`(0, 2, 3, 0, -1)`
 
 * Component-based iterator
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Object2 := [for Item of Object => Item * 2];
+     Object2 := [for Item of Object => Item * 2];
 
-   * :ada:`Object2` will have each component doubled
+  * :ada:`Object2` will have each component doubled
 
 -------------------------------
 More Information on Iterators
@@ -320,22 +320,22 @@ More Information on Iterators
 
 * You can nest iterators for arrays of arrays
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Col_T is array (1 .. 3) of Integer;
-      type Matrix_T is array (1 .. 3) of Col_T;
-      Matrix : Matrix_T :=
-         [for J in 1 .. 3 =>
-            [for K in 1 .. 3 => J * 10 + K]];
+     type Col_T is array (1 .. 3) of Integer;
+     type Matrix_T is array (1 .. 3) of Col_T;
+     Matrix : Matrix_T :=
+        [for J in 1 .. 3 =>
+           [for K in 1 .. 3 => J * 10 + K]];
 
 * You can even use multiple iterators for a single dimension array
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Ada2022 : Array_T(1..5) := 
-         [for I in 1 .. 2 => -1,
-          for J in 4 ..5 => 1,
-          others => 0];
+     Ada2022 : Array_T(1..5) := 
+        [for I in 1 .. 2 => -1,
+         for J in 4 ..5 => 1,
+         others => 0];
 
 * Restrictions
 

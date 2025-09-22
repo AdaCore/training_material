@@ -8,17 +8,17 @@ Introduction to Accessibility Checks (1/2)
 
 * The :dfn:`depth` of an object depends on its nesting within declarative scopes
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package body P is
-         --  Library level, depth 0
-         Object_0 : aliased Integer;
-         procedure Proc is
-            --  Library level subprogram, depth 1
-            type Acc1 is access all Integer;
-            procedure Nested is
-               -- Nested subprogram, enclosing + 1, here 2
-               Object_2 : aliased Integer;
+     package body P is
+        --  Library level, depth 0
+        Object_0 : aliased Integer;
+        procedure Proc is
+           --  Library level subprogram, depth 1
+           type Acc1 is access all Integer;
+           procedure Nested is
+              -- Nested subprogram, enclosing + 1, here 2
+              Object_2 : aliased Integer;
 
 * Objects can be referenced by access **types** that are at **same depth or deeper**
 
@@ -67,18 +67,18 @@ Getting Around Accessibility Checks
 * :ada:`'Unchecked_Access` allows access to a variable of an incompatible accessibility level
 * Beware of potential problems!
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Acc is access all Integer;
-      G : Acc;
-      procedure P is
-         V : aliased Integer;
-      begin
-         G := V'Unchecked_Access;
-         ...
-         Do_Something (G.all);
-         G := null; -- This is "reasonable"
-      end P;
+     type Acc is access all Integer;
+     G : Acc;
+     procedure P is
+        V : aliased Integer;
+     begin
+        G := V'Unchecked_Access;
+        ...
+        Do_Something (G.all);
+        G := null; -- This is "reasonable"
+     end P;
 
 .. container:: speakernote
 

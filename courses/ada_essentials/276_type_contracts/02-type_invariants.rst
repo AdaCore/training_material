@@ -12,12 +12,12 @@ Type Invariants
 
 * Sometimes low-level facilities can express it
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Weekdays is Days range Mon .. Fri;
+     subtype Weekdays is Days range Mon .. Fri;
 
-      -- Guaranteed (absent unchecked conversion)
-      Workday : Weekdays := Mon;
+     -- Guaranteed (absent unchecked conversion)
+     Workday : Weekdays := Mon;
 
 * Type invariants apply across entire lifetime for complex abstract data types
 * Part of ADT concept, so only for private types
@@ -156,16 +156,16 @@ Type Invariant Clause Placement
 
 * Can move aspect clause to private part
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Operations is
-        type Private_T is private;
-        procedure Op (This : in out Private_T);
-      private
-        type Private_T is new Integer with
-          Type_Invariant => Private_T = 0,
-          Default_Value => 0;
-      end Operations;
+     package Operations is
+       type Private_T is private;
+       procedure Op (This : in out Private_T);
+     private
+       type Private_T is new Integer with
+         Type_Invariant => Private_T = 0,
+         Default_Value => 0;
+     end Operations;
 
 * It is really an implementation aspect
 
@@ -195,35 +195,35 @@ Quiz
 
   .. container:: latex_environment tiny
 
-   .. code:: Ada
+    .. code:: Ada
 
-      package Counter_Package is
-         type Counter_T is private;
-         procedure Increment (Val : in out Counter_T);
-      private
-         function Check_Threshold (Value : Integer) 
-                                       return Boolean;
-         type Counter_T is new Integer with
-            Type_Invariant => Check_Threshold 
-                              (Integer (Counter_T));
-      end Counter_Package;
+       package Counter_Package is
+          type Counter_T is private;
+          procedure Increment (Val : in out Counter_T);
+       private
+          function Check_Threshold (Value : Integer) 
+                                        return Boolean;
+          type Counter_T is new Integer with
+             Type_Invariant => Check_Threshold 
+                               (Integer (Counter_T));
+       end Counter_Package;
 
-      package body Counter_Package is
-         function Increment_Helper (Helper_Val : Counter_T)
-                                      return Counter_T is
-            Next_Value : Counter_T := Helper_Val + 1;
-         begin
-            return Next_Value;
-         end Increment_Helper;
-         procedure Increment (Val : in out Counter_T) is
-         begin
-            Val := Val + 1;
-            Val := Increment_Helper (Val);
-         end Increment;
-         function Check_Threshold (Value : Integer)
-                                          return Boolean is
-            (Value <= 100); --  check against constraint
-      end Counter_Package;
+       package body Counter_Package is
+          function Increment_Helper (Helper_Val : Counter_T)
+                                       return Counter_T is
+             Next_Value : Counter_T := Helper_Val + 1;
+          begin
+             return Next_Value;
+          end Increment_Helper;
+          procedure Increment (Val : in out Counter_T) is
+          begin
+             Val := Val + 1;
+             Val := Increment_Helper (Val);
+          end Increment;
+          function Check_Threshold (Value : Integer)
+                                           return Boolean is
+             (Value <= 100); --  check against constraint
+       end Counter_Package;
 
  .. container:: column
 

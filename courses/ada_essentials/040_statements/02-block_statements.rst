@@ -16,13 +16,13 @@ Block Statements
 
     * Syntax
 
-       .. code:: Ada
+      .. code:: Ada
 
-          [block-name :]
-          [declare <declarative_part> ]
-          begin
-             <statements>
-          end [block-name];
+         [block-name :]
+         [declare <declarative_part> ]
+         begin
+            <statements>
+         end [block-name];
 
 --------------------------
 Block Statements Example

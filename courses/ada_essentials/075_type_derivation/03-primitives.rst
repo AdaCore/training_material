@@ -116,40 +116,40 @@ Overriding Indications
 
    .. container:: latex_environment footnotesize
 
-      .. code:: Ada
+     .. code:: Ada
 
-         type Child_T is new Integer_T range -1000 .. 1000;
-         procedure Increment_With_Truncation
-            (Val : in out Child_T);
-         procedure Just_For_Child
-            (Val : in out Child_T);
+        type Child_T is new Integer_T range -1000 .. 1000;
+        procedure Increment_With_Truncation
+           (Val : in out Child_T);
+        procedure Just_For_Child
+           (Val : in out Child_T);
 
 * **Replacing** a primitive: :ada:`overriding` indication
 
    .. container:: latex_environment footnotesize
 
-      .. code:: Ada
+     .. code:: Ada
 
-         overriding procedure Increment_With_Truncation
-            (Val : in out Child_T);
+        overriding procedure Increment_With_Truncation
+           (Val : in out Child_T);
 
 * **Adding** a primitive: :ada:`not overriding` indication
 
    .. container:: latex_environment footnotesize
 
-      .. code:: Ada
+     .. code:: Ada
 
-         not overriding procedure Just_For_Child
-            (Val : in out Child_T);
+        not overriding procedure Just_For_Child
+           (Val : in out Child_T);
 
 * **Removing** a primitive: :ada:`overriding` as :ada:`abstract`
 
    .. container:: latex_environment footnotesize
 
-      .. code:: Ada
+     .. code:: Ada
 
-         overriding procedure Just_For_Child
-            (Val : in out Grandchild_T) is abstract;
+        overriding procedure Just_For_Child
+           (Val : in out Grandchild_T) is abstract;
 
 * Using :ada:`overriding` or :ada:`not overriding` incorrectly will generate a compile error
 

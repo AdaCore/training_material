@@ -24,25 +24,25 @@ How to Get an Incomplete Type View?
 
 * From an explicit declaration
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type T;
-      type T_Access is access all T;
-      type T is record
-         V : T_Access;
-      end record;
+     type T;
+     type T_Access is access all T;
+     type T is record
+        V : T_Access;
+     end record;
 
 * From a :ada:`limited with` (see section on packages)
 * From an incomplete generic formal parameter (see section on generics)
 
-   .. code:: Ada
+  .. code:: Ada
 
-      generic
-         type T;
-         with procedure Proc (V : T);
-      package P is
-         ...
-      end P;
+     generic
+        type T;
+        with procedure Proc (V : T);
+     package P is
+        ...
+     end P;
 
 --------------------------------------
 Type Completion Deferred to the Body

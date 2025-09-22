@@ -12,14 +12,14 @@ Function Extended Return Statements
 * Handling of unconstrained types
 * Syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      return <object_identifier> : <typemark> [:= expression];
+     return <object_identifier> : <typemark> [:= expression];
 
-      return <object_identifier> : <typemark>
-      [do
-         <sequence_of_statements>
-       end return];
+     return <object_identifier> : <typemark>
+     [do
+        <sequence_of_statements>
+      end return];
 
 ..
   language_version 2005
@@ -49,23 +49,23 @@ Expression / Statements Are Optional
 
 * Without sequence (returns default if any)
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function F return Spin_Lock is
-      begin
-        return Result : Spin_Lock;
-      end F;
+     function F return Spin_Lock is
+     begin
+       return Result : Spin_Lock;
+     end F;
 
 * With sequence
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function F return Spin_Lock is
-        X : Interfaces.Unsigned_8;
-      begin
-        --  compute X ...
-        return Result : Spin_Lock := (Flag => X);
-      end F;
+     function F return Spin_Lock is
+       X : Interfaces.Unsigned_8;
+     begin
+       --  compute X ...
+       return Result : Spin_Lock := (Flag => X);
+     end F;
 
 ..
   language_version 2005

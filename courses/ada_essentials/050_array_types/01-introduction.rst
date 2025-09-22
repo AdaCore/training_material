@@ -12,9 +12,9 @@ What Is an Array?
 
 .. container:: latex_environment small
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type <typemark> is array (<index_constraint>) of <component_type>;
+     type <typemark> is array (<index_constraint>) of <component_type>;
 
 where
 
@@ -67,17 +67,17 @@ Array Type Index Constraints
 
 * Used to define constrained array types
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Schedule is array (Days range Mon .. Fri) of Float;
-      type Flags_T is array (-10 .. 10) of Boolean;
+     type Schedule is array (Days range Mon .. Fri) of Float;
+     type Flags_T is array (-10 .. 10) of Boolean;
 
 * Or to constrain unconstrained array types
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Line is String (1 .. 80);
-      subtype Translation is Matrix (1..3, 1..3);
+     subtype Line is String (1 .. 80);
+     subtype Translation is Matrix (1..3, 1..3);
 
 -------------------------
 Run-Time Index Checking

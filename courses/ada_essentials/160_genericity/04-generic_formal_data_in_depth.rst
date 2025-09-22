@@ -57,25 +57,25 @@ Generic Subprogram Parameters
 * Subprograms can be defined in the generic contract
 * Must be introduced by :ada:`with` to differ from the generic unit
 
-   .. code:: Ada
+  .. code:: Ada
 
-      generic
-         type T is private;
-         with function Less_Than (L, R : T) return Boolean;
-      function Max (L, R : T) return T;
+     generic
+        type T is private;
+        with function Less_Than (L, R : T) return Boolean;
+     function Max (L, R : T) return T;
 
-      function Max (L, R : T) return T is
-      begin
-         if Less_Than (L, R) then
-            return R;
-         else
-            return L;
-         end if;
-      end Max;
+     function Max (L, R : T) return T is
+     begin
+        if Less_Than (L, R) then
+           return R;
+        else
+           return L;
+        end if;
+     end Max;
 
-      type Something_T is null record;
-      function Less_Than (L, R : Something_T) return Boolean;
-      procedure My_Max is new Max (Something_T, Less_Than);
+     type Something_T is null record;
+     function Less_Than (L, R : Something_T) return Boolean;
+     procedure My_Max is new Max (Something_T, Less_Than);
 
 ------------------------------------------------------
 Generic Subprogram Parameters - Default Values (1/2)
