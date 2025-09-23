@@ -10,16 +10,16 @@ Classes
 * Class of `Root` is the class of `Root` and all its children
 * Type :ada:`Root'Class` can designate any object typed after type of class of `Root`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Root is tagged null record;
-      type Child1 is new Root with null record;
-      type Child2 is new Root with null record;
-      type Grand_Child1 is new Child1 with null record;
-      -- Root'Class = {Root, Child1, Child2, Grand_Child1}
-      -- Child1'Class = {Child1, Grand_Child1}
-      -- Child2'Class = {Child2}
-      -- Grand_Child1'Class = {Grand_Child1}
+     type Root is tagged null record;
+     type Child1 is new Root with null record;
+     type Child2 is new Root with null record;
+     type Grand_Child1 is new Child1 with null record;
+     -- Root'Class = {Root, Child1, Child2, Grand_Child1}
+     -- Child1'Class = {Child1, Grand_Child1}
+     -- Child2'Class = {Child2}
+     -- Grand_Child1'Class = {Grand_Child1}
 
 * Objects of type :ada:`Root'Class` have at least the properties of `Root`
 
@@ -101,35 +101,35 @@ Abstract Types Ada Vs C++
 
 * Ada
 
-    .. code:: Ada
+  .. code:: Ada
 
-       type Animal is abstract tagged record
-          Number_Of_Eyes : Integer;
-       end record;
-       procedure Feed (The_Animal : Animal) is abstract;
-       procedure Pet (The_Animal : Animal);
-       type Dog is abstract new Animal with null record;
-       type Bulldog is new Dog with null record;
+     type Animal is abstract tagged record
+        Number_Of_Eyes : Integer;
+     end record;
+     procedure Feed (The_Animal : Animal) is abstract;
+     procedure Pet (The_Animal : Animal);
+     type Dog is abstract new Animal with null record;
+     type Bulldog is new Dog with null record;
 
-       overriding  -- Ada 2005 and later
-       procedure Feed (The_Animal : Bulldog);
+     overriding  -- Ada 2005 and later
+     procedure Feed (The_Animal : Bulldog);
 
 * C++
 
-    .. code:: Ada
+  .. code:: Ada
 
-       class Animal {
-          public:
-             int Number_Of_Eyes;
-             virtual void Feed (void) = 0;
-             virtual void Pet (void);
-       };
-       class Dog : public Animal {
-       };
-       class Bulldog {
-          public:
-             virtual void Feed (void);
-       };
+     class Animal {
+        public:
+           int Number_Of_Eyes;
+           virtual void Feed (void) = 0;
+           virtual void Pet (void);
+     };
+     class Dog : public Animal {
+     };
+     class Bulldog {
+        public:
+           virtual void Feed (void);
+     };
 
 .. container:: speakernote
 

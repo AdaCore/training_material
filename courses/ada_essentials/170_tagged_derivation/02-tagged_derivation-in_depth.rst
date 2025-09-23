@@ -8,30 +8,30 @@ Difference with Simple Derivation
 
 * Tagged derivation **can** change the structure of a type
 
-    - Keywords :ada:`tagged record` and :ada:`with record`
+  - Keywords :ada:`tagged record` and :ada:`with record`
 
-   .. code:: Ada
+    .. code:: Ada
 
-      type Root is tagged record
-         F1 : Integer;
-      end record;
+         type Root is tagged record
+            F1 : Integer;
+         end record;
 
-      type Child is new Root with record
-         F2 : Integer;
-      end record;
+         type Child is new Root with record
+            F2 : Integer;
+         end record;
 
-      Root_Object  : Root := (F1 => 101);
-      Child_Object : Child := (F1 => 201, F2 => 202);
+         Root_Object  : Root := (F1 => 101);
+         Child_Object : Child := (F1 => 201, F2 => 202);
 
 * Conversion is only allowed from **child to parent**
 
-   .. code:: Ada
+  .. code:: Ada
 
-      V1 : Root;
-      V2 : Child;
-      ...
-      V1 := Root (V2);
-      V2 := Child (V1); -- illegal
+         V1 : Root;
+         V2 : Child;
+         ...
+         V1 := Root (V2);
+         V2 := Child (V1); -- illegal
 
 ------------
 Primitives
@@ -41,18 +41,18 @@ Primitives
 * Child **can add** new primitives
 * :dfn:`Controlling parameter`
 
-    - Parameters the subprogram is a primitive of
-    - For :ada:`tagged` types, all should have the **same type**
+  - Parameters the subprogram is a primitive of
+  - For :ada:`tagged` types, all should have the **same type**
 
    .. code:: Ada
 
-      type Root1 is tagged null record;
-      type Root2 is tagged null record;
+         type Root1 is tagged null record;
+         type Root2 is tagged null record;
 
-      procedure P1 (V1 : Root1;
-                    V2 : Root1);
-      procedure P2 (V1 : Root1;
-                    V2 : Root2); -- illegal
+         procedure P1 (V1 : Root1;
+                       V2 : Root1);
+         procedure P2 (V1 : Root1;
+                       V2 : Root2); -- illegal
 
 -------------------------------
 Freeze Point for Tagged Types
@@ -86,7 +86,7 @@ Overriding Indicators
 
 * Optional :ada:`overriding` and :ada:`not overriding` indicators
 
-   .. code:: Ada
+  .. code:: Ada
 
       type Shape_T is tagged record
          Name : String (1..10);
@@ -117,19 +117,19 @@ Prefix Notation
 * Tagged types primitives can be called as usual
 * The call can use prefixed notation
 
-    - **If** the first argument is a controlling parameter
-    - No need for :ada:`use` or :ada:`use type` for visibility
+  - **If** the first argument is a controlling parameter
+  - No need for :ada:`use` or :ada:`use type` for visibility
 
    .. code:: Ada
 
-      -- Prim1 visible even without *use Pkg*
-      X.Prim1;
+         -- Prim1 visible even without *use Pkg*
+         X.Prim1;
 
-      declare
-         use Pkg;
-      begin
-         Prim1 (X);
-      end;
+         declare
+            use Pkg;
+         begin
+            Prim1 (X);
+         end;
 
 ..
   language_version 2005

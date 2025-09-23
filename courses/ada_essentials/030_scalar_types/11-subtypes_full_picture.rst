@@ -8,16 +8,16 @@ Implicit Subtype
 
 * The declaration
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type My_Type is range Lower .. Upper;
+     type My_Type is range Lower .. Upper;
 
 * Is short-hand for
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type <Anon> is new Predefined_Integer_Type;
-      subtype My_Type is <Anon> range Lower .. Upper;
+     type <Anon> is new Predefined_Integer_Type;
+     subtype My_Type is <Anon> range Lower .. Upper;
 
 * :ada:`<Anon>` is the :dfn:`Base` type of :ada:`My_Type`
 
@@ -70,29 +70,29 @@ Subtypes Localize Dependencies
 * Relationships captured in code
 * No subtypes
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Vector is array (1 .. 12) of Some_Type;
+     type Vector is array (1 .. 12) of Some_Type;
 
-      K : Integer range 0 .. 12 := 0; -- anonymous subtype
-      Values : Vector;
-      ...
-      if K in 1 .. 12 then ...
-      for J in Integer range 1 .. 12 loop ...
+     K : Integer range 0 .. 12 := 0; -- anonymous subtype
+     Values : Vector;
+     ...
+     if K in 1 .. 12 then ...
+     for J in Integer range 1 .. 12 loop ...
 
 * Subtypes
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Counter is range 0 .. 12;
-      subtype Index is Counter range 1 .. Counter'Last;
-      type Vector is array (Index) of Some_Type;
+     type Counter is range 0 .. 12;
+     subtype Index is Counter range 1 .. Counter'Last;
+     type Vector is array (Index) of Some_Type;
 
-      K : Counter := 0;
-      Values : Vector;
-      ...
-      if K in Index then ...
-      for J in Index loop ...
+     K : Counter := 0;
+     Values : Vector;
+     ...
+     if K in Index then ...
+     for J in Index loop ...
 
 ----------------------------------
 Subtypes May Enhance Performance
@@ -117,12 +117,12 @@ Subtypes Don't Cause Overloading
 
 - Illegal code: re-declaration of `F`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type A is new Integer;
-      subtype B is A;
-      function F return A is (0);
-      function F return B is (1);
+     type A is new Integer;
+     subtype B is A;
+     function F return A is (0);
+     function F return B is (1);
 
 -------------------------------
 Default Values and Option Types
@@ -224,13 +224,13 @@ Idiom: Extended Ranges
       + An index goes from 1 to max length
       + A count goes from 0 to max length
 
-   .. code:: Ada
+        .. code:: Ada
    
-      -- ARM A.10.1
-      package Text_IO is
-         ...
-         type Count is range 0 .. implementation-defined;
-         subtype Pos_Count is Count range 1 .. Count'Last;
+           -- ARM A.10.1
+           package Text_IO is
+              ...
+              type Count is range 0 .. implementation-defined;
+              subtype Pos_Count is Count range 1 .. Count'Last;
 
 ------------------
 Idiom: Partition

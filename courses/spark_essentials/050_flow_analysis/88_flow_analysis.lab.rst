@@ -55,7 +55,7 @@ Aliasing and Initialization - Fixes
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       if I /= J then
          Swap (T (I), T (J));
@@ -73,7 +73,7 @@ Aliasing and Initialization - Fixes
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       T := (others => 0);
       T (T'First) := 1;
@@ -118,12 +118,12 @@ Adding Our Own Global Contracts
 
    - Example
 
-      .. code:: Ada
+     .. code:: Ada
 
          procedure Swap_Rec (R : in out Rec)
            with Global => null;
 
-   - Now run :menu:`Examine File` again
+  - Now run :menu:`Examine File` again
 
 .. container:: animate 3-
 
@@ -140,7 +140,7 @@ Adding Our Own Global Contracts
 
 .. container:: animate 4-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap_The_Rec
         with Global => (In_Out => Basics.The_Rec);

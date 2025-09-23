@@ -50,7 +50,7 @@ Notes on stack returns and inlining:
    In the "DEBUG" optimization level, the addresses should change, while
    they stay the same when changing to the "RELEASE" setting:
 
-   .. code:: rust
+  .. code:: rust
 
       #[derive(Debug)]
       struct Point(i32, i32);

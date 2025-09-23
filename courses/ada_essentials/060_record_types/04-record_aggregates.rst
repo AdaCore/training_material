@@ -17,13 +17,13 @@ Aggregates
 
 * Example:
 
-   .. code:: Ada
+  .. code:: Ada
 
-      (Pos_1_Value,
-       Pos_2_Value,
-       Component_3 => Pos_3_Value,
-       Component_4 => <>, -- Default value (Ada 2005)
-       others => Remaining_Value)
+     (Pos_1_Value,
+      Pos_2_Value,
+      Component_3 => Pos_3_Value,
+      Component_4 => <>, -- Default value (Ada 2005)
+      others => Remaining_Value)
 
 ---------------------------
 Record Aggregate Examples
@@ -66,33 +66,33 @@ Aggregate Completeness
     * Allows compiler to check for missed components
     * Type definition
 
-       .. code:: Ada
+      .. code:: Ada
 
-          type Struct is record
-              A : Integer;
-              B : Integer;
-              C : Integer;
-              D : Integer;
-            end record;
-          S : Struct;
+         type Struct is record
+             A : Integer;
+             B : Integer;
+             C : Integer;
+             D : Integer;
+           end record;
+         S : Struct;
 
  .. container:: column
 
     * Compiler will not catch the missing component
 
-       .. code:: Ada
+      .. code:: Ada
 
-          S.A := 10;
-          S.B := 20;
-          S.C := 12;
-          Send (S);
+         S.A := 10;
+         S.B := 20;
+         S.C := 12;
+         Send (S);
 
-    * Aggregate must be complete - compiler error
+   * Aggregate must be complete - compiler error
 
-       .. code:: Ada
+      .. code:: Ada
 
-          S := (10, 20, 12);
-          Send (S);
+         S := (10, 20, 12);
+         Send (S);
 
 --------------------
 Named Associations
@@ -231,30 +231,30 @@ Delta Aggregates
 
 * A Record can use a :dfn:`delta aggregate` just like an array
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Coordinate_T is record
-         X, Y, Z : Float;
-      end record;
-      Location : constant Coordinate_T := (1.0, 2.0, 3.0);
+     type Coordinate_T is record
+        X, Y, Z : Float;
+     end record;
+     Location : constant Coordinate_T := (1.0, 2.0, 3.0);
 
 * Prior to Ada 2022, you would copy and then modify
 
-   .. code:: Ada
+  .. code:: Ada
 
-      declare
-         New_Location : Coordinate_T := Location;
-      begin
-         New_Location.Z := 0.0;
-         -- OR
-         New_Location := (Z => 0.0, others => <>);
-      end;
+     declare
+        New_Location : Coordinate_T := Location;
+     begin
+        New_Location.Z := 0.0;
+        -- OR
+        New_Location := (Z => 0.0, others => <>);
+     end;
 
 * Now in Ada 2022 we can just specify the change during the copy
 
-   .. code:: Ada
+  .. code:: Ada
 
-      New_Location : Coordinate_T := (Location with delta Z => 0.0);
+     New_Location : Coordinate_T := (Location with delta Z => 0.0);
 
-   *Note for record delta aggregates you must use named notation*
+  *Note for record delta aggregates you must use named notation*
 

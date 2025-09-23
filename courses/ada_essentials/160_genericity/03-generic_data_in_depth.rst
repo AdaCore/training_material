@@ -9,13 +9,13 @@ Generic Types Parameters (1/3)
 * A generic parameter is a template
 * It specifies the properties the generic body can rely on
 
-   .. code:: Ada
+  .. code:: Ada
 
-      generic
-         type T1 is private;
-         type T2 (<>) is private;
-         type T3 is limited private;
-      package Parent is
+     generic
+        type T1 is private;
+        type T2 (<>) is private;
+        type T3 is limited private;
+     package Parent is
 
 * The actual parameter must be no more restrictive then the :dfn:`generic contract`
 

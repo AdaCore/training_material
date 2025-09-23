@@ -50,7 +50,7 @@ Proving the Utilities
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap (Values : in out Nat_Array; X, Y : Index)
         with
@@ -69,7 +69,7 @@ Proving the Utilities
 
 .. container:: animate 4-
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Index_Of_Minimum (Values : Nat_Array;
                                  From, To : Index)
@@ -80,11 +80,11 @@ Proving the Utilities
           (for all I in From .. To =>
              Values (Index_Of_Minimum'Result) <= Values (I));
 
-   *This is not enough - you need to add a* :ada:`Loop_Invariant` *to the body*
+  *This is not enough - you need to add a* :ada:`Loop_Invariant` *to the body*
 
 .. container:: animate 5-
 
-   .. code:: Ada
+  .. code:: Ada
 
       for Index in From .. To loop
          if Values (Index) < Values (Min) then
@@ -141,7 +141,7 @@ Selection Sort (1/3)
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Selection_Sort (Values : in out Nat_Array)
       with
@@ -149,7 +149,7 @@ Selection Sort (1/3)
           and then Is_Perm (Values'Old, Values);
       --  Upon completion, Values are a sorted version of input array
 
-   *Again, this is not enough - we're dealing with loops*
+  *Again, this is not enough - we're dealing with loops*
 
 .. container:: animate 3-
 
@@ -159,15 +159,15 @@ Selection Sort (1/3)
 
 .. container:: animate 4-
 
-   .. code:: Ada
+  .. code:: Ada
 
       pragma Loop_Invariant (Is_Sorted (Values, 1, Current));
       pragma Loop_Invariant
         (for all J in Current + 1 .. Values'Last =>
            Values (Current) <= Values (J));
 
-   - And this isn't enough as well, because we're not taking care
-     of our permutation ghost code
+  - And this isn't enough as well, because we're not taking care
+    of our permutation ghost code
 
 ----------------------
 Selection Sort (2/3)
@@ -183,7 +183,7 @@ Selection Sort (2/3)
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap (Values : in out Nat_Array; X, Y : Index)
       is
@@ -199,12 +199,12 @@ Selection Sort (2/3)
          Permutation (Y) := Temp_Index;
       end Swap;
 
-   *Also should update the postcondition to make sure we didn't*
-   *break* :ada:`Permutation`
+  *Also should update the postcondition to make sure we didn't*
+  *break* :ada:`Permutation`
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap (Values : in out Nat_Array; X, Y : Index)
       with
@@ -241,11 +241,11 @@ Selection Sort (3/3)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       pragma Loop_Invariant (Is_Perm (Values'Loop_Entry, Values));
 
-   * Running the proof again fails because we can't verify the first time through the loop
+  * Running the proof again fails because we can't verify the first time through the loop
 
       :color-red:`sort.adb:75:33: medium: loop invariant might fail in first iteration`
 
@@ -253,10 +253,10 @@ Selection Sort (3/3)
 
 .. container:: animate 4-
 
-   .. code:: Ada
+  .. code:: Ada
 
       Permutation := (for J in Index => J);
 
-   - Try proving it again
+  - Try proving it again
 
       - If it still doesn't prove, try increasing the :menu:`Proof level` in the dialog box

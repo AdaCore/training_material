@@ -14,19 +14,19 @@ Three Positives Make a Negative
 
 * Can result in cumbersome references
 
-   .. code:: Ada
+  .. code:: Ada
 
-      -- use cosine rule to determine distance between two points,
-      -- given angle and distances between observer and 2 points
-      -- A**2 = B**2 + C**2 - 2*B*C*cos(angle)
-      Observation.Sides (Viewpoint_Types.Point1_Point2) :=
-        Math_Utilities.Square_Root
-          (Observation.Sides (Viewpoint_Types.Observer_Point1)**2 +
-           Observation.Sides (Viewpoint_Types.Observer_Point2)**2 -
-           2.0 * Observation.Sides (Viewpoint_Types.Observer_Point1) *
-             Observation.Sides (Viewpoint_Types.Observer_Point2) *
-             Math_Utilities.Trigonometry.Cosine
-               (Observation.Vertices (Viewpoint_Types.Observer)));
+     -- use cosine rule to determine distance between two points,
+     -- given angle and distances between observer and 2 points
+     -- A**2 = B**2 + C**2 - 2*B*C*cos(angle)
+     Observation.Sides (Viewpoint_Types.Point1_Point2) :=
+       Math_Utilities.Square_Root
+         (Observation.Sides (Viewpoint_Types.Observer_Point1)**2 +
+          Observation.Sides (Viewpoint_Types.Observer_Point2)**2 -
+          2.0 * Observation.Sides (Viewpoint_Types.Observer_Point1) *
+            Observation.Sides (Viewpoint_Types.Observer_Point2) *
+            Math_Utilities.Trigonometry.Cosine
+              (Observation.Vertices (Viewpoint_Types.Observer)));
 
 --------------------------------
 Writing Readable Code - Part 1
@@ -34,18 +34,18 @@ Writing Readable Code - Part 1
 
 * We could use :ada:`use` on package names to remove some dot-notation
 
-   .. code:: Ada
+  .. code:: Ada
 
-      -- use cosine rule to determine distance between two points, given angle
-      -- and distances between observer and 2 points A**2 = B**2 + C**2 -
-      -- 2*B*C*cos(angle)
-      Observation.Sides (Point1_Point2) :=
-        Square_Root
-          (Observation.Sides (Observer_Point1)**2 +
-           Observation.Sides (Observer_Point2)**2 -
-           2.0 * Observation.Sides (Observer_Point1) *
-             Observation.Sides (Observer_Point2) *
-             Cosine (Observation.Vertices (Observer)));
+     -- use cosine rule to determine distance between two points, given angle
+     -- and distances between observer and 2 points A**2 = B**2 + C**2 -
+     -- 2*B*C*cos(angle)
+     Observation.Sides (Point1_Point2) :=
+       Square_Root
+         (Observation.Sides (Observer_Point1)**2 +
+          Observation.Sides (Observer_Point2)**2 -
+          2.0 * Observation.Sides (Observer_Point1) *
+            Observation.Sides (Observer_Point2) *
+            Cosine (Observation.Vertices (Observer)));
 
 * But that only shortens the problem, not simplifies it
 
@@ -64,26 +64,26 @@ The "renames" Keyword
 
    - Packages
 
-      .. code:: Ada
+     .. code:: Ada
 
-         package Trig renames Math.Trigonometry
+        package Trig renames Math.Trigonometry
 
-   - Objects (or components of objects)
+  - Objects (or components of objects)
 
-      .. code:: Ada
+     .. code:: Ada
 
-         Angles : Viewpoint_Types.Vertices_Array_T
-                  renames Observation.Vertices;
-         Required_Angle : Viewpoint_Types.Vertices_T
-                  renames Viewpoint_Types.Observer;
+        Angles : Viewpoint_Types.Vertices_Array_T
+                 renames Observation.Vertices;
+        Required_Angle : Viewpoint_Types.Vertices_T
+                 renames Viewpoint_Types.Observer;
 
-   - Subprograms
+  - Subprograms
 
-      .. code:: Ada
+     .. code:: Ada
 
-         function Sqrt (X : Base_Types.Float_T)
-                        return Base_Types.Float_T
-                        renames Math.Square_Root;
+        function Sqrt (X : Base_Types.Float_T)
+                       return Base_Types.Float_T
+                       renames Math.Square_Root;
 
 --------------------------------
 Writing Readable Code - Part 2

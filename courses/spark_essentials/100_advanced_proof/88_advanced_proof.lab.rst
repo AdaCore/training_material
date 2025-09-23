@@ -48,11 +48,11 @@ Array Initialization Loop
 
    4. Change the type :ada:`Table` to be an unconstrained array
 
-   .. code:: ada
+  .. code:: ada
 
       type Table is array (Index range <>) of Integer;
 
-   5. Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_Table`
+  5. Run :toolname:`GNATprove` to prove the subprogram :ada:`Init_Table`
 
      + Prover cannot prove the postcondition. Why?
 
@@ -72,11 +72,11 @@ Helping Prove the Loop
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       pragma Loop_Invariant (for all K in T'First .. J => T(K) = 0);                                  
 
-   2. Postcondition :ada:`Init_Table` now proves but ...
+  2. Postcondition :ada:`Init_Table` now proves but ...
 
       + Prover still not sure about initialization of the object
 
@@ -86,23 +86,23 @@ Helping Prove the Loop
 
 .. container:: animate 4-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Init_Table (T : out Table)
       with
         Relaxed_Initialization => T,
         Post => (for all J in T'Range => T(J) = 0);
 
-   4. Then you need to add a loop invariant to prove initialization
+  4. Then you need to add a loop invariant to prove initialization
 
 .. container:: animate 5-
 
-   .. code:: Ada
+  .. code:: Ada
 
       pragma Loop_Invariant
          (for all K in T'First .. J => T(K)'Initialized);
 
-   5. And now your subprogram will prove!
+  5. And now your subprogram will prove!
 
 --------------------
 Array Mapping Loop
@@ -128,12 +128,12 @@ Array Mapping Loop
 
    3. No frame condition in this case
 
-   .. code:: Ada
+  .. code:: Ada
 
       pragma Loop_Invariant
          (for all K in T'First .. J => T(K) = T'Loop_Entry(K) + 1);
 
-   4. Change the assignment inside the loop into the following, and try to prove: :ada:`T(J + 0) := T (J) + 1;` 
+  4. Change the assignment inside the loop into the following, and try to prove: :ada:`T(J + 0) := T (J) + 1;` 
 
 .. container:: animate 4-
 
@@ -147,7 +147,7 @@ Array Mapping Loop
 
 .. container:: animate 6-
 
-   .. code:: Ada
+  .. code:: Ada
 
       pragma Loop_Invariant
          (for all K in J .. T'Last =>

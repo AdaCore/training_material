@@ -51,7 +51,7 @@ System Boundary (1/2)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       Temperature : Integer with
         Address => System.Storage_Elements.To_Address (16#FFFF_FFF0#),
@@ -64,8 +64,8 @@ System Boundary (1/2)
         Async_Readers,
         Effective_Writes;
 
-   *Note: warnings about the address specification can be turned off*
-   *by setting the aspect* :ada:`Warnings => Off` *for these objects*
+  *Note: warnings about the address specification can be turned off*
+  *by setting the aspect* :ada:`Warnings => Off` *for these objects*
 
 -----------------------
 System Boundary (2/2)
@@ -86,12 +86,12 @@ System Boundary (2/2)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Get_Temperature return Integer
         with Volatile_Function;
 
-   - Run the prover again - should find one more problem!
+  - Run the prover again - should find one more problem!
 
 .. container:: animate 4-
 
@@ -103,7 +103,7 @@ System Boundary (2/2)
 
 .. container:: animate 5-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Set_Status is
          Current : Integer := Get_Temperature;
@@ -131,15 +131,15 @@ Abstract States at the Boundary (1/2)
 
    *Package spec*
 
-   .. code:: Ada
+  .. code:: Ada
 
       package Alarm
           with Abstract_State => (Input_State, Output_State)
       is
 
-   *Private section*
+  *Private section*
 
-   .. code:: Ada
+  .. code:: Ada
 
       Temperature : Integer with
         Part_Of => Input_State,
@@ -149,9 +149,9 @@ Abstract States at the Boundary (1/2)
         Part_Of => Output_State,
         ...
 
-   *Package body*
+  *Package body*
 
-   .. code:: Ada
+  .. code:: Ada
 
       package body Alarm
         with Refined_State => (Input_State => Temperature,
@@ -180,7 +180,7 @@ Abstract States at the Boundary (2/2)
 
 .. container:: animate 4-
 
-   .. code:: Ada
+  .. code:: Ada
 
       package Alarm
         with Abstract_State =>
@@ -210,14 +210,14 @@ Software Boundary
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       package body Random_Numbers
         with SPARK_Mode => Off
       is
 
-   *We only want the implementation to be out of SPARK. We*
-   *still want to be able to call* :ada:`Random_Numbers` *from SPARK*
+  *We only want the implementation to be out of SPARK. We*
+  *still want to be able to call* :ada:`Random_Numbers` *from SPARK*
 
 --------------------
 Integration with C
@@ -246,7 +246,7 @@ Integration with C
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap (X, Y : in out Integer)
       with

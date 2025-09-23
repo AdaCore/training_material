@@ -4,7 +4,7 @@ Usage Lab
 
 * Test a simplistic stack
 
-   .. code:: Ada
+  .. code:: Ada
 
       package Simple_Stack is
 
@@ -19,7 +19,7 @@ Usage Lab
 
       end Simple_Stack;
 
-  * There is a bug in the code - your testing should find it!
+ * There is a bug in the code - your testing should find it!
 
 * Copy the :filename:`test_020_usage` lab from the course materials location
 
@@ -98,7 +98,7 @@ Example Tests
 
 * Solution 1 - one check
 
-   .. code:: Ada
+  .. code:: Ada
 
       declare
          Pushed : constant integer := 123;
@@ -110,7 +110,7 @@ Example Tests
 
 * Solution 2 - multiple checks
 
-   .. code:: Ada
+  .. code:: Ada
 
       declare
          Pushed : constant integer := 123;
@@ -138,7 +138,7 @@ Improve First Test
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       while not Full loop
          Push (234);
@@ -183,7 +183,7 @@ These answers assume the bug in the code is fixed
 
    Bug is in :ada:`Pop` - should be
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Pop return Integer is
       begin

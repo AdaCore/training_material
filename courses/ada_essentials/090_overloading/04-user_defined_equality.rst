@@ -15,4 +15,3 @@ User-Defined Equality
 
     - Especially **user-defined** types
     - Issue of *Composition of equality*
-

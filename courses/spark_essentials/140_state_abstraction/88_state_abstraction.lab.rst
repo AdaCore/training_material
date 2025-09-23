@@ -30,7 +30,7 @@ Creating an Abstract State
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       package Basics
         with Abstract_State => State
@@ -40,7 +40,7 @@ Creating an Abstract State
         with Refined_State => (State => (The_Rec, The_Table))
       is
 
-   - Run :menu:`SPARK` |rightarrow| :menu:`Examine All` to see what happens
+  - Run :menu:`SPARK` |rightarrow| :menu:`Examine All` to see what happens
 
 .. container:: animate 3-
 
@@ -81,7 +81,7 @@ Defining an Abstract State
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       The_Rec : Rec with Part_Of => State;
       The_Table : Table (1 .. 10) with Part_Of => State;
@@ -108,7 +108,7 @@ Using the Abstract State
 
    *Some examples*
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap_The_Rec
       with
@@ -140,16 +140,16 @@ Initializing the State
 
    *Package spec*
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Init_The_State
       with
         Global  => (Output => State),
         Depends => (State => null);
 
-   *Package body*
+  *Package body*
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Init_The_State is
       begin
@@ -157,6 +157,6 @@ Initializing the State
          Init_The_Table;
       end Init_The_State;
 
-   - Call the initialization procedure during package elaboration
+  - Call the initialization procedure during package elaboration
 
    - Flow analysis should now show no issues

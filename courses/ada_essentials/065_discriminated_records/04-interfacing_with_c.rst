@@ -8,15 +8,15 @@ Passing Records Between Ada and C
 
 * Your Ada code needs to call C that looks like this:
 
-   .. code:: C
+  .. code:: C
 
-      struct Struct_T {
-         int   Component1;
-         char  Component2;
-         float Component3;
-      };
+     struct Struct_T {
+        int   Component1;
+        char  Component2;
+        float Component3;
+     };
 
-      int DoSomething (struct Struct_T);
+     int DoSomething (struct Struct_T);
 
 * Ada has mechanisms that will allow you to 
 
@@ -29,15 +29,15 @@ Building a C-Compatible Record
 
 * To build an Ada record for :C:`Struct_T`, start with a regular record:
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Struct_T is record
-         Component1 : Interfaces.C.int;
-         Component2 : Interfaces.C.char;
-         Component3 : Interfaces.C.C_Float;
-      end record;
+     type Struct_T is record
+        Component1 : Interfaces.C.int;
+        Component2 : Interfaces.C.char;
+        Component3 : Interfaces.C.C_Float;
+     end record;
 
-   * We use types from :ada:`Interfaces.C` to map directly to the C types
+  * We use types from :ada:`Interfaces.C` to map directly to the C types
 
 * But the Ada compiler needs to know that the record layout must match C
 
@@ -61,29 +61,29 @@ Mapping Ada to C Unions
 
 * So, you create the equivalent of this C :c:`union`
 
-   .. code:: C
+  .. code:: C
 
-      union Union_T {
-         int Component1;
-         char Component2;
-         float Component3;
-      };
+     union Union_T {
+        int Component1;
+        char Component2;
+        float Component3;
+     };
 
 * By using a discriminant record and adding aspect :ada:`Unchecked_Union`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type C_Union_T (View : natural := 0) is record
-         case View is
-         when 0 => Component1 : Interfaces.C.int;
-         when 1 => Component2 : Interfaces.C.char;
-         when 2 => Component3 : Interfaces.C.C_Float;
-         when others => null;
-         end case;
-      end record with Convention => C_Pass_By_Copy,
-                      Unchecked_Union;
+     type C_Union_T (View : natural := 0) is record
+        case View is
+        when 0 => Component1 : Interfaces.C.int;
+        when 1 => Component2 : Interfaces.C.char;
+        when 2 => Component3 : Interfaces.C.C_Float;
+        when others => null;
+        end case;
+     end record with Convention => C_Pass_By_Copy,
+                     Unchecked_Union;
 
-   * This tells the compiler not to reserve space in the record for the discriminant
+  * This tells the compiler not to reserve space in the record for the discriminant
 
 ------
 Quiz

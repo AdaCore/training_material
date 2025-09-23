@@ -34,36 +34,36 @@ Propagation Demo
 
  .. container:: column
 
-    .. code:: Ada
-      :number-lines: 1
+   .. code:: Ada
+     :number-lines: 1
 
-       procedure Do_Something is
-         Error : exception;
-         procedure Unhandled is
-         begin
-           Maybe_Raise (1);
-         end Unhandled;
-         procedure Handled is
-         begin
-           Unhandled;
-           Maybe_Raise (2);
-         exception
-           when Error =>
-             Print ("Handle 1 or 2");
-         end Handled;
+      procedure Do_Something is
+        Error : exception;
+        procedure Unhandled is
+        begin
+          Maybe_Raise (1);
+        end Unhandled;
+        procedure Handled is
+        begin
+          Unhandled;
+          Maybe_Raise (2);
+        exception
+          when Error =>
+            Print ("Handle 1 or 2");
+        end Handled;
 
  .. container:: column
 
-    .. code:: Ada
-      :number-lines: 16
+   .. code:: Ada
+     :number-lines: 16
 
-       begin -- Do_Something
-         Maybe_Raise (3);
-         Handled;
-       exception
-         when Error =>
-           Print ("Handle 3");
-       end Do_Something;
+      begin -- Do_Something
+        Maybe_Raise (3);
+        Handled;
+      exception
+        when Error =>
+          Print ("Handle 3");
+      end Do_Something;
 
 -------------------
 Termination Model

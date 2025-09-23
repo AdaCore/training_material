@@ -10,18 +10,18 @@ Difference with Simple Derivation
 
     - Keywords :ada:`tagged record` and :ada:`with record`
 
-   .. code:: Ada
+      .. code:: Ada
 
-      type Root is tagged record
-         F1 : Integer;
-      end record;
+         type Root is tagged record
+            F1 : Integer;
+         end record;
 
-      type Child is new Root with record
-         F2 : Integer;
-      end record;
+         type Child is new Root with record
+            F2 : Integer;
+         end record;
 
-      Root_Object  : Root := (F1 => 101);
-      Child_Object : Child := (F1 => 201, F2 => 202);
+         Root_Object  : Root := (F1 => 101);
+         Child_Object : Child := (F1 => 201, F2 => 202);
 
 --------------
 Type Extension
@@ -40,11 +40,11 @@ Type Extension
 
    .. code:: Ada
 
-      V1 : Root;
-      V2 : Child;
-      ...
-      V1 := Root (V2);
-      V2 := Child (V1); -- illegal
+         V1 : Root;
+         V2 : Child;
+         ...
+         V1 := Root (V2);
+         V2 := Child (V1); -- illegal
 
 *Information on extending private types appears at the end of this module*
 
@@ -59,15 +59,15 @@ Primitives
     - Parameters the subprogram is a primitive of
     - For :ada:`tagged` types, all should have the **same type**
 
-   .. code:: Ada
+      .. code:: Ada
 
-      type Root1 is tagged null record;
-      type Root2 is tagged null record;
+         type Root1 is tagged null record;
+         type Root2 is tagged null record;
 
-      procedure P1 (V1 : Root1;
-                    V2 : Root1);
-      procedure P2 (V1 : Root1;
-                    V2 : Root2); -- illegal
+         procedure P1 (V1 : Root1;
+                       V2 : Root1);
+         procedure P2 (V1 : Root1;
+                       V2 : Root2); -- illegal
 
 -------------------------------
 Freeze Point for Tagged Types
@@ -131,26 +131,26 @@ Overriding Indicators
 
 * Optional :ada:`overriding` and :ada:`not overriding` indicators
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Shape_T is tagged record
-         Name : String (1..10);
-      end record;
+     type Shape_T is tagged record
+        Name : String (1..10);
+     end record;
 
-      -- primitives of "Shape_T"
-      function Get_Name (S : Shape_T) return String;
-      procedure Set_Name (S : in out Shape_T);
+     -- primitives of "Shape_T"
+     function Get_Name (S : Shape_T) return String;
+     procedure Set_Name (S : in out Shape_T);
 
-      -- Derive "Point_T" from Shape_T
-      type Point_T is new Shape_T with record
-         Origin : Coord_T;
-      end record;
+     -- Derive "Point_T" from Shape_T
+     type Point_T is new Shape_T with record
+        Origin : Coord_T;
+     end record;
 
-      -- We want to _change_ the behavior of Set_Name
-      overriding procedure Set_Name (P : in out Point_T);
-      -- We want to _add_ a new primitive
-      not overriding procedure Set_Origin (P : in out Point_T);
-      -- We get "Get_Name" for free
+     -- We want to _change_ the behavior of Set_Name
+     overriding procedure Set_Name (P : in out Point_T);
+     -- We want to _add_ a new primitive
+     not overriding procedure Set_Origin (P : in out Point_T);
+     -- We get "Get_Name" for free
 
 ..
   language_version 2005
@@ -165,16 +165,16 @@ Prefix Notation
     - **If** the first argument is a controlling parameter
     - No need for :ada:`use` or :ada:`use type` for visibility
 
-   .. code:: Ada
+      .. code:: Ada
 
-      -- Prim1 visible even without *use Pkg*
-      X.Prim1;
+         -- Prim1 visible even without *use Pkg*
+         X.Prim1;
 
-      declare
-         use Pkg;
-      begin
-         Prim1 (X);
-      end;
+         declare
+            use Pkg;
+         begin
+            Prim1 (X);
+         end;
 
 ..
   language_version 2005
