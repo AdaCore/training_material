@@ -6,42 +6,38 @@ Literals
 Numeric Literals
 ------------------
 
-* Syntax
+**Syntax**
 
-   .. code::
-
-      numeric_literal ::= numeral [.numeral] [exponent]
-      exponent ::= E [ + | - ] numeral
-      numeral ::= digit {['_'] digit}
+.. container:: source_include 020_declarations/syntax.bnf :start-after:numeric_literals_begin :end-before:numeric_literals_end :code:bnf
 
 .. tip:: Underscore is **not** significant and helpful for grouping
 
 * **E** (exponent) must always be an integer
 * Examples
 
-   .. code:: Ada
+  .. code:: Ada
 
-      12      0       1E6         123_456
-      12.0    0.0     3.14159_26  2.3E-4
+     12      0       1E6         123_456
+     12.0    0.0     3.14159_26  2.3E-4
 
 ------------------------
 Based Numeric Literals
 ------------------------
 
-.. code::
+**Syntax**
 
-   based_literal ::= base # numeral [.numeral] # [exponent]
-   numeral ::= base_digit { '_' base_digit }
+.. container:: source_include 020_declarations/syntax.bnf :start-after:based_numeric_literals_begin :end-before:based_numeric_literals_end :code:bnf
 
 * Base can be 2 .. 16
 * Exponent is always a base 10 integer
+* Examples
 
-   .. code:: Ada
+  .. code:: Ada
 
-      16#FFF#           => 4095
-      2#1111_1111_1111# => 4095 -- With underline
-      16#F.FF#E+2       => 4095.0
-      8#10#E+3          => 4096 (8 * 8**3)
+     16#FFF#           => 4095
+     2#1111_1111_1111# => 4095 -- With underline
+     16#F.FF#E+2       => 4095.0
+     8#10#E+3          => 4096 (8 * 8**3)
 
 --------------------------------------------
 Comparison to C's Based Literals

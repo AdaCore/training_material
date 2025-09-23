@@ -12,20 +12,19 @@ Syntax and Examples
 
 **Example**
 
-   .. code:: Ada
+.. code:: Ada
 
-      type Record1_T is record
-         Component1 : Integer;
-         Component2 : Boolean;
-      end record;
+   type Record1_T is record
+      Component1 : Integer;
+      Component2 : Boolean;
+   end record;
 
 :color-white:`Blank line`
 
 Records can be **discriminated** as well
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Varying_Length_String (Size : Natural := 0) is record
-         Text : String (1 .. Size);
-      end record;
-
+    type Varying_Length_String (Size : Natural := 0) is record
+       Text : String (1 .. Size);
+    end record;

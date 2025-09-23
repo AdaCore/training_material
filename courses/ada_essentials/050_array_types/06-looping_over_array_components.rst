@@ -14,12 +14,12 @@ Note on Default Initialization for Array Types
 
 * Uses aspect `Default_Component_Value`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Vector is array (Positive range <>) of Float
-         with Default_Component_Value => 0.0;
+     type Vector is array (Positive range <>) of Float
+        with Default_Component_Value => 0.0;
 
-   - Note that creating a large object of type :ada:`Vector` might incur a run-time cost during initialization
+  - Note that creating a large object of type :ada:`Vector` might incur a run-time cost during initialization
 
 ..
   language_version 2012
@@ -55,6 +55,13 @@ Array/Container For-Loops
 
 * Work in terms of components within an object
 * Syntax hides indexing/iterator controls
+
+  .. code:: Ada
+
+     for name of [reverse] array_or_container_object loop
+     ...
+     end loop;
+
 * Starts with "first" component unless you reverse it
 * Loop parameter name is a constant if iterating over a constant, a variable otherwise
 
@@ -67,26 +74,26 @@ Array Component For-Loop Example
 
 * Given an array
 
-   .. code:: Ada
+  .. code:: Ada
 
-        type T is array (Positive range <>) of Integer;
-        Primes : T := (2, 3, 5, 7, 11);
+       type T is array (Positive range <>) of Integer;
+       Primes : T := (2, 3, 5, 7, 11);
 
 * Component-based looping would look like
 
-   .. code:: Ada
+  .. code:: Ada
 
-      for P of Primes loop
-         Put_Line (Integer'Image (P));
-      end loop;
+     for P of Primes loop
+        Put_Line (Integer'Image (P));
+     end loop;
 
 * While index-based looping would look like
 
-   .. code:: Ada
+  .. code:: Ada
 
-      for P in Primes'Range loop
-         Put_Line (Integer'Image (Primes (P)));
-      end loop;
+     for P in Primes'Range loop
+        Put_Line (Integer'Image (Primes (P)));
+     end loop;
 
 ..
   language_version 2012
@@ -101,20 +108,20 @@ Quiz
 
    .. container:: latex_environment tiny 
 
+     .. code:: Ada
+
+        type Array_T is array (1..5) of Integer
+           with Default_Component_Value => 1;
+        A : Array_T;
+
     .. code:: Ada
 
-       type Array_T is array (1..5) of Integer
-          with Default_Component_Value => 1;
-       A : Array_T;
-
-    .. code:: Ada
-
-       for I in A'First + 1 .. A'Last - 1 loop
-          A (I) := I * A'Length;
-       end loop;
-       for I of reverse A loop
-          Put (I'Image);
-       end loop;
+        for I in A'First + 1 .. A'Last - 1 loop
+           A (I) := I * A'Length;
+        end loop;
+        for I of reverse A loop
+           Put (I'Image);
+        end loop;
 
   .. container:: column
 

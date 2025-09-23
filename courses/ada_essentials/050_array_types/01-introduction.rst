@@ -20,6 +20,21 @@ Array Examples
 
 .. code:: Ada
 
+  type <typemark> is array (<index_constraint>) of <component_type>;
+
+where
+
+   * :dfn:`index_constraint`
+
+      - Discrete range of values to be used to access the array components
+
+   * :dfn:`component_type`
+
+      - Type of values stored in the array
+      - All components are of this same type and size
+
+.. code:: Ada
+
    type Array_One is array (1 .. 100) of Integer;
 
    type Discrete_Subtype_Two is range (Able, Baker, Charlie);
@@ -65,17 +80,17 @@ Array Type Index Constraints
 
 * Used to define constrained array types
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Schedule is array (Days range Mon .. Fri) of Float;
-      type Flags_T is array (-10 .. 10) of Boolean;
+     type Schedule is array (Days range Mon .. Fri) of Float;
+     type Flags_T is array (-10 .. 10) of Boolean;
 
 * Or to constrain unconstrained array types
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Line is String (1 .. 80);
-      subtype Translation is Matrix (1..3, 1..3);
+     subtype Line is String (1 .. 80);
+     subtype Translation is Matrix (1..3, 1..3);
 
 -------------------------
 Run-Time Index Checking

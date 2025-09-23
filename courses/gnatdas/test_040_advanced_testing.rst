@@ -89,7 +89,7 @@ Example Code
 
 * Main unit
 
-   .. code:: Ada
+  .. code:: Ada
 
       package Simple is
          function Inc (X : Integer) return Integer;
@@ -98,7 +98,7 @@ Example Code
 
 * Which depends on 
 
-   .. code:: Ada
+  .. code:: Ada
 
       package Dependent is
          procedure Yes_Or_No (Aaa : in     Integer;
@@ -137,7 +137,7 @@ Running Multiple Test Harnesses
 
 .. container:: latex_environment tiny
 
-   .. code:: output
+  .. code:: output
 
       depend.ads:2:4: error: corresponding test FAILED: Test not implemented. (depend-test_data-tests.adb:44)
       simple.ads:7:4: error: corresponding test FAILED: Test not implemented. (simple-test_data-tests.adb:65)
@@ -308,7 +308,7 @@ Setting Stub Return Data
 
 * Method 1 - use the setter function with :ada:`Test_Check`
 
-   .. code:: Ada
+  .. code:: Ada
 
       -- Test 1
       Set_Stub_Read_cac9ed_9101fc (Read_Result => 12);
@@ -326,7 +326,7 @@ Setting Stub Return Data
 
 * Method 2 - edit the stub directly :filename:`obj/gnattest_stub/stubs/default/sensor.adb`
 
-   .. code:: Ada
+  .. code:: Ada
 
       --  begin read only
       function Read

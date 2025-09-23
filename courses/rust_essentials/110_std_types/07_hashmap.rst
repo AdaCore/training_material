@@ -53,7 +53,7 @@ Details
    line will insert the alternative value in the hashmap if the book is
    not found.
 
-   .. code:: rust
+  .. code:: rust
 
       let pc1 = page_counts
           .get("Harry Potter and the Sorcerer's Stone")
@@ -70,7 +70,7 @@ Details
       which allows us to easily initialize a hash map from a literal
       array:
 
-      .. code:: rust
+     .. code:: rust
 
          let page_counts = HashMap::from([
            ("Harry Potter and the Sorcerer's Stone".to_string(), 336),

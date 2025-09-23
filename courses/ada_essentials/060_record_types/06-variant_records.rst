@@ -65,12 +65,12 @@ Immutable Variant Record Example
 
 * Each object of :ada:`Person` has three components, but it depends on :ada:`Group`
 
-    .. code:: Ada
+  .. code:: Ada
 
-      Pat : Person (Student);
-      Sam : Person := (Faculty, 33, 5);
+    Pat : Person (Student);
+    Sam : Person := (Faculty, 33, 5);
 
-  * :ada:`Pat` has :ada:`Group`, :ada:`Age`, and :ada:`Gpa`
+* :ada:`Pat` has :ada:`Group`, :ada:`Age`, and :ada:`Gpa`
   * :ada:`Sam` has :ada:`Group`, :ada:`Age`, and :ada:`Pubs`
   * Aggregate specifies all components, including the discriminant
 

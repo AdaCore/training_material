@@ -40,13 +40,13 @@ What is a Frame Condition?
 
 * Using the previous example:
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Set_X (P : in out Pair; Value : Integer)
         with Post => P.X = Value;
 
-   * Postcondition indicates what is happening to :ada:`P.X` ...
-   * ... But when proving the caller, the prover has no information on the state of :ada:`P.Y`
+  * Postcondition indicates what is happening to :ada:`P.X` ...
+  * ... But when proving the caller, the prover has no information on the state of :ada:`P.Y`
 
 * :toolname:`GNATprove` can sometimes determine the *frame condition* 
 

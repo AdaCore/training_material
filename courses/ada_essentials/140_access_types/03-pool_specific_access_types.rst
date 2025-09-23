@@ -8,11 +8,11 @@ Pool-Specific Access Type
 
 * An access type is a type
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type T is [...]
-      type T_Access is access T;
-      V : T_Access := new T;
+     type T is [...]
+     type T_Access is access T;
+     V : T_Access := new T;
 
 * Conversion is **not** possible between pool-specific access types
 
@@ -25,9 +25,9 @@ Allocations
 
    - The constraint is given during the allocation
 
-      .. code:: Ada
+     .. code:: Ada
 
-         V : String_Access := new String (1 .. 10);
+        V : String_Access := new String (1 .. 10);
 
 * The object can be created by copying an existing object - using a qualifier
 

@@ -8,19 +8,19 @@ General Access Types
 
 * Can point to any pool (including stack)
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type T is [...]
-      type T_Access is access all T;
-      V : T_Access := new T;
+     type T is [...]
+     type T_Access is access all T;
+     V : T_Access := new T;
 
 * Still distinct type
 * Conversions are possible
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type T_Access_2 is access all T;
-      V2 : T_Access_2 := T_Access_2 (V); -- legal
+     type T_Access_2 is access all T;
+     V2 : T_Access_2 := T_Access_2 (V); -- legal
 
 -----------------------
 Referencing the Stack
@@ -29,17 +29,17 @@ Referencing the Stack
 * By default, stack-allocated objects cannot be referenced - and can even be optimized into a register by the compiler
 * :ada:`aliased` declares an object to be referenceable through an access value
 
-   .. code:: Ada
+  .. code:: Ada
 
-      V : aliased Integer;
+     V : aliased Integer;
 
 * :ada:`'Access` attribute gives a reference to the object
 
-   .. code:: Ada
+  .. code:: Ada
 
-      A : Int_Access := V'Access;
+     A : Int_Access := V'Access;
 
-   - :ada:`'Unchecked_Access` does it **without checks**
+  - :ada:`'Unchecked_Access` does it **without checks**
 
 ----------------------------
 `Aliased` Objects Examples

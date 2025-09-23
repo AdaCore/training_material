@@ -40,29 +40,29 @@ Timing Events
 
 * Do not require a :ada:`task` or a :ada:`delay` statement
 
- .. code:: Ada
+  .. code:: Ada
 
-    package Ada.Real_Time.Timing_Events is
-       type Timing_Event is tagged limited private;
-       type Timing_Event_Handler is
-          access protected procedure
-             (Event : in out Timing_Event);
-       procedure Set_Handler
-          (Event   : in out Timing_Event;
-           At_Time : Time;
-           Handler : Timing_Event_Handler);
-       function Current_Handler
-          (Event : Timing_Event)
-           return Timing_Event_Handler;
-       procedure Cancel_Handler
-          (Event     : in out Timing_Event;
-           Cancelled : out Boolean);
-       function Time_Of_Event
-          (Event : Timing_Event)
-           return Time;
-    private
-       ...
-    end Ada.Real_Time.Timing_Events;
+     package Ada.Real_Time.Timing_Events is
+        type Timing_Event is tagged limited private;
+        type Timing_Event_Handler is
+           access protected procedure
+              (Event : in out Timing_Event);
+        procedure Set_Handler
+           (Event   : in out Timing_Event;
+            At_Time : Time;
+            Handler : Timing_Event_Handler);
+        function Current_Handler
+           (Event : Timing_Event)
+            return Timing_Event_Handler;
+        procedure Cancel_Handler
+           (Event     : in out Timing_Event;
+            Cancelled : out Boolean);
+        function Time_Of_Event
+           (Event : Timing_Event)
+            return Time;
+     private
+        ...
+     end Ada.Real_Time.Timing_Events;
 
 -----------------------
 Execution Time Clocks

@@ -36,11 +36,11 @@ Assignment Statements, Not Expressions
 
    - No Ada equivalent for these:
 
-      .. code:: C++
+     .. code:: C++
 
-         int a = b = c = 1;
-         while (line = readline(file))
-            { ...do something with line... }
+        int a = b = c = 1;
+        while (line = readline(file))
+           { ...do something with line... }
 
 * No assignment in conditionals
 
@@ -80,38 +80,38 @@ Aliasing the Assignment Target
 
 * C allows you to simplify assignments when the target is used in the expression. This avoids duplicating (possibly long) names.
 
-   .. code:: C
+  .. code:: C
 
-      total = total + value;
-      // becomes
-      total += value;
+     total = total + value;
+     // becomes
+     total += value;
 
 * Ada 2022 implements this by using the target name symbol :ada:`@`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Total := Total + Value;
-      -- becomes
-      Total := @ + Value;
+     Total := Total + Value;
+     -- becomes
+     Total := @ + Value;
 
 * Benefit
 
    * Symbol can be used multiple times in expression
 
-      .. code:: Ada
+     .. code:: Ada
 
-         Value := (if @ > 0 then @ else -(@));
+        Value := (if @ > 0 then @ else -(@));
 
 * Limitation
 
    * Symbol is read-only (so it can't change during evaluation)
 
-      .. code:: Ada
+     .. code:: Ada
 
-         function Update (X : in out Integer) return Integer;
-         function Increment (X: Integer) return Integer;
+        function Update (X : in out Integer) return Integer;
+        function Increment (X: Integer) return Integer;
 
-      .. code:: Ada
+     .. code:: Ada
          :number-lines: 13
 
             Value := Update (@);
@@ -129,15 +129,15 @@ Quiz
 
   .. container:: column
 
-   .. code:: Ada
+    .. code:: Ada
 
-      type One_T is range 0 .. 100;
-      type Two_T is range 0 .. 100;
-      A : constant := 100;
-      B : constant One_T := 99;
-      C : constant Two_T := 98;
-      X : One_T := 0;
-      Y : Two_T := 0;
+       type One_T is range 0 .. 100;
+       type Two_T is range 0 .. 100;
+       A : constant := 100;
+       B : constant One_T := 99;
+       C : constant Two_T := 98;
+       X : One_T := 0;
+       Y : Two_T := 0;
 
   .. container:: column
 

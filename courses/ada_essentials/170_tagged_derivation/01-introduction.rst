@@ -8,10 +8,10 @@ Object-Oriented Programming with Tagged Types
 
 * For :ada:`record` types
 
-    .. code:: Ada
+  .. code:: Ada
 
-       type T is tagged record
-       ...
+     type T is tagged record
+     ...
 
 * Child types can add new components
 * Object of a child type can be **substituted** for base type
@@ -30,36 +30,36 @@ Tagged Derivation Ada Vs C++
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       type T1 is tagged record
-         Member1 : Integer;
-       end record;
+      type T1 is tagged record
+        Member1 : Integer;
+      end record;
 
-       procedure Attr_F (This : T1);
+      procedure Attr_F (This : T1);
 
-       type T2 is new T1 with record
-         Member2 : Integer;
-       end record;
+      type T2 is new T1 with record
+        Member2 : Integer;
+      end record;
 
-       overriding procedure Attr_F (
-            This : T2);
-       procedure Attr_F2 (This : T2);
+      overriding procedure Attr_F (
+           This : T2);
+      procedure Attr_F2 (This : T2);
 
  .. container:: column
 
-    .. code:: C++
+   .. code:: C++
 
-       class T1 {
-         public:
-           int Member1;
-           virtual void Attr_F(void);
-         };
+      class T1 {
+        public:
+          int Member1;
+          virtual void Attr_F(void);
+        };
 
-       class T2 : public T1 {
-         public:
-           int Member2;
-           virtual void Attr_F(void);
-           virtual void Attr_F2(void);
-         };
+      class T2 : public T1 {
+        public:
+          int Member2;
+          virtual void Attr_F(void);
+          virtual void Attr_F2(void);
+        };
 

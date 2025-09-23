@@ -8,11 +8,11 @@ Strong Typing
 
 * Ada supports strong typing
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Small_Integer_T is range -1_000 .. 1_000;
-      type Enumerated_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
-      type Array_T is array (1 .. 3) of Boolean;
+     type Small_Integer_T is range -1_000 .. 1_000;
+     type Enumerated_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+     type Array_T is array (1 .. 3) of Boolean;
 
 * What if we need stronger enforcement?
 
@@ -56,7 +56,7 @@ Type Invariant
 
 * Remember - these are abstract data types
 
-.. image:: black_box_flow.png
+.. image:: black_box_flow.svg
 
 ----------------------------------------
 Invariant Over Object Lifetime (Calls)
@@ -125,36 +125,36 @@ Quiz
 
   .. container:: latex_environment tiny
 
-   .. code:: Ada
+    .. code:: Ada
 
-      package Counter_System is
-         type Counter_T is private;
-         procedure Increment (Val_To_Inc : 
-                              in out Counter_T);
-      private
-         function Is_Valid (Val_To_Check : Integer) 
-            return Boolean;
-         type Counter_T is new Integer with
-            Type_Invariant => Is_Valid (Integer (Counter_T));
-      end Counter_System;
+       package Counter_System is
+          type Counter_T is private;
+          procedure Increment (Val_To_Inc : 
+                               in out Counter_T);
+       private
+          function Is_Valid (Val_To_Check : Integer) 
+             return Boolean;
+          type Counter_T is new Integer with
+             Type_Invariant => Is_Valid (Integer (Counter_T));
+       end Counter_System;
 
-      package body Counter_System is
-         function Increment_Helper (Helper_Num : Counter_T)
-                                      return Counter_T is
-            New_Val : Counter_T := Helper_Num + 1;
-         begin
-            return New_Val;
-         end Increment_Helper;
-         procedure Increment (Val_To_Inc : 
-                              in out Counter_T) is
-         begin
-            Val_To_Inc := Val_To_Inc + 1;
-            Val_To_Inc := Increment_Helper (Val_To_Inc);
-         end Increment;
-         function Is_Valid (Val_To_Check : Integer)
-                           return Boolean is
-            (True);
-      end Counter_System;
+       package body Counter_System is
+          function Increment_Helper (Helper_Num : Counter_T)
+                                       return Counter_T is
+             New_Val : Counter_T := Helper_Num + 1;
+          begin
+             return New_Val;
+          end Increment_Helper;
+          procedure Increment (Val_To_Inc : 
+                               in out Counter_T) is
+          begin
+             Val_To_Inc := Val_To_Inc + 1;
+             Val_To_Inc := Increment_Helper (Val_To_Inc);
+          end Increment;
+          function Is_Valid (Val_To_Check : Integer)
+                            return Boolean is
+             (True);
+       end Counter_System;
 
  .. container:: column
 

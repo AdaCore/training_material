@@ -10,7 +10,6 @@ GOTO Statements
 
 .. container:: source_include 040_statements/syntax.bnf :start-after:goto_statements_begin :end-before:goto_statements_end :code:bnf
 
-
 * Rationale
 
    - Historic usage

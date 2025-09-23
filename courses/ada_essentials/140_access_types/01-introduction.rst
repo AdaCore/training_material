@@ -45,10 +45,10 @@ Access Types - General vs Pool-Specific
 
    C/C++ uses the same syntax whether pointing to stack or heap
 
-   .. code:: C++
+        .. code:: C++
 
-     int * PointToHeap = malloc (sizeof (int));
-     int * PointToStack = &SomeInt;
+          int * PointToHeap = malloc (sizeof (int));
+          int * PointToStack = &SomeInt;
 
 -------------------------------
 Access Types Can Be Dangerous
@@ -81,14 +81,11 @@ Stack Vs Heap
   I : Integer := 0;
   J : String := "Some Long String";
 
-.. image:: items_on_stack.png
-   :width: 50%
+.. image:: items_on_stack.svg
 
 .. code:: Ada
 
   I : Access_Int := new Integer'(0);
   J : Access_Str := new String'("Some Long String");
 
-.. image:: stack_pointing_to_heap.png
-   :width: 50%
-
+.. image:: stack_pointing_to_heap.svg

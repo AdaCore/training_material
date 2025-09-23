@@ -33,10 +33,10 @@ Expressions Lab
 Expressions Lab Solution - Checks
 --------------------------------------------
 
-.. container:: source_include 080_expressions/lab/expressions-with_quantified/answer/main.adb :start-after:--Checks :end-before:--Checks :code:Ada :number-lines:4
+.. container:: source_include 080_expressions/lab/expressions/answer/main.adb :start-after:--Checks :end-before:--Checks :code:Ada :number-lines:4
 
 ------------------------------------------
 Expressions Lab Solution - Main
 ------------------------------------------
 
-.. container:: source_include 080_expressions/lab/expressions-with_quantified/answer/main.adb :start-after:--Main :end-before:--Main :code:Ada :number-lines:37
+.. container:: source_include 080_expressions/lab/expressions/answer/main.adb :start-after:--Main :end-before:--Main :code:Ada :number-lines:37

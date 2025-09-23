@@ -14,14 +14,12 @@ Constrained Array Type Declarations
 
 **Examples**
 
-.. container:: latex_environment footnotesize
+  .. code:: Ada
 
-   .. code:: Ada
-
-      type Integer_Array_T is array (1 .. 3) of Integer;
-      type Boolean_Array_T is array (Boolean) of Integer;
-      type Character_Array_T is array (character range 'a' .. 'z') of Boolean;
-      type Copycat_T is array (Boolean_Array_T'Range) of Integer;
+     type Integer_Array_T is array (1 .. 3) of Integer;
+     type Boolean_Array_T is array (Boolean) of Integer;
+     type Character_Array_T is array (character range 'a' .. 'z') of Boolean;
+     type Copycat_T is array (Boolean_Array_T'Range) of Integer;
 
 ------
 Quiz

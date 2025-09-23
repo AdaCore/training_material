@@ -37,15 +37,15 @@ Details
 -  It is common to *re-export* symbols at a shorter path. For example,
    the top-level :rust:`lib.rs` in a crate might have
 
-   .. code:: rust
+  .. code:: rust
 
       mod storage;
 
       pub use storage::disk::DiskStorage;
       pub use storage::network::NetworkStorage;
 
-   making :rust:`DiskStorage` and :rust:`NetworkStorage` available to other
-   crates with a convenient, short path.
+  making :rust:`DiskStorage` and :rust:`NetworkStorage` available to other
+  crates with a convenient, short path.
 
 -  For the most part, only items that appear in a module need to be
    :rust:`use`. However, a trait must be in scope to call any methods on

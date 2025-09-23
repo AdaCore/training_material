@@ -37,9 +37,9 @@ Declaring Private Types for Views
 
 * Partial syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type <typemark> is private;
+     type <typemark> is private;
 
 * Private type declaration must occur in visible part
 
@@ -132,14 +132,14 @@ Compile-Time Visibility Protection
 * Therefore users cannot compile code referencing representation
 * This does not compile
 
-   .. code:: Ada
+  .. code:: Ada
 
-      with Bounded_Stacks;
-      procedure User is
-        S : Bounded_Stacks.Stack;
-      begin
-        S.Top := 1;  -- Top is not visible
-      end User;
+     with Bounded_Stacks;
+     procedure User is
+       S : Bounded_Stacks.Stack;
+     begin
+       S.Top := 1;  -- Top is not visible
+     end User;
 
 -------------------
 Benefits of Views

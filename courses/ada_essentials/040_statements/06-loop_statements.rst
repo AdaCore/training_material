@@ -17,12 +17,12 @@ Basic Loops and Syntax
 
 **Example**
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Wash_Hair : loop
-        Lather (Hair);
-        Rinse (Hair);
-      end loop Wash_Hair;
+     Wash_Hair : loop
+       Lather (Hair);
+       Rinse (Hair);
+     end loop Wash_Hair;
 
 --------------------
 Loop Exit Statements
@@ -53,25 +53,25 @@ Exit Statement Examples
 
 * Equivalent to C's :C:`do while`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      loop
-        Do_Something;
-        exit when Finished;
-      end loop;
+     loop
+       Do_Something;
+       exit when Finished;
+     end loop;
 
 * Nested named loops and exit
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Outer : loop
-        Do_Something;
-        Inner : loop
-          ...
-          exit Outer when Finished; -- will exit all the way out
-          ...
-        end loop Inner;
-      end loop Outer;
+     Outer : loop
+       Do_Something;
+       Inner : loop
+         ...
+         exit Outer when Finished; -- will exit all the way out
+         ...
+       end loop Inner;
+     end loop Outer;
 
 -----------------------
 While-loop Statements
@@ -83,21 +83,21 @@ While-loop Statements
 
 * Behaves the same as :ada:`loop` with :ada:`exit` at the beginning
 
-   .. code:: bnf
+  .. code:: bnf
 
-      loop
-         exit when not condition;
-         sequence_of_statements
-      end loop;
+     loop
+        exit when not <boolean_expression>;
+        sequence_of_statements
+     end loop;
 
 **Example**
 
 .. code:: Ada
 
-   while Count < Largest loop
-      Count := Count + 2;
-      Display (Count);
-   end loop;
+  while Count < Largest loop
+     Count := Count + 2;
+     Display (Count);
+  end loop;
 
 ---------------------
 For-loop Statements
@@ -130,9 +130,9 @@ For in Statements
 
 .. code:: Ada
 
-     for Day in Days_T loop
-        Refresh_Planning (Day);
-     end loop;
+  for Day in Days_T loop
+     Refresh_Planning (Day);
+  end loop;
 
 .. container:: speakernote
 
@@ -173,21 +173,21 @@ Low-Level For-loop Parameter Type
 
 .. container:: latex_environment scriptsize
 
-    .. code:: Ada
-      :number-lines: 1
+  .. code:: Ada
+    :number-lines: 1
 
-      procedure Main is
-         type Color_T is (Red, White, Blue);
-         type Rgb_T is (Red, Green, Blue);
-      begin
-         for Color in Red .. Blue loop  -- which Red and Blue?
-            null;
-         end loop;
-         for Color in Rgb_T'(Red) .. Blue loop -- OK
-            null;
-         end loop;
+    procedure Main is
+       type Color_T is (Red, White, Blue);
+       type Rgb_T is (Red, Green, Blue);
+    begin
+       for Color in Red .. Blue loop  -- which Red and Blue?
+          null;
+       end loop;
+       for Color in Rgb_T'(Red) .. Blue loop -- OK
+          null;
+       end loop;
 
-    ::
+  ::
 
       main.adb:5:21: error: ambiguous bounds in range of iteration
       main.adb:5:21: error: possible interpretations:
@@ -197,11 +197,11 @@ Low-Level For-loop Parameter Type
 
 * If bounds are `universal_integer`, then type is :ada:`Integer` unless otherwise specified
 
-   .. code:: Ada
+  .. code:: Ada
 
-      for Idx in 1 .. 3 loop -- Idx is Integer
+     for Idx in 1 .. 3 loop -- Idx is Integer
 
-      for Idx in Short range 1 .. 3 loop -- Idx is Short
+     for Idx in Short range 1 .. 3 loop -- Idx is Short
 
 -------------
 Null Ranges
@@ -229,9 +229,9 @@ Reversing Low-Level Iteration Direction
     - Range must still be ascending
     - Null range still cause no iteration
 
-   .. code:: Ada
+      .. code:: Ada
 
-      for This_Day in reverse Mon .. Fri loop
+         for This_Day in reverse Mon .. Fri loop
 
 ---------------------------------------
 For-Loop Parameter Visibility
@@ -240,16 +240,16 @@ For-Loop Parameter Visibility
 * Scope rules don't change
 * Inner objects can hide outer objects
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Block: declare
-        Counter : Float := 0.0;
-      begin
-        -- For_Loop.Counter hides Block.Counter
-        For_Loop : for Counter in Integer range A .. B loop
-        ...
-        end loop;
-      end;
+     Block: declare
+       Counter : Float := 0.0;
+     begin
+       -- For_Loop.Counter hides Block.Counter
+       For_Loop : for Counter in Integer range A .. B loop
+       ...
+       end loop;
+     end;
 
 --------------------------
 Referencing Hidden Names
