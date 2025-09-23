@@ -15,8 +15,8 @@ Syntax and Examples
 .. code:: Ada
 
    type Record1_T is record
-      Component1 : Integer;
-      Component2 : Boolean;
+      Is_Valid : Boolean := False;
+      Content  : Integer;
    end record;
 
 :color-white:`Blank line`
