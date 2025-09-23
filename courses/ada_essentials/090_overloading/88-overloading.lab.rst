@@ -8,33 +8,36 @@ Overloading Lab
 
 * Requirements
 
-   - Create multiple functions named "Convert" to convert between digits and text representation
+   - Create multiple functions named :ada:`Convert` to convert between a character digits and its name
 
-      + One routine should take a digit and return the text version (e.g. **3** would return **three**)
+      + One routine should take a digit and return the name (e.g. **'3'** would return **three**)
 
-      + One routine should take text and return the digit (e.g. **two** would return **2**)
+      + One routine should take the name and return the digit (e.g. **two** would return **'2'**)
 
-   - Query the user to enter text or a digit and print its equivalent
-   - If the user enters consecutive entries that are equivalent, print a message
+      + Hint: enumerals for the name will be easier than dealing with strings
 
-      + e.g. **4** followed by **four** should get the message
+   - Create overloaded addition functions that will add any combination of the two (digit and name)
 
-* Hints
+      + The result can be an integer (i.e. dont worry about converting the result of :ada:`'7' + eight`)
 
-   - You can use enumerals for the text representation
+      + Hint: It might be easier to convert one to the other before adding!
 
-      + Then use *'Image* / *'Value* where needed
-
-   - Use an equivalence function to compare different types
+   - The prompt has four equations in the comments - use those to prove your code works
 
 -------------------------------------------------
 Overloading Lab Solution - Conversion Functions
 -------------------------------------------------
 
-.. container:: source_include 090_overloading/lab/overloading/answer/main.adb :start-after:--Conversion_Functions :end-before:--Conversion_Functions :code:Ada :number-lines:4
+.. container:: source_include 090_overloading/lab/overloading/answer/main.adb :start-after:conversions_begin :end-before:conversions_end :code:Ada :number-lines:5
+
+--------------------------------------
+Overloading Lab Solution - Operators
+--------------------------------------
+
+.. container:: source_include 090_overloading/lab/overloading/answer/main.adb :start-after:operators_begin :end-before:operators_end :code:Ada :number-lines:32
 
 -------------------------------------------------
 Overloading Lab Solution - Main
 -------------------------------------------------
 
-.. container:: source_include 090_overloading/lab/overloading/answer/main.adb :start-after:--Main :end-before:--Main :code:Ada :number-lines:40
+.. container:: source_include 090_overloading/lab/overloading/answer/main.adb :start-after:main_begin :end-before:main_end :code:Ada :number-lines:79

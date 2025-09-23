@@ -36,7 +36,7 @@ If Expressions
 * Syntax looks like an *if statement* without :ada:`end if`
 * The conditions are always Boolean values
 
-   .. code:: Ada
+  .. code:: Ada
 
       (if Today > Wednesday then 1 else 0)
 
@@ -105,18 +105,18 @@ The "else" Part When Result Is Boolean
 
   .. container:: latex_environment  small
 
-   .. code:: Ada
+    .. code:: Ada
 
-      (if P then Q else True)
+       (if P then Q else True)
 
 * So for convenience and elegance it can be omitted
 
   .. container:: latex_environment  small
 
-   .. code:: Ada
+    .. code:: Ada
 
-      Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
-      Acceptable : Boolean := (if P1 > 0 then P2 > 0);
+       Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
+       Acceptable : Boolean := (if P1 > 0 then P2 > 0);
 
 * Use :ada:`else` if you need to return False at the end
 
@@ -127,9 +127,9 @@ Rationale for Parentheses Requirement
 * Prevents ambiguity regarding any enclosing expression
 * Problem:
 
-   .. code:: Ada
+  .. code:: Ada
 
-      X : Integer := if condition then A else B + 1;
+     X : Integer := if condition then A else B + 1;
 
 * Does that mean
 
@@ -140,9 +140,9 @@ Rationale for Parentheses Requirement
 
    - Because enclosing construct includes them
 
-      .. code:: Ada
+     .. code:: Ada
 
-         Subprogram_Call (if A then B else C);
+        Subprogram_Call (if A then B else C);
 
 ------------------------------
 When to Use If Expressions
@@ -171,31 +171,31 @@ When to Use If Expressions
 
 * Starting from
 
-   .. code:: Ada
+  .. code:: Ada
 
-      End_of_Month : array (Months) of Days
-        := (Sep | Apr | Jun | Nov => 30,
-           Feb => 28,
-           others => 31);
-      begin
-        if Leap (Today.Year) then -- adjust for leap year
-          End_of_Month (Feb) := 29;
-        end if;
-        if Today.Day = End_of_Month (Today.Month) then
-      ...
+     End_of_Month : array (Months) of Days
+       := (Sep | Apr | Jun | Nov => 30,
+          Feb => 28,
+          others => 31);
+     begin
+       if Leap (Today.Year) then -- adjust for leap year
+         End_of_Month (Feb) := 29;
+       end if;
+       if Today.Day = End_of_Month (Today.Month) then
+     ...
 
 * Using *if expression* to call :ada:`Leap (Year)` as needed
 
-   .. code:: Ada
+  .. code:: Ada
 
-      End_Of_Month : constant array (Months) of Days
-        := (Sep | Apr | Jun | Nov => 30,
-            Feb => (if Leap (Today.Year)
-                    then 29 else 28),
-            others => 31);
-      begin
-        if Today.Day /= End_of_Month (Today.Month) then
-      ...
+     End_Of_Month : constant array (Months) of Days
+       := (Sep | Apr | Jun | Nov => 30,
+           Feb => (if Leap (Today.Year)
+                   then 29 else 28),
+           others => 31);
+     begin
+       if Today.Day /= End_of_Month (Today.Month) then
+     ...
 
 ---------------------
 Case Expressions

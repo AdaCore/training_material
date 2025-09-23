@@ -64,7 +64,7 @@ More To Explore
 -  Another piece of pattern syntax you can show students is the :rust:`@`
    syntax which binds a part of a pattern to a variable. For example:
 
-   .. code:: rust
+  .. code:: rust
 
       let opt = Some(123);
       match opt {
@@ -74,8 +74,8 @@ More To Explore
           None => {}
       }
 
-   In this example :rust:`inner` has the value 123 which it pulled from the
-   :rust:`Option` via destructuring, :rust:`outer` captures the entire
-   :rust:`Some(inner)` expression, so it contains the full
-   :rust:`Option::Some(123)`. This is rarely used but can be useful in more
-   complex patterns.
+  In this example :rust:`inner` has the value 123 which it pulled from the
+  :rust:`Option` via destructuring, :rust:`outer` captures the entire
+  :rust:`Some(inner)` expression, so it contains the full
+  :rust:`Option::Some(123)`. This is rarely used but can be useful in more
+  complex patterns.

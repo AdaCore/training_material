@@ -39,14 +39,14 @@ Limited Constructor Functions
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       function F return Spin_Lock
-       is
-       begin
-         ...
-         return (Flag => 0);
-       end F;
+      function F return Spin_Lock
+      is
+      begin
+        ...
+        return (Flag => 0);
+      end F;
 
 ---------------------------------------
 Writing Limited Constructor Functions

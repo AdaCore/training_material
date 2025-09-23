@@ -38,9 +38,9 @@
 * Can refer to any visible package (including nested packages)
 * Syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      use_package_clause ::= use package_name {, package_name};
+     use_package_clause ::= use package_name {, package_name};
 
 * Can only :ada:`use` a package
 

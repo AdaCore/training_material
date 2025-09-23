@@ -6,29 +6,29 @@ Enumeration Types
 Enumeration Types
 -------------------
 
+**Syntax**
+
+.. container:: source_include 030_scalar_types/syntax.bnf :start-after:enumeration_types_begin :end-before:enumeration_types_end :code:bnf
+
 * Enumeration of **logical** values
 
     - Integer value is an implementation detail
-
-* Syntax
-
-   .. code:: Ada
-
-      type <typemark> is (<identifier_list>) ;
 
 * Literals
 
    - Distinct, ordered
    - Can be in **multiple** enumerations
 
-   .. code:: Ada
+**Examples**
 
-      type Colors is (Red, Orange, Yellow, Green, Blue, Violet);
-      type Stop_Light is (Red, Yellow, Green);
-      ...
-      -- Red both a member of Colors and Stop_Light
-      Shade : Colors := Red;
-      Light : Stop_Light := Red;
+.. code:: Ada
+
+   type Colors is (Red, Orange, Yellow, Green, Blue, Violet);
+   type Stop_Light is (Red, Yellow, Green);
+   ...
+   -- Red both a member of Colors and Stop_Light
+   Shade : Colors := Red;
+   Light : Stop_Light := Red;
 
 -----------------------------
 Enumeration Type Operations
@@ -69,11 +69,11 @@ Character Types
 * System-defined :ada:`Character`
 * Can be user-defined
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type EBCDIC is (nul, ..., 'a' , ..., 'A', ..., del);
-      Control : EBCDIC := 'A';
-      Nullo : EBCDIC := nul;
+     type EBCDIC is (nul, ..., 'a' , ..., 'A', ..., del);
+     Control : EBCDIC := 'A';
+     Nullo : EBCDIC := nul;
 
 -------------------------------
 Language-Defined Type Boolean
@@ -81,24 +81,24 @@ Language-Defined Type Boolean
 
 * Enumeration
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Boolean is (False, True);
+     type Boolean is (False, True);
 
 * Supports assignment, relational operators, attributes
 
-   .. code:: Ada
+  .. code:: Ada
 
-      A : Boolean;
-      Counter : Integer;
-      ...
-      A := (Counter = 22);
+     A : Boolean;
+     Counter : Integer;
+     ...
+     A := (Counter = 22);
 
 * Logical operators :ada:`and`, :ada:`or`, :ada:`xor`, :ada:`not`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      A := B or (not C); -- For A, B, C boolean
+     A := B or (not C); -- For A, B, C boolean
 
 ------------------------------------
 Why Boolean Isn't Just an Integer?
@@ -131,12 +131,12 @@ Why Boolean Isn't Just an Integer!
 
 * Used :C:`int` as a boolean
 
-   .. code:: C
+  .. code:: C
 
-      if (rom->paddles_deployed == 1)
-        use_deployed_inertia_matrix();
-      else
-        use_stowed_inertia_matrix();
+     if (rom->paddles_deployed == 1)
+       use_deployed_inertia_matrix();
+     else
+       use_stowed_inertia_matrix();
 
 * Later :C:`paddles_deployed` became a **4-bits** value
 
@@ -159,9 +159,9 @@ Boolean Operators' Operand Evaluation
   - Dereferencing null pointers
   - Division by zero
 
- .. code:: Ada
+.. code:: Ada
 
-    if Divisor /= 0 and K / Divisor = Max then ... -- Problem!
+  if Divisor /= 0 and K / Divisor = Max then ... -- Problem!
 
 -----------------------------
 Short-Circuit Control Forms

@@ -29,28 +29,28 @@ Relying on Exception Raising Is Risky
 
 * Not recommended
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function Tomorrow (Today : Days) return Days is
-      begin
-        return Days'Succ (Today);
-      exception
-        when Constraint_Error =>
-          return Days'First;
-      end Tomorrow;
+     function Tomorrow (Today : Days) return Days is
+     begin
+       return Days'Succ (Today);
+     exception
+       when Constraint_Error =>
+         return Days'First;
+     end Tomorrow;
 
 * Recommended
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function Tomorrow (Today : Days) return Days is
-      begin
-        if Today = Days'Last then
-          return Days'First;
-        else
-          return Days'Succ (Today);
-        end if;
-      end Tomorrow;
+     function Tomorrow (Today : Days) return Days is
+     begin
+       if Today = Days'Last then
+         return Days'First;
+       else
+         return Days'Succ (Today);
+       end if;
+     end Tomorrow;
 
 ---------
 Summary

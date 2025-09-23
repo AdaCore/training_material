@@ -15,7 +15,7 @@ Return Statements in Functions
 
 * Example
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Add (Left, Right : Integer ) return Integer is
       begin

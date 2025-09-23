@@ -31,7 +31,7 @@ Demonstrating Richer Expressions (1/3)
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap (X, Y : in out Integer)
         with Post =>
@@ -57,7 +57,7 @@ Demonstrating Richer Expressions (2/3)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Bump_Rec (R : in out Rec)
        with
@@ -84,7 +84,7 @@ Demonstrating Richer Expressions (3/3)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Swap_Table (T : in out Table; I, J : Index)
       with
@@ -105,17 +105,17 @@ Using Expression Functions (1/3)
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Value_Rec_Is_One (R : Rec) return Boolean is
         (Value_Rec (R) = 1);
 
 
-   - Use :ada:`Value_Rec_Is_One` in the postcondition of :ada:`Init_Rec`
+  - Use :ada:`Value_Rec_Is_One` in the postcondition of :ada:`Init_Rec`
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Init_Rec (R : out Rec)
         with Post => Value_Rec_Is_One (R);
@@ -133,16 +133,16 @@ Using Expression Functions (2/3)
 
    - In spec
 
-      .. code:: Ada
+     .. code:: Ada
 
          function Value_Rec_Is_One (R : Rec) return Boolean;
 
          procedure Init_Rec (R : out Rec)
            with Post => Value_Rec_Is_One (R);
 
-   - In body
+  - In body
 
-      .. code:: Ada
+     .. code:: Ada
 
          function Value_Rec_Is_One (R : Rec) return Boolean is
            (Value_Rec (R) = 1);
@@ -161,14 +161,14 @@ Using Expression Functions (3/3)
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Value_Rec_Is_One (R : Rec) return Boolean is
       begin
          return Value_Rec (R) = 1;
       end Value_Rec_Is_One;
 
-   **Does** *the unit still prove correctly?*
+  **Does** *the unit still prove correctly?*
 
 .. container:: animate 3-
 
@@ -178,13 +178,13 @@ Using Expression Functions (3/3)
 
 .. container:: animate 4-
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Value_Rec_Is_One (R : Rec) return Boolean
         with Post =>
           Value_Rec_Is_One'Result = (Value_Rec (R) = 1);
 
-   **Now** the unit should prove correctly
+  **Now** the unit should prove correctly
 
 ------------------------
 If You Have Time (1/2)
@@ -192,14 +192,14 @@ If You Have Time (1/2)
 
 - Implement the expression function :ada:`Constant_Value`
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Constant_Value
          (T : Table; Start, Stop : Index; Value : Integer)
           return Boolean
 
-   + Such that for every index between :ada:`Start` and :ada:`Stop` (inclusive), the
-     element at that index is :ada:`Value`
+  + Such that for every index between :ada:`Start` and :ada:`Stop` (inclusive), the
+    element at that index is :ada:`Value`
 
 .. container:: animate 2-
 
@@ -207,7 +207,7 @@ If You Have Time (1/2)
 
 .. container:: animate 3-
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Constant_Value
         (T : Table; Start, Stop : Index; Value : Integer)
@@ -217,9 +217,9 @@ If You Have Time (1/2)
       with
         Pre => Start > Stop or else (Start in T'Range and then Stop in T'Range);
 
-   **Note:** *Zero length arrays are defined as* :ada:`'First` *being larger than* :ada:`'Last`.
-   *So our precondition verifes that* :ada:`Start` *and* :ada:`Stop` *are valid indexes*
-   *into the array*
+  **Note:** *Zero length arrays are defined as* :ada:`'First` *being larger than* :ada:`'Last`.
+  *So our precondition verifes that* :ada:`Start` *and* :ada:`Stop` *are valid indexes*
+  *into the array*
 
 ------------------------
 If You Have Time (2/2)
@@ -233,7 +233,7 @@ If You Have Time (2/2)
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Init_Table (T : out Table)
         with

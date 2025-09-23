@@ -31,24 +31,24 @@ Referencing Exported Items
 * Achieved via "dot notation"
 * Package Specification
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Float_Stack is
-        procedure Push (X : in Float);
-        procedure Pop (X : out Float);
-      end Float_Stack;
+     package Float_Stack is
+       procedure Push (X : in Float);
+       procedure Pop (X : out Float);
+     end Float_Stack;
 
 * Package Reference
 
-   .. code:: Ada
+  .. code:: Ada
 
-      with Float_Stack;
-      procedure Test is
-         X : Float;
-      begin
-         Float_Stack.Pop (X);
-         Float_Stack.Push (12.0);
-         ...
+     with Float_Stack;
+     procedure Test is
+        X : Float;
+     begin
+        Float_Stack.Pop (X);
+        Float_Stack.Push (12.0);
+        ...
 
 ----------------------
 `with` Clause Syntax

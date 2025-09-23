@@ -53,30 +53,30 @@ Procedures As Constructors
 
 * Spec
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Complex is
-        type Number is private;
-        procedure Make (This : out Number;  Real_Part, Imaginary : in Float) ;
-        ...
-      private
-        type Number is record
-          Real_Part, Imaginary : Float;
-        end record;
-      end Complex;
+     package Complex is
+       type Number is private;
+       procedure Make (This : out Number;  Real_Part, Imaginary : in Float) ;
+       ...
+     private
+       type Number is record
+         Real_Part, Imaginary : Float;
+       end record;
+     end Complex;
 
 * Body (partial)
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package body Complex is
-        procedure Make (This : out Number;
-                        Real_Part, Imaginary : in Float) is
-          begin
-            This.Real_Part := Real_Part;
-            This.Imaginary := Imaginary;
-          end Make;
-      ...
+     package body Complex is
+       procedure Make (This : out Number;
+                       Real_Part, Imaginary : in Float) is
+         begin
+           This.Real_Part := Real_Part;
+           This.Imaginary := Imaginary;
+         end Make;
+     ...
 
 -----------
 Selectors

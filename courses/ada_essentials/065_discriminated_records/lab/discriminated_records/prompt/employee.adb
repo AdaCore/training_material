@@ -1,60 +1,32 @@
 package body Employee is
-
-   function Get_Staff return Employee_T is
+   function Create_Staff (First_Name  : String;
+                          Last_Name   : String;
+                          Hourly_Rate : Pay_T)
+                          return Employee_T is
+      Ret_Val : Employee_T;
    begin
-      return 0;
-   end Get_Staff;
+      return Ret_Val;
+   end Create_Staff;
 
-   function Get_Supervisor return Employee_T is
+   function Create_Supervisor
+     (First_Name  : String;
+      Last_Name   : String;
+      Hourly_Rate : Pay_T;
+      Project     : String)
+      return Employee_T is
+      Ret_Val : Employee_T;
    begin
-      return 0;
-   end Get_Supervisor;
+      return Ret_Val;
+   end Create_Supervisor;
 
-   function Get_Manager return Employee_T is
+   function Create_Manager (First_Name  : String;
+                            Last_Name   : String;
+                            Hourly_Rate : Pay_T;
+                            Department  : String;
+                            Staff_Count : Natural)
+                            return Employee_T is
+      Ret_Val : Employee_T;
    begin
-      return 0;
-   end Get_Manager;
-
-   function Last_Name
-     (This : Employee_T)
-      return String is
-   begin
-      return "";
-   end Last_Name;
-
-   function First_Name
-     (This : Employee_T)
-      return String is
-   begin
-      return "";
-   end First_Name;
-
-   function Hourly_Rate
-     (This : Employee_T)
-      return Float is
-   begin
-      return 0.0;
-   end Hourly_Rate;
-
-   function Project
-     (This : Employee_T)
-      return String is
-   begin
-      return "";
-   end Project;
-
-   function Department
-     (This : Employee_T)
-      return String is
-   begin
-      return "";
-   end Department;
-
-   function Staff_Count
-     (This : Employee_T)
-      return String is
-   begin
-      return "";
-   end Staff_Count;
-
+      return Ret_Val;
+   end Create_Manager;
 end Employee;

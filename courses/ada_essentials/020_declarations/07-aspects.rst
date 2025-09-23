@@ -48,6 +48,10 @@ Pragmas
 Aspect Clauses
 ----------------
 
+**Syntax**
+
+.. container:: source_include 020_declarations/syntax.bnf :start-after:aspect_clauses_begin :end-before:aspect_clauses_end :code:bnf
+
 * Define **additional** properties of an entity
 
     - Representation (eg. :ada:`with Pack`)
@@ -59,14 +63,8 @@ Aspect Clauses
     - More **explicit**, **typed**
     - **Recommended** over pragmas
 
-* Syntax
-
-    .. code:: Ada
-
-       with aspect_mark [ => expression]
-           {, aspect_mark [ => expression] }
-
 .. note:: Aspect clauses always part of a **declaration**
+
 ..
   language_version 2012
 
@@ -74,29 +72,23 @@ Aspect Clauses
 Aspect Clause Example: Objects
 --------------------------------
 
-* Updated **object syntax**
+**Updated object syntax**
 
-   .. code:: Ada
+.. container:: source_include 020_declarations/syntax.bnf :start-after:aspect_clause_example_begin :end-before:aspect_clause_example_end :code:bnf
 
-      <object_name> : <typemark> [:= <initial_value>]
-                      [with <aspect_mark> [ => expression]
-                       {, <aspect_mark> [ => expression] }];
+**Example**
 
-   *where* **<aspect_mark>** *is one of the language-defined object aspects*
+.. code:: Ada
 
-* Usage
-
-   .. code:: Ada
-
-      -- using aspects
-      CR1 : Control_Register with
+   -- using aspects
+   CR1 : Control_Register with
          Size    => 8,
          Address => To_Address (16#DEAD_BEEF#);
 
-      -- using representation clauses
-      CR2 : Control_Register;
-      for CR2'Size use 8;
-      for CR2'Address use To_Address (16#DEAD_BEEF#);
+   -- using representation clauses
+   CR2 : Control_Register;
+   for CR2'Size use 8;
+   for CR2'Address use To_Address (16#DEAD_BEEF#);
 
 ..
   language_version 2012

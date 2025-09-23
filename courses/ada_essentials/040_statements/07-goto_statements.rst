@@ -8,11 +8,11 @@ GOTO Statements
 
 * Syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      goto << <label> >>;
+     goto << <label> >>;
 
-   * where
+  * where
 
       * **<label>** is an identifier
       * ``<<`` and ``>>`` are part of the syntax

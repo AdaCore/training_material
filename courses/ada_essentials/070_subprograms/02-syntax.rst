@@ -109,36 +109,36 @@ Completion Examples
 
 * Specifications
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Swap (A, B : in out Integer);
-      function Min (X, Y : Person) return Person;
+     procedure Swap (A, B : in out Integer);
+     function Min (X, Y : Person) return Person;
 
 * Completions
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Swap (A, B : in out Integer) is
-        Temp : Integer := A;
-      begin
-        A := B;
-        B := Temp;
-      end Swap;
+     procedure Swap (A, B : in out Integer) is
+       Temp : Integer := A;
+     begin
+       A := B;
+       B := Temp;
+     end Swap;
 
-      -- Completion as specification
-      function Less_Than (X, Y : Person) return Boolean is
-      begin
-         return X.Age < Y.Age;
-      end Less_Than;
+     -- Completion as specification
+     function Less_Than (X, Y : Person) return Boolean is
+     begin
+        return X.Age < Y.Age;
+     end Less_Than;
 
-      function Min (X, Y : Person) return Person is
-      begin
-         if Less_Than (X, Y) then
-            return X;
-         else
-            return Y;
-         end if;
-      end Min;
+     function Min (X, Y : Person) return Person is
+     begin
+        if Less_Than (X, Y) then
+           return X;
+        else
+           return Y;
+        end if;
+     end Min;
 
 ------------------------------------------
 Direct Recursion - No Declaration Needed

@@ -55,9 +55,9 @@ Debugging Type Freeze
 
 :filename:`pkg.ads`
 
-   .. code:: Ada
+      .. code:: Ada
 
-       type Up_To_Eleven is range 0 .. 11;
+          type Up_To_Eleven is range 0 .. 11;
 
 :filename:`<obj>/pkg.ads.dg`
 
@@ -76,21 +76,21 @@ Quiz
 
 .. container:: latex_environment tiny
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Parent is range 1 .. 100;
-      procedure Proc_A (X : in out Parent);
+     type Parent is range 1 .. 100;
+     procedure Proc_A (X : in out Parent);
 
-      type Child is new Parent range 2 .. 99;
-      procedure Proc_B (X : in out Parent);
-      procedure Proc_B (X : in out Child);
+     type Child is new Parent range 2 .. 99;
+     procedure Proc_B (X : in out Parent);
+     procedure Proc_B (X : in out Child);
 
-      -- Other scope
-      procedure Proc_C (X : in out Child);
+     -- Other scope
+     procedure Proc_C (X : in out Child);
 
-      type Grandchild is new Child range 3 .. 98;
+     type Grandchild is new Child range 3 .. 98;
 
-      procedure Proc_C (X : in out Grandchild);
+     procedure Proc_C (X : in out Grandchild);
 
 .. container:: columns
 

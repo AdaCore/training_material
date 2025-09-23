@@ -205,7 +205,7 @@ Workflow Three - Excluding Source Code
 
 .. container:: animate 2-
 
-   .. code:: Ada
+  .. code:: Ada
       :number-lines: 34
 
       pragma Annotate (Xcov, Exempt_On, "Exception Handler");
@@ -217,7 +217,7 @@ Workflow Three - Excluding Source Code
            null;
       pragma Annotate (Xcov, Exempt_Off);
 
-   * Now run your code and generate a summary report
+  * Now run your code and generate a summary report
 
 --------------------------------------
 Workflow Three - Exemption Reporting

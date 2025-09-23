@@ -23,20 +23,20 @@ Simple Statement
 
 * Instruction without inputs/outputs
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Asm ("halt", Volatile => True);
+     Asm ("halt", Volatile => True);
 
-   - You may specify :ada:`Volatile` to avoid compiler optimizations
+  - You may specify :ada:`Volatile` to avoid compiler optimizations
    - In general, keep it False unless it created issues
 
 * You can group several instructions
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Asm ("nop" & ASCII.LF & ASCII.HT
-           & "nop", Volatile => True);
-      Asm ("nop; nop", Volatile => True);
+     Asm ("nop" & ASCII.LF & ASCII.HT
+          & "nop", Volatile => True);
+     Asm ("nop; nop", Volatile => True);
 
 * The compiler doesn't check the assembly, only the assembler will
 

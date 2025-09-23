@@ -41,26 +41,26 @@ Testing Non-Contiguous Membership
 
 * We use :ada:`in` to indicate membership in a range of values
 
-   .. code:: Ada
+  .. code:: Ada
 
-      if Color in Red .. Green then
-      if Index in List'Range then
+     if Color in Red .. Green then
+     if Index in List'Range then
 
 * But what if the values are not contiguous?
 
    * We could use a Boolean conjunction
 
-      .. code:: Ada
+     .. code:: Ada
 
-         if Index = 1 or Index = 3 or Index = 5 then
+        if Index = 1 or Index = 3 or Index = 5 then
 
-   * Or we could simplify it by specifying a collection (or set)
+  * Or we could simplify it by specifying a collection (or set)
 
-      .. code:: Ada
+     .. code:: Ada
 
-         if Index in 1 | 3 | 5 then
+        if Index in 1 | 3 | 5 then
 
-      * **|** is used to separate members
+     * **|** is used to separate members
       * So :ada:`1 | 3 | 5` is the set for which we are verifying membership
 
 ..
