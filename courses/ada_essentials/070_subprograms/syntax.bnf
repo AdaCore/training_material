@@ -1,6 +1,6 @@
 --|specification_and_body_begin
 subprogram_declaration ::= 
-    [overriding_indicator]
+    [[not] overriding]
     subprogram_specification
         [aspect_specification];
 
@@ -43,5 +43,5 @@ subprogram_specification is
    [declarations]
 begin
    sequence_of_statements
-end [designator];
+end [subprogram_name | operator_symbol];
 --|body_syntax_end

@@ -1,6 +1,4 @@
 --|with_clause_begin
-context_clause ::= { context_item }
-context_item ::= with_clause | use_clause
 with_clause ::= with library_unit_name
                 { , library_unit_name };
 --|with_clause_end
