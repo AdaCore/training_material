@@ -57,5 +57,5 @@
 <rect fill="#aaccff" stroke="none" rx="4.05" ry="4.05" height="20.25" width="204.0" x="71.0" y="6.0" />
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="center" font-size="12px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="172.0" y="20" >Blue = context clause being used</text>
 <rect fill="#ffbbbb" stroke="none" rx="4.05" ry="4.05" height="20.25" width="276.0" x="395.0" y="6.0" />
-<text xml:space="preserve" fill="#000000" stroke="none"  text-align="center" font-size="12px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="532.0" y="20" >Red = compile errors with the context_clause</text>
+<text xml:space="preserve" fill="#000000" stroke="none"  text-align="center" font-size="12px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="532.0" y="20" >Red = compile errors with the context clause</text>
 </svg>
