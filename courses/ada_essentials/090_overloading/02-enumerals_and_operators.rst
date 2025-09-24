@@ -52,15 +52,15 @@ Parameters for Overloaded Operators
    - Left actual goes to first formal, right actual goes to second formal
    - Definition
 
-      .. code:: Ada
+     .. code:: Ada
 
-         function "*" (Left, Right : Integer) return Integer;
+        function "*" (Left, Right : Integer) return Integer;
 
-   - Usage
+  - Usage
 
-      .. code:: Ada
+     .. code:: Ada
 
-         X := 2 * 3;
+        X := 2 * 3;
 
 * Named parameter associations allowed but ugly
 

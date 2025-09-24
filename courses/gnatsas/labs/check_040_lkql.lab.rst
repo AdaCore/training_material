@@ -136,7 +136,7 @@ Step 2 - Improve Message
 
 * To improve message, add **message** attribute to :lkql:`@check` token
 
-   .. code:: lkql
+  .. code:: lkql
 
       @check(message="Integer type could be replaced by an enumeration")
       fun enum_for_integer(node) =
@@ -173,14 +173,14 @@ Step 3 - Implement First Criteria
 
 2. Implement function named :lkql:`arithmetic_ops` to return the list of **TypeDecl** used in arithmetic and logical operations
 
-   .. code:: lkql
+        .. code:: lkql
 
-      fun arithmetic_ops() =
-         [op.p_expression_type()
-          for op in select
-             BinOp(f_op is OpDiv or OpMinus or OpMod or OpMult or OpPlus or
-                           OpPow or OpRem or OpXor or OpAnd or OpOr) or
-             UnOp(f_op is OpAbs or OpMinus or OpPlus or OpNot)].to_list
+           fun arithmetic_ops() =
+              [op.p_expression_type()
+               for op in select
+                  BinOp(f_op is OpDiv or OpMinus or OpMod or OpMult or OpPlus or
+                                OpPow or OpRem or OpXor or OpAnd or OpOr) or
+                  UnOp(f_op is OpAbs or OpMinus or OpPlus or OpNot)].to_list
 
 -------------------------------------
 Step 4 - Use First Criteria in Rule
@@ -252,25 +252,25 @@ Step 6 - Improve Types Filter
       * Returns **ParamAssocList** with a single component - source expression
       * Use on type conversion nodes to get source of conversions
 
-   .. code:: lkql
+        .. code:: lkql
 
-      fun types() =
-         concat ([[c.p_referenced_decl(), c.f_suffix[1].f_r_expr.p_expression_type()]
-                  for c in select CallExpr(p_referenced_decl() is TypeDecl)].to_list)
+           fun types() =
+              concat ([[c.p_referenced_decl(), c.f_suffix[1].f_r_expr.p_expression_type()]
+                       for c in select CallExpr(p_referenced_decl() is TypeDecl)].to_list)
 
    * :lkql:`concat` function takes a list of lists and returns the one-dimensional result of concatenation of all lists.
 
 2. Test it out - see what happens when you run the rule::
 
-      gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
+           gnatcheck -P default.gpr --rules-dir=. -rules +Renum_for_integer
 
    * This gives us the output::
 
-      test_pkg.ads:4:09: Integer type could be replaced by an enumeration
-      test_pkg.ads:24:09: Integer type could be replaced by an enumeration
-      test_pkg.ads:30:09: Integer type could be replaced by an enumeration
-      test_pkg.ads:31:09: Integer type could be replaced by an enumeration
-      test_pkg.ads:36:09: Integer type could be replaced by an enumeration
+           test_pkg.ads:4:09: Integer type could be replaced by an enumeration
+           test_pkg.ads:24:09: Integer type could be replaced by an enumeration
+           test_pkg.ads:30:09: Integer type could be replaced by an enumeration
+           test_pkg.ads:31:09: Integer type could be replaced by an enumeration
+           test_pkg.ads:36:09: Integer type could be replaced by an enumeration
 
    * List of integers that meet our criteria is shrinking!
 
@@ -282,13 +282,13 @@ Step 7 - Implement Third Criteria
 
 1. We can use global :lkql:`select` with list comprehension filtering
 
-   .. code:: lkql
+  .. code:: lkql
 
       [s.f_subtype.f_name.p_referenced_decl() for s in select SubtypeDecl]
 
-   * Expression gives list of subtype **TypeDecl**. We can now add it to the result of the :lkql:`types` function.
+  * Expression gives list of subtype **TypeDecl**. We can now add it to the result of the :lkql:`types` function.
 
-   .. code:: lkql
+  .. code:: lkql
 
       fun types() =
          concat ([[c.p_referenced_decl(), c.f_suffix[1].f_r_expr.p_expression_type()]
@@ -318,7 +318,7 @@ Step 8 - Implement Fourth Criteria
 
 .. container:: latex_environment scriptsize
 
-   .. code:: lkql
+  .. code:: lkql
 
       [c.f_type_def.f_subtype_indication.f_name.p_referenced_decl()
        for c in select TypeDecl(f_type_def is DerivedTypeDef)].to_list
@@ -327,7 +327,7 @@ Step 8 - Implement Fourth Criteria
 
 .. container:: latex_environment scriptsize
 
-   .. code:: lkql
+  .. code:: lkql
 
       fun types() =
          concat([[c.p_referenced_decl(), c.f_suffix[1].f_r_expr.p_expression_type()]
@@ -344,12 +344,12 @@ Step 9 - Implement Final Criteria
 
 1. Look in every each generic instantiation for identifiers referring to the type
 
-   .. code:: lkql
+  .. code:: lkql
 
       from (select GenericInstantiation) select Identifier
 
-   * Gives list of each **Identifier** used in **GenericInstantiation**
-   * Use **p_referenced_decl** property we to get associated declaration (that may be a **TypeDecl**
+  * Gives list of each **Identifier** used in **GenericInstantiation**
+  * Use **p_referenced_decl** property we to get associated declaration (that may be a **TypeDecl**
 
 2. Express our query as a function
 
@@ -434,7 +434,7 @@ Improving the Behavior Part 1
 
 .. container:: latex_environment scriptsize
 
-   .. code:: lkql
+  .. code:: lkql
 
       @memoized
       fun arithmetic_ops() =
@@ -455,7 +455,7 @@ Improving the Behavior Part 2
 
 .. container:: latex_environment small
 
-   .. code:: lkql
+  .. code:: lkql
 
       @check(message="integer type may be replaced by an enumeration")
       fun enum_for_integer(node) =

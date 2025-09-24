@@ -244,14 +244,14 @@ Setting Task Priority
 
 * Reschedule the processing for later
 
-   .. code:: Ada
+  .. code:: Ada
 
-      entry Extract (Qty : Integer) when True is
-      begin
-         if not Try_Extract (Qty) then
-            requeue Extract;
-         end if;
-      end Extract;
+     entry Extract (Qty : Integer) when True is
+     begin
+        if not Try_Extract (Qty) then
+           requeue Extract;
+        end if;
+     end Extract;
 
 * Same parameter values will be used on the queue
 
@@ -279,24 +279,24 @@ Abort Statements
     - No cleanup possible
     - Highly unsafe - should be used only as **last resort**
 
-   .. code:: Ada
+      .. code:: Ada
 
-      procedure Main is
-         task type T;
+         procedure Main is
+            task type T;
 
-         task body T is
+            task body T is
+            begin
+               loop
+                  delay 1.0;
+                  Put_Line ("A");
+               end loop;
+            end T;
+
+            Task_Instance : T;
          begin
-            loop
-               delay 1.0;
-               Put_Line ("A");
-            end loop;
-         end T;
-
-         Task_Instance : T;
-      begin
-         delay 10.0;
-         abort Task_Instance;
-      end;
+            delay 10.0;
+            abort Task_Instance;
+         end;
 
 -----------------------------------
 :ada:`select` ... :ada:`then abort`
@@ -359,29 +359,29 @@ Quiz
 
  .. container:: column
 
-  .. code:: Ada
+   .. code:: Ada
 
-      procedure Main is
-         task T is
-            entry A;
-         end T;
+       procedure Main is
+          task T is
+             entry A;
+          end T;
 
-         task body T is
-         begin
-            select
-               accept A;
-               Put ("A");
-            else
-               delay 1.0;
-            end select;
-         end T;
-      begin
-         select
-            T.A;
-         else
-            delay 1.0;
-         end select;
-      end Main;
+          task body T is
+          begin
+             select
+                accept A;
+                Put ("A");
+             else
+                delay 1.0;
+             end select;
+          end T;
+       begin
+          select
+             T.A;
+          else
+             delay 1.0;
+          end select;
+       end Main;
 
  .. container:: column
 

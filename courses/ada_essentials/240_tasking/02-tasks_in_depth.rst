@@ -13,26 +13,26 @@ Rendezvous Definitions
 
     - **Until** a client calls the related :ada:`entry`
 
-   .. code:: Ada
+      .. code:: Ada
 
-      task type Msg_Box_T is
-         entry Start;
-         entry Receive_Message (S : String);
-      end Msg_Box_T;
+         task type Msg_Box_T is
+            entry Start;
+            entry Receive_Message (S : String);
+         end Msg_Box_T;
 
-      task body Msg_Box_T is
-      begin
-         loop
-            accept Start;
-            Put_Line ("start");
+         task body Msg_Box_T is
+         begin
+            loop
+               accept Start;
+               Put_Line ("start");
 
-            accept Receive_Message (S : String) do
-               Put_Line ("receive " & S);
-            end Receive_Message;
-         end loop;
-      end Msg_Box_T;
+               accept Receive_Message (S : String) do
+                  Put_Line ("receive " & S);
+               end Receive_Message;
+            end loop;
+         end Msg_Box_T;
 
-      T : Msg_Box_T;
+         T : Msg_Box_T;
 
 ------------------------
 Rendezvous Entry Calls
@@ -42,25 +42,25 @@ Rendezvous Entry Calls
 
      - **Until** server reaches :ada:`end` of its :ada:`accept` block
 
-   .. code:: Ada
+       .. code:: Ada
 
-      Put_Line ("calling start");
-      T.Start;
-      Put_Line ("calling receive 1");
-      T.Receive_Message ("1");
-      Put_Line ("calling receive 2");
-      T.Receive_Message ("2");
+          Put_Line ("calling start");
+          T.Start;
+          Put_Line ("calling receive 1");
+          T.Receive_Message ("1");
+          Put_Line ("calling receive 2");
+          T.Receive_Message ("2");
 
 * May be executed as follows:
 
    .. code:: Ada
 
-      calling start
-      start             -- May switch place with line below
-      calling receive 1 -- May switch place with line above
-      receive 1
-      calling receive 2
-      -- Blocked until another task calls Start
+          calling start
+          start             -- May switch place with line below
+          calling receive 1 -- May switch place with line above
+          receive 1
+          calling receive 2
+          -- Blocked until another task calls Start
 
 ---------------------------
 Accept Statement vs Block
@@ -229,32 +229,32 @@ Quiz
 
   .. container:: latex_environment tiny
 
-   .. code:: Ada
+    .. code:: Ada
 
-      with Ada.Text_IO; use Ada.Text_IO;
-      procedure Main is
-         task type T is
-            entry Hello;
-            entry Goodbye;
-         end T;
-         task body T is
-         begin
-            loop
-               accept Hello do
-                  Put_Line ("Hello");
-               end Hello;
-               accept Goodbye do
-                  Put_Line ("Goodbye");
-               end Goodbye;
-            end loop;
-            Put_Line ("Finished");
-         end T;
-         Task_Instance : T;
-      begin
-         Task_Instance.Hello;
-         Task_Instance.Goodbye;
-         Put_Line ("Done");
-      end Main;
+       with Ada.Text_IO; use Ada.Text_IO;
+       procedure Main is
+          task type T is
+             entry Hello;
+             entry Goodbye;
+          end T;
+          task body T is
+          begin
+             loop
+                accept Hello do
+                   Put_Line ("Hello");
+                end Hello;
+                accept Goodbye do
+                   Put_Line ("Goodbye");
+                end Goodbye;
+             end loop;
+             Put_Line ("Finished");
+          end T;
+          Task_Instance : T;
+       begin
+          Task_Instance.Hello;
+          Task_Instance.Goodbye;
+          Put_Line ("Done");
+       end Main;
 
  .. container:: column
 

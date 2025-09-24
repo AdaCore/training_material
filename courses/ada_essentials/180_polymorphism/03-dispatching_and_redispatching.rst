@@ -35,28 +35,28 @@ Calls on Class-Wide Types (2/3)
 
    *Ada*
 
-      .. code:: Ada
+   .. code:: Ada
 
-         declare
-           Stray : Animal'Class :=
-                Animal'(others => <>);
-           My_Dog : Animal'Class :=
-                Dog'(others => <>);
-         begin
-           Stray.Feed;  -- calls Feed of Animal
-           My_Dog.Feed; -- calls Feed of Dog
+      declare
+        Stray : Animal'Class :=
+             Animal'(others => <>);
+        My_Dog : Animal'Class :=
+             Dog'(others => <>);
+      begin
+        Stray.Feed;  -- calls Feed of Animal
+        My_Dog.Feed; -- calls Feed of Dog
 
  .. container:: column
 
    *C++*
 
-      .. code:: C++
+   .. code:: C++
 
-         Animal * Stray = 
-                     new Animal ();
-         Animal * My_Dog = new Dog ();
-         Stray->Feed ();
-         My_Dog->Feed ();
+      Animal * Stray = 
+                  new Animal ();
+      Animal * My_Dog = new Dog ();
+      Stray->Feed ();
+      My_Dog->Feed ();
 
 ---------------------------------
 Calls on Class-Wide Types (3/3)

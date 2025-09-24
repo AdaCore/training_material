@@ -27,32 +27,32 @@ What Tasks Look Like in Ravenscar
 
 * Time-triggered task
 
-   .. code:: Ada
+  .. code:: Ada
 
-      task body Cyclic is
-        Period : constant Time_Span : Milliseconds (10);
-        Activation : Time := Clock;
-      begin
-        loop
-          delay until Activation;
-          Do_Something;
-          --  Compute next activation time
-          Activation := Activation + Period;
-         end loop;
-      end Cyclic;
+     task body Cyclic is
+       Period : constant Time_Span : Milliseconds (10);
+       Activation : Time := Clock;
+     begin
+       loop
+         delay until Activation;
+         Do_Something;
+         --  Compute next activation time
+         Activation := Activation + Period;
+        end loop;
+     end Cyclic;
 
 * Event-triggered task
 
-   .. code:: Ada
+  .. code:: Ada
 
-      task body Sporadic is
-      begin
-         loop
-           -- Protected entry
-           Monitor.Wait_Event;
-           Do_Something;
-         end loop;
-      end Sporadic;
+     task body Sporadic is
+     begin
+        loop
+          -- Protected entry
+          Monitor.Wait_Event;
+          Do_Something;
+        end loop;
+     end Sporadic;
 
 -----------------
 Ravenscar Tasks
@@ -134,19 +134,19 @@ Priorities
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       procedure Main is
-         pragma Priority (2);
+      procedure Main is
+        pragma Priority (2);
 
-       task Some_Task is
-         pragma Priority (4);
+      task Some_Task is
+        pragma Priority (4);
 
-       protected Buffer is
-          ...
-       private
-          pragma Priority (3);
-       end Buffer;
+      protected Buffer is
+         ...
+      private
+         pragma Priority (3);
+      end Buffer;
 
 ------------
 Scheduling

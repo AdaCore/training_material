@@ -17,20 +17,20 @@ Partially Handling Exceptions
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       procedure Joy_Ride is
-         ...
-       begin
-         while not Bored loop
-           Steer_Aimlessly (Bored);
-           Consume_Fuel (Hot_Rod);
-         end loop;
-       exception
-         when Fuel_Exhausted =>
-           Pull_Over;
-           raise; -- no gas available
-       end Joy_Ride;
+      procedure Joy_Ride is
+        ...
+      begin
+        while not Bored loop
+          Steer_Aimlessly (Bored);
+          Consume_Fuel (Hot_Rod);
+        end loop;
+      exception
+        when Fuel_Exhausted =>
+          Pull_Over;
+          raise; -- no gas available
+      end Joy_Ride;
 
 ----------------------------------
 Typical Partial Handling Example
@@ -113,33 +113,33 @@ Quiz
 
 .. container:: latex_environment footnotesize
 
-   .. code:: Ada
+  .. code:: Ada
 
-      with Ada.Text_IO; use Ada.Text_IO;
-      procedure Exception_Test (Input_Value : Integer) is
-         Known_Problem : exception;
-         function F (P : Integer) return Integer is
-         begin
-            if P > 0 then
-               return P * P;
-            end if;
-         exception
-            when others => raise Known_Problem;
-         end F;
-         procedure P (X : Integer) is
-            A : array (1 .. F (X)) of Float;
-         begin
-            A := (others => 0.0);
-         exception
-            when others => raise Known_Problem;
-         end P;
-      begin
-         P (Input_Value);
-         Put_Line ("Success");
-      exception
-         when Known_Problem => Put_Line ("Known problem");
-         when others => Put_Line ("Unknown problem");
-      end Exception_Test;
+     with Ada.Text_IO; use Ada.Text_IO;
+     procedure Exception_Test (Input_Value : Integer) is
+        Known_Problem : exception;
+        function F (P : Integer) return Integer is
+        begin
+           if P > 0 then
+              return P * P;
+           end if;
+        exception
+           when others => raise Known_Problem;
+        end F;
+        procedure P (X : Integer) is
+           A : array (1 .. F (X)) of Float;
+        begin
+           A := (others => 0.0);
+        exception
+           when others => raise Known_Problem;
+        end P;
+     begin
+        P (Input_Value);
+        Put_Line ("Success");
+     exception
+        when Known_Problem => Put_Line ("Known problem");
+        when others => Put_Line ("Unknown problem");
+     end Exception_Test;
 
 What will get printed for these values of Input_Value?
 
@@ -188,18 +188,18 @@ Exceptions Raised in Exception Handlers
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       begin
-         ...
-       exception
-         when Some_Error =>
-           declare
-             New_Data : Some_Type;
-           begin
-             P(New_Data);
-             ...
-           exception
-             when ...
-           end;
-       end;
+      begin
+        ...
+      exception
+        when Some_Error =>
+          declare
+            New_Data : Some_Type;
+          begin
+            P(New_Data);
+            ...
+          exception
+            when ...
+          end;
+      end;

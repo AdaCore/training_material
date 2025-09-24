@@ -18,11 +18,11 @@ Named Numbers
 
 * Examples
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Pi : constant := 3.141592654;
-      One_Third : constant := 1.0 / 3.0;
-      Radians_In_Circle : constant := 2.0 * Pi;
+     Pi : constant := 3.141592654;
+     One_Third : constant := 1.0 / 3.0;
+     Radians_In_Circle : constant := 2.0 * Pi;
 
 ----------------------
 Named Number Benefit

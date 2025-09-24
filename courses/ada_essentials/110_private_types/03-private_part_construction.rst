@@ -63,20 +63,20 @@ Full Type Declaration
 
    .. container:: latex_environment small
 
-    .. code:: Ada
+     .. code:: Ada
 
-       package P is
-         type T is private;
-         ...
-       private
-         type Vector is array (1.. 10)
-            of Integer;
-         function Initial
-            return Vector;
-         type T is record
-           A, B : Vector := Initial;
-         end record;
-       end P;
+        package P is
+          type T is private;
+          ...
+        private
+          type Vector is array (1.. 10)
+             of Integer;
+          function Initial
+             return Vector;
+          type T is record
+            A, B : Vector := Initial;
+          end record;
+        end P;
 
 .. container:: speakernote
 

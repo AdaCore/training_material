@@ -14,21 +14,21 @@ Identifiers
 
    * Legal identifiers
 
-      .. code:: Ada
+     .. code:: Ada
 
-         Phase2
-         A
-         Space_Person
+        Phase2
+        A
+        Space_Person
 
  .. container:: column
 
    * Not legal identifiers
 
-      .. code:: Ada
+     .. code:: Ada
 
-         Phase2__1
-         A_
-         _space_person
+        Phase2__1
+        A_
+        _space_person
 
 .. warning:: Reserved words are **forbidden**
 
@@ -84,8 +84,8 @@ Comments
 
 * Terminate at end of line (i.e., no comment terminator sequence)
 
-   .. code:: Ada
+  .. code:: Ada
 
-      -- This is a multi-
-      -- line comment
-      A : B; -- this is an end-of-line comment
+     -- This is a multi-
+     -- line comment
+     A : B; -- this is an end-of-line comment

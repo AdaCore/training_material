@@ -34,31 +34,31 @@ Correlation to C++ Class Visibility Controls
 
    * Ada private part is visible to child units
 
-      .. code:: Ada
+     .. code:: Ada
 
-         package P is
-           A ...
-         private
-           B ...
-         end P;
-         package body P is
-           C ...
-         end P;
+        package P is
+          A ...
+        private
+          B ...
+        end P;
+        package body P is
+          C ...
+        end P;
 
  .. container:: column
 
    * Thus private part is like the protected part in C++
 
-      .. code:: C++
+     .. code:: C++
 
-         class C {
-         public:
-           A ...
-         protected:
-           B ...
-         private:
-           C ...
-         };
+        class C {
+        public:
+          A ...
+        protected:
+          B ...
+        private:
+          C ...
+        };
 
 -------------------
 Visibility Limits
@@ -158,23 +158,23 @@ Quiz
 
   .. container:: column
 
-   .. code:: Ada
+    .. code:: Ada
 
-      package P is
-         Object_A : Integer;
-      private
-         Object_B : Integer;
-         procedure Dummy_For_Body;
-      end P;
+       package P is
+          Object_A : Integer;
+       private
+          Object_B : Integer;
+          procedure Dummy_For_Body;
+       end P;
 
-      package body P is
-         Object_C : Integer;
-         procedure Dummy_For_Body is null;
-      end P;
+       package body P is
+          Object_C : Integer;
+          procedure Dummy_For_Body is null;
+       end P;
 
-      package P.Child is
-         function X return Integer;
-      end P.Child;
+       package P.Child is
+          function X return Integer;
+       end P.Child;
 
   .. container:: column
 

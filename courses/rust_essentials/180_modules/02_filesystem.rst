@@ -59,7 +59,7 @@ Details
 
 -  Deeper nesting can use folders, even if the main module is a file:
 
-   .. code:: ignore
+  .. code:: ignore
 
       src/
       |-- main.rs
@@ -70,11 +70,11 @@ Details
 -  The place rust will look for modules can be changed with a compiler
    directive:
 
-   .. code:: rust
+  .. code:: rust
 
       #[path = "some/path.rs"]
       mod some_module;
 
-   This is useful, for example, if you would like to place tests for a
-   module in a file named :rust:`some_module_test.rs`, similar to the
-   convention in Go.
+  This is useful, for example, if you would like to place tests for a
+  module in a file named :rust:`some_module_test.rs`, similar to the
+  convention in Go.

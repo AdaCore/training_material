@@ -70,30 +70,30 @@ Programming by Extension
 
 * :dfn:`Parent unit`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Complex is
-        type Number is private;
-        function "*" (Left, Right : Number) return Number;
-        function "/" (Left, Right : Number) return Number;
-        function "+" (Left, Right : Number) return Number;
-        function "-" (Left, Right : Number) return Number;
-      ...
-      private
-        type Number is record
-          Real_Part, Imaginary_Part : Float;
-        end record;
-      end Complex;
+     package Complex is
+       type Number is private;
+       function "*" (Left, Right : Number) return Number;
+       function "/" (Left, Right : Number) return Number;
+       function "+" (Left, Right : Number) return Number;
+       function "-" (Left, Right : Number) return Number;
+     ...
+     private
+       type Number is record
+         Real_Part, Imaginary_Part : Float;
+       end record;
+     end Complex;
 
 * Extension created to work with parent unit
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Complex.Utils is
-        procedure Put (C : in Number);
-        function As_String (C : Number) return String;
-        ...
-      end Complex.Utils;
+     package Complex.Utils is
+       procedure Put (C : in Number);
+       function As_String (C : Number) return String;
+       ...
+     end Complex.Utils;
 
 -----------------------------------
 Extension Can See Private Section
@@ -231,22 +231,22 @@ Example of Visibility As If Nested
 
  .. container:: column
 
-    .. code:: Ada
+   .. code:: Ada
 
-       package Parent is
+      package Parent is
+        ...
+      private
+        A : Integer := 10;
+      end Parent;
+
+      -- no "with" of parent needed
+      package Parent.Child is
          ...
-       private
-         A : Integer := 10;
-       end Parent;
-
-       -- no "with" of parent needed
-       package Parent.Child is
-          ...
-       private
-         B : Integer := Parent.A;
-         -- no dot-notation needed
-         C : Integer := A;
-       end Parent.Child;
+      private
+        B : Integer := Parent.A;
+        -- no dot-notation needed
+        C : Integer := A;
+      end Parent.Child;
 
 -------------------------------------------
  `with` Clauses for Siblings Are Required

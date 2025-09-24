@@ -8,12 +8,12 @@ Unions
 
 * C :C:`union`
 
-   .. code:: C
+  .. code:: C
 
-      union Rec {
-         int A;
-         float B;
-      };
+     union Rec {
+        int A;
+        float B;
+     };
 
 * C unions can be bound using the :ada:`Unchecked_Union` aspect
 * These types must have a mutable discriminant for convention purpose, which doesn't exist at run-time
@@ -23,19 +23,19 @@ Unions
 
 * Ada implementation of a C :C:`union`
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Rec (Flag : Boolean := False) is
-      record
-         case Flag is
-            when True =>
-               A : int;
-            when False =>
-               B : float;
-         end case;
-      end record
-      with Unchecked_Union,
-           Convention => C;
+     type Rec (Flag : Boolean := False) is
+     record
+        case Flag is
+           when True =>
+              A : int;
+           when False =>
+              B : float;
+        end case;
+     end record
+     with Unchecked_Union,
+          Convention => C;
 
 --------------------
 Arrays Interfacing
@@ -73,18 +73,18 @@ Arrays From Ada to C
 * When arrays can be sent from Ada to C, C will only receive an access to the components of the array
 * Ada View
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Arr is array (Integer range <>) of int;
-      procedure P (V : Arr; Size : int);
-      pragma Import (C, P, "p");
+     type Arr is array (Integer range <>) of int;
+     procedure P (V : Arr; Size : int);
+     pragma Import (C, P, "p");
 
 * C View
 
-   .. code:: C
+  .. code:: C
 
-      void p (int * v, int size)  {
-      }
+     void p (int * v, int size)  {
+     }
 
 ----------------------
 Arrays From C to Ada
@@ -94,28 +94,28 @@ Arrays From C to Ada
 * Additional information will probably need to be passed
 * Ada View
 
-   .. code:: Ada
+  .. code:: Ada
 
-      -- DO NOT DECLARE OBJECTS OF THIS TYPE
-      type Arr is array (0 .. Integer'Last) of int;
+     -- DO NOT DECLARE OBJECTS OF THIS TYPE
+     type Arr is array (0 .. Integer'Last) of int;
 
-      procedure P (V : Arr; Size : int);
-      pragma Export (C, P, "p");
+     procedure P (V : Arr; Size : int);
+     pragma Export (C, P, "p");
 
-      procedure P (V : Arr; Size : int) is
-      begin
-         for J in 0 .. Size - 1 loop
-            -- code;
-         end loop;
-      end P;
+     procedure P (V : Arr; Size : int) is
+     begin
+        for J in 0 .. Size - 1 loop
+           -- code;
+        end loop;
+     end P;
 
 * C View
 
-   .. code:: C
+  .. code:: C
 
-      extern void p (int * v, int size);
-      int x [100];
-      p (x, 100);
+     extern void p (int * v, int size);
+     int x [100];
+     p (x, 100);
 
 ---------
 Strings
@@ -126,16 +126,16 @@ Strings
 * Unfortunately, C strings have to end by a null character
 * Exporting an Ada string to C needs a copy!
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Ada_Str : String := "Hello World";
-      C_Str : chars_ptr := New_String (Ada_Str);
+     Ada_Str : String := "Hello World";
+     C_Str : chars_ptr := New_String (Ada_Str);
 
 * Alternatively, a knowledgeable Ada programmer can manually create Ada strings with correct ending and manage them directly
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Ada_Str : String := "Hello World" & ASCII.NUL;
+     Ada_Str : String := "Hello World" & ASCII.NUL;
 
 * Back to the unsafe world - it really has to be worth it speed-wise!
 

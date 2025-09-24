@@ -9,18 +9,18 @@ Null Procedure Declarations
 * Shorthand for a procedure body that does nothing
 * Longhand form
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure NOP is
-      begin
-        null;
-      end NOP;
+     procedure NOP is
+     begin
+       null;
+     end NOP;
 
 * Shorthand form
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure NOP is null;
+     procedure NOP is null;
 
 * The :ada:`null` statement is present in both cases
 * Explicitly indicates nothing to be done, rather than an accidental removal of statements
@@ -34,11 +34,11 @@ Null Procedures As Completions
 
 * Completions for a distinct, prior declaration
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure NOP;
-      ...
-      procedure NOP is null;
+     procedure NOP;
+     ...
+     procedure NOP is null;
 
 * A declaration and completion together
 

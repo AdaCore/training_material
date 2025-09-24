@@ -108,11 +108,11 @@ Floating Point Type Attributes
 
 * *Core* attributes
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type My_Float is digits N;  -- N static
+     type My_Float is digits N;  -- N static
 
-   - :ada:`My_Float'Digits`
+  - :ada:`My_Float'Digits`
 
       + Number of digits **requested** (N)
 

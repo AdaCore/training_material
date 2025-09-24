@@ -15,31 +15,31 @@ Protected Objects
 
  .. container:: column
 
-  .. code:: Ada
+   .. code:: Ada
 
-   protected type
-     Protected_Value is
-      procedure Set (V : Integer);
-      function Get return Integer;
-   private
-      Value : Integer;
-   end Protected_Value;
+    protected type
+      Protected_Value is
+       procedure Set (V : Integer);
+       function Get return Integer;
+    private
+       Value : Integer;
+    end Protected_Value;
 
  .. container:: column
 
-  .. code:: Ada
+   .. code:: Ada
 
-   protected body Protected_Value is
-      procedure Set (V : Integer) is
-      begin
-         Value := V;
-      end Set;
+    protected body Protected_Value is
+       procedure Set (V : Integer) is
+       begin
+          Value := V;
+       end Set;
 
-      function Get return Integer is
-      begin
-         return Value;
-      end Get;
-   end Protected_Value;
+       function Get return Integer is
+       begin
+          return Value;
+       end Get;
+    end Protected_Value;
 
 .
 
@@ -52,18 +52,18 @@ Misc: Single Declaration
 
     - Body declaration is then using the **object** name
 
- .. code:: Ada
+      .. code:: Ada
 
-   task Printer;
+        task Printer;
 
 .. code:: Ada
 
-   task body Printer is
-   begin
-      loop
-        Put_Line ("loops");
-      end loop;
-   end Printer;
+        task body Printer is
+        begin
+           loop
+             Put_Line ("loops");
+           end loop;
+        end Printer;
 
 -------------------------------------
 Protected: Functions and Procedures

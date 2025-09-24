@@ -6,23 +6,17 @@ Block Statements
 Block Statements
 ------------------
 
-    * Local **scope**
-    * Optional declarative part
-    * Used for
+* Local **scope**
+* Optional declarative part
+* Used for
 
-       - Temporary declarations
-       - Declarations as part of statement sequence
-       - Local catching of exceptions
+   - Temporary declarations
+   - Declarations as part of statement sequence
+   - Local catching of exceptions
 
-    * Syntax
+**Syntax**
 
-       .. code:: Ada
-
-          [block-name :]
-          [declare <declarative_part> ]
-          begin
-             <statements>
-          end [block-name];
+.. container:: source_include 040_statements/syntax.bnf :start-after:block_statements_begin :end-before:block_statements_end :code:bnf
 
 --------------------------
 Block Statements Example
@@ -46,4 +40,3 @@ Block Statements Example
       Print (U);
       Print (V);
    end;
-

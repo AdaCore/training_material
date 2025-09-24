@@ -14,15 +14,15 @@ Return Statements in Functions
 * Returns a value of the specified (sub)type
 * Syntax
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function defining_designator [formal_part]
-           return subtype_mark is
-        declarative_part
-        begin
-           {statements}
-           return expression;
-        end designator;
+     function defining_designator [formal_part]
+          return subtype_mark is
+       declarative_part
+       begin
+          {statements}
+          return expression;
+       end designator;
 
 ---------------------------------------
 No Path Analysis Required by Compiler
