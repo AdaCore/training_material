@@ -29,7 +29,7 @@ begin
    Countries.Add
      (Map       => Map,
       Country   => Types.New_Zealand,
-      Continent => Types.Australia,
+      Continent => Types.Oceania,
       Colors    => Color_Set.Create
           ((Red,
             White,

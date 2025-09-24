@@ -1,7 +1,7 @@
 package Types is
 
    type Continents_T is
-     (North_America, South_America, Europe, Asia, Africa, Australia);
+     (North_America, South_America, Europe, Asia, Africa, Oceania);
    type Countries_T is
      (United_States, Canada, Brazil, Chile, Finland, Italy, Ghana, Angola,
       China, Vietnam, Australia, New_Zealand);
