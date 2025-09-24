@@ -5,6 +5,6 @@ record_definition ::=
    end record;
 
 component_declaration ::= 
-   defining_identifier_list : component_definition
+   defining_identifier_list : subtype_indication
       [:= default_expression];
 --|syntax_and_examples_end
