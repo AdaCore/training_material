@@ -48,4 +48,4 @@ Expressions
 .. include:: 080_expressions/04-conditional_expressions.rst
 .. include:: 080_expressions/05-quantified_expressions.rst
 .. include:: 080_expressions/88-expressions.lab.rst
-.. include:: 080_expressions/99-summary-with_quantified.rst
+.. include:: 080_expressions/99-summary.rst
