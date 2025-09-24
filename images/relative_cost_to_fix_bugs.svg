@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="650" width="850" >
+<line fill="none" stroke="#000000" stroke-width="2" x1="50" y1="575" x2="50" y2="35.0" />
+<polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(45, 50, 34.0)" points="50,34.0 57.5,49.0 65,41.5 "/>
+<text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="end" x="40" y="578.0" >0x</text>
+<text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="end" x="40" y="492.2857142857143" >5x</text>
+<text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="end" x="40" y="406.57142857142856" >10x</text>
+<text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="end" x="40" y="320.85714285714283" >15x</text>
+<text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="end" x="40" y="235.14285714285717" >20x</text>
+<text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="end" x="40" y="149.42857142857144" >25x</text>
+<text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="end" x="40" y="63.714285714285666" >30x</text>
+<line fill="none" stroke="#000000" stroke-width="2" x1="49" y1="575" x2="815.0" y2="575" />
+<polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(135, 817.5, 575)" points="817.5,575 825.0,590 832.5,582.5 "/>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="146.66666666666666" y="600.0" >Requirements/</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="146.66666666666666" y="616.8" >Architecture</text>
+<rect fill="#00ff00" stroke="none" height="33.285714285714285" width="100" x="96.66666666666666" y="540.7142857142857" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="288.3333333333333" y="591.6" ></text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="288.3333333333333" y="608.4" >Coding</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="288.3333333333333" y="625.1999999999999" ></text>
+<rect fill="#7fff00" stroke="none" height="84.71428571428571" width="100" x="238.33333333333331" y="489.2857142857143" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="430.0" y="591.6" >Integration/</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="430.0" y="608.4" >Component</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="430.0" y="625.1999999999999" >Testing</text>
+<rect fill="#ffff00" stroke="none" height="170.42857142857142" width="100" x="380.0" y="403.57142857142856" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="571.6666666666666" y="591.6" >System/</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="571.6666666666666" y="608.4" >Acceptance</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="571.6666666666666" y="625.1999999999999" >Testing</text>
+<rect fill="#ff7f00" stroke="none" height="256.1428571428571" width="100" x="521.6666666666666" y="317.8571428571429" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="713.3333333333334" y="600.0" >Production</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="14px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="713.3333333333334" y="616.8" >Post-release</text>
+<rect fill="#ff0000" stroke="none" height="513.2857142857142" width="100" x="663.3333333333334" y="60.71428571428578" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="24px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="454.76190476190476" y="35.0" >Relative cost to fix bugs</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.6"  text-align="left" font-size="24px" font-family='Arial' font-weight="normal"  text-anchor="middle" x="454.76190476190476" y="63.8" >based on time of detection</text>
+<text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="9px" font-family='Arial' font-weight="normal" font-style="italic"  text-anchor="end" x="772.5" y="25.0" >Source: NIST</text>
+</svg>

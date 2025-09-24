@@ -144,6 +144,4 @@ The Type Model Saves Money
 
 * Cost of an error *during a flight*?
 
-.. image:: relative_cost_to_fix_bugs.jpg
-   :height: 50%
-
+.. image:: relative_cost_to_fix_bugs.svg
