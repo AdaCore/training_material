@@ -6,11 +6,9 @@ Assignment Statements
 Assignment Statements
 -----------------------
 
-* Syntax
+**Syntax**
 
-  .. code:: Ada
-
-     <variable> := <expression>;
+.. container:: source_include 040_statements/syntax.bnf :start-after:assignment_statements_begin :end-before:assignment_statements_end :code:bnf
 
 * Value of expression is copied to target variable
 * The type of the RHS must be same as the LHS

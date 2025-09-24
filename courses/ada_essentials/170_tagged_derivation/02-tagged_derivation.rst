@@ -23,6 +23,19 @@ Difference with Simple Derivation
          Root_Object  : Root := (F1 => 101);
          Child_Object : Child := (F1 => 201, F2 => 202);
 
+--------------
+Type Extension
+--------------
+
+* A tagged derivation **has** to be a type extension
+
+    - Use :ada:`with null record` if there are no additional components
+
+   .. code:: Ada
+
+      type Child is new Root with null record;
+      type Child is new Root; -- illegal
+
 * Conversion is only allowed from **child to parent**
 
    .. code:: Ada
@@ -32,6 +45,8 @@ Difference with Simple Derivation
          ...
          V1 := Root (V2);
          V2 := Child (V1); -- illegal
+
+*Information on extending private types appears at the end of this module*
 
 ------------
 Primitives
@@ -79,6 +94,36 @@ Freeze Point for Tagged Types
    V : Child; --  freeze child
 
    procedure Prim3 (V : Child); -- illegal
+
+------------------
+Tagged Aggregate
+------------------
+
+* At initialization, all components (including **inherited**) must have a **value**
+
+   .. code:: Ada
+
+       type Root is tagged record
+           F1 : Integer;
+       end record;
+
+       type Child is new Root with record
+           F2 : Integer;
+       end record;
+
+       V : Child := (F1 => 0, F2 => 0);
+
+* For **private types** use :dfn:`aggregate extension`
+
+    - Copy of a parent instance
+    - Use :ada:`with null record` absent new components
+
+   .. code:: Ada
+
+      V2 : Child := (Parent_Instance with F2 => 0);
+      V3 : Empty_Child := (Parent_Instance with null record);
+
+*Information on aggregates of private extensions appears at the end of this module*
 
 ---------------------
 Overriding Indicators
@@ -193,7 +238,7 @@ Which code block(s) is (are) legal?
    Explanations
 
    A. Cannot extend a non-tagged type
-   B. :ada:`B1` is a tagged type, and :ada:`B2` extends :ada:`B1`
+   B. Correct
    C. Components must have distinct names
    D. Types derived from a tagged type must have an extension
 
