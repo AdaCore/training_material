@@ -16,19 +16,11 @@ Aggregates
     - Positional
     - Named
 
-* Syntax (simplified):
+------------------
+Aggregate Syntax
+------------------
 
-  .. code:: Ada
-
-     component_expr ::=
-       expression -- Defined value
-       | <>       -- Default value
-
-     array_aggregate ::= (
-         {component_expr ,}                         -- Positional
-       | {discrete_choice_list => component_expr,}) -- Named
-       -- Default "others" indexes
-       [others => expression]
+.. container:: source_include 050_array_types/syntax.bnf :start-after:aggregates_begin :end-before:aggregates_end :code:bnf
 
 -----------------------------
 Aggregate "Positional" Form
@@ -170,18 +162,21 @@ Defaults Within Array Aggregates
 
    - But :ada:`others` counts as named form
 
-* Syntax
+**Syntax**
+
+.. container:: source_include 050_array_types/syntax.bnf :start-after:defaults_within_array_aggregates_begin :end-before:defaults_within_array_aggregates_end :code:bnf
 
   .. code:: Ada
 
      discrete_choice_list => <>
 
-* Example
+**Examples**
 
   .. code:: Ada
 
-     type Int_Arr is array (1 .. N) of Integer;
-     Primes : Int_Arr := (1 => 2, 2 .. N => <>);
+    type Int_Arr is array (1 .. N) of Integer;
+    Named_Notation      : Int_Arr := (1 => 2, 2 .. N => <>);
+    Positional_Notation : Int_Arr := (2, 3, 5, others => <>);
 
 ..
   language_version 2005

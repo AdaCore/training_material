@@ -6,15 +6,21 @@ Introduction
 What Is an Array?
 -------------------
 
-* Definition: collection of components of the same type, stored in contiguous memory, and indexed using a discrete range
+* **Definition:** a collection of components
 
-* Syntax
+   * ... of the same type
+   * ... stored in contiguous memory
+   * ... indexed using a discrete range
 
-.. container:: latex_environment small
+.. image:: array_diagram.svg
 
-  .. code:: Ada
+----------------
+Array Examples
+----------------
 
-     type <typemark> is array (<index_constraint>) of <component_type>;
+.. code:: Ada
+
+  type <typemark> is array (<index_constraint>) of <component_type>;
 
 where
 
@@ -29,9 +35,16 @@ where
 
 .. code:: Ada
 
-   type Array_T is array (0 .. 3) of Interfaces.Integer_16;
+   type Array_One is array (1 .. 100) of Integer;
 
-.. image:: array_diagram.svg
+   type Discrete_Subtype_Two is range (Able, Baker, Charlie);
+   type Array_Two is array (Discrete_Subtype_Two) of Float;
+
+   type Discrete_Subtype_Three is mod 64;
+   type Array_Three is array (Discrete_Subtype_Three range 0 .. 31)
+      of Interfaces.Integer_16;
+
+   type Multidimension_Array is (1 .. 10, 1 .. 10) of Boolean;
 
 ---------------
 Arrays in Ada
