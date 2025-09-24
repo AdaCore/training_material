@@ -1,0 +1,10 @@
+--|syntax_and_examples_begin
+record_definition ::= 
+   type identifier is record
+      component_declaration
+   end record;
+
+component_declaration ::= 
+   defining_identifier_list : component_definition
+      [:= default_expression];
+--|syntax_and_examples_end

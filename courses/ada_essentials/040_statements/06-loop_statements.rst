@@ -6,16 +6,16 @@ Loop Statements
 Basic Loops and Syntax
 ------------------------
 
+**Syntax**
+
+.. container:: source_include 040_statements/syntax.bnf :start-after:basic_loops_and_syntax_begin :end-before:basic_loops_and_syntax_end :code:bnf
+
 * All kind of loops can be expressed
 
   - Optional iteration controls
   - Optional exit statements
 
-* Syntax
-
-.. container:: source_include 040_statements/syntax.bnf :start-after:basic_loop_and_syntax_begin :end-before:basic_loop_and_syntax_end :code:bnf
-
-* Example
+**Example**
 
   .. code:: Ada
 
@@ -28,13 +28,13 @@ Basic Loops and Syntax
 Loop Exit Statements
 --------------------
 
+**Syntax**
+
+.. container:: source_include 040_statements/syntax.bnf :start-after:loop_exit_statements_begin :end-before:loop_exit_statements_end :code:bnf
+
 * Leaves innermost loop
 
    - Unless loop name is specified
-
-* Syntax
-
-.. container:: source_include 040_statements/syntax.bnf :start-after:loop_exit_statements_begin :end-before:loop_exit_statements_end :code:bnf
 
 * :ada:`exit when` exits with condition
 
@@ -77,31 +77,27 @@ Exit Statement Examples
 While-loop Statements
 -----------------------
 
-* Syntax
+**Syntax**
 
-  .. code:: bnf
+.. container:: source_include 040_statements/syntax.bnf :start-after:while_loop_statements_begin :end-before:while_loop_statements_end :code:bnf
 
-     while <boolean_expression> loop
-        <sequence_of_statements>
-     end loop;
-
-* Identical to
+* Behaves the same as :ada:`loop` with :ada:`exit` at the beginning
 
   .. code:: bnf
 
      loop
         exit when not <boolean_expression>;
-        <sequence_of_statements>
+        sequence_of_statements
      end loop;
 
-* Example
+**Example**
 
-  .. code:: Ada
+.. code:: Ada
 
-     while Count < Largest loop
-       Count := Count + 2;
-       Display (Count);
-     end loop;
+  while Count < Largest loop
+     Count := Count + 2;
+     Display (Count);
+  end loop;
 
 ---------------------
 For-loop Statements
@@ -122,29 +118,21 @@ For-loop Statements
 For in Statements
 -----------------
 
+**Syntax**
+
+.. container:: source_include 040_statements/syntax.bnf :start-after:for_in_statements_begin :end-before:for_in_statements_end :code:bnf
+
 * Successive values of a **discrete** type
 
    - eg. enumerations values
 
-* Syntax
-
-.. container:: latex_environment footnotesize
-
-  .. code:: bnf
-
-     for <loop_parameter> in [reverse] <discrete_subtype_definition> loop
-        <sequence_of_statements>
-     end loop;
-
-  *where* **<loop_parameter>** *is an identifier*
-
-* Example
+**Example**
 
 .. code:: Ada
 
-     for Day in Days_T loop
-        Refresh_Planning (Day);
-     end loop;
+  for Day in Days_T loop
+     Refresh_Planning (Day);
+  end loop;
 
 .. container:: speakernote
 
@@ -289,12 +277,11 @@ Referencing Hidden Names
 Iterations Exit Statements
 --------------------------
 
+**Syntax**
+
+.. container:: source_include 040_statements/syntax.bnf :start-after:loop_exit_statements_begin :end-before:loop_exit_statements_end :code:bnf
+
 * Early loop exit
-* Syntax
-
-  .. code:: bnf
-
-        exit [<loop_identifier>] [when <condition>]
 
 * No name: Loop exited **entirely**
 

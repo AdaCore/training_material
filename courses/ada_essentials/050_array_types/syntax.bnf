@@ -1,0 +1,58 @@
+--|constrained_array_type_declarations_begin
+constrained_array_definition ::= 
+   type identifier is
+      array (discrete_subtype_definition
+             {, discrete_subtype_definition})
+      of component_definition;
+
+discrete_subtype_definition ::= discrete_subtype_indication | range
+
+component_definition ::= subtype_indication |
+                         access_definition
+--|constrained_array_type_declarations_end
+
+--|unconstrained_array_type_declarations_begin
+unconstrained_array_definition ::= 
+   type identifier is
+      array(index_subtype_definition
+            {, index_subtype_definition})
+      of component_definition;
+
+index_subtype_definition ::= subtype_mark range <>
+--|unconstrained_array_type_declarations_end
+
+--|array_container_for_loops_begin
+for identifier of [reverse] array_or_container loop
+   sequence_of_statements
+end loop;
+--|array_container_for_loops_end
+
+--|aggregates_begin
+array_aggregate ::= 
+    positional_array_aggregate | named_array_aggregate
+
+positional_array_aggregate ::= 
+    (expression, expression {, expression})
+  | (expression {, expression}, others => expression)
+
+named_array_aggregate ::= 
+    (array_component_association_list)
+
+array_component_association_list ::= 
+    array_component_association
+    {, array_component_association}
+
+array_component_association ::= 
+    discrete_choice_list => expression
+--|aggregates_end
+
+--|defaults_within_array_aggregates_begin
+positional_array_aggregate ::= 
+    (expression, expression {, expression})
+  | (expression {, expression}, others => expression)
+  | (expression {, expression}, others => <>)
+
+array_component_association ::= 
+    discrete_choice_list => expression
+  | discrete_choice_list => <>
+--|defaults_within_array_aggregates_end
