@@ -41,38 +41,38 @@ begin
    New_Line;
    Put_Line ("=== Countries per Continent ===");
    declare
-      Count : Natural;
+      Countries_Count : Natural;
    begin
       for Continent in Types.Continents_T'Range loop
-         Count := 0;
+         Countries_Count := 0;
          for Country in Types.Countries_T loop
             One := Countries.Get (Map, Country);
             if Countries.Is_Valid (One)
               and then Countries.Continent (One) = Continent
             then
-               Count := Count + 1;
+               Countries_Count := Countries_Count + 1;
             end if;
          end loop;
          Put_Line
            (Types.Continents_T'Image (Continent) & " => " &
-            Natural'Image (Count));
+            Natural'Image (Countries_Count));
       end loop;
    end;
 
    New_Line;
    Put_Line ("=== Flags with Red ===");
    declare
-      Red : Natural := 0;
+      Flags_With_Red : Natural := 0;
    begin
       for Country in Types.Countries_T loop
          One := Countries.Get (Map, Country);
          if Countries.Is_Valid (One)
            and then Color_Set.Contains (Countries.Colors (One), Types.Red)
          then
-            Red := Red + 1;
+            Flags_With_Red := Flags_With_Red + 1;
          end if;
       end loop;
-      Put_Line ("Flags with red => " & Natural'Image (Red));
+      Put_Line ("Flags with red => " & Natural'Image (Flags_With_Red));
    end;
 
 end Main;
