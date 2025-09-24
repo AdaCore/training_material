@@ -82,8 +82,7 @@ How Does Static Analysis Save Money?
     + From later, **expensive** phases
     + To earlier, **cheaper** phases
 
-.. image:: relative_cost_to_fix_bugs.jpg
-    :width: 100%
+.. image:: relative_cost_to_fix_bugs.svg
 
 -------------------
 What Is GNAT SAS?
