@@ -19,7 +19,7 @@ import os
 import sys
 
 import pandocfilters
-from pandocfilters import toJSONFilter, Strong, Str, SmallCaps, Emph, Para
+from pandocfilters import toJSONFilter, Strong, Str, SmallCaps, Emph, Para, CodeBlock, RawBlock, BlockQuote
 
 from snippet_parser import source_file_contents
 
@@ -899,6 +899,93 @@ def format_animate(literal_text):
     return latex_inline(latex_animate(latex_escape(literal_text)))
 
 
+#############################
+## CODE BLOCK COLORIZATION ##
+#############################
+
+def is_colorizable_code_block(key, value):
+    """
+    If the filter key is CodeBlock, then the value is a list where
+    the first element is a description of the
+    code block (including the language), and the second element is the
+    code itself.
+    If the filter key is BlockQuote, then this is some kind of quote,
+    of which CodeBlock is one.  In this case, the value is a dictionary,
+    where key 't' is the kind of blockquote (we're looking for CodeBlock).
+    If this is a CodeBlock, we use the content to find the language.
+    """
+
+    if key == "CodeBlock":
+        return get_code_language(value) != None
+    elif key == "BlockQuote":
+        if isinstance(value[0], dict):
+            if "t" in value[0].keys() and value[0]["t"] == "CodeBlock":
+                if "c" in value[0].keys():
+                    return get_code_language(value[0]["c"]) != None
+    return False
+
+def get_code_language(content):
+    """
+    We should only call this routine when 'content' comes from parsing
+    a CodeBlock block quote.
+    Content is a list where the first element is a description of the
+    code block (including the language), and the second element is the
+    code itself.
+    The description is a list, of which the second element is a list
+    where the first element is the code block language.
+    """
+
+    language = None
+    try:
+        language = content[0][1][0]
+        return language.lower()
+    except:
+        return None
+
+
+def colorized(key, value):
+    """
+    This routine wraps a code block in a LaTex environment 'mdframed'.
+    This environment allows creating a box around its content, you
+    can specify the color for both the line around the box and the
+    background (fill) color. For our purposes, we don't want the line,
+    so we set the line width to 0 (because there's no way to set the
+    line color to "None"). We also add a little vertical spacing
+    before the block because we need a little separation between any
+    normal text and the start of the color.
+    NOTE: This mechanism assumes you tell pandoc to add the "mdframed"
+    package into the TEX file, which we've done using a preamble
+    file with pandoc_fe.py.
+
+    The color is determined by the language. "value" is a list, whose
+    first element is a list of attributes. The second element in that
+    list is the language
+    """
+
+
+    if key == 'CodeBlock':
+        [[ident, classes, kvs], code] = value
+
+        color = "blue!5"
+
+        language = classes[0].lower()
+        if language == "bnf":
+            color = "lightgray!30"
+
+        begin_env = (
+            "\\vspace{3mm}\\begin{mdframed}[linewidth=0pt, backgroundcolor=" + color + "]"
+        )
+        end_env = "\\end{mdframed}"
+
+        return [
+            RawBlock('latex', begin_env),
+            CodeBlock([ident, classes, kvs], code),
+            RawBlock('latex', end_env)
+        ]
+
+    return None
+
+
 #####################
 ## MAIN SUBPROGRAM ##
 #####################
@@ -916,7 +1003,10 @@ def perform_filter(key, value, format, meta):
 
     ## Beamer-specific manipulations
     elif format == "beamer":
-        if key == "BlockQuote":
+        if is_colorizable_code_block(key, value):
+            return colorized(key, value)
+
+        elif key == "BlockQuote":
             return bullet_point_fix(value)
 
         elif key == "Header":
