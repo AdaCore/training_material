@@ -68,8 +68,7 @@ Why Static Analysis Saves Money
     + From later, **expensive** phases
     + To earlier, **cheaper** phases
 
-.. image:: relative_cost_to_fix_bugs.jpg
-    :width: 100%
+.. image:: relative_cost_to_fix_bugs.svg
 
 -------------------------------
 Why Use :toolname:`GNAT SAS`?
