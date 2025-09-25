@@ -43,9 +43,9 @@ begin
    declare
       Countries_Count : Natural;
    begin
-      for Continent in Types.Continents_T'Range loop
+      for Continent in Types.Continent_T'Range loop
          Countries_Count := 0;
-         for Country in Types.Countries_T loop
+         for Country in Types.Country_T loop
             One := Countries.Get (Map, Country);
             if Countries.Is_Valid (One)
               and then Countries.Continent (One) = Continent
@@ -54,7 +54,7 @@ begin
             end if;
          end loop;
          Put_Line
-           (Types.Continents_T'Image (Continent) & " => " &
+           (Types.Continent_T'Image (Continent) & " => " &
             Natural'Image (Countries_Count));
       end loop;
    end;
@@ -64,7 +64,7 @@ begin
    declare
       Flags_With_Red : Natural := 0;
    begin
-      for Country in Types.Countries_T loop
+      for Country in Types.Country_T loop
          One := Countries.Get (Map, Country);
          if Countries.Is_Valid (One)
            and then Color_Set.Contains (Countries.Colors (One), Types.Red)

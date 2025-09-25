@@ -1,14 +1,14 @@
 with Types; use Types;
 with Color_Set;
 package Countries is
-   subtype Key_T is Types.Countries_T;
+   subtype Key_T is Types.Country_T;
    type Map_Component_T is private;
    type Map_T is private;
 
    procedure Add
      (Map       : in out Map_T;
       Country   :        Key_T;
-      Continent :        Continents_T;
+      Continent :        Continent_T;
       Colors    :        Color_Set.Color_Set_T);
 
    function Exists
@@ -27,10 +27,10 @@ package Countries is
       return Color_Set.Color_Set_T;
    function Continent
      (Component : Map_Component_T)
-      return Types.Continents_T;
+      return Types.Continent_T;
    function Country
      (Component : Map_Component_T)
-      return Types.Countries_T;
+      return Types.Country_T;
    function Image
      (Item : Map_Component_T)
       return String;
@@ -41,7 +41,7 @@ private
    type Map_Component_T is record
       Valid     : Boolean               := False;
       Country   : Key_T                 := Key_T'First;
-      Continent : Continents_T          := Continents_T'First;
+      Continent : Continent_T          := Continent_T'First;
       Colors    : Color_Set.Color_Set_T := Color_Set.Empty_Set;
    end record;
    type Map_Array_T is array (1 .. 100) of Map_Component_T;

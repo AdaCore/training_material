@@ -16,7 +16,7 @@ package body Countries is
    procedure Add
      (Map       : in out Map_T;
       Country   :        Key_T;
-      Continent :        Continents_T;
+      Continent :        Continent_T;
       Colors    :        Color_Set.Color_Set_T) is
       Index : constant Integer := Find (Map, Country);
    begin
@@ -69,13 +69,13 @@ package body Countries is
    end Colors;
    function Continent
      (Component : Map_Component_T)
-      return Types.Continents_T is
+      return Types.Continent_T is
    begin
       return Component.Continent;
    end Continent;
    function Country
      (Component : Map_Component_T)
-      return Types.Countries_T is
+      return Types.Country_T is
    begin
       return Component.Country;
    end Country;
@@ -85,7 +85,7 @@ package body Countries is
       return String is
    begin
       return
-        Types.Countries_T'Image (Item.Country) & " => " &
+        Types.Country_T'Image (Item.Country) & " => " &
         Color_Set.Image (Item.Colors);
    end Image;
 
