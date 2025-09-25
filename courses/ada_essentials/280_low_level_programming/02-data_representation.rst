@@ -33,7 +33,7 @@ Data Representation Vs Requirements
 * These values can be explicitly set, the compiler will check their consistency
 * They can be queried as attributes if needed
 
-   .. code:: Ada
+  .. code:: Ada
 
       X : Integer := My_Int'Alignment;
 

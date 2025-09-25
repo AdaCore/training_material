@@ -11,7 +11,7 @@ Introduction
    - Functions represent *values*
    - Procedures represent *actions*
 
-   .. code:: Ada
+.. code:: Ada
 
       function Is_Leaf (T : Tree) return Boolean
       procedure Split (T : in out Tree;
@@ -20,7 +20,7 @@ Introduction
 
 * Provide direct syntactic support for separation of specification from implementation
 
-   .. code:: Ada
+.. code:: Ada
 
       function Is_Leaf (T : Tree) return Boolean;
       function Is_Leaf (T : Tree) return Boolean is

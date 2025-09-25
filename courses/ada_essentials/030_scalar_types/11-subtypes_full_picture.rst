@@ -178,7 +178,7 @@ Attributes Reflect the Underlying Type
 
 * Assignment must still satisfy target constraints
 
-   .. code:: Ada
+  .. code:: Ada
 
       Shade : Color range Red .. Blue := Brown; -- run-time error
       Hue : Rainbow := Rainbow'Succ (Blue);     -- run-time error

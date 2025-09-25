@@ -172,7 +172,7 @@ Defaults Within Array Aggregates
 
 **Examples**
 
-  .. code:: Ada
+.. code:: Ada
 
     type Int_Arr is array (1 .. N) of Integer;
     Named_Notation      : Int_Arr := (1 => 2, 2 .. N => <>);
@@ -249,16 +249,16 @@ Aggregates in Ada 2022
 
   * So common aggregates can use either square brackets or parentheses
 
-  .. code:: Ada
+    .. code:: Ada
 
-     Ada2012 : Array_T := (1, 2, 3);
-     Ada2022 : Array_T := [1, 2, 3];
+      Ada2012 : Array_T := (1, 2, 3);
+      Ada2022 : Array_T := [1, 2, 3];
 
 * But square brackets help in more problematic situations
 
-   * Empty array
+  * Empty array
 
-     .. code:: Ada
+    .. code:: Ada
 
         Ada2012 : Array_T := (1..0 => 0);
         Illegal : Array_T := ();
@@ -266,7 +266,7 @@ Aggregates in Ada 2022
 
   * Single component array
 
-     .. code:: Ada
+    .. code:: Ada
 
         Ada2012 : Array_T := (1 => 5);
         Illegal : Array_T := (5);
@@ -355,7 +355,7 @@ Delta Aggregates
 
    * Prior to Ada 2022, it would require two steps
 
-      .. code:: Ada
+     .. code:: Ada
 
          declare
             New_Location : Coordinate_T := Location;
@@ -369,7 +369,7 @@ Delta Aggregates
 
    * Aggregate indicates an object plus the values changed - the *delta*
 
-      .. code:: Ada
+     .. code:: Ada
 
          New_Location : Coordinate_T := [Location with delta 3 => 0.0];
 

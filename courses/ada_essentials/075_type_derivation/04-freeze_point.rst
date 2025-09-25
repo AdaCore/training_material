@@ -55,7 +55,7 @@ Debugging Type Freeze
 
 :filename:`pkg.ads`
 
-      .. code:: Ada
+.. code:: Ada
 
           type Up_To_Eleven is range 0 .. 11;
 
