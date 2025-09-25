@@ -19,7 +19,17 @@ import os
 import sys
 
 import pandocfilters
-from pandocfilters import toJSONFilter, Strong, Str, SmallCaps, Emph, Para, CodeBlock, RawBlock, BlockQuote
+from pandocfilters import (
+    toJSONFilter,
+    Strong,
+    Str,
+    SmallCaps,
+    Emph,
+    Para,
+    CodeBlock,
+    RawBlock,
+    BlockQuote,
+)
 
 from snippet_parser import source_file_contents
 
@@ -903,6 +913,7 @@ def format_animate(literal_text):
 ## CODE BLOCK COLORIZATION ##
 #############################
 
+
 def is_colorizable_code_block(key, value):
     """
     If the filter key is CodeBlock, then the value is a list where
@@ -923,6 +934,7 @@ def is_colorizable_code_block(key, value):
                 if "c" in value[0].keys():
                     return get_code_language(value[0]["c"]) != None
     return False
+
 
 def get_code_language(content):
     """
@@ -962,8 +974,7 @@ def colorized(key, value):
     list is the language
     """
 
-
-    if key == 'CodeBlock':
+    if key == "CodeBlock":
         [[ident, classes, kvs], code] = value
 
         color = "blue!5"
@@ -973,14 +984,16 @@ def colorized(key, value):
             color = "lightgray!30"
 
         begin_env = (
-            "\\vspace{3mm}\\begin{mdframed}[linewidth=0pt, backgroundcolor=" + color + "]"
+            "\\vspace{3mm}\\begin{mdframed}[linewidth=0pt, backgroundcolor="
+            + color
+            + "]"
         )
         end_env = "\\end{mdframed}"
 
         return [
-            RawBlock('latex', begin_env),
+            RawBlock("latex", begin_env),
             CodeBlock([ident, classes, kvs], code),
-            RawBlock('latex', end_env)
+            RawBlock("latex", end_env),
         ]
 
     return None
