@@ -64,7 +64,7 @@ Details
 
 -  Byte strings literals allow you to create a :rust:`&[u8]` value directly:
 
-   .. code:: rust
+  .. code:: rust
 
       fn main() {
           println!("{:?}", b"abc");
@@ -75,7 +75,7 @@ Details
    disabled: :rust:`r"\n" == "\\n"`. You can embed double-quotes by using an
    equal amount of :rust:`#` on either side of the quotes:
 
-   .. code:: rust
+  .. code:: rust
 
       fn main() {
           println!(r#"<a href="link.html">link</a>"#);

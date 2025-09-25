@@ -37,12 +37,12 @@ Compile-Time Visibility Control
 
 * Items in the declaration are visible to users
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Some_Package is
-        -- exported declarations of
-        --   types, variables, subprograms ...
-      end Some_Package;
+     package Some_Package is
+       -- exported declarations of
+       --   types, variables, subprograms ...
+     end Some_Package;
 
 * Items in the body are never externally visible
 

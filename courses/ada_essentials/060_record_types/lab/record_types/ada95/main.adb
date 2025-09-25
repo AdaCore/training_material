@@ -1,49 +1,53 @@
+--Declarations
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
-   type Name_T is array (1 .. 6) of Character;
-   type Index_T is range 0 .. 1_000;
-   type Queue_T is array (Index_T range 1 .. 1_000) of Name_T;
+   Max_Feet   : constant := 100;
+   Max_Inches : constant := 12;
 
-   type Fifo_Queue_T is record
-      Next_Available : Index_T := 1;
-      Last_Served    : Index_T := 0;
-      Queue          : Queue_T := (others => (others => ' '));
+   type Feet_T is range 0 .. Max_Feet;
+   type Inches_T is range 0 .. Max_Inches - 1;
+
+   type Distance_T is record
+      Feet   : Feet_T;
+      Inches : Inches_T;
    end record;
 
-   Queue : Fifo_Queue_T;
-   Choice : Integer;
+   Point_1  : Distance_T;
+   Point_2  : Distance_T;
+   Distance : Distance_T;
 
-   S : String(1..100);
-   L : Integer;
+   Total : Integer;
+   --Declarations
 
+--Implementation
 begin
+   Point_1.Feet   := 12;
+   Point_1.Inches := 7;
 
-   loop
-      Put ("1 = add to queue | 2 = remove from queue | others => done: ");
-      Get_Line (S, L);
-      Choice := Integer'Value (S (1..L));
-      if Choice = 1 then
-         Put ("Enter name: ");
-         Get_Line (S, L);
-         Queue.Queue (Queue.Next_Available) := Name_T (S (1..L));
-         Queue.Next_Available               := Queue.Next_Available + 1;
-      elsif Choice = 2 then
-         if Queue.Next_Available = 1 then
-            Put_Line ("Nobody in line");
-         else
-            Queue.Last_Served := Queue.Last_Served + 1;
-            Put_Line ("Now serving: " & String (Queue.Queue (Queue.Last_Served)));
-         end if;
-      else
-         exit;
-      end if;
-      New_Line;
-   end loop;
+   Point_2 := (Feet   => 6,
+               Inches => 8);
 
-   Put_Line ("Remaining in line: ");
-   for Index in Queue.Last_Served + 1 .. Queue.Next_Available - 1 loop
-      Put_Line ("  " & String (Queue.Queue (Index)));
-   end loop;
+   Distance := (0, 0);
 
+   Total := Integer (Point_1.Inches) +
+            Integer (Point_2.Inches);
+   if Total > Max_Inches then
+      Distance.Inches := Inches_T (Total - Max_Inches);
+      Distance.Feet   := 1;
+   else
+      Distance.Inches := Point_1.Inches + Point_2.Inches;
+   end if;
+   Distance.Feet := Distance.Feet + Point_1.Feet + Point_2.Feet;
+
+   Put_Line ("Point 1: " &
+               Feet_T'Image(Point_1.Feet) &
+               Inches_T'Image(Point_1.Inches));
+   Put_Line ("Point 2: " &
+               Feet_T'Image(Point_2.Feet) &
+               Inches_T'Image(Point_2.Inches));
+   Put_Line ("Distance: " &
+               Feet_T'Image(Distance.Feet) &
+               Inches_T'Image(Distance.Inches));
 end Main;
+--Implementation

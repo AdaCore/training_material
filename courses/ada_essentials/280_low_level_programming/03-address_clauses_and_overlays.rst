@@ -22,13 +22,13 @@ Address Clauses
 
 * Ada allows specifying the address of an entity
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Use_Aspect     : Unsigned_32 with
-         Address => 16#1234_ABCD#;
+     Use_Aspect     : Unsigned_32 with
+        Address => 16#1234_ABCD#;
 
-      Use_Rep_Clause : Unsigned_32;
-      for Use_Rep_Clause'Address use 16#5678_1234#;
+     Use_Rep_Clause : Unsigned_32;
+     for Use_Rep_Clause'Address use 16#5678_1234#;
 
 * Very useful to declare I/O registers
 
@@ -92,11 +92,11 @@ Volatile
 * The :ada:`Volatile` property can be set using an aspect or a pragma
 * Ada also allows volatile types as well as objects
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Volatile_U32 is mod 2**32 with Volatile;
-      type Volatile_U16 is mod 2**16;
-      pragma Volatile (Volatile_U16);
+     type Volatile_U32 is mod 2**32 with Volatile;
+     type Volatile_U16 is mod 2**16;
+     pragma Volatile (Volatile_U16);
 
 * The exact sequence of reads and writes from the source code must appear in the generated code
 
@@ -149,13 +149,13 @@ Unchecked Conversion
 * :ada:`Unchecked_Conversion` allows an unchecked *bitwise* conversion of data between two types
 * Needs to be explicitly instantiated
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Bitfield is array (1 .. Integer'Size) of Boolean;
-      function To_Bitfield is new
-         Ada.Unchecked_Conversion (Integer, Bitfield);
-      V : Integer;
-      V2 : Bitfield := To_Bitfield (V);
+     type Bitfield is array (1 .. Integer'Size) of Boolean;
+     function To_Bitfield is new
+        Ada.Unchecked_Conversion (Integer, Bitfield);
+     V : Integer;
+     V2 : Bitfield := To_Bitfield (V);
 
 * Avoid conversion if the sizes don't match
 

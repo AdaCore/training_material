@@ -8,10 +8,10 @@ Vectors of Varying Lengths
 
 * In Ada, array objects must be fixed length
 
-   .. code:: Ada
+  .. code:: Ada
 
-      S : String (1 .. 80);
-      A : array (M .. K*L) of Integer;
+     S : String (1 .. 80);
+     A : array (M .. K*L) of Integer;
 
 * We would like an object with a maximum length and a variable current length
 
@@ -71,12 +71,12 @@ Vector of Varying Length via Discriminated Records
 
 * Discriminant can serve as bound of array component
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Vstring (Last : Natural := 0) is
-        record
-          Data   : String (1 .. Last) := (others => ' ');
-        end record;
+     type Vstring (Last : Natural := 0) is
+       record
+         Data   : String (1 .. Last) := (others => ' ');
+       end record;
 
 * Mutable objects vs immutable objects
 
@@ -91,16 +91,16 @@ Object Creation
 
    + So this example is a problem
 
-      .. code:: Ada
+     .. code:: Ada
 
-         type Vstring (Last : Natural := 0) is record
-            Data   : String (1 .. Last) := (others => ' ');
-         end record;
+        type Vstring (Last : Natural := 0) is record
+           Data   : String (1 .. Last) := (others => ' ');
+        end record;
 
-         Good : Vstring (10);
-         Bad  : Vstring;
+        Good : Vstring (10);
+        Bad  : Vstring;
 
-      + Compiler warning
+     + Compiler warning
 
          ``warning: creation of "Vstring" object may raise Storage_Error``
 
@@ -110,15 +110,15 @@ Object Creation
 
 * Better implementation
 
-   .. code:: Ada
+  .. code:: Ada
 
-      subtype Length_T is natural range 0 .. 1_000;
-      type Vstring (Last : Length_T := 0) is record
-         Data   : String (1 .. Last) := (others => ' ');
-      end record;
+     subtype Length_T is natural range 0 .. 1_000;
+     type Vstring (Last : Length_T := 0) is record
+        Data   : String (1 .. Last) := (others => ' ');
+     end record;
 
-      Good      : Vstring (10);
-      Also_Good : Vstring;
+     Good      : Vstring (10);
+     Also_Good : Vstring;
 
 ------------------------
 Simplifying Operations
@@ -126,30 +126,30 @@ Simplifying Operations
 
 * With mutable discriminated records, operations are simpler
 
-   .. code:: Ada
+  .. code:: Ada
 
-      Obj : Simple_Vstring;
-      Obj1 : Simple_Vstring := (6, " World");
+     Obj : Simple_Vstring;
+     Obj1 : Simple_Vstring := (6, " World");
 
-   * Creation
+  * Creation
 
-      .. code:: Ada
+  .. code:: Ada
 
-         function Make (S : String)
-           return Vstring is (S'length, S);
-         Obj2 : Simple_Vstring := Make ("Hello");
+     function Make (S : String)
+       return Vstring is (S'length, S);
+     Obj2 : Simple_Vstring := Make ("Hello");
 
-   * Equality: :ada:`Obj1 = Obj2`
+* Equality: :ada:`Obj1 = Obj2`
 
       * :ada:`Data` is exactly the correct length
       * if :ada:`Data` or :ada:`Last` is different, equality fails
 
    * Concatentation
 
-      .. code:: Ada
+     .. code:: Ada
 
-         Obj := (Obj1.Last + Obj2.Last,
-                 Obj1.Data & Obj2.Data);
+        Obj := (Obj1.Last + Obj2.Last,
+                Obj1.Data & Obj2.Data);
 
 ------
 Quiz

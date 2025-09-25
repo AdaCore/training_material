@@ -32,19 +32,19 @@ Basic Syntax and Nomenclature
    - Basic declarative items **only**
    - e.g. no subprogram bodies
 
-      .. code:: Ada
+     .. code:: Ada
 
-            package name is
-               {basic_declarative_item}
-            end [name];
+           package name is
+              {basic_declarative_item}
+           end [name];
 
 * Body
 
-      .. code:: Ada
+     .. code:: Ada
 
-            package body name is
-               declarative_part
-            end [name];
+           package body name is
+              declarative_part
+           end [name];
 
 -----------------------------------------
 Separating Interface and Implementation

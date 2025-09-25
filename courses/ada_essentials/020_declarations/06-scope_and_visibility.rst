@@ -44,15 +44,15 @@ Introducing Block Statements
 
      **Example**
 
-       .. code:: Ada
+     .. code:: Ada
 
-          Swap: declare
-            Temp : Integer;
-          begin
-            Temp := U;
-            U := V;
-            V := Temp;
-          end Swap;
+        Swap: declare
+          Temp : Integer;
+        begin
+          Temp := U;
+          U := V;
+          V := Temp;
+        end Swap;
 
 ----------------------
 Scope and "Lifetime"
@@ -71,24 +71,24 @@ Visibility in Action
 
 * **Name hiding**: a name used in an *inner scope* can hide the same name visible in the *outer scope*
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Color is (Red, Green, Blue);
-      type Size  is (Small, Medium, Large);
+     type Color is (Red, Green, Blue);
+     type Size  is (Small, Medium, Large);
 
-      declare
-        My_Obj : Color;     -- outer My_Obj
-      begin
-        My_Obj := Green;    -- assigns to outer My_Obj (Color)
-        declare
-          My_Obj : Size;    -- hides outer My_Obj
-        begin
-          My_Obj := Medium; -- OK: inner My_Obj is Size
-          My_Obj := Red;    -- compile error: inner My_Obj is not Color
-        end;
-        My_Obj := Blue;     -- OK: outer My_Obj is Color
-        My_Obj := Small;    -- compile error: outer My_Obj is not Size
-      end;
+     declare
+       My_Obj : Color;     -- outer My_Obj
+     begin
+       My_Obj := Green;    -- assigns to outer My_Obj (Color)
+       declare
+         My_Obj : Size;    -- hides outer My_Obj
+       begin
+         My_Obj := Medium; -- OK: inner My_Obj is Size
+         My_Obj := Red;    -- compile error: inner My_Obj is not Color
+       end;
+       My_Obj := Blue;     -- OK: outer My_Obj is Color
+       My_Obj := Small;    -- compile error: outer My_Obj is not Size
+     end;
 
 -------------------
 Overcoming Hiding
@@ -134,20 +134,20 @@ Quiz
    What output does the following code produce? (Assume :code:`Print` prints the current value of its argument)
 
    .. code:: Ada
-      :number-lines: 1
+       :number-lines: 1
 
-      declare
-         Value : Some_Type := 1;
-      begin
-         Value := Value + 1;
-         declare
-            Value : Some_Type := 2;
-         begin
-            Value := Value + 2;
-            Print (Value);
-         end;
-         Print (Value);
-      end;
+       declare
+          Value : Some_Type := 1;
+       begin
+          Value := Value + 1;
+          declare
+             Value : Some_Type := 2;
+          begin
+             Value := Value + 2;
+             Print (Value);
+          end;
+          Print (Value);
+       end;
 
  .. container:: column
 

@@ -85,10 +85,10 @@ Benefits and Risk of Overloading
 * Safe: compiler will reject ambiguous calls
 * Sensible names are the programmer's job
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function "+" (L, R : Integer) return String is
-      begin
-         return Integer'Image (L - R);
-      end "+";
+     function "+" (L, R : Integer) return String is
+     begin
+        return Integer'Image (L - R);
+     end "+";
 

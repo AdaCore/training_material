@@ -104,7 +104,7 @@ Command Line Example Run
 
 .. container:: latex_environment scriptsize
 
-   .. code:: output
+  .. code:: output
 
       chop.adb:14:11: PIck_Up does not have casing specified (mixed)
       chop.ads:11:18: Stick does not start with subtype prefix T_
@@ -121,7 +121,7 @@ Command Line Example Run
       room.adb:19:23: anonymous subtype
       ...
 
-   *These messages are coming from rules specified in* :filename:`coding_standard.rules`
+  *These messages are coming from rules specified in* :filename:`coding_standard.rules`
 
 --------------------------------------------------------------
 :toolname:`GNATcheck` From :toolname:`GNAT Studio` Main Menu

@@ -63,19 +63,19 @@ Task Scope
 * Scope has to **wait** for tasks to finish before ending
 * At library level: program ends only when **all tasks** finish
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package P is
-         task type T;
-      end P;
+     package P is
+        task type T;
+     end P;
 
-      package body P is
-         task body T is
-            loop
-               delay 1.0;
-               Put_Line ("tick");
-            end loop;
-         end T;
+     package body P is
+        task body T is
+           loop
+              delay 1.0;
+              Put_Line ("tick");
+           end loop;
+        end T;
 
-         Task_Instance : T;
-      end P;
+        Task_Instance : T;
+     end P;

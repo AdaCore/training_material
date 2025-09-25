@@ -29,26 +29,26 @@ Values for the Set
 
 * Colors of the rainbow
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Color_T is (Red, Orange, Yellow, Green,
-                       Blue, Indigo, Violet,
-                       White, Black);
+     type Color_T is (Red, Orange, Yellow, Green,
+                      Blue, Indigo, Violet,
+                      White, Black);
 
 * Group of colors
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Group_Of_Colors_T is
-         array (Positive range <>) of Color_T;
+     type Group_Of_Colors_T is
+        array (Positive range <>) of Color_T;
 
 * Mechanism indicating which color is in the set
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type Set_T is array (Color_T) of Boolean;
-      --  if array component at Color is True,
-      --  the color is in the set
+     type Set_T is array (Color_T) of Boolean;
+     --  if array component at Color is True,
+     --  the color is in the set
 
 ----------------------------------
 Primitive Operations for the Set
@@ -56,31 +56,31 @@ Primitive Operations for the Set
 
 * Create a set
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function Make (Colors : Group_Of_Colors_T) return Set_T;
+     function Make (Colors : Group_Of_Colors_T) return Set_T;
 
 * Add a color to the set
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Add (Set    : in out Set_T;
-                     Color  :        Color_T);
+     procedure Add (Set    : in out Set_T;
+                    Color  :        Color_T);
 
 * Remove a color from the set
 
-   .. code:: Ada
+  .. code:: Ada
 
-      procedure Remove (Set    : in out Set_T;
-                        Color  :        Color_T);
+     procedure Remove (Set    : in out Set_T;
+                       Color  :        Color_T);
 
 * Check if color is in set
 
-   .. code:: Ada
+  .. code:: Ada
 
-      function Contains (Set   : Set_T;
-                         Color : Color_T)
-                         return Boolean;
+     function Contains (Set   : Set_T;
+                        Color : Color_T)
+                        return Boolean;
 
 --------------------------------------------
 Implementation of the Primitive Operations

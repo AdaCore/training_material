@@ -32,7 +32,7 @@ Control Flow Graph (CFG)
 
  .. container:: column
 
-    .. code:: ada
+   .. code:: ada
 
        function Is_Positive
          (X : Integer)

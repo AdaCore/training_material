@@ -73,7 +73,7 @@ Details
 
 -  Compare these outputs in the above example:
 
-   .. code:: rust
+  .. code:: rust
 
       println!("{} {}", std::mem::size_of::<Dog>(), std::mem::size_of::<Cat>());
       println!("{} {}", std::mem::size_of::<&Dog>(), std::mem::size_of::<&Cat>());

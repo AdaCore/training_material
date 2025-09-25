@@ -8,15 +8,15 @@ Object-Level Operations
 
 * Assignment of array objects
 
-   .. code:: Ada
+  .. code:: Ada
 
-      A := B;
+     A := B;
 
 * Equality and inequality
 
-   .. code:: Ada
+  .. code:: Ada
 
-      if A = B then
+     if A = B then
 
 * Conversions
 
@@ -50,14 +50,14 @@ Extra Object-Level Operations
 * *Only for 1-dimensional arrays!*
 * Concatenation
 
-   .. code:: Ada
+  .. code:: Ada
 
-      type String_Type is array
-        (Integer range <>) of Character;
-      A : constant String_Type := "foo";
-      B : constant String_Type := "bar";
-      C : constant String_Type := A & B;
-      -- C now contains "foobar"
+     type String_Type is array
+       (Integer range <>) of Character;
+     A : constant String_Type := "foo";
+     B : constant String_Type := "bar";
+     C : constant String_Type := A & B;
+     -- C now contains "foobar"
 
 * Comparison (for discrete component types)
 

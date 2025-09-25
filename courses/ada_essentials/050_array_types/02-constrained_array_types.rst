@@ -6,34 +6,20 @@ Constrained Array Types
 Constrained Array Type Declarations
 -------------------------------------
 
-Syntax (simplified)
+**Syntax**
 
-.. container:: latex_environment footnotesize
+.. container:: source_include 050_array_types/syntax.bnf :start-after:constrained_array_type_declarations_begin :end-before:constrained_array_type_declarations_end :code:bnf
 
-   .. code:: Ada
+*Note:* ``component_definition`` *must specify a type whose size is known at compile time*
 
-      type <typemark> is array (<index_constraint>) of <component_type>;
+**Examples**
 
-where
+  .. code:: Ada
 
-.. container:: latex_environment quote
-
-      **typemark** - identifier
-
-      **index_constraint** - discrete range or type
-
-      **component_type** - type with size known at compile time
-
-Examples
-
-.. container:: latex_environment footnotesize
-
-   .. code:: Ada
-
-      type Integer_Array_T is array (1 .. 3) of Integer;
-      type Boolean_Array_T is array (Boolean) of Integer;
-      type Character_Array_T is array (character range 'a' .. 'z') of Boolean;
-      type Copycat_T is array (Boolean_Array_T'Range) of Integer;
+     type Integer_Array_T is array (1 .. 3) of Integer;
+     type Boolean_Array_T is array (Boolean) of Integer;
+     type Character_Array_T is array (character range 'a' .. 'z') of Boolean;
+     type Copycat_T is array (Boolean_Array_T'Range) of Integer;
 
 ------
 Quiz

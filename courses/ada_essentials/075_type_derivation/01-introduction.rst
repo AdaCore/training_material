@@ -27,11 +27,11 @@ Reminder: What is a Type?
 
 .. container:: latex_environment small
 
-   .. code:: Ada
+  .. code:: Ada
 
-      package Types is
-         type Integer_T is range -(2**63) .. 2**63-1 with Size => 64; 
-         procedure Increment_With_Truncation (Val : in out Integer_T);
-         procedure Increment_With_Rounding (Val : in out Integer_T);
-     end Types;
+     package Types is
+        type Integer_T is range -(2**63) .. 2**63-1 with Size => 64; 
+        procedure Increment_With_Truncation (Val : in out Integer_T);
+        procedure Increment_With_Rounding (Val : in out Integer_T);
+    end Types;
 

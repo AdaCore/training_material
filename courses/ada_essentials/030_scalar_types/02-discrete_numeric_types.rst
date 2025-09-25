@@ -16,17 +16,17 @@ Signed Integer Types
 
 * Implicit numeric operators
 
-   .. code:: Ada
+  .. code:: Ada
 
-      -- 12-bit device
-      type Analog_Conversions is range 0 .. 4095;
-      Count : Analog_Conversions := 0;
-      ...
-      begin
-         ...
-         Count := Count + 1;
-         ...
-      end;
+     -- 12-bit device
+     type Analog_Conversions is range 0 .. 4095;
+     Count : Analog_Conversions := 0;
+     ...
+     begin
+        ...
+        Count := Count + 1;
+        ...
+     end;
 
 ---------------------
 Signed Integer Bounds

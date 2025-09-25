@@ -39,19 +39,19 @@ Recognizing Procedures and Functions
 * Procedures cannot be treated as values
 * You can always distinguish them via the call context
 
-   .. code:: Ada
-      :number-lines: 10
+  .. code:: Ada
+     :number-lines: 10
 
-      Open (Source, "SomeFile.txt");
-      while not End_of_File (Source) loop
-        Get (Next_Char, From => Source);
-        if Found (Next_Char, Within => Buffer) then
-          Display (Next_Char);
-          Increment;
-        end if;
-      end loop;
+     Open (Source, "SomeFile.txt");
+     while not End_of_File (Source) loop
+       Get (Next_Char, From => Source);
+       if Found (Next_Char, Within => Buffer) then
+         Display (Next_Char);
+         Increment;
+       end if;
+     end loop;
 
-  * Note that a subprogram without parameters (:ada:`Increment` on line 15) does not allow an empty set of parentheses
+ * Note that a subprogram without parameters (:ada:`Increment` on line 15) does not allow an empty set of parentheses
 
 ----------------------------------
 A Little "Preaching" About Names
