@@ -13,9 +13,7 @@ Handling Cyclic Dependencies
 
 * Which package elaborates first?
 
-.. image:: cyclic_dependencies.png
-   :width: 50%
-   :align: center
+.. image:: cyclic_dependencies.svg
 
 --------------------------------------
 Body-Level Cross Dependencies Are OK
