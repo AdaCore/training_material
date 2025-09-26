@@ -61,37 +61,24 @@ Language-Defined Exceptions
 Explicitly-Raised Exceptions
 ------------------------------
 
-.. container:: columns
+**Syntax**
 
- .. container:: column
+.. container:: source_include 190_exceptions/syntax.bnf :start-after:explicitly_raised_exceptions_begin :end-before:explicitly_raised_exceptions_end :code:bnf
 
-    * Raised by application via :ada:`raise` statements
+Raised by application via :ada:`raise` statements
 
-       - Named exception becomes active
+   * Named exception becomes active
+   * A :ada:`raise` by itself is only allowed in handlers
 
-    * Syntax
+**Example**
 
-      .. code:: Ada
+.. code:: Ada
 
-         raise_statement ::= raise; |
-            raise exception_name
-            [with string_expression];
+   if Unknown (User_ID) then
+     raise Invalid_User;
+   end if;
 
-      - :ada:`with string_expression` only available in Ada 2005 and later
-
-    * A :ada:`raise` by itself is only allowed in handlers (more later)
-
- .. container:: column
-
-   .. code:: Ada
-
-      if Unknown (User_ID) then
-        raise Invalid_User;
-      end if;
-
-      if Unknown (User_ID) then
-        raise Invalid_User
-           with "Attempt by " &
-                Image (User_ID);
-      end if;
-
+   if Unknown (User_ID) then
+     raise Invalid_User
+        with "Attempt by " & Image (User_ID);
+   end if;

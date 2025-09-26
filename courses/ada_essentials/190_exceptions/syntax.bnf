@@ -1,0 +1,33 @@
+--|exception_handlers_syntax_begin
+begin
+  sequence_of_statements
+[ exception
+    exception_handler
+    { exception handler } ]
+end
+--|exception_handlers_syntax_end
+
+--|exception_handler_begin
+exception_handler ::= 
+  when [identifier:] exception_choice
+                     {'|' exception_choice} =>
+     sequence_of_statements
+
+exception_choice ::= exception_name | others
+--|exception_handler_end
+
+--|user_defined_exceptions_begin
+exception_declaration ::=
+   identifier_list : exception
+--|user_defined_exceptions_end
+
+--|explicitly_raised_exceptions_begin
+raise_statement ::= raise; |
+   raise exception_name
+   [with string_expression];
+--|explicitly_raised_exceptions_end
+
+--|you_can_suppress_run_time_checks_begin
+pragma Suppress(identifier [, [On =>] name]);
+pragma Unuppress(identifier [, [On =>] name]);
+--|you_can_suppress_run_time_checks_end

@@ -59,11 +59,9 @@ Allow Clients to Avoid Exceptions
 You Can Suppress Run-Time Checks
 ----------------------------------
 
-* Syntax (could use a compiler switch instead)
+**Syntax** (could use a compiler switch instead)
 
-  .. code:: Ada
-
-     pragma Suppress (check-name [, [On =>] name]);
+.. container:: source_include 190_exceptions/syntax.bnf :start-after:you_can_suppress_run_time_checks_begin :end-before:you_can_suppress_run_time_checks_end :code:bnf
 
 * Language-defined checks emitted by compiler
 * Compiler may ignore request if unable to comply

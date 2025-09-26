@@ -1,0 +1,14 @@
+--|really_type_and_subtype_predicates_begin
+type_declaration ::= 
+     type identifier [discriminant_part] is type_definition
+        [aspect_specification];
+
+subtype_declaration ::= 
+   subtype identifier is subtype_indication
+        [aspect_specification];
+
+aspect_specification ::= 
+   with aspect_mark => expression
+
+aspect_mark ::= Static_Predicate | Dynamic_Predicate
+--|really_type_and_subtype_predicates_end
