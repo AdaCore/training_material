@@ -935,11 +935,14 @@ def process_codeblock(key, value):
 
     [[ident, classes, kvs], contents] = value
 
-    keys = {}
-    keys["language"] = classes[0]
-    for pair in kvs:
-        if len(pair) > 0:
-            keys[pair[0].lower()] = pair[1].lower()
+    try:
+        keys = {}
+        keys["language"] = classes[0]
+        for pair in kvs:
+            if len(pair) > 0:
+                keys[pair[0].lower()] = pair[1].lower()
+    except:
+        pass
 
     # for each environment, we need to wrap "contents" in a LaTeX
     # begin/end environment command. So we need to build two lists -
