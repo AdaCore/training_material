@@ -6,11 +6,9 @@ User-Defined Exceptions
 User-Defined Exceptions
 -------------------------
 
-* Syntax
+**Syntax**
 
-  .. code:: Ada
-
-     <identifier_list> : exception;
+.. container:: source_include 190_exceptions/syntax.bnf :start-after:user_defined_exceptions_begin :end-before:user_defined_exceptions_end :code:bnf
 
 * Behave like predefined exceptions
 

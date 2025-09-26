@@ -49,9 +49,7 @@ Exception Occurrence
 
 * Syntax associates an object with active exception
 
-  .. code:: Ada
-
-     when <exception_identifier> : <exception_name> ... =>
+.. container:: source_include 190_exceptions/syntax.bnf :start-after:exception_handler_begin :end-before:exception_handler_end :code:bnf
 
 * A constant view representing active exception
 * Used with operations defined for the type
