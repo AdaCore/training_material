@@ -1,12 +1,15 @@
 --|specification_and_body_begin
 subprogram_declaration ::= 
-    [[not] overriding]
+    [overriding_indicator]
     subprogram_specification
         [aspect_specification];
 
 subprogram_specification ::= 
     procedure_specification
   | function_specification
+
+overriding_indicator ::=
+   [not] overriding
 --|specification_and_body_end
 
 --|procedure_specification_syntax_begin
