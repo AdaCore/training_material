@@ -12,13 +12,12 @@ Limited Private Types
    - No client assignment or predefined equality
 
 * The typical design idiom for :ada:`limited` types
-* Syntax
 
-   - Additional reserved word :ada:`limited` added to :ada:`private` type declaration
+**Syntax**
 
-   .. code:: Ada
+.. container:: source_include 120_limited_types/syntax.bnf :start-after:limited_private_types_begin :end-before:limited_private_types_end :code:bnf
 
-      type <typemark> is limited private;
+- Additional reserved word :ada:`limited` added to :ada:`private` type declaration
 
 ------------------------------------
 Limited Private Type Rationale (1)

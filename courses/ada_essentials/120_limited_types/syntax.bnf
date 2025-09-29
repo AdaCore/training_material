@@ -1,0 +1,26 @@
+--|limited_type_declarations_begin
+limited_record_definition ::= 
+   type identifier is limited record
+      component_declaration
+   end record;
+
+component_declaration ::= 
+   defining_identifier_list : subtype_indication
+      [:= default_expression];
+--|limited_type_declarations_end
+
+--|function_extended_return_statements_begin
+extended_return_statement ::= 
+   return extended_return_object_declaration [do
+      sequence_of_statements
+   end return];
+
+extended_return_object_declaration ::= 
+   defining_identifier : return_subtype_indication
+      [:= expression]
+--|function_extended_return_statements_end
+
+--|limited_private_types_begin
+private_type ::=
+   type identifier is [limited] private;
+--|limited_private_types_end

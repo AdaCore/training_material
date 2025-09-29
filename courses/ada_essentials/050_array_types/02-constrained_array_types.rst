@@ -10,7 +10,7 @@ Constrained Array Type Declarations
 
 .. container:: source_include 050_array_types/syntax.bnf :start-after:constrained_array_type_declarations_begin :end-before:constrained_array_type_declarations_end :code:bnf
 
-*Note:* ``component_definition`` *must specify a type whose size is known at compile time*
+*Note:* ``subtype_indication`` *must specify a type whose size is known at compile time*
 
 **Examples**
 

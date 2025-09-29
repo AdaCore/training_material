@@ -1,0 +1,4 @@
+--|partially_import_private_unit_begin
+with_clause ::= [limited] [private] with library_unit_name
+   {, library_unit_name};
+--|partially_import_private_unit_end

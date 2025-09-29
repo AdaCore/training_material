@@ -123,12 +123,11 @@ Solution 1: Move Type to Parent Package
 Solution 2: Partially Import Private Unit
 -------------------------------------------
 
-* Via :ada:`private with` clause
-* Syntax
+**Syntax**
 
-  .. code:: Ada
+.. container:: source_include 130_program_structure/syntax.bnf :start-after:partially_import_private_unit_begin :end-before:partially_import_private_unit_end :code:bnf
 
-     private with package_name {, package_name} ;
+* Add :ada:`private` to the :ada:`with` clause
 
 * Public declarations can then access private siblings
 
