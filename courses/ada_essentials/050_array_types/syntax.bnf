@@ -3,12 +3,10 @@ constrained_array_definition ::=
    type identifier is
       array (discrete_subtype_definition
              {, discrete_subtype_definition})
-      of component_definition;
+      of subtype_indication;
 
 discrete_subtype_definition ::= discrete_subtype_indication | range
 
-component_definition ::= subtype_indication |
-                         access_definition
 --|constrained_array_type_declarations_end
 
 --|unconstrained_array_type_declarations_begin
@@ -16,7 +14,7 @@ unconstrained_array_definition ::=
    type identifier is
       array(index_subtype_definition
             {, index_subtype_definition})
-      of component_definition;
+      of subtype_indication;
 
 index_subtype_definition ::= subtype_mark range <>
 --|unconstrained_array_type_declarations_end

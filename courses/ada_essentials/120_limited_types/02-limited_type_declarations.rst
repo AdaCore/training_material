@@ -6,15 +6,11 @@ Limited Type Declarations
 Limited Type Declarations
 ---------------------------
 
-* Syntax
+**Syntax**
 
-   - Additional keyword limited added to record type declaration
+.. container:: source_include 120_limited_types/syntax.bnf :start-after:limited_type_declarations_begin :end-before:limited_type_declarations_end :code:bnf
 
-   .. code:: Ada
-
-      type <typemark> is limited record
-          <component_list>
-      end record;
+* Additional keyword :ada:`limited` added to record type declaration
 
 * Are always record types unless also private
 
