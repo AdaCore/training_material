@@ -953,11 +953,11 @@ def process_codeblock(key, value):
 
     begins = []
     ends = []
-    for environment in keys.keys():
-        if environment == "size":
-            begin, end = environment_wrapper(keys[environment])
-            begins.append(begin)
-            ends.insert(0, end)
+    # for environment in keys.keys():
+    #     if environment == "size":
+    #         begin, end = environment_wrapper(keys[environment])
+    #         begins.append(begin)
+    #         ends.insert(0, end)
 
     new_value = []
     for one in begins:
