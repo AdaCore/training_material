@@ -1,0 +1,50 @@
+--|specification_and_body_begin
+subprogram_declaration ::= 
+    [overriding_indicator]
+    subprogram_specification
+        [aspect_specification];
+
+subprogram_specification ::= 
+    procedure_specification
+  | function_specification
+
+overriding_indicator ::=
+   [not] overriding
+--|specification_and_body_end
+
+--|procedure_specification_syntax_begin
+procedure_specification ::=
+   ::= procedure subprogram_name parameter_profile
+--|procedure_specification_syntax_end
+
+--|function_specification_syntax_begin
+function_specification ::=
+   function function_name parameter_and_result_profile
+
+function_name ::=
+   subprogram_name | operator_symbol
+
+parameter_and_result_profile ::=
+    [parameter_profile] return subtype_mark
+--|function_specification_syntax_end
+
+--|subprogram_specification_syntax_begin
+subprogram_name ::=
+ [parent_unit_name . ]defining_identifier
+
+parameter_profile ::= 
+   [(parameter_specification {; parameter_specification})]
+
+parameter_specification ::= 
+   identifier_list : mode subtype_mark [:= default_expression]
+
+mode ::= [in] | in out | out
+--|subprogram_specification_syntax_end
+
+--|body_syntax_begin
+subprogram_specification is
+   [declarations]
+begin
+   sequence_of_statements
+end [subprogram_name | operator_symbol];
+--|body_syntax_end

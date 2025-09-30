@@ -1,0 +1,4 @@
+--|with_clause_begin
+with_clause ::= with library_unit_name
+                { , library_unit_name };
+--|with_clause_end
