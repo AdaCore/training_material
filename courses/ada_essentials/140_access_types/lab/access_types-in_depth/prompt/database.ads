@@ -1,14 +1,10 @@
---Database
-with Ada.Strings.Unbounded;
 package Database is
    type Database_T is private;
-   function "="
-     (L, R : Database_T)
-      return Boolean;
-   function To_Database
-     (Value : String)
+   function Create
+     (Number : Positive;
+      Symbol : Character)
       return Database_T;
-   function From_Database
+   function Image
      (Value : Database_T)
       return String;
    function "<"

@@ -1,7 +1,12 @@
---Database_List_Helpers
+--  Turn off warnings about Sorted vs Unsorted
+pragma Warnings (Off, "is not referenced");
+
 with Ada.Unchecked_Deallocation;
 package body Database_List is
 
+   Extra_Credit : constant Boolean := True;
+
+   --|helpers_begin
    function Is_Empty (List : List_T) return Boolean is
    begin
       return List.Head = null;
@@ -30,13 +35,14 @@ package body Database_List is
    begin
       return List.Current.Content;
    end Current;
---Database_List_Helpers
+   --|helpers_end
 
---Database_List_Substance
-   procedure Insert (List      : in out List_T;
-                     Component :        Database_T) is
-      New_Component : constant Linked_List_Ptr_T :=
-        new Linked_List_T'(Next => null, Content => Component);
+   --|insertion_routines_begin
+   procedure Sorted_Insert (List      : in out List_T;
+                            Component :        Database_T) is
+      New_Component : constant Linked_List_Ptr_T := new Linked_List_T'
+          (Next    => null,
+           Content => Component);
    begin
       if Is_Empty (List) then
          List.Current := New_Component;
@@ -49,7 +55,8 @@ package body Database_List is
          declare
             Current : Linked_List_Ptr_T := List.Head;
          begin
-            while Current.Next /= null and then Current.Next.Content < Component
+            while Current.Next /= null
+              and then Current.Next.Content < Component
             loop
                Current := Current.Next;
             end loop;
@@ -57,12 +64,42 @@ package body Database_List is
             Current.Next       := New_Component;
          end;
       end if;
+   end Sorted_Insert;
+
+   procedure Unsorted_Insert (List      : in out List_T;
+                              Component :        Database_T) is
+      New_Component : constant Linked_List_Ptr_T := new Linked_List_T'
+          (Next    => null,
+           Content => Component);
+   begin
+      if Is_Empty (List) then
+         List.Head    := New_Component;
+         List.Current := List.Head;
+      else
+         New_Component.Next := List.Head;
+         List.Head          := New_Component;
+         List.Current       := List.Head;
+      end if;
+   end Unsorted_Insert;
+
+   procedure Insert (List      : in out List_T;
+                     Component :        Database_T) is
+   begin
+      if Extra_Credit then
+         Sorted_Insert (List, Component);
+      else
+         Unsorted_Insert (List, Component);
+      end if;
+
       -- Uncomment next line when using debug/storage pools
       -- Memory_Mgmt.Print_Info;
    end Insert;
+   --|insertion_routines_end
 
+   --|deletion_routine_begin
    procedure Free is new Ada.Unchecked_Deallocation
      (Linked_List_T, Linked_List_Ptr_T);
+
    procedure Delete
      (List      : in out List_T;
       Component :        Database_T) is
@@ -76,7 +113,7 @@ package body Database_List is
          else
             declare
                Previous : constant Linked_List_Ptr_T := List.Head;
-               Current  : Linked_List_Ptr_T := List.Head.Next;
+               Current  : Linked_List_Ptr_T          := List.Head.Next;
             begin
                while Current /= null loop
                   if Current.Content = Component then
@@ -95,5 +132,5 @@ package body Database_List is
       -- Uncomment next line when using debug/storage pools
       -- Memory_Mgmt.Print_Info;
    end Delete;
---Database_List_Substance
+   --|deletion_routine_end
 end Database_List;
