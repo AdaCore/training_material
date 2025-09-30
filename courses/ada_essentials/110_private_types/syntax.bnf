@@ -1,0 +1,4 @@
+--|declaring_private_types_for_views_begin
+private_type_declaration ::=
+   type identifier [discriminant_part] is private;
+--|declaring_private_types_for_views_end

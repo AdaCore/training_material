@@ -6,17 +6,14 @@ Membership Tests
  "Membership" Operation
 -------------------------
 
-* Syntax
+**Syntax**
 
-  .. code:: Ada
-
-     simple_expression [not] in membership_choice_list
-     membership_choice_list ::= membership_choice
-                                { | membership_choice}
-     membership_choice ::= expression | range | subtype_mark
+.. container:: source_include 080_expressions/syntax.bnf :start-after:membership_operation_begin :end-before:membership_operation_end :code:bnf
 
 * Acts like a boolean function
 * Usable anywhere a boolean value is allowed
+
+**Examples**
 
 .. code:: Ada
 

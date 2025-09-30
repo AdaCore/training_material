@@ -29,21 +29,16 @@ Conditional Expressions
 If Expressions
 ------------------
 
+**Syntax**
+
+.. container:: source_include 080_expressions/syntax.bnf :start-after:if_expressions_begin :end-before:if_expressions_end :code:bnf
+
 * Syntax looks like an *if statement* without :ada:`end if`
+* The conditions are always Boolean values
 
   .. code:: Ada
 
-     if_expression ::=
-        (if condition then dependent_expression
-        {elsif condition then dependent_expression}
-        [else dependent_expression])
-     condition ::= boolean_expression
-
-  - The conditions are always Boolean values
-
-  .. code:: Ada
-
-     (if Today > Wednesday then 1 else 0)
+      (if Today > Wednesday then 1 else 0)
 
 ..
   language_version 2012
