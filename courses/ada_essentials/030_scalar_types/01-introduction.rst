@@ -2,8 +2,6 @@
 Introduction
 ================
 
-
-
 ----------------
 Discrete Types
 ----------------
@@ -26,40 +24,14 @@ Discrete Types
 
    - Ordered list of **logical** values
 
------------
-Attributes
------------
+------------
+Real Types
+------------
 
-* Properties of entities that can be queried like a function
+* :dfn:`Floating-point` numbers have variable exponent portion
 
-   - May take input parameters
+  * Allows for a very wide range of values
 
-* Defined by the language and/or compiler
+* :dfn:`Fixed-point` numbers have a constant exponent portion
 
-    - Language-defined attributes found in RM K.2
-    - *May* be implementation-defined
-
-       * GNAT-defined attributes found in GNAT Reference Manual
-
-    - Cannot be user-defined
-
-* Attribute behavior is generally pre-defined
-
-  - :ada:`Type_T'Digits` gives number of digits used in :ada:`Type_T` definition
-
-* Some attributes can be modified by coding behavior
-
-  - :ada:`Typemark'Size` gives the size of :ada:`Typemark`
-
-    - Determined by compiler **OR** by using a representation clause
-
-  - :ada:`Object'Image` gives a string representation of :ada:`Object`
-
-    - Default behavior which can be replaced by aspect :ada:`Put_Image`
-
-* Examples
-
-  .. code:: Ada
-
-    J := Object'Size;
-    K := Array_Object'First(2);
+  * Allows for simpler (integer-based) computer math

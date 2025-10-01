@@ -18,14 +18,15 @@ Miscellaneous
 
 * Called as if it was a function
 
-   - Named using destination type name
+  - Named using destination type name
 
-     .. code:: Ada
+    .. code:: Ada
 
         Target_Float := Float (Source_Integer);
 
   - Implicitly defined
-   - **Must** be explicitly called
+
+    - **Must** be explicitly called
 
 -------------
 Default Value

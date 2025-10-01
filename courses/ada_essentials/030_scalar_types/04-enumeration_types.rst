@@ -53,6 +53,29 @@ Enumeration Type Operations
    Heading := East + 1; -- compile error
    if Today < Tomorrow then ...
 
+-----------------------------
+Enumeration Type Attributes
+-----------------------------
+
+.. code:: Ada
+
+   type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+
+* :ada:`T'Pred (Input)`
+
+  - Predecessor of specified value
+  - :ada:`Days'Pred (Tue)` |rightarrow| :ada:`Mon`
+   
+* :ada:`T'Succ (Input)`
+
+  - Successor of specified value
+  - :ada:`Days'Succ (Tue)` |rightarrow| :ada:`Wed`
+
+* Additional information
+
+  - Going past the end (:ada:`Days'Pred(Mon)` or :ada:`Days'Succ(Sun)`) raises :ada:`Constraint_Error`
+  - These attributes are available for all scalars, but not particularly useful for numerics
+
 ---------------
 Character Types
 ---------------

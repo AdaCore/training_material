@@ -8,71 +8,64 @@ Enumeration Representation Values
 
 * Numeric **representation** of enumerals
 
-    - Position, unless redefined
-    - Redefinition syntax
+  - Position, unless redefined
+  - Redefinition syntax
 
-      .. code:: Ada
+    .. code:: Ada
 
         type Enum_T is (Able, Baker, Charlie, David);
         for Enum_T use
           (Able => 3, Baker => 15, Charlie => 63, David => 255);
 
-   - Enumerals are ordered **logically** (not by value)
+  - Enumerals are ordered **logically** (not by value)
 
 * Prior to Ada 2022
 
-   - Only way to get value is through :ada:`Unchecked_Conversion`
+  - Only way to get value is through :ada:`Unchecked_Conversion`
 
-      .. code:: Ada
+    .. code:: Ada
 
          function Value is new Ada.Unchecked_Conversion
             (Enum_T, Integer_8);
          I : Integer_8;
 
-      .. code:: Ada
+    .. code:: Ada
 
          begin
             I := Value (Charlie);
 
 * New attributes in Ada 2022 
 
-   * :ada:`'Enum_Rep` to get representation value
+  * :ada:`'Enum_Rep`
 
-      :ada:`Charlie'Enum_Rep` |rightarrow| 63
+    * Representation value for enumeral
+    * :ada:`Charlie'Enum_Rep` |rightarrow| **63**
 
-   * :ada:`'Enum_Val` to convert integer to enumeral (if possible)
+  * :ada:`'Enum_Val`
 
-      :ada:`Enum_T'Enum_Val (15)` |rightarrow| :ada:`Baker`
+    * Convert integer to enumeral (if possible)
+    * :ada:`Enum_T'Enum_Val (15)` |rightarrow| :ada:`Baker`
+    * :ada:`Enum_T'Enum_Val (16)` |rightarrow| raise :ada:`Constraint_Error`
 
-      :ada:`Enum_T'Enum_Val (16)` |rightarrow| raise :ada:`Constraint_Error`
-
------------------------------------------
-Order Attributes for All Discrete Types
------------------------------------------
-
-* **All discrete** types, mostly useful for enumerated types
-* :ada:`T'Pos (Input)`
-
-   - "Logical position number" of :ada:`Input`
-
-* :ada:`T'Val (Input)`
-
-   - Converts "logical position number" to :ada:`T`
+-------------------------------------
+Order Attributes for Discrete Types
+-------------------------------------
 
 .. code:: Ada
 
-   type Days is (Sun, Mon, Tue, Wed, Thu, Fri, Sat); -- 0 .. 6
-   Today    : Days := Some_Value;
-   Position : Integer;
-   ...
-   Position := Days'Pos (Today);
-   ...
-   Get (Position);
-   Today := Days'Val (Position);
+   type Numbers_T is (One, Three, Five, Four, Two);
 
-.. container:: speakernote
+* **All** discrete types, mostly useful for enumerated types
 
-   Val/pos compared to value/image - same number of characters
+* :ada:`T'Pos (Input)`
+
+   - Logical position number of :ada:`Input`
+   - :ada:`Numbers_T'Pos(Two)` |rightarrow| **4**
+
+* :ada:`T'Val (Input)`
+
+   - Converts logical position number to :ada:`T`
+   - :ada:`Numbers_T'Pos(3)` |rightarrow| :ada:`Four`
 
 ------
 Quiz

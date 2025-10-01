@@ -102,33 +102,32 @@ Floating Point Type Operators
       + Not possible to ask for root
       + :ada:`X**0.5` |rightarrow| :ada:`sqrt (x)`
 
---------------------------------
-Floating Point Type Attributes
---------------------------------
+---------------------------
+Floating Point Attributes
+---------------------------
 
-* *Core* attributes
+.. code:: Ada
 
-  .. code:: Ada
+  type My_Float is digits 7;
 
-     type My_Float is digits N;  -- N static
+* :ada:`My_Float'Digits`
 
-  - :ada:`My_Float'Digits`
+  - Number of digits **requested**
+  - :ada:`My_Float'Digits` |rightarrow| **7**
 
-      + Number of digits **requested** (N)
+* :ada:`My_Float'Base`
 
-   - :ada:`My_Float'Base'Digits`
+  - Type selected by compiler
 
-      + Number of **actual** digits
+* :ada:`My_Float'Base'Digits`
 
-   - :ada:`My_Float'Rounding (X)`
+  - Number of **actual** digits
+  - :ada:`My_Float'Base'Digits` |rightarrow| **15**
 
-      + Integral value nearest to :ada:`X`
-      + *Note:* :ada:`Float'Rounding (0.5) = 1` and :ada:`Float'Rounding (-0.5) = -1`
+* :ada:`My_Float'Rounding (X)`
 
-* Model-oriented attributes
-
-   - Advanced machine representation of the floating-point type
-   - Mantissa, strict mode
+   - Integral value nearest to :ada:`X`
+   - *Note:* :ada:`Float'Rounding (0.5) = 1` and :ada:`Float'Rounding (-0.5) = -1`
 
 ---------------------------
 Numeric Types Conversion
