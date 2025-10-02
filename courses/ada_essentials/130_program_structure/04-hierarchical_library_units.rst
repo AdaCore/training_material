@@ -207,7 +207,7 @@ Hierarchical Visibility
           type Child_T is record
             Field : OS_Private_T;
           end record;
-        end OS;
+        end OS.Child;
       
   .. container:: column
 
@@ -222,7 +222,7 @@ Hierarchical Visibility
             Field1 : OS_Private_T; -- OK
             Field2 : Child_T;      -- Error
           end record;
-        end OS;
+        end OS.Sibling;
       
 ------------------------------------
 Example of Visibility As If Nested
