@@ -119,6 +119,7 @@ package body Database_List is
                   if Current.Content = Component then
                      To_Delete     := Current;
                      Previous.Next := Current.Next;
+                     exit;
                   end if;
                   Current := Current.Next;
                end loop;

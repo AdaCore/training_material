@@ -11,7 +11,7 @@ package body Database is
       return "";
    end Image;
 
-   function "<" (L, R : Database_T) return Boolean is
+   function "<" (Left, Right : Database_T) return Boolean is
    begin
       return False;
    end "<";

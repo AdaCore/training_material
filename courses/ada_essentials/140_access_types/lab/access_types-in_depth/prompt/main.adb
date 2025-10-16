@@ -1,6 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Database;
 with Database_List;
+
 procedure Main is
    List      : Database_List.List_T;
    Component : Database.Database_T;
@@ -21,4 +22,5 @@ begin
    --  Add another element
    --  Print the list
    Print;
+
 end Main;

@@ -15,14 +15,14 @@ package body Database is
       return Value.Symbol & Positive'Image (Value.Number);
    end Image;
 
-   function "<" (L, R : Database_T) return Boolean is
+   function "<" (Left, Right : Database_T) return Boolean is
    begin
-      if L.Symbol < R.Symbol then
+      if Left.Symbol < Right.Symbol then
          return True;
-      elsif L.Symbol > R.Symbol then
+      elsif Left.Symbol > Right.Symbol then
          return False;
       else
-         return L.Number < R.Number;
+         return Left.Number < Right.Number;
       end if;
    end "<";
 
