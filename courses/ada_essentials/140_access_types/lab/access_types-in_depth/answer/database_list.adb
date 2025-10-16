@@ -112,7 +112,7 @@ package body Database_List is
             List.Current := List.Head;
          else
             declare
-               Previous : constant Linked_List_Ptr_T := List.Head;
+               Previous : Linked_List_Ptr_T := List.Head;
                Current  : Linked_List_Ptr_T          := List.Head.Next;
             begin
                while Current /= null loop
@@ -121,7 +121,8 @@ package body Database_List is
                      Previous.Next := Current.Next;
                      exit;
                   end if;
-                  Current := Current.Next;
+                  Previous := Current;
+                  Current  := Current.Next;
                end loop;
             end;
             List.Current := List.Head;
