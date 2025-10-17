@@ -179,3 +179,36 @@ Select Example in Code
     Controller.Stop;
 
   * :ada:`Client_X` and :ada:`Client_Y` can be the same task, different tasks, or the main program
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+  task Simple_Task is
+     entry Go;
+  end Simple_Task;
+
+  task body Simple_Task is
+  begin
+      accept Go do
+          loop
+              null;
+          end loop;
+      end Go;
+  end Simple_Task;
+
+What happens when :ada:`Simple_Task.Go` is called?
+
+A. Compilation error
+B. Run-time error
+C. The calling task completes successfully
+D. :answer:`Simple_Task hangs`
+
+.. container:: animate
+
+    A. Syntax is correct
+    B. Code is doing what it is supposed to
+    C. Caller must wait for :ada:`Go` block to finish
+    D. :ada:`Go` block is entered, but never completes
