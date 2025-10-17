@@ -2,134 +2,80 @@
 Some Advanced Concepts
 ========================
 
----------------------------
-Waiting on Multiple Entries
----------------------------
+---------------
+Task Activation
+---------------
 
-* :ada:`select` can wait on multiple entries
+* Instantiated tasks start running when **activated**
+* On the **stack**
 
-    - With **equal** priority, regardless of declaration order
+   - When **enclosing** declarative part finishes **elaborating**
 
-.. code:: Ada
+* On the **heap**
 
-  loop
-    select
-      accept Receive_Message (V : String)
-      do
-        Put_Line ("Message : " & V);
-      end Receive_Message;
-    or
-      accept Stop;
-      exit;
-    end select;
-  end loop;
-  ...
-  T.Receive_Message ("A");
-  T.Receive_Message ("B");
-  T.Stop;
-
-----------------------
-Waiting with a Delay
-----------------------
-
-* A :ada:`select` statement may **time-out** using :ada:`delay` or :ada:`delay until`
-
-    - Resume execution at next statement
-
-* Multiple :ada:`delay` allowed
-
-   - Useful when the value is not hard-coded
+   - **Immediately** at instantiation
 
 .. code:: Ada
 
-  loop
-    select
-      accept Receive_Message (V : String) do
-        Put_Line ("Message : " & V);
-      end Receive_Message;
-    or
-      delay 50.0;
-      Put_Line ("Don't wait any longer");
-      exit; -- exit loop 
-    end select;
-  end loop;
+   task type First_T is ...
+   type First_T_A is access all First_T;
 
-*Task will wait up to 50 seconds for* :ada:`Receive_Message`. *If no message is received, it will write to the console, and then exit the loop. (If the* :ada:`exit` *wasn't there, the loop would restart.)*
+   task body First_T is ...
+   ...
+   declare
+      V1 : First_T;
+      V2 : First_T_A;
+   begin  -- V1 is activated
+      V2 := new First_T;  -- V2 is activated immediately
 
-------------------------------------------
-Calling an Entry with a Delay Protection
-------------------------------------------
+--------------------
+Single Declaration
+--------------------
 
-* A call to :ada:`entry` **blocks** the task until the entry is :ada:`accept` 'ed
-* Wait for a **given amount of time** with :ada:`select ... delay`
-* Only **one** entry call is allowed
-* No :ada:`accept` statement is allowed
+ * Instantiate an **anonymous** task (or protected) type
+ * Declares an object of that type
 
 .. code:: Ada
 
-   task Msg_Box is
-      entry Receive_Message (V : String);
-   end Msg_Box;
+   task type Task_T is
+      entry Start;
+   end Task_T;
 
-   procedure Main is
+   type Task_Ptr_T is access all Task_T;
+
+   task body Task_T is
    begin
-      select
-         Msg_Box.Receive_Message ("A");
-      or
-         delay 50.0;
-      end select;
-   end Main;
+      accept Start;
+   end Task_T;
+   ...
+      V1 : Task_T;
+      V2 : Task_Ptr_T;
+   begin
+      V1.Start;
+      V2 := new Task_T;
+      V2.all.Start;
 
-*Procedure will wait up to 50 seconds for* :ada:`Receive_Message` *to be accepted before it gives up*
+-----------
+Task Scope
+-----------
 
-----------------------------
-Non-blocking Accept or Entry
-----------------------------
+* Nesting is possible in **any** declarative block
+* Scope has to **wait** for tasks to finish before ending
+* At library level: program ends only when **all tasks** finish
 
-* Using :ada:`else`
+  .. code:: Ada
 
-    - Task **skips** the :ada:`accept` or :ada:`entry` call if they are **not ready** to be entered
+     package P is
+        task type T;
+     end P;
 
-* :ada:`delay` is **not** allowed in this case
+     package body P is
+        task body T is
+           loop
+              delay 1.0;
+              Put_Line ("tick");
+           end loop;
+        end T;
 
-.. code:: Ada
-
-   select
-      accept Receive_Message (V : String) do
-         Put_Line ("Received : " & V);
-      end Receive_Message;
-   else
-      Put_Line ("Nothing to receive");
-   end select;
-
-   [...]
-
-   select
-      T.Receive_Message ("A");
-   else
-      Put_Line ("Receive message not called");
-   end select;
-
-------
-Queue
-------
-
-* Protected :ada:`entry` or :ada:`procedure` and tasks :ada:`entry` are activated by **one** task at a time
-* **Mutual exclusion** section
-* Other tasks trying to enter are **queued**
-
-    - In **First-In First-Out** (FIFO) by default
-
-* When the server task **terminates**, tasks still queued receive :ada:`Tasking_Error`
-
-----------------
-Advanced Tasking
-----------------
-
-Other constructions are available
-
-* **Guard condition** on :ada:`accept`
-* :ada:`requeue` to **defer** handling of an :ada:`entry` call
-* :ada:`terminate` the task when no :ada:`entry` call can happen anymore
-* :ada:`abort` to stop a task immediately
-* :ada:`select ... then abort` some other task
+        Task_Instance : T;
+     end P;

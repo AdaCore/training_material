@@ -2,80 +2,78 @@
 Task and Protected Types
 ==========================
 
----------------
-Task Activation
----------------
+------------------------------------------------
+Beyond One-Off Tasks: Task and Protected Types
+------------------------------------------------
 
-* Instantiated tasks start running when **activated**
-* On the **stack**
+* Creating templates for tasks and protected objects
 
-   - When **enclosing** declarative part finishes **elaborating**
+  * For when you need multiple tasks or protected objects tha behave similarly
 
-* On the **heap**
+* Task (and protected) types rather than objects
 
-   - **Immediately** at instantiation
+  * Can be parameterized to cause different behavior
 
-.. code:: Ada
-
-   task type First_T is ...
-   type First_T_A is access all First_T;
-
-   task body First_T is ...
-   ...
-   declare
-      V1 : First_T;
-      V2 : First_T_A;
-   begin  -- V1 is activated
-      V2 := new First_T;  -- V2 is activated immediately
-
---------------------
-Single Declaration
---------------------
-
- * Instantiate an **anonymous** task (or protected) type
- * Declares an object of that type
+------------------------
+Reusable Task Patterns
+------------------------
 
 .. code:: Ada
 
-   task type Task_T is
-      entry Start;
-   end Task_T;
+   task type Worker is
+      entry Initialize (Cyle : Duration);
+   end Worker;
 
-   type Task_Ptr_T is access all Task_T;
-
-   task body Task_T is
+   task body Worker is
+      Delay_Time : Duration;
    begin
-      accept Start;
-   end Task_T;
-   ...
-      V1 : Task_T;
-      V2 : Task_Ptr_T;
+      accept Initialize (Cyle : Duration) do
+          Delay_Time := Cycle;
+      end Initialize;
+      loop
+         delay Delay_Time;
+         Do_Something;
+      end loop;
+   end Worker;
+
+   W1, W2 : Worker;
+
+   procedure Main is
    begin
-      V1.Start;
-      V2 := new Task_T;
-      V2.all.Start;
+      W1.Initialize (1.0);
+      W2.Initialize (2.0);
+   end Main;
 
------------
-Task Scope
------------
+* Each Worker runs its own independent thread of control.
 
-* Nesting is possible in **any** declarative block
-* Scope has to **wait** for tasks to finish before ending
-* At library level: program ends only when **all tasks** finish
+-------------------------------
+Reusable Protected Components
+-------------------------------
 
-  .. code:: Ada
+* Protected type
 
-     package P is
-        task type T;
-     end P;
+  * Defines synchronized access to shared data
 
-     package body P is
-        task body T is
-           loop
-              delay 1.0;
-              Put_Line ("tick");
-           end loop;
-        end T;
+* Protected object - an instance of that type.
 
-        Task_Instance : T;
-     end P;
+* Procedures and functions inside the type control access rules
+
+.. code:: Ada
+
+  protected type Counter is
+     procedure Increment;
+     function Value return Integer;
+  private
+     Count : Integer := 0;
+  end Counter;
+
+  protected body Counter is
+     procedure Increment is
+     begin
+        Count := Count + 1;
+     end Increment;
+
+     function Value return Integer is (Count);
+  end Counter;
+
+  C1, C2 : Counter;
