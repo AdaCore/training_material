@@ -2,14 +2,40 @@
 Protected Objects
 ===================
 
--------------------
-Protected Objects
--------------------
+-----------------------------------------
+The Problem: Sharing Data is Dangerous!
+-----------------------------------------
 
-* **Multitask-safe** accessors to get and set state
-* **No** direct state manipulation
-* **No** concurrent modifications
-* :ada:`limited` types (No copies allowed)
+* What happens if two tasks try to update the same variable at the exact same time?
+
+  * Task 1 reads the value X (it's 10)
+  * Task 2 reads the value X (it's also 10)
+  * Task 1 calculates 10 + 5 and writes 15 back to X
+  * Task 2 calculates 10 + 1 and writes 11 back to X
+
+* The first update is lost! 
+
+  * This is a :dfn:`race condition`
+
+* Race condition
+
+  * Leads to corrupt and unpredictable data
+  * Protected objects prevent concurrent modifications
+
+---------------------------------
+The Solution: Protected Objects
+---------------------------------
+
+* Protected object is designed for safe, concurrent access to shared data
+
+  * Acts as a monitor, guarding the data it holds
+  * Has a restricted set of operations
+
+    * Can't manipulate its data directly
+
+  * Guarantees concurrency-safe semantics
+
+    * Prevents concurrent modifications from corrupting data
 
 -------------------------------------
 Protected: Functions and Procedures
@@ -33,7 +59,21 @@ Protected: Functions and Procedures
 * Support for read-only locks **depends on OS**
 
     - Windows has **no** support for those
-    - In that case, :ada:`function` are **blocking** as well
+    - In that case, a :ada:`function` is **blocking** as well
+
+------------------------------------------
+Example: Protected Objects - Declaration
+------------------------------------------
+
+.. include:: ../examples/protected_objects/src/protected_objects.ads
+    :code: Ada
+
+-----------------------------------
+Example: Protected Objects - Body
+-----------------------------------
+
+.. include:: ../examples/protected_objects/src/protected_objects.adb
+    :code: Ada
 
 ------------------------
 Protected: Limitations
@@ -71,20 +111,6 @@ Protected: Lock-Free Implementation
    - See GNAT RM 2.100
 
 .. include:: ../examples/protected_objects_lock_free/extracts/protected_objects.lock_free_declare.ads
-    :code: Ada
-
-------------------------------------------
-Example: Protected Objects - Declaration
-------------------------------------------
-
-.. include:: ../examples/protected_objects/src/protected_objects.ads
-    :code: Ada
-
------------------------------------
-Example: Protected Objects - Body
------------------------------------
-
-.. include:: ../examples/protected_objects/src/protected_objects.adb
     :code: Ada
 
 ------
