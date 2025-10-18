@@ -6,7 +6,7 @@ Lab
 Exceptions Lab
 ----------------
 
-(Simplified) Input Verifier
+(Simplified) Numeric String Verifier
 
   * Overview
 
