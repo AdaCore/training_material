@@ -1,3 +1,4 @@
+--|main_data_begin
 with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Text_IO;    use Ada.Text_IO;
 with Operations;
@@ -28,7 +29,9 @@ procedure Main is
       when The_Err : others =>
          Expression.E_Xception := Exception_Identity (The_Err);
    end Perform;
+--|main_data_end
 
+--|main_processing_begin
 begin
 
    for Expression of Expressions loop
@@ -50,3 +53,4 @@ begin
    end loop;
 
 end Main;
+--|main_processing_end
