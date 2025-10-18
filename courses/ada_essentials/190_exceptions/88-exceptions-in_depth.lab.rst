@@ -6,7 +6,7 @@ Lab
 Exceptions In-Depth Lab
 -------------------------
 
-(Simplified) Calculator
+(Simplified) Mathematical Operations Verification
 
   * Overview
 
