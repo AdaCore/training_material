@@ -23,16 +23,14 @@ Enumeration Representation Values
 
   - Only way to get value is through :ada:`Unchecked_Conversion`
 
-    .. code:: Ada
+  .. code:: Ada
 
-         function Value is new Ada.Unchecked_Conversion
-            (Enum_T, Integer_8);
-         I : Integer_8;
-
-    .. code:: Ada
-
-         begin
-            I := Value (Charlie);
+    procedure Main is
+       I : Integer_8;
+       function Value is new Ada.Unchecked_Conversion
+          (Enum_T, Integer_8);
+    begin
+       I := Value (Charlie);
 
 * New attributes in Ada 2022 
 
