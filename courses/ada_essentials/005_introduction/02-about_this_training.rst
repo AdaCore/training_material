@@ -66,7 +66,7 @@ Styles
 * :menu:`This` |rightarrow| :menu:`Is` |rightarrow| :menu:`An IDE Item`
 * :filename:`this/is/a.path`
 * :ada:`code is highlighted`
-* :command:`commands are emphasised --like-this`
+* :command:`commands are emphasized --like-this`
 
 .. warning:: This is a warning
 .. note:: This is an important piece of info
