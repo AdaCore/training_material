@@ -63,6 +63,7 @@ Styles
 --------
 
 * :dfn:`This` is a definition
+* :menu:`This` |rightarrow| :menu:`Is` |rightarrow| :menu:`An IDE Item`
 * :filename:`this/is/a.path`
 * :ada:`code is highlighted`
 * :command:`commands are emphasised --like-this`
