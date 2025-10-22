@@ -25,7 +25,7 @@ Enumeration Representation Values
 
   .. code:: Ada
 
-    procedure Main is
+    declare
        I : Integer_8;
        function Value is new Ada.Unchecked_Conversion
           (Enum_T, Integer_8);
