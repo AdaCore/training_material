@@ -799,7 +799,9 @@ def perform_role(role, literal_text, format):
 
 def format_menu(literal_text):
     # white text on box of color
-    return latex_inline(latex_box(latex_color(latex_escape(literal_text))))
+    return latex_inline(
+        latex_box(latex_color(latex_escape(literal_text)), color="adacore_orange!50")
+    )
 
 
 """
