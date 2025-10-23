@@ -8,22 +8,29 @@ Packages Lab
 
 * Requirements
 
-   - Create a program to build a list of simple mathematical equations and then
-     print out if, for each equation in the list, the result would be in range
+  - Create a program to build a list of simple mathematical equations
+  - For each equation, print out if the result would be in range
 
-      - Equations are two floating point numbers and a simple operation (+, -, *, /)
+    - Equations are two real numbers and a simple operation (+, -, *, /)
 
-* Hints
+* Hint: create (at least) three packages
 
-   - You should create the following packages
+  - **Types** creates
 
-      - Types package that creates a numeric range, an equation record type, and
-        a mechanism to convert the record to a string
-      - Validation package to verify that the equation result would be in range
-      - List package to store the list of equations, and a mechanism to retrieve
-        each item in the list
+    - Numeric type with a range
+    - Equation record type
+    - Mechanism to convert the record to a string
 
-   - Remember: :code:`with package_name;` gives access to :code:`package_name`
+  - **Validation**
+
+    - Verifies equation result would be in range
+
+  - **List** contains
+
+    - List of equations
+    - Mechanism to retrieve each item in the list
+
+  - Remember: :code:`with package_name;` gives access to :code:`package_name`
 
 ----------------------------------------------
 Creating Packages in :toolname:`GNAT Studio`
