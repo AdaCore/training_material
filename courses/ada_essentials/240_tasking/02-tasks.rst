@@ -62,37 +62,39 @@ Rendezvous
 
   * Follows a client/server model
 
-  * Server task declares an :ada:`entry`
+  * **Server** task declares an :ada:`entry`
 
     * Public point of synchronization other tasks call
 
-  * Client task calls that entry same as a procedure
+  * **Client** task calls that entry same as a procedure
 
-  * Server must then accept call
+  * **Server** must then accept call
 
 * Both tasks are blocked until rendezvous is complete
 
-  * Server must perform entry processing
-  * Client is waiting for Server to finish
+  * **Server** must perform entry processing
+  * **Client** is waiting for Server to finish
 
-.. code:: Ada
+.. container:: latex_environment small
 
-  task Server_Task is
-    entry Receive_Message (S : in String);
-  end Server_Task;
+  .. code:: Ada
 
-  task body Server_Task is
-  begin
-    accept Receive_Message (S : in String) do -- waiting for client
-      Put_Line ("Received: " & S);
-    end Receive_Message; -- release to client
-  end Server_Task;
+    task Server_Task is
+      entry Receive_Message (S : in String);
+    end Server_Task;
 
-  procedure Client is
-  begin
-    -- The client calls the entry and waits
-    Server_Task.Receive_Message ("Hello!");
-  end Client;
+    task body Server_Task is
+    begin
+      accept Receive_Message (S : in String) do -- waiting for client
+        Put_Line ("Received: " & S);
+      end Receive_Message; -- release to client
+    end Server_Task;
+
+    procedure Client is
+    begin
+      -- The client calls the entry and waits
+      Server_Task.Receive_Message ("Hello!");
+    end Client;
 
 -----------------------
 Sequential Rendezvous
@@ -138,7 +140,7 @@ Selective Rendezvous
 
 * To wait for multiple entries at the same time use :ada:`select` statement
 
-  * Task waits until client calls an :ada:`entry` included in :ada:`select`, then executes that block.
+  * Task waits until client calls an :ada:`entry` included in :ada:`select`, then executes that block
 
   * If multiple calls waiting, the runtime chooses which client to handle
 

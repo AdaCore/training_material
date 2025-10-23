@@ -6,9 +6,9 @@ Introduction
 Concurrency - One Program, Many Things Happening
 --------------------------------------------------
 
-* Sequential programs - one instruction at a time
+* **Sequential programs** - one instruction at a time
 
-* Concurrent programs - multiple activities *conceptually* happening at once
+* **Concurrent programs** - multiple activities *conceptually* happening at once
 
   * Even on one CPU
   * Think many cooks in one kitchen
