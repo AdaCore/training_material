@@ -11,7 +11,7 @@ Private Types Lab
    - Implement a program to create a map such that
 
       + Map key is a country name
-      + Map component content are the associated content and the colors in the flag
+      + Map component content should include the associated continent and the colors in the flag
 
    - Map operations should include
 
@@ -29,7 +29,7 @@ Private Types Lab
 
    - Should implement a **map** ADT (to keep track of the flags)
 
-      + This **map** will contain all the flags and their content
+      + This **map** will contain the country, continent, and flag colors
 
    - Should implement a **set** ADT (to keep track of the colors)
 
