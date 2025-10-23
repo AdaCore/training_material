@@ -948,16 +948,18 @@ def process_codeblock(key, value):
     # begin/end environment command. So we need to build two lists -
     # one list of all the "begin environment" commands, and another
     # list of the "end environment" commands (which needs to be in
-    # the reverse order. Then we will return an AST that has the
+    # the reverse order). Then we will return an AST that has the
     # content nested inside the environment
 
     begins = []
     ends = []
-    # for environment in keys.keys():
-    #     if environment == "size":
-    #         begin, end = environment_wrapper(keys[environment])
-    #         begins.append(begin)
-    #         ends.insert(0, end)
+    for environment in keys.keys():
+        if environment == "TBD":
+            # This is a placeholder demonstrating how we will
+            # wrap code in environments based on keywords.
+            begin, end = environment_wrapper(keys[environment])
+            begins.append(begin)
+            ends.insert(0, end)
 
     new_value = []
     for one in begins:
