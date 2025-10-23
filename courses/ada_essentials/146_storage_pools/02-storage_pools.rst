@@ -2,54 +2,26 @@
 System.Storage_Pools
 ======================
 
----------------------------
-System.Storage_Pools Spec
----------------------------
-
-.. code:: Ada
-
-  package System.Storage_Pools
-    with Pure
-  is
-     type Root_Storage_Pool is abstract
-       new Ada.Finalization.Limited_Controlled with private;
-     pragma Preelaborable_Initialization (Root_Storage_Pool);
-
-     procedure Allocate
-       (Pool                     : in out Root_Storage_Pool;
-        Storage_Address          : out System.Address;
-        Size_In_Storage_Elements : System.Storage_Elements.Storage_Count;
-        Alignment                : System.Storage_Elements.Storage_Count)
-     is abstract;
-
-     procedure Deallocate
-       (Pool                     : in out Root_Storage_Pool;
-        Storage_Address          : System.Address;
-        Size_In_Storage_Elements : System.Storage_Elements.Storage_Count;
-        Alignment                : System.Storage_Elements.Storage_Count)
-     is abstract;
-
-     function Storage_Size
-       (Pool : Root_Storage_Pool)
-        return System.Storage_Elements.Storage_Count
-     is abstract;
-
 -------------------
 Storage Pool Type
 -------------------
 
-:ada:`Root_Storage_Pool`
+.. code:: Ada
 
-* Abstract type for tracking internal (and user-specified if desired) data
+   type Root_Storage_Pool is abstract
+      new Ada.Finalization.Limited_Controlled with private;
+   pragma Preelaborable_Initialization (Root_Storage_Pool);
+
+* Type for tracking internal (and user-specified if desired) data
 
 * Uses :ada:`Ada.Finalization.Limited_Controlled`
 
   * :ada:`Finalization` objects call primitives on construction, destruction, and modification
   * :ada:`Limited_Controlled` makes the type :ada:`limited`
 
----------------------
-Allocate/Deallocate
----------------------
+--------------------------
+Storage Pool Subprograms
+--------------------------
 
 .. code:: Ada
 
@@ -67,24 +39,46 @@ Allocate/Deallocate
       Alignment                : System.Storage_Elements.Storage_Count)
    is abstract;
 
+   function Storage_Size
+     (Pool : Root_Storage_Pool)
+      return System.Storage_Elements.Storage_Count
+   is abstract;
+
 * :ada:`Allocate` called when :ada:`new` is used for allocation
 * :ada:`Deallocate` called by :ada:`Unchecked_Deallocation`
+* :ada:`Storage_Size` reports total amount of memory being managed
+
 * Runtime is responsible for passing in parameters
 
   * Implementation is responsible for handling them correctly
 
---------------------
-Storage_Size Query
---------------------
+------------------------------------
+Storage Pool Subprogram Parameters
+------------------------------------
 
-.. code:: Ada
+* Note :ada:`Root_Storage_Pool`, :ada:`Allocate`, :ada:`Deallocate`, and :ada:`Storage_Size` are :ada:`abstract`
 
-  function Storage_Size
-    (Pool : Root_Storage_Pool)
-     return System.Storage_Elements.Storage_Count
-  is abstract;
+  * You must create your own type derived from :ada:`Root_Storage_Pool`
+  * You must create versions of :ada:`Allocate`, :ada:`Deallocate`, and :ada:`Storage_Size` to allocate/deallocate memory
 
-* Query function available to application to check memory availability
+* Parameters
+
+  * :ada:`Pool`
+
+    * Memory pool being manipulated
+
+  * :ada:`Storage_Address`
+
+    * For :ada:`Allocate` - location in memory where access type will point to
+    * For :ada:`Deallocate` - location in memory where memory should be released
+
+  * :ada:`Size_In_Storage_Elements`
+
+    * Number of bytes needed to contain contents
+
+  * :ada:`Alignment`
+
+    * Byte alignment for memory location
 
 -------------------------------
 Implementation Example - Spec

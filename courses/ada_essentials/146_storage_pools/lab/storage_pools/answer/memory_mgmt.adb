@@ -12,7 +12,7 @@ package body Memory_Mgmt is
 
    function Storage_Size (Pool : Storage_Pool_T) return Storage_Count is
    begin
-      return 0;  -- Do not use storage size for our pointers
+      return Storage_Count (Memory_Block'Size);
    end Storage_Size;
 
    function Storage_Used return Storage_Count is
