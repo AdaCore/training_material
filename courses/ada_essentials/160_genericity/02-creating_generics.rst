@@ -30,7 +30,7 @@ Declaration
 
 * Children of generic units have to be generic themselves
 
-   .. code:: Ada
+  .. code:: Ada
 
       generic
       package Stack.Utilities is

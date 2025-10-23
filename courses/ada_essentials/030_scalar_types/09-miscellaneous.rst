@@ -44,7 +44,7 @@ Default Value
 
 * Example
 
-   .. code:: Ada
+  .. code:: Ada
 
        type Tertiary_Switch is (Off, On, Neither)
           with Default_Value => Neither;

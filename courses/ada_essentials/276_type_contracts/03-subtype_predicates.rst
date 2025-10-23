@@ -165,7 +165,7 @@ References Are Not Checked
 
 * Output would look like
 
-    .. code:: Ada
+  .. code:: Ada
 
        Current_Value is 1969492223
        Next_Value is 4220029
@@ -309,7 +309,7 @@ Types Controlling For-Loops
 
 * Types with static predicates can be used
 
-   .. code:: Ada
+  .. code:: Ada
 
       type Days is (Sun, Mon, Tues, Wed, Thu, Fri, Sat);
       subtype Weekend is Days

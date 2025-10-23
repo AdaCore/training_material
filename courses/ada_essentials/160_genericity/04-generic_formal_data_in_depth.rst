@@ -99,7 +99,7 @@ Generic Subprogram Parameters - Default Values (1/2)
 
 * Instantiations
 
-   .. code:: Ada
+  .. code:: Ada
       :number-lines: 4
 
       type Record_T is record
