@@ -55,8 +55,6 @@ Access Types: In-Depth
 .. include:: 140_access_types/06-memory_corruption.rst
 .. include:: 140_access_types/07-anonymous_access_types.rst
 .. include:: 140_access_types/08-memory_management.rst
-.. include:: 140_access_types/09-memory_debugging.rst
-.. include:: 140_access_types/10-memory_control.rst
 .. include:: 140_access_types/11-type_safe_idioms.rst
 .. include:: 140_access_types/88-access_types-in_depth.lab.rst
-.. include:: 140_access_types/99-summary_with_pools.rst
+.. include:: 140_access_types/99-summary.rst
