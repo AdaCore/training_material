@@ -16,14 +16,14 @@ Access Types In-Depth Lab
 
 * This is a multi-step lab! First priority should be understanding linked lists, then, if you have time, storage pools
 
-* Required goals
+* Your goals are to implement the following:
 
-  1. Implement **Add** functionality
+  1. **Add** functionality
 
     * For this step, "appropriate" means either end of the list (but consistent - always front or always back)
 
-  2. Implement **Print** functionality
-  3. Implement **Delete** functionality
+  2. **Print** functionality
+  3. **Delete** functionality
 
 .. note::
 
