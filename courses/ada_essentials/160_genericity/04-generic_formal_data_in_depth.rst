@@ -115,11 +115,11 @@ Generic Subprogram Parameters - Default Values (1/2)
    * :ada:`Specify_Operator` passes in the appropriate definition via :ada:`Multiply`
    * :ada:`Need_Operator` generates a compile error
 
-      :color-red:`main.adb:11:4: error: instantiation error at gen.ads:5`
+   :error:`main.adb:11:4: error: instantiation error at gen.ads:5`
 
-      :color-red:`gen.ads:5:1: error: instantiation error at gen.ads:5`
+   :error:`gen.ads:5:1: error: instantiation error at gen.ads:5`
 
-      :color-red:`main.adb:11:4: error: no visible subprogram matches the specification for "*"`
+   :error:`main.adb:11:4: error: no visible subprogram matches the specification for "*"`
 
 ..
   language_version 2005
