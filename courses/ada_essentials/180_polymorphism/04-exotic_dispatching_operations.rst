@@ -71,7 +71,7 @@ Controlling Result (1/2)
 
 * If the child adds components, all such subprograms have to be overridden
 
-     .. code:: Ada
+  .. code:: Ada
 
         type Animal is tagged null record;
         function Feed_Treats (Number_Of_Treats : Integer) return Animal;
@@ -86,7 +86,7 @@ Controlling Result (1/2)
 
 * Primitives returning abstract types have to be abstract
 
-     .. code:: Ada
+  .. code:: Ada
 
         type Animal is abstract tagged null record;
         function Feed_Treats (Number_Of_Treats : Integer) return Animal is abstract;

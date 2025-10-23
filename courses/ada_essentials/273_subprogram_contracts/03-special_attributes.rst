@@ -36,7 +36,7 @@ Evaluate an Expression on Subprogram Entry
 Example for Attribute :ada:`'Old`
 -----------------------------------
 
-   .. code:: Ada
+.. code:: Ada
 
       Global : String := Init_Global;
       ...

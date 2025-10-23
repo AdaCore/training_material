@@ -16,7 +16,7 @@ Available Operations
 
   - Assignment
 
-     .. code:: Ada
+    .. code:: Ada
 
         A := B;
 

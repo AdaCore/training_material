@@ -72,7 +72,7 @@ Anonymous Access Constants
 
 * Also works for subprogram parameters
 
-   .. code:: Ada
+  .. code:: Ada
 
       procedure Bar (V1 : access constant Integer);
       procedure Foo (V1 : not null access Integer); -- Ada 2005

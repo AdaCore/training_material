@@ -254,7 +254,7 @@ Index-Based Vs Component-Based Indexing
       + First subcondition is False!
       + Condition should be
 
-         .. code:: Ada
+        .. code:: Ada
 
           Ascending_Order : constant Boolean := (
              for all K in Table'Range =>
