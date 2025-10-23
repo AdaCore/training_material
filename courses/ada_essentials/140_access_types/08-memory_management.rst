@@ -111,7 +111,6 @@ Simplistic Linked List
 
      Put_Line ("Delete");
      Free (Item);
-     GNAT.Debug_Pools.Print_Info_Stdout (Storage_Pool);
   
   end Simple;
 
