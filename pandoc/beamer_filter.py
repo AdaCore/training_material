@@ -855,7 +855,9 @@ def format_command(literal_text):
 def format_error(literal_text):
     # red text on box of gray
     return latex_inline(
-        latex_box(latex_color(latex_monospace(latex_escape(literal_text)), "red"), "black!10")
+        latex_box(
+            latex_color(latex_monospace(latex_escape(literal_text)), "red"), "black!10"
+        )
     )
 
 
