@@ -49,13 +49,13 @@ Simple Vector of Varying Length
    * :ada:`Obj1 = Obj2` will be false
    * Can redefine :ada:`=` to be something like
 
-      .. code:: Ada
+     .. code:: Ada
 
          if Obj1.Data (1 .. Obj1.Last) = Obj2.Data (1 .. Obj2.Last)
 
    * Same thing with concatentation
 
-      .. code:: Ada
+     .. code:: Ada
 
          Obj3.Last := Obj1.Last + Obj2.Last;
          Obj3.Data (1 .. Obj3.Last) := Obj1.Data (1 .. Obj1.Last) &

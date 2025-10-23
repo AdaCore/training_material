@@ -163,13 +163,13 @@ Select on Protected Objects Entries
 
   - or with an :ada:`else` part
 
-   .. code:: Ada
+    .. code:: Ada
 
-      select
-         O.Push (5);
-      else
-         Put_Line ("Overflow");
-      end select;
+       select
+          O.Push (5);
+       else
+          Put_Line ("Overflow");
+       end select;
 
 ------
 Queue
