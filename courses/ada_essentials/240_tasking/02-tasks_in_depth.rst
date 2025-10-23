@@ -42,7 +42,7 @@ Rendezvous Entry Calls
 
      - **Until** server reaches :ada:`end` of its :ada:`accept` block
 
-       .. code:: Ada
+     .. code:: Ada
 
           Put_Line ("calling start");
           T.Start;
@@ -53,7 +53,7 @@ Rendezvous Entry Calls
 
 * May be executed as follows:
 
-   .. code:: Ada
+  .. code:: Ada
 
           calling start
           start             -- May switch place with line below

@@ -204,13 +204,13 @@ Preventing Exceptions with ... Exceptions?
 
    * So we should make sure the multiplication doesn't overflow, right?
 
-   .. code:: Ada
+     .. code:: Ada
 
-      function Area (Length : Positive;
-                     Height : Positive)
-                     return Positive is
-         (Length * Height)
-      with Pre => Length * Height <= Positive'Last;
+       function Area (Length : Positive;
+                      Height : Positive)
+                      return Positive is
+          (Length * Height)
+       with Pre => Length * Height <= Positive'Last;
 
 * But what happens when we verify the precondition?
 
@@ -218,7 +218,7 @@ Preventing Exceptions with ... Exceptions?
 
 * Better solution
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Area (Length : Positive;
                      Height : Positive)

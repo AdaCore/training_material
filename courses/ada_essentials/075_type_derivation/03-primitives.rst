@@ -20,7 +20,7 @@ Primitive Operations
 
 * A primitive operation on the parent can receive an object of a child type with no conversion
 
-   .. code:: Ada
+  .. code:: Ada
 
       declare
          N_Obj : Natural_T := 1234;
@@ -63,7 +63,7 @@ Primitive of Multiple Types
 
 A subprogram can be a primitive of several types
 
-   .. code:: Ada
+.. code:: Ada
 
       package P is
          type Distance_T is range 0 .. 9999;

@@ -44,7 +44,7 @@ Primitives
   - Parameters the subprogram is a primitive of
   - For :ada:`tagged` types, all should have the **same type**
 
-   .. code:: Ada
+    .. code:: Ada
 
          type Root1 is tagged null record;
          type Root2 is tagged null record;
@@ -120,7 +120,7 @@ Prefix Notation
   - **If** the first argument is a controlling parameter
   - No need for :ada:`use` or :ada:`use type` for visibility
 
-   .. code:: Ada
+.. code:: Ada
 
          -- Prim1 visible even without *use Pkg*
          X.Prim1;

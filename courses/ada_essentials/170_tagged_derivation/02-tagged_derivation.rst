@@ -38,7 +38,7 @@ Type Extension
 
 * Conversion is only allowed from **child to parent**
 
-   .. code:: Ada
+  .. code:: Ada
 
          V1 : Root;
          V2 : Child;
@@ -101,7 +101,7 @@ Tagged Aggregate
 
 * At initialization, all components (including **inherited**) must have a **value**
 
-   .. code:: Ada
+  .. code:: Ada
 
        type Root is tagged record
            F1 : Integer;
@@ -165,7 +165,7 @@ Prefix Notation
     - **If** the first argument is a controlling parameter
     - No need for :ada:`use` or :ada:`use type` for visibility
 
-      .. code:: Ada
+.. code:: Ada
 
          -- Prim1 visible even without *use Pkg*
          X.Prim1;

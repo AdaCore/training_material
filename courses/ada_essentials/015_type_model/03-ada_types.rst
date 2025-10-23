@@ -47,7 +47,7 @@ Understanding Types vs Subtypes
 
 * Subtype that does **not** add a restriction is generally refered to as an *alias*
 
-   .. code:: Ada
+  .. code:: Ada
 
       subtype Water_Temperature is Temperature;
 

@@ -70,7 +70,7 @@ The "renames" Keyword
 
   - Objects (or components of objects)
 
-     .. code:: Ada
+    .. code:: Ada
 
         Angles : Viewpoint_Types.Vertices_Array_T
                  renames Observation.Vertices;
@@ -79,7 +79,7 @@ The "renames" Keyword
 
   - Subprograms
 
-     .. code:: Ada
+    .. code:: Ada
 
         function Sqrt (X : Base_Types.Float_T)
                        return Base_Types.Float_T
@@ -94,7 +94,7 @@ Writing Readable Code - Part 2
    - Executable code is very close to the specification
    - Declarations as "glue" to the implementation details
 
-   .. code:: Ada
+.. code:: Ada
 
       begin
          package Math renames Math_Utilities;
@@ -112,4 +112,3 @@ Writing Readable Code - Part 2
          -- A**2 = B**2 + C**2 - 2*B*C*cos(angle)
          A := Sqrt (B**2 + C**2 - 2.0 * B * C * Cos (Angle));
       end;
-
