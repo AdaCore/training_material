@@ -119,7 +119,7 @@ def latex_inline(s):
     return pandocfilters.RawInline("latex", s)
 
 
-def latex_box(text, color="adacore2"):
+def latex_box(text, color="adacore_orange"):
     return "\\colorbox{" + color + "}{" + text + "}"
 
 
@@ -799,7 +799,9 @@ def perform_role(role, literal_text, format):
 
 def format_menu(literal_text):
     # white text on box of color
-    return latex_inline(latex_box(latex_color(latex_escape(literal_text))))
+    return latex_inline(
+        latex_box(latex_color(latex_escape(literal_text)), color="adacore_orange!50")
+    )
 
 
 """
@@ -867,7 +869,7 @@ def format_filename(literal_text):
     # bold monospaced on light yellow background
     return latex_inline(
         latex_box(
-            latex_bold(latex_monospace(latex_escape(literal_text))), "lightyellow"
+            latex_bold(latex_monospace(latex_escape(literal_text))), "adacore_midblue"
         )
     )
 
