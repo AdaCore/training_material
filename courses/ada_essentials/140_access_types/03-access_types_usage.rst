@@ -2,29 +2,6 @@
 Access Type Usage
 ===================
 
---------------
-Declarations
---------------
-
-* Type is just a declaration of a pointer to another type
-
-  .. code:: Ada
-
-    type Access_T is access Integer;
-
-* Unlike most scalar types, access types are not convertible
-
-  * Even when pointing to same type
-
-  .. code:: Ada
-    :number-lines: 4
-
-    type Access_Two_T is access Integer;
-    Access_1 : Access_T;
-    Access_2 : Access_Two_T := Access_Two_T (Access_1);
-
-  :color-red:`example.adb:6:32: error: target type must be general access type`
-
 -------------
 Null Values
 -------------
