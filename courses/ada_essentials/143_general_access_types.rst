@@ -39,6 +39,5 @@ General Access Types
 .. include:: 143_general_access_types/01-introduction.rst
 .. include:: 143_general_access_types/02-general_access_types.rst
 .. include:: 143_general_access_types/03-accessibility_checks.rst
-.. include:: 143_general_access_types/04-anonymous_access_types.rst
 .. include:: 143_general_access_types/88-general_access_types.lab.rst
 .. include:: 143_general_access_types/99-summary.rst
