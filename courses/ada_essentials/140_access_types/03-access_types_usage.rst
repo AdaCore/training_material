@@ -1,6 +1,6 @@
-==============
-Access Types
-==============
+===================
+Access Type Usage
+===================
 
 --------------
 Declarations
@@ -24,22 +24,6 @@ Declarations
     Access_2 : Access_Two_T := Access_Two_T (Access_1);
 
   :color-red:`example.adb:6:32: error: target type must be general access type`
-
--------
-Usage
--------
-
-* Use :ada:`new` to allocate space for an object
-
-  .. code:: Ada
-
-    Integer_Ptr : Access_T := new Integer;
-
-* To allocate and initialize the pointed-to value, use a quantifier
-
-  .. code:: Ada
-
-    Integer_2_Ptr : Access_Two_T := new Integer'(123);
 
 -------------
 Null Values
@@ -71,12 +55,14 @@ Access Types and Primitives
 
   * **Not** the type of the accessed object
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
 
-  type Record_T is null record;
-  type Record_Access_T is access Record_T;
-  procedure Proc1 (Param : Record_T);         -- primitive of Record_T
-  procedure Proc2 (Param : Record_Access_T);  -- primitive of Record_Access_T
+  .. code:: Ada
+
+    type Rec_T is null record;
+    type Rec_Access_T is access Rec_T;
+    procedure Proc1 (Param : Rec_T);         -- primitive of Rec_T
+    procedure Proc2 (Param : Rec_Access_T);  -- primitive of Rec_Access_T
 
 --------------------------
 Dereferencing Access Types
@@ -97,16 +83,16 @@ Dereference Examples
 
 .. code:: Ada
 
-   type Record_T is record
+   type Rec_T is record
      Field : Integer;
    end record;
    type Integer_Acc is access Integer;
    type String_Acc is access all String;
-   type Record_Acc is access Record_T;
+   type Rec_Acc is access Rec_T;
 
    Integer_Ptr : Integer_Acc := new Integer;
    String_Ptr  : String_Acc  := new String'("abc");
-   Record_Ptr  : Record_Acc  := new Record_T;
+   Rec_Ptr     : Rec_Acc  := new Rec_T;
 
 .. code:: Ada
 
@@ -114,10 +100,10 @@ Dereference Examples
    Integer_Ptr.all  := 0;
    String_Ptr.all   := "cde";
    String_Ptr(1)    := 'z';  -- or String_Ptr.all(1)
-   Record_Ptr.all   := (Field => 987);
-   Record_Ptr.Field := 123;  -- or Record_Ptr.all.Field
+   Rec_Ptr.all      := (Field => 987);
+   Rec_Ptr.Field    := 123;  -- or Rec_Ptr.all.Field
 
    -- Compile Errors
    Integer_Ptr := 0;
    String_Ptr  := "cde";
-   Record_Ptr  := (Field => 987);
+   Rec_Ptr     := (Field => 987);
