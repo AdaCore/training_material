@@ -46,7 +46,7 @@ Address Clauses
 
 * Useful to read a value anywhere
 
-   .. code:: Ada
+  .. code:: Ada
 
       function Get_Byte (Addr : Address) return Unsigned_8 is
         V : Unsigned_8 with Address => Addr, Volatile;

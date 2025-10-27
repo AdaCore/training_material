@@ -30,7 +30,7 @@ User-Defined Equality
 
 * Non-Boolean result example:
 
-   .. code:: Ada
+  .. code:: Ada
 
       type Fuzzy_Result is (Unknown, False, True);
       function "=" (Left : Foo;  Right : Bar)
@@ -43,7 +43,7 @@ User-Defined `=` Returning Boolean
 * Implicitly declares ``/=``
 * Thus negation has consistent meaning
 
-   .. code:: Ada
+  .. code:: Ada
 
       if X /= Y then
       if not (X = Y) then
@@ -53,7 +53,7 @@ User-Defined `=` Returning Boolean
 
    - Returning values of other types is allowed
 
-      .. code:: Ada
+     .. code:: Ada
 
          function "/=" (Left : Foo;  Right : Bar)
              return Fuzzy_Result;
@@ -66,7 +66,7 @@ User-Defined Equality Example
 * Predefined ``=`` is bit-wise comparison over entire structure so may be inappropriate semantics
 * Given the following types:
 
-   .. code:: Ada
+  .. code:: Ada
 
       Max : constant := 100;
       type Index is range 0 .. Max;
@@ -78,7 +78,7 @@ User-Defined Equality Example
 
 * Equality function might look like:
 
-   .. code:: Ada
+  .. code:: Ada
 
       function "=" (Left, Right : Stack) return Boolean is
       begin

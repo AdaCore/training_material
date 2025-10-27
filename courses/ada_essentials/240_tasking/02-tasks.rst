@@ -53,7 +53,7 @@ Rendezvous Entry Calls
 
 * May be executed as follows:
 
-   .. code:: Ada
+  .. code:: Ada
 
           calling start
           start             -- May switch place with line below

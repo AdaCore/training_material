@@ -17,7 +17,7 @@ Basic Loops and Syntax
 
 **Example**
 
-  .. code:: Ada
+.. code:: Ada
 
      Wash_Hair : loop
        Lather (Hair);

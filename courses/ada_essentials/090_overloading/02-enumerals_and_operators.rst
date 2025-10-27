@@ -58,7 +58,7 @@ Parameters for Overloaded Operators
 
   - Usage
 
-     .. code:: Ada
+    .. code:: Ada
 
         X := 2 * 3;
 

@@ -19,7 +19,16 @@ import os
 import sys
 
 import pandocfilters
-from pandocfilters import toJSONFilter, Strong, Str, SmallCaps, Emph, Para
+from pandocfilters import (
+    toJSONFilter,
+    Strong,
+    Str,
+    SmallCaps,
+    Emph,
+    Para,
+    RawBlock,
+    CodeBlock,
+)
 
 from snippet_parser import source_file_contents
 
@@ -899,6 +908,69 @@ def format_animate(literal_text):
     return latex_inline(latex_animate(latex_escape(literal_text)))
 
 
+def environment_wrapper(environment, options=""):
+    """
+    This function will return a tuple containing the
+    commands to begin an environment and end an environment.
+    If the environment requires any extra information,
+    you can specify it in the "options" argument
+    """
+
+    begin = RawBlock("latex", "\\begin{" + environment + "}" + options)
+    end = RawBlock("latex", "\\end{" + environment + "}")
+
+    return begin, end
+
+
+def process_codeblock(key, value):
+    """
+    This routine will look for our own attributes added to the ".. code::"
+    command to implement things like background color and font sizing
+    without changing what the Pandoc AST looks like (which is what
+    the "latex_environment" container does).
+    Based on chatgpt, the best way to extend these would be to add new
+    "keys" (like ":number-lines:") not to add them next to the language
+    (those are the "classes")
+    """
+
+    [[ident, classes, kvs], contents] = value
+
+    try:
+        keys = {}
+        keys["language"] = classes[0]
+        for pair in kvs:
+            if len(pair) > 0:
+                keys[pair[0].lower()] = pair[1].lower()
+    except:
+        pass
+
+    # for each environment, we need to wrap "contents" in a LaTeX
+    # begin/end environment command. So we need to build two lists -
+    # one list of all the "begin environment" commands, and another
+    # list of the "end environment" commands (which needs to be in
+    # the reverse order). Then we will return an AST that has the
+    # content nested inside the environment
+
+    begins = []
+    ends = []
+    for environment in keys.keys():
+        if environment == "TBD":
+            # This is a placeholder demonstrating how we will
+            # wrap code in environments based on keywords.
+            begin, end = environment_wrapper(keys[environment])
+            begins.append(begin)
+            ends.insert(0, end)
+
+    new_value = []
+    for one in begins:
+        new_value.append(one)
+    new_value.append(CodeBlock([ident, classes, kvs], contents))
+    for one in ends:
+        new_value.append(one)
+
+    return new_value
+
+
 #####################
 ## MAIN SUBPROGRAM ##
 #####################
@@ -918,6 +990,9 @@ def perform_filter(key, value, format, meta):
     elif format == "beamer":
         if key == "BlockQuote":
             return bullet_point_fix(value)
+
+        elif key == "CodeBlock":
+            return process_codeblock(key, value)
 
         elif key == "Header":
             modify_header(value)

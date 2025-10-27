@@ -62,7 +62,7 @@ Import / Export Aspects (2/2)
 
   - C implementation
 
-     .. code:: C
+    .. code:: C
 
         int my_var;
 

@@ -131,7 +131,7 @@ Using Other Naming Conventions
 
   * Example: different implementations for different platforms
       
-     .. code:: Ada
+    .. code:: Ada
 
         package Naming is
            case Platform is

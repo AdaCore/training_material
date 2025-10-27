@@ -26,7 +26,7 @@ Pragmas
 
    * Unrecognized pragmas
 
-      .. code:: Ada
+     .. code:: Ada
 
          pragma My_Own_Pragma;
 
@@ -35,7 +35,7 @@ Pragmas
 
    * Must follow correct syntax
 
-      .. code:: Ada
+     .. code:: Ada
 
          pragma Page;           -- parameterless
          pragma Optimize (Off); -- with parameter
