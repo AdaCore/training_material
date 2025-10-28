@@ -1,6 +1,6 @@
 package body Password_Manager is
 
-   Passwords : array (Login_T) of aliased Password_Access_T;
+   Passwords : array (Login_T) of Password_Access_T;
 
    function Update (Login : Login_T) return Password_Access_T is
    begin

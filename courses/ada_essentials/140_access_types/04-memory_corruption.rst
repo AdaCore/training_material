@@ -12,7 +12,7 @@ Dealing with Access Types
 
   * Modifying the pointer can point to bad locations
   * Clearing the pointer can lead to excessive memory issues
-  * And lot's more
+  * And lots more
 
 * These issues are not language-specific!
 
@@ -23,7 +23,7 @@ Uninitialized Pointers
 .. code:: Ada
 
   declare
-     type An_Access is access all Integer;
+     type An_Access is access Integer;
      Object : An_Access;
   begin
      Object.all := 5; -- constraint error
@@ -31,7 +31,7 @@ Uninitialized Pointers
 * In Ada, this is a problem because access type objects are initialized to null
 
 * In other languages, there's no guarantee that the pointer is null, so you
-  might right to a random memory location
+  might write to a random memory location
 
 ------------------------------
 Freeing Already-Freed Memory
@@ -40,7 +40,7 @@ Freeing Already-Freed Memory
 .. code:: Ada
 
    declare
-      type An_Access is access all Integer;
+      type An_Access is access Integer;
       procedure Free is new
          Ada.Unchecked_Deallocation (Integer, An_Access);
       Object_1 : An_Access := new Integer;
@@ -63,7 +63,7 @@ Referencing Already-Freed Memory
 .. code:: Ada
 
    declare
-      type An_Access is access all Integer;
+      type An_Access is access Integer;
       procedure Free is new
          Ada.Unchecked_Deallocation (Integer, An_Access);
       Object_1 : An_Access := new Integer;
@@ -84,7 +84,7 @@ Memory Leak
 .. code:: Ada
 
    declare
-      type An_Access is access all Integer;
+      type An_Access is access Integer;
       procedure Free is new
          Ada.Unchecked_Deallocation (Integer, An_Access);
       Object : An_Access := new Integer;

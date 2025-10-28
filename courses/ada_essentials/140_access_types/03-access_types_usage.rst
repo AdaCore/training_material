@@ -15,7 +15,7 @@ Null Values
 .. code:: Ada
 
    declare
-      type Acc is access all Integer;
+      type Acc is access Integer;
       V : Acc;
    begin
       if V = null then
@@ -64,7 +64,7 @@ Dereference Examples
      Field : Integer;
    end record;
    type Integer_Acc is access Integer;
-   type String_Acc is access all String;
+   type String_Acc is access String;
    type Rec_Acc is access Rec_T;
 
    Integer_Ptr : Integer_Acc := new Integer;
