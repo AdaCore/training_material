@@ -136,13 +136,13 @@ Selective Rendezvous
 
 * Task isn't limited to waiting for just one entry
 
-  * Typically, server task needs to be able to accept several kinds of requests
+  * Typically, **server** task needs to be able to accept several kinds of requests
 
 * To wait for multiple entries at the same time use :ada:`select` statement
 
-  * Task waits until client calls an :ada:`entry` included in :ada:`select`, then executes that block
+  * Task waits until **client** calls an :ada:`entry` included in :ada:`select`, then executes that block
 
-  * If multiple calls waiting, the runtime chooses which client to handle
+  * If multiple calls waiting, the runtime chooses which **client** to handle
 
     * Selection order is not guaranteed
 

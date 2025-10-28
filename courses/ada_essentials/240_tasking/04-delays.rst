@@ -14,8 +14,8 @@ Delay Keyword
 
     - Typically can assume at least 0.1 seconds resolution
 
-- Relative: Blocks for at least :ada:`Duration`
-- Absolute: Blocks until no earlier than :ada:`Calendar.Time` or :ada:`Real_Time.Time`
+- **Relative:** Blocks for at least :ada:`Duration`
+- **Absolute:** Blocks until no earlier than :ada:`Calendar.Time` or :ada:`Real_Time.Time`
 
 ---------------
 Delay Example

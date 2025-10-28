@@ -46,6 +46,6 @@ Process Communication
   * Multiple simultaneous readers
   * One writer at a time
 
-    * All other access blocked during write
+    * All other accesses blocked during write
 
 * Tasks can wait for or block other tasks

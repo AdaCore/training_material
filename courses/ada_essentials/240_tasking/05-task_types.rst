@@ -8,7 +8,7 @@ Beyond One-Off Tasks: Task and Protected Types
 
 * Creating templates for tasks and protected objects
 
-  * For when you need multiple tasks or protected objects tha behave similarly
+  * When you need multiple tasks or protected objects that behave similarly
 
 * Task (and protected) types rather than objects
 
@@ -44,7 +44,7 @@ Reusable Task Patterns
       W2.Initialize (2.0);
    end Main;
 
-* Each Worker runs its own independent thread of control.
+* Each Worker runs its own independent thread of control
 
 -------------------------------
 Reusable Protected Components
@@ -54,7 +54,7 @@ Reusable Protected Components
 
   * Defines synchronized access to shared data
 
-* Protected object - an instance of that type.
+* Protected object - an instance of that type
 
 * Procedures and functions inside the type control access rules
 
