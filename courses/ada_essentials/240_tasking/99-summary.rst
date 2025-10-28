@@ -16,5 +16,4 @@ Summary
 
    - Delay
    - Rendezvous
-   - Queues
    - Protected Objects

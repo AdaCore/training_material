@@ -73,7 +73,7 @@ Rendezvous
 * Both tasks are blocked until rendezvous is complete
 
   * **Server** must perform entry processing
-  * **Client** is waiting for Server to finish
+  * **Client** is waiting for **Server** to finish
 
 .. container:: latex_environment small
 
@@ -150,7 +150,7 @@ Selective Rendezvous
 Select Example in Code
 ------------------------
 
-* Server task waits for either a message to process or a signal to stop
+* **Server** task waits for either a message to process or a signal to stop
 
   .. code:: Ada
 
@@ -170,7 +170,7 @@ Select Example in Code
       end loop;
     end Controller;
 
-* How Clients Would Use It:
+* How a **client** would use it:
 
   .. code:: Ada
 

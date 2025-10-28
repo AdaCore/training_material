@@ -50,11 +50,13 @@ Reusable Task Patterns
 Reusable Protected Components
 -------------------------------
 
-* Protected type
+* :dfn:`Protected type`
 
   * Defines synchronized access to shared data
 
-* Protected object - an instance of that type
+* :dfn:`Protected object`
+
+  * An instance of a protected type
 
 * Procedures and functions inside the type control access rules
 

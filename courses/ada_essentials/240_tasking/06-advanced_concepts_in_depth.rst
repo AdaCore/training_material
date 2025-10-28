@@ -60,7 +60,7 @@ Calling an Entry with a Delay Protection
 The Delay Is Not a Timeout
 ----------------------------
 
-* The time spent by the client is actually **not bounded**
+* The time spent by the **client** is actually **not bounded**
 
     - Delay's timer **stops** on :ada:`accept`
     - The call blocks **until** :ada:`end` of server-side statements
@@ -106,13 +106,13 @@ Non-blocking Accept or Entry
 Issues with "Double Non-Blocking"
 -----------------------------------
 
-* For :ada:`accept ... else` the server **peeks** into the queue
+* For :ada:`accept ... else` the **server** **peeks** into the queue
 
-   - Server **does not** wait
+   - **Server** *does not* wait
 
-* For :ada:`<entry_call> ... else` the caller looks for a **waiting** server
+* For :ada:`<entry_call> ... else` the caller looks for a *waiting* **server**
 * If both use it, the entry will **never** be called
-* Server
+* **Server**
 
 .. include:: ../examples/select_non_blocking_entry_and_call/extracts/tasks.adb
    :code: Ada
@@ -181,7 +181,7 @@ Queue
 
     - In **First-In First-Out** (FIFO) by default
 
-* When the server task **terminates**, tasks still queued receive :ada:`Tasking_Error`
+* When the **server** task **terminates**, tasks still queued receive :ada:`Tasking_Error`
 
 -----------------
 Queuing Policy
@@ -264,7 +264,7 @@ Setting Task Priority
 
     - Not in a :ada:`select ... or delay ... else` anymore
 
-* So the following means the client blocks for **2 seconds**
+* So the following means the **client** blocks for **2 seconds**
 
 .. include:: ../examples/select_requeue_issue/extracts/tasks.bodies.adb
    :code: Ada

@@ -48,4 +48,7 @@ Process Communication
 
     * All other accesses blocked during write
 
-* Tasks can wait for or block other tasks
+* Tasks can
+
+  * Wait for another task
+  * Block other tasks
