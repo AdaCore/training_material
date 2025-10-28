@@ -28,7 +28,7 @@ Null Values
 Access Types and Primitives
 ---------------------------
 
-* Subprogram using an access type are primitive of the **access type**
+* Subprograms using an access type are **primitives of the access type**
 
   * **Not** the type of the accessed object
 
@@ -49,10 +49,10 @@ Dereferencing Access Types
 
    - Lets you access the object pointed to by the pointer
 
-* :ada:`.all` is optional for
+* :ada:`.all` is **optional** for
 
-   - Access on a component of an array
-   - Access on a component of a record
+   - Access on a component of an **array**
+   - Access on a component of a **record**
 
 ----------------------
 Dereference Examples

@@ -28,9 +28,9 @@ Uninitialized Pointers
   begin
      Object.all := 5; -- constraint error
 
-* In Ada, this is a problem because access type objects are initialized to null
+* **Ada:** this is a problem because access type objects are initialized to null
 
-* In other languages, there's no guarantee that the pointer is null, so you
+* **Other Languages:** no guarantee that the pointer is null, so you
   might write to a random memory location
 
 ------------------------------
@@ -54,7 +54,7 @@ Freeing Already-Freed Memory
 
 * May deallocate a different object if memory has been reallocated
 
-  * Putting that object in an inconsistent state
+  * Puts that object in an inconsistent state
 
 ----------------------------------
 Referencing Already-Freed Memory
@@ -75,7 +75,7 @@ Referencing Already-Freed Memory
 * May raise :ada:`Storage_Error` if memory is still protected (unallocated)
 * May modify a different object if memory has been reallocated
 
-  * Putting that object in an inconsistent state
+  * Puts that object in an inconsistent state
 
 -------------
 Memory Leak

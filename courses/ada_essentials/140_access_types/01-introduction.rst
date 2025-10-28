@@ -7,15 +7,15 @@ Access Types Design
 ---------------------
 
 * A memory-addressed object is called an :dfn:`access type`
-* Objects are associated to :dfn:`pools` of memory
+* Objects are associated with :dfn:`pools` of memory
 
-  - With different allocation / deallocation policies
-  - So each access type is unique - no conversion possible
+  - Different allocation / deallocation policies
+  - Each access type is unique - no conversion possible
 
 * Access objects are **guaranteed** to always be meaningful
 
-  - In the absence of :ada:`Unchecked_Deallocation`
-  - And if pool-specific
+  - So long as :ada:`Unchecked_Deallocation` is not used
+  - And when tied to a specific memory pool
 
 -------------------------------
 Access Types Can Be Dangerous
@@ -25,7 +25,7 @@ Access Types Can Be Dangerous
 
    - Leaks / corruptions
 
-* Introduces potential random failures complicated to analyze
+* Introduce potential random failures complicated to analyze
 * Increase the complexity of the data structures
 * May decrease the performance of the application
 

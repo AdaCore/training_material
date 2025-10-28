@@ -8,7 +8,7 @@ Access Type
 
 * An access type is similar to most other types
 
-  * Keyword :ada:`access` indicates what the access type points to
+  * :ada:`access` indicates what the access type points to
 
   .. code:: Ada
 
