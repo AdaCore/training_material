@@ -1,41 +1,30 @@
-with Ada.Text_IO; use Ada.Text_IO;
-with Constants;
 package body List is
-   Content : array (1 .. Constants.Maximum_Count) of Integer;
-   Last    : Natural := 0;
 
-   procedure Add (Value : Integer) is
+   Global : array (1 .. 100) of Types.Record_T;
+   Count  : Natural := 0;
+
+   procedure Add
+     (Left     : Types.Numeric_T;
+      Operator : Character;
+      Right    : Types.Numeric_T) is
    begin
-      if Last < Content'Last then
-         Last           := Last + 1;
-         Content (Last) := Value;
-      else
-         Put_Line ("Full");
-      end if;
+      Count          := Count + 1;
+      Global (Count) :=
+        (Left     => Left,
+         Right    => Right,
+         Operator => Operator);
    end Add;
-
-   procedure Remove (Value : Integer) is
-      I : Natural := 1;
-   begin
-      while I <= Last loop
-         if Content (I) = Value then
-            Content (I .. Last - 1) := Content (I + 1 .. Last);
-            Last                    := Last - 1;
-         else
-            I := I + 1;
-         end if;
-      end loop;
-   end Remove;
-
-   procedure Print is
-   begin
-      for I in 1 .. Last loop
-         Put_Line (Integer'Image (Content (I)));
-      end loop;
-   end Print;
 
    function Length return Natural is
    begin
-      return Last;
+      return Count;
    end Length;
+
+   function Element
+     (Index : Integer)
+      return Types.Record_T is
+   begin
+      return Global (Index);
+   end Element;
+
 end List;
