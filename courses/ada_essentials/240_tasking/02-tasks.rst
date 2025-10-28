@@ -21,7 +21,7 @@ Basic Task
 
     task body My_Task is -- implement the task
     begin
-       Put_Line ("In task My_Task");
+       Put_Line ("Entered My_Task");
     end My_Task;
  begin
     Put_Line ("In Main");
