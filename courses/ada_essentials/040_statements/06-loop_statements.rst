@@ -187,13 +187,15 @@ Low-Level For-loop Parameter Type
           null;
        end loop;
 
-  ::
+  :error:`main.adb:5:21: error: ambiguous bounds in range of iteration`
 
-      main.adb:5:21: error: ambiguous bounds in range of iteration
-      main.adb:5:21: error: possible interpretations:
-      main.adb:5:21: error: type "Rgb_T" defined at line 3
-      main.adb:5:21: error: type "Color_T" defined at line 2
-      main.adb:5:21: error: ambiguous bounds in discrete range
+  :error:`main.adb:5:21: error: possible interpretations:`
+
+  :error:`main.adb:5:21: error: type "Rgb_T" defined at line 3`
+
+  :error:`main.adb:5:21: error: type "Color_T" defined at line 2`
+
+  :error:`main.adb:5:21: error: ambiguous bounds in discrete range`
 
 * If bounds are `universal_integer`, then type is :ada:`Integer` unless otherwise specified
 
