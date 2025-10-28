@@ -14,7 +14,8 @@ package Countries is
       Continent :        Continents_T;
       Colors    :        Color_Set.Color_Set_T);
 
-      --  Write query functions to allow you to get information for
-      --  one country and information
+   --  Write query functions to allow you to get information about
+   --  a country (continent, flag colors) and convert data to
+   --  printable strings.
 
 end Countries;
