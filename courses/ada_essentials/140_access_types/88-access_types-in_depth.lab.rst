@@ -8,7 +8,7 @@ Access Types In-Depth Lab
    
 * Build an application that adds / removes items from a linked list
 
-   * At any time, user should be able to
+   * The database should have the ability to
 
      * Add a new item into the "appropriate" location in the list
      * Remove an item without changing the position of any other item in the list
@@ -16,14 +16,18 @@ Access Types In-Depth Lab
 
 * This is a multi-step lab! First priority should be understanding linked lists, then, if you have time, storage pools
 
-* Required goals
+* Your goals are to implement the following:
 
-  1. Implement **Add** functionality
+  1. **Add** functionality
 
     * For this step, "appropriate" means either end of the list (but consistent - always front or always back)
 
-  2. Implement **Print** functionality
-  3. Implement **Delete** functionality
+  2. **Print** functionality
+  3. **Delete** functionality
+
+.. note::
+
+  The :ada:`main` procedure in the prompt has comments on what to add / delete
 
 --------------
 Extra Credit
@@ -55,31 +59,25 @@ Lab Solution - Database_List (Spec)
 Lab Solution - Database_List (Helper Objects)
 -----------------------------------------------
 
-.. container:: source_include 140_access_types/lab/access_types-in_depth/answer/database_list.adb :start-after:--Database_List_Helpers :end-before:--Database_List_Helpers :code:Ada :number-lines:1
+.. container:: source_include 140_access_types/lab/access_types-in_depth/answer/database_list.adb :start-after:helpers_begin :end-before:helpers_end :code:Ada :number-lines:9
 
------------------------------------------------
-Lab Solution - Database_List (Insert/Delete)
------------------------------------------------
+------------------------------------------
+Lab Solution - Database_List (Insertion)
+------------------------------------------
 
-.. container:: source_include 140_access_types/lab/access_types-in_depth/answer/database_list.adb :start-after:--Database_List_Substance :end-before:--Database_List_Substance :code:Ada :number-lines:35
+.. container:: source_include 140_access_types/lab/access_types-in_depth/answer/database_list.adb :start-after:insertion_routines_begin :end-before:insertion_routines_end :code:Ada :number-lines:41
+
+-----------------------------------------
+Lab Solution - Database_List (Deletion)
+-----------------------------------------
+
+.. container:: source_include 140_access_types/lab/access_types-in_depth/answer/database_list.adb :start-after:deletion_routine_begin :end-before:deletion_routine_end :code:Ada :number-lines:100
 
 ---------------------
 Lab Solution - Main
 ---------------------
 
 .. container:: source_include 140_access_types/lab/access_types-in_depth/answer/main.adb :code:Ada :number-lines:1
-
----------------------------------
-Lab Solution - Simple_IO (Spec)
----------------------------------
-
-.. container:: source_include 140_access_types/lab/access_types-in_depth/answer/simple_io.ads :code:Ada :number-lines:1
-
----------------------------------
-Lab Solution - Simple_IO (Body)
----------------------------------
-
-.. container:: source_include 140_access_types/lab/access_types-in_depth/answer/simple_io.adb :code:Ada :number-lines:1
 
 ------------------------------------------
 Lab Solution - Memory_Mgmt (Debug Pools)
