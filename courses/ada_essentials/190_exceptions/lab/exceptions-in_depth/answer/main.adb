@@ -1,71 +1,56 @@
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-with Ada.Text_IO;           use Ada.Text_IO;
-with Calculator;            use Calculator;
-with Debug_Pkg;
-with Input;                 use Input;
+--|main_data_begin
+with Ada.Exceptions; use Ada.Exceptions;
+with Ada.Text_IO;    use Ada.Text_IO;
+with Operations;
+
 procedure Main is
-   Illegal_Operator : exception;
-   procedure Parser
-     (Str      :     String;
-      Left     : out Unbounded_String;
-      Operator : out Unbounded_String;
-      Right    : out Unbounded_String) is
-      I : Integer := Str'First;
+
+   type Operation_T is record
+      Operation  : Operations.Operation_T;
+      Success    : Boolean := False;
+      Result     : Operations.Numeric_T := 0.0;
+      E_Xception : Exception_Id := Null_Id;
+   end record;
+
+   Expressions : array (1 .. 7) of Operation_T :=
+     (1 => ((1.1, '+', 2.2), others => <>),
+      2 => ((33.3, '-', 44.4), others => <>),
+      3 => ((555.5, '*', 666.6), others => <>),
+      4 => ((77.7, '/', 88.8), others => <>),
+      5 => ((9.9, '/', 0.0), others => <>),
+      6 => ((9.9, '*', 8.8), others => <>),
+      7 => ((7.7, '/', 0.06), others => <>));
+
+   procedure Perform (Expression : in out Operation_T) is
    begin
-      while I <= Str'Length and then Str (I) /= ' ' loop
-         Left := Left & Str (I);
-         I    := I + 1;
-      end loop;
-      while I <= Str'Length and then Str (I) = ' ' loop
-         I := I + 1;
-      end loop;
-      while I <= Str'Length and then Str (I) /= ' ' loop
-         Operator := Operator & Str (I);
-         I        := I + 1;
-      end loop;
-      while I <= Str'Length and then Str (I) = ' ' loop
-         I := I + 1;
-      end loop;
-      while I <= Str'Length and then Str (I) /= ' ' loop
-         Right := Right & Str (I);
-         I     := I + 1;
-      end loop;
-   end Parser;
+      Expression.Result := Operations.Perform (Expression.Operation);
+      Expression.Success := True;
+   exception
+      when The_Err : others =>
+         Expression.E_Xception := Exception_Identity (The_Err);
+   end Perform;
+--|main_data_end
+
+--|main_processing_begin
 begin
-   loop
-      declare
-         Left, Operator, Right : Unbounded_String;
-         Input                 : constant String := Get_String ("Sequence");
-      begin
-         exit when Input'Length = 0;
-         Parser (Input, Left, Operator, Right);
-         case Element (Operator, 1) is
-            when '+' =>
-               Put_Line
-                 ("  => " &
-                  Integer_T'Image (Add (To_String (Left), To_String (Right))));
-            when '-' =>
-               Put_Line
-                 ("  => " &
-                  Integer_T'Image
-                    (Subtract (To_String (Left), To_String (Right))));
-            when '*' =>
-               Put_Line
-                 ("  => " &
-                  Integer_T'Image
-                    (Multiply (To_String (Left), To_String (Right))));
-            when '/' =>
-               Put_Line
-                 ("  => " &
-                  Integer_T'Image
-                    (Divide (To_String (Left), To_String (Right))));
-            when others =>
-               raise Illegal_Operator;
-         end case;
-      exception
-         when The_Err : others =>
-            Debug_Pkg.Save_Occurrence (The_Err);
-      end;
+
+   for Expression of Expressions loop
+      Perform (Expression);
    end loop;
-   Debug_Pkg.Print_Exceptions;
+
+   for Expression of Expressions loop
+      Put
+        (Expression.Operation.Left'Image
+         & " "
+         & Expression.Operation.Operator'Image
+         & " "
+         & Expression.Operation.Right'Image);
+      if Expression.Success then
+         Put_Line (" = " & Expression.Result'Image);
+      else
+         Put_Line (" raises " & Exception_Name (Expression.E_Xception));
+      end if;
+   end loop;
+
 end Main;
+--|main_processing_end
