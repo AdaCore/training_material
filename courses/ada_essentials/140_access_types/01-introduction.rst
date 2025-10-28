@@ -17,6 +17,8 @@ Access Types Design
   - So long as :ada:`Unchecked_Deallocation` is not used
   - And when tied to a specific memory pool
 
+**Each access type defines its own safe memory domain, managed by its pool.**
+
 -------------------------------
 Access Types Can Be Dangerous
 -------------------------------

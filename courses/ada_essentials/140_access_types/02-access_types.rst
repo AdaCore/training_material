@@ -16,7 +16,7 @@ Access Type
      type Rec_Access_T is access Rec_T;
      Rec_Ptr : Rec_Access_T;
 
-* Conversion is **not** possible between pool-specific access types
+* Conversion is **not** possible between this kind of access type
 
   .. code:: Ada
 
@@ -24,6 +24,12 @@ Access Type
      Rec_Ptr_2 : Rec_Access_2 := Rec_Access_2 (Rec_Ptr);
 
   :color-red:`example.adb:6:32: error: target type must be general access type`
+
+.. note::
+
+  A *general access type* is special kind of access type not handled in this
+  course. The error message is indicating only those kinds of access types may
+  be converted.
 
 -------------
 Allocations
@@ -44,11 +50,14 @@ Allocations
      type String_Access_T is access String;
      String_Ptr_1 : String_Access_T := new String(1..10);
 
-* The object can also be created by copying an existing object - using a qualifier
+* The object can also be created by copying an existing object 
+
+  * Using a type qualifier
 
   .. code:: Ada
 
-     String_Ptr_2 : String_Access_T := new String'("abc");
+     String_Ptr_2 : String_Access_T  := new String'("abc");
+     Integer_Ptr  : Integer_Access_T := new Integer'(123);
 
 ---------------
 Deallocations
