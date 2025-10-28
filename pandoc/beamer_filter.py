@@ -48,6 +48,7 @@ role_format_functions = {
     "url": "format_url",
     "menu": "format_menu",
     "command": "format_command",
+    "error": "format_error",
     "dfn": "format_dfn",
     "answer": "format_answer",
     "answermono": "format_answermono",
@@ -842,6 +843,21 @@ def format_command(literal_text):
     # white text on box of black
     return latex_inline(
         latex_box(latex_color(latex_monospace(latex_escape(literal_text))), "black")
+    )
+
+
+"""
+"error" role
+(items that indicate error messages)
+"""
+
+
+def format_error(literal_text):
+    # red text on box of gray
+    return latex_inline(
+        latex_box(
+            latex_color(latex_monospace(latex_escape(literal_text)), "red"), "black!10"
+        )
     )
 
 

@@ -138,13 +138,18 @@ Default Values and Option Types
    - :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
+    :number-lines: 2
 
-   type Tertiary_Switch is (Off, On, Neither)
-      with Default_Value => Neither;
-   subtype Toggle_Switch is Tertiary_Switch
-       range Off .. On;
-   Safe : Toggle_Switch := Off;
-   Implicit : Toggle_Switch; -- compile error: out of range
+     type Tertiary_Switch is (Off, On, Neither)
+        with Default_Value => Neither;
+     subtype Toggle_Switch is Tertiary_Switch
+         range Off .. On;
+     Safe : Toggle_Switch := Off;
+     Implicit : Toggle_Switch;
+
+:error:`default.adb:7:04: warning: value not in range of type "Toggle_Switch" defined at line 4`
+
+:error:`default.adb:7:04: warning: Constraint_Error will be raised at run time`
 
 .. tip::
 
