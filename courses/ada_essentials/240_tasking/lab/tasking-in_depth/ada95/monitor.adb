@@ -1,5 +1,5 @@
-package body Counter is
-  task body Counter_T is
+package body Monitor is
+  task body Monitor_T is
     O_Register  : Datastore.Register_T;
     O_Increment : Integer;
     O_Delay     : Duration;
@@ -26,5 +26,5 @@ package body Counter is
         end if;
       end select;
     end loop;
-  end Counter_T;
-end Counter;
+  end Monitor_T;
+end Monitor;
