@@ -17,7 +17,12 @@ Your Trainer
 Goals of the training session
 -----------------------------
 
-* What you should know by the end of the training
+* **Build Foundational Confidence:** You will leave feeling more confident about what you do know
+
+* **Learn How to Learn:** Gain the skills to find information and solve new problems
+
+* **Embrace the Process:** Get comfortable with the idea that learning is a journey, and this is the first step
+
 * Syllabus overview
 
     - The syllabus is a guide, but we might stray off of it
@@ -29,18 +34,7 @@ Roundtable
 
 * 5 minute exercise
 
-    - Write down your answers to the following
-    - Then share it with the room
-
 * Experience in software development
-
-    - Languages
-    - Methodology
-
-* Experience and interest with the syllabus
-
-    - Current and upcoming projects
-    - Curious for something?
 
 * Your personal goals for this training
 
@@ -77,6 +71,7 @@ Styles
 * :filename:`this/is/a.path`
 * :ada:`code is highlighted`
 * :command:`commands are emphasised --like-this`
+* :error:`This is an error message`
 
 .. warning:: This is a warning
 .. note:: This is an important piece of info
