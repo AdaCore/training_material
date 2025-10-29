@@ -55,9 +55,11 @@ Course Presentation
 
     - Hands-on practice
     - Class reflection after some labs
-    - Recommended setup:
-        - GNAT Pro for Rust
-        - Visual Studio Code (VS Code)
+
+* Recommended Setup
+
+    - GNAT Pro for Rust
+    - Visual Studio Code (VS Code)
 
 * Demos
 
