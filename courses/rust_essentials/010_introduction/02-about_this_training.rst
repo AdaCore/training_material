@@ -69,7 +69,7 @@ Styles
 
 * :dfn:`This` is a definition
 * :filename:`this/is/a.path`
-* :ada:`code is highlighted`
+* :rust:`code is highlighted`
 * :command:`commands are emphasised --like-this`
 * :error:`This is an error message`
 
