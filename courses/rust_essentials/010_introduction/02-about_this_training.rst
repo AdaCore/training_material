@@ -17,11 +17,11 @@ Your Trainer
 Goals of the training session
 -----------------------------
 
-* **Build Foundational Confidence:** You will leave feeling more confident about what you do know
+* **Build Foundational Confidence:** Feel confident about your basic understanding of the language
 
 * **Learn How to Learn:** Gain the skills to find information and solve new problems
 
-* **Embrace the Process:** Get comfortable with the idea that learning is a journey, and this is the first step
+* **Embrace the Process:** Understand that this course is one of many steps in your learning journey
 
 * Syllabus overview
 
@@ -60,12 +60,6 @@ Course Presentation
 
     - GNAT Pro for Rust
     - Visual Studio Code (VS Code)
-
-* Demos
-
-    - Depending on the context
-
-* Daily schedule
 
 --------
 Styles
