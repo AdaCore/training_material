@@ -34,22 +34,11 @@ Access Types
 
 .. container:: PRELUDE PROVIDES
 
-..
-   Access Types
-   Pool Specific Access Types
-   General Access Types
-   Accessibility Checks
-   Memory Corruption
-   Anonymous Access Types
-
 .. container:: PRELUDE END
 
 .. include:: 140_access_types/01-introduction.rst
 .. include:: 140_access_types/02-access_types.rst
-.. include:: 140_access_types/03-pool_specific_access_types.rst
-.. include:: 140_access_types/04-general_access_types.rst
-.. include:: 140_access_types/05-accessibility_checks.rst
-.. include:: 140_access_types/06-memory_corruption.rst
-.. include:: 140_access_types/07-anonymous_access_types.rst
+.. include:: 140_access_types/03-access_types_usage.rst
+.. include:: 140_access_types/04-memory_corruption.rst
 .. include:: 140_access_types/88-access_types.lab.rst
 .. include:: 140_access_types/99-summary.rst
