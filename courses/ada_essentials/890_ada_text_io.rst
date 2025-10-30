@@ -30,10 +30,6 @@ Ada.Text_IO
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
 .. container:: PRELUDE END
 
 .. include:: 890_ada_text_io/01-introduction.rst

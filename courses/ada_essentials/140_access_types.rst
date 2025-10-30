@@ -30,18 +30,6 @@ Access Types
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Access Types
-   Pool Specific Access Types
-   General Access Types
-   Accessibility Checks
-   Memory Corruption
-   Anonymous Access Types
-
 .. container:: PRELUDE END
 
 .. include:: 140_access_types/01-introduction.rst

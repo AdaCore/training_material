@@ -30,10 +30,6 @@ GNAT in Practice
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
 .. container:: PRELUDE END
 
 .. include:: 900_gnat_in_practice/01-file_naming_conventions.rst

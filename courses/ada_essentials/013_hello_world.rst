@@ -30,10 +30,6 @@ Hello World!
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
 .. container:: PRELUDE END
 
 .. include:: 013_hello_world/01-canonical_first_program.rst

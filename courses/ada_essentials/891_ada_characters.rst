@@ -30,10 +30,6 @@ Ada.Characters
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
 .. container:: PRELUDE END
 
 .. include:: 891_ada_characters/01-introduction.rst

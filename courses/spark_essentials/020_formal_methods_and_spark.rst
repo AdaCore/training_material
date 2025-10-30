@@ -30,10 +30,6 @@ Formal Methods and SPARK
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
 .. container:: PRELUDE END
 
 .. include:: 020_formal_methods_and_spark/01-introduction.rst
