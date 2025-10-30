@@ -42,11 +42,36 @@ Identifiers
 Identifiers vs Names
 ----------------------
 
-:dfn:`identifier`
-  Syntactic form used typically to introduce entities when declared
+.. container:: columns
 
-:dfn:`name`
-  Typically starts with an identifier and can be followed by one or more suffixes to help indicate something more specific, such as a record component or an array slice
+  .. container:: column
+
+    .. container:: animate 2-
+
+      :color-red:`identifier`
+        Syntactic form used typically to introduce entities when declared
+
+    .. container:: animate 3-
+
+      :color-cyan:`name`
+        Typically starts with an identifier and can be followed by one or more suffixes to help indicate something more specific, such as a record component or an array slice
+
+  .. container:: column
+
+    .. container:: overlay 1
+
+       .. image:: identifiers_vs_names_1.svg
+          :align: center
+
+    .. container:: overlay 2
+
+       .. image:: identifiers_vs_names_2.svg
+          :align: center
+
+    .. container:: overlay 3
+
+       .. image:: identifiers_vs_names_3.svg
+          :align: center
 
 .. tip::
 
