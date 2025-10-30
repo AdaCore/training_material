@@ -32,9 +32,9 @@ Goals of the training session
 Roundtable
 ----------
 
-* 5 minute exercise
+* 5-minute exercise
 
-* Experience in software development
+* Your experience in software development
 
 * Your personal goals for this training
 
@@ -68,7 +68,7 @@ Styles
 * :dfn:`This` is a definition
 * :filename:`this/is/a.path`
 * :rust:`code is highlighted`
-* :command:`commands are emphasised --like-this`
+* :command:`commands are emphasized --like-this`
 * :error:`This is an error message`
 
 .. warning:: This is a warning
