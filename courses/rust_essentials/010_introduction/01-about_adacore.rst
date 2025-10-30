@@ -17,5 +17,5 @@ The Company
 
 * Roots in Open Source software movement
 
-    - GNAT compiler is part of GNU Compiler Collection (GCC)
-
+    - Provide toolchains for Ada/SPARK, C/C++ and Rust
+    - Focus on safety-critical and mission-critical systems
