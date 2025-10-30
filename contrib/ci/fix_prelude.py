@@ -20,7 +20,6 @@ SYMBOLS = None
 VALIDATORS = {
     "ROLES": "validate_content",
     "SYMBOLS": "validate_content",
-    "PROVIDES": "validate_provides",
 }
 
 
@@ -42,11 +41,6 @@ def load_prelude():
 def validate_content(name, content):
     global EXPECTED
     return content == EXPECTED[name]
-
-
-def validate_provides(name, content):
-    global EXPECTED
-    return True
 
 
 def compare_content(title, actual_str):
@@ -79,7 +73,7 @@ def process_one_file(filename, explain):
 
     failures = None
 
-    sections_needed = ["BEGIN", "ROLES", "SYMBOLS", "REQUIRES", "PROVIDES", "END"]
+    sections_needed = ["BEGIN", "ROLES", "SYMBOLS", "END"]
 
     if explain:
         failures = []
