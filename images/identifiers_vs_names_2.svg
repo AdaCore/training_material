@@ -3,27 +3,17 @@
 <rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="56.0087890625" x="57.0078125" y="8" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="10" y="20" >package Something is</text>
 <rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="20.0029296875" x="21.001953125" y="28" />
-<rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="38.005859375" x="57.0078125" y="28" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="10" y="40" >  Str : String := "Hello;"</text>
 <rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="44.0068359375" x="51.0068359375" y="48" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="10" y="60" >  type RecordT is record</text>
 <rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="38.005859375" x="33.00390625" y="68" />
-<rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="44.0068359375" x="87.0126953125" y="68" />
-<rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="56.0087890625" x="153.0234375" y="68" />
-<rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="26.00390625" x="213.033203125" y="68" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="10" y="80" >    Field1 : Integer := Constants.Zero;</text>
 <rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="38.005859375" x="33.00390625" y="88" />
-<rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="56.0087890625" x="87.0126953125" y="88" />
-<rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="20.0029296875" x="165.025390625" y="88" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="10" y="100" >    Field2 : Character := Str(3);</text>
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="10" y="120" >  end record;</text>
 <rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="38.005859375" x="21.001953125" y="128" />
-<rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="56.0087890625" x="75.0107421875" y="128" />
-<rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="44.0068359375" x="135.0205078125" y="128" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="10" y="140" >  Object : Something.RecordT;</text>
 <rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="38.005859375" x="21.001953125" y="148" />
-<rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="44.0068359375" x="75.0107421875" y="148" />
-<rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="38.005859375" x="141.021484375" y="148" />
 <rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="38.005859375" x="183.0283203125" y="148" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="10" y="160" >  Number : Integer := Object.Field1;</text>
 <rect fill="none" stroke="#aa0000" stroke-width="1" height="16" width="56.0087890625" x="33.00390625" y="168" />
