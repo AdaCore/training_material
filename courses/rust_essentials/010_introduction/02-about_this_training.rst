@@ -1,10 +1,10 @@
-===================
+=====================
 About This Training
-===================
+=====================
 
---------------------------
+--------------
 Your Trainer
---------------------------
+--------------
 
 * Experience in software development
 
@@ -13,9 +13,9 @@ Your Trainer
 
 * Experience teaching this class
 
------------------------------
-Goals of the training session
------------------------------
+-------------------------------
+Goals of the Training Session
+-------------------------------
 
 * **Build Foundational Confidence:** Feel confident about your basic understanding of the language
 
@@ -28,9 +28,9 @@ Goals of the training session
     - The syllabus is a guide, but we might stray off of it
     - ...and that's OK: we're here to cover **your needs**
 
-----------
+------------
 Roundtable
-----------
+------------
 
 * 5-minute exercise
 
@@ -45,9 +45,9 @@ Roundtable
     - Most interesting or funny bug you've encountered?
     - Your own programming interests?
 
--------------------
+---------------------
 Course Presentation
--------------------
+---------------------
 
 * Slides
 * Quizzes

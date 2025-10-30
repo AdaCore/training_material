@@ -1,10 +1,10 @@
-=============
+===============
 About AdaCore
-=============
+===============
 
------------
+-------------
 The Company
------------
+-------------
 
 ..
     Taken from https://www.adacore.com/company/about
