@@ -42,40 +42,24 @@ Identifiers
 Identifiers vs Names
 ----------------------
 
-.. container:: columns
+* **Identifier** 
 
-  .. container:: column
+  * Syntactic form used typically to introduce entities when declared
 
-    .. container:: animate 2-
+  .. image:: identifiers_vs_names_1.svg
+     :align: center
+     :height: 50%
 
-      :color-red:`identifier`
-        Syntactic form used typically to introduce entities when declared
+* **Name** 
 
-    .. container:: animate 3-
+  * Starts with an identifier 
+  * Can be followed by one or more suffixes
 
-      :color-cyan:`name`
-        Typically starts with an identifier and can be followed by one or more suffixes to help indicate something more specific, such as a record component or an array slice
+    * Indicate something specific, such as a record component or an array index
 
-  .. container:: column
-
-    .. container:: overlay 1
-
-       .. image:: identifiers_vs_names_1.svg
-          :align: center
-
-    .. container:: overlay 2
-
-       .. image:: identifiers_vs_names_2.svg
-          :align: center
-
-    .. container:: overlay 3
-
-       .. image:: identifiers_vs_names_3.svg
-          :align: center
-
-.. tip::
-
-  An **identifier** is used to *define* an entity, and a **name** is used to *refer to* an entity (or part of one)
+  .. image:: identifiers_vs_names_2.svg
+     :align: center
+     :height: 50%
 
 ----------------
 Reserved Words
