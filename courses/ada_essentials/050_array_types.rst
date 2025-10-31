@@ -30,20 +30,6 @@ Array Types
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Constrained Array Types
-   Unconstrained Array Types
-   Attributes
-   Array Operations
-   Looping Over Array Components
-   Array Aggregates
-   Image For Complex Types
-   Anonymous Array Types
-
 .. container:: PRELUDE END
 
 .. include:: 050_array_types/01-introduction.rst

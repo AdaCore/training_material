@@ -30,16 +30,6 @@ Expressions
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Membership Tests
-   Qualified Names
-   Conditional Expressions
-   Quantified Expressions
-
 .. container:: PRELUDE END
 
 .. include:: 080_expressions/01-introduction.rst

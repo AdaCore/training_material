@@ -30,16 +30,6 @@ Tasking: In-Depth
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Tasks
-   Protected Objects
-   Delays
-   Task Types
-
 .. container:: PRELUDE END
 
 .. include:: 240_tasking/01-intro.rst

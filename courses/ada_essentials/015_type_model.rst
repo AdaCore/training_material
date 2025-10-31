@@ -30,13 +30,6 @@ Type Model
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Type model
-
 .. container:: PRELUDE END
 
 .. include:: 015_type_model/01-what_is_a_type.rst

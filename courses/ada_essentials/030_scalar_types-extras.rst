@@ -30,18 +30,6 @@ Scalar Types: Additional Content
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Modular Types
-   Representation Values
-   Character Types
-   Real Types
-   Subtypes
-   Big Numbers
-
 .. container:: PRELUDE END
 
 .. include:: 030_scalar_types/03-modular_types.rst
