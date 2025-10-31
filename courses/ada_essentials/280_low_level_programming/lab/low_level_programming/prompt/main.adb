@@ -3,26 +3,12 @@ with Crc;
 with Messages;
 procedure Main is
    Message : Messages.Message_T;
-   Valid   : Boolean;
+   Is_Valid : Boolean;
 begin
-   loop
-      Put ("Create Write Read Print: ");
-      declare
-         Command : constant String := Get_Line;
-      begin
-         exit when Command'Length = 0;
-         case Command (Command'First) is
-            when 'c' | 'C' =>
-               Message := Messages.Create ("Hello", True, '1');
-            when 'w' | 'W' =>
-               Messages.Write (Message);
-            when 'r' | 'R' =>
-               Messages.Read (Message, Valid);
-            when 'p' | 'P' =>
-               Messages.Print (Message);
-            when others =>
-               null;
-         end case;
-      end;
-   end loop;
+   -- Message := Messages.Create (?);
+   Messages.Print ("Sending message", Message);
+   Messages.Write (Message);
+   Messages.Read (Message, Is_Valid);
+   delay 5.0;
+   Messages.Read (Message, Is_Valid);
 end Main;
