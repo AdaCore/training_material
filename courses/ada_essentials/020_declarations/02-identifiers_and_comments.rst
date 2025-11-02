@@ -55,7 +55,7 @@ Identifiers vs Names
   * Starts with an identifier 
   * Can be followed by one or more suffixes
 
-    * Indicate something specific, such as a record component or an array index
+    * Indicates something specific, such as a record component or an array index
 
   .. image:: identifiers_vs_names_2.svg
      :align: center
