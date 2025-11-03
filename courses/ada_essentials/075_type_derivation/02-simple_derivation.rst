@@ -24,7 +24,7 @@ Simple Type Derivation
 
 * The types are not the same
 
-   .. code:: Ada
+  .. code:: Ada
 
       I_Obj : Integer_T := 0;
       N_Obj : Natural_T := 0;

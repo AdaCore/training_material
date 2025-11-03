@@ -141,7 +141,7 @@ Relation to Primitives
 
 Warning: Subprograms with parameter of type `Root'Class` are not primitives of `Root`
 
-      .. code:: Ada
+.. code:: Ada
 
          type Root is tagged null record;
          procedure Not_A_Primitive (Param : Root'Class);
@@ -155,7 +155,7 @@ Warning: Subprograms with parameter of type `Root'Class` are not primitives of `
 
 Prefix notation rules apply when the first parameter is of a class-wide type
 
-      .. code:: Ada
+.. code:: Ada
 
          type Animal is tagged null record;
          procedure Handle_Animal (Some_Animal : Animal'Class);

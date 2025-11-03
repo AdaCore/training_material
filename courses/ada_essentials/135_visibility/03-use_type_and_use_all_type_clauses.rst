@@ -55,7 +55,7 @@ Example Code
 "use" Clauses Comparison
 --------------------------
 
-.. image:: use_clause_comparison.png
+.. image:: use_clause_comparison.svg
 
 -----------------------------
 Multiple "use type" Clauses

@@ -1,33 +1,78 @@
 with Ada.Text_IO; use Ada.Text_IO;
-with Colors;
-with Flags;
-with Input;
+with Color_Set;
+with Countries;
+with Types;       use Types;
 procedure Main is
-   Map : Flags.Map_T;
+   Map : Countries.Map_T;
+   One : Countries.Map_Component_T;
 begin
 
-   loop
-      Put ("Enter country name (");
-      for Key in Flags.Key_T loop
-         Put (Flags.Key_T'Image (Key) & " ");
-      end loop;
-      Put ("): ");
-      declare
-         Str         : constant String := Input.Get_Line;
-         Key         : Flags.Key_T;
-         Description : Colors.Color_Set_T;
-         Success     : Boolean;
-      begin
-         exit when Str'Length = 0;
-         Key         := Flags.Key_T'Value (Str);
-         Description := Input.Get;
-         if Flags.Exists (Map, Key) then
-            Flags.Modify (Map, Key, Description, Success);
-         else
-            Flags.Add (Map, Key, Description, Success);
-         end if;
-      end;
-   end loop;
+   Countries.Add
+     (Map       => Map,
+      Country   => Types.United_States,
+      Continent => Types.North_America,
+      Colors    => Color_Set.Create
+          (Colors =>
+             (Red,
+              White,
+              Blue)));
 
-   Put_Line (Flags.Image (Map));
+   Countries.Add
+     (Map       => Map,
+      Country   => Types.Finland,
+      Continent => Types.Europe,
+      Colors    => Color_Set.Create
+          (Colors =>
+             (Blue,
+              White)));
+
+   Countries.Add
+     (Map       => Map,
+      Country   => Types.New_Zealand,
+      Continent => Types.Oceania,
+      Colors    => Color_Set.Create
+          ((Red,
+            White,
+            Blue)));
+
+   Put_Line ("=== Entire Map ===");
+   Put_Line (Countries.Image (Map));
+
+   New_Line;
+   Put_Line ("=== Countries per Continent ===");
+   declare
+      Countries_Count : Natural;
+   begin
+      for Continent in Types.Continent_T'Range loop
+         Countries_Count := 0;
+         for Country in Types.Country_T loop
+            One := Countries.Get (Map, Country);
+            if Countries.Is_Valid (One)
+              and then Countries.Continent (One) = Continent
+            then
+               Countries_Count := Countries_Count + 1;
+            end if;
+         end loop;
+         Put_Line
+           (Types.Continent_T'Image (Continent) & " => " &
+            Natural'Image (Countries_Count));
+      end loop;
+   end;
+
+   New_Line;
+   Put_Line ("=== Flags with Red ===");
+   declare
+      Flags_With_Red : Natural := 0;
+   begin
+      for Country in Types.Country_T loop
+         One := Countries.Get (Map, Country);
+         if Countries.Is_Valid (One)
+           and then Color_Set.Contains (Countries.Colors (One), Types.Red)
+         then
+            Flags_With_Red := Flags_With_Red + 1;
+         end if;
+      end loop;
+      Put_Line ("Flags with red => " & Natural'Image (Flags_With_Red));
+   end;
+
 end Main;

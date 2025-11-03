@@ -34,13 +34,13 @@ Supplying Index Constraints for Objects
 
    - Object declaration
 
-      .. code:: Ada
+     .. code:: Ada
 
          Weekdays : Schedule(Mon..Fri);
 
    - Object (or constant) initialization
 
-      .. code:: Ada
+     .. code:: Ada
 
          Weekend : Schedule := (Sat => 4.0, Sun => 0.0);
          -- (Note this is an array aggregate, explained later)
@@ -50,7 +50,7 @@ Supplying Index Constraints for Objects
 
 * Once set, bounds never change
 
-   .. code:: Ada
+  .. code:: Ada
 
       Weekdays(Sat) := 0.0; --  Constraint error
       Weekend(Mon)  := 0.0; --  Constraint error

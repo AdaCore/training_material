@@ -171,26 +171,59 @@ Predefined Hierarchies
 Hierarchical Visibility
 -------------------------
 
+* Children can see ancestors' visible and private parts
+
+  - All the way up to the root library unit
+
+* Siblings have no automatic visibility to each other
+* Visibility same as nested
+
+  - As if child library units are nested within parents
+
+    + All child units come after the root parent's specification
+    + Grandchildren within children, great-grandchildren within ...
+
+.. container:: latex_environment tiny
+
+  .. code:: Ada
+
+     package OS is
+       -- Some code
+     private
+       type OS_Private_T is null record;
+     end OS;
+
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
-    * Children can see ancestors' visible and private parts
+    .. container:: latex_environment tiny
 
-       - All the way up to the root library unit
+      .. code:: Ada
 
-    * Siblings have no automatic visibility to each other
-    * Visibility same as nested
+        package OS.Child is
+          -- Some code
+        private 
+          type Child_T is record
+            Field : OS_Private_T;
+          end record;
+        end OS.Child;
+      
+  .. container:: column
 
-       - As if child library units are nested within parents
+    .. container:: latex_environment tiny
 
-          + All child units come after the root parent's specification
-          + Grandchildren within children, great-grandchildren within ...
+      .. code:: Ada
 
- .. container:: column
-
-    .. image:: hierarchical_visibility.png
-
+        package OS.Sibling is
+          -- Some code
+        private 
+          type Child_T is record
+            Field1 : OS_Private_T; -- OK
+            Field2 : Child_T;      -- Error
+          end record;
+        end OS.Sibling;
+      
 ------------------------------------
 Example of Visibility As If Nested
 ------------------------------------

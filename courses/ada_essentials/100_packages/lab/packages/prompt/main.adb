@@ -1,30 +1,18 @@
 with Ada.Text_IO; use Ada.Text_IO;
+--  Add package dependencies here
 procedure Main is
 
 begin
 
-   loop
-      Put ("(A)dd | (R)emove | (P)rint | (Q)uit : ");
-      declare
-         Str : constant String := Get_Line;
-      begin
-         exit when Str'Length = 0;
-         case Str (Str'First) is
-            when 'A' =>
-               -- Ask user for a legal value and add it to the list
-               null;
-            when 'R' =>
-               -- Ask user for a legal value and remove it from the list
-               null;
-            when 'P' =>
-               -- Print the list
-               null;
-            when 'Q' =>
-               exit;
-            when others =>
-               Put_Line ("Illegal entry");
-         end case;
-      end;
-   end loop;
+   --  Add the following equations into the list
+   --    12.34 + 56.78
+   --    12.34 - 56.78
+   --    12.34 / 56.78
+   --    12.34 * 56.78
+
+   --  For each item in the list, print the elements
+   --  of the equation and whether the equation is "valid"
+
+   null;
 
 end Main;
