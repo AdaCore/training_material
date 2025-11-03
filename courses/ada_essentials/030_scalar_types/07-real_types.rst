@@ -127,7 +127,10 @@ Floating Point Attributes
 * :ada:`My_Float'Rounding (X)`
 
    - Integral value nearest to :ada:`X`
-   - *Note:* :ada:`Float'Rounding (0.5) = 1` and :ada:`Float'Rounding (-0.5) = -1`
+   - Rounds away from zero
+
+     - :ada:`Float'Rounding (0.5) = 1`
+     - :ada:`Float'Rounding (-0.5) = -1`
 
 ---------------------------
 Numeric Types Conversion

@@ -77,4 +77,5 @@ Attributes for All Numeric Types
 
 * :ada:`T'Max (Left, Right)`
 
+  - **Greater** of two values of type :ada:`T`
   - :ada:`Signed_T'Max (12, 34)` |rightarrow| **34**
