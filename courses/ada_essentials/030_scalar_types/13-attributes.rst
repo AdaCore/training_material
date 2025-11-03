@@ -72,7 +72,7 @@ Attributes for All Numeric Types
 
 * :ada:`T'Min (Left, Right)`
 
-  - **Lesser** of two :ada:`T`
+  - **Lesser** of two values of type :ada:`T`
   - :ada:`Signed_T'Min (12, 34)` |rightarrow| **12**
 
 * :ada:`T'Max (Left, Right)`

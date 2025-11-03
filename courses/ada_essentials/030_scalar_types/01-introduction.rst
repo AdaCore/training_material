@@ -28,10 +28,10 @@ Discrete Types
 Real Types
 ------------
 
-* :dfn:`Floating-point` numbers have variable exponent portion
+* :dfn:`Floating-point` numbers have **variable** exponent portion
 
   * Allows for a very wide range of values
 
-* :dfn:`Fixed-point` numbers have a constant exponent portion
+* :dfn:`Fixed-point` numbers have a **constant** exponent portion
 
   * Allows for simpler (integer-based) computer math
