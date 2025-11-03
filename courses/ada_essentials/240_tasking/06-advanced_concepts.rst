@@ -17,43 +17,17 @@ Task Activation
 
 .. code:: Ada
 
-   task type First_T is ...
-   type First_T_A is access all First_T;
+   task type Some_Task_T is ...
+   type Some_Task_Ptr_T is access all Some_Task_T;
 
-   task body First_T is ...
+   task body Some_Task_T is ...
    ...
    declare
-      V1 : First_T;
-      V2 : First_T_A;
-   begin  -- V1 is activated
-      V2 := new First_T;  -- V2 is activated immediately
-
---------------------
-Single Declaration
---------------------
-
- * Instantiate an **anonymous** task (or protected) type
- * Declares an object of that type
-
-.. code:: Ada
-
-   task type Task_T is
-      entry Start;
-   end Task_T;
-
-   type Task_Ptr_T is access all Task_T;
-
-   task body Task_T is
+      Task_Object    : Some_Task_T;   -- Task_Object starts
+      Access_To_Task : Some_Task_Ptr_T;
    begin
-      accept Start;
-   end Task_T;
-   ...
-      V1 : Task_T;
-      V2 : Task_Ptr_T;
-   begin
-      V1.Start;
-      V2 := new Task_T;
-      V2.all.Start;
+      Access_To_Task := new Some_Task_T;
+      -- Task pointed to by Access_To_Task starts
 
 -----------
 Task Scope
@@ -65,17 +39,17 @@ Task Scope
 
   .. code:: Ada
 
-     package P is
-        task type T;
-     end P;
+     package Task_Definition is
+        task type One_Second_Timer;
+     end Task_Definition;
 
-     package body P is
-        task body T is
+     package body Task_Definition is
+        task body One_Second_Timer is
            loop
               delay 1.0;
               Put_Line ("tick");
            end loop;
-        end T;
+        end One_Second_Timer;
 
-        Task_Instance : T;
-     end P;
+        Task_Instance : One_Second_Timer;
+     end Task_Definition;
