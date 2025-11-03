@@ -115,18 +115,18 @@ Sequential Rendezvous
         Job_Data := Data;
       end Get_Work;
 
-      -- Step 2: Do the work (details omitted).
+      -- Step 2: Do the work (details omitted)
       Result := Process (Job_Data);
 
-      -- Step 3: Wait for the client to request the result.
+      -- Step 3: Wait for the client to request the result
       accept Report_Result (Final_Result : out Some_Result_Type) do
         Final_Result := Result;
       end Report_Result;
     end loop;
   end Worker;
 
-  Worker.Get_Work (My_Job);          -- Give the worker a job.
-  Worker.Report_Result (My_Result);  -- Get the result.
+  Worker.Get_Work (My_Job);          -- Give the worker a job
+  Worker.Report_Result (My_Result);  -- Get the result
 
 * :ada:`Worker` cannot generate report until after :ada:`Get_Work` has completed
 

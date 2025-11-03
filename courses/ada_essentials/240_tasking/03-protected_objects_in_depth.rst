@@ -98,6 +98,9 @@ Protected: Limitations
 Protected: Lock-Free Implementation
 -------------------------------------
 
+.. include:: ../examples/protected_objects_lock_free/extracts/protected_objects.lock_free_declare.ads
+    :code: Ada
+
 * GNAT-Specific
 * Generates code without any locks
 * Best performance
@@ -109,9 +112,6 @@ Protected: Lock-Free Implementation
    - No :ada:`access` dereference
    - No composite parameters
    - See GNAT RM 2.100
-
-.. include:: ../examples/protected_objects_lock_free/extracts/protected_objects.lock_free_declare.ads
-    :code: Ada
 
 ------
 Quiz

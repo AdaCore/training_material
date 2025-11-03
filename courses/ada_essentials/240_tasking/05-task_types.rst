@@ -20,6 +20,8 @@ Reusable Task Patterns
 
 .. code:: Ada
 
+   -- Simple task that, upon startup, loops forever
+   -- calling some procedure and pausing
    task type Worker is
       entry Initialize (Cyle : Duration);
    end Worker;
@@ -27,21 +29,26 @@ Reusable Task Patterns
    task body Worker is
       Delay_Time : Duration;
    begin
+      -- Wait until initialized with a delay time
       accept Initialize (Cyle : Duration) do
           Delay_Time := Cycle;
       end Initialize;
+      -- Once task has started, just wait a certain
+      -- amount of time and then call a procedure
       loop
          delay Delay_Time;
          Do_Something;
       end loop;
    end Worker;
 
-   W1, W2 : Worker;
+   --  Two tasks that start at elaboration and wait for initialization
+   Worker_1, Worker_2 : Worker;
 
    procedure Main is
    begin
-      W1.Initialize (1.0);
-      W2.Initialize (2.0);
+      -- Start the tasks at different frequencies
+      Worker_1.Initialize (1.0);
+      Worker_2.Initialize (2.0);
    end Main;
 
 * Each Worker runs its own independent thread of control
