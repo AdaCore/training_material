@@ -46,6 +46,7 @@ Building Your First Program
 - You should see something like:
 
 ::
+  
   Compiling hello v0.1.0 (C:\rust\hello_world)
   Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.52s
 
@@ -67,7 +68,9 @@ Hello, world!
 ----------------------
 First Program: Done!
 ----------------------
+
 * **Congratulations!** You've completed your first program!
+
   * Test sub
 
 * We've touched on a few basic concepts like
