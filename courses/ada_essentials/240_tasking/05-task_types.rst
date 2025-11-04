@@ -23,14 +23,14 @@ Reusable Task Patterns
    -- Simple task that, upon startup, loops forever
    -- calling some procedure and pausing
    task type Worker is
-      entry Initialize (Cyle : Duration);
+      entry Initialize (Cycle : Duration);
    end Worker;
 
    task body Worker is
       Delay_Time : Duration;
    begin
       -- Wait until initialized with a delay time
-      accept Initialize (Cyle : Duration) do
+      accept Initialize (Cycle : Duration) do
           Delay_Time := Cycle;
       end Initialize;
       -- Once task has started, just wait a certain
