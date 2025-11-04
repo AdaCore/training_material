@@ -6,43 +6,74 @@ Hello, World
 Hello, World
 --------------
 
-Let us jump into the simplest possible Rust program, a classic Hello
-World program:
-
 .. code:: rust
 
+   // Our first program!
    fn main() {
        println!("Hello World!");
    }
 
 What you see:
 
-- Functions are introduced with :rust:`fn`.
-- Blocks are delimited by curly braces like in C and C++.
-- The :rust:`main` function is the entry point of the program.
-- Rust has hygienic macros, :rust:`println!` is an example of this.
-- Rust strings are UTF-8 encoded and can contain any Unicode character.
+- :rust:`//` - indicates a single-line **comment**
+- :rust:`fn` - "introduces" a **function**
+- :rust:`{ }` - curly braces enclose a **block**
+- :rust:`main` - the entry point of the program
+- :rust:`println!` - macro for printing a string followed by newline
 
--------------------------------
-Things To Consider About Rust
--------------------------------
+-----------------------------
+Creating Your First Program
+-----------------------------
 
-- Very much like other languages in the C/C++/Java tradition.
+- From a command prompt, execute the following in a directory of your choice:
+  - :command:`cargo new hello_world`
+- A package will be created for the executable program (:dfn:`binary crate`)
+- A directory will also be created (:filename:`hello_world/`)
+- A few noteworthy things automatically created at this step:
+  - :filename:`Cargo.toml` - the :dfn:`manifest` used by **cargo**
+  - :filename:`src/main.rs` - the program source code
+    - Open :toolname:`VS Code` to explore this file
 
-  - Imperative
-  - No reinventing things unless absolutely necessary.
+-----------------------------
+Building Your First Program
+-----------------------------
 
-- Modern with full support for things like Unicode.
-- Uses macros for situations where you want to have a variable number of arguments
+- From a command prompt, ensure you are in the project directory (:filename:`hello_world/`)
 
-  - (no function :url:`overloading <../control-flow-basics/functions.md>`).
+- Execute the following command:
+  - :command:` cargo build`
 
-- Macros being 'hygienic' means
+- You should see something like:
+.. code:: rust
+   Compiling hello v0.1.0 (C:\rust\hello_world)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.52s
 
-  - Don't accidentally capture identifiers from the scope they are used in
-  - Macros are actually only :url:`partially hygienic <https://veykril.github.io/tlborm/decl-macros/minutiae/hygiene.html>`
+----------------------------
+Running Your First Program
+----------------------------
 
-- Multi-paradigm
+- From a command prompt, ensure you are in the project directory (:filename:`hello_world/`)
 
-  - Powerful :url:`object-oriented programming features <https://doc.rust-lang.org/book/ch17-00-oop.html>`
-  - Not a function language, but includes a range of :url:`functional concepts <https://doc.rust-lang.org/book/ch13-00-functional-features.html>`
+- Execute the following command:
+  - :command:` cargo run`
+
+- You should see an output like the followng:
+.. code:: rust
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.01s
+     Running `target\debug\hello_world.exe`
+Hello, world!
+
+----------------------
+First Program: Done!
+----------------------
+- **Congratulations!** You've completed your first program!
+
+- We've touched on a few basic concepts like
+
+  - Comments
+  - Functions
+  - Macros
+  - Program output
+  - Code blocks
+
+- On to the bigger concepts!
