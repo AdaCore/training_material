@@ -97,7 +97,7 @@ No Meaning Changes
      declare
        use Distance_Pkg;
      begin
-       -- With or without the clause, "Distance" means Q.Distance
+       -- With or without the clause, "Distance" means Example.Distance
        Miles := Distance;
      end;
    end Example;
@@ -182,7 +182,7 @@ No Ambiguity
    procedure Test is
      A, B, C : Types_Pkg.Int := some_value;
    begin
-     C := A + B; -- illegal reference to operator
+     C := A + B; -- compile error (cannot see operator)
      C := Types_Pkg."+" (A,B);
      declare
        use Types_Pkg;
