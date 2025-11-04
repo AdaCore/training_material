@@ -6,36 +6,37 @@ What is Rust?
 What is Rust?
 ---------------
 
-Rust is a new programming language which had its `1.0 release in
-2015 <https://blog.rust-lang.org/2015/05/15/Rust-1.0.html>`__:
+- Rust is a new(er) programming language
 
--  Rust is a statically compiled language in a similar role as C++
+   - First stable release in 2015 (1.0)
+   - Modern design to solve older language problems
 
-   -  :rust:`rustc` uses LLVM as its backend.
+-  Statically compiled 
 
--  Rust supports many `platforms and
-   architectures <https://doc.rust-lang.org/nightly/rustc/platform-support.html>`__:
+   -  :rust:`rustc` uses LLVM as its backend
 
-   -  x86, ARM, WebAssembly, ...
-   -  Linux, Mac, Windows, ...
+-  Rust supports many platforms and architectures:
+
+   -  Linux, Windows, VxWorks...
+   -  x86, ARM ...   
 
 -  Rust is used for a wide range of devices:
 
-   -  firmware and boot loaders,
-   -  smart displays,
-   -  mobile phones,
-   -  desktops,
-   -  servers.
+   -  embedded
+   -  smart displays
+   -  mobile phones
+   -  desktops
+   -  servers
 
 --------------------------------
 What Kind of Language is Rust?
 --------------------------------
 
-Rust fits in the same area as C++:
+Rust fits in the same area as other systems languages (Ada, C++, ...):
 
--  High flexibility.
--  High level of control.
+-  High flexibility
+-  High level of control
 -  Can be scaled down to very constrained devices such as
-   microcontrollers.
--  Has no runtime or garbage collection.
--  Focuses on reliability and safety without sacrificing performance.
+   microcontrollers
+-  Has no runtime or garbage collection
+-  Focuses on reliability and safety without sacrificing performance

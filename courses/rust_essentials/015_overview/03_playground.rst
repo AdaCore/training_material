@@ -1,22 +1,29 @@
-============
-Playground
-============
+=========
+Tooling
+=========
 
-------------
-Playground
-------------
+---------------
+AdaCore Tools
+---------------
 
-The :url:`Rust Playground <https://play.rust-lang.org/>` provides an easy
-way to run short Rust programs, and is the basis for the examples and
-exercises in this course. Try running the :command:`hello-world` program it
-starts with. It comes with a few handy features:
+- **GNAT Pro for Rust:** AdaCore's Rust Development Toolsuite
 
--  Under :menu:`Tools`, use the :menu:`rustfmt` option to format your code in the
-   "standard" way.
+  - **cargo** - Rust package manager
+  - **rustc** - Rust compiler
+  - **gdb** - Rust-aware debugger
+  - **rust-analyzer** - Rust language server / IDE integration tool
+  - **clippy** - Rust linter
+  - **rustfmt** - Rust code formatter
+  - **gprbuild** - AdaCore’s multi-language build tool
 
--  Rust has two main :dfn:`profiles` for generating code: **Debug** (extra
-   runtime checks, less optimization) and **Release** (fewer runtime checks,
-   lots of optimization). These are accessible under :menu:`Debug` at the top.
+- GNAT Pro for Rust is a **stablized** version of upstream Rust
 
--  If you're interested, use :menu:`ASM` under :menu:`...` to see the generated
-   assembly code.
+  - Yearly updates for recent changes
+  - Tested and secured
+  - Reproducible (stable) build process
+  - Vulnerability fixes backported
+
+- Tooling pairs seamlessly with **VS Code**
+
+*Note: the :url:`Rust Playground <https://play.rust-lang.org/>` provides an easy
+way to run short Rust programs, quickly!*
