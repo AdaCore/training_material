@@ -48,15 +48,9 @@ Building Your First Program
 
 * Execute the following command:
   
-  * :command:` cargo build`
+  * :command:`cargo build`
 
 * You should see something like:
-
-::
-
-  Compiling hello v0.1.0 (C:\rust\hello_world)
-  Finished `dev` profile [unoptimized + debuginfo] 
-  target(s) in 0.52s
 
 ----------------------------
 Running Your First Program
