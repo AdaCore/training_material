@@ -6,7 +6,7 @@ Benefits of Rust
 Compile Time Memory Safety
 ----------------------------
 
-Whole classes of memory bugs are prevented at compile time:
+Whole classes of memory bugs are prevented at compile time
 
    -  No uninitialized variables
    -  No double-frees
@@ -20,7 +20,7 @@ Whole classes of memory bugs are prevented at compile time:
 No undefined runtime behavior
 -------------------------------
 
-What a Rust statement does is never left unspecified:
+What a Rust statement does is never left unspecified
 
    -  Array access is bounds checked
    -  Integer overflow is defined (panic or wrap-around)
@@ -29,11 +29,11 @@ What a Rust statement does is never left unspecified:
 Modern language features
 --------------------------
 
-As expressive and ergonomic as higher-level languages:
+As expressive and ergonomic as higher-level languages
 
    -  Enums and pattern matching
    -  Generics
-   -  No overhead FFI
+   -  No overhead Foreign Function Interface (FFI)
    -  Zero-cost abstractions
    -  Great compiler errors
    -  Built-in dependency manager

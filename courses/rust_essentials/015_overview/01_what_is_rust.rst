@@ -15,12 +15,12 @@ What is Rust?
 
    -  :rust:`rustc` uses LLVM as its backend
 
--  Rust supports many platforms and architectures:
+-  Rust supports many platforms and architectures
 
    -  Linux, Windows, VxWorks...
    -  x86, ARM ...   
 
--  Rust is used for a wide range of devices:
+-  Rust is used for a wide range of devices
 
    -  embedded
    -  smart displays
@@ -32,7 +32,7 @@ What is Rust?
 What Kind of Language is Rust?
 --------------------------------
 
-Rust fits in the same area as other systems languages (Ada, C++, ...):
+Rust fits in the same area as other systems languages (Ada, C++, ...)
 
 -  High flexibility
 -  High level of control
