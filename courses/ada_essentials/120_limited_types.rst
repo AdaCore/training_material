@@ -30,16 +30,6 @@ Limited Types
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Limited Type Declarations
-   Creating Values
-   Extended Return Statements
-   Combining Limited And Private Views
-
 .. container:: PRELUDE END
 
 .. include:: 120_limited_types/01-introduction.rst
