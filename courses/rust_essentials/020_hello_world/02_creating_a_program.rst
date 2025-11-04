@@ -6,7 +6,7 @@ Creating a Program
 Creating a Project
 --------------------
 
-* From a command prompt, execute the following in a directory of your choice:
+* From a command prompt, execute the following in a directory of your choice
   
   * :command:`cargo new hello_world`
 
@@ -14,7 +14,7 @@ Creating a Project
 
 * A directory will also be created (:filename:`hello_world/`)
 
-* A few noteworthy things automatically created at this step:
+* A few noteworthy things automatically created at this step
  
    * :filename:`Cargo.toml` - the :dfn:`manifest` used by **cargo**
    * :filename:`src/main.rs` - the program source code
@@ -45,11 +45,11 @@ Running Your First Program
 
 * From a command prompt, ensure you are in the project directory (:filename:`hello_world/`)
 
-* Execute the following command:
+* Execute the following command
   
   * :command:` cargo run`
 
-* You should see an output like the following:
+* You should see an output like the following
 
 ::
   
