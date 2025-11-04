@@ -43,7 +43,7 @@ Real Type (Floating and Fixed) Literals
    -- floating point with range
    type Percentage is digits 7 range 0.0 .. 100.0;
    Valid_Score   : Percentage := 95.5;  
-   Min_Score     : Percentage := -10.0;  -- runtime error
+   Bad_Score     : Percentage := -10.0;  -- runtime error
 
 --------------------------------
 Declaring Floating Point Types
