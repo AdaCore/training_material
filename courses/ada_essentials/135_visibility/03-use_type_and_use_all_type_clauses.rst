@@ -66,7 +66,7 @@ Multiple "use type" Clauses
 
 .. code:: Ada
 
-   package P is
+   package Types_Pkg is
      type T1 is range 1 .. 10;
      type T2 is range 1 .. 10;
      -- implicit
@@ -74,14 +74,14 @@ Multiple "use type" Clauses
      type T3 is range 1 .. 10;
      -- explicit
      function "+"(Left : T1; Right : T2) return T3;
-   end P;
+   end Types_Pkg;
 
-   with P;
+   with Types_Pkg;
    procedure UseType is
-     X1 : P.T1;
-     X2 : P.T2;
-     X3 : P.T3;
-     use type P.T1;
+     X1 : Types_Pkg.T1;
+     X2 : Types_Pkg.T2;
+     X3 : Types_Pkg.T3;
+     use type Types_Pkg.T1;
    begin
      X3 := X1 + X2; -- operator visible because it uses T1
      X2 := X2 + X2; -- operator not visible

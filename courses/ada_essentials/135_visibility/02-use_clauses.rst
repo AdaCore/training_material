@@ -6,7 +6,7 @@
 "use" Clauses
 ---------------
 
-* :ada:`use Pkg;` provides direct visibility into public items in :ada:`Pkg`
+* :ada:`use Utilties;` provides direct visibility into public items in :ada:`Utilties`
 
    + :dfn:`Direct Visibility` - as if object was referenced from within package being used
    + :dfn:`Public Items` - any entity defined in package spec public section
@@ -53,29 +53,29 @@
 
 .. code:: Ada
 
-   package Pkg_A is
-      Constant_A : constant := 123;
-   end Pkg_A;
+   package Distance_Pkg is
+      Distance : Float := 12.34;
+   end Distance_Pkg;
 
-   package Pkg_B is
-      Constant_B : constant := 987;
-   end Pkg_B;
+   package Time_Pkg is
+      Time : Float := 98.76;
+   end Time_Pkg;
 
-   with Pkg_A;
-   with Pkg_B;
-   use Pkg_A; -- everything in Pkg_A is now visible
-   package P is
-      A  : Integer := Constant_A; -- legal
-      B1 : Integer := Constant_B; -- illegal
-      use Pkg_B; -- everything in Pkg_B is now visible
-      B2 : Integer := Constant_B; -- legal
-      function F return Integer;
-   end P;
+   with Distance_Pkg;
+   with Time_Pkg;
+   use Distance_Pkg; -- everything in Distance_Pkg is now visible
+   package Speed_Pkg is
+      Clicks  : Float := Distance / 1.6; -- OK
+      Bad     : Float := Time / 60.0;    -- compile error
+      use Time_Pkg; -- everything in Time_Pkg is now visible
+      Seconds : Float := Time / 60.0;    -- OK
+      function Speed return Float;
+   end Speed_Pkg;
 
-   package body P is
-     -- all of Pkg_A and Pkg_B is visible here
-     function F return Integer is (Constant_A + Constant_B);
-   end P;
+   package body Speed_Pkg is
+     -- all of Distance_Pkg and Time_Pkg is visible here
+     function Speed return Float is (Distance / Time);
+   end Speed_Pkg;
 
 --------------------
 No Meaning Changes
@@ -86,24 +86,21 @@ No Meaning Changes
 
 .. code:: Ada
 
-   package D is
-     T : Float;
-   end D;
+   package Distance_Pkg is
+     Distance : Float;
+   end Distance_Pkg;
 
-   with D;
-   procedure P is
-     procedure Q is
-       T, X : Float;
+   with Distance_Pkg;
+   procedure Example is
+     Distance, Miles : Float;
+   begin
+     declare
+       use Distance_Pkg;
      begin
-       ...
-       declare
-         use D;
-       begin
-         -- With or without the clause, "T" means Q.T
-         X := T;
-       end;
-       ...
-     end Q;
+       -- With or without the clause, "Distance" means Q.Distance
+       Miles := Distance;
+     end;
+   end Example;
 
 --------------
 No Ambiguity 
@@ -111,24 +108,23 @@ No Ambiguity
 
 .. code:: Ada
 
-   package D is
-     V : Boolean;
-   end D;
+   package Miles_Pkg is
+     Distance : Float;
+   end Miles_Pkg;
 
-   package E is
-     V : Integer;
-   end E;
-   with D, E;
+   package Kilometers_Pkg is
+     Distance : Float;
+   end Kilometers_Pkg;
 
-   procedure P is
-     procedure Q is
-       use D, E;
-     begin
-       -- to use V here, must specify D.V or E.V
-       ...
-     end Q;
+   with Miles_Pkg, Kilometers_Pkg;
+   procedure Example is
+      use Miles_Pkg, Kilometers_Pkg;
+      Miles      : Float;
+      Kilometers : Float;
    begin
-   ...
+      Miles := Distance;                     -- compile error
+      Kilometers := Kilometers_Pkg.Distance; -- OK
+   end Example;
 
 .. container:: speakernote
 
@@ -175,21 +171,21 @@ No Ambiguity
 
 .. code:: Ada
 
-   package P is
+   package Types_Pkg is
      type Int is range Lower .. Upper;
      -- implicit declarations
      -- function "+"(Left, Right : Int) return Int;
      -- function "="(Left, Right : Int) return Boolean;
-   end P;
+   end Types_Pkg;
 
-   with P;
+   with Types_Pkg;
    procedure Test is
-     A, B, C : P.Int := some_value;
+     A, B, C : Types_Pkg.Int := some_value;
    begin
      C := A + B; -- illegal reference to operator
-     C := P."+" (A,B);
+     C := Types_Pkg."+" (A,B);
      declare
-       use P;
+       use Types_Pkg;
      begin
        C := A + B; -- now legal
      end;
