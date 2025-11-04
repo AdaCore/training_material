@@ -38,4 +38,4 @@ Overview
 
 .. include:: 015_overview/01_what_is_rust.rst
 .. include:: 015_overview/02_benefits.rst
-.. include:: 015_overview/03_playground.rst    
+.. include:: 015_overview/03_tooling.rst    
