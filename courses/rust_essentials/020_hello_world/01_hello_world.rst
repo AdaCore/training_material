@@ -44,7 +44,7 @@ Building Your First Program
   - :command:` cargo build`
 
 - You should see something like:
-.. code:: rust
+::
    Compiling hello v0.1.0 (C:\rust\hello_world)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.52s
 
@@ -57,8 +57,8 @@ Running Your First Program
 - Execute the following command:
   - :command:` cargo run`
 
-- You should see an output like the followng:
-.. code:: rust
+- You should see an output like the following:
+::
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.01s
      Running `target\debug\hello_world.exe`
 Hello, world!
