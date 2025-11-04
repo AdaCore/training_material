@@ -41,48 +41,21 @@ Creating Your First Program
       * Open :toolname:`VS Code` to explore this file
 
 -----------------------------
-Building Your First Program
+Creating Your First Program
 -----------------------------
 
-* From a command prompt, ensure you are in the project directory (:filename:`hello_world/`)
-
-* Execute the following command:
+* From a command prompt, execute the following in a directory of your choice:
   
-  * :command:`cargo build`
+  * :command:`cargo new hello_world`
 
-* You should see something like:
+* A package will be created for the executable program (:dfn:`binary crate`)
 
-----------------------------
-Running Your First Program
-----------------------------
+* A directory will also be created (:filename:`hello_world/`)
 
-* From a command prompt, ensure you are in the project directory (:filename:`hello_world/`)
-
-* Execute the following command:
-  
-  * :command:` cargo run`
-
-* You should see an output like the following:
-
-::
-  
-  Finished `dev` profile [unoptimized + debuginfo] 
-  target(s) in 0.01s
-  Running `target\debug\hello_world.exe`
-  Hello, world!
-
-----------------------
-First Program: Done!
-----------------------
-
-* **Congratulations!** You've completed your first program!
-
-* We've touched on a few basic concepts like
-
-  * Comments
-  * Functions
-  * Macros
-  * Program output
-  * Code blocks
-
-* On to the bigger concepts!
+* A few noteworthy things automatically created at this step:
+ 
+   * :filename:`Cargo.toml` - the :dfn:`manifest` used by **cargo**
+   * :filename:`src/main.rs` - the program source code
+    
+      * Open :toolname:`VS Code` to explore this file
+      
