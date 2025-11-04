@@ -30,14 +30,6 @@ Overview
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   A Little History
-   Big Picture
-
 .. container:: PRELUDE END
 
 .. include:: 010_overview/01-a_little_history.rst

@@ -30,16 +30,6 @@ Packages
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Package Declarations
-   Referencing Other Packages
-   Bodies
-   Executable Parts
-
 .. container:: PRELUDE END
 
 .. include:: 100_packages/01-introduction.rst

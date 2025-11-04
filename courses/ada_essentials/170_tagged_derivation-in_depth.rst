@@ -30,14 +30,6 @@ Tagged Derivation: In-Depth
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Tagged Derivation
-   Extending Tagged Types
-
 .. container:: PRELUDE END
 
 .. include:: 170_tagged_derivation/01-introduction.rst

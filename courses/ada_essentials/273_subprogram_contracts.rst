@@ -30,14 +30,6 @@ Subprogram Contracts
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Preconditions And Postconditions
-   Special Attributes
-
 .. container:: PRELUDE END
 
 .. include:: 273_subprogram_contracts/01-introduction.rst
