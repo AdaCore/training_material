@@ -38,14 +38,14 @@ Delay Example
            task Relative;
            task body Relative is
            begin
-              for I in 1 .. 5 loop
+              for Counter in 1 .. 5 loop
                  delay 0.1;
                  Put_Line (Time_Str &
                            " => Relative " & I'Image);
               end loop;
            end Relative;
         begin
-           for I in 1 .. 5 loop
+           for Counter in 1 .. 5 loop
               delay until Start_Time + Duration (I) * 0.1;
               Put_Line (Time_Str &
                         " => Absolute " & I'Image);

@@ -45,7 +45,7 @@ Basic Synchronization
     task Hello_Task;
     task body Hello_Task is
     begin
-      for I in 1 .. 10 loop
+      for Counter in 1 .. 10 loop
         Put_Line ("hello");
       end loop;
     end Hello_Task;
@@ -110,7 +110,7 @@ Sequential Rendezvous
     Result   : Some_Result_Type;
   begin
     loop
-      -- Step 1: Wait for a client to provide a new job.
+      -- Step 1: Wait for a client to provide a new job
       accept Get_Work (Data : in Some_Data_Type) do
         Job_Data := Data;
       end Get_Work;

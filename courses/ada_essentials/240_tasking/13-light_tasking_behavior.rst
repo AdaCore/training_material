@@ -139,7 +139,7 @@ Priorities
       procedure Main is
         pragma Priority (2);
 
-      task T is
+      task Prioritized_Task is
         pragma Priority (4);
 
       protected Buffer is
@@ -173,22 +173,22 @@ Ceiling Locking
 
         .. code::
 
-          L : Lock;
+          Lock : Lock_T;
 
-          T1 : Task (Priority => 1);
-          T2 : Task (Priority => 2);
-          T3 : Task (Priority => 3);
+          Task_1 : Task (Priority => 1);
+          Task_2 : Task (Priority => 2);
+          Task_3 : Task (Priority => 3);
 
   .. container:: column
 
     .. container:: latex_environment scriptsize
 
-      * T1 locks L
-      * T3 starts, gets scheduled (T3 > T1)
-      * T3 tries to get L, blocks
-      * T2 starts, gets scheduled (T2 > T1)
+      * Task_1 locks Lock
+      * Task_3 starts, gets scheduled (Task_3 > Task_1)
+      * Task_3 tries to get Lock, blocks
+      * Task_2 starts, gets scheduled (Task_2 > Task_1)
 
-      Result: T2 running, T1 blocked, T3 blocked through L (but T3 > T2!)
+      Result: Task_2 running, Task_1 blocked, Task_3 blocked through Lock (but Task_3 > Task_2!)
 
 * Solved with ceiling locking
 
@@ -209,17 +209,17 @@ Ceiling Locking Example
 
 .. code:: Ada
 
-     protected P with Priority => 5 is
+     protected Prioritized_Object with Priority => 5 is
         procedure Set (V : Integer);
 
 .. code:: Ada
 
-     task T with Priority => 4 is
+     task Prioritized_Task with Priority => 4 is
        ...
 
-     task body T is
+     task body Prioritized_Task is
        ...
-       P.Set (1);
+       Prioritized_Object.Set (1);
 
 .. image:: ravenscar_ceiling_locking.png
    :width: 45%
