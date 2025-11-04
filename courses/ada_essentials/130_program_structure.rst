@@ -30,17 +30,6 @@ Program Structure
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Building A System
-   Circular Dependencies
-   Hierarchical Library Units
-   Visibility Limits
-   Private Children
-
 .. container:: PRELUDE END
 
 .. include:: 130_program_structure/01-introduction.rst

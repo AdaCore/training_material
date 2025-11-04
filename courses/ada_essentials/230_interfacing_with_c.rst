@@ -30,16 +30,6 @@ Interfacing with C
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Import / Export
-   Parameter Passing
-   Complex Data Types
-   Interfaces.C
-
 .. container:: PRELUDE END
 
 .. include:: 230_interfacing_with_c/01-introduction.rst

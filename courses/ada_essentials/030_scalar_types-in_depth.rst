@@ -30,20 +30,6 @@ Scalar Types: In-Depth
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Discrete Numeric Types
-   Modular Types
-   Enumeration Types
-   Representation Values
-   Character Types
-   Real Types
-   Base Type
-   Subtypes
-
 .. container:: PRELUDE END
 
 .. include:: 030_scalar_types/01-introduction.rst

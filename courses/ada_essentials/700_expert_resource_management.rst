@@ -30,10 +30,6 @@ Expert Resource Management
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
 .. container:: PRELUDE END
 
 .. include:: 290_advanced_data_hiding/04-indefinite_private.rst

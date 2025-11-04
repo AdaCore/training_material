@@ -30,18 +30,6 @@ Declarations
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Identifiers And Comments
-   Literals
-   Object Declarations
-   Named Numbers
-   Scope And Visibility
-   Aspects
-
 .. container:: PRELUDE END
 
 .. include:: 020_declarations/01-introduction.rst

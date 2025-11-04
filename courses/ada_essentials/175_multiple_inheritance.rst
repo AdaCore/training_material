@@ -30,13 +30,6 @@ Multiple Inheritance
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Interfaces
-
 .. container:: PRELUDE END
 
 .. include:: 175_multiple_inheritance/01-introduction.rst
