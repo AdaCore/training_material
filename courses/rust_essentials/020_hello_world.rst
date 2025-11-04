@@ -36,6 +36,4 @@ Hello World
 
 .. container:: PRELUDE END
 
-.. include:: 020_hello_world/01_what_is_rust.rst
-.. include:: 020_hello_world/02_benefits.rst
-.. include:: 020_hello_world/03_playground.rst
+.. include:: 020_hello_world/01_hello_world.rst
