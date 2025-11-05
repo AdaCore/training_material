@@ -47,7 +47,7 @@ Running Your First Program
 
 * Execute the following command
   
-  * :command:` cargo run`
+  * :command:`cargo run`
 
 * You should see an output like the following
 
