@@ -58,7 +58,6 @@ Import / Export Aspects (2/2)
            Import,
            Convention    => C,
            External_Name => "my_var";
-        Pragma Import (C, My_Var, "my_var");
 
   - C implementation
 
