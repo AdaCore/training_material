@@ -42,7 +42,7 @@ Rust fits in the same area as other systems languages (Ada, C++, ...)
 -  Focuses on reliability and safety without sacrificing performance
 
 -------------------------------
-Things To Consider About Rust
+Things to Consider About Rust
 -------------------------------
 
 - Very much like other languages in the Ada/C++/Java tradition
