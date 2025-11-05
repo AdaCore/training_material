@@ -29,7 +29,7 @@ What a Rust statement does is never left unspecified
 Modern Language Features
 --------------------------
 
-As expressive and ergonomic as higher-level languages
+As expressive and ergonomic as other higher-level languages
 
    -  Enums and pattern matching
    -  Generics
