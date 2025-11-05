@@ -38,25 +38,44 @@ Information Hiding
     .. image:: interface_vs_implementation.svg
        :width: 70%
 
+Example: You can drive a car without knowing anything about how the engine works
+
+  * Interface - steering wheel, pedals, etc
+  * Implementation - engine, drivetrain, brake pads, etc
+
 -------
 Views
 -------
 
 * Specify legal manipulation for objects of a type
 
-   - Types are characterized by permitted values and operations
+  :ada:`type Integer_T is range 0 .. 100;`
+
+    * Can use math operators, comparison operators, assignment, ...
+
+  :ada:`type Enumerated_T is (Red, Yellow, Green);`
+
+    - Can use comparison operators, assignment, ...
 
 * Some views are implicit in language
 
-   - Mode :ada:`in` parameters have a view disallowing assignment
+  .. code:: Ada
+
+    procedure Increment (Value  : in out Integer; 
+                         Amount : in     Integer);
+
+  - **Value** has all operations available
+  - **Amount** is read-only
 
 * Views may be explicitly specified
 
-   - Disallowing access to representation
-   - Disallowing assignment
+  .. code:: Ada
+
+    Initial_Value : constant Float := 32.0;
+
+  - **Initial_Value** cannot be assigned a new value
 
 * Purpose: control usage in accordance with design
 
    - Adherence to interface
    - Abstract Data Types
-
