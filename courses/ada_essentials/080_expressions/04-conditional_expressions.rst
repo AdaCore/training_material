@@ -47,12 +47,30 @@ If Expressions
 Result Must Be Compatible with Context
 -----------------------------------------
 
-* The `dependent_expression` parts, specifically
+* Conditional expression is going to be assigned to something
+
+  * So each branch of the conditional expression (:dfn:`dependent expression`) must be
+    of the same type
+  * Compile error if this is not true
 
 .. code:: Ada
+  :number-lines: 9
 
-   X : Integer :=
-       (if Day_Of_Week (Clock) > Wednesday then 1 else 0);
+  Hours_Worked : Float :=
+     (if Day_Of_Week in Weekday then 8.0 else 0.0);
+  --  Hours_Worked will be either 8.0 or 0.0
+
+  Modifier : constant String :=
+     (if Time < 1200 then "AM"
+      elsif Time > 1200 then "PM"
+      else "Noon");
+  --  Modifier will be either AM, PM, or Noon
+  --  (String lengths are different, but this is initialization)
+
+  Bad_Expression : Float :=
+     (if Overtime then 1.5 else 1);
+
+:error:`example.adb:21:33: error: type of "else" incompatible with that of "then" expression`
 
 -------------------------
 "If Expression" Example
