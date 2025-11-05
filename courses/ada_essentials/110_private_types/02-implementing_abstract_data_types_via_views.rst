@@ -128,16 +128,20 @@ Compile-Time Visibility Protection
 
 * No type representation details available outside the package
 * Therefore users cannot compile code referencing representation
-* This does not compile
 
-  .. code:: Ada
+.. code:: Ada
+  :number-lines: 1
 
-     with Bounded_Stacks;
-     procedure User is
-       S : Bounded_Stacks.Stack;
-     begin
-       S.Top := 1;  -- Top is not visible
-     end User;
+  with Bounded_Stacks;
+  procedure User is
+    My_Stack : Bounded_Stacks.Stack;
+  begin
+    My_Stack.Top := 1;  -- Client cannot see inside "Stack"
+  end User;
+
+.. container:: latex_environment footnotesize
+
+  :error:`user.adb:5:05: error: invalid prefix in selected component "My_Stack"`
 
 -------------------
 Benefits of Views
