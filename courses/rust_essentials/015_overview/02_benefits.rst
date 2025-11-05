@@ -26,7 +26,7 @@ What a Rust statement does is never left unspecified
    -  Integer overflow is defined (panic or wrap-around)
 
 --------------------------
-Modern language features
+Modern Language Features
 --------------------------
 
 As expressive and ergonomic as higher-level languages
