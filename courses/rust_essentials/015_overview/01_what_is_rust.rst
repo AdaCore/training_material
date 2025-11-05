@@ -3,7 +3,7 @@ What Is Rust?
 ===============
 
 ---------------
-What is Rust?
+What Is Rust?
 ---------------
 
 - Rust is a new(er) programming language
