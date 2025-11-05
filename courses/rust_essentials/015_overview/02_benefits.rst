@@ -48,7 +48,7 @@ Rust Compared to ...
 
   - Similar focus on reliability, performance and low-level control
 
-  - Safety through runtime checks and a very strong type systems
+  - Safety through runtime checks and very strong type system
 
   - Rust's borrow checker statically prevents memory errors that Ada
     would typically catch at runtime
