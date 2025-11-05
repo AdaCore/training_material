@@ -17,7 +17,7 @@ Whole classes of memory bugs are prevented at compile time
    -  No iterator invalidation
 
 -------------------------------
-No undefined runtime behavior
+No Undefined Runtime Behavior
 -------------------------------
 
 What a Rust statement does is never left unspecified
