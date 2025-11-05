@@ -20,9 +20,9 @@ Specification and Body
 
 .. container:: source_include 070_subprograms/syntax.bnf :start-after:specification_and_body_begin :end-before:specification_and_body_end :code:bnf
 
--------------------------------------------
-Procedure Specification Syntax (Simplified)
--------------------------------------------
+--------------------------------
+Procedure Specification Syntax
+--------------------------------
 
 **Syntax**
 
@@ -37,9 +37,9 @@ Procedure Specification Syntax (Simplified)
    procedure Swap (A, B : in out Integer);
    procedure Clean (Force : Boolean := True);
 
-------------------------------------------
-Function Specification Syntax (Simplified)
-------------------------------------------
+-------------------------------
+Function Specification Syntax
+-------------------------------
 
 **Syntax**
 
