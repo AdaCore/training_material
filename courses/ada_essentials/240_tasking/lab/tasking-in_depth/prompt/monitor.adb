@@ -1,5 +1,5 @@
-package body Counter is
-   task body Counter_T is
+package body Monitor is
+   task body Monitor_T is
    begin
       accept Initialize
         (Register   : Datastore.Register_T;
@@ -10,5 +10,5 @@ package body Counter is
       Datastore.Write
         (Register => Datastore.Register_T'First,
          Value    => 0);
-   end Counter_T;
-end Counter;
+   end Monitor_T;
+end Monitor;
