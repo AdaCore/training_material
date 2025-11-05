@@ -45,7 +45,7 @@ Rust fits in the same area as other systems languages (Ada, C++, ...)
 Things To Consider About Rust
 -------------------------------
 
-- Very much like other languages in the Ada/C/C++/Java tradition
+- Very much like other languages in the Ada/C++/Java tradition
 
   - Similar Syntax
   - Statically typed
