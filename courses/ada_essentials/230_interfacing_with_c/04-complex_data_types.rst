@@ -60,8 +60,6 @@ Arrays Interfacing
    - By convention (null at the end of string)
    - By storing them on the side
 
-* Only Ada constrained arrays can be interfaced with C
-
 ----------------------
 Arrays From Ada to C
 ----------------------
