@@ -6,22 +6,25 @@ Quantified Expressions
 Quantified Expressions
 ------------------------
 
-* Expressions that have a Boolean value
-* The value indicates something about a set of objects
+* Expressions that report a Boolean value about a set of objects
 
-   - In particular, whether something is True about that set
+  - Where *set* indicates an **array** or other iterable object
+
+* Value indicates if something is true about the set
+
+   - Either true for **any** element in the set or for **some** element in the set
 
 * That "something" is expressed as an arbitrary boolean expression
 
    - A so-called "predicate"
 
-* "Universal" quantified expressions
+* :dfn:`Universal quantified expression`
 
-   - Indicate whether predicate holds for all components
+   - Indicates whether predicate holds for all components
 
-* "Existential" quantified expressions
+* :dfn:`Existential quantified expression`
 
-   - Indicate whether predicate holds for at least one component
+   - Indicates whether predicate holds for at least one component
 
 ..
   language_version 2012
