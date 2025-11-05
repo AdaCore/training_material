@@ -38,4 +38,4 @@ Hello World!
 
 .. include:: 020_hello_world/01_hello_world.rst
 .. include:: 020_hello_world/02_creating_a_program.rst
-.. include:: 020_hello_world/03_summary.rst    
+.. include:: 020_hello_world/99_summary.rst    
