@@ -64,19 +64,23 @@ User View's Activities
    - Using parameters of the exported private type
    - Dependent on designer's operations
 
------------------------------
-User View Formal Parameters
------------------------------
+-------------------------------------
+Client Manipulation of Private Data
+-------------------------------------
 
-* Dependent on designer's operations for manipulation
+* What if client needs extra visiblity?
+
+  * "Show me the top of the stack"
+
+* Client cannot see the stack directly
+
+  * But may be able to use supplied functionality
 
    - Cannot reference type's representation
 
-* Can have default expressions of private types
-
 .. code:: Ada
 
-   -- external implementation of "Top"
+   -- client implementation of "Top"
    procedure Get_Top (
        The_Stack : in out Bounded_Stacks.Stack;
        Value : out Integer) is
@@ -96,8 +100,6 @@ Limited Private
     - Cannot perform assignment, copy, or equality
 
 * :ada:`limited private` can restrain user's operation
-
-    - Actual type **does not** need to be :ada:`limited`
 
 .. code:: Ada
 
