@@ -6,7 +6,7 @@
 "use" Clauses
 ---------------
 
-* :ada:`use Utilties;` provides direct visibility into public items in :ada:`Utilties`
+* **use Utilities;** provides direct visibility into public items in **Utilities**
 
    + :dfn:`Direct Visibility` - as if object was referenced from within package being used
    + :dfn:`Public Items` - any entity defined in package spec public section
@@ -187,7 +187,7 @@ No Ambiguity
      declare
        use Types_Pkg;
      begin
-       C := A + B; -- now legal
+       C := A + B; -- operator now visible
      end;
    end Test;
 
