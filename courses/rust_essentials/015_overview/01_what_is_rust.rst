@@ -29,7 +29,7 @@ What Is Rust?
    -  servers
 
 --------------------------------
-What Kind of Language is Rust?
+What Kind of Language Is Rust?
 --------------------------------
 
 Rust fits in the same area as other systems languages (Ada, C++, ...)
