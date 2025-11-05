@@ -77,7 +77,7 @@ Multiple "use type" Clauses
    end Types_Pkg;
 
    with Types_Pkg;
-   procedure UseType is
+   procedure Use_Type is
      X1 : Types_Pkg.T1;
      X2 : Types_Pkg.T2;
      X3 : Types_Pkg.T3;
@@ -85,5 +85,5 @@ Multiple "use type" Clauses
    begin
      X3 := X1 + X2; -- operator visible because it uses T1
      X2 := X2 + X2; -- operator not visible
-   end UseType;
+   end Use_Type;
 
