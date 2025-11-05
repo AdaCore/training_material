@@ -47,7 +47,7 @@ Things to Consider About Rust
 
 - Very much like other languages in the Ada/C++/Java tradition
 
-  - Similar Syntax
+  - Similar syntax
   - Statically typed
   - No reinventing things unless absolutely necessary
 
