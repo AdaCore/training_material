@@ -6,8 +6,9 @@ Introduction
 Access Types Design
 ---------------------
 
-* A memory-addressed object is called an :dfn:`access type`
-* Objects are associated with :dfn:`pools` of memory
+* An :dfn:`access type` is used to create objects by allocating space on the heap
+
+* Access objects are associated with :dfn:`pools` of memory
 
   - Different allocation / deallocation policies
   - Each access type is unique - no conversion possible

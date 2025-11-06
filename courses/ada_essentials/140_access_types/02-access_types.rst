@@ -12,18 +12,19 @@ Access Type
 
   .. code:: Ada
 
-     type Rec_T is null record;
-     type Rec_Access_T is access Rec_T;
-     Rec_Ptr : Rec_Access_T;
+     type Object_T is null record;
+     type Access_T is access Object_T;
+     Object_Ptr : Access_T;
 
 * Conversion is **not** possible between this kind of access type
 
   .. code:: Ada
+     :number-lines: 7
 
-     type Rec_Access_2 is access Rec_T;
-     Rec_Ptr_2 : Rec_Access_2 := Rec_Access_2 (Rec_Ptr);
+     type Other_Access_T is access Object_T;
+     Other_Ptr : Other_Access_T := Other_Access_T (Object_Ptr);
 
-  :color-red:`example.adb:6:32: error: target type must be general access type`
+  :color-red:`example.adb:8:34: error: target type must be general access type`
 
 .. note::
 
@@ -39,25 +40,25 @@ Allocations
 
   .. code:: Ada
 
-    Rec_Ptr := new Rec_T;
+    Object_Ptr := new Object_T;
 
 * The created object must be constrained
 
   * The constraint is given during the allocation
 
-  .. code:: Ada
+    .. code:: Ada
 
-     type String_Access_T is access String;
-     String_Ptr_1 : String_Access_T := new String(1..10);
+      type Unconstrained_String is access String;
+      String_Of_10 : Unconstrained_String := new String(1..10);
 
 * The object can also be created by copying an existing object 
 
   * Using a type qualifier
 
-  .. code:: Ada
+    .. code:: Ada
 
-     String_Ptr_2 : String_Access_T  := new String'("abc");
-     Integer_Ptr  : Integer_Access_T := new Integer'(123);
+      Hello_Ptr   : String_Access_T  := new String'("Hello");
+      Integer_Ptr : Integer_Access_T := new Integer'(123);
 
 ---------------
 Deallocations
@@ -88,10 +89,11 @@ Deallocation Example
    procedure Proc is
       type Object_T is null record;
       type Access_T is access Object_T;
+      Ptr : Access_T := new Object_T;
+
       -- create instances of deallocation function
       procedure Free is new Ada.Unchecked_Deallocation
         (Object_T, Access_T);
-      Ptr : Access_T := new Object_T;
    begin
       Free (Ptr);
       -- Ptr is now null
