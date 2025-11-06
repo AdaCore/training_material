@@ -28,7 +28,9 @@ Introducing Block Statements
    - Can be **nested**
    - Declarations **can hide** outer variables
 
-:color-white:`blank line`
+.. raw:: latex
+
+  \vspace{5mm}
 
 .. container:: latex_environment scriptsize
 

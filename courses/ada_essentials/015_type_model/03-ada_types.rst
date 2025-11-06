@@ -51,7 +51,9 @@ Understanding Types vs Subtypes
 
       subtype Water_Temperature is Temperature;
 
-:color-white:`Blank space`
+.. raw:: latex
+
+  \vspace{5mm}
 
 .. note::
 

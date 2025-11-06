@@ -19,7 +19,9 @@ Syntax and Examples
       Content  : Integer;
    end record;
 
-:color-white:`Blank line`
+.. raw:: latex
+
+  \vspace{5mm}
 
 Records can be **discriminated** as well
 
