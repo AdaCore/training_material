@@ -1,28 +1,23 @@
 with Ada.Text_IO; use Ada.Text_IO;
-with Input;
 with List;
+with Types;
+with Validator;
 procedure Main is
 
 begin
 
-   loop
-      Put ("(A)dd | (R)emove | (P)rint | Q(uit) : ");
+   List.Add (12.34, '+', 56.78);
+   List.Add (12.34, '-', 56.78);
+   List.Add (12.34, '*', 56.78);
+   List.Add (12.34, '/', 56.78);
+
+   for Index in 1 .. List.Length loop
       declare
-         Str : constant String := Input.Get_Line;
+         Item : constant Types.Record_T := List.Element (Index);
       begin
-         exit when Str'Length = 0;
-         case Str (Str'First) is
-            when 'A' =>
-               List.Add (Input.Get_Value ("Value to add"));
-            when 'R' =>
-               List.Remove (Input.Get_Value ("Value to remove"));
-            when 'P' =>
-               List.Print;
-            when 'Q' =>
-               exit;
-            when others =>
-               Put_Line ("Illegal entry");
-         end case;
+         Put_Line
+           (Types.Image (Item) & " " &
+            Boolean'Image (Validator.Is_Valid (Item)));
       end;
    end loop;
 

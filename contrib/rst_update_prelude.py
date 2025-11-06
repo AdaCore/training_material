@@ -10,8 +10,6 @@ content begins. These sections are as follows:
    BEGIN - any beginning matter
    ROLES - common RST roles
    SYMBOLS - common symbol replacements
-   REQUIRES - module-specific content
-   PROVIDES - module-specific content
    END - end of prelude (contains the rest of the module).
 In addition, anything appearing before BEGIN will be
 saved as well.

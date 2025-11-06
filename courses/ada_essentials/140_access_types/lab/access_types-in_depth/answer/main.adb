@@ -1,47 +1,42 @@
-with Simple_Io; use Simple_Io;
+with Ada.Text_IO; use Ada.Text_IO;
 with Database;
 with Database_List;
 procedure Main is
-   List    : Database_List.List_T;
+   List      : Database_List.List_T;
    Component : Database.Database_T;
 
-   procedure Add is
-      Value : constant String := Get_String ("Add");
+   procedure Add (Number : Positive;
+                  Symbol : Character) is
    begin
-      if Value'Length > 0 then
-         Component := Database.To_Database (Value);
-         Database_List.Insert (List, Component);
-      end if;
+      Database_List.Insert (List, Database.Create (Number, Symbol));
    end Add;
 
-   procedure Delete is
-      Value : constant String := Get_String ("Delete");
+   procedure Delete (Number : Positive;
+                     Symbol : Character) is
    begin
-      if Value'Length > 0 then
-         Component := Database.To_Database (Value);
-         Database_List.Delete (List, Component);
-      end if;
+      Database_List.Delete (List, Database.Create (Number, Symbol));
    end Delete;
 
    procedure Print is
    begin
       Database_List.First (List);
-      Simple_Io.Print_String ("List");
+      Put_Line ("List");
       while not Database_List.End_Of_List (List) loop
          Component := Database_List.Current (List);
-         Print_String ("  " & Database.From_Database (Component));
+         Put_Line ("  " & Database.Image (Component));
          Database_List.Next (List);
       end loop;
    end Print;
 
 begin
-   loop
-      case Get_Character ("A=Add D=Delete P=Print Q=Quit") is
-         when 'a' | 'A' => Add;
-         when 'd' | 'D' => Delete;
-         when 'p' | 'P' => Print;
-         when 'q' | 'Q' => exit;
-         when others    => null;
-      end case;
-   end loop;
+
+   Add (1, 'Z');
+   Add (2, 'A');
+   Add (3, 'Y');
+   Add (4, 'B');
+   Print;
+   Delete (2, 'A');
+   Add (5, 'M');
+   Print;
+
 end Main;

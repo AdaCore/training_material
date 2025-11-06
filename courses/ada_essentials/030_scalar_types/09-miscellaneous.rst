@@ -24,9 +24,8 @@ Miscellaneous
 
         Target_Float := Float (Source_Integer);
 
-  - Implicitly defined
-
-    - **Must** be explicitly called
+   - Implicitly defined
+   - **Must** be explicitly called
 
 -------------
 Default Value

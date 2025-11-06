@@ -30,16 +30,6 @@ Overloading: In-Depth
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Enumerals And Operators
-   Call Resolution
-   User Defined Equality
-   Composition Of Equality
-
 .. container:: PRELUDE END
 
 .. include:: 090_overloading/01-introduction.rst

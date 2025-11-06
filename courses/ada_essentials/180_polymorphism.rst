@@ -30,15 +30,6 @@ Polymorphism
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Classes Of Types
-   Dispatching And Redispatching
-   Exotic Dispatching Operations
-
 .. container:: PRELUDE END
 
 .. include:: 180_polymorphism/01-introduction.rst

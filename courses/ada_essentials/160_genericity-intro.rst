@@ -30,15 +30,6 @@ Genericity: An Introduction
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Creating Generics
-   Generic Data
-   Generic Formal Data
-
 .. container:: PRELUDE END
 
 .. include:: 160_genericity/01-introduction.rst

@@ -16,7 +16,7 @@ Tasking In-Depth Lab
 
       + Each register has it's own update frequency
 
-   - Main program should print register values on request
+   - Main program should initialize the monitors and periodicially print out each register
 
 * Hints
 
@@ -35,9 +35,9 @@ Tasking In-Depth Lab Solution - Datastore
 Tasking In-Depth Lab Solution - Monitor Task Type
 -----------------------------------------------------
 
-.. container:: source_include 240_tasking/lab/tasking-in_depth/answer/counter.ads :code:Ada :number-lines:1
+.. container:: source_include 240_tasking/lab/tasking-in_depth/answer/monitor.ads :code:Ada :number-lines:1
 
-.. container:: source_include 240_tasking/lab/tasking-in_depth/answer/counter.adb :code:Ada :number-lines:1
+.. container:: source_include 240_tasking/lab/tasking-in_depth/answer/monitor.adb :code:Ada :number-lines:1
 
 --------------------------------------
 Tasking In-Depth Lab Solution - Main

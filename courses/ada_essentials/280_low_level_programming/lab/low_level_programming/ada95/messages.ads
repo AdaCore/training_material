@@ -1,35 +1,32 @@
 with Crc; use Crc;
+with Interfaces;
 package Messages is
    type Message_T is private;
-   type Command_T is (Noop, Direction, Ascend, Descend, Speed);
-   for Command_T use
+   type Kind_T is (Noop, Direction, Ascend, Descend, Speed);
+   for Kind_T use
      (Noop => 0, Direction => 1, Ascend => 2, Descend => 4, Speed => 8);
-   for Command_T'Size use 8;
-   function Create (Command : Command_T;
-                    Value   : Positive;
-                    Text    : String := "")
-                    return Message_T;
-   function Get_Crc (Message : Message_T) return Crc_T;
+   for Kind_T'Size use 8;
+   subtype Text_T is String (1 .. 7);
+   type Value_T is digits 6;
+   function Create
+     (Kind : Kind_T; Value : Value_T; Text : Text_T) return Message_T;
    procedure Write (Message : Message_T);
-   procedure Read (Message : out Message_T;
-                   Valid : out boolean);
-   procedure Print (Message : Message_T);
+   procedure Read (Message : out Message_T; Valid : out Boolean);
+   procedure Print (Prompt : String; Message : Message_T);
 private
-   type U32_T is mod 2**32;
-   for U32_T'Size use 32;
-   Max_Text_Length : constant := 20;
-   type Text_Index_T is new Integer range 0 .. Max_Text_Length;
-   for Text_Index_T'Size use 8;
-   type Text_T is record
-      Text : String (1 .. Max_Text_Length);
-      Last : Text_Index_T;
-   end record;
-   for Text_T'Size use Max_Text_Length * 8 + Text_Index_T'size;
    type Message_T is record
-      Unique_Id : U32_T;
-      Command   : Command_T;
-      Value     : U32_T;
+      Unique_Id : Interfaces.Unsigned_32;
+      Kind      : Kind_T;
+      Value     : Value_T;
       Text      : Text_T;
       Crc       : Crc_T;
    end record;
+   for Message_T use
+     record
+       Unique_Id at 0 range 0 .. 31;
+       Kind at 0 range 32 .. 39;
+       Value at 0 range 40 .. 71;
+       Text at 0 range 72 .. 127;
+       Crc at 0 range 128 .. 159;
+     end record;
 end Messages;

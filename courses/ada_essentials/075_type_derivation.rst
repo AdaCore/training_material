@@ -30,15 +30,6 @@ Type Derivation
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Simple Derivation
-   Primitives
-   Freeze Point
-
 .. container:: PRELUDE END
 
 .. include:: 075_type_derivation/01-introduction.rst
