@@ -1,64 +1,104 @@
-% Copyright 2004 by Madhusudan Singh <madhusudan.singh@gmail.com>
-%
-% This file may be distributed and/or modified
-%
-% 1. under the LaTeX Project Public License and/or
-% 2. under the GNU Public License.
-%
-% See the file doc/licenses/LICENSE for more details.
+\ProvidesPackage{beamerthemeadacore}[2025/11/06 Custom light blue theme]
 
+%========================================================
+% Load base themes
+%========================================================
 \mode<presentation>
-
-\useinnertheme{rectangles}
+\usecolortheme{default}
 \useoutertheme{infolines}
+\useinnertheme{rectangles}
 
-\beamertemplatenavigationsymbolsempty
+%========================================================
+% Define custom RGB colors
+%========================================================
+\usepackage{xcolor} % for RGB colors
+\definecolor{MyLightBlueRGB}{RGB}{200,220,255}
+\definecolor{MyDarkBlueRGB}{RGB}{0,0,102}
+\definecolor{MyWhiteRGB}{RGB}{255,255,255}
 
-\setbeamertemplate{page number in head/foot}[totalframenumber]%
+%========================================================
+% Define Beamer colors
+%========================================================
+\setbeamercolor{normal text}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
+\setbeamercolor{frametitle}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
+\setbeamercolor{headline}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
 
-\defbeamertemplate*{footline}{adacore theme}
-{%
-  \leavevmode%
-  \hbox{%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-    \insertshortauthor
-    \hspace*{2pt} 
-    \includegraphics[height=1.9ex]{logo.png}
+% Footer colors
+\setbeamercolor{footerbg}{bg=MyWhiteRGB, fg=MyDarkBlueRGB}
+\setbeamercolor{footerline}{bg=MyDarkBlueRGB}
+
+% Header lines
+\setbeamercolor{titleline}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
+\setbeamercolor{sectionline}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
+\setbeamercolor{subsectionline}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
+
+% Background canvas
+\setbeamercolor{background canvas}{bg=MyLightBlueRGB}
+
+%========================================================
+% Header (headline)
+%========================================================
+%========================================================
+% Cascading header with gradient colors
+%========================================================
+\definecolor{HeaderLine1}{RGB}{180,200,255}  % closest to background
+\definecolor{HeaderLine2}{RGB}{120,160,255}  % mid gradient
+\definecolor{HeaderLine3}{RGB}{0,0,102}      % dark blue
+
+\setbeamercolor{titleline}{fg=white,bg=HeaderLine1}
+\setbeamercolor{sectionline}{fg=white,bg=HeaderLine2}
+\setbeamercolor{subsectionline}{fg=white,bg=HeaderLine3}
+
+\setbeamertemplate{headline}{%
+  % Document title
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.8ex,dp=0.8ex,leftskip=0.3cm]{titleline}%
+    \hspace*{0ex}\usebeamerfont{title in head/foot}\insertshorttitle
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
-    \insertshortdate{}
+  % Section title (slightly indented)
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.2ex,dp=0.6ex,leftskip=0.8cm]{sectionline}%
+    \usebeamerfont{section in head/foot}\insertsectionhead
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{page number in head/foot}%
-    \usebeamertemplate{page number in head/foot}
-    \hspace*{2ex} 
-  \end{beamercolorbox}}%
-  \vskip0pt%
+  % Subsection title (more indented)
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.0ex,dp=0.6ex,leftskip=1.3cm]{subsectionline}%
+    \usebeamerfont{subsection in head/foot}\insertsubsectionhead
+  \end{beamercolorbox}%
 }
 
-\defbeamertemplate*{headline}{adacore theme}
-{%
-    \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{upper separation line head}
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=\paperwidth,ht=6pt,dp=3pt,leftskip=3pt]{title in head/foot}
-      \usebeamerfont{title in head/foot}
-      \insertshorttitle
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=\paperwidth,ht=6pt,dp=3pt,leftskip=6pt]{section in head/foot}
-      \usebeamerfont{section in head/foot}%
-      \insertsectionhead
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=\paperwidth,ht=6pt,dp=3pt,leftskip=9pt]{subsection in head/foot}
-      \usebeamerfont{subsection in head/foot}%
-      \insertsubsectionhead
-    \end{beamercolorbox}
-    %%\begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{lower separation line head}
-    %%\end{beamercolorbox}
+
+%========================================================
+% Footer (footline)
+%========================================================
+\setbeamertemplate{footline}{%
+  % Separator line
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.4ex]{footerline}%
+  \end{beamercolorbox}%
+  % Footer content
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=1ex]{footerbg}%
+    \hbox{%
+      % Logo
+      \begin{beamercolorbox}[wd=.15\paperwidth,ht=3ex,dp=1ex,leftskip=1ex]{footerbg}%
+        \raggedright \includegraphics[height=2ex]{logo.png}%
+      \end{beamercolorbox}%
+      % Center (empty)
+      \begin{beamercolorbox}[wd=.70\paperwidth,ht=3ex,dp=1ex,center]{footerbg}%
+      \end{beamercolorbox}%
+      % Page number
+      \begin{beamercolorbox}[wd=.15\paperwidth,ht=3ex,dp=1ex,right]{footerbg}%
+        \raggedleft \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}%
+      \end{beamercolorbox}%
+    }%
+  \end{beamercolorbox}%
 }
 
-\setbeamerfont{block title}{size={}}
-\setbeamersize{text margin left=21pt,text margin right=21pt}
+%========================================================
+% Frame title spacing
+%========================================================
+\setbeamertemplate{frametitle}{%
+  \vspace*{0.4cm}%
+  \insertframetitle%
+  \vspace*{0.2cm}%
+}
 
-\usepackage{note-blocks}
+\mode<all>
 
-\mode
-<all>
+
