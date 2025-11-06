@@ -12,28 +12,34 @@
 % Define custom RGB colors
 %========================================================
 \usepackage{xcolor} % for RGB colors
-\definecolor{MyLightBlueRGB}{RGB}{200,220,255}
-\definecolor{MyDarkBlueRGB}{RGB}{0,0,102}
+% adacore_lovelace   18,40,76      12284c   AdaCore 'Lovelace` Blue
+% adacore_orange     254,80,0      fe5000   AdaCore Orange
+% adacore_midblue    21,152,203    1598cb   AdaCore Mid Blue
+% adacore_paleblue   185,198,215   b9c6d7   AdaCore Pale Blue
+\definecolor{adacore_lovelace}{RGB}{18,40,76}
+\definecolor{adacore_orange}{RGB}{254,80,0}
+\definecolor{adacore_paleblue}{RGB}{185,198,215}
+\definecolor{adacore_midblue}{RGB}{21,152,203}
 \definecolor{MyWhiteRGB}{RGB}{255,255,255}
 
 %========================================================
 % Define Beamer colors
 %========================================================
-\setbeamercolor{normal text}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
-\setbeamercolor{frametitle}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
-\setbeamercolor{headline}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
+\setbeamercolor{normal text}{fg=adacore_lovelace,bg=adacore_paleblue}
+\setbeamercolor{frametitle}{fg=adacore_lovelace,bg=adacore_paleblue}
+\setbeamercolor{headline}{fg=adacore_lovelace,bg=adacore_paleblue}
 
 % Footer colors
-\setbeamercolor{footerbg}{bg=MyWhiteRGB, fg=MyDarkBlueRGB}
-\setbeamercolor{footerline}{bg=MyDarkBlueRGB}
+\setbeamercolor{footerbg}{bg=MyWhiteRGB, fg=adacore_lovelace}
+\setbeamercolor{footerline}{bg=adacore_lovelace}
 
 % Header lines
-\setbeamercolor{titleline}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
-\setbeamercolor{sectionline}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
-\setbeamercolor{subsectionline}{fg=MyDarkBlueRGB,bg=MyLightBlueRGB}
+\setbeamercolor{titleline}{fg=adacore_lovelace,bg=adacore_paleblue}
+\setbeamercolor{sectionline}{fg=adacore_lovelace,bg=adacore_paleblue}
+\setbeamercolor{subsectionline}{fg=adacore_lovelace,bg=adacore_paleblue}
 
 % Background canvas
-\setbeamercolor{background canvas}{bg=MyLightBlueRGB}
+\setbeamercolor{background canvas}{bg=adacore_paleblue}
 
 %========================================================
 % Header (headline)
