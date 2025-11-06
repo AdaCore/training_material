@@ -20,11 +20,11 @@ Quantified Expressions
 
 * :dfn:`Universal quantified expression`
 
-   - Indicates whether predicate holds for all components
+   - Indicates whether predicate holds for **all** components
 
 * :dfn:`Existential quantified expression`
 
-   - Indicates whether predicate holds for at least one component
+   - Indicates whether predicate holds for **at least one** component
 
 ..
   language_version 2012

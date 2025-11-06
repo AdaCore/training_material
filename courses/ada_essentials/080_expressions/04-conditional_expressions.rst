@@ -47,10 +47,10 @@ If Expressions
 Result Must Be Compatible with Context
 -----------------------------------------
 
-* Conditional expression is going to be assigned to something
+* Conditional expression will be assigned to something
 
-  * So each branch of the conditional expression (:dfn:`dependent expression`) must be
-    of the same type
+  * Each **branch** of the conditional expression (:dfn:`dependent expression`) must be
+    of the **same type**
   * Compile error if this is not true
 
 .. code:: Ada
