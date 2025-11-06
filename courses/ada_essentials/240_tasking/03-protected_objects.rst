@@ -110,7 +110,7 @@ Which completion(s) of :ada:`Counter` is (are) illegal?
 
 .. container:: animate
 
-   A. Legal - Assignment to global object allowed in procedure
+   A. Legal - Assignment to protected data allowed in procedure
    B. Legal - subprograms do not need parameters
-   C. Functions in a protected object cannot modify global objects
-   D. Legal - Reading of global object allowed in function
+   C. Functions in a protected object cannot modify protected data
+   D. Legal - Reading of protected data allowed in function
