@@ -112,3 +112,28 @@ Writing Readable Code - Part 2
          -- A**2 = B**2 + C**2 - 2*B*C*cos(angle)
          A := Sqrt (B**2 + C**2 - 2.0 * B * C * Cos (Angle));
       end;
+
+---------------------
+Renames in Ada 2022
+---------------------
+
+.. admonition:: Language Variant
+
+   Ada 2022
+
+* Ada 2022 allows simpler renames for objects
+
+  * If you are renaming an object, don't you already know the type?
+
+.. code:: Ada
+
+  type Array_T is array (1 .. 10) of Integer;
+  Global : Array_T;
+
+.. code:: Ada
+
+  begin
+    for Index in Global'First .. Global'Last loop
+       declare
+          Ada2012 : Integer renames Global(Index);
+          Ada2022 : renames Global (Index);
