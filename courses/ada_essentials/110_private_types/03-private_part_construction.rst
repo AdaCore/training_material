@@ -6,12 +6,12 @@ Private Part Construction
 Private Part and Recompilation
 --------------------------------
 
-* Users can compile their code before the package body is compiled or even written
+* **Clients** can compile their code before the package body is compiled or even written
 * Private part is part of the specification
 
-   - Compiler needs info from private part for users' code, e.g., storage layouts for private-typed objects
+   - Compiler needs info from private part for **Clients'** code, e.g., storage layouts for private-typed objects
 
-* Thus changes to private part require user recompilation
+* Thus changes to private part require **client** recompilation
 
 ---------------------
 Declarative Regions
@@ -28,14 +28,14 @@ Declarative Regions
       type Private_T is private;
       procedure X (B : in out Private_T);
    private
-      -- Y and Hidden_T are not visible to users
+      -- Y and Hidden_T are not visible to clients
       procedure Y (B : in out Private_T);
       type Hidden_T is ...;
       type Private_T is array (1 .. 3) of Hidden_T;
    end Foo;
 
    package body Foo is
-      -- Z is not visible to users
+      -- Z is not visible to clients
       procedure Z (B : in out Private_T) is ...
       procedure Y (B : in out Private_T) is ...
       procedure X (B : in out Private_T) is ...
@@ -65,18 +65,18 @@ Full Type Declaration
 
      .. code:: Ada
 
-        package P is
-          type T is private;
+        package Designer is
+          type Item_T is private;
           ...
         private
           type Vector is array (1.. 10)
              of Integer;
           function Initial
              return Vector;
-          type T is record
-            A, B : Vector := Initial;
+          type Item_T record
+            One, Two : Vector := Initial;
           end record;
-        end P;
+        end Designer;
 
 .. container:: speakernote
 

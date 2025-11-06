@@ -12,7 +12,7 @@ View Operations
 
   .. container:: column
 
-    * **User** of package has **Partial** view
+    * **Client** of package has **Partial** view
 
        - Operations **exported** by package
 
@@ -23,9 +23,9 @@ View Operations
        - **Once** completion is reached
        - All operations based upon **full definition** of type
 
------------------------------
-Users Have the Partial View
------------------------------
+-------------------------------
+Clients Have the Partial View
+-------------------------------
 
 * Since they are outside package
 * Basic operations
@@ -44,35 +44,35 @@ Users Have the Partial View
      ...
    end Bounded_Stacks;
 
-------------------------
-User View's Activities
-------------------------
+--------------------------
+Client View's Activities
+--------------------------
 
 * Declarations of objects
 
    - Constants and variables
-   - Must call designer's functions for values
+   - Must call **designer's** functions for values
 
    .. code:: Ada
 
       C : Complex.Number := Complex.I;
 
 * Assignment, equality and inequality, conversions
-* Designer's declared subprograms
-* User-declared subprograms
+* **Designer's** declared subprograms
+* **Client's** -declared subprograms
 
    - Using parameters of the exported private type
-   - Dependent on designer's operations
+   - Dependent on **designer's** operations
 
 -------------------------------------
 Client Manipulation of Private Data
 -------------------------------------
 
-* What if client needs extra visiblity?
+* What if a **client** needs extra visiblity?
 
   * "Show me the top of the stack"
 
-* Client cannot see the stack directly
+* **Client** cannot see the stack directly
 
   * But may be able to use supplied functionality
 
@@ -99,7 +99,7 @@ Limited Private
 
     - Cannot perform assignment, copy, or equality
 
-* :ada:`limited private` can restrain user's operation
+* :ada:`limited private` can restrain **client's** operation
 
 .. code:: Ada
 

@@ -9,12 +9,12 @@ Introduction
 * Why does fixing bugs introduce new ones?
 * Control over visibility is a primary factor
 
-   - Changes to an abstraction's internals shouldn't break users
+   - Changes to an abstraction's internals shouldn't break **clients**
    - Including type representation
 
 * Need tool-enforced rules to isolate dependencies
 
-   - Between implementations of abstractions and their users
+   - Between implementations of abstractions and their **clients**
    - In other words, "information hiding"
 
 --------------------
@@ -23,25 +23,26 @@ Information Hiding
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
-    * A design technique in which implementation artifacts are made inaccessible to users
-    * Based on control of visibility to those artifacts
+    .. raw:: latex
 
-       - A product of "encapsulation"
-       - Language support provides rigor
+       \vspace{5mm}
 
-    * Concept is "software integrated circuits"
+    Compare to integrated circuits
 
- .. container:: column
+    * Hides implementation details from the end **client**
+    * **Client** only sees the interface ... not how it works underneath
+
+  .. container:: column
 
     .. image:: interface_vs_implementation.svg
-       :width: 70%
+       :width: 50%
 
-Example: You can drive a car without knowing anything about how the engine works
+* Example - you can drive a car without knowing how the engine works:
 
-  * Interface - steering wheel, pedals, etc
-  * Implementation - engine, drivetrain, brake pads, etc
+  * Interfaces: steering wheel, pedals, etc
+  * Implementation: engine, transmission, brake pads, etc
 
 -------
 Views

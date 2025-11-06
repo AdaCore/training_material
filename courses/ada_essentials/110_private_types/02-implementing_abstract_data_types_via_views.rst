@@ -18,8 +18,8 @@ Implementing Abstract Data Types
 Package Visible and Private Parts for Views
 ---------------------------------------------
 
-* Declarations in visible part are exported to users
-* Declarations in private part are hidden from users
+* Declarations in visible part are exported to **clients**
+* Declarations in private part are hidden from **clients**
 
    - No compilable references to type's actual representation
 
@@ -43,15 +43,15 @@ Declaring Private Types for Views
 
    - :dfn:`Partial view`
    - Only partial information on the type
-   - Users can reference the type name
+   - **Clients** can reference the type name
 
       - But cannot create an object of that type until after the full type declaration
 
 * Full type declaration must appear in private part
 
    - Completion is the :dfn:`Full view`
-   - **Never** visible to users
-   - **Not** visible to designer until reached
+   - **Never** visible to **clients**
+   - **Not** visible to **designer** until reached
 
 .. code:: Ada
 
@@ -73,7 +73,7 @@ Partial and Full Views of Types
 * Private type declaration defines a :dfn:`partial view`
 
    - The type name is visible
-   - Only designer's operations and some predefined operations
+   - Only **designer's** operations and some predefined operations
    - No references to full type representation
 
 * Full type declaration defines the :dfn:`full view`
@@ -103,9 +103,9 @@ Software Engineering Principles
    - Dynamically allocated
    - et cetera
 
------------------------------------
-Users Declare Objects of the Type
------------------------------------
+-------------------------------------
+Clients Declare Objects of the Type
+-------------------------------------
 
 * Unlike "abstract data machine" approach
 * Hence must specify which stack to manipulate
@@ -127,34 +127,34 @@ Compile-Time Visibility Protection
 ------------------------------------
 
 * No type representation details available outside the package
-* Therefore users cannot compile code referencing representation
+* Therefore **clients** cannot compile code referencing representation
 
 .. code:: Ada
   :number-lines: 1
 
   with Bounded_Stacks;
-  procedure User is
+  procedure Client is
     My_Stack : Bounded_Stacks.Stack;
   begin
     My_Stack.Top := 1;  -- Client cannot see inside "Stack"
-  end User;
+  end Client;
 
 .. container:: latex_environment footnotesize
 
-  :error:`user.adb:5:05: error: invalid prefix in selected component "My_Stack"`
+  :error:`client.adb:5:05: error: invalid prefix in selected component "My_Stack"`
 
 -------------------
 Benefits of Views
 -------------------
 
-* Users depend only on visible part of specification
+* **Clients** depend only on visible part of specification
 
-   - Impossible for users to compile references to private part
+   - Impossible for **clients** to compile references to private part
    - Physically seeing private part in source code is irrelevant
 
-* Changes to implementation don't affect users
+* Changes to implementation don't affect **clients**
 
-   - No editing changes necessary for user code
+   - No editing changes necessary for **client** code
 
 * Implementers can create bullet-proof abstractions
 

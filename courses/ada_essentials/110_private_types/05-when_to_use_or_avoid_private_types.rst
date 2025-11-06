@@ -8,7 +8,7 @@ When to Use Private Types
 
 * Implementation may change
 
-   - Allows users to be unaffected by changes in representation
+   - Allows **clients** to be unaffected by changes in representation
 
 * Normally available operations do not "make sense"
 
@@ -46,7 +46,7 @@ When to Avoid Private Types
 
    - But that's the thinking that led to Y2K rework
 
-* If normal user interface requires representation-specific operations that cannot be provided
+* If normal **client** interface requires representation-specific operations that cannot be provided
 
    - Those that cannot be redefined by programmers
    - Would otherwise be hidden by a private type

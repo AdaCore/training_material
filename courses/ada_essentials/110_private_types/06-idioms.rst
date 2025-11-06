@@ -10,22 +10,22 @@ Effects of Hiding Type Representation
 
   * We want to track name, birth date, pay 
 
-* Implementation details:
+* Implementation details
 
   * How do we store the name? Date? Pay?
-  * Why should the client care?
+  * Why should the **client** care?
 
-* Client interface should be some private type and its primitives:
+* **Client** interface should be some private type and its primitives
 
   .. code:: Ada
 
     package Database is
       type Employee_T is private;
       procedure Update_Name
-        (Employee : in out Employee_T;
+        (Employee    : in out Employee_T;
          First, Last : String);
 
-* Implementation changes do not require client rework
+* Implementation changes do not require **client** rework
 
 * Common idioms are a result
 
@@ -36,7 +36,7 @@ Effects of Hiding Type Representation
 Constructors
 --------------
 
-* Create designer's objects from client's values
+* Create **designer's** objects from **client's** values
 * Usually functions
 
 .. code:: Ada
@@ -65,7 +65,7 @@ Constructors
 Selectors
 -----------
 
-* Decompose designer's objects into client's values
+* Decompose **designer's** objects into **client's** values
 * Usually functions
 
 .. code:: Ada
