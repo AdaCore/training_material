@@ -261,7 +261,7 @@ Quiz
    function Sqrt (X : Float) return Float;
    F : Float;
    B : Boolean;
-   Z : Float := Get_Length();
+   Z : Float := Get_Length;
 
 Which statement(s) is (are) legal?
 
