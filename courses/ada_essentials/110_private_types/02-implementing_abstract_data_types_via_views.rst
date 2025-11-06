@@ -139,7 +139,7 @@ Compile-Time Visibility Protection
     My_Stack.Top := 1;  -- Client cannot see inside "Stack"
   end Client;
 
-.. container:: latex_environment footnotesize
+.. container:: latex_environment scriptsize
 
   :error:`client.adb:5:05: error: invalid prefix in selected component "My_Stack"`
 

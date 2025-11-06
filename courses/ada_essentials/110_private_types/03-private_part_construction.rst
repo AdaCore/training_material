@@ -9,7 +9,7 @@ Private Part and Recompilation
 * **Clients** can compile their code before the package body is compiled or even written
 * Private part is part of the specification
 
-   - Compiler needs info from private part for **Clients'** code, e.g., storage layouts for private-typed objects
+   - Compiler needs info from private part for **clients'** code, e.g., storage layouts for private-typed objects
 
 * Thus changes to private part require **client** recompilation
 
