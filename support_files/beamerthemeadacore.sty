@@ -20,7 +20,6 @@
 \definecolor{adacore_orange}{RGB}{254,80,0}
 \definecolor{adacore_paleblue}{RGB}{185,198,215}
 \definecolor{adacore_midblue}{RGB}{21,152,203}
-\definecolor{MyWhiteRGB}{RGB}{255,255,255}
 
 %========================================================
 % Define Beamer colors
@@ -30,13 +29,8 @@
 \setbeamercolor{headline}{fg=adacore_lovelace,bg=adacore_paleblue}
 
 % Footer colors
-\setbeamercolor{footerbg}{bg=MyWhiteRGB, fg=adacore_lovelace}
+\setbeamercolor{footerbg}{bg=white, fg=adacore_lovelace}
 \setbeamercolor{footerline}{bg=adacore_lovelace}
-
-% Header lines
-\setbeamercolor{titleline}{fg=adacore_lovelace,bg=adacore_paleblue}
-\setbeamercolor{sectionline}{fg=adacore_lovelace,bg=adacore_paleblue}
-\setbeamercolor{subsectionline}{fg=adacore_lovelace,bg=adacore_paleblue}
 
 % Background canvas
 \setbeamercolor{background canvas}{bg=adacore_paleblue}
@@ -57,15 +51,15 @@
 
 \setbeamertemplate{headline}{%
   % Document title
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.8ex,dp=0.8ex,leftskip=0.3cm]{titleline}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.8ex,dp=0.8ex,leftskip=0.1cm]{titleline}%
     \hspace*{0ex}\usebeamerfont{title in head/foot}\insertshorttitle
   \end{beamercolorbox}%
   % Section title (slightly indented)
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.2ex,dp=0.6ex,leftskip=0.8cm]{sectionline}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.2ex,dp=0.6ex,leftskip=0.3cm]{sectionline}%
     \usebeamerfont{section in head/foot}\insertsectionhead
   \end{beamercolorbox}%
   % Subsection title (more indented)
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.0ex,dp=0.6ex,leftskip=1.3cm]{subsectionline}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.0ex,dp=0.6ex,leftskip=0.5cm]{subsectionline}%
     \usebeamerfont{subsection in head/foot}\insertsubsectionhead
   \end{beamercolorbox}%
 }
