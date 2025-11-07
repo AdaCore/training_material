@@ -73,31 +73,44 @@
   \begin{beamercolorbox}[wd=\paperwidth,ht=0.4ex]{footerline}%
   \end{beamercolorbox}%
   % Footer content
-  \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=1ex]{footerbg}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,dp=1ex]{footerbg}%
     \hbox{%
-      % Logo
-      \begin{beamercolorbox}[wd=.15\paperwidth,ht=3ex,dp=1ex,leftskip=1ex]{footerbg}%
-        \raggedright \includegraphics[height=2ex]{logo.png}%
-      \end{beamercolorbox}%
+      % Logo (left)
+      \vbox to 4ex{%
+        \vfil
+        \hbox to .15\paperwidth{%
+          \hspace*{1ex}\includegraphics[height=3ex]{logo.png}\hfil
+        }%
+        \vfil
+      }%
       % Center (empty)
-      \begin{beamercolorbox}[wd=.70\paperwidth,ht=3ex,dp=1ex,center]{footerbg}%
-      \end{beamercolorbox}%
-      % Page number
-      \begin{beamercolorbox}[wd=.15\paperwidth,ht=3ex,dp=1ex,right]{footerbg}%
-        \raggedleft \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}%
-      \end{beamercolorbox}%
+      \vbox to 4ex{%
+        \vfil
+        \hbox to .70\paperwidth{\hfil}%
+        \vfil
+      }%
+      % Page numbers (right)
+      \vbox to 4ex{%
+        \vfil
+        \hbox to .15\paperwidth{\hfil \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}}%
+        \vfil
+      }%
     }%
   \end{beamercolorbox}%
 }
 
+
 %========================================================
 % Frame title spacing
 %========================================================
+\setbeamercolor{frametitlebox}{fg=white,bg=HeaderLine3}  % dark blue
 \setbeamertemplate{frametitle}{%
-  \vspace*{0.4cm}%
-  \insertframetitle%
-  \vspace*{0.2cm}%
+  \begin{beamercolorbox}[sep=0.5em,rounded=true,shadow=true,wd=\textwidth]{frametitlebox}%
+    \usebeamerfont{frametitle}\insertframetitle
+  \end{beamercolorbox}%
+  \vspace{0.2cm}%
 }
+
 
 \mode<all>
 
