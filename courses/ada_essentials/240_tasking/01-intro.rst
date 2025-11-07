@@ -36,10 +36,15 @@ Concurrency in Ada
 Process Communication
 -----------------------
 
-* Tasks can rendezvous with other tasks
+* Tasks can
 
-  * Via :ada:`entry` call
-  * Data can be passed like in subprograms
+  * Rendezvous with other tasks
+
+    * Via :ada:`entry` call
+    * Data can be passed like in subprograms
+
+  * Wait for another task
+  * Block other tasks
 
 * Protected objects control data access
 
@@ -48,7 +53,3 @@ Process Communication
 
     * All other accesses blocked during write
 
-* Tasks can
-
-  * Wait for another task
-  * Block other tasks
