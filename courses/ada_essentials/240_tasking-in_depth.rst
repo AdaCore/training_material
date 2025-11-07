@@ -33,7 +33,7 @@ Tasking: In-Depth
 .. container:: PRELUDE END
 
 .. include:: 240_tasking/01-intro.rst
-.. include:: 240_tasking/02-tasks_in_depth.rst
+.. include:: 240_tasking/02-tasks.rst
 .. include:: 240_tasking/03-protected_objects_in_depth.rst
 .. include:: 240_tasking/04-delays.rst
 .. include:: 240_tasking/05-task_types_in_depth.rst
