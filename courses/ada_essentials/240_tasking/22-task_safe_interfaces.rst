@@ -109,14 +109,15 @@ Example: Scheduler Interface
    type Work_Item_I is not null access protected procedure;
 
    type Scheduler_I is synchronized interface;
-   procedure Queue (S : in out Scheduler_I; W : Work_Item_I) is abstract;
-   procedure Execute_Next (S : in out Scheduler_I) is abstract;
+   procedure Queue (Sched : in out Scheduler_I;
+                    Work  : Work_Item_I) is abstract;
+   procedure Execute_Next (Sched : in out Scheduler_I) is abstract;
 
    type Work_Items_Array is array (Positive range <>)
      of Maybe_Work_Item_I;
 
    protected type Scheduler_T (Size : Positive) is new Scheduler_I with
-      procedure Queue (W : Work_Item_I);
+      procedure Queue (Work : Work_Item_I);
       entry Execute_Next;
    private
       Number_Of_Items : Natural := 0;
@@ -130,18 +131,18 @@ Example: Scheduler (Body)
 .. code:: Ada
 
    protected body Scheduler_T is
-      procedure Queue (W : Work_Item_I) is
+      procedure Queue (Work : Work_Item_I) is
       begin
          Number_Of_Items := Number_Of_Items + 1;
-         Items (Number_Of_Items) := Maybe_Work_Item_I (W);
+         Items (Number_Of_Items) := Maybe_Work_Item_I (Work);
       end Queue;
 
       entry Execute_Next
          when Number_Of_Items > 0
       is
-         W : Work_Item_I := Work_Item_I (Items (Number_Of_Items));
+         Work : Work_Item_I := Work_Item_I (Items (Number_Of_Items));
       begin
          Number_Of_Items := Number_Of_Items - 1;
-         W.all;
+         Work.all;
       end Execute_Next;
    end Scheduler_T;
