@@ -14,7 +14,7 @@ Tasking Lab
       + Stop entry will end the task
       + Until stopped, the task will send its identifying information to a monitor periodically based on the delay length
 
-   - Create a protected object that stores the identifying information of task that called it
+   - Create a protected object that stores the identifying information of the task that called it
 
    - Main program should periodically check the protected object, and print when it detects a task switch
 

@@ -16,5 +16,8 @@ Summary
 
    - Delay
    - Rendezvous
-   - Queues
    - Protected Objects
+
+* Protected objects also control access to data
+
+   - Only one writer at a time

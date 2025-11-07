@@ -65,20 +65,20 @@ Task Scope
 
   .. code:: Ada
 
-     package P is
-        task type T;
-     end P;
+     package Task_Definition is
+        task type One_Second_Timer;
+     end Task_Definition;
 
-     package body P is
-        task body T is
+     package body Task_Definition is
+        task body One_Second_Timer is
            loop
               delay 1.0;
               Put_Line ("tick");
            end loop;
-        end T;
+        end One_Second_Timer;
 
-        Task_Instance : T;
-     end P;
+        Task_Instance : One_Second_Timer;
+     end Task_Definition;
 
 ------------------------------
 Waiting on Different Entries
@@ -116,24 +116,24 @@ Guard Conditions
 
 .. code:: Ada
 
-   task body T is
+   task body Simple_Task_T is
       Val : Integer;
       Initialized : Boolean := False;
    begin
       loop
          select
-            accept Put (V : Integer) do
-               Val := V;
+            accept Put (Value : Integer) do
+               Val := Value;
                Initialized := True;
             end Put;
          or
             when Initialized =>
-               accept Get (V : out Integer) do
-                  V := Val;
+               accept Get (Value : out Integer) do
+                  Value := Val;
                end Get;
          end select;
       end loop;
-   end T;
+   end Simple_Task_T;
 
 ------------------------
 Protected Object Entries
@@ -236,20 +236,20 @@ Quiz
 .. code:: Ada
 
     procedure Main is
-        protected type O is
-           entry P;
+        protected type Simple_Object_T is
+           entry Flip_State;
         private
             Ok : Boolean := False;
-        end O;
+        end Simple_Object_T;
 
-        protected body O is
-           entry P when not Ok is
+        protected body Simple_Object_T is
+           entry Flip_State when not Ok is
            begin
               Ok := True;
-           end P;
-        end O;
+           end Flip_State;
+        end Simple_Object_T;
     begin
-        O.P;
+        Simple_Object_T.Flip_State;
     end Main;
 
 What is the result of compiling and running this code?
@@ -261,4 +261,4 @@ D. Run-time error
 
 .. container:: animate
 
-    :ada:`O` is a :ada:`protected type`, needs instantiation
+    :ada:`Simple_Object_T` is a :ada:`protected type`, needs instantiation
