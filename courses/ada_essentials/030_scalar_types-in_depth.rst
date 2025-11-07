@@ -34,6 +34,7 @@ Scalar Types: In-Depth
 
 .. include:: 030_scalar_types/01-introduction.rst
 .. include:: 030_scalar_types/02-discrete_numeric_types.rst
+.. include:: 030_scalar_types/13-attributes.rst
 .. include:: 030_scalar_types/03-modular_types.rst
 .. include:: 030_scalar_types/04-enumeration_types.rst
 .. include:: 030_scalar_types/05-representation_values.rst
