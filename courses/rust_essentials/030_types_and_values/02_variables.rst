@@ -20,8 +20,8 @@ What is a Variable?
   // We are binding the name "apples" to the value 5
   let apples = 5;
 
-  // We are binding the name "name" to the value "Alice"
-  let name = "Alice";
+  // We are binding the name "person" to the value "Alice"
+  let person = "Alice";
 
 -------------------------------------
 By Default, Variables are Immutable
@@ -33,23 +33,23 @@ By Default, Variables are Immutable
 
   - The compiler *itself* will generate errors on assignment
 
-  - Safety and reliability principles are built in to the language
+  - Safety and reliability principles are built into the language
 
   - Prevents accidental data assignment (especially in large programs!)
 
-  - :rust:`let` creates a static declaration
+  - :rust:`let` creates a **static** declaration
 
 .. code:: rust
 
   // This is OK!
   let my_var = 10;
 
-  // This will cause an ERROR! We can't change the value of my_var
+  // This will cause an ERROR! We can't change the value
   my_var = 20;
 
--------------------------------------
+--------------------------
 Making Variables Mutable
--------------------------------------
+--------------------------
 
 - Sometimes, you *need* to change a value
 
@@ -71,20 +71,5 @@ Making Variables Mutable
 
 .. note::
 
-  In Rust, mutability (being changeable) is an **opt-in** choice. You have to be explicit.
-
--------------------
-Things To Explore
--------------------
-
-Rust provides type safety via static typing. Variable bindings are made
-with :rust:`let`:
-
-.. code:: rust
-
-   fn main() {
-       let x: i32 = 10;
-       println!("x: {x}");
-       // x = 20;
-       // println!("x: {x}");
-   }
+  In Rust, mutability is an **opt-in** choice. 
+  You have to be explicit.
