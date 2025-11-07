@@ -32,6 +32,7 @@ Types And Values
 
 .. container:: PRELUDE END
 
+.. include:: 030_types_and_values/00_introduction.rst
 .. include:: 030_types_and_values/02_variables.rst
 .. include:: 030_types_and_values/03_values.rst
 .. include:: 030_types_and_values/04_arithmetic.rst
