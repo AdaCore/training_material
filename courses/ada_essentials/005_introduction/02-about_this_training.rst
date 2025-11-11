@@ -1,10 +1,10 @@
-===================
+=====================
 About This Training
-===================
+=====================
 
---------------------------
+--------------
 Your Trainer
---------------------------
+--------------
 
 * Experience in software development
 
@@ -13,23 +13,28 @@ Your Trainer
 
 * Experience teaching this class
 
------------------------------
-Goals of the training session
------------------------------
+-------------------------------
+Goals of the Training Session
+-------------------------------
 
-* What you should know by the end of the training
+* **Build Foundational Confidence:** Feel confident about your basic understanding of the language
+
+* **Learn How to Learn:** Gain the skills to find information and solve new problems
+
+* **Embrace the Process:** Understand that this course is one of many steps in your learning journey
+
 * Syllabus overview
 
     - The syllabus is a guide, but we might stray off of it
     - ...and that's OK: we're here to cover **your needs**
 
-----------
+------------
 Roundtable
-----------
+------------
 
-* 5 minute exercise
+* 5-minute exercise
 
-* Experience in software development
+* Your experience in software development
 
 * Your personal goals for this training
 
@@ -40,23 +45,21 @@ Roundtable
     - Most interesting or funny bug you've encountered?
     - Your own programming interests?
 
--------------------
+---------------------
 Course Presentation
--------------------
+---------------------
 
 * Slides
 * Quizzes
 * Labs
 
     - Hands-on practice
-    - Recommended setup: latest GNAT Studio
     - Class reflection after some labs
 
-* Demos
+* Recommended Setup
 
-    - Depending on the context
-
-* Daily schedule
+    - GNAT Pro Ada
+    - GNAT Studio
 
 --------
 Styles
