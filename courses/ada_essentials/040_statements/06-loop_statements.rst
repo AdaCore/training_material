@@ -197,7 +197,7 @@ Low-Level For-loop Parameter Type
 
   :error:`main.adb:5:21: error: ambiguous bounds in discrete range`
 
-* If bounds are `universal_integer`, then type is :ada:`Integer` unless otherwise specified
+* Type is :ada:`Integer` unless otherwise specified
 
   .. code:: Ada
 
