@@ -23,8 +23,9 @@ Task Activation
    task body Some_Task_T is ...
    ...
    declare
-      Task_Object    : Some_Task_T;   -- Task_Object starts
+      Task_Object    : Some_Task_T;
       Access_To_Task : Some_Task_Ptr_T;
+      -- Task_Object starts at "begin"
    begin
       Access_To_Task := new Some_Task_T;
       -- Task pointed to by Access_To_Task starts
