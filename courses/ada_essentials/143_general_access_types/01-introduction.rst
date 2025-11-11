@@ -2,9 +2,9 @@
 Introduction
 ==============
 
-----------------------------
-Pool-Specific Access Types
-----------------------------
+----------------------
+Review: Access Types
+----------------------
 
 * Common access types in Ada are :dfn:`pool-specific`
 

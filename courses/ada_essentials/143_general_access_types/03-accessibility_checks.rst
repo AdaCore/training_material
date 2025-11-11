@@ -51,16 +51,18 @@ Dynamic Accessibility Checks
 
 * Following the same rules
 
-    - Performed dynamically by the runtime
+  - Performed dynamically by the runtime
+
+* Runtime error when scoping is invalid but compiler could not detect it
 
 * Lots of possible cases
 
-    - New compiler versions may detect more cases
-    - Using access always requires proper debugging and reviewing
+  - New compiler versions may detect more cases
+  - Using access always requires proper debugging and reviewing
 
 .. container:: source_include 143_general_access_types/examples/accessibility_checks/dynamic_accessibility.adb :code:Ada :number-lines:4 :start-after:snippet_begin :end-before:snippet_end
 
-:color-red:`raised PROGRAM_ERROR : dynamic_accessibility.adb:10 accessibility check failed`
+:color-red:`raised PROGRAM_ERROR : dynamic_accessibility.adb:12 accessibility check failed`
 
 -------------------------------------
 Getting Around Accessibility Checks
