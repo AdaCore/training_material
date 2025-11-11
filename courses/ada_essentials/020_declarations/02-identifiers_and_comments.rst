@@ -42,15 +42,24 @@ Identifiers
 Identifiers vs Names
 ----------------------
 
-:dfn:`identifier`
-  Syntactic form used typically to introduce entities when declared
+* **Identifier** 
 
-:dfn:`name`
-  Typically starts with an identifier and can be followed by one or more suffixes to help indicate something more specific, such as a record component or an array slice
+  * Syntactic form used typically to introduce entities when declared
 
-.. tip::
+  .. image:: identifiers_vs_names_1.svg
+     :align: center
+     :height: 50%
 
-  An **identifier** is used to *define* an entity, and a **name** is used to *refer to* an entity (or part of one)
+* **Name** 
+
+  * Starts with an identifier 
+  * Can be followed by one or more suffixes
+
+    * Indicates something specific, such as a record component or an array index
+
+  .. image:: identifiers_vs_names_2.svg
+     :align: center
+     :height: 50%
 
 ----------------
 Reserved Words

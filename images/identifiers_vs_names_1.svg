@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="82" width="260" >
+<rect fill="#ffb380" stroke="none" height="9" width="44.0068359375" x="34.0048828125" y="3" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="10" >type RecordT is</text>
+<rect fill="#ffb380" stroke="none" height="9" width="32.0048828125" x="16.001953125" y="14" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="21" >  Field : Types.SmallT;</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="32" >end record;</text>
+<rect fill="#ffb380" stroke="none" height="9" width="20.0029296875" x="4.0" y="36" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="43" >Str   : String := "Hello;"</text>
+<rect fill="#ffb380" stroke="none" height="9" width="20.0029296875" x="4.0" y="47" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="54" >Pos   : Integer := Character'val(Str(2));</text>
+<rect fill="#ffb380" stroke="none" height="9" width="32.0048828125" x="4.0" y="58" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="65" >Index : Types.SmallT := Types.SmallT(Pos);</text>
+<rect fill="#ffb380" stroke="none" height="9" width="20.0029296875" x="4.0" y="69" />
+<rect fill="#ffb380" stroke="none" height="9" width="32.0048828125" x="124.01953125" y="69" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="76" >Rec   : RecordT := (Field => Index);</text>
+</svg>

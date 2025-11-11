@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="82" width="260" >
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="10" >type RecordT is</text>
+<rect fill="#aaeeff" stroke="none" height="9" width="74.01171875" x="64.009765625" y="14" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="21" >  Field : Types.SmallT;</text>
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="32" >end record;</text>
+<rect fill="#aaeeff" stroke="none" height="9" width="38.005859375" x="52.0078125" y="36" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="43" >Str   : String := "Hello;"</text>
+<rect fill="#aaeeff" stroke="none" height="9" width="44.0068359375" x="52.0078125" y="47" />
+<rect fill="#aaeeff" stroke="none" height="9" width="56.0087890625" x="118.0185546875" y="47" />
+<rect fill="#aaeeff" stroke="none" height="9" width="20.0029296875" x="202.0322265625" y="47" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="54" >Pos   : Integer := Character'val(Str(2));</text>
+<rect fill="#aaeeff" stroke="none" height="9" width="74.01171875" x="52.0078125" y="58" />
+<rect fill="#aaeeff" stroke="none" height="9" width="74.01171875" x="148.0234375" y="58" />
+<rect fill="#aaeeff" stroke="none" height="9" width="20.0029296875" x="226.0361328125" y="58" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="65" >Index : Types.SmallT := Types.SmallT(Pos);</text>
+<rect fill="#aaeeff" stroke="none" height="9" width="44.0068359375" x="52.0078125" y="69" />
+<rect fill="#aaeeff" stroke="none" height="9" width="32.0048828125" x="178.0283203125" y="69" />
+<text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.15"  text-align="left" font-size="10px" font-family='Monospace' font-weight="normal"  x="5" y="76" >Rec   : RecordT := (Field => Index);</text>
+</svg>
