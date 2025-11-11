@@ -3,7 +3,7 @@
 <!-- insert description of the problem here -->
 
 # Acceptance Criteria
-
+- The changes to any slide material conform to the [style guide](https://gitlab.adacore-it.com/feng/training/material/-/blob/master/style_guide.rst?ref_type=heads)
 - [ ] As, the **Assignee**, I verify that the affected generated slides have been reviewed and are free of defects
   - **Link (to Actions page of last related commit):** <!-- github link -->
 
