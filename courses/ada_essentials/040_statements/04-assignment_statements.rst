@@ -23,8 +23,8 @@ Assignment Statements
         type Miles_T is range 0 .. Max_Miles;
         type Km_T is range 0 .. Max_Kilometers;
 
-        M : Miles_T := 2; -- universal integer legal for any integer
-        K : Km_T := 2;    -- universal integer legal for any integer
+        M : Miles_T := 2;
+        K : Km_T := 2;
      begin
         M := K; -- compile error
 
@@ -62,7 +62,7 @@ Assignable Views
 
    - Constants
    - Variables of :ada:`limited` types
-   - Formal parameters of mode :ada:`in`
+   - Input parameters
 
 .. code:: Ada
 
