@@ -70,7 +70,7 @@ The "renames" Keyword
 
   - Objects (or components of objects)
 
-     .. code:: Ada
+    .. code:: Ada
 
         Angles : Viewpoint_Types.Vertices_Array_T
                  renames Observation.Vertices;
@@ -79,7 +79,7 @@ The "renames" Keyword
 
   - Subprograms
 
-     .. code:: Ada
+    .. code:: Ada
 
         function Sqrt (X : Base_Types.Float_T)
                        return Base_Types.Float_T
@@ -94,7 +94,7 @@ Writing Readable Code - Part 2
    - Executable code is very close to the specification
    - Declarations as "glue" to the implementation details
 
-   .. code:: Ada
+.. code:: Ada
 
       begin
          package Math renames Math_Utilities;
@@ -113,3 +113,27 @@ Writing Readable Code - Part 2
          A := Sqrt (B**2 + C**2 - 2.0 * B * C * Cos (Angle));
       end;
 
+---------------------
+Renames in Ada 2022
+---------------------
+
+.. admonition:: Language Variant
+
+   Ada 2022
+
+* Ada 2022 allows simpler renames for objects
+
+  * If you are renaming an object, don't you already know the type?
+
+.. code:: Ada
+
+  type Array_T is array (1 .. 10) of Integer;
+  Global : Array_T;
+
+.. code:: Ada
+
+  begin
+    for Index in Global'First .. Global'Last loop
+       declare
+          Ada2012 : Integer renames Global(Index);
+          Ada2022 : renames Global (Index);

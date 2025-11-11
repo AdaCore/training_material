@@ -18,14 +18,14 @@ Miscellaneous
 
 * Called as if it was a function
 
-   - Named using destination type name
+  - Named using destination type name
 
-     .. code:: Ada
+    .. code:: Ada
 
         Target_Float := Float (Source_Integer);
 
   - Implicitly defined
-   - **Must** be explicitly called
+  - **Must** be explicitly called
 
 -------------
 Default Value
@@ -44,7 +44,7 @@ Default Value
 
 * Example
 
-   .. code:: Ada
+  .. code:: Ada
 
        type Tertiary_Switch is (Off, On, Neither)
           with Default_Value => Neither;

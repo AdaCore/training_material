@@ -56,12 +56,12 @@ Testing Non-Contiguous Membership
 
   * Or we could simplify it by specifying a collection (or set)
 
-     .. code:: Ada
+    .. code:: Ada
 
         if Index in 1 | 3 | 5 then
 
      * **|** is used to separate members
-      * So :ada:`1 | 3 | 5` is the set for which we are verifying membership
+     * So :ada:`1 | 3 | 5` is the set for which we are verifying membership
 
 ..
   language_version 2012

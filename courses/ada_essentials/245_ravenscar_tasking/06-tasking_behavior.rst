@@ -197,12 +197,12 @@ Ceiling Locking
 Ceiling Locking Example
 -------------------------
 
- .. code:: Ada
+.. code:: Ada
 
      protected P with Priority => 5 is
         procedure Set (Val : Integer);
 
- .. code:: Ada
+.. code:: Ada
 
      task T with Priority => 4 is
        ...

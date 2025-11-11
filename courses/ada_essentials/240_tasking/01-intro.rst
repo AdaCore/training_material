@@ -2,58 +2,54 @@
 Introduction
 ==============
 
+--------------------------------------------------
+Concurrency - One Program, Many Things Happening
+--------------------------------------------------
+
+* **Sequential programs** - one instruction at a time
+
+* **Concurrent programs** - multiple activities *conceptually* happening at once
+
+  * Even on one CPU
+  * Think many cooks in one kitchen
+
+* Why concurrency?
+
+  * Respond to external events (real-time systems)
+  * Improve performance or responsiveness
+
+--------------------
+Concurrency in Ada
+--------------------
+
+* Built-in language constructs
+
+  * Not a library - part of the semantics
+
+* :ada:`task` - concurrent process
+
+  * Compiler/runtime coordinate all tasks (not programmer)
+
+* :ada:`protected` - safe shared data access
+
 -----------------------
-Concurrency Mechanisms
+Process Communication
 -----------------------
 
-* Task
+* Tasks can
 
-   - **Active**
-   - Rendezvous: **Client / Server** model
-   - Server **entries**
-   - Client **entry calls**
-   - Typically maps to OS threads
+  * Rendezvous with other tasks
 
-* Protected object
+    * Via :ada:`entry` call
+    * Data can be passed like in subprograms
 
-   - **Passive**
-   - *Monitors* protected data
-   - **Restricted** set of operations
-   - Concurrency-safe **semantics**
-   - No thread overhead
-   - Very portable
+  * Wait for another task
+  * Block other tasks
 
-* Object-Oriented
+* Protected objects control data access
 
-   - :ada:`Synchronized` interfaces
-   - Protected objects inheritance
+  * Multiple simultaneous readers
+  * One writer at a time
 
----------------
-A Simple Task
----------------
+    * All other accesses blocked during write
 
-* Concurrent code execution via **task**
-* :ada:`limited` types (No copies allowed)
-
-  .. code:: Ada
-
-     procedure Main is
-        task type Simple_Task_T;
-        task body Simple_Task_T is
-        begin
-           loop
-              delay 1.0;
-              Put_Line ("T");
-           end loop;
-        end Simple_Task_T;
-        Simple_Task : Simple_Task_T;
-        -- This task starts when Simple_Task is elaborated
-     begin
-        loop
-           delay 1.0;
-           Put_Line ("Main");
-        end loop;
-     end;
-
-* A task is started when its declaration scope is **elaborated**
-* Its enclosing scope exits when **all tasks** have finished

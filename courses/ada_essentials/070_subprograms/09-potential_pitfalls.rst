@@ -95,9 +95,11 @@ Parameter Aliasing
    ...
    Update (Doubled => A, Tripled => A);
 
-.. container:: latex_environment footnotesize
+.. container:: latex_environment small
 
-   :command:`error: writable actual for "Doubled" overlaps with actual for "Tripled"`
+  :error:`error: writable actual for "Doubled" overlaps with actual for "Tripled"`
+
+:color-white:`blank line`
 
 ----------------------------
 Functions' Parameter Modes

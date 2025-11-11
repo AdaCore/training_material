@@ -60,7 +60,7 @@ Calling an Entry with a Delay Protection
 The Delay Is Not a Timeout
 ----------------------------
 
-* The time spent by the client is actually **not bounded**
+* The time spent by the **client** is actually **not bounded**
 
     - Delay's timer **stops** on :ada:`accept`
     - The call blocks **until** :ada:`end` of server-side statements
@@ -106,13 +106,13 @@ Non-blocking Accept or Entry
 Issues with "Double Non-Blocking"
 -----------------------------------
 
-* For :ada:`accept ... else` the server **peeks** into the queue
+* For :ada:`accept ... else` the **server** **peeks** into the queue
 
-   - Server **does not** wait
+   - **Server** *does not* wait
 
-* For :ada:`<entry_call> ... else` the caller looks for a **waiting** server
+* For :ada:`<entry_call> ... else` the caller looks for a *waiting* **server**
 * If both use it, the entry will **never** be called
-* Server
+* **Server**
 
 .. include:: ../examples/select_non_blocking_entry_and_call/extracts/tasks.adb
    :code: Ada
@@ -163,13 +163,13 @@ Select on Protected Objects Entries
 
   - or with an :ada:`else` part
 
-   .. code:: Ada
+    .. code:: Ada
 
-      select
-         O.Push (5);
-      else
-         Put_Line ("Overflow");
-      end select;
+       select
+          O.Push (5);
+       else
+          Put_Line ("Overflow");
+       end select;
 
 ------
 Queue
@@ -181,7 +181,7 @@ Queue
 
     - In **First-In First-Out** (FIFO) by default
 
-* When the server task **terminates**, tasks still queued receive :ada:`Tasking_Error`
+* When the **server** task **terminates**, tasks still queued receive :ada:`Tasking_Error`
 
 -----------------
 Queuing Policy
@@ -217,7 +217,7 @@ Setting Task Priority
 
 .. code:: Ada
 
-  task type T
+  task type Prioritized_Task_T
      with Priority => <priority_level>
      is ...
 
@@ -227,10 +227,10 @@ Setting Task Priority
 
    with Ada.Dynamic_Priorities;
 
-   task body T is
+   task body Prioritized_Task_T is
    begin
       Ada.Dynamic_Priorities.Set_Priority (10);
-   end T;
+   end Prioritized_Task_T;
 
 --------------------------
 :ada:`requeue` Instruction
@@ -264,7 +264,7 @@ Setting Task Priority
 
     - Not in a :ada:`select ... or delay ... else` anymore
 
-* So the following means the client blocks for **2 seconds**
+* So the following means the **client** blocks for **2 seconds**
 
 .. include:: ../examples/select_requeue_issue/extracts/tasks.bodies.adb
    :code: Ada
@@ -282,17 +282,17 @@ Abort Statements
       .. code:: Ada
 
          procedure Main is
-            task type T;
+            task type Never_Ending_T;
 
-            task body T is
+            task body Never_Ending_T is
             begin
                loop
                   delay 1.0;
                   Put_Line ("A");
                end loop;
-            end T;
+            end Never_Ending_T;
 
-            Task_Instance : T;
+            Task_Instance : Never_Ending_T;
          begin
             delay 10.0;
             abort Task_Instance;
@@ -326,23 +326,23 @@ Quiz
 
 .. code:: Ada
 
-    task T is
-       entry E1;
-       entry E2;
-    end T;
+    task Main_Task is
+       entry Receive;
+       entry Send;
+    end Main_Task;
     ...
     task body Other_Task is
     begin
        select
-          T.E1;
+          Main_Task.Receive;
        or
-          T.E2;
+          Main_Task.Send;
        end select;
     end Other_Task;
 
 What is the result of compiling and running this code?
 
-A. :ada:`T.E1` is called
+A. :ada:`Main_Task.Receive` is called
 B. Nothing
 C. :answer:`Compilation error`
 D. Run-time error
@@ -362,22 +362,22 @@ Quiz
    .. code:: Ada
 
        procedure Main is
-          task T is
-             entry A;
-          end T;
+          task Main_Task is
+             entry Print;
+          end Main_Task;
 
-          task body T is
+          task body Main_Task is
           begin
              select
-                accept A;
+                accept Print;
                 Put ("A");
              else
                 delay 1.0;
              end select;
-          end T;
+          end Main_Task;
        begin
           select
-             T.A;
+             Main_Task.Print;
           else
              delay 1.0;
           end select;
@@ -394,7 +394,7 @@ Quiz
 
   .. container:: animate
 
-      Common mistake: :ada:`Main` and :ada:`T` won't wait on each other and
+      Common mistake: :ada:`Main` and :ada:`Main_Task` won't wait on each other and
       will both execute their :ada:`delay` statement only.
 
 .
@@ -406,22 +406,22 @@ Quiz
 .. code:: Ada
 
     procedure Main is
-       task type T is
-          entry A;
+       task type Main_Task_T is
+          entry Do_Nothing;
        end T;
 
-       task body T is
+       task body Main_Task_T is
        begin
           select
-             accept A;
+             accept Do_Nothing;
           or
              terminate;
           end select;
 
           Put_Line ("Terminated");
-       end T;
+       end Main_Task_T;
 
-       My_Task : T;
+       My_Task : Main_Task_T;
     begin
        null;
     end Main;
@@ -435,7 +435,7 @@ D. Run-time error
 
 .. container:: animate
 
-    :ada:`T` is terminated at the end of :ada:`Main`
+    :ada:`My_Task` is terminated at the end of :ada:`Main`
 
 ------
 Quiz
@@ -478,21 +478,21 @@ Quiz
     procedure Main is
         Ok : Boolean := False
 
-        protected type O is
-           entry P;
-        end O;
+        protected type Simple_Object_T is
+           entry Flip_State;
+        end Simple_Object_T;
 
-        protected body O is
+        protected body Simple_Object_T is
         begin
-           entry P when Ok is
+           entry Flip_State when Ok is
               Put_Line ("OK");
-           end P;
-        end O;
+           end Flip_State;
+        end Simple_Object_T;
 
-        Protected_Instance : O;
+        Protected_Instance : Simple_Object_T;
          
     begin
-        Protected_Instance.P;
+        Protected_Instance.Flip_State;
     end Main;
 
 What is the result of compiling and running this code?

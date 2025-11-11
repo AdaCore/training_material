@@ -166,7 +166,7 @@ Quiz
 
 Given the following code:
 
-  .. code::ada
+.. code::ada
 
     package Parents is
       type Parent_T is tagged private;

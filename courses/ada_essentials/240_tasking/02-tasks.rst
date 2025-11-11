@@ -2,105 +2,215 @@
 Tasks
 =======
 
-------------------------
-Rendezvous Definitions
-------------------------
+------------
+Basic Task
+------------
 
-* **Server** declares several :ada:`entry`
-* Client calls entries like subprograms
-* Server :ada:`accept` the client calls
-* At each standalone :ada:`accept`, server task **blocks**
+* **Specification** (:ada:`task`) 
 
-    - **Until** a client calls the related :ada:`entry`
+  * What other parts of the program see
 
-      .. code:: Ada
+* **Body** (:ada:`task body`) 
 
-         task type Msg_Box_T is
-            entry Start;
-            entry Receive_Message (S : String);
-         end Msg_Box_T;
-
-         task body Msg_Box_T is
-         begin
-            loop
-               accept Start;
-               Put_Line ("start");
-
-               accept Receive_Message (S : String) do
-                  Put_Line ("receive " & S);
-               end Receive_Message;
-            end loop;
-         end Msg_Box_T;
-
-         T : Msg_Box_T;
-
-------------------------
-Rendezvous Entry Calls
-------------------------
-
-* Upon calling an :ada:`entry`, client **blocks**
-
-     - **Until** server reaches :ada:`end` of its :ada:`accept` block
-
-       .. code:: Ada
-
-          Put_Line ("calling start");
-          T.Start;
-          Put_Line ("calling receive 1");
-          T.Receive_Message ("1");
-          Put_Line ("calling receive 2");
-          T.Receive_Message ("2");
-
-* May be executed as follows:
-
-   .. code:: Ada
-
-          calling start
-          start             -- May switch place with line below
-          calling receive 1 -- May switch place with line above
-          receive 1
-          calling receive 2
-          -- Blocked until another task calls Start
-
----------------------------
-Accept Statement vs Block
----------------------------
-
-Assume the client can rendezvous with a task with the following entry points:
+  * Code the task actually runs
 
 .. code:: Ada
 
-   accept Acknowledge;
-   Put_Line ("acknowledge");
+  procedure Main is
+    task My_Task; -- declare the task
 
-   accept Wait_Until_Completion (S : String) do
-      Put_Line ("receive " & S);
-   end Receive_Message;
+    task body My_Task is -- implement the task
+    begin
+       Put_Line ("Entered My_Task");
+    end My_Task;
+ begin
+    Put_Line ("In Main");
+ end Main;
 
-* When :ada:`Acknowledge` is called ...
+* :ada:`My_Task` starts automatically when :ada:`Main` starts
 
-   * Task immediately releases the caller
-   * ... then continues on to the :ada:`Put_Line` statement
+.. note::
 
-* When :ada:`Wait_Until_Completion` is called ...
+  The application’s main program is itself a task
 
-   * Task performs everything between :ada:`do` and end of the block
-   * ... then releases the caller
+-----------------------
+Basic Synchronization
+-----------------------
+
+* Enclosing scope cannot exit until all of its tasks have completed
+
+.. code:: Ada
+
+  procedure Show_Simple_Sync is
+    task Hello_Task;
+    task body Hello_Task is
+    begin
+      for Counter in 1 .. 10 loop
+        Put_Line ("hello");
+      end loop;
+    end Hello_Task;
+  begin
+    null;
+    --  Will wait here until Hello_Task is finished
+  end Show_Simple_Sync;
+
+------------
+Rendezvous
+------------
+
+* Tasks synchronize actions using mechanism called :dfn:`rendezvous`
+
+  * Follows a client/server model
+
+  * **Server** task declares an :ada:`entry`
+
+    * Public point of synchronization other tasks call
+
+  * **Client** task calls that entry same as a procedure
+
+  * **Server** must then accept call
+
+* Both tasks are blocked until rendezvous is complete
+
+  * **Server** must perform entry processing
+  * **Client** is waiting for **Server** to finish
+
+.. container:: latex_environment small
+
+  .. code:: Ada
+
+    task Server_Task is
+      entry Receive_Message (S : in String);
+    end Server_Task;
+
+    task body Server_Task is
+    begin
+      accept Receive_Message (S : in String) do -- waiting for client
+        Put_Line ("Received: " & S);
+      end Receive_Message; -- release to client
+    end Server_Task;
+
+    procedure Client is
+    begin
+      -- The client calls the entry and waits
+      Server_Task.Receive_Message ("Hello!");
+    end Client;
+
+-----------------------
+Sequential Rendezvous
+-----------------------
+
+* Task can have multiple entry points that need to be called in sequence
+* Each entry call is blocking
+
+.. code:: Ada
+
+  task body Worker is
+    Job_Data : Some_Data_Type;
+    Result   : Some_Result_Type;
+  begin
+    loop
+      -- Step 1: Wait for a client to provide a new job
+      accept Get_Work (Data : in Some_Data_Type) do
+        Job_Data := Data;
+      end Get_Work;
+
+      -- Step 2: Do the work (details omitted)
+      Result := Process (Job_Data);
+
+      -- Step 3: Wait for the client to request the result
+      accept Report_Result (Final_Result : out Some_Result_Type) do
+        Final_Result := Result;
+      end Report_Result;
+    end loop;
+  end Worker;
+
+  Worker.Get_Work (My_Job);          -- Give the worker a job
+  Worker.Report_Result (My_Result);  -- Get the result
+
+* :ada:`Worker` cannot generate report until after :ada:`Get_Work` has completed
+
+----------------------
+Selective Rendezvous
+----------------------
+
+* Task isn't limited to waiting for just one entry
+
+  * Typically, **server** task needs to be able to accept several kinds of requests
+
+* To wait for multiple entries at the same time use :ada:`select` statement
+
+  * Task waits until **client** calls an :ada:`entry` included in :ada:`select`, then executes that block
+
+  * If multiple calls waiting, the runtime chooses which **client** to handle
+
+    * Selection order is not guaranteed
 
 ------------------------
-Rendezvous with a Task
+Select Example in Code
 ------------------------
 
-* :ada:`accept` statement
+* **Server** task waits for either a message to process or a signal to stop
 
-   - Wait on single entry
-   - If entry call waiting: Server handles it
-   - Else: Server **waits** for an entry call
+  .. code:: Ada
 
-* :ada:`select` statement
+    task body Controller is
+    begin
+      loop
+        -- Wait for EITHER Receive_Message OR Stop to be called
+        select
+          accept Receive_Message (V : in String) do
+            Put_Line ("Processing: " & V);
+          end Receive_Message;
+        or
+          accept Stop;
+            Put_Line ("Stopping task...");
+            exit; -- Exit the loop to terminate the task
+        end select;
+      end loop;
+    end Controller;
 
-   - **Several** entries accepted at the **same time**
-   - Can **time-out** on the wait
-   - Can be **not blocking** if no entry call waiting
-   - Can **terminate** if no clients can **possibly** make entry call
-   - Can **conditionally** accept a rendezvous based on a **guard expression**
+* How a **client** would use it:
+
+  .. code:: Ada
+
+    -- Client_X
+    Controller.Receive_Message ("Run diagnostic");
+
+    -- Client_Y
+    Controller.Stop;
+
+  * :ada:`Client_X` and :ada:`Client_Y` can be the same task, different tasks, or the main program
+
+------
+Quiz
+------
+
+.. code:: Ada
+
+  task Simple_Task is
+     entry Go;
+  end Simple_Task;
+
+  task body Simple_Task is
+  begin
+      accept Go do
+          loop
+              null;
+          end loop;
+      end Go;
+  end Simple_Task;
+
+What happens when :ada:`Simple_Task.Go` is called?
+
+A. Compilation error
+B. Run-time error
+C. The calling task completes successfully
+D. :answer:`Simple_Task hangs`
+
+.. container:: animate
+
+    A. Syntax is correct
+    B. Code is doing what it is supposed to
+    C. Caller must wait for :ada:`Go` block to finish
+    D. :ada:`Go` block is entered, but never completes

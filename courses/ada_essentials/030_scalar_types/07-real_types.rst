@@ -35,9 +35,15 @@ Real Type (Floating and Fixed) Literals
 
 .. code:: Ada
 
-   type Phase is digits 8; -- floating-point
+   -- floating point
+   type Phase is digits 8;
    OK : Phase := 0.0;
    Bad : Phase := 0 ; -- compile error
+
+   -- floating point with range
+   type Percentage is digits 7 range 0.0 .. 100.0;
+   Valid_Score   : Percentage := 95.5;  
+   Bad_Score     : Percentage := -10.0;  -- runtime error
 
 --------------------------------
 Declaring Floating Point Types
@@ -102,33 +108,35 @@ Floating Point Type Operators
       + Not possible to ask for root
       + :ada:`X**0.5` |rightarrow| :ada:`sqrt (x)`
 
---------------------------------
-Floating Point Type Attributes
---------------------------------
+---------------------------
+Floating Point Attributes
+---------------------------
 
-* *Core* attributes
+.. code:: Ada
 
-  .. code:: Ada
+  type My_Float is digits 7;
 
-     type My_Float is digits N;  -- N static
+* :ada:`My_Float'Digits`
 
-  - :ada:`My_Float'Digits`
+  - Number of digits **requested**
+  - :ada:`My_Float'Digits` |rightarrow| **7**
 
-      + Number of digits **requested** (N)
+* :ada:`My_Float'Base`
 
-   - :ada:`My_Float'Base'Digits`
+  - Type selected by compiler
 
-      + Number of **actual** digits
+* :ada:`My_Float'Base'Digits`
 
-   - :ada:`My_Float'Rounding (X)`
+  - Number of **actual** digits
+  - :ada:`My_Float'Base'Digits` |rightarrow| **15**
 
-      + Integral value nearest to :ada:`X`
-      + *Note:* :ada:`Float'Rounding (0.5) = 1` and :ada:`Float'Rounding (-0.5) = -1`
+* :ada:`My_Float'Rounding (X)`
 
-* Model-oriented attributes
+   - Integral value nearest to :ada:`X`
+   - Rounds away from zero
 
-   - Advanced machine representation of the floating-point type
-   - Mantissa, strict mode
+     - :ada:`Float'Rounding (0.5) = 1`
+     - :ada:`Float'Rounding (-0.5) = -1`
 
 ---------------------------
 Numeric Types Conversion

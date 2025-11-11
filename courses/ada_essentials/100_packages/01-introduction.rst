@@ -40,7 +40,7 @@ Basic Syntax and Nomenclature
 
 * Body
 
-     .. code:: Ada
+  .. code:: Ada
 
            package body name is
               declarative_part

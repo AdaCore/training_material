@@ -37,9 +37,6 @@ Enumeration Type Operations
 * Assignment, relationals
 * **Not** numeric quantities
 
-   - *Possible* with attributes
-   - Not recommended
-
 .. code:: Ada
 
    type Directions is (North, South, East, West);
@@ -52,6 +49,29 @@ Enumeration Type Operations
    Heading := South;
    Heading := East + 1; -- compile error
    if Today < Tomorrow then ...
+
+-----------------------------
+Enumeration Type Attributes
+-----------------------------
+
+.. code:: Ada
+
+   type Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+
+* :ada:`T'Pred (Input)`
+
+  - Predecessor of specified value
+  - :ada:`Days'Pred (Tue)` |rightarrow| :ada:`Mon`
+   
+* :ada:`T'Succ (Input)`
+
+  - Successor of specified value
+  - :ada:`Days'Succ (Tue)` |rightarrow| :ada:`Wed`
+
+* Additional information
+
+  - Going past the end (:ada:`Days'Pred(Mon)` or :ada:`Days'Succ(Sun)`) raises :ada:`Constraint_Error`
+  - These attributes are available for all scalars, but not particularly useful for numerics
 
 ---------------
 Character Types
@@ -99,54 +119,6 @@ Language-Defined Type Boolean
   .. code:: Ada
 
      A := B or (not C); -- For A, B, C boolean
-
-------------------------------------
-Why Boolean Isn't Just an Integer?
-------------------------------------
-
-.. container:: columns
-
- .. container:: column
-
-    * Example: Real-life error
-
-       - HETE-2 satellite **attitude control** system software (ACS)
-       - Written in **C**
-
-    * Controls four "solar paddles"
-
-        - Deployed after launch
-
- .. container:: column
-
-    .. image:: hete-2_satellite.jpeg
-
-------------------------------------
-Why Boolean Isn't Just an Integer!
-------------------------------------
-
-* **Initially** variable with paddles' state
-
-    - Either **all** deployed, or **none** deployed
-
-* Used :C:`int` as a boolean
-
-  .. code:: C
-
-     if (rom->paddles_deployed == 1)
-       use_deployed_inertia_matrix();
-     else
-       use_stowed_inertia_matrix();
-
-* Later :C:`paddles_deployed` became a **4-bits** value
-
-    - One bit per paddle
-    - :C:`0` |rightarrow| none deployed, :C:`0xF` |rightarrow| all deployed
-
-* Then, :C:`use_deployed_inertia_matrix()` if only first paddle is deployed!
-* Better: boolean function :C:`paddles_deployed()`
-
-    - Single line to modify
 
 ---------------------------------------
 Boolean Operators' Operand Evaluation

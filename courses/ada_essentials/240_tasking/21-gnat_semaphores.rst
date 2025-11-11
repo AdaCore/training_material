@@ -78,7 +78,7 @@ Idiom: Scope Locks
     State : Integer := 0;
 
     procedure Operation_1 is
-       S : Scope_Lock (Mutex’Access);
+       Lock : Scope_Lock (Mutex’Access);
     begin
        State := State + 1;  -- for example...
        Put_Line ("State is now" & State'Img);

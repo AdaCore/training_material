@@ -43,12 +43,12 @@ Safely Converting Signed to Unsigned
 --------------------------------------
 
 * Conversion may raise :ada:`Constraint_Error`
-* Use :ada:`T'Mod` to return :ada:`argument mod T'Modulus`
+* Use attribute :ada:`T'Mod` to return :ada:`argument mod T'Modulus`
 
-   - :ada:`Universal_Integer` argument
-   - So **any** integer type allowed
+  - :ada:`Universal_Integer` argument
+  - So **any** integer type allowed
 
-     .. code:: Ada
+  .. code:: Ada
 
         procedure Test is
           type Byte is mod 2**8;  -- 0 .. 255

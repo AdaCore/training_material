@@ -66,7 +66,23 @@ Styles
 * :filename:`this/is/a.path`
 * :ada:`code is highlighted`
 * :command:`commands are emphasised --like-this`
+* :error:`This is an error message`
 
 .. warning:: This is a warning
 .. note:: This is an important piece of info
 .. tip:: This is a tip
+
+---------------------
+A Note about Syntax
+---------------------
+
+* We use Backus-Naur Form (BNF) to show syntax for many constructs
+
+  * BNF for some constructs can be comprehensive
+  * Shows a lot more than we need for this class
+
+* BNF in this course may be simplified to focus only on our needs
+
+  * Elements missing or renamed
+  * Full BNF is available in the Reference Manual
+

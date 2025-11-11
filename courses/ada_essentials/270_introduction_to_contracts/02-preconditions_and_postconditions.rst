@@ -146,7 +146,7 @@ Function Postcondition :ada:`'Result` Attribute
 
 Function result can be referenced by :ada:`'Result` on the function name
 
-   .. code:: Ada
+.. code:: Ada
 
       function Greatest_Common_Denominator (Num1, Num2 : Integer)
         return Integer with

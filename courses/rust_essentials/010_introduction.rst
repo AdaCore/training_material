@@ -30,14 +30,6 @@ Introduction
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   About Adacore
-   About This Training
-
 .. container:: PRELUDE END
 
 .. include:: 010_introduction/01-about_adacore.rst

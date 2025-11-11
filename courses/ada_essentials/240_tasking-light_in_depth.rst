@@ -30,24 +30,10 @@ Tasking: Light Runtime In-Depth
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
-.. container:: PRELUDE REQUIRES
-
-.. container:: PRELUDE PROVIDES
-
-..
-   Tasks
-   Light Tasking
-   Protected Objects
-   Comparing Standard And Light Tasking
-   Delays
-   Task Types
-   Light Tasking Behavior
-   Tasking Control
-
 .. container:: PRELUDE END
 
 .. include:: 240_tasking/01-intro.rst
-.. include:: 240_tasking/02-tasks_in_depth.rst
+.. include:: 240_tasking/02-tasks.rst
 .. include:: 240_tasking/11-light_tasking.rst
 .. include:: 240_tasking/03-protected_objects_in_depth.rst
 .. include:: 240_tasking/12-comparing_standard_and_light_tasking.rst

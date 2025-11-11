@@ -16,7 +16,7 @@ private
    type Linked_List_T;
    type Linked_List_Ptr_T is access all Linked_List_T;
    -- Uncomment next line when using debug/storage pools
-   -- for Linked_List_Ptr_T'storage_pool use Memory_Mgmt.Storage_Pool;
+   -- for Linked_List_Ptr_T'Storage_Pool use Memory_Mgmt.Storage_Pool;
    type Linked_List_T is record
       Next    : Linked_List_Ptr_T;
       Content : Database_T;
