@@ -1,14 +1,13 @@
 with Memory_Mgmt;
+
 package Integer_List is
    type List_T is limited private;
    procedure First (List : in out List_T);
    procedure Next (List : in out List_T);
    function End_Of_List (List : List_T) return Boolean;
    function Current (List : List_T) return Integer;
-   procedure Insert (List      : in out List_T;
-                     Component :        Integer);
-   procedure Delete (List      : in out List_T;
-                     Component :        Integer);
+   procedure Insert (List : in out List_T; Component : Integer);
+   procedure Delete (List : in out List_T; Component : Integer);
    function Is_Empty (List : List_T) return Boolean;
 private
    type Linked_List_T;

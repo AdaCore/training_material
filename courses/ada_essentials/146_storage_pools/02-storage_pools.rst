@@ -80,30 +80,6 @@ Storage Pool Subprogram Parameters
 
     * Byte alignment for memory location
 
--------------------------------
-Implementation Example - Spec
--------------------------------
-
-.. container:: source_include 146_storage_pools/examples/storage_pools/memory_mgmt.ads code:Ada
-
--------------------------------------------
-Implementation Example - Helper Functions
--------------------------------------------
-
-.. container:: source_include 146_storage_pools/examples/storage_pools/memory_mgmt.adb :start-after:helpers_begin :end-before:helpers_end code:Ada
-
-----------------------------------------
-Implementation Example - External APIs
-----------------------------------------
-
-.. container:: source_include 146_storage_pools/examples/storage_pools/memory_mgmt.adb :start-after:external_apis_begin :end-before:external_apis_end code:Ada
-
---------------------------------
-Implementation Example - Usage
---------------------------------
-
-.. container:: source_include 146_storage_pools/examples/storage_pools/integer_list.ads code:Ada
-
 ----------------------
 Limitations/Benefits
 ----------------------
