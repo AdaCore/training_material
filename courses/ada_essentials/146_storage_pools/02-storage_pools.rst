@@ -19,6 +19,11 @@ Storage Pool Type
   * :ada:`Finalization` objects call primitives on construction, destruction, and modification
   * :ada:`Limited_Controlled` makes the type :ada:`limited`
 
+* Is an :ada:`abstract` type
+
+  * You must create your own type derived from :ada:`Root_Storage_Pool`
+  * You must create versions of each of the primitive subprograms (shown on the next slide)
+
 --------------------------
 Storage Pool Subprograms
 --------------------------
@@ -55,11 +60,6 @@ Storage Pool Subprograms
 ------------------------------------
 Storage Pool Subprogram Parameters
 ------------------------------------
-
-* Note :ada:`Root_Storage_Pool`, :ada:`Allocate`, :ada:`Deallocate`, and :ada:`Storage_Size` are :ada:`abstract`
-
-  * You must create your own type derived from :ada:`Root_Storage_Pool`
-  * You must create versions of :ada:`Allocate`, :ada:`Deallocate`, and :ada:`Storage_Size` to allocate/deallocate memory
 
 * Parameters
 
