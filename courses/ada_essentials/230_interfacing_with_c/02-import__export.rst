@@ -28,7 +28,7 @@ Import / Export Aspects (1/2)
      procedure Exported_To_C with
         Export,
         Convention    => C, 
-        External_Name => "some_ada_procedure;
+        External_Name => "some_ada_procedure";
 
 * C implementation
 
@@ -58,7 +58,6 @@ Import / Export Aspects (2/2)
            Import,
            Convention    => C,
            External_Name => "my_var";
-        Pragma Import (C, My_Var, "my_var");
 
   - C implementation
 
