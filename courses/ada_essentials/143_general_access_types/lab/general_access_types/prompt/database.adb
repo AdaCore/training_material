@@ -4,7 +4,7 @@ package body Database is
 
    function Value (Attribute : Attribute_T) return Value_T is
    begin
-      --  Implement this
+      -- Implement this
       return Value_T'First;
    end Value;
 

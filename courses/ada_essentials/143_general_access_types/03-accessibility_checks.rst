@@ -11,10 +11,10 @@ Access Type Scoping
   .. code:: Ada
 
      package body P is
-        --  Library level, depth 0
+        -- Library level, depth 0
         Object_0 : aliased Integer;
         procedure Proc is
-           --  Library level subprogram, depth 1
+           -- Library level subprogram, depth 1
            type Acc1 is access all Integer;
            procedure Nested is
               -- Nested subprogram, enclosing + 1, here 2

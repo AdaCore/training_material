@@ -14,7 +14,7 @@ package body Table is
    procedure Print (Message : String) is
    begin
       null;
-      --  Sort your table before printing
+      -- Sort your table before printing
    end Print;
 
 end Table;
