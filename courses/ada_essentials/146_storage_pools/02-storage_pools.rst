@@ -19,14 +19,14 @@ Storage Pool Type
   * :ada:`Finalization` objects call primitives on construction, destruction, and modification
   * :ada:`Limited_Controlled` makes the type :ada:`limited`
 
-* Is an :ada:`abstract` type
+* Is an :ada:`abstract` type so **you** must create
 
-  * You must create your own type derived from :ada:`Root_Storage_Pool`
-  * You must create versions of each of the primitive subprograms (shown on the next slide)
+  * Your own type derived from :ada:`Root_Storage_Pool`
+  * Versions of each of the primitive subprograms
 
---------------------------
-Storage Pool Subprograms
---------------------------
+-------------------------------------
+Primitive Subprogram for Allocation
+-------------------------------------
 
 .. code:: Ada
 
@@ -37,6 +37,24 @@ Storage Pool Subprograms
       Alignment                : System.Storage_Elements.Storage_Count)
    is abstract;
 
+* Called by runtime when :ada:`new` is performed
+
+* Parameters
+
+  * :ada:`Pool` - specific object keeping track of memory pool
+  * :ada:`Storage_Address` - location of allocated memory
+  * :ada:`Size_In_Storage_Elements` - number of bytes needed to contain contents
+  * :ada:`Alignment` - Byte alignment for memory location
+
+* At a minimum, implementation needs to return address of enough unused
+  memory to handle :ada:`Size_In_Storage_Elements` bytes
+
+---------------------------------------
+Primitive Subprogram for Deallocation
+---------------------------------------
+
+.. code:: Ada
+
    procedure Deallocate
      (Pool                     : in out Root_Storage_Pool;
       Storage_Address          : System.Address;
@@ -44,41 +62,19 @@ Storage Pool Subprograms
       Alignment                : System.Storage_Elements.Storage_Count)
    is abstract;
 
-   function Storage_Size
-     (Pool : Root_Storage_Pool)
-      return System.Storage_Elements.Storage_Count
-   is abstract;
-
-* :ada:`Allocate` called when :ada:`new` is used for allocation
-* :ada:`Deallocate` called by :ada:`Unchecked_Deallocation`
-* :ada:`Storage_Size` reports total amount of memory being managed
-
-* Runtime is responsible for passing in parameters
-
-  * Implementation is responsible for handling them correctly
-
-------------------------------------
-Storage Pool Subprogram Parameters
-------------------------------------
+* Called by runtime when :ada:`new` is performed
 
 * Parameters
 
-  * :ada:`Pool`
+  * :ada:`Pool` - specific object keeping track of memory pool
+  * :ada:`Storage_Address` - location of memory being freed
+  * :ada:`Size_In_Storage_Elements` - number of bytes being freed
+  * :ada:`Alignment` - Byte alignment for memory location
 
-    * Memory pool being manipulated
+* In theory, this doesn't have to do anything
 
-  * :ada:`Storage_Address`
-
-    * :ada:`Allocate` - location in memory where access type will point to
-    * :ada:`Deallocate` - location in memory where memory should be released
-
-  * :ada:`Size_In_Storage_Elements`
-
-    * Number of bytes needed to contain contents
-
-  * :ada:`Alignment`
-
-    * Byte alignment for memory location
+  * In practice, it should return the appropriate number of bytes
+    at the address to the "unused" pool
 
 ----------------------
 Limitations/Benefits
