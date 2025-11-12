@@ -25,7 +25,7 @@ Controlling Where and How Objects Live
 Storage Pools in Ada
 ----------------------
 
-:ada:`Systems.Storage_Pool`
+:ada:`System.Storage_Pools`
 
 * Allows specification of your own block of memory to maintain
 * :ada:`new` uses this block for allocations
