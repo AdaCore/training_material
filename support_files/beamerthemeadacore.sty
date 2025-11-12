@@ -45,21 +45,21 @@
 \definecolor{HeaderLine2}{RGB}{101,119,146}  % halfway
 \definecolor{HeaderLine3}{RGB}{18,50,76}     % foreground
 
-\setbeamercolor{titleline}{fg=adacore_orange,bg=HeaderLine1}
-\setbeamercolor{sectionline}{fg=white,bg=HeaderLine2}
-\setbeamercolor{subsectionline}{fg=white,bg=HeaderLine3}
+\setbeamercolor{titleline}{fg=adacore_lovelace,bg=adacore_paleblue}
+\setbeamercolor{sectionline}{fg=white,bg=adacore_midblue}
+\setbeamercolor{subsectionline}{fg=white,bg=adacore_orange}
 
 \setbeamertemplate{headline}{%
   % Document title
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.8ex,dp=0.8ex,leftskip=0.1cm]{titleline}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.4ex,dp=0.8ex,leftskip=0.1cm]{titleline}%
     \hspace*{0ex}\usebeamerfont{title in head/foot}\insertshorttitle
   \end{beamercolorbox}%
   % Section title (slightly indented)
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.2ex,dp=0.6ex,leftskip=0.3cm]{sectionline}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.3ex,dp=0.6ex,leftskip=0.3cm]{sectionline}%
     \usebeamerfont{section in head/foot}\insertsectionhead
   \end{beamercolorbox}%
   % Subsection title (more indented)
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.0ex,dp=0.6ex,leftskip=0.5cm]{subsectionline}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.3ex,dp=0.6ex,leftskip=0.5cm]{subsectionline}%
     \usebeamerfont{subsection in head/foot}\insertsubsectionhead
   \end{beamercolorbox}%
 }
