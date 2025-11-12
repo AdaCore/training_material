@@ -31,7 +31,7 @@ General Access Types
 
 * To maintain memory safety, we cannot convert pool-specific access types
 
-  * Each access type refers to it's own pool, so they are not compatible
+  * Each access type refers to its own pool, so they are not compatible
 
 * We need an access type that is a *view* of memory
 
