@@ -35,7 +35,7 @@ Defining Types
 
     .. code:: rust
 
-    let y = 10;
+      let y = 10;
 
 .. note::
 
@@ -54,11 +54,13 @@ Common Data Types
      - Literals
 
    * - Signed integers
-     - :rust:`i8`, :rust:`i16`, :rust:`i32`, :rust:`i64`, :rust:`i128`, :rust:`isize`
+     - :rust:`i8`, :rust:`i16`, :rust:`i32`, 
+       :rust:`i64`, :rust:`i128`, :rust:`isize`
      - :rust:`-10`, :rust:`0`, :rust:`1_000`, :rust:`123_i64`
 
    * - Unsigned integers
-     - :rust:`u8`, :rust:`u16`, :rust:`u32`, :rust:`u64`, :rust:`u128`, :rust:`usize`
+     - :rust:`u8`, :rust:`u16`, :rust:`u32`, :rust:`u64`, 
+       :rust:`u128`, :rust:`usize`
      - :rust:`0`, :rust:`123`, :rust:`10_u16`
 
    * - Floating point numbers
