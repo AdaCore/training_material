@@ -55,17 +55,17 @@ Useful GNAT.Debug_Pools API's
   
   function High_Water_Mark
     (Pool : Debug_Pool) return Byte_Count;
-  --  Return the highest size of the memory allocated by the pool.
+  --  Return the highest size of the memory allocated by the pool
   
   function Current_Water_Mark
     (Pool : Debug_Pool) return Byte_Count;
-  --  Return the size of the memory currently allocated by the pool.
+  --  Return the size of the memory currently allocated by the pool
   
 --------------------------------
 Debug Information on Insertion
 --------------------------------
 
-Modify our :ada:`Insert` implementation to dump the information
+* Modify our :ada:`Insert` implementation to dump the information
 
 .. container:: source_include 146_storage_pools/examples/debug_pools/integer_list.adb code:Ada :start-after:insert_begin :end-before:insert_end
 

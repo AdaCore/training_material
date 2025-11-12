@@ -65,7 +65,7 @@ Implement Mechanism - Reserve Memory
 Implement Mechanism - Locate Memory
 -------------------------------------
 
-* We also need a subprogram to find a sequence of bytes large enough to accomodate our request
+* We also need a subprogram to find a sequence of bytes large enough to accommodate our request
 
 .. container:: source_include 146_storage_pools/examples/storage_pool_example/memory_mgmt.adb :start-after:find_free_block_begin :end-before:find_free_block_end code:Ada
 
@@ -90,7 +90,7 @@ Implementation Mechanism - External APIs
 Implement Mechanism - Diagnostics
 -----------------------------------
 
-* We also need a subprogram to find a sequence of bytes large enough to accomodate our request
+* We also need a subprogram to find a sequence of bytes large enough to accommodate our request
 
 .. container:: source_include 146_storage_pools/examples/storage_pool_example/memory_mgmt.adb :start-after:diagnostics_begin :end-before:diagnostics_end code:Ada
 

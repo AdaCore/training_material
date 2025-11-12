@@ -12,7 +12,7 @@ Storage Pool Type
       new Ada.Finalization.Limited_Controlled with private;
    pragma Preelaborable_Initialization (Root_Storage_Pool);
 
-* Type for tracking internal (and user-specified if desired) data
+* Type for tracking internal (or user-specified) data
 
 * Uses :ada:`Ada.Finalization.Limited_Controlled`
 
@@ -69,8 +69,8 @@ Storage Pool Subprogram Parameters
 
   * :ada:`Storage_Address`
 
-    * For :ada:`Allocate` - location in memory where access type will point to
-    * For :ada:`Deallocate` - location in memory where memory should be released
+    * :ada:`Allocate` - location in memory where access type will point to
+    * :ada:`Deallocate` - location in memory where memory should be released
 
   * :ada:`Size_In_Storage_Elements`
 

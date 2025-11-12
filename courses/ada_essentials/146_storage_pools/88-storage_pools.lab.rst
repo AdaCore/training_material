@@ -9,7 +9,7 @@ Storage Pools Lab
 * Build a simplistic application that adds and removes numbers and characters to a list
 
    * We'll use a variant record to store elements that are integers, floating point, or characters
-   * The main program program will add some elements to the list, remove some, and then print the list
+   * The main program will add some elements to the list, remove some, and then print the list
 
 * The first part of the lab will use :ada:`GNAT.Debug_Pools` to see how everything works "normally"
 
