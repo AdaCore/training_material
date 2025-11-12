@@ -54,23 +54,23 @@ GNAT.Debug_Pools Spec (Partial)
         Cumulate      : Boolean := False;
         Display_Slots : Boolean := False;
         Display_Leaks : Boolean := False);
-     --  Standard instantiation of Print_Info to print on standard_output.
+     -- Standard instantiation of Print_Info to print on standard_output.
   
      procedure Dump_Gnatmem (Pool : Debug_Pool; File_Name : String);
-     --  Create an external file on the disk, which can be processed by gnatmem
-     --  to display the location of memory leaks.
+     -- Create an external file on the disk, which can be processed by gnatmem
+     -- to display the location of memory leaks.
   
      procedure Print_Pool (A : System.Address);
-     --  Given an address in memory, it will print on standard output the known
-     --  information about this address
+     -- Given an address in memory, it will print on standard output the known
+     -- information about this address
   
      function High_Water_Mark
        (Pool : Debug_Pool) return Byte_Count;
-     --  Return the highest size of the memory allocated by the pool.
+     -- Return the highest size of the memory allocated by the pool.
   
      function Current_Water_Mark
        (Pool : Debug_Pool) return Byte_Count;
-     --  Return the size of the memory currently allocated by the pool.
+     -- Return the size of the memory currently allocated by the pool.
   
   private
      -- ...

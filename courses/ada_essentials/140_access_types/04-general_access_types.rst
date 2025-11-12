@@ -59,8 +59,8 @@ Referencing the Stack
    begin
       G := I'Unchecked_Access;
       P2;
-      --  Necessary to avoid corruption
-      --  Watch out for any of G's copies!
+      -- Necessary to avoid corruption
+      -- Watch out for any of G's copies!
       G := null;
    end P1;
 
