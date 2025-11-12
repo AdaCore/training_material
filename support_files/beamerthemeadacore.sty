@@ -20,6 +20,7 @@
 \definecolor{adacore_orange}{RGB}{254,80,0}
 \definecolor{adacore_paleblue}{RGB}{185,198,215}
 \definecolor{adacore_midblue}{RGB}{21,152,203}
+\definecolor{adacore_background}{RGB}{220,226,235}
 
 %========================================================
 % Define Beamer colors
@@ -33,7 +34,7 @@
 \setbeamercolor{footerline}{bg=adacore_lovelace}
 
 % Background canvas
-\setbeamercolor{background canvas}{bg=adacore_paleblue}
+\setbeamercolor{background canvas}{bg=adacore_background}
 
 %========================================================
 % Header (headline)
@@ -111,7 +112,11 @@
   \vspace{0.2cm}%
 }
 
+%========================================================
+% Bullet colors
+%========================================================
+\setbeamercolor{itemize item}{fg=adacore_lovelace}
+\setbeamercolor{itemize subitem}{fg=adacore_midblue}
+\setbeamercolor{itemize subsubitem}{fg=adacore_orange}
 
 \mode<all>
-
-
