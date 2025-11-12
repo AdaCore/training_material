@@ -1,13 +1,50 @@
-========
-Values
-========
+=======
+Types
+=======
 
---------
-Values
---------
+--------------------------
+Rust is Statically Typed
+--------------------------
 
-Here are some basic built-in types, and the syntax for literal values of
-each type.
+- This is one of the most important features of Rust
+
+- The compiler **must** know the exact **type** of every variable 
+  *before* code is even compiled
+
+- This is how Rust provides **type safety** (and prevents bugs!)
+
+.. code:: rust
+
+  // We are explicitly telling Rust:
+  // "x is a 32-bit signed integer with the value 10"
+  let x: i32 = 10;
+
+----------------
+Defining Types
+----------------
+
+- There are two ways to tell Rust what **type** a variable is
+
+  - **Explicit Annotation**
+
+  .. code:: rust
+
+  let x: i32 = 10;
+
+  - **Type Inference**
+
+  .. code:: rust
+
+  let y = 10;
+
+.. note::
+
+  For **type inference**, Rust infers the **default** of type (like :rust:`i32`)
+
+
+-------------------
+Common Data Types
+-------------------
 
 .. list-table::
    :header-rows: 1
@@ -38,16 +75,55 @@ each type.
 
 The types have widths as follows:
 
--  :rust:`iN`, :rust:`uN`, and :rust:`fN` are *N* bits wide,
--  :rust:`isize` and :rust:`usize` are the width of a pointer,
--  :rust:`char` is 32 bits wide,
--  :rust:`bool` is 8 bits wide.
+-  :rust:`iN`, :rust:`uN`, and :rust:`fN` are *N* bits wide
+-  :rust:`isize` and :rust:`usize` are the width of a pointer
+-  :rust:`char` is 32 bits wide
+-  :rust:`bool` is 8 bits wide
 
 ------------------------
-Readability of Numbers
+A Note on Literals
 ------------------------
 
-- Underscores in numbers can be left out - they are for legibility only
+- Rust provides a few ways to make values easier to read
 
-  - :rust:`1_000` can be written as :rust:`1000` (or :rust:`10_00`)
-  - :rust:`123_i64` can be written as :rust:`123i64`.
+- **Numeric Readability**
+
+  - Underscores can be used in numbers for legibility
+  - These are ignored by the compiler
+
+  - :rust:`1_000` is the same as :rust:`1000` (or :rust:`10_00`)
+  - :rust:`10_f64` is the same as :rust:`10.0_f64` or :rust:`10.0f64`
+
+- **Type Suffixes**
+
+  - You can add the type *directly* to the numeric literal
+  - This is another way to tell Rust the type without a full Annotation
+
+  .. code::rust
+
+  // These three bindings are identical: 
+  let a: i64 = 123;  // Full annotation 
+  let b = 123_i64;   // Type suffix 
+  let c = 123i64;    // Suffix (no underscore)
+
+------------------------------
+Recap: Anatomy of a Variable
+------------------------------
+
+.. code:: rust
+
+  // This is a *mutable*, *explicitly typed* variable binding.
+
+  let mut x: i32 = 10;
+  |   |   |  |    |
+  |   |   |  |    +--- The **Value** (a number literal)
+  |   |   |  +-------- The **Type** (a 32-bit signed integer)
+  |   |   +------------ The **Variable Name**
+  |   +---------------- The **Mutability** keyword (makes it changeable)
+  +-------------------- The **Keyword** to declare a variable
+
+**Key Takeaways:**
+
+- :rust:`let`- creates a variable
+- :rust:`mut` - *optional*, but makes it changeable
+- :rust:`: i32` - *optional* because Rust can infer it
