@@ -68,29 +68,42 @@ Generic Types Parameters (3/3)
     .. code:: Ada
 
        generic
-          type T (<>) is private;
-       procedure P (V : T);
-       procedure P (V : T) is
-          X1 : T := V; -- OK, can constrain by initialization
-          X2 : T;      -- Compilation error, no constraint to this
+         type Any_T (<>) is private;
+       procedure Generic_Procedure (V : Any_T);
+
+    .. code:: Ada
+       :number-lines: 1
+
+       procedure Generic_Procedure (V : Any_T) is
+         Good : Any_T := V; -- OK, can constrain by initialization
+         Bad  : Any_T;      -- Compilation error, no constraint to this
        begin
+
+    .. container:: latex_environment footnotesize
+
+      :error:`generic_procedure.adb:3:11: error: unconstrained subtype not allowed (need initialization)`
 
   * Instantiations
 
     .. code:: Ada
+       :number-lines: 4
 
        type Limited_T is limited null record;
 
        -- unconstrained types are accepted
-       procedure P1 is new P (String);
+       procedure Unconstrained is new Generic_Procedure (String);
 
        -- type is already constrained
        -- (but generic will still always initialize objects)
-       procedure P2 is new P (Integer);
+       procedure Constrained is new Generic_Procedure (Integer);
 
        -- Illegal: the type can't be limited because the generic
        -- thinks it can make copies
-       procedure P3 is new P (Limited_T);
+       procedure Bad is new Generic_Procedure (Limited_T);
+
+    .. container:: latex_environment footnotesize
+
+      :error:`instances.ads:15:44: error: actual for non-limited "Any_T" cannot be a limited type`
 
 ------------------------------------
 Generic Parameters Can Be Combined

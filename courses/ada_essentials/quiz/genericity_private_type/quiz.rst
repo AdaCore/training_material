@@ -17,10 +17,10 @@
 
 Which of the following statement(s) is (are) legal for ``G_P``'s body?
 
-A. :answermono:`pragma Assert (A1 /= null)`
-B. ``pragma Assert (A1.all'Size > 32)``
-C. :answermono:`pragma Assert (A2 = B2)`
-D. ``pragma Assert (A2 - B2 /= 0)``
+A. :answermono:`if A1 /= null then`
+B. ``if A1.all'Size > 32 then``
+C. :answermono:`if A2 = B2 then`
+D. ``if A2 - B2 /= 0 then``
 
 .. container:: animate
 

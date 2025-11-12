@@ -22,7 +22,7 @@ procedure Main is
    --$ line cut
    procedure Write_B is new Write (Boolean, Enumerated);
    --$ line cut
-   procedure Write_C is new Write (Integer, Integer'Pos (Numeric));
+   procedure Write_C is new Write (Integer, 1234);
    --$ line cut
    procedure Write_D is new Write (Float, Floating_Point);
 

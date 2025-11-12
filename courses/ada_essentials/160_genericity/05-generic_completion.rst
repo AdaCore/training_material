@@ -2,13 +2,6 @@
 Generic Completion
 ====================
 
-------------------------------
-Implications at Compile-Time
-------------------------------
-
-* The body needs to be visible when compiling the user code
-* Therefore, when distributing a component with generics to be instantiated, the code of the generic must come along
-
 -----------------------------
 Generic and Freezing Points
 -----------------------------
@@ -18,19 +11,24 @@ Generic and Freezing Points
 
 .. code:: Ada
 
-   generic
-      type X is private;
-   package Base is
-      V : access X;
-   end Base;
+  generic
+     type Formal_T is private;
+  package Generic_Package is
+     Pointer : access Formal_T;
+  end Generic_Package;
 
-   package P is
-      type X is private;
-      -- illegal
-      package B is new Base (X);
-   private
-      type X is null record;
-   end P;
+.. code:: Ada
+  :number-lines: 1
+
+  with Generic_Package;
+  package Example is
+     type Actual_T is private;
+     package Instance is new Generic_Package (Actual_T);
+  private
+     type Actual_T is null record;
+  end Example;
+
+:error:`example.ads:4:45: error: premature use of private type`
 
 -------------------------------
 Generic Incomplete Parameters
@@ -43,18 +41,17 @@ Generic Incomplete Parameters
 .. code:: Ada
 
    generic
-      type X; -- incomplete
-   package Base is
-      V : access X;
-   end Base;
+      type Formal_T; -- incomplete
+   package Generic_Package is
+      Pointer : access Formal_T;
+   end Generic_Package;
 
-   package P is
-      type X is private;
-      -- legal
-      package B is new Base (X);
+   package Example is
+      type Actual_T is private;
+      package Instance is new Generic_Package (Actual_T);
    private
-      type X is null record;
-   end P;
+      type Actual_T is null record;
+   end Example;
 
 ------
 Quiz
