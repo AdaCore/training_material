@@ -55,7 +55,7 @@ Making Variables Mutable
 
 - Rust requires **explicit** permission to do this
 
-- :rust:`mut` - tells Rust the varaible is Mutable
+- :rust:`mut` - tells Rust the varaible is **mutable**
 
   - Add it to the declaration
   - The keyword follows :rust:`let`
@@ -73,3 +73,8 @@ Making Variables Mutable
 
   In Rust, mutability is an **opt-in** choice. 
   You have to be explicit.
+
+.. tip::
+
+  You should always *prefer* **immutable** variables unless you have absolutely
+  *specific reason* to make them **mutable**.
