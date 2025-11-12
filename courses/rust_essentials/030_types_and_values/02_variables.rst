@@ -71,10 +71,9 @@ Making Variables Mutable
 
 .. note::
 
-  In Rust, mutability is an **opt-in** choice. 
-  You have to be explicit.
+  In Rust, mutability is an **opt-in** choice
 
 .. tip::
 
-  You should always *prefer* **immutable** variables unless you have absolutely
-  *specific reason* to make them **mutable**.
+  You should always *prefer* **immutable** variables unless you have a
+  *specific reason* to make them **mutable**
