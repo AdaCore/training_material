@@ -27,15 +27,15 @@ Defining Types
 
   - **Explicit Annotation**
 
-  .. code:: rust
+    .. code:: rust
 
-  let x: i32 = 10;
+      let x: i32 = 10;
 
   - **Type Inference**
 
-  .. code:: rust
+    .. code:: rust
 
-  let y = 10;
+    let y = 10;
 
 .. note::
 
@@ -99,12 +99,12 @@ A Note on Literals
   - You can add the type *directly* to the numeric literal
   - This is another way to tell Rust the type without a full Annotation
 
-  .. code::rust
+    .. code:: rust
 
-  // These three bindings are identical: 
-  let a: i64 = 123;  // Full annotation 
-  let b = 123_i64;   // Type suffix 
-  let c = 123i64;    // Suffix (no underscore)
+      // These three bindings are identical: 
+      let a: i64 = 123;  // Full annotation 
+      let b = 123_i64;   // Type suffix 
+      let c = 123i64;    // Suffix (no underscore)
 
 ------------------------------
 Recap: Anatomy of a Variable
@@ -112,18 +112,18 @@ Recap: Anatomy of a Variable
 
 .. code:: rust
 
-  // This is a *mutable*, *explicitly typed* variable binding.
+  // This is a *mutable*, *explicitly typed* variable binding
 
   let mut x: i32 = 10;
   |   |   |  |    |
-  |   |   |  |    +--- The **Value** (a number literal)
-  |   |   |  +-------- The **Type** (a 32-bit signed integer)
-  |   |   +------------ The **Variable Name**
-  |   +---------------- The **Mutability** keyword (makes it changeable)
-  +-------------------- The **Keyword** to declare a variable
+  |   |   |  |    +---  **Value** (a number literal)
+  |   |   |  +--------  **Type** (a 32-bit signed integer)
+  |   |   +------------ **Variable Name**
+  |   +---------------- **Mutable** (makes it changeable)
+  +-------------------- **Keyword** to declare a variable
 
 **Key Takeaways:**
 
-- :rust:`let`- creates a variable
-- :rust:`mut` - *optional*, but makes it changeable
+- :rust:`let`   - creates a variable
+- :rust:`mut`   - *optional*, but makes it changeable
 - :rust:`: i32` - *optional* because Rust can infer it
