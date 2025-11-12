@@ -49,9 +49,9 @@ Styles
 * :ada:`code is highlighted`
 * :command:`commands are emphasised --like-this`
 
-=======================================
-GNAT Static Analysis Suite (GNAT SAS)
-=======================================
+============================
+GNAT Static Analysis Suite
+============================
 
 --------------------------
 What Is Static Analysis?
@@ -88,6 +88,7 @@ How Does Static Analysis Save Money?
 What Is GNAT SAS?
 -------------------
 
+* :dfn:`SAS` |rightarrow| Static Analysis Suite
 * Set of analysis engines with complementary capabilities
 
 * Able to detect range of issues spanning from breaking coding style standards to deep logic errors

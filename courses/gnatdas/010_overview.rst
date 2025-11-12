@@ -49,9 +49,9 @@ Styles
 * :ada:`code is highlighted`
 * :command:`commands are emphasised --like-this`
 
-========================================
-GNAT Dynamic Analysis Suite (GNAT DAS)
-========================================
+=============================
+GNAT Dynamic Analysis Suite
+=============================
 
 ---------------------------
 What Is Dynamic Analysis?
@@ -68,6 +68,7 @@ What Is Dynamic Analysis?
 What Is GNAT DAS?
 -------------------
 
++ :dfn:`DAS` |rightarrow| Dynamic Analysis Suite
 + Tools that can work together to analyze code execution
 
   + :toolname:`GNATcoverage`
