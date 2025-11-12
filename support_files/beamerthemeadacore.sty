@@ -112,6 +112,63 @@
   \vspace{0.2cm}%
 }
 
+
+%========================================================
+% Document title page with boxed title
+%========================================================
+\setbeamerfont{title}{size=\Huge,series=\bfseries}
+\setbeamertemplate{title page}{%
+  \begin{centering}
+    \vfill
+    \begin{beamercolorbox}[sep=1em,rounded=true,shadow=true,center]{title in head/foot}
+      \vbox to 4ex{%
+        \vfil
+        \hbox{\usebeamerfont{title}\inserttitle}%
+        \vfil
+      }%
+    \end{beamercolorbox}
+    \vfill
+  \end{centering}
+}
+
+
+%========================================================
+% Section title page with boxed title
+%========================================================
+\setbeamerfont{section title}{size=\huge,series=\bfseries}
+\setbeamertemplate{section page}{%
+  \begin{centering}
+    \vfill
+    \begin{beamercolorbox}[sep=1em,rounded=true,shadow=true,center]{section title}
+      \vbox to 4ex{%
+        \vfil
+        \hbox{\usebeamerfont{section title}\insertsection}%
+        \vfil
+      }%
+    \end{beamercolorbox}
+    \vfill
+  \end{centering}
+}
+
+%========================================================
+% Subsection title page with boxed title
+%========================================================
+\setbeamerfont{subsection title}{size=\LARGE,series=\bfseries}
+\setbeamertemplate{subsection page}{%
+  \begin{centering}
+    \vfill
+    \begin{beamercolorbox}[sep=1em,rounded=true,shadow=true,center]{section title}
+      \vbox to 4ex{%
+        \vfil
+        \hbox{\usebeamerfont{subsection title}\insertsubsection}%
+        \vfil
+      }%
+    \end{beamercolorbox}
+    \vfill
+  \end{centering}
+}
+
+
 %========================================================
 % Bullet colors
 %========================================================
