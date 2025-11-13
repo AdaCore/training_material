@@ -35,6 +35,7 @@ Array Types
 .. include:: 050_array_types/01-introduction.rst
 .. include:: 050_array_types/02-constrained_array_types.rst
 .. include:: 050_array_types/03-unconstrained_array_types.rst
+.. include:: 050_array_types/04-strings.rst
 .. include:: 050_array_types/05-attributes.rst
 .. include:: 050_array_types/06-array_operations.rst
 .. include:: 050_array_types/07-looping_over_array_components.rst
