@@ -14,7 +14,7 @@ procedure Main is
  
       --$ begin cut
       if A1 /= null then
-      -- Can always check a n access for :ada:`null`
+      -- Can always check an access for :ada:`null`
       --$ end cut
         null;
       end if;

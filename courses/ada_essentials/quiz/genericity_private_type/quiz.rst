@@ -24,7 +24,7 @@ D. ``if A2 - B2 /= 0 then``
 
 .. container:: animate
 
-    A. Can always check a n access for :ada:`null`
+    A. Can always check an access for :ada:`null`
     B. :ada:`T1` is incomplete, so we don't know its size
     C. Comparison of private types is allowed
     D. We do not know if :ada:`T2` allows math
