@@ -82,9 +82,9 @@ The types have widths as follows:
 -  :rust:`char` is 32 bits wide
 -  :rust:`bool` is 8 bits wide
 
-------------------------
-A Note on Literals
-------------------------
+-----------------
+Literal Formats 
+-----------------
 
 - Rust provides a few ways to make values easier to read
 
@@ -99,7 +99,7 @@ A Note on Literals
 - **Type Suffixes**
 
   - You can add the type *directly* to the numeric literal
-  - This is another way to tell Rust the type without a full Annotation
+  - This is another way to tell Rust the type without a full annotation
 
     .. code:: rust
 
@@ -107,6 +107,123 @@ A Note on Literals
       let a: i64 = 123;  // Full annotation 
       let b = 123_i64;   // Type suffix 
       let c = 123i64;    // Suffix (no underscore)
+
+---------------------------
+Utilizing Different Bases 
+---------------------------
+
+- Integers can be expressed in different bases
+
+- They all represent the same value to the computer 
+
+.. list-table::
+   :header-rows: 1
+
+   * - Base
+     - Syntax
+     - Example
+
+   * - Decimal
+     - Standard
+     - :rust:`98_222`
+
+   * - Hex
+     - :rust:`0x`
+     - :rust:`0xff`
+
+   * - Octal
+     - :rust:`0o`
+     - :rust:`0o77`
+
+   * - Binary
+     - :rust:`0b`
+     - :rust:`0b1111_0000`
+
+   * - Byte
+     - :rust:`b` (:rust:`u8`` only)
+     - :rust:`b'A'`
+
+--------------------
+Numeric Strictness
+--------------------
+
+- Rust does **not** automatically convert types for you
+
+.. code:: rust
+
+  let my_int: i32 = 10;
+  let my_float: f64 = 5.5;
+
+  // will not compile!
+  let sum = my_int + my_float;
+
+  // "as" tells the compiler to interpret my_int as f64
+  let sum = my_int as f64 + b;
+
+.. tip::
+
+  Remember: Rust forces you to be **intentional**. Applying
+  :rust:`as` to a variable makes you think before doing.
+
+--------------------------
+The char Type is Special
+--------------------------
+
+- :rust:`char` is **4 bytes** in Rust (as opposed to 1 byte in other langauges)
+
+- It can hold almost any character from any language (including emojis!)
+
+- Use single quotes (:rust:`' '`) for a :rust:`char`
+
+.. code:: rust
+
+  fn main() {
+      // Note the SINGLE quotes for chars
+      let letter: char = 'a';
+      let accented: char = 'é';
+      let japanese: char = '日';
+      let emoji: char = '🦀'; 
+
+      println!("{letter} {accented} {japanese} {emoji}");
+  }
+
+--------------------------
+Conditions Must be bool
+--------------------------
+
+- Some languages use numbers (0, 1) to express boolean values (false, true)
+
+- Rust is strict: an :rust:`if` statement **must** be given a true :rust:`bool` value
+
+  - Numbers are not allowed
+
+- This code will **not** compile 
+
+  .. code:: rust
+
+    fn main() {
+      let score = 10;
+
+      // ❌ ERROR: expected `bool`, found integer
+      // This is not valid Rust!
+      if score {
+          println!("You win!");
+      }
+    }
+
+- This code is valid
+
+  .. code:: rust
+
+    fn main() {
+      let score = 10;
+
+      // ✅ CORRECT:
+      // The expression `score > 0` evaluates to `true`
+      if score > 0 {
+          println!("You win!");
+      }
+    }
 
 ------------------------------
 Recap: Anatomy of a Variable
