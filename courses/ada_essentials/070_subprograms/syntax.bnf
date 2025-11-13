@@ -29,9 +29,6 @@ parameter_and_result_profile ::=
 --|function_specification_syntax_end
 
 --|subprogram_specification_syntax_begin
-subprogram_name ::=
- [parent_unit_name . ]defining_identifier
-
 parameter_profile ::= 
    [(parameter_specification {; parameter_specification})]
 
