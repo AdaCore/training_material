@@ -63,12 +63,16 @@ Bounds Must Satisfy Type Constraints
 * :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
+   :number-lines: 1
 
    type Index is range 1 .. 100;
    type Char_Arr is array (Index range <>) of Character;
-   ...
-   Wrong : Char_Arr (0 .. 10);  -- run-time error
-   OK : Char_Arr (50 .. 75);
+   Good : Char_Arr (50 .. 75);
+   Bad  : Char_Arr (0 .. 10); -- run-time error
+
+.. container:: latex_environment tiny
+
+  :error:`example.adb:5:21: warning: static value out of range of type "Index" defined at line 2`
 
 ------------------
 Null Index Range
@@ -83,15 +87,19 @@ Null Index Range
   * Provided values are within the index's base type
 
   .. code:: Ada
+    :number-lines: 2
 
-   type Index_T is range 1 .. 100;
-   --  Index_T'Size = 8
+    type Index_T is range 1 .. 100; --  Index_T'Size = 8
 
-   type Array_T is array (Index_T range <>) of Integer;
+    type Array_T is array (Index_T range <>) of Integer;
 
-   Typical_Empty_Array : Array_T (1 .. 0);
-   Weird_Empty_Array   : Array_T (123 .. -5);
-   Illegal_Empty_Array : Array_T (999 .. 0);
+    Typical_Empty_Array : Array_T (1 .. 0);
+    Weird_Empty_Array   : Array_T (123 .. -5);
+    Bad_Empty_Array     : Array_T (999 .. 0);
+
+  .. container:: latex_environment scriptsize
+
+    :error:`example.adb:8:35: error: value not in range of type "Index_T" defined at line 2`
 
 * When the index type is a single-valued enumerated type, no empty array is possible
 

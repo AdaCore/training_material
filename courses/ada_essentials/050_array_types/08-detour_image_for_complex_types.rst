@@ -113,6 +113,3 @@ Using the 'Image Attribute
     :command:`YELLOW=>TRUE`
 
     :command:`GREEN=>FALSE`
-
-* Note this redefinition can be used on any type, even the scalars that have always had the attribute
-
