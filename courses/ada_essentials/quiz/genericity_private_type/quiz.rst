@@ -11,16 +11,17 @@
        A2, B2 : T2;
     procedure G_P;
     procedure G_P is
+       Flag : Boolean;
     begin
        -- Complete here
     end G_P;
 
 Which of the following statement(s) is (are) legal for ``G_P``'s body?
 
-A. :answermono:`if A1 /= null then`
-B. ``if A1.all'Size > 32 then``
-C. :answermono:`if A2 = B2 then`
-D. ``if A2 - B2 /= 0 then``
+A. :answermono:`Flag := A1 /= null`
+B. ``Flag := A1.all'Size > 32``
+C. :answermono:`Flag := A2 = B2`
+D. ``Flag := A2 - B2 /= 0``
 
 .. container:: animate
 

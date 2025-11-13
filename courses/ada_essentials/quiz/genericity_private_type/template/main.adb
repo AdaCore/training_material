@@ -8,34 +8,27 @@ procedure Main is
       A2, B2 : T2;
    procedure G_P;
    procedure G_P is
+      Flag : Boolean;
    begin
       -- Complete here
    --$ end question
  
       --$ begin cut
-      if A1 /= null then
-      -- Can always check an access for :ada:`null`
+      Flag := A1 /= null;
+      -- Can always check a n access for :ada:`null`
       --$ end cut
-        null;
-      end if;
       --$ begin cut
-      if A1.all'Size > 32 then
+      Flag := A1.all'Size > 32;
       -- :ada:`T1` is incomplete, so we don't know its size
       --$ end cut
-        null;
-      end if;
       --$ begin cut
-      if A2 = B2 then
+      Flag := A2 = B2;
       -- Comparison of private types is allowed
       --$ end cut
-        null;
-      end if;
       --$ begin cut
-      if A2 - B2 /= 0 then
+      Flag := A2 - B2 /= 0;
       -- We do not know if :ada:`T2` allows math
       --$ end cut
-        null;
-      end if;
 
    --$ line question
    end G_P;
