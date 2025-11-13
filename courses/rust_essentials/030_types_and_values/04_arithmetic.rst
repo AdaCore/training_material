@@ -6,6 +6,39 @@ Arithmetic
 Arithmetic
 ------------
 
+- Rust standard arithmetic operators, in order of precedence (highest to lowest)
+
+   :Multiplicative: **\*** :nbsp:` ` **/** :nbsp:` `   **%**
+   :Additive:  **+** :nbsp:` ` **-**
+   :Remainder/Modulo: **%** :nbsp:` `   **-**
+   :Addition: **+** :nbsp:` `   **/** :nbsp:` `   :ada:`mod` :nbsp:` `   :ada:`rem`
+   :Subtraction: **-** :nbsp:` `   :ada:`abs` 
+
+.. note::
+
+    Exponentiation (:ada:`**`) result will be a signed integer
+
+       - Power **must** be :ada:`Integer` ``>= 0``
+
+  - :rust:`+` (Addition)
+  - :rust:`-` (Subtraction)
+  - :rust:`*+*` (Multiplication)
+  - :rust:`/` (Division)
+  - :rust:`%` (Remainder / Modulo)
+
+- These operators follow standard mathematical precedence
+
+  - Parentheses
+  - Exponents
+  - Multiplication
+  - Division
+  - Addition
+  - Subtraction
+
+------------
+Arithmetic
+------------
+
 .. code:: rust
 
    fn interproduct(a: i32, b: i32, c: i32) -> i32 {
