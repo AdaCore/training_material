@@ -178,12 +178,8 @@ The char Type is Special
 .. code:: rust
 
   fn main() {
-      // Note the SINGLE quotes for chars
       let letter: char = 'a';
       let accented: char = 'é';
-      let emoji: char = '🦀'; 
-
-      println!("{letter} {accented} {japanese} {emoji}");
   }
 
 --------------------------
@@ -203,7 +199,7 @@ Conditions Must be bool
     fn main() {
       let score = 10;
 
-      // ❌ ERROR: expected `bool`, found integer
+      // ERROR: expected `bool`, found integer
       // This is not valid Rust!
       if score {
           println!("You win!");
@@ -217,7 +213,7 @@ Conditions Must be bool
     fn main() {
       let score = 10;
 
-      // ✅ CORRECT:
+      // CORRECT:
       // The expression `score > 0` evaluates to `true`
       if score > 0 {
           println!("You win!");
