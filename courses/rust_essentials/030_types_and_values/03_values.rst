@@ -181,7 +181,6 @@ The char Type is Special
       // Note the SINGLE quotes for chars
       let letter: char = 'a';
       let accented: char = 'é';
-      let japanese: char = '日';
       let emoji: char = '🦀'; 
 
       println!("{letter} {accented} {japanese} {emoji}");
