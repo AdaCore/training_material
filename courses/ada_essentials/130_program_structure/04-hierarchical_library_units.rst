@@ -99,22 +99,19 @@ Programming by Extension
 Extension Can See Private Section
 -----------------------------------
 
-* With certain limitations
-
 .. code:: Ada
 
    with Ada.Text_IO;
    package body Complex.Utils is
-     procedure Put (C : in Number) is
-     begin
-       Ada.Text_IO.Put (As_String (C));
-     end Put;
-     function As_String (C : Number) return String is
+     function As_String (Item : Number) return String is
      begin
        -- Real_Part and Imaginary_Part are
        -- visible to child's body
-       return "(" & Float'Image (C.Real_Part) & ", " &
-              Float'Image (C.Imaginary_Part) & ")";
+       return "(" &
+              Item.Real_Part'Image &
+              ", " &
+              Item.Imaginary_Part'Image &
+              ")";
      end As_String;
    ...
    end Complex.Utils;
@@ -202,7 +199,7 @@ Hierarchical Visibility
       .. code:: Ada
 
         package OS.Child is
-          -- Some code
+          type Child_T is private;
         private 
           type Child_T is record
             Field : OS_Private_T;
@@ -216,9 +213,9 @@ Hierarchical Visibility
       .. code:: Ada
 
         package OS.Sibling is
-          -- Some code
+          type Sibling_T is private;
         private 
-          type Child_T is record
+          type Sibling_T is record
             Field1 : OS_Private_T; -- OK
             Field2 : Child_T;      -- Error
           end record;
@@ -289,7 +286,7 @@ Example of Visibility As If Nested
 
 .. code:: Ada
 
-   with A.Foo; --required
+   with A.Foo; -- required
    package body A.Bar is
       ...
       -- 'Foo' is directly visible because of the

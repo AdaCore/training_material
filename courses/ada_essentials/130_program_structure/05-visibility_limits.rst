@@ -11,18 +11,20 @@ Parents Do Not Know Their Children!
    - May be created well after parent
    - Parent doesn't know if/when child packages will exist
 
-* Alternatively, language *could have* been designed to grant access when declared
+* Parent body can reference children
 
-   - Like ``friend`` units in C++
-   - But would have to be prescient!
+  - Typical method of parsing out complex processes
 
-      * Or else adding children requires modifying parent
+  .. code:: Ada
 
-   - Hence too restrictive
-
-* Note: Parent body can reference children
-
-   - Typical method of parsing out complex processes
+     with Calculator.Helper;
+     package Calculator is
+        function Calculate (Operator : String;
+                            Left, Right : Some_T)
+                            return Some_T is
+        begin
+           if Operator = "+" then
+              return Helper.Plus (Left, Right);
 
 ----------------------------------------------
 Correlation to C++ Class Visibility Controls
