@@ -104,6 +104,37 @@ Referencing the Stack
    -- Compile error: No address available for parameter
    Example (123);
 
+-----------------------------------
+Deallocating General Access Types
+-----------------------------------
+
+.. code:: Ada
+
+   type Access_T is access all Integer;
+   procedure Free is new Ada.Unchecked_Deallocation (Integer, Access_T);
+   Object : aliased Integer := 0;
+   Pointer : Access_T;
+
+* :ada:`Ada.Unchecked_Deallocation` can be safely used on a general
+  access type when it is used with :ada:`new`
+
+  .. code:: Ada
+
+    Pointer := new Integer'(1234);
+    Free (Pointer);
+
+* But behavior is **undefined** otherwise
+
+  .. code:: Ada
+
+    Pointer := Object'Access;
+    Free (Pointer);
+
+.. tip::
+
+   If you need to create/free memory, best to use pool-specific
+   access types
+
 ------
 Quiz
 ------
