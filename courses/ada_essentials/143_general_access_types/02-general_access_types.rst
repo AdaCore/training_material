@@ -29,7 +29,7 @@ Using General Access Types
 
   .. code:: Ada
 
-    Alloc2 : Gen_Access_2 : Gen_Access_2 (Allocated);
+    Alloc2 : Gen_Access_2 := Gen_Access_2 (Allocated);
 
 -----------------------
 Referencing the Stack
