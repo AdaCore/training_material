@@ -66,7 +66,7 @@ Specifying Constraints Via Initial Value
        of Character;
 
    Prompt2 : Another_String := "Hello World!";
-   -- M'First is Integer'First
+   -- Prompt2'First is Integer'First
 
 -----------------
 String Literals

@@ -11,7 +11,7 @@ Array Attributes
    :O'Length: number of array components
    :O'First: value of lower index bound
    :O'Last: value of upper index bound
-   :O'Range: another way of saying :ada:`T'First` .. :ada:`T'Last`
+   :O'Range: another way of saying :ada:`O'First` .. :ada:`O'Last`
 
 * Meaningfully applied to constrained array types
 
