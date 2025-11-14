@@ -82,18 +82,28 @@ Freeze Point for Tagged Types
 * Declaring tagged type primitives past freeze point is **forbidden**
 
 .. code:: Ada
+   :number-lines: 3
 
    type Root is tagged null record;
-
    procedure Prim (V : Root);
 
    type Child is new Root with null record; -- freeze root
 
-   procedure Prim2 (V : Root); -- illegal
+   procedure Prim2 (V : Root); -- compile error
 
-   V : Child; --  freeze child
+   V : Child; -- freeze child
 
-   procedure Prim3 (V : Child); -- illegal
+   procedure Prim3 (V : Child); -- compile error
+
+.. container:: latex_environment scriptsize
+
+  :error:`example.ads:6:04: warning: no primitive operations for "Root" after this line`
+
+  :error:`example.ads:8:14: error: this primitive operation is declared too late`
+
+  :error:`example.ads:10:04: warning: no primitive operations for "Child" after this line`
+
+  :error:`example.ads:12:14: error: this primitive operation is declared too late`
 
 ------------------
 Tagged Aggregate
@@ -113,21 +123,9 @@ Tagged Aggregate
 
        V : Child := (F1 => 0, F2 => 0);
 
-* For **private types** use :dfn:`aggregate extension`
-
-    - Copy of a parent instance
-    - Use :ada:`with null record` absent new components
-
-   .. code:: Ada
-
-      V2 : Child := (Parent_Instance with F2 => 0);
-      V3 : Empty_Child := (Parent_Instance with null record);
-
-*Information on aggregates of private extensions appears at the end of this module*
-
----------------------
-Overriding Indicators
----------------------
+-------------------------
+"Overriding" Indicators
+-------------------------
 
 * Optional :ada:`overriding` and :ada:`not overriding` indicators
 
@@ -176,6 +174,12 @@ Prefix Notation
             Prim1 (X);
          end;
 
+.. note::
+
+  This is also called :dfn:`distinguished receiver` notation.
+
+  Very common usage in object-oriented idioms
+
 ..
   language_version 2005
 
@@ -184,12 +188,6 @@ Quiz
 ------
 
 .. include:: ../quiz/tagged_primitives/quiz.rst
-
-------
-Quiz
-------
-
-.. include:: ../quiz/tagged_dot_and_with/quiz.rst
 
 ------
 Quiz

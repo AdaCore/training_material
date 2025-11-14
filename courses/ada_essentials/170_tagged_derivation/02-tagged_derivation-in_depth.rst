@@ -67,18 +67,28 @@ Freeze Point for Tagged Types
 * Declaring tagged type primitives past freeze point is **forbidden**
 
 .. code:: Ada
+   :number-lines: 3
 
    type Root is tagged null record;
-
    procedure Prim (V : Root);
 
    type Child is new Root with null record; -- freeze root
 
-   procedure Prim2 (V : Root); -- illegal
+   procedure Prim2 (V : Root); -- compile error
 
-   V : Child; --  freeze child
+   V : Child; -- freeze child
 
-   procedure Prim3 (V : Child); -- illegal
+   procedure Prim3 (V : Child); -- compile error
+
+.. container:: latex_environment tiny
+
+  :error:`example.ads:6:04: warning: no primitive operations for "Root" after this line`
+
+  :error:`example.ads:8:14: error: this primitive operation is declared too late`
+
+  :error:`example.ads:10:04: warning: no primitive operations for "Child" after this line`
+
+  :error:`example.ads:12:14: error: this primitive operation is declared too late`
 
 ---------------------
 Overriding Indicators
