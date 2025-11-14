@@ -25,5 +25,7 @@ AdaCore Tools
 
 - Tooling pairs seamlessly with :toolname:`VS Code`
 
-*Note: the* :url:`Rust Playground <https://play.rust-lang.org/>` *provides an easy*
-*way to run short Rust programs, quickly!*
+.. note::
+
+  The :url:`Rust Playground <https://play.rust-lang.org/>` provides an easy
+  way to run short Rust programs, quickly!
