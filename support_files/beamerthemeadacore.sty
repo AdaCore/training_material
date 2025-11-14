@@ -37,18 +37,11 @@
 \setbeamercolor{background canvas}{bg=adacore_background}
 
 %========================================================
-% Header (headline)
+% Cascading header
 %========================================================
-%========================================================
-% Cascading header with gradient colors
-%========================================================
-\definecolor{HeaderLine1}{RGB}{185,198,215}  % background
-\definecolor{HeaderLine2}{RGB}{101,119,146}  % halfway
-\definecolor{HeaderLine3}{RGB}{18,50,76}     % foreground
-
 \setbeamercolor{titleline}{fg=adacore_lovelace,bg=adacore_paleblue}
-\setbeamercolor{sectionline}{fg=white,bg=adacore_midblue}
-\setbeamercolor{subsectionline}{fg=white,bg=adacore_orange}
+\setbeamercolor{sectionline}{fg=adacore_paleblue,bg=adacore_lovelace}
+\setbeamercolor{subsectionline}{fg=adacore_lovelace,bg=adacore_paleblue}
 
 \setbeamertemplate{headline}{%
   % Document title
@@ -104,7 +97,7 @@
 %========================================================
 % Frame title spacing
 %========================================================
-\setbeamercolor{frametitlebox}{fg=white,bg=HeaderLine3}  % dark blue
+\setbeamercolor{frametitlebox}{fg=white,bg=adacore_lovelace}
 \setbeamertemplate{frametitle}{%
   \begin{beamercolorbox}[sep=0.5em,rounded=true,shadow=true,wd=\textwidth]{frametitlebox}%
     \usebeamerfont{frametitle}\insertframetitle
