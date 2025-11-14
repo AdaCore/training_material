@@ -61,7 +61,8 @@ Extra Object-Level Operations
 
 * Comparison (for discrete component types)
 
-   * Not for all scalars
+   * Equality for all scalars
+   * Inequality for all discrete types
 
 * Logical (for :ada:`Boolean` component type)
 * Slicing
