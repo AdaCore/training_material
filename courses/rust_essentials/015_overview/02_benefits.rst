@@ -39,6 +39,7 @@ As expressive and ergonomic as other higher-level languages
    -  Built-in dependency manager
    -  Built-in support for testing
    -  Excellent Language Server Protocol support
+   -  OOP-style power without the class-hierarchy baggage
 
 ----------------------
 Rust Compared to ...
