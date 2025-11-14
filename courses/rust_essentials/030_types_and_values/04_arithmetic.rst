@@ -2,77 +2,78 @@
 Arithmetic
 ============
 
-------------
-Arithmetic
-------------
+--------------------
+Standard Operators
+--------------------
 
 - Rust standard arithmetic operators, in order of precedence (highest to lowest)
 
-   :Multiplicative: **\*** :nbsp:` ` **/** :nbsp:` `   **%**
+   :Multiplicative: **\*** :nbsp:` ` **/** :nbsp:` ` **%**
    :Additive:  **+** :nbsp:` ` **-**
-   :Remainder/Modulo: **%** :nbsp:` `   **-**
-   :Addition: **+** :nbsp:` `   **/** :nbsp:` `   :ada:`mod` :nbsp:` `   :ada:`rem`
-   :Subtraction: **-** :nbsp:` `   :ada:`abs` 
 
 .. note::
 
-    Exponentiation (:ada:`**`) result will be a signed integer
+    Rust does not have the :rust:`++`` or :rust:`--`` increment/decrement operators
 
        - Power **must** be :ada:`Integer` ``>= 0``
 
-  - :rust:`+` (Addition)
-  - :rust:`-` (Subtraction)
-  - :rust:`*+*` (Multiplication)
-  - :rust:`/` (Division)
-  - :rust:`%` (Remainder / Modulo)
+.. code:: rust
 
-- These operators follow standard mathematical precedence
+  fn main() {
+      let sum = 5 + 10;            // 15
+      let difference = 95.5 - 4.3; // 91.2
+      let product = 4 * 30;        // 120
+      
+      // Integer division truncates (rounds down)
+      let quotient = 7 / 3;        // 2 (not 2.33...)
+      
+      let remainder = 7 % 3;       // 1
+  }
 
-  - Parentheses
-  - Exponents
-  - Multiplication
-  - Division
-  - Addition
-  - Subtraction
+------------------
+Integer Overflow
+------------------
 
-------------
-Arithmetic
-------------
+- What happens if a number gets too big for its type?
 
 .. code:: rust
 
-   fn interproduct(a: i32, b: i32, c: i32) -> i32 {
-       return a * b + b * c + c * a;
-   }
+  // u8 can only hold values from 0 to 255
+  let my_byte: u8 = 250;
+  let new_byte = my_byte + 10; // 260? This won't fit!
 
-   fn main() {
-       println!("result: {}", interproduct(120, 100, 248));
-   }
+- Rust's safe, defined behavior is to
 
---------------------
-Some Explanations
---------------------
+  - **In Debug Builds**
 
-- :rust:`interproduct` is a function - just like :rust:`main`
+    - Rust *checks* for overflow
+    - Your program will :rust:`panic!` (crash)
+    - An error will tell you exactly what happened
 
-  - Takes three integers
-  - Returns an integer
-  - Functions will be covered in more detail later.
+  - **In Release Builds**
 
-- Arithmetic is very similar to other languages, with similar precedence.
+    - Rust *does not* panic (for speed)
+    - It performs **two's complement wrapping**
+    - **Example:** For :rust:`u8`, :rust:`255 + 1` "wraps around" to :rust:`0`
 
-- Integer overflow
+------------------------------
+Handling Overflow Explicitly
+------------------------------
 
-  - In C and C++ overflow of *signed* integers is undefined
+- What if *you* want to control overflow behavior?
 
-    - Might do unknown things at runtime
+  - Rust provides explicit methods so your intent is clear
 
-  - In Rust, it's defined.
+- You should **not** rely on wrapping if you expect a calculation overflow
 
-    - Change :rust:`i32` to :rust:`i16` to see an integer overflow
-    - Panics (checked) in a debug build, wraps in a release build.
-    - Other options (overflowing, saturating, carrying) using method syntax
+- :rust:`wrapping_add()` - Performs wrapping in all Modules
 
-      .. code:: rust
+  - :rust:`127_i8.wrapping_add(1)` results in :rust:`-128`
 
-         (a * b).saturating_add(b * c).saturating_add(c * a)
+- :rust:`saturating_add()` - Clamps the value at the type's maximum or minimum
+
+  - :rust:`120_i8.saturating_add(20)` results in :rust:`127` (the max :rust:`i8`)
+
+- :rust:`overflowing_add()` - returns the value AND a :rust:`bool` indicating if overflow happened
+
+  - :rust:`100_i8.overflowing_add(50)` results in :rust:`(-106, true)`
