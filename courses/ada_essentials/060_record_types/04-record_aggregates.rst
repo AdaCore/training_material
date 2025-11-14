@@ -171,19 +171,21 @@ Aggregates with `others`
   - They must be the **exact same** type
 
 .. code:: Ada
+   :number-lines: 2
 
-   type Poly is record
-      A : Float;
+   type Integer_T is new Integer;
+   type Record_T is record
+      A       : Integer_T;
       B, C, D : Integer;
    end record;
 
-   P : Poly := (2.5, 3, others => 0);
+   Good1 : Record_T := (1, 2, others => 3);
+   Good2 : Record_T := (A => 9, others => 87);
+   Bad   : Record_T := (others => 0);
 
-   type Homogeneous is record
-      A, B, C : Integer;
-   end record;
+.. container:: latex_environment scriptsize
 
-   Q : Homogeneous := (others => 10);
+  :error:`example.adb:10:25: error: components in "others" choice must have same type`
 
 ------
 Quiz
@@ -200,7 +202,7 @@ Quiz
       Four     : Record1_T;
    end record;
 
-   Obj1 : Record2_T;
+   Obj1 : Record1_T;
    Obj2 : Record2_T;
 
 Which assignment(s) is (are) legal?
