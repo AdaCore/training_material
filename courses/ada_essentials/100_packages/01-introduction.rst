@@ -58,7 +58,7 @@ Separating Interface and Implementation
 
    - All they need is the package specification
    - Users have **no** visibility over the body
-   - Full user/interface consistency is guaranteed
+   - Full user/designer consistency is guaranteed
 
 .. code:: Ada
 
