@@ -56,4 +56,4 @@ Running Your First Program
   Finished `dev` profile [unoptimized + debuginfo] 
   target(s) in 0.01s
   Running `target\debug\hello_world.exe`
-  Hello, world!
+  Hello world!
