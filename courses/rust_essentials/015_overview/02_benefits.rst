@@ -33,7 +33,7 @@ As expressive and ergonomic as other higher-level languages
 
    -  Enums and pattern matching
    -  Generics
-   -  No overhead Foreign Function Interface (FFI)
+   -  Zero-cost Foreign Function Interface (FFI)
    -  Zero-cost abstractions
    -  Great compiler errors
    -  Built-in dependency manager
