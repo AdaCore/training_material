@@ -52,8 +52,8 @@ Supplying Index Constraints for Objects
 
   .. code:: Ada
 
-      Weekdays(Sat) := 0.0; --  Constraint error
-      Weekend(Mon)  := 0.0; --  Constraint error
+      Weekdays(Sat) := 0.0; -- Constraint error
+      Weekend(Mon)  := 0.0; -- Constraint error
 
 ---------------------------------------
 Bounds Must Satisfy Type Constraints
@@ -89,7 +89,7 @@ Null Index Range
   .. code:: Ada
     :number-lines: 2
 
-    type Index_T is range 1 .. 100; --  Index_T'Size = 8
+    type Index_T is range 1 .. 100; -- Index_T'Size = 8
 
     type Array_T is array (Index_T range <>) of Integer;
 

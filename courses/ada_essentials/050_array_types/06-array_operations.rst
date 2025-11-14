@@ -103,9 +103,9 @@ Example: Slicing with Explicit Indexes
       Iso_Date : String (1 .. 10) := "2024-03-27";
    begin
       Put_Line (Iso_Date);
-      Put_Line (Iso_Date (1 .. 4));  --  year
-      Put_Line (Iso_Date (6 .. 7));  --  month
-      Put_Line (Iso_Date (9 .. 10)); --  day
+      Put_Line (Iso_Date (1 .. 4));  -- year
+      Put_Line (Iso_Date (6 .. 7));  -- month
+      Put_Line (Iso_Date (9 .. 10)); -- day
 
 -----------------------------------
 Idiom: Named Subtypes for Indexes
@@ -130,9 +130,9 @@ Idiom: Named Subtypes for Indexes
      Iso_Date : String (Iso_Index) := "2024-03-27";
 
    begin
-     Put_Line (Iso_Date (Year));  --  2024
-     Put_Line (Iso_Date (Month)); --  03
-     Put_Line (Iso_Date (Day));   --  27
+     Put_Line (Iso_Date (Year));  -- 2024
+     Put_Line (Iso_Date (Month)); -- 03
+     Put_Line (Iso_Date (Day));   -- 27
 
 ------------------------------------
 Dynamic Subtype Constraint Example
