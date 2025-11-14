@@ -41,39 +41,94 @@ Defining Types
 
   For **type inference**, Rust infers the **default** of type (like :rust:`i32`)
 
+--------------------------
+Type Inference Explained 
+--------------------------
+
+- In most cases, you don't need to write the type
+
+- Rust will **infer** it based on the value you give it
+
+  - This is why :rust:`let apples = 5`` worked in our earlier example!
+
+- **The Default Rules**
+
+  - Integers (whole numbers) default to :rust:`i32``
+  - Floating-point (decimals) default to :rust:`f64``
+
+.. code:: rust
+
+  fn main() {
+      // Rust sees a whole number and infers i32
+      let x = 10;
+      // This is the same as writing:
+      // let x: i32 = 10;
+
+      // Rust sees a decimal and infers f64
+      let y = 2.5;
+      // This is the same as writing:
+      // let y: f64 = 2.5;
+  }
+
+--------------------------
+Inference is Smart
+--------------------------
+
+- Type inference isn't just about defaults...but also *how you use* a variable
+
+- A variable's type might not be known until later in the function
+
+.. code:: rust
+
+  fn takes_u32(n: u32) {
+      println!("u32: {n}");
+  }
+
+  fn main() {
+      // At this line, `x` is just an "unknown integer"
+      let x = 10;
+      
+      // ...Ah, NOW Rust knows!
+      // Because we are passing `x` to a function that
+      // *requires* a `u32`, Rust infers that `x`
+      // must be a `u32`
+      takes_u32(x);
+  }
 
 -------------------
 Common Data Types
 -------------------
 
-.. list-table::
-   :header-rows: 1
+.. container:: latex_environment scriptsize
 
-   * -
-     - Types
-     - Literals
+  .. list-table::
+    :header-rows: 1
 
-   * - Signed integers
-     - :rust:`i8`, :rust:`i16`, :rust:`i32`, 
-       :rust:`i64`, :rust:`i128`, :rust:`isize`
-     - :rust:`-10`, :rust:`0`, :rust:`1_000`, :rust:`123_i64`
+    * -
+      - Types
+      - Literals
 
-   * - Unsigned integers
-     - :rust:`u8`, :rust:`u16`, :rust:`u32`, :rust:`u64`, 
-       :rust:`u128`, :rust:`usize`
-     - :rust:`0`, :rust:`123`, :rust:`10_u16`
+    * - Signed integers
+      - :rust:`i8`, :rust:`i16`, :rust:`i32`, 
+        :rust:`i64`, :rust:`i128`, :rust:`isize`
+      - :rust:`-10`, :rust:`0`, :rust:`1_000`, :rust:`123_i64`
 
-   * - Floating point numbers
-     - :rust:`f32`, :rust:`f64`
-     - :rust:`3.14`, :rust:`-10.0e20`, :rust:`2_f32`
+    * - Unsigned integers
+      - :rust:`u8`, :rust:`u16`, :rust:`u32`, :rust:`u64`, 
+        :rust:`u128`, :rust:`usize`
+      - :rust:`0`, :rust:`123`, :rust:`10_u16`
 
-   * - Unicode scalar values
-     - :rust:`char`
-     - :rust:`'a'`, ':math:`\alpha`', ':math:`\infty`'
+    * - Floating point numbers
+      - :rust:`f32`, :rust:`f64`
+      - :rust:`3.14`, :rust:`-10.0e20`, :rust:`2_f32`
 
-   * - Booleans
-     - :rust:`bool`
-     - :rust:`true`, :rust:`false`
+    * - Unicode scalar values
+      - :rust:`char`
+      - :rust:`'a'`, ':math:`\alpha`', ':math:`\infty`'
+
+    * - Booleans
+      - :rust:`bool`
+      - :rust:`true`, :rust:`false`
 
 The types have widths as follows:
 

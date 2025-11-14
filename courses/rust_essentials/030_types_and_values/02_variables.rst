@@ -37,7 +37,7 @@ By Default, Variables are Immutable
 
   - Prevents accidental data assignment (especially in large programs!)
 
-  - :rust:`let` creates a **static** declaration
+  - :rust:`let` creates an **immutable** binding
 
 .. code:: rust
 
