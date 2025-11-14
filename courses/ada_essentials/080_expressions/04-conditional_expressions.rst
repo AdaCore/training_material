@@ -70,7 +70,9 @@ Result Must Be Compatible with Context
   Bad_Expression : Float :=
      (if Overtime then 1.5 else 1);
 
-:error:`example.adb:21:33: error: type of "else" incompatible with that of "then" expression`
+.. container:: latex_environment footnotesize
+
+  :error:`example.adb:21:33: error: type of "else" incompatible with that of "then" expression`
 
 -------------------------
 "If Expression" Example
