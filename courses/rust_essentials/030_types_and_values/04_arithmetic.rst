@@ -13,7 +13,7 @@ Standard Operators
 
 .. note::
 
-    Rust does not have the :rust:`++`` or :rust:`--` increment/decrement operators
+    Rust does not have the :rust:`++` or :rust:`--` increment/decrement operators
 
 .. code:: rust
 
