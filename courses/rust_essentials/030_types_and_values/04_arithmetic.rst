@@ -9,13 +9,11 @@ Standard Operators
 - Rust standard arithmetic operators, in order of precedence (highest to lowest)
 
    :Multiplicative: **\*** :nbsp:` ` **/** :nbsp:` ` **%**
-   :Additive:  **+** :nbsp:` ` **-**
+   :Additive:   **+** :nbsp:` ` **-**
 
 .. note::
 
-    Rust does not have the :rust:`++`` or :rust:`--`` increment/decrement operators
-
-       - Power **must** be :ada:`Integer` ``>= 0``
+    Rust does not have the :rust:`++`` or :rust:`--` increment/decrement operators
 
 .. code:: rust
 
@@ -44,13 +42,13 @@ Integer Overflow
 
 - Rust's safe, defined behavior is to
 
-  - **In Debug Builds**
+  - **Debug Builds**
 
     - Rust *checks* for overflow
     - Your program will :rust:`panic!` (crash)
     - An error will tell you exactly what happened
 
-  - **In Release Builds**
+  - **Release Builds**
 
     - Rust *does not* panic (for speed)
     - It performs **two's complement wrapping**
