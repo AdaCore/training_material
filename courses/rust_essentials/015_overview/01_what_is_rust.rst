@@ -13,7 +13,7 @@ What Is Rust?
 
 -  Statically compiled 
 
-   -  :rust:`rustc` uses LLVM as its backend
+   -  :toolname:`rustc` uses LLVM as its backend
 
 -  Rust supports many platforms and architectures
 
