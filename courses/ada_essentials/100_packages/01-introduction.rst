@@ -6,7 +6,7 @@ Introduction
 Packages
 ----------
 
-* Enforce separation of client from implementation
+* Enforce separation of user from implementation
 
    - In terms of compile-time visibility
    - For data
@@ -54,11 +54,11 @@ Separating Interface and Implementation
 
    - Typically in separate files
 
-* Clients can compile their code before body exists
+* Users can compile their code before body exists
 
    - All they need is the package specification
-   - Clients have **no** visibility over the body
-   - Full client/interface consistency is guaranteed
+   - Users have **no** visibility over the body
+   - Full user/interface consistency is guaranteed
 
 .. code:: Ada
 
@@ -72,12 +72,12 @@ Separating Interface and Implementation
 Uncontrolled Visibility Problem
 ---------------------------------
 
-* Clients have too much access to representation
+* Users have too much access to representation
 
    - Data
    - Type representation
 
-* Changes force clients to recode and retest
+* Changes force users to recode and retest
 * Manual enforcement is not sufficient
 * Why fixing bugs introduces new bugs!
 

@@ -10,7 +10,7 @@ Package Bodies
 
    - Obsolete if specification changed
 
-* Clients need only to relink if body changed
+* Users need only to relink if body changed
 
    - Any code that would require editing would not have compiled in the first place
 

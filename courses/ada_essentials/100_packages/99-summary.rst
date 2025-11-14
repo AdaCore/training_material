@@ -16,10 +16,10 @@ Summary
    - Information hiding
    - Abstraction
 
-* Implementation can't be corrupted by clients
+* Implementation can't be corrupted by users
 
-   - Compiler won't let clients compile references to internals
+   - Compiler won't let users compile references to internals
 
-* Bugs must be in the implementation, not clients
+* Bugs must be in the implementation, not users
 
    - Only body implementation code has to be understood
