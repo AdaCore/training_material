@@ -20,14 +20,6 @@ What Is Rust?
    -  Linux, Windows, VxWorks...
    -  x86, ARM ...   
 
--  Rust is used for a wide range of devices
-
-   -  embedded
-   -  smart displays
-   -  mobile phones
-   -  desktops
-   -  servers
-
 --------------------------------
 What Kind of Language Is Rust?
 --------------------------------
