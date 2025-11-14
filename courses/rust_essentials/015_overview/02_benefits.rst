@@ -65,6 +65,7 @@ Rust Compared to ...
 - Java
 
   - Same memory safety
+  - Avoids the “null reference” problem entirely (a major source of Java runtime bugs)
   - Fast and predictable performance
 
     - No garbage collector
