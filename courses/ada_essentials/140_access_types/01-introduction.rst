@@ -6,7 +6,9 @@ Introduction
 Access Types Design
 ---------------------
 
-* An :dfn:`access type` is used to create objects by allocating space on the heap
+* An :dfn:`access type` is a type whose values point to objects of specific type
+
+  * Can also point to subprograms, but that is not covered in this class
 
 * Access objects are associated with :dfn:`pools` of memory
 
