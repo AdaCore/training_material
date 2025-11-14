@@ -212,7 +212,6 @@ Named Format Aggregate Rules
   Aggregates for single element arrays must use named notation.
 
   .. code:: Ada
-    :number-lines: 2
 
     type Array_T is array (1..1) of Integer;
     Good : Array_T := (1 => 123);
