@@ -41,7 +41,6 @@ Things to Consider About Rust
 
   - Similar syntax
   - Statically typed
-  - No reinventing things unless absolutely necessary
 
 - Modern with full support for things like Unicode
 
