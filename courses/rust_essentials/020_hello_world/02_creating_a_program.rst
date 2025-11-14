@@ -8,7 +8,7 @@ Creating a Project
 
 * From a command prompt, execute the following in a directory of your choice
   
-  * :command:`cargo new hello_world`
+  :command:`cargo new hello_world`
 
 * A package will be created for the executable program (:dfn:`binary crate`)
 
@@ -29,7 +29,7 @@ Building Your First Program
 
 * Execute the following command
   
-  * :command:`cargo build`
+  :command:`cargo build`
 
 * You should see something like
 
@@ -47,7 +47,7 @@ Running Your First Program
 
 * Execute the following command
   
-  * :command:`cargo run`
+  :command:`cargo run`
 
 * You should see an output like the following
 
