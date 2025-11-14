@@ -62,10 +62,10 @@ Rust Compared to ...
 
   - Constructs like pattern matching and built-in dependency management
 
-- Java, Go, Python, JavaScript
+- Java
 
   - Same memory safety
-  - Fast and predictable performance like C and C++
+  - Fast and predictable performance
 
     - No garbage collector
     - Access to low-level hardware (should you need it)
