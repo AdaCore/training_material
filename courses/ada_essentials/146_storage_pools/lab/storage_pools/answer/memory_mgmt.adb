@@ -51,25 +51,25 @@ package body Memory_Mgmt is
 
 --|memory_apis_begin
    procedure Allocate
-     (Pool                       : in out Storage_Pool_T;
-      Storage_Address            : out System.Address;
-      Size_In_Storage_Components : Storage_Count;
-      Alignment                  : Storage_Count)
+     (Pool                     : in out Storage_Pool_T;
+      Storage_Address          : out System.Address;
+      Size_In_Storage_Elements : Storage_Count;
+      Alignment                : Storage_Count)
    is
       Index : Storage_Count := Find_Unused;
    begin
       Storage_Address := Memory_Block (Index)'Address;
-      Set_In_Use (Index, Size_In_Storage_Components);
+      Set_In_Use (Index, Size_In_Storage_Elements);
       if Storage_Used > Memory_Block'Last * 8 / 10 then
          Ada.Text_IO.Put_Line ("WARNING: approaching memory limit");
       end if;
    end Allocate;
 
    procedure Deallocate
-     (Pool                       : in out Storage_Pool_T;
-      Storage_Address            : System.Address;
-      Size_In_Storage_Components : Storage_Count;
-      Alignment                  : Storage_Count) is
+     (Pool                     : in out Storage_Pool_T;
+      Storage_Address          : System.Address;
+      Size_In_Storage_Elements : Storage_Count;
+      Alignment                : Storage_Count) is
    begin
       null;  -- Memory-safe - no deallocation!
    end Deallocate;
