@@ -58,7 +58,7 @@ Example for Attribute :ada:`'Old`
            -- Original Global and Original Index
            = Global'Old (Index'Old)
         and
-        -- Global after call and Index befor call
+        -- Global after call and Index before call
         Global (Index'Old)
            -- Global and Index after call
            = Global (Index);
@@ -113,9 +113,8 @@ Quiz
    Index    : Integer := 4;
    -- Set the value for the component at position Index in
    -- array Database to Value and then increment Index by 1
-   function Set_And_Move (Value :        Character;
-                          Index : in out Index_T)
-                          return Boolean
+   procedure Set_And_Move (Value :        Character;
+                           Index : in out Index_T);
       with Post => ...
 
 Given the following expressions, what is their value if they are evaluated in the postcondition
@@ -133,7 +132,7 @@ of the call :ada:`Set_And_Move ('X', Index)`?
 .. container:: animate 2-
 
    .. image:: subprogram_contracts_special_attributes-answer1.svg
-      :width: 60%
+      :width: 80%
 
 .. container:: animate 1-
 
@@ -142,7 +141,7 @@ of the call :ada:`Set_And_Move ('X', Index)`?
 .. container:: animate 3-
 
    .. image:: subprogram_contracts_special_attributes-answer2.svg
-      :width: 60%
+      :width: 80%
 
 .. container:: animate 1-
 
@@ -151,7 +150,7 @@ of the call :ada:`Set_And_Move ('X', Index)`?
 .. container:: animate 4-
 
    .. image:: subprogram_contracts_special_attributes-answer3.svg
-      :width: 60%
+      :width: 80%
 
 -------------------------------------
 Stack Example (Spec with Contracts)
