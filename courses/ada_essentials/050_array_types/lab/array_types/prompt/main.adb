@@ -1,14 +1,16 @@
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
-   type Days_Of_Week_T is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+   type Days_Of_Week_T is
+      (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
    --  type Unconstrained_Array_T is ?
    --  Constant_Array : ?
    --  Array_Var : ?
 
    --  type Name_T is ? (array of characters)
-   --  Weekly_Staff : ? (array if an array of Name_T 
-   --                    day and counter should be array indexes)
+   --                   array index should be numeric
+   --  Weekly_Staff : ? (array of an array of Name_T 
+   --                   array index should be day of the week
 
 begin
    Put_Line ("Array Types");
