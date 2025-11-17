@@ -8,22 +8,23 @@ Statements Lab
 
 * Requirements
 
-   - Create a simple program to build a time tracking sheet for the week
-   
-      + For every day of the week, print a line indicating the time of day (in hours)
+  - Create a simple program to build a sheet for tracking your daily work schedule
 
-   - Conditions for printing time
+    + For each day of the week, print a line for the time of day
+    + For Monday through Friday, there should be lines for an 8-hour work day
+    + For Saturday, there should be lines for a 4-hour work day
+    + No work on Sunday, so print a message to that effect
 
-      + Only print times for "normal" working hours
-      + No working on Sunday, so no times printed
-      + Saturday is a half-day, so only print every other time slot
 
 * Hints
 
-   - Use a :ada:`for` loop to iterate over days of week and hours
-   - Use a :ada:`case` statement to determine how start and end time
-   - Use an :ada:`if` statement to determine if you are printing a time
-   - For simplicity, feel free to use a 24-hour clock
+  - Use a :ada:`for` loop to iterate over days of week and hours
+  - Use a :ada:`case` statement to determine how many hours in a work day
+  - Use an :ada:`if` statement to determine if you are printing a time or message
+
+.. note::
+
+  For simplicity, feel free to use a 24-hour clock
 
 -------------------------
 Statements Lab Solution
