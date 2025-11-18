@@ -6,15 +6,20 @@ Lab
 Statements Lab
 ----------------
 
-* Requirements
+* Goal
 
   - Create a simple program to build a sheet for tracking your daily work schedule
 
-    + For each day of the week, print a line for the time of day
-    + For Monday through Friday, there should be lines for an 8-hour work day
-    + For Saturday, there should be lines for a 4-hour work day
-    + No work on Sunday, so print a message to that effect
+* Requirements
 
+  + For each day of the week, print a line for each hour in a working day
+  + Working hours are
+
+    + 8 hours on a regular work day (Monday-Friday)
+    + 4 hours on Saturday
+    + No work on Sunday
+
+  + If there are no hours to print, write a message instead
 
 * Hints
 
