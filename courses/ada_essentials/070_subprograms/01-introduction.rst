@@ -44,7 +44,7 @@ Recognizing Procedures and Functions
 
      Open (Source, "SomeFile.txt");
      while not End_of_File (Source) loop
-       Get (Next_Char, From => Source);
+       Next_Char := Get (From => Source);
        if Found (Next_Char, Within => Buffer) then
          Display (Next_Char);
          Increment;
