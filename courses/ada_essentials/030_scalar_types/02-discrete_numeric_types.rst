@@ -28,15 +28,36 @@ Signed Integer Types
         ...
      end;
 
----------------------
+-----------------------
 Signed Integer Bounds
----------------------
+-----------------------
 
-* Must be **static**
+* Bounds must be known at compile time
 
-   - Compiler selects **base type**
-   - Hardware-supported integer type
-   - Compilation **error** if not possible
+  *Later we'll learn about scoping and how to define dynamic bounds*
+
+* Compiler selects **base type**
+
+  - Hardware-supported integer type
+
+    .. code:: Ada
+
+      type My_Integer_T is range 0 .. 1000;
+
+  * Compiler could select a 16-, 32-, or 64-bit representation
+
+    * But not 8-bit, because it won't fit
+
+  * Compilation **error** if not possible
+
+    .. code:: ada
+      :number-lines: 3
+
+      type Big_Integer_T is range 0 .. 2**128;
+
+    .. container:: latex_environment scriptsize
+
+      :error:`main.adb:3:26: error: integer type definition bounds out of range`
 
 -------------------------------
 Predefined Signed Integer Types
