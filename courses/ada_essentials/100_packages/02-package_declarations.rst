@@ -10,12 +10,12 @@ Package Declarations
 
    - Cannot have a package without the declaration
 
-* Describe the client's interface
+* Describe the user's interface
 
-   - Declarations are exported to clients
+   - Declarations are exported to users
    - Effectively the "pin-outs" for the black-box
 
-* When changed, requires clients recompilation
+* When changed, requires users recompilation
 
    - The "pin-outs" have changed
 
@@ -56,9 +56,9 @@ Compile-Time Visibility Control
         -- implementations of exported subprograms etc.
       end Some_Package;
 
----------------------------------
-Example of Exporting to Clients
----------------------------------
+-------------------------------
+Example of Exporting to Users
+-------------------------------
 
 * Variables, types, exception, subprograms, etc.
 

@@ -98,7 +98,7 @@ Packages and "Lifetime"
 
 * So package objects are considered "global data"
 
-  * Putting variables in the spec exposes them to clients
+  * Putting variables in the spec exposes them to users
 
     * Usually - in another module we talk about data hiding in the spec
 
@@ -111,7 +111,7 @@ Controlling Data Visibility Using Packages
 * Divides global data into separate package bodies
 * Visible only to procedures and functions declared in those same packages
 
-   - Clients can only call these visible routines
+   - Users can only call these visible routines
 
 * Global change effects are much less likely
 
@@ -154,7 +154,7 @@ Controlling Type Representation Visibility
 
 * In other words, support for Abstract Data Types
 
-   - No operations visible to clients based on representation
+   - No operations visible to users based on representation
 
 * The fundamental concept for Ada
 * Requires :ada:`private` types discussed in coming section...
