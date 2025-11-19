@@ -24,8 +24,6 @@ General Access Types
 Why General Access Types?
 ---------------------------
 
-* Less restrictive than pool-specific types
-
 .. list-table::
    :header-rows: 1
 

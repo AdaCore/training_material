@@ -59,16 +59,26 @@ Referencing the Stack
 
   with Ada.Text_IO; use Ada.Text_IO;
   procedure Example is
+     -- two general access types
+     -- (point to same type, so convertable)
      type Gen_Access_T is access all Integer;
      type Gen_Access_2 is access all Integer;
+     -- Pointer to an Integer
      Acc_Object : Gen_Access_T;
+     -- Integer on the stack
      Object     : aliased Integer := 100;
+     -- Pointer to an Integer using different access type
      Other_Acc  : Gen_Access_2;
   begin
      Put_Line ("Before:" & Object'Image);
+     -- Set pointer to location of Object
      Acc_Object     := Object'Access;
+     -- Increment pointed-to Object
      Acc_Object.all := Acc_Object.all + 20;
+     -- Convert pointer of one type to pointer of
+     -- compatible type
      Other_Acc      := Gen_Access_2 (Acc_Object);
+     -- Increment pointed-to Object
      Other_Acc.all  := Other_Acc.all + 3;
      Put_Line ("After:" & Object'Image);
   end Example;
