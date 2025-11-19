@@ -15,3 +15,10 @@ Summary
 * Aggregates express literals for composite types
 
    - Can mix named and positional forms
+
+* Variant records allow flexible records that maintain strong typing
+
+  * Immutable records always use the same discriminant value
+  * Mutable records can change their discriminant
+
+    * But only when entire object is being assigned
