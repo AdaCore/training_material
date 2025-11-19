@@ -49,7 +49,7 @@ Solution: Generics
 * The programmer creates an :dfn:`instance` of the generic by specifying the actual
   entities for the placeholders
 
-  * Also referred to as an *instantiation*
+  * Also referred to as an :dfn:`instantiation`
 
 --------------------------------------
 Ada Generic Compared to C++ Template
