@@ -32,7 +32,9 @@ Information Hiding
     Compare to integrated circuits
 
     * Hides implementation details from the end **client**
-    * **Client** only sees the interface ... not how it works underneath
+    * **Client** only sees the interface 
+
+      * Not how it works underneath
 
   .. container:: column
 
