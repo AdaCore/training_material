@@ -6,8 +6,11 @@ Introduction
 Access Types Design
 ---------------------
 
-* A memory-addressed object is called an :dfn:`access type`
-* Objects are associated with :dfn:`pools` of memory
+* An :dfn:`access type` is a type whose values point to objects of a specific type
+
+  * Can also point to subprograms, but that is not covered in this class
+
+* Access objects are associated with :dfn:`pools` of memory
 
   - Different allocation / deallocation policies
   - Each access type is unique - no conversion possible
