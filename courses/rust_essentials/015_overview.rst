@@ -1,6 +1,6 @@
-**************
-Hello World!
-**************
+**********
+Overview
+**********
 
 .. container:: PRELUDE BEGIN
 
@@ -30,8 +30,12 @@ Hello World!
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
+.. container:: PRELUDE REQUIRES
+
+.. container:: PRELUDE PROVIDES
+
 .. container:: PRELUDE END
 
-.. include:: 020_hello_world/01_hello_world.rst
-.. include:: 020_hello_world/02_creating_a_program.rst
-.. include:: 020_hello_world/99_summary.rst    
+.. include:: 015_overview/01_what_is_rust.rst
+.. include:: 015_overview/02_benefits.rst
+.. include:: 015_overview/03_tooling.rst    
