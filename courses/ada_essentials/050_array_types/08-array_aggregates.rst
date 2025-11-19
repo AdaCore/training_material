@@ -207,6 +207,16 @@ Named Format Aggregate Rules
    -- This is legal
    Values : Float_Arr (1 .. N) := (1 .. N => X);
 
+.. note::
+
+  Aggregates for single element arrays must use named notation.
+
+  .. code:: Ada
+
+    type Array_T is array (1..1) of Integer;
+    Good : Array_T := (1 => 123);
+    Bad  : Array_T := (456);
+
 ------
 Quiz
 ------
