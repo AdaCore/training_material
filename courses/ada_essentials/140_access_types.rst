@@ -30,6 +30,13 @@ Access Types
 .. |gt| replace:: :math:`>`
 .. |checkmark| replace:: :math:`\checkmark`
 
+<<<<<<< HEAD
+=======
+.. container:: PRELUDE REQUIRES
+
+.. container:: PRELUDE PROVIDES
+
+>>>>>>> 0377d55e1be6171709f3cc4572b08ca3f31da222
 .. container:: PRELUDE END
 
 .. include:: 140_access_types/01-introduction.rst
