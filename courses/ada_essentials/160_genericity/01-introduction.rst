@@ -39,9 +39,17 @@ The Notion of a Pattern
 Solution: Generics
 --------------------
 
-* A :dfn:`generic unit` is a unit that does not exist
-* It is a pattern based on properties
-* The instantiation applies the pattern to certain parameters
+* A :dfn:`generic unit` is a unit that does not exist as part of the application
+
+  * It is a blueprint that can work with different types, values, and even other
+    subprograms
+  * The generic uses placeholders (*generic formal data*) instead of actual
+    entities
+
+* The programmer creates an :dfn:`instance` of the generic by specifying the actual
+  entities for the placeholders
+
+  * Also referred to as an :dfn:`instantiation`
 
 --------------------------------------
 Ada Generic Compared to C++ Template
