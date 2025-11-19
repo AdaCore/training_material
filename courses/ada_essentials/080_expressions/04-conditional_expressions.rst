@@ -47,12 +47,32 @@ If Expressions
 Result Must Be Compatible with Context
 -----------------------------------------
 
-* The `dependent_expression` parts, specifically
+* Conditional expression will be assigned to something
+
+  * Each **branch** of the conditional expression (:dfn:`dependent expression`) must be
+    of the **same type**
+  * Compile error if this is not true
 
 .. code:: Ada
+  :number-lines: 9
 
-   X : Integer :=
-       (if Day_Of_Week (Clock) > Wednesday then 1 else 0);
+  Hours_Worked : Float :=
+     (if Day_Of_Week in Weekday then 8.0 else 0.0);
+  --  Hours_Worked will be either 8.0 or 0.0
+
+  Modifier : constant String :=
+     (if Time < 1200 then "AM"
+      elsif Time > 1200 then "PM"
+      else "Noon");
+  --  Modifier will be either AM, PM, or Noon
+  --  (String lengths are different, but this is initialization)
+
+  Bad_Expression : Float :=
+     (if Overtime then 1.5 else 1);
+
+.. container:: latex_environment footnotesize
+
+  :error:`example.adb:21:33: error: type of "else" incompatible with that of "then" expression`
 
 -------------------------
 "If Expression" Example
@@ -150,52 +170,37 @@ When to Use If Expressions
 
 * When you need computation to be done prior to sequence of statements
 
-   - Allows constants that would otherwise have to be variables
+  .. code:: Ada
 
+    Shift_Differential : constant Float :=
+       (if Shift = First then 1.0
+        elsif Shift = Second then 1.25
+        else 1.5);
+   
 * When an enclosing function would be either heavy or redundant with enclosing context
 
-   - You'd already have written a function if you'd wanted one
+  .. code:: Ada
+
+    Holiday_Bonus : Float :=
+       (if Hours_Worked (Week_52) >= 40 then 100.0
+        elsif Hours_Worked (Week_51) >= 40 then 50.0
+        else 25.0);
 
 * Preconditions and postconditions
 
-   - All the above reasons
-   - Puts meaning close to use rather than in package body
+  .. code:: Ada
+
+    function Area (L, W : Float) return Float
+       with
+          Post => (if L < 0.0 or W < 0.0 then 0.0
+                   else L * W);
 
 * Static named numbers
 
-   - Can be much cleaner than using Boolean'Pos (Condition)
-
----------------------------------------
-"If Expression" Example for Constants
----------------------------------------
-
-* Starting from
-
   .. code:: Ada
 
-     End_of_Month : array (Months) of Days
-       := (Sep | Apr | Jun | Nov => 30,
-          Feb => 28,
-          others => 31);
-     begin
-       if Leap (Today.Year) then -- adjust for leap year
-         End_of_Month (Feb) := 29;
-       end if;
-       if Today.Day = End_of_Month (Today.Month) then
-     ...
-
-* Using *if expression* to call :ada:`Leap (Year)` as needed
-
-  .. code:: Ada
-
-     End_Of_Month : constant array (Months) of Days
-       := (Sep | Apr | Jun | Nov => 30,
-           Feb => (if Leap (Today.Year)
-                   then 29 else 28),
-           others => 31);
-     begin
-       if Today.Day /= End_of_Month (Today.Month) then
-     ...
+    High_Bit_Index : constant :=
+       (if Integer'Size = 32 then 31 else 63);
 
 ---------------------
 Case Expressions
@@ -258,7 +263,7 @@ Quiz
    function Sqrt (X : Float) return Float;
    F : Float;
    B : Boolean;
-   Z : Float := ...; -- assigned some Float value
+   Z : Float := Get_Length;
 
 Which statement(s) is (are) legal?
 

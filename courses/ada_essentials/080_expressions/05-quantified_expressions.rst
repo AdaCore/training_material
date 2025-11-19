@@ -6,22 +6,25 @@ Quantified Expressions
 Quantified Expressions
 ------------------------
 
-* Expressions that have a Boolean value
-* The value indicates something about a set of objects
+* Expressions that report a Boolean value about a set of objects
 
-   - In particular, whether something is True about that set
+  - Where *set* indicates an **array** or other iterable object
+
+* Value indicates if something is true about the set
+
+   - Either true for **any** element in the set or for **some** element in the set
 
 * That "something" is expressed as an arbitrary boolean expression
 
    - A so-called "predicate"
 
-* "Universal" quantified expressions
+* :dfn:`Universal quantified expression`
 
-   - Indicate whether predicate holds for all components
+   - Indicates whether predicate holds for **all** components
 
-* "Existential" quantified expressions
+* :dfn:`Existential quantified expression`
 
-   - Indicate whether predicate holds for at least one component
+   - Indicates whether predicate holds for **at least one** component
 
 ..
   language_version 2012
@@ -343,33 +346,3 @@ Quiz
 ------
 
 .. include:: ../quiz/quantified_expr_equality/quiz.rst
-
-------
-Quiz
-------
-
-.. code:: Ada
-
-   type Array1_T is array (1 .. 3) of Integer;
-   type Array2_T is array (1 .. 3) of Array1_T;
-   A : Array2_T; -- array of arrays (of 3 components each)
-
-Which expression could be used to determine if at least one of :ada:`A`'s components are sorted?
-
-A. | ``(for some El of A => (for some Idx in 2 .. 3 =>``
-   |     ``El (Idx) >= El (Idx - 1)));``
-B. | ``(for all El of A => for all Idx in 2 .. 3 =>``
-   |     ``El (Idx) >= El (Idx - 1)));``
-C. | :answermono:`(for some El of A => (for all Idx in 2 .. 3 =>`
-   |     :answermono:`El (Idx) >= El (Idx - 1)));`
-D. | ``(for all El of A => (for some Idx in 2 .. 3 =>``
-   |      ``El (Idx) >= El (Idx - 1)));``
-
-.. container:: animate
-
- A. Will be :ada:`True` if any component has two consecutive increasing values
- B. Will be :ada:`True` if every component is sorted
- C. Will be :ada:`True` if one (:ada:`some`) element of :ada:`A` where every (:ada:`all`)
-    element range 2 .. 3 is greater than the previous element
- D. Will be :ada:`True` if every component has two consecutive increasing values
-
