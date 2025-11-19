@@ -2,13 +2,6 @@
 Generic Completion
 ====================
 
-------------------------------
-Implications at Compile-Time
-------------------------------
-
-* The body needs to be visible when compiling the user code
-* Therefore, when distributing a component with generics to be instantiated, the code of the generic must come along
-
 -----------------------------
 Generic and Freezing Points
 -----------------------------
@@ -18,19 +11,24 @@ Generic and Freezing Points
 
 .. code:: Ada
 
-   generic
-      type X is private;
-   package Base is
-      V : access X;
-   end Base;
+  generic
+     type Formal_T is private;
+  package Generic_Package is
+     Pointer : access Formal_T;
+  end Generic_Package;
 
-   package P is
-      type X is private;
-      -- illegal
-      package B is new Base (X);
-   private
-      type X is null record;
-   end P;
+.. code:: Ada
+  :number-lines: 1
+
+  with Generic_Package;
+  package Example is
+     type Actual_T is private;
+     package Instance is new Generic_Package (Actual_T);
+  private
+     type Actual_T is null record;
+  end Example;
+
+:error:`example.ads:4:45: error: premature use of private type`
 
 -------------------------------
 Generic Incomplete Parameters
@@ -43,21 +41,46 @@ Generic Incomplete Parameters
 .. code:: Ada
 
    generic
-      type X; -- incomplete
-   package Base is
-      V : access X;
-   end Base;
+      type Formal_T; -- incomplete
+   package Generic_Package is
+      Pointer : access Formal_T;
+   end Generic_Package;
 
-   package P is
-      type X is private;
-      -- legal
-      package B is new Base (X);
+   package Example is
+      type Actual_T is private;
+      package Instance is new Generic_Package (Actual_T);
    private
-      type X is null record;
-   end P;
+      type Actual_T is null record;
+   end Example;
 
 ------
 Quiz
 ------
 
-.. include:: ../quiz/genericity_private_type/quiz.rst
+.. code:: Ada
+
+    generic
+       type T1;
+       A1 : access T1;
+       type T2 is private;
+       A2, B2 : T2;
+    procedure G_P;
+    procedure G_P is
+       Flag : Boolean;
+    begin
+       -- Complete here
+    end G_P;
+
+Which of the following statement(s) is (are) legal for ``G_P``'s body?
+
+A. :answermono:`Flag := A1 /= null`
+B. ``Flag := A1.all'Size > 32``
+C. :answermono:`Flag := A2 = B2`
+D. ``Flag := A2 - B2 /= 0``
+
+.. container:: animate
+
+    A. Can always check an access for :ada:`null`
+    B. :ada:`T1` is incomplete, so we don't know its size
+    C. Comparison of private types is allowed
+    D. We do not know if :ada:`T2` allows math
