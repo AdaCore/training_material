@@ -41,8 +41,8 @@ Information Hiding
 
 * Example - you can drive a car without knowing how the engine works:
 
-  * Interfaces: steering wheel, pedals, etc
-  * Implementation: engine, transmission, brake pads, etc
+  * **Interfaces:** steering wheel, pedals, etc
+  * **Implementation:** engine, transmission, brake pads, etc
 
 -------
 Views
@@ -76,7 +76,7 @@ Views
 
   - **Initial_Value** cannot be assigned a new value
 
-* Purpose: control usage in accordance with design
+* **Purpose:** control usage in accordance with design
 
    - Adherence to interface
    - Abstract Data Types
