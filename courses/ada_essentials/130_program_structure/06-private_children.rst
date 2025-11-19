@@ -13,7 +13,7 @@ Private Children
    - Thus cannot export anything outside subsystem
    - Thus have no parent visibility restrictions
 
-      + Public part of child also has visibility to ancestors' private parts
+      + Public part of child also has visibility to ancestors' private sections
 
 .. code:: Ada
 
@@ -131,7 +131,7 @@ Solution 2: Partially Import Private Unit
 
 * Public declarations can then access private siblings
 
-   - But only in their private part
+   - But only in their private section
    - Still prevents exporting contents of private unit
 
 * The specified package need not be a private unit
@@ -176,7 +176,7 @@ Combining Private and Limited Withs
 
 * Circular :ada:`limited with` clauses allowed
 * A public unit can :ada:`with` a private unit
-* With-ed unit only visible in the private part
+* With-ed unit only visible in the private section
 
 .. code:: Ada
 

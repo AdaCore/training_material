@@ -28,9 +28,9 @@ Solution: Hierarchical Library Units
 
     * Address extensibility issue
 
-       - Can extend packages with visibility to parent private part
+       - Can extend packages with visibility to parent private section
        - Extensions do not require recompilation of parent unit
-       - Visibility of parent's private part is protected
+       - Visibility of parent's private section is protected
 
     * Directly support subsystems
 
@@ -168,7 +168,7 @@ Predefined Hierarchies
 Hierarchical Visibility
 -------------------------
 
-* Children can see ancestors' visible and private parts
+* Children can see ancestors' visible and private sections
 
   - All the way up to the root library unit
 
@@ -253,7 +253,7 @@ Example of Visibility As If Nested
 
  .. container:: column
 
-    * Because children can reference ancestors' private parts
+    * Because children can reference ancestors' private sections
 
        - Code is not in executable unless somewhere in the :ada:`with` clauses
 
