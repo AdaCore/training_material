@@ -19,7 +19,7 @@ Parents Do Not Know Their Children!
 
      with Calculator.Helper;
      package Calculator is
-        function Calculate (Operator : String;
+        function Calculate (Operator    : String;
                             Left, Right : Some_T)
                             return Some_T is
         begin
