@@ -6,10 +6,14 @@ Lab
 Expressions Lab
 --------------------------
 
+* Goal
+
+  - Use expression functions to validate array contents
+
 * Requirements
 
-   - Allow the user to fill a list with dates
-   - After the list is created, use *quantified expressions* to print True/False
+   - Prompt has three arrays of dates
+   - For each set of dates, use *quantified expressions* to print True/False
 
       * If any date is not legal (taking into account leap years!)
       * If all dates are in the same calendar year
@@ -24,19 +28,14 @@ Expressions Lab
 
       * But you *must* use indexed-based iterations for others
 
-   - This is the same lab as the *Expressions* lab, we're just replacing
-     the validation functions with quantified expressions!
-
-      * So you can just copy that project and update the code!
-
 --------------------------------------------
 Expressions Lab Solution - Checks
 --------------------------------------------
 
-.. container:: source_include 080_expressions/lab/expressions/answer/main.adb :start-after:--Checks :end-before:--Checks :code:Ada :number-lines:4
+.. container:: source_include 080_expressions/lab/expressions/answer/main.adb :start-after:checks_begin :end-before:checks_end :code:Ada :number-lines:4
 
 ------------------------------------------
 Expressions Lab Solution - Main
 ------------------------------------------
 
-.. container:: source_include 080_expressions/lab/expressions/answer/main.adb :start-after:--Main :end-before:--Main :code:Ada :number-lines:37
+.. container:: source_include 080_expressions/lab/expressions/answer/main.adb :start-after:main_begin :end-before:main_end :code:Ada :number-lines:37
