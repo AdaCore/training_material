@@ -56,9 +56,9 @@ Compile-Time Visibility Control
         -- implementations of exported subprograms etc.
       end Some_Package;
 
----------------------------------
+-------------------------------
 Example of Exporting to Users
----------------------------------
+-------------------------------
 
 * Variables, types, exception, subprograms, etc.
 
