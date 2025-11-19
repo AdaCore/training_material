@@ -28,14 +28,16 @@ Storage Pool Type
 Primitive Subprogram for Allocation
 -------------------------------------
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
 
-   procedure Allocate
-     (Pool                     : in out Root_Storage_Pool;
-      Storage_Address          : out System.Address;
-      Size_In_Storage_Elements : System.Storage_Elements.Storage_Count;
-      Alignment                : System.Storage_Elements.Storage_Count)
-   is abstract;
+  .. code:: Ada
+
+    procedure Allocate
+      (Pool                     : in out Root_Storage_Pool;
+       Storage_Address          : out System.Address;
+       Size_In_Storage_Elements : System.Storage_Elements.Storage_Count;
+       Alignment                : System.Storage_Elements.Storage_Count)
+    is abstract;
 
 * Called by runtime when :ada:`new` is performed
 
@@ -53,14 +55,16 @@ Primitive Subprogram for Allocation
 Primitive Subprogram for Deallocation
 ---------------------------------------
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
 
-   procedure Deallocate
-     (Pool                     : in out Root_Storage_Pool;
-      Storage_Address          : System.Address;
-      Size_In_Storage_Elements : System.Storage_Elements.Storage_Count;
-      Alignment                : System.Storage_Elements.Storage_Count)
-   is abstract;
+  .. code:: Ada
+
+    procedure Deallocate
+      (Pool                     : in out Root_Storage_Pool;
+       Storage_Address          : System.Address;
+       Size_In_Storage_Elements : System.Storage_Elements.Storage_Count;
+       Alignment                : System.Storage_Elements.Storage_Count)
+    is abstract;
 
 * Called by runtime when :ada:`new` is performed
 
