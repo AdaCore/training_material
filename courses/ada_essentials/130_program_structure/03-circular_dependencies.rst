@@ -2,9 +2,9 @@
 Circular Dependencies
 =========================
 
-------------------------------
-Handling Cyclic Dependencies
-------------------------------
+--------------------------------
+Handling Circular Dependencies
+--------------------------------
 
 * Elaboration must be linear
 * Package declarations cannot depend on each other
@@ -13,7 +13,7 @@ Handling Cyclic Dependencies
 
 * Which package elaborates first?
 
-.. image:: cyclic_dependencies.svg
+.. image:: circular_dependencies.svg
 
 --------------------------------------
 Body-Level Cross Dependencies Are OK
@@ -49,22 +49,26 @@ Circular Dependency in Package Declaration
 
 .. code:: Ada
 
-   with Department; --  Circular dependency
+   with Department;
    package Personnel is
      type Employee is private;
-     procedure Assign (This : in Employee;
-                        To : in out Department.Section);
+     procedure Assign
+        (This : in Employee;
+         To   : in out Department.Section);
+         -- We need visiblity into Department package
    private
      type Employee is record
        Assigned_To : Department.Section;
      end record;
    end Personnel;
 
-   with Personnel; --  Circular dependency
+   with Personnel;
    package Department is
      type Section is private;
-     procedure Choose_Manager (This : in out Section;
-                                Who : in Personnel.Employee);
+     procedure Choose_Manager
+        (This : in out Section;
+         Who  : in Personnel.Employee);
+         -- We need visiblity into Personnel package
    [...]
    end Department;
 
@@ -72,9 +76,9 @@ Circular Dependency in Package Declaration
 `limited with` Clauses
 ------------------------
 
-* Solve the cyclic declaration dependency problem
+* Solve the circular declaration dependency problem
 
-   - Controlled cycles are now permitted
+   - Controlled circularity is now permitted
 
 * Provide a :dfn:`limited view` of the specified package
 
@@ -107,9 +111,9 @@ Circular Dependency in Package Declaration
 ..
   language_version 2005
 
-------------------------
-Using Incomplete Types
-------------------------
+-----------------------------
+What Is an Incomplete Type?
+-----------------------------
 
 * A type is :dfn:`incomplete` when its representation is completely unknown
 
@@ -119,12 +123,9 @@ Using Incomplete Types
       + Subprogram's completion needs the complete type
       + Actual parameter needs the complete type
 
-   - Can be a generic formal type parameters
-   - If :ada:`tagged`, may also use `'Class`
-
 .. code:: Ada
 
-   type T;
+   type Incomplete_T;
 
 * Can be declared in a **private** part of a package
 
