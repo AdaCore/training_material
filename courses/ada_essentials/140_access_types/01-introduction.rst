@@ -6,7 +6,7 @@ Introduction
 Access Types Design
 ---------------------
 
-* An :dfn:`access type` is a type whose values point to objects of specific type
+* An :dfn:`access type` is a type whose values point to objects of a specific type
 
   * Can also point to subprograms, but that is not covered in this class
 
