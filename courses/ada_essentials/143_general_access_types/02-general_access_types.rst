@@ -60,7 +60,7 @@ Referencing the Stack
   with Ada.Text_IO; use Ada.Text_IO;
   procedure Example is
      -- two general access types
-     -- (point to same type, so convertable)
+     -- (point to same type, so convertible)
      type Gen_Access_T is access all Integer;
      type Gen_Access_2 is access all Integer;
      -- Pointer to an Integer
