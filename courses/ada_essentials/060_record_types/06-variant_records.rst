@@ -11,7 +11,7 @@ Variant Record Types
   .. code:: ada
 
      type Discriminated_Record (Discriminant : Natural) is record
-        Text : String(1..Discriminant);
+        Text : String (1..Discriminant);
      end record;
 
   * All objects of :ada:`Discriminated_Record` are of the same type, regardless
