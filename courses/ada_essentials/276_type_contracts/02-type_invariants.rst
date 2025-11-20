@@ -76,31 +76,6 @@ Example Type Invariant
      ...
    end Bank;
 
--------------------------------------------
-Example Type Invariant Implementation
--------------------------------------------
-
-.. code:: Ada
-
-   package body Bank is
-   ...
-     function Total (This : Transaction_Vector)
-         return Currency is
-       Result : Currency := 0.0;
-     begin
-       for Value of This loop
-         Result := Result + Value;
-       end loop;
-       return Result;
-     end Total;
-     function Consistent_Balance (This : Account)
-         return Boolean is
-     begin
-       return Total (This.Deposits) - Total (This.Withdrawals)
-              = This.Current_Balance;
-     end Consistent_Balance;
-   end Bank;
-
 -----------------------------------
 Invariants Don't Apply Internally
 -----------------------------------
