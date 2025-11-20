@@ -19,9 +19,7 @@ Access Types Lab
 
       * Create a record to store the password string and the counter
       * Create an array of these records indexed by the login identification
-      * User should be able to retrieve a pointer to the record to modify it directly
-      * User should also be able to retrieve the record data without being able to change
-        it in the database
+      * The user should be able to retrieve a pointer to the record, either for modification or for viewing
 
    - Main program should:
 
