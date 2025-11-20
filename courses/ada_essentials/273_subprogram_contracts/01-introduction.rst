@@ -45,4 +45,4 @@ Ada Contracts
    - Can have **arbitrary** conditions, more **versatile**
    - Failure to meet a contract is an :dfn:`assertion failure`
 
-     - Typically cause an :ada:`Assertion_Error` exception to be raised
+     - Typically causes an :ada:`Assertion_Error` exception to be raised
