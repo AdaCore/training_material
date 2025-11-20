@@ -48,7 +48,7 @@ Allocations
   .. code:: Ada
 
      type String_Access_T is access String;
-     String_Ptr_1 : String_Access_T := new String(1..10);
+     String_Ptr_1 : String_Access_T := new String (1..10);
 
 * The object can also be created by copying an existing object 
 

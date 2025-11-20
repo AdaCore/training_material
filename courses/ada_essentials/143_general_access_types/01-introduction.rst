@@ -38,3 +38,8 @@ Why General Access Types?
 
   * - One global pool
     - Each type has its own pool
+
+.. note::
+
+  **General Access Types** provide the flexibility to point to data
+  anywhere: stack, heap, or global
