@@ -28,6 +28,35 @@ Standard Operators
       let remainder = 7 % 3;       // 1
   }
 
+-----------------------------
+Arithmetic Nuance: Division
+-----------------------------
+
+- The :rust:`/` operator behaves differents depending on the type
+
+  - **Integer Division - Truncation**
+
+    - When you divide two **integers**, the result is *always* an **integer**
+    - The decimal is **truncated** (cut off), not rounded
+
+.. code:: rust
+
+  fn main() {
+      let a = 7 / 3;    // Result is 2 (not 2.33...)
+      let b = 1 / 2;    // Result is 0 (not 0.5)
+  }
+
+  - **Floating Point Division**
+
+    - To get a **decimal** result, you *must* use **floating point** numbers
+    - :rust:`f64`, :rust:`f32`
+
+.. code:: rust
+
+  fn main() {
+      let a = 7.0 / 3.0;  // Result is 2.333...
+  }
+
 ------------------
 Integer Overflow
 ------------------
