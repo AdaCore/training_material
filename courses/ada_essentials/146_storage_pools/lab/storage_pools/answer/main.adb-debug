@@ -1,0 +1,24 @@
+with Database;
+with GNAT.Debug_Pools;
+with Memory_Mgmt;
+
+procedure Main is
+
+   procedure Debug is
+   begin
+      GNAT.Debug_Pools.Print_Info_Stdout (Memory_Mgmt.Storage_Pool);
+   end Debug;
+
+begin
+   Database.Add (12);
+   Debug;
+   Database.Add (34.5);
+   Debug;
+   Database.Add ('D');
+   Debug;
+   Database.Remove (34.5);
+   Debug;
+   Database.Add (45.6);
+   Debug;
+   Database.Print;
+end Main;

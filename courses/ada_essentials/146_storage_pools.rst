@@ -1,6 +1,6 @@
-**************
-Access Types
-**************
+***************
+Storage Pools
+***************
 
 .. container:: PRELUDE BEGIN
 
@@ -36,9 +36,9 @@ Access Types
 
 .. container:: PRELUDE END
 
-.. include:: 140_access_types/01-introduction.rst
-.. include:: 140_access_types/02-access_types.rst
-.. include:: 140_access_types/03-access_types_usage.rst
-.. include:: 140_access_types/04-memory_corruption.rst
-.. include:: 140_access_types/88-access_types.lab.rst
-.. include:: 140_access_types/99-summary.rst
+.. include:: 146_storage_pools/01-introduction.rst
+.. include:: 146_storage_pools/02-storage_pools.rst
+.. include:: 146_storage_pools/03-storage_pool_example.rst
+.. include:: 146_storage_pools/04-debug_pools.rst
+.. include:: 146_storage_pools/88-storage_pools.lab.rst
+.. include:: 146_storage_pools/99-summary.rst
