@@ -5,7 +5,6 @@ procedure Main is
    type Hours is mod 24;
    Start     : Hours;
    Finish    : Hours;
-   Big_Block : Boolean;
 begin
    Day_Loop :
    for Day in Days_Of_Week_T loop
@@ -16,20 +15,18 @@ begin
          when Saturday =>
             Start     := 9;
             Finish    := 13;
-            Big_Block := True;
          when Monday .. Friday =>
             Start     := 9;
             Finish    := 17;
-            Big_Block := False;
       end case;
       Put_Line (Day'Image);
       Put_Line ("======");
-      for Hour in Start .. Finish loop
-         if Big_Block and then (2 * (Hour / 2) = Hour) then
-            New_Line;
-         else
+      if Finish < Start then
+         Put_Line ("   No work");
+      else
+         for Hour in Start .. Finish loop
             Put_Line ("   " & Hour'Image & "00");
-         end if;
-      end loop;
+         end loop;
+      end if;
    end loop Day_Loop;
 end Main;
