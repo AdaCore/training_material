@@ -2,19 +2,19 @@
 Accessibility Checks
 ======================
 
---------------------------------------------
-Introduction to Accessibility Checks (1/2)
---------------------------------------------
+---------------------
+Access Type Scoping
+---------------------
 
 * The :dfn:`depth` of an object depends on its nesting within declarative scopes
 
   .. code:: Ada
 
      package body P is
-        --  Library level, depth 0
+        -- Library level, depth 0
         Object_0 : aliased Integer;
         procedure Proc is
-           --  Library level subprogram, depth 1
+           -- Library level subprogram, depth 1
            type Acc1 is access all Integer;
            procedure Nested is
               -- Nested subprogram, enclosing + 1, here 2
@@ -31,14 +31,17 @@ Introduction to Accessibility Checks (1/2)
 
 * Note: Subprogram library units are at **depth 1** and not 0
 
---------------------------------------------
-Introduction to Accessibility Checks (2/2)
---------------------------------------------
+-----------------------------
+Access Type Scoping Example
+-----------------------------
 
 * Issues with nesting
 
-.. include:: ../examples/140_access_types/nesting_issues/src/p.adb
-    :code: Ada
+.. container:: source_include 143_general_access_types/examples/accessibility_checks/nesting_example.adb :code:Ada :number-lines:1
+
+:color-red:`nesting_example.adb:12:23: error: non-local pointer cannot point to local object`
+
+:color-red:`nesting_example.adb:17:39: error: cannot convert local pointer to non-local access type`
 
 * To avoid having to face these issues, avoid nested access types
 
@@ -48,16 +51,18 @@ Dynamic Accessibility Checks
 
 * Following the same rules
 
-    - Performed dynamically by the runtime
+  - Performed dynamically by the runtime
+
+* Runtime error when scoping is invalid but compiler could not detect it
 
 * Lots of possible cases
 
-    - New compiler versions may detect more cases
-    - Using access always requires proper debugging and reviewing
+  - New compiler versions may detect more cases
+  - Using access always requires proper debugging and reviewing
 
-.. container:: source_include examples/140_access_types/dynamic_accessibility_check/src/main.adb :start-after:--start_snippet :end-before:--end_snippet :code:Ada :number-lines:3
+.. container:: source_include 143_general_access_types/examples/accessibility_checks/dynamic_accessibility.adb :code:Ada :number-lines:4 :start-after:snippet_begin :end-before:snippet_end
 
-:command:`raised PROGRAM_ERROR : main.adb:9 accessibility check failed`
+:color-red:`raised PROGRAM_ERROR : dynamic_accessibility.adb:12 accessibility check failed`
 
 -------------------------------------
 Getting Around Accessibility Checks
@@ -69,36 +74,20 @@ Getting Around Accessibility Checks
 
   .. code:: Ada
 
-     type Acc is access all Integer;
-     G : Acc;
-     procedure P is
-        V : aliased Integer;
+     type Gen_Access_T is access all Integer;
+     Global_Acc : Gen_Access_T;
+     procedure Example is
+        Local : aliased Integer;
      begin
-        G := V'Unchecked_Access;
+        Global_Acc := Local'Unchecked_Access;
         ...
-        Do_Something (G.all);
-        G := null; -- This is "reasonable"
-     end P;
+        Do_Something (Global_Acc.all);
+        Global_Acc := null; -- This is "reasonable"
+     end Example;
 
 .. container:: speakernote
 
    Not the best way to write code
-
--------------------------------------------
-Using Access Types for Recursive Structures
--------------------------------------------
-
-* It is not possible to declare recursive structure
-* But there can be an access to the enclosing type
-
-.. code:: Ada
-
-   type Cell; -- partial declaration
-   type Cell_Access is access all Cell;
-   type Cell is record -- full declaration
-      Next       : Cell_Access;
-      Some_Value : Integer;
-   end record;
 
 ------
 Quiz

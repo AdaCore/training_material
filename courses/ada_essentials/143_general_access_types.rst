@@ -1,6 +1,6 @@
-**************
-Access Types
-**************
+**********************
+General Access Types
+**********************
 
 .. container:: PRELUDE BEGIN
 
@@ -36,9 +36,8 @@ Access Types
 
 .. container:: PRELUDE END
 
-.. include:: 140_access_types/01-introduction.rst
-.. include:: 140_access_types/02-access_types.rst
-.. include:: 140_access_types/03-access_types_usage.rst
-.. include:: 140_access_types/04-memory_corruption.rst
-.. include:: 140_access_types/88-access_types.lab.rst
-.. include:: 140_access_types/99-summary.rst
+.. include:: 143_general_access_types/01-introduction.rst
+.. include:: 143_general_access_types/02-general_access_types.rst
+.. include:: 143_general_access_types/03-accessibility_checks.rst
+.. include:: 143_general_access_types/88-general_access_types.lab.rst
+.. include:: 143_general_access_types/99-summary.rst
