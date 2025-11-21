@@ -8,7 +8,7 @@ Topics Covered
 
 - **Variables:** How to create "boxes" to store data and give them names
 
-- **Values & Types:** What kind of data we can store (like numbers, text, or true/false)
+- **Common Data Types:** What kind of data we can store (like numbers, text, or true/false)
 
 - **Arithmetic:** How to perform basic math operations
 
