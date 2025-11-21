@@ -6,12 +6,12 @@ Types
 Rust is Statically Typed
 --------------------------
 
-- This is one of the most important features of Rust
+- One of the most important features
 
-- The compiler **must** know the exact **type** of every variable 
-  *before* code is even compiled
+- Compiler **must** know the exact **type** of every variable 
+at compile time
 
-- This is how Rust provides **type safety** (and prevents bugs!)
+- How Rust provides **type safety** (and prevents bugs!)
 
 .. code:: rust
 
@@ -20,10 +20,10 @@ Rust is Statically Typed
   let x: i32 = 10;
 
 ----------------
-Defining Types
+Assigning Types
 ----------------
 
-- There are two ways to tell Rust what **type** a variable is
+- Two ways to tell Rust what **type** a variable is
 
   - **Explicit Annotation**
 
@@ -49,12 +49,12 @@ Type Inference Explained
 
 - Rust will **infer** it based on the value you give it
 
-  - This is why :rust:`let apples = 5`` worked in our earlier example!
+  - This is why :rust:`let apples = 5` worked in our earlier example!
 
-- **The Default Rules**
+- **Default Rules**
 
-  - Integers (whole numbers) default to :rust:`i32``
-  - Floating-point (decimals) default to :rust:`f64``
+  - Integers (whole numbers) default to :rust:`i32`
+  - Floating-point (decimals) default to :rust:`f64`
 
 .. code:: rust
 
@@ -96,7 +96,7 @@ Inference is Smart
   }
 
 -------------------
-Common Data Types
+Common Types
 -------------------
 
 .. container:: latex_environment scriptsize
@@ -138,7 +138,7 @@ The types have widths as follows:
 -  :rust:`bool` is 8 bits wide
 
 -----------------
-Literal Formats 
+Numeric Literal Formats 
 -----------------
 
 - Rust provides a few ways to make values easier to read
@@ -195,7 +195,7 @@ Utilizing Different Bases
      - :rust:`0b1111_0000`
 
    * - Byte
-     - :rust:`b` (:rust:`u8`` only)
+     - :rust:`b` (:rust:`u8` only)
      - :rust:`b'A'`
 
 --------------------
@@ -213,22 +213,22 @@ Numeric Strictness
   let sum = my_int + my_float;
 
   // "as" tells the compiler to interpret my_int as f64
-  let sum = my_int as f64 + b;
+  let sum = my_int as f64 + my_float;
 
 .. tip::
 
-  Remember: Rust forces you to be **intentional**. Applying
+  Rust forces you to be **intentional**. Applying
   :rust:`as` to a variable makes you think before doing.
 
 --------------------------
-The char Type is Special
+The "char" Type is Special
 --------------------------
 
-- :rust:`char` is **4 bytes** in Rust (as opposed to 1 byte in other langauges)
+- :rust:`char` is **4 bytes** in Rust (as opposed to 1 byte in other languages)
 
 - It can hold almost any character from any language (including emojis!)
 
-- Use single quotes (:rust:`' '`) for a :rust:`char`
+- Use single quotes for a :rust:`char`
 
 .. code:: rust
 

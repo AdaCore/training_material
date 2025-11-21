@@ -31,7 +31,7 @@ By Default, Variables are Immutable
 
 - This is a core concept in Rust
 
-  - The compiler *itself* will generate errors on assignment
+  - The **compiler** will generate errors on assignment
 
   - Safety and reliability principles are built into the language
 
