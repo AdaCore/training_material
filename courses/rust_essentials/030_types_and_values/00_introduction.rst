@@ -6,10 +6,6 @@ Introduction
 Topics Covered
 ----------------
 
-This module will introduce the fundamental building blocks of Rust: **Types & Values**
-
-**What we'll learn:**
-
 - **Variables:** How to create "boxes" to store data and give them names
 
 - **Values & Types:** What kind of data we can store (like numbers, text, or true/false)
