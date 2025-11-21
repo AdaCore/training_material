@@ -95,9 +95,9 @@ Inference is Smart
       takes_u32(x);
   }
 
--------------------
+--------------
 Common Types
--------------------
+--------------
 
 .. container:: latex_environment scriptsize
 
@@ -137,9 +137,9 @@ The types have widths as follows:
 -  :rust:`char` is 32 bits wide
 -  :rust:`bool` is 8 bits wide
 
------------------
+-------------------------
 Numeric Literal Formats 
------------------
+-------------------------
 
 - Rust provides a few ways to make values easier to read
 
@@ -220,9 +220,9 @@ Numeric Strictness
   Rust forces you to be **intentional**. Applying
   :rust:`as` to a variable makes you think before doing.
 
---------------------------
+----------------------------
 The "char" Type is Special
---------------------------
+----------------------------
 
 - :rust:`char` is **4 bytes** in Rust (as opposed to 1 byte in other languages)
 
@@ -237,9 +237,9 @@ The "char" Type is Special
       let accented: char = 'é';
   }
 
---------------------------
+-------------------------
 Conditions Must be bool
---------------------------
+-------------------------
 
 - Some languages use numbers (0, 1) to express boolean values (false, true)
 

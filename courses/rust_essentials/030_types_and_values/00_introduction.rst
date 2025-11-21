@@ -2,9 +2,9 @@
 Introduction
 ==============
 
-------------------
+----------------
 Topics Covered
-------------------
+----------------
 
 This module will introduce the fundamental building blocks of Rust: **Types & Values**
 
