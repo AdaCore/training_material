@@ -9,12 +9,12 @@ Introduction
 * Why does fixing bugs introduce new ones?
 * Control over visibility is a primary factor
 
-   - Changes to an abstraction's internals shouldn't break users
+   - Changes to an abstraction's internals shouldn't break **clients**
    - Including type representation
 
 * Need tool-enforced rules to isolate dependencies
 
-   - Between implementations of abstractions and their users
+   - Between implementations of abstractions and their **clients**
    - In other words, "information hiding"
 
 --------------------
@@ -23,20 +23,28 @@ Information Hiding
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
-    * A design technique in which implementation artifacts are made inaccessible to users
-    * Based on control of visibility to those artifacts
+    .. raw:: latex
 
-       - A product of "encapsulation"
-       - Language support provides rigor
+       \vspace{5mm}
 
-    * Concept is "software integrated circuits"
+    Compare to integrated circuits
 
- .. container:: column
+    * Hides implementation details from the end **client**
+    * **Client** only sees the interface 
+
+      * Not how it works underneath
+
+  .. container:: column
 
     .. image:: interface_vs_implementation.svg
-       :width: 70%
+       :width: 50%
+
+* Example - you can drive a car without knowing how the engine works:
+
+  * **Interfaces:** steering wheel, pedals, etc
+  * **Implementation:** engine, transmission, brake pads, etc
 
 -------
 Views
@@ -44,19 +52,33 @@ Views
 
 * Specify legal manipulation for objects of a type
 
-   - Types are characterized by permitted values and operations
+  :ada:`type Integer_T is range 0 .. 100;`
+
+    * Can use math operators, comparison operators, assignment, ...
+
+  :ada:`type Enumerated_T is (Red, Yellow, Green);`
+
+    - Can use comparison operators, assignment, ...
 
 * Some views are implicit in language
 
-   - Mode :ada:`in` parameters have a view disallowing assignment
+  .. code:: Ada
+
+    procedure Increment (Value  : in out Integer; 
+                         Amount : in     Integer);
+
+  - **Value** has all operations available
+  - **Amount** is read-only
 
 * Views may be explicitly specified
 
-   - Disallowing access to representation
-   - Disallowing assignment
+  .. code:: Ada
 
-* Purpose: control usage in accordance with design
+    Initial_Value : constant Float := 32.0;
+
+  - **Initial_Value** cannot be assigned a new value
+
+* **Purpose:** control usage in accordance with design
 
    - Adherence to interface
    - Abstract Data Types
-

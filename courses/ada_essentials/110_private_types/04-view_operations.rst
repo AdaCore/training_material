@@ -12,7 +12,7 @@ View Operations
 
   .. container:: column
 
-    * **User** of package has **Partial** view
+    * **Client** of package has **Partial** view
 
        - Operations **exported** by package
 
@@ -23,9 +23,9 @@ View Operations
        - **Once** completion is reached
        - All operations based upon **full definition** of type
 
------------------------------
-Users Have the Partial View
------------------------------
+-------------------------------
+Clients Have the Partial View
+-------------------------------
 
 * Since they are outside package
 * Basic operations
@@ -44,39 +44,43 @@ Users Have the Partial View
      ...
    end Bounded_Stacks;
 
-------------------------
-User View's Activities
-------------------------
+--------------------------
+Client View's Activities
+--------------------------
 
 * Declarations of objects
 
    - Constants and variables
-   - Must call designer's functions for values
+   - Must call **designer's** functions for values
 
    .. code:: Ada
 
       C : Complex.Number := Complex.I;
 
 * Assignment, equality and inequality, conversions
-* Designer's declared subprograms
-* User-declared subprograms
+* **Designer's** declared subprograms
+* **Client's** -declared subprograms
 
    - Using parameters of the exported private type
-   - Dependent on designer's operations
+   - Dependent on **designer's** operations
 
------------------------------
-User View Formal Parameters
------------------------------
+-------------------------------------
+Client Manipulation of Private Data
+-------------------------------------
 
-* Dependent on designer's operations for manipulation
+* What if a **client** needs extra visiblity?
+
+  * "Show me the top of the stack"
+
+* **Client** cannot see the stack directly
+
+  * But may be able to use supplied functionality
 
    - Cannot reference type's representation
 
-* Can have default expressions of private types
-
 .. code:: Ada
 
-   -- external implementation of "Top"
+   -- client implementation of "Top"
    procedure Get_Top (
        The_Stack : in out Bounded_Stacks.Stack;
        Value : out Integer) is
@@ -95,9 +99,7 @@ Limited Private
 
     - Cannot perform assignment, copy, or equality
 
-* :ada:`limited private` can restrain user's operation
-
-    - Actual type **does not** need to be :ada:`limited`
+* :ada:`limited private` can restrain **client's** operation
 
 .. code:: Ada
 

@@ -8,24 +8,35 @@ When to Use Private Types
 
 * Implementation may change
 
-   - Allows users to be unaffected by changes in representation
+   - Allows **clients** to be unaffected by changes in representation
 
 * Normally available operations do not "make sense"
 
    - Normally available based upon type's representation
    - Determined by intent of ADT
 
-   .. code:: Ada
+.. container:: latex_environment footnotesize
 
-      A : Valve;
-      B : Valve;
-      C : Valve;
-      ...
-      C := A + B;  -- addition not meaningful
+  .. code:: Ada
 
-* Users have no "need to know"
+    package Valves is
+       type Valve_Id_T is private;
+       procedure Set (Valve : Valve_Id_T;
+                      Value : Integer);
+    private
+       type Valve_Id_T is new Integer;
+    end Valves;
 
-   - Based upon expected usage
+    with Valves; use Valves;
+    procedure Initialize is
+       Hot, Cold : Valve_Id_T;
+    begin
+       Set (Hot, Hot + Cold);
+    end Initialize;
+
+* If :ada:`Valve_Id_T` was not private, call to **Set** would be valid
+
+   - But doesn't make sense
 
 -----------------------------
 When to Avoid Private Types
@@ -35,7 +46,7 @@ When to Avoid Private Types
 
    - But that's the thinking that led to Y2K rework
 
-* If normal user interface requires representation-specific operations that cannot be provided
+* If normal **client** interface requires representation-specific operations that cannot be provided
 
    - Those that cannot be redefined by programmers
    - Would otherwise be hidden by a private type

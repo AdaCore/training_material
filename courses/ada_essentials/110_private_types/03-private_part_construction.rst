@@ -6,12 +6,12 @@ Private Part Construction
 Private Part and Recompilation
 --------------------------------
 
-* Users can compile their code before the package body is compiled or even written
+* **Clients** can compile their code before the package body is compiled or even written
 * Private part is part of the specification
 
-   - Compiler needs info from private part for users' code, e.g., storage layouts for private-typed objects
+   - Compiler needs info from private part for **clients'** code, e.g., storage layouts for private-typed objects
 
-* Thus changes to private part require user recompilation
+* Thus changes to private part require **client** recompilation
 
 ---------------------
 Declarative Regions
@@ -26,19 +26,19 @@ Declarative Regions
 
    package Foo is
       type Private_T is private;
-      procedure X (B : in out Private_T);
+      procedure Visible (B : in out Private_T);
    private
-      -- Y and Hidden_T are not visible to users
-      procedure Y (B : in out Private_T);
+      -- Hidden and Hidden_T are not visible to clients
+      procedure Hidden (Param : in out Private_T);
       type Hidden_T is ...;
       type Private_T is array (1 .. 3) of Hidden_T;
    end Foo;
 
    package body Foo is
-      -- Z is not visible to users
-      procedure Z (B : in out Private_T) is ...
-      procedure Y (B : in out Private_T) is ...
-      procedure X (B : in out Private_T) is ...
+      -- Local is not visible to clients
+      procedure Local (Param : in out Private_T) is ...
+      procedure Hidden (Param : in out Private_T) is ...
+      procedure Visible (Param : in out Private_T) is ...
     end Foo;
 
 -----------------------
@@ -65,18 +65,18 @@ Full Type Declaration
 
      .. code:: Ada
 
-        package P is
-          type T is private;
+        package Designer is
+          type Item_T is private;
           ...
         private
           type Vector is array (1.. 10)
              of Integer;
           function Initial
              return Vector;
-          type T is record
-            A, B : Vector := Initial;
+          type Item_T record
+            One, Two : Vector := Initial;
           end record;
-        end P;
+        end Designer;
 
 .. container:: speakernote
 
@@ -95,7 +95,7 @@ Deferred Constants
 
 .. code:: Ada
 
-   package P is
+   package Example is
      type Set is private;
      Null_Set : constant Set; -- exported name
      ...
@@ -104,7 +104,7 @@ Deferred Constants
      type Set is array (Index) of Boolean;
      Null_Set : constant Set :=  -- definition
         (others => False);
-   end P;
+   end Example;
 
 ------
 Quiz
@@ -112,19 +112,19 @@ Quiz
 
 .. code:: Ada
 
-   package P is
+   package Example is
       type Private_T is private;
       Object_A : Private_T;
       procedure Proc (Param : in out Private_T);
    private
       type Private_T is new Integer;
       Object_B : Private_T;
-   end package P;
+   end package Example;
 
-   package body P is
+   package body Example is
       Object_C : Private_T;
       procedure Proc (Param : in out Private_T) is null;
-   end P;
+   end Example;
 
 Which object definition(s) is (are) legal?
 
