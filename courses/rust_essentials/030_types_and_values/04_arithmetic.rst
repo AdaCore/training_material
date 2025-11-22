@@ -46,6 +46,8 @@ Arithmetic Nuance: Division
       let b = 1 / 2;    // Result is 0 (not 0.5)
   }
 
+..
+  
   - **Floating Point Division**
 
     - To get a **decimal** result, you *must* use **floating point** numbers
