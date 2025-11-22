@@ -238,44 +238,6 @@ The "char" Type is Special
       let accented: char = 'é';
   }
 
--------------------------
-Conditions Must be bool
--------------------------
-
-- Some languages use numbers (0, 1) to express boolean values (false, true)
-
-- Rust is strict: an :rust:`if` statement **must** be given a true :rust:`bool` value
-
-  - Numbers are not allowed
-
-- This code will **not** compile 
-
-  .. code:: rust
-
-    fn main() {
-      let score = 10;
-
-      // ERROR: expected `bool`, found integer
-      // This is not valid Rust!
-      if score {
-          println!("You win!");
-      }
-    }
-
-- This code is valid
-
-  .. code:: rust
-
-    fn main() {
-      let score = 10;
-
-      // CORRECT:
-      // The expression `score > 0` evaluates to `true`
-      if score > 0 {
-          println!("You win!");
-      }
-    }
-
 ------------------------------
 Recap: Anatomy of a Variable
 ------------------------------
