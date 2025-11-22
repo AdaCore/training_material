@@ -37,10 +37,6 @@ Assigning Types
 
       let y = 10;
 
-.. note::
-
-  For **type inference**, Rust infers the **default** of type (like :rust:`i32`)
-
 --------------------------
 Type Inference Explained 
 --------------------------

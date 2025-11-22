@@ -62,18 +62,13 @@ Making Variables Mutable
 
 .. code:: rust
 
-  let mut y = 5;
-  println!("The value of y is: {y}"); // Prints: The value of y is: 5
+  let mut change_me = 5;
+  println!("change_me is: {change_me}");
 
   // This is now perfectly allowed!
-  y = 6;
-  println!("The value of y is now: {y}"); // Prints: The value of y is now: 6
+  change_me = 6;
+  println!("change_me is now: {change_me}");
 
 .. note::
 
   In Rust, mutability is an **opt-in** choice
-
-.. tip::
-
-  You should always *prefer* **immutable** variables unless you have a
-  *specific reason* to make them **mutable**
