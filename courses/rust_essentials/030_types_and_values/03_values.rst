@@ -9,15 +9,15 @@ Rust is Statically Typed
 - One of the most important features
 
 - Compiler **must** know the exact **type** of every variable 
-at compile time
+  at compile time
 
 - How Rust provides **type safety** (and prevents bugs!)
 
 .. code:: rust
 
   // We are explicitly telling Rust:
-  // "x is a 32-bit signed integer with the value 10"
-  let x: i32 = 10;
+  // "this_var is a 32-bit signed integer with the value 10"
+  let this_var: i32 = 10;
 
 ----------------
 Assigning Types
@@ -29,13 +29,13 @@ Assigning Types
 
     .. code:: rust
 
-      let x: i32 = 10;
-
+      let explicit_var: i32 = 10;
+0
   - **Type Inference**
 
     .. code:: rust
 
-      let y = 10;
+      let infer_me = 10;
 
 --------------------------
 Type Inference Explained 
@@ -56,25 +56,15 @@ Type Inference Explained
 
   fn main() {
       // Rust sees a whole number and infers i32
-      let x = 10;
+      let inferred_int = 10;
       // This is the same as writing:
-      // let x: i32 = 10;
+      // let explicit_int: i32 = 10;
 
       // Rust sees a decimal and infers f64
-      let y = 2.5;
+      let inferred_float = 2.5;
       // This is the same as writing:
-      // let y: f64 = 2.5;
+      // let explicit_float: f64 = 2.5;
   }
-
---------------------------
-Inference is Smart
---------------------------
-
-- Type inference isn't just about defaults...but also *how you use* a variable
-
-- A variable's type might not be known until later in the function
-
-.. code:: rust
 
 --------------------------
 Inference is Smart
@@ -88,13 +78,13 @@ Inference is Smart
 
   fn main() {
       // Rust sees 10, but waits to decide the type...
-      let x = 10;
+      let inferred_var = 10;
 
-      // We declare `y` as an explicit u32
-      let y: u32;
+      // We declare `unsigned_var` as an explicit u32
+      let unsigned_var: u32;
 
-      // Rust looks back and decides `x` MUST be u32
-      y = x;
+      // Rust looks back and decides `inferred_var` MUST be u32
+      unsigned_var = inferred_var;
   }
 
 --------------
@@ -160,9 +150,9 @@ Numeric Literal Formats
     .. code:: rust
 
       // These three bindings are identical: 
-      let a: f64 = 10.0;  // Full annotation 
-      let b = 10_f64;   // Type suffix 
-      let c = 10.0f64;    // Suffix (no underscore)
+      let full: f64 = 10.0;       // Full annotation 
+      let pretty_suffix = 10_f64; // Type suffix 
+      let suffix = 10.0f64;       // Suffix (no underscore)
 
 ---------------------------
 Utilizing Different Bases 
