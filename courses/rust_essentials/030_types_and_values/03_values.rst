@@ -50,7 +50,7 @@ Type Inference Explained
 - **Default Rules**
 
   - Integers (whole numbers) default to :rust:`i32`
-  - Floating-point (decimals) default to :rust:`f64`
+  - Floating point (decimals) default to :rust:`f64`
 
 .. code:: rust
 
