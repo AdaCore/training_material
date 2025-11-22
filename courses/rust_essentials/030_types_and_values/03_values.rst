@@ -151,7 +151,6 @@ Numeric Literal Formats
   - These are ignored by the compiler
 
   - :rust:`1_000` is the same as :rust:`1000` (or :rust:`10_00`)
-  - :rust:`10_f64` is the same as :rust:`10.0_f64` or :rust:`10.0f64`
 
 - **Type Suffixes**
 
