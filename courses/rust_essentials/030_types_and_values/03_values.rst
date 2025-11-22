@@ -199,9 +199,9 @@ Utilizing Different Bases
      - :rust:`b` (:rust:`u8` only)
      - :rust:`b'A'`
 
---------------------
-Numeric Strictness
---------------------
+---------------------
+Numeric Conversions
+---------------------
 
 - Rust does **not** automatically convert types for you
 
