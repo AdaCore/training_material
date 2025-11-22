@@ -76,19 +76,25 @@ Inference is Smart
 
 .. code:: rust
 
-  fn takes_u32(n: u32) {
-      println!("u32: {n}");
-  }
+--------------------------
+Inference is Smart
+--------------------------
+
+- Type inference isn't just about defaults...but also *how you use* a variable
+
+- A variable's type might not be known until later in the function
+
+.. code:: rust
 
   fn main() {
-      // At this line, `x` is just an "unknown integer"
+      // Rust sees 10, but waits to decide the type...
       let x = 10;
-      
-      // ...Ah, NOW Rust knows!
-      // Because we are passing `x` to a function that
-      // *requires* a `u32`, Rust infers that `x`
-      // must be a `u32`
-      takes_u32(x);
+
+      // We declare `y` as an explicit u32
+      let y: u32;
+
+      // Rust looks back and decides `x` MUST be u32
+      y = x;
   }
 
 --------------
