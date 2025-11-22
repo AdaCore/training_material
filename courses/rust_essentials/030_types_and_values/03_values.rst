@@ -160,9 +160,9 @@ Numeric Literal Formats
     .. code:: rust
 
       // These three bindings are identical: 
-      let a: i64 = 123;  // Full annotation 
-      let b = 123_i64;   // Type suffix 
-      let c = 123i64;    // Suffix (no underscore)
+      let a: f64 = 10.0;  // Full annotation 
+      let b = 10_f64;   // Type suffix 
+      let c = 10.0f64;    // Suffix (no underscore)
 
 ---------------------------
 Utilizing Different Bases 
