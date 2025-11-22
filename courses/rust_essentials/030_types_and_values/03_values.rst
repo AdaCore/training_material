@@ -248,11 +248,11 @@ Recap: Anatomy of a Variable
 
   let mut x: i32 = 10;
   |   |   |  |    |
-  |   |   |  |    +---  **Value** (a number literal)
-  |   |   |  +--------  **Type** (a 32-bit signed integer)
-  |   |   +------------ **Variable Name**
-  |   +---------------- **Mutable** (makes it changeable)
-  +-------------------- **Keyword** to declare a variable
+  |   |   |  |    +---  Value   - numeric literal
+  |   |   |  +--------  Type    - 32-bit signed integer
+  |   |   +------------ Variable Name
+  |   +---------------- Mutable - makes it changeable
+  +-------------------- Keyword - declares a variable
 
 **Key Takeaways:**
 
