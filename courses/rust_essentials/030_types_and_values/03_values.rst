@@ -154,8 +154,8 @@ Numeric Literal Formats
 
 - **Type Suffixes**
 
-  - You can add the type *directly* to the numeric literal
-  - This is another way to tell Rust the type without a full annotation
+  - Add type *directly* to the numeric literal
+  - Shorthand for full annotation
 
     .. code:: rust
 
