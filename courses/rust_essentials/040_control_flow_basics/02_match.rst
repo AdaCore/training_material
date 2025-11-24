@@ -2,69 +2,56 @@
 :rust:`match` Expressions
 ===========================
 
----------------------------
-:rust:`match` Expressions
----------------------------
+------------------------------------
+Using :rust:`match` as a Statement
+------------------------------------
 
-:rust:`match` can be used to check a value against one or more options:
-
-.. code:: rust
-
-   fn main() {
-       let val = 1;
-       match val {
-           1 => println!("one"),
-           10 => println!("ten"),
-           100 => println!("one hundred"),
-           _ => {
-               println!("something else");
-           }
-       }
-   }
-
-Like :rust:`if` expressions, :rust:`match` can also return a value;
-
-.. code:: rust
-
-   fn main() {
-       let flag = true;
-       let val = match flag {
-           true => 1,
-           false => 0,
-       };
-       println!("The value of {flag} is {val}");
-   }
-
------------------------------------
-More Information on :rust:`match`
------------------------------------
-
-- :rust:`match` arms are evaluated from top to bottom
-
-  - First one that matches has its corresponding body executed.
-
-- No fall-through between cases
-
-  - Unlike :cpp:`switch` in C/C++
-
-- :rust:`match` expressions need to be exhaustive
-
+- Checks a value against one or more options (arms)
+- Evaluation of the :rust:`match` arms from top to bottom
+  - First one that matches has its corresponding body executed
+- Needs to be exhaustive
   - Either cover all possibilities
   - Or have a default case such as :rust:`_`
+- No fall-through between arms
+  - Unlike :cpp:`switch` in *C/C++*, like :ada:`case` in *Ada*
+- If an arm is a single expression, the :rust:`{ }` are optional
 
------------------
-More to Explore
------------------
+.. code:: rust
 
-- To further motivate the usage of :rust:`match`, you can compare the
-  examples to their equivalents written with :rust:`if`. In the second case
-  matching on a :rust:`bool` an :rust:`if {} else {}` block is pretty similar.
-  But in the first example that checks multiple cases, a :rust:`match`
-  expression can be more concise than
-  :rust:`if {} else if {} else if {} else`.
+  fn main() {
+      let belly_rubs = 3; 
+      match belly_rubs {
+          0 => println!("Grumble. Must protest."),
+          1 => println!("Tail wag engaged."),
+          2 => println!("Maximum happiness!"),
+          3 | 4 => println!("Too much love! Must nap."),
+          _ => println!("Suspicion. Where are the treats?"),
+      }
+  }
 
-- :rust:`match` also supports match guards, which allow you to add an
-  arbitrary logical condition that will get evaluated to determine if
-  the match arm should be taken. However talking about match guards
-  requires explaining about pattern matching, which we're trying to
-  avoid on this slide.
+--------------------------------------
+Using :rust:`match` as an Expression
+--------------------------------------
+
+- The entire match expression evaluates to a value
+  - Can be used in:
+    - assignments
+    - function returns
+    - other expressions
+- Every single arm must return the exact same type as all other arms
+
+.. code:: rust
+
+  fn main() {
+      let temperature_c = 35;
+      let current_mood = match temperature_c {
+          0 => "Hibernation protocol initiated.",
+          1..=10 => "Need a scarf.",
+          11..=25 => "Perfect.",
+          26..=30 => "Slightly sticky.",
+          31..=40 => "Melting!",        
+          _ => "This reading is impossible.",
+      };
+      println!("Current mood: {}", current_mood);
+  }
+
