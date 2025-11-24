@@ -9,6 +9,10 @@ we expect to find in a typical "Ada Essentials" course. If you need
 to modify the list of included modules, this is the file you would change
 (but don't check it into MASTER!)
 
+The file **ada95_course.txt** contains a list of all the modules that
+we expect to find in a typical "Ada Essentials" course specifically
+geared towards Ada 95.
+
 ## Supplementary Labs
 
 Supplementary Ada labs are also available through Alire, with the crates
