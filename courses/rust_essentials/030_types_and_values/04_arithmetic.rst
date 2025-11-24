@@ -47,7 +47,7 @@ Arithmetic Nuance: Division
   }
 
 ..
-  
+
   - **Floating Point Division**
 
     - To get a **decimal** result, you *must* use **floating point** numbers
@@ -81,7 +81,7 @@ Integer Overflow
 
   - **Release Builds**
 
-    - Rust *does not* panic (for speed)
+    - Rust *does not* :rust:`panic!` (for speed)
     - It performs **two's complement wrapping**
     - **Example:** For :rust:`u8`, :rust:`255 + 1` "wraps around" to :rust:`0`
 
