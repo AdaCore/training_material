@@ -8,7 +8,8 @@ Topics To Be Covered
 
 In this module, you will learn about
 
-  * Discrete types
+  * Integer-based types
   * Floating-point ("real") types
+  * Enumerated types
   * Type attributes
   * Subtypes
