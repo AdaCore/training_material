@@ -6,9 +6,9 @@ Blocks and Scopes
 Blocks
 --------
 
-A block in Rust contains a sequence of expressions, enclosed by braces
-:rust:`{}`. Each block has a value and a type, which are those of the last
-expression of the block:
+- A block contains a sequence of expressions enclosed by braces :rust:`{}`
+- Each block has a value and a type, those of the last expression of the block
+- When the last expression, the resulting value is :rust:`()`
 
 .. code:: rust
 
@@ -21,9 +21,6 @@ expression of the block:
        };
        println!("x: {x}");
    }
-
-If the last expression ends with :rust:`;`, then the resulting value and
-type is :rust:`()`.
 
 .. container:: speakernote
 
