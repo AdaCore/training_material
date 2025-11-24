@@ -19,7 +19,7 @@ Using :rust:`if` as a Statement
         let coins = 800;
         if coins == 0 {
             println!("You have no gold. The dragon eats you.");
-        } else if x < 1000 {
+        } else if coins < 1000 {
             println!("A solid pouch! Buy a new sword!");
         } else {
             println!("New graphics card acquired.");
