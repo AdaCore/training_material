@@ -32,7 +32,7 @@ Scalar Types
 
 .. container:: PRELUDE END
 
-.. include:: 030_scalar_types/01-introduction.rst
+.. include:: 030_scalar_types/01-goals.rst
 .. include:: 030_scalar_types/02-discrete_numeric_types_with_mod.rst
 .. include:: 030_scalar_types/13-attributes.rst
 .. include:: 030_scalar_types/04-enumeration_types.rst
@@ -40,4 +40,5 @@ Scalar Types
 .. include:: 030_scalar_types/09-miscellaneous.rst
 .. include:: 030_scalar_types/10-subtypes.rst
 .. include:: 030_scalar_types/88-scalar_types.lab.rst
+.. include:: 030_scalar_types/98-review.rst
 .. include:: 030_scalar_types/99-summary.rst

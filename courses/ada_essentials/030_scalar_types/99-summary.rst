@@ -3,7 +3,7 @@ Summary
 =========
 
 --------------------------------------
- Benefits of Strongly Typed Numerics
+Benefits of Strongly Typed Numerics
 --------------------------------------
 
 * **Prevent** subtle bugs
@@ -37,27 +37,6 @@ User-Defined Numeric Type Benefits
 
    - Reduced hardware dependencies
    
---------------
-Scalar Types
---------------
-
-* **Relational** operators defined (``<``,  ``=``, ...)
-
-    - **Ordered**
-
-* Have common **attributes**
-* **Discrete** Types
-
-  - Integer
-  - Enumeration
-
-* **Real** Types
-
-  - Floating-point
-  - Fixed-point
-
-   
-
 ---------
 Summary
 ---------

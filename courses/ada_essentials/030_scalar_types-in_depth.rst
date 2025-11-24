@@ -32,7 +32,7 @@ Scalar Types: In-Depth
 
 .. container:: PRELUDE END
 
-.. include:: 030_scalar_types/01-introduction.rst
+.. include:: 030_scalar_types/01-goals.rst
 .. include:: 030_scalar_types/02-discrete_numeric_types.rst
 .. include:: 030_scalar_types/13-attributes.rst
 .. include:: 030_scalar_types/03-modular_types.rst
@@ -46,4 +46,5 @@ Scalar Types: In-Depth
 .. include:: 030_scalar_types/11-subtypes_full_picture.rst
 .. include:: 030_scalar_types/12-big_numbers.rst
 .. include:: 030_scalar_types/88-scalar_types.lab.rst
+.. include:: 030_scalar_types/98-review.rst
 .. include:: 030_scalar_types/99-summary.rst
