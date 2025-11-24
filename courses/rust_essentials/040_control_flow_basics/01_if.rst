@@ -2,59 +2,57 @@
 :rust:`if` Expressions
 ========================
 
----------------------------------
-Using :rust:`if` as a Statement
----------------------------------
+------------------------
+:rust:`if` Expressions
+------------------------
 
-- Blocks are mandatory, no shorthand!
-- Parentheses around the condition are optional
-  - Using them is considered unidiomatic
-- The condition tests if a boolean expression evaluates to :rust:`true`
-- You may have zero or more :rust:`else if`, and zero or one final :rust:`else`
+You use
+:url:`if expressions <https://doc.rust-lang.org/reference/expressions/if-expr.html#if-expressions>`
+exactly like :rust:`if` statements in other languages:
 
 .. code:: rust
 
-    fn main() {
-        let x = 800;
-        if x == 0 {
-            println!("You have no gold. The dragon eats you.");
-        } else if x < 1000 {
-            println!("A solid pouch! Buy a new sword!");
-        } else {
-            println!("New graphics card acquired.");
-        }
-    }
+   fn main() {
+       let x = 10;
+       if x == 0 {
+           println!("zero!");
+       } else if x < 100 {
+           println!("biggish");
+       } else {
+           println!("huge");
+       }
+   }
 
----------------------------------
-Using :rust:`if` as an Expression
----------------------------------
-
-- Every block is an expression that returns a value
-- Note the :rust:`;` after the curly brace to terminate the let statement
+In addition, you can use :rust:`if` as an expression. The last expression of
+each block becomes the value of the :rust:`if` expression:
 
 .. code:: rust
+   :number-lines: 2
 
-    fn main() {
-        let status = if 80 < 100 { 
-            "Starving. Call the vet and the police." 
-        } else { 
-            "Full. Now demanding fresh water." 
-        };
-        println!("Pet Status: {}", status);
-    }
+   fn main() {
+       let x = 10;
+       let size = if x < 20 { "small" } else { "large" };
+       println!("number size: {}", size);
+   }
 
----------------------------------------------------
-Return Type Consistency in :rust:`if` Expressions
----------------------------------------------------
+---------------------------------
+:rust:`if` Expressions Contents
+---------------------------------
 
-- All returned values, from all branches, must have the same type
-- :rust:`"small"` and :rust:`"large"` are both strings
-- But adding a :rust:`;` to one side makes the types different
+- Both sides of an :rust:`if` expression must have the same type
+
+  - :rust:`small` and :rust:`large` are both strings
+  - Adding a :rust:`;` to one side makes the types different
 
   .. code:: rust
+    :number-lines: 4
 
      let size = if x < 20 { "small"; } else { "large" };
 
   ::
 
      error[E0308]: `if` and `else` have incompatible types
+
+- Other than that, an :rust:`if` expression is like any other expression
+
+  - The :ada:`let size` statement on line 2 must still end with :rust:`;`
