@@ -6,62 +6,62 @@
 :rust:`break` and :rust:`continue`
 ------------------------------------
 
-If you want to immediately start the next iteration use
-:url:`continue <https://doc.rust-lang.org/reference/expressions/loop-expr.html#continue-expressions>`.
+    - Use :rust:`continue` to immediately start the next iteration
+    - Use :rust:`break` to exit any kind of loop early
+    - Both :rust:`continue` and :rust:`break` work with :rust:`while`, :rust:`for`, and :rust:`loop`
+    
+.. code:: rust
 
-If you want to exit any kind of loop early, use
-:url:`break <https://doc.rust-lang.org/reference/expressions/loop-expr.html#break-expressions>`.
-With :rust:`loop`, this can take an optional expression that becomes the
-value of the :rust:`loop` expression.
+    fn main() {
+        let mut count = 0;
+        loop {
+            count += 1;
+            if count < 3 { continue; } 
+            if count > 5 { break; }
+            println!("{}", count);
+        };        
+    }
+
+-------------------------------------------------------
+Returning a value with :rust:`loop` and :rust:`break`
+-------------------------------------------------------
+
+    - Only :rust:`loop` is a looping construct and an expression
+    - It is an expression that can return a non-trivial value
 
 .. code:: rust
 
-   fn main() {
-       let mut i = 0;
-       loop {
-           i += 1;
-           if i > 5 {
-               break;
-           }
-           if i % 2 == 0 {
-               continue;
-           }
-           println!("{}", i);
-       }
-   }
+    fn main() {
+        let mut count = 0;
+        let result = loop {
+            count += 1;             
+            if count > 5 { break count; }
+            println!("{}", count);
+        };
+        println!("Result: ", result);
+    }
 
--------------------------
-Loops Returning a Value
--------------------------
-
-- :rust:`loop` is the looping construct which can return a non-trivial value.
-
-  - Guaranteed to only return at a :rust:`break` statement
-  - Unlike :rust:`while` and :rust:`for` loops, which can return when condition fails
 
 --------
 Labels
 --------
 
-Both :rust:`continue` and :rust:`break` can optionally take a label argument
-which is used to break out of nested loops:
+    - Both :rust:`continue` and :rust:`break` can optionally take a label argument
+    - Used to break out of nested loops:
 
 .. code:: rust
 
-   fn main() {
-       let s = [[5, 6, 7], [8, 9, 10], [21, 15, 32]];
-       let mut elements_searched = 0;
-       let target_value = 10;
-       'outer: for i in 0..=2 {
-           for j in 0..=2 {
-               elements_searched += 1;
-               if s[i][j] == target_value {
-                   break 'outer;
-               }
-           }
-       }
-       print!("elements searched: {elements_searched}");
-   }
+    fn main() {
+        let mut chocolates_eaten = 0;
+        'chocolate_boxes: for _box_number in 1..=5 {
+            for _chocolate_piece in 1..=5 {
+                chocolates_eaten += 1;
+                if chocolates_eaten == 13 {
+                    break 'chocolate_boxes; 
+                }
+            }
+        }
+    }
 
 --------------
 Block Labels
