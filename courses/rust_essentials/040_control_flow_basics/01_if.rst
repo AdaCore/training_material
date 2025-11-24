@@ -6,17 +6,18 @@
 Using :rust:`if` as a Statement
 ---------------------------------
 
+- Evaluation from top to bottom
+- The condition tests if a boolean expression evaluates to :rust:`true`
 - Blocks are mandatory, no shorthand!
 - Parentheses around the condition are optional
   - Using them is considered unidiomatic
-- The condition tests if a boolean expression evaluates to :rust:`true`
 - You may have zero or more :rust:`else if`, and zero or one final :rust:`else`
 
 .. code:: rust
 
     fn main() {
-        let x = 800;
-        if x == 0 {
+        let coins = 800;
+        if coins == 0 {
             println!("You have no gold. The dragon eats you.");
         } else if x < 1000 {
             println!("A solid pouch! Buy a new sword!");
@@ -29,13 +30,13 @@ Using :rust:`if` as a Statement
 Using :rust:`if` as an Expression
 ---------------------------------
 
-- Every block is an expression that returns a value
-- Note the :rust:`;` after the curly brace to terminate the let statement
+* Every block is an expression that returns a value
 
 .. code:: rust
 
     fn main() {
-        let status = if 80 < 100 { 
+        let food = 80;
+        let status = if food < 100 { 
             "Starving. Call the vet and the police." 
         } else { 
             "Full. Now demanding fresh water." 
@@ -43,13 +44,14 @@ Using :rust:`if` as an Expression
         println!("Pet Status: {}", status);
     }
 
+.. note:: Note the :rust:`;` after the curly brace to terminate the let statement
+
 ---------------------------------------------------
 Return Type Consistency in :rust:`if` Expressions
 ---------------------------------------------------
 
-- All returned values, from all branches, must have the same type
-- :rust:`"small"` and :rust:`"large"` are both strings
-- But adding a :rust:`;` to one side makes the types different
+* All returned values, from all branches, must have the same type
+
 
   .. code:: rust
 
@@ -58,3 +60,6 @@ Return Type Consistency in :rust:`if` Expressions
   ::
 
      error[E0308]: `if` and `else` have incompatible types
+
+- :rust:`"small"` and :rust:`"large"` are both strings
+- But adding a :rust:`;` to one side makes the types different
