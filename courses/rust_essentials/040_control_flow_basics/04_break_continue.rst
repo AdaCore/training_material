@@ -12,15 +12,13 @@
     
 .. code:: rust
 
-    fn main() {
-        let mut count = 0;
-        loop {
-            count += 1;
-            if count < 3 { continue; } 
-            if count > 5 { break; }
-            println!("{}", count);
-        };        
-    }
+    let mut count = 0;
+    loop {
+        count += 1;
+        if count < 3 { continue; } 
+        if count > 5 { break; }
+        println!("{}", count);
+    };        
 
 -------------------------------------------------------
 Returning a value with :rust:`loop` and :rust:`break`
@@ -31,15 +29,13 @@ Returning a value with :rust:`loop` and :rust:`break`
 
 .. code:: rust
 
-    fn main() {
-        let mut count = 0;
-        let result = loop {
-            count += 1;             
-            if count > 5 { break count; }
-            println!("{}", count);
-        };
-        println!("Result: ", result);
-    }
+    let mut count = 0;
+    let result = loop {
+        count += 1;             
+        if count > 5 { break count; }
+        println!("{}", count);
+    };
+    println!("Result: ", result);
 
 
 --------
@@ -51,14 +47,12 @@ Labels
 
 .. code:: rust
 
-    fn main() {
-        let mut chocolates_eaten = 0;
-        'chocolate_boxes: for _box_number in 1..=5 {
-            for _chocolate_piece in 1..=5 {
-                chocolates_eaten += 1;
-                if chocolates_eaten == 13 {
-                    break 'chocolate_boxes; 
-                }
+    let mut chocolates_eaten = 0;
+    'chocolate_boxes: for _box_number in 1..=5 {
+        for _chocolate_piece in 1..=5 {
+            chocolates_eaten += 1;
+            if chocolates_eaten == 13 {
+                break 'chocolate_boxes; 
             }
         }
     }
