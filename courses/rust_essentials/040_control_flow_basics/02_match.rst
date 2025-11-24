@@ -18,16 +18,14 @@ Using :rust:`match` as a Statement
 
 .. code:: rust
 
-  fn main() {
-      let belly_rubs = 3; 
-      match belly_rubs {
-          0 => println!("Grumble. Must protest."),
-          1 => println!("Tail wag engaged."),
-          2 => println!("Maximum happiness!"),
-          3 | 4 => println!("Too much love! Must nap."),
-          _ => println!("Suspicion. Where are the treats?"),
-      }
-  }
+    let belly_rubs = 3; 
+    match belly_rubs {
+        0 => println!("Grumble. Must protest."),
+        1 => println!("Tail wag engaged."),
+        2 => println!("Maximum happiness!"),
+        3 | 4 => println!("Too much love! Must nap."),
+        _ => println!("Suspicion. Where are the treats?"),
+    }
 
 --------------------------------------
 Using :rust:`match` as an Expression
@@ -42,16 +40,14 @@ Using :rust:`match` as an Expression
 
 .. code:: rust
 
-  fn main() {
-      let temperature_c = 35;
-      let current_mood = match temperature_c {
-          0 => "Hibernation protocol initiated.",
-          1..=10 => "Need a scarf.",
-          11..=25 => "Perfect.",
-          26..=30 => "Slightly sticky.",
-          31..=40 => "Melting!",        
-          _ => "This reading is impossible.",
-      };
-      println!("Current mood: {}", current_mood);
-  }
+    let temperature_c = 35;
+    let current_mood = match temperature_c {
+        0 => "Hibernation protocol initiated.",
+        1..=10 => "Need a scarf.",
+        11..=25 => "Perfect.",
+        26..=30 => "Slightly sticky.",
+        31..=40 => "Melting!",        
+        _ => "This reading is impossible.",
+    };
+    println!("Current mood: {}", current_mood);
 

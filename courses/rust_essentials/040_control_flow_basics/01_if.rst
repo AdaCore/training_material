@@ -15,15 +15,13 @@ Using :rust:`if` as a Statement
 
 .. code:: rust
 
-    fn main() {
-        let coins = 800;
-        if coins == 0 {
-            println!("You have no gold. The dragon eats you.");
-        } else if coins < 1000 {
-            println!("A solid pouch! Buy a new sword!");
-        } else {
-            println!("New graphics card acquired.");
-        }
+    let coins = 800;
+    if coins == 0 {
+        println!("You have no gold. The dragon eats you.");
+    } else if coins < 1000 {
+        println!("A solid pouch! Buy a new sword!");
+    } else {
+        println!("New graphics card acquired.");
     }
 
 ---------------------------------
@@ -34,15 +32,13 @@ Using :rust:`if` as an Expression
 
 .. code:: rust
 
-    fn main() {
-        let food = 80;
-        let status = if food < 100 { 
-            "Starving. Call the vet and the police." 
-        } else { 
-            "Full. Now demanding fresh water." 
-        };
-        println!("Pet Status: {}", status);
-    }
+    let food = 80;
+    let status = if food < 100 { 
+        "Starving. Call the vet and the police." 
+    } else { 
+        "Full. Now demanding fresh water." 
+    };
+    println!("Pet Status: {}", status);
 
 .. note:: Note the :rust:`;` after the curly brace to terminate the let statement
 
