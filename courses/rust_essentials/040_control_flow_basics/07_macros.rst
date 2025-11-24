@@ -6,19 +6,10 @@ Macros
 Macros
 --------
 
-Macros are expanded into Rust code during compilation, and can take a
-variable number of arguments. They are distinguished by a :rust:`!` at the
-end. The Rust standard library includes an assortment of useful macros.
-
--  :rust:`println!(format, ..)` prints a line to standard output, applying
-   formatting described in
-   :url:`std::fmt <https://doc.rust-lang.org/std/fmt/index.html>`.
-   result as a string.
--  :rust:`dbg!(expression)` logs the value of the expression and returns it.
--  :rust:`todo!()` marks a bit of code as not-yet-implemented. If executed,
-   it will panic.
--  :rust:`unreachable!()` marks a bit of code as unreachable. If executed,
-   it will panic.
+- Macros are expanded into code during compilation
+- Can take a variable number of arguments
+- Distinguished by a :rust:`!` at the end
+- The standard library includes an assortment of useful macros:
 
 .. code:: rust
 
@@ -34,10 +25,10 @@ end. The Rust standard library includes an assortment of useful macros.
        todo!()
    }
 
-   fn main() {
-       let n = 4;
-       println!("{n}! = {}", factorial(n));
-   }
+-  :rust:`println!(format, ..)` prints a line to standard output
+-  :rust:`dbg!(expression)` logs the value of the expression and returns it
+-  :rust:`todo!()` marks a bit of code as not-yet-implemented
+-  :rust:`unreachable!()` marks a bit of code as unreachable
 
 .. container:: speakernote
 
