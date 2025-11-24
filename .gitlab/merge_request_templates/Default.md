@@ -15,5 +15,3 @@ contrib/review_run_slides "Ada Essentials - Standard Course" %{source_branch}
 
 _Note: It is assumed/implied that all **Reviewers** that **Approve** this MR (via the associated button) also have reviewed the above affected slides._
 <!-- Add any other checklist item relevant to the MR here -->
-
-/assign_reviewer @team/MENTOR
