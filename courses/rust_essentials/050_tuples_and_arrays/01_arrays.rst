@@ -10,11 +10,11 @@ Arrays: The Basics
 - The size is **fixed** and defined at **compile-time**
 - The length of an array is part of its type
   - :rust:`[T;N]` holds :rust:`N` elements of type T
-  - Example: :rust:`[u8;3]` and :rust:`[u8;4]` are considered two different types
+  - :rust:`[u8;3]` and :rust:`[u8;4]` are considered two different types
    
 .. code:: rust
 
-      // Declaration of a mutable array of 10 elements of type i8
+      // Declaration of an array of 10 elements of type i8
       // initialized to the value 42
       let mut a: [i8; 10] = [42; 10];
       // Accessing and modifying an element
@@ -48,7 +48,19 @@ Looping over Arrays
 
 .. code:: rust
 
-    let primes = [2, 3, 5, 7, 11, 13, 17, 19];    
+    let primes = [2, 3, 5, 7, 11, 13, 17];    
     for prime in primes {
         // ... doing something
     }
+
+.. container:: speakernote
+
+   Arrays do not implement the default Display trait ({}).
+   You must use the Debug format parameter:
+   println!("a: {:?}", a); 
+   println!("a: {:#?}", a); (for "pretty printing")
+
+   Testing Macros:
+   assert_ne!: Checks that two values are not equal
+   assert_eq!: Checks that two values are equal
+   These are always checked; use debug_assert! variants for debug-only checks
