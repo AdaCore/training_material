@@ -2,39 +2,53 @@
 Arrays
 ========
 
---------
-Arrays
---------
+--------------------
+Arrays: The Basics
+--------------------
+
+- Arrays have multiple elements of the **same type**
+- The size is **fixed** and defined at **compile-time**
+- The length of an array is part of its type
+  - :rust:`[T;N]` holds :rust:`N` elements of type T
+  - Example: :rust:`[u8;3]` and :rust:`[u8;4]` are considered two different types
+   
+.. code:: rust
+
+      // Declaration of a mutable array of 10 elements of type i8
+      // initialized to the value 42
+      let mut a: [i8; 10] = [42; 10];
+      // Accessing and modifying an element
+      a[5] = 0;
+      
+-----------------------------------
+Arrays: Safety and Initialization
+-----------------------------------
+
+Safety
+
+  - Array accesses are **checked at runtime** for being out-of-bounds
+  - Accessing an element beyond the defined length will cause a *panic*
+    - A *panic* is a form of program termination
+
+Initialization
+
+   - Arrays can be assigned values using literals 
+     - e.g., :rust:`[2, 3, 5, 7, 13]`
+   - :rust:`[value; N]` can be used to initialize an array
+     -  with size *N* where every element is *value*
+
+-------------------
+Arrays: Iteration
+-------------------
+
+Looping over Arrays
+
+  - The :rust:`for` statement natively supports iterating over arrays
+    - This functionality uses the :rust:`IntoIterator` trait (more on that later)
 
 .. code:: rust
 
-   fn main() {
-       let mut a: [i8; 10] = [42; 10];
-       a[5] = 0;
-       println!("a: {a:?}");
-   }
-
----------
-Details
----------
-
--  A value of the array type :rust:`[T; N]` holds :rust:`N` (a compile-time
-   constant) elements of the same type :rust:`T`. Note that the length of
-   the array is *part of its type*, which means that :rust:`[u8; 3]` and
-   :rust:`[u8; 4]` are considered two different types. Slices, which have a
-   size determined at runtime, are covered later.
-
--  Try accessing an out-of-bounds array element. Array accesses are
-   checked at runtime. Rust can usually optimize these checks away, and
-   they can be avoided using unsafe Rust.
-
--  We can use literals to assign values to arrays.
-
--  The :rust:`println!` macro asks for the debug implementation with the
-   :rust:`?` format parameter: :rust:`{}` gives the default output, :rust:`{:?}`
-   gives the debug output. Types such as integers and strings implement
-   the default output, but arrays only implement the debug output. This
-   means that we must use debug output here.
-
--  Adding :rust:`#`, eg :rust:`{a:#?}`, invokes a "pretty printing" format,
-   which can be easier to read.
+    let primes = [2, 3, 5, 7, 11, 13, 17, 19];    
+    for prime in primes {
+        // ... doing something
+    }
