@@ -2,22 +2,6 @@
 Scope and Visibility
 ======================
 
-----------------------
-Scope and Visibility
-----------------------
-
-* :dfn:`Scope` of a name
-
-   - Where the name is **potentially** available
-   - Determines **lifetime**
-   - Scopes can be **nested**
-
-* :dfn:`Visibility` of a name
-
-   - Where the name is **actually** available
-   - Defined by **visibility rules**
-   - **Hidden** |rightarrow| *in scope* but not **directly** visible
-
 ------------------------------
 Introducing Block Statements
 ------------------------------
@@ -64,6 +48,22 @@ Scope and "Lifetime"
 
 .. image:: block_scope_example.svg
     :height: 50%
+
+----------------------
+Scope and Visibility
+----------------------
+
+* :dfn:`Scope` of a name
+
+   - Where the name is **potentially** available
+   - Determines **lifetime**
+   - Scopes can be **nested**
+
+* :dfn:`Visibility` of a name
+
+   - Where the name is **actually** available
+   - Defined by **visibility rules**
+   - **Hidden** |rightarrow| *in scope* but not **directly** visible
 
 ----------------------
 Visibility in Action
