@@ -29,39 +29,32 @@ Subprogram-based Assertions
             Post => not Empty (This)
                     and Top (This) = Value;
 
----------------------------------
-Requirements / Guarantees: Quiz
----------------------------------
+-----------------------------
+Requirements and Guarantees
+-----------------------------
 
-* Given the following piece of code
+* We want to call procedure :ada:`Turn_On` from this code
 
   .. code:: Ada
 
      procedure Start is
      begin
-         ...
-         Turn_On;
-         ...
+        Initialize;
+        Turn_On;
+        Proceed;
 
-     procedure Turn_On
-      with Pre => Has_Power,
-           Post => Is_On;
+* :ada:`Turn_On` has the following specification
 
-* Complete the table in terms of requirements and guarantees
+  .. code:: Ada
 
-.. list-table::
+     procedure Turn_On;
+       with Pre  => Has_Power,
+            Post => System_Ready;
 
-   * - 
-     - Client (:ada:`Start`)
-     - Supplier (:ada:`Turn_On`)
+* Which means
 
-   * - Pre (:ada:`Has_Power`)
-     - :animate:`Requirement`
-     - :animate:`Guarantee`
-
-   * - Post (:ada:`Is_On`)
-     - :animate:`Guarantee`
-     - :animate:`Requirement`
+  * :ada:`Turn_On` *requires* power, so :ada:`Start` must *guarantee* it 
+  * :ada:`Start` *requires* the system to be ready, so :ada:`Turn_On` *guarantees* it
 
 -----------------------
 Defensive Programming
@@ -231,8 +224,8 @@ Quiz
 
 .. code:: Ada
 
-   --  Convert string to Integer
-   function To_Integer ( S : String ) return Integer
+   -- Convert string to Integer
+   function To_Integer (S : String) return Integer
       with Pre => S'Length > 0;
 
    procedure Print_Something is
