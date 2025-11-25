@@ -28,10 +28,6 @@ Summary
 
 * Based on viewing source code as clients and suppliers with enforced requirements and guarantees
 * No run-time penalties unless enforced
-* OOP introduces the tricky issues
-
-   - Inheritance of preconditions and postconditions, for example
-
 * Note that pre/postconditions can be used on concurrency constructs too
 
  .. list-table::
@@ -53,3 +49,8 @@ Summary
 
     - Guarantee
     - Requirement
+
+* Contracts are just another form of *defensive coding*
+
+  * But can't replace all of it
+  * And it's still code, so it could be wrong!
