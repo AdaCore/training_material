@@ -1,64 +1,176 @@
-% Copyright 2004 by Madhusudan Singh <madhusudan.singh@gmail.com>
-%
-% This file may be distributed and/or modified
-%
-% 1. under the LaTeX Project Public License and/or
-% 2. under the GNU Public License.
-%
-% See the file doc/licenses/LICENSE for more details.
+\ProvidesPackage{beamerthemeadacore}[2025/11/06 Custom light blue theme]
 
+%========================================================
+% Load base themes
+%========================================================
 \mode<presentation>
-
-\useinnertheme{rectangles}
+\usecolortheme{default}
 \useoutertheme{infolines}
+\useinnertheme{rectangles}
 
-\beamertemplatenavigationsymbolsempty
+%========================================================
+% Define custom RGB colors
+%========================================================
+\usepackage{xcolor} % for RGB colors
+% adacore_lovelace   18,40,76      12284c   AdaCore 'Lovelace` Blue
+% adacore_orange     254,80,0      fe5000   AdaCore Orange
+% adacore_midblue    21,152,203    1598cb   AdaCore Mid Blue
+% adacore_paleblue   185,198,215   b9c6d7   AdaCore Pale Blue
+\definecolor{adacore_lovelace}{RGB}{18,40,76}
+\definecolor{adacore_orange}{RGB}{254,80,0}
+\definecolor{adacore_paleblue}{RGB}{185,198,215}
+\definecolor{adacore_midblue}{RGB}{21,152,203}
+\definecolor{adacore_background}{RGB}{220,226,235}
 
-\setbeamertemplate{page number in head/foot}[totalframenumber]%
+%========================================================
+% Define Beamer colors
+%========================================================
+\setbeamercolor{normal text}{fg=adacore_lovelace,bg=adacore_paleblue}
+\setbeamercolor{frametitle}{fg=adacore_lovelace,bg=adacore_paleblue}
+\setbeamercolor{headline}{fg=adacore_lovelace,bg=adacore_paleblue}
 
-\defbeamertemplate*{footline}{adacore theme}
-{%
-  \leavevmode%
-  \hbox{%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-    \insertshortauthor
-    \hspace*{2pt} 
-    \includegraphics[height=1.9ex]{logo.png}
+% Footer colors
+\setbeamercolor{footerbg}{bg=white, fg=adacore_lovelace}
+\setbeamercolor{footerline}{bg=adacore_lovelace}
+
+% Background canvas
+\setbeamercolor{background canvas}{bg=adacore_background}
+
+%========================================================
+% Cascading header
+%========================================================
+\setbeamercolor{titleline}{fg=adacore_lovelace,bg=adacore_paleblue}
+\setbeamercolor{sectionline}{fg=adacore_paleblue,bg=adacore_lovelace}
+\setbeamercolor{subsectionline}{fg=adacore_lovelace,bg=adacore_paleblue}
+
+\setbeamertemplate{headline}{%
+  % Document title
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.4ex,dp=0.8ex,leftskip=0.1cm]{titleline}%
+    \hspace*{0ex}\usebeamerfont{title in head/foot}\insertshorttitle
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
-    \insertshortdate{}
+  % Section title (slightly indented)
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.3ex,dp=0.6ex,leftskip=0.3cm]{sectionline}%
+    \usebeamerfont{section in head/foot}\insertsectionhead
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{page number in head/foot}%
-    \usebeamertemplate{page number in head/foot}
-    \hspace*{2ex} 
-  \end{beamercolorbox}}%
-  \vskip0pt%
+  % Subsection title (more indented)
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.3ex,dp=0.6ex,leftskip=0.5cm]{subsectionline}%
+    \usebeamerfont{subsection in head/foot}\insertsubsectionhead
+  \end{beamercolorbox}%
 }
 
-\defbeamertemplate*{headline}{adacore theme}
-{%
-    \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{upper separation line head}
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=\paperwidth,ht=6pt,dp=3pt,leftskip=3pt]{title in head/foot}
-      \usebeamerfont{title in head/foot}
-      \insertshorttitle
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=\paperwidth,ht=6pt,dp=3pt,leftskip=6pt]{section in head/foot}
-      \usebeamerfont{section in head/foot}%
-      \insertsectionhead
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=\paperwidth,ht=6pt,dp=3pt,leftskip=9pt]{subsection in head/foot}
-      \usebeamerfont{subsection in head/foot}%
-      \insertsubsectionhead
-    \end{beamercolorbox}
-    %%\begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{lower separation line head}
-    %%\end{beamercolorbox}
+
+%========================================================
+% Footer (footline)
+%========================================================
+\setbeamertemplate{footline}{%
+  % Separator line
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.4ex]{footerline}%
+  \end{beamercolorbox}%
+  % Footer content
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,dp=1ex]{footerbg}%
+    \hbox{%
+      % Logo (left)
+      \vbox to 4ex{%
+        \vfil
+        \hbox to .15\paperwidth{%
+          \hspace*{1ex}\includegraphics[height=3ex]{logo.png}\hfil
+        }%
+        \vfil
+      }%
+      % Center (empty)
+      \vbox to 4ex{%
+        \vfil
+        \hbox to .70\paperwidth{\hfil}%
+        \vfil
+      }%
+      % Page numbers (right)
+      \vbox to 4ex{%
+        \vfil
+        \hbox to .15\paperwidth{\hfil \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}}%
+        \vfil
+      }%
+    }%
+  \end{beamercolorbox}%
 }
 
-\setbeamerfont{block title}{size={}}
-\setbeamersize{text margin left=21pt,text margin right=21pt}
 
-\usepackage{note-blocks}
+%========================================================
+% Frame title spacing
+%========================================================
+\setbeamercolor{frametitlebox}{fg=white,bg=adacore_lovelace}
+\setbeamertemplate{frametitle}{%
+  \begin{beamercolorbox}[sep=0.5em,rounded=true,shadow=true,wd=\textwidth]{frametitlebox}%
+    \usebeamerfont{frametitle}\insertframetitle
+  \end{beamercolorbox}%
+  \vspace{0.2cm}%
+}
 
-\mode
-<all>
+
+%========================================================
+% Document title page with boxed title
+%========================================================
+\setbeamerfont{title}{size=\Huge,series=\bfseries}
+\setbeamertemplate{title page}{%
+  \begin{centering}
+    \vfill
+    \begin{beamercolorbox}[sep=1em,rounded=true,shadow=true,center]{title in head/foot}
+      \vbox to 4ex{%
+        \vfil
+        \hbox{\usebeamerfont{title}\inserttitle}%
+        \vfil
+      }%
+    \end{beamercolorbox}
+    \vfill
+  \end{centering}
+}
+
+
+%========================================================
+% Section title page with boxed title
+%========================================================
+\setbeamerfont{section title}{size=\huge,series=\bfseries}
+\setbeamertemplate{section page}{%
+  \begin{centering}
+    \vfill
+    \begin{beamercolorbox}[sep=1em,rounded=true,shadow=true,center]{section title}
+      \vbox to 4ex{%
+        \vfil
+        \hbox{\usebeamerfont{section title}\insertsection}%
+        \vfil
+      }%
+    \end{beamercolorbox}
+    \vfill
+  \end{centering}
+}
+
+%========================================================
+% Subsection title page with boxed title
+%========================================================
+\setbeamerfont{subsection title}{size=\LARGE,series=\bfseries}
+\setbeamertemplate{subsection page}{%
+  \begin{centering}
+    \vfill
+    \begin{beamercolorbox}[sep=1em,rounded=true,shadow=true,center]{section title}
+      \vbox to 4ex{%
+        \vfil
+        \hbox{\usebeamerfont{subsection title}\insertsubsection}%
+        \vfil
+      }%
+    \end{beamercolorbox}
+    \vfill
+  \end{centering}
+}
+
+%========================================================
+% Formatting blocks
+%========================================================
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+%========================================================
+% Bullet colors
+%========================================================
+\setbeamercolor{itemize item}{fg=adacore_lovelace}
+\setbeamercolor{itemize subitem}{fg=adacore_midblue}
+\setbeamercolor{itemize subsubitem}{fg=adacore_orange}
+
+\mode<all>
