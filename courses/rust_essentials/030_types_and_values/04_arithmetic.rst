@@ -8,8 +8,14 @@ Standard Operators
 
 - Rust standard arithmetic operators, in order of precedence (highest to lowest)
 
-   :Multiplicative: **\*** :nbsp:` ` **/** :nbsp:` ` **%**
-   :Additive:   **+** :nbsp:` ` **-**
+.. list-table::
+   :widths: 25 75
+   :header-rows: 0
+
+   * - **Multiplicative**
+     - **\***    **/**   **%**
+   * - **Additive**
+     - **+**   **-**
 
 .. note::
 
