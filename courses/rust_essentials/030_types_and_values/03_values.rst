@@ -19,9 +19,9 @@ Rust is Statically Typed
   // "this_var is a 32-bit signed integer with the value 10"
   let this_var: i32 = 10;
 
-----------------
+-----------------
 Assigning Types
-----------------
+-----------------
 
 - Two ways to tell Rust what **type** a variable is
 
@@ -30,7 +30,7 @@ Assigning Types
     .. code:: rust
 
       let explicit_var: i32 = 10;
-0
+
   - **Type Inference**
 
     .. code:: rust
