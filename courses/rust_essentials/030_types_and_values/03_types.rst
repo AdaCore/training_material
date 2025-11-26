@@ -239,15 +239,14 @@ Recap: Anatomy of a Variable
   // This is a *mutable*, *explicitly typed* variable binding
 
   let mut x: i32 = 10;
-  |   |   |  |    |
-  |   |   |  |    +---  Value   - numeric literal
-  |   |   |  +--------  Type    - 32-bit signed integer
+  |   |   |  |     |
+  |   |   |  |     +--- Value   - numeric literal
+  |   |   |  +--------- Type    - 32-bit signed integer
   |   |   +------------ Variable Name
-  |   +---------------- Mutable - makes it changeable
-  +-------------------- Keyword - declares a variable
+  |   +---------------- mut Keyword - mutable
+  +-------------------- let Keyword - declares a variable
 
 **Key Takeaways:**
 
-- :rust:`let`   - creates a variable
-- :rust:`mut`   - *optional*, but makes it changeable
+- :rust:`mut  ` - *optional*, makes it changeable
 - :rust:`: i32` - *optional* because Rust can infer it
