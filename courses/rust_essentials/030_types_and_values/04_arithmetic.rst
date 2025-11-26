@@ -17,16 +17,14 @@ Standard Operators
 
 .. code:: rust
 
-  fn main() {
-      let sum = 5 + 10;            // 15
-      let difference = 95.5 - 4.3; // 91.2
-      let product = 4 * 30;        // 120
-      
-      // Integer division truncates (rounds down)
-      let quotient = 7 / 3;        // 2 (not 2.33...)
-      
-      let remainder = 7 % 3;       // 1
-  }
+  let sum = 5 + 10;            // 15
+  let difference = 95.5 - 4.3; // 91.2
+  let product = 4 * 30;        // 120
+
+  // Integer division truncates (rounds down)
+  let quotient = 7 / 3;        // 2 (not 2.33...)
+
+  let remainder = 7 % 3;       // 1
 
 -----------------------------
 Arithmetic Nuance: Division
@@ -41,10 +39,8 @@ Arithmetic Nuance: Division
 
 .. code:: rust
 
-  fn main() {
-      let a = 7 / 3;    // Result is 2 (not 2.33...)
-      let b = 1 / 2;    // Result is 0 (not 0.5)
-  }
+  let a = 7 / 3;    // Result is 2 (not 2.33...)
+  let b = 1 / 2;    // Result is 0 (not 0.5)
 
 ..
 
@@ -55,9 +51,7 @@ Arithmetic Nuance: Division
 
 .. code:: rust
 
-  fn main() {
-      let a = 7.0 / 3.0;  // Result is 2.333...
-  }
+  let a = 7.0 / 3.0;  // Result is 2.333...
 
 ------------------
 Integer Overflow
