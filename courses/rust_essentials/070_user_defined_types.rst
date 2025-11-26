@@ -32,10 +32,10 @@ User Defined Types
 
 .. container:: PRELUDE END
 
-.. include:: 070_user_defined_types/01_named_structs.rst
-.. include:: 070_user_defined_types/02_tuple_structs.rst
+.. include:: 070_user_defined_types/01_introduction.rst
+.. include:: 070_user_defined_types/02_structures.rst
 .. include:: 070_user_defined_types/03_enums.rst
 .. include:: 070_user_defined_types/04_aliases.rst
-.. include:: 070_user_defined_types/05_const.rst
-.. include:: 070_user_defined_types/06_static.rst
-.. include:: 070_user_defined_types/99_lab.rst
+.. include:: 070_user_defined_types/98_lab.rst
+.. include:: 070_user_defined_types/99_summary.rst
+
