@@ -66,11 +66,13 @@ Type Inference Explained
       // let explicit_float: f64 = 2.5;
   }
 
---------------------------
+--------------------
 Inference is Smart
---------------------------
+--------------------
 
-- Type inference isn't just about defaults...but also *how you use* a variable
+- Type inference isn't just about defaults
+
+  - ...but also *how you use* a variable
 
 - A variable's type might not be known until later in the function
 
@@ -83,7 +85,7 @@ Inference is Smart
       // We declare `unsigned_var` as an explicit u32
       let unsigned_var: u32;
 
-      // Rust looks back and decides `inferred_var` MUST be u32
+      // Rust decides `inferred_var` MUST be u32
       unsigned_var = inferred_var;
   }
 
