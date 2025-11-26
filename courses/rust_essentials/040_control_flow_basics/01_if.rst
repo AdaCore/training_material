@@ -1,17 +1,19 @@
 ========================
-:rust:`if` Expressions
+"if" Expressions
 ========================
 
----------------------------------
-Using :rust:`if` as a Statement
----------------------------------
+---------------------------
+Using "if" as a Statement
+---------------------------
 
-- Evaluation from top to bottom
-- The condition tests if a boolean expression evaluates to :rust:`true`
-- Blocks are mandatory, no shorthand!
-- Parentheses around the condition are optional
-  - Using them is considered unidiomatic
-- You may have zero or more :rust:`else if`, and zero or one final :rust:`else`
+- Evaluated top to bottom
+- Condition tests if a boolean expression evaluates to :rust:`true`
+- Blocks are **mandatory**, no shorthand!
+- Parentheses around the condition are **optional**
+  - Usage is considered unidiomatic
+- May have either:
+  - zero or more :rust:`else if`
+  - zero or one final :rust:`else`
 
 .. code:: rust
 
@@ -25,7 +27,7 @@ Using :rust:`if` as a Statement
     }
 
 ---------------------------------
-Using :rust:`if` as an Expression
+Using "if" as an Expression
 ---------------------------------
 
 * Every block is an expression that returns a value
@@ -40,22 +42,19 @@ Using :rust:`if` as an Expression
     };
     println!("Pet Status: {}", status);
 
-.. note:: Note the :rust:`;` after the curly brace to terminate the let statement
+.. note:: Note the :rust:`;` after the curly brace to terminate the :rust:`let` statement
 
 ---------------------------------------------------
-Return Type Consistency in :rust:`if` Expressions
+Return Type Consistency in "if" Expressions
 ---------------------------------------------------
 
 * All returned values, from all branches, must have the same type
-
 
   .. code:: rust
 
      let size = if x < 20 { "small"; } else { "large" };
 
-  ::
-
-     error[E0308]: `if` and `else` have incompatible types
+:error:`error[E0308]: 'if' and 'else' have incompatible types`
 
 - :rust:`"small"` and :rust:`"large"` are both strings
-- But adding a :rust:`;` to one side makes the types different
+  - Adding a :rust:`;` to one side makes the types different
