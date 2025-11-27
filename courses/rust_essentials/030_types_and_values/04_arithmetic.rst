@@ -79,13 +79,13 @@ Modifying Variables In-Place
   - This is the idiomatic way to increment counters in Rust
 
 .. list-table::
-   :widths: 10 20 45 25
+   :widths: 15 30 35 20
    :header-rows: 1
 
    * - Operator
      - Expanded Meaning
      - Example
-     - Result*
+     - Result\*
 
    * - **+=**
      - :rust:`x = x + y`
@@ -112,7 +112,7 @@ Modifying Variables In-Place
      - :rust:`x %= 3;`
      - :rust:`1`
 
-***Assume :rust:`x` starts at 10
+**\* Assume** :rust:`x` **starts at 10**
 
 -----------------------------
 Arithmetic Nuance: Division
