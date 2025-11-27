@@ -54,17 +54,15 @@ Type Inference Explained
 
 .. code:: rust
 
-  fn main() {
-      // Rust sees a whole number and infers i32
-      let inferred_int = 10;
-      // This is the same as writing:
-      // let explicit_int: i32 = 10;
+  // Rust sees a whole number and infers i32
+  let inferred_int = 10;
+  // This is the same as writing:
+  // let explicit_int: i32 = 10;
 
-      // Rust sees a decimal and infers f64
-      let inferred_float = 2.5;
-      // This is the same as writing:
-      // let explicit_float: f64 = 2.5;
-  }
+  // Rust sees a decimal and infers f64
+  let inferred_float = 2.5;
+  // This is the same as writing:
+  // let explicit_float: f64 = 2.5;
 
 --------------------
 Inference is Smart
@@ -78,16 +76,14 @@ Inference is Smart
 
 .. code:: rust
 
-  fn main() {
-      // Rust sees 10, but waits to decide the type...
-      let inferred_var = 10;
+  // Rust sees 10, but waits to decide the type...
+  let inferred_var = 10;
 
-      // We declare `unsigned_var` as an explicit u32
-      let unsigned_var: u32;
+  // We declare `unsigned_var` as an explicit u32
+  let unsigned_var: u32;
 
-      // Rust decides `inferred_var` MUST be u32
-      unsigned_var = inferred_var;
-  }
+  // Rust decides `inferred_var` MUST be u32
+  unsigned_var = inferred_var;
 
 --------------
 Common Types
@@ -225,10 +221,8 @@ The "char" Type is Special
 
 .. code:: rust
 
-  fn main() {
-      let letter: char = 'a';
-      let accented: char = 'é';
-  }
+  let letter: char = 'a';
+  let accented: char = 'é';
 
 ------------------------------
 Recap: Anatomy of a Variable
@@ -236,12 +230,12 @@ Recap: Anatomy of a Variable
 
 .. code:: rust
 
-  // This is a *mutable*, *explicitly typed* variable binding
+  // A *mutable*, *explicitly typed* variable binding
 
   let mut x: i32 = 10;
   |   |   |  |     |
-  |   |   |  |     +--- Value   - numeric literal
-  |   |   |  +--------- Type    - 32-bit signed integer
+  |   |   |  |     +--- Value       - numeric literal
+  |   |   |  +--------- Type        - 32-bit signed integer
   |   |   +------------ Variable Name
   |   +---------------- mut Keyword - mutable
   +-------------------- let Keyword - declares a variable

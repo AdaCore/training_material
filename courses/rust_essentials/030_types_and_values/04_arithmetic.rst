@@ -69,27 +69,27 @@ The Exponent Trap
 Modifying Variables In-Place
 ------------------------------
 
-- Increment (:rust:`++`) and decrement ():rust:`--`) operators don't exist in Rust
+- Increment (:rust:`++`) and decrement (:rust:`--`) operators don't exist in Rust
 
   - *Why?* - they can lead to confusing code, and Rust prefers *clarity*
 
 - **The Alternative:** Compound Assignment
 
-  - Use the standard "shortcut" operators to perform math and an update in one signed_integer_types_begin
+  - Use the standard "shortcut" operators to do math AND update at once! 
   - This is the idiomatic way to increment counters in Rust
 
 .. list-table::
-   :widths: 10 25 45 20
+   :widths: 10 20 45 25
    :header-rows: 1
 
    * - Operator
      - Expanded Meaning
      - Example
-     - Result (:rust:`x` starts at 10)
+     - Result*
 
    * - **+=**
      - :rust:`x = x + y`
-     - :rust:`x += 1;` (The replacement for :rust:`++`)
+     - :rust:`x += 1;`
      - :rust:`11`
 
    * - **-=**
@@ -111,6 +111,8 @@ Modifying Variables In-Place
      - :rust:`x = x % y`
      - :rust:`x %= 3;`
      - :rust:`1`
+
+***Assume :rust:`x` starts at 10
 
 -----------------------------
 Arithmetic Nuance: Division
