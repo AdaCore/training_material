@@ -1,9 +1,9 @@
 =========
-SUMMARY
+Summary
 =========
 
 -----------------
-What we learned
+What We Learned
 -----------------
 
 -  Structs (Data Aggregation)
