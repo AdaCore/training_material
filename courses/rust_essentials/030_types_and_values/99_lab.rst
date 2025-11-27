@@ -11,7 +11,7 @@ The Problem
 - The code below will not compile!
 
 - Read the compiler error and use what you've learned about 
-  **Numberic Strictness** and **Casting** to fix it
+  **Numeric Strictness** and **Casting** to fix it
 
 .. code:: rust
 
@@ -19,7 +19,7 @@ The Problem
         let item_count: i32 = 15;
         let price_per_item: f64 = 4.99;
 
-        // ERROR!
+        // problem code!
         let total_price = item_count * price_per_item;
 
         println!("Total items: {item_count}");

@@ -19,7 +19,7 @@ What We Covered
 
 - **Numeric Conversions** 
 
-    - No "magic" Conversions
+    - No "magic" conversions
     - Be **intentional**
     - Cast types using :rust:`as`
 
