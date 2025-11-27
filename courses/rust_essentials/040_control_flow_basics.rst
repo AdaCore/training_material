@@ -32,11 +32,13 @@ Control Flow Basics
 
 .. container:: PRELUDE END
 
-.. include:: 040_control_flow_basics/01_if.rst
-.. include:: 040_control_flow_basics/02_match.rst
-.. include:: 040_control_flow_basics/03_loops.rst
-.. include:: 040_control_flow_basics/04_break_continue.rst
-.. include:: 040_control_flow_basics/05_blocks_and_scopes.rst
+.. include:: 040_control_flow_basics/00_introduction.rst
+.. include:: 040_control_flow_basics/01_blocks.rst
+.. include:: 040_control_flow_basics/02_if.rst
+.. include:: 040_control_flow_basics/03_match.rst
+.. include:: 040_control_flow_basics/04_loops.rst
+.. include:: 040_control_flow_basics/05_break_continue.rst
 .. include:: 040_control_flow_basics/06_functions.rst
 .. include:: 040_control_flow_basics/07_macros.rst
 .. include:: 040_control_flow_basics/99_lab.rst
+.. include:: 040_control_flow_basics/99_summary.rst
