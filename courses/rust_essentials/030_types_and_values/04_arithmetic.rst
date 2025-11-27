@@ -23,10 +23,6 @@ Standard Operators
      -
      -
 
-.. note::
-
-    Rust does not have the :rust:`++` or :rust:`--` increment/decrement operators
-
 .. code:: rust
 
   let sum = 5 + 10;            // 15
@@ -37,6 +33,84 @@ Standard Operators
   let quotient = 7 / 3;        // 2 (not 2.33...)
 
   let remainder = 7 % 3;       // 1
+
+-------------------
+The Exponent Trap
+-------------------
+
+- **No** operator for **exponent** (i.e., **power**)!
+
+- **Common Mistake:** using :rust:`^`
+
+  - In Rust, :rust:`^` is the **Bitwise XOR operator**
+  - Code will compile, but your math will be wrong!
+
+.. code:: rust
+
+  let wrong = 5 ^ 2;  // Result is 7 (binary 101 XOR 010)
+
+- **Correct Way:** use methods
+
+  - Must use a method specific to your data type
+  - :rust:`.pow(u32) ` - integers
+  - :rust:`.powf(f64)` - floats
+
+.. code:: rust
+
+  5_i32.pow(2)      // result = 25
+  5.0_f64.powf(2.5) // result ~55.9
+
+.. note::
+
+  Integer :rust:`pow()` requires a :rust:`u32` exponent to 
+  prevent negative exponents returning non-integers
+
+------------------------------
+Modifying Variables In-Place
+------------------------------
+
+- Increment (:rust:`++`) and decrement ():rust:`--`) operators don't exist in Rust
+
+  - *Why?* - they can lead to confusing code, and Rust prefers *clarity*
+
+- **The Alternative:** Compound Assignment
+
+  - Use the standard "shortcut" operators to perform math and an update in one signed_integer_types_begin
+  - This is the idiomatic way to increment counters in Rust
+
+.. list-table::
+   :widths: 10 25 45 20
+   :header-rows: 1
+
+   * - Operator
+     - Expanded Meaning
+     - Example
+     - Result (:rust:`x` starts at 10)
+
+   * - **+=**
+     - :rust:`x = x + y`
+     - :rust:`x += 1;` (The replacement for :rust:`++`)
+     - :rust:`11`
+
+   * - **-=**
+     - :rust:`x = x - y`
+     - :rust:`x -= 5;`
+     - :rust:`5`
+
+   * - **\*=**
+     - :rust:`x = x * y`
+     - :rust:`x *= 2;`
+     - :rust:`20`
+
+   * - **/=**
+     - :rust:`x = x / y`
+     - :rust:`x /= 2;`
+     - :rust:`5`
+
+   * - **%=**
+     - :rust:`x = x % y`
+     - :rust:`x %= 3;`
+     - :rust:`1`
 
 -----------------------------
 Arithmetic Nuance: Division
