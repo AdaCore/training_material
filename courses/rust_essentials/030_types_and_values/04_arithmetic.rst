@@ -51,8 +51,8 @@ Arithmetic Nuance: Division
 
 .. code:: rust
 
-  let a = 7 / 3;    // Result is 2 (not 2.33...)
-  let b = 1 / 2;    // Result is 0 (not 0.5)
+  let truncated = 7 / 3;      // Result is 2 (not 2.33...)
+  let also_truncated = 1 / 2; // Result is 0 (not 0.5)
 
 ..
 
@@ -63,7 +63,7 @@ Arithmetic Nuance: Division
 
 .. code:: rust
 
-  let a = 7.0 / 3.0;  // Result is 2.333...
+  let precise = 7.0 / 3.0;  // Result is 2.333...
 
 ------------------
 Integer Overflow
