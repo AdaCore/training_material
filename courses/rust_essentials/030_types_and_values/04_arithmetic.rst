@@ -9,16 +9,18 @@ Standard Operators
 - Rust standard arithmetic operators, in order of precedence (highest to lowest)
 
 .. list-table::
-   :widths: 40 20 20 20
+   :widths: 20 5 5 5 65
    :header-rows: 0
 
    * - **Multiplicative**
      - **\***
      - **/**
      - **%**
+     -
    * - **Additive**
      - **+**
      - **-**
+     -
      -
 
 .. note::
