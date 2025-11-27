@@ -180,6 +180,7 @@ Handling Overflow Explicitly
 - :rust:`overflowing_add()` - returns the value AND a :rust:`bool` indicating if overflow happened
 
 .. code:: rust
+  
   127_i8.wrapping_add(1)     // results in -128
 
   120_i8.saturating_add(20)  // results in 127 (max i8 value)
