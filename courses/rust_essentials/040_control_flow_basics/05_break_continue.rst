@@ -1,9 +1,9 @@
 ====================================
-:rust:`break` and :rust:`continue`
+"break" and "continue"
 ====================================
 
 ------------------------------------
-:rust:`break` and :rust:`continue`
+"break" and "continue"
 ------------------------------------
 
     - Use :rust:`continue` to immediately start the next iteration
@@ -21,7 +21,7 @@
     };        
 
 -------------------------------------------------------
-Returning a value with :rust:`loop` and :rust:`break`
+Returning a value with "loop" and "break"
 -------------------------------------------------------
 
     - Only :rust:`loop` is a looping construct and an expression

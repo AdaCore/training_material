@@ -3,13 +3,13 @@ Loops
 =======
 
 -------------------------
-:rust:`while` statement
+"while" statement
 -------------------------
 
 - The condition is checked **before** each iteration
 - **Parentheses** around the condition are optional (but considered unidiomatic)
 - Works much like in other languages
-- Executes the loop body as long as the condition is true
+- Executes the loop block as long as the condition is true
 
 .. code:: rust
 
@@ -21,33 +21,33 @@ Loops
     println!("LIFTOFF!");
 
 -----------------------
-:rust:`for` statement
+"for" statement
 -----------------------
 
 * The :rust:`for` loop iterates over ranges of values or the items in a collection:
 
 .. code:: rust
 
-    for index in 1..5 { // will generate 4 iterations
+    for index in 1..5 { // 4 iterations 
         println!("index: {index}");
     }
 
-    for index in 1..=5 { // will generate 5 iterations
+    for index in 1..=5 { // 5 iterations 
         println!("index: {index}");
     }
 
-    for element in [1, 2, 3, 4, 5] { // 5 iterations too
+    for element in [1, 2, 3, 4, 5] { // 5 iterations
         println!("element: {element}");
     }
 
 -------------------------
-:rust:`loop` expression
+"loop" expression
 -------------------------
 
 - The :rust:`loop` expression loops forever, until a :rust:`break` 
 
 .. code:: rust
-
+    
     let mut count = 0;
     loop {
         count += 1;
