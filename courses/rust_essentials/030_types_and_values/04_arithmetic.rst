@@ -97,18 +97,19 @@ Handling Overflow Explicitly
 
 - What if *you* want to control overflow behavior?
 
-  - Rust provides explicit methods so your intent is clear
+- :rust:`wrapping_add()` - Performs wrapping in all modules
 
-- You should **not** rely on wrapping if you expect a calculation overflow
-
-- :rust:`wrapping_add()` - Performs wrapping in all Modules
-
-  - :rust:`127_i8.wrapping_add(1)` results in :rust:`-128`
-
-- :rust:`saturating_add()` - Clamps the value at the type's maximum or minimum
-
-  - :rust:`120_i8.saturating_add(20)` results in :rust:`127` (the max :rust:`i8`)
+- :rust:`saturating_add()` - Clamps the value at the type's *maximum* or *minimum*
 
 - :rust:`overflowing_add()` - returns the value AND a :rust:`bool` indicating if overflow happened
 
-  - :rust:`100_i8.overflowing_add(50)` results in :rust:`(-106, true)`
+.. code:: rust
+  127_i8.wrapping_add(1)     // results in -128
+
+  120_i8.saturating_add(20)  // results in 127 (max i8 value)
+
+  100_i8.overflowing_add(50) // results in (-106, true)
+
+.. warning::
+
+  You should **not** rely on wrapping if you expect a calculation overflow
