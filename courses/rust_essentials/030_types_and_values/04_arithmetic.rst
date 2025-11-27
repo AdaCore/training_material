@@ -9,7 +9,7 @@ Standard Operators
 - Rust standard arithmetic operators, in order of precedence (highest to lowest)
 
 .. list-table::
-   :widths: 20 5 5 5 65
+   :widths: 30 5 5 5 55
    :header-rows: 0
 
    * - **Multiplicative**
