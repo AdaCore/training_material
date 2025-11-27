@@ -35,7 +35,7 @@ Returning a value with :rust:`loop` and :rust:`break`
         if count > 5 { break count; }
         println!("{}", count);
     };
-    println!("Result: ", result);
+    println!("Result: {}", result);
 
 
 --------

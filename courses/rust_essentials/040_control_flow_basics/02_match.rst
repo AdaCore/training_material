@@ -1,15 +1,15 @@
 ===========================
-:rust:`match` Expressions
+"match" Expressions
 ===========================
 
-------------------------------------
-Using :rust:`match` as a Statement
-------------------------------------
+------------------------------
+Using "match" as a Statement
+------------------------------
 
-- Checks a value against one or more options (arms)
+- Checks a value against one or more options (*arms*)
 - Evaluation of the :rust:`match` arms from top to bottom
   - First one that matches has its corresponding body executed
-- Needs to be exhaustive
+- Needs to be **exhaustive**
   - Either cover all possibilities
   - Or have a default case such as :rust:`_`
 - No fall-through between arms
@@ -28,15 +28,11 @@ Using :rust:`match` as a Statement
     }
 
 --------------------------------------
-Using :rust:`match` as an Expression
+Using "match" as an Expression
 --------------------------------------
 
 - The entire match expression evaluates to a value
-  - Can be used in:
-    - assignments
-    - function returns
-    - other expressions
-- Every single arm must return the exact same type as all other arms
+- Every arm must return the exact same type
 
 .. code:: rust
 
@@ -50,4 +46,3 @@ Using :rust:`match` as an Expression
         _ => "This reading is impossible.",
     };
     println!("Current mood: {}", current_mood);
-
