@@ -1,12 +1,12 @@
 ===================
-Blocks and Scopes
+Blocks
 ===================
 
 --------
-Blocks
+Block
 --------
 
-- A block contains a sequence of expressions enclosed by braces :rust:`{}`
+- A block contains a sequence of expressions and statements enclosed by braces :rust:`{}`
 - Each block has a value and a type, those of the last expression of the block
 - When the last expression, the resulting value is :rust:`()`
 
