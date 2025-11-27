@@ -219,7 +219,7 @@ The "char" Type is Special
 
 - :rust:`char` is **4 bytes** in Rust (as opposed to 1 byte in other languages)
 
-- Holds almost any character from any language (including emojis!)
+- Holds almost *any* character from *any* language (including emojis!)
 
 - Use single quotes for a :rust:`char`
 
