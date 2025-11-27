@@ -6,7 +6,7 @@ Enums
 Basic Enums
 -------------
 
--  An enum is a type that can be one of several possible, distinct :rust:`variants`. 
+-  An enum is a type that can be one of several possible, distinct :rust:`variants`
 -  Unlike structs, which combine different values into one, enums represent a choice between different values
 -  Variants from an Enum are accessed using the '::' notation
 
@@ -75,7 +75,7 @@ Idiom : State Machine
 -----------------------
 
 -  Each variants are mutually exclusive
-   -  Connexion can only be in one of these states at a time
+   -  Connection can only be in one of these states at a time
 
 .. code:: rust
 

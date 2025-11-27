@@ -12,29 +12,28 @@ Structs
 
 -  Can hold any basic types 
 
-- Fiels are accessed using the dot notation '.'
+-  Fields are accessed using dot notation
    
 
 .. code:: rust
 
 	struct User {
 		age: u8,
-		number_Of_messages : u32,
+		number_of_messages : u32,
 	}
 	
 	let myself = User {
 		age : 32,
-		number_Of_messages : 275,	
+		number_of_messages : 275,	
 	}
 	
-	if myself.number_Of_messages > 250 {
+	if myself.number_of_messages > 250 {
 		println!("You post too much !");
-	}
-   
+	}  
 
-----------------
-Structs: More
-----------------
+------------------------------
+Struct of a Struct (or Enum)
+------------------------------
    
 -  Can hold :rust:`struct` or :rust:`enum` 
    -  But it can't be recursive! 
@@ -54,19 +53,27 @@ Structs: More
 	}
 	struct Buyer {
 		curr_vehicle: Car,
-		// ERROR : This is recursive. Can be fixed with a pointer. 
+		// ERROR : This is recursive. Can be fixed with a pointer 
 		previous_owner: Buyer, 
 	}
 	
-------------------------
-Structs: More again!
-------------------------
+-----------------------
+Struct Initialization
+-----------------------
 
 -  Initialization of every field of a :rust:`struct` is **mandatory** when you instantiate it 
 -  There are no implicit default values
 -  If a local variable has the same name as the :rust:`struct` field, name can be written only once
 
 .. code:: rust
+
+	struct User {
+		email : String,    
+		username : String, 
+		active: bool,
+		sign_in_count: u64,
+	}
+
 	
 	fn send (email: String, username: String) -> User {
 		User {
@@ -77,16 +84,12 @@ Structs: More again!
 		}
 	}
 
-
-
-
------------------------------
-Struct Update Operator '..' 
------------------------------
-
+------------------------
+Struct Update Operator 
+------------------------
 
 -  The '..' operator allows easy creation a new instance of a :rust:`struct` based on another instance 
-   -  specify values only for the fields that needs to change 
+   -  Specify values only for the fields that needs to change 
    -  All unspecified fields are copied from the instance following the '..'
 
 .. code:: rust
@@ -107,19 +110,13 @@ Struct Update Operator '..'
 		..base_settings // Copy all other fields (theme, font_size)
 	};
 
-
-
-
-
-
-
 ---------------
 Tuple Structs
 ---------------
 
 -  Very similar to regular :rust:`struct` 
    -  Useful to give a structure a specific type name without naming all of its fields
-- the first element of a tuple is 0 not 1  
+-  First element of a tuple is 0 not 1  
 
 .. code:: rust
 
@@ -129,8 +126,6 @@ Tuple Structs
 	let red = Color(255, 0, 0);
 	// Displayed result is 0 not 255
 	println!("The green channel value is: {}", red.1);
-	
-	
 	
 ---------------
 Mutable
@@ -148,10 +143,7 @@ Mutable
 	
 	// color_mut is set to blue
 	color_mut.2 = 255;
-	color_mut.0 = 0;
-   
-
-	
+	color_mut.0 = 0;	
 	
 -----------------
 Idiom: Newtype
@@ -168,11 +160,11 @@ Idiom: Newtype
 	struct UserId(i64); 
 	struct LapseSecondsDuration(i64);
 	
-	let mut myId  = UserId(15);
-	let mut mytime = LapseSecondsDuration(53);
+	let mut my_id  = UserId(15);
+	let mut my_time = LapseSecondsDuration(53);
 	
 	//ERROR incompatible type
-	myId = mytime;
+	my_id = my_time;
 	
 -------------
 Unit Structs
