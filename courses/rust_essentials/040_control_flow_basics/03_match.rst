@@ -9,9 +9,6 @@ Using "match" as a Statement
 - Checks a value against one or more options (*arms*)
 - Evaluation of the :rust:`match` arms from top to bottom
   - First one that matches has its corresponding body executed
-- Needs to be **exhaustive**
-  - Either cover all possibilities
-  - Or have a default case such as :rust:`_`
 - No fall-through between arms
   - Unlike :cpp:`switch` in *C/C++*, like :ada:`case` in *Ada*
 - If an arm is a single expression, the :rust:`{ }` are optional
@@ -23,9 +20,36 @@ Using "match" as a Statement
         0 => println!("Grumble. Must protest."),
         1 => println!("Tail wag engaged."),
         2 => println!("Maximum happiness!"),
-        3 | 4 => println!("Too much love! Must nap."),
         _ => println!("Suspicion. Where are the treats?"),
     }
+
+--------------------------------
+The "match" must be exhaustive
+--------------------------------
+
+- Needs to be **exhaustive**
+  - Either cover all possibilities
+  - Or have a default case such as :rust:`_`
+
+.. code:: rust
+
+  let x = 5;
+  match x {
+      1 => println!("One"),
+      2 => println!("Two"),     
+      _ => println!("Other number!"),  // Catches all other possibilities
+  }
+
+- Use (:rust:`|`) to match several values to one arm.
+
+.. code:: rust
+
+  let belly_rubs = 4;
+  match belly_rubs {
+      0 | 1 => println!("Not enough love."),    // Matches 0 OR 1
+      2 | 3 | 4 => println!("Perfect amount!"), // Matches 2 OR 3 OR 4
+      _ => println!("Suspicion."),
+  }
 
 --------------------------------------
 Using "match" as an Expression
