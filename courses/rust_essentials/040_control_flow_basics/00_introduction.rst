@@ -6,10 +6,23 @@ Introduction
 Topics Covered
 ----------------
 
-- **Stuff A:** How to thing
+- **Conditional Expressions**
+  - :rust:`if` Expressions (Statement and Expression use)
+  - :rust:`match` Expressions (Statement and Expression use)
 
-- **Stuff B:** What kind of thing
+- **Loops**
+  - :rust:`while` Statement
+  - :rust:`for` Statement
+  - :rust:`loop` Expression
 
-- **Stuff C:** How to thing
+- **Loop Control**
+  - :rust:`break` and :rust:`continue`
+  - **Labels** (for loops and arbitrary blocks)
+  - Returning a value with :rust:`loop` and :rust:`break`
 
-- **Stuff D:** How thing
+- **Functions** and **Macros**
+  - Parameters and return values
+  - Functions with no return value (Unit Type :rust:`()`)
+  - Unsupported features (Overloading, default arguments)
+
+- **Exercice**: Collatz Sequence
