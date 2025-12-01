@@ -53,6 +53,7 @@ Struct of a Struct (or Enum)
 	}
 	struct Buyer {
 		curr_vehicle: Car,
+		// ERROR : this is recursive
 		previous_owner: Buyer, 
 	}
 	
@@ -77,7 +78,7 @@ Struct Initialization
 	fn send (email: String, username: String) -> User {
 		User {
 			// Same as email: email
-			// the field email takes value of send parameter
+			// The field email takes value of send parameter
 			email,
 			// Same as username: username
 			// See above
