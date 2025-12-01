@@ -9,6 +9,7 @@ Macros
 - Macros are expanded into code during compilation
 - Can take a variable number of arguments
 - Distinguished by a :rust:`!` at the end
+- You can write your own macros
 - The standard library includes an assortment of useful macros:
 
 .. code:: rust

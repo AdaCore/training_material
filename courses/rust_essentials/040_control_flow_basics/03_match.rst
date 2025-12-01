@@ -24,7 +24,7 @@ Using "match" as a Statement
     }
 
 --------------------------------
-The "match" must be exhaustive
+The "match" Must Be Exhaustive
 --------------------------------
 
 - Needs to be **exhaustive**
@@ -57,6 +57,7 @@ Using "match" as an Expression
 
 - The entire match expression evaluates to a value
 - Every arm must return the exact same type
+- Use the :rust:`..=` syntax for inclusive range
 
 .. code:: rust
 
@@ -66,7 +67,7 @@ Using "match" as an Expression
         1..=10 => "Need a scarf.",
         11..=25 => "Perfect.",
         26..=30 => "Slightly sticky.",
-        31..=40 => "Melting!",        
+        31..40 => "Melting!", // 40 is not included!        
         _ => "This reading is impossible.",
     };
     println!("Current mood: {}", current_mood);
