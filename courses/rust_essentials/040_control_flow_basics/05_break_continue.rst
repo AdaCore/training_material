@@ -21,7 +21,7 @@
     };        
 
 -------------------------------------------------------
-Returning a value with "loop" and "break"
+Returning a Value with "loop" and "break"
 -------------------------------------------------------
 
     - Only :rust:`loop` is a looping construct and an expression
@@ -56,7 +56,8 @@ Labels
             }
         }
     }
-
+    println!("Sugar crash at: {}", chocolates_eaten);
+    
 --------------
 Block Labels
 --------------

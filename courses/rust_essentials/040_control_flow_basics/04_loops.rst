@@ -3,13 +3,13 @@ Loops
 =======
 
 -------------------------
-"while" statement
+"while" Statement
 -------------------------
 
 - The condition is checked **before** each iteration
 - **Parentheses** around the condition are optional (but considered unidiomatic)
 - Works much like in other languages
-- Executes the loop block as long as the condition is true
+- Executes the loop block as long as the condition is :rust:`true`
 
 .. code:: rust
 
@@ -21,7 +21,7 @@ Loops
     println!("LIFTOFF!");
 
 -----------------------
-"for" statement
+"for" Statement
 -----------------------
 
 * The :rust:`for` loop iterates over ranges of values or the items in a collection:
@@ -41,7 +41,7 @@ Loops
     }
 
 -------------------------
-"loop" expression
+"loop" Expression
 -------------------------
 
 - The :rust:`loop` expression loops forever, until a :rust:`break` 

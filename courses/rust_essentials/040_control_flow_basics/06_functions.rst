@@ -14,13 +14,15 @@ Functions
 
 .. code:: rust
 
-   fn gcd(a: u32, b: u32) -> u32 {
-       if b > 0 {
-           gcd(b, a % b)
-       } else {
-           a
-       }
-   }
+  fn get_goblin_bribe(mood_rating: u32, shiny_stone: bool) {
+      let standard_tribute = 50;
+      let bonus_bribe = 100;
+      if chief_mood_rating >= 8 && shiny_stone {
+          standard_tribute
+      } else {
+          standard_tribute + bonus_bribe
+      }
+  }
 
 -------------------------------
 Function With No Return Value
@@ -43,9 +45,10 @@ Function Features Not Supported
 
 - Overloading is not supported
   - Each function has a single implementation
+  - Always takes a single set of parameter types
 - Always takes a fixed number of parameters
 - Default arguments are not supported
-- Always takes a single set of parameter types
+
 
 
 
