@@ -1,39 +1,49 @@
-=====================
-Exercise: Fibonacci
-=====================
+=================================
+Exercise: Calculate Total Price
+=================================
 
----------------------
-Fibonacci Problem
----------------------
+-------------
+The Problem
+-------------
 
-The Fibonacci sequence begins with :rust:`[0,1]`. For n>1, the n'th
-Fibonacci number is calculated recursively as the sum of the n-1'th and
-n-2'th Fibonacci numbers.
+**Goal:** Calculate the total price for an order
 
-Write a function :rust:`fib(n)` that calculates the n'th Fibonacci number.
-When will this function panic?
+- The code below will not compile!
+
+- Read the compiler error and use what you've learned about 
+  **Numeric Strictness** and **Casting** to fix it
 
 .. code:: rust
 
-   fn fib(n: u32) -> u32 {
-       if n < 2 {
-           // The base case.
-           return todo!("Implement this");
-       } else {
-           // The recursive case.
-           return todo!("Implement this");
-       }
-   }
+    fn main() {
+        let item_count: i32 = 15;
+        let price_per_item: f64 = 4.99;
 
-.. container:: source_include 030_types_and_values/src/030_types_and_values.rs :start-after://ANCHOR-main :code:rust
+        // problem code!
+        let total_price = item_count * price_per_item;
 
-   fn main() {
-       let n = 20;
-       println!("fib({n}) = {}", fib(n));
-   }
+        println!("Total items: {item_count}");
+        println!("Total price: ${total_price}");
+    }
 
----------------------
-Fibonacci Solution
----------------------
+--------------
+The Solution
+--------------
 
-.. container:: source_include 030_types_and_values/src/030_types_and_values.rs :start-after://ANCHOR-fib :end-before://ANCHOR-main :code:rust
+- The error was :error:`cannot multiply 'i32' by 'f64'`
+
+- To fix it, you must **expicitly cast** the :rust:`i32` to an
+  :rust:`f64` using the :rust:`as` keyword
+
+.. code:: rust
+
+    fn main() {
+        let item_count: i32 = 15;
+        let price_per_item: f64 = 4.99;
+
+        // We cast the integer to a float to match the price
+        let total_price = (item_count as f64) * price_per_item;
+
+        println!("Total items: {item_count}");
+        println!("Total price: ${total_price}");
+    }
