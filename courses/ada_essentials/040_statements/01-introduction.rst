@@ -41,17 +41,12 @@ Procedure Calls (Overview)
 
 * Procedure calls are statements
 
-  * Traditional call notation
+  * call notation
 
     .. code:: Ada
 
       Activate (Idle, True);
 
-  * "Distinguished Receiver" notation
-
-    .. code:: Ada
-
-      Idle.Activate (True);
 
 * More details in "Subprograms" section
 
