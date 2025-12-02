@@ -240,7 +240,7 @@ Which statement is correct?
 
    A. Cannot mix positional and named notation
    B. Correct - others not needed but is allowed
-   C. Dynamic values must be the only choice. (This could be fixed by making :ada:`J` a constant.)
+   C. Dynamic values must be the only choice, or :ada:`J` could also be made :ada:`constant`.
    D. Overlapping index values (3 appears more than once)
 
 ------------------------
