@@ -32,8 +32,10 @@ Tuples And Arrays
 
 .. container:: PRELUDE END
 
+.. include:: 050_tuples_and_arrays/00_introduction.rst
 .. include:: 050_tuples_and_arrays/01_arrays.rst
 .. include:: 050_tuples_and_arrays/02_tuples.rst
-.. include:: 050_tuples_and_arrays/03_iteration.rst
-.. include:: 050_tuples_and_arrays/04_destructuring.rst
+.. include:: 050_tuples_and_arrays/03_destructuring.rst
 .. include:: 050_tuples_and_arrays/99_lab.rst
+.. include:: 050_tuples_and_arrays/99_summary.rst
+
