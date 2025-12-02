@@ -41,8 +41,8 @@ into
 Nested Arrays Problem
 -------------------------
 
-Copy the code below to https://play.rust-lang.org/ and implement the
-function. This function only operates on 3x3 matrices.
+Copy the code below, and implement the function. 
+This function only operates on 3x3 matrices.
 
 .. code:: rust
 
