@@ -42,13 +42,13 @@ Using "if" as an Expression
     };
     println!("Pet Status: {}", status);
 
-.. note:: Note the :rust:`;` after the curly brace to terminate the :rust:`let` statement
+.. note:: Pay attention to the :rust:`;` after the curly brace to terminate the :rust:`let` statement
 
 ---------------------------------------------------
-Return Type Consistency in "if" Expressions
+Return Type Consistency
 ---------------------------------------------------
 
-* All returned values, from all branches, must have the same type
+* Returned values, from all branches, must have the same type
 
   .. code:: rust
 
@@ -57,4 +57,4 @@ Return Type Consistency in "if" Expressions
 :error:`error[E0308]: 'if' and 'else' have incompatible types`
 
 - :rust:`"small"` and :rust:`"large"` are both strings
-  - Adding a :rust:`;` to one side makes the types different
+  - Adding a :rust:`;` after a value makes the types different
