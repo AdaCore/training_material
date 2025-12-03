@@ -6,10 +6,10 @@
 "break" and "continue"
 ------------------------------------
 
-    - Use :rust:`continue` to immediately start the next iteration
-    - Use :rust:`break` to exit any kind of loop early
-    - Both :rust:`continue` and :rust:`break` work with :rust:`while`, :rust:`for`, and :rust:`loop`
-    
+    - Start immediately start the next iteration with :rust:`continue`
+    - Exit any kind of loop early with :rust:`break`
+    - Both work with :rust:`while`, :rust:`for`, and :rust:`loop`
+
 .. code:: rust
 
     let mut count = 0;
@@ -18,14 +18,18 @@
         if count < 3 { continue; } 
         if count > 5 { break; }
         println!("{}", count);
-    };        
+    }; 
+    // Output:
+    // 3
+    // 4
+    // 5        
 
 -------------------------------------------------------
 Returning a Value with "loop" and "break"
 -------------------------------------------------------
 
-    - Only :rust:`loop` is a looping construct and an expression
-    - It is an expression that can return a non-trivial value
+    - :rust:`loop` is also an expression
+    - Can return a non-trivial value
 
 .. code:: rust
 
@@ -37,32 +41,34 @@ Returning a Value with "loop" and "break"
     };
     println!("Result: {}", result);
 
-
 --------
 Labels
 --------
 
-    - Both :rust:`continue` and :rust:`break` can optionally take a label argument
-    - Used to break out of nested loops:
+  - Labels are optionally attached to loops (:rust:`loop`, :rust:`while`, :rust:`for`)
+  - Denoted by a single quote (:rust:`'`) followed by an identifier
+  - Both :rust:`continue` and :rust:`break` can optionally take a label argument
+  - Primarly used to break out of nested loops
+    - or to continue an outer loop from within an inner one
 
 .. code:: rust
 
-    let mut chocolates_eaten = 0;
-    'chocolate_boxes: for _box_number in 1..=5 {
-        for _chocolate_piece in 1..=5 {
-            chocolates_eaten += 1;
-            if chocolates_eaten == 13 {
-                break 'chocolate_boxes; 
+    let mut eaten = 0;
+    'outer: for _box in 1..=5 {
+        for _piece in 1..=5 {
+            eaten += 1;
+            if eaten == 13 {
+                break 'outer; 
             }
-        }
-    }
-    println!("Sugar crash at: {}", chocolates_eaten);
+        } // inner loop ends
+    } // outer loop ends
+    println!("Sugar crash at: {}", eaten);
     
 --------------
 Block Labels
 --------------
 
--  Labeled break also works on arbitrary blocks, e.g.
+-  Labeled break also works on arbitrary blocks
 
   .. code:: rust
 
