@@ -7,20 +7,23 @@ Using "match" as a Statement
 ------------------------------
 
 - Checks a value against one or more options (*arms*)
-- Evaluation of the :rust:`match` arms from top to bottom
-  - First one that matches has its corresponding body executed
+- Evaluated top to bottom
+  - First arm that matches has its corresponding body executed
 - No fall-through between arms
-  - Unlike :cpp:`switch` in *C/C++*, like :ada:`case` in *Ada*
-- If an arm is a single expression, the :rust:`{ }` are optional
+  - Like :ada:`case` in Ada, but unlike :cpp:`switch` in C/C++ 
+- If an arm is a single expression, the :rust:`{ }` are **optional**
 
 .. code:: rust
 
     let belly_rubs = 3; 
     match belly_rubs {
-        0 => println!("Grumble. Must protest."),
-        1 => println!("Tail wag engaged."),
-        2 => println!("Maximum happiness!"),
-        _ => println!("Suspicion. Where are the treats?"),
+        0 => {
+          println!("Grumble");
+          println!("Must protest");
+        } // No comma here is idiomatic
+        1 => println!("Tail wag engaged"),
+        2 => println!("Maximum happiness"),
+        _ => println!("Suspicion"), // Comma is optional but idiomatic
     }
 
 --------------------------------
@@ -28,16 +31,16 @@ The "match" Must Be Exhaustive
 --------------------------------
 
 - Needs to be **exhaustive**
-  - Either cover all possibilities
-  - Or have a default case such as :rust:`_`
+  - Must cover all possibilities
+  - Can have a default case such as :rust:`_`
 
 .. code:: rust
 
-  let x = 5;
+  let number = 5;
   match x {
       1 => println!("One"),
       2 => println!("Two"),     
-      _ => println!("Other number!"),  // Catches all other possibilities
+      _ => println!("Other number!"), // Catches all other possibilities
   }
 
 - Use (:rust:`|`) to match several values to one arm.
@@ -46,8 +49,8 @@ The "match" Must Be Exhaustive
 
   let belly_rubs = 4;
   match belly_rubs {
-      0 | 1 => println!("Not enough love."),    // Matches 0 OR 1
-      2 | 3 | 4 => println!("Perfect amount!"), // Matches 2 OR 3 OR 4
+      1 | 2 => println!("Not enough love."),    // Matches 1 or 2
+      3 | 4 | 5 => println!("Perfect amount!"), // Matches 3 or 4 or 5
       _ => println!("Suspicion."),
   }
 
@@ -55,19 +58,21 @@ The "match" Must Be Exhaustive
 Using "match" as an Expression
 --------------------------------------
 
-- The entire match expression evaluates to a value
+- Entire match expression evaluates to a value
 - Every arm must return the exact same type
-- Use the :rust:`..=` syntax for inclusive range
+- Use the :rust:`..` syntax for range
+  - To include the upper bound: :rust:`..=`
+  - To include all values before the upper bound: omit the lower bound 
+  - To include all values after the lower bound: omit the upper bound 
 
 .. code:: rust
 
     let temperature_c = 35;
     let current_mood = match temperature_c {
-        0 => "Hibernation protocol initiated.",
-        1..=10 => "Need a scarf.",
-        11..=25 => "Perfect.",
-        26..=30 => "Slightly sticky.",
-        31..40 => "Melting!", // 40 is not included!        
-        _ => "This reading is impossible.",
+        ..=0 => "Hibernation",
+        1..10 => "Need a scarf",
+        10..30 => "Perfect",
+        30..40 => "Melting!",        
+        40.. => "This reading is impossible.",
     };
     println!("Current mood: {}", current_mood);
