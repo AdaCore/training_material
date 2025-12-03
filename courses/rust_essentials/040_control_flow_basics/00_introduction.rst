@@ -6,6 +6,8 @@ Introduction
 Topics Covered
 ----------------
 
+- **Blocks**
+
 - **Conditional Expressions**
   - :rust:`if` Expressions (Statement and Expression use)
   - :rust:`match` Expressions (Statement and Expression use)
@@ -17,12 +19,10 @@ Topics Covered
 
 - **Loop Control**
   - :rust:`break` and :rust:`continue`
-  - **Labels** (for loops and arbitrary blocks)
+  - **Labels** (:rust:`for` loops and arbitrary blocks)
   - Returning a value with :rust:`loop` and :rust:`break`
 
 - **Functions** and **Macros**
   - Parameters and return values
-  - Functions with no return value (Unit Type :rust:`()`)
-  - Unsupported features (Overloading, default arguments)
+  - Functions with no return value (unit type :rust:`()`)
 
-- **Exercice**: Collatz Sequence
