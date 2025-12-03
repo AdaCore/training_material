@@ -6,19 +6,20 @@ Blocks
 Block
 --------
 
-- A block contains a sequence of expressions and statements enclosed by braces :rust:`{}`
-- Each block has a value and a type, those of the last expression of the block
-- When the last expression, the resulting value is :rust:`()`
+- Encloses a sequence of expressions and statements within :rust:`{}`
+- Each block has a value and a type
+  - determined by the last expression of the block
+- Result is :rust:`()` (the unity type) if the last line ends with an instruction
 
 .. code:: rust
 
-    let z = 13;
-    let x = {
-        let y = 10;
-        println!("y: {y}");
-        z - y
+    let bank = 13;
+    let cash = {
+        let withdraw = 10;
+        println!("withdraw: {withdraw}");
+        bank - withdraw
     };
-    println!("x: {x}");
+    println!("cash: {cash}");
 
 .. container:: speakernote
 
