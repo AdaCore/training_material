@@ -6,10 +6,10 @@ Loops
 "while" Statement
 -------------------------
 
-- The condition is checked **before** each iteration
-- **Parentheses** around the condition are optional (but considered unidiomatic)
-- Works much like in other languages
-- Executes the loop block as long as the condition is :rust:`true`
+- Condition is checked **before** each iteration
+- Parentheses around the condition are **optional** 
+  - but considered unidiomatic
+- Executes the block while the condition is :rust:`true`
 
 .. code:: rust
 
@@ -24,7 +24,9 @@ Loops
 "for" Statement
 -----------------------
 
-* The :rust:`for` loop iterates over ranges of values or the items in a collection:
+- Iterates over
+  - A range of values 
+  - Items in a collection
 
 .. code:: rust
 
@@ -44,7 +46,7 @@ Loops
 "loop" Expression
 -------------------------
 
-- The :rust:`loop` expression loops forever, until a :rust:`break` 
+- Loops forever, or until a :rust:`break` 
 
 .. code:: rust
     
