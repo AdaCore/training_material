@@ -224,6 +224,36 @@ The "char" Type is Special
   let letter: char = 'a';
   let accented: char = 'é';
 
+------------------
+The Unit Type ()
+------------------
+
+- Represeents "completion without a result"
+
+- Holds **no** meaningful data (unlike traditional types, like :rust:`i32`)
+
+- Written as :rust:`()` for both the **type** and **value**
+
+- A real value that *can* be assigned to variables (though rarely useful!)
+
+  - Like an empty set, or empty box
+
+  - When code seems to return *nothing*, it's actually :rust:`()`
+
+.. code:: rust
+
+  // this variable exists, but holds no data!
+  let nothing: () = ();
+
+  // you'll rarely create variables like this manually, but it's common in
+  // error messages
+  println!("{:?}", nothing); // prints "()"
+
+.. note::
+
+  Not like :rust:`void` in other languages! :rust:`()` actually *is* a real value,
+  and can be assigned to variables (though rarely useful!)
+
 ------------------------------
 Recap: Anatomy of a Variable
 ------------------------------
