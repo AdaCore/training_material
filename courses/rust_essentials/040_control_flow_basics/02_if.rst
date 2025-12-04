@@ -50,8 +50,7 @@ Return Type Consistency
 
   .. code:: rust
 
-    let size = if x < 20 { "small"; } else { "large" };
-        let size = if x < 20 {
+    let size = if x < 20 {
         "small"; // Note the ; here
     } else {
         "large"  // Note the absence of ; here
