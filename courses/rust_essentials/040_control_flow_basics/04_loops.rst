@@ -8,7 +8,7 @@ Loops
 
 - Condition is checked **before** each iteration
 - Parentheses around the condition are **optional** 
-  - but considered unidiomatic
+  - Usage is considered unidiomatic
 - Executes the block while the condition is :rust:`true`
 
 .. code:: rust
@@ -24,7 +24,7 @@ Loops
 "for" Statement
 -----------------------
 
-- Iterates over
+- Iterates over either
   - A range of values 
   - Items in a collection
 
