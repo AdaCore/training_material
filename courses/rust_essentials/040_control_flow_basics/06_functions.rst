@@ -36,7 +36,7 @@ Functions With No Return Value
 .. code:: rust
 
    fn do_something() {
-       println!("doing something!);
+       println!("doing something!");
    }
 
 ---------------------------------
