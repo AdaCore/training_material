@@ -20,8 +20,10 @@ Using "match" as a Statement
         0 => {
           println!("Grumble");
           println!("Must protest");
-        } // No comma here is idiomatic
-        1 => println!("Tail wag engaged"),
+        } // Comma is optional but unidiomatic
+        1 => {
+          println!("Tail wag engaged")
+        }
         2 => println!("Maximum happiness"),
         _ => println!("Suspicion"), // Comma is optional but idiomatic
     }
@@ -60,10 +62,11 @@ Using "match" as an Expression
 
 - Entire match expression evaluates to a value
 - Every arm must return the exact same type
-- Use the :rust:`..` syntax for range
-  - To include the upper bound: :rust:`..=`
-  - To include all values before the upper bound: omit the lower bound 
-  - To include all values after the lower bound: omit the upper bound 
+- Inclusive and exclusive ranges with the :rust:`..` and :rust:`..=` syntaxes:
+  - *low..=high*: from *low*, up to *high* (inclusive)
+  - *low..high*: from *low*, up to *high* (exclusive)
+  - *..high*: from minimum possible value, up to *high* (exclusive)
+  - *low..*: from *low* (inclusive), up to maximum possible value
 
 .. code:: rust
 
