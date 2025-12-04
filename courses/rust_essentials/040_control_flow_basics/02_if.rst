@@ -39,10 +39,8 @@ Using "if" as an Expression
         "Starving. Call the vet and the police." 
     } else { 
         "Full. Now demanding fresh water." 
-    };
+    }; // Note the ; here to terminate the let statement
     println!("Pet Status: {}", status);
-
-.. note:: Pay attention to the :rust:`;` after the curly brace to terminate the :rust:`let` statement
 
 ---------------------------------------------------
 Return Type Consistency
@@ -52,7 +50,12 @@ Return Type Consistency
 
   .. code:: rust
 
-     let size = if x < 20 { "small"; } else { "large" };
+    let size = if x < 20 { "small"; } else { "large" };
+        let size = if x < 20 {
+        "small"; // Note the ; here
+    } else {
+        "large"  // Note the absence of ; here
+    };
 
 :error:`error[E0308]: 'if' and 'else' have incompatible types`
 
