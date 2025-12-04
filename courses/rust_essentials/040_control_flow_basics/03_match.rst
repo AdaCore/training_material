@@ -20,12 +20,12 @@ Using "match" as a Statement
         0 => {
           println!("Grumble");
           println!("Must protest");
-        } // Comma is optional but unidiomatic
+        } // Comma is optional, unidiomatic
         1 => {
           println!("Tail wag engaged")
-        }
+        } // Block for single expression is optional, unidiomatic
         2 => println!("Maximum happiness"),
-        _ => println!("Suspicion"), // Comma is optional but idiomatic
+        _ => println!("Suspicion"), // Comma is optional, idiomatic
     }
 
 --------------------------------

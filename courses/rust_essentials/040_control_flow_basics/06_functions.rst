@@ -14,7 +14,7 @@ Functions
 
 .. code:: rust
 
-  fn get_goblin_bribe(mood_rating: u32, shiny_stone: bool) {
+  fn get_bribe(mood_rating: u32, shiny_stone: bool) ->32 {
       let tribute = 50;
       let bonus = 100;
       if mood_rating >= 8 && shiny_stone {

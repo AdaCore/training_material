@@ -21,7 +21,7 @@ What We Covered
 
 - **Functions** and **Macros** 
 
-    - Last expression, semicolon-less, is the function return value
+    - Last expression is the function return value
     - No overloading, no default value for parameters
-    - Macros: compile-time expanded code taking variable arguments
-      - always suffixed with :rust:`!`
+    - Macros (suffixed with :rust:`!`) expand into code at compile-time
+      - Allow variable arguments
