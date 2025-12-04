@@ -228,13 +228,11 @@ The "char" Type is Special
 The Unit Type ()
 ------------------
 
-- Represeents "completion without a result"
-
 - Holds **no** meaningful data (unlike traditional types, like :rust:`i32`)
 
-- Written as :rust:`()` for both the **type** and **value**
+- Represents "completion without a result"
 
-- A real value that *can* be assigned to variables (though rarely useful!)
+- Written as :rust:`()` for both the **type** and **value**
 
   - Like an empty set, or empty box
 
@@ -245,13 +243,12 @@ The Unit Type ()
   // this variable exists, but holds no data!
   let nothing: () = ();
 
-  // you'll rarely create variables like this manually, but it's common in
-  // error messages
   println!("{:?}", nothing); // prints "()"
 
 .. note::
 
-  Not like :rust:`void` in other languages! :rust:`()` actually *is* a real value,
+  Not like :rust:`void` in other languages! 
+  :rust:`()` actually *is* a real value,
   and can be assigned to variables (though rarely useful!)
 
 ------------------------------
