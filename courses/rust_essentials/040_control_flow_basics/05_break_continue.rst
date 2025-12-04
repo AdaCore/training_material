@@ -45,11 +45,11 @@ Returning a Value with "loop" and "break"
 Labels
 --------
 
-  - Labels are optionally attached to loops (:rust:`loop`, :rust:`while`, :rust:`for`)
+  - **Optionally** attached to loops (:rust:`loop`, :rust:`while`, :rust:`for`)
   - Denoted by a single quote (:rust:`'`) followed by an identifier
   - Both :rust:`continue` and :rust:`break` can optionally take a label argument
   - Primarly used to break out of nested loops
-    - or to continue an outer loop from within an inner one
+    - Or to continue an outer loop from within an inner one
 
 .. code:: rust
 
