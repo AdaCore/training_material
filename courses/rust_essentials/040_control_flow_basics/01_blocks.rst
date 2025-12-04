@@ -7,9 +7,9 @@ Block
 --------
 
 - Encloses a sequence of expressions and statements within :rust:`{}`
-- Each block has a value and a type
+- Each block has a **value** and a **type**
   - determined by the last expression of the block
-- Result is :rust:`()` (the unity type) if the last line ends with an instruction
+- Result is :rust:`()` (the unit type) if the last line ends with an instruction
 
 .. code:: rust
 
