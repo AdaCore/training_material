@@ -50,10 +50,11 @@ Return Type Consistency
 
   .. code:: rust
 
-    let size = if x < 20 {
-        "small"; // Note the ; here
+    let size = if x < 20 { "small"; } else { "large" };
+        let size = if x < 20 {
+        "small"; // Note the ;
     } else {
-        "large"  // Note the absence of ; here
+        "large"  // Note the absence of ; 
     };
 
 :error:`error[E0308]: 'if' and 'else' have incompatible types`

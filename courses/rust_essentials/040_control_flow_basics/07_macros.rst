@@ -6,7 +6,8 @@ Macros
 Macros
 --------
 
-- Macros are expanded into code during compilation
+- Macros are not function
+- Are expanded into code during compilation
 - Can take a variable number of arguments
 - Distinguished by a :rust:`!` at the end
 - You can write your own macros
@@ -22,13 +23,13 @@ Useful Macros
    fn factorial(n: u32) -> u32 {
        let mut product = 1;
        for i in 1..=n {
-           product *= dbg!(i);
+           product *= dbg!(i); // A macro call!
        }
        product
    }
 
    fn fizzbuzz(n: u32) -> u32 {
-       todo!()
+       todo!() // A macro call!
    }
 
 -  :rust:`println!(format, ..)` prints a line to standard output
