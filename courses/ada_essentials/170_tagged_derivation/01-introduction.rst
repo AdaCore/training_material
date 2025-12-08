@@ -26,9 +26,11 @@ Object-Oriented Programming with Tagged Types
 Tagged Derivation Ada Vs C++
 ------------------------------
 
-.. container:: columns
+.. container:: latex_environment small
 
- .. container:: column
+ .. container:: columns
+
+  .. container:: column
 
    .. code:: Ada
 
@@ -46,7 +48,7 @@ Tagged Derivation Ada Vs C++
            This : T2);
       procedure Attr_F2 (This : T2);
 
- .. container:: column
+  .. container:: column
 
    .. code:: C++
 
