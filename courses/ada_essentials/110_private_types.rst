@@ -33,7 +33,7 @@ Private Types
 .. container:: PRELUDE END
 
 .. include:: 110_private_types/01-introduction.rst
-.. include:: 110_private_types/02-implementing_abstract_data_types_via_views.rst
+.. include:: 110_private_types/02-implementing_abstract_data_types.rst
 .. include:: 110_private_types/03-private_part_construction.rst
 .. include:: 110_private_types/04-view_operations.rst
 .. include:: 110_private_types/05-when_to_use_or_avoid_private_types.rst
