@@ -234,8 +234,6 @@ The Unit Type ()
 
 - Written as :rust:`()` for both the **type** and **value**
 
-  - Like an empty set, or empty box
-
   - When code seems to return *nothing*, it's actually :rust:`()`
 
 .. code:: rust
