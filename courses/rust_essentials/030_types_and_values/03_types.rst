@@ -241,9 +241,7 @@ The Unit Type ()
 .. code:: rust
 
   // this variable exists, but holds no data!
-  let nothing: () = ();
-
-  println!("{:?}", nothing); // prints "()"
+  let holds_no_data: () = ();
 
 .. note::
 
