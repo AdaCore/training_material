@@ -8,6 +8,9 @@
 \useoutertheme{infolines}
 \useinnertheme{rectangles}
 
+% needed for line numbers in code blocks
+\usepackage{fancyvrb}
+
 %========================================================
 % Define custom RGB colors
 %========================================================
@@ -172,5 +175,12 @@
 \setbeamercolor{itemize item}{fg=adacore_lovelace}
 \setbeamercolor{itemize subitem}{fg=adacore_midblue}
 \setbeamercolor{itemize subsubitem}{fg=gray}
+
+%========================================================
+% Miscellany
+%========================================================
+
+% Control spacing between code blocks and line numbers
+\fvset{numbersep=2mm,xleftmargin=4mm}
 
 \mode<all>
