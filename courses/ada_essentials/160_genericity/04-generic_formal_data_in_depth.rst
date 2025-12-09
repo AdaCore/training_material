@@ -76,6 +76,7 @@ Generic Subprogram Parameters
      type Something_T is null record;
      function Less_Than (L, R : Something_T) return Boolean;
      procedure My_Max is new Max (Something_T, Less_Than);
+     procedure Int_Max is new Max (Integer, "<");
 
 ------------------------------------------------------
 Generic Subprogram Parameters - Default Values (1/2)
