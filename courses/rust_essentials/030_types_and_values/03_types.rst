@@ -249,9 +249,7 @@ The Unit Type ()
 
 .. note::
 
-  Not like :rust:`void` in other languages! 
-  :rust:`()` actually *is* a real value,
-  and can be assigned to variables (though rarely useful!)
+  Unlike :rust:`void`, :rust:`()` is a real value! It exists and can be assigned to variables
 
 ------------------------------
 Recap: Anatomy of a Variable
