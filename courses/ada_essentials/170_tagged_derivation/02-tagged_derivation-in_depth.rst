@@ -12,26 +12,26 @@ Difference with Simple Derivation
 
     .. code:: Ada
 
-         type Root is tagged record
+         type Root_T is tagged record
             F1 : Integer;
          end record;
 
-         type Child is new Root with record
+         type Child is new Root_T with record
             F2 : Integer;
          end record;
 
-         Root_Object  : Root := (F1 => 101);
+         Root_Object  : Root_T := (F1 => 101);
          Child_Object : Child := (F1 => 201, F2 => 202);
 
 * Conversion is only allowed from **child to parent**
 
   .. code:: Ada
 
-         V1 : Root;
-         V2 : Child;
+         Root : Root_T;
+         Child : Child_T;
          ...
-         V1 := Root (V2);
-         V2 := Child (V1); -- illegal
+         Root := Root_T (Child);
+         Child := Child_T (Root); -- illegal
 
 ------------
 Primitives
@@ -46,13 +46,13 @@ Primitives
 
     .. code:: Ada
 
-         type Root1 is tagged null record;
-         type Root2 is tagged null record;
+         type Root1_T is tagged null record;
+         type Root2_T is tagged null record;
 
-         procedure P1 (V1 : Root1;
-                       V2 : Root1);
-         procedure P2 (V1 : Root1;
-                       V2 : Root2); -- illegal
+         procedure P1 (V1 : Root1_T;
+                       V2 : Root1_T);
+         procedure P2 (V1 : Root1_T;
+                       V2 : Root2_T); -- illegal
 
 -------------------------------
 Freeze Point for Tagged Types
@@ -69,24 +69,24 @@ Freeze Point for Tagged Types
 .. code:: Ada
    :number-lines: 3
 
-   type Root is tagged null record;
-   procedure Prim (V : Root);
+   type Root_T is tagged null record;
+   procedure Prim (Root : Root_T);
 
-   type Child is new Root with null record; -- freeze root
+   type Child_T is new Root_T with null record; -- freeze root
 
-   procedure Prim2 (V : Root); -- compile error
+   procedure Prim2 (Root : Root_T); -- compile error
 
-   V : Child; -- freeze child
+   Child : Child_T; -- freeze child
 
-   procedure Prim3 (V : Child); -- compile error
+   procedure Prim3 (Child : Child_T); -- compile error
 
 .. container:: latex_environment tiny
 
-  :error:`example.ads:6:04: warning: no primitive operations for "Root" after this line`
+  :error:`example.ads:6:04: warning: no primitive operations for "Root_T" after this line`
 
   :error:`example.ads:8:14: error: this primitive operation is declared too late`
 
-  :error:`example.ads:10:04: warning: no primitive operations for "Child" after this line`
+  :error:`example.ads:10:04: warning: no primitive operations for "Child_T" after this line`
 
   :error:`example.ads:12:14: error: this primitive operation is declared too late`
 
@@ -133,12 +133,12 @@ Prefix Notation
 .. code:: Ada
 
          -- Prim1 visible even without *use Pkg*
-         X.Prim1;
+         Object.Prim1;
 
          declare
             use Pkg;
          begin
-            Prim1 (X);
+            Prim1 (Object);
          end;
 
 ..
@@ -149,12 +149,6 @@ Quiz
 ------
 
 .. include:: ../quiz/tagged_primitives/quiz.rst
-
-------
-Quiz
-------
-
-.. include:: ../quiz/tagged_dot_and_with/quiz.rst
 
 ------
 Quiz

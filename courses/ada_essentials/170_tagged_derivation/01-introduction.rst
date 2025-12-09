@@ -10,7 +10,7 @@ Object-Oriented Programming with Tagged Types
 
   .. code:: Ada
 
-     type T is tagged record
+     type Root_T is tagged record
      ...
 
 * Child types can add new components
