@@ -102,7 +102,3 @@ Design Philosophy: Clarity and Unambiguity
   - Take a strict number of inputs
   - Macros (like :rust:`(println!)`) can take variable arguments
     - But functions cannot
-
-
-
-
