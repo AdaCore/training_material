@@ -538,7 +538,7 @@ B. | ``subtype Sub_Day is Days_T with Static_Predicate =>``
 C. | ``subtype Sub_Day is Days_T with``
    |    ``Static_Predicate => not Is_Weekday (Sub_Day);``
 D. | ``subtype Sub_Day is Days_T with``
-   |    ``Static_Predicate =>``
+   |    ``Dynamic_Predicate =>``
    |       ``case Sub_Day is when Sat | Sun => True,``
    |                 ``when others => False;``
 
