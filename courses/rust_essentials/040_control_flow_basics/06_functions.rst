@@ -2,52 +2,106 @@
 Functions
 ===========
 
------------
-Functions
------------
+---------------------
+What is a function?
+---------------------
 
-- Declaration parameters are followed by a type
-  - Like Ada, unlike C/C+
-- Last expression in a function body becomes the return value
-- *Bare value* form is idiomatic at the end of a function
-  - Omit the :rust:`;` at the end of the expression
+- Primary way to organize code into reusable blocks
+- Take inputs, process them, and (often) return a value
+- Declared using the :rust:`fn` keyword
+  - Must be immediately followed by the body enclosed in :rust:`{ }` 
+- Typically in **snake_case** (e.g., :rust:`calculate_area`)
 
 .. code:: rust
 
-  fn get_bribe(mood_rating: u32, shiny_stone: bool) ->32 {
-      let tribute = 50;
-      let bonus = 100;
-      if mood_rating >= 8 && shiny_stone {
-          tribute
-      } else {
-          tribute + bonus
-      }
+  fn function_name(parameter_1:Type) -> Return_Type {
+    // Function body (statements and expressions)
   }
 
--------------------------------
-Functions With No Return Value
--------------------------------
+--------------------------------
+Parameters and Type Signatures
+--------------------------------
 
-  - Some functions have no return value
-  - Returns 'unit type' :rust:`()`
-  - Compiler will infer this if return type is omitted
-  - :rust:`return` keyword can be used for early return
+- Function parameters must have their types **explicitly** declared
+  - No inference, unlike variable bindings
+- Function signature defines:
+  - Types of data the function accepts (parameters)
+  - Type of data it produces (:rust:`-> Return_Type`)
 
 .. code:: rust
 
-   fn do_something() {
-       println!("doing something!");
-   }
+  // We must tell the types of both 'first' and 'second'
+  fn add(first: i32, second: i32) -> i32 {
+    first + second
+  }
 
----------------------------------
-Function Features Not Supported 
----------------------------------
+-----------------------------------------
+Return Values (Expression vs Statement)
+-----------------------------------------
 
-- Overloading is not supported
-  - Each function has a single implementation
-  - Always takes a single set of parameter types
-- Always takes a fixed number of parameters
-- Default arguments are not supported
+- Return Type is specified after an arrow (:rust:`->`)
+- No :rust:`->` syntax means the function returns the unit type, :rust:`()`
+- Functions can return in two ways:
+  - As a statement: ends in a semicolon (:rust:`;`), returns :rust:`()`
+  - As an expression: does **not** end in a semicolon 
+    - Last expression evaluated in the body is returned
+
+.. code:: rust
+
+  fn get_forty_two() -> i32 {
+     // This is the expression that is automatically returned
+     42
+  }
+
+  fn print_and_return_unit() {
+     // This is a statement (ends in ;), returns ()
+     println!("Hello!");
+  }
+
+-----------------------------
+Explicit exit with "return"
+-----------------------------
+
+  - Forces the function to exit immediately
+    - Bypassing the rest of the code
+    - Essential for early exits based on control flow
+
+.. code:: rust
+
+  fn do_things(condition: bool) {
+    if condition {
+      println!("doing something else!");
+      return; // Exits the function, returns ()
+    }
+    println!("doing something!");    
+  }
+
+- Returning a value for early exit
+
+.. code:: rust
+
+  fn check_age(age: i32) -> bool {
+      // If the age is invalid (early exit)
+      if age < 0 {
+          return false; // Exits immediately, returns 'false'
+      } 
+      age >= 18 // Idiomatic way to return a value
+  }
+
+--------------------------------------------
+Design Philosophy: Clarity and Unambiguity 
+--------------------------------------------
+
+- No function overloading
+  - Cannot define multiple same-name functions with different arguments
+  - You always know exactly which function is called
+- No default arguments
+  - Callers must provide a value for every parameter
+  - You see all the data entering the function
+- Fixed number of arguments
+  - Take a strict number of inputs
+  - Macros (like :rust:`(println!)`) can take variable arguments
+    - But functions cannot
 
 
 

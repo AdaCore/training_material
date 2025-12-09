@@ -24,5 +24,5 @@ Topics Covered
 
 - **Functions** and **Macros**
   - Parameters and return values
-  - Functions with no return value (unit type :rust:`()`)
+  - Functions with no return value
 
