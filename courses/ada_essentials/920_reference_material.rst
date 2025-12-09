@@ -42,7 +42,7 @@ Learning the Ada Language
 
 * Written as a tutorial for those new to Ada
 
-.. image:: barnes_2012_cover.png
+.. image:: barnes_cover.png
 
 ------------------
 Reference Manual
