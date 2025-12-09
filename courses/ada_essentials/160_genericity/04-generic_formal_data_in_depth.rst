@@ -89,37 +89,32 @@ Generic Subprogram Parameters - Default Values (1/2)
       with function "*" (L, R : Type_T) return Type_T is <>;
    function Calculate (L, W : Type_T) return Type_T;
 
+If nothing specified for **"*"** in instance, compiler uses subprogram with **same**
 
-* :ada:`is <>`
+  - Name
+  - Parameter profile (types only, not parameter name)
 
-   - If no subprogram specified for instance, compiler uses subprogram with **same**:
+.. code:: Ada
+   :number-lines: 4
 
-      - Name
-      - Parameter profile (types only, not parameter name)
-
-* Instantiations
-
-  .. code:: Ada
-      :number-lines: 4
-
-      type Record_T is record
-         Field : Integer;
-      end record;
-      function Multiply (L, R : Record_T) return Record_T; 
+   type Record_T is record
+      Field : Integer;
+   end record;
+   function Multiply (L, R : Record_T) return Record_T; 
    
-      function Allow_Default is new Calculate (Integer);
-      function Specify_Operator is new Calculate (Record_T, Multiply);
-      function Need_Operator is new Calculate (Record_T);
+   function Allow_Default is new Calculate (Integer);
+   function Specify_Operator is new Calculate (Record_T, Multiply);
+   function Need_Operator is new Calculate (Record_T);
 
-   * :ada:`Allow_Default` uses the implicit definition for :ada:`*`
-   * :ada:`Specify_Operator` passes in the appropriate definition via :ada:`Multiply`
-   * :ada:`Need_Operator` generates a compile error
+* :ada:`Allow_Default` uses implicit definition for :ada:`*`
+* :ada:`Specify_Operator` passes in appropriate definition via :ada:`Multiply`
+* :ada:`Need_Operator` generates compile error
 
-   :error:`main.adb:11:4: error: instantiation error at gen.ads:5`
+:error:`main.adb:11:4: error: instantiation error at gen.ads:5`
 
-   :error:`gen.ads:5:1: error: instantiation error at gen.ads:5`
+:error:`gen.ads:5:1: error: instantiation error at gen.ads:5`
 
-   :error:`main.adb:11:4: error: no visible subprogram matches the specification for "*"`
+:error:`main.adb:11:4: error: no visible subprogram matches the specification for "*"`
 
 ..
   language_version 2005
