@@ -6,7 +6,7 @@ Enums
 Basic Enums
 -------------
 
--  An enum is a type that can be one of several possible, distinct :rust:`variants`
+-  An enum is a type that can be one of several possible, distinct **variants**
 -  Unlike structs, which combine different values into one, enums represent a choice between different values
 -  Variants from an Enum are accessed using the '::' notation
 

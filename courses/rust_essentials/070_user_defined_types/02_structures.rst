@@ -1,16 +1,18 @@
 ============
-Structures
+Structs
 ============
 
----------
-Structs
----------
+------------
+The Basics
+------------
 
 -  :rust:`struct` creates a type that can hold multiple related values
 
--  Structs work like in C or C++
+-  Similar to a struct in C, or a record in Ada
 
--  Can hold any basic types 
+-  Can hold any type that is :dfn:'sized'
+
+   -  means its size is known at compile time
 
 -  Fields are accessed using dot notation
    
@@ -36,7 +38,6 @@ Struct of a Struct (or Enum)
 ------------------------------
    
 -  Can hold :rust:`struct` or :rust:`enum` 
-   -  But it can't be recursive! 
 
 .. code:: rust
 
@@ -51,11 +52,31 @@ Struct of a Struct (or Enum)
 		// The Engine struct is a component of the Car struct
 		power_plant: Engine, 
 	}
+
+	
+------------------------
+Beware of Recursivity !
+------------------------
+   
+-  It can't be **recursive**
+   -   Would make it an **unsized** type
+
+.. code:: rust
+
+	struct Car {
+		make: String,
+		model: String,
+		new: bool,
+	}
+	// Buyer size is size of car + size of itself
+	// Size is infinite
 	struct Buyer {
 		curr_vehicle: Car,
-		// ERROR : this is recursive
+		// This is recursive
 		previous_owner: Buyer, 
-	}
+	}	
+
+:error:`error[E0072]: recursive type 'Buyer' has infinite size`	
 	
 -----------------------
 Struct Initialization
@@ -63,7 +84,6 @@ Struct Initialization
 
 -  Initialization of every field of a :rust:`struct` is **mandatory** when you instantiate it 
 -  There are no implicit default values
--  If a local variable has the same name as the :rust:`struct` field, name can be written only once
 
 .. code:: rust
 
@@ -73,8 +93,30 @@ Struct Initialization
 		active: bool,
 		sign_in_count: u64,
 	}
-
+	fn send (text: String, new_usr: String) -> User {
+		User {
+			email : text,
+			username: new_usr,
+			active: true,
+			sign_in_count: 1,
+		}
+	}
 	
+----------------------
+Field Init Shorthand
+----------------------
+
+-  If a local variable has the same name as the :rust:`struct` field, name can be written only once
+   -  Compiler automatically expands email, to email: email, because of the local variable
+
+.. code:: rust
+
+	struct User {
+		email : String,    
+		username : String, 
+		active: bool,
+		sign_in_count: u64,
+	}
 	fn send (email: String, username: String) -> User {
 		User {
 			// Same as email: email
@@ -88,6 +130,7 @@ Struct Initialization
 		}
 	}
 
+
 ------------------------
 Struct Update Operator 
 ------------------------
@@ -99,19 +142,19 @@ Struct Update Operator
 .. code:: rust
 
 	struct UserSettings {
-		theme: String,
+		theme_number: u16,
 		font_size: u8,
 		active: bool,
 	}
 	let base_settings = UserSettings {
-		theme: String::from("dark"),
+		theme_number: 256,
 		font_size: 14,
 		active: false,
 	};
 	// only change 'active' to true in 'new_settings'
 	let new_settings = UserSettings {
 		active: true, // Overridden field
-		..base_settings // Copy all other fields (theme, font_size)
+		..base_settings // Copy all other fields (theme_number, font_size)
 	};
 
 ---------------
@@ -174,7 +217,7 @@ Idiom: Newtype
 Unit Structs
 -------------
 
--  These structs have no fields and are mostly used when you don't need to hold any value
+-  These structs have no fields and are mostly used when you don't need to hold any value like states or events
 
 .. code:: rust
 
@@ -185,4 +228,3 @@ Unit Structs
 	let system_shutdown = Shutdown;
 	// ... can be used later to check the type
 
-.. note:: These are often used for some more advanced topics like :rust:`Traits`
