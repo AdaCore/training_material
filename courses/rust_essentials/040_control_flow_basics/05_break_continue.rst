@@ -19,11 +19,15 @@
         if count > 5 { break; }
         println!("{}", count);
     }; 
-    // Output:
-    // 3
-    // 4
-    // 5        
 
+* Generating the following output:
+
+:command:`3`
+
+:command:`4`
+
+:command:`5`
+  
 -------------------------------------------------------
 Returning a Value with "loop" and "break"
 -------------------------------------------------------
