@@ -228,13 +228,19 @@ The "char" Type is Special
 The Unit Type ()
 ------------------
 
-- Holds **no** meaningful data (unlike traditional types, like :rust:`i32`)
+- It *is* a type
+
+  - Holds **no** meaningful data
+
+  - Unlike traditional types, such as :rust:`i32`
 
 - Represents "completion without a result"
 
 - Written as :rust:`()` for both the **type** and **value**
 
   - When code seems to return *nothing*, it's actually :rust:`()`
+
+  - It is the **only** possible value for this type
 
 .. code:: rust
 
