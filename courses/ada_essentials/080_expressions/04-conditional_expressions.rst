@@ -145,16 +145,28 @@ Rationale for Parentheses Requirement
 ---------------------------------------
 
 * Prevents ambiguity regarding any enclosing expression
-* Problem:
+* Problem
 
   .. code:: Ada
 
-     X : Integer := if condition then A else B + 1;
+     Size : Integer := if Exact then Measure else Estimate + 1;
 
 * Does that mean
 
-   - If condition, then `X := A + 1`, else `X := B + 1` **OR**
-   - If condition, then `X := A`, else `X := B + 1`
+   - If `Exact` then `Size := Measure + 1`, else `Size := Estimate + 1` **OR**
+   - If `Exact` then `Size := Measure`, else `Size := Estimate + 1`
+
+* Solution
+
+  .. code:: Ada
+
+     Size : Integer := (if Exact then Measure else Estimate) + 1;
+
+  **OR**
+
+  .. code:: Ada
+
+     Size : Integer := (if Exact then Measure else Estimate + 1)
 
 * But not required if parentheses already present
 
