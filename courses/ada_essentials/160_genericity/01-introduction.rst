@@ -17,8 +17,8 @@ The Notion of a Pattern
         Right := V;
      end Swap_Int;
 
-     procedure Swap_Bool (Left, Right : in out Boolean) is
-        V : Boolean := Left;
+     procedure Swap_Bool (Left, Right : in out Float) is
+        V : Float := Left;
      begin
         Left := Right;
         Right := V;
@@ -28,8 +28,8 @@ The Notion of a Pattern
 
   .. code:: Ada
 
-     procedure Swap (Left, Right : in out (Integer | Boolean)) is
-       V : (Integer | Boolean) := Left;
+     procedure Swap (Left, Right : in out (Integer | Float)) is
+       V : (Integer | Float) := Left;
      begin
         Left := Right;
         Right := V;
