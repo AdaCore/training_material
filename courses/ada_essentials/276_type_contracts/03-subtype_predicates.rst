@@ -148,6 +148,7 @@ References Are Not Checked
 ----------------------------
 
 .. code:: Ada
+   :number-lines: 1
 
    with Ada.Text_IO;   use Ada.Text_IO;
    procedure Even_Number_Test is
@@ -171,7 +172,7 @@ References Are Not Checked
        Next_Value is 4220029
 
        raised SYSTEM.ASSERTIONS.ASSERT_FAILURE:
-       Dynamic_Predicate failed at even_number_test.adb:9
+       Dynamic_Predicate failed at even_number_test.adb:10
 
 ------------------------------
 Predicate Expression Content
