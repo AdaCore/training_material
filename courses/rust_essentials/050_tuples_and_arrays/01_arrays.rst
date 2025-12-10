@@ -3,7 +3,7 @@ Arrays
 ========
 
 --------------------
-Arrays: The Basics
+Basics
 --------------------
 
 - Arrays have multiple elements of the **same type**
@@ -22,7 +22,7 @@ Arrays: The Basics
       a[5] = 0;
       
 -----------------------------------
-Arrays: Safety and Initialization
+Safety and Initialization
 -----------------------------------
 
 Safety
@@ -39,7 +39,7 @@ Initialization
      -  with size *N* where every element is *value*
 
 -------------------
-Arrays: Iteration
+Iteration
 -------------------
 
 Looping over Arrays
