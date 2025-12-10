@@ -65,7 +65,7 @@ todo!
   - :rust:`todo!()` marks a bit of code as not-yet-implemented
     - Included in the standard library
   - When executed, it immediately causes a **panic**
-    - With a message indicating the un-implemented code 
+    - Message indicates the un-implemented code 
   - Useful for sketching out function signatures during development
 
 .. code:: rust
