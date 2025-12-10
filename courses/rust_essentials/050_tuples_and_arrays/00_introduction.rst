@@ -12,15 +12,11 @@ Topics Covered
   - Iteration and looping
 
 - **Tuples**
-  - The basics and hetergeneous types
+  - The basics and heteregeneous types
   - Accessing fields
-  - The Unit type (:rust:`()`)
-
+  
 - **Patterns & Destructuring**
-  - Destructuring tuples
-  - Destructuring arrays
-  - Destructuring assignment (Reassignment)
+  - Destructuring tuples, arrays
+  - Destructuring assignment
   - Ignoring elements (:rust:`_`, :rust:`..`)
   - Nested destructuring
-
-- **Exercice**: Transposing a matrix
