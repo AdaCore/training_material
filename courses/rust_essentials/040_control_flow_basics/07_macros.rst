@@ -2,14 +2,14 @@
 Macros
 ========
 
---------
-Macros
---------
+------------------
+What is a Macro?
+------------------
 
 - Macros are **not** functions
 - Expanded into code during compilation
 - Can take a **variable** number of arguments
-- Distinguished by a :rust:`!` at the end  (e.g., println!, dbg!)
+- Distinguished by a :rust:`!` at the end  (e.g., :rust:`println!`, :rust:`dbg!`)
 - You can write your own macros
 
 ----------
@@ -55,9 +55,8 @@ dbg!
         }
         product
     }
-
+     // result will be 6
     let result = factorial(3);
-    // result will be 6
 
 -------
 todo!
@@ -65,7 +64,8 @@ todo!
   - :rust:`todo!()` marks a bit of code as not-yet-implemented
     - Included in the standard library
   - When executed, it immediately causes a **panic**
-    - Message indicates the un-implemented code 
+    - Message indicates the un-implemented code
+    - Works the same in debug AND release modes
   - Useful for sketching out function signatures during development
 
 .. code:: rust
