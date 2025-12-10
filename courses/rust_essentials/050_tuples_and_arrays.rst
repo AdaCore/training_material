@@ -1,5 +1,5 @@
 *******************
-Tuples And Arrays
+Tuples and Arrays
 *******************
 
 .. container:: PRELUDE BEGIN
