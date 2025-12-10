@@ -42,7 +42,7 @@ dbg!
 
   - Logs the value of an expression and returns the value itself
   - Often used for quick, temporary debugging 
-    - Because it prints the file, line number, and the value
+    - Prints the file, line number, and the value
     - Can be used inside other expressions
 
 .. code:: rust
