@@ -6,7 +6,7 @@ Macros
 Macros
 --------
 
-- Macros are not functions
+- Macros are **not** functions
 - Are expanded into code during compilation
 - Can take a variable number of arguments
 - Distinguished by a :rust:`!` at the end  (e.g., println!, dbg!)
