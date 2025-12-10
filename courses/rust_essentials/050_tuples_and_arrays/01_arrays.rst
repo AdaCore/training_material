@@ -15,9 +15,10 @@ Arrays: The Basics
 .. code:: rust
 
       // Declaration of an array of 10 elements of type i8
-      // initialized to the value 42
+      // All elements are initialized to the value 42
       let mut a: [i8; 10] = [42; 10];
       // Accessing and modifying an element
+      // 'mut' is required for modification
       a[5] = 0;
       
 -----------------------------------
@@ -33,8 +34,8 @@ Safety
 Initialization
 
    - Arrays can be assigned values using literals 
-     - e.g., :rust:`[2, 3, 5, 7, 13]`
-   - :rust:`[value; N]` can be used to initialize an array
+     - e.g., :rust:`[2, 3, 5, 7, 13]` (note the **,**)
+   - :rust:`[value; N]` can be used to initialize an array (note the **;**)
      -  with size *N* where every element is *value*
 
 -------------------
@@ -44,7 +45,6 @@ Arrays: Iteration
 Looping over Arrays
 
   - The :rust:`for` statement natively supports iterating over arrays
-    - This functionality uses the :rust:`IntoIterator` trait (more on that later)
 
 .. code:: rust
 
