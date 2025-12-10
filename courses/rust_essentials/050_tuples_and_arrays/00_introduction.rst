@@ -7,16 +7,15 @@ Topics Covered
 ----------------
 
 - **Arrays**
-  - The basics and initialization
+  - Basics and initialization
   - Safety (out-of-bound panic)
   - Iteration and looping
 
 - **Tuples**
-  - The basics and heteregeneous types
+  - Basics and heterogeneous types
   - Accessing fields
   
 - **Patterns & Destructuring**
-  - Destructuring tuples, arrays
-  - Destructuring assignment
+  - Destructuring (tuples, arrays, (re)assignment)
   - Ignoring elements (:rust:`_`, :rust:`..`)
   - Nested destructuring
