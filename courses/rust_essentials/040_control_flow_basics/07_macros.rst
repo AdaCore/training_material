@@ -87,7 +87,7 @@ unreachable!
   - :rust:`unreachable!()` marks a bit of code as unreachable
     - Included in the standard library
   - Marks a point in the code that should never be reached
-  - When reached, immediately causes a panic with a message
+  - When reached, immediately causes a **panic** with a message
   - Serves as a sanity check for the programmer
 
 .. code:: rust
