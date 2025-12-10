@@ -16,9 +16,9 @@ What is Destructuring?
 Destructuring a Tuple
 -----------------------
 
+  - Simplicity: extract multiple values in just **one line of code**
   - Clarity and readability: **meaningful names**! 
     - instead of :rust:`person_data.0`, etc
-  - Simplicity: extract multiple values in just **one line of code**
   - Skipping uneeded value: ignore **not needed** elements
     - with the wildcard pattern (:rust:`_`)
 
@@ -41,10 +41,10 @@ Irrefutable Patterns with Tuples
 
   let point: (i32, i32) = (10, 20);
   
-  // The pattern (x, y) is IRREFUTABLE
+  // The pattern (xx, yy) is IRREFUTABLE
   // It perfectly matches the structure of that tuple
-  let (x, y) = point; 
-  // We're guaranteed to get an x and a y!
+  let (xx, yy) = point; 
+  // We're guaranteed to get an xx and a yy!
 
 --------------------------
 Destructuring Assignment
