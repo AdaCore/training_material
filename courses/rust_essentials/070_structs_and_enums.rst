@@ -35,7 +35,6 @@
 .. include:: 070_structs_and_enums/01_introduction.rst
 .. include:: 070_structs_and_enums/02_structures.rst
 .. include:: 070_structs_and_enums/03_enums.rst
-.. include:: 070_structs_and_enums/04_aliases.rst
 .. include:: 070_structs_and_enums/98_lab.rst
 .. include:: 070_structs_and_enums/99_summary.rst
 
