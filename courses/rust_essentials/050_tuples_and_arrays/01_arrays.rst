@@ -22,12 +22,12 @@ Basics
 - *Length* of an array is part of its type
   - :rust:`[T;N]` holds :rust:`N` elements of type T
   - :rust:`[u8;3]` and :rust:`[u8;4]` are considered two different types
-- Indexes start at :rust:`0` (Range is :rust:`0` to :rust:`N-1`)  
+- Indexes start at :rust:`0` (Range is :rust:`0` to :rust:`N-1`)
 
 .. code:: rust
 
-      // Array of 3 elements of type i8      
-      let mut values: [i8; 3] = [2, 3, 4];             
+      // Array of 3 elements of type i8   
+      let mut values: [i8; 3] = [2, 3, 4];        
       values[2] = 5; // Accessing and modifying an element
 
 .. note::
@@ -74,7 +74,7 @@ Iteration
 
 .. code:: rust
 
-    let primes = [2, 3, 5, 7, 11, 13, 17];    
+    let primes = [2, 3, 5, 7, 11, 13, 17];  
     for prime in primes {
         // ... do something
     }
@@ -86,7 +86,7 @@ Iteration
 
    Arrays do not implement the default Display trait ({}).
    You must use the Debug format parameter:
-   println!("a: {:?}", a); 
+   println!("a: {:?}", a);
    println!("a: {:#?}", a); (for "pretty printing")
 
    Testing Macros:
