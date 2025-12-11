@@ -2,120 +2,101 @@
 Aspects
 =========
 
----------
-Pragmas
----------
+-------------------
+What Are Aspects?
+-------------------
 
-* Originated as a compiler directive for things like
+* :dfn:`Aspects` attach metadata or special behavior to declarations
 
-   - Specifying the type of optimization
+  * Introduced in Ada 2012 
+  * Replaces *pragmas* and *representation clauses*
 
-     .. code:: Ada
+* Provide a clean, declarative way to specify properties such as
 
-        pragma Optimize (Space);
+  * Initialization
+  * Representation details
+  * Contract conditions (pre/post)
 
-   - Inlining of code
+* Benefits include
 
-     .. code:: Ada
-
-        pragma Inline (Some_Procedure);
-
-   - Properties (:dfn:`aspects`) of an entity
-
-* Appearance in code
-
-   * Unrecognized pragmas
-
-     .. code:: Ada
-
-         pragma My_Own_Pragma;
-
-      - **No effect**
-      - Cause **warning** (standard mode)
-
-   * Must follow correct syntax
-
-     .. code:: Ada
-
-         pragma Page;           -- parameterless
-         pragma Optimize (Off); -- with parameter
-
-.. warning:: Malformed pragmas are **illegal**
-
-   :ada:`pragma Illegal One;    -- compile error`
-
-----------------
-Aspect Clauses
-----------------
-
-**Syntax**
-
-.. container:: source_include 020_declarations/syntax.bnf :start-after:aspect_clauses_begin :end-before:aspect_clauses_end :code:bnf
-
-* Define **additional** properties of an entity
-
-    - Representation (eg. :ada:`with Pack`)
-    - Operations (eg. :code:`Inline`)
-    - Can be **standard** or **implementation**-defined
-
-* Usage close to pragmas
-
-    - More **explicit**, **typed**
-    - **Recommended** over pragmas
-
-.. note:: Aspect clauses always part of a **declaration**
+  * **Readable**: Integrated directly into declarations
+  * **Maintainable**: Keeps semantics close to what they modify
 
 ..
   language_version 2012
 
---------------------------------
-Aspect Clause Example: Objects
---------------------------------
+----------------------------
+Aspect Clauses for Objects
+----------------------------
 
-**Updated object syntax**
+* An aspect is specified by adding an *aspect clause* to an object
 
-.. container:: source_include 020_declarations/syntax.bnf :start-after:aspect_clause_example_begin :end-before:aspect_clause_example_end :code:bnf
+  .. container:: source_include 020_declarations/syntax.bnf :start-after:aspect_clauses_begin :end-before:aspect_clauses_end :code:bnf
 
-**Example**
+* Which allows us to update our object syntax
 
-.. code:: Ada
+  .. container:: source_include 020_declarations/syntax.bnf :start-after:aspect_clause_example_begin :end-before:aspect_clause_example_end :code:bnf
 
-   -- using aspects
-   CR1 : Control_Register with
-         Size    => 8,
-         Address => To_Address (16#DEAD_BEEF#);
+* Example
 
-   -- using representation clauses
-   CR2 : Control_Register;
-   for CR2'Size use 8;
-   for CR2'Address use To_Address (16#DEAD_BEEF#);
+  .. code:: Ada
+
+    CR1 : Control_Register with
+          Volatile,
+          Size    => 8,
+          Address => To_Address (16#DEAD_BEEF#);
+
+.. note::
+
+  Aspect clauses are used for many other entities besides objects,
+  and we will show some of them in other modules
 
 ..
   language_version 2012
 
-------------------------
-Boolean Aspect Clauses
-------------------------
+--------------------
+Specifying Aspects
+--------------------
 
-* **Boolean** values only
-* Longhand
-
-  .. code:: Ada
-
-     procedure Foo with Inline => True;
-
-* Aspect name only |rightarrow| **True**
+* Aspects always have a value (or definition)
 
   .. code:: Ada
 
-     procedure Foo with Inline; -- Inline is True
-
-* No aspect |rightarrow| **False**
+    Message  : Integer with Size => 8;
+    Register : Integer with Volatile => True;
+    
+* But boolean aspects can assume **True**
 
   .. code:: Ada
 
-     procedure Foo; -- Inline is False
+    Register : Integer with Volatile;
 
-..
-  language_version 2012
+  * No aspect |rightarrow| **False**
 
+    .. code:: Ada
+
+      Register : Integer; -- not volatile!
+
+-----------------------
+In the Olden Days ...
+-----------------------
+
+* Prior to Ada 2012 there were other mechanisms
+
+  **Pragma**
+
+    .. code:: Ada
+
+      Register : Integer;
+      pragma Volatile (Register);
+
+  **Representation clause**
+  
+    .. code:: Ada
+
+      Message  : Integer;
+      for Message'Size use Integer;
+
+* These are still available in Ada 2012 and beyond
+
+  * But they are separating the entity from the property
