@@ -6,7 +6,7 @@
 "break" and "continue"
 ------------------------------------
 
-    - Start immediately start the next iteration with :rust:`continue`
+    - Start immediately the next iteration with :rust:`continue`
     - Exit any kind of loop early with :rust:`break`
     - Both work with :rust:`while`, :rust:`for`, and :rust:`loop`
 
