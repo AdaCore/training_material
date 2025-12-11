@@ -15,7 +15,7 @@ Topics Covered
   - Basics and heterogeneous types
   - Accessing fields
   
-- **Patterns & Destructuring**
+- **Patterns and Destructuring**
   - Destructuring (tuples, arrays, (re)assignment)
   - Ignoring elements (:rust:`_`, :rust:`..`)
   - Nested destructuring
