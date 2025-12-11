@@ -71,7 +71,7 @@ Explicit exit with "return"
   fn do_things(condition: bool) {
     if condition {
       println!("doing something else!");
-      return; // Exits the function, returns ()
+      return; // Exits, returns ()
     }
     println!("doing something!");    
   }
@@ -81,9 +81,8 @@ Explicit exit with "return"
 .. code:: rust
 
   fn check_age(age: i32) -> bool {
-      // If the age is invalid (early exit)
       if age < 0 {
-          return false; // Exits immediately, returns 'false'
+          return false; // Exits immediately
       } 
       age >= 18 // Idiomatic way to return a value
   }
