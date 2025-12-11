@@ -40,5 +40,5 @@ Scalar Types
 .. include:: 030_scalar_types/09-miscellaneous.rst
 .. include:: 030_scalar_types/10-subtypes.rst
 .. include:: 030_scalar_types/88-scalar_types.lab.rst
-.. include:: 030_scalar_types/98-review.rst
+.. include:: 030_scalar_types/98-what_we_covered.rst
 .. include:: 030_scalar_types/99-summary.rst

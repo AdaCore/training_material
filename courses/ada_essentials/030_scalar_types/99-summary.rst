@@ -2,9 +2,9 @@
 Summary
 =========
 
---------------------------------------
+-------------------------------------
 Benefits of Strongly Typed Numerics
---------------------------------------
+-------------------------------------
 
 * **Prevent** subtle bugs
 * Cannot mix :ada:`Apples` and :ada:`Oranges`
