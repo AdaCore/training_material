@@ -18,4 +18,4 @@ Aliasing
    type Dir = OverallGeneralDir;
 
    
-.. tip:: Aliases are more useful with long, complex types !
+.. tip:: Aliases are more useful with long, complex types!

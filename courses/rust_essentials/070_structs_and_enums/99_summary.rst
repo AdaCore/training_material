@@ -23,5 +23,3 @@ What We Learned
    -  **Associated Data**: Variants can optionally carry specific data (tuple or struct-like)
 
    -  **Specific case** : the State Machines (mutually exclusive states)
-
--  A **type alias** rename an existing type to improved readability
