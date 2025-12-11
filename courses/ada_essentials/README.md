@@ -13,6 +13,12 @@ The file **ada95_course.txt** contains a list of all the modules that
 we expect to find in a typical "Ada Essentials" course specifically
 geared towards Ada 95.
 
+The file **advanced.txt** contains a list of modules that typically are
+not part of the standard course. Some of these can be extra chapters
+for a particular module, or modifications to a module that go into
+more detail in many of the chapters. *Consider this a starting point*
+*for building a course rather than a definitive list.*
+
 ## Supplementary Labs
 
 Supplementary Ada labs are also available through Alire, with the crates
