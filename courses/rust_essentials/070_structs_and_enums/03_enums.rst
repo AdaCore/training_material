@@ -6,14 +6,14 @@ Enums
 Basic Enums
 -------------
 
--  An enum is a type that can be one of several possible, distinct **variants**
--  Unlike structs, which combine different values into one, enums represent a choice between different values
--  Variants from an Enum are accessed using the '::' notation
+-  Type that can be one of several possible, distinct **variants**
+-  Represents a choice between different values
+-  **Variants** from an :rust:`enum` are accessed using the '::' notation
+   -  called **Path Separator**
 
 
 .. code:: rust
 
-   // Basic Enum
    enum Direction {
        Left,
        Right,
@@ -25,57 +25,48 @@ Basic Enums
 Enums with Data
 -----------------
 
--  Rust's enums are powerful because their variants can optionally hold data
--  Just like structs they can't be recursive
+-  **Variants** can optionally hold data - this is an :rust:`enum` superpower!
+-  Can't be recursive
 
 .. code:: rust
 
-   
-   // Enum with Data
    enum PlayerMove {
        Pass,                        // Simple variant
        Run(Direction),              // Tuple variant
        Teleport { x: u32, y: u32 }, // Struct variant
    }
-   // How you use it:
    let player_move: PlayerMove = PlayerMove::Run(Direction::Left);
    
    enum Message {
 	   Quit,                       // No data
 	   Move { x: i32, y: i32 },    // Anonymous struct
-       Content(String),            // Single String value
        ChangeColor(i32, i32, i32), // Three i32 values
 	}
-	// How you use it:
-	
 	let msg = Message::Move { x: 10, y: 10 };
 	
 ---------------------
-Enum initialization
+Enum Initialization
 ---------------------
 	
-- You must specify the entire variant when creating an enum value
+- **Must** specify the entire variant when creating an :rust:`enum` variable
 
 .. code:: rust
 
    enum Message {
 	   Quit,                       // No data
 	   Move { x: i32, y: i32 },    // Anonymous struct
-       Content(String),            // Single String value
        ChangeColor(i32, i32, i32), // Three i32 values
 	}
 
-	// Assuming enum Message from before
-	let msg_1 = Message::Content(String::from("Hi")); // OK
-	// Error! You must provide the String.
-	let msg_2 = Message::Content; 
+	let msg_1 = Message::ChangeColor(255,255,255); // OK
+	// Error! You must provide the content of ChangeColor
+	let msg_2 = Message::ChangeColor; 
 	
------------------------
-Idiom : State Machine
------------------------
+----------------------
+Idiom: State Machine
+----------------------
 
--  Each variants are mutually exclusive
-   -  Connection can only be in one of these states at a time
+-  Each variant is mutually exclusive
 
 .. code:: rust
 
