@@ -8,24 +8,24 @@ What is Destructuring?
 
   - **Convenient** data access
   - **Breaking down** a complex data structure into components
-    - like a tuple, an array, or other compound types
+    - Like a tuple, an array, or other compound types
   - **Assigning** those components to individual variables
-    - in a single step!
+    - In a single step!
 
 -----------------------
 Destructuring a Tuple
 -----------------------
 
-  - Simplicity: extract multiple values in just **one line of code**
-  - Clarity and readability: **meaningful names**! 
-    - instead of :rust:`person_data.0`, etc
-  - Skipping uneeded value: ignore **not needed** elements
-    - with the wildcard pattern (:rust:`_`)
+  - Extract multiple values in **single line**
+  - Assign **meaningful names** to improve readability 
+  - Ignore specific elements that are **not needed**
+    - With the wildcard pattern (:rust:`_`)
 
 .. code:: rust
 
   let person_data = ("Renoir", 33, "Painter");
-  let (name, _, profession) = person_data; 
+  let (name, _, profession) = person_data;
+  // name is more meaningful than person_data.0
   println!("Name: {name}, {profession}");
 
 ----------------------------------
@@ -35,7 +35,7 @@ Irrefutable Patterns with Tuples
   - Irrefutable tuple pattern = **guaranteed match**
   - Used in :rust:`let` statements
     - :rust:`let` bindings must always succeed
-    - the pattern must cover all components
+    - Pattern must always match the data structure
 
 .. code:: rust
 
@@ -72,10 +72,10 @@ Destructuring an Array
 
   // Destructuring an array into three separate variables
   let bag: [i32; 3] = [10, 20, 30];
-  let [shirts, pants, socks] = array;
-  println!("shirts: {}", shirts);
-  println!("pants: {}", pants);
-  println!("socks: {}", socks);
+  let [shirts, pants, socks] = bag;
+  println!("shirts: {}", shirts); // 10
+  println!("pants: {}", pants);   // 20
+  println!("socks: {}", socks);   // 30
 
 -------------------
 Ignoring Elements 
