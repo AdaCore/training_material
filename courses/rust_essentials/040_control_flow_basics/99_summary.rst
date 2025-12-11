@@ -8,7 +8,7 @@ What We Covered
 
 - **Expressions** and **Blocks** 
 
-  - Blocks have a value and type defined by its last expression
+  - Blocks have a value and type defined by their last expression
   - All branches of an :rust:`if`/:rust:`match` expression must return the same type
   - :rust:`match` must be exhaustive
 
