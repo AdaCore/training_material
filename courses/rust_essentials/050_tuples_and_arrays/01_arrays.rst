@@ -2,11 +2,21 @@
 Arrays
 ========
 
+-------------------
+What Is an Array?
+-------------------
+
+* **Definition:** a collection of elements
+
+   * ... of the **same type**
+   * ... stored in contiguous memory
+   * ... indexed using a discrete range
+
+.. image:: array_diagram.svg
 --------------------
 Basics
 --------------------
 
-- Arrays have multiple elements of the **same type**
 - Allocated on the stack, they're fast!
 - *Size* is **fixed** and defined at **compile-time**
 - *Length* of an array is part of its type
