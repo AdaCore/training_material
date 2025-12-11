@@ -6,8 +6,8 @@ Tuples
 Basics
 --------------------
 
-  - Tuples groups together values of **different types**
-  - Like arrays, tuples have a **fixed length**
+  - Groups together values of **different types**
+  - Like arrays, have a **fixed length**
   - Fields are accessed via dot notation by its index, starting from :rust:`0`
 
 .. code:: rust
