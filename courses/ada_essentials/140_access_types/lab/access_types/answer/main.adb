@@ -1,26 +1,42 @@
-pragma Warnings (Off, "anonymous access type");
-with Ada.Text_IO;      use Ada.Text_IO;
-with Password_Manager; use Password_Manager;
+with Ada.Text_IO; use Ada.Text_IO;
+with Database;
+with Database_List;
 procedure Main is
+   List      : Database_List.List_T;
+   Component : Database.Database_T;
 
-   procedure Update (Which : Password_Manager.Login_T;
-                     Pw    : String;
-                     Count : Natural) is
+   procedure Add (Number : Positive;
+                  Symbol : Character) is
    begin
-      Update (Which).Password := new String'(Pw);
-      Update (Which).Count    := Count;
-   end Update;
+      Database_List.Insert (List, Database.Create (Number, Symbol));
+   end Add;
+
+   procedure Delete (Number : Positive;
+                     Symbol : Character) is
+   begin
+      Database_List.Delete (List, Database.Create (Number, Symbol));
+   end Delete;
+
+   procedure Print is
+   begin
+      Database_List.First (List);
+      Put_Line ("List");
+      while not Database_List.End_Of_List (List) loop
+         Component := Database_List.Current (List);
+         Put_Line ("  " & Database.Image (Component));
+         Database_List.Next (List);
+      end loop;
+   end Print;
 
 begin
-   Update (Email, "QWE!@#", 1);
-   Update (Banking, "asd123", 22);
-   Update (Amazon, "098poi", 333);
-   Update (Streaming, ")(*LKJ", 444);
 
-   for Login in Login_T'Range loop
-      Put_Line
-        (Login'Image & " => " & View (Login).Password.all &
-         View (Login).Count'Image);
-   end loop;
+   Add (1, 'Z');
+   Add (2, 'A');
+   Add (3, 'Y');
+   Add (4, 'B');
+   Print;
+   Delete (2, 'A');
+   Add (5, 'M');
+   Print;
+
 end Main;
-pragma Warnings (On, "anonymous access type");
