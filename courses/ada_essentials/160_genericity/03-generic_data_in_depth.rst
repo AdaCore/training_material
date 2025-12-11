@@ -115,14 +115,14 @@ Generic Parameters Can Be Combined
 
    generic
       type T (<>) is private;
-      type Acc is access all T;
+      type Acc is access T;
       type Index is (<>);
       type Arr is array (Index range <>) of Acc;
    function Component (Source   : Arr;
                        Position : Index)
                        return T;
 
-   type String_Ptr is access all String;
+   type String_Ptr is access String;
    type String_Array is array (Integer range <>)
        of String_Ptr;
 
