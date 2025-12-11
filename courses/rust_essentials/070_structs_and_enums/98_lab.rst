@@ -63,7 +63,7 @@ Main Program
 
    \begin{scriptsize}
 
-.. container:: source_include 070_user_defined_types/src/070_user_defined_types.rs :start-after://ANCHOR-main :code:rust
+.. container:: source_include 070_user_defined_types/src/070_structs_and_enums.rs :start-after://ANCHOR-main :code:rust
 
 .. raw:: latex
 
@@ -73,13 +73,13 @@ Main Program
 Elevator Events Solution - Types
 ----------------------------------
 
-.. container:: source_include 070_user_defined_types/src/070_user_defined_types.rs :start-after://ANCHOR-types :end-before://ANCHOR-solution :code:rust
+.. container:: source_include 070_user_defined_types/src/070_structs_and_enums.rs :start-after://ANCHOR-types :end-before://ANCHOR-solution :code:rust
 
 ----------------------------------------
 Elevator Events Solution - Subprograms
 ----------------------------------------
 
-.. container:: source_include 070_user_defined_types/src/070_user_defined_types.rs :start-after://ANCHOR-solution :end-before://ANCHOR-main :code:rust
+.. container:: source_include 070_user_defined_types/src/070_structs_and_enums.rs :start-after://ANCHOR-solution :end-before://ANCHOR-main :code:rust
 
 ------------------------
 Additional Information
