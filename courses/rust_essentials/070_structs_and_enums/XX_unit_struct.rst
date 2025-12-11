@@ -16,3 +16,4 @@ Unit Structs
 	// How you use it:
 	let system_shutdown = Shutdown;
 	// ... can be used later to check the type
+	
