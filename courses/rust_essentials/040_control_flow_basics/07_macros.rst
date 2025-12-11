@@ -10,13 +10,21 @@ What is a Macro?
 - Expanded into code during compilation
 - Can take a **variable** number of arguments
 - Distinguished by a :rust:`!` at the end  (e.g., :rust:`println!`, :rust:`dbg!`)
-- You can write your own macros
+- You can write your own!
+
+.. note::
+
+   Writing custom macros is an advanced, non-trivial topic
 
 ----------
 println!
 ----------
-  - :rust:`println!(format, ..)` prints a line to standard output
-    - Included in the standard library
+
+.. admonition:: Language Variant
+
+   Standard Library
+
+* :rust:`println!(format, ..)` prints a line to standard output
 
 .. code:: rust
 
@@ -37,58 +45,76 @@ println!
 ------
 dbg!
 ------
-  - :rust:`dbg!(expression)` logs the value of the expression and returns it
-    - Included in the standard library
 
-  - Logs the value of an expression and returns the value itself
-  - Often used for quick, temporary debugging 
-    - Prints the file, line number, and the value
-    - Can be used inside other expressions
+.. admonition:: Language Variant
+
+   Standard Library
+
+* :rust:`dbg!(expression)` logs the value of the expression
+ 
+* Returns the value itself
+* Often used for quick, temporary debugging 
+  * Prints the file, line number, and the value
+  * Can be used inside other expressions
+* Works the same in debug and release modes
 
 .. code:: rust
 
     fn factorial(n: u32) -> u32 {
         let mut product = 1;
         for i in 1..=n {
-            // Prints: [src/main.rs:5] i = 3
             product *= dbg!(i); 
         }
         product
     }
-     // result will be 6
-    let result = factorial(3);
+    let result = factorial(3); // result will be 6
+
+* Generating the following output:
+
+:command:`[src/main.rs:5:20] i = 1`
+
+:command:`[src/main.rs:5:20] i = 2`
+
+:command:`[src/main.rs:5:20] i = 3`
 
 -------
 todo!
 -------
-  - :rust:`todo!()` marks a bit of code as not-yet-implemented
-    - Included in the standard library
-  - When executed, it immediately causes a **panic**
-    - Message indicates the un-implemented code
-    - Works the same in debug AND release modes
-  - Useful for sketching out function signatures during development
+
+.. admonition:: Language Variant
+
+   Standard Library
+
+* :rust:`todo!()` marks a bit of code as not-yet-implemented
+* When executed, it immediately causes a **panic**
+  * Message indicates the un-implemented code
+  * Useful for sketching out function signatures during development
+* Works the same in debug and release modes
 
 .. code:: rust
 
     fn fizzbuzz(n: u32) -> u32 {
-        // Calling this function will panic with a message like:
+        // Calling this will panic with a message like:
         // "not yet implemented: Implement this"
         todo!("Implement this") 
     }
 
     fn main() {
-        // This will cause the program to crash!
-        fizzbuzz(10);
+        fizzbuzz(10); // Will cause the program to crash!
     }
 
 --------------
 unreachable!
 --------------
-  - :rust:`unreachable!()` marks a bit of code as unreachable
-    - Included in the standard library
-  - Marks a point in the code that should never be reached
-  - When reached, immediately causes a **panic** with a message
-  - Serves as a sanity check for the programmer
+
+.. admonition:: Language Variant
+
+   Standard Library
+
+* :rust:`unreachable!()` marks a bit of code as unreachable
+* Marks a point in the code that should never be reached
+* When reached, immediately causes a **panic** with a message
+* Serves as a sanity check for the programmer
 
 .. code:: rust
 
