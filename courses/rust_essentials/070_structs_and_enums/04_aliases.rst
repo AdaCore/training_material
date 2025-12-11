@@ -2,20 +2,20 @@
 Type Aliases
 ==============
 
---------------
-Type Aliases
---------------
+----------
+Aliasing
+----------
 
--  A type alias creates a name for another type
+-  Creates a name for another type
 -  The two types can be used interchangeably
 
 .. code:: rust
 
-   enum OverallGeneralDirection {
+   enum OverallGeneralDir {
        Left,
        Right,
    }
-   type Direction = OverallGeneralDirection;
+   type Dir = OverallGeneralDir;
 
    
 .. tip:: Aliases are more useful with long, complex types !
