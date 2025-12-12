@@ -12,16 +12,16 @@ Difference with Simple Derivation
 
       .. code:: Ada
 
-         type Root is tagged record
+         type Root_T is tagged record
             F1 : Integer;
          end record;
 
-         type Child is new Root with record
+         type Child_T is new Root_T with record
             F2 : Integer;
          end record;
 
-         Root_Object  : Root := (F1 => 101);
-         Child_Object : Child := (F1 => 201, F2 => 202);
+         Root_Object  : Root_T := (F1 => 101);
+         Child_Object : Child_T := (F1 => 201, F2 => 202);
 
 --------------
 Type Extension
@@ -33,18 +33,18 @@ Type Extension
 
    .. code:: Ada
 
-      type Child is new Root with null record;
-      type Child is new Root; -- illegal
+      type Child_T is new Root_T with null record;
+      type Child_T is new Root_T; -- illegal
 
 * Conversion is only allowed from **child to parent**
 
   .. code:: Ada
 
-         V1 : Root;
-         V2 : Child;
+         Root : Root_T;
+         Child : Child_T;
          ...
-         V1 := Root (V2);
-         V2 := Child (V1); -- illegal
+         Root := Root_T (Child);
+         Child := Child_T (Root); -- illegal
 
 *Information on extending private types appears at the end of this module*
 
@@ -61,13 +61,13 @@ Primitives
 
       .. code:: Ada
 
-         type Root1 is tagged null record;
-         type Root2 is tagged null record;
+         type Root1_T is tagged null record;
+         type Root2_T is tagged null record;
 
-         procedure P1 (V1 : Root1;
-                       V2 : Root1);
-         procedure P2 (V1 : Root1;
-                       V2 : Root2); -- illegal
+         procedure P1 (Root1 : Root1_T;
+                       Root2 : Root1_T);
+         procedure P2 (Root1 : Root1_T;
+                       Root2 : Root2_T); -- illegal
 
 -------------------------------
 Freeze Point for Tagged Types
@@ -82,18 +82,28 @@ Freeze Point for Tagged Types
 * Declaring tagged type primitives past freeze point is **forbidden**
 
 .. code:: Ada
+   :number-lines: 3
 
-   type Root is tagged null record;
+   type Root_T is tagged null record;
+   procedure Prim (Root : Root_T);
 
-   procedure Prim (V : Root);
+   type Child_T is new Root_T with null record; -- freeze root
 
-   type Child is new Root with null record; -- freeze root
+   procedure Prim2 (Root : Root_T); -- compile error
 
-   procedure Prim2 (V : Root); -- illegal
+   Child : Child_T; -- freeze child
 
-   V : Child; --  freeze child
+   procedure Prim3 (Child : Child_T); -- compile error
 
-   procedure Prim3 (V : Child); -- illegal
+.. container:: latex_environment scriptsize
+
+  :error:`example.ads:6:04: warning: no primitive operations for "Root_T" after this line`
+
+  :error:`example.ads:8:14: error: this primitive operation is declared too late`
+
+  :error:`example.ads:10:04: warning: no primitive operations for "Child_T" after this line`
+
+  :error:`example.ads:12:14: error: this primitive operation is declared too late`
 
 ------------------
 Tagged Aggregate
@@ -103,31 +113,19 @@ Tagged Aggregate
 
   .. code:: Ada
 
-       type Root is tagged record
+       type Root_T is tagged record
            F1 : Integer;
        end record;
 
-       type Child is new Root with record
+       type Child_T is new Root_T with record
            F2 : Integer;
        end record;
 
-       V : Child := (F1 => 0, F2 => 0);
+       Child : Child_T := (F1 => 0, F2 => 0);
 
-* For **private types** use :dfn:`aggregate extension`
-
-    - Copy of a parent instance
-    - Use :ada:`with null record` absent new components
-
-   .. code:: Ada
-
-      V2 : Child := (Parent_Instance with F2 => 0);
-      V3 : Empty_Child := (Parent_Instance with null record);
-
-*Information on aggregates of private extensions appears at the end of this module*
-
----------------------
-Overriding Indicators
----------------------
+-------------------------
+"Overriding" Indicators
+-------------------------
 
 * Optional :ada:`overriding` and :ada:`not overriding` indicators
 
@@ -168,13 +166,17 @@ Prefix Notation
 .. code:: Ada
 
          -- Prim1 visible even without *use Pkg*
-         X.Prim1;
+         Object.Prim1;
 
          declare
             use Pkg;
          begin
-            Prim1 (X);
+            Prim1 (Object);
          end;
+
+.. note::
+
+  This is also called :dfn:`distinguished receiver` notation.
 
 ..
   language_version 2005
@@ -184,12 +186,6 @@ Quiz
 ------
 
 .. include:: ../quiz/tagged_primitives/quiz.rst
-
-------
-Quiz
-------
-
-.. include:: ../quiz/tagged_dot_and_with/quiz.rst
 
 ------
 Quiz
