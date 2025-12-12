@@ -1,6 +1,6 @@
-======================================
-Discriminant Record Array Size Idiom
-======================================
+==================
+Array Size Idiom
+==================
 
 ----------------------------
 Vectors of Varying Lengths
