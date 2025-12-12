@@ -36,7 +36,7 @@ Tasking: Light Runtime In-Depth
 .. include:: 240_tasking/02-tasks.rst
 .. include:: 240_tasking/11-light_tasking.rst
 .. include:: 240_tasking/03-protected_objects_in_depth.rst
-.. include:: 240_tasking/12-comparing_standard_and_light_tasking.rst
+.. include:: 240_tasking/12-standard_vs_light_tasking.rst
 .. include:: 240_tasking/04-delays.rst
 .. include:: 240_tasking/05-task_types_in_depth.rst
 .. include:: 240_tasking/06-advanced_concepts_in_depth.rst

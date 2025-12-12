@@ -38,4 +38,4 @@ Low Level Programming
 .. include:: 280_low_level_programming/04-tricks.rst
 .. include:: 280_low_level_programming/88-low_level_programming.lab.rst
 .. include:: 280_low_level_programming/99-summary.rst
-.. include:: 280_low_level_programming/07-supplementary_resource_inline_asm.rst
+.. include:: 280_low_level_programming/07-additional_resource_inline_asm.rst
