@@ -2,36 +2,73 @@
 Variables
 ===========
 
------------
-Variables
------------
+---------------------
+What is a Variable?
+---------------------
 
-Rust provides type safety via static typing. Variable bindings are made
-with :rust:`let`:
+- Think of a variable as a **labeled box** where you can store a single piece of info (a "value")
+
+  - **Label** - the variable's name (e.g., :rust:`score`)
+  - **Contents** - the value (e.g., :rust:`100`)
+
+- In Rust, we create a variable with the :rust:`let` keyword
+  
+  - This **binds** a name to a value
 
 .. code:: rust
 
-   fn main() {
-       let x: i32 = 10;
-       println!("x: {x}");
-       // x = 20;
-       // println!("x: {x}");
-   }
+  // We are binding the name "apples" to the value 5
+  let apples = 5;
 
--------------------
-Things To Explore
--------------------
+  // We are binding the name "person" to the value "Alice"
+  let person = "Alice";
 
-- Uncomment :rust:`x = 20` to show variables are immutable by default
+-------------------------------------
+By Default, Variables are Immutable
+-------------------------------------
 
-  - Add the :rust:`mut` keyword to allow changes.
+- **Immutable** = **unchangeable**
 
-- Warnings are enabled for this slide, such as for unused variables or unnecessary :rust:`mut`.
+- This is a core concept in Rust
 
-  - These are omitted in most slides to avoid distracting warnings.
-  - Try removing the mutation but leaving the :rust:`mut` keyword in place.
+  - The **compiler** will generate errors on assignment
 
-- :rust:`i32` is the type of the variable.
+  - Safety and reliability principles are built into the language
 
-  - Must be known at compile time
-  - Type inference (covered later) allows the programmer to omit it in many cases.
+  - Prevents accidental data assignment (especially in large programs!)
+
+  - :rust:`let` creates an **immutable** binding
+
+.. code:: rust
+
+  // This is OK!
+  let my_var = 10;
+
+  // This will cause an ERROR! We can't change the value
+  my_var = 20;
+
+--------------------------
+Making Variables Mutable
+--------------------------
+
+- Sometimes, you *need* to change a value
+
+- Rust requires **explicit** permission to do this
+
+- :rust:`mut` - tells Rust the variable is **mutable**
+
+  - Add it to the declaration
+  - The keyword follows :rust:`let`
+
+.. code:: rust
+
+  let mut change_me = 5;
+  println!("change_me is: {change_me}");
+
+  // This is now perfectly allowed!
+  change_me = 6;
+  println!("change_me is now: {change_me}");
+
+.. note::
+
+  In Rust, mutability is an **opt-in** choice
