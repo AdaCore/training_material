@@ -14,7 +14,7 @@ What We Covered
   - Looping over arrays with :rust:`for`
   
   **Tuples**
-  - Group values of same type, fixed size
+  - Group values of different type, fixed size
   - Fields are accessed via dot notation followed by its index
     - Starting from :rust:`0`
 
