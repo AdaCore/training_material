@@ -8,18 +8,29 @@ Exceptions Lab
 
 Numeric String Verifier
 
-  * Overview
+* Overview
 
-    * Create an application that converts strings to numeric values
+  * Create an application that converts strings to numeric values
 
-  * Requirements
+* Requirements
 
-    * Create a package to define your numeric type
-    * Define a primitive to convert a string to your numeric type
+  * Create a package to define your numeric type
+  * Define a primitive to convert a string to your numeric type
+  * The primitive should raise your own exceptions
 
-      * The primitive should raise your own exceptions; one for out-of-range and one for illegal string
+    * Out-of-range value: number does not fit in range ("1e999")
+    * Illegal string: illegal character found ("xyz")
+    * Bad format: sign character found after first character ("12-")
 
-    * Main program should run multiple tests on the primitive
+  * Main program should run multiple tests on the primitive
+
+  * Exception handler should display
+
+    * Full exception data for an out-of-range value
+    * Information about the exception for an illegal string
+    * Exception name for bad format
+
+*If you have time: Add your own content to the exception*
 
 -----------------------------------------
 Exceptions Lab Solution - Numeric Types
