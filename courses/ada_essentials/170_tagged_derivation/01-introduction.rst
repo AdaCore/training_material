@@ -6,21 +6,17 @@ Introduction
 Object-Oriented Programming with Tagged Types
 ---------------------------------------------
 
-* For :ada:`record` types
+* Only for :ada:`record` types
 
   .. code:: Ada
 
-     type T is tagged record
+     type Root_T is tagged record
      ...
 
 * Child types can add new components
-* Object of a child type can be **substituted** for base type
-* Primitive can :dfn:`dispatch` **at run-time** depending on the type at call-site
 * Types can be **extended** by other packages
 
     - Conversion and qualification to base type is allowed
-
-* Private data is encapsulated through **privacy**
 
 ------------------------------
 Tagged Derivation Ada Vs C++
@@ -28,38 +24,49 @@ Tagged Derivation Ada Vs C++
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
-   .. code:: Ada
+    .. container:: latex_environment scriptsize
 
-      type T1 is tagged record
-        Member1 : Integer;
-      end record;
+      .. code:: Ada
 
-      procedure Attr_F (This : T1);
+        type Cycle_T is tagged record
+          Number_Wheels : Positive;
+        end record;
 
-      type T2 is new T1 with record
-        Member2 : Integer;
-      end record;
+        function Wheels
+           (This : Cycle_T)
+            return Positive;
 
-      overriding procedure Attr_F (
-           This : T2);
-      procedure Attr_F2 (This : T2);
+        type Unicycle_T is new Cycle_T
+        with record
+          Seat_Height : Float;
+        end record;
 
- .. container:: column
+        overriding
+        function Wheels
+          (This : Unicycle_T)
+           return Positive is (1);
+        function Seat
+          (This : Unicycle_T)
+           return Float;
 
-   .. code:: C++
+  .. container:: column
 
-      class T1 {
-        public:
-          int Member1;
-          virtual void Attr_F(void);
-        };
+    .. container:: latex_environment scriptsize
 
-      class T2 : public T1 {
-        public:
-          int Member2;
-          virtual void Attr_F(void);
-          virtual void Attr_F2(void);
-        };
+      .. code:: C++
+
+        class Cycle {
+          public:
+            unsigned NumberWheels;
+            virtual unsigned Wheels(void);
+          };
+
+        class Unicycle : public Cycle {
+          public:
+            float SeatHeight;
+            virtual unsigned Wheels(void);
+            virtual float Seat(void);
+          };
 
