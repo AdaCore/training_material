@@ -19,8 +19,8 @@ What Are Aspects?
 
 * Benefits include
 
-  * **Readable**: Integrated directly into declarations
-  * **Maintainable**: Keeps semantics close to what they modify
+  * **Readability**: Integrated directly into declarations
+  * **Maintainability**: Keeps semantics close to what they modify
 
 ..
   language_version 2012
