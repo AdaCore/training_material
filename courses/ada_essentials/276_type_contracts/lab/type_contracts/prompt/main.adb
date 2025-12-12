@@ -17,7 +17,7 @@ begin
                       End_Time   => 14.0);
    Classes.Print;
 
-   -- Add an invalid class and handle the exception
+   --  This is not a valid class, so an assertion error should be raised
    Classes.Add_Class (Name       => "Chemistry ",
                       Day        => Thu,
                       Start_Time => 13.0,
