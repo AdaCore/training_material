@@ -4,12 +4,12 @@ package Employee is
    -- create primitive subprograms to set/get attributes for Person_T and
    -- to print the contents of Person_T
    procedure Set_Attribute
-     (O     : in out Person_T;
+     (This  : in out Person_T;
       Value :        String);
    function Get_Attribute
-     (O : Person_T)
+     (This : Person_T)
       return String;
-   procedure Print (O : Person_T);
+   procedure Print (This : Person_T);
 
    -- Create a new type Employee_T based on Person with some
    --    additional attributes
