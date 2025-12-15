@@ -65,7 +65,7 @@ Destructuring an Array
 ------------------------
 
   - Assign the array to a pattern that specifies names for each element
-  - Pattern must exactly match the array's length and type
+  - Pattern must **exactly** match the array's length and type
   - Compile-time error occurs if it has fewer or more elements
 
 .. code:: rust
