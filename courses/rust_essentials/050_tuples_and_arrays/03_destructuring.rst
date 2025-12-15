@@ -119,5 +119,4 @@ Nested Destructuring
 
   let matrix = [[1, 2], [3, 4]];
   // Destructures the outer array AND the inner array
-  let [[a, b], [c, d]] = matrix; 
-  // a=1, b=2, c=3, d=4
+  let [[a, b], [c, d]] = matrix; // a=1, b=2, c=3, d=4

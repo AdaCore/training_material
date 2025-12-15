@@ -32,7 +32,7 @@ Basics
 
 .. note::
 
-   Reminder: 'mut' is required for modification
+   Reminder: :rust:`mut` is required for modification
 
 -----------------------------------
 Safety and Initialization
