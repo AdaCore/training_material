@@ -37,7 +37,7 @@ println!
     println!("Hello, {}, the answer is {}.", name, answer + 1);
 
     // Named argument, improves readability and refactoring
-    // Do not allow expressions inside the curly braces
+    // Expressions not allowed inside the curly braces
     println!("Hello {name}!");
     println!("Hi {name}, the answer is {rv}.", rv = answer + 1);
 
