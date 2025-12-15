@@ -56,7 +56,7 @@ Safety and Initialization
   let bools    = [true, false, true];      // Boolean literals
 
 * :rust:`[value; N]` can be used to initialize an array (note the **;**)
-  * with size *N* where every element is *value*
+  * With size *N* where every element is *value*
 
 .. code:: rust
 
