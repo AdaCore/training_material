@@ -52,7 +52,7 @@ Destructuring Assignment
 
   - Destructuring can be used as an assignment operation
   - Assigned to variables that were already declared
-  - Target variables must be declared as mutable
+  - Target variables must be declared as **mutable**
 
 .. code:: rust
 
