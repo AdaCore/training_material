@@ -8,7 +8,7 @@ Basics
 
   - Groups together values of **different types**
   - Like arrays, have a **fixed length**
-  - Fields are accessed via dot notation by its index, starting from :rust:`0`
+  - Fields are accessed via dot notation by their index, starting from :rust:`0`
 
 .. code:: rust
 
