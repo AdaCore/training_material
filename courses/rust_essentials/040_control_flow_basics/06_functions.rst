@@ -14,7 +14,7 @@ What is a function?
 
 .. code:: rust
 
-  fn function_name(parameter_1:Type) -> Return_Type {
+  fn function_name(parameter_1:Type) -> ReturnType {
     // Function body (statements and expressions)
   }
 
@@ -26,7 +26,7 @@ Parameters and Type Signatures
   - No inference, unlike variable bindings
 - Function signature defines:
   - Types of data the function accepts (parameters)
-  - Type of data it produces (:rust:`-> Return_Type`)
+  - Type of data it produces (:rust:`-> ReturnType`)
 
 .. code:: rust
 
@@ -88,16 +88,16 @@ Explicit exit with "return"
   }
 
 --------------------------------------------
-Design Philosophy: Clarity and Unambiguity 
+Design Philosophy: Clarity and Precision 
 --------------------------------------------
 
-- No function overloading
-  - Cannot define multiple same-name functions with different arguments
+- Overloading is not supported
+  - No multiple same-name functions with different arguments
   - You always know exactly which function is called
 - No default arguments
   - Callers must provide a value for every parameter
   - You see all the data entering the function
 - Fixed number of arguments
   - Take a strict number of inputs
-  - Macros (like :rust:`(println!)`) can take variable arguments
-    - But functions cannot
+  - *Macros* (like :rust:`(println!)`) can take variable arguments
+    - But *functions* cannot
