@@ -46,17 +46,18 @@ Safety and Initialization
 
 **Initialization**
 
-* Can be assigned values using literals
+* Can be assigned values either using *array literals*:
 
 .. code:: rust
       
   let integers = [1, 2, 3, 4, 5];          // Integer literals
   let floats   = [1.1, 2.2, 3.3];          // Float literals
-  let strings  = ["Hello", "World"];       // String slice literals
+  let strings  = ["Hello", "World"];       // String literals
   let bools    = [true, false, true];      // Boolean literals
 
-* :rust:`[value; N]` can be used to initialize an array (note the **;**)
-  * With size *N* where every element is *value*
+* Or using *array repeat expression* :rust:`[value; N]`:
+  * With size *N*, known at compile-time
+  * Where every element is *value*
 
 .. code:: rust
 
