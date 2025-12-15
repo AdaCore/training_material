@@ -64,7 +64,7 @@ Safety and Initialization
 
 * Assignment is not limited to literals
   * Not restricted to hard-coded values
-  * You can use variables, function calls, or expressions
+  * Can use variables, function calls, or expressions
 
 -------------------
 Iteration
