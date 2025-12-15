@@ -19,9 +19,11 @@ What We Covered
   - Exit any loop type early with :rust:`break`
   - Use labels with :rust:`break` and :rust:`continue`
 
-- **Functions** and **Macros** 
+- **Functions** 
 
     - Last expression is the function return value
     - No overloading, no default value for parameters
-    - Macros (suffixed with :rust:`!`) expand into code at compile-time
-      - Allow variable arguments
+  
+- **Macros**
+  - Expand into code at compile-time, suffixed with :rust:`!` 
+  - Allow variable arguments
