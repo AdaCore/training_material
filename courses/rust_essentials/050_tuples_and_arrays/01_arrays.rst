@@ -62,7 +62,7 @@ Safety and Initialization
 
   let elements: [i8; 5] = [0; 5];
 
-* Assignment is not limited to literals
+* Assignment is **not** limited to literals
   * Not restricted to hard-coded values
   * Can use variables, function calls, or expressions
 
