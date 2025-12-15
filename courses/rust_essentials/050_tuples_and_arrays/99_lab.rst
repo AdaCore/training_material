@@ -57,3 +57,7 @@ Nested Arrays Solution
 -------------------------
 
 .. container:: source_include 050_tuples_and_arrays/src/050_tuples_and_arrays.rs :start-after://ANCHOR-solution :code:rust :end-before://ANCHOR-tests
+
+.. container:: speakernote
+
+   Note that lab code has a comment clipped off the page
