@@ -100,7 +100,7 @@ Exception Occurrence
          Put (Exception_Name (Caught_Exception));
 
 ----------------------------------------
-`Exception_Occurrence` Query Functions
+"Exception_Occurrence" Query Functions
 ----------------------------------------
 
 * `Exception_Name`
@@ -206,7 +206,7 @@ Re-Raising Exceptions Procedurally
      end;
 
 ----------------------------------------
-Copying `Exception_Occurrence` Objects
+Copying "Exception_Occurrence" Objects
 ----------------------------------------
 
 * Via procedure `Save_Occurrence`

@@ -2,9 +2,9 @@
 Composition of Equality
 =========================
 
-----------------------------
- "Composition of Equality"
-----------------------------
+---------------------------
+"Composition of Equality"
+---------------------------
 
 * Whether user-defined equality functions are called automatically as part of equality for composite types containing types having such functions
 * Only composes when user-defined equality is defined
@@ -78,7 +78,7 @@ Enclosing Equality Function Example
    end "=";
 
 ----------------------------------------
-`=` for Predefined Composites Composes
+"=" for Predefined Composites Composes
 ----------------------------------------
 
 * Per RM 4.5.2(32/1)

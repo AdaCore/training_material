@@ -232,9 +232,9 @@ Setting Task Priority
       Ada.Dynamic_Priorities.Set_Priority (10);
    end Prioritized_Task_T;
 
---------------------------
-:ada:`requeue` Instruction
---------------------------
+-----------------------
+"requeue" Instruction
+-----------------------
 
 * :ada:`requeue` can be called in any :ada:`entry` (task or protected)
 * Puts the requesting task back into the queue
@@ -255,9 +255,9 @@ Setting Task Priority
 
 * Same parameter values will be used on the queue
 
------------------------
-:ada:`requeue` Tricks
------------------------
+------------------
+"requeue" Tricks
+------------------
 
 * Only an accepted call can be requeued
 * Accepted entries are waiting for :ada:`end`
@@ -299,7 +299,7 @@ Abort Statements
          end;
 
 -----------------------------------
-:ada:`select` ... :ada:`then abort`
+"select" ... "then abort"
 -----------------------------------
 
 * :ada:`select` can call :ada:`abort`

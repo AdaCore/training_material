@@ -246,7 +246,7 @@ Example of Visibility As If Nested
    end Complex;
 
 -------------------------------------------
-`with` Clauses for Ancestors Are Implicit
+"with" Clauses for Ancestors Are Implicit
 -------------------------------------------
 
 .. container:: columns
@@ -278,9 +278,9 @@ Example of Visibility As If Nested
         C : Integer := A;
       end Parent.Child;
 
--------------------------------------------
- `with` Clauses for Siblings Are Required
--------------------------------------------
+------------------------------------------
+"with" Clauses for Siblings Are Required
+------------------------------------------
 
 * If references are intended
 
