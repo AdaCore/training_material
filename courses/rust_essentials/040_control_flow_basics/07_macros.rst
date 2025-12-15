@@ -55,7 +55,7 @@ dbg!
 * Often used for quick, temporary debugging 
   * Prints the file, line number, and the value
   * Can be used inside other expressions
-* Works both the same in **debug** and **release** modes
+* Works the same in both **debug** and **release** modes
 
 .. code:: rust
 
@@ -116,8 +116,8 @@ unreachable!
 * :rust:`unreachable!()` marks a bit of code as unreachable
 * Marks a point in the code that should never be reached
 * When reached, immediately causes a **panic** with a message
-* Works the same in both **debug** and **release** modes
 * Serves as a sanity check for the programmer
+* Works the same in both **debug** and **release** modes
 
 .. code:: rust
 
