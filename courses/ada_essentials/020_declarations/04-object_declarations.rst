@@ -89,20 +89,20 @@ Multiple Object Declarations
 Predefined Declarations
 -------------------------
 
-* **Implicit** declarations
-* Language standard
-* Annex A for *Core*
+* Many declarations are **implicit**
+
+  * Defined by the Ada standard
+  * Always available
+
+* Core language (Annex A of the RM)
 
    - Package :code:`Standard`
-   - Standard types and operators
+   - Built-in types and operators
 
-        + Numerical
-        + Characters
+* Optional extras
 
-   - About **half the RM** in size
-
-* "Specialized Needs Annexes" for *optional*
-* Also, implementation-specific extensions
+  * *Specialized Needs Annexes* of RM
+  * Implementation-specific extensions
 
 ------------------------------------
 Implicit Vs Explicit Declarations
