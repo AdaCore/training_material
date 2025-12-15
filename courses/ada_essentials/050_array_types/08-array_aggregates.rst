@@ -224,15 +224,15 @@ Quiz
 .. code:: Ada
 
    type Array_T is array (1 .. 5) of Integer;
-   X : Array_T;
-   J : Integer := X'First;
+   Foo : Array_T;
+   Bar : Integer := Foo'First;
 
 Which statement is correct?
 
-   A. ``X := (1, 2, 3, 4 => 4, 5 => 5);``
-   B. :answermono:`X := (1..3 => 100, 4..5 => -100, others => -1);`
-   C. ``X := (J => -1, J + 1..X'Last => 1);``
-   D. ``X := (1..3 => 100, 3..5 => 200);``
+   A. ``Foo := (1, 2, 3, 4 => 4, 5 => 5);``
+   B. :answermono:`Foo := (1..3 => 100, 4..5 => -100, others => -1);`
+   C. ``Foo := (Bar => -1, Bar + 1..Foo'Last => 1);``
+   D. ``Foo := (1..3 => 100, 3..5 => 200);``
 
 .. container:: animate
 
@@ -240,7 +240,7 @@ Which statement is correct?
 
    A. Cannot mix positional and named notation
    B. Correct - others not needed but is allowed
-   C. Either make :ada:`J` a :ada:`constant` or only use dynamic values
+   C. Either make :ada:`Bar` a :ada:`constant` or only use dynamic values
    D. Overlapping index values (3 appears more than once)
 
 ------------------------
