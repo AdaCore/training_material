@@ -18,7 +18,7 @@ Task Activation
 .. code:: Ada
 
    task type First_T is ...
-   type First_T_A is access all First_T;
+   type First_T_A is access First_T;
 
    task body First_T is ...
    ...
@@ -41,7 +41,7 @@ Single Declaration
       entry Start;
    end Task_T;
 
-   type Task_Ptr_T is access all Task_T;
+   type Task_Ptr_T is access Task_T;
 
    task body Task_T is
    begin
