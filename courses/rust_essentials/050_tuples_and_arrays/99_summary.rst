@@ -19,7 +19,7 @@ What We Covered
     - Starting from :rust:`0`
 
 - **Patterns and Destructuring**
-  - Used for clarity, simplicity and skipping uneeded values
+  - Used for clarity, simplicity and skipping unneeded values
   - Irrefutable patterns are patterns guaranteed to match the structure 
   - Skip specific element using (:rust:`_`) and multiple elements using (:rust:`..`)
   - Destructuring can be used as an assignment operation
