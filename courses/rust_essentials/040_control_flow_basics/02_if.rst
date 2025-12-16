@@ -12,7 +12,7 @@ Using "if" as a Statement
 - Parentheses around the condition are **optional**
   - Usage is considered unidiomatic
 - May have either:
-  - zero or more :rust:`else if`
+  - Zero or more :rust:`else if`
   - zero or one final :rust:`else`
 
 .. code:: rust
