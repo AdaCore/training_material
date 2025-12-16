@@ -54,7 +54,7 @@ Return Values (Expression vs Statement)
   }
 
   fn print_and_return_unit() {
-     // This is a statement (ends in ;), returns ()
+     // A statement (ends in ;), returns ()
      println!("Hello!");
   }
 
