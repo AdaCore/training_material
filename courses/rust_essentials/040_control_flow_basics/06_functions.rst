@@ -24,7 +24,7 @@ Parameters and Type Signatures
 
 - Function parameters must have their types **explicitly** declared
   - No inference, unlike variable bindings
-- Function signature defines:
+- Function signature defines
   - Types of data the function accepts (parameters)
   - Type of data it produces (:rust:`-> ReturnType`)
 
