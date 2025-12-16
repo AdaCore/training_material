@@ -136,9 +136,9 @@ Miscellaneous (2/2)
 Image and Literals
 ====================
 
----------------------------
-Generalized :ada:`'Image`
----------------------------
+----------------------
+Generalized "'Image"
+----------------------
 
 * All types have a :ada:`Image` attribute
 * Its return value is (mostly) standardized
@@ -165,9 +165,9 @@ Generalized :ada:`'Image`
 
 .
 
----------------------------
-User-Defined :ada:`Image`
----------------------------
+----------------------
+User-Defined "Image"
+----------------------
 
 * User-defined types can have a :ada:`Image` attribute
 
@@ -188,9 +188,9 @@ User-Defined :ada:`Image`
 
 * Using the new package :ada:`Text_Buffers`
 
-------------------------------------
-User-Defined :ada:`'Image` Example
-------------------------------------
+-------------------------------
+User-Defined "'Image" Example
+-------------------------------
 
 * :filename:`custom_image.ads`
 
@@ -298,9 +298,9 @@ Delta Aggregates
 Standard Lib
 ==============
 
-------------------------------
-``Ada.Numerics.Big_Numbers``
-------------------------------
+----------------------------
+"Ada.Numerics.Big_Numbers"
+----------------------------
 
 * Numbers of arbitary size
 
@@ -335,9 +335,9 @@ Standard Lib
     function "+" (L, R : Valid_Big_Integer) return Valid_Big_Integer;
     [...]
 
-------------------------------
-``Ada.Strings.Text_Buffers``
-------------------------------
+----------------------------
+"Ada.Strings.Text_Buffers"
+----------------------------
 
 * Object-oriented package
 * :ada:`Root_Buffer_Type`
@@ -365,9 +365,9 @@ Standard Lib
       Buffer : in out Root_Buffer_Type;
       Item   : in     UTF_Encoding.UTF_8_String) is abstract;
 
-------------------------------
-``System.Atomic_Operations``
-------------------------------
+----------------------------
+"System.Atomic_Operations"
+----------------------------
 
 * Atomic types
 

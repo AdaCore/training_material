@@ -72,9 +72,9 @@ Importing a Private Child
            Root.Child.X1 := 10; -- illegal
         end Main;
 
-----------------------------------
-Private Children and :ada:`with`
-----------------------------------
+-----------------------------
+Private Children and "with"
+-----------------------------
 
 .. code:: Ada
 
@@ -122,9 +122,9 @@ Private Children and :ada:`with`
             procedure Proc2 is null;
          end Root.Good_Child;
 
----------------------
-:ada:`private with`
----------------------
+----------------
+"private with"
+----------------
 
 * The parent and its children can :ada:`private with` a private package
 

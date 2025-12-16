@@ -37,7 +37,7 @@ User-Defined Equality
           return Fuzzy_Result;
 
 ------------------------------------
-User-Defined `=` Returning Boolean
+User-Defined "=" Returning Boolean
 ------------------------------------
 
 * Implicitly declares ``/=``

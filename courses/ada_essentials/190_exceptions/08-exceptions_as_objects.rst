@@ -61,7 +61,7 @@ Exception Occurrence
          Put (Exception_Name (Caught_Exception));
 
 ----------------------------------------
-`Exception_Occurrence` Query Functions
+"Exception_Occurrence" Query Functions
 ----------------------------------------
 
 * `Exception_Name`
