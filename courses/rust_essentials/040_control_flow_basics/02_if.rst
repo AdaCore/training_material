@@ -13,7 +13,7 @@ Using "if" as a Statement
   - Usage is considered unidiomatic
 - May have either:
   - Zero or more :rust:`else if`
-  - zero or one final :rust:`else`
+  - Zero or one final :rust:`else`
 
 .. code:: rust
 
