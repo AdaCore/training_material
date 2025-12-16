@@ -49,7 +49,7 @@ Return Values (Expression vs Statement)
 .. code:: rust
 
   fn get_forty_two() -> i32 {
-     // This is the expression that is automatically returned
+     // The automatically returned expression
      42
   }
 
