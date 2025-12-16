@@ -40,7 +40,7 @@ Safety and Initialization
 
 **Safety**
 
-  - Accesses are **checked at runtime** for being out-of-bounds
+  - Compile-time and runtime **out-of-bounds checks**
   - Accessing an element beyond the defined length will cause a *panic*
     - A *panic* is a form of program termination
 

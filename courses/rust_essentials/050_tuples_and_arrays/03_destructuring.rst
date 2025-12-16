@@ -35,7 +35,7 @@ Irrefutable Patterns with Tuples
   - Irrefutable tuple pattern = **guaranteed match**
   - Used in :rust:`let` statements
     - :rust:`let` bindings must always succeed
-    - Pattern **must** always match the data structure
+    - Pattern must **always** match the data structure
 
 .. code:: rust
 
