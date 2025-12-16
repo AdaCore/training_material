@@ -15,7 +15,7 @@ What We Covered
   
   **Tuples**
   - Group values of different types, fixed size
-  - Fields are accessed via dot notation followed by its index
+  - Fields are accessed via dot notation followed by their index
     - Starting from :rust:`0`
 
 - **Patterns and Destructuring**
