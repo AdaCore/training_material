@@ -24,7 +24,7 @@ Parameters and Type Signatures
 
 - Function parameters must have their types **explicitly** declared
   - No inference, unlike variable bindings
-- Function signature defines:
+- Function signature defines
   - Types of data the function accepts (parameters)
   - Type of data it produces (:rust:`-> ReturnType`)
 
@@ -40,21 +40,21 @@ Return Values (Expression vs Statement)
 -----------------------------------------
 
 - Return Type is specified after an arrow (:rust:`->`)
-- No :rust:`->` syntax means the function returns the unit type, :rust:`()`
+- No :rust:`->` syntax means the function returns the unit type :rust:`()`
 - Functions can return in two ways:
-  - As a statement: ends in a semicolon (:rust:`;`), returns :rust:`()`
-  - As an expression: does **not** end in a semicolon 
+  - **Statement:** ends in a semicolon (:rust:`;`), returns :rust:`()`
+  - **Expression:** does **not** end in a semicolon 
     - Last expression evaluated in the body is returned
 
 .. code:: rust
 
   fn get_forty_two() -> i32 {
-     // This is the expression that is automatically returned
+     // The automatically returned expression
      42
   }
 
   fn print_and_return_unit() {
-     // This is a statement (ends in ;), returns ()
+     // A statement (ends in ;), returns ()
      println!("Hello!");
   }
 
