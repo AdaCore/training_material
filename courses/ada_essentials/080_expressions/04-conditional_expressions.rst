@@ -144,29 +144,34 @@ The "else" Part When Result Is Boolean
 Rationale for Parentheses Requirement
 ---------------------------------------
 
-* Prevents ambiguity regarding any enclosing expression
-* Problem
+.. container:: latex_environment small
 
-  .. code:: Ada
+  * Prevents ambiguity regarding any enclosing expression
+  * Problem
 
-     Size : Integer := if Exact then Measure else Estimate + 1;
+    .. code:: Ada
 
-* Does that mean
+       Size : Integer := if Exact then Measure else Estimate + 1;
 
-   - If `Exact` then `Size := Measure + 1`, else `Size := Estimate + 1` **OR**
-   - If `Exact` then `Size := Measure`, else `Size := Estimate + 1`
+  * Does that mean
 
-* Solution
+     If `Exact` then `Size := Measure + 1`, else `Size := Estimate + 1`
 
-  .. code:: Ada
+     **OR**
 
-     Size : Integer := (if Exact then Measure else Estimate) + 1;
+     If `Exact` then `Size := Measure`, else `Size := Estimate + 1`
 
-  **OR**
+  * Solution
 
-  .. code:: Ada
+    .. code:: Ada
 
-     Size : Integer := (if Exact then Measure else Estimate + 1)
+       Size : Integer := (if Exact then Measure else Estimate) + 1;
+
+    **OR**
+
+    .. code:: Ada
+
+       Size : Integer := (if Exact then Measure else Estimate + 1)
 
 * But not required if parentheses already present
 

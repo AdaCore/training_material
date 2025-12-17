@@ -43,8 +43,7 @@ Array Lab Part 2
 * Hints
 
    - Strings must be the same size, so create a subtype for the names
-
-     - Names should be same length - use blank spaces for padding
+   - Names should be same length - use blank spaces for padding
 
 -----------------------------------
 Array Lab Solution - Declarations
