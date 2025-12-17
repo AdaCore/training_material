@@ -17,12 +17,12 @@ What Is an Array?
 Basics
 --------------------
 
-- Allocated on the stack, they're fast!
+- Allocated on the stack - they're fast!
 - *Size* is **fixed** and defined at **compile-time**
 - *Length* of an array is part of its type
-  - :rust:`[T;N]` holds :rust:`N` elements of type T
+  - :rust:`[T;N]` holds :rust:`N` elements of type :rust:`T`
   - :rust:`[u8;3]` and :rust:`[u8;4]` are considered two different types
-- Indexes start at :rust:`0` (Range is :rust:`0` to :rust:`N-1`)
+- Index starts at :rust:`0` (range is :rust:`0` to :rust:`N-1`)
 
 .. code:: rust
 
@@ -32,7 +32,7 @@ Basics
 
 .. note::
 
-   Reminder: :rust:`mut` is required for modification
+   Remember, :rust:`mut` is required for modification
 
 -----------------------------------
 Safety and Initialization
@@ -40,7 +40,7 @@ Safety and Initialization
 
 **Safety**
 
-  - Compile-time and runtime **out-of-bounds checks**
+  - Compile-time and run-time **out-of-bounds checks**
   - Accessing an element beyond the defined length will cause a *panic*
     - A *panic* is a form of program termination
 
@@ -56,7 +56,7 @@ Safety and Initialization
   let bools    = [true, false, true];      // Boolean literals
 
 * Or using *array repeat expression* :rust:`[value; N]`:
-  * With size *N*, known at compile-time
+  * With size :rust:`N`, known at compile-time
   * Where every element is *value*
 
 .. code:: rust
@@ -64,25 +64,36 @@ Safety and Initialization
   let elements: [i8; 5] = [0; 5];
 
 * Assignment is **not** limited to literals
-  * Not restricted to hard-coded values
   * Can use variables, function calls, or expressions
 
 -------------------
 Iteration
 -------------------
 
-  - :rust:`for` statement natively supports iterating over arrays
+* :rust:`for` statement natively supports iterating over arrays
 
-.. code:: rust
+* Given an array
+
+  .. code:: rust
 
     let primes = [2, 3, 5, 7, 11, 13, 17];  
+
+* Iteration by value would look like
+
+  .. code:: rust
+
     for prime in primes {
-        // ... do something
+      println!("{}", prime);    
     }
 
+* While index-based looping would look like
+
+  .. code:: rust
+
     for ii in 0..primes.len() {
-        // ... do something, using primes[ii]
+      println!("{}", primes[ii]);
     }
+
 .. container:: speakernote
 
    Arrays do not implement the default Display trait ({}).
