@@ -99,7 +99,7 @@ If nothing specified for **"*"** in instance, compiler uses subprogram with **sa
    :number-lines: 4
 
    type Record_T is record
-      Field : Integer;
+      Component : Integer;
    end record;
    function Multiply (L, R : Record_T) return Record_T; 
    
