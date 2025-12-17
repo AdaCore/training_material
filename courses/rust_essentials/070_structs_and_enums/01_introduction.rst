@@ -8,26 +8,23 @@ Topics Covered
 
 -  **Structs**: Grouping Related Data 
 
-   -  Initialization & update syntax
+   -  Initialization and update syntax
    
-   -  Named vs Tuple forms
+   -  Named-field vs Tuple forms
 
--  **Enums**: Defining Distinct Options
+-  **Enums**: defining distinct options
 
-   -  Variants holding Data
+   -  Variants holding data
    
    -  State machines
 
--  **Type Aliases**
-
-   - Renaming types for readability  
 
 
 --------------
 Introduction
 --------------
 
--  :rust:`struct` and :rust:`enum` are user defined types 
+-  :rust:`struct` and :rust:`enum` are user-defined types 
 
    -  Create custom data structures 
    -  Bundle related pieces of information together
@@ -35,10 +32,11 @@ Introduction
 
 .. code:: rust
 
-	struct Point {
-		x_coordinate: f64,
-		y_coordinate: f64,
-		z_coordinate: f64,
+	struct PlayerStats {
+		level: u16,
+		health: u32,
+		is_online: bool,
+		score: i64,
 	}
 	enum Direction {
 		North,

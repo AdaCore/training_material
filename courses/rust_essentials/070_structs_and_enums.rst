@@ -1,5 +1,5 @@
 ***********************
-070_structs_and_enums
+Structs And Enums
 ***********************
 
 .. container:: PRELUDE BEGIN
