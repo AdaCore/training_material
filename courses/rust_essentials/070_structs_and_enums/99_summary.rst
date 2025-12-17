@@ -6,20 +6,20 @@ Summary
 What We Learned
 -----------------
 
--  **Structs** (Data Aggregation)
+-  **Structs** (data aggregation)
 
-   -  **Purpose**: Group related data into a single, named unit (composition) 
+   -  Group related data into a single, named entity (composition) 
 
-   -  **Key Rules**: Full field initialization is mandatory
+   -  Full field initialization is mandatory
 
-   -  **Syntax**: Includes the Struct Update Operator (..) for easy copying
+   -  Uses the Struct Update Operator (..) for easy copying
 
-   -  **Forms**: Covers Named Structs, Tuple Structs, and the Newtype Idiom (for type safety)
+   -  Includes Named-field structs, Tuple structs, and the Newtype Idiom (for type safety)
+//JBE
+-  **Enums** (data choices)
 
--  **Enums** (Data Choices)
+   -  Define a type that can be one of a fixed set of options
 
-   -  **Purpose**: Define a type that can be one of a fixed set of options
+   -  Variants can optionally carry specific data (tuple or struct-like)
 
-   -  **Associated Data**: Variants can optionally carry specific data (tuple or struct-like)
-
-   -  **Specific case** : the State Machines (mutually exclusive states)
+   -  State machines idiom

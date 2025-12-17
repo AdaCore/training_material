@@ -2,19 +2,21 @@
 Structs
 =========
 
-------------
-The Basics
-------------
+--------
+Basics
+--------
 
 -  :rust:`struct` creates a type that can hold multiple related values
 
    -  Visually similar to a struct in C/C++, or a record in Ada
 
--  Can hold any type that is :dfn:`sized`
+-  Can hold any type that is :dfn:`Sized`
 
-   -  its size is known at compile time
+   -  Size is known at compile time
 
 -  Fields accessed via dot notation
+
+-  Called **named-field struct**
    
 
 .. code:: rust
@@ -30,14 +32,13 @@ The Basics
 	}
 	
 	if myself.number_of_messages > 250 {
-		println!("You post too much !");
+		println!("You post too much!");
 	}  
 
-------------------------
-Nesting inside structs
-------------------------
+-----------------
+Nesting structs
+-----------------
    
--  Can hold :rust:`struct`
 
 .. code:: rust
 
@@ -46,20 +47,18 @@ Nesting inside structs
 		fuel_type: String,
 	}
 	struct Car {
-		make: String,
-		model: String,
 		new: bool,
 		// power_plant is a component of Car struct
 		power_plant: Engine, 
 	}
 
 	
-------------------------
+----------------------
 Beware of Recursion!
-------------------------
+----------------------
    
--  can't be **recursive**
-   -   Would make it a **not sized** type
+-  Can't be **recursive**
+   -   Type would not be **not sized**
 
 .. code:: rust
 
@@ -69,16 +68,20 @@ Beware of Recursion!
 		size: u8,
 		// ...another RussianDoll!" (Infinite recursion)
 		inner_doll: RussianDoll, 
-	}	
+	}
+	
+.. container:: latex_environment footnotesize
 
-:error:`error[E0072]: recursive type 'RussianDoll' has infinite size`	
+   :error:`error[E0072]: recursive type 'RussianDoll' has infinite size` 
+
+
 	
 -----------------------
 Struct Initialization
 -----------------------
 
--  Initialization of every field of a :rust:`struct` is **mandatory** when you instantiate it 
--  There are no implicit default values
+-  Initialization of every field is **mandatory** 
+-  No implicit default values
 
 .. code:: rust
 
@@ -93,17 +96,17 @@ Struct Initialization
 	let user_1 = User {
 		active: status,
 		sign_in_count: attempt_number,
-		logged_in
+		logged_in: true;
 	};
 
 	
-----------------------
-Field Init Shorthand
-----------------------
+--------------------------------
+Field Initialization Shorthand
+--------------------------------
 
--  If a local variable has the same name as the :rust:`struct` field, name could be written only once
+-  If a variable has the same name as field, name could be written only once
    -  Compiler automatically expands the variable
-   -  name association and Field Init Shorthand can be used together
+   -  Name association and :dfn:`Field Init Shorthand` can be used together
 -  No positional association allowed
 
 .. code:: rust
@@ -122,7 +125,7 @@ Field Init Shorthand
 			active,
 			// named association is still possible
 			sign_in_count: sign_in_count,
-			logged_in,
+			logged_in: true;
 	};
 
 
@@ -130,7 +133,7 @@ Field Init Shorthand
 Struct Update Operator 
 ------------------------
 
--  Allows creation of :rust:`struct` based on another instance via '..' operator 
+-  Creation of :rust:`struct` based on another instance via '..' operator 
    -  Specify values only for the fields that needs to change 
    -  All unspecified fields are copied from the instance following the '..'
 -  Base instance can't be followed by a comma
@@ -149,13 +152,13 @@ Struct Update Operator
 	// only change 'active' to true in 'set_1'
 	let set_1 = Settings {
 		active: true,   // Overridden field
-		..default_set // Copy all other fields (font_size)
+		..default_set   // Copy all other fields (font_size)
 	};
 	let set_2 = Settings {
-		..default_set // Copy all fields
+		..default_set   // Copy all fields
 	};
 	let set_3 = Settings { 
-		..default_set, // ERROR, can't be follow by a comma
+		..default_set,  // ERROR, can't be followed by a comma
 	};
 	
 :error:`error: cannot use a comma after the base struct`
@@ -191,8 +194,8 @@ Mutable
 Tuple Structs
 ---------------
 
--  Like regular :rust:`struct`, can hold any type that is **sized**
-   -  Useful to give a structure a specific type name without naming all of its fields
+-  Like Named-field :rust:`struct`, can hold any type that is **Sized**
+   -  Useful to give a structure a specific name without naming any fields
 -  First element of a tuple is 0 not 1  
 
 .. code:: rust
@@ -202,18 +205,22 @@ Tuple Structs
 	i64,   // Money
 	bool,  // is good?
 	);
-
 	// How you use it:
 	let hero = Character(10000, -500, true);
 	println!("Power level is : {}", hero.0);
 	println!("Money is : {}", hero.1);
 	
+	println!("out of bound is : {}", hero.3);
+	
+:error:`error[E0609]: no field `3` on type 'Character'`
+	
 -------------------------
 Type Safety with Tuples
 -------------------------
 
--  Name differentiates types not their definition,
-   -  Tuple structs with the same definition are different types 
+-  **Name** differentiates types 
+   -  Not their definition
+-  Tuple structs with the same definition are different types 
    
 
 .. code:: rust
@@ -221,10 +228,10 @@ Type Safety with Tuples
 	struct Point(i32, i32);
 	struct Size(i32, i32);
 
-	let p = Point(10, 20);
-	let mut s = Size(30, 40);
+	let coordinates = Point(10, 20);
+	let mut dimension = Size(30, 40);
 	
-	s = p; // ERROR
+	dimension = coordinates; // ERROR
 	
 :error:`error[E0308]: mismatched types`
 	
@@ -234,24 +241,24 @@ Type Safety with Tuples
 Idiom: NewType
 ----------------
 
-
+//JBE
 -  A :dfn:`newtype` is a tuple :rust:`struct` with a single field. 
 
    -  Used to ensure type safety
 
-   -  :rust:`UserId` and :rust:`Duration` are both :rust:`i64` but can't assign one to the other
 
 .. code:: rust
 
-	// The newtype (compiler-checked type safety)
 	struct UserId(i64); 
 	struct LapseSecondsDuration(i64);
 	
 	let mut my_id  = UserId(15);
 	let mut my_time = Duration(53);
+
+-  :rust:`UserId` and :rust:`Duration` are both :rust:`i64` but can't assign one to the other
 	
-	//ERROR incompatible type
+	// ERROR mismatched types
 	my_id = my_time;
-	
+//JBE	
 
 
