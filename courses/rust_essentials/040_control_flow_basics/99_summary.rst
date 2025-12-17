@@ -26,4 +26,4 @@ What We Covered
   
 - **Macros**
   - Expand into code at compile-time, suffixed with :rust:`!` 
-  - Allow variable arguments
+  - Allow variable number of arguments
