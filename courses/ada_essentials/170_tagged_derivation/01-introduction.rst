@@ -43,7 +43,6 @@ Tagged Derivation Ada Vs C++
           Seat_Height : Float;
         end record;
 
-        overriding
         function Wheels
           (This : Unicycle_T)
            return Positive is (1);
