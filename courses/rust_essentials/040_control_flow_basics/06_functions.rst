@@ -7,7 +7,7 @@ What is a function?
 ---------------------
 
 - Primary way to organize code into reusable blocks
-- Take inputs, process them, and (often) return a value
+- Take inputs, process them, and return a result (even if empty)
 - Declared using the :rust:`fn` keyword
   - Must be immediately followed by the body enclosed in :rust:`{ }` 
 - Typically in **snake_case** (e.g., :rust:`calculate_area`)
