@@ -32,7 +32,7 @@ begin
 
    Total := Integer (Point_1.Inches) +
             Integer (Point_2.Inches);
-   if Total > Max_Inches then
+   if Total >= Max_Inches then
       Distance.Inches := Inches_T (Total - Max_Inches);
       Distance.Feet   := 1;
    else
