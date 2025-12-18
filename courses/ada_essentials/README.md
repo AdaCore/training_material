@@ -12,6 +12,7 @@ to modify the list of included modules, this is the file you would change
 The file **ada95_course.txt** contains a list of all the modules that
 we expect to find in a typical "Ada Essentials" course specifically
 geared towards Ada 95.
+*Note that currently the modules may still contain content beyond Ada95*
 
 The file **advanced.txt** contains a list of modules that typically are
 not part of the standard course. Some of these can be extra chapters
