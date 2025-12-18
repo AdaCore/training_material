@@ -31,7 +31,7 @@ Aspect Clauses for Objects
 
 * An :dfn:`aspect clause` attaches a property or behavior (the *aspect*) to a program entity
 
-  * Influences how it is represented, checked, or executed.
+  * Influences how it is represented, checked, or executed
 
   .. container:: source_include 020_declarations/syntax.bnf :start-after:aspect_clauses_begin :end-before:aspect_clauses_end :code:bnf
 
