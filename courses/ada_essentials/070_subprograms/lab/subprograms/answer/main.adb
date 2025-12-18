@@ -22,10 +22,10 @@ procedure Main is
          return List'Last;
       end if;
    end Search;
-   --Search
 
    List   : List_T (1 .. 20);
    Length : Natural := 0;
+   --Search
 
 --Main
    procedure Add (Item : Integer) is
