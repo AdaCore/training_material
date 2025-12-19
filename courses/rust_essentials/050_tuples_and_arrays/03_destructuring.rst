@@ -7,9 +7,9 @@ What is Destructuring?
 ------------------------
 
   - **Convenient** data access
-  - **Breaking down** a complex data structure into components
+  - **Breaking down** a complex data structure into its inner parts
     - Like a tuple, an array, or other compound types
-  - **Assigning** those components to individual variables
+  - **Assigning** those parts to individual variables
     - In a single step!
 
 -----------------------
@@ -41,10 +41,10 @@ Irrefutable Patterns with Tuples
 
   let point: (i32, i32) = (10, 20);
   
-  // The pattern (xx, yy) is IRREFUTABLE
-  // It perfectly matches the structure of that tuple
+  // Pattern (xx, yy) is IRREFUTABLE
+  // Perfectly matches the structure of that tuple
   let (xx, yy) = point; 
-  // We're guaranteed to get an xx and a yy!
+  // Guaranteed to get an xx and a yy!
 
 --------------------------
 Destructuring Assignment
@@ -56,9 +56,11 @@ Destructuring Assignment
 
 .. code:: rust
 
-  let mut cat_snacks = 0;
-  let mut dog_treats = 0;
-  (cat_snacks, dog_treats) = (42, 1);
+  let mut cat_snacks = 1;
+  let mut dog_treats = 42;
+
+  // No temporary variable required!
+  (cat_snacks, dog_treats) = (dog_treats, cat_snacks);
 
 ------------------------
 Destructuring an Array
@@ -77,9 +79,9 @@ Destructuring an Array
   println!("pants: {}", pants);   // 20
   println!("socks: {}", socks);   // 30
 
--------------------
-Ignoring Elements 
--------------------
+----------------------------
+Ignoring Specific Elements 
+----------------------------
 
   - Ignore specific elements using the underscore (:rust:`_`) 
 
@@ -92,9 +94,9 @@ Ignoring Elements
   println!("Second color: {}", second); // green
   println!("Fourth color: {}", fourth); // yellow
 
--------------------------
-Using ".." for the Rest
--------------------------
+----------------------------
+Ignoring Multiple Elements
+----------------------------
 
   - Ignore multiple elements using the **rest pattern** (:rust:`..`)
   - Useful when you only need elements from the beginning or end
@@ -113,10 +115,12 @@ Using ".." for the Rest
 Nested Destructuring
 ----------------------
 
-  - Use a pattern within a pattern to destructure an array of arrays
+  - Use a pattern *within* a pattern to destructure an array of arrays
 
 .. code:: rust
 
-  let matrix = [[1, 2], [3, 4]];
-  // Destructures the outer array AND the inner array
-  let [[a, b], [c, d]] = matrix; // a=1, b=2, c=3, d=4
+  let line_data = [[10, 20], [80, 90]];
+  let [[start_x, start_y], [end_x, end_y]] = line_data;
+
+  println!("Drawing line from ({}, {}) to ({}, {})", 
+            start_x, start_y, end_x, end_y);
