@@ -8,7 +8,7 @@ What Is a Type Invariant?
 
 * Boolean property that should always hold of objects of the type
 
-  - ...**outside** of its unit
+  - ... **outside** of its unit
   - Same use of name of the type and component names as in predicates
 
 * Can only be specified on the completion of a private type (in SPARK)
