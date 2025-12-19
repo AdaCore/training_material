@@ -151,6 +151,10 @@ Example:
 
     ``-----------------``
 
+Do not use roles in slide titles. It can change the color of the text,
+and makes extracting titles from slides more difficult. Current behavior
+is to put the highlighted text in quotes. 
+
 ---------------
 Code Examples
 ---------------
