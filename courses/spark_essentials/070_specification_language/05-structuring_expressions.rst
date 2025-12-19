@@ -62,20 +62,20 @@ Expression Functions
 Expression Functions Without Postconditions
 ---------------------------------------------
 
-**An expression function without a specified postcondition uses the expression as proof so that:**
+Expression function without a specified postcondition uses the expression as the postcondition
+
+  .. code:: Ada
+
+     function Max (X, Y : Integer) return Integer is
+      (if X > Y then X else Y);
+
+is equivalent to
 
 .. code:: Ada
 
-   function Add (X, Y : Integer) return Integer is
-      (X + Y);
-
-**is equivalent to:**
-
-.. code:: Ada
-
-   function Add (X, Y : Integer) return Integer is
-      (X + Y)
-   with Post => Add'Result = (X + Y);
+   function Max (X, Y : Integer) return Integer is
+      (if X > Y then X else Y)
+   with Post => Add'Result = (if X > Y then X else Y);
 
 -----------------------------
 Use of Expression Functions
