@@ -84,17 +84,27 @@ Analysis of Array Initialization (2/2)
 Dealing with False Alarms
 ---------------------------
 
-* Check messages can be justified with pragma :ada:`Annotate`
+* A subprogram that only sometimes initializes an output parameter
 
   .. code:: Ada
 
-     procedure Init_Array
-       (A : out T) -- Initialization check justified
-     is
-        pragma Annotate (GNATprove, False_Positive,
-                         """A"" might not be initialized",
-                         "value-dependent init");
+    procedure Initialize (List    : out List_T;
+                          Success : out Boolean);
+
+* Can generate an analysis message
+
+  :error:`medium: "List" might not be initialized in "Initialize"`
+
+* If this is not an issue, you can tell the prover with :ada:`pragma Annotate`
+
+  .. code:: Ada
+
+    procedure Initialize (List    : out List_T;
+                          Success : out Boolean);
+    pragma Annotate (Gnatprove,
+                     False_Positive,
+                     """List"" might not be initialized",
+                     "Not initialized in certain states");
 
 * Justification inserted immediately after the check message location
 * Relaxed initialization will be seen in course on Advanced Proof
-
