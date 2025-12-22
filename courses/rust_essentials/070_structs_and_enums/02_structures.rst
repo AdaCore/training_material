@@ -16,7 +16,7 @@ Basics
 
 -  Fields accessed via dot notation
 
--  Called **named-field struct**
+-  Called **Named-field struct**
    
 
 .. code:: rust
@@ -104,7 +104,7 @@ Struct Initialization
 Field Initialization Shorthand
 --------------------------------
 
--  If a variable has the same name as field, name could be written only once
+-  If field and variable have same name, it could be written only once
    -  Compiler automatically expands the variable
    -  Name association and :dfn:`Field Init Shorthand` can be used together
 -  No positional association allowed
@@ -123,7 +123,7 @@ Field Initialization Shorthand
 			// Same as active: active,
 			// The field takes value of local variable
 			active,
-			// named association is still possible
+			// Name association is still possible
 			sign_in_count: sign_in_count,
 			logged_in: true;
 	};
@@ -194,16 +194,16 @@ Mutable
 Tuple Structs
 ---------------
 
--  Like Named-field :rust:`struct`, can hold any type that is **Sized**
+-  Like named-field :rust:`struct`, can hold any type that is **Sized**
    -  Useful to give a structure a specific name without naming any fields
 -  First element of a tuple is 0 not 1  
 
 .. code:: rust
 
 	struct Character(
-    u64,   // Power
-	i64,   // Money
-	bool,  // is good?
+		u64,   // Power
+		i64,   // Money
+		bool,  // is good?
 	);
 	// How you use it:
 	let hero = Character(10000, -500, true);
@@ -212,7 +212,52 @@ Tuple Structs
 	
 	println!("out of bound is : {}", hero.3);
 	
-:error:`error[E0609]: no field `3` on type 'Character'`
+:error:`error[E0609]: no field '3' on type 'Character'`
+
+----------------
+Value Illusion
+----------------
+
+-  Tuple struct type declaration defines both
+
+   -  Data type
+   
+   -  Constructor function call
+   
+-  This compiles
+
+  
+.. code:: rust
+	
+    struct Point(i32, i32);
+	// Creates an alias
+    let coord = Point;  // Point is a function call
+	
+	
+.. warning:: 
+	
+   coord is NOT a variable of type Point. It is an alias for the constructor function call
+
+
+
+.. code:: rust 
+	
+    // Calls the alias for Point constructor  
+    // Initializes the tuple
+    let maximum = coord(1,2); // maximum is a Point
+	
+-	This doesn't compile
+
+.. code:: rust
+	
+    // Calls the Point constructor 
+    // No initilization because of missing fields
+    let coord2 = Point();
+
+.. container:: latex_environment footnotesize
+	
+   :error:`error[E0061]: this struct takes 2 arguments but 0 arguments were supplied`
+
 	
 -------------------------
 Type Safety with Tuples
@@ -238,11 +283,10 @@ Type Safety with Tuples
 	
 	
 ----------------
-Idiom: NewType
+Idiom: Newtype
 ----------------
 
-//JBE
--  A :dfn:`newtype` is a tuple :rust:`struct` with a single field. 
+-  A :dfn:`newtype` is a tuple :rust:`struct` with a single field 
 
    -  Used to ensure type safety
 
@@ -257,8 +301,8 @@ Idiom: NewType
 
 -  :rust:`UserId` and :rust:`Duration` are both :rust:`i64` but can't assign one to the other
 	
+.. code:: rust
+	
 	// ERROR mismatched types
 	my_id = my_time;
-//JBE	
-
 

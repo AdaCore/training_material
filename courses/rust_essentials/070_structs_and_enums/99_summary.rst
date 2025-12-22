@@ -14,8 +14,8 @@ What We Learned
 
    -  Uses the Struct Update Operator (..) for easy copying
 
-   -  Includes Named-field structs, Tuple structs, and the Newtype Idiom (for type safety)
-//JBE
+   -  Includes Named-field structs, Tuple structs, and the newtype Idiom (for type safety)
+
 -  **Enums** (data choices)
 
    -  Define a type that can be one of a fixed set of options

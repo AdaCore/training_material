@@ -24,9 +24,9 @@ Topics Covered
 Introduction
 --------------
 
--  :rust:`struct` and :rust:`enum` are user-defined types 
+-  :rust:`struct` and :rust:`enum` create custom data structures  
 
-   -  Create custom data structures 
+   -  User-defined types 
    -  Bundle related pieces of information together
    -  Define their behavior
 
