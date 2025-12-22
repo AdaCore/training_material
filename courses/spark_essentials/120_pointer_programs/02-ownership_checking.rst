@@ -206,7 +206,7 @@ Attributes :ada:`Old` and :ada:`Loop_Entry`
 
   - Implicit copy on subprogram/loop entry would violate ownership
 
-* Prefix of access type needs to be a call to an *allocating function*
+* To use :ada:`'Old` (or :ada:`'Loop_Entry`) with pointers, you must explicitly allocate a safe copy
 
   - Allocating function is a function returing an access-to-variable type
 
