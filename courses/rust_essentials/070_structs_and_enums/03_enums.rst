@@ -6,7 +6,7 @@ Enums
 Basics
 --------
 
--  can be one of several possible, distinct **variants**
+-  Can be one of several possible, distinct **variants**
 -  Represents a choice between different values
 -  **Variants** from an :rust:`enum` are accessed using the '::' notation
    -  Called **path separator**
@@ -26,7 +26,7 @@ Enums with Data
 -----------------
 
 -  **Variants** can optionally hold data 
-   - this is an :rust:`enum` superpower!
+   -  this is an :rust:`enum` superpower!
 -  Can't be recursive
 -  Similar to a union in C/C++
 
@@ -57,14 +57,14 @@ Enum Initialization
 .. code:: rust
 
    enum Message {
-	   Quit,                       // No data
-	   Move { x: i32, y: i32 },    // Named-field struct Variant
-       ChangeColor(i32, i32, i32), // Three i32 values
+	   Quit,                       
+	   Move { coord_x: i32, coord_y: i32 },    
+       ChangeColor(i32, i32, i32), 
 	}
 
 	let white = Message::ChangeColor(255,255,255); // OK
-	// Error! You must provide the content of ChangeColor
-	let no_color = Message::ChangeColor; 
+	// Error! You must provide the content of Move
+	let no_color = Message::Move; 
 	
 ----------------------
 Idiom: State Machine
@@ -80,8 +80,8 @@ Idiom: State Machine
 		Connected {
 			// Struct variant (contains data)
 			session_id: u64, 
-			ip_address: String,
-		}, //JBE
+			curr_ip: IpAddressV4,
+		}, 
 		// Tuple variant (contains data: error code)
 		Failed(u16),    
 	}
