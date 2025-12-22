@@ -224,6 +224,33 @@ The "char" Type is Special
   let letter: char = 'a';
   let accented: char = 'é';
 
+------------------
+The Unit Type ()
+------------------
+
+- It *is* a type
+
+  - Holds **no** meaningful data
+
+  - Unlike traditional types, such as :rust:`i32`
+
+- Represents "completion without a result"
+
+- Written as :rust:`()` for both the **type** and **value**
+
+  - When code seems to return *nothing*, it's actually :rust:`()`
+
+  - It is the **only** possible value for this type
+
+.. code:: rust
+
+  // this variable exists, but holds no data!
+  let holds_no_data: () = ();
+
+.. note::
+
+  Unlike :rust:`void`, :rust:`()` is a real value! It exists and can be assigned to variables
+
 ------------------------------
 Recap: Anatomy of a Variable
 ------------------------------

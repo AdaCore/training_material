@@ -8,22 +8,37 @@ Discrete Types
 
 * **Individual** ("discrete") values
 
-   - 1, 2, 3, 4 ...
-   - Red, Yellow, Green
+  * Can easily identify next/previous value
 
 * Integer types
 
-   - Signed integer types
-   - Modular integer types
+  - Signed integer types
 
-      * Unsigned
-      * **Wrap-around** semantics
-      * Bitwise operations
+    .. code:: Ada
+
+      type Integer_T is range -1 .. 1000;
+      Number : Integer_T := 123;
+
+  - Modular integer types
+
+    * No sign bit
+    * **Wrap-around** semantics
+    * Bitwise operations
+
+    .. code:: Ada
+
+      type Unsigned_T is mod 256;
+      Unsigned : Unsigned_T := 123;
+      Bitwise  : Unsigned_T := Unsigned and 16#55#;
 
 * Enumeration types
 
-   - Ordered list of **logical** values
+  - Ordered list of **logical** values
 
+  .. code:: Ada
+
+    type Enumeration_T is (Red, Yellow, Green);
+  
 ------------
 Real Types
 ------------
@@ -35,3 +50,8 @@ Real Types
 * :dfn:`Fixed-point` numbers have a **constant** exponent portion
 
   * Allows for simpler (integer-based) computer math
+
+.. code:: Ada
+
+  type Float_T is digits 6;
+  type Fixed_T is delta 0.01;

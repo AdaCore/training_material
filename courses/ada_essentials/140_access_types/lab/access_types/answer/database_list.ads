@@ -1,6 +1,4 @@
 with Database; use Database;
--- Uncomment next line when using debug/storage pools
--- with Memory_Mgmt;
 package Database_List is
    type List_T is limited private;
    procedure First (List : in out List_T);
@@ -15,8 +13,6 @@ package Database_List is
 private
    type Linked_List_T;
    type Linked_List_Ptr_T is access all Linked_List_T;
-   -- Uncomment next line when using debug/storage pools
-   -- for Linked_List_Ptr_T'Storage_Pool use Memory_Mgmt.Storage_Pool;
    type Linked_List_T is record
       Next    : Linked_List_Ptr_T;
       Content : Database_T;
