@@ -29,7 +29,7 @@ Higher Order Specialization
 
 * Used in SPARK Higher Order Library
 
-  - Associated lemmmas also use annotation ``Higher_Order_Specialization``
+  - Associated lemmas also use annotation ``Higher_Order_Specialization``
 
   - Lemmas specialized when calls are specialized
 
