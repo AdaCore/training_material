@@ -191,15 +191,10 @@ Access to Data on the Stack
   - Not allowed on global variable which would remain visible
   - Result of general access type with :ada:`access all` syntax
 
-|
+.. code::
 
-* :ada:`Constant'Access` of access-to-constant type
-
-|
-
-* :ada:`Variable'Access` of access-to-variable type
-
-|
+  Object_Read  : access constant Object_T := Object'Access;
+  Object_Write : access Object_T := Object'Access;
 
 * Variable is *moved* and cannot be referenced anymore
 
