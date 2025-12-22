@@ -153,7 +153,7 @@ Example:
 
 Do not use roles or emphasis in slide titles. It can change the color of
 the text, and makes extracting titles from slides more difficult. Current
-behavior is to put the text you want highlighted in quotes. 
+behavior is to surround the text you want highlighted with double quotes. 
 
 ---------------
 Code Examples
