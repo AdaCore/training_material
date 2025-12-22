@@ -2,40 +2,6 @@
 Access-to-subprogram Values
 =============================
 
------------------------------------------
-Contracts on Access-to-subprogram Types
------------------------------------------
-
-* Access-to-subprogram values not subject to ownership
-
-* Only preconditions and postconditions are allowed
-
-  .. code:: ada
-
-     type Proc is access procedure (...)
-     with
-       Pre  => ...
-       Post => ...
-
-* Very often using :ada:`not null access` (for parameters)
-
-* Implicit `Global => null` on type
-
-* :toolname:`GNATprove` checks feasibility of contract 
-
-* Creating a value of access-to-subprogram type with attribute :ada:`Access`
-
-  .. code:: ada
-
-     procedure P (...);
-     Acc : Proc := P'Access;
-
-* :toolname:`GNATprove` checks conditions for refinement
-
-  - Pre of type implies pre of subprogram
-
-  - Post of subprogram implies post of type
-
 -----------------------------
 Higher Order Specialization
 -----------------------------
