@@ -27,10 +27,14 @@ Anatomy of a Match Arm
 .. code:: rust
 
    match input {
-      'q' => println!("Quitting"), // Literal 
-      '0'..='9' => println!("Number"), // Range 
-      key if key.is_lowercase() => println!("{key}"), // Binding + Guard
-      _ => println!("Something else"), // Wildcard
+      // Literal
+      'q' => println!("Quitting"),
+      // Range
+      '0'..='9' => println!("Number"),
+      // Binding + Guard
+      key if key.is_lowercase() => println!("{key}"),
+      // Wildcard
+      _ => println!("Something else"),
    }
 
 --------------

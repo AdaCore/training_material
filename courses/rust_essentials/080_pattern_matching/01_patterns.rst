@@ -34,11 +34,14 @@ Every Binding is a Pattern Match
 
 .. code:: rust
 
-    let x = 5; // variable name - pattern "x" matches any value and binds it
+    // variable name - pattern "x" matches any value and binds it
+    let x = 5;
 
-    let (x, y) = (1, 2); // tuples - pattern destructures tuple into 2 separate Variables
+    // tuples - pattern destructures tuple into 2 separate Variables
+    let (x, y) = (1, 2);
 
-    let Foo { x, .. } = my_foo; // structs - pattern extracts specific fields directly
+    // structs - pattern extracts specific fields directly
+    let Foo { x, .. } = my_foo;
 
 .. note::
 

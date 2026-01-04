@@ -18,7 +18,8 @@ Getting Exactly What You Need
 
     .. code:: rust
 
-        Foo { y, ..} // captures y and throws away the other fields
+        // captures y and throws away the other fields
+        Foo { y, ..}
 
 .. note::
 
@@ -47,11 +48,11 @@ Advanced Struct Patterns
         match foo {
             // Literal + Nesting: Matches only if x.0 is 1. 
             // Binds x.1 to 'val' and y to 'y'.
-            Foo { x: (1, val), y } => println!("Matched! val: {val}, y: {y}"), [cite: 78]
+            Foo { x: (1, val), y } => println!("Matched! val: {val}, y: {y}"),
 
             // Renaming: Binds the value of field 'y' to a new variable 'level'.
             // Ignores the 'x' field entirely using '..'.
-            Foo { y: level, .. } => println!("Y is {level}"), [cite: 82, 85]
+            Foo { y: level, .. } => println!("Y is {level}"),
             
             // Catch-all: If none of the above specific structures match.
             _ => println!("No match found"),

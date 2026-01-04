@@ -6,7 +6,7 @@ Let Control Flow
 Concise Flow: "if let" and "while let"
 ----------------------------------------
 
-- **if let** - Syntactic sugar for a match that only cares about **one** specific case
+- **if let** - For a match that only cares about **one** specific case
     - Unlike :rust:`match`, it does not have to cover all branches
 
 - **while let** - Repeatedly tests a value against a pattern and loops as long as it matches
@@ -36,7 +36,8 @@ The "let else" Statement
 .. code:: rust
 
     fn hex_or_die(maybe_string: Option<String>) -> Result<u32, String> {
-        // If None, return early. If Some, 's' is available in current scope.
+        // If None, return early 
+        // If Some, 's' is available in current scope
         let Some(s) = maybe_string else { 
             return Err(String::from("got None")); 
         };
