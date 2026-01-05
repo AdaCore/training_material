@@ -21,9 +21,9 @@ Subtype Predicates Concept
 
    - Define new kinds of constraints
 
-----------------
-**Predicates**
-----------------
+------------
+Predicates
+------------
 
 * Something asserted to be true about some subject
 
@@ -473,7 +473,7 @@ Beware Accidental Recursion in Predicate
      function Sorted (T : Table) return Boolean;
 
 ---------------------------------------
-GNAT-Specific Aspect Name *Predicate*
+GNAT-Specific Aspect Name "Predicate"
 ---------------------------------------
 
 * Conflates two language-defined names

@@ -59,9 +59,9 @@ Safely Converting Signed to Unsigned
           SB := -1;
           B := Byte'Mod (SB);  -- OK (255)
 
------------------------
-Package **Interfaces**
------------------------
+----------------------
+Package "Interfaces"
+----------------------
 
 * **Standard** package
 * Integer types with **defined bit length**

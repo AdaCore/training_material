@@ -32,9 +32,9 @@ Packages Lab
 
   - Remember: :code:`with package_name;` gives access to :code:`package_name`
 
-----------------------------------------------
-Creating Packages in :toolname:`GNAT Studio`
-----------------------------------------------
+------------------------------------
+Creating Packages in "GNAT Studio"
+------------------------------------
 
 * Right-click on the source directory node
 

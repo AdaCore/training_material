@@ -43,9 +43,9 @@ Character Oriented Packages
 
 * See RM Annex A for details
 
------------------------------------------
-`Ada.Characters.Latin_1` Sample Content
------------------------------------------
+---------------------------------------
+Ada.Characters.Latin_1 Sample Content
+---------------------------------------
 
 .. code:: Ada
 

@@ -78,7 +78,7 @@ Enclosing Equality Function Example
    end "=";
 
 ----------------------------------------
-`=` for Predefined Composites Composes
+"=" for Predefined Composites Composes
 ----------------------------------------
 
 * Per RM 4.5.2(32/1)

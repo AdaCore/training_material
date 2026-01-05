@@ -8,9 +8,9 @@ Examples
 
 .. include:: ../examples/adv_275_type_contracts/subtype_predicates.rst
 
-----------------
-**Predicates**
-----------------
+------------
+Predicates
+------------
 
 * Assertion expected to hold for all objects of given type
 * Expressed as any legal boolean expression in Ada
