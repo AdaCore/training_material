@@ -6,21 +6,22 @@ Summary
 What We Covered
 -----------------
 
-- **Patterns are Fundamental**
+- **Patterns as Bindings**
 
-    - Every variable binding is a pattern match
-    - The :rust:`match` keyword lets you match a value against one or more patterns
+  - Every variable binding is a pattern match
 
-- **Destructuring for Clarity**
+  - `match` compares values against patterns
 
-    - Pull data out of Structs and Enums directly into variables
-    - Use :rust:`..` to ignore fields and keep code concise
+- **Destructuring**
 
-- **Safer Control Flow**
+  - Extract data from structs and enums
 
-    - :rust:`match` ensures exhaustive handling of all possibilities
-    - :rust:`if let` and :rust:`while let` provide concise alternatives for single patterns
+  - Use `..` to ignore fields
 
-- **Code Flattening**
+- **Pattern Matching Forms**
 
-    - Use :rust:`let else` to handle errors early and reduce nesting
+  - :rust:`match`, :rust:`if let`, and :rust:`while let`
+
+- **Exhaustiveness**
+
+  - Compiler-checked handling of all cases

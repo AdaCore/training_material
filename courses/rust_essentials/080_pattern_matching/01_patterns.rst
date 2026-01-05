@@ -1,48 +1,123 @@
-=================
+==========
 Patterns
-=================
+==========
 
----------------------------
-The Language of Structure
----------------------------
+-------------------
+What Is a Pattern
+-------------------
 
-- Patterns are a special syntax used to match against the **structure** of types
+- A core language feature of Rust
 
-- First-class citizens of Rust, appearing in
+- Describes the **structure** of a value
 
-    - Variable bindings
-    - Function arguments
-    - Loops
+- Used to test and decompose values
 
-- A pattern either **matches** or **fails to match**
+- Successful matching may introduce new bindings
 
-    - Compiler can ensure code is safe...
-    - ...and exhaustive
+----------------------
+Patterns as Bindings
+----------------------
 
-----------------------------------
-Every Binding is a Pattern Match
-----------------------------------
+- Every :rust:`let` binding uses a pattern
 
-- The syntax for creating a variable is actually
+- Simple bindings use identifier patterns
 
-.. code:: rust
-
-    let <PATTERN> = <VALUE>;
-
-- **Irrefutable Patterns**: standard :rust:`let` statement requires a pattern that **cannot fail** to 
-    match the right-hand side
+- More complex patterns can destructure values
 
 .. code:: rust
 
-    // variable name - pattern "x" matches any value and binds it
-    let x = 5;
+   let a_number = 5;              // identifier pattern
 
-    // tuples - pattern destructures tuple into 2 separate Variables
-    let (x, y) = (1, 2);
+   let (first, second) = (1, 2);  // tuple pattern
 
-    // structs - pattern extracts specific fields directly
-    let Foo { x, .. } = my_foo;
+------------------
+Literal Patterns
+------------------
 
-.. note::
+- Literal patterns match exact values
 
-    Because :rsut:`let` is a pattern match, it must be **guaranteed** to work
+- Commonly used in :rust:`match` expressions
+
+- Useful for branching on specific cases
+
+.. code:: rust
+
+   let n = 3;
+
+   match n {
+       0 => println!("zero"),
+       1 => println!("one"),
+       _ => println!("many"),
+   }
+
+------------------
+Wildcard Pattern
+------------------
+
+- :rust:`_` matches any value
+
+- Does not bind or move the value
+
+- Often used to ignore irrelevant cases
+
+.. code:: rust
+
+   let value = Some(10);
+
+   match value {
+       Some(_) => println!("has a value"),
+       None => println!("no value"),
+   }
+
+-----------------------
+Binding with Patterns
+-----------------------
+
+- Identifier patterns bind matched values to names
+
+- Bindings only exist when the pattern matches
+
+- Commonly used with enums and tuples
+
+.. code:: rust
+
+   let opt = Some(3);
+
+   match opt {
+       Some(x) => println!("x = {}", x),
+       None => println!("no value"),
+   }
+
+-------------------
+Patterns Can Nest
+-------------------
+
+- Patterns may be composed recursively
+
+- Inner patterns further destructure values
+
+- Matching proceeds from the outside in
+
+.. code:: rust
+
+   let point = (0, 5);
+
+   match point {
+       (0, y) => println!("on y-axis at {}", y),
+       (x, 0) => println!("on x-axis at {}", x),
+       (x, y) => println!("({}, {})", x, y),
+   }
+
+-----------------------------
+Patterns in Rust Constructs
+-----------------------------
+
+- Patterns are reused consistently across the language
+
+- :rust:`let` bindings
+
+- :rust:`match` expressions
+
+- :rust:`if let` and :rust:`while let`
+
+- function parameters (later)

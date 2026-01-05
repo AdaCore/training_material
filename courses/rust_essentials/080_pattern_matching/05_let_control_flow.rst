@@ -2,45 +2,92 @@
 Let Control Flow
 ==================
 
-----------------------------------------
-Concise Flow: "if let" and "while let"
-----------------------------------------
+--------------------
+"let" as a Pattern
+--------------------
 
-- **if let** - For a match that only cares about **one** specific case
-    - Unlike :rust:`match`, it does not have to cover all branches
+- Every :rust:`let` binding uses a pattern
 
-- **while let** - Repeatedly tests a value against a pattern and loops as long as it matches
+- Simple bindings always match
 
-.. code:: rust
-
-    // if let: executes only if 'secs' converts to Ok
-    if let Ok(duration) = Duration::try_from_secs_f32(secs) { 
-        println!("Slept for {duration:?}");
-    }
-
-    // while let: pops until the string is empty
-    while let Some(c) = name.pop() { 
-        println!("Char: {c}"); 
-    }
-
---------------------------
-The "let else" Statement
---------------------------
-
-- **let else** - Used for "unwrapping or returning early"[cite: 187].
-
-- **Flattening** - It supports flattening nested code by handling the "failure" case first
-
-- **Divergence** - The :rust:`else` block **must** diverge (:rust:`return`, :rust:`break`, or :rust:`panic!``)
+- More complex patterns may fail to match
 
 .. code:: rust
 
-    fn hex_or_die(maybe_string: Option<String>) -> Result<u32, String> {
-        // If None, return early 
-        // If Some, 's' is available in current scope
-        let Some(s) = maybe_string else { 
-            return Err(String::from("got None")); 
-        };
+   let x = 5;
+   let (a, b) = (1, 2);
 
-        // Further logic remains un-nested...
-    }
+----------------------
+Conditional Matching
+----------------------
+
+- Some patterns only match certain values
+
+- :rust:`match` can always be used to handle this
+
+- Rust provides shorthand forms for common cases
+
+----------
+"if let"
+----------
+
+- Matches a single pattern conditionally
+
+- Executes only when the pattern matches
+
+- All other cases are ignored
+
+.. code:: rust
+
+   let value = Some(3);
+
+   if let Some(x) = value {
+       println!("x = {}", x);
+   }
+
+---------------------
+"if let" vs "match"
+---------------------
+
+- :rust:`if let` is shorthand for a two-arm :rust:`match`
+
+- Use when only one case is interesting
+
+- Prefer `match` when handling multiple cases
+
+.. code:: rust
+
+   // equivalent to the previous example
+   match value {
+       Some(x) => println!("x = {}", x),
+       _ => {}
+   }
+
+-------------
+"while let"
+-------------
+
+- Repeats while a pattern continues to match
+
+- Commonly used for iterative extraction
+
+- Stops when the pattern no longer matches
+
+.. code:: rust
+
+   let mut value = Some(3);
+
+   while let Some(x) = value {
+       println!("x = {}", x);
+       value = None;
+   }
+
+---------------------------
+Pattern-Based Convenience
+---------------------------
+
+- :rust:`let`, :rust:`if let`, and :rust:`while let` all use patterns
+
+- These forms reduce boilerplate for common matches
+
+- The same pattern rules apply everywhere

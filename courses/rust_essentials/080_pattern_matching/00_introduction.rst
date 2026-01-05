@@ -6,10 +6,10 @@ Introduction
 Topics Covered
 ----------------
 
-- **Patterns as Bindings**: Understanding that every variable creation is a pattern match
+- **Patterns as Bindings**: All variable bindings are pattern matches
 
-- **Destructuring**: How to "break open" complex types like Structs and Enums to access their data
+- **Destructuring**: Extracting data from structs and enums
 
-- **Control Flow**: Using constructs like :rust:`match`, :rust:`if let`, and :rust:`while let` to handle different data shapes safely
+- **Control Flow**: Using :rust:`match`, :rust:`if let`, and :rust:`while let`
 
-- **Exhaustiveness**: How the Rust compiler ensures you have handled every possible case
+- **Exhaustiveness**: Compiler-checked case coverage

@@ -2,52 +2,138 @@
 Match
 =======
 
---------------------------------
-Refutable Patterns and "match"
---------------------------------
+-----------------
+What Is "match"
+-----------------
 
-- **Refutable Pattern** - might not match the data (e.g., :rust:`Some` vs :rust:`None`)
+- :rust:`match` compares a value against a set of patterns
 
-- :rust:`match` keyword allows comparison of a value against one or more refutable patterns
+- Exactly one pattern must match
 
-- :rust:`match` arms must cover **every single possibility**
-
-- Use :rust:`_` as a "catch-all" pattern for remaining cases
-
-------------------------
-Anatomy of a Match Arm
-------------------------
-
-- Use :rust:`|` to match several values in one arm
-
-- Use :rust:`..=` to match an **inclusive** range of values
-
-- Patterns can bind parts of a value to a name for use inside the arm (i.e., a variable binding)
-
-.. code:: rust
-
-   match input {
-      // Literal
-      'q' => println!("Quitting"),
-      // Range
-      '0'..='9' => println!("Number"),
-      // Binding + Guard
-      key if key.is_lowercase() => println!("{key}"),
-      // Wildcard
-      _ => println!("Something else"),
-   }
-
---------------
-Match Guards
---------------
-
-- :dfn:`Match Guard` - an additional :rust:`if` condition placed after a pattern
-
-- Arm only matches if the pattern matches **and** the guard condition is **true**
-
-- If guard is **false**, match continues to check subsequent arms
+- The selected arm determines the result
 
 .. note::
 
-   Note the same as an :rust:`if` inside the branch; failing a guard lets other arms
-   be considered
+   :rust:`match` is an expression, not a statement.
+
+--------------------------
+"match" as an Expression
+--------------------------
+
+- Every :rust:`match` evaluates to a value
+
+- All arms must produce compatible types
+
+- The result can be bound to a name
+
+.. code:: rust
+
+   let x = 2;
+
+   let description = match x {
+       0 => "zero",
+       1 => "one",
+       _ => "many",
+   };
+
+------------
+Match Arms
+------------
+
+- Each arm consists of a pattern and an expression
+
+- Patterns are tested top to bottom
+
+- The first matching arm is selected
+
+.. code:: rust
+
+   let n = 5;
+
+   match n {
+       1 => println!("one"),
+       2 => println!("two"),
+       _ => println!("other"),
+   }
+
+----------------
+Exhaustiveness
+----------------
+
+- All possible cases must be handled
+
+- Missing cases cause a compile-time error
+
+- This applies to all :rust:`match` expressions
+
+------------------
+Wildcard Pattern
+------------------
+
+- :rust:`_` matches any remaining cases
+
+- Commonly used as a catch-all
+
+- Does not bind the matched value
+
+.. code:: rust
+
+   let n = 10;
+
+   match n {
+       0 => println!("zero"),
+       _ => println!("non-zero"),
+   }
+
+------------------------
+Matching with Bindings
+------------------------
+
+- Patterns can bind values while matching
+
+- Bound names are available in the arm body
+
+- Useful for extracting data inline
+
+.. code:: rust
+
+   let value = Some(4);
+
+   match value {
+       Some(x) => println!("x = {}", x),
+       None => println!("no value"),
+   }
+
+-----------------
+Nested Patterns
+-----------------
+
+- Patterns can be composed hierarchically
+
+- Matching proceeds from outer to inner structure
+
+- Enables concise handling of structured data
+
+.. code:: rust
+
+   let point = (0, 3);
+
+   match point {
+       (0, y) => println!("on y-axis at {}", y),
+       (x, 0) => println!("on x-axis at {}", x),
+       (x, y) => println!("({}, {})", x, y),
+   }
+
+---------------------
+Why "match" Matters
+---------------------
+
+- Makes all cases explicit
+
+- Eliminates implicit fallthrough
+
+- Enables compiler-checked completeness
+
+.. note::
+
+   :rust:`match` is central to how Rust models branching logic

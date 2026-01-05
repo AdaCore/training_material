@@ -2,59 +2,94 @@
 Destructuring Structs
 =======================
 
--------------------------------
-Getting Exactly What You Need
--------------------------------
+-----------------
+Struct Patterns
+-----------------
 
-- **Unpacking** - patterns allow you to "break open" a struct and create variables from its fields in one step
+- Struct patterns match values by field name
 
-- **Shorthand** - if you want a varaible name to match the field name, just list it
+- Fields can be accessed without dot notation
 
-    .. code:: rust
+- Patterns may bind, ignore, or partially match fields
 
-        let Food { x, y } = foo;
+.. tip::
 
-- **Partial Matching** - use :rust:`..` to ignore remaining fields
+    Struct destructuring works anywhere patterns are allowed.
 
-    .. code:: rust
+---------------------
+Basic Destructuring
+---------------------
 
-        // captures y and throws away the other fields
-        Foo { y, ..}
+- Fields can be bound directly to names
 
-.. note::
+- Field order does not matter
 
-    This is cleaner than writing :rust:`let y = foo.y` for five different fields!
-
---------------------------
-Advanced Struct Patterns
---------------------------
-
-- **Renaming** - can decouple internal logic from struct's field names by assigning a field's value to a 
-    new varaible name
-
-- **Literal Constraints** - can write patterns that **only** match if a field contains a specific, hardcoded value
-
-- **Nesting** - can destructure deeper structures (like a tuple in a struct) in a single pattern match
-
-- **"Ignore" Operator** - use :rust:`..` to tell Rust you only care about a subset of the data
+- Names may differ from field names
 
 .. code:: rust
 
-    struct Foo { x: (u32, u32), y: u32 }
+   struct Point {
+       x: i32,
+       y: i32,
+   }
 
-    fn main() {
-        let foo = Foo { x: (1, 100), y: 3 };
+   let p = Point { x: 3, y: 4 };
 
-        match foo {
-            // Literal + Nesting: Matches only if x.0 is 1. 
-            // Binds x.1 to 'val' and y to 'y'.
-            Foo { x: (1, val), y } => println!("Matched! val: {val}, y: {y}"),
+   let Point { x, y } = p;
 
-            // Renaming: Binds the value of field 'y' to a new variable 'level'.
-            // Ignores the 'x' field entirely using '..'.
-            Foo { y: level, .. } => println!("Y is {level}"),
-            
-            // Catch-all: If none of the above specific structures match.
-            _ => println!("No match found"),
-        }
-    }
+-------------------
+Shorthand Binding
+-------------------
+
+- Field names can be reused as bindings
+
+- Reduces repetition for common cases
+
+.. code:: rust
+
+   let Point { x, y } = p;
+
+   // equivalent to:
+   // let Point { x: x, y: y } = p;
+
+-----------------
+Ignoring Fields
+-----------------
+
+- Unused fields may be ignored
+
+- :rust:`..` matches remaining fields
+
+- Useful when only part of a struct matters
+
+.. code:: rust
+
+   let Point { x, .. } = p;
+
+--------------------------
+Destructuring in "match"
+--------------------------
+
+- Struct patterns commonly appear in :rust:`match`
+
+- Enables matching on both structure and values
+
+- Fields can be selectively bound per arm
+
+.. code:: rust
+
+   match p {
+       Point { x: 0, y } => println!("on y-axis at {}", y),
+       Point { x, y: 0 } => println!("on x-axis at {}", x),
+       Point { x, y } => println!("({}, {})", x, y),
+   }
+
+--------------------------
+Patterns Are Declarative
+--------------------------
+
+- Patterns describe *what* shape to match
+
+- Matching is not procedural field access
+
+- This style scales well as structures grow

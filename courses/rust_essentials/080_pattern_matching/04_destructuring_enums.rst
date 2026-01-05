@@ -2,76 +2,131 @@
 Destructuring Enums
 =====================
 
-----------------------
-Accessing Inner Data
-----------------------
+--------------------
+Enums and Variants
+--------------------
 
-- Unlike structs, enum data can't be accessed via the dot operator (e.g., no :rust:`result.msg`)
+- An enum defines a type with multiple variants
 
-- **Unwrapping** - must use a pattern to "unwrap" the variant and bind its internal data to a variable name
+- Each variant represents a distinct case
 
-- **Type Safety** - patterns allow you to 
+- Variants may carry associated data
 
-    - Inspect the structure of your types 
-    - Ensure every possible state is handled
+- Enums model values that can take one of several forms
 
-- **Binding** - the variable name you provide in the pattern (like :rust:`msg`) becomes available **only**
-    within that specific match arm
+------------------------
+Matching Enum Variants
+------------------------
+
+- Enum patterns match specific variants
+
+- Each variant is handled explicitly
+
+- Variant names qualify patterns
 
 .. code:: rust
 
-    enum Result {
-        Ok(i32),
-        Err(String),
-    }
+   enum Message {
+       Quit,
+       Write(String),
+   }
 
-    fn main() {
-        let res = Result::Err(String::from("Connection failed"));
+   let msg = Message::Quit;
 
-        match res {
-            // Extracts the integer from Ok and binds it to 'val'
-            Result::Ok(val) => println!("Success: {val}"),
+   match msg {
+       Message::Quit => println!("quit"),
+       Message::Write(text) => println!("write: {}", text),
+   }
 
-            // Extracts the String from Err and binds it to 'msg'
-            Result::Err(msg) => println!("Error: {msg}"),
-        }
-    }
+----------------------------
+Destructuring Variant Data
+----------------------------
 
-------------------------
-Advanced Enum Patterns
-------------------------
+- Patterns can extract data from variants
 
-- **Nested Matching** - match on the specific values *inside* an enum variant for more granular logic
+- Payloads are bound directly in the pattern
 
-- **"At" (:rust:`@`) Binding** - allows you to test a value against a pttern while simultaneously keeping the original
-    value bound to a varaible
-
-- **Wildcards** - use :rust:`_` to match any variant without binding its internal data 
-
-    - Useful for ignoring specific error types
+- Binding occurs only when the variant matches
 
 .. code:: rust
 
-    enum Message {
-        Quit,
-        Move { x: i32, y: i32 }, // Nested Struct-style variant
-        Write(String),
-    }
+   let msg = Message::Write(String::from("hello"));
 
-    fn main() {
-        let msg = Message::Move { x: 10, y: 20 };
+   match msg {
+       Message::Write(text) => println!("text: {}", text),
+       Message::Quit => println!("quit"),
+   }
 
-        match msg {
-            // Destructuring a Struct-style variant
-            Message::Move { x, y: 0 } => println!("Moving on the X axis to {x}"),
-            
-            // Using @ to test a value AND keep it
-            // Matches if the string length is > 0, binds the whole string to 'text'
-            Message::Write(text) if !text.is_empty() => {
-                println!("Writing: {text}");
-            }
+----------------
+Tuple Variants
+----------------
 
-            // Catch-all for Quit or other Move variants
-            _ => println!("Ignoring message"),
-        }
-    }
+- Variants may contain unnamed fields
+
+- Data is matched positionally
+
+- Patterns mirror the variant structure
+
+.. code:: rust
+
+   enum Event {
+       KeyPress(char),
+       MouseClick(i32, i32),
+   }
+
+   let e = Event::MouseClick(10, 20);
+
+   match e {
+       Event::KeyPress(c) => println!("key: {}", c),
+       Event::MouseClick(x, y) => println!("click at {}, {}", x, y),
+   }
+
+-----------------
+Struct Variants
+-----------------
+
+- Variants may use named fields
+
+- Patterns match fields by name
+
+- Partial matching is supported
+
+.. code:: rust
+
+   enum Shape {
+       Circle { radius: f64 },
+       Rectangle { width: f64, height: f64 },
+   }
+
+   let s = Shape::Rectangle { width: 3.0, height: 4.0 };
+
+   match s {
+       Shape::Circle { radius } => println!("circle r={}", radius),
+       Shape::Rectangle { width, height } => {
+           println!("rect {} x {}", width, height);
+       }
+   }
+
+---------------------------
+Exhaustiveness with Enums
+---------------------------
+
+- All enum variants must be handled
+
+- Missing variants cause a compile-time error
+
+- Exhaustiveness scales as enums evolve
+
+----------------------
+Enums as Data Models
+----------------------
+
+- Enums represent mutually exclusive states
+
+- Each variant defines its own shape
+
+- Pattern matching enforces correct handling
+
+.. note::
+
+    Enums and `match` are designed to be used together.
