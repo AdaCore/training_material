@@ -18,7 +18,7 @@ Packages Lab
   - **Types** creates
 
     - Numeric type with a range
-    - Equation record type
+    - Record type to hold equation values
     - Mechanism to convert the record to a string
 
   - **Validation**
