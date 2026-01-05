@@ -18,7 +18,7 @@ Parents Do Not Know Their Children!
   .. code:: Ada
 
      with Calculator.Helper;
-     package Calculator is
+     package body Calculator is
         function Calculate (Operator    : String;
                             Left, Right : Some_T)
                             return Some_T is
