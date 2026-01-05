@@ -28,6 +28,10 @@ Destructuring a Tuple
   // name is more meaningful than person_data.0
   println!("Name: {name}, {profession}");
 
+  * Generates the following output:
+
+:command:`Name: Renoir, Painter`
+
 ----------------------------------
 Irrefutable Patterns with Tuples
 ----------------------------------

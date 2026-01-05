@@ -7,14 +7,14 @@ What We Covered
 -----------------
 
 - **Arrays**
-  - Group values of same type, fixed size
+  - Group values of same type, fixed length
   - Length is part of the type
   - Initialization with literals (e.g., :rust:`[2, 3, 5]`)
     - Or the :rust:`[value; N]` syntax
   - Looping over arrays with :rust:`for`
   
   **Tuples**
-  - Group values of different types, fixed size
+  - Group values of different types, fixed length
   - Fields are accessed via dot notation followed by their index
     - Starting from :rust:`0`
 

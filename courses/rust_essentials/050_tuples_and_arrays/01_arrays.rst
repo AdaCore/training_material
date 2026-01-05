@@ -18,7 +18,7 @@ Basics
 --------------------
 
 - Allocated on the stack - they're fast!
-- *Size* is **fixed** and defined at **compile-time**
+- *Length* is **fixed** and defined at **compile-time**
 - *Length* of an array is part of its type
   - :rust:`[T;N]` holds :rust:`N` elements of type :rust:`T`
   - :rust:`[u8;3]` and :rust:`[u8;4]` are considered two different types
@@ -40,9 +40,9 @@ Safety and Initialization
 
 **Safety**
 
-  - Compile-time and run-time **out-of-bounds checks**
-  - Accessing an element beyond the defined length will cause a *panic*
-    - A *panic* is a form of program termination
+  - Compile-time and run-time **out-of-bounds** checks
+  - Accessing an element beyond the defined length will cause a **panic**
+    - A panic is a form of program termination
 
 **Initialization**
 
@@ -56,7 +56,7 @@ Safety and Initialization
   let bools    = [true, false, true];      // Boolean literals
 
 * Or using *array repeat expression* :rust:`[value; N]`:
-  * With size :rust:`N`, known at compile-time
+  * With length :rust:`N`, known at compile-time
   * Where every element is *value*
 
 .. code:: rust
