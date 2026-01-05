@@ -18,7 +18,7 @@ Packages Lab
   - **Types** creates
 
     - Numeric type with a range
-    - Equation record type
+    - Record type to hold equation values
     - Mechanism to convert the record to a string
 
   - **Validation**
@@ -32,9 +32,9 @@ Packages Lab
 
   - Remember: :code:`with package_name;` gives access to :code:`package_name`
 
-----------------------------------------------
-Creating Packages in :toolname:`GNAT Studio`
-----------------------------------------------
+------------------------------------
+Creating Packages in "GNAT Studio"
+------------------------------------
 
 * Right-click on the source directory node
 

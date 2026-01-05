@@ -9,36 +9,36 @@ package Employee is
    type Job_T is (Sales, Engineer, Bookkeeping);
 
    procedure Set_Name
-     (Item  : in out Person_T;
+     (This  : in out Person_T;
       Value :        Name_T);
    function Name
-     (Item : Person_T)
+     (This : Person_T)
       return Name_T;
    procedure Set_Birth_Date
-     (Item  : in out Person_T;
+     (This  : in out Person_T;
       Value :        Date_T);
    function Birth_Date
-     (Item : Person_T)
+     (This : Person_T)
       return Date_T;
-   procedure Print (Item : Person_T);
+   procedure Print (This : Person_T);
 
    type Employee_T is new Person_T with private;
    procedure Set_Start_Date
-     (Item  : in out Employee_T;
+     (This  : in out Employee_T;
       Value :        Date_T);
    function Start_Date
-     (Item : Employee_T)
+     (This : Employee_T)
       return Date_T;
-   procedure Print (Item : Employee_T);
+   procedure Print (This : Employee_T);
 
    type Position_T is new Employee_T with private;
    procedure Set_Job
-     (Item  : in out Position_T;
+     (This  : in out Position_T;
       Value :        Job_T);
    function Job
-     (Item : Position_T)
+     (This : Position_T)
       return Job_T;
-   procedure Print (Item : Position_T);
+   procedure Print (This : Position_T);
 
 private
    type Person_T is tagged record

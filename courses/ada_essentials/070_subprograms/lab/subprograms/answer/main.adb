@@ -14,7 +14,7 @@ procedure Main is
       elsif Item <= List (List'First) then
          return 1;
       else
-         for Idx in (List'First + 1) .. List'Length loop
+         for Idx in (List'First + 1) .. List'Last loop
             if Item <= List (Idx) then
                return Idx;
             end if;

@@ -3,7 +3,7 @@ Potential Pitfalls
 ====================
 
 -----------------------------
-Mode `out` Risk for Scalars
+Mode "out" Risk for Scalars
 -----------------------------
 
 * Always assign value to :ada:`out` parameters

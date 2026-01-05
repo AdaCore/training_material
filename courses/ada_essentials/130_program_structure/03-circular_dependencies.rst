@@ -73,7 +73,7 @@ Circular Dependency in Package Declaration
    end Department;
 
 ------------------------
-`limited with` Clauses
+"limited with" Clauses
 ------------------------
 
 * Solve the circular declaration dependency problem
@@ -166,7 +166,7 @@ Legal Package Declaration Dependency
   language_version 2005
 
 ----------------------------------------
-Full `with` Clause on the Package Body
+Full "with" Clause on the Package Body
 ----------------------------------------
 
 * Even though declaration has a :ada:`limited with` clause

@@ -21,9 +21,9 @@ Subtype Predicates Concept
 
    - Define new kinds of constraints
 
-----------------
-**Predicates**
-----------------
+------------
+Predicates
+------------
 
 * Something asserted to be true about some subject
 
@@ -148,6 +148,7 @@ References Are Not Checked
 ----------------------------
 
 .. code:: Ada
+   :number-lines: 1
 
    with Ada.Text_IO;   use Ada.Text_IO;
    procedure Even_Number_Test is
@@ -171,7 +172,7 @@ References Are Not Checked
        Next_Value is 4220029
 
        raised SYSTEM.ASSERTIONS.ASSERT_FAILURE:
-       Dynamic_Predicate failed at even_number_test.adb:9
+       Dynamic_Predicate failed at even_number_test.adb:10
 
 ------------------------------
 Predicate Expression Content
@@ -473,7 +474,7 @@ Beware Accidental Recursion in Predicate
      function Sorted (T : Table) return Boolean;
 
 ---------------------------------------
-GNAT-Specific Aspect Name *Predicate*
+GNAT-Specific Aspect Name "Predicate"
 ---------------------------------------
 
 * Conflates two language-defined names
@@ -538,7 +539,7 @@ B. | ``subtype Sub_Day is Days_T with Static_Predicate =>``
 C. | ``subtype Sub_Day is Days_T with``
    |    ``Static_Predicate => not Is_Weekday (Sub_Day);``
 D. | ``subtype Sub_Day is Days_T with``
-   |    ``Static_Predicate =>``
+   |    ``Dynamic_Predicate =>``
    |       ``case Sub_Day is when Sat | Sun => True,``
    |                 ``when others => False;``
 
