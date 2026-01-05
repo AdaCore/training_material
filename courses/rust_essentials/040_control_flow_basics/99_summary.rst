@@ -15,7 +15,7 @@ What We Covered
 - **Loops** 
 
   - Only the :rust:`loop` construct is both a loop and an expression
-  - Skip the current iteration with :rust:`continue`
+  - Skip the rest of current iteration with :rust:`continue`
   - Exit any loop type early with :rust:`break`
   - Use labels with :rust:`break` and :rust:`continue`
 

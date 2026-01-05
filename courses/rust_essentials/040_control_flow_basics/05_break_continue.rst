@@ -20,7 +20,7 @@
         println!("{}", count);
     }; 
 
-* Generating the following output:
+* Generates the following output:
 
 :command:`3`
 
