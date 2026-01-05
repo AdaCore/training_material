@@ -16,10 +16,6 @@ Specification and Body
 
 * Subprogram body is the **implementation**
 
-**Syntax**
-
-.. container:: source_include 070_subprograms/syntax.bnf :start-after:specification_and_body_begin :end-before:specification_and_body_end :code:bnf
-
 --------------------------------
 Procedure Specification Syntax
 --------------------------------
@@ -36,6 +32,7 @@ Procedure Specification Syntax
 
    procedure Swap (A, B : in out Integer);
    procedure Clean (Force : Boolean := True);
+   procedure Reset;
 
 -------------------------------
 Function Specification Syntax
@@ -44,8 +41,6 @@ Function Specification Syntax
 **Syntax**
 
 .. container:: source_include 070_subprograms/syntax.bnf :start-after:function_specification_syntax_begin :end-before:function_specification_syntax_end :code:bnf
-
-.. container:: source_include 070_subprograms/syntax.bnf :start-after:subprogram_specification_syntax_begin :end-before:subprogram_specification_syntax_end :code:bnf
 
 **Examples**
 

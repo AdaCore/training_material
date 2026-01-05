@@ -44,9 +44,9 @@ Subtype Predicates Concept
 
       + Specified via aspect named `Dynamic_Predicate`
 
----------------------------------------------
-Really, ``type`` and ``subtype`` Predicates
----------------------------------------------
+-----------------------------------------
+Really, "type" and "subtype" Predicates
+-----------------------------------------
 
 * Applicable to both
 * Applied via aspect clauses in both cases
@@ -282,7 +282,12 @@ Dynamic Predicate Expression Content
      subtype Vowel is Character with Dynamic_Predicate =>
        (case Vowel is
         when 'A' | 'E' | 'I' | 'O' | 'U' => True,
-        when others => False); -- evaluated at run-time
+        when others => False);
+
+  .. note::
+
+    :ada:`when others` is evaluated at run-time, so this
+    predicate must be **dynamic**
 
 * Plus calls to functions
 
@@ -382,10 +387,10 @@ Special Attributes for Predicated Types
    - `'First_Valid` returns smallest valid value, taking any range or predicate into account
    - `'Last_Valid` returns largest valid value, taking any range or predicate into account
 
-* Attributes :ada:`'Range`, `'First` and `'Last` are not allowed
+* Attributes `'Range`, `'First` and `'Last` are not allowed
 
    - Reflect non-predicate constraints so not valid
-   - :ada:`'Range` is just a shorthand for `'First` .. `'Last`
+   - `'Range` is just a shorthand for `'First` .. `'Last`
 
 * `'Succ` and `'Pred` are allowed since work on underlying type
 
@@ -484,6 +489,7 @@ GNAT-Specific Aspect Name *Predicate*
 * Slight disadvantage: you don't find out if your predicate is not actually static
 
    - Until you use it where only static predicates are allowed
+   - Then you get a compile error
 
 ------------------------------------------
 Enabling/Disabling Contract Verification

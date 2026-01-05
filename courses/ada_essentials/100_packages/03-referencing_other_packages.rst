@@ -6,11 +6,11 @@ Referencing Other Packages
  `with` Clause
 ----------------
 
-* When package :ada:`Client` needs access to package :ada:`Server`, it uses a :ada:`with` clause
+* When package :ada:`User` needs access to package :ada:`Designer`, it uses a :ada:`with` clause
 
-   - Specify the library units that :ada:`Client` depends upon
+   - Specify the library units that :ada:`User` depends upon
    - The "context" in which the unit is compiled
-   - :ada:`Client`'s code gets **visibility** over :ada:`Server`'s specification
+   - :ada:`User`'s code gets **visibility** over :ada:`Designer`'s specification
 
 
 **Syntax**
@@ -21,8 +21,8 @@ Referencing Other Packages
 
 .. code:: Ada
 
-   with Server; -- dependency
-   procedure Client is
+   with Designer; -- dependency
+   procedure User is
 
 ----------------------------
 Referencing Exported Items

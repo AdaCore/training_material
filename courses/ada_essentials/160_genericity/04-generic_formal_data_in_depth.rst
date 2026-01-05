@@ -131,20 +131,12 @@ Generic Subprogram Parameters - Default Values (2/2)
 .. code:: Ada
    :number-lines: 2
 
-   procedure Toggle (Switch : in out Boolean);
-   --  Toggle will flip Switch from True to False or
-   --  False to True
+   procedure Flip (Switch : in out Boolean);
 
-   ---------------------------
-   -- Definition of Generic --
-   ---------------------------
    generic
      with procedure Toggle (Switch : in out Boolean) is null;
    procedure Print (Switch : in out Boolean);
 
-   -------------------------------
-   -- Implementation of Generic --
-   -------------------------------
    procedure Print (Switch : in out Boolean) is
    begin
       Toggle (Switch);
@@ -157,12 +149,12 @@ Generic Subprogram Parameters - Default Values (2/2)
 
 * :ada:`procedure Instance1 is new Print;`
 
-   * Line 18 will call a null subprogram because generic formal parameter :ada:`Toggle`
-     is not specified, so line 10 forces it to be a null subprogram
+   * Line 10 will call a null subprogram because generic formal parameter :ada:`Toggle`
+     is not specified, so line 5 forces it to be a null subprogram
 
-* :ada:`procedure Instance2 is new Print (Toggle);`
+* :ada:`procedure Instance2 is new Print (Flip);`
 
-   * Line 18 will call the implementation of the procedure defined on line 2, because
+   * Line 10 will call the implementation of the procedure defined on line 2, because
      that procedure is passed as the generic formal parameter :ada:`Toggle`
 
 ..

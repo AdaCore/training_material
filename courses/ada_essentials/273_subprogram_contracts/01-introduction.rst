@@ -43,30 +43,6 @@ Ada Contracts
    - Carried by subprograms
    - ... or by types (seen later)
    - Can have **arbitrary** conditions, more **versatile**
+   - Failure to meet a contract is an :dfn:`assertion failure`
 
------------
-Assertion
------------
-
-* Boolean expression expected to be :ada:`True`
-* Said *to hold* when :ada:`True`
-* Language-defined :ada:`pragma`
-
-.. code:: Ada
-
-   pragma Assert (not Full (Stack));
-   -- stack is not full
-   pragma Assert (Stack_Length = 0,
-                  Message => "stack was not empty");
-   -- stack is empty
-
-* Raises language-defined :ada:`Assertion_Error` exception if expression does not hold
-* The :ada:`Ada.Assertions.Assert` subprogram wraps it
-
-.. code:: Ada
-
-   package Ada.Assertions is
-     Assertion_Error : exception;
-     procedure Assert (Check : in Boolean);
-     procedure Assert (Check : in Boolean; Message : in String);
-   end Ada.Assertions;
+     - Typically causes an :ada:`Assertion_Error` exception to be raised

@@ -43,9 +43,9 @@ Parameter Associations in Calls
    -- Compilation Error
    Something (Formal1 => ActualX, ActualY);
 
-----------------------------
-Parameter Modes and Return
-----------------------------
+-----------------
+Parameter Modes
+-----------------
 
 * Mode :ada:`in`
 
@@ -72,17 +72,26 @@ Parameter Modes and Return
    - Actual is expected to be **both** read and written
    - Actual **must** be a writable object
 
-* Function :ada:`return`
+-----------------
+Function Return
+-----------------
 
-   - **Must** always be handled
+* Function :ada:`return` **must** always be handled
+
+* Return type is **not** an object
+
+  * Type does not have to be constrained
+
+.. code:: Ada
+
+   function From_String (Value : String) return Integer;
+   function To_String (Value : Integer) return String;
 
 ---------------------------------
 Why Read Mode `out` Parameters?
 ---------------------------------
 
-* **Convenience** of writing the body
-
-   - No need for readable temporary variable
+* No need for readable temporary variable
 
 * Warning: initial value is **not defined**
 

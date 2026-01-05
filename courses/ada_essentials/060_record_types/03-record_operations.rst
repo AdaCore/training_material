@@ -41,7 +41,7 @@ Assignment Examples
    begin
      ...
        -- object reference
-      Phase1 := Phase2;  -- entire object reference
+      Phase1 := Phase2;
       -- component references
       Phase1.Real := 2.5;
       Phase1.Real := Phase2.Real;
