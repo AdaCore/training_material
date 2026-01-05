@@ -52,8 +52,8 @@ Supplying Index Constraints for Objects
 
   .. code:: Ada
 
-      Weekdays(Sat) := 0.0; --  Constraint error
-      Weekend(Mon)  := 0.0; --  Constraint error
+      Weekdays(Sat) := 0.0; -- Constraint error
+      Weekend(Mon)  := 0.0; -- Constraint error
 
 ---------------------------------------
 Bounds Must Satisfy Type Constraints
@@ -63,12 +63,16 @@ Bounds Must Satisfy Type Constraints
 * :ada:`Constraint_Error` otherwise
 
 .. code:: Ada
+   :number-lines: 1
 
    type Index is range 1 .. 100;
    type Char_Arr is array (Index range <>) of Character;
-   ...
-   Wrong : Char_Arr (0 .. 10);  -- run-time error
-   OK : Char_Arr (50 .. 75);
+   Good : Char_Arr (50 .. 75);
+   Bad  : Char_Arr (0 .. 10); -- run-time error
+
+.. container:: latex_environment tiny
+
+  :error:`example.adb:5:21: warning: static value out of range of type "Index" defined at line 2`
 
 ------------------
 Null Index Range
@@ -83,106 +87,21 @@ Null Index Range
   * Provided values are within the index's base type
 
   .. code:: Ada
+    :number-lines: 2
 
-   type Index_T is range 1 .. 100;
-   --  Index_T'Size = 8
+    type Index_T is range 1 .. 100; -- Index_T'Size = 8
 
-   type Array_T is array (Index_T range <>) of Integer;
+    type Array_T is array (Index_T range <>) of Integer;
 
-   Typical_Empty_Array : Array_T (1 .. 0);
-   Weird_Empty_Array   : Array_T (123 .. -5);
-   Illegal_Empty_Array : Array_T (999 .. 0);
+    Typical_Empty_Array : Array_T (1 .. 0);
+    Weird_Empty_Array   : Array_T (123 .. -5);
+    Bad_Empty_Array     : Array_T (999 .. 0);
+
+  .. container:: latex_environment scriptsize
+
+    :error:`example.adb:8:35: error: value not in range of type "Index_T" defined at line 2`
 
 * When the index type is a single-valued enumerated type, no empty array is possible
-
-----------------
-"String" Types
-----------------
-
-* Language-defined unconstrained array types
-
-   - Allow double-quoted literals as well as aggregates
-   - Always have a character component type
-   - Always one-dimensional
-
-* Language defines various types
-
-   - `String`, with `Character` as component
-
-     .. code:: Ada
-
-        subtype Positive is Integer range 1 .. Integer'Last;
-        type String is array (Positive range <>) of Character;
-
-   - `Wide_String`, with `Wide_Character` as component
-   - `Wide_Wide_String`, with `Wide_Wide_Character` as component
-
-     - Ada 2005 and later
-
-* Can be defined by applications too
-
-----------------------------------
-Application-Defined String Types
-----------------------------------
-
-* Like language-defined string types
-
-   - Always have a character component type
-   - Always one-dimensional
-
-* Recall character types are enumeration types with at least one character literal value
-
-.. code:: Ada
-
-   type Roman_Digit is ('I', 'V', 'X', 'L', 'C', 'D', 'M');
-   type Roman_Number is array (Positive range <>)
-       of Roman_Digit;
-   Orwellian : constant Roman_Number := "MCMLXXXIV";
-
-------------------------------------------
-Specifying Constraints Via Initial Value
-------------------------------------------
-
-* Lower bound is :ada:`Index_subtype'First`
-* Upper bound is taken from number of items in value
-
-.. code:: Ada
-
-   subtype Positive is Integer range 1 .. Integer'Last;
-   type String is array (Positive range <>)
-       of Character;
-   ...
-   M : String := "Hello World!";
-   -- M'First is Positive'First (1)
-
-   type Another_String is array (Integer range <>)
-       of Character;
-   ...
-   M : Another_String := "Hello World!";
-   -- M'First is Integer'First
-
------------------
-String Literals
------------------
-
-* A :dfn:`literal` is a *textual* representation of a value in the code
-
-.. code:: Ada
-   
-   -- two double quotes with nothing inside
-   A_Null_String : constant String := "";
-
-   String_Of_Length_One : constant String := "A";
-
-   Embedded_Single_Quotes : constant String
-                          := "Embedded 'single' quotes";
-                          
-   Embedded_Double_Quotes : constant String
-                          := "Embedded ""double"" quotes";
-
-.. container:: speakernote
-
-   Note that the last example literal (that has embedded double quotes) is not an example of concatenation!
 
 ----------------
 Indefinite Types
@@ -214,14 +133,22 @@ No Indefinite Component Types
     - No unconstrained types
     - Constrained subtypes allowed
 
-.. code:: Ada
+.. container:: latex_environment small
 
-   type Good is array (1 .. 10) of String (1 .. 20); -- OK
-   type Bad is array (1 .. 10) of String; -- Illegal
+  .. code:: Ada
+     :number-lines: 2
+
+     type Component_T is array (Integer range <>) of Boolean;
+     type Good is array (1 .. 10) of Component_T (1 .. 20); -- OK
+     type Bad is array (1 .. 10) of Component_T; -- compile error
+
+.. container:: latex_environment scriptsize
+
+  :error:`example.adb:4:35: error: unconstrained element type in array declaration`
 
 .. container:: speakernote
 
-   How big is each component for LIST?
+   How big is each component for Bad?
 
 ------------------
 Arrays of Arrays

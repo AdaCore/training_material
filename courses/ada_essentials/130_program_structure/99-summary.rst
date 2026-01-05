@@ -17,6 +17,8 @@ Summary
    - "These must always be in ascending order!"
 
 * Children cannot misbehave unless imported ("with'ed")
-* The writer of a child unit must be trusted
 
-   - As much as if he or she were to modify the parent itself
+* Not uncommon for two package specs to be interdependent
+
+  * :ada:`limited with` can resolve circularity
+  * May involve rethinking your type definitions

@@ -183,7 +183,7 @@ Storage Models (2/2)
 
       .. code:: Ada
 
-        type Host_Array_Access is access all Integer_Array;
+        type Host_Array_Access is access Integer_Array;
         type Device_Array_Access is access Integer_Array
            with Designated_Storage_Model => CUDA_Memory;
 
@@ -337,7 +337,7 @@ Access to Array Slices
 .. code:: Ada
 
    type X is array (Integer range <>) of Byte;
-   type A is access all X:
+   type A is access X:
 
    V : A := new X (1 .. 100);
    V2 : A := V.all (20 .. 30)'Access

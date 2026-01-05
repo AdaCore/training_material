@@ -10,7 +10,9 @@ Constrained Array Type Declarations
 
 .. container:: source_include 050_array_types/syntax.bnf :start-after:constrained_array_type_declarations_begin :end-before:constrained_array_type_declarations_end :code:bnf
 
-*Note:* ``subtype_indication`` *must specify a type whose size is known at compile time*
+.. note::
+
+  ``subtype_indication`` must specify a type whose size is known at compile time
 
 **Examples**
 
@@ -19,7 +21,6 @@ Constrained Array Type Declarations
      type Integer_Array_T is array (1 .. 3) of Integer;
      type Boolean_Array_T is array (Boolean) of Integer;
      type Character_Array_T is array (character range 'a' .. 'z') of Boolean;
-     type Copycat_T is array (Boolean_Array_T'Range) of Integer;
 
 ------
 Quiz

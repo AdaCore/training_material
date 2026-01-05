@@ -6,23 +6,25 @@ Visibility Limits
 Parents Do Not Know Their Children!
 -------------------------------------
 
-* Children grant themselves access to ancestors' private parts
+* Children grant themselves access to ancestors' private sections
 
    - May be created well after parent
    - Parent doesn't know if/when child packages will exist
 
-* Alternatively, language *could have* been designed to grant access when declared
+* Parent body can reference children
 
-   - Like ``friend`` units in C++
-   - But would have to be prescient!
+  - Typical method of parsing out complex processes
 
-      * Or else adding children requires modifying parent
+  .. code:: Ada
 
-   - Hence too restrictive
-
-* Note: Parent body can reference children
-
-   - Typical method of parsing out complex processes
+     with Calculator.Helper;
+     package Calculator is
+        function Calculate (Operator    : String;
+                            Left, Right : Some_T)
+                            return Some_T is
+        begin
+           if Operator = "+" then
+              return Helper.Plus (Left, Right);
 
 ----------------------------------------------
 Correlation to C++ Class Visibility Controls
@@ -32,7 +34,7 @@ Correlation to C++ Class Visibility Controls
 
  .. container:: column
 
-   * Ada private part is visible to child units
+   * Ada private section is visible to child units
 
      .. code:: Ada
 
@@ -47,7 +49,7 @@ Correlation to C++ Class Visibility Controls
 
  .. container:: column
 
-   * Thus private part is like the protected part in C++
+   * Thus private section is like the protected part in C++
 
      .. code:: C++
 
@@ -64,10 +66,10 @@ Correlation to C++ Class Visibility Controls
 Visibility Limits
 -------------------
 
-* Visibility to parent's private part is not open-ended
+* Visibility to parent's private section is not open-ended
 
-   - Only visible to private parts and bodies of children
-   - As if only private part of child package is nested in parent
+   - Only visible to private sections and bodies of children
+   - As if only private section of child package is nested in parent
 
 * Recall users can only reference exported declarations
 
@@ -190,7 +192,7 @@ Quiz
       Explanations
 
       A. :ada:`Object_A` is in the public part of :ada:`P` - visible to any unit that :ada:`with`'s :ada:`P`
-      B. :ada:`Object_B` is in the private part of :ada:`P` - visible in the private part or body of any descendant of :ada:`P`
+      B. :ada:`Object_B` is in the private section of :ada:`P` - visible in the private section or body of any descendant of :ada:`P`
       C. :ada:`Object_C` is in the body of :ada:`P`, so it is only visible in the body of :ada:`P`
       D. A and B are both valid completions
 

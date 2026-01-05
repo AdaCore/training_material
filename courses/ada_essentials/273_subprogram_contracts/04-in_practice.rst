@@ -3,7 +3,7 @@ In Practice
 =============
 
 ----------------------------------------
-Pre/Postconditions: to Be or Not to Be
+Pre/Postconditions: To Be or Not To Be
 ----------------------------------------
 
 * **Preconditions** are reasonable **default** for run-time checks
@@ -77,15 +77,6 @@ Postcondition Compared to Their Body
    - Search: :ada:`Can_Exit (Path_To_Exit'Result, Maze)`
    - Cryptography: :ada:`Match (Signer (Sign_Certificate'Result), Key.Public_Part)`
 
-* Bad fit for poorly-defined or self-defining subprograms
-
-.. code:: Ada
-
-    function Get_Magic_Number return Integer
-        with Post => Get_Magic_Number'Result = 42
-        -- Useless post-condition, simply repeating the body
-        is (42);
-
 -----------------------------------------------
 Postcondition Compared to Their Body: Example
 -----------------------------------------------
@@ -105,6 +96,28 @@ Postcondition Compared to Their Body: Example
       (for all K in 1 .. Integer'Min (Num1,Num2) =>
          (if (Num1 rem K = 0 and Num2 rem K = 0)
           then K <= Candidate)));
+
+-----------------------------------------
+Postconditions and Expression Functions
+-----------------------------------------
+
+* Expression functions use their implementation as a postcondition **only if**
+
+  * Spec and body are in the same scope (or there is no spec)
+  * There is no postcondition specified
+
+.. code:: Ada
+
+  function Add (L, R : Integer) return Integer is
+     (L + R);
+  -- Postcondition is "Add'Result = L + R"
+
+  function Subtract (L, R : Integer) return Integer;
+  -- No postcondition specified (so postcondition is "True")
+
+  function Multiply (L, R : Integer) return Integer
+    with Post => Multiply'Result in Integer'Range;
+  -- Postcondition just says the function didn't fail
 
 ----------------------
 Contracts Code Reuse
@@ -148,12 +161,12 @@ Subprogram Contracts on Private Types
    package Bank is
      type Account is private;
      procedure Process_Transaction (This : Account) with
-       Pre => This.Balance > 0; -- not legal
+       Pre => This.Balance > 0; -- no visibility to Balance
      ...
      function Current_Balance (This : Account) return Integer;
      ...
      procedure R (This : Account) with
-       Pre => Current_Balance (This) > 0; -- legal
+       Pre => Current_Balance (This) > 0; -- using accessor is fine
      ...
    private
      type Account is record
@@ -253,23 +266,3 @@ Assertion Policy
             raise Overflow;
           end if;
         end if;
-
-------
-Quiz
-------
-
-Which of the following statements is (are) correct?
-
-    A. :answer:`Defensive coding is a good practice`
-    B. Contracts can replace all defensive code
-    C. Contracts are executable constructs
-    D. Having exhaustive contracts will prevent run-time errors
-
-.. container:: animate
-
-    Explanations
-
-    A. Principles are sane, contracts extend those
-    B. Contracts prevent interface issues, not processing problems
-    C. For example, generic contracts are resolved at compile-time
-    D. A failing contract will **cause** a run-time error; only extensive (dynamic/static) analysis of contracted code may provide confidence in the absence of runtime errors (AoRTE)

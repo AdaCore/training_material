@@ -17,9 +17,9 @@ Working with Type Invariants
 
 * However, reasonable designs will be foolproof
 
--------------------------------
-Type Invariants Vs Predicates
--------------------------------
+---------
+Summary
+---------
 
 * Type Invariants are valid at external boundary
 

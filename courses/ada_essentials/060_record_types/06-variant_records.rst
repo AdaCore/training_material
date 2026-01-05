@@ -6,11 +6,21 @@ Variant Records
 Variant Record Types
 ----------------------
 
-* :dfn:`Variant record` can use a **discriminant** to specify alternative lists of components
+* A :dfn:`discriminated record` uses a special field (:dfn:`discriminant`) to specify information about the record
 
-   + Also called :dfn:`discriminated record` type
-   + Different **objects** may have **different** components
-   + All objects **still** share the same type
+  .. code:: ada
+
+     type Discriminated_Record (Discriminant : Natural) is record
+        Text : String (1..Discriminant);
+     end record;
+
+  * All objects of :ada:`Discriminated_Record` are of the same type, regardless
+    of the value of :ada:`Discriminant`
+
+* A :dfn:`variant record` is a special case of discriminated record
+
+  * Discriminant is a discrete type
+  * Used in a :ada:`case` block to control visibility of components
 
 * Kind of :dfn:`storage overlay`
 
@@ -56,8 +66,6 @@ Immutable Variant Record
 * Discriminant is treated as any other component
 
   * But is a constant in an immutable variant record
-
-*Note that discriminants can be used for other purposes than the variant part*
 
 ----------------------------------
 Immutable Variant Record Example

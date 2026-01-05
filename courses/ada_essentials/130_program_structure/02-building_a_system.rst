@@ -20,9 +20,6 @@ Library Units
 
    - Subprograms
    - Packages
-   - Generic Units
-   - Generic Instantiations
-   - Renamings
 
 * Dependencies between library units via :ada:`with` clauses
 
