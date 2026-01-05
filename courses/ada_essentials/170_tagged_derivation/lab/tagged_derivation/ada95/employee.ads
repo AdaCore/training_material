@@ -17,15 +17,15 @@ package Employee is
       The_Birth_Date : Date_T;
    end record;
 
-   procedure Set_Name (O     : in out Person_T;
+   procedure Set_Name (This  : in out Person_T;
                        Value :        Name_T);
-   function Name (O : Person_T) return Name_T;
+   function Name (This : Person_T) return Name_T;
 
-   procedure Set_Birth_Date (O     : in out Person_T;
+   procedure Set_Birth_Date (This  : in out Person_T;
                              Value :        Date_T);
-   function Birth_Date (O : Person_T) return Date_T;
+   function Birth_Date (This : Person_T) return Date_T;
 
-   procedure Print (O : Person_T);
+   procedure Print (This : Person_T);
 
    --------------
    -- Employee --
@@ -35,11 +35,11 @@ package Employee is
       The_Start_Date  : Date_T;
    end record;
 
-   procedure Set_Start_Date (O     : in out Employee_T;
+   procedure Set_Start_Date (This  : in out Employee_T;
                              Value :        Date_T);
-   function Start_Date (O : Employee_T) return Date_T;
+   function Start_Date (This : Employee_T) return Date_T;
 
-   procedure Print (O : Employee_T);
+   procedure Print (This : Employee_T);
 
    --------------
    -- Position --
@@ -48,10 +48,10 @@ package Employee is
       The_Job : Job_T;
    end record;
 
-   procedure Set_Job (O     : in out Position_T;
+   procedure Set_Job (This  : in out Position_T;
                       Value :        Job_T);
-   function Job (O : Position_T) return Job_T;
+   function Job (This : Position_T) return Job_T;
 
-   procedure Print (O : Position_T);
+   procedure Print (This : Position_T);
 
 end Employee;
