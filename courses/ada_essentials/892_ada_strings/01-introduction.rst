@@ -2,9 +2,9 @@
 Introduction
 ==============
 
--------------------------------
-Predefined Type :ada:`String`
--------------------------------
+--------------------------
+Predefined Type "String"
+--------------------------
 
 * :ada:`String` type allows varying lengths, but :ada:`String` objects are fixed lengths
 
@@ -14,9 +14,9 @@ Predefined Type :ada:`String`
 
 * What if we want to change the length of the object?
 
---------------------------
-:ada:`Ada.Strings.Fixed`
---------------------------
+---------------------
+"Ada.Strings.Fixed"
+---------------------
 
 * Based on fixed-length string
 
@@ -24,9 +24,9 @@ Predefined Type :ada:`String`
 
 * Operations that return string of unknown (or different) length can only be used for initialization
 
-----------------------------
-:ada:`Ada.Strings.Bounded`
-----------------------------
+-----------------------
+"Ada.Strings.Bounded"
+-----------------------
 
 * Contains generic package
 
@@ -41,9 +41,9 @@ Predefined Type :ada:`String`
 
   * Allows client to pre-determine if length will be exceeded
 
-------------------------------
-:ada:`Ada.Strings.Unbounded`
-------------------------------
+-------------------------
+"Ada.Strings.Unbounded"
+-------------------------
 
 * Not a generic package
 

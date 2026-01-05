@@ -2,9 +2,9 @@
 Raise Expressions
 =======================
 
------------------------
-*Raise Expressions*
------------------------
+---------------------
+"Raise Expressions"
+---------------------
 
 * **Expression** raising specified exception **at run-time**
 
