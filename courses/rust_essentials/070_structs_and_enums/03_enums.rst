@@ -6,7 +6,7 @@ Enums
 Basics
 --------
 
--  Can be one of several possible, distinct **variants**
+-  :rust:`enum` can be one of several possible, distinct **variants**
 -  Represents a choice between different values
 -  **Variants** from an :rust:`enum` are accessed using the '::' notation
    -  Called **path separator**
@@ -26,7 +26,7 @@ Enums with Data
 -----------------
 
 -  **Variants** can optionally hold data 
-   -  this is an :rust:`enum` superpower!
+   -  This is an :rust:`enum` superpower!
 -  Can't be recursive
 -  Similar to a union in C/C++
 
@@ -35,13 +35,13 @@ Enums with Data
    enum Move {
        Pass,                          // Simple variant
        Run(Direction),                // Tuple variant
-       Teleport { xx: u32, yy: u32 }, // Named-field struct Variant
+       Teleport { xx: u32, yy: u32 }, // Named-field struct variant
    } 
    let move: PlayerMove = PlayerMove::Run(Direction::Left);
    
    enum Message {
 	   Quit,                          // No data
-	   Move { xx: i32, yy: i32 },     // Anonymous struct
+	   Move { xx: i32, yy: i32 },     // Two named i32 values
        ChangeColor(i32, i32, i32),    // Three i32 values
 	}
 	let message = Message::Move { xx: 10, yy: 10 };
@@ -50,7 +50,7 @@ Enums with Data
 Enum Initialization
 ---------------------
 	
--  **Must** specify the entire variant when creating an :rust:`enum` variable
+-  **Must** specify entire variant when creating :rust:`enum` variable
 
 -  No default values for data
 
@@ -65,6 +65,10 @@ Enum Initialization
 	let white = Message::ChangeColor(255,255,255); // OK
 	// Error! You must provide the content of Move
 	let no_color = Message::Move; 
+	
+.. container:: latex_environment footnotesize	
+
+    :error:`error[E0533]: expected value, found struct variant 'Message::Move'`
 	
 ----------------------
 Idiom: State Machine

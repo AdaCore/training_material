@@ -6,7 +6,7 @@ Introduction
 Topics Covered
 ----------------
 
--  **Structs**: Grouping Related Data 
+-  **Structs**: Grouping related data 
 
    -  Initialization and update syntax
    
