@@ -42,7 +42,6 @@ Safety and Initialization
 
   - Compile-time and run-time **out-of-bounds** checks
   - Accessing an element beyond the defined length will cause a **panic**
-    - A panic is a form of program termination
 
 **Initialization**
 

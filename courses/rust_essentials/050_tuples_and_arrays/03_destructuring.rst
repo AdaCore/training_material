@@ -79,9 +79,17 @@ Destructuring an Array
   // Destructuring an array into three separate variables
   let bag: [i32; 3] = [10, 20, 30];
   let [shirts, pants, socks] = bag;
-  println!("shirts: {}", shirts); // 10
-  println!("pants: {}", pants);   // 20
-  println!("socks: {}", socks);   // 30
+  println!("shirts: {}", shirts);
+  println!("pants: {}", pants);
+  println!("socks: {}", socks);
+
+    * Generates the following output:
+
+:command:`shirts: 10`
+
+:command:`pants: 20`
+
+:command:`socks: 30`
 
 ----------------------------
 Ignoring Specific Elements 
@@ -104,8 +112,7 @@ Ignoring Multiple Elements
 
   - Ignore multiple elements using the **rest pattern** (:rust:`..`)
   - Useful when you only need elements from the beginning or end
-  - Must be placed at the **beginning** or at the **end**
-  - Can only be used **once**
+    - Can only be placed **either** at the beginning or at the end
 
 .. code:: rust
 

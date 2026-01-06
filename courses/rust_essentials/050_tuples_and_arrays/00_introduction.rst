@@ -8,7 +8,7 @@ Topics Covered
 
 - **Arrays**
   - Basics and initialization
-  - Safety (out-of-bound *panic*)
+  - Safety (out-of-bound panic)
   - Iteration and looping
 
 - **Tuples**
