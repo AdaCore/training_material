@@ -1,5 +1,5 @@
 ***********************
-Structs And Enums
+Structs and Enums
 ***********************
 
 .. container:: PRELUDE BEGIN
