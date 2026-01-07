@@ -62,11 +62,16 @@ Wildcard Pattern
 
 .. code:: rust
 
-   let value = Some(10);
+   enum Status {
+       Ok(i32),
+       Error,
+   }
 
-   match value {
-       Some(_) => println!("has a value"),
-       None => println!("no value"),
+   let status = Status::Ok(10);
+
+   match status {
+       Status::Ok(_) => println!("ok"),
+       Status::Error => println!("error"),
    }
 
 -----------------------
