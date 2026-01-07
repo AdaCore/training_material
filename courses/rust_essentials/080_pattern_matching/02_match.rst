@@ -74,8 +74,6 @@ Wildcard Pattern
 
 - Commonly used as a catch-all
 
-- Does not bind the matched value
-
 .. code:: rust
 
    let n = 10;
@@ -93,7 +91,7 @@ Matching with Bindings
 
 - Bound names are available in the arm body
 
-- Useful for extracting data inline
+- :rust:`_` ignores the matched value
 
 .. code:: rust
 
