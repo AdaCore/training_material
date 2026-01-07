@@ -14,7 +14,7 @@ What We Learned
 
    -  Uses the Struct Update Operator (..) for easy copying
 
-   -  Includes Named-field structs, Tuple structs, and the newtype Idiom (for type safety)
+   -  Includes Named-field structs, Tuple structs, and the newtype Idiom
 
 -  **Enums** (data choices)
 
