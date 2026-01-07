@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="365" width="400" >
+<circle fill="#e07c00" stroke="none" cx="75" cy="290" r="70.0" />
+<text xml:space="preserve" fill="#12284c" stroke="#12284c" stroke-width="0.75"  text-align="left" font-size="18px" font-family='arial' font-weight="normal"  text-anchor="middle" x="75" y="272" >Analyze</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="75" y="302" >User inspects failed checks</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="75" y="311" >highlighted directly in the</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="75" y="320" >source code by GNAT Studio</text>
+<circle fill="#e07c00" stroke="none" cx="200.0" cy="73.49364905389035" r="70.0" />
+<text xml:space="preserve" fill="#12284c" stroke="#12284c" stroke-width="0.75"  text-align="left" font-size="18px" font-family='arial' font-weight="normal"  text-anchor="middle" x="200.0" y="55.49364905389035" >Fortify</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="200.0" y="85.49364905389035" >User writes/modifies code</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="200.0" y="94.49364905389035" >and/or contracts for repeated</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="200.0" y="103.49364905389035" >proof attempts</text>
+<circle fill="#e07c00" stroke="none" cx="325" cy="290" r="70.0" />
+<text xml:space="preserve" fill="#12284c" stroke="#12284c" stroke-width="0.75"  text-align="left" font-size="18px" font-family='arial' font-weight="normal"  text-anchor="middle" x="325" y="272" >Prove</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="325" y="302" >Generations of VC's and run</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="325" y="311" >of automatic provers</text>
+<circle fill="#12284c" stroke="none" cx="137.5" cy="181.74682452694518" r="2" />
+<polygon fill="#1598cb" stroke="none" transform="rotate(30, 137.5, 181.74682452694518)" points="137.5,145.74682452694518 114.46000000000001,167.34682452694517 123.10000000000001,167.34682452694517 123.10000000000001,217.74682452694518 151.89999999999998,217.74682452694518 151.89999999999998,167.34682452694517 160.54,167.34682452694517 137.5,145.74682452694518 "/>
+<circle fill="#12284c" stroke="none" cx="262.5" cy="181.74682452694518" r="2" />
+<polygon fill="#1598cb" stroke="none" transform="rotate(150, 262.5, 181.74682452694518)" points="262.5,145.74682452694518 239.46,167.34682452694517 248.10000000000002,167.34682452694517 248.10000000000002,217.74682452694518 276.90000000000003,217.74682452694518 276.90000000000003,167.34682452694517 285.54,167.34682452694517 262.5,145.74682452694518 "/>
+<circle fill="#12284c" stroke="none" cx="200.0" cy="290.0" r="2" />
+<polygon fill="#1598cb" stroke="none" transform="rotate(270, 200.0, 290.0)" points="200.0,254.0 176.96,275.6 185.60000000000002,275.6 185.60000000000002,326.0 214.39999999999998,326.0 214.39999999999998,275.6 223.04,275.6 200.0,254.0 "/>
+</svg>

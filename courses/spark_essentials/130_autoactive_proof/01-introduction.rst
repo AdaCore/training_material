@@ -55,7 +55,9 @@ Investigating Unproved Checks
 The Proof Cycle
 -----------------
 
-.. image:: fortify_analyze_prove_cycle.png
+.. container:: latex_environment center
+
+  .. image:: spark_essentials/fortify_analyze_prove_cycle.svg
 
 .. container:: speakernote
 
