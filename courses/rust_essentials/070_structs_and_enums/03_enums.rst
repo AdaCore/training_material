@@ -32,44 +32,45 @@ Enums with Data
 
 .. code:: rust
 
-   enum Move {
-       Pass,                          // Simple variant
-       Run(Direction),                // Tuple variant
-       Teleport { xx: u32, yy: u32 }, // Named-field struct variant
-   } 
-   let move: PlayerMove = PlayerMove::Run(Direction::Left);
+    enum Move {
+        Pass,                          // Simple variant
+        Run(Direction),                // Tuple variant
+        Teleport { xx: u32, yy: u32 }, // Named-field struct variant
+    } 
+    let move: PlayerMove = PlayerMove::Run(Direction::Left);
    
-   enum Message {
-	   Quit,                          // No data
-	   Move { xx: i32, yy: i32 },     // Two named i32 values
-       ChangeColor(i32, i32, i32),    // Three i32 values
-	}
-	let message = Message::Move { xx: 10, yy: 10 };
-	
+    enum Message {
+        Quit,                          // No data
+        Move { xx: i32, yy: i32 },     // Two named i32 values
+        ChangeColor(i32, i32, i32),    // Three i32 values
+    }
+    let message = Message::Move { xx: 10, yy: 10 };
+    
 ---------------------
 Enum Initialization
 ---------------------
-	
+    
 -  **Must** specify entire variant when creating :rust:`enum` variable
 
 -  No default values for data
 
 .. code:: rust
 
-   enum Message {
-	   Quit,                       
-	   Move { coord_x: i32, coord_y: i32 },    
-       ChangeColor(i32, i32, i32), 
-	}
+    enum Message {
+        Quit,                       
+        Move { coord_x: i32, coord_y: i32 },    
+        ChangeColor(i32, i32, i32), 
+    }
 
-	let white = Message::ChangeColor(255,255,255); // OK
-	// Error! You must provide the content of Move
-	let no_color = Message::Move; 
+    let white = Message::ChangeColor(255,255,255); // OK
 	
-.. container:: latex_environment footnotesize	
+    // Error! You must provide the content of Move
+    let no_color = Message::Move; 
+    
+.. container:: latex_environment footnotesize    
 
     :error:`error[E0533]: expected value, found struct variant 'Message::Move'`
-	
+    
 ----------------------
 Idiom: State Machine
 ----------------------
@@ -78,14 +79,14 @@ Idiom: State Machine
 
 .. code:: rust
 
-	// represent distinct states of a network connection
-	enum ConnectionState {
-		Idle,           // Unit variant (no data)
-		Connected {
-			// Struct variant (contains data)
-			session_id: u64, 
-			curr_ip: IpAddressV4,
-		}, 
-		// Tuple variant (contains data: error code)
-		Failed(u16),    
-	}
+    // represent distinct states of a network connection
+    enum ConnectionState {
+        Idle,           // Unit variant (no data)
+        Connected {
+            // Struct variant (contains data)
+            session_id: u64, 
+            curr_ip: IpAddressV4,
+        }, 
+        // Tuple variant (contains data: error code)
+        Failed(u16),    
+    }
