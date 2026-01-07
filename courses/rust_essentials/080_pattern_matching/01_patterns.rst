@@ -99,9 +99,9 @@ Patterns Can Nest
 
 - Patterns may be composed recursively
 
-- Inner patterns further destructure values
+- Matching within a pattern checks structure from outer to inner
 
-- Matching proceeds from the outside in
+- Match arms are still tried top to bottom
 
 .. code:: rust
 
@@ -112,6 +112,10 @@ Patterns Can Nest
        (x, 0) => println!("on x-axis at {}", x),
        (x, y) => println!("({}, {})", x, y),
    }
+
+- For :rust:`point = (0, 0)`, the first arm matches
+
+   - Arm order takes precedence over specificity
 
 -----------------------------
 Patterns in Rust Constructs
