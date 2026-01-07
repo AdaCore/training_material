@@ -102,25 +102,27 @@ Matching with Bindings
        None => println!("no value"),
    }
 
------------------
-Nested Patterns
------------------
+----------------------------
+Nested Patterns in "match"
+----------------------------
 
-- Patterns can be composed hierarchically
+- Match arms are tried top to bottom
 
-- Matching proceeds from outer to inner structure
+- Nested patterns are checked within the selected arm
 
-- Enables concise handling of structured data
+- Rust does not choose the "most specific" pattern
 
 .. code:: rust
 
-   let point = (0, 3);
+   let point = (0, 0);
 
    match point {
        (0, y) => println!("on y-axis at {}", y),
        (x, 0) => println!("on x-axis at {}", x),
        (x, y) => println!("({}, {})", x, y),
    }
+
+- The first matching arm is selected
 
 ---------------------
 Why "match" Matters

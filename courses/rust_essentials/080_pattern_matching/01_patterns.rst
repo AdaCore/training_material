@@ -93,15 +93,15 @@ Binding with Patterns
        None => println!("no value"),
    }
 
--------------------
-Patterns Can Nest
--------------------
+---------------------
+Pattern Composition
+---------------------
 
 - Patterns may be composed recursively
 
-- Matching within a pattern checks structure from outer to inner
+- Larger patterns are built from smaller ones
 
-- Match arms are still tried top to bottom
+- Inner patterns describe substructure
 
 .. code:: rust
 
@@ -109,13 +109,8 @@ Patterns Can Nest
 
    match point {
        (0, y) => println!("on y-axis at {}", y),
-       (x, 0) => println!("on x-axis at {}", x),
-       (x, y) => println!("({}, {})", x, y),
+       _ => {}
    }
-
-- For :rust:`point = (0, 0)`, the first arm matches
-
-   - Arm order takes precedence over specificity
 
 -----------------------------
 Patterns in Rust Constructs
