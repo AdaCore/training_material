@@ -35,7 +35,8 @@ Basic Destructuring
 
    let p = Point { x: 3, y: 4 };
 
-   let Point { x, y } = p;
+   // Order in pattern doesn't matter
+   let Point { y, x } = p;
 
 -------------------
 Shorthand Binding
