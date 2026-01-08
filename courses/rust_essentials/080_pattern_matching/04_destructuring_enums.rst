@@ -78,7 +78,8 @@ Tuple Variants
 
    match e {
        Event::KeyPress(c) => println!("key: {}", c),
-       Event::MouseClick(x, y) => println!("click at {}, {}", x, y),
+       Event::MouseClick(x, y) => 
+            println!("click at {}, {}", x, y),
    }
 
 -----------------
@@ -129,4 +130,4 @@ Enums as Data Models
 
 .. note::
 
-    Enums and `match` are designed to be used together.
+    Enums and :rust:`match` are designed to be used together
