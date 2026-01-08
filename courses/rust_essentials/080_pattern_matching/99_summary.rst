@@ -10,7 +10,7 @@ What We Covered
 
   - Every variable binding is a pattern match
 
-  - `match` compares values against patterns
+  - :rust:`match` compares values against patterns
 
 - **Destructuring**
 
