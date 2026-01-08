@@ -68,24 +68,6 @@ Ignoring Fields
    let Point { x, .. } = p;
 
 --------------------------
-Destructuring in "match"
---------------------------
-
-- Struct patterns commonly appear in :rust:`match`
-
-- Enables matching on both structure and values
-
-- Fields can be selectively bound per arm
-
-.. code:: rust
-
-   match p {
-       Point { x: 0, y } => println!("on y-axis at {}", y),
-       Point { x, y: 0 } => println!("on x-axis at {}", x),
-       Point { x, y } => println!("({}, {})", x, y),
-   }
-
---------------------------
 Patterns Are Declarative
 --------------------------
 
