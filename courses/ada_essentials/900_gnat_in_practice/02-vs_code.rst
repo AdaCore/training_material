@@ -9,12 +9,21 @@ Setting up VS Code
 
 * Need to download and install *Ada & SPARK extensions for VS Code*
 
-   * :url:`Visual Studio Marketplace <https://marketplace.visualstudio.com/items?itemName=AdaCore.ada>`
    * Search for **adacore** in VS Code Extensions (:menu:`Ctrl+Shift+X`)
+
+   * Visual Studio Marketplace
+
+.. container:: latex_environment tiny
+
+   https://marketplace.visualstudio.com/items?itemName=AdaCore.ada
 
 * Make sure GNAT is installed and on your path
 
-   * If not already downloaded, look on :url:`GitHub <https://github.com/AdaCore/ada_language_server/tree/master/integration/vscode/ada\#getting-additional-tools>`
+   * If not already downloaded, look on GitHub
+
+.. container:: latex_environment tiny
+
+   https://github.com/AdaCore/ada_language_server/tree/master/integration/vscode/ada\#getting-additional-tools
 
 -----------------------------
 Using VS Code with the Labs
