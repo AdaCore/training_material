@@ -889,12 +889,9 @@ def format_dfn(literal_text):
 
 
 def format_filename(literal_text):
-    # bold monospaced on light yellow background
-    return latex_inline(
-        latex_box(
-            latex_bold(latex_monospace(latex_escape(literal_text))), "adacore_midblue"
-        )
-    )
+    txt = latex_bold(latex_monospace(latex_escape(literal_text)))
+    txt = latex_color(txt, "adacore_lovelace")
+    return latex_inline(latex_box(txt, "white"))
 
 
 """
