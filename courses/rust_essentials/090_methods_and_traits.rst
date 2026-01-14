@@ -32,10 +32,7 @@ Methods And Traits
 
 .. container:: PRELUDE END
 
-.. include:: 090_methods_and_traits/01-introduction.rst
-.. include:: 090_methods_and_traits/02-methods.rst
-.. include:: 090_methods_and_traits/03-traits.rst
-.. include:: 090_methods_and_traits/04-deriving.rst
-.. include:: 090_methods_and_traits/05-advanced_trait_topics.rst
-.. include:: 090_methods_and_traits/88-methods_and_traits.lab.rst
-.. include:: 090_methods_and_traits/99-summary.rst
+.. include:: 090_methods_and_traits/01_methods.rst
+.. include:: 090_methods_and_traits/02_traits.rst
+.. include:: 090_methods_and_traits/03_deriving.rst
+.. include:: 090_methods_and_traits/99_lab.rst
