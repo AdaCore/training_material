@@ -34,7 +34,7 @@ Visibility
 
 .. include:: 135_visibility/01-introduction.rst
 .. include:: 135_visibility/02-use_clauses.rst
-.. include:: 135_visibility/03-use_type_and_use_all_type_clauses.rst
+.. include:: 135_visibility/03-use_type_and_use_all_type.rst
 .. include:: 135_visibility/04-renaming_entities.rst
 .. include:: 135_visibility/88-visibility.lab.rst
 .. include:: 135_visibility/99-summary.rst

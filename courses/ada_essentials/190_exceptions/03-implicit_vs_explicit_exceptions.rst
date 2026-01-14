@@ -1,6 +1,6 @@
-=============================================
-Implicitly and Explicitly Raised Exceptions
-=============================================
+==================================
+Implicit vs. Explicit Exceptions
+==================================
 
 ------------------------------
 Implicitly-Raised Exceptions

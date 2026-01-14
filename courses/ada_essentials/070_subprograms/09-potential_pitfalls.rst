@@ -99,8 +99,6 @@ Parameter Aliasing
 
   :error:`error: writable actual for "Doubled" overlaps with actual for "Tripled"`
 
-:color-white:`blank line`
-
 ----------------------------
 Functions' Parameter Modes
 ----------------------------

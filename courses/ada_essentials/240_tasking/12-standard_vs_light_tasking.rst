@@ -1,6 +1,6 @@
-======================================
-Comparing Standard and Light-Tasking
-======================================
+============================
+Standard vs. Light-Tasking
+============================
 
 -------------------------------
 Ravenscar Tasking Limitations
