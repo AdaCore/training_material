@@ -10,7 +10,7 @@ What Is a Pattern
 
 - Describes the **structure** of a value
 
-- Used to test and decompose values
+- Used to *test* and *decompose* values
 
 - Successful matching may introduce new bindings
 
