@@ -6,10 +6,22 @@ Introduction
 Topics Covered
 ----------------
 
-- **Patterns as Bindings**: All variable bindings are pattern matches
+- **Patterns as Bindings**
 
-- **Destructuring**: Extracting data from structs and enums
+    - Variable assignments
+    - Implicit pattern matching
 
-- **Control Flow**: Using :rust:`match`, :rust:`if let`, and :rust:`while let`
+- **Destructuring** 
 
-- **Exhaustiveness**: Compiler-checked case coverage
+    - Extracting data
+    - Works with structs and enums
+
+- **Control Flow**
+
+    - :rust:`match` statements
+    - :rust:`if let` and :rust:`while let` expressions
+
+- **Exhaustiveness**
+
+    - Compiler-checked safety
+    - Total case coverage
