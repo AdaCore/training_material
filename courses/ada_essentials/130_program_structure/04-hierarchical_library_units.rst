@@ -220,6 +220,10 @@ Hierarchical Visibility
             Field2 : Child_T;      -- Error
           end record;
         end OS.Sibling;
+
+.. raw:: latex
+
+  \vspace{5mm}
       
 ------------------------------------
 Example of Visibility As If Nested
@@ -261,7 +265,9 @@ Example of Visibility As If Nested
 
  .. container:: column
 
-   .. code:: Ada
+   .. container:: latex_environment small
+
+     .. code:: Ada
 
       package Parent is
         ...

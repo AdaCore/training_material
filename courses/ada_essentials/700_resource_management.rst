@@ -1,6 +1,6 @@
-**************************
-Expert Resource Management
-**************************
+*********************
+Resource Management
+*********************
 
 .. container:: PRELUDE BEGIN
 

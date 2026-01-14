@@ -127,38 +127,38 @@ Quiz
 
     .. code:: Ada
 
-       package Counter_System is
-          type Counter_T is private;
-          procedure Increment (Val_To_Inc : 
-                               in out Counter_T);
+       package Counter is
+          type Count_T is private;
+          procedure Increment (Val : in out Count_T);
        private
-          function Is_Valid (Val_To_Check : Integer) 
-             return Boolean;
-          type Counter_T is new Integer with
-             Type_Invariant => Is_Valid (Integer (Counter_T));
-       end Counter_System;
+          function Check_Limit (Value : Integer) 
+                                return Boolean;
+          type Count_T is new Integer with
+             Type_Invariant =>
+                Check_Limit (Integer (Count_T));
+       end Counter;
 
-       package body Counter_System is
-          function Increment_Helper (Helper_Num : Counter_T)
-                                       return Counter_T is
-             New_Val : Counter_T := Helper_Num + 1;
+       package body Counter is
+          function Increment_Helper
+            (Helper_Val : Count_T)
+             return Count_T is
+             Next_Value : Count_T := Helper_Val + 1;
           begin
-             return New_Val;
+             return Next_Value;
           end Increment_Helper;
-          procedure Increment (Val_To_Inc : 
-                               in out Counter_T) is
+          procedure Increment (Val : in out Count_T) is
           begin
-             Val_To_Inc := Val_To_Inc + 1;
-             Val_To_Inc := Increment_Helper (Val_To_Inc);
+             Val := Val + 1;
+             Val := Increment_Helper (Val);
           end Increment;
-          function Is_Valid (Val_To_Check : Integer)
-                            return Boolean is
-             (True);
-       end Counter_System;
+          function Check_Limit (Value : Integer)
+                                return Boolean is
+             (Value <= 100); --  check against constraint
+       end Counter;
 
  .. container:: column
 
-    If `Increment` is called from outside of Counter_System, how many times is `Is_Valid` called?
+    If `Increment` is called from outside of Counter, how many times is `Check_Limit` called?
 
        A. 1
        B. :answer:`2`
@@ -167,8 +167,10 @@ Quiz
 
     .. container:: animate
 
-       Type Invariants are only evaluated on entry into and exit from
-       externally visible subprograms. So :ada:`Is_Valid` is called when
-       entering and exiting :ada:`Increment` - not :ada:`Increment_Helper`,
-       even though a new instance of :ada:`Counter_T` is created
+       Type Invariants are only evaluated on entry into/exit from
+       externally visible subprograms. So :ada:`Check_Limit` is called when
+       entering/exiting :ada:`Increment` - not :ada:`Increment_Helper`
 
+.. raw:: latex
+
+  \vspace{5mm}

@@ -20,20 +20,22 @@ Generic Constants and Variables Parameters
 
  .. container:: column
 
+  .. container:: latex_environment small
+
    .. code:: Ada
 
       generic
-         type T is private;
-         X1 : Integer;  -- constant
-         X2 : in out T; -- variable
+         type Type_T is private;
+         A_Constant : Integer;
+         Variable   : in out Type_T;
       procedure P;
 
-      V : Float;
+      Object : Float;
 
       procedure P_I is new P
-         (T  => Float,
-          X1 => 42,
-          X2 => V);
+         (Type_T     => Float,
+          A_Constant => 42,
+          Variable   => Object);
 
 -------------------------------
 Generic Subprogram Parameters

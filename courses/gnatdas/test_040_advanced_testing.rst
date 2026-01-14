@@ -1,6 +1,6 @@
-*****************************
-Advanced Testing Techniques
-*****************************
+******************
+Advanced Testing
+******************
 
 .. container:: PRELUDE BEGIN
 

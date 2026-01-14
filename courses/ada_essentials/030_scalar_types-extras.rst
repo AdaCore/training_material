@@ -1,6 +1,6 @@
-**********************************
-Scalar Types: Additional Content
-**********************************
+*************************
+More About Scalar Types
+*************************
 
 .. container:: PRELUDE BEGIN
 

@@ -183,9 +183,9 @@ def prepare_title_file(args):
             tfp.write(".. raw:: latex\n\n")
             tfp.write("   \\begin{center}\n")
 
-            tfp.write("   \\colorbox{adacore3}\n")
+            tfp.write("   \\colorbox{adacore_midblue}\n")
             tfp.write(
-                "   {\\color{adacore1}{\\huge{\\textit{\\textbf{"
+                "   {\\color{adacore_lovelace}{\\huge{\\textit{\\textbf{"
                 + title_info["TITLE"]
                 + "}}}}}\n\n"
             )
