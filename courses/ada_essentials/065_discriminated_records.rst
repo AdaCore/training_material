@@ -34,7 +34,7 @@ Discriminated Records
 
 .. include:: 065_discriminated_records/01-introduction.rst
 .. include:: 065_discriminated_records/02-variant_records.rst
-.. include:: 065_discriminated_records/03-discriminant_record_array_size_idiom.rst
+.. include:: 065_discriminated_records/03-array_size_idiom.rst
 .. include:: 065_discriminated_records/04-interfacing_with_c.rst
 .. include:: 065_discriminated_records/88-discriminated_records.lab.rst
 .. include:: 065_discriminated_records/99-summary.rst

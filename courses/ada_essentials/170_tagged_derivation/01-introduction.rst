@@ -22,11 +22,11 @@ Object-Oriented Programming with Tagged Types
 Tagged Derivation Ada Vs C++
 ------------------------------
 
-.. container:: columns
+.. container:: latex_environment scriptsize
 
-  .. container:: column
+  .. container:: columns
 
-    .. container:: latex_environment scriptsize
+    .. container:: column
 
       .. code:: Ada
 
@@ -43,7 +43,6 @@ Tagged Derivation Ada Vs C++
           Seat_Height : Float;
         end record;
 
-        overriding
         function Wheels
           (This : Unicycle_T)
            return Positive is (1);
@@ -51,9 +50,7 @@ Tagged Derivation Ada Vs C++
           (This : Unicycle_T)
            return Float;
 
-  .. container:: column
-
-    .. container:: latex_environment scriptsize
+    .. container:: column
 
       .. code:: C++
 
@@ -69,4 +66,3 @@ Tagged Derivation Ada Vs C++
             virtual unsigned Wheels(void);
             virtual float Seat(void);
           };
-

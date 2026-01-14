@@ -160,6 +160,10 @@ Violations of the Data Initialization Policy
           end if;
        end Cond_Init;
 
+.. raw:: latex
+
+   \vspace{5mm}
+
 -----------------------------------------
 Generation of Data Dependency Contracts
 -----------------------------------------

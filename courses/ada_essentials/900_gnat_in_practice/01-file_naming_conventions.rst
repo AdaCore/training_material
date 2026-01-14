@@ -46,7 +46,9 @@ Example Filenames with Contents
 
 .. container:: latex_environment tiny
 
-   :color-white:`blank line`
+  .. raw:: latex
+
+    \vspace{5mm}
 
 .. container:: columns
 
@@ -70,7 +72,9 @@ Example Filenames with Contents
 
 .. container:: latex_environment tiny
 
-   :color-white:`blank line`
+  .. raw:: latex
+
+    \vspace{5mm}
 
 .. container:: columns
 

@@ -114,4 +114,6 @@ Quiz
    C. Freeze: scope change
    D. :ada:`Proc_A` is a primitive
 
+.. raw:: latex
 
+  \vspace{5mm}

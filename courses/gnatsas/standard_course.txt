@@ -8,5 +8,5 @@ sas_010_introduction.rst
 sas_020_overview.rst
 sas_030_analysis.rst
 sas_040_viewing_results.rst
-sas_050_reviewing_messages.rst
+sas_050_analyzing_messages.rst
 sas_060_tutorial.rst

@@ -74,7 +74,7 @@ Full Type Declaration
           function Initial
              return Vector;
           type Item_T record
-            One, Two : Vector := Initial;
+            X, Y : Vector := Initial;
           end record;
         end Designer;
 

@@ -1,6 +1,6 @@
-**********************************
-GNAT SAS Tutorial - Step by Step
-**********************************
+*******************
+GNAT SAS Tutorial
+*******************
 
 .. container:: PRELUDE BEGIN
 

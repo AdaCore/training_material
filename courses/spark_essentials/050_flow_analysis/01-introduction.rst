@@ -51,7 +51,11 @@ Control Flow Graph (CFG)
  .. container:: column
 
     .. image:: control_flow_graph.svg
-       :height: 65%
+       :width: 200%
+
+.. raw:: latex
+
+   \vspace{5mm}
 
 --------------------------------
 Program Dependence Graph (PDG)

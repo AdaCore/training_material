@@ -28,29 +28,29 @@ Advanced Data Hiding Lab
 
    - You will need to employ some (but not necessarily all) of the techniques discussed in this module
  
---------------------------------------------------
-Advanced Data Hiding Lab Solution - Message Type
---------------------------------------------------
+-----------------------------
+Lab Solution - Message Type
+-----------------------------
 
 .. container:: source_include 290_advanced_data_hiding/lab/advanced_data_hiding/answer/messages.ads :code:Ada :number-lines:1
 
--------------------------------------------------------
-Advanced Data Hiding Lab Solution - Message List Type
--------------------------------------------------------
+----------------------------------
+Lab Solution - Message List Type
+----------------------------------
 
 .. container:: source_include 290_advanced_data_hiding/lab/advanced_data_hiding/answer/messages-list_types.ads :code:Ada :number-lines:1
  
--------------------------------------------------------------
-Advanced Data Hiding Lab Solution - Message List Operations
--------------------------------------------------------------
+----------------------------------------
+Lab Solution - Message List Operations
+----------------------------------------
 
 .. container:: source_include 290_advanced_data_hiding/lab/advanced_data_hiding/answer/messages-list_types-operations.ads :code:Ada :number-lines:1
 
 .. container:: source_include 290_advanced_data_hiding/lab/advanced_data_hiding/answer/messages-list_types-operations.adb :code:Ada :number-lines:1
 
-------------------------------------------
-Advanced Data Hiding Lab Solution - Main
-------------------------------------------
+---------------------
+Lab Solution - Main
+---------------------
 
 .. container:: source_include 290_advanced_data_hiding/lab/advanced_data_hiding/answer/main.adb :code:Ada :number-lines:1
 
