@@ -11,7 +11,7 @@
 <polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(150, 528.5, 165.0)" points="528.5,165.0 536.0,180.0 543.5,172.5 "/>
 <text xml:space="preserve" transform="rotate(13, 466.75, 147.0)" fill="#aa0000" stroke="none" stroke-width="1" text-align="left" font-size="14px" font-family='arial' font-weight="normal" font-style="italic"  x="466.75" y="147.0">false</text>
 <polygon fill="#00aaaa" stroke="none" stroke-width="1" points="400,85.0 315.0,110 400,135.0 485.0,110 "/>
-<text xml:space="preserve" fill="#ffffff" stroke="#ffffff" stroke-width="0.5" text-align="left" font-size="14px" font-family='Courier New' font-weight="normal"  text-anchor="middle" x="400" y="113">if x > 0</text>
+<text xml:space="preserve" fill="#ffffff" stroke="#ffffff" stroke-width="0.5" text-align="left" font-size="14px" font-family='Courier New' font-weight="normal"  text-anchor="middle" x="400" y="113">if X > 0</text>
 <line fill="none" stroke="#000000" stroke-width="2" x1="271.5" y1="214.0" x2="400" y2="245.0" />
 <polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(150, 400.5, 245.0)" points="400.5,245.0 408.0,260.0 415.5,252.5 "/>
 <rect fill="#aa00aa" stroke="none" stroke-width="1" height="50" width="170" x="187.5" y="165.0" />
