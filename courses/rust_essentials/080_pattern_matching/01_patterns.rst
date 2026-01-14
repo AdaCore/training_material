@@ -34,7 +34,7 @@ Patterns as Bindings
 Literal Patterns
 ------------------
 
-- Literal patterns match exact values
+- Match exact values
 
 - Commonly used in :rust:`match` expressions
 
@@ -56,7 +56,7 @@ Wildcard Pattern
 
 - :rust:`_` matches any value
 
-- Does not bind or move the value
+- Does not *bind* or *move* the value
 
 - Often used to ignore irrelevant cases
 
@@ -116,7 +116,7 @@ Pattern Composition
 Patterns in Rust Constructs
 -----------------------------
 
-- Patterns are reused consistently across the language
+Patterns are reused consistently across the language
 
 - :rust:`let` bindings
 
@@ -124,4 +124,4 @@ Patterns in Rust Constructs
 
 - :rust:`if let` and :rust:`while let`
 
-- function parameters (later)
+- function parameters (covered in another module)
