@@ -22,11 +22,11 @@ Patterns as Bindings
 
 - Simple bindings use identifier patterns
 
-- More complex patterns can destructure values
+- Complex patterns can destructure values
 
 .. code:: rust
 
-   let a_number = 5;              // identifier pattern
+   let number = 5;                // identifier pattern
 
    let (first, second) = (1, 2);  // tuple pattern
 
