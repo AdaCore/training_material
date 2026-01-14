@@ -6,15 +6,15 @@ Destructuring Structs
 Struct Patterns
 -----------------
 
-- Struct patterns match values by field name
+- Match values by field name
 
 - Fields can be accessed without dot notation
 
-- Patterns may bind, ignore, or partially match fields
+- Patterns may *bind*, *ignore*, or *partially match* fields
 
 .. tip::
 
-    Struct destructuring works anywhere patterns are allowed.
+    Destructuring works anywhere patterns are allowed
 
 ---------------------
 Basic Destructuring
@@ -22,7 +22,7 @@ Basic Destructuring
 
 - Fields can be bound directly to names
 
-- Field order does not matter
+   - Order does not matter
 
 - Names may differ from field names
 

@@ -10,7 +10,7 @@
 
 - Simple bindings always match
 
-- More complex patterns may fail to match
+- Complex patterns may fail to match
 
 .. code:: rust
 
@@ -53,7 +53,7 @@ Conditional Matching
 
 - Use when only one case is interesting
 
-- Prefer `match` when handling multiple cases
+- Prefer :rust:`match` when handling multiple cases
 
 .. code:: rust
 
@@ -67,9 +67,9 @@ Conditional Matching
 "while let"
 -------------
 
-- Repeats while a pattern continues to match
-
 - Commonly used for iterative extraction
+
+- Repeats while a pattern continues to match
 
 - Stops when the pattern no longer matches
 
@@ -88,6 +88,6 @@ Pattern-Based Convenience
 
 - :rust:`let`, :rust:`if let`, and :rust:`while let` all use patterns
 
-- These forms reduce boilerplate for common matches
+   - Reduce boilerplate for common matches
 
-- The same pattern rules apply everywhere
+- Same pattern rules apply everywhere

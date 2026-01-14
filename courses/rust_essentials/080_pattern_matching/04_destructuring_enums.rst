@@ -8,9 +8,8 @@ Enums and Variants
 
 - An enum defines a type with multiple variants
 
-- Each variant represents a distinct case
-
-- Variants may carry associated data
+    - Each variant represents a distinct case
+    - Variants may carry associated data
 
 - Enums model values that can take one of several forms
 
@@ -22,7 +21,7 @@ Matching Enum Variants
 
 - Each variant is handled explicitly
 
-- Variant names qualify patterns
+- Variant names *qualify* patterns
 
 .. code:: rust
 
@@ -61,7 +60,7 @@ Destructuring Variant Data
 Tuple Variants
 ----------------
 
-- Variants may contain unnamed fields
+- Contain unnamed fields
 
 - Data is matched positionally
 
@@ -86,7 +85,7 @@ Tuple Variants
 Struct Variants
 -----------------
 
-- Variants may use named fields
+- Use named fields
 
 - Patterns match fields by name
 
@@ -127,7 +126,3 @@ Enums as Data Models
 - Each variant defines its own shape
 
 - Pattern matching enforces correct handling
-
-.. note::
-
-    Enums and :rust:`match` are designed to be used together

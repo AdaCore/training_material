@@ -6,15 +6,18 @@ Match
 What Is "match"
 -----------------
 
-- :rust:`match` compares a value against a set of patterns
+- Compares a value against a set of patterns
 
-- Exactly one pattern must match
+- At least one pattern must match
 
-- The selected arm determines the result
+   - Only one match is allowed
+   - First one wins!
+
+- Selected arm determines the result
 
 .. note::
 
-   :rust:`match` is an expression, not a statement.
+   :rust:`match` is an expression, not a statement
 
 --------------------------
 "match" as an Expression
@@ -24,7 +27,7 @@ What Is "match"
 
 - All arms must produce compatible types
 
-- The result can be bound to a name
+- Result can be bound to a name
 
 .. code:: rust
 
@@ -44,7 +47,7 @@ Match Arms
 
 - Patterns are tested top to bottom
 
-- The first matching arm is selected
+- First matching arm is selected
 
 .. code:: rust
 
@@ -65,23 +68,6 @@ Exhaustiveness
 - Missing cases cause a compile-time error
 
 - This applies to all :rust:`match` expressions
-
-------------------
-Wildcard Pattern
-------------------
-
-- :rust:`_` matches any remaining cases
-
-- Commonly used as a catch-all
-
-.. code:: rust
-
-   let n = 10;
-
-   match n {
-       0 => println!("zero"),
-       _ => println!("non-zero"),
-   }
 
 ------------------------
 Matching with Bindings
@@ -105,8 +91,6 @@ Matching with Bindings
 ----------------------------
 Nested Patterns in "match"
 ----------------------------
-
-- Match arms are tried top to bottom
 
 - Nested patterns are checked within the selected arm
 
