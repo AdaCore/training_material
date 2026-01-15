@@ -31,12 +31,12 @@ What Is "match"
 
 .. code:: rust
 
-   let x = 2;
+   let choices = 2;
 
-   let description = match x {
+   let description = match choices {
        0 => "zero",
        1 => "one",
-       _ => "many",
+       _ => "too many",
    };
 
 ------------
