@@ -28,6 +28,9 @@ from pandocfilters import (
     Para,
     RawBlock,
     CodeBlock,
+    RawInline,
+    Span,
+    Code,
 )
 
 from snippet_parser import source_file_contents
@@ -760,6 +763,35 @@ def format_text(key, value, format):
             # Fallback returns default
             res = pandoc_format("default", literal_to_AST_node(text))
         return res
+
+    # This block covers default code roles (Ada, C, Rust)
+    elif key == "Code":
+
+        # Without this we get infinite recursion
+        if 'bgdone' in classes:
+            return None
+
+        # Wrap the inline code block in a colorbox.
+        # We add "bgdone" to the classes so when we see the "code"
+        # key that we're adding come through we know we already
+        # handled it.
+        return Span(
+            ['', [], []],
+            [
+                RawInline(
+                    'latex',
+                    r'{\setlength\fboxsep{1pt}\colorbox{yellow!15}{'
+                ),
+                Code(
+                    ['', classes + ['bgdone'], kvs],
+                    text
+                ),
+                RawInline('latex', r'}}')
+            ]
+        )
+
+
+
 
 
 """
