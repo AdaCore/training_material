@@ -11,6 +11,9 @@
 % needed for line numbers in code blocks
 \usepackage{fancyvrb}
 
+\RequirePackage{xcolor}
+\RequirePackage{framed}
+
 %========================================================
 % Define custom RGB colors
 %========================================================
@@ -24,6 +27,7 @@
 \definecolor{adacore_paleblue}{RGB}{185,198,215}
 \definecolor{adacore_midblue}{RGB}{21,152,203}
 \definecolor{adacore_background}{RGB}{220,226,235}
+\definecolor{adacore_code}{RGB}{245,245,157}
 
 %========================================================
 % Define Beamer colors
@@ -182,5 +186,20 @@
 
 % Control spacing between code blocks and line numbers
 \fvset{numbersep=2mm,xleftmargin=4mm}
+
+% set code block background color
+\RequirePackage{xcolor}
+\RequirePackage{framed}
+\definecolor{shadecolor}{named}{adacore_code}
+
+\AtBeginDocument{%
+  \renewenvironment{Shaded}{%
+    \begingroup
+    \begin{snugshade}%
+  }{%
+    \end{snugshade}%
+    \endgroup
+  }%
+}
 
 \mode<all>

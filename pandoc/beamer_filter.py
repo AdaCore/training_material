@@ -778,7 +778,7 @@ def format_text(key, value, format):
         return Span(
             ["", [], []],
             [
-                RawInline("latex", r"{\setlength\fboxsep{1pt}\colorbox{yellow!15}{"),
+                RawInline("latex", r"{\setlength\fboxsep{1pt}\colorbox{adacore_code}{"),
                 Code(["", classes + ["bgdone"], kvs], text),
                 RawInline("latex", r"}}"),
             ],
