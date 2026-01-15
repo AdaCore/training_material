@@ -765,7 +765,7 @@ def format_text(key, value, format):
         return res
 
     # This block covers default code roles (Ada, C, Rust)
-    elif key == "Code":
+    elif key == "Code" and len(classes) > 0:
 
         # Without this we get infinite recursion
         if "bgdone" in classes:
