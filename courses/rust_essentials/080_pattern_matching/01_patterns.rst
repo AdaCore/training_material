@@ -52,12 +52,12 @@ Literal Patterns
 
 .. code:: rust
 
-   let n = 3;
+   let choices = 3;
 
-   match n {
+   match choices {
        0 => println!("zero"),
        1 => println!("one"),
-       _ => println!("many"),
+       _ => println!("too many"),
    }
 
 ------------------
