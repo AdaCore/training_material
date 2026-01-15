@@ -96,12 +96,9 @@ Binding with Patterns
 
 .. code:: rust
 
-   let opt = Some(3);
+    let (first, second) = (10, 20);
 
-   match opt {
-       Some(x) => println!("x = {}", x),
-       None => println!("no value"),
-   }
+    println!("first is {}, second is {}", first, second);
 
 ---------------------
 Pattern Composition
