@@ -14,6 +14,16 @@ What Is a Pattern
 
 - Successful matching may introduce new bindings
 
+**Basic Pattern**
+
+.. code:: rust
+    
+    // Pattern: number (identifier)
+    // Structure: Single, scalar value
+    // Binding: "Number" is now bound to value "5"
+
+    let number = 5;
+
 ----------------------
 Patterns as Bindings
 ----------------------
