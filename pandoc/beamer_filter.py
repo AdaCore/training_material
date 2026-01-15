@@ -768,7 +768,7 @@ def format_text(key, value, format):
     elif key == "Code":
 
         # Without this we get infinite recursion
-        if 'bgdone' in classes:
+        if "bgdone" in classes:
             return None
 
         # Wrap the inline code block in a colorbox.
@@ -776,22 +776,13 @@ def format_text(key, value, format):
         # key that we're adding come through we know we already
         # handled it.
         return Span(
-            ['', [], []],
+            ["", [], []],
             [
-                RawInline(
-                    'latex',
-                    r'{\setlength\fboxsep{1pt}\colorbox{yellow!15}{'
-                ),
-                Code(
-                    ['', classes + ['bgdone'], kvs],
-                    text
-                ),
-                RawInline('latex', r'}}')
-            ]
+                RawInline("latex", r"{\setlength\fboxsep{1pt}\colorbox{yellow!15}{"),
+                Code(["", classes + ["bgdone"], kvs], text),
+                RawInline("latex", r"}}"),
+            ],
         )
-
-
-
 
 
 """
