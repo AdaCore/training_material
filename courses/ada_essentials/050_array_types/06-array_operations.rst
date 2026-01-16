@@ -25,6 +25,8 @@ Object-Level Operations
    - Dimensionality must be the same
    - Bounds must be compatible (not necessarily equal)
 
+.. container:: latex_environment footnotesize
+
    .. code:: Ada
 
       declare

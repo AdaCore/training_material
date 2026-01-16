@@ -194,7 +194,9 @@ Named Format Aggregate Rules
    - Avoids run-time cost to verify coverage of all index values
    - Except for single choice format
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    type Float_Arr is array (Integer range <>) of Float;
    Ages : Float_Arr (1 .. 10) := (1 .. 3 => X, 4 .. 10 => Y);
@@ -379,7 +381,9 @@ Delta Aggregates
 
    * Aggregate indicates an object plus the values changed - the *delta*
 
-     .. code:: Ada
+     .. container:: latex_environment scriptsize
+
+       .. code:: Ada
 
          New_Location : Coordinate_T := [Location with delta 3 => 0.0];
 

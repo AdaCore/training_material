@@ -23,7 +23,7 @@ Anonymous Array Types
 
  .. container:: column
 
-  .. container:: latex_environment small
+  .. container:: latex_environment scriptsize
 
    .. code:: Ada
 

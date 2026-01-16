@@ -193,16 +193,18 @@ Unconstrained Return Type
 * The client can call :ada:`Pad` to initialize an object, or to assign
   to an object of the expected size, or pass to another unconstrained parameter
 
+.. container:: latex_environment footnotesize
+
   .. code:: Ada
 
-     declare
-        This_Is_OK      : String := Pad (3);
-        This_Is_Bad     : String(1..10) := Pad(5);  -- runtime error
-        OK_For_Length_4 : String(1..4);
-     begin
-        Put_Line (Pad(50) & "This will always be OK");
-        OK_For_Length_4:= Pad (4);  --  Yes, this is OK
-        OK_For_Length_4:= Pad (5);  --  No, runtime error
+   declare
+      This_Is_OK      : String := Pad (3);
+      This_Is_Bad     : String(1..10) := Pad(5);  -- run-time error
+      OK_For_Length_4 : String(1..4);
+   begin
+      Put_Line (Pad(50) & "This will always be OK");
+      OK_For_Length_4:= Pad (4);  --  Yes, this is OK
+      OK_For_Length_4:= Pad (5);  --  No, runtime error
 
 -----------------------------------
 Unconstrained Parameters Surprise
@@ -255,7 +257,8 @@ Correct Implementation
       pragma Assert (Left'Length = Right'Length);
 
       Result : Vector (Left'Range);
-      Offset : constant Integer := Right'First - Result'First;
+      Offset : constant Integer :=
+               Right'First - Result'First;
    begin
       for K in Result'Range loop
         Result (K) := Left (K) - Right (K + Offset);

@@ -114,8 +114,8 @@ Quiz
 
 Which component does :ada:`C_Object` contain?
 
-   A. :ada:`C_Object.One`
-   B. :ada:`C_Object.Two`
+   A. ``C_Object.One``
+   B. ``C_Object.Two``
    C. :answer:`None: Compilation error`
    D. None: Run-time error
 

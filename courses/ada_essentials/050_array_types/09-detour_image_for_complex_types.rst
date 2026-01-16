@@ -62,7 +62,9 @@ Defining the 'Image Attribute
 
 * Then we need to declare the procedure
 
-  .. code:: Ada
+  .. container:: latex_environment scriptsize
+
+    .. code:: Ada
 
      procedure Array_T_Image
        (Output : in out Ada.Strings.Text_Buffers.Root_Buffer_Type'Class;
@@ -73,7 +75,9 @@ Defining the 'Image Attribute
 
 * And then we define it
 
-  .. code:: Ada
+  .. container:: latex_environment scriptsize
+
+   .. code:: Ada
 
      procedure Array_T_Image
        (Output : in out Ada.Strings.Text_Buffers.Root_Buffer_Type'Class;

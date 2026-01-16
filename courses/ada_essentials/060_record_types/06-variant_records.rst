@@ -8,7 +8,9 @@ Variant Record Types
 
 * A :dfn:`discriminated record` uses a special field (:dfn:`discriminant`) to specify information about the record
 
-  .. code:: ada
+  .. container:: latex_environment footnotesize
+
+    .. code:: ada
 
      type Discriminated_Record (Discriminant : Natural) is record
         Text : String (1..Discriminant);
@@ -108,8 +110,10 @@ Mutable Variant Record
 
 * Type will become :dfn:`mutable` if its discriminant has a *default value* **and** we instantiate the object without specifying a discriminant
 
-.. code:: Ada
-   :number-lines: 2
+.. container:: latex_environment footnotesize
+
+ .. code:: Ada
+    :number-lines: 2
 
   type Person_Group is (Student, Faculty);
   type Person (Group : Person_Group := Student) is -- default value
@@ -185,8 +189,8 @@ Quiz
 
     Which component(s) does :ada:`Variant_Object` contain?
 
-    A. :ada:`Variant_Object.Value,`
-       :ada:`Variant_Object.State`
+    A. ``Variant_Object.Value,``
+       ``Variant_Object.State``
     B. :answermono:`Variant_Object.Number`
     C. None: Compilation error
     D. None: Run-time error
@@ -223,8 +227,8 @@ Quiz
 
 Which component does :ada:`Variant_Object` contain?
 
-A. :ada:`Variant_Object.F, Variant_Object.Flag`
-B. :ada:`Variant_Object.F`
+A. ``Variant_Object.F, Variant_Object.Flag``
+B. ``Variant_Object.F``
 C. :answer:`None: Compilation error`
 D. None: Run-time error
 

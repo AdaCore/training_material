@@ -254,7 +254,9 @@ Delta Aggregates
 
 * Now in Ada 2022 we can just specify the change during the copy
 
-  .. code:: Ada
+  .. container:: latex_environment footnotesize
+
+    .. code:: Ada
 
      New_Location : Coordinate_T := (Location with delta Z => 0.0);
 

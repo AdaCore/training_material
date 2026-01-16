@@ -92,7 +92,9 @@ Default Initialization Via Aspect Clause
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
 
    function Next return Natural; -- returns next number (starts at 1)
 

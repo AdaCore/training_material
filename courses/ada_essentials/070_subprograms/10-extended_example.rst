@@ -58,7 +58,8 @@ Primitive Operations for the Set
 
   .. code:: Ada
 
-     function Make (Colors : Group_Of_Colors_T) return Set_T;
+     function Make (Colors : Group_Of_Colors_T)
+                    return Set_T;
 
 * Add a color to the set
 

@@ -97,6 +97,8 @@ Mutable Variant Record
 
 * To add flexibility, we can make the type :dfn:`mutable` by specifying a default value for the discriminant
 
+.. container:: latex_environment small
+
   .. code:: Ada
 
      type Mutable_T (Kind : Category_T := Employee) is record
@@ -176,8 +178,8 @@ Quiz
 
     Which component(s) does :ada:`Variant_Object` contain?
 
-    A. :ada:`Variant_Object.Value,`
-       :ada:`Variant_Object.State`
+    A. ``Variant_Object.Value,``
+       ``Variant_Object.State``
     B. :answermono:`Variant_Object.Number`
     C. None: Compilation error
     D. None: Run-time error

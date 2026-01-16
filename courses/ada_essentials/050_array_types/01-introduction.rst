@@ -18,9 +18,11 @@ What Is an Array?
 Array Examples
 ----------------
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
 
-  type <typemark> is array (<index_constraint>) of <component_type>;
+  .. code:: Ada
+
+    type <typemark> is array (<index_constraint>) of <component_type>;
 
 where
 
@@ -33,7 +35,9 @@ where
       - Type of values stored in the array
       - All components are of this same type and size
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
 
    type Array_One is array (1 .. 100) of Integer;
 
@@ -80,7 +84,9 @@ Array Type Index Constraints
 
 * Used to define constrained array types
 
-  .. code:: Ada
+  .. container:: latex_environment small
+
+    .. code:: Ada
 
      type Schedule is array (Days range Mon .. Fri) of Float;
      type Flags_T is array (-10 .. 10) of Boolean;
@@ -99,7 +105,9 @@ Run-Time Index Checking
 * Array indexes are checked at run-time as needed
 * Invalid index values result in :ada:`Constraint_Error`
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    procedure Test is
      type Int_Arr is array (1..10) of Integer;

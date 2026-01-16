@@ -145,10 +145,10 @@ Direct Recursion - No Declaration Needed
 
 .. code:: Ada
 
-   type Vector_T is array (Natural range <>) of Integer;
-   Empty_Vector : constant Vector_T (1 .. 0) := (others => 0);
+   type Vector is array (Natural range <>) of Integer;
+   Empty_Vector : constant Vector (1 .. 0) := (others => 0);
 
-   function Get_Vector return Vector_T is
+   function Get_Vector return Vector is
      Next : Integer;
    begin
      Get (Next);

@@ -51,15 +51,15 @@ Simple Vector of Varying Length
 
      .. code:: Ada
 
-         if Obj1.Data (1 .. Obj1.Last) = Obj2.Data (1 .. Obj2.Last)
+         if Obj1.Data(1..Obj1.Last) = Obj2.Data(1..Obj2.Last)
 
    * Same thing with concatentation
 
      .. code:: Ada
 
          Obj3.Last := Obj1.Last + Obj2.Last;
-         Obj3.Data (1 .. Obj3.Last) := Obj1.Data (1 .. Obj1.Last) &
-                                       Obj2.Data (1 .. Obj2.Last)
+         Obj3.Data(1..Obj3.Last) := Obj1.Data(1..Obj1.Last) &
+                                    Obj2.Data(1..Obj2.Last)
 * Other Issues
 
    + Every object has same maximum length

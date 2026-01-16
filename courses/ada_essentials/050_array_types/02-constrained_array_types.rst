@@ -16,7 +16,9 @@ Constrained Array Type Declarations
 
 **Examples**
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
 
      type Integer_Array_T is array (1 .. 3) of Integer;
      type Boolean_Array_T is array (Boolean) of Integer;

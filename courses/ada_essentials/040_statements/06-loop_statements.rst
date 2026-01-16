@@ -62,6 +62,8 @@ Exit Statement Examples
 
 * Nested named loops and exit
 
+.. container:: latex_environment small
+
   .. code:: Ada
 
      Outer : loop
@@ -151,7 +153,9 @@ Variable and Sequence of Values
 * Initialized as :ada:`'First`, incremented as :ada:`'Succ`
 * Syntactic sugar: several forms allowed
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    -- All values of a type or subtype
    for Day in Days_T loop
