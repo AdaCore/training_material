@@ -26,20 +26,27 @@ Basic Destructuring
 
 - Names may differ from field names
 
+- Field shorthand can be used when names match
+
 .. code:: rust
 
    struct Point {
-      x: i32,
-      y: i32,
+       x: i32,
+       y: i32,
    }
 
    let p = Point { x: 3, y: 4 };
 
-   // Explicitly binding fields to different variable names
-   // Avoids shorthand and shows custom naming
+   // Longhand: Renaming fields to new variables
    let Point { x: horizontal, y: vertical } = p;
+   // horizontal = 3, vertical = 4
 
-   println!("Horizontal: {}, Vertical: {}", horizontal, vertical);
+   // Shorthand: Variable names match field names
+   let Point { x, y } = p;
+   // x = 3, y = 4
+
+   // Order independence
+   let Point { y: pos_y, x: pos_x } = p;
 
 -------------------
 Shorthand Binding
