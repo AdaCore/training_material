@@ -51,12 +51,12 @@ Match Arms
 
 .. code:: rust
 
-   let n = 5;
+   let scoops  = 5;
 
    match n {
-       1 => println!("one"),
-       2 => println!("two"),
-       _ => println!("other"),
+       1 => println!("Single scoop!"),
+       2 => println!("Double scoop!!"),
+       _ => println!("Wow, that's a lot of ice cream!"),
    }
 
 ----------------
@@ -68,6 +68,23 @@ Exhaustiveness
 - Missing cases cause a compile-time error
 
 - This applies to all :rust:`match` expressions
+
+.. code:: rust
+
+   enum Direction {
+      North,
+      South,
+      East,
+      West,
+   }
+
+   let travel_to = Direction::East;
+
+   // ERROR: non-exhaustive patterns: `East` and `West` not covered
+   match travel_to {
+      Direction::North => println!("Heading Up"),
+      Direction::South => println!("Heading Down"),
+   }
 
 ------------------------
 Matching with Bindings
@@ -81,11 +98,11 @@ Matching with Bindings
 
 .. code:: rust
 
-   let value = Some(4);
+   let player_score = (10, 250);
 
-   match value {
-       Some(x) => println!("x = {}", x),
-       None => println!("no value"),
+   match player_score {
+      (10, bonus) => println!("Level 10 reached! Bonus: {}", bonus),
+      _ => println!("Keep playing!"),
    }
 
 ----------------------------
@@ -114,7 +131,7 @@ Why "match" Matters
 
 - Makes all cases explicit
 
-- Eliminates implicit fallthrough
+- Each arm is independent and exclusive (no fallthrough between cases)
 
 - Enables compiler-checked completeness
 
