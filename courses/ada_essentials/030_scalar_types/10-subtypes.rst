@@ -150,7 +150,7 @@ Range Constraint Examples
    subtype Lower_Case is Letter range 'a' .. 'z';
    subtype Null_Range is Integer
        range 1 .. 0;  -- silly when hard-coded...
-   -- evaluated when subtype defined, not when object declared
+   -- evaluated when type defined, not when object declared
    subtype Dynamic is Integer range Lower .. Upper;
 
 ------

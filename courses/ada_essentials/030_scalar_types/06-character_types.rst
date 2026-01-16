@@ -47,7 +47,9 @@ Character Oriented Packages
 Ada.Characters.Latin_1 Sample Content
 ---------------------------------------
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
 
    package Ada.Characters.Latin_1 is
      NUL : constant Character := Character'Val (0);
@@ -72,7 +74,9 @@ Ada.Characters.Latin_1 Sample Content
 Ada.Characters.Handling Sample Content
 ----------------------------------------
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
 
    package Ada.Characters.Handling is
      function Is_Control           (Item : Character) return Boolean;
@@ -82,7 +86,6 @@ Ada.Characters.Handling Sample Content
      function Is_Upper             (Item : Character) return Boolean;
      function Is_Basic             (Item : Character) return Boolean;
      function Is_Digit             (Item : Character) return Boolean;
-     function Is_Decimal_Digit     (Item : Character) return Boolean renames Is_Digit;
      function Is_Hexadecimal_Digit (Item : Character) return Boolean;
      function Is_Alphanumeric      (Item : Character) return Boolean;
      function Is_Special           (Item : Character) return Boolean;

@@ -103,33 +103,35 @@ Type Model Run-Time Costs
 
       - Sometimes compiler can even flag failures
 
-.. container:: columns
+.. container:: latex_environment small
 
- .. container:: column
+  .. container:: columns
 
-   **C**
+    .. container:: column
 
-   .. code:: C++
+      **C**
 
-      int X;
-      int Y; // range 1 .. 10
-      ...
-      if (X > 0 && X < 11)
-        Y = X;
-      else
-        // signal a failure
+      .. code:: C++
 
- .. container:: column
+        int X;
+        int Y; // range 1 .. 10
+        ...
+        if (X > 0 && X < 11)
+          Y = X;
+        else
+          // signal a failure
 
-   **Ada**
+    .. container:: column
 
-   .. code:: Ada
+      **Ada**
 
-      X : Integer;
-      Y, Z : Integer range 1 .. 10;
-      ...
-      Y := X;
-      Z := Y; -- no check required
+      .. code:: Ada
+
+        X : Integer;
+        Y, Z : Integer range 1 .. 10;
+        ...
+        Y := X;
+        Z := Y; -- no check required
 
 .. note::
 

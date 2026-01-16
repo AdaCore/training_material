@@ -183,7 +183,9 @@ Attributes Reflect the Underlying Type
 
 * Assignment must still satisfy target constraints
 
-  .. code:: Ada
+  .. container:: latex_environment small
+
+    .. code:: Ada
 
       Shade : Color range Red .. Blue := Brown; -- run-time error
       Hue : Rainbow := Rainbow'Succ (Blue);     -- run-time error
@@ -195,7 +197,9 @@ Valid attribute
 * :ada:`An_Object'Valid` is a :ada:`Boolean`
 * :ada:`True` |rightarrow| the current representation for the given scalar is valid
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
 
     procedure Main is
        subtype Small_T is Integer range 1 .. 3;
@@ -254,7 +258,9 @@ Idiom: Partition
 
    Can have non-consecutive values with the :ada:`Predicate` aspect.
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+ .. code:: Ada
 
    type Commands_T is (Lights_On, Lights_Off, Read, Write, Accelerate, Stop);
    --  Complete partition of the commands
@@ -263,7 +269,8 @@ Idiom: Partition
    subtype Movement_Commands_T is Commands_T range Accelerate .. Stop;
 
    subtype Physical_Commands_T is Commands_T
-      with Predicate => Physical_Commands_T in Lights_Commands_T | Movement_Commands_T; 
+      with Predicate => Physical_Commands_T in
+                        Lights_Commands_T | Movement_Commands_T; 
 
    procedure Execute_Light_Command (C : Lights_Commands_T);
 
@@ -291,21 +298,29 @@ Idiom: Subtypes as Local Constraints
 
 * Constrain input range
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
 
-   subtype Incrementable_Integer is Integer range Integer'First .. Integer'Last - 1;
+ .. code:: Ada
+
+   subtype Incrementable_Integer is Integer
+         range Integer'First .. Integer'Last - 1;
    function Increment (I : Incrementable_Integer) return Integer;
 
 * Constrain output range
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+ .. code:: Ada
 
    subtype Valid_Fingers_T is Integer range 1 .. 5;
-   Fingers : Valid_Fingers_T := Prompt_And_Get_Integer ("Give me the number of a finger");
+   Fingers : Valid_Fingers_T :=
+         Prompt_And_Get_Integer ("Give me the number of a finger");
 
 * Constrain array index
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+ .. code:: Ada
 
    procedure Read_Index_And_Manipulate_Char (S : String) is
       subtype S_Index is Positive range S'Range;

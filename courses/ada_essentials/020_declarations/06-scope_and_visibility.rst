@@ -73,6 +73,8 @@ Visibility in Action
 
 * **Name hiding**: a name used in an *inner scope* can hide the same name visible in the *outer scope*
 
+.. container:: latex_environment scriptsize
+
   .. code:: Ada
 
      type Color is (Red, Green, Blue);
@@ -106,22 +108,24 @@ Overcoming Hiding
 
         - May need refactoring...
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
 
-   type Color is (Red, Green, Blue);
-   type Size  is (Small, Medium, Large);
+  .. code:: Ada
 
-   Outer : declare
-     My_Obj : Color;
-   begin
-     My_Obj := Green;        -- outer (Color)
-     declare
-       My_Obj : Size;        -- inner (Size) hides the outer one
-     begin
-       My_Obj := Small;      -- inner Size
-       Outer.My_Obj := Blue; -- apply prefix to use the hidden Color
-     end;
-   end Outer;
+    type Color is (Red, Green, Blue);
+    type Size  is (Small, Medium, Large);
+
+    Outer : declare
+      My_Obj : Color;
+    begin
+      My_Obj := Green;        -- outer (Color)
+      declare
+        My_Obj : Size;        -- inner (Size) hides the outer one
+      begin
+        My_Obj := Small;      -- inner Size
+        Outer.My_Obj := Blue; -- apply prefix to use the hidden Color
+      end;
+    end Outer;
 
 ------
 Quiz

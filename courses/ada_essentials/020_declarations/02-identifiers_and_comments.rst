@@ -65,7 +65,9 @@ Identifiers vs Names
 Reserved Words
 ----------------
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
 
    abort          else              null               reverse
    abs            elsif             of                 select
