@@ -86,10 +86,10 @@ Tuple Variants
        MouseClick(i32, i32),
    }
 
-   let e = Event::MouseClick(10, 20);
+   let touch = Event::MouseClick(10, 20);
 
-   match e {
-       Event::KeyPress(c) => println!("key: {}", c),
+   match touch {
+       Event::KeyPress(tap) => println!("key: {}", tap),
        Event::MouseClick(x, y) => 
             println!("click at {}, {}", x, y),
    }
