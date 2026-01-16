@@ -111,9 +111,9 @@ Struct Variants
        Rectangle { width: f64, height: f64 },
    }
 
-   let s = Shape::Rectangle { width: 3.0, height: 4.0 };
+   let profile = Shape::Rectangle { width: 3.0, height: 4.0 };
 
-   match s {
+   match profile {
        Shape::Circle { radius } => println!("circle r={}", radius),
        Shape::Rectangle { width, height } => {
            println!("rect {} x {}", width, height);
