@@ -6,12 +6,23 @@ Destructuring Enums
 Enums and Variants
 --------------------
 
-- An enum defines a type with multiple variants
-
-    - Each variant represents a distinct case
-    - Variants may carry associated data
-
 - Enums model values that can take one of several forms
+
+- Each variant represents a distinct case for pattern matching
+
+- Variants may carry associated data that patterns can destructure
+
+.. code:: rust
+
+   enum Message {
+       Quit,                       // No data
+       Move { x: i32, y: i32 },    // Named fields
+       Write(String),              // Tuple data
+   }
+
+.. note::
+    
+    Patterns are the ONLY way to safely access the data inside these variants
 
 ------------------------
 Matching Enum Variants
