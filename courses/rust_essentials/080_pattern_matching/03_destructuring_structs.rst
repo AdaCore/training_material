@@ -29,14 +29,17 @@ Basic Destructuring
 .. code:: rust
 
    struct Point {
-       x: i32,
-       y: i32,
+      x: i32,
+      y: i32,
    }
 
    let p = Point { x: 3, y: 4 };
 
-   // Order in pattern doesn't matter
-   let Point { y, x } = p;
+   // Explicitly binding fields to different variable names
+   // Avoids shorthand and shows custom naming
+   let Point { x: horizontal, y: vertical } = p;
+
+   println!("Horizontal: {}, Vertical: {}", horizontal, vertical);
 
 -------------------
 Shorthand Binding
