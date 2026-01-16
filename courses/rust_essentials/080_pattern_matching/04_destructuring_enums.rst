@@ -6,11 +6,13 @@ Destructuring Enums
 Enums and Variants
 --------------------
 
-- Enums model values that can take one of several forms
+- Enums represent a value that is exactly one of several possibilities
 
-- Each variant represents a distinct case for pattern matching
+- Variant names *qualify* the pattern
 
-- Variants may carry associated data that patterns can destructure
+    - Identify which specific structure is being matched
+
+- Each variant can store different types and amounts of data
 
 .. code:: rust
 
@@ -21,7 +23,7 @@ Enums and Variants
    }
 
 .. note::
-    
+
     Patterns are the ONLY way to safely access the data inside these variants
 
 ------------------------
