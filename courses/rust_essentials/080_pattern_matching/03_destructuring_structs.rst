@@ -56,12 +56,15 @@ Shorthand Binding
 
 - Reduces repetition for common cases
 
+- Shorthand is a syntactic shortcut for longhand renaming
+
 .. code:: rust
 
+   // Shorthand
    let Point { x, y } = p;
 
-   // equivalent to:
-   // let Point { x: x, y: y } = p;
+   // Above is equivalent to explicit "rename" syntax:
+   let Point { x: x, y: y } = p;
 
 -----------------
 Ignoring Fields
