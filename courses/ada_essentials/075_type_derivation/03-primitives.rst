@@ -8,9 +8,11 @@ Primitive Operations
 
 * Primitive Operations are those subprograms associated with a type
 
-.. code:: Ada
+.. container:: latex_environment small
 
-   type Integer_T is range -(2**63) .. 2**63-1 with Size => 64; 
+  .. code:: Ada
+
+   type Integer_T is range -(2**63) .. 2**63-1;
    procedure Increment_With_Truncation (Val : in out Integer_T);
    procedure Increment_With_Rounding (Val : in out Integer_T);
 
@@ -20,9 +22,11 @@ Primitive Operations
 
 * A primitive operation on the parent can receive an object of a child type with no conversion
 
-  .. code:: Ada
+.. code:: Ada
 
       declare
+         type Natural_T is new Integer_T
+               range 0 .. Integer_T'Last;
          N_Obj : Natural_T := 1234;
       begin
          Increment_With_Truncation (N_Obj);
@@ -95,7 +99,9 @@ Creating Primitives for Children
 
 * We can also remove a primitive (see next slide)
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    type Integer_T is range -(2**63) .. 2**63-1; 
    procedure Increment_With_Truncation (Val : in out Integer_T);

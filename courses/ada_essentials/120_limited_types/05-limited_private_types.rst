@@ -106,7 +106,7 @@ Explicitly Limited Completions
      procedure Lock (This : in out Spin_Lock);
      procedure Unlock (This : in out Spin_Lock);
    private
-     type Spin_Lock is limited -- full view is limited as well
+     type Spin_Lock is limited -- full view limited as well
        record
          Flag : Interfaces.Unsigned_8;
        end record;

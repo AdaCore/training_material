@@ -130,17 +130,17 @@ Subsystem Approach
 
    package OS.Mem_Mgmt is
      ...
-     procedure Dump (File               : File_Descriptor;
-                      Requested_Location : System.Address;
-                      Requested_Size     : Interfaces.C.Size_T);
+     procedure Dump (File     : File_Descriptor;
+                     Location : System.Address;
+                     Size     : Interfaces.C.Size_T);
      ...
    end OS.Mem_Mgmt;
 
    package OS.Files is
      ...
      function Open (Device : Interfaces.C.char_array;
-                     Permission : Permissions := S_IRWXO)
-                     return File_Descriptor;
+                    Permission : Permissions := S_IRWXO)
+                    return File_Descriptor;
      ...
    end OS.Files;
 

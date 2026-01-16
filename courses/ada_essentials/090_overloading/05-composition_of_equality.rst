@@ -19,8 +19,10 @@ Composition of Equality
 Composition Vs Non-Composition
 --------------------------------
 
-.. code:: Ada
-   :number-lines: 1
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
+     :number-lines: 1
 
    with Ada.Text_IO; use Ada.Text_IO;
    procedure Main is

@@ -57,7 +57,7 @@ Generic Subprogram Parameters
 * Subprograms can be defined in the generic contract
 * Must be introduced by :ada:`with` to differ from the generic unit
 
-  .. code:: Ada
+.. code:: Ada
 
      generic
         type T is private;
@@ -95,8 +95,10 @@ If nothing specified for **"*"** in instance, compiler uses subprogram with **sa
   - Name
   - Parameter profile (types only, not parameter name)
 
-.. code:: Ada
-   :number-lines: 4
+.. container:: latex_environment small
+
+  .. code:: Ada
+     :number-lines: 4
 
    type Record_T is record
       Component : Integer;

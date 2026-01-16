@@ -28,13 +28,16 @@ Memory Debugging
 
     type Linked_List_T;
     type Linked_List_Ptr_T is access all Linked_List_T;
-    for Linked_List_Ptr_T'Storage_Pool use Memory_Mgmt.Storage_Pool;
+    for Linked_List_Ptr_T'Storage_Pool
+          use Memory_Mgmt.Storage_Pool;
 
 ------------------------------
 Useful GNAT.Debug_Pools APIs
 ------------------------------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+ .. code:: Ada
 
   generic
      with procedure Put_Line (S : String) is <>;

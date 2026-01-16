@@ -8,7 +8,7 @@ The Notion of a Pattern
 
 * Sometimes algorithms can be abstracted from types and subprograms
 
-  .. code:: Ada
+.. code:: Ada
 
      procedure Swap_Int (Left, Right : in out Integer) is
        V : Integer := Left;
@@ -26,7 +26,7 @@ The Notion of a Pattern
 
 * It would be nice to extract these properties in some common pattern, and then just replace the parts that need to be replaced
 
-  .. code:: Ada
+.. code:: Ada
 
      procedure Swap (Left, Right : in out (Integer | Float)) is
        V : (Integer | Float) := Left;

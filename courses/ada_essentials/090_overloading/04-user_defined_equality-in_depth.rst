@@ -66,6 +66,8 @@ User-Defined Equality Example
 * Predefined ``=`` is bit-wise comparison over entire structure so may be inappropriate semantics
 * Given the following types:
 
+.. container:: latex_environment small
+
   .. code:: Ada
 
       Max : constant := 100;

@@ -30,7 +30,9 @@ Testing Constraints Via Qualification
 
    - Raises exception :ada:`Constraint_Error` if not true
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    subtype Weekdays is Days range Mon .. Fri;
    This_Day : Days;

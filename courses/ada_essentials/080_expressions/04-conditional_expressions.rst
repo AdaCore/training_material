@@ -65,7 +65,8 @@ Result Must Be Compatible with Context
       elsif Time > 1200 then "PM"
       else "Noon");
   --  Modifier will be either AM, PM, or Noon
-  --  (String lengths are different, but this is initialization)
+  --  (String lengths are different, but
+  --  this is initialization)
 
   Bad_Expression : Float :=
      (if Overtime then 1.5 else 1);
@@ -151,27 +152,27 @@ Rationale for Parentheses Requirement
 
     .. code:: Ada
 
-       Size : Integer := if Exact then Measure else Estimate + 1;
+       Size : Integer := if Exact then Measure else Gess + 1;
 
   * Does that mean
 
-     If `Exact` then `Size := Measure + 1`, else `Size := Estimate + 1`
+     If `Exact` then `Size := Measure + 1`, else `Size := Gess + 1`
 
      **OR**
 
-     If `Exact` then `Size := Measure`, else `Size := Estimate + 1`
+     If `Exact` then `Size := Measure`, else `Size := Gess + 1`
 
   * Solution
 
     .. code:: Ada
 
-       Size : Integer := (if Exact then Measure else Estimate) + 1;
+       Size : Integer := (if Exact then Measure else Gess) + 1;
 
     **OR**
 
     .. code:: Ada
 
-       Size : Integer := (if Exact then Measure else Estimate + 1)
+       Size : Integer := (if Exact then Measure else Gess + 1)
 
 * But not required if parentheses already present
 

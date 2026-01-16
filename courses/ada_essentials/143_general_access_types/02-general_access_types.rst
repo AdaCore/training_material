@@ -121,7 +121,9 @@ Deallocating General Access Types
 .. code:: Ada
 
    type Access_T is access all Integer;
-   procedure Free is new Ada.Unchecked_Deallocation (Integer, Access_T);
+   procedure Free is
+      new Ada.Unchecked_Deallocation (Integer,
+                                      Access_T);
    Object : aliased Integer := 0;
    Pointer : Access_T;
 

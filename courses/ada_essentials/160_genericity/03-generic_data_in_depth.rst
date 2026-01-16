@@ -61,9 +61,11 @@ Generic Types Parameters (2/3)
 Generic Types Parameters (3/3)
 --------------------------------
 
-* The usage in the generic has to follow the contract
+The usage in the generic has to follow the contract
 
-  * Generic Subprogram
+* Generic Subprogram
+
+  .. container:: latex_environment scriptsize
 
     .. code:: Ada
 
@@ -83,7 +85,9 @@ Generic Types Parameters (3/3)
 
       :error:`generic_procedure.adb:3:11: error: unconstrained subtype not allowed (need initialization)`
 
-  * Instantiations
+* Instantiations
+
+  .. container:: latex_environment scriptsize
 
     .. code:: Ada
        :number-lines: 4

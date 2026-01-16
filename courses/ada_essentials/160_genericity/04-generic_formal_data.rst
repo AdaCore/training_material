@@ -44,7 +44,7 @@ Generic Subprogram Parameters
 * Subprograms can be defined in the generic contract
 * Must be introduced by :ada:`with` to differ from the generic unit
 
-  .. code:: Ada
+.. code:: Ada
 
      generic
         with procedure Callback;

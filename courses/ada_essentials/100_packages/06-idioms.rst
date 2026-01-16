@@ -19,9 +19,6 @@ Named Collection of Declarations
    package Physical_Constants is
      Polar_Radius_in_feet	: constant := 20_856_010.51;
      Equatorial_Radius_in_feet : constant := 20_926_469.20;
-     Earth_Diameter_in_feet : constant := 2.0 *
-        ((Polar_Radius_in_feet + Equatorial_Radius_in_feet)/2.0);
-     Sea_Level_Air_Density : constant := 0.00239; --slugs/foot**3
      Altitude_Of_Tropopause_in_feet : constant := 36089.0;
      Tropopause_Temperature_in_celsius : constant := -56.5;
    end Physical_Constants;

@@ -14,6 +14,8 @@ Three Positives Make a Negative
 
 * Can result in cumbersome references
 
+.. container:: latex_environment small
+
   .. code:: Ada
 
      -- use cosine rule to determine distance between two points,
@@ -36,9 +38,9 @@ Writing Readable Code - Part 1
 
   .. code:: Ada
 
-     -- use cosine rule to determine distance between two points, given angle
-     -- and distances between observer and 2 points A**2 = B**2 + C**2 -
-     -- 2*B*C*cos(angle)
+     -- use cosine rule to determine distance between two
+     -- points, given angle and distances between observer
+     -- and 2 points A**2 = B**2 + C**2 - 2*B*C*cos(angle)
      Observation.Sides (Point1_Point2) :=
        Square_Root
          (Observation.Sides (Observer_Point1)**2 +
@@ -94,7 +96,9 @@ Writing Readable Code - Part 2
    - Executable code is very close to the specification
    - Declarations as "glue" to the implementation details
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
 
       begin
          package Math renames Math_Utilities;

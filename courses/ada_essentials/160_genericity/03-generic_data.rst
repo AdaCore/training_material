@@ -13,7 +13,9 @@ Definitions
     - Constraints: e.g. unconstrained, :ada:`limited`
     - Capabilities: e.g. :ada:`tagged`, primitives
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
 
    generic
       type Pv is private;           -- allocation, copy, assignment, "="

@@ -25,7 +25,7 @@ Reminder: What is a Type?
 
 * The operations are called **primitive operations** in Ada
 
-.. container:: latex_environment small
+.. container:: latex_environment footnotesize
 
   .. code:: Ada
 

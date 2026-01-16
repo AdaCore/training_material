@@ -51,7 +51,9 @@
 
 * Applies to end of body, from first occurrence
 
-.. code:: Ada
+.. container:: latex_environment small 
+
+  .. code:: Ada
 
    package Distance_Pkg is
       Distance : Float := 12.34;
@@ -97,7 +99,8 @@ No Meaning Changes
      declare
        use Distance_Pkg;
      begin
-       -- With or without the clause, "Distance" means Example.Distance
+       -- With or without the clause,
+       -- "Distance" means Example.Distance
        Miles := Distance;
      end;
    end Example;

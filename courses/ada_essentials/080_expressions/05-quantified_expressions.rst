@@ -33,7 +33,9 @@ Quantified Expressions
 Semantics Are As If You Wrote This Code
 -----------------------------------------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    function Universal (Set : Components) return Boolean is
    begin
@@ -49,7 +51,7 @@ Semantics Are As If You Wrote This Code
    begin
      for C of Set loop
        if Predicate (C) then
-         return True;  -- Predicate need only be true for one
+         return True;  -- Predicate must be true for at least one
        end if;
      end loop;
      return False;
@@ -105,7 +107,7 @@ Universal Quantifier
 
 * Functional equivalent
 
-  .. code:: Ada
+.. code:: Ada
 
      function Universal (Set : Components) return Boolean is
      begin
@@ -170,13 +172,13 @@ Existential Quantifier
 
 * Functional equivalent
 
-  .. code:: Ada
+.. code:: Ada
 
      function Existential (Set : Components) return Boolean is
      begin
        for C of Set loop
          if Predicate (C) then
-           return True; -- Need only be true for at least one
+           return True; -- Needs to be true for at least one
          end if;
        end loop;
        return False;
@@ -257,7 +259,7 @@ Index-Based Vs Component-Based Indexing
       + First subcondition is False!
       + Condition should be
 
-        .. code:: Ada
+   .. code:: Ada
 
           Ascending_Order : constant Boolean := (
              for all K in Table'Range =>

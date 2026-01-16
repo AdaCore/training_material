@@ -23,7 +23,9 @@ Package Visible and Private Parts for Views
 
    - No compilable references to type's actual representation
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    package name is
    ... exported declarations of types, variables, subprograms ...

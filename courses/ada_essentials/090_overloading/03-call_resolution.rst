@@ -74,7 +74,9 @@ Manually Disambiguating Calls
 Overloading Example
 ---------------------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
 
    function "+" (Left : Position; Right : Offset)
      return Position is
@@ -108,7 +110,9 @@ Overloading Example
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    type Vertical_T is (Top, Middle, Bottom);
    type Horizontal_T is (Left, Middle, Right);

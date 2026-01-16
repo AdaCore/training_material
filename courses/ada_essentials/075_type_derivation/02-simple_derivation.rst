@@ -10,7 +10,8 @@ Simple Type Derivation
 
   .. code:: Ada
 
-    type Natural_T is new Integer_T range 0 .. Integer_T'Last;
+    type Natural_T is new Integer_T
+          range 0 .. Integer_T'Last;
 
 * :ada:`Natural_T` inherits from:
 
@@ -53,7 +54,8 @@ Simple Derivation and Type Structure
 
   .. code:: Ada
 
-     type Positive_T is new Natural_T range 1 .. Natural_T'Last;
+     type Positive_T is new Natural_T
+           range 1 .. Natural_T'Last;
 
 * Unconstrained types can be constrained
 
