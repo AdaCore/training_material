@@ -78,7 +78,27 @@ Ignoring Fields
 
 .. code:: rust
 
-   let Point { x, .. } = p;
+   struct PhysicsObject {
+       id: u32,
+       x: i32,
+       y: i32,
+       velocity: f64,
+   }
+
+   let obj = PhysicsObject { id: 1, x: 10, y: 20, velocity: 5.5 };
+
+   // Capture 'x' and ignore all other fields
+   let PhysicsObject { x, .. } = obj;
+
+   // Ignore a specific field by name using '_'
+   let PhysicsObject { id, velocity: _, .. } = obj;
+
+   // Capturing multiple specific fields
+   let PhysicsObject { id, velocity, .. } = obj;
+
+.. note::
+
+   :rust:`..` *captures* specific nammed fields and *ignores* the rest
 
 --------------------------
 Patterns Are Declarative
