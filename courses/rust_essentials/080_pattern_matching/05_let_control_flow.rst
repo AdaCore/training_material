@@ -82,11 +82,15 @@ Conditional Matching
 
 .. code:: rust
 
-   let mut value = Some(3);
+.. code:: rust
 
-   while let Some(x) = value {
-       println!("x = {}", x);
-       value = None;
+   let mut snack_box = Some("Apple");
+
+   while let Some(snack) = snack_box {
+       println!("Eating the {snack}!");
+       
+       // Empty the box to stop the loop
+       snack_box = None;
    }
 
 ---------------------------
