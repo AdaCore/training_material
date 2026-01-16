@@ -99,13 +99,3 @@ Ignoring Fields
 .. note::
 
    :rust:`..` *captures* specific nammed fields and *ignores* the rest
-
---------------------------
-Patterns Are Declarative
---------------------------
-
-- Patterns describe *what* shape to match
-
-- Matching is not procedural field access
-
-- This style scales well as structures grow

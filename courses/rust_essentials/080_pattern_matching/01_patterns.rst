@@ -24,6 +24,30 @@ What Is a Pattern
 
     let number = 5;
 
+--------------------------
+Patterns Are Declarative
+--------------------------
+
+- Patterns describe the *what* (shape) rather than the *how* (steps)
+
+- Matching is a structural check, not a sequence of procedural field accesses
+
+- This style scales effectively as data structures grow in complexity
+
+.. code:: rust
+
+   // Declarative: Describing the "stencil"
+   match point {
+       Point { x: 0, y: vertical } => println!("On Y axis at {vertical}"),
+       _ => {}
+   }
+
+   // Procedural: Step-by-step instructions (What patterns avoid)
+   if point.x == 0 {
+       let vertical = point.y;
+       println!("On Y axis at {vertical}");
+   }
+
 ----------------------
 Patterns as Bindings
 ----------------------
