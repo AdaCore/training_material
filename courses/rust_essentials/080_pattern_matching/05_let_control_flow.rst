@@ -82,15 +82,17 @@ Conditional Matching
 
 .. code:: rust
 
-.. code:: rust
+   let mut energy_level = Some(3);
 
-   let mut snack_box = Some("Apple");
-
-   while let Some(snack) = snack_box {
-       println!("Eating the {snack}!");
-       
-       // Empty the box to stop the loop
-       snack_box = None;
+   // While the battery still has 'Some' charge...
+   while let Some(percent) = energy_level {
+       if percent > 0 {
+           println!("Device running... {}% remaining", percent);
+           energy_level = Some(percent - 1);
+       } else {
+           println!("Shutting down...");
+           energy_level = None; // Terminal state: Loop exits
+       }
    }
 
 ---------------------------
