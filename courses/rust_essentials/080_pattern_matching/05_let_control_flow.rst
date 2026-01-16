@@ -57,10 +57,17 @@ Conditional Matching
 
 .. code:: rust
 
-   // equivalent to the previous example
+   let value = Some(3);
+
+   // Shorthand version:
+   if let Some(x) = value {
+       println!("x = {}", x);
+   }
+
+   // Equivalent "match" version:
    match value {
        Some(x) => println!("x = {}", x),
-       _ => {}
+       _ => {} // Explicitly ignore all other cases
    }
 
 -------------
