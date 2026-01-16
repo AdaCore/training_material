@@ -30,9 +30,11 @@ Propagation
 Propagation Demo
 ------------------
 
-.. container:: columns
+.. container:: latex_environment small
 
- .. container:: column
+ .. container:: columns
+
+  .. container:: column
 
    .. code:: Ada
      :number-lines: 1
@@ -52,7 +54,7 @@ Propagation Demo
             Print ("Handle 1 or 2");
         end Handled;
 
- .. container:: column
+  .. container:: column
 
    .. code:: Ada
      :number-lines: 16
@@ -71,7 +73,9 @@ Termination Model
 
 * When control goes to handler, it continues from here
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    procedure Joy_Ride is
    begin

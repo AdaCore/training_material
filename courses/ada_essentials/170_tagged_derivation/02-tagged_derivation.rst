@@ -81,8 +81,10 @@ Freeze Point for Tagged Types
 
 * Declaring tagged type primitives past freeze point is **forbidden**
 
-.. code:: Ada
-   :number-lines: 3
+.. container:: latex_environment small
+
+  .. code:: Ada
+     :number-lines: 3
 
    type Root_T is tagged null record;
    procedure Prim (Root : Root_T);
@@ -129,7 +131,7 @@ Tagged Aggregate
 
 * Optional :ada:`overriding` and :ada:`not overriding` indicators
 
-  .. code:: Ada
+.. code:: Ada
 
      type Shape_T is tagged record
         Name : String (1..10);

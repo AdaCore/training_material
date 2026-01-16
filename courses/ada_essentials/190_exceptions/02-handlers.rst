@@ -47,7 +47,7 @@ Similarity to Case Statements
 * Both structure and meaning
 * Exception handler
 
-  .. code:: Ada
+.. code:: Ada
 
      ...
      exception
@@ -59,7 +59,7 @@ Similarity to Case Statements
 
 * Case statement
 
-  .. code:: Ada
+.. code:: Ada
 
      case exception_name is
        when Constraint_Error | Storage_Error | Program_Error =>
@@ -197,14 +197,14 @@ Exception Handler Content
 Quiz
 ------
 
-.. container:: latex_environment scriptsize
+.. container:: latex_environment tiny
 
  .. container:: columns
 
   .. container:: column
 
-    .. code:: Ada
-     :number-lines: 1
+      .. code:: Ada
+        :number-lines: 1
 
        procedure Main is
           A, B, C, D : Integer range 0 .. 100;
@@ -246,4 +246,8 @@ Quiz
          But Line 16 also raises an exception, causing ``Three`` to be printed
       C. If we reach :ada:`Two`, the assignment on line 16 will cause :ada:`Three` to be reached
       D. Divide by 0 on line 13 causes an exception, so :ada:`Two` must be called
+
+.. raw:: latex
+
+  \vspace{5mm}
 

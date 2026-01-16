@@ -39,7 +39,9 @@ Indefinite Type
    - Can be used for parameter declarations
    - Can be used for variable declaration with initialization
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
 
    procedure Main is
       type Animal is tagged null record;
@@ -141,7 +143,9 @@ Relation to Primitives
 
 Warning: Subprograms with parameter of type `Root'Class` are not primitives of `Root`
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
          type Root is tagged null record;
          procedure Not_A_Primitive (Param : Root'Class);

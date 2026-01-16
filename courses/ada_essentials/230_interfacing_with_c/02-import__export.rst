@@ -74,7 +74,7 @@ Import / Export with Pragmas
 
 * You can also use :ada:`pragma` to import/export entities
 
-  .. code:: Ada
+.. code:: Ada
 
      procedure C_Some_Procedure;
      pragma Import (C, C_Some_Procedure, "SomeProcedure");

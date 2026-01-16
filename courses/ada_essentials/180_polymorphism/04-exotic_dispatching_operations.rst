@@ -8,6 +8,8 @@ Multiple Dispatching Operands
 
 * Primitives with multiple dispatching operands are allowed if all operands are of the same type
 
+.. container:: latex_environment small
+
   .. code:: Ada
 
      type Animal is tagged null record;
@@ -16,6 +18,8 @@ Multiple Dispatching Operands
      overriding procedure Interact (Left : Dog; Right : Dog);
 
 * At call time, all actual parameters' tags have to match, either statically or dynamically
+
+.. container:: latex_environment footnotesize
 
   .. code:: Ada
 
@@ -40,7 +44,9 @@ Special Case for Equality
 * As in general case, static types of operands have to be the same
 * If dynamic types differ, equality returns false instead of raising exception
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
 
    type Animal is tagged null record;
    function "=" (Left : Animal; Right : Animal) return Boolean;
@@ -64,12 +70,16 @@ Controlling Result (1/2)
 
    - This is known as the constructor pattern
 
-     .. code:: Ada
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
 
         type Animal is tagged null record;
         function Feed_Treats (Number_Of_Treats : Integer) return Animal;
 
 * If the child adds components, all such subprograms have to be overridden
+
+.. container:: latex_environment footnotesize
 
   .. code:: Ada
 
@@ -86,6 +96,8 @@ Controlling Result (1/2)
 
 * Primitives returning abstract types have to be abstract
 
+.. container:: latex_environment scriptsize
+
   .. code:: Ada
 
         type Animal is abstract tagged null record;
@@ -97,6 +109,8 @@ Controlling Result (2/2)
 
 * Primitives returning :ada:`tagged` types can be used in a static context
 
+.. container:: latex_environment scriptsize
+
   .. code:: Ada
 
      type Animal is tagged null record;
@@ -106,6 +120,8 @@ Controlling Result (2/2)
      Fed_Animal : Animal := Feed;
 
 * In a dynamic context, the type has to be known to correctly dispatch
+
+.. container:: latex_environment scriptsize
 
   .. code:: Ada
      

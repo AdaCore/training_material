@@ -30,7 +30,7 @@ Multiple Inheritance - Safe Case
 
 * If only one type has concrete operations and components, this is fine
 
-  .. code:: Ada
+.. code:: Ada
 
      type Graphic is abstract tagged null record;
      function Get_X (V : Graphic) return Float is abstract;
@@ -44,7 +44,7 @@ Multiple Inheritance - Safe Case
 
 * This is the definition of an interface (as in Java)
 
-  .. code:: Ada
+.. code:: Ada
 
      type Graphic is interface;
      function Get_X (V : Graphic) return Float is abstract;

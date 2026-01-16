@@ -51,7 +51,8 @@ Wrapper Interface
 
 .. code:: Ada
 
-    type Shader (Kind : Shader_Type) is new GL_Object with null record;
+    type Shader (Kind : Shader_Type) is
+          new GL_Object with null record;
 
 ------------------------------------
 Wrapper Implementation: Private part
@@ -61,7 +62,9 @@ Wrapper Implementation: Private part
 
     - All derived types have a handle to this
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    type GL_Object_Reference;
    type GL_Object_Reference_Access is access all GL_Object_Reference;
@@ -123,7 +126,9 @@ Wrapper Implementation: Full Picture
         - Compiler might call it multiple times on the same object
         - In particular when **exceptions** occur
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
     overriding procedure Finalize (Object : in out GL_Object) is
        Ref : GL_Object_Reference_Access
@@ -137,7 +142,9 @@ Wrapper Implementation: Full Picture
 
     * A given object will own **only one** reference
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
        --  Idempotence: the next call to Finalize will have no effect
        Ref := null;

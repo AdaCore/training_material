@@ -61,7 +61,9 @@ Mechanism to Treat Exceptions As Objects
 * For raising and handling, and more
 * Standard Library
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    package Ada.Exceptions is
      type Exception_Id is private;
@@ -156,7 +158,7 @@ Exception Identity
 
 * Attribute 'Identity converts exceptions to the type
 
-  .. code:: Ada
+.. code:: Ada
 
      package Ada.Exceptions is
        ...
@@ -169,7 +171,7 @@ Exception Identity
 
 * Primary use is raising exceptions procedurally
 
-  .. code:: Ada
+.. code:: Ada
 
      Foo : exception;
      ...

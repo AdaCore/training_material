@@ -17,7 +17,9 @@ Partially Handling Exceptions
 
  .. container:: column
 
-   .. code:: Ada
+   .. container:: latex_environment small
+
+     .. code:: Ada
 
       procedure Joy_Ride is
         ...

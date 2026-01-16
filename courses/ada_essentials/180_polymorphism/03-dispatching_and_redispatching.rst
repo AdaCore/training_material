@@ -35,7 +35,9 @@ Calls on Class-Wide Types (2/3)
 
    *Ada*
 
-   .. code:: Ada
+   .. container:: latex_environment small
+
+     .. code:: Ada
 
       declare
         Stray : Animal'Class :=
@@ -43,14 +45,19 @@ Calls on Class-Wide Types (2/3)
         My_Dog : Animal'Class :=
              Dog'(others => <>);
       begin
-        Stray.Feed;  -- calls Feed of Animal
-        My_Dog.Feed; -- calls Feed of Dog
+        -- call Feed of Animal
+        Stray.Feed;
+
+        -- call Feed of Dog
+        My_Dog.Feed;
 
  .. container:: column
 
    *C++*
 
-   .. code:: C++
+   .. container:: latex_environment small
+
+     .. code:: C++
 
       Animal * Stray = 
                   new Animal ();
@@ -70,7 +77,9 @@ Calls on Class-Wide Types (3/3)
 
    *Ada*
 
-   .. code:: Ada
+   .. container:: latex_environment small
+
+     .. code:: Ada
 
       declare
         Stray : Animal'Class :=
@@ -78,14 +87,19 @@ Calls on Class-Wide Types (3/3)
         My_Dog : Animal'Class :=
              Dog'(others => <>);
       begin
-        Animal (Stray).Feed;  -- calls Feed of Animal
-        Animal (My_Dog).Feed; -- calls Feed of Animal
+        -- call Feed of Animal
+        Animal (Stray).Feed;
+
+        -- call Feed of Animal
+        Animal (My_Dog).Feed;
 
  .. container:: column
 
    *C++*
 
-   .. code:: C++
+   .. container:: latex_environment small
+
+     .. code:: C++
 
       Animal * Stray = 
                   new Animal ();
@@ -100,7 +114,9 @@ Definite and Class-Wide Views
 * In C++, dispatching occurs only on pointers
 * In Ada, dispatching occurs only on class-wide views
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
 
    type Animal is tagged null record;
    procedure Groom (The_Animal : Animal);
@@ -165,7 +181,9 @@ Redispatching Example
 Quiz
 ------
 
-.. code::Ada
+.. container:: latex_environment scriptsize
+
+  .. code::Ada
 
    package Robots is
       type Robot is tagged null record;

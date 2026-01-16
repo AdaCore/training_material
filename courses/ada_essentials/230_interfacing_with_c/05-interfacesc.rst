@@ -17,7 +17,9 @@ Interfaces.C Hierarchy
 Interfaces.C
 --------------
 
-.. code:: Ada
+.. container:: latex_environment tiny
+
+  .. code:: Ada
 
    package Interfaces.C is
 
@@ -71,7 +73,9 @@ Interfaces.C
 Interfaces.C.Extensions
 ------------------------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
 
    package Interfaces.C.Extensions is
 
@@ -103,7 +107,9 @@ Interfaces.C.Extensions
 Interfaces.C.Pointers
 ------------------------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
 
    generic
       type Index is (<>);
@@ -141,7 +147,9 @@ Interfaces.C.Pointers
 Interfaces.C.Strings
 ------------------------
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
 
    package Interfaces.C.Strings is
 
