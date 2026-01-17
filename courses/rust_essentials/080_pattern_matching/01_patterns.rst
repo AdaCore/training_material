@@ -38,14 +38,14 @@ Patterns Are Declarative
 
    // Declarative: Describing the "stencil"
    match point {
-       Point { x: 0, y: vertical } => println!("On Y axis at {vertical}"),
+       Point { x: 0, y: ver } => println!("On Y axis at {ver}"),
        _ => {}
    }
 
    // Procedural: Step-by-step instructions (What patterns avoid)
    if point.x == 0 {
-       let vertical = point.y;
-       println!("On Y axis at {vertical}");
+       let ver = point.y;
+       println!("On Y axis at {ver}");
    }
 
 ----------------------
