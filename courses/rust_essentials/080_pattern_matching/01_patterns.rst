@@ -17,12 +17,12 @@ What Is a Pattern
 **Basic Pattern**
 
 .. code:: rust
-    
-    // Pattern: musketeers (identifier)
-    // Structure: Single, scalar value
-    // Binding: "musketeers" is now bound to value "3"
 
-    let musketeers = 3;
+  // Pattern: musketeers (identifier)
+  // Structure: Single, scalar value
+  // Binding: "musketeers" is now bound to value "3"
+
+  let musketeers = 3;
 
 --------------------------
 Patterns Are Declarative
@@ -36,17 +36,17 @@ Patterns Are Declarative
 
 .. code:: rust
 
-   // Declarative: Describing the "stencil"
-   match point {
-       Point { x: 0, y: ver } => println!("On Y axis at {ver}"),
-       _ => {}
-   }
+  // Declarative: Describing the "stencil"
+  match point {
+    Point { x: 0, y: ver } => println!("On Y axis at {ver}"),
+    _ => {}
+  }
 
-   // Procedural: Step-by-step instructions (What patterns avoid)
-   if point.x == 0 {
-       let ver = point.y;
-       println!("On Y axis at {ver}");
-   }
+  // Procedural: Step-by-step instructions (What patterns avoid)
+  if point.x == 0 {
+    let ver = point.y;
+    println!("On Y axis at {ver}");
+  }
 
 ----------------------
 Patterns as Bindings
@@ -60,9 +60,9 @@ Patterns as Bindings
 
 .. code:: rust
 
-   let number = 5;                // identifier pattern
+  let number = 5;                // identifier pattern
 
-   let (first, second) = (1, 2);  // tuple pattern
+  let (first, second) = (1, 2);  // tuple pattern
 
 ------------------
 Literal Patterns
@@ -76,13 +76,13 @@ Literal Patterns
 
 .. code:: rust
 
-   let choices = 3;
+  let choices = 3;
 
-   match choices {
-       0 => println!("zero"),
-       1 => println!("one"),
-       _ => println!("too many"),
-   }
+  match choices {
+    0 => println!("zero"),
+    1 => println!("one"),
+    _ => println!("too many"),
+  }
 
 ------------------
 Wildcard Pattern
@@ -96,17 +96,17 @@ Wildcard Pattern
 
 .. code:: rust
 
-   enum Status {
-       Ok(i32),
-       Error,
-   }
+  enum Status {
+    Ok(i32),
+    Error,
+  }
 
-   let status = Status::Ok(10);
+  let status = Status::Ok(10);
 
-   match status {
-       Status::Ok(_) => println!("ok"),
-       Status::Error => println!("error"),
-   }
+  match status {
+    Status::Ok(_) => println!("ok"),
+    Status::Error => println!("error"),
+  }
 
 -----------------------
 Binding with Patterns
@@ -120,9 +120,9 @@ Binding with Patterns
 
 .. code:: rust
 
-    let (first, second) = (10, 20);
+  let (first, second) = (10, 20);
 
-    println!("first is {}, second is {}", first, second);
+  println!("first is {}, second is {}", first, second);
 
 ---------------------
 Pattern Composition
@@ -136,22 +136,22 @@ Pattern Composition
 
 .. code:: rust
 
-   let point = (0, 5);
+  let point = (0, 5);
 
-   match point {
-       (0, y) => println!("on y-axis at {}", y),
-       _ => {}
-   }
+  match point {
+    (0, y) => println!("on y-axis at {}", y),
+    _ => {}
+  }
 
 :command:`on y-axis at 5`
 
 - If the value was :rust:`let point = (5, 0);`
 
-    - Fails to match the first pattern because 5 does not equal 0
-    - Matches the wildcard pattern (:rust:`_`)
+  - Fails to match the first pattern because 5 does not equal 0
+  - Matches the wildcard pattern (:rust:`_`)
 
-        - Performs no action
-        - Nothing is printed
+    - Performs no action
+    - Nothing is printed
 
 -----------------------------
 Patterns in Rust Constructs

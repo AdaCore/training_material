@@ -10,21 +10,21 @@ Enums and Variants
 
 - Variant names *qualify* the pattern
 
-    - Identify which specific structure is being matched
+  - Identify which specific structure is being matched
 
 - Each variant can store different types and amounts of data
 
 .. code:: rust
 
-   enum Message {
-       Quit,                       // No data
-       Move { x: i32, y: i32 },    // Named fields
-       Write(String),              // Tuple data
-   }
+  enum Message {
+    Quit,                       // No data
+    Move { x: i32, y: i32 },    // Named fields
+    Write(String),              // Tuple data
+  }
 
 .. note::
 
-    Patterns are the ONLY way to safely access the data inside these variants
+  Patterns are the ONLY way to safely access the data inside these variants
 
 ------------------------
 Matching Enum Variants
@@ -38,17 +38,17 @@ Matching Enum Variants
 
 .. code:: rust
 
-   enum Message {
-       Quit,
-       Write(String),
-   }
+  enum Message {
+    Quit,
+    Write(String),
+  }
 
-   let msg = Message::Quit;
+  let msg = Message::Quit;
 
-   match msg {
-       Message::Quit => println!("quit"),
-       Message::Write(text) => println!("write: {}", text),
-   }
+  match msg {
+    Message::Quit => println!("quit"),
+    Message::Write(text) => println!("write: {}", text),
+  }
 
 ----------------------------
 Destructuring Variant Data
@@ -62,12 +62,12 @@ Destructuring Variant Data
 
 .. code:: rust
 
-   let msg = Message::Write(String::from("hello"));
+  let msg = Message::Write(String::from("hello"));
 
-   match msg {
-       Message::Write(text) => println!("text: {}", text),
-       Message::Quit => println!("quit"),
-   }
+  match msg {
+    Message::Write(text) => println!("text: {}", text),
+    Message::Quit => println!("quit"),
+  }
 
 ----------------
 Tuple Variants
@@ -81,18 +81,18 @@ Tuple Variants
 
 .. code:: rust
 
-   enum Event {
-       KeyPress(char),
-       MouseClick(i32, i32),
-   }
+  enum Event {
+    KeyPress(char),
+    MouseClick(i32, i32),
+  }
 
-   let touch = Event::MouseClick(10, 20);
+  let touch = Event::MouseClick(10, 20);
 
-   match touch {
-       Event::KeyPress(tap) => println!("key: {}", tap),
-       Event::MouseClick(x, y) => 
-            println!("click at {}, {}", x, y),
-   }
+  match touch {
+    Event::KeyPress(tap) => println!("key: {}", tap),
+    Event::MouseClick(x, y) => 
+      println!("click at {}, {}", x, y),
+  }
 
 -----------------
 Struct Variants
@@ -106,19 +106,19 @@ Struct Variants
 
 .. code:: rust
 
-   enum Shape {
-       Circle { radius: f64 },
-       Rectangle { width: f64, height: f64 },
-   }
+  enum Shape {
+    Circle { radius: f64 },
+    Rectangle { width: f64, height: f64 },
+  }
 
-   let profile = Shape::Rectangle { width: 3.0, height: 4.0 };
+  let profile = Shape::Rectangle { width: 3.0, height: 4.0 };
 
-   match profile {
-       Shape::Circle { radius } => println!("circle r={}", radius),
-       Shape::Rectangle { width, height } => {
-           println!("rect {} x {}", width, height);
-       }
-   }
+  match profile {
+    Shape::Circle { radius } => println!("circle r={}", radius),
+    Shape::Rectangle { width, height } => {
+      println!("rect {} x {}", width, height);
+    }
+  }
 
 ---------------------------
 Exhaustiveness with Enums

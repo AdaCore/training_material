@@ -14,8 +14,8 @@
 
 .. code:: rust
 
-   let x = 5;
-   let (a, b) = (1, 2);
+  let x = 5;
+  let (a, b) = (1, 2);
 
 ----------------------
 Conditional Matching
@@ -39,11 +39,11 @@ Conditional Matching
 
 .. code:: rust
 
-   let value = Some(3);
+  let value = Some(3);
 
-   if let Some(x) = value {
-       println!("x = {}", x);
-   }
+  if let Some(x) = value {
+    println!("x = {}", x);
+  }
 
 ---------------------
 "if let" vs "match"
@@ -57,18 +57,18 @@ Conditional Matching
 
 .. code:: rust
 
-   let value = Some(3);
+  let value = Some(3);
 
-   // Shorthand version:
-   if let Some(x) = value {
-       println!("x = {}", x);
-   }
+  // Shorthand version:
+  if let Some(x) = value {
+    println!("x = {}", x);
+  }
 
-   // Equivalent "match" version:
-   match value {
-       Some(x) => println!("x = {}", x),
-       _ => {} // Explicitly ignore all other cases
-   }
+  // Equivalent "match" version:
+  match value {
+    Some(x) => println!("x = {}", x),
+    _ => {} // Explicitly ignore all other cases
+  }
 
 -------------
 "while let"
@@ -82,18 +82,18 @@ Conditional Matching
 
 .. code:: rust
 
-   let mut energy_level = Some(3);
+  let mut energy_level = Some(3);
 
-   // While the battery still has 'Some' charge...
-   while let Some(percent) = energy_level {
-       if percent > 0 {
-           println!("Device running... {}% remaining", percent);
-           energy_level = Some(percent - 1);
-       } else {
-           println!("Shutting down...");
-           energy_level = None; // Terminal state: Loop exits
-       }
-   }
+  // While the battery still has 'Some' charge...
+  while let Some(percent) = energy_level {
+    if percent > 0 {
+      println!("Device running... {}% remaining", percent);
+      energy_level = Some(percent - 1);
+    } else {
+      println!("Shutting down...");
+      energy_level = None; // Terminal state: Loop exits
+    }
+  }
 
 ---------------------------
 Pattern-Based Convenience
@@ -101,6 +101,6 @@ Pattern-Based Convenience
 
 - :rust:`let`, :rust:`if let`, and :rust:`while let` all use patterns
 
-   - Reduce boilerplate for common matches
+  - Reduce boilerplate for common matches
 
 - Same pattern rules apply everywhere

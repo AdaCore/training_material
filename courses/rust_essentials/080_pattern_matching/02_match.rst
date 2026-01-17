@@ -10,14 +10,14 @@ What Is "match"
 
 - At least one pattern must match
 
-   - Only one match is allowed
-   - First one wins!
+  - Only one match is allowed
+  - First one wins!
 
 - Selected arm determines the result
 
 .. note::
 
-   :rust:`match` is an expression, not a statement
+  :rust:`match` is an expression, not a statement
 
 --------------------------
 "match" as an Expression
@@ -31,13 +31,13 @@ What Is "match"
 
 .. code:: rust
 
-   let choices = 2;
+  let choices = 2;
 
-   let description = match choices {
-       0 => "zero",
-       1 => "one",
-       _ => "too many",
-   };
+  let description = match choices {
+    0 => "zero",
+    1 => "one",
+    _ => "too many",
+  };
 
 ------------
 Match Arms
@@ -51,13 +51,13 @@ Match Arms
 
 .. code:: rust
 
-   let scoops  = 5;
+  let scoops  = 5;
 
-   match n {
-       1 => println!("Single scoop!"),
-       2 => println!("Double scoop!!"),
-       _ => println!("Wow, that's a lot of ice cream!"),
-   }
+  match n {
+    1 => println!("Single scoop!"),
+    2 => println!("Double scoop!!"),
+    _ => println!("Wow, that's a lot of ice cream!"),
+  }
 
 ----------------
 Exhaustiveness
@@ -71,20 +71,20 @@ Exhaustiveness
 
 .. code:: rust
 
-   enum Direction {
-      North,
-      South,
-      East,
-      West,
-   }
+  enum Direction {
+    North,
+    South,
+    East,
+    West,
+  }
 
-   let travel_to = Direction::East;
+  let travel_to = Direction::East;
 
-   // ERROR: non-exhaustive patterns: `East` and `West` not covered
-   match travel_to {
-      Direction::North => println!("Heading Up"),
-      Direction::South => println!("Heading Down"),
-   }
+  // ERROR: non-exhaustive patterns: `East` and `West` not covered
+  match travel_to {
+    Direction::North => println!("Heading Up"),
+    Direction::South => println!("Heading Down"),
+  }
 
 ------------------------
 Matching with Bindings
@@ -98,12 +98,12 @@ Matching with Bindings
 
 .. code:: rust
 
-   let player_score = (10, 250);
+  let player_score = (10, 250);
 
-   match player_score {
-      (10, bonus) => println!("Level 10 reached! Bonus: {}", bonus),
-      _ => println!("Keep playing!"),
-   }
+  match player_score {
+    (10, bonus) => println!("Level 10 reached! Bonus: {}", bonus),
+    _ => println!("Keep playing!"),
+  }
 
 ----------------------------
 Nested Patterns in "match"
@@ -115,13 +115,13 @@ Nested Patterns in "match"
 
 .. code:: rust
 
-   let point = (0, 0);
+  let point = (0, 0);
 
-   match point {
-       (0, y) => println!("on y-axis at {}", y),
-       (x, 0) => println!("on x-axis at {}", x),
-       (x, y) => println!("({}, {})", x, y),
-   }
+  match point {
+    (0, y) => println!("on y-axis at {}", y),
+    (x, 0) => println!("on x-axis at {}", x),
+    (x, y) => println!("({}, {})", x, y),
+  }
 
 - The first matching arm is selected
 
@@ -137,4 +137,4 @@ Why "match" Matters
 
 .. note::
 
-   :rust:`match` is central to how Rust models branching logic
+  :rust:`match` is central to how Rust models branching logic
