@@ -33,9 +33,12 @@ Conditional Matching
 
 - Matches a single pattern conditionally
 
-- Executes only when the pattern matches
+- Follows assignment Order
 
-- All other cases are ignored
+  - Pattern = value
+  - Cannot be swapped
+
+- All other cases are implicitly ignored
 
 .. code:: rust
 
