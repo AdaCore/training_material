@@ -101,7 +101,7 @@ Matching with Bindings
   let player_score = (10, 250);
 
   match player_score {
-    (10, bonus) => println!("Level 10 reached! Bonus: {}", bonus),
+    (10, bonus) => println!("Level 10! Bonus: {}", bonus),
     _ => println!("Keep playing!"),
   }
 
