@@ -60,12 +60,23 @@ Destructuring Variant Data
 
 - Binding occurs only when the variant matches
 
+- Use :rust:`_` or :rust:`..` to ignore specific variant data
+
 .. code:: rust
 
   let msg = Message::Write(String::from("hello"));
 
   match msg {
-    Message::Write(text) => println!("text: {}", text),
+    // Capture: Binding the payload to 'text'
+    Message::Write(text) => println!("text: {text}"),
+
+    // Ignore: Using '_' because we don't need the string
+    // Note: You must keep the parens for variants with data
+    Message::Write(_) => println!("Received a message, but ignoring content"),
+
+    // Ignore All: Using '..' for complex variants
+    Message::Move { .. } => println!("System is moving"),
+
     Message::Quit => println!("quit"),
   }
 
