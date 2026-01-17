@@ -18,11 +18,11 @@ What Is a Pattern
 
 .. code:: rust
     
-    // Pattern: number (identifier)
+    // Pattern: musketeers (identifier)
     // Structure: Single, scalar value
-    // Binding: "Number" is now bound to value "5"
+    // Binding: "musketeers" is now bound to value "3"
 
-    let number = 5;
+    let musketeers = 3;
 
 --------------------------
 Patterns Are Declarative
@@ -149,7 +149,7 @@ Pattern Composition
 
     - Fails to match the first pattern because 5 does not equal 0
     - Matches the wildcard pattern (:rust:`_`)
-    
+
         - Performs no action
         - Nothing is printed
 
