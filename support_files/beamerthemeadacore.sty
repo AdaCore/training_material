@@ -193,6 +193,11 @@
 \definecolor{shadecolor}{named}{adacore_code}
 
 \AtBeginDocument{%
+  % Define Shaded if Pandoc didn't
+  \@ifundefined{Shaded}{%
+    \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}%
+  }{}%
+
   \renewenvironment{Shaded}{%
     \begingroup
     \begin{snugshade}%
