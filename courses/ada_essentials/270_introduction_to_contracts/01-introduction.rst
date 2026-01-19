@@ -65,7 +65,9 @@ Ada Contracts
 
 * Raises language-defined :ada:`Assertion_Error` exception if expression does not hold
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    package Ada.Assertions is
      Assertion_Error : exception;
@@ -79,7 +81,9 @@ Defensive Programming
 
 * Should be replaced by subprogram contracts when possible
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
 
    procedure Push (Stack : Stack_Type) is
       Entry_Length : constant Positive := Length (Stack);

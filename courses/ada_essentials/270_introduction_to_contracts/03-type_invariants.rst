@@ -8,7 +8,7 @@ Strong Typing
 
 * Ada supports strong typing
 
-  .. code:: Ada
+.. code:: Ada
 
      type Small_Integer_T is range -1_000 .. 1_000;
      type Enumerated_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
@@ -153,7 +153,7 @@ Quiz
           end Increment;
           function Check_Limit (Value : Integer)
                                 return Boolean is
-             (Value <= 100); --  check against constraint
+             (Value <= 100); -- check against constraint
        end Counter;
 
  .. container:: column

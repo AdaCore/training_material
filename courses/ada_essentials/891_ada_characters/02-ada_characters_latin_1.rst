@@ -6,7 +6,9 @@ Ada.Characters.Latin_1
 Package Contents (Partial)
 ----------------------------
 
-.. code::
+.. container:: latex_environment footnotesize
+
+ .. code:: Ada
 
   package Ada.Characters.Latin_1 is
     NUL          : constant Character := Character'Val (0);

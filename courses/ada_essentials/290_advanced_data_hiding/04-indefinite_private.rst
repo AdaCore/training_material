@@ -108,7 +108,9 @@ Example: A String Holder (1/2)
 
 * Implementation not discussed here
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
     package String_Holders is
        type Info is limited private;
@@ -156,7 +158,9 @@ Example: A String Holder (2/2)
 
     This can be used by contracts implementation below, and child packages
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
        function Contains (Obj : Info; Str : String) return Boolean
           is (Obj /= null and then Obj.all = Str);

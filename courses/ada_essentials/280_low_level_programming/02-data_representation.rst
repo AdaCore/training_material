@@ -189,6 +189,8 @@ Record Representation Clauses
 
     * Components represented as
 
+    .. container:: latex_environment small
+
       .. code:: Ada
 
         <typemark> at <byte> range
@@ -197,7 +199,9 @@ Record Representation Clauses
 
  .. container:: column
 
-   .. code:: Ada
+   .. container:: latex_environment small
+
+    .. code:: Ada
 
      type Rec1 is record
         A : Integer range 0 .. 4;
@@ -266,7 +270,9 @@ Endianness Specification
 
 * Compiler will peform needed bitwise transformations when performing operations
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    -- with aspect
    type Array_T is array (1 .. 1000) of Boolean with

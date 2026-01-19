@@ -8,10 +8,12 @@ Evaluate an Expression on Subprogram Entry
 
 * Post-conditions may require knowledge of a subprogram's **entry context**
 
+.. container:: latex_environment small
+
   .. code:: Ada
 
       procedure Increment (This : in out Integer)
-       with Post => ??? -- how to assert incrementation of `This`?
+       with Post => ??? -- how to assert incrementation of "This"?
 
 * Language-defined attribute :ada:`'Old`
 * Expression is **evaluated** at subprogram entry
@@ -36,7 +38,9 @@ Evaluate an Expression on Subprogram Entry
 Example for Attribute "'Old"
 ------------------------------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
       Global : String := Init_Global;
       ...
@@ -49,6 +53,8 @@ Example for Attribute "'Old"
       end Shift_And_Advance;
 
 * Note the different uses of `'Old` in the postcondition
+
+.. container:: latex_environment footnotesize
 
   .. code:: Ada
 
@@ -162,12 +168,57 @@ Stack Example (Spec with Contracts)
 
     .. container:: latex_environment tiny
 
-      .. include:: ../examples/adv_270_subprogram_contracts/special_attributes_spec.rst
+      .. code:: ada
+
+        package Stack_Pkg is
+          procedure Push (Item : in Integer) with
+              Pre  => not Full,
+              Post => not Empty and then Top = Item;
+          procedure Pop (Item : out Integer) with
+              Pre  => not Empty,
+              Post => not Full and Item = Top'Old;
+          function Pop return Integer with
+              Pre  => not Empty,
+              Post => not Full and Pop'Result = Top'Old;
+          function Top return Integer with
+              Pre => not Empty;
+          function Empty return Boolean;
+          function Full return Boolean;
+        end Stack_Pkg;
 
   .. container:: column
 
     .. container:: latex_environment tiny
 
-      .. include:: ../examples/adv_270_subprogram_contracts/special_attributes_body.rst
+      .. code:: ada
 
+        package body Stack_Pkg is
+          Values  : array (1 .. 100) of Integer;
+          Current : Natural := 0;
+          procedure Push (Item : in Integer) is
+          begin
+             Current         := Current + 1;
+             Values(Current) := Item;
+          end Push;
+          procedure Pop (Item : out Integer) is
+          begin
+             Item    := Values(Current);
+             Current := Current - 1;
+          end Pop;
+          function Pop return Integer is
+             Item : constant Integer := Values(Current);
+          begin
+             Current := Current - 1;
+             return Item;
+          end Pop;
+          function Top return Integer is
+            (Values(Current));
+          function Empty return Boolean is
+            (Current not in Values'Range);
+          function Full return Boolean is
+            (Current >= Values'Length);
+        end Stack_Pkg;
 
+.. raw:: latex
+
+  \vspace {5mm}

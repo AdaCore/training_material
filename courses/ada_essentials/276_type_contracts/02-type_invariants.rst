@@ -112,12 +112,13 @@ Default Type Initialization for Invariants
 
    package Operations is
      -- Type is private, so we can't use Default_Value here
-     type Private_T is private with Type_Invariant => Zero (Private_T);
+     type Private_T is private
+           with Type_Invariant => Zero (Private_T);
      procedure Op (This : in out Private_T);
      function Zero (This : Private_T) return Boolean;
    private
      -- Type is not a record, so we need to use aspect
-     -- (A record could use default values for its components)
+     -- (A record could use default values for components)
      type Private_T is new Integer with Default_Value => 0;
      function Zero (This : Private_T) return Boolean is
      begin

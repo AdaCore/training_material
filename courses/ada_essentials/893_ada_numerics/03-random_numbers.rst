@@ -23,7 +23,9 @@ Differences Between Discrete and Floating Point
 Randon Number Usage
 ---------------------
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+ .. code:: Ada
 
   with Ada.Numerics.Discrete_Random;
   with Ada.Numerics.Float_Random;

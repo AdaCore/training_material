@@ -62,7 +62,9 @@ Defensive Programming
 
 * Should be replaced by subprogram contracts when possible
 
-.. code:: Ada
+.. container:: latex_environment scriptsize
+
+  .. code:: Ada
 
    procedure Push (The_Stack : Stack) is
       Entry_Length : constant Positive := Length (The_Stack);

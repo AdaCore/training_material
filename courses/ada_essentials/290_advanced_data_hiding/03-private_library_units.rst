@@ -58,6 +58,8 @@ Importing a Private Child
 
     .. container:: column
 
+     .. container:: latex_environment scriptsize
+
       .. code:: Ada
 
         private package Root.Child is

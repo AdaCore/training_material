@@ -32,7 +32,9 @@ Files
       * `Out_File` :math:`\rightarrow` Reset file and open for writing
       * `Append_File` :math:`\rightarrow` Position file at end and open for writing
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    declare
       File : File_Type;

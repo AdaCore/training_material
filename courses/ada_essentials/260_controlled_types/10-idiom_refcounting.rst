@@ -19,7 +19,9 @@ Global Overview
     - Get a :ada:`Ref` through :ada:`Set`
     - Turn a :ada:`Ref` into an :ada:`access` through :ada:`Get`
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
     
     package Ref_Counter is
        type Refcounted is abstract tagged private;
@@ -45,7 +47,9 @@ Global Overview
 Implementation Details
 ----------------------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
     procedure Set (Self : in out Ref; Data : Refcounted'Class)
 
@@ -56,7 +60,9 @@ Implementation Details
     - :ada:`Ref` default value is :ada:`null`
     - Clears up any previously used :ada:`Ref`
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
     is
       D : constant Refcounted_Access := new Refcounted'Class'(Data);
@@ -69,7 +75,9 @@ Implementation Details
       Adjust (Self);  -- increment reference count (set to 1)
     end Set;
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
     overriding procedure Adjust (P : in out Ref)
 
@@ -81,7 +89,9 @@ Implementation Details
 
     :ada:`Data` might be :ada:`null`
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
     is
     begin

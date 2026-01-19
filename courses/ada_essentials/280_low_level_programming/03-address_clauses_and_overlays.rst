@@ -22,7 +22,7 @@ Address Clauses
 
 * Ada allows specifying the address of an entity
 
-  .. code:: Ada
+.. code:: Ada
 
      Use_Aspect     : Unsigned_32 with
         Address => 16#1234_ABCD#;
@@ -34,7 +34,7 @@ Address Clauses
 
    - For that purpose, the object should be declared volatile:
 
-   .. code:: Ada
+.. code:: Ada
 
       Use_Aspect     : Unsigned_32 with
          Volatile,
@@ -46,7 +46,7 @@ Address Clauses
 
 * Useful to read a value anywhere
 
-  .. code:: Ada
+.. code:: Ada
 
       function Get_Byte (Addr : Address) return Unsigned_8 is
         V : Unsigned_8 with Address => Addr, Volatile;

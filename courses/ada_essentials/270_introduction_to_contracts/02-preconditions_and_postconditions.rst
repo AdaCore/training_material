@@ -146,7 +146,9 @@ Function Postcondition "'Result" Attribute
 
 Function result can be referenced by :ada:`'Result` on the function name
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
       function Greatest_Common_Denominator (Num1, Num2 : Integer)
         return Integer with
@@ -171,9 +173,13 @@ Preconditions and Postconditions Example
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment small
 
-   function Area (Length : Positive; Height : Positive) return Positive is
+  .. code:: Ada
+
+   function Area (Length : Positive;
+                  Height : Positive)
+                  return Positive is
       (Length * Height)
    with Pre => ?
 
@@ -203,7 +209,9 @@ all values :ada:`Length` and :ada:`Height`?
 Quiz
 ------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    type Index_T is range 1 .. 100;
    -- Database initialized such that value for component at I = I
@@ -241,7 +249,9 @@ Separations of Concerns
 
 * :ada:`Pre` and :ada:`Post` fit together
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    function Validated_Value (Raw_Value : Integer) return Integer
     with Post => Validated_Value'Result /= 0
@@ -322,7 +332,7 @@ Contracts Code Reuse
    - Completes the **interface** that the client has access to
    - Allows for **code reuse**
 
-   .. code:: Ada
+.. code:: Ada
 
       procedure Withdraw (This   : in out Account;
                           Amount :        Currency) with
@@ -360,7 +370,7 @@ Assertion Policy
 
    - Conditional compilation via global :ada:`constant Boolean`
 
-   .. code:: Ada
+.. code:: Ada
 
       procedure Push (This : in out Stack;  Value : Content) is
       begin

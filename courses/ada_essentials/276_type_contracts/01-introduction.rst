@@ -8,11 +8,11 @@ Strong Typing
 
 * We know Ada supports strong typing
 
-  .. code:: Ada
+.. code:: Ada
 
-     type Small_Integer_T is range -1_000 .. 1_000;
-     type Enumerated_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
-     type Array_T is array (1 .. 3) of Boolean;
+   type Small_Integer_T is range -1_000 .. 1_000;
+   type Enumerated_T is (Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+   type Array_T is array (1 .. 3) of Boolean;
 
 * But what if we need stronger enforcement?
 

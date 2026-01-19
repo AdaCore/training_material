@@ -140,8 +140,9 @@ Static Predicates
      type Serial_Baud_Rate is range 110 .. 115200
        with Static_Predicate => Serial_Baud_Rate in
          -- Non-contiguous range
-         110   | 300   | 600   | 1200  | 2400  | 4800  | 9600 |
-         14400 | 19200 | 28800 | 38400 | 56000 | 57600 | 115200;
+         110   | 300   | 600   | 1200  | 2400  |
+         4800  | 9600  | 14400 | 19200 | 28800 |
+         38400 | 56000 | 57600 | 115200;
 
 --------------------------------------
 Dynamic Predicate Expression Content
@@ -175,7 +176,7 @@ Beware Accidental Recursion in Predicate
 * Caused by checks on function arguments
 * Infinitely recursive example
 
-  .. code:: Ada
+.. code:: Ada
 
      type Sorted_Table is array (1 .. Max_Size) of Integer with
         Dynamic_Predicate => Sorted (Sorted_Table);
@@ -184,17 +185,17 @@ Beware Accidental Recursion in Predicate
 
 * Non-recursive example
 
-  .. code:: Ada
+.. code:: Ada
 
      type Sorted_Table is array (1 .. Max_Size) of Integer with
         Dynamic_Predicate =>
         (for all Rows in Sorted_Table'Range =>
-           (Row = Sorted_Table'First
-            or else Sorted_Table (Row - 1) <= Sorted_Table (Row)));
+           (Row = Sorted_Table'First or else
+            Sorted_Table (Row - 1) <= Sorted_Table (Row)));
 
 * Type-based example
 
-  .. code:: Ada
+.. code:: Ada
 
      type Table_Type is array (1 .. Max_Size) of Integer;
      subtype Sorted_Table is Table_Type with

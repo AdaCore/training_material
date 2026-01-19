@@ -6,7 +6,9 @@ Ada.Finalization
 Package Spec
 ---------------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    package Ada.Finalization is
 

@@ -61,7 +61,9 @@ Unbounded String Definition
 Unbounded String Implementation
 ---------------------------------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+ .. code:: Ada
 
    with Ada.Unchecked_Deallocation;
    package body Unbounded_String_Pkg is

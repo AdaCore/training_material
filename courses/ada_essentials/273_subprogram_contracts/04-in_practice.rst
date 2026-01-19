@@ -81,7 +81,9 @@ Postcondition Compared to Their Body
 Postcondition Compared to Their Body: Example
 -----------------------------------------------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    function Greatest_Common_Denominator (Num1, Num2 : Natural)
      return Integer with
@@ -135,6 +137,8 @@ Contracts Code Reuse
    - Completes the **interface** that the client has access to
    - Allows for **code reuse**
 
+.. container:: latex_environment small
+
    .. code:: Ada
 
       procedure Withdraw (This   : in out Account;
@@ -156,7 +160,9 @@ Contracts Code Reuse
 Subprogram Contracts on Private Types
 ---------------------------------------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    package Bank is
      type Account is private;
@@ -226,7 +232,7 @@ Raising Specific Exceptions
 
 * Use *raise expression* in a precondition to get a different exception
 
-  .. code:: Ada
+.. code:: Ada
 
      procedure Push (This : in out Stack;
                      Value : Content) with
@@ -257,7 +263,7 @@ Assertion Policy
 
    - Conditional compilation via global :ada:`constant Boolean`
 
-   .. code:: Ada
+.. code:: Ada
 
       procedure Push (This : in out Stack;  Value : Content) is
       begin

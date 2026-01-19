@@ -147,12 +147,15 @@ Predicate Checks Placement
 References Are Not Checked
 ----------------------------
 
-.. code:: Ada
-   :number-lines: 1
+.. container:: latex_environment small
+
+  .. code:: Ada
+     :number-lines: 1
 
    with Ada.Text_IO;   use Ada.Text_IO;
    procedure Even_Number_Test is
-     subtype Even is Integer with Dynamic_Predicate => Even mod 2 = 0;
+     subtype Even is Integer
+           with Dynamic_Predicate => Even mod 2 = 0;
      Current_Value, Next_Value : Even;
    begin
      -- predicates are not checked here
@@ -166,7 +169,7 @@ References Are Not Checked
 
 * Output would look like
 
-  .. code:: Ada
+  .. code::
 
        Current_Value is 1969492223
        Next_Value is 4220029
@@ -211,15 +214,18 @@ Allowed Static Predicate Content (1)
 * Static membership test selected by current instance
 * Example 1
 
-  .. code:: Ada
+.. code:: Ada
 
      type Serial_Baud_Rate is range 110 .. 115200
        with Static_Predicate => Serial_Baud_Rate in
          -- Non-contiguous range
-         110   | 300   | 600   | 1200  | 2400  | 4800  | 9600 |
-         14400 | 19200 | 28800 | 38400 | 56000 | 57600 | 115200;
+         110   | 300   | 600   | 1200  | 2400  |
+         4800  | 9600  | 14400 | 19200 | 28800 |
+         38400 | 56000 | 57600 | 115200;
 
 * Example 2
+
+.. container:: latex_environment small
 
   .. code:: Ada
 
@@ -320,8 +326,8 @@ Types Controlling For-Loops
       type Days is (Sun, Mon, Tues, Wed, Thu, Fri, Sat);
       subtype Weekend is Days
         with Static_Predicate => Weekend in Sat | Sun;
-      -- Loop uses "Days", and only enters loop when in Weekend
-      -- So "Sun" is first value for A_Day
+      -- Loop uses "Days", and only enters loop when in
+      -- Weekend so "Sun" is first value for A_Day
       for A_Day in Weekend loop
          ...
       end loop;
@@ -335,7 +341,8 @@ Why Allow Types with Static Predicates?
   .. code:: Ada
 
      type Days is (Sun, Mon, Tues, We, Thu, Fri, Sat);
-     subtype Weekend is Days with Static_Predicate => Weekend in Sat | Sun;
+     subtype Weekend is Days with
+           Static_Predicate => Weekend in Sat | Sun;
      ...
      for A_Day in Weekend loop
        GNAT.IO.Put_Line (A_Day'Image);
@@ -409,7 +416,7 @@ Initial Values Can Be Problematic
 
         subtype Even is Integer
           with Dynamic_Predicate => Even mod 2 = 0;
-        Some_Number : Even;  -- unknown (invalid?) initial value
+        Number : Even;  -- unknown (invalid?) initial value
 
 * The predicate is not checked on a declaration when no initial value is given
 * So can reference such junk values before assigned
@@ -422,14 +429,17 @@ Subtype Predicates Aren't Bullet-Proof
 
 * For composite types, predicate checks apply to whole object values, not individual components
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
    procedure Demo is
      type Table is array (1 .. 5) of Integer
        -- array should always be sorted
        with Dynamic_Predicate =>
          (for all Idx in Table'Range =>
-           (Idx = Table'First or else Table (Idx-1) <= Table (Idx)));
+           (Idx = Table'First or else
+            Table (Idx-1) <= Table (Idx)));
      Values : Table := (1, 3, 5, 7, 9);
    begin
      ...
@@ -447,7 +457,7 @@ Beware Accidental Recursion in Predicate
 * Caused by checks on function arguments
 * Infinitely recursive example
 
-  .. code:: Ada
+.. code:: Ada
 
      type Sorted_Table is array (1 .. N) of Integer with
         Dynamic_Predicate => Sorted (Sorted_Table);
@@ -456,17 +466,17 @@ Beware Accidental Recursion in Predicate
 
 * Non-recursive example
 
-  .. code:: Ada
+.. code:: Ada
 
      type Sorted_Table is array (1 .. N) of Integer with
         Dynamic_Predicate =>
         (for all Index in Sorted_Table'Range =>
-           (Index = Sorted_Table'First
-            or else Sorted_Table (Index - 1) <= Sorted_Table (Index)));
+           (Index = Sorted_Table'First or else
+            Sorted_Table (Index - 1) <= Sorted_Table (Index)));
 
 * Type-based example
 
-  .. code:: Ada
+.. code:: Ada
 
      type Table is array (1 .. N) of Integer;
      subtype Sorted_Table is Table with
