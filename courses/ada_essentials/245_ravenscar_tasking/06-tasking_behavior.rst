@@ -165,7 +165,7 @@ Ceiling Locking
 
 * Example of priority inversion
 
-.. code::
+  .. code::
 
    The_Lock : Lock;
 
@@ -173,12 +173,15 @@ Ceiling Locking
    T2 : Task (Priority => 2);
    T3 : Task (Priority => 3);
 
-   T1 locks The_Lock
-   T3 starts, get scheduled (T3 > T1)
-   T3 tries to get The_Lock, blocks
-   T2 starts, get scheduled (T2 > T1)
+  T1 locks The_Lock
 
-   Result: T2 running, T1 blocked, T3 blocked through The_Lock (but T3 > T2!)
+  T3 starts, get scheduled (T3 > T1)
+
+  T3 tries to get The_Lock, blocks
+
+  T2 starts, get scheduled (T2 > T1)
+
+  Result: T2 running, T1 blocked, T3 blocked through The_Lock (but T3 > T2!)
 
 * Solved with ceiling locking
 

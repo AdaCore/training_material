@@ -175,12 +175,13 @@ Discriminated Protected or Task types
       procedure Increment;
    end Counter_T
 
-   task type My_Task (Counter : not null access Counter_T) is [...]
+   task type My_Task (Counter : not null access Counter_T) is
+         ...
 
    task body My_Task is
    begin
       Counter.Increment;
-      [...]
+      ...
 
 ----------------------------------------
 Using discriminant for Real-Time aspects

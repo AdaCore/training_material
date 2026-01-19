@@ -18,7 +18,9 @@ Synchronous Task Control
 
       + But can be set by several tasks
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+ .. code:: Ada
 
    package Ada.Synchronous_Task_Control is
       type Suspension_Object is limited private;

@@ -31,7 +31,9 @@ Synchronized Interface
 
 * :ada:`synchronized interface` can be inherited by :ada:`task`/:ada:`protected` types
 
-.. code:: Ada
+.. container:: latex_environment small
+
+ .. code:: Ada
 
    type Counter_I is synchronized interface;
    procedure Increment (Counter : in out Counter_I) is abstract;
@@ -102,7 +104,9 @@ Standard Library Queues Implementations
 Example: Scheduler Interface
 ----------------------------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+ .. code:: Ada
 
    type Scheduler_I;
    type Maybe_Work_Item_I is access protected procedure;
@@ -128,7 +132,9 @@ Example: Scheduler Interface
 Example: Scheduler (Body)
 -------------------------
 
-.. code:: Ada
+.. container:: latex_environment small
+
+ .. code:: Ada
 
    protected body Scheduler_T is
       procedure Queue (Work : Work_Item_I) is

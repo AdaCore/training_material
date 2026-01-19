@@ -34,9 +34,10 @@ Interface
       [...]
 
       entry Seize;
-      --  Blocks caller until/unless the semaphore's internal counter is
-      --  greater than zero. Decrements the semaphore's internal counter when
-      --  executed.
+      --  Blocks caller until/unless the semaphore's
+      --  internal counter is greater than zero.
+      --  Decrements the semaphore's internal counter
+      --  when executed.
 
       procedure Release;
       --  Increments the semaphore's internal counter
@@ -58,7 +59,9 @@ Idiom: Scope Locks
 
 * Automatic release
 
-.. code:: Ada
+.. container:: latex_environment small
+
+  .. code:: Ada
 
     type Scope_Lock (Lock : access Mutual_Exclusion) is
        new Ada.Finalization.Limited_Controlled with null record;

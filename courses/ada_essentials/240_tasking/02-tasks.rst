@@ -85,7 +85,7 @@ Rendezvous
 
     task body Server_Task is
     begin
-      accept Receive_Message (S : in String) do -- waiting for client
+      accept Receive_Message (S : in String) do -- wait for client
         Put_Line ("Received: " & S);
       end Receive_Message; -- release to client
     end Server_Task;
@@ -103,7 +103,9 @@ Sequential Rendezvous
 * Task can have multiple entry points that need to be called in sequence
 * Each entry call is blocking
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+ .. code:: Ada
 
   task body Worker is
     Job_Data : Some_Data_Type;
@@ -151,6 +153,8 @@ Select Example in Code
 ------------------------
 
 * **Server** task waits for either a message to process or a signal to stop
+
+.. container:: latex_environment small
 
   .. code:: Ada
 

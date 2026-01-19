@@ -11,9 +11,11 @@ Protected Objects
 * **No** concurrent modifications
 * :ada:`limited` types (No copies allowed)
 
-.. container:: columns
+.. container:: latex_environment scriptsize
 
- .. container:: column
+ .. container:: columns
+
+  .. container:: column
 
    .. code:: Ada
 
@@ -25,7 +27,7 @@ Protected Objects
        Value : Integer;
     end Protected_Value;
 
- .. container:: column
+  .. container:: column
 
    .. code:: Ada
 

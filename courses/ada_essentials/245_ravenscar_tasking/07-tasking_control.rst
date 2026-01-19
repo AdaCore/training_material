@@ -18,7 +18,9 @@ Synchronous Task Control
 
       + But can be set by several tasks
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+ .. code:: Ada
 
    package Ada.Synchronous_Task_Control is
       type Suspension_Object is limited private;
@@ -39,6 +41,8 @@ Timing Events
    - Calls back an :ada:`access protected procedure`
 
 * Do not require a :ada:`task` or a :ada:`delay` statement
+
+.. container:: latex_environment small
 
   .. code:: Ada
 

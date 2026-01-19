@@ -18,7 +18,9 @@ Beyond One-Off Tasks: Task and Protected Types
 Reusable Task Patterns
 ------------------------
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+ .. code:: Ada
 
    -- Simple task that, upon startup, loops forever
    -- calling some procedure and pausing

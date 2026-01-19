@@ -39,7 +39,9 @@ Ravenscar Tasks Declaration Example
 
 :filename:`my_tasks.adb`
 
-.. code:: Ada
+.. container:: latex_environment footnotesize
+
+  .. code:: Ada
 
     with Ada.Text_IO; use Ada.Text_IO;
     with Ada.Real_Time; use Ada.Real_Time;

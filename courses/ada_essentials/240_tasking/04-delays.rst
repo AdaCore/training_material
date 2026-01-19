@@ -46,7 +46,8 @@ Delay Example
            end Relative;
         begin
            for Counter in 1 .. 5 loop
-              delay until Start_Time + Duration (I) * 0.1;
+              delay until
+                    Start_Time + Duration (I) * 0.1;
               Put_Line (Time_Str &
                         " => Absolute " & I'Image);
            end loop;
