@@ -236,7 +236,7 @@ Value Illusion
     
 .. warning:: 
     
-   coord is NOT a variable of type Point. It is an alias for the constructor function call
+   :rust:`coord` is NOT a variable of type :rust:`Point`. It is an alias for the constructor function call
 
 
 

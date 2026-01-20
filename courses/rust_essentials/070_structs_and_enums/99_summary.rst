@@ -6,7 +6,7 @@ Summary
 What We Learned
 -----------------
 
--  **Structs** (data aggregation)
+-  **Structs** 
 
    -  Group related data into a single, named entity (composition) 
 
@@ -16,7 +16,7 @@ What We Learned
 
    -  Includes Named-field structs, Tuple structs, and the newtype Idiom
 
--  **Enums** (data choices)
+-  **Enums** 
 
    -  Define a type that can be one of a fixed set of options
 
