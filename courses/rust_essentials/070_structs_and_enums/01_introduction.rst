@@ -6,13 +6,17 @@ Introduction
 Topics Covered
 ----------------
 
--  **Structs**: Grouping related data 
+-  **Structs**: 
+
+   -  Group related data 
 
    -  Initialization and update syntax
    
    -  Named-field vs Tuple forms
 
--  **Enums**: defining distinct options
+-  **Enums**: 
+
+   -  Define distinct options
 
    -  Variants holding data
    
