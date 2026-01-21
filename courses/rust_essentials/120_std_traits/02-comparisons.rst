@@ -2,82 +2,83 @@
 Comparisons
 =============
 
--------------
-Comparisons
--------------
+-------------------
+Comparison Traits
+-------------------
 
-These traits support comparisons between values. All traits can be
-derived for types containing fields that implement these traits.
+* What are comparison traits?
 
-----------------------------------
-:rust:`PartialEq` and :rust:`Eq`
-----------------------------------
+  * Standard traits for comparing values
 
-:rust:`PartialEq` is a partial equivalence relation, with required method
-:rust:`eq` and provided method :rust:`ne`. The :rust:`==` and :rust:`!=` operators will
-call these methods.
+    * :rust:`PartialEq`
+    * :rust:`Eq`
+    * :rust:`PartialOrd`
+    * :rust:`Ord`
 
-.. code:: rust
+  * Basis of Rust’s comparison operators like ==, <, etc.
 
-   struct Key {
-       id: u32,
-       metadata: Option<String>,
-   }
-   impl PartialEq for Key {
-       fn eq(&self, other: &Self) -> bool {
-           self.id == other.id
-       }
-   }
+* Why do we need them?
 
-:rust:`Eq` is a full equivalence relation (reflexive, symmetric, and
-transitive) and implies :rust:`PartialEq`. Functions that require full
-equivalence will use :rust:`Eq` as a trait bound.
+  * Compiler and standard library use these traits in many APIs (e.g., sorting)
+  * Lets you define what it means for two values to be equal (or ordered)
 
-------------------------------------
-:rust:`PartialOrd` and :rust:`Ord`
-------------------------------------
+    * Ignore some fields, or compare one field based on another
 
-:rust:`PartialOrd` defines a partial ordering, with a :rust:`partial_cmp`
-method. It is used to implement the :rust:`<`, :rust:`<=`, :rust:`>=`, and :rust:`>`
-operators.
+* Often derived automatically
 
-.. code:: rust
+---------------------------
+Equality (and Inequality)
+---------------------------
 
-   use std::cmp::Ordering;
-   #[derive(Eq, PartialEq)]
-   struct Citation {
-       author: String,
-       year: u32,
-   }
-   impl PartialOrd for Citation {
-       fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-           match self.author.partial_cmp(&other.author) {
-               Some(Ordering::Equal) => self.year.partial_cmp(&other.year),
-               author_ord => author_ord,
-           }
-       }
-   }
+* :rust:`Eq`
 
-:rust:`Ord` is a total ordering, with :rust:`cmp` returning :rust:`Ordering`.
+  * Used for :rust:`==` and :rust:`!=`
 
----------
-Details
----------
+* :rust:`PartialEq`
 
-:rust:`PartialEq` can be implemented between different types, but :rust:`Eq`
-cannot, because it is reflexive:
+  * Used instead of :rust:`Eq` if the type contains values that are not comparable
+
+    * Think :rust:`NaN` for a float object
 
 .. code:: rust
 
-   struct Key {
-       id: u32,
-       metadata: Option<String>,
-   }
-   impl PartialEq<u32> for Key {
-       fn eq(&self, other: &u32) -> bool {
-           self.id == *other
-       }
-   }
+  struct Key {
+      id: u32,
+      metadata: Option<String>,
+  }
+  impl PartialEq for Key {
+      fn eq(&self, other: &Self) -> bool {
+          self.id == other.id
+      }
+  }
 
-In practice, it's common to derive these traits, but uncommon to
-implement them.
+----------
+Ordering
+----------
+
+* :rust:`Ord`
+
+  * Used for comparisons like :rust:`>=` and :rust:`<`
+
+* :rust:`PartialOrd`
+
+  * Used instead of :rust:`Ord` if the type contains values that are not comparable
+
+    * Think :rust:`NaN` for a float object
+
+.. code:: rust
+
+  use std::cmp::Ordering;
+  #[derive(Eq, PartialEq)]
+  struct Citation {
+      author: String,
+      year: u32,
+  }
+  impl PartialOrd for Citation {
+      fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+          match self.author.partial_cmp(&other.author) {
+              Some(Ordering::Equal) => self.year.partial_cmp(&other.year),
+              author_ord => author_ord,
+          }
+      }
+  }

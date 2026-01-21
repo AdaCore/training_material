@@ -6,30 +6,26 @@ Summary
 What We Covered
 -----------------
 
-* Comparisons
+* Standard traits allow the user to define common traits
 
-  * TBD
+  * Rather than relying on a default behavior
 
-* Operators
+.. list-table::
 
-  * TBD
+  * - :rust:`Eq`, :rust:`PartialEq`
+    - Equality (and inequality) of objects
 
-* From and into
+  * - :rust:`Add`, :rust:`Sub`, etc
+    - Mathematical operations on objects
 
-  * TBD
+  * - :rust:`From`, :rust:`Into`
+    - Converting between type and a value
 
-* Casting
+  * - :rust:`as`
+    - Using a different type to view an object
 
-  * TBD
+  * - :rust:`Read`, :rust:`Write`
+    - Input/output of an object
 
-* Read and write
-
-  * TBD
-
-* Default
-
-  * TBD
-
-* Closures
-
-  * TBD
+  * - :rust:`default`
+    - Default values for a type

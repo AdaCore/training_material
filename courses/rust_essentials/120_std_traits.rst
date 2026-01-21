@@ -32,11 +32,12 @@ Std Traits
 
 .. container:: PRELUDE END
 
-.. include:: 120_std_traits/01_comparisons.rst
-.. include:: 120_std_traits/02_operators.rst
-.. include:: 120_std_traits/03_from_and_into.rst
-.. include:: 120_std_traits/04_casting.rst
-.. include:: 120_std_traits/05_read_and_write.rst
-.. include:: 120_std_traits/06_default.rst
-.. include:: 120_std_traits/07_closures.rst
-.. include:: 120_std_traits/99_lab.rst
+.. include:: 120_std_traits/01-introduction.rst
+.. include:: 120_std_traits/02-comparisons.rst
+.. include:: 120_std_traits/03-operators.rst
+.. include:: 120_std_traits/04-type_conversions.rst
+.. include:: 120_std_traits/05-casting.rst
+.. include:: 120_std_traits/06-io_traits.rst
+.. include:: 120_std_traits/07-default_values.rst
+.. include:: 120_std_traits/88-std_traits.lab.rst
+.. include:: 120_std_traits/99-summary.rst

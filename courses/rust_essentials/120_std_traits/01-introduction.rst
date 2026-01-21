@@ -6,30 +6,26 @@ Introduction
 Topics Covered
 ----------------
 
-* Comparisons
+* Comparison traits
 
-  * TBD
+  * How to compare objects
 
-* Operators
+* Operator traits
 
-  * TBD
+  * Performing mathematical operations on objects
 
-* From and into
+* From and into traits
 
-  * TBD
+  * Converting between types and values
 
-* Casting
+* Casting traits
 
-  * TBD
+  * Treating an object as a different type
 
-* Read and write
+* Read and write traits
 
-  * TBD
+  * Input/output on types
 
-* Default
+* Default trait
 
-  * TBD
-
-* Closures
-
-  * TBD
+  * Default values for types
