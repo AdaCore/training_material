@@ -1,6 +1,6 @@
-=====================================
-Combining Limited and Private Views
-=====================================
+=======================
+Limited Private Types
+=======================
 
 -----------------------
 Limited Private Types
@@ -209,12 +209,12 @@ Quiz
 
    .. container:: latex_environment footnotesize
 
-     What will happen when the above code is compiled?
+     What happens when the code is compiled?
 
-     A. :answer:`Type P1_T will generate a compile error`
-     B. Type P2_T will generate a compile error
-     C. Both type P1_T and type P2_T will generate compile errors
-     D. The code will compile successfully
+     A. :answer:`Type P1_T generates compile error`
+     B. Type P2_T generates compile error
+     C. Both P1_T and P2_T generate compile errors
+     D. Code compiles successfully
 
    .. container:: animate
 

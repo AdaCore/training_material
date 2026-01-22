@@ -1,6 +1,6 @@
-**************************************
-Reviewing Results and Improving Code
-**************************************
+********************
+Analyzing Messages
+********************
 
 .. container:: PRELUDE BEGIN
 
@@ -183,9 +183,9 @@ Resulting in an updated **Manual review** dialog
   .. image:: gnatsas/sas_manual_review_custom.png
     :width: 20%
 
-==================================
-Code Annotations Via GNAT Studio
-==================================
+==================
+Code Annotations
+==================
 
 --------------------------------
 Understanding Code Annotations

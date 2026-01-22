@@ -55,15 +55,15 @@ Private Types Lab Solution - Countries Map (Spec)
 
 .. container:: source_include 110_private_types/lab/private_types/answer/countries.ads :code:Ada :number-lines:1
 
------------------------------------------------------------
-Private Types Lab Solution - Countries Map (Body - 1 of 2)
------------------------------------------------------------
+-------------------------------------------------------
+Private Types Lab Solution - Countries Map (Body 1/2)
+-------------------------------------------------------
 
 .. container:: source_include 110_private_types/lab/private_types/answer/countries.adb :start-after:countries_1_begin :end-before:countries_1_end :code:Ada :number-lines:3
 
------------------------------------------------------------
-Private Types Lab Solution - Countries Map (Body - 2 of 2)
------------------------------------------------------------
+-------------------------------------------------------
+Private Types Lab Solution - Countries Map (Body 2/2)
+-------------------------------------------------------
 
 .. container:: source_include 110_private_types/lab/private_types/answer/countries.adb :start-after:countries_2_begin :end-before:countries_2_end :code:Ada :number-lines:42
 
