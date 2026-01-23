@@ -123,20 +123,18 @@ The "else" Part When Result Is Boolean
 
 * Redundant because the default result is True
 
-  .. container:: latex_environment  small
+  .. code:: Ada
+    :font-size: small
 
-    .. code:: Ada
-
-       (if P then Q else True)
+    (if P then Q else True)
 
 * So for convenience and elegance it can be omitted
 
-  .. container:: latex_environment  small
+  .. code:: Ada
+    :font-size: small
 
-    .. code:: Ada
-
-       Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
-       Acceptable : Boolean := (if P1 > 0 then P2 > 0);
+    Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
+    Acceptable : Boolean := (if P1 > 0 then P2 > 0);
 
 * Use :ada:`else` if you need to return False at the end
 
@@ -150,6 +148,7 @@ Rationale for Parentheses Requirement
   * Problem
 
     .. code:: Ada
+      :font-size: footnotesize
 
        Size : Integer := if Exact then Measure else Estimate + 1;
 
@@ -164,20 +163,23 @@ Rationale for Parentheses Requirement
   * Solution
 
     .. code:: Ada
+      :font-size: footnotesize
 
        Size : Integer := (if Exact then Measure else Estimate) + 1;
 
     **OR**
 
     .. code:: Ada
+      :font-size: footnotesize
 
        Size : Integer := (if Exact then Measure else Estimate + 1)
 
-* But not required if parentheses already present
+  * But not required if parentheses already present
 
-   - Because enclosing construct includes them
+    - Because enclosing construct includes them
 
-     .. code:: Ada
+      .. code:: Ada
+        :font-size: footnotesize
 
         Subprogram_Call (if A then B else C);
 
@@ -223,29 +225,27 @@ When to Use If Expressions
 Case Expressions
 ---------------------
 
-.. container:: latex_environment footnotesize
+* Syntax similar to *case statements*
 
- * Syntax similar to *case statements*
+  - Lighter: no closing `end case`
+  - Commas between choices
 
-    - Lighter: no closing `end case`
-    - Commas between choices
+* Same general rules as *if expressions*
 
- * Same general rules as *if expressions*
-
-    - Parentheses required unless already present
-    - Type of "result" must match context
+  - Parentheses required unless already present
+  - Type of "result" must match context
 
  * Advantage over *if expressions* is completeness checked by compiler
  * Same as with :ada:`case` statements (unless :ada:`others` is used)
 
 .. code:: Ada
+  :font-size: footnotesize
 
-    -- compile error if not all days covered
-    Hours : constant Integer :=
-       (case Day_of_Week is
-        when Mon .. Thurs => 9,
-        when Fri          => 4,
-        when Sat | Sun    => 0);
+  -- compile error if not all days covered
+  Hours : constant Integer := (case Day_of_Week is
+                               when Mon .. Thurs => 9,
+                               when Fri          => 4,
+                               when Sat | Sun    => 0);
 
 ..
   language_version 2012
