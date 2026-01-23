@@ -8,8 +8,8 @@ What We Covered
 
 * **Methods**
 
-  * Just functions tied to a type
-  * They use the :rust:`self` receiver for ergonomic syntax
+  * Functions tied to a type
+  * Use the :rust:`self` receiver for ergonomic syntax
   * Static methods act like constructors or helpers
   * Syntax helps group functionality logically
 
@@ -22,5 +22,8 @@ What We Covered
 
 * **Deriving**
 
-  * Automatically generates standard trait implementations for a type based on its structure
+  * Geenerates standard trait implementations for a type
+
+    * Automatically
+    * Based on its structure
 

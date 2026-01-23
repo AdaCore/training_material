@@ -6,18 +6,16 @@ Advanced Trait Topics
 Supertraits
 -------------
 
+* What is a :dfn:`supertrait`?
+
+  * A trait that requires another trait
+  * "If you implement this trait, you must also implement that one"
+
 .. container:: columns
 
   .. container:: column
 
-    * What is a :dfn:`supertrait`?
-
-      * A trait that requires another trait
-      * "If you implement this trait, you must also implement that one"
-
-  .. container:: column
-
-    .. container:: latex_environment tiny
+    .. container:: latex_environment scriptsize
 
       .. code:: rust
 
@@ -30,6 +28,12 @@ Supertraits
         }
 
         struct Dog(String);
+
+  .. container:: column
+
+    .. container:: latex_environment scriptsize
+
+      .. code:: rust
 
         impl Animal for Dog {
           fn leg_count(&self) -> u32 {
@@ -53,7 +57,7 @@ Supertraits
 Associated Types
 ------------------
 
-* What is an :dfn:`associated type?`
+* What is an :dfn:`associated type`?
 
   * Type placeholder defined inside a trait
   * Chosen by the implementing type

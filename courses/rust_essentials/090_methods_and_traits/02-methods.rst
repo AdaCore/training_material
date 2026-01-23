@@ -6,11 +6,11 @@ Methods
 Methods in Rust
 -----------------
 
-* What is a :dfn:`method?`
+* What is a :dfn:`method`?
 
   * Function *associated* with type via :rust:`impl` block
 
-  * Syntax: :rust:`instance.method(...)`
+  * **Syntax:** :rust:`instance.method(...)`
 
   * First parameter :dfn:`(receiver)` determines how the method uses the value
 
@@ -27,8 +27,8 @@ Method Receivers
 .. list-table::
   :header-rows: 1
 
-  * - Receiver
-    - Meaning
+  * - **Receiver**
+    - **Meaning**
 
   * - :rust:`&self`
     - Shared, read-only borrow
@@ -49,7 +49,7 @@ Method Receivers
 Method Receiver - Shared Borrow
 ---------------------------------
 
-* Definition
+**Definition**
 
   .. code:: rust
 
@@ -63,17 +63,17 @@ Method Receiver - Shared Borrow
         }
     }
 
-* Usage
+**Usage**
 
   .. code:: rust
 
-    let c = Counter { value: 5 };
-    let a = c.get();
+    let count = Counter { value: 5 };
+    let val1 = count.get();
 
     // OK: multiple shared borrows
-    let b = c.get();
+    let val2 = count.get();
 
-* Behavior
+**Behavior**
 
   * Read-only access
   * Value remains usable after calls
@@ -82,7 +82,7 @@ Method Receiver - Shared Borrow
 Method Receiver - Mutable Borrow
 ---------------------------------
 
-* Definition
+**Definition**
 
   .. code:: rust
 
@@ -92,21 +92,21 @@ Method Receiver - Mutable Borrow
         }
     }
 
-* Usage
+**Usage**
 
   .. code:: rust
 
-    let mut c = Counter { value: 0 };
-    c.increment();
+    let mut count = Counter { value: 0 };
+    count.increment();
 
     // OK, sequential mutable borrows
-    c.increment();
+    count.increment();
 
-    let bad_c = Counter { value: 0 };
+    let bad = Counter { value: 0 };
     // error: cannot borrow immutable value as mutable
-    bad_c.increment();
+    bad.increment();
 
-* Behavior
+**Behavior**
 
   * Exclusive access
   * Caller must declare the value :rust:`mut`
@@ -115,7 +115,7 @@ Method Receiver - Mutable Borrow
 Method Receiver - Take Ownership
 ----------------------------------
 
-* Definition
+**Definition**
 
   .. code:: rust
 
@@ -125,17 +125,17 @@ Method Receiver - Take Ownership
         }
     }
 
-* Usage
+**Usage**
 
   .. code:: rust
 
-    let c = Counter { value: 10 };
-    let v = c.finish();
+    let count = Counter { value: 10 };
+    let new_count = count.finish();
 
     // Error: use of moved value
-    c.get();
+    count.get();
 
-* Behavior
+**Behavior**
 
   * Value is moved into the method
   * Object cannot be reused afterward
@@ -144,7 +144,7 @@ Method Receiver - Take Ownership
 Method Receiver - Mutable Ownership
 -------------------------------------
 
-* Definition
+**Definition**
 
   .. code:: rust
 
@@ -155,19 +155,19 @@ Method Receiver - Mutable Ownership
         }
     }
 
-* Usage
+**Usage**
 
   .. code:: rust
 
-    let c = Counter { value: 5 };
+    let count = Counter { value: 5 };
 
     // ownership moved, new value returned
-    let c = c.reset();
+    let count = count.reset();
 
     // Error if you don't rebind: value was moved
-    c.reset();
+    count.reset();
 
-* Behavior
+**Behavior**
 
   * Takes ownership and allows mutation
   * Original value is consumed
@@ -179,7 +179,7 @@ Method Receiver - No Receiver
 
 * Also called :dfn:`associated receiver`
 
-* Definition
+**Definition**
 
   .. code:: rust
 
@@ -189,17 +189,17 @@ Method Receiver - No Receiver
         }
     }
 
-* Usage
+**Usage**
 
   .. code:: rust
 
     // call on the type, not an instance
-    let c = Counter::new();
+    let count = Counter::new();
 
-    // OK: c is now a normal value
-    println!("{}", c.value);
+    // OK: count is now a normal value
+    println!("{}", count.value);
 
-* Behavior
+**Behavior**
 
   * Not called on an instance
-  * No access to existing fields (self is unavailable)
+  * No access to existing fields (:rust:`self` is unavailable)

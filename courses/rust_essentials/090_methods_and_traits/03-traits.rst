@@ -40,8 +40,8 @@ Implementing a Trait
       fn greet(&self) { … }
   }
 
-* Syntax: :rust:`impl Trait for Type`
-* :rust:`Dog` acts like :rust:`Pet` and can use trait methods :rust:`talk` and :rust:`greet`
+* **Syntax:** :rust:`impl Trait for Type`
+* :rust:`Dog` *acts* like :rust:`Pet` and can *use* trait methods :rust:`talk` and :rust:`greet`
 
 -----------------------
 Default Trait Methods
@@ -72,23 +72,26 @@ Default Trait Methods
 Traits vs Methods
 -------------------
 
-.. list-table::
-  :header-rows: 1
+.. container:: latex_environment small
 
-  * - Feature
-    - Inherent Methods
-    - Trait Methods
+  .. list-table::
+    :header-rows: 1
 
-  * - Defined on type
-    - :math:`\textcolor{green!65!black}{\checkmark}`
-    - Via :rust:`impl Trait for Type`
+    * - Feature
+      - Inherent Methods
+      - Trait Methods
 
-  * - Shared abstract behavior
-    - :color-red:`X`
-    - :math:`\textcolor{green!65!black}{\checkmark}`
+    * - Defined on type
+      - :math:`\textcolor{green!65!black}{\checkmark}`
+      - Via :rust:`impl Trait for Type`
 
-  * - Polymorphism
-    - :color-red:`X`
-    - :math:`\textcolor{green!65!black}{\checkmark}`
+    * - Shared abstract behavior
+      - :color-red:`X`
+      - :math:`\textcolor{green!65!black}{\checkmark}`
 
-*Traits are about shared behavior across types*
+    * - Polymorphism
+      - :color-red:`X`
+      - :math:`\textcolor{green!65!black}{\checkmark}`
+
+* Methods define behavior on a type
+* Traits define shared behavior across multiple types

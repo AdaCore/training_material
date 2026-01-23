@@ -1,5 +1,5 @@
 ********************
-Methods And Traits
+Methods and Traits
 ********************
 
 .. container:: PRELUDE BEGIN
