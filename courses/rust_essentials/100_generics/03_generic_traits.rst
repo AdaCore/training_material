@@ -50,6 +50,20 @@ Multiple Traits
         U: Debug + PartialOrd 
     { ... }
 
+------------------------
+Satisfying Constraints
+------------------------
+
+-------------
+Orphan Rule
+-------------
+
+--------------
+Derive Macro
+--------------
+
+
+
 
 
 
