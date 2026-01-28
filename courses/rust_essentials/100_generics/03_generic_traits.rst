@@ -1,55 +1,64 @@
-================
-Generic Traits
-================
+====================
+Generic and Traits
+====================
 
-----------------
-Generic Traits
-----------------
+--------------
+Trait bounds
+--------------
 
-Traits can also be generic, just like types and functions. A trait's
-parameters get concrete types when it is used.
+-  Generic data <T> is very broad 
+
+-  Compiler will restrict what can be done with <T> 
+   -  Doesn't know if number or string or else
+   
+-  Traits are **Fine Prints** on a generic contract
+
+   -  Ensure the logic only executes on types that "fit" the requirements
+   
+   -  Added in the <> next to the type
 
 .. code:: rust
 
-   #[derive(Debug)]
-   struct Foo(String);
+	fn print_it<T: std::fmt::Display>(item: T) {
+		println!("{}", item); // Only works if T implements Display
+	}
 
-   impl From<u32> for Foo {
-       fn from(from: u32) -> Foo {
-           Foo(format!("Converted from integer: {from}"))
-       }
-   }
+   -  or with a :rust:`where` clause
+   
+.. code:: rust
 
-   impl From<bool> for Foo {
-       fn from(from: bool) -> Foo {
-           Foo(format!("Converted from bool: {from}"))
-       }
-   }
+	fn complex_function<T, U>(t: T, u: U) 
+    where 
+        T: Display, 
+        U: Debug
+    { ... }
 
-   fn main() {
-       let from_int = Foo::from(123);
-       let from_bool = Foo::from(true);
-       println!("{from_int:?}, {from_bool:?}");
-   }
+-----------------
+Multiple Traits
+-----------------
 
----------
-Details
----------
+-  Can have multiple trait bounds
 
--  The :rust:`From` trait will be covered later in the course, but its
-   :url:`definition in the std docs <https://doc.rust-lang.org/std/convert/trait.From.html>`
-   is simple.
+   -  using the :rust`+` operator
 
--  Implementations of the trait do not need to cover all possible type
-   parameters. Here, :rust:`Foo::from("hello")` would not compile because
-   there is no :rust:`From<&str>` implementation for :rust:`Foo`.
 
--  Generic traits take types as *input*, while associated types are a
-   kind of *output* type. A trait can have multiple implementations for
-   different input types.
+.. code:: rust
 
--  In fact, Rust requires that at most one implementation of a trait
-   match for any type T. Unlike some other languages, Rust has no
-   heuristic for choosing the "most specific" match. There is work on
-   adding this support, called
-   :url:`specialization <https://rust-lang.github.io/rfcs/1210-impl-specialization.html>`.
+	fn complex_function<T, U>(t: T, u: U) 
+    where 
+        T: Display + Clone, 
+        U: Debug + PartialOrd 
+    { ... }
+
+
+
+
+----------------
+Generic Traits
+----------------
+
+
+
+
+
+
