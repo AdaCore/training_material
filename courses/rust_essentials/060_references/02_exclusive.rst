@@ -1,36 +1,40 @@
-======================
+=======================
 Exclusive References
-======================
+=======================
 
-----------------------
-Exclusive References
-----------------------
+------------------------------
+Mutable References
+------------------------------
 
-Exclusive references, also known as mutable references, allow changing
-the value they refer to. They have type :rust:`&mut T`.
+- Also known as exclusive references
+- Allow changing the value they refer to
+- A mutable reference to a type :rust:`T` has type :rust:`&mut T`
+- No other references (shared or exclusive) can exist simultaneously
+- You cannot create a :rust:`&mut` reference to an immutable variable
 
 .. code:: rust
 
-   fn main() {
-       let mut point = (1, 2);
-       let x_coord = &mut point.0;
-       *x_coord = 20;
-       println!("point: {point:?}");
-   }
+    let mut two_plus_two = 4;
+    let big_brother = &mut two_plus_two;
+    *big_brother = 5; 
+    println!("Truth: {two_plus_two}");
 
----------
-Details
----------
+* Generates the following output:
 
-Key points:
+:command:`Truth: 5`
 
--  :dfn:`Exclusive` means that only this reference can be used to access the
-   value. No other references (shared or exclusive) can exist at the
-   same time, and the referenced value cannot be accessed while the
-   exclusive reference exists. Try making an :rust:`&point.0` or changing
-   :rust:`point.0` while :rust:`x_coord` is alive.
+------------------------------
+Binding vs Reference
+------------------------------
 
--  Be sure to note the difference between :rust:`let mut x_coord: &i32` and
-   :rust:`let x_coord: &mut i32`. The first one represents a shared
-   reference which can be bound to different values, while the second
-   represents an exclusive reference to a mutable value.
+* Difference between a mutable binding and a mutable reference:
+
+.. code:: rust
+
+   // Shared reference
+   // Can be reassigned to point to different items
+   let mut ref: &i32;
+
+   // Exclusive reference to a mutable value
+   // Referenced value can be changed
+   let ref: &mut i32;

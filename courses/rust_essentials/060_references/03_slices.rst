@@ -1,46 +1,56 @@
-========
+=======================
 Slices
-========
+=======================
 
---------
-Slices
---------
+------------------
+What Are Slices?
+------------------
 
-A slice gives you a view into a larger collection:
+- Give you a view into a larger collection
+  - Any container with data stored in contiguous memory
+- Refer to data stored elsewhere
 
 .. code:: rust
 
-   fn main() {
-       let a: [i32; 6] = [10, 20, 30, 40, 50, 60];
-       println!("a: {a:?}");
+    let primes: [i32; 6] = [2, 3, 5, 7, 11, 13];  
+    let slice: &[i32] = &primes[2..4];
 
-       let s: &[i32] = &a[2..4];
+    println!("Primes: {primes:?}");
+    println!("Slice: {slice:?}");
 
-       println!("s: {s:?}");
-   }
+* Generates the following output:
 
--  Slices borrow data from the sliced type.
+:command:`Primes: [2, 3, 5, 7, 11, 13]`
 
----------
-Details
----------
+:command:`Slice: [5, 7]`
 
--  We create a slice by borrowing :rust:`a` and specifying the starting and
-   ending indexes in brackets.
+-----------------
+Creating Slices
+-----------------
 
--  If the slice starts at index 0, Rust's range syntax allows us to drop
-   the starting index, meaning that :rust:`&a[0..a.len()]` and
-   :rust:`&a[..a.len()]` are identical.
+.. code:: rust
 
--  The same is true for the last index, so :rust:`&a[2..a.len()]` and
-   :rust:`&a[2..]` are identical.
+    let terminator: [char; 4] = ['T', '8', '0', '0'];  
+    let version: &[char] = &terminator[1..];
+    let generation: &[char] = &version[..1];
+    let arnold: &[char] = &terminator[..];
 
--  To easily create a slice of the full array, we can therefore use
-   :rust:`&a[..]`.
+- By referring to a collection and specifying the range in brackets
+- Range Syntax:
+  - :rust:`&a[0..len]`: Explicit start and end
+  - :rust:`&a[..len]`: Drop the starting index if it is 0
+  - :rust:`&a[2..]`: Drop the last index to include everything up to the end
+  - :rust:`&a[..]`: Full slice
 
--  :rust:`s` is a reference to a slice of :rust:`i32`. Notice that the type
-   of :rust:`s` (:rust:`&[i32]`) no longer mentions the array length. This
-   allows us to perform computation on slices of different sizes.
+-------------------
+The "Fat Pointer"
+-------------------
 
--  Slices always borrow from another object. In this example, :rust:`a` has
-   to remain 'alive' (in scope) for at least as long as our slice.
+- Slices are sometimes called **Fat Pointers**
+- They carry a memory address, *where the data starts*
+  - And extra "weight", *how many items to look at*
+
+.. note::
+
+    Slices are lightweight and fast "windows" into heavy data
+
