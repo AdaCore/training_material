@@ -1,98 +1,56 @@
-========
+=======================
 Slices
-========
+=======================
 
 ------------------
 What Are Slices?
 ------------------
 
-- A view into memory owned by another variable
-  - Must be a contiguous sequence (like an Array)
+- Give you a view into a larger collection
+  - Any container with data stored in contiguous memory
 - Refer to data stored elsewhere
-- Default range (:rust:`..`): First bound inclusive, last bound exclusive
-  - Inclusive range (:rust:`..=`): Both bounds are inclusive
-  - Indexes start at 0
 
 .. code:: rust
 
     let primes: [i32; 6] = [2, 3, 5, 7, 11, 13];  
     let slice: &[i32] = &primes[2..4];
 
-:command:`primes: [2, 3, 5, 7, 11, 13]`
+    println!("Primes: {primes:?}");
+    println!("Slice: {slice:?}");
 
-:command:`slice: [5, 7]`
+* Generates the following output:
 
-----------------
-Slice Creation
-----------------
+:command:`Primes: [2, 3, 5, 7, 11, 13]`
 
-- Created by referring to a collection, and specifying the range
-  - :rust:`&a[start..]`
-    - Explicit start to implicit end
-  - :rust:`&a[..end]`
-    - Implicit start to explicit end (*end* excluded)
-  - :rust:`&a[..]`
-    - Full range
-  - :rust:`&a[start..end]`
-    - Explicit start and end (*end* excluded)
-  
-.. code:: rust
+:command:`Slice: [5, 7]`
 
-  let terminator: [char; 4] = ['T', '8', '0', '0'];
-
-:command:`terminator:      ['T', '8', '0', '0']`
+-----------------
+Creating Slices
+-----------------
 
 .. code:: rust
 
-  // Slicing the terminator array
-  let version: &[char] = &terminator[1..];
-  let generation: &[char] = &version[..1];
-  let arnold: &[char] = &terminator[..];
-  let james: &[char] =  &arnold[2..4];
+    let terminator: [char; 4] = ['T', '8', '0', '0'];  
+    let version: &[char] = &terminator[1..];
+    let generation: &[char] = &version[..1];
+    let arnold: &[char] = &terminator[..];
 
+- By referring to a collection and specifying the range in brackets
+- Range Syntax:
+  - :rust:`&a[0..len]`: Explicit start and end
+  - :rust:`&a[..len]`: Drop the starting index if it is 0
+  - :rust:`&a[2..]`: Drop the last index to include everything up to the end
+  - :rust:`&a[..]`: Full slice
 
-:command:`version:         ['8', '0', '0']`
-
-:command:`generation:      ['8']`
-
-:command:`arnold:          ['T', '8', '0', '0']`
-
-:command:`james:           ['0', '0']`
-
--------------
-Fat Pointer
--------------
+-------------------
+The "Fat Pointer"
+-------------------
 
 - Slices are sometimes called **Fat Pointers**
-- They carry **two** components
-  - **Data Pointer** - memory address where the data starts
-  - **Length** - how many items to look at
-
-.. code:: rust
-
-  static HUGE_ARRAY = [0; 4_000_000];
-  let first_five = &HUGE_ARRAY[0..5];
+- They carry a memory address, *where the data starts*
+  - And extra "weight", *how many items to look at*
 
 .. note::
 
-    Creating a slice is **O(1)** - it takes the same constant time whether the original array has 4 elements or 4 million.
+    Slices are lightweight and fast "windows" into heavy data
 
-------------------
-&str vs "String"
-------------------
-
-- :rust:`&str`: **String slice**, immutable reference to UTF-8 encoded bytes
-  - Fixed length (cannot grow or shrink)
-  - String literals (:rust:`"Hello"`) are :rust:`&str`
-- :rust:`String`: Buffer of UTF-8 encoded bytes
-  - Allocated on the heap, can grow or shrink
-
-.. code:: rust
-
-   let s1: &str = "Hello World";
-   let s2: &str = &s1[..5];
-   println!("s2: {s2}");
-
-* Generates the following output
-
-:command:`s2: Hello`
