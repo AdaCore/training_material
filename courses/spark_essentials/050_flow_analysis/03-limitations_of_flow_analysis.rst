@@ -84,27 +84,38 @@ Analysis of Array Initialization (2/2)
 Dealing with False Alarms
 ---------------------------
 
-* A subprogram that only sometimes initializes an output parameter
+* A subprogram that may not initialize an output parameter
 
-  .. code:: Ada
+  .. container:: latex_environment scriptsize
 
-    procedure Initialize (List    : out List_T;
-                          Success : out Boolean);
+    .. code:: Ada
+
+      procedure Initialize (List    : out List_T;
+                            Success : out Boolean) is
+        begin
+         Success := False;
+         if List'Length > 0 then
+            Success := True;
+            List := (others => 0);
+         end if;
+      end Initialize;
 
 * Can generate an analysis message
 
   :error:`medium: "List" might not be initialized in "Initialize"`
 
-* If this is not an issue, you can tell the prover with :ada:`pragma Annotate`
+* Use :ada:`pragma Annotate` to justify the behavior
 
-  .. code:: Ada
+  .. container:: latex_environment scriptsize
 
-    procedure Initialize (List    : out List_T;
-                          Success : out Boolean);
-    pragma Annotate (Gnatprove,
-                     False_Positive,
-                     """List"" might not be initialized",
-                     "Not initialized in certain states");
+    .. code:: Ada
+
+      procedure Initialize (List    : out List_T;
+                            Success : out Boolean);
+      pragma Annotate (Gnatprove,
+                       False_Positive,
+                       """List"" might not be initialized",
+                       "Not initialized in certain states");
 
 * Justification inserted immediately after the check message location
 * Relaxed initialization will be seen in course on Advanced Proof
