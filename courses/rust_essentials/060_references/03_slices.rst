@@ -25,22 +25,33 @@ What Are Slices?
 :command:`Slice: [5, 7]`
 
 -----------------
-Creating Slices
+Slice Creation
 -----------------
+
+- Created by referring to a collection, and specifying the range:
+  - :rust:`&a[0..len]`: Explicit start and end, *len* excluded
+  - :rust:`&a[..len]`: Implicit start to explicit end, *len* excluded
+  - :rust:`&a[1..]`: Explicit start to implicit end
+  - :rust:`&a[..]`: Full range
 
 .. code:: rust
 
-    let terminator: [char; 4] = ['T', '8', '0', '0'];  
-    let version: &[char] = &terminator[1..];
-    let generation: &[char] = &version[..1];
-    let arnold: &[char] = &terminator[..];
+  let terminator: [char; 4] = ['T', '8', '0', '0'];
+  let version: &[char] = &terminator[1..];
+  let generation: &[char] = &version[..1];
+  let arnold: &[char] = &terminator[..];
+  let james: &[char] =  &arnold[2..4];
 
-- By referring to a collection and specifying the range in brackets
-- Range Syntax:
-  - :rust:`&a[0..len]`: Explicit start and end
-  - :rust:`&a[..len]`: Drop the starting index if it is 0
-  - :rust:`&a[2..]`: Drop the last index to include everything up to the end
-  - :rust:`&a[..]`: Full slice
+* Generates the following output:
+:command:`terminator:      ['T', '8', '0', '0']`
+
+:command:`version:         ['8', '0', '0']`
+
+:command:`generation:      ['8']`
+
+:command:`arnold:          ['T', '8', '0', '0']`
+
+:command:`james:           ['0', '0']`
 
 -------------------
 The "Fat Pointer"

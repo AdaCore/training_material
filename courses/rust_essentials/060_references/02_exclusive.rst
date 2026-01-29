@@ -6,11 +6,11 @@ Exclusive References
 Mutable References
 ------------------------------
 
-- Also known as exclusive references
-- Allow changing the value they refer to
 - A mutable reference to a type :rust:`T` has type :rust:`&mut T`
+- Allow changing the value they refer to
 - No other references (shared or exclusive) can exist simultaneously
 - You cannot create a :rust:`&mut` reference to an immutable variable
+- Also known as exclusive references
 
 .. code:: rust
 
