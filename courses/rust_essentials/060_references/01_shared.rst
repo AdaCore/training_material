@@ -6,10 +6,10 @@ Shared References
 Shared References
 ------------------------------
 
-- Provide a mechanism to access another value
 - Created with the :rust:`&` operator
-- Strictly **read-only**: the referenced data cannot change
 - A shared reference to a type :rust:`T` has type :rust:`&T`
+- Provide a mechanism to access another value
+- Strictly **read-only**: the referenced data cannot change
 - The :rust:`*` operator **dereferences** the reference to read the value
   - Use :rust:`.` for field access (no C++ style :rust:`->`)
 - Prevent modification of the referenced value
