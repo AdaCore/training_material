@@ -37,3 +37,6 @@ References
 .. include:: 060_references/02_exclusive.rst
 .. include:: 060_references/03_slices.rst
 .. include:: 060_references/04_strings.rst
+.. include:: 060_references/05_dangling.rst
+.. include:: 060_references/99_lab.rst
+.. include:: 060_references/99_summary.rst
