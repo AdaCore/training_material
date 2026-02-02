@@ -26,17 +26,44 @@ Documenting Your Own Code
   /// false if `rhs` is zero
   fn is_divisible_by(lhs: u32, rhs: u32) -> bool { … }
 
-* :rust:`///` documents the following item
+* :rust:`///` documents the *following* item
 
   * Rust treats the text as markdown
   * Things like lists and code work naturally
 
-* :dfn:`inner doc comments`
+* :rust:`//!` (or :rust:`/*! */`) the *enclosing* item
 
-  * :rust:`//!` (or :rust:`/*! */`)
-  * Add documentation inside an item
+  * Referred to as :dfn:`inner doc comments`
 
-.. code:: rust
-  :number-lines: 1
+  .. container:: latex_environment tiny
 
-  //! This module contains functionality relating to divisibility of integers.
+    .. code:: rust
+
+      //! This is an inner doc comment for the module.
+
+      pub mod my_module {
+          //! This comment documents the `my_module`.
+    
+          pub fn my_function() {
+              // Function implementation
+          }
+      }
+
+--------------------------
+Generating Documentation
+--------------------------
+
+* On a file:
+
+  :command:`rustdoc myfile.rs`
+
+  * Generates HTML documentation in :filename:`doc`
+  * Open :filename:`doc/myfile/index.html` to see your documentation
+  
+
+* On a Cargo project
+
+  :command:`cargo doc`
+
+  * Generates HTML documentation in :filename:`target/doc`
+  * Open :filename:`target/doc/your_crate_name/index.html` to see your documentation

@@ -23,8 +23,7 @@ What Is "Option<T>"?
 .. code:: rust
 
   let pos: Option<usize> = name.find('+');
-
-:rust:`pos` *can be a position or* :rust:`None`
+  // "pos" will be a position (of "usize") or "None"
 
 -------------------
 Handling "Option"
@@ -60,8 +59,9 @@ Why Use "Option"?
   * No hidden :rust:`null` pointer 
   * Must explicitly handle absence of value
 
-* Rust’s type system makes you think about missing values rather than ignore them
+* Type system makes you think about missing values
 
+  * Cannot just ignore them
   * Fewer runtime surprises
   
 

@@ -8,7 +8,7 @@ Rust Standard Library
 
 * Provides core types and APIs used across most programs
 
-* Using common types helps libraries work together smoothly.`
+* Using common types helps libraries work together smoothly.
 
   * Examples: :rust:`String` and :rust:`Vec`
 

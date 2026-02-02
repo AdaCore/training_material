@@ -8,24 +8,12 @@ Topics Covered
 
 * Standard Library
 
-  * TBD
+  * Common types/APIs
 
-* :rust:`Option`
+    * :rust:`Option`
+    * :rust:`Result`
+    * :rust:`String`
+    * :rust:`Vec`
+    * :rust:`HashMap`
 
-  * TBD
-
-* :rust:`Result`
-
-  * TBD
-
-* :rust:`String`
-
-  * TBD
-
-* :rust:`Vec`
-
- * TBD
-
-* :rust:`HashMap`
-
-  * TBD
+* Using comments as documentation

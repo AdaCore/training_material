@@ -8,11 +8,13 @@ What Is "String"?
 
 * :rust:`String` is an **owned** and **growable** UTF-8 encoded type
 
-  * Lives on the heap, grows as needed, and ensures valid UTF-8
+  * Lives on the heap
+  * Grows as needed
+  * Ensures valid UTF-8
 
 * Key points
 
-  * UTF-8 encoding means length in bytes not necessarily number of characters
+  * UTF-8 means length in bytes not necessarily number of characters
   * Implements :rust:`Deref<Target = str>`
 
     * Allows you to call :rust:`&str` methods on it
@@ -27,7 +29,7 @@ Creating Strings
 
     let s1 = String::new();
 
-* Use traits to create from literals
+* Use traits/methods to create from literals
 
   .. code:: rust
 
@@ -38,7 +40,7 @@ Creating Strings
 Modifying Strings
 -------------------
 
-* Strings are *mutable* (if declared :rust:`mut`) and support
+* Strings are *mutable* (if declared :rust:`mut`) and support "append" methods
 
   .. code:: rust
 
@@ -53,7 +55,7 @@ Modifying Strings
 Length vs Characters
 ----------------------
 
-* :rust:`::chars`
+* :rust:`::chars()`
 
   * Iterator over actual characters
   * Characters are UTF-8, so may be multiple bytes

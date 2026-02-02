@@ -16,15 +16,20 @@ What Is "HashMap<K,V>"?
 
     use std::collections::HashMap;
 
---------------
-Basing Usage
---------------
+-------------
+Basic Usage
+-------------
 
-* Create and Insert
+* Creation
 
   .. code:: rust
 
     let mut map = HashMap::new();
+
+* Insertion of key/value pair
+
+  .. code:: rust
+
     map.insert("apple".to_string(), 3);
     map.insert("banana".to_string(), 5);
 
@@ -60,7 +65,7 @@ Initialization and Iteration
 
 * Inline initialization
 
-  * No built-in macro (like :rust:`vec!)
+  * No built-in macro (like :rust:`vec!`)
   * Use :rust:`from` instead
 
   .. code:: rust

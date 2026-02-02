@@ -6,26 +6,28 @@ Summary
 What We Covered
 -----------------
 
+* Documentation
+
+  * Add actual documentation to code using comments
+
 * Standard Library
 
-  * TBD
+  * Core types/APIs
+  * Common types across multiple libraries
 
-* :rust:`Option`
+.. list-table::
 
-  * TBD
+  * - :rust:`Option`
+    - Contains a value or :rust:`None` to indicate failure
 
-* :rust:`Result`
+  * - :rust:`Result`
+    - Contains one type of value on success and another on failure
 
-  * TBD
+  * - :rust:`String`
+    - UTF-8 string that can be mapped to default :rust:`str`
 
-* :rust:`String`
+  * - :rust:`Vec`
+    - Sequence of values (also know as an *array*)
 
-  * TBD
-
-* :rust:`Vec`
-
- * TBD
-
-* :rust:`HashMap`
-
-  * TBD
+  * - :rust:`HashMap`
+    - Maps unique keys to their appropriate value

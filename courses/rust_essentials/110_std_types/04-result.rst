@@ -2,11 +2,11 @@
 Result
 ========
 
---------------------------
-What Is "Result<<T, E>"?
---------------------------
+-------------------------
+What Is "Result<T, E>"?
+-------------------------
 
-* :rust:`Result<T, E>` represents the outcome of an operation that can succeed or fail
+* Represents outcome of an operation that can succeed or fail
 
 .. code:: rust
 
@@ -18,8 +18,8 @@ What Is "Result<<T, E>"?
 
 * :rust:`Result` carries information about *why* something failed
 
-  * rust:`T` is the type returned on success
-  * rust:`E` is the type returned on failure
+  * :rust:`T` is the type returned on success
+  * :rust:`E` is the type returned on failure
 
 ----------------------
 Why "Result" Matters
@@ -41,8 +41,13 @@ Common Usage
 
 Besides match, Rust provides helpers:
 
-  * :rust:`.unwrap()` – take the value or panic
+.. list-table::
 
-  * :rust:`.expect(msg)` – panic with your message
+  * - :rust:`.unwrap()`
+    - Take the value or panic
 
-  * :rust:`.is_ok()` / :rust:`.is_err()` – check the variant
+  * - :rust:`.expect(msg)`
+    - Panic with your message
+
+  * - :rust:`.is_ok()` / :rust:`.is_err()`
+    - Check the variant

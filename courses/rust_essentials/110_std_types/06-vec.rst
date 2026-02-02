@@ -10,7 +10,7 @@ What Is "Vec<T>"?
 
   * Holds a sequence of values of type T on the heap
 
-    * Size can grow/shrink at runtime)
+    * Size can grow/shrink at runtime
 
   * Generic over element type: :rust:`Vec<i32>`, :rust:`Vec<String>`, etc.
 
