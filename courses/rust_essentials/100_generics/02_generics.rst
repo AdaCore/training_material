@@ -23,7 +23,7 @@ Generic Data Type
    
 -  :rust:`T` generic type parameter, means an Option can wrap any type
 
-   -  Option<i32>, Option<String>, or even Option<Option<u32>>
+   -  Option<i32>, Option<String> and others
 
 -  :rust:`None` represents the absence of a value
 
@@ -114,19 +114,6 @@ Multiple Generic Type
     }
 	
 
------------
-Turbofish
------------
-
--------------------
-Technical details
--------------------
 
 
 
--  This is similar to C++ templates, but Rust partially compiles the
-   generic function immediately, so that function must be valid for all
-   types matching the constraints. For example, try modifying :rust:`pick`
-   to return :rust:`even + odd` if :rust:`n == 0`. Even if only the :rust:`pick`
-   instantiation with integers is used, Rust still considers it invalid.
-   C++ would let you do this.
