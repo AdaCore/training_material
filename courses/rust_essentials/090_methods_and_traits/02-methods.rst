@@ -95,6 +95,10 @@ Method Receiver - Mutable Borrow
 
   .. code:: rust
 
+    struct Counter {
+        value: i32,
+    }
+
     impl Counter {
         fn increment(&mut self) {
             self.value += 1;
@@ -129,7 +133,14 @@ Method Receiver - Take Ownership
 
   .. code:: rust
 
+    struct Counter {
+        value: i32,
+    }
+
     impl Counter {
+        fn get(&self) -> i32 {
+            self.value
+        }
         fn finish(self) -> i32 {
             self.value
         }
@@ -158,6 +169,10 @@ Method Receiver - Mutable Ownership
 **Definition**
 
   .. code:: rust
+
+    struct Counter {
+        value: i32,
+    }
 
     impl Counter {
         fn reset(mut self) -> Self {
@@ -197,6 +212,10 @@ Method Receiver - No Receiver
 **Definition**
 
   .. code:: rust
+
+    struct Counter {
+        value: i32,
+    }
 
     impl Counter {
         fn new() -> Self {
