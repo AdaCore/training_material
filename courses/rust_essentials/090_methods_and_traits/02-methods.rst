@@ -6,11 +6,23 @@ Methods
 Methods in Rust
 -----------------
 
+**Example**
+
+  .. code:: rust
+
+    struct CarRace {
+        name: String,
+        laps: Vec<i32>,
+    }
+    impl CarRace {
+        fn method(&mut self, lap: i32) {
+            self.laps.push(lap);
+        }
+    let mut instance = CarRace::method("Monaco Grand Prix");
+
 * What is a :dfn:`method`?
 
   * Function *associated* with type via :rust:`impl` block
-
-  * **Syntax:** :rust:`instance.method(...)`
 
   * First parameter :dfn:`(receiver)` determines how the method uses the value
 
@@ -20,30 +32,27 @@ Methods in Rust
 
   * Makes code more ergonomic and readable
 
-------------------
-Method Receivers
-------------------
+----------------------------
+What is a Method Receiver?
+----------------------------
 
-.. list-table::
-  :header-rows: 1
+* First parameter of a method
 
-  * - **Receiver**
-    - **Meaning**
+  * Named :rust:`self`
 
-  * - :rust:`&self`
-    - Shared, read-only borrow
+* Tells Rust how the method gets access to self
 
-  * - :rust:`&mut self`
-    - Unique, mutable borrow
+.. code:: rust
 
-  * - :rust:`self`
-    - Takes ownership
+    fn method(&mut self, lap: i32) {
+        self.laps.push(lap);
+    }
 
-  * - :rust:`mut self`
-    - Takes and mutably uses ownership
+* Determines whether method
 
-  * - *No receiver*
-    - Associated function
+  * Takes ownership
+  * Borrows immutably
+  * Borrows mutably
 
 ---------------------------------
 Method Receiver - Shared Borrow
@@ -103,8 +112,9 @@ Method Receiver - Mutable Borrow
     count.increment();
 
     let bad = Counter { value: 0 };
-    // error: cannot borrow immutable value as mutable
     bad.increment();
+
+:error:`error[E0596]: cannot borrow "bad" as mutable, as it is not declared as mutable`
 
 **Behavior**
 
@@ -132,8 +142,9 @@ Method Receiver - Take Ownership
     let count = Counter { value: 10 };
     let new_count = count.finish();
 
-    // Error: use of moved value
     count.get();
+
+:error:`error[E0382]: borrow of moved value: "count"`
 
 **Behavior**
 
@@ -164,20 +175,24 @@ Method Receiver - Mutable Ownership
     // ownership moved, new value returned
     let count = count.reset();
 
-    // Error if you don't rebind: value was moved
     count.reset();
+    // Because we do not capture the return value
+    // it is moved to nowhere - "count" is no longer the owner
 
 **Behavior**
 
   * Takes ownership and allows mutation
   * Original value is consumed
-  * Typically used in builder / chaining APIs
+  * :dfn:`Builder pattern`
+
+    * Allows construction of complex objects
+    * Chain multiple calls together
 
 -------------------------------
 Method Receiver - No Receiver
 -------------------------------
 
-* Also called :dfn:`associated receiver`
+* Also called :dfn:`associated function`
 
 **Definition**
 
@@ -203,3 +218,29 @@ Method Receiver - No Receiver
 
   * Not called on an instance
   * No access to existing fields (:rust:`self` is unavailable)
+
+----------------------------
+Method Receivers - Summary
+----------------------------
+
+.. list-table::
+  :header-rows: 1
+
+  * - **Receiver**
+    - **Meaning**
+
+  * - :rust:`&self`
+    - Shared, read-only borrow
+
+  * - :rust:`&mut self`
+    - Unique, mutable borrow
+
+  * - :rust:`self`
+    - Takes ownership
+
+  * - :rust:`mut self`
+    - Takes and mutably uses ownership
+
+  * - *No receiver*
+    - Associated function
+

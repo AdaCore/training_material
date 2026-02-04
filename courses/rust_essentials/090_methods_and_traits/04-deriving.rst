@@ -25,9 +25,9 @@ Commonly Derived Traits
   * - :rust:`Debug`
     - Enables :rust:`{:?}` formatting
   * - :rust:`Clone`
-    - Explicit copying
+    - Deep copy (everything it contains)
   * - :rust:`Copy`
-    - Implicit bitwise copying
+    - Shallow copy (just the bits)
   * - :rust:`PartialEq, Eq`
     - Equality comparisons
   * - :rust:`PartialOrd, Ord`
@@ -51,19 +51,63 @@ Example of Deriving
 
   fn main() {
       let emp1 = Employee::default();
-      // Default trait adds `default` constructor.
+      // Default trait adds "default" constructor
 
       let mut emp2 = emp1.clone();
-      // Clone trait adds `clone` method.
+      // Clone trait adds "clone" method
 
       emp2.name = String::from("EldurScrollz");
       println!("{emp1:?} vs. {emp2:?}");
-      // Debug trait adds support for printing with `{:?}`.
+      // Debug trait adds support for printing with "{:?}"
   }
 
 * Compiler generates implementations
 * Works if all fields also implement the trait
 * Zero runtime cost
+
+--------------------------------
+Deriving in Complex Structures
+--------------------------------
+
+* When a type derives a trait, its included elements must also derive the trait
+
+  .. code:: rust
+
+    struct Child {
+        x: i32,
+    }
+
+    #[derive(Clone)]
+    struct Parent {
+        child: Child,
+    }
+
+.. container:: latex_environment scriptsize
+
+  :error:`error[E0277]: the trait bound "main::Child: Clone" is not satisfied`
+
+.. note::
+
+  This is a general rule. There are traits that do not depend on fields
+  which may allow you to skip this rule.
+
+-------------
+Orphan Rule
+-------------
+
+* You may implement a trait **if you own the trait OR you own the type**
+
+* So you could implement your "own" :rust:`clone` for :rust:`Child`
+
+  * Because you "own" :rust:`Child`
+
+.. code:: rust
+
+  impl Clone for Child {
+      fn clone(&self) -> Self {
+          Child { x: self.x }
+      }
+  }
 
 -------------------------
 Limitations on Deriving

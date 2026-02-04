@@ -11,47 +11,53 @@ Supertraits
   * A trait that requires another trait
   * "If you implement this trait, you must also implement that one"
 
-.. container:: columns
+* Example: "Anything that is a 'party animal' must be able to dance"
 
-  .. container:: column
+  * Base trait
 
-    .. container:: latex_environment scriptsize
+    .. code:: rust
 
-      .. code:: rust
+      trait Dance {
+          fn dance(&self);
+      }
 
-        trait Animal {
-          fn leg_count(&self) -> u32;
-        }
+  * Supertrait
 
-        trait Pet: Animal {
-          fn name(&self) -> String;
-        }
+    .. code:: rust
 
-        struct Dog(String);
+      trait PartyAnimal: Dance {
+          fn party(&self);
+      }
 
-  .. container:: column
+* Explanation
 
-    .. container:: latex_environment scriptsize
+  * "You cannot be a party animal unless you can already dance"
 
-      .. code:: rust
+----------------------
+Advanced Supertraits
+----------------------
 
-        impl Animal for Dog {
-          fn leg_count(&self) -> u32 {
-              4
-          }
-        }
+* A supertrait can depend on *multiple* traits
 
-        impl Pet for Dog {
-          fn name(&self) -> String {
-              self.0.clone()
-          }
-        }
+  * New base trait
 
-* Key Points
+    .. code:: rust
 
-  * :rust:`Pet` inherits requirements from :rust:`Animal`
-  * Implementers must satisfy **all** supertraits
-  * Enables trait APIs that *assume other capabilities*
+      trait Sing {
+          fn Sing (&self);
+      }
+
+  * New supertrait
+
+    .. code:: rust
+
+      trait LifeOfParty: Dance + Sing {
+          fn revel(&self);
+      }
+
+* Explanation
+
+  * "You cannot be the life of the party unless you can sing *and* dance"
 
 ------------------
 Associated Types
@@ -64,22 +70,26 @@ Associated Types
 
 .. code:: rust
 
-  trait Multiply {
-      type Output;
-      fn multiply(&self, other: &Self) -> Self::Output;
+  trait Animal {
+    type Food; // associated type
+    fn consume(&self, food: Self::Food);
   }
 
-  // when we implement Multiply, we need to specify
-  // what the Output type should be
-  impl Multiply for Meters {
-      type Output = MetersSquared;
-      fn multiply(&self, other: &Self) -> Self::Output {
-          MetersSquared(self.0 * other.0)
+  struct Cat;
+  struct Catnip;
+
+  impl Animal for Cat {
+      // We "associate" Catnip with Cat
+      type Food = Catnip; 
+      fn consume(&self, food: Catnip) {
+          println!("The cat purrs intensely over the catnip.");
       }
   }
 
 * Key Points
 
-  * Avoids extra generic parameters
-  * Ties a type directly to a trait implementation
-  * Improves readability and type inference
+  * Implementer decides type once
+
+    * Becomes "property" of implementation
+
+  * Use when only one logical choice for helper type per implementation

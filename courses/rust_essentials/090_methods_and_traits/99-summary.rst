@@ -22,7 +22,7 @@ What We Covered
 
 * **Deriving**
 
-  * Geenerates standard trait implementations for a type
+  * Generates standard trait implementations for a type
 
     * Automatically
     * Based on its structure

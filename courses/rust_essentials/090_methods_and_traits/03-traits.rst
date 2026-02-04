@@ -9,7 +9,11 @@ Traits - Rust's Interfaces
 * What is a :dfn:`trait?`
 
   * *Collection of method signatures* a type must implement
-  * Similar to interfaces in other languages
+  * Similar to interfaces in other languages but
+
+    * Typically compile-time resolution
+    * Traits are *separate* from types
+    * Traits can define associated types and constants
 
 * Traits let you abstract over types that share behavior
 
@@ -19,8 +23,8 @@ Simple Trait Example
 
 .. code:: rust
 
-  trait Pet {
-      fn talk(&self) -> String;
+  trait Friend {
+      fn response(&self) -> String;
       fn greet(&self);
   }
 
@@ -31,17 +35,27 @@ Simple Trait Example
 Implementing a Trait
 ----------------------
 
-.. code:: rust
+**Syntax**
 
-  struct Dog { name: String, age: i8 }
+  .. code:: rust
 
-  impl Pet for Dog {
-      fn talk(&self) -> String { … }
-      fn greet(&self) { … }
-  }
+    impl SomeTrait for TheType { ... }
 
-* **Syntax:** :rust:`impl Trait for Type`
-* :rust:`Dog` *acts* like :rust:`Pet` and can *use* trait methods :rust:`talk` and :rust:`greet`
+**Example**
+
+  .. code:: rust
+
+    struct Dog { name: String, age: i8 }
+
+    impl Friend for Dog {
+        fn response(&self) -> String { String::from("Wag!") }
+        fn greet(&self) { println!("Hello"); }
+    }
+
+**Behavior**
+
+  * :rust:`Dog` has the :rust:`Friend` capability (or behavior)
+  * :rust:`Dog` is **not** derived from :rust:`Friend`
 
 -----------------------
 Default Trait Methods
@@ -53,45 +67,50 @@ Default Trait Methods
 
 .. code:: rust
 
-  trait Pet {
-    fn talk(&self) -> String;
-    // default 'greet' will use 'talk'
+  trait Friend {
+    fn response(&self) -> String;
+    // default 'greet' will use 'response'
     fn greet(&self) {
-        println!("Oh you're a cutie! What's your name? {}", self.talk());
+        println!("Hello! {}", self.response());
     }
   }
 
-  impl Pet for Dog {
-    fn talk(&self) -> String {
-        format!("Woof, my name is {}!", self.name)
+  impl Friend for Dog {
+    fn response(&self) -> String {
+        format!("I'm a dog, my name is {}!", self.name)
     }
-    // could define a 'greet' for Dog but not necessary
+    // Without defining "greet", it would print
+    // Hello! I'm a dog my name is Fido
   }
 
 -------------------
 Traits vs Methods
 -------------------
 
-.. container:: latex_environment small
++----------------+----------------------------+-----------------------------------+
+| **Feature**    | **Methods**                | **Traits**                        |
++================+============================+===================================+
+| *Identity*     | What a :rust:`Dog` **is**  | What a :rust:`Dog` **can do**     |
++----------------+----------------------------+-----------------------------------+
+| *Availablity*  | Only for :rust:`Dog`       | Any type that is a :rust:`Friend` |
++----------------+----------------------------+-----------------------------------+
+| *Example*      | :rust:`fn wag_tail(&self)` | :rust:`fn response(&self)`        |
++----------------+----------------------------+-----------------------------------+
+| *Polymorphism* | No                         | Yes                               |
++----------------+----------------------------+-----------------------------------+
+|                | (specific to one type)     | (shared across types)             |
++----------------+----------------------------+-----------------------------------+
 
-  .. list-table::
-    :header-rows: 1
+-----------------------
+Real World Comparison
+-----------------------
 
-    * - Feature
-      - Inherent Methods
-      - Trait Methods
+* Methods are *private skills*
 
-    * - Defined on type
-      - :math:`\textcolor{green!65!black}{\checkmark}`
-      - Via :rust:`impl Trait for Type`
+  * A dog knows how to wag it's tail (but a cat doesn't)
+  * So put :rust:`wag_tail` in :rust:`impl Dog`
 
-    * - Shared abstract behavior
-      - :color-red:`X`
-      - :math:`\textcolor{green!65!black}{\checkmark}`
+* Traits are *common ground*
 
-    * - Polymorphism
-      - :color-red:`X`
-      - :math:`\textcolor{green!65!black}{\checkmark}`
-
-* Methods define behavior on a type
-* Traits define shared behavior across multiple types
+  * Both dog and cat have a friendly response (but they're different)
+  * Put the response in a trait which doesn't care *what* is responding
