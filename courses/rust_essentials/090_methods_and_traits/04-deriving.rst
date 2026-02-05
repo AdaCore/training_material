@@ -95,19 +95,37 @@ Deriving in Complex Structures
 Orphan Rule
 -------------
 
-* You may implement a trait **if you own the trait OR you own the type**
+* You can implement a trait for a type **only** if you own *either* the Trait *or* the Type
 
-* So you could implement your "own" :rust:`clone` for :rust:`Child`
+  * Prevents "code breakage" where two libraries try to define the same behavior for the same type
 
-  * Because you "own" :rust:`Child`
+    * Promotes global Consistency
 
-.. code:: rust
+* You **cannot** implement a foreign trait (like :rust:`Display`) for a foreign type (like :rust:`Vec`).
 
-  impl Clone for Child {
-      fn clone(&self) -> Self {
-          Child { x: self.x }
+* Examples
+
+  * Own the type not the trait
+
+  * Own the trait not the type
+
+    .. code:: rust
+
+      impl 
+
+
+  * Don't own either
+
+    .. code:: rust
+
+      impl Display for Vec<i32> {
+          fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+              write!(f, "My vector: {:?}", self)
+          }
       }
-  }
+
+    :error:`error[E0117]: only traits defined in the current crate can be implemented for types defined outside of the crate`
+
 
 -------------------------
 Limitations on Deriving

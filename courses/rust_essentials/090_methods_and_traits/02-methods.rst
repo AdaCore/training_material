@@ -6,31 +6,47 @@ Methods
 Methods in Rust
 -----------------
 
-**Example**
+.. container:: latex_environment tiny
 
   .. code:: rust
+    :number-lines: 3
 
     struct CarRace {
         name: String,
         laps: Vec<i32>,
     }
+
     impl CarRace {
-        fn method(&mut self, lap: i32) {
-            self.laps.push(lap);
+        // Constructor
+        fn new(name: &str) -> Self {
+            Self {
+                name: name.to_string(),
+                laps: Vec::new(),
+            }
         }
-    let mut instance = CarRace::method("Monaco Grand Prix");
+
+        // Method: modify data
+        fn record_lap(&mut self, time: i32) {
+            self.laps.push(time);
+        }
+    }
+
+    fn main() {
+        let mut race = CarRace::new("Monaco Grand Prix");
+        race.record_lap(114); // data and logic live together 
+    }
 
 * What is a :dfn:`method`?
 
   * Function *associated* with type via :rust:`impl` block
+
+    * e.g. :rust:`new` on line 10 and :rust:`record_lap` on line 18
 
   * First parameter :dfn:`(receiver)` determines how the method uses the value
 
 * Why use methods?
 
   * Organize behavior with the data it operates on
-
-  * Makes code more ergonomic and readable
 
 ----------------------------
 What is a Method Receiver?
@@ -129,31 +145,21 @@ Method Receiver - Mutable Borrow
 Method Receiver - Take Ownership
 ----------------------------------
 
-**Definition**
+.. code:: rust
 
-  .. code:: rust
+  impl Counter {
+      // This 'consumes' counter and returns the final number
+      fn finalize(self) -> i32 {
+          println!("Shutting down counter...");
+          // Return the value, 'self' is dropped here
+          self.value
+      }
+  }
 
-    struct Counter {
-        value: i32,
-    }
+  let count = Counter { value: 10 };
+  let total = count.finalize(); 
 
-    impl Counter {
-        fn get(&self) -> i32 {
-            self.value
-        }
-        fn finish(self) -> i32 {
-            self.value
-        }
-    }
-
-**Usage**
-
-  .. code:: rust
-
-    let count = Counter { value: 10 };
-    let new_count = count.finish();
-
-    count.get();
+  count.get();
 
 :error:`error[E0382]: borrow of moved value: "count"`
 
