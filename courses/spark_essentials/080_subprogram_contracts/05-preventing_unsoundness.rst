@@ -118,7 +118,7 @@ Subprogram Variants
 .. code:: ada
 
    function Half (Value : Integer) return Integer
-     Subprogram_Variant =>
+     with Subprogram_Variant =>
        (Increases => (if Value > 0 then -Value else Value)),
    is
    begin

@@ -191,15 +191,10 @@ Access to Data on the Stack
   - Not allowed on global variable which would remain visible
   - Result of general access type with :ada:`access all` syntax
 
-|
+.. code::
 
-* :ada:`Constant'Access` of access-to-constant type
-
-|
-
-* :ada:`Variable'Access` of access-to-variable type
-
-|
+  Object_Read  : access constant Object_T := Object'Access;
+  Object_Write : access Object_T := Object'Access;
 
 * Variable is *moved* and cannot be referenced anymore
 
@@ -211,7 +206,7 @@ Attributes :ada:`Old` and :ada:`Loop_Entry`
 
   - Implicit copy on subprogram/loop entry would violate ownership
 
-* Prefix of access type needs to be a call to an *allocating function*
+* To use :ada:`'Old` (or :ada:`'Loop_Entry`) with pointers, you must explicitly allocate a safe copy
 
   - Allocating function is a function returing an access-to-variable type
 
