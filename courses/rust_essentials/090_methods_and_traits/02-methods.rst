@@ -248,32 +248,43 @@ Method Receiver - No Receiver
 Method Receivers at a Glance
 ------------------------------
 
-* &self **(The Reader)**
+* :rust:`&self` (**The Reader** - *shared, read-only borrow*)
 
-  * *Meaning*: Shared, read-only borrow
   * *Power*: Can read data but cannot change it
   * *Usage*: Multiple parts of the code can call this at the same time
 
-* &mut self **(The Writer)**
+.. raw:: latex
 
-  * *Meaning*: Unique, mutable borrow
+   \vspace{1mm}
+
+* :rust:`&mut self` (**The Writer** - *unique, mutable borrow*)
+
   * *Power*: Can modify the internal data of the object
   * *Usage*: Exclusive access; no one else has visibility while running
 
-* self **(The Owner)**
+.. raw:: latex
 
-  * *Meaning*: Takes full ownership
+   \vspace{1mm}
+
+* :rust:`self` (**The Owner** - *takes full ownership*)
+
   * *Power*: Can destroy, move, or transform the object
   * *Usage*: Object is "consumed" - cannot be used again after the call
 
-* mut self **(The Builder)**
+.. raw:: latex
 
-  * *Meaning*: Takes ownership and allows mutation
+   \vspace{1mm}
+
+* :rust:`mut self` (**The Builder** - *takes ownership and allows mutation*)
+
   * *Power*: You can change an object you are about to return or discard
   * *Usage*: Common "Builder Pattern" for constructing complex objects
 
-* No Receiver **(The Helper)**
+.. raw:: latex
 
-  * *Meaning*: Associated function
+   \vspace{1mm}
+
+* No Receiver (**The Helper** - *associated function*)
+
   * *Power*: No access to a specific instance or its fields
   * *Usage*: Usually used for constructors, like :rust:`Counter::new()`
