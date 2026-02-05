@@ -161,14 +161,15 @@ Accumulating Information
 
      procedure Search_Table (T : Table; Found : out Boolean) is
      begin
+        Found := False;
         for J in T'Range loop
            if T(J) = 0 then
-              return True;
+              Found := True;
+              exit;
            end if;
            pragma Loop_Invariant
              (for all K in T'First .. J => T(K) /= 0);
         end loop;
-        return False;
      end Search_Table;
 
 ------------------------------
