@@ -33,7 +33,7 @@ Methods in Rust
 
     fn main() {
         let mut race = CarRace::new("Monaco Grand Prix");
-        race.record_lap(114); // data and logic live together 
+        race.record_lap(114); // data and logic live together
     }
 
 * What is a :dfn:`method`?
@@ -157,7 +157,7 @@ Method Receiver - Take Ownership
   }
 
   let count = Counter { value: 10 };
-  let total = count.finalize(); 
+  let total = count.finalize();
 
   count.get();
 
@@ -244,28 +244,36 @@ Method Receiver - No Receiver
   * Not called on an instance
   * No access to existing fields (:rust:`self` is unavailable)
 
-----------------------------
-Method Receivers - Summary
-----------------------------
+------------------------------
+Method Receivers at a Glance
+------------------------------
 
-.. list-table::
-  :header-rows: 1
+* &self **(The Reader)**
 
-  * - **Receiver**
-    - **Meaning**
+  * *Meaning*: Shared, read-only borrow
+  * *Power*: Can read data but cannot change it
+  * *Usage*: Multiple parts of the code can call this at the same time
 
-  * - :rust:`&self`
-    - Shared, read-only borrow
+* &mut self **(The Writer)**
 
-  * - :rust:`&mut self`
-    - Unique, mutable borrow
+  * *Meaning*: Unique, mutable borrow
+  * *Power*: Can modify the internal data of the object
+  * *Usage*: Exclusive access; no one else has visibility while running
 
-  * - :rust:`self`
-    - Takes ownership
+* self **(The Owner)**
 
-  * - :rust:`mut self`
-    - Takes and mutably uses ownership
+  * *Meaning*: Takes full ownership
+  * *Power*: Can destroy, move, or transform the object
+  * *Usage*: Object is "consumed" - cannot be used again after the call
 
-  * - *No receiver*
-    - Associated function
+* mut self **(The Builder)**
 
+  * *Meaning*: Takes ownership and allows mutation
+  * *Power*: You can change an object you are about to return or discard
+  * *Usage*: Common "Builder Pattern" for constructing complex objects
+
+* No Receiver **(The Helper)**
+
+  * *Meaning*: Associated function
+  * *Power*: No access to a specific instance or its fields
+  * *Usage*: Usually used for constructors, like :rust:`Counter::new()`
