@@ -95,37 +95,49 @@ Deriving in Complex Structures
 Orphan Rule
 -------------
 
-* You can implement a trait for a type **only** if you own *either* the Trait *or* the Type
+* **Can** implement trait for type **only** if you own the Trait or the Type
 
-  * Prevents "code breakage" where two libraries try to define the same behavior for the same type
+  * Prevents two libraries try from defining same behavior for same type
 
-    * Promotes global Consistency
+* **Cannot** implement foreign trait (:rust:`Debug`) for foreign type (:rust:`Vec`)
 
-* You **cannot** implement a foreign trait (like :rust:`Display`) for a foreign type (like :rust:`Vec`).
+**Examples**
 
-* Examples
+*Own the type not the trait*
 
-  * Own the type not the trait
+  .. code:: rust
 
-  * Own the trait not the type
+    struct MyType(i32);      // local type
+    impl Debug for MyType {} // external trait
 
-    .. code:: rust
+.. raw:: latex
 
-      impl 
+  \vspace{1mm}
 
+*Own the trait not the type*
 
-  * Don't own either
+  .. code:: rust
 
-    .. code:: rust
+    trait Hello { // local trait
+        fn hello(&self) -> &'static str;
+    }
+    impl Hello for String { // external type
+        fn hello(&self) -> &'static str {
+            "Hello!"
+        }
+    }
 
-      impl Display for Vec<i32> {
-          fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-              write!(f, "My vector: {:?}", self)
-          }
-      }
+.. raw:: latex
 
-    :error:`error[E0117]: only traits defined in the current crate can be implemented for types defined outside of the crate`
+  \vspace{1mm}
 
+*Don't own either*
+
+  .. code:: rust
+
+    impl Debug for Vec<i32> {}
+
+  :color-red:`error[E0117]: only traits defined in the current crate can be implemented for types defined outside of the crate`
 
 -------------------------
 Limitations on Deriving
