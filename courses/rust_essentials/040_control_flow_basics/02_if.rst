@@ -1,0 +1,63 @@
+========================
+"if" Expressions
+========================
+
+---------------------------
+Using "if" as a Statement
+---------------------------
+
+- Evaluated top to bottom
+- Condition tests if a boolean expression evaluates to :rust:`true`
+- Blocks are **mandatory**, no shorthand!
+- Parentheses around the condition are **optional**
+  - Usage is considered unidiomatic
+- May have either:
+  - Zero or more :rust:`else if`
+  - Zero or one final :rust:`else`
+
+.. code:: rust
+
+    let coins = 800;
+    if coins == 0 {
+        println!("You have no gold. The dragon eats you.");
+    } else if coins < 1000 {
+        println!("A solid pouch! Buy a new sword!");
+    } else {
+        println!("New graphics card acquired.");
+    }
+
+---------------------------------
+Using "if" as an Expression
+---------------------------------
+
+* Every block is an expression that returns a value
+
+.. code:: rust
+
+    let food = 80;
+    let status = if food < 100 { 
+        "Starving. Call the vet and the police." 
+    } else { 
+        "Full. Now demanding fresh water." 
+    }; // Note the ; here to terminate the let statement
+    println!("Pet Status: {}", status);
+
+---------------------------------------------------
+Return Type Consistency
+---------------------------------------------------
+
+* Returned values, from all branches, must have the same type
+
+  .. code:: rust
+
+    let size = if x < 20 { "small"; } else { "large" };
+        let size = if x < 20 {
+        "small"; // Note the ;
+    } else {
+        "large"  // Note the absence of ; 
+    };
+
+:error:`error[E0308]: 'if' and 'else' have incompatible types`
+
+- :rust:`"small"` and :rust:`"large"` are both strings
+  - Adding a :rust:`;` after a value makes the types different
