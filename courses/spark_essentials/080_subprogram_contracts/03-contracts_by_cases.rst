@@ -2,27 +2,44 @@
 Contracts by Cases
 ====================
 
+-------------------------------------
+Simplifying Pre- and Postconditions
+-------------------------------------
+
+* Assume you have a subprogram that increments away from zero
+
+  .. code:: Ada
+
+    procedure Away_From_Zero (Number : in out Integer) with
+      Post =>
+       (if Number'Old < 0 then Number = Number'Old - 1
+        elsif Number'Old > 0 then Number = Number'Old + 1
+        else Number = Number'Old);
+
+* You are really trying to show different expected outputs over the
+  entire input range
+
+  * Almost like a :ada:`case` expression!
+
 ----------------------
 Contract Cases (1/2)
 ----------------------
 
-* Some contracts are best expressed by cases
-
-  - Inspired by *Parnas Tables*
-
 * SPARK defines aspect :ada:`Contract_Cases`
 
   - Syntax of named aggregate
-  - Each case consists of a guard and a consequence
+  - Each case consists of a guard (left-hand side) and a consequence (right-hand side)
+  - Inspired by *Parnas Tables*
 
-* Example from SPARK tutorial
+* Simplified version of :ada:`Away_From_Zero`
 
   .. code:: ada
 
-     Contract_Cases =>
-       (A(1) = Val                              => ...
-        Value_Found_In_Range (A, Val, 2, 10)    => ...
-        (for all J in Arr'Range => A(J) /= Val) => ...
+    procedure Away_From_Zero (Number : in out Integer) with
+      Contract_Cases =>
+        (Number < 0 => Number = Number'Old - 1,
+         Number > 0 => Number = Number'Old + 1,
+         Number = 0 => Number = Number'Old);
 
 ----------------------
 Contract Cases (2/2)
