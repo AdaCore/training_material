@@ -30,7 +30,9 @@ Patterns Are Declarative
 
 - Patterns describe the *what* (shape) rather than the *how* (steps)
 
-- Matching is a structural check, not a sequence of procedural field accesses
+- Matching is a structural check
+
+  - Not a sequence of procedural field accesses
 
 - This style scales effectively as data structures grow in complexity
 
