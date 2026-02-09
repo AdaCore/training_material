@@ -79,7 +79,7 @@ Exhaustiveness
 
   let travel_to = Direction::East;
 
-  // ERROR: non-exhaustive patterns: `East` and `West` not covered
+  // ERROR: non-exhaustive patterns: 'East' and 'West' not covered
   match travel_to {
     Direction::North => println!("Heading Up"),
     Direction::South => println!("Heading Down"),
