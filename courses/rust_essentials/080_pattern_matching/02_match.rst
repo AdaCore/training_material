@@ -130,7 +130,9 @@ Why "match" Matters
 
 - Makes all cases explicit
 
-- Each arm is independent and exclusive (no fallthrough between cases)
+- Each arm is independent and exclusive
+
+  - No fallthrough between cases
 
 - Enables compiler-checked completeness
 
