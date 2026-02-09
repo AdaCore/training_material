@@ -10,7 +10,7 @@ Deriving Traits
 
   * Built-in macro to automatically generate code
 
-What does :dfn:`deriving` do?
+* What does :dfn:`deriving` do?
 
   * Automatically generates trait implementations
   * Uses :rust:`#[derive(...)]` attribute
@@ -99,27 +99,32 @@ Deriving in Complex Structures
 Orphan Rule
 -------------
 
-* **Can** implement trait for type **only** if you own the trait or the type
+* You may implement a trait for a type only if you own the trait or the type
 
-  * Prevents two libraries from defining same behavior for same type
-  * To implement trait **Some_Trait** for **A_Type** you must own either **Some_Trait**
-    or **A_Type**
-  * So you **cannot** implement foreign trait :rust:`Debug` for foreign type :rust:`Vec`
+  * "Own" means: defined in your crate
 
-**Examples**
+* Why do we need this?
 
-*Own the type not the trait*
+  * Prevents two libraries from defining conflicting behavior
+  * Ensures trait implementations are globally unambiguous
+
+* To implement trait :rust:`SomeTrait` for :rust:`SomeType`
+
+  * You must own :rust:`SomeTrait` or :rust:`SomeType`
+  * If you own neither |rightarrow| compile error
+
+----------------------
+Orphan Rule Examples
+----------------------
+
+**Own the type not the trait**
 
   .. code:: rust
 
     struct MyType(i32);      // owned type
     impl Debug for MyType {} // external trait
 
-.. raw:: latex
-
-  \vspace{1mm}
-
-*Own the trait not the type*
+**Own the trait not the type**
 
   .. code:: rust
 
@@ -132,11 +137,7 @@ Orphan Rule
         }
     }
 
-.. raw:: latex
-
-  \vspace{1mm}
-
-*Don't own either*
+**Don't own either**
 
   .. code:: rust
 
@@ -148,7 +149,7 @@ Orphan Rule
 Limitations on Deriving
 -------------------------
 
-You cannot derive when:
+You cannot derive when
 
   * Behavior depends on logic, not structure
   * You need validation or side effects
@@ -162,27 +163,61 @@ You cannot derive when:
 "Derive" vs Manual "Impl"
 ---------------------------
 
-.. list-table::
-  :header-rows: 1
+.. container:: latex_environment tiny
 
-  * - Aspect
-    - :rust:`derive`
-    - Manual :rust:`impl`
+  .. list-table::
+    :header-rows: 1
 
-  * - Effort
-    - Minimal
-    - More code
+    * - Decision Factor
+      - :rust:`#[derive(...)]`
+      - Manual :rust:`impl`
 
-  * - Custom behavior
-    - :color-red:`X`
-    - :math:`\textcolor{green!65!black}{\checkmark}`
+    * - *Logic Source*
+      - **Compiler-Generated**
+      - **Programmer Written**
 
-  * - Compile-time
-    - :math:`\textcolor{green!65!black}{\checkmark}`
-    - :math:`\textcolor{green!65!black}{\checkmark}`
+    * -
+      - Uses standard "one-size-fits-all" template
+      - Write code from scratch for total control
 
-  * - Readability
-    - High
-    - Depends
+    * -
+      -
+      -
 
+    * - *Effort*
+      - **Minimal**
+      - **High**
+ 
+    * -
+      - Single line above struct or enum
+      - Reauires writing boilerplate and handling every field
 
+    * -
+      -
+      -
+
+    * - *Customization*
+      - **None**
+      - **Total**
+
+    * -
+      - It's "all-or-nothing" for every field in the struct
+      - You can hide fields, transform data, skip logic
+
+    * -
+      -
+      -
+
+    * - *Compile-Time*
+      - **Checked**
+      - **Checked**
+
+    * -
+      - Compiler ensures logic is safe
+      - Compiler ensures manual code is safe
+
+  **Derive** is for **Computers**
+    If you just need the compiler to know how to clone your data or print it for a log, let it do the work
+
+  **Manual** is for **Humans**
+    If you are formatting a string that a user will read (like :rust:`Display`), you usually need a manual implementation to make it look "pretty"

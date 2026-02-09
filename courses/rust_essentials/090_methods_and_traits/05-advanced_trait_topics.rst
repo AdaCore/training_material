@@ -10,7 +10,7 @@ Supertraits
 
   * "If you implement this trait, you must also implement that one"
 
-**Example: "Anything that is a 'party animal' must be able to dance"**
+*Anything that is a "party animal" must be able to dance**
 
   * Base trait
 
@@ -38,7 +38,7 @@ Advanced Supertraits
 
 * A supertrait can depend on *multiple* traits
 
-**Example: "To be the life of the party you must be able to sing AND dance"**
+**To be the "life of the party" you must be able to sing AND dance**
 
   * New base trait
 
@@ -56,7 +56,7 @@ Advanced Supertraits
           fn revel(&self);
       }
 
-* Explanation
+**Explanation**
 
   * To be a :rust:`LifeOfParty` you must know how to :rust:`Dance` and :rust:`Sing`
 

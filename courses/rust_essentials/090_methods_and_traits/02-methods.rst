@@ -201,8 +201,6 @@ Method Receiver - Mutable Ownership
 Method Receiver - No Receiver
 -------------------------------
 
-* Also called :dfn:`associated function`
-
 **Definition**
 
   .. code:: rust
@@ -231,6 +229,10 @@ Method Receiver - No Receiver
 
   * Not called on an instance
   * No access to existing fields (:rust:`self` is unavailable)
+
+.. note::
+
+  This is usually called an :dfn:`associated function`
 
 ------------------------------
 Method Receivers at a Glance

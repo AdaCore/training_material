@@ -94,11 +94,11 @@ Traits vs Methods
 +----------------+----------------------------+-----------------------------------+
 | *Availablity*  | Only for :rust:`Dog`       | Any type that is a :rust:`Friend` |
 +----------------+----------------------------+-----------------------------------+
-| *Example*      | :rust:`fn wag_tail(&self)` | :rust:`fn response(&self)`        |
-+----------------+----------------------------+-----------------------------------+
 | *Polymorphism* | No                         | Yes                               |
 +----------------+----------------------------+-----------------------------------+
 |                | (specific to one type)     | (shared across types)             |
++----------------+----------------------------+-----------------------------------+
+| *Example*      | :rust:`fn wag_tail(&self)` | :rust:`fn response(&self)`        |
 +----------------+----------------------------+-----------------------------------+
 
 -----------------------
@@ -107,8 +107,8 @@ Real World Comparison
 
 * Methods are *private skills*
 
-  * A dog knows how to wag it's tail (but a cat doesn't)
-  * So put :rust:`wag_tail` in :rust:`impl Dog`
+  * A dog knows how to wag its tail (but a cat doesn't)
+  * Put :rust:`wag_tail` in :rust:`impl Dog`
 
 * Traits are *common ground*
 
