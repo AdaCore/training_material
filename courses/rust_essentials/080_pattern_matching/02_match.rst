@@ -122,7 +122,7 @@ Nested Patterns in "match"
     (x, y) => println!("({}, {})", x, y),
   }
 
-- The first matching arm is selected
+- First matching arm is selected
 
 ---------------------
 Why "match" Matters
