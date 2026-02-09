@@ -137,7 +137,7 @@ Pattern Composition
 - Inner patterns describe substructure
 
 .. code:: rust
-  :number-lines: 3
+  :number-lines: 1
 
   let point = (0, 5);
 
