@@ -66,7 +66,7 @@ Exhaustiveness
 
 - Missing cases cause a compile-time error
 
-- This applies to all :rust:`match` expressions
+- Applies to all :rust:`match` expressions
 
 .. code:: rust
 
