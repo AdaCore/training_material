@@ -33,7 +33,7 @@ Conditional Matching
 
 - Matches a single pattern conditionally
 
-- Follows assignment Order
+- Follows assignment order
 
   - Pattern = value
   - Cannot be swapped
