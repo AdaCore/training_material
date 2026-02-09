@@ -6,7 +6,11 @@ Deriving
 Deriving Traits
 -----------------
 
-What does :dfn:`deriving` mean?
+* What **is** :dfn:`deriving`?
+
+  * Built-in macro to automatically generate code
+
+What does :dfn:`deriving` do?
 
   * Automatically generates trait implementations
   * Uses :rust:`#[derive(...)]` attribute
@@ -95,11 +99,12 @@ Deriving in Complex Structures
 Orphan Rule
 -------------
 
-* **Can** implement trait for type **only** if you own the Trait or the Type
+* **Can** implement trait for type **only** if you own the trait or the type
 
-  * Prevents two libraries try from defining same behavior for same type
-
-* **Cannot** implement foreign trait (:rust:`Debug`) for foreign type (:rust:`Vec`)
+  * Prevents two libraries from defining same behavior for same type
+  * To implement trait **Some_Trait** for **A_Type** you must own either **Some_Trait**
+    or **A_Type**
+  * So you **cannot** implement foreign trait :rust:`Debug` for foreign type :rust:`Vec`
 
 **Examples**
 
@@ -107,7 +112,7 @@ Orphan Rule
 
   .. code:: rust
 
-    struct MyType(i32);      // local type
+    struct MyType(i32);      // owned type
     impl Debug for MyType {} // external trait
 
 .. raw:: latex
@@ -118,7 +123,7 @@ Orphan Rule
 
   .. code:: rust
 
-    trait Hello { // local trait
+    trait Hello { // owned trait
         fn hello(&self) -> &'static str;
     }
     impl Hello for String { // external type

@@ -6,57 +6,45 @@ Methods
 Methods in Rust
 -----------------
 
+* What is a :dfn:`method`?
+
+  * Function *associated* with type via :rust:`impl` block
+
+* Why use methods?
+
+  * Organize behavior with the data it operates on
+
+
 .. container:: latex_environment tiny
 
   .. code:: rust
     :number-lines: 3
 
     struct CarRace {
-        name: String,
         laps: Vec<i32>,
     }
 
     impl CarRace {
-        // Constructor
-        fn new(name: &str) -> Self {
-            Self {
-                name: name.to_string(),
-                laps: Vec::new(),
-            }
-        }
-
-        // Method: modify data
+        // Method: Modify data
         fn record_lap(&mut self, time: i32) {
             self.laps.push(time);
         }
     }
 
     fn main() {
-        let mut race = CarRace::new("Monaco Grand Prix");
+        let mut race = CarRace::new();
         race.record_lap(114); // data and logic live together
     }
-
-* What is a :dfn:`method`?
-
-  * Function *associated* with type via :rust:`impl` block
-
-    * e.g. :rust:`new` on line 10 and :rust:`record_lap` on line 18
-
-  * First parameter :dfn:`(receiver)` determines how the method uses the value
-
-* Why use methods?
-
-  * Organize behavior with the data it operates on
 
 ----------------------------
 What is a Method Receiver?
 ----------------------------
 
-* First parameter of a method
+* First parameter of a **method**
 
   * Named :rust:`self`
 
-* Tells Rust how the method gets access to self
+* Specifies how the method accesses the value it is called on
 
 .. code:: rust
 

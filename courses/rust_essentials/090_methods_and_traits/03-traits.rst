@@ -9,7 +9,7 @@ Traits - Rust's Interfaces
 * What is a :dfn:`trait?`
 
   * *Collection of method signatures* a type must implement
-  * Similar to interfaces in other languages but
+  * Similar to interfaces in other languages **but**
 
     * Typically compile-time resolution
     * Traits are *separate* from types
@@ -69,7 +69,7 @@ Default Trait Methods
 
   trait Friend {
     fn response(&self) -> String;
-    // default 'greet' will use 'response'
+    // default "greet" will use "response"
     fn greet(&self) {
         println!("Hello! {}", self.response());
     }

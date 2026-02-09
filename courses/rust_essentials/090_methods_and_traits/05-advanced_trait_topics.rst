@@ -11,7 +11,7 @@ Supertraits
   * A trait that requires another trait
   * "If you implement this trait, you must also implement that one"
 
-* Example: "Anything that is a 'party animal' must be able to dance"
+**Example: "Anything that is a 'party animal' must be able to dance"**
 
   * Base trait
 
@@ -29,15 +29,17 @@ Supertraits
           fn party(&self);
       }
 
-* Explanation
+**Explanation**
 
-  * "You cannot be a party animal unless you can already dance"
+  * To be a :rust:`PartyAnimal` you must know how to :rust:`Dance`
 
 ----------------------
 Advanced Supertraits
 ----------------------
 
 * A supertrait can depend on *multiple* traits
+
+**Example: "To be the life of the party you must be able to sing AND dance"**
 
   * New base trait
 
@@ -57,7 +59,7 @@ Advanced Supertraits
 
 * Explanation
 
-  * "You cannot be the life of the party unless you can sing *and* dance"
+  * To be a :rust:`LifeOfParty` you must know how to :rust:`Dance` and :rust:`Sing`
 
 ------------------
 Associated Types
