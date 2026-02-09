@@ -20,7 +20,7 @@ What Is a Pattern
 
   // Pattern:   Identifier (musketeers)
   // Structure: Single, scalar value
-  // Binding:   "musketeers" is now bound to value "3"
+  // Binding:   'musketeers' is now bound to value '3'
 
   let musketeers = 3;
 
@@ -38,7 +38,7 @@ Patterns Are Declarative
 
 .. code:: rust
 
-  // Declarative: Describing the "stencil"
+  // Declarative: Describing the 'stencil'
   match point {
     Point { x: 0, y: ver } => println!("On Y axis at {ver}"),
     _ => {}
