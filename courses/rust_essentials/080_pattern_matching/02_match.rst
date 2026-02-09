@@ -10,8 +10,7 @@ What Is "match"
 
 - At least one pattern must match
 
-  - Only one match is allowed
-  - First one wins!
+  - First matching arm is executed
 
 - Selected arm determines the result
 
