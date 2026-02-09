@@ -69,7 +69,7 @@ Default Trait Methods
 
   trait Friend {
     fn response(&self) -> String;
-    // default "greet" will use "response"
+    // default 'greet' will use 'response'
     fn greet(&self) {
         println!("Hello! {}", self.response());
     }
@@ -79,7 +79,7 @@ Default Trait Methods
     fn response(&self) -> String {
         format!("I'm a dog, my name is {}!", self.name)
     }
-    // Without defining "greet", it would print
+    // Without defining 'greet', it would print
     // Hello! I'm a dog my name is Fido
   }
 

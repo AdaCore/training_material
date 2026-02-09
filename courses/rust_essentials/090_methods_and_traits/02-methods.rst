@@ -186,7 +186,7 @@ Method Receiver - Mutable Ownership
 
     count.reset();
     // Because we do not capture the return value
-    // it is moved to nowhere - "count" is no longer the owner
+    // it is moved to nowhere - 'count' is no longer the owner
 
 **Behavior**
 

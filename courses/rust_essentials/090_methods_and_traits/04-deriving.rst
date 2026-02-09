@@ -55,14 +55,14 @@ Example of Deriving
 
   fn main() {
       let emp1 = Employee::default();
-      // Default trait adds "default" constructor
+      // Default trait adds 'default' constructor
 
       let mut emp2 = emp1.clone();
-      // Clone trait adds "clone" method
+      // Clone trait adds 'clone' method
 
       emp2.name = String::from("EldurScrollz");
       println!("{emp1:?} vs. {emp2:?}");
-      // Debug trait adds support for printing with "{:?}"
+      // Debug trait adds support for printing with '{:?}'
   }
 
 * Compiler generates implementations
