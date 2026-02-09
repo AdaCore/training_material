@@ -24,7 +24,7 @@ Enums and Variants
 
 .. note::
 
-  Patterns are the ONLY way to safely access the data inside these variants
+  Patterns are the **only** way to safely access the data inside these variants
 
 ------------------------
 Matching Enum Variants
