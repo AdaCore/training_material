@@ -34,7 +34,7 @@ Patterns Are Declarative
 
   - Not a sequence of procedural field accesses
 
-- This style scales effectively as data structures grow in complexity
+- Scale effectively as data structures grow in complexity
 
 .. code:: rust
 
