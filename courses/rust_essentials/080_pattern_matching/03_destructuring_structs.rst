@@ -98,4 +98,4 @@ Ignoring Fields
 
 .. note::
 
-  :rust:`..` *captures* specific nammed fields and *ignores* the rest
+  :rust:`..` *captures* specific named fields and *ignores* the rest
