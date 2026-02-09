@@ -148,7 +148,7 @@ Pattern Composition
 
 :command:`on y-axis at 5`
 
-- If the value was :rust:`let point = (5, 0);`
+- If line 1 was :rust:`let point = (5, 0);`
 
   - Fails to match the first pattern because 5 does not equal 0
   - Matches the wildcard pattern (:rust:`_`)
