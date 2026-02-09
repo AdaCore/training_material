@@ -18,9 +18,9 @@ What Is a Pattern
 
 .. code:: rust
 
-  // Pattern: musketeers (identifier)
+  // Pattern:   Identifier (musketeers)
   // Structure: Single, scalar value
-  // Binding: "musketeers" is now bound to value "3"
+  // Binding:   "musketeers" is now bound to value "3"
 
   let musketeers = 3;
 
