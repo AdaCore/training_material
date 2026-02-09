@@ -6,9 +6,8 @@ Advanced Trait Topics
 Supertraits
 -------------
 
-* What is a :dfn:`supertrait`?
+* A :dfn:`supertrait` is a trait that requires *another* trait
 
-  * A trait that requires another trait
   * "If you implement this trait, you must also implement that one"
 
 **Example: "Anything that is a 'party animal' must be able to dance"**
@@ -65,9 +64,8 @@ Advanced Supertraits
 Associated Types
 ------------------
 
-* What is an :dfn:`associated type`?
+* An :dfn:`associated type` is a type placeholder defined inside a trait
 
-  * Type placeholder defined inside a trait
   * Chosen by the implementing type
 
 .. code:: rust
