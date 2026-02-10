@@ -16,17 +16,32 @@ Struct Patterns
 
   Destructuring works anywhere patterns are allowed
 
+-------------------------------------
+Destructuring: The Stencil Metaphor
+-------------------------------------
+
+- Think of a **pattern** as a *stencil* placed over a value
+
+- **Match (left of colon):** tells Rust *where* to look inside the struct
+
+- **Binding (right of colon):** where the data "falls through" into your local scope
+
+- **Result:** You "break open" the complex struct to get exactly the pieces you need
+
+.. code:: rust
+
+  // Placing the stencil (pattern) over the point 'p'
+  let Point { x, y } = p;
+
 ---------------------
 Basic Destructuring
 ---------------------
 
-- Fields can be bound directly to names
+- **Mapping (Longhand):** Explicitly rename data using :rust:`field: variable`
 
-  - Order does not matter
+- **Order Independence:** Rust matches by field name, not position
 
-- Names may differ from field names
-
-- Field shorthand can be used when names match
+- **Shorthand:** Use when the *variable name* matches the *field name*
 
 .. code:: rust
 
@@ -45,7 +60,7 @@ Basic Destructuring
   let Point { x, y } = p;
   // x = 3, y = 4
 
-  // Order independence
+  // Order independence: 'y' found by name
   let Point { y: pos_y, x: pos_x } = p;
 
 -------------------
