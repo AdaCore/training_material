@@ -14,8 +14,11 @@
 
 .. code:: rust
 
-  let x = 5;
-  let (a, b) = (1, 2);
+  let x = 5; // ALWAYS matches. This is "irrefutable"
+
+  // ERROR: refutable pattern in local binding
+  // This pattern ONLY matches if 'x' is exactly '7'
+  let 7 = x;
 
 ----------------------
 Conditional Matching
