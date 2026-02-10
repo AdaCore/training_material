@@ -107,25 +107,27 @@ Ignoring Fields
 
 - Useful when only part of a struct matters
 
-.. code:: rust
+.. container:: latex_environment small
 
-  struct PhysicsObject {
-    id: u32,
-    x: i32,
-    y: i32,
-    velocity: f64,
-   }
+  .. code:: rust
 
-  let obj = PhysicsObject { id: 1, x: 10, y: 20, velocity: 5.5 };
+    struct PhysicsObject {
+      id: u32,
+      x: i32,
+      y: i32,
+      velocity: f64,
+    }
 
-  // Capture 'x' and ignore all other fields
-  let PhysicsObject { x, .. } = obj;
+    let obj = PhysicsObject { id: 1, x: 10, y: 20, velocity: 5.5 };
 
-  // Ignore a specific field by name using '_'
-  let PhysicsObject { id, velocity: _, .. } = obj;
+    // Capture 'x' and ignore all other fields
+    let PhysicsObject { x, .. } = obj;
 
-  // Capturing multiple specific fields
-  let PhysicsObject { id, velocity, .. } = obj;
+    // Ignore a specific field by name using '_'
+    let PhysicsObject { id, velocity: _, .. } = obj;
+
+    // Capturing multiple specific fields
+    let PhysicsObject { id, velocity, .. } = obj;
 
 .. note::
 
