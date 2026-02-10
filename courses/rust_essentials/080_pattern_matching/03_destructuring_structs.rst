@@ -37,35 +37,21 @@ Destructuring: The Stencil Metaphor
 Basic Destructuring
 ---------------------
 
-- **Mapping (Longhand):** Explicitly rename data using :rust:`field: variable`
+- The pattern mirrors the struct's shape to extract values
 
 - **Order Independence:** Rust matches by field name, not position
 
-- **Shorthand:** Use when the *variable name* matches the *field name*
+- **Implicit Matching:** Patterns work anywhere a variable is introduced
 
 .. code:: rust
 
-  struct Point {
-    x: i32,
-    y: i32,
-  }
-
   let p = Point { x: 3, y: 4 };
 
-  // Longhand: Renaming fields to new variables
-  // Types (i32) are preserved during the "binding"
-  let Point { x: new_x, y: new_y } = p;
+  // Pattern shape must match the struct shape
+  let Point { x, y } = p; 
 
-  // new_x: i32 = 3
-  // new_y: i32 = 4
-
-  // Shorthand: Variable names match field names
-  let Point { x, y } = p;
-  
-  // x = 3, y = 4
-
-  // Order independence: 'y' found by name
-  let Point { y: pos_y, x: pos_x } = p;
+  // Fields are found by name, so order doesn't matter
+  let Point { y, x } = p;
 
 -------------------
 Shorthand Binding
@@ -77,13 +63,39 @@ Shorthand Binding
 
 - Shorthand is a syntactic shortcut for longhand renaming
 
+- Most common way to destructure in Rust
+
 .. code:: rust
 
   // Shorthand
   let Point { x, y } = p;
 
-  // Above is equivalent to explicit "rename" syntax:
+  // ...is equivalent to explicit "rename" syntax:
   let Point { x: x, y: y } = p;
+
+-----------------------
+Longhand and Renaming
+-----------------------
+
+- Use :rust:`field: variable` to rename data as it is extracted
+
+- Useful when generic field names (like :rust:`x`) need descriptive local names
+
+- New variables inherit the exact type (e.g., :rust:`i32`) from the struct
+
+.. code:: rust
+
+  struct Point {
+    x: i32,
+    y: i32,
+  }
+
+  // Renaming 'x' to 'new_x' to provide local context
+  // Types are strictly preserved during the "binding"
+  let Point { x: new_x, y: new_y } = p; 
+
+  // new_x: i32 = 3
+  // new_y: i32 = 4
 
 -----------------
 Ignoring Fields
