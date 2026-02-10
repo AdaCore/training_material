@@ -53,8 +53,8 @@ Basic Destructuring
   let p = Point { x: 3, y: 4 };
 
   // Longhand: Renaming fields to new variables
-  let Point { x: horizontal, y: vertical } = p;
-  // horizontal = 3, vertical = 4
+  let Point { x: new_x, y: new_y } = p;
+  // new_x = 3, new_y = 4
 
   // Shorthand: Variable names match field names
   let Point { x, y } = p;
