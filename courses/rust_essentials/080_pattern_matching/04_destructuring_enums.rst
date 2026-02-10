@@ -131,22 +131,38 @@ Struct Variants
     }
   }
 
----------------------------
-Exhaustiveness with Enums
----------------------------
+----------------------------
+Enums as Robust Data Models
+----------------------------
 
-- All enum variants must be handled
+- **Mutually Exclusive States** 
 
-- Missing variants cause a compile-time error
+  - Enums represent a value that is exactly one of several possibilities
 
-- Exhaustiveness scales as enums evolve
+- **Safety via Exhaustiveness** 
 
-----------------------
-Enums as Data Models
-----------------------
+  - All variants must be handled
+  
+  - Missing cases cause a compile-time error
 
-- Enums represent mutually exclusive states
+- **Future-Proofing** 
 
-- Each variant defines its own shape
+  - If you add a new variant later, the compiler identifies every :rust:`match` that needs updating
 
-- Pattern matching enforces correct handling
+- **Pattern Enforcement** 
+
+  - Pattern matching is the *only* way to safely access data inside a variant
+
+.. code:: rust
+
+  enum Status {
+      Loading,
+      Success(String),
+      Failure(i32),
+  }
+
+  // ERROR: non-exhaustive patterns: 'Failure' not covered 
+  match current_status {
+      Status::Loading => println!("Please wait..."),
+      Status::Success(data) => println!("Got: {data}"),
+  }
