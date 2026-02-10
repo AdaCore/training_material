@@ -53,11 +53,15 @@ Basic Destructuring
   let p = Point { x: 3, y: 4 };
 
   // Longhand: Renaming fields to new variables
+  // Types (i32) are preserved during the "binding"
   let Point { x: new_x, y: new_y } = p;
-  // new_x = 3, new_y = 4
+
+  // new_x: i32 = 3
+  // new_y: i32 = 4
 
   // Shorthand: Variable names match field names
   let Point { x, y } = p;
+  
   // x = 3, y = 4
 
   // Order independence: 'y' found by name
