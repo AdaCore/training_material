@@ -57,9 +57,9 @@ Conditional Matching
 
 - :rust:`if let` is shorthand for a two-arm :rust:`match`
 
-- Use when only one case is interesting
+- Suited for logic where only one specific pattern is relevant
 
-- Prefer :rust:`match` when handling multiple cases
+- :rust:`match` remains the standard for handling multiple distinct cases
 
 .. code:: rust
 
