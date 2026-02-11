@@ -20,9 +20,9 @@ Shared References
     let first = 'A';
     let second = 'B';
     let mut reference: &char = &first; // refers to "first"
-    println!("reference: {}", *ref);
+    println!("reference: {}", *reference);
     reference = &second; // now refers to "second"
-    println!("ref: {}", *ref);
+    println!("ref: {}", *reference);
 
 * Generates the following output
 
