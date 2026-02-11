@@ -528,7 +528,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--directories",
         help="Comma-separated list of folders to search for things like images and Beamer themes",
-        default=f"{ROOT}//,:{ROOT}/images:",
+        default=f"{ROOT}//,{ROOT}/images",
         required=False,
     )
     parser.add_argument("-j", "--jobs", type=int, default=0, required=False)
