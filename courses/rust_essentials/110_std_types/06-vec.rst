@@ -13,6 +13,7 @@ What Is "Vec<T>"?
     * Size can grow/shrink at runtime
 
   * Generic over element type: :rust:`Vec<i32>`, :rust:`Vec<String>`, etc.
+  * Elements are contiguous in memory
 
 * Dereferences to a slice (:rust:`[T]`)
 
@@ -45,12 +46,20 @@ Basic Operations
 
 * Vectors support common operations:
 
-  * Indexing: :rust:`v[i]`
+  * **Safe access:** :rust:`v.get(i)` returns :rust:`Option<&T>`
+  * **Remove last:** :rust:`v.pop()` returns :rust:`Option<T>`
+  * **Iterators:** iterate with :rust:`for x in &v`
+  * **Indexing:** :rust:`v[i]`
 
     * Panics if out of bounds
 
-  * Safe access: :rust:`v.get(i)` returns :rust:`Option<&T>`
+    .. code:: rust
 
-  * Remove last: :rust:`v.pop()` returns :rust:`Option<T>`
+      let v = vec![1, 2, 3]; // A Vec<i32>
+      println!("The second element is: {}", v[1]);
+      println!("The sixth element is: {}", v[5]);
 
-  * Iterators: iterate with :rust:`for x in &v`
+    :command:`The second element is: 2`
+
+    :error:`index out of bounds: the len is 3 but the index is 5`
+

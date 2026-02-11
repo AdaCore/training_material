@@ -2,34 +2,40 @@
 Option
 ========
 
-----------------------
-What Is "Option<T>"?
-----------------------
+--------------------------------
+"Option<T>" - Handling Absence
+--------------------------------
 
-* :rust:`Option<T>` represents an optional value in Rust:
+* Use :rust:`Option<T>` to detect missing values
+
+  * Instead of using *null* as other languages
+  * Forces you to acknowledge when a value might be missing
+
+* Defined as an enum with two variants
 
   * :rust:`Some(T)`
 
-    * contains a value of type T
+    * Contains a value of type T
 
   * :rust:`None`
 
-    * Represents no value
+    * Represents the absence of a value
 
-* Rust uses :rust:`Option` instead of nullable pointers (:rust:`null`)
+* Cannot look at value in :rust:`Some` unless you check for :rust:`None`
 
-  * Force handling of absence explicitly
+  * Eliminates "Null Pointer Exceptions" at compile time
 
-.. code:: rust
+* Used for
 
-  let pos: Option<usize> = name.find('+');
-  // "pos" will be a position (of "usize") or "None"
+  * Optional arguments
+  * Lookups in a collection (like a :rust:`HashMap`)
+  * Any function that might fail to return a result
 
 -------------------
 Handling "Option"
 -------------------
 
-* You need to handle either possiblity
+* You must handle either possiblity
 
 * Typical handling
 

@@ -1,6 +1,6 @@
-==============
+==========
 Overview
-==============
+==========
 
 -----------------------
 Rust Standard Library
@@ -8,20 +8,51 @@ Rust Standard Library
 
 * Provides core types and APIs used across most programs
 
-* Using common types helps libraries work together smoothly.
+* Using common types helps libraries work together smoothly
 
   * Examples: :rust:`String` and :rust:`Vec`
 
-* Library layers
+* Is not a monolithic block
 
-  * :rust:`core`
+  * Layered stack designed to scale from microcontrollers to servers
 
-    * Minimal, no OS or heap (for embedded / low-level)
+* **core** (foundation)
 
-  * :rust:`alloc`
+  * Dependency-free base
+  * Used in :rust:`#![no_std]` environments (embedded, kernels)
 
-    * Adds heap allocation (Vec, Box, Arc)
+* **alloc** (middle layer)
 
-  * :rust:`std`
+  * Adds smart pointers and collections requiing dynamic allocation
+  * Used when you have a heap but no OS
 
-    * Full library (I/O, threads, collections, networking)
+* **std** (full suite)
+
+  * Complete library for general purpose programming
+  * Default for desktop/server applications running on Linux, Windows, or macOS
+
+--------------------------
+One Library, Three Tiers
+--------------------------
+
+.. image:: rust_essentials/std_crate.svg
+
+* Standard library is not a monolithic block
+
+  * Layered stack designed to scale
+
+* **core** (foundation)
+
+  * Does not require an operating system or memory allocator
+  * Contains basic types, primitive operations, macros
+
+* **alloc** (middle layer)
+
+  * Contains things like :rust:`Vec`, :rust:`String`, :rust:`Box`, etc
+
+* **std** (full suite)
+
+  * Contains everything in core and alloc, plus OS abstractions like file I/O, networking, etc
+
+
+

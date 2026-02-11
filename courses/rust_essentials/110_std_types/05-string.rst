@@ -17,7 +17,7 @@ What Is "String"?
   * UTF-8 means length in bytes not necessarily number of characters
   * Implements :rust:`Deref<Target = str>`
 
-    * Allows you to call :rust:`&str` methods on it
+    * converts to a string slice (:rust:`&str`) when passed to functions
 
 ------------------
 Creating Strings
@@ -58,13 +58,12 @@ Length vs Characters
 * :rust:`::chars()`
 
   * Iterator over actual characters
-  * Characters are UTF-8, so may be multiple bytes
+
+    * Characters are UTF-8, so may be multiple bytes
 
 * :rust:`.len()`
 
-  - Size of string in bytes (**not** characters)
-
-  * To get number of characters in :rust:`String` use :rust:`.chars().count()`
+  * Size of string in bytes (**not** characters)
 
 .. code:: rust
 
@@ -77,3 +76,7 @@ Length vs Characters
     );
 
 :command:`s1: len = 5, number of chars = 5`
+
+.. note::
+
+  To get number of characters in :rust:`String` use :rust:`.chars().count()`
