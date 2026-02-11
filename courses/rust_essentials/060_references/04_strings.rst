@@ -13,7 +13,7 @@ Two main "string" types
   - Stored in the program binary
 - :rust:`String`: Buffer of UTF-8 encoded bytes
   - Created from a string literal with :rust:`String::from()`
-  - Similar to C++ std::string 
+  - Similar to C++ :cpp:`std::string`
 
 .. code:: rust
 
