@@ -1,14 +1,17 @@
-=======================
+========
 Slices
-=======================
+========
 
 ------------------
 What Are Slices?
 ------------------
 
-- Give you a view into a larger collection
-  - Any container with data stored in contiguous memory
+- A view into memory owned by another variable
+  - Must be a contiguous sequence (like an Array)
 - Refer to data stored elsewhere
+- Default :rust:`..` range: First bound inclusive, last bound exclusive
+  - Inclusive :rust:`..=` range: Both bounds are inclusive
+  - Indexes start at 0
 
 .. code:: rust
 
@@ -18,15 +21,15 @@ What Are Slices?
     println!("Primes: {primes:?}");
     println!("Slice: {slice:?}");
 
-* Generates the following output:
+* Generates the following output
 
 :command:`Primes: [2, 3, 5, 7, 11, 13]`
 
 :command:`Slice: [5, 7]`
 
------------------
+----------------
 Slice Creation
------------------
+----------------
 
 - Created by referring to a collection, and specifying the range:
   - :rust:`&a[0..len]`: Explicit start and end, *len* excluded
@@ -37,12 +40,13 @@ Slice Creation
 .. code:: rust
 
   let terminator: [char; 4] = ['T', '8', '0', '0'];
+
   let version: &[char] = &terminator[1..];
   let generation: &[char] = &version[..1];
   let arnold: &[char] = &terminator[..];
   let james: &[char] =  &arnold[2..4];
 
-* Generates the following output:
+* Generates the following output
 :command:`terminator:      ['T', '8', '0', '0']`
 
 :command:`version:         ['8', '0', '0']`
@@ -53,15 +57,17 @@ Slice Creation
 
 :command:`james:           ['0', '0']`
 
--------------------
-The "Fat Pointer"
--------------------
+-------------
+Fat Pointer
+-------------
 
 - Slices are sometimes called **Fat Pointers**
-- They carry a memory address, *where the data starts*
-  - And extra "weight", *how many items to look at*
+- They carry **two** components:
+  - **Data Pointer** - memory address where the data starts
+  - **Length** - how many items to look at
 
 .. note::
 
-    Slices are lightweight and fast "windows" into heavy data
+    Slices are lightweight and fast "windows" into heavy data.
+    Creating a slice is **O(1)** ; it takes the same constant time whether the original array has 4 elements or 4 million.
 
