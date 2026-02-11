@@ -39,15 +39,18 @@ Slice Creation
   
 .. code:: rust
 
-  let terminator: [char; 4] = ['T', '8', '0', '0']; 
+  let terminator: [char; 4] = ['T', '8', '0', '0'];
+
+:command:`terminator:      ['T', '8', '0', '0']`
+
+.. code:: rust
+
   // Slicing the terminator array
   let version: &[char] = &terminator[1..];
   let generation: &[char] = &version[..1];
   let arnold: &[char] = &terminator[..];
   let james: &[char] =  &arnold[2..4];
 
-* Generates the following output
-:command:`terminator:      ['T', '8', '0', '0']`
 
 :command:`version:         ['8', '0', '0']`
 
@@ -68,6 +71,5 @@ Fat Pointer
 
 .. note::
 
-    Slices are lightweight and fast "windows" into heavy data.
     Creating a slice is **O(1)** ; it takes the same constant time whether the original array has 4 elements or 4 million.
 
