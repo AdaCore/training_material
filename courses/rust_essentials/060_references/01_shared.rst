@@ -1,15 +1,15 @@
-===========================
+===================
 Shared References
-===========================
+===================
 
-------------------------------
+-------------------
 Shared References
-------------------------------
+-------------------
 
 - Created with the :rust:`&` operator
 - A shared reference to a type :rust:`T` has type :rust:`&T`
 - Provide a mechanism to access another value
-- Strictly **read-only**: the referenced data cannot change
+- Strictly **read-only**: the referenced data **cannot change**
 - The :rust:`*` operator **dereferences** the reference to read the value
   - Use :rust:`.` for field access (no C++ style :rust:`->`)
 - Prevent modification of the referenced value
@@ -19,13 +19,14 @@ Shared References
 
     let first = 'A';
     let second = 'B';
-    let mut ref: &char = &first; // refers to first
+    let mut reference: &char = &first; // refers to "first"
+    println!("reference: {}", *ref);
+    reference = &second; // now refers to "second"
     println!("ref: {}", *ref);
-    ref = &second; // now refers to second
-    println!("ref: {}", *ref);
 
-* Generates the following output:
+* Generates the following output
 
-:command:`ref: A`
+:command:`reference: A`
 
-:command:`ref: B`
+:command:`reference: B`
+
