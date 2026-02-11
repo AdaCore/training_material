@@ -8,7 +8,7 @@ Reference Safety
 
 - References are always safe to use
   - Can **never** be :rust:`null`
-  - Null checking is not necessary
+    - Null checking is not necessary
   - Cannot outlive the data they point to
   - Dangling references cannot occur
 
