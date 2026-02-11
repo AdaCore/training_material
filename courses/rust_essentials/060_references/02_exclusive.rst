@@ -1,10 +1,10 @@
-=======================
+======================
 Exclusive References
-=======================
+======================
 
-------------------------------
+--------------------
 Mutable References
-------------------------------
+--------------------
 
 - A mutable reference to a type :rust:`T` has type :rust:`&mut T`
   - Allow changing the value they refer to
@@ -20,15 +20,16 @@ Mutable References
     *big_brother = 5; 
     println!("Truth: {two_plus_two}");
 
-* Generates the following output:
+* Generates the following output
 
 :command:`Truth: 5`
 
-------------------------------
+----------------------
 Binding vs Reference
-------------------------------
+----------------------
 
-* Difference between a mutable binding and a mutable reference:
+
+Difference between a mutable binding and a mutable reference:
 
 .. code:: rust
 
