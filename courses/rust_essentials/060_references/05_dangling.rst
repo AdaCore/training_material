@@ -2,9 +2,9 @@
 Reference Validity
 ====================
 
---------------------
+------------------
 Reference Safety
---------------------
+------------------
 
 - References are always safe to use
   - Can **never** be :rust:`null`
@@ -20,6 +20,6 @@ Reference Safety
    };
    println!("Jack screams: {rose}");
 
-* Compiler output:
+* Compiler output
 
 :command:`error[E0597]: 'jack' does not live long enough`
