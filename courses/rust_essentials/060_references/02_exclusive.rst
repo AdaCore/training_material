@@ -35,8 +35,8 @@ Difference between a mutable binding and a mutable reference:
 
    // Shared reference
    // Can be reassigned to point to different items
-   let mut ref: &i32;
+   let mut reference: &i32;
 
    // Exclusive reference to a mutable value
    // Referenced value can be changed
-   let ref: &mut i32;
+   let reference: &mut i32;
