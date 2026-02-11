@@ -32,15 +32,15 @@ Slice Creation
 ----------------
 
 - Created by referring to a collection, and specifying the range:
-  - :rust:`&a[0..len]`: Explicit start and end, *len* excluded
-  - :rust:`&a[..len]`: Implicit start to explicit end, *len* excluded
-  - :rust:`&a[1..]`: Explicit start to implicit end
+  - :rust:`&a[start..]`: Explicit start to implicit end
+  - :rust:`&a[..end]`: Implicit start to explicit end, *end* excluded
   - :rust:`&a[..]`: Full range
-
+  - :rust:`&a[start..end]`: Explicit start and end, *end* excluded
+  
 .. code:: rust
 
-  let terminator: [char; 4] = ['T', '8', '0', '0'];
-
+  let terminator: [char; 4] = ['T', '8', '0', '0']; 
+  // Slicing the terminator array
   let version: &[char] = &terminator[1..];
   let generation: &[char] = &version[..1];
   let arnold: &[char] = &terminator[..];
