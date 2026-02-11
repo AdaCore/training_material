@@ -30,6 +30,29 @@ Conditional Matching
 
 - Rust provides shorthand forms for common cases
 
+--------------
+Match Guards
+--------------
+
+- Use an :rust:`if` condition to filter a pattern based on its value
+
+- Guard runs *after* the pattern matches, but *before* the arm's code block
+
+- Guards are dynamic
+
+  - Compiler usually requires a "catch-all" arm (:rust:`_`)
+
+.. code:: rust
+
+  let pair = (2, -2);
+
+  match pair {
+      (x, y) if x == y => println!("They match!"),
+      (x, y) if x + y == 0 => println!("They neutralize!"),
+      (x, _) if x % 2 == 0 => println!("The first is even"),
+      _ => println!("No special relationship"),
+  }
+
 ----------
 "if let"
 ----------
