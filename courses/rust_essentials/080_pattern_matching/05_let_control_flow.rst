@@ -111,18 +111,25 @@ Match Guards
 
 .. code:: rust
 
-  let mut energy_level = Some(3);
-
-  // While the battery still has 'Some' charge...
-  while let Some(percent) = energy_level {
-    if percent > 0 {
-      println!("Device running... {}% remaining", percent);
-      energy_level = Some(percent - 1);
-    } else {
-      println!("Shutting down...");
-      energy_level = None; // Terminal state: Loop exits
+  enum Progress {
+        Step(i32),
+        Done,
     }
-  }
+
+    let mut current = Progress::Step(3);
+
+    // Loop continues as long as 'current' matches 'Step(val)'
+    while let Progress::Step(val) = current {
+        println!("Steps remaining: {val}");
+        
+        if val > 0 {
+            current = Progress::Step(val - 1);
+        } else {
+            current = Progress::Done; // Pattern will fail on next check
+        }
+    }
+
+    println!("Finished!");
 
 ---------------------------
 Pattern-Based Convenience
