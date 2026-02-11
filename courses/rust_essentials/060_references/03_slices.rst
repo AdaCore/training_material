@@ -69,6 +69,11 @@ Fat Pointer
   - **Data Pointer** - memory address where the data starts
   - **Length** - how many items to look at
 
+.. code:: rust
+
+  static HUGE_ARRAY = [0; 4_000_000];
+  let first_five = &HUGE_ARRAY[0..5];
+
 .. note::
 
     Creating a slice is **O(1)** ; it takes the same constant time whether the original array has 4 elements or 4 million.
