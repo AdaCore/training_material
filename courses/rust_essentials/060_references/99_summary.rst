@@ -25,4 +25,4 @@ What We Covered
   - :rust:`&str` is a slice
 
 - **Safety**
-  - References are never null and cannot dangle
+  - References are never null and are always valid
