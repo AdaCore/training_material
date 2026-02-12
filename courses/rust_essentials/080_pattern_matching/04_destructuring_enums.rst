@@ -116,7 +116,7 @@ Struct Variants
 
 - Partial matching is supported
 
-.. container:: latex_environment scriptsize
+.. container:: latex_environment tiny
 
   .. code:: rust
 
