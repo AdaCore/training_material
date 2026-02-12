@@ -107,7 +107,7 @@ Ignoring Fields
 
 - Useful when only part of a struct matters
 
-.. container:: latex_environment small
+.. container:: latex_environment scriptsize
 
   .. code:: rust
 

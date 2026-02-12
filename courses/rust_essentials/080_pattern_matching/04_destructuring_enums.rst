@@ -90,20 +90,22 @@ Tuple Variants
 
 - Patterns mirror the variant structure
 
-.. code:: rust
+.. container:: latex_environment scriptsize
 
-  enum Event {
-    KeyPress(char),
-    MouseClick(i32, i32),
-  }
+  .. code:: rust
 
-  let touch = Event::MouseClick(10, 20);
+    enum Event {
+      KeyPress(char),
+      MouseClick(i32, i32),
+    }
 
-  match touch {
-    Event::KeyPress(tap) => println!("key: {}", tap),
-    Event::MouseClick(x, y) => 
-      println!("click at {}, {}", x, y),
-  }
+    let touch = Event::MouseClick(10, 20);
+
+    match touch {
+      Event::KeyPress(tap) => println!("key: {}", tap),
+      Event::MouseClick(x, y) => 
+        println!("click at {}, {}", x, y),
+    }
 
 -----------------
 Struct Variants
@@ -115,21 +117,23 @@ Struct Variants
 
 - Partial matching is supported
 
-.. code:: rust
+.. container:: latex_environment scriptsize
 
-  enum Shape {
-    Circle { radius: f64 },
-    Rectangle { width: f64, height: f64 },
-  }
+  .. code:: rust
 
-  let profile = Shape::Rectangle { width: 3.0, height: 4.0 };
-
-  match profile {
-    Shape::Circle { radius } => println!("circle r={}", radius),
-    Shape::Rectangle { width, height } => {
-      println!("rect {} x {}", width, height);
+    enum Shape {
+      Circle { radius: f64 },
+      Rectangle { width: f64, height: f64 },
     }
-  }
+
+    let profile = Shape::Rectangle { width: 3.0, height: 4.0 };
+
+    match profile {
+      Shape::Circle { radius } => println!("circle r={}", radius),
+      Shape::Rectangle { width, height } => {
+        println!("rect {} x {}", width, height);
+      }
+    }
 
 ----------------------------
 Enums as Robust Data Models
