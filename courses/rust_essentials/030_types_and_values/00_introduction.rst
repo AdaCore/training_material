@@ -12,12 +12,12 @@ Topics Covered
 
 - **Common Data Types** 
 
-    -What kind of data we can store (like numbers, text, or true/false)
+    - What kind of data we can store (like numbers, text, or true/false)
 
 - **Arithmetic** 
 
-    -How to perform basic math operations
+    - How to perform basic math operations
 
 - **Type Inference** 
 
-    -How Rust is smart enough to often guess the type of data for us
+    - How Rust is smart enough to often guess the type of data for us
