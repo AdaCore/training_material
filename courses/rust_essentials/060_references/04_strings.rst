@@ -2,16 +2,16 @@
 Strings
 =========
 
--------------------------
-Two main "string" types
--------------------------
+----------------
+&str vs String
+----------------
 
-- :rust:`&str`: String slice, immutable reference to UTF-8 encoded bytes
+- :rust:`&str`: **String slice**, immutable reference to UTF-8 encoded bytes
   - Similar to :rust:`&[u8]`
   - Fixed length (cannot grow or shrink)
   - String literals (:rust:`"Hello"`) are :rust:`&str`
-  - Stored in the program binary
 - :rust:`String`: Buffer of UTF-8 encoded bytes
+  - Allocated on the heap, can grow or shrink
   - Created from a string literal with :rust:`String::from()`
   - Similar to C++ :cpp:`std::string`
 
