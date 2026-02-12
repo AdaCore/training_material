@@ -103,8 +103,7 @@ Tuple Variants
 
     match touch {
       Event::KeyPress(tap) => println!("key: {}", tap),
-      Event::MouseClick(x, y) => 
-        println!("click at {}, {}", x, y),
+      Event::MouseClick(x, y) => println!("click at {}, {}", x, y),
     }
 
 -----------------
@@ -130,14 +129,12 @@ Struct Variants
 
     match profile {
       Shape::Circle { radius } => println!("circle r={}", radius),
-      Shape::Rectangle { width, height } => {
-        println!("rect {} x {}", width, height);
-      }
+      Shape::Rectangle { width, height } => { println!("rect {} x {}", width, height); }
     }
 
-----------------------------
+-----------------------------
 Enums as Robust Data Models
-----------------------------
+-----------------------------
 
 - **Mutually Exclusive States** 
 
