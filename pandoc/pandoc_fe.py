@@ -506,6 +506,7 @@ def delete_temp_file():
 if __name__ == "__main__":
     PANDOC = Path(sys.argv[0]).resolve().parent
     ROOT = PANDOC.parent
+    SEP = os.pathsep
 
     parser = argparse.ArgumentParser()
 
@@ -528,7 +529,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--directories",
         help="Comma-separated list of folders to search for things like images and Beamer themes",
-        default=f"{ROOT}//,{ROOT}/images",
+        default=f"{ROOT}//,{os.pathsep}{ROOT}/images{os.pathsep}",
         required=False,
     )
     parser.add_argument("-j", "--jobs", type=int, default=0, required=False)
