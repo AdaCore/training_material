@@ -40,3 +40,4 @@ Difference between a mutable binding and a mutable reference:
    // Exclusive reference to a mutable value
    // Referenced value can be changed
    let reference: &mut i32;
+

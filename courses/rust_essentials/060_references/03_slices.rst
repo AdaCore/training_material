@@ -9,8 +9,8 @@ What Are Slices?
 - A view into memory owned by another variable
   - Must be a contiguous sequence (like an Array)
 - Refer to data stored elsewhere
-- Default :rust:`..` range: First bound inclusive, last bound exclusive
-  - Inclusive :rust:`..=` range: Both bounds are inclusive
+- Default range (:rust:`..`): First bound inclusive, last bound exclusive
+  - Inclusive range (:rust:`..=`): Both bounds are inclusive
   - Indexes start at 0
 
 .. code:: rust
