@@ -36,9 +36,11 @@ Match Guards
 
 - Use an :rust:`if` condition to filter a pattern based on its value
 
-- Guard runs *after* the pattern matches, but *before* the arm's code block
+- Guard runs *after* the pattern matches
 
-- Guards are dynamic
+  - ...but *before* the arm's code block
+
+- Guards are *dynamic*
 
   - Compiler usually requires a "catch-all" arm (:rust:`_`)
 

@@ -138,11 +138,11 @@ Enums as Robust Data Models
 
 - **Mutually Exclusive States** 
 
-  - Enums represent a value that is exactly one of several possibilities
+  - Enums represent a value that is exactly *one* of several possibilities
 
 - **Safety via Exhaustiveness** 
 
-  - All variants must be handled
+  - *All* variants must be handled
   
   - Missing cases cause a compile-time error
 
