@@ -118,7 +118,7 @@ Modifying Variables In-Place
 Arithmetic Nuance: Division
 -----------------------------
 
-- The :rust:`/` operator behaves differents depending on the type
+- The :rust:`/` operator behaves differently depending on the type
 
   - **Integer Division - Truncation**
 
