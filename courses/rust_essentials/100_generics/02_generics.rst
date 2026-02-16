@@ -80,7 +80,7 @@ Example
 .. code:: rust
 
 
-    // The Definition: T is a placeholder for ANY type
+    // Definition: T is a placeholder for ANY type
     fn encourage<T>(item: T) -> T {
         println!("You're doing great, little value!");
         item 
