@@ -17,6 +17,4 @@ Topics Covered
 
 -  **Slices**
    -  View into collections
-
--  **Strings**
-   -  :rust:`String` vs :rust:`&str`
+   -  :rust:`&str` vs :rust:`String` 
