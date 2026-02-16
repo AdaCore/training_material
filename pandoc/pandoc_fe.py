@@ -532,6 +532,8 @@ if __name__ == "__main__":
         default=f"{ROOT}//,{os.pathsep}{ROOT}/images{os.pathsep}",
         required=False,
     )
+    #    default=f"{ROOT}//,:{ROOT}/images:",
+
     parser.add_argument("-j", "--jobs", type=int, default=0, required=False)
 
     parser.add_argument(
