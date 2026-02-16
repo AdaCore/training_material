@@ -109,7 +109,7 @@ Trait Bounds Generics
     }
 
 ----------------
-Turbofish ::<>
+Turbofish "::<>"
 ----------------
 
 -  Usually Rust compiler determines the type to use from context
