@@ -10,7 +10,7 @@ What We Learned
 
    -  Pattern: Abstracts algorithms and structures from code reuse
 
-   -  Generic Objects: Functions, Structs, Enums, and Type Aliases
+   -  Generic Objects: Functions, structs, enums, and type aliases
 
    -  Option<T>: An idiomatic generic enum ensuring null-safety
 
