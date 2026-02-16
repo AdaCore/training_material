@@ -3,7 +3,7 @@ Generics and Traits
 ====================
 
 --------------
-Trait bounds
+Trait Bounds
 --------------
 
 -  Generic data <T> is very broad 
