@@ -37,7 +37,7 @@ The Notion of a Pattern
 
 .. code:: Rust
 
-    fn Swap (l : (a_type) , r : (a_type)) -> ((a_type), (a_type)) {
+    fn Swap (l: (a_type), r: (a_type)) -> ((a_type), (a_type)) {
 		(r, l)
 	}
 
