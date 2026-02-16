@@ -178,7 +178,7 @@ Generic Traits
 
 
 --------------
-Derive Macro
+"derive" Macro and Generics
 --------------
 
 -  Derive maccro can be used on generic struct using standard traits
