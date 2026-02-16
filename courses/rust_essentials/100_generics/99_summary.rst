@@ -24,4 +24,4 @@ What We Learned
 
    -  Generic Traits: Traits can be generic, to interact with multiple types
 
-   -  Derive Macro: Automatically implements standard traits for generic structs
+   -  :rust:`derive` Macro: Automatically implements standard traits for generic structs
