@@ -11,7 +11,7 @@ Trait Bounds
 -  Compiler will restrict what can be done with <T> 
    -  Doesn't know if number or string or anything else
    
--  Traits are **Fine Prints** on a generic contract
+-  Traits are the **fine print** on a generic contract
 
    -  Ensure the logic only executes on types that "fit" the requirements
    
