@@ -15,7 +15,7 @@ Trait Bounds
 
    -  Ensure the logic only executes on types that "fit" the requirements
    
--  Added in the <> next to the type
+-  Added in the :rust:`<>` next to the type
 
 .. code:: rust
 
