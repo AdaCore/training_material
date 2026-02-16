@@ -21,7 +21,7 @@ Generic Data Type
     Some(T),
    }
    
--  :rust:`T` generic type parameter, means an Option can wrap any type
+-  :rust:`T` (the generic type parameter) means an :rust:`Option` can wrap any type
 
    -  Option<i32>, Option<String> and others
 
