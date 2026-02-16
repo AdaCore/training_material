@@ -33,7 +33,7 @@ Generic Data Type
 Be Generic
 ------------
 
--  Objects that can be made generic
+Objects that can be made generic
 
 .. container:: latex_environment scriptsize
 
