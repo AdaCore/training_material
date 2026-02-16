@@ -8,7 +8,7 @@ Generic Data Type
 
 -  Used to parameterize an object
 
-   -  Declared using **<>**
+   -  Declared using :rust:`<>`
    
 -  Can take any identifier name
 
