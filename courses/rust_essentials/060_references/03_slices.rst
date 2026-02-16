@@ -78,3 +78,25 @@ Fat Pointer
 
     Creating a slice is **O(1)** ; it takes the same constant time whether the original array has 4 elements or 4 million.
 
+----------------
+&str vs String
+----------------
+
+- :rust:`&str`: **String slice**, immutable reference to UTF-8 encoded bytes
+  - Similar to :rust:`&[u8]`
+  - Fixed length (cannot grow or shrink)
+  - String literals (:rust:`"Hello"`) are :rust:`&str`
+- :rust:`String`: Buffer of UTF-8 encoded bytes
+  - Allocated on the heap, can grow or shrink
+  - Created from a string literal with :rust:`String::from()`
+  - Similar to C++ :cpp:`std::string`
+
+.. code:: rust
+
+   let s1: &str = "Hello World";
+   let s2: &str = &s1[..5];
+   println!("s2: {s2}");
+
+* Generates the following output
+
+:command:`s2: Hello`
