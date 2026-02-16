@@ -135,7 +135,7 @@ Multiple Traits
 
 -  Can have multiple trait bounds
 
-   -  Using the :rust`+` operator
+   -  Using the :rust:`+` operator
 
 
 .. code:: rust
