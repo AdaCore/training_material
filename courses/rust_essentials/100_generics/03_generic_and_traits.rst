@@ -112,7 +112,7 @@ Trait Bounds Generics
 Turbofish "::<>"
 ----------------
 
--  Usually Rust compiler determines the type to use from context
+-  Usually the compiler determines the type to use from context
 
    -  Sometimes there is *ambiguity*
    
