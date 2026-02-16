@@ -16,13 +16,10 @@ What We Covered
   - Allow mutable access
   - Only one exclusive reference allowed at a time
 
+- **Safety**
+  - References are never null and are always valid
+
 - **Slices** (:rust:`&[T]`)
 
   - Efficient views into arrays or other collections
-      
-- **Strings**
-  - :rust:`String` is a buffer
-  - :rust:`&str` is a slice
-
-- **Safety**
-  - References are never null and are always valid
+  - :rust:`&str` is a slice      
