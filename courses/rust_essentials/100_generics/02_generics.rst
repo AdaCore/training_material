@@ -12,7 +12,7 @@ Generic Data Type
    
 -  Can take any identifier name
 
-   -  Conventionnaly caled :rust:`T`
+   -  Conventionally called :rust:`T`
    
 .. code:: rust
 
