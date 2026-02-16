@@ -181,7 +181,7 @@ Generic Traits
 "derive" Macro and Generics
 --------------
 
--  Derive maccro can be used on generic struct using standard traits
+-  :rust:`derive` macro can be used on generic struct using standard traits
 
    -  Can't be used on generic traits
    
