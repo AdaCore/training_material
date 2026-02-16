@@ -23,7 +23,7 @@ Generic Data Type
    
 -  :rust:`T` (the generic type parameter) means an :rust:`Option` can wrap any type
 
-   -  Option<i32>, Option<String> and others
+   -  :rust:`Option<i32>`, :rust:`Option<String>` and others
 
 -  :rust:`None` represents the absence of a value
 
