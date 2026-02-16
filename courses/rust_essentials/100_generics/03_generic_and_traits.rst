@@ -38,7 +38,7 @@ Trait Bounds
 Adding Constraints
 ------------------------
 
--  Adding a trait to a generic object gives it more functionalities
+Adding a trait to a generic object gives it more functionalities
 
 .. code:: rust
 	// Compiler: "What if T is a name? Is 'Bob' < 10?"
