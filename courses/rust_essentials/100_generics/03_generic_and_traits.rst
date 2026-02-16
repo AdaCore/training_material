@@ -6,7 +6,7 @@ Generics and Traits
 Trait Bounds
 --------------
 
--  Generic data <T> is very broad 
+-  Generic data :rust:`<T>` is very broad 
 
 -  Compiler will restrict what can be done with <T> 
    -  Doesn't know if number or string or else
