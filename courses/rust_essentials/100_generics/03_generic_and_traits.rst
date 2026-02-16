@@ -9,7 +9,7 @@ Trait Bounds
 -  Generic data :rust:`<T>` is very broad 
 
 -  Compiler will restrict what can be done with <T> 
-   -  Doesn't know if number or string or else
+   -  Doesn't know if number or string or anything else
    
 -  Traits are **Fine Prints** on a generic contract
 
