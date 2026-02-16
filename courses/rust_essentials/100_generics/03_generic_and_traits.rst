@@ -1,5 +1,5 @@
 ====================
-Generic and Traits
+Generics and Traits
 ====================
 
 --------------
