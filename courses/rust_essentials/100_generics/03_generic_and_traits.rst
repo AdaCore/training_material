@@ -152,7 +152,7 @@ Multiple Traits
 Generic Traits
 ----------------
 
--  Traits can be made Generic
+-  Traits can be made generic
 
    -  Allows the same trait to behave differently with each type
 
