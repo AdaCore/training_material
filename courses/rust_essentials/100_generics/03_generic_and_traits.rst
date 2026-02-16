@@ -122,7 +122,7 @@ Turbofish "::<>"
     // The compiler knows it's a Vec, but a Vec of what?
     let x = Vec::new();
 	
--  The turbofish ::<> syntax is used to dispell ambiguity
+-  The turbofish :rust:`::<>` syntax is used to dispell ambiguity
 
 .. code:: rust
 
