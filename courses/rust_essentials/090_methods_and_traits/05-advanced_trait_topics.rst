@@ -10,7 +10,7 @@ Supertraits
 
   * "If you implement this trait, you must also implement that one"
 
-*Anything that is a "party animal" must be able to dance**
+**A "party animal" must be able to dance**
 
   * Base trait
 
@@ -38,7 +38,7 @@ Advanced Supertraits
 
 * A supertrait can depend on *multiple* traits
 
-**To be the "life of the party" you must be able to sing AND dance**
+**The "life of the party" must be able to sing AND dance**
 
   * New base trait
 

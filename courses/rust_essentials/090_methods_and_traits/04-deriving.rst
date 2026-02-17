@@ -143,7 +143,9 @@ Orphan Rule Examples
 
     impl Debug for Vec<i32> {}
 
-  :color-red:`error[E0117]: only traits defined in the current crate can be implemented for types defined outside of the crate`
+.. container:: latex_environment tiny
+
+  :error:`error[E0117]: only traits defined in the current crate can be implemented for types defined outside of the crate`
 
 -------------------------
 Limitations on Deriving
@@ -217,7 +219,9 @@ You cannot derive when
       - Compiler ensures manual code is safe
 
   **Derive** is for **Computers**
+
     If you just need the compiler to know how to clone your data or print it for a log, let it do the work
 
   **Manual** is for **Humans**
+
     If you are formatting a string that a user will read (like :rust:`Display`), you usually need a manual implementation to make it look "pretty"
