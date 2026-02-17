@@ -31,7 +31,7 @@ Destructuring: The Stencil Metaphor
 .. code:: rust
 
   // Placing the stencil (pattern) over the point 'p'
-  // 'x' and 'y' are the cutouts; the data fills new variables
+  // 'x' and 'y' are the cutouts; data fills new variables
   let Point { x, y } = p;
 
 ---------------------

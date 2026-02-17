@@ -84,7 +84,9 @@ Exhaustiveness
     Direction::South => println!("Heading Down"),
   }
 
-:error:`error[E0004]: non-exhaustive patterns: `Direction::East` and `Direction::West` not covered`
+.. container:: latex_environment small
+
+  :error:`error[E0004]: non-exhaustive patterns: `Direction::East` and `Direction::West` not covered`
 
 ------------------------
 Matching with Bindings
