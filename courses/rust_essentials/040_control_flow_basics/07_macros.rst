@@ -2,42 +2,142 @@
 Macros
 ========
 
---------
-Macros
---------
+------------------
+What is a Macro?
+------------------
 
-Macros are expanded into Rust code during compilation, and can take a
-variable number of arguments. They are distinguished by a :rust:`!` at the
-end. The Rust standard library includes an assortment of useful macros.
+- Code that **generates** other code at **compile-time**
+- Can take a **variable** number of arguments
+- Is **not** a function
+- Macro calls are required to end with the :rust:`!`
+  - e.g., :rust:`println!`, :rust:`dbg!`
+- You can write your own!
 
--  :rust:`println!(format, ..)` prints a line to standard output, applying
-   formatting described in
-   :url:`std::fmt <https://doc.rust-lang.org/std/fmt/index.html>`.
-   result as a string.
--  :rust:`dbg!(expression)` logs the value of the expression and returns it.
--  :rust:`todo!()` marks a bit of code as not-yet-implemented. If executed,
-   it will panic.
--  :rust:`unreachable!()` marks a bit of code as unreachable. If executed,
-   it will panic.
+.. note::
+
+   Writing custom macros is an advanced, non-trivial topic
+
+----------
+println!
+----------
+
+.. admonition:: Language Variant
+
+   Standard Library
+
+* :rust:`println!(format, ..)` prints a line to standard output
 
 .. code:: rust
 
-   fn factorial(n: u32) -> u32 {
-       let mut product = 1;
-       for i in 1..=n {
-           product *= dbg!(i);
-       }
-       product
-   }
+    let name = "World";
+    let answer = 41;
 
-   fn fizzbuzz(n: u32) -> u32 {
-       todo!()
-   }
+    println!("Hello!");
 
-   fn main() {
-       let n = 4;
-       println!("{n}! = {}", factorial(n));
-   }
+    // Positional arguments
+    println!("Hello, {}, the answer is {}.", name, answer + 1);
+
+    // Named argument, improves readability and refactoring
+    // Expressions not allowed inside the curly braces
+    println!("Hello {name}!");
+
+------
+dbg!
+------
+
+.. admonition:: Language Variant
+
+   Standard Library
+
+* :rust:`dbg!(expression)` logs the value of the expression
+ 
+* Returns the value itself
+* Often used for quick, temporary debugging 
+  * Prints the file, line number, and the value
+  * Can be used inside other expressions
+* Works the same in both **debug** and **release** modes
+
+.. code:: rust
+
+    fn factorial(n: u32) -> u32 {
+        let mut product = 1;
+        for i in 1..=n {
+            product *= dbg!(i); 
+        }
+        product
+    }
+    let result = factorial(3); // result will be 6
+
+* Generates the following output:
+
+:command:`[src/main.rs:5:20] i = 1`
+
+:command:`[src/main.rs:5:20] i = 2`
+
+:command:`[src/main.rs:5:20] i = 3`
+
+-------
+todo!
+-------
+
+.. admonition:: Language Variant
+
+   Standard Library
+
+* :rust:`todo!()` marks a bit of code as not-yet-implemented
+* When executed, it immediately causes a **panic**
+  * Message indicates the un-implemented code
+  * Useful for sketching out function signatures during development
+* Works the same in both **debug** and **release** modes
+
+.. code:: rust
+
+    fn fizzbuzz(n: u32) -> u32 {
+        todo!("Implement this") // Absence of ; is idiomatic here
+    }
+
+    fn main() {
+        fizzbuzz(10);
+    }
+
+* Generates the following output:
+
+:command:`thread 'main' (11) panicked at src/main.rs:4:5:`
+:command:`not yet implemented: Implement this`
+
+--------------
+unreachable!
+--------------
+
+.. admonition:: Language Variant
+
+   Standard Library
+
+* :rust:`unreachable!()` marks a bit of code as unreachable
+* Marks a point in the code that should never be reached
+* When reached, immediately causes a **panic** with a message
+* Serves as a sanity check for the programmer
+* Works the same in both **debug** and **release** modes
+
+.. code:: rust
+
+    let number = 3;
+    match number {
+        // The match is exhaustive for a u32, but in this context,
+        // we logically know 'number' will only be 1 or 2.
+        1 => println!("One"),
+        2 => println!("Two"),
+        
+        // The underscore _ matches all other possible values.
+        // If we assume 'number' is only ever 1 or 2, this arm 
+        // should logically be unreachable.
+        _ => unreachable!("Number is outside the expected range!"), 
+    }
+
+* Generates the following output:
+
+:command:`thread 'main' (41) panicked at src/main.rs:12:14:`
+:command:`internal error: entered unreachable code: Number is outside the expected range!`
 
 .. container:: speakernote
 
