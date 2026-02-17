@@ -99,6 +99,8 @@ Propagating Errors
 
 * Shortcut - :rust:`?` operator makes propagation concise
 
+  * Called the **Try Operator** - see next chapter for details
+
 .. container:: latex_environment footnotesize
 
   .. code:: rust

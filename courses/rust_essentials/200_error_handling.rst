@@ -32,11 +32,13 @@ Error Handling
 
 .. container:: PRELUDE END
 
-.. include:: 200_error_handling/01_panics.rst
-.. include:: 200_error_handling/02_result.rst
-.. include:: 200_error_handling/03_try.rst
-.. include:: 200_error_handling/04_try_conversions.rst
-.. include:: 200_error_handling/05_error.rst
-.. include:: 200_error_handling/06_thiserror.rst
-.. include:: 200_error_handling/07_anyhow.rst
-.. include:: 200_error_handling/99_lab.rst
+.. include:: 200_error_handling/01-introduction.rst
+.. include:: 200_error_handling/02-panics.rst
+.. include:: 200_error_handling/03-result.rst
+.. include:: 200_error_handling/04-try_operator.rst
+.. include:: 200_error_handling/05-try_conversions.rst
+.. include:: 200_error_handling/06-error_trait.rst
+.. include:: 200_error_handling/07-thiserror.rst
+.. include:: 200_error_handling/08-anyhow.rst
+.. include:: 200_error_handling/88-error_handling.lab.rst
+.. include:: 200_error_handling/99-summary.rst
