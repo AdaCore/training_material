@@ -18,11 +18,11 @@ What Is a Pattern
 
 .. code:: rust
 
+  let musketeers = 3;
+
   // Pattern:   Identifier (musketeers)
   // Structure: Single, scalar value
   // Binding:   'musketeers' is now bound to value '3'
-
-  let musketeers = 3;
 
 --------------------------
 Patterns Are Declarative
