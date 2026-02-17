@@ -66,6 +66,8 @@ Automatic Type Conversion
 
     * Requirement: Your error type must implement :rust:`From<io::Error>`
 
+* More information on this in the next chapter
+
 ----------------------------
 Try Operator with "Option"
 ----------------------------
