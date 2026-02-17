@@ -123,6 +123,8 @@ Nested Patterns in "match"
     (x, y) => println!("({}, {})", x, y),
   }
 
+:command:`on y-axis at 0`
+
 - First matching arm is selected
 
 ---------------------
