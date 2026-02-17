@@ -162,8 +162,10 @@ Enums as Robust Data Models
       Failure(i32),
   }
 
-  // ERROR: non-exhaustive patterns: 'Failure' not covered 
+  // Non-exhaustive pattern - 'Failure' not covered 
   match current_status {
       Status::Loading => println!("Please wait..."),
       Status::Success(data) => println!("Got: {data}"),
   }
+
+:error:`error[E0425]: cannot find value `current_status` in this scope`

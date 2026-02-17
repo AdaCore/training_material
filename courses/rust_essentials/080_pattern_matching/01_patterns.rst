@@ -2,9 +2,9 @@
 Patterns
 ==========
 
--------------------
-What Is a Pattern
--------------------
+--------------------
+What Is a Pattern?
+--------------------
 
 - Core language feature of Rust
 

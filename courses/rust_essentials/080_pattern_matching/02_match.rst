@@ -2,9 +2,9 @@
 Match
 =======
 
------------------
-What Is "match"
------------------
+------------------
+What Is "match"?
+------------------
 
 - Compares a value against a set of patterns
 
