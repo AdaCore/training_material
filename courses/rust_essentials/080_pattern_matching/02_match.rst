@@ -86,7 +86,7 @@ Exhaustiveness
 
 .. container:: latex_environment scriptsize
 
-  :error:`error[E0004]: non-exhaustive patterns: `Direction::East` and `Direction::West` not covered`
+  :error:`error[E0004]: non-exhaustive patterns: 'Direction::East' and 'Direction::West' not covered`
 
 ------------------------
 Matching with Bindings

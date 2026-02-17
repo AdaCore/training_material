@@ -168,4 +168,4 @@ Enums as Robust Data Models
       Status::Success(data) => println!("Got: {data}"),
   }
 
-:error:`error[E0425]: cannot find value `current_status` in this scope`
+:error:`error[E0425]: cannot find value 'current_status' in this scope`
