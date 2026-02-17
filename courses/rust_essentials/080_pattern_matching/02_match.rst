@@ -64,7 +64,7 @@ Exhaustiveness
 
 - All possible cases must be handled
 
-- Missing cases cause a compile-time error
+- Missing cases cause a *compile-time* error
 
 - Applies to all :rust:`match` expressions
 

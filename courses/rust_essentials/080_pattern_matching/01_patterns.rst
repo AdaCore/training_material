@@ -28,7 +28,7 @@ What Is a Pattern
 Patterns Are Declarative
 --------------------------
 
-- Patterns describe the *what* (shape) rather than the *how* (steps)
+- Patterns describe *what* (shape) rather than *how* (steps)
 
 - Matching is a structural check
 
@@ -44,7 +44,7 @@ Patterns Are Declarative
     _ => {}
   }
 
-  // Procedural: Step-by-step instructions (What patterns avoid)
+  // Procedural: Step-by-step instructions (what patterns avoid)
   if point.x == 0 {
     let ver = point.y;
     println!("On Y axis at {ver}");
