@@ -22,15 +22,16 @@ Destructuring: The Stencil Metaphor
 
 - Think of a **pattern** as a *stencil* placed over a value
 
-- **Match (left of colon):** tells Rust *where* to look inside the struct
+- **Field:** the "cutout" in the stencil that tells Rust *where* to look
 
-- **Binding (right of colon):** where the data "falls through" into your local scope
+- **Binding:** where the data "falls through" into your local scope
 
 - **Result:** You "break open" the complex struct to get exactly the pieces you need
 
 .. code:: rust
 
   // Placing the stencil (pattern) over the point 'p'
+  // 'x' and 'y' are the cutouts; the data fills new variables
   let Point { x, y } = p;
 
 ---------------------
