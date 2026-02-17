@@ -84,7 +84,7 @@ Exhaustiveness
     Direction::South => println!("Heading Down"),
   }
 
-.. container:: latex_environment small
+.. container:: latex_environment scriptsize
 
   :error:`error[E0004]: non-exhaustive patterns: `Direction::East` and `Direction::West` not covered`
 
