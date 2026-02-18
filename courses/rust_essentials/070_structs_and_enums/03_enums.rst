@@ -28,7 +28,9 @@ Enums with Data
 -  **Variants** can optionally hold data 
    -  This is an :rust:`enum` superpower!
 -  Can't be recursive
--  Similar to a union in C/C++
+-  Similar to *tagged unions* in C++
+   -  But rust *enums* are a core feature 
+
 
 .. code:: rust
 
