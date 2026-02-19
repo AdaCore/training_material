@@ -158,22 +158,22 @@ Quiz
    type Index_T is range 1 .. 10;
    type OneD_T is array (Index_T) of Boolean;
    type TwoD_T is array (Index_T) of OneD_T;
-   A : TwoD_T;
-   B : OneD_T;
+   TwoD : TwoD_T;
+   OneD : OneD_T;
 
 Which statement(s) is (are) legal?
 
-   A. :answermono:`B(1) := A(1)(2) or A(4)(3);`
-   B. :answermono:`B := A(2) and A(4);`
-   C. ``A(1..2)(4) := A(5..6)(8);``
-   D. :answermono:`B(3..4) := B(4..5);`
+   A. :answermono:`OneD(1) := TwoD(1)(2) or TwoD(4)(3);`
+   B. :answermono:`OneD := TwoD(2) and TwoD(4);`
+   C. ``TwoD(1..2)(4) := TwoD(5..6)(8);``
+   D. :answermono:`OneD(3..4) := OneD(4..5);`
 
 .. container:: animate
 
    Explanations
 
    A. All objects are just Boolean values
-   B. A component of :ada:`A` is the same type as :ada:`B`
+   B. A component of :ada:`X` is the same type as :ada:`Y`
    C. Slice must be of outermost array
    D. Slicing allowed on single-dimension arrays
 
