@@ -34,11 +34,9 @@ Std Types
 
 .. include:: 110_std_types/00-introduction.rst
 .. include:: 110_std_types/01-overview.rst
-.. include:: 110_std_types/02-documentation.rst
-.. include:: 110_std_types/03-option.rst
-.. include:: 110_std_types/04-result.rst
-.. include:: 110_std_types/05-string.rst
-.. include:: 110_std_types/06-vec.rst
-.. include:: 110_std_types/07-hashmap.rst
+.. include:: 110_std_types/02-option.rst
+.. include:: 110_std_types/03-result.rst
+.. include:: 110_std_types/04-string.rst
+.. include:: 110_std_types/05-vec.rst
 .. include:: 110_std_types/88-std_types.lab.rst
 .. include:: 110_std_types/99-summary.rst

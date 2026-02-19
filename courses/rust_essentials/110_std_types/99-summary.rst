@@ -6,14 +6,8 @@ Summary
 What We Covered
 -----------------
 
-* Documentation
-
-  * Add actual documentation to code using comments
-
-* Standard Library
-
-  * Core types/APIs
-  * Common types across multiple libraries
+* Core types/APIs
+* Common types across multiple libraries
 
 .. list-table::
 
@@ -27,7 +21,4 @@ What We Covered
     - UTF-8 string that can be mapped to default :rust:`str`
 
   * - :rust:`Vec`
-    - Sequence of values (also know as an *array*)
-
-  * - :rust:`HashMap`
-    - Maps unique keys to their appropriate value
+    - Growable sequence of values

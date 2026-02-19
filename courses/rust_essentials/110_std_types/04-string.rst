@@ -27,14 +27,14 @@ Creating Strings
 
   .. code:: rust
 
-    let s1 = String::new();
+    let simple_string = String::new();
 
 * Use traits/methods to create from literals
 
   .. code:: rust
 
-    let s2 = String::from("hello");
-    let s3 = "world".to_string();
+    let from_str = String::from("hello");
+    let to_string = "world".to_string();
 
 -------------------
 Modifying Strings
@@ -44,8 +44,8 @@ Modifying Strings
 
   .. code:: rust
 
-    s.push('!');         // append a char
-    s.push_str(" foo");  // append a &str
+    my_text.push('!');         // Append a char
+    my_text.push_str(" foo");  // Append a &str
 
 .. note::
 
@@ -65,17 +65,23 @@ Length vs Characters
 
   * Size of string in bytes (**not** characters)
 
-.. code:: rust
+  .. raw:: latex
 
-    let mut s1 = String::new();
-    s1.push_str("Hello");
-    println!(
-        "s1: len = {}, number of chars = {}",
-        s1.len(),
-        s1.chars().count()
-    );
+    \vspace{2mm}
 
-:command:`s1: len = 5, number of chars = 5`
+  ``fancy_string.push_str("Greek letters:`` :math:`\lambda` :math:`\omega` :math:`\pi` ``);``
+
+  ``println!("Length = {}", fancy_string.len());``
+
+  ``println!("Chars = {}", fancy_string.chars().count());``
+
+  .. raw:: latex
+
+    \vspace{2mm}
+
+:command:`Length = 23`
+
+:command:`Chars = 20`
 
 .. note::
 

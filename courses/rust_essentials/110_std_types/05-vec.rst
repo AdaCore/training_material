@@ -8,7 +8,7 @@ What Is "Vec<T>"?
 
 * :rust:`Vec<T>` is a **growable** **heap-allocated** array
 
-  * Holds a sequence of values of type T on the heap
+  * Holds a sequence of values of type :rust:`T` on the heap
 
     * Size can grow/shrink at runtime
 
@@ -27,19 +27,23 @@ Creating Vectors
 
   .. code:: rust
 
-    let mut v = Vec::new();
-    v.push(1);
+    let mut simple_vector = Vec::new();
+    simple_vector.push(1);
 
-* Using macros (canonical method)
+* Using the :rust:`vec!` macro
 
   .. code:: rust
 
-    // macro with initial values
-    let v2 = vec![1, 2, 3];
+    // Explicit list
+    let list_of_values = vec![1, 2, 3];
 
-    // 10 zeroes
-    let v3 = vec![0; 10];
+    // Repeat expression
+    let zeroes = vec![0; 10]; // Value "0" 10 times
 
+    // List of i8
+    let bytes_1 = vec![1i8, 2, 3];
+    let bytes_2 : Vec<i8> = vec![1, 2, 3];
+  
 ------------------
 Basic Operations
 ------------------
@@ -55,7 +59,7 @@ Basic Operations
 
     .. code:: rust
 
-      let v = vec![1, 2, 3]; // A Vec<i32>
+      let v = vec![1, 2, 3];
       println!("The second element is: {}", v[1]);
       println!("The sixth element is: {}", v[5]);
 

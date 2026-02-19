@@ -2,40 +2,12 @@
 Overview
 ==========
 
------------------------
-Rust Standard Library
------------------------
-
-* Provides core types and APIs used across most programs
-
-* Using common types helps libraries work together smoothly
-
-  * Examples: :rust:`String` and :rust:`Vec`
-
-* Is not a monolithic block
-
-  * Layered stack designed to scale from microcontrollers to servers
-
-* **core** (foundation)
-
-  * Dependency-free base
-  * Used in :rust:`#![no_std]` environments (embedded, kernels)
-
-* **alloc** (middle layer)
-
-  * Adds smart pointers and collections requiing dynamic allocation
-  * Used when you have a heap but no OS
-
-* **std** (full suite)
-
-  * Complete library for general purpose programming
-  * Default for desktop/server applications running on Linux, Windows, or macOS
-
 --------------------------
 One Library, Three Tiers
 --------------------------
 
 .. image:: rust_essentials/std_crate.svg
+  :width: 80%
 
 * Standard library is not a monolithic block
 
