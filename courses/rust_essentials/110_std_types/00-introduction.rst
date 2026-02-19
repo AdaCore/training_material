@@ -14,6 +14,3 @@ Topics Covered
     * :rust:`Result`
     * :rust:`String`
     * :rust:`Vec`
-    * :rust:`HashMap`
-
-* Using comments as documentation
