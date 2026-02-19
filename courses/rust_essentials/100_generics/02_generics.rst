@@ -27,7 +27,7 @@ Generic Data Type
 
 -  :rust:`None` represents the absence of a value
 
--  :rust:`Some(T)` tuple that holds a value of type :rust:`T`
+-  :rust:`Some(T)` tuple *variant* that holds a value of type :rust:`T`
 
 ------------
 Be Generic
@@ -75,8 +75,6 @@ Example
 
 -  Any type with a known **size** can specify the type argument    
 
-   -  Type argument can have additional constraints 
-
 .. code:: rust
 
 
@@ -98,7 +96,7 @@ Example
 Multiple Generic Type
 -----------------------
 
--  Objects can have multiple generic data types 
+Objects can have multiple generic data types 
 
 .. code:: rust
 

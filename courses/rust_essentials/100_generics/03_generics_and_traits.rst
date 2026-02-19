@@ -34,13 +34,14 @@ Trait Bounds
     { ... }
 	
 
-------------------------
+--------------------
 Adding Constraints
-------------------------
+--------------------
 
 Adding a trait to a generic object gives it more functionalities
 
 .. code:: rust
+
 	// Compiler: "What if T is a name? Is 'Bob' < 10?"
 	fn is_small<T>(item: T) -> bool {
 		item < 10 
@@ -50,7 +51,7 @@ Adding a trait to a generic object gives it more functionalities
 
 .. code:: rust
 
-	fn is_smaller<T: PartialOrd>(item: T, max_v: T) -> bool {
+	fn smaller<T: PartialOrd>(item: T, max_v: T) -> bool {
 		item < max_v  
 	}
 
@@ -64,16 +65,16 @@ Satisfying Constraints
 
 	struct Vegetable;
 
-	fn is_smaller<T: PartialOrd>(item: T, threshold: T) -> bool {
+	fn smaller<T: PartialOrd>(item: T, threshold: T) -> bool {
 		item < threshold  
 	}
 
 	fn main() {
 		let potato : Vegetable;
 		let sweet_potato : Vegetable;
-		println!("{}", is_smaller(5, 10));      // Compares i32 to i32
-		println!("{}", is_smaller(1.5, 10.0));  // Compares f64 to f64
-		println!("{}", is_smaller(potato , sweet_potato));	 
+		println!("{}", smaller(5, 10));      
+		println!("{}", smaller(1.5, 10.0));  
+		println!("{}", smaller(potato , sweet_potato));	 
 	}
 
 :error:`error[E0277]: can't compare 'vegetable' with 'vegetable'`
@@ -108,17 +109,19 @@ Trait Bounds Generics
         make_it_speak(pet); // Output: Woof!
     }
 
-----------------
+------------------
 Turbofish "::<>"
-----------------
+------------------
 
 -  Usually the compiler determines the type to use from context
 
    -  Sometimes there is *ambiguity*
    
 .. code:: rust
-
-    // Error: "type annotations needed"
+    
+	// Vec<T> is a generic struct
+	// Vec defines an associated function called 'new'
+    // Error: "type annotations needed"	
     // The compiler knows it's a Vec, but a Vec of what?
     let x = Vec::new();
 	
@@ -162,24 +165,19 @@ Generic Traits
 	trait Transform<T> {
 		fn convert(&self) -> T;
 	}
-
 	struct Minutes(i32);
-
 	// Rule for converting Minutes to Seconds
 	impl Transform<i32> for Minutes {
 		fn convert(&self) -> i32 { self.0 * 60 }
 	}
-
 	// Rule for converting Minutes to a String
 	impl Transform<String> for Minutes {
 		fn convert(&self) -> String { format!("{} minutes", self.0) }
 	
-    
 
-
---------------
+-----------------------------
 "derive" Macro and Generics
---------------
+-----------------------------
 
 -  :rust:`derive` macro can be used on generic struct using standard traits
 
@@ -191,7 +189,7 @@ Generic Traits
 	#[derive(Debug)]
 	struct Box<T> {
 		content: T,
-
+	}
 	struct Secret; // Note: No Debug here
 
 	fn main() {
@@ -202,4 +200,6 @@ Generic Traits
 		// ERROR: "Box<Secret> doesn't implement Debug"
 		// Secret doesn't implement Debug, derive macro fails
 	}
+:error:`ERROR: "Box<Secret> doesn't implement Debug"`	
+	
 

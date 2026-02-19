@@ -29,7 +29,7 @@ The Notion of a Pattern
 		(right, left) 
 	}
 
-    fn swap_int(l: bool, r: bool) -> (bool, bool) {
+    fn swap_float(l: f64, r: f64) -> (f64, f64) {
 		(right, left) 
 	}
 
@@ -40,10 +40,3 @@ The Notion of a Pattern
     fn Swap (l: (a_type), r: (a_type)) -> ((a_type), (a_type)) {
 		(r, l)
 	}
-
-
-
-
-
-
-
