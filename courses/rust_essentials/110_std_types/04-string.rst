@@ -15,9 +15,9 @@ What Is "String"?
 * Key points
 
   * UTF-8 means length in bytes not necessarily number of characters
-  * Implements :rust:`Deref<Target = str>`
+  * Converts to a string slice (:rust:`&str`) when passed to functions
 
-    * converts to a string slice (:rust:`&str`) when passed to functions
+    * Implements :rust:`Deref<Target = str>`
 
 ------------------
 Creating Strings
@@ -33,8 +33,8 @@ Creating Strings
 
   .. code:: rust
 
-    let from_str = String::from("hello");
-    let to_string = "world".to_string();
+    let string_to_str = String::from("hello");
+    let str_to_string = "world".to_string();
 
 -------------------
 Modifying Strings

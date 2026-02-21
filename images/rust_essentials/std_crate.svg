@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="170" width="550" >
 <rect fill="none" stroke="#000000" stroke-width="1" height="130" width="540" x="5" y="5" />
-<text xml:space="preserve" fill="#00bb00" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="275.0" y="15" >std</text>
+<text xml:space="preserve" fill="#007700" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="275.0" y="15" >std</text>
 <rect fill="none" stroke="#000000" stroke-width="1" height="100" width="120" x="15" y="25" />
 <text xml:space="preserve" fill="#0000bb" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="75.0" y="35" >core</text>
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="8px" font-family='arial' font-weight="normal"  text-anchor="middle" x="45.0" y="51" >Option</text>
@@ -19,7 +19,7 @@
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="8px" font-family='arial' font-weight="normal"  text-anchor="middle" x="245.0" y="83.0" >Arc</text>
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="8px" font-family='arial' font-weight="normal"  text-anchor="middle" x="185.0" y="93.66666666666667" >Box</text>
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="8px" font-family='arial' font-weight="normal"  text-anchor="middle" x="245.0" y="104.33333333333334" >...</text>
-<rect fill="none" stroke="#00bb00" stroke-width="1" height="58" width="240" x="295" y="25" />
+<rect fill="none" stroke="#007700" stroke-width="1" height="58" width="240" x="295" y="25" />
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="8px" font-family='arial' font-weight="normal"  text-anchor="middle" x="391.0" y="35" >time</text>
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="8px" font-family='arial' font-weight="normal"  text-anchor="middle" x="487.0" y="35" >Mutex</text>
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="8px" font-family='arial' font-weight="normal"  text-anchor="middle" x="343.0" y="45.666666666666664" >HashMap</text>
@@ -30,15 +30,15 @@
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="8px" font-family='arial' font-weight="normal"  text-anchor="middle" x="439.0" y="67.0" >os</text>
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="8px" font-family='arial' font-weight="normal"  text-anchor="middle" x="391.0" y="77.66666666666667" >env</text>
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="8px" font-family='arial' font-weight="normal"  text-anchor="middle" x="487.0" y="77.66666666666667" >...</text>
-<rect fill="none" stroke="#00bb00" stroke-width="1" height="20" width="60" x="295" y="105" />
-<text xml:space="preserve" fill="#00bb00" stroke="none"  text-align="left" font-size="7px" font-family='arial' font-weight="bold"  text-anchor="middle" x="325.0" y="117.0" >sys/unix</text>
-<line fill="none" stroke="#00bb00" stroke-width="2" x1="325" y1="103" x2="325" y2="83" />
-<polygon fill="#00bb00" stroke="#00bb00" stroke-width="1" transform="rotate(225, 325, 103)" points="325,103 328.5,110 332,106.5 "/>
-<rect fill="none" stroke="#00bb00" stroke-width="1" height="20" width="60" x="365" y="105" />
-<text xml:space="preserve" fill="#00bb00" stroke="none"  text-align="left" font-size="7px" font-family='arial' font-weight="bold"  text-anchor="middle" x="395.0" y="117.0" >sys/windows</text>
-<rect fill="none" stroke="#00bb00" stroke-width="1" height="20" width="60" x="435" y="105" />
-<text xml:space="preserve" fill="#00bb00" stroke="none"  text-align="left" font-size="7px" font-family='arial' font-weight="bold"  text-anchor="middle" x="465.0" y="117.0" >sys/wasm</text>
-<text xml:space="preserve" fill="#00bb00" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="520" y="117.0" >...</text>
+<rect fill="none" stroke="#007700" stroke-width="1" height="20" width="60" x="295" y="105" />
+<text xml:space="preserve" fill="#007700" stroke="none"  text-align="left" font-size="7px" font-family='arial' font-weight="bold"  text-anchor="middle" x="325.0" y="117.0" >sys/unix</text>
+<line fill="none" stroke="#007700" stroke-width="2" x1="325" y1="103" x2="325" y2="83" />
+<polygon fill="#007700" stroke="#007700" stroke-width="1" transform="rotate(225, 325, 103)" points="325,103 328.5,110 332,106.5 "/>
+<rect fill="none" stroke="#007700" stroke-width="1" height="20" width="60" x="365" y="105" />
+<text xml:space="preserve" fill="#007700" stroke="none"  text-align="left" font-size="7px" font-family='arial' font-weight="bold"  text-anchor="middle" x="395.0" y="117.0" >sys/windows</text>
+<rect fill="none" stroke="#007700" stroke-width="1" height="20" width="60" x="435" y="105" />
+<text xml:space="preserve" fill="#007700" stroke="none"  text-align="left" font-size="7px" font-family='arial' font-weight="bold"  text-anchor="middle" x="465.0" y="117.0" >sys/wasm</text>
+<text xml:space="preserve" fill="#007700" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="520" y="117.0" >...</text>
 <path d="M 10 115 L 10 145 A 10 10 0 0 0 20 155 L 270 155 A 10 10 0 0 0 280 145 L 280 115" fill="none" stroke="#bb0000" stroke-width="1" />
 <text xml:space="preserve" fill="#bb0000" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="145.0" y="165" >no_std</text>
 </svg>

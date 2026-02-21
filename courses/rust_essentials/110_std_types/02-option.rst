@@ -20,7 +20,7 @@ Option
 "Option<T>" - Handling Absence
 --------------------------------
 
-:rust:`Option<T>`
+Benefits of :rust:`Option<T>`
 
 * Represents a value that may be missing
 
@@ -51,7 +51,7 @@ Option
 Handling "Option"
 -------------------
 
-Handle either possiblity
+Code needs to handle either possiblity
 
 * Typical handling
 
@@ -88,4 +88,4 @@ Why Use "Option"?
 
 .. note::
 
-Rust replaces *null* with :rust:`Option` so “nothing” can’t panic behind your back
+  Rust replaces *null* with :rust:`Option` so "nothing" can’t panic behind your back

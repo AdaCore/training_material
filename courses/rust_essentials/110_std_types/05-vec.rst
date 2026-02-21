@@ -48,7 +48,7 @@ Creating Vectors
 Basic Operations
 ------------------
 
-* Vectors support common operations:
+Vectors support common operations:
 
   * **Safe access:** :rust:`v.get(i)` returns :rust:`Option<&T>`
   * **Remove last:** :rust:`v.pop()` returns :rust:`Option<T>`

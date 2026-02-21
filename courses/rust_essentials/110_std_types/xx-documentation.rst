@@ -24,7 +24,7 @@ Documenting Your Own Code
 
 * Rust comments are just **markdown** 
 
-* :rust:'///' documents the *following* item
+* :rust:`///` documents the *following* item
 
   * Referred to as :dfn:`outer doc comments`
   * Workes naturally for lists and code
@@ -35,7 +35,7 @@ Documenting Your Own Code
     /// false if 'rhs' is zero
     fn is_divisible_by(lhs: u32, rhs: u32) -> bool { … }
 
-* :rust:'//!' (or :rust:'/*! */') documents the *enclosing* item
+* :rust:`//!` (or :rust:`/*! */`) documents the *enclosing* item
 
   * Referred to as :dfn:`inner doc comments`
 
