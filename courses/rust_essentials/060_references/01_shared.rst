@@ -38,6 +38,26 @@ Using Reference (Accessing data)
 
 :command:`reference: A`
 
+------------------------------------------
+Automatic dereferencing for field access
+------------------------------------------
+
+- Use :rust:`.` for field access (no C++ style :rust:`->`)
+
+.. code:: rust
+
+  struct Point {
+    x: i32,
+    y: i32,
+  }
+  let origin = Point { x: 0, y: 0 };
+  let reference: &Point = &origin;
+  println!("x: {}, y: {}", reference.x, reference.y);
+
+* Generates the following output
+
+:command:`x: 0, y: 0`
+
 -------------------------
 Reference Reassignement
 -------------------------
