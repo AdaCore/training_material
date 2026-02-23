@@ -6,12 +6,10 @@ Exclusive References
 Mutable References
 --------------------
 
-- A mutable reference to a type :rust:`T` has type :rust:`&mut T`
-  - Allows changing the value they refer to
+- Allow changing the value they refer to
   - Also known as exclusive references
 - No other references (shared or exclusive) can exist simultaneously
 - You cannot create a :rust:`&mut` reference to an immutable variable
-
 
 .. code:: rust
 
@@ -24,20 +22,43 @@ Mutable References
 
 :command:`Truth: 5`
 
+.. note::
+
+  A mutable reference to a type :rust:`T` has type :rust:`&mut T`
+
 ----------------------
 Binding vs Reference
 ----------------------
 
+The four quadrants of Rust's reference system
 
-Difference between a mutable binding and a mutable reference:
+.. container:: latex_environment scriptsize
 
-.. code:: rust
+.. list-table::
+  :header-rows: 1
 
-   // Shared reference
-   // Can be reassigned to point to different items
-   let mut reference: &i32;
+  * - Syntax
+    - Binding
+    - Reference
+    - Capabilities
 
-   // Exclusive reference to a mutable value
-   // Referenced value can be changed
-   let reference: &mut i32;
+  * - :rust:`let r = &x`
+    - Immutable
+    - Shared
+    - 
+
+  * - :rust:`let mut r = &x`
+    - **Mutable**
+    - Shared
+    - Rebind
+
+  * - :rust:`let r = &mut x`
+    - Immutable
+    - **Mutable**
+    - Modify
+
+  * - :rust:`let mut r = &mut x`
+    - **Mutable**
+    - **Mutable**
+    - Rebind + Modify
 
