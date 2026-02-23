@@ -33,7 +33,7 @@ Methods in Rust
 
     fn main() {
         let mut race = CarRace::new();
-        race.record_lap(114); // data and logic live together
+        race.record_lap(114); // Data and logic live together
     }
 
 ----------------------------
