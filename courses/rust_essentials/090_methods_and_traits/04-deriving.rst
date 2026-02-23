@@ -121,17 +121,17 @@ Orphan Rule Examples
 
   .. code:: rust
 
-    struct MyType(i32);      // owned type
-    impl Debug for MyType {} // external trait
+    struct MyType(i32);      // Owned type
+    impl Debug for MyType {} // External trait
 
 **Own the trait not the type**
 
   .. code:: rust
 
-    trait Hello { // owned trait
+    trait Hello { // Owned trait
         fn hello(&self) -> &'static str;
     }
-    impl Hello for String { // external type
+    impl Hello for String { // External type
         fn hello(&self) -> &'static str {
             "Hello!"
         }

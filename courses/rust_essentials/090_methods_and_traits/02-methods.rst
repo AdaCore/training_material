@@ -181,12 +181,12 @@ Method Receiver - Mutable Ownership
 
     let count = Counter { value: 5 };
 
-    // ownership moved, new value returned
+    // Ownership moved, new value returned
     let count = count.reset();
 
     count.reset();
     // Because we do not capture the return value
-    // it is moved to nowhere - 'count' is no longer the owner
+    // It is moved to nowhere - 'count' is no longer the owner
 
 **Behavior**
 
@@ -219,7 +219,7 @@ Method Receiver - No Receiver
 
   .. code:: rust
 
-    // call on the type, not an instance
+    // Call on the type, not an instance
     let count = Counter::new();
 
     // OK: count is now a normal value

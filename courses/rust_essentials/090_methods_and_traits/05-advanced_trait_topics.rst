@@ -71,7 +71,7 @@ Associated Types
 .. code:: rust
 
   trait Animal {
-    type Food; // associated type
+    type Food; // Associated type
     fn consume(&self, food: Self::Food);
   }
 
