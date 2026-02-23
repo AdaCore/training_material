@@ -46,17 +46,17 @@ Automatic dereferencing for field access
 
 .. code:: rust
 
-  struct Point {
-    x: i32,
-    y: i32,
-  }
-  let origin = Point { x: 0, y: 0 };
-  let reference: &Point = &origin;
-  println!("x: {}, y: {}", reference.x, reference.y);
-
+    let coordinates = (3, 5); 
+    let reference: &(i32, i32) = &coordinates;
+    
+    println!("x: {}, y: {}", coordinates.0, coordinates.1);
+    println!("ref x: {}, ref y: {}", reference.0, reference.1);
+ 
 * Generates the following output
 
-:command:`x: 0, y: 0`
+:command:`x: 3, y: 5`
+
+:command:`ref x: 3, ref y: 5`
 
 -------------------------
 Reference Reassignement
