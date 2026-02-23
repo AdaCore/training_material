@@ -65,7 +65,7 @@ Fat Pointer
 -------------
 
 - Slices are sometimes called **Fat Pointers**
-- They carry **two** components:
+- They carry **two** components
   - **Data Pointer** - memory address where the data starts
   - **Length** - how many items to look at
 
