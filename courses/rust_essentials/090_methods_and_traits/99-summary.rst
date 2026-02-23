@@ -19,7 +19,6 @@ What We Covered
 
   * Act as *contracts* or interfaces for shared behavior across different types
   * Can provide default implementations to reduce repetitive code
-  * Enable polymorphism and generic programming
 
 * **Deriving**
 
