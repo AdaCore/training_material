@@ -9,7 +9,7 @@
 080_pattern_matching.rst
 090_methods_and_traits.rst
 100_generics.rst
-110_std_types.rst
+110_common_library_types.rst
 120_std_traits.rst
 130_memory_management.rst
 140_smart_pointers.rst
