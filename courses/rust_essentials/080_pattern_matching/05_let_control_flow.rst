@@ -20,7 +20,7 @@
   // ONLY matches if 'x' is exactly '7'
   let 7 = x;
 
-  :error:`error[E0005]: refutable pattern in local binding`
+:error:`error[E0005]: refutable pattern in local binding`
 
 ----------------------
 Conditional Matching
