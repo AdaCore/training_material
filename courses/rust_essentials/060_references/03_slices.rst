@@ -18,14 +18,9 @@ What Are Slices?
     let primes: [i32; 6] = [2, 3, 5, 7, 11, 13];  
     let slice: &[i32] = &primes[2..4];
 
-    println!("Primes: {primes:?}");
-    println!("Slice: {slice:?}");
+:command:`primes: [2, 3, 5, 7, 11, 13]`
 
-* Generates the following output
-
-:command:`Primes: [2, 3, 5, 7, 11, 13]`
-
-:command:`Slice: [5, 7]`
+:command:`slice: [5, 7]`
 
 ----------------
 Slice Creation
@@ -78,9 +73,9 @@ Fat Pointer
 
     Creating a slice is **O(1)** ; it takes the same constant time whether the original array has 4 elements or 4 million.
 
-----------------
-&str vs String
-----------------
+------------------
+&str vs "String"
+------------------
 
 - :rust:`&str`: **String slice**, immutable reference to UTF-8 encoded bytes
   - Similar to :rust:`&[u8]`
@@ -88,8 +83,7 @@ Fat Pointer
   - String literals (:rust:`"Hello"`) are :rust:`&str`
 - :rust:`String`: Buffer of UTF-8 encoded bytes
   - Allocated on the heap, can grow or shrink
-  - Created from a string literal with :rust:`String::from()`
-  - Similar to C++ :cpp:`std::string`
+    - Similar to C++ :cpp:`std::string`
 
 .. code:: rust
 
