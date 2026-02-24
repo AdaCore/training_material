@@ -6,11 +6,11 @@ Panics
 Unrecoverable Error
 ---------------------
 
-* :rust:`panic` is :dfn:`Rust's way of handling a fatal runtime error`
+* :rust:`panic!` is one way of handling a fatal runtime error
 
   * Immediately stops execution of current thread
 
-* When it happens:
+* Why it happens:
 
   * *Bugs* - failed bounds checks
 

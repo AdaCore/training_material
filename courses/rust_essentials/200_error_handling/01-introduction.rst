@@ -10,9 +10,9 @@ Topics Covered
 
   * Unrecoverable errors
 
-* :rust:`Result`
+* **Recoverable errors**
 
-  * Recoverable errors
+  * :rust:`Result`
 
 * **Try Operator**
 
@@ -26,10 +26,11 @@ Topics Covered
 
   * Defining error implementations
 
-* :rust:`thiserror`
+* **Creating errors through** :rust:`derive`
 
-  * Creating errors through :rust:`derive`
+  * :rust:`thiserror`
 
-* :rust:`anyhow`
+* **Simplified error handling**
 
-  * Simplified error handling
+  * :rust:`anyhow`
+
