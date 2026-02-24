@@ -101,9 +101,9 @@ Trait Objects
 * :rust:`'static` bound
 
   * Typically see :rust:`Box<dyn Error + 'static>`
-  * Ensures the error doesn't contain any temporary references
+  * Ensures error can live for entire program duration
 
-    * (Might disappear while the error is being passed around)
+    * Safe to pass across boundaries
 
 * You have a :rust:`dyn Error` but need to check if it's :rust:`Network` error
 

@@ -84,8 +84,8 @@ Results vs Exceptions
       - Higher cost
 
     * -
-      - (Just an enum return)
-      - (Requires stack unwinding)
+      - (Zero-cost abstraction)
+      - (Can impose run-time overhead)
 
     * - **Safety**
       - Compiler forces you to handle error
