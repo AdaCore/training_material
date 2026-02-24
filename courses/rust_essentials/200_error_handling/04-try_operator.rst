@@ -56,7 +56,7 @@ Automatic Type Conversion
 
 * :rust:`?` doesn't just return the error
 
-  * It calls :rust:`Into::into` on it.
+  * Converts errors using :rust:`From` trait
 
 * Why this matters
 
@@ -85,7 +85,8 @@ Try Operator with "Option"
 
   **You cannot mix and match**
 
-  You can't use :rust:`?` on a :rust:`Result` inside a function that returns an :rust:`Option`, and vice versa.
+  You can't use :rust:`?` on :rust:`Result` in a function returning :rust:`Option`
+  unless you convert explicitly
 
 ---------------
 "?" in "main"
