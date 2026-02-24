@@ -2,24 +2,6 @@
 Result
 ========
 
--------------------------
-What Is "Result<T, E>"?
--------------------------
-
-* Mechanism to handle recoverable errors
-
-.. code:: rust
-
-  enum Result<T, E> {
-      Ok(Good),   // Success
-      Err(Bad),   // Failure
-  }
-
-* :rust:`Result` carries information about *why* something failed
-
-  * :rust:`Good` is the type returned on success
-  * :rust:`Bad` is the type returned on failure
-
 -------------------
 Why Use "Result"?
 -------------------
@@ -38,6 +20,24 @@ Why Use "Result"?
 .. Warning::
 
   :rust:`Result` is annotated with :rust:`#[must_use]` attribute - it **cannot** be ignored
+
+-------------------------
+What Is "Result<T, E>"?
+-------------------------
+
+* Mechanism to handle recoverable errors
+
+.. code:: rust
+
+  enum Result<T, E> {
+      Ok(T),   // Success
+      Err(E),  // Failure
+  }
+
+* :rust:`Result` carries information about *why* something failed
+
+  * :rust:`T` is the type returned on success
+  * :rust:`E` is the type returned on failure
 
 --------------
 Common Usage

@@ -3,6 +3,24 @@ Option
 ========
 
 ----------------------
+Why Use "Option<T>"?
+----------------------
+
+* Replaces the concept of *null* as an indication of no value
+
+  * Forces user to check for "no value"
+
+* Requires explicit handling before accessing the value
+
+  * You must handle :rust:`None` before using :rust:`Some`
+  * Prevents null dereference in safe code
+
+.. note::
+
+  You cannot look at the value in :rust:`Some` without
+  also checking for :rust:`None`
+
+----------------------
 What is "Option<T>"?
 ----------------------
 
@@ -25,33 +43,6 @@ What is "Option<T>"?
 
   * Represents the absence of a value
 
-----------------------
-Why Use "Option<T>"?
-----------------------
-
-* Replaces the concept of *null* as an indication of no value
-
-  * Forces user to check for "no value"
-
-* Requires explicit handling before accessing the value
-
-  * You must handle :rust:`None` before using :rust:`Some`
-
-  * Eliminates null-pointer errors at compile time
-
-* Is commonly used for
-
-  * Optional arguments
-
-  * Collection lookups
-
-  * Functions that may not return a result
-
-.. note::
-
-  You cannot look at the value in :rust:`Some` without
-  also checking for :rust:`None`
-
 -------------------
 Handling "Option"
 -------------------
@@ -71,10 +62,6 @@ Code needs to handle either possiblity
 
 * Panic-based handling
 
-  * When the code does not expect to encounter a missing value
-
-    * These raise a panic exception
-
   .. code:: rust
 
     assert_eq!(position.unwrap(), 14);
@@ -82,6 +69,10 @@ Code needs to handle either possiblity
 
   * :rust:`unwrap` - return the value or panic
   * :rust:`expect` - panic with a message
+
+  * Useful for prototypes, tests, guaranteed-to-pass invariants
+
+    * Should **not** be used in production code
 
 ----------------------
 Benefits of "Option"
@@ -100,3 +91,36 @@ Benefits of "Option"
 .. note::
 
   Rust replaces *null* with :rust:`Option` so "nothing" can’t panic behind your back
+
+------------------
+Common Use Cases
+------------------
+
+* Optional arguments
+
+  * Configuration data wherer a value might not be specified
+
+  .. code:: rust
+
+    struct Config {
+        output_file: Option<String>,
+    }
+
+* Collection lookups
+
+  * Looking for something in a database that might not be there
+
+  .. code:: rust
+
+    fn find_user(id: u32) -> Option<User> {
+        // returns None if user doesn’t exist
+    }
+
+* Functions that may not return a result
+
+  * Popping from an empty stack
+
+  .. code:: rust
+
+    let value = stack.pop();
+

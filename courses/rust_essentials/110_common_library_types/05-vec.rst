@@ -61,12 +61,13 @@ Basic Operations
     .. code:: rust
 
       let v = vec![1, 2, 3];
-      println!("The second element is: {}", v[1]);
       println!("The sixth element is: {}", v[5]);
 
-    :command:`The second element is: 2`
-
     :error:`index out of bounds: the len is 3 but the index is 5`
+
+.. warning::
+
+  Direct indexing is discouraged unless bounds are guaranteed
 
 * Other common operations
 

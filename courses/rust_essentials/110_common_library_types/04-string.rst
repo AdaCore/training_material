@@ -15,7 +15,8 @@ What Is "String"?
 * Key points
 
   * UTF-8 means length in bytes not necessarily number of characters
-  * Converts to a string slice (:rust:`&str`) when passed to functions
+  * :rust:`String can be borrowed as &str`
+  * Functions often accept rust:`&str`
 
     * Implements :rust:`Deref<Target = str>`
 
@@ -73,7 +74,7 @@ Length vs Characters
 
     \vspace{2mm}
 
-  ``fancy_string.push_str("Greek letters:`` :math:`\lambda` :math:`\omega` :math:`\pi` ``);``
+  ``fancy_string.push_str("Greek letters:`` :math:`\lambda` :math:`\omega` :math:`\pi` ``");``
 
   ``println!("Length = {}", fancy_string.len());``
 
