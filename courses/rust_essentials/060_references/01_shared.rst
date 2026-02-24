@@ -10,23 +10,23 @@ Shared References
 - Provide a mechanism to access a value without taking ownership
 - Strictly **read-only**: the referenced data **cannot change**
   - Even if the original variable was declared as :rust:`mut`
+- A shared reference to a type :rust:`T` has type :rust:`&T`
 
 .. code:: rust
 
     let first = 'A';
-    let reference: &char = &first; // Refers to 'first'
+    let ref_1: &char = &first; // Refers to 'first'
+    let ref_2: &char = &first; // Refers to 'first'
 
 .. note::
 
-    A shared reference to a type :rust:`T` has type :rust:`&T`
-
+    You can have unlimited shared references to the same data at the same time    
 
 -----------------------------------
 Using Reference (Accessing data)
 -----------------------------------
 
 - The :rust:`*` operator **dereferences** the reference to read the value
-  - Use :rust:`.` for field access (no C++ style :rust:`->`)
 
 .. code:: rust
 
@@ -42,12 +42,13 @@ Using Reference (Accessing data)
 Automatic dereferencing for field access
 ------------------------------------------
 
-- Use :rust:`.` for field access (no C++ style :rust:`->`)
+- Use :rust:`.` for field access 
+  - No C++ style :rust:`->`
 
 .. code:: rust
 
     let coordinates = (3, 5); 
-    let reference: &(i32, i32) = &coordinates;
+    let reference = &coordinates;
     
     println!("x: {}, y: {}", coordinates.0, coordinates.1);
     println!("ref x: {}, ref y: {}", reference.0, reference.1);
