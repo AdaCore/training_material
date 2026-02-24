@@ -48,14 +48,15 @@ Creating Vectors
 Basic Operations
 ------------------
 
-Vectors support common operations:
+* Accessing items in the array
 
-  * **Safe access:** :rust:`v.get(i)` returns :rust:`Option<&T>`
-  * **Remove last:** :rust:`v.pop()` returns :rust:`Option<T>`
-  * **Iterators:** iterate with :rust:`for x in &v`
-  * **Indexing:** :rust:`v[i]`
+  * **Safe access:** :rust:`v.get(idx)` returns :rust:`Option<&T>`
 
-    * Panics if out of bounds
+    * Use :rust:`Some` / :rust:`None` capability to handle :rust:`idx` out of bounds
+
+  * **Direct Indexing:** :rust:`v[idx]`
+
+    * Panics if :rust:`idx` is out of bounds
 
     .. code:: rust
 
@@ -67,3 +68,7 @@ Vectors support common operations:
 
     :error:`index out of bounds: the len is 3 but the index is 5`
 
+* Other common operations
+
+  * **Remove last:** :rust:`v.pop()` returns :rust:`Option<T>`
+  * **Iterators:** iterate with :rust:`for x in &v`

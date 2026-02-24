@@ -6,19 +6,24 @@ Summary
 What We Covered
 -----------------
 
-* Core types/APIs
-* Common types across multiple libraries
+* Basic structure of the standard library
 
-.. list-table::
+  * Core - basic building blocks
+  * Alloc - adding some memory management
+  * Std - adding everything else, like file I/O, networking, etc.
 
-  * - :rust:`Option`
-    - Contains a value or :rust:`None` to indicate failure
+* Some of the most common types
 
-  * - :rust:`Result`
-    - Contains one type of value on success and another on failure
+  .. list-table::
 
-  * - :rust:`String`
-    - UTF-8 string that can be mapped to default :rust:`str`
+    * - :rust:`Option`
+      - Contains a value or :rust:`None` to indicate failure
 
-  * - :rust:`Vec`
-    - Growable sequence of values
+    * - :rust:`Result`
+      - Contains one type of value on success and another on failure
+
+    * - :rust:`String`
+      - UTF-8 string that can be mapped to default :rust:`str`
+
+    * - :rust:`Vec`
+      - Growable sequence of values

@@ -19,6 +19,10 @@ What Is "String"?
 
     * Implements :rust:`Deref<Target = str>`
 
+.. note::
+
+   :rust:`&str` is a fixed view into text, so not modifiable like :rust:`String`
+
 ------------------
 Creating Strings
 ------------------

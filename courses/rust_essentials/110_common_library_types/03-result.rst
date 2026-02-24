@@ -6,28 +6,28 @@ Result
 What Is "Result<T, E>"?
 -------------------------
 
-* Represents outcome of an operation that can succeed or fail
+* Mechanism to handle recoverable errors
 
 .. code:: rust
 
   enum Result<T, E> {
-      Ok(T),   // Success
-      Err(E),  // Failure
+      Ok(Good),   // Success
+      Err(Bad),   // Failure
   }
-
 
 * :rust:`Result` carries information about *why* something failed
 
-  * :rust:`T` is the type returned on success
-  * :rust:`E` is the type returned on failure
+  * :rust:`Good` is the type returned on success
+  * :rust:`Bad` is the type returned on failure
 
-----------------------
-Why "Result" Matters
-----------------------
+-------------------
+Why Use "Result"?
+-------------------
 
 * Encourages explicit error handling
 
   * Can’t ignore errors silently
+  * More error handling described later in the course
 
 * Compiler warns if :rust:`Result` is unused
 
@@ -35,7 +35,7 @@ Why "Result" Matters
 
   * I/O, parsing, etc.
 
-.. note::
+.. Warning::
 
   :rust:`Result` is annotated with :rust:`#[must_use]` attribute - it **cannot** be ignored
 

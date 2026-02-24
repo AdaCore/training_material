@@ -2,11 +2,20 @@
 Option
 ========
 
--------------
-"Option<T>"
--------------
+----------------------
+What is "Option<T>"?
+----------------------
 
 :rust:`Option<T>` is defined as an enum with two variants
+
+  * Like other user-defined types
+
+  .. code:: rust
+
+    enum Option<T> {
+        Some(T),
+        None,
+    }
 
 * :rust:`Some(T)`
 
@@ -16,17 +25,13 @@ Option
 
   * Represents the absence of a value
 
---------------------------------
-"Option<T>" - Handling Absence
---------------------------------
+----------------------
+Why Use "Option<T>"?
+----------------------
 
-Benefits of :rust:`Option<T>`
+* Replaces the concept of *null* as an indication of no value
 
-* Represents a value that may be missing
-
-  * Used instead of null in other languages
-
-  * Forces you to acknowledge when a value might be absent
+  * Forces user to check for "no value"
 
 * Requires explicit handling before accessing the value
 
@@ -53,16 +58,22 @@ Handling "Option"
 
 Code needs to handle either possiblity
 
-* Typical handling
+* Most common handling
+
+  * Indicates "no value" is not an unreasonable possibility
 
   .. code:: rust
 
     match opt {
-      Some(v) => println!("{}", v),
-      None    => println!("no value"),
+      Some(next) => println!("{}", next),
+      None       => println!("nothing found"),
     }
 
 * Panic-based handling
+
+  * When the code does not expect to encounter a missing value
+
+    * These raise a panic exception
 
   .. code:: rust
 
@@ -72,9 +83,9 @@ Code needs to handle either possiblity
   * :rust:`unwrap` - return the value or panic
   * :rust:`expect` - panic with a message
 
--------------------
-Why Use "Option"?
--------------------
+----------------------
+Benefits of "Option"
+----------------------
 
 * Safety and Clarity
 
