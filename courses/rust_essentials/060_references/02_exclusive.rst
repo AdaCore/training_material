@@ -150,7 +150,7 @@ The "Rebinder" (let mut r = &x)
   "I can't touch the contents, but I can look at someone else"
 
 ---------------------------------
-The "Modifyer" (let r = &mut x) 
+The "Modifier" (let r = &mut x) 
 ---------------------------------
 
 - Can't point to something else
