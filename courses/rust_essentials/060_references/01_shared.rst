@@ -20,11 +20,11 @@ Shared References
 
 .. note::
 
-    You can have unlimited shared references to the same data at the same time    
+    Unlimited shared references to the *same* data can exist at the *same* time!
 
------------------------------------
-Using Reference (Accessing data)
------------------------------------
+----------------------------------
+Using Reference (Accessing Data)
+----------------------------------
 
 - The :rust:`*` operator **dereferences** the reference to read the value
 
@@ -43,7 +43,7 @@ Automatic Dereferencing for Field Access
 ------------------------------------------
 
 - Use :rust:`.` for field access 
-  - No C++ style :cpp:`->`
+  - No :cpp:`->` operator (unlike C++)
 
 .. code:: rust
 
@@ -59,9 +59,9 @@ Automatic Dereferencing for Field Access
 
 :command:`ref x: 3, ref y: 5`
 
--------------------------
-Reference Reassignement
--------------------------
+------------------------
+Reference Reassignment
+------------------------
 
 .. code:: rust
 
