@@ -1,16 +1,15 @@
 ======================
-Exclusive References
+Mutable References
 ======================
 
---------------------
-Exclusive References
---------------------
+-----------------------------------------------
+Mutable References (aka Exclusive References)
+-----------------------------------------------
 
 - Created with the :rust:`&mut` operator
-- Allow changing the value they refer to
-- Also known as **mutable** references
-- No other references (shared or exclusive) can exist simultaneously
-- An exclusive reference to a type :rust:`T` has type :rust:`&mut T`
+- Allow modifying the value they point to
+- Cannot coexist with any other reference
+- A mutable reference to a type :rust:`T` has type :rust:`&mut T`
 
 .. code:: rust
 
@@ -25,11 +24,11 @@ Exclusive References
 
 .. note::
 
-    You cannot create a :rust:`&mut` reference to an immutable variable
+  A :rust:`&mut` reference cannot be created from an **immutable** variable
 
-------------------------------------------
-How References Use Non-Lexical Lifetimes
-------------------------------------------
+-----------------------------
+Non-Lexical Lifetimes (NLL)
+-----------------------------
 
 - Case A: :rust:`ref_1` is still "active", the compiler won't let :rust:`ref_2` exist
 
@@ -61,7 +60,7 @@ How References Use Non-Lexical Lifetimes
 
 .. note::
 
-    References live until their last use, not the end of the scope :rust:`{ }`
+    References live until their last use, not necessarily the end of the scope :rust:`{ }`
 
 ----------------------
 Binding vs Reference
@@ -94,9 +93,9 @@ The four quadrants of Rust's reference system
     - Mutable
     - Mutable
 
----------------------------------
+-----------------------------
 The "Observer" (let r = &x)
----------------------------------
+-----------------------------
 
 - *Cannot* point to something else
 - *Cannot* change the value
@@ -105,25 +104,25 @@ The "Observer" (let r = &x)
 
     let past = 1984;
     let future = 2048;
-    let r = &past; 
+    let rf = &past; 
 
-    *r = 1776; // Error
+    *rf = 1776; // Error
 
 * Generates the following ouput
 
-:error:`error[E0594]: cannot assign to '*r', which is behind a '&'' reference`
+:error:`error[E0594]: cannot assign to '*rf', which is behind a '&'' reference`
 
 .. code:: rust
 
-    r = &future; // Error
+    rf = &future; // Error
 
 * Generates the following output
 
-:error:`error[E0384]: cannot assign twice to immutable variable 'r'`
+:error:`error[E0384]: cannot assign twice to immutable variable 'rf'`
 
 .. note::
 
-  "I am stuck with you, and I can only look"
+  The reference cannot be redirected, nor can the data be modified
 
 ---------------------------------
 The "Rebinder" (let mut r = &x)
@@ -136,18 +135,18 @@ The "Rebinder" (let mut r = &x)
 
     let news_a = "War with the North";
     let news_b = "War with the South";
-    let mut r = &news_a;
+    let mut rf = &news_a;
 
-    r = &news_b;
-    *r = "Peace"; // Error
+    rf = &news_b;
+    *rf = "Peace"; // Error
 
 * Generates the following output
 
-:error:`error[E0594]: cannot assign to '*r', which is behind a '&'' reference`
+:error:`error[E0594]: cannot assign to '*rf', which is behind a '&'' reference`
 
 .. note::
 
-  "I can't touch the contents, but I can look at someone else"
+  The reference can be redirected, but the data cannot be modified
 
 ---------------------------------
 The "Modifier" (let r = &mut x) 
@@ -160,18 +159,18 @@ The "Modifier" (let r = &mut x)
 
     let mut room_101 = 0;
     let mut room_102 = 0;
-    let r = &mut room_101;
+    let rf = &mut room_101;
 
-    *r = 1;
-    r = &mut room_102; // Error
+    *rf = 1;
+    rf = &mut room_102; // Error
 
 * Generates the following output
 
-:error:`error[E0384]: cannot assign twice to immutable variable 'r'`
+:error:`error[E0384]: cannot assign twice to immutable variable 'rf'`
 
 .. note::
 
-  "I am stuck with you, but I can change who you are"
+  The reference cannot be redirected, but the data can be modified
 
 ---------------------------------------
 The "Free Agent" (let mut r = &mut x) 
@@ -184,12 +183,12 @@ The "Free Agent" (let mut r = &mut x)
 
     let mut focus = 100;
     let mut shame = 0;
-    let mut r = &mut focus;
+    let mut rf = &mut focus;
 
-    *r = 0;
-    r = &shame;
-    *r = 999;
+    *rf = 0;
+    rf = &shame;
+    *rf = 999;
 
 .. note::
 
-  "I can change the value, and I can move on to something else"
+  The reference can be redirected, and the data can be modified
