@@ -111,7 +111,7 @@ The "Observer" (let r = &x)
 
 * Generates the following ouput
 
-:command:`error[E0594]: cannot assign to '*r', which is behind a '&'' reference`
+:error:`error[E0594]: cannot assign to '*r', which is behind a '&'' reference`
 
 .. code:: rust
 
