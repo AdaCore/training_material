@@ -143,7 +143,7 @@ The "Rebinder" (let mut r = &x)
 
 * Generates the following output
 
-:command:`error[E0594]: cannot assign to '*r', which is behind a '&'' reference`
+:error:`error[E0594]: cannot assign to '*r', which is behind a '&'' reference`
 
 .. note::
 
