@@ -8,7 +8,7 @@ Shared References
 
 - Created with the :rust:`&` operator
 - Provide a mechanism to access a value without taking ownership
-- Strictly **read-only**: the referenced data **cannot change**
+- Strictly **read-only**: referenced data **cannot change**
   - Even if the original variable was declared as :rust:`mut`
 - A shared reference to a type :rust:`T` has type :rust:`&T`
 
