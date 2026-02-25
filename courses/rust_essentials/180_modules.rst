@@ -32,9 +32,11 @@ Modules
 
 .. container:: PRELUDE END
 
-.. include:: 180_modules/01_modules.rst
-.. include:: 180_modules/02_filesystem.rst
-.. include:: 180_modules/03_visibility.rst
-.. include:: 180_modules/04_encapsulation.rst
-.. include:: 180_modules/05_paths.rst
-.. include:: 180_modules/99_lab.rst
+.. include:: 180_modules/00-introduction.rst
+.. include:: 180_modules/01-modules.rst
+.. include:: 180_modules/02-filesystem_hierarchy.rst
+.. include:: 180_modules/03-visibility.rst
+.. include:: 180_modules/04-encapsulation.rst
+.. include:: 180_modules/05-use_super_self.rst
+.. include:: 180_modules/88-modules.lab.rst
+.. include:: 180_modules/99-summary.rst
