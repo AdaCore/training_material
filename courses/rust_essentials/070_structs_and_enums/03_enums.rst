@@ -77,15 +77,16 @@ Enum Initialization
 Idiom: State Machine
 ----------------------
 
--  Each variant is **mutually exclusive**
+Each variant is **mutually exclusive**
 
 .. code:: rust
 
-    // represent distinct states of a network connection
+    // Represent distinct states of a network connection
     enum ConnectionState {
-        Idle,           // Unit variant (no data)
+		// Unit variant (no data)
+        Idle,
+		// Struct variant (contains data)
         Connected {
-            // Struct variant (contains data)
             session_id: u64, 
             curr_ip: IpAddressV4,
         }, 

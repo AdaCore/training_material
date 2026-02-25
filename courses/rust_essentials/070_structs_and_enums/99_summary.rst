@@ -12,9 +12,9 @@ What We Learned
 
    -  Full field initialization is mandatory
 
-   -  Uses the Struct Update Operator (..) for easy copying
+   -  Uses the Struct Update Operator (:rust:`..`) for easy copying
 
-   -  Includes Named-field structs, Tuple structs, and the newtype Idiom
+   -  Includes Named-field structs, Tuple structs, and the *newtype* idiom
 
 -  **Enums** 
 

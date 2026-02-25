@@ -6,7 +6,7 @@ Introduction
 Topics Covered
 ----------------
 
--  **Structs**: 
+-  **Structs** 
 
    -  Group related data 
 
@@ -14,7 +14,7 @@ Topics Covered
    
    -  Named-field vs Tuple forms
 
--  **Enums**: 
+-  **Enums** 
 
    -  Define distinct options
 

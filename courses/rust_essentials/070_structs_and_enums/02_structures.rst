@@ -8,7 +8,7 @@ Basics
 
 -  :rust:`struct` creates a type that can hold multiple related values
 
-   -  Visually similar to :c:`struct` in C/C++, or :ada:`record` in Ada
+   -  Visually similar to :cpp:`struct` in C/C++ or :ada:`record` in Ada
 
 -  Can hold any type that is :dfn:`Sized`
 
@@ -48,10 +48,9 @@ Nesting Structs
     }
     struct Car {
         new: bool,
-        // power_plant is a component of Car struct
+        // 'power_plant' is a component of 'Car' struct
         power_plant: Engine, 
     }
-
     
 ----------------------
 Beware of Recursion!
@@ -62,26 +61,24 @@ Beware of Recursion!
 
 .. code:: rust
 
-    // RussianDoll size = size of u8 + size of itself
+    // 'RussianDoll' size = size of u8 + size of itself
     // Size is infinite
     struct RussianDoll {
         size: u8,
-        // ...another RussianDoll!" (Infinite recursion)
+        // ...another 'RussianDoll'! (Infinite recursion)
         inner_doll: RussianDoll, 
     }
     
 .. container:: latex_environment footnotesize
 
    :error:`error[E0072]: recursive type 'RussianDoll' has infinite size` 
-
-
-    
+  
 -----------------------
 Struct Initialization
 -----------------------
 
 -  Initialization of every field is **mandatory** 
--  No implicit default values
+   -  No implicit default values
 
 .. code:: rust
 
@@ -98,7 +95,6 @@ Struct Initialization
         sign_in_count: attempt_number,
         logged_in: true;
     };
-
     
 --------------------------------
 Field Initialization Shorthand
@@ -128,7 +124,6 @@ Field Initialization Shorthand
             logged_in: true;
     };
 
-
 ------------------------
 Struct Update Operator 
 ------------------------
@@ -139,7 +134,7 @@ Struct Update Operator
 -  Base instance can't be followed by a comma
    -  Must be at the end of the declaration
    
-.. warning:: Fields are *moved* if their type (eg :rust:`String`)  don't implement the :rust:`copy` trait  
+.. warning:: Fields are *moved* if their type (e.g., :rust:`String`)  don't implement the :rust:`copy` trait  
 
 .. code:: rust
 
@@ -151,7 +146,7 @@ Struct Update Operator
         font_size: 14,
         active: false,
     };
-    // only change 'active' to true in 'set_1'
+    // Only change 'active' to true in 'set_1'
     let set_1 = Settings {
         active: true,   // Overridden field
         ..default_set   // Copy all other fields (font_size)
@@ -159,11 +154,7 @@ Struct Update Operator
     let set_2 = Settings {
         ..default_set   // Copy all fields
     };
-    let set_3 = Settings { 
-        ..default_set,  // ERROR, can't be followed by a comma
-    };
-    
-:error:`error: cannot use a comma after the base struct`
+
 
 ---------
 Mutable
@@ -189,7 +180,6 @@ Mutable
         is_napping: false,
     };
     
-
 :error:`error: expected identifier, found keyword 'mut'`
 
 ---------------
@@ -205,7 +195,7 @@ Tuple Structs
     struct Character(
         u64,   // Power
         i64,   // Money
-        bool,  // is good?
+        bool,  // Is good?
     );
     // How you use it:
     let hero = Character(10000, -500, true);
@@ -226,41 +216,34 @@ Value Illusion
    
    -  Constructor function call
    
--  This compiles
-
-  
 .. code:: rust
     
     struct Point(i32, i32);
     // Creates an alias
-    let coord = Point;  // Point is a function call
-    
-    
+    let coord = Point;  // 'Point' is the constructor function
+       
 .. warning:: 
     
    :rust:`coord` is NOT a variable of type :rust:`Point`. It is an alias for the constructor function call
 
-
-
 .. code:: rust 
     
-    // Calls the alias for Point constructor  
+    // Calls the alias for 'Point' constructor  
     // Initializes the tuple
-    let maximum = coord(1,2); // maximum is a Point
+    let maximum = coord(1,2); // 'maximum' is a 'Point'
     
 -    This doesn't compile
 
 .. code:: rust
     
-    // Calls the Point constructor 
+    // Calls the 'Point' constructor 
     // No initilization because of missing fields
     let coord2 = Point();
 
 .. container:: latex_environment footnotesize
     
    :error:`error[E0061]: this struct takes 2 arguments but 0 arguments were supplied`
-
-    
+   
 -------------------------
 Type Safety with Tuples
 -------------------------
@@ -281,9 +264,7 @@ Type Safety with Tuples
     dimension = coordinates; // ERROR
     
 :error:`error[E0308]: mismatched types`
-    
-    
-    
+     
 ----------------
 Idiom: Newtype
 ----------------
@@ -292,19 +273,11 @@ Idiom: Newtype
 
    -  Used to ensure type safety
 
-
 .. code:: rust
 
-    struct UserId(i64); 
-    struct LapseSecondsDuration(i64);
-    
-    let mut my_id  = UserId(15);
-    let mut my_time = Duration(53);
+    struct Feet(i32);
+    struct Inches(i32);
 
--  :rust:`UserId` and :rust:`Duration` are both :rust:`i64` but can't assign one to the other
-    
-.. code:: rust
-    
-    // ERROR mismatched types
-    my_id = my_time;
-
+    let mut distance = Feet(12) + Inches(3);
+	
+:error:`error[E0369]: cannot add 'Inches' to 'Feet'`
