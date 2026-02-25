@@ -1,17 +1,17 @@
-====================
-Generics and Traits
-====================
+============================
+Constraints and Properties
+============================
 
 --------------
 Trait Bounds
 --------------
 
--  Generic data :rust:`<T>` is very broad 
+-  Generic data :rust:`<T>` has almost no limitations
 
--  Compiler will restrict what can be done with <T> 
-   -  Doesn't know if number or string or anything else
+-  Compiler will restrict what can be done with :rust:`<T>` 
+   -  Doesn't know if it can do math, order or anything else 
    
--  Traits are the **fine print** on a generic contract
+-  Traits are the **fine print** on a generic **contract**
 
    -  Ensure the logic only executes on types that "fit" the requirements
    
@@ -20,19 +20,9 @@ Trait Bounds
 .. code:: rust
 
 	fn print_it<T: std::fmt::Display>(item: T) {
-		println!("{}", item); // Only works if T implements Display
+		println!("{}", item); // Only works if 'T' implements Display
 	}
 
--  or with a :rust:`where` clause
-   
-.. code:: rust
-
-	fn complex_function<T, U>(t: T, u: U) 
-    where 
-        T: Display, 
-        U: Debug
-    { ... }
-	
 
 --------------------
 Adding Constraints
@@ -140,6 +130,7 @@ Multiple Traits
 
    -  Using the :rust:`+` operator
 
+-  :rust:`where` clause can be used for better visibility
 
 .. code:: rust
 

@@ -16,31 +16,29 @@ Generic Data Type
    
 .. code:: rust
 
-   enum Option<T> {
-    None,
-    Some(T),
-   }
+   fn Swap<T> (l: T, r: T) -> (T, T) {
+		(r, l)
+}
+
    
--  :rust:`T` (the generic type parameter) means an :rust:`Option` can wrap any type
+-  :rust:`T` (the generic type parameter) means an :rust:`Swap` can wrap any type
 
-   -  :rust:`Option<i32>`, :rust:`Option<String>` and others
+   -  :rust:`Swap<i32>`, :rust:`Swap<f64>` etc
 
--  :rust:`None` represents the absence of a value
 
--  :rust:`Some(T)` tuple *variant* that holds a value of type :rust:`T`
 
 ------------
 Be Generic
 ------------
 
-Objects that can be made generic
+Constructs that can be made generic
 
 .. container:: latex_environment scriptsize
 
     .. list-table:: 
        :header-rows: 1
        
-       * - Feature
+       * - Constructs
          - Example Syntax
          - Purpose
          
@@ -67,36 +65,39 @@ Objects that can be made generic
          - :rust:`type Res<T> = Result<GenT>`
          - Simplifying complex generic names
 
- 
+-- JBE : very all options are present in examples 
+-- Add Examples ?
 
----------
-Example 
----------
 
--  Any type with a known **size** can specify the type argument    
+----------------
+Type Inference 
+----------------
+
+-  Any **Sized**-type can specify the type argument    
 
 .. code:: rust
 
 
-    // Definition: T is a placeholder for ANY type
+    // Definition: 'T' is a placeholder for ANY type
     fn encourage<T>(item: T) -> T {
         println!("You're doing great, little value!");
         item 
     }
 
-    fn main() {
-        // Usage with an integer
-        let points = encourage(100); 
+    // Usage with an integer
+    let points = encourage(100); 
 
-        // Usage with a string
-        let name = encourage("Rustacean");
-}
+    // Usage with a string
+    let name = encourage("Rustacean");
+
+-  Type is **infered** at compile-time from the context
+   
 
 -----------------------
 Multiple Generic Type
 -----------------------
 
-Objects can have multiple generic data types 
+Constructs can have multiple generic data types 
 
 .. code:: rust
 
@@ -105,11 +106,10 @@ Objects can have multiple generic data types
         y: U,
     }
 
-    fn main() {
-        let both_integer = Point { x: 5, y: 10 };
-        let both_float = Point { x: 1.0, y: 4.0 };
-        let integer_and_float = Point { x: 5, y: 4.0 };
-    }
+    let both_integer = Point { x: 5, y: 10 };
+    let both_float = Point { x: 1.0, y: 4.0 };
+    let integer_and_float = Point { x: 5, y: 4.0 };
+    
 	
 
 

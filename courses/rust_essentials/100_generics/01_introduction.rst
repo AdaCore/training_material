@@ -10,11 +10,9 @@ Topics Covered
 
    -  Definition and instantiation
 
--  **Genericity and traits**
-
-   -  Adding constraints and properties
+-  **Constraints and properties** 
   
-   -  Generic traits
+-  **Generic traits**
 
 
 -------------------------
@@ -37,6 +35,6 @@ The Notion of a Pattern
 
 .. code:: Rust
 
-    fn Swap (l: (a_type), r: (a_type)) -> ((a_type), (a_type)) {
+    fn Swap (l: a_type, r: a_type) -> (a_type, a_type) {
 		(r, l)
 	}
