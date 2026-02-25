@@ -11,10 +11,10 @@ What We Covered
   - Allow read-only access to value
   - Implemented as safe pointers
   
-- **Exclusive References** (:rust:`&mut T`)
+- **Mutable References** (:rust:`&mut T`)
 
   - Allow mutable access
-  - Only one exclusive reference allowed at a time
+  - Only one mutable reference allowed at a time
 
 - **Safety**
   - References are never null and are always valid
