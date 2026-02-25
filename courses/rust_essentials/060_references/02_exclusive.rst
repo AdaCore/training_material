@@ -167,7 +167,7 @@ The "Modifyer" (let r = &mut x)
 
 * Generates the following output
 
-:command:`error[E0384]: cannot assign twice to immutable variable 'r'`
+:error:`error[E0384]: cannot assign twice to immutable variable 'r'`
 
 .. note::
 
