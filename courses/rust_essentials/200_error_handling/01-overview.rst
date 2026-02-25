@@ -59,29 +59,3 @@ Panic vs Result: Two Different Failures
 
   // Bug: invariant violated
   assert!(index < len);
-
--------------------------------------
-Make Invalid States Unrepresentable
--------------------------------------
-
-* Rust pushes correctness into the type system
-
-  * Instead of accepting "any number"
-
-    .. code:: rust
-
-      fn find_user(id: u64) -> Result<User, Error>
-
-  * We can define a stronger type:
-
-    .. code:: rust
-
-      struct UserId(u64);
-
-      fn find_user(id: UserId) -> Result<User, Error>
-
-* Now
-
-  * You cannot accidentally pass an unrelated :rust:`u64`
-  * You must consciously construct a :rust:`UserId`
-  * The API documents intent through types
