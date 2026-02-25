@@ -61,7 +61,7 @@ How References Use Non-Lexical Lifetimes
 
 .. note::
 
-    References live until their last use, not to the end of the scope :rust:`{ }`
+    References live until their last use, not the end of the scope :rust:`{ }`
 
 ----------------------
 Binding vs Reference
