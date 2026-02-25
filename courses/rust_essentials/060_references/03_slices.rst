@@ -26,11 +26,15 @@ What Are Slices?
 Slice Creation
 ----------------
 
-- Created by referring to a collection, and specifying the range:
-  - :rust:`&a[start..]`: Explicit start to implicit end
-  - :rust:`&a[..end]`: Implicit start to explicit end (*end* excluded)
-  - :rust:`&a[..]`: Full range
-  - :rust:`&a[start..end]`: Explicit start and end (*end* excluded)
+- Created by referring to a collection, and specifying the range
+  - :rust:`&a[start..]`
+    - Explicit start to implicit end
+  - :rust:`&a[..end]`
+    - Implicit start to explicit end (*end* excluded)
+  - :rust:`&a[..]`
+    - Full range
+  - :rust:`&a[start..end]`
+    - Explicit start and end (*end* excluded)
   
 .. code:: rust
 
