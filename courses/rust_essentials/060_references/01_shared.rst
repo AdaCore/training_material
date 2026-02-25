@@ -43,7 +43,7 @@ Automatic Dereferencing for Field Access
 ------------------------------------------
 
 - Use :rust:`.` for field access 
-  - No C++ style :rust:`->`
+  - No C++ style :cpp:`->`
 
 .. code:: rust
 
