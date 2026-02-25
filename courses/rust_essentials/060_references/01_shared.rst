@@ -39,7 +39,7 @@ Using Reference (Accessing data)
 :command:`reference: A`
 
 ------------------------------------------
-Automatic dereferencing for field access
+Automatic Dereferencing for Field Access
 ------------------------------------------
 
 - Use :rust:`.` for field access 
