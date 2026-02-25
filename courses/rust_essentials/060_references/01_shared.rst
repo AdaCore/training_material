@@ -26,7 +26,7 @@ Shared References
 Using Reference (Accessing Data)
 ----------------------------------
 
-- The :rust:`*` operator **dereferences** the reference to read the value
+- The :rust:`*` operator **dereferences** the address to read the value
 
 .. code:: rust
 
