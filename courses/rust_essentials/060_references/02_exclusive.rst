@@ -83,23 +83,23 @@ The four quadrants of Rust's reference system
     - Shared
 
   * - :rust:`let mut r = &x`
-    - **Mutable**
+    - Mutable
     - Shared
 
   * - :rust:`let r = &mut x`
     - Immutable
-    - **Mutable**
+    - Mutable
 
   * - :rust:`let mut r = &mut x`
-    - **Mutable**
-    - **Mutable**
+    - Mutable
+    - Mutable
 
 ---------------------------------
 The "Observer" (let r = &x)
 ---------------------------------
 
-- Can't point to something else
-- Can't change the value
+- *Cannot* point to something else
+- *Cannot* change the value
 
 .. code:: rust
 
@@ -129,8 +129,8 @@ The "Observer" (let r = &x)
 The "Rebinder" (let mut r = &x)
 ---------------------------------
 
-- Can point to something else
-- Can't change the value
+- *Can* point to something else
+- *Cannot* change the value
 
 .. code:: rust
 
@@ -153,8 +153,8 @@ The "Rebinder" (let mut r = &x)
 The "Modifier" (let r = &mut x) 
 ---------------------------------
 
-- Can't point to something else
-- Can change the value
+- *Cannot* point to something else
+- *Can* change the value
 
 .. code:: rust
 
@@ -177,8 +177,8 @@ The "Modifier" (let r = &mut x)
 The "Free Agent" (let mut r = &mut x) 
 ---------------------------------------
 
-- Can point to something else
-- Can change the value
+- *Can* point to something else
+- *Can* change the value
 
 .. code:: rust
 
