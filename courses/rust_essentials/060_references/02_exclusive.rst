@@ -43,7 +43,7 @@ How References Use Non-Lexical Lifetimes
 
 - Generates the following output
 
-:command:`error[E0502]: cannot borrow 'ego' as mutable because it is also borrowed as immutable`
+:error:`error[E0502]: cannot borrow 'ego' as mutable because it is also borrowed as immutable`
 
 - Case B: :rust:`ref_1` is never actually used, the compiler lets :rust:`ref_2` exist
 
