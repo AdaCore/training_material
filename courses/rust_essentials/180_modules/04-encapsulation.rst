@@ -6,23 +6,15 @@ Encapsulation
 Why Encapsulate?
 ------------------
 
-* Invariants - protect internal state of a data structure
+* Protect internal state of a data structure
 
-  * Ensure data is always valid
-
-    * Can only be changed via approved logic
+  * Ensure data is always valid via getter/setter API's
 
 * Decoupling - hiding implementation details
 
-  * Can change your internal code without breaking client
+  * Change your code without breaking client
 
     * E.g., swapping an array for a :rust:`Vec`
-
-* API Surface - smaller public API
-
-  * Easier to document
-  * Easier to learn
-  * Harder to misuse
 
 --------------------------
 Encapsulation in Structs
@@ -30,10 +22,9 @@ Encapsulation in Structs
 
 * *Gatekeeper* pattern
 
-  * Keep fields private (default behavior)
-  * Provide a :rust:`pub fn new(...)` constructor
+  * Keep fields private
 
-    * Ensure struct starts in valid state
+    * Only your code can modify fields
 
   * Provide :rust:`pub` getter and setter methods
 
@@ -76,6 +67,6 @@ Breaking Encapsulation
 
 .. note::
 
-  Encapsulation is not just "hiding" code; it is about **guaranteeing correctness**
+  Encapsulation hides code to help guarantee correctness
 
-  If a field is private, you guarantee no outside code can put an "illegal" value in
+  Private fields cannot have "illegal" values
