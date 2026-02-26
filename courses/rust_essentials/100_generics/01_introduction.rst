@@ -6,13 +6,13 @@ Introduction
 Topics Covered
 ----------------
 
--  **Generic data types**
+-  **Generic Data Types**
 
    -  Definition and instantiation
 
--  **Constraints and properties** 
+-  **Constraints and Properties** 
   
--  **Generic traits**
+-  **Generic Traits**
 
 
 -------------------------
@@ -31,7 +31,7 @@ The Notion of a Pattern
 		(right, left) 
 	}
 
-* It would be nice to extract these properties in some common pattern, and then just replace the parts that need to be replaced
+*  A common pattern can be extracted, with only some parts to replace
 
 .. code:: Rust
 

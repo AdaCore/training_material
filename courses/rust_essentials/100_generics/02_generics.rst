@@ -19,13 +19,10 @@ Generic Data Type
    fn Swap<T> (l: T, r: T) -> (T, T) {
 		(r, l)
 }
-
    
 -  :rust:`T` (the generic type parameter) means an :rust:`Swap` can wrap any type
 
    -  :rust:`Swap<i32>`, :rust:`Swap<f64>` etc
-
-
 
 ------------
 Be Generic
@@ -68,7 +65,6 @@ Constructs that can be made generic
 -- JBE : very all options are present in examples 
 -- Add Examples ?
 
-
 ----------------
 Type Inference 
 ----------------
@@ -92,7 +88,6 @@ Type Inference
 
 -  Type is **infered** at compile-time from the context
    
-
 -----------------------
 Multiple Generic Type
 -----------------------
@@ -110,8 +105,3 @@ Constructs can have multiple generic data types
     let both_float = Point { x: 1.0, y: 4.0 };
     let integer_and_float = Point { x: 5, y: 4.0 };
     
-	
-
-
-
-

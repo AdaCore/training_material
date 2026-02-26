@@ -23,6 +23,7 @@ Trait Bounds
 		println!("{}", item); // Only works if 'T' implements Display
 	}
 
+
 --------------------
 Adding Constraints
 --------------------
@@ -36,7 +37,7 @@ Adding a trait to a generic object gives it more functionalities
 		item < 10 
 	}
 
-:error:`error[E0369]: binary operation '<' cannot be applied to type 'T'`	
+:error:`ERROR: "binary operation '<' cannot be applied to type 'T'"`	
 
 .. code:: rust
 
@@ -72,7 +73,7 @@ Satisfying Constraints
 Trait Bounds Generics
 -----------------------
 
--  User-defined traits can be constraints for a generic function
+-  User defined traits can be constraints for a generic function
 
 .. code:: rust
 
@@ -139,6 +140,8 @@ Multiple Traits
         U: Debug + PartialOrd 
     { ... }
 
+
+
 ----------------
 Generic Traits
 ----------------
@@ -160,8 +163,9 @@ Generic Traits
 	}
 	// Rule for converting Minutes to a String
 	impl Transform<String> for Minutes {
-		fn convert(&self) -> String { format!("{} min", self.0) }
+		fn convert(&self) -> String { format!("{} minutes", self.0) }
 	
+
 -----------------------------
 "derive" Macro and Generics
 -----------------------------
@@ -189,3 +193,4 @@ Generic Traits
 	}
 :error:`ERROR: "Box<Secret> doesn't implement Debug"`	
 	
+
