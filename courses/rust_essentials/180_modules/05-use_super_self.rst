@@ -2,6 +2,35 @@
 "use", "super", "self"
 ========================
 
+-------------------------
+Dealing with Long Paths
+-------------------------
+
+.. code:: rust
+
+  mod greenhouse {
+      pub mod shelf {
+          pub mod cactus {
+              pub fn water_cactus() {
+                  println!("Watering the cactus");
+              }
+              pub fn touch_spine() {
+                  println!("Touching the prickly thing");
+              }
+          }
+      }
+  }
+
+  fn main() {
+      // This is repetitive and hard to read
+      greenhouse::shelf::cactus::water_cactus();
+      greenhouse::shelf::cactus::touch_spine();
+      greenhouse::shelf::cactus::water_cactus();
+      greenhouse::shelf::cactus::touch_spine();
+  }
+
+*Wouldn't it be nice to shorten these paths?*
+
 --------------------
 The "use" Shortcut
 --------------------
@@ -14,16 +43,33 @@ The "use" Shortcut
 
   * As if it was in your own module
 
-* Use the wildcard "*" to get everything
-
-  * :rust:`use std::io::*;` gets all items from :rust:`std::io`
-  * But it makes name clashes more likely
 
 * Simplify (and reduce clashes) with *renaming*
 
   .. code:: rust
 
     use std::io::Result as IoResult;
+
+-----------------------
+"use" with a Wildcard
+-----------------------
+
+* Use the wildcard "*" (:dfn:`glob import`) to get everything
+
+* When to use it
+
+  * Common in :rust:`mod tests` to test private items easily
+  * Used in preludes to load essential traits
+  * Speeds up prototyping
+
+* When to avoid it
+
+  * Makes it hard to find things for coder and autocomplete
+  * Globbed modules use the same name causes compilation errors
+
+.. note:: 
+
+  Use **nested imports** - :rust:`use std::io::(self, Read, Write);`
 
 ----------------
 Relative Paths

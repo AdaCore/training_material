@@ -17,6 +17,10 @@ Private by Default
   * Child module can see everything in its parent
   * Parent can only see :rust:`pub` items in its child
 
+----------------------
+Private Code Example
+----------------------
+
 .. code:: rust
 
   mod outer {
@@ -36,6 +40,10 @@ Private by Default
   }
 
 :error:`error[E0603]: function 'private' is private`
+
+.. note::
+
+  Compiler prevents illegal usage
 
 ----------------------------
 Struct and Enum Visibility

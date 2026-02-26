@@ -37,12 +37,11 @@ Mapping Modules to Files
 * Rust looks for
 
   * :filename:`cleaner.rs`
-
-    * Preferred modern style
-
   * :filename:`cleaner/mod.rs`
 
-    * Older style
+.. note::
+
+  :filename:`cleaner/mod.rs` is legacy style but still common
 
 -------------------------
 Directory-based Modules
