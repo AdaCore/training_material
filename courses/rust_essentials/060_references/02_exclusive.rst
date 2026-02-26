@@ -26,42 +26,6 @@ Mutable References (aka Exclusive References)
 
   A :rust:`&mut` reference cannot be created from an **immutable** variable
 
------------------------------
-Non-Lexical Lifetimes (NLL)
------------------------------
-
-- Case A: :rust:`ref_1` is still "active", the compiler won't let :rust:`ref_2` exist
-
-.. code:: rust
-
-    let mut ego = 10;
-    let ref_1 = &ego;
-    let ref_2 = &mut ego;
-
-    println!("ref_1: {ref_1}");
-
-- Generates the following output
-
-:error:`error[E0502]: cannot borrow 'ego' as mutable because it is also borrowed as immutable`
-
-- Case B: :rust:`ref_1` is never actually used, the compiler lets :rust:`ref_2` exist
-
-.. code:: rust
-
-    let mut ego = 10;
-    let ref_1 = &ego;
-    let ref_2 = &mut ego;
-
-    println!("ref_2: {ref_2}");
-
-- Generates the following output
-
-:command:`ref_2: 10`
-
-.. note::
-
-    References live until their last use, not necessarily the end of the scope :rust:`{ }`
-
 ----------------------
 Binding vs Reference
 ----------------------
