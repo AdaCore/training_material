@@ -43,3 +43,33 @@ Example
     let one: i16 = true.into();
     let bigger: i32 = 123_i16.into();
 
+------------------
+"From" vs "Into"
+------------------
+
+* Implementation
+
+  * If you implement :rust:`From`, you automatically get :rust:`Into`
+
+* Specificity
+
+  * :rust:`From` specifies both source and destination
+
+    .. code:: rust
+
+      let result = Feet::from(measure);
+
+    * :rust:`result` is in :rust:`Feet`
+      
+  * :rust:`Into` is called on an object
+
+    * Compiler might not know the source
+    * Need to supply hints
+
+    .. code:: rust
+
+      // What do we want 'target' to be?
+      let target = source.into(); 
+
+      // You have to help it:
+      let target: Feet = source.into();

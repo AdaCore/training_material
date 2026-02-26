@@ -35,10 +35,13 @@ Example
 
   .. code:: rust
 
-    let c = Config::default();
+    let example = Config::default();
+    println!("Defaults: {example:?}");
 
   * :rust:`default` uses sensible default values for :rust:`port`,
     :rust:`host`, and :rust:`debug`
+
+    :command:`Defaults: Config { port: 0, host: "", debug: false }`
 
 * Using *struct update syntax*
 

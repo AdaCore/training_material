@@ -14,7 +14,9 @@ Reading and Writing via Trait
 * Why It Matters
 
   * Central to Rust’s I/O ecosystem (files, network, buffers)
-  * Trait-based so many types can be read from / written to generically
+  * Trait-based
+
+    * Many types can be read from / written to generically
 
 --------------------
 Practical Patterns

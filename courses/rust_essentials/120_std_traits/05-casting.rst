@@ -6,7 +6,7 @@ Casting
 Conversion Between Numbers and Pointers
 -----------------------------------------
 
-* Casting traits help interpet/transform values
+* Casting traits help interpret/transform values
 
   * Convert between numeric and pointer types
 

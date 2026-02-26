@@ -20,28 +20,27 @@ Operator Overloading
 Example
 ---------
 
+Define an implementation for :rust:`Inches` that returns a number in :rust:`Feet`
+
 .. code:: rust
 
-  #[derive(Debug, Copy, Clone)]
-  struct Point {
-      x: i32,
-      y: i32,
-  }
+  struct Feet(f64);
+  struct Inches(f64);
 
-  impl std::ops::Add for Point {
-      type Output = Self;
+  impl std::ops::Add for Inches {
+      type Output = Feet;
 
-      fn add(self, other: Self) -> Self {
-          Self { x: self.x + other.x, y: self.y + other.y }
+      fn add(self, rhs: Self) -> Self::Output {
+          Feet((self.0 + rhs.0) / 12.0)
       }
   }
 
   fn main() {
-      let p1 = Point { x: 10, y: 20 };
-      let p2 = Point { x: 100, y: 200 };
-      println!("{p1:?} + {p2:?} = {:?}", p1 + p2);
+      let measure1 = Inches(10.0);
+      let measure2 = Inches(32.0);
+    
+      println!("{} inches + {} inches", measure1.0, measure2.0);
+    
+      let feet = measure1 + measure2;
+      println!("= {} feet", feet.0);
   }
-
-.. note::
-
-  :rust:`Output` is an associated type — implementer decides the result type
