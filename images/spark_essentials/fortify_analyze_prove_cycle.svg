@@ -15,6 +15,6 @@
 <path fill="#e07c00" d="M 224.41142838268902 72.55556302831987 A 75 75 0 0 1 272.97308402774877 176.69636963055245 L 259.378467222199 170.35709570444197 A 60.0 60.0 0 0 0 220.52914270615122 87.0444504226559 Z"/>
 <polygon fill="#e07c00" stroke="#e07c00" stroke-width="1" points="254.84692828701574,168.24400439573847 277.50462296293205,178.80946093925596 259.8365016988634,187.12134947304696 "/>
 <text xml:space="preserve" fill="#12284c" stroke="#12284c" stroke-width="0.75"  text-align="left" font-size="18px" font-family='arial' font-weight="normal"  text-anchor="middle" x="345" y="172.0" >Prove</text>
-<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="345" y="187.0" >Generations of VC's and run</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="345" y="187.0" >Generation of VC's and run</text>
 <text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="345" y="196.0" >of automatic provers</text>
 </svg>
