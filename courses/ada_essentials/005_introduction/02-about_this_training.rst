@@ -66,13 +66,13 @@ Styles
 --------
 
 * :dfn:`This` is a definition
+* :ada:`procedure Ada_Code (True, Is_Highlighted, 1234);`
 * :filename:`this/is/a.path`
-* :ada:`code is highlighted`
 * :command:`commands are emphasised --like-this`
 * :error:`This is an error message`
 
 .. warning:: This is a warning
-.. note:: This is an important piece of info
+.. note:: This is an important piece of information
 .. tip:: This is a tip
 
 ---------------------

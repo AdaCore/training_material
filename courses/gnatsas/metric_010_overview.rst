@@ -740,8 +740,13 @@ McCabe Example
   .. column::
 
      .. image:: ../../images/gnatmetric/cyclomatic_complexity_edges_and_nodes.svg
+       :width: 75%
 
      9 edges - 7 nodes + 2 * 1 exit = complexity 4
+
+  .. raw:: latex
+
+    \vspace{5mm}
 
 ---------------------------------
 Complexity Metrics Code Example

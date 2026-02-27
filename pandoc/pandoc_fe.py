@@ -31,6 +31,13 @@ will be deleted when the process is complete.
 TITLE_FILE_NAME = None
 
 
+"""
+ARGS_SOURCE will be a copy of the 'source' parameter with
+all filenames using absolute paths
+"""
+ARGS_SOURCE = None
+
+
 def windows():
     """
     Return True if we're running on a Windows platform
@@ -92,6 +99,7 @@ def parse_title_file(args):
     Note that "COPYRIGHT" returns a list of lines; all other keywords
     are just a string.
     """
+    global ARGS_SOURCE
 
     title_source = args.title.strip()
 
@@ -117,12 +125,24 @@ def parse_title_file(args):
                     retval[key] = content
 
         if len(retval["TITLE"]) == 0:
-            retval["TITLE"] = default_title(args.source[0])
+            retval["TITLE"] = default_title(ARGS_SOURCE[0])
 
     except:
         pass
 
     return retval
+
+
+def prepare_source_files(source):
+    """
+    Convert all files in 'source' to absolute paths
+    """
+
+    global ARGS_SOURCE
+
+    ARGS_SOURCE = []
+    for one in source:
+        ARGS_SOURCE.append(os.path.abspath(one))
 
 
 def print_content(tfp, content, prefix=""):
@@ -157,9 +177,10 @@ def prepare_title_file(args):
     """
 
     global TITLE_FILE_NAME
+    global ARGS_SOURCE
 
     TITLE_FILE_NAME = None
-    if len(args.source) == 1 and args.source[0].lower().endswith(".txt"):
+    if len(ARGS_SOURCE) == 1 and ARGS_SOURCE[0].lower().endswith(".txt"):
         tmp = tempfile.NamedTemporaryFile(delete=False)
         TITLE_FILE_NAME = tmp.name + ".rst"
         title_info = parse_title_file(args)
@@ -183,9 +204,9 @@ def prepare_title_file(args):
             tfp.write(".. raw:: latex\n\n")
             tfp.write("   \\begin{center}\n")
 
-            tfp.write("   \\colorbox{adacore3}\n")
+            tfp.write("   \\colorbox{adacore_midblue}\n")
             tfp.write(
-                "   {\\color{adacore1}{\\huge{\\textit{\\textbf{"
+                "   {\\color{adacore_lovelace}{\\huge{\\textit{\\textbf{"
                 + title_info["TITLE"]
                 + "}}}}}\n\n"
             )
@@ -390,13 +411,15 @@ def expand_source(source_file):
 
 
 def pandoc_prepare_run(args):
+    global ARGS_SOURCE
     return (
         pandoc_prepare_run_single(n, source_or_source_list, args)
-        for n, source_or_source_list in enumerate(args.source)
+        for n, source_or_source_list in enumerate(ARGS_SOURCE)
     )
 
 
 def pandoc_prepare_run_single(n, source_or_source_list, args):
+    global ARGS_SOURCE
     assert os.path.isfile(source_or_source_list), (
         source_or_source_list + " does not exist"
     )
@@ -422,7 +445,7 @@ def pandoc_prepare_run_single(n, source_or_source_list, args):
     # Output default value is input file name
     output_file = output_file_name(
         input_file,
-        n if len(args.source) > 1 else None,
+        n if len(ARGS_SOURCE) > 1 else None,
         extension,
         title=args.title,
         output_dir=args.output_dir,
@@ -572,6 +595,8 @@ if __name__ == "__main__":
     parser.add_argument("--hush", help="Hide ran commands.", action="store_true")
 
     args = parser.parse_args()
+
+    prepare_source_files(args.source)
 
     prepare_title_file(args)
 

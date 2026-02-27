@@ -60,8 +60,8 @@ Testing Non-Contiguous Membership
 
         if Index in 1 | 3 | 5 then
 
-     * **|** is used to separate members
-     * So :ada:`1 | 3 | 5` is the set for which we are verifying membership
+    * **|** is used to separate members
+    * So :ada:`1 | 3 | 5` is the set for which we are verifying membership
 
 ..
   language_version 2012

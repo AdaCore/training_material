@@ -1,6 +1,6 @@
-************************************
-Advanced GNATcoverage Capabilities
-************************************
+*****************
+Advanced Topics
+*****************
 
 .. container:: PRELUDE BEGIN
 
@@ -54,9 +54,9 @@ More Options and Capabilities
   * Coverage on instances of generics or the generics themselves
   * Plus more
 
-=======================================
-Project-Based Instrumentation Control
-=======================================
+========================
+Project-Based Settings
+========================
 
 ------------------------
 Simple Instrumentation

@@ -1,6 +1,6 @@
-=========================================
-Reference Counting Using Controlled Types
-=========================================
+====================
+Reference Counting
+====================
 
 ---------------
 Global Overview

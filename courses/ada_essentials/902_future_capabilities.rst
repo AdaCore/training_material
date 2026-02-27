@@ -48,7 +48,7 @@ Introduction
 
    - Embedded programming
    - Targeted quality of life improvements
-   - New / enhanced programming paradigms
+   - New / enhanced paradigms
 
 * Some are implemented, some are under discussions
 
@@ -562,9 +562,9 @@ Guaranteed Final Control Flow Execution
    end X;
 
 
-====================================
-New / Enhanced Programming Paradigms
-====================================
+==========================
+New / Enhanced Paradigms
+==========================
 
 ---------------------------
 Case Pattern Matching (1/3)

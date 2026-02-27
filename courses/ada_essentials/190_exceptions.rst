@@ -34,7 +34,7 @@ Exceptions
 
 .. include:: 190_exceptions/01-introduction.rst
 .. include:: 190_exceptions/02-handlers.rst
-.. include:: 190_exceptions/03-implicitly_and_explicitly_raised_exceptions.rst
+.. include:: 190_exceptions/03-implicit_vs_explicit_exceptions.rst
 .. include:: 190_exceptions/05-user_defined_exceptions.rst
 .. include:: 190_exceptions/06-propagation.rst
 .. include:: 190_exceptions/08-exceptions_as_objects.rst

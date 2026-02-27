@@ -1,6 +1,6 @@
-*******************************
-GNATcoverage From GNAT Studio
-*******************************
+*************
+GNAT Studio
+*************
 
 .. container:: PRELUDE BEGIN
 
@@ -46,9 +46,9 @@ Coverage Integrated with IDE
   * Color-coded coverage view
   * Edit source code from coverage view
 
-=======================================
-Generating Coverage From GNAT Studio
-=======================================
+=====================
+Generating Coverage
+=====================
 
 -----------------------
 Setting Coverage Type

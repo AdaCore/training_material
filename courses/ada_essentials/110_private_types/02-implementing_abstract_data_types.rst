@@ -1,6 +1,6 @@
-============================================
-Implementing Abstract Data Types Via Views
-============================================
+==================================
+Implementing Abstract Data Types
+==================================
 
 ----------------------------------
 Implementing Abstract Data Types

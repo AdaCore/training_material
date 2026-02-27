@@ -157,6 +157,7 @@ Abstract States at the Boundary (1/2)
         with Refined_State => (Input_State => Temperature,
                                Output_State => Status)
       is
+         ...
 
 ---------------------------------------
 Abstract States at the Boundary (2/2)

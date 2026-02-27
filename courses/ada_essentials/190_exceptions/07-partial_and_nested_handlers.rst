@@ -29,7 +29,7 @@ Partially Handling Exceptions
       exception
         when Fuel_Exhausted =>
           Pull_Over;
-          raise; -- no gas available
+          raise; -- out of gas
       end Joy_Ride;
 
 ----------------------------------
