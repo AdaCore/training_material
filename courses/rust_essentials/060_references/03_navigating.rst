@@ -2,9 +2,9 @@
 Binding vs Reference
 ======================
 
------------------------------------------------
-The four quadrants of Rust's reference system
------------------------------------------------
+-------------------------
+Rust's Reference System
+-------------------------
 
 .. container:: latex_environment scriptsize
 
@@ -31,6 +31,10 @@ The four quadrants of Rust's reference system
     - Mutable
     - Mutable
 
+
+- **Binding**: labeled slot that holds the address
+- **Reference**: access contract for the data at that address
+
 -----------------------------
 The "Observer" (let r = &x)
 -----------------------------
@@ -46,15 +50,11 @@ The "Observer" (let r = &x)
 
     *rf = 1776; // Error
 
-* Generates the following ouput
-
 :error:`error[E0594]: cannot assign to '*rf', which is behind a '&'' reference`
 
 .. code:: rust
 
     rf = &future; // Error
-
-* Generates the following output
 
 :error:`error[E0384]: cannot assign twice to immutable variable 'rf'`
 
@@ -67,7 +67,7 @@ The "Rebinder" (let mut r = &x)
 ---------------------------------
 
 - *Can* point to something else
-- *Cannot* change the value
+- *Cannot* change value
 
 .. code:: rust
 
@@ -77,8 +77,6 @@ The "Rebinder" (let mut r = &x)
 
     rf = &news_b;
     *rf = "Peace"; // Error
-
-* Generates the following output
 
 :error:`error[E0594]: cannot assign to '*rf', which is behind a '&'' reference`
 
@@ -91,7 +89,7 @@ The "Modifier" (let r = &mut x)
 ---------------------------------
 
 - *Cannot* point to something else
-- *Can* change the value
+- *Can* change value
 
 .. code:: rust
 
@@ -101,8 +99,6 @@ The "Modifier" (let r = &mut x)
 
     *rf = 1;
     rf = &mut room_102; // Error
-
-* Generates the following output
 
 :error:`error[E0384]: cannot assign twice to immutable variable 'rf'`
 
@@ -115,7 +111,7 @@ The "Free Agent" (let mut r = &mut x)
 ---------------------------------------
 
 - *Can* point to something else
-- *Can* change the value
+- *Can* change value
 
 .. code:: rust
 

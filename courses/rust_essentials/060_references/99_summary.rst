@@ -13,8 +13,8 @@ What We Covered
   
 - **Mutable References** (:rust:`&mut T`)
 
-  - Allow mutable access
-  - Only one mutable reference allowed at a time
+  - Allow read-write access
+  - Only one reference allowed at a time
 
 - **Safety**
   - References are never null and are always valid

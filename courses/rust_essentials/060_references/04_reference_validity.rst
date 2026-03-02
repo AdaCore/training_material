@@ -23,11 +23,11 @@ References End at Their Last Use
    References end at their **last use**, not necessarily at the end of the scope :rust:`{ }`
 
 -----------------------------------
-References are always safe to use
+References Are Always Safe to Use
 -----------------------------------
 
 - Can **never** be null
-- Cannot outlive the data they point to
+- Cannot outlive data they point to
 - Dangling references cannot occur
 
 .. code:: rust
@@ -38,9 +38,7 @@ References are always safe to use
    };
    println!("Jack screams: {rose}");
 
-* Compiler output
-
-:command:`error[E0597]: 'jack' does not live long enough`
+:error:`error[E0597]: 'jack' does not live long enough`
 
 .. note::
 

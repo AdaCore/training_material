@@ -35,7 +35,8 @@ References
 .. include:: 060_references/00_introduction.rst
 .. include:: 060_references/01_shared.rst
 .. include:: 060_references/02_exclusive.rst
-.. include:: 060_references/03_reference_validity.rst
-.. include:: 060_references/04_slices.rst
+.. include:: 060_references/03_navigating.rst
+.. include:: 060_references/04_reference_validity.rst
+.. include:: 060_references/05_slices.rst
 .. include:: 060_references/99_lab.rst
 .. include:: 060_references/99_summary.rst
