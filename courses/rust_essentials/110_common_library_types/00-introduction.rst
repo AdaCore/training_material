@@ -6,12 +6,15 @@ Introduction
 Topics Covered
 ----------------
 
-* The Three Tiers of the Standard Library
+* **Standard Library**
 
-* Redefining Control Flow
+  * Three tiers of dependence
 
-  * Moving away from *null* and exceptions
+* **Redefining Control Flow**
 
-* Dynamic Data Handling
+  * Eliminating hidden failures and null pointer crashes
+  * Handling absence and errors as first-class values
+
+* **Dynamic Data Handling**
 
   * Transitioning from stack-allocated primitives to heap-allocated types

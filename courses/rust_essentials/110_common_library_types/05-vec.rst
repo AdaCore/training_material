@@ -40,9 +40,9 @@ Creating Vectors
     // Repeat expression
     let zeroes = vec![0; 10]; // Value "0" 10 times
 
-    // List of i8
-    let bytes_1 = vec![1i8, 2, 3];
-    let bytes_2 : Vec<i8> = vec![1, 2, 3];
+    // List of 'i8'
+    let bytes_1 = vec![1_i8, 2, 3];
+    let bytes_2: Vec<i8> = vec![1, 2, 3];
   
 ------------------
 Basic Operations
@@ -54,22 +54,55 @@ Basic Operations
 
     * Use :rust:`Some` / :rust:`None` capability to handle :rust:`idx` out of bounds
 
-  * **Direct Indexing:** :rust:`v[idx]`
+  * **Remove last:** :rust:`v.pop()` returns :rust:`Option<T>`
 
-    * Panics if :rust:`idx` is out of bounds
+    * Also returns :rust:`Option<&T>`
 
-    .. code:: rust
+  * **Iterators:** iterate with :rust:`for x in &v`
 
-      let v = vec![1, 2, 3];
-      println!("The sixth element is: {}", v[5]);
-
-    :error:`index out of bounds: the len is 3 but the index is 5`
+    * Iterator is of actual type
 
 .. warning::
 
-  Direct indexing is discouraged unless bounds are guaranteed
+  **Direct Indexing** :rust:`v[idx]` allowed but not recommended
 
-* Other common operations
+  .. code:: rust
 
-  * **Remove last:** :rust:`v.pop()` returns :rust:`Option<T>`
-  * **Iterators:** iterate with :rust:`for x in &v`
+    let v = vec![1, 2, 3];
+    println!("The sixth element is: {}", v[5]);
+
+  :error:`index out of bounds: the len is 3 but the index is 5`
+
+---------------
+"Vec" Example
+---------------
+
+.. code:: rust
+
+  let mut colors = vec!["Red", "Green", "Blue"];
+
+  // Iterate over 'colors'
+  println!("All colors");
+  for c in &colors { println!("  {}", c); }
+
+  // Pop - remove & return the last item
+  let last = colors.pop();
+  println!("last: {last:?}");
+
+  // Get - safe indexing
+  let one  = colors.get(1);
+  let five = colors.get(5);
+
+  println!("one: {one:?}");
+  println!("five: {five:?}");
+
+::
+
+  All colors
+    Red
+    Green
+    Blue
+  last: Some("Blue")
+  one: Some("Green")
+  five: None
+

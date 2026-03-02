@@ -12,29 +12,25 @@ What Is "String"?
   * Grows as needed
   * Ensures valid UTF-8
 
-* Key points
-
-  * UTF-8 means length in bytes not necessarily number of characters
-  * :rust:`String can be borrowed as &str`
-  * Functions often accept rust:`&str`
-
-    * Implements :rust:`Deref<Target = str>`
+    * Length in bytes not necessarily number of characters
 
 .. note::
 
-   :rust:`&str` is a fixed view into text, so not modifiable like :rust:`String`
+  Functions often accept :rust:`&str`
+
+  :rust:`&str` is a fixed view into text, so not modifiable like :rust:`String`
 
 ------------------
 Creating Strings
 ------------------
 
-* Use :rust:`String::new()` when building text manually
+* :rust:`String::new()` builds text manually
 
   .. code:: rust
 
     let simple_string = String::new();
 
-* Use traits/methods to create from literals
+* Traits/methods create from literals
 
   .. code:: rust
 
@@ -45,9 +41,11 @@ Creating Strings
 Modifying Strings
 -------------------
 
-* Strings are *mutable* (if declared :rust:`mut`) and support "append" methods
+* Strings support "append" methods (if mutable)
 
   .. code:: rust
+
+    let mut my_text = String::new();
 
     my_text.push('!');         // Append a char
     my_text.push_str(" foo");  // Append a &str
@@ -91,3 +89,38 @@ Length vs Characters
 .. note::
 
   To get number of characters in :rust:`String` use :rust:`.chars().count()`
+
+-----------------------------
+Strings vs Character Arrays
+-----------------------------
+
+.. list-table::
+  :header-rows: 1
+
+  * - **Feature**
+    - :rust:`String`
+    - :rust:`[char; N]`
+
+  * - *Encoding*
+    - UTF-8
+    - UCS-4
+
+  * -
+    - (1-4 bytes/char)
+    - (4 bytes/char)
+
+  * - *Memory*
+    - Heap-allocated
+    - Stack-allocated
+
+  * -
+    - (Growable)
+    - (Fixed size)
+
+* :rust:`String` better for large ASCII text
+
+  * :rust:`[char;N]` always requires 4 bytes per character
+
+* :rust:`[char;N]` faster for random (direct) access
+
+  * :rust:`String` needs to search content from the beginning

@@ -6,9 +6,9 @@ Result
 Why Use "Result"?
 -------------------
 
-* Encourages explicit error handling
+* Provides explicit error handling
 
-  * Can’t ignore errors silently
+  * **Cannot** ignore errors silently
   * More error handling described later in the course
 
 * Compiler warns if :rust:`Result` is unused
@@ -25,7 +25,7 @@ Why Use "Result"?
 What Is "Result<T, E>"?
 -------------------------
 
-* Mechanism to handle recoverable errors
+* Mechanism to handle *recoverable* errors
 
 .. code:: rust
 
@@ -34,24 +34,32 @@ What Is "Result<T, E>"?
       Err(E),  // Failure
   }
 
-* :rust:`Result` carries information about *why* something failed
+* :rust:`Result` carries information about the success or failure
 
-  * :rust:`T` is the type returned on success
-  * :rust:`E` is the type returned on failure
+  * :rust:`T` - type returned on success
+  * :rust:`E` - type returned on failure
 
 --------------
 Common Usage
 --------------
 
-In addition to :rust:`match`, Rust provides helpers
+.. code:: rust
 
-.. list-table::
+  fn divide(top: f64, bottom: f64) -> Result<f64, String> {
+      if bottom == 0.0 {
+          // Failure
+          Err("Cannot divide by zero!".to_string())
+      } else {
+          // Success
+          Ok(top / bottom)
+      }
+  }
 
-  * - :rust:`.unwrap()`
-    - Take the value or panic
+  fn main() {
+      let result = divide(10.0, 0.0);
 
-  * - :rust:`.expect(msg)`
-    - Panic with your message
-
-  * - :rust:`.is_ok()` / :rust:`.is_err()`
-    - Check the variant
+      match result {
+          Ok(value) => println!("Result: {value}"),
+          Err(e)    => println!("Error: {e}"),
+      }
+  }

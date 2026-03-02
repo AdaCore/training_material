@@ -9,37 +9,40 @@ One Library, Three Tiers
 .. image:: rust_essentials/std_crate.svg
   :width: 80%
 
-* Standard library is not a monolithic block
+* Standard Library is not a monolithic block
 
   * Layered stack designed to scale
 
 * **core** (foundation)
 
-  * Does not require an operating system or memory allocator
-  * Contains basic types, primitive operations, macros
+  * No OS or memory allocator required
+  * Basic types, primitive operations
 
 * **alloc** (middle layer)
 
-  * Contains things like :rust:`Vec`, :rust:`String`, :rust:`Box`, etc
+  * Depends on **core**
+  * Requires heap allocator
+  * Growable types (:rust:`Vec`, :rust:`String`, :rust:`Box`, etc.)
 
 * **std** (full suite)
 
-  * Contains everything in core and alloc, plus OS abstractions like file I/O, networking, etc
+  * Requires host environment
+  * Contains everything in **core** and **alloc**
+  * Adds OS abstractions like file I/O, networking, etc.
 
---------------
-Common Types
---------------
+----------------------
+What is the Prelude?
+----------------------
 
-* Many types defined across all three tiers of the standard library
+* Small collection of items automatically imported into every module
 
-* This module describes many of the more common types
+* Designed to reduce boilerplate for frequent tasks
 
-  * Moving away from *null* and exceptions
+* In this module, that means items dealing with
 
-    * :rust:`Option`
-    * :rust:`Result`
+  * Logic: :rust:`Option` and :rust:`Result` (Error handling)
+  * Data: :rust:`String` and :rust:`Vec` (Dynamic storage)
 
-  * Heap-allocated types
+* Why it matters
 
-    * :rust:`String`
-    * :rust:`Vec`
+  * Types so essential that they're needed in every file

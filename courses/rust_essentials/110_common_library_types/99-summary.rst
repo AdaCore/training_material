@@ -6,18 +6,18 @@ Summary
 What We Covered
 -----------------
 
-* Basic structure of the standard library
+* **Standard Library**
 
-  * Core - basic building blocks
-  * Alloc - adding some memory management
-  * Std - adding everything else, like file I/O, networking, etc.
+  * **core** - basic building blocks
+  * **alloc** - adding some memory management
+  * **std** - adding everything else, like file I/O, networking, etc.
 
-* Some of the most common types
+* **Most common library types**
 
   .. list-table::
 
     * - :rust:`Option`
-      - Contains a value or :rust:`None` to indicate failure
+      - Contains a value or :rust:`None` to indicate absence of value
 
     * - :rust:`Result`
       - Contains one type of value on success and another on failure
