@@ -6,12 +6,14 @@ Slices
 What Are Slices?
 ------------------
 
-- A view into memory owned by another variable
-  - Must be a contiguous sequence (like an Array)
+- View into memory owned by another variable
+  - Must be contiguous sequence (like an Array)
 - Refer to data stored elsewhere
-- Default range (:rust:`..`): First bound inclusive, last bound exclusive
-  - Inclusive range (:rust:`..=`): Both bounds are inclusive
-  - Indexes start at 0
+- Use zero-based indexing
+  - Are inclusive of the starting bound but exclusive of the end
+    - Using :rust:`..`
+  - Unless explicitly marked as inclusive
+    - Using :rust:`..=`
 
 .. code:: rust
 
@@ -35,7 +37,11 @@ Slice Creation
     - Full range
   - :rust:`&a[start..end]`
     - Explicit start and end (*end* excluded)
-  
+
+----------------
+Slice Examples
+----------------
+
 .. code:: rust
 
   let terminator: [char; 4] = ['T', '8', '0', '0'];
@@ -44,12 +50,12 @@ Slice Creation
 
 .. code:: rust
 
-  // Slicing the terminator array
+  // Slicing the 'terminator' array
   let version: &[char] = &terminator[1..];
   let generation: &[char] = &version[..1];
   let arnold: &[char] = &terminator[..];
-  let james: &[char] =  &arnold[2..4];
-
+  let james: &[char] = &arnold[2..4];
+  let terminated = &terminator[0..0];
 
 :command:`version:         ['8', '0', '0']`
 
@@ -59,23 +65,30 @@ Slice Creation
 
 :command:`james:           ['0', '0']`
 
+:command:`terminated:      []`
+
+.. note::
+
+  Out-of-bounds slicing triggers a compile error if the range is static, or a *panic* if the range is dynamic
+
 -------------
 Fat Pointer
 -------------
 
 - Slices are sometimes called **Fat Pointers**
-- They carry **two** components
-  - **Data Pointer** - memory address where the data starts
-  - **Length** - how many items to look at
+  - Carry **two** components
+    - **Data Pointer** - memory address where data starts
+    - **Length** - how many items to look at
 
 .. code:: rust
 
-  static HUGE_ARRAY = [0; 4_000_000];
+  const ARRAY_SIZE: usize = 4_000_000;
+  static HUGE_ARRAY: [i32; ARRAY_SIZE] = [0; ARRAY_SIZE];
   let first_five = &HUGE_ARRAY[0..5];
 
 .. note::
 
-    Creating a slice is **O(1)** - it takes the same constant time whether the original array has 4 elements or 4 million.
+    Creating a slice is **O(1)** - it takes the same constant time whether the original array has 4 elements or 4 million
 
 ------------------
 &str vs "String"
@@ -92,7 +105,5 @@ Fat Pointer
    let s1: &str = "Hello World";
    let s2: &str = &s1[..5];
    println!("s2: {s2}");
-
-* Generates the following output
 
 :command:`s2: Hello`

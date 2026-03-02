@@ -9,8 +9,8 @@ Topics Covered
 -  **Shared References**
    -  Read-only access to data
 
--  **Exclusive References**
-   -  Mutable access to data
+-  **Mutable References**
+   -  Read-write access to data
 
 -  **Reference Validity**
    -  Null safety and scope

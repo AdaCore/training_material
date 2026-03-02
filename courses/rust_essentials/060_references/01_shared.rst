@@ -16,11 +16,11 @@ Shared References
 
     let first = 'A';
     let ref_1: &char = &first; // Refers to 'first'
-    let ref_2: &char = &first; // Refers to 'first'
+    let ref_2: &char = &first; // Also refers to 'first'
 
 .. note::
 
-    Unlimited shared references to the *same* data can exist at the *same* time!
+    Unlimited shared references to the *same* data can exist at the *same* time
 
 ----------------------------------
 Using Reference (Accessing Data)
