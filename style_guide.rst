@@ -194,8 +194,18 @@ Confusing Terms
 Spacing Issues
 ----------------
 
-A good way to create a blank line is to write some text in white.
+* Sometimes you need to insert whitespace in a slide
 
-:color-white:`This line will not appear in a PDF file`
+  * RST does not have a good way to do that
 
-*If you see a blank space above, look at the original source!*
+* Instead, insert some "raw" LaTeX commands into your slide
+
+  ::
+
+    .. raw:: latex
+  
+      \vspace{5mm}
+
+  * Obviously you can change the **5** to suit your needs
+
+
