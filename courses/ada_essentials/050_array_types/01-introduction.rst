@@ -37,7 +37,7 @@ where
 
    type Array_One is array (1 .. 100) of Integer;
 
-   type Discrete_Type_Two is range (Able, Baker, Charlie);
+   type Discrete_Type_Two is (Able, Baker, Charlie);
    type Array_Two is array (Discrete_Type_Two) of Float;
 
    type Discrete_Type_Three is mod 64;
