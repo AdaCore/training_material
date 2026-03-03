@@ -47,25 +47,24 @@ Rust Compared to ...
 
 - **Ada**
 
-  - **Rust** offers similar reliability, performance, and low-level control
+  - Similar goals: reliability, performance, low-level control
 
-  - **Rust** enforces many safety guarantees *at compile time* rather than via runtime checks
+  - More guarantees enforced at *compile* time
 
-  - **Rust’s** borrow checker prevents memory errors that Ada typically detects only at runtime
+  - Borrow checker enforces strict ownership and aliasing rules
 
 - **C/C++**
 
-  - **Rust** eliminates entire classes of memory-related runtime errors common in C/C++
+  - Memory safety by default
 
-    - Provides C-like performance *without* memory-safety risks
+  - C-like performance *without* manual memory management
 
-  - **Rust** adds modern conveniences missing in C/C++
-  
-    - Pattern matching
-    - Built-in dependency management
+  - Modern conveniences missing in C/C++
 
 - **Java**
 
-  - **Rust** provides memory safety *without* a garbage collector
-  - **Rust** avoids the “null reference” problem entirely (a major source of Java runtime bugs)
-  - **Rust** delivers fast, predictable performance and access to low-level hardware when needed
+  - Memory safety *without* a garbage collector
+
+  - No null references
+
+  - Predictable performance and direct hardware access
