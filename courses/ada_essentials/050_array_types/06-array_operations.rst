@@ -173,7 +173,7 @@ Which statement(s) is (are) legal?
    Explanations
 
    A. All objects are just Boolean values
-   B. A component of :ada:`X` is the same type as :ada:`Y`
+   B. A component of :ada:`TwoD` is the same type as :ada:`OneD`
    C. Slice must be of outermost array
    D. Slicing allowed on single-dimension arrays
 
