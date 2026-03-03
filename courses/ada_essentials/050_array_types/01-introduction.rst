@@ -44,7 +44,7 @@ where
    type Array_Three is array (Discrete_Type_Three range 0 .. 31)
       of Interfaces.Integer_16;
 
-   type Multidimension_Array is (1 .. 10, 1 .. 10) of Boolean;
+   type Multidimension_Array is array (1 .. 10, 1 .. 10) of Boolean;
 
 ---------------
 Arrays in Ada
