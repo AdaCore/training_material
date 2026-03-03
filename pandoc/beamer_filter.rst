@@ -98,6 +98,104 @@ Some examples:
 Note that some colors do not show up well on a white background.  Look
 for the "latex_colorize" function in beamer_filter.py for ways to fix that.
 
+*************************
+Code (and Other) Blocks
+*************************
+
+-------------
+Code Blocks
+-------------
+
+Code blocks are distinguished with the ".. code::" directive
+
+::
+
+  .. code:: Ada
+
+    procedure Hello (World : String) is
+    begin
+       Put_Line ("Hello " & World);
+    end Hello;
+
+Generates the following:
+
+.. code:: Ada
+
+  procedure Hello (World : String) is
+  begin
+     Put_Line ("Hello " & World);
+  end Hello;
+
+*The* **Ada** *can be replaced with many languages and other contexts*
+*supported by* **Pygments**
+
+https://pygments.org/languages/
+
+-------------------------
+Improvements via Filter
+-------------------------
+
+* Code blocks do not resize very well with Beamer in Pandoc
+
+  * Results in code truncated at end of screen
+
+* Originally, we would use the ``latex_environment`` container to resize text
+
+  * Described elsewhere in this document
+
+* Now, we can add a sizing attribute to the code block
+
+  * ``font-size:<value>`` where **<value>** is replaced with a LaTeX size
+
+* Possible sizes
+
+  .. list-table::
+
+     * - tiny
+       - scriptsize
+       - footnotesize
+       - small
+       - normalsize
+     * - large
+       - Large
+       - LARGE
+       - huge
+       - Huge
+
+--------------------
+Code Block Example
+--------------------
+
+* No sizing adjustment
+
+  ::
+
+    .. code:: Ada
+
+      This_Is_A_Long_Name := This_Is_A_Long_Name * This_Is_A_Long_Name;
+
+  Generates
+
+  .. code:: Ada
+
+    This_Is_A_Long_Name := This_Is_A_Long_Name * This_Is_A_Long_Name;
+
+* With sizing adjustment
+
+  ::
+
+    .. code:: Ada
+      :font-size: tiny
+
+      This_Is_A_Long_Name := This_Is_A_Long_Name * This_Is_A_Long_Name;
+
+  Generates
+
+  .. code:: Ada
+    :font-size: tiny
+
+    This_Is_A_Long_Name := This_Is_A_Long_Name * This_Is_A_Long_Name;
+
 ****************
 Warnings, etc.
 ****************
@@ -339,20 +437,8 @@ of indicating font sizes, and Pandoc generates LaTeX pages that get resized
 based on content. Wouldn't it be nice to make some text smaller or larger
 first? In LaTeX, font sizes are "environments" - so we can create a block
 of code to be the size we want (relatively). The available sizes can be
-found in any LaTeX documentation, but they are:
-
-.. list-table::
-
-   * - tiny
-     - scriptsize
-     - footnotesize
-     - small
-     - normalsize
-   * - large
-     - Large
-     - LARGE
-     - huge
-     - Huge
+found in any LaTeX documentation, and are listed in the **Code Blocks**
+section of this document.
 
 We sometimes use them to emphasize things, but more often they are used when
 a code block does not resize correctly and we need to shrink it ourself.
