@@ -8,8 +8,15 @@ Reading and Writing via Trait
 
 * I/O Traits
 
-  * Standard traits for I/O are :rust:`Read` and :rust:`Write` in :rust:`std::io`
-  * Define methods like read(&mut self, buf: &mut [u8]) and write(&mut self, buf: &[u8])
+  * :rust:`std::io::Read`
+
+    * For getting data **from** source
+    * Key method: :rust:`read(&mut self, buf: &mut [u8]) -> Result<usize>`
+
+  * :rust:`std::io::Write`
+
+    * For pushing data **to** a destination
+    * Key methods: :rust:`write(&mut self, buf: &[u8])` and :rust:`flush(&self)`
 
 * Why It Matters
 
@@ -18,17 +25,9 @@ Reading and Writing via Trait
 
     * Many types can be read from / written to generically
 
---------------------
-Practical Patterns
---------------------
-
-* Combine with :rust:`BufRead` for buffered input
-* Writers often implement :rust:`flush()` to ensure output is sent
-* You can implement these on custom types (e.g., in-memory buffers)
-
----------
-Example
----------
+-----------------------------
+"Write" then "Read" Example
+-----------------------------
 
 .. code:: rust
 
@@ -53,3 +52,12 @@ Example
 
   Reminder: no error handling needed - the :rust:`?` will return
   an error immediately, otherwise things progress normally
+
+--------------------
+Practical Patterns
+--------------------
+
+* Combine with :rust:`BufRead` for buffered input
+* Writers often implement :rust:`flush()` to ensure output is sent
+* You can implement these on custom types (e.g., in-memory buffers)
+

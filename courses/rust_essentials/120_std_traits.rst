@@ -32,7 +32,8 @@ Std Traits
 
 .. container:: PRELUDE END
 
-.. include:: 120_std_traits/01-introduction.rst
+.. include:: 120_std_traits/00-introduction.rst
+.. include:: 120_std_traits/01-overview.rst
 .. include:: 120_std_traits/02-comparisons.rst
 .. include:: 120_std_traits/03-operators.rst
 .. include:: 120_std_traits/04-type_conversions.rst

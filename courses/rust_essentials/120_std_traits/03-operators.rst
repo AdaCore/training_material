@@ -8,17 +8,46 @@ Operator Overloading
 
 * Trait-based operator overloading
 
-  * Rust uses traits in std::ops to overload operators (e.g., :rust:`+`, :rust:`-`, :rust:`*`)
+  * Rust uses traits in :rust:`std::ops` to overload operators (e.g., :rust:`+`, :rust:`-`, :rust:`*`)
   * Operators delegate to trait methods (:rust:`Add`, :rust:`Sub`, etc.)
 
-* Example
+.. container:: latex_environment footnotesize
 
-  * Implementing :rust:`Add` for your type allows **a + b** syntax
-  * Requires associated type :rust:`Output` for the result type
+  .. list-table::
+     :widths: 10 20 70
+     :header-rows: 1
 
----------
-Example
----------
+     * - Operator
+       - Trait
+       - Method Signature
+     * - ``+``
+       - ``Add``
+       - ``fn add(self, rhs: Rhs) -> Self::Output``
+     * - ``-``
+       - ``Sub``
+       - ``fn sub(self, rhs: Rhs) -> Self::Output``
+     * - ``*``
+       - ``Mul``
+       - ``fn mul(self, rhs: Rhs) -> Self::Output``
+     * - ``/``
+       - ``Div``
+       - ``fn div(self, rhs: Rhs) -> Self::Output``
+     * - ``%=``
+       - ``RemAssign``
+       - ``fn rem_assign(&mut self, rhs: Rhs)``
+     * - ``!``
+       - ``Not``
+       - ``fn not(self) -> Self::Output``
+
+.. note::
+
+  :rust:`Self::Output` indicates return type defined by the implementation
+
+  Not necessarily same type as the operator (e.g., adding inches to get feet)
+
+---------------------------
+Overloading "Add" Example
+---------------------------
 
 Define an implementation for :rust:`Inches` that returns a number in :rust:`Feet`
 

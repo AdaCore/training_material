@@ -6,26 +6,28 @@ Summary
 What We Covered
 -----------------
 
-* Standard traits allow the user to define common traits
+* **Comparing Objects**
 
-  * Rather than relying on a default behavior
+  * :rust:`PartialEq` and :rust:`Eq` for comparison
+  * :rust:`PartialOrd` and :rust:`Ord` for ordering
 
-.. list-table::
+* **Performing Mathematical Operations**
 
-  * - :rust:`Eq`, :rust:`PartialEq`
-    - Equality (and inequality) of objects
+  * Overloading operators to provide your own capabilities
 
-  * - :rust:`Add`, :rust:`Sub`, etc
-    - Mathematical operations on objects
+* **Converting Between Types and Values**
 
-  * - :rust:`From`, :rust:`Into`
-    - Converting between type and a value
+  * Safe conversion using :rust:`From` and :rust:`Into`
 
-  * - :rust:`as`
-    - Using a different type to view an object
+* **Treating an Object as a Different Type**
 
-  * - :rust:`Read`, :rust:`Write`
-    - Input/output of an object
+  * Unsafe conversion using :rust:`as`
+  * Data loss when target is smaller than source
 
-  * - :rust:`default`
-    - Default values for a type
+* **Input/Output on Types**
+
+  * Implement :rust:`Read` and :rust:`Write` for your types
+
+* **Default Values for Types**
+
+  * Assigning default values to little-used fields

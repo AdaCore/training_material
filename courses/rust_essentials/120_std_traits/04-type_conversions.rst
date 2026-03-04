@@ -17,9 +17,20 @@ Safe Type Conversion
   * Standardized way to convert between types with consistent syntax
   * Used extensively in APIs for ergonomic type transformations
 
----------
-Example
----------
+* The "Conversion" Rule
+
+  * These methods are transformative
+  * When you call :rust:`.into()`, the original variable is "spent"
+
+    * This is a **transfer** of the value, not a copy
+
+.. note::
+
+  **Safe** means *lossless* - conversion cannot fail
+
+---------------------
+Conversion Examples
+---------------------
 
 * :rust:`From`
 
@@ -27,7 +38,7 @@ Example
 
   .. code:: rust
 
-    let s = String::from("hello");
+    let a_string = String::from("hello");
     let addr = std::net::Ipv4Addr::from([127, 0, 0, 1]);
     let one = i16::from(true);
     let bigger = i32::from(123_i16);
@@ -38,38 +49,46 @@ Example
 
   .. code:: rust
 
-    let s: String = "hello".into();
+    let a_string: String = "hello".into();
     let addr: std::net::Ipv4Addr = [127, 0, 0, 1].into();
     let one: i16 = true.into();
     let bigger: i32 = 123_i16.into();
+
+.. note::
+
+  **Conversion Rule:** You are "upgrading" your type.
+
+  *Example:* from a string literal ("hello") to a :rust:`String`
 
 ------------------
 "From" vs "Into"
 ------------------
 
-* Implementation
+* If you implement :rust:`From`, you automatically get :rust:`Into`
 
-  * If you implement :rust:`From`, you automatically get :rust:`Into`
+  * So it is a good idea to always implement :rust:`From` for your types
 
-* Specificity
+* :rust:`From` specifies both source and destination
 
-  * :rust:`From` specifies both source and destination
+  .. code:: rust
 
-    .. code:: rust
+    let result = Feet::from(measure);
 
-      let result = Feet::from(measure);
-
-    * :rust:`result` is in :rust:`Feet`
+  * :rust:`result` is in :rust:`Feet`
       
-  * :rust:`Into` is called on an object
+* :rust:`Into` is called on an object
 
-    * Compiler might not know the source
-    * Need to supply hints
+  * Compiler might not know the source
+  * Need to supply hints
 
-    .. code:: rust
+  .. code:: rust
 
-      // What do we want 'target' to be?
-      let target = source.into(); 
+    // What do we want 'target' to be?
+    let target = source.into(); 
 
-      // You have to help it:
-      let target: Feet = source.into();
+    // You have to help it:
+    let target: Feet = source.into();
+
+.. note::
+
+  Conversions become very powerful when writing generic functions

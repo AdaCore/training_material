@@ -6,79 +6,110 @@ Comparisons
 Comparison Traits
 -------------------
 
-* What are comparison traits?
+* Provide a standard way for defining how types interact with comparison operators
 
-  * Standard traits for comparing values
+  * **Equality:** :rust:`PartialEq`, :rust:`Eq`
 
-    * :rust:`PartialEq`
-    * :rust:`Eq`
-    * :rust:`PartialOrd`
-    * :rust:`Ord`
+    * Evaluate if two values are the same
 
-  * Basis of Rust’s comparison operators like ==, <, etc.
+  * **Ordering:** :rust:`PartialOrd`, :rust:`Ord`
 
-* Why do we need them?
+    * Determine which value is "bigger"
 
-  * Compiler and standard library use these traits in many APIs (e.g., sorting)
-  * Lets you define what it means for two values to be equal (or ordered)
+  * Basis of Rust’s comparison operators like :rust:`==`, :rust:`<`, etc.
 
-    * Ignore some fields, or compare one field based on another
+* Compiler and Standard Library use these traits in many APIs (e.g., sorting)
+* Typically created via :rust:`#[derive]`
 
-* Often derived automatically
+  * Not user-written
 
 ---------------------------
 Equality (and Inequality)
 ---------------------------
 
-* :rust:`Eq`
+* :rust:`PartialEq` - manual implementation
 
-  * Used for :rust:`==` and :rust:`!=`
+  * Used to compare two objects
+  * Allows for :rust:`Object == Object` to be *false*
 
-* :rust:`PartialEq`
+.. container:: latex_environment tiny
 
-  * Used instead of :rust:`Eq` if the type contains values that are not comparable
+  .. code:: rust
 
-    * Think :rust:`NaN` for a float object
+     struct SensorData {
+         valid: bool,
+         value: i32,
+     }
 
-.. code:: rust
+     impl PartialEq for MyData {
+         fn eq(&self, other: &Self) -> bool {
+             // If both are valid, compare their values if self.valid && other.valid {
+                 self.value == other.value
+             } else {
+                 // Otherwise compare if validity is the same
+                 self.valid == other.valid
+             }
+         }
+     }
 
-  struct Key {
-      id: u32,
-      metadata: Option<String>,
-  }
-  impl PartialEq for Key {
-      fn eq(&self, other: &Self) -> bool {
-          self.id == other.id
-      }
-  }
+* :rust:`Eq` - automatic implementation
+
+  * Guarantees that :rust:`Object == Object` will always be *true*
+  * So :rust:`derive` is used to perform a *lexicographical comparison*
+
+    * Means it uses the "expected" definition of equality
+
+.. container:: latex_environment tiny
+
+  .. code:: rust
+    :font-size: tiny
+
+    #[derive(PartialEq, Eq)]
+    struct MyData {
+        value_a: i32,
+        value_b: i32,
+    }
+
+.. note::
+
+  :rust:`Eq` is a **marker** trait, meaning there are no actual methods.
 
 ----------
 Ordering
 ----------
 
+* Similar to :rust:`PartialEq` / :rust:`Eq`
+
+  * Automatic implementation (:rust:`derive`) does a lexicographical comparison
+  * Manual implementation requires multiple traits
+
 * :rust:`Ord`
 
-  * Used for comparisons like :rust:`>=` and :rust:`<`
+  * Can be called by :rust:`PartialOrd` (or vice-versa)
+  * :rust:`PartialEq` must be defined (either manual or derived)
+  * Returns :rust:`Ordering`
+
+    :rust:`(Less, Greater, or Equal)`
 
 * :rust:`PartialOrd`
 
-  * Used instead of :rust:`Ord` if the type contains values that are not comparable
+  * Returns :rust:`Option<Ordering>`
 
-    * Think :rust:`NaN` for a float object
+    * :rust:`None` can be returned if two values cannot be compared
 
 .. code:: rust
 
   use std::cmp::Ordering;
-  #[derive(Eq, PartialEq)]
-  struct Citation {
-      author: String,
-      year: u32,
-  }
-  impl PartialOrd for Citation {
+
+  impl PartialOrd for MyData {
       fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-          match self.author.partial_cmp(&other.author) {
-              Some(Ordering::Equal) => self.year.partial_cmp(&other.year),
-              author_ord => author_ord,
+          // If one is invalid and the other isn't, the valid one is "greater"
+          match (self.valid, other.valid) {
+              (true, true) => self.value.partial_cmp(&other.value),
+              (true, false) => Some(Ordering::Greater),
+              (false, true) => Some(Ordering::Less),
+              (false, false) => Some(Ordering::Equal), 
           }
       }
   }
+
