@@ -29,13 +29,25 @@ Slice Creation
 ----------------
 
 - Created by referring to a collection, and specifying the range
-  - :rust:`&a[start..]`
+
+.. container:: latex_environment scriptsize
+
+.. list-table::
+  :header-rows: 1
+
+  * - Syntax
+    - Range
+    
+  * - :rust:`&a[start..]`
     - Explicit start to implicit end
-  - :rust:`&a[..end]`
+
+  * - :rust:`&a[..end]`
     - Implicit start to explicit end (*end* excluded)
-  - :rust:`&a[..]`
+
+  * - :rust:`&a[..]`
     - Full range
-  - :rust:`&a[start..end]`
+
+  * - :rust:`&a[start..end]`
     - Explicit start and end (*end* excluded)
 
 ----------------

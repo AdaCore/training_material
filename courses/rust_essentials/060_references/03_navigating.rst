@@ -78,11 +78,13 @@ The "Rebinder" (let mut r = &x)
     rf = &news_b;
     *rf = "Peace"; // Error
 
-:error:`error[E0594]: cannot assign to '*rf', which is behind a '&'' reference`
+.. container:: latex_environment footnotesize
+  
+  :error:`error[E0594]: cannot assign to '*rf', which is behind a '&'' reference`
 
 .. note::
 
-  The reference can be redirected, but the data cannot be modified
+  The reference *can* be redirected, but the data *cannot* be modified
 
 ---------------------------------
 The "Modifier" (let r = &mut x) 
@@ -104,7 +106,7 @@ The "Modifier" (let r = &mut x)
 
 .. note::
 
-  The reference cannot be redirected, but the data can be modified
+  The reference *cannot* be redirected, but the data *can* be modified
 
 ---------------------------------------
 The "Free Agent" (let mut r = &mut x) 
@@ -125,4 +127,4 @@ The "Free Agent" (let mut r = &mut x)
 
 .. note::
 
-  The reference can be redirected, and the data can be modified
+  The reference *can* be redirected, and the data *can* be modified
