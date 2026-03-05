@@ -149,7 +149,7 @@ Struct Update Operator
     // Only change 'active' to true in 'set_1'
     let set_1 = Settings {
         active: true,   // Overridden field
-        ..default_set   // Copy all other fields (font_size)
+        ..default_set   // Copy all other fields ('font_size')
     };
     let set_2 = Settings {
         ..default_set   // Copy all fields

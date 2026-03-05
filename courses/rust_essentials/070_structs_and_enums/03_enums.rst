@@ -43,8 +43,8 @@ Enums with Data
    
     enum Message {
         Quit,                          // No data
-        Move { xx: i32, yy: i32 },     // Two named i32 values
-        ChangeColor(i32, i32, i32),    // Three i32 values
+        Move { xx: i32, yy: i32 },     // Two named 'i32' values
+        ChangeColor(i32, i32, i32),    // Three 'i32' values
     }
     let message = Message::Move { xx: 10, yy: 10 };
     
@@ -65,8 +65,8 @@ Enum Initialization
     }
 
     let white = Message::ChangeColor(255,255,255); // OK
-	
-    // Error! You must provide the content of Move
+    
+    // Error! You must provide the content of 'Move'
     let no_color = Message::Move; 
     
 .. container:: latex_environment footnotesize    
@@ -83,9 +83,9 @@ Each variant is **mutually exclusive**
 
     // Represent distinct states of a network connection
     enum ConnectionState {
-		// Unit variant (no data)
+        // Unit variant (no data)
         Idle,
-		// Struct variant (contains data)
+        // Struct variant (contains data)
         Connected {
             session_id: u64, 
             curr_ip: IpAddressV4,
