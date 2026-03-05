@@ -12,7 +12,7 @@ Generic Traits
 
 .. code:: rust
 
-	// T is the "Target" type we want to turn into
+	// 'T' is the "Target" type we want to turn into
 	trait Transform<T> {
 	  fn convert(&self) -> T;
 	}

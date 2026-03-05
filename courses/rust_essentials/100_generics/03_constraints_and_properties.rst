@@ -185,7 +185,7 @@ Generic Traits
    
 .. code:: rust
     
-  // Compiler assumes T has 'Debug' trait
+  // Compiler assumes 'T' has 'Debug' trait
   #[derive(Debug)]
   struct Box<T> {
     content: T,
