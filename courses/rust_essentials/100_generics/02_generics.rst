@@ -18,17 +18,17 @@ Generic Data Type
 
    fn Swap<T> (l: T, r: T) -> (T, T) {
 		(r, l)
-}
+   }
    
--  :rust:`T` (the generic type parameter) means an :rust:`Swap` can wrap any type
+-  :rust:`T` (the generic type parameter) means :rust:`Swap` can wrap any type
 
-   -  :rust:`Swap<i32>`, :rust:`Swap<f64>` etc
+   -  :rust:`Swap<i32>`, :rust:`Swap<f64>` etc.
 
 ------------
 Be Generic
 ------------
 
-Constructs that can be made generic
+-  Constructs that can be made generic
 
 .. container:: latex_environment scriptsize
 
@@ -62,8 +62,16 @@ Constructs that can be made generic
          - :rust:`type Res<T> = Result<GenT>`
          - Simplifying complex generic names
 
--- JBE : very all options are present in examples 
--- Add Examples ?
+-  Examples
+
+.. code:: rust
+
+  enum LaundryDetailedStatus<T> {
+    SoakingInWater(T),
+    SpinningViolently(T),
+  }
+  type Laundry<T> = LaundryDetailedStatus<T>;
+
 
 ----------------
 Type Inference 
@@ -105,3 +113,22 @@ Constructs can have multiple generic data types
     let both_float = Point { x: 1.0, y: 4.0 };
     let integer_and_float = Point { x: 5, y: 4.0 };
     
+	
+--------------
+Type Aliases 
+--------------
+
+-  Can be used to rename types and generic parameters
+
+.. code:: rust
+
+  // 'Item' and 'Label' are generic parameter 
+  struct LargeShippingUnit<Item, Label>(Item, Label);
+  type LargeCrate<T, U> = LargeShippingUnit<T, U>;
+  
+-  Can *specialize* partially or totally the generic type
+
+.. code:: rust
+
+  struct Animal;
+  type AnimalCrate<U> = LargeCrate<Animal, U>;

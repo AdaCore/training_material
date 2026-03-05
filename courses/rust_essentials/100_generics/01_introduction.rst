@@ -12,7 +12,7 @@ Topics Covered
 
 -  **Constraints and Properties** 
   
--  **Generic Traits**
+-  **Generic Traits and Constants**
 
 
 -------------------------

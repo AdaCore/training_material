@@ -35,5 +35,6 @@ Generics
 .. include:: 100_generics/01_introduction.rst
 .. include:: 100_generics/02_generics.rst
 .. include:: 100_generics/03_constraints_and_properties.rst
+.. include:: 100_generics/04_generic_traits_and_constants.rst
 .. include:: 100_generics/98_lab.rst
 .. include:: 100_generics/99_summary.rst
