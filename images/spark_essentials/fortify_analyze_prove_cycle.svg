@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="230" width="410" >
+<path fill="#e07c00" d="M 258.03300858899104 198.03300858899107 A 75 75 0 0 1 143.5635966783256 188.01823272632845 L 155.85087734266048 179.41458618106276 A 60.0 60.0 0 0 0 247.42640687119285 187.42640687119285 Z"/>
+<polygon fill="#e07c00" stroke="#e07c00" stroke-width="1" points="159.94663756410543,176.54670399930754 139.46783645688066,190.88611490808367 141.10359046522734,171.42912878936073 "/>
+<text xml:space="preserve" fill="#12284c" stroke="#12284c" stroke-width="0.75"  text-align="left" font-size="18px" font-family='arial' font-weight="normal"  text-anchor="middle" x="65" y="172.0" >Analyze</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="65" y="187.0" >User inspects failed checks</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="65" y="196.0" >highlighted directly in the</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="65" y="205.0" >source code by GNAT Studio</text>
+<path fill="#e07c00" d="M 132.55556302831988 164.41142838268908 A 75 75 0 0 1 198.46331929392562 70.28539764311908 L 199.7706554351405 85.22831811449527 A 60.0 60.0 0 0 0 147.0444504226559 160.52914270615125 Z"/>
+<polygon fill="#e07c00" stroke="#e07c00" stroke-width="1" points="200.2064341488788,90.20929160495399 198.02754058018732,65.30442415266036 214.05990783590923,76.44952173759229 "/>
+<text xml:space="preserve" fill="#12284c" stroke="#12284c" stroke-width="0.75"  text-align="left" font-size="18px" font-family='arial' font-weight="normal"  text-anchor="middle" x="205" y="22.0" >Fortify</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="205" y="37.0" >User writes/modifies code</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="205" y="46.0" >and/or contracts for repeated</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="205" y="55.0" >proof attempts</text>
+<path fill="#e07c00" d="M 224.41142838268902 72.55556302831987 A 75 75 0 0 1 272.97308402774877 176.69636963055245 L 259.378467222199 170.35709570444197 A 60.0 60.0 0 0 0 220.52914270615122 87.0444504226559 Z"/>
+<polygon fill="#e07c00" stroke="#e07c00" stroke-width="1" points="254.84692828701574,168.24400439573847 277.50462296293205,178.80946093925596 259.8365016988634,187.12134947304696 "/>
+<text xml:space="preserve" fill="#12284c" stroke="#12284c" stroke-width="0.75"  text-align="left" font-size="18px" font-family='arial' font-weight="normal"  text-anchor="middle" x="345" y="172.0" >Prove</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="345" y="187.0" >Generation of VC's and run</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="345" y="196.0" >of automatic provers</text>
+</svg>
