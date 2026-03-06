@@ -11,14 +11,14 @@ In this example, you will implement the classic
 playground, and implement the missing bits. Only rotate ASCII alphabetic
 characters, to ensure the result is still valid UTF-8.
 
-.. container:: source_include 120_std_traits/src/120_std_traits.rs :start-after://ANCHOR-head :end-before://ANCHOR-solution :code:rust :number-lines:1
+.. container:: source_include 120_standard_library_traits/src/120_standard_library_traits.rs :start-after://ANCHOR-head :end-before://ANCHOR-solution :code:rust :number-lines:1
 
    // Implement the `Read` trait for `RotDecoder`.
 -----------------
 ROT13 Main
 -----------------
 
-.. container:: source_include 120_std_traits/src/120_std_traits.rs :start-after://ANCHOR-main :code:rust :number-lines:1
+.. container:: source_include 120_standard_library_traits/src/120_standard_library_traits.rs :start-after://ANCHOR-main :code:rust :number-lines:1
 
 -----------------
 ROT13 Solution
@@ -28,7 +28,7 @@ ROT13 Solution
 
    \begin{scriptsize}
 
-.. container:: source_include 120_std_traits/src/120_std_traits.rs :start-after://ANCHOR-solution :end-before://ANCHOR-main :code:rust :number-lines:1
+.. container:: source_include 120_standard_library_traits/src/120_standard_library_traits.rs :start-after://ANCHOR-solution :end-before://ANCHOR-main :code:rust :number-lines:1
 
 .. raw:: latex
 

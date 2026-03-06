@@ -8,7 +8,7 @@ Conversion Between Numbers and Pointers
 
 * Numeric Casting
 
-  * Used to convert between primitive types (e.g., my_u8 as u32)
+  * Used to convert between primitive types (e.g., :rust:`my_u8 as u32`)
 
   * **Safe:** When "widening" (moving to a larger memory space)
 

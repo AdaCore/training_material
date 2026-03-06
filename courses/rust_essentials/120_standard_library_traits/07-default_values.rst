@@ -6,7 +6,7 @@ Default Values
 "Default" Trait
 -----------------
 
-* :rust:`Default` trait
+* :rust:`std::default::Default` trait
 
   * Defines a default value for a type via :rust:`fn default() -> Self`
   * Great for API ergonomics and fallback values
@@ -15,7 +15,7 @@ Default Values
 
   * Automatically derived with :rust:`#[derive(Default)]`
 
-    * If every field implements :rust:`Default`
+    * If every field implements :rust:`std::default::Default`
 
 ----------------
 Default Values
@@ -80,7 +80,7 @@ Default Values in a "struct"
     let example = Config::default();
     println!("Defaults: {example:?}");
 
-  * :rust:`default` uses sensible default values for each field
+  * :rust:`std::default::Default` uses sensible default values for each field
 
     :command:`Defaults: Config { port: 0, host: "", debug: false }`
 
@@ -90,5 +90,5 @@ Default Values in a "struct"
 
     let c2 = Config { port:123, ..Default::default() }
 
-  * :rust:`default` uses sensible default values for :rust:`host` and
+  * :rust:`std::default::Default` uses sensible default values for :rust:`host` and
     :rust:`debug` while using a new value for :rust:`port`

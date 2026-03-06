@@ -6,7 +6,7 @@ Comparisons
 Comparison Traits
 -------------------
 
-* Provide a standard way for defining how types interact with comparison operators
+* Mechanism to define how types interact with comparison operators
 
   * **Equality:** :rust:`PartialEq`, :rust:`Eq`
 
@@ -18,19 +18,27 @@ Comparison Traits
 
   * Basis of Rust’s comparison operators like :rust:`==`, :rust:`<`, etc.
 
-* Compiler and Standard Library use these traits in many APIs (e.g., sorting)
+* Compiler and Standard Library use these traits in many APIs
+
+  * Sorting, matching, etc.
+
 * Typically created via :rust:`#[derive]`
 
   * Not user-written
 
----------------------------
-Equality (and Inequality)
----------------------------
+--------------------
+(Partial) Equality
+--------------------
 
-* :rust:`PartialEq` - manual implementation
+* **Partial Equality**
 
-  * Used to compare two objects
-  * Allows for :rust:`Object == Object` to be *false*
+  * Treat the objects as *equivalent*
+  * Even if binary representations are not *equal*
+
+* :rust:`PartialEq` 
+
+  * Manual implementation
+  * Coder decides what *equal* means
 
 .. container:: latex_environment tiny
 
@@ -43,7 +51,8 @@ Equality (and Inequality)
 
      impl PartialEq for MyData {
          fn eq(&self, other: &Self) -> bool {
-             // If both are valid, compare their values if self.valid && other.valid {
+             // If both are valid, compare their values
+             if self.valid && other.valid {
                  self.value == other.value
              } else {
                  // Otherwise compare if validity is the same
@@ -52,12 +61,17 @@ Equality (and Inequality)
          }
      }
 
+-----------------
+Actual Equality
+-----------------
+
 * :rust:`Eq` - automatic implementation
 
-  * Guarantees that :rust:`Object == Object` will always be *true*
-  * So :rust:`derive` is used to perform a *lexicographical comparison*
+  * Binary representations are equal
 
-    * Means it uses the "expected" definition of equality
+  * :rust:`derive` is used to perform *lexicographical comparison*
+
+    * Uses the "expected" definition of equality
 
 .. container:: latex_environment tiny
 
@@ -72,7 +86,7 @@ Equality (and Inequality)
 
 .. note::
 
-  :rust:`Eq` is a **marker** trait, meaning there are no actual methods.
+  :rust:`Eq` is a **marker** trait, meaning there are no actual methods
 
 ----------
 Ordering
@@ -89,7 +103,7 @@ Ordering
   * :rust:`PartialEq` must be defined (either manual or derived)
   * Returns :rust:`Ordering`
 
-    :rust:`(Less, Greater, or Equal)`
+    :rust:`enum Ordering {Less, Equal, Greater}`;
 
 * :rust:`PartialOrd`
 
