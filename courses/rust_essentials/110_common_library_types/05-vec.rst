@@ -66,16 +66,18 @@ Basic Operations
 
   **Direct Indexing** :rust:`v[idx]` allowed but not recommended
 
-  .. code:: rust
+.. code:: rust
 
-    let v = vec![1, 2, 3];
-    println!("The sixth element is: {}", v[5]);
+  let v = vec![1, 2, 3];
+  println!("The sixth element is: {}", v[5]);
 
-  :error:`index out of bounds: the len is 3 but the index is 5`
+**Runtime Error**
 
----------------
-"Vec" Example
----------------
+:error:`index out of bounds: the len is 3 but the index is 5`
+
+--------------------
+Working with "Vec"
+--------------------
 
 .. code:: rust
 
@@ -96,13 +98,16 @@ Basic Operations
   println!("one: {one:?}");
   println!("five: {five:?}");
 
-::
+  :command:`All colors`
 
-  All colors
-    Red
-    Green
-    Blue
-  last: Some("Blue")
-  one: Some("Green")
-  five: None
+  :command:`  Red`
 
+  :command:`  Green`
+
+  :command:`  Blue`
+
+  :command:`last: Some("Blue")`
+
+  :command:`one: Some("Green")`
+
+  :command:`five: None`

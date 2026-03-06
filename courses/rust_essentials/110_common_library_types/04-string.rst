@@ -16,9 +16,8 @@ What Is "String"?
 
 .. note::
 
-  Functions often accept :rust:`&str`
-
-  :rust:`&str` is a fixed view into text, so not modifiable like :rust:`String`
+  * Functions often accept :rust:`&str`
+  * :rust:`&str` is a fixed view into text, so not modifiable like :rust:`String`
 
 ------------------
 Creating Strings
@@ -97,25 +96,20 @@ Strings vs Character Arrays
 .. list-table::
   :header-rows: 1
 
-  * - **Feature**
-    - :rust:`String`
-    - :rust:`[char; N]`
+  * -
+    - **Encoding**
+    - **Size**
+    - **Memory Type**
 
-  * - *Encoding*
+  * - :rust:`String`
     - UTF-8
+    - 1-4 bytes/char
+    - Heap-allocated (growable)
+
+  * - :rust:`[char; N]`
     - UCS-4
-
-  * -
-    - (1-4 bytes/char)
-    - (4 bytes/char)
-
-  * - *Memory*
-    - Heap-allocated
-    - Stack-allocated
-
-  * -
-    - (Growable)
-    - (Fixed size)
+    - 4 bytes/char
+    - Stack-allocated (fixed)
 
 * :rust:`String` better for large ASCII text
 

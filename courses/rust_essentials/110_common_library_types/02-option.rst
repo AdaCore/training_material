@@ -6,16 +6,23 @@ Option
 Why Use "Option<T>"?
 ----------------------
 
-* In many languages, a variable can be a value or *null*
+* In many languages, a variable can be a value or *unknown*
 
-  * In Rust, a variable is always its type
+  * Null pointer
+  * Uninitialized
 
-* To allow for "nothing," we wrap the type in :rust:`Option`
+* If we don't handle these cases, we can get bugs
 
-* Requires explicit handling before accessing the value
+  * Which can be difficult to find
 
-  * Must detemine if value is :rust:`None` or :rust:`Some`
-  * Then extract value if :rust:`Some` 
+* In Rust, a variable is *always* its type
+
+  * So the value is always valid
+  * To allow for *unknown* we wrap the type in :rust:`Option`
+  * Requires explicit handling before accessing the value
+
+    * Must detemine if value is :rust:`None` or :rust:`Some`
+    * Then extract value if :rust:`Some` 
 
 ----------------------
 What is "Option<T>"?

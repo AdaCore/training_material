@@ -30,13 +30,13 @@ One Library, Three Tiers
   * Contains everything in **core** and **alloc**
   * Adds OS abstractions like file I/O, networking, etc.
 
-----------------------
-What is the Prelude?
-----------------------
+--------------------------
+Introducing: The Prelude
+--------------------------
 
-* Small collection of items automatically imported into every module
+* Small collection of items *automatically* imported into every module
 
-* Designed to reduce boilerplate for frequent tasks
+  * No "with" or "include" - you get them for "free"
 
 * In this module, that means items dealing with
 
@@ -46,3 +46,16 @@ What is the Prelude?
 * Why it matters
 
   * Types so essential that they're needed in every file
+
+**Without Prelude**
+
+  .. code:: rust
+
+    let long: std::result::Result<i8, String> = std::result::Result::Ok(6);
+
+**With Prelude**
+
+  .. code:: rust
+
+    let short: Result<i8, String> = Ok(5);
+
