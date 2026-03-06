@@ -240,28 +240,28 @@ Index-Based Vs Component-Based Indexing
 "Pop Quiz" for Quantified Expressions
 ---------------------------------------
 
-.. container:: latex_environment small
+* What will be the value of `Ascending_Order`?
 
- * What will be the value of `Ascending_Order`?
+  .. code:: Ada
+    :font-size: small
 
-   .. code:: Ada
-
-      Table : constant array (1 .. 10) of Integer :=
-            (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-      Ascending_Order : constant Boolean := (
-        for all K in Table'Range =>
+    Table : constant array (1 .. 10) of Integer :=
+       (1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    Ascending_Order : constant Boolean := (
+       for all K in Table'Range =>
           K > Table'First and then Table (K - 1) <= Table (K));
 
-   - Answer: **False**. Predicate fails when `K = Table'First`
+* Answer: **False**. Predicate fails when `K = Table'First`
 
-      + First subcondition is False!
-      + Condition should be
+  + First subcondition is False!
+  + Condition should be
 
-        .. code:: Ada
+    .. code:: Ada
+      :font-size: small
 
-          Ascending_Order : constant Boolean := (
-             for all K in Table'Range =>
-                K = Table'First or else Table (K - 1) <= Table (K));
+      Ascending_Order : constant Boolean := (
+         for all K in Table'Range =>
+            K = Table'First or else Table (K - 1) <= Table (K));
 
 ..
   language_version 2012
