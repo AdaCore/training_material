@@ -41,19 +41,19 @@ As expressive and ergonomic as other higher-level languages
    -  Excellent Language Server Protocol support
    -  OOP-style power without the class-hierarchy baggage
 
-----------------------
-Rust Compared to ...
-----------------------
+--------------------------------
+Rust in the Language Ecosystem
+--------------------------------
 
-- **Ada**
+- **vs. Ada**
 
   - Similar goals: reliability, performance, low-level control
 
-  - More guarantees enforced at *compile* time
+  - Also enforces many safety guarantees at *compile* time
 
   - Borrow checker enforces strict ownership and aliasing rules
 
-- **C/C++**
+- **vs. C/C++**
 
   - Memory safety by default
 
@@ -61,7 +61,7 @@ Rust Compared to ...
 
   - Modern conveniences missing in C/C++
 
-- **Java**
+- **vs. Java**
 
   - Memory safety *without* a garbage collector
 
