@@ -2,9 +2,88 @@
 Lifetime Annotations
 ======================
 
+---------------------
+What is a Lifetime?
+---------------------
+
+A lifetime is the span of code during which a reference is valid
+
+.. code:: rust
+
+  // 'second' must not outlive 'first'
+  let first = 10;
+  let second = &first;
+  println!("{second}");
+
+----------------------
+Why Lifetimes Matter
+----------------------
+
+- References point to data owned elsewhere
+
+- If data disappears while a reference still exists...
+
+  - ...the program would have a **dangling reference**
+
+- Rust ensures that a reference doesn't outlive the value it refers to
+
+  - This rule is enforced at **compile time**
+
+----------------------------------
+Lifetimes and the Borrow Checker
+----------------------------------
+
+- The borrow checker verifies lifetime relationships
+
+  - Reference Lifetime <= Value Lifetime
+
+- This prevents
+
+  - Dangling References
+
+  - Use-after-free
+
+  - Invalid memory access
+
+- No garbage collector required!
+
 ----------------------
 Lifetime Annotations
 ----------------------
+
+- Rust can name lifetimes explicitly
+
+.. code:: rust
+
+  &'a str // Reference to 'str' valid for at least lifetime ''a'
+
+- Lifetimes start with :rust:`'`
+
+.. code:: rust
+
+  // Examples of names:
+  'some_name
+  'a_lifetime
+  'existence
+
+------------------------------
+What Lifetime Annotations Do
+------------------------------
+
+- Lifetime annotations do not create lifetimes
+
+- They describe relationships between References
+
+.. code:: rust
+
+  // 'a' and 'b' must live at least ''a'
+  // The returned rerference also lives at least ''a'
+  fn choose<'a>(a: &'a str, b: &'a str) -> &'a str
+
+
+
+
+
 
 A reference has a *lifetime*, which must not :dfn:`outlive` the value it
 refers to. This is verified by the borrow checker.
