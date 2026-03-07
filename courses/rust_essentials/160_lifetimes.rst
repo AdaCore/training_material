@@ -32,7 +32,8 @@ Lifetimes
 
 .. container:: PRELUDE END
 
-.. include:: 160_lifetimes/01_lifetime_annotations.rst
-.. include:: 160_lifetimes/02_lifetime_elision.rst
-.. include:: 160_lifetimes/03_struct_lifetimes.rst
-.. include:: 160_lifetimes/99_lab.rst
+.. include:: 160_lifetimes/01-introduction.rst
+.. include:: 160_lifetimes/02-lifetime_annotations.rst
+.. include:: 160_lifetimes/03-lifetime_elision.rst
+.. include:: 160_lifetimes/04-struct_lifetimes.rst
+.. include:: 160_lifetimes/99-summary.rst
