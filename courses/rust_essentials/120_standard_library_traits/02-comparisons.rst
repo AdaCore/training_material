@@ -33,7 +33,7 @@ Comparison Traits
 * **Partial Equality**
 
   * Treat the objects as *equivalent*
-  * Even if binary representations are not *equal*
+  * Even if parts of the object are not *equal*
 
 * :rust:`PartialEq` 
 
@@ -49,7 +49,7 @@ Comparison Traits
          value: i32,
      }
 
-     impl PartialEq for MyData {
+     impl PartialEq for SensorData {
          fn eq(&self, other: &Self) -> bool {
              // If both are valid, compare their values
              if self.valid && other.valid {
@@ -67,9 +67,9 @@ Actual Equality
 
 * :rust:`Eq` - automatic implementation
 
-  * Binary representations are equal
+  * All parts of the object are equal
 
-  * :rust:`derive` is used to perform *lexicographical comparison*
+  * :rust:`derive` is used to perform *field-by-field comparison*
 
     * Uses the "expected" definition of equality
 

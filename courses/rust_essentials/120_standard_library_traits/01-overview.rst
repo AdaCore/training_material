@@ -8,7 +8,7 @@ Review: What is a Trait?
 
 * Contract for Behavior
 
-  * Defines teh set of methods a type must implement
+  * Defines the set of methods a type must implement
 
 * Abstraction Tool
 

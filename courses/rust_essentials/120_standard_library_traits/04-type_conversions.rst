@@ -20,9 +20,12 @@ Safe Type Conversion
 * The "Conversion" Rule
 
   * These methods are transformative
-  * When you call :rust:`.into()`, the original variable is "spent"
+  * When you call :rust:`.into()`, the original target now "owns" the value
 
-    * This is a **transfer** of the value, not a copy
+* What happens to the source value?
+
+  * If source type implements :rust:`Copy`, source is still valid
+  * Otherwise, the value is no longer valid
 
 .. note::
 

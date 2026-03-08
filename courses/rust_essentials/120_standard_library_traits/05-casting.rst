@@ -29,27 +29,6 @@ Conversion Between Numbers and Pointers
 
   Rust has no *implicit* conversion - explicit casts use :rust:`as`
 
-------------------
-Casting Examples
-------------------
-
-.. code:: rust
-
-  fn main() {
-      let value: i64 = 1000;
-      println!("as u16: {}", value as u16);
-      println!("as i16: {}", value as i16);
-      println!("as u8: {}", value as u8);
-  }
-
-**produces**
-
-  :command:`as u16: 1000`
-
-  :command:`as i16: 1000`
-
-  :command:`as u8: 232`
-
 -------------------------
 Be Careful with Casting
 -------------------------
@@ -71,6 +50,26 @@ Be Careful with Casting
   :rust:`enum` and pointers |rightarrow| keeps lower bits
 
   Slice (*fat pointer*) |rightarrow| length of slice is truncated!
+
+------------------
+Casting Examples
+------------------
+
+.. code:: rust
+
+   let value: i64 = 1000;
+   println!("value as i16: {}", value as i16);
+   println!("value as u8: {}", value as u8);
+   let signed_value = -136;
+   println!("signed_value as u16: {}", signed_value as u16);
+
+**produces**
+
+:command:`value as i16: 1000       `  *no lost bits*
+
+:command:`value as u8: 232       `    *lost higher order bits*
+
+:command:`signed_value as u16: 65400` *lost sign bit!*
 
 -----------------------
 Conversion vs Casting
