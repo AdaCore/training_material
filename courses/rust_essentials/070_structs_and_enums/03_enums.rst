@@ -90,6 +90,6 @@ Each variant is **mutually exclusive**
             session_id: u64, 
             curr_ip: IpAddressV4,
         }, 
-        // Tuple variant (contains data: error code)
+        // Tuple variant (contains error data)
         Failed(u16),    
     }
