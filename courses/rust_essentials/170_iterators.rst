@@ -32,9 +32,11 @@ Iterators
 
 .. container:: PRELUDE END
 
-.. include:: 170_iterators/01_motivation.rst
-.. include:: 170_iterators/02_iterator.rst
-.. include:: 170_iterators/03_helpers.rst
-.. include:: 170_iterators/04_collect.rst
-.. include:: 170_iterators/05_intoiterator.rst
-.. include:: 170_iterators/99_lab.rst
+.. include:: 170_iterators/01-introduction.rst
+.. include:: 170_iterators/02-defining_an_iterator.rst
+.. include:: 170_iterators/03-iterator_trait.rst
+.. include:: 170_iterators/04-helper_methods.rst
+.. include:: 170_iterators/05-collect_method.rst
+.. include:: 170_iterators/06_intoiterator.rst
+.. include:: 170_iterators/88-iterators.lab.rst
+.. include:: 170_iterators/99-summary.rst
