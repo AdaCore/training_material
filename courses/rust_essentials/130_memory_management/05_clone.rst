@@ -6,35 +6,24 @@ Clone
 Clone
 -------
 
-Sometimes you *want* to make a copy of a value. The :rust:`Clone` trait
-accomplishes this.
+- Creates a deep copy of the underlying data
+  - Typically duplicating heap-allocated resources
+- Useful when original variable must remain valid after a function call
+- Significantly more expensive than a move 
+  - Requires new memory allocation and data migration
+- Serves as a clear visual marker of intentional heap allocation
+  - With :rust:`.clone()` syntax
 
 .. code:: rust
 
-   fn say_hello(name: String) {
-       println!("Hello {name}")
-   }
+    let name = String::from("Alice");
+    
+    // Explicitly clone the data
+    say_hello(name.clone());
 
-   fn main() {
-       let name = String::from("Alice");
-       say_hello(name.clone());
-       say_hello(name);
-   }
+    // 'name' is still valid here
+    say_hello(name);
 
----------
-Details
----------
+.. note::
 
--  The idea of :rust:`Clone` is to make it easy to spot where heap
-   allocations are occurring. Look for :rust:`.clone()` and a few others
-   like :rust:`vec!` or :rust:`Box::new`.
-
--  It's common to "clone your way out" of problems with the borrow
-   checker, and return later to try to optimize those clones away.
-
--  :rust:`clone` generally performs a deep copy of the value, meaning that
-   if you e.g. clone an array, all of the elements of the array are
-   cloned as well.
-
--  The behavior for :rust:`clone` is user-defined, so it can perform custom
-   cloning logic if needed.
+   It is common to prioritize progress over performance by "cloning away" ownership conflicts, deferring optimization until the logic is stable

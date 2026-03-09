@@ -15,11 +15,13 @@ Scope and validity
 
    fn main() {
        {
-           let p = Point(3, 4);
-           println!("x: {}", p.0);
+           let pt = Point(3, 4);
+           println!("x: {}", pt.0);
        }
-       println!("y: {}", p.1); // Error
+       println!("y: {}", pt.1); // Error
    }
+
+:error:`error[E0425]: cannot find value 'pt' in this scope`
 
 ----------------------
 Ownership principles
