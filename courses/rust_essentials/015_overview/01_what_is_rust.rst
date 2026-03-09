@@ -30,7 +30,7 @@ Rust fits in the same area as other systems languages (Ada, C++, ...)
 -  High level of control
 -  Can be scaled down to very constrained devices such as
    microcontrollers
--  Has no runtime or garbage collection
+-  No garbage collection
 -  Focuses on reliability and safety without sacrificing performance
 
 -------------------------------
