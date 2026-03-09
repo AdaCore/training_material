@@ -48,7 +48,7 @@ Nesting Structs
     }
     struct Car {
         new: bool,
-        // 'power_plant' is a component of 'Car' struct
+        // 'power_plant' is an 'Engine' struct inside 'Car' struct
         power_plant: Engine, 
     }
     
