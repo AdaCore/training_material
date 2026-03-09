@@ -134,7 +134,7 @@ Struct Update Operator
 -  Base instance can't be followed by a comma
    -  Must be at the end of the declaration
    
-.. warning:: Fields are *moved* if their type (e.g., :rust:`String`)  don't implement the :rust:`copy` trait  
+.. warning:: Fields are *moved* if their type (e.g., :rust:`String`)  doesn't implement the :rust:`copy` trait  
 
 .. code:: rust
 
