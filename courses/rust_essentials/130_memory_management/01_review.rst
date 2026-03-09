@@ -20,8 +20,9 @@ Review of Program Memory
 Memory Layout example
 -----------------------
 
-Creating a :rust:`String` puts fixed-sized metadata on the stack and
-dynamically sized data, the actual string, on the heap:
+- Creating a :rust:`String`puts 
+  - Fixed-sized metadata on the stack 
+  - Dynamically sized data, the actual string, on the heap
 
 .. code:: rust
 

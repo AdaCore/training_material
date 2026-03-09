@@ -18,13 +18,13 @@ Scope and validity
            let p = Point(3, 4);
            println!("x: {}", p.0);
        }
-       println!("y: {}", p.1);
+       println!("y: {}", p.1); // Error
    }
 
 ----------------------
 Ownership principles
 ----------------------
 
-- The variable **owns** the value
+- Variable **owns** the value
 - Every value has precisely **one owner** at all times
-- At the end of the scope, the variable is *dropped* and the data is freed
+- At the end of the scope, the variable is *dropped* and data is freed
