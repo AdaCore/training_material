@@ -85,7 +85,7 @@ Each variant is **mutually exclusive**
     enum ConnectionState {
         // Unit variant (no data)
         Idle,
-        // Struct variant (contains data)
+        // Struct variant (contains connection data)
         Connected {
             session_id: u64, 
             curr_ip: IpAddressV4,
