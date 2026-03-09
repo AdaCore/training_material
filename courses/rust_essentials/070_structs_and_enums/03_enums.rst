@@ -34,7 +34,7 @@ Enums with Data
 
 .. code:: rust
 
-    enum Move {
+    enum PlayerMove {
         Pass,                          // Simple variant
         Run(Direction),                // Tuple variant
         Teleport { xx: u32, yy: u32 }, // Named-field struct variant
