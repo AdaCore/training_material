@@ -56,7 +56,7 @@ Nesting Structs
 Beware of Recursion!
 ----------------------
    
--  Can't be **recursive**
+-  Structs **cannot** be recursive
    -   Type would not be **Sized**
 
 .. code:: rust
