@@ -20,15 +20,13 @@ Review of Program Memory
 Memory Layout example
 -----------------------
 
-- Creating a :rust:`String`puts 
+- Creating a :rust:`String` puts 
   - Fixed-sized metadata on the stack 
   - Dynamically sized data, the actual string, on the heap
 
 .. code:: rust
 
-   fn main() {
        let s1 = String::from("Hello");
-   }
 
 .. image:: comprehensive_rust_training/review_of_program_memory.svg
 
