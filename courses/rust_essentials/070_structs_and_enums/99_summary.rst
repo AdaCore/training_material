@@ -8,7 +8,7 @@ What We Learned
 
 -  **Structs** 
 
-   -  Group related data into a single, named entity (composition) 
+   -  Group related data into a single, named entity (*composition*) 
 
    -  Full field initialization is mandatory
 
