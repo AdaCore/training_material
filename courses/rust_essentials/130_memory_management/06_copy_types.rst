@@ -6,19 +6,21 @@ Copy Types
 Copy Types
 ------------
 
-While move semantics are the default, certain types are copied by
-default:
+- Utilize automatic bitwise duplication
+- Exist entirely on the stack
+  - Like integers, floats, and booleans
+  - Cost of copying is negligible
+ - Implement :rust:`Copy` trait
 
 .. code:: rust
 
    fn main() {
        let x = 42;
        let y = x;
-       println!("x: {x}"); // would not be accessible if not Copy
+
+       println!("x: {x}"); // Valid: 'x' was not moved
        println!("y: {y}");
    }
-
-These types implement the :rust:`Copy` trait.
 
 You can opt-in your own types to use copy semantics:
 
