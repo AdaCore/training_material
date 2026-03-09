@@ -159,6 +159,10 @@ behavior is to surround the text you want highlighted with double quotes.
 Code Examples
 ---------------
 
++++++++
+Names
++++++++
+
 Code examples should use reasonble identifiers (as opposed to a single letter).
 Where reasonable, the names should be descriptive of the situation being explained.
 
@@ -179,6 +183,19 @@ Where reasonable, the names should be descriptive of the situation being explain
 Obviously, longer names may make the text harder to read on a slide. Try to
 balance expressiveness with brevity, and think about reformatting the code
 example as well.
+
+++++++++++
+Comments
+++++++++++
+
+Many times comments refer to names in the context. In this case, the name can
+be highlighted using single quotes **not** double quotes
+
+.. code:: Ada
+
+  function Good_Name (Bad_Name : Integer) return Boolean;
+  -- This is a good reference to 'Good_Name'.
+  -- But this is a bad reference to "Bad_Name".
 
 -----------------
 Confusing Terms
