@@ -15,7 +15,7 @@ Describing an Iterator Trait
 
 * :rust:`type Item;`
 
-  * Associated type defines type that iterator produces
+  * Associated type defines what iterator produces
 
 * :rust:`next`
 
@@ -34,7 +34,7 @@ Common Use Case - Iterating Over Slice
   .. code:: rust
 
     for elem in [2, 4, 8, 16, 32] {
-          println!("{}}, elem);
+          println!("{}", elem);
       }
 
 * This is just Rust creating an "easy" iterator!

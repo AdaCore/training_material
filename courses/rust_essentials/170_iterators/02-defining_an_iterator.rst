@@ -59,7 +59,7 @@ Why Use Iterators?
   .. code:: rust
 
     for elem in [2, 4, 8, 16, 32] {
-          println!("{}}, elem);
+          println!("{}", elem);
       }
 
 .. note::

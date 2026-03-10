@@ -10,7 +10,7 @@ Extending the Iterator Trait
 
   * But there are lots more that *can* be implemented
 
-* Two categories 
+* Two main categories 
 
   * **Iterator Adapters**
 
@@ -18,43 +18,131 @@ Extending the Iterator Trait
 
   * **Consumers**
 
-    * Pull values out of iterator to produce result (e.g., :rust:`sum`, :rust`count`)
+    * Pull values out of iterator to produce result (e.g., :rust:`sum`, :rust:`collect`)
+
+--------------------------------
+Getting an Iterator ("iter()")
+--------------------------------
+
+* Collections are not iterators by default
+
+  * Need to first create an iterator
+
+  .. code:: rust
+    :number-lines: 3
+
+    let numbers = vec![10, 20, 30];
+    for n in numbers.iter() {
+        println!("{n}");
+    }
+
+  * Output
+
+    :command:`10`
+
+    :command:`20`
+
+    :command:`30`
+
+* :rust:`iter()` (line 4) creates the collection iterator
+
+  * Returns an iterator over references
+  * Does **not** consume the collection
+  * Allows use of iterator adapters
 
 --------------------------
 Common Iterator Adapters
 --------------------------
 
-.. list-table::
+* :rust:`map` **- transform values during iteration**
 
-  * - :rust:`map`
-    - Apply function to each element
+  .. container:: latex_environment tiny
 
-  * - :rust:`filter`
-    - Keep only elements that satisfy predicate
+    .. code:: rust
 
-  * - :rust:`iter`
-    - Create iterator over references to elements
+      let numbers = vec![10, 20, 30];
+      for elem in numbers.iter().map(|n| n * 2) {
+          println!("{elem}");
+      }
 
-  * - :rust:`enumerate`
-    - Converts iterator into *(index, value)* pair
+    * **Output**
+
+      :command:`20`
+
+      :command:`40`
+
+      :command:`60`
+
+    * :rust:`n` *is a* **value** *and is consumed*
+
+* :rust:`filter` **- select values matching condition**
+
+  .. container:: latex_environment tiny
+
+    .. code:: rust
+
+      let numbers = vec!11, 12, 13, 14];
+      for elem in numbers.iter().filter(|n| *n % 2 == 0) {
+          println!("{elem}");
+      }
+
+    * **Output**
+
+      :command:`12`
+
+      :command:`14`
+
+    * :rust:`n` *is a* **reference** *and is* **not** *consumed*
+
+.. note::
+
+  Adapters are used to look at each element in the collection
 
 ------------------
 Common Consumers
 ------------------
 
-.. list-table:: 
+* :rust:`sum` **- add all values and return a single value**
 
-  * - :rust:`collect`
-    - Convert iterator to collection (e.g. :rust:`Vec`, :rust:`String`)
+  .. container:: latex_environment tiny
 
-  * - :rust:`sum`
-    - Adds all elements
+    .. code:: rust
 
-  * - :rust:`any`
-    - Return True if **any** element satisfies predicate
+      let numbers = [1, 2, 3, 4, 5];
+      // .iter() creates the stream of references
+      // .sum() pulls them all off and adds them up
+      let total: i32 = numbers.iter().sum();
+      println!("The total is: {total}");
 
-  * - :rust:`all`
-    - Return True if **all** element satisfy predicate
+    * **Output**
+
+      :command:`15`
+
+* :rust:`any` **- return True if any value matches condition**
+
+  .. container:: latex_environment tiny
+
+    .. code:: rust
+
+      let temperatures = [22, 28, -2, 15, 30];
+
+      // .iter() creates the stream of references
+      // .any() looks for the first item that satisfies the closure
+      if temperatures.iter().any(|&t| t < 0) {
+          println!("Warning: Freezing temperatures detected!");
+      } else {
+          println!("All temperatures are above freezing.");
+      }
+
+    * **Output**
+
+      :command:`Warning: Freezing temperatures detected!`
+
+    * :rust:`all` returns True if **all** values match
+
+.. note::
+
+  Consumers are used to look at the collection as a whole
 
 -----------------------------
 Declarative Data Processing
@@ -86,7 +174,7 @@ Reliability and Maintenace
 
   * Lazy evaluation
 
-    * Adapters do nothing until a "Consumer" (like :rust:`sum` or :rust:`collect`) is called
+    * Adapters do nothing until a "Consumer" (like :rust:`sum` or :rust:`count`) is called
 
       * You can build a complex pipeline and it won't execute until the very end.
 
