@@ -24,7 +24,7 @@ Scope and validity
 :error:`error[E0425]: cannot find value 'pt' in this scope`
 
 ----------------------
-Ownership principles
+Ownership Principles
 ----------------------
 
 - Variable **owns** the value

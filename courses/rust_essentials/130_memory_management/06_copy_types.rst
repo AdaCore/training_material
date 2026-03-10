@@ -1,71 +1,81 @@
-============
-Copy Types
-============
+================
+Copy Semantics
+================
 
 ------------
 Copy Types
 ------------
 
-- Utilize automatic bitwise duplication
+- Utilize automatic *bitwise* duplication
+- Like integers, floats, and booleans
 - Exist entirely on the stack
-  - Like integers, floats, and booleans
   - Cost of copying is negligible
- - Implement :rust:`Copy` trait
+  - Implement :rust:`Copy` trait
 
 .. code:: rust
 
-   fn main() {
-       let x = 42;
-       let y = x;
+   let x = 42;
+   let y = x;
 
-       println!("x: {x}"); // Valid: 'x' was not moved
-       println!("y: {y}");
-   }
+   println!("x: {x}"); // Valid: 'x' was not moved
+   println!("y: {y}");
 
-You can opt-in your own types to use copy semantics:
+-------------------
+Custom Copy Types
+-------------------
+
+- User-defined types can opt-in for this behavior
+  - Provided they consist strictly of other :rust:`Copy` types
 
 .. code:: rust
 
-   #[derive(Copy, Clone, Debug)]
+   #[derive(Copy, Clone)]
    struct Point(i32, i32);
 
-   fn main() {
-       let p1 = Point(3, 4);
-       let p2 = p1;
-       println!("p1: {p1:?}");
-       println!("p2: {p2:?}");
-   }
+   let p1 = Point(3, 4);
+   let p2 = p1;
+   
+- Both :rust:`p1` and :rust:`p2` own their own data
+- Using :rust:`let p2 = p1.clone();` would do the same explicitly
 
--  After the assignment, both :rust:`p1` and :rust:`p2` own their own data.
--  We can also use :rust:`p1.clone()` to explicitly copy the data.
+---------------------------
+No "Copy" Without "Clone"
+---------------------------
 
----------
-Details
----------
+- :rust:`Copy` is a *subtrait* of :rust:`Clone`
+  - Defined as :rust:`trait Copy: Clone`
+- Using :rust:`#derive[Copy]` alone triggers a compile error
 
-Copying and cloning are not the same thing:
+.. code:: rust
 
--  Copying refers to bitwise copies of memory regions and does not work
-   on arbitrary objects.
--  Copying does not allow for custom logic (unlike copy constructors in
-   C++).
--  Cloning is a more general operation and also allows for custom
-   behavior by implementing the :rust:`Clone` trait.
--  Copying does not work on types that implement the :rust:`Drop` trait.
+   #[derive(Copy)]
+   struct Point(i32, i32);
 
-In the above example, try the following:
+   let p1 = Point(3, 4);
+   let p2 = p1;
 
--  Add a :rust:`String` field to :rust:`struct Point`. It will not compile
-   because :rust:`String` is not a :rust:`Copy` type.
--  Remove :rust:`Copy` from the :rust:`derive` attribute. The compiler error is
-   now in the :rust:`println!` for :rust:`p1`.
--  Show that it works if you clone :rust:`p1` instead.
+.. container:: latex_environment footnotesize
 
------------------
-More to Explore
------------------
+   :error:`error[E0277]: the trait bound 'Point: Clone' is not satisfied`
 
--  Shared references are :rust:`Copy`/:rust:`Clone`, mutable references are not.
-   This is because Rust requires that mutable references be exclusive,
-   so while it's valid to make a copy of a shared reference, creating a
-   copy of a mutable reference would violate Rust's borrowing rules.
+---------------------------------
+"Copy" requires All-Copy fields
+---------------------------------
+
+- User-defined types can only be :rust:`Copy` if all fields are also :rust:`Copy`
+
+.. code:: rust
+
+   #[derive(Copy, Clone)] 
+   struct User(i32, String); 
+
+   let user_a = User(42, String::from("Alice"));    
+   let user_b = user_a;
+
+.. container:: latex_environment footnotesize
+
+   :error:`error[E0204]: the trait 'Copy' cannot be implemented for this type`
+
+.. note::
+
+   Types that own heap memory cannot be :rust:`Copy` to prevent memory issues

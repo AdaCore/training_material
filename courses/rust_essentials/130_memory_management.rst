@@ -41,3 +41,4 @@ Memory Management
 .. include:: 130_memory_management/06_copy_types.rst
 .. include:: 130_memory_management/07_drop.rst
 .. include:: 130_memory_management/99_lab.rst
+.. include:: 130_memory_management/99_summary.rst

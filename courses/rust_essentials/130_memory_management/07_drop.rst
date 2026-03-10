@@ -1,68 +1,82 @@
-========================
-The :rust:`Drop` Trait
-========================
+======
+Drop
+======
 
-------------------------
-The :rust:`Drop` Trait
-------------------------
+---------------------
+Destructor ("Drop")
+---------------------
 
-Values which implement
-:url:`Drop <https://doc.rust-lang.org/std/ops/trait.Drop.html>` can
-specify code to run when they go out of scope:
+- Deterministic cleanup implemented with :rust:`Drop` Trait
+  - Occurs *implicitly* and *exactly* at the closing brace :rust:`}`
+- Ideal for resource management, e.g, closing files or network sockets
+- Internal fields are dropped in the order they are declared
+- Variables are dropped in reverse order of their creation
 
 .. code:: rust
 
-   struct Droppable {
-       name: &'static str,
-   }
+    struct Droppable {
+        name: String,
+    }
 
-   impl Drop for Droppable {
-       fn drop(&mut self) {
-           println!("Dropping {}", self.name);
-       }
-   }
+    impl Drop for Droppable {
+        fn drop(&mut self) {
+            println!("Dropping {}", self.name);
+        }
+    }
 
-   fn main() {
-       let a = Droppable { name: "a" };
-       {
-           let b = Droppable { name: "b" };
-           {
-               let c = Droppable { name: "c" };
-               let d = Droppable { name: "d" };
-               println!("Exiting block B");
-           }
-           println!("Exiting block A");
-       }
-       drop(a);
-       println!("Exiting main");
-   }
+    fn main() {
+        let _a = Droppable { name: String::from("a") };
+        {
+            let _b = Droppable { name: String::from("b") };
+        } // Dropping '_b'
+    } // Dropping '_a'
 
----------
-Details
----------
+---------------
+Explicit Drop
+---------------
 
--  Note that :rust:`std::mem::drop` is not the same as
-   :rust:`std::ops::Drop::drop`.
--  Values are automatically dropped when they go out of scope.
--  When a value is dropped, if it implements :rust:`std::ops::Drop` then its
-   :rust:`Drop::drop` implementation will be called.
--  All its fields will then be dropped too, whether or not it implements
-   :rust:`Drop`.
--  :rust:`std::mem::drop` is just an empty function that takes any value.
-   The significance is that it takes ownership of the value, so at the
-   end of its scope it gets dropped. This makes it a convenient way to
-   explicitly drop values earlier than they would otherwise go out of
-   scope.
+- Early clean-up is possible by calling explicitly :rust:`std::mem::drop`
+  - :rust:`std::mem::drop` differs from :rust:`std::ops::Drop::drop` 
+  - Calling the :rust:`.drop()` method manually results in a compiler error
+- :rust:`std::mem::drop` (in *prelude*) is actually an empty function that 
+  - Takes any value by value
+  - Takes ownership of the passed value
+  - Has no logic, and immediately ends
+  - Value goes out of scope, and triggers the Drop mechanism automatically
 
-   -  This can be useful for objects that do some work on :rust:`drop`:
-      releasing locks, closing files, etc.
+.. code:: rust
 
-Discussion points:
+  let x = String::from("Early release");
+  drop(x); // x is moved here and dropped immediately
 
--  Why doesn't :rust:`Drop::drop` take :rust:`self`?
+  println!("{}", x);
 
-   -  Short-answer: If it did, :rust:`std::mem::drop` would be called at the
-      end of the block, resulting in another call to :rust:`Drop::drop`, and
-      a stack overflow!
+:error:`error[E0382]: borrow of moved value: 'x'`
 
--  Try replacing :rust:`drop(a)` with :rust:`a.drop()`.
+.. note::
+
+    :rust:`std::mem::drop` is a convenient way to explicitly drop values earlier than their natural scope end
+
+------------------------------
+Exclusivity of Copy and Drop
+------------------------------
+
+- A type cannot implement both the Copy and Drop traits
+- Copy implies a simple bitwise replication on the stack
+- Custom cleanup logic (like freeing heap memory) is incompatible with duplication
+  - As multiple owners would attempt to free the same memory
+- Compiler prevents coexistence of these traits
+
+.. code:: rust
+
+  // This code will not compile
+  #[derive(Copy, Clone)] 
+  struct Highlander;
+
+  impl Drop for Highlander {
+    fn drop(&mut self) {
+        println!("There can be only one!");
+    }
+  }
+
+:error:`error[E0184]: the trait 'Copy' cannot be implemented for this type; the type has a destructor`

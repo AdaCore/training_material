@@ -17,7 +17,7 @@ Review of Program Memory
   - **Cons:** Slighly slower and no guarantuee of locality
 
 -----------------------
-Memory Layout example
+Memory Layout Example
 -----------------------
 
 - Creating a :rust:`String` puts 
