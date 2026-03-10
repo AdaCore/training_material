@@ -14,7 +14,7 @@ The Ultimate Consumer
 * :rust:`collect()` is the "on switch"
 
   * Iterates through entire sequence
-  * Stores the results in a collection (like a :rust:`Vec` or :rust:`HashMap)
+  * Stores the results in a collection (like a :rust:`Vec` or :rust:`HashMap`)
 
 * Typically use *turbofish* syntax to tell compiler what you want
 
