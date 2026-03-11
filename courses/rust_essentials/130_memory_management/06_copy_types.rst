@@ -6,25 +6,29 @@ Copy Semantics
 Copy Types
 ------------
 
+- Usually live on the stack
 - Utilize automatic *bitwise* duplication
-- Like integers, floats, and booleans
-- Exist entirely on the stack
-  - Cost of copying is negligible
-  - Implement :rust:`Copy` trait
+- Cost of copying is negligible
+- Implement :rust:`Copy` trait
+  - Scalar types are :rust:`Copy` types
 
 .. code:: rust
 
-   let x = 42;
-   let y = x;
+   let gizmo = 1984;
+   let gremlin = gizmo;
 
-   println!("x: {x}"); // Valid: 'x' was not moved
-   println!("y: {y}");
+   println!("gizmo: {gizmo}"); // Valid: 'gizmo' was not moved
+   println!("gremlin: {gremlin}");
+
+.. note:: 
+
+   Saying a type is :rust:`Copy` means it implements the :rust:`Copy` trait
 
 -------------------
 Custom Copy Types
 -------------------
 
-- User-defined types can opt-in for this behavior
+- User-defined types can opt-in to :rust:`Copy`
   - Provided they consist strictly of other :rust:`Copy` types
 
 .. code:: rust
@@ -58,11 +62,11 @@ No "Copy" Without "Clone"
 
    :error:`error[E0277]: the trait bound 'Point: Clone' is not satisfied`
 
----------------------------------
-"Copy" requires All-Copy fields
----------------------------------
+------------------------------------
+"Copy" Types and Field Constraints
+------------------------------------
 
-- User-defined types can only be :rust:`Copy` if all fields are also :rust:`Copy`
+**User-defined types can only be :rust:`Copy` if all fields are also :rust:`Copy`**
 
 .. code:: rust
 

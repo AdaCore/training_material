@@ -6,8 +6,8 @@ Drop
 Destructor ("Drop")
 ---------------------
 
-- Deterministic cleanup implemented with :rust:`Drop` Trait
-  - Occurs *implicitly* and *exactly* at the closing brace :rust:`}`
+- Deterministic clean-up implemented with :rust:`Drop` Trait
+  - Occurs *implicitly* and usually at the closing brace :rust:`}`
 - Ideal for resource management, e.g, closing files or network sockets
 - Internal fields are dropped in the order they are declared
 - Variables are dropped in reverse order of their creation
@@ -25,29 +25,31 @@ Destructor ("Drop")
     }
 
     fn main() {
-        let _a = Droppable { name: String::from("a") };
+        let _tic = Droppable { name: String::from("tic") };
+        let _tac = Droppable { name: String::from("tac") };
         {
-            let _b = Droppable { name: String::from("b") };
-        } // Dropping '_b'
-    } // Dropping '_a'
+            let _toe = Droppable { name: String::from("toe") };
+        } // Dropping '_toe'
+    } // Dropping '_tac' 
+      // Dropping '_tic'
 
 ---------------
 Explicit Drop
 ---------------
 
-- Early clean-up is possible by calling explicitly :rust:`std::mem::drop`
+- Early clean-up is possible by calling :rust:`std::mem::drop`
   - :rust:`std::mem::drop` differs from :rust:`std::ops::Drop::drop` 
-  - Calling the :rust:`.drop()` method manually results in a compiler error
+  - Calling :rust:`.drop()` manually results in a compiler error
 - :rust:`std::mem::drop` (in *prelude*) is actually an empty function that 
   - Takes any value by value
   - Takes ownership of the passed value
   - Has no logic, and immediately ends
-  - Value goes out of scope, and triggers the Drop mechanism automatically
+  - Value goes out of scope, and triggers the :rust:`Drop` mechanism automatically
 
 .. code:: rust
 
   let x = String::from("Early release");
-  drop(x); // x is moved here and dropped immediately
+  drop(x); // 'x' is moved here and dropped immediately
 
   println!("{}", x);
 
@@ -55,17 +57,16 @@ Explicit Drop
 
 .. note::
 
-    :rust:`std::mem::drop` is a convenient way to explicitly drop values earlier than their natural scope end
+    :rust:`std::mem::drop` is a way to explicitly drop values before end of scope
 
-------------------------------
-Exclusivity of Copy and Drop
-------------------------------
+----------------------------------
+Exclusivity of "Copy" and "Drop"
+----------------------------------
 
-- A type cannot implement both the Copy and Drop traits
-- Copy implies a simple bitwise replication on the stack
-- Custom cleanup logic (like freeing heap memory) is incompatible with duplication
-  - As multiple owners would attempt to free the same memory
-- Compiler prevents coexistence of these traits
+- A type cannot implement both the :rust:`Copy` and :rust:`Drop` traits
+- :rust:`Copy` implies a simple bitwise replication
+- If a type implements :rust:`Drop`, Rust must guarantee the destructor runs exactly once
+  - Compiler prevents coexistence of these traits
 
 .. code:: rust
 
