@@ -8,20 +8,17 @@ Reference Counter
 
 -  Useful when single value is owned by multiple parts of a program
 
-  -  Share ownership of a value on the heap
+   -  Share ownership of a value on the heap
 
-  -  Track the number of active references
+   -  Track the number of active references
 
-  -  Prevent data cleanup until the last owner finishes
-
-
--- JBE TO DO example tele
+   -  Prevent data cleanup until the last owner finishes
 
 ------------------
 Shared Ownership
 ------------------
 
--  :rust:`Box<T>` enforces strict singular ownership.
+-  :rust:`Box<T>` enforces strict singular ownership
 
 .. code:: rust 
 
@@ -55,22 +52,25 @@ Fair Warning
   let b = Box::new(a);
   let c = Box::new(a);
   
+-  :rust:`Clone` works also with :rust:`Box<T>`
+
   let d = Box::new(5);
   let e = Box::clone(&d);
   let f = Box::clone(&a);
-  
--  Data is **not shared**, it is **duplicated**
 
+.. warning::  
+
+  in **Both** cases, data is **not shared**, it is **duplicated**
 
 ------------------------------------------------------------
 Why Use :rust:`Rc<T>` if :rust:`Box<T>` Can :rust:`Clone`?
 ------------------------------------------------------------
 
--  Avoid expensive data duplication
+-  Avoids expensive data duplication
 
--  Synchronize state across multiple owners
+-  Synchronizes state across multiple owners
 
--  Save memory by reusing the same heap allocation
+-  Saves memory by reusing the same heap allocation
 
 .. tip::  
 

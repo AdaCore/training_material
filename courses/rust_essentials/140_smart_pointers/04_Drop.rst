@@ -12,6 +12,8 @@ Cleaning Code
 
 -  Allows :rust:`drop` method to define custom cleanup logic 
 
+.. code:: rust
+
   struct CustomPointer { data: String }
 
   impl Drop for CustomPointer {
@@ -35,16 +37,15 @@ Cleaning Code
     let b = Box::new("Second") ;
   } 
   // 'b' is dropped first, then 'Second' is freed
-  // 'a' is dropped after, then 'First' is freed
-
+  // 'a' is dropped after, lastly 'First' is freed
 
 ------------------------
 Explicit Early Cleanup
 ------------------------
 
--  Cannot call on the method from :rust:`drop` trait to free memory
+-  Cannot explicitly call method from :rust:`drop` trait to free memory
 
-  -  Rust would still try to drop the value at end of scope
+   -  Rust would still try to drop the value at end of scope
 
 .. code:: rust 
 
@@ -54,13 +55,13 @@ Explicit Early Cleanup
 
 :error:`error[E0040]: explicit use of destructor method`
 
--  Call std::mem::drop(value) to force immediate cleanup
+-  Call :rust:`std::mem::drop(value)` to force immediate cleanup
   
-  -  Transfer ownership of value into the function scope
+   -  Transfer ownership of value into the function scope
 
 .. code:: rust
 
-  drop(shoe);  //  'c' is moved here and destroyed
+  drop(shoe);  //  'shoe' is moved here and destroyed
 
   println!("wait for the other {} to drop", *shoe ); 
   

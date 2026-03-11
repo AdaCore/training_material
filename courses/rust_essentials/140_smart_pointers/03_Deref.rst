@@ -14,12 +14,20 @@ Dereferencing Smart Pointers
 
 .. code:: rust 
 
+  fn hello(name: i32) {
+    println!("Hello, 00{name}!");
+  }
+
+  let m = Box::new(7);
+    
+  hello(*m); // No need to do hello(m.0)
+
   
 ------------------------
 :rust:`Deref` Coercion
 ------------------------
 
--  converts a reference to one type into a reference to another type
+-  Converts a reference to one type into a reference to another type
 
 -  Perform multiple "steps" of coercion at compile time
 
@@ -33,10 +41,10 @@ Dereferencing Smart Pointers
     println!("Hello, {name}!");
   }
 
-  let m = MyBox::new(String::from("Rust"));
+  let m = Box::new(String::from("Rust"));
     
   // &m is &MyBox<String>
-  // Rust coerces: &MyBox<String> -> &String -> &str
+  // Rust coerces: &Box<String> -> &String -> &str
   hello(&m); // No need to do hello(&m.0)
 
 -------------------------
@@ -46,29 +54,27 @@ Mutability and Coercion
 *Prohibit &T to &mut T (Never coerce Immutable to Mutable)*
 
 .. list-table::
-   :header-rows: 1
+   :header-rows: 1
 
-   * - From
-     - To
-     - Result
+   * - From
+     - To
+     - Result
 
-   * - :rust:`&T`
-     - :rust:`&U`
-     - :color-green:`V`
+   * - :rust:`&T`
+     - :rust:`&U`
+     - :color-green:`V`
 
+   * - :rust:`&mut T`
+     - :rust:`&mut U`
+     - :color-green:`V`
 
-   * - :rust:`&mut T`
-     - :rust:`&mut U`
-     - :color-green:`V`
+   * - :rust:`&mut T`
+     - :rust:`&U`
+     - :color-green:`V`
 
-
-   * - :rust:`&mut T`
-     - :rust:`&U`
-     - :color-green:`V`
-
-   * - :rust:`&T`
-     - :rust:`&mut U`
-     - :color-red:`X`
+   * - :rust:`&T`
+     - :rust:`&mut U`
+     - :color-red:`X`
 
 
 -----------------------------
@@ -90,9 +96,9 @@ User Defined Smart Pointers
   let x = MyBox::new(5);  
   *x = 10;
   
-error[E0614]: type `MyBox<{integer}>` cannot be dereferenced  
+:error:`error[E0614]: type 'MyBox<{integer}>' cannot be dereferenced`
 
--  Neef to implement :rust:`Deref`
+-  Need to implement :rust:`Deref`
 
 .. code:: rust 
 
