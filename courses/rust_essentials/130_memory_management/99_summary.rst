@@ -17,7 +17,7 @@ Navigating Memory Semantics
   * - *Move*
     - Ownership transfer
     - Zero
-    - Default for :rust:`Non-Copy` types
+    - Default for :rust:`non-Copy` types
 
   * - *Clone*
     - Explicit duplication
@@ -40,9 +40,12 @@ What We Covered
   
 - **Data Movement**
 
-  - **Move**: Transfers ownership
-  - **Copy**: Implicit bitwise copy
-  - **Clone**: Explicit deep copy for heap-allocated data
+  - **Move**
+    - Transfers ownership
+  - **Copy**
+    - Implicit bitwise copy
+  - **Clone**
+    - Explicit deep copy for heap-allocated data
 
 - **Cleanup**
   - **Destructors** (Drop): Mechanism for defining custom cleanup logic

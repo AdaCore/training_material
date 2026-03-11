@@ -6,7 +6,7 @@ Move Semantics
 Transferring Ownership
 ------------------------
 
-Assigning a value to a new variable transfers ownership
+**Assigning a value to a new variable transfers ownership**
 
 .. code:: rust
 
@@ -18,20 +18,31 @@ Assigning a value to a new variable transfers ownership
 
 :error:`error[E0382]: borrow of moved value: 's1'`
 
-Before move to :rust:`s2`:
+.. container:: columns
 
-.. image:: comprehensive_rust_training/review_of_program_memory.svg
+   .. container:: column
+      :width: 50%
 
-After move to :rust:`s2`:
+        Before move to :rust:`s2`:
 
-.. image:: comprehensive_rust_training/move_semantics_2.svg
+        .. image:: comprehensive_rust_training/review_of_program_memory.svg
 
+   .. container:: column
+      :width: 50%
+
+        After move to :rust:`s2`:
+
+        .. image:: comprehensive_rust_training/move_semantics_2.svg
+
+.. note::
+
+    To ensure memory safety and prevent "double-free" errors, the compiler treats a moved variable as uninitialized and forbids any further use of it
 
 -------------------------
 Functions and Ownership
 -------------------------
 
-- Passing by value moves the data into the function's scope
+**Passing by value moves the data into the function's scope**
 
 .. code:: rust
 
