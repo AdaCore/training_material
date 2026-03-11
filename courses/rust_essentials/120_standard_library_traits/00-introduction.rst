@@ -14,8 +14,6 @@ Topics Covered
 
   * Math across types
 
-    * e.g., Speed = Distance / Time
-  
 * **Converting Between Types and Values**
 
   * Conversion vs casting

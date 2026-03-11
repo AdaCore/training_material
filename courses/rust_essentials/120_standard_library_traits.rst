@@ -37,8 +37,7 @@ Standard Library Traits
 .. include:: 120_standard_library_traits/02-comparisons.rst
 .. include:: 120_standard_library_traits/03-operators.rst
 .. include:: 120_standard_library_traits/04-type_conversions.rst
-.. include:: 120_standard_library_traits/05-casting.rst
-.. include:: 120_standard_library_traits/06-io_traits.rst
-.. include:: 120_standard_library_traits/07-default_values.rst
+.. include:: 120_standard_library_traits/05-io_traits.rst
+.. include:: 120_standard_library_traits/06-default_values.rst
 .. include:: 120_standard_library_traits/88-standard_library_traits.lab.rst
 .. include:: 120_standard_library_traits/99-summary.rst

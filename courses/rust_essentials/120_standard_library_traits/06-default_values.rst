@@ -8,7 +8,12 @@ Default Values
 
 * :rust:`std::default::Default` trait
 
-  * Defines a default value for a type via :rust:`fn default() -> Self`
+  * Defines a default value for a type
+
+    .. code:: rust
+
+      fn default() -> Self
+
   * Great for API ergonomics and fallback values
 
 * Common Usage
@@ -27,34 +32,34 @@ Default Values
      :widths: 25 35 40
      :header-rows: 1
 
-     * - Category
-       - Type
-       - Default Value
-     * - **Integers**
+     * - **Category**
+       - **Type**
+       - **Default Value**
+     * - *Integers*
        - ``i8``, ``u32``, ``isize``, etc.
        - ``0``
-     * - **Floats**
+     * - *Floats*
        - ``f32``, ``f64``
        - ``0.0``
-     * - **Boolean**
+     * - *Boolean*
        - ``bool``
        - ``false``
-     * - **Characters**
+     * - *Characters*
        - ``char``
        - ``'\0'`` (Nul)
-     * - **Strings**
+     * - *Strings*
        - ``String``
        - ``""`` (Empty)
-     * - **Collections**
+     * - *Collections*
        - ``Vec<T>``, ``HashMap<K, V>``
        - Empty (Size 0)
-     * - **Wrappers**
+     * - *Options*
        - ``Option<T>``
        - ``None``
-     * - **Smart Pointers**
+     * - *Smart Pointers*
        - ``Box<T>``, ``Arc<T>``
        - Pointer to ``T::default()``
-     * - **Tuples**
+     * - *Tuples*
        - ``(A, B)``
        - ``(A::default(), B::default())``
 
@@ -90,5 +95,7 @@ Default Values in a "struct"
 
     let c2 = Config { port:123, ..Default::default() }
 
-  * :rust:`std::default::Default` uses sensible default values for :rust:`host` and
-    :rust:`debug` while using a new value for :rust:`port`
+  * :rust:`std::default::Default` uses
+
+    * Sensible default values for :rust:`host` and :rust:`debug`
+    * New value for :rust:`port`

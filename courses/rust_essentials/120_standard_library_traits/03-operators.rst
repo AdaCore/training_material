@@ -6,9 +6,8 @@ Operators
 Operator Overloading
 ----------------------
 
-* Trait-based operator overloading
+* Rust uses traits in :rust:`std::ops` to overload operators (e.g., :rust:`+`, :rust:`-`, :rust:`*`)
 
-  * Rust uses traits in :rust:`std::ops` to overload operators (e.g., :rust:`+`, :rust:`-`, :rust:`*`)
   * Operators delegate to trait methods (:rust:`Add`, :rust:`Sub`, etc.)
 
 .. container:: latex_environment footnotesize
@@ -43,13 +42,11 @@ Operator Overloading
 
   :rust:`Self::Output` indicates return type defined by the implementation
 
-  Not necessarily same type as the operator (e.g., adding inches to get feet)
+-------------------
+Overloading "Add"
+-------------------
 
----------------------------
-Overloading "Add" Example
----------------------------
-
-Define an implementation for :rust:`Inches` that returns a number in :rust:`Feet`
+**Define an implementation for** :rust:`Inches` **that returns a number in** :rust:`Feet`
 
 .. code:: rust
 
@@ -64,12 +61,14 @@ Define an implementation for :rust:`Inches` that returns a number in :rust:`Feet
       }
   }
 
-  fn main() {
-      let measure1 = Inches(10.0);
-      let measure2 = Inches(32.0);
+  let measure1 = Inches(10.0);
+  let measure2 = Inches(32.0);
     
-      println!("{} inches + {} inches", measure1.0, measure2.0);
+  println!("{} inches + {} inches", measure1.0, measure2.0);
     
-      let feet = measure1 + measure2;
-      println!("= {} feet", feet.0);
-  }
+  let feet = measure1 + measure2;
+  println!("= {} feet", feet.0);
+
+:command:`10 inches + 32 inches`
+
+:command:`= 3.5 feet`

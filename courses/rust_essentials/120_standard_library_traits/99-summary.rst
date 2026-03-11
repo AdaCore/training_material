@@ -17,12 +17,10 @@ What We Covered
 
 * **Converting Between Types and Values**
 
-  * Safe conversion using :rust:`From` and :rust:`Into`
+  * Conversion using :rust:`From` and :rust:`Into`
+  * Casting using :rust:`as`
 
-* **Treating an Object as a Different Type**
-
-  * Unsafe conversion using :rust:`as`
-  * Data loss when target is smaller than source
+    * Data loss when target is smaller than source
 
 * **Input/Output on Types**
 

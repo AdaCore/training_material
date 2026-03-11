@@ -30,15 +30,14 @@ Comparison Traits
 (Partial) Equality
 --------------------
 
-* **Partial Equality**
+* Treat the objects as *equivalent*
 
-  * Treat the objects as *equivalent*
   * Even if parts of the object are not *equal*
 
 * :rust:`PartialEq` 
 
-  * Manual implementation
-  * Coder decides what *equal* means
+  * Typically manual implementation for user-defined types
+  * Programmer decides what *equal* means
 
 .. container:: latex_environment tiny
 
@@ -71,39 +70,52 @@ Actual Equality
 
   * :rust:`derive` is used to perform *field-by-field comparison*
 
+*  :rust:`Eq` is a :dfn:`marker trait`
+
+    * No methods or associated constants
+    * Promises compiler that type has specific property
     * Uses the "expected" definition of equality
 
-.. container:: latex_environment tiny
+* Deriving :rust:`Eq` requires you to derive :rust:`PartialEq`
 
-  .. code:: rust
-    :font-size: tiny
+  * Because :rust:`Eq` doesn't actually do anything!
 
-    #[derive(PartialEq, Eq)]
-    struct MyData {
-        value_a: i32,
-        value_b: i32,
-    }
+.. code:: rust
+  :font-size: tiny
 
-.. note::
-
-  :rust:`Eq` is a **marker** trait, meaning there are no actual methods
+  #[derive(PartialEq, Eq)]
+  struct MyData {
+      value_a: i32,
+      value_b: i32,
+  }
 
 ----------
 Ordering
 ----------
 
-* Similar to :rust:`PartialEq` / :rust:`Eq`
+* Similar to :rust:`Eq` (and :rust:`PartialEq`)
 
   * Automatic implementation (:rust:`derive`) does a lexicographical comparison
-  * Manual implementation requires multiple traits
+  * User implementation allowed for **both** traits
 
 * :rust:`Ord`
 
   * Can be called by :rust:`PartialOrd` (or vice-versa)
-  * :rust:`PartialEq` must be defined (either manual or derived)
   * Returns :rust:`Ordering`
 
     :rust:`enum Ordering {Less, Equal, Greater}`;
+
+* When using :rust:`derive`, Rust compares fields *in order*
+
+  * So changing list of fields can change :rust:`Ord` result
+
+.. note::
+
+  :rust:`PartialEq` must be defined (either manual or derived)
+
+------------------
+Partial Ordering
+------------------
 
 * :rust:`PartialOrd`
 
@@ -112,6 +124,7 @@ Ordering
     * :rust:`None` can be returned if two values cannot be compared
 
 .. code:: rust
+  :font-size: small
 
   use std::cmp::Ordering;
 

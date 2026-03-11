@@ -2,24 +2,23 @@
 Type Conversions
 ==================
 
-----------------------
-Safe Type Conversion
-----------------------
+-----------------
+Type Conversion
+-----------------
 
 * Conversion traits
 
   * :rust:`From<T>` - converts a value into :rust:`Self`
   * :rust:`Into<T>` - converts :rust:`Self` into a value
-  * Automatically works both ways if :rust:`From` is implemented
+  * :rust:`Into` can be inferred when  :rust:`From` implemented
 
 * Why it matters
 
   * Standardized way to convert between types with consistent syntax
   * Used extensively in APIs for ergonomic type transformations
 
-* The "Conversion" Rule
+* These methods are transformative
 
-  * These methods are transformative
   * When you call :rust:`.into()`, the original target now "owns" the value
 
 * What happens to the source value?
@@ -29,7 +28,7 @@ Safe Type Conversion
 
 .. note::
 
-  **Safe** means *lossless* - conversion cannot fail
+  Conversion is *lossless* - it cannot fail (:dfn:`infallible conversion`)
 
 ---------------------
 Conversion Examples
@@ -57,12 +56,6 @@ Conversion Examples
     let one: i16 = true.into();
     let bigger: i32 = 123_i16.into();
 
-.. note::
-
-  **Conversion Rule:** You are "upgrading" your type.
-
-  *Example:* from a string literal ("hello") to a :rust:`String`
-
 ------------------
 "From" vs "Into"
 ------------------
@@ -70,6 +63,7 @@ Conversion Examples
 * If you implement :rust:`From`, you automatically get :rust:`Into`
 
   * So it is a good idea to always implement :rust:`From` for your types
+  * Also referred to as the *Conversion Rule*
 
 * :rust:`From` specifies both source and destination
 
@@ -95,3 +89,81 @@ Conversion Examples
 .. note::
 
   Conversions become very powerful when writing generic functions
+
+------------------------------------
+Conversion Between Primitive Types
+------------------------------------
+
+* Convert between primitive types with :rust:`as`
+
+  :rust:`my_u8 as u32`
+
+  * Rust has no *implicit* casting
+
+* Unlike :rust:`From`, casting does not use traits
+
+  * It is a built-in language "force-move"
+
+* Casting truncates using **bitmasking** - keeps the lower bits
+
+  * :rust:`enum` and pointers keeps lower bits
+  * :rust:`From` and :rust:`Into` are generally safer
+
+* Truncation (generally) only works with primitive-like types
+
+  * Casting :rust:`Struct` and :rust:`String` generate compiler errors
+  * Slice (*fat pointer*) truncate length of slice
+
+------------------
+Casting Examples
+------------------
+
+.. code:: rust
+
+   let value: i64 = 1000;
+   println!("value as i16: {}", value as i16);
+   println!("value as u8: {}", value as u8);
+   let signed_value = -136;
+   println!("signed_value as u16: {}", signed_value as u16);
+
+:command:`value as i16: 1000       `  *no lost bits*
+
+:command:`value as u8: 232       `    *lost higher order bits*
+
+:command:`signed_value as u16: 65400` *lost sign bit!*
+
+-----------------------
+Conversion vs Casting
+-----------------------
+
+.. container:: latex_environment footnotesize
+
+  .. list-table::
+     :header-rows: 1
+
+    * - **Method**
+      - **Safety Level**
+      - **Best Use Case**
+
+    * - :rust:`From` / :rust:`Into`
+      - Guaranteed
+      - Lossless conversion (e.g., :rust:`&str` to :rust:`String`)
+
+    * - :rust:`TryFrom` / :rust:`TryInto`
+      - Checked
+      - Conversions that might fail (e.g., :rust:`u32` to :rust:`u8`)
+
+    * - :rust:`as` (Widening)
+      - Safe
+      - Moving to a larger type (e.g., :rust:`u8` to :rust:`u32`)
+
+    * - :rust:`as` (Narrowing)
+      - Dangerous
+      - Only when you **want** to truncate bits
+
+.. tip::
+
+  *The Developer's Rule*
+
+  * :rust:`Into` or :rust:`TryInto` for clarity and safety
+  * Don't use :rust:`as` to force a conversion
