@@ -32,10 +32,10 @@ Smart Pointers
 
 .. container:: PRELUDE END
 
-.. include:: 140_smart_pointers/01_introduction.rst
+.. include:: 140_smart_pointers/01_Introduction.rst
 .. include:: 140_smart_pointers/02_box.rst
-.. include:: 140_smart_pointers/03_deref.rst
-.. include:: 140_smart_pointers/04_drop.rst
+.. include:: 140_smart_pointers/03_dereferencing_smart_pointers.rst
+.. include:: 140_smart_pointers/04_cleaning_code.rst
 .. include:: 140_smart_pointers/05_reference_counter.rst
 .. include:: 140_smart_pointers/98_lab.rst
 .. include:: 140_smart_pointers/99_summary.rst
