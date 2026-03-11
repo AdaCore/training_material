@@ -2,19 +2,19 @@
 Program Memory
 ================
 
---------------------------
-Review of Program Memory
---------------------------
+----------
+Overview
+----------
 
 **Stack**
-  - Continuous area of memory available
+  - Continuous area of available memory
   - Values have fixed sizes known at compile time
-  - **Pros:** Extremely fast and great memory locality
+  - Extremely fast due to contiguous memory layout
 
 **Heap**
-  - Storage of values outside of function calls
-  - Values have dynamic sizes determined at runtime
-  - **Cons:** Slightly slower and no guarantee of locality
+  - Allocation is requested at runtime
+  - Supports dynamic sizes and data that must outlive a function call
+  - Slower due to pointer indirection and allocation overhead
 
 -----------------------
 Memory Layout Example
