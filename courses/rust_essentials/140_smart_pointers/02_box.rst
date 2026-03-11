@@ -6,13 +6,13 @@
 The Heap Allocator
 --------------------
 
--  Allocate data on the heap 
+-  Allocates data on the heap 
 
--  Store a fixed-size pointer on the stack 
+-  Stores a fixed-size pointer on the stack 
 
--  Retain single ownership of the heap data 
+-  Retains single ownership of the heap data 
 
--  Deallocate memory automatically when the Box goes out of scope 
+-  Deallocates memory automatically when :rust:`Box` goes out of scope 
 
 .. code:: rust
 
@@ -23,18 +23,19 @@ The Heap Allocator
   // Use 'b' as if it were a regular reference
   println!("b = {}", b);
   
-  
+:command:`b = 5`
+ 
 -----------------------------------
 Bypassing Static Size Constraints
 -----------------------------------
 
 -  Compiler requires size of every type at compile time
 
-  -  Recursive types size is not known
+   -  Recursive types size is not known
   
 -  :rust:`Box<T>` provides a fixed-width address
 
-  -  Breaks direct recursion loop in memory
+   -  Breaks direct recursion loop in memory
   
 .. code:: rust
 
@@ -56,6 +57,6 @@ Automatic Resource Management
 
 -  :rust:`Box<T>` implements :rust:`Drop` to ensure memory safety 
 
-  -  Invoke the :rust:`Drop` method automatically at end of scope
+   -  Invoke the :rust:`Drop` method automatically at end of scope
   
-  -  Prevents memory leaks by ensuring deallocation
+   -  Prevents memory leaks by ensuring deallocation
