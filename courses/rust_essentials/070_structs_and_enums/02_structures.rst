@@ -77,7 +77,7 @@ Beware of Recursion!
 Struct Initialization
 -----------------------
 
--  Initialization of every field is **mandatory** 
+-  No partial Initialization possible
    -  No implicit default values
 
 .. code:: rust
@@ -87,41 +87,48 @@ Struct Initialization
         sign_in_count: u64,
         logged_in: bool,
     }
-    let status = true;
-    let attempt_number = 1;
-    
-    let user_1 = User {
-        active: status,
-        sign_in_count: attempt_number,
-        logged_in: true;
+    let user_1 : User;
+    let user_2 = User {
+        active: true,
+        sign_in_count: 1,
+        logged_in: true,
+    };	
+	let user_3 = User {
+        active: true,
+        sign_in_count: 1
     };
+
+.. container:: latex_environment footnotesize
+	
+  :error:`error[E0063]: missing field 'logged_in' in initializer of 'User'`
     
 --------------------------------
 Field Initialization Shorthand
 --------------------------------
 
 -  If field and variable have same name, it could be written only once
+   -  This is called :dfn:`Field Init Shorthand`
    -  Compiler automatically expands the variable
-   -  Name association and :dfn:`Field Init Shorthand` can be used together
+   -  *Name association* and *Field Init Shorthand* can be used together
 -  No positional association allowed
 
 .. code:: rust
 
     struct User {
-        active: bool,
-        sign_in_count: u64,
-        logged_in: bool,
+      active: bool,
+      sign_in_count: u64,
+      logged_in: bool,
     }
     let active = true;
     let sign_in_count = 1;
     
     let user_1 = User {
-            // Same as active: active,
-            // The field takes value of local variable
-            active,
-            // Name association is still possible
-            sign_in_count: sign_in_count,
-            logged_in: true;
+      // Same as active: active,
+      // The field takes value of local variable
+      active,
+      // Name association is still possible
+      sign_in_count: sign_in_count,
+      logged_in: true;
     };
 
 ------------------------

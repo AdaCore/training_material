@@ -8,9 +8,8 @@ Basics
 
 -  :rust:`enum` can be one of several possible, distinct **variants**
 -  Represents a choice between different values
--  **Variants** from an :rust:`enum` are accessed using the '::' notation
+-  **Variants** from an :rust:`enum` are accessed using the :rust:`::` notation
    -  Called **path separator**
-
 
 .. code:: rust
 
@@ -19,7 +18,6 @@ Basics
        Right,
    }
    let dir = Direction::Left;  
-
 
 -----------------
 Enums with Data
@@ -39,7 +37,7 @@ Enums with Data
         Run(Direction),                // Tuple variant
         Teleport { xx: u32, yy: u32 }, // Named-field struct variant
     } 
-    let move: PlayerMove = PlayerMove::Run(Direction::Left);
+    let move = PlayerMove::Run(Direction::Left);
    
     enum Message {
         Quit,                          // No data
