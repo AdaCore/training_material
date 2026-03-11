@@ -6,13 +6,13 @@ Clone
 Clone
 -------
 
-- Creates a deep copy of the underlying data
+- Creates a *deep copy* of underlying data
   - Typically duplicating heap-allocated resources
 - Useful when original variable must remain valid after a function call
 - Significantly more expensive than a move 
   - Requires new memory allocation and data migration
 - Serves as a clear visual marker of intentional heap allocation
-  - With :rust:`.clone()` syntax
+  - :rust:`.clone()` syntax
 
 .. code:: rust
 

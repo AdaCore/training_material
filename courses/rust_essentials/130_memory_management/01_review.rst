@@ -14,7 +14,7 @@ Review of Program Memory
 **Heap**
   - Storage of values outside of function calls
   - Values have dynamic sizes determined at runtime
-  - **Cons:** Slighly slower and no guarantuee of locality
+  - **Cons:** Slightly slower and no guarantee of locality
 
 -----------------------
 Memory Layout Example
@@ -22,7 +22,7 @@ Memory Layout Example
 
 - Creating a :rust:`String` puts 
   - Fixed-sized metadata on the stack 
-  - Dynamically sized data, the actual string, on the heap
+  - Dynamically sized data (actual string) on the heap
 
 .. code:: rust
 
