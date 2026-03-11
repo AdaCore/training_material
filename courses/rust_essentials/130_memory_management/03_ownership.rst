@@ -6,8 +6,8 @@ Ownership
 Scope and Validity
 --------------------
 
-- All variable bindings have a *scope* where they are valid
-- It is an error to use a variable outside its scope
+- Variable bindings are only accessible within their defined :dfn:`scope`
+- Out-of-scope variables are strictly caught at compile-time
 
 .. code:: rust
 
@@ -29,4 +29,4 @@ Ownership Principles
 
 - Variable **owns** the value
 - Every value has precisely **one owner** at all times
-- At the end of the scope, the variable is *dropped* and data is freed
+- When the owner goes **out of scope**, the value is **dropped**

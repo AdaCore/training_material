@@ -10,14 +10,14 @@ Topics Covered
    -  Stack and the heap
 
 -  **Ownership**
-   -  Scopes and the single owner rule
+   -  Scope and the single owner rule
 
 -  **Move Semantics**
    -  Transferring ownership
 
--  **Clone vs. Copy**
-   -  Deep copies vs. bitwise replication
+-  **Deep copies vs. bitwise replication**
+   -  :rust:`Clone` vs. :rust:`Copy`
 
--  **The Drop mechanism**
-   -  Clean-up logic
+-  **Clean-up logic**
+   -  The :rust:`Drop` mechanism
  

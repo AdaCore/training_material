@@ -49,4 +49,4 @@ Functions and Ownership
 
 .. note::
 
-    The :rust:`name` variable in :rust:`main` is consumed and can no longer be used
+    :rust:`name` in :rust:`main` is consumed and can no longer be used

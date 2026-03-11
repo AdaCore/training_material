@@ -7,13 +7,15 @@ Overview
 ----------
 
 **Stack**
+
   - Continuous area of available memory
-  - Values have fixed sizes known at compile time
+  - Types must have a fixed size known at compile-time
   - Extremely fast due to contiguous memory layout
 
 **Heap**
+
   - Allocation is requested at runtime
-  - Supports dynamic sizes and data that must outlive a function call
+  - Supports dynamic sizes and data outlive function calls
   - Slower due to pointer indirection and allocation overhead
 
 -----------------------
@@ -21,8 +23,8 @@ Memory Layout Example
 -----------------------
 
 - Creating a :rust:`String` puts 
-  - Fixed-sized metadata on the stack 
-  - Dynamically sized data (actual string) on the heap
+  - Fixed-sized metadata on the **stack** 
+  - String contents (UTF-8 bytes) on the **heap**
 
 .. code:: rust
 
