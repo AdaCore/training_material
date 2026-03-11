@@ -6,15 +6,15 @@ Approaches
 Approaches to Memory Management
 ---------------------------------
 
-- Manual Memory Management (e.g., C/C++)
-  - **Full Control**: Programmer decides when to allocate/deallocate
-  - **Higher Risk**: Programmer must ensure pointers are valid
-- Automatic Memory Management (e.g., Java, Python)
-  - **Safety**: Garbage Collector ensures memory is not freed until unreferenced
-  - **Higher Cost**: Runtime overhead for reference counting or garbage collection
-- Rust's Approach
-  - **Control & Safety**: Compile-time memory guarantees
-  - **Mechanism**: Uses the concept of **Ownership**
+- **Manual Memory Management** (e.g., C/C++)
+  - Full Control: Programmer explicitly allocates/deallocates
+  - Higher Risk: Programmer must ensure pointers are valid
+- **Automatic Memory Management** (e.g., Java, Python)
+  - Safety: GC ensures memory is not freed until unreferenced
+  - Higher Cost: Runtime overhead for garbage collection
+- **Ownership-based Memory Management** (e.g., Rust, SPARK)
+  - Control & Safety: Compile-time memory guarantees
+  - Mechanism: Ownership, borrowing and lifetimes
 
 -----------------------
 Navigating Approaches
@@ -28,24 +28,24 @@ Navigating Approaches
     * - **Feature**
       - **Manual (C/C++)**
       - **Automatic (Java/Python)**
-      - **Rust**
+      - **Ownership (Rust, SPARK)**
 
     * - *Control*
-      - Full Control
-      - Low Control
-      - High Control
+      - Full
+      - Low
+      - High
 
     * - *Safety*
-      - High Risk of Error
-      - High Safety
-      - Compile-time Safety
+      - High risk of error
+      - High safety
+      - Compile-time safety
 
     * - *Mechanism*
-      - malloc/free
-      - Garbage Collector
-      - Ownership & Drop
+      - :cpp:`malloc`/:cpp:`free`
+      - Garbage collector
+      - Ownership & drop
 
     * - *Overhead*
       - Minimal
-      - Runtime Pauses
-      - Zero-cost Abstraction
+      - Runtime slowdown
+      - Zero
