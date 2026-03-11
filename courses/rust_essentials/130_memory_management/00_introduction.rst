@@ -6,13 +6,13 @@ Introduction
 Topics Covered
 ----------------
 
--  **Program memory**
-   -  The stack and the heap
+-  **Program Memory**
+   -  Stack and the heap
 
 -  **Ownership**
    -  Scopes and the single owner rule
 
--  **Move semantics**
+-  **Move Semantics**
    -  Transferring ownership
 
 -  **Clone vs. Copy**

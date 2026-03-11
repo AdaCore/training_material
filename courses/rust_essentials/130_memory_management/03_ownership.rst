@@ -3,7 +3,7 @@ Ownership
 ===========
 
 --------------------
-Scope and validity
+Scope and Validity
 --------------------
 
 - All variable bindings have a *scope* where they are valid
