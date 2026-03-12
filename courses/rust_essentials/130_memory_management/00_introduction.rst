@@ -19,5 +19,5 @@ Topics Covered
    -  :rust:`Clone` vs. :rust:`Copy`
 
 -  **Clean-up logic**
-   -  The :rust:`Drop` mechanism
+   -  :rust:`Drop` mechanism
  

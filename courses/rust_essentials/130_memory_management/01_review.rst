@@ -31,4 +31,3 @@ Memory Layout Example
        let s1 = String::from("Hello");
 
 .. image:: comprehensive_rust_training/review_of_program_memory.svg
-

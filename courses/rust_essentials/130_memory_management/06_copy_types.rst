@@ -10,7 +10,7 @@ Copy Types
 - Utilize automatic *bitwise* duplication
 - Cost of copying is negligible
 - Implement :rust:`Copy` trait
-  - Scalar types are :rust:`Copy` types
+  - Scalar types are :rust:`Copy`
 
 .. code:: rust
 
@@ -39,8 +39,9 @@ Custom Copy Types
    let p1 = Point(3, 4);
    let p2 = p1;
    
-- Both :rust:`p1` and :rust:`p2` own their own data
-- Using :rust:`let p2 = p1.clone();` would do the same explicitly
+- :rust:`p1` and :rust:`p2` hold independant copies of data
+- :rust:`let p2 = p1.clone();` produces the same result
+  - But :rust:`Copy` makes it implicit
 
 ---------------------------
 No "Copy" Without "Clone"
@@ -66,7 +67,7 @@ No "Copy" Without "Clone"
 "Copy" Types and Field Constraints
 ------------------------------------
 
-**User-defined types can only be :rust:`Copy` if all fields are also :rust:`Copy`**
+**User-defined types can only be** :rust:`Copy` **if all fields are also** :rust:`Copy`
 
 .. code:: rust
 
@@ -83,3 +84,27 @@ No "Copy" Without "Clone"
 .. note::
 
    Types that own heap memory cannot be :rust:`Copy` to prevent memory issues
+
+----------------------
+"Copy" vs non-"Copy"
+----------------------
+
+.. list-table::
+  :header-rows: 1
+
+  * - **Property**
+    - :rust:`Copy` **types**
+    - Non-:rust:`Copy` **types**
+
+  * - *Assignment logic*
+    - Still usable
+    - **Invalid** (compile error if used)
+   
+  * - *Trait required*
+    - :rust:`impl Copy` 
+    - None (default behavior)
+
+  * - *Examples*
+    - :rust:`i32`, :rust:`bool`, :rust:`[f64, 4]`
+    - :rust:`String`, :rust:`Vec<T>`
+

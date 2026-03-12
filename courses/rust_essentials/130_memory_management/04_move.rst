@@ -46,15 +46,13 @@ Functions and Ownership
 
 .. code:: rust
 
-    fn main() {
-        fn say_hello(name: String) {
-            println!("Hello {}", name);
-        }
-
-        let name = String::from("Alice");
-        say_hello(name);
-        say_hello(name); // Error
+    fn say_hello(name: String) {
+        println!("Hello {}", name);
     }
+
+    let name = String::from("Alice");
+    say_hello(name);
+    say_hello(name); // Error
 
 :error:`error[E0382]: use of moved value: 'name'`
 
