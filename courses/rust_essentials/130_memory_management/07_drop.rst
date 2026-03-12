@@ -1,45 +1,65 @@
-======
-Drop
-======
+========
+"Drop"
+========
 
 ---------------------
 Destructor ("Drop")
 ---------------------
 
 - Deterministic clean-up implemented with :rust:`Drop` Trait
-  - Occurs *implicitly* and usually at the closing brace :rust:`}`
+  - Occurs *implicitly*, and usually at the closing brace :rust:`}`
+  - Calling :rust:`.drop()` manually results in a compiler error
 - Ideal for resource management, e.g, closing files or network sockets
-- Internal fields are dropped in the order they are declared
-- Variables are dropped in reverse order of their creation
 
 .. code:: rust
 
-    struct Droppable {
+  struct Mic {
+      owner: String,
+  }
+
+  impl Drop for Mic {
+      fn drop(&mut self) {
+        println!("{} just dropped the mic!", self.owner);
+      }
+  }
+
+.. note:: 
+
+   Saying a type has a *destructor* means it implements the :rust:`Drop` trait
+
+----------------
+"Drop" Example
+----------------
+
+.. code:: rust
+
+    struct HotPotato {
         name: String,
     }
 
-    impl Drop for Droppable {
+    impl Drop for HotPotato {
         fn drop(&mut self) {
             println!("Dropping {}", self.name);
         }
     }
 
     fn main() {
-        let _tic = Droppable { name: String::from("tic") };
-        let _tac = Droppable { name: String::from("tac") };
+        let _tic = HotPotato { name: String::from("tic") };
+        let _tac = HotPotato { name: String::from("tac") };
         {
-            let _toe = Droppable { name: String::from("toe") };
+            let _toe = HotPotato { name: String::from("toe") };
         } // Dropping '_toe'
     } // Dropping '_tac' 
       // Dropping '_tic'
+
+- Internal fields are dropped in the order they are declared
+- Variables are dropped in reverse order of their creation
 
 ---------------
 Explicit Drop
 ---------------
 
 - Early clean-up is possible by calling :rust:`std::mem::drop`
-  - :rust:`std::mem::drop` differs from :rust:`std::ops::Drop::drop` 
-  - Calling :rust:`.drop()` manually results in a compiler error
 - :rust:`std::mem::drop` (in *prelude*) is actually an empty function that 
   - Takes any value by value
   - Takes ownership of the passed value
@@ -55,18 +75,18 @@ Explicit Drop
 
 :error:`error[E0382]: borrow of moved value: 'x'`
 
-.. note::
+.. warning::
 
-    :rust:`std::mem::drop` is a way to explicitly drop values before end of scope
+   :rust:`std::mem::drop` differs from :rust:`std::ops::Drop::drop`
 
 ----------------------------------
 Exclusivity of "Copy" and "Drop"
 ----------------------------------
 
 - A type cannot implement both the :rust:`Copy` and :rust:`Drop` traits
+
 - :rust:`Copy` implies a simple bitwise replication
 - If a type implements :rust:`Drop`, Rust must guarantee the destructor runs exactly once
-  - Compiler prevents coexistence of these traits
 
 .. code:: rust
 
@@ -80,4 +100,6 @@ Exclusivity of "Copy" and "Drop"
     }
   }
 
-:error:`error[E0184]: the trait 'Copy' cannot be implemented for this type; the type has a destructor`
+.. container:: latex_environment tiny
+
+  :error:`error[E0184]: the trait 'Copy' cannot be implemented for this type; the type has a destructor`
