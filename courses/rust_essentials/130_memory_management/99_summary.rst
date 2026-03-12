@@ -34,19 +34,17 @@ What We Covered
 -----------------
 
 - **Ownership**
-
   - Single owner rule ensures safety at compile time
   - Scopes determine when data is freed
   
 - **Data Movement**
-
   - **Move**
     - Transfers ownership
   - **Copy**
     - Implicit bitwise copy
   - **Clone**
-    - Explicit deep copy for heap-allocated data
+    - Explicit deep copy, required for non-Copy types
 
-- **Cleanup**
-  - **Destructors** (Drop): Mechanism for defining custom cleanup logic
+- **Clean-up**
+  - **Destructors**: Mechanism (:rust:`Drop`) for defining custom cleanup logic
   - Resources are cleaned up automatically when owners go out of scope

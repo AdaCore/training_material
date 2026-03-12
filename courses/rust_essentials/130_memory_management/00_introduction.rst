@@ -20,4 +20,3 @@ Topics Covered
 
 -  **Clean-up logic**
    -  :rust:`Drop` mechanism
- 
