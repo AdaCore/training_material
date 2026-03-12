@@ -1,10 +1,10 @@
-================
-Copy Semantics
-================
+==================
+"Copy" Semantics
+==================
 
-------------
-Copy Types
-------------
+--------------
+"Copy" Types
+--------------
 
 - Usually live on the stack
 - Utilize automatic *bitwise* duplication
@@ -24,9 +24,9 @@ Copy Types
 
    Saying a type is :rust:`Copy` means it implements the :rust:`Copy` trait
 
--------------------
-Custom Copy Types
--------------------
+---------------------
+Custom "Copy" Types
+---------------------
 
 - User-defined types can opt-in to :rust:`Copy`
   - Provided they consist strictly of other :rust:`Copy` types

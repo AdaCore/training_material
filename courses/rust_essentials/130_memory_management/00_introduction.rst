@@ -7,10 +7,10 @@ Topics Covered
 ----------------
 
 -  **Program Memory**
-   -  Stack and the heap
+   -  Stack and heap
 
 -  **Ownership**
-   -  Scope and the single owner rule
+   -  Scope and single owner rule
 
 -  **Move Semantics**
    -  Transferring ownership

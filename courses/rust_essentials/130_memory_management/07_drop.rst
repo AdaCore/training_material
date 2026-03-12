@@ -83,10 +83,9 @@ Explicit Drop
 Exclusivity of "Copy" and "Drop"
 ----------------------------------
 
-- A type cannot implement both the :rust:`Copy` and :rust:`Drop` traits
-
+- Types cannot implement both the :rust:`Copy` and :rust:`Drop` traits
+  - Implementing :rust:`Drop` guarantee their destructor runs exactly once.
 - :rust:`Copy` implies a simple bitwise replication
-- If a type implements :rust:`Drop`, Rust must guarantee the destructor runs exactly once
 
 .. code:: rust
 
