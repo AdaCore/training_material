@@ -8,7 +8,7 @@ Recoverable Errors with "Result"
 
 * Core error handling mechanism
 
-  * Problem: Many operations can fail for reasons beyond the programmer's control
+  * Problem: Operations can fail for reasons beyond programmer's control
 
     * E.g., file not found, network timeout
 
@@ -27,7 +27,7 @@ Recoverable Errors with "Result"
 
 .. note::
 
-  Enforces *Type Safety* - cannot access success value without first checking if result is :rust:`Ok`
+  Enforces *Type Safety* - cannot access value if result is not :rust:`Ok`
 
 ------------------
 Handling Results
@@ -59,11 +59,11 @@ Results vs Exceptions
   .. list-table::
     :header-rows: 1
 
-    * - Feature
+    * - **Feature**
       - :rust:`Result`
       - :cpp:`try` / :cpp:`catch`
 
-    * - **Visibility**
+    * - *Visibility*
       - Part of function signature
       - Often hidden
 
@@ -71,7 +71,7 @@ Results vs Exceptions
       - (You know it can fail)
       - (You might not know it throws)
 
-    * - **Control Flow**
+    * - *Control Flow*
       - Explicitly handled
       - Bubbles up stack automatically
 
@@ -79,7 +79,7 @@ Results vs Exceptions
       - (via matching or propagation)
       -
 
-    * - **Performance**
+    * - *Performance*
       - Low cost
       - Higher cost
 
@@ -87,7 +87,7 @@ Results vs Exceptions
       - (Zero-cost abstraction)
       - (Can impose run-time overhead)
 
-    * - **Safety**
+    * - *Safety*
       - Compiler forces you to handle error
       - Easy to forget :cpp:`catch` block
 
@@ -106,13 +106,12 @@ Propagating Errors
   .. code:: rust
 
     fn read_username() -> Result<String, io::Error> {
-        let mut f = File::open("user.txt")?; // Returns early on Err
-        let mut s = String::new();
-        f.read_to_string(&mut s)?;           // Returns early on Err
-        Ok(s)
+        let mut file = File::open("user.txt")?; // Returns early on Err
+        let mut text = String::new();
+        file.read_to_string(&mut text)?;        // Returns early on Err
+        Ok(text)
     }
 
 .. note::
 
-  General rule - use :rust:`?` when current function wants the 
-  caller to deal with the error
+  General rule - use :rust:`?` when current function wants caller to deal with error

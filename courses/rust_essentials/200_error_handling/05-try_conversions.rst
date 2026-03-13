@@ -8,7 +8,7 @@ Automatic Error Conversion
 
 * **The Goal**
 
-  * Functions often call multiple libraries, each returning a different error type
+  * Functions often call multiple libraries, returning different error types
 
     * E.g., :rust:`io::Error`, :rust:`ParseIntError`, :rust:`Utf8Error`
 
@@ -18,7 +18,7 @@ Automatic Error Conversion
 
 * **The Solution**
 
-  * :rust:`?` operator automatically converts *local* error into function's *return* error type
+  * :rust:`?` operator converts *local* error into function's *return* error type
 
 * **The Mechanism**
 
@@ -28,7 +28,7 @@ Automatic Error Conversion
 How it Works - "From"
 -----------------------
 
-* Only works if return error type implements :rust:`From` trait for source error type
+* Return error type must implement :rust:`From` trait for source error type
 
 * Standard Library Example
 

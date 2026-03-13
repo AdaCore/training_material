@@ -1,30 +1,30 @@
-========
-Panics
-========
+=======
+Panic
+=======
 
 ---------------------
 Unrecoverable Error
 ---------------------
 
-* :rust:`panic!` is one way of handling a fatal runtime error
+* :rust:`panic!` is one way of handling error considered fatal
 
-  * Immediately stops execution of current thread
+  * Signals unrecoverable error - triggering thread shut-down
+  * Configurable - either unwind stack or abort
 
-* Why it happens:
+* *Bugs* - failed bounds checks
 
-  * *Bugs* - failed bounds checks
+  * Example: accessing :rust:`v[100]` on a 3-item vector
 
-    * Example: accessing :rust:`v[100]` on a 3-item vector
+* *Logic failures* - failed :rust:`assert!` or :rust:`debug_assert!`
 
-  * *Logic failures* - failed :rust:`assert!` or :rust:`debug_assert!`
+* *Manual trigger* - :rust:`panic!("message")`
 
-  * *Manual trigger* - :rust:`panic!("message")` macro
-
-    * Typically when program reaches an impossible state
+  * Typically when program reaches an impossible state
 
 .. tip::
 
-  Panics are for unexpected/unrecoverable errors, whereas :rust:`Result` is for expected errors
+  * Panics are for unexpected/unrecoverable errors
+  * :rust:`Result` is for expected errors
 
 -----------------------------------
 Mechanics - Unwinding vs Aborting
@@ -36,7 +36,7 @@ Mechanics - Unwinding vs Aborting
 
     * Calls destructors (:rust:`drop`) for all objects in scope
 
-  * Ensures resources released even during a crash
+  * Ensures resources released even during a panic
 
     * Like memory or file handles
 
@@ -49,37 +49,37 @@ Mechanics - Unwinding vs Aborting
 
 * Safe Alternatives
 
-  * :rust:`v[i]` panics on out-of-bounds
-  * Instead, use :rust:`v.get(i)` to return an :rust:`Option`
+  * :rust:`my_vector[i]` panics on out-of-bounds
+  * Instead, use :rust:`my_vector.get(i)` to return an :rust:`Option`
 
 --------------
 Code Example
 --------------
 
-* Bounds error
+**Bounds error**
 
   .. code:: rust
     :number-lines: 1
 
     fn main() {
-        let v = vec![10, 20, 30];
+        let my_vector = vec![10, 20, 30];
     
-        println!("{}", v[100]); 
+        println!("{}", my_vector[100]); 
     }
 
   :error:`thread 'main' (32) panicked at src/main.rs:4:21:`
 
   :error:`index out of bounds: the len is 3 but the index is 100`
 
-* Manual panic
+**Manual panic**
 
   .. code:: rust
     :number-lines: 1
 
     fn main() {
-        let v = vec![10, 20, 30];
+        let my_vector = vec![10, 20, 30];
 
-        if v.len() < 10 {
+        if my_vector.len() < 10 {
             panic!("Vector is too short!");
         }
     }
@@ -96,7 +96,7 @@ When to Panic?
 
   * Use :rust:`unwrap()` or :rust:`expect()` when writing quick code
 
-    * You don't care about error handling yet
+    * Replaced with proper error handling later
 
 * Infallible logic (logic guarantees can never happen)
 

@@ -8,7 +8,7 @@ Flexible Error Handling
 
 * **The Problem**
 
-  * In an application you often don't want to define an enum for every possible error
+  * Applications don't always want an enum for every possible error
   * Just want to catch *any* error, add context, and report it
 
 * **The Solution**
@@ -27,7 +27,9 @@ Flexible Error Handling
 One Type to Rule Them All
 ---------------------------
 
-* Instead of writing :rust:`Result<T, MyCustomError>` write :rust:`anyhow::Result<T>`
+* Written as :rust:`anyhow::Result<T>`
+
+  * Instead of writing :rust:`Result<T, MyCustomError>`
 
 * Type is compatible with any function that uses the :rust:`?` operator
 
@@ -42,7 +44,7 @@ One Type to Rule Them All
 
   fn run_app() -> Result<()> {
       let config = read_config()?; // Could be io::Error
-      let data = parse_data(config)?; // Could be SerdeError
+      let data = parse_data(config)?; // Could be ParseError
       Ok(())
   }
 
@@ -50,7 +52,11 @@ One Type to Rule Them All
 Adding Context
 ----------------
 
-One of the best features of :rust:`anyhow` is ability to attach "human" context to a technical error
+* Ability to attach "human" context to a technical error
+
+  * Primary feature of :rust:`anyhow`
+
+* Methods
 
   * :rust:`context`
 
@@ -84,15 +90,15 @@ Choosing the Right Tool
   .. list-table::
     :header-rows: 1
 
-    * - Feature
+    * - **Feature**
       - :rust:`thiserror`
       - :rust:`anyhow`
 
-    * - **User**
+    * - *User*
       - Library authors
       - Application authors
 
-    * - **Error Type**
+    * - *Error Type*
       - Strongly typed
       - Erased type
 
@@ -100,11 +106,11 @@ Choosing the Right Tool
       - (enums)
       - (:rust:`anyhow:Error`)
 
-    * - **Primary Goal**
+    * - *Primary Goal*
       - Help *caller* handle specific cases
       - Help *user* understand what happened
 
-    * - **Matching**
+    * - *Matching*
       - Easy to :rust:`match` on variants
       - Harder (requires "downcasting")
 

@@ -34,7 +34,7 @@ Error Handling
 
 .. include:: 200_error_handling/00-introduction.rst
 .. include:: 200_error_handling/01-overview.rst
-.. include:: 200_error_handling/02-panics.rst
+.. include:: 200_error_handling/02-panic.rst
 .. include:: 200_error_handling/03-result.rst
 .. include:: 200_error_handling/04-try_operator.rst
 .. include:: 200_error_handling/05-try_conversions.rst

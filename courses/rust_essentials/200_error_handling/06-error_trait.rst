@@ -6,18 +6,13 @@
 The "Error" Trait
 -------------------
 
-* **Purpose**
+* Provides common interface for all error types
 
-  * Provides common interface for all error types
+* Without standard trait, libraries would have own way of describing errors
 
-* **Why it exists**
-
-  * Without a standard trait, every library would have its own way of describing errors
   * Makes it impossible to write generic error-handling code
 
-* **Requirements**
-
-  * To implement :rust:`Error` your type must also implement
+* To implement :rust:`Error` your type must also implement
 
   * :rust:`Display`
 
@@ -42,7 +37,7 @@ Trait Definition
       }
   }
 
-* :rst:`source()` method
+:rust:`source()` **method**
 
   * Key to *Error Chaining*
   * Allows you to peel back layers of error to find root cause
@@ -52,7 +47,7 @@ Trait Definition
 Implementing the Trait
 ------------------------
 
-A Manual Example
+* Manual implementation can be heavy
 
 .. container:: latex_environment tiny
 
@@ -83,19 +78,18 @@ A Manual Example
         }
     }
 
-.. note::
 
-  Manual implementation can be heavy.
-
-  Instead, we could use crates like :rust:`thiserror`
-  (described in the next chapter).
+* Instead, can use crates like :rust:`thiserror`
+  
+  * Described in next chapter
 
 ---------------
 Trait Objects
 ---------------
 
-* When you don't know what specific error will happen, use :rust:`Box<dyn Error>`
+* When you don't know what specific error will happen
 
+  * Use :rust:`Box<dyn Error>`
   * Or don't care!
 
 * :rust:`'static` bound
