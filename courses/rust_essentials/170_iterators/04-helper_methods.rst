@@ -36,13 +36,11 @@ Getting an Iterator ("iter()")
         println!("{n}");
     }
 
-  * Output
+  :command:`10`
 
-    :command:`10`
+  :command:`20`
 
-    :command:`20`
-
-    :command:`30`
+  :command:`30`
 
 * :rust:`iter()` (line 4) creates the collection iterator
 
@@ -56,39 +54,31 @@ Common Iterator Adapters
 
 * :rust:`map` **- transform values during iteration**
 
-  .. container:: latex_environment tiny
+  .. code:: rust
 
-    .. code:: rust
+    let numbers = vec![10, 20, 30];
+    for elem in numbers.iter().map(|n| n * 2) {
+        println!("{elem}");
+    }
 
-      let numbers = vec![10, 20, 30];
-      for elem in numbers.iter().map(|n| n * 2) {
-          println!("{elem}");
-      }
+  :command:`20`
 
-    * **Output**
+  :command:`40`
 
-      :command:`20`
-
-      :command:`40`
-
-      :command:`60`
+  :command:`60`
 
 * :rust:`filter` **- select values matching condition**
 
-  .. container:: latex_environment tiny
+  .. code:: rust
 
-    .. code:: rust
+    let numbers = vec!11, 12, 13, 14];
+    for elem in numbers.iter().filter(|n| *n % 2 == 0) {
+        println!("{elem}");
+    }
 
-      let numbers = vec!11, 12, 13, 14];
-      for elem in numbers.iter().filter(|n| *n % 2 == 0) {
-          println!("{elem}");
-      }
+  :command:`12`
 
-    * **Output**
-
-      :command:`12`
-
-      :command:`14`
+  :command:`14`
 
 .. note::
 
@@ -100,8 +90,6 @@ Common Consumers
 
 * :rust:`sum` **- add all values and return a single value**
 
-  .. container:: latex_environment tiny
-
     .. code:: rust
 
       let numbers = [1, 2, 3, 4, 5];
@@ -110,13 +98,9 @@ Common Consumers
       let total: i32 = numbers.iter().sum();
       println!("The total is: {total}");
 
-    * **Output**
-
-      :command:`15`
+    :command:`15`
 
 * :rust:`any` **- return True if any value matches condition**
-
-  .. container:: latex_environment tiny
 
     .. code:: rust
 
@@ -130,11 +114,9 @@ Common Consumers
           println!("All temperatures are above freezing.");
       }
 
-    * **Output**
+    :command:`Warning: Freezing temperatures detected!`
 
-      :command:`Warning: Freezing temperatures detected!`
-
-    * :rust:`all` returns True if **all** values match
+    :rust:`all` *returns True if* **all** *values match*
 
 .. note::
 
