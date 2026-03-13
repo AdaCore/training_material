@@ -8,8 +8,8 @@ Try Operator
 
 * Simplifying Error Propagation
 
-  * Problem - manually matching every :rust:`Result` leads to deeply nested code
-  * Solution - :rust:`?` operator provides a concise way to handle errors
+  * Problem: manually matching every :rust:`Result` leads to deeply nested code
+  * Solution: :rust:`?` operator provides a concise way to handle errors
 
 * How it works
 
@@ -26,7 +26,7 @@ Try Operator
 Verbosity vs Clarity
 ----------------------
 
-* Manual match
+**Manual match**
 
   .. code:: rust
 
@@ -39,15 +39,15 @@ Verbosity vs Clarity
         // ... repeat for every step ...
     }
 
-* Try Operator
+**Try Operator**
 
   .. code:: rust
 
     fn get_data() -> Result<String, io::Error> {
-        let mut file = File::open("config.txt")?; 
-        let mut s = String::new();
-        file.read_to_string(&mut s)?; 
-        Ok(s)
+        let mut file = File::open("config.txt")?;
+        let mut text = String::new();
+        file.read_to_string(&mut text)?;
+        Ok(text)
     }
 
 ---------------------------
@@ -85,8 +85,9 @@ Try Operator with "Option"
 
   **You cannot mix and match**
 
-  You can't use :rust:`?` on :rust:`Result` in a function returning :rust:`Option`
-  unless you convert explicitly
+  Cannot use :rust:`?` on :rust:`Result` in function returning :rust:`Option`
+
+    *Unless you convert explicitly*
 
 ---------------
 "?" in "main"

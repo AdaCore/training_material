@@ -8,7 +8,9 @@
 
 * **The Problem**
 
-  * Manually implementing :rust:`Display`, :rust:`Debug`, and :rust:`Error::source` for every enum is tedious and error-prone
+  * Manually implementing :rust:`Display`, :rust:`Debug`, and :rust:`Error::source`
+
+    * Tedius and error-prone to do for every enum
 
 * **The Solution**
 
@@ -30,7 +32,9 @@
 Basic Syntax
 --------------
 
-* Define error as enum and use :rust:`#[error(...)]` attribute to define :rust:`Display` message
+* Define error as :rust:`enum`
+
+  * Then use :rust:`#[error(...)]` to define :rust:`Display` message
 
 .. code:: rust
 
@@ -75,30 +79,39 @@ Attributes that Save Time
     * Used by :rust:`Error::source()`
     * Note: :rust:`#[from]` implies :rust:`#[source]`
 
-* **Transparent Errors**
+* :rust:`transparent` errors - :rust:`#[error(transparent)]`
 
-  * Use :rust:`#[error(transparent)]` to forward :rust:`Display` and :rust:`source methods` an underlying error
+  * Uses :rust:`Display` :rust:`from std::io::Error`
+
+    * No need to write custom string
+
+  * Automatically implements :rust:`source()` method
+
+    * Returns underlying error
+
   * Does not add a new message
 
 ----------------------
 Why Use "thiserror"?
 ----------------------
 
-* **Structured Data**
+* Structured data
 
   * Enums allow your users to use match to handle specific errors
 
     * E.g., "retry if disconnected, but stop if not found"
     * Unlike using a simple string
 
-* **Type Safety**
+* Type safety
 
   * Compiler ensures that error messages match enum fields
 
-* **Ecosystem Compatibility**
+* Ecosystem compatibility
 
   * Generates a standard :rust:`std::error::Error` implementation
-  * So errors work perfectly with other tools like :rust:`anyhow` or standard library traits
+  * So errors work perfectly with other tools 
+
+    * E.g., :rust:`anyhow` or standard library traits
 
 ---------------------
 "thiserror" in Action

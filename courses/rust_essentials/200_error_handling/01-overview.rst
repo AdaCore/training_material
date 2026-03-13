@@ -16,14 +16,14 @@ Rust Error Philosophy
 
   * Failures are explicit
   * Errors are visible in function signatures
-  * The compiler helps ensure they are handled
+  * Compiler helps ensure they are handled
   * Programs fail predictably, not mysteriously
 
 .. list-table::
   :header-rows: 1
 
-  * - Language Style
-    - Error Visibility
+  * - **Language Style**
+    - **Error Visibility**
 
   * - Exceptions
     - Hidden
@@ -34,17 +34,17 @@ Rust Error Philosophy
   * - :rust:`Result`
     - Explicit and enforced
 
------------------------------------------
-Panic vs Result: Two Different Failures
------------------------------------------
+---------------------------------------------
+"Panic" vs "Result": Two Different Failures
+---------------------------------------------
 
 * Rust separates bugs from expected failures
 
-* :rust:`panic!` |rightarrow| unrecoverable bug
+* :rust:`panic!` |rightarrow| unrecoverable error
 
   * Impossible state reached
-  * Violated assumptions
-  * Programmer error
+  * Violated assumptions / invariant
+  * Logic error or other bug
 
 * :rust:`Result` |rightarrow| expected failure
 
