@@ -35,12 +35,12 @@ One Method, Many Results
 
   let numbers = vec![1, 2, 2, 3];
 
-      // Collect into a Vector (keeps order and duplicates)
-      let v: Vec<_> = numbers.iter().collect();
+  // Collect into a Vector (keeps order and duplicates)
+  let my_vector: Vec<_> = numbers.iter().collect();
 
-      // Collect into a HashSet (removes duplicates!)
-      use std::collections::HashSet;
-      let s: HashSet<_> = numbers.iter().collect();
+  // Collect into a HashSet (removes duplicates!)
+  use std::collections::HashSet;
+  let my_set: HashSet<_> = numbers.iter().collect();
 
 ---------------------
 Collecting "Result"

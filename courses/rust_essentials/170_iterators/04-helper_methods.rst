@@ -73,8 +73,6 @@ Common Iterator Adapters
 
       :command:`60`
 
-    * :rust:`n` *is a* **value** *and is consumed*
-
 * :rust:`filter` **- select values matching condition**
 
   .. container:: latex_environment tiny
@@ -91,8 +89,6 @@ Common Iterator Adapters
       :command:`12`
 
       :command:`14`
-
-    * :rust:`n` *is a* **reference** *and is* **not** *consumed*
 
 .. note::
 
@@ -180,5 +176,5 @@ Reliability and Maintenace
 
   * Intent over implementation
 
-    * Intent: "Create a variable, loop, check a condition, square it, add to variable..."
+    * Intent: "Create variable, loop, check condition, square it, add to variable"
     * Implement: "Filter evens, map to squares, sum"
