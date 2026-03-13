@@ -8,7 +8,9 @@ The "IntoIterator" Trait
 
 * Defines how type can be converted into an iterator
 
-  * Basis of :rust:`for` loop
+  * Used wherever something iterable is needed
+
+    * Most commonly in :rust:`for` loop
 
 * Core method: :rust:`into_iter(self)`
 
@@ -42,20 +44,20 @@ Implicit Conversion
 
   .. code:: rust
 
-    let v = vec![1, 2, 3];
-    for x in v {
-        println!("{x}");
+    let my_vector = vec![1, 2, 3];
+    for elem in my_vector {
+        println!("{elem}");
     }
 
 * Compiler sees
 
   .. code:: rust
 
-    let v = vec![1, 2, 3];
+    let my_vector = vec![1, 2, 3];
     // The IntoIterator trait provides this!
-    let mut iter = v.into_iter();
-    while let Some(x) = iter.next() {
-        println!("{x}");
+    let mut iter = my_vector.into_iter();
+    while let Some(elem) = iter.next() {
+        println!("{elem}");
     }
 
 ------------------------
