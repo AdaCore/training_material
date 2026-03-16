@@ -11,8 +11,12 @@ Topics Covered
    -  Definition and instantiation
 
 -  **Constraints and Properties** 
+
+   -  Traits add functionalities
   
 -  **Generic Traits and Constants**
+
+   -  Define generics over traits and numbers
 
 
 -------------------------
@@ -23,18 +27,18 @@ The Notion of a Pattern
 
 .. code:: Rust
 
-    fn swap_int(l: i32, r: i32) -> (i32, i32) {
-		(right, left) 
-	}
+  fn swap_int(l: i32, r: i32) -> (i32, i32) {
+    (right, left) 
+  }
 
-    fn swap_float(l: f64, r: f64) -> (f64, f64) {
-		(right, left) 
-	}
+  fn swap_float(l: f64, r: f64) -> (f64, f64) {
+    (right, left) 
+  }
 
-*  A common pattern can be extracted, with only some parts to replace
+*  A common pattern could be extracted, with only some parts to replace
 
 .. code:: Rust
 
-    fn Swap (l: a_type, r: a_type) -> (a_type, a_type) {
-		(r, l)
-	}
+  fn swap (l: a_type, r: a_type) -> (a_type, a_type) {
+    (r, l)
+  }

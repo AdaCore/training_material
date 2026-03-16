@@ -16,13 +16,13 @@ Generic Data Type
    
 .. code:: rust
 
-   fn Swap<T> (l: T, r: T) -> (T, T) {
-		(r, l)
-   }
+  fn swap<T> (l: T, r: T) -> (T, T) {
+    (r, l)
+  }
    
--  :rust:`T` (the generic type parameter) means :rust:`Swap` can wrap any type
+-  :rust:`T` (:dfn:`generic type parameter`) means :rust:`swap` use wrap any type
 
-   -  :rust:`Swap<i32>`, :rust:`Swap<f64>` etc.
+   -  :rust:`swap<i32>`, :rust:`swap<MyOwnType>`, etc.
 
 ------------
 Be Generic
@@ -66,41 +66,44 @@ Be Generic
 
 .. code:: rust
 
-  enum LaundryDetailedStatus<T> {
+  enum LaundryStatus<T> {
     SoakingInWater(T),
     SpinningViolently(T),
   }
-  type Laundry<T> = LaundryDetailedStatus<T>;
+  type Laundry<T> = LaundryStatus<T>;
 
 
 ----------------
 Type Inference 
 ----------------
 
--  Any **Sized**-type can specify the type argument    
+-  Any **Sized** type can be used as the type argument    
 
 .. code:: rust
-
 
     // Definition: 'T' is a placeholder for ANY type
     fn encourage<T>(item: T) -> T {
         println!("You're doing great, little value!");
         item 
     }
+	
+-  Type is **inferred** at compile-time from the context
 
-    // Usage with an integer
+.. code:: rust  
+
+    // With an integer
     let points = encourage(100); 
 
-    // Usage with a string
+    // With a string
     let name = encourage("Rustacean");
 
--  Type is **infered** at compile-time from the context
+
    
 -----------------------
 Multiple Generic Type
 -----------------------
 
-Constructs can have multiple generic data types 
+**Constructs can have multiple generic data types** 
 
 .. code:: rust
 
@@ -113,7 +116,7 @@ Constructs can have multiple generic data types
     let both_float = Point { x: 1.0, y: 4.0 };
     let integer_and_float = Point { x: 5, y: 4.0 };
     
-	
+    
 --------------
 Type Aliases 
 --------------
@@ -122,13 +125,22 @@ Type Aliases
 
 .. code:: rust
 
-  // 'Item' and 'Label' are generic parameter 
+  // 'Item' and 'Label' are generic parameters 
   struct LargeShippingUnit<Item, Label>(Item, Label);
   type LargeCrate<T, U> = LargeShippingUnit<T, U>;
   
--  Can *specialize* partially or totally the generic type
+-  Can *specify* the generic type
+
+  -  Partially   
 
 .. code:: rust
 
   struct Animal;
   type AnimalCrate<U> = LargeCrate<Animal, U>;
+  
+  -  Totally
+
+.. code:: rust
+
+  struct Environment;
+  type Biome = LargeCrate<Animal, Environment>;  

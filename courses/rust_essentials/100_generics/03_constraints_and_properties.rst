@@ -6,8 +6,6 @@ Constraints and Properties
 Trait Bounds
 --------------
 
--  Generic data :rust:`<T>` has almost no limitations
-
 -  Compiler will restrict what can be done with :rust:`<T>` 
    -  Doesn't know if it can do math, order or anything else 
    
@@ -15,38 +13,13 @@ Trait Bounds
 
    -  Ensure the logic only executes on types that "fit" the requirements
    
--  Added in the :rust:`<>` next to the type
+-  Trait is specified with generic parameter type
 
 .. code:: rust
 
   fn smaller<T: PartialOrd>(item: T, max_v: T) -> bool {
     item < max_v  
   }
-  
-  
-------------------------
-Meeting Constraints
-------------------------
-
-Adding a trait restricts types that satisfy the generic contract
-
-.. code:: rust
-
-  struct Vegetable;
-
-  fn smaller<T: PartialOrd>(item: T, threshold: T) -> bool {
-    item < threshold  
-  }
-
-  
-  let potato : Vegetable;
-  let sweet_potato : Vegetable;
-  println!("{}", smaller(5, 10));      
-  println!("{}", smaller(potato , sweet_potato));   
-  
-
-:error:`error[E0277]: can't compare 'Vegetable' with 'Vegetable'`
-  
 
 --------------------
 Adding Constraints
@@ -57,7 +30,7 @@ Adding a trait to generic specify what capabilities a type must have
 .. code:: rust
 
   // Compiler: "What if 'T' is a string? Is 'Bob' < 10?"
-  fn is_small<T>(item: T) -> bool {
+  fn smaller<T>(item: T) -> bool {
     item < 10 
   }
 
@@ -69,8 +42,29 @@ Adding a trait to generic specify what capabilities a type must have
 
   fn smaller<T: PartialOrd>(item: T, max_v: T) -> bool {
     item < max_v  
+  }  
+  
+------------------------
+Meeting Constraints
+------------------------
+
+**Adding a trait restricts types that satisfy the generic contract**
+
+.. code:: rust
+
+  struct Vegetable;
+
+  fn smaller<T: PartialOrd>(item: T, threshold: T) -> bool {
+    item < threshold  
   }
 
+  let potato : Vegetable;
+  let sweet_potato : Vegetable;
+  println!("{}", smaller(5, 10));      
+  println!("{}", smaller(potato , sweet_potato));   
+  
+
+:error:`error[E0277]: can't compare 'Vegetable' with 'Vegetable'`
 
 ------------------------------------
 User-Defined Traits as Constraints
@@ -113,18 +107,18 @@ Turbofish "::<>"
    
 .. code:: rust
     
-  // Vec<T> is a generic struct
-  // Vec defines an associated function called 'new'
-  // The compiler knows it's a Vec, but a Vec of what?
+  // 'Vec<T>' is a generic struct
+  // 'Vec' defines an associated function called 'new'
+  // Compiler knows it's a 'Vec', but a 'Vec' of what?
   let x = Vec::new();
   
 :error:`error[E0282]: type annotations needed for 'Vec<_>'`
   
--  The turbofish :rust:`::<>` syntax is used to removes ambiguity
+-  Turbofish :rust:`::<>` syntax is used to removes ambiguity
 
 .. code:: rust
 
-  // The Turbofish dispels the mystery!
+  // Turbofish dispels the mystery!
   let x = Vec::<i32>::new();
 
 -----------------
@@ -133,13 +127,13 @@ Multiple Traits
 
 -  Can have multiple trait bounds
 
-   -  Requires the :rust:`+` operator
+   -  Uses the :rust:`+` to combine
 
 .. code:: rust   
    
     fn complex_fn<T: Display + Clone,
-	              U: Debug + PartialOrd>(t: T, u: U) 
-    {  }
+                  U: Debug + PartialOrd>(t: T, u: U) 
+    { ... }
 
 -  :rust:`where` clause can be used for better visibility
 
@@ -150,30 +144,6 @@ Multiple Traits
         T: Display + Clone, 
         U: Debug + PartialOrd 
     { ... }
-  
-
-----------------
-Generic Traits
-----------------
-
--  Traits can be made generic
-
-   -  Allows the same trait to behave differently with each type
-
-.. code:: rust
-
-  // 'T' is the "Target" type we want to turn into
-  trait Transform<T> {
-    fn change(&self) -> T;
-  }
-  struct Minutes(i32);
-  // Rule for converting Minutes to Seconds
-  impl Transform<i32> for Minutes {
-    fn change(&self) -> i32 { self.0 * 60 }
-  }
-  // Rule for converting Minutes to a String
-  impl Transform<String> for Minutes {
-      fn change(&self) -> String { format!("{} min", self.0) }
   
 -----------------------------
 "derive" Macro and Generics
@@ -192,13 +162,12 @@ Generic Traits
   }
   struct Secret; // Note: No 'Debug' here
 
-  
   let good_box = Box { content: 42 }; 
-  println!("{:?}", good_box); // Works (i32 is Debug)
+  println!("{:?}", good_box); // Works ('i32' has 'Debug')
 
   let bad_box = Box { content: Secret };
   println!("{:?}", bad_box);
-  // 'Secret' doesn't implement 'Debug', derive macro fails
+  // 'Secret' doesn't implement 'Debug', 'derive' macro fails
   
 :error:`error[E0277]: 'Secret' doesn't implement 'Debug'`  
   
