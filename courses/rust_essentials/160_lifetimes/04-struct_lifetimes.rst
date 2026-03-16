@@ -30,7 +30,7 @@ Borrowed vs Owned Data
 
 .. tip::
 
-  Prefer owning data unless borrowing provides a clear Benefits
+  Prefer owning data unless borrowing provides a clear benefit
 
 --------------------------------
 When to Use Explicit Lifetimes
