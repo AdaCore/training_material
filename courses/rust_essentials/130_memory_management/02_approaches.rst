@@ -13,7 +13,7 @@ Approaches to Memory Management
     - Programmer must ensure pointers are valid
 - Automatic Memory Management (e.g., Java, Python)
   - **Safety**
-    - GC ensures memory is not freed until unreferenced
+    - Runtime ensures memory is not freed until unreferenced
   - **Higher Cost**
     - Runtime overhead for garbage collection
 - Ownership-based Memory Management (e.g., Rust, SPARK)
@@ -26,14 +26,14 @@ Approaches to Memory Management
 Navigating Approaches
 -----------------------
 
-.. container:: latex_environment scriptsize
+.. container:: latex_environment tiny
 
   .. list-table::
     :header-rows: 1
 
     * - **Feature**
       - **Manual (C/C++)**
-      - **Automatic (Java/Python)**
+      - **Automatic (Java, Python)**
       - **Ownership (Rust, SPARK)**
 
     * - *Control*
@@ -49,9 +49,14 @@ Navigating Approaches
     * - *Mechanism*
       - :cpp:`malloc`/:cpp:`free`
       - Garbage collector
-      - Ownership & drop
+      - Borrow checker
 
-    * - *Overhead*
+    * - *Runtime Overhead*
       - Minimal
-      - Runtime slowdown
+      - *Stop-the-World* pauses
       - Zero
+
+    * - *Developer Overhead*
+      - Manual tracking
+      - Low
+      - Compilation time

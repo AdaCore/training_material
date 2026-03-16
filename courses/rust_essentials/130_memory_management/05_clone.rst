@@ -14,8 +14,8 @@ Explicit Duplication
   let poodle = String::from("ball"); 
   let yorkie = poodle.clone(); 
   
-  println!("{}", poodle); // Poodle still has its ball
-  println!("{}", yorkie); // Yorkie has its own copy
+  println!("{}", poodle); // 'poodle' still has its ball
+  println!("{}", yorkie); // 'yorkie' has its own copy
 
 ---------------------
 Cost of Duplication
@@ -50,4 +50,4 @@ The Clone Away Strategy
     say_hello(agent.clone());
     say_hello(agent.clone());
     say_hello(agent);
-    // 'agent' is no more valid, its value was consumed
+    // 'agent' is no longer valid - its value was consumed

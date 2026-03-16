@@ -39,7 +39,7 @@ Custom "Copy" Types
    let p1 = Point(3, 4);
    let p2 = p1;
    
-- :rust:`p1` and :rust:`p2` hold independant copies of data
+- :rust:`p1` and :rust:`p2` hold independent copies of data
 - :rust:`let p2 = p1.clone();` produces the same result
   - But :rust:`Copy` makes it implicit
 

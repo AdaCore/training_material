@@ -15,7 +15,7 @@ Overview
 **Heap**
 
   - Allocation is requested at runtime
-  - Supports dynamic sizes and data that outlives function calls
+  - Supports dynamic sizes and data that outlive function calls
   - Slower due to pointer indirection and allocation overhead
 
 -----------------------

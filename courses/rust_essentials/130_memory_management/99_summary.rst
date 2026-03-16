@@ -46,5 +46,7 @@ What We Covered
     - Explicit deep copy, required for non-Copy types
 
 - **Clean-up**
-  - **Destructors**: Mechanism (:rust:`Drop`) for defining custom cleanup logic
-  - Resources are cleaned up automatically when owners go out of scope
+  - Resources are freed the moment owner exits its scope
+  - :rust:`Drop` trait allows custom destructor logic
+  - Manually triggered destruction with :rust:`std::mem::drop`
+  
