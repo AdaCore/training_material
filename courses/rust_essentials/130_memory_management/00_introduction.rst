@@ -15,8 +15,8 @@ Topics Covered
 -  **Move Semantics**
    -  Transferring ownership
 
--  **Deep copies vs. bitwise replication**
+-  **Deep Copies vs. Bitwise Replication**
    -  :rust:`Clone` vs. :rust:`Copy`
 
--  **Clean-up logic**
+-  **Clean-Up Logic**
    -  :rust:`Drop` mechanism

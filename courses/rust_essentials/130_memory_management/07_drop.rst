@@ -19,7 +19,7 @@ Destructor ("Drop")
 
   impl Drop for Mic {
       fn drop(&mut self) {
-        println!("{} just dropped the mic!", self.owner);
+        println!("{} just dropped!", self.owner);
       }
   }
 
@@ -27,53 +27,117 @@ Destructor ("Drop")
 
    Saying a type has a *destructor* means it implements the :rust:`Drop` trait
 
-----------------
-"Drop" Example
-----------------
+-----------------------------
+Variable Drop Order Example
+-----------------------------
 
-.. code:: rust
+.. container:: latex_environment scriptsize
 
-    struct HotPotato {
-        name: String,
-    }
+  .. container:: columns
 
-    impl Drop for HotPotato {
-        fn drop(&mut self) {
-            println!("Dropping {}", self.name);
-        }
-    }
+    .. container:: column
+        :width: 50%
 
-    fn main() {
-        let _tic = HotPotato { name: String::from("tic") };
-        let _tac = HotPotato { name: String::from("tac") };
-        {
-            let _toe = HotPotato { name: String::from("toe") };
-        } // Dropping '_toe'
-    } // Dropping '_tac' 
-      // Dropping '_tic'
+          .. code:: rust
 
-- Internal fields are dropped in the order they are declared
-- Variables are dropped in reverse order of their creation
+            struct Potato {
+                id: String,
+            }
+
+            impl Drop for Potato {
+                fn drop(&mut self) {
+                    println!("Dropping {}", self.id);
+                }
+            }
+
+    .. container:: column
+        :width: 50%
+
+          .. code:: rust
+
+            fn main() {
+              let tic = "tic".into();
+              let tac = "tac".into();
+              let toe = "toe".into();
+              let _a = Potato { id: tic };
+              let _b = Potato { id: tac };
+              {
+                  let _c = Potato { id: toe };
+              } // Dropping 'toe'
+            } // Dropping 'tac'
+              // Dropping 'tic'
+
+.. note::
+
+  Variables are dropped in reverse order of their creation
+
+-----------------------------------
+Internal Field Drop Order Example
+-----------------------------------
+
+.. container:: latex_environment scriptsize
+
+  .. container:: columns
+
+    .. container:: column
+        :width: 50%
+
+          .. code:: rust
+
+            struct Eggs;
+            struct Bacon;
+
+            impl Drop for Eggs {
+                fn drop(&mut self) {
+                    println!("Dropping eggs!");
+                }
+            }
+
+            impl Drop for Bacon {
+                fn drop(&mut self) {
+                    println!("Dropping bacon!");
+                }
+            }
+
+    .. container:: column
+        :width: 50%
+
+          .. code:: rust
+
+            struct Breakfast {
+                one: Eggs,
+                two: Bacon,
+            }
+
+            fn main() {
+                let _meal = Breakfast {
+                    one: Eggs,
+                    two: Bacon,
+                };
+            } // Dropping eggs! 
+              // Dropping bacon!
+
+.. note::
+
+  Internal fields are dropped in the order they are declared
 
 ---------------
 Explicit Drop
 ---------------
 
 - Early clean-up is possible by calling :rust:`std::mem::drop`
-- :rust:`std::mem::drop` (in *prelude*) is actually an empty function that 
-  - Takes any value by value
-  - Takes ownership of the passed value
-  - Has no logic, and immediately ends
-  - Value goes out of scope, and triggers the :rust:`Drop` mechanism automatically
+- :rust:`std::mem::drop` (in *prelude*) is an empty generic function that
+  - Captures ownership of the passed value
+  - Triggers the :rust:`Drop` mechanism as the value goes out of scope
 
 .. code:: rust
 
-  let x = String::from("Early release");
-  drop(x); // 'x' is moved here and dropped immediately
+  let my_precious = String::from("The One Ring");
+  drop(my_precious); // 'my_precious' is moved then dropped
 
-  println!("{}", x);
+  println!("{}", my_precious);
 
-:error:`error[E0382]: borrow of moved value: 'x'`
+:error:`error[E0382]: borrow of moved value: 'my_precious'`
 
 .. warning::
 
@@ -83,8 +147,8 @@ Explicit Drop
 Exclusivity of "Copy" and "Drop"
 ----------------------------------
 
-- Types cannot implement both the :rust:`Copy` and :rust:`Drop` traits
-  - Implementing :rust:`Drop` guarantee their destructor runs exactly once.
+- Type cannot implement both the :rust:`Copy` and :rust:`Drop` traits
+  - Implementing :rust:`Drop` guarantees destructor runs exactly once
 - :rust:`Copy` implies a simple bitwise replication
 
 .. code:: rust
