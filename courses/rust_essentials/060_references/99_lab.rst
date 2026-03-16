@@ -2,9 +2,9 @@
 Exercise: Geometry
 ====================
 
---------------------
+------------------
 Geometry Problem
---------------------
+------------------
 
 We will create a few utility functions for 3-dimensional geometry,
 representing a point as :rust:`[f64;3]`. It is up to you to determine the
@@ -31,9 +31,9 @@ Use the following :rust:`main` to test your work.
 
 .. container:: source_include 060_references/src/060_references.rs :start-after://ANCHOR-main :code:rust
 
---------------------
+-------------------
 Geometry Solution
---------------------
+-------------------
 
 .. container:: source_include 060_references/src/060_references.rs :start-after://ANCHOR-solution :end-before://ANCHOR-main :code:rust
 
