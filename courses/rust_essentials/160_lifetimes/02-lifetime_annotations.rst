@@ -25,7 +25,7 @@ Why Lifetimes Matter
 
 - References point to data owned elsewhere
 
-- If data disappears while a reference still exists...
+- If data is dropped while a reference still exists...
 
   - ...the program would have a **dangling reference**
 
