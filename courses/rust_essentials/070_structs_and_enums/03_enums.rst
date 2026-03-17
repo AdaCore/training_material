@@ -27,7 +27,7 @@ Enums with Data
    -  This is an :rust:`enum` superpower!
 -  Can't be recursive
 -  Similar to *tagged unions* in C++
-   -  But rust *enums* are a core feature 
+   -  But Rust *enums* are a core feature 
 
 
 .. code:: rust
