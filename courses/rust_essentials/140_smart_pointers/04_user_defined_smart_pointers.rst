@@ -6,7 +6,7 @@ User-Defined Smart Pointers
 Implementing Smart Pointers
 -----------------------------
 
-- Can define custom smart pointers
+**Can define custom smart pointers**
 
 .. code:: rust 
 
@@ -59,10 +59,11 @@ Working with Custom Smart Pointers
 
   impl<T> Drop for MyBox<T> {
     fn drop(&mut self) {
-        println!("A MyBox is being cleared from memory.");
+        println!("A MyBox is being cleared from memory");
     }
 }
 
 :command:`Hello, 007!`
-:command:`A MyBox is being cleared from memory.`
+
+:command:`A MyBox is being cleared from memory`
   

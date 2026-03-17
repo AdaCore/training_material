@@ -58,7 +58,7 @@ Automatic Resource Management
 
   - Useful for function call rather than copying data passed on
   
-  - Move is an O(1) operation regardless of it points to
+  - Move is an O(1) operation regardless of what it points to
 
 - :rust:`Box<T>` implements :rust:`Drop` to ensure memory safety 
 

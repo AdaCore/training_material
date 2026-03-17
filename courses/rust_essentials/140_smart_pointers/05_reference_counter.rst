@@ -14,7 +14,7 @@ Reference Counting
 	
   - Increments the internal counter
 
-- called :dfn:`Reference Counted (Smart) Pointer`
+- Called :dfn:`Reference Counted (Smart) Pointer`
   
 - Useful when single value is owned by multiple parts of a program
   
@@ -28,10 +28,14 @@ Reference Counting
 
   // Both 'var_a' and 'var_b' share ownership of the value
   let var_a = Rc::new(5);
-  println!("Count: {}", Rc::strong_count(&var_a)); // Count: 1
+  println!("Count: {}", Rc::strong_count(&var_a)); 
 
   let var_b = Rc::clone(&var_a);
-  println!("Count: {}", Rc::strong_count(&var_a)); // Count: 2
+  println!("Count: {}", Rc::strong_count(&var_a)); 
+  
+:command:`Count: 1`
+
+:command:`Count: 2`
 
 ------------------
 Shared Ownership
@@ -63,7 +67,7 @@ Shared Ownership
 Fair Warning
 --------------
 
-- Previous example works for rust:`Copy` types
+- Previous example works for :rust:`Copy` types
 
 .. code:: rust
 
@@ -89,7 +93,7 @@ Why Use :rust:`Rc<T>` if :rust:`Box<T>` Can :rust:`Clone`?
 
 - Avoids expensive data duplication
 
-- Synchronizes state across multiple owners
+- Shares same state across multiple owners
 
 - Saves memory by reusing same heap allocation
 

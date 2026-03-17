@@ -10,10 +10,10 @@ Dereferencing Smart Pointers
 
 - Returns a reference to the inner data
 
+  - Using dereference operator :rust:`*`
+  
   - Avoids moving ownership
   
-  - Using dereference operator :rust:`*`
-
 - Dereference operator :rust:`*` calls on the :rust:`deref()` method
 
 .. code:: rust 
@@ -37,9 +37,9 @@ Dereferencing Smart Pointers
 
 - Performs multiple "steps" of coercion at compile time
 
-- Incurs zero runtime performance penalty
+  - Incurs zero runtime performance penalty
 
-- Accesses inner value of smart pointer transparently
+- Accesses inner value of smart pointers transparently
 
 .. code:: rust 
 

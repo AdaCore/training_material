@@ -6,30 +6,30 @@ Summary
 What We Covered
 -----------------
 
--  :rust:`Box<T>`
+- :rust:`Box<T>`
 
-  -  Allocates data on the heap for flexible storage 
+  - Allocates data on the heap for flexible storage 
   
-  -  Enables recursive data structures
+  - Enables recursive data structures
    
-    -  Using fixed-size pointers 
+    - Using fixed-size pointers 
 
--  :rust:`Deref`
+- :rust:`Deref`
 
-  -  Treats smart pointers like references
+  - Treats smart pointers like references
    
-    -  Creating cleaner code
+    - Creating cleaner code
   
-  -  Uses coercion to access inner values 
+  - Uses coercion to access inner values 
    
-    -  with no runtime cost
+    - with no runtime cost
 
--  **User-defined smart pointers**
+- **User-defined smart pointers**
 
-  -  implement :rust:`Deref` and :rust:`Drop` for custom behaviors
+  - implement :rust:`Deref` and :rust:`Drop` for custom behaviors
 
--  :rust:`Rc<T>`
+- :rust:`Rc<T>`
 
-  -  Allows multiple parts of a program to own the same data
+  - Allows multiple parts of a program to own the same data
   
-  -  Avoids expensive cloning by reusing the same heap allocation
+  - Avoids expensive cloning by reusing the same heap allocation
