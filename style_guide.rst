@@ -159,6 +159,10 @@ behavior is to surround the text you want highlighted with double quotes.
 Code Examples
 ---------------
 
++++++++
+Names
++++++++
+
 Code examples should use reasonble identifiers (as opposed to a single letter).
 Where reasonable, the names should be descriptive of the situation being explained.
 
@@ -180,6 +184,19 @@ Obviously, longer names may make the text harder to read on a slide. Try to
 balance expressiveness with brevity, and think about reformatting the code
 example as well.
 
+++++++++++
+Comments
+++++++++++
+
+Many times comments refer to names in the context. In this case, the name can
+be highlighted using single quotes **not** double quotes
+
+.. code:: Ada
+
+  function Good_Name (Bad_Name : Integer) return Boolean;
+  -- This is a good reference to 'Good_Name'.
+  -- But this is a bad reference to "Bad_Name".
+
 -----------------
 Confusing Terms
 -----------------
@@ -194,8 +211,18 @@ Confusing Terms
 Spacing Issues
 ----------------
 
-A good way to create a blank line is to write some text in white.
+* Sometimes you need to insert whitespace in a slide
 
-:color-white:`This line will not appear in a PDF file`
+  * RST does not have a good way to do that
 
-*If you see a blank space above, look at the original source!*
+* Instead, insert some "raw" LaTeX commands into your slide
+
+  ::
+
+    .. raw:: latex
+  
+      \vspace{5mm}
+
+  * Obviously you can change the **5** to suit your needs
+
+

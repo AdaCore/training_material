@@ -25,10 +25,10 @@ Expressions Lab
 Expressions Lab Solution - Checks
 -----------------------------------
 
-.. container:: source_include 080_expressions/lab/expressions-intro/answer/main.adb :start-after:--Checks :end-before:--Checks :code:Ada :number-lines:4
+.. container:: source_include 080_expressions/lab/expressions-intro/answer/main.adb :start-after:--Checks :end-before:--Checks :code:Ada :number-lines:4 :font-size:tiny
 
 ---------------------------------
 Expressions Lab Solution - Main
 ---------------------------------
 
-.. container:: source_include 080_expressions/lab/expressions-intro/answer/main.adb :start-after:--Main :end-before:--Main :code:Ada :number-lines:52
+.. container:: source_include 080_expressions/lab/expressions-intro/answer/main.adb :start-after:--Main :end-before:--Main :code:Ada :number-lines:52 :font-size:tiny
