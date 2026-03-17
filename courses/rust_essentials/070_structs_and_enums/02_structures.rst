@@ -137,7 +137,7 @@ Struct Update Operator
 
 -  Creation of :rust:`struct` based on another instance via '..' operator 
    -  Specify values only for the fields that need to change 
-   -  Unspecified fields are *copied* or *moved* from the other instance
+   -  Unspecified fields are *copied* or *moved* from the base instance
 -  Base instance can't be followed by a comma
    -  Must be at the end of the declaration
    
