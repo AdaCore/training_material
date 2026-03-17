@@ -23,6 +23,8 @@ Lifetime Elision
 
 - :dfn:`Lifetime elision` rules can be applied
 
+  - Compiler automatically assigns lifetimes using these rules
+
 - Essentially, syntactic shorthand (not inference)
 
 .. code:: rust
