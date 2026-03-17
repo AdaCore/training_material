@@ -22,7 +22,7 @@ What We Covered
   
   - Uses coercion to access inner values 
    
-    - with no runtime cost
+    - With no runtime cost
 
 - **User-defined smart pointers**
 
