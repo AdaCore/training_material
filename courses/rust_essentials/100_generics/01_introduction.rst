@@ -6,17 +6,21 @@ Introduction
 Topics Covered
 ----------------
 
--  **Generic Data Types**
+- **Generic Type Parameter**
 
-   -  Definition and instantiation
+  - Definition and instantiation
+   
+  - Define multiple generic type
 
--  **Constraints and Properties** 
+- **Constraints and Properties** 
 
-   -  Traits add functionalities
+  - Traits add functionalities
+   
+    - And restrictions
   
--  **Generic Traits and Constants**
+- **Generic Traits and Constants**
 
-   -  Define generics over traits and numbers
+   - Define generic constructs over traits and numbers
 
 
 -------------------------
