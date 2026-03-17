@@ -25,7 +25,7 @@ Heap Allocation
 :command:`Box value is 5`
  
 ----------------------------------
-Using "Box<T" for Recursive Type
+Using "Box<T>" for Recursive Type
 ----------------------------------
 
 - Compiler requires each type to have a known size at compile time
