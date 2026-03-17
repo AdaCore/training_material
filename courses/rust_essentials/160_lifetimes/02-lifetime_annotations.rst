@@ -9,11 +9,15 @@ What is a Lifetime?
 - The span of code during which a reference is valid
 
 .. code:: rust
+  :number-lines: 1
 
-  // 'second' must not outlive 'first'
   let first = 10;
   let second = &first;
   println!("{second}");
+
+- :rust:`first` lives from lines 1 – 3
+- :rust:`second` lives from lines 2 – 3
+- :rust:`second` does not outlive :rust:`first`
 
 ----------------------
 Why Lifetimes Matter
