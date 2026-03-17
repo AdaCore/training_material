@@ -59,7 +59,7 @@ Dereferencing Smart Pointers
 
 - *subtrait* of Deref
 
-  - Deref has to be implemented first
+  - :rust:`Deref` has to be implemented first
   
 - Allows *mutable reference*
 
