@@ -30,9 +30,9 @@ Topics Covered
   
   - Tracking active references
 
---------------------------
+---------------------
 Why Smart Pointers?
---------------------------
+---------------------
 
 - *Ownership is Strict!*
 

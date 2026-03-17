@@ -8,7 +8,7 @@ What We Covered
 
 -  :rust:`Box<T>`
 
-  -  Allocates on the heap for flexible storage 
+  -  Allocates data on the heap for flexible storage 
   
   -  Enables recursive data structures
    
