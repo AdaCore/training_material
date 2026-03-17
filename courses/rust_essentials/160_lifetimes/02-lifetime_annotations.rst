@@ -41,7 +41,7 @@ Lifetimes and the Borrow Checker
 
 - This prevents
 
-  - Dangling References
+  - Dangling references
 
   - Use-after-free
 
@@ -83,5 +83,5 @@ What Lifetime Annotations Do
 
 .. code:: rust
 
-  // 'a', 'b', and the return value share the same lifetime
-  fn choose<'a>(a: &'a str, b: &'a str) -> &'a str
+  // 'left', 'right', and the return value share the same lifetime
+  fn choose<'a>(left: &'a str, right: &'a str) -> &'a str

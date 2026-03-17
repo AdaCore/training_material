@@ -10,7 +10,7 @@ Topics Covered
 
   * What a lifetime represents
 
-  * Why references must maintain valid
+  * Why references must maintain validity
 
   * How the borrow checker enforces this
 
@@ -18,6 +18,6 @@ Topics Covered
 
   * Explicit lifetime syntax (:rust:`'a`)
 
-  * Lifetimes in function Signatures
+  * Lifetimes in function signatures
 
-  * Lifetimes in structs and data types
+  * Lifetimes in structs and other data types
