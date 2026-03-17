@@ -8,12 +8,12 @@ Lifetimes in Data Structures
 
 - If a struct stores references, it must specify a lifetime
 
-.. code:: Rust
+.. container:: latex_environment scriptsize
+  
+  .. code:: Rust
 
-  .. container:: latex_environment scriptsize
-
-    // 'a: lifetime of the referenced data (same as in functions)
-    struct Highlight<'a>(&'a str);
+      // 'a: lifetime of the referenced data (same as in functions)
+      struct Highlight<'a>(&'a str);
 
 - Instances of the struct cannot outlive the data they reference
 
