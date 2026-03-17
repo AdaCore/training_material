@@ -10,8 +10,10 @@ Lifetimes in Data Structures
 
 .. code:: Rust
 
-  // 'a: lifetime of the referenced data (same as in functions)
-  struct Highlight<'a>(&'a str);
+  .. container:: latex_environment scriptsize
+
+    // 'a: lifetime of the referenced data (same as in functions)
+    struct Highlight<'a>(&'a str);
 
 - Instances of the struct cannot outlive the data they reference
 
