@@ -16,7 +16,7 @@ Topics Covered
 
 * **Annotations**
 
-  * Explicit lifetime syntax (:rust:`'a`)
+  * Explicit lifetime syntax
 
   * Lifetimes in function signatures
 
