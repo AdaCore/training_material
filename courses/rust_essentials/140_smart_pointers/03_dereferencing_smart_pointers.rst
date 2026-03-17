@@ -57,7 +57,7 @@ Dereferencing Smart Pointers
 "DerefMut"
 ------------  
 
-- *subtrait* of Deref
+- *Subtrait* of :rust:`Deref`
 
   - :rust:`Deref` has to be implemented first
   
