@@ -8,8 +8,6 @@ What is a Lifetime?
 
 - The span of code during which a reference is valid
 
-- Tracks how long a reference may be *safely* used
-
 .. code:: rust
 
   // 'second' must not outlive 'first'
