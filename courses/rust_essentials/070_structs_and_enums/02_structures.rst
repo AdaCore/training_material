@@ -221,7 +221,7 @@ Value Illusion
 
    -  Data type
    
-   -  Constructor function call
+   -  Constructor function
    
 .. code:: rust
     
