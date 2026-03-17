@@ -10,7 +10,7 @@ Heap Allocation
 
 - Stores a fixed-size pointer on the stack 
 
-- Retains single ownership of the heap data 
+- Retains single ownership of heap data 
 
 - Deallocates memory automatically when :rust:`Box` goes out of scope 
 
