@@ -123,7 +123,7 @@ Field Initialization Shorthand
     let sign_in_count = 1;
     
     let user_1 = User {
-      // Same as active: active,
+      // Same as 'active: active'
       // The field takes value of local variable
       active,
       // Name association is still possible
