@@ -1,19 +1,18 @@
-=============================
-Lifetimes in Function Calls
-=============================
+==================
+Lifetime Elision
+==================
 
 ----------------------------------
-Lifetimes in Function Signatures
+Why Are Lifetimes Often Omitted?
 ----------------------------------
 
-- Lifetimes for function arguments and return values must be fully specified
+- Writing lifetime (annotations) everywhere would be verbose
 
-.. code:: rust
+- Many lifetime patterns are predictable
 
-  // Returned reference comes from 'slice'
-  fn first<'a>(slice: &'a [i32]) -> &'a i32 {
-      &slice[0]
-  }
+- This would add unnecessary annotation in common cases
+
+- Rust reduces this repetition automatically
 
 ------------------
 Lifetime Elision

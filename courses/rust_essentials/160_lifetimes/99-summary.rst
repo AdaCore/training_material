@@ -18,6 +18,22 @@ What We Covered
 
   * Lifetime annotations describe relationships between references
 
-  * Elision rules allow most lifetimes to remain implicit
+  * Lifetimes are part of reference types  
+
+  * Most annotations are inferred automatically
+
+* **Elision**
+
+  * Lifetimes are still present even when not written  
+
+  * The compiler applies fixed rules (not guesswork)
 
   * Explicit lifetimes are needed when relationships are ambiguous
+
+* **Data Structures**
+
+  * Structs storing references require lifetimes
+
+  * Lifetimes in structs follow the same rules as functions
+
+  * Owning data is often simpler than borrowing

@@ -2,55 +2,6 @@
 Lifetime Annotations
 ======================
 
----------------------
-What is a Lifetime?
----------------------
-
-- The span of code during which a reference is valid
-
-.. code:: rust
-  :number-lines: 1
-
-  let first = 10;
-  let second = &first;
-  println!("{second}");
-
-- :rust:`first` lives from lines 1 – 3
-- :rust:`second` lives from lines 2 – 3
-- :rust:`second` does not outlive :rust:`first`
-
-----------------------
-Why Lifetimes Matter
-----------------------
-
-- References point to data owned elsewhere
-
-- If data is dropped while a reference still exists...
-
-  - ...the program would have a **dangling reference**
-
-- Rust ensures that a reference cannot outlive the value it refers to
-
-  - This rule is enforced at **compile time**
-
-----------------------------------
-Lifetimes and the Borrow Checker
-----------------------------------
-
-- The borrow checker verifies references remain valid
-
-  - Reference Lifetime <= Value Lifetime
-
-- This prevents
-
-  - Dangling references
-
-  - Use-after-free
-
-  - Invalid memory access
-
-- No garbage collector required!
-
 ----------------------
 Lifetime Annotations
 ----------------------
@@ -87,4 +38,19 @@ What Lifetime Annotations Do
 
   // The return value could come from either input,
   // so they must share the same lifetime
-  fn choose<'a>(left: &'a str, right: &'a str) -> &'a str
+  fn choose<'a>(left: &'a str, right: &'a str) -> &'a 
+
+----------------------------------
+Lifetimes in Function Signatures
+----------------------------------
+
+- Lifetimes appear in reference types
+
+- They describe relationships between inputs and outputs
+
+.. code:: rust
+
+  // Returned reference comes from 'slice'
+  fn first<'a>(slice: &'a [i32]) -> &'a i32 {
+      &slice[0]
+  }
