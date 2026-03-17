@@ -6,7 +6,9 @@ Lifetime Annotations
 What is a Lifetime?
 ---------------------
 
-A lifetime is the span of code during which a reference is valid
+- The span of code during which a reference is valid
+
+- Tracks how long a reference may be *safely* used
 
 .. code:: rust
 
@@ -25,7 +27,7 @@ Why Lifetimes Matter
 
   - ...the program would have a **dangling reference**
 
-- Rust ensures that a reference doesn't outlive the value it refers to
+- Rust ensures that a reference cannot outlive the value it refers to
 
   - This rule is enforced at **compile time**
 
@@ -77,7 +79,7 @@ What Lifetime Annotations Do
 
 - Most lifetimes are inferred automatically by the compiler
 
-- Annotation are only *required* when relationships are ambiguous
+- Annotations are only *required* when relationships are ambiguous
 
 .. code:: rust
 

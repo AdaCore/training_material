@@ -6,15 +6,18 @@ Introduction
 Topics Covered
 ----------------
 
-* **Methods**
+* **Lifetimes**
 
-  * Attach behavior directly to a type
+  * What a lifetime represents
 
-* **Traits**
+  * Why references must maintain valid
 
-  * Define shared behavior that multiple types can implement
+  * How the borrow checker enforces this
 
-* **Deriving**
+* **Annotations**
 
-  * Auto-generate common trait implementations at compile time
-  
+  * Explicit lifetime syntax (:rust:`'a`)
+
+  * Lifetimes in function Signatures
+
+  * Lifetimes in structs and data types

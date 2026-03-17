@@ -33,11 +33,9 @@ Lifetime Elision
 
   fn length<'a>(s: &'a str) -> usize
 
--  Each argument which does not have a lifetime annotation is given one
+-  Each reference parameter gets its own lifetime
 
--  If there is only one argument lifetime, it is given to all
-   un-annotated return values
+-  If there is only one input lifetime, it is used for the return value
 
--  If there are multiple argument lifetimes, but the first one is for
-   :rust:`self`, that lifetime is given to all un-annotated return values
+-  If the first parameter is :rust:`self`, that lifetime is used
    

@@ -6,11 +6,18 @@ Summary
 What We Covered
 -----------------
 
-- A lifetime describes how long a reference is valid
+* **Lifetimes**
 
-- References must not outlive the values they refer to
+  * A lifetime describes how long a reference is valid
 
-- The borrow checker verifies this at compile time
+  * References cannot outlive the data they refer to
 
-- Lifetime annotations describe relationships between references
-  
+  * The borrow checker verifies this at compile time
+
+* **Annotations**
+
+  * Lifetime annotations describe relationships between references
+
+  * Elision rules allow most lifetimes to remain implicit
+
+  * Explicit lifetimes are needed when relationships are ambiguous
