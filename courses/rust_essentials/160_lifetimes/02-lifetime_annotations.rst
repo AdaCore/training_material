@@ -85,5 +85,6 @@ What Lifetime Annotations Do
 
 .. code:: rust
 
-  // 'left', 'right', and the return value share the same lifetime
+  // The return value could come from either input,
+  // so they must share the same lifetime
   fn choose<'a>(left: &'a str, right: &'a str) -> &'a str
