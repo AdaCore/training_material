@@ -83,7 +83,7 @@ Dereferencing Smart Pointers
 Mutability and Coercion
 -------------------------
 
-**Prohibit &T to &mut T (Never coerce Immutable to Mutable)**
+**Prohibit &T to &mut T - never coerce** *immutable* **to** *mutable*
 
 .. list-table::
    :header-rows: 1
