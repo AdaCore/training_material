@@ -26,7 +26,7 @@ What We Covered
 
 - **User-defined smart pointers**
 
-  - implement :rust:`Deref` and :rust:`Drop` for custom behaviors
+  - Implement :rust:`Deref` and :rust:`Drop` for custom behaviors
 
 - :rust:`Rc<T>`
 
