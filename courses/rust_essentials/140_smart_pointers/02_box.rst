@@ -1,62 +1,74 @@
-================
-:rust:`Box<T>`
-================
+==========
+"Box<T>"
+==========
 
---------------------
-The Heap Allocator
---------------------
+-----------------
+Heap Allocation
+-----------------
 
--  Allocates data on the heap 
+- :rust:`Box<T>` allocates data on the heap 
 
--  Stores a fixed-size pointer on the stack 
+- Stores a fixed-size pointer on the stack 
 
--  Retains single ownership of the heap data 
+- Retains single ownership of the heap data 
 
--  Deallocates memory automatically when :rust:`Box` goes out of scope 
+- Deallocates memory automatically when :rust:`Box` goes out of scope 
 
 .. code:: rust
 
-  pub struct Box<T>(Unique<T>);
+  // 'Box::new()' is used to allocate data
+  let my_box = Box::new(5);
 
-  let b = Box::new(5);
-
-  // Use 'b' as if it were a regular reference
-  println!("b = {}", b);
+  // Implicit dereference
+  println!("Box value is {}", my_box);
   
-:command:`b = 5`
+:command:`Box value is 5`
  
------------------------------------
-Bypassing Static Size Constraints
------------------------------------
+----------------------------------
+Using "Box<T" for Recursive Type
+----------------------------------
 
--  Compiler requires size of every type at compile time
+- Compiler requires each type to have a known size at compile time
 
-   -  Recursive types size is not known
+  - Size of recursive types is not known
   
--  :rust:`Box<T>` provides a fixed-width address
+- :rust:`Box<T>` provides a pointer with known size
 
-   -  Breaks direct recursion loop in memory
+  - Breaks direct recursion loop in memory
   
 .. code:: rust
 
   // FAILS: How big is an infinite doll?
   enum Doll {
-    Inside(Doll),
-    Empty,
+   Inside(Doll),
+   Empty,
   }
 
-  // WORKS: The Box is just a small "map" to the next doll
+  // WORKS: The "Box" is just a pointer to the next doll
   enum Doll {
-    Inside(Box<Doll>),
-    Empty,
+   Inside(Box<Doll>),
+   Empty,
   }
   
 -------------------------------
 Automatic Resource Management
 -------------------------------
 
--  :rust:`Box<T>` implements :rust:`Drop` to ensure memory safety 
+- :rust:`Box<T>` allows to move ownership of large data instead
 
-   -  Invoke the :rust:`Drop` method automatically at end of scope
+  - Useful for function call rather than copying data passed on
   
-   -  Prevents memory leaks by ensuring deallocation
+  - Move is an O(1) operation regardless of it points to
+
+- :rust:`Box<T>` implements :rust:`Drop` to ensure memory safety 
+
+  - Invokes :rust:`Drop` method automatically at end of scope
+  
+    - No need for manual intervention
+  
+  - Prevents memory leaks by ensuring deallocation
+  
+- :rust:`Box::new` has no runtime overhead just like C :c:`malloc`
+  
+
+  

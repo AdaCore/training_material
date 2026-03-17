@@ -6,38 +6,56 @@ Introduction
 Topics Covered
 ----------------
 
--  :rust:`Box<T>`
+- Flexible Sizing
 
-   -  Heap allocation
+  - Heap allocation
   
-   -  Bypassing static size constraints
+  - Bypassing static size constraints
 
--  :rust:`Deref`
+- Seamless Interaction
 
-   -  Overriding the dereference operator
+  - Overriding the dereference operator
   
-   -  Transparent data access via coercion
+  - Transparent data access via coercion
 
--  :rust:`Drop`
+- User-Defined Smart Pointers
 
-   -  Automatic resource management
+  - Automatic resource management
   
-   -  Order of destruction and explicit cleanup
+  - Order of destruction and explicit cleanup
 
--  :rust:`Rc<T>`
+- Shared Responsibility
 
-   -  Shared ownership of heap data
+  - Shared ownership of heap data
   
-   -  Tracking active references
+  - Tracking active references
 
--------------------------
-What are Smart Pointers
--------------------------
+--------------------------
+Why Smart Pointers?
+--------------------------
 
--  Common references ( :rust:`&T` ) point to data *Smart Pointers* **own** it
+- *Ownership is Strict!*
 
-   -  Mostly implemented as *Generic Structs* to wrap any type
+  - One owner and strict borrowing makes for complex patterns
 
-   -  Memory is freed when no longer needed via :rust:`Drop` trait
+- Rust solution is smart pointers
 
-   -  Access data via the :rust:`Deref` trait automatically
+  - Help navigate Rust strictness
+
+  - Use internal logic to safely provide flexibility where references cannot
+  
+    - Heap indirection
+  
+    - Reference counting
+
+    - And more!	
+
+- Common references (:rust:`&T`) **point** to data 
+
+  - *Smart Pointers* **own** it
+
+- Mostly implemented as *Generic Structs* to wrap any type
+
+- Memory is freed when no longer needed
+
+- Access data via automatic dereferencing

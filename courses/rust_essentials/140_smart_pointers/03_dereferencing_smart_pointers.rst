@@ -2,38 +2,44 @@
 Dereferencing Smart Pointers
 ==============================
 
----------------------
-:rust:`Deref` Trait
----------------------
+---------------
+"Deref" Trait
+---------------
 
--  Writes code that works for both references and smart pointers
+- Types implementing :rust:`Deref` behave like references
 
--  Returns a reference to the inner data to avoid moving ownership
+- Returns a reference to the inner data
 
--  Allows overriding dereference operator :rust:`*`
+  - Avoids moving ownership
+  
+  - Using dereference operator :rust:`*`
+
+- Dereference operator :rust:`*` calls on the :rust:`deref()` method
 
 .. code:: rust 
 
-  fn hello(name: i32) {
+  fn say_hello(name: i32) {
     println!("Hello, 00{name}!");
   }
 
-  let m = Box::new(7);
+  let agent = Box::new(7);
     
-  hello(*m); // No need to do hello(m.0)
+  say_hello(*agent); // No need to do 'hello(agent.0)'
 
   
-------------------------
-:rust:`Deref` Coercion
-------------------------
+------------------
+"Deref" Coercion
+------------------
 
--  Converts a reference to one type into a reference to another type
+- Converts reference to a type into reference to a different type
 
--  Perform multiple "steps" of coercion at compile time
+  - When needed if :rust:`Deref` is implemented between these types
 
--  Incur zero runtime performance penalty
+- Performs multiple "steps" of coercion at compile time
 
--  Access the inner value of a smart pointer transparently
+- Incurs zero runtime performance penalty
+
+- Accesses inner value of smart pointer transparently
 
 .. code:: rust 
 
@@ -41,74 +47,70 @@ Dereferencing Smart Pointers
     println!("Hello, {name}!");
   }
 
-  let m = Box::new(String::from("Rust"));
+  let my_box = Box::new(String::from("Rust"));
     
-  // &m is &MyBox<String>
-  // Rust coerces: &Box<String> -> &String -> &str
-  hello(&m); // No need to do hello(&m.0)
+  // '&my_box' is '&MyBox<String>'
+  // Rust coerces: '&Box<String>' -> '&String' -> '&str'
+  hello(&my_box); 
+  
+------------  
+"DerefMut"
+------------  
+
+- *subtrait* of Deref
+
+  - Deref has to be implemented first
+  
+- Allows *mutable reference*
+
+  - :rust:`Box<T>` implements :rust:`DerefMut`
+
+.. code:: rust 
+
+  use std::ops::{Deref, DerefMut};
+
+  impl<T> Deref for MyBox<T> {
+    type Target = T;
+    fn deref(&self) -> &T { &self.0 }
+  }
+
+  impl<T> DerefMut for MyBox<T> {
+    // Note: It uses the 'Target' defined in the Deref implementation
+    fn deref_mut(&mut self) -> &mut T { &mut self.0 }
+  }
 
 -------------------------
 Mutability and Coercion
 -------------------------
 
-*Prohibit &T to &mut T (Never coerce Immutable to Mutable)*
+**Prohibit &T to &mut T (Never coerce Immutable to Mutable)**
 
 .. list-table::
    :header-rows: 1
 
-   * - From
-     - To
-     - Result
+   * - **From**
+     - **To**
+	 - **Trait Required**
+     - **Result**
 
    * - :rust:`&T`
      - :rust:`&U`
-     - :color-green:`V`
+	 - :rust:`T: Deref<Target = U>`
+     - :color-green:`V` 
 
    * - :rust:`&mut T`
      - :rust:`&mut U`
+	 - :rust:`T: DerefMut<Target = U>`
      - :color-green:`V`
 
    * - :rust:`&mut T`
      - :rust:`&U`
+	 - :rust:`T: Deref<Target = U>`
      - :color-green:`V`
 
    * - :rust:`&T`
      - :rust:`&mut U`
+	 - :color-red:`X`
      - :color-red:`X`
 
 
------------------------------
-User Defined Smart Pointers
------------------------------
-
--  Can define custom smart pointers
-
-.. code:: rust 
-
-  use std::ops::Deref;
-  struct MyBox<T>(T);
-  impl<T> MyBox<T> {
-    fn new(x: T) -> MyBox<T> {
-        MyBox(x)
-    }
-  }
-  
-  let x = MyBox::new(5);  
-  *x = 10;
-  
-:error:`error[E0614]: type 'MyBox<{integer}>' cannot be dereferenced`
-
--  Need to implement :rust:`Deref`
-
-.. code:: rust 
-
-  impl<T> Deref for MyBox<T> {
-    type Target = T;
-
-    fn deref(&self) -> &Self::Target {
-        &self.0 // Return reference to inner value
-    }
-  }
-  *x = 10;
-  
--  To be a smart pointer, :rust:`Drop` has to be implemented too

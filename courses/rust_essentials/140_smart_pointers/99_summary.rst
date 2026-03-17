@@ -8,26 +8,28 @@ What We Covered
 
 -  :rust:`Box<T>`
 
-   -  Moves data from the stack to the heap for flexible storage
+  -  Allocates on the heap for flexible storage 
   
-   -  Enables recursive data structures with fixed-size pointer
+  -  Enables recursive data structures
+   
+    -  Using fixed-size pointers 
 
 -  :rust:`Deref`
 
-   -  Treats smart pointers like references for cleaner code
+  -  Treats smart pointers like references
+   
+    -  Creating cleaner code
   
-   -  Uses coercion to access inner values with no runtime cost
+  -  Uses coercion to access inner values 
+   
+    -  with no runtime cost
 
--  :rust:`Drop`
+-  **User-defined smart pointers**
 
-   -  Automatic deallocation when variables go out of scope
-  
-   -  Use :rust:`std::mem::drop` for manual, early resource cleanup
+  -  implement :rust:`Deref` and :rust:`Drop` for custom behaviors
 
 -  :rust:`Rc<T>`
 
-   -  Allows multiple parts of a program to own the same data
+  -  Allows multiple parts of a program to own the same data
   
-   -  Avoids expensive cloning by reusing the same heap allocation
-
-
+  -  Avoids expensive cloning by reusing the same heap allocation
