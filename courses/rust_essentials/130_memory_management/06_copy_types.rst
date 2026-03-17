@@ -12,6 +12,10 @@
 - Implement :rust:`Copy` trait
   - Scalar types are :rust:`Copy`
 
+.. note:: 
+
+   Saying a type is :rust:`Copy` means it implements the :rust:`Copy` trait
+
 .. code:: rust
 
    let gizmo = 1984;
@@ -19,10 +23,6 @@
 
    println!("gizmo: {gizmo}"); // Valid: 'gizmo' was not moved
    println!("gremlin: {gremlin}");
-
-.. note:: 
-
-   Saying a type is :rust:`Copy` means it implements the :rust:`Copy` trait
 
 ---------------------
 Custom "Copy" Types
@@ -67,7 +67,9 @@ No "Copy" Without "Clone"
 "Copy" Types and Field Constraints
 ------------------------------------
 
-**User-defined types can only be** :rust:`Copy` **if all fields are also** :rust:`Copy`
+- User-defined types can only be :rust:`Copy` if all fields are also :rust:`Copy`
+- Types that own heap memory cannot be :rust:`Copy`
+  - Prevents memory issues
 
 .. code:: rust
 
@@ -81,12 +83,8 @@ No "Copy" Without "Clone"
 
    :error:`error[E0204]: the trait 'Copy' cannot be implemented for this type`
 
-.. note::
-
-   Types that own heap memory cannot be :rust:`Copy` to prevent memory issues
-
 ----------------------
-"Copy" vs non-"Copy"
+"Copy" vs Non-"Copy"
 ----------------------
 
 .. list-table::
@@ -94,7 +92,7 @@ No "Copy" Without "Clone"
 
   * - **Property**
     - :rust:`Copy` **types**
-    - Non-:rust:`Copy` **types**
+    - **Non-**:rust:`Copy` **types**
 
   * - *Assignment logic*
     - Still usable

@@ -1,6 +1,6 @@
-=======
-Clone
-=======
+=========
+"Clone"
+=========
 
 ----------------------
 Explicit Duplication
@@ -21,7 +21,7 @@ Explicit Duplication
 Cost of Duplication
 ---------------------
 
-- Useful when original variable must remain valid after a function call
+- Useful when original variable must remain valid after function call
 - Significantly more expensive than a move 
   - Requires new memory allocation and data migration
 
@@ -32,13 +32,17 @@ Cost of Duplication
     println!("T-Rex One: {} bytes", t_rex_one.len());
     println!("T-Rex Two: {} bytes", t_rex_two.len());        
 
--------------------------
-The Clone Away Strategy
--------------------------
+:command:`T-Rex One: 10485760 bytes`
+
+:command:`T-Rex Two: 10485760 bytes`
+
+---------------------------
+The "Clone Away" Strategy
+---------------------------
 
   - Prioritize progress over performance by "cloning away" conflicts
     - Deferring optimization until the logic is stable
-    - Subsequent refinements can substitute clones with references
+    - Further refinements can substitute clones with references
       - :rust:`.clone()` serves as a clear visual marker of intentional heap allocation
 
 .. code:: rust

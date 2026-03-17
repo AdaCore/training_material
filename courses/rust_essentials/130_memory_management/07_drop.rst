@@ -6,9 +6,9 @@
 Destructor ("Drop")
 ---------------------
 
-- Deterministic clean-up implemented with :rust:`Drop` Trait
-  - Occurs *implicitly*, and usually at the closing brace :rust:`}`
-  - Calling :rust:`.drop()` manually results in a compiler error
+- Deterministic clean-up implemented with :rust:`Drop` trait
+  - Occurs *implicitly*, and usually at the closing brace ":rust:`}`"
+  - Calling :rust:`.drop()` manually results in a compile error
 - Ideal for resource management, e.g, closing files or network sockets
 
 .. code:: rust
@@ -56,20 +56,25 @@ Variable Drop Order Example
           .. code:: rust
 
             fn main() {
-              let tic = "tic".into();
-              let tac = "tac".into();
-              let toe = "toe".into();
-              let _a = Potato { id: tic };
-              let _b = Potato { id: tac };
+              let s1 = "tic".into();
+              let s2 = "tac".into();
+              let s3 = "toe".into();
+              let _tic = Potato { id: s1 };
               {
-                  let _c = Potato { id: toe };
-              } // Dropping 'toe'
-            } // Dropping 'tac'
-              // Dropping 'tic'
+                let _tac = Potato { id: s2 };
+              }
+              let _toe = Potato { id: s3 };
+            }
+
+:command:`Dropping tac`
+
+:command:`Dropping toe`
+
+:command:`Dropping tic`
 
 .. note::
 
-  Variables are dropped in reverse order of their creation
+  Variables are dropped in *reverse order* of their creation
 
 -----------------------------------
 Internal Field Drop Order Example
@@ -114,12 +119,15 @@ Internal Field Drop Order Example
                     one: Eggs,
                     two: Bacon,
                 };
-            } // Dropping eggs! 
-              // Dropping bacon!
+            } 
+
+:command:`Dropping eggs!`
+
+:command:`Dropping bacon!`
 
 .. note::
 
-  Internal fields are dropped in the order they are declared
+  Internal fields are dropped in the *order* they are declared
 
 ---------------
 Explicit Drop
@@ -127,19 +135,19 @@ Explicit Drop
 
 - Early clean-up is possible by calling :rust:`std::mem::drop`
 - :rust:`std::mem::drop` (in *prelude*) is an empty generic function that
-  - Captures ownership of the passed value
-  - Triggers the :rust:`Drop` mechanism as the value goes out of scope
+  - Captures ownership of passed value
+  - Triggers :rust:`Drop` mechanism as value goes out of scope
 
 .. code:: rust
 
   let my_precious = String::from("The One Ring");
   drop(my_precious); // 'my_precious' is moved then dropped
 
-  println!("{}", my_precious);
+  println!("{}", my_precious); // Error
 
 :error:`error[E0382]: borrow of moved value: 'my_precious'`
 
-.. warning::
+.. note::
 
    :rust:`std::mem::drop` differs from :rust:`std::ops::Drop::drop`
 
@@ -147,14 +155,13 @@ Explicit Drop
 Exclusivity of "Copy" and "Drop"
 ----------------------------------
 
-- Type cannot implement both the :rust:`Copy` and :rust:`Drop` traits
-  - Implementing :rust:`Drop` guarantees destructor runs exactly once
-- :rust:`Copy` implies a simple bitwise replication
+- Type cannot implement both :rust:`Copy` and :rust:`Drop` traits
+  - Implementing :rust:`Drop` guarantees destructor runs *exactly once*
+- :rust:`Copy` implies simple bitwise replication
 
 .. code:: rust
 
-  // This code will not compile
-  #[derive(Copy, Clone)] 
+  #[derive(Copy, Clone)] // This line will not compile
   struct Highlander;
 
   impl Drop for Highlander {

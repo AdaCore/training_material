@@ -6,43 +6,38 @@ Move Semantics
 Transferring Ownership
 ------------------------
 
-**Assigning a value to a new variable transfers ownership**
+- Assigning a value to a new variable transfers ownership
+  - Compiler treats a *moved* variable as uninitialized
+  - To ensure memory safety and prevent "double-free" errors
+  - And forbids any further use of it
 
 .. code:: rust
 
-    let s1 = String::from("Hello");
-    let s2 = s1;
+  let s1 = String::from("Hello");
+  let s2 = s1;
 
-    println!("{}", s1); // Error
-    println!("s2: {}", s2);
+  println!("{}", s1); // Error
+  println!("s2: {}", s2);
 
 :error:`error[E0382]: borrow of moved value: 's1'`
 
-.. container:: columns
+Before move to :rust:`s2`:
 
-   .. container:: column
-      :width: 50%
+.. image:: comprehensive_rust_training/review_of_program_memory.svg
 
-        Before move to :rust:`s2`:
+After move to :rust:`s2`:
 
-        .. image:: comprehensive_rust_training/review_of_program_memory.svg
-
-   .. container:: column
-      :width: 50%
-
-        After move to :rust:`s2`:
-
-        .. image:: comprehensive_rust_training/move_semantics_2.svg
+.. image:: comprehensive_rust_training/move_semantics_2.svg
 
 .. note::
 
-    To ensure memory safety and prevent "double-free" errors, the compiler treats a moved variable as uninitialized and forbids any further use of it
+    Applies to Non-:rust:`Copy` types only. Other types remain valid after assignment. More on this later.
 
 -------------------------
 Functions and Ownership
 -------------------------
 
-**Passing by value moves the data into the function's scope**
+**Passing by value moves data into function's scope**
 
 .. code:: rust
 
@@ -58,4 +53,4 @@ Functions and Ownership
 
 .. note::
 
-    :rust:`name` is consumed and can no longer be used
+    :rust:`name` is *consumed* and can no longer be used

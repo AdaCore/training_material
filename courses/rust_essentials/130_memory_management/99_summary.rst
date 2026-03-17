@@ -2,9 +2,9 @@
 Summary
 =========
 
------------------------------
-Navigating Memory Semantics
------------------------------
+-------------------------
+Recap: Memory Semantics
+-------------------------
 
 .. list-table::
   :header-rows: 1
@@ -17,7 +17,7 @@ Navigating Memory Semantics
   * - *Move*
     - Ownership transfer
     - Zero
-    - Default for :rust:`non-Copy` types
+    - Default for non-:rust:`Copy` types
 
   * - *Clone*
     - Explicit duplication
@@ -37,13 +37,12 @@ What We Covered
   - Single owner rule ensures safety at compile time
   - Scopes determine when data is freed
   
-- **Data Movement**
-  - **Move**
-    - Transfers ownership
-  - **Copy**
-    - Implicit bitwise copy
-  - **Clone**
-    - Explicit deep copy, required for non-Copy types
+- **Move**
+  - Transfers ownership
+- **Copy**
+  - Implicit bitwise copy
+- **Clone**
+  - Explicit deep copy, required for non-:rust:`Copy` types
 
 - **Clean-up**
   - Resources are freed the moment owner exits its scope

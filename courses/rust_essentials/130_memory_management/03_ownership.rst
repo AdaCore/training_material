@@ -13,7 +13,7 @@ Scope and Validity
 
    struct Point(i32, i32);
 
-   fn main() { // Outer scope starts
+   { // Outer scope starts
        { // Inner scope starts
            let pt = Point(3, 4); // 'pt' becomes valid
            println!("x: {}", pt.0);

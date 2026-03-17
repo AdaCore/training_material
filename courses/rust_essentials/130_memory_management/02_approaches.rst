@@ -6,25 +6,25 @@ Approaches
 Approaches to Memory Management
 ---------------------------------
 
-- Manual Memory Management (e.g., C/C++)
-  - **Full Control**
+- **Manual Memory Management** (e.g., C/C++)
+  - *Full control*
     - Programmer explicitly allocates/deallocates
-  - **Higher Risk**
+  - *Higher risk*
     - Programmer must ensure pointers are valid
-- Automatic Memory Management (e.g., Java, Python)
-  - **Safety**
+- **Automatic Memory Management** (e.g., Java, Python)
+  - *Safety*
     - Runtime ensures memory is not freed until unreferenced
-  - **Higher Cost**
+  - *Higher cost*
     - Runtime overhead for garbage collection
-- Ownership-based Memory Management (e.g., Rust, SPARK)
-  - **Safety**
+- **Ownership-based Memory Management** (e.g., Rust, SPARK)
+  - *Safety*
     - Compile-time memory guarantees
-  - **Control**
+  - *Control*
     - Ownership, borrowing and lifetimes
 
------------------------
-Navigating Approaches
------------------------
+------------------
+Quick Comparison
+------------------
 
 .. container:: latex_environment tiny
 
@@ -60,3 +60,7 @@ Navigating Approaches
       - Manual tracking
       - Low
       - Compilation time
+
+.. note::
+
+    Rust offers memory safety, predictable performance, and zero runtime cost 
