@@ -38,4 +38,8 @@ Lifetime Elision
 -  If there is only one input lifetime, it is used for the return value
 
 -  If the first parameter is :rust:`self`, that lifetime is used
+
+.. note::
+
+  Even when not written, lifetimes are still present and assigned by the compiler
    
