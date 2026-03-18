@@ -41,7 +41,7 @@ What Does a Lifetime Describe?
 
 - Tied to the referenced data, not the variable name
 
-- Exist even when not written
+- Exists even when not written
 
 ----------------------------------
 Lifetimes and the Borrow Checker
