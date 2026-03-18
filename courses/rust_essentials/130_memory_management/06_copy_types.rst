@@ -29,7 +29,7 @@ Custom "Copy" Types
 ---------------------
 
 - User-defined types can opt-in to :rust:`Copy`
-  - Provided they consist strictly of other :rust:`Copy` types
+  - Via :rust:`#[derive]` macro or manually with :rust:`impl`
 
 .. code:: rust
 

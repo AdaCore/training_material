@@ -31,7 +31,7 @@ After move to :rust:`s2`:
 
 .. note::
 
-    Applies to Non-:rust:`Copy` types only. Other types remain valid after assignment. More on this later.
+    Applies to non-:rust:`Copy` types only: other types remain valid after assignment
 
 -------------------------
 Functions and Ownership
