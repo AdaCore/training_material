@@ -10,7 +10,7 @@ Why Are Lifetimes Often Omitted?
 
 - Many lifetime patterns are predictable
 
-- This would add unnecessary annotation in common cases
+- Would add unnecessary annotation in common cases
 
 - Rust reduces this repetition automatically
 
@@ -38,7 +38,7 @@ Lifetime Elision
 
 -  If there is only one input lifetime, it is used for the return value
 
--  If the first parameter is :rust:`self`, that lifetime is used
+-  If first parameter is :rust:`self`, that lifetime is used
 
 .. note::
 

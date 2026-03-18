@@ -6,7 +6,7 @@ Lifetimes
 What is a Lifetime?
 ---------------------
 
-- The span of code during which a reference is valid
+- Span of code during which a reference is valid
 
 .. code:: rust
   :number-lines: 1
@@ -47,7 +47,7 @@ What Does a Lifetime Describe?
 Lifetimes and the Borrow Checker
 ----------------------------------
 
-- The borrow checker verifies references remain valid
+- Borrow checker verifies references remain valid
 
   - Reference Lifetime <= Value Lifetime
 
