@@ -26,13 +26,13 @@ Lifetime Annotations
 What Lifetime Annotations Do
 ------------------------------
 
-- Lifetime annotations do not create lifetimes
+- Do not create *actual* lifetimes
 
-- They describe relationships between References
+- Describe relationships between references
 
 - Most lifetimes are inferred automatically by the compiler
 
-- Annotations are only *required* when relationships are ambiguous
+- Only *required* when relationships are ambiguous
 
 .. code:: rust
 
@@ -44,9 +44,9 @@ What Lifetime Annotations Do
 Lifetimes in Function Signatures
 ----------------------------------
 
-- Lifetimes appear in reference types
+- Appear in reference types
 
-- They describe relationships between inputs and outputs
+- Describe relationships between inputs and outputs
 
 .. code:: rust
 
