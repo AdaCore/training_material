@@ -77,7 +77,7 @@ Beware of Recursion!
 Struct Initialization
 -----------------------
 
--  No partial Initialization possible
+-  No partial initialization possible
    -  No implicit default values
 
 .. code:: rust
@@ -168,7 +168,7 @@ Mutable
 ---------
 
 -  Mutability applies to the entire instance
-   -  No partial application for some fields
+   -  No partial application for only some fields
    
 .. code:: rust
 

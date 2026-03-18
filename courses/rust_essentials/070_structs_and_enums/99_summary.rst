@@ -18,7 +18,7 @@ What We Learned
 
 -  **Enums** 
 
-   -  Define a type that can be one of a fixed set of options
+   -  Define a type that can be one of a fixed set of variants
 
    -  Variants can optionally carry specific data (tuple or struct-like)
 

@@ -7,7 +7,7 @@ Basics
 --------
 
 -  :rust:`enum` can be one of several distinct **variants**
--  Represents a choice between different values
+-  Represents a value that can be one of several variants
 -  **Variants** are accessed using the :rust:`::` notation
    -  Called **path separator**
 
