@@ -11,23 +11,23 @@ Transferring Ownership
   - To ensure memory safety and prevent "double-free" errors
   - And forbids any further use of it
 
-.. code:: rust
+.. container:: columns
 
-  let s1 = String::from("Hello");
-  let s2 = s1;
+  .. container:: column
 
-  println!("{}", s1); // Error
-  println!("s2: {}", s2);
+    .. image:: comprehensive_rust_training/move_semantics_unified.svg
 
-:error:`error[E0382]: borrow of moved value: 's1'`
+  .. container:: column
 
-Before move to :rust:`s2`:
+    .. code:: rust
 
-.. image:: comprehensive_rust_training/review_of_program_memory.svg
+        let s1 = String::from("Hello");
+        let s2 = s1;
 
-After move to :rust:`s2`:
+        println!("{}", s1); // Error
+        println!("s2: {}", s2);
 
-.. image:: comprehensive_rust_training/move_semantics_2.svg
+    :error:`error[E0382]: borrow of moved value: 's1'`
 
 .. note::
 
