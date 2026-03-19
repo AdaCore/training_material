@@ -100,17 +100,17 @@ Mutability and Coercion
    * - :rust:`&T`
      - :rust:`&U`
 	 - :rust:`T: Deref<Target = U>`
-     - :color-green:`V` 
+     - :math:`\textcolor{green!65!black}{\checkmark}`
 
    * - :rust:`&mut T`
      - :rust:`&mut U`
 	 - :rust:`T: DerefMut<Target = U>`
-     - :color-green:`V`
+     - :math:`\textcolor{green!65!black}{\checkmark}`
 
    * - :rust:`&mut T`
      - :rust:`&U`
 	 - :rust:`T: Deref<Target = U>`
-     - :color-green:`V`
+     - :math:`\textcolor{green!65!black}{\checkmark}`
 
    * - :rust:`&T`
      - :rust:`&mut U`

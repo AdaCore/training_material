@@ -87,9 +87,9 @@ Fair Warning
 
   In **both** cases, data is **not shared**, it is **duplicated**
 
-------------------------------------------------------------
-Why Use :rust:`Rc<T>` if :rust:`Box<T>` Can :rust:`Clone`?
-------------------------------------------------------------
+------------------------------------------
+Why Use "Rc<T>" if "Box<T>" Can "Clone"?
+------------------------------------------
 
 - Avoids expensive data duplication
 

@@ -12,7 +12,7 @@ Heap Allocation
 
 - Retains single ownership of heap data 
 
-- Deallocates memory automatically when :rust:`Box` goes out of scope 
+- Deallocates memory automatically when object goes out of scope 
 
 .. code:: rust
 
@@ -54,11 +54,17 @@ Using "Box<T>" for Recursive Type
 Automatic Resource Management
 -------------------------------
 
-- :rust:`Box<T>` allows to move ownership of large data instead
+- :rust:`Box<T>` allows to move ownership of data
 
-  - Useful for function call rather than copying data passed on
+  - Rather than copying data passed in parameters for function calls
   
-  - Move is an O(1) operation regardless of what it points to
+    - Useful for large datas
+  
+  - Move is an *O(1)* operation 
+  
+    - Regardless of what it points to
+  
+  - Allocates data on the heap (via :rust:`Box::new`)
 
 - :rust:`Box<T>` implements :rust:`Drop` to ensure memory safety 
 
@@ -68,7 +74,6 @@ Automatic Resource Management
   
   - Prevents memory leaks by ensuring deallocation
   
-- :rust:`Box::new` has no runtime overhead just like C :C:`malloc`
   
 
   
