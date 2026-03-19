@@ -23,7 +23,7 @@ What is a Lifetime?
 Why Lifetimes Matter
 ----------------------
 
-- References point to data owned elsewhere
+**References point to data owned elsewhere**
 
 - If data is dropped while a reference still exists...
 
