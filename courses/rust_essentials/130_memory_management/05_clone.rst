@@ -40,8 +40,8 @@ Cost of Duplication
 The "Clone Away" Strategy
 ---------------------------
 
-  - Prioritize progress over performance by "cloning away" conflicts
-    - Deferring optimization until the logic is stable
+  - During development, cloning can simplify ownership conflicts
+    - Optimize later when logic is stable
     - Further refinements can substitute clones with references
       - :rust:`.clone()` serves as a clear visual marker of intentional heap allocation
 
@@ -55,3 +55,8 @@ The "Clone Away" Strategy
     say_hello(agent.clone());
     say_hello(agent);
     // 'agent' is no longer valid - its value was consumed
+
+.. note::
+
+   Useful for rapid prototyping and getting code working early
+   
