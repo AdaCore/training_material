@@ -34,16 +34,16 @@ Mechanics - Unwinding vs Aborting
 
   * Rust walks back up the stack and "cleans up"
 
-    * Calls destructors (:rust:`drop`) for all objects in scope
+    * Runs :rust:`drop` for all objects in scope
 
   * Ensures resources released even during a panic
 
     * Like memory or file handles
 
-* Aborting
+* Aborting (configurable)
 
   * Can configure Rust to *abort* on panic
-  * Stops the program instantly without cleanup
+  * Instantly stops the program
 
     * Results in smaller binary size
 
@@ -92,15 +92,15 @@ Code Example
 When to Panic?
 ----------------
 
-* Examples and prototypes
+* Prototyping
 
-  * Use :rust:`unwrap()` or :rust:`expect()` when writing quick code
+  * :rust:`unwrap()` or :rust:`expect()` for quick coding 
 
-    * Replaced with proper error handling later
+    * Replace with proper error handling later
 
-* Infallible logic (logic guarantees can never happen)
+* Infallible logic (logic guarantees)
 
-  * Panic is appropriate - indicates a bug
+  * Panic indicates a bug
 
 * Library Boundaries
 
@@ -108,6 +108,6 @@ When to Panic?
 
     * User decides how to handle the error
 
-  * Panic if user violates the **contract** of the API
+  * Panic if API **contract** is violated
 
     * E.g., passing an empty list to a function that requires items

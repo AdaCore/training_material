@@ -21,8 +21,8 @@ Recoverable Errors with "Result"
   .. code:: rust
 
     enum Result<T, E> {
-        Ok(T),  // The operation succeeded; contains value of type T
-        Err(E), // The operation failed; contains error of type E
+        Ok(T),  // Operation succeeded; contains value of type 'T'
+        Err(E), // Operation failed; contains error of type 'E'
     }
 
 .. note::
@@ -33,7 +33,7 @@ Recoverable Errors with "Result"
 Handling Results
 ------------------
 
-* Pattern Matching
+* Pattern Matching (most explicit)
 
   * Most explicit way of handling errors
 
@@ -46,9 +46,9 @@ Handling Results
 
 * Convenience methods
 
-  * :rust:`.unwrap()` - returns the value or panics if an error
-  * :rust:`.expect("Msg")` - like unwrap, but with a custom panic message
-  * :rust:`.unwrap_or(default)` - provides a fallback value if an error occurs
+  * :rust:`.unwrap()` - returns the value or panics
+  * :rust:`.expect("Msg")` - like :rust:`unwrap`, with custom panic message
+  * :rust:`.unwrap_or(default)` - fallback value on error
 
 -----------------------
 Results vs Exceptions
@@ -60,8 +60,8 @@ Results vs Exceptions
     :header-rows: 1
 
     * - **Feature**
-      - :rust:`Result`
-      - :cpp:`try` / :cpp:`catch`
+      - :rust:`Result` **(Rust)**
+      - :cpp:`try` / :cpp:`catch` **(other langauges)**
 
     * - *Visibility*
       - Part of function signature
@@ -114,4 +114,4 @@ Propagating Errors
 
 .. note::
 
-  General rule - use :rust:`?` when current function wants caller to deal with error
+  Use :rust:`?` when current function wants caller to deal with error

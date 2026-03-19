@@ -6,15 +6,15 @@ Try Operator
 "?" - the Try Operator
 ------------------------
 
-* Simplifying Error Propagation
+* Simplifies error propagation
 
   * Problem: manually matching every :rust:`Result` leads to deeply nested code
   * Solution: :rust:`?` operator provides a concise way to handle errors
 
 * How it works
 
-  * If value is :rust:`Ok(T)`, **unwrap** value and continue execution
-  * If value is :rust:`Err(E)`, early return of error
+  * :rust:`Ok(value)` - **unwrap** value and continue execution
+  * :rust:`Err(E)` - returns early
 
 * Limitation
 
@@ -56,7 +56,7 @@ Automatic Type Conversion
 
 * :rust:`?` doesn't just return the error
 
-  * Converts errors using :rust:`From` trait
+  * Converts errors to a function's return type
 
 * Why this matters
 
@@ -74,7 +74,7 @@ Try Operator with "Option"
 
 * :rust:`?` works with more than :rust:`Ok` / :rust:`Err`
 
-  * It also works with :rust:`Some` /:rust:`None` from :rust:`Option`
+  * Also works with :rust:`Some` / :rust:`None` from :rust:`Option`
 
 * Behavior
 

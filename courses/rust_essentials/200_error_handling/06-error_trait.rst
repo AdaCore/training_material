@@ -104,7 +104,7 @@ Trait Objects
   * Can use :rust:`.downcast_ref::<MyError>()`
 
 --------------------------
-Best Practice for Errors
+Best Practices for Custom Errors
 --------------------------
 
 * Implement :rust:`Display` - for the "what happened" summary

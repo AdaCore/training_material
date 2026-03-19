@@ -8,7 +8,7 @@ Rust Error Philosophy
 
 * Errors are part of the type system
 
-  * Rust treats failures as values
+  * Failures are explicit values
 
     * Not hidden control flow
 
