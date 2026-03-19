@@ -61,3 +61,7 @@ Lifetimes in Function Signatures
   fn first<'a>(slice: &'a [i32]) -> &'a i32 {
       &slice[0]
   }
+
+.. note::
+  
+  First element of a slice cannot live longer than the slice itself
