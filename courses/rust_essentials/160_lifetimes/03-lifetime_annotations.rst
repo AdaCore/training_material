@@ -26,11 +26,11 @@ Lifetime Annotations
 What Lifetime Annotations Do
 ------------------------------
 
-- Do not create *actual* lifetimes
-
 - Describe relationships between references
 
-- Most lifetimes are inferred automatically by the compiler
+  - Do not create *actual* lifetimes
+
+  - Most lifetimes are inferred automatically by the compiler
 
 - Only *required* when relationships are ambiguous
 
