@@ -24,7 +24,11 @@ Dereferencing Smart Pointers
 
   let agent = Box::new(7);
     
-  say_hello(*agent); // No need to do 'hello(agent.0)'
+  say_hello(*agent); // No need to do 'hello(*agent.0)'
+  
+.. note::
+  
+  :rust:`Box` component agent.0 is actually private so it would not compile
 
   
 ------------------

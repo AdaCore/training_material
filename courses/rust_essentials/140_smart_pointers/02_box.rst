@@ -68,7 +68,7 @@ Automatic Resource Management
   
   - Prevents memory leaks by ensuring deallocation
   
-- :rust:`Box::new` has no runtime overhead just like C :c:`malloc`
+- :rust:`Box::new` has no runtime overhead just like C :C:`malloc`
   
 
   

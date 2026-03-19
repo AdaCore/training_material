@@ -61,7 +61,9 @@ Working with Custom Smart Pointers
     fn drop(&mut self) {
         println!("A MyBox is being cleared from memory");
     }
-}
+  }
+  let name = MyBox::new(5);  
+  println!("Hello, 00{}!", *name );
 
 :command:`Hello, 007!`
 
