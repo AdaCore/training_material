@@ -61,9 +61,9 @@ Dereferencing Smart Pointers
 "DerefMut"
 ------------  
 
-- *subtrait* of Deref
+- *Subtrait* of :rust:`Deref`
 
-  - Deref has to be implemented first
+  - :rust:`Deref` has to be implemented first
   
 - Allows *mutable reference*
 
@@ -87,7 +87,7 @@ Dereferencing Smart Pointers
 Mutability and Coercion
 -------------------------
 
-**Prohibit &T to &mut T (Never coerce Immutable to Mutable)**
+**Prohibit &T to &mut T - never coerce** *immutable* **to** *mutable*
 
 .. list-table::
    :header-rows: 1
