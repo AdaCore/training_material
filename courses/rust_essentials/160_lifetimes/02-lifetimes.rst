@@ -17,7 +17,7 @@ What is a Lifetime?
 
 - :rust:`first` lives from lines 1 – 3
 - :rust:`second` lives from lines 2 – 3
-- :rust:`second` does not outlive :rust:`first`
+- :rust:`second` does **not** outlive :rust:`first`
 
 ----------------------
 Why Lifetimes Matter

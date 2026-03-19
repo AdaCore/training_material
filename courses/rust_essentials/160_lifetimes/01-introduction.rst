@@ -24,7 +24,7 @@ Topics Covered
 
 * **Elision**
 
-  * Why lifetimes are often Omitted
+  * Why lifetimes are often omitted
 
   * Compiler rules for assigning lifetimes
 

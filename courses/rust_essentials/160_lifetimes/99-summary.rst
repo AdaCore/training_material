@@ -8,11 +8,11 @@ What We Covered
 
 * **Lifetimes**
 
-  * A lifetime describes how long a reference is valid
+  * Lifetime describes how long reference is valid
 
-  * References cannot outlive the data they refer to
+  * References cannot outlive data they refer to
 
-  * The borrow checker verifies this at compile time
+  * Borrow checker verifies this at compile time
 
 * **Annotations**
 
@@ -26,14 +26,14 @@ What We Covered
 
   * Lifetimes are still present even when not written  
 
-  * The compiler applies fixed rules (not guesswork)
+  * Compiler applies fixed rules (not guesswork)
 
-  * Explicit lifetimes are needed when relationships are ambiguous
+  * Explicit lifetimes needed when relationships are ambiguous
 
 * **Data Structures**
 
   * Structs storing references require lifetimes
 
-  * Lifetimes in structs follow the same rules as functions
+  * Lifetimes in structs follow same rules as functions
 
   * Owning data is often simpler than borrowing
