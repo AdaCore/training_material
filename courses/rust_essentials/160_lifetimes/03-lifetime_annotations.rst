@@ -38,7 +38,14 @@ What Lifetime Annotations Do
 
   // The return value could come from either input,
   // so they must share the same lifetime
-  fn choose<'a>(left: &'a str, right: &'a str) -> &'a 
+  fn choose<'a>(left: &'a str, right: &'a str) -> &'a str {
+      // Return 'left' or 'right' depending on the condition
+      if left.len() > right.len() {
+          left  // return a reference to 'left'
+      } else {
+          right // or return a reference to 'right'
+      }
+  }
 
 ----------------------------------
 Lifetimes in Function Signatures
