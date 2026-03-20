@@ -8,66 +8,66 @@ Flexible Error Handling
 
 * **The Problem**
 
-  * Applications don't always want an enum for every possible error
-  * Just want to catch *any* error, add context, and report it
+  * Don't always want an enum for every error
+  * Just want to propagate and report them
 
 * **The Solution**
 
-  * :rust:`anyhow` crate provides a single type :rust:`anyhow::Result<T>`
-  * Wraps any error type that implements :rust:`std::error::Error`
+  * :rust:`anyhow::Result<T>`
 
-* **Primary Use Case**
+    * Available via **anyhow** crate
 
-  * Applications (not libraries)
-  * Makes error propagation effortless
+  * Wraps any error implementing :rust:`std::error::Error`
 
-    * Without the boilerplate of custom enums
+* Primarily used for applications (not libraries)
+
+  * Effortless error propagation
 
 ---------------------------
 One Type to Rule Them All
 ---------------------------
 
-* Written as :rust:`anyhow::Result<T>`
+* One :rust:`anyhow::Result` can handle many different errors
 
-  * Instead of writing :rust:`Result<T, MyCustomError>`
+  * Instead of writing
+
+    .. code:: rust
+
+      fn run_app() -> Result<(), MyCustomError>
+
+  * Simpler to write
+
+    .. code:: rust
+
+      fn run_app() -> anyhow::Result<()>
 
 * Type is compatible with any function that uses the :rust:`?` operator
 
-* You can call functions from multiple libraries
+.. container:: latex_environment small
 
-  * Returning multiple error types
-  * Use :rust:`?` on all of them in the same function
+  .. code:: rust
 
-.. code:: rust
+    use anyhow::Result;
 
-  use anyhow::Result;
+    fn run_app() -> Result<()> {
+        let config = read_config()?; // Could be 'io::Error'
+        let data = parse_data(config)?; // Could be 'ParseError'
+        Ok(())
+    }
 
-  fn run_app() -> Result<()> {
-      let config = read_config()?; // Could be io::Error
-      let data = parse_data(config)?; // Could be ParseError
-      Ok(())
-  }
+------------------------
+Methods to Add Context
+------------------------
 
-----------------
-Adding Context
-----------------
+* :rust:`context`
 
-* Ability to attach "human" context to a technical error
+  * Attaches message to error
+  * On failure, user sees *your* message *plus* original error
 
-  * Primary feature of :rust:`anyhow`
+* :rust:`with_context`
 
-* Methods
-
-  * :rust:`context`
-
-    * Attaches message to error
-    * If operation fails, the user sees *your* message *plus* the original error
-
-  * :rust:`with_context`
-
-    * The "lazy" version
-    * Only evaluates the message if an error *actually* occurs
-    * Better for performance with complex strings
+  * Only evaluates the message if an error *actually* occurs
+  * Better for performance with complex messages
 
 .. code:: rust
 
@@ -76,7 +76,7 @@ Adding Context
   fn main() -> Result<()> {
       let path = "config.json";
       let content = std::fs::read_to_string(path)
-          .with_context(|| format!("Failed to read config file at {path}"))?;
+          .with_context(|| format!("Failed config file {path}"))?;
     
       Ok(())
   }
@@ -94,19 +94,19 @@ Choosing the Right Tool
       - :rust:`thiserror`
       - :rust:`anyhow`
 
-    * - *User*
+    * - *Best For*
       - Library authors
       - Application authors
 
     * - *Error Type*
       - Strongly typed
-      - Erased type
+      - General error
 
     * -
       - (enums)
       - (:rust:`anyhow:Error`)
 
-    * - *Primary Goal*
+    * - *Goal*
       - Help *caller* handle specific cases
       - Help *user* understand what happened
 
@@ -114,29 +114,42 @@ Choosing the Right Tool
       - Easy to :rust:`match` on variants
       - Harder (requires "downcasting")
 
---------------------------------
-Printing and Triggering Errors
---------------------------------
+-------------------------
+Common Error Operations
+-------------------------
 
-* :rust:`anyhow!` macro
+* :rust:`anyhow!`
 
   * Create an error on the fly from a string
   * Similar to :rust:`format!`
 
-* :rust:`bail!` macro
+  .. code:: rust
+
+    let my_error = anyhow!("Something bad happened");
+
+* :rust:`bail!`
 
   * Shorthand for :rust:`return Err(anyhow!(...))`
   * Great for early exits
 
-* Printing
+  .. code:: rust
 
-  * When you print an :rust:`anyhow::Error` with the "alternate" flag (:rust:`{:#}`)
+    if user.name.is_empty() {
+        bail!("User name cannot be empty!");
+    }
 
-    * Automatically prints the entire chain of causes
-    * From high-level context down to the root cause
+* Printing errors
 
-.. code:: rust
+  * Top-level (outermost) error message
 
-  if user.name.is_empty() {
-      bail!("User name cannot be empty!");
-  }
+    .. code:: rust
+
+      println!("{}", report);
+
+  * Error and every "source" (cause) underneath
+
+    .. code:: rust
+
+      println!("{:#}", report);
+
+    * Also called *developer view*

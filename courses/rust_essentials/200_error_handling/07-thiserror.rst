@@ -6,78 +6,46 @@
 "Macro Magic" for Custom Errors
 ---------------------------------
 
-* **The Problem**
+* Manually implementing :rust:`Display`, :rust:`Debug`, and :rust:`Error::source`
 
-  * Manually implementing :rust:`Display`, :rust:`Debug`, and :rust:`Error::source`
+  * Tedius and error-prone to do for every enum
 
-    * Tedius and error-prone to do for every enum
+* :rust:`thiserror` crate provides a convenient **derive macro**
 
-* **The Solution**
+  * Generates all that code for you using simple attributes
 
-  * :rust:`thiserror` crate provides a convenient **derive macro**
-
-    * Generates all that code for you using simple attributes
-
-* **Primary Use Case**
-
-  * Best suited for libraries
-  * Provide specific, structured error types that callers can match against
-
-* **Design Goal**
-
-  * Zero-cost and minimal runtime overhead
-  * Writes the code you would have written yourself
-
---------------
-Basic Syntax
---------------
-
-* Define error as :rust:`enum`
-
-  * Then use :rust:`#[error(...)]` to define :rust:`Display` message
+---------------------
+"thiserror" Example
+---------------------
 
 .. code:: rust
+  :number-lines: 1
 
-  use thiserror::Error;
+  #[derive(Debug, Error)]
+  enum MyError {
+      #[error("I/O error: {0}")]
+      IoError(#[from] io::Error),
+      #[error("No text in {0}")]
+      EmptyText(String),
+}
 
-  #[derive(Error, Debug)]
-  pub enum DataStoreError {
-      #[error("data store disconnected")]
-      Disconnect(#[from] io::Error), // Automatically implements From<io::Error>!
+* Line 1: generate :rust:`std::error::Error` implementation for :rust:`MyError`
+* Line 3: Replace :rust:`fmt::Display` implementation
 
-      #[error("the data for key `{0}` is not found")]
-      NotFound(String),
+  * Uses this string with :rust:`IoError` value when printing error
 
-      #[error("invalid header (expected {expected:?}, found {found:?})")]
-      InvalidHeader {
-          expected: String,
-          found: String,
-      },
+* Line 5: generate :rust:`impl From<io::Error> for :rust:`MyError`
 
-      #[error("unknown data store error")]
-      Unknown,
-  }
+  * :rust:`?` will convert error into :rust:`MyError::IoError`
 
----------------------------
-Attributes that Save Time
----------------------------
-
-* :rust:`#[error("...")]`
-
-  * Defines the :rust:`Display` implementation
-  * Reference enum fields using :rust:`{}` or :rust:`{0}` for tuple variants
-
-* :rust:`#[from]`
-
-  * Automatically implements :rust:`From<SourceError>` for enum
-  * Makes the :rust:`?` operator work instantly for that error type
+-----------------
+More Attributes
+-----------------
 
 * :rust:`#[source]`
 
-  * Explicitly marks a field as the underlying cause of the error
-
-    * Used by :rust:`Error::source()`
-    * Note: :rust:`#[from]` implies :rust:`#[source]`
+  * Describes where the original error came from
+  * :rust:`#[from]` implies :rust:`#[source]`
 
 * :rust:`transparent` errors - :rust:`#[error(transparent)]`
 
@@ -97,10 +65,9 @@ Why Use "thiserror"?
 
 * Structured data
 
-  * Enums allow your users to use match to handle specific errors
+  * Enums allow :rust:`match` to handle specific errors
 
-    * E.g., "retry if disconnected, but stop if not found"
-    * Unlike using a simple string
+    * Rather than checking an error message string
 
 * Type safety
 
@@ -109,21 +76,21 @@ Why Use "thiserror"?
 * Ecosystem compatibility
 
   * Generates a standard :rust:`std::error::Error` implementation
-  * So errors work perfectly with other tools 
+  * So errors work are compatible with other tools
 
-    * E.g., :rust:`anyhow` or standard library traits
+    * Like standard library traits
 
----------------------
+-----------------------
 "thiserror" in Action
----------------------
+-----------------------
 
 .. container:: latex_environment scriptsize
 
   .. code:: rust
 
     fn get_config(path: &str) -> Result<Config, DataStoreError> {
-        // If File::open fails, it returns io::Error. 
-        // #[from] attribute converts it to DataStoreError::Disconnect automatically
+        // If 'File::open' fails, it returns 'io::Error'
+        // "?" converts the error via "from"
         let content = fs::read_to_string(path)?; 
 
         if content.is_empty() {

@@ -6,13 +6,20 @@
 The "Error" Trait
 -------------------
 
-* Provides common interface for all error types
+* Common interface for all errors
 
-* Without standard trait, libraries would have own way of describing errors
+  * Defined in :rust:`std::error`
+  * Implemented by many standard and custom error types
 
-  * Makes it impossible to write generic error-handling code
+* Without standard trait, libraries would have their own errors
 
-* To implement :rust:`Error` your type must also implement
+* :rust:`Error` allows common processing for different error types
+
+---------------------
+Trait Prerequisites
+---------------------
+
+To implement :rust:`Error` type must also implement
 
   * :rust:`Display`
 
@@ -103,14 +110,22 @@ Trait Objects
 
   * Can use :rust:`.downcast_ref::<MyError>()`
 
---------------------------
+----------------------------------
 Best Practices for Custom Errors
---------------------------
+----------------------------------
 
-* Implement :rust:`Display` - for the "what happened" summary
+* Implement methods
 
-* Implement :rust:`Debug` - for the "where/how" technical details
+  * :rust:`Display`
 
-* Implement :rust:`Error` - so your type is compatible with everybody else
+    * Tell user what happened
 
-* Use :rust:`source()` - to preserve the history of what went wrong
+  * :rust:`Debug` - for the "where/how" technical details
+
+    * Tell programmer what happened
+
+  * :rust:`Error`
+
+    * Allow everyone to know what happened
+
+* :rust:`source()` allows tracking of where error came from

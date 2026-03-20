@@ -6,10 +6,8 @@ Try Operator
 "?" - the Try Operator
 ------------------------
 
-* Simplifies error propagation
-
-  * Problem: manually matching every :rust:`Result` leads to deeply nested code
-  * Solution: :rust:`?` operator provides a concise way to handle errors
+* Replaces repetitive match handling
+* Keeps code focused on the "happy path"
 
 * How it works
 
@@ -26,7 +24,7 @@ Try Operator
 Verbosity vs Clarity
 ----------------------
 
-**Manual match**
+**Manual** :rust:`match`
 
   .. code:: rust
 
@@ -39,7 +37,7 @@ Verbosity vs Clarity
         // ... repeat for every step ...
     }
 
-**Try Operator**
+**Try Operator** :rust:`?`
 
   .. code:: rust
 
@@ -49,24 +47,6 @@ Verbosity vs Clarity
         file.read_to_string(&mut text)?;
         Ok(text)
     }
-
----------------------------
-Automatic Type Conversion
----------------------------
-
-* :rust:`?` doesn't just return the error
-
-  * Converts errors to a function's return type
-
-* Why this matters
-
-  * Your function returns a custom :rust:`MyError` type **but**
-  * Library function returns an :rust:`io::Error` **so**
-  * :rust:`?` will automatically try to convert :rust:`io::Error` into :rust:`MyError`
-
-    * Requirement: Your error type must implement :rust:`From<io::Error>`
-
-* More information on this in the next chapter
 
 ----------------------------
 Try Operator with "Option"
@@ -89,15 +69,11 @@ Try Operator with "Option"
 
     *Unless you convert explicitly*
 
----------------
-"?" in "main"
----------------
+--------------------------------
+Returning "Result" from "main"
+--------------------------------
 
-* Historically, :rust:`main` had to return :rust:`()`
-
-  * So you couldn't use :rust:`?` there
-
-* Modern Rust allows :rust:`main` to return a :rust:`Result`
+* Rust allows :rust:`main` to return a :rust:`Result`
 
 * If an error "bubbles up" to :rust:`main` and is returned then
 
@@ -110,3 +86,7 @@ Try Operator with "Option"
       let _file = File::open("essential_config.txt")?;
       Ok(())
   }
+
+.. latex_environment:: tiny
+
+  ``Error: Os { code: 2, kind: NotFound, message: "No such file or directory" }``

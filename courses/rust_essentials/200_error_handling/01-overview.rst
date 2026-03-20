@@ -6,18 +6,20 @@ Overview
 Rust Error Philosophy
 -----------------------
 
-* Errors are part of the type system
+* Errors are data, not drama!
 
   * Failures are explicit values
 
     * Not hidden control flow
 
-* Core principles
+* Errors are visible in function signatures
+* Compiler ensures they are handled
 
-  * Failures are explicit
-  * Errors are visible in function signatures
-  * Compiler helps ensure they are handled
-  * Programs fail predictably, not mysteriously
+  * No access to invalid data
+
+* Failures do not show up mysteriously
+
+  * Visible and enforced
 
 .. list-table::
   :header-rows: 1
@@ -26,36 +28,30 @@ Rust Error Philosophy
     - **Error Visibility**
 
   * - Exceptions
-    - Hidden
+    - Hidden control flow
 
   * - Error codes
     - Easy to ignore
 
-  * - :rust:`Result`
+  * - Error wrappers (e.g., :rust:`Result`)
     - Explicit and enforced
 
----------------------------------------------
-"Panic" vs "Result": Two Different Failures
----------------------------------------------
+--------------------------------------
+Expected Errors vs. Logic Violations
+--------------------------------------
 
-* Rust separates bugs from expected failures
-
-* :rust:`panic!` |rightarrow| unrecoverable error
-
-  * Impossible state reached
-  * Violated assumptions / invariant
-  * Logic error or other bug
-
-* :rust:`Result` |rightarrow| expected failure
+* Some errors can be handled by the code
 
   * File not found
   * Network timeout
   * Invalid user input
 
-.. code:: rust
+* Sometimes we just need to reboot the system
 
-  // Expected failure
-  File::open("config.toml")?;
+  * Impossible state reached
+  * Violated assumptions / invariant
+  * Logic error or other bug
 
-  // Bug: invariant violated
-  assert!(index < len);
+.. note::
+
+  Rust separates bugs from expected failures

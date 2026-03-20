@@ -2,45 +2,37 @@
 Try Conversions
 =================
 
-----------------------------
-Automatic Error Conversion
-----------------------------
+---------------------------------
+Automatic Error Type Conversion
+---------------------------------
 
-* **The Goal**
+* :rust:`?` doesn't just return the error
 
-  * Functions often call multiple libraries, returning different error types
+  * If error types match |rightarrow| returned directly
+  * If they differ |rightarrow| converted using :rust:`From`
 
-    * E.g., :rust:`io::Error`, :rust:`ParseIntError`, :rust:`Utf8Error`
+.. code:: rust
 
-* **The Problem**
+  enum Reason {
+      TooYoung,
+      TooOld,
+  }
 
-  * Function can only return one error type in its :rust:`Result<T, E>`
+  // Error type is 'Reason'
+  fn check_age(age: i32) -> Result<i32, Reason> {
+      Err(Reason::TooYoung)
+  }
 
-* **The Solution**
+  // Error type is 'String'
+  fn register() -> Result<(), String> {
+      // '?' sees 'Reason', knows the return type is 'String',
+      // and converts it behind the scenes.
+      check_age(10)?; 
 
-  * :rust:`?` operator converts *local* error into function's *return* error type
-
-* **The Mechanism**
-
-  * When you use :rust:`?`, Rust calls :rust:`.into()` on the error value behind the scenes
-
------------------------
-How it Works - "From"
------------------------
+      Ok(())
+  }
 
 * Return error type must implement :rust:`From` trait for source error type
-
-* Standard Library Example
-
-  * Your function returns :rust:`std::io::Error`
-  * You call a function returning :rust:`std::net::AddrParseError`
-  * Code won't compile unless there is an implementation like:
-
-    .. code:: rust
-
-      impl From<AddrParseError> for MyCustomError { ... }
-
-* Compiler Check
 
   * Compiler verifies a valid path exists to convert the error
   * If not, it throws a *trait bound not satisfied* error
@@ -51,14 +43,14 @@ One Return Type, Many Sources
 
 .. code:: rust
 
-  fn initialize_system() -> Result<(), MySystemError> {
-      // 1. Returns io::Error, converted to MySystemError
+  fn initialize_system() -> Result<(), MyError> {
+      // Convert 'io::Error' to 'MyError'
       let config = fs::read_to_string("config.json")?; 
 
-      // 2. Returns serde_json::Error, converted to MySystemError
+      // Convert 'serde_json::Error' to 'MyError'
       let val: Config = serde_json::from_str(&config)?; 
 
-      // 3. Returns ParseIntError, converted to MySystemError
+      // Convert 'ParseIntError' to 'MyError'
       let port: u16 = val.port.parse()?; 
 
       Ok(())

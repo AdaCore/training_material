@@ -9,24 +9,33 @@ What We Covered
 * **Panics**
 
   * "Stop the world" bugs 
-  * Impossible states where the program cannot safely continue.
+  * Impossible states where program shouild not continue
 
 * **Result** 
 
-  * Standard enum-based way to handle expected errors
-  * Forces the developer to explicitly account for success or failure at compile-time
+  * Enum-based way to handle expected errors
+  * Forces developer to account for success or failure
 
 * **The** :rust:`?` **Operator**
 
   * Syntax shortcut that keeps code clean
-  * Automatically unwraps success values or returning errors early to the caller
+  * Automatically unwraps success values
+
+    * Or returns error early to caller
 
 * **The** :rust:`Error` **Trait**
 
-  * Common interface to allo different error types to work together
-  * Provides standard way to show messages and trace back to the root cause
+  * Interface to allow conversion of errors
+  * Standard way to show messages
+
+    * Includes tracing back to the root cause
 
 * :rust:`thiserror` **vs.** :rust:`anyhow`
 
-  * :rust:`thiserror` used in libraries to create structured, matchable error types
-  * :rust:`anyhow` used in applications to easily add context to any error that occurs
+  * :rust:`thiserror`
+
+    * Used in libraries to create matchable error types
+
+  * :rust:`anyhow`
+
+    * Used in applications to create human-readable errors

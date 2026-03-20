@@ -2,40 +2,35 @@
 "Result" 
 ==========
 
-----------------------------------
-Recoverable Errors with "Result"
-----------------------------------
+-------------------
+Recoverable Error
+-------------------
 
-* Core error handling mechanism
+* Operational issues should be recoverable
 
-  * Problem: Operations can fail for reasons beyond programmer's control
+  * File not found
+  * Network timeout
 
-    * E.g., file not found, network timeout
+* :rust:`Result` enum allows safe handling of problems
 
-  * Solution: Use the :rust:`Result<T, E>` enum
+  .. container:: latex_environment footnotesize
 
-    * Instead of throwing an exception or returning a "magic" error code
+    .. code:: rust
 
-* Enum definition
-
-  .. code:: rust
-
-    enum Result<T, E> {
-        Ok(T),  // Operation succeeded; contains value of type 'T'
-        Err(E), // Operation failed; contains error of type 'E'
-    }
+      enum Result<T, E> {
+          Ok(T),  // Operation succeeded; contains value of type 'T'
+          Err(E), // Operation failed; contains error of type 'E'
+      }
 
 .. note::
 
-  Enforces *Type Safety* - cannot access value if result is not :rust:`Ok`
+  You need to handle both good and bad variants!
 
 ------------------
 Handling Results
 ------------------
 
 * Pattern Matching (most explicit)
-
-  * Most explicit way of handling errors
 
   .. code:: rust
 
@@ -65,27 +60,15 @@ Results vs Exceptions
 
     * - *Visibility*
       - Part of function signature
-      - Often hidden
-
-    * -
-      - (You know it can fail)
-      - (You might not know it throws)
+      - Not part of function definition
 
     * - *Control Flow*
       - Explicitly handled
       - Bubbles up stack automatically
 
-    * -
-      - (via matching or propagation)
-      -
-
     * - *Performance*
-      - Low cost
-      - Higher cost
-
-    * -
-      - (Zero-cost abstraction)
-      - (Can impose run-time overhead)
+      - Low cost (enum variants)
+      - Higher cost (runtime overhead)
 
     * - *Safety*
       - Compiler forces you to handle error
@@ -95,7 +78,9 @@ Results vs Exceptions
 Propagating Errors
 --------------------
 
-* Manual propagation - return the error up to the caller (verbose!)
+* Instead of handling the error ...
+
+  * ... you can return it to the caller (manually)
 
 * Shortcut - :rust:`?` operator makes propagation concise
 
@@ -106,9 +91,13 @@ Propagating Errors
   .. code:: rust
 
     fn read_username() -> Result<String, io::Error> {
-        let mut file = File::open("user.txt")?; // Returns early on Err
+        // "open" returns Result
+        //   "?" returns to caller if Result is Err
+        let mut file = File::open("user.txt")?;
         let mut text = String::new();
-        file.read_to_string(&mut text)?;        // Returns early on Err
+        // "read_to_string" returns Result
+        //   "?" returns to caller if Result is Err
+        file.read_to_string(&mut text)?;
         Ok(text)
     }
 

@@ -6,51 +6,46 @@ Panic
 Unrecoverable Error
 ---------------------
 
-* :rust:`panic!` is one way of handling error considered fatal
+* Runtime errors are not recoverable
+
+  * Failed bounds checks
+
+    * Accessing :rust:`v[100]` on a 3-item vector
+
+  * Logic problems
+
+    * Failed :rust:`assert!` or :rust:`debug_assert!`
+
+* You can also manually determine you're in trouble
+
+  * Control flow gets somewhere it shouldn't
+
+* :rust:`panic!` is the call used in these situations
 
   * Signals unrecoverable error - triggering thread shut-down
   * Configurable - either unwind stack or abort
 
-* *Bugs* - failed bounds checks
+------------------------------
+What Happens During a Panic?
+------------------------------
 
-  * Example: accessing :rust:`v[100]` on a 3-item vector
-
-* *Logic failures* - failed :rust:`assert!` or :rust:`debug_assert!`
-
-* *Manual trigger* - :rust:`panic!("message")`
-
-  * Typically when program reaches an impossible state
-
-.. tip::
-
-  * Panics are for unexpected/unrecoverable errors
-  * :rust:`Result` is for expected errors
-
------------------------------------
-Mechanics - Unwinding vs Aborting
------------------------------------
-
-* Stack unwinding (default)
+* **Stack unwinding** (default)
 
   * Rust walks back up the stack and "cleans up"
 
     * Runs :rust:`drop` for all objects in scope
 
-  * Ensures resources released even during a panic
+  * Useful when working with hardware or multiple processes
 
-    * Like memory or file handles
+    * Reset hardware flags
+    * Release any locks
 
-* Aborting (configurable)
+* **Aborting** (configurable)
 
-  * Can configure Rust to *abort* on panic
   * Instantly stops the program
+  * Results in smaller binary size
 
-    * Results in smaller binary size
-
-* Safe Alternatives
-
-  * :rust:`my_vector[i]` panics on out-of-bounds
-  * Instead, use :rust:`my_vector.get(i)` to return an :rust:`Option`
+    * No cleanup code
 
 --------------
 Code Example
@@ -92,17 +87,18 @@ Code Example
 When to Panic?
 ----------------
 
-* Prototyping
+* **Prototyping**
 
   * :rust:`unwrap()` or :rust:`expect()` for quick coding 
 
     * Replace with proper error handling later
 
-* Infallible logic (logic guarantees)
+* **Infallible logic** (logic guarantees)
 
+  * In a state that should never occur
   * Panic indicates a bug
 
-* Library Boundaries
+* **Library boundaries**
 
   * Libraries should return :rust:`Result`
 
