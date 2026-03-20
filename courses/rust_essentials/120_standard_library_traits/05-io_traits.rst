@@ -27,7 +27,9 @@ Reading and Writing via Trait
 * Trait-based
 
   * Many types can be read from / written to
-  * Regardless of what they're made of
+  * Allows function to accept any readable/writable source
+
+    * E.g., files, network, memory, etc.
 
 -----------------------------
 "Write" then "Read" Example

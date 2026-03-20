@@ -24,4 +24,4 @@ Topics Covered
 
 * **Default Values for Types**
 
-  * Ensuring initialization
+  * Method to create initial values

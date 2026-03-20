@@ -24,70 +24,95 @@ Comparison Traits
 
 * Typically created via :rust:`#[derive]`
 
-  * Not user-written
+  * But can be implemented manually
 
---------------------
-(Partial) Equality
---------------------
+----------------------------
+Basic Equality: Definition
+----------------------------
 
-* Treat the objects as *equivalent*
+**Rust splits equality into two traits**
 
-  * Even if parts of the object are not *equal*
+* :rust:`PartialEq`
 
-* :rust:`PartialEq` 
+  * Enables :rust:`==` and :rust:`!=`
+  * Symmetric: if :rust:`a == b` then :rust:`b == a`
+  * Transitive: if :rust:`a == b` and :rust:`b == c` then :rust:`a == c`
 
-  * Typically manual implementation for user-defined types
-  * Programmer decides what *equal* means
+  * Object are **considered** equal
 
-.. container:: latex_environment tiny
+    * Even if they are not identical
+    * Think floating point numbers
+
+* :rust:`Eq`
+
+  * :dfn:`Marker trait` - no actual methods
+  * Objects are **actually** equal
+
+    * Trait guarantees that :rust:`a == a`
+
+-----------------------------
+Common Equality: Derivation
+-----------------------------
+
+**Most custom types do not need manual implementation**
+
+* Use derivation when structs/enums should be compared normally
 
   .. code:: rust
 
-     struct SensorData {
-         valid: bool,
-         value: i32,
-     }
-
-     impl PartialEq for SensorData {
-         fn eq(&self, other: &Self) -> bool {
-             // If both are valid, compare their values
-             if self.valid && other.valid {
-                 self.value == other.value
-             } else {
-                 // Otherwise compare if validity is the same
-                 self.valid == other.valid
-             }
-         }
-     }
-
------------------
-Actual Equality
------------------
-
-* :rust:`Eq` - automatic implementation
-
-  * All parts of the object are equal
-
-  * :rust:`derive` is used to perform *field-by-field comparison*
-
-*  :rust:`Eq` is a :dfn:`marker trait`
-
-    * No methods or associated constants
-    * Promises compiler that type has specific property
-    * Uses the "expected" definition of equality
-
-* Deriving :rust:`Eq` requires you to derive :rust:`PartialEq`
-
-  * Because :rust:`Eq` doesn't actually do anything!
-
-.. code:: rust
-  :font-size: tiny
-
-  #[derive(PartialEq, Eq)]
-  struct MyData {
+    #[derive(PartialEq, Eq)]
+    struct MyData {
       value_a: i32,
       value_b: i32,
-  }
+    }
+
+* :rust:`MyData` objects will be equal if all fields are equal
+
+.. note::
+
+  Can only derive if all fields already implement :rust:`PartialEq` and :rust:`Eq`
+
+---------------------------------
+Useful Equality: Implementation
+---------------------------------
+
+**Define your own method for dependent comparison**
+
+* Example: Type has a validity flag and a value
+
+  .. code:: rust
+
+    struct SensorData {
+      valid: bool,
+      value: i32,
+    }
+
+* Objects are equal when
+
+  * **EITHER** :rust:`valid` fields are :rust:`False`
+
+    * Regardless of :rust:`value` contents
+
+  * **OR** *all* fields are equal
+
+    * :rust:`valid` is :rust:`True` and :rust:`value` matches
+
+  .. code:: rust
+
+    impl PartialEq for SensorData {
+      fn eq(&self, other: &Self) -> bool {
+        if self.valid && other.valid {
+          self.value == other.value
+        } else {
+          self.valid == other.valid
+        }
+      }
+    }
+
+.. note::
+
+  This is comparing the *concept* of "sensor data",
+  not the equality of the object.
 
 ----------
 Ordering
@@ -100,10 +125,10 @@ Ordering
 
 * :rust:`Ord`
 
-  * Can be called by :rust:`PartialOrd` (or vice-versa)
+  * Build on :rust:`PartialOrd`
   * Returns :rust:`Ordering`
 
-    :rust:`enum Ordering {Less, Equal, Greater}`;
+    :rust:`enum Ordering {Less, Equal, Greater,};`
 
 * When using :rust:`derive`, Rust compares fields *in order*
 

@@ -19,7 +19,7 @@ Type Conversion
 
 * These methods are transformative
 
-  * When you call :rust:`.into()`, the original target now "owns" the value
+  * :rust:`.into()` consumes the source (unless it implements :rust:`Copy`)
 
 * What happens to the source value?
 
@@ -28,7 +28,7 @@ Type Conversion
 
 .. note::
 
-  Conversion is *lossless* - it cannot fail (:dfn:`infallible conversion`)
+  :rust:`From`/:rust:`Into` are intended for infallible conversions (cannot fail)
 
 ---------------------
 Conversion Examples
@@ -63,7 +63,7 @@ Conversion Examples
 * If you implement :rust:`From`, you automatically get :rust:`Into`
 
   * So it is a good idea to always implement :rust:`From` for your types
-  * Also referred to as the *Conversion Rule*
+  * Common practice to just implement :rust:`From`
 
 * :rust:`From` specifies both source and destination
 
@@ -112,7 +112,6 @@ Conversion Between Primitive Types
 * Truncation (generally) only works with primitive-like types
 
   * Casting :rust:`Struct` and :rust:`String` generate compiler errors
-  * Slice (*fat pointer*) truncate length of slice
 
 ------------------
 Casting Examples

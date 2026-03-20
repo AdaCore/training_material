@@ -6,13 +6,13 @@ Overview
 Review: What is a Trait?
 --------------------------
 
-* Contract for Behavior
+* Contract for behavior
 
   * Defines the set of methods a type must implement
 
-* Abstraction Tool
+* Abstraction tool
 
-  * Allows programmer to write code that functions on many different types
+  * Allow programmer to write code that functions on many different types
 
     * As long as they provide the required behavior
 
