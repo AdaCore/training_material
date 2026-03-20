@@ -6,29 +6,43 @@ Overview
 One Library, Three Tiers
 --------------------------
 
-.. image:: rust_essentials/std_crate.svg
-  :width: 80%
+.. container:: columns
 
-* Standard Library is not a monolithic block
+  .. container:: column
 
-  * Layered stack designed to scale
+    * Standard Library is not a monolithic block
 
-* **core** (foundation)
+      * Layered stack designed to scale
 
-  * No OS or memory allocator required
-  * Basic types, primitive operations
+    * **core** (foundation)
 
-* **alloc** (middle layer)
+      * No OS or memory allocator required
+      * Basic types, primitive operations
 
-  * Depends on **core**
-  * Requires heap allocator
-  * Growable types (:rust:`Vec`, :rust:`String`, :rust:`Box`, etc.)
+    * **alloc** (middle layer)
 
-* **std** (full suite)
+      * Depends on **core**
+      * Requires heap allocator
+      * Growable types
 
-  * Requires host environment
-  * Contains everything in **core** and **alloc**
-  * Adds OS abstractions like file I/O, networking, etc.
+        * :rust:`Vec`, :rust:`String`, :rust:`Box`, etc.
+
+    * **std** (full suite)
+
+      * Requires host environment
+      * Contains everything in **core** and **alloc**
+      * Adds OS abstractions
+
+        * File I/O, networking, etc.
+
+  .. container:: column
+
+    .. image:: rust_essentials/std_crate.svg
+      :width: 80%
+
+.. raw:: latex
+
+  \vspace{5mm}
 
 --------------------------
 Introducing: The Prelude
