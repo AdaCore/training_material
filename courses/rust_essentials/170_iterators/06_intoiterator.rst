@@ -17,7 +17,7 @@ The "IntoIterator" Trait
 * Takes :rust:`self` as a parameter
 
   * **Not** :rust:`&self`
-  * So it **consumes** the collection
+  * **Consumes** the collection
 
     * Original variable moved into iterator
     * Original variable can no longer be used

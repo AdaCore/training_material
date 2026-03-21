@@ -6,7 +6,7 @@ Defining an Iterator
 What is an Iterator?
 ----------------------
 
-* We've already seen simple iterators
+* Simplest form of *iteration* is a "for loop"
 
   .. code:: rust
 
@@ -14,7 +14,9 @@ What is an Iterator?
     for idx in 0..3 {
        println!("{}", array[idx]);
 
-* In defining an iterator, we need
+* The iteration mechanism is called :dfn:`iterator`
+
+  * Which can be defined as follows
 
 .. container:: latex_environment scriptsize
 
@@ -36,11 +38,19 @@ What is an Iterator?
       - Look at what is at the current position
       - :rust:`array[idx]`
 
---------------------
-Why Use Iterators?
---------------------
+-----------------------
+Iterators in Practice
+-----------------------
 
-* Iterators bundle state, logic, and data retrieval into a single object
+* Iterator provides standard way to access elements of a collection
+
+  * One at a time
+
+    * Typically in sequence
+
+  * Without exposing collection’s internal structure
+
+* Rust uses types, traits, and methods
 
 * Benefits include
 

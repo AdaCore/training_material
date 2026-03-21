@@ -6,13 +6,13 @@ Introduction
 Topics Covered
 ----------------
 
-* **Defining an Iterator**
+* **What Is an Iterator**
 
-  * How do computers loop over a collection
+  * The mechanics of loops over collections
 
 * **Iterator as a Trait**
 
-  * How does Rust loop over a collection
+  * Looping over a collection in Rust
 
 * **Iterator Trait Methods**
 

@@ -6,27 +6,37 @@ Helper Methods
 Extending the Iterator Trait
 ------------------------------
 
-* We know :rust:`next` is the only helper that *must* be implemented
+* :rust:`next` is the only *required* method
 
-  * But there are lots more that *can* be implemented
+  * *Many* more *can* be implemented
 
-* Two main categories 
+* Iterator Adapters
 
-  * **Iterator Adapters**
+  * Transform iterator into a **new** iterator
 
-    * Transform iterator into a new iterator (e.g., :rust:`map`, :rust:`filter`)
+    * E.g., :rust:`map`, :rust:`filter`
 
-  * **Consumers**
+  * Useful in chaining
 
-    * Pull values out of iterator to produce result (e.g., :rust:`sum`, :rust:`collect`)
+    * Consecutive iteration
+
+* Consumers
+
+  * Pull values out of iterator to produce final result
+
+    * E.g., :rust:`sum`, :rust:`collect`
+
+  * Ends any chaining
+
+    * Result is **not** an iterator
 
 --------------------------------
-Getting an Iterator ("iter()")
+Getting an Iterator - "iter()"
 --------------------------------
 
-* Collections are not iterators by default
+* Collections itsekf us not an iterator
 
-  * Need to first create an iterator
+  * Call :rust:`.iter()` to create iterator
 
   .. code:: rust
     :number-lines: 3
@@ -44,7 +54,7 @@ Getting an Iterator ("iter()")
 
 * :rust:`iter()` (line 4) creates the collection iterator
 
-  * Returns an iterator over references
+  * Returns an iterator over references (:rust:`&T`)
   * Does **not** consume the collection
   * Allows use of iterator adapters
 
@@ -82,7 +92,7 @@ Common Iterator Adapters
 
 .. note::
 
-  Adapters are used to look at each element in the collection
+  Adapters return a **new** iterator - they don't consume values
 
 ------------------
 Common Consumers
@@ -93,8 +103,8 @@ Common Consumers
     .. code:: rust
 
       let numbers = [1, 2, 3, 4, 5];
-      // .iter() creates the stream of references
-      // .sum() pulls them all off and adds them up
+      // '.iter()' creates the stream of references
+      // '.sum()' pulls them all off and adds them up
       let total: i32 = numbers.iter().sum();
       println!("The total is: {total}");
 
@@ -120,7 +130,7 @@ Common Consumers
 
 .. note::
 
-  Consumers are used to look at the collection as a whole
+  Consumers return a single result from the iteration
 
 -----------------------------
 Declarative Data Processing
@@ -135,14 +145,19 @@ Declarative Data Processing
 
   fn main() {
       let result: i32 = (1..=10)        // Range: 1, 2, 3, ..., 10
-          .filter(|x| x % 2 == 0)       // Keep only even: 2, 4, 6, 8, 10
-          .map(|x| x * x)               // Square them: 4, 16, 36, 64, 100
-          .sum();                       // Add them up: 220
+          .filter(|x| x % 2 == 0)       // Keep even: 2, 4, 6, 8, 10
+          .map(|x| x * x)               // Square: 4, 16, 36, 64, 100
+          .sum();                       // Total: 220
 
       println!("Sum of even squares: {}", result);
   }
 
 :command:`Sum of even squares: 220`
+
+.. note::
+
+  Chaining allows you to create a new set of data before consuming
+    Modify values, skip values, etc.
 
 ----------------------------
 Reliability and Maintenace
@@ -153,8 +168,7 @@ Reliability and Maintenace
   * Lazy evaluation
 
     * Adapters do nothing until a "Consumer" (like :rust:`sum` or :rust:`count`) is called
-
-      * You can build a complex pipeline and it won't execute until the very end.
+    * Pipeline runs only when needed
 
   * Intent over implementation
 

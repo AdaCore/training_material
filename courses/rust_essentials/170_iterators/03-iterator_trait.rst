@@ -15,21 +15,22 @@ Describing an Iterator Trait
 
 * :rust:`type Item;`
 
-  * Associated type defines what iterator produces
+  * Type of value the iterator yields
 
 * :rust:`next`
 
+  * Called repeatedly to get the "next" value
   * Only required method
   * Returns :rust:`Option`
 
-    * :rust:`Some(value)` for next element in sequence
-    * :rust:`None` when iteration complete
+    * :rust:`Some(value)` - next element
+    * :rust:`None` - iteration complete
 
 ----------------------------------------
 Common Use Case - Iterating Over Slice
 ----------------------------------------
 
-* We know we can iterate over a slice
+* Familiar pattern: iterating over a slice
 
   .. code:: rust
 
@@ -37,16 +38,18 @@ Common Use Case - Iterating Over Slice
           println!("{}", elem);
       }
 
-* This is just Rust creating an "easy" iterator!
+* This uses an iterator behind the scenes
 
-* The next few slides show how we would do this manually
+  * :rust:`for` is just syntactic sugar over iteration
+
+* Next, we'll look at how to build this ourselves
 
   * Create an iterator type
-  * Implement the iterator trait
-  * Use our iterator in an example
+  * Implement the :rust:`Iterator` trait
+  * Use them iterator in an example
 
 -------------------------
-Create in Iterator Type
+Create an Iterator Type
 -------------------------
 
 .. code:: rust
@@ -58,16 +61,16 @@ Create in Iterator Type
 
 * :rust:`slice`
 
-  * Array we will iterate over
+  * Data being iterated over
 
 * :rust:`idx`
 
-  * Iteration state
+  * Current position in slice (our "state")
 
-.. note::
+* Struct contains a reference, so referenced must be tied to its lifetime
 
-  We use the *lifetime annotation* to show it's safe to give a
-  reference from the iterator
+  * Iterator holds a reference to the slice
+  * :rust:`'s` ensures iterator cannot outlive data it references
 
 --------------------------
 Implement Iterator Trait
@@ -90,12 +93,17 @@ Implement Iterator Trait
 
 * :rust:`Item`
 
-  * Type being returned (:rust:`i32`)
+  * Type being returned (:rust:`&i32`)
+  * References value inside the slice
 
 * :rust:`next` returns
 
-  * :rust:`None` if :rust:`idx` is the end of the slice
-  * :rust:`Some(next)` where :rust:`next` is the next item
+  * :rust:`Some(next)` where :rust:`next` is the next element
+  * :rust:`None` if :rust:`idx` index no more elements
+
+.. tip::
+
+  Just call :rust:`next()` until you run out of data!
 
 --------------------
 Using Our Iterator 
@@ -111,7 +119,7 @@ Using Our Iterator
       idx: 0,
   };
 
-  // The 'for' loop calls .next() automatically
+  // The 'for' loop calls .next() under the hood
   for num in iter {
       println!("The number is: {}", num);
   }

@@ -2,9 +2,9 @@
 Summary
 =========
 
------------------
-What We Covered
------------------
+-------------------
+Iterators in Rust
+-------------------
 
 * **Defining an Iterator**
 
@@ -17,6 +17,10 @@ What We Covered
 
   * Trait-based mechanism to traverse any iterable type
   * Only needs an associated type and a :rust:`next` method
+
+-------------------------
+Using Iterators in Rust
+-------------------------
 
 * **Additional Iterator Trait Methods**
 

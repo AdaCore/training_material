@@ -8,13 +8,13 @@ The Ultimate Consumer
 
 * Most iterator methods (like :rust:`map` and :rust:`filter`) are *lazy*
 
-  * Describe a transformation
-  * Don't actually do anything
+  * Describe transformations
+  * Don't modify any data
 
 * :rust:`collect()` is the "on switch"
 
-  * Iterates through entire sequence
-  * Stores the results in a collection (like a :rust:`Vec` or :rust:`HashMap`)
+  * Runs entire pipeline
+  * Stores results in a collection (:rust:`Vec` or :rust:`HashMap`, etc.)
 
 * Typically use *turbofish* syntax to tell compiler what you want
 
@@ -42,15 +42,20 @@ One Method, Many Results
   use std::collections::HashSet;
   let my_set: HashSet<_> = numbers.iter().collect();
 
+.. note::
+
+  :rust:`my_vector` and :rust:`my_set` contain **references** to
+  the elements in :rust:`numbers`
+
 ---------------------
 Collecting "Result"
 ---------------------
 
-* Convert collection of :rust:`Result` types into single :rust:`Result` with a collection
+* :rust:`collect()` combines many :rust:`Result<T, E>` values
 
-* If *any* item in iterator is :rust:`Err`
+  * Produces a single :rust:`Result<Vec<T>, E>`
 
-  * :rust:`collect` stops and returns :rust:`Err`
+* Stops on the first :rust:`Err`
 
 * Otherwise returns :rust:`Ok(Collection)`
 
