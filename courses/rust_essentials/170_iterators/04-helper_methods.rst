@@ -22,7 +22,7 @@ Extending the Iterator Trait
 
 * Consumers
 
-  * Pull values out of iterator to produce final result
+  * Drive the iterator to produce final value
 
     * E.g., :rust:`sum`, :rust:`collect`
 
@@ -34,7 +34,7 @@ Extending the Iterator Trait
 Getting an Iterator - "iter()"
 --------------------------------
 
-* Collections itsekf us not an iterator
+* Collections itself us not an iterator
 
   * Call :rust:`.iter()` to create iterator
 
@@ -172,18 +172,24 @@ Reliability and Maintenace
 
   * Pipeline runs only when needed
 
-* Intent over implementation
+* Imperative vs iterator implementation
 
-  * **Intent**
+  * :rust:`for` loop
 
-    1. Create variable
-    2. Loop
-    3. Check condition
-    4. Square it
-    5. Add to variable
+    .. code:: rust
 
-  * **Implement**
+      let mut sum = 0;
+      for x in 1..=10 {
+          if x % 2 == 0 {
+              sum += x * x;
+          }
+      }
 
-    1. Filter evens
-    2. Map to squares
-    3. Sum
+  * Chaining and collection
+
+    .. code:: rust
+
+      let sum: i32 = (1..=10)
+          .filter(|x| x % 2 == 0) // Keep only even numbers
+          .map(|x| x * x)         // Square them
+          .sum();                 // Add them all up

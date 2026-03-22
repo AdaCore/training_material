@@ -31,6 +31,11 @@ The "IntoIterator" Trait
       fn into_iter(self) -> Self::IntoIter;
   }
 
+.. note::
+
+  :rust:`IntoIterator()` can also be used for references and mutable
+  objects, where the source is **not** consumed
+
 ---------------------
 Implicit Conversion
 ---------------------

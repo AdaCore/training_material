@@ -11,12 +11,12 @@ What is an Iterator?
   .. code:: rust
 
     let array = [2, 4, 6, 8];
-    for idx in 0..3 {
+    for idx in 0..4 {
        println!("{}", array[idx]);
 
 * The iteration mechanism is called :dfn:`iterator`
 
-  * Which can be defined as follows
+  * Encapsulates these mechanics inside reusable abstraction
 
 .. container:: latex_environment scriptsize
 
@@ -58,11 +58,11 @@ Iterators in Practice
 
     * Don't need to know underlying structure
 
-  * Eliminates "off-by-one" errors and index-out-of-bounds panics
+  * Reduces "off-by-one" errors and index-out-of-bounds panics
 
-  * Often implemented as pointers
+  * Lightweight structs that hold iteration state
 
-    * Internally more efficient to use pointer arithmetic
+    * Compile to very efficient loops
 
 * Simple iterator example
 

@@ -38,4 +38,5 @@ Iterators
 .. include:: 170_iterators/04-helper_methods.rst
 .. include:: 170_iterators/05-collect_method.rst
 .. include:: 170_iterators/06_intoiterator.rst
+.. include:: 170_iterators/88-iterators.lab.rst
 .. include:: 170_iterators/99-summary.rst

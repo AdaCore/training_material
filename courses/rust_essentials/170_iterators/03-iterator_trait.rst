@@ -40,7 +40,7 @@ Common Use Case - Iterating Over Slice
 
 * This uses an iterator behind the scenes
 
-  * :rust:`for` is just syntactic sugar over iteration
+  * :rust:`for` are syntactic sugar over :rust:`IntoIterator` trait
 
 * Next, we'll look at how to build this ourselves
 
