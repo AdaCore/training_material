@@ -157,20 +157,33 @@ Declarative Data Processing
 .. note::
 
   Chaining allows you to create a new set of data before consuming
+
     Modify values, skip values, etc.
 
 ----------------------------
 Reliability and Maintenace
 ----------------------------
 
-.. container:: latex_environment small
+* Lazy evaluation
 
-  * Lazy evaluation
+  * Adapters do nothing until a "Consumer" is called
 
-    * Adapters do nothing until a "Consumer" (like :rust:`sum` or :rust:`count`) is called
-    * Pipeline runs only when needed
+    * :rust:`sum` or :rust:`count`, etc.
 
-  * Intent over implementation
+  * Pipeline runs only when needed
 
-    * Intent: "Create variable, loop, check condition, square it, add to variable"
-    * Implement: "Filter evens, map to squares, sum"
+* Intent over implementation
+
+  * **Intent**
+
+    1. Create variable
+    2. Loop
+    3. Check condition
+    4. Square it
+    5. Add to variable
+
+  * **Implement**
+
+    1. Filter evens
+    2. Map to squares
+    3. Sum
