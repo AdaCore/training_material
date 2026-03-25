@@ -24,7 +24,7 @@ Recoverable Error
 
 .. note::
 
-  You need to handle both good and bad variants!
+  You need to handle both variants!
 
 ------------------
 Handling Results
@@ -84,7 +84,9 @@ Propagating Errors
 
 * Shortcut - :rust:`?` operator makes propagation concise
 
-  * Called the **Try Operator** - see next chapter for details
+  * Called the **Try Operator**
+
+    * See next chapter for details
 
 .. container:: latex_environment footnotesize
 

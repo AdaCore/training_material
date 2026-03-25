@@ -9,10 +9,11 @@ Try Operator
 * Replaces repetitive match handling
 * Keeps code focused on the "happy path"
 
-* How it works
+* Automatically decodes :rust:`Result`
 
   * :rust:`Ok(value)` - **unwrap** value and continue execution
   * :rust:`Err(E)` - returns early
+  * Works similarly for :rust:`Option`
 
 * Limitation
 
@@ -87,6 +88,6 @@ Returning "Result" from "main"
       Ok(())
   }
 
-.. latex_environment:: tiny
+.. container:: latex_environment scriptsize
 
-  ``Error: Os { code: 2, kind: NotFound, message: "No such file or directory" }``
+  :error:`Error: Os { code: 2, kind: NotFound, message: "No such file or directory" }`

@@ -13,10 +13,7 @@ Automatic Error Type Conversion
 
 .. code:: rust
 
-  enum Reason {
-      TooYoung,
-      TooOld,
-  }
+  enum Reason { TooYoung, TooOld, }
 
   // Error type is 'Reason'
   fn check_age(age: i32) -> Result<i32, Reason> {
@@ -28,11 +25,12 @@ Automatic Error Type Conversion
       // '?' sees 'Reason', knows the return type is 'String',
       // and converts it behind the scenes.
       check_age(10)?; 
-
       Ok(())
   }
 
-* Return error type must implement :rust:`From` trait for source error type
+.. note::
+
+  Return error type must implement :rust:`From` trait for source error type
 
   * Compiler verifies a valid path exists to convert the error
   * If not, it throws a *trait bound not satisfied* error

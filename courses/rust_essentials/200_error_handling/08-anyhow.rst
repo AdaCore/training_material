@@ -50,7 +50,7 @@ One Type to Rule Them All
     use anyhow::Result;
 
     fn run_app() -> Result<()> {
-        let config = read_config()?; // Could be 'io::Error'
+        let config = read_config()?;    // Could be 'io::Error'
         let data = parse_data(config)?; // Could be 'ParseError'
         Ok(())
     }

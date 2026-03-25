@@ -16,13 +16,9 @@ Unrecoverable Error
 
     * Failed :rust:`assert!` or :rust:`debug_assert!`
 
-* You can also manually determine you're in trouble
+* Call :rust:`panic!` when logic indicates unrecoverable error
 
-  * Control flow gets somewhere it shouldn't
-
-* :rust:`panic!` is the call used in these situations
-
-  * Signals unrecoverable error - triggering thread shut-down
+  * Triggers thread shut-down
   * Configurable - either unwind stack or abort
 
 ------------------------------
