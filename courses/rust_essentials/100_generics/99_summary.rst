@@ -10,11 +10,11 @@ What We Learned
 
    -  **Pattern** 
      
-	 -  Abstracts algorithms and structures from code reuse
+     -  Abstracts algorithms and structures from code reuse
 
    -  **Generic Objects** 
      
-	 -  Functions, structs, enums, and type aliases
+     -  Functions, structs, enums, and type aliases
 
 -  **Generics and Traits**
 
@@ -29,9 +29,9 @@ What We Learned
 -  **Generic Traits and Constants** 
 
    -  **Traits**   
-	
-	 -  Traits can be generic, to interact with multiple types
-	 
+    
+     -  Traits can be generic, to interact with multiple types
+     
    -  **Constants**  
 
      -  *Const Generics* are generic over values not types
