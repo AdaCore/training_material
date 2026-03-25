@@ -6,13 +6,13 @@ Generics
 Generic Data Type
 -------------------
 
--  Used to parameterize an object
+- Used to parameterize an object
 
-   -  Declared using :rust:`<>`
+   - Declared using :rust:`<>`
    
--  Can take any identifier name
+- Can take any identifier name
 
-   -  Conventionally called :rust:`T`
+   - Conventionally called :rust:`T`
    
 .. code:: rust
 
@@ -20,15 +20,15 @@ Generic Data Type
     (r, l)
   }
    
--  :rust:`T` (:dfn:`generic type parameter`) means :rust:`swap` use wrap any type
+- :rust:`T` (:dfn:`generic type parameter`) means :rust:`swap` use wrap any type
 
-   -  :rust:`swap<i32>`, :rust:`swap<MyOwnType>`, etc.
+   - :rust:`swap<i32>`, :rust:`swap<MyOwnType>`, etc.
 
 ------------
 Be Generic
 ------------
 
--  Constructs that can be made generic
+- Constructs that can be made generic
 
 .. container:: latex_environment scriptsize
 
@@ -62,7 +62,7 @@ Be Generic
          - :rust:`type Res<T> = Result<GenT>`
          - Simplifying complex generic names
 
--  Examples
+- Examples
 
 .. code:: rust
 
@@ -77,7 +77,7 @@ Be Generic
 Type Inference 
 ----------------
 
--  Any **Sized** type can be used as the type argument    
+- Any **Sized** type can be used as the type argument    
 
 .. code:: rust
 
@@ -87,7 +87,7 @@ Type Inference
         item 
     }
 	
--  Type is **inferred** at compile-time from the context
+- Type is **inferred** at compile-time from the context
 
 .. code:: rust  
 
@@ -121,7 +121,7 @@ Multiple Generic Type
 Type Aliases 
 --------------
 
--  Can be used to rename types and generic parameters
+- Can be used to rename types and generic parameters
 
 .. code:: rust
 
@@ -129,18 +129,18 @@ Type Aliases
   struct LargeShippingUnit<Item, Label>(Item, Label);
   type LargeCrate<T, U> = LargeShippingUnit<T, U>;
   
--  Can *specify* the generic type
+- Can *specify* the generic type
 
-  -  Partially   
+  - Partially   
 
-.. code:: rust
+  .. code:: rust
 
-  struct Animal;
-  type AnimalCrate<U> = LargeCrate<Animal, U>;
+    struct Animal;
+    type AnimalCrate<U> = LargeCrate<Animal, U>;
   
-  -  Totally
+  - Totally
 
-.. code:: rust
+  .. code:: rust
 
-  struct Environment;
-  type Biome = LargeCrate<Animal, Environment>;  
+    struct Environment;
+    type Biome = LargeCrate<Animal, Environment>;  
