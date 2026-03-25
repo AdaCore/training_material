@@ -216,9 +216,9 @@ Tuple Structs
     
 :error:`error[E0609]: no field '3' on type 'Character'`
 
-----------------
-Value Illusion
-----------------
+-----------------------
+Constructor Ambiguity
+-----------------------
 
 -  Tuple struct type declaration defines both
 
