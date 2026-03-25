@@ -24,7 +24,7 @@ What We Learned
 
    -  **Multiple Constraints** 
    
-     -  Bounds can be combined using +  
+     -  Bounds can be combined using :rust:`+`  
 
 -  **Generic Traits and Constants** 
 

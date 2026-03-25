@@ -20,7 +20,7 @@ Generic Data Type
     (r, l)
   }
    
-- :rust:`T` (:dfn:`generic type parameter`) means :rust:`swap` use wrap any type
+- :rust:`T` (:dfn:`generic type parameter`) means :rust:`swap` can wrap any type
 
    - :rust:`swap<i32>`, :rust:`swap<MyOwnType>`, etc.
 
@@ -100,7 +100,7 @@ Type Inference
 
    
 -----------------------
-Multiple Generic Type
+Multiple Generic Types
 -----------------------
 
 **Constructs can have multiple generic data types** 
