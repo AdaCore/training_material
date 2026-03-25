@@ -6,10 +6,11 @@ Enums
 Basics
 --------
 
--  :rust:`enum` can be one of several possible, distinct **variants**
--  Represents a choice between different values
--  **Variants** from an :rust:`enum` are accessed using the :rust:`::` notation
-   -  Called **path separator**
+- :rust:`enum` can be one of several possible, distinct **variants**
+- Represents a choice between different values
+- **Variants** from an :rust:`enum` are accessed using the :rust:`::` notation
+   - Called **path separator**
+   - Commonly referred to as **scope resolution operator**
 
 .. code:: rust
 
@@ -26,9 +27,9 @@ Enums with Data
 -  **Variants** can optionally hold data 
    -  This is an :rust:`enum` superpower!
 -  Can't be recursive
+   -  Type would not be **Sized**
 -  Similar to *tagged unions* in C++
    -  But rust *enums* are a core feature 
-
 
 .. code:: rust
 
@@ -39,20 +40,17 @@ Enums with Data
     } 
     let move = PlayerMove::Run(Direction::Left);
    
-    enum Message {
-        Quit,                          // No data
-        Move { xx: i32, yy: i32 },     // Two named 'i32' values
-        ChangeColor(i32, i32, i32),    // Three 'i32' values
-    }
-    let message = Message::Move { xx: 10, yy: 10 };
+    let teleport = PlayerMove::Teleport { xx: 10, yy: 10 };
     
 ---------------------
 Enum Initialization
 ---------------------
     
--  **Must** specify entire variant when creating :rust:`enum` variable
+- **Must** specify entire variant when creating :rust:`enum` variable
 
--  No default values for data
+  - A variant must be selected
+
+  - Data must be initialized if variant holds data
 
 .. code:: rust
 

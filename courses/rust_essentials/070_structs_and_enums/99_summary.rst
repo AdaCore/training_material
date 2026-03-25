@@ -12,7 +12,7 @@ What We Learned
 
    -  Full field initialization is mandatory
 
-   -  Uses the *Struct Update Operator* (:rust:`..`) for easy copying
+   -  Supplies *Struct Update Operator* (:rust:`..`) to copy with minor modifications
 
    -  Includes Named-field structs, Tuple structs, and the *newtype* idiom
 
@@ -22,4 +22,3 @@ What We Learned
 
    -  Variants can optionally carry specific data (tuple or struct-like)
 
-   -  State machines idiom

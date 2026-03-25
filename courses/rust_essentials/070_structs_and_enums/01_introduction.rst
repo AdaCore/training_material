@@ -32,7 +32,7 @@ Introduction
 
    -  User-defined types 
    -  Bundle related pieces of information together
-   -  Define their behavior
+   -  User-defined behavior can be implemented
 
 .. code:: rust
 

@@ -48,7 +48,7 @@ Nesting Structs
     }
     struct Car {
         new: bool,
-        // 'power_plant' is an 'Engine' struct inside 'Car' struct
+        // 'Engine' struct inside 'Car' struct
         power_plant: Engine, 
     }
     
@@ -102,14 +102,14 @@ Struct Initialization
 	
   :error:`error[E0063]: missing field 'logged_in' in initializer of 'User'`
     
---------------------------------
-Field Initialization Shorthand
---------------------------------
+------------------------------------
+Shorthand for Field Initialization
+------------------------------------
 
 -  If field and variable have same name, it could be written only once
    -  This is called :dfn:`Field Init Shorthand`
    -  Compiler automatically expands the variable
-   -  *Name association* and *Field Init Shorthand* can be used together
+   -  Can be mixed with explicit field assignments
 -  No positional association allowed
 
 .. code:: rust
@@ -135,7 +135,7 @@ Field Initialization Shorthand
 Struct Update Operator 
 ------------------------
 
--  Creation of :rust:`struct` based on another instance via '..' operator 
+-  Creation of :rust:`struct` based on another instance via :rust:`..` operator 
    -  Specify values only for the fields that need to change 
    -  Unspecified fields are *copied* or *moved* from the other instance
 -  Base instance can't be followed by a comma
@@ -143,7 +143,10 @@ Struct Update Operator
    
 .. warning:: Fields are *moved* if their type (e.g., :rust:`String`)  doesn't implement the :rust:`copy` trait  
 
-.. code:: rust
+
+.. container:: latex_environment footnotesize
+
+  .. code:: rust
 
     struct Settings {
         font_size: u8,
@@ -193,9 +196,9 @@ Mutable
 Tuple Structs
 ---------------
 
--  Like named-field :rust:`struct`, can hold any type that is **Sized**
-   -  Useful to give a structure a specific name without naming any fields
--  First element of a tuple is 0 not 1  
+- Like named-field :rust:`struct`, can hold any type that is **Sized**
+   - Useful to give a structure a specific name without naming any fields
+- Tuple indexing starts at 0 
 
 .. code:: rust
 
@@ -226,16 +229,16 @@ Value Illusion
 .. code:: rust
     
     struct Point(i32, i32);
-    // Creates an alias
+    // Creates a binding to the constructor function
     let coord = Point;  // 'Point' is the constructor function
        
 .. warning:: 
     
-   :rust:`coord` is NOT a variable of type :rust:`Point`. It is an alias for the constructor function call
+   :rust:`coord` is NOT a variable of type :rust:`Point`. It refers to the :rust:`Point` constructor function
 
 .. code:: rust 
     
-    // Calls the alias for 'Point' constructor  
+    // Calls the 'Point' constructor function   
     // Initializes the tuple
     let maximum = coord(1,2); // 'maximum' is a 'Point'
     
