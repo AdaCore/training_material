@@ -6,11 +6,11 @@ Enums
 Basics
 --------
 
-- :rust:`enum` can be one of several possible, distinct **variants**
-- Represents a choice between different values
-- **Variants** from an :rust:`enum` are accessed using the :rust:`::` notation
-   - Called **path separator**
-   - Commonly referred to as **scope resolution operator**
+- :rust:`enum` can be one of several distinct **variants**
+- Represents a value that can be one of several variants
+- **Variants** are accessed using the :rust:`::` notation
+  - Called **path separator**
+  - Commonly referred to as **scope resolution operator**
 
 .. code:: rust
 
@@ -24,12 +24,12 @@ Basics
 Enums with Data
 -----------------
 
--  **Variants** can optionally hold data 
-   -  This is an :rust:`enum` superpower!
--  Can't be recursive
-   -  Type would not be **Sized**
--  Similar to *tagged unions* in C++
-   -  But rust *enums* are a core feature 
+- **Variants** can optionally hold data 
+  - This is an :rust:`enum` superpower!
+- Can't be recursive
+  - Type would not be **Sized**
+- Similar to *tagged unions* in C++
+  - But Rust *enums* are a core feature 
 
 .. code:: rust
 

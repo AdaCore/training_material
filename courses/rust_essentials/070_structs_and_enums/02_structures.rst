@@ -77,7 +77,7 @@ Beware of Recursion!
 Struct Initialization
 -----------------------
 
--  No partial Initialization possible
+-  No partial initialization possible
    -  No implicit default values
 
 .. code:: rust
@@ -123,8 +123,8 @@ Shorthand for Field Initialization
     let sign_in_count = 1;
     
     let user_1 = User {
-      // Same as active: active,
-      // The field takes value of local variable
+      // Same as 'active: active'
+      // Field takes value of local variable
       active,
       // Name association is still possible
       sign_in_count: sign_in_count,
@@ -137,7 +137,7 @@ Struct Update Operator
 
 -  Creation of :rust:`struct` based on another instance via :rust:`..` operator 
    -  Specify values only for the fields that need to change 
-   -  Unspecified fields are *copied* or *moved* from the other instance
+   -  Unspecified fields are *copied* or *moved* from the base instance
 -  Base instance can't be followed by a comma
    -  Must be at the end of the declaration
    
@@ -171,7 +171,7 @@ Mutable
 ---------
 
 -  Mutability applies to the entire instance
-   -  No partial application for some fields
+   -  No partial application for only some fields
    
 .. code:: rust
 
@@ -224,7 +224,7 @@ Value Illusion
 
    -  Data type
    
-   -  Constructor function call
+   -  Constructor function
    
 .. code:: rust
     
