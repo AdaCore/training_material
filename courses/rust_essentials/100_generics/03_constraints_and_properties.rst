@@ -114,7 +114,7 @@ Turbofish "::<>"
   
 :error:`error[E0282]: type annotations needed for 'Vec<_>'`
   
--  Turbofish :rust:`::<>` syntax is used to removes ambiguity
+-  Turbofish :rust:`::<>` syntax is used to remove ambiguity
 
 .. code:: rust
 
