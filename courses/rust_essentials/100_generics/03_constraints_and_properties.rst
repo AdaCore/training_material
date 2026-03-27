@@ -70,7 +70,7 @@ Meeting Constraints
 User-Defined Traits as Constraints
 ------------------------------------
 
--  Can be constraints for a generic function
+**Can be constraints for a generic function**
 
 .. code:: rust
 
@@ -114,7 +114,7 @@ Turbofish "::<>"
   
 :error:`error[E0282]: type annotations needed for 'Vec<_>'`
   
--  Turbofish :rust:`::<>` syntax is used to removes ambiguity
+-  Turbofish :rust:`::<>` syntax is used to remove ambiguity
 
 .. code:: rust
 
