@@ -8,16 +8,15 @@ Basics
 
 - :rust:`struct` creates a type that can hold multiple related values
 
-   - Visually similar to :cpp:`struct` in C/C++ or :ada:`record` in Ada
+  - Visually similar to :cpp:`struct` in C/C++ or :ada:`record` in Ada
 
 - Can hold any type that is :dfn:`Sized`
 
-   - Size is known at compile time
+  - Size is known at compile time
 
 - Fields accessed via dot notation
 
-- Called :dfn:`named-field struct`
-   
+- Called :dfn:`named-field struct`  
 
 .. code:: rust
 
@@ -135,7 +134,6 @@ Shorthand for Field Initialization
 Struct Update Operator 
 ------------------------
 
-<<<<<<< HEAD
 - Creation of :rust:`struct` based on another instance via :rust:`..` operator 
   - Specify values only for fields that need to change 
   - Unspecified fields are *copied* or *moved* from the base instance
@@ -261,7 +259,7 @@ Type Safety with Tuples
 -------------------------
 
 - **Name** differentiates types 
-   - Not their definition
+  - Not their definition
 - Tuple structs with the same definition are different types 
    
 
@@ -283,7 +281,7 @@ Idiom: Newtype
 
 - A :dfn:`newtype` is a tuple :rust:`struct` with a single field 
 
-   - Used to ensure type safety
+  - Used to ensure type safety
 
 .. code:: rust
 
