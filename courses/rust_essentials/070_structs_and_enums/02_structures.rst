@@ -6,17 +6,17 @@ Structs
 Basics
 --------
 
--  :rust:`struct` creates a type that can hold multiple related values
+- :rust:`struct` creates a type that can hold multiple related values
 
-   -  Visually similar to :cpp:`struct` in C/C++ or :ada:`record` in Ada
+   - Visually similar to :cpp:`struct` in C/C++ or :ada:`record` in Ada
 
--  Can hold any type that is :dfn:`Sized`
+- Can hold any type that is :dfn:`Sized`
 
-   -  Size is known at compile time
+   - Size is known at compile time
 
--  Fields accessed via dot notation
+- Fields accessed via dot notation
 
--  Called :dfn:`named-field struct`
+- Called :dfn:`named-field struct`
    
 
 .. code:: rust
@@ -56,8 +56,8 @@ Nesting Structs
 Beware of Recursion!
 ----------------------
    
--  Structs **cannot** be recursive
-   -   Type would not be **Sized**
+- Structs **cannot** be recursive
+  -  Type would not be **Sized**
 
 .. code:: rust
 
@@ -77,8 +77,8 @@ Beware of Recursion!
 Struct Initialization
 -----------------------
 
--  No partial initialization possible
-   -  No implicit default values
+- No partial initialization possible
+  - No implicit default values
 
 .. code:: rust
 
@@ -106,11 +106,11 @@ Struct Initialization
 Shorthand for Field Initialization
 ------------------------------------
 
--  If field and variable have same name, it could be written only once
-   -  This is called :dfn:`Field Init Shorthand`
-   -  Compiler automatically expands the variable
-   -  Can be mixed with explicit field assignments
--  No positional association allowed
+- If field and variable have same name, it could be written only once
+  - This is called :dfn:`Field Init Shorthand`
+  - Compiler automatically expands the variable
+  - Can be mixed with explicit field assignments
+- No positional association allowed
 
 .. code:: rust
 
@@ -135,11 +135,11 @@ Shorthand for Field Initialization
 Struct Update Operator 
 ------------------------
 
--  Creation of :rust:`struct` based on another instance via :rust:`..` operator 
-   -  Specify values only for the fields that need to change 
-   -  Unspecified fields are *copied* or *moved* from the base instance
--  Base instance can't be followed by a comma
-   -  Must be at the end of the declaration
+- Creation of :rust:`struct` based on another instance via :rust:`..` operator 
+  - Specify values only for the fields that need to change 
+  - Unspecified fields are *copied* or *moved* from the base instance
+- Base instance can't be followed by a comma
+  - Must be at the end of the declaration
    
 .. warning:: Fields are *moved* if their type (e.g., :rust:`String`)  doesn't implement the :rust:`copy` trait  
 
@@ -170,8 +170,8 @@ Struct Update Operator
 Mutable
 ---------
 
--  Mutability applies to the entire instance
-   -  No partial application for only some fields
+- Mutability applies to the entire instance
+  - No partial application for only some fields
    
 .. code:: rust
 
@@ -197,7 +197,7 @@ Tuple Structs
 ---------------
 
 - Like named-field :rust:`struct`, can hold any type that is **Sized**
-   - Useful to give a structure a specific name without naming any fields
+  - Useful to give a structure a specific name without naming any fields
 - Tuple indexing starts at 0 
 
 .. code:: rust
@@ -220,11 +220,11 @@ Tuple Structs
 Constructor Ambiguity
 -----------------------
 
--  Tuple struct type declaration defines both
+- Tuple struct type declaration defines both
 
-   -  Data type
+  - Data type
    
-   -  Constructor function
+  - Constructor function
    
 .. code:: rust
     
@@ -242,7 +242,7 @@ Constructor Ambiguity
     // Initializes the tuple
     let maximum = coord(1,2); // 'maximum' is a 'Point'
     
--    This doesn't compile
+- This doesn't compile
 
 .. code:: rust
     
@@ -258,9 +258,9 @@ Constructor Ambiguity
 Type Safety with Tuples
 -------------------------
 
--  **Name** differentiates types 
-   -  Not their definition
--  Tuple structs with the same definition are different types 
+- **Name** differentiates types 
+   - Not their definition
+- Tuple structs with the same definition are different types 
    
 
 .. code:: rust
@@ -279,9 +279,9 @@ Type Safety with Tuples
 Idiom: Newtype
 ----------------
 
--  A :dfn:`newtype` is a tuple :rust:`struct` with a single field 
+- A :dfn:`newtype` is a tuple :rust:`struct` with a single field 
 
-   -  Used to ensure type safety
+   - Used to ensure type safety
 
 .. code:: rust
 

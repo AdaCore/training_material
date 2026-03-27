@@ -9,7 +9,7 @@ Basics
 - :rust:`enum` can be one of several distinct **variants**
 - **Variants** are accessed using the :rust:`::` notation
   - Called **path separator**
-  - Commonly referred to as **scope resolution operator**
+  - Commonly referred to as :dfn:`scope resolution operator`
 
 .. code:: rust
 
