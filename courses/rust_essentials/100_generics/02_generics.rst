@@ -131,14 +131,14 @@ Type Aliases
   
 - Can *specify* the generic type
 
-  - Partially   
+  - **Partially**
 
   .. code:: rust
 
     struct Animal;
     type AnimalCrate<U> = LargeCrate<Animal, U>;
   
-  - Totally
+  - **Totally**
 
   .. code:: rust
 

@@ -70,7 +70,7 @@ Meeting Constraints
 User-Defined Traits as Constraints
 ------------------------------------
 
--  Can be constraints for a generic function
+**Can be constraints for a generic function**
 
 .. code:: rust
 
