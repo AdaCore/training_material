@@ -135,13 +135,15 @@ Shorthand for Field Initialization
 Struct Update Operator 
 ------------------------
 
+<<<<<<< HEAD
 - Creation of :rust:`struct` based on another instance via :rust:`..` operator 
-  - Specify values only for the fields that need to change 
+  - Specify values only for fields that need to change 
   - Unspecified fields are *copied* or *moved* from the base instance
 - Base instance can't be followed by a comma
   - Must be at the end of the declaration
+
    
-.. warning:: Fields are *moved* if their type (e.g., :rust:`String`)  doesn't implement the :rust:`copy` trait  
+.. warning:: Fields are *moved* if their type (e.g., :rust:`String`)  doesn't implement the :rust:`Copy` trait  
 
 
 .. container:: latex_environment footnotesize
