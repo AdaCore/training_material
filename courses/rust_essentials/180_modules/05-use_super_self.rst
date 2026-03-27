@@ -65,7 +65,7 @@ The "use" Shortcut
 * When to avoid it
 
   * Makes it hard to find things for coder and autocomplete
-  * Globbed modules use the same name causes compilation errors
+  * Globbed modules with the same name cause compilation errors
 
 .. note:: 
 
@@ -77,9 +77,9 @@ Relative Paths
 
 * When referring to the current module, you can use :rust:`self`
 
-  * Often used in use statements
+  * Often used in :rust:`use` statements
 
-* To refer to the enclosing module, you can use :rust:`super`
+* Use :rust:`super` to refer to the enclosing module 
 
   * Useful for reaching "outside" the current module
 
@@ -100,7 +100,7 @@ Relative Paths
 Absolute Paths
 ----------------
 
-* To refer to something from the base directory of the filesystem, use :rust:`crate`
+* Use :rust:`crate` to refer to something from the base directory of the filesystem
 
   * Always starts from the root of the current crate
   * Path stays valid even if you move the file to a different module

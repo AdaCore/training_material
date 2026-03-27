@@ -49,7 +49,7 @@ Private Code Example
 Struct and Enum Visibility
 ----------------------------
 
-* Making a struct :rust:`pub` does not make fields public
+* Making a struct :rust:`pub` does not make its fields public
 
   * Each field needs its own :rust:`pub`
 

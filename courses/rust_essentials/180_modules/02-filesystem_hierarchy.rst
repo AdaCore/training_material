@@ -24,7 +24,7 @@ Using Modules from Other Files
         println!("Whistle while you work")
     }
 
-  *Note you don't need* :rust:`mod` *in this file*
+  *Note: you don't need* :rust:`mod` *in this file*
 
 --------------------------
 Mapping Modules to Files

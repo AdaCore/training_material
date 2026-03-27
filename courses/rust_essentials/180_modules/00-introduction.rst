@@ -22,6 +22,6 @@ Topics Covered
 
   * Providing safe access to data
 
-* Pathing
+* **Pathing**
 
   * Simplifying references to modules
