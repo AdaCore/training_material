@@ -72,7 +72,7 @@ Enum Initialization
 Idiom: State Machine
 ----------------------
 
-Each variant is **mutually exclusive**
+**Each variant is mutually exclusive**
 
 .. code:: rust
 
