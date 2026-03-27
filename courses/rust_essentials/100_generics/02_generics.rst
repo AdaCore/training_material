@@ -35,30 +35,30 @@ Be Generic
     .. list-table:: 
        :header-rows: 1
        
-       * - Constructs
-         - Example Syntax
-         - Purpose
+       * - **Constructs**
+         - **Example Syntax**
+         - **Purpose**
          
-       * - Functions
+       * - *Functions*
          - :rust:`fn logic<T>(arg: T)`
          - Logic that works on multiple types
 
 
-       * - Structs
+       * - *Structs*
          - :rust:`struct Container<T>(T)`
          - Data structures that hold any type
 
 
-       * - Enums
+       * - *Enums*
          - :rust:`enum Choice<T> { A(T), B }`
          - Variants that can wrap different data
 
 
-       * - Traits
+       * - *Traits*
          - :rust:`trait Behavior<T>`
          - Defining interfaces with generic inputs
 
-       * - Type Aliases
+       * - *Type Aliases*
          - :rust:`type Res<T> = Result<GenT>`
          - Simplifying complex generic names
 

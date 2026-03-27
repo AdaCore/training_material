@@ -6,33 +6,33 @@ Summary
 What We Learned
 -----------------
 
--  **Generic Data Types**
+- **Generic Data Types**
 
-   -  **Pattern** 
+  - **Pattern** 
      
-     -  Abstracts algorithms and structures from code reuse
+    - Abstracts algorithms and structures from code reuse
 
-   -  **Generic Objects** 
+  - **Generic Objects** 
      
-     -  Functions, structs, enums, and type aliases
+    - Functions, structs, enums, and type aliases
 
--  **Generics and Traits**
+- **Generics and Traits**
 
-   -  **Trait Bounds** 
+  - **Trait Bounds** 
    
-     -  Act as a contract to add requirements and properties
+    - Act as a contract to add requirements and properties
 
-   -  **Multiple Constraints** 
+  - **Multiple Constraints** 
    
-     -  Bounds can be combined using :rust:`+`  
+    - Bounds can be combined using :rust:`+`  
 
--  **Generic Traits and Constants** 
+- **Generic Traits and Constants** 
 
-   -  **Traits**   
+  - **Traits**   
     
-     -  Traits can be generic, to interact with multiple types
+    - Traits can be generic, to interact with multiple types
      
-   -  **Constants**  
+  - **Constants**  
 
-     -  *Const Generics* are generic over values not types
+    - *Const Generics* are generic over values not types
    

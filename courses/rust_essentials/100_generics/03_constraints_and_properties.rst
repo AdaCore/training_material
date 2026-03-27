@@ -25,7 +25,7 @@ Trait Bounds
 Adding Constraints
 --------------------
 
-Adding a trait to generic specify what capabilities a type must have
+**Adding a trait to generic specify what capabilities a type must have**
 
 .. code:: rust
 
