@@ -2,15 +2,21 @@
 Modules
 =========
 
-----------------------------
-Organization "Big Picture"
-----------------------------
+--------------------------
+Modules: The Big Picture
+--------------------------
+
+* All application does not reside in one file!
+
+  * *Modules* are how Rust organizes code
 
 * Encapsulation
 
-  * Modules allow you to group related code together
+  * Group related code together
 
     * Functions, structs, traits
+
+  * Hide implementation details from user
 
 * Namespacing
 
@@ -42,4 +48,5 @@ Organization "Big Picture"
 
 .. note::
 
-  Use the :rust:`::` to specify the module containing the item
+  Written as :rust:`module_name::function_name`
+

@@ -6,7 +6,27 @@ Filesystem Hierarchy
 Using Modules from Other Files
 --------------------------------
 
-* Caller specifies just the module name
+* Each file is considered a module
+
+  * Functions, structs, etc. are *potentially* visible to other files
+
+    * More on how that's controlled in the next chapter
+
+  * Do not need :rust:`mod` in the file
+
+    * If you have it, that's a nested module!
+
+  **File cleaner.rs**
+
+    .. code:: rust
+
+      pub fn perform_cleanup() {
+          println!("Whistle while you work")
+      }
+
+* Calling file specifies module name
+
+  **File caller.rs**
 
   .. code:: rust
 
@@ -15,16 +35,6 @@ Using Modules from Other Files
     fn main() {
         cleaner::perform_cleanup();
     }
-
-* Module file just contains the items
-
-  .. code:: rust
-
-    fn perform_cleanup() {
-        println!("Whistle while you work")
-    }
-
-  *Note: you don't need* :rust:`mod` *in this file*
 
 --------------------------
 Mapping Modules to Files
@@ -51,6 +61,6 @@ Directory-based Modules
 
   * If :filename:`cleaner.rs` contains :rust:`mod sweep;`
 
-  * Then :rust:`sweep` module can be in :filename:`cleaner/sweep.rs`
+    * ... then :rust:`sweep` module can be in :filename:`cleaner/sweep.rs`
 
 * This creates a clean tree structure that mirrors your file system

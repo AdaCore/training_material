@@ -29,7 +29,9 @@ Dealing with Long Paths
       greenhouse::shelf::cactus::touch_spine();
   }
 
-*Wouldn't it be nice to shorten these paths?*
+.. note::
+
+  Wouldn't it be nice to shorten these paths?
 
 --------------------
 The "use" Shortcut
@@ -39,12 +41,14 @@ The "use" Shortcut
 
   * E.g., :rust:`std::collections::HashMap`
 
-* :rust:`use std::collections::HashMap;` allows you to just type :rust:`HashMap`
+* :rust:`use std::collections::HashMap;`
 
-  * As if it was in your own module
+  * Allows you to just type :rust:`HashMap`
+  * ... as if it was in your own module
 
+.. tip::
 
-* Simplify (and reduce clashes) with *renaming*
+  Rather than :rust:`use`, try :rust:`as` to rename item
 
   .. code:: rust
 
@@ -56,20 +60,26 @@ The "use" Shortcut
 
 * Use the wildcard "*" (:dfn:`glob import`) to get everything
 
-* When to use it
+  * All public items in module get added to current scope
+
+* Benefits
 
   * Common in :rust:`mod tests` to test private items easily
   * Used in preludes to load essential traits
   * Speeds up prototyping
 
-* When to avoid it
+* Risks
 
   * Makes it hard to find things for coder and autocomplete
   * Globbed modules with the same name cause compilation errors
 
 .. note:: 
 
-  Use **nested imports** - :rust:`use std::io::(self, Read, Write);`
+  To reduce risks of *globbing*, use **nested imports**
+
+  .. code:: rust
+
+    use std::io::(self, Read, Write);
 
 ----------------
 Relative Paths
