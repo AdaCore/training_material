@@ -6,7 +6,9 @@ Lifetime Annotations
 Lifetime Annotations
 ----------------------
 
-- Rust can name lifetimes explicitly
+- Rust can name a reference's lifetime explicitly
+
+- Written using a leading :rust:`'`
 
 .. code:: rust
 

@@ -18,7 +18,7 @@ What is a Lifetime?
   println!("{second}");
 
 - :rust:`first` lives from lines 1 – 3
-- :rust:`second` lives from lines 2 – 3
+- :rust:`second` is valid from lines 2 – 3
 - :rust:`second` does **not** outlive :rust:`first`
 
 ----------------------
