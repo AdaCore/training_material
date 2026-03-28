@@ -24,9 +24,9 @@ Lifetime Annotations
   Common to use short names (:rust:`'a`, :rust:`'b`, etc., but more
   descriptive names can be used)
 
-------------------------------
-What Lifetime Annotations Do
-------------------------------
+--------------------------------------
+Why Do We Need Lifetime Annotations?
+--------------------------------------
 
 - Describe relationships between references
 
