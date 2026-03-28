@@ -8,6 +8,8 @@ What is a Lifetime?
 
 - Span of code during which a reference is valid
 
+  - Not to be confused with **scope**! (how long a variable exists)
+
 .. code:: rust
   :number-lines: 1
 
