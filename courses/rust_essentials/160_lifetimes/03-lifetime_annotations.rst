@@ -19,7 +19,7 @@ Lifetime Annotations
   // Reference to 'str' valid for at least lifetime ''a'
   &'a str
 
-.. info::
+.. note::
 
   Common to use short names (:rust:`'a`, :rust:`'b`, etc., but more
   descriptive names can be used)
