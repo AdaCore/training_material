@@ -38,6 +38,24 @@ Why Do We Need Lifetime Annotations?
 
 .. code:: rust
 
+  fn choose(left: &str, right: &str) -> &str {
+        if left.len() > right.len() { 
+            left 
+        } else {
+          right
+        }
+    }
+
+:command:`error[E0106]: missing lifetime specifier`
+
+----------------------------------
+Solving Ambiguity with Lifetimes
+----------------------------------
+
+**Previously, we encountered an error: a lifetime annotation solves it**
+
+.. code:: rust
+
   // The return value could come from either input,
   // so they must share the same lifetime
   fn choose<'a>(left: &'a str, right: &'a str) -> &'a str {
