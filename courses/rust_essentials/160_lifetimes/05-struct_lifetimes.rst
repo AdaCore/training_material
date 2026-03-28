@@ -15,7 +15,7 @@ Lifetimes in Data Structures
     // Bad: Missing lifetime — does not compile
     struct Highlight(&str);
 
-:command:`error[E0106]: missing lifetime specifier`
+:error:`error[E0106]: missing lifetime specifier`
 
   .. code:: Rust
 
