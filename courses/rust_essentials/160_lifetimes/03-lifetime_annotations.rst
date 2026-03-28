@@ -46,7 +46,7 @@ Why Do We Need Lifetime Annotations?
         }
     }
 
-:command:`error[E0106]: missing lifetime specifier`
+:error:`error[E0106]: missing lifetime specifier`
 
 ----------------------------------
 Solving Ambiguity with Lifetimes
