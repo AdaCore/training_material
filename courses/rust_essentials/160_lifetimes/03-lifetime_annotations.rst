@@ -6,7 +6,11 @@ Lifetime Annotations
 Lifetime Annotations
 ----------------------
 
-- Rust can name a reference's lifetime explicitly
+- Every reference has a lifetime
+
+  - Usually, the compiler determines it automatically
+
+  - A :dfn:`lifetime annotation` can name it explicitly
 
 - Written using a leading :rust:`'`
 
@@ -15,14 +19,10 @@ Lifetime Annotations
   // Reference to 'str' valid for at least lifetime ''a'
   &'a str
 
-- Lifetimes start with :rust:`'`
+.. info::
 
-.. code:: rust
-
-  // Examples of names:
-  'some_name
-  'a_lifetime
-  'existence
+  Common to use short names (:rust:`'a`, :rust:`'b`, etc., but more
+  descriptive names can be used)
 
 ------------------------------
 What Lifetime Annotations Do
