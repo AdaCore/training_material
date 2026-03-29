@@ -2,110 +2,72 @@
 Interior Mutability
 =====================
 
----------------------
-Interior Mutability
----------------------
+-------------------------------
+The Problem with Strict Rules
+-------------------------------
 
-In some situations, it's necessary to modify data behind a shared
-(read-only) reference. For example, a shared data structure might have
-an internal cache, and wish to update that cache from read-only methods.
+- Immutable references strictly forbid data modification
+- Certain patterns require updating hidden state
+  - During a read-only :rust:`&self` method call
+    - Like :rust:`read_count` on :rust:`Sensor` 
+- Compile-time borrow checks are traded for runtime checks
 
-The :dfn:`interior mutability` pattern allows exclusive (mutable) access
-behind a shared reference. The standard library provides several ways to
-do this, all while still ensuring safety, typically by performing a
-runtime check.
+.. note::
 
----------
-Details
----------
+   **Interior mutability** enables safe mutation through shared references
 
-The main thing to take away from this slide is that Rust provides *safe*
-ways to modify data behind a shared reference. There are a variety of
-ways to ensure that safety, and the next sub-slides present a few of
-them.
+----------
+"Cell<T>"
+----------
 
---------------
-:rust:`Cell`
---------------
-
-:rust:`Cell` wraps a value and allows getting or setting the value using
-only a shared reference to the :rust:`Cell`. However, it does not allow any
-references to the inner value. Since there are no references, borrowing
-rules cannot be broken.
+- :rust:`Cell<T>` is designed for types that implement the :rust:`Copy trait`
+  - Such as integers or booleans
+- References to the inner data are never exposed
+- Values are exclusively copied in (:rust:`set`) and out (:rust:`get`)
+  - Guarantees safe mutation through a shared, read-only reference
 
 .. code:: rust
 
    use std::cell::Cell;
 
-   fn main() {
-       // Note that `cell` is NOT declared as mutable.
-       let cell = Cell::new(5);
-
-       cell.set(123);
-       println!("{}", cell.get());
+   struct Sensor {
+      data: i32,
+      read_count: Cell<u32>, // Can be mutated even if Sensor is &self
    }
 
-----------------------
-:rust:`Cell` Details
-----------------------
+   impl Sensor {
+      fn read(&self) -> i32 {
+         self.read_count.set(self.read_count.get() + 1);
+         self.data
+      }
+   }
 
--  :rust:`Cell` is a simple means to ensure safety: it has a :rust:`set` method
-   that takes :rust:`&self`. This needs no runtime check, but requires
-   moving values, which can have its own cost.
+   let scanner = Sensor { data: 42, read_count: Cell::new(0) };
+      
+   scanner.read(); // Borrows immutably
+   println!("Sensor read {} time(s).", scanner.read_count.get());
 
------------------
-:rust:`RefCell`
------------------
+--------------
+"RefCell<T>"
+--------------
 
-:rust:`RefCell` allows accessing and mutating a wrapped value by providing
-alternative types :rust:`Ref` and :rust:`RefMut` that emulate :rust:`&T`/:rust:`&mut T`
-without actually being Rust references.
+- Used for complex types, like :rust:`Vec` or :rust:`String` 
+  - Where copying isn't cheap or possible
+- Enforces the borrowing rules at runtime rather than compile-time
+- Use :rust:`.borrow()` for a reader and :rust:`.borrow_mut()` for a writer 
 
-These types perform dynamic checks using a counter in the :rust:`RefCell` to
-prevent existence of a :rust:`RefMut` alongside another :rust:`Ref`/:rust:`RefMut`.
-
-By implementing :rust:`Deref` (and :rust:`DerefMut` for :rust:`RefMut`), these types
-allow calling methods on the inner value without allowing references to
-escape.
-
-.. code:: rust
+.. code::rust
 
    use std::cell::RefCell;
 
-   fn main() {
-       // Note that `cell` is NOT declared as mutable.
-       let cell = RefCell::new(5);
+   let memory = RefCell::new(vec![42, 10]);
 
-       {
-           let mut cell_ref = cell.borrow_mut();
-           *cell_ref = 123;
+   // Mutate the vector through an immutable variable 'memory'
+   let mut writer = memory.borrow_mut(); 
+   writer.push(99);
+      
+   let reader = memory.borrow();  // This will panic
 
-           // This triggers an error at runtime.
-           // let other = cell.borrow();
-           // println!("{}", *other);
-       }
+.. warning::
 
-       println!("{cell:?}");
-   }
-
--------------------------
-:rust:`RefCell` Details
--------------------------
-
--  :rust:`RefCell` enforces Rust's usual borrowing rules (either multiple
-   shared references or a single exclusive reference) with a runtime
-   check. In this case, all borrows are very short and never overlap, so
-   the checks always succeed.
-
--  The extra block in the example is to end the borrow created by the
-   call to :rust:`borrow_mut` before we print the cell. Trying to print a
-   borrowed :rust:`RefCell` just shows the message :rust:`"{borrowed}"`.
-
------------------
-More to Explore
------------------
-
-There are also :rust:`OnceCell` and :rust:`OnceLock`, which allow initialization
-on first use. Making these useful requires some more knowledge than
-students have at this time.
-
+   If the rules are violated, the program will immediately panic and crash

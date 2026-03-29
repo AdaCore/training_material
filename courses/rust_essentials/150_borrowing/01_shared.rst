@@ -2,78 +2,191 @@
 Borrowing a Value
 ===================
 
--------------------
-Borrowing a Value
--------------------
+----------------
+Why Borrowing?
+----------------
 
-As we saw before, instead of transferring ownership when calling a
-function, you can let a function *borrow* the value:
+- Ownership transfer is not always practical
+- Borrowing allows to access data
+  - Without taking ownership of it
+  - Implemented using a reference
+    - Denoted :rust:`&` or :rust:`&mut`
+
+.. note::
+
+    When no longer being used, borrowed data is not dropped because the reference do not own it
+
+---------------
+Local Borrows
+---------------
+
+- Multiple references (:rust:`&T`) can read the data simultaneously
+- A single reference (:rust:`&mut T`) can change the data
+  - Provided readers are gone
 
 .. code:: rust
 
-   #[derive(Debug)]
-   struct Point(i32, i32);
+    struct Sensor(i32);
+    let mut scanner = Sensor(42);
 
-   fn add(p1: &Point, p2: &Point) -> Point {
-       Point(p1.0 + p2.0, p1.1 + p2.1)
-   }
+    let r1 = &scanner; // First immutable borrow
+    let r2 = &scanner; // Second immutable borrow
+    println!("Reads: {} and {}", r1.0, r2.0);
+    // r1 and r2 drop here
 
-   fn main() {
-       let p1 = Point(3, 4);
-       let p2 = Point(10, 20);
-       let p3 = add(&p1, &p2);
-       println!("{p1:?} + {p2:?} = {p3:?}");
-   }
+    let w1 = &mut scanner; // Mutable borrow
+    w1.0 += 10; 
+    println!("Calibrated to: {}", w1.0);
 
--  The :rust:`add` function *borrows* two points and returns a new point.
--  The caller retains ownership of the inputs.
+--------------------------------------
+Mixing mutable and immutable borrows
+--------------------------------------
 
----------
-Details
----------
+- Mixing mutable and immutable references fails
+  - Guarantees memory safety at compile time
 
-This slide is a review of the material on references from day 1,
-expanding slightly to include function arguments and return values.
+.. code:: rust
 
------------------
-More to Explore
------------------
+    struct Sensor(i32);
+    let mut scanner = Sensor(42);
 
-Notes on stack returns and inlining:
+    // Immutable borrow starts
+    let reader = &scanner;
 
--  Demonstrate that the return from :rust:`add` is cheap because the
-   compiler can eliminate the copy operation, by inlining the call to
-   add into main. Change the above code to print stack addresses and run
-   it on the
-   :url:`Playground <https://play.rust-lang.org/?version=stable&mode=release&edition=2021&gist=0cb13be1c05d7e3446686ad9947c4671>`
-   or look at the assembly in :url:`Godbolt <https://rust.godbolt.org/>`.
-   In the "DEBUG" optimization level, the addresses should change, while
-   they stay the same when changing to the "RELEASE" setting:
+    // Mutable borrow 
+    let writer = &mut scanner; // This won't compile
 
-  .. code:: rust
+    println!("Read: {}, Write: {}", reader.0, writer.0);
 
-      #[derive(Debug)]
-      struct Point(i32, i32);
+.. container:: latex_environment footnotesize
 
-      fn add(p1: &Point, p2: &Point) -> Point {
-          let p = Point(p1.0 + p2.0, p1.1 + p2.1);
-          println!("&p.0: {:p}", &p.0);
-          p
-      }
+    :error:`error[E0502]: cannot borrow 'scanner' as mutable because it is also borrowed as immutable`
 
-      pub fn main() {
-          let p1 = Point(3, 4);
-          let p2 = Point(10, 20);
-          let p3 = add(&p1, &p2);
-          println!("&p3.0: {:p}", &p3.0);
-          println!("{p1:?} + {p2:?} = {p3:?}");
-      }
+------------------
+Function Borrows
+------------------
 
--  The Rust compiler can do automatic inlining, that can be disabled on
-   a function level with :rust:`#[inline(never)]`.
+- Functions can access values safely without consuming them
+- Functions can update the original variable directly
 
--  Once disabled, the printed address will change on all optimization
-   levels. Looking at Godbolt or Playground, one can see that in this
-   case, the return of the value depends on the ABI, e.g. on amd64 the
-   two i32 that is making up the point will be returned in 2 registers
-   (eax and edx).
+.. code:: rust
+
+    struct Sensor(i32);
+
+    fn read(device: &Sensor) {
+        println!("Read: {}", device.0);
+    }
+
+    fn calibrate(device: &mut Sensor) {
+        device.0 += 10;
+    }
+
+    let mut scanner = Sensor(42);
+
+    read(&scanner);            // Read-only borrow starts and ends
+    calibrate(&mut scanner);   // Mutable borrow starts and ends
+    read(&scanner);            // Read-only borrow starts and ends
+
+.. note::
+
+    As long as function calls do not overlap in their borrowing, compiler allows it
+
+---------------------
+Overlapping Borrows
+---------------------
+
+- Passing data to functions is still bound by the same rules
+- Cannot call a function that requires a mutable reference 
+  - If an immutable reference is still used
+
+.. code:: rust
+
+    struct Sensor(i32);
+
+    fn calibrate(device: &mut Sensor) {
+        device.0 += 10;
+    }
+
+    let mut scanner = Sensor(42);    
+    let active_reader = &scanner; // Immutable borrow starts
+
+    calibrate(&mut scanner); // Mutable borrow - This won't compile
+    
+    println!("Reader sees: {}", active_reader.0);
+
+.. container:: latex_environment footnotesize
+
+    :error:`[E0502]: cannot borrow 'scanner' as mutable because it is also borrowed as immutable`
+
+--------------------------
+Multiple Mutable Borrows
+--------------------------
+
+- Functions cannot receive multiple mutable references to the same data
+  - Prevented by the borrow checker at compile-time
+
+.. code:: rust
+
+    struct Sensor(i32);
+
+    fn sync_sensors(s1: &mut Sensor, s2: &mut Sensor) {
+        s1.0 = s2.0;
+    }
+
+    let mut scanner = Sensor(42);
+    sync_sensors(&mut scanner, &mut scanner); // Error
+
+.. container:: latex_environment tiny
+
+    :error:`error[E0499]: cannot borrow 'scanner' as mutable more than once at a time`
+
+----------------
+Method Borrows
+----------------
+
+- Take a read-only borrow with :rust:`&self`
+  - Safe to call multiple times, even simultaneously
+- Take an exclusive mutable borrow with :rust:`&mut self`
+  - Demands that no other references are currently active
+
+.. code:: rust
+
+    struct Sensor(i32);
+
+    impl Sensor {
+        fn read(&self) -> i32 { self.0 }
+        fn calibrate(&mut self) { self.0 += 10; }
+    }
+    
+    let mut scanner = Sensor(42);
+    let val = scanner.read(); // &self borrow, completes and drops
+        
+    scanner.calibrate();      // &mut self borrow, exclusive    
+    scanner.read();           // &self borrow
+
+.. note::
+
+    :rust:`&` and :rust:`&mut` referencing handled **automatically** at the call site
+
+--------------------------
+Conflicting Self Borrows
+--------------------------
+
+- Same overlapping rules enforced for methods as for functions
+- Active :rust:`&` borrow blocks any :rust:`&mut` self method calls
+- Immutable reference must reach final use before value can be mutated
+
+.. code:: rust
+
+    struct Sensor(i32);
+
+    impl Sensor {
+        fn read(&self) -> i32 { self.0 }
+        fn calibrate(&mut self) { self.0 += 10; }
+    }
+
+    let mut scanner = Sensor(42);
+    
+    let active_ref = &scanner; // Immutable borrow starts
+    scanner.calibrate(); 
+    println!("Reference sees: {}", active_ref.read()); 
