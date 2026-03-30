@@ -16,9 +16,9 @@ Operator Overloading
      :widths: 10 20 70
      :header-rows: 1
 
-     * - Operator
-       - Trait
-       - Method Signature
+     * - **Operator**
+       - **Trait**
+       - **Method Signature**
      * - ``+``
        - ``Add``
        - ``fn add(self, rhs: Rhs) -> Self::Output``

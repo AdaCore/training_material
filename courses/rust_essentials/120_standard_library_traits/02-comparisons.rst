@@ -112,7 +112,7 @@ Useful Equality: Implementation
 .. note::
 
   This is comparing the *concept* of "sensor data",
-  not the equality of the object.
+  not the equality of the object
 
 ----------
 Ordering
