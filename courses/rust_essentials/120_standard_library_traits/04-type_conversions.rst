@@ -131,6 +131,36 @@ Casting Examples
 
 :command:`signed_value as u16: 65400` *lost sign bit!*
 
+-------------------
+Safer Conversions
+-------------------
+
+* Use :rust:`TryFrom` (or :rust:`TryInto`) rather than :rust:`as`
+
+  * Returns error type
+  * Useful when input is not guaranteed
+
+    * Such as user input
+
+.. code:: rust
+  :font-size: small
+
+    let big_number: i32 = 300;
+
+    let casted = big_number as u8;
+    println!("'as' result:    {} -> {}", big_number, casted); 
+
+    let tried = u8::try_from(big_number);
+    match tried {
+        Ok(num) => println!("'TryFrom' result: Success! {}", num),
+        Err(_)  => println!("'TryFrom' result: Error! {} is too big for u8", big_number),
+    }
+}
+
+:command:`'as' result:    300 -> 44`
+
+:command:`'TryFrom' result: Error! 300 is too big for u8`
+
 -----------------------
 Conversion vs Casting
 -----------------------

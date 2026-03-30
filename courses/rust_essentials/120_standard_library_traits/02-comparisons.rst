@@ -165,3 +165,21 @@ Partial Ordering
       }
   }
 
+-----------------------
+Ordering and Equality
+-----------------------
+
+* :rust:`PartialOrd` and :rust:`PartialEq` are *linked traits*
+
+  * They must be **consistent**
+
+* If :rust:`PartialOrd` returns :rust:`Ordering::Equal` for two objects
+
+  * :rust:`PartialEq` **must** return :rust:`True` for those objects
+
+.. warning::
+
+  If :rust:`PartialOrd` and :rust:`PartialEq` are inconsistent,
+  sorted collections (and even :rust:`<=` or :rust:`>=`) behavior
+  will be inconsistent
+

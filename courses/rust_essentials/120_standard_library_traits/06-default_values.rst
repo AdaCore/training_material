@@ -99,3 +99,34 @@ Default Values in a "struct"
 
     * Sensible default values for :rust:`host` and :rust:`debug`
     * New value for :rust:`port`
+
+------------------------------
+Default Values in an "enum"
+------------------------------
+
+* An :rust:`enum` can be one of multiple variants
+
+  * So how does Rust pick the default?
+
+* Default value specified by user when creating :rust:`enum`
+
+  .. code:: rust
+
+    #[derive(Default)]
+    enum Status {
+        #[default]
+        Pending,
+        Active(i32),
+        Closed,
+    }
+
+  * :rust:`Pending` becomes the default value
+
+* Derived defaults only work for *unit variants*
+
+  * So :rust:`Active` would not be selectable
+
+.. tip::
+
+  If you want :rust:`Active` to be default, manually
+  implement :rust:`Default` trait
