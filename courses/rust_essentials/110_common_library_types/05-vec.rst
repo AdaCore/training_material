@@ -98,16 +98,16 @@ Working with "Vec"
   println!("one: {one:?}");
   println!("five: {five:?}");
 
-  :command:`All colors`
+:command:`All colors`
 
-  :command:`  Red`
+:command:`  Red`
 
-  :command:`  Green`
+:command:`  Green`
 
-  :command:`  Blue`
+:command:`  Blue`
 
-  :command:`last: Some("Blue")`
+:command:`last: Some("Blue")`
 
-  :command:`one: Some("Green")`
+:command:`one: Some("Green")`
 
-  :command:`five: None`
+:command:`five: None`
