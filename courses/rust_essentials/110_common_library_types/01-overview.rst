@@ -6,41 +6,48 @@ Overview
 One Library, Three Tiers
 --------------------------
 
-.. container:: columns
+.. raw:: latex
 
-  .. container:: column
+   \begin{columns}
+     \begin{column}{0.7\textwidth}
 
-    * Standard Library is not a monolithic block
+* Standard Library is not a monolithic block
 
-      * Layered stack designed to scale
+  * Layered stack designed to scale
 
-    * **core** (foundation)
+* **core** (foundation)
 
-      * No OS or memory allocator required
-      * Basic types, primitive operations
+  * No OS or memory allocator required
+  * Basic types, primitive operations
 
-    * **alloc** (middle layer)
+* **alloc** (middle layer)
 
-      * Depends on **core**
-      * Requires heap allocator
-      * Growable types
+  * Depends on **core**
+  * Requires heap allocator
+  * Growable types
 
-        * :rust:`Vec`, :rust:`String`, :rust:`Box`, etc.
+    * :rust:`Vec`, :rust:`String`, :rust:`Box`, etc.
 
-    * **std** (full suite)
+* **std** (full suite)
 
-      * Requires host environment
-      * Contains everything in **core** and **alloc**
-      * Adds OS abstractions
+  * Requires host environment
+  * Contains everything in **core** and **alloc**
+  * Adds OS abstractions
 
-        * File I/O, networking, etc.
-
-  .. container:: column
-
-    .. image:: rust_essentials/std_crate.svg
-      :width: 80%
+    * File I/O, networking, etc.
 
 .. raw:: latex
+
+  \end{column}
+  \begin{column}{0.3\textwidth}
+
+.. image:: rust_essentials/std_crate.svg
+  :width: 80%
+
+.. raw:: latex
+
+  \end{column}
+  \end{columns}
 
   \vspace{5mm}
 
