@@ -6,15 +6,19 @@ Dereferencing Smart Pointers
 "Deref" Trait
 ---------------
 
-- Types implementing :rust:`Deref` behave like references
+- *Smart pointers* behave like references
 
-- Returns a reference to the inner data
+  - because they implement :rust:`Deref`
+
+- :rust:`Deref` returns a reference to the inner data
+
+  - Calls on the :rust:`deref()` method
 
   - Using dereference operator :rust:`*`
   
   - Avoids moving ownership
   
-- Dereference operator :rust:`*` calls on the :rust:`deref()` method
+  
 
 .. code:: rust 
 
@@ -22,14 +26,9 @@ Dereferencing Smart Pointers
     println!("Hello, 00{name}!");
   }
 
-  let agent = Box::new(7);
+  let agent = Box::new(7_i32);
     
-  say_hello(*agent); // No need to do 'hello(*agent.0)'
-  
-.. note::
-  
-  :rust:`Box` component agent.0 is actually private so it would not compile
-
+  say_hello(*agent); 
   
 ------------------
 "Deref" Coercion
@@ -52,10 +51,13 @@ Dereferencing Smart Pointers
   }
 
   let my_box = Box::new(String::from("Rust"));
-    
-  // '&my_box' is '&MyBox<String>'
-  // Rust coerces: '&Box<String>' -> '&String' -> '&str'
+
   hello(&my_box); 
+  
+.. note::
+    
+  '&my_box' is '&MyBox<String>'
+  Rust coerces: '&Box<String>' -> '&String' -> '&str'  
   
 ------------  
 "DerefMut"
@@ -117,4 +119,6 @@ Mutability and Coercion
 	 - :color-red:`X`
      - :color-red:`X`
 
+.. note::
 
+  Prohibit &T to &mut T - never coerce *immutable* to *mutable*

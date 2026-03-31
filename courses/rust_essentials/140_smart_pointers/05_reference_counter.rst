@@ -1,5 +1,5 @@
 ====================
-Reference Counting
+"Rc"
 ====================
 
 ----------------------------
@@ -41,7 +41,7 @@ Reference Counting
 Shared Ownership
 ------------------
 
-- :rust:`Box<T>` enforces strict singular ownership
+- :rust:`Box<T>` allows only one owner at a time
 
 .. code:: rust 
 
@@ -51,7 +51,7 @@ Shared Ownership
 
 :error:`error[E0382]: use of moved value: 'var_a'`
   
-- :rust:`Rc<T>` allows shared ownership but no mutable access
+- :rust:`Rc<T>` allows multiple ownership but no mutable access
 
 .. code:: rust 
 
@@ -59,7 +59,7 @@ Shared Ownership
   let var_b = Rc::clone(&var_a);
   let var_c = Rc::clone(&var_a);  
   
-  *var_a += 10;
+  *var_a += 10; //Error: no mutable access
   
 :error:`error[E0594]: cannot assign to data in an 'Rc'`
 
@@ -67,21 +67,21 @@ Shared Ownership
 Fair Warning
 --------------
 
-- Previous example works for :rust:`Copy` types
+- Works for :rust:`Copy` types
 
 .. code:: rust
 
-  let var_a = 5;
-  let var_b = Box::new(var_a);
-  let var_c = Box::new(var_a);
+  let tic = 5;
+  let tac = Box::new(tic);
+  let toe = Box::new(tic);
   
 - :rust:`Clone` works also with :rust:`Box<T>`
 
 .. code:: rust
 
-  let var_d = Box::new(5);
-  let var_e = Box::clone(&var_d);
-  let var_f = Box::clone(&var_d);
+  let tic = Box::new(5);
+  let tac = Box::clone(&tic);
+  let toe = Box::clone(&tic);
 
 .. warning::  
 
@@ -97,7 +97,5 @@ Why Use "Rc<T>" if "Box<T>" Can "Clone"?
 
 - Saves memory by reusing same heap allocation
 
-.. tip::  
 
-  Copying an integer is fast, but not copying large data files!
   

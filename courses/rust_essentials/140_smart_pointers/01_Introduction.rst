@@ -17,6 +17,12 @@ Topics Covered
   - Overriding the dereference operator
   
   - Transparent data access via coercion
+  
+- **Shared Responsibility**
+
+  - Shared ownership of heap data
+  
+  - Tracking active references
 
 - **User-Defined Smart Pointers**
 
@@ -24,19 +30,13 @@ Topics Covered
   
   - Order of destruction and explicit cleanup
 
-- **Shared Responsibility**
-
-  - Shared ownership of heap data
-  
-  - Tracking active references
-
 ---------------------
 Why Smart Pointers?
 ---------------------
 
-- *Ownership is Strict!*
+- To move big datas to the Heap
 
-  - One owner and strict borrowing makes for complex patterns
+- And recursivity!
 
 - Rust solution is smart pointers
 
@@ -58,4 +58,3 @@ Why Smart Pointers?
 
 - Memory is freed when no longer needed
 
-- Access data via automatic dereferencing
