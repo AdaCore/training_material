@@ -1,40 +1,62 @@
-=======
-Clone
-=======
+=========
+"Clone"
+=========
 
--------
-Clone
--------
+----------------------
+Explicit Duplication
+----------------------
 
-Sometimes you *want* to make a copy of a value. The :rust:`Clone` trait
-accomplishes this.
+- Creates a *deep copy* of underlying data
+  - Typically duplicating heap-allocated resources
 
 .. code:: rust
 
-   fn say_hello(name: String) {
-       println!("Hello {name}")
-   }
+  let poodle = String::from("ball"); 
+  let yorkie = poodle.clone(); 
+  
+  println!("{}", poodle); // 'poodle' still has its ball
+  println!("{}", yorkie); // 'yorkie' has its own copy
 
-   fn main() {
-       let name = String::from("Alice");
-       say_hello(name.clone());
-       say_hello(name);
-   }
+---------------------
+Cost of Duplication
+---------------------
 
----------
-Details
----------
+- Useful when original variable must remain valid after function call
+- Significantly more expensive than a move 
+  - Requires new memory allocation and data migration
 
--  The idea of :rust:`Clone` is to make it easy to spot where heap
-   allocations are occurring. Look for :rust:`.clone()` and a few others
-   like :rust:`vec!` or :rust:`Box::new`.
+.. code:: rust
 
--  It's common to "clone your way out" of problems with the borrow
-   checker, and return later to try to optimize those clones away.
+    let t_rex_one = vec![0_u8; 10 * 1024 * 1024]; 
+    let t_rex_two = t_rex_one.clone(); 
+    println!("T-Rex One: {} bytes", t_rex_one.len());
+    println!("T-Rex Two: {} bytes", t_rex_two.len());        
 
--  :rust:`clone` generally performs a deep copy of the value, meaning that
-   if you e.g. clone an array, all of the elements of the array are
-   cloned as well.
+:command:`T-Rex One: 10485760 bytes`
 
--  The behavior for :rust:`clone` is user-defined, so it can perform custom
-   cloning logic if needed.
+:command:`T-Rex Two: 10485760 bytes`
+
+---------------------------
+The "Clone Away" Strategy
+---------------------------
+
+  - During development, cloning can simplify ownership conflicts
+    - Optimize later when logic is stable
+    - Further refinements can substitute clones with references
+      - :rust:`.clone()` serves as a clear visual marker of intentional heap allocation
+
+.. code:: rust
+
+    let agent = String::from("Smith");
+    
+    // Explicitly clone the data
+    say_hello(agent.clone());
+    say_hello(agent.clone());
+    say_hello(agent.clone());
+    say_hello(agent);
+    // 'agent' is no longer valid - its value was consumed
+
+.. note::
+
+   Useful for rapid prototyping and getting code working early
+   

@@ -1,61 +1,66 @@
-=================================
-Approaches to Memory Management
-=================================
+============
+Approaches
+============
 
 ---------------------------------
 Approaches to Memory Management
 ---------------------------------
 
-Traditionally, languages have fallen into two broad categories:
+- **Manual Memory Management** (e.g., C/C++)
+  - *Full control*
+    - Programmer explicitly allocates/deallocates
+  - *Higher risk*
+    - Programmer must ensure pointers are valid
+- **Automatic Memory Management** (e.g., Java, Python)
+  - *Safety*
+    - Runtime ensures memory is not freed until unreferenced
+  - *Higher cost*
+    - Runtime overhead for garbage collection
+- **Ownership-based Memory Management** (e.g., Rust, SPARK)
+  - *Safety*
+    - Compile-time memory guarantees
+  - *Control*
+    - Ownership, borrowing and lifetimes
 
--  Full control via manual memory management: C, C++, Pascal, ...
+------------------
+Quick Comparison
+------------------
 
-   -  Programmer decides when to allocate or free heap memory.
-   -  Programmer must determine whether a pointer still points to valid
-      memory.
-   -  Studies show, programmers make mistakes.
+.. container:: latex_environment tiny
 
--  Full safety via automatic memory management at runtime: Java, Python,
-   Go, Haskell, ...
+  .. list-table::
+    :header-rows: 1
 
-   -  A runtime system ensures that memory is not freed until it can no
-      longer be referenced.
-   -  Typically implemented with reference counting or garbage
-      collection.
+    * - **Feature**
+      - **Manual (C/C++)**
+      - **Automatic (Java, Python)**
+      - **Ownership (Rust, SPARK)**
 
-Rust offers a new mix:
+    * - *Control*
+      - Full
+      - Low
+      - High
 
-   Full control *and* safety via compile time enforcement of correct
-   memory management.
+    * - *Safety*
+      - High risk of error
+      - High safety
+      - Compile-time safety
 
-It does this with an explicit ownership concept.
+    * - *Mechanism*
+      - :cpp:`malloc`/:cpp:`free`
+      - Garbage collector
+      - Borrow checker
 
----------
-Details
----------
+    * - *Runtime Overhead*
+      - Minimal
+      - *Stop-the-World* pauses
+      - Zero
 
-This slide is intended to help students coming from other languages to
-put Rust in context.
+    * - *Developer Overhead*
+      - Manual tracking
+      - Low
+      - Compilation time
 
--  C must manage heap manually with :rust:`malloc` and :rust:`free`. Common
-   errors include forgetting to call :rust:`free`, calling it multiple times
-   for the same pointer, or dereferencing a pointer after the memory it
-   points to has been freed.
+.. note::
 
--  C++ has tools like smart pointers (:rust:`unique_ptr`, :rust:`shared_ptr`)
-   that take advantage of language guarantees about calling destructors
-   to ensure memory is freed when a function returns. It is still quite
-   easy to mis-use these tools and create similar bugs to C.
-
--  Java, Go, and Python rely on the garbage collector to identify memory
-   that is no longer reachable and discard it. This guarantees that any
-   pointer can be dereferenced, eliminating use-after-free and other
-   classes of bugs. But, GC has a runtime cost and is difficult to tune
-   properly.
-
-Rust's ownership and borrowing model can, in many cases, get the
-performance of C, with alloc and free operations precisely where they
-are required - zero cost. It also provides tools similar to C++'s smart
-pointers. When required, other options such as reference counting are
-available, and there are even crates available to support runtime
-garbage collection (not covered in this class).
+    Rust offers memory safety, predictable performance, and zero runtime cost 
