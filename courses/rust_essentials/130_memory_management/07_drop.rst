@@ -1,68 +1,175 @@
-========================
-The :rust:`Drop` Trait
-========================
+========
+"Drop"
+========
 
-------------------------
-The :rust:`Drop` Trait
-------------------------
+---------------------
+Destructor ("Drop")
+---------------------
 
-Values which implement
-:url:`Drop <https://doc.rust-lang.org/std/ops/trait.Drop.html>` can
-specify code to run when they go out of scope:
+- Deterministic clean-up implemented with :rust:`Drop` trait
+  - Occurs *implicitly*, and usually at the closing brace ":rust:`}`"
+  - Calling :rust:`.drop()` manually results in a compile error
+- Ideal for resource management, e.g, closing files or network sockets
 
 .. code:: rust
 
-   struct Droppable {
-       name: &'static str,
-   }
+  struct Mic {
+      owner: String,
+  }
 
-   impl Drop for Droppable {
-       fn drop(&mut self) {
-           println!("Dropping {}", self.name);
-       }
-   }
+  impl Drop for Mic {
+      fn drop(&mut self) {
+        println!("{} just dropped!", self.owner);
+      }
+  }
 
-   fn main() {
-       let a = Droppable { name: "a" };
-       {
-           let b = Droppable { name: "b" };
-           {
-               let c = Droppable { name: "c" };
-               let d = Droppable { name: "d" };
-               println!("Exiting block B");
-           }
-           println!("Exiting block A");
-       }
-       drop(a);
-       println!("Exiting main");
-   }
+.. note:: 
 
----------
-Details
----------
+   Saying a type has a *destructor* means it implements the :rust:`Drop` trait
 
--  Note that :rust:`std::mem::drop` is not the same as
-   :rust:`std::ops::Drop::drop`.
--  Values are automatically dropped when they go out of scope.
--  When a value is dropped, if it implements :rust:`std::ops::Drop` then its
-   :rust:`Drop::drop` implementation will be called.
--  All its fields will then be dropped too, whether or not it implements
-   :rust:`Drop`.
--  :rust:`std::mem::drop` is just an empty function that takes any value.
-   The significance is that it takes ownership of the value, so at the
-   end of its scope it gets dropped. This makes it a convenient way to
-   explicitly drop values earlier than they would otherwise go out of
-   scope.
+-----------------------------
+Variable Drop Order Example
+-----------------------------
 
-   -  This can be useful for objects that do some work on :rust:`drop`:
-      releasing locks, closing files, etc.
+.. container:: latex_environment scriptsize
 
-Discussion points:
+  .. container:: columns
 
--  Why doesn't :rust:`Drop::drop` take :rust:`self`?
+    .. container:: column
+        :width: 50%
 
-   -  Short-answer: If it did, :rust:`std::mem::drop` would be called at the
-      end of the block, resulting in another call to :rust:`Drop::drop`, and
-      a stack overflow!
+          .. code:: rust
 
--  Try replacing :rust:`drop(a)` with :rust:`a.drop()`.
+            struct Potato {
+                id: String,
+            }
+
+            impl Drop for Potato {
+                fn drop(&mut self) {
+                    println!("Dropping {}", self.id);
+                }
+            }
+
+    .. container:: column
+        :width: 50%
+
+          .. code:: rust
+
+            fn main() {
+              let s1 = "tic".into();
+              let s2 = "tac".into();
+              let s3 = "toe".into();
+              let _tic = Potato { id: s1 };
+              {
+                let _tac = Potato { id: s2 };
+              }
+              let _toe = Potato { id: s3 };
+            }
+
+:command:`Dropping tac`
+
+:command:`Dropping toe`
+
+:command:`Dropping tic`
+
+.. note::
+
+  Variables are dropped in *reverse order* of their creation
+
+-----------------------------------
+Internal Field Drop Order Example
+-----------------------------------
+
+.. container:: latex_environment scriptsize
+
+  .. container:: columns
+
+    .. container:: column
+        :width: 50%
+
+          .. code:: rust
+
+            struct Eggs;
+            struct Bacon;
+
+            impl Drop for Eggs {
+                fn drop(&mut self) {
+                    println!("Dropping eggs!");
+                }
+            }
+
+            impl Drop for Bacon {
+                fn drop(&mut self) {
+                    println!("Dropping bacon!");
+                }
+            }
+
+    .. container:: column
+        :width: 50%
+
+          .. code:: rust
+
+            struct Breakfast {
+                one: Eggs,
+                two: Bacon,
+            }
+
+            fn main() {
+                let _meal = Breakfast {
+                    one: Eggs,
+                    two: Bacon,
+                };
+            } 
+
+:command:`Dropping eggs!`
+
+:command:`Dropping bacon!`
+
+.. note::
+
+  Internal fields are dropped in the *order* they are declared
+
+---------------
+Explicit Drop
+---------------
+
+- Early clean-up is possible by calling :rust:`std::mem::drop`
+- :rust:`std::mem::drop` (in *prelude*) is an empty generic function that
+  - Captures ownership of passed value
+  - Triggers :rust:`Drop` mechanism as value goes out of scope
+
+.. code:: rust
+
+  let my_precious = String::from("The One Ring");
+  drop(my_precious); // 'my_precious' is moved then dropped
+
+  println!("{}", my_precious); // Error
+
+:error:`error[E0382]: borrow of moved value: 'my_precious'`
+
+.. note::
+
+   :rust:`std::mem::drop` differs from :rust:`std::ops::Drop::drop`
+
+----------------------------------
+Exclusivity of "Copy" and "Drop"
+----------------------------------
+
+- Type cannot implement both :rust:`Copy` and :rust:`Drop` traits
+  - Implementing :rust:`Drop` guarantees destructor runs *exactly once*
+- :rust:`Copy` implies simple bitwise replication
+
+.. code:: rust
+
+  #[derive(Copy, Clone)] // This line will not compile
+  struct Highlander;
+
+  impl Drop for Highlander {
+    fn drop(&mut self) {
+        println!("There can be only one!");
+    }
+  }
+
+.. container:: latex_environment tiny
+
+  :error:`error[E0184]: the trait 'Copy' cannot be implemented for this type; the type has a destructor`
