@@ -12,7 +12,7 @@ Review: What is a Trait?
 
 * Abstraction tool
 
-  * Allow programmer to write code that functions on many different types
+  * Allows for code that functions on many different types
 
     * As long as they provide the required behavior
 

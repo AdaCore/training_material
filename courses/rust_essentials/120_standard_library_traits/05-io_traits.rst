@@ -74,13 +74,13 @@ Practical Patterns
       // 1. SETUP: Open the file and wrap it in a buffer
       let file = File::open("input.txt")?;
       let mut reader = BufReader::new(file); 
-      let mut output = Vec::new(); // Vec implements Write
+      let mut output = Vec::new(); // 'Vec' implements Write
 
-      // 2. READ: Use BufRead trait to grab a line easily
+      // 2. READ: Use 'BufRead' trait to grab a line easily
       let mut line = String::new();
       reader.read_line(&mut line)?; 
 
-      // 3. WRITE: Use Write trait to save the data
+      // 3. WRITE: Use 'Write' trait to save the data
       output.write_all(line.as_bytes())?;
       output.flush()?; // Ensure all bytes are pushed out
 
