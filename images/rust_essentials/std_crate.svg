@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="103" width="65" >
+<defs>
+<linearGradient id="O2B" x1="0%" x2="0%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+  <stop offset="0%" stop-color="#dd0000"/>
+  <stop offset="100%" stop-color="#00dd00"/>
+</linearGradient>
+<linearGradient id="B2G" x1="0%" x2="0%" y1="0%" y2="100%" gradientUnits="objectBoundingBox">
+  <stop offset="0%" stop-color="#00dd00"/>
+  <stop offset="100%" stop-color="#0000dd"/>
+</linearGradient>
+</defs>
+<rect fill="#dd0000" stroke="#dd0000" stroke-width="1" rx="4.0" ry="4.0" height="20" width="60" x="3" y="1" />
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="33.0" y="11.0" >std</text>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="left" font-size="5px" font-family='arial' font-weight="normal"  text-anchor="middle" x="33.0" y="17.0" >(OS, I/O, threads)</text>
+<polygon fill="url(#O2B)" stroke="none" points="27.0,21 39.0,21 39.0,35.0 45.0,35.0 33.0,41 21.0,35.0 27.0,35.0 27.0,21 "/>
+<rect fill="#00dd00" stroke="#00dd00" stroke-width="1" rx="4.0" ry="4.0" height="20" width="60" x="3" y="41" />
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="33.0" y="51.0" >alloc</text>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="left" font-size="5px" font-family='arial' font-weight="normal"  text-anchor="middle" x="33.0" y="57.0" >(Vec, String, Box)</text>
+<polygon fill="url(#B2G)" stroke="none" points="27.0,61 39.0,61 39.0,75.0 45.0,75.0 33.0,81 21.0,75.0 27.0,75.0 27.0,61 "/>
+<rect fill="#0000dd" stroke="#0000dd" stroke-width="1" rx="4.0" ry="4.0" height="20" width="60" x="3" y="81" />
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="bold"  text-anchor="middle" x="33.0" y="91.0" >core</text>
+<text xml:space="preserve" fill="#ffffff" stroke="none"  text-align="left" font-size="5px" font-family='arial' font-weight="normal"  text-anchor="middle" x="33.0" y="97.0" >(Option, Result, Clone)</text>
+</svg>
