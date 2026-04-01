@@ -25,6 +25,7 @@ What is a Lifetime?
   }
 
 :command:`gold`
+
 :command:`gold`
 
 - :rust:`treasure` is in scope from lines 2 – 5
