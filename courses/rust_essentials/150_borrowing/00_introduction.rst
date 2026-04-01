@@ -6,10 +6,9 @@ Introduction
 Topics Covered
 ----------------
 
--  **Borrowing Basics**
-   - Accessing data without taking ownership
+-  **Accessing data without taking ownership**
    - Local, function, and method borrows
-   - Compile-time safety and the Borrow Checker
+   - Compile-time safety and the *Borrow Checker*
 
 -  **Interior Mutability**
    - :rust:`Cell<T>` vs. :rust:`RefCell<T>`

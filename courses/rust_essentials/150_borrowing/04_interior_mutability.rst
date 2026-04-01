@@ -2,29 +2,33 @@
 Interior Mutability
 =====================
 
--------------------------------
-The Problem with Strict Rules
--------------------------------
+-----------------------------
+Limitations of Strict Rules
+-----------------------------
 
-- Immutable references strictly forbid data modification
+- Immutable references strictly **forbid** data modification
 - Certain patterns require updating hidden state
   - During a read-only :rust:`&self` method call
-    - Like :rust:`read_count` on :rust:`Sensor` 
 - Compile-time borrow checks are traded for runtime checks
 
 .. note::
 
-   **Interior mutability** enables safe mutation through shared references
+   :dfn:`Interior mutability` enables safe modification through shared references
 
 ----------
 "Cell<T>"
 ----------
 
-- :rust:`Cell<T>` is designed for types that implement the :rust:`Copy trait`
+- Guarantees safe mutation through a shared, read-only reference
+- Designed for types that implement the :rust:`Copy trait`
   - Such as integers or booleans
 - References to the inner data are never exposed
-- Values are exclusively copied in (:rust:`set`) and out (:rust:`get`)
-  - Guarantees safe mutation through a shared, read-only reference
+
+-------------------
+"Cell<T>" Example
+-------------------
+
+**Values are exclusively copied in** (:rust:`set`) **and out** (:rust:`get`)
 
 .. code:: rust
 
@@ -32,7 +36,7 @@ The Problem with Strict Rules
 
    struct Sensor {
       data: i32,
-      read_count: Cell<u32>, // Can be mutated even if Sensor is &self
+      read_count: Cell<u32>, // Can be modified even if 'Sensor' is '&self'
    }
 
    impl Sensor {
@@ -47,14 +51,17 @@ The Problem with Strict Rules
    scanner.read(); // Borrows immutably
    println!("Sensor read {} time(s).", scanner.read_count.get());
 
+:output:`Sensor read 1 time(s).`
+
 --------------
 "RefCell<T>"
 --------------
 
 - Used for complex types, like :rust:`Vec` or :rust:`String` 
   - Where copying isn't cheap or possible
-- Enforces the borrowing rules at runtime rather than compile-time
-- Use :rust:`.borrow()` for a reader and :rust:`.borrow_mut()` for a writer 
+- Enforces borrowing rules at runtime rather than compile-time
+- :rust:`.borrow()` for a reader
+- :rust:`.borrow_mut()` for a writer 
 
 .. code::rust
 
@@ -62,7 +69,7 @@ The Problem with Strict Rules
 
    let memory = RefCell::new(vec![42, 10]);
 
-   // Mutate the vector through an immutable variable 'memory'
+   // Modify the vector through an immutable variable 'memory'
    let mut writer = memory.borrow_mut(); 
    writer.push(99);
       
@@ -70,4 +77,4 @@ The Problem with Strict Rules
 
 .. warning::
 
-   If the rules are violated, the program will immediately panic and crash
+   If rules are violated, program will immediately panic and crash

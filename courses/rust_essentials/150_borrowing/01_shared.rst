@@ -7,14 +7,16 @@ Why Borrowing?
 ----------------
 
 - Ownership transfer is not always practical
-- Borrowing allows to access data
-  - Without taking ownership of it
+  - Because cloning is expensive 
+    - And moving data back and forth is cumbersome
+- Borrowing allows access to data
+  - Without taking ownership
   - Implemented using a reference
     - Denoted :rust:`&` or :rust:`&mut`
 
 .. note::
 
-    When no longer being used, borrowed data is not dropped because the reference do not own it
+    Borrowed data is not dropped when a reference is no longer used
 
 ---------------
 Local Borrows
@@ -22,7 +24,7 @@ Local Borrows
 
 - Multiple references (:rust:`&T`) can read the data simultaneously
 - A single reference (:rust:`&mut T`) can change the data
-  - Provided readers are gone
+  - Provided "readers" are gone
 
 .. code:: rust
 
@@ -32,18 +34,22 @@ Local Borrows
     let r1 = &scanner; // First immutable borrow
     let r2 = &scanner; // Second immutable borrow
     println!("Reads: {} and {}", r1.0, r2.0);
-    // r1 and r2 drop here
+    // 'r1' and 'r2' drop here
 
     let w1 = &mut scanner; // Mutable borrow
     w1.0 += 10; 
     println!("Calibrated to: {}", w1.0);
 
+
+:command:`Reads: 42 and 42`
+
+:command:`Calibrated to: 52`
+
 --------------------------------------
-Mixing mutable and immutable borrows
+Mixing Mutable and Immutable Borrows
 --------------------------------------
 
-- Mixing mutable and immutable references fails
-  - Guarantees memory safety at compile time
+- Guarantees memory safety at compile time
 
 .. code:: rust
 
@@ -53,12 +59,12 @@ Mixing mutable and immutable borrows
     // Immutable borrow starts
     let reader = &scanner;
 
-    // Mutable borrow 
+    // Mutable borrow
     let writer = &mut scanner; // This won't compile
 
     println!("Read: {}, Write: {}", reader.0, writer.0);
 
-.. container:: latex_environment footnotesize
+.. container:: latex_environment tiny
 
     :error:`error[E0502]: cannot borrow 'scanner' as mutable because it is also borrowed as immutable`
 
@@ -66,8 +72,9 @@ Mixing mutable and immutable borrows
 Function Borrows
 ------------------
 
-- Functions can access values safely without consuming them
-- Functions can update the original variable directly
+- Functions can 
+  - Access values safely without consuming them
+  - Update the original variable directly
 
 .. code:: rust
 
@@ -110,7 +117,7 @@ Overlapping Borrows
     let mut scanner = Sensor(42);    
     let active_reader = &scanner; // Immutable borrow starts
 
-    calibrate(&mut scanner); // Mutable borrow - This won't compile
+    calibrate(&mut scanner); // Mutable borrow - this won't compile
     
     println!("Reader sees: {}", active_reader.0);
 
@@ -136,7 +143,7 @@ Multiple Mutable Borrows
     let mut scanner = Sensor(42);
     sync_sensors(&mut scanner, &mut scanner); // Error
 
-.. container:: latex_environment tiny
+.. container:: latex_environment scriptsize
 
     :error:`error[E0499]: cannot borrow 'scanner' as mutable more than once at a time`
 
@@ -144,10 +151,9 @@ Multiple Mutable Borrows
 Method Borrows
 ----------------
 
-- Take a read-only borrow with :rust:`&self`
-  - Safe to call multiple times, even simultaneously
-- Take an exclusive mutable borrow with :rust:`&mut self`
-  - Demands that no other references are currently active
+- Methods can take
+  - Simultaneous immutable borrows using :rust:`&self`
+  - Exclusive mutable borrow using :rust:`&mut self`
 
 .. code:: rust
 
@@ -159,10 +165,10 @@ Method Borrows
     }
     
     let mut scanner = Sensor(42);
-    let val = scanner.read(); // &self borrow, completes and drops
+    let val = scanner.read(); // '&self' borrow, completes and drops
         
-    scanner.calibrate();      // &mut self borrow, exclusive    
-    scanner.read();           // &self borrow
+    scanner.calibrate();      // '&mut self' borrow, exclusive    
+    scanner.read();           // '&self' borrow
 
 .. note::
 
@@ -173,8 +179,8 @@ Conflicting Self Borrows
 --------------------------
 
 - Same overlapping rules enforced for methods as for functions
-- Active :rust:`&` borrow blocks any :rust:`&mut` self method calls
-- Immutable reference must reach final use before value can be mutated
+- Immutable borrow prevents mutable method calls
+- Immutable reference must reach final use before value can be modified
 
 .. code:: rust
 
@@ -187,6 +193,10 @@ Conflicting Self Borrows
 
     let mut scanner = Sensor(42);
     
-    let active_ref = &scanner; // Immutable borrow starts
+    let snapshot = &scanner; // Immutable borrow starts
     scanner.calibrate(); 
-    println!("Reference sees: {}", active_ref.read()); 
+    println!("Reference sees: {}", snapshot.read());
+
+.. container:: latex_environment scriptsize
+
+    :error:`error[E0502]: cannot borrow 'scanner' as mutable because it is also borrowed as immutable`
