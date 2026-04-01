@@ -16,11 +16,11 @@ Lifetime Annotations
 
   .. code:: rust
 
-    &'a str
-    &'my_life str
-    &'some_really_long_name str
+    &'a
+    &'my_life
+    &'some_really_long_name
 
-- **Example:** Reference to 'str' valid for at least lifetime 'a
+- **Example:** Reference to :rust:`str` valid for at least lifetime :rust:`'a`
 
   .. code:: rust
     
@@ -64,7 +64,7 @@ Why Do We Need Lifetime Annotations?
     - :rust:`'static` - means data lives for the entire program
 
     - :rust:`'_` - placeholder for an inferred lifetime
-    
+
 ----------------------------------
 Solving Ambiguity with Lifetimes
 ----------------------------------

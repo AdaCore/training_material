@@ -24,8 +24,8 @@ What is a Lifetime?
     println!("{treasure}");
   }
 
-  :cmd:`gold`
-  :cmd:`gold`
+  :command:`gold`
+  :command:`gold`
 
 - :rust:`treasure` is in scope from lines 2 – 5
 - :rust:`treasure_map` lifetime is from lines 3 – 4
