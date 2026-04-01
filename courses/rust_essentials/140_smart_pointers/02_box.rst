@@ -14,7 +14,7 @@ What is "Box<T>"
 
 - Deallocates memory automatically when object goes out of scope 
   
-- Defined in prelude
+- Defined in **prelude**
 
 .. code:: rust
 
@@ -34,29 +34,29 @@ Using "Box<T>" for Recursive Types
 
   - Recursive types don't have a known size
   
-.. code:: rust
+    .. code:: rust
 
-  // FAILS: How big is an infinite doll?
-  enum Doll {
-   Inside(Doll),
-   Empty,
-  }
+      // FAILS: How big is an infinite doll?
+      enum Doll {
+        Inside(Doll),
+        Empty,
+      }
   
-:error:`error[E0072]: recursive type 'Doll' has infinite size`
+    :error:`error[E0072]: recursive type 'Doll' has infinite size`
 
 - :rust:`Box<T>` provides a pointer with known size
 
   - Breaks direct recursion loop in memory
 
-.. code:: rust
+    .. code:: rust
 
-  // WORKS: The "Box" is just a pointer to the next doll
-  enum Doll {
-   Inside(Box<Doll>),
-   Empty,
-  }
-  let a_doll = Doll::Inside(Box::new(Doll::Empty));
-  let last_doll = Doll::Empty;
+      // WORKS: The "Box" is just a pointer to the next doll
+      enum Doll {
+        Inside(Box<Doll>),
+        Empty,
+      }
+      let a_doll = Doll::Inside(Box::new(Doll::Empty));
+      let last_doll = Doll::Empty;
 
 ----------------------
 Handling Large Data
@@ -78,7 +78,8 @@ Handling Large Data
     samples: [0; 1000000],
     metadata: String::from("Satellite Telemetry - Region A"),
   });
-  // Only reference is moved to the function, not the whole array.
+  // Only reference is moved to the function... 
+  // ...not the whole array
   process_data(huge_chunk);
   
 ---------------------
@@ -93,11 +94,9 @@ Resource Management
 	
   - Prevents memory leaks by ensuring deallocation
 	
-- Move is an *O(1)* operation 
+- Transfering ownership is an *O(1)* operation 
   
   - Regardless of what it points to
-  
-  
   
   
 

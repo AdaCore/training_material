@@ -1,12 +1,12 @@
-======
-"Rc"
-======
+=========
+"Rc<T>"
+=========
 
 ---------------------------------
 Multiple Ownership with "Rc<T>"
 ---------------------------------
 
-- Useful when single value is owned by multiple parts of a program
+- Useful when *single* value is owned by *multiple* parts of a program
   
   - Only provides *immutable access* to the data
 
@@ -16,12 +16,8 @@ Multiple Ownership with "Rc<T>"
   
 - Called :dfn:`Reference Counted (Smart) Pointer`
 
-  - Not in prelude
+  - included with :rust:`use std::rc::Rc`
   
-.. code:: rust   
-
-  use std::rc::Rc;
-
 ---------------------------
 "Rc<T>" counts references
 ---------------------------
@@ -48,18 +44,9 @@ Multiple Ownership with "Rc<T>"
 :command:`Count: 2`
 
 ------------------
-Shared Ownership
+Immutable Access
 ------------------
 
-- :rust:`Box<T>` allows only one owner at a time
-
-.. code:: rust 
-
-  let tic = Box::new(5);
-  let tac = tic;
-  let toe = tic;
-
-:error:`error[E0382]: use of moved value: 'var_a'`
   
 - :rust:`Rc<T>` allows multiple ownership but no mutable access
 
@@ -72,55 +59,5 @@ Shared Ownership
   *var_a += 10; //Error: no mutable access
   
 :error:`error[E0594]: cannot assign to data in an 'Rc'`
-
---------------
-Fair Warning
---------------
-
-- Works for :rust:`Copy` types
-
-.. code:: rust
-
-  let tic = 5;
-  let tac = Box::new(tic);
-  let toe = Box::new(tic);
-  
-- :rust:`Clone` works also with :rust:`Box<T>`
-
-.. code:: rust
-
-  let tic = Box::new(5);
-  let tac = Box::clone(&tic);
-  let toe = Box::clone(&tic);
-
-.. warning::  
-
-  In **both** cases, data is **not shared**, it is **duplicated**
-
-------------------------------------------
-Why Use "Rc<T>" if "Box<T>" Can "Clone"?
-------------------------------------------
-
-**Avoids expensive data duplication**
-
-.. list-table::
-   :header-rows: 1
-   
-   * - **Smart Pointer**
-     - **Ownership**
-	 - **Access**
-	 - **Main Use Case**
-
-   * - :rust:`Box<T>`
-     - Single
-	 - Mutable
-     - Pointer for big datas or recursive types
-
-   * - :rust:`Rc<T>`
-     - Multiple
-	 - Immutable
-     - Sharing data across many parts of a program
-
-
 
   

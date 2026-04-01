@@ -10,7 +10,7 @@ Topics Covered
 
   - Flexible sizing
   
-  - Bypassing static size constraints
+  - Bypassing Sized constraints
 
 - **Dereferencing**
 
@@ -22,17 +22,11 @@ Topics Covered
   
   - Tracking references
 
-- **User-Defined Smart Pointers**
-
-  - Custom behaviors
-  
-  - Order of destruction and explicit cleanup
-
 ---------------------
 Why Smart Pointers?
 ---------------------
 
-- Enable recursive types
+- Allow recursive types
 
   - Provide a fixed-size pointer on the stack
 

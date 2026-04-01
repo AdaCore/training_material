@@ -2,6 +2,37 @@
 Summary
 =========
 
+--------------------------------
+Comparing "Rc<T>" and "Box<T>"
+--------------------------------
+
+.. list-table::
+   :header-rows: 1
+   
+   * - **Properties**
+     - :rust:`Box<T>`
+	 - :rust:`Rc<T>`
+
+   * - *Ownership*
+     - Single
+	 - Multiple
+
+   * - *Access*
+     - Mutable
+	 - Immutable
+
+   * - *Memory location*
+     - Heap
+	 - Heap
+   
+   * - *Cloning*
+     - Deep Copy
+	 - Shallow Copy
+
+   * - *Main Use Case*
+     - Big data / recursive types
+	 - Complex architecture
+	
 -----------------
 What We Covered
 -----------------
@@ -26,6 +57,4 @@ What We Covered
   
   - Avoids expensive cloning by reusing the same heap allocation
 
-- **User-defined smart pointers**
 
-  - Implement :rust:`Deref` and :rust:`Drop` for custom behaviors

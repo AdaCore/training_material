@@ -34,8 +34,7 @@ Smart Pointers
 
 .. include:: 140_smart_pointers/01_Introduction.rst
 .. include:: 140_smart_pointers/02_box.rst
-.. include:: 140_smart_pointers/03_dereferencing_smart_pointers.rst
+.. include:: 140_smart_pointers/03_dereferencing.rst
 .. include:: 140_smart_pointers/04_rc.rst
-.. include:: 140_smart_pointers/05_user_defined_smart_pointers.rst
 .. include:: 140_smart_pointers/98_lab.rst
 .. include:: 140_smart_pointers/99_summary.rst
