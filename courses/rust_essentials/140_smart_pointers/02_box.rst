@@ -2,21 +2,19 @@
 "Box<T>"
 ==========
 
------------------
-Heap Allocation
------------------
+------------------
+What is "Box<T>"
+------------------
 
-- :rust:`Box<T>` is defined in prelude
-
-- :rust:`Box<T>` allocates data on the heap
-
-  - Allocates data on the heap (via :rust:`Box::new`)
+- Allocates data on the heap (via :rust:`Box::new`)
 
   - Stores a fixed-size pointer on the stack 
 
   - Retains single ownership of heap data 
 
-  - Deallocates memory automatically when object goes out of scope 
+- Deallocates memory automatically when object goes out of scope 
+  
+- Defined in prelude
 
 .. code:: rust
 
@@ -28,11 +26,11 @@ Heap Allocation
   
 :command:`Box value is 5`
  
-----------------------------------
-Using "Box<T>" for Recursive Type
-----------------------------------
+------------------------------------
+Using "Box<T>" for Recursive Types
+------------------------------------
 
-- Compiler requires each type to have a known size at compile time
+- Types must have a known size at compile time
 
   - Recursive types don't have a known size
   
@@ -46,6 +44,12 @@ Using "Box<T>" for Recursive Type
   
 :error:`error[E0072]: recursive type 'Doll' has infinite size`
 
+- :rust:`Box<T>` provides a pointer with known size
+
+  - Breaks direct recursion loop in memory
+
+.. code:: rust
+
   // WORKS: The "Box" is just a pointer to the next doll
   enum Doll {
    Inside(Box<Doll>),
@@ -54,24 +58,28 @@ Using "Box<T>" for Recursive Type
   let a_doll = Doll::Inside(Box::new(Doll::Empty));
   let last_doll = Doll::Empty;
 
-- :rust:`Box<T>` provides a pointer with known size
-
-  - Breaks direct recursion loop in memory
-
 ----------------------
-Handling large Datas
+Handling Large Data
 ----------------------
 
 - :rust:`Box<T>` allows to move ownership of data
 
   - Rather than copying data passed in parameters for function calls
   
-    - Useful for large datas
+    - Useful for large data
 	
-
-
-
-
+.. code:: rust	
+	
+  struct BigData {
+    samples: [u64; 1000000], 
+    metadata: String,
+  }
+  let huge_chunk = Box::new(BigData {
+    samples: [0; 1000000],
+    metadata: String::from("Satellite Telemetry - Region A"),
+  });
+  // Only reference is moved to the function, not the whole array.
+  process_data(huge_chunk);
   
 ---------------------
 Resource Management
@@ -83,11 +91,13 @@ Resource Management
   
     - No need for manual intervention
 	
-  - Move is an *O(1)* operation 
-  
-    - Regardless of what it points to
-  
   - Prevents memory leaks by ensuring deallocation
+	
+- Move is an *O(1)* operation 
+  
+  - Regardless of what it points to
+  
+  
   
   
 

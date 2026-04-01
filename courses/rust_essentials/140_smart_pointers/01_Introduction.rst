@@ -12,7 +12,7 @@ Topics Covered
   
   - Bypassing static size constraints
 
-- **Dereferencing Smart Pointers**
+- **Dereferencing**
 
   - Overriding the operator
   
@@ -20,11 +20,11 @@ Topics Covered
   
 - **Shared Ownership**
   
-  - Tracking active references
+  - Tracking references
 
 - **User-Defined Smart Pointers**
 
-  - Custom behaviors of smart pointers
+  - Custom behaviors
   
   - Order of destruction and explicit cleanup
 
@@ -32,27 +32,15 @@ Topics Covered
 Why Smart Pointers?
 ---------------------
 
-- To move big datas to the Heap
+- Enable recursive types
 
-- And recursivity!
+  - Provide a fixed-size pointer on the stack
 
-- Rust solution is smart pointers
+- Prevent stack overflows
 
-  - Help navigate Rust strictness
+  - Allocate data on the heap
 
-  - Use internal logic to safely provide flexibility where references cannot
-  
-    - Heap indirection
-  
-    - Reference counting
+- Allow multiple owners
 
-    - And more!	
-
-- Common references (:rust:`&T`) **point** to data 
-
-  - *Smart Pointers* **own** it
-
-- Mostly implemented as *Generic Structs* to wrap any type
-
-- Memory is freed when no longer needed
+  - Share ownership of data for complex architectures
 

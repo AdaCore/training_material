@@ -8,7 +8,7 @@ Dereferencing Smart Pointers
 
 - *Smart pointers* behave like references
 
-  - because they implement :rust:`Deref`
+  - Because they implement :rust:`Deref`
 
 - :rust:`Deref` returns a reference to the inner data
 
@@ -53,9 +53,10 @@ Dereferencing Smart Pointers
   hello(&my_box); 
   
 .. note::
-    
-  '&my_box' is '&MyBox<String>'
-  Rust coerces: '&Box<String>' -> '&String' -> '&str'  
+  
+  - '&my_box' is '&MyBox<String>'
+  
+  - Compiler coerces: '&Box<String>' -> '&String' -> '&str'  
   
 ------------  
 "DerefMut"
@@ -107,9 +108,6 @@ Mutability and Coercion
 	 - :color-red:`X`
      - :color-red:`X`
 
-.. note::
-
-  Prohibit &T to &mut T - never coerce *immutable* to *mutable*
   
 .. code:: rust
 

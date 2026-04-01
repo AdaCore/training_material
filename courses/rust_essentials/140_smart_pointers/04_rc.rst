@@ -2,9 +2,9 @@
 "Rc"
 ======
 
----------------
-Need for "Rc"
----------------
+---------------------------------
+Multiple Ownership with "Rc<T>"
+---------------------------------
 
 - Useful when single value is owned by multiple parts of a program
   
@@ -55,9 +55,9 @@ Shared Ownership
 
 .. code:: rust 
 
-  let var_a = Box::new(5);
-  let var_b = var_a;
-  let var_c = var_a;
+  let tic = Box::new(5);
+  let tac = tic;
+  let toe = tic;
 
 :error:`error[E0382]: use of moved value: 'var_a'`
   
@@ -65,9 +65,9 @@ Shared Ownership
 
 .. code:: rust 
 
-  let var_a = Rc::new(5);
-  let var_b = Rc::clone(&var_a);
-  let var_c = Rc::clone(&var_a);  
+  let tic = Rc::new(5);
+  let tac = Rc::clone(&tic);
+  let toe = Rc::clone(&tic);  
   
   *var_a += 10; //Error: no mutable access
   
