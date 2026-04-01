@@ -6,27 +6,25 @@ Introduction
 Topics Covered
 ----------------
 
-- **Flexible Sizing**
+- **Heap allocation**
 
-  - Heap allocation
+  - Flexible sizing
   
   - Bypassing static size constraints
 
-- **Seamless Interaction**
+- **Dereferencing Smart Pointers**
 
-  - Overriding the dereference operator
+  - Overriding the operator
   
   - Transparent data access via coercion
   
-- **Shared Responsibility**
-
-  - Shared ownership of heap data
+- **Shared Ownership**
   
   - Tracking active references
 
 - **User-Defined Smart Pointers**
 
-  - Automatic resource management
+  - Custom behaviors of smart pointers
   
   - Order of destruction and explicit cleanup
 

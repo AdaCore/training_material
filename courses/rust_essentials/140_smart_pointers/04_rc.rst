@@ -1,21 +1,11 @@
-====================
+======
 "Rc"
-====================
+======
 
-----------------------------
-"Rc<T>" Keeps the Light On
-----------------------------
+---------------
+Need for "Rc"
+---------------
 
-- Shares ownership of value on the heap using :rust:`Clone`
-    
-  - Creates a *shallow* copy not a deep copy
-
-    - Only the *pointer* is copied
-	
-  - Increments the internal counter
-
-- Called :dfn:`Reference Counted (Smart) Pointer`
-  
 - Useful when single value is owned by multiple parts of a program
   
   - Only provides *immutable access* to the data
@@ -23,6 +13,26 @@
   - Tracks number of active references
 
   - Prevents data cleanup until last owner finishes
+  
+- Called :dfn:`Reference Counted (Smart) Pointer`
+
+  - Not in prelude
+  
+.. code:: rust   
+
+  use std::rc::Rc;
+
+---------------------------
+"Rc<T>" counts references
+---------------------------
+
+- Shares ownership of value on the heap using :rust:`Clone`
+    
+  - Creates a *shallow* copy not a deep copy
+
+    - Only the *pointer* is copied
+	
+  - Increments the internal counter 
  
 .. code:: rust 
 
@@ -91,11 +101,26 @@ Fair Warning
 Why Use "Rc<T>" if "Box<T>" Can "Clone"?
 ------------------------------------------
 
-- Avoids expensive data duplication
+**Avoids expensive data duplication**
 
-- Shares same state across multiple owners
+.. list-table::
+   :header-rows: 1
+   
+   * - **Smart Pointer**
+     - **Ownership**
+	 - **Access**
+	 - **Main Use Case**
 
-- Saves memory by reusing same heap allocation
+   * - :rust:`Box<T>`
+     - Single
+	 - Mutable
+     - Pointer for big datas or recursive types
+
+   * - :rust:`Rc<T>`
+     - Multiple
+	 - Immutable
+     - Sharing data across many parts of a program
+
 
 
   

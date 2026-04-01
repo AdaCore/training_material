@@ -6,15 +6,17 @@
 Heap Allocation
 -----------------
 
+- :rust:`Box<T>` is defined in prelude
+
 - :rust:`Box<T>` allocates data on the heap
+
+  - Allocates data on the heap (via :rust:`Box::new`)
 
   - Stores a fixed-size pointer on the stack 
 
   - Retains single ownership of heap data 
 
   - Deallocates memory automatically when object goes out of scope 
-  
-- :rust:`Box<T>` is defined in prelude
 
 .. code:: rust
 
@@ -55,28 +57,35 @@ Using "Box<T>" for Recursive Type
 - :rust:`Box<T>` provides a pointer with known size
 
   - Breaks direct recursion loop in memory
-  
--------------------------------
-Automatic Resource Management
--------------------------------
+
+----------------------
+Handling large Datas
+----------------------
 
 - :rust:`Box<T>` allows to move ownership of data
 
   - Rather than copying data passed in parameters for function calls
   
     - Useful for large datas
+	
+
+
+
+
   
-  - Move is an *O(1)* operation 
-  
-    - Regardless of what it points to
-  
-  - Allocates data on the heap (via :rust:`Box::new`)
+---------------------
+Resource Management
+---------------------
 
 - :rust:`Box<T>` implements :rust:`Drop` to ensure memory safety 
 
   - Invokes :rust:`Drop` method automatically at end of scope
   
     - No need for manual intervention
+	
+  - Move is an *O(1)* operation 
+  
+    - Regardless of what it points to
   
   - Prevents memory leaks by ensuring deallocation
   

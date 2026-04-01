@@ -6,8 +6,12 @@ User-Defined Smart Pointers
 Implementing Smart Pointers
 -----------------------------
 
-**Can define custom smart pointers**
+- Can define custom smart pointers
 
+  - Can be used for 'foreign function interface'
+
+  - can have custom behaviors by implementing traits
+  
 .. code:: rust 
 
   use std::ops::Deref;
@@ -52,21 +56,21 @@ Working with Custom Smart Pointers
 
 - Most standard *smart pointers* implement :rust:`Drop`
 
-
 - Allows :rust:`drop` method to define custom cleanup logic 
 
 .. code:: rust
 
-
-  impl<T> Drop for MyBox<T> {
-    fn drop(&mut self) {
-        println!("A MyBox is being cleared from memory");
+  fn main() {
+    impl<T> Drop for MyBox<T> {
+      fn drop(&mut self) {
+        println!("You have a mission!");
+      }
     }
-  }
-  let name = MyBox::new(5);  
-  println!("Hello, 00{}!", *name );
+    let name = MyBox::new(7);  
+    println!("Hello, 00{}!", *name );
+  } // 'name' is dropped here
 
 :command:`Hello, 007!`
 
-:command:`A MyBox is being cleared from memory`
+:command:`You have a mission!`
   

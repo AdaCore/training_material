@@ -17,8 +17,6 @@ Dereferencing Smart Pointers
   - Using dereference operator :rust:`*`
   
   - Avoids moving ownership
-  
-  
 
 .. code:: rust 
 
@@ -73,23 +71,13 @@ Dereferencing Smart Pointers
 
 .. code:: rust 
 
-  use std::ops::{Deref, DerefMut};
-
-  impl<T> Deref for MyBox<T> {
-    type Target = T;
-    fn deref(&self) -> &T { &self.0 }
-  }
-
-  impl<T> DerefMut for MyBox<T> {
-    // Note: It uses the 'Target' defined in the Deref implementation
-    fn deref_mut(&mut self) -> &mut T { &mut self.0 }
-  }
+  // 'my_box' is mutable and 'Box' implements DerefMut
+  let mut my_box = Box::new(0);
+  *my_box = 10; // 'DerefMut' is used
 
 -------------------------
 Mutability and Coercion
 -------------------------
-
-**Prohibit &T to &mut T - never coerce** *immutable* **to** *mutable*
 
 .. list-table::
    :header-rows: 1
@@ -122,3 +110,25 @@ Mutability and Coercion
 .. note::
 
   Prohibit &T to &mut T - never coerce *immutable* to *mutable*
+  
+.. code:: rust
+
+  fn hello(name: &str) {
+    println!("Hello, {name}!");
+  } 
+  
+  fn edit(name: &mut str) { println!("Hello, {name}!")  }
+
+  let my_box = Box::new(String::from("Rust"));
+  edit(&my_box);
+  
+:error:`error[E0308]: mismatched types`
+
+.. code:: rust  
+  
+  let mut my_box = Box::new(String::from("Rust"));
+  edit(&mut my_box);
+  hello(&mut my_box);  
+
+
+
