@@ -1,6 +1,6 @@
-***********
-Std Types
-***********
+**********************
+Common Library Types
+**********************
 
 .. container:: PRELUDE BEGIN
 
@@ -32,11 +32,11 @@ Std Types
 
 .. container:: PRELUDE END
 
-.. include:: 110_std_types/01_std.rst
-.. include:: 110_std_types/02_docs.rst
-.. include:: 110_std_types/03_option.rst
-.. include:: 110_std_types/04_result.rst
-.. include:: 110_std_types/05_string.rst
-.. include:: 110_std_types/06_vec.rst
-.. include:: 110_std_types/07_hashmap.rst
-.. include:: 110_std_types/99_lab.rst
+.. include:: 110_common_library_types/00-introduction.rst
+.. include:: 110_common_library_types/01-overview.rst
+.. include:: 110_common_library_types/02-option.rst
+.. include:: 110_common_library_types/03-result.rst
+.. include:: 110_common_library_types/04-string.rst
+.. include:: 110_common_library_types/05-vec.rst
+.. include:: 110_common_library_types/88-common_library_types.lab.rst
+.. include:: 110_common_library_types/99-summary.rst
