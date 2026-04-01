@@ -12,7 +12,28 @@ Why Are Lifetimes Often Omitted?
 
 - Would add unnecessary annotation in common cases
 
-- Rust reduces this repetition automatically
+.. code:: rust
+
+  // Same lifetime repeated in multiple places
+  fn print<'a>(s: &'a str) {
+      println!("{s}");
+  }
+
+  // Input and output clearly share the same lifetime
+  // (but we still have to write it everywhere)
+  fn first<'a>(slice: &'a [i32]) -> &'a i32 {
+      &slice[0]
+  }
+
+  // Lifetime doesn't even affect the return value
+  // (but we still have to write it on the parameter)
+  fn len<'a>(s: &'a str) -> usize {
+      s.len()
+  }
+
+.. note::
+
+  Rust reduces this repetition automatically
 
 ------------------
 Lifetime Elision
@@ -22,7 +43,13 @@ Lifetime Elision
 
 - :dfn:`Lifetime elision` rules can be applied
 
-  - Compiler automatically assigns lifetimes using these rules
+  -  Each reference parameter gets its own lifetime
+
+  -  If there is only one input lifetime, it is used for the return value
+
+  -  If first parameter is :rust:`self`, that lifetime is used
+
+- Compiler automatically assigns lifetimes using these rules
 
 - Essentially, syntactic shorthand (not inference)
 
@@ -30,17 +57,11 @@ Lifetime Elision
 
   fn length(s: &str) -> usize
 
-  // ...becomes
+  // ...is interpreted as
 
   fn length<'a>(s: &'a str) -> usize
 
--  Each reference parameter gets its own lifetime
-
--  If there is only one input lifetime, it is used for the return value
-
--  If first parameter is :rust:`self`, that lifetime is used
-
 .. note::
 
-  Even when not written, lifetimes are still present and assigned by the compiler
-   
+  Compiler infers lifetimes even when they're not written
+  

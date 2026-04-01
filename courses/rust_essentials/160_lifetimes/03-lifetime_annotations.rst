@@ -8,21 +8,29 @@ Lifetime Annotations
 
 - Every reference has a lifetime
 
-  - Usually, the compiler determines it automatically
+  - Usually, compiler determines it automatically
 
   - A :dfn:`lifetime annotation` can name it explicitly
 
 - Written using a leading :rust:`'`
 
-.. code:: rust
+  .. code:: rust
 
-  // Reference to 'str' valid for at least lifetime ''a'
-  &'a str
+    &'a str
+    &'my_life str
+    &'some_really_long_name str
+
+- **Example:** Reference to 'str' valid for at least lifetime 'a
+
+  .. code:: rust
+    
+    &'a str
 
 .. note::
 
-  Common to use short names (:rust:`'a`, :rust:`'b`, etc., but more
-  descriptive names can be used)
+  - Common to use short names (:rust:`'a`, :rust:`'b`, etc.) 
+  
+  - More descriptive names can be used (:rust:`'i_mean_something`)
 
 --------------------------------------
 Why Do We Need Lifetime Annotations?
@@ -32,15 +40,14 @@ Why Do We Need Lifetime Annotations?
 
   - Do not create *actual* lifetimes
 
-  - Most lifetimes are inferred automatically by the compiler
-
 - Only *required* when relationships are ambiguous
 
 .. code:: rust
 
+  // This code won't compile!
   fn choose(left: &str, right: &str) -> &str {
         if left.len() > right.len() { 
-            left 
+          left 
         } else {
           right
         }
@@ -48,6 +55,16 @@ Why Do We Need Lifetime Annotations?
 
 :error:`error[E0106]: missing lifetime specifier`
 
+.. note::
+
+  - Rust includes some predefined lifetimes
+
+  - For this course, it's only important to know 
+    
+    - :rust:`'static` - means data lives for the entire program
+
+    - :rust:`'_` - placeholder for an inferred lifetime
+    
 ----------------------------------
 Solving Ambiguity with Lifetimes
 ----------------------------------
@@ -61,11 +78,15 @@ Solving Ambiguity with Lifetimes
   fn choose<'a>(left: &'a str, right: &'a str) -> &'a str {
       // Return 'left' or 'right' depending on the condition
       if left.len() > right.len() {
-          left  // return a reference to 'left'
+          left  // Return a reference to 'left'
       } else {
-          right // or return a reference to 'right'
+          right // Or return a reference to 'right'
       }
   }
+
+.. note::
+
+  Sometimes the term "lifetime" is used to indicate "lifetime annotation"
 
 ----------------------------------
 Lifetimes in Function Signatures

@@ -8,7 +8,7 @@ What We Covered
 
 * **Lifetimes**
 
-  * Lifetime describes how long reference is valid
+  * How long references are valid
 
   * References cannot outlive data they refer to
 
@@ -16,11 +16,11 @@ What We Covered
 
 * **Annotations**
 
-  * Lifetime annotations describe relationships between references
+  * Describe relationships between references
 
-  * Lifetimes are part of reference types  
+  * Part of reference types  
 
-  * Most annotations are inferred automatically
+  * Most are inferred automatically
 
 * **Elision**
 
@@ -30,10 +30,10 @@ What We Covered
 
   * Explicit lifetimes needed when relationships are ambiguous
 
-* **Data Structures**
+* **Structs and Enums**
 
-  * Structs storing references require lifetimes
+  * Storing references requires lifetimes
 
-  * Lifetimes in structs follow same rules as functions
+  * Lifetimes follow same rules as functions
 
   * Owning data is often simpler than borrowing

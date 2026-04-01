@@ -30,7 +30,7 @@ Topics Covered
 
   * When elision is not sufficient
 
-* **Data Structures**
+* **Structs and Enums**
 
   * Lifetimes in structs
 

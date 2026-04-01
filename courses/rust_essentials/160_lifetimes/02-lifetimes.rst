@@ -8,18 +8,27 @@ What is a Lifetime?
 
 - Span of code during which a reference is valid
 
-  - Not to be confused with **scope**! (how long a variable exists)
+  - Not to be confused with **scope** of variables!
+
+- Ends the last time its reference is used
+
+- Exists even when not written
 
 .. code:: rust
   :number-lines: 1
 
-  let first = 10;
-  let second = &first;
-  println!("{second}");
+  {
+    let treasure = "gold";
+    let treasure_map = &treasure;
+    println!("{treasure_map}");
+    println!("{treasure}");
+  }
 
-- :rust:`first` lives from lines 1 – 3
-- :rust:`second` is valid from lines 2 – 3
-- :rust:`second` does **not** outlive :rust:`first`
+  :cmd:`gold`
+  :cmd:`gold`
+
+- :rust:`treasure` is in scope from lines 2 – 5
+- :rust:`treasure_map` lifetime is from lines 3 – 4
 
 ----------------------
 Why Lifetimes Matter
@@ -31,29 +40,19 @@ Why Lifetimes Matter
 
   - ...the program would have a **dangling reference**
 
-- Rust ensures that a reference cannot outlive the value it refers to
+- A reference cannot outlive the value it refers to
 
-  - This rule is enforced at **compile time**
+  - Enforced at **compile time**
 
---------------------------------
-What Does a Lifetime Describe?
---------------------------------
-
-- How long a reference to data remains valid
-
-- Tied to the referenced data, not the variable name
-
-- Exists even when not written
-
-----------------------------------
-Lifetimes and the Borrow Checker
-----------------------------------
+----------------------
+Lifetime Enforcement
+----------------------
 
 - Borrow checker verifies references remain valid
 
   - Reference Lifetime <= Value Lifetime
 
-- This prevents
+- Prevents
 
   - Dangling references
 
