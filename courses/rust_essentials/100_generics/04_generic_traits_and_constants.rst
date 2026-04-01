@@ -6,9 +6,9 @@ Generic Traits and Constants
 Generic Traits
 ----------------
 
--  Traits can be made generic
+- Traits can be made generic
 
-   -  Allows the same trait to behave differently with each type
+  - Allows the same trait to behave differently with each type
 
 .. code:: rust
 
@@ -29,11 +29,11 @@ Generic Traits
 Const Generics 
 ----------------
 
--  No generic constant declaration
+- No generic constant declaration
 
--  *Generic type parameter* can be made *constant*
+- *Generic type parameter* can be made *constant*
 
-   -  *Const Generics* are generic over a **value** not a type
+  - *Const Generics* are generic over a **value** not a type
 
 .. code:: rust
 

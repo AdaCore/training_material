@@ -6,14 +6,14 @@ Constraints and Properties
 Trait Bounds
 --------------
 
--  Compiler will restrict what can be done with :rust:`<T>` 
-   -  Doesn't know if it can do math, order or anything else 
+- Compiler will restrict what can be done with :rust:`<T>` 
+  - Doesn't know if it can do math, order or anything else 
    
--  Traits are the **fine print** on a generic **contract**
+- Traits are the **fine print** on a generic **contract**
 
-   -  Ensure the logic only executes on types that "fit" the requirements
+  - Ensure the logic only executes on types that "fit" the requirements
    
--  Trait is specified with generic parameter type
+- Trait is specified with generic parameter type
 
 .. code:: rust
 
@@ -101,9 +101,9 @@ User-Defined Traits as Constraints
 Turbofish "::<>"
 ------------------
 
--  Compiler determines the type to use from context
+- Compiler determines the type to use from context
 
-   -  Sometimes there is *ambiguity*
+  - Sometimes there is *ambiguity*
    
 .. code:: rust
     
@@ -114,7 +114,7 @@ Turbofish "::<>"
   
 :error:`error[E0282]: type annotations needed for 'Vec<_>'`
   
--  Turbofish :rust:`::<>` syntax is used to remove ambiguity
+- Turbofish :rust:`::<>` syntax is used to remove ambiguity
 
 .. code:: rust
 
@@ -125,9 +125,9 @@ Turbofish "::<>"
 Multiple Traits
 -----------------
 
--  Can have multiple trait bounds
+- Can have multiple trait bounds
 
-   -  Uses the :rust:`+` to combine
+  - Uses the :rust:`+` to combine
 
 .. code:: rust   
    
@@ -135,7 +135,7 @@ Multiple Traits
                   U: Debug + PartialOrd>(t: T, u: U) 
     { ... }
 
--  :rust:`where` clause can be used for better visibility
+- :rust:`where` clause can be used for better visibility
 
 .. code:: rust
 
@@ -149,9 +149,9 @@ Multiple Traits
 "derive" Macro and Generics
 -----------------------------
 
--  :rust:`derive` macro can be used on generic struct using standard traits
+- :rust:`derive` macro can be used on generic struct using standard traits
 
-   -  Can't be used on generic traits
+  - Can't be used on generic traits
    
 .. code:: rust
     
