@@ -6,21 +6,21 @@ Introduction
 Topics Covered
 ----------------
 
--  **Structs** 
+- **Structs** 
 
-   -  Group related data 
+  - Group related data 
 
-   -  Initialization and update syntax
+  - Initialization and update syntax
    
-   -  Named-field vs Tuple forms
+  - Named-field vs Tuple forms
 
--  **Enums** 
+- **Enums** 
 
-   -  Define distinct options
+  - Define distinct options
 
-   -  Variants holding data
+  - Variants holding data
    
-   -  State machines
+  - State machines
 
 
 
@@ -28,25 +28,25 @@ Topics Covered
 Introduction
 --------------
 
--  :rust:`struct` and :rust:`enum` create custom data structures  
+- :rust:`struct` and :rust:`enum` create custom data structures  
 
-   -  User-defined types 
-   -  Bundle related pieces of information together
-   -  User-defined behavior can be implemented
+  - User-defined types 
+  - Bundle related pieces of information together
+  - User-defined behavior can be implemented
 
 .. code:: rust
 
-	struct PlayerStats {
-		level: u16,
-		health: u32,
-		is_online: bool,
-		score: i64,
-	}
-	enum Direction {
-		North,
-		East,
-		South,
-		West,
-	}
+  struct PlayerStats {
+    level: u16,
+    health: u32,
+    is_online: bool,
+    score: i64,
+  }
+  enum Direction {
+    North,
+    East,
+    South,
+    West,
+  }
 
 
