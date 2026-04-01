@@ -61,8 +61,8 @@ Introducing: The Prelude
 
 * In this module, that means items dealing with
 
-  * Logic: :rust:`Option` and :rust:`Result` (Error handling)
-  * Data: :rust:`String` and :rust:`Vec` (Dynamic storage)
+  * **Logic:** :rust:`Option` and :rust:`Result` (Error handling)
+  * **Data:** :rust:`String` and :rust:`Vec` (Dynamic storage)
 
 * Why it matters
 
