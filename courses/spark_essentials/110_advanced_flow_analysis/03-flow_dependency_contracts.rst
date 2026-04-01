@@ -23,7 +23,7 @@ Basic Data Dependency Contracts
 
   .. code:: Ada
 
-     function Func (X : Integer)
+     function Func (X, Y, Z : Integer) return Integer
      with
        Depends => (Func'Result => (X, Y, Z));
 
