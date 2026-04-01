@@ -32,10 +32,9 @@ Generics
 
 .. container:: PRELUDE END
 
-.. include:: 100_generics/01_generic_functions.rst
-.. include:: 100_generics/02_generic_data.rst
-.. include:: 100_generics/03_generic_traits.rst
-.. include:: 100_generics/04_trait_bounds.rst
-.. include:: 100_generics/05_impl_trait.rst
-.. include:: 100_generics/06_dyn_trait.rst
-.. include:: 100_generics/99_lab.rst
+.. include:: 100_generics/01_introduction.rst
+.. include:: 100_generics/02_generics.rst
+.. include:: 100_generics/03_constraints_and_properties.rst
+.. include:: 100_generics/04_generic_traits_and_constants.rst
+.. include:: 100_generics/98_lab.rst
+.. include:: 100_generics/99_summary.rst
