@@ -49,7 +49,7 @@ Local Borrows
 Mixing Mutable and Immutable Borrows
 --------------------------------------
 
-- Guarantees memory safety at compile time
+**Guarantees memory safety at compile-time**
 
 .. code:: rust
 

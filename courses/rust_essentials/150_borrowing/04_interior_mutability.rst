@@ -47,8 +47,8 @@ Limitations of Strict Rules
    }
 
    let scanner = Sensor { data: 42, read_count: Cell::new(0) };
-      
    scanner.read(); // Borrows immutably
+   
    println!("Sensor read {} time(s).", scanner.read_count.get());
 
 :output:`Sensor read 1 time(s).`
