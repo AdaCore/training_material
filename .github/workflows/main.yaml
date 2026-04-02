@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Black magic to generate the list of courses from the python script to JSON
       -
@@ -34,7 +34,7 @@ jobs:
             source: ${{fromJson(needs.List-Courses.outputs.matrix)}}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Check source is updated with prelude
         run: python3 contrib/ci/fix_prelude.py
@@ -46,7 +46,7 @@ jobs:
         run: python3 pandoc/pandoc_fe.py --output-dir ${{ env.OUTPUT_DIR }} --hush --extension pdf --source ${{ env.SOURCES }}
 
       - name: ${{ env.PRETTY_NAME }} - Package and upload
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.PRETTY_NAME }}
           path: ${{ env.ARTIFACTS }}
@@ -57,13 +57,13 @@ jobs:
     container: sawertyu/pandoc_beamer:latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: GNAT SAS - Package
         run: python3 contrib/ci/package_labs.py courses/gnatsas/labs/ && mv out/labs out/gnatsas_labs && unzip out/gnatsas_labs/labs.zip -d out/gnatsas_labs/pkg
 
       - name: GNAT SAS - Upload
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: GNAT SAS labs
           path: out/gnatsas_labs/pkg/*
@@ -73,7 +73,7 @@ jobs:
         run: python3 contrib/ci/package_labs.py courses/gnat_project_facility/labs/ && mv out/labs out/gnat_project_facility_labs && unzip out/gnat_project_facility_labs/labs.zip -d out/gnat_project_facility_labs/pkg
 
       - name: GNAT Project Facility - Upload
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: GNAT Project Facility labs
           path: out/gnat_project_facility_labs/pkg/*
@@ -83,7 +83,7 @@ jobs:
         run: python3 contrib/ci/package_labs.py courses/ada_essentials/mini_projects/cinema && unzip out/cinema/cinema.zip -d out/cinema/pkg
 
       - name: Mini Cinema - Upload
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Mini Project - Mini Cinema
           path: out/cinema/pkg/*
@@ -100,7 +100,7 @@ jobs:
     container: sawertyu/alr:latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Update base system
         run: |
@@ -120,8 +120,8 @@ jobs:
     name: Python scripts black lint check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.10'
 
@@ -139,7 +139,7 @@ jobs:
     runs-on: ubuntu-latest
     container: sawertyu/alr:latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Update base system
         run: |
