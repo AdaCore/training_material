@@ -94,6 +94,7 @@ Implementing the Trait
 
 
 .. tip::
+<<<<<<< HEAD
 
   Instead, use crates like :rust:`thiserror`
   
@@ -106,6 +107,23 @@ Using the Trait
   .. container:: latex_environment footnotesize
 
     .. code:: rust
+=======
+
+  Instead, use crates like :rust:`thiserror`
+  
+---------------
+Trait Objects
+---------------
+
+* Typically see :rust:`Box<dyn Error + 'static>`
+
+* :rust:`Box<dyn Error>`
+
+  * Use when function could fail with different errors
+  * Hides specific type
+
+    * Can use the ? operator everywhere
+>>>>>>> b3e1708a (Add comments from F2F review)
 
       fn do_something(fail: bool) -> Result<(), Box<dyn Error>> {
           if fail {
@@ -118,7 +136,11 @@ Using the Trait
           Ok(())
       }
 
+<<<<<<< HEAD
 * Receive error and check for a specific problem
+=======
+  * Ensures error can live for entire program duration
+>>>>>>> b3e1708a (Add comments from F2F review)
 
   .. container:: latex_environment footnotesize
 
@@ -145,7 +167,11 @@ Using the Trait
 Best Practices for Custom Errors
 ----------------------------------
 
+<<<<<<< HEAD
 **Implement methods for the following traits**
+=======
+* Implement methods for following traits
+>>>>>>> b3e1708a (Add comments from F2F review)
 
   * :rust:`Display`
 
