@@ -40,16 +40,16 @@ Rust Error Philosophy
 Expected Errors vs. Logic Violations
 --------------------------------------
 
-* Some errors can be handled by the code
+* Recoverable errors should be handled by the code
 
   * File not found
   * Network timeout
   * Invalid user input
 
-* Sometimes we just need to reboot the system
+* Unrecoverable errors mean we need to reboot the system
 
   * Impossible state reached
-  * Violated assumptions / invariant
+  * Violated assumptions/invariant
   * Logic error or other bug
 
 .. note::

@@ -56,6 +56,5 @@ One Return Type, Many Sources
 
 .. note::
 
-  Main logic of the function remains clean and focused on the "happy path".
-
-  The :rust:`?` operator handles the heavy lifting of error translation
+  * Main logic remains clean and focused on "happy path"
+  * :rust:`?` operator handles heavy lifting of error translation
