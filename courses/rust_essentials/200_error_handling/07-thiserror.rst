@@ -6,17 +6,36 @@
 "Macro Magic" for Custom Errors
 ---------------------------------
 
-* Manually implementing :rust:`Display`, :rust:`Debug`, and :rust:`Error::source`
-
-  * Tedius and error-prone to do for every enum
+* Implementing :rust:`Error` is tedious and error-prone
 
 * :rust:`thiserror` crate provides a convenient **derive macro**
 
-  * Generates all that code for you using simple attributes
+  * Generates all that code using simple attributes
 
----------------------
-"thiserror" Example
----------------------
+.. note::
+
+  :rust:`thiserror` comes from a crate - needs to be installed
+
+-------------------
+"error" Attribute
+-------------------
+
+.. code:: rust
+
+  #[error("I/O error: {0}")]
+  #[error("Source {path}")]
+
+* :rust:`error` attribute generates :rust:`Display` implementation
+
+  * Displays error message
+  * String interpolation for dynamic values
+
+    * Index to fill from tuple data
+    * Name to fill from struct data
+
+----------------------------------------
+Defining Errors With "thiserror" Crate
+----------------------------------------
 
 .. code:: rust
   :number-lines: 1
@@ -29,12 +48,12 @@
       EmptyText(String),
 }
 
-* Line 1: generate :rust:`std::error::Error` implementation for :rust:`MyError`
+* Line 1: Generate :rust:`std::error::Error` implementation for :rust:`MyError`
 * Line 3: Replace :rust:`fmt::Display` implementation
 
   * Uses this string with :rust:`IoError` value when printing error
 
-* Line 5: generate :rust:`impl From<io::Error> for :rust:`MyError`
+* Line 5: Generate :rust:`impl From<io::Error>` for :rust:`MyError`
 
   * :rust:`?` will convert error into :rust:`MyError::IoError`
 
@@ -44,12 +63,17 @@ More Attributes
 
 * :rust:`#[source]`
 
+  * Implement :rust:`source` trait
   * Describes where the original error came from
-  * :rust:`#[from]` implies :rust:`#[source]`
 
-* :rust:`transparent` errors - :rust:`#[error(transparent)]`
+* :rust:`#[from]`
 
-  * Uses :rust:`Display` :rust:`from std::io::Error`
+  * Implement :rust:`From` trait for error variant
+  * Automatically implements :rust:`#[source]`
+
+* :rust:`#[error(transparent)]`
+
+  * Uses :rust:`Display` original error
 
     * No need to write custom string
 
@@ -57,17 +81,19 @@ More Attributes
 
     * Returns underlying error
 
-  * Does not add a new message
+  * Does not add new message
 
 ----------------------
 Why Use "thiserror"?
 ----------------------
 
+* Main reason: to avoid manual implementation!
+
 * Structured data
 
   * Enums allow :rust:`match` to handle specific errors
 
-    * Rather than checking an error message string
+    * Rather than checking error message string
 
 * Type safety
 
@@ -75,27 +101,41 @@ Why Use "thiserror"?
 
 * Ecosystem compatibility
 
-  * Generates a standard :rust:`std::error::Error` implementation
-  * So errors work are compatible with other tools
+  * Generates :rust:`std::error::Error` implementation
+  * Errors work with other tools
 
     * Like standard library traits
 
------------------------
-"thiserror" in Action
------------------------
+-------------------------
+"thiserror" in Practice
+-------------------------
 
 .. container:: latex_environment scriptsize
 
   .. code:: rust
 
-    fn get_config(path: &str) -> Result<Config, DataStoreError> {
-        // If 'File::open' fails, it returns 'io::Error'
-        // '?' converts the error via 'from'
-        let content = fs::read_to_string(path)?; 
+    use thiserror::Error;
+    use std::fs::File;
 
-        if content.is_empty() {
-            return Err(DataStoreError::NotFound(path.to_string()));
-        }
+    #[derive(Error, Debug)]
+    pub enum MyError {
+        #[error("Environment variable {0} not set")]
+        ConfigError(String),
 
-        Ok(parse_config(content))
+        #[error("File system error")] // Automatically wraps io::Error
+        IoError(#[from] std::io::Error),
     }
+
+    fn main() -> Result<(), MyError> {
+        // 1. Manual error creation
+        let _ = Err(MyError::ConfigError("PORT".into()))?;
+
+        // 2. Automatic conversion using ? (this returns IoError)
+        let _f = File::open("missing.txt")?;
+
+        Ok(())
+    }
+
+.. note::
+
+  :rust:`_` and :rust:`_f` tell the compiler the objects are unused

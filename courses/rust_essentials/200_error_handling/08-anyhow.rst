@@ -6,22 +6,23 @@
 Flexible Error Handling
 -------------------------
 
-* **The Problem**
+* Don't always want an enum for every error
 
-  * Don't always want an enum for every error
   * Just want to propagate and report them
 
-* **The Solution**
+* :rust:`anyhow::Result<T>`
 
-  * :rust:`anyhow::Result<T>`
-
-    * Available via **anyhow** crate
-
+  * Available via **anyhow** crate
   * Wraps any error implementing :rust:`std::error::Error`
 
-* Primarily used for applications (not libraries)
+* Primarily used for applications (**not** libraries)
 
   * Effortless error propagation
+  * But libraries should return specific errors
+
+.. note::
+
+  :rust:`anyhow` comes from a crate - needs to be installed
 
 ---------------------------
 One Type to Rule Them All
@@ -41,7 +42,7 @@ One Type to Rule Them All
 
       fn run_app() -> anyhow::Result<()>
 
-* Type is compatible with any function that uses the :rust:`?` operator
+* Type is compatible with any function that uses :rust:`?` operator
 
 .. container:: latex_environment small
 
@@ -55,18 +56,18 @@ One Type to Rule Them All
         Ok(())
     }
 
-------------------------
-Methods to Add Context
-------------------------
+-----------------------
+Methods to Add Detail
+-----------------------
 
-* :rust:`context`
+* :rust:`.context()`
 
   * Attaches message to error
   * On failure, user sees *your* message *plus* original error
 
-* :rust:`with_context`
+* :rust:`.with_context()`
 
-  * Only evaluates the message if an error *actually* occurs
+  * Only evaluates message if an error *actually* occurs
   * Better for performance with complex messages
 
 .. code:: rust
@@ -96,8 +97,8 @@ Choosing the Right Tool
       - :rust:`anyhow`
 
     * - *Best For*
-      - Library authors
-      - Application authors
+      - Libraries
+      - Applications
 
     * - *Error Type*
       - Strongly typed
@@ -105,15 +106,15 @@ Choosing the Right Tool
 
     * -
       - (enums)
-      - (:rust:`anyhow:Error`)
+      - (:rust:`anyhow::Error`)
 
     * - *Goal*
-      - Help *caller* handle specific cases
-      - Help *user* understand what happened
+      - Custom errors with no boilerplate
+      - Simplifies propagation
 
     * - *Matching*
-      - Easy to :rust:`match` on variants
-      - Harder (requires "downcasting")
+      - Easy to :rust:`match`
+      - Harder (requires *downcasting*)
 
 -------------------------
 Common Error Operations
@@ -153,4 +154,4 @@ Common Error Operations
 
       println!("{:#}", report);
 
-    * Also called *developer view*
+    * Also called :dfn:`developer view`
