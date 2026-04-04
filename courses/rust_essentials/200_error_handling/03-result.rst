@@ -11,26 +11,26 @@ Recoverable Error
   * File not found
   * Network timeout
 
-* :rust:`Result` enum allows safe handling of problems
+* :rust:`Result` allows safe handling of any outcome
 
   .. container:: latex_environment footnotesize
 
     .. code:: rust
 
       enum Result<T, E> {
-          Ok(T),  // Operation succeeded; contains value of type 'T'
-          Err(E), // Operation failed; contains error of type 'E'
+          Ok(T),  // Success - contains value of type 'T'
+          Err(E), // Failure - contains error of type 'E'
       }
 
 .. note::
 
-  You need to handle both variants!
+  Both variants need to be handled
 
 ------------------
 Handling Results
 ------------------
 
-* Pattern Matching (most explicit)
+* Pattern Matching (idiomatic)
 
   .. code:: rust
 
@@ -39,7 +39,7 @@ Handling Results
         Err(e)   => eprintln!("Failed to open: {e}"),
     }
 
-* Convenience methods
+* Helper methods
 
   * :rust:`.unwrap()` - returns the value or panics
   * :rust:`.expect("Msg")` - like :rust:`unwrap`, with custom panic message
@@ -68,40 +68,32 @@ Results vs. Exceptions
       - Bubbles up stack automatically
 
     * - *Performance*
-      - Low cost (enum variants)
-      - Higher cost (runtime overhead)
+      - Low cost
+      - Runtime overhead
 
     * - *Safety*
-      - Compiler forces you to handle error
+      - Error must be handled
       - Easy to forget :cpp:`catch` block
 
 --------------------
 Propagating Errors
 --------------------
 
-* Instead of handling the error ...
+* Instead of handling error - return it to caller (manually)
 
-  * ... you can return it to the caller (manually)
+* **Shortcut:** :rust:`?` operator makes propagation concise
 
-* Shortcut - :rust:`?` operator makes propagation concise
-
-  * Called the **Try Operator**
-
-    * See next chapter for details
+  * Called the :dfn:`Try Operator`
 
 .. container:: latex_environment footnotesize
 
   .. code:: rust
 
-    fn read_username() -> Result<String, io::Error> {
-        // 'open' returns Result
-        //   '?' returns to caller if Result is Err
+    fn open_file(filename: &str) -> Result<File, io::Error> {
+        // 'open' returns 'Result'
+        // '?' returns to caller if 'Result' is 'Err'
         let mut file = File::open("user.txt")?;
-        let mut text = String::new();
-        // 'read_to_string' returns Result
-        //   '?' returns to caller if Result is Err
-        file.read_to_string(&mut text)?;
-        Ok(text)
+        Ok(file)
     }
 
 .. note::
