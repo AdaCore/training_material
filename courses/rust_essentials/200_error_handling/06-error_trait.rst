@@ -11,9 +11,9 @@ The "Error" Trait
   * Defined in :rust:`std::error`
   * Implemented by many standard and custom error types
 
-* Without standard trait, libraries would have their own errors
+* All errors should use :rust:`Error` trait
 
-* :rust:`Error` allows common processing for different error types
+  * Without standard trait, libraries would have their own errors
 
 ---------------------
 Trait Prerequisites
@@ -93,22 +93,25 @@ Implementing the Trait
     }
 
 
-* Instead, can use crates like :rust:`thiserror`
-  
-  * Described in next chapter
+.. tip::
 
+  Instead, use crates like :rust:`thiserror`
+  
 ---------------
 Trait Objects
 ---------------
 
-* When you don't know what specific error will happen
+* Typically see :rust:`Box<dyn Error + 'static>`
 
-  * Use :rust:`Box<dyn Error>`
-  * Or don't care!
+* :rust:`Box<dyn Error>`
+
+  * Use when function could fail with different errors
+  * Hides specific type
+
+    * Can use the ? operator everywhere
 
 * :rust:`'static` bound
 
-  * Typically see :rust:`Box<dyn Error + 'static>`
   * Ensures error can live for entire program duration
 
     * Safe to pass across boundaries
@@ -121,18 +124,16 @@ Trait Objects
 Best Practices for Custom Errors
 ----------------------------------
 
-* Implement methods
+* Implement methods for following traits
 
   * :rust:`Display`
 
     * Tell user what happened
 
-  * :rust:`Debug` - for the "where/how" technical details
+  * :rust:`Debug`
 
-    * Tell programmer what happened
+    * Tell programmer what happened and where
 
   * :rust:`Error`
 
     * Allow everyone to know what happened
-
-* :rust:`source()` allows tracking of where error came from
