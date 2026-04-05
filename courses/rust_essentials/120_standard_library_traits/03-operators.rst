@@ -6,9 +6,11 @@ Operators
 Operator Overloading
 ----------------------
 
-* Rust uses traits in :rust:`std::ops` to overload operators (e.g., :rust:`+`, :rust:`-`, :rust:`*`)
+* Traits in :rust:`std::ops` are used to overload operators
 
-  * Operators delegate to trait methods (:rust:`Add`, :rust:`Sub`, etc.)
+  * E.g., :rust:`+`, :rust:`-`, :rust:`*`
+
+  * Operators are delegated to trait methods (:rust:`Add`, :rust:`Sub`, etc.)
 
 .. container:: latex_environment footnotesize
 
@@ -42,11 +44,9 @@ Operator Overloading
 
   :rust:`Self::Output` indicates return type defined by the implementation
 
--------------------
-Overloading "Add"
--------------------
-
-**Define an implementation for** :rust:`Inches` **that returns a number in** :rust:`Feet`
+------------------------
+Overload "Add" Example
+------------------------
 
 .. code:: rust
 

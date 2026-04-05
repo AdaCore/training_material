@@ -22,14 +22,12 @@ Reading and Writing via Trait
 
   * **Key methods:** :rust:`write()`, :rust:`flush()`
 
-* Central to Rust’s I/O ecosystem (files, network, buffers)
-
-* Trait-based
+* Central to I/O ecosystem
 
   * Many types can be read from / written to
   * Allows function to accept any readable/writable source
 
-    * E.g., files, network, memory, etc.
+    * I.e., files, network, memory, etc.
 
 -----------------------------
 "Write" then "Read" Example
@@ -57,32 +55,23 @@ Reading and Writing via Trait
 Practical Patterns
 --------------------
 
-* Combine with :rust:`BufReader` for buffered input
-
-  * Struct that implements trait :rust:`BufRead`
-  * Allows reading line-by-line (rather than as a byte array)
-
 * Writers often implement :rust:`flush()` to ensure output is sent
 
 .. code:: rust
   :font-size: scriptsize
 
-  use std::io::{BufRead, BufReader, Write}; // Traits (Abilities)
   use std::fs::File;
+  use std::io::Write;
 
   fn main() -> std::io::Result<()> {
-      // 1. SETUP: Open the file and wrap it in a buffer
-      let file = File::open("input.txt")?;
-      let mut reader = BufReader::new(file); 
-      let mut output = Vec::new(); // 'Vec' implements Write
+      let mut file = File::create("log.txt")?;
 
-      // 2. READ: Use 'BufRead' trait to grab a line easily
-      let mut line = String::new();
-      reader.read_line(&mut line)?; 
+      // The OS receives this data, but might hold it in a 'page cache'
+      file.write_all(b"Critical system event occurred.")?;
 
-      // 3. WRITE: Use 'Write' trait to save the data
-      output.write_all(line.as_bytes())?;
-      output.flush()?; // Ensure all bytes are pushed out
+      // Ensures the OS moves data from its internal cache to the storage device
+      file.flush()?; 
 
+      println!("Data is physically committed to disk.");
       Ok(())
   }

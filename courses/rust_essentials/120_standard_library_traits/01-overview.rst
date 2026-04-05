@@ -27,15 +27,13 @@ Review: What is a Trait?
 What is a Standard Library Trait?
 -----------------------------------
 
-* Predefined traits in Rust’s Standard Library
+* Predefined in Rust’s Standard Library
 
   * Describe common behaviors
   * Integrate user types with both language features and library APIs
 
-* What are they used for?
+* Define standardized capabilities
 
-  * Define standardized capabilities
+  * E.g., comparing, converting, formatting
 
-    * E.g., comparing, converting, formatting
-
-  * Allows user types to work with built-in syntax and library functions
+* Allows user types to work with built-in syntax and functions

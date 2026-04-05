@@ -16,9 +16,9 @@ Default Values
 
   * Great for API ergonomics and fallback values
 
-* Common Usage
+* Usage
 
-  * Automatically derived with :rust:`#[derive(Default)]`
+  * Commonly derived with :rust:`#[derive(Default)]`
 
     * If every field implements :rust:`std::default::Default`
 
@@ -67,16 +67,14 @@ Default Values
 Default Values in a "struct"
 ------------------------------
 
-* Definition
+.. code:: rust
 
-  .. code:: rust
-
-    #[derive(Debug, Default)]
-    struct Config {
-        port: u16,
-        host: String,
-        debug: bool,
-    }
+  #[derive(Debug, Default)]
+  struct Config {
+      port: u16,
+      host: String,
+      debug: bool,
+  }
 
 * Usage
 
@@ -89,24 +87,22 @@ Default Values in a "struct"
 
     :command:`Defaults: Config \{ port: 0, host: "", debug: false \}`
 
-* Using *struct update syntax*
+* Using struct update operator
 
   .. code:: rust
 
     let c2 = Config { port:123, ..Default::default() }
 
-  * :rust:`std::default::Default` uses
+  * Default values for :rust:`host` and :rust:`debug`
+  * New value for :rust:`port`
 
-    * Sensible default values for :rust:`host` and :rust:`debug`
-    * New value for :rust:`port`
+--------------------------
+Default Values in "enum"
+--------------------------
 
-------------------------------
-Default Values in an "enum"
-------------------------------
+* :rust:`enum` can be one of multiple variants
 
-* An :rust:`enum` can be one of multiple variants
-
-  * So how does Rust pick the default?
+  * How is the default specified?
 
 * Default value specified by user when creating :rust:`enum`
 
@@ -124,7 +120,7 @@ Default Values in an "enum"
 
 * Derived defaults only work for *unit variants*
 
-  * So :rust:`Active` would not be selectable
+  * :rust:`Active` would not be selectable
 
 .. tip::
 

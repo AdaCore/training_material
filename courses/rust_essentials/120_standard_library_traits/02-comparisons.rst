@@ -26,17 +26,15 @@ Comparison Traits
 
   * But can be implemented manually
 
-----------------------------
-Basic Equality: Definition
-----------------------------
-
-**Rust splits equality into two traits**
+-------------------------
+Two Traits for Equality
+-------------------------
 
 * :rust:`PartialEq`
 
   * Enables :rust:`==` and :rust:`!=`
-  * Symmetric: if :rust:`a == b` then :rust:`b == a`
-  * Transitive: if :rust:`a == b` and :rust:`b == c` then :rust:`a == c`
+  * **Symmetric:** If :rust:`a == b` then :rust:`b == a`
+  * **Transitive:** If :rust:`a == b` and :rust:`b == c` then :rust:`a == c`
 
   * Object are **considered** equal
 
@@ -50,9 +48,9 @@ Basic Equality: Definition
 
     * Trait guarantees that :rust:`a == a`
 
------------------------------
-Common Equality: Derivation
------------------------------
+-------------------
+Deriving Equality
+-------------------
 
 **Most custom types do not need manual implementation**
 
@@ -72,11 +70,9 @@ Common Equality: Derivation
 
   Can only derive if all fields already implement :rust:`PartialEq` and :rust:`Eq`
 
----------------------------------
-Useful Equality: Implementation
----------------------------------
-
-**Define your own method for dependent comparison**
+-----------------------------------
+Custom Implementation of Equality
+-----------------------------------
 
 * Example: Type has a validity flag and a value
 
@@ -111,8 +107,7 @@ Useful Equality: Implementation
 
 .. note::
 
-  This is comparing the *concept* of "sensor data",
-  not the equality of the object
+  Custom Equality: Two different objects can represent the same value
 
 ----------
 Ordering
@@ -125,14 +120,14 @@ Ordering
 
 * :rust:`Ord`
 
-  * Build on :rust:`PartialOrd`
+  * Built on :rust:`PartialOrd`
   * Returns :rust:`Ordering`
 
     :rust:`enum Ordering {Less, Equal, Greater,};`
 
-* When using :rust:`derive`, Rust compares fields *in order*
+* When using :rust:`derive`, fields compared *in order*
 
-  * So changing list of fields can change :rust:`Ord` result
+  * Changing list of fields can change :rust:`Ord` result
 
 .. note::
 
@@ -179,7 +174,5 @@ Ordering and Equality
 
 .. warning::
 
-  If :rust:`PartialOrd` and :rust:`PartialEq` are inconsistent,
-  sorted collections (and even :rust:`<=` or :rust:`>=`) behavior
-  will be inconsistent
-
+  If :rust:`PartialEq` returns :rust:`True` but :rust:`PartialOrd` does
+  not return :rust:`Equal`, behavior is non-deterministic
