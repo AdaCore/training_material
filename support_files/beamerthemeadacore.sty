@@ -103,7 +103,13 @@
 \setbeamercolor{frametitlebox}{fg=white,bg=adacore_lovelace}
 \setbeamertemplate{frametitle}{%
   \begin{beamercolorbox}[sep=0.5em,rounded=true,shadow=true,wd=\textwidth]{frametitlebox}%
-    \usebeamerfont{frametitle}\insertframetitle
+    % 1. Render the main title
+    {\usebeamerfont{frametitle}\insertframetitle}
+
+    % 2. Check if a subtitle exists, then render it
+    \ifx\insertframesubtitle\@empty\else%
+      {\hfill\usebeamerfont{framesubtitle}\insertframesubtitle\hspace{-0.4em}}%
+    \fi%
   \end{beamercolorbox}%
   \vspace{0.2cm}%
 }
