@@ -364,9 +364,7 @@ def speaker_note(contents):
 def language_variant_admonition(contents):
     text = para_to_text(contents[1]["c"])
     return [
-        latex_block(
-            "\\framesubtitle{" + latex_color(text, "adacore_paleblue") + "}"
-        )
+        latex_block("\\framesubtitle{" + latex_color(text, "adacore_paleblue") + "}")
     ]
 
 
