@@ -76,7 +76,7 @@ Basic Operations
 :error:`index out of bounds: the len is 3 but the index is 5`
 
 --------------------
-Working with "Vec"
+Working With "Vec"
 --------------------
 
 .. code:: rust

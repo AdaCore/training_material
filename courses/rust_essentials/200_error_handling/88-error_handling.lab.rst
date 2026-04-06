@@ -1,9 +1,9 @@
 =================================
-Exercise: Rewriting with Result
+Exercise: Rewriting With Result
 =================================
 
 ---------------------------------
-Rewriting with Result Problem
+Rewriting With Result Problem
 ---------------------------------
 
 In this exercise we're revisiting the expression evaluator exercise that
@@ -18,7 +18,7 @@ for :rust:`eval`.
 .. container:: source_include 200_error_handling/src/200_error_handling.rs :start-after://ANCHOR-eval :end-before://ANCHOR-eval_end :code:rust
 
 ---------------------------------
-Rewriting with Result Tests
+Rewriting With Result Tests
 ---------------------------------
 
 .. container:: source_include 200_error_handling/src/200_error_handling.rs :start-after://ANCHOR-tests :code:rust
@@ -33,7 +33,7 @@ Details
    confused.
 
 ---------------------------------
-Rewriting with Result Solution
+Rewriting With Result Solution
 ---------------------------------
 
 .. container:: source_include 200_error_handling/src/200_error_handling.rs :start-after://ANCHOR-solution :end-before://ANCHOR-tests :code:rust

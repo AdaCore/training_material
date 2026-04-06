@@ -3,7 +3,7 @@ Mutable References
 ======================
 
 -----------------------------------------------
-Mutable References (aka Exclusive References)
+Mutable References (Aka Exclusive References)
 -----------------------------------------------
 
 - Created with :rust:`&mut` operator

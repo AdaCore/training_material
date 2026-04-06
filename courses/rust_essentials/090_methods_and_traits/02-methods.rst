@@ -37,7 +37,7 @@ Methods in Rust
     }
 
 ----------------------------
-What is a Method Receiver?
+What Is a Method Receiver?
 ----------------------------
 
 * First parameter of a **method**

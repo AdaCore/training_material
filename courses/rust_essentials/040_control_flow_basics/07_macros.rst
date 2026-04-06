@@ -3,7 +3,7 @@ Macros
 ========
 
 ------------------
-What is a Macro?
+What Is a Macro?
 ------------------
 
 - Code that **generates** other code at **compile-time**
@@ -18,7 +18,7 @@ What is a Macro?
    Writing custom macros is an advanced, non-trivial topic
 
 ----------
-println!
+Println!
 ----------
 
 .. admonition:: Language Variant
@@ -42,7 +42,7 @@ println!
     println!("Hello {name}!");
 
 ------
-dbg!
+Dbg!
 ------
 
 .. admonition:: Language Variant
@@ -77,7 +77,7 @@ dbg!
 :command:`[src/main.rs:5:20] i = 3`
 
 -------
-todo!
+Todo!
 -------
 
 .. admonition:: Language Variant
@@ -106,7 +106,7 @@ todo!
 :command:`not yet implemented: Implement this`
 
 --------------
-unreachable!
+Unreachable!
 --------------
 
 .. admonition:: Language Variant

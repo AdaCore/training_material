@@ -3,7 +3,7 @@ Filesystem Hierarchy
 ======================
 
 --------------------------------
-Using Modules from Other Files
+Using Modules From Other Files
 --------------------------------
 
 * Each file is considered a module
@@ -54,7 +54,7 @@ Mapping Modules to Files
   :filename:`cleaner/mod.rs` is legacy style but still common
 
 -------------------------
-Directory-based Modules
+Directory-Based Modules
 -------------------------
 
 * For complex modules with their own sub-modules
