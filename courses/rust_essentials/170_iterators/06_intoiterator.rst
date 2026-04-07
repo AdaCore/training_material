@@ -2,6 +2,38 @@
 "IntoIterator"
 ================
 
+---------------------
+Implicit Conversion
+---------------------
+
+* :rust:`for` loop does not actually loop over :rust:`Vec` or :rust:`Array`
+
+  * Actually loops over an *iterator*
+
+* When you write
+
+  .. code:: rust
+
+    let my_vector = vec![1, 2, 3];
+    for elem in my_vector {
+        println!("{elem}");
+    }
+
+* Compiler sees
+
+  .. code:: rust
+
+    let my_vector = vec![1, 2, 3];
+    // 'IntoIterator' trait provides this!
+    let mut iter = my_vector.into_iter();
+    while let Some(elem) = iter.next() {
+        println!("{elem}");
+    }
+
+.. note::
+
+  :rust:`.into_iter()` is the method defined by :rust:`IntoIterator` trait
+
 --------------------------
 The "IntoIterator" Trait
 --------------------------
@@ -10,7 +42,7 @@ The "IntoIterator" Trait
 
   * Used wherever something iterable is needed
 
-    * Most commonly in :rust:`for` loop
+    * Most commonly in :rust:`for` loops
 
 * Core method: :rust:`into_iter(self)`
 
@@ -36,37 +68,8 @@ The "IntoIterator" Trait
   :rust:`IntoIterator()` can also be used for references and mutable
   objects, where the source is **not** consumed
 
----------------------
-Implicit Conversion
----------------------
-
-* :rust:`for` loop does not actually loop over :rust:`Vec` or :rust:`Array`
-
-  * Actually loops over an *iterator*
-  * Rust uses :rust:`IntoIterator` to "convert"
-
-* When you write
-
-  .. code:: rust
-
-    let my_vector = vec![1, 2, 3];
-    for elem in my_vector {
-        println!("{elem}");
-    }
-
-* Compiler sees
-
-  .. code:: rust
-
-    let my_vector = vec![1, 2, 3];
-    // The IntoIterator trait provides this!
-    let mut iter = my_vector.into_iter();
-    while let Some(elem) = iter.next() {
-        println!("{elem}");
-    }
-
 ------------------------
-Making a Type Loopable
+Making a Type Iterable
 ------------------------
 
 **Implement** :rust:`IntoIterator` **for your own collection**
@@ -86,9 +89,7 @@ Making a Type Loopable
       }
   }
 
-  fn main() {
-      let col = MyCollection { items: vec![10, 20] };
-      for x in col { // This works because of the implementation above!
-          println!("{x}");
-      }
+  let col = MyCollection { items: vec![10, 20] };
+  for x in col { // This works because of the implementation above!
+      println!("{x}");
   }
