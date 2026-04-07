@@ -17,10 +17,10 @@ What is a Variable?
 
 .. code:: rust
 
-  // We are binding the name "apples" to the value 5
+  // We are binding the name 'apples' to the value 5
   let apples = 5;
 
-  // We are binding the name "person" to the value "Alice"
+  // We are binding the name 'person' to the value 'Alice'
   let person = "Alice";
 
 -------------------------------------

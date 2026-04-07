@@ -56,7 +56,7 @@ Immutable Access
   let tac = Rc::clone(&tic);
   let toe = Rc::clone(&tic);  
   
-  *var_a += 10; //Error: no mutable access
+  *var_a += 10; // Error: no mutable access
   
 :error:`error[E0594]: cannot assign to data in an 'Rc'`
 

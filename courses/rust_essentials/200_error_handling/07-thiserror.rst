@@ -90,7 +90,7 @@ Why Use "thiserror"?
 
     fn get_config(path: &str) -> Result<Config, DataStoreError> {
         // If 'File::open' fails, it returns 'io::Error'
-        // "?" converts the error via "from"
+        // '?' converts the error via 'from'
         let content = fs::read_to_string(path)?; 
 
         if content.is_empty() {

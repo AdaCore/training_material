@@ -66,7 +66,7 @@ dbg!
         }
         product
     }
-    let result = factorial(3); // result will be 6
+    let result = factorial(3); // Result will be 6
 
 * Generates the following output:
 

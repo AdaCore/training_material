@@ -198,10 +198,10 @@ Numeric Conversions
   let my_int: i32 = 10;
   let my_float: f64 = 5.5;
 
-  // will not compile!
+  // Will not compile!
   let sum = my_int + my_float;
 
-  // "as" tells the compiler to interpret my_int as f64
+  // 'as' tells the compiler to interpret my_int as f64
   let sum = my_int as f64 + my_float;
 
 .. tip::
@@ -244,7 +244,7 @@ The Unit Type ()
 
 .. code:: rust
 
-  // this variable exists, but holds no data!
+  // This variable exists, but holds no data!
   let holds_no_data: () = ();
 
 .. note::

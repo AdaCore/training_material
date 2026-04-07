@@ -93,12 +93,12 @@ Propagating Errors
   .. code:: rust
 
     fn read_username() -> Result<String, io::Error> {
-        // "open" returns Result
-        //   "?" returns to caller if Result is Err
+        // 'open' returns Result
+        //   '?' returns to caller if Result is Err
         let mut file = File::open("user.txt")?;
         let mut text = String::new();
-        // "read_to_string" returns Result
-        //   "?" returns to caller if Result is Err
+        // 'read_to_string' returns Result
+        //   '?' returns to caller if Result is Err
         file.read_to_string(&mut text)?;
         Ok(text)
     }
