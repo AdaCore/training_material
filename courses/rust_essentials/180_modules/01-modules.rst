@@ -2,11 +2,11 @@
 Modules
 =========
 
---------------------------
-Modules: The Big Picture
---------------------------
+-----------------
+The Big Picture
+-----------------
 
-* All application does not reside in one file!
+* Most applications reside in more than one file
 
   * *Modules* are how Rust organizes code
 
@@ -22,17 +22,47 @@ Modules: The Big Picture
 
   * Prevent "name collisions"
 
-    * :rust:`draw()` in module :rust:`Circle` and :rust:`draw()` in :rust:`Square` do not conflict
-
-* Unit of Organization
+* Unit of organization
 
   * Modules are the "folders" of your logic
 
-    * Crates are the "packages" of your project
+----------------------
+The Complete Picture
+----------------------
+
+**Rust code is made up of**
+
+.. list-table::
+  :header-rows: 1
+
+  * - **Element**
+    - **Description**
+    -
+
+  * - *Item*
+    - Function, struct, enum
+    - (Smallest unit)
+
+  * - *Module*
+    - Folder for items
+    - (Privacy boundary)
+
+  * - *Crate*
+    - Collection of modules
+    - (Project or library)
+
+  * - *Package*
+    - One or more crated
+    - (Managed by cargo.toml)
 
 ---------------
 "mod" Keyword
 ---------------
+
+* :rust:`mod` - foundation of module system
+
+  * Container for functions, structs, traits, modules
+  * Like a "namespace" - helps prevent naming conflicts
 
 .. code:: rust
 

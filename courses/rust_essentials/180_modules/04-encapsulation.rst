@@ -26,13 +26,13 @@ Encapsulation in Structs
 
 * Keep fields private
 
-  * Only your code can modify fields
+    * Only supplier code can modify fields
 
 * Provide :rust:`pub` getter and setter methods
 
   * Control how data is read or modified
 
-.. container:: latex_environment tiny
+.. container:: latex_environment scriptsize
 
   .. code:: rust
 
@@ -49,18 +49,19 @@ Encapsulation in Structs
         }
     }
 
-------------------------
-Breaking Encapsulation
-------------------------
-
-**Or, When to** :rust:`pub`
+--------------------------------------------
+Breaking Encapsulation - Or, When to "pub"
+--------------------------------------------
 
 **Transparency vs. Control**
 
   * Use :rust:`pub` fields when struct is a simple "data collection"
 
     * No internal rules to protect
-    * E.g., :rust:`Point { pub x: i32, pub y: i32 }`
+
+    .. code:: rust
+
+      pub Point { pub x: i32, pub y: i32 }
 
 **"Crate-Internal" Compromise**
 
@@ -71,7 +72,7 @@ Breaking Encapsulation
 
   Encapsulation hides code to help guarantee correctness
 
-  Private fields are only modifiable by "designer"
+  Private fields are only modifiable by supplier
 
 ------------------------
 "pub" vs. "pub(crate)"
@@ -99,5 +100,5 @@ Breaking Encapsulation
 
 **Why** :rust:`pub(crate)`**?**
 
-  * You don't want clients checking the content
-  * Once published, changing it breaks programmer's code
+  * Prevents clients from checking content
+  * Once published, changing it breaks users code

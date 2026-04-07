@@ -21,6 +21,7 @@ Dealing With Long Paths
       }
   }
 
+  mod greenhouse;
   fn main() {
       // This is repetitive and hard to read
       greenhouse::shelf::cactus::water_cactus();
@@ -39,32 +40,45 @@ The "use" Shortcut
 
 * :rust:`use` helps avoid typing long paths
 
-  * E.g., :rust:`std::collections::HashMap`
-
-* :rust:`use std::collections::HashMap;`
-
-  * Allows you to just type :rust:`HashMap`
-  * ... as if it was in your own module
-
-.. tip::
-
-  Rather than :rust:`use`, try :rust:`as` to rename item
-
   .. code:: rust
 
-    use std::io::Result as IoResult;
+    mod greenhouse;
+    use greenhouse::shelf::cactus;
+    fn main() {
+      cactus::water_cactus();
+      cactus::touch_spine();
+      cactus::water_cactus();
+      cactus::touch_spine();
+  }
+
+* Code just needs to use :rust:`cactus`
+
+  * ... as if it was in scope
 
 -----------------------
 "use" With a Wildcard
 -----------------------
 
-* Use the wildcard "*" (:dfn:`glob import`) to get everything
+* Use wildcard "*" (:dfn:`glob import`) to get everything
 
   * All public items in module get added to current scope
 
+  .. code:: rust
+
+    mod math_utils {
+        pub fn add(a: i32, b: i32) -> i32 { a + b }
+        pub fn subtract(a: i32, b: i32) -> i32 { a - b }
+        pub fn multiply(a: i32, b: i32) -> i32 { a * b }
+        pub fn divide(a: i32, b: i32) -> i32 { a / b }
+    }
+
+    use math_utils::*
+    fn main() {
+        let sum = add(10, 5);
+    }
+
 * Benefits
 
-  * Common in :rust:`mod tests` to test private items easily
   * Used in preludes to load essential traits
   * Speeds up prototyping
 
@@ -81,19 +95,65 @@ The "use" Shortcut
 
     use std::io::(self, Read, Write);
 
+-----------------
+Name Collisions
+-----------------
+
+.. code:: rust
+
+  mod two_dee_graphics {
+      pub fn render() { todo!() }
+  }
+
+  mod three_dee_graphics {
+      pub fn render() { todo!() }
+  }
+
+  // COLLISION!
+  use two_dee_graphics::render;
+  use three_dee_graphics::render;
+
+  fn main() {
+      render(); // Error - which one did you mean?
+  }
+
+:error:`error[E0252]: the name 'render' is defined multiple times`
+
+**Solution: Rename with** :rust:`as`
+
+  .. code:: rust
+
+    use two_dee_graphics::render as render2d;
+    use three_dee_graphics::render as render3d;
+    fn main() {
+        render3d();
+    }
+
 ----------------
 Relative Paths
 ----------------
 
-* When referring to the current module, you can use :rust:`self`
+* Use :rust:`self` when referring to current module
 
-  * Often used in :rust:`use` statements
+  .. code:: rust
+
+    mod shelf {
+        pub mod cactus {
+            pub struct Pot;
+            pub fn water() {}
+        }
+    }
+
+    use shelf::cactus::{self, Pot};
+
+    fn main() {
+        let my_pot = Pot;  // Imported directly via 'Pot'
+        cactus::water();   // Imported via 'self' (cactus module)
+    }
 
 * Use :rust:`super` to refer to the enclosing module 
 
   * Useful for reaching "outside" the current module
-
-    * Especially in unit tests
 
   .. code:: rust
 
@@ -110,10 +170,10 @@ Relative Paths
 Absolute Paths
 ----------------
 
-* Use :rust:`crate` to refer to something from the base directory of the filesystem
+* Use :rust:`crate` to refer to something from base directory of filesystem
 
   * Always starts from the root of the current crate
-  * Path stays valid even if you move the file to a different module
+  * Path stays valid even if you move the code to a different module
 
 * Example
 
