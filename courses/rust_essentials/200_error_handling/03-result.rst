@@ -57,11 +57,7 @@ Results vs. Exceptions
 
     * - **Feature**
       - :rust:`Result` **(Rust)**
-<<<<<<< HEAD
       - :cpp:`try` **/** :cpp:`catch` **(other languages)**
-=======
-      - :cpp:`try` / :cpp:`catch` **(other languages)**
->>>>>>> b3e1708a (Add comments from F2F review)
 
     * - *Visibility*
       - Part of function signature
