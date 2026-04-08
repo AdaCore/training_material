@@ -58,7 +58,7 @@ Match Guards
   }
 
 ----------
-"if Let"
+"if let"
 ----------
 
 - Matches a single pattern conditionally
@@ -79,7 +79,7 @@ Match Guards
   }
 
 ---------------------
-"if Let" vs "match"
+"if let" vs "match"
 ---------------------
 
 - :rust:`if let` is shorthand for a two-arm :rust:`match`
@@ -104,7 +104,7 @@ Match Guards
   }
 
 -------------
-"while Let"
+"while let"
 -------------
 
 - Commonly used for iterative extraction

@@ -36,7 +36,7 @@ Rust's Reference System
 - **Reference**: access contract for the data at that address
 
 -----------------------------
-The "Observer" (Let R = &X)
+The "Observer" (let r = &x)
 -----------------------------
 
 - *Cannot* point to something else
@@ -63,7 +63,7 @@ The "Observer" (Let R = &X)
   The reference cannot be redirected, nor can the data be modified
 
 ---------------------------------
-The "Rebinder" (Let Mut R = &X)
+The "Rebinder" (let mut r = &x)
 ---------------------------------
 
 - *Can* point to something else
@@ -87,7 +87,7 @@ The "Rebinder" (Let Mut R = &X)
   The reference *can* be redirected, but the data *cannot* be modified
 
 ---------------------------------
-The "Modifier" (Let R = &Mut X) 
+The "Modifier" (let r = &mut x)
 ---------------------------------
 
 - *Cannot* point to something else
@@ -109,7 +109,7 @@ The "Modifier" (Let R = &Mut X)
   The reference *cannot* be redirected, but the data *can* be modified
 
 ---------------------------------------
-The "Free Agent" (Let Mut R = &Mut X) 
+The "Free Agent" (let mut r = &mut x)
 ---------------------------------------
 
 - *Can* point to something else

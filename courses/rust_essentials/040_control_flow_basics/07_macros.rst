@@ -18,7 +18,7 @@ What Is a Macro?
    Writing custom macros is an advanced, non-trivial topic
 
 ----------
-Println!
+println!
 ----------
 
 .. admonition:: Language Variant
@@ -42,7 +42,7 @@ Println!
     println!("Hello {name}!");
 
 ------
-Dbg!
+dbg!
 ------
 
 .. admonition:: Language Variant
@@ -77,7 +77,7 @@ Dbg!
 :command:`[src/main.rs:5:20] i = 3`
 
 -------
-Todo!
+todo!
 -------
 
 .. admonition:: Language Variant
@@ -106,7 +106,7 @@ Todo!
 :command:`not yet implemented: Implement this`
 
 --------------
-Unreachable!
+unreachable!
 --------------
 
 .. admonition:: Language Variant
