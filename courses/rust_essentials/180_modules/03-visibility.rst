@@ -18,6 +18,52 @@ Private by Default
 
 * Enforced by compiler
 
+-------------------
+Module Visibility
+-------------------
+
+  :filename:`parent.rs`
+
+  .. code:: rust
+
+    pub mod public_child;
+    mod private_child;
+
+    pub fn orchestrate() {
+        public_child::public_helper();
+        private_child::private_helper();
+        private_child::deeply_hidden(); // ERROR
+    }
+
+    fn parent_internal_logic() {
+        println!("Parent's secret sauce.");
+    }
+
+  :filename:`private_child.rs`
+
+  .. code:: rust
+
+    pub fn private_helper() {
+        println!("Private child helping the parent.");
+        parent::orchestrate();
+        parent::parent_internal_logic(); 
+    }
+
+    fn deeply_hidden() {
+        println!("Not even the parent can see this.");
+    }
+
+  :filename:`public_child.rs`
+
+  .. code:: rust
+
+    pub fn public_helper() {
+        println!("Public child is open for business.");
+        parent::parent_internal_logic(); 
+        parent::private_child::private_helper(); // ERROR
+    }
+
+
 ---------------------------
 Visibility at Every Level
 ---------------------------
