@@ -97,34 +97,55 @@ Implementing the Trait
 
   Instead, use crates like :rust:`thiserror`
   
----------------
-Trait Objects
----------------
+-----------------
+Using the Trait
+-----------------
 
-* Typically see :rust:`Box<dyn Error + 'static>`
+* Return some kind of error
 
-* :rust:`Box<dyn Error>`
+  .. container:: latex_environment footnotesize
 
-  * Use when function could fail with different errors
-  * Hides specific type
+    .. code:: rust
 
-    * Can use the ? operator everywhere
+      fn do_something(fail: bool) -> Result<(), Box<dyn Error>> {
+          if fail {
+              let err = MyError {
+                  details: String::from("Something went wrong!"),
+              };
+              // We box the error to erase its specific type
+              return Err(Box::new(err));
+          }
+          Ok(())
+      }
 
-* :rust:`'static` bound
+* Receive error and check for a specific problem
 
-  * Ensures error can live for entire program duration
+  .. container:: latex_environment footnotesize
 
-    * Safe to pass across boundaries
+    .. code:: rust
+      :number-lines: 2
 
-* You have a :rust:`dyn Error` but need to check if it's :rust:`Network` error
+      match do_something(true) {
+          Ok(_) => println!("Success!"),
+          Err(e) => {
+              // Attempt to downcast to our specific type
+              if let Some(specific_err) = e.downcast_ref::<MyError>() {
+                  println!("Caught a specific error: {}", specific_err.details);
+              } else {
+                  println!("Caught an unknown error type: {}", e);
+              }
+          }
+      }
 
-  * Can use :rust:`.downcast_ref::<MyError>()`
+.. note::
+
+  Line 6 :rust:`.downcast_ref::<MyError>()` "unboxes" error using :rust:`Option`
 
 ----------------------------------
 Best Practices for Custom Errors
 ----------------------------------
 
-* Implement methods for following traits
+**Implement methods for the following traits**
 
   * :rust:`Display`
 

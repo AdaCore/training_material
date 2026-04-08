@@ -46,7 +46,7 @@ Defining Errors With "thiserror" Crate
       IoError(#[from] io::Error),
       #[error("No text in {0}")]
       EmptyText(String),
-}
+  }
 
 * Line 1: Generate :rust:`std::error::Error` implementation for :rust:`MyError`
 * Line 3: Replace :rust:`fmt::Display` implementation
