@@ -63,3 +63,5 @@ Directory-Based Modules
     * ... then :rust:`sweep` module can be in :filename:`cleaner/sweep.rs`
 
 * This creates a clean tree structure that mirrors your file system
+
+.. image:: rust_essentials/modules_hierarchy.svg
