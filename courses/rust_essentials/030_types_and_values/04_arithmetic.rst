@@ -149,7 +149,7 @@ Integer Overflow
 
 .. code:: rust
 
-  // U8 can only hold values from 0 to 255
+  // u8 can only hold values from 0 to 255
   let my_byte: u8 = 250;
   let new_byte = my_byte + 10; // 260? This won't fit!
 

@@ -17,7 +17,7 @@
   // ALWAYS matches. This is "irrefutable"
   let x = 5;
 
-  // ONLY matches if 'x' is exactly 7
+  // ERROR. This "refutable"
   let 7 = x;
 
 :error:`error[E0005]: refutable pattern in local binding`
