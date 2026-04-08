@@ -21,24 +21,24 @@ Operator Overloading
      * - **Operator**
        - **Trait**
        - **Method Signature**
-     * - ``+``
-       - ``Add``
-       - ``fn add(self, rhs: Rhs) -> Self::Output``
-     * - ``-``
-       - ``Sub``
-       - ``fn sub(self, rhs: Rhs) -> Self::Output``
-     * - ``*``
-       - ``Mul``
-       - ``fn mul(self, rhs: Rhs) -> Self::Output``
-     * - ``/``
-       - ``Div``
-       - ``fn div(self, rhs: Rhs) -> Self::Output``
-     * - ``%=``
-       - ``RemAssign``
-       - ``fn rem_assign(&mut self, rhs: Rhs)``
-     * - ``!``
-       - ``Not``
-       - ``fn not(self) -> Self::Output``
+     * - :rust:`+`
+       - :rust:`Add`
+       - :rust:`fn add(self, rhs: Rhs) -> Self::Output`
+     * - :rust:`-`
+       - :rust:`Sub`
+       - :rust:`fn sub(self, rhs: Rhs) -> Self::Output`
+     * - :rust:`*`
+       - :rust:`Mul`
+       - :rust:`fn mul(self, rhs: Rhs) -> Self::Output`
+     * - :rust:`/`
+       - :rust:`Div`
+       - :rust:`fn div(self, rhs: Rhs) -> Self::Output`
+     * - :rust:`%=`
+       - :rust:`RemAssign`
+       - :rust:`fn rem_assign(&mut self, rhs: Rhs)`
+     * - :rust:`!`
+       - :rust:`Not`
+       - :rust:`fn not(self) -> Self::Output`
 
 .. note::
 
