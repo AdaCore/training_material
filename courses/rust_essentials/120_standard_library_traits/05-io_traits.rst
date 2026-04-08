@@ -24,7 +24,7 @@ Reading and Writing via Trait
 
 * Central to I/O ecosystem
 
-  * Many types can be read from / written to
+  * Many types can be read from/written to
   * Allows function to accept any readable/writable source
 
     * I.e., files, network, memory, etc.

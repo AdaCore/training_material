@@ -30,9 +30,9 @@ What is a Standard Library Trait?
 * Predefined in Rust’s Standard Library
 
   * Describe common behaviors
-  * Integrate user types with both language features and library APIs
+  * Integrate user types with both language features and library API's
 
-* Define standardized capabilities
+* Defines standardized capabilities
 
   * E.g., comparing, converting, formatting
 

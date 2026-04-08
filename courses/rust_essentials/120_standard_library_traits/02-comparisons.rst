@@ -36,7 +36,7 @@ Two Traits for Equality
   * **Symmetric:** If :rust:`a == b` then :rust:`b == a`
   * **Transitive:** If :rust:`a == b` and :rust:`b == c` then :rust:`a == c`
 
-  * Object are **considered** equal
+  * Objects are **considered** equal
 
     * Even if they are not identical
     * Think floating point numbers
@@ -74,7 +74,7 @@ Deriving Equality
 Custom Implementation of Equality
 -----------------------------------
 
-* Example: Type has a validity flag and a value
+* **Example:** Type has a validity flag and a value
 
   .. code:: rust
 
