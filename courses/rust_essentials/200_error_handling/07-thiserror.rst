@@ -87,7 +87,7 @@ More Attributes
 Why Use "thiserror"?
 ----------------------
 
-* Main reason: to avoid manual implementation!
+* **Main reason:** to avoid manual implementation!
 
 * Structured data
 
