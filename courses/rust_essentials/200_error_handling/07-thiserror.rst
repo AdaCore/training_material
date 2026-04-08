@@ -87,11 +87,7 @@ More Attributes
 Why Use "thiserror"?
 ----------------------
 
-<<<<<<< HEAD
 * **Main reason:** to avoid manual implementation!
-=======
-* Main reason: to avoid manual implementation!
->>>>>>> b3e1708a (Add comments from F2F review)
 
 * Structured data
 

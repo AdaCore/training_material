@@ -2,15 +2,9 @@
 Try Operator
 ==============
 
-<<<<<<< HEAD
 ---------------------------
 What Is the Try Operator?
 ---------------------------
-=======
---------------------------
-What Is the Try Operator
---------------------------
->>>>>>> b3e1708a (Add comments from F2F review)
 
 * :dfn:`Try operator (?)` - syntax used to propagate errors by either
 
@@ -61,11 +55,7 @@ Clarity vs. Verbosity
 Try Operator With "Option"
 ----------------------------
 
-<<<<<<< HEAD
 * :rust:`?` also works with :rust:`Some`/:rust:`None` from :rust:`Option`
-=======
-* :rust:`?` also works with :rust:`Some` / :rust:`None` from :rust:`Option`
->>>>>>> b3e1708a (Add comments from F2F review)
 
 * Behavior
 
