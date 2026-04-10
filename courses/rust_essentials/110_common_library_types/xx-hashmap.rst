@@ -37,7 +37,7 @@ Basic Usage
 
   * :rust:`get` returns an :rust:`Option<&V>`
 
-     * Handle missing keys explicitly.
+     * Handle missing keys explicitly
 
   .. code:: rust
 

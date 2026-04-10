@@ -143,7 +143,7 @@ unreachable!
 
    The takeaway from this section is that these common conveniences exist,
    and how to use them. Why they are defined as macros, and what they
-   expand to, is not especially critical.
+   expand to, is not especially critical
 
    The course does not cover defining macros, but a later section will
-   describe use of derive macros.
+   describe use of derive macros

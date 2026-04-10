@@ -45,7 +45,7 @@ The "match" Must Be Exhaustive
       _ => println!("Other number!"), // Catches all other possibilities
   }
 
-- Use (:rust:`|`) to match several values to one arm.
+- Use (:rust:`|`) to match several values to one arm
 
 .. code:: rust
 

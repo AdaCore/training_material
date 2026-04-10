@@ -95,7 +95,7 @@ Iteration
 
 .. container:: speakernote
 
-   Arrays do not implement the default Display trait ({}).
+   Arrays do not implement the default Display trait ({})
    You must use the Debug format parameter
    println!("a: {:?}", a);
    println!("a: {:#?}", a); (for "pretty printing")

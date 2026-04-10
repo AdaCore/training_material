@@ -207,7 +207,7 @@ Numeric Conversions
 .. tip::
 
   Rust forces you to be **intentional**. Applying
-  :rust:`as` to a variable makes you think before doing.
+  :rust:`as` to a variable makes you think before doing
 
 ----------------------------
 The "char" Type is Special
