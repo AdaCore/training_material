@@ -68,8 +68,6 @@ dbg!
     }
     let result = factorial(3); // result will be 6
 
-* Generates the following output
-
 :command:`[src/main.rs:5:20] i = 1`
 
 :command:`[src/main.rs:5:20] i = 2`
@@ -99,8 +97,6 @@ todo!
     fn main() {
         fizzbuzz(10);
     }
-
-* Generates the following output
 
 :command:`thread 'main' (11) panicked at src/main.rs:4:5:`
 :command:`not yet implemented: Implement this`
@@ -133,8 +129,6 @@ unreachable!
         // should logically be unreachable.
         _ => unreachable!("Number is outside the expected range!"), 
     }
-
-* Generates the following output
 
 :command:`thread 'main' (41) panicked at src/main.rs:12:14:`
 :command:`internal error: entered unreachable code: Number is outside the expected range!`
