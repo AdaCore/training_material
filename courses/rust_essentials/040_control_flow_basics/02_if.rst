@@ -11,7 +11,7 @@ Using "if" as a Statement
 - Blocks are **mandatory**, no shorthand!
 - Parentheses around the condition are **optional**
   - Usage is considered unidiomatic
-- May have either:
+- May have either
   - Zero or more :rust:`else if`
   - Zero or one final :rust:`else`
 

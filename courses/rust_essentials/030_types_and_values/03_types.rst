@@ -120,7 +120,7 @@ Common Types
       - :rust:`bool`
       - :rust:`true`, :rust:`false`
 
-The types have widths as follows:
+The types have widths as follows
 
 -  :rust:`iN`, :rust:`uN`, and :rust:`fN` are *N* bits wide
 -  :rust:`isize` and :rust:`usize` are the width of a pointer

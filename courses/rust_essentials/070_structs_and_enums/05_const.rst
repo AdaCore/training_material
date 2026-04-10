@@ -7,7 +7,7 @@
 ---------------
 
 Constants are evaluated at compile time and their values are inlined
-wherever they are used:
+wherever they are used
 
 .. code:: rust
 

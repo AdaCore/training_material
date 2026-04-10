@@ -28,7 +28,7 @@ Destructuring a Tuple
   // name is more meaningful than person_data.0
   println!("Name: {name}, {profession}");
 
-  * Generates the following output:
+  * Generates the following output
 
 :command:`Name: Renoir, Painter`
 
@@ -83,7 +83,7 @@ Destructuring an Array
   println!("pants: {}", pants);
   println!("socks: {}", socks);
 
-    * Generates the following output:
+    * Generates the following output
 
 :command:`shirts: 10`
 

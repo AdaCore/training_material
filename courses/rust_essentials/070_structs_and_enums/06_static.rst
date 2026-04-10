@@ -7,7 +7,7 @@
 ----------------
 
 Static variables will live during the whole execution of the program,
-and therefore will not move:
+and therefore will not move
 
 .. code:: rust
 

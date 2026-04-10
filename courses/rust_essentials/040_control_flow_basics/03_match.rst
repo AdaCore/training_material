@@ -62,7 +62,7 @@ Using "match" as an Expression
 
 - Entire match expression evaluates to a value
 - Every arm must return the exact same type
-- Inclusive and exclusive ranges with the :rust:`..` and :rust:`..=` syntaxes:
+- Inclusive and exclusive ranges with the :rust:`..` and :rust:`..=` syntaxes
   - *low..=high*: from *low*, up to *high* (inclusive)
   - *low..high*: from *low*, up to *high* (exclusive)
   - *..high*: from minimum possible value, up to *high* (exclusive)

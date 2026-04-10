@@ -41,7 +41,7 @@ Return Values (Expression vs Statement)
 
 - Return Type is specified after an arrow (:rust:`->`)
 - No :rust:`->` syntax means the function returns the unit type :rust:`()`
-- Functions can return in two ways:
+- Functions can return in two ways
   - **Statement:** ends in a semicolon (:rust:`;`), returns :rust:`()`
   - **Expression:** does **not** end in a semicolon 
     - Last expression evaluated in the body is returned
