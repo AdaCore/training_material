@@ -87,7 +87,7 @@ Working with "Vec"
   println!("All colors");
   for c in &colors { println!("  {}", c); }
 
-  // Pop - remove & return the last item
+  // Pop - remove and return the last item
   let last = colors.pop();
   println!("last: {last:?}");
 

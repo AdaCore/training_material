@@ -172,7 +172,7 @@ Reliability and Maintenace
 
   * Pipeline runs only when needed
 
-* Imperative vs iterator implementation
+* Imperative vs. iterator implementation
 
   * :rust:`for` loop
 

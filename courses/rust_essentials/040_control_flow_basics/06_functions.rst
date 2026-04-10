@@ -36,7 +36,7 @@ Parameters and Type Signatures
   }
 
 -----------------------------------------
-Return Values (Expression vs Statement)
+Return Values (Expression vs. Statement)
 -----------------------------------------
 
 - Return Type is specified after an arrow (:rust:`->`)

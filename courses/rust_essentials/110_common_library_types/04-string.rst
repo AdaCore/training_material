@@ -53,9 +53,9 @@ Modifying Strings
 
   Because :rust:`String` owns its buffer, it may reallocate as it grows
 
-----------------------
-Length vs Characters
-----------------------
+-----------------------
+Length vs. Characters
+-----------------------
 
 * :rust:`::chars()`
 
@@ -89,9 +89,9 @@ Length vs Characters
 
   To get number of characters in :rust:`String` use :rust:`.chars().count()`
 
------------------------------
-Strings vs Character Arrays
------------------------------
+------------------------------
+Strings vs. Character Arrays
+------------------------------
 
 .. list-table::
   :header-rows: 1

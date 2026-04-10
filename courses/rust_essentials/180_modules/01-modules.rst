@@ -16,7 +16,7 @@ Modules: The Big Picture
 
     * Functions, structs, traits
 
-  * Hide implementation details from user
+  * Hide implementation details from programmer
 
 * Namespacing
 

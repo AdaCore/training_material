@@ -21,9 +21,9 @@ Try Operator
   
     * And return must be compatible with error being raised
 
-----------------------
-Verbosity vs Clarity
-----------------------
+-----------------------
+Verbosity vs. Clarity
+-----------------------
 
 **Manual** :rust:`match`
 

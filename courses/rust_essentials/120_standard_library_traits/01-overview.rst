@@ -30,7 +30,7 @@ What is a Standard Library Trait?
 * Predefined traits in Rust’s Standard Library
 
   * Describe common behaviors
-  * Integrate user types with both language features and library APIs
+  * Integrate programmer types with both language features and library APIs
 
 * What are they used for?
 
@@ -38,4 +38,4 @@ What is a Standard Library Trait?
 
     * E.g., comparing, converting, formatting
 
-  * Allows user types to work with built-in syntax and library functions
+  * Allows programmer types to work with built-in syntax and library functions

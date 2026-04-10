@@ -14,7 +14,7 @@ What We Covered
 * **Result** 
 
   * Enum-based way to handle expected errors
-  * Forces developer to account for success or failure
+  * Forces programmer to account for success or failure
 
 * **The** :rust:`?` **Operator**
 

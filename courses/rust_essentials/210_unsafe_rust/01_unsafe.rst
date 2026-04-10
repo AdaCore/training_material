@@ -36,6 +36,6 @@ Details
 ---------
 
 Unsafe Rust does not mean the code is incorrect. It means that
-developers have turned off some compiler safety features and have to
+programmers have turned off some compiler safety features and have to
 write correct code by themselves. It means the compiler no longer
 enforces Rust's memory-safety rules.

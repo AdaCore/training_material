@@ -35,7 +35,7 @@ As expressive and ergonomic as other higher-level languages
    -  Generics
    -  Zero-cost Foreign Function Interface (FFI)
    -  Zero-cost abstractions
-   -  Great compiler errors
+   -  Great compile errors
    -  Built-in dependency manager
    -  Built-in support for testing
    -  Excellent Language Server Protocol support

@@ -121,7 +121,7 @@ Ordering
 * Similar to :rust:`Eq` (and :rust:`PartialEq`)
 
   * Automatic implementation (:rust:`derive`) does a lexicographical comparison
-  * User implementation allowed for **both** traits
+  * Programmer implementation allowed for **both** traits
 
 * :rust:`Ord`
 

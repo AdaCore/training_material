@@ -1,5 +1,5 @@
 =============================
-User-Defined Smart Pointers
+Programmer-Defined Smart Pointers
 =============================
 
 -----------------------------

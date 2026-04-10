@@ -28,7 +28,7 @@
 Custom "Copy" Types
 ---------------------
 
-- User-defined types can opt-in to :rust:`Copy`
+- Programmer-defined types can opt-in to :rust:`Copy`
   - Via :rust:`#[derive]` macro or manually with :rust:`impl`
 
 .. code:: rust
@@ -67,7 +67,7 @@ No "Copy" Without "Clone"
 "Copy" Types and Field Constraints
 ------------------------------------
 
-- User-defined types can only be :rust:`Copy` if all fields are also :rust:`Copy`
+- Programmer-defined types can only be :rust:`Copy` if all fields are also :rust:`Copy`
 - Types that own heap memory cannot be :rust:`Copy`
   - Prevents memory issues
 
@@ -83,9 +83,9 @@ No "Copy" Without "Clone"
 
    :error:`error[E0204]: the trait 'Copy' cannot be implemented for this type`
 
-----------------------
-"Copy" vs Non-"Copy"
-----------------------
+-----------------------
+"Copy" vs. Non-"Copy"
+-----------------------
 
 .. list-table::
   :header-rows: 1
