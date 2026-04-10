@@ -53,9 +53,9 @@ Verbosity vs Clarity
 Try Operator with "Option"
 ----------------------------
 
-* :rust:`?` works with more than :rust:`Ok` / :rust:`Err`
+* :rust:`?` works with more than :rust:`Ok`/:rust:`Err`
 
-  * Also works with :rust:`Some` / :rust:`None` from :rust:`Option`
+  * Also works with :rust:`Some`/:rust:`None` from :rust:`Option`
 
 * Behavior
 

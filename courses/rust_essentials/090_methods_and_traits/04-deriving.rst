@@ -37,7 +37,7 @@ Commonly Derived Traits
   * - :rust:`PartialOrd, Ord`
     - Ordering
   * - :rust:`Hash`
-    - Hash map / set keys
+    - Hash map/set keys
   * - :rust:`Default`
     - Default value construction
 

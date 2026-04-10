@@ -174,11 +174,11 @@ Conversion vs Casting
       - **Safety Level**
       - **Best Use Case**
 
-    * - :rust:`From` / :rust:`Into`
+    * - :rust:`From`/:rust:`Into`
       - Guaranteed
       - Lossless conversion (e.g., :rust:`&str` to :rust:`String`)
 
-    * - :rust:`TryFrom` / :rust:`TryInto`
+    * - :rust:`TryFrom`/:rust:`TryInto`
       - Checked
       - Conversions that might fail (e.g., :rust:`u32` to :rust:`u8`)
 

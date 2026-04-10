@@ -52,7 +52,7 @@ Basic Operations
 
   * **Safe access:** :rust:`v.get(idx)` returns :rust:`Option<&T>`
 
-    * Use :rust:`Some` / :rust:`None` capability to handle :rust:`idx` out of bounds
+    * Use :rust:`Some`/:rust:`None` capability to handle :rust:`idx` out of bounds
 
   * **Remove last:** :rust:`v.pop()` returns :rust:`Option<T>`
 
