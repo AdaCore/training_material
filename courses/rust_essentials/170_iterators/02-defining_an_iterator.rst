@@ -21,6 +21,7 @@ What is an Iterator?
 .. container:: latex_environment scriptsize
 
   .. list-table::
+    :stub-columns: 1
 
     * - **Iteration State**
       - Current position in loop

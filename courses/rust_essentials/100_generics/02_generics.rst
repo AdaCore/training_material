@@ -34,7 +34,8 @@ Be Generic
 
     .. list-table:: 
        :header-rows: 1
-       
+       :stub-columns: 1
+
        * - **Constructs**
          - **Example Syntax**
          - **Purpose**

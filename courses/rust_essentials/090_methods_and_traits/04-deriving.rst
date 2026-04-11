@@ -169,6 +169,7 @@ You cannot derive when
 
   .. list-table::
     :header-rows: 1
+    :stub-columns: 1
 
     * - Decision Factor
       - :rust:`#[derive(...)]`
