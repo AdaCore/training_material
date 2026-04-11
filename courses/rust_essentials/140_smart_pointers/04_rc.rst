@@ -48,7 +48,7 @@ Immutable Access
 ------------------
 
   
-:rust:`Rc<T>` **allows multiple ownership but no mutable access**
+:rust:`Rc<T>` *allows **multiple ownership but no mutable access***
 
 .. code:: rust 
 
