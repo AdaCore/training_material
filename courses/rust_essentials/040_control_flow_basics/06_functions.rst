@@ -62,7 +62,8 @@ Return Values (Expression vs Statement)
 Explicit exit with "return"
 -----------------------------
 
-  - Forces the function to exit immediately
+**Forces the function to exit immediately**
+
     - Bypassing the rest of the code
     - Essential for early exits based on control flow
 

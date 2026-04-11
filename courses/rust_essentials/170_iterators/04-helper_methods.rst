@@ -136,7 +136,7 @@ Common Consumers
 Declarative Data Processing
 -----------------------------
 
-* Can use "chaining" instead of loops and conditionals
+**Can use "chaining" instead of loops and conditionals**
 
   * Easier to read
 

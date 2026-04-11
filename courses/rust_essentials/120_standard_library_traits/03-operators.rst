@@ -6,7 +6,7 @@ Operators
 Operator Overloading
 ----------------------
 
-* Rust uses traits in :rust:`std::ops` to overload operators (e.g., :rust:`+`, :rust:`-`, :rust:`*`)
+**Rust uses traits in** :rust:`std::ops` **to overload operators (e.g.,** :rust:`+`, :rust:`-`, :rust:`*`)
 
   * Operators delegate to trait methods (:rust:`Add`, :rust:`Sub`, etc.)
 

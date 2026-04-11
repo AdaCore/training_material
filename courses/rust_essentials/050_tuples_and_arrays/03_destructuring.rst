@@ -19,7 +19,8 @@ Destructuring a Tuple
   - Extract multiple values in **single line**
   - Assign **meaningful names** to improve readability 
   - Ignore specific elements that are **not needed**
-    - With the wildcard pattern (:rust:`_`)
+
+    - With the wildcard pattern :rust:`_`
 
 .. code:: rust
 
@@ -95,7 +96,7 @@ Destructuring an Array
 Ignoring Specific Elements 
 ----------------------------
 
-  - Ignore specific elements using the underscore (:rust:`_`) 
+**Ignore specific elements using the underscore (:rust:`_`)**
 
 .. code:: rust
 
@@ -126,7 +127,7 @@ Ignoring Multiple Elements
 Nested Destructuring
 ----------------------
 
-  - Use a pattern *within* a pattern to destructure an array of arrays
+**Use a pattern** *within* **a pattern to destructure an array of arrays**
 
 .. code:: rust
 

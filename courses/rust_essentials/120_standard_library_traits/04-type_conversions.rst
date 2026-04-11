@@ -135,12 +135,12 @@ Casting Examples
 Safer Conversions
 -------------------
 
-* Use :rust:`TryFrom` (or :rust:`TryInto`) rather than :rust:`as`
+**Use** :rust:`TryFrom` **(or** :rust:`TryInto`) **rather than** :rust:`as`
 
-  * Returns error type
-  * Useful when input is not guaranteed
+* Returns error type
+* Useful when input is not guaranteed
 
-    * Such as user input
+  * Such as user input
 
 .. code:: rust
   :font-size: small

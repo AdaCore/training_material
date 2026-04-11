@@ -6,7 +6,7 @@ Advanced Trait Topics
 Supertraits
 -------------
 
-* A :dfn:`supertrait` is a trait that requires *another* trait
+**A** :dfn:`supertrait` **is a trait that requires** *another* **trait**
 
   * "If you implement this trait, you must also implement that one"
 
@@ -36,7 +36,7 @@ Supertraits
 Advanced Supertraits
 ----------------------
 
-* A supertrait can depend on *multiple* traits
+**A supertrait can depend on** *multiple* **traits**
 
 **The "life of the party" must be able to sing AND dance**
 
