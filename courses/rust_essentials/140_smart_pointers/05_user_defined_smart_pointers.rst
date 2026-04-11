@@ -6,7 +6,7 @@ User-Defined Smart Pointers
 Implementing Smart Pointers
 -----------------------------
 
-- Can define custom smart pointers
+**Can define custom smart pointers**
 
   - Can be used for 'foreign function interface'
 

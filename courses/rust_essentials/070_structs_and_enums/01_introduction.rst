@@ -28,11 +28,11 @@ Topics Covered
 Introduction
 --------------
 
-* :rust:`struct` **and** :rust:`enum` **create custom data structures**
+:rust:`struct` **and** :rust:`enum` **create** *custom data structures*
 
-  - User-defined types 
-  - Bundle related pieces of information together
-  - User-defined behavior can be implemented
+- User-defined types 
+- Bundle related pieces of information together
+- User-defined behavior can be implemented
 
 .. code:: rust
 

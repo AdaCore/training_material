@@ -87,11 +87,12 @@ Slice Examples
 Fat Pointer
 -------------
 
-* Slices are sometimes called **Fat Pointers**
+**Slices are sometimes called** *Fat Pointers*
 
-  - Carry **two** components
-    - **Data Pointer** - memory address where data starts
-    - **Length** - how many items to look at
+- Carry **two** components
+
+  - **Data Pointer** - memory address where data starts
+  - **Length** - how many items to look at
 
 .. code:: rust
 
