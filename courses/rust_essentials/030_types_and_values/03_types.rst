@@ -79,10 +79,10 @@ Inference is Smart
   // Rust sees 10, but waits to decide the type...
   let inferred_var = 10;
 
-  // We declare `unsigned_var` as an explicit u32
+  // We declare 'unsigned_var' as an explicit 'u32'
   let unsigned_var: u32;
 
-  // Rust decides `inferred_var` MUST be u32
+  // Rust decides 'inferred_var' MUST be 'u32'
   unsigned_var = inferred_var;
 
 --------------
@@ -201,7 +201,7 @@ Numeric Conversions
   // Will not compile!
   let sum = my_int + my_float;
 
-  // 'as' tells the compiler to interpret my_int as f64
+  // 'as' tells the compiler to interpret 'my_int' as 'f64'
   let sum = my_int as f64 + my_float;
 
 .. tip::

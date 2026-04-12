@@ -123,7 +123,7 @@ unreachable!
 
     let number = 3;
     match number {
-        // The match is exhaustive for a u32, but in this context,
+        // The match is exhaustive for a 'u32', but in this context,
         // we logically know 'number' will only be 1 or 2.
         1 => println!("One"),
         2 => println!("Two"),
