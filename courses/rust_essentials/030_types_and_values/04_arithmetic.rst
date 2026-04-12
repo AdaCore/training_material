@@ -12,14 +12,14 @@ Standard Operators
    :widths: 30 5 5 5 55
    :header-rows: 0
 
-   * - **Multiplicative**
-     - **\***
-     - **/**
-     - **%**
+   * - *Multiplicative*
+     - :rust:`\*`
+     - :rust:`/`
+     - :rust:`%`
      -
-   * - **Additive**
-     - **+**
-     - **-**
+   * - *Additive*
+     - :rust:`+`
+     - :rust:`-`
      -
      -
 
@@ -87,27 +87,27 @@ Modifying Variables In-Place
      - **Example**
      - **Result\***
 
-   * - **+=**
+   * - :rust:`+=`
      - :rust:`x = x + y`
      - :rust:`x += 1;`
      - :rust:`11`
 
-   * - **-=**
+   * - :rust:`-=`
      - :rust:`x = x - y`
      - :rust:`x -= 5;`
      - :rust:`5`
 
-   * - **\*=**
+   * - :rust:`\*=`
      - :rust:`x = x * y`
      - :rust:`x *= 2;`
      - :rust:`20`
 
-   * - **/=**
+   * - :rust:`/=`
      - :rust:`x = x / y`
      - :rust:`x /= 2;`
      - :rust:`5`
 
-   * - **%=**
+   * - :rust:`%=`
      - :rust:`x = x % y`
      - :rust:`x %= 3;`
      - :rust:`1`

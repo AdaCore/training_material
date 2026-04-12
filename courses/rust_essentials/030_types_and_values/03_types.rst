@@ -98,25 +98,25 @@ Common Types
       - **Types**
       - **Literals**
 
-    * - Signed integers
+    * - *Signed integers*
       - :rust:`i8`, :rust:`i16`, :rust:`i32`, 
         :rust:`i64`, :rust:`i128`, :rust:`isize`
       - :rust:`-10`, :rust:`0`, :rust:`1_000`, :rust:`123_i64`
 
-    * - Unsigned integers
+    * - *Unsigned integers*
       - :rust:`u8`, :rust:`u16`, :rust:`u32`, :rust:`u64`, 
         :rust:`u128`, :rust:`usize`
       - :rust:`0`, :rust:`123`, :rust:`10_u16`
 
-    * - Floating point numbers
+    * - *Floating point numbers*
       - :rust:`f32`, :rust:`f64`
       - :rust:`3.14`, :rust:`-10.0e20`, :rust:`2_f32`
 
-    * - Unicode scalar values
+    * - *Unicode scalar values*
       - :rust:`char`
       - :rust:`'a'`, ':math:`\alpha`', ':math:`\infty`'
 
-    * - Booleans
+    * - *Booleans*
       - :rust:`bool`
       - :rust:`true`, :rust:`false`
 
@@ -167,23 +167,23 @@ Utilizing Different Bases
      - **Syntax**
      - **Example**
 
-   * - Decimal
+   * - *Decimal*
      - Standard
      - :rust:`98_222`
 
-   * - Hex
+   * - *Hex*
      - :rust:`0x`
      - :rust:`0xff`
 
-   * - Octal
+   * - *Octal*
      - :rust:`0o`
      - :rust:`0o77`
 
-   * - Binary
+   * - *Binary*
      - :rust:`0b`
      - :rust:`0b1111_0000`
 
-   * - Byte
+   * - *Byte*
      - :rust:`b` (:rust:`u8` only)
      - :rust:`b'A'`
 
