@@ -100,4 +100,4 @@ Breaking Encapsulation
 **Why** :rust:`pub(crate)`**?**
 
   * You don't want clients checking the content
-  * Once published, changing it breaks programmers code
+  * Once published, changing it breaks programmer's code
