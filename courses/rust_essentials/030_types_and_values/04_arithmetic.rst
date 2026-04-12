@@ -66,7 +66,7 @@ The Exponent Trap
   prevent negative exponents returning non-integers
 
 ------------------------------
-Modifying Variables in-Place
+Modifying Variables In-Place
 ------------------------------
 
 - Increment (:rust:`++`) and decrement (:rust:`--`) operators don't exist in Rust
