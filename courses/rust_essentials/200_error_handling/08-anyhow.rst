@@ -89,6 +89,7 @@ Choosing the Right Tool
 
   .. list-table::
     :header-rows: 1
+    :stub-columns: 1
 
     * - **Feature**
       - :rust:`thiserror`
