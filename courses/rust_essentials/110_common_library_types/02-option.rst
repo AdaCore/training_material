@@ -97,7 +97,7 @@ Common Use Cases
   .. code:: rust
 
     fn find_user(id: u32) -> Option<User> {
-        // Returns 'None` if 'User` doesn’t exist
+        // Returns 'None' if 'User' doesn't exist
     }
 
 * Functions that may not return a result
