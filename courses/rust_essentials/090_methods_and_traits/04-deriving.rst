@@ -23,8 +23,8 @@ Commonly Derived Traits
 .. list-table::
   :header-rows: 1
 
-  * - Trait
-    - Purpose
+  * - **Trait**
+    - **Purpose**
 
   * - :rust:`Debug`
     - Enables :rust:`{:?}` formatting
@@ -171,9 +171,9 @@ You cannot derive when
     :header-rows: 1
     :stub-columns: 1
 
-    * - Decision Factor
+    * - **Decision Factor**
       - :rust:`#[derive(...)]`
-      - Manual :rust:`impl`
+      - **Manual** :rust:`impl`
 
     * - *Logic Source*
       - **Compiler-Generated**

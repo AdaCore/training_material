@@ -28,13 +28,13 @@ Rust Error Philosophy
   * - **Language Style**
     - **Error Visibility**
 
-  * - Exceptions
+  * - *Exceptions*
     - Hidden control flow
 
-  * - Error codes
+  * - *Error codes*
     - Easy to ignore
 
-  * - Error wrappers (e.g., :rust:`Result`)
+  * - *Error wrappers (e.g.,* :rust:`Result`*)*
     - Explicit and enforced
 
 --------------------------------------

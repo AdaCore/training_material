@@ -57,7 +57,7 @@ Results vs Exceptions
 
     * - **Feature**
       - :rust:`Result` **(Rust)**
-      - :cpp:`try` / :cpp:`catch` **(other langauges)**
+      - :cpp:`try` **/** :cpp:`catch` **(other langauges)**
 
     * - *Visibility*
       - Part of function signature

@@ -92,8 +92,8 @@ No "Copy" Without "Clone"
   :stub-columns: 1
 
   * - **Property**
-    - :rust:`Copy` **types**
-    - **Non-**:rust:`Copy` **types**
+    - :rust:`Copy` *types*
+    - *Non-*:rust:`Copy` *types*
 
   * - *Assignment logic*
     - Still usable

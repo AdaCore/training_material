@@ -82,10 +82,10 @@ Modifying Variables In-Place
    :widths: 15 30 35 20
    :header-rows: 1
 
-   * - Operator
-     - Expanded Meaning
-     - Example
-     - Result\*
+   * - **Operator**
+     - **Expanded Meaning**
+     - **Example**
+     - **Result\***
 
    * - **+=**
      - :rust:`x = x + y`

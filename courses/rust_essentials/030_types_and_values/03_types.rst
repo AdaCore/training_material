@@ -95,8 +95,8 @@ Common Types
     :header-rows: 1
 
     * -
-      - Types
-      - Literals
+      - **Types**
+      - **Literals**
 
     * - Signed integers
       - :rust:`i8`, :rust:`i16`, :rust:`i32`, 
@@ -163,9 +163,9 @@ Utilizing Different Bases
 .. list-table::
    :header-rows: 1
 
-   * - Base
-     - Syntax
-     - Example
+   * - **Base**
+     - **Syntax**
+     - **Example**
 
    * - Decimal
      - Standard
