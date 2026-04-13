@@ -151,7 +151,7 @@ Orphan Rule Examples
 Limitations on Deriving
 -------------------------
 
-You cannot derive when
+**You cannot derive when**
 
   * Behavior depends on logic, not structure
   * You need validation or side effects
