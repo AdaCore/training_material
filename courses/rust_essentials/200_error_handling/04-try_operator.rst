@@ -2,9 +2,9 @@
 Try Operator
 ==============
 
---------------------------
-What Is the Try Operator
---------------------------
+---------------------------
+What Is the Try Operator?
+---------------------------
 
 * :dfn:`Try operator (?)` - syntax used to propagate errors by either
 

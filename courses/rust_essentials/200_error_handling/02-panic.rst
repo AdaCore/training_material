@@ -65,7 +65,7 @@ Bounds Error Example
 :error:`index out of bounds: the len is 3 but the index is 100`
 
 ----------------------
-Manual panic Example
+Manual Panic Example
 ----------------------
 
 .. code:: rust

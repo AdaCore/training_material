@@ -48,7 +48,7 @@ Trait Definition
 
   * Key to *Error Chaining*
   * Allows you to peel back layers of error to find root cause
-  * E.g a "network error" caused by a "timeout"
+  * E.g., a "network error" caused by a "timeout"
 
 .. note::
 
