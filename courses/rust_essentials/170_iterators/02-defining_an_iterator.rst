@@ -42,7 +42,7 @@ What is an Iterator?
 Iterators in Practice
 -----------------------
 
-* Iterator provides standard way to access elements of a collection
+* Iterator provides standard way to access items of a collection
 
   * One at a time
 
