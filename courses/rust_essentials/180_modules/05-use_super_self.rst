@@ -21,6 +21,11 @@ Dealing With Long Paths
       }
   }
 
+
+**Wouldn't it be nice to shorten these paths?**
+
+.. code:: rust
+
   mod greenhouse;
   fn main() {
       // This is repetitive and hard to read
@@ -29,10 +34,6 @@ Dealing With Long Paths
       greenhouse::shelf::cactus::water_cactus();
       greenhouse::shelf::cactus::touch_spine();
   }
-
-.. note::
-
-  Wouldn't it be nice to shorten these paths?
 
 --------------------
 The "use" Shortcut
@@ -45,11 +46,11 @@ The "use" Shortcut
     mod greenhouse;
     use greenhouse::shelf::cactus;
     fn main() {
-      cactus::water_cactus();
-      cactus::touch_spine();
-      cactus::water_cactus();
-      cactus::touch_spine();
-  }
+        cactus::water_cactus();
+        cactus::touch_spine();
+        cactus::water_cactus();
+        cactus::touch_spine();
+    }
 
 * Code just needs to use :rust:`cactus`
 

@@ -70,9 +70,8 @@ Breaking Encapsulation - Or, When to "pub"
 
 .. note::
 
-  Encapsulation hides code to help guarantee correctness
-
-  Private fields are only modifiable by supplier
+  * Encapsulation hides code to help guarantee correctness
+  * Private fields are only modifiable by supplier
 
 ------------------------
 "pub" vs. "pub(crate)"
