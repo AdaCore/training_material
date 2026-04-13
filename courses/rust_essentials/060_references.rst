@@ -38,5 +38,5 @@ References
 .. include:: 060_references/03_navigating.rst
 .. include:: 060_references/04_reference_validity.rst
 .. include:: 060_references/05_slices.rst
-.. include:: 060_references/99_lab.rst
+.. include:: 060_references/88-references.lab.rst
 .. include:: 060_references/99_summary.rst

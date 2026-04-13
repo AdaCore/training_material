@@ -36,5 +36,5 @@ Smart Pointers
 .. include:: 140_smart_pointers/02_box.rst
 .. include:: 140_smart_pointers/03_dereferencing.rst
 .. include:: 140_smart_pointers/04_rc.rst
-.. include:: 140_smart_pointers/98_lab.rst
+.. include:: 140_smart_pointers/88-smart_pointers.lab.rst
 .. include:: 140_smart_pointers/99_summary.rst
