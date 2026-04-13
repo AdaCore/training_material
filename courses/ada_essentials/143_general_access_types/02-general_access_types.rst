@@ -52,7 +52,7 @@ Referencing the Stack
      Access_Object : Gen_Access_T := Object'Access;
 
 --------------------------
-`Aliased` Object Example
+"Aliased" Object Example
 --------------------------
 
 .. code:: Ada
@@ -88,7 +88,7 @@ Referencing the Stack
 :command:`After: 123`
 
 ----------------------
-`Aliased` Parameters
+"Aliased" Parameters
 ----------------------
 
 * To ensure a subprogram parameter always has a valid memory address, define it as :ada:`aliased`

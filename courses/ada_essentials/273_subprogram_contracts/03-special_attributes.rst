@@ -32,9 +32,9 @@ Evaluate an Expression on Subprogram Entry
           Pre  => This < Integer'Last,
           Post => This = This'Old + 1;
 
------------------------------------
-Example for Attribute :ada:`'Old`
------------------------------------
+------------------------------
+Example for Attribute "'Old"
+------------------------------
 
 .. code:: Ada
 
@@ -63,9 +63,9 @@ Example for Attribute :ada:`'Old`
            -- Global and Index after call
            = Global (Index);
 
-------------------------------------------------
-Error on Conditional Evaluation of :ada:`'Old`
-------------------------------------------------
+-------------------------------------------
+Error on Conditional Evaluation of "'Old"
+-------------------------------------------
 
 * This code is **incorrect**
 

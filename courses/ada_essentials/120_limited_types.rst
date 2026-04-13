@@ -36,6 +36,6 @@ Limited Types
 .. include:: 120_limited_types/02-limited_type_declarations.rst
 .. include:: 120_limited_types/03-creating_values.rst
 .. include:: 120_limited_types/04-extended_return_statements.rst
-.. include:: 120_limited_types/05-combining_limited_and_private_views.rst
+.. include:: 120_limited_types/05-limited_private_types.rst
 .. include:: 120_limited_types/88-limited_types.lab.rst
 .. include:: 120_limited_types/99-summary.rst

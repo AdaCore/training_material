@@ -1,6 +1,6 @@
-==========================================
-Refcounting Wrapper for External C Objects
-==========================================
+==================================
+Reference Counting for C Objects
+==================================
 
 -------
 Context
@@ -96,9 +96,9 @@ Wrapper Implementation: Full Picture
       Is_Owner        : Boolean;
    end record;
 
-------------------------
-:ada:`Adjust` Completion
-------------------------
+-------------------
+"Adjust" Completion
+-------------------
 
 * :ada:`Adjust` is called every time a new reference is **created**
 * Increments the ref-counter
@@ -112,9 +112,9 @@ Wrapper Implementation: Full Picture
        end if;
     end Adjust;
 
---------------------------
-:ada:`Finalize` Completion
---------------------------
+---------------------
+"Finalize" Completion
+---------------------
 
 .. note::
 

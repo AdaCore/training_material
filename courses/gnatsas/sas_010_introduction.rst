@@ -1,6 +1,6 @@
-***************************************
-GNAT Static Analysis Suite (GNAT SAS)
-***************************************
+****************************
+GNAT Static Analysis Suite
+****************************
 
 .. container:: PRELUDE BEGIN
 

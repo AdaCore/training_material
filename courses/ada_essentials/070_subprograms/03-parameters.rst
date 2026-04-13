@@ -88,7 +88,7 @@ Function Return
    function To_String (Value : Integer) return String;
 
 ---------------------------------
-Why Read Mode `out` Parameters?
+Why Read Mode "out" Parameters?
 ---------------------------------
 
 * No need for readable temporary variable

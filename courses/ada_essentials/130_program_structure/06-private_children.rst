@@ -142,7 +142,7 @@ Solution 2: Partially Import Private Unit
   language_version 2005
 
 ------------------------
-`private with` Example
+"private with" Example
 ------------------------
 
 .. code:: Ada

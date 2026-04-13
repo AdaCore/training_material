@@ -172,37 +172,38 @@ Quiz
 
     .. code:: Ada
 
-       package Counter_Package is
-          type Counter_T is private;
-          procedure Increment (Val : in out Counter_T);
+       package Counter is
+          type Count_T is private;
+          procedure Increment (Val : in out Count_T);
        private
-          function Check_Threshold (Value : Integer) 
-                                        return Boolean;
-          type Counter_T is new Integer with
-             Type_Invariant => Check_Threshold 
-                               (Integer (Counter_T));
-       end Counter_Package;
+          function Check_Limit (Value : Integer) 
+                                return Boolean;
+          type Count_T is new Integer with
+             Type_Invariant =>
+                Check_Limit (Integer (Count_T));
+       end Counter;
 
-       package body Counter_Package is
-          function Increment_Helper (Helper_Val : Counter_T)
-                                       return Counter_T is
-             Next_Value : Counter_T := Helper_Val + 1;
+       package body Counter is
+          function Increment_Helper
+            (Helper_Val : Count_T)
+             return Count_T is
+             Next_Value : Count_T := Helper_Val + 1;
           begin
              return Next_Value;
           end Increment_Helper;
-          procedure Increment (Val : in out Counter_T) is
+          procedure Increment (Val : in out Count_T) is
           begin
              Val := Val + 1;
              Val := Increment_Helper (Val);
           end Increment;
-          function Check_Threshold (Value : Integer)
-                                           return Boolean is
+          function Check_Limit (Value : Integer)
+                                return Boolean is
              (Value <= 100); --  check against constraint
-       end Counter_Package;
+       end Counter;
 
  .. container:: column
 
-    If `Increment` is called from outside of Counter_Package, how many times is `Check_Threshold` called?
+    If `Increment` is called from outside of Counter, how many times is `Check_Limit` called?
 
        A. 1
        B. :answer:`2`
@@ -212,5 +213,9 @@ Quiz
     .. container:: animate
 
        Type Invariants are only evaluated on entry into/exit from
-       externally visible subprograms. So :ada:`Check_Threshold` is called when
+       externally visible subprograms. So :ada:`Check_Limit` is called when
        entering/exiting :ada:`Increment` - not :ada:`Increment_Helper`
+
+.. raw:: latex
+
+  \vspace{5mm}

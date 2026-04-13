@@ -1,0 +1,63 @@
+=========
+"Rc<T>"
+=========
+
+---------------------------------
+Multiple Ownership with "Rc<T>"
+---------------------------------
+
+- Useful when *single* value is owned by *multiple* parts of a program
+  
+  - Only provides *immutable access* to the data
+
+  - Tracks number of active references
+
+  - Prevents data cleanup until last owner finishes
+  
+- Called :dfn:`Reference Counted (Smart) Pointer`
+
+  - included with :rust:`use std::rc::Rc`
+  
+---------------------------
+"Rc<T>" counts references
+---------------------------
+
+- Shares ownership of value on the heap using :rust:`Clone`
+    
+  - Creates a *shallow* copy not a deep copy
+
+    - Only the *pointer* is copied
+	
+  - Increments the internal counter 
+ 
+.. code:: rust 
+
+  // Both 'var_a' and 'var_b' share ownership of the value
+  let var_a = Rc::new(5);
+  println!("Count: {}", Rc::strong_count(&var_a)); 
+
+  let var_b = Rc::clone(&var_a);
+  println!("Count: {}", Rc::strong_count(&var_a)); 
+  
+:command:`Count: 1`
+
+:command:`Count: 2`
+
+------------------
+Immutable Access
+------------------
+
+  
+- :rust:`Rc<T>` allows multiple ownership but no mutable access
+
+.. code:: rust 
+
+  let tic = Rc::new(5);
+  let tac = Rc::clone(&tic);
+  let toe = Rc::clone(&tic);  
+  
+  *var_a += 10; //Error: no mutable access
+  
+:error:`error[E0594]: cannot assign to data in an 'Rc'`
+
+  

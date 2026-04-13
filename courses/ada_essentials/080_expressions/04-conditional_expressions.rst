@@ -123,20 +123,18 @@ The "else" Part When Result Is Boolean
 
 * Redundant because the default result is True
 
-  .. container:: latex_environment  small
+  .. code:: Ada
+    :font-size: small
 
-    .. code:: Ada
-
-       (if P then Q else True)
+    (if P then Q else True)
 
 * So for convenience and elegance it can be omitted
 
-  .. container:: latex_environment  small
+  .. code:: Ada
+    :font-size: small
 
-    .. code:: Ada
-
-       Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
-       Acceptable : Boolean := (if P1 > 0 then P2 > 0);
+    Acceptable : Boolean := (if P1 > 0 then P2 > 0 else True);
+    Acceptable : Boolean := (if P1 > 0 then P2 > 0);
 
 * Use :ada:`else` if you need to return False at the end
 
@@ -144,23 +142,44 @@ The "else" Part When Result Is Boolean
 Rationale for Parentheses Requirement
 ---------------------------------------
 
-* Prevents ambiguity regarding any enclosing expression
-* Problem:
+.. container:: latex_environment small
 
-  .. code:: Ada
+  * Prevents ambiguity regarding any enclosing expression
+  * Problem
 
-     X : Integer := if condition then A else B + 1;
+    .. code:: Ada
+      :font-size: footnotesize
 
-* Does that mean
+       Size : Integer := if Exact then Measure else Estimate + 1;
 
-   - If condition, then `X := A + 1`, else `X := B + 1` **OR**
-   - If condition, then `X := A`, else `X := B + 1`
+  * Does that mean
 
-* But not required if parentheses already present
+     If `Exact` then `Size := Measure + 1`, else `Size := Estimate + 1`
 
-   - Because enclosing construct includes them
+     **OR**
 
-     .. code:: Ada
+     If `Exact` then `Size := Measure`, else `Size := Estimate + 1`
+
+  * Solution
+
+    .. code:: Ada
+      :font-size: footnotesize
+
+       Size : Integer := (if Exact then Measure else Estimate) + 1;
+
+    **OR**
+
+    .. code:: Ada
+      :font-size: footnotesize
+
+       Size : Integer := (if Exact then Measure else Estimate + 1)
+
+  * But not required if parentheses already present
+
+    - Because enclosing construct includes them
+
+      .. code:: Ada
+        :font-size: footnotesize
 
         Subprogram_Call (if A then B else C);
 
@@ -206,29 +225,27 @@ When to Use If Expressions
 Case Expressions
 ---------------------
 
-.. container:: latex_environment footnotesize
+* Syntax similar to *case statements*
 
- * Syntax similar to *case statements*
+  - Lighter: no closing `end case`
+  - Commas between choices
 
-    - Lighter: no closing `end case`
-    - Commas between choices
+* Same general rules as *if expressions*
 
- * Same general rules as *if expressions*
-
-    - Parentheses required unless already present
-    - Type of "result" must match context
+  - Parentheses required unless already present
+  - Type of "result" must match context
 
  * Advantage over *if expressions* is completeness checked by compiler
  * Same as with :ada:`case` statements (unless :ada:`others` is used)
 
 .. code:: Ada
+  :font-size: footnotesize
 
-    -- compile error if not all days covered
-    Hours : constant Integer :=
-       (case Day_of_Week is
-        when Mon .. Thurs => 9,
-        when Fri          => 4,
-        when Sat | Sun    => 0);
+  -- compile error if not all days covered
+  Hours : constant Integer := (case Day_of_Week is
+                               when Mon .. Thurs => 9,
+                               when Fri          => 4,
+                               when Sat | Sun    => 0);
 
 ..
   language_version 2012

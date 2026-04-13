@@ -3,30 +3,30 @@
 <rect fill="none" stroke="#000000" stroke-width="2" height="40" width="380" x="5" y="5" />
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="9px" font-family='Monospace' font-weight="normal"  x="24.872314453125" y="19.3" >      <tspan x="24.872314453125" y="19.3"  style="fill:#000000">In a </tspan>      <tspan x="51.876708984375" y="19.3"  style="fill:#000000;stroke:#000000;stroke-width:0.75">package</tspan>      <tspan x="89.682861328125" y="19.3"  style="fill:#000000"> the </tspan>      <tspan x="116.687255859375" y="19.3"  style="fill:#000000;stroke:#000000;stroke-width:0.75">body</tspan>      <tspan x="138.290771484375" y="19.3"  style="fill:#000000"> sees everything the </tspan>      <tspan x="251.709228515625" y="19.3"  style="fill:#000000;stroke:#000000;stroke-width:0.75">private section</tspan>      <tspan x="332.722412109375" y="19.3"  style="fill:#000000"> sees,</tspan></text>
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="9px" font-family='Monospace' font-weight="normal"  x="19.471435546875" y="30.299999999999997" >      <tspan x="19.471435546875" y="30.299999999999997"  style="fill:#000000">and the </tspan>      <tspan x="62.678466796875" y="30.299999999999997"  style="fill:#000000;stroke:#000000;stroke-width:0.75">private section</tspan>      <tspan x="143.691650390625" y="30.299999999999997"  style="fill:#000000"> sees everything the </tspan>      <tspan x="257.110107421875" y="30.299999999999997"  style="fill:#000000;stroke:#000000;stroke-width:0.75">visible section</tspan>      <tspan x="338.123291015625" y="30.299999999999997"  style="fill:#000000"> sees.</tspan></text>
-<rect fill="#aaffee" stroke="#aaffee" stroke-width="2" height="40" width="380" x="5" y="50" />
+<rect fill="#77ccbb" stroke="#77ccbb" stroke-width="2" height="40" width="380" x="5" y="50" />
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="9px" font-family='Monospace' font-weight="normal"  x="70.77978515625" y="64.3" >      <tspan x="70.77978515625" y="64.3"  style="fill:#000000">Our </tspan>      <tspan x="92.38330078125" y="64.3"  style="fill:#000000;stroke:#000000;stroke-width:0.75">private child</tspan>      <tspan x="162.5947265625" y="64.3"  style="fill:#000000"> can see our </tspan>      <tspan x="232.80615234375" y="64.3"  style="fill:#000000;stroke:#000000;stroke-width:0.75">private section</tspan>      <tspan x="313.8193359375" y="64.3"  style="fill:#000000">,</tspan></text>
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="9px" font-family='Monospace' font-weight="normal"  x="100.484619140625" y="75.3" >      <tspan x="100.484619140625" y="75.3"  style="fill:#000000">and </tspan>      <tspan x="122.088134765625" y="75.3"  style="fill:#000000;stroke:#000000;stroke-width:0.75">visible section</tspan>      <tspan x="203.101318359375" y="75.3"  style="fill:#000000">, from </tspan>      <tspan x="240.907470703125" y="75.3"  style="fill:#000000;stroke:#000000;stroke-width:0.75">anywhere</tspan>      <tspan x="284.114501953125" y="75.3"  style="fill:#000000">.</tspan></text>
 <rect fill="none" stroke="#000000" stroke-width="2" height="135" width="110" x="5" y="120" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.75"  text-align="center" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="60.0" y="138.75" >Our_Unit</text>
-<rect fill="#aaffee" stroke="#000000" stroke-width="2" height="15" width="110" x="5" y="150" />
+<rect fill="#77ccbb" stroke="#000000" stroke-width="2" height="15" width="110" x="5" y="150" />
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="9px" font-family='Monospace' font-weight="normal"  text-anchor="middle" x="60.0" y="160.45" >Visible Section</text>
 <polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(45, 60.0, 166.5)" points="60.0,166.5 64.5,175.5 69.0,171.0 "/>
 <line fill="none" stroke="#000000" stroke-width="2" x1="60.0" y1="167.75" x2="60.0" y2="195.75" />
-<rect fill="#aaffee" stroke="#000000" stroke-width="2" height="15" width="110" x="5" y="195" />
+<rect fill="#77ccbb" stroke="#000000" stroke-width="2" height="15" width="110" x="5" y="195" />
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="9px" font-family='Monospace' font-weight="normal"  text-anchor="middle" x="60.0" y="205.45" >Private Section</text>
 <polygon fill="#000000" stroke="#000000" stroke-width="1" transform="rotate(45, 60.0, 211.5)" points="60.0,211.5 64.5,220.5 69.0,216.0 "/>
 <line fill="none" stroke="#000000" stroke-width="2" x1="60.0" y1="212.75" x2="60.0" y2="240.75" />
 <rect fill="none" stroke="#000000" stroke-width="2" height="15" width="110" x="5" y="240" />
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="9px" font-family='Monospace' font-weight="normal"  text-anchor="middle" x="60.0" y="250.45" >Body</text>
-<line fill="none" stroke="#aaffee" stroke-width="2" x1="235.0" y1="157.5" x2="275" y2="157.5" />
-<polygon fill="#aaffee" stroke="#aaffee" stroke-width="1" transform="rotate(-45, 117.5, 202.5)" points="117.5,202.5 122.0,211.5 126.5,207.0 "/>
-<line fill="none" stroke="#aaffee" stroke-width="2" x1="118.75" y1="202.5" x2="275" y2="202.5" />
-<polygon fill="#aaffee" stroke="#aaffee" stroke-width="1" transform="rotate(-45, 117.5, 157.5)" points="117.5,157.5 122.0,166.5 126.5,162.0 "/>
-<line fill="none" stroke="#aaffee" stroke-width="2" x1="118.75" y1="157.5" x2="158.75" y2="157.5" />
-<line fill="none" stroke="#aaffee" stroke-width="2" x1="158.75" y1="157.5" x2="158.75" y2="202.5" />
-<line fill="none" stroke="#aaffee" stroke-width="2" x1="235.0" y1="247.5" x2="275" y2="247.5" />
-<line fill="none" stroke="#aaffee" stroke-width="2" x1="235.0" y1="156.5" x2="235.0" y2="248.5" />
-<rect fill="#aaffee" stroke="#000000" stroke-width="2" height="135" width="110" x="275" y="120" />
+<line fill="none" stroke="#77ccbb" stroke-width="2" x1="235.0" y1="157.5" x2="275" y2="157.5" />
+<polygon fill="#77ccbb" stroke="#77ccbb" stroke-width="1" transform="rotate(-45, 117.5, 202.5)" points="117.5,202.5 122.0,211.5 126.5,207.0 "/>
+<line fill="none" stroke="#77ccbb" stroke-width="2" x1="118.75" y1="202.5" x2="275" y2="202.5" />
+<polygon fill="#77ccbb" stroke="#77ccbb" stroke-width="1" transform="rotate(-45, 117.5, 157.5)" points="117.5,157.5 122.0,166.5 126.5,162.0 "/>
+<line fill="none" stroke="#77ccbb" stroke-width="2" x1="118.75" y1="157.5" x2="158.75" y2="157.5" />
+<line fill="none" stroke="#77ccbb" stroke-width="2" x1="158.75" y1="157.5" x2="158.75" y2="202.5" />
+<line fill="none" stroke="#77ccbb" stroke-width="2" x1="235.0" y1="247.5" x2="275" y2="247.5" />
+<line fill="none" stroke="#77ccbb" stroke-width="2" x1="235.0" y1="156.5" x2="235.0" y2="248.5" />
+<rect fill="#77ccbb" stroke="#000000" stroke-width="2" height="135" width="110" x="275" y="120" />
 <text xml:space="preserve" fill="#000000" stroke="#000000" stroke-width="0.75"  text-align="center" font-size="9px" font-family='arial' font-weight="normal" font-style="italic"  text-anchor="middle" x="330.0" y="138.75" >Our_Unit.Private_Child</text>
 <rect fill="none" stroke="#000000" stroke-width="2" height="15" width="110" x="275" y="150" />
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="9px" font-family='Monospace' font-weight="normal"  text-anchor="middle" x="330.0" y="160.45" >Visible Section</text>

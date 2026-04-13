@@ -27,7 +27,7 @@ How to Get an Incomplete Type View?
   .. code:: Ada
 
      type T;
-     type T_Access is access all T;
+     type T_Access is access T;
      type T is record
         V : T_Access;
      end record;

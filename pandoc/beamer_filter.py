@@ -129,7 +129,7 @@ def latex_inline(s):
     return pandocfilters.RawInline("latex", s)
 
 
-def latex_box(text, color="adacore2"):
+def latex_box(text, color="adacore_orange"):
     return "\\colorbox{" + color + "}{" + text + "}"
 
 
@@ -364,9 +364,7 @@ def speaker_note(contents):
 def language_variant_admonition(contents):
     text = para_to_text(contents[1]["c"])
     return [
-        latex_block(
-            "\\framesubtitle{\\rightline{" + latex_box(text) + "\\hspace{1cm}}}"
-        )
+        latex_block("\\framesubtitle{" + latex_color(text, "adacore_paleblue") + "}")
     ]
 
 
@@ -449,6 +447,7 @@ def source_include(classes, contents):
         ),
     ]
     value = [value0]
+    value = wrap_block(keywords, value0)
 
     return value
 
@@ -889,12 +888,9 @@ def format_dfn(literal_text):
 
 
 def format_filename(literal_text):
-    # bold monospaced on light yellow background
-    return latex_inline(
-        latex_box(
-            latex_bold(latex_monospace(latex_escape(literal_text))), "lightyellow"
-        )
-    )
+    txt = latex_bold(latex_monospace(latex_escape(literal_text)))
+    txt = latex_color(txt, "adacore_lovelace")
+    return latex_inline(latex_box(txt, "white"))
 
 
 """
@@ -938,6 +934,33 @@ def environment_wrapper(environment, options=""):
     return begin, end
 
 
+def wrap_block(keys, block):
+    """
+    For each environment defined in "keys", we need to wrap "block"
+    in a LaTeX begin/end environment command. So we need to build
+    two lists - one list of all the "begin environment" commands,
+    and another list of the "end environment" commands (which needs
+    to be in the reverse order). Then we will return an AST that has the
+    content nested inside the environment
+    """
+
+    begins = []
+    ends = []
+    for environment in keys.keys():
+        if environment == "font-size":
+            begin, end = environment_wrapper(keys[environment])
+            begins.append(begin)
+            ends.insert(0, end)
+
+    new_value = []
+    for one in begins:
+        new_value.append(one)
+    new_value.append(block)
+    for one in ends:
+        new_value.append(one)
+    return new_value
+
+
 def process_codeblock(key, value):
     """
     This routine will look for our own attributes added to the ".. code::"
@@ -960,29 +983,7 @@ def process_codeblock(key, value):
     except:
         pass
 
-    # for each environment, we need to wrap "contents" in a LaTeX
-    # begin/end environment command. So we need to build two lists -
-    # one list of all the "begin environment" commands, and another
-    # list of the "end environment" commands (which needs to be in
-    # the reverse order). Then we will return an AST that has the
-    # content nested inside the environment
-
-    begins = []
-    ends = []
-    for environment in keys.keys():
-        if environment == "TBD":
-            # This is a placeholder demonstrating how we will
-            # wrap code in environments based on keywords.
-            begin, end = environment_wrapper(keys[environment])
-            begins.append(begin)
-            ends.insert(0, end)
-
-    new_value = []
-    for one in begins:
-        new_value.append(one)
-    new_value.append(CodeBlock([ident, classes, kvs], contents))
-    for one in ends:
-        new_value.append(one)
+    new_value = wrap_block(keys, CodeBlock([ident, classes, kvs], contents))
 
     return new_value
 

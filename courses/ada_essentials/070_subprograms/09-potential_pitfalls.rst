@@ -3,7 +3,7 @@ Potential Pitfalls
 ====================
 
 -----------------------------
-Mode `out` Risk for Scalars
+Mode "out" Risk for Scalars
 -----------------------------
 
 * Always assign value to :ada:`out` parameters
@@ -98,8 +98,6 @@ Parameter Aliasing
 .. container:: latex_environment small
 
   :error:`error: writable actual for "Doubled" overlaps with actual for "Tripled"`
-
-:color-white:`blank line`
 
 ----------------------------
 Functions' Parameter Modes

@@ -136,4 +136,4 @@ Renames in Ada 2022
     for Index in Global'First .. Global'Last loop
        declare
           Ada2012 : Integer renames Global(Index);
-          Ada2022 : renames Global (Index);
+          Ada2022 renames Global (Index);

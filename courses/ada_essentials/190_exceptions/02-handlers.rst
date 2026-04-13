@@ -106,6 +106,8 @@ When an Exception Is Raised
 
  .. container:: column
 
+  .. container:: latex_environment footnotesize
+
     * Caller
 
       .. code:: Ada

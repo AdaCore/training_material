@@ -162,7 +162,7 @@ Aggregates with Only One Component
    S : Singular := (A => 3 + 1); -- required
 
 --------------------------
-Aggregates with `others`
+Aggregates with "others"
 --------------------------
 
 * Indicates all components not yet specified (like arrays)

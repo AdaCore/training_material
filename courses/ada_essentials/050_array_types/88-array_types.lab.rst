@@ -2,9 +2,9 @@
 Lab
 ========
 
------------
-Array Lab
------------
+------------------
+Array Lab Part 1
+------------------
 
 * Requirements
 
@@ -27,14 +27,23 @@ Array Lab
    - Use aggregates (either named or positional) to initialize data
 
 ------------------
-Arrays of Arrays
+Array Lab Part 2
 ------------------
 
 * Requirements
 
+   - Create a work schedule for a store
+
+      - Three workers for weekdays and three workers for weekends
+      - Store is closed on Wednesdays
+
    - For each day of the week, you need an array of three strings containing names of workers for that day
-   - Two sets of workers: weekend and weekday, but the store is closed on Wednesday (no workers)
    - Initialize the array and then print it hierarchically
+
+* Hints
+
+   - Strings must be the same size, so create a subtype for the names
+   - Names should be same length - use blank spaces for padding
 
 -----------------------------------
 Array Lab Solution - Declarations

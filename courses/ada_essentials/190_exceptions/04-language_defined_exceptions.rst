@@ -3,7 +3,7 @@ Language-Defined Exceptions
 =============================
 
 --------------------
-`Constraint_Error`
+"Constraint_Error"
 --------------------
 
 * Caused by violations of constraints on range, index, etc.
@@ -22,7 +22,7 @@ Language-Defined Exceptions
       L (400) := SomeValue;
 
 -----------------
-`Program_Error`
+"Program_Error"
 -----------------
 
 * When runtime control structure is violated
@@ -43,7 +43,7 @@ Language-Defined Exceptions
    end F;
 
 -----------------
-`Storage_Error`
+"Storage_Error"
 -----------------
 
 * When insufficient storage is available

@@ -36,6 +36,19 @@ Subtype Example
 
      Same_As_Workday : Days range Mon .. Fri;
 
+* Constraints on ranges
+
+  .. code:: Ada
+
+    type Integer is range -(2**31) .. +(2**31 - 1);
+    subtype Natural  is Integer range 0 .. Integer'Last;
+    subtype Positive is Integer range 1 .. Integer'Last;
+
+  .. note::
+
+    :ada:`Natural` and :ada:`Positive` are actually predefined
+    subtypes of the predefined type :ada:`Integer`
+
 ----------------------
 Kinds of Constraints
 ----------------------

@@ -76,34 +76,34 @@ How to Test
   * While program is delayed, hand-edit the text file so the data changes
   * Receive the message again
 
-------------------------------------------
-Low Level Programming Lab Solution - CRC
-------------------------------------------
+--------------------
+Lab Solution - CRC
+--------------------
 
 .. container:: source_include 280_low_level_programming/lab/low_level_programming/answer/crc.ads :code:Ada :number-lines:1
 
 .. container:: source_include 280_low_level_programming/lab/low_level_programming/answer/crc.adb :code:Ada :number-lines:1
 
-------------------------------------------------------
-Low Level Programming Lab Solution - Messages (Spec)
-------------------------------------------------------
+--------------------------------
+Lab Solution - Messages (Spec)
+--------------------------------
 
 .. container:: source_include 280_low_level_programming/lab/low_level_programming/answer/messages.ads :code:Ada :number-lines:1
 
--------------------------------------------
-Low Level Programming Lab Solution - Main
--------------------------------------------
+---------------------
+Lab Solution - Main
+---------------------
 
 .. container:: source_include 280_low_level_programming/lab/low_level_programming/answer/main.adb :code:Ada :number-lines:1
 
----------------------------------------------------------
-Low Level Programming Lab Solution - Messages (Helpers)
----------------------------------------------------------
+-----------------------------------
+Lab Solution - Messages (Helpers)
+-----------------------------------
 
 .. container:: source_include 280_low_level_programming/lab/low_level_programming/answer/messages.adb :code:Ada :number-lines:1 :start-after:messages_helpers_begin :end-before:messages_helpers_end
 
-------------------------------------------------------
-Low Level Programming Lab Solution - Messages (Body)
-------------------------------------------------------
+--------------------------------
+Lab Solution - Messages (Body)
+--------------------------------
 
 .. container:: source_include 280_low_level_programming/lab/low_level_programming/answer/messages.adb :code:Ada :number-lines:1 :start-after:messages_begin :end-before:messages_end

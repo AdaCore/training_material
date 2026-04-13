@@ -5,43 +5,52 @@ Lab
 ------------------
 Access Types Lab
 ------------------
+   
+* Build an application that adds / removes items from a linked list
 
-* Overview
+   * At any time, user should be able to
 
-  - Create a (really simple) Password Manager
+     * Add a new item into the "appropriate" location in the list
+     * Remove an item without changing the position of any other item in the list
+     * Print the list
 
-    * The Password Manager should store the password and a counter for each of some number of logins
-    * As it's a Password Manager, you want to modify the data directly (not pass the information around)
+* Required goals
 
-* Requirements
+  1. Implement **Add** functionality
 
-   - Create a Password Manager package
+    * For this step, "appropriate" means either end of the list (but consistent - always front or always back)
 
-      * Create a record to store the password string and the counter
-      * Create an array of these records indexed by the login identification
-      * The user should be able to retrieve a pointer to the record, either for modification or for viewing
+  2. Implement **Print** functionality
+  3. Implement **Delete** functionality
 
-   - Main program should:
+-------------------------
+Lab Solution - Database
+-------------------------
 
-      + Set passwords and initial counter values for many logins
-      + Print password and counter value for each login
+.. container:: source_include 140_access_types/lab/access_types/answer/database.ads :code:Ada :number-lines:1
 
-* Hint
+.. container:: source_include 140_access_types/lab/access_types/answer/database.adb :code:Ada :number-lines:1
 
-   - Password is a string of varying length
+-------------------------------------
+Lab Solution - Database_List (Spec)
+-------------------------------------
 
-      - Easiest way to do this is a pointer to a string that gets initialized to the correct length
+.. container:: source_include 140_access_types/lab/access_types/answer/database_list.ads :code:Ada :number-lines:1
 
-----------------------------------------------
-Access Types Lab Solution - Password Manager
-----------------------------------------------
+-----------------------------------------------
+Lab Solution - Database_List (Helper Objects)
+-----------------------------------------------
 
-.. container:: source_include 140_access_types/lab/access_types/answer/password_manager.ads :code:Ada
+.. container:: source_include 140_access_types/lab/access_types/answer/database_list.adb :start-after:helpers_begin :end-before:helpers_end :code:Ada :number-lines:1
 
-.. container:: source_include 140_access_types/lab/access_types/answer/password_manager.adb :code:Ada
+-----------------------------------------------
+Lab Solution - Database_List (Insert/Delete)
+-----------------------------------------------
 
-----------------------------------
-Access Types Lab Solution - Main
-----------------------------------
+.. container:: source_include 140_access_types/lab/access_types/answer/database_list.adb :start-after:insert_and_delete_begin :end-before:insert_and_delete_begin :code:Ada :number-lines:35
 
-.. container:: source_include 140_access_types/lab/access_types/answer/main.adb :code:Ada
+---------------------
+Lab Solution - Main
+---------------------
+
+.. container:: source_include 140_access_types/lab/access_types/answer/main.adb :code:Ada :number-lines:1

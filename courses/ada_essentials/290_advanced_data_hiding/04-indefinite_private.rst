@@ -99,7 +99,7 @@ Opaque Pointers
      procedure Foo (B : Box_T);
   private
      type Internal_Box_T; -- incomplete
-     type Box_T is access all Internal_Box_T;
+     type Box_T is access Internal_Box_T;
   end Black_Boxes;
 
 ------------------------------

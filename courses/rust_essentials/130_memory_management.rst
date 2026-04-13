@@ -32,6 +32,7 @@ Memory Management
 
 .. container:: PRELUDE END
 
+.. include:: 130_memory_management/00_introduction.rst
 .. include:: 130_memory_management/01_review.rst
 .. include:: 130_memory_management/02_approaches.rst
 .. include:: 130_memory_management/03_ownership.rst
@@ -40,3 +41,4 @@ Memory Management
 .. include:: 130_memory_management/06_copy_types.rst
 .. include:: 130_memory_management/07_drop.rst
 .. include:: 130_memory_management/99_lab.rst
+.. include:: 130_memory_management/99_summary.rst

@@ -220,6 +220,10 @@ Hierarchical Visibility
             Field2 : Child_T;      -- Error
           end record;
         end OS.Sibling;
+
+.. raw:: latex
+
+  \vspace{5mm}
       
 ------------------------------------
 Example of Visibility As If Nested
@@ -246,7 +250,7 @@ Example of Visibility As If Nested
    end Complex;
 
 -------------------------------------------
-`with` Clauses for Ancestors Are Implicit
+"with" Clauses for Ancestors Are Implicit
 -------------------------------------------
 
 .. container:: columns
@@ -261,7 +265,9 @@ Example of Visibility As If Nested
 
  .. container:: column
 
-   .. code:: Ada
+   .. container:: latex_environment small
+
+     .. code:: Ada
 
       package Parent is
         ...
@@ -279,7 +285,7 @@ Example of Visibility As If Nested
       end Parent.Child;
 
 -------------------------------------------
- `with` Clauses for Siblings Are Required
+ "with" Clauses for Siblings Are Required
 -------------------------------------------
 
 * If references are intended
@@ -312,12 +318,12 @@ Quiz
       Child_Object : Integer := ? ;
    end Parent.Child;
 
-Which is (are) **NOT** legal initialization(s) of ``Child_Object``?
+Which is (are) legal initialization(s) of ``Child_Object``?
 
-   A. :answermono:`Parent.Parent_Object + Parent.Sibling.Sibling_Object`
-   B. :answermono:`Parent_Object + Sibling.Sibling_Object`
-   C. :answermono:`Parent_Object + Sibling_Object`
-   D. ``None of the above``
+   A. ``Parent.Parent_Object + Parent.Sibling.Sibling_Object``
+   B. ``Parent_Object + Sibling.Sibling_Object``
+   C. ``Parent_Object + Sibling_Object``
+   D. :answermono:`None of the above`
 
 .. container:: animate
 

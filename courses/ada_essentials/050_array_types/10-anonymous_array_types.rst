@@ -23,6 +23,8 @@ Anonymous Array Types
 
  .. container:: column
 
+  .. container:: latex_environment small
+
    .. code:: Ada
 
       declare
