@@ -2,9 +2,9 @@
 Modules
 =========
 
------------------
-The Big Picture
------------------
+-------------
+Big Picture
+-------------
 
 * Most applications reside in more than one file
 
@@ -26,9 +26,9 @@ The Big Picture
 
   * Modules are the "folders" of your logic
 
-----------------------
-The Complete Picture
-----------------------
+------------------
+Complete Picture
+------------------
 
 **Rust code is made up of**
 
@@ -49,10 +49,10 @@ The Complete Picture
 
   * - *Crate*
     - Collection of modules
-    - (Project or library)
+    - (Binary or library)
 
   * - *Package*
-    - One or more crated
+    - One or more crates
     - (Managed by cargo.toml)
 
 ---------------
