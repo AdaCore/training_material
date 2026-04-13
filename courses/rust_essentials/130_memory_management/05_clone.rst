@@ -6,7 +6,7 @@
 Explicit Duplication
 ----------------------
 
-**Creates a** *deep copy* **of underlying data**
+**Creates a "deep copy" of underlying data**
 
 - Typically duplicating heap-allocated resources
 

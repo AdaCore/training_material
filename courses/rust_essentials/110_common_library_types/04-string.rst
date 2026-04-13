@@ -6,7 +6,7 @@ String
 What Is "String"?
 -------------------
 
-:rust:`String` **is an** *owned* **and** *growable* **UTF-8 encoded type**
+:rust:`String` **is an owned and growable UTF-8 encoded type**
 
 * Lives on the heap
 * Grows as needed

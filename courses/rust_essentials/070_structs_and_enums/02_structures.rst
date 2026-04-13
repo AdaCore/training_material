@@ -55,7 +55,7 @@ Nesting Structs
 Beware of Recursion!
 ----------------------
    
-**Structs** *cannot* **be recursive**
+**Structs cannot be recursive**
 
   -  Type would not be **Sized**
 

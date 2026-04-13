@@ -191,7 +191,7 @@ Utilizing Different Bases
 Numeric Conversions
 ---------------------
 
-**Rust does** *not* **automatically convert types for you**
+**Rust does not automatically convert types for you**
 
 .. code:: rust
 

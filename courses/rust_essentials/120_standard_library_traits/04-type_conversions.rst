@@ -135,7 +135,7 @@ Casting Examples
 Safer Conversions
 -------------------
 
-**Use** :rust:`TryFrom` **(or** :rust:`TryInto`) **rather than** :rust:`as`
+**Use** :rust:`TryFrom` **(or** :rust:`TryInto`**) rather than** :rust:`as`
 
 * Returns error type
 * Useful when input is not guaranteed

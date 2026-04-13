@@ -87,7 +87,7 @@ Slice Examples
 Fat Pointer
 -------------
 
-**Slices are sometimes called** *Fat Pointers*
+**Slices are sometimes called "Fat Pointers"**
 
 - Carry **two** components
 

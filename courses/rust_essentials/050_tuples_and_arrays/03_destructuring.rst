@@ -96,7 +96,7 @@ Destructuring an Array
 Ignoring Specific Elements 
 ----------------------------
 
-**Ignore specific elements using the underscore (:rust:`_`)**
+**Ignore specific elements using the underscore (**:rust:`_`**)**
 
 .. code:: rust
 
@@ -127,7 +127,7 @@ Ignoring Multiple Elements
 Nested Destructuring
 ----------------------
 
-**Use a pattern** *within* **a pattern to destructure an array of arrays**
+**Use a pattern within a pattern to destructure an array of arrays**
 
 .. code:: rust
 
