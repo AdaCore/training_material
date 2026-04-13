@@ -65,4 +65,3 @@ Directory-Based Modules
 * This creates a clean tree structure that mirrors your file system
 
 .. image:: rust_essentials/modules_hierarchy.svg
-  :width: 90%

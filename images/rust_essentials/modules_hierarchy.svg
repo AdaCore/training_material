@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="115" width="315" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="115" width="335" >
 <text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal"  x="10" y="10" >src/</text>
 <text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal"  x="20" y="24" >main.rs</text>
 <line fill="none" stroke="#1598cb" stroke-width="1" x1="12" y1="21" x2="17" y2="21" />
