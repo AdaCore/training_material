@@ -37,9 +37,9 @@ What Is an Iterator?
       - Look at what is at the current position
       - :rust:`array[idx]`
 
----------------------
-What Is an Iterator
----------------------
+----------------------
+What Is an Iterator?
+----------------------
 
 * Provides standard way to access elements of a collection
 
@@ -63,7 +63,7 @@ What Is an Iterator
 
     let numbers = vec![1, 2, 3];
 
-    // .iter() creates the iterator
+    // '.iter()' creates the iterator
     let it = numbers.iter()
         for num in it {
             println!("{}", num);

@@ -16,19 +16,13 @@ What We Covered
   * Trait-based mechanism to traverse any iterable type
   * Only needs an associated type and a :rust:`next` method
 
--------------------------
-Using Iterators in Rust
--------------------------
-
 * **Additional Iterator Trait Methods**
 
   * *Iterator Adapter* methods - e.g., :rust:`map`, :rust:`filter`
   * *Consumer* methods - e.g., :rust:`sum`, :rust:`count`
 
-* **Collecting Data via Iterator**
+    * :rust:`collect` is just a fancy consumer
 
-  * Transform iterator into a specific collection (e.g. :rust:`Vec`)
-
-* **Converting to using** :rust:'IntoIterator`
+* **Converting to using** :rust:`IntoIterator`
 
   * Allows collection to be used directly in :rust:`for` loop
