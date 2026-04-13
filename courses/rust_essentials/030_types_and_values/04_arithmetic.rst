@@ -13,7 +13,7 @@ Standard Operators
    :header-rows: 0
 
    * - *Multiplicative*
-     - :rust:`\*`
+     - :rust:`*`
      - :rust:`/`
      - :rust:`%`
      -
@@ -97,7 +97,7 @@ Modifying Variables In-Place
      - :rust:`x -= 5;`
      - :rust:`5`
 
-   * - :rust:`\*=`
+   * - :rust:`*=`
      - :rust:`x = x * y`
      - :rust:`x *= 2;`
      - :rust:`20`
