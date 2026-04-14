@@ -37,14 +37,14 @@ where
 
    type Array_One is array (1 .. 100) of Integer;
 
-   type Discrete_Subtype_Two is range (Able, Baker, Charlie);
-   type Array_Two is array (Discrete_Subtype_Two) of Float;
+   type Discrete_Type_Two is (Able, Baker, Charlie);
+   type Array_Two is array (Discrete_Type_Two) of Float;
 
-   type Discrete_Subtype_Three is mod 64;
-   type Array_Three is array (Discrete_Subtype_Three range 0 .. 31)
+   type Discrete_Type_Three is mod 64;
+   type Array_Three is array (Discrete_Type_Three range 0 .. 31)
       of Interfaces.Integer_16;
 
-   type Multidimension_Array is (1 .. 10, 1 .. 10) of Boolean;
+   type Multidimension_Array is array (1 .. 10, 1 .. 10) of Boolean;
 
 ---------------
 Arrays in Ada

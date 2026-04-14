@@ -35,8 +35,8 @@ Slice Creation
 .. list-table::
   :header-rows: 1
 
-  * - Syntax
-    - Range
+  * - **Syntax**
+    - **Range**
     
   * - :rust:`&a[start..]`
     - Explicit start to implicit end

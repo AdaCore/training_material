@@ -95,6 +95,7 @@ Strings vs Character Arrays
 
 .. list-table::
   :header-rows: 1
+  :stub-columns: 1
 
   * -
     - **Encoding**

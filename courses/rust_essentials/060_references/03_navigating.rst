@@ -11,9 +11,9 @@ Rust's Reference System
 .. list-table::
   :header-rows: 1
 
-  * - Syntax
-    - Binding
-    - Reference
+  * - **Syntax**
+    - **Binding**
+    - **Reference**
 
   * - :rust:`let r = &x`
     - Immutable
