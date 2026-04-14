@@ -24,9 +24,7 @@ Loops
 "for" Statement
 -----------------------
 
-- Iterates over either
-  - A range of values 
-  - Items in a collection
+**Iterates over range of values or items in a collection**
 
 .. code:: rust
 
@@ -46,7 +44,7 @@ Loops
 "loop" Expression
 -------------------------
 
-- Loops forever, or until a :rust:`break` 
+**Loops forever, or until a** :rust:`break`
 
 .. code:: rust
     

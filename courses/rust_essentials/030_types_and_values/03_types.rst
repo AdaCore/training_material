@@ -23,15 +23,15 @@ Rust Is Statically Typed
 Assigning Types
 -----------------
 
-- Two ways to tell Rust what **type** a variable is
+* Two ways to tell Rust what **type** a variable is
 
-  - **Explicit Annotation**
+- **Explicit Annotation**
 
     .. code:: rust
 
       let explicit_var: i32 = 10;
 
-  - **Type Inference**
+- **Type Inference**
 
     .. code:: rust
 
@@ -191,7 +191,7 @@ Utilizing Different Bases
 Numeric Conversions
 ---------------------
 
-- Rust does **not** automatically convert types for you
+**Rust does not automatically convert types for you**
 
 .. code:: rust
 

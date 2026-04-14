@@ -6,13 +6,14 @@ Arrays
 What Is an Array?
 -------------------
 
-* **Definition:** a collection of elements
+* **Definition: a collection of elements**
 
    * ... of the **same type**
    * ... stored in contiguous memory
    * ... indexed using a discrete range
 
 .. image:: array_diagram.svg
+
 --------------------
 Basics
 --------------------

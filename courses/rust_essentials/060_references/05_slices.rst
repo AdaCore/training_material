@@ -28,7 +28,7 @@ What Are Slices?
 Slice Creation
 ----------------
 
-- Created by referring to a collection, and specifying the range
+**Created by referring to a collection, and specifying the range**
 
 .. container:: latex_environment scriptsize
 
@@ -87,10 +87,12 @@ Slice Examples
 Fat Pointer
 -------------
 
-- Slices are sometimes called **Fat Pointers**
-  - Carry **two** components
-    - **Data Pointer** - memory address where data starts
-    - **Length** - how many items to look at
+**Slices are sometimes called "Fat Pointers"**
+
+- Carry **two** components
+
+  - **Data Pointer** - memory address where data starts
+  - **Length** - how many items to look at
 
 .. code:: rust
 

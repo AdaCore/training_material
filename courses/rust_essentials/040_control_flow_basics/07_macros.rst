@@ -25,7 +25,7 @@ println!
 
    Standard Library
 
-* :rust:`println!(format, ..)` prints a line to standard output
+:rust:`println!(format, ..)` **prints a line to standard output**
 
 .. code:: rust
 
