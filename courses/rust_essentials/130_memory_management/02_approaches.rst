@@ -57,7 +57,7 @@ Quick Comparison
       - *Stop-the-World* pauses
       - Zero
 
-    * - *Developer Overhead*
+    * - *Programmer Overhead*
       - Manual tracking
       - Low
       - Compilation time

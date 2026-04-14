@@ -3,7 +3,7 @@ Macros
 ========
 
 ------------------
-What is a Macro?
+What Is a Macro?
 ------------------
 
 - Code that **generates** other code at **compile-time**
@@ -25,7 +25,7 @@ println!
 
    Standard Library
 
-* :rust:`println!(format, ..)` prints a line to standard output
+:rust:`println!(format, ..)` **prints a line to standard output**
 
 .. code:: rust
 
@@ -66,7 +66,7 @@ dbg!
         }
         product
     }
-    let result = factorial(3); // result will be 6
+    let result = factorial(3); // Result will be 6
 
 :command:`[src/main.rs:5:20] i = 1`
 
@@ -119,7 +119,7 @@ unreachable!
 
     let number = 3;
     match number {
-        // The match is exhaustive for a u32, but in this context,
+        // The match is exhaustive for a 'u32', but in this context,
         // we logically know 'number' will only be 1 or 2.
         1 => println!("One"),
         2 => println!("Two"),

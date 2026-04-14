@@ -16,7 +16,7 @@ Topics Covered
 
 * **Converting Between Types and Values**
 
-  * Conversion vs casting
+  * Conversion vs. casting
 
 * **Input/Output on Types**
 

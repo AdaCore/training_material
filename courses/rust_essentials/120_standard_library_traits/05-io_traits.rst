@@ -32,7 +32,7 @@ Reading and Writing via Trait
     * E.g., files, network, memory, etc.
 
 -----------------------------
-"Write" then "Read" Example
+"Write" Then "Read" Example
 -----------------------------
 
 .. code:: rust

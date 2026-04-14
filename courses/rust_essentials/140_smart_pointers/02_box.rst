@@ -3,7 +3,7 @@
 ==========
 
 ------------------
-What is "Box<T>"
+What Is "Box<T>"
 ------------------
 
 - Allocates data on the heap (via :rust:`Box::new`)
@@ -50,7 +50,7 @@ Using "Box<T>" for Recursive Types
 
     .. code:: rust
 
-      // WORKS: The "Box" is just a pointer to the next doll
+      // WORKS: The 'Box' is just a pointer to the next doll
       enum Doll {
         Inside(Box<Doll>),
         Empty,
@@ -62,11 +62,11 @@ Using "Box<T>" for Recursive Types
 Handling Large Data
 ----------------------
 
-- :rust:`Box<T>` allows to move ownership of data
+:rust:`Box<T>` **allows to move ownership of data**
 
-  - Rather than copying data passed in parameters for function calls
+- Rather than copying data passed in parameters for function calls
   
-    - Useful for large data
+  - Useful for large data
 	
 .. code:: rust	
 	

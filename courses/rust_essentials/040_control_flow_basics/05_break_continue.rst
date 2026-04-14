@@ -27,7 +27,7 @@
 :command:`5`
   
 -------------------------------------------------------
-Returning a Value with "loop" and "break"
+Returning a Value With "loop" and "break"
 -------------------------------------------------------
 
     - :rust:`loop` is also an expression
@@ -62,7 +62,7 @@ Labels
             if eaten == 13 {
                 break 'outer; 
             }
-        } // inner loop ends
+        } // Inner loop ends
     } // outer loop ends
     println!("Sugar crash at: {}", eaten);
     
@@ -70,9 +70,9 @@ Labels
 Block Labels
 --------------
 
--  Labeled break also works on arbitrary blocks
+**Labeled break also works on arbitrary blocks**
 
-  .. code:: rust
+.. code:: rust
 
       'label: {
           break 'label;

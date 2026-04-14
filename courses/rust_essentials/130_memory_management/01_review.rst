@@ -22,9 +22,10 @@ Overview
 Memory Layout Example
 -----------------------
 
-- Creating a :rust:`String` puts 
-  - Fixed-sized metadata on the **stack** 
-  - String contents (UTF-8 bytes) on the **heap**
+**Creating a** :rust:`String` **puts**
+
+- Fixed-sized metadata on the **stack** 
+- String contents (UTF-8 bytes) on the **heap**
 
 .. code:: rust
 

@@ -34,6 +34,6 @@ Topics Covered
 
   * Lifetimes in structs
 
-  * Borrowed vs owned data
+  * Borrowed vs. owned data
 
   * When explicit lifetimes are required

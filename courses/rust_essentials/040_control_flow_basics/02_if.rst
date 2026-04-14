@@ -30,7 +30,7 @@ Using "if" as a Statement
 Using "if" as an Expression
 ---------------------------------
 
-* Every block is an expression that returns a value
+**Every block is an expression that returns a value**
 
 .. code:: rust
 

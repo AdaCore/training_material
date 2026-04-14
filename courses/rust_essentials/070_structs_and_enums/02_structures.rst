@@ -55,7 +55,8 @@ Nesting Structs
 Beware of Recursion!
 ----------------------
    
-- Structs **cannot** be recursive
+**Structs cannot be recursive**
+
   -  Type would not be **Sized**
 
 .. code:: rust
@@ -76,7 +77,8 @@ Beware of Recursion!
 Struct Initialization
 -----------------------
 
-- No partial initialization possible
+**No partial initialization possible**
+
   - No implicit default values
 
 .. code:: rust
@@ -170,7 +172,8 @@ Struct Update Operator
 Mutable
 ---------
 
-- Mutability applies to the entire instance
+**Mutability applies to the entire instance**
+
   - No partial application for only some fields
    
 .. code:: rust
@@ -255,7 +258,7 @@ Constructor Ambiguity
    :error:`error[E0061]: this struct takes 2 arguments but 0 arguments were supplied`
    
 -------------------------
-Type Safety with Tuples
+Type Safety With Tuples
 -------------------------
 
 - **Name** differentiates types 
@@ -279,7 +282,7 @@ Type Safety with Tuples
 Idiom: Newtype
 ----------------
 
-- A :dfn:`newtype` is a tuple :rust:`struct` with a single field 
+**A** :dfn:`newtype` **is a tuple** :rust:`struct` **with a single field**
 
   - Used to ensure type safety
 

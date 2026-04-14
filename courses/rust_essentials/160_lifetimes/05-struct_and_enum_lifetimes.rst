@@ -30,9 +30,9 @@ Lifetimes in Structs
 
   We refer to structs here, but enums behave the same way
 
------------------------------
-Borrowed Data vs Owned Data
------------------------------
+------------------------------
+Borrowed Data vs. Owned Data
+------------------------------
 
 .. code:: Rust
 

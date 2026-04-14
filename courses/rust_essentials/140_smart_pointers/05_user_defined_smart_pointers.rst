@@ -1,12 +1,12 @@
-=============================
-User-Defined Smart Pointers
-=============================
+===================================
+Programmer-Defined Smart Pointers
+===================================
 
 -----------------------------
 Implementing Smart Pointers
 -----------------------------
 
-- Can define custom smart pointers
+**Can define custom smart pointers**
 
   - Can be used for 'foreign function interface'
 
@@ -28,7 +28,7 @@ Implementing Smart Pointers
 :error:`error[E0614]: type 'MyBox<{integer}>' cannot be dereferenced`
 
 ------------------------------------
-Working with Custom Smart Pointers
+Working With Custom Smart Pointers
 ------------------------------------
 
 - Need to implement :rust:`Deref`

@@ -8,6 +8,7 @@ Comparing "Rc<T>" and "Box<T>"
 
 .. list-table::
    :header-rows: 1
+   :stub-columns: 1
    
    * - **Properties**
      - :rust:`Box<T>`

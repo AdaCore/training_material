@@ -6,13 +6,14 @@ Arrays
 What Is an Array?
 -------------------
 
-* **Definition:** a collection of elements
+* **Definition: a collection of elements**
 
    * ... of the **same type**
    * ... stored in contiguous memory
    * ... indexed using a discrete range
 
 .. image:: array_diagram.svg
+
 --------------------
 Basics
 --------------------
@@ -26,9 +27,9 @@ Basics
 
 .. code:: rust
 
-      // Array of 3 elements of type i8   
+      // Array of 3 items of type 'i8'
       let mut values: [i8; 3] = [2, 3, 4];        
-      values[2] = 5; // Accessing and modifying an element
+      values[2] = 5; // Accessing and modifying an item
 
 .. note::
 
