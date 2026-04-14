@@ -318,12 +318,12 @@ Quiz
       Child_Object : Integer := ? ;
    end Parent.Child;
 
-Which is (are) **NOT** legal initialization(s) of ``Child_Object``?
+Which is (are) legal initialization(s) of ``Child_Object``?
 
-   A. :answermono:`Parent.Parent_Object + Parent.Sibling.Sibling_Object`
-   B. :answermono:`Parent_Object + Sibling.Sibling_Object`
-   C. :answermono:`Parent_Object + Sibling_Object`
-   D. ``None of the above``
+   A. ``Parent.Parent_Object + Parent.Sibling.Sibling_Object``
+   B. ``Parent_Object + Sibling.Sibling_Object``
+   C. ``Parent_Object + Sibling_Object``
+   D. :answermono:`None of the above`
 
 .. container:: animate
 
