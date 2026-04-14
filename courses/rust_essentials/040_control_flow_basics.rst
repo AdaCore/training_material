@@ -40,5 +40,5 @@ Control Flow Basics
 .. include:: 040_control_flow_basics/05_break_continue.rst
 .. include:: 040_control_flow_basics/06_functions.rst
 .. include:: 040_control_flow_basics/07_macros.rst
-.. include:: 040_control_flow_basics/99_lab.rst
+.. include:: 040_control_flow_basics/88-control_flow_basics.lab.rst
 .. include:: 040_control_flow_basics/99_summary.rst
