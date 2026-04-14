@@ -28,7 +28,7 @@ Implementing Smart Pointers
 :error:`error[E0614]: type 'MyBox<{integer}>' cannot be dereferenced`
 
 ------------------------------------
-Working with Custom Smart Pointers
+Working With Custom Smart Pointers
 ------------------------------------
 
 - Need to implement :rust:`Deref`

@@ -3,7 +3,7 @@
 =========
 
 ---------------------------------
-Multiple Ownership with "Rc<T>"
+Multiple Ownership With "Rc<T>"
 ---------------------------------
 
 - Useful when *single* value is owned by *multiple* parts of a program
@@ -19,7 +19,7 @@ Multiple Ownership with "Rc<T>"
   - included with :rust:`use std::rc::Rc`
   
 ---------------------------
-"Rc<T>" counts references
+"Rc<T>" Counts References
 ---------------------------
 
 **Shares ownership of value on the heap using** :rust:`Clone`
@@ -56,7 +56,7 @@ Immutable Access
   let tac = Rc::clone(&tic);
   let toe = Rc::clone(&tic);  
   
-  *var_a += 10; //Error: no mutable access
+  *var_a += 10; // Error: no mutable access
   
 :error:`error[E0594]: cannot assign to data in an 'Rc'`
 

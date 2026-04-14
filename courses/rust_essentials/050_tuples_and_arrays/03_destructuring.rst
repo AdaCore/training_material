@@ -3,7 +3,7 @@ Patterns and Destructuring
 ============================
 
 ------------------------
-What is Destructuring?
+What Is Destructuring?
 ------------------------
 
   - **Convenient** data access
@@ -26,7 +26,7 @@ Destructuring a Tuple
 
   let person_data = ("Renoir", 33, "Painter");
   let (name, _, profession) = person_data;
-  // name is more meaningful than person_data.0
+  // 'name' is more meaningful than 'person_data.0'
   println!("Name: {name}, {profession}");
 
   * Generates the following output:
@@ -34,7 +34,7 @@ Destructuring a Tuple
 :command:`Name: Renoir, Painter`
 
 ----------------------------------
-Irrefutable Patterns with Tuples
+Irrefutable Patterns With Tuples
 ----------------------------------
 
   - Irrefutable tuple pattern = **guaranteed match**

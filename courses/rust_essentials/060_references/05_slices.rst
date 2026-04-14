@@ -104,9 +104,9 @@ Fat Pointer
 
     Creating a slice is **O(1)** - it takes the same constant time whether the original array has 4 elements or 4 million
 
-------------------
-&str vs "String"
-------------------
+---------------------
+"&str" vs. "String"
+---------------------
 
 - :rust:`&str`: **String slice**, immutable reference to UTF-8 encoded bytes
   - Fixed length (cannot grow or shrink)

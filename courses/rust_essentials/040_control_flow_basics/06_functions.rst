@@ -3,7 +3,7 @@ Functions
 ===========
 
 ---------------------
-What is a function?
+What Is a Function?
 ---------------------
 
 - Primary way to organize code into reusable blocks
@@ -59,7 +59,7 @@ Return Values (Expression vs Statement)
   }
 
 -----------------------------
-Explicit exit with "return"
+Explicit Exit With "return"
 -----------------------------
 
 **Forces the function to exit immediately**

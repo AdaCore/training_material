@@ -3,7 +3,7 @@
 ==========
 
 ------------------
-What is "Box<T>"
+What Is "Box<T>"
 ------------------
 
 - Allocates data on the heap (via :rust:`Box::new`)
@@ -50,7 +50,7 @@ Using "Box<T>" for Recursive Types
 
     .. code:: rust
 
-      // WORKS: The "Box" is just a pointer to the next doll
+      // WORKS: The 'Box' is just a pointer to the next doll
       enum Doll {
         Inside(Box<Doll>),
         Empty,
