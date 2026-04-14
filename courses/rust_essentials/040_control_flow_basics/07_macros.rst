@@ -9,8 +9,8 @@ What Is a Macro?
 - Code that **generates** other code at **compile-time**
 - Can take a **variable** number of arguments
 - Is **not** a function
-- Macro calls are required to end with the :rust:`!`
-  - e.g., :rust:`println!`, :rust:`dbg!`
+- Macro calls are required to end with :rust:`!`
+  - E.g., :rust:`println!`, :rust:`dbg!`
 - You can write your own!
 
 .. note::
@@ -40,6 +40,12 @@ println!
     // Named argument, improves readability and refactoring
     // Expressions not allowed inside the curly braces
     println!("Hello {name}!");
+
+:command:`Hello!`
+
+:command:`Hello, World, the answer is 42.`
+
+:command:`Hello World!`
 
 ------
 dbg!

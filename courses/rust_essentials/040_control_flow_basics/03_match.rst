@@ -15,7 +15,7 @@ Using "match" as a Statement
 
 .. code:: rust
 
-    let belly_rubs = 3; 
+    let belly_rubs = 2; 
     match belly_rubs {
         0 => {
           println!("Grumble");
@@ -28,31 +28,30 @@ Using "match" as a Statement
         _ => println!("Suspicion"),  // Trailing comma is allowed, idiomatic
     }
 
+:command:`Happiness!`
+
 --------------------------------
 The "match" Must Be Exhaustive
 --------------------------------
 
-- Needs to be **exhaustive**
-  - Must cover all possibilities
-  - Can have a default case such as :rust:`_`
+- Must cover all possibilities
+- Can have a default case :rust:`_`
 
 .. code:: rust
 
-  let number = 5;
-  match x {
+  match count {
       1 => println!("One"),
       2 => println!("Two"),     
-      _ => println!("Other number!"), // Catches all other possibilities
+      _ => println!("Other!"), // Catches all other possibilities
   }
 
-- Use (:rust:`|`) to match several values to one arm
+- Use :rust:`|` to match several values to one arm.
 
 .. code:: rust
 
-  let belly_rubs = 4;
   match belly_rubs {
-      1 | 2 => println!("Not enough love."),    // Matches 1 or 2
-      3 | 4 | 5 => println!("Perfect amount!"), // Matches 3 or 4 or 5
+      1 | 2 => println!("Not enough."),  // Matches 1 or 2
+      3 | 4 | 5 => println!("Perfect!"), // Matches 3 or 4 or 5
       _ => println!("Suspicion."),
   }
 
@@ -62,11 +61,30 @@ Using "match" as an Expression
 
 - Entire match expression evaluates to a value
 - Every arm must return the exact same type
-- Inclusive and exclusive ranges with the :rust:`..` and :rust:`..=` syntaxes
-  - *low..=high*: from *low*, up to *high* (inclusive)
-  - *low..high*: from *low*, up to *high* (exclusive)
-  - *..high*: from minimum possible value, up to *high* (exclusive)
-  - *low..*: from *low* (inclusive), up to maximum possible value
+- Inclusive and exclusive ranges
+
+.. list-table::
+  :header-rows: 1
+
+  * - **Range**
+    - **From**
+    - **Up to**
+
+  * - *low..=high*
+    - low
+    - high (inclusive)
+   
+  * - *low..high*
+    - low
+    - high (exclusive)
+
+  * - *..high*
+    - mininum possible value
+    - high (exclusive)
+
+  * - *low..*
+    - low (inclusive)
+    - maximum possible value
 
 .. code:: rust
 
@@ -79,3 +97,5 @@ Using "match" as an Expression
         40.. => "This reading is impossible.",
     };
     println!("Current mood: {}", current_mood);
+
+:command:`Current mood: Melting!`

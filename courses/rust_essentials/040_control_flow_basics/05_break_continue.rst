@@ -17,14 +17,14 @@
         count += 1;
         if count < 3 { continue; } 
         if count > 5 { break; }
-        println!("{}", count);
+        println!("Count: {}", count);
     }; 
 
-:command:`3`
+:command:`Count: 3`
 
-:command:`4`
+:command:`Count: 4`
 
-:command:`5`
+:command:`Count: 5`
   
 -------------------------------------------------------
 Returning a Value With "loop" and "break"
@@ -39,9 +39,10 @@ Returning a Value With "loop" and "break"
     let result = loop {
         count += 1;             
         if count > 5 { break count; }
-        println!("{}", count);
     };
     println!("Result: {}", result);
+
+:command:`Result: 6`
 
 --------
 Labels
@@ -63,9 +64,11 @@ Labels
                 break 'outer; 
             }
         } // Inner loop ends
-    } // outer loop ends
+    } // Outer loop ends
     println!("Sugar crash at: {}", eaten);
     
+:command:`Sugar crash at: 13`
+
 --------------
 Block Labels
 --------------
