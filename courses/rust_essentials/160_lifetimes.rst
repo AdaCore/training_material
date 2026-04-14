@@ -37,4 +37,5 @@ Lifetimes
 .. include:: 160_lifetimes/03-lifetime_annotations.rst
 .. include:: 160_lifetimes/04-lifetime_elision.rst
 .. include:: 160_lifetimes/05-struct_and_enum_lifetimes.rst    
+.. include:: 160_lifetimes/88-lifetimes.lab.rst
 .. include:: 160_lifetimes/99-summary.rst
