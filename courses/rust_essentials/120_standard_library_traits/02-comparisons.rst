@@ -142,11 +142,11 @@ Ordering
 Partial Ordering
 ------------------
 
-* :rust:`PartialOrd`
+:rust:`PartialOrd`
 
-  * Returns :rust:`Option<Ordering>`
+* Returns :rust:`Option<Ordering>`
 
-    * :rust:`None` can be returned if two values cannot be compared
+  * :rust:`None` can be returned if two values cannot be compared
 
 .. code:: rust
   :font-size: small

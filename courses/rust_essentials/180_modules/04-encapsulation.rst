@@ -22,15 +22,15 @@ Why Encapsulate?
 Encapsulation in Structs
 --------------------------
 
-* *Gatekeeper* pattern
+*Gatekeeper* **pattern**
 
-  * Keep fields private
+* Keep fields private
 
-    * Only your code can modify fields
+  * Only your code can modify fields
 
-  * Provide :rust:`pub` getter and setter methods
+* Provide :rust:`pub` getter and setter methods
 
-    * Control how data is read or modified
+  * Control how data is read or modified
 
 .. container:: latex_environment tiny
 

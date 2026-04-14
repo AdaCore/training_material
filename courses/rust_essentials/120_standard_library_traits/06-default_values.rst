@@ -31,6 +31,7 @@ Default Values
   .. list-table::
      :widths: 25 35 40
      :header-rows: 1
+     :stub-columns: 1
 
      * - **Category**
        - **Type**

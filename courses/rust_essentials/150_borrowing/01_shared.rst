@@ -72,9 +72,10 @@ Mixing Mutable and Immutable Borrows
 Function Borrows
 ------------------
 
-- Functions can 
-  - Access values safely without consuming them
-  - Update the original variable directly
+**Functions can**
+
+- Access values safely without consuming them
+- Update the original variable directly
 
 .. code:: rust
 
@@ -129,8 +130,9 @@ Overlapping Borrows
 Multiple Mutable Borrows
 --------------------------
 
-- Functions cannot receive multiple mutable references to the same data
-  - Prevented by the borrow checker at compile-time
+**Functions cannot receive multiple mutable references to the same data**
+
+- Prevented by the borrow checker at compile-time
 
 .. code:: rust
 
@@ -151,9 +153,10 @@ Multiple Mutable Borrows
 Method Borrows
 ----------------
 
-- Methods can take
-  - Simultaneous immutable borrows using :rust:`&self`
-  - Exclusive mutable borrow using :rust:`&mut self`
+**Methods can take**
+
+- Simultaneous immutable borrows using :rust:`&self`
+- Exclusive mutable borrow using :rust:`&mut self`
 
 .. code:: rust
 

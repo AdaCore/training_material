@@ -72,8 +72,6 @@ Reference Reassignment
     reference = &second; // Now refers to 'second'
     println!("reference: {}", *reference);
 
-* Generates the following output
-
 :command:`reference: A`
 
 :command:`reference: B`

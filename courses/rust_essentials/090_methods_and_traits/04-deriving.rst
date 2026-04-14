@@ -73,9 +73,9 @@ Example of Deriving
 Deriving in Complex Structures
 --------------------------------
 
-* When a type derives a trait, its included items must also derive the trait
+**When a type derives a trait, its included items must also derive the trait**
 
-  .. code:: rust
+.. code:: rust
 
     struct Child {
         x: i32,
@@ -151,7 +151,7 @@ Orphan Rule Examples
 Limitations on Deriving
 -------------------------
 
-You cannot derive when
+**You cannot derive when**
 
   * Behavior depends on logic, not structure
   * You need validation or side effects
