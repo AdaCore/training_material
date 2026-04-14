@@ -11,7 +11,7 @@ Shared References
 - Strictly **read-only**
   - Referenced data **cannot change**
   - Even if the *original* variable was declared as :rust:`mut`
-- A shared reference to a type :rust:`T` has type :rust:`&T`
+- Shared reference to type :rust:`T` has type :rust:`&T`
 
 .. code:: rust
 

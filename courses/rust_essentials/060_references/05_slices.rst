@@ -109,7 +109,7 @@ Fat Pointer
 ---------------------
 
 - :rust:`&str`
-  - **String slice**, immutable reference to UTF-8 encoded bytes
+  - **String slice** - immutable reference to UTF-8 encoded bytes
     - Fixed length (cannot grow or shrink)
     - String literals (:rust:`"Hello"`) are :rust:`&str`
 - :rust:`String`
