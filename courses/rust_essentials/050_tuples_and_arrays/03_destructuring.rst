@@ -3,7 +3,7 @@ Patterns and Destructuring
 ============================
 
 ------------------------
-What is Destructuring?
+What Is Destructuring?
 ------------------------
 
   - **Convenient** data access
@@ -33,7 +33,7 @@ Destructuring a Tuple
 :command:`Name: Renoir, Painter`
 
 ----------------------------------
-Irrefutable Patterns with Tuples
+Irrefutable Patterns With Tuples
 ----------------------------------
 
   - Irrefutable tuple pattern = **guaranteed match**

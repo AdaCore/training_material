@@ -89,7 +89,7 @@ Exhaustiveness
   :error:`error[E0004]: non-exhaustive patterns: 'Direction::East' and 'Direction::West' not covered`
 
 ------------------------
-Matching with Bindings
+Matching With Bindings
 ------------------------
 
 - Patterns can bind values while matching

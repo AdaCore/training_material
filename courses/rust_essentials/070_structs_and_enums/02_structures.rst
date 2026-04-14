@@ -255,7 +255,7 @@ Constructor Ambiguity
    :error:`error[E0061]: this struct takes 2 arguments but 0 arguments were supplied`
    
 -------------------------
-Type Safety with Tuples
+Type Safety With Tuples
 -------------------------
 
 - **Name** differentiates types 

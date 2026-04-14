@@ -3,7 +3,7 @@ Macros
 ========
 
 ------------------
-What is a Macro?
+What Is a Macro?
 ------------------
 
 - Code that **generates** other code at **compile-time**
