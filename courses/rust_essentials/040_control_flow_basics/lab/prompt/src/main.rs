@@ -1,3 +1,6 @@
+//! Lab (prompt)
+//! Control Flow Basics
+
 // Objective: Survive the encounter and tame the dragon.
 // Task: Fix the code section by section. Follow the compiler errors!
 
@@ -8,28 +11,26 @@ fn main() {
 
     println!("--- A Wild Dragon Appears! ---");
 
-    // --- TASK 1: The Fire Breath (Topic: Blocks) ---
+    // --- TASK 1: The Fire Breath ---
     // GOAL: The block should calculate damage and return it.
-    // ERROR: The semicolon on the last line is preventing the return!
+    // How do we get a block of code to return a value?
     let damage: i32 = {
         let fire_intensity = 10;
-        fire_intensity * 3; 
+        fire_intensity * 3;
     };
 
     health -= damage;
     
-    // --- TASK 2: Health Check (Topic: dbg! Macro) ---
-    // GOAL: Use dbg! to print your health to the console.
-    // ERROR: The compiler warns about an unused variable 'health' if we don't.
-    // (Uncomment the line below and wrap health in the dbg! macro)
-    // ???(health);
+    // --- TASK 2: Health Check ---
+    // GOAL: Print your health to the console.
+    // Repalce todo with the correct macro to meet the goal!
+    todo!(health);
 
-    // --- TASK 3: The Approach (Topic: Loops & Break) ---
-    // GOAL: Approach the dragon (distance -> 0) and break the loop.
-    // ERROR: This will 'panic' at runtime because of the todo! macro.
+    // --- TASK 3: The Approach ---
+    // GOAL: Approach the dragon (to 0 meters)!
     loop {
         if distance == 0 {
-            todo!("Replace this macro with the 'break' keyword");
+            todo!("What keyword that breaks out of a loop?");
         }
         
         if distance == 1 {
@@ -38,25 +39,27 @@ fn main() {
             println!("Stepping closer... distance is {} meters", distance);
         }
 
-               distance -= 1;
+        distance -= 1;
     }
 
-    // --- TASK 4: The Taming (Topic: Match Expressions) ---
+    // --- TASK 4: The Taming ---
     // GOAL: Handle the outcome based on a 'tame_chance' roll.
-    // ERROR: The compiler will say "non-exhaustive patterns".
+    // How do we handle all possible values? (replace ???)
     let tame_chance = 1; 
     match tame_chance {
         1 => println!("The dragon bows its head! Success!"),
         2 => println!("The dragon is unimpressed."),
-        // HINT: Add the '_' catch-all arm here!
+        // ??? println!("The dragon stares blankly."),
     }
 
-    // --- TASK 5: Survival Check (Topic: Functions & unreachable!) ---
+    // --- TASK 5: The Logic Guard ---
+    // EXPERIMENT: First, fix the macro below to make the code compile.
+    // THEN, after it runs successfully, try setting 'is_brave' to false 
+    // at the top of main. What happens when you run it then?
     if is_brave && health > 0 {
         println!("You survived with {} health!", health);
     } else {
-        // ERROR: If you make it this far, you should have survived.
-        // If the code hits this branch, it should crash with a message.
-        unreachable!("Wait, how did we die? The health check failed!");
+        // Replace todo with the macro that signals: "My logic assumes we never reach this!"
+        todo!("The ritual should have been a guaranteed success!");
     }
 }
