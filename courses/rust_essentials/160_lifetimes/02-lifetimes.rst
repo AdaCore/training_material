@@ -3,7 +3,7 @@ Lifetimes
 ===========
 
 ---------------------
-What is a Lifetime?
+What Is a Lifetime?
 ---------------------
 
 - Span of code during which a reference is valid

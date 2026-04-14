@@ -66,7 +66,7 @@ Why Do We Need Lifetime Annotations?
     - :rust:`'_` - placeholder for an inferred lifetime
 
 ----------------------------------
-Solving Ambiguity with Lifetimes
+Solving Ambiguity With Lifetimes
 ----------------------------------
 
 **Previously, we encountered an error: a lifetime annotation solves it**

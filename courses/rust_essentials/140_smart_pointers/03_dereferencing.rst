@@ -29,7 +29,7 @@ Dereferencing
 :command:`Hello, 007!`
   
 -----------------------------
-Coercing Types with "Deref"
+Coercing Types With "Deref"
 -----------------------------
 
 - Coercion allows conversion of a referenced type to a different type

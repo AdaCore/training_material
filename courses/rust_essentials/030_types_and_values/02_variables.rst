@@ -3,7 +3,7 @@ Variables
 ===========
 
 ---------------------
-What is a Variable?
+What Is a Variable?
 ---------------------
 
 - Think of a variable as a **labeled box** where you can store a single piece of info (a "value")
@@ -17,14 +17,14 @@ What is a Variable?
 
 .. code:: rust
 
-  // We are binding the name "apples" to the value 5
+  // We are binding the name 'apples' to the value 5
   let apples = 5;
 
-  // We are binding the name "person" to the value "Alice"
+  // We are binding the name 'person' to the value 'Alice'
   let person = "Alice";
 
 -------------------------------------
-By Default, Variables are Immutable
+By Default, Variables Are Immutable
 -------------------------------------
 
 - **Immutable** = **unchangeable**

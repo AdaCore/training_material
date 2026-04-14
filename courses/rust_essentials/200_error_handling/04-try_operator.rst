@@ -3,7 +3,7 @@ Try Operator
 ==============
 
 ------------------------
-"?" - the Try Operator
+"?" - The Try Operator
 ------------------------
 
 * Replaces repetitive match handling
@@ -50,7 +50,7 @@ Verbosity vs. Clarity
     }
 
 ----------------------------
-Try Operator with "Option"
+Try Operator With "Option"
 ----------------------------
 
 * :rust:`?` works with more than :rust:`Ok` / :rust:`Err`
@@ -71,7 +71,7 @@ Try Operator with "Option"
     *Unless you convert explicitly*
 
 --------------------------------
-Returning "Result" from "main"
+Returning "Result" From "main"
 --------------------------------
 
 * Rust allows :rust:`main` to return a :rust:`Result`

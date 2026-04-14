@@ -3,7 +3,7 @@ Overview
 ==========
 
 --------------------------
-Review: What is a Trait?
+Review: What Is a Trait?
 --------------------------
 
 * Contract for behavior
@@ -24,7 +24,7 @@ Review: What is a Trait?
 * Adds more flexibility to the type and its behavior
 
 -----------------------------------
-What is a Standard Library Trait?
+What Is a Standard Library Trait?
 -----------------------------------
 
 * Predefined traits in Rust’s Standard Library

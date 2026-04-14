@@ -29,7 +29,7 @@
 :command:`5`
   
 -------------------------------------------------------
-Returning a Value with "loop" and "break"
+Returning a Value With "loop" and "break"
 -------------------------------------------------------
 
     - :rust:`loop` is also an expression
@@ -64,7 +64,7 @@ Labels
             if eaten == 13 {
                 break 'outer; 
             }
-        } // inner loop ends
+        } // Inner loop ends
     } // outer loop ends
     println!("Sugar crash at: {}", eaten);
     
