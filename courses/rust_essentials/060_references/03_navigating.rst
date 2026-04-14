@@ -32,8 +32,10 @@ Rust's Reference System
     - Mutable
 
 
-- **Binding**: labeled slot that holds the address
-- **Reference**: access contract for the data at that address
+- **Binding**
+  - Labeled slot that holds the address
+- **Reference**
+  - Access contract for the data at that address
 
 -----------------------------
 The "Observer" (let r = &x)
