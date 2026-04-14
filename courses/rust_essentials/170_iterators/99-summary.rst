@@ -23,6 +23,6 @@ What We Covered
 
     * :rust:`collect` is just a fancy consumer
 
-* **Converting to using** :rust:`IntoIterator`
+* **Converting using** :rust:`IntoIterator`
 
   * Allows collection to be used directly in :rust:`for` loop

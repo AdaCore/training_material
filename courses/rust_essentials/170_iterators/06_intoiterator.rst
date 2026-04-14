@@ -44,7 +44,7 @@ The "IntoIterator" Trait
 
     * Most commonly in :rust:`for` loops
 
-* Core method: :rust:`into_iter(self)`
+* **Core method:** :rust:`into_iter(self)`
 
 * Takes :rust:`self` as a parameter
 
