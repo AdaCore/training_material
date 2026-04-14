@@ -62,9 +62,9 @@ Patterns as Bindings
 
 .. code:: rust
 
-  let number = 5;                // identifier pattern
+  let number = 5;                // Identifier pattern
 
-  let (first, second) = (1, 2);  // tuple pattern
+  let (first, second) = (1, 2);  // Tuple pattern
 
 ------------------
 Literal Patterns

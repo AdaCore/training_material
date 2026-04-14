@@ -25,7 +25,7 @@ Destructuring a Tuple
 
   let person_data = ("Renoir", 33, "Painter");
   let (name, _, profession) = person_data;
-  // name is more meaningful than person_data.0
+  // 'name' is more meaningful than 'person_data.0'
   println!("Name: {name}, {profession}");
 
   * Generates the following output:
