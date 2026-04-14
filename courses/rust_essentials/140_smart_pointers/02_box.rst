@@ -3,7 +3,7 @@
 ==========
 
 ------------------
-What is "Box<T>"
+What Is "Box<T>"
 ------------------
 
 - Allocates data on the heap (via :rust:`Box::new`)

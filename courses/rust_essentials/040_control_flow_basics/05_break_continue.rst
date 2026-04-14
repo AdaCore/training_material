@@ -29,7 +29,7 @@
 :command:`5`
   
 -------------------------------------------------------
-Returning a Value with "loop" and "break"
+Returning a Value With "loop" and "break"
 -------------------------------------------------------
 
     - :rust:`loop` is also an expression

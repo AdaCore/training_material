@@ -25,7 +25,7 @@ Why Use "Option<T>"?
     * Then extract value if :rust:`Some` 
 
 ----------------------
-What is "Option<T>"?
+What Is "Option<T>"?
 ----------------------
 
 * :rust:`Option<T>` is defined as an :rust:`enum` with two variants

@@ -111,7 +111,7 @@ Wildcard Pattern
   }
 
 -----------------------
-Binding with Patterns
+Binding With Patterns
 -----------------------
 
 - Identifier patterns bind matched values to names

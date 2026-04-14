@@ -3,7 +3,7 @@ Variables
 ===========
 
 ---------------------
-What is a Variable?
+What Is a Variable?
 ---------------------
 
 - Think of a variable as a **labeled box** where you can store a single piece of info (a "value")
@@ -24,7 +24,7 @@ What is a Variable?
   let person = "Alice";
 
 -------------------------------------
-By Default, Variables are Immutable
+By Default, Variables Are Immutable
 -------------------------------------
 
 - **Immutable** = **unchangeable**

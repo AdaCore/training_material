@@ -3,7 +3,7 @@ Types
 =======
 
 --------------------------
-Rust is Statically Typed
+Rust Is Statically Typed
 --------------------------
 
 - One of the most important features
@@ -65,7 +65,7 @@ Type Inference Explained
   // let explicit_float: f64 = 2.5;
 
 --------------------
-Inference is Smart
+Inference Is Smart
 --------------------
 
 - Type inference isn't just about defaults
@@ -210,7 +210,7 @@ Numeric Conversions
   :rust:`as` to a variable makes you think before doing.
 
 ----------------------------
-The "char" Type is Special
+The "char" Type Is Special
 ----------------------------
 
 - :rust:`char` is **4 bytes** in Rust (as opposed to 1 byte in other languages)
