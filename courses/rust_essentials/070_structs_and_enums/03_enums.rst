@@ -20,7 +20,7 @@ Basics
    let dir = Direction::Left;  
 
 -----------------
-Enums with Data
+Enums With Data
 -----------------
 
 - **Variants** can optionally hold data 

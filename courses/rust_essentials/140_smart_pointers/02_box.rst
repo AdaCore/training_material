@@ -62,7 +62,7 @@ Using "Box<T>" for Recursive Types
 Handling Large Data
 ----------------------
 
-- :rust:`Box<T>` allows to move ownership of data
+- :rust:`Box<T>` allows transferring ownership of data
 
   - Rather than copying data passed in parameters for function calls
   
@@ -94,7 +94,7 @@ Resource Management
 	
   - Prevents memory leaks by ensuring deallocation
 	
-- Transfering ownership is an *O(1)* operation 
+- Transferring ownership is an *O(1)* operation 
   
   - Regardless of what it points to
   

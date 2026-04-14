@@ -12,7 +12,7 @@ Topics Covered
 
   - Initialization and update syntax
    
-  - Named-field vs Tuple forms
+  - Named-field vs tuple forms
 
 - **Enums** 
 
@@ -28,7 +28,7 @@ Topics Covered
 Introduction
 --------------
 
-- :rust:`struct` and :rust:`enum` create custom data structures  
+:rust:`struct` **and** :rust:`enum` **create custom data structures**
 
   - User-defined types 
   - Bundle related pieces of information together
