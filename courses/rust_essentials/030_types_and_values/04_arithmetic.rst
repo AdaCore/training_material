@@ -58,7 +58,7 @@ The Exponent Trap
 .. code:: rust
 
   5_i32.pow(2)      // Result = 25
-  5.0_f64.powf(2.5) // result ~55.9
+  5.0_f64.powf(2.5) // Result ~55.9
 
 .. note::
 
