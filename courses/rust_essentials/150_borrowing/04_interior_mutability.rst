@@ -19,7 +19,7 @@ Limitations of Strict Rules
 "Cell<T>"
 ----------
 
-- Guarantees safe mutation through a shared, read-only reference
+- Guarantees safe modification through a shared, read-only reference
 - Designed for types that implement the :rust:`Copy trait`
   - Such as integers or booleans
 - References to the inner data are never exposed
@@ -51,7 +51,7 @@ Limitations of Strict Rules
    
    println!("Sensor read {} time(s).", scanner.read_count.get());
 
-:output:`Sensor read 1 time(s).`
+:command:`Sensor read 1 time(s).`
 
 --------------
 "RefCell<T>"
