@@ -64,7 +64,7 @@ Labels
             if eaten == 13 {
                 break 'outer; 
             }
-        } // inner loop ends
+        } // Inner loop ends
     } // outer loop ends
     println!("Sugar crash at: {}", eaten);
     
