@@ -30,7 +30,7 @@ Parameters and Type Signatures
 
 .. code:: rust
 
-  // We must tell the types of both 'first' and 'second'
+  // We must specify the types of both 'first' and 'second'
   fn add(first: i32, second: i32) -> i32 {
     first + second
   }
