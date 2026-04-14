@@ -10,6 +10,7 @@ Basics
   - Like arrays, have a **fixed length**
   - Elements are accessed via dot notation by their index
     - Starting from :rust:`0`
+    - Also referred to as *field* or *member*
 
 .. code:: rust
 

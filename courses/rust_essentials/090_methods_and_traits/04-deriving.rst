@@ -73,7 +73,7 @@ Example of Deriving
 Deriving in Complex Structures
 --------------------------------
 
-* When a type derives a trait, its included elements must also derive the trait
+* When a type derives a trait, its included items must also derive the trait
 
   .. code:: rust
 
