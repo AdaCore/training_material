@@ -45,7 +45,7 @@ One Method, Many Results
 .. note::
 
   :rust:`my_vector` and :rust:`my_set` contain **references** to
-  the elements in :rust:`numbers`
+  the items in :rust:`numbers`
 
 ---------------------
 Collecting "Result"

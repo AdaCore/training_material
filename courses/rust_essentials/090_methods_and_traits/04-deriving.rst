@@ -23,8 +23,8 @@ Commonly Derived Traits
 .. list-table::
   :header-rows: 1
 
-  * - Trait
-    - Purpose
+  * - **Trait**
+    - **Purpose**
 
   * - :rust:`Debug`
     - Enables :rust:`{:?}` formatting
@@ -73,7 +73,7 @@ Example of Deriving
 Deriving in Complex Structures
 --------------------------------
 
-* When a type derives a trait, its included elements must also derive the trait
+* When a type derives a trait, its included items must also derive the trait
 
   .. code:: rust
 
@@ -169,10 +169,11 @@ You cannot derive when
 
   .. list-table::
     :header-rows: 1
+    :stub-columns: 1
 
-    * - Decision Factor
+    * - **Decision Factor**
       - :rust:`#[derive(...)]`
-      - Manual :rust:`impl`
+      - **Manual** :rust:`impl`
 
     * - *Logic Source*
       - **Compiler-Generated**

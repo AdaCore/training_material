@@ -6,7 +6,7 @@ Visibility
 Private by Default
 --------------------
 
-* All elements of a module are private (hidden)
+* All items of a module are private (hidden)
 
   * Unless otherwise specified
 

@@ -23,17 +23,18 @@ Rust Error Philosophy
 
 .. list-table::
   :header-rows: 1
+  :stub-columns: 1
 
   * - **Language Style**
     - **Error Visibility**
 
-  * - Exceptions
+  * - *Exceptions*
     - Hidden control flow
 
-  * - Error codes
+  * - *Error codes*
     - Easy to ignore
 
-  * - Error wrappers (e.g., :rust:`Result`)
+  * - *Error wrappers (e.g.,* :rust:`Result`*)*
     - Explicit and enforced
 
 --------------------------------------
