@@ -57,7 +57,11 @@ Immutable Access
   let toe = Rc::clone(&tic);  
   
 <<<<<<< HEAD
+<<<<<<< HEAD
   *var_a += 10; // Error: no mutable access
+=======
+  *tic += 10; // Error: no mutable access
+>>>>>>> 1702a6a7 ([!] First push)
 =======
   *tic += 10; // Error: no mutable access
 >>>>>>> 1702a6a7 ([!] First push)
