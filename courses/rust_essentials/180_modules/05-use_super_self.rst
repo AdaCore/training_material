@@ -70,7 +70,7 @@ The "use" Shortcut
 
 * Risks
 
-  * Makes it hard to find things for coder and autocomplete
+  * Makes it hard to find things for programmer and autocomplete
   * Globbed modules with the same name cause compilation errors
 
 .. note:: 

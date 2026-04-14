@@ -1,6 +1,6 @@
-=============================
-User-Defined Smart Pointers
-=============================
+===================================
+Programmer-Defined Smart Pointers
+===================================
 
 -----------------------------
 Implementing Smart Pointers

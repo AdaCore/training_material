@@ -78,9 +78,9 @@ Match Guards
     println!("x = {}", x);
   }
 
----------------------
-"if let" vs "match"
----------------------
+----------------------
+"if let" vs. "match"
+----------------------
 
 - :rust:`if let` is shorthand for a two-arm :rust:`match`
 

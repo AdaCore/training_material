@@ -161,9 +161,9 @@ Limitations on Deriving
 
   In these cases, use a manual :rust:`impl Trait for Type` instead
 
----------------------------
-"Derive" vs Manual "Impl"
----------------------------
+----------------------------
+"Derive" vs. Manual "Impl"
+----------------------------
 
 .. container:: latex_environment tiny
 
@@ -225,4 +225,4 @@ Limitations on Deriving
 
   **Manual** is for **Humans**
 
-    If you are formatting a string that a user will read (like :rust:`Display`), you usually need a manual implementation to make it look "pretty"
+    If you are formatting a string that a programmer will read (like :rust:`Display`), you usually need a manual implementation to make it look "pretty"
