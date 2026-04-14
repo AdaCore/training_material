@@ -109,7 +109,7 @@ Default Values in an "enum"
 
   * So how does Rust pick the default?
 
-* Default value specified by user when creating :rust:`enum`
+* Default value specified by programmer when creating :rust:`enum`
 
   .. code:: rust
 

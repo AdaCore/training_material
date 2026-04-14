@@ -66,9 +66,9 @@ Meeting Constraints
 
 :error:`error[E0277]: can't compare 'Vegetable' with 'Vegetable'`
 
-------------------------------------
-User-Defined Traits as Constraints
-------------------------------------
+------------------------------------------
+Programmer-Defined Traits as Constraints
+------------------------------------------
 
 **Can be constraints for a generic function**
 

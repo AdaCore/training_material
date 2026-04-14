@@ -56,9 +56,9 @@ Conversion Examples
     let one: i16 = true.into();
     let bigger: i32 = 123_i16.into();
 
-------------------
-"From" vs "Into"
-------------------
+-------------------
+"From" vs. "Into"
+-------------------
 
 * If you implement :rust:`From`, you automatically get :rust:`Into`
 
@@ -111,7 +111,7 @@ Conversion Between Primitive Types
 
 * Truncation (generally) only works with primitive-like types
 
-  * Casting :rust:`Struct` and :rust:`String` generate compiler errors
+  * Casting :rust:`Struct` and :rust:`String` generate compile errors
 
 ------------------
 Casting Examples
@@ -161,9 +161,9 @@ Safer Conversions
 
 :command:`'TryFrom' result: Error! 300 is too big for u8`
 
------------------------
-Conversion vs Casting
------------------------
+------------------------
+Conversion vs. Casting
+------------------------
 
 .. container:: latex_environment footnotesize
 
@@ -192,7 +192,7 @@ Conversion vs Casting
 
 .. tip::
 
-  *The Developer's Rule*
+  *The Programmer's Rule*
 
   * :rust:`Into` or :rust:`TryInto` for clarity and safety
   * Don't use :rust:`as` to force a conversion
