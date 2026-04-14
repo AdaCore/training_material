@@ -89,6 +89,7 @@ No "Copy" Without "Clone"
 
 .. list-table::
   :header-rows: 1
+  :stub-columns: 1
 
   * - **Property**
     - :rust:`Copy` **types**

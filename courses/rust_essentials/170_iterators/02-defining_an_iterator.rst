@@ -21,20 +21,21 @@ What is an Iterator?
 .. container:: latex_environment scriptsize
 
   .. list-table::
+    :stub-columns: 1
 
-    * - **Iteration State**
+    * - *Iteration State*
       - Current position in loop
       - :rust:`idx`
 
-    * - **Termination Condition**
+    * - *Termination Condition*
       - When do we exit the loop
       - :rust:`idx < 3`
 
-    * - **State Update**
+    * - *State Update*
       - Moving to next item in loop
       - :rust:`idx = idx + 1`
 
-    * - **Data Retrieval**
+    * - *Data Retrieval*
       - Look at what is at the current position
       - :rust:`array[idx]`
 

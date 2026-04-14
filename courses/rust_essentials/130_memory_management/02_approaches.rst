@@ -30,6 +30,7 @@ Quick Comparison
 
   .. list-table::
     :header-rows: 1
+    :stub-columns: 1
 
     * - **Feature**
       - **Manual (C/C++)**

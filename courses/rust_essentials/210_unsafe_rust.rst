@@ -38,4 +38,4 @@ Unsafe Rust
 .. include:: 210_unsafe_rust/04_unions.rst
 .. include:: 210_unsafe_rust/05_unsafe_functions.rst
 .. include:: 210_unsafe_rust/06_unsafe_traits.rst
-.. include:: 210_unsafe_rust/99_lab.rst
+.. include:: 210_unsafe_rust/88-unsafe_rust.lab.rst
