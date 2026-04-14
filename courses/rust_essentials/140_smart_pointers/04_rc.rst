@@ -22,13 +22,13 @@ Multiple Ownership With "Rc<T>"
 "Rc<T>" Counts References
 ---------------------------
 
-- Shares ownership of value on the heap using :rust:`Clone`
+**Shares ownership of value on the heap using** :rust:`Clone`
     
-  - Creates a *shallow* copy not a deep copy
+- Creates a *shallow* copy not a deep copy
 
-    - Only the *pointer* is copied
+  - Only the *pointer* is copied
 	
-  - Increments the internal counter 
+- Increments the internal counter 
  
 .. code:: rust 
 
@@ -48,7 +48,7 @@ Immutable Access
 ------------------
 
   
-- :rust:`Rc<T>` allows multiple ownership but no mutable access
+:rust:`Rc<T>` **allows multiple ownership but no mutable access**
 
 .. code:: rust 
 

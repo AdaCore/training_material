@@ -186,7 +186,7 @@ Pattern Vocabulary
 Patterns in Rust Constructs
 -----------------------------
 
-Patterns are reused consistently across the language
+**Patterns are reused consistently across the language**
 
 - :rust:`let` bindings
 

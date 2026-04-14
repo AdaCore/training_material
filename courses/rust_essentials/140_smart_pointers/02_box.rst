@@ -62,11 +62,11 @@ Using "Box<T>" for Recursive Types
 Handling Large Data
 ----------------------
 
-- :rust:`Box<T>` allows to move ownership of data
+:rust:`Box<T>` **allows to move ownership of data**
 
-  - Rather than copying data passed in parameters for function calls
+- Rather than copying data passed in parameters for function calls
   
-    - Useful for large data
+  - Useful for large data
 	
 .. code:: rust	
 	
