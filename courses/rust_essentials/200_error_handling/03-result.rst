@@ -53,10 +53,11 @@ Results vs Exceptions
 
   .. list-table::
     :header-rows: 1
+    :stub-columns: 1
 
     * - **Feature**
       - :rust:`Result` **(Rust)**
-      - :cpp:`try` / :cpp:`catch` **(other languages)**
+      - :cpp:`try` **/** :cpp:`catch` **(other languages)**
 
     * - *Visibility*
       - Part of function signature

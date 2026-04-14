@@ -73,10 +73,10 @@ Quiz
 
 Which of the following statement(s) is (are) legal for ``G_P``'s body?
 
-A. :answermono:`Flag := A1 /= null`
-B. ``Flag := A1.all'Size > 32``
-C. :answermono:`Flag := A2 = B2`
-D. ``Flag := A2 - B2 /= 0``
+A. :answermono:`Flag := A1 /= null;`
+B. ``Flag := A1.all'Size > 32;``
+C. :answermono:`Flag := A2 = B2;`
+D. ``Flag := A2 - B2 /= 0;``
 
 .. container:: animate
 

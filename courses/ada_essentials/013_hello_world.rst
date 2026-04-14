@@ -33,5 +33,5 @@ Hello World!
 .. container:: PRELUDE END
 
 .. include:: 013_hello_world/01-canonical_first_program.rst
-.. include:: 013_hello_world/88-lab.rst
+.. include:: 013_hello_world/88-hello_world.lab.rst
 .. include:: 013_hello_world/99-summary.rst
