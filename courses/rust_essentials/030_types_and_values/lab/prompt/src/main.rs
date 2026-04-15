@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //! Lab (prompt)
 //! Types and Values
 //!
@@ -6,6 +7,16 @@
 
 #![allow(unused_assignments)]
 #![allow(unused_variables)]
+=======
+// Lab (prompt)
+//  Types and Values
+
+//! Fix all the compile errors below and/or follow the hints provided
+
+#[allow(dead_code)]
+#[allow(unused_variables)]
+
+>>>>>>> 68e9567e ([!] First push)
 
 fn main() {
     // TASK 1 - Variable Declaration
