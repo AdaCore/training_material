@@ -45,9 +45,9 @@ Handling Results
   * :rust:`.expect("Msg")` - like :rust:`unwrap`, with custom panic message
   * :rust:`.unwrap_or(default)` - fallback value on error
 
------------------------
-Results vs Exceptions
------------------------
+------------------------
+Results vs. Exceptions
+------------------------
 
 .. container:: latex_environment footnotesize
 

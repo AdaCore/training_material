@@ -31,6 +31,7 @@ Default Values
   .. list-table::
      :widths: 25 35 40
      :header-rows: 1
+     :stub-columns: 1
 
      * - **Category**
        - **Type**
@@ -108,7 +109,7 @@ Default Values in an "enum"
 
   * So how does Rust pick the default?
 
-* Default value specified by user when creating :rust:`enum`
+* Default value specified by programmer when creating :rust:`enum`
 
   .. code:: rust
 

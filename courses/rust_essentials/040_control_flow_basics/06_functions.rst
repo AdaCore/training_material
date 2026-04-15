@@ -3,7 +3,7 @@ Functions
 ===========
 
 ---------------------
-What is a function?
+What Is a Function?
 ---------------------
 
 - Primary way to organize code into reusable blocks
@@ -36,12 +36,12 @@ Parameters and Type Signatures
   }
 
 -----------------------------------------
-Return Values (Expression vs Statement)
+Return Values (Expression vs. Statement)
 -----------------------------------------
 
 - Return Type is specified after an arrow (:rust:`->`)
 - No :rust:`->` syntax means the function returns the unit type :rust:`()`
-- Functions can return in two ways:
+- Functions can return in two ways
   - **Statement:** ends in a semicolon (:rust:`;`), returns :rust:`()`
   - **Expression:** does **not** end in a semicolon 
     - Last expression evaluated in the body is returned
@@ -59,10 +59,11 @@ Return Values (Expression vs Statement)
   }
 
 -----------------------------
-Explicit exit with "return"
+Explicit Exit With "return"
 -----------------------------
 
-  - Forces the function to exit immediately
+**Forces the function to exit immediately**
+
     - Bypassing the rest of the code
     - Essential for early exits based on control flow
 

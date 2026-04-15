@@ -2,6 +2,7 @@
 Try Operator
 ==============
 
+
 ---------------------------
 What Is the Try Operator?
 ---------------------------
@@ -52,10 +53,10 @@ Clarity vs. Verbosity
     }
 
 ----------------------------
-Try Operator with "Option"
+Try Operator With "Option"
 ----------------------------
 
-* :rust:`?` also works with :rust:`Some` / :rust:`None` from :rust:`Option`
+* :rust:`?` also works with :rust:`Some`/:rust:`None` from :rust:`Option`
 
 * Behavior
 
@@ -69,7 +70,7 @@ Try Operator with "Option"
   Cannot use :rust:`?` on :rust:`Result` in function returning :rust:`Option`
 
 --------------------------------
-Returning "Result" from "main"
+Returning "Result" From "main"
 --------------------------------
 
 * :rust:`main` can return :rust:`Result`

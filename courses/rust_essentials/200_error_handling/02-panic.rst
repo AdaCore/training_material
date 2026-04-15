@@ -101,7 +101,7 @@ When to Panic?
 
   * Libraries should return :rust:`Result`
 
-    * User decides how to handle the error
+    * Programmer decides how to handle the error
 
   * Panic if API **contract** is violated
 

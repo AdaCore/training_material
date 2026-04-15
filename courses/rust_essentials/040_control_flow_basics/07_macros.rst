@@ -3,7 +3,7 @@ Macros
 ========
 
 ------------------
-What is a Macro?
+What Is a Macro?
 ------------------
 
 - Code that **generates** other code at **compile-time**
@@ -25,7 +25,7 @@ println!
 
    Standard Library
 
-* :rust:`println!(format, ..)` prints a line to standard output
+:rust:`println!(format, ..)` **prints a line to standard output**
 
 .. code:: rust
 
@@ -66,9 +66,7 @@ dbg!
         }
         product
     }
-    let result = factorial(3); // result will be 6
-
-* Generates the following output:
+    let result = factorial(3); // Result will be 6
 
 :command:`[src/main.rs:5:20] i = 1`
 
@@ -100,8 +98,6 @@ todo!
         fizzbuzz(10);
     }
 
-* Generates the following output:
-
 :command:`thread 'main' (11) panicked at src/main.rs:4:5:`
 :command:`not yet implemented: Implement this`
 
@@ -123,7 +119,7 @@ unreachable!
 
     let number = 3;
     match number {
-        // The match is exhaustive for a u32, but in this context,
+        // The match is exhaustive for a 'u32', but in this context,
         // we logically know 'number' will only be 1 or 2.
         1 => println!("One"),
         2 => println!("Two"),
@@ -134,8 +130,6 @@ unreachable!
         _ => unreachable!("Number is outside the expected range!"), 
     }
 
-* Generates the following output:
-
 :command:`thread 'main' (41) panicked at src/main.rs:12:14:`
 :command:`internal error: entered unreachable code: Number is outside the expected range!`
 
@@ -143,7 +137,7 @@ unreachable!
 
    The takeaway from this section is that these common conveniences exist,
    and how to use them. Why they are defined as macros, and what they
-   expand to, is not especially critical.
+   expand to, is not especially critical
 
    The course does not cover defining macros, but a later section will
-   describe use of derive macros.
+   describe use of derive macros

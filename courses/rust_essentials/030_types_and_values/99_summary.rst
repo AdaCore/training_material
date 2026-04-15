@@ -12,7 +12,7 @@ What We Covered
     - Change is an opt-in choice using :rust:`mut`
     - Prefer **immutable**, choose **mutable** with intention
 
-- **Static Typing & Inference** 
+- **Static Typing and Inference** 
 
     - Compiler must know every type
     - **Inference** can do the work for you

@@ -22,15 +22,15 @@ Why Encapsulate?
 Encapsulation in Structs
 --------------------------
 
-* *Gatekeeper* pattern
+*Gatekeeper* **pattern**
 
-  * Keep fields private
+* Keep fields private
 
-    * Only your code can modify fields
+  * Only your code can modify fields
 
-  * Provide :rust:`pub` getter and setter methods
+* Provide :rust:`pub` getter and setter methods
 
-    * Control how data is read or modified
+  * Control how data is read or modified
 
 .. container:: latex_environment tiny
 
@@ -65,7 +65,7 @@ Breaking Encapsulation
 **"Crate-Internal" Compromise**
 
   * Use :rust:`pub(crate)` for items to be shared across project
-  * But remain hidden from external users
+  * But remain hidden from external programmers
 
 .. note::
 
@@ -73,9 +73,9 @@ Breaking Encapsulation
 
   Private fields are only modifiable by "designer"
 
------------------------
-"pub" vs "pub(crate)"
------------------------
+------------------------
+"pub" vs. "pub(crate)"
+------------------------
 
 .. code:: rust
 
@@ -89,7 +89,7 @@ Breaking Encapsulation
       pub(crate) socket_id: u32,
   }
 
-  // Users of this crate can connect
+  // Programmers of this crate can connect
   impl Client {
       pub fn connect(&self) -> Connection {
           // Logic to create a connection...
@@ -100,4 +100,4 @@ Breaking Encapsulation
 **Why** :rust:`pub(crate)`**?**
 
   * You don't want clients checking the content
-  * Once published, changing it breaks users code
+  * Once published, changing it breaks programmer's code

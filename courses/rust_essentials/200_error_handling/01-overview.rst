@@ -45,7 +45,7 @@ Expected Errors vs. Logic Violations
 
   * File not found
   * Network timeout
-  * Invalid user input
+  * Invalid programmer input
 
 * Unrecoverable errors mean we need to reboot the system
 

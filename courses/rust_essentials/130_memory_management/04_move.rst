@@ -6,10 +6,11 @@ Move Semantics
 Transferring Ownership
 ------------------------
 
-- Assigning a value to a new variable transfers ownership
-  - Compiler treats a *moved* variable as uninitialized
-  - To ensure memory safety and prevent "double-free" errors
-  - And forbids any further use of it
+**Assigning a value to a new variable transfers ownership**
+
+- Compiler treats a *moved* variable as uninitialized
+- To ensure memory safety and prevent "double-free" errors
+- And forbids any further use of it
 
 .. container:: columns
 

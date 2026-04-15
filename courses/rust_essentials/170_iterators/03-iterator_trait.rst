@@ -119,7 +119,7 @@ Using Our Iterator
       idx: 0,
   };
 
-  // The 'for' loop calls .next() under the hood
+  // The 'for' loop calls '.next()' under the hood
   for num in iter {
       println!("The number is: {}", num);
   }

@@ -3,7 +3,7 @@ Types
 =======
 
 --------------------------
-Rust is Statically Typed
+Rust Is Statically Typed
 --------------------------
 
 - One of the most important features
@@ -23,15 +23,15 @@ Rust is Statically Typed
 Assigning Types
 -----------------
 
-- Two ways to tell Rust what **type** a variable is
+* Two ways to tell Rust what **type** a variable is
 
-  - **Explicit Annotation**
+- **Explicit Annotation**
 
     .. code:: rust
 
       let explicit_var: i32 = 10;
 
-  - **Type Inference**
+- **Type Inference**
 
     .. code:: rust
 
@@ -65,7 +65,7 @@ Type Inference Explained
   // let explicit_float: f64 = 2.5;
 
 --------------------
-Inference is Smart
+Inference Is Smart
 --------------------
 
 - Type inference isn't just about defaults
@@ -79,10 +79,10 @@ Inference is Smart
   // Rust sees 10, but waits to decide the type...
   let inferred_var = 10;
 
-  // We declare `unsigned_var` as an explicit u32
+  // We declare 'unsigned_var' as an explicit 'u32'
   let unsigned_var: u32;
 
-  // Rust decides `inferred_var` MUST be u32
+  // Rust decides 'inferred_var' MUST be 'u32'
   unsigned_var = inferred_var;
 
 --------------
@@ -120,7 +120,7 @@ Common Types
       - :rust:`bool`
       - :rust:`true`, :rust:`false`
 
-The types have widths as follows:
+The types have widths as follows
 
 -  :rust:`iN`, :rust:`uN`, and :rust:`fN` are *N* bits wide
 -  :rust:`isize` and :rust:`usize` are the width of a pointer
@@ -191,26 +191,26 @@ Utilizing Different Bases
 Numeric Conversions
 ---------------------
 
-- Rust does **not** automatically convert types for you
+**Rust does not automatically convert types for you**
 
 .. code:: rust
 
   let my_int: i32 = 10;
   let my_float: f64 = 5.5;
 
-  // will not compile!
+  // Will not compile!
   let sum = my_int + my_float;
 
-  // "as" tells the compiler to interpret my_int as f64
+  // 'as' tells the compiler to interpret 'my_int' as 'f64'
   let sum = my_int as f64 + my_float;
 
 .. tip::
 
   Rust forces you to be **intentional**. Applying
-  :rust:`as` to a variable makes you think before doing.
+  :rust:`as` to a variable makes you think before doing
 
 ----------------------------
-The "char" Type is Special
+The "char" Type Is Special
 ----------------------------
 
 - :rust:`char` is **4 bytes** in Rust (as opposed to 1 byte in other languages)
@@ -244,7 +244,7 @@ The Unit Type ()
 
 .. code:: rust
 
-  // this variable exists, but holds no data!
+  // This variable exists, but holds no data!
   let holds_no_data: () = ();
 
 .. note::

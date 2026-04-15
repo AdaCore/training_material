@@ -1,5 +1,5 @@
 ******************
-Types And Values
+Types and Values
 ******************
 
 .. container:: PRELUDE BEGIN

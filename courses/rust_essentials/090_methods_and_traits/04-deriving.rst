@@ -37,7 +37,7 @@ Commonly Derived Traits
   * - :rust:`PartialOrd, Ord`
     - Ordering
   * - :rust:`Hash`
-    - Hash map / set keys
+    - Hash map/set keys
   * - :rust:`Default`
     - Default value construction
 
@@ -73,9 +73,9 @@ Example of Deriving
 Deriving in Complex Structures
 --------------------------------
 
-* When a type derives a trait, its included elements must also derive the trait
+**When a type derives a trait, its included items must also derive the trait**
 
-  .. code:: rust
+.. code:: rust
 
     struct Child {
         x: i32,
@@ -93,7 +93,7 @@ Deriving in Complex Structures
 .. note::
 
   This is a general rule. There are traits that do not depend on fields
-  which may allow you to skip this rule.
+  which may allow you to skip this rule
 
 -------------
 Orphan Rule
@@ -151,7 +151,7 @@ Orphan Rule Examples
 Limitations on Deriving
 -------------------------
 
-You cannot derive when
+**You cannot derive when**
 
   * Behavior depends on logic, not structure
   * You need validation or side effects
@@ -161,9 +161,9 @@ You cannot derive when
 
   In these cases, use a manual :rust:`impl Trait for Type` instead
 
----------------------------
-"Derive" vs Manual "Impl"
----------------------------
+----------------------------
+"Derive" vs. Manual "Impl"
+----------------------------
 
 .. container:: latex_environment tiny
 
@@ -225,4 +225,4 @@ You cannot derive when
 
   **Manual** is for **Humans**
 
-    If you are formatting a string that a user will read (like :rust:`Display`), you usually need a manual implementation to make it look "pretty"
+    If you are formatting a string that a programmer will read (like :rust:`Display`), you usually need a manual implementation to make it look "pretty"

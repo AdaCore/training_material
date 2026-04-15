@@ -19,7 +19,7 @@ The Problem
         let item_count: i32 = 15;
         let price_per_item: f64 = 4.99;
 
-        // problem code!
+        // Problem code!
         let total_price = item_count * price_per_item;
 
         println!("Total items: {item_count}");

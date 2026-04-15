@@ -121,7 +121,7 @@ Ordering
 * Similar to :rust:`Eq` (and :rust:`PartialEq`)
 
   * Automatic implementation (:rust:`derive`) does a lexicographical comparison
-  * User implementation allowed for **both** traits
+  * Programmer implementation allowed for **both** traits
 
 * :rust:`Ord`
 
@@ -142,11 +142,11 @@ Ordering
 Partial Ordering
 ------------------
 
-* :rust:`PartialOrd`
+:rust:`PartialOrd`
 
-  * Returns :rust:`Option<Ordering>`
+* Returns :rust:`Option<Ordering>`
 
-    * :rust:`None` can be returned if two values cannot be compared
+  * :rust:`None` can be returned if two values cannot be compared
 
 .. code:: rust
   :font-size: small

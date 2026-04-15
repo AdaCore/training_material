@@ -56,9 +56,9 @@ Conversion Examples
     let one: i16 = true.into();
     let bigger: i32 = 123_i16.into();
 
-------------------
-"From" vs "Into"
-------------------
+-------------------
+"From" vs. "Into"
+-------------------
 
 * If you implement :rust:`From`, you automatically get :rust:`Into`
 
@@ -111,7 +111,7 @@ Conversion Between Primitive Types
 
 * Truncation (generally) only works with primitive-like types
 
-  * Casting :rust:`Struct` and :rust:`String` generate compiler errors
+  * Casting :rust:`Struct` and :rust:`String` generate compile errors
 
 ------------------
 Casting Examples
@@ -135,12 +135,12 @@ Casting Examples
 Safer Conversions
 -------------------
 
-* Use :rust:`TryFrom` (or :rust:`TryInto`) rather than :rust:`as`
+**Use** :rust:`TryFrom` **(or** :rust:`TryInto`**) rather than** :rust:`as`
 
-  * Returns error type
-  * Useful when input is not guaranteed
+* Returns error type
+* Useful when input is not guaranteed
 
-    * Such as user input
+  * Such as user input
 
 .. code:: rust
   :font-size: small
@@ -161,9 +161,9 @@ Safer Conversions
 
 :command:`'TryFrom' result: Error! 300 is too big for u8`
 
------------------------
-Conversion vs Casting
------------------------
+------------------------
+Conversion vs. Casting
+------------------------
 
 .. container:: latex_environment footnotesize
 
@@ -174,11 +174,11 @@ Conversion vs Casting
       - **Safety Level**
       - **Best Use Case**
 
-    * - :rust:`From` / :rust:`Into`
+    * - :rust:`From`/:rust:`Into`
       - Guaranteed
       - Lossless conversion (e.g., :rust:`&str` to :rust:`String`)
 
-    * - :rust:`TryFrom` / :rust:`TryInto`
+    * - :rust:`TryFrom`/:rust:`TryInto`
       - Checked
       - Conversions that might fail (e.g., :rust:`u32` to :rust:`u8`)
 
@@ -192,7 +192,7 @@ Conversion vs Casting
 
 .. tip::
 
-  *The Developer's Rule*
+  *The Programmer's Rule*
 
   * :rust:`Into` or :rust:`TryInto` for clarity and safety
   * Don't use :rust:`as` to force a conversion

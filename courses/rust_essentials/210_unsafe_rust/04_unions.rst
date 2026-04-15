@@ -6,7 +6,7 @@ Unions
 Unions
 --------
 
-Unions are like enums, but you need to track the active field yourself:
+Unions are like enums, but you need to track the active field yourself
 
 .. code:: rust
 
