@@ -20,7 +20,7 @@ Limitations of Strict Rules
 ----------
 
 - Guarantees safe modification through a shared, read-only reference
-- Designed for types that implement the :rust:`Copy trait`
+- Designed for types that implement :rust:`Copy trait`
   - Such as integers or booleans
 - References to the inner data are never exposed
 
@@ -49,9 +49,9 @@ Limitations of Strict Rules
    let scanner = Sensor { data: 42, read_count: Cell::new(0) };
    scanner.read(); // Borrows immutably
    
-   println!("Sensor read {} time(s).", scanner.read_count.get());
+   println!("Sensor read {} time(s)", scanner.read_count.get());
 
-:command:`Sensor read 1 time(s).`
+:command:`Sensor read 1 time(s)`
 
 --------------
 "RefCell<T>"
