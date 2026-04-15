@@ -35,7 +35,8 @@ The "match" Must Be Exhaustive
 --------------------------------
 
 - Must cover all possibilities
-- Can have a default case :rust:`_`
+
+  - Can have a default case :rust:`_`
 
 .. code:: rust
 
@@ -45,7 +46,7 @@ The "match" Must Be Exhaustive
       _ => println!("Other!"), // Catches all other possibilities
   }
 
-- Use :rust:`|` to match several values to one arm.
+- Use :rust:`|` to match several values to one arm
 
 .. code:: rust
 
@@ -68,7 +69,7 @@ Using "match" as an Expression
 
   * - **Range**
     - **From**
-    - **Up to**
+    - **Up To**
 
   * - *low..=high*
     - low

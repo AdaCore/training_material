@@ -72,7 +72,7 @@ dbg!
         }
         product
     }
-    let result = factorial(3); // Result will be 6
+    let result = factorial(3);
 
 :command:`[src/main.rs:5:20] i = 1`
 
