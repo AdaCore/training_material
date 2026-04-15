@@ -6,7 +6,7 @@ Mutable Static Variables
 Mutable Static Variables
 --------------------------
 
-It is safe to read an immutable static variable:
+It is safe to read an immutable static variable
 
 .. code:: rust
 
@@ -17,7 +17,7 @@ It is safe to read an immutable static variable:
    }
 
 However, since data races can occur, it is unsafe to read and write
-mutable static variables:
+mutable static variables
 
 .. code:: rust
 

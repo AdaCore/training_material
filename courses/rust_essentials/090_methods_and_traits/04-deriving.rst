@@ -37,7 +37,7 @@ Commonly Derived Traits
   * - :rust:`PartialOrd, Ord`
     - Ordering
   * - :rust:`Hash`
-    - Hash map / set keys
+    - Hash map/set keys
   * - :rust:`Default`
     - Default value construction
 
@@ -93,7 +93,7 @@ Deriving in Complex Structures
 .. note::
 
   This is a general rule. There are traits that do not depend on fields
-  which may allow you to skip this rule.
+  which may allow you to skip this rule
 
 -------------
 Orphan Rule
