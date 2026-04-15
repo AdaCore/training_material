@@ -31,6 +31,6 @@ What We Covered
 
 * **Pathing**
 
-  * Shortcuts / renaming to simplify module references
+  * Shortcuts/renaming to simplify module references
   * :rust:`self`, :rust:`super`, :rust:`crate`
 

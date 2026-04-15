@@ -31,7 +31,7 @@ Comparing "Rc<T>" and "Box<T>"
 	 - Shallow Copy
 
    * - *Main Use Case*
-     - Big data / recursive types
+     - Big data/recursive types
 	 - Complex architecture
 	
 -----------------

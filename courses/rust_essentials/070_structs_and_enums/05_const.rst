@@ -7,7 +7,7 @@
 ---------------
 
 Constants are evaluated at compile time and their values are inlined
-wherever they are used:
+wherever they are used
 
 .. code:: rust
 
@@ -37,11 +37,11 @@ wherever they are used:
 
 According to the
 :url:`Rust RFC Book <https://rust-lang.github.io/rfcs/0246-const-vs-static.html>`
-these are inlined upon use.
+these are inlined upon use
 
 Only functions marked :rust:`const` can be called at compile time to
 generate :rust:`const` values. :rust:`const` functions can however be called at
-runtime.
+runtime
 
 ---------
 Details

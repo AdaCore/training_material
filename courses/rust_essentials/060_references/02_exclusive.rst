@@ -18,8 +18,6 @@ Mutable References (AKA Exclusive References)
     *big_brother = 5; 
     println!("Truth: {two_plus_two}");
 
-* Generates following output
-
 :command:`Truth: 5`
 
 .. note::

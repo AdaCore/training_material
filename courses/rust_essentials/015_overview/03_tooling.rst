@@ -18,7 +18,7 @@ AdaCore Tools
   - :toolname:`cargo` - Rust package manager
   - :toolname:`rustc` - Rust compiler
   - :toolname:`gdb` - Rust-aware debugger
-  - :toolname:`rust-analyzer` - Rust language server / IDE integration tool
+  - :toolname:`rust-analyzer` - Rust language server/IDE integration tool
   - :toolname:`clippy` - Rust linter
   - :toolname:`rustfmt` - Rust code formatter
   - :toolname:`gprbuild` - AdaCore’s multi-language build tool

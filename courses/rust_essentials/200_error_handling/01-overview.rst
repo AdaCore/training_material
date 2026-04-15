@@ -50,7 +50,7 @@ Expected Errors vs. Logic Violations
 * Sometimes we just need to reboot the system
 
   * Impossible state reached
-  * Violated assumptions / invariant
+  * Violated assumptions/invariant
   * Logic error or other bug
 
 .. note::

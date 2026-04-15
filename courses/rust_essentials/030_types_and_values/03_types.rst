@@ -120,7 +120,7 @@ Common Types
       - :rust:`bool`
       - :rust:`true`, :rust:`false`
 
-The types have widths as follows:
+The types have widths as follows
 
 -  :rust:`iN`, :rust:`uN`, and :rust:`fN` are *N* bits wide
 -  :rust:`isize` and :rust:`usize` are the width of a pointer
@@ -207,7 +207,7 @@ Numeric Conversions
 .. tip::
 
   Rust forces you to be **intentional**. Applying
-  :rust:`as` to a variable makes you think before doing.
+  :rust:`as` to a variable makes you think before doing
 
 ----------------------------
 The "char" Type Is Special
