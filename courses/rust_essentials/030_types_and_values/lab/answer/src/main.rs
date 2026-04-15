@@ -2,6 +2,7 @@
 //  Types and Values
 
 #![allow(unused_assignments)]
+#![allow(unused_variables)]
 
 fn main() {
 
