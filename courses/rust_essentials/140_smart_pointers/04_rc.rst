@@ -57,10 +57,14 @@ Immutable Access
   let toe = Rc::clone(&tic);  
   
 <<<<<<< HEAD
+<<<<<<< HEAD
   *var_a += 10; // Error: no mutable access
 =======
   *tic += 10; // Error: no mutable access
 >>>>>>> 1702a6a7 ([!] First push)
+=======
+  *tic += 10; // Error: no mutable access
+>>>>>>> 1702a6a7eec715de17edb40bcab648d8d3d0212b
   
 :error:`error[E0594]: cannot assign to data in an 'Rc'`
 
