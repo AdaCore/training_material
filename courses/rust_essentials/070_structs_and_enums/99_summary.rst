@@ -3,7 +3,7 @@ Summary
 =========
 
 -----------------
-What We Learned
+What We Covered
 -----------------
 
 -  **Structs** 
@@ -14,7 +14,7 @@ What We Learned
 
    -  Supplies *Struct Update Operator* (:rust:`..`) to copy with minor modifications
 
-   -  Includes Named-field structs, Tuple structs, and the *newtype* idiom
+   -  Includes named-field structs, tuple structs, and the *newtype* idiom
 
 -  **Enums** 
 

@@ -101,7 +101,7 @@ Programmer-Defined Traits as Constraints
 Turbofish "::<>"
 ------------------
 
-- Compiler determines the type to use from context
+- Compiler enforces the type to use from context
 
   - Sometimes there is *ambiguity*
    

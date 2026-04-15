@@ -3,12 +3,12 @@ Summary
 =========
 
 -----------------
-What We Learned
+What We Covered
 -----------------
 
 - **Generic Data Types**
 
-  - **Pattern** 
+  - Pattern
      
     - Abstracts algorithms and structures from code reuse
 
@@ -18,21 +18,21 @@ What We Learned
 
 - **Generics and Traits**
 
-  - **Trait Bounds** 
+  - Trait Bounds 
    
     - Act as a contract to add requirements and properties
 
-  - **Multiple Constraints** 
+  - Multiple Constraints
    
     - Bounds can be combined using :rust:`+`  
 
 - **Generic Traits and Constants** 
 
-  - **Traits**   
+  - Traits   
     
     - Traits can be generic, to interact with multiple types
      
-  - **Constants**  
+  - Constants  
 
     - *Const Generics* are generic over values not types
    

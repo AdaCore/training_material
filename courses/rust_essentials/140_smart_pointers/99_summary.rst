@@ -27,11 +27,11 @@ Comparing "Rc<T>" and "Box<T>"
 	 - Heap
    
    * - *Cloning*
-     - Deep Copy
-	 - Shallow Copy
+     - Deep copy
+	 - Shallow copy
 
    * - *Main Use Case*
-     - Big data / recursive types
+     - Big data/recursive types
 	 - Complex architecture
 	
 -----------------
