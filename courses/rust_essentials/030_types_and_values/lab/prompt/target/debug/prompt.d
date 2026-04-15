@@ -1,1 +1,0 @@
-C:\Users\berkane\workspace\Issues\Issue472\material\courses\rust_essentials\030_types_and_values\lab\prompt\target\debug\prompt.exe: C:\Users\berkane\workspace\Issues\Issue472\material\courses\rust_essentials\030_types_and_values\lab\prompt\src\main.rs
