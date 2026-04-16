@@ -1,4 +1,4 @@
-//! Lab (prompt)
+//! Lab (answer)
 //! Structs and Enums
 //!
 #[allow(dead_code)]
