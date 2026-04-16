@@ -2,15 +2,15 @@
 Lab
 =====
 
---------------------
-Smart Pointers Lab
---------------------
+------------------
+Lab Instructions
+------------------
 
 - Solve for compilation errors
 
 - Follow the hints!
 
-- Sucess is
+- Success is
 
     - Code that compiles
 
