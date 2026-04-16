@@ -1,3 +1,9 @@
+//! Lab (prompt)
+//! Smart Pointers
+//!
+//! Fix all the compile errors below by following the hints provided
+//!
+
 // TASK 1 - Bring Rc<T> into scope
 // Hint: Rc lives in std::rc
 
