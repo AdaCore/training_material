@@ -13,7 +13,7 @@ enum Doll {
 
 fn main() {
     // TASK 2 - Define a new Box with a value of 5
-    // Box::new allocates the value on the heap.
+    // Box::new allocates the value on the heap
     let my_box = Box::new(5);
 
     // TASK 3 - Print the contents of my_box
@@ -23,7 +23,7 @@ fn main() {
     // Recursion
 
     // TASK 4 - Create the two Doll values below
-    // Inside holds a boxed Doll; Empty is the base case.
+    // Inside holds a boxed Doll; Empty is the base case
     let _a_doll = Doll::Inside(Box::new(Doll::Empty));
     let _last_doll = Doll::Empty;
 
@@ -34,7 +34,7 @@ fn main() {
     let agent = Box::new(7_i32);
 
     // TASK 5 - Pass the inner value to say_hello
-    // say_hello expects an i32, so dereference the Box.
+    // say_hello expects an i32, so dereference the Box
     say_hello(*agent);
 
     // Coercing
@@ -45,14 +45,14 @@ fn main() {
     let my_box = Box::new(String::from("Rust"));
 
     // TASK 6 - Call hello_again using my_box
-    // Borrowing the Box<String> allows deref coercion to &str.
+    // Borrowing the Box<String> allows deref coercion to &str
     hello_again(&my_box);
 
     // Mutability
     let mut my_box = Box::new(0);
 
     // TASK 7 - Change the boxed value to 10
-    // Dereference the Box to update the inner value.
+    // Dereference the Box to update the inner value
     *my_box = 10;
 
     // Mutability and Coercion
@@ -73,7 +73,7 @@ fn main() {
     let mut my_box2 = Box::new(String::from("Rust"));
     // edit needs mutable access all the way through.
     edit(&mut my_box2);
-    // A mutable reference can also be used where shared access is enough.
+    // A mutable reference can also be used where shared access is enough
     hello(&mut my_box2);
 
     // Counting References
@@ -85,7 +85,7 @@ fn main() {
     println!("var_b = {}", var_b);
 
     // TASK 9 - Use tic, tac, and toe in a simple way that demonstrates shared ownership
-    // All three Rc values refer to the same underlying data.
+    // All three Rc values refer to the same underlying data
     let tic = Rc::new(5);
     let tac = Rc::clone(&tic);
     let toe = Rc::clone(&tic);
