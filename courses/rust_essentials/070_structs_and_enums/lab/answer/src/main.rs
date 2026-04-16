@@ -1,11 +1,10 @@
-// Lab (answer)
-//  Structs and Enums
-
+//! Lab (prompt)
+//! Structs and Enums
+//!
 #[allow(dead_code)]
 #[allow(unused_variables)]
 
 fn main() {
-    
     // TASK 1 - Partial Initialization
     // Hint: full field initialization is mandatory
     struct User {
@@ -93,7 +92,6 @@ fn main() {
 
     println!("TASK7 => direction: {:?}", direction);
     
-
     // TASK 8 - Enum Data Initialization
     // Hint: data must be initialized if the variant holds data
     #[derive(Debug)]
