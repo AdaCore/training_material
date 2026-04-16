@@ -20,13 +20,11 @@ fn choose<'a>(left: &'a str, right: &'a str) -> &'a str {
     }
 }
 
-
 fn find_user<'a>(owner: &'a Owner, _extra_data: &str) -> User<'a> {
     User { name: &owner.name }
 }
 
 fn main() {
-
     // TASK 1 - Ensure reference is valid
     // Hint: Cannot point to something that no longer exists
     println!("Task 1");
@@ -52,20 +50,21 @@ fn main() {
     // TASK 3 - Prevent "use after free" bug
     // Hint: "find_user" returns borrowed data - where does it come from?
     println!("Task 3");
-    let my_owner = Owner { name: String::from("Permanent") };
+    let my_owner = Owner {
+        name: String::from("Permanent"),
+    };
     let result_user;
     {
         let short_lived_str = String::from("Temporary");
         result_user = find_user(&my_owner, &short_lived_str);
-    } 
+    }
     println!("{}", result_user.name);
-
 
     // TASK 4 - Share the scroll among partners
     // Hint: When you borrow something, ensure what you borrowed lives long enough
     println!("Task 4");
     struct OwnedScroll {
-        inscription : String,
+        inscription: String,
     }
 
     struct BorrowedScroll<'a> {
@@ -74,13 +73,18 @@ fn main() {
 
     let orc: BorrowedScroll;
     let elf: BorrowedScroll;
-    let leader = OwnedScroll { inscription: String::from("Avada Kedavera"), };
+    let leader = OwnedScroll {
+        inscription: String::from("Avada Kedavera"),
+    };
     println!("Leader's scroll: {}", leader.inscription);
 
-    orc = BorrowedScroll { inscription: &leader.inscription, };
-    elf = BorrowedScroll { inscription: &leader.inscription, };
+    orc = BorrowedScroll {
+        inscription: &leader.inscription,
+    };
+    elf = BorrowedScroll {
+        inscription: &leader.inscription,
+    };
 
     println!("Orc is looking at: {}", orc.inscription);
     println!("Elf is looking at: {}", elf.inscription);
-
 }

@@ -11,7 +11,6 @@ struct User<'a> {
     name: &'a str,
 }
 
-
 fn choose<>(left: &str, right: &str) -> &str {
     // Return reference to longer of 'left' or 'right'
     if left.len() > right.len() {
@@ -20,7 +19,6 @@ fn choose<>(left: &str, right: &str) -> &str {
         right
     }
 }
-
 
 fn find_user(owner: &Owner, _extra_data: &str) -> User {
     User { name: &owner.name }
@@ -49,12 +47,12 @@ fn main() {
     }
     println!("Longer bone is {longer}");
 
-
-
     // TASK 3 - Prevent "use after free" bug
     // Hint: "find_user" returns borrowed data - where does it come from?
     println!("Task 3");
-    let my_owner = Owner { name: String::from("Permanent") };
+    let my_owner = Owner {
+        name: String::from("Permanent")
+    };
     let result_user;
     {
         let short_lived_str = String::from("Temporary");
@@ -66,7 +64,7 @@ fn main() {
     // Hint: When you borrow something, ensure what you borrowed lives long enough
     println!("Task 4");
     struct OwnedScroll {
-        inscription : String,
+        inscription: String,
     }
 
     struct BorrowedScroll {
@@ -77,11 +75,17 @@ fn main() {
     let elf: BorrowedScroll;
 
     {
-        let leader = OwnedScroll { inscription: String::from("Avada Kedavera"), };
+        let leader = OwnedScroll {
+            inscription: String::from("Avada Kedavera"),
+        };
         println!("Leader's scroll: {}", leader.inscription);
 
-        orc = BorrowedScroll { inscription: &leader.inscription, };
-        elf = BorrowedScroll { inscription: &leader.inscription, };
+        orc = BorrowedScroll {
+            inscription: &leader.inscription,
+        };
+        elf = BorrowedScroll {
+            inscription: &leader.inscription,
+        };
     }
 
     println!("Orc is looking at: {}", orc.inscription);
