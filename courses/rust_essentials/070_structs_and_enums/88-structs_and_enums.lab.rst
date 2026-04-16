@@ -2,9 +2,9 @@
 Lab
 =====
 
------------
-Lab Brief
------------
+------------------
+Lab Instructions
+------------------
 
 - Solve for compilation errors
 
