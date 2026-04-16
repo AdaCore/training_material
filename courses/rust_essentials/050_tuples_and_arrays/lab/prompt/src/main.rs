@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //! Lab (prompt)
 //! Tuples and Arrays
 //!
@@ -5,29 +6,56 @@
 //!
 
 #![allow(unused_assignments)]
+=======
+// Lab (prompt)
+//  Tuples and Arrays
+
+//! Fix all the compile errors below and/or follow the hints provided
+
+#[allow(dead_code)]
+#[allow(unused_variables)]
+>>>>>>> 40b5cfac ([!] Push)
 
 
 fn main() {
     // TASK 1 - Array Declaration, Intialization and Value Change
+<<<<<<< HEAD
     // Hint: First declare type and number of elements of your array, then assign it valid initial values.
     // Then change only one element using the proper syntax
+=======
+    // Hint: First declare type and number of elements of your array, then assign it correct initial values. Then change only one using the proper way
+>>>>>>> 40b5cfac ([!] Push)
     let mut numbers_arr: [i8; 1, 2, 3];
     numbers_arr(1) = 5;
     
 
     // TASK 2 - Out of Bounds
     // Hint: Array indexes start at 0
+<<<<<<< HEAD
     numbers_arr[3] = 36;
+=======
+    let mut bools = [true, true, false];
+    bools[3] = true;
+>>>>>>> 40b5cfac ([!] Push)
 
 
     // TASK 3 - Iteration    
     // Hint: Use iteration by index and then by value
+<<<<<<< HEAD
     let mut numbers_arr_2 = [2, 3, 5, 7, 11, 13, 17];
     for index in 0..numbers_arr_2.len() {
         // Increment elements of 'numbers_arr_2' by 1 using the 'index'
     }
     for number in X {
         println!("{}", number);
+=======
+    let mut primes = [2, 3, 5, 7, 11, 13, 17];
+    for index in 0..primes.len() {
+        // Increment elements of 'primes' by 1 using the 'index'
+    }
+    for prime in X {
+        println!("{}", prime);
+>>>>>>> 40b5cfac ([!] Push)
     }
 
 
@@ -38,8 +66,12 @@ fn main() {
     
 
     // TASK 5 - Destructuring
+<<<<<<< HEAD
     // Hint: Ignore specific elements that are not needed With the wildcard pattern.
     // Use the variables created to display them
+=======
+    // Hint: Ignore specific elements that are not needed With the wildcard pattern '_'. Use the variables created to display them
+>>>>>>> 40b5cfac ([!] Push)
     let person_data = ("Renoir", 33, "Painter");
     let (name, profession) = person_data;
     println!("Name: {person_data}, is a {person_data}");
