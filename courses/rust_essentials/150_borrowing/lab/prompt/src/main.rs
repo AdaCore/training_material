@@ -7,8 +7,12 @@
 struct Sensor(i32);
 
 impl Sensor {
-    fn read(&self) -> i32 { self.0 }
-    fn calibrate(&mut self) { self.0 *= 10; }
+    fn read(&self) -> i32 {
+        self.0
+    }
+    fn calibrate(&mut self) {
+        self.0 *= 10;
+    }
 }
 
 fn read(device: Sensor) {
@@ -31,9 +35,9 @@ fn main() {
     // Hint: Cannot borrow something to modify if it's already borrowed
     println!("Task 1");
     let scanner1 = Sensor(101);
-    read (scanner1);
+    read(scanner1);
     calibrate(scanner1);
-    read (scanner1);
+    read(scanner1);
 
     // TASK 2 - Use mutable and immutable local borrowers to
     //          print and modify the value
@@ -55,7 +59,7 @@ fn main() {
     let mut scanner3 = Sensor(42);
     let reader3 = &scanner3;
     println!("Reader: {}", reader3.0);
-    read (&scanner3);
+    read(&scanner3);
     let writer3 = &mut scanner3;
     calibrate(&mut scanner3);
     writer3.0 *= 101;
@@ -67,9 +71,9 @@ fn main() {
     // Hint: Not allowed - do it another way (modify 'sync_sensors' as well)
     println!("Task 4");
     let mut scanner4 = Sensor(100);
-    read (&scanner4);
-    sync_sensors (&mut scanner4, &mut scanner4);
-    read (&scanner4);
+    read(&scanner4);
+    sync_sensors(&mut scanner4, &mut scanner4);
+    read(&scanner4);
 
     // TASK 5 - Borrows in methods
     // Hint: Use 'self' to refer to object but same conflict rules apply
@@ -99,7 +103,10 @@ fn main() {
         }
     }
 
-    let scanner6 = SensorWithCount { data: 42, count: 0 };
+    let scanner6 = SensorWithCount {
+        data: 42,
+        count: 0,
+    };
     println!("Reads: {}", scanner6.count);
     scanner6.read();
     println!("Reads: {}", scanner6.count);
@@ -112,9 +119,11 @@ fn main() {
     println!("Task 7");
 
     struct History{
-        data : Vec<u32>,
+        data: Vec<u32>,
     }
-    let values = History { data: vec![1, 2, 3]};
+    let values = History {
+        data: vec![1, 2, 3],
+    }
     let mutable = &mut values;
     println!("Values: {:?}", mutable.data);
     mutable.data.push(4);
