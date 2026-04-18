@@ -116,6 +116,7 @@ fn main() {
 
     // TASK 7 - Implement a sensor history
     // Hint: Use RefCell and its member functions to read/modify the history
+    // Hint: RefCell Invalid borrows are runtime failures, not compile errors
     println!("Task 7");
 
     struct History{
