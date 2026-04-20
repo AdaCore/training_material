@@ -73,7 +73,6 @@ fn main() {
         }
     }
 
-     
     // TASK 8 - Destructor ("Drop")
     // Hint: Correct implementation to by adding the self reference then add the function call to drop the mic!
     struct Objects {
