@@ -6,20 +6,20 @@ Arithmetic
 Standard Operators
 --------------------
 
-- Rust standard arithmetic operators, in order of precedence (highest to lowest)
+**Arithmetic operators, in order of precedence (highest to lowest)**
 
 .. list-table::
    :widths: 30 5 5 5 55
    :header-rows: 0
 
-   * - **Multiplicative**
-     - **\***
-     - **/**
-     - **%**
+   * - *Multiplicative*
+     - :rust:`*`
+     - :rust:`/`
+     - :rust:`%`
      -
-   * - **Additive**
-     - **+**
-     - **-**
+   * - *Additive*
+     - :rust:`+`
+     - :rust:`-`
      -
      -
 
@@ -57,8 +57,8 @@ The Exponent Trap
 
 .. code:: rust
 
-  5_i32.pow(2)      // result = 25
-  5.0_f64.powf(2.5) // result ~55.9
+  5_i32.pow(2)      // Result = 25
+  5.0_f64.powf(2.5) // Result ~55.9
 
 .. note::
 
@@ -82,32 +82,32 @@ Modifying Variables In-Place
    :widths: 15 30 35 20
    :header-rows: 1
 
-   * - Operator
-     - Expanded Meaning
-     - Example
-     - Result\*
+   * - **Operator**
+     - **Expanded Meaning**
+     - **Example**
+     - **Result\***
 
-   * - **+=**
+   * - :rust:`+=`
      - :rust:`x = x + y`
      - :rust:`x += 1;`
      - :rust:`11`
 
-   * - **-=**
+   * - :rust:`-=`
      - :rust:`x = x - y`
      - :rust:`x -= 5;`
      - :rust:`5`
 
-   * - **\*=**
+   * - :rust:`*=`
      - :rust:`x = x * y`
      - :rust:`x *= 2;`
      - :rust:`20`
 
-   * - **/=**
+   * - :rust:`/=`
      - :rust:`x = x / y`
      - :rust:`x /= 2;`
      - :rust:`5`
 
-   * - **%=**
+   * - :rust:`%=`
      - :rust:`x = x % y`
      - :rust:`x %= 3;`
      - :rust:`1`
@@ -118,7 +118,7 @@ Modifying Variables In-Place
 Arithmetic Nuance: Division
 -----------------------------
 
-- The :rust:`/` operator behaves differently depending on the type
+**The** :rust:`/` **operator behaves differently depending on the type**
 
   - **Integer Division - Truncation**
 
@@ -149,7 +149,7 @@ Integer Overflow
 
 .. code:: rust
 
-  // u8 can only hold values from 0 to 255
+  // 'u8' can only hold values from 0 to 255
   let my_byte: u8 = 250;
   let new_byte = my_byte + 10; // 260? This won't fit!
 
@@ -181,11 +181,11 @@ Handling Overflow Explicitly
 
 .. code:: rust
   
-  127_i8.wrapping_add(1)     // results in -128
+  127_i8.wrapping_add(1)     // Results in -128
 
-  120_i8.saturating_add(20)  // results in 127 (max i8 value)
+  120_i8.saturating_add(20)  // Results in 127 (max i8 value)
 
-  100_i8.overflowing_add(50) // results in (-106, true)
+  100_i8.overflowing_add(50) // Results in (-106, true)
 
 .. warning::
 

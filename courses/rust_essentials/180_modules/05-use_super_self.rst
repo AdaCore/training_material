@@ -3,7 +3,7 @@
 ========================
 
 -------------------------
-Dealing with Long Paths
+Dealing With Long Paths
 -------------------------
 
 .. code:: rust
@@ -55,7 +55,7 @@ The "use" Shortcut
     use std::io::Result as IoResult;
 
 -----------------------
-"use" with a Wildcard
+"use" With a Wildcard
 -----------------------
 
 * Use the wildcard "*" (:dfn:`glob import`) to get everything
@@ -70,7 +70,7 @@ The "use" Shortcut
 
 * Risks
 
-  * Makes it hard to find things for coder and autocomplete
+  * Makes it hard to find things for programmer and autocomplete
   * Globbed modules with the same name cause compilation errors
 
 .. note:: 

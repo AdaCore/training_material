@@ -3,7 +3,7 @@ Patterns and Destructuring
 ============================
 
 ------------------------
-What is Destructuring?
+What Is Destructuring?
 ------------------------
 
   - **Convenient** data access
@@ -19,21 +19,20 @@ Destructuring a Tuple
   - Extract multiple values in **single line**
   - Assign **meaningful names** to improve readability 
   - Ignore specific elements that are **not needed**
-    - With the wildcard pattern (:rust:`_`)
+
+    - With the wildcard pattern :rust:`_`
 
 .. code:: rust
 
   let person_data = ("Renoir", 33, "Painter");
   let (name, _, profession) = person_data;
-  // name is more meaningful than person_data.0
+  // 'name' is more meaningful than 'person_data.0'
   println!("Name: {name}, {profession}");
-
-  * Generates the following output:
 
 :command:`Name: Renoir, Painter`
 
 ----------------------------------
-Irrefutable Patterns with Tuples
+Irrefutable Patterns With Tuples
 ----------------------------------
 
   - Irrefutable tuple pattern = **guaranteed match**
@@ -83,8 +82,6 @@ Destructuring an Array
   println!("pants: {}", pants);
   println!("socks: {}", socks);
 
-    * Generates the following output:
-
 :command:`shirts: 10`
 
 :command:`pants: 20`
@@ -95,7 +92,7 @@ Destructuring an Array
 Ignoring Specific Elements 
 ----------------------------
 
-  - Ignore specific elements using the underscore (:rust:`_`) 
+**Ignore specific elements using the underscore (**:rust:`_`**)**
 
 .. code:: rust
 
@@ -126,7 +123,7 @@ Ignoring Multiple Elements
 Nested Destructuring
 ----------------------
 
-  - Use a pattern *within* a pattern to destructure an array of arrays
+**Use a pattern within a pattern to destructure an array of arrays**
 
 .. code:: rust
 

@@ -17,7 +17,7 @@
   // ALWAYS matches. This is "irrefutable"
   let x = 5;
 
-  // ONLY matches if 'x' is exactly '7'
+  // ERROR. This "refutable"
   let 7 = x;
 
 :error:`error[E0005]: refutable pattern in local binding`
@@ -78,9 +78,9 @@ Match Guards
     println!("x = {}", x);
   }
 
----------------------
-"if let" vs "match"
----------------------
+----------------------
+"if let" vs. "match"
+----------------------
 
 - :rust:`if let` is shorthand for a two-arm :rust:`match`
 
@@ -97,7 +97,7 @@ Match Guards
     println!("x = {}", x);
   }
 
-  // Equivalent "match" version:
+  // Equivalent 'match' version:
   match value {
     Some(x) => println!("x = {}", x),
     _ => {} // Explicitly ignore all other cases

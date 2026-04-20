@@ -12,7 +12,7 @@ Integration Tests
 
 If you want to test your library as a client, use an integration test.
 
-Create a :rust:`.rs` file under :rust:`tests/`:
+Create a :rust:`.rs` file under :rust:`tests/`
 
 .. code:: rust
 
@@ -30,7 +30,7 @@ These tests only have access to the public API of your crate.
 Documentation Tests
 ---------------------
 
-Rust has built-in support for documentation tests:
+Rust has built-in support for documentation tests
 
 .. code:: rust
 

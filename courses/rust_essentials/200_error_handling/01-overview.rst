@@ -23,17 +23,18 @@ Rust Error Philosophy
 
 .. list-table::
   :header-rows: 1
+  :stub-columns: 1
 
   * - **Language Style**
     - **Error Visibility**
 
-  * - Exceptions
+  * - *Exceptions*
     - Hidden control flow
 
-  * - Error codes
+  * - *Error codes*
     - Easy to ignore
 
-  * - Error wrappers (e.g., :rust:`Result`)
+  * - *Error wrappers (e.g.,* :rust:`Result`*)*
     - Explicit and enforced
 
 --------------------------------------
@@ -44,12 +45,12 @@ Expected Errors vs. Logic Violations
 
   * File not found
   * Network timeout
-  * Invalid user input
+  * Invalid programmer input
 
 * Sometimes we just need to reboot the system
 
   * Impossible state reached
-  * Violated assumptions / invariant
+  * Violated assumptions/invariant
   * Logic error or other bug
 
 .. note::

@@ -83,9 +83,9 @@ Default Trait Methods
     // Hello! I'm a dog my name is Fido
   }
 
--------------------
-Traits vs Methods
--------------------
+--------------------
+Traits vs. Methods
+--------------------
 
 +----------------+----------------------------+-----------------------------------+
 | **Feature**    | **Methods**                | **Traits**                        |

@@ -6,7 +6,7 @@ Operators
 Operator Overloading
 ----------------------
 
-* Traits in :rust:`std::ops` are used to overload operators
+**Traits in** :rust:`std::ops` **are used to overload operators (e.g.,** :rust:`+`, :rust:`-`, :rust:`*`**)**
 
   * E.g., :rust:`+`, :rust:`-`, :rust:`*`
 

@@ -6,8 +6,9 @@
 Explicit Duplication
 ----------------------
 
-- Creates a *deep copy* of underlying data
-  - Typically duplicating heap-allocated resources
+**Creates a "deep copy" of underlying data**
+
+- Typically duplicating heap-allocated resources
 
 .. code:: rust
 
@@ -40,10 +41,12 @@ Cost of Duplication
 The "Clone Away" Strategy
 ---------------------------
 
-  - During development, cloning can simplify ownership conflicts
-    - Optimize later when logic is stable
-    - Further refinements can substitute clones with references
-      - :rust:`.clone()` serves as a clear visual marker of intentional heap allocation
+**During development, cloning can simplify ownership conflicts**
+
+- Optimize later when logic is stable
+- Further refinements can substitute clones with references
+
+  - :rust:`.clone()` serves as a clear visual marker of intentional heap allocation
 
 .. code:: rust
 
@@ -59,4 +62,3 @@ The "Clone Away" Strategy
 .. note::
 
    Useful for rapid prototyping and getting code working early
-   

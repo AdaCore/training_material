@@ -3,7 +3,7 @@ Mutable References
 ======================
 
 -----------------------------------------------
-Mutable References (aka Exclusive References)
+Mutable References (AKA Exclusive References)
 -----------------------------------------------
 
 - Created with :rust:`&mut` operator
@@ -17,8 +17,6 @@ Mutable References (aka Exclusive References)
     let big_brother = &mut two_plus_two;
     *big_brother = 5; 
     println!("Truth: {two_plus_two}");
-
-* Generates following output
 
 :command:`Truth: 5`
 

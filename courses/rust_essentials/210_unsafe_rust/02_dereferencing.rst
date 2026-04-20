@@ -6,7 +6,7 @@ Dereferencing Raw Pointers
 Dereferencing Raw Pointers
 ----------------------------
 
-Creating pointers is safe, but dereferencing them requires :rust:`unsafe`:
+Creating pointers is safe, but dereferencing them requires :rust:`unsafe`
 
 .. code:: rust
 
@@ -46,7 +46,7 @@ doing.
 
 In the case of pointer dereferences, this means that the pointers must
 be :url:`valid <https://doc.rust-lang.org/std/ptr/index.html#safety>`,
-i.e.:
+i.e.
 
 -  The pointer must be non-null.
 -  The pointer must be *dereferenceable* (within the bounds of a single
@@ -59,7 +59,7 @@ i.e.:
 
 In most cases the pointer must also be properly aligned.
 
-The *NOT SAFE* section gives an example of a common kind of UB bug:
+The *NOT SAFE* section gives an example of a common kind of UB bug
 :rust:`*r1` has the :rust:`'static` lifetime, so :rust:`r3` has type
 :rust:`&'static String`, and thus outlives :rust:`s`. Creating a reference from
 a pointer requires *great care*.

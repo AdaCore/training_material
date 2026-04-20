@@ -48,19 +48,19 @@ Creating Vectors
 Basic Operations
 ------------------
 
-* Accessing items in the array
+**Accessing items in the array**
 
-  * **Safe access:** :rust:`v.get(idx)` returns :rust:`Option<&T>`
+* **Safe access:** :rust:`v.get(idx)` returns :rust:`Option<&T>`
 
-    * Use :rust:`Some` / :rust:`None` capability to handle :rust:`idx` out of bounds
+  * Use :rust:`Some`/:rust:`None` capability to handle :rust:`idx` out of bounds
 
-  * **Remove last:** :rust:`v.pop()` returns :rust:`Option<T>`
+* **Remove last:** :rust:`v.pop()` returns :rust:`Option<T>`
 
-    * Also returns :rust:`Option<&T>`
+  * Also returns :rust:`Option<&T>`
 
-  * **Iterators:** iterate with :rust:`for x in &v`
+* **Iterators:** iterate with :rust:`for x in &v`
 
-    * Iterator is of actual type
+  * Iterator is of actual type
 
 .. warning::
 
@@ -76,7 +76,7 @@ Basic Operations
 :error:`index out of bounds: the len is 3 but the index is 5`
 
 --------------------
-Working with "Vec"
+Working With "Vec"
 --------------------
 
 .. code:: rust
@@ -87,7 +87,7 @@ Working with "Vec"
   println!("All colors");
   for c in &colors { println!("  {}", c); }
 
-  // Pop - remove & return the last item
+  // Pop - remove and return the last item
   let last = colors.pop();
   println!("last: {last:?}");
 

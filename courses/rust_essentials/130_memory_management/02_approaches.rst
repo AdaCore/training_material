@@ -30,6 +30,7 @@ Quick Comparison
 
   .. list-table::
     :header-rows: 1
+    :stub-columns: 1
 
     * - **Feature**
       - **Manual (C/C++)**
@@ -56,7 +57,7 @@ Quick Comparison
       - *Stop-the-World* pauses
       - Zero
 
-    * - *Developer Overhead*
+    * - *Programmer Overhead*
       - Manual tracking
       - Low
       - Compilation time

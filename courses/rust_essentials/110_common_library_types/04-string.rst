@@ -6,13 +6,13 @@ String
 What Is "String"?
 -------------------
 
-* :rust:`String` is an **owned** and **growable** UTF-8 encoded type
+:rust:`String` **is an owned and growable UTF-8 encoded type**
 
-  * Lives on the heap
-  * Grows as needed
-  * Ensures valid UTF-8
+* Lives on the heap
+* Grows as needed
+* Ensures valid UTF-8
 
-    * Length in bytes not necessarily number of characters
+  * Length in bytes not necessarily number of characters
 
 .. note::
 
@@ -40,9 +40,9 @@ Creating Strings
 Modifying Strings
 -------------------
 
-* Strings support "append" methods (if mutable)
+**Strings support "append" methods (if mutable)**
 
-  .. code:: rust
+.. code:: rust
 
     let mut my_text = String::new();
 
@@ -53,9 +53,9 @@ Modifying Strings
 
   Because :rust:`String` owns its buffer, it may reallocate as it grows
 
-----------------------
-Length vs Characters
-----------------------
+-----------------------
+Length vs. Characters
+-----------------------
 
 * :rust:`::chars()`
 
@@ -89,12 +89,13 @@ Length vs Characters
 
   To get number of characters in :rust:`String` use :rust:`.chars().count()`
 
------------------------------
-Strings vs Character Arrays
------------------------------
+------------------------------
+Strings vs. Character Arrays
+------------------------------
 
 .. list-table::
   :header-rows: 1
+  :stub-columns: 1
 
   * -
     - **Encoding**

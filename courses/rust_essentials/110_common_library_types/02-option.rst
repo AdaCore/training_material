@@ -25,7 +25,7 @@ Why Use "Option<T>"?
     * Then extract value if :rust:`Some` 
 
 ----------------------
-What is "Option<T>"?
+What Is "Option<T>"?
 ----------------------
 
 * :rust:`Option<T>` is defined as an :rust:`enum` with two variants
@@ -97,7 +97,7 @@ Common Use Cases
   .. code:: rust
 
     fn find_user(id: u32) -> Option<User> {
-        // Returns 'None` if 'User` doesn’t exist
+        // Returns 'None' if 'User' doesn't exist
     }
 
 * Functions that may not return a result

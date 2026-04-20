@@ -8,6 +8,7 @@ Comparing "Rc<T>" and "Box<T>"
 
 .. list-table::
    :header-rows: 1
+   :stub-columns: 1
    
    * - **Properties**
      - :rust:`Box<T>`
@@ -30,7 +31,7 @@ Comparing "Rc<T>" and "Box<T>"
 	 - Shallow Copy
 
    * - *Main Use Case*
-     - Big data / recursive types
+     - Big data/recursive types
 	 - Complex architecture
 	
 -----------------

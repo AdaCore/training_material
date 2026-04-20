@@ -6,7 +6,7 @@ Unsafe Rust
 Unsafe Rust
 -------------
 
-The Rust language has two parts:
+The Rust language has two parts
 
 -  **Safe Rust:** memory safe, no undefined behavior possible.
 -  **Unsafe Rust:** can trigger undefined behavior if preconditions are
@@ -18,7 +18,7 @@ Unsafe Rust is.
 Unsafe code is usually small and isolated, and its correctness should be
 carefully documented. It is usually wrapped in a safe abstraction layer.
 
-Unsafe Rust gives you access to five new capabilities:
+Unsafe Rust gives you access to five new capabilities
 
 -  Dereference raw pointers.
 -  Access or modify mutable static variables.
@@ -36,6 +36,6 @@ Details
 ---------
 
 Unsafe Rust does not mean the code is incorrect. It means that
-developers have turned off some compiler safety features and have to
+programmers have turned off some compiler safety features and have to
 write correct code by themselves. It means the compiler no longer
 enforces Rust's memory-safety rules.

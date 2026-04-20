@@ -6,10 +6,10 @@ Try Conversions
 Automatic Error Type Conversion
 ---------------------------------
 
-* :rust:`?` doesn't just return the error
+:rust:`?` **doesn't just return the error**
 
-  * If error types match |rightarrow| returned directly
-  * If they differ |rightarrow| converted using :rust:`From`
+* If error types match |rightarrow| returned directly
+* If they differ |rightarrow| converted using :rust:`From`
 
 .. code:: rust
 
@@ -56,6 +56,6 @@ One Return Type, Many Sources
 
 .. note::
 
-  Main logic of the function remains clean and focused on the "happy path".
+  Main logic of the function remains clean and focused on the "happy path"
 
   The :rust:`?` operator handles the heavy lifting of error translation

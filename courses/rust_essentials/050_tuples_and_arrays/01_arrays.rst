@@ -6,13 +6,14 @@ Arrays
 What Is an Array?
 -------------------
 
-* **Definition:** a collection of elements
+* **Definition: a collection of elements**
 
    * ... of the **same type**
    * ... stored in contiguous memory
    * ... indexed using a discrete range
 
 .. image:: array_diagram.svg
+
 --------------------
 Basics
 --------------------
@@ -26,9 +27,9 @@ Basics
 
 .. code:: rust
 
-      // Array of 3 elements of type i8   
+      // Array of 3 items of type 'i8'
       let mut values: [i8; 3] = [2, 3, 4];        
-      values[2] = 5; // Accessing and modifying an element
+      values[2] = 5; // Accessing and modifying an item
 
 .. note::
 
@@ -45,7 +46,7 @@ Safety and Initialization
 
 **Initialization**
 
-* Can be assigned values either using *array literals*:
+* Can be assigned values either using *array literals*
 
 .. code:: rust
       
@@ -54,7 +55,7 @@ Safety and Initialization
   let strings  = ["Hello", "World"];       // String literals
   let bools    = [true, false, true];      // Boolean literals
 
-* Or using *array repeat expression* :rust:`[value; N]`:
+* Or using *array repeat expression* :rust:`[value; N]`
   * With length :rust:`N`, known at compile-time
   * Where every element is *value*
 
@@ -95,12 +96,12 @@ Iteration
 
 .. container:: speakernote
 
-   Arrays do not implement the default Display trait ({}).
-   You must use the Debug format parameter:
+   Arrays do not implement the default Display trait ({})
+   You must use the Debug format parameter
    println!("a: {:?}", a);
    println!("a: {:#?}", a); (for "pretty printing")
 
-   Testing Macros:
+   Testing Macros
    assert_ne!: Checks that two values are not equal
    assert_eq!: Checks that two values are equal
    These are always checked; use debug_assert! variants for debug-only checks

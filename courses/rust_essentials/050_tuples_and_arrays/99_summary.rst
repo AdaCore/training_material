@@ -22,7 +22,8 @@ What We Covered
 What We Covered (Continued)
 -----------------------------
 
-- **Patterns and Destructuring**
+* **Patterns and Destructuring**
+
   - Used for clarity, simplicity 
     -  And skipping unneeded values
   - Irrefutable patterns are patterns guaranteed to match the structure 

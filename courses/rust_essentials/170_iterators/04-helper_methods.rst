@@ -116,8 +116,8 @@ Common Consumers
 
       let temperatures = [22, 28, -2, 15, 30];
 
-      // .iter() creates the stream of references
-      // .any() looks for the first item that satisfies the closure
+      // '.iter()' creates the stream of references
+      // '.any()' looks for the first item that satisfies the closure
       if temperatures.iter().any(|&t| t < 0) {
           println!("Warning: Freezing temperatures detected!");
       } else {
@@ -136,7 +136,7 @@ Common Consumers
 Declarative Data Processing
 -----------------------------
 
-* Can use "chaining" instead of loops and conditionals
+**Can use "chaining" instead of loops and conditionals**
 
   * Easier to read
 
@@ -172,7 +172,7 @@ Reliability and Maintenace
 
   * Pipeline runs only when needed
 
-* Imperative vs iterator implementation
+* Imperative vs. iterator implementation
 
   * :rust:`for` loop
 

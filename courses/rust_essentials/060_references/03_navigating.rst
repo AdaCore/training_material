@@ -1,5 +1,5 @@
 ======================
-Binding vs Reference
+Binding vs. Reference
 ======================
 
 -------------------------
@@ -11,9 +11,9 @@ Rust's Reference System
 .. list-table::
   :header-rows: 1
 
-  * - Syntax
-    - Binding
-    - Reference
+  * - **Syntax**
+    - **Binding**
+    - **Reference**
 
   * - :rust:`let r = &x`
     - Immutable
@@ -87,7 +87,7 @@ The "Rebinder" (let mut r = &x)
   The reference *can* be redirected, but the data *cannot* be modified
 
 ---------------------------------
-The "Modifier" (let r = &mut x) 
+The "Modifier" (let r = &mut x)
 ---------------------------------
 
 - *Cannot* point to something else
@@ -109,7 +109,7 @@ The "Modifier" (let r = &mut x)
   The reference *cannot* be redirected, but the data *can* be modified
 
 ---------------------------------------
-The "Free Agent" (let mut r = &mut x) 
+The "Free Agent" (let mut r = &mut x)
 ---------------------------------------
 
 - *Can* point to something else
