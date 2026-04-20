@@ -26,14 +26,12 @@ fn main() {
     let yorkie = poodle; 
     println!("{}", yorkie); 
 
-
     // TASK 3 - Explicit Duplication   
     // Hint: Modify the code so that 'yorkie' has a copy of the same ball 'poodle' has
     let poodle = String::from("ball");
     let yorkie = poodle.clone();
     println!("{}", poodle); 
     println!("{}", yorkie); 
-
 
     // TASK 4 - "Clone Away" Strategy
     // Hint: Modify the function call without creating new variables to have multiple agents smith saying hello!
@@ -46,7 +44,6 @@ fn main() {
     say_hello(agent.clone());
     say_hello(agent);
     
-
     // TASK 5 - Custom "Copy" Types
     // Hint: Copy is not a 'standalone' trait. it has requirements
     #[derive(Copy, Clone)]
@@ -62,7 +59,6 @@ fn main() {
     let user_b = user_a.clone();
     println!("We are {} and {}", user_a.1, user_b.1); 
 
-
     // TASK 7 - "Copy" and "Drop"
     // Hint: Some traits cannot be implemented together for a type
     #[derive(Clone)]
@@ -72,8 +68,7 @@ fn main() {
             println!("There can be only one!");
         }
     }
-
-     
+ 
     // TASK 8 - Destructor ("Drop")
     // Hint: Correct implementation to by adding the self reference then add the function call to drop the mic!
     struct Objects {
