@@ -26,7 +26,7 @@ fn main() {
        
 
     // TASK 4 - Type inference and Static Type
-    // Hint: Type is infered by initial value. Numeric litterals must match the type assigned
+    // Hint: Type is inferred by initial value. Numeric literals must match type assigned
     let mut my_float = 6.5;
     my_float = 5;
     let mut my_int = 18;
