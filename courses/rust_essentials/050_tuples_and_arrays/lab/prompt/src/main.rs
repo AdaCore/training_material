@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //! Lab (prompt)
 //! Tuples and Arrays
 //!
@@ -6,15 +5,6 @@
 //!
 
 #![allow(unused_assignments)]
-=======
-// Lab (prompt)
-//  Tuples and Arrays
-
-//! Fix all the compile errors below and/or follow the hints provided
-
-#[allow(dead_code)]
-#[allow(unused_variables)]
->>>>>>> 95eedded ([!] Push)
 
 
 fn main() {
