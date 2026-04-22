@@ -56,7 +56,11 @@ fn main() {
 
     // TASK 7 - Arithmetic and the Exponent Trap
     // Hint: Code compiles but the value is not correct 
+<<<<<<< HEAD
     let exponent = 5_i32.pow(2);
+=======
+    let exponent = 5.pow(2);
+>>>>>>> 488cd0db (Apply 1 suggestion(s) to 1 file(s))
     println!("TASK7 => 5 to the power of 2 equals: {}", exponent);
     
 
