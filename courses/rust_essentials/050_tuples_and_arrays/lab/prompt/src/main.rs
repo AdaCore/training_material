@@ -9,7 +9,8 @@
 
 fn main() {
     // TASK 1 - Array Declaration, Intialization and Value Change
-    // Hint: First declare type and number of elements of your array, then assign it correct initial values. Then change only one using the proper way
+    // Hint: First declare type and number of elements of your array, then assign it va;od initial values.
+    // Then change only one element using the proper syntax
     let mut numbers_arr: [i8; 1, 2, 3];
     numbers_arr(1) = 5;
     
@@ -38,7 +39,8 @@ fn main() {
     
 
     // TASK 5 - Destructuring
-    // Hint: Ignore specific elements that are not needed With the wildcard pattern '_'. Use the variables created to display them
+    // Hint: Ignore specific elements that are not needed With the wildcard pattern.
+    // Use the variables created to display them
     let person_data = ("Renoir", 33, "Painter");
     let (name, profession) = person_data;
     println!("Name: {person_data}, is a {person_data}");
