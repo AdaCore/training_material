@@ -14,7 +14,6 @@ fn main() {
         println!("{}", array[idx]);
     }
     
-
     // TASK 2 - Using Our Iterator
     // Hint: The 'for' loop calls .next() under the hood
     struct SliceIter<'s> {
@@ -49,7 +48,6 @@ fn main() {
         println!("{n}");
     }    
        
-
     // TASK 4 - Common Iterator Adapters
     // Hint: 'map' transforms values during iteration, 'filter' selects values matching condition
     fn double(x: &i32) -> i32 {
@@ -70,7 +68,6 @@ fn main() {
         println!("This value is divisible by 2: {elem}");
     }
     
-
     // TASK 5 - Common consummers
     // Hint: 'sum' adds all values and return a single value, 'any' returns True if any value matches condition
     fn is_freezing(temp: &i32) -> bool {
@@ -103,21 +100,16 @@ fn main() {
         .sum(); // Total: 220
     println!("Sum of even squares: {}", result);
         
-
     // TASK 7 - Collecting "Result"
     // Hint: 'collect()' stores results in a collection
     // For any(): receives a reference to the item
-
-
-fn parse_i32(s: &str) -> Result<i32, std::num::ParseIntError> {
-    s.parse::<i32>()
-}
-    
+    fn parse_i32(s: &str) -> Result<i32, std::num::ParseIntError> {
+        s.parse::<i32>()
+    }
     let good_strings = vec!["1", "2", "42"];
     let good_numbers: Result<Vec<i32>, _> = good_strings
         .into_iter()
         .map(parse_i32)
         .collect();
     println!("good_numbers: {:?}", good_numbers);
-    
 }
