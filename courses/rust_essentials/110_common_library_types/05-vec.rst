@@ -62,16 +62,12 @@ Basic Operations
 
   * Iterator is of actual type
 
-.. warning::
-
-  **Direct Indexing** :rust:`v[idx]` allowed but not recommended
+*  **Direct Indexing** :rust:`v[idx]` allowed but not recommended
 
 .. code:: rust
 
   let v = vec![1, 2, 3];
   println!("The sixth element is: {}", v[5]);
-
-**Runtime Error**
 
 :error:`index out of bounds: the len is 3 but the index is 5`
 

@@ -57,7 +57,7 @@ Modifying Strings
 Length vs. Characters
 -----------------------
 
-* :rust:`::chars()`
+* :rust:`.chars()`
 
   * Iterator over actual characters
 
