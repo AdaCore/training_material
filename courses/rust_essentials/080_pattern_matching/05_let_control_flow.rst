@@ -103,6 +103,8 @@ Match Guards
 
 :command:`x = 3`
 
+.. code:: rust
+
   // Equivalent 'match' version:
   match value {
     Some(x) => println!("x = {}", x),
@@ -144,9 +146,13 @@ Match Guards
     println!("Finished!");
   
 :command:`Steps remaining: 3`
+
 :command:`Steps remaining: 2`
+
 :command:`Steps remaining: 1`
+
 :command:`Steps remaining: 0`
+
 :command:`Finished!`
 
 ---------------------------

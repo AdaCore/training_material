@@ -107,6 +107,8 @@ Matching With Bindings
     _ => println!("Keep playing!"),
   }
 
+:command:`Level 10! Bonus: 250`
+
 ----------------------------
 Nested Patterns in "match"
 ----------------------------
@@ -127,7 +129,7 @@ Nested Patterns in "match"
 
 :command:`on y-axis at 0`
 
-..note::
+.. note::
 
   First matching arm is selected
 

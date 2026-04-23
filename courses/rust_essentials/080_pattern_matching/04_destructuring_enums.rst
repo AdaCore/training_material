@@ -50,6 +50,8 @@ Matching Enum Variants
     Message::Write(text) => println!("write: {}", text),
   }
 
+:command:`quit`
+
 ----------------------------
 Destructuring Variant Data
 ----------------------------
@@ -80,6 +82,8 @@ Destructuring Variant Data
     Message::Quit => println!("quit"),
   }
 
+:command:`text: hello`
+
 ----------------
 Tuple Variants
 ----------------
@@ -105,6 +109,8 @@ Tuple Variants
       Event::KeyPress(tap) => println!("key: {}", tap),
       Event::MouseClick(x, y) => println!("click at {}, {}", x, y),
     }
+  
+:command:`click at 10, 20`
 
 -----------------
 Struct Variants
