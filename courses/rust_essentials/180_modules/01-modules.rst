@@ -53,7 +53,7 @@ Complete Picture
 
   * - *Package*
     - One or more crates
-    - (Managed by cargo.toml)
+    - (Managed by :filename:`Cargo.toml`)
 
 ---------------
 "mod" Keyword

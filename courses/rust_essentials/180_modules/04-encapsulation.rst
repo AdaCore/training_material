@@ -22,7 +22,7 @@ Why Encapsulate?
 Encapsulation in Structs
 --------------------------
 
-*Gatekeeper* **pattern**
+**Gatekeeper pattern**
 
 * Keep fields private
 

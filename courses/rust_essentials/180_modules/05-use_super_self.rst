@@ -85,7 +85,7 @@ The "use" Shortcut
 
 * Risks
 
-  * Makes it hard to find things for programmer and autocomplete
+  * Makes it hard for programmer/autocomplete to find things
   * Globbed modules with the same name cause compilation errors
 
 .. note:: 
@@ -149,7 +149,7 @@ Relative Paths
 
     fn main() {
         let my_pot = Pot;  // Imported directly via 'Pot'
-        cactus::water();   // Imported via 'self' (cactus module)
+        cactus::water();   // Imported via 'self' ('cactus' module)
     }
 
 * Use :rust:`super` to refer to the enclosing module 
