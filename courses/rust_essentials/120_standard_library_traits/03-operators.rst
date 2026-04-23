@@ -6,9 +6,11 @@ Operators
 Operator Overloading
 ----------------------
 
-**Rust uses traits in** :rust:`std::ops` **to overload operators (e.g.,** :rust:`+`, :rust:`-`, :rust:`*`**)**
+**Traits in** :rust:`std::ops` **are used to overload operators (e.g.,** :rust:`+`, :rust:`-`, :rust:`*`**)**
 
-  * Operators delegate to trait methods (:rust:`Add`, :rust:`Sub`, etc.)
+  * E.g., :rust:`+`, :rust:`-`, :rust:`*`
+
+  * Operators are delegated to trait methods (:rust:`Add`, :rust:`Sub`, etc.)
 
 .. container:: latex_environment footnotesize
 
@@ -19,34 +21,32 @@ Operator Overloading
      * - **Operator**
        - **Trait**
        - **Method Signature**
-     * - ``+``
-       - ``Add``
-       - ``fn add(self, rhs: Rhs) -> Self::Output``
-     * - ``-``
-       - ``Sub``
-       - ``fn sub(self, rhs: Rhs) -> Self::Output``
-     * - ``*``
-       - ``Mul``
-       - ``fn mul(self, rhs: Rhs) -> Self::Output``
-     * - ``/``
-       - ``Div``
-       - ``fn div(self, rhs: Rhs) -> Self::Output``
-     * - ``%=``
-       - ``RemAssign``
-       - ``fn rem_assign(&mut self, rhs: Rhs)``
-     * - ``!``
-       - ``Not``
-       - ``fn not(self) -> Self::Output``
+     * - :rust:`+`
+       - :rust:`Add`
+       - :rust:`fn add(self, rhs: Rhs) -> Self::Output`
+     * - :rust:`-`
+       - :rust:`Sub`
+       - :rust:`fn sub(self, rhs: Rhs) -> Self::Output`
+     * - :rust:`*`
+       - :rust:`Mul`
+       - :rust:`fn mul(self, rhs: Rhs) -> Self::Output`
+     * - :rust:`/`
+       - :rust:`Div`
+       - :rust:`fn div(self, rhs: Rhs) -> Self::Output`
+     * - :rust:`%=`
+       - :rust:`RemAssign`
+       - :rust:`fn rem_assign(&mut self, rhs: Rhs)`
+     * - :rust:`!`
+       - :rust:`Not`
+       - :rust:`fn not(self) -> Self::Output`
 
 .. note::
 
   :rust:`Self::Output` indicates return type defined by the implementation
 
--------------------
-Overloading "Add"
--------------------
-
-**Define an implementation for** :rust:`Inches` **that returns a number in** :rust:`Feet`
+------------------------
+Overload "Add" Example
+------------------------
 
 .. code:: rust
 
