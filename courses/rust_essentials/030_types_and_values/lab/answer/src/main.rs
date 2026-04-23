@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //! Lab (answer)
 //! Types and Values
 //!
@@ -6,6 +7,12 @@
 
 #![allow(unused_assignments)]
 #![allow(unused_variables)]
+=======
+// Lab (answer)
+//  Types and Values
+
+#![allow(unused_assignments)]
+>>>>>>> 41b4b3d6 ([!] Second Push)
 
 fn main() {
     // TASK 1 - Variable Declaration
@@ -75,4 +82,4 @@ fn main() {
     let too_precise = 8 / 2;
     println!("TASK8 => 8 divided by 2 equals: {:?}", too_precise);    
 }
-	
+    
