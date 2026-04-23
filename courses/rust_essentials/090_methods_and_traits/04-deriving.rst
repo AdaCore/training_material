@@ -10,7 +10,7 @@ Deriving Traits
 
   * Built-in macro to automatically generate code
 
-* What does :dfn:`deriving` do?
+* What does **deriving** do?
 
   * Automatically generates trait implementations
   * Uses :rust:`#[derive(...)]` attribute
@@ -73,7 +73,7 @@ Example of Deriving
 Deriving in Complex Structures
 --------------------------------
 
-**When a type derives a trait, its included items must also derive the trait**
+**When a type derives a trait, included items must also derive the trait**
 
 .. code:: rust
 
@@ -92,14 +92,15 @@ Deriving in Complex Structures
 
 .. note::
 
-  This is a general rule. There are traits that do not depend on fields
-  which may allow you to skip this rule
+  Not always!
+
+  If a trait does not reference items, items do not need to derive trait
 
 -------------
 Orphan Rule
 -------------
 
-* You may implement a trait for a type only if you own the trait or the type
+* Implement a trait for a type only if you own the trait or the type
 
   * "Own" means: defined in your crate
 
@@ -218,6 +219,8 @@ Limitations on Deriving
     * -
       - Compiler ensures logic is safe
       - Compiler ensures manual code is safe
+
+.. note::
 
   **Derive** is for **Computers**
 
