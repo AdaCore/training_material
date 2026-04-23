@@ -8,19 +8,19 @@ What Is a Variable?
 
 - Think of a variable as a **labeled box** where you can store a single piece of info (a "value")
 
-  - **Label** - the variable's name (e.g., :rust:`score`)
-  - **Contents** - the value (e.g., :rust:`100`)
+  - **Label** - variable's name (e.g., :rust:`score`)
+  - **Contents** - value (e.g., :rust:`100`)
 
-- In Rust, we create a variable with the :rust:`let` keyword
+- We create a variable with the :rust:`let` keyword
   
   - This **binds** a name to a value
 
 .. code:: rust
 
-  // We are binding the name 'apples' to the value 5
+  // We are binding 'apples' to the value 5
   let apples = 5;
 
-  // We are binding the name 'person' to the value 'Alice'
+  // We are binding 'person' to the value 'Alice'
   let person = "Alice";
 
 -------------------------------------
@@ -46,6 +46,8 @@ By Default, Variables Are Immutable
 
   // This will cause an ERROR! We can't change the value
   my_var = 20;
+
+:error:`error: expected item, found keyword 'let'`
 
 --------------------------
 Making Variables Mutable
