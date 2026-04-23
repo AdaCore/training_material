@@ -10,15 +10,14 @@
 fn main() {
     // TASK 1 - Array Declaration, Intialization and Value Change
     // Hint: First declare type and number of elements of your array, then assign it valid initial values.
-    // Then change only one item using the proper syntax
+    // Then change only one element using the proper syntax
     let mut numbers_arr: [i8; 3] = [1, 2, 3];
     numbers_arr[1] = 5 ;
     
 
     // TASK 2 - Out of Bounds
     // Hint: Array indexes start at 0
-    let mut bools = [true, true, false];
-    bools[2] = true;
+    numbers_arr[2] = 36;
 
 
     // TASK 3 - Iteration    
