@@ -49,8 +49,8 @@ fn main() {
     // TASK 5 - Custom "Copy" Types
     // Hint: Copy is not a 'standalone' trait. it has requirements
     #[derive(Copy)]
-    struct Point(i32, i32);
-    let p1 = Point(3, 4);
+    struct Point2(i32, i32);
+    let p1 = Point2(3, 4);
     let p2 = p1;
 
     // TASK 6 - "Copy" Types and Field Constraints
@@ -83,6 +83,6 @@ fn main() {
             println!("Drop the {}!", object_type);
         }
     }
-    let shure_SM58 = Objects{object_type: String::from("mic")} ;
-    Drop(shure_SM58);
+    let shure_sm58 = Objects{object_type: String::from("mic")} ;
+    Drop(shure_sm58);
 }
