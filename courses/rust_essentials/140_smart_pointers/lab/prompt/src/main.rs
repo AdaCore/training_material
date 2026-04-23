@@ -4,18 +4,20 @@
 //! Fix all the compile errors below by following the hints provided
 //!
 
+#![allow(dead_code)]
+#![allow(unused_variables)]
+
 // TASK 1 - Bring Rc<T> into scope
 // Hint: Rc lives in std::rc
 
-#[allow(dead_code)]
 enum Doll {
     Inside(Box<Doll>),
     Empty,
 }
 
 fn main() {
-    // TASK 2 - Define a new Box with a value of 5
-    // Hint: Replace ??? with something starting with Box::
+    // TASK 2 - Create the value "5" on the heap
+    // Hint: Replace ??? (remember the "Box" mechanism)
     let my_box = ???;
 
     // TASK 3 - Print the contents of my_box
@@ -77,14 +79,48 @@ fn main() {
     hello(???);
 
     // Counting References
+
+    // TASK 9 - demonstrate shared ownership on the heap    
+    // Both 'var_a' and 'var_b' share ownership of the value
+
+    // Create the value "5" on the heap
+    // Hint: Replace ??? (what allows shared ownership??)
+    let var_a = ???
+    println!("Count: {}", Rc::strong_count(&var_a));
+
+    // Ensure the count is what we expect before proceeding
+    if Rc::strong_count(&var_a) != 1 {
+        unreachable!("Wait, the initial count should be 1!");
+    }
+
+    // Make a copy of var_a
+    // Hint: Replace ??? (what creates a shallow copy?)
+    let var_b = ???
+    println!("Count: {}", Rc::strong_count(&var_a));
+
+    // After a clone, the count should have incremented
+    if Rc::strong_count(&var_a) != 2 {
+        unreachable!("The internal counter did not increment!");
+    }
+
+    println!("var_a = {}", var_a);
+    println!("var_b = {}", var_b);
+
     let var_a = Rc::new(5);
     println!("Count: {}", Rc::strong_count(&var_a));
     let var_b = Rc::clone(&var_a);
     println!("Count: {}", Rc::strong_count(&var_a));
 
-    // TASK 9 - Use tic, tac, and toe in a simple way that demonstrates shared ownership
+    println!("var_a = {}", var_a);
+    println!("var_b = {}", var_b);
+
+    // TASK 10 - Use tic, tac, and toe in a simple way that demonstrates shared ownership
     // Hint: All three variables refer to the same underlying value
     let tic = Rc::new(5);
     let tac = Rc::clone(&tic);
     let toe = Rc::clone(&tic);
+
+    println!("tic = {}", tic);
+    println!("tac = {}", tac);
+    println!("toe = {}", toe);
 }
