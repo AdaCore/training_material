@@ -1,11 +1,9 @@
-// Lab (prompt)
+// Lab (answer)
 //  Iterators
 
 //! Fix all the compile errors below and/or follow the hints provided
 
-#[allow(dead_code)]
-#[allow(unused_variables)]
-
+#![allow(unused_assignments)]
 
 fn main() {
     // TASK 1 - What is an Iterator?
@@ -34,8 +32,8 @@ fn main() {
             }
         }
     }
-    let mut numbers = [10, 20, 30];
-    let mut iter = SliceIter {
+    let numbers = [10, 20, 30];
+    let iter = SliceIter {
         slice: &numbers,
         idx: 0,
     };
