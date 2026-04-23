@@ -121,16 +121,25 @@ Struct Variants
   .. code:: rust
 
     enum Shape {
-      Circle { radius: f64 },
-      Rectangle { width: f64, height: f64 },
+        Circle { radius: f64 },
+        Rectangle { width: f64, height: f64 },
     }
 
     let profile = Shape::Rectangle { width: 3.0, height: 4.0 };
 
     match profile {
-      Shape::Circle { radius } => println!("circle r={}", radius),
-      Shape::Rectangle { width, height } => { println!("rect {} x {}", width, height); }
+        Shape::Circle { radius } => {
+            println!("circle r={}", radius)
+        }
+        Shape::Rectangle {
+            width,
+            height,
+        } => {
+            println!("rect {} x {}", width, height);
+        }
     }
+
+:command:`rect 3 x 4`
 
 -----------------------------
 Enums as Robust Data Models

@@ -16,7 +16,7 @@ What Is "match"?
 
 .. note::
 
-  :rust:`match` is an expression, not a statement
+  :rust:`match` is an *expression*, not a *statement*
 
 --------------------------
 "match" as an Expression
@@ -127,7 +127,9 @@ Nested Patterns in "match"
 
 :command:`on y-axis at 0`
 
-- First matching arm is selected
+..note::
+
+  First matching arm is selected
 
 ---------------------
 Why "match" Matters

@@ -86,6 +86,8 @@ Literal Patterns
     _ => println!("too many"),
   }
 
+:command:`too many`
+
 ------------------
 Wildcard Pattern
 ------------------
@@ -110,6 +112,8 @@ Wildcard Pattern
     Status::Error => println!("error"),
   }
 
+:command:`ok`
+
 -----------------------
 Binding With Patterns
 -----------------------
@@ -125,6 +129,8 @@ Binding With Patterns
   let (first, second) = (10, 20);
 
   println!("first is {}, second is {}", first, second);
+
+:command:`first is 10, second is 20`
 
 ---------------------
 Pattern Composition
@@ -160,13 +166,17 @@ Pattern Composition
 Pattern Vocabulary
 --------------------
 
-- **Literal Matching:** Patterns can match specific values like numbers or strings
+- **Literal Matching** 
+  - Patterns can match specific values like numbers or strings
 
-- **Alternative Patterns:** Use the "pipe" (:rust:`|`) to handle multiple values in a single arm
+- **Alternative Patterns** 
+  - Use the "pipe" (:rust:`|`) to handle multiple values in a single arm
 
-- **Variable Bindings:** Use :rust:`@` to give a name to a value while checking it against a range or pattern
+- **Variable Bindings** 
+  - Use :rust:`@` to give a name to a value while checking it against a range or pattern
 
-- **The Rest Pattern:** A placeholder (:rust:`..`) that ignores "everything else" in a sequence or structure
+- **The Rest Pattern** 
+  - A placeholder (:rust:`..`) that ignores "everything else" in a sequence or structure
 
 .. code:: rust
 
@@ -182,6 +192,8 @@ Pattern Vocabulary
       _ => println!("Other"),
   }
 
+:command:`Value 5 is in range`
+
 -----------------------------
 Patterns in Rust Constructs
 -----------------------------
@@ -194,4 +206,4 @@ Patterns in Rust Constructs
 
 - :rust:`if let` and :rust:`while let`
 
-- function parameters (covered in another module)
+- Function parameters
