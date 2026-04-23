@@ -5,7 +5,11 @@
 //!
 
 #![allow(unused_assignments)]
+<<<<<<< HEAD
 #![allow(unused_variables)]
+=======
+
+>>>>>>> 41b4b3d6 ([!] Second Push)
 
 fn main() {
     // TASK 1 - Variable Declaration
@@ -66,7 +70,12 @@ fn main() {
     let precise = 7 / 3;
     println!("TASK8 => 7 divided by 3 equals: {}", precise);
     // Using float litterals for this division is too much
+<<<<<<< HEAD
     // How do we get an integer result here?
+=======
+    // This should print 4 not 4.0
+    // Modify the assignment so the result is an integer
+>>>>>>> 41b4b3d6 ([!] Second Push)
     let too_precise = 8.000 / 2.000;
     println!("TASK8 => 8 divided by 2 equals: {:?}", too_precise);   
 }
