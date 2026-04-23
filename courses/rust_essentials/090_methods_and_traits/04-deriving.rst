@@ -178,7 +178,7 @@ Limitations on Deriving
 
     * - *Logic Source*
       - **Compiler-Generated**
-      - **Programmer Written**
+      - **Programmer-Written**
 
     * -
       - Uses standard "one-size-fits-all" template
