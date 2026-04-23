@@ -3,8 +3,7 @@
 
 //! Fix all the compile errors below and/or follow the hints provided
 
-#[allow(dead_code)]
-#[allow(unused_variables)]
+#![allow(unused_assignments)]
 
 
 fn main() {
@@ -63,6 +62,9 @@ fn main() {
     // Hint: Code compiles but the value is not correct. A division between 2 integers results in an integer 
     let precise = 7 / 3;
     println!("TASK8 => 7 divided by 3 equals: {}", precise);
+    // Using float litterals for this division is too much
+    // This should print 4 not 4.0
+    // Modify the assignment so the result is an integer
     let too_precise = 8.000 / 2.000;
     println!("TASK8 => 8 divided by 2 equals: {:?}", too_precise);   
 }
