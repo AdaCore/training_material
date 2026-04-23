@@ -9,7 +9,7 @@
 #![allow(dead_code)]
 
 fn main() {
-    // TASK 1 - Error result
+    // TASK 1 - Error Result
     // Hint: You can return an error using a 'Result' enum variant 'Err' 
     enum Reason { TooYoung, TooOld, }
     fn check_age(age: i32) -> Result<i32, Reason> {
@@ -26,7 +26,7 @@ fn main() {
     }
     
 
-    // TASK 3 - the Try Operator
+    // TASK 3 - The Try Operator
     // Hint: Use the try operator to return an error automatically to the caller of register 
     // if check_age returns an error
     // the try operator tries to converts 'reason' to the return type of register 'string'

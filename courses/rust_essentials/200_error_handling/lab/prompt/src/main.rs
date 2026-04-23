@@ -21,7 +21,7 @@ fn main() {
     // Hint: Replace the unwrap() function by a pattern matching to handle check_age return
     check_age(my_age).unwrap();
     
-    // TASK 3 - the Try Operator
+    // TASK 3 - The Try Operator
     // Hint: Use the try operator to return an error automatically to the caller of register 
     // if check_age returns an error
     // the try operator tries to converts 'reason' to the return type of register 'string'
