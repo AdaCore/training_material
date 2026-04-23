@@ -24,12 +24,14 @@ What Is Rust?
 What Kind of Language Is Rust?
 --------------------------------
 
-Rust fits in the same area as other systems languages (Ada, C++, ...)
+**Rust fits in the same area as other systems languages (Ada, C++, ...)**
 
 -  High flexibility
 -  High level of control
--  Can be scaled down to very constrained devices such as
-   microcontrollers
+-  Can be scaled down to very constrained devices 
+
+   - Such as microcontrollers
+
 -  No garbage collection
 -  Focuses on reliability and safety without sacrificing performance
 
@@ -53,5 +55,5 @@ Things to Consider About Rust
 - Multi-paradigm
 
    - Imperative - you tell the compiler *how* to perform a task
-   - Functional (to a degree) - you tell the compiler *what* you want the result to be
-   - Powerful OOP features (like encapsulation)
+   - Functional - you tell the compiler *what* you want the result to be
+   - Powerful OOP features 
