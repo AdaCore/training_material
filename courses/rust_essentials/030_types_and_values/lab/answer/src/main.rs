@@ -1,9 +1,7 @@
 // Lab (answer)
 //  Types and Values
 
-#[allow(dead_code)]
-#[allow(unused_variables)]
-
+#![allow(unused_assignments)]
 
 fn main() {
 
@@ -35,8 +33,8 @@ fn main() {
 
     // TASK 5 - Base Numeric Literal
     // Hint: Convert the value into different bases and verify the display
-	let binary = 0b1111_0000;
-	let decimal = 240;
+    let binary = 0b1111_0000;
+    let decimal = 240;
     let octal = 0o360;
     let hexadecimal = 0xf0;
 
@@ -44,7 +42,7 @@ fn main() {
     println!("TASK5 => decimal    : {}", decimal);
     println!("TASK5 => octal      : {}", octal);
     println!("TASK5 => hexadecimal: {}", hexadecimal);
-	
+    
     
     // TASK 6 - Numeric Conversion
     // Hint: Keyword "as" tells the compiler to interpret a value as a different type  
@@ -66,4 +64,4 @@ fn main() {
     let too_precise = 8 / 2;
     println!("TASK8 => 8 divided by 2 equals: {:?}", too_precise);    
 }
-	
+    
