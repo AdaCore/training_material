@@ -43,9 +43,11 @@ fn main() {
     }
 
     // --- TASK 5: The Logic Guard ---
+    // 1. Try setting 'is_brave' to false. What happens when you run it then?      
+    // 2. Replace 'todo' with the macro that signals: "My logic assumes we never reach this!"
     if is_brave && health > 0 {
         println!("You survived with {} health!", health);
     } else {
-        unreachable!("The ritual should have been a guaranteed success!");
+        todo!("The ritual should have been a guaranteed success!");
     }
 }
