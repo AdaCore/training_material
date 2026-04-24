@@ -1,8 +1,8 @@
-// Lab (answer)
-//  Tuples and Arrays
-
+//! Lab (answer)
+//! Tuples and Arrays
+//!
 //! Fix all the compile errors below and/or follow the hints provided
-
+//!
 
 #![allow(unused_assignments)]
 
