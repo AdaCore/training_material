@@ -58,4 +58,3 @@ One Return Type, Many Sources
 
   * Main logic remains clean and focused on "happy path"
   * :rust:`?` operator handles heavy lifting of error translation
-
