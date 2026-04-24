@@ -19,15 +19,15 @@ The "Error" Trait
 Trait Prerequisites
 ---------------------
 
-To implement :rust:`Error` type must also implement
+**To implement** :rust:`Error` **type must also implement**
 
-  * :rust:`Display`
+* :rust:`Display`
 
-    * For user-facing error messages
+  * For user-facing error messages
 
-  * :rust:`Debug`
+* :rust:`Debug`
 
-    * For developer-facing details
+  * For developer-facing details
 
 ------------------
 Trait Definition
@@ -61,7 +61,7 @@ Trait Definition
 Implementing the Trait
 ------------------------
 
-* Manual implementation can be heavy
+**Manual implementation can be heavy**
 
 .. container:: latex_environment tiny
 
