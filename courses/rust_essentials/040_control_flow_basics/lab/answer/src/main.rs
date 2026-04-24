@@ -48,6 +48,6 @@ fn main() {
     if is_brave && health > 0 {
         println!("You survived with {} health!", health);
     } else {
-        todo!("The ritual should have been a guaranteed success!");
+        unreachable!("The ritual should have been a guaranteed success!");
     }
 }
