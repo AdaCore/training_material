@@ -9,7 +9,7 @@ Topics Covered
 * **Errors**
 
   * Unrecoverable errors - :rust:`panic!`
-  * Recoverable Errors - :rust:`Result`
+  * Recoverable errors - :rust:`Result`
 
 * **Try Operator**
 
@@ -22,6 +22,6 @@ Topics Covered
 
 * **Simplified Error Handling**
 
-  * Creating Errors Through :rust:`derive` - :rust:`thiserror`
+  * Creating errors through :rust:`derive` - :rust:`thiserror`
   * :rust:`anyhow`
 

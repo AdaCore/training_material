@@ -11,23 +11,23 @@ The "Error" Trait
   * Defined in :rust:`std::error`
   * Implemented by many standard and custom error types
 
-* Without standard trait, libraries would have their own errors
+* All errors should use :rust:`Error` trait
 
-* :rust:`Error` allows common processing for different error types
+  * Without standard trait, libraries would have their own errors
 
 ---------------------
 Trait Prerequisites
 ---------------------
 
-To implement :rust:`Error` type must also implement
+**To implement** :rust:`Error` **type must also implement**
 
-  * :rust:`Display`
+* :rust:`Display`
 
-    * For user-facing error messages
+  * For user-facing error messages
 
-  * :rust:`Debug`
+* :rust:`Debug`
 
-    * For developer-facing details
+  * For developer-facing details
 
 ------------------
 Trait Definition
@@ -48,7 +48,7 @@ Trait Definition
 
   * Key to *Error Chaining*
   * Allows you to peel back layers of error to find root cause
-  * E.g a "network error" caused by a "timeout"
+  * E.g., a "network error" caused by a "timeout"
 
 .. note::
 
@@ -61,7 +61,7 @@ Trait Definition
 Implementing the Trait
 ------------------------
 
-* Manual implementation can be heavy
+**Manual implementation can be heavy**
 
 .. container:: latex_environment tiny
 
@@ -93,46 +93,68 @@ Implementing the Trait
     }
 
 
-* Instead, can use crates like :rust:`thiserror`
+.. tip::
+
+  Instead, use crates like :rust:`thiserror`
   
-  * Described in next chapter
+-----------------
+Using the Trait
+-----------------
 
----------------
-Trait Objects
----------------
+* Return some kind of error
 
-* When you don't know what specific error will happen
+  .. container:: latex_environment footnotesize
 
-  * Use :rust:`Box<dyn Error>`
-  * Or don't care!
+    .. code:: rust
 
-* :rust:`'static` bound
+      fn do_something(fail: bool) -> Result<(), Box<dyn Error>> {
+          if fail {
+              let err = MyError {
+                  details: String::from("Something went wrong!"),
+              };
+              // We box the error to erase its specific type
+              return Err(Box::new(err));
+          }
+          Ok(())
+      }
 
-  * Typically see :rust:`Box<dyn Error + 'static>`
-  * Ensures error can live for entire program duration
+* Receive error and check for a specific problem
 
-    * Safe to pass across boundaries
+  .. container:: latex_environment footnotesize
 
-* You have a :rust:`dyn Error` but need to check if it's :rust:`Network` error
+    .. code:: rust
+      :number-lines: 2
 
-  * Can use :rust:`.downcast_ref::<MyError>()`
+      match do_something(true) {
+          Ok(_) => println!("Success!"),
+          Err(e) => {
+              // Attempt to downcast to our specific type
+              if let Some(specific_err) = e.downcast_ref::<MyError>() {
+                  println!("Caught a specific error: {}", specific_err.details);
+              } else {
+                  println!("Caught an unknown error type: {}", e);
+              }
+          }
+      }
+
+.. note::
+
+  Line 6 :rust:`.downcast_ref::<MyError>()` "unboxes" error using :rust:`Option`
 
 ----------------------------------
 Best Practices for Custom Errors
 ----------------------------------
 
-* Implement methods
+**Implement methods for the following traits**
 
   * :rust:`Display`
 
     * Tell user what happened
 
-  * :rust:`Debug` - for the "where/how" technical details
+  * :rust:`Debug`
 
-    * Tell programmer what happened
+    * Tell programmer what happened and where
 
   * :rust:`Error`
 
     * Allow everyone to know what happened
-
-* :rust:`source()` allows tracking of where error came from
