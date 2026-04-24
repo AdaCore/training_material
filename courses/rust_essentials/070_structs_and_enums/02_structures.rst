@@ -30,7 +30,7 @@ Basics
         number_of_messages: 275,    
     }
     
-    if myself.number_of_messages > 250 {
+    if myself.number_of_messages > 300 {
         println!("You post too much!");
     }  
 
@@ -88,13 +88,13 @@ Struct Initialization
         sign_in_count: u64,
         logged_in: bool,
     }
-    let user_1 : User;
-    let user_2 = User {
+    let tic: User;
+    let tac = User {
         active: true,
         sign_in_count: 1,
         logged_in: true,
     };	
-	let user_3 = User {
+	let toe = User {
         active: true,
         sign_in_count: 1
     };
@@ -140,11 +140,7 @@ Struct Update Operator
   - Specify values only for fields that need to change 
   - Unspecified fields are *copied* or *moved* from the base instance
 - Base instance can't be followed by a comma
-  - Must be at the end of the declaration
-
-   
-.. warning:: Fields are *moved* if their type (e.g., :rust:`String`)  doesn't implement the :rust:`Copy` trait  
-
+  - Must be at the end of the declaration  
 
 .. container:: latex_environment footnotesize
 
@@ -167,6 +163,7 @@ Struct Update Operator
         ..default_set   // Copy all fields
     };
 
+.. warning:: Fields are *moved* if their type doesn't implement the :rust:`Copy` trait
 
 ---------
 Mutable
@@ -187,9 +184,9 @@ Mutable
         is_napping: false,
     };
     active_cat.is_napping = true;
-    // ERROR
+
     let new_cat = CatStatus {
-        mut energy_level: 80,
+        mut energy_level: 80, // Error
         is_napping: false,
     };
     
@@ -233,24 +230,14 @@ Constructor Ambiguity
     
     struct Point(i32, i32);
     // Creates a binding to the constructor function
-    let coord = Point;  // 'Point' is the constructor function
-       
-.. warning:: 
-    
-   :rust:`coord` is NOT a variable of type :rust:`Point`. It refers to the :rust:`Point` constructor function
-
-.. code:: rust 
+    let coord = Point;  // 'Point' is the constructor function 
     
     // Calls the 'Point' constructor function   
     // Initializes the tuple
     let maximum = coord(1,2); // 'maximum' is a 'Point'
     
-- This doesn't compile
-
-.. code:: rust
-    
     // Calls the 'Point' constructor 
-    // No initilization because of missing fields
+    // No initialization because of missing fields
     let coord2 = Point();
 
 .. container:: latex_environment footnotesize
