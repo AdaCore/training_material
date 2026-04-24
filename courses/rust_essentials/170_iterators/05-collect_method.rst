@@ -33,19 +33,23 @@ One Method, Many Results
 
 .. code:: rust
 
-  let numbers = vec![1, 2, 2, 3];
+  fn is_digit(c: &char) -> bool { c.is_numeric() }
 
-  // Collect into a Vector (keeps order and duplicates)
+  let numbers = vec![1, 2, 2, 3];
+  let letters = "Value is 1234";
+
+  // Collect into a 'Vec' (keeps order and duplicates)
   let my_vector: Vec<_> = numbers.iter().collect();
 
-  // Collect into a HashSet (removes duplicates!)
-  use std::collections::HashSet;
-  let my_set: HashSet<_> = numbers.iter().collect();
+  // Collect into a 'String' (only digits)
+  let my_string: String = letters.chars()
+                                 .filter(is_digit)
+                                 .collect();
 
 .. note::
 
-  :rust:`my_vector` and :rust:`my_set` contain **references** to
-  the items in :rust:`numbers`
+  :rust:`my_vector` and :rust:`my_string` contain **references** to
+  the elements in their sources
 
 ---------------------
 Collecting "Result"
@@ -55,7 +59,7 @@ Collecting "Result"
 
   * Produces a single :rust:`Result<Vec<T>, E>`
 
-* Stops on the first :rust:`Err`
+* Stops on first :rust:`Err`
 
 * Otherwise returns :rust:`Ok(Collection)`
 
@@ -65,8 +69,7 @@ Collecting "Result"
   let good_strings = vec!["1", "2", "42"];
 
   let bad_numbers: Result<Vec<i32>, _> = bad_strings
-      .into_iter()
-      .map(|s| s.parse::<i32>())
+      .into_iter().map(|s| s.parse::<i32>())
       .collect();
   println!("bad_numbers: {:?}", bad_numbers);
     
