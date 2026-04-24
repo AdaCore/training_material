@@ -1,10 +1,12 @@
-// Lab (answer)
-//  Memory Management
-
+//! Lab (answer)
+//! Memory Management
+//!
 //! Fix all the compile errors below and/or follow the hints provided
+//!
 
 #![allow(unused_assignments)]
-
+#![allow(unused_variables)]
+#![allow(dead_code)]
 
 fn main() {
     // TASK 1 - Scope and Validity
@@ -13,7 +15,6 @@ fn main() {
     { // Outer scope starts
         let pt = Point(3, 4);
         { // Inner scope starts
-             
             println!("x: {}", pt.0);
         } 
         println!("y: {}", pt.1); 
