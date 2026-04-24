@@ -23,7 +23,7 @@ fn main() {
     
     // --- TASK 2: Health Check ---
     // GOAL: Print your health to the console.
-    // Repalce todo with the correct macro to meet the goal!
+    // Replace 'todo!' with the correct macro to meet the goal
     todo!(health);
 
     // --- TASK 3: The Approach ---
