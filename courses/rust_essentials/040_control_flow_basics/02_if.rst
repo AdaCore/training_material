@@ -20,11 +20,13 @@ Using "if" as a Statement
     let coins = 800;
     if coins == 0 {
         println!("You have no gold. The dragon eats you.");
-    } else if coins < 1000 {
+    } else if coins < 700 {
         println!("A solid pouch! Buy a new sword!");
     } else {
         println!("New graphics card acquired.");
     }
+
+:command:`New graphics card acquired.`
 
 ---------------------------------
 Using "if" as an Expression
@@ -42,6 +44,8 @@ Using "if" as an Expression
     }; // Note the ; here to terminate the let statement
     println!("Pet Status: {}", status);
 
+:command:`Pet Status: Starving. Call the vet and the police.`
+
 ---------------------------------------------------
 Return Type Consistency
 ---------------------------------------------------
@@ -50,8 +54,7 @@ Return Type Consistency
 
   .. code:: rust
 
-    let size = if x < 20 { "small"; } else { "large" };
-        let size = if x < 20 {
+    let size = if x < 20 {
         "small"; // Note the ;
     } else {
         "large"  // Note the absence of ; 
