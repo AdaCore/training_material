@@ -11,16 +11,16 @@ What Is a Variable?
   - **Label** - variable's name (e.g., :rust:`score`)
   - **Contents** - value (e.g., :rust:`100`)
 
-- We create a variable with the :rust:`let` keyword
+- Create a variable with the :rust:`let` keyword
   
   - This **binds** a name to a value
 
 .. code:: rust
 
-  // We are binding 'apples' to the value 5
+  // Bind 'apples' to the value 5
   let apples = 5;
 
-  // We are binding 'person' to the value 'Alice'
+  // Bind 'person' to the value 'Alice'
   let person = "Alice";
 
 -------------------------------------

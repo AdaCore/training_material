@@ -122,7 +122,7 @@ Arithmetic Nuance: Division
 
 - **Integer Division**
 
-  - When you divide two **integers**, the result is *always* an **integer**
+  - When dividing two **integers**, result is *always* an **integer**
   - Decimal is **truncated** (cut off), not rounded
 
 .. code:: rust
