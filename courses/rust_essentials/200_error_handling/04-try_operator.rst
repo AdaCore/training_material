@@ -55,11 +55,7 @@ Clarity vs. Verbosity
 Try Operator With "Option"
 ----------------------------
 
-<<<<<<< HEAD
-* :rust:`?` also works with :rust:`Some` / :rust:`None` from :rust:`Option`
-=======
 * :rust:`?` also works with :rust:`Some`/:rust:`None` from :rust:`Option`
->>>>>>> b7a7fa5ca6f457c0cbdd448c92bfaad7ec30f43d
 
 * Behavior
 
