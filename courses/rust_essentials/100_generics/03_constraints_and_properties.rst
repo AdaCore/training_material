@@ -155,7 +155,7 @@ Multiple Traits
    
 .. code:: rust
     
-  // Compiler assumes 'T' has 'Debug' trait
+  // Compiler enforces 'Debug' trait for 'T'
   #[derive(Debug)]
   struct Box<T> {
     content: T,

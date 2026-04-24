@@ -12,7 +12,7 @@ What We Covered
      
     - Abstracts algorithms and structures from code reuse
 
-  - **Generic Objects** 
+  - Generic Objects 
      
     - Functions, structs, enums, and type aliases
 
