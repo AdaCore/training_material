@@ -39,10 +39,10 @@ Parameters and Type Signatures
 Return Values (Expression vs. Statement)
 -----------------------------------------
 
-- Return type is specified after an arrow (:rust:`->`)
+- Return type is specified after an arrow :rust:`->`
 - No :rust:`->` syntax means function returns the unit type :rust:`()`
 - Functions can return values by ending with either
-  - **Statement:** ends with a semicolon (:rust:`;`), returns :rust:`()`
+  - **Statement:** ends with a semicolon :rust:`;`, returns :rust:`()`
   - **Expression:** does **not** end in a semicolon 
     - Last expression evaluated in the body is returned
 
