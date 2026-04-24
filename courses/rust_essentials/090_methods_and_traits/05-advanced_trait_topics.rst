@@ -79,14 +79,14 @@ Associated Types
   struct Catnip;
 
   impl Animal for Cat {
-      // We associate Catnip with Cat
+      // We associate 'Catnip' with 'Cat'
       type Food = Catnip; 
       fn consume(&self, food: Catnip) {
           println!("The cat purrs intensely over the catnip.");
       }
   }
 
-* Key Points
+.. note::
 
   * Implementer decides type once
 

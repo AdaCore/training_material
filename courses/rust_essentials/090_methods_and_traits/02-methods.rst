@@ -18,7 +18,6 @@ Methods in Rust
 .. container:: latex_environment tiny
 
   .. code:: rust
-    :number-lines: 3
 
     struct CarRace {
         laps: Vec<i32>,
@@ -31,10 +30,8 @@ Methods in Rust
         }
     }
 
-    fn main() {
-        let mut race = CarRace::new();
-        race.record_lap(114); // Data and logic live together
-    }
+    let mut race = CarRace::new();
+    race.record_lap(114); // Data and logic live together
 
 ----------------------------
 What Is a Method Receiver?
@@ -133,23 +130,27 @@ Method Receiver - Mutable Borrow
 Method Receiver - Take Ownership
 ----------------------------------
 
-.. code:: rust
+**Definition**
 
-  impl Counter {
-      // This 'consumes' counter and returns the final number
-      fn finalize(self) -> i32 {
-          println!("Shutting down counter...");
-          // Return the value, 'self' is dropped here
-          self.value
-      }
-  }
+  .. code:: rust
 
-  let count = Counter { value: 10 };
-  let total = count.finalize();
+    impl Counter {
+        // This 'consumes' counter and returns the final number
+        fn finalize(self) -> i32 {
+            println!("Shutting down counter...");
+            // Return the value, 'self' is dropped here
+            self.value
+        }
+    }
 
-  count.get();
+**Usage**
 
-:error:`error[E0382]: borrow of moved value: "count"`
+    let count = Counter { value: 10 };
+    let total = count.finalize();
+
+    count.get();
+
+  :error:`error[E0382]: borrow of moved value: "count"`
 
 **Behavior**
 
