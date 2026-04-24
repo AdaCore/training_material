@@ -32,7 +32,7 @@ fn main() {
 
 
     // TASK 3 - Ignoring Fields in Struct Destructuring
-    // Hint: Unused fields may be ignored using the rest pattern (..) to capture specific named fields and ignore the rest
+    // Hint: Unused fields may be ignored using rest pattern to capture specific named fields and ignore remaining
     struct Player {
         name: String,
         health: u32,
