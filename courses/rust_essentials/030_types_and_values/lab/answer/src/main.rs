@@ -1,11 +1,13 @@
-// Lab (answer)
-//  Types and Values
+//! Lab (answer)
+//! Types and Values
+//!
+//! Fix all the compile errors below and/or follow the hints provided
+//!
 
 #![allow(unused_assignments)]
 #![allow(unused_variables)]
 
 fn main() {
-
     // TASK 1 - Variable Declaration
     // Hint: Variable declaration has a particular syntax using ":" for types and "=" for value and ending with a ";"
     let apples = 5;
@@ -14,8 +16,8 @@ fn main() {
 
     // TASK 2 - Mutable Variable
     // Hint: Keyword "mut" makes a variable mutable. Add a declaration to make 'money' mutable
-    let mut my_var = 10;        
-    my_var = my_var + 20; 
+    let mut money = 10;        
+    money = money + 20; 
 	
 
     // TASK 3 - Variable Types
@@ -25,7 +27,7 @@ fn main() {
    
 
     // TASK 4 - Type inference and Static Type
-    // Hint: Type is infered by initial value. Numeric litterals must match the type assigned
+    // Hint: Type is infered by initial value. Numeric literals must match the type assigned
 	let mut my_float = 6.5;
     my_float = 5.5;
     let mut my_int = 18;
@@ -54,7 +56,7 @@ fn main() {
 
     // TASK 7 - Arithmetic and the Exponent Trap
     // Hint: Code compiles but the value is not correct 
-    let exponent = 5.pow(2);
+    let exponent = 5_i32.pow(2);
     println!("TASK7 => 5 to the power of 2 equals: {}", exponent);
     
 
