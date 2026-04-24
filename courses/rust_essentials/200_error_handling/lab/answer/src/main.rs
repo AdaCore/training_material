@@ -1,7 +1,8 @@
-// Lab (answer)
-//  Error Handling
-
+//! Lab (answer)
+//! Error Handling
+//!
 //! Fix all the compile errors below and/or follow the hints provided
+//!
 
 #![allow(unused_assignments)]
 #![allow(unused_variables)]
