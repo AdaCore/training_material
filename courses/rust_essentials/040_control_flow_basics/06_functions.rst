@@ -30,7 +30,7 @@ Parameters and Type Signatures
 
 .. code:: rust
 
-  // We must tell the types of both 'first' and 'second'
+  // We must specify the types of both 'first' and 'second'
   fn add(first: i32, second: i32) -> i32 {
     first + second
   }
@@ -39,10 +39,10 @@ Parameters and Type Signatures
 Return Values (Expression vs. Statement)
 -----------------------------------------
 
-- Return Type is specified after an arrow (:rust:`->`)
-- No :rust:`->` syntax means the function returns the unit type :rust:`()`
-- Functions can return in two ways
-  - **Statement:** ends in a semicolon (:rust:`;`), returns :rust:`()`
+- Return type is specified after an arrow :rust:`->`
+- No :rust:`->` syntax means function returns the unit type :rust:`()`
+- Functions can return values by ending with either
+  - **Statement:** ends with a semicolon :rust:`;` returns :rust:`()`
   - **Expression:** does **not** end in a semicolon 
     - Last expression evaluated in the body is returned
 
@@ -54,7 +54,7 @@ Return Values (Expression vs. Statement)
   }
 
   fn print_and_return_unit() {
-     // A statement (ends in ;), returns ()
+     // A statement (ends with ;), returns ()
      println!("Hello!");
   }
 
@@ -100,5 +100,5 @@ Design Philosophy: Clarity and Precision
   - You see all the data entering the function
 - Fixed number of arguments
   - Take a strict number of inputs
-  - *Macros* (like :rust:`(println!)`) can take variable arguments
+  - *Macros* (like :rust:`println!`) can take variable arguments
     - But *functions* cannot
