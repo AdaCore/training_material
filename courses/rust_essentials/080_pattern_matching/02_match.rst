@@ -52,12 +52,13 @@ Match Arms
 
   let scoops  = 5;
 
-  match n {
+  match scoops {
     1 => println!("Single scoop!"),
     2 => println!("Double scoop!!"),
     _ => println!("Wow, that's a lot of ice cream!"),
   }
 
+:command:`Wow, that's a lot of ice cream!`
 ----------------
 Exhaustiveness
 ----------------
