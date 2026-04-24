@@ -33,56 +33,35 @@ Annex - Reference Materials
 .. container:: PRELUDE END
 
 ==========================
-General Ada Information
+General Rust Information
 ==========================
 
----------------------------
-Learning the Rust Language
----------------------------
+--------------
+Useful Links
+--------------
 
-* Written as a tutorial for those new to Rust
-
-.. image:: rust-book_cover.jpg
-
-------------------
-Reference Manual
-------------------
-
-* Rust Book
-
-  - Always on-line at 
+  - Rust Book
   
     - `//doc.rust-lang.org/book/`
 
-* And more information and documentation at 
+  - And more information and documentation at 
 
     - `//rust-lang.org/learn/`
 
 
-=====================
-GNAT-Specific Help
-=====================
+  - GNAT Pro for Rust User’s Guide
 
--------------
-GNAT Tools
--------------
+    - `https://docs.adacore.com/live/wave/rust/html/rust_ug/index.html`
 
-* GNAT Pro for Rust User’s Guide
+    - LOTS of info about the main tools: how to build mixed-language programs etc.
 
-  - LOTS of info about the main tools: how to build mixed-language programs etc.
-
-* GNAT Pro for Rust includes the Rust development toolsuite 
-
-  - with AdaCore’s multi-language build utility
-
-
-==================
+=================
 AdaCore Support
-==================
+=================
 
-----------------
+-----------------
 Need More Help?
-----------------
+-----------------
 
 * If you have an AdaCore subscription:
 
