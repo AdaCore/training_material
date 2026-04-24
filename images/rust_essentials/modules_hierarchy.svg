@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="115" width="345" >
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal"  x="10" y="10" >src/</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal"  x="20" y="24" >main.rs</text>
+<line fill="none" stroke="#1598cb" stroke-width="1" x1="12" y1="21" x2="17" y2="21" />
+<text xml:space="preserve" fill="#fe5000" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal" font-style="italic"  x="120" y="24" >Needs "mod supplier;"</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal"  x="20" y="38" >supplier.rs</text>
+<line fill="none" stroke="#1598cb" stroke-width="1" x1="12" y1="35" x2="17" y2="35" />
+<text xml:space="preserve" fill="#fe5000" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal" font-style="italic"  x="120" y="38" >'supplier' module root (has child 'service')</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal"  x="20" y="52" >supplier/</text>
+<line fill="none" stroke="#1598cb" stroke-width="1" x1="12" y1="49" x2="17" y2="49" />
+<text xml:space="preserve" fill="#fe5000" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal" font-style="italic"  x="120" y="52" >Folder containing 'supplier' children</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal"  x="30" y="66" >supplier_utils.rs</text>
+<line fill="none" stroke="#1598cb" stroke-width="1" x1="22" y1="63" x2="27" y2="63" />
+<text xml:space="preserve" fill="#fe5000" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal" font-style="italic"  x="120" y="66" >Some utility functions</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal"  x="30" y="80" >service.rs</text>
+<line fill="none" stroke="#1598cb" stroke-width="1" x1="22" y1="77" x2="27" y2="77" />
+<text xml:space="preserve" fill="#fe5000" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal" font-style="italic"  x="120" y="80" >'service' module root (has child 'attributes')</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal"  x="30" y="94" >service/</text>
+<line fill="none" stroke="#1598cb" stroke-width="1" x1="22" y1="91" x2="27" y2="91" />
+<text xml:space="preserve" fill="#fe5000" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal" font-style="italic"  x="120" y="94" >Folder containing 'service' children</text>
+<text xml:space="preserve" fill="#12284c" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal"  x="40" y="108" >attributes.rs</text>
+<line fill="none" stroke="#1598cb" stroke-width="1" x1="32" y1="105" x2="37" y2="105" />
+<text xml:space="preserve" fill="#fe5000" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal" font-style="italic"  x="120" y="108" >'attributes' module</text>
+<line fill="none" stroke="#1598cb" stroke-width="1" x1="12" y1="12" x2="12" y2="49.5" />
+<line fill="none" stroke="#1598cb" stroke-width="1" x1="22" y1="54" x2="22" y2="91.5" />
+<line fill="none" stroke="#1598cb" stroke-width="1" x1="32" y1="96" x2="32" y2="105.5" />
+</svg>
