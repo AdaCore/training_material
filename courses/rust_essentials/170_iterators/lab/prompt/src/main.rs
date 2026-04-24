@@ -1,7 +1,8 @@
-// Lab (prompt)
-//  Iterators
-
+//! Lab (prompt)
+//! Iterators
+//!
 //! Fix all the compile errors below and/or follow the hints provided
+//!
 
 #![allow(unused_assignments)]
 
