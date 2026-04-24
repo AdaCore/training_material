@@ -12,7 +12,7 @@ Struct Patterns
 
 - Patterns may *bind*, *ignore*, or *partially match* fields
 
-.. tip::
+.. note::
 
   Destructuring works anywhere patterns are allowed
 
@@ -22,11 +22,14 @@ Destructuring: The Stencil Metaphor
 
 - Think of a **pattern** as a *stencil* placed over a value
 
-- **Field:** the "cutout" in the stencil that tells Rust *where* to look
+- **Field** 
+  - The "cutout" in the stencil that tells Rust *where* to look
 
-- **Binding:** where the data "falls through" into your local scope
+- **Binding** 
+  - Where the data "falls through" into your local scope
 
-- **Result:** You "break open" the complex struct to get exactly the pieces you need
+- **Result** 
+  - You "break open" the complex struct to get exactly the pieces you need
 
 .. code:: rust
 
@@ -40,9 +43,11 @@ Basic Destructuring
 
 - The pattern mirrors the struct's shape to extract values
 
-- **Order Independence:** Rust matches by field name, not position
+- **Order Independence** 
+  - Rust matches by field name, not position
 
-- **Implicit Matching:** Patterns work anywhere a variable is introduced
+- **Implicit Matching** 
+  - Patterns work anywhere a variable is introduced
 
 .. code:: rust
 
