@@ -59,6 +59,7 @@ Match Arms
   }
 
 :command:`Wow, that's a lot of ice cream!`
+
 ----------------
 Exhaustiveness
 ----------------
