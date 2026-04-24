@@ -38,7 +38,7 @@ Standard Operators
 The Exponent Trap
 -------------------
 
-- **No** operator for **exponent** (i.e., **power**)!
+- **No** operator for exponent (i.e., power)!
 
 - **Common Mistake:** using :rust:`^`
 
@@ -120,10 +120,10 @@ Arithmetic Nuance: Division
 
 **The** :rust:`/` **operator behaves differently depending on the type**
 
-  - **Integer Division - Truncation**
+- **Integer Division**
 
-    - When you divide two **integers**, the result is *always* an **integer**
-    - The decimal is **truncated** (cut off), not rounded
+  - When dividing two **integers**, result is *always* an **integer**
+  - Decimal is **truncated** (cut off), not rounded
 
 .. code:: rust
 
@@ -173,11 +173,17 @@ Handling Overflow Explicitly
 
 - What if *you* want to control overflow behavior?
 
-- :rust:`wrapping_add()` - Performs wrapping in all modules
+- :rust:`wrapping_add()` 
 
-- :rust:`saturating_add()` - Clamps the value at the type's *maximum* or *minimum*
+  - Performs wrapping in all modules
 
-- :rust:`overflowing_add()` - returns the value AND a :rust:`bool` indicating if overflow happened
+- :rust:`saturating_add()` 
+
+  - Clamps the value at the type's *maximum* or *minimum*
+
+- :rust:`overflowing_add()` 
+
+  - Returns the value AND a :rust:`bool` indicating if overflow happened
 
 .. code:: rust
   
