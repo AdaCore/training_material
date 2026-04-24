@@ -12,7 +12,7 @@ Topics Covered
 
   - Initialization and update syntax
    
-  - Named-field vs tuple forms
+  - Named-field vs. tuple forms
 
 - **Enums** 
 
