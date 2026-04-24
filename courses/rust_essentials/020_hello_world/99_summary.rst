@@ -8,7 +8,7 @@ First Program: Done!
 
 * **Congratulations!** You've completed your first program!
 
-* We've touched on a few basic concepts like
+* We've touched on a few basic concepts
 
   * Comments
   * Functions
