@@ -3,7 +3,6 @@
 //!
 #[allow(dead_code)]
 #[allow(unused_variables)]
-
 fn main() {
     
     // TASK 1 - Method Receiver: Mutable Borrow
@@ -19,7 +18,7 @@ fn main() {
 
 
     // TASK 2 - Method Receiver: Take Ownership
-    // Hint: Object cannot be reused afterward because value is moved into the method
+    // Hint: Object cannot be reused afterward because 'finalize' takes ownership of the data
     impl Counter {
         fn finalize(self) -> i32 { self.value }
         fn get(&self) -> i32 { self.value }
@@ -53,7 +52,8 @@ fn main() {
 
 
     // TASK 5 - Default Trait Methods
-    // Hint: Traits can provide default implementations, but types implementing the trait must still define required methods
+    // Hint: Traits can provide default implementations, but
+    // types implementing the trait must still define required methods
     trait Speaker {
         fn message(&self) -> String;
         fn speak(&self) { println!("{}", self.message()); }
