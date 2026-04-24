@@ -101,7 +101,7 @@ Programmer-Defined Traits as Constraints
 Turbofish "::<>"
 ------------------
 
-- Compiler determines the type to use from context
+- Compiler enforces the type to use from context
 
   - Sometimes there is *ambiguity*
    
@@ -155,7 +155,7 @@ Multiple Traits
    
 .. code:: rust
     
-  // Compiler assumes 'T' has 'Debug' trait
+  // Compiler enforces 'Debug' trait for 'T'
   #[derive(Debug)]
   struct Box<T> {
     content: T,
