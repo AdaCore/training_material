@@ -6,34 +6,31 @@ Filesystem Hierarchy
 Using Modules From Other Files
 --------------------------------
 
-* Each file is considered a module
+* Each **file** is considered a **module**
 
   * Functions, structs, etc. are *potentially* visible to other files
+  * File by definition is a module
 
-    * More on how that's controlled in the next chapter
+    * Do not put :rust:`mod` at the top
 
-  * Do not need :rust:`mod` in the file
-
-    * If you have it, that's a nested module!
-
-  **File cleaner.rs**
+  :filename:`supplier.rs`
 
     .. code:: rust
 
       pub fn perform_cleanup() {
-          println!("Whistle while you work")
+          println!("Whistle while you work");
       }
 
 * Calling file specifies module name
 
-  **File caller.rs**
+  :filename:`client.rs`
 
   .. code:: rust
 
-    mod cleaner;
+    mod supplier;
 
     fn main() {
-        cleaner::perform_cleanup();
+        supplier::perform_cleanup();
     }
 
 --------------------------
@@ -42,16 +39,18 @@ Mapping Modules to Files
 
 * How does Rust find :rust:`cleaner` module?
 
-  * Module name must match filename (plus **rs** extension)
+  * Module name must match filename
 
-* Rust looks for
+* Compiler looks for
 
   * :filename:`cleaner.rs`
   * :filename:`cleaner/mod.rs`
 
+    * Legacy style but still common
+
 .. note::
 
-  :filename:`cleaner/mod.rs` is legacy style but still common
+  Filenames consist of module name and :filename:`.rs` extension
 
 -------------------------
 Directory-Based Modules
@@ -64,3 +63,5 @@ Directory-Based Modules
     * ... then :rust:`sweep` module can be in :filename:`cleaner/sweep.rs`
 
 * This creates a clean tree structure that mirrors your file system
+
+.. image:: rust_essentials/modules_hierarchy.svg

@@ -12,20 +12,69 @@ Private by Default
 
 * :rust:`pub` keyword makes item public (visible)
 
-* Visibility is top-down
+* Child module can see everything in its parent
 
   * Parent can only see :rust:`pub` items in its child
-  * But child module can see everything in its parent
 
-* Visibility enforced by compiler
+* Enforced by compiler
+
+-------------------
+Module Visibility
+-------------------
+
+  :filename:`parent.rs`
+
+  .. code:: rust
+
+    pub mod public_child;
+    mod private_child;
+
+    pub fn orchestrate() {
+        public_child::public_helper();
+        private_child::private_helper();
+        private_child::deeply_hidden(); // ERROR
+    }
+
+    fn parent_internal_logic() {
+        println!("Parent's secret sauce.");
+    }
+
+  :filename:`private_child.rs`
+
+  .. code:: rust
+
+    pub fn private_helper() {
+        println!("Private child helping the parent.");
+        parent::orchestrate();
+        parent::parent_internal_logic(); 
+    }
+
+    fn deeply_hidden() {
+        println!("Not even the parent can see this.");
+    }
+
+  :filename:`public_child.rs`
+
+  .. code:: rust
+
+    pub fn public_helper() {
+        println!("Public child is open for business.");
+        parent::parent_internal_logic(); 
+        parent::private_child::private_helper(); // ERROR
+    }
+
 
 ---------------------------
 Visibility at Every Level
 ---------------------------
 
-* Making a struct :rust:`pub` does not make its fields public
+* Making a struct :rust:`pub` allows client to know it exists
 
-  * Each field needs its own :rust:`pub`
+  * But does not make its fields public
+
+* Each field needs its own :rust:`pub`
+
+  * Client knows :rust:`pub` fields exist
 
   .. code:: rust
 
@@ -40,26 +89,22 @@ Visibility at Every Level
 Example: Security Module
 --------------------------
 
-**File** :filename:`security.rs`
+:filename:`security.rs`
 
 .. code:: rust
 
   // 'MasterKey` only visible in this file
-  struct MasterKey {
-      level: u8,
-  }
+  struct MasterKey { level: u8, }
 
   // 'KeyCard' is visible to caller
-  pub struct KeyCard {
-      pub ident: u32,  // Caller can see 'ident'
-      key: MasterKey,  // But cannot see 'key'
+  pub struct KeyCard { pub ident: u32,  // Caller can see 'ident'
+                       key: MasterKey,  // But cannot see 'key'
   }
 
   // Caller can 'issue_card'
   pub fn issue_card(ident: u32) -> KeyCard {
-      KeyCard {
-          ident,
-          key: generate_master_key(),
+      KeyCard { ident,
+                key: generate_master_key(),
       }
   }
 
@@ -68,28 +113,17 @@ Example: Security Module
       MasterKey { level: 255 }
   }
 
---------------------------------
-Example: Using Security Module
---------------------------------
-
-**File:** :filename:`main.rs`
+:filename:`main.rs`
 
 .. code:: rust
-  ..line-numbers: 1
 
+  // Grant visibility to 'security' module
   mod security;
   fn main() {
       let mut my_card = security::issue_card(1234);
-      my_card.ident = my_card.ident * 10;
+      my_card.ident = my_card.ident * 10;  // Can see this field
       println!("{}", my_card.ident);
-      my_card.key = my_card.key * 10;
+      my_card.key = my_card.key * 10;      // Error - field not visible
   }
-
-1. We need access to :rust:`security` module
-2. Main program
-3. Request a :rust:`KeyCard`
-4. Examine/modify public field :rust:`ident`
-5. Print the public field
-6. Examine/modify private field is compile error
 
 :error:`error[E0616]: field 'key' of struct 'KeyCard' is private`
