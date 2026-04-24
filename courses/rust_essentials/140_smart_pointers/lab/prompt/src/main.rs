@@ -113,14 +113,4 @@ fn main() {
 
     println!("var_a = {}", var_a);
     println!("var_b = {}", var_b);
-
-    // TASK 10 - Use tic, tac, and toe in a simple way that demonstrates shared ownership
-    // Hint: All three variables refer to the same underlying value
-    let tic = Rc::new(5);
-    let tac = Rc::clone(&tic);
-    let toe = Rc::clone(&tic);
-
-    println!("tic = {}", tic);
-    println!("tac = {}", tac);
-    println!("toe = {}", toe);
 }
