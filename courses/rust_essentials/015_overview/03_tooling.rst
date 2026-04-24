@@ -2,18 +2,18 @@
 Tooling
 =========
 
----------------
-AdaCore Tools
----------------
+-------------------
+GNAT Pro for Rust
+-------------------
 
-- :toolname:`GNAT Pro for Rust` is a **stabilized** version of upstream Rust
+- **Stabilized** version of upstream Rust
 
   - Yearly updates for recent changes
   - Tested and secured
   - Reproducible (stable) build process
   - Vulnerability fixes backported
 
-- :toolname:`GNAT Pro for Rust`: AdaCore's Rust Development Toolsuite
+- AdaCore's Rust Development Toolsuite
 
   - :toolname:`cargo` - Rust package manager
   - :toolname:`rustc` - Rust compiler
