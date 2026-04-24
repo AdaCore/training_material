@@ -18,3 +18,7 @@ Basics
    let alien_report: (i8, bool) = (3, false);
    println!("Number of tentacles: {}", alien_report.0); 
    println!("Hostile? {}", alien_report.1);
+
+:command:`Number of tentacles: 3`
+
+:command:`Hostile? false`
