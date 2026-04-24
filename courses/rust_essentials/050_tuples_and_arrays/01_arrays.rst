@@ -6,7 +6,7 @@ Arrays
 What Is an Array?
 -------------------
 
-* **Definition: a collection of elements**
+* **Collection of elements**
 
    * ... of the **same type**
    * ... stored in contiguous memory
