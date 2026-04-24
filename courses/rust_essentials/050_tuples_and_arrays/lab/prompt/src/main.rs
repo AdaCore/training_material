@@ -1,10 +1,10 @@
-// Lab (prompt)
-//  Tuples and Arrays
-
+//! Lab (prompt)
+//! Tuples and Arrays
+//!
 //! Fix all the compile errors below and/or follow the hints provided
+//!
 
-#[allow(dead_code)]
-#[allow(unused_variables)]
+#![allow(unused_assignments)]
 
 
 fn main() {

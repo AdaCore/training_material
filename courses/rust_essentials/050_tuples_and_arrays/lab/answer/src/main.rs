@@ -1,3 +1,12 @@
+//! Lab (answer)
+//! Tuples and Arrays
+//!
+//! Fix all the compile errors below and/or follow the hints provided
+//!
+
+#![allow(unused_assignments)]
+
+
 fn main() {
     // TASK 1 - Array Declaration, Intialization and Value Change
     // Hint: First declare type and number of elements of your array, then assign it valid initial values.
