@@ -47,7 +47,9 @@ By Default, Variables Are Immutable
   // This will cause an ERROR! We can't change the value
   my_var = 20;
 
-:error:`error[E0384]: cannot assign twice to immutable variable 'my_var'`
+.. container:: latex_environment scriptsize
+
+  :error:`error[E0384]: cannot assign twice to immutable variable 'my_var'`
 
 --------------------------
 Making Variables Mutable
