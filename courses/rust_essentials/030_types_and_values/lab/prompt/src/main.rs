@@ -7,7 +7,6 @@
 #![allow(unused_assignments)]
 #![allow(unused_variables)]
 
-
 fn main() {
     // TASK 1 - Variable Declaration
     // Hint: Variable declaration has a particular syntax using ":" for types and "=" for value and ending with a ";"
