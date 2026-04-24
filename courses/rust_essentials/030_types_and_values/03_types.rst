@@ -23,7 +23,7 @@ Rust Is Statically Typed
 Assigning Types
 -----------------
 
-* Two ways to tell Rust what **type** a variable is
+**Two ways to tell Rust what type a variable is**
 
 - **Explicit Annotation**
 
@@ -131,8 +131,6 @@ The types have widths as follows
 Numeric Literal Formats 
 -------------------------
 
-- Rust provides a few ways to make values easier to read
-
 - **Numeric Readability**
 
   - Underscores can be used in numbers for legibility
@@ -206,8 +204,9 @@ Numeric Conversions
 
 .. tip::
 
-  Rust forces you to be **intentional**. Applying
-  :rust:`as` to a variable makes you think before doing
+  - Rust forces you to be **intentional**
+  
+  - Applying :rust:`as` to a variable makes you think before doing
 
 ----------------------------
 The "char" Type Is Special
