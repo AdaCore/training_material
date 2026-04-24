@@ -14,9 +14,7 @@ What Is an Iterator?
     for idx in 0..4 {
        println!("{}", array[idx]);
 
-* The iteration mechanism is called :dfn:`iterator`
-
-  * Encapsulates these mechanics inside reusable abstraction
+* Iterations contain the following information
 
 .. container:: latex_environment scriptsize
 
@@ -39,28 +37,22 @@ What Is an Iterator?
       - Look at what is at the current position
       - :rust:`array[idx]`
 
------------------------
-Iterators in Practice
------------------------
+----------------------
+What Is an Iterator?
+----------------------
 
-* Iterator provides standard way to access items of a collection
+* Provides standard way to access elements of a collection
 
   * One at a time
 
     * Typically in sequence
 
   * Without exposing collection’s internal structure
-
-* Rust uses types, traits, and methods
+  * Using types, traits, and methods
 
 * Benefits include
 
-  * Abstraction
-
-    * Don't need to know underlying structure
-
   * Reduces "off-by-one" errors and index-out-of-bounds panics
-
   * Lightweight structs that hold iteration state
 
     * Compile to very efficient loops
@@ -69,9 +61,13 @@ Iterators in Practice
 
   .. code:: rust
 
-    for elem in [2, 4, 8, 16, 32] {
-          println!("{}", elem);
-      }
+    let numbers = vec![1, 2, 3];
+
+    // '.iter()' creates the iterator
+    let it = numbers.iter()
+        for num in it {
+            println!("{}", num);
+        }
 
 .. note::
 

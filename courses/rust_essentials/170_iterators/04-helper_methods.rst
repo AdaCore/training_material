@@ -2,11 +2,11 @@
 Helper Methods
 ================
 
-------------------------------
-Extending the Iterator Trait
-------------------------------
+------------------
+Iterator Toolbox
+------------------
 
-* :rust:`next` is the only *required* method
+* :rust:`next` is only **required** method
 
   * *Many* more *can* be implemented
 
@@ -22,21 +22,24 @@ Extending the Iterator Trait
 
 * Consumers
 
-  * Drive the iterator to produce final value
+  * Drive iterator to produce final value
 
     * E.g., :rust:`sum`, :rust:`collect`
 
-  * Ends any chaining
+  * End any chaining
 
     * Result is **not** an iterator
 
 --------------------------------
-Getting an Iterator - "iter()"
+Getting an Iterator - ".iter()"
 --------------------------------
 
-* Collections itself us not an iterator
+* Collections themselves are not iterators
 
-  * Call :rust:`.iter()` to create iterator
+* Call :rust:`.iter()` to create iterator
+
+  * Does **not** consume collection
+  * Allows use of iterator adapters
 
   .. code:: rust
     :number-lines: 3
@@ -52,11 +55,9 @@ Getting an Iterator - "iter()"
 
   :command:`30`
 
-* :rust:`iter()` (line 4) creates the collection iterator
+.. note::
 
-  * Returns an iterator over references (:rust:`&T`)
-  * Does **not** consume the collection
-  * Allows use of iterator adapters
+  :rust:`.iter()` returns an iterator over references
 
 --------------------------
 Common Iterator Adapters
@@ -98,7 +99,7 @@ Common Iterator Adapters
 Common Consumers
 ------------------
 
-* :rust:`sum` **- add all values and return a single value**
+* :rust:`sum` **- adds all values and return a single value**
 
     .. code:: rust
 
@@ -114,19 +115,18 @@ Common Consumers
 
     .. code:: rust
 
+      fn is_freezing(t: &i32) -> bool { todo!() }
       let temperatures = [22, 28, -2, 15, 30];
 
       // '.iter()' creates the stream of references
       // '.any()' looks for the first item that satisfies the closure
-      if temperatures.iter().any(|&t| t < 0) {
+      if temperatures.iter().any(is_freezing) {
           println!("Warning: Freezing temperatures detected!");
       } else {
           println!("All temperatures are above freezing.");
       }
 
     :command:`Warning: Freezing temperatures detected!`
-
-    :rust:`all` *returns True if* **all** *values match*
 
 .. note::
 
@@ -143,30 +143,30 @@ Declarative Data Processing
 .. code:: rust
   :font-size: scriptsize
 
-  fn main() {
-      let result: i32 = (1..=10)        // Range: 1, 2, 3, ..., 10
-          .filter(|x| x % 2 == 0)       // Keep even: 2, 4, 6, 8, 10
-          .map(|x| x * x)               // Square: 4, 16, 36, 64, 100
-          .sum();                       // Total: 220
+  fn is_even(t: &i32) -> bool { todo!() }
+  fn square(t: &i32) -> i32 { todo!() }
+  let result: i32 = (1..=10)  // Range: 1, 2, 3, ..., 10
+      .filter(is_even)        // Keep even: 2, 4, 6, 8, 10
+      .map(square)            // Square: 4, 16, 36, 64, 100
+      .sum();                 // Total: 220
 
-      println!("Sum of even squares: {}", result);
-  }
+  println!("Sum of even squares: {}", result);
 
 :command:`Sum of even squares: 220`
 
-.. note::
+* Chaining allows you to create a new set of data before consuming
 
-  Chaining allows you to create a new set of data before consuming
+  * Modify values (:rust:`map`)
+  * Skip values (:rust:`filter`)
+  * Etc.
 
-    Modify values, skip values, etc.
-
-----------------------------
-Reliability and Maintenace
-----------------------------
+-----------------------------
+Reliability and Maintenance
+-----------------------------
 
 * Lazy evaluation
 
-  * Adapters do nothing until a "Consumer" is called
+  * Adapters do nothing until a "consumer" is called
 
     * :rust:`sum` or :rust:`count`, etc.
 
