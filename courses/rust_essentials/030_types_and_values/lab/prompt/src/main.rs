@@ -1,7 +1,8 @@
-// Lab (prompt)
-//  Types and Values
-
+//! Lab (prompt)
+//! Types and Values
+//!
 //! Fix all the compile errors below and/or follow the hints provided
+//!
 
 #![allow(unused_assignments)]
 #![allow(unused_variables)]
@@ -55,7 +56,7 @@ fn main() {
 
     // TASK 7 - Arithmetic and the Exponent Trap
     // Hint: Code compiles but the value is not correct 
-    let exponent = 5 ˆ 2;
+    let exponent = 5_i32 ˆ 2;
     println!("TASK7 => 5 to the power of 2 equals: {}", exponent);
         
 
