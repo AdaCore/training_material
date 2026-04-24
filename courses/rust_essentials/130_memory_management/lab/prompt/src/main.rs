@@ -1,9 +1,12 @@
-// Lab (prompt)
-//  Memory Management
-
+//! Lab (prompt)
+//! Memory Management
+//!
 //! Fix all the compile errors below and/or follow the hints provided
+//!
 
 #![allow(unused_assignments)]
+#![allow(unused_variables)]
+#![allow(dead_code)]
 
 fn main() {
     // TASK 1 - Scope and Validity
