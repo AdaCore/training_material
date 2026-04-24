@@ -8,7 +8,7 @@ Topics Covered
 
 * **Modules**
 
-  * Organizing your code
+  * Organizing code
 
 * **Filesystem Hierarchy**
 
