@@ -57,6 +57,8 @@ Match Guards
       _ => println!("No special relationship"),
   }
 
+:command:`They neutralize!`
+
 ----------
 "if let"
 ----------
@@ -78,6 +80,8 @@ Match Guards
     println!("x = {}", x);
   }
 
+:command:`x = 3`
+
 ----------------------
 "if let" vs. "match"
 ----------------------
@@ -97,11 +101,17 @@ Match Guards
     println!("x = {}", x);
   }
 
+:command:`x = 3`
+
+.. code:: rust
+
   // Equivalent 'match' version:
   match value {
     Some(x) => println!("x = {}", x),
     _ => {} // Explicitly ignore all other cases
   }
+
+:command:`x = 3`
 
 -------------
 "while let"
@@ -134,6 +144,16 @@ Match Guards
     }
 
     println!("Finished!");
+  
+:command:`Steps remaining: 3`
+
+:command:`Steps remaining: 2`
+
+:command:`Steps remaining: 1`
+
+:command:`Steps remaining: 0`
+
+:command:`Finished!`
 
 ---------------------------
 Pattern-Based Convenience
