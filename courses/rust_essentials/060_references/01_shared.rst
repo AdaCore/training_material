@@ -8,9 +8,10 @@ Shared References
 
 - Created with the :rust:`&` operator
 - Provide a mechanism to access a value without taking ownership
-- Strictly **read-only**: referenced data **cannot change**
+- Strictly **read-only**
+  - Referenced data **cannot change**
   - Even if the *original* variable was declared as :rust:`mut`
-- A shared reference to a type :rust:`T` has type :rust:`&T`
+- Shared reference to type :rust:`T` has type :rust:`&T`
 
 .. code:: rust
 
@@ -50,7 +51,7 @@ Automatic Dereferencing for Field Access
     
     println!("x: {}, y: {}", coordinates.0, coordinates.1);
     println!("ref x: {}, ref y: {}", reference.0, reference.1);
- 
+
 :command:`x: 3, y: 5`
 
 :command:`ref x: 3, ref y: 5`
