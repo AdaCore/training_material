@@ -50,7 +50,6 @@ Course Presentation
 ---------------------
 
 * Slides
-* Quizzes
 * Labs
 
     - Hands-on practice
