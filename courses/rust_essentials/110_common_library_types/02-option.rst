@@ -43,13 +43,16 @@ What Is "Option<T>"?
 
     fn find_user(id: u32) -> Option<String>;
 
-    let result = find_user(1234);
-    match result {
-        // User was found - print it
-        Some(user) => println!("Found user: {user}"),
-        // User was not found - print a message
-        None => println!("User not found."),
+    fn main() {
+        let user_id = 1;
+    
+        match find_user(user_id) {
+            Some(name) => println!("Found user: {}", name),
+            None => println!("User not found."),
+        }
     }
+
+:command:`Found user: Waldo`
 
 .. note::
 
@@ -59,7 +62,7 @@ What Is "Option<T>"?
 Benefits of "Option"
 ----------------------
 
-* Safety and Clarity
+* Safety and clarity
 
   * No hidden null pointer 
   * Must explicitly handle absence of value

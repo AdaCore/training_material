@@ -55,11 +55,11 @@ Common Usage
       }
   }
 
-  fn main() {
-      let result = divide(10.0, 0.0);
+  let result = divide(10.0, 0.0);
 
-      match result {
-          Ok(value) => println!("Result: {value}"),
-          Err(e)    => println!("Error: {e}"),
-      }
+  match result {
+      Ok(value) => println!("Result: {value}"),
+      Err(e)    => println!("Error: {e}"),
   }
+
+:command:`Error: Cannot divide by zero!`
