@@ -66,7 +66,7 @@ fn main() {
     struct Character(u64, i64, bool);
     let hero = Character(1000, 500, true);
 
-    println!("Power: {}", hero.3);
+    println!("TASK5 => hero is masked: {}", hero.3);
     
     // TASK 6 - Type Safety with Tuples
     // Hint: tuple structs with the same definition are different types
