@@ -31,7 +31,7 @@ fn main() {
 	let mut my_float = 6.5;
     my_float = 5.5;
     let mut my_int = 18;
-    my_int += 7.5;  
+    my_int += 7;  
 
 
     // TASK 5 - Base Numeric Literal
