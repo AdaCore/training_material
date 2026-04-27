@@ -16,6 +16,7 @@ enum Doll {
 fn main() {
     // TASK 2 - Create the value "5" on the heap
     // Box::new allocates the value on the heap
+
     let my_box = Box::new(5);
 
     // TASK 3 - Print the contents of my_box
@@ -26,8 +27,13 @@ fn main() {
 
     // TASK 4 - Create the two Doll values below
     // Inside holds a boxed Doll; Empty is the base case
+    
     let _a_doll = Doll::Inside(Box::new(Doll::Empty));
     let _last_doll = Doll::Empty;
+
+    // Dereferencing
+    // TASK 5 - Pass the inner value to say_hello
+    // Hint: say_hello expects an i32, not a Box<i32>
 
     fn say_hello(name: i32) {
         println!("Hello, 00{name}!");
@@ -35,29 +41,32 @@ fn main() {
 
     let agent = Box::new(7_i32);
 
-    // TASK 5 - Pass the inner value to say_hello
-    // say_hello expects an i32, so dereference the Box
     say_hello(*agent);
 
     // Coercing
+    // TASK 6 - Call hello_again using my_box
+    // Hint: Start by borrowing my_box
+
     fn hello_again(name: &str) {
         println!("Hello, {name}!");
     }
 
     let my_box = Box::new(String::from("Rust"));
-
-    // TASK 6 - Call hello_again using my_box
-    // Borrowing the Box<String> allows deref coercion to &str
+    
     hello_again(&my_box);
 
     // Mutability
+    // TASK 7 - Change the boxed value to 10
+    // Hint: The Box is mutable, but you still need to reach the inner value
+
     let mut my_box = Box::new(0);
 
-    // TASK 7 - Change the boxed value to 10
-    // Dereference the Box to update the inner value
     *my_box = 10;
 
     // Mutability and Coercion
+    // TASK 8 - Make these calls compile
+    // Hint: hello only needs shared access, but edit needs mutable access all the way through
+
     fn hello(name: &str) {
         println!("Hello, {name}!");
     }
@@ -68,8 +77,6 @@ fn main() {
 
     let my_box = Box::new(String::from("Rust"));
 
-    // TASK 8 - Make these calls compile
-    // hello only needs shared access.
     hello(&my_box);
 
     let mut my_box2 = Box::new(String::from("Rust"));
@@ -79,9 +86,9 @@ fn main() {
     hello(&mut my_box2);
 
     // Counting References
-
-    // TASK 9 - demonstrate shared ownership on the heap     
+    // TASK 9 - demonstrate shared ownership on the heap
     // Create the value "5" on the heap
+
     let var_a = Rc::new(5);
     println!("Count: {}", Rc::strong_count(&var_a));
 
