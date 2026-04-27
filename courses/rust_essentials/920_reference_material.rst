@@ -40,20 +40,18 @@ General Rust Information
 Useful Links
 --------------
 
-  - Rust Book
-  
-    - `//doc.rust-lang.org/book/`
+  - Official Rust Learning Resources
 
-  - And more information and documentation at 
+    - Additional guides, docs, and learning paths  
 
-    - `//rust-lang.org/learn/`
+    - At `//rust-lang.org/learn/ <//rust-lang.org/learn/>`_
 
 
   - GNAT Pro for Rust User’s Guide
+  
+    - Tooling, workflows, mixed-language development
 
-    - `https://docs.adacore.com/live/wave/rust/html/rust_ug/index.html`
-
-    - LOTS of info about the main tools: how to build mixed-language programs etc.
+    - At `https://docs.adacore.com/live/wave/rust/html/rust_ug/index.html <https://docs.adacore.com/live/wave/rust/html/rust_ug/index.html>`_
 
 =================
 AdaCore Support
