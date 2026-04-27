@@ -44,10 +44,11 @@ fn main() {
 
     // TASK 3 - Getting an Iterator - 'iter()'
     // Hint: Collections themselves are not iterators
-    let numbers2 = vec![10, 20, 30];
-        for n in numbers2 {
+    let numbers_2 = vec![10, 20, 30];
+        for n in numbers_2 {
         println!("{n}");
-    }    
+    }
+    println!("Done printing {} items.", numbers_2.len());      
        
 
     // TASK 4 - Common Iterator Adapters
