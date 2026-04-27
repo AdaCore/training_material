@@ -10,7 +10,7 @@ fn main() {
     // TASK 1 - What is an Iterator?
     // Hint: Print ALL values. Check the output to verify you printed all elements  
     let array = [2, 4, 6, 8];
-    for idx in 1..4 {
+    for idx in 0..4 {
         println!("{}", array[idx]);
     }
     
