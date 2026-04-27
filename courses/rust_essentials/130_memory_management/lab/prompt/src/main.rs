@@ -29,10 +29,10 @@ fn main() {
 
     // TASK 3 - Explicit Duplication   
     // Hint: Modify the code so that 'yorkie' has a copy of the same ball 'poodle' has
-    let poodle = String::from("ball");
-    let yorkie = poodle;
-    println!("{}", poodle); 
-    println!("{}", yorkie); 
+    let poodle_2 = String::from("ball");
+    let yorkie_2 = poodle;
+    println!("{}", poodle_2); 
+    println!("{}", yorkie_2); 
 
 
     // TASK 4 - "Clone Away" Strategy
@@ -75,11 +75,7 @@ fn main() {
 
      
     // TASK 8 - Destructor ("Drop")
-<<<<<<< HEAD
-    // Hint: Correct implementation to by adding the self reference then add the function call to drop the mic!
-=======
     // Hint: Correct implementation by adding the self reference then add the function call to drop the mic!
->>>>>>> d29494f200e1b3fe22ff6df814600afa6feabdd4
     struct Objects {
         object_type: String,
     }
