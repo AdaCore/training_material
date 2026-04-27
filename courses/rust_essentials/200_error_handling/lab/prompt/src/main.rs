@@ -42,7 +42,7 @@ fn main() {
     // TASK 4 - Handling Propagation
     // Hint: Error has been propagated from 'check_age' to 'register' to 'main'
     // Use a pattern matching to handle return from 'register' instead of 'unwrap()'
-    register.unwrap()
+    register().unwrap();
     
 
     // TASK 5 - thiserror
