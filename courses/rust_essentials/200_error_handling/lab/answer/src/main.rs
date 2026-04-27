@@ -18,7 +18,7 @@ fn main() {
     let my_age = 33;
 
     // TASK 2 - Handling Results
-    // Hint: Replace the unwrap() function by a pattern matching to handle check_age retur
+    // Hint: Replace the unwrap() function by a pattern matching to handle check_age return
     match check_age(my_age) {
         Ok(age) => println!("Access granted! You are {} years old.", age),
         Err(Reason::TooYoung) => println!("Sorry, you're not old enough yet."),
