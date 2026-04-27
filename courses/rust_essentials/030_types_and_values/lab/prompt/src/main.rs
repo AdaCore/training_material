@@ -55,7 +55,7 @@ fn main() {
 
     // TASK 7 - Arithmetic and the Exponent Trap
     // Hint: Code compiles but the value is not correct 
-    let exponent = 5_i32 ˆ 2;
+    let exponent = 5_i32 ^ 2;
     println!("TASK7 => 5 to the power of 2 equals: {}", exponent);
         
 
