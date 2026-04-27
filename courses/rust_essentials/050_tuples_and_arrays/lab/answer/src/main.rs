@@ -22,12 +22,12 @@ fn main() {
 
     // TASK 3 - Iteration    
     // Hint: Use iteration by index and then by value
-    let mut primes = [2, 3, 5, 7, 11, 13, 17];
-    for ii in 0..primes.len() {
-        primes[ii] = primes[ii] + 1 ;
+    let mut numbers_arr_2 = [2, 3, 5, 7, 11, 13, 17];
+    for index in 0..primes.len() {
+        numbers_arr_2[index] = numbers_arr_2[index] + 1 ;
     }
-    for prime in primes {
-        println!("{}", prime);
+    for number in numbers_arr_2 {
+        println!("{}", number);
     }
 
 
