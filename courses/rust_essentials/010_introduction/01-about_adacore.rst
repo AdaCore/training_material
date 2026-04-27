@@ -9,6 +9,7 @@ The Company
 ..
     Taken from https://www.adacore.com/company/about
 
+* Small thing just to generate the slides !!!
 * Founded in 1994
 * Centered around helping programmers build **safe, secure and reliable** software
 * Headquartered in New York and Paris
