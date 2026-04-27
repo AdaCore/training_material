@@ -12,7 +12,7 @@ fn main() {
     // Hint: First declare type and number of elements of your array, then assign it valid initial values.
     // Then change only one element using the proper syntax
     let mut numbers_arr: [i8; 3] = [1, 2, 3];
-    numbers_arr[1] = 5 ;
+    numbers_arr[1] = 5;
     
 
     // TASK 2 - Out of Bounds
@@ -39,7 +39,7 @@ fn main() {
 
     // TASK 5 - Destructuring
     // Hint: Ignore specific elements that are not needed With the wildcard pattern.
-    // Use the variables created to display themm
+    // Use the variables created to display them
     let person_data = ("Renoir", 33, "Painter");
     let (name, _, profession) = person_data;
     println!("Name: {name}, is a {profession}");
