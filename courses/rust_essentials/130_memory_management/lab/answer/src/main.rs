@@ -28,10 +28,10 @@ fn main() {
 
     // TASK 3 - Explicit Duplication   
     // Hint: Modify the code so that 'yorkie' has a copy of the same ball 'poodle' has
-    let poodle = String::from("ball");
-    let yorkie = poodle.clone();
-    println!("{}", poodle); 
-    println!("{}", yorkie); 
+    let poodle_2 = String::from("ball");
+    let yorkie_2 = poodle_2.clone();
+    println!("{}", poodle_2); 
+    println!("{}", yorkie_2); 
 
     // TASK 4 - "Clone Away" Strategy
     // Hint: Modify the function call without creating new variables to have multiple agents smith saying hello!
