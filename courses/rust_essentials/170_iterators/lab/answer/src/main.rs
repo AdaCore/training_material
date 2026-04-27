@@ -44,10 +44,12 @@ fn main() {
 
     // TASK 3 - Getting an Iterator - 'iter()'
     // Hint: Collections themselves are not iterators
-    let numbers2 = vec![10, 20, 30];
-        for n in numbers2 {
+    // Using iter() does not consume the collection
+    let numbers_2 = vec![10, 20, 30];
+        for n in numbers_2.iter() {
         println!("{n}");
-    }    
+    }
+    println!("Done printing {} items.", numbers_2.len());    
        
 
     // TASK 4 - Common Iterator Adapters
@@ -62,7 +64,7 @@ fn main() {
 
     // Multiply all values by 2
     for elem in flush.iter().map(double) {
-        println!("Value squared is: {elem}");
+        println!("Value multiplied by 2 is: {elem}");
     }
 
     // Print only values divisible by 2
@@ -109,9 +111,9 @@ fn main() {
     // For any(): receives a reference to the item
 
 
-fn parse_i32(s: &str) -> Result<i32, std::num::ParseIntError> {
-    s.parse::<i32>()
-}
+    fn parse_i32(s: &str) -> Result<i32, std::num::ParseIntError> {
+        s.parse::<i32>()
+    }
     
     let good_strings = vec!["1", "2", "42"];
     let good_numbers: Result<Vec<i32>, _> = good_strings
