@@ -75,7 +75,11 @@ fn main() {
 
      
     // TASK 8 - Destructor ("Drop")
+<<<<<<< HEAD
     // Hint: Correct implementation to by adding the self reference then add the function call to drop the mic!
+=======
+    // Hint: Correct implementation by adding the self reference then add the function call to drop the mic!
+>>>>>>> d29494f200e1b3fe22ff6df814600afa6feabdd4
     struct Objects {
         object_type: String,
     }
