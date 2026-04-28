@@ -25,7 +25,7 @@ fn task_2() {
     //   Fix the function so that it can return the reference
     //   of the longer string
     // Hint:
-    //   Return value needs to live as long as longest-lived string
+    //   Return value's lifetime is constrained by the shortest-lived string
 
     fn choose<'a>(left: &'a str, right: &'a str) -> &'a str {
         // Return reference to longer of 'left' or 'right'
