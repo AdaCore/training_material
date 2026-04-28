@@ -41,14 +41,14 @@ fn main() {
 
     // TASK 4 - Handling Propagation
     // Hint: Error has been propagated from 'check_age' to 'register' to 'main'
-    // Use a pattern matching to handle return from 'register' instead of 'unwrap()'
+    // Use pattern matching to handle return from 'register' instead of 'unwrap()'
     register().unwrap();
     
 
     // TASK 5 - thiserror
     // Hint: Convert the comments over the two variants into error text using 'thiserror'
-    // Then make sure withdraw returns an 'AccountError' of InsufficientFunds 
-    // Displaying the 'balance' and the 'amount'
+    // Then make sure withdraw returns an 'AccountError' of 'InsufficientFunds' 
+    // Display the 'balance' and the 'amount'
     use thiserror::Error;
     #[derive(Error, Debug)]
     pub enum AccountError {
@@ -66,8 +66,8 @@ fn main() {
     }
     // Task 6 - Anyhow
     // Hint: Turn the 'println' in 'process_transaction' into an additional context of information
-    // Attached to the withdraw method
-    // You have to 'use' the correct library to be able to use the 'with_context' method
+    // Attached to the 'withdraw' method
+    // You have to use the correct library to be able to use the 'with_context' method
     fn process_transaction(balance: u64, amount: u64) -> anyhow::Result<()> {
         withdraw(balance, amount)
         println!("Failed to process withdrawal of ${}", amount);
