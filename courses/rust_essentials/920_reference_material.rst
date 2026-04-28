@@ -44,14 +44,14 @@ Useful Links
 
     - Additional guides, docs, and learning paths  
 
-    - At `https://rust-lang.org//learn/ <https://rust-lang.org/learn/>`_
+    - `https://rust-lang.org//learn/ <https://rust-lang.org/learn/>`_
 
 
   - GNAT Pro for Rust User’s Guide
   
     - Tooling, workflows, mixed-language development
 
-    - At `https://docs.adacore.com/live/wave/rust/html/rust_ug/index.html <https://docs.adacore.com/live/wave/rust/html/rust_ug/index.html>`_
+    - `https://docs.adacore.com/live/wave/rust/html/rust_ug/index.html <https://docs.adacore.com/live/wave/rust/html/rust_ug/index.html>`_
 
 =================
 AdaCore Support
