@@ -8,7 +8,7 @@
 fn main() {
     
     // TASK 1 - Trait Dependencies for Ordering
-    // Hint: PartialOrd requires PartialEq to be defined
+    // Hint: 'PartialOrd' requires PartialEq to be defined
     #[derive(PartialOrd)]
     struct Score {
         points: u32,
@@ -35,7 +35,7 @@ fn main() {
 
 
     // TASK 4 - Operator Overloading Output
-    // Hint: When overloading operators the Self::Output return type must be explicitly declared
+    // Hint: When overloading operators the 'Self::Output' return type must be explicitly declared
     struct Point { x: i32 }
     
     impl std::ops::Add for Point {
@@ -47,7 +47,7 @@ fn main() {
 
 
     // TASK 5 - Enum Defaults
-    // Hint: Deriving Default on an enum requires specifying a default variant with the #[default] attribute
+    // Hint: Deriving 'Default' on an enum requires specifying a default variant with the #[default] attribute
     #[derive(Default)]
     enum Status {
         Pending,
@@ -59,7 +59,7 @@ fn main() {
 
 
     // TASK 6 - Struct Default Initialization
-    // Hint: Using struct update syntax (..Default::default()) requires the struct itself to derive or implement the Default trait
+    // Hint: Using struct update syntax (..Default::default()) requires the struct itself to derive or implement the 'Default' trait
     struct Config {
         port: u16,
         host: String,
@@ -69,20 +69,20 @@ fn main() {
 
 
     // TASK 7 - Trait Scope for I/O
-    // Hint: Using methods like write_all requires bringing the std::io::Write trait into scope
+    // Hint: Using methods like 'write_all' requires bringing the 'std::io::Write' trait into scope
     let mut buffer = Vec::new();
     
     buffer.write_all(b"Hello, Rust!");
 
 
     // TASK 8 - Safer Conversions
-    // Hint: TryFrom returns a Result that must be handled or unwrapped unlike the `as` keyword
+    // Hint: 'TryFrom' returns a Result that must be handled or unwrapped unlike the `as` keyword
     let big_number: i32 = 300;
     let tried: u8 = u8::try_from(big_number);
 
 
     // TASK 9 - Equality Comparison
-    // Hint: Using the == operator requires implementing or deriving PartialEq
+    // Hint: Using the == operator requires implementing or deriving 'PartialEq'
     struct SensorData {
         valid: bool,
     }
