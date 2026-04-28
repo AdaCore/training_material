@@ -28,7 +28,7 @@ fn main() {
 
 
     // TASK 3 - Explicit Duplication   
-    // Hint: Modify the code so that 'yorkie' has a copy of the same ball 'poodle' has
+    // Hint: Modify the code so that 'yorkie' has a copy of the same ball as 'poodle'
     let poodle_2 = String::from("ball");
     let yorkie_2 = poodle_2.clone();
     println!("{}", poodle_2); 
