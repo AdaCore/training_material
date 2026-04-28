@@ -108,4 +108,5 @@ fn main() {
     let e1 = Error;
     let e2 = SysBError;
 
+    println!("Congratulations! All tasks compiled successfully!");
 }
