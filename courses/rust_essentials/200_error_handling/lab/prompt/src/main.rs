@@ -26,14 +26,14 @@ fn main() {
     // if check_age returns an error
     // the try operator tries to convert 'reason' to the return type of 'register' 'string'
     // From trait should be implemented
-    // impl From<Reason> for String {
-        // fn from(reason: Reason) -> Self {
-            // match reason {
-                // Reason::TooYoung => "User is under the required age limit".to_string(),
-                // Reason::TooOld => "User is above the maximum age limit".to_string(),
-            // }
-        // }
-    // }
+    impl From<Reason> for String {
+        fn from(reason: Reason) -> Self {
+            match reason {
+                Reason::TooYoung => "User is under the required age limit".to_string(),
+                Reason::TooOld => "User is above the maximum age limit".to_string(),
+            }
+        }
+    }
     fn register() -> Result<(), String> {
         check_age(10);
         Ok(())
