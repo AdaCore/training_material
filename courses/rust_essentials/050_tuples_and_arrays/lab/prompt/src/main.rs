@@ -13,12 +13,10 @@ fn main() {
     // Then change only one element using the proper syntax
     let mut numbers_arr: [i8; 1, 2, 3];
     numbers_arr(1) = 5;
-    
 
     // TASK 2 - Out of Bounds
     // Hint: Array indexes start at 0
     numbers_arr[3] = 36;
-
 
     // TASK 3 - Iteration    
     // Hint: Use iteration by index and then by value
@@ -34,7 +32,6 @@ fn main() {
     // Hint:Tuple declaration syntax differs from arrays. Access to value is done through "." dot notation
     let alien_report: (i8; bool) = [3, false];
     println!("Is it hostile? {}", alien_report);
-    
 
     // TASK 5 - Destructuring
     // Hint: Ignore specific elements that are not needed With the wildcard pattern.

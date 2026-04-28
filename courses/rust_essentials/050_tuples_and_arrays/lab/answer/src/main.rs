@@ -14,7 +14,6 @@ fn main() {
     let mut numbers_arr: [i8; 3] = [1, 2, 3];
     numbers_arr[1] = 5;
     
-
     // TASK 2 - Out of Bounds
     // Hint: Array indexes start at 0
     numbers_arr[2] = 36;
@@ -23,13 +22,12 @@ fn main() {
     // TASK 3 - Iteration    
     // Hint: Use iteration by index and then by value
     let mut numbers_arr_2 = [2, 3, 5, 7, 11, 13, 17];
-    for index in 0..primes.len() {
+    for index in 0..numbers_arr_2.len() {
         numbers_arr_2[index] = numbers_arr_2[index] + 1 ;
     }
     for number in numbers_arr_2 {
         println!("{}", number);
     }
-
 
     // TASK 4 - Tuple Declaration
     // Hint:Tuple declaration syntax differs from arrays. Access to value is done through "." dot notation
@@ -50,7 +48,6 @@ fn main() {
     let mut dog_treats = 42;
     (cat_snacks, dog_treats) = (dog_treats, cat_snacks);
 
-
     // TASK 7 - Destructuring Array
     // Hint: destructure the array to print the number of shirts, pants and socks
     let bag: [i32; 3] = [10, 20, 30];
@@ -58,8 +55,7 @@ fn main() {
     println!("shirts: {}", shirts);
     println!("pants: {}", pants);
     println!("socks: {}", socks);
-
-     
+ 
     // TASK 8 - Ignoring multiple elements
     // Hint: you can ignore multiple elements in destructuring using ".."
     let data = [1, 2, 3, 4, 5, 6];
