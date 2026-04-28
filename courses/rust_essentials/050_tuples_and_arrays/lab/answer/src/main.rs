@@ -30,7 +30,7 @@ fn main() {
     }
 
     // TASK 4 - Tuple Declaration
-    // Hint:Tuple declaration syntax differs from arrays. Access to value is done through "." dot notation
+    // Hint: Tuple declaration syntax differs from arrays. Access to value is done through "." dot notation
     let alien_report: (i8, bool) = (3, false);
     println!("Is it hostile? {}", alien_report.1);
     
@@ -49,7 +49,7 @@ fn main() {
     (cat_snacks, dog_treats) = (dog_treats, cat_snacks);
 
     // TASK 7 - Destructuring Array
-    // Hint: destructure the array to print the number of shirts, pants and socks
+    // Hint: Destructure the array to print the number of shirts, pants and socks
     let bag: [i32; 3] = [10, 20, 30];
     let [shirts, pants, socks] = bag;
     println!("shirts: {}", shirts);
@@ -57,7 +57,7 @@ fn main() {
     println!("socks: {}", socks);
  
     // TASK 8 - Ignoring multiple elements
-    // Hint: you can ignore multiple elements in destructuring using ".."
+    // Hint: You can ignore multiple elements in destructuring using ".."
     let data = [1, 2, 3, 4, 5, 6];
     let [first, second, ..] = data;
     println!("First: {}", first);
