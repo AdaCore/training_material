@@ -26,7 +26,7 @@ fn main() {
     let big_number : u32 = 150000;  
    
 
-    // TASK 4 - Type inference and Static Type
+    // TASK 4 - Type Inference and Static Type
     // Hint: Type is inferred by initial value. Numeric literals must match the type assigned
 	let mut my_float = 6.5;
     my_float = 5.0;
@@ -61,7 +61,7 @@ fn main() {
     
 
     // TASK 8 - Arithmetic Division
-    // Code compiles but the value is not correct.
+    // Code compiles but the value is not correct
     // How do we print the decimal value here?
     // Hint: Remember division behavior depends on the type
     let precise = 7.0 / 3.0;
