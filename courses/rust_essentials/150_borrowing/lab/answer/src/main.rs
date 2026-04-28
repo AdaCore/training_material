@@ -115,7 +115,6 @@ fn task_5() {
     //   Parameter must indicate that the object is the parameter
     //   Parameters must specify if they can be modified
     //   Function cannot modify object if a reader is in-use
-    //
     struct Sensor(i32);
     impl Sensor {
         fn read(&self) -> i32 {
