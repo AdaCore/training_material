@@ -6,11 +6,10 @@
 //! 
 #[allow(dead_code)]
 #[allow(unused_variables)]
-
 fn main() {
     
     // TASK 1 - Partial Initialization
-    // Hint: full field initialization is mandatory
+    // Hint: Full field initialization is mandatory
     struct User {
         active: bool,
         sign_in_count: u64,
@@ -24,7 +23,7 @@ fn main() {
 
 
     // TASK 2 - Field Init Shorthand
-    // Hint: shorthand only works if the field and variable have the EXACT same name
+    // Hint: Shorthand only works if the field and variable have the EXACT same name
     struct Player {
         active: bool,
     }
@@ -33,7 +32,7 @@ fn main() {
     let mario = Player { activated };
 
     // TASK 3 - Struct Update Operator
-    // Hint: base instance (..) must be at the end of the declaration
+    // Hint: Base instance (..) must be at the end of the declaration
     struct Settings {
         font_size: u32,
         active: bool,
@@ -48,7 +47,7 @@ fn main() {
 
 
     // TASK 4 - Partial Mutability
-    // Hint: mutability applies to the entire instance; no partial application for fields
+    // Hint: Mutability applies to the entire instance; no partial application for fields
     struct CatStatus {
         energy_level: u8,
         is_napping: bool,
@@ -62,14 +61,14 @@ fn main() {
     new_cat.energy_level = 90;
 
     // TASK 5 - Tuple Struct Indexing
-    // Hint: tuple indexing starts at 0 and must stay within bounds
+    // Hint: Tuple indexing starts at 0 and must stay within bounds
     struct Character(u64, i64, bool);
     let hero = Character(1000, 500, true);
 
     println!("TASK5 => hero is masked: {}", hero.3);
     
     // TASK 6 - Type Safety with Tuples
-    // Hint: tuple structs with the same definition are different types
+    // Hint: Tuple structs with the same definition are different types
     struct Point(i32, i32);
     struct Coordinates(i32, i32);
     let point = Point(10, 20);
@@ -78,7 +77,7 @@ fn main() {
     coordinates = point;
 
     // TASK 7 - Enum Pathing
-    // Hint: variants are accessed using the path separator notation
+    // Hint: Variants are accessed using the path separator notation
     enum Direction {
         Left,
         Right,
@@ -87,7 +86,7 @@ fn main() {
     let direction = Left; 
 
     // TASK 8 - Enum Data Initialization
-    // Hint: data must be initialized if the variant holds data
+    // Hint: Data must be initialized if the variant holds data
     enum Message {
         Quit,
         Move { x: i32, y: i32 },
