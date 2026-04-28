@@ -5,10 +5,9 @@
 //! 
 #[allow(dead_code)]
 #[allow(unused_variables)]
-
 fn main() {
     
-    // TASK 1 - Exhaustiveness in `match`
+    // TASK 1 - Exhaustiveness in 'match'
     // Hint: All possible cases must be handled
     enum Status {
         Online,
@@ -23,7 +22,7 @@ fn main() {
     }
 
 
-    // TASK 2 - Refutable Pattern in a `let` Binding
+    // TASK 2 - Refutable Pattern in a 'let' Binding
     // Hint: Every `let` binding uses a pattern, but simple bindings require irrefutable patterns
     let secret_value = Some(42);
     
@@ -68,7 +67,7 @@ fn main() {
 
 
     // TASK 6 - Longhand Struct Destructuring and Renaming
-    // Hint: Use `field: variable` to rename data as it is extracted
+    // Hint: Use 'field: variable' to rename data as it is extracted
     struct Coordinates {
         x: i32,
         y: i32,
@@ -102,7 +101,7 @@ fn main() {
 
 
     // TASK 9 - Variable Bindings with Ranges
-    // Hint: Use the `@` operator to give a name to a value while checking it against a range
+    // Hint: Use the '@' operator to give a name to a value while checking it against a range
     let dice_roll = 4;
     match dice_roll {
         1..=6 @ roll => println!("Rolled a {}", roll),
