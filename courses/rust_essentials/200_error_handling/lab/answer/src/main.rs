@@ -46,6 +46,7 @@ fn main() {
     // TASK 4 - Handling Propagation
     // Hint: Error has been propagated from 'check_age' to 'register' to 'main'
     // Use pattern matching to handle return from 'register' instead of 'unwrap()'
+    // Print a message for each possible result
     match register() {
         Ok(_) => println!("Registration successful!"),
         Err(e) => println!("Registration failed: {}", e),
@@ -85,7 +86,12 @@ fn main() {
     }
     let result = process_transaction(50, 100);
     if let Err(e) = result {
+        // This will print a message that looks like an actual run-time error
         println!("Error: {}", e); 
+        // This next line will print the following :
+        // Debug Trace: Failed to process withdrawal of $100
+        // Caused by:
+        // insufficient funds: available 50, requested 100
         println!("\nDebug Trace: {:?}", e);
     }
 }
