@@ -38,7 +38,7 @@ fn main() {
     
 
     // TASK 5 - Destructuring
-    // Hint: Ignore specific elements that are not needed With the wildcard pattern.
+    // Hint: Ignore specific elements that are not needed with the wildcard pattern
     // Use the variables created to display them
     let person_data = ("Renoir", 33, "Painter");
     let (name, _, profession) = person_data;
