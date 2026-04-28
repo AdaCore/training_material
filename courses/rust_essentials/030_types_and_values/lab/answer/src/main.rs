@@ -51,7 +51,7 @@ fn main() {
     // Hint: Keyword "as" tells the compiler to interpret a value as a different type  
     let my_int_2: i32 = 10;
     let my_float_2: f64 = 5.5;
-    let sum = my_int_2 as f64 + my_float_2 
+    let sum = my_int_2 as f64 + my_float_2; 
     
 
     // TASK 7 - Arithmetic and the Exponent Trap
