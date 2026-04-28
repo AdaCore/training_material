@@ -6,10 +6,8 @@
 
 fn task_1() {
     println!("Task 1 - Lifetime");
-    // Task 1 Goals
-    //   a) Create an object and a reference
-    //   b) Ensure object lives as long as reference
-    //   c) Print referenced value
+    // Task 1 Goal
+    //   Ensure object lives as long as its reference
     // Hint:
     //   Object should be in same scope as reference (or higher)
     let treasure_map: &i32;
@@ -23,13 +21,11 @@ fn task_1() {
 
 fn task_2() {
     println!("Task 2 - Solving ambiguity");
-    // Task 2 Goals
-    //   a) Create two String objects
-    //   b) Create a function that takes two 'str' references
-    //   c) Function should return longer of the two parameters
-    //   d) Print the function return value
+    // Task 2 Goal
+    //   Fix the function so that it can return the reference
+    //   of the longer string
     // Hint:
-    //   Return value needs to live as long as longest-lived string
+    //   Return value's lifetime is constrained by the shortest-lived string
 
     fn choose(left: &str, right: &str) -> &str {
         // Return reference to longer of 'left' or 'right'
@@ -60,9 +56,8 @@ fn task_2() {
 
 fn task_3() {
     println!("Task 3 - Lifetimes in structs");
-    // Task 3 Goals
-    //   a) Create a function that returns a reference from within a struct
-    //   b) Print the returned data
+    // Task 3 Goal
+    //   Fix the function to allow it to return a reference from within a struct
     // Hint:
     //   Function needs to indicate where the borrowed data comes from
     //   Struct needs to specify that the referenced element lasts as long as the struct
@@ -91,9 +86,8 @@ fn task_3() {
 
 fn task_4() {
     println!("Task 4 - Lifetimes for enums");
-    // Task 4 Goals
-    //   a) Create a function that returns a reference from within an enum variant
-    //   b) Print the returned data
+    // Task 4 Goal
+    //   Fix the function to allow it to return a reference from within an enum variant
     // Hint:
     //   Function needs to indicate where the borrowed data comes from
     //   Enum needs to specify that the referenced variant lasts as long as the enum
