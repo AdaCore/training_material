@@ -16,7 +16,7 @@ fn main() {
     
 
     // TASK 2 - Using Our Iterator
-    // Hint: The 'for' loop calls .next() under the hood
+    // Hint: The 'for' loop calls '.next()' under the hood
     struct SliceIter<'s> {
         slice: &'s [i32],
         idx: usize,
@@ -44,7 +44,7 @@ fn main() {
 
     // TASK 3 - Getting an Iterator - 'iter()'
     // Hint: Collections themselves are not iterators
-    // Using iter() does not consume the collection
+    // Using 'iter()' does not consume the collection
     let numbers_2 = vec![10, 20, 30];
         for n in numbers_2.iter() {
         println!("{n}");
@@ -73,7 +73,7 @@ fn main() {
     }
     
 
-    // TASK 5 - Common consumers
+    // TASK 5 - Common Consumers
     // Hint: 'sum' adds all values and return a single value, 'any' returns True if any value matches condition
     fn is_freezing(temp: &i32) -> bool {
         *temp < 0
