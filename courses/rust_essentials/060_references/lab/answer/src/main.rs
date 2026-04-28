@@ -1,4 +1,4 @@
-//! Lab (answers)
+//! Lab (answer)
 //! References
 //!
 //! Fix all the compile errors below by following the hints provided

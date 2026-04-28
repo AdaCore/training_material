@@ -1,4 +1,4 @@
-//! Lab (answers)
+//! Lab (prompt)
 //! References
 //!
 //! Fix all the compile errors below by following the hints provided
@@ -110,7 +110,7 @@ fn main() {
     //   Use "{:?}" is used to print the contents of the array (Debug)
     println!("Task 6 - Slices");
     let floats: [f64; 5] = [1.1, 22.22, 333.333, 4444.4444, 55555.555555];
-    let ref_floats: &[f64] = &floats;
+   let mut ref_floats: &[f64] = &floats;
     println!("{:?}", ref_floats);
     ref_floats = &floats;
     println!("{:?}", ref_floats);
