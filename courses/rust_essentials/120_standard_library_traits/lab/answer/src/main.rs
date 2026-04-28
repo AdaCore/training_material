@@ -6,7 +6,7 @@
 fn main() {
     
     // TASK 1 - Trait Dependencies for Ordering
-    // Hint: PartialOrd requires PartialEq to be defined
+    // Hint: 'PartialOrd' requires PartialEq to be defined
     
     // Fix: Added PartialEq to the derive macro
     #[derive(PartialEq, PartialOrd)]
@@ -51,7 +51,7 @@ fn main() {
 
 
     // TASK 5 - Enum Defaults
-    // Hint: Deriving Default on an enum requires specifying a default variant with the #[default] attribute
+    // Hint: Deriving 'Default' on an enum requires specifying a default variant with the #[default] attribute
     #[derive(Default)]
     enum Status {
         // Fix: Added the #[default] attribute to the desired unit variant
@@ -65,7 +65,7 @@ fn main() {
 
 
     // TASK 6 - Struct Default Initialization
-    // Hint: Using struct update syntax (..Default::default()) requires the struct itself to derive or implement the Default trait
+    // Hint: Using struct update syntax (..Default::default()) requires the struct itself to derive or implement the 'Default' trait
     
     // Fix: Added the #[derive(Default)] macro to the struct
     #[derive(Default)]
@@ -78,7 +78,7 @@ fn main() {
 
 
     // TASK 7 - Trait Scope for I/O
-    // Hint: Using methods like write_all requires bringing the std::io::Write trait into scope
+    // Hint: Using methods like 'write_all' requires bringing the 'std::io::Write' trait into scope
     
     // Fix: Brought the Write trait into scope
     use std::io::Write;
