@@ -66,7 +66,7 @@ fn main() {
     // Hint: Remember division behavior depends on the type
     let precise = 7.0 / 3.0;
     println!("TASK8 => 7 divided by 3 equals: {}", precise);
-    // Using float litterals for this division is too much
+    // Using float literals for this division is too much
     // How do we get an integer result here?
     let too_precise = 8 / 2;
     println!("TASK8 => 8 divided by 2 equals: {:?}", too_precise);    
