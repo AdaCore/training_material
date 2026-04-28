@@ -91,4 +91,7 @@ fn main() {
     let sensor_2 = SensorData { valid: true };
     
     let is_same = sensor_1 == sensor_2;
+
+    println!("Congratulations! All tasks compiled successfully!");
+}
 }

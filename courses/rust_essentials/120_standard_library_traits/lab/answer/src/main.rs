@@ -24,11 +24,11 @@ fn main() {
     struct Wrapper(i32);
     let my_wrap = Wrapper(5);
     
-    // Fix: Avoided the `as` keyword on a struct and accessed the internal primitive directly
+    // Fix: Avoided the 'as' keyword on a struct and accessed the internal primitive directly
     let raw_int = my_wrap.0;
 
 
-    // TASK 3 - The `Into` Trait Inference Mystery
+    // TASK 3 - The 'Into' Trait Inference Mystery
     // Hint: Compiler cannot infer the target type so explicit type hints must be provided
     let source: i32 = 42;
     
@@ -89,7 +89,7 @@ fn main() {
 
 
     // TASK 8 - Safer Conversions
-    // Hint: TryFrom returns a Result that must be handled or unwrapped unlike the `as` keyword
+    // Hint: 'TryFrom' returns a Result that must be handled or unwrapped unlike the `as` keyword
     let big_number: i32 = 300;
     
     // Fix: Used a match statement (or unwrap_or) to safely handle the Result returned by TryFrom.
@@ -97,9 +97,9 @@ fn main() {
 
 
     // TASK 9 - Equality Comparison
-    // Hint: Using the == operator requires implementing or deriving PartialEq
+    // Hint: Using the == operator requires implementing or deriving 'PartialEq'
     
-    // Fix: Derived the PartialEq trait to enable the `==` operator
+    // Fix: Derived the PartialEq trait to enable the '==' operator
     #[derive(PartialEq)]
     struct SensorData {
         valid: bool,
@@ -109,4 +109,7 @@ fn main() {
     let sensor_2 = SensorData { valid: true };
     
     let is_same = sensor_1 == sensor_2;
+
+    println!("Congratulations! All tasks compiled successfully!");
+}
 }
