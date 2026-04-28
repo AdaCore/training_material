@@ -24,7 +24,7 @@ fn main() {
     // TASK 3 - Iteration    
     // Hint: Use iteration by index and then by value
     let mut primes = [2, 3, 5, 7, 11, 13, 17];
-    for ii in 0..primes.len() {
+    for ii in 0.primes.len() {
         primes[ii] = primes[ii] + 1 ;
     }
     for prime in primes {
