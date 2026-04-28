@@ -1,3 +1,97 @@
+//! Lab (prompt)
+//! Structs and Enums
+//!
+//! Fix all the compile errors below by following the hints provided 
+//! Use the command 'cargo run' to verify the solution
+//! 
+#[allow(dead_code)]
+#[allow(unused_variables)]
 fn main() {
-    println!("TBD");
+    
+    // TASK 1 - Partial Initialization
+    // Hint: Full field initialization is mandatory
+    struct User {
+        active: bool,
+        sign_in_count: u64,
+        logged_in: bool,
+    }
+
+    let james_bond = User {
+        active: true,
+        sign_in_count: 1,
+    };
+
+
+    // TASK 2 - Field Init Shorthand
+    // Hint: Shorthand only works if the field and variable have the EXACT same name
+    struct Player {
+        active: bool,
+    }
+    let activated = true;
+
+    let mario = Player { activated };
+
+    // TASK 3 - Struct Update Operator
+    // Hint: Base instance (..) must be at the end of the declaration
+    struct Settings {
+        font_size: u32,
+        active: bool,
+    }
+
+    let default_set = Settings { font_size: 18, active: false };
+    
+    let set_1 = Settings {
+        ..default_set,
+        active: true,
+    }; 
+
+
+    // TASK 4 - Partial Mutability
+    // Hint: Mutability applies to the entire instance; no partial application for fields
+    struct CatStatus {
+        energy_level: u8,
+        is_napping: bool,
+    }
+
+    let new_cat = CatStatus {
+        mut energy_level: 80,
+        is_napping: false,
+    };
+
+    new_cat.energy_level = 90;
+
+    // TASK 5 - Tuple Struct Indexing
+    // Hint: Tuple indexing starts at 0 and must stay within bounds
+    struct Character(u64, i64, bool);
+    let hero = Character(1000, 500, true);
+
+    println!("TASK5 => hero is masked: {}", hero.3);
+    
+    // TASK 6 - Type Safety with Tuples
+    // Hint: Tuple structs with the same definition are different types
+    struct Point(i32, i32);
+    struct Coordinates(i32, i32);
+    let point = Point(10, 20);
+    let mut coordinates = Coordinates(30, 40);
+    
+    coordinates = point;
+
+    // TASK 7 - Enum Pathing
+    // Hint: Variants are accessed using the path separator notation
+    enum Direction {
+        Left,
+        Right,
+    }
+
+    let direction = Left; 
+
+    // TASK 8 - Enum Data Initialization
+    // Hint: Data must be initialized if the variant holds data
+    enum Message {
+        Quit,
+        Move { x: i32, y: i32 },
+    }
+
+    let message = Message::Move;
+
 }
