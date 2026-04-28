@@ -18,7 +18,7 @@ fn main() {
     let my_age = 33;
 
     // TASK 2 - Handling Results
-    // Hint: Replace the unwrap() function by a pattern matching to handle check_age return
+    // Hint: Replace the unwrap() function with something to match check_age to the proper return
     match check_age(my_age) {
         Ok(age) => println!("Access granted! You are {} years old.", age),
         Err(Reason::TooYoung) => println!("Sorry, you're not old enough yet."),
@@ -26,10 +26,10 @@ fn main() {
     }
     
 
-    // TASK 3 - the Try Operator
-    // Hint: Use the try operator to return an error automatically to the caller of register 
+    // TASK 3 - The Try Operator
+    // Hint: Use the try operator to return an error automatically to the caller of 'register' 
     // if check_age returns an error
-    // the try operator tries to converts 'reason' to the return type of register 'string'
+    // the try operator tries to convert 'reason' to the return type of register 'string'
     // From trait should be implemented
     impl From<Reason> for String {
         fn from(reason: Reason) -> Self {
