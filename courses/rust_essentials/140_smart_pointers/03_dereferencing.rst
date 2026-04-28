@@ -52,11 +52,13 @@ Coercing Types With "Deref"
 
   hello(&my_box); 
   
+:command:`Hello, Rust`
+  
 .. note::
   
-  - &my_box is &MyBox<String>
+  - :rust:`&my_box` is :rust:`&Box<String>`
   
-  - Compiler coerces: &Box<String> -> &String -> &str 
+  - Compiler coerces: :rust:`&Box<String>` -> :rust:`&String` -> :rust:`&str` 
   
 ------------  
 "DerefMut"
@@ -77,29 +79,25 @@ Coercing Types With "Deref"
 -------------------------
 Mutability and Coercion
 -------------------------
-  
-.. code:: rust
-
-  fn hello(name: &str) {
-    println!("Hello, {name}!");
-  } 
-  
-  fn edit(name: &mut str) { println!("Hello, {name}!")  }
-  
-- From &T to &U 
+    
+- From :rust:`&T` to &U 
   - Trait required :rust:`T: Deref<Target = U>`
 
 .. code:: rust
 
+  fn hello(name: &str) { println!("Hello, {name}!"); } 
+  
+  fn edit(name: &mut str) { println!("Hello, {name}!"); }
+
   let my_box = Box::new(String::from("Rust"));
   hello(&my_box);
 
-- From &T to &mut U 
+- From :rust:`&T` to :rust:`&mut U`
   - Not allowed
 
 .. code:: rust
 
-  edit(&my_box);
+  edit(&my_box); // Error
   
 :error:`error[E0308]: mismatched types`
 
@@ -107,14 +105,14 @@ Mutability and Coercion
   
   let mut my_box2 = Box::new(String::from("Rust"));
   
-- From &mut T to &mut U 
+- From :rust:`&mut T` to :rust:`&mut U` 
   - Trait required :rust:`T: DerefMut<Target = U>`
 
 .. code:: rust  
   
   edit(&mut my_box2);
   
-- From &mut T to &U 
+- From :rust:`&mut T` to :rust:`&U` 
   - Trait required :rust:`T: Deref<Target = U>`
 
 .. code:: rust  

@@ -16,7 +16,7 @@ What Is "match"?
 
 .. note::
 
-  :rust:`match` is an expression, not a statement
+  :rust:`match` is an *expression*, not a *statement*
 
 --------------------------
 "match" as an Expression
@@ -52,11 +52,13 @@ Match Arms
 
   let scoops  = 5;
 
-  match n {
+  match scoops {
     1 => println!("Single scoop!"),
     2 => println!("Double scoop!!"),
     _ => println!("Wow, that's a lot of ice cream!"),
   }
+
+:command:`Wow, that's a lot of ice cream!`
 
 ----------------
 Exhaustiveness
@@ -107,6 +109,8 @@ Matching With Bindings
     _ => println!("Keep playing!"),
   }
 
+:command:`Level 10! Bonus: 250`
+
 ----------------------------
 Nested Patterns in "match"
 ----------------------------
@@ -127,7 +131,9 @@ Nested Patterns in "match"
 
 :command:`on y-axis at 0`
 
-- First matching arm is selected
+.. note::
+
+  First matching arm is selected
 
 ---------------------
 Why "match" Matters

@@ -6,17 +6,17 @@ Creating a Program
 Creating a Project
 --------------------
 
-* From a command prompt, execute the following in a directory of your choice
+* From a command prompt, execute the following
   
   :command:`cargo new hello_world`
 
-* A package will be created for the executable program (:dfn:`binary crate`)
+* Package will be created for the executable program (:dfn:`binary crate`)
 
-* A directory will also be created (:filename:`hello_world/`)
+* Directory will also be created (:filename:`hello_world/`)
 
-* A few noteworthy things automatically created at this step
+* Noteworthy things automatically created at this step
  
-   * :filename:`Cargo.toml` - the :dfn:`manifest` used by **cargo**
+   * :filename:`Cargo.toml` - the :dfn:`manifest` used by :toolname:`cargo`
    * :filename:`src/main.rs` - the program source code
     
       * Open :toolname:`VS Code` to explore this file

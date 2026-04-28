@@ -13,12 +13,18 @@ Loops
 
 .. code:: rust
 
-    let mut countdown = 10;
+    let mut countdown = 2;
     while countdown > 0 {
         println!("T-minus {}...", countdown);
         countdown = countdown - 1;
     }
     println!("LIFTOFF!");
+
+:command:`T-minus 2...`
+
+:command:`T-minus 1...`
+
+:command:`LIFTOFF!`
 
 -----------------------
 "for" Statement
@@ -28,16 +34,16 @@ Loops
 
 .. code:: rust
 
-    for index in 1..5 { // 4 iterations 
-        println!("index: {index}");
+    for index in 1..5 { 
+        // 4 iterations
     }
 
-    for index in 1..=5 { // 5 iterations 
-        println!("index: {index}");
+    for index in 1..=5 { 
+        // 5 iterations
     }
 
-    for element in [1, 2, 3, 4, 5] { // 5 iterations
-        println!("element: {element}");
+    for element in [1, 2, 3, 4, 5] {
+        // 5 iterations
     }
 
 -------------------------
@@ -51,8 +57,14 @@ Loops
     let mut count = 0;
     loop {
         count += 1;
-        println!("{count}");
-        if count > 100 {
+        println!("Count: {count}");
+        if count > 2 {
             break;
         }
     }
+
+:command:`Count: 1`
+
+:command:`Count: 2`
+
+:command:`Count: 3`

@@ -21,11 +21,6 @@ Type Conversion
 
   * :rust:`.into()` consumes the source (unless it implements :rust:`Copy`)
 
-* What happens to the source value?
-
-  * If source type implements :rust:`Copy`, source is still valid
-  * Otherwise, the value is no longer valid
-
 .. note::
 
   :rust:`From`/:rust:`Into` are intended for infallible conversions (cannot fail)
@@ -60,9 +55,9 @@ Conversion Examples
 "From" vs. "Into"
 -------------------
 
-* If you implement :rust:`From`, you automatically get :rust:`Into`
+* If :rust:`From` is implemented, :rust:`Into` is inferred
 
-  * So it is a good idea to always implement :rust:`From` for your types
+  * Good idea to always implement :rust:`From` for types
   * Common practice to just implement :rust:`From`
 
 * :rust:`From` specifies both source and destination
@@ -83,18 +78,18 @@ Conversion Examples
     // What do we want 'target' to be?
     let target = source.into(); 
 
-    // You have to help it:
+    // Have to help it:
     let target: Feet = source.into();
 
 .. note::
 
   Conversions become very powerful when writing generic functions
 
-------------------------------------
-Conversion Between Primitive Types
-------------------------------------
+---------------------------------
+Casting Between Primitive Types
+---------------------------------
 
-* Convert between primitive types with :rust:`as`
+* Conversion (casting) between primitive types with :rust:`as`
 
   :rust:`my_u8 as u32`
 
@@ -107,11 +102,7 @@ Conversion Between Primitive Types
 * Casting truncates using **bitmasking** - keeps the lower bits
 
   * :rust:`enum` and pointers keeps lower bits
-  * :rust:`From` and :rust:`Into` are generally safer
-
-* Truncation (generally) only works with primitive-like types
-
-  * Casting :rust:`Struct` and :rust:`String` generate compile errors
+  * :rust:`From` and :rust:`Into` are safer
 
 ------------------
 Casting Examples
@@ -191,8 +182,6 @@ Conversion vs. Casting
       - Only when you **want** to truncate bits
 
 .. tip::
-
-  *The Programmer's Rule*
 
   * :rust:`Into` or :rust:`TryInto` for clarity and safety
   * Don't use :rust:`as` to force a conversion

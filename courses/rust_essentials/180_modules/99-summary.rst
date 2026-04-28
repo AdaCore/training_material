@@ -11,12 +11,10 @@ What We Covered
   * Creation of a hierarchy
   * Use :rust:`mod` to group related code
 
-    * And create a logical tree
-
 * **Filesystem Hierarchy**
 
   * Physical organization of modules
-  * Mapping modules to files and/or directories
+  * Mapping modules to files/directories
   * Filesystem matches logical hierarchy
 
 * **Visibility**
@@ -27,7 +25,7 @@ What We Covered
 * **Encapsulation**
 
   * Providing safe access to data
-  * Only the module should (typically) modify data directly
+  * Only supplier should (typically) modify data directly
 
 * **Pathing**
 

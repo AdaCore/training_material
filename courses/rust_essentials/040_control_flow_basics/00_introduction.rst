@@ -7,19 +7,20 @@ Topics Covered
 ----------------
 
 - **Blocks**
+  - Tail expression, unit type :rust:`()`
 
 - **Conditional Expressions**
-  - :rust:`if` Expressions
-  - :rust:`match` Expressions
+  - :rust:`if` expressions
+  - :rust:`match` expressions
 
 - **Loops**
-  - :rust:`while` Statement
-  - :rust:`for` Statement
-  - :rust:`loop` Expression
+  - :rust:`while` statement
+  - :rust:`for` statement
+  - :rust:`loop` expression
 
 - **Loop Control**
   - :rust:`break` and :rust:`continue`
-  - **Labels** (:rust:`for` loops and arbitrary blocks)
+  - Labels (:rust:`for` loops and arbitrary blocks)
   - Returning a value with :rust:`loop` and :rust:`break`
 
 - **Functions**
@@ -27,4 +28,5 @@ Topics Covered
   - Functions with no return value
 
 - **Macros**
+  - :rust:`println!`, :rust:`dbg!`, :rust:`todo!`, :rust:`unreachable!`
 

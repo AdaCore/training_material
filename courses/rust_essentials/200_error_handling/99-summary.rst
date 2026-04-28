@@ -8,13 +8,14 @@ What We Covered
 
 * **Panics**
 
-  * "Stop the world" bugs 
-  * Impossible states where program shouild not continue
+  * Unrecoverable errors
+
+    * Impossible states where program should not continue
 
 * **Result** 
 
-  * Enum-based way to handle expected errors
-  * Forces programmer to account for success or failure
+  * Enum-based way to handle recoverable errors
+  * Requires handling of success and failure
 
 * **The** :rust:`?` **Operator**
 

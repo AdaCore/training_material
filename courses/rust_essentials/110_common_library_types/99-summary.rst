@@ -12,7 +12,7 @@ What We Covered
   * **alloc** - adding some memory management
   * **std** - adding everything else, like file I/O, networking, etc.
 
-* **Most common library types**
+* **Common library types**
 
   .. list-table::
 
