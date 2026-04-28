@@ -13,18 +13,18 @@ fn main() {
     // Hint: You can return an error using a 'Result' enum variant 'Err' 
     enum Reason { TooYoung, TooOld, }
     fn check_age(age: i32) -> Result<i32, Reason> {
-    
+        todo!("Replace me with a proper error result");
     }
     let my_age = 33;
 
     // TASK 2 - Handling Results
-    // Hint: Replace the unwrap() function by a pattern matching to handle check_age return
+    // Hint: Replace the 'unwrap()' function by a pattern matching to 'handle check_age' return
     check_age(my_age).unwrap();
     
-    // TASK 3 - The Try Operator
-    // Hint: Use the try operator to return an error automatically to the caller of register 
+    // TASK 3 - the Try Operator
+    // Hint: Use the try operator to return an error automatically to the caller of 'register'
     // if check_age returns an error
-    // The try operator tries to converts 'reason' to the return type of register 'string'
+    // the try operator tries to convert 'reason' to the return type of 'register' 'string'
     // From trait should be implemented
     // impl From<Reason> for String {
         // fn from(reason: Reason) -> Self {
@@ -44,7 +44,6 @@ fn main() {
     // Use pattern matching to handle return from 'register' instead of 'unwrap()'
     register().unwrap();
     
-
     // TASK 5 - thiserror
     // Hint: Convert the comments over the two variants into error text using 'thiserror'
     // Then make sure withdraw returns an 'AccountError' of 'InsufficientFunds' 
@@ -54,7 +53,6 @@ fn main() {
     pub enum AccountError {
         // Insufficient funds: available {available}, requested {requested} 
         InsufficientFunds { available: u64, requested: u64 },
-    
         // Account is inactive 
         InactiveAccount,
     }
@@ -64,6 +62,7 @@ fn main() {
         }
         Ok(balance - amount)
     }
+    
     // Task 6 - Anyhow
     // Hint: Turn the 'println' in 'process_transaction' into an additional context of information
     // Attached to the 'withdraw' method
@@ -77,6 +76,5 @@ fn main() {
     if let Err(e) = result {
         println!("Error: {}", e); 
         println!("\nDebug Trace: {:?}", e);
-        
     } 
 }
