@@ -36,7 +36,7 @@ fn main() {
 
 
     // TASK 4 - "Clone Away" Strategy
-    // Hint: Modify the function call without creating new variables to have multiple agents smith saying hello!
+    // Hint: Modify the function call without creating new variables to have multiple agent smiths saying hello!
     fn say_hello(name: String) {
         println!("i'm agent {}", name);
     }
@@ -62,7 +62,6 @@ fn main() {
     let user_b = user_a;
     println!("We are {} and {}", user_a.1, user_b.1); 
 
-
     // TASK 7 - "Copy" and "Drop"
     // Hint: Some traits cannot be implemented together for a type
     #[derive(Copy, Clone)]
@@ -72,8 +71,7 @@ fn main() {
             println!("There can be only one!");
         }
     }
-
-     
+ 
     // TASK 8 - Destructor ("Drop")
     // Hint: Correct implementation by adding the self reference then add the function call to drop the mic!
     struct Objects {
