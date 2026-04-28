@@ -7,7 +7,7 @@
 fn main() {
 
     // TASK 1 - Private by Default
-    // Hint: functions inside modules are private by default, add the correct keyword to make it visible
+    // Hint: Functions inside modules are private by default, add the correct keyword to make it visible
     mod cleaner {
         // Fix: Added `pub` keyword to make the function visible outside the module
         pub fn perform_cleanup() {
@@ -19,7 +19,7 @@ fn main() {
 
 
     // TASK 2 - Visibility at Every Level
-    // Hint: making a struct public does not make its fields public, each field needs its own visibility modifier
+    // Hint: Making a struct public does not make its fields public, each field needs its own visibility modifier
     mod security {
         pub struct KeyCard {
             // Fix: Added `pub` keyword to the specific field
@@ -31,7 +31,7 @@ fn main() {
 
 
     // TASK 3 - Encapsulation
-    // Hint: private fields prevent direct struct instantiation, use the provided public constructor
+    // Hint: Private fields prevent direct struct instantiation, use the provided public constructor
     mod school {
         pub struct Students {
             names: Vec<String>,
@@ -49,7 +49,7 @@ fn main() {
 
 
     // TASK 4 - Super Keyword
-    // Hint: reaching up to the enclosing module requires the super keyword
+    // Hint: Reaching up to the enclosing module requires the super keyword
     mod parent {
         pub fn hello() {}
 
@@ -65,7 +65,7 @@ fn main() {
 
 
     // TASK 5 - The Use Shortcut
-    // Hint: long paths can be shortened by bringing the item into scope with the use keyword
+    // Hint: Long paths can be shortened by bringing the item into scope with the use keyword
     mod greenhouse {
         pub mod shelf {
             pub struct Cactus;
@@ -78,7 +78,7 @@ fn main() {
 
 
     // TASK 6 - Wildcard Import
-    // Hint: bring all public items from a module into scope at once using the glob import symbol
+    // Hint: Bring all public items from a module into scope at once using the glob import symbol
     mod networking {
         pub struct TcpStream;
         pub struct UdpSocket;
@@ -92,7 +92,7 @@ fn main() {
 
 
     // TASK 7 - Renaming With `as`
-    // Hint: bringing items with the same name into scope causes a name collision, rename one using the as keyword
+    // Hint: Bringing items with the same name into scope causes a name collision, rename one using the as keyword
     mod system_a {
         pub struct Error;
     }
