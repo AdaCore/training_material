@@ -34,7 +34,7 @@ fn main() {
     println!("{}", yorkie_2); 
 
     // TASK 4 - "Clone Away" Strategy
-    // Hint: Modify the function call without creating new variables to have multiple agents smith saying hello!
+    // Hint: Modify the function call without creating new variables to have multiple agent smiths saying hello!
     fn say_hello(name: String) {
         println!("i'm agent {}", name);
     }
