@@ -110,4 +110,7 @@ fn main() {
         
         fn consume(&self, food: Seed) { println!("Peck peck"); }
     }
+
+
+    println!("Congratulations! All tasks compiled successfully!");
 }

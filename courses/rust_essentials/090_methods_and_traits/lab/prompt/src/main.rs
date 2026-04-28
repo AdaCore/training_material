@@ -95,4 +95,6 @@ fn main() {
         // Missing the associated type assignment
         fn consume(&self, food: Seed) { println!("Peck peck"); }
     }
+
+    println!("Congratulations! All tasks compiled successfully!");
 }
