@@ -23,7 +23,7 @@ fn task_1() {
     let writer = &mut object;
     writer.0 += 1000;
     println!("Reader values: {} and {}", reader1.0, reader2.0);
-    println!("Writer value: {}", writer.0)
+    println!("Writer value: {}", writer.0);
 }
 
 fn task_2() {
@@ -31,7 +31,7 @@ fn task_2() {
     // Task 2 Goals
     //   a) Pass an object to a read-only function
     //   b) Pass object to a function that changes the parameter
-    //   d) Print the original object
+   //   c) Print the original object
     // Hint:
     //   Parameters must specify if they can be modified
 
@@ -54,7 +54,7 @@ fn task_3() {
     // Task 3 Goals
     //   a) Borrow an object for printing a value
     //   b) Pass object to a function that changes the parameter
-    //   d) Print the original object
+    //   c) Print the original object
     // Hint:
     //   Parameters must specify if they can be modified
 
@@ -93,7 +93,7 @@ fn task_5() {
     // Task 5 Goals
     //   a) Pass an object to a read-only method
     //   b) Pass object to a method that changes the parameter
-    //   d) Print the original object
+    //   c) Print the original object
     // Hint:
     //   Parameter must indicate that the object is the parameter
     //   Parameters must specify if they can be modified
