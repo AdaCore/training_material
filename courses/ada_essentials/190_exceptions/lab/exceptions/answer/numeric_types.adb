@@ -11,6 +11,8 @@ package body Numeric_Types is
       for I in Str'Range loop
          if not Legal (Str (I)) then
             raise Illegal_String;
+         elsif I > Str'First and then (Str (I) = '+' or Str (I) = '-') then
+            raise Bad_Format;
          end if;
       end loop;
       return Integer_T'Value (Str);

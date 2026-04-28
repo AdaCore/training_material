@@ -14,6 +14,8 @@ procedure Main is
          Ada.Text_IO.Put_Line ("Out of range");
       when Numeric_Types.Illegal_String =>
          Ada.Text_IO.Put_Line ("Illegal entry");
+      when Numeric_Types.Bad_Format =>
+         Ada.Text_IO.Put_Line ("Bad format");
    end Print_Value;
 
 begin
@@ -22,7 +24,8 @@ begin
    Print_Value ("-345");
    Print_Value ("+456");
    Print_Value ("1234567890");
-   Print_Value ("123abc");
    Print_Value ("12e3");
+   Print_Value ("12-");
+   Print_Value ("123abc");
 end Main;
 --Main
