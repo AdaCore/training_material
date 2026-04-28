@@ -10,11 +10,8 @@ fn main() {
         value: f64,
     }
 
-    // Task 1 Goals
-    //   a) Create a shared reference to 'angle'
-    //   b) Print the value for the shared reference
-    //   c) Double the value for each field
-    //   d) Print the value for shared reference
+    // Task 1 Goal
+    //   We want to use a reference to show changes in the pointed-to value
     // Hint:
     //   Cannot modify a shared reference directly
     println!("Task 1 - Observer");
@@ -24,13 +21,12 @@ fn main() {
     };
     let ref_angle = &angle;
     println!("Before: {} {}", ref_angle.count, ref_angle.value);
-    ref_angle.count = ref_angle.count * 2;
-    ref_angle.value = ref_angle.value * 2.0;
+    ref_angle.count *= 2;
+    ref_angle.value *= 2.0;
     println!("After: {} {}", ref_angle.count, ref_angle.value);
 
-    // Task 2 Goals
-    //   a) Create a reference object to point to multiple objects
-    //   b) Use the reference object print the values of both objects
+    // Task 2 Goal
+    //   Use a single reference to print the values of multiple pointed-to objects
     // Hint: A shared reference can be mutable!
     println!("Task 2 - Rebinder");
     let bricks = ReferencesStruct {
@@ -46,10 +42,8 @@ fn main() {
     ref_both = &buildings;
     println!("Buildings: {} {}", ref_both.count, ref_both.value);
 
-    // Task 3 Goals
-    //   a) Create a reference object that allows modification of the contents
-    //   b) Update the the original object via the reference object
-    //   c) Print the before and after value for the original object
+    // Task 3 Goal
+    //   Use a reference to change the value of a pointed-to object
     // Hint:
     //   The original object must be modifiable
     //   The reference object must allow for modification of the contents
@@ -64,9 +58,8 @@ fn main() {
     ref_cars.value = ref_cars.value / 2.0;
     println!("After: {} {}", cars.count, cars.value);
 
-    // Task 4 Goals
-    //   a) Create a single reference object to print and modify multiple objects
-    //   b) Print the before and after values for each object
+    // Task 4 Goal
+    //   Create a single reference object to modify multiple pointed-to objects
     // Hint: The mutable reference needs to be mutable
     println!("Task 4 - Free Agent");
     let dog = ReferencesStruct {
@@ -110,7 +103,7 @@ fn main() {
     //   Use "{:?}" is used to print the contents of the array (Debug)
     println!("Task 6 - Slices");
     let floats: [f64; 5] = [1.1, 22.22, 333.333, 4444.4444, 55555.555555];
-   let mut ref_floats: &[f64] = &floats;
+    let mut ref_floats: &[f64] = &floats;
     println!("{:?}", ref_floats);
     ref_floats = &floats;
     println!("{:?}", ref_floats);
