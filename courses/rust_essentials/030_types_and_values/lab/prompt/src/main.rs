@@ -25,7 +25,7 @@ fn main() {
     let big_number : u8 = 150000;     
        
 
-    // TASK 4 - Type inference and Static Type
+    // TASK 4 - Type Inference and Static Type
     // Hint: Type is inferred by initial value. Numeric literals must match type assigned
     let mut my_float = 6.5;
     my_float = 5;
