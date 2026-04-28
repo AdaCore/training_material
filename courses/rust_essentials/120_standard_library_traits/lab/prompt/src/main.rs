@@ -8,7 +8,7 @@
 fn main() {
     
     // TASK 1 - Trait Dependencies for Ordering
-    // Hint: 'PartialOrd' requires PartialEq to be defined
+    // Hint: 'PartialOrd' requires 'PartialEq' to be defined
     #[derive(PartialOrd)]
     struct Score {
         points: u32,
@@ -39,7 +39,7 @@ fn main() {
     struct Point { x: i32 }
     
     impl std::ops::Add for Point {
-        // Missing the associated type Output
+        // Missing the associated type 'Output'
         fn add(self, rhs: Self) -> Self::Output {
             Point { x: self.x + rhs.x }
         }

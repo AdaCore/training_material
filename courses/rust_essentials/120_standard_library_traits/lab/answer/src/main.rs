@@ -6,7 +6,7 @@
 fn main() {
     
     // TASK 1 - Trait Dependencies for Ordering
-    // Hint: 'PartialOrd' requires PartialEq to be defined
+    // Hint: 'PartialOrd' requires 'PartialEq' to be defined
     
     // Fix: Added PartialEq to the derive macro
     #[derive(PartialEq, PartialOrd)]
@@ -37,11 +37,11 @@ fn main() {
 
 
     // TASK 4 - Operator Overloading Output
-    // Hint: When overloading operators the Self::Output return type must be explicitly declared
+    // Hint: When overloading operators the 'Self::Output' return type must be explicitly declared
     struct Point { x: i32 }
     
     impl std::ops::Add for Point {
-        // Fix: Defined the associated type Output for the trait
+        // Fix: Defined the associated type 'Output' for the trait
         type Output = Point;
 
         fn add(self, rhs: Self) -> Self::Output {
@@ -99,7 +99,7 @@ fn main() {
     // TASK 9 - Equality Comparison
     // Hint: Using the == operator requires implementing or deriving 'PartialEq'
     
-    // Fix: Derived the PartialEq trait to enable the '==' operator
+    // Fix: Derived the 'PartialEq' trait to enable the '==' operator
     #[derive(PartialEq)]
     struct SensorData {
         valid: bool,
@@ -111,5 +111,4 @@ fn main() {
     let is_same = sensor_1 == sensor_2;
 
     println!("Congratulations! All tasks compiled successfully!");
-}
 }
