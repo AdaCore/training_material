@@ -4,8 +4,6 @@
 //! Fix all the compile errors below and/or follow the hints provided
 //!
 
-#![allow(unused_assignments)]
-
 fn main() {
     // TASK 1 - What is an Iterator?
     // Hint: Print ALL values. Check the output to verify you printed all elements  
@@ -45,7 +43,7 @@ fn main() {
     // Hint: Collections themselves are not iterators
     // Using 'iter()' does not consume the collection
     let numbers_2 = vec![10, 20, 30];
-        for n in numbers_2.iter() {
+    for n in numbers_2.iter() {
         println!("{n}");
     }
     println!("Done printing {} items.", numbers_2.len());    
