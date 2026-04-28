@@ -50,6 +50,8 @@ Matching Enum Variants
     Message::Write(text) => println!("write: {}", text),
   }
 
+:command:`quit`
+
 ----------------------------
 Destructuring Variant Data
 ----------------------------
@@ -80,6 +82,8 @@ Destructuring Variant Data
     Message::Quit => println!("quit"),
   }
 
+:command:`text: hello`
+
 ----------------
 Tuple Variants
 ----------------
@@ -105,6 +109,8 @@ Tuple Variants
       Event::KeyPress(tap) => println!("key: {}", tap),
       Event::MouseClick(x, y) => println!("click at {}, {}", x, y),
     }
+  
+:command:`click at 10, 20`
 
 -----------------
 Struct Variants
@@ -121,16 +127,25 @@ Struct Variants
   .. code:: rust
 
     enum Shape {
-      Circle { radius: f64 },
-      Rectangle { width: f64, height: f64 },
+        Circle { radius: f64 },
+        Rectangle { width: f64, height: f64 },
     }
 
     let profile = Shape::Rectangle { width: 3.0, height: 4.0 };
 
     match profile {
-      Shape::Circle { radius } => println!("circle r={}", radius),
-      Shape::Rectangle { width, height } => { println!("rect {} x {}", width, height); }
+        Shape::Circle { radius } => {
+            println!("circle r={}", radius)
+        }
+        Shape::Rectangle {
+            width,
+            height,
+        } => {
+            println!("rect {} x {}", width, height);
+        }
     }
+
+:command:`rect 3 x 4`
 
 -----------------------------
 Enums as Robust Data Models

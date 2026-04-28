@@ -95,6 +95,10 @@ Function Borrows
     calibrate(&mut scanner);   // Mutable borrow starts and ends
     read(&scanner);            // Read-only borrow starts and ends
 
+:command:`Read: 42`
+
+:command:`Read: 52`
+
 .. note::
 
     As long as function calls do not overlap in their borrowing, compiler allows it
@@ -197,7 +201,7 @@ Conflicting Self Borrows
     let mut scanner = Sensor(42);
     
     let snapshot = &scanner; // Immutable borrow starts
-    scanner.calibrate(); 
+    scanner.calibrate(); // This won't compile
     println!("Reference sees: {}", snapshot.read());
 
 .. container:: latex_environment scriptsize

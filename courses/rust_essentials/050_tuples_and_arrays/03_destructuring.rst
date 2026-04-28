@@ -19,7 +19,6 @@ Destructuring a Tuple
   - Extract multiple values in **single line**
   - Assign **meaningful names** to improve readability 
   - Ignore specific elements that are **not needed**
-
     - With the wildcard pattern :rust:`_`
 
 .. code:: rust
@@ -103,6 +102,10 @@ Ignoring Specific Elements
   println!("Second color: {}", second); // green
   println!("Fourth color: {}", fourth); // yellow
 
+:command:`Second color: green`
+
+:command:`Fourth color: yellow`
+
 ----------------------------
 Ignoring Multiple Elements
 ----------------------------
@@ -119,6 +122,10 @@ Ignoring Multiple Elements
   println!("First: {}", first);
   println!("Second: {}", second);
 
+:command:`First: 1`
+
+:command:`Second: 2`
+
 ----------------------
 Nested Destructuring
 ----------------------
@@ -132,3 +139,5 @@ Nested Destructuring
 
   println!("Drawing line from ({}, {}) to ({}, {})", 
             start_x, start_y, end_x, end_y);
+
+:command:`Drawing line from (10, 20) to (80, 90)`

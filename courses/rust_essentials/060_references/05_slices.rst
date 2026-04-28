@@ -7,7 +7,7 @@ What Are Slices?
 ------------------
 
 - View into memory owned by another variable
-  - Must be contiguous sequence (like an Array)
+  - Must be contiguous sequence (like an array)
 - Refer to data stored elsewhere
 - Use zero-based indexing
   - Are inclusive of the starting bound but exclusive of the end
@@ -108,11 +108,13 @@ Fat Pointer
 "&str" vs. "String"
 ---------------------
 
-- :rust:`&str`: **String slice**, immutable reference to UTF-8 encoded bytes
-  - Fixed length (cannot grow or shrink)
-  - String literals (:rust:`"Hello"`) are :rust:`&str`
-- :rust:`String`: Buffer of UTF-8 encoded bytes
-  - Allocated on the heap, can grow or shrink
+- :rust:`&str`
+  - **String slice** - immutable reference to UTF-8 encoded bytes
+    - Fixed length (cannot grow or shrink)
+    - String literals (:rust:`"Hello"`) are :rust:`&str`
+- :rust:`String`
+  - Buffer of UTF-8 encoded bytes
+    - Allocated on the heap, can grow or shrink
 
 .. code:: rust
 

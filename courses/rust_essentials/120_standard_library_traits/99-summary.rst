@@ -20,12 +20,10 @@ What We Covered
   * Conversion using :rust:`From` and :rust:`Into`
   * Casting using :rust:`as`
 
-    * Data loss when target is smaller than source
-
 * **Input/Output on Types**
 
   * Implement :rust:`Read` and :rust:`Write` for your types
 
 * **Default Values for Types**
 
-  * Assigning default values to little-used fields
+  * Assigning default values to fields

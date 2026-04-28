@@ -8,11 +8,11 @@ Topics Covered
 
 * **What Is an Iterator**
 
-  * The mechanics of loops over collections
+  * Mechanics of loops over collections
 
 * **Iterator as a Trait**
 
-  * Looping over a collection in Rust
+  * Looping over a collection
 
 * **Iterator Trait Methods**
 
@@ -20,7 +20,7 @@ Topics Covered
 
 * **Collecting Data via Iterator**
 
-  * Creating a new collection from an existing collection
+  * Creating a new collection from an existing one
 
 * **Converting to an Iterator**
 

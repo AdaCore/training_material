@@ -17,5 +17,5 @@ The Company
 
 * Roots in Open Source software movement
 
-    - Provide toolchains for Ada/SPARK, C/C++ and Rust
+    - Provides toolchains for Ada/SPARK, C/C++ and Rust
     - Focus on safety-critical and mission-critical systems

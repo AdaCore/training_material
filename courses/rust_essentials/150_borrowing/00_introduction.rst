@@ -6,7 +6,7 @@ Introduction
 Topics Covered
 ----------------
 
--  **Accessing data without taking ownership**
+-  **Accessing Data Without Taking Ownership**
    - Local, function, and method borrows
    - Compile-time safety and the *Borrow Checker*
 
