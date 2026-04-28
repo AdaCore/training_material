@@ -48,7 +48,7 @@ fn main() {
     
 
     // TASK 5 - Custom "Copy" Types
-    // Hint: Copy is not a 'standalone' trait. it has requirements
+    // Hint: Copy is not a 'standalone' trait. It has requirements
     #[derive(Copy)]
     struct Point2(i32, i32);
     let p1 = Point2(3, 4);
