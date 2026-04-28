@@ -49,7 +49,11 @@ fn main() {
         println!("{n}");
     }
     println!("Done printing {} items.", numbers_2.len());    
+<<<<<<< HEAD
        
+=======
+    
+>>>>>>> 9db7803b ([!] Adding comments corr)
     // TASK 4 - Common Iterator Adapters
     // Hint: 'map' transforms values during iteration, 'filter' selects values matching condition
     fn double(x: &i32) -> i32 {
@@ -64,7 +68,6 @@ fn main() {
     for elem in flush.iter().map(double) {
         println!("Value multiplied by 2 is: {elem}");
     }
-
     // Print only values divisible by 2
     for elem in flush.iter().filter(is_even) {
         println!("This value is divisible by 2: {elem}");
@@ -97,14 +100,13 @@ fn main() {
         x * x
     }
     let result: i32 = (1..=10) // Range: 1, 2, 3, ..., 10
-        .filter(is_even_owned)                  // Only select even values
-        .map(square)                     // Square values
-        .sum(); // Total: 220
+        .filter(is_even_owned) // Only select even values
+        .map(square)           // Square values
+        .sum();                // Total: 220
     println!("Sum of even squares: {}", result);
         
     // TASK 7 - Collecting "Result"
     // Hint: 'collect()' stores results in a collection
-    // For any(): receives a reference to the item
     fn parse_i32(s: &str) -> Result<i32, std::num::ParseIntError> {
         s.parse::<i32>()
     }

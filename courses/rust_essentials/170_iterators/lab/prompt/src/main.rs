@@ -14,7 +14,6 @@ fn main() {
         println!("{}", X);
     }
     
-
     // TASK 2 - Using Our Iterator
     // Hint: The 'for' loop calls .next() under the hood
     struct SliceIter<'s> {
@@ -49,8 +48,7 @@ fn main() {
         println!("{n}");
     }
     println!("Done printing {} items.", numbers_2.len());      
-       
-
+    
     // TASK 4 - Common Iterator Adapters
     // Hint: 'map' transforms values during iteration, 'filter' selects values matching condition
     fn double(x: &i32) -> i32 {
@@ -98,9 +96,8 @@ fn main() {
     let result: i32 = (1..=10) // Range: 1, 2, 3, ..., 10
         .X                     // Only select even values
         .Y                     // Square values
-        .sum(); // Total: 220
+        .sum();                // Total: 220
     println!("Sum of even squares: {}", result);
-        
 
     // TASK 7 - Collecting "Result"
     // Hint: 'collect()' stores results in a collection
