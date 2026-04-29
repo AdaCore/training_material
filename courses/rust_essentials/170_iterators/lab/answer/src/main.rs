@@ -5,7 +5,7 @@
 //!
 
 fn main() {
-    // TASK 1 - What is an Iterator?
+    // TASK 1 - Looping via Array Indices
     // Hint: Print ALL values. Check the output to verify you printed all elements  
     let array = [2, 4, 6, 8];
     for idx in 0..4 {
@@ -47,11 +47,7 @@ fn main() {
         println!("{n}");
     }
     println!("Done printing {} items.", numbers_2.len());    
-<<<<<<< HEAD
-       
-=======
-    
->>>>>>> 9db7803b ([!] Adding comments corr)
+
     // TASK 4 - Common Iterator Adapters
     // Hint: 'map' transforms values during iteration, 'filter' selects values matching condition
     fn double(x: &i32) -> i32 {
