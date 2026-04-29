@@ -44,7 +44,7 @@ Useful Links
 
     - Additional guides, docs, and learning paths  
 
-    - `https://rust-lang.org//learn/ <https://rust-lang.org/learn/>`_
+    - `https://rust-lang.org/learn/ <https://rust-lang.org/learn/>`_
 
 
   - GNAT Pro for Rust User’s Guide
