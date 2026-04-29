@@ -86,7 +86,7 @@ fn main() {
     };
     println!("After duck: {} {}", ref_both.count, ref_both.value);
 
-    // Task 5 Goals
+    // Task 5 Goal
     //   Modify the existing code to print correctly
     // Hint: Need to make the referenced object last longer
     println!("Task 5 - Dangling Reference");
@@ -96,7 +96,7 @@ fn main() {
     };
     println!("Jack screams '{rose}'");
 
-    // Task 6 Goals
+    // Task 6 Goal
     //   Use a single reference object to print all different length slices of 'floats'
     // Hint:
     //   Reference object refers to a slice of the object, not length
