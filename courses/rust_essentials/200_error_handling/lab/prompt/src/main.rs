@@ -15,7 +15,7 @@ fn main() {
     fn check_age(age: i32) -> Result<i32, Reason> {
         todo!("Replace me with a proper error result");
     }
-    let my_age = 33;
+    let my_age = 17;
 
     // TASK 2 - Handling Results
     // Hint: Replace the 'unwrap()' function by a pattern matching to 'handle check_age' return
