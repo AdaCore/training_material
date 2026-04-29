@@ -23,10 +23,10 @@ fn main() {
 
 
     // TASK 2 - Refutable Pattern in a 'let' Binding
-    // Hint: Every `let` binding uses a pattern, but simple bindings require irrefutable patterns
+    // Hint: Every 'let' binding uses a pattern, but simple bindings require irrefutable patterns
     let secret_value = Some(42);
     
-    // Fix: Used `if let` to handle the conditional/refutable pattern
+    // Fix: Used 'if let' to handle the conditional/refutable pattern
     if let Some(x) = secret_value {
         println!("The secret is {}", x);
     }
@@ -42,7 +42,7 @@ fn main() {
 
     let p = Player { name: String::from("Hero"), health: 100, mana: 50 };
     
-    // Fix: Added `..` to explicitly ignore the `mana` field
+    // Fix: Added '..' to explicitly ignore the 'mana' field
     let Player { name, health, .. } = p;
 
 
@@ -55,7 +55,7 @@ fn main() {
 
     let a = Alert::Warning(String::from("Low Battery"));
     match a {
-        // Fix: Added `(_)` to properly account for the payload while ignoring it
+        // Fix: Added '(_)' to properly account for the payload while ignoring it
         Alert::Warning(_) => println!("Received a warning, ignoring details"),
         Alert::Clear => println!("All clear"),
     }
@@ -67,7 +67,7 @@ fn main() {
     match temperature {
         t if t > 25 => println!("Hot"),
         t if t <= 25 => println!("Cool"),
-        _ => unreachable!(), // Fix: Added the wildcard `_` catch-all arm
+        _ => unreachable!(), // Fix: Added the wildcard '_' catch-all arm
     }
 
 
@@ -112,7 +112,7 @@ fn main() {
     // Hint: Use the '@' operator to give a name to a value while checking it against a range
     let dice_roll = 4;
     match dice_roll {
-        // Fix: Placed the identifier `roll` before the `@` and the range pattern
+        // Fix: Placed the identifier 'roll' before the '@' and the range pattern
         roll @ 1..=6 => println!("Rolled a {}", roll),
         _ => println!("Invalid roll"),
     }

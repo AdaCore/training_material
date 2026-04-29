@@ -23,7 +23,7 @@ fn main() {
 
 
     // TASK 2 - Refutable Pattern in a 'let' Binding
-    // Hint: Every `let` binding uses a pattern, but simple bindings require irrefutable patterns
+    // Hint: Every 'let' binding uses a pattern, but simple bindings require irrefutable patterns
     let secret_value = Some(42);
     
     let Some(x) = secret_value;
