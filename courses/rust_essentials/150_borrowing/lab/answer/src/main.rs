@@ -87,15 +87,15 @@ fn task_4() {
     println!("Original value: {}", object.0);
 
     // The following is not allowed - requires multiple mutable borrows
-    // sync_sensor (&mut object, &mut object);
+    // sync_sensor(&mut object, &mut object);
 
     // The following is also not allowed - both the read-only and the
     // writable are in-use at the same time!
-    // sync_sensor (&mut object, &object);
+    // sync_sensor(&mut object, &object);
 
     // Even the following is not allowed - we're trying to read
     // while the writable reference is still active!
-    // sync_sensor (&mut object, object.0);
+    // sync_sensor(&mut object, object.0);
 
     let temp = object.0;
     sync_sensor(&mut object, temp);
@@ -110,7 +110,7 @@ fn task_5() {
     //   b) Pass object to a method that changes the parameter
     //   c) Print the original object
     // Hints:
-    //   Parameter must indicate that the object is the parameter
+    //   Methods use 'self' parameter to refer to instance they are called on
     //   Parameters must specify if they can be modified
     //   Function cannot modify object if a reader is in-use
     struct Sensor(i32);
