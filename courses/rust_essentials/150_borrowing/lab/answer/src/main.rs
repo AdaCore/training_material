@@ -1,8 +1,6 @@
 //! Lab (answer)
 //! Borrowing
 //!
-//! Fix all the compile errors below by following the hints provided
-//!
 
 fn task_1() {
     println!("Task 1 - Mutable and Immutable Borrows");
