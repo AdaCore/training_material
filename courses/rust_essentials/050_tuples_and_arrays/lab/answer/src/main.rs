@@ -9,7 +9,7 @@
 
 fn main() {
     // TASK 1 - Array Declaration, Intialization and Value Change
-    // Hint: First declare type and number of elements of your array, then assign it valid initial values.
+    // Hint: First declare type and number of elements of your array, then assign it valid initial values
     // Then change only one element using the proper syntax
     let mut numbers_arr: [i8; 3] = [1, 2, 3];
     numbers_arr[1] = 5;
