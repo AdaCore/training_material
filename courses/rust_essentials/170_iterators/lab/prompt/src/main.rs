@@ -65,7 +65,6 @@ fn main() {
         println!("this value is divisible by 2: {elem}");
     }
     
-
     // TASK 5 - Common consumers
     // Hint: 'sum' adds all values and return a single value, 'any' returns True if any value matches condition
     fn is_freezing(temp: &i32) -> bool {
