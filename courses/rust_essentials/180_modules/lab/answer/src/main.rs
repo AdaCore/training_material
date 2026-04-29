@@ -9,7 +9,7 @@ fn main() {
     // TASK 1 - Private by Default
     // Hint: Functions inside modules are private by default, add the correct keyword to make it visible
     mod cleaner {
-        // Fix: Added `pub` keyword to make the function visible outside the module
+        // Fix: Added 'pub' keyword to make the function visible outside the module
         pub fn perform_cleanup() {
             println!("Cleaning up...");
         }
@@ -55,7 +55,7 @@ fn main() {
 
         pub mod child {
             pub fn call_parent() {
-                // Fix: Used `super::` to reach up to the parent module's scope
+                // Fix: Used 'super::' to reach up to the parent module's scope
                 super::hello();
             }
         }
@@ -72,7 +72,7 @@ fn main() {
         }
     }
 
-    // Fix: Brought the item into scope via `use`
+    // Fix: Brought the item into scope via 'use'
     use greenhouse::shelf::Cactus;
     let my_plant: Cactus = Cactus;
 
@@ -84,14 +84,14 @@ fn main() {
         pub struct UdpSocket;
     }
 
-    // Fix: Used the wildcard `*` to import everything from the networking module
+    // Fix: Used the wildcard '*' to import everything from the networking module
     use networking::*;
     
     let tcp: TcpStream = TcpStream;
     let udp: UdpSocket = UdpSocket;
 
 
-    // TASK 7 - Renaming With `as`
+    // TASK 7 - Renaming With 'as'
     // Hint: Bringing items with the same name into scope causes a name collision, rename one using the 'as' keyword
     mod system_a {
         pub struct Error;
@@ -102,7 +102,7 @@ fn main() {
     }
 
     use system_a::Error;
-    // Fix: Used the `as` keyword to rename the conflicting item
+    // Fix: Used the 'as' keyword to rename the conflicting item
     use system_b::Error as SysBError;
 
     let e1 = Error;

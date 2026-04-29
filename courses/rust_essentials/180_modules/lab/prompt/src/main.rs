@@ -84,7 +84,7 @@ fn main() {
     let udp: UdpSocket = networking::UdpSocket;
 
 
-    // TASK 7 - Renaming With `as`
+    // TASK 7 - Renaming With 'as'
     // Hint: Bringing items with the same name into scope causes a name collision, rename one using the 'as' keyword
     mod system_a {
         pub struct Error;
