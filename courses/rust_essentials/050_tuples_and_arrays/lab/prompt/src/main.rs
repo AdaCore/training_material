@@ -29,12 +29,12 @@ fn main() {
     }
 
     // TASK 4 - Tuple Declaration
-    // Hint:Tuple declaration syntax differs from arrays. Access to value is done through "." dot notation
+    // Hint: Tuple declaration syntax differs from arrays. Access to value is done through "." dot notation
     let alien_report: (i8; bool) = [3, false];
     println!("Is it hostile? {}", alien_report);
 
     // TASK 5 - Destructuring
-    // Hint: Ignore specific elements that are not needed With the wildcard pattern.
+    // Hint: Ignore specific elements that are not needed With the wildcard pattern
     // Use the variables created to display them
     let person_data = ("Renoir", 33, "Painter");
     let (name, profession) = person_data;
