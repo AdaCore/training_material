@@ -32,9 +32,9 @@ fn main() {
     // TASK 5 - Base Numeric Literal
     // Hint: Convert the value into different bases and verify the display
     let binary = 0b1111_0000;
-    let decimal = ;
-    let octal = ;
-    let hexadecimal = ;
+    let decimal = 10;
+    let octal = 20;
+    let hexadecimal = 30;
 
     println!("TASK5 => binary     : {}", binary);
     println!("TASK5 => decimal    : {}", decimal);
