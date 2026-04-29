@@ -78,7 +78,7 @@ fn task_4() {
     // Task 4 Goals
     //    a) 'sync_sensors' should copy contents of one sensor to the other
     //    b) Print the values before and after
-    // Hint:
+    // Hints:
     //    Not actually allowed!
     //    Modify 'sync_sensor' and the caller to get the job done
     struct Sensor(i32);
@@ -111,7 +111,7 @@ fn task_5() {
     //   a) Pass an object to a read-only method
     //   b) Pass object to a method that changes the parameter
     //   c) Print the original object
-    // Hint:
+    // Hints:
     //   Parameter must indicate that the object is the parameter
     //   Parameters must specify if they can be modified
     //   Function cannot modify object if a reader is in-use

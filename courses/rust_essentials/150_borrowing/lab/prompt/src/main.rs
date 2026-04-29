@@ -11,7 +11,7 @@ fn task_1() {
     //   b) Print the items you've borrowed
     //   c) Modify the borrowed object
     //   d) Print the borrowed object and the original object
-    // Hint:
+    // Hints:
     //   Cannot borrow for writing if a reader is in-use
     //   Cannot modify something that is not specified as modifiable
 
@@ -75,7 +75,7 @@ fn task_4() {
     // Task 4 Goals
     //    a) 'sync_sensors' should copy contents of one sensor to the other
     //    b) Print the values before and after
-    // Hint:
+    // Hints:
     //    Not actually allowed!
     //    Modify 'sync_sensor' and the caller to get the job done
     struct Sensor(i32);
@@ -94,7 +94,7 @@ fn task_5() {
     //   a) Pass an object to a read-only method
     //   b) Pass object to a method that changes the parameter
     //   c) Print the original object
-    // Hint:
+    // Hints:
     //   Parameter must indicate that the object is the parameter
     //   Parameters must specify if they can be modified
     //   Function cannot modify object if a reader is in-use
@@ -119,7 +119,7 @@ fn task_6() {
     //   a) Increment counter every time object is read
     //   b) Reader should not be modifying the contents, just the counter
     //   c) See what happens with multiple reader references!
-    // Hint:
+    // Hints:
     //   Use 'Cell' reference type to implement the counter
     //   Do not forget to import the appropriate crate
     struct Sensor {
@@ -156,7 +156,7 @@ fn task_7() {
     // Task 7 Goals
     //   a) Implement a sensor history
     //   b) Make sure you can read and modify the history data
-    // Hint:
+    // Hints:
     //   Use 'RefCell' reference type to implement the counter
     //   Do not forget to import the appropriate crate
     //   'RefCell' borrow failures are run-time problems, not compile errors
