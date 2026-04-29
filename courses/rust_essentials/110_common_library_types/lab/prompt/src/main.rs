@@ -41,5 +41,6 @@ fn main() {
     fn get_user(id: u32) -> Option<String> {
         null
     }
+        println!("TASK6 => get_user(1): {:?}", get_user(1));
 
 }
