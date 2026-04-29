@@ -1,7 +1,7 @@
 //! Lab (answers)
 //! Borrowing
 //!
-//! Fix all the compile errors below by following the hints provided
+//! Fix all the compile errors (and one runtime panic!) below by following the hints
 //!
 
 fn task_1() {
@@ -120,7 +120,7 @@ fn task_6() {
     //   b) Reader should not be modifying the contents, just the counter
     //   c) See what happens with multiple reader references!
     // Hint:
-    //   Use "Cell" reference type to implement the counter
+    //   Use 'Cell' reference type to implement the counter
     //   Do not forget to import the appropriate crate
     struct Sensor {
         data: i32,
@@ -157,9 +157,9 @@ fn task_7() {
     //   a) Implement a sensor history
     //   b) Make sure you can read and modify the history data
     // Hint:
-    //   Use "RefCell" reference type to implement the counter
+    //   Use 'RefCell' reference type to implement the counter
     //   Do not forget to import the appropriate crate
-    //   RefCell borrow failures are run-time problems, not compile errors
+    //   'RefCell' borrow failures are run-time problems, not compile errors
 
     struct History {
         data: RefCell<Vec<u32>>,

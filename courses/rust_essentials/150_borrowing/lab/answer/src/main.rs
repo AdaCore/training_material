@@ -137,7 +137,7 @@ fn task_6() {
     //   b) Reader should not be modifying the contents, just the counter
     //   c) See what happens with multiple reader references!
     // Hints:
-    //   Use "Cell" reference type to implement the counter
+    //   Use 'Cell' reference type to implement the counter
     //   Do not forget to import the appropriate crate
     use std::cell::Cell;
     struct Sensor {
@@ -189,9 +189,9 @@ fn task_7() {
     //   a) Implement a sensor history
     //   b) Make sure you can read and modify the history data
     // Hints:
-    //   Use "RefCell" reference type to implement the counter
+    //   Use 'RefCell' reference type to implement the counter
     //   Do not forget to import the appropriate crate
-    //   RefCell borrow failures are run-time problems, not compile errors
+    //   'RefCell' borrow failures are run-time problems, not compile errors
     use std::cell::RefCell;
 
     struct History {
@@ -201,7 +201,7 @@ fn task_7() {
         data: RefCell::new(vec![1, 2, 3]),
     };
 
-    { // without the block scopes, run-time cannot tell if borrow is in-use
+    { // Without the block scopes, run-time cannot tell if borrow is in-use
         let immutable = values.data.borrow();
         println!("Immutable values: {:?}", immutable);
     }
