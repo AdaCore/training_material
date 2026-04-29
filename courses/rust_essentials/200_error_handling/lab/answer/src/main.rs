@@ -1,8 +1,6 @@
 //! Lab (answer)
 //! Error Handling
 //!
-//! Fix all the compile errors below and/or follow the hints provided
-//!
 
 #![allow(unused_assignments)]
 #![allow(unused_variables)]
@@ -13,9 +11,13 @@ fn main() {
     // Hint: You can return an error using a 'Result' enum variant 'Err' 
     enum Reason { TooYoung, TooOld, }
     fn check_age(age: i32) -> Result<i32, Reason> {
-        Err(Reason::TooYoung)
+        if age < 18 {
+            Err(Reason::TooYoung)
+        } else {
+            Ok(age)
+        }
     }
-    let my_age = 33;
+    let my_age = 17;
 
     // TASK 2 - Handling Results
     // Hint: Replace the 'unwrap()' function by a pattern matching to 'handle check_age' return
@@ -76,7 +78,7 @@ fn main() {
 
     // Task 6 - Anyhow
     // Hint: Turn the 'println' in 'process_transaction' into an additional context of information
-    // Attached to the withdraw method
+    // Attached to the withdraw function
     // You have to use the correct library to be able to use the 'with_context' method
     use anyhow::Context;
     fn process_transaction(balance: u64, amount: u64) -> anyhow::Result<()> {

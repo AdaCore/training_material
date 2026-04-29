@@ -66,7 +66,7 @@ fn main() {
     
     // Task 6 - Anyhow
     // Hint: Turn the 'println' in 'process_transaction' into an additional context of information
-    // Attached to the 'withdraw' method
+    // Attached to the 'withdraw' function
     // You have to use the correct library to be able to use the 'with_context' method
     fn process_transaction(balance: u64, amount: u64) -> anyhow::Result<()> {
         withdraw(balance, amount)
