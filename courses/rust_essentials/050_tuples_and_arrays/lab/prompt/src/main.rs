@@ -47,7 +47,7 @@ fn main() {
     (cat_snacks, dog_treats) = (dog_treats, cat_snacks);
 
     // TASK 7 - Destructuring Array
-    // Hint: destructure the array to print the number of shirts, pants and socks
+    // Hint: Destructure the array to print the number of shirts, pants and socks
     let bag: [i32; 3] = [10, 20, 30];
     println!("shirts: {}", shirts);
     println!("pants: {}", pants);
