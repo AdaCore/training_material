@@ -12,6 +12,6 @@ Lab Instructions
 
 - Success is
 
-  - Code that compiles
+    - Code that compiles
 
-  - ... and that follows any behavior indicated within the hints
+    - ...and that follows any behavior indicated within the hints!
