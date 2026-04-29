@@ -1,5 +1,3 @@
-with Ada.Exceptions; use Ada.Exceptions;
-with Ada.Text_IO;    use Ada.Text_IO;
 with Schedule;       use Schedule;
 procedure Main is
    Classes : Classes_T;
@@ -17,13 +15,10 @@ begin
                       Start_Time => 13.0,
                       End_Time   => 14.0);
    Classes.Print;
-   begin
-      Classes.Add_Class (Name       => "Chemistry ",
-                         Day        => Thu,
-                         Start_Time => 13.0,
-                         End_Time   => 14.0);
-   exception
-      when The_Err : others =>
-         Put_Line (Exception_Information (The_Err));
-   end;
+
+   --  This is not a valid class, so an assertion error should be raised
+   Classes.Add_Class (Name       => "Chemistry ",
+                      Day        => Thu,
+                      Start_Time => 13.0,
+                      End_Time   => 14.0);
 end Main;
