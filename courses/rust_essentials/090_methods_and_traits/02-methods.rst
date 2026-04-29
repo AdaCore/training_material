@@ -135,7 +135,7 @@ Method Receiver - Take Ownership
   .. code:: rust
 
     impl Counter {
-        // This 'consumes' counter and returns the final number
+        // This consumes 'counter' and returns the final number
         fn finalize(self) -> i32 {
             println!("Shutting down counter...");
             // Return the value, 'self' is dropped here
@@ -144,6 +144,8 @@ Method Receiver - Take Ownership
     }
 
 **Usage**
+
+  .. code:: rust
 
     let count = Counter { value: 10 };
     let total = count.finalize();
@@ -223,7 +225,7 @@ Method Receiver - No Receiver
     // Call on the type, not an instance
     let count = Counter::new();
 
-    // OK: count is now a normal value
+    // OK: 'count' is now a normal value
     println!("{}", count.value);
 
 **Behavior**
