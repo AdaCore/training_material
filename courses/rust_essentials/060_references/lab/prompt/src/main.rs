@@ -103,7 +103,7 @@ fn main() {
     //   Use a single reference object to print all different length slices of 'floats'
     // Hint
     //   Reference object refers to a slice of the object, not length
-    //   Use "{:?}" is used to print the contents of the array (Debug)
+    //   "{:?}" is used to print the contents of the array (Debug)
     println!("Task 6 - Slices");
     let floats: [f64; 5] = [1.1, 22.22, 333.333, 4444.4444, 55555.555555];
     let mut ref_floats: &[f64] = &floats;
