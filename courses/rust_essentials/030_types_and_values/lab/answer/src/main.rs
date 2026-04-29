@@ -70,5 +70,4 @@ fn main() {
     // How do we get an integer result here?
     let too_precise = 8 / 2;
     println!("TASK8 => 8 divided by 2 equals: {:?}", too_precise);    
-}
-    
+}    
