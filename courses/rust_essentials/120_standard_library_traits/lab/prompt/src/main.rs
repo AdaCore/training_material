@@ -48,7 +48,7 @@ fn main() {
 
     // TASK 5 - Enum Defaults
     // Hint: Deriving 'Default' on an enum requires specifying a default variant with the #[default] attribute
-    #[derive(Default)]
+    #[derive(Default, Debug)]
     enum Status {
         Pending,
         Active(i32),
