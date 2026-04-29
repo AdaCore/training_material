@@ -8,7 +8,7 @@ fn main() {
     // TASK 1 - Trait Dependencies for Ordering
     // Hint: 'PartialOrd' requires 'PartialEq' to be defined
     
-    // Fix: Added PartialEq to the derive macro
+    // Fix: Added 'PartialEq' to the derive macro
     #[derive(PartialEq, PartialOrd)]
     struct Score {
         points: u32,
@@ -89,10 +89,10 @@ fn main() {
 
 
     // TASK 8 - Safer Conversions
-    // Hint: 'TryFrom' returns a Result that must be handled or unwrapped unlike the `as` keyword
+    // Hint: 'TryFrom' returns a Result that must be handled or unwrapped unlike the 'as' keyword
     let big_number: i32 = 300;
     
-    // Fix: Used a match statement (or unwrap_or) to safely handle the Result returned by TryFrom.
+    // Fix: Used a 'match' statement (or 'unwrap_or') to safely handle the 'Result' returned by 'TryFrom'
     let tried: u8 = u8::try_from(big_number).unwrap_or(0);
 
 

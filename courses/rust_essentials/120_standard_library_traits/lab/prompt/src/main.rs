@@ -76,7 +76,7 @@ fn main() {
 
 
     // TASK 8 - Safer Conversions
-    // Hint: 'TryFrom' returns a Result that must be handled or unwrapped unlike the `as` keyword
+    // Hint: 'TryFrom' returns a Result that must be handled or unwrapped unlike the 'as' keyword
     let big_number: i32 = 300;
     let tried: u8 = u8::try_from(big_number);
 
