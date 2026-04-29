@@ -55,7 +55,7 @@ fn main() {
     println!("socks: {}", socks);
   
     // TASK 8 - Ignoring multiple elements
-    // Hint: you can ignore multiple elements in destructuring using ".."
+    // Hint: You can ignore multiple elements in destructuring using ".."
     let data = [1, 2, 3, 4, 5, 6];
     // Get the first two elements, ignore the rest
     println!("First: {}", first);
