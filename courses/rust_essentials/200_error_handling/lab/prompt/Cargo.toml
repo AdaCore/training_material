@@ -6,4 +6,3 @@ edition = "2024"
 [dependencies]
 anyhow = "1.0.102"
 thiserror = "2.0.18"
-# Leave this empty for now

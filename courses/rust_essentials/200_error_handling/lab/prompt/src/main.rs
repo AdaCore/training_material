@@ -24,7 +24,7 @@ fn main() {
     // TASK 3 - the Try Operator
     // Hint: Use the try operator to return an error automatically to the caller of 'register'
     // if check_age returns an error
-    // the try operator tries to convert 'reason' to the return type of 'register' 'string'
+    // The try operator tries to convert 'reason' to the return type of 'register' 'string'
     // From trait should be implemented
     impl From<Reason> for String {
         fn from(reason: Reason) -> Self {
