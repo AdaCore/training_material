@@ -11,7 +11,7 @@ fn main() {
     }
 
     // Task 1 Goal
-    //   We want to use a reference to show changes in the pointed-to value
+    //   Use a reference to show changes in the pointed-to value
     // Hint:
     //   Cannot modify a shared reference directly
     println!("Task 1 - Observer");
@@ -60,7 +60,7 @@ fn main() {
 
     // Task 4 Goal
     //   Create a single reference object to modify multiple pointed-to objects
-    // Hint: The mutable reference needs to be mutable
+    // Hint: Both the variable holding the reference AND the reference itself must be mutable
     println!("Task 4 - Free Agent");
     let dog = ReferencesStruct {
         count: 1,
