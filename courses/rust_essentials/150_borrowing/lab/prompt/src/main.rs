@@ -121,7 +121,7 @@ fn task_6() {
     //   c) See what happens with multiple reader references!
     // Hints:
     //   Use 'Cell' reference type to implement the counter
-    //   Do not forget to import the appropriate crate
+    //   Do not forget to import the appropriate module
     struct Sensor {
         data: i32,
         count: u32,
@@ -158,7 +158,7 @@ fn task_7() {
     //   b) Make sure you can read and modify the history data
     // Hints:
     //   Use 'RefCell' to implement the counter
-    //   Do not forget to import the appropriate crate
+    //   Do not forget to import the appropriate module
     //   'RefCell' borrow failures are run-time problems, not compile errors
 
     struct History {
