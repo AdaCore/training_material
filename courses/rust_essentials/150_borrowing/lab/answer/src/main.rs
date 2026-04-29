@@ -189,7 +189,7 @@ fn task_7() {
     //   a) Implement a sensor history
     //   b) Make sure you can read and modify the history data
     // Hints:
-    //   Use 'RefCell' reference type to implement the counter
+    //   Use 'RefCell' to implement the counter
     //   Do not forget to import the appropriate crate
     //   'RefCell' borrow failures are run-time problems, not compile errors
     use std::cell::RefCell;
