@@ -65,14 +65,14 @@ fn main() {
 
 
     // TASK 5 - The Use Shortcut
-    // Hint: Long paths can be shortened by bringing the item into scope with the use keyword
+    // Hint: Long paths can be shortened by bringing the item into scope with the 'use' keyword
     mod greenhouse {
         pub mod shelf {
             pub struct Cactus;
         }
     }
 
-    // Fix: Brought the item into scope using `use`
+    // Fix: Brought the item into scope via `use`
     use greenhouse::shelf::Cactus;
     let my_plant: Cactus = Cactus;
 
@@ -92,7 +92,7 @@ fn main() {
 
 
     // TASK 7 - Renaming With `as`
-    // Hint: Bringing items with the same name into scope causes a name collision, rename one using the as keyword
+    // Hint: Bringing items with the same name into scope causes a name collision, rename one using the 'as' keyword
     mod system_a {
         pub struct Error;
     }
