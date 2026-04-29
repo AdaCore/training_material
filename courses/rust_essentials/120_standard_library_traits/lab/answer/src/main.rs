@@ -52,7 +52,7 @@ fn main() {
 
     // TASK 5 - Enum Defaults
     // Hint: Deriving 'Default' on an enum requires specifying a default variant with the #[default] attribute
-    #[derive(Default)]
+    #[derive(Default, Debug)]
     enum Status {
         // Fix: Added the #[default] attribute to the desired unit variant
         #[default]
@@ -63,6 +63,8 @@ fn main() {
 
     let current_status = Status::default();
 
+    // Output the selected status using the debug formatter
+    println!("The current status is: {:?}", current_status);
 
     // TASK 6 - Struct Default Initialization
     // Hint: Using struct update syntax (..Default::default()) requires the struct itself to derive or implement the 'Default' trait

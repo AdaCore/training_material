@@ -57,6 +57,8 @@ fn main() {
 
     let current_status = Status::default();
 
+    // Output the selected status using the debug formatter
+    println!("The current status is: {:?}", current_status);
 
     // TASK 6 - Struct Default Initialization
     // Hint: Using struct update syntax (..Default::default()) requires the struct itself to derive or implement the 'Default' trait
