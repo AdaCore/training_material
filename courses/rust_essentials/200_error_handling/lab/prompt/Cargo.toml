@@ -1,7 +1,8 @@
 [package]
-name = "lab"
+name = "prompt"
 version = "1.0.0"
 edition = "2024"
 
 [dependencies]
-# Leave this empty for now
+anyhow = "*"
+thiserror = "*"
