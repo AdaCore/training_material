@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="100" width="310" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" version="1.1" height="90" width="310" >
 <line fill="none" stroke="#000000" stroke-width="2.0" x1="6" y1="16.0" x2="296" y2="16.0" />
 <polygon fill="#000000" stroke="none" transform="rotate(135, 301, 16.0)" points="301,16.0 306.0,26.0 311.0,21.0 "/>
 <line fill="none" stroke="#000000" stroke-width="2.0" x1="63.5" y1="36.0" x2="76" y2="36.0" />
@@ -11,14 +11,14 @@
 <line fill="none" stroke="#000000" stroke-width="2.0" x1="136" y1="56.0" x2="186" y2="56.0" />
 <line fill="none" stroke="#000000" stroke-width="2.0" x1="271" y1="56.0" x2="226" y2="56.0" />
 <polygon fill="#000000" stroke="none" transform="rotate(315, 221, 56.0)" points="221,56.0 226.0,66.0 231.0,61.0 "/>
-<line fill="none" stroke="#000000" stroke-width="2.0" x1="271" y1="15.0" x2="271" y2="57.0" />
+<line fill="none" stroke="#000000" stroke-width="2.0" x1="271" y1="15.5" x2="271" y2="57.0" />
 <line fill="none" stroke="#000000" stroke-width="2.0" x1="136" y1="35.0" x2="136" y2="77.0" />
-<line fill="none" stroke="#000000" stroke-width="2.0" x1="63.5" y1="77.0" x2="63.5" y2="19.0" />
-<polygon fill="#000000" stroke="none" transform="rotate(45, 63.5, 16.0)" points="63.5,16.0 68.5,26.0 73.5,21.0 "/>
-<line fill="none" stroke="#000000" stroke-width="2.0" x1="246" y1="57.0" x2="246" y2="72.0" />
-<line fill="none" stroke="#000000" stroke-width="2.0" x1="246" y1="71.0" x2="161" y2="71.0" />
-<line fill="none" stroke="#000000" stroke-width="2.0" x1="161" y1="72.0" x2="161" y2="59.0" />
-<polygon fill="#000000" stroke="none" transform="rotate(45, 161, 56.0)" points="161,56.0 166.0,66.0 171.0,61.0 "/>
+<line fill="none" stroke="#000000" stroke-width="2.0" x1="63.5" y1="77.0" x2="63.5" y2="20.0" />
+<polygon fill="#000000" stroke="none" transform="rotate(45, 63.5, 17.0)" points="63.5,17.0 68.5,27.0 73.5,22.0 "/>
+<line fill="none" stroke="#000000" stroke-width="2.0" x1="246" y1="56.5" x2="246" y2="72.5" />
+<line fill="none" stroke="#000000" stroke-width="2.0" x1="246" y1="71.5" x2="161" y2="71.5" />
+<line fill="none" stroke="#000000" stroke-width="2.0" x1="161" y1="72.5" x2="161" y2="59.5" />
+<polygon fill="#000000" stroke="none" transform="rotate(45, 161, 56.5)" points="161,56.5 166.0,66.5 171.0,61.5 "/>
 <rect fill="#aaeeff" stroke="none" height="20" width="35" x="16" y="6" />
 <text xml:space="preserve" fill="#000000" stroke="none"  text-align="left" font-size="10px" font-family='arial' font-weight="normal" dominant_baseline="middle"  text-anchor="middle" x="33.5" y="19.333333333333336" >Letter</text>
 <rect fill="#aaeeff" stroke="none" height="20" width="35" x="76" y="26" />
