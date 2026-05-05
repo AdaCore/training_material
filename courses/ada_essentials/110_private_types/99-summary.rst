@@ -14,7 +14,6 @@ Summary
 * May also be :ada:`limited`
 
    - Thus additionally no assignment or predefined equality
-   - More on this later
 
 * Common interface design idioms have arisen
 

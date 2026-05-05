@@ -70,7 +70,7 @@ Some Public Children Are Trustworthy
 .. code:: Ada
 
    private package OS.UART is
-    type Device is limited private;
+    type Device is private;
     procedure Open (This : out Device; ...);
     ...
    end OS.UART;
@@ -78,10 +78,10 @@ Some Public Children Are Trustworthy
    -- illegal - private child
    with OS.UART;
    package OS.Serial is
-     type COM_Port is limited private;
+     type COM_Port is private;
      ...
    private
-     type COM_Port is limited record
+     type COM_Port is record
        -- but I only need it here!
        COM : OS.UART.Device;
      ...
@@ -98,7 +98,7 @@ Solution 1: Move Type to Parent Package
      ...
    private
      -- no longer an ADT!
-     type Device is limited private;
+     type Device is private;
    ...
    end OS;
    private package OS.UART is
@@ -110,10 +110,10 @@ Solution 1: Move Type to Parent Package
 .. code:: Ada
 
    package OS.Serial is
-     type COM_Port is limited private;
+     type COM_Port is private;
      ...
    private
-     type COM_Port is limited record
+     type COM_Port is record
        COM : Device; -- now visible
        ...
      end record;
@@ -148,7 +148,7 @@ Solution 2: Partially Import Private Unit
 .. code:: Ada
 
    private package OS.UART is
-     type Device is limited private;
+     type Device is private;
      procedure Open (This : out Device;
         ...);
      ...
@@ -158,10 +158,10 @@ Solution 2: Partially Import Private Unit
 
    private with OS.UART;
    package OS.Serial is
-     type COM_Port is limited private;
+     type COM_Port is private;
      ...
    private
-     type COM_Port is limited record
+     type COM_Port is record
        COM : OS.UART.Device;
        ...
      end record;
