@@ -6,7 +6,7 @@ Private Library Units
 Child Units and Privacy
 -------------------------
 
-* Normally, a child public part cannot view a parent private part
+* Normally, a child public part cannot view a parent private section
 
   .. container:: columns
 
@@ -29,7 +29,7 @@ Child Units and Privacy
           X2 : T;
         end Root.Child;
 
-* :dfn:`Private child` can view the private part
+* :dfn:`Private child` can view the private section
 
     + Used for "implementation details"
 
