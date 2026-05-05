@@ -39,7 +39,7 @@ Sections with :ada:`SPARK_Mode`
 
 * Packages can have between 1 and 4 sections:
 
-  - package spec visible and private parts, package body declarations and
+  - package spec visible and private sections, package body declarations and
     statements
   - :ada:`SPARK_Mode` can be :ada:`On` for some sections then :ada:`On` or
     :ada:`Off` for the remaining sections
@@ -80,7 +80,7 @@ Inheritance for :ada:`SPARK_Mode` on Package
   - Nested subprogram or package can have :ada:`SPARK_Mode` with value
     :ada:`On` or :ada:`Off`
 
-* Value for package spec visible part inherited in private part
+* Value for package spec visible section inherited in private section
 
 * Value for package body declarations inherited for body statements
 
@@ -108,7 +108,7 @@ Syntax for :ada:`SPARK_Mode`
         with SPARK_Mode => Off; -- aspect on declaration
       ...
    private
-      pragma SPARK_Mode (Off); -- pragma for private part
+      pragma SPARK_Mode (Off); -- pragma for private section
       ...
    end P;
 
@@ -152,8 +152,8 @@ Typical Use Cases
 
 * Package spec is partly in SPARK
 
-  - Visible part of spec has :ada:`SPARK_Mode` with value :ada:`On`
-  - Private part of spec has :ada:`SPARK_Mode` with value :ada:`Off`
+  - Visible section of spec has :ada:`SPARK_Mode` with value :ada:`On`
+  - Private section of spec has :ada:`SPARK_Mode` with value :ada:`Off`
   - Body has no :ada:`SPARK_Mode` or with value :ada:`Off`
 
 * Package is partly in SPARK
@@ -391,7 +391,7 @@ Modeling an API to Manage a Resource
   - With :ada:`Annotate => (GNATprove, Ownership)`
 
     + On a private type
-    + When private part of package has :ada:`SPARK_Mode` with value :ada:`Off`
+    + When private section of package has :ada:`SPARK_Mode` with value :ada:`Off`
 
   - Assignment transfers ownership of object
 
