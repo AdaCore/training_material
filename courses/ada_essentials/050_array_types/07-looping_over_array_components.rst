@@ -28,28 +28,26 @@ Note on Default Initialization for Array Types
 Two High-Level For-Loop Kinds
 -------------------------------
 
-* For arrays and containers
+* For arrays
 
    - Arrays of any type and form
-   - Iterable containers
 
-      + Those that define iteration (most do)
-      + Not all containers are iterable (e.g., priority queues)!
-
-* For iterator objects
+* For iterable containers and iterator objects
 
    - Known as "generalized iterators"
    - Language-defined, e.g., most container data structures
+   * Can be user-defined
 
-* User-defined iterators too
-* We focus on the arrays/containers form for now
+* For now, we focus on arrays
+
+   * But assume these concepts hold true for the others
 
 ..
   language_version 2012
 
----------------------------
-Array/Container For-Loops
----------------------------
+-----------------
+Array For-Loops
+-----------------
 
 .. container:: source_include 050_array_types/syntax.bnf :start-after:array_container_for_loops_begin :end-before:array_container_for_loops_end :code:bnf
 
@@ -58,7 +56,7 @@ Array/Container For-Loops
 
   .. code:: Ada
 
-     for name of [reverse] array_or_container_object loop
+     for name of [reverse] array_object loop
      ...
      end loop;
 

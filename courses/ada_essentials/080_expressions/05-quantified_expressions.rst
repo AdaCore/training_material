@@ -73,8 +73,12 @@ Quantified Expressions Syntax
 
     (for some Index in Subtype_T => Predicate (Index))
     (for all Index in Subtype_T => Predicate (Index))
-    (for some Value of Container_Obj => Predicate (Value))
-    (for all Value of Container_Obj => Predicate (Value))
+    (for some Value of Array_Obj => Predicate (Value))
+    (for all Value of Array_Obj => Predicate (Value))
+
+.. note::
+
+  Quantified expressions work on iterable containers as well
 
 ..
   language_version 2012
@@ -292,7 +296,8 @@ Not Just Arrays: Any "Iterable" Objects
 
 * Those that can be iterated over
 * Language-defined, such as the containers
-* User-defined too
+
+  * User-defined too
 
 .. code:: Ada
 

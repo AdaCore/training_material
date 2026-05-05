@@ -8,7 +8,7 @@ Summary
 
 * Generics are useful for copying code that works the same just for different types
 
-   - Sorting, containers, etc
+   - Sorting, collections, etc
 
 * Properly written generics only need to be tested once
 
