@@ -45,13 +45,13 @@ Declaring Private Types for Views
 
       type defining_identifier is private;
 
-* Private type declaration must occur in visible part
+* Private type declaration must occur in visible section
 
    - :dfn:`Partial view`
    - Only partial information on the type
    - Users can reference the type name
 
-* Full type declaration must appear in private part
+* Full type declaration must appear in private section
 
    - Completion is the :dfn:`Full view`
    - **Never** visible to users
