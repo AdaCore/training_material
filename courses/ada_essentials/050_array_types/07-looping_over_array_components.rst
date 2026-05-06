@@ -36,7 +36,7 @@ Two High-Level For-Loop Kinds
 
    - Known as "generalized iterators"
    - Language-defined, e.g., most container data structures
-   * Can be user-defined
+   - Can be user-defined
 
 * For now, we focus on arrays
 
