@@ -46,29 +46,3 @@ Assignment Examples
       Phase1.Real := 2.5;
       Phase1.Real := Phase2.Real;
    end;
-
------------------------------
-Limited Types - Quick Intro
------------------------------
-
-* A :ada:`record` type can be limited
-
-    - And some other types, described later
-
-* :dfn:`limited` types cannot be **copied** or **compared**
-
-    - As a result then cannot be assigned
-    - May still be modified component-wise
-
-.. code:: Ada
-
-    type Lim is limited record
-        A, B : Integer;
-    end record;
-
-    L1, L2 : Lim := Create_Lim (1, 2); -- Initial value OK
-
-    L1 := L2; -- Illegal
-    if L1 /= L2 then -- Illegal
-    [...]
-
