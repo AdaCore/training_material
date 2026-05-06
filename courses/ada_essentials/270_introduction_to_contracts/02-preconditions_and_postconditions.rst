@@ -127,7 +127,6 @@ Postcondition "'Old" Attribute
 
    - Can be applied to most any visible object
 
-      + :ada:`limited` types are forbidden
       + May be expensive
 
    - Expression can be **arbitrary**

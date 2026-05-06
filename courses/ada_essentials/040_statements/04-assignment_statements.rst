@@ -61,7 +61,6 @@ Assignable Views
 * Various un-assignable views
 
    - Constants
-   - Variables of :ada:`limited` types
    - Input parameters
 
 .. code:: Ada
