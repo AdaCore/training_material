@@ -1,6 +1,6 @@
----------------------------
-:toolname:`GNATstack` Lab
----------------------------
+-------------------
+**GNATstack** Lab
+-------------------
 
 * We are going to perform stack analysis on some source code examples
 
@@ -15,9 +15,9 @@
 
 .. note:: We use animation - if you don't know the answer, Page Down should give it to you
 
----------------------------------------------
-Getting Familiar with :toolname:`GNATstack`
----------------------------------------------
+-------------------------------------
+Getting Familiar with **GNATstack**
+-------------------------------------
 
 1. Open a command prompt window and navigate into the folder :filename:`simple`
 

@@ -6,9 +6,9 @@ GNAT Studio
 Introduction
 ==============
 
--------------
-GNAT Studio
--------------
+-----------------
+**GNAT Studio**
+-----------------
 
 + Our flagship IDE
 + Available on Linux, Windows
@@ -20,9 +20,9 @@ GNAT Studio
 + Supports Ada 2012 and all prior versions
 + Supports C, C++ and Python
 
------------------
-GNAT Studio IDE
------------------
+---------------------
+**GNAT Studio** IDE
+---------------------
 
 .. image:: gnat_studio/welcome_to_gnat_studio.jpg
 
@@ -44,9 +44,9 @@ Integrated with GNAT Project Files
 
 + GUI for working with *scenario variables*
 
-------------------------------------
-GNAT Studio - Project Perspective
-------------------------------------
+---------------------------------------
+**GNAT Studio** - Project Perspective
+---------------------------------------
 
 .. image:: gnat_studio/project_perspective.jpg
 
@@ -369,9 +369,9 @@ Tasking/Thread Aware
 .. image:: gnat_studio/debug_task_view.jpg
    :width: 50%
 
--------------------------------------------
-:toolname:`GNAT Studio` Debug Perspective
--------------------------------------------
+-------------------------------------
+**GNAT Studio** Debug Perspective
+-------------------------------------
 
 .. image:: gnat_studio/debug_perspective.jpg
 
@@ -396,9 +396,9 @@ Data Window
   + Value
   + Type (Ada type definition)
 
------------------------------------------------------
-:toolname:`GNAT Studio` Active In Debug Perspective
------------------------------------------------------
+---------------------------------------------
+**GNAT Studio** Active In Debug Perspective
+---------------------------------------------
 
 .. image:: gnat_studio/debug_active_perspective.jpg
 
@@ -406,9 +406,9 @@ Data Window
 Workflow Example
 ==================
 
-----------------------------------
-Starting :toolname:`GNAT Studio`
-----------------------------------
+--------------------------
+Starting **GNAT Studio**
+--------------------------
 
 + From the desktop:
 
@@ -424,9 +424,9 @@ Starting :toolname:`GNAT Studio`
   + Change to the directory containing the project file
   + Enter :command:`gnatstudio` on the command line
 
-----------------------------------------
-:toolname:`GNAT Studio` Welcome Screen
-----------------------------------------
+--------------------------------
+**GNAT Studio** Welcome Screen
+--------------------------------
 
 .. image:: gnat_studio/welcome_dialog.jpg
 
@@ -536,15 +536,15 @@ When Multiple Mains Are Defined
 
          .. image:: gnat_studio/run_multiple_icon.jpg
 
------------------------------------
-Help With :toolname:`GNAT Studio`
------------------------------------
+---------------------------
+Help With **GNAT Studio**
+---------------------------
 
 .. image:: gnat_studio/help_menu_cascade.jpg
 
-------------------------------------
-About :toolname:`GNAT Studio` Help
-------------------------------------
+----------------------------
+About **GNAT Studio** Help
+----------------------------
 
 + Information on :toolname:`GNAT Studio`
 
@@ -610,9 +610,9 @@ What is Git
 
 .. image:: gnat_studio/git_3_states.png
 
------------------------------------
-GNAT Studio interface for Staging
------------------------------------
+---------------------------------------
+**GNAT Studio** interface for Staging
+---------------------------------------
 
 .. image:: gnat_studio/vcs_staging.png
 

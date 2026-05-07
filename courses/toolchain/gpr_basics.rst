@@ -1,4 +1,4 @@
-************
+t ************
 GPR Basics
 ************
 
@@ -196,9 +196,9 @@ Typed Versus Untyped Variables
 
    - No previous declaration required
 
-----------------------
-Concatenation :ada:`&`
-----------------------
+-------------------
+Concatenation "&"
+-------------------
 
 * :ada:`A & B` concatenate two variables
 * :ada:`String` and :ada:`String`
@@ -496,9 +496,9 @@ Projects for Different Switch Settings
      end Compiler;
    end Release;
 
----------------------------------
-Modularisation using :ada:`with`
----------------------------------
+-----------------------------
+Modularisation using "with"
+-----------------------------
 
 :filename:`library/library.gpr`
 
@@ -530,9 +530,9 @@ Modularisation using :ada:`with`
      ...
    end Release;
 
--------------------------------------
-Modularisation using :ada:`extends`
--------------------------------------
+--------------------------------
+Modularisation using "extends"
+--------------------------------
 
 :filename:`common.gpr`
 

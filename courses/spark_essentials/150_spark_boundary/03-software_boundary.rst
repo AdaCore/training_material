@@ -26,9 +26,9 @@ Identifying SPARK Code
 
   - :ada:`Auto` can only be used explicitly in configuration pragmas
 
----------------------------------
-Sections with :ada:`SPARK_Mode`
----------------------------------
+----------------------------
+Sections with "SPARK_Mode"
+----------------------------
 
 * Subprograms can have 1 or 2 sections: spec and body
 
@@ -51,9 +51,9 @@ Sections with :ada:`SPARK_Mode`
   - Then :ada:`On` for a following section
   - Or :ada:`On` inside the section
 
--------------------------------------------------
-Inheritance for :ada:`SPARK_Mode` on Subprogram
--------------------------------------------------
+--------------------------------------------
+Inheritance for "SPARK_Mode" on Subprogram
+--------------------------------------------
 
 * Value of :ada:`SPARK_Mode` inherited inside subprogram body
 
@@ -64,9 +64,9 @@ Inheritance for :ada:`SPARK_Mode` on Subprogram
 
 * Value for subprogram spec **not** inherited for subprogram body
 
-----------------------------------------------
-Inheritance for :ada:`SPARK_Mode` on Package
-----------------------------------------------
+-----------------------------------------
+Inheritance for "SPARK_Mode" on Package
+-----------------------------------------
 
 * Value :ada:`On` of :ada:`SPARK_Mode` inherited inside package spec/body
 
@@ -86,9 +86,9 @@ Inheritance for :ada:`SPARK_Mode` on Package
 
 * Value for package spec **not** inherited for package body
 
--------------------------------
-Syntax for :ada:`SPARK_Mode`
--------------------------------
+--------------------------
+Syntax for "SPARK_Mode"
+--------------------------
 
 * Aspect on declarations (pragma is also possible)
 
@@ -112,9 +112,9 @@ Syntax for :ada:`SPARK_Mode`
       ...
    end P;
 
----------------------------------
-Generics and :ada:`SPARK_Mode`
----------------------------------
+---------------------------
+Generics and "SPARK_Mode"
+---------------------------
 
 * Remember: only generic instances are analyzed
 

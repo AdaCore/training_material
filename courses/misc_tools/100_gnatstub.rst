@@ -1,6 +1,6 @@
-**********************
-:toolname:`GNATstub`
-**********************
+**************
+**GNATstub**
+**************
 
 .. container:: PRELUDE BEGIN
 
@@ -60,12 +60,12 @@ Sometimes we want to establish code structure quickly
 
     * Don't want to get caught in compilation details/behavior in early development
 
-==============================
-Running :toolname:`GNATstub`
-==============================
+======================
+Running **GNATstub**
+======================
 
 ------------------------------
-Running :toolname:`GNATstub`
+Running **GNATstub**
 ------------------------------
 
 :command:`gnatstub [switches] {filename}`
@@ -145,9 +145,9 @@ Example Package Body
          raise Program_Error with "Unimplemented procedure Do_Something";
       end Do_Something;
 
-===============================
-:toolname:`GNATstub` Switches
-===============================
+=======================
+**GNATstub** Switches
+=======================
 
 ----------------------------------
 Controlling Behavior When Called
@@ -222,9 +222,9 @@ Lab
 Summary
 =========
 
------------------------------------
-Improving on :toolname:`GNATstub`
------------------------------------
+---------------------------
+Improving on **GNATstub**
+---------------------------
 
 * Sometimes empty code stubs aren't enough
 
@@ -240,9 +240,9 @@ Improving on :toolname:`GNATstub`
 
 * You can modify the generated stub(s) to implement all this
 
------------------------------
-Beyond :toolname:`GNATstub`
------------------------------
+---------------------
+Beyond **GNATstub**
+---------------------
 
 * User-created "Smart" stubs are great for testing
 

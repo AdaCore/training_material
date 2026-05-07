@@ -36,9 +36,9 @@ GNAT Metrics Tool
 Introduction
 ==============
 
-------------------------------------------------------
-Overview of GNAT Metrics Tool :toolname:`gnatmetric`
-------------------------------------------------------
+----------------------------------------------
+Overview of GNAT Metrics Tool **gnatmetric**
+----------------------------------------------
 
 + Utility for computing various program metrics
 + Select desired metrics from:
@@ -61,9 +61,9 @@ Overview of GNAT Metrics Tool :toolname:`gnatmetric`
   + Selecting the scope of analysis
   + Displaying the results
 
----------------------------------------
-Invoking From :toolname:`GNAT Studio`
----------------------------------------
+-------------------------------
+Invoking From **GNAT Studio**
+-------------------------------
 
 * Start analysis
 

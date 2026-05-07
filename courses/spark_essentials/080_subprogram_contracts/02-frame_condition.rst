@@ -173,9 +173,9 @@ Frame Condition - Private Types
      procedure Set_X (P : in out Pair; Value : Integer)
        with Post => P.Model = (P.Model'Old with delta X => Value);
 
------------------------
-Attribute :ada:`Old`
------------------------
+------------------
+Attribute "Old"
+------------------
 
 * Dynamic semantics is to make a copy at subprogram entry
 
@@ -203,9 +203,9 @@ Attribute :ada:`Old`
 
     + :toolname:`GNATprove` **checks** that this is safe
 
------------------------------------------
-Special Cases for Attribute :ada:`Old`
------------------------------------------
+------------------------------------
+Special Cases for Attribute "Old"
+------------------------------------
 
 * Simple component access :ada:`X.C'Old` equivalent to :ada:`X'Old.C`
 

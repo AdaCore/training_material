@@ -1,6 +1,6 @@
---------------------------
-:toolname:`GNATstub` Lab
---------------------------
+------------------
+**GNATstub** Lab
+------------------
 
 * We are going to implement a simple math package that does addition and subtraction
 
@@ -60,16 +60,16 @@ Build the Executable Again
 
       * Exceptions always raised for functions in a stub
 
------------------------
-Implement :ada:`Math`
------------------------
+------------------
+Implement "Math"
+------------------
 
 1. Edit the :ada:`Math` package body to implement the two subprograms
 
 2. Build and run the executable
 
---------------------------
-:ada:`Math` Package Body
---------------------------
+---------------------
+"Math" Package Body
+---------------------
 
 .. container:: source_include labs/100_gnatstub/answer/math.adb
