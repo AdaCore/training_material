@@ -497,7 +497,7 @@ Projects for Different Switch Settings
    end Release;
 
 -----------------------------
-Modularisation using "with"
+Modularisation Using "with"
 -----------------------------
 
 :filename:`library/library.gpr`
@@ -531,7 +531,7 @@ Modularisation using "with"
    end Release;
 
 --------------------------------
-Modularisation using "extends"
+Modularisation Using "extends"
 --------------------------------
 
 :filename:`common.gpr`
@@ -605,9 +605,9 @@ External/Conditional Reference Example
           ...
    end Build;
 
-===========
-GPRCONFIG
-===========
+=============
+"gprconfig"
+=============
 
 --------------------------------
 Configuration File Description
@@ -698,7 +698,7 @@ GPRCONFIG Options
 ===================
 
 ------------------------
-Command line arguments
+Command Line Arguments
 ------------------------
 
 * *--target=platform*
@@ -718,7 +718,7 @@ Command line arguments
    - Optional arguments will be computed automatically
 
 ------------------------------------
-Command line arguments (continued)
+Command Line Arguments (Continued)
 ------------------------------------
 
 * **--batch**

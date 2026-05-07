@@ -29,7 +29,7 @@ What is the problem with this postcondition?
         pragma Assert (P.Y = 2); -- unproved
 
 ----------------------------
-What is a Frame Condition?
+What Is a Frame Condition?
 ----------------------------
 
 * A :dfn:`frame condition` defines which part of the data is unchanged in a block of code

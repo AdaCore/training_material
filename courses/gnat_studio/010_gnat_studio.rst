@@ -27,7 +27,7 @@ Introduction
 .. image:: gnat_studio/welcome_to_gnat_studio.jpg
 
 ------------------------------------
-Integrated with GNAT Project Files
+Integrated With GNAT Project Files
 ------------------------------------
 
 + Graphically presents what the project file specifies
@@ -173,7 +173,7 @@ Filtered Completion Proposals
    :width: 50%
 
 -------------------------------------
-Information In Subprogram Proposals
+Information in Subprogram Proposals
 -------------------------------------
 
 .. image:: gnat_studio/information_in_subprogram_proposals.jpg
@@ -203,7 +203,7 @@ Supports Source Navigation
 + "Tool-tips" pop up to show semantic information
 
 ------------
-Outline view
+Outline View
 ------------
 
 .. image:: gnat_studio/outline_view.png
@@ -227,7 +227,7 @@ Viewing Predefined and GNAT Source Files
 .. image:: gnat_studio/help_gnat_runtime.jpg
 
 -----------
-Call tree
+Call Tree
 -----------
 
 .. image:: gnat_studio/call_trees.png
@@ -257,7 +257,7 @@ Building Applications
    :width: 50%
 
 ---------------------------------
-Integration with External Tools
+Integration With External Tools
 ---------------------------------
 
 + Common GUI for version control systems
@@ -332,7 +332,7 @@ Extensible
   + Command files (macros useful for your project)
 
 -----------------------------------
-Fine-grained & Expressive Control
+Fine-Grained & Expressive Control
 -----------------------------------
 
 + Stepping
@@ -397,7 +397,7 @@ Data Window
   + Type (Ada type definition)
 
 ---------------------------------------------
-**GNAT Studio** Active In Debug Perspective
+**GNAT Studio** Active in Debug Perspective
 ---------------------------------------------
 
 .. image:: gnat_studio/debug_active_perspective.jpg
@@ -456,7 +456,7 @@ Building Executables
          .. image:: gnat_studio/build_project_main_menu.jpg
 
 ---------------------------------
-Chance To Change Build Switches
+Chance to Change Build Switches
 ---------------------------------
 
 + May be displayed when build is invoked
@@ -466,7 +466,7 @@ Chance To Change Build Switches
          :width: 50%
 
 -----------------------------------------
-Error In Source File and Locations View
+Error in Source File and Locations View
 -----------------------------------------
 
 .. image:: gnat_studio/build_error.jpg
@@ -503,7 +503,7 @@ Build the Executable After Fix
 + Or click :menu:`Build` :math:`\rightarrow` :menu:`Project` :math:`\rightarrow` *main unit name*
 
 ---------------------
-Running The Program
+Running the Program
 ---------------------
 
 + Click :menu:`Build` :math:`\rightarrow` :menu:`Run` :math:`\rightarrow` *main unit name*
@@ -572,7 +572,7 @@ Using Version Control Systems
 ===============================
 
 -------------------------
-What is version control
+What Is Version Control
 -------------------------
 
 + System that records changes
@@ -593,7 +593,7 @@ What is version control
   + Mercurial
 
 -------------
-What is Git
+What Is Git
 -------------
 
 + A VCS
@@ -611,7 +611,7 @@ What is Git
 .. image:: gnat_studio/git_3_states.png
 
 ---------------------------------------
-**GNAT Studio** interface for Staging
+**GNAT Studio** Interface for Staging
 ---------------------------------------
 
 .. image:: gnat_studio/vcs_staging.png
@@ -629,7 +629,7 @@ File Diff
 .. image:: gnat_studio/vcs_diff.png
 
 -----------------------------
-Actions on the staging area
+Actions on the Staging Area
 -----------------------------
 
 .. image:: gnat_studio/vcs_actions.png
@@ -647,7 +647,7 @@ Actions on the staging area
   + Pull = Fetch + Merge
 
 ---------------------
-Commit a local change
+Commit a Local Change
 ---------------------
 
 .. image:: gnat_studio/commits_view_add_commit.svg

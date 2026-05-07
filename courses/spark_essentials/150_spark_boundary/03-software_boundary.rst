@@ -27,7 +27,7 @@ Identifying SPARK Code
   - :ada:`Auto` can only be used explicitly in configuration pragmas
 
 ----------------------------
-Sections with "SPARK_Mode"
+Sections With "SPARK_Mode"
 ----------------------------
 
 * Subprograms can have 1 or 2 sections: spec and body
@@ -289,7 +289,7 @@ Integrating SPARK and Other Programming Languages
     + Thick binding defines wrappers around thin binding
 
 --------------------------------------------
-Integrating with Main Procedure Not in Ada
+Integrating With Main Procedure Not in Ada
 --------------------------------------------
 
 * GNAT compiler generates startup and closing code

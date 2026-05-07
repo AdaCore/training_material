@@ -119,7 +119,7 @@ Example Subprogram
    end Main_Unit;
 
 ------------------------------------
-Getting Started with **GNATstack**
+Getting Started With **GNATstack**
 ------------------------------------
 
 Two parts of performing stack analysis
