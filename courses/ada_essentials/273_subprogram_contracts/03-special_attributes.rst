@@ -19,7 +19,6 @@ Evaluate an Expression on Subprogram Entry
    - After pre-conditions check
    - Makes a copy
 
-        + :ada:`limited` types are forbidden
         + May be expensive
 
    - Expression can be **arbitrary**
