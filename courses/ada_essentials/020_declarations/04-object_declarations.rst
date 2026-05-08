@@ -17,50 +17,45 @@ Object Declarations
      * **<identifier>** is the defining name for the object
      * **<typemark>** is the name describing the type of the object
 
-* Constant should have a value
-
-   - Except for privacy (seen later)
-
-* Examples
+* Simple objects
 
   .. code:: Ada
 
      An_Object : Some_Type;
-     Max : constant Some_Type := 200;
-     -- variable with a constraint
-     Count : Some_Type range 0 .. Max := 0;
-     -- dynamic initial value via function call
-     Some_Object : Some_Type := Some_Function (Count);
+     Max       : constant Some_Type := 200;
+     Count     : Some_Type range 0 .. Max;
 
------------
-Elaboration
------------
+----------------
+Initialization
+----------------
 
-* :dfn:`Elaboration` has several facets:
+* Constants **must** be initialized where defined
 
-  * **Initial value** calculation
+  .. code::
 
-    - Evaluation of the expression
-    - Done at **run-time** (unless static)
+    Max_Count : constant Integer := 1_000;
 
-  * Object creation
+  * *Exception: deferred constants - discussed later*
 
-    - Memory **allocation**
-    - Initial value assignment (and type checks)
+* Variables **can** be initialized where defined
 
-* Runs in linear order
+  .. code::
 
-   - Follows the program text
-   - Top to bottom
+    First_Item   : Integer := 0;
+    Out_Of_Range : Integer := First_Item - 1;
+    Last_Item    : Integer := Max_Count;
+    Next_Item    : Integer := Get_Next (First_Item);
 
-   .. code:: Ada
+  * Evaluation order is guaranteed linear
 
-      declare
-        First_One : Some_Type := 10;
-        Next_One : Some_Type := First_One;
-        Another_One : Some_Type := Next_One;
-      begin
-        ...
+.. warning::
+
+  **Runtime does not initialize variables**
+
+*Exceptions (to be discussed later)*
+
+  * *Access (pointer) types*
+  * *Default value aspects*
 
 ------------------------------
 Multiple Object Declarations
