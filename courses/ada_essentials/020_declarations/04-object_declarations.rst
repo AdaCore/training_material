@@ -57,6 +57,24 @@ Initialization
   * *Access (pointer) types*
   * *Default value aspects*
 
+-------------
+Elaboration
+-------------
+
+* The act of creating/initializing and object is :dfn:`elaboration`
+
+* Compiler will
+
+  * Initialize static constants
+  * Determine size of objects
+
+* Runtime will
+
+  * Create object on stack or heap
+  * Initialize object when specified
+
+    * Either by language or programmer
+
 ------------------------------
 Multiple Object Declarations
 ------------------------------
