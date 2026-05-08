@@ -6,7 +6,7 @@ Private Library Units
 Child Units and Privacy
 -------------------------
 
-* Normally, a child public part cannot view a parent private section
+* Normally, a child public section cannot view a parent private section
 
   .. container:: columns
 
@@ -37,7 +37,7 @@ Child Units and Privacy
 Importing a Private Child
 ---------------------------
 
-* A :ada:`private package` can view its **parent** :ada:`private` part
+* A :ada:`private package` can view its **parent** :ada:`private` section
 * A private package's usage (*view*) is
 
    + Restricted to the *Private descendents of their parent*
