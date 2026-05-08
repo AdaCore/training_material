@@ -80,13 +80,13 @@ Provides Language-Sensitive Editing
 
   + Statements, types, annotations, comments, etc.
 
-+ Indentation based on language syntax & surrounding code
++ Indentation based on language syntax and surrounding code
 + Automatic formatting as you type
 
   + Indentation, letter casing, coloring, etc.
 
 + *Scope folding* to elide syntax-defined blocks of code
-+ Refactoring for entity renaming & subprogram extraction
++ Refactoring for entity renaming and subprogram extraction
 + Semantics-based completion for both words and constructs
 
 ---------------------
@@ -115,7 +115,7 @@ Automatic Indentation
     Next line indented same as current line
 
   Extended
-    Based on language syntax & surrounding code
+    Based on language syntax and surrounding code
 
 + Modes are controlled by preferences
 
@@ -202,9 +202,9 @@ Supports Source Navigation
 
 + "Tool-tips" pop up to show semantic information
 
-------------
+--------------
 Outline View
-------------
+--------------
 
 .. image:: gnat_studio/outline_view.png
 
@@ -319,7 +319,7 @@ Language Sensitive
 Extensible
 ------------
 
-+ You can call functions & procedures interactively
++ You can call functions and procedures interactively
 
   + Using language-specific syntax
   + Very useful to print program specific info
@@ -331,9 +331,9 @@ Extensible
   + User defined commands (on the fly)
   + Command files (macros useful for your project)
 
------------------------------------
-Fine-Grained & Expressive Control
------------------------------------
+-------------------------------------
+Fine-Grained and Expressive Control
+-------------------------------------
 
 + Stepping
 
@@ -343,7 +343,7 @@ Fine-Grained & Expressive Control
 
 + Breakpoints
 
-  + Conditional & unconditional
+  + Conditional and unconditional
   + Can execute a series of commands at breakpoint
 
 + Viewable call stack
@@ -646,9 +646,9 @@ Actions on the Staging Area
   + Fetch
   + Pull = Fetch + Merge
 
----------------------
+-----------------------
 Commit a Local Change
----------------------
+-----------------------
 
 .. image:: gnat_studio/commits_view_add_commit.svg
 
