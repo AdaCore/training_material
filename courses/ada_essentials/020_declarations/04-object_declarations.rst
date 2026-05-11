@@ -61,7 +61,7 @@ Initialization
 Elaboration
 -------------
 
-* The act of creating/initializing and object is :dfn:`elaboration`
+* The act of creating/initializing an object is :dfn:`elaboration`
 
 * Compiler will
 
