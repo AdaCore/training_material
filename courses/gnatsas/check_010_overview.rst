@@ -36,9 +36,9 @@
 Introduction
 ==============
 
-----------------------
+---------------------
 **GNATcheck** Is...
-----------------------
+---------------------
 
 + An **automated** coding standards checker
 + Capable of expressing a variety of rules

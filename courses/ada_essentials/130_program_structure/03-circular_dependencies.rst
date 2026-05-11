@@ -1,6 +1,6 @@
-=========================
+=======================
 Circular Dependencies
-=========================
+=======================
 
 --------------------------------
 Handling Circular Dependencies
@@ -43,9 +43,9 @@ Resulting Design Problem
 
      - Best choice would be to implement both parts in a new package
 
--------------------------------------------
+--------------------------------------------
 Circular Dependency in Package Declaration
--------------------------------------------
+--------------------------------------------
 
 .. code:: Ada
 

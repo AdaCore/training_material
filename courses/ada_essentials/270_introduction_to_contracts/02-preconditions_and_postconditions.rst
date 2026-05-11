@@ -1,6 +1,6 @@
-===================================
+==================================
 Preconditions and Postconditions
-===================================
+==================================
 
 -----------------------------
 Subprogram-based Assertions
@@ -234,9 +234,9 @@ of the call :ada:`Set_And_Move (-1, 10)`
      - :animate:`10`
      - :animate:`Evaluation of Database (Index) before call`
 
-------------------------
+-------------------------
 Separations of Concerns
-------------------------
+-------------------------
 
 * :ada:`Pre` and :ada:`Post` fit together
 

@@ -2,9 +2,9 @@
 Miscellaneous
 ===============
 
------------------------------
+---------------------------
  Checked Type Conversions
------------------------------
+---------------------------
 
 * Between "closely related" types
 
@@ -27,9 +27,9 @@ Miscellaneous
   - Implicitly defined
   - **Must** be explicitly called
 
--------------
+---------------
 Default Value
--------------
+---------------
 
 * Not defined by language for **scalars**
 * Can be done with an **aspect clause**

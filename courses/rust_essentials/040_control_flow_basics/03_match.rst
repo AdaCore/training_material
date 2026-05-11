@@ -1,6 +1,6 @@
-===========================
+=====================
 "match" Expressions
-===========================
+=====================
 
 ------------------------------
 Using "match" as a Statement
@@ -56,9 +56,9 @@ The "match" Must Be Exhaustive
       _ => println!("Suspicion."),
   }
 
---------------------------------------
+--------------------------------
 Using "match" as an Expression
---------------------------------------
+--------------------------------
 
 - Entire match expression evaluates to a value
 - Every arm must return the exact same type

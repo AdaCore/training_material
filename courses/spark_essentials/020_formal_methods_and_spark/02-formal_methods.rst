@@ -100,9 +100,9 @@ Capabilities of Static Analysis of Programs
   - Fast analysis with no false alarms is better for :dfn:`bug-finding`
   - Modular analysis with no missing alarms is better for :dfn:`formal verification`
 
----------------------------------------
+-------------------------------------
 Comparing Techniques on Simple Code
----------------------------------------
+-------------------------------------
 
 * Consider a simple loop-based procedure
 

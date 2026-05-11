@@ -30,9 +30,9 @@ Iterator Toolbox
 
     * Result is **not** an iterator
 
---------------------------------
+---------------------------------
 Getting an Iterator - ".iter()"
---------------------------------
+---------------------------------
 
 * Collections themselves are not iterators
 

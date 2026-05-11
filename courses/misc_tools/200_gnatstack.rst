@@ -91,9 +91,9 @@ Optional Analysis Outputs
 Running **GNATstack**
 =======================
 
-----------------------
+--------------------
 Example Subprogram
-----------------------
+--------------------
 
 .. code:: Ada
    :number-lines: 1

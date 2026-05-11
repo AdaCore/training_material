@@ -2,9 +2,9 @@
 Reference Counting for C Objects
 ==================================
 
--------
+---------
 Context
--------
+---------
 
 * From :url:`https://blog.adacore.com/the-road-to-a-thick-opengl-binding-for-ada-part-2`
 * OpenGL API create various objects like textures or vertex buffers
@@ -21,9 +21,9 @@ Context
     - From an Ada wrapper
     - Automatic reclaim once the last reference vanishes
 
------------------
+-------------------
 Wrapper Interface
------------------
+-------------------
 
 * :ada:`type GL_Object is abstract tagged private`
 
@@ -53,9 +53,9 @@ Wrapper Interface
 
     type Shader (Kind : Shader_Type) is new GL_Object with null record;
 
-------------------------------------
+--------------------------------------
 Wrapper Implementation: Private part
-------------------------------------
+--------------------------------------
 
 * Object ID's holder: :ada:`GL_Object_Reference`
 
@@ -82,9 +82,9 @@ Wrapper Implementation: Private part
    -- Decreases reference count.
    -- Destroys underlying resource when it reaches zero.
 
-------------------------------------
+--------------------------------------
 Wrapper Implementation: Full Picture
-------------------------------------
+--------------------------------------
 
 .. image:: controlled_gl_object.svg
 
@@ -96,9 +96,9 @@ Wrapper Implementation: Full Picture
       Is_Owner        : Boolean;
    end record;
 
--------------------
+---------------------
 "Adjust" Completion
--------------------
+---------------------
 
 * :ada:`Adjust` is called every time a new reference is **created**
 * Increments the ref-counter
@@ -112,9 +112,9 @@ Wrapper Implementation: Full Picture
        end if;
     end Adjust;
 
----------------------
+-----------------------
 "Finalize" Completion
----------------------
+-----------------------
 
 .. note::
 

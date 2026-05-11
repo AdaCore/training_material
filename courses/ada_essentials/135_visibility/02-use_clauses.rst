@@ -102,9 +102,9 @@ No Meaning Changes
      end;
    end Example;
 
---------------
+---------------
 No Ambiguity 
---------------
+---------------
 
 .. code:: Ada
 
@@ -130,9 +130,9 @@ No Ambiguity
 
    For declarations in different packages that would not be directly visible in the absence of a "use" clause, none with the same identifier will be directly visible in the presence of such a clause, unless both are overloadable (i.e., enumeration literals and subprogram declarations)
 
-------------------------------
+-------------------------------
 "use" Clauses and Child Units
-------------------------------
+-------------------------------
 
 * A clause for a child does **not** imply one for its parent
 * A clause for a parent makes the child **directly** visible

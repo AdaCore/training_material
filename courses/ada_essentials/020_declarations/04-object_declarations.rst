@@ -32,9 +32,9 @@ Object Declarations
      -- dynamic initial value via function call
      Some_Object : Some_Type := Some_Function (Count);
 
------------
+-------------
 Elaboration
------------
+-------------
 
 * :dfn:`Elaboration` has several facets:
 
@@ -104,9 +104,9 @@ Predefined Declarations
 * "Specialized Needs Annexes" for *optional*
 * Also, implementation-specific extensions
 
-------------------------------------
+-----------------------------------
 Implicit Vs Explicit Declarations
-------------------------------------
+-----------------------------------
 
 * :dfn:`Explicit` |rightarrow| in the source
 

@@ -74,9 +74,9 @@ Be Generic
   type Laundry<T> = LaundryStatus<T>;
 
 
-----------------
+-----------------
 Type Inference 
-----------------
+-----------------
 
 - Any **Sized** type can be used as the type argument    
 
@@ -100,9 +100,9 @@ Type Inference
 
 
    
------------------------
+------------------------
 Multiple Generic Types
------------------------
+------------------------
 
 **Constructs can have multiple generic data types** 
 
@@ -118,9 +118,9 @@ Multiple Generic Types
     let integer_and_float = Point { x: 5, y: 4.0 };
     
     
---------------
+---------------
 Type Aliases 
---------------
+---------------
 
 - Can be used to rename types and generic parameters
 

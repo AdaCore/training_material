@@ -172,9 +172,9 @@ Accumulating Information
         end loop;
      end Search_Table;
 
--------------------------
+------------------------
 Attribute "Loop_Entry"
--------------------------
+------------------------
 
 * Attribute :ada:`Loop_Entry` used to refer to the value of a variable on
   entry to the loop

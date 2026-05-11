@@ -404,9 +404,9 @@ Elaboration Control
       V := P2.Call;
    end P3;
 
-========
+=====
 Lab
-========
+=====
 
 .. include:: labs/elaboration.lab.rst
 

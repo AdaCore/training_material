@@ -64,9 +64,9 @@ Sometimes we want to establish code structure quickly
 Running **GNATstub**
 ======================
 
-------------------------------
+----------------------
 Running **GNATstub**
-------------------------------
+----------------------
 
 :command:`gnatstub [switches] {filename}`
 

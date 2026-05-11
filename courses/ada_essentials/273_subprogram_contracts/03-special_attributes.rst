@@ -89,9 +89,9 @@ Error on Conditional Evaluation of "'Old"
      with Post => (if At_Position in In_String'Range
                    then In_String'Old (At_Position) = ' ');
 
--------------------------------------------
+-----------------------------------------
 Postcondition Usage of Function Results
--------------------------------------------
+-----------------------------------------
 
 * :ada:`function` result can be read with :ada:`'Result`
 

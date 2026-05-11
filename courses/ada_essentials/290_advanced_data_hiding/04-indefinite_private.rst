@@ -1,10 +1,10 @@
-==================
+====================
 Indefinite Private
-==================
+====================
 
----------------
+-----------------
 Limited Private
----------------
+-----------------
 
 .. code:: Ada
 
@@ -24,9 +24,9 @@ Limited Private
    - Completion can be a :ada:`limited record`
    - ... but doesn't **have** to
 
----------------
+-----------------
 Limited Private
----------------
+-----------------
 
 * No assignment: user cannot duplicate a key
 * No equality: user cannot check two keys are the same
@@ -53,9 +53,9 @@ Limited Private
     * Definite type
     * User **doesn't** have to call :ada:`Make_Key`
 
-------------------
+--------------------
 Indefinite Private
-------------------
+--------------------
 
 * Indefinite: user **must** use the constructors
 * Delegated :ada:`constant` objects are static constructors
@@ -83,9 +83,9 @@ Indefinite Private
 
     Type completion **can** be definite
 
----------------
+-----------------
 Opaque Pointers
----------------
+-----------------
 
 * User can instantiate 
 * Completion is an :ada:`access`
@@ -102,9 +102,9 @@ Opaque Pointers
      type Box_T is access Internal_Box_T;
   end Black_Boxes;
 
-------------------------------
+--------------------------------
 Example: A String Holder (1/2)
-------------------------------
+--------------------------------
 
 * Implementation not discussed here
 
@@ -141,9 +141,9 @@ Example: A String Holder (1/2)
 
        procedure Destroy (Obj : in out Info);
 
-------------------------------
+--------------------------------
 Example: A String Holder (2/2)
-------------------------------
+--------------------------------
 
 .. code:: Ada
 

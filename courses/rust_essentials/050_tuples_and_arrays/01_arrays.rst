@@ -14,9 +14,9 @@ What Is an Array?
 
 .. image:: array_diagram.svg
 
---------------------
+--------
 Basics
---------------------
+--------
 
 - Allocated on the stack - they're fast!
 - *Length* is **fixed** and defined at **compile-time**
@@ -35,9 +35,9 @@ Basics
 
    Remember, :rust:`mut` is required for modification
 
------------------------------------
+---------------------------
 Safety and Initialization
------------------------------------
+---------------------------
 
 **Safety**
 
@@ -66,9 +66,9 @@ Safety and Initialization
 * Assignment is **not** limited to literals
   * Can use variables, function calls, or expressions
 
--------------------
+-----------
 Iteration
--------------------
+-----------
 
 * :rust:`for` statement natively supports iterating over arrays
 

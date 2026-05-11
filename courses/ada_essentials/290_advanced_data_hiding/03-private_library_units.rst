@@ -142,9 +142,9 @@ Private Children and "with"
 
 * Clients of :ada:`Root.Child2` don't have any visibility on :ada:`Root.Child1`
 
-------------------------------------------------------------
+------------------------------------------------------
 Children "Inherit" From Private Properties of Parent
-------------------------------------------------------------
+------------------------------------------------------
 
 * Private property always refers to the direct parent
 * Public children of private packages stay private to the outside world

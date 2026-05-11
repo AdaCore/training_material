@@ -86,9 +86,9 @@ Inheritance for "SPARK_Mode" on Package
 
 * Value for package spec **not** inherited for package body
 
---------------------------
+-------------------------
 Syntax for "SPARK_Mode"
---------------------------
+-------------------------
 
 * Aspect on declarations (pragma is also possible)
 
@@ -316,9 +316,9 @@ Integrating With Main Procedure Not in Ada
 
     + This code is executed at library loading (depends on platform support)
 
-------------------
+-----------------
 Modeling an API
-------------------
+-----------------
 
 * API may be modelled in SPARK
 
@@ -342,9 +342,9 @@ Modeling an API
     + Possibly defining ghost query functions, e.g. :ada:`Is_Open` for a file
     + Ghost function may be marked :ada:`Import` when not implementable
 
-----------------------------
+---------------------------
 Modeling an API - Example
-----------------------------
+---------------------------
 
 * Standard unit :ada:`Ada.Text_IO` is modelled in SPARK
 
@@ -372,9 +372,9 @@ Modeling an API - Example
       function Is_Open (File : File_Type) return Boolean with
         Global => null;
 
----------------------------------------
+--------------------------------------
 Modeling an API to Manage a Resource
----------------------------------------
+--------------------------------------
 
 * Managing a resource may require
 
@@ -402,9 +402,9 @@ Modeling an API to Manage a Resource
 
     + :toolname:`GNATprove` checks absence of resource leaks
 
--------------------------------------------------
+------------------------------------------------
 Modeling an API to Manage a Resource - Example
--------------------------------------------------
+------------------------------------------------
 
 .. code:: ada
 

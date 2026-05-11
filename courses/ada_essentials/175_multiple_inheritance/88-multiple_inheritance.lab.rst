@@ -1,10 +1,10 @@
-========
+=====
 Lab
-========
+=====
 
-------------------------------------------
+--------------------------
 Multiple Inheritance Lab
-------------------------------------------
+--------------------------
    
 * Requirements
    
@@ -33,9 +33,9 @@ Inheritance Lab Solution - Data Types
 
 .. container:: source_include 175_multiple_inheritance/lab/multiple_inheritance/answer/base_types.ads :code:Ada :number-lines:1
 
----------------------------------------
+-----------------------------------
 Inheritance Lab Solution - Shapes
----------------------------------------
+-----------------------------------
 
 .. container:: source_include 175_multiple_inheritance/lab/multiple_inheritance/answer/geometry.ads :code:Ada :number-lines:1
    
@@ -59,16 +59,16 @@ Inheritance Lab Solution - Printable Object
 
 .. container:: source_include 175_multiple_inheritance/lab/multiple_inheritance/answer/printable_object.adb :code:Ada :number-lines:1
    
----------------------------------------------
+--------------------------------------
 Inheritance Lab Solution - Rectangle
----------------------------------------------
+--------------------------------------
 
 .. container:: source_include 175_multiple_inheritance/lab/multiple_inheritance/answer/rectangle.ads :code:Ada :number-lines:1
 
 .. container:: source_include 175_multiple_inheritance/lab/multiple_inheritance/answer/rectangle.adb :code:Ada :number-lines:1
    
----------------------------------------------
+---------------------------------
 Inheritance Lab Solution - Main
----------------------------------------------
+---------------------------------
 
 .. container:: source_include 175_multiple_inheritance/lab/multiple_inheritance/answer/main.adb :code:Ada :number-lines:1

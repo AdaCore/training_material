@@ -131,9 +131,9 @@ About Project Files and Makefiles
 
    gprbuild -P <project-file> ...
 
-===============================
+================================
 Configuring Project Properties
-===============================
+================================
 
 ------------------------------
 Property Values Introduction

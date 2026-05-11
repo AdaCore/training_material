@@ -19,9 +19,9 @@ Generic Types Parameters (1/3)
 
 * The actual parameter must be no more restrictive then the :dfn:`generic contract`
 
----------------------------------------
+--------------------------------
 Generic Types Parameters (2/3)
----------------------------------------
+--------------------------------
 
 * Generic formal parameter tells generic what it is allowed to do with the type
 

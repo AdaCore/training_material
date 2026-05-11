@@ -37,9 +37,9 @@ Data Representation Vs Requirements
 
       X : Integer := My_Int'Alignment;
 
----------------------
+-------------------
 Value_Size / Size
----------------------
+-------------------
 
 * :ada:`Value_Size` (or :ada:`Size` in the Ada Reference Manual) is the minimal number of bits required to represent data
 
@@ -159,9 +159,9 @@ Pack Aspect
      pragma Pack (Ar);
      -- Rec'Size is 36, Ar'Size is 1000
 
--------------------------------
+-----------------------------
 Enum Representation Clauses
--------------------------------
+-----------------------------
 
 * Can specify representation for each value
 * Representation must have increasing number

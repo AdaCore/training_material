@@ -144,9 +144,9 @@ Proving the Code Works (Continued)
       procedure Swap (X, Y : in out Integer)
       with Post => X = Y'Old and then Y = X'Old;
 
----------------------------
+----------------------------
 Functional Specifications 
----------------------------
+----------------------------
 
 - In the time left, add postconditions to the remaining subprograms
 

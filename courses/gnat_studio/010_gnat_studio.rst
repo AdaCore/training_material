@@ -369,9 +369,9 @@ Tasking/Thread Aware
 .. image:: gnat_studio/debug_task_view.jpg
    :width: 50%
 
--------------------------------------
+-----------------------------------
 **GNAT Studio** Debug Perspective
--------------------------------------
+-----------------------------------
 
 .. image:: gnat_studio/debug_perspective.jpg
 
@@ -518,9 +518,9 @@ Running the Program
 
 .. image:: gnat_studio/internal_run_window.jpg
 
-------------------------------------------
+---------------------------------
 When Multiple Mains Are Defined
-------------------------------------------
+---------------------------------
 
 .. columns::
 
@@ -652,8 +652,8 @@ Commit a Local Change
 
 .. image:: gnat_studio/commits_view_add_commit.svg
 
-========
+=====
 Lab
-========
+=====
 
 .. include:: labs/010_gnat_studio.lab.rst

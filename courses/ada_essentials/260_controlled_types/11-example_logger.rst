@@ -1,10 +1,10 @@
-======
+========
 Logger
-======
+========
 
-----------------
+------------------
 Public Interface
-----------------
+------------------
 
 * :ada:`Logger` uses a file for writing
 * :ada:`limited` cannot be copied, or compared
@@ -18,9 +18,9 @@ Public Interface
    procedure Put_Line
      (L : Logger; S : String);
 
-----------------------------
+------------------------------
 Implementation: Private part
-----------------------------
+------------------------------
 
 .. code:: Ada
 
@@ -43,9 +43,9 @@ Implementation: Private part
    procedure Finalize (L : in out Logger);
    --  closes the file
 
---------------------
+----------------------
 Implementation: Body
---------------------
+----------------------
 
 * Trivial
 

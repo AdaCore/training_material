@@ -37,9 +37,9 @@ Assigning Types
 
       let infer_me = 10;
 
---------------------------
+---------------------------
 Type Inference Explained 
---------------------------
+---------------------------
 
 - In most cases, you don't need to write the type
 
@@ -127,9 +127,9 @@ The types have widths as follows
 -  :rust:`char` is 32 bits wide
 -  :rust:`bool` is 8 bits wide
 
--------------------------
+--------------------------
 Numeric Literal Formats 
--------------------------
+--------------------------
 
 - **Numeric Readability**
 
@@ -150,9 +150,9 @@ Numeric Literal Formats
       let pretty_suffix = 10_f64; // Type suffix 
       let suffix = 10.0f64;       // Suffix (no underscore)
 
----------------------------
+----------------------------
 Utilizing Different Bases 
----------------------------
+----------------------------
 
 - Integers can be expressed in different bases
 
