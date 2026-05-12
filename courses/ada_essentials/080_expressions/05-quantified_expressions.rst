@@ -73,8 +73,12 @@ Quantified Expressions Syntax
 
     (for some Index in Subtype_T => Predicate (Index))
     (for all Index in Subtype_T => Predicate (Index))
-    (for some Value of Container_Obj => Predicate (Value))
-    (for all Value of Container_Obj => Predicate (Value))
+    (for some Value of Array_Obj => Predicate (Value))
+    (for all Value of Array_Obj => Predicate (Value))
+
+.. note::
+
+  Quantified expressions work on iterable containers as well
 
 ..
   language_version 2012
@@ -282,29 +286,6 @@ Index-Based Vs Component-Based Indexing
 
 * If the set is empty, there is no such member, so False
 * Common convention in set theory, arbitrary but settled
-
-..
-  language_version 2012
-
------------------------------------------
-Not Just Arrays: Any "Iterable" Objects
------------------------------------------
-
-* Those that can be iterated over
-* Language-defined, such as the containers
-* User-defined too
-
-.. code:: Ada
-
-   package Characters is new
-      Ada.Containers.Vectors (Positive, Character);
-   use Characters;
-   Alphabet  : constant Vector :=
-               To_Vector ('A',1) & 'B' & 'C';
-   Any_Zed   : constant Boolean :=
-               (for some C of Alphabet => C = 'Z');
-   All_Lower : constant Boolean :=
-               (for all C of Alphabet => Is_Lower (C));
 
 ..
   language_version 2012

@@ -50,7 +50,7 @@ Usage
    --  Callbacks
    procedure Parse_Tree is new Tree_Parser
      (Visitor_Procedure);
-   --  Containers, generic data-structures
+   --  Collections, generic data-structures
    package Integer_Stack is new Stack (Integer);
 
 * Advanced usages for testing, proof, meta-programming
