@@ -102,9 +102,9 @@ No Meaning Changes
      end;
    end Example;
 
----------------
-No Ambiguity 
----------------
+--------------
+No Ambiguity
+--------------
 
 .. code:: Ada
 

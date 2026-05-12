@@ -87,9 +87,9 @@ Destructuring an Array
 
 :command:`socks: 30`
 
------------------------------
-Ignoring Specific Elements 
------------------------------
+----------------------------
+Ignoring Specific Elements
+----------------------------
 
 **Ignore specific elements using the underscore (**:rust:`_`**)**
 

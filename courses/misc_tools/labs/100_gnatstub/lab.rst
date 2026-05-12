@@ -16,9 +16,9 @@
 
 .. note:: We use animation - if you don't know the answer, Page Down should give it to you
 
------------------------
-Build the Executable 
------------------------
+----------------------
+Build the Executable
+----------------------
 
 1. Open a command prompt window and navigate to the directory containing :filename:`default.gpr`
 

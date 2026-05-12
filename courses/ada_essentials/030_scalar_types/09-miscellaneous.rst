@@ -2,9 +2,9 @@
 Miscellaneous
 ===============
 
----------------------------
- Checked Type Conversions
----------------------------
+--------------------------
+Checked Type Conversions
+--------------------------
 
 * Between "closely related" types
 

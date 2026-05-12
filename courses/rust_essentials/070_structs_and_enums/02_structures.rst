@@ -132,9 +132,9 @@ Shorthand for Field Initialization
       logged_in: true;
     };
 
--------------------------
-Struct Update Operator 
--------------------------
+------------------------
+Struct Update Operator
+------------------------
 
 - Creation of :rust:`struct` based on another instance via :rust:`..` operator 
   - Specify values only for fields that need to change 

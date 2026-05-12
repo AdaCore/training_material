@@ -119,9 +119,9 @@ Aggregate Consistency Rules
 
    Wednesday already covered in Monday .. Friday
 
------------
- "Others"
------------
+----------
+"Others"
+----------
 
 * Indicates all components not yet assigned a value
 * All remaining components get this single value

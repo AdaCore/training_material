@@ -25,9 +25,9 @@ Generic Traits
     impl Transform<String> for Minutes {
       fn convert(&self) -> String { format!("{} mins", self.0) }
     
------------------
-Const Generics 
------------------
+----------------
+Const Generics
+----------------
 
 - No generic constant declaration
 
