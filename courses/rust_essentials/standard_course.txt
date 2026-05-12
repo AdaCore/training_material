@@ -1,3 +1,4 @@
+-- Day 1
 010_introduction.rst
 015_overview.rst
 020_hello_world.rst
@@ -7,11 +8,13 @@
 060_references.rst
 070_structs_and_enums.rst
 080_pattern_matching.rst
+-- Day 2
 090_methods_and_traits.rst
 100_generics.rst
 110_common_library_types.rst
 120_standard_library_traits.rst
 130_memory_management.rst
+-- Day 3
 140_smart_pointers.rst
 150_borrowing.rst
 160_lifetimes.rst
