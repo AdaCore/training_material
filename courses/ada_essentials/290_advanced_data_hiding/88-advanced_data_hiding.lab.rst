@@ -24,10 +24,6 @@ Advanced Data Hiding Lab
  
    - Have your main program add items to the list and then print the list
 
-* Hints
-
-   - You will need to employ some (but not necessarily all) of the techniques discussed in this module
- 
 -----------------------------
 Lab Solution - Message Type
 -----------------------------
