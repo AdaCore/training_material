@@ -1,3 +1,4 @@
+-- Day 1
 005_introduction.rst
 010_overview.rst
 013_hello_world.rst
@@ -6,19 +7,23 @@
 030_scalar_types.rst
 040_statements.rst
 050_array_types.rst
+-- Day 2
 060_record_types.rst
 070_subprograms.rst
 075_type_derivation.rst
 080_expressions.rst
 090_overloading.rst
+-- Day 3
 100_packages.rst
 110_private_types.rst
 130_program_structure.rst
 135_visibility.rst
+-- Day 4
 140_access_types.rst
 160_genericity.rst
 170_tagged_derivation.rst
 190_exceptions.rst
+-- Day 5
 230_interfacing_with_c.rst
 240_tasking.rst
 273_subprogram_contracts.rst
