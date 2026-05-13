@@ -49,3 +49,9 @@ Hello World
 .. container:: animate 6-
 
   * :rust:`println!` - macro for printing a string followed by newline
+
+.. note::
+
+  For source code files, Rust always uses the file extension :filename:`.rs`
+
+  *So for this example, we would expect it in file* :filename:`main.rs`
