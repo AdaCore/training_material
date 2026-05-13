@@ -136,10 +136,17 @@ Mutable Variant Record Example
 
   .. code:: Ada
 
-    Pat : Person := (Student, 19, 3.9);
     Sam : Person (Faculty);
+	Pat : Person := (Student, 19, 3.9);
+    
+.. note::
 
-* You can only change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
+  This declaration is equivalent to
+  :ada:`Pat : Person;  -- mutable!`
+  :ada:`Pat := (Student, 19, 3.9);`
+
+
+* You can change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
 
   .. code:: Ada
 
@@ -155,7 +162,7 @@ Mutable Variant Record Example
   * :ada:`Sam := Pat;` will give you a run-time error if :ada:`Pat.Group` is not :ada:`Faculty`
 
     * And the compiler will not warn about this!
-
+	
 ------
 Quiz
 ------
