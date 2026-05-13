@@ -141,9 +141,10 @@ Mutable Variant Record Example
     
 .. note::
 
-  This declaration is equivalent to
+  This declaration is equivalent to:
   
   :ada:`Pat : Person;  -- mutable!`
+  
   :ada:`Pat := (Student, 19, 3.9);`
 
 * You can change the discriminant of :ada:`Pat`, but only via a whole record assignment, e.g:
