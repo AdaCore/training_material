@@ -27,6 +27,8 @@ from pandocfilters import (
     Emph,
     Para,
     RawBlock,
+    RawInline,
+    Code,
     CodeBlock,
 )
 
@@ -747,7 +749,6 @@ Otherwise, (for a default role), the AST node has
 a key of "Span", the indicator is "title-ref', and the text is an AST text node.
 """
 
-
 def format_text(key, value, format):
     [[ident, classes, kvs], text] = value
 
@@ -759,6 +760,35 @@ def format_text(key, value, format):
             # Fallback returns default
             res = pandoc_format("default", literal_to_AST_node(text))
         return res
+    elif key == "Code":
+        return wrap_code (key, value)
+
+
+"""
+wrap_code takes a 'Code' snippet (inline code) and wraps it
+in a 'colorbox' to allow us to give embedded code a background
+color.
+As of now, this does NOT add background color to code blocks
+"""
+
+def wrap_code(key, value):
+
+    # value is [[id, [classes], [[key, val]]], text]
+    attr, text = value
+    classes = attr[1]
+        
+    # replace 'True' with code if we want conditional formatting
+    if True:
+        # colorbox syntax: \colorbox{<color>}{text}
+        #    'color' is the color you want
+        #    'text' is the LaTeX strings you want colored
+        before = RawInline('latex', r'\colorbox{adacore_highlight}{')
+        after = RawInline('latex', r'}')
+            
+        # Reconstruct the original Code element
+        original_code = Code(attr, text)
+            
+        return [before, original_code, after]
 
 
 """
