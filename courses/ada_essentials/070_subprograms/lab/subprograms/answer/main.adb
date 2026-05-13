@@ -49,7 +49,6 @@ begin
    Add (45);
    Add (22);
 
-
    for Idx in 1 .. Length loop
       Put_Line (List (Idx)'Image);
    end loop;
