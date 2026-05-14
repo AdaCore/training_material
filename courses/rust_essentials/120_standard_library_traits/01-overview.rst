@@ -24,7 +24,7 @@ Review: What Is a Trait?
 * Separates *interface* from *data*
 
   * Function for what a type **does**, not what it **is**
-  * Add functionality to existing types modifying original code
+  * Adds functionality to types without modifying original code
 
 -----------------------------------
 What Is a Standard Library Trait?
