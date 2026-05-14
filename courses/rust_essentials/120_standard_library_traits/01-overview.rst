@@ -21,7 +21,10 @@ Review: What Is a Trait?
   * *Interfaces* in Java/C#
   * *Abstract Base Classes* in Python/C++
 
-* Adds more flexibility to the type and its behavior
+* Separates *interface* from *data*
+
+  * Function for what a type **does**, not what it **is**
+  * Add functionality to existing types modifying original code
 
 -----------------------------------
 What Is a Standard Library Trait?
