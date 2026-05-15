@@ -13,14 +13,13 @@ Recoverable Error
 
 * :rust:`Result` allows safe handling of any outcome
 
-  .. container:: latex_environment footnotesize
+  .. code:: rust
+    :font-size: footnotesize
 
-    .. code:: rust
-
-      enum Result<T, E> {
-          Ok(T),  // Success - contains value of type 'T'
-          Err(E), // Failure - contains error of type 'E'
-      }
+    enum Result<T, E> {
+        Ok(T),  // Success - contains value of type 'T'
+        Err(E), // Failure - contains error of type 'E'
+    }
 
 .. note::
 
@@ -85,16 +84,15 @@ Propagating Errors
 
   * Called the :dfn:`Try Operator`
 
-.. container:: latex_environment footnotesize
+.. code:: rust
+  :font-size: footnotesize
 
-  .. code:: rust
-
-    fn open_file(filename: &str) -> Result<File, io::Error> {
-        // 'open' returns 'Result'
-        // '?' returns to caller if 'Result' is 'Err'
-        let mut file = File::open("user.txt")?;
-        Ok(file)
-    }
+  fn open_file(filename: &str) -> Result<File, io::Error> {
+      // 'open' returns 'Result'
+      // '?' returns to caller if 'Result' is 'Err'
+      let mut file = File::open("user.txt")?;
+      Ok(file)
+  }
 
 .. note::
 
