@@ -1,34 +1,38 @@
-========
+=====
 Lab
-========
+=====
 
 -----------------
 Expressions Lab
 -----------------
 
+* Goal
+
+  - Use expression functions to validate array contents
+
 * Requirements
 
-   - Allow the user to fill a list with dates
-   - After the list is created, create functions to print True/False if ...
+  - Prompt has three arrays of dates
+  - For each set of dates, create functions to print True/False ...
 
-      * Any date is not legal (taking into account leap years!)
-      * All dates are in the same calendar year
+    * If any date is not legal (taking into account leap years!)
+    * If all dates are in the same calendar year
 
-   - Use *expression functions* for all validation routines
+  - Use *expression functions* for all validation routines
 
 * Hints
 
-   - Use subtype membership for range validation
-   - You will need *conditional expressions* in your functions
+  - Use subtype membership for range validation
+  - You will need *conditional expressions* in your functions
 
 -----------------------------------
 Expressions Lab Solution - Checks
 -----------------------------------
 
-.. container:: source_include 080_expressions/lab/expressions-intro/answer/main.adb :start-after:--Checks :end-before:--Checks :code:Ada :number-lines:4 :font-size:tiny
+.. container:: source_include 080_expressions/lab/expressions-intro/answer/main.adb :start-after:checks_begin :end-before:checks_end :code:Ada :number-lines:4 :font-size:tiny
 
 ---------------------------------
 Expressions Lab Solution - Main
 ---------------------------------
 
-.. container:: source_include 080_expressions/lab/expressions-intro/answer/main.adb :start-after:--Main :end-before:--Main :code:Ada :number-lines:52 :font-size:tiny
+.. container:: source_include 080_expressions/lab/expressions-intro/answer/main.adb :start-after:main_begin :end-before:main_end :code:Ada :number-lines:37 :font-size:tiny
