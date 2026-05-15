@@ -104,15 +104,15 @@ Quiz
 
   .. container:: column
 
-   .. container:: latex_environment tiny 
-
-     .. code:: Ada
+    .. code:: Ada
+      :font-size: tiny
 
         type Array_T is array (1..5) of Integer
            with Default_Component_Value => 1;
         A : Array_T;
 
     .. code:: Ada
+      :font-size: tiny
 
         for I in A'First + 1 .. A'Last - 1 loop
            A (I) := I * A'Length;

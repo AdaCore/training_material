@@ -186,13 +186,12 @@ Discriminated Protected or Task types
 Using discriminant for Real-Time aspects
 ----------------------------------------
 
-.. container:: latex_environment small
+.. code:: Ada
+  :font-size: small
 
-  .. code:: Ada
-
-    protected type Protected_With_Priority (Prio : System.Priority)
-       with Priority => Prio
-    is
+  protected type Protected_With_Priority (Prio : System.Priority)
+     with Priority => Prio
+  is
 
 ------------------------------------------
 Example: Protected Objects - Declaration

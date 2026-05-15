@@ -49,19 +49,18 @@ Big_Integer in Action
 Big_Real: Real Precision
 --------------------------
 
-.. container:: latex_environment small
+.. code:: ada
+  :font-size: small
 
-  .. code:: ada
+  with Ada.Numerics.Big_Numbers.Big_Reals;
+  use Ada.Numerics.Big_Numbers.Big_Reals;
 
-      with Ada.Numerics.Big_Numbers.Big_Reals;
-      use Ada.Numerics.Big_Numbers.Big_Reals;
-
-      procedure Test_Big_Real is
-         A : Big_Real := 3.141592653589793238462643383279;
-         B : Big_Real := A ** 10;
-      begin
-         Put_Line ("Pi ^ 10 = " & B'Image);
-      end Test_Big_Real;
+  procedure Test_Big_Real is
+     A : Big_Real := 3.141592653589793238462643383279;
+     B : Big_Real := A ** 10;
+  begin
+     Put_Line ("Pi ^ 10 = " & B'Image);
+  end Test_Big_Real;
 
 - Arbitrary-precision floating-point numbers
 

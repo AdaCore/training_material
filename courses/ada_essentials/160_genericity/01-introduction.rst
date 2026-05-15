@@ -61,47 +61,44 @@ Ada Generic Compared to C++ Template
 
   Ada Generic
 
-  .. container:: latex_environment scriptsize
+  .. code:: Ada
+    :font-size: scriptsize
 
-    .. code:: Ada
+    -- specification
+    generic
+      type T is private;
+    procedure Swap (L, R : in out T);
 
-      -- specification
-      generic
-        type T is private;
-      procedure Swap (L, R : in out T);
+    -- implementation
+    procedure Swap (L, R : in out T) is
+       Tmp : T := L;
+    begin
+       L := R;
+       R := Tmp;
+    end Swap;
 
-      -- implementation
-      procedure Swap (L, R : in out T) is
-         Tmp : T := L;
-      begin
-         L := R;
-         R := Tmp;
-      end Swap;
-
-      -- instance
-      procedure Swap_F is new Swap (Float);
+    -- instance
+    procedure Swap_F is new Swap (Float);
 
  .. container:: column
 
   C++ Template
 
-  .. container:: latex_environment scriptsize
+  .. code:: C++
+    :font-size: scriptsize
 
-    .. code:: C++
+    // prototype
+    template <class T>
+    void Swap (T & L, T & R);
 
-      // prototype
-      template <class T>
-      void Swap (T & L, T & R);
+    // implementation
+    template <class T>
+    void Swap (T & L, T & R) {
+       T Tmp = L;
+       L = R;
+       R = Tmp;
+    }
 
-      // implementation
-      template <class T>
-      void Swap (T & L, T & R) {
-         T Tmp = L;
-         L = R;
-         R = Tmp;
-      }
-
-      // instance
-      int x, y;
-      Swap<int>(x,y);
-
+    // instance
+    int x, y;
+    Swap<int>(x,y);

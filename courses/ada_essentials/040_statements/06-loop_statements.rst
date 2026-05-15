@@ -171,31 +171,30 @@ Low-Level For-loop Parameter Type
    - As long as it is clear for the compiler
    - Warning: same name can belong to several enums
 
-.. container:: latex_environment scriptsize
+.. code:: Ada
+  :number-lines: 1
+  :font-size: scriptsize
 
-  .. code:: Ada
-    :number-lines: 1
+  procedure Main is
+     type Color_T is (Red, White, Blue);
+     type Rgb_T is (Red, Green, Blue);
+  begin
+     for Color in Red .. Blue loop  -- which Red and Blue?
+        null;
+     end loop;
+     for Color in Rgb_T'(Red) .. Blue loop -- OK
+        null;
+     end loop;
 
-    procedure Main is
-       type Color_T is (Red, White, Blue);
-       type Rgb_T is (Red, Green, Blue);
-    begin
-       for Color in Red .. Blue loop  -- which Red and Blue?
-          null;
-       end loop;
-       for Color in Rgb_T'(Red) .. Blue loop -- OK
-          null;
-       end loop;
+:error:`main.adb:5:21: error: ambiguous bounds in range of iteration`
 
-  :error:`main.adb:5:21: error: ambiguous bounds in range of iteration`
+:error:`main.adb:5:21: error: possible interpretations:`
 
-  :error:`main.adb:5:21: error: possible interpretations:`
+:error:`main.adb:5:21: error: type "Rgb_T" defined at line 3`
 
-  :error:`main.adb:5:21: error: type "Rgb_T" defined at line 3`
+:error:`main.adb:5:21: error: type "Color_T" defined at line 2`
 
-  :error:`main.adb:5:21: error: type "Color_T" defined at line 2`
-
-  :error:`main.adb:5:21: error: ambiguous bounds in discrete range`
+:error:`main.adb:5:21: error: ambiguous bounds in discrete range`
 
 * Type is :ada:`Integer` unless otherwise specified
 

@@ -106,12 +106,11 @@ Floating Point Division by Zero
 
 * User-defined types always raise :ada:`Constraint_Error`
 
-  .. container:: latex_environment small
-
-    .. code:: Ada
+  .. code:: Ada
+    :font-size: small
     
-      type My_Float is new Float range Float'First .. Float'Last;
-      subtype Sub_Float is Float range Float'First .. Float'Last;
+    type My_Float is new Float range Float'First .. Float'Last;
+    subtype Sub_Float is Float range Float'First .. Float'Last;
 
 -----------------------------------------
 Using Equality for Floating Point Types

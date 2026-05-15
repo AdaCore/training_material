@@ -25,32 +25,31 @@ Delay Example
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
-
-        with Ada.Calendar; use Ada.Calendar;
-        with Ada.Text_IO;  use Ada.Text_IO;
-        procedure Main is
-           Start_Time : Time := Clock;
-           function Time_Str return String is
-             (Duration'Image (Clock-Start_Time)(1 .. 5));
-           task Relative;
-           task body Relative is
-           begin
-              for Counter in 1 .. 5 loop
-                 delay 0.1;
-                 Put_Line (Time_Str &
-                           " => Relative " & I'Image);
-              end loop;
-           end Relative;
-        begin
-           for Counter in 1 .. 5 loop
-              delay until Start_Time + Duration (I) * 0.1;
-              Put_Line (Time_Str &
-                        " => Absolute " & I'Image);
-           end loop;
-        end Main;
+      with Ada.Calendar; use Ada.Calendar;
+      with Ada.Text_IO;  use Ada.Text_IO;
+      procedure Main is
+         Start_Time : Time := Clock;
+         function Time_Str return String is
+           (Duration'Image (Clock-Start_Time)(1 .. 5));
+         task Relative;
+         task body Relative is
+         begin
+            for Counter in 1 .. 5 loop
+               delay 0.1;
+               Put_Line (Time_Str &
+                         " => Relative " & I'Image);
+            end loop;
+         end Relative;
+      begin
+         for Counter in 1 .. 5 loop
+            delay until Start_Time + Duration (I) * 0.1;
+            Put_Line (Time_Str &
+                      " => Absolute " & I'Image);
+         end loop;
+      end Main;
 
   .. container:: column
 

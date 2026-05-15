@@ -66,31 +66,29 @@ Private Tagged Types
 
 * So we can define our base type as private
 
-  .. container:: latex_environment tiny
+  .. code:: Ada
+    :font-size: tiny
 
-    .. code:: Ada
-
-      package Animals is
-        type Animal_T is tagged private;
-        function Get_Age (P : Animal_T) return Natural;
-        procedure Set_Age (P : in out Animal_T; A : Natural);
-      private
-        type Animal_T is tagged record
-           Age : Natural;
-        end record;
-      end Animals;
+    package Animals is
+      type Animal_T is tagged private;
+      function Get_Age (P : Animal_T) return Natural;
+      procedure Set_Age (P : in out Animal_T; A : Natural);
+    private
+      type Animal_T is tagged record
+         Age : Natural;
+      end record;
+    end Animals;
 
 * And still allow derivation
 
-  .. container:: latex_environment tiny
+  .. code:: Ada
+    :font-size: tiny
 
-    .. code:: Ada
-
-      with Animals;
-      package Mammals is
-        type Mammal_T is new Animals.Animal_T with record
-          Number_Of_Legs : Natural;
-        end record;
+    with Animals;
+    package Mammals is
+      type Mammal_T is new Animals.Animal_T with record
+        Number_Of_Legs : Natural;
+      end record;
 
 * But now the only way to get access to :ada:`Age` is with accessor subprograms
 

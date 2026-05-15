@@ -154,18 +154,17 @@ C. Run-time error
 Quiz
 ------
 
-.. container:: latex_environment footnotesize
+.. code:: Ada
+  :font-size: footnotesize
 
-  .. code:: Ada
-
-    protected Counter is
-       procedure Initialize (V : Integer);
-       procedure Increment;
-       function Decrement return Integer;
-       function Query return Integer;
-    private
-       Object : Integer := 0;
-    end Counter;
+  protected Counter is
+     procedure Initialize (V : Integer);
+     procedure Increment;
+     function Decrement return Integer;
+     function Query return Integer;
+  private
+     Object : Integer := 0;
+  end Counter;
 
 Which completion(s) of :ada:`Counter` is (are) illegal?
 

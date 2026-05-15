@@ -75,26 +75,25 @@ Rendezvous
   * **Server** must perform entry processing
   * **Client** is waiting for **Server** to finish
 
-.. container:: latex_environment small
+.. code:: Ada
+  :font-size: small
 
-  .. code:: Ada
+  task Server_Task is
+    entry Receive_Message (S : in String);
+  end Server_Task;
 
-    task Server_Task is
-      entry Receive_Message (S : in String);
-    end Server_Task;
+  task body Server_Task is
+  begin
+    accept Receive_Message (S : in String) do -- waiting for client
+      Put_Line ("Received: " & S);
+    end Receive_Message; -- release to client
+  end Server_Task;
 
-    task body Server_Task is
-    begin
-      accept Receive_Message (S : in String) do -- waiting for client
-        Put_Line ("Received: " & S);
-      end Receive_Message; -- release to client
-    end Server_Task;
-
-    procedure Client is
-    begin
-      -- The client calls the entry and waits
-      Server_Task.Receive_Message ("Hello!");
-    end Client;
+  procedure Client is
+  begin
+    -- The client calls the entry and waits
+    Server_Task.Receive_Message ("Hello!");
+  end Client;
 
 -----------------------
 Sequential Rendezvous

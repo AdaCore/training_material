@@ -181,29 +181,28 @@ Quiz
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
-
-       package P is
-         type L1_T is limited private;
-         type L2_T is limited private;
-         type P1_T is private;
-         type P2_T is private;
-       private
-         type L1_T is limited record
-            Component : Integer;
-         end record;
-         type L2_T is record
-            Component : Integer;
-         end record;
-         type P1_T is limited record
-            Component : L1_T;
-         end record;
-         type P2_T is record
-            Component : L2_T;
-         end record;
-       end P;
+      package P is
+        type L1_T is limited private;
+        type L2_T is limited private;
+        type P1_T is private;
+        type P2_T is private;
+      private
+        type L1_T is limited record
+           Component : Integer;
+        end record;
+        type L2_T is record
+           Component : Integer;
+        end record;
+        type P1_T is limited record
+           Component : L1_T;
+        end record;
+        type P2_T is record
+           Component : L2_T;
+        end record;
+      end P;
 
   .. container:: column
 

@@ -32,14 +32,13 @@ Access Types and Primitives
 
   * **Not** the type of the accessed object
 
-.. container:: latex_environment footnotesize
+.. code:: Ada
+  :font-size: footnotesize
 
-  .. code:: Ada
-
-    type Rec_T is null record;
-    type Rec_Access_T is access Rec_T;
-    procedure Proc1 (Param : Rec_T);         -- primitive of Rec_T
-    procedure Proc2 (Param : Rec_Access_T);  -- primitive of Rec_Access_T
+  type Rec_T is null record;
+  type Rec_Access_T is access Rec_T;
+  procedure Proc1 (Param : Rec_T);         -- primitive of Rec_T
+  procedure Proc2 (Param : Rec_Access_T);  -- primitive of Rec_Access_T
 
 --------------------------
 Dereferencing Access Types

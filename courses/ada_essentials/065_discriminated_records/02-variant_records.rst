@@ -155,22 +155,21 @@ Quiz
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
+      :number-lines: 2
 
-      .. code:: Ada
-        :number-lines: 2
+      type Variant_T (Valid : Integer) is record
+          case Valid is
+          when Integer'First .. -1 =>
+              Value : Integer;
+              State : Boolean;
+          when others =>
+              Number : Natural;
+          end case;
+      end record;
 
-        type Variant_T (Valid : Integer) is record
-            case Valid is
-            when Integer'First .. -1 =>
-                Value : Integer;
-                State : Boolean;
-            when others =>
-                Number : Natural;
-            end case;
-        end record;
-
-        Variant_Object : Variant_T (1);
+      Variant_Object : Variant_T (1);
 
   .. container:: column
 
@@ -202,30 +201,29 @@ Quiz
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :number-lines: 2
+      :font-size: tiny
 
-      .. code:: Ada
-         :number-lines: 2
+      type Coord_T is record
+         X, Y : Float;
+      end record;
 
-         type Coord_T is record
-            X, Y : Float;
-         end record;
+      type Kind_T is (Circle, Line);
+      type Shape_T (Kind : Kind_T := Line) is record
+         Origin : Coord_T;
+         case Kind is
+            when Line =>
+               End_Point : Coord_T;
+            when Circle =>
+               End_Point : Coord_T;
+         end case;
+      end record;
 
-         type Kind_T is (Circle, Line);
-         type Shape_T (Kind : Kind_T := Line) is record
-            Origin : Coord_T;
-            case Kind is
-               when Line =>
-                  End_Point : Coord_T;
-               when Circle =>
-                  End_Point : Coord_T;
-            end case;
-         end record;
-
-         A_Circle : Shape_T       :=
-           (Circle, (1.0, 2.0), (3.0, 4.0));
-         A_Line   : Shape_T (Line) :=
-           (Circle, (1.0, 2.0), (3.0, 4.0));
+      A_Circle : Shape_T       :=
+        (Circle, (1.0, 2.0), (3.0, 4.0));
+      A_Line   : Shape_T (Line) :=
+        (Circle, (1.0, 2.0), (3.0, 4.0));
 
   .. container:: column
 

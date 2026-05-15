@@ -180,46 +180,43 @@ Hierarchical Visibility
     + All child units come after the root parent's specification
     + Grandchildren within children, great-grandchildren within ...
 
-.. container:: latex_environment tiny
+.. code:: Ada
+  :font-size: tiny
 
-  .. code:: Ada
-
-     package OS is
-       -- Some code
-     private
-       type OS_Private_T is null record;
-     end OS;
+  package OS is
+    -- Some code
+  private
+    type OS_Private_T is null record;
+  end OS;
 
 .. container:: columns
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
-
-        package OS.Child is
-          type Child_T is private;
-        private 
-          type Child_T is record
-            Field : OS_Private_T;
-          end record;
-        end OS.Child;
+      package OS.Child is
+        type Child_T is private;
+      private 
+        type Child_T is record
+          Field : OS_Private_T;
+        end record;
+      end OS.Child;
       
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
-
-        package OS.Sibling is
-          type Sibling_T is private;
-        private 
-          type Sibling_T is record
-            Field1 : OS_Private_T; -- OK
-            Field2 : Child_T;      -- Error
-          end record;
-        end OS.Sibling;
+      package OS.Sibling is
+        type Sibling_T is private;
+      private 
+        type Sibling_T is record
+          Field1 : OS_Private_T; -- OK
+          Field2 : Child_T;      -- Error
+        end record;
+      end OS.Sibling;
 
 .. raw:: latex
 
@@ -255,7 +252,7 @@ Example of Visibility As If Nested
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
     * Because children can reference ancestors' private sections
 
@@ -263,11 +260,10 @@ Example of Visibility As If Nested
 
     * Explicit clauses for ancestors are redundant but OK
 
- .. container:: column
+  .. container:: column
 
-   .. container:: latex_environment small
-
-     .. code:: Ada
+    .. code:: Ada
+      :font-size: small
 
       package Parent is
         ...

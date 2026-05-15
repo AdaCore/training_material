@@ -111,35 +111,34 @@ Handling Elaboration Exceptions
 Quiz
 ------
 
-.. container:: latex_environment footnotesize
+.. code:: Ada
+  :font-size: footnotesize
 
-  .. code:: Ada
-
-     with Ada.Text_IO; use Ada.Text_IO;
-     procedure Exception_Test (Input_Value : Integer) is
-        Known_Problem : exception;
-        function F (P : Integer) return Integer is
-        begin
-           if P > 0 then
-              return P * P;
-           end if;
-        exception
-           when others => raise Known_Problem;
-        end F;
-        procedure P (X : Integer) is
-           A : array (1 .. F (X)) of Float;
-        begin
-           A := (others => 0.0);
-        exception
-           when others => raise Known_Problem;
-        end P;
+  with Ada.Text_IO; use Ada.Text_IO;
+  procedure Exception_Test (Input_Value : Integer) is
+     Known_Problem : exception;
+     function F (P : Integer) return Integer is
      begin
-        P (Input_Value);
-        Put_Line ("Success");
+        if P > 0 then
+           return P * P;
+        end if;
      exception
-        when Known_Problem => Put_Line ("Known problem");
-        when others => Put_Line ("Unknown problem");
-     end Exception_Test;
+        when others => raise Known_Problem;
+     end F;
+     procedure P (X : Integer) is
+        A : array (1 .. F (X)) of Float;
+     begin
+        A := (others => 0.0);
+     exception
+        when others => raise Known_Problem;
+     end P;
+  begin
+     P (Input_Value);
+     Put_Line ("Success");
+  exception
+     when Known_Problem => Put_Line ("Known problem");
+     when others => Put_Line ("Unknown problem");
+  end Exception_Test;
 
 What will get printed for these values of Input_Value?
 

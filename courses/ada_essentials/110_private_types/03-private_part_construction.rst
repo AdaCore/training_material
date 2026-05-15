@@ -47,7 +47,7 @@ Full Type Declaration
 
 .. container:: columns
 
- .. container:: column
+  .. container:: column
 
     * May be any type
 
@@ -59,24 +59,23 @@ Full Type Declaration
        - Anything a package specification may contain
        - Types, subprograms, variables, etc.
 
- .. container:: column
+  .. container:: column
 
-   .. container:: latex_environment small
-
-     .. code:: Ada
-
-        package Designer is
-          type Item_T is private;
-          ...
-        private
-          type Vector is array (1.. 10)
-             of Integer;
-          function Initial
-             return Vector;
-          type Item_T record
-            X, Y : Vector := Initial;
-          end record;
-        end Designer;
+    .. code:: Ada
+      :font-size: small
+   
+      package Designer is
+        type Item_T is private;
+        ...
+      private
+        type Vector is array (1.. 10)
+           of Integer;
+        function Initial
+           return Vector;
+        type Item_T record
+          X, Y : Vector := Initial;
+        end record;
+      end Designer;
 
 .. container:: speakernote
 

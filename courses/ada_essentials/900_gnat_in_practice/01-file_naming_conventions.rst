@@ -27,16 +27,15 @@ Example Filenames with Contents
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
-
-         package Some_Types is
-            type One_T is new Integer;
-            type Two_T is new Character;
-            function Convert (Src : One_T)
-                              return Two_T;
-         end Some_Types;
+      package Some_Types is
+         type One_T is new Integer;
+         type Two_T is new Character;
+         function Convert (Src : One_T)
+                           return Two_T;
+      end Some_Types;
 
   .. container:: column
 
@@ -80,12 +79,11 @@ Example Filenames with Contents
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
-
-         function Some_Types.Child (Src : Two_T)
-                                    return One_T;
+       function Some_Types.Child (Src : Two_T)
+                                  return One_T;
 
   .. container:: column
 

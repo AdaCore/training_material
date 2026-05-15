@@ -15,24 +15,23 @@ When to Use Private Types
    - Normally available based upon type's representation
    - Determined by intent of ADT
 
-.. container:: latex_environment footnotesize
+.. code:: Ada
+  :font-size: footnotesize
 
-  .. code:: Ada
+  package Valves is
+     type Valve_Id_T is private;
+     procedure Set (Valve : Valve_Id_T;
+                    Value : Integer);
+  private
+     type Valve_Id_T is new Integer;
+  end Valves;
 
-    package Valves is
-       type Valve_Id_T is private;
-       procedure Set (Valve : Valve_Id_T;
-                      Value : Integer);
-    private
-       type Valve_Id_T is new Integer;
-    end Valves;
-
-    with Valves; use Valves;
-    procedure Initialize is
-       Hot, Cold : Valve_Id_T;
-    begin
-       Set (Hot, Hot + Cold);
-    end Initialize;
+  with Valves; use Valves;
+  procedure Initialize is
+     Hot, Cold : Valve_Id_T;
+  begin
+     Set (Hot, Hot + Cold);
+  end Initialize;
 
 * If :ada:`Valve_Id_T` was not private, call to **Set** would be valid
 

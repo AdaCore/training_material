@@ -121,42 +121,41 @@ Quiz
 
 .. container:: columns
 
- .. container:: column
-
-  .. container:: latex_environment tiny
+  .. container:: column
 
     .. code:: Ada
+      :font-size: tiny
 
-       package Counter is
-          type Count_T is private;
-          procedure Increment (Val : in out Count_T);
-       private
-          function Check_Limit (Value : Integer) 
-                                return Boolean;
-          type Count_T is new Integer with
-             Type_Invariant =>
-                Check_Limit (Integer (Count_T));
-       end Counter;
+      package Counter is
+         type Count_T is private;
+         procedure Increment (Val : in out Count_T);
+      private
+         function Check_Limit (Value : Integer) 
+                               return Boolean;
+         type Count_T is new Integer with
+            Type_Invariant =>
+               Check_Limit (Integer (Count_T));
+      end Counter;
 
-       package body Counter is
-          function Increment_Helper
-            (Helper_Val : Count_T)
-             return Count_T is
-             Next_Value : Count_T := Helper_Val + 1;
-          begin
-             return Next_Value;
-          end Increment_Helper;
-          procedure Increment (Val : in out Count_T) is
-          begin
-             Val := Val + 1;
-             Val := Increment_Helper (Val);
-          end Increment;
-          function Check_Limit (Value : Integer)
-                                return Boolean is
-             (Value <= 100); --  check against constraint
-       end Counter;
+      package body Counter is
+         function Increment_Helper
+           (Helper_Val : Count_T)
+            return Count_T is
+            Next_Value : Count_T := Helper_Val + 1;
+         begin
+            return Next_Value;
+         end Increment_Helper;
+         procedure Increment (Val : in out Count_T) is
+         begin
+            Val := Val + 1;
+            Val := Increment_Helper (Val);
+         end Increment;
+         function Check_Limit (Value : Integer)
+                               return Boolean is
+            (Value <= 100); --  check against constraint
+      end Counter;
 
- .. container:: column
+  .. container:: column
 
     If `Increment` is called from outside of Counter, how many times is `Check_Limit` called?
 

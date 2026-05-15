@@ -23,17 +23,15 @@ Anonymous Array Types
 
  .. container:: column
 
-  .. container:: latex_environment small
+  .. code:: Ada
+    :font-size: small
 
-   .. code:: Ada
-
-      declare
+    declare
       -- These are not same type!
-        A, B : array (Foo) of Bar;
-      begin
-        A := B;  -- illegal
-        B := A;  -- illegal
-        -- legal assignment of values
-        A(J) := B(K);
-      end;
-
+      A, B : array (Foo) of Bar;
+    begin
+      A := B;  -- illegal
+      B := A;  -- illegal
+      -- legal assignment of values
+      A(J) := B(K);
+    end;

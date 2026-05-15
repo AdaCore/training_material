@@ -15,18 +15,17 @@ Assignment Statements
 
    - Rejected at compile-time otherwise
 
-.. container:: latex_environment small
+.. code:: Ada
+  :font-size: small
 
-  .. code:: Ada
+  declare
+     type Miles_T is range 0 .. Max_Miles;
+     type Km_T is range 0 .. Max_Kilometers;
 
-     declare
-        type Miles_T is range 0 .. Max_Miles;
-        type Km_T is range 0 .. Max_Kilometers;
-
-        M : Miles_T := 2;
-        K : Km_T := 2;
-     begin
-        M := K; -- compile error
+     M : Miles_T := 2;
+     K : Km_T := 2;
+  begin
+     M := K; -- compile error
 
 ----------------------------------------
 Assignment Statements, Not Expressions
@@ -122,21 +121,20 @@ Aliasing the Assignment Target
 Quiz
 ------
 
-.. container:: latex_environment scriptsize
-
- .. container:: columns
+.. container:: columns
 
   .. container:: column
 
     .. code:: Ada
+      :font-size: scriptsize
 
-       type One_T is range 0 .. 100;
-       type Two_T is range 0 .. 100;
-       A : constant := 100;
-       B : constant One_T := 99;
-       C : constant Two_T := 98;
-       X : One_T := 0;
-       Y : Two_T := 0;
+      type One_T is range 0 .. 100;
+      type Two_T is range 0 .. 100;
+      A : constant := 100;
+      B : constant One_T := 99;
+      C : constant Two_T := 98;
+      X : One_T := 0;
+      Y : Two_T := 0;
 
   .. container:: column
 
