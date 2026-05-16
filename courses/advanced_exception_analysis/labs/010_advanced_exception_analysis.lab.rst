@@ -37,12 +37,13 @@ Prevent Application Crash - Solution
 
   .. container:: latex_environment footnotesize
   
-    .. code:: Ada
-      :number-lines: 9
+  .. code:: Ada
+    :number-lines: 9
+    :font-size: footnotesize
 
-      exception
-         when The_Err : others =>
-            Put_Line ("ERROR: " & Exception_Information (The_Err));
+    exception
+       when The_Err : others =>
+          Put_Line ("ERROR: " & Exception_Information (The_Err));
 
 * Output
 

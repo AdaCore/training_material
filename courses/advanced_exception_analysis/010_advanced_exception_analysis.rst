@@ -91,14 +91,13 @@ Typical Exception Occurrence
 
 * What happens when an exception is propagated out of :ada:`main`?
 
-.. container:: latex_environment footnotesize
+.. code:: Ada
+  :number-lines: 3
+  :font-size: footnotesize
 
-  .. code:: Ada
-    :number-lines: 3
-
-    procedure Main is
-       type Short_T is range -1_000 .. 1_000;
-       Input : Short_T := Short_T'Value (Ada.Command_Line.Argument (1));
+  procedure Main is
+     type Short_T is range -1_000 .. 1_000;
+     Input : Short_T := Short_T'Value (Ada.Command_Line.Argument (1));
 
 ::
 
@@ -194,24 +193,26 @@ Ada.Exceptions
 
 .. container:: latex_environment footnotesize
 
-  .. code:: Ada
-    :number-lines: 1
+.. code:: Ada
+  :number-lines: 1
+  :font-size: footnotesize
 
-    with Ada.Command_Line; use Ada.Command_Line;
-    with Ada.Exceptions;   use Ada.Exceptions;
-    with Ada.Text_IO;      use Ada.Text_IO;
-    procedure Main_Exceptions is
-    ...
+  with Ada.Command_Line; use Ada.Command_Line;
+  with Ada.Exceptions;   use Ada.Exceptions;
+  with Ada.Text_IO;      use Ada.Text_IO;
+  procedure Main_Exceptions is
+  ...
 
-  .. code:: Ada
-    :number-lines: 17
+.. code:: Ada
+  :number-lines: 17
+  :font-size: footnotesize
 
-    ...
-      Put_Line (Input'Image & " => " & Short_T'Image (Three (Input)));
-    exception
-       when The_Err : others =>
-          Put_Line ("FAILED: " & Exception_Information (The_Err));
-    end Main_Exceptions;
+  ...
+    Put_Line (Input'Image & " => " & Short_T'Image (Three (Input)));
+  exception
+     when The_Err : others =>
+        Put_Line ("FAILED: " & Exception_Information (The_Err));
+  end Main_Exceptions;
 
 ---------------------------------
 Available Exception Information
@@ -393,9 +394,8 @@ Controlling Exception Tracing
 
     * In the runtime, not in user code
 
-.. container:: latex_environment scriptsize
-
-  .. code:: Ada
+.. code:: Ada
+  :font-size: scriptsize
 
     -- Set the decorator (function that returns a string from a
     -- traceback array) that will get called when an exception occurs
@@ -422,14 +422,13 @@ Controlling Exception Actions
   * Callback is called before any unwinding
   * Also contains routine to dump core
 
-.. container:: latex_environment scriptsize
+.. code:: Ada
+  :font-size: scriptsize
 
-  .. code:: Ada
-
-    -- On Constraint Error, call Core_Dump
-    GNAT.Exception_Actions.Register_Id_Action (
-      Constraint_Error'Identity,
-      GNAT.Exception_Actions.Core_Dump'Access );
+  -- On Constraint Error, call Core_Dump
+  GNAT.Exception_Actions.Register_Id_Action (
+    Constraint_Error'Identity,
+    GNAT.Exception_Actions.Core_Dump'Access );
 
 * For more information, see documentation in :ada:`GNAT.Exception_Actions`
 
