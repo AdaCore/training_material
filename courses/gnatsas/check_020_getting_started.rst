@@ -100,24 +100,25 @@ Command Line Example Run
 
 .. container:: latex_environment scriptsize
 
-  .. code:: output
+.. code:: output
+  :font-size: scriptsize
 
-      chop.adb:14:11: PIck_Up does not have casing specified (mixed)
-      chop.ads:11:18: Stick does not start with subtype prefix T_
-      phil.adb:21:11: Think_Times does not start with subtype prefix T_
-      phil.adb:33:05: "Who_Am_I" is not modified, could be declared constant
-      phil.ads:12:03: violation of restriction "No_Tasking"
-      phil.ads:12:13: Philosopher does not start with subtype prefix T_
-      phil.ads:12:26: My_ID does not have casing specified (mixed)
-      phil.ads:19:08: States does not end with type suffix _Type
-      phil.ads:19:08: States does not start with subtype prefix T_
-      random_generic.ads:5:08: Result_Subtype does not end with type suffix _Type
-      random_generic.ads:5:08: Result_Subtype does not start with subtype prefix T_
-      room.adb:19:03: violation of restriction "No_Tasking"
-      room.adb:19:23: anonymous subtype
-      ...
+  chop.adb:14:11: PIck_Up does not have casing specified (mixed)
+  chop.ads:11:18: Stick does not start with subtype prefix T_
+  phil.adb:21:11: Think_Times does not start with subtype prefix T_
+  phil.adb:33:05: "Who_Am_I" is not modified, could be declared constant
+  phil.ads:12:03: violation of restriction "No_Tasking"
+  phil.ads:12:13: Philosopher does not start with subtype prefix T_
+  phil.ads:12:26: My_ID does not have casing specified (mixed)
+  phil.ads:19:08: States does not end with type suffix _Type
+  phil.ads:19:08: States does not start with subtype prefix T_
+  random_generic.ads:5:08: Result_Subtype does not end with type suffix _Type
+  random_generic.ads:5:08: Result_Subtype does not start with subtype prefix T_
+  room.adb:19:03: violation of restriction "No_Tasking"
+  room.adb:19:23: anonymous subtype
+  ...
 
-  *These messages are coming from rules specified in* :filename:`coding_standard.rules`
+*These messages are coming from rules specified in* :filename:`coding_standard.rules`
 
 --------------------------------------------------------------
 :toolname:`GNATcheck` From :toolname:`GNAT Studio` Main Menu

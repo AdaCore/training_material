@@ -880,18 +880,19 @@ Definition of Language Subsets
 Example Restriction & Violation Message
 -----------------------------------------
 
+.. code:: Ada
+  :number-lines: 1
+  :font-size: tiny
+
+  pragma Restrictions (No_Implicit_Heap_Allocations);
+
+  with Ada.Command_Line;
+  package Lib_Level is
+     -- Command_Name returns an unconstrained type
+     Command_Name : constant String := Ada.Command_Line.Command_Name;
+  end Lib_Level;
+
 .. container:: latex_environment tiny
-
-  .. code:: Ada
-     :number-lines: 1
-
-     pragma Restrictions (No_Implicit_Heap_Allocations);
-
-     with Ada.Command_Line;
-     package Lib_Level is
-        -- Command_Name returns an unconstrained type
-        Command_Name : constant String := Ada.Command_Line.Command_Name;
-     end Lib_Level;
 
   ::
 
@@ -989,37 +990,37 @@ Quiz
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
+      package Definition is
+         type T is tagged record
+            Data : Natural;
+         end record;
+         procedure P (X : T);
+         type Dt is new T with record
+            More_Data : Natural;
+         end record;
+         not overriding procedure Q (X : Dt);
+      end Definition;
 
-        package Definition is
-           type T is tagged record
-              Data : Natural;
-           end record;
-           procedure P (X : T);
-           type Dt is new T with record
-              More_Data : Natural;
-           end record;
-           not overriding procedure Q (X : Dt);
-        end Definition;
+    .. code:: Ada
+      :number-lines: 1
+      :font-size: tiny
 
-      .. code:: Ada
-        :number-lines: 1
+      pragma Restrictions (No_Dispatching_Calls);
 
-        pragma Restrictions (No_Dispatching_Calls);
-
-        with Definition; use Definition;
-        procedure Demo (O : T'Class) is
-           N : Natural := O'Size;
-           C : T'Class := O;
-        begin
-           if O in Dt'Class then
-              Q (Dt (O));
-           else
-              P (O);
-           end if;
-        end Demo;
+      with Definition; use Definition;
+      procedure Demo (O : T'Class) is
+         N : Natural := O'Size;
+         C : T'Class := O;
+      begin
+         if O in Dt'Class then
+            Q (Dt (O));
+         else
+            P (O);
+         end if;
+      end Demo;
 
   .. container:: column
 

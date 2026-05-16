@@ -167,19 +167,20 @@ Understanding a Check Message
 
 .. container:: latex_environment small
 
-  .. code:: Ada
-     :number-lines: 17
+.. code:: Ada
+  :number-lines: 17
+  :font-size: small
 
-     Read_A_Valid_Token : declare
-        Word : String := Input.Next_Word;
+  Read_A_Valid_Token : declare
+     Word : String := Input.Next_Word;
 
-     begin
-        --  Figure out which kind of token we have from the first
-        --  character and delegate the full token recognition to
-        --  the Read routine in the appropriate Instruction, Values
-        --  or Values.Operations package.
+  begin
+     --  Figure out which kind of token we have from the first
+     --  character and delegate the full token recognition to
+     --  the Read routine in the appropriate Instruction, Values
+     --  or Values.Operations package.
 
-        case Word (Word'First) is
+     case Word (Word'First) is
 
 .. container:: latex_environment small
 

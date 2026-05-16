@@ -164,19 +164,18 @@ It is possible to create your own statuses for the **Manual review** dialog
 
   .. container:: column
 
-    .. container:: latex_environment tiny
+    .. code:: Ada
+      :font-size: tiny
 
-      .. code:: Ada
-
-        project Sdc is
-          package Analyzer is
-            for Pending_Status use ("Don't Know",
-                                    "To do");
-            for Not_A_Bug_Status use ("Don't care",
-                                      "To be dealt with later");
-            for Bug_Status use ("Problem",
-                                "To be fixed ASAP");
-          end Analyzer;
+      project Sdc is
+        package Analyzer is
+          for Pending_Status use ("Don't Know",
+                                  "To do");
+          for Not_A_Bug_Status use ("Don't care",
+                                    "To be dealt with later");
+          for Bug_Status use ("Problem",
+                              "To be fixed ASAP");
+        end Analyzer;
 
 Resulting in an updated **Manual review** dialog
 

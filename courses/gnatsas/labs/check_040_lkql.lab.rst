@@ -316,25 +316,23 @@ Step 8 - Implement Fourth Criteria
 
 1. We can implement this similar to the subtype check using
 
-.. container:: latex_environment scriptsize
+.. code:: lkql
+  :font-size: scriptsize
 
-  .. code:: lkql
-
-      [c.f_type_def.f_subtype_indication.f_name.p_referenced_decl()
-       for c in select TypeDecl(f_type_def is DerivedTypeDef)].to_list
+  [c.f_type_def.f_subtype_indication.f_name.p_referenced_decl()
+   for c in select TypeDecl(f_type_def is DerivedTypeDef)].to_list
 
 2. Add this expression to the :lkql:`types` function
 
-.. container:: latex_environment scriptsize
+.. code:: lkql
+  :font-size: scriptsize
 
-  .. code:: lkql
-
-      fun types() =
-         concat([[c.p_referenced_decl(), c.f_suffix[1].f_r_expr.p_expression_type()]
-                 for c in select CallExpr(p_referenced_decl() is TypeDecl)].to_list) &
-         [s.f_subtype.f_name.p_referenced_decl() for s in select SubtypeDecl] &
-         [c.f_type_def.f_subtype_indication.f_name.p_referenced_decl()
-          for c in select TypeDecl(f_type_def is DerivedTypeDef)].to_list
+  fun types() =
+     concat([[c.p_referenced_decl(), c.f_suffix[1].f_r_expr.p_expression_type()]
+             for c in select CallExpr(p_referenced_decl() is TypeDecl)].to_list) &
+     [s.f_subtype.f_name.p_referenced_decl() for s in select SubtypeDecl] &
+     [c.f_type_def.f_subtype_indication.f_name.p_referenced_decl()
+      for c in select TypeDecl(f_type_def is DerivedTypeDef)].to_list
 
 -----------------------------------
 Step 9 - Implement Final Criteria
@@ -432,17 +430,16 @@ Improving the Behavior Part 1
 
    * Use :lqkl:`@memoized` attribute
 
-.. container:: latex_environment scriptsize
+.. code:: lkql
+  :font-size: scriptsize
 
-  .. code:: lkql
-
-      @memoized
-      fun arithmetic_ops() =
-         [op.p_expression_type()
-          for op in select
-             BinOp(f_op is OpDiv or OpMinus or OpMod or OpMult or OpPlus or
-                           OpPow or OpRem or OpXor or OpAnd or OpOr) or
-             UnOp(f_op is OpAbs or OpMinus or OpPlus or OpNot)].to_list
+  @memoized
+  fun arithmetic_ops() =
+     [op.p_expression_type()
+      for op in select
+         BinOp(f_op is OpDiv or OpMinus or OpMod or OpMult or OpPlus or
+                       OpPow or OpRem or OpXor or OpAnd or OpOr) or
+         UnOp(f_op is OpAbs or OpMinus or OpPlus or OpNot)].to_list
 
 -------------------------------
 Improving the Behavior Part 2
@@ -453,13 +450,12 @@ Improving the Behavior Part 2
    * Typically more arithmentic/logical operations than conversions, subtypes, instantiations
    * Swap filtering order to check for those last
 
-.. container:: latex_environment small
+.. code:: lkql
+  :font-size: small
 
-  .. code:: lkql
-
-      @check(message="integer type may be replaced by an enumeration")
-      fun enum_for_integer(node) =
-         node is TypeDecl(p_is_int_type() is true)
-         when not [t for t in types() if t == node] and
-              not [t for t in instantiations() if t == node] and
-              not [t for t in arithmetic_ops() if t == node]
+  @check(message="integer type may be replaced by an enumeration")
+  fun enum_for_integer(node) =
+     node is TypeDecl(p_is_int_type() is true)
+     when not [t for t in types() if t == node] and
+          not [t for t in instantiations() if t == node] and
+          not [t for t in arithmetic_ops() if t == node]
