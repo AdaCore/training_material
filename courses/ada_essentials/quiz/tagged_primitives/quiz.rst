@@ -2,7 +2,7 @@
     This file is auto-generated from the quiz template, it should not be modified
     directly. Read README.md for more information.
 
-Which declaration(s) will make ``P`` a primitive of ``T1``?
+Which of the following declarations will make :ada:`P` a primitive of :ada:`T`? (Select all that apply)
 
 A. | :answermono:`type T1 is tagged null record;`
    | :answermono:`procedure P (O : T1) is null;`

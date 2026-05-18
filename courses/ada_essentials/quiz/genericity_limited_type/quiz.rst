@@ -17,7 +17,7 @@
           I : Int;
        end record;
 
-Which declaration(s) is (are) legal?
+Which of the following declarations are legal? (Select all that apply)
 
 A. :answermono:`procedure P is new G_P (Lim, Int)`
 B. ``procedure P is new G_P (Int, Rec)``

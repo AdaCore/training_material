@@ -1,4 +1,4 @@
--- Which record definition(s) is (are) legal?
+-- Which of the following record definitions are legal? (Select all that apply)
 
 procedure Main is
    --$ begin question

@@ -1,4 +1,4 @@
--- Which declaration(s) of ``F`` is (are) valid?
+-- Which declarations of :ada:`F` are legal? (Select all that apply)
 procedure Main is
    --$ begin question
    type T is limited record

@@ -8,7 +8,7 @@
        -- Definition here
     end record;
 
-Which record definition(s) is (are) legal?
+Which of the following record definitions are legal? (Select all that apply)
 
 A. ``Component_1 : array (1 .. 3) of Boolean``
 B. :answermono:`Component_2, Component_3 : Integer`

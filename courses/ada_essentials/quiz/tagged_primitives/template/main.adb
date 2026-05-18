@@ -1,4 +1,4 @@
--- Which declaration(s) will make ``P`` a primitive of ``T1``?
+-- Which of the following declarations will make :ada:`P` a primitive of :ada:`T`? (Select all that apply)
 procedure Main is
    package Pkg is
       --$ begin cut

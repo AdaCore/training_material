@@ -6,7 +6,7 @@
 
     type T is new Integer;
 
-Which operator(s) definition(s) is (are) legal?
+Which of the following operator definitions are legal? (Select all that apply)
 
 A. :answermono:`function "+" (V : T) return Boolean is (V /= 0)`
 B. ``function "+" (A, B : T) return T is (A + B)``

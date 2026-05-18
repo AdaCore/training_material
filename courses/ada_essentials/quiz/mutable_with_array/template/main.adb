@@ -1,4 +1,4 @@
--- Which proposition(s) will compile and run without error?
+-- Which of the following propositions will compile and run without error? (Select all that apply)
 procedure Main is
    --$ begin question
    type R (Size : Integer := 0) is record
