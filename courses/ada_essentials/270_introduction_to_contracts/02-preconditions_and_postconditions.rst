@@ -118,9 +118,9 @@ Postconditions
    function Top (This : Stack) return Content
      with Pre => not Empty (This);
 
---------------------------------
-Postcondition "'Old" Attribute
---------------------------------
+------------------------------
+Postcondition 'Old Attribute
+------------------------------
 
 * Values as they were just before the call
 * Uses language-defined attribute :ada:`'Old`
