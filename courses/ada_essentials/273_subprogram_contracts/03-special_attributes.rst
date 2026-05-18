@@ -101,9 +101,9 @@ Error on Conditional Evaluation of "'Old"
 
     procedure Shift_And_Advance (Index : in out Integer) with
       Post =>
-      (if Index in Global'Range then
-         Global'Old (Index) = Global'Old (Index'Old) and
-         Global (Index'Old) = Global (Index));
+        (if Index in Global'Range then
+           Global'Old (Index) = Global'Old (Index'Old) and
+           Global (Index'Old) = Global (Index));
 
   * Check at the old position now copies entire :ada:`Global`
 

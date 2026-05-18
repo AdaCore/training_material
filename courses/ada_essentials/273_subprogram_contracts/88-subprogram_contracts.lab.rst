@@ -16,13 +16,12 @@ Subprogram Contracts Lab
 
 * Requirements
 
-   - Queue type must be private
+  - Queue operations should always work if called correctly
 
-   - Main program should verify pre-condition failure(s)
+    - Preconditions will prevent :ada:`Push` and :ada:`Pop` from being called incorrectly
+    - At least one pre-condition should raise something other than assertion error
 
-      - At least one pre-condition should raise something other than assertion error
-
-   - Post-condition should ensure queue is correctly ordered
+  - Post-condition should ensure queue is correctly ordered
 
 * Goals
 
