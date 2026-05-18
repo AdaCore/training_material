@@ -31,28 +31,28 @@ Initialization
 
 * Constants **must** be initialized where defined
 
-  .. code::
+  .. code:: Ada
 
     Max_Count : constant Integer := 1_000;
 
-  * *Exception: deferred constants - discussed later*
+  * *Special case: deferred constants (discussed later)*
 
 * Variables **can** be initialized where defined
 
-  .. code::
+  .. code:: Ada
 
     First_Item   : Integer := 0;
     Out_Of_Range : Integer := First_Item - 1;
     Last_Item    : Integer := Max_Count;
     Next_Item    : Integer := Get_Next (First_Item);
 
-  * Evaluation order is guaranteed linear
+* Evaluation order is guaranteed linear
 
 .. warning::
 
-  **Runtime does not initialize variables**
+  Runtime does not initialize variables
 
-*Exceptions (to be discussed later)*
+*Special cases (to be discussed later)*
 
   * *Access (pointer) types*
   * *Default value aspects*
@@ -63,12 +63,12 @@ Elaboration
 
 * The act of creating/initializing an object is :dfn:`elaboration`
 
-* Compiler will
+* **Compiler** will
 
   * Initialize static constants
   * Determine size of objects
 
-* Runtime will
+* **Runtime** will
 
   * Create object on stack or heap
   * Initialize object when specified
