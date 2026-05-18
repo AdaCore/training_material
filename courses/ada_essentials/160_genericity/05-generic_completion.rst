@@ -71,7 +71,7 @@ Quiz
        -- Complete here
     end G_P;
 
-Which of the following statement(s) is (are) legal for ``G_P``'s body?
+Which of the following statements would be legal in :ada:`G_P`'s body? (Select all that apply)
 
 A. :answermono:`Flag := A1 /= null;`
 B. ``Flag := A1.all'Size > 32;``

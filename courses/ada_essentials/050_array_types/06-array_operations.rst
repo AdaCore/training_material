@@ -161,7 +161,7 @@ Quiz
    TwoD : TwoD_T;
    OneD : OneD_T;
 
-Which statement(s) is (are) legal?
+Which of the following statements are legal? (Select all that apply)
 
    A. :answermono:`OneD(1) := TwoD(1)(2) or TwoD(4)(3);`
    B. :answermono:`OneD := TwoD(2) and TwoD(4);`

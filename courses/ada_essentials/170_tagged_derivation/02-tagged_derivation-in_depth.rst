@@ -154,7 +154,7 @@ Quiz
 Quiz
 ------
 
-Which code block(s) is (are) legal?
+Which of the following code blocks are legal? (Select all that apply)
 
 .. container:: columns
 

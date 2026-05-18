@@ -185,7 +185,7 @@ Quiz
 
  .. container:: column
 
-   Which declaration(s) is (are) legal?
+   Which of the following declarations are legal? (Select all that apply)
 
    A. ``AAA : Bit_Array_T (0..99);``
    B. :answermono:`BBB : Bit_Array_T (1..32);`

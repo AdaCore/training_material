@@ -110,7 +110,7 @@ Defensive Programming
 Quiz
 ------
 
-Which of the following statements is (are) correct?
+Which of the following statements are true? (Select all that apply)
 
     A. Contract principles apply only to newer versions of the language
     B. :answer:`Contract should hold even for unique conditions and corner cases`
@@ -130,7 +130,7 @@ Which of the following statements is (are) correct?
 Quiz
 ------
 
-Which of the following statements is (are) correct?
+Which of the following statements are true? (Select all that apply)
 
     A. :answer:`Assertions can be used in declarations`
     B. Assertions can be used in expressions

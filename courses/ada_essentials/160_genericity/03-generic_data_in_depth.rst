@@ -145,7 +145,7 @@ Quiz
      (A : T1;
       B : T2);
 
-Which is (are) legal instantiation(s)?
+Which of the following are legal instantiations? (Select all that apply)
 
    A. ``procedure A is new G (String, Character);``
    B. :answermono:`procedure B is new G (Character, Integer);`

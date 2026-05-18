@@ -140,7 +140,7 @@ Quiz
 
   .. container:: column
 
-   Which block(s) is (are) legal?
+   Which of the following blocks are legal? (Select all that apply)
 
    A. | :answermono:`X := A;`
       | :answermono:`Y := A;`
@@ -163,4 +163,6 @@ Quiz
      E. Illegal - Even though the right-hand side matches the type,
         :ada:`B` is a constant and cannot be modified
         
+.. raw:: latex
 
+  \vspace{3mm}

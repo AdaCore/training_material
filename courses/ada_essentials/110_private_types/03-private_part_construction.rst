@@ -126,7 +126,7 @@ Quiz
       procedure Proc (Param : in out Private_T) is null;
    end Example;
 
-Which object definition(s) is (are) legal?
+Which of the following object definitions are legal? (Select all that apply)
 
    A. ``Object_A``
    B. :answermono:`Object_B`

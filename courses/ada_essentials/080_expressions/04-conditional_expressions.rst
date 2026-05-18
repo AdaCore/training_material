@@ -282,7 +282,7 @@ Quiz
    B : Boolean;
    Z : Float := Get_Length;
 
-Which statement(s) is (are) legal?
+Which of the following statements are legal? (Select all that apply)
 
    A. ``F := if Z < 0.0 then Sqrt (-1.0 * Z) else Sqrt (Z);``
    B. :answermono:`F := Sqrt (if Z < 0.0 then -1.0 * Z else Z);`

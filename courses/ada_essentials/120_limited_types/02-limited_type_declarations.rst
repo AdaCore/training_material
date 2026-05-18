@@ -127,7 +127,7 @@ Quiz
       R1, R2 : P.R;
    begin
 
-Which assignment(s) is (are) legal?
+Which of the following assignments are legal? (Select all that apply)
 
    A. ``T1    := T2;``
    B. ``R1    := R2;``

@@ -106,7 +106,7 @@ Quiz
     type Str_T is array (Positive range <>) of Char_T;
     Example : Str_T := "CC" & A & NUL;
 
-Which of the following proposition(s) is (are) true
+Which of the following propositions are true? (Select all that apply)
 
 A. The code fails at run-time
 B. ``Example'Length = 3``
@@ -133,7 +133,7 @@ Quiz
     with Ada.Characters.Handling;
     use Ada.Characters.Handling;
 
-Which of the following proposition(s) are true?
+Which of the following propositions are true? (Select all that apply)
 
 A. ``NUL = 0``
 B. ``NUL = '\0'``

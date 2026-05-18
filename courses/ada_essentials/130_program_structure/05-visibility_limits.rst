@@ -180,7 +180,7 @@ Quiz
 
   .. container:: column
 
-   Which return statement(s) would be legal in ``P.Child.X?``
+   Which of the following are legal return statements for :ada:`P.Child.X`? (Select all that apply)
 
       A.  :answermono:`return Object_A;`
       B.  :answermono:`return Object_B;`

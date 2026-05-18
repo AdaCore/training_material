@@ -37,7 +37,7 @@ Quiz
 
  .. container:: column
 
-   Which statement(s) is (are) legal?
+   Which of the following statements are legal? (Select all that apply)
 
    A. :answermono:`X1 (1) := Y1 (1);`
    B. :answermono:`X1 := Y1;`

@@ -74,7 +74,7 @@ Quiz
     type Direction_T is (Left, Top, Right, Bottom);
     Dir : Direction_T := Left;
 
-Which of the following proposition(s) are true?
+Which of the following propositions are true? (Select all that apply)
 
 A. ``Direction_T'Value (Dir) = 1``
 B. :answermono:`Direction_T'Pos (Dir) = 0`

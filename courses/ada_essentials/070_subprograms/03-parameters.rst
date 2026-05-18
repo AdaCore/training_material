@@ -250,7 +250,7 @@ Quiz
    J1, J2 : Integer;
    C : Character;
 
-Which call(s) is (are) legal?
+Which of the following calls are legal? (Select all that apply)
 
    A. ``J1 := F (P1 => 1, P2 => J2, P3 => '3', P4 => '4');``
    B. ``J1 := F (P1 => 1, P3 => '3', P4 => C);``

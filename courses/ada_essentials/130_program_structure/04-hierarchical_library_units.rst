@@ -318,7 +318,7 @@ Quiz
       Child_Object : Integer := ? ;
    end Parent.Child;
 
-Which is (are) legal initialization(s) of ``Child_Object``?
+Which of the following are legal initializations :ada:`Child_Object`? (Select all that apply)
 
    A. ``Parent.Parent_Object + Parent.Sibling.Sibling_Object``
    B. ``Parent_Object + Sibling.Sibling_Object``

@@ -174,7 +174,7 @@ Quiz
 
   .. container:: column
 
-    Which component(s) does :ada:`Variant_Object` contain?
+    Which of the following components does :ada:`Variant_Object` contain? (Select all that apply)
 
     A. :ada:`Variant_Object.Value,`
        :ada:`Variant_Object.State`

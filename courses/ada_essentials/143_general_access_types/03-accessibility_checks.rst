@@ -104,7 +104,7 @@ Quiz
       Local_Object  : aliased Integer;
    begin
 
-Which assignment(s) is (are) legal?
+Which of the following assignments are legal? (Select all that apply)
 
 A. :answermono:`Global_Access := Global_Object'Access;`
 B. ``Global_Access := Local_Object'Access;``

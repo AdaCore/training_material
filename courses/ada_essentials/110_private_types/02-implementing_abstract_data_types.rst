@@ -173,7 +173,7 @@ Quiz
 
       type Record_T is record
 
-Which component(s) is (are) legal?
+Which of the following components are legal? (Select all that apply)
 
    A. ``Component_A : Integer := Private_T'Pos (Private_T'First);``
    B. ``Component_B : Private_T := null;``
