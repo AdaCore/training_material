@@ -16,12 +16,14 @@ Subprogram Contracts Lab
 
 * Requirements
 
-  - Queue operations should always work if called correctly
+  - Queue operations always work if called correctly
+  - Contracts prevent :ada:`Push` and :ada:`Pop` from being called incorrectly
 
-    - Preconditions will prevent :ada:`Push` and :ada:`Pop` from being called incorrectly
-    - At least one pre-condition should raise something other than assertion error
+    - Hint: think about preconditions!
 
-  - Post-condition should ensure queue is correctly ordered
+  - Contracts ensure queue is correctly ordered
+
+    - Hint: think about postconditions!
 
 * Goals
 
