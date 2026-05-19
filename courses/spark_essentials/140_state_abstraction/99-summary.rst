@@ -8,14 +8,14 @@ State Abstraction
 
 * Abstract state represents hidden state of a package
 
-  - Variables in the private part or body
+  - Variables in the private section or body
   - Visible state of nested packages (variables and abstract states)
   - Visible state of private child packages
   - Constants with variable input
 
 * Each abstract state must be refined into constituents
 
-  - Annotation :ada:`Part_Of` needed on declarations in the private part
+  - Annotation :ada:`Part_Of` needed on declarations in the private section
 
 * Dependency contracts use abstract states to refer to hidden state
 

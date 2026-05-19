@@ -53,9 +53,9 @@ Wrapper Interface
 
     type Shader (Kind : Shader_Type) is new GL_Object with null record;
 
-------------------------------------
-Wrapper Implementation: Private part
-------------------------------------
+-----------------------------------------
+Wrapper Implementation: Private Section
+-----------------------------------------
 
 * Object ID's holder: :ada:`GL_Object_Reference`
 
