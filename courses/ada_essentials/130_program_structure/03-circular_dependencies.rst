@@ -127,7 +127,7 @@ What Is an Incomplete Type?
 
    type Incomplete_T;
 
-* Can be declared in a **private** part of a package
+* Can be declared in a **private** section of a package
 
   - And completed in its body
   - Used to implement opaque pointers
