@@ -18,9 +18,9 @@ Public Interface
    procedure Put_Line
      (L : Logger; S : String);
 
-------------------------------
-Implementation: Private part
-------------------------------
+---------------------------------
+Implementation: Private Section
+---------------------------------
 
 .. code:: Ada
 

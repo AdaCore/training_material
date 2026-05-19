@@ -52,7 +52,7 @@ Creating an Abstract State
 
       - :ada:`The_Rec` and :ada:`The_Table` are visible to the outside world
 
-   - Move :ada:`The_Rec` and :ada:`The_Table` into the private part of the package
+   - Move :ada:`The_Rec` and :ada:`The_Table` into the private section of the package
 
 ----------------------------
 Defining an Abstract State
@@ -66,11 +66,11 @@ Defining an Abstract State
 
    :color-red:`basics.ads:69:4: error: indicator Part_Of is required in this context [E0009]`
 
-   :color-red:`basics.ads:69:4: error: "The_Rec" is declared in the private part of package "Basics"`
+   :color-red:`basics.ads:69:4: error: "The_Rec" is declared in the private section of package "Basics"`
 
    :color-red:`basics.ads:70:4: error: indicator Part_Of is required in this context [E0009]`
 
-   :color-red:`basics.ads:70:4: error: "The_Table" is declared in the private part of package "Basics"`
+   :color-red:`basics.ads:70:4: error: "The_Table" is declared in the private section of package "Basics"`
 
    *(other errors ignored for now)*
 

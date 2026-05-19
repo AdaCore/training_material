@@ -17,50 +17,63 @@ Object Declarations
      * **<identifier>** is the defining name for the object
      * **<typemark>** is the name describing the type of the object
 
-* Constant should have a value
-
-   - Except for privacy (seen later)
-
-* Examples
+* Simple objects
 
   .. code:: Ada
 
      An_Object : Some_Type;
-     Max : constant Some_Type := 200;
-     -- variable with a constraint
-     Count : Some_Type range 0 .. Max := 0;
-     -- dynamic initial value via function call
-     Some_Object : Some_Type := Some_Function (Count);
+     Max       : constant Some_Type := 200;
+     Count     : Some_Type range 0 .. Max;
+
+----------------
+Initialization
+----------------
+
+* Constants **must** be initialized where defined
+
+  .. code:: Ada
+
+    Max_Count : constant Integer := 1_000;
+
+  * *Special case: deferred constants (discussed later)*
+
+* Variables **can** be initialized where defined
+
+  .. code:: Ada
+
+    First_Item   : Integer := 0;
+    Out_Of_Range : Integer := First_Item - 1;
+    Last_Item    : Integer := Max_Count;
+    Next_Item    : Integer := Get_Next (First_Item);
+
+* Evaluation order is guaranteed linear
+
+.. warning::
+
+  Runtime does not initialize variables
+
+*Special cases (to be discussed later)*
+
+  * *Access (pointer) types*
+  * *Default value aspects*
 
 -------------
 Elaboration
 -------------
 
-* :dfn:`Elaboration` has several facets:
+* The act of creating/initializing an object is :dfn:`elaboration`
 
-  * **Initial value** calculation
+* **Compiler** will
 
-    - Evaluation of the expression
-    - Done at **run-time** (unless static)
+  * Initialize static constants
+  * Determine size of objects
 
-  * Object creation
+* **Runtime** will
 
-    - Memory **allocation**
-    - Initial value assignment (and type checks)
+  * Create object on stack or heap
+  * Initialize object when specified
 
-* Runs in linear order
-
-   - Follows the program text
-   - Top to bottom
-
-   .. code:: Ada
-
-      declare
-        First_One : Some_Type := 10;
-        Next_One : Some_Type := First_One;
-        Another_One : Some_Type := Next_One;
-      begin
-        ...
+    * Either by language or programmer
 
 ------------------------------
 Multiple Object Declarations
