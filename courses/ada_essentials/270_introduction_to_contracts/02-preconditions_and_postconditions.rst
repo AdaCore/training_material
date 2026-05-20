@@ -139,9 +139,9 @@ Postcondition 'Old Attribute
                  Pre  => This < Integer'Last,
                  Post => This = This'Old + 1;
 
---------------------------------------------
-Function Postcondition "'Result" Attribute
---------------------------------------------
+------------------------------------------
+Function Postcondition 'Result Attribute
+------------------------------------------
 
 Function result can be referenced by :ada:`'Result` on the function name
 
