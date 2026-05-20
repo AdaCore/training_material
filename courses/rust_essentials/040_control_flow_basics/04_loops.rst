@@ -2,9 +2,9 @@
 Loops
 =======
 
--------------------------
+-------------------
 "while" Statement
--------------------------
+-------------------
 
 - Condition is checked **before** each iteration
 - Parentheses around the condition are **optional** 
@@ -26,9 +26,9 @@ Loops
 
 :command:`LIFTOFF!`
 
------------------------
+-----------------
 "for" Statement
------------------------
+-----------------
 
 **Iterates over range of values or items in a collection**
 
@@ -46,9 +46,9 @@ Loops
         // 5 iterations
     }
 
--------------------------
+-------------------
 "loop" Expression
--------------------------
+-------------------
 
 **Loops forever, or until a** :rust:`break`
 

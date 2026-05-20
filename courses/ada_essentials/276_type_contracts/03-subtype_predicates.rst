@@ -89,9 +89,9 @@ Why Two Predicate Forms?
    - Fewer restrictions on content
    - Not as widely available
 
-----------------------------
+------------------------------
 (Sub)Type Predicate Examples
-----------------------------
+------------------------------
 
 * Dynamic Predicate
 

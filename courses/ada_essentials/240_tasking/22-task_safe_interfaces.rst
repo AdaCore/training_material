@@ -1,18 +1,18 @@
-====================
+======================
 Task Safe Interfaces
-====================
+======================
 
------------------
+-------------------
 Problem Statement
------------------
+-------------------
 
 * Designing task-safe code requires using dedicated constructs
 * How to reuse the components?
 * How to refactor task-unsafe code into task-safe version?
 
-----------------
+------------------
 Access Protected
-----------------
+------------------
 
 * Access to :ada:`protected` objects' subprograms
 * :ada:`type P is access protected procedure (args...)`
@@ -25,9 +25,9 @@ Access Protected
    type Work_Handler is
       access protected procedure (T : Work_Id);
 
-----------------------
+------------------------
 Synchronized Interface
-----------------------
+------------------------
 
 * :ada:`synchronized interface` can be inherited by :ada:`task`/:ada:`protected` types
 
@@ -54,9 +54,9 @@ Synchronized Interface
 
     Only available in **full-tasking** runtimes
 
----------------------------------
+-----------------------------------
 Standard Library Queues Interface
----------------------------------
+-----------------------------------
 
 * In :ada:`Ada.Containers`
 * :ada:`Synchronized_Queue_Interfaces` interface
@@ -72,9 +72,9 @@ Standard Library Queues Interface
     package Ada.Containers.Synchronized_Queue_Interfaces is
        type Queue is synchronized interface;
 
----------------------------------------
+-----------------------------------------
 Standard Library Queues Implementations
----------------------------------------
+-----------------------------------------
 
 * Four implementations
 
@@ -98,9 +98,9 @@ Standard Library Queues Implementations
 
         + Used for sorting elements
 
-----------------------------
+------------------------------
 Example: Scheduler Interface
-----------------------------
+------------------------------
 
 .. code:: Ada
 
@@ -124,9 +124,9 @@ Example: Scheduler Interface
       Items : Work_Items_Array (1 .. Size);
    end Scheduler_T;
 
--------------------------
+---------------------------
 Example: Scheduler (Body)
--------------------------
+---------------------------
 
 .. code:: Ada
 

@@ -10,9 +10,9 @@ on the console, after having converted them to ASCII.
 
     Expected final app
 
-==========
+============
 Question 1
-==========
+============
 
 A unit test suite has been written for the two packages situated in the :filename:`src/sprites/`
 directory. Those packages are in charge of representing Pixels, which are 4-valued objects
@@ -37,9 +37,9 @@ Once this is done, the full testsuite should be passing.
 
     Passing Test Suite
 
-==========
+============
 Question 2
-==========
+============
 
 The packages in :filename:`src/display/` are in charge of converting from a Pixel representation to a String representation.
 
@@ -59,9 +59,9 @@ Implement the following packages:
 - ``Drawable_Chars``
 - ``Char_Display_Drivers``
 
-==========
+============
 Question 3
-==========
+============
 
 The package ``BMP_File_IO`` contained in :filename:`src/format/` is in charge of reading a file in the BMP format, returning a Surface with the proper pixel values as a result.
 
@@ -80,9 +80,9 @@ Implement the package so that the test passes.
 
     Passing Static Image Test (frame 3/3)
 
--------------------------
+---------------------------
 BMP file format mini-spec
--------------------------
+---------------------------
 
 A BMP file is composed of 5 data structures:
 
@@ -139,9 +139,9 @@ or 3 bytes (Pixel_Size = 24), :filename:`resources/sunset.bmp`
       - B
       - Reserved
 
-==========
+============
 Question 4
-==========
+============
 
 The package in :filename:`src/movie/` is in charge of converting from a series of BMP files stored in a directory to an orderet sequence of Surfaces to be displayed.
 
@@ -155,9 +155,9 @@ A test has been written for it, you can compile and run it by doing the followin
 
 Implement the ``Movies`` package.
 
-==========
+============
 Question 5
-==========
+============
 
 The package in :filename:`src/server/` is in charge of playing a movie by displaying its frames one by one, at a given frequency.
 
@@ -171,9 +171,9 @@ A test has been written for it, you can compile and run it by doing the followin
 
 Implement the ``Movies`` package.
 
-==========
+============
 Question 6
-==========
+============
 
 The main in :filename:`src/mini_cinema/` must implement a command-line interface, reading commands from the command-line prompt, and dispatching those to the movie server.
 You can compile and run it by doing the following

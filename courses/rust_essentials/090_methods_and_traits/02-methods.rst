@@ -88,9 +88,9 @@ Method Receiver - Shared Borrow
   * Read-only access
   * Value remains usable after calls
 
----------------------------------
+----------------------------------
 Method Receiver - Mutable Borrow
----------------------------------
+----------------------------------
 
 **Definition**
 

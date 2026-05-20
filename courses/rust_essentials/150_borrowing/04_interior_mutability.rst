@@ -15,9 +15,9 @@ Limitations of Strict Rules
 
    :dfn:`Interior mutability` enables safe modification through shared references
 
-----------
+-----------
 "Cell<T>"
-----------
+-----------
 
 - Guarantees safe modification through a shared, read-only reference
 - Designed for types that implement :rust:`Copy trait`

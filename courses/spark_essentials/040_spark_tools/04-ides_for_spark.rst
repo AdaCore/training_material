@@ -19,15 +19,15 @@ Available IDEs Supporting SPARK
 
    - If you are already using VS Code
 
----------------------------------------------
-Basic :toolname:`GNAT Studio` Look and Feel
----------------------------------------------
+-------------------------------------
+Basic **GNAT Studio** Look and Feel
+-------------------------------------
 
 .. image:: gnatstudio-look_and_feel.png
 
------------------------------------------------
-:toolname:`GNATprove` :menu:`SPARK` Main Menu
------------------------------------------------
+---------------------------------
+**GNATprove** "SPARK" Main Menu
+---------------------------------
 
 .. image:: spark_menu-explanations.png
 
@@ -54,9 +54,9 @@ Source Code Contextual Menu
 
 .. image:: prove_dialog-basic.png
 
------------------------------------------------------
-Example Analysis Results in :toolname:`GNAT Studio`
------------------------------------------------------
+---------------------------------------------
+Example Analysis Results in **GNAT Studio**
+---------------------------------------------
 
 .. image:: gnatprove-output-ide.jpeg
 

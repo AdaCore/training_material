@@ -55,7 +55,7 @@ Creating an Abstract State
    - Move :ada:`The_Rec` and :ada:`The_Table` into the private section of the package
 
 ----------------------------
-Defining an Abstract State 
+Defining an Abstract State
 ----------------------------
 
 .. container:: animate 1-
