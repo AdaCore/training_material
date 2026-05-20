@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 ------------------
 Record Types Lab
@@ -26,9 +26,9 @@ Record Types Lab
 
    - Consider what happens when adding inches overflows
 
------------------------------------------
+------------------------------------------
 Record Types Lab Solution - Declarations
------------------------------------------
+------------------------------------------
 
 .. container:: source_include 060_record_types/lab/record_types/answer/main.adb :start-after:--Declarations :end-before:--Declarations :code:Ada :number-lines:1
 

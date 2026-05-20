@@ -1,6 +1,6 @@
-=====================
+====================
 Nested Subprograms
-=====================
+====================
 
 --------------------------------
 Subprograms Within Subprograms
@@ -13,9 +13,9 @@ Subprograms Within Subprograms
 
 * Useful for performing sub-operations without passing parameter data
 
-----------------------------
+---------------------------
 Nested Subprogram Example
-----------------------------
+---------------------------
 
 .. code:: Ada
    :number-lines: 1

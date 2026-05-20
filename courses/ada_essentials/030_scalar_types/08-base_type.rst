@@ -34,9 +34,9 @@ Base Ranges
     - 8 bits |rightarrow| :ada:`-128 .. 127`
     - 16 bits |rightarrow| :ada:`-32_768 .. 32767`
 
----------------------------------
+-----------------------------------
 Compile-Time Constraint Violation
----------------------------------
+-----------------------------------
 
 * *May* produce **warnings**
 
@@ -61,9 +61,9 @@ Compile-Time Constraint Violation
       Object := 50_000; -- probable error
    end;
 
--------------------
+---------------------
 Range Check Failure
--------------------
+---------------------
 
 * Compile-time rejection
 

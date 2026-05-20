@@ -6,9 +6,9 @@ GNAT Studio
 Introduction
 ==============
 
--------------
-GNAT Studio
--------------
+-----------------
+**GNAT Studio**
+-----------------
 
 + Our flagship IDE
 + Available on Linux, Windows
@@ -20,14 +20,14 @@ GNAT Studio
 + Supports Ada 2012 and all prior versions
 + Supports C, C++ and Python
 
------------------
-GNAT Studio IDE
------------------
+---------------------
+**GNAT Studio** IDE
+---------------------
 
 .. image:: gnat_studio/welcome_to_gnat_studio.jpg
 
 ------------------------------------
-Integrated with GNAT Project Files
+Integrated With GNAT Project Files
 ------------------------------------
 
 + Graphically presents what the project file specifies
@@ -44,9 +44,9 @@ Integrated with GNAT Project Files
 
 + GUI for working with *scenario variables*
 
-------------------------------------
-GNAT Studio - Project Perspective
-------------------------------------
+---------------------------------------
+**GNAT Studio** - Project Perspective
+---------------------------------------
 
 .. image:: gnat_studio/project_perspective.jpg
 
@@ -80,13 +80,13 @@ Provides Language-Sensitive Editing
 
   + Statements, types, annotations, comments, etc.
 
-+ Indentation based on language syntax & surrounding code
++ Indentation based on language syntax and surrounding code
 + Automatic formatting as you type
 
   + Indentation, letter casing, coloring, etc.
 
 + *Scope folding* to elide syntax-defined blocks of code
-+ Refactoring for entity renaming & subprogram extraction
++ Refactoring for entity renaming and subprogram extraction
 + Semantics-based completion for both words and constructs
 
 ---------------------
@@ -115,7 +115,7 @@ Automatic Indentation
     Next line indented same as current line
 
   Extended
-    Based on language syntax & surrounding code
+    Based on language syntax and surrounding code
 
 + Modes are controlled by preferences
 
@@ -173,7 +173,7 @@ Filtered Completion Proposals
    :width: 50%
 
 -------------------------------------
-Information In Subprogram Proposals
+Information in Subprogram Proposals
 -------------------------------------
 
 .. image:: gnat_studio/information_in_subprogram_proposals.jpg
@@ -202,9 +202,9 @@ Supports Source Navigation
 
 + "Tool-tips" pop up to show semantic information
 
-------------
-Outline view
-------------
+--------------
+Outline View
+--------------
 
 .. image:: gnat_studio/outline_view.png
 
@@ -227,7 +227,7 @@ Viewing Predefined and GNAT Source Files
 .. image:: gnat_studio/help_gnat_runtime.jpg
 
 -----------
-Call tree
+Call Tree
 -----------
 
 .. image:: gnat_studio/call_trees.png
@@ -257,7 +257,7 @@ Building Applications
    :width: 50%
 
 ---------------------------------
-Integration with External Tools
+Integration With External Tools
 ---------------------------------
 
 + Common GUI for version control systems
@@ -319,7 +319,7 @@ Language Sensitive
 Extensible
 ------------
 
-+ You can call functions & procedures interactively
++ You can call functions and procedures interactively
 
   + Using language-specific syntax
   + Very useful to print program specific info
@@ -331,9 +331,9 @@ Extensible
   + User defined commands (on the fly)
   + Command files (macros useful for your project)
 
------------------------------------
-Fine-grained & Expressive Control
------------------------------------
+-------------------------------------
+Fine-Grained and Expressive Control
+-------------------------------------
 
 + Stepping
 
@@ -343,7 +343,7 @@ Fine-grained & Expressive Control
 
 + Breakpoints
 
-  + Conditional & unconditional
+  + Conditional and unconditional
   + Can execute a series of commands at breakpoint
 
 + Viewable call stack
@@ -369,9 +369,9 @@ Tasking/Thread Aware
 .. image:: gnat_studio/debug_task_view.jpg
    :width: 50%
 
--------------------------------------------
-:toolname:`GNAT Studio` Debug Perspective
--------------------------------------------
+-----------------------------------
+**GNAT Studio** Debug Perspective
+-----------------------------------
 
 .. image:: gnat_studio/debug_perspective.jpg
 
@@ -396,9 +396,9 @@ Data Window
   + Value
   + Type (Ada type definition)
 
------------------------------------------------------
-:toolname:`GNAT Studio` Active In Debug Perspective
------------------------------------------------------
+---------------------------------------------
+**GNAT Studio** Active in Debug Perspective
+---------------------------------------------
 
 .. image:: gnat_studio/debug_active_perspective.jpg
 
@@ -406,9 +406,9 @@ Data Window
 Workflow Example
 ==================
 
-----------------------------------
-Starting :toolname:`GNAT Studio`
-----------------------------------
+--------------------------
+Starting **GNAT Studio**
+--------------------------
 
 + From the desktop:
 
@@ -424,9 +424,9 @@ Starting :toolname:`GNAT Studio`
   + Change to the directory containing the project file
   + Enter :command:`gnatstudio` on the command line
 
-----------------------------------------
-:toolname:`GNAT Studio` Welcome Screen
-----------------------------------------
+--------------------------------
+**GNAT Studio** Welcome Screen
+--------------------------------
 
 .. image:: gnat_studio/welcome_dialog.jpg
 
@@ -456,7 +456,7 @@ Building Executables
          .. image:: gnat_studio/build_project_main_menu.jpg
 
 ---------------------------------
-Chance To Change Build Switches
+Chance to Change Build Switches
 ---------------------------------
 
 + May be displayed when build is invoked
@@ -466,7 +466,7 @@ Chance To Change Build Switches
          :width: 50%
 
 -----------------------------------------
-Error In Source File and Locations View
+Error in Source File and Locations View
 -----------------------------------------
 
 .. image:: gnat_studio/build_error.jpg
@@ -503,7 +503,7 @@ Build the Executable After Fix
 + Or click :menu:`Build` :math:`\rightarrow` :menu:`Project` :math:`\rightarrow` *main unit name*
 
 ---------------------
-Running The Program
+Running the Program
 ---------------------
 
 + Click :menu:`Build` :math:`\rightarrow` :menu:`Run` :math:`\rightarrow` *main unit name*
@@ -518,9 +518,9 @@ Running The Program
 
 .. image:: gnat_studio/internal_run_window.jpg
 
-------------------------------------------
+---------------------------------
 When Multiple Mains Are Defined
-------------------------------------------
+---------------------------------
 
 .. columns::
 
@@ -536,15 +536,15 @@ When Multiple Mains Are Defined
 
          .. image:: gnat_studio/run_multiple_icon.jpg
 
------------------------------------
-Help With :toolname:`GNAT Studio`
------------------------------------
+---------------------------
+Help With **GNAT Studio**
+---------------------------
 
 .. image:: gnat_studio/help_menu_cascade.jpg
 
-------------------------------------
-About :toolname:`GNAT Studio` Help
-------------------------------------
+----------------------------
+About **GNAT Studio** Help
+----------------------------
 
 + Information on :toolname:`GNAT Studio`
 
@@ -572,7 +572,7 @@ Using Version Control Systems
 ===============================
 
 -------------------------
-What is version control
+What Is Version Control
 -------------------------
 
 + System that records changes
@@ -593,7 +593,7 @@ What is version control
   + Mercurial
 
 -------------
-What is Git
+What Is Git
 -------------
 
 + A VCS
@@ -610,9 +610,9 @@ What is Git
 
 .. image:: gnat_studio/git_3_states.png
 
------------------------------------
-GNAT Studio interface for Staging
------------------------------------
+---------------------------------------
+**GNAT Studio** Interface for Staging
+---------------------------------------
 
 .. image:: gnat_studio/vcs_staging.png
 
@@ -629,7 +629,7 @@ File Diff
 .. image:: gnat_studio/vcs_diff.png
 
 -----------------------------
-Actions on the staging area
+Actions on the Staging Area
 -----------------------------
 
 .. image:: gnat_studio/vcs_actions.png
@@ -646,14 +646,14 @@ Actions on the staging area
   + Fetch
   + Pull = Fetch + Merge
 
----------------------
-Commit a local change
----------------------
+-----------------------
+Commit a Local Change
+-----------------------
 
 .. image:: gnat_studio/commits_view_add_commit.svg
 
-========
+=====
 Lab
-========
+=====
 
 .. include:: labs/010_gnat_studio.lab.rst

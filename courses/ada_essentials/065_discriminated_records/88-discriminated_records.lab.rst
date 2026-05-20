@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 ---------------------------
 Discriminated Records Lab
@@ -39,9 +39,9 @@ Discriminated Records Lab Solution - Employee (Spec)
 
 .. container:: source_include 065_discriminated_records/lab/discriminated_records/answer/employee.ads :code:Ada :number-lines:1
 
------------------------------------------------------
+------------------------------------------------------
 Discriminated Records Lab Solution - Employee (Body)
------------------------------------------------------
+------------------------------------------------------
 
 .. container:: source_include 065_discriminated_records/lab/discriminated_records/answer/employee.adb :code:Ada :number-lines:1
 

@@ -1,6 +1,6 @@
-========
+=====
 Lab
-========
+=====
 
 -----------------
 Subprograms Lab
@@ -28,8 +28,8 @@ Subprograms Lab Solution - Search
 
 .. container:: source_include 070_subprograms/lab/subprograms/answer/main.adb :start-after:--Search :end-before:--Search :code:Ada :number-lines:4
 
------------------------------------
+---------------------------------
 Subprograms Lab Solution - Main
------------------------------------
+---------------------------------
 
 .. container:: source_include 070_subprograms/lab/subprograms/answer/main.adb :start-after:--Main :end-before:--Main :code:Ada :number-lines:25
