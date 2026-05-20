@@ -10,7 +10,7 @@ Object Declarations
 
 .. container:: source_include 020_declarations/syntax.bnf :start-after:object_declarations_begin :end-before:object_declarations_end :code:bnf
 
-* An :ada:`object` is either :dfn:`variable` or :dfn:`constant`
+* An *object* is either :dfn:`variable` or :dfn:`constant`
 
    * where
 

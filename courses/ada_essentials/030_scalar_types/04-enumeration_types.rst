@@ -165,9 +165,9 @@ Quiz
 
 Which statement(s) is (are) legal?
 
-A. :answermono:`V1 :  Enum_T := Enum_T'Value ("Able");`
-B. :answermono:`V2 :  Enum_T := Enum_T'Value ("BAKER");`
-C. :answermono:`V3 :  Enum_T := Enum_T'Value (" charlie ");`
+A. :answermono:`V1 : Enum_T := Enum_T'Value ("Able");`
+B. :answermono:`V2 : Enum_T := Enum_T'Value ("BAKER");`
+C. :answermono:`V3 : Enum_T := Enum_T'Value (" charlie ");`
 D. ``V4 : Enum_T := Enum_T'Value ("Able Baker Charlie");``
 
 .. container:: animate

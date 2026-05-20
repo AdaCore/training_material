@@ -46,11 +46,11 @@ Named Number Benefit
       - Named_Number
       - Typed_Constant
 
-    * - :ada:`F32 : Float_32;`
+    * - :ada:`F32  : Float_32;`
       - 3.33333E-01
       - 3.33333E-01
 
-    * - :ada:`F64 : Float_64;`
+    * - :ada:`F64  : Float_64;`
       - 3.33333333333333E-01
       - 3.333333_43267441E-01
 

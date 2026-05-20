@@ -85,12 +85,12 @@ Operators for Signed Integer Type
    :relational operator: **=** :nbsp:` ` **/=** :nbsp:` `   **<** :nbsp:` `   **<=** :nbsp:` `   **>** :nbsp:` `   **>=**
    :binary adding operator: **+** :nbsp:` `   **-**
    :unary adding operator: **+** :nbsp:` `   **-**
-   :multiplying operator: **\*** :nbsp:` `   **/** :nbsp:` `   :ada:`mod` :nbsp:` `   :ada:`rem`
-   :highest precedence operator: **\*\*** :nbsp:` `   :ada:`abs` 
+   :multiplying operator: **\*** :nbsp:` `   **/** :nbsp:` `   **mod** :nbsp:` `   **rem**
+   :highest precedence operator: **\*\*** :nbsp:` `   **abs** 
 
 .. note::
 
-    Exponentiation (:ada:`**`) result will be a signed integer
+    Exponentiation (**\*\***) result will be a signed integer
 
        - Power **must** be :ada:`Integer` ``>= 0``
 
