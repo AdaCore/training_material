@@ -779,8 +779,8 @@ def wrap_code(key, value):
     attr, text = value
     classes = attr[1]
 
-    # replace 'True' with code if we want conditional formatting
-    if True:
+    # if 'classes' is empty, we don't want syntax formatting
+    if len(classes) > 0:
         # colorbox syntax: \colorbox{<color>}{text}
         #    'color' is the color you want
         #    'text' is the LaTeX strings you want colored
