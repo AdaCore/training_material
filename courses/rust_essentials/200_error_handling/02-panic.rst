@@ -10,7 +10,7 @@ Unrecoverable Error
 
   * Failed bounds checks
 
-    * Accessing :rust:`v[100]` on 3-item vector
+    * Accessing :rust:`v[42]` on 3-element vector
 
   * Logic problems
 
@@ -56,13 +56,13 @@ Bounds Error Example
 
   fn main() {
       let my_vector = vec![10, 20, 30];
-    
-      println!("{}", my_vector[100]); 
+
+      println!("{}", my_vector[42]);
   }
 
 :error:`thread 'main' (32) panicked at src/main.rs:4:21:`
 
-:error:`index out of bounds: the len is 3 but the index is 100`
+:error:`index out of bounds: the len is 3 but the index is 42`
 
 ----------------------
 Manual Panic Example
@@ -72,16 +72,16 @@ Manual Panic Example
   :number-lines: 1
 
   fn main() {
-      let my_vector = vec![10, 20, 30];
+      let my_vector = Vec::<i32>::new();
 
-      if my_vector.len() < 10 {
-          panic!("Vector is too short!");
+      if my_vector.is_empty() {
+          panic!("Vector is empty!");
       }
   }
 
 :error:`thread 'main' (12) panicked at src/main.rs:5:9:`
 
-:error:`Vector is too short!`
+:error:`Vector is empty!`
 
 ----------------
 When to Panic?
@@ -89,7 +89,7 @@ When to Panic?
 
 * **Prototyping**
 
-  * :rust:`unwrap()` or :rust:`expect()` for quick coding 
+  * :rust:`unwrap()` or :rust:`expect()` for quick coding
 
     * Replace with proper error handling later
 
@@ -105,4 +105,4 @@ When to Panic?
 
   * Panic if API **contract** is violated
 
-    * E.g., passing an empty list to a function that requires items
+    * E.g., passing an empty list to a function that requires at least one value

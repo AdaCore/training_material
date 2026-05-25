@@ -17,7 +17,7 @@ Destructuring a Tuple
 -----------------------
 
   - Extract multiple values in **single line**
-  - Assign **meaningful names** to improve readability 
+  - Assign **meaningful names** to improve readability
   - Ignore specific elements that are **not needed**
     - With the wildcard pattern :rust:`_`
 
@@ -42,10 +42,10 @@ Irrefutable Patterns With Tuples
 .. code:: rust
 
   let point: (i32, i32) = (10, 20);
-  
+
   // Pattern (xx, yy) is IRREFUTABLE
   // Perfectly matches the structure of that tuple
-  let (xx, yy) = point; 
+  let (xx, yy) = point;
   // Guaranteed to get an xx and a yy!
 
 --------------------------
@@ -111,8 +111,8 @@ Ignoring Multiple Elements
 ----------------------------
 
   - Ignore multiple elements using the **rest pattern** (:rust:`..`)
-  - Useful when you only need elements from the beginning or end
-    - Can only be placed **either** at the beginning or at the end
+  - Can only be used **once** per pattern
+    - Either at the beginning, the middle, or the end
 
 .. code:: rust
 
@@ -137,7 +137,7 @@ Nested Destructuring
   let line_data = [[10, 20], [80, 90]];
   let [[start_x, start_y], [end_x, end_y]] = line_data;
 
-  println!("Drawing line from ({}, {}) to ({}, {})", 
+  println!("Drawing line from ({}, {}) to ({}, {})",
             start_x, start_y, end_x, end_y);
 
 :command:`Drawing line from (10, 20) to (80, 90)`
