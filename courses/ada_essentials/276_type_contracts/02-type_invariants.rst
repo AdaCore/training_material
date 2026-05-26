@@ -129,7 +129,7 @@ Default Type Initialization for Invariants
 Type Invariant Clause Placement
 ---------------------------------
 
-* Can move aspect clause to private part
+* Can move aspect clause to private section
 
   .. code:: Ada
 

@@ -1,10 +1,10 @@
-=======
+=====
 Lab
-=======
+=====
 
---------------------
+------------------
 Ada.Numerics Lab
---------------------
+------------------
    
 * Create an array
 
@@ -34,9 +34,9 @@ Ada.Numerics Lab
 
   * The more often you populate the array, the closer the averages *should* be to each other
 
-----------------------------------------------
+---------------------------
 Ada.Numerics Lab Solution
-----------------------------------------------
+---------------------------
 
 .. container:: source_include 893_ada_numerics/lab/ada_numerics/answer/main.adb :code:Ada :number-lines:1
 

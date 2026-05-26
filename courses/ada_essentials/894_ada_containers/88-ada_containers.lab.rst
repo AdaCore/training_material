@@ -1,6 +1,6 @@
-=======
+=====
 Lab
-=======
+=====
 
 ----------------
 Containers Lab
@@ -30,15 +30,15 @@ Containers Lab Solution - Database (Spec)
 
 .. container:: source_include 894_ada_containers/lab/ada_containers/answer/city_trivia.ads :code:Ada :number-lines:1
 
---------------------------------------------------
+-----------------------------------------------
 Containers Lab Solution - Database (Body 1/2)
---------------------------------------------------
+-----------------------------------------------
 
 .. container:: source_include 894_ada_containers/lab/ada_containers/answer/city_trivia.adb :start-after:--Database_Body_1 :end-before:--Database_Body_1 :code:Ada :number-lines:1
 
-----------------------------------------------
+-----------------------------------------------
 Containers Lab Solution - Database (Body 2/2)
-----------------------------------------------
+-----------------------------------------------
 
 .. container:: source_include 894_ada_containers/lab/ada_containers/answer/city_trivia.adb :start-after:--Database_Body_2 :end-before:--Database_Body_2 :code:Ada :number-lines:1
 

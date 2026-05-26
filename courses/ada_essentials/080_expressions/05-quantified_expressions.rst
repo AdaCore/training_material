@@ -270,9 +270,9 @@ Index-Based Vs Component-Based Indexing
 ..
   language_version 2012
 
----------------------------
- When the Set Is Empty...
----------------------------
+--------------------------
+When the Set Is Empty...
+--------------------------
 
 * Universally quantified expressions are True
 

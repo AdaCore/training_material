@@ -28,9 +28,9 @@ Ada.Text_IO.Integer_IO
 * :ada:`IO` has global objects :ada:`Default_Width` and :ada:`Default_Base` which can be modified to set default values for like-named parameters
 * :ada:`Ada.Text_IO.Modular_IO` behaves the same
 
-------------------------
+----------------------
 Ada.Text_IO.Float_IO
-------------------------
+----------------------
 
 .. code:: Ada
 

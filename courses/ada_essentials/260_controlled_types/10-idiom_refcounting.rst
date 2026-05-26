@@ -2,9 +2,9 @@
 Reference Counting
 ====================
 
----------------
+-----------------
 Global Overview
----------------
+-----------------
 
 * Idiom for counting object references
 
@@ -41,9 +41,9 @@ Global Overview
            Data : Refcounted_Access;
        end record;
 
-----------------------
+------------------------
 Implementation Details
-----------------------
+------------------------
 
 .. code:: Ada
 

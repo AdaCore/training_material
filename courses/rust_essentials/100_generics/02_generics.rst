@@ -75,7 +75,7 @@ Be Generic
 
 
 ----------------
-Type Inference 
+Type Inference
 ----------------
 
 - Any **Sized** type can be used as the type argument    
@@ -100,9 +100,9 @@ Type Inference
 
 
    
------------------------
+------------------------
 Multiple Generic Types
------------------------
+------------------------
 
 **Constructs can have multiple generic data types** 
 
@@ -119,7 +119,7 @@ Multiple Generic Types
     
     
 --------------
-Type Aliases 
+Type Aliases
 --------------
 
 - Can be used to rename types and generic parameters

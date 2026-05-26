@@ -19,23 +19,24 @@ procedure Main is
                return Idx;
             end if;
          end loop;
-         return List'Last;
+         return List'Last + 1;
       end if;
    end Search;
+   --Search
 
    List   : List_T (1 .. 20);
    Length : Natural := 0;
-   --Search
 
 --Main
    procedure Add (Item : Integer) is
       Place : constant Natural := Search (List (1..Length), Item);
    begin
-      if List (Place) /= Item then
-         Length                     := Length + 1;
-         List (Place + 1 .. Length) := List (Place .. Length - 1);
-         List (Place)               := Item;
+      if Place <= Length and then List (Place) = Item then
+         return;
       end if;
+      Length := Length + 1;
+      List (Place + 1 .. Length) := List (Place .. Length - 1);
+      List (Place) := Item;
    end Add;
 
 begin
