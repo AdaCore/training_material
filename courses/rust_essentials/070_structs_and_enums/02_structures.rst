@@ -133,7 +133,7 @@ Shorthand for Field Initialization
     };
 
 ------------------------
-Struct Update Operator 
+Struct Update Operator
 ------------------------
 
 - Creation of :rust:`struct` based on another instance via :rust:`..` operator 

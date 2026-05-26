@@ -117,9 +117,9 @@ Predefined Declarations
 * "Specialized Needs Annexes" for *optional*
 * Also, implementation-specific extensions
 
-------------------------------------
+-----------------------------------
 Implicit Vs Explicit Declarations
-------------------------------------
+-----------------------------------
 
 * :dfn:`Explicit` |rightarrow| in the source
 

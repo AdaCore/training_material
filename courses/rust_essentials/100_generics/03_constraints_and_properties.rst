@@ -44,9 +44,9 @@ Adding Constraints
     item < max_v  
   }  
   
-------------------------
+---------------------
 Meeting Constraints
-------------------------
+---------------------
 
 **Adding a trait restricts types that satisfy the generic contract**
 

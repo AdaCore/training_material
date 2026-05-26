@@ -43,9 +43,9 @@ But You Can Treat Them As Objects
      ...
    end Ada.Exceptions;
 
----------------------
+----------------------
 Exception Occurrence
----------------------
+----------------------
 
 * Syntax associates an object with active exception
 

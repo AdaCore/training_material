@@ -42,9 +42,9 @@ Passing Scalar Data As Parameters
       /* some code */
     }
 
------------------------------------
+----------------------------------
 Passing Structures As Parameters
------------------------------------
+----------------------------------
 
 * An Ada record that is mapping on a C struct must:
 

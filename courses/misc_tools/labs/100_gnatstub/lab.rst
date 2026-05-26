@@ -1,6 +1,6 @@
---------------------------
-:toolname:`GNATstub` Lab
---------------------------
+------------------
+**GNATstub** Lab
+------------------
 
 * We are going to implement a simple math package that does addition and subtraction
 
@@ -17,7 +17,7 @@
 .. note:: We use animation - if you don't know the answer, Page Down should give it to you
 
 ----------------------
-Build the Executable 
+Build the Executable
 ----------------------
 
 1. Open a command prompt window and navigate to the directory containing :filename:`default.gpr`
@@ -60,16 +60,16 @@ Build the Executable Again
 
       * Exceptions always raised for functions in a stub
 
------------------------
-Implement :ada:`Math`
------------------------
+------------------
+Implement "Math"
+------------------
 
 1. Edit the :ada:`Math` package body to implement the two subprograms
 
 2. Build and run the executable
 
---------------------------
-:ada:`Math` Package Body
---------------------------
+---------------------
+"Math" Package Body
+---------------------
 
 .. container:: source_include labs/100_gnatstub/answer/math.adb

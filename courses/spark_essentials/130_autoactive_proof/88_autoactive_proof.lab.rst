@@ -41,7 +41,7 @@ Selection Sort
      and :ada:`Is_Sorted` will help prove :ada:`Selection_Sort`
 
 -----------------------
-Proving the Utilities 
+Proving the Utilities
 -----------------------
 
 .. container:: animate 1-

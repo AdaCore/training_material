@@ -1,10 +1,10 @@
-======
+========
 Logger
-======
+========
 
-----------------
+------------------
 Public Interface
-----------------
+------------------
 
 * :ada:`Logger` uses a file for writing
 * :ada:`limited` cannot be copied, or compared
@@ -43,9 +43,9 @@ Implementation: Private Section
    procedure Finalize (L : in out Logger);
    --  closes the file
 
---------------------
+----------------------
 Implementation: Body
---------------------
+----------------------
 
 * Trivial
 
