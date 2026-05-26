@@ -1,4 +1,5 @@
 with Ada.Text_IO; use Ada.Text_IO;
+
 procedure Main is
 
    subtype Year_T is Positive range 1_900 .. 2_099;
@@ -11,49 +12,57 @@ procedure Main is
       Day   : Positive;
    end record;
 
-   -- implement correctly as an expression function
+   type Dates_T is array (1 .. 3) of Date_T;
+
    function Is_Leap_Year
      (Year : Positive)
       return Boolean is (False);
 
-   -- implement correctly as an expression function
-   -- (case expression would be helpful)
    function Days_In_Month
      (Month : Positive;
       Year  : Positive)
-      return Positive is (1);
+      return Day_T is (1);
 
-   -- Implement correctly as an expression function
    function Is_Valid
      (Date : Date_T)
       return Boolean is (False);
 
-   List : array (1 .. 5) of Date_T;
-   Item : Date_T;
+   function Any_Invalid
+     (List : Dates_T)
+      return Boolean is (False);
 
-   function Number
-     (Prompt : String)
-      return Positive is
-   begin
-      Put (Prompt & "> ");
-      return Positive'Value (Get_Line);
-   end Number;
+   function Same_Year
+     (List : Dates_T)
+      return Boolean is (False);
 
-   function Any_Invalid return Boolean is (False);
-   function Same_Year return Boolean is (False);
+   Good_Dates : constant Dates_T :=
+     ((Year => 2_025, Month => 1, Day => 2),
+      (Year => 2_024, Month => 2, Day => 28),
+      (Year => 2_000, Month => 2, Day => 29));
+
+   Mixed_Dates : constant Dates_T :=
+     ((Year => 2_025, Month => 4, Day => 30),
+      (Year => 2_024, Month => 2, Day => 28),
+      (Year => 1_900, Month => 2, Day => 29));
+
+   Same_Year_Dates : constant Dates_T :=
+     ((Year => 2_025, Month => 4, Day => 30),
+      (Year => 2_025, Month => 2, Day => 28),
+      (Year => 2_025, Month => 2, Day => 29));
 
 begin
 
-   for I in List'Range loop
-      Item.Year  := Number ("Year");
-      Item.Month := Number ("Month");
-      Item.Day   := Number ("Day");
-      List (I)   := Item;
-   end loop;
+   Put_Line ("Good_Dates");
+   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Good_Dates)));
+   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Good_Dates)));
 
-   -- Print True/False if any date in the list is not valid
-   Put_Line ("Any invalid: " & Boolean'Image (Any_Invalid));
-   -- Print True/False if all dates in the list are in the same year
-   Put_Line ("Same Year: " & Boolean'Image (Same_Year));
+   Put_Line ("Mixed_Dates");
+   Put_Line ("  Any invalid: " & Boolean'Image (Any_Invalid (Mixed_Dates)));
+   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Mixed_Dates)));
+
+   Put_Line ("Same_Year_Dates");
+   Put_Line
+     ("  Any invalid: " & Boolean'Image (Any_Invalid (Same_Year_Dates)));
+   Put_Line ("  Same Year: " & Boolean'Image (Same_Year (Same_Year_Dates)));
 
 end Main;
