@@ -66,28 +66,46 @@ Example for Attribute 'Old
 Error on Conditional Evaluation of 'Old
 -----------------------------------------
 
-* This code is **incorrect**
+* This code is **incomplete**
 
-.. code:: Ada
+  .. code:: Ada
+    :font-size: scriptsize
 
-  procedure Clear_Character (In_String : in out String;
-                             At_Position : Positive)
-     with Post => (if At_Position in In_String'Range
-                   then In_String (At_Position)'Old = ' ');
+    procedure Shift_And_Advance (Index : in out Integer) with
+      Post =>
+        Global (Index)'Old = Global'Old (Index'Old) and
+        Global (Index'Old) = Global (Index);
 
-* Copies :ada:`In_String (At_Position)` on entry
+  * What happens when :ada:`Index` is not in range for :ada:`Global`?
 
-   - Will raise an exception on entry if :ada:`At_Position not in In_String'Range`
-   - The postcondition's :ada:`if` check is not sufficient
+* So we add a range check
 
-* Solution requires a full copy of :ada:`In_String`
+  .. code:: Ada
+    :font-size: scriptsize
 
-.. code:: Ada
+    procedure Shift_And_Advance (Index : in out Integer) with
+      Post =>
+        (if Index in Global'Range then
+           Global (Index)'Old = Global'Old (Index'Old) and
+           Global (Index'Old) = Global (Index));
 
-  procedure Clear_Character (In_String : in out String;
-                             At_Position : Positive)
-     with Post => (if At_Position in In_String'Range
-                   then In_String'Old (At_Position) = ' ');
+  * This code is still wrong!
+
+    * :ada:`Global (Index)'Old` is evaluated on **entry**
+    * :ada:`Index` is only being verified **after** the call
+
+* (One) Correct solution
+
+  .. code:: Ada
+    :font-size: scriptsize
+
+    procedure Shift_And_Advance (Index : in out Integer) with
+      Post =>
+        (if Index in Global'Range then
+           Global'Old (Index) = Global'Old (Index'Old) and
+           Global (Index'Old) = Global (Index));
+
+  * Check at the old position now copies entire :ada:`Global`
 
 -----------------------------------------
 Postcondition Usage of Function Results
