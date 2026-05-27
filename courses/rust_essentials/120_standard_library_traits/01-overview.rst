@@ -23,7 +23,7 @@ Review: What Is a Trait?
 
 * Separates *interface* from *data*
 
-  * Traits describe what a type **does**, not what it **is**
+  * Describes what a type **does**, not what it **is**
   * Adds functionality to types without modifying original code
 
 -----------------------------------
