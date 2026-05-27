@@ -67,9 +67,7 @@ Simple Static Type Derivation
 
 * New type from an existing type
 
-  - **Limited** form of inheritance: operations
-  - **Not** fully OOP
-  - More details later
+  - Allows inheriting of type operations
 
 * Strong type benefits
 
