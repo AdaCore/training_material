@@ -112,7 +112,7 @@ Ignoring Multiple Elements
 
   - Ignore multiple elements using the **rest pattern** (:rust:`..`)
   - Can only be used **once** per pattern
-    - Either at the beginning, the middle, or the end
+    - Anywhere within the element list
 
 .. code:: rust
 

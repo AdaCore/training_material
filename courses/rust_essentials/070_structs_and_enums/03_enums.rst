@@ -37,7 +37,7 @@ Enums With Data
         Run(Direction),                // Tuple variant
         Teleport { xx: u32, yy: u32 }, // Named-field struct variant
     }
-    let mv = PlayerMove::Run(Direction::Left);
+    let action = PlayerMove::Run(Direction::Left);
 
     let teleport = PlayerMove::Teleport { xx: 10, yy: 10 };
 
