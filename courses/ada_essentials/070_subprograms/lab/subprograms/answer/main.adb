@@ -1,57 +1,81 @@
 with Ada.Text_IO; use Ada.Text_IO;
 procedure Main is
 
-   --Search
-   type List_T is array (Positive range <>) of Integer;
+   --|definitions_start
+   type Coord_T is record
+      X_Coord : Integer;
+      Y_Coord : Integer;
+   end record;
 
-   function Search
+   type Coords_T is array (1 .. 1_000) of Coord_T;
+   type List_T is record
+      Coords : Coords_T;
+      Length : Natural := 0;
+   end record;
+
+   procedure Add
+     (List  : in out List_T;
+      Coord :        Coord_T);
+   function Contains
      (List : List_T;
-      Item : Integer)
-      return Positive is
-   begin
-      if List'Length = 0 then
-         return 1;
-      elsif Item <= List (List'First) then
-         return 1;
-      else
-         for Idx in (List'First + 1) .. List'Last loop
-            if Item <= List (Idx) then
-               return Idx;
-            end if;
-         end loop;
-         return List'Last + 1;
-      end if;
-   end Search;
-   --Search
+      Item : Coord_T)
+      return Boolean;
+   procedure Print (List : List_T);
+   procedure Print_Element (Coord : Coord_T);
 
-   List   : List_T (1 .. 20);
-   Length : Natural := 0;
+   List : List_T;
+   --|definitions_end
 
---Main
-   procedure Add (Item : Integer) is
-      Place : constant Natural := Search (List (1..Length), Item);
+   --|implementation_start
+   procedure Add
+     (List  : in out List_T;
+      Coord :        Coord_T) is
    begin
-      if Place <= Length and then List (Place) = Item then
-         return;
+      if not Contains (List, Coord) then
+         List.Coords (List.Length + 1) := Coord;
+         List.Length                   := List.Length + 1;
       end if;
-      Length := Length + 1;
-      List (Place + 1 .. Length) := List (Place .. Length - 1);
-      List (Place) := Item;
    end Add;
+
+   function Contains
+     (List : List_T;
+      Item : Coord_T)
+      return Boolean is
+   begin
+      for Index in 1 .. List.Length loop
+         if List.Coords (Index) = Item then
+            return True;
+         end if;
+      end loop;
+      return False;
+   end Contains;
+
+   procedure Print (List : List_T) is
+   begin
+      New_Line;
+      for Index in 1 .. List.Length loop
+         Print_Element (List.Coords (Index));
+      end loop;
+   end Print;
+
+   procedure Print_Element (Coord : Coord_T) is
+      function To_String return String is
+        (Coord.X_Coord'Image & Coord.Y_Coord'Image);
+   begin
+      Put_Line (To_String);
+   end Print_Element;
+   --|implementation_end
 
 begin
 
-   Add (100);
-   Add (50);
-   Add (25);
-   Add (50);
-   Add (90);
-   Add (45);
-   Add (22);
-
-   for Idx in 1 .. Length loop
-      Put_Line (List (Idx)'Image);
-   end loop;
+   Add (List, (1, 2));
+   Print (List);
+   Add (List, (33, 44));
+   Print (List);
+   Add (List, (1, 2));
+   Print (List);
+   Add (List, (555, 666));
+   Print (List);
 
 end Main;
 --Main
