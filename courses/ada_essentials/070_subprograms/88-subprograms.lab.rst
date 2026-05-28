@@ -8,28 +8,36 @@ Subprograms Lab
 
 * Requirements
 
-   - Build a list of sorted unique integers
+  - Create subprogram :ada:`Add` to add X-Y coordinates to a list of coordinates
 
-      * Do not add an integer to the list if it is already there
+    - Do not add the coordinates if they're already in the list
 
-   - Print the list
+  - Create subprogram :ada:`Print` to print the list of coordinates
+  - Create a subprogram to print one X-Y coordinate
+
+    - It should have a nested subprogram to convert the coordinates to a string
+
+  - Use expression functions where appropriate
+
+  - Subprogram bodies should be in alphabetical order
+
+    - Common coding standard
 
 * Hints
 
-   - Subprograms can be nested inside other subprograms
+  - You don't always need specifications
 
-      * Like inside `main`
+    - But it is common practice
+    - Sometimes they're required
 
-   - Build a Search subprogram to find the correct insertion point in the list
+----------------------------------------
+Subprograms Lab Solution - Definitions
+----------------------------------------
 
------------------------------------
-Subprograms Lab Solution - Search
------------------------------------
+.. container:: source_include 070_subprograms/lab/subprograms/answer/main.adb :start-after:definitions_start :end-before:definitions_end :code:Ada :number-lines:4
 
-.. container:: source_include 070_subprograms/lab/subprograms/answer/main.adb :start-after:--Search :end-before:--Search :code:Ada :number-lines:4
+-------------------------------------------
+Subprograms Lab Solution - Implementation
+-------------------------------------------
 
----------------------------------
-Subprograms Lab Solution - Main
----------------------------------
-
-.. container:: source_include 070_subprograms/lab/subprograms/answer/main.adb :start-after:--Main :end-before:--Main :code:Ada :number-lines:25
+.. container:: source_include 070_subprograms/lab/subprograms/answer/main.adb :start-after:implementation_start :end-before:implementation_end :code:Ada :number-lines:4
