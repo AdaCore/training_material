@@ -91,6 +91,50 @@ hyphen to describe the change from the base module.
    
    ``195_exceptions-in_depth.rst``
 
+++++++++++++++++++
+Module Structure
+++++++++++++++++++
+
+Each module will contain *chapters* - individual files that address
+a sub-topic within the module. These chapters should conform to
+the following rubric:
+
+* Chapter 1: **Introduction**
+
+  * First slide title: **Topics Covered**
+  
+    * Bold bullets for short title of each sub-topic
+    * Indented bullet for short description of the sub-topic
+
+  * Remaining slides (optional)
+
+    * Background information about the general module purpose
+
+* Chapter 2 through N
+
+  * Various sub-topics within the module purpose
+
+* Lab (optional)
+
+  * Description of lab
+  * Lab answer
+
+    * Can be multiple slides
+    * Entire code if small
+    * Appropriate pieces if large
+
+* Last chapter: **Summary**
+
+  * First slide title: **What We Covered**
+  
+    * Bold bullets for short title of each sub-topic
+    * Indented bullet(s) for review points for the sub-topic
+
+  * Remaining slides (optional)
+
+    * Only if really needed (exception not the rule)
+    * More specific review of a particular sub-topic
+  
 ----------
 Chapters
 ----------
