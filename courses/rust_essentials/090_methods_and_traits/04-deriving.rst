@@ -73,7 +73,7 @@ Example of Deriving
 Deriving in Complex Structures
 --------------------------------
 
-**Deriving a trait generally requires its inner types to implement it**
+**Deriving a trait generally requires its inner types to implement the trait**
 
 .. code:: rust
 
