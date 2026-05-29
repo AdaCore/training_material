@@ -30,7 +30,7 @@ Loops
 "for" Statement
 -----------------
 
-**Iterates over range of values or items in a collection**
+**Iterates over range of values or elements of a collection**
 
 .. code:: rust
 
