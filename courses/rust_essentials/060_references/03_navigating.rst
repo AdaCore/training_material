@@ -124,7 +124,7 @@ The "Free Agent" (let mut r = &mut x)
     let mut rf = &mut focus;
 
     *rf = 0;
-    rf = &shame;
+    rf = &mut shame;
     *rf = 999;
 
 .. note::

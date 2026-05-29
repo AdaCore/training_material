@@ -9,17 +9,17 @@ Generic Data Type
 - Used to parameterize an object
 
    - Declared using :rust:`<>`
-   
+
 - Can take any identifier name
 
    - Conventionally called :rust:`T`
-   
+
 .. code:: rust
 
   fn swap<T> (l: T, r: T) -> (T, T) {
     (r, l)
   }
-   
+
 - :rust:`T` (:dfn:`generic type parameter`) means :rust:`swap` can wrap any type
 
    - :rust:`swap<i32>`, :rust:`swap<MyOwnType>`, etc.
@@ -28,39 +28,40 @@ Generic Data Type
 Be Generic
 ------------
 
-- Constructs that can be made generic
+- Items that can be made generic
 
 .. container:: latex_environment scriptsize
 
-    .. list-table:: 
+    .. list-table::
        :header-rows: 1
        :stub-columns: 1
 
        * - **Constructs**
          - **Example Syntax**
          - **Purpose**
-         
+
        * - *Functions*
          - :rust:`fn logic<T>(arg: T)`
          - Logic that works on multiple types
-
 
        * - *Structs*
          - :rust:`struct Container<T>(T)`
          - Data structures that hold any type
 
-
        * - *Enums*
          - :rust:`enum Choice<T> { A(T), B }`
          - Variants that can wrap different data
-
 
        * - *Traits*
          - :rust:`trait Behavior<T>`
          - Defining interfaces with generic inputs
 
+       * - *Impl Blocks*
+         - :rust:`impl<T> Container<T>`
+         - Implementing methods or traits for generic types
+
        * - *Type Aliases*
-         - :rust:`type Res<T> = Result<GenT>`
+         - :rust:`type Res<T> = Result<T, Error>`
          - Simplifying complex generic names
 
 - Examples
@@ -78,33 +79,33 @@ Be Generic
 Type Inference
 ----------------
 
-- Any **Sized** type can be used as the type argument    
+- Any **Sized** type can be used as the type argument
 
 .. code:: rust
 
     // Definition: 'T' is a placeholder for ANY type
-    fn encourage<T>(item: T) -> T {
+    fn validate<T>(item: T) -> T {
         println!("You're doing great, little value!");
-        item 
+        item
     }
-	
+
 - Type is **inferred** at compile-time from the context
 
-.. code:: rust  
+.. code:: rust
 
     // With an integer
-    let points = encourage(100); 
+    let points = validate(42);
 
     // With a string
-    let name = encourage("Rustacean");
+    let name = validate("Rustacean");
 
 
-   
-------------------------
-Multiple Generic Types
-------------------------
 
-**Constructs can have multiple generic data types** 
+----------------------------------
+Multiple Generic Type Parameters
+----------------------------------
+
+**Generic types can have multiple generic type parameters**
 
 .. code:: rust
 
@@ -116,8 +117,8 @@ Multiple Generic Types
     let both_integer = Point { x: 5, y: 10 };
     let both_float = Point { x: 1.0, y: 4.0 };
     let integer_and_float = Point { x: 5, y: 4.0 };
-    
-    
+
+
 --------------
 Type Aliases
 --------------
@@ -126,10 +127,10 @@ Type Aliases
 
 .. code:: rust
 
-  // 'Item' and 'Label' are generic parameters 
+  // 'Item' and 'Label' are generic parameters
   struct LargeShippingUnit<Item, Label>(Item, Label);
   type LargeCrate<T, U> = LargeShippingUnit<T, U>;
-  
+
 - Can *specify* the generic type
 
   - **Partially**
@@ -138,10 +139,10 @@ Type Aliases
 
     struct Animal;
     type AnimalCrate<U> = LargeCrate<Animal, U>;
-  
+
   - **Totally**
 
   .. code:: rust
 
     struct Environment;
-    type Biome = LargeCrate<Animal, Environment>;  
+    type Biome = LargeCrate<Animal, Environment>;
