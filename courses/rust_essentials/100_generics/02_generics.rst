@@ -98,7 +98,9 @@ Type Inference
     // With a string
     let name = encourage("Rustacean");
 
+:command:`You're doing great, little value!`
 
+:command:`You're doing great, little value!`
    
 ------------------------
 Multiple Generic Types

@@ -38,6 +38,8 @@ Patterns Are Declarative
 
 .. code:: rust
 
+  let point = Point { x: 0, y: 7 };
+
   // Declarative: Describing the 'stencil'
   match point {
     Point { x: 0, y: ver } => println!("On Y axis at {ver}"),
@@ -49,6 +51,10 @@ Patterns Are Declarative
     let ver = point.y;
     println!("On Y axis at {ver}");
   }
+
+*Both of these would print*
+
+:command:`On Y axis at 7`
 
 ----------------------
 Patterns as Bindings

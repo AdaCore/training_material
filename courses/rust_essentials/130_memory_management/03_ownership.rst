@@ -31,15 +31,16 @@ Ownership Principles
 - Every value has precisely **one owner** at all times
 - When the owner goes **out of scope**, the value is **dropped**
 
-.. container:: latex_environment scriptsize
+.. code:: rust
+  :font-size: scriptsize
 
-    .. code:: rust
+  {
+      let poodle = String::from("ball"); // 'poodle' owns the ball
+      let yorkie = poodle; // 'poodle' lets go, 'yorkie' picked it up
 
-        {
-            let poodle = String::from("ball"); // 'poodle' owns the ball
-            let yorkie = poodle; // 'poodle' lets go, 'yorkie' picked it up
-            
-            // println!("{}", poodle); // Error
-            println!("{}", yorkie);
-        } // 'yorkie' drops the ball, and leaves
-          // 'poodle' leaves quietly
+      // println!("{}", poodle); // Error
+      println!("{}", yorkie);
+  } // 'yorkie' drops the ball, and leaves
+    // 'poodle' leaves quietly
+
+:command:`ball`

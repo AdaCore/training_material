@@ -226,7 +226,9 @@ Method Receiver - No Receiver
     let count = Counter::new();
 
     // OK: 'count' is now a normal value
-    println!("{}", count.value);
+    println!("Value: {}", count.value);
+
+  :command:`Value: 0`
 
 **Behavior**
 
