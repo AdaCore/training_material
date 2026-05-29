@@ -20,7 +20,7 @@ Big Picture
 
 * Namespacing
 
-  * Prevent "name collisions"
+  * Prevents "name collisions"
 
 * Unit of organization
 

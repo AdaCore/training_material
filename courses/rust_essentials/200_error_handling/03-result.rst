@@ -45,6 +45,10 @@ Handling Results
   * :rust:`.expect("Msg")` - like :rust:`unwrap`, with custom panic message
   * :rust:`.unwrap_or(default)` - fallback value on error
 
+.. note::
+
+  :rust:`eprintln!` outputs directly to :cpp:`stderr` rather than :cpp:`stdout`
+       
 ------------------------
 Results vs. Exceptions
 ------------------------
