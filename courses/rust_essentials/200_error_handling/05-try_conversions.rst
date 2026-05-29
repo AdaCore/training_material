@@ -13,20 +13,31 @@ Automatic Error Type Conversion
 
 .. code:: rust
 
-  enum Reason { TooYoung, TooOld, }
+  enum Reason {TooYoung, TooOld,}
 
   // Error type is 'Reason'
-  fn check_age(age: i32) -> Result<i32, Reason> {
-      Err(Reason::TooYoung)
-  }
+  fn check_age(age: i32) -> Result<i32, Reason> { }
 
   // Error type is 'String'
-  fn register() -> Result<(), String> {
+  fn register(age: i32) -> Result<i32, String> {
       // '?' sees 'Reason', knows the return type is 'String',
       // and converts it behind the scenes.
-      check_age(10)?; 
-      Ok(())
+      check_age(age)?;
+      Ok(age)
   }
+
+  match register(10) {
+      Ok(age) => println!("Good enough {age}"),
+      Err(e) => eprintln!("Problem: {e}"),
+  }
+  match register(70) {
+      Ok(()) => println!("Good enough {age}"),
+      Err(e) => eprintln!("Problem: {e}"),
+  }
+
+:error:`Problem: The user is too young.`
+
+:error:`Problem: The user is too old.`
 
 .. note::
 

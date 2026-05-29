@@ -39,6 +39,8 @@ Handling Results
         Err(e)   => eprintln!("Failed to open: {e}"),
     }
 
+:error:`Failed to open: No such file or directory (os error 2)`
+
 * Helper methods
 
   * :rust:`.unwrap()` - returns the value or panics

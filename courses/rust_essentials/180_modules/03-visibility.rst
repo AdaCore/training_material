@@ -63,6 +63,7 @@ Module Visibility
         parent::private_child::private_helper(); // ERROR
     }
 
+:error:`error[E0603]: function 'deeply_hidden' is private`
 
 ---------------------------
 Visibility at Every Level
