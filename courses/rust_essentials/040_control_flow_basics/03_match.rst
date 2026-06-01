@@ -60,7 +60,7 @@ The "match" Must Be Exhaustive
       _ => println!("Suspicion."),
   }
 
-:command:`Other!`
+:command:`Perfect!`
 
 --------------------------------
 Using "match" as an Expression

@@ -61,13 +61,13 @@ Example of Deriving
       // Clone trait adds 'clone' method
 
       smith.name = String::from("Agent Smith");
-      println!("{human:?} vs. {agent:?}");
+      println!("{human:?} vs. {smith:?}");
       // Debug trait adds support for printing with '{:?}'
   }
 
 .. container:: latex_environment scriptsize
 
-  :command:`Employee { name: "", age: 0 } vs. Employee { name: "EldurScrollz", age: 0 }`
+  :command:`Employee { name: "", age: 0 } vs. Employee { name: "Agent Smith", age: 0 }`
 
 * Compiler generates implementations
 * Works if all fields also implement the trait
