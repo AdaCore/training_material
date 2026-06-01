@@ -11,37 +11,69 @@ Automatic Error Type Conversion
 * If error types match |rightarrow| returned directly
 * If they differ |rightarrow| converted using :rust:`From`
 
-.. code:: rust
+.. container:: columns
 
-  enum Reason {TooYoung, TooOld,}
+  .. container:: column
 
-  // Error type is 'Reason'
-  fn check_age(age: i32) -> Result<i32, Reason> { }
+    .. code:: rust
+      :font-size: tiny
 
-  // Error type is 'String'
-  fn register(age: i32) -> Result<i32, String> {
-      // '?' sees 'Reason', knows the return type is 'String',
-      // and converts it behind the scenes.
-      check_age(age)?;
-      Ok(age)
-  }
+      enum Reason { TooYoung, TooOld, }
 
-  match register(10) {
-      Ok(age) => println!("Good enough {age}"),
-      Err(e) => eprintln!("Problem: {e}"),
-  }
-  match register(70) {
-      Ok(()) => println!("Good enough {age}"),
-      Err(e) => eprintln!("Problem: {e}"),
-  }
+      impl From<Reason> for String {
+          fn from(reason: Reason) -> Self {
+              match reason {
+                  Reason::TooYoung =>
+                      String::from("Too Young"),
+                  Reason::TooOld =>
+                      String::from("Too Old"),
+              }
+          }
+      }
 
-:error:`Problem: The user is too young.`
+      // Error type is 'Reason'
+      fn check_age(age: i32) -> Result<i32, Reason> {
+          if age < 18 {
+              Err(Reason::TooYoung)
+          } else if age > 65 {
+              Err(Reason::TooOld)
+          } else {
+              Ok(age)
+          }
 
-:error:`Problem: The user is too old.`
+      }
+
+  .. container:: column
+
+    .. code:: rust
+      :font-size: tiny
+
+      // Error type is 'String'
+      fn register(age: i32) -> Result<i32, String> {
+          // '?' sees 'Reason', knows the return type is 'String',
+          // and converts it behind the scenes.
+          check_age(age)?;
+          Ok(age)
+      }
+
+      match register(10) {
+          Ok(age) => println!("Good enough {age}"),
+          Err(e) => eprintln!("Problem: {e}"),
+      }
+      match register(70) {
+          Ok(age) => println!("Good enough {age}"),
+          Err(e) => eprintln!("Problem: {e}"),
+      }
+
+.. container:: latex_environment scriptsize
+
+  :error:`Problem: The user is too young.`
+
+  :error:`Problem: The user is too old.`
 
 .. note::
 
-  Return error type must implement :rust:`From` trait for source error type
+  :rust:`Reason` must implement :rust:`From` trait to string
 
   * Compiler verifies a valid path exists to convert the error
   * If not, it throws a *trait bound not satisfied* error
