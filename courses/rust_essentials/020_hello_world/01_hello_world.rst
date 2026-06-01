@@ -50,8 +50,15 @@ Hello World
 
   * :rust:`println!` - macro for printing a string followed by newline
 
+-------------------------
+File Naming Conventions
+-------------------------
+
+* File extension is :filename:`.rs`
+* File name is the module name in :dfn:`snake case`
+
+    * All lower case, spaces replaced with underscore
+
 .. note::
 
-  For source code files, Rust always uses the file extension :filename:`.rs`
-
-  *So for this example, we would expect it in file* :filename:`main.rs`
+  :rust:`fn main()` will be in file :filename:`main.rs`
