@@ -12,11 +12,11 @@ Big Picture
 
 * Encapsulation
 
-  * Group related code together
+  * Groups related code together
 
     * Functions, structs, traits
 
-  * Hide implementation details from programmer
+  * Hides implementation details from programmer
 
 * Namespacing
 

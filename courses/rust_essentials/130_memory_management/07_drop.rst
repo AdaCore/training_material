@@ -74,7 +74,7 @@ Variable Drop Order Example
 
 .. note::
 
-  Values are dropped in the *reverse order* of their variables' declaration
+  Variables are dropped in the *reverse order* of their declarations
 
 -----------------------------------
 Internal Field Drop Order Example
