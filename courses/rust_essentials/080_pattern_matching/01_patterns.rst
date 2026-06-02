@@ -6,7 +6,7 @@ Patterns
 What Is a Pattern?
 --------------------
 
-- Core language feature of Rust
+- Core language feature
 
 - Describes the **structure** of a value
 
@@ -194,9 +194,9 @@ Pattern Vocabulary
 
 :command:`Value 5 is in range`
 
------------------------------
-Patterns in Rust Constructs
------------------------------
+------------------------
+Patterns in Constructs
+------------------------
 
 **Patterns are reused consistently across the language**
 

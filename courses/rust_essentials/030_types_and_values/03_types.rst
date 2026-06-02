@@ -8,14 +8,14 @@ Rust Is Statically Typed
 
 - One of the most important features
 
-- Compiler **must** know the exact **type** of every variable 
+- **Must** know the exact **type** of every variable 
   at compile time
 
-- How Rust provides **type safety** (and prevents bugs!)
+- Provides **type safety** (and prevents bugs!)
 
 .. code:: rust
 
-  // We are explicitly telling Rust:
+  // We are explicitly stating:
   // "this_var is a 32-bit signed integer with the value 10"
   let this_var: i32 = 10;
 
@@ -23,7 +23,7 @@ Rust Is Statically Typed
 Assigning Types
 -----------------
 
-**Two ways to tell Rust what type a variable is**
+**Two ways to specify what type a variable is**
 
 - **Explicit Annotation**
 
@@ -43,7 +43,7 @@ Type Inference Explained
 
 - In most cases, you don't need to write the type
 
-- Rust will **infer** it based on the value you give it
+- Compiler **infers** it based on the value you give it
 
   - This is why :rust:`let apples = 5` worked in our earlier example!
 
@@ -54,12 +54,12 @@ Type Inference Explained
 
 .. code:: rust
 
-  // Rust sees a whole number and infers i32
+  // Compiler sees a whole number and infers i32
   let inferred_int = 10;
   // This is the same as writing:
   // let explicit_int: i32 = 10;
 
-  // Rust sees a decimal and infers f64
+  // Compiler sees a decimal and infers f64
   let inferred_float = 2.5;
   // This is the same as writing:
   // let explicit_float: f64 = 2.5;
@@ -76,13 +76,13 @@ Inference Is Smart
 
 .. code:: rust
 
-  // Rust sees 10, but waits to decide the type...
+  // Compiler sees 10, but waits to decide the type...
   let inferred_var = 10;
 
   // We declare 'unsigned_var' as an explicit 'u32'
   let unsigned_var: u32;
 
-  // Rust decides 'inferred_var' MUST be 'u32'
+  // Compiler decides 'inferred_var' MUST be 'u32'
   unsigned_var = inferred_var;
 
 --------------
@@ -189,7 +189,7 @@ Utilizing Different Bases
 Numeric Conversions
 ---------------------
 
-**Rust does not automatically convert types for you**
+**Types are not automatically converted for you**
 
 .. code:: rust
 
@@ -204,7 +204,7 @@ Numeric Conversions
 
 .. tip::
 
-  - Rust forces you to be **intentional**
+  - Forces you to be **intentional**
   
   - Applying :rust:`as` to a variable makes you think before doing
 
@@ -212,7 +212,7 @@ Numeric Conversions
 The "char" Type Is Special
 ----------------------------
 
-- :rust:`char` is **4 bytes** in Rust (as opposed to 1 byte in other languages)
+- :rust:`char` is **4 bytes** (as opposed to 1 byte in other languages)
 
 - Holds almost *any* character from *any* language (including emojis!)
 
@@ -269,4 +269,4 @@ Recap: Anatomy of a Variable
 **Key Takeaways:**
 
 - :rust:`mut  ` - *optional*, makes it changeable
-- :rust:`: i32` - *optional* because Rust can infer it
+- :rust:`: i32` - *optional* because can be inferred

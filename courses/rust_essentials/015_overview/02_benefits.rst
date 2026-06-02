@@ -20,7 +20,7 @@ Compile Time Memory Safety
 No Undefined Runtime Behavior
 -------------------------------
 
-**What a Rust statement does is never left unspecified**
+**What a statement does is never left unspecified**
 
    -  Array access is bounds checked
    -  Integer overflow is defined (panic or wrap-around)

@@ -93,7 +93,7 @@ Casting Between Primitive Types
 
   :rust:`my_u8 as u32`
 
-  * Rust has no *implicit* casting
+  * No *implicit* casting
 
 * Unlike :rust:`From`, casting does not use traits
 

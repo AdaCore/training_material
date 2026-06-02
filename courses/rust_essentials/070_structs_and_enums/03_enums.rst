@@ -28,7 +28,7 @@ Enums With Data
 - Can't be recursive
   - Type would not be **Sized**
 - Similar to *tagged unions* in C++
-  - But Rust *enums* are a core feature
+  - But *enums* are a core feature
 
 .. code:: rust
 

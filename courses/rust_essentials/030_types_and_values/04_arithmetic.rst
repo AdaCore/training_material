@@ -42,7 +42,7 @@ The Exponent Trap
 
 - **Common Mistake:** using :rust:`^`
 
-  - In Rust, :rust:`^` is the **Bitwise XOR operator**
+  - :rust:`^` is the **Bitwise XOR operator**
   - Code will compile, but your math will be wrong!
 
 .. code:: rust
@@ -69,14 +69,14 @@ The Exponent Trap
 Modifying Variables In-Place
 ------------------------------
 
-- Increment (:rust:`++`) and decrement (:rust:`--`) operators don't exist in Rust
+- Increment (:rust:`++`) and decrement (:rust:`--`) operators don't exist
 
-  - *Why?* - they can lead to confusing code, and Rust prefers *clarity*
+  - *Why?* - they can lead to confusing code, and the language prefers *clarity*
 
 - **The Alternative:** Compound Assignment
 
   - Use the standard "shortcut" operators to do math AND update at once! 
-  - This is the idiomatic way to increment counters in Rust
+  - This is the idiomatic way to increment counters
 
 .. list-table::
    :widths: 15 30 35 20
@@ -153,17 +153,17 @@ Integer Overflow
   let my_byte: u8 = 250;
   let new_byte = my_byte + 10; // 260? This won't fit!
 
-- Rust's safe, defined behavior is to
+- Safe, defined behavior is to
 
   - **Debug Builds**
 
-    - Rust *checks* for overflow
+    - *Checks* for overflow
     - Your program will :rust:`panic!` (crash)
     - An error will tell you exactly what happened
 
   - **Release Builds**
 
-    - Rust *does not* :rust:`panic!`
+    - *Does not* :rust:`panic!`
     - It performs **two's complement wrapping**
     - **Example:** For :rust:`u8`, :rust:`255 + 1` "wraps around" to :rust:`0`
 

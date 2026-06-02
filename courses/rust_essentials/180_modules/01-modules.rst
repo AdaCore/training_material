@@ -8,7 +8,7 @@ Big Picture
 
 * Most applications reside in more than one file
 
-  * *Modules* are how Rust organizes code
+  * *Modules* are how to organize code
 
 * Encapsulation
 
@@ -30,7 +30,7 @@ Big Picture
 Complete Picture
 ------------------
 
-**Rust code is made up of**
+**Code is made up of**
 
 .. list-table::
   :header-rows: 1

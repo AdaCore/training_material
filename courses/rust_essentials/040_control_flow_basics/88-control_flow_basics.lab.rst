@@ -22,7 +22,7 @@ Dragon Tamer's Trial
 
 - **Match** 
 
-  - How do we tell Rust to handle "every other" possibility?
+  - How do we handle "every other" possibility?
 
 - **Macros** 
 

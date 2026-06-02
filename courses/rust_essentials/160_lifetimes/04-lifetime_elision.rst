@@ -33,13 +33,13 @@ Why Are Lifetimes Often Omitted?
 
 .. note::
 
-  Rust reduces this repetition automatically
+  Language reduces this repetition automatically
 
 ------------------
 Lifetime Elision
 ------------------
 
-- Most Rust code does **not** write lifetimes explicitly
+- Most code does **not** write lifetimes explicitly
 
 - :dfn:`Lifetime elision` rules can be applied
 

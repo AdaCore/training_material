@@ -23,7 +23,7 @@ The Ultimate Consumer
     collect::<Vec<i32>>()
     collect::<HashSet<_>>()
 
-  * The "_" syntax lets Rust infer the data type automatically
+  * The "_" syntax allows inference of the data type automatically
 
 --------------------------
 One Method, Many Results

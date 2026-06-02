@@ -15,7 +15,7 @@ Why Use "Option<T>"?
 
   * Which can be difficult to find
 
-* In Rust, a variable is *always* its type
+* Variable is *always* its type
 
   * So the value is always valid
   * To allow for *unknown* we wrap the type in :rust:`Option`

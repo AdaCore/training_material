@@ -23,7 +23,7 @@ Destructuring: The Stencil Metaphor
 - Think of a **pattern** as a *stencil* placed over a value
 
 - **Field** 
-  - The "cutout" in the stencil that tells Rust *where* to look
+  - The "cutout" in the stencil that tells the compiler *where* to look
 
 - **Binding** 
   - Where the data "falls through" into your local scope
@@ -44,7 +44,7 @@ Basic Destructuring
 - The pattern mirrors the struct's shape to extract values
 
 - **Order Independence** 
-  - Rust matches by field name, not position
+  - Matches by field name, not position
 
 - **Implicit Matching** 
   - Patterns work anywhere a variable is introduced
@@ -69,7 +69,7 @@ Shorthand Binding
 
 - Shorthand is a syntactic shortcut for longhand renaming
 
-- Most common way to destructure in Rust
+- Most common way to destructure
 
 .. code:: rust
 

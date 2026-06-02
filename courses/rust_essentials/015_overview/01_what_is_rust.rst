@@ -6,7 +6,7 @@ What Is Rust?
 What Is Rust?
 ---------------
 
-- Rust is a new(er) programming language
+- New(er) programming language
 
    - First stable release in 2015 (1.0)
    - Modern design to solve older language problems
@@ -15,7 +15,7 @@ What Is Rust?
 
    - :toolname:`rustc` uses LLVM as its backend
 
--  Rust supports many platforms and architectures
+-  Supports many platforms and architectures
 
    -  Linux, Windows, VxWorks...
    -  x86, ARM ...   
@@ -24,7 +24,7 @@ What Is Rust?
 What Kind of Language Is Rust?
 --------------------------------
 
-**Rust fits in the same area as other systems languages (Ada, C++, ...)**
+**Fits in the same area as other systems languages (Ada, C++, ...)**
 
 -  High flexibility
 -  High level of control

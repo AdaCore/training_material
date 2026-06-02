@@ -15,12 +15,12 @@ GNAT Pro for Rust
 
 - AdaCore's Rust Development Toolsuite
 
-  - :toolname:`cargo` - Rust package manager
-  - :toolname:`rustc` - Rust compiler
-  - :toolname:`gdb` - Rust-aware debugger
-  - :toolname:`rust-analyzer` - Rust language server/IDE integration tool
-  - :toolname:`clippy` - Rust linter
-  - :toolname:`rustfmt` - Rust code formatter
+  - :toolname:`cargo` - package manager
+  - :toolname:`rustc` - compiler
+  - :toolname:`gdb` - debugger
+  - :toolname:`rust-analyzer` - language server/IDE integration tool
+  - :toolname:`clippy` - linter
+  - :toolname:`rustfmt` - code formatter
   - :toolname:`gprbuild` - AdaCore’s multi-language build tool
 
 - Tooling pairs seamlessly with :toolname:`VS Code`
@@ -28,4 +28,4 @@ GNAT Pro for Rust
 .. note::
 
   The :url:`Rust Playground <https://play.rust-lang.org/>` provides an easy
-  way to run short Rust programs, quickly!
+  way to run short programs, quickly!
