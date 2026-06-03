@@ -57,7 +57,7 @@ Why Do We Need Lifetime Annotations?
 
 .. note::
 
-  - Language includes some predefined lifetimes
+  - Rust includes some predefined lifetimes
 
   - For this course, it's only important to know 
     

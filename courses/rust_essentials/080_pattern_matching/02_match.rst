@@ -149,4 +149,4 @@ Why "match" Matters
 
 .. note::
 
-  :rust:`match` is central to modeling branching logic
+  :rust:`match` is a powerful core construct to handle branching

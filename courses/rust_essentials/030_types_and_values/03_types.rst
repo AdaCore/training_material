@@ -8,7 +8,7 @@ Rust Is Statically Typed
 
 - One of the most important features
 
-- **Must** know the exact **type** of every variable 
+- Compiler **must** know the exact **type** of every variable 
   at compile time
 
 - Provides **type safety** (and prevents bugs!)
@@ -54,12 +54,12 @@ Type Inference Explained
 
 .. code:: rust
 
-  // Compiler sees a whole number and infers i32
+  // Compiler sees a whole number and infers 'i32'
   let inferred_int = 10;
   // This is the same as writing:
   // let explicit_int: i32 = 10;
 
-  // Compiler sees a decimal and infers f64
+  // Compiler sees a decimal and infers 'f64'
   let inferred_float = 2.5;
   // This is the same as writing:
   // let explicit_float: f64 = 2.5;

@@ -33,7 +33,7 @@ Why Are Lifetimes Often Omitted?
 
 .. note::
 
-  Language reduces this repetition automatically
+  Rust reduces this repetition automatically
 
 ------------------
 Lifetime Elision

@@ -55,4 +55,4 @@ Expected Errors vs. Logic Violations
 
 .. note::
 
-  Language separates bugs from expected failures
+  Rust separates bugs from expected failures

@@ -71,7 +71,7 @@ Modifying Variables In-Place
 
 - Increment (:rust:`++`) and decrement (:rust:`--`) operators don't exist
 
-  - *Why?* - they can lead to confusing code, and the language prefers *clarity*
+  - *Why?* - they can lead to confusing code, and Rust prefers *clarity*
 
 - **The Alternative:** Compound Assignment
 
@@ -157,13 +157,13 @@ Integer Overflow
 
   - **Debug Builds**
 
-    - *Checks* for overflow
+    - *Check* for overflow
     - Your program will :rust:`panic!` (crash)
     - An error will tell you exactly what happened
 
   - **Release Builds**
 
-    - *Does not* :rust:`panic!`
+    - *Do not* :rust:`panic!`
     - It performs **two's complement wrapping**
     - **Example:** For :rust:`u8`, :rust:`255 + 1` "wraps around" to :rust:`0`
 

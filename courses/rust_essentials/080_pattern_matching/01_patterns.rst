@@ -194,9 +194,9 @@ Pattern Vocabulary
 
 :command:`Value 5 is in range`
 
-------------------------
-Patterns in Constructs
-------------------------
+-----------------------------
+Patterns in Rust Constructs
+-----------------------------
 
 **Patterns are reused consistently across the language**
 
