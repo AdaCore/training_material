@@ -67,7 +67,7 @@ Example of Deriving
 
 .. container:: latex_environment scriptsize
 
-  :command:`Employee { name: "", age: 0 } vs. Employee { name: "Agent Smith", age: 0 }`
+  :command:`Employee \{ name: "", age: 0 \} vs. Employee \{ name: "Agent Smith", age: 0 \}`
 
 * Compiler generates implementations
 * Works if all fields also implement the trait
