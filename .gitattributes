@@ -1,0 +1,54 @@
+# ------------------------------------------------------------------------------
+# TEXT FILES
+# ------------------------------------------------------------------------------
+*.ada         text eol=lf
+*.adb         text eol=lf
+*.adb-debug   text eol=lf
+*.adc         text eol=lf
+*.ads         text eol=lf
+*.ads-debug   text eol=lf
+*.bnf         text eol=lf
+*.c           text eol=lf
+*.empty       text eol=lf
+*.float       text eol=lf
+*.gitignore   text eol=lf
+*.gpr         text eol=lf
+*.idx         text eol=lf
+*.latex       text eol=lf
+*.lines       text eol=lf
+*.md          text eol=lf
+*.profile     text eol=lf
+*.py          text eol=lf
+*.rev         text eol=lf
+*.rs          text eol=lf
+*.rst         text eol=lf
+*.rules       text eol=lf
+*.sample      text eol=lf
+*.sh          text eol=lf
+*.sty         text eol=lf
+*.svg         text eol=lf
+*.toml        text eol=lf
+*.txt         text eol=lf
+*.xml         text eol=lf
+*.yaml        text eol=lf
+*.yml         text eol=lf
+
+# ------------------------------------------------------------------------------
+# WINDOWS SCRIPTS
+# ------------------------------------------------------------------------------
+*.bat         text eol=crlf
+
+# ------------------------------------------------------------------------------
+# BINARY FILES
+# ------------------------------------------------------------------------------
+*.bmp         binary
+*.db          binary
+*.dotm        binary
+*.jpeg        binary
+*.jpg         binary
+*.pack        binary
+*.pdf         binary
+*.png         binary
+*.potx        binary
+*.unsigned    binary
+
