@@ -6,7 +6,7 @@ Special Attributes
 Evaluate an Expression on Subprogram Entry
 --------------------------------------------
 
-* Post-conditions may require knowledge of a subprogram's **entry context**
+* Postconditions may require knowledge of a subprogram's **entry context**
 
   .. code:: Ada
 
@@ -16,7 +16,7 @@ Evaluate an Expression on Subprogram Entry
 * Language-defined attribute :ada:`'Old`
 * Expression is **evaluated** at subprogram entry
 
-   - After pre-conditions check
+   - After preconditions check
    - Makes a copy
 
         + May be expensive

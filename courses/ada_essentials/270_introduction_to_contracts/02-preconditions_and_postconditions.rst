@@ -176,7 +176,7 @@ Quiz
       (Length * Height)
    with Pre => ?
 
-Which pre-condition is necessary for :ada:`Area` to calculate the correct result for
+Which precondition is necessary for :ada:`Area` to calculate the correct result for
 all values :ada:`Length` and :ada:`Height`?
 
    A. ``Length > 0 and Height > 0``
