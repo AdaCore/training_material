@@ -2,9 +2,9 @@
 Exercise: Luhn Algorithm
 ==========================
 
---------------------------
+----------------------
 Luhn Algorithm Setup
---------------------------
+----------------------
 
 The :url:`Luhn algorithm <https://en.wikipedia.org/wiki/Luhn_algorithm>` is
 used to validate credit card numbers. The algorithm takes a string as
@@ -27,9 +27,9 @@ The provided code provides a buggy implementation of the luhn algorithm,
 along with two basic unit tests that confirm that most of the algorithm
 is implemented correctly.
 
---------------------------
+------------------------
 Luhn Algorithm Problem
---------------------------
+------------------------
 
 Copy the code below to https://play.rust-lang.org/ and write additional
 tests to uncover bugs in the provided implementation, fixing any bugs

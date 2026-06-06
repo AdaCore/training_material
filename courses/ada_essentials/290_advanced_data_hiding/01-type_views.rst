@@ -2,9 +2,9 @@
 Type Views
 ============
 
----------------------------------------
+--------------------------------------
 Capabilities / Constraints of a Type
----------------------------------------
+--------------------------------------
 
 * :dfn:`Constraints` in a type declaration
 
@@ -136,7 +136,7 @@ Private Primitives
 * Privacy is **orthogonal** with type hierarchy
 
     - Derived types **may not** have access to private primitives
-    - Child packages **can** access private part
+    - Child packages **can** access private section
 
         + and call the private primitive directly
 

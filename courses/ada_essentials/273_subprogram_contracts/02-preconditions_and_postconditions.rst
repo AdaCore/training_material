@@ -1,6 +1,6 @@
-===================================
+==================================
 Preconditions and Postconditions
-===================================
+==================================
 
 -----------------------------
 Subprogram-based Assertions
@@ -104,7 +104,7 @@ Pre/Postcondition Semantics
 Contract with Quantified Expression
 -------------------------------------
 
-* Pre- and post-conditions can be **arbitrary** :ada:`Boolean` expressions 
+* Pre- and postconditions can be **arbitrary** :ada:`Boolean` expressions 
 
 .. code:: Ada
 
@@ -160,7 +160,7 @@ Preconditions and Postconditions Example
 (Sub)Types Allow Simpler Contracts
 ------------------------------------
 
-* Pre-condition
+* Precondition
 
   .. code:: Ada
 

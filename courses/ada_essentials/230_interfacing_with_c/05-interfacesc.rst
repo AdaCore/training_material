@@ -67,9 +67,9 @@ Interfaces.C
 
    end Interfaces.C;
 
-------------------------
+-------------------------
 Interfaces.C.Extensions
-------------------------
+-------------------------
 
 .. code:: Ada
 
@@ -99,9 +99,9 @@ Interfaces.C.Extensions
 
    end Interfaces.C.Extensions;
 
-------------------------
+-----------------------
 Interfaces.C.Pointers
-------------------------
+-----------------------
 
 .. code:: Ada
 
@@ -137,9 +137,9 @@ Interfaces.C.Pointers
 
    end Interfaces.C.Pointers;
 
-------------------------
+----------------------
 Interfaces.C.Strings
-------------------------
+----------------------
 
 .. code:: Ada
 

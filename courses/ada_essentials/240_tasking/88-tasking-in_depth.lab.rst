@@ -1,10 +1,10 @@
-========
+=====
 Lab
-========
+=====
 
------------------------
+----------------------
 Tasking In-Depth Lab
------------------------
+----------------------
 
 * Requirements
 
@@ -23,17 +23,17 @@ Tasking In-Depth Lab
    - Datastore needs to control access to its contents
    - One task per register is easier than one task trying to maintain multiple update frequencies
 
---------------------------------------------
+-------------------------------------------
 Tasking In-Depth Lab Solution - Datastore
---------------------------------------------
+-------------------------------------------
 
 .. container:: source_include 240_tasking/lab/tasking-in_depth/answer/datastore.ads :code:Ada :number-lines:1
 
 .. container:: source_include 240_tasking/lab/tasking-in_depth/answer/datastore.adb :code:Ada :number-lines:1
 
------------------------------------------------------
+---------------------------------------------------
 Tasking In-Depth Lab Solution - Monitor Task Type
------------------------------------------------------
+---------------------------------------------------
 
 .. container:: source_include 240_tasking/lab/tasking-in_depth/answer/monitor.ads :code:Ada :number-lines:1
 

@@ -2,9 +2,9 @@
 Task and Protected Types
 ==========================
 
----------------
+-----------------
 Task Activation
----------------
+-----------------
 
 * Instantiated tasks start running when **activated**
 * On the **stack**
@@ -55,9 +55,9 @@ Single Declaration
       V2 := new Task_T;
       V2.all.Start;
 
------------
+------------
 Task Scope
------------
+------------
 
 * Nesting is possible in **any** declarative block
 * Scope has to **wait** for tasks to finish before ending
@@ -135,9 +135,9 @@ Guard Conditions
       end loop;
    end Simple_Task_T;
 
-------------------------
+--------------------------
 Protected Object Entries
-------------------------
+--------------------------
 
 * **Special** kind of protected :ada:`procedure`
 * May use a :dfn:`barrier` which is evaluated when
@@ -158,9 +158,9 @@ Protected Object Entries
       ...
    end Object;
 
--------------------------------------
+---------------------------------------
 Discriminated Protected or Task types
--------------------------------------
+---------------------------------------
 
 * Discriminant can be an :ada:`access` or discrete type
 * Resulting type is indefinite
@@ -182,9 +182,9 @@ Discriminated Protected or Task types
       Counter.Increment;
       [...]
 
-----------------------------------------
+------------------------------------------
 Using discriminant for Real-Time aspects
-----------------------------------------
+------------------------------------------
 
 .. container:: latex_environment small
 
@@ -222,9 +222,9 @@ Example: Tasks - Body
 .. include:: ../examples/protected_objects_2/extracts/tasks.body.adb
     :code: Ada
 
-------------------
+---------------
 Example: Main
-------------------
+---------------
 
 .. include:: ../examples/protected_objects_2/src/test_protected_objects.adb
     :code: Ada

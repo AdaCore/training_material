@@ -2,9 +2,9 @@
 Defining an Iterator
 ======================
 
-----------------------
-What Is an Iterator?
-----------------------
+-----------------------
+What Is an Iteration?
+-----------------------
 
 * Simplest form of *iteration* is a "for loop"
 

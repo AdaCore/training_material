@@ -73,9 +73,9 @@ Body Syntax
       return X * Y;
    end F;
 
---------------
+-------------
 Completions
---------------
+-------------
 
 * Bodies **complete** the specification
 

@@ -56,14 +56,47 @@ Null Procedures As Completions
 ..
   language_version 2005
 
---------------------------------------
-Typical Use for Null Procedures: OOP
---------------------------------------
+---------------------------------
+Typical Use for Null Procedures
+---------------------------------
 
-* When you want a method to be concrete, rather than abstract, but don't have anything for it to do
+* Used to override a procedure from a base type
 
-   - The method is then always callable, including places where an abstract routine would not be callable
-   - More convenient than full null-body definition
+  .. code:: Ada
+    :number-lines: 1
+    :font-size: footnotesize
+
+    type One_T is tagged record
+       Field : Integer;
+    end record;
+    procedure Print (R : One_T);
+
+    type Two_T is new One_T with null record;
+    procedure Print (R : Two_T) is null;
+
+    One : One_T := (Field => 123);
+    Two : Two_T := (Field => 345);
+
+  * :ada:`Two.Print` basically does nothing (because of line 7)
+  * If line 7 is commented out, :ada:`Two.Print` would go to line 4
+
+* Used as a placeholder to get your code to build
+
+  .. code:: Ada
+    :font-size: footnotesize
+
+     procedure Step_One is null;
+     procedure Step_Two is null;
+     procedure Step_Three is null;
+   
+     procedure Do_Something is
+     begin
+        Step_One;
+        Step_Two;
+        Step_Three;
+     end Do_Something;
+
+  * :ada:`Do_Something` will build and run successfully
 
 ..
   language_version 2005

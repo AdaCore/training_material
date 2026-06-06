@@ -1,6 +1,6 @@
-=====================
+===================
 String Operations
-=====================
+===================
 
 ----------------------------
 Primitive String Functions
@@ -109,9 +109,9 @@ Bounded/Unbounded Subprograms
 
       - Convert unbounded string to standard string
 
--------------------------------
+--------------------
 Unique Subprograms
--------------------------------
+--------------------
 
 * :ada:`Ada.Strings.Fixed`
 

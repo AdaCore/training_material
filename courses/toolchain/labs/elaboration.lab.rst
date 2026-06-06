@@ -27,9 +27,9 @@ Elaboration Lab
    - The only indication of actual number of entries is the array itself
    - Need to tell the compiler that the global object is initialized in the package body
 
----------------------------------------
+--------------------------------------
 Elaboration Lab Solution - Constants
----------------------------------------
+--------------------------------------
 
 .. container:: source_include labs/answers/elaboration.txt :start-after:--Constants :end-before:--Constants :code:Ada :number-lines:1
 
